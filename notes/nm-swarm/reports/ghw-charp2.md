@@ -1,5 +1,144 @@
 # ghw-charp2 lane report
 
+## Item 7 (09-13): the LoopCut site census (read-only; gates ruling (A))
+
+Lead order: list every site that builds a `RealizedSectionFamily` or uses `weight_maximal`, `card_minimal` or
+`RespectsSections`, on origin and in drafts.  At each site, say whether the new region satisfies `target ≠ some source`.
+Prepare the patches in the lane backup, and flag the sites where the new region can be forced to run from a cell to
+itself.
+
+The form tested is patch 01: `RespectsSections cuts a := a.2.target ≠ some a.2.source ∧ (a.2.target = none → ∃ j,
+TargetsSectionIndex cuts j a)`.  audit-sec5's exact form had not arrived.
+
+### Status: census DONE, refreshed at origin 35866daf3 with the drafts on disk re-read; no Lean edit landed, no probe
+
+### Construction sites
+
+| # | Site | Owner | New region | `target ≠ some source` |
+|---|---|---|---|---|
+| 1 | `Estimating/OsinAppendixCutMerge.lean` `false_of_cons_singleton` l.62, `false_of_collapse_singleton` l.125 | hl-lemma46 | merged face (caller hypothesis); retained regions | holds: caller hypothesis; retained by the index bijection |
+| 2 | `Estimating/OsinPocketZeroCellMerge.lean` `mergedGeometry` l.221 | hull-select | merged face | holds iff the original arcs join distinct cells or a section; planned callers do |
+| 3 | `Estimating/OsinUnboundCaseOne.lean` `false_of_quadrilateral_region` l.102 | hull-unbound | face `Q` | **same-cell forceable**: `source`, `target` unconstrained (cap after a G-region collapse) |
+| 4 | `Estimating/OsinUnboundSharedEdge.lean` `false_of_digon_toward_cell` l.377 | hull-unbound | digon `i → some i₂` | **same-cell forceable** at `i₂ = i` (an edge with cell `i` on both sides) |
+| 5 | same file, `false_of_digon_toward_outer` l.421 | hull-unbound | digon, target none | holds: target none |
+| 6 | `SurgeryGFaceMergeRegions.lean` `transportSection` l.536 | NONE | retained only | holds: bijection (user `OsinUnboundMerged` automatic) |
+| 7 | `SurgeryPinchSplitSections.lean` `transportSection` l.198 | fff-periodic | retained only | holds: bijection (user `SurgeryPinchSplitExtremal` automatic) |
+| 8 | `Estimating/OsinAppendixDescentCut.lean` l.222; `Estimating/OsinAppendixSectionBridge.lean` l.95, l.166 | dgo-analytic; hull-select | empty family | holds: vacuous |
+| 9 | `Estimating/OsinPocketDiscMerge.lean` `false_of_disc_collapse_singleton` l.196 (2aa17abb0) | fff-periodic | merged disc face (caller hypothesis); retained | holds: caller hypothesis; bijection |
+| 10 | `Estimating/OsinPocketDiscEmptyTwoGon.lean` `emptyTwoGonInput_holds` l.33 (2aa17abb0) | fff-periodic | merged face, cell `i` to section `j` | holds: target none |
+| 11 | `Estimating/OsinUnboundCaseOneFace.lean` `false_of_quadrilateral_face` l.379 (7f7ba2b4f) | theoremc-retire | face `Q` on an unselected face | **same-cell forceable**: the cap on the face (the loop iff is already recorded) |
+| 12 | `Estimating/OsinUnboundCaseOneRun.lean` `osinLemma94CaseOne_false_of_walk` l.35, `osinLemma94CaseOneInput_of_walk` l.78 (3292f7a20; `S.weight_maximal` l.69) | theoremc-retire | as 11, from the face walk | **same-cell forceable**, inherited: both sides of the connector pair on one cell |
+| 13 | `LoopCutCapCounterexample.lean` (0c7a92957; `capSectionFamily` l.396, `weight_maximal` l.569, `not_loopCutInput` l.586) | audit-sec5 | the cap from `Π` to `Π` | fails by design; its docstring (l.40) says it retires under (A) |
+| 14 | `Estimating/OsinLemma94InsertionTransport.lean` `insertionSection` l.264 (c652fa749) | sec2-sentences | retained only | holds: bijection (`insertionTransport` automatic) |
+| 15 | `Estimating/DiscEmbeddingAwayUnbound.lean` `retainedSection` l.153 (ff8e8fce9; l.36 in the unlanded disk rewrite) | simple-group | retained only | holds: bijection (`retainedDistinguished` automatic) |
+| 16 | `SurgerySpikeDeletionRegions.lean` `transportSection` l.484 (0838416d4) | sec5-sentences | retained only | holds: bijection (`OsinLemma94SpikeTransport.lean` `transportDistinguished`, ba4233ef8, automatic) |
+| 17 | `Estimating/OsinPocketZeroCellMergeFalse.lean` `false_of_disc_pair_singleton` l.52, `false_of_zeroCellPocket` l.81, `ZeroCellPocketMergeStatement` l.136 (ce1028aa1) | hull-select | merged pocket face | **same-cell forceable** at statement level: `source` and `target` are free |
+| 18 | `Estimating/OsinLemma94PolygonCovers.lean` `alpha_faceOf_not_cell_of_unbound` l.95 (2b2e16cc6; `S.weight_maximal` l.105, l.107) | hull-count94 | the digon of row 4 | **same-cell forceable**, inherited from row 4 at `j = i`; feeds the closed `osinLemma94PolygonCoversInput` |
+
+Rows 9-12 landed after the 08:47 file list, and rows 14-18 appeared after 09:15.  For row 12, the walk
+(`OsinLemma94CaseOneWalk.lean:42`) gives `kind C.source = .cell source` and `target = some j → kind C.target = .cell j`.
+On origin theoremc-retire already routes the same-kind pairs through the named hypothesis
+`OsinLemma94CaseOneSameCellStatement` (`OsinUnboundCaseOneFace.lean:466`), in `osinLemma94CaseOneInput_of_walk_of_sameCell`
+(l.89).  Only the unconditional `osinLemma94CaseOneInput_of_walk` rests on the cap.
+
+### Use sites
+
+- `T.respects` applied to `target = none`: `OsinAppendixAssemblyDescent.lean:199` (dgo-analytic) and
+  `OsinAppendixAssemblyPocket.lean:212` (NONE) need `.2`.
+- `weight_maximal` and `card_minimal`:
+  - `OsinLemma94PlanarPieces.lean:149-153` (hull-unbound) is unchanged;
+  - `OsinUnboundCaseOneRun.lean:69` is row 12, and `OsinLemma94PolygonCovers.lean:105, 107` is row 18;
+  - `OsinLemma94SpikeTransport.lean:44-50` (sec5-sentences) carries them over automatically, and
+    `OsinLemma94PendantRemoval.lean:173` (jacobson) reuses that transport.
+- `respectsSections_of_sameTargetProfile` gains `hloop` (Rule 22).  Its ten users are CutMerge:147, DiscMerge:218,
+  CaseOne:159, CaseOneFace:433, SharedEdge:342, GFaceMergeRegions:547, PinchSplitSections:209, InsertionTransport:277,
+  DiscEmbeddingAwayUnbound:167 and SurgerySpikeDeletionRegions:495, all patched.
+- New lemmas:
+  - `regionFamily_noLoop` for InnerGRegion, InnerDiscRegion, FaceEdgeDoubling, DiscEmbeddingAway, GFaceMerge,
+    PinchSplit and SpikeDeletion;
+  - `mergedGeometry_loop_iff` for ZeroCellMerge and DiscMerge.
+- `NoLoops` and `LoopCutInput` (`OsinAppendixSectionInduction.lean:43, 86`, used at l.174-182): patch 07 keeps both
+  Props and every `hloop` binder.  It adds the closed producers `GloballyDistinguishedSectionFamily.noLoops`,
+  `loopCutInput` and `osinLoopCutSection`.
+- Unaffected:
+  - these take `S` as a parameter only:
+    - `OsinLemma94RegionSideCount.lean` (audit-intro);
+    - `OsinPocketSectionFaceSet.lean` (kh-ejz);
+    - `OsinLemma94CaseOneWalkHolds.lean` and `OsinLemma94CaseOneWalkLists.lean` (ko-closed);
+    - `OsinLemma94PolygonRealization.lean` (hull-unbound);
+    - `OsinAppendixEulerCornerTwoGon.lean` (leavitt-units);
+  - `OsinPocketPinchedTwoGonModel.lean` (dgo-geometric) builds no family;
+  - the eight VanKampen modules changed between c0181d92f and ccd23ffee use none of the census tokens;
+  - of the four modules added by 35866daf3, `OsinLemma94CellArcs` (ko-closed), `OsinPocketMultipleEdgeTransport`
+    (hl-lemma46) and `SurgeryCornerJoinMap` (hull-bridge) use none; `OsinLemma94CuttingChains` (hull-unbound, disk
+    edit unlanded) takes a dart-minimal `S` as a parameter only;
+  - `weight_maximal`/`card_minimal` of other selection structures (over `Finset`, `RealizedRegionFamily` or
+    `RealizedGeometricFamily`, no `RespectsSections`), a token collision: `Selection`, `RegionGlobalSelection`,
+    `RegionLegalSelection`, `GeometricGlobalSelection`, `GeometricLegalSelection`, `GFaceCornerLegalSelection`,
+    `GFaceCornerRegionSelection`, `GFaceLegalSelectionInsertion`, `CandidateWeightCounterexample`,
+    `GeometricSelectionModel`, `SelfContiguitySelectionModel` (all NONE);
+  - docstring mentions only: `OsinAppendixEulerCount:51` (NONE), `OsinAppendixEulerEmptyTwoGon:24` (hull-euler),
+    `SingletonFaceRegion:26` (hull-unbound), `UnboundScaledDecomposition:39-40` (NONE);
+  - the sweep at 35866daf3 (files containing `RealizedSectionFamily`, `weight_maximal`, `card_minimal` or
+    `RespectsSections`) lists the same 45 files on origin and on disk, and each is accounted for above;
+  - these build no family either:
+    - the `∃ T : RealizedSectionFamily` Props (`OsinAppendixSectionInduction.lean:70, 131, 154, 161`);
+    - the `hb` binders (`OsinAppendixSectionMultipleEdge.lean:173, 260`);
+    - `OsinAppendixDescentInduction.lean:261`, which reuses `S`;
+  - the other selection structures are different structures.
+- Not LoopCut, flagged: two modules declare the same lemmas.
+  - `DiscEmbeddingAwayUnbound.lean` (simple-group, l.39-66) and `OsinLemma94InsertionTransport.lean`
+    (sec2-sentences, l.49-76) both declare five `DiscEmbeddingAway.regionCandidate_*` lemmas, and five more under
+    other names.
+  - `OsinLemma94InsertionTransport` is now in the root (`GroupApproximation.lean:5023`), so wiring the origin version
+    of `DiscEmbeddingAwayUnbound` (ff8e8fce9) fails with "already declared".
+  - simple-group's unlanded rewrite on disk (10:25) drops those lemmas and imports `OsinLemma94InsertionTransport`,
+    so the flag clears once it lands.
+
+### Same-cell forceable sites (these decide (A) versus the fallback)
+
+1. SharedEdge `false_of_digon_toward_cell` at `i₂ = i` (hull-unbound).  Its only consumer is site 5.
+2. CaseOne `false_of_quadrilateral_region` at `target = some source` (hull-unbound).  It has no users.
+3. CaseOneFace `false_of_quadrilateral_face` at `target = some source` (theoremc-retire).  Its only user is site 4.
+4. CaseOneRun (theoremc-retire): on origin the same-kind pairs already form the named hypothesis
+   `OsinLemma94CaseOneSameCellStatement`.
+   - Under (A), `osinLemma94CaseOne_false_of_walk` takes `hkind`.
+   - The unconditional `osinLemma94CaseOneInput_of_walk` goes.
+   - `osinLemma94CaseOneInput_of_walk_of_sameCell` passes `hkind` on and otherwise stays the same (patch 10 (f)).
+5. PolygonCovers `alpha_faceOf_not_cell_of_unbound` at `j = i` (hull-count94).
+   - The closed `osinLemma94PolygonCoversInput` (`OsinLemma94PolygonCount.lean:53`) rests on it.
+   - Under (A), no polygon side covers an unbound dart of cell `i` whose reverse also lies on cell `i`, because
+     `exists_relatorSide_of_unbound` (l.157) needs `hcell` at every `j`.
+   - Such darts need their own count or exclusion, or that Prop reopens.
+   - I found no length argument that excludes them: the enclosed subdiagram can hold relator cells.
+6. ZeroCellMergeFalse `ZeroCellPocketMergeStatement` (hull-select, ce1028aa1, no consumers): it gains the premise
+   `target ≠ some source`.
+   The planned 9.7(a)/(b) callers read it off `S.respects`.
+
+Under (A) the region at sites 1-5 is no competitor, so those darts need another argument.
+
+### Patches (lane backup `backup/ghw-charp2/loopcensus/`, not probed)
+
+- 01: Sections.
+- 02: CaseOne and GFaceQuadrilateralRegion.
+- 03: SharedEdge and FaceEdgeDoubling.
+- 04: the GFaceMerge and PinchSplit transports.
+- 05: CutMerge and InnerGRegion.
+- 06: the Assembly `.2`.
+- 07: closed `noLoops`, `loopCutInput` and `osinLoopCutSection`.
+- 08: the ZeroCellMerge loop iff.
+- 09: DiscMerge, DiscEmptyTwoGon and CaseOneFace (anchors refreshed at ccd23ffee; its (f) is superseded by 10 (f)).
+- 10: InsertionTransport, DiscEmbeddingAwayUnbound, SpikeDeletionRegions, PolygonCovers (statement only),
+  ZeroCellMergeFalse and CaseOneRun.
+
+### Residual (exact)
+
+- The lead's ruling on (A), and audit-sec5's exact form of the loop conjunct.
+- The one-line competitor answers from hull-unbound, theoremc-retire and sec5-sentences have not arrived.
+- Under (A), two Props need their own argument:
+  - the same-kind Case 1 pairs, `OsinLemma94CaseOneSameCellStatement`, already a named hypothesis;
+  - the self-facing unbound darts at site 5, without which `osinLemma94PolygonCoversInput` reopens.
+
 ## Item 6 (09-13): the `hlinked` and `hV` producers for the exterior Euler count
 
 Lead order: take the producers of the hypotheses `hlinked` and `hV` of `card_add_six_le_of_linkedO`,
@@ -317,4 +456,5 @@ property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembl
 - Item 6: `Estimating/OsinAppendixEulerExteriorLinked.lean` is landed (cbca8029b, green 0913-061116-68489) and queued
   for wiring.  hull-euler has the names.  The summation over components and `ExtPhiData` from a section family stay in
   its assembly.
-- Waiting for the lead's next item.
+- Item 7: the LoopCut census and its ccd23ffee addendum have gone to the lead and audit-sec5.  No Lean probe or landing
+  until the lead rules on (A).
