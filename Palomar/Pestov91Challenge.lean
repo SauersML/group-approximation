@@ -11,18 +11,26 @@ import Mathlib.GroupTheory.Subgroup.Simple
 import Mathlib.LinearAlgebra.UnitaryGroup
 
 /-!
-# Pestov Open Question 9.1: an infinite simple Kazhdan group that is hyperlinear
+# Ozawa's question, Pestov's Open Question 9.1: an infinite simple hyperlinear Kazhdan group
 
-V. G. Pestov, *Hyperlinear and sofic groups: a brief guide*, Bull. Symbolic
-Logic 14 (2008) 449–480 (arXiv:0804.3968), Section 9, page 21 of the arXiv
-PDF, verbatim:
+N. Ozawa, *About the QWEP conjecture*, Internat. J. Math. 15 (2004) 501–530
+(arXiv:math/0306067, 2003), Section 7, page 26 of the arXiv PDF, verbatim:
+
+> It is unknown whether there exists a simple property (T) group Γ which is
+> hyperlinear.
+
+This is the first printed form of the question.  V. G. Pestov, *Hyperlinear
+and sofic groups: a brief guide*, Bull. Symbolic Logic 14 (2008) 449–480
+(arXiv:0804.3968), Section 9, page 21 of the arXiv PDF, prints it with the
+sofic form added, verbatim:
 
 > **Open question 9.1** (Cf. Ozawa [64]). Let G be an infinite simple group
 > with Kazhdan's property (T). Can it be hyperlinear (sofic)?
 
 The two theorems below answer **yes**, in both of the question's forms:
 
-* `exists_infinite_simple_propertyT_hyperlinear` is the hyperlinear form;
+* `exists_infinite_simple_propertyT_hyperlinear` is the hyperlinear form,
+  Ozawa's question;
 * `exists_infinite_simple_propertyT_sofic` is the parenthetical sofic form,
   which is the stronger of the two because sofic groups are hyperlinear.
 
@@ -145,15 +153,17 @@ def IsHyperlinearGroup (G : Type) [Group G] : Prop :=
 
 -- END SHARED BLOCK
 
-/-- **Open question 9.1 has a positive answer**: some infinite simple group
-with Kazhdan's property `(T)` is hyperlinear. -/
+/-- **Ozawa's question, the hyperlinear form of Open question 9.1, has a
+positive answer**: some infinite simple group with Kazhdan's property `(T)`
+is hyperlinear. -/
 theorem exists_infinite_simple_propertyT_hyperlinear :
     ∃ (G : Type) (_ : Group G), Infinite G ∧ IsSimpleGroup G ∧ HasPropertyT G ∧
       IsHyperlinearGroup G := by
   sorry
 
-/-- **The sofic form of question 9.1 has a positive answer**: some infinite
-simple group with Kazhdan's property `(T)` is sofic. -/
+/-- **The sofic form of Open question 9.1, Pestov's addition to Ozawa's
+question, has a positive answer**: some infinite simple group with Kazhdan's
+property `(T)` is sofic. -/
 theorem exists_infinite_simple_propertyT_sofic :
     ∃ (G : Type) (_ : Group G), Infinite G ∧ IsSimpleGroup G ∧ HasPropertyT G ∧
       IsSoficGroup G := by

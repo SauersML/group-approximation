@@ -28,9 +28,11 @@ project:
     with diag(u, 1) in the connected component of 1 in U(M2(A))
     (Palomar/comparator-lix.json).
 
-    Pestov asks, as Open question 9.1 of arXiv:0804.3968 and following Ozawa,
-    whether an infinite simple group with property (T) can be hyperlinear or
-    sofic. The answer is yes, in both forms: EL₃(A), for the ring
+    Ozawa asks in 2003, in About the QWEP conjecture (arXiv:math/0306067),
+    whether a simple group with Kazhdan's property (T) can be hyperlinear,
+    and Pestov prints the question, with the sofic form added, as Open
+    question 9.1 of arXiv:0804.3968. The answer is yes, in both forms:
+    EL₃(A), for the ring
     A = LC(X, 𝔽₂) ⋊ ℤ of a Toeplitz subshift X, is infinite, simple, has
     property (T) and is LEF, so it is sofic and hyperlinear
     (Palomar/comparator-pestov91.json).
@@ -141,23 +143,28 @@ sources:
     type: original-proof
     relationship: other
     contributors:
+      - name: Astra
+        role: solved the problem, using a custom proof tool
       - name: Claude (Anthropic)
         role: >-
-          solved the problem, reviewed the proof independently twice, and
-          wrote all the prose for this result
+          wrote all the prose: the narrative fields of this file for this
+          result and the docstrings of the Palomar Pestov91 modules
     note: >-
-      The positive answer to Open question 9.1 of Pestov's "Hyperlinear and
-      sofic groups: a brief guide", the question checked by
+      The positive answer to Ozawa's question, the question checked by
       Palomar/comparator-pestov91.json, is first presented in this project.
-      Ozawa asks it in print in 2003: "It is unknown whether there exists a
-      simple property (T) group Γ which is hyperlinear" (arXiv:math/0306067
-      v1, 2003-06-03, unchanged in v2 of 2004-05-10). Pestov prints it as Open
-      question 8.1 of arXiv:0804.3968 v1 (2008-04-24), numbered 9.1 in v8
-      (2008-08-04): "Let G be an infinite simple group with Kazhdan's property
-      (T). Can it be hyperlinear (sofic)?" Arzhantseva still lists the sofic
-      form as unknown in 2014 (Trends in Mathematics 1, p. 11). The witness is
+      Ozawa asks it first, in 2003, without attributing it to anyone: "It is
+      unknown whether there exists a simple property (T) group Γ which is
+      hyperlinear" (About the QWEP conjecture, arXiv:math/0306067 v1,
+      2003-06-03, unchanged in v2 of 2004-05-10). Pestov prints it, citing
+      Ozawa and adding the sofic form, as Open question 8.1 of
+      arXiv:0804.3968 v1 (2008-04-24), numbered 9.1 in v8 (2008-08-04): "Let
+      G be an infinite simple group with Kazhdan's property (T). Can it be
+      hyperlinear (sofic)?" Arzhantseva still lists the sofic form as unknown
+      in 2014 (Trends in Mathematics 1, p. 11). The witness is
       EL_3(LC(X, F_q) ⋊ Z) modulo its centre, for an infinite minimal subshift
-      X. The argument was committed to this public repository on 2026-09-13
+      X; the Lean witness is the case q = 2 with X the Toeplitz subshift,
+      where the centre is trivial and no quotient is taken. The argument was
+      committed to this public repository on 2026-09-13
       at 03:18:24 UTC (f375478c7). It passed independent review at 03:48:55
       UTC (0efeac410), was recorded in the research graph as answering the
       question at 04:09:24 UTC (8b65f0932), and passed a second independent
@@ -737,9 +744,10 @@ sources:
       Gottschalk's surjunctivity conjecture and Gromov's theorem. The survey
       records only the forward implication of Gromov's theorem and does not
       pose the converse. Section 9, page 21 of arXiv v8, prints the question
-      checked by Palomar/comparator-pestov91.json: "Open question 9.1 (Cf.
-      Ozawa [64]). Let G be an infinite simple group with Kazhdan's property
-      (T). Can it be hyperlinear (sofic)?"; Theorems 3.5 and 3.6 are the
+      checked by Palomar/comparator-pestov91.json, Ozawa's question of 2003
+      with the sofic form added: "Open question 9.1 (Cf. Ozawa [64]). Let G
+      be an infinite simple group with Kazhdan's property (T). Can it be
+      hyperlinear (sofic)?"; Theorems 3.5 and 3.6 are the
       finite-set criteria that the challenge's IsSoficGroup and
       IsHyperlinearGroup imply.
 
@@ -889,9 +897,9 @@ sources:
     relationship: background
     note: >-
       Internat. J. Math. 15(5):501-530; arXiv:math/0306067v2, p. 26. The
-      origin of Question 9.1, which Pestov cites as [64]: "It is unknown
-      whether there exists a simple property (T) group Γ which is
-      hyperlinear." Context only.
+      first printed form of the question, from 2003, which Pestov cites as
+      [64] at Open question 9.1: "It is unknown whether there exists a
+      simple property (T) group Γ which is hyperlinear." Context only.
 
   - title: >-
       Discrete groups with Kazhdan's property T and factorization property are
@@ -1091,6 +1099,14 @@ automation:
     (Anthropic), which also produced their Lean formalisations under the
     author's direction. Those formalisations belong to the second methods
     entry above.
+
+    Ozawa's question, printed by Pestov as Open question 9.1, was solved by
+    Astra, using a custom proof tool. All prose for that result, the
+    narrative fields of this file and the docstrings of the Palomar Pestov91
+    modules, was written by Claude (Anthropic), which also produced the Lean
+    formalisation under the author's direction. No Codex or GPT agent worked
+    on that result. That formalisation belongs to the second methods entry
+    above.
 
     Problems X(1) and XXII of Schafhauser, Tikuisis and White were solved by
     Astra, using a custom proof tool. All prose for those two results, the
