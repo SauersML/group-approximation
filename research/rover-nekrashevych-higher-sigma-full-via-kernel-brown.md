@@ -25,9 +25,8 @@ Properties (a)–(d) are those of `rover-nekrashevych-stein-farley-complex-prope
 abelianization. Then `S(Γ, N) = S(Γ)`. By the characters claim, `Φ(V_d) = 0` and `Φ` of a table is the sum of `Φ_G`
 of its labels, where `Φ_G: G -> Z^r` is `Φ` on one-cone labels.
 
-**Step 1 (tall part).** Put `n_1 = m + 1`, and let `X_{>= n_1}` be the full subcomplex on heights `>= n_1`. By (c) and
-(ML), coning off contractible ascending links does not change homotopy type. So `X_{>= n_1}` is homotopy equivalent
-to `X`, which is contractible by (a).
+**Step 1 (tall part).** Put `n_1 = m + 1`, and let `X_{>= n_1}` be the full subcomplex on heights `>= n_1`. By (c) it
+is contractible: its vertex poset is directed, because an upper bound of two tall vertices is tall.
 
 **Step 2 (filtration).** Let `Y_n` be the full subcomplex on heights in `[n_1, n]`. It is `Γ`-cocompact by (a).
 
