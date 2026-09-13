@@ -113,3 +113,24 @@ On the pocket walks `w₁ = invDarts X ++ invDarts B` and `w₂ = invDarts Y ++ 
   The cases with an empty window need separate handling.
 - Noncrossing of the two walks is not produced here. It is one of the four facts of the ruling at
   roster l.949 (jacobson).
+
+## Item 3: binder 5 residual (2), `hout` for the cell pocket walk (main's 18:4x assignment)
+
+Ownership check, 18:45: ms-intro-4's residual list (a0ef02fff, report item 3) leaves `hout` undecided.
+ms-inverses-2's in-flight `OsinPocketCellKeptCellNoncrossing` and ms-cite-1's `OsinPocketMultipleEdgeCopy` consume
+`hout` as a hypothesis. No file on origin or in the shared tree produces it or picks the order of the two regions.
+
+Finding: `hout` for a fixed order of the two regions can fail, lake or no lake.
+- `CellPocketWalk.exists_of_joinsCells` is symmetric in `a` and `b`, but its walk is not. Its first arc spans the arc of
+  `a`, the gap `G₁` of `Π_i` after it, and the arc of `b`, in carrier order.
+- The walk darts along `G₁` reverse darts of `Π_i`, so their own faces are the faces across `G₁`: the pocket next to `G₁`.
+  The side darts are boundary darts of `a` and `b`, so the side of the walk holds `a`, `b` and that pocket.
+- Swapping `a` and `b` replaces `G₁` by the other gap of `Π_i`, and so the pocket by the complementary pocket. The
+  exterior face lies in at most one of the two pockets.
+- If a dart of `G₁` has the exterior face across it (`Π_i` touches `∂Δ` between the two arcs), the exterior face is the
+  own face of a walk dart, so it lies on the walk's side and `hout` fails for that order.
+- The lake model is a different obstruction, to following outer cycles. Its cell is a monogon, which cannot carry the two
+  disjoint nonempty region arcs.
+- The premise needed is a choice of order: `hout` for the walk of `(a, b)` or for the walk of `(b, a)`.
+
+CLAIM the exterior face against the cell pocket walk and the two-order statement, GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOuter.lean
