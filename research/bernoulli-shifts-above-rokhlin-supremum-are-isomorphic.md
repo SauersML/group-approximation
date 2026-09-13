@@ -43,10 +43,32 @@ of them can be taken with independent translates.
   i.i.d. rows along an aperiodic `T`. Ornstein's theorem for `Z` then forces equal row entropy (Attempts on
   `bernoulli-shift-entropy-classifies-for-every-group`). A collapse must recode many rows jointly, or move the
   common factor.
-- **Factor maps.** Over groups containing `F_2`, `K^G` factors onto `L^G` (Bowen, arXiv:0812.2718), with no
-  control of injectivity. Seward's small generating partitions (Theorem 6.7 mechanism) record information on a
+- **Factor maps.** Over groups containing `F_2`, `K^G` factors onto `L^G` (Bowen, arXiv:0812.2718), and over
+  every nonamenable group (`nonamenable-bernoulli-shifts-are-weakly-isomorphic`), with no control of
+  injectivity. Seward's small generating partitions (Theorem 6.7 mechanism) record information on a
   transversal of a finite subgroup. They are generating but carry no independence.
 - **What a proof needs.** An Ornstein-type upgrade in which the entropy hypothesis is replaced by "above `s`".
   Perturb a Krieger generating partition with distribution `lambda` towards independence of translates while
   keeping it generating, and converge in `L^1`. The finitely determined property of Bernoulli shifts is known
   only through amenable or sofic counting.
+- **Genericity (lane ex-bernoulli-rokhlin-complete, 2026-09-13).** Dead when `0 < s < ∞`.
+  - On a nonamenable group with positive supremum, generating partitions of `K^G` keep a definite distance from
+    i.i.d. partitions carried by a Bernoulli factor of base entropy `a < s`.
+  - Factor maps from `L^G` onto `K^G` keep a definite distance from the joinings such partitions define.
+  - Both follow from sub-additivity and Bowen's weak isomorphism
+    (`iid-generators-not-dense-at-positive-rokhlin-supremum`).
+
+  So generating i.i.d. partitions are not dense among i.i.d. partitions, and isomorphism joinings are not dense
+  among joinings. A Baire category argument over either space cannot give this claim when `0 < s < ∞`. At
+  `s = 0` the obstruction is empty. That case is posed as `iid-generators-dense-at-zero-rokhlin-supremum`,
+  whose Baire route gives total finite collapse (`zero-supremum-collapse-via-dense-iid-generators`).
+- **Seward's factor theorem (arXiv:1804.05269v3).** It cannot output the partition this claim asks for.
+  - A generating i.i.d. partition `alpha` of `K^G` above `s` is outer-deficient. The outer Rokhlin entropy of
+    `σ-alg_G(alpha) = B(K^G)` is `h^Rok_G(K^G) = s`, below `H(alpha)`.
+  - The perturbative factor theorem (Theorem 9.2) makes a partition exactly Bernoulli only near partitions
+    whose outer entropy is close to their Shannon entropy. So it never returns such an `alpha`.
+  - What it does give, for `s > 0`, is Theorem 10.1 with trivial `Σ`. For every `ε > 0` and every finite
+    probability vector `p̄` with `H(p̄) = s`, `K^G` has a partition with distribution `p̄` and independent
+    translates, relative to which `K^G` has Rokhlin entropy below `ε`. So every Bernoulli shift above `s` is an
+    `ε`-extension of the Bernoulli shift with base entropy exactly `s`, and this claim asks that the extension
+    be absorbed exactly.
