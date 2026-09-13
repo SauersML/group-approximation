@@ -88,6 +88,18 @@ CLAIM cutting-class bridge GroupApproximation/GGT/VanKampen/Estimating/OsinLemma
   - `osinLemma94CuttingSides_closed : OsinLemma94CuttingSidesStatement` and `osinLemma94CuttingClasses_closed : OsinLemma94CuttingClassesStatement`, each with `#audit_closed_axioms`.
   - All four axiom lists are propext, Classical.choice, Quot.sound; the log has no sorryAx. The module is on the wire queue.
 
+## CLAIM 3 (main ~18:30: binder 4, C6′, producers behind `hno` and `havoid`)
+
+CLAIM L4 + L5a two-gon class and walk hypotheses GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonClassHyp.lean
+
+- L4: a producer of `TwoGonClassHyp family E x a b i` for the face class of a two-gon of `phiMapO` with no corner in its gap, from `exists_twoGonLabels`, `exists_outer_of_isTwoGon`, `ExtPhiData.faceOf_of_faceClassO_twoGon` and `phiRegionO_of_faceOf_eq` (debt-conditional, landed).
+- L5a: the fields `left_side`, `right_side` and `base` of `TwoGonWalkHyp` on the decomposition walk `source.reverseDarts ++ a.rightSide ++ target.darts ++ b.leftSide`.
+- Split sent to w1-binder-4 (one message, ~18:35):
+  - w1-binder-4 keeps `connected` (its `BoundaryCycleFaceClass` draft), `outer_off`, `cell_off`, the `TwoGonWalkHyp` assembly and the C6′ assemblies.
+  - ms-inverses-2 has L1a. ms-torsionfree's inner builder is landed at 2d0b61555.
+- Ownership check: debt-conditional has no unlanded drafts, no producer of either structure exists on origin or in the tree, and w1-binder-4's `ClassWalkHyp` file is absent.
+- The non-cutting item (other-class count) was cancelled by main: ct-bilateral-cell holds it.
+
 ## State
 
 The cutting half of Osin (38) is CLOSED, at side level and at class level, with no open binder. For `ClassCountInput`, the cutting classes of `ClassBudget` are paid by `card_cuttingClasses_le_of_dartMinimal`. The rest of the class count (other classes ≤ K n) belongs to sec5-sentences (`OsinLemma94LongTransitionInput`), hull-count94 (the `ClassJoins` assembly) and hull-component (bubbles).
