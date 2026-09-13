@@ -8,8 +8,8 @@ distinct_from:
   binary-leavitt-unit-group-is-l2-acyclic: that is vanishing of the L²-Betti numbers of the group itself; this is about kernels of arbitrary matrices, which need not be boundary maps of a resolution.
 ---
 
-**ESTABLISHED (proved on paper, unreviewed).** Let `G = L_(F_2)(1,2)^x`. Some matrix `T` over
-`Z[G]` has irrational `dim_vN ker T`. For example
+**ESTABLISHED (proved on paper; reviewed PASS by `ex-verify-backlog`, 2026-09-13).** Let
+`G = L_(F_2)(1,2)^x`. Some matrix `T` over `Z[G]` has irrational `dim_vN ker T`. For example
 `1/64 - (1/8) Σ_(k>=1) 2^(-(k²+4k+6))` arises from `G`.
 
 **No new mechanism.** The result is immediate from two known facts:
@@ -24,14 +24,16 @@ arXiv:0909.2360, Corollary 1.2, for groups `(Z_2^(⊕F_2)/V) ⋊ F_2`. The only 
 the first nonsofic group contains such a subgroup.
 
 **Atiyah problem for `G`.**
-- `G` contains every finite group, so the orders of its finite subgroups have no common bound.
-  The strong Atiyah conjecture then predicts only rational dimensions. This refutes that
-  prediction.
-- The same holds for every group containing `V`, including `(L ⊗ L)^x` and every `(B ⊗ L)^x`.
-- Upper bound: `G` has decidable word problem, so every arising real is right-computable, and
+- **What is refuted.** The strong Atiyah conjecture assumes a bound on the orders of finite
+  subgroups. `G` contains every finite group, so that conjecture predicts nothing for `G`. What
+  `G` refutes is the rationality form of Atiyah's question: whether every kernel dimension over
+  `Q[G]` is rational.
+- **Other groups.** The same holds for every group containing `V`, including `(L ⊗ L)^x` and every
+  `(B ⊗ L)^x`.
+- **Upper bound.** `G` has decidable word problem, so every arising real is right-computable, and
   computable if `G` satisfies the determinant conjecture (Löh--Uschold arXiv:2202.03159,
   Theorems 1.1--1.2; `decidable-groups-have-right-computable-l2-betti-numbers`).
-- Deciding whether a kernel is trivial is undecidable over `Z[G]`
+- **Undecidability.** Deciding whether a kernel is trivial is undecidable over `Z[G]`
   (`binary-leavitt-unit-group-has-undecidable-l2-kernel-problem`, from Grabowski arXiv:1202.1162).
 
 Route: `binary-leavitt-unit-irrational-l2-betti-proof`.

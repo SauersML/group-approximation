@@ -15,8 +15,9 @@ Status: proved on paper here, unreviewed. The external inputs are listed in Sect
 
 ## 0. Statements
 
-Write `β_n^(2)(G) = dim_(N(G)) H_n(G; N(G))` for Lück's L²-Betti numbers of an arbitrary
-countable group `G`.
+Write `β_n^(2)(G) = dim_(N(G)) H_n(G; N(G))` for Lück's L²-Betti numbers of an arbitrary group
+`G`. No countability is used anywhere below, so Theorems A and E apply to general linear groups over
+uncountable rings.
 
 **Theorem A (frame criterion).** Let `A` be an infinite unital ring and `r >= 3`. Let
 `X_r(A)` be the ordered frame semisimplicial set of Khanh's Definition 2.1. If
@@ -28,8 +29,8 @@ countable group `G`.
 `β_n^(2)(S^x) = 0` for every `n >= 0`. This covers `(R ⊗ R)^x`, which is finitely presented,
 simple, integrally acyclic and nonsofic.
 
-**Theorem D (general form of the count).** Let a group `G` act on a semisimplicial set `X`
-so that every stabilizer fixes its simplex pointwise, and suppose `H̃_d(X; Z) = 0` for
+**Theorem D (general form of the count).** Let a group `G` act on a nonempty semisimplicial set
+`X` so that every stabilizer fixes its simplex pointwise, and suppose `H̃_d(X; Z) = 0` for
 `0 <= d <= m`. If `β_t^(2)(G_σ) = 0` for every `p`-simplex `σ` and every `t` with
 `p + t <= m`, then `β_n^(2)(G) = 0` for `0 <= n <= m`.
 
@@ -104,9 +105,10 @@ action is on ordered tuples, so a group element fixing the simplex fixes each ve
 
 ## 3. The stabilizer spectral sequence with coefficients
 
-**Proposition 3.1.** Let `G` act on a semisimplicial set `X` with stabilizers fixing
+**Proposition 3.1.** Let `G` act on a nonempty semisimplicial set `X` with stabilizers fixing
 simplices pointwise, and let `M` be a right `ZG`-module that is flat as an abelian group.
-Suppose `H̃_d(X; Z) = 0` for `0 <= d <= m`. There is a spectral sequence
+Suppose `H̃_d(X; Z) = 0` for `0 <= d <= m`. Nonemptiness gives `H_0(X; Z) = Z`, which the
+filtration by `t` uses. There is a spectral sequence
 
 ```text
 E^1_(p,t) = ⊕_([σ] in G\X_p) H_t(G_σ; M)   ==>   H_(p+t)(G; M)   in total degrees <= m.
