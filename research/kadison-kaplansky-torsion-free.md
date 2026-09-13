@@ -49,11 +49,21 @@ it holds for all finitely generated torsion-free groups.
   idempotent conjecture for `k[G]`, `char k = 0`. The argument is the one in
   `rank-one-bcc-implies-charzero-idempotent-proof`.
 
-**Matrix form.** A gap in the spectral measure of a self-adjoint `n x n` matrix
-over `C[G]` gives a projection in `M_n(C*_r(G))` of trace strictly between `0`
-and `n`. When that trace is not an integer, it refutes the torsion-free trace
-conjecture, and so Baum--Connes surjectivity for `G`. It does not by itself
-refute this root.
+**Matrix form, and equivalence with the trace conjecture (2026-09-12).** A gap in
+the spectral measure of a self-adjoint `n x n` matrix over `C[G]` gives a
+projection in `M_n(C*_r(G))` of trace strictly between `0` and `n`. When that
+trace is not an integer, it refutes the torsion-free trace conjecture, and so
+Baum--Connes surjectivity for `G`. It also refutes this root, on the torsion-free
+group `G * Z`.
+- *Mechanism:* `fractional-matrix-trace-gives-projection-in-g-star-z`. The algebra
+  `C*_r(G * Z)` is selfless, so it has strict comparison by its trace. That peels
+  `floor(t)` copies of `1` off a matrix projection of trace `t` and compresses the
+  remainder into a projection of `C*_r(G * Z)` of trace `t - floor(t)`.
+- *Consequence:* this root is equivalent to the torsion-free trace conjecture
+  `tau_*(K_0(C*_r Γ)) ⊆ Z` over all torsion-free `Γ`. Its negation is equivalent to
+  `torsion-free-matrix-trace-defect-exists`.
+- *One group at a time:* for a torsion-free acylindrically hyperbolic group, whose
+  reduced algebra is itself selfless, the two statements coincide on the group.
 
 ## Attempts
 
@@ -89,7 +99,7 @@ refute this root.
   vanish in `C*_r(G)`, compression relations collapse to equality under the
   faithful trace, and averages over finite subgroups are trivial for
   torsion-free groups.
-- **Lattice transfer: a live shape, but for the matrix trace form only.**
+- **Lattice transfer: a live shape.**
   - *Setup.* Suppose `G` and a torsion-free `Gamma` act freely and cocompactly
     on one complex `X`.
   - *Transfer.* A gap projection `P = chi_[0,c](Delta_k)` of the combinatorial
@@ -99,8 +109,8 @@ refute this root.
     `free-cocompact-lattices-proportional-l2-betti`, as observed by the
     atiyah-computability lane.
   - *Conclusion.* A non-integer `r tau_G(P)` refutes the torsion-free trace
-    conjecture for `Gamma`. It does not by itself give a 1x1 counterexample to
-    this root.
+    conjecture for `Gamma`, and then this root on `Gamma * Z`, by Corollary C of
+    `fractional-matrix-trace-gives-projection-in-g-star-z`.
   - *Existence.* The complex, which needs non-discrete `Aut(X)`, is the open
     `complex-with-irrational-and-torsion-free-lattices`.
 - **Torsion-free Kazhdan hosts, no mechanism yet.**

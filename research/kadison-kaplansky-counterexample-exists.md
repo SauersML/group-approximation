@@ -24,6 +24,14 @@ trace `mu_a((-inf, c))` in `(0,1)`.
 A sum-of-squares identity in `C[G]` certifies the gap only in `C*_max(G)`. The
 two-sided reduced mass is the part that uses the regular representation.
 
+**Matrix witnesses suffice (2026-09-12).** By
+`kk-counterexample-via-g-star-z-scalarization`, a projection of non-integer trace
+in some `M_n(C*_r Γ)`, with `Γ` torsion-free, gives a counterexample on `Γ * Z`.
+So this target is equivalent to `torsion-free-matrix-trace-defect-exists`. A
+search may use self-adjoint matrices over `Z[i][Γ]`, such as Laplacians or
+spectrally isolated Atiyah kernels, and only needs a non-integer trace below the
+gap, not a trace in `(0,1)`.
+
 ## Attempts
 
 - **Hosts that are ruled out:** groups with torsion-free assembly surjectivity
