@@ -43,7 +43,8 @@ quotient map.
   `theorem-e-vertex-types-equidistribute-on-finite-sl-d-orbits`, the remaining content of (LM) at the
   Theorem E pair sits in fibre holonomies of congruence stabilizers. Item 2 shows every model of
   `SL_d(Z)` itself occurs as such a holonomy, on a single fixed type. So the crux at this pair is at
-  least `DEC_kappa(SL_d(Z))`, and it is no stronger than the fibre problem for finite-index subgroups.
+  least `DEC_kappa(SL_d(Z))`. That it is no stronger than the fibre problem for finite-index subgroups
+  is the reading in that claim's artifact, not an established implication.
 - **Where a counterexample must come from.** Genuine coordinates for `h` always lift
   (`at-op62-holds-for-representation-lifts`). A counterexample needs a model of `SL_d(Z)` that is not
   flexibly roundable to genuine representations. Flexible normalized-HS stability of `SL_d(Z)` is open,
