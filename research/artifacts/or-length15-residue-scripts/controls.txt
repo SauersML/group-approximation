@@ -1,0 +1,44 @@
+== negverify.out
+taTAA FAIL bottom-collapse
+taTAA FAIL top-collapse
+SENTINEL_DONE
+== neg_bs12.out
+K taTAA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K taTAA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K taTAA k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K taTAA k=4 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K taTAA k=5 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K taTAA k=6 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+SENTINEL_DONE
+== neg_bs23.out
+K taaTAAA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K taaTAAA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K taaTAAA k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K taaTAAA k=4 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K taaTAAA k=5 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K taaTAAA k=6 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+SENTINEL_DONE
+== xcheck_taTAA.out
+XCHECK taTAA k=1 brute=1 bt=1 equal=True
+XCHECK taTAA k=2 brute=1 bt=1 equal=True
+XCHECK taTAA k=3 brute=2 bt=2 equal=True
+XCHECK taTAA k=4 brute=1 bt=1 equal=True
+XCHECK taTAA k=5 brute=2 bt=2 equal=True
+XCHECK taTAA k=6 brute=3 bt=3 equal=True
+SENTINEL_DONE
+== xcheck_AAtAtAATTattaTT.out
+XCHECK AAtAtAATTattaTT k=1 brute=1 bt=1 equal=True
+XCHECK AAtAtAATTattaTT k=2 brute=1 bt=1 equal=True
+XCHECK AAtAtAATTattaTT k=3 brute=4 bt=4 equal=True
+XCHECK AAtAtAATTattaTT k=4 brute=3 bt=3 equal=True
+XCHECK AAtAtAATTattaTT k=5 brute=2 bt=2 equal=True
+XCHECK AAtAtAATTattaTT k=6 brute=11 bt=11 equal=True
+SENTINEL_DONE
+== xcheck_AAtAtaTTAttaaTT.out
+XCHECK AAtAtaTTAttaaTT k=1 brute=1 bt=1 equal=True
+XCHECK AAtAtaTTAttaaTT k=2 brute=1 bt=1 equal=True
+XCHECK AAtAtaTTAttaaTT k=3 brute=1 bt=1 equal=True
+XCHECK AAtAtaTTAttaaTT k=4 brute=2 bt=2 equal=True
+XCHECK AAtAtaTTAttaaTT k=5 brute=3 bt=3 equal=True
+XCHECK AAtAtaTTAttaaTT k=6 brute=7 bt=7 equal=True
+SENTINEL_DONE

@@ -48,11 +48,21 @@ a much smaller class, and the one-relator origin is the only leverage available.
 
 ## Attempts
 
-1. **Rank-one edge groups.**  *Works, and marks the boundary.*  If every
-   `rank C_i <= 1` the edge groups are amenable; existing permanence for
-   amalgams and HNN extensions over amenable subgroups, plus closure under
-   directed unions, makes `K` sofic and hence `G` sofic.  The claim is therefore
-   already established on the sub-family `n - m <= 1`.
+1. **Rank-one edge groups.**  *Reduces to a shorter relator, does not close.*
+   If `n - m <= 1`, every edge group `C_i` is cyclic. Amalgams of sofic groups
+   over amenable subgroups are sofic, and soficity passes to directed unions and
+   to extensions by `Z`. So `G` is sofic **iff** the piece
+   `B_0 = <a_m, a_{m+1} | W_0>` is sofic. The earlier wording said the claim was
+   "already established" on `n - m <= 1`, but it overlooked that the vertex
+   groups must themselves be sofic. `B_0` is again a one-relator group on at most
+   two generators, so this step is a descent: the overlap-rank-one descent of
+   [[unpeelable-extreme-one-relator-groups-sofic]] attempt 5.
+   - If `n = m`, `B_0` is cyclic.
+   - Otherwise `w` has at least two `t`-letters, so `|W_0| <= |w| - 2`.
+
+   With that attempt's census (every `<a,t | w>` with `|w| <= 14` is sofic), the
+   sub-family `n - m <= 1` is sofic whenever `|w| <= 16`. Beyond that it is open,
+   exactly as far as shorter relators are.
 2. **Induct on relator length.**  *Dies on the window, not on the edge.*  The
    pieces `B_i` are shorter one-relator groups, so induction looks available —
    but a finite interval of the chain is **not** a one-relator group. It carries

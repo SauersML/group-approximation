@@ -1,0 +1,39 @@
+classes=36
+CLASS AAtAtAATTAttATT len=15 ex=(1, 2, 1, 1, 2) seq=[(0, -2), (1, -1), (2, -2), (0, -1), (2, -1)] cert=True delta=[-3, -1, -3] tors=7 cyc=- PP
+CLASS AAtAtAATTAttaTT len=15 ex=(1, 2, -1, 1, 2) seq=[(0, -2), (1, -1), (2, -2), (0, -1), (2, 1)] cert=False delta=[-3, -1, -1] tors=5 cyc=- REST
+CLASS AAtAtAATTattaTT len=15 ex=(1, 2, -1, -1, 2) seq=[(0, -2), (1, -1), (2, -2), (0, 1), (2, 1)] cert=False delta=[-1, -1, -1] tors=3 cyc=Phi3 REST
+CLASS AAtAtATTAttAATT len=15 ex=(1, 1, 1, 2, 2) seq=[(0, -2), (1, -1), (2, -1), (0, -1), (2, -2)] cert=True delta=[-3, -1, -3] tors=7 cyc=- PP
+CLASS AAtAtATTAttaaTT len=15 ex=(1, 1, 1, -2, 2) seq=[(0, -2), (1, -1), (2, -1), (0, -1), (2, 2)] cert=False delta=[-3, -1, 1] tors=3 cyc=- REST
+CLASS AAtAtATTattAATT len=15 ex=(1, 1, -1, 2, 2) seq=[(0, -2), (1, -1), (2, -1), (0, 1), (2, -2)] cert=False delta=[-1, -1, -3] tors=5 cyc=- REST
+CLASS AAtAtATTattaaTT len=15 ex=(1, 1, -1, -2, 2) seq=[(0, -2), (1, -1), (2, -1), (0, 1), (2, 2)] cert=False delta=[-1, -1, 1] tors=1 cyc=- REST
+CLASS AAtAtaTTAttAATT len=15 ex=(1, -1, 1, 2, 2) seq=[(0, -2), (1, -1), (2, 1), (0, -1), (2, -2)] cert=False delta=[-3, -1, -1] tors=5 cyc=- REST
+CLASS AAtAtaTTAttaaTT len=15 ex=(1, -1, 1, -2, 2) seq=[(0, -2), (1, -1), (2, 1), (0, -1), (2, 2)] cert=False delta=[-3, -1, 3] tors=1 cyc=- REST
+CLASS AAtAtaTTattAATT len=15 ex=(1, -1, -1, 2, 2) seq=[(0, -2), (1, -1), (2, 1), (0, 1), (2, -2)] cert=False delta=[-1, -1, -1] tors=3 cyc=Phi3 REST
+CLASS AAtAtaTTattaaTT len=15 ex=(1, -1, -1, -2, 2) seq=[(0, -2), (1, -1), (2, 1), (0, 1), (2, 2)] cert=False delta=[-1, -1, 3] tors=1 cyc=- REST
+CLASS AAtAtaaTTAttATT len=15 ex=(1, 2, 1, 1, -2) seq=[(0, -2), (1, -1), (2, 2), (0, -1), (2, -1)] cert=False delta=[-3, -1, 1] tors=3 cyc=- REST
+CLASS AAtAtaaTTAttaTT len=15 ex=(1, 2, -1, 1, -2) seq=[(0, -2), (1, -1), (2, 2), (0, -1), (2, 1)] cert=False delta=[-3, -1, 3] tors=1 cyc=- REST
+CLASS AAtAtaaTTattATT len=15 ex=(1, 2, 1, -1, -2) seq=[(0, -2), (1, -1), (2, 2), (0, 1), (2, -1)] cert=False delta=[-1, -1, 1] tors=1 cyc=- REST
+CLASS AAtAtaaTTattaTT len=15 ex=(1, 2, -1, -1, -2) seq=[(0, -2), (1, -1), (2, 2), (0, 1), (2, 1)] cert=False delta=[-1, -1, 3] tors=1 cyc=- REST
+CLASS AAtatAATTAttATT len=15 ex=(1, -2, -1, -1, -2) seq=[(0, -2), (1, 1), (2, -2), (0, -1), (2, -1)] cert=False delta=[-3, 1, -3] tors=5 cyc=- PPIMG AttAtatAttAAttttA
+CLASS AAtatAATTAttaTT len=15 ex=(1, -2, -1, 1, -2) seq=[(0, -2), (1, 1), (2, -2), (0, -1), (2, 1)] cert=False delta=[-3, 1, -1] tors=3 cyc=- REST
+CLASS AAtatAATTattaTT len=15 ex=(1, -2, 1, 1, -2) seq=[(0, -2), (1, 1), (2, -2), (0, 1), (2, 1)] cert=False delta=[-1, 1, -1] tors=1 cyc=Phi6 REST
+CLASS AAtatATTAttAATT len=15 ex=(1, -1, -1, -2, -2) seq=[(0, -2), (1, 1), (2, -1), (0, -1), (2, -2)] cert=False delta=[-3, 1, -3] tors=5 cyc=- PPIMG AttAtatAAttttAttA
+CLASS AAtatATTAttaaTT len=15 ex=(1, -1, -1, 2, -2) seq=[(0, -2), (1, 1), (2, -1), (0, -1), (2, 2)] cert=False delta=[-3, 1, 1] tors=1 cyc=- REST
+CLASS AAtatATTattAATT len=15 ex=(1, -1, 1, -2, -2) seq=[(0, -2), (1, 1), (2, -1), (0, 1), (2, -2)] cert=False delta=[-1, 1, -3] tors=3 cyc=- REST
+CLASS AAtatATTattaaTT len=15 ex=(1, -1, 1, 2, -2) seq=[(0, -2), (1, 1), (2, -1), (0, 1), (2, 2)] cert=False delta=[-1, 1, 1] tors=1 cyc=- REST
+CLASS AAtataTTAttAATT len=15 ex=(1, 1, -1, -2, -2) seq=[(0, -2), (1, 1), (2, 1), (0, -1), (2, -2)] cert=False delta=[-3, 1, -1] tors=3 cyc=- REST
+CLASS AAtataTTAttaaTT len=15 ex=(1, 1, -1, 2, -2) seq=[(0, -2), (1, 1), (2, 1), (0, -1), (2, 2)] cert=False delta=[-3, 1, 3] tors=1 cyc=- REST
+CLASS AAtataTTattAATT len=15 ex=(1, 1, 1, -2, -2) seq=[(0, -2), (1, 1), (2, 1), (0, 1), (2, -2)] cert=False delta=[-1, 1, -1] tors=1 cyc=Phi6 REST
+CLASS AAtataTTattaaTT len=15 ex=(1, 1, 1, 2, -2) seq=[(0, -2), (1, 1), (2, 1), (0, 1), (2, 2)] cert=False delta=[-1, 1, 3] tors=3 cyc=- REST
+CLASS AAttAATTAtAtATT len=15 ex=(1, 1, 2, 2, 1) seq=[(0, -2), (2, -2), (0, -1), (1, -1), (2, -1)] cert=True delta=[-3, -1, -3] tors=7 cyc=- PP
+CLASS AAttAATTAtAtaTT len=15 ex=(1, 1, 2, 2, -1) seq=[(0, -2), (2, -2), (0, -1), (1, -1), (2, 1)] cert=False delta=[-3, -1, -1] tors=5 cyc=- REST
+CLASS AAttAATTAtatATT len=15 ex=(1, -1, -2, -2, -1) seq=[(0, -2), (2, -2), (0, -1), (1, 1), (2, -1)] cert=False delta=[-3, 1, -3] tors=5 cyc=- PPIMG AttAttttAttAAtatA
+CLASS AAttAATTAtataTT len=15 ex=(1, 1, -2, -2, -1) seq=[(0, -2), (2, -2), (0, -1), (1, 1), (2, 1)] cert=False delta=[-3, 1, -1] tors=3 cyc=- REST
+CLASS AAttAATTatAtaTT len=15 ex=(1, -1, 2, 2, -1) seq=[(0, -2), (2, -2), (0, 1), (1, -1), (2, 1)] cert=False delta=[-1, -1, -1] tors=3 cyc=Phi3 REST
+CLASS AAttAATTatataTT len=15 ex=(1, 1, -2, -2, 1) seq=[(0, -2), (2, -2), (0, 1), (1, 1), (2, 1)] cert=False delta=[-1, 1, -1] tors=1 cyc=Phi6 REST
+CLASS AAttATATAttaaTT len=15 ex=(1, 1, -2, 2, 1) seq=[(0, -2), (2, -1), (1, -1), (0, -1), (2, 2)] cert=False delta=[-3, -1, 1] tors=3 cyc=- REST
+CLASS AAttATATattaaTT len=15 ex=(1, 1, 2, -2, -1) seq=[(0, -2), (2, -1), (1, -1), (0, 1), (2, 2)] cert=False delta=[-1, -1, 1] tors=1 cyc=- REST
+CLASS AAttATaTAttaaTT len=15 ex=(1, -1, -2, 2, -1) seq=[(0, -2), (2, -1), (1, 1), (0, -1), (2, 2)] cert=False delta=[-3, 1, 1] tors=1 cyc=- REST
+CLASS AAttaTATAttaaTT len=15 ex=(1, 1, -2, 2, -1) seq=[(0, -2), (2, 1), (1, -1), (0, -1), (2, 2)] cert=False delta=[-3, -1, 3] tors=1 cyc=- REST
+rest=30
+SENTINEL_DONE
