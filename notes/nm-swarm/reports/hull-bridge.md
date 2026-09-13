@@ -153,9 +153,21 @@ induction hypothesis on quotient-ball stretches.
     `rw [List.map_map]` that the rebased dart types blocked. The proof of that step now uses
     `Eq.trans`.
   - Queued for wiring. It is infrastructure, so it has no census row.
-- Next item from the lead: a StripStatement sub-module (Double or Pinch) from kh-torsion, written
-  in a new module of this lane and stated over the weakest hypothesis its step needs. I have asked
-  kh-torsion which one to take.
+- kh-torsion gave this lane the final reduction instead, GGT/VanKampen/SurgeryGeodesicCollarReduction:
+  LANDED 43f028873, green in probe 0913-155611-43423 (base 7acf8f30f, BUILT, `#audit_axioms` on five
+  declarations). The endpoint takes the strip statement as a binder, so it is not audited as closed.
+  - `GeodesicCollar.walkOutput_of_strip`: given the strip statement, a face set avoiding the exterior
+    whose boundary darts form a simple closed walk `s ++ rest` gets a collar walk. An empty side keeps
+    the diagram (`Transport.refl`). Otherwise the strip goes to `insertStatement` for a nonempty word
+    and to `joinStatement` for the empty word, and `WalkOutput.of_transport` carries the result back.
+  - `GeodesicCollar.geodesicCollarOutput_of_strip_of_simple`: the collar output over the weakest
+    hypothesis, the simplicity of `Embedded.invDarts Delta P.outer.cycle`. The boundary iff comes
+    from `P.invDarts_outer_rotate` (`GeodesicCollar.isBoundaryDart_faces_iff_mem_invDarts_outer`).
+  - `GeodesicCollar.geodesicCollarStatement_of_strip (hstrip : StripStatement) :
+    GeodesicCollarStatement`. The two `FollowsBoundary` hypotheses are used only for simplicity
+    (`PocketRegion.isSimpleClosedWalk_invDarts_outer`). kh-torsion closes the statement with its
+    `stripStatement`.
+  - Queued for wiring. It is infrastructure, so it has no census row.
 
 ## Risks recorded
 - `BoundedRelativeLinearAreaTransferStatement` may be unprovable: its W-only area predicate cannot see the
