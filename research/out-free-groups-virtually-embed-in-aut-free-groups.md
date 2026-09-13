@@ -61,10 +61,10 @@ This premise feeds `out-fn-bh-via-virtual-embedding-in-aut-fn`.
      `n − 1`, might die on a finite-index subgroup. That was not decided.
 5. **Side choice on rank-one splittings.**
    `free-splitting-fa-lifts-choose-a-side`, applicable for `n ≥ 5` via (T) for
-   `Aut(F_{n−1})`: a section restricted to the automorphisms of `B` in
-   `⟨p⟩ ∗ B` is either conjugate to the standard lift, or fixes exactly one
-   `B`-vertex of the Bass--Serre tree. This is the analogue of Chen--Salter's
-   Lemma 2.16 (the puncture lies on one side).
+   `Aut(F_{n−1})`: a section over a finite-index `Γ`, restricted to the
+   automorphisms of `B` in `⟨p⟩ ∗ B`, is either conjugate to the standard lift,
+   or fixes exactly one `B`-vertex of the Bass--Serre tree. This is the
+   analogue of Chen--Salter's Lemma 2.16 (the puncture lies on one side).
    - **Where it stops.** Chen--Salter conclude with an Euler-class computation
      on the handle-pushing subgroup `π1(UTΣ_p)`. The free-group partial
      conjugation subgroup is free and has no central extension, so that step has

@@ -2,7 +2,7 @@
 rg: 2
 id: free-splitting-fa-lifts-choose-a-side
 kind: claim
-title: A section of Aut(F_n) to Out(F_n) over an FA factor-automorphism subgroup of a rank-one splitting is standard or fixes one big vertex
+title: A section of Aut(F_n) to Out(F_n) over a finite-index FA factor-automorphism subgroup of a rank-one splitting is standard or fixes one big vertex
 distinct_from:
   outer-covering-lifts-are-virtual-sections: that identifies covering-lift constructions with virtual sections; this constrains what any section looks like on the automorphisms of one factor of a rank-one free splitting.
   aut-out-free-abelianized-extension-splits-rationally: that shows rational cohomology gives no obstruction to virtual sections; this is the nonabelian side-choice step, the free-group analogue of the puncture lying on one side of a separating curve.

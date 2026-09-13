@@ -12,11 +12,11 @@ Boone--Higman for `Out(F_n)`.
    coefficients pulled back from `Out(F_n)`, and no cohomological or transfer
    argument of that kind can exclude a virtual section. Any exclusion has to be
    nonabelian, as in Chen--Salter.
-2. **Side choice.** A section restricted to an FA subgroup of automorphisms of
-   one factor of a rank-one free splitting fixes a vertex of the Bass--Serre
-   tree. Either it is conjugate to the standard lift, or it fixes exactly one
-   vertex of the big factor. This is the free-group analogue of the "puncture on
-   one side" step of Mess and Chen--Salter.
+2. **Side choice.** A section restricted to a finite-index FA subgroup of the
+   automorphisms of one factor of a rank-one free splitting fixes a vertex of
+   the Bass--Serre tree. Either it is conjugate to the standard lift, or it
+   fixes exactly one vertex of the big factor. This is the free-group analogue
+   of the "puncture on one side" step of Mess and Chen--Salter.
 
 ## Literature status
 
@@ -112,7 +112,7 @@ This parallels the surface case. Morita's crossed homomorphism
 `Mod(Σ_{g,*}) → H` restricts to `(2 − 2g)`·abelianization on `π1`, and
 Chen--Salter need genuinely nonabelian input.
 
-## 2. Side choice for FA factor subgroups
+## 2. Side choice for finite-index FA factor subgroups
 
 **Setup.**
 - Let `F_n = ⟨p⟩ ∗ B` with `rank B = n − 1 ≥ 2`, and let `T` be its Bass--Serre
@@ -126,9 +126,9 @@ Chen--Salter need genuinely nonabelian input.
   well defined because `φ(p^m) = y p^m y^{-1}` and `φ(b) = y β(b) y^{-1}`. The
   action preserves types, so there are no inversions.
 
-**Lemma.** Let `Γ ≤ Out(F_n)` and `s: Γ → Aut(F_n)` be a section, and suppose
-`Λ := Γ ∩ J_B` has property FA and finite abelianization. Then exactly one of
-the following holds.
+**Lemma.** Let `Γ ≤ Out(F_n)` and `s: Γ → Aut(F_n)` be a section. Suppose
+`Λ := Γ ∩ J_B` has finite index in `J_B`, and has property FA and finite
+abelianization. Then exactly one of the following holds.
 - **(S) Standard.** Some `x ∈ F_n` gives `s(λ) = ι_x (id ∗ β_λ) ι_x^{-1}` for
   all `λ ∈ Λ`. The fixed tree of `s(Λ)` is then the star of the vertex `x⟨p⟩`.
 - **(N) One big vertex.** The fixed tree of `s(Λ)` is a single vertex `xB`.
@@ -143,19 +143,35 @@ the following holds.
    by `ι_x^{-1}` to fix `⟨p⟩`. Then `y⟨p⟩ = ⟨p⟩`, so `y(λ) ∈ ⟨p⟩`, and
    `λ ↦ y(λ)` is a homomorphism `Λ → ⟨p⟩ ≅ Z`. It is trivial by finite
    abelianization, so `s(λ) = id ∗ β_λ`.
-3. **Fixed tree in case (S).** For `id ∗ β` over a finite-index subgroup of
-   `Aut(B)`, the fixed `⟨p⟩`-vertices are `x⟨p⟩` with `β(x) ∈ x⟨p⟩` for all
-   `β`, which forces `x ∈ ⟨p⟩` (rank `B ≥ 2`). The fixed `B`-vertices are
-   exactly its neighbours `p^m B`.
+3. **Fixed tree in case (S).** The standard lift fixes `⟨p⟩` and every
+   neighbour `p^m B`.
+   - A neighbour `p^m b⟨p⟩` of `p^m B`, with `b ∈ B ∖ 1`, is fixed exactly
+     when `b^{-1} β_λ(b) ∈ B ∩ ⟨p⟩ = 1` for all `λ`.
+   - `Λ` has finite index in `J_B`, so the `β_λ` form a finite-index subgroup
+     of `Aut(B)`. It contains `ι_{c^k}` for every `c ∈ B` and some fixed
+     `k ≥ 1`. So `b` would commute with every `c^k`, which is impossible
+     because `rank B ≥ 2`.
+   - Fixed sets are subtrees, so the fixed tree is exactly the star of `⟨p⟩`.
 4. **Otherwise (N).** If no `⟨p⟩`-vertex is fixed, the fixed tree contains no
    edge, so it is one `B`-vertex. Conjugating it to `B` forces `y(λ) ∈ B`, and
    `y` is a cocycle because `s` is a homomorphism. ∎
+
+**Correction (review-swarm6-groups-2026-09-12 §2).** The first version of the
+Lemma did not require `Λ` to have finite index in `J_B`, and was then false.
+- If `Γ = 1`, then `s(Λ)` fixes all of `T`, which is neither a star nor a
+  single vertex.
+- Take `rank B ≥ 3` with basis `b_1, b_2, b_3, …`, and let `β` swap `b_1, b_2`
+  and fix the rest. Put `Γ = ⟨[id ∗ β]⟩ ≅ Z/2` with `s([id ∗ β]) = id ∗ β`.
+  The fixed tree contains `pB` and `b_3⟨p⟩`, which are at distance 3.
+
+Finite index is used only in step 3.
 
 **When FA holds.** `Aut(F_m)` has property (T) for `m ≥ 4`, by Nitsche for
 `m = 4` (`aut-f4-has-property-t`) and by Kaluba--Nowak--Ozawa and
 Kaluba--Kielak--Nowak for larger `m`, as recorded in
 `research/artifacts/aut-f4-property-t-status-2026-09-12.md`. (T) passes to
-finite index and implies FA and finite abelianization. So for `n ≥ 5` the
+finite index and implies FA and finite abelianization. For finite-index `Γ`,
+`Λ` has finite index in `J_B ≅ Aut(F_{n−1})`. So for `n ≥ 5` all three
 hypotheses hold for every finite-index `Γ`.
 
 **Where this stops.** A contradiction needs the side choices of different
