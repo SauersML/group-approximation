@@ -4,12 +4,15 @@ Lane `or-length15-residue`, 2026-09-13. Input: the 30 classes of `|w| = 15`
 two-generator one-relator relators left uncertified by
 `research/artifacts/or-unpeelable-extreme-2026-09-12.md`.
 
-**Status:** 28 of the 30 classes are **residually finite, hence sofic**. Each
+**Status:** 29 of the 30 classes are **residually finite, hence sofic**. Each
 has an explicit subgroup `H` of index `k ≤ 12` and a character `φ : H ↠ Z`
-with free kernel of finite rank, so `H ≅ F_n ⋊ Z`. Every certificate was
-re-checked from scratch by an independent verifier. The other 2 classes
-(rows 18 and 29) have no certificate in covers of index `≤ 12`. No root is
-marked ESTABLISHED on the strength of a finite census.
+with free kernel of finite rank, so `H ≅ F_n ⋊ Z`. For 28 classes the
+certificate lives on the original relator. For row 18 it lives on a Nielsen
+image of the relator, which presents the same group. Every certificate was
+re-checked from scratch by an independent verifier. The last class, row 29,
+has no certificate in covers of index `≤ 12`, and its Nielsen images of length
+`≤ 17` have none in covers of index `≤ 10`. No root is marked ESTABLISHED on
+the strength of a finite census.
 
 ## 1. The residue
 
@@ -83,6 +86,12 @@ finite-index overgroups, so `G` is RF and hence sofic. ∎
 For `k = 1` with `φ = χ`, the collapse condition says the top and bottom letters
 of `W_0` each occur once. That is Brown's criterion.
 
+**Images.** Let `h` be an automorphism of `F(a,t)`, and let `w'` be the cyclic
+reduction of `h(w)`, up to rotation and inversion. Then `h` induces
+`<a,t | w> ≅ <a,t | w'>`. So a certificate for `w'`, which by the same
+proposition requires `w'` not to be a proper power, certifies `G`. The
+presentation complexes differ, and so does the collapse test.
+
 Literature context, from arXiv:2501.18306 §2.5.5:
 - Kielak–Linton, GAFA 34 (2024): a hyperbolic, virtually special one-relator
   group is virtually a subgroup of an f.g.-free-by-cyclic group.
@@ -155,7 +164,7 @@ Route for every row: virtual fibring (route 1). "open" means no certificate for
 | 15 | AAtatAATTattaTT | (1,−2,1,1,−2) | [−1,1,−1] | 1 | k=5, S=4, F_11 | RF, sofic |
 | 16 | AAtatATTAttaaTT | (1,−1,−1,2,−2) | [−3,1,1] | 1 | k=12, S=17, F_74 | RF, sofic |
 | 17 | AAtatATTattAATT | (1,−1,1,−2,−2) | [−1,1,−3] | 3 | k=8, S=3, F_11 | RF, sofic |
-| 18 | AAtatATTattaaTT | (1,−1,1,2,−2) | [−1,1,1] | 1 | none, k ≤ 12 | open |
+| 18 | AAtatATTattaaTT | (1,−1,1,2,−2) | [−1,1,1] | 1 | on image AATATaTAAtaTatat: k=10, S=4, F_16 | RF, sofic |
 | 19 | AAtataTTAttAATT | (1,1,−1,−2,−2) | [−3,1,−1] | 3 | k=12, S=5, F_21 | RF, sofic |
 | 20 | AAtataTTAttaaTT | (1,1,−1,2,−2) | [−3,1,3] | 1 | k=9, S=6, F_21 | RF, sofic |
 | 21 | AAtataTTattAATT | (1,1,1,−2,−2) | [−1,1,−1] | 1 | k=3, S=5, F_9 | RF, sofic |
@@ -173,29 +182,44 @@ The full certificates (`a`, `t`, `c`, `pot`, `cp`, `Δ`) are in
 `or-length15-residue-scripts/certs13.txt` (index `≤ 6`), `certs10.txt`
 (index 8–10), and `certs12.txt` and `certs12b.txt` (index 12). The verifier
 transcripts are `verify13.out`, `verify10.out`, `verify12.out` and
-`verify12b.out`.
+`verify12b.out`. Row 18's two image certificates are in `certsimg12.txt` and
+`verifyimg12.out`. The explicit automorphisms are in `imgpath18.out`.
 
-## 5. The 2 open classes
+## 5. The open class
 
-Open: rows 18 and 29.
-- **Certification index.** Of the 28 certified classes, 13 are certified at
-  index 3–6, 8 at index 8–10 and 7 at index 12. The index `≤ 7` sweep ran on
-  all 30 classes, the index 8–10 sweep on the 17 then open (`words17.txt`),
-  and the index 11–12 sweep on the 9 then open (`words9.txt`). Of those 9,
-  rows 3, 6, 9, 10, 16, 19 and 30 have index-12 certificates.
-- **Row 29** (`δ = [−3,1,1]`, `Δ = t^2 + t − 3`). No character of a subgroup of
-  index `≤ 10` passes the monic filter at `LAM = 2`. At index 12, 28 of 116
-  characters pass it, but none has a collapsing representative with
-  `RPOT = 1`. Row 16 has the same `δ` and is certified at index 12 (`S = 17`,
-  `F_74`), so this `δ` is not an obstruction.
-- **Row 18** (`Δ = t^2 + t − 1`, unit ends). `χ` already passes the monic
-  filter, and at index 12 8 of 24 characters pass it. None collapses with
-  `RPOT = 1`. Its `δ = [−1,1,1]` occurs in no certified class.
-- **Nielsen images.** `images.py 17` finds 7 automorphic images of length
-  15–17 for each of rows 18 and 29 (`images1829.out`). They present the same
-  groups with different presentation complexes. None has a certificate at
-  index `≤ 8` (`pipe1829.sh`).
-- **No obstruction isolating the 2 has been identified.** A certificate is
+Open: row 29.
+- **Certification index.** Of the 29 certified classes:
+  - 13 are certified at index 3–6, 8 at index 8–10 and 7 at index 12, all on
+    the original relator;
+  - row 18 is certified at index 10, on a Nielsen image.
+
+  Coverage of the sweeps:
+  - the index `≤ 7` sweep ran on all 30 classes;
+  - the index 8–10 sweep ran on the 17 then open (`words17.txt`);
+  - the index 11–12 sweep ran on the 9 then open (`words9.txt`). Of those 9,
+    rows 3, 6, 9, 10, 16, 19 and 30 have index-12 certificates.
+- **Row 18, closed on an image.** Its original relator has no certificate at
+  index `≤ 12`. At index 12, 8 of 24 characters pass the monic filter, and none
+  collapses with `RPOT = 1`.
+  - `images.py 17` finds 7 automorphic images of length 15–17
+    (`images1829.out`).
+  - Two of them carry index-10 certificates (`S = 4`, fibre `F_16`), and both
+    are VERIFIED:
+    - `AATATaTAAtaTatat`, via `h(a) = at`, `h(t) = a^-1`;
+    - `ATATTatatAtaTTAt`, via `h(a) = at^-1`, `h(t) = t`.
+  - `imgpath.py` rebuilds each automorphism and re-checks the image; it shares
+    no code with `images.py`. Neither image word is a proper power.
+  - So row 18 is RF, hence sofic.
+- **Row 29** (`δ = [−3,1,1]`, `Δ = t^2 + t − 3`).
+  - No character of a subgroup of index `≤ 10` passes the monic filter at
+    `LAM = 2`.
+  - At index 12, 28 of 116 characters pass it, but none has a collapsing
+    representative with `RPOT = 1`.
+  - None of its 7 Nielsen images of length `≤ 17` has a certificate at
+    index `≤ 10`.
+  - Row 16 has the same `δ` and is certified at index 12 (`S = 17`, `F_74`),
+    so this `δ` is not an obstruction.
+- **No obstruction isolating row 29 has been identified.** A certificate is
   sufficient but not necessary: a character that fibres can still fail the
   collapse test for every small potential.
 
@@ -215,6 +239,9 @@ directory on `PYTHONPATH`. All runs used Python 3.11 on MSI.
     python3.11 verify.py certs12.txt > verify12.out  # 4 VERIFIED (rows 6, 16, 19, 30)
     python3.11 verify.py certs12b.txt > verify12b.out  # 3 VERIFIED (rows 3, 9, 10)
     ./pipe1829.sh                                    # rows 18, 29: images at index <= 8, originals at index 13
+    ./sweep.sh words1829img.txt vimg12 12 1 2 14 9   # images at index 9..12 -> certsimg12.txt
+    python3.11 verify.py certsimg12.txt > verifyimg12.out  # 2 VERIFIED (row 18 images)
+    python3.11 imgpath.py 17 AAtatATTattaaTT AATATaTAAtaTatat ATATTatatAtaTTAt > imgpath18.out  # PATH_OK x2
     python3.11 verify.py negcert.txt                 # 2 FAIL
     python3.11 vfib.py atataTAAT 1 1 2               # positive control
     python3.11 vfib.py taTAA 6 1 2                   # no CERT
