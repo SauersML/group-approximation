@@ -46,7 +46,7 @@ Isomorphic finitely generated groups have Turing-equivalent word problems, and t
 uncountably many degrees. So these groups fall into uncountably many isomorphism classes. The
 Fibonacci subshift, or any Sturmian subshift with computable slope, gives decidable word problem.
 
-**Conditional on `simple-kazhdan-lef-group-from-minimal-subshift` (under review).** The same holds
+**By `simple-kazhdan-lef-group-from-minimal-subshift` (reviewed PASS 0efeac410).** The same holds
 for the infinite simple Kazhdan LEF groups `S_(X_α)`. They form uncountably many isomorphism
 classes, every Turing degree occurs, and the computable-slope ones are finitely generated simple
 groups with solvable word problem. Such a group embeds in a finitely presented group

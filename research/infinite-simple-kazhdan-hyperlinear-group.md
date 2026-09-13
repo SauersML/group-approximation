@@ -11,8 +11,13 @@ distinct_from:
   kazhdan-mf-hyperlinear-fragment: that proves simple Kazhdan groups that are weakly MF are hyperlinear; this is the existential question, which that fragment answers for any infinite simple Kazhdan MF group, such as the LEF candidate simple-kazhdan-lef-group-from-minimal-subshift once it is reviewed.
 ---
 
-**OPEN.** There exists an infinite simple group with Kazhdan's property (T)
+There exists an infinite simple group with Kazhdan's property (T)
 that is hyperlinear.
+
+**Answered positively (2026-09-12).** `EL_3(LC(X,F_q) ⋊ Z)/Z`, for an infinite minimal subshift `X`,
+is an infinite simple Kazhdan LEF group, hence sofic, hence hyperlinear. Routes:
+`simple-kazhdan-hyperlinear-from-subshift-elementary-group` <- `simple-kazhdan-lef-group-from-minimal-subshift`.
+Review PASS by `ex-verify-groups`, 0efeac410.
 
 ## Source
 
@@ -43,14 +48,16 @@ and hyperlinearity of Thompson's `V`.
 
 ## Attempts
 
-- **Elementary matrices over a minimal subshift algebra (2026-09-12, UNREVIEWED).**
+- **Elementary matrices over a minimal subshift algebra (2026-09-12). Answers the question
+  positively, reviewed PASS by ex-verify-groups (0efeac410).**
   `simple-kazhdan-lef-group-from-minimal-subshift`: `EL_3(LC(X,F_q) ⋊ Z)` modulo its finite centre
-  is infinite, simple, Kazhdan and LEF, hence sofic. Its established ingredients are:
+  is infinite, simple, Kazhdan and LEF, hence sofic. Its ingredients are:
   - `minimal-subshift-algebra-is-simple-lef-ring`;
   - `subshift-elementary-group-is-simple-modulo-centre`;
   - `elementary-groups-over-fg-rings-have-property-t`.
 
-  The combining route, and a route into this root, wait for an independent ex-verify review.
+  The route into this root is `simple-kazhdan-hyperlinear-from-subshift-elementary-group`. The sofic
+  form of Pestov's question is answered too.
 - **Leavitt unit group.** The route above. It needs
   `binary-leavitt-unit-group-hyperlinear`, which is open; the finite forms of
   that obligation are `binary-leavitt-hyperlinear-iff-24k-feasible` and the

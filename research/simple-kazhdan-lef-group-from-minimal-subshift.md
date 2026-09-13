@@ -4,12 +4,13 @@ id: simple-kazhdan-lef-group-from-minimal-subshift
 kind: claim
 title: EL_3 over a minimal subshift algebra modulo its centre is an infinite simple Kazhdan LEF group
 distinct_from:
-  infinite-simple-kazhdan-hyperlinear-group: that is Pestov's existential question; this is one explicit group, which would answer it in the stronger sofic form.
+  infinite-simple-kazhdan-hyperlinear-group: that is Pestov's existential question; this is one explicit group, which answers it in the stronger sofic form.
   binary-leavitt-elementary-group-is-simple: that group lives over a purely infinite ring and is nonsofic; this one lives over a stably finite ring that embeds in ultraproducts of matrix algebras, and is LEF.
   simple-kazhdan-kac-moody-lattices-exist: those groups are finitely presented and therefore never LEF; this group is infinitely presented and LEF.
 artifacts:
   - research/artifacts/simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md
   - research/artifacts/simple-kazhdan-lef-consequences-and-sources-2026-09-12.md
+  - research/artifacts/ex-review-groups-2026-09-12-part1.md
 ---
 
 Let `q` be a prime power, `X` an infinite minimal subshift (for example Fibonacci), and
@@ -20,28 +21,29 @@ which is:
 2. Kazhdan;
 3. LEF, hence sofic, hence hyperlinear.
 
-In particular it answers Pestov's Open Question 9.1 positively, in both the hyperlinear and the
-sofic form. `S` is also the marked limit of the finite simple groups `PSL_(3N_k)(F_q)`, with
-generating sets modulated by periodic return words of `X`. It is operator MF and, by Ozawa--Thom,
-not weakly quasidiagonal.
+It answers Pestov's Open Question 9.1 (arXiv:0804.3968, p. 21) positively in both the hyperlinear
+and the sofic form. It also answers Ozawa's remark in *About the QWEP conjecture*
+(arXiv:math/0306067), the origin of 9.1: "It is unknown whether there exists a simple property (T)
+group Γ which is hyperlinear". `S` is also the marked limit of the finite simple groups
+`PSL_(3N_k)(F_q)` (`finite-simple-groups-converge-to-simple-kazhdan-group`). It is operator MF and,
+by Ozawa--Thom, not weakly quasidiagonal.
 
-**Status: complete written proof, UNREVIEWED.** The proof is in the Part 1 artifact. The route
-`simple-kazhdan-lef-group-from-minimal-subshift-proof`, and the route into
-`infinite-simple-kazhdan-hyperlinear-group`, are held until an independent `ex-verify` check,
-following the swarm's gate for results that settle a named open question.
+**Status.**
+- Proof: route `simple-kazhdan-lef-group-from-minimal-subshift-proof`, with the full derivation in
+  the Part 1 artifact.
+- Independent review PASS by `ex-verify-groups` (`research/artifacts/ex-review-groups-2026-09-12-part1.md`,
+  commit 0efeac410). Its wording notes are applied.
+- Novelty: bounded checks by this lane and by `ex-novelty` found no earlier infinite simple
+  Kazhdan group that is LEF, sofic or hyperlinear.
 
-## Attempts
+## Credits
 
-- **Subshift tower root detection (lane ex-kazhdan-simple-hyperlinear, 2026-09-12).**
-  - (1) comes from `subshift-elementary-group-is-simple-modulo-centre`.
-  - (2) comes from `elementary-groups-over-fg-rings-have-property-t`, since quotients of Kazhdan
-    groups are Kazhdan.
-  - (3) holds for `G` by `minimal-subshift-algebra-is-simple-lef-ring`. It passes to `S`: the
-    finite central `Z(G) = Λ I_3` maps to the constant central `Λ I` in each `GL_(3N_k)(F_q)`, so
-    `S` embeds in `prod_omega GL_(3N_k)(F_q)/Λ I` (artifact Part 1, §3.3). LEF gives sofic through
-    left regular permutation representations, and sofic gives hyperlinear.
-
-  No failing step is known. It is awaiting review.
-- **Cross-check through operator MF.** `S` is LEF, hence operator MF (`lef-implies-operator-mf`).
-  So the kernel-checked `kazhdan-mf-hyperlinear-fragment` (a simple Kazhdan MF group is hyperlinear)
-  gives hyperlinearity of `S` by a second, analytic route, once (1) and (2) are accepted.
+- **Property (T):** Ershov--Jaikin-Zapirain, arXiv:0809.4095, Theorem 1.1.
+- **Simplicity of the ring:** the minimal-effective case of the simplicity criterion for Steinberg
+  algebras (Brown--Clark--Farthing--Sims, arXiv:1204.3127). It is proved directly in the artifact.
+- **Periodic models:** the return-word approximation of minimal subshifts behind Grigorchuk--Medynets'
+  LEF theorem for topological full groups (arXiv:1105.0719), here in ring form.
+- **Nearest prior art:** Thom, arXiv:0810.2180, Theorem 1.4, a LEF, non-residually-finite Kazhdan
+  group, which is not simple.
+- **New here:** passing to `EL_3` over the crossed-product ring, root detection through tower
+  subrings, and the resulting simple Kazhdan LEF group.

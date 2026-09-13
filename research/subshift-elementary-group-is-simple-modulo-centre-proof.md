@@ -16,8 +16,9 @@ Complete derivation in the artifact, Part 1, §1.5--1.6 and §4.
    which lie in `EL_3`. `R` is simple, so `I(N) != 0` forces `N = G`.
 2. **Localized noncommuting root.** Let `g ∈ N` be noncentral, `w` the propagation bound of `g` and
    `g^(-1)`, and `L = 2w+3`. The set of `s` with `g` commuting with every `e_ij(s)` is a subring,
-   since `e_ij(st) = [e_ik(s), e_kj(t)]`. The elements `chi_C`, `chi_C u^(±1)`, over cylinders `C`
-   with return times `> L`, generate `R` and lie in `B_1(U)`. So some such `h = e_ij(s)` fails to
+   since `e_ij(st) = [e_ik(s), e_kj(t)]`. The elements `λ chi_C` and `λ chi_C u^(±1)`, for
+   `λ ∈ F_q` and cylinders `C` with return times `> L`, generate `R` and lie in `B_1(U)`. The scalars
+   `λ` are needed when `q` is not prime (review note, 0efeac410). So some such `h = e_ij(s)` fails to
    commute with `g`.
 3. **Absorption.** `k = [g,h] ∈ N`, `k != 1`, and `k - I ∈ M_3(B_(1+w)(U)) ≅ LC(U, M_d(F_q))`. This
    holds because `(f u^i) E_ab(W) (f' u^j)` is a combination of `E_(a+i, b-j)(W_k)`.

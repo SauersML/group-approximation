@@ -11,12 +11,18 @@ Let `q` be a prime power, `X` an infinite minimal subshift over a finite alphabe
 shift, and `R = LC(X,F_q) ⋊_T Z` the algebraic crossed product: finite sums `sum_j f_j u^j` with
 `f_j` locally constant and `u f u^(-1) = f o T^(-1)`. Then:
 
-1. `R` is generated as a ring by `u`, `u^(-1)` and the letter cylinders `chi_[x_0=a]`.
+1. `R` is generated as a ring by `u`, `u^(-1)`, the letter cylinders `chi_[x_0=a]`, and, when `q` is
+   not prime, a primitive element of `F_q`.
 2. `R` is simple, with centre `F_q`.
-3. `R` is LEF as a ring. There is an injective unital ring homomorphism
+3. `R` is LEF as a ring. There is an injective unital `F_q`-linear ring homomorphism
    `R -> prod_omega M_(N_k)(F_q)` into an algebraic ultraproduct of full matrix algebras. It comes
    from periodic words `w_k` whose cyclic windows of length `2k+1` are exactly the words of
    `L_(2k+1)(X)`.
 
 Consequently `GL_n(R)`, and every finitely generated subgroup of it, embeds in an ultraproduct of
 the finite groups `GL_(nN_k)(F_q)` and is LEF.
+
+Credits. Item 2 is the minimal-effective case of the simplicity criterion for Steinberg algebras
+(Brown--Clark--Farthing--Sims, arXiv:1204.3127); the route proves it directly. The periodic
+return-word models of item 3 are the mechanism of Grigorchuk--Medynets' LEF theorem for topological
+full groups of minimal subshifts (arXiv:1105.0719), in ring form.

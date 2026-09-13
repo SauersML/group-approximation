@@ -21,7 +21,6 @@ Kazhdan groups, and Ioana--Spaas--Wiersma's cohomological examples.
 
 - **Contrapositive of the LLP dichotomy (2026-09-12).** `S` is infinite and simple, so it is not
   residually finite. It is Kazhdan and hyperlinear (`simple-kazhdan-lef-group-from-minimal-subshift`,
-  under review). By `llp-non-rf-kazhdan-group-is-non-hyperlinear`, LLP for `C*(S)` would make `S`
-  non-hyperlinear. Hence `C*(S)` fails the LLP. The route
-  `simple-kazhdan-lef-group-c-star-fails-llp-proof` requires the claim under review, so it does not
-  fire before review.
+  reviewed PASS 0efeac410). By `llp-non-rf-kazhdan-group-is-non-hyperlinear`, LLP for `C*(S)` would
+  make `S` non-hyperlinear. Hence `C*(S)` fails the LLP. The route is
+  `simple-kazhdan-lef-group-c-star-fails-llp-proof`.

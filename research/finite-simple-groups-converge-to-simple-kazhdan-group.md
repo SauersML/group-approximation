@@ -35,5 +35,6 @@ shift, and `chi_[x_0=a]` to the indicator of the positions of `a` in `z_k`.
   finite centre of `EL_3(R)` are eventually not ratios of ball elements, so the projective
   quotients converge to `S`.
 
-  This needs `simple-kazhdan-lef-group-from-minimal-subshift`, which is under review, only for the
-  word "simple". The limit of the linear groups `SL_(3N_k)(F_q)` to `EL_3(R)` is unconditional.
+  Simplicity comes from `simple-kazhdan-lef-group-from-minimal-subshift` (reviewed PASS 0efeac410).
+  The route is `finite-simple-groups-converge-to-simple-kazhdan-group-proof`. The primitive-root
+  step of §8.1 was not part of that review's scope.

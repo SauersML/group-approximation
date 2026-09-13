@@ -3,7 +3,7 @@
 Lane `ex-kazhdan-simple-hyperlinear`, 2026-09-12. Part 2 of 2. Part 1, with the construction and
 the proof, is `simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md`. Notation:
 `R = LC(X,F_q) ⋊ Z` for an infinite minimal subshift `X`, `G = EL_3(R)`, `S = G/Z(G)`.
-Status: **unreviewed**.
+Status: review PASS by `ex-verify-groups` (0efeac410); credit notes applied in §8.1.
 
 ## 5. Sources read at source on 2026-09-12
 
@@ -113,7 +113,10 @@ The partial maps `psi_k` are injective and multiplicative on balls, so the marke
 eventually not a ratio of two ball elements, since such a ratio would be `Psi(λ I_3)`. So the
 marked finite simple groups `PSL_(3N_k)(F_q)` converge to `S`.
 
-This construction is due to this lane: bounded generating sets modulated by a minimal subshift
+Credit (review note, 0efeac410): the periodic return-word approximation is the mechanism of
+Grigorchuk--Medynets' LEF theorem for topological full groups of minimal subshifts
+(arXiv:1105.0719). New here is its application to `EL_3` over the crossed-product ring, together
+with the (T) input and root detection: bounded generating sets modulated by a minimal subshift
 give PSL families which are uniform expanders (being quotients of the Kazhdan group `EL_3` of the
 free `F_q`-algebra on `|A|+2` generators) and which converge to an infinite simple Kazhdan group.
 
