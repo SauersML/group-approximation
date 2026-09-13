@@ -73,6 +73,11 @@ single class `[1_A]`.
   - Consequences: purity for exact algebras there, and `Z`-stability under tlfnd
     (`bauer-c-space-strict-comparison-pure-and-z-stable`).
   - Local-to-global principle: `bauer-strict-comparison-unit-division-is-local`.
+  - **Exact characterization on Bauer simplices**
+    (`bauer-unit-division-iff-summable-local-division`). The unit divides iff, for every
+    `ε`, some finite cover of `K` by local divisions of weights `(1/N_i + δ_i)^{1/2}` has
+    weights summing to at most `ε` at every point. Failure lives on a closed locus in
+    the C-kernel of `K`.
   - **Where it dies.** Strongly infinite-dimensional boundaries such as the Hilbert
     cube. There, if local divisions at precision `N` shrink in unboundedly many
     coordinates, no finite family of disjoint levels with summable precision covers.

@@ -31,7 +31,8 @@ nonempty closed set.
 
 Not reviewed.
 
-**Open refinement.** Does the division locus contain no point with a closed
-neighbourhood that has property C? Over a closed C-space `Y`, the construction gives
-elements whose rank is close to `t` near `Y`. It does not give order zero maps that are
-good on `Y`, and a local form of Rørdam–Winter's Proposition 5.1 is missing.
+**Refinement (settled, 2026-09-13).** `bauer-unit-division-iff-summable-local-division`
+replaces single-precision neighbourhoods by summable families of local divisions of
+different precisions. That makes the local criterion exact. Its failure locus has no
+relative C-neighbourhoods, so it lies in the C-kernel of `K`, without any local form of
+Rørdam–Winter's Proposition 5.1.
