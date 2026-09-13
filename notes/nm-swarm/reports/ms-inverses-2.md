@@ -176,6 +176,19 @@ Ownership check 09-13 ~18:25: no rotation lemma for `IsNoncrossingClosedWalk` an
 
 L1a landed; L1b withdrawn. Nothing open in this lane's binder-4 share.
 
+## Item 4 (main, 09-13 ~18:40): binder 5 residual (3), a relator cell on the side of a noncrossing cell pocket walk
+
+The hypothesis `hkept` of ms-intro-4's `CellPocketWalk.exists_cellPocketFaceSet_closedWalk_of_orient` (a0ef02fff). ms-intro-2's
+`exists_kept_of_cellPocketRegion_of_value` / `_of_leastArea` (step 5) gives a kept cell for pocket regions whose inner cycle is the
+walk.
+
+Ownership check 09-13 ~18:45: no walk-level cell kept cell on origin, in the shared tree or in lane reports.
+
+- CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCellNoncrossing.lean: for a noncrossing cell pocket walk with
+  the exterior face off its side and its outer or its inner cycle following, a relator cell on its side. Pocket region from
+  `PocketRegion.ofNoncrossingClosedWalk` (outer, with `reclosed_euler`) or ms-torsionfree's `ofNoncrossingClosedWalkInner` (inner),
+  then step 5. Model: dgo-analytic's lake map, where only the inner branch fires.
+
 ## Progress log
 
 - 09-13 ~17:01: ledger landed (d5d320909).
