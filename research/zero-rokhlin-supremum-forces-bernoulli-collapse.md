@@ -162,3 +162,13 @@ isomorphic, i.e. `X_h ≅ X_∞` for every `h > 0`.
     (`ornstein-weiss-map-has-no-approximate-right-inverses`). So neither the joining-space route nor the
     partition-space route can give a collapse over a group containing `F_2`, such as Thompson's `V`, at any
     supremum. Over such groups a proof of this claim needs a different mechanism.
+  - **Refuted on every nonamenable group (same lane).** Along Bowen's measurable free subrelation the same spectral
+    bound holds (`spectral-gap-refutes-exactification-on-nonamenable-groups`). On every nonamenable group, hence on
+    every group this claim concerns:
+    - no two Bernoulli shifts of different entropy both have approximate right inverses;
+    - generating i.i.d. partitions are dense for no pair of different entropies;
+    - the two factor-joining sets are not each in the closure of the other.
+
+    So both category routes into this claim have inputs equivalent to `every-group-has-positive-rokhlin-entropy-action`,
+    under which this claim is vacuous. A proof must use a mechanism other than genericity in partition or joining
+    space, and must not produce approximate right inverses.

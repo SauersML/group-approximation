@@ -34,6 +34,11 @@ Equivalently (item 1 of `bernoulli-isomorphism-from-approximate-right-inverses`)
 - On every group containing `F_2`, at every supremum, the property fails for bases of entropy `>= log 4`, and no two
   shifts of different entropy both have it (`ornstein-weiss-map-has-no-approximate-right-inverses`). So this claim
   implies that no group with zero supremum contains a free subgroup of rank two.
+- **Status (2026-09-13).** On every nonamenable group, at every supremum, the property fails for bases of entropy
+  `> log 4`, and no two shifts of different entropy both have it
+  (`spectral-gap-refutes-exactification-on-nonamenable-groups`). Groups with zero supremum are nonamenable, so this
+  claim holds iff no countable group has zero supremum, i.e. iff `every-group-has-positive-rokhlin-entropy-action`.
+  Route `zero-supremum-collapse-via-approximate-right-inverses` therefore gives nothing toward a collapse.
 
 ## Attempts
 
@@ -54,5 +59,8 @@ Equivalently (item 1 of `bernoulli-isomorphism-from-approximate-right-inverses`)
   of a Bernoulli shift, which Kesten's bound excludes. By contrast, fibres that run along one partial injection can
   be cut into finite segments with small boundary, and there approximate inverses by automorphisms exist; this
   contrast is a sketch, not landed as a node.
-- **Where it dies.** On groups without free subgroups of rank two, no construction is known, at zero supremum, of an
-  endomorphism `ζ` that invents the fibre information of a non-invertible `φ` with exact i.i.d. law.
+- **Free subrelations.** The free subgroup can be replaced by Bowen's measurable free subrelation
+  (`bernoulli-shifts-are-von-neumann-day`). The odd sector then carries a fundamental domain and a multiple of the
+  regular representation, and Kesten's bound applies on every nonamenable group.
+- **Where it dies.** Refuted as stated, on every group where the hypothesis can hold. Open only for a single base of
+  entropy at most `log 4`, which has no collapse consequence.

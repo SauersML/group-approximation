@@ -14,12 +14,16 @@ with `H(κ), H(λ) > 0`, and put `X = (K^G, κ^G)` with measure `µ`. Let `Ind_�
 `ξ = {ξ_ℓ : ℓ ∈ L}` of `X` whose `G`-translates are independent with `µ(ξ_ℓ) = λ(ℓ)`, with metric
 `d(ξ, ζ) = µ(ξ ≠ ζ)`. Then the generating partitions are dense in `Ind_λ(X)`.
 
+**Status (2026-09-13).** The conclusion fails on every group with zero supremum, for every pair of bases of
+different entropy (`spectral-gap-refutes-exactification-on-nonamenable-groups`). So the claim holds iff no countable
+group has zero Rokhlin supremum, iff `every-group-has-positive-rokhlin-entropy-action`, and then it holds vacuously.
+It carries no information toward a collapse.
+
 **Payoff.** By route `zero-supremum-collapse-via-dense-iid-generators` and the Baire category theorem,
 `K^G ≅ L^G` for all such bases with `Ind_λ(X)` non-empty. So all Bernoulli shifts of finite positive base
 entropy over `G` would be isomorphic. That is the finite-entropy part of the strong form of
-`zero-rokhlin-supremum-forces-bernoulli-collapse`. It would apply to the binary Leavitt unit group and the tester
-host as soon as their supremum is zero, provided they contain no free subgroup of rank two. It cannot apply to
-Thompson's `V`, which contains `F_2` (`ornstein-weiss-map-has-no-approximate-right-inverses`).
+`zero-rokhlin-supremum-forces-bernoulli-collapse`. By the Status paragraph this payoff never materializes: the
+density fails on the binary Leavitt unit group, Thompson's `V` and the tester host as soon as their supremum is zero.
 
 **Model tests.**
 - Sofic and amenable groups have `s = ∞` and fail the hypothesis. There the conclusion is false for
@@ -70,6 +74,10 @@ Thompson's `V`, which contains `F_2` (`ornstein-weiss-map-has-no-approximate-rig
   give an odd almost invariant vector for `F_2` on `L²_0` of a Bernoulli shift, which Kesten's spectral bound
   excludes. So this claim implies that no group with zero supremum contains `F_2`, and the routes through it cannot
   give a collapse over `V`.
-- **Where it dies.** Exactness: no construction changes an exactly i.i.d. partition on a small set, keeps it
-  exactly i.i.d., and increases the information it carries. On groups containing `F_2` the needed exactification is
-  refuted by the spectral bound above; on groups without free subgroups it is open.
+- **Every nonamenable group (same lane).** Bowen's measurable free subrelation (`bernoulli-shifts-are-von-neumann-day`)
+  replaces the free subgroup. The same spectral argument shows density fails for every pair of different entropies
+  and for `H(λ) > log 4`, on every nonamenable group
+  (`spectral-gap-refutes-exactification-on-nonamenable-groups`). Groups with zero supremum are nonamenable.
+- **Where it dies.** Everywhere. The exactification the claim needs is refuted on every group where the hypothesis
+  can hold. What remains open is only the equal-entropy case `H(κ) = H(λ) <= log 4`, which is DENSE(`X_λ`) and has
+  no collapse consequence.

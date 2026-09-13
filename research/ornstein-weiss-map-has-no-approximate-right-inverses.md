@@ -45,11 +45,11 @@ Bernoulli shift with base `{0,1}² × R` and measure `(u_4 × ρ)^G`, with coord
 **Reading.**
 - Fibres that run along one partial injection can be cut into finite segments. The free two-generator tree cannot
   be cut this way with small boundary, and item 2 turns that into a quantitative lower bound.
-- Gaboriau–Lyons and Bowen give measurable free `F_2` subrelations inside the Bernoulli shifts of every nonamenable
-  group. Running the argument along them with markers should extend items 2–5 to all nonamenable groups, possibly
-  with larger entropy thresholds. That is not done here.
-- What survives of the Baire approach: on groups without free subgroups, and for a single base entropy below
-  `log 4`, nothing here decides DENSE or ARI.
+- Bowen's measurable free `F_2` subrelations (`bernoulli-shifts-are-von-neumann-day`) extend items 2–5 to every
+  nonamenable group, with threshold `> log 4`; see `spectral-gap-refutes-exactification-on-nonamenable-groups`. No
+  markers are needed: the subrelation lives on a Bernoulli factor of arbitrarily small entropy.
+- What survives of the Baire approach: DENSE or ARI for a single base of entropy at most `log 4`. Neither has a
+  collapse consequence.
 
 **Model tests.**
 - `Z` contains no free subgroup, and there ARI holds by the residual factor theorem (model test of

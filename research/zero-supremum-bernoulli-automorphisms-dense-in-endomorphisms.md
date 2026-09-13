@@ -32,6 +32,10 @@ Conversely that claim contains this one, the case `κ = λ`.
 - On every group containing `F_2`, at every supremum, the property fails for bases of entropy `>= log 4`
   (`ornstein-weiss-map-has-no-approximate-right-inverses`). So this claim implies that no group with zero supremum
   contains a free subgroup of rank two.
+- **Status (2026-09-13).** On every nonamenable group, at every supremum, the property fails for bases of entropy
+  `> log 4` (`spectral-gap-refutes-exactification-on-nonamenable-groups`). Groups with zero supremum are nonamenable,
+  so this claim holds iff no countable group has zero supremum, i.e. iff
+  `every-group-has-positive-rokhlin-entropy-action`. Only single bases of entropy at most `log 4` stay open.
 
 ## Attempts
 
