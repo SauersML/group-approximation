@@ -3,6 +3,8 @@ rg: 2
 id: tracial-non-ru-coset-system-with-nonabelian-fibre-exists
 kind: claim
 title: Some coset constraint system over finite groups with a nonabelian fibre image is tracial but not R^U
+artifacts:
+  - research/artifacts/ex-kac-quantum-bijection-2026-09-13.md
 distinct_from:
   perfect-completeness-isomorphism-compiler: that asks for a machine-indexed family of graph pairs with finite-dimensional completeness on halting inputs; this asks for one coset system with a tracial state and no R^U model.
   mipstar-bcs-tracial-nonru-exists: that is a general Boolean constraint system with the gap, whose trace no symmetry selects; this asks for the gap in coset syntax, where the algebra is a bigalois torsor algebra with an invariant trace and a genuinely quantum symmetry.
@@ -54,17 +56,18 @@ those whose gap is not inherited from an embedded linear system.
     `x_v` to an `L_v`-valued PVM `ell_v` with `theta_v(ell_v) = x_v`,
     commuting within contexts, with joint spectra in subgroups `T_c` and
     `theta(T_c) ⊆ Allowed_c`.
-  - Where it dies, for own-variable lifts (one group element per Boolean
-    value, `ell_v = sigma_v(x_v)`): suppose three points `u, v, w` of a
-    context support are "between", i.e. in every coordinate
-    `v_i in {u_i, w_i}`, and `v_i = u_i` whenever `u_i = w_i`.
-    - Then `sigma(u) sigma(v)^(-1) sigma(w) = sigma(u ⊕ v ⊕ w)`
-      coordinatewise, in any group.
-    - So `u ⊕ v ⊕ w` must be allowed.
-    - Example: the full support of NAND on two variables forces `11`.
-  - Lifts that carry information beyond `x_v` must commute with every context
-    containing `v`.  No construction of such lifts is known, and no firewall
-    excludes them.
+  - Where it dies: by `exact-label-coset-refinements-are-affine`, suppose
+    every edge shares one variable and the blocks of each coset are exactly
+    the fibres of the shared bit.  Then the refined trace only reaches
+    affine allowed sets, which is the linear-system endpoint, whatever the
+    groups and the padding.  Own-variable lifts (`ell_v = sigma_v(x_v)`) are
+    a special case.
+  - What survives:
+    - hidden shared labels: blocks finer than the shared bit, i.e.
+      projections in `W*(p_c) ∩ W*(p_(c'))` that are not functions of it;
+    - multi-variable edges, where an exact label group of order up to
+      `2^|c ∩ c'|` may be nonabelian.
+  - No construction of either is known, and no firewall excludes them.
 - **Gadgets and completions inside the port algebra (lane
   ex-kac-quantum-compiler).**
   - By `torsor-cfi-port-profiles-are-cosets`, scalar port profiles of torsor
