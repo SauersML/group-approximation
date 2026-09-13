@@ -50,7 +50,9 @@ standard inputs flagged in the proof).**  Let `G` be a finite group.
    on `O_2` with finite commuting-tower Rokhlin dimension has the Rokhlin
    property, by item 2.  A phantom candidate in item 3 therefore has infinite
    commuting-tower Rokhlin dimension, and so does its dual when the dual is
-   outer.
+   outer.  For `A = O_2` the conclusion was published earlier as Proposition 3.32 of
+   Gardella--Hirshberg--Santiago, arXiv:1709.00222
+   (`ghs-z2-commuting-rokhlin-dimension-one-dual-sai`).
 
 This replaces the unverified Rokhlin sketch in the Attempts of the detection
 claim.  That sketch invoked Izumi's uniqueness theorem.  The argument here
