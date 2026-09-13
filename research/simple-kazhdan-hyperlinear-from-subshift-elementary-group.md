@@ -7,10 +7,14 @@ target: infinite-simple-kazhdan-hyperlinear-group
 requires: [simple-kazhdan-lef-group-from-minimal-subshift]
 artifacts:
   - research/artifacts/simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md
+  - research/artifacts/ex-pestov91-second-review-2026-09-13.md
 ---
 
-Assume `simple-kazhdan-lef-group-from-minimal-subshift`. That claim is OPEN and under independent
-review, so this route does not fire before the review lands.
+Assume `simple-kazhdan-lef-group-from-minimal-subshift`. That claim is established (8b65f0932). Both
+independent reviews passed:
+- `ex-verify-groups`, 0efeac4106;
+- `ex-pestov91-harden`, landed at badc66e2d7 and compared with the first review at 80873d2cc7
+  (`research/artifacts/ex-pestov91-second-review-2026-09-13.md`).
 
 `S = EL_3(LC(X,F_q) ⋊ Z)/Z` is infinite, simple and Kazhdan, and it is LEF. A LEF group is sofic.
 Given a finite `F ⊆ S`, an injective partial homomorphism `F·F -> Q` into a finite group, composed

@@ -17,7 +17,20 @@ that is hyperlinear.
 **Answered positively (2026-09-12).** `EL_3(LC(X,F_q) ⋊ Z)/Z`, for an infinite minimal subshift `X`,
 is an infinite simple Kazhdan LEF group, hence sofic, hence hyperlinear. Routes:
 `simple-kazhdan-hyperlinear-from-subshift-elementary-group` <- `simple-kazhdan-lef-group-from-minimal-subshift`.
-Review PASS by `ex-verify-groups`, 0efeac410.
+Two independent reviews passed:
+- `ex-verify-groups`, 0efeac410;
+- `ex-pestov91-harden`, badc66e2d7 and 80873d2cc7 (`research/artifacts/ex-pestov91-second-review-2026-09-13.md`).
+
+**Write-up (2026-09-13).** A self-contained exposition in three parts:
+`research/artifacts/pestov-9-1-writeup-2026-09-13-part1.md`, `-part2.md` and `-part3.md`. It covers
+- the statement;
+- the construction, with explicit generators and the first finite model `SL_15(F_q)` for the Fibonacci subshift;
+- full proofs;
+- credits (Grigorchuk--Medynets, Ershov--Jaikin-Zapirain, BCFS and Clark--Edie-Michell, Thom, Ozawa, Pestov);
+- the failing clause of Dadarlat's introduction;
+- the bounded literature check.
+
+It stays in the repository: publishing it outside needs the user's approval.
 
 ## Source
 

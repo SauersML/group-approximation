@@ -29,3 +29,8 @@ the existence of another completely positive approximation, nor the
 underlying Kazhdan MF claim. It invalidates the listed proof routes, which
 each require this same unproved operation, rather than refuting their target
 claims. The LEF route reaches MF first and then uses the same missing step.
+
+**Update 2026-09-13.** The implication itself is now refuted, not only its citation. `EL_3(LC(X,F_q) ⋊ Z)` is LEF,
+hence MF, and it is Kazhdan with no finite quotients. So by Proposition 3.19 it is not weakly quasidiagonal
+(`operator-mf-group-not-weakly-quasidiagonal-exists`). The sentence that fails is only the first clause printed on
+PDF p. 2 of arXiv:2007.12655v2, "MF ⇒ weak quasidiagonality". Proposition 3.19 is correct.

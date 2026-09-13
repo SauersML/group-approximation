@@ -22,7 +22,19 @@ shift, and `R = LC(X,F_q) ⋊_T Z` the algebraic crossed product: finite sums `s
 Consequently `GL_n(R)`, and every finitely generated subgroup of it, embeds in an ultraproduct of
 the finite groups `GL_(nN_k)(F_q)` and is LEF.
 
-Credits. Item 2 is the minimal-effective case of the simplicity criterion for Steinberg algebras
-(Brown--Clark--Farthing--Sims, arXiv:1204.3127); the route proves it directly. The periodic
-return-word models of item 3 are the mechanism of Grigorchuk--Medynets' LEF theorem for topological
-full groups of minimal subshifts (arXiv:1105.0719), in ring form.
+Credits.
+- **Item 2 as a Steinberg-algebra case.** `R` is the Steinberg algebra over `F_q` of the transformation
+  groupoid `Z ⋉ X`, via `chi_({n}×U) ↦ chi_(T^n U) u^n`. That groupoid is Hausdorff, ample, effective (the
+  action is free) and minimal. The simplicity criteria:
+  - **Complex coefficients.** Brown--Clark--Farthing--Sims, arXiv:1204.3127, Theorem 4.1 (`thm:alg_simple`).
+    It is stated for the complex Steinberg algebra only.
+  - **Arbitrary fields, `F_q` included.** Steinberg, arXiv:1408.6014, Corollary 3.6, read from the PDF (p. 10):
+    "Let G be a Hausdorff ample groupoid and k a field. Then kG is simple if and only if G is effective and
+    minimal."
+  - **Also arbitrary fields.** Clark--Edie-Michell, arXiv:1403.4684, Corollary 4.6, read from the PDF (p. 7): "Let G
+    be a Hausdorff, ample groupoid and R a commutative ring with identity. Then A_R(G) is simple if and only if G
+    is effective and minimal, and R is a field."
+
+  The proof route proves item 2 directly, over every field, and does not depend on these citations.
+- **Item 3.** The periodic return-word models are the mechanism of Grigorchuk--Medynets' LEF theorem for
+  topological full groups (arXiv:1105.0719, Theorem 2.6, PDF p. 5), in ring form.

@@ -124,6 +124,13 @@ only on `x_[-rho, rho]`, say `f(x) = Phi(x_[-rho,rho])` with `2 rho + 1 <= 2k + 
 `y` lies in `L(X)` and `Phi` matters only on `L(X)`. Set `psi_k(sum f_j u^j) = sum D_k(f_j) P_k^j`
 whenever all radii and `|j|` are small compared with `k`.
 
+*Precise range* (review note N2, 2026-09-13):
+- `D_k` is a ring homomorphism on functions of radius `<= k`.
+- `P^i D_k(g) P^(-i) = D_k(alpha^i g)` whenever `rho(g) + |i| <= k`.
+- So `psi_k(r r') = psi_k(r) psi_k(r')` whenever every coefficient radius `rho` and every exponent `i`
+  occurring in `r` and `r'` satisfy `rho + |i| <= k`.
+- `psi_k(r) != 0` for `r != 0` once `k >= rho` and `N_k > 2 max|j|`.
+
 **3.2 The embedding.** Define `Psi(r) = [psi_k(r)]_omega ∈ prod_omega M_(N_k)(F_q)` (arbitrary at
 the finitely many small `k`).
 - `Psi` is additive and `Psi(1) = 1`.
@@ -192,7 +199,16 @@ image lies in `G`. Take a transvection `t = I + c e_((p,a),(p',b))`.
   and `x^2 = 0`. For `p'' != p`, expanding gives `[e_pp''(x), e_p''p(y)] = I + x E_pp = ι_W(t)`.
 
 The group `N_W = ι_W^(-1)(N)` is normal in `SL_d(F_q)` and contains `[κ_0, ε]` for every
-`ε ∈ SL_d(F_q)`, because `[k, ι_W(ε)] = ι_W([κ_0, ε])`. If `N_W` were central, then
+`ε ∈ SL_d(F_q)`, because `[k, ι_W(ε)] = ι_W([κ_0, ε])`.
+
+*Why the identity holds* (review note N1, 2026-09-13):
+- `f = chi_(V_(m')(W))` commutes with `Acal`. For `W' ⊆ U`, `E_ab(W') f = chi_(T^a(W'∩W)) u^(a-b) = f E_ab(W')`,
+  so `f` also commutes with `B_(m')(U)`. So `f I_3` is a central idempotent for `k` and for every `ι_W(ε)`.
+- Equivalently, `k` and `ι_W(ε)` both lie in the monoid `(1-e) I_3 + M_3(B_(m')(U))`, and multiplication there
+  is pointwise in `LC(U, M_d(F_q))`.
+- `ι_W` has to be read on `GL_d(F_q)`, because `κ_0` need not have determinant 1; `[κ_0, ε]` does.
+
+If `N_W` were central, then
 `ε -> [κ_0, ε]` would be a homomorphism from the perfect group `SL_d(F_q)` to an abelian group,
 hence trivial, and `κ_0` would centralize `SL_d(F_q)`, i.e. be scalar. So `N_W` is noncentral.
 For `d >= 3` a noncentral normal subgroup of `SL_d(F_q)` is everything (`PSL_d` is simple and

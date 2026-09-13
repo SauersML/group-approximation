@@ -9,7 +9,11 @@ artifacts:
   - research/artifacts/simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md
 ---
 
-Complete derivation in the artifact, Part 1, §1.1--1.4 and §3.1--3.2.
+Complete derivation in the artifact, Part 1, §1.1--1.4 and §3.1--3.2. A second exposition is in write-up Part 1 §3
+and Part 2 §5.
+
+The simplicity argument below is a self-contained proof over every field, `F_q` included. The Steinberg-algebra
+theorems credited in the target node are credit only; this route does not depend on them.
 
 **Generators.** `u^i chi_[x_0=a] u^(-i) = chi_[x_(-i)=a]`. Products of these give every cylinder,
 and sums give `LC(X,F_q)`.

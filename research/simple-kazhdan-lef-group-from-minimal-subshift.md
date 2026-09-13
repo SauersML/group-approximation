@@ -16,6 +16,10 @@ artifacts:
   - research/artifacts/simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md
   - research/artifacts/simple-kazhdan-lef-consequences-and-sources-2026-09-12.md
   - research/artifacts/ex-review-groups-2026-09-12-part1.md
+  - research/artifacts/ex-pestov91-second-review-2026-09-13.md
+  - research/artifacts/pestov-9-1-writeup-2026-09-13-part1.md
+  - research/artifacts/pestov-9-1-writeup-2026-09-13-part2.md
+  - research/artifacts/pestov-9-1-writeup-2026-09-13-part3.md
 ---
 
 Let `q` be a prime power, `X` an infinite minimal subshift (for example Fibonacci), and
@@ -38,16 +42,30 @@ by Ozawa--Thom, not weakly quasidiagonal.
   the Part 1 artifact.
 - Independent review PASS by `ex-verify-groups` (`research/artifacts/ex-review-groups-2026-09-12-part1.md`,
   commit 0efeac410). Its wording notes are applied.
-- Novelty: bounded checks by this lane and by `ex-novelty` found no earlier infinite simple
-  Kazhdan group that is LEF, sofic or hyperlinear.
+- Second independent review PASS by `ex-pestov91-harden`
+  (`research/artifacts/ex-pestov91-second-review-2026-09-13.md`). It was landed at badc66e2d7 before the first
+  review was opened, and compared with it at 80873d2cc7: no disagreement. Its notes are applied as forward
+  corrections on 2026-09-13:
+  - N1 (central idempotent in 4.2(c)) and N2 (radius bound for `psi_k`) in the Part 1 artifact;
+  - N3 (scalar markings for `q` not prime) and N5 (primitive-root step checked) in
+    `finite-simple-groups-converge-to-simple-kazhdan-group`;
+  - N4 (stale review text) in `simple-kazhdan-hyperlinear-from-subshift-elementary-group`;
+  - N6 (simplicity over fields) in the credits below and in `minimal-subshift-algebra-is-simple-lef-ring`.
+- Write-up: a self-contained exposition in three parts, `research/artifacts/pestov-9-1-writeup-2026-09-13-part1.md`
+  to `-part3.md`. It stays in the repository; publishing outside needs the user's approval.
+- Novelty: bounded checks by this lane, by `ex-novelty` and by `ex-pestov91-harden` (write-up Part 3 §10) found no
+  earlier infinite simple Kazhdan group that is LEF, sofic or hyperlinear.
 
 ## Credits
 
 - **Property (T):** Ershov--Jaikin-Zapirain, arXiv:0809.4095, Theorem 1.1.
-- **Simplicity of the ring:** the minimal-effective case of the simplicity criterion for Steinberg
-  algebras (Brown--Clark--Farthing--Sims, arXiv:1204.3127). It is proved directly in the artifact.
+- **Simplicity of the ring:** `R` is the Steinberg algebra over `F_q` of the effective minimal transformation
+  groupoid `Z ⋉ X`. The criterion for complex coefficients is Brown--Clark--Farthing--Sims, arXiv:1204.3127,
+  Theorem 4.1. For arbitrary fields it is Steinberg, arXiv:1408.6014, Corollary 3.6 (PDF p. 10), and
+  Clark--Edie-Michell, arXiv:1403.4684, Corollary 4.6 (PDF p. 7). Our case is proved directly in the artifact,
+  with no dependence on these citations.
 - **Periodic models:** the return-word approximation of minimal subshifts behind Grigorchuk--Medynets'
-  LEF theorem for topological full groups (arXiv:1105.0719), here in ring form.
+  LEF theorem for topological full groups (arXiv:1105.0719, Theorem 2.6), here in ring form.
 - **Nearest prior art:** Thom, arXiv:0810.2180, Theorem 1.4, a finitely generated LEF Kazhdan group
   that is not residually finite and is not simple. `S` strengthens this to a simple group.
 - **Kills recorded as graph structure.** The four routes listed under `invalidates:` all rested on

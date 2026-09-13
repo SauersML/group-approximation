@@ -21,12 +21,17 @@ when `q` is not prime. There are integers `N_k -> infinity` and markings of the 
 ```
 
 Moreover every approximant, and `S`, is a marked quotient of the Kazhdan group
-`EL_3(F_q<t_1, ..., t_(|A|+2)>)`, so the approximants form a family of uniform expanders. So a
-Kazhdan mother can have finite simple quotients whose marked limit is an infinite simple Kazhdan
-group.
+`EL_3(F_q<t_1, ..., t_(|A|+2)>)`. That group is marked by `e_ij(1)`, `e_ij(c_0)` and `e_ij(t_s)`, with the
+`t_s` sent to `u`, `u^(-1)` and the letter indicators. So the approximants form a family of uniform
+expanders, and a Kazhdan mother can have finite simple quotients whose marked limit is an infinite
+simple Kazhdan group.
+
+For `q = p^e` with `e > 1` the scalar markings `e_ij(c_0)` are necessary, not optional. Without them
+the markings generate only `EL_3(LC(X,F_p) ⋊ Z)`, because products of elementary matrices over a
+subring keep their entries in that subring. Any `λ` with `F_p[λ] = F_q` can replace `c_0`.
 
 The markings come from primitive periodic return words `z_k` of `X`: `u` is sent to the cyclic
-shift, and `chi_[x_0=a]` to the indicator of the positions of `a` in `z_k`.
+shift, `chi_[x_0=a]` to the indicator of the positions of `a` in `z_k`, and `c_0` to `c_0 I`.
 
 ## Attempts
 
@@ -39,3 +44,10 @@ shift, and `chi_[x_0=a]` to the indicator of the positions of `a` in `z_k`.
   Simplicity comes from `simple-kazhdan-lef-group-from-minimal-subshift` (reviewed PASS 0efeac410).
   The route is `finite-simple-groups-converge-to-simple-kazhdan-group-proof`. The primitive-root
   step of §8.1 was not part of that review's scope.
+
+  **Update 2026-09-13.** The second review (`ex-pestov91-harden`, badc66e2d7, note N5) checked that step:
+  - Morse--Hedlund gives `N_k >= 2k+2`;
+  - the rotations of a primitive `z_k` separate positions, so the images generate `M_(N_k)(F_q)`;
+  - if a word's image is scalar for infinitely many `k`, the word is central in `EL_3(R)`.
+
+  Full proof: write-up Part 2 §5.4 (`research/artifacts/pestov-9-1-writeup-2026-09-13-part2.md`).
