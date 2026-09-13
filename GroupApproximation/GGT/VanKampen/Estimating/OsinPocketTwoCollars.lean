@@ -13,9 +13,12 @@ of the new pocket reads `g_1 t_1 g_2 t_2`.
 
 * `Embedded.dartWord_map_embedding`: an embedding of darts preserving the labels preserves the
   words.
-* `PocketRegion.exists_twoCollars`: the collar insertion `GeodesicCollarStatement` (lane
-  `kh-torsion`, a hypothesis here) along `s_1`, then, after restarting the complement cycle with
-  `PocketRegion.withOuter`, along the image of `s_2`, and a final restart.
+* `PocketRegion.exists_twoCollars_of_ne_or`: the collar insertion `GeodesicCollarStatement`
+  (lane `kh-torsion`, a hypothesis here) along `s_1`, then, after restarting the complement cycle
+  with `PocketRegion.withOuter`, along the image of `s_2`, and a final restart.  Each collar step
+  needs a nonempty word or a nonempty remaining cycle; a nonempty arc `t_i`, or a side of value
+  `≠ 1`, gives both.
+* `PocketRegion.exists_twoCollars`: the case of two nonempty arcs.
 
 ## Manuscript status
 
@@ -42,22 +45,23 @@ end Embedded
 
 namespace PocketRegion
 
-/-- **Geodesic collars on both sides of a pocket** (W1, Osin Lemma 9.7(b), for lane
-`hull-select`'s MultipleEdgeCut assembly).  Let `P` be a pocket region of `Δ` whose face set and
-complement follow their boundary walks, with inverse complement cycle `s₁ t₁ s₂ t₂` and `t₁`,
-`t₂` nonempty.  Let `g₁`, `g₂` be words in the letters of `D` with the values of `s₁`, `s₂`,
-empty when the side is.  Given the collar insertion, there is an O-equivalent diagram `Δ''` with
-a pocket region `P''` whose inverse complement cycle reads `c₁ t₁ c₂ t₂`: `c₁` and `c₂` read `g₁`
-and `g₂`, and `t₁`, `t₂` are carried by an embedding of darts compatible with `alpha` and the
-labels.  The outer boundary and the relator cells outside `P` keep their darts, and every relator
-cell stays on its side of the pocket. -/
-theorem exists_twoCollars (hcollar : GeodesicCollarStatement.{u, w, v})
+/-- **Geodesic collars on both sides of a pocket** (W1, Osin Lemma 9.7(b)).  Let `P` be a pocket
+region of `Δ` whose face set and complement follow their boundary walks, with inverse complement
+cycle `s₁ t₁ s₂ t₂`, where an arc `t_i` is nonempty or a side `s_i` has value `≠ 1`.  Let `g₁`,
+`g₂` be words in the letters of `D` with the values of `s₁`, `s₂`, empty when the side is.  Given
+the collar insertion, there is an O-equivalent diagram `Δ''` with a pocket region `P''` whose
+inverse complement cycle reads `c₁ t₁ c₂ t₂`: `c₁` and `c₂` read `g₁` and `g₂`, and `t₁`, `t₂` are
+carried by an embedding of darts compatible with `alpha` and the labels.  The outer boundary and
+the relator cells outside `P` keep their darts, and every relator cell stays on its side of the
+pocket. -/
+theorem exists_twoCollars_of_ne_or (hcollar : GeodesicCollarStatement.{u, w, v})
     (D : RelGenSet G Lambda) (hinv : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     {Delta : DiscDiagram.{u, w, v} W} (hlabel : ∀ d, D.IsLetter (Delta.label d))
     (P : PocketRegion Delta) (hin : P.inner.FollowsBoundary) (hout : P.outer.FollowsBoundary)
     {s₁ t₁ s₂ t₂ : List Delta.toCombMap.Dart}
     (hdecomposition : Embedded.invDarts Delta P.outer.cycle = s₁ ++ t₁ ++ s₂ ++ t₂)
-    (ht₁ : t₁ ≠ []) (ht₂ : t₂ ≠ [])
+    (hne : t₁ ≠ [] ∨ t₂ ≠ [] ∨ RelLetter.listVal (Embedded.dartWord Delta s₁) ≠ 1 ∨
+      RelLetter.listVal (Embedded.dartWord Delta s₂) ≠ 1)
     {g₁ g₂ : List (RelLetter G Lambda)} (hg₁ : ∀ l ∈ g₁, D.IsLetter l)
     (hg₂ : ∀ l ∈ g₂, D.IsLetter l)
     (hval₁ : RelLetter.listVal g₁ = RelLetter.listVal (Embedded.dartWord Delta s₁))
@@ -78,12 +82,19 @@ theorem exists_twoCollars (hcollar : GeodesicCollarStatement.{u, w, v})
       (∀ i : Fin Delta.rCellCount,
         (Embedded.cell Delta'' (E.cellIndex i)).face ∈ P''.faces ↔
           (Embedded.cell Delta i).face ∈ P.faces) := by
-  -- The collar along `s₁`.
+  -- The collar along `s₁`; a side of value `≠ 1` makes `g₁` or `s₂` nonempty.
+  have hne₁ : g₁ ≠ [] ∨ t₁ ++ s₂ ++ t₂ ≠ [] := by
+    rcases hne with h | h | h | h
+    · exact Or.inr fun hs => h (List.append_eq_nil_iff.mp (List.append_eq_nil_iff.mp hs).1).1
+    · exact Or.inr fun hs => h (List.append_eq_nil_iff.mp hs).2
+    · exact Or.inl fun hg => h (by simpa [hg, RelLetter.listVal] using hval₁.symm)
+    · refine Or.inr fun hs => h ?_
+      have hs₂ : s₂ = [] := (List.append_eq_nil_iff.mp (List.append_eq_nil_iff.mp hs).1).2
+      simp [hs₂, Embedded.dartWord, RelLetter.listVal]
   obtain ⟨Delta₁, E₁, P₁, c₁, ι₁, hlabel₁, hin₁, hout₁, hdec₁, hword₁, halpha₁, hlab₁,
       houter₁, hcells₁, hfaces₁⟩ :=
     hcollar D hinv Delta hlabel P hin hout s₁ (t₁ ++ s₂ ++ t₂)
-      (by rw [hdecomposition]; simp only [List.append_assoc]) g₁ hg₁ hval₁ hnil₁
-      (Or.inr fun h => ht₁ (List.append_eq_nil_iff.mp (List.append_eq_nil_iff.mp h).1).1)
+      (by rw [hdecomposition]; simp only [List.append_assoc]) g₁ hg₁ hval₁ hnil₁ hne₁
   -- Restart the complement cycle at the image of `s₂`.
   have hrot₁ : Embedded.invDarts Delta₁ P₁.outer.cycle ~r
       (s₂.map ι₁ ++ (t₂.map ι₁ ++ c₁ ++ t₁.map ι₁)) := by
@@ -94,15 +105,23 @@ theorem exists_twoCollars (hcollar : GeodesicCollarStatement.{u, w, v})
       RelLetter.listVal (Embedded.dartWord Delta₁ (s₂.map ι₁)) := by
     rw [Embedded.dartWord_map_embedding ι₁ hlab₁]
     exact hval₂
-  -- The collar along the image of `s₂`.
+  -- The collar along the image of `s₂`; a side of value `≠ 1` makes `g₂` or `c₁` nonempty.
+  have hne₂ : g₂ ≠ [] ∨ t₂.map ι₁ ++ c₁ ++ t₁.map ι₁ ≠ [] := by
+    rcases hne with h | h | h | h
+    · exact Or.inr fun hs => h (List.map_eq_nil_iff.mp (List.append_eq_nil_iff.mp hs).2)
+    · exact Or.inr fun hs => h (List.map_eq_nil_iff.mp
+        (List.append_eq_nil_iff.mp (List.append_eq_nil_iff.mp hs).1).1)
+    · refine Or.inr fun hs => h ?_
+      have hc₁ : c₁ = [] := (List.append_eq_nil_iff.mp (List.append_eq_nil_iff.mp hs).1).2
+      have hg : g₁ = [] := by simpa [hc₁, Embedded.dartWord] using hword₁.symm
+      simpa [hg, RelLetter.listVal] using hval₁.symm
+    · exact Or.inl fun hg => h (by simpa [hg, RelLetter.listVal] using hval₂.symm)
   obtain ⟨Delta₂, E₂, P₂, c₂, ι₂, hlabel₂, hin₂, hout₂, hdec₂, hword₂, halpha₂, hlab₂,
       houter₂, hcells₂, hfaces₂⟩ :=
     hcollar D hinv Delta₁ hlabel₁ (P₁.withOuter hrot₁) hin₁
       ((P₁.withOuter_outer_followsBoundary_iff hrot₁).mpr hout₁) (s₂.map ι₁)
       (t₂.map ι₁ ++ c₁ ++ t₁.map ι₁) (P₁.invDarts_withOuter_cycle hrot₁) g₂ hg₂ hval₂'
-      (fun h => hnil₂ (List.map_eq_nil_iff.mp h))
-      (Or.inr fun h => ht₂ (List.map_eq_nil_iff.mp
-        (List.append_eq_nil_iff.mp (List.append_eq_nil_iff.mp h).1).1))
+      (fun h => hnil₂ (List.map_eq_nil_iff.mp h)) hne₂
   -- Restart the complement cycle at the first collar.
   have hrot₂ : Embedded.invDarts Delta₂ P₂.outer.cycle ~r
       (c₁.map ι₂ ++ t₁.map (ι₁.trans ι₂) ++ c₂ ++ t₂.map (ι₁.trans ι₂)) := by
@@ -132,9 +151,43 @@ theorem exists_twoCollars (hcollar : GeodesicCollarStatement.{u, w, v})
   · intro i
     exact (hfaces₂ (E₁.cellIndex i)).trans (hfaces₁ i)
 
+/-- **Geodesic collars on both sides of a pocket** (W1, Osin Lemma 9.7(b), for lane
+`hull-select`'s MultipleEdgeCut assembly), when the arcs `t₁` and `t₂` between the sides are
+nonempty: `exists_twoCollars_of_ne_or` with `t₁ ≠ []`. -/
+theorem exists_twoCollars (hcollar : GeodesicCollarStatement.{u, w, v})
+    (D : RelGenSet G Lambda) (hinv : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
+    {Delta : DiscDiagram.{u, w, v} W} (hlabel : ∀ d, D.IsLetter (Delta.label d))
+    (P : PocketRegion Delta) (hin : P.inner.FollowsBoundary) (hout : P.outer.FollowsBoundary)
+    {s₁ t₁ s₂ t₂ : List Delta.toCombMap.Dart}
+    (hdecomposition : Embedded.invDarts Delta P.outer.cycle = s₁ ++ t₁ ++ s₂ ++ t₂)
+    (ht₁ : t₁ ≠ []) (_ht₂ : t₂ ≠ [])
+    {g₁ g₂ : List (RelLetter G Lambda)} (hg₁ : ∀ l ∈ g₁, D.IsLetter l)
+    (hg₂ : ∀ l ∈ g₂, D.IsLetter l)
+    (hval₁ : RelLetter.listVal g₁ = RelLetter.listVal (Embedded.dartWord Delta s₁))
+    (hval₂ : RelLetter.listVal g₂ = RelLetter.listVal (Embedded.dartWord Delta s₂))
+    (hnil₁ : s₁ = [] → g₁ = []) (hnil₂ : s₂ = [] → g₂ = []) :
+    ∃ (Delta'' : DiscDiagram.{u, w, v} W) (E : OEquivalentDiscDiagram Delta Delta'')
+      (P'' : PocketRegion Delta'') (c₁ c₂ : List Delta''.toCombMap.Dart)
+      (ι : Delta.toCombMap.Dart ↪ Delta''.toCombMap.Dart),
+      (∀ d, D.IsLetter (Delta''.label d)) ∧ P''.inner.FollowsBoundary ∧
+      P''.outer.FollowsBoundary ∧
+      Embedded.invDarts Delta'' P''.outer.cycle = c₁ ++ t₁.map ι ++ c₂ ++ t₂.map ι ∧
+      Embedded.dartWord Delta'' c₁ = g₁ ∧ Embedded.dartWord Delta'' c₂ = g₂ ∧
+      (∀ d, Delta''.toCombMap.alpha (ι d) = ι (Delta.toCombMap.alpha d)) ∧
+      (∀ d, Delta''.label (ι d) = Delta.label d) ∧
+      Embedded.outerDarts Delta'' = (Embedded.outerDarts Delta).map ι ∧
+      (∀ i : Fin Delta.rCellCount, (Embedded.cell Delta i).face ∈ P.outside →
+        Embedded.cellDarts Delta'' (E.cellIndex i) = (Embedded.cellDarts Delta i).map ι) ∧
+      (∀ i : Fin Delta.rCellCount,
+        (Embedded.cell Delta'' (E.cellIndex i)).face ∈ P''.faces ↔
+          (Embedded.cell Delta i).face ∈ P.faces) :=
+  exists_twoCollars_of_ne_or hcollar D hinv hlabel P hin hout hdecomposition (Or.inl ht₁) hg₁ hg₂
+    hval₁ hval₂ hnil₁ hnil₂
+
 end PocketRegion
 
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.dartWord_map_embedding
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketRegion.exists_twoCollars_of_ne_or
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketRegion.exists_twoCollars
