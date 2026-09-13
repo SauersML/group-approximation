@@ -199,4 +199,19 @@ Items 1–7 of `bernoulli-isomorphism-collapse-set-is-a-subgroup` were re-derive
   `SL_n(Z) ↷ SL_n(R)/SL_n(Z)` is sofic through Hecke orbits. The refutation of
   `sl3z-lattice-space-action-is-not-sofic` stands.
 
+- **§9–§13, later landings and refills.** PASS:
+  - Kun–Thom SOE rigidity, given Popa's import;
+  - Păunescu's class under amenable extensions, and hyperbolic 3-manifold lattices;
+  - infinite-subgroup-invariant information, and coherent kernel windows;
+  - the infinitely transitive tree-lattice mixing transfer, and linearity of Radu's horizontal action;
+  - the split commensurability class for `SL_3(R)`;
+  - non-density of i.i.d. generators at positive supremum, and density of generators iff zero entropy;
+  - half absorption, rigid models far in `d̄`, and non-finite-determination at zero supremum.
+
+  Bowen Corollary 1.3 and Seward Part I Theorem 2.3 match verbatim.
+- **§14 firing sweep.** Every `requires: []` route from these lanes is a citation, a checked proof, or dead with
+  an established invalidator. Of 36 routes into the famous dynamics roots, none has all prerequisites
+  established.
+
 - `research/artifacts/ex-review-dynamics-2026-09-12-part1.md`: §2–§8.
+- `research/artifacts/ex-review-dynamics-2026-09-12-part2.md`: §9–§14.
