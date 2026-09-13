@@ -10,14 +10,36 @@ artifacts:
   - research/artifacts/bh-baumslag-char0-metabelian-2026-09-12.md
 ---
 
-**OPEN.** Let
+**ESTABLISHED (2026-09-12)** through
+`baumslag-char-zero-bh-via-char-zero-linear-groups`, now that the root
+`char-zero-linear-groups-satisfy-boone-higman` is established. This rests on
+`polynomial-linear-groups-satisfy-boone-higman`, whose independent review is still
+pending (lane `bh-poly-linear-review`).
+
+**Statement.** Let
 
 ```text
 B = < a, s, t | [s,t], [a, a^t], a^s = a a^t > ≅ R x| Z^2,   R = Z[x^±1,(1+x)^-1],
 ```
 
-with `s` and `t` acting by multiplication by `1+x` and `x`. Does `B` embed in a
-finitely presented simple group?
+with `s` and `t` acting by multiplication by `1+x` and `x`. Then `B` embeds in a
+finitely presented simple group.
+
+**The chain, explicitly** (lane `bh-char0-linear-reduction`, 2026-09-12).
+- **Affine.** `B <= Aff(Q(x)) <= GL_2(Q(x))` by `r -> [[1,r],[0,1]]`,
+  `s -> diag(1+x,1)`, `t -> diag(x,1)`.
+  - Conjugation `g [[1,r],[0,1]] g^-1` multiplies `r` by `1+x` and by `x`. So
+    `a^s = a a^t` holds when `a^g` is read as the action of `g`, as in the
+    presentation.
+  - The image lies in `GL_2(R)`.
+- **Coordinates.** `R = Z[x][1/f]` with `f = x + x^2`. Put `u = 1/f` and
+  `s' = x - u^3`, the Nagata substitution with weight `D = 3`. Then
+  `u^7 + (1+2s')u^4 + (s'+s'^2)u - 1 = 0` is monic over `Z[s']`, and
+  `[Q(x) : Q(s')] = 7`, the degree of `s'` as a rational function of `x`.
+  - So `R = Z[s'][u]` is free over `Z[s']` with basis `1, u, ..., u^6`.
+  - It follows that `B <= GL_2(R) <= GL_14(Z[s'])`.
+- **Host.** Apply `polynomial-linear-groups-satisfy-boone-higman` with `k = 1`,
+  `m = 1` and `N = 14`. The host is `Z[s']^28 x| E_28(Z[s'])`.
 
 **Why this case.** Problem 5.3(7) of Belk--Bleak--Matucci--Zaremsky
 (arXiv:2306.16356) asks for Boone--Higman for finitely presented metabelian
