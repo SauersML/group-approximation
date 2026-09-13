@@ -9,6 +9,8 @@ distinct_from:
   a2-kernel-removal-forces-recursive-kernel: that proves a recursive kernel is necessary for one pair; this is the universal assertion.
   a2-action-with-non-finitely-presented-image: that is one pair whose image is not finitely presented but whose kernel is removable; this asserts removability for every pair.
   a2-kernel-removable-iff-image-in-type-a2-actor: that proves one pair is removable exactly when its image embeds in a type (A_2) actor; this asserts that every pair is removable, that is, that every type [A_2] action image lies in that class.
+refuted_by:
+  - a2-pair-with-non-removable-kernel-exists
 artifacts:
   - research/artifacts/bh-type-a-actions-2026-09-12.md
 ---
@@ -99,3 +101,16 @@ would then all be equivalent. The graph carries this as the route
      which contains the kernel.
 
    *Open:* no type [A_2] action with a non-recursive kernel is known.
+6. **Mixed identities of Thompson's group T** (lane
+   solve-mixed-identity-undecidable, 2026-09-13). *Dies for T.*
+   - `T` is the standard non-MIF finitely presented simple group
+     (`homeo-circle-three-arc-commutator-word-is-mixed-identity`), so its
+     Theorem C actor has a nontrivial kernel.
+   - But `thompson-t-mixed-identity-problem-is-decidable` decides `J_k(T)` for
+     every `k`, so the kernel is recursive
+     (`thompson-t-relative-automorphism-actor-kernel-is-recursive`).
+   - The remaining input is the OPEN claim
+     `fp-simple-group-with-nonrecursive-mixed-identities`. Its route
+     `non-removable-a2-kernel-from-nonrecursive-mixed-identities` would establish
+     `a2-pair-with-non-removable-kernel-exists`, which this node names in
+     `refuted_by`.
