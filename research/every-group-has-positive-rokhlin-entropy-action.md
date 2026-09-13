@@ -181,6 +181,19 @@ anywhere refutes it.
   for maximal Bernoulli entropy over a surjunctive Kun–Thom wreath. It would be
   the first lower bound over any nonsofic group. It is open, with its specific
   obstructions recorded there.
+- **Invariant layers carry no entropy (ex-rokhlin-lower, 2026-09-12).** In every free action, the sets
+  fixed by any infinite subgroup generate a sigma-algebra of zero outer Rokhlin entropy
+  (`infinite-subgroup-invariant-information-has-zero-outer-entropy`). The closed span of the fixed vectors is
+  singular with `λ`, so Seward's Theorem 1.2 applies. Special cases:
+  - factors fixed by an infinite normal subgroup (Alpeev–Seward, Krieger III, Theorem 1.11, imported as
+    `alpeev-seward-stabilizer-growth-kills-outer-entropy`);
+  - the `Γ`-invariant functions of Kun–Thom Theorem C, the information that separates sofic actions from the
+    rest;
+  - information fixed by the invisible lamps of the Kun–Thom wreath;
+  - generalized Bernoulli shifts over infinite subgroups and affine lamp actions, whenever essentially free.
+
+  Every nonsoficity mechanism in the graph lives on such invariant layers. So a lower bound, or a deficit, has
+  to act on the mixing part of an action, where the Koopman data is `λ^⊕N` and blind.
 - **What is left.** A lower bound for any nonsofic group needs a counting
   mechanism that is not a sofic approximation. The sources read here
   (arXiv:1501.03367, 1602.06680, 1804.05270, 1805.08279, 0812.2718) derive lower
