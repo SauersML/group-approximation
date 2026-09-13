@@ -282,6 +282,15 @@ Filled in as each part lands.
   substance by Boldrini--Prasad arXiv:2607.01896. PASS on the minimal Cantor realization, the generic-witness Baire
   argument, fidelity to Rainone's Theorem 4.22 hypotheses, and the failure of almost unperforation. Credit to
   Boldrini--Prasad is present on every node; BP 6.10, 6.12 and Wehrung 4.7.10, 4.7.14 were checked verbatim.
+- `ex-review2-analysis-2026-09-13-part11.md`: census of the fourteen wave-2 operator lanes at tip `59ea57d883`. Of 39
+  established claims without a PASS, 33 remain after parts 9 and 10.
+- `ex-review2-analysis-2026-09-13-part12.md` (priority): the KK norm functor. PASS at p = 2 on Theorem A, Theorem B and
+  the Rokhlin property of the flip on O_2 ⊗ O_2. GAP at odd p: in Proposition 1 the cross terms of F̃² need the
+  partition operators to commute modulo compacts, and nothing supplies that.
+- `ex-review2-analysis-2026-09-13-part13.md` (priority): Toms's rank theorems on block-diagonal realizers in the
+  non-simple limit A and the simple algebra B. PASS, with wording notes: the hypothesis must hold at every large stage,
+  one justification is wrong, and requires are missing. Section 4, Lemma 2 and Proposition 4 were checked against
+  arXiv:2606.12188v2.
 
 ## 4. Outcome of the census
 
