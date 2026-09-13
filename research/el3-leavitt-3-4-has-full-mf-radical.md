@@ -12,6 +12,15 @@ For every countable field `K`, every homomorphism from `EL_3(L_K(3,4))` to an MF
 - **Place in the band.** `L_K(3,4)` has paradoxical level `p = 3`: `4[R] ≤ 3[R]` holds, while `3[R] ≤ 2[R]` fails in
   `⟨x | 3x = 4x⟩`. So its band is `3 ≤ N < 6`. `non-ibn-ring-el-n-full-mf-radical-above-module-rank` settles
   `N ≥ 4`, so `N = 3` is the only open rank.
+- **As a value of the MF spectrum.** In the notation of `mf-rigidity-is-monotone-in-matrix-rank`, rigidity is an
+  up-set in `N`. So this claim is exactly `rig(L_K(3,4)) ≤ 3`.
+  - Known bound: `rig(L_K(3,4)) ≤ 4`, from `non-ibn-ring-el-n-full-mf-radical-above-module-rank`.
+  - The alternative is `rig(L_K(3,4)) = 4`.
+  - Matrix amplification cannot decide it. By `mf-thresholds-rescale-under-matrix-amplification`,
+    `rig(M_2(L_K(3,4))) = rig(M_3(L_K(3,4))) = 2` whichever value `rig(L_K(3,4)) ∈ {2,3,4}` takes.
+  - The general module-type bound is `rig(L_K(m,m+d)) ≤ max(m+1,3)`.
+    `leavitt-module-rank-iso-columns-are-not-completable` shows that no completable-column or free-coordinate argument
+    can improve it to `rig ≤ m`.
 - **Why it matters.** If this claim FAILS, `EL_3(L_K(3,4))` is a finitely generated Kazhdan group
   (`elementary-groups-over-fg-rings-have-property-t`) with a nontrivial MF quotient, inside `EL_4(L_K(3,4))`, which has
   none. That would be the new object of `el-n-mf-quotient-below-twice-paradoxical-level-exists`.

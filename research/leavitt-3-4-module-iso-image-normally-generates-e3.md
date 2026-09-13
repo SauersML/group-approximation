@@ -14,6 +14,9 @@ Let `K` be a field, `R = L_K(3,4)`, and `X ∈ M_{3×4}(R)`, `Y ∈ M_{4×3}(R)`
 
 Changing `X` to `EXF` with `E ∈ GL_3(R)` and `F ∈ GL_4(R)` does not change the truth of the claim.
 
+By route `el3-leavitt-3-4-full-mf-radical-via-module-iso-image`, this claim gives `rig(L_K(3,4)) ≤ 3`, in the MF
+spectrum notation of `mf-rigidity-is-monotone-in-matrix-rank`. The known bound is `rig ≤ 4`.
+
 ## Attempts
 - **Suslin conjugation: dead.** It would write `x_i = g e_1` with `g ∈ EL_3(R)`, and then
   `1 + x_i r y_j = g(1 + e_1 r y_j g)g^{-1}` with `1 + e_1 r y_j g ∈ ⟨e_12, e_13⟩`. By
@@ -27,6 +30,15 @@ Changing `X` to `EXF` with `E ∈ GL_3(R)` and `F ∈ GL_4(R)` does not change t
   rings (Gerasimov, recalled, not re-read). Any proof must use the Leavitt relations `Σ_i x_i y_i = 1_3` and
   `y_j x_i = δ_ij` directly. Stably the transvections are elementary (`K_1` is Morita invariant), so there is no `K_1`
   obstruction, but unstable membership is open.
+- **Stably true: part 1 is exactly injective stability.** By `module-iso-conjugates-of-el-are-stably-elementary`,
+  `diag(1 + x_i r y_j, 1) ∈ EL_4(R)` for all `i ≠ j` and `r`, and hence `diag(Φ(g), 1) ∈ EL_4(R)` for every
+  `g ∈ EL_4(R)`. So part 1 holds iff these stably elementary matrices are already elementary at rank 3, i.e. iff
+  injective stability `GL_3(R)/EL_3(R) → GL_4(R)/EL_4(R)` holds on `Φ(EL_4(R))`.
+  - Bass–Vaserstein injective stability (rank `n ≥ sr(R)+1`) does not reach rank 3. `R ⊕ R^2 ≅ R^3 ≅ R^4 ≅ R ⊕ R^3`
+    while `R^2 ≇ R^3` (`ara-goodearl-leavitt-mn-monoid-is-one-relator`), so cancellation of `R` fails against `R^2`,
+    and Bass cancellation forces `sr(R) ≥ 3` (recalled, not re-read).
+  - A NO would need an unstable `K_1` invariant over `L_K(3,4)` detecting `EL_3` inside `GL_3`. No such invariant is
+    known here, since the ring has no map to a division ring or to any ring with IBN.
 - **Symmetry.** The inverse conjugation `h ↦ YhX` sends `e_kl(r)` to `1_4 + y'_k r x'_l`, where `y'_k` is a column
   of `Y` and `x'_l` a row of `X`. Its columns are non-completable in `GL_4` too, so the reverse inclusion
   `Φ^{-1}(EL_3) ⊆ EL_4` is equally out of reach of the standard tools.
