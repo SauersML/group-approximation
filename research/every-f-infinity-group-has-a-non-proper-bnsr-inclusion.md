@@ -8,6 +8,7 @@ distinct_from:
   zaremsky-1-18-properly-nested-bnsr-invariants: that claim is Problem 1.18 as a question; this is the negative answer
 artifacts:
   - research/artifacts/zp-properly-nested-bnsr-2026-09-13-part1.md
+  - research/artifacts/zp-properly-nested-bnsr-2026-09-13-part2.md
 ---
 
 For every group `G` of type `F_∞` there is `m ≥ 1` with
