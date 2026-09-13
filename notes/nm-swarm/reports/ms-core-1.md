@@ -39,6 +39,19 @@ None in this range.
 - Every key has an owner. The S1 keys are listed in the census chain-owners table; the S2 keys and hull-bridge's items 3, 4 and 7 are set by the roster rulings of 16:00–16:17.
 - Nothing was built, and no census rows were appended.
 
+## Claims
+
+- SKIPPED (never claimed on main): uniqueness of Laurent expansions and formal powers of u in `ClopenCrossedProduct T k`
+  (keys `a1bda19b475a`, `8a557cb954fb`). Assigned by main 09-13 ~17:10.
+  - The first ownership check (origin b39b4b5a1, ~17:09) found no draft.
+  - The re-check at 17:21 (origin ebd2a858c) found chain-core's in-flight `GroupApproximation/Dynamics/ClopenLaurent.lean`
+    (mtime 17:14, listed in `chain-core.files`, not yet probed or landed). It covers both keys: `laurentSum`,
+    `coeff_mul_unit_zpow`, `laurentSum_coeff`, `laurentSum_injective`, `laurentCoeff`, `existsUnique_laurentSum`,
+    `unit_zpow_injective`, and the closed endpoints `printedLaurentExpansionsUnique` and `printedPowersFormal`.
+  - No module was written. The path `Dynamics/ClopenCrossedProductLaurentUnique.lean` is removed from `ms-core-1.files`.
+  - Nearby, and a different statement: ct-rank-two-limit's `Dynamics/ClopenCrossedProductLaurentEval.lean` evaluates R_X at
+    points of period at most two.
+
 ## Notes for the owners (relayed through main)
 
 - chain-core: keys `a1bda19b475a` and `8a557cb954fb` have no uniqueness or formal-powers lemma on origin. The module docstring asserts both by construction.
