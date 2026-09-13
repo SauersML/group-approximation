@@ -145,3 +145,34 @@ non-residually-finite lattice, is not hyperlinear.  Route
     representation at dimension ratio `-> 1`: a lim^1 / Ext-type
     dimension-ratio obstruction concentrated on the Deligne `Z`-direction.
     No refutation found; the claim stays OPEN.
+- **Proof-side audit, g = 2 (2026-09-13, lane `solve-nh-flexible-proof`).**
+  No proof and no new sub-case; this records where every positive tool stops.
+  - **Only the central sector matters, and main already says so.** By
+    `character-rigidity-equals-hyperfinite-hs-stability`, the hyperfinite part of
+    any limit character rounds strictly, so a correction theorem only has to handle
+    sequences whose limit character is supported on the center (`delta_e` on
+    `PSp_4(Z)`). The tensor-regularization theorem
+    `kazhdan-weak-ucp-stability-is-flexible-stability` already makes regular-type
+    approximations a complete test class. A separate central-projection reduction
+    would duplicate it, so none was landed.
+  - **What a proof must produce on that sector.** Strict rounding fails there
+    (`sp4-regular-trace-asymptotic-reps-need-not-round`). Any flexible corrector
+    factors through a congruence quotient
+    (`sp4-flexible-correctors-factor-through-finite-quotients`). So for a
+    regular-trace sequence a proof must supply congruence-quotient representations
+    of relative dimension `1+o(1)` whose compressions match it.
+  - **Why the known tools stop.**
+    - Character rigidity (Dogon--Vigdorovich Theorem 1.6 with the
+      Bader--Boutonnet--Houdayer dichotomy they use) constrains only the limit
+      trace. On the central sector it gives `delta_e` and nothing more.
+    - Kazhdan averaging turns an already supplied almost-invariant corner into an
+      exact one. It does not produce the corner.
+    - Gowers--Hatami rounding needs the full multiplication table of one finite
+      group. An asymptotic representation controls finitely many relations, and
+      the congruence level forced by a regular limit trace grows without bound.
+    - The congruence subgroup property constrains correctors once they exist
+      (FQ1). It does not create them.
+  - **Hardness.** By `sp2g-flexible-stability-forces-twisted-non-ce`, the
+    correction theorem contains non-Connes-embeddability of almost-trivial twisted
+    algebras, and that alone gives a finitely presented non-hyperlinear group. So on
+    the central sector a proof is at least as hard as `non-hyperlinear-group` itself.
