@@ -80,7 +80,58 @@ not discharge one. No row was added for the proof-step rows bcc99703f838, 2d1cd2
 - The fff-quotient lane has Proposition 4.7 green over exactly Lemma 4.6
   (`UpsilonFinitelyPresented`).
 
+## Flip readiness (checked at origin/main)
+
+Each producer's conclusion is exactly the binder of the four-leaf theorems, so a flip is one
+line:
+- `relativeGreendlingerQuasiGeodesicLeastArea_of_osinLemma97` concludes
+  `RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v}`;
+- `relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_letterPullback` concludes
+  `.{u, v, w}`;
+- `KotowskiOllivierClosed.kotowskiOllivier_of_leaves` concludes
+  `Manuscript.NonMF.TheoremC.KotowskiOllivierStatement`;
+- `HydeLodha.finitelyPresentedInfiniteSimpleStatement_of_leaves` concludes the unique
+  `TorsionFreePrinted.FinitelyPresentedInfiniteSimpleStatement`
+  (FournierFacioParagraphFromSimpleFactor.lean:353).
+
+`#audit_axioms` throws on any axiom outside the classical allowlist
+(Meta/AxiomGuard.lean), so the green probe shows that no four-leaf chain uses `sorryAx`.
+
+## Open-predicate findings over the least-area leaves (classification)
+
+Only the four walls block these findings. Each retires when the walls close: the row names
+the closed endpoint and says "retires open-predicate <decl>".
+- Census note names Greendlinger and bridge walls (baseline lines 214–289):
+  - `TorsionFreeLeastAreaAssembly.manuscriptTorsionFreeTheorem_of_leastAreaLeaves`,
+    `manuscriptRegularNonMFAlgebra_of_leastAreaLeaves`,
+    `printedSaturationNoOmega_of_leastAreaLeaves`;
+  - `TorsionFreeOsinNotion.manuscriptTorsionFreeTheoremOsin_of_leastAreaLeaves`,
+    `manuscriptRegularNonMFAlgebraOsin_of_leastAreaLeaves`,
+    `manuscriptSaturationOsin_of_leastAreaLeaves`;
+  - `TorsionFreeHullPrintedLeastArea.manuscriptSentence_hullTheorem_of_leastAreaLeaves`,
+    `manuscriptSentence_hullTheoremOsin_of_leastAreaLeaves`;
+  - `TorsionFreeLimitSetEndpoints.manuscriptHullTheoremLimitSet_of_leastAreaLeaves`,
+    `manuscriptSaturationLimitSet_of_leastAreaLeaves`;
+  - `GGT.RelHyp.fournierFacioQuotientStatement_of_leastAreaLeaves`;
+  - `TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves`. Its binders
+    also include the Kotowski-Ollivier wall, which the census note does not name.
+- Census note names the Hyde–Lodha wall; the routes consume all four walls (baseline lines
+  220–307):
+  - `TorsionFreeLiteratureInputsLeastArea.manuscriptTorsionFreeTheorem_of_hullLeaves`,
+    `manuscriptTorsionFreeTheoremOsin_of_hullLeaves`, `manuscriptRegularNonMFAlgebra_of_hullLeaves`,
+    `manuscriptRegularNonMFAlgebraOsin_of_hullLeaves`, `fournierFacioParagraph_of_leastAreaLeaves`;
+  - `TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebra_of_hullLeaves_closedGO`, plus its
+    Osin and limit-set forms.
+- Not this lane (ROSTER):
+  - sec5-sentences owns the proof-step carriers
+    `TorsionFreeHullParagraphGeneral.*_of_leastAreaLeaves` (row bcc99703f838) and
+    `TorsionFreeSectionSentencesLeastArea.*_of_leastAreaLeaves` (rows 2d1cd22e5f49,
+    2f997e5af4e6, 721da4c14d11), with their own four-leaf forms;
+  - hull-respell, hull-bridge and sec5-sentences own `GGT.RelHyp.osin24HullStep_of_boundedLeaves`.
+
 ## Next
 
 - Watch main for closed wall producers and flip. A closed `LiteratureInputs` needs its own
   namespace, because `TheoremC.literatureInputs` in TheoremCAssembly.lean is the sorry form.
+- The Greendlinger and bridge walls unlock thm:hull, lem:saturation, the quotient field and
+  common quotient, and their 12 findings above.
