@@ -30,14 +30,20 @@ of `metadata/NON_MF_SENTENCE_MAP.tsv` that the root does not reach.  Root builds
 * `nmwire.sh` builds on the origin at launch, which can be newer than the pre-flight sha.  The next wave's
   gate diffs against that build base, so the files that changed in between are gated there.
 
-## 09-13 root state (origin/main 045b5f849, 08:54)
+## 09-13 root state (origin/main eb314a807, 10:56)
 
-* Root at 045b5f849 (after wave 8): 4907 GroupApproximation import lines, all before the module docstring
-  (OK); no missing module, no duplicate line; closure 6310 modules; 0 dangling imports inside it.  333
-  modules on main are not reachable from the root (310 at 5f789a7ba, 313 at e32bac3f3, 360 at f495cf119).
-* Census at 045b5f849: every carrier module is root-reachable.  The last one, `Algebra.IntegerPlacesMinpoly`
-  (row b6d1590be7ab), landed in wave 7.  One census token resolves to no declaration: row 8fdc908a49c7
-  (definition) `GroupApproximation.StableWhitehead.elementaryColim_normal`.
+* Root at eb314a807 (after wave 10):
+  * 4980 GroupApproximation import lines, all before the module docstring (OK);
+  * no missing module and no duplicate line;
+  * closure 6397 modules, with 0 dangling imports inside it;
+  * 317 modules on main are not reachable from the root.  Earlier counts: 333 at 045b5f849, 310 at 5f789a7ba,
+    313 at e32bac3f3, 360 at f495cf119.
+* Census at eb314a807: every carrier module is root-reachable.
+  * At f5873fc2a, six carrier modules were not root-reachable:
+    `Estimating.OsinLemma94{ChainRespell, PolygonCount, PolygonCovers, PolygonRealization, RegionSideCount,
+    SeparatingRemoval}`.  Wave 10 wired all six.
+  * One census token resolves to no declaration: row 8fdc908a49c7 (definition)
+    `GroupApproximation.StableWhitehead.elementaryColim_normal`.
 
 ### Root lines added by other campaigns
 
@@ -227,10 +233,11 @@ and `KotowskiOllivierClosed`, which has its own root line.  Its bytes went throu
 wave 6 build compiled the cf1675f3b version and the wave 7 build the 4be3a3a5c version, and wave 8 compiles
 f65f99f17.
 
-## Wave 9 (launched 09-13 08:54, root build 0913-085422-44704, base 045b5f849)
+## Wave 9 (launched 09-13 08:54, root build 0913-085422-44704, base 045b5f849): GREEN, LANDED ROOT 559636b4a
 
 23 modules, 30 newly reachable files.  Module list: `$NM/rw-wave9.mods`.  Pre-flight at 2e11846a7;
-`nmwire.sh` built on origin 045b5f849.  The two Lean files changed between them,
+`nmwire.sh` built on origin 045b5f849.  18 modules rebuilt.  At cde9049de, 559636b4a is an ancestor and all 23
+lines are present.  The two Lean files changed between them,
 `Estimating.OsinLemma94CaseOneWalk` and `Estimating.OsinPocketPinchedTwoGonModel`, lie outside the new
 closure.  The wave checks, dupcheck and gate, rerun at 045b5f849, give the same result.
 
@@ -274,15 +281,131 @@ all 41 gated files, not only the newly reachable ones: 0 hits.
 
 Not rewired: `KotowskiOllivierClosed`, which already has its own root line.
 
+## Wave 10 (launched 09-13 10:27, root build 0913-102726-49367, base f5873fc2a): GREEN, LANDED ROOT 65d0a4497
+
+Result: ROOT GREEN, 15048 jobs.  2 GroupApproximation modules were rebuilt and the rest restored from the
+lanes' probe artifacts.  At eb314a807, 65d0a4497 is an ancestor and all 39 lines are present.
+
+39 modules, 42 newly reachable files.  Module list: `$NM/rw-wave10.mods`.  Pre-flight at 1223d3775, with the
+queue swept through line 596.  `nmwire.sh` built on origin f5873fc2a.  Five Lean files changed between the
+two commits, and none of them lies in the new closure:
+- `GGT.HullLemma35PieceWords`;
+- `Estimating.CyclicArcSub`;
+- `Estimating.OsinLemma94PendantRemoval`;
+- `KirchbergPhillips.{ApproximateUnitaryEquivalence, IntertwiningLimit}`.
+
+The wave checks, dupcheck, gate and hold scan, rerun at f5873fc2a, agree with the pre-flight.
+
+| module | evidence (bytes on 1223d3775 = record) | owner |
+|---|---|---|
+| `Estimating.OsinAppendixEulerEmptyTwoGon`, `…ExteriorTwoGon`, `…SmallFaces` (Lemma 9.3 chain) | GREEN 0913-061850-77139, 0913-065054-20285, 0913-093143-91859 | hull-euler |
+| `Estimating.OsinAppendixEulerCornerTwoGon`, not queued, imported by `SmallFaces` and wired ahead of it | hull-euler's GREEN 0913-093143-91859 builds it, and the blob at its base 800254639 equals main | leavitt-units |
+| `Estimating.OsinAppendixEulerExteriorCellFaces`, wired ahead of `SmallFaces` | GREEN 0913-100213-68371, newer than the FAILED record 0913-095557 | hs-vanishes |
+| `Estimating.OsinLemma94CaseOneWalkLists`, `…CaseOneWalkHolds` | GREEN 0913-095509-55850, which builds `Holds`, and `Holds` imports `Lists`.  It is newer than the FAILED record 0913-094857 | ko-closed |
+| `Estimating.OsinLemma94ChainRespell`, `…SeparatingRemoval`, `…PolygonRealization` | GREEN 0913-090448-70090, 0913-093115-86638, 0913-095511-56070 | hull-unbound |
+| `Estimating.OsinLemma94PolygonCovers`, `…PolygonCount` | GREEN 0913-093648-12289, newer than the FAILED record 0913-093132 | hull-count94 |
+| `VanKampen.SurgeryInnerDiscCollapse`, `…Darts`, `…Regions`, `…Merged`; `Estimating.OsinPocketDiscMerge`, `…DiscEmptyTwoGon` | GREEN 0913-091627-32913, newer than the FAILED record 0913-090831 | fff-periodic |
+| `VanKampen.SurgerySpikeDeletion`, `…Map`, `…Darts`, `…Regions`; `Estimating.OsinLemma94SpikeTransport` | GREEN 0913-093339-5579; 0913-091212-22516, newer than the FAILED record 0913-090935; 0913-093823-13569; 0913-094006-19024; 0913-095500-55040 | sec5-sentences |
+| `GGT.HullLemma35Expansion`, `…Corner`, `…Sides`, `…Thin`, `…PieceGeometry` | GREEN 0913-092041-45611, newer than `Expansion`'s FAILED record 0913-091447; 0913-093041-78609; 0913-093839-14345; 0913-094811-36793 | baseline-debt |
+| `Estimating.OsinPocketRegionOfSimple`, `Estimating.OsinPocketCollarOfGeodesic` | GREEN 0913-093324-3872, 0913-100702-85407 | dgo-analytic |
+| `Estimating.OsinAppendixCutMerge`, `Estimating.OsinPocketTwoCollars` | GREEN 0913-090304-65564, newer than the FAILED record 0913-085704; 0913-092959-67901 | hl-lemma46 |
+| `VanKampen.SimpleClosedWalkSideFaces` | GREEN 0913-090043-59913 | hull-component |
+| `Estimating.OsinPocketRegionVertexSimple` | GREEN 0913-091940-39141 | hull-bridge |
+| `Estimating.OsinLemma94RegionSideCount` | GREEN 0913-091959-40244 | audit-intro |
+| `Estimating.OsinLemma94InsertionTransport` | GREEN 0913-094211-23583, newer than the FAILED record 0913-093536 | sec2-sentences |
+| `Estimating.OsinCConditionLineModel` | GREEN 0913-093823-13550 | audit-sec3 |
+| `VanKampen.SurgeryPocketGlueFaces` | GREEN 0913-094529-34532, newer than the FAILED record 0913-093031 | go-lemma42 |
+| `Estimating.OsinPocketZeroCellMergeFalse` | GREEN 0913-094902-38721 | hull-select |
+
+Pre-flight at 1223d3775: no dangling import, no lexical sorry, no cycle; dupcheck predicts no collision.
+The wave 9 build did not compile 58 files of the new closure (59 at the pre-flight, counting
+`OEquivalentCellFaces`):
+
+* the 42 newly reachable files;
+* 11 files rooted by other campaigns since 045b5f849:
+  * `CStarLimits.TowerLift`: fz ko-limits 0913-092350-50956;
+  * `CuTensor.{CuZModel, CuZModelCompact, ObstructionGrothendieck, RankTwoObstruction, WayBelow}`: fz
+    x95-obstruction 0913-091125-21023;
+  * `KTheory.{K1Functorial, K1Scalar}`: fz ko-k1 0913-095850-65227 and 0913-094358-29653;
+  * `KTheory.Suspension`: fz ko-bott 0913-092439-53870;
+  * `KirchbergAlgebra.{Basic, CuntzCriterion}`: fz l-kirchberg 0913-094230-24665;
+* 5 files changed since 045b5f849:
+  * `Estimating.OsinLemma94PlanarPieces`: hull-unbound 0913-090448-70090;
+  * `Estimating.OsinPocketPieces`: dgo-analytic 0913-093324-3872;
+  * `NonMF.HullCorollary73`: cite-hull 0913-084125-2235;
+  * `Pestov91.Assembly` and `Pestov91.RingSimple`, below.
+
+`Pestov91.Assembly` and `Pestov91.RingSimple` are root-reachable, and the Pestov 9.1 commits 33c61859c and
+95632338d changed them.  The gate finds no record for their bytes in `$NM/lanes` or `fz/lanes`:
+- `Assembly`'s bytes are covered by the pc campaign's GREEN record ex-palomar-hygiene 0913-091934-38820
+  (md5 = main).
+- No record carries `RingSimple`'s current bytes, but the change is prose inside comments.  With comments
+  stripped (nesting-aware), its code is identical to 045b5f849's, and the comment delimiters balance.
+
+The wave 10 root build compiles both files.
+
+The lexical `sorry`/`admit`/`axiom` scan over all 58 gated files finds nothing.
+
+Queue entries not rewired, all already root-reachable:
+- `OsinPocketPieces` (lines 534 and 555); its bytes are gated;
+- `OsinAppendixEulerCount`, `…Exterior`, `…ExteriorCount` and `CombMapRestrictionFaceClasses` (lines 573–575
+  and 578).
+
+Queued after the wave 10 sweep and wired in wave 11:
+- `Estimating.OsinLemma94PendantRemoval` (jacobson);
+- `Estimating.CyclicArcSub` (sec2-sentences);
+- `GGT.HullLemma35PieceWords` (baseline-debt).
+
+## Wave 11 (launched 09-13 11:20, root build 0913-112021-31550, base 23348780a): GREEN, LANDED ROOT 9eba4d854
+
+Result: ROOT GREEN, 15063 jobs.  1 GroupApproximation module was rebuilt and the rest restored from the
+lanes' probe artifacts.  At 520f03021, 9eba4d854 is an ancestor and all 5 lines are present.
+
+Recheck at the build base 23348780a, where 11 Lean files had landed after eb314a807:
+- the wave checks, dupcheck (closure 6403 → 6408) and hold scan agree with the pre-flight;
+- the gate needs evidence for 6 more files that other campaigns had rooted since f5873fc2a, each covered by
+  an fz record:
+  - `CuTensor.{CuntzSubequiv, ObstructionCuntzProjection, ObstructionFinite}`: fz x95-obstruction
+    0913-095415-50899;
+  - `KTheory.K1Lift`: fz ko-k1 0913-095850-65227;
+  - `KirchbergPhillips.{ApproximateUnitaryEquivalence, IntertwiningLimit}`: fz l-kp 0913-100215-68480;
+- the lexical scan over all 15 gated files finds nothing.
+
+5 modules and 5 newly reachable files, from queue lines 599, 601, 602, 604 and 605.  Module list:
+`$NM/rw-wave11.mods`.  Pre-flight at eb314a807, with the queue swept through line 605.  `nmwire.sh` built on
+origin 23348780a.
+
+| module | evidence (record md5 = bytes on eb314a807) | owner |
+|---|---|---|
+| `Estimating.CyclicArcSub` | GREEN 0913-102559-44269, newer than the FAILED record 0913-101514 | sec2-sentences |
+| `Estimating.OsinLemma94PendantRemoval` | GREEN 0913-102123-19053 | jacobson |
+| `GGT.HullLemma35PieceWords` | GREEN 0913-101453-98311 | baseline-debt |
+| `Estimating.OsinPocketGlueDiagram` | GREEN 0913-102750-50297, newer than the FAILED record 0913-101623 | go-lemma42 |
+| `Estimating.OsinPocketMultipleEdgeTransport` | GREEN 0913-104724-79095 | hl-lemma46 |
+
+Pre-flight at eb314a807:
+- no dangling import, no lexical sorry and no cycle;
+- no candidate imports another;
+- dupcheck predicts no collision (closure 6397 → 6402).
+
+The wave 10 build did not compile 9 files of the new closure:
+- the 5 new files;
+- 4 files rooted by other campaigns since f5873fc2a:
+  - `KTheory.{K0Basic, K0Rect}`: fz ko-k0 0913-095450-54053;
+  - `KTheory.{TensorKronecker, TensorProduct}`: fz ko-tensor 0913-095402-49657.
+
+No file in the closure changed since f5873fc2a.  The lexical `sorry`/`admit`/`axiom` scan over the 9 gated
+files finds nothing.
+
 ### Held
 
 | module | reason | owner |
 |---|---|---|
 | `CharClass.*`, `Analysis.LIX*`, `ProblemLIXStrongAssemblyHalves` | LIX campaign files, in flight in the shared tree | LIX lanes |
+| `VanKampen.OEquivalentCellFaces` (queue line 596, waves 10 and 11) | The only record that probes it, 0913-101514-99667, says PROBE FAILED rc=1, but queue line 595 calls it GREEN.  The newer GREEN record 0913-102559-44269 builds only `CyclicArcSub` | sec2-sentences |
 
 Released from the wave 4 holds, all in wave 5: `NonMF.Audit.Sec3` (audit-sec3's green bytes landed at
-80abe6604), `Estimating.OsinUnboundSharedEdge` (new green probe), `GGT.SystolicDiscMirrorFoldSteps`.  No
-new holds since.
+80abe6604), `Estimating.OsinUnboundSharedEdge` (new green probe), `GGT.SystolicDiscMirrorFoldSteps`.
 
 ## Stale notes superseded
 
