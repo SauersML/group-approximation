@@ -11,27 +11,26 @@ distinct_from:
 For every `n` there are a number field `F`, an integer `m` and an injective
 homomorphism `B_n -> GL_m(F)`.
 
-It follows from `every-braid-group-embeds-in-some-glnz`
-(route `braid-number-field-linearity-from-z-linearity`). It implies the
-non-cocompact CAT(0) reading of Problem 3.6,
-`every-braid-group-acts-properly-on-a-proper-cat0-space`
-(route `braid-proper-cat0-action-via-number-field-linearity`). So it lies
-between the two problems, and, since the non-cocompact question is recorded
-as open in the list, it is presumably open too.
+- It follows from `every-braid-group-embeds-in-some-glnz`, via the route
+  `braid-number-field-linearity-from-z-linearity`.
+- It implies the non-cocompact CAT(0) reading of Problem 3.6,
+  `every-braid-group-acts-properly-on-a-proper-cat0-space`, via the route
+  `braid-proper-cat0-action-via-number-field-linearity`.
+
+So it lies between the two problems. The list records the non-cocompact
+question as open, which suggests this claim is open as well.
 
 ## Attempts
 
-1. **Algebraic specialization of Lawrence–Krammer, units not required.** Any
-   injective specialization `q -> q_0, t -> t_0` with `q_0, t_0` nonzero
-   algebraic numbers gives the claim. It has the same countability gap as
-   `lawrence-krammer-has-a-faithful-algebraic-unit-specialization` (attempt 2
-   there), but denominators are now allowed.
-2. **Idea to test: a valuation version of Krammer's argument.** Krammer orders
-   the Laurent polynomials in `q` by the sign of the lowest-order coefficient,
-   which makes `q` infinitesimal. Try `q -> p` (a rational prime, or a
-   uniformizer of a number field) with the `p`-adic valuation playing the role
-   of the lowest-order exponent, and a residue-field condition replacing the
-   sign. If the cone argument survives with signs replaced by nonvanishing mod
-   `p`, `B_n` is linear over `Q` or a number field, and `B_n` acts properly on a
-   product of a symmetric space and Bruhat–Tits buildings. Not yet checked
-   against Krammer's actual proof.
+1. **Algebraic specialization.** It is enough to find a nonzero algebraic
+   `t_0` at which the integral one-parameter representation
+   `braid-groups-embed-in-gl-over-integer-laurent-polynomials` stays injective.
+   Units are not needed here. The countability gap of
+   `lawrence-krammer-has-a-faithful-algebraic-unit-specialization`
+   (attempt 2) applies unchanged.
+2. **The valuation version of Krammer's argument does not work as it stands.**
+   Checked against Cohen–Wales §4, the faithfulness argument reduces modulo
+   `t` and needs a cancellation-free positive cone in `R[t]/(t) = R`. With
+   `t -> t_0 ∈ 𝔭` for a prime `𝔭` of `O_F`, the reduction lands in the finite
+   field `O_F/𝔭`, which has no such cone. So a proof of number-field linearity
+   needs a different way to rule out cancellation.

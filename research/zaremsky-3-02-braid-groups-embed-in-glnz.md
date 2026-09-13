@@ -6,6 +6,8 @@ title: "Zaremsky Problem 3.2 resolved: do braid groups embed in GL_n(Z)?"
 root: true
 distinct_from:
   spherical-artin-groups-are-linear-over-q-x-y: that places every spherical Artin group, braid groups included, inside GL_N(Q(x,y)), a field of transcendence degree 2; this asks for an embedding into GL_m(Z), whose finitely generated subgroups are discrete in GL_m(R).
+artifacts:
+  - research/artifacts/zp-braid-glnz-landscape-2026-09-13.md
 ---
 
 M. C. B. Zaremsky, *Some open problems* (version of July 12, 2026,
@@ -31,24 +33,35 @@ where `N* = oo` means yes.
   (`braid-groups-on-at-most-three-strands-embed-in-glnz`), so the first open
   case is `B_4`.
 - For every `n`, Z-linearity of `B_n` is equivalent to Z-linearity of
-  `P_n / <Delta^2>`, the pure braid group modulo its center
-  (`braid-group-z-linear-iff-pure-braid-mod-center-z-linear`). For `n = 4` that
-  group is a free-by-free group `F_3 ⋊ F_2`.
+  `P_n / <Delta^2>` (`braid-group-z-linear-iff-pure-braid-mod-center-z-linear`).
+  For `n = 4` that group is a free-by-free group `F_3 ⋊ F_2`.
+- Every `B_n` embeds in `GL_(n(n-1))(Z[t, t^{-1}])`
+  (`braid-groups-embed-in-gl-over-integer-laurent-polynomials`), by specializing
+  one Cohen–Wales parameter to the unit `(3 - sqrt 5)/2`. The problem is to
+  get rid of the last formal parameter.
 
 **Known before the list.** Braid groups are linear over fields of
-characteristic 0, through the Lawrence–Krammer representation over
-`Z[q^{±1}, t^{±1}]` (Bigelow, J. Amer. Math. Soc. 14 (2001); Krammer, Ann. of
-Math. 155 (2002)); all spherical Artin groups are too (Cohen–Wales, Digne). In
-the graph this is `spherical-artin-groups-are-linear-over-q-x-y`. Those
-representations need at least one transcendental parameter. The list
-(July 12, 2026) records the integral question as open, and z-status-b's sweep
+characteristic 0 through the Lawrence–Krammer representation (Bigelow,
+arXiv:math/0005038, Theorem 1.1; Krammer, Ann. of Math. 155 (2002)), and so are
+all spherical Artin groups (Cohen–Wales, arXiv:math/0010204; Digne). In the
+graph: `spherical-artin-groups-are-linear-over-q-x-y`. The list (July 12, 2026)
+records the integral question as open. z-status-b's sweep
 (`research/artifacts/zp-open-status-sections-2-4-2026-09-13-part2.md`) found
 nothing that decides it.
 
+**Links.** A yes gives `every-braid-group-is-linear-over-a-number-field`, which
+gives the non-cocompact CAT(0) reading of Problem 3.6
+(`number-field-linear-groups-act-properly-on-cat0-spaces`). Conversely, a
+braid group with no proper action on a proper CAT(0) space would give a no
+(`braid-not-z-linear-from-no-proper-cat0-action`).
+
 ## Attempts
 
-- 2026-09-13 (z3-02-braid-glnz): landed the two reductions above. The
-  literature pass for later or missed answers (arXiv API on MSI) is in
-  progress. Approaches to either answer are recorded on
-  `every-braid-group-embeds-in-some-glnz` and
-  `some-braid-group-embeds-in-no-glnz`.
+- 2026-09-13 (z3-02-braid-glnz): the reductions and links above are landed
+  (landscape in the artifact). The affirmative side is stuck on a unit
+  specialization of the one remaining parameter. The one faithfulness proof
+  checked (Cohen–Wales §4, following Krammer) works modulo `t` with a positive
+  cone, and cannot reach a unit value
+  (`lawrence-krammer-has-a-faithful-algebraic-unit-specialization`, attempt 3).
+  No obstruction is known. All standard necessary conditions for subgroups of
+  `GL_m(Z)` hold for braid groups (`some-braid-group-embeds-in-no-glnz`).
