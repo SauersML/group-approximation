@@ -11,6 +11,7 @@ distinct_from:
   finite-normal-subgroups-do-not-affect-surjunctivity: that is surjunctivity in both directions across a finite normal subgroup; this allows non-normal finite stabilizers at a fixed alphabet size, and at a normal stabilizer it is the quotient direction, size by size.
 artifacts:
   - research/artifacts/finite-stabilizer-coset-shift-transfer-2026-09-12.md
+  - research/artifacts/coset-shift-alphabet-lift-splitting-2026-09-12.md
 ---
 
 **OPEN.** Let `G` be a group, `H` a finite subgroup, and `m >= 2`. Suppose every injective cellular
@@ -34,6 +35,9 @@ host's own at a fixed alphabet size.
 - **Open when a prime divides both `m` and `|H|`.** There no retraction onto `Y` commutes with constants, so
   the averaging proof does not run. Other automaton retractions onto `Y` exist, such as the min retraction,
   but no extension of `tau` through one is known (Attempts).
+  - A lifted version holds, unverified. Surjunctivity of `G` at size `m^j`, with `j` as in
+    `coset-shifts-split-off-full-shifts-at-lifted-alphabets`, gives the claim at `(H, m)`. What remains at
+    size `m` is alphabet descent (Attempts).
 
 **Why a positive lane cares.**
 - Coset shifts with finite stabilizers are exactly the codomains that survive:
@@ -81,3 +85,47 @@ host's own at a fixed alphabet size.
 - **Amenable hosts.** The claim holds at every `m`. `Y` is a strongly irreducible subshift of finite type
   (gap `H`), so a proper subshift has smaller entropy. This is standard and is not landed as a claim.
   Artifact Section 2.
+- **Lifted-alphabet splitting (w7-coset-shared-prime, 2026-09-12; unverified).**
+  - Colour the `H`-orbits of each type in `Map(H, A')` into `m` equal classes. This is possible at
+    `|A'| = m^j`, with `j = 1 + max ceil(v_q(|H|) / v_q(m))` over primes `q | gcd(m, |H|)`.
+  - It gives a `G`-conjugacy `A^(G/H) x Z ≅ A'^G` for a twisted coset shift `Z`. Then
+    `Theta (tau x id) Theta^-1` is injective iff `tau` is, and surjective iff `tau` is.
+  - So surjunctivity of `G` at size `m^j` gives the claim at `(H, m)`, and surjunctivity at every size gives
+    it at every size. For `H = Z/p`, `m = p` the size is `p^2`.
+  - Claim `coset-shifts-split-off-full-shifts-at-lifted-alphabets`; lift artifact
+    (`coset-shift-alphabet-lift-splitting-2026-09-12.md`) Section 1.
+- **Same-size splittings (w7-coset-shared-prime; unverified).**
+  - The blockwise splitting at size `m` needs `m` to divide every orbit-type count. At `H = Z/p`, `m = p`
+    there are `p^(p-1) - 1` free orbits, so it fails. Lift artifact Proposition B.
+  - If `H` is normal of order `p` and some finite-index normal subgroup avoids `H`, no subshift `Z` gives
+    `A^(G/H) x Z ≅ A^G` at size `p`. Periodic points violate the mark congruence. Lift artifact
+    Proposition C.
+- **Directive candidates at `H = Z/p`, `m = p` (w7-coset-shared-prime).**
+  - *Invariant plus free part:* `F_p[Z/p]` is uniserial, so the fixed line has no complement.
+  - *Frobenius-twisted retraction:* Lemma 2's input still forces `mu = mu + phi(m/p)`.
+  - *Fibered extension over the orbit map:* lifting needs torsor data at every free coset. Not completed,
+    and superseded at size `p^2`.
+  - *Defect-freezing extension* (keep non-constant cosets, apply `tau` to the min retraction on constant
+    ones): not injective, already for the shift over `Z x Z/2`.
+  - None of these obstructs the claim, so no strict coset-shift automaton comes out. Lift artifact
+    Section 2.
+- **Where the fixed size stops.** Every working method lifts the alphabet. At size `m` the claim needs
+  surjunctivity at `m` to reach the product automata of the lifted splitting, an alphabet descent (compare
+  `surjunctivity-failure-descends-to-binary-alphabet`). Lift artifact Section 5.
+- **Question 9 when `H` injects into a finite quotient (w7-coset-shared-prime; unverified).**
+  - If a finite-index normal `N` avoids `H`, then `K[G/H]` is a free `K[N]`-module, and stable finiteness
+    alone gives the linear claim in every characteristic. At `D_inf`, `H = <a>`, `K = F_2`, the subgroup
+    `N = <ab>` gives rank one, and the Hecke algebra is `F_2[t + t^-1]`.
+  - In general the question restricts to multi-orbit modules over a finite-index subgroup, with stabilizers
+    inside `Res_fin(G)`. The residue is non-normal `H` meeting the finite residual. Candidate hosts `V`,
+    `E ⋊ V` and Radu lattices are all undecided.
+  - A failure over a finite field of characteristic `p` gives, through the lifted splitting, a strict
+    automaton at a `p`-power size. So over a host with `F_p[G]` stably finite it refutes
+    `stable-finiteness-forces-prime-power-surjunctivity`.
+  - Claim `separated-finite-stabilizers-give-modular-hecke-hopficity`; lift artifact Section 3.
+- **Mixed primes, `m = 6`, `H = S_3` (w7-coset-shared-prime).**
+  - The lifted splitting works at size 36.
+  - At size 6 the blockwise splitting fails, with 15 orbits of type `C_3`.
+  - `[S_3 : C_3] = 2` and `[S_3 : C_2] = 3` are not units mod 6, so the Sylow reduction gives nothing.
+  - `A = F_2 x F_3` splits only product maps.
+  - So the fixed-size case is the same descent problem. Lift artifact Section 4.
