@@ -78,6 +78,16 @@ distinct_from:
     value is a nontrivial idempotent trace, which refutes the
     Kadison--Kaplansky conjecture for `G`.
   - A counterexample not of that kind must have spectrum accumulating at `0`.
+  - *Upgrade (2026-09-13, from lane `ex-kadison-kaplansky`).* Isolated `0` is
+    already enough; finite spectrum is not needed. By Corollary C of
+    `fractional-matrix-trace-gives-projection-in-g-star-z` (b2c98f0e30), if `0` is
+    isolated in `spec(A^* A)` and `dim ker A` is not an integer, then
+    `chi_{0}(A^* A)` is a projection in `M_n(C*_r G)` with non-integer trace. So
+    `C*_r(G * Z)`, whose group is torsion-free, has a nontrivial projection. A
+    torsion-free Strong Atiyah failure that does not also refute
+    `kadison-kaplansky-torsion-free` therefore has `0` as an accumulation point of
+    the spectrum of `A^* A`. The intermediate target is
+    `torsion-free-matrix-trace-defect-exists`.
 * **Percolation coins, as in the lamplighter constructions.**  *Dies* at
   torsion-freeness.  The Z/2 constructions multiply by the algebraic
   idempotents `(1 + a_x)/2` of rank `1/2`.
