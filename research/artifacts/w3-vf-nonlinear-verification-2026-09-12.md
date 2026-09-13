@@ -1457,3 +1457,40 @@ Artifact `research/artifacts/brin-thompson-2v-gottschalk-host-2026-09-12.md`, Se
   - The display `(π ⊗ 1) D(h) (π ⊗ 1)^(-1) = Σ_i (s_(τ(i)) ⊗ 1) h (t_(τ(i)) ⊗ 1) = D(h)` checks, and so does the direct-finiteness step.
   - The route body keeps "whichever orientation". Its verdict paragraph records the caveat, which is enough.
 - **Wording (Section 3, optional).** "Section 4 shows that `V_1` together with the baker unit is not enough" reads as an impossibility. Corollary 4.4 shows only that a solution supported in `H_u` would settle `thompson-v-not-sofic`. Suggested wording: "Section 4 shows that a solution using only `V_1` and the baker unit would already show that `V` is not sofic."
+
+## 30. Linearly dirty ancilla words (w7-marker-ancilla, 87f699a25a)
+
+Claim `linearly-dirty-ancilla-words-realize-only-affine-data-maps` (ESTABLISHED), route `linearly-dirty-ancilla-words-affine-proof`, artifact `marker-ancilla-linear-dirt-invariant-2026-09-12.md` Sections 0–2. The author asked for a re-derivation of steps 2, 4 and 5. **PASS**, with two minor notes. No decision: `injective-binary-automata-are-stably-formalizable` stays OPEN.
+
+**Setup.** Points are `e = (x, y)` in `(F_2^Z)^n`, `n = 1 + k`, `R = F_2[σ^(±1)]`. A representation `s = M e + η(x)` with `M` in `GL_n(R)` gives `c = e_1^T M^(-1)` in `R^(1×n)`, and `c s = x + Q(x)` with `Q = c η`.
+
+**Lemma A. Correct.** `D adj(D) = det(D) I`. A nonzero Laurent polynomial is onto `F_2^Z`: after a shift both extreme coefficients are `1`, so `p v = w` can be solved cell by cell in both directions.
+
+**Steps 1 and 3. Correct.** The start is `M = I`, `η = 0`. A move `s ↦ E s` sends `(M, η, c)` to `(EM, Eη, cE^(-1))`, so `Q` is fixed. A translation `η_T += 1` adds `c_T(σ) 1 = c_T(1) 1`.
+
+**Step 2 (representation independence). Correct.**
+- If `M e + η = M' e + η'` on all points, then for `j >= 2`, column `j` of `M - M'` kills every `y_j`. Applied to `δ_0` it is zero. So `M' = M + d e_1^T` and `η' = η - d x`.
+- With `u = M^(-1) d`, `M' = M (I + u e_1^T)` and `det M' = det M (1 + u_1)`. Since `e_1^T (I + u e_1^T) = (1 + u_1) e_1^T`, `c' = (1 + u_1)^(-1) c`.
+- `c d = u_1`, so `Q' = (1 + u_1)^(-1)(Q - u_1 x)` and `Q' + x = (1 + u_1)^(-1)(Q + x)`. `1 + u_1` is a unit, hence a monomial, so affinity transfers.
+- The chain 1, 3, 4, 5 follows one representation along the word and does not use step 2. Step 2 makes "`Q` is affine" a property of the state.
+
+**Step 4 (exact reads). Correct.**
+- The move is `η_T += g` with `g(x) = G(s_(≠T)(x, 0))`, with `M` fixed, so `Q += c_T g`.
+- By the adjugate, `c_T = (M^(-1))_(1T) = det(M)^(-1) det N`, where `N` is `M` without row `T` and column `1`. The sign is `1` in characteristic 2. So `c_T != 0` iff `det N != 0`.
+- `s_(≠T) = M_(≠T,1) x + N y + η_(≠T)(x)`: the ancilla columns of the rows `≠ T` are exactly `N`. For fixed `x`, Lemma A makes `s_(≠T)` run over all of `(F_2^Z)^(n-1)`. Exactness then makes `G` constant on every input, so `g = G(0)` is `Z`-invariant and `c_T g = c_T(1) g` is a constant.
+
+**Step 5 (end). Correct.** `M e + η(x) = (F(x), y)`, tested on `δ_0` in each ancilla, gives `M = [[a, 0], [b, I]]`, with `det M = a` a unit, hence a monomial. Then `c = (a^(-1), 0, ..., 0)`, row 1 reads `a x + η_1 = F`, `Q = a^(-1) F - x`, and `F = a (Q + x)`.
+
+**Corollary. Correct.** By Lemma 1.1 of `marker-stable-formalization-residue-2026-09-12.md`, a marker at `i` needs `x_(i-1) = x_(i+1) = 1` and `x_(i±2) = x_(i±3) = 0`. So `τ(δ_0) = δ_0` and `τ(0) = 0`, and an affine `p x + b` with these values has `b = 0` and `p = 1`. `0010100` has a marker at its centre, which `τ` flips.
+
+**Outside the class. Correct.** `A: y += m(x)` is exact with `c_2 = 0`. After `B: x += y`, `M = [[1, 1], [0, 1]]`, `η = (m, m)`, `c = (1, 1)` and `Q = 0`, and `A'` reads `m(x + y + m(x))`. The `4Z` remark is accurate: a nonzero `c_(jT)` leaves the three other data columns in the minor, and they do not vary with `y`.
+
+**Section 1 (audit of Lemma 2.4). Correct.** The data output is `x + f(z(x, y))`, and for fixed `x`, `z` runs over every ancilla configuration. So `f` is constant, hence `m` is constant, which contradicts `m(0) = 0 != m(0010100)`.
+
+**Notes.**
+- The artifact's Theorem adds "`p` a monomial". Steps 1–5 give only `F = a (1 + q) x + const`, where `Q = q x + const`. One more line is needed: `W` is a bijection, so `F` is, and `p(σ)` is injective on `F_2^Z` only when `p` is a monomial. The claim node says only "affine" and is unaffected.
+- The claim node's Invariant bullet says linear moves leave `Q` unchanged. Constant translations, which the Statement counts among the linear moves, add a constant (artifact step 3). Suggested wording: "linear moves leave `Q` unchanged, and constant translations add a constant".
+- **Duplicate scan** (tip fdf10525a, untruncated).
+  - Searched node bodies for "exact read", "linearly dirty", "linear-dirt" and "dirt part", and node titles for stable formalization, track shears, ancillas, dirt and "affine".
+  - Nearest: `structurally-reversible-automata-are-formalizable` and `marker-involution-is-formalizable-after-regrouping` (positive constructions), and `formalizable-left-inverse-iff-clean-shear-dilation`, `invertible-ancilla-outputs-collapse-stable-formalization` and `formalizable-binary-pairs-over-biorderable-groups-are-affine` (formal pairs).
+  - None states or implies this claim, which concerns functional words on Boolean points rather than formal pairs.

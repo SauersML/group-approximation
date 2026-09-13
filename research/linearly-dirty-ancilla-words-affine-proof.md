@@ -7,6 +7,7 @@ target: linearly-dirty-ancilla-words-realize-only-affine-data-maps
 requires: []
 artifacts:
   - research/artifacts/marker-ancilla-linear-dirt-invariant-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Section 2 of the artifact.
@@ -16,3 +17,5 @@ Section 2 of the artifact.
   nonsingular linear automata (Lemma A, step 4).
 - **End.** At a realization the ancilla columns of `M` are `(0; I)`, so `Q = a^(-1) F - x` (step 5).
 - **Corollary.** `tau` is not affine.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): valid.** Lemma A and steps 1–5 of artifact Section 2 were re-derived: the representation change `Q' + x = (1 + u_1)^(-1)(Q + x)`, the adjugate identity `c_T = det(M)^(-1) det N`, and the end form `M = [[a, 0], [b, I]]`. The corollary uses `tau(0) = 0`, `tau(delta_0) = delta_0` and the marker at the centre of `0010100`. See Section 30 of `research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`.
