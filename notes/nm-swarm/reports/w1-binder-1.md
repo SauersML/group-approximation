@@ -81,3 +81,13 @@ CLAIM cutting-class bridge GroupApproximation/GGT/VanKampen/Estimating/OsinLemma
   - `OsinLemma94CuttingSides` now imports `CombMapSameFaceForest` and no longer restates `sameFaceDarts`, `mem_sameFaceDarts`, `sameFaceVertices` or `SameFaceDartForestStatement`. Origin has one definition of each.
   - `OsinLemma94CuttingClasses` (new): `cuttingClasses`, `otherClasses`, `exists_class_of_side`, `classSides_disjoint`, `mem_getLast?_of_next_kind_ne`, `card_cuttingClasses_le`, `card_cuttingEntries_le`, `card_cuttingClasses_le_otherClasses`, `OsinLemma94CuttingClassesStatement`, `osinLemma94CuttingClasses_of_forest`.
   - Both are on the wire queue, and wiring pulls in `CombMapSameFaceForest`.
+- 18:13: ms-compress-4 proved `sameFaceDartForest : SameFaceDartForestStatement` at b18944a24. The commit only adds declarations; the four shared names are unchanged.
+- 18:16 probe 0913-181649-59275 GREEN. `OsinLemma94CuttingClassesClosed` landed at 308984747:
+  - `OsinLemma94RealizedPolygons.card_cuttingSides_le_of_dartMinimal (hS) P (hmax) k : #cuttingSides k ≤ 4·#cuttingEntries k + 1`;
+  - `OsinLemma94ClassPolygons.card_cuttingClasses_le_of_dartMinimal (hS) (hmax) Q k : #cuttingClasses k ≤ 4·#otherClasses k + 1`;
+  - `osinLemma94CuttingSides_closed : OsinLemma94CuttingSidesStatement` and `osinLemma94CuttingClasses_closed : OsinLemma94CuttingClassesStatement`, each with `#audit_closed_axioms`.
+  - All four axiom lists are propext, Classical.choice, Quot.sound; the log has no sorryAx. The module is on the wire queue.
+
+## State
+
+The cutting half of Osin (38) is CLOSED, at side level and at class level, with no open binder. For `ClassCountInput`, the cutting classes of `ClassBudget` are paid by `card_cuttingClasses_le_of_dartMinimal`. The rest of the class count (other classes ≤ K n) belongs to sec5-sentences (`OsinLemma94LongTransitionInput`), hull-count94 (the `ClassJoins` assembly) and hull-component (bubbles).
