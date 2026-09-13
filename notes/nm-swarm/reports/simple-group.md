@@ -6,6 +6,13 @@ fff-quotient's (`isSimpleGroup_qTwo_closed`, `qTwo_torsionFree`, `infinite_qTwo`
 Higman–Thompson layer, the finite-presentation tools, Lemma 4.4, Theorem 4.8 and the Lemma 4.6 /
 Proposition 4.7 assembly (roster: integrator of hW).
 
+## hW closed (probe 0913-023517-12793, propext, Classical.choice, Quot.sound)
+- `HydeLodha/FinitelyPresentedInfiniteSimpleClosed` (47b31bef8):
+  `theorem finitelyPresentedInfiniteSimple_closed : FinitelyPresentedInfiniteSimpleStatement`, audited
+  with `#audit_closed_axioms`. It applies `finitelyPresentedInfiniteSimpleStatement_of_dynamics` to
+  hl-lemma46's `lemmaFourSixDynamics` (`QTwoLemmaFourSixDynamics`, de535e84c, probe 0913-021539-18816).
+- Queued for wiring in `wire-queue.txt` after `QTwoLemmaFourSixDynamics`.
+
 ## Compiled and landed (all green in probes)
 - Presentations: `DoubleCosetFinitePresentation.isFinitelyPresented_of_doubleCosets` (2-dimensional
   Brown criterion over `G/H`), `FinitePresentationExtension.isFinitelyPresented_of_normal` (P. Hall),
@@ -28,27 +35,26 @@ Proposition 4.7 assembly (roster: integrator of hW).
   `exists_twisted_generators` (`⟨s_i u_i⁻¹ s_i⁻¹ u_i⟩ ≅ F_6` with commutator subgroup `Υ_{Γ₂}(J₀)'`).
 - `HydeLodha/QTwoLemmaFourSixStatements` (232d6b12b, compiled): the piece Props
   `LemmaFourSixDynamicsStatement` (hl-lemma46) and `LemmaFourSixCaseOneStatement`.
-
-## Landed with this report (probe 0913-021204-99418, propext, Classical.choice, Quot.sound)
-- `HydeLodha/QTwoLemmaFourSixAssembly` (new): `lemmaFourSixCaseOne_of_dynamics` (`N = ⟨f, H⟩` is an
-  ascending HNN extension of `H ≅ F_6`, and the Claim puts `Υ_{Γ₂}(I)'` in `N`),
+- `HydeLodha/QTwoLemmaFourSixAssembly` (3e2e73c3d, probe 0913-021204-99418): `lemmaFourSixCaseOne_of_dynamics`
+  (`N = ⟨f, H⟩` is an ascending HNN extension of `H ≅ F_6`, and the Claim puts `Υ_{Γ₂}(I)'` in `N`),
   `isFinitelyPresented_upsilon_long_unit_of_caseOne`, `isFinitelyPresented_upsilon_long_of_caseOne`
   (`|I| = 1` by an ascending HNN extension over `Υ_Γ([a + λ, a + 1])`), `upsilonFinitelyPresented_of_caseOne`
   and `upsilonFinitelyPresented_of_dynamics` (Lemma 4.6). `|I| < 1` is consumed from kh-ejz's
-  `QTwoLemmaFourSixTransfer` (58cfe133e). The `|I| = 1` lemmas fill the roster's fff-quotient slot, so no
-  separate `|I| = 1` Prop is needed.
-- `HydeLodha/FinitelyPresentedInfiniteSimpleClosed` (232d6b12b + edit):
-  `stabKFinitelyPresented_of_upsilon`, `finitelyPresentedInfiniteSimpleStatement_of_upsilon`,
+  `QTwoLemmaFourSixTransfer` (58cfe133e).
+- `HydeLodha/FinitelyPresentedInfiniteSimpleClosed` (3e2e73c3d, same probe):
+  `stabKFinitelyPresented_of_upsilon` (Proposition 4.7), `finitelyPresentedInfiniteSimpleStatement_of_upsilon`,
   `finitelyPresentedInfiniteSimpleStatement_of_dynamics`.
 
 ## Residual
-Only hl-lemma46's `LemmaFourSixDynamicsStatement`: for grid `0 < a < b < 1`, an `f ∈ Υ_{Q₂}([a, b])` with
-slope `6` at `a⁺`, grid `c < d` and `a < e₁ < c < d < e₂ < b` with `c ≤ f e₁`, `f e₂ ≤ d`, every
-`k ∈ Υ^c_{Γ₂}([a, b])` conjugated by some `f^n` into `Υ^c_{Γ₂}([c, d])`, and six `s_i ∈ Υ_{Q₂}([e₁, e₂])`
-moving `perIoo c d` off itself and off each other. When it lands, `theorem finitelyPresentedInfiniteSimple_closed :
-FinitelyPresentedInfiniteSimpleStatement := finitelyPresentedInfiniteSimpleStatement_of_dynamics ...` goes
-in `FinitelyPresentedInfiniteSimpleClosed` with `#audit_closed_axioms`, and the module is queued for wiring.
+None for hW. `FinitelyPresentedInfiniteSimpleStatement` is closed; what remains is wiring the dynamics
+module and `FinitelyPresentedInfiniteSimpleClosed` into the root (root-wire).
 
 ## Census
-No row yet: the printed sentence is graded through `FournierFacioParagraph`, which also needs the
-hull-* and kh-* leaves; these modules are the proof of the cited group, not sentence carriers.
+`metadata/nm-census-rows/simple-group.tsv` (copy of `$NM/rows/simple-group.tsv`): `LINE:1679 partial`,
+naming the closed hW chain. It is graded `partial` because the printed sentence is the whole Fournier-Facio
+construction (`G_0`, `Γ`, `t`, `J`); hW supplies only the finitely presented infinite simple group
+isomorphic to `J`. The sentence as a whole is graded through `FournierFacioParagraph`, which also needs the
+hull-* and kh-* leaves.
+
+## Next
+The lane's scope is finished; waiting for the lead to assign more work.
