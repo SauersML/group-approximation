@@ -42,5 +42,12 @@ Computed through level 10 (artifact Section 4): the level quotients of
 `V/Lambda_v` have orders `6, 48, 192, 1536, ..., 6291456`, and the relation
 `(xyz)^3` holds there.
 
+*Now proved exactly (ex-tree-lattice-mixing, 2026-09-13).*
+* The horizontal action is a 2-adic representation into `PGL_2` over a number field
+  (`radu-horizontal-tree-group-is-linear`).
+* `Lambda_v` is the normal closure of `(xz)^2` and `(xyz)^3` in `V`, and `V/Lambda_v ≅ PGL_2(Z)`.
+* `Gamma_R/Lambda_v` is a cocompact arithmetic lattice in `PGL_2(Q_2) × PGL_2(Q_2)`
+  (`radu-horizontal-quotient-is-arithmetic-lattice`).
+
 DERIVATION
 radu-horizontal-projection-kills-delta-squared-proof
