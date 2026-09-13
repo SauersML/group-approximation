@@ -28,16 +28,24 @@ Three firewalls now bound the torsor route:
   `torsor-cfi-port-profiles-are-cosets` (peer): completions inside the port
   algebra, and gadgets, land in cosets.
 
-A fourth firewall covers hidden shared labels:
+A fourth theorem covers hidden shared labels:
 `hidden-labels-import-cross-context-commutation`.  Any refinement makes each
 non-rectangular context split into pieces on which its variables commute with
-the far neighbours, so factor models with nonzero commutators admit none.
+the far neighbours, so factor models with nonzero commutators admit none.  On
+perfect traces this split is equivalent to (RCS), and every perfect trace of a
+constraint-variable presentation passes it
+(`forbidden-pair-splits-are-central-rectangle-splittings`, lane
+ex2-kac-forbidden-pair).  So it is not a further firewall for Boolean gap
+sources.
 
 What survives:
 
-- perfect traces with enough centre in their three-context algebras;
+- lifting a perfect trace of a constraint-variable presentation to a coset
+  refinement, with hidden labels on its variable questions;
 - multi-variable edges with nonabelian exact label groups;
-- square completions whose fibres are not torsors.
+- square completions whose fibres are not torsors;
+- in every case, a system with no affine relabeling
+  (`relabelable-coset-systems-are-solution-group-corners`).
 
 The open targets are `tracial-non-ru-coset-system-with-nonabelian-fibre-exists`
 and `non-group-dual-colored-qc-qa-pair-exists`.
@@ -183,9 +191,12 @@ tracial non-R^U coset system with nonabelian fibre image
   - For synchronous sources with NAND pair contexts, every forbidden pair
     `(q,a; q',a')` splits into local commutation of `P_q^a` with `P_(q')` and
     of `P_(q')^(a')` with `P_q`.
+- On perfect traces this split is equivalent to (RCS), and constraint-variable
+  presentations pass it automatically
+  (`forbidden-pair-splits-are-central-rectangle-splittings`).
 - What survives in torsor syntax:
-  - perfect traces whose three-context algebras have enough centre to
-    support these splittings;
+  - lifting a perfect trace of a constraint-variable presentation to a
+    non-relabelable coset refinement;
   - multi-variable edges with nonabelian exact label groups.
 
 ## 6. Plain graphs
@@ -216,11 +227,14 @@ Roberson--Schmidt, arXiv:2111.12362v1, pp. 12--17:
 
 ## 8. Sharpest next targets
 
-1. **Centre in three-context algebras.**  Hidden labels now force the
-   commutation splits of `hidden-labels-import-cross-context-commutation`.
-   Decide whether some perfect commuting strategy of a Lin/MSSV source has
-   those splits on every forbidden pair.  If none does, the torsor route for
-   Boolean sources is closed, except on multi-variable edges.
+1. **Lifting constraint-variable traces.**
+   - The earlier target, whether Lin/MSSV traces have the forbidden-pair
+     splits, is answered.  The splits are equivalent to (RCS), and every
+     perfect trace of `G_cv(B_I)` passes them
+     (`forbidden-pair-splits-are-central-rectangle-splittings`).
+   - Next: lift a perfect trace of `G_cv(B_I)` to a coset refinement with no
+     affine relabeling, or prove that hidden labels on its variable questions
+     collapse to an affine relabeling.
 2. **Multi-variable edges.**  Is there an `MIP*=RE`-type source with an exact
    nonabelian label group, for example `Q_8` or `D_4` on three-variable
    edges?

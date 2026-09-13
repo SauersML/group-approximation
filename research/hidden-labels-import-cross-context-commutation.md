@@ -12,7 +12,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `hidden-labels-import-cross-context-commutation-proof`.
-Not reviewed by an ex-verify lane.
+Reviewed PASS by independent re-derivation (ex-verify2-quantum-l2, 0360cef67f,
+`research/artifacts/ex-review2-quantum-l2-2026-09-13-part8.md` §8.3).  One
+justification in (H7) was corrected forward on the proof route.
 
 **Setting.**
 

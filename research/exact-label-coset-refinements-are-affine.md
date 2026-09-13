@@ -10,7 +10,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `exact-label-coset-refinements-are-affine-proof`.
-Not reviewed by an ex-verify lane.
+Reviewed PASS by independent re-derivation (ex-verify2-quantum-l2, part 7
+§7.2 and part 8, 0360cef67f).
 
 **Setting.**
 

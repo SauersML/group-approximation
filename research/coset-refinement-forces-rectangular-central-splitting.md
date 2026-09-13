@@ -11,7 +11,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `coset-refinement-forces-rectangular-central-splitting-proof`.
-Not reviewed by an ex-verify lane.
+Reviewed PASS by independent re-derivation (ex-verify2-quantum-l2, 0360cef67f,
+`research/artifacts/ex-review2-quantum-l2-2026-09-13-part8.md` §8.2).
 
 **Coset refinements.**  Let `G` be a finite synchronous game with answer sets
 `A_q` and accepting sets `Acc_(qq') ⊆ A_q x A_(q')`.  A *coset refinement*

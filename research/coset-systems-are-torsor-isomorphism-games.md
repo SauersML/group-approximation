@@ -11,7 +11,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `coset-systems-are-torsor-isomorphism-games-proof`.
-Not reviewed by an ex-verify lane.
+Reviewed PASS by independent re-derivation (ex-verify2-quantum-l2, part 7
+§7.1 and part 8, 0360cef67f).
 
 **Coset systems.**
 
