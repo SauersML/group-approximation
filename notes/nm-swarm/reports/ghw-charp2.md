@@ -1,5 +1,26 @@
 # ghw-charp2 lane report
 
+## Item 5 (09-13): C2 of `PhiPrimeCountInput` (Osin Lemma 9.3)
+
+Lead order: take C2, the count `m + 6 ≤ 3c + t` on the exterior map Φ'', in a new module of my own.  Ask
+hull-euler for the Lean name first, and check the planar Euler layer on main.
+
+Finding: C2 is already on main, landed by hull-euler, so I wrote no module.
+- `Embedded.RegionCandidate.card_add_six_le_of_linkedO` (`Estimating/OsinAppendixEulerExteriorCount.lean`,
+  050822843, green 0913-045049-59145 at the landed md5).  Given `P : ExtPhiData family E`, a finset `V`
+  holding every side cell, `E.Nonempty`, and `hlinked : ∀ a ∈ E, ∀ b ∈ E, Relation.ReflTransGen (SharesEndO E) a b`,
+  it proves `E.card + 6 ≤ 3 * V.card + #{f | faceDegree f < 6}` on `phiMapO family E`.
+- The proof applies kh-ejz's `edgeBound_of_subdividedMultigraph` (`OsinAppendixEulerMultigraph`, 04240bd43)
+  through `phiMapO_dartCount`, `phiMapO_vertexCount_le`, `phiMapO_connected` and `phiMapO_planar`.
+- C1 is `phiSubdividedMultigraphO` (`Estimating/OsinAppendixEulerExterior.lean`, 4e27d4965, green
+  0913-044600-43289).
+
+### Residual (exact)
+
+- Nothing on origin uses `card_add_six_le_of_linkedO` yet.  Nothing produces `hlinked` or `hV` for a
+  `GloballyDistinguishedSectionFamily` either.  Both belong to hull-euler's assembly.
+- No Lean written, no probe run.  I asked the lead for a replacement piece.
+
 ## Item 4 (09-13): Jacobson probe record and the GHW char-0 archimedean split
 
 Lead order:
@@ -254,4 +275,6 @@ property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembl
   green.  ghw-assembly has the name and needs no piece from me; `Kazhdan/GHWCharZero.lean` stays untouched.
 - Residual, owned by ghw-assembly: `GHWFinitelyGeneratedCharZero : ∀ (F : Type) [Field F] [CharZero F] (s : Set (GL (Fin 2) F)), s.Finite → HasHaagerupProperty.{0, 0} (Subgroup.closure s)`.
   Its producer `ghwFinitelyGeneratedCharZero` is on main at add35a53a but has no probe record yet.
+- Item 5: C2 is already hull-euler's `card_add_six_le_of_linkedO` (050822843, green).  I wrote no
+  duplicate and asked the lead for a replacement piece.
 - Waiting for the lead's next item.
