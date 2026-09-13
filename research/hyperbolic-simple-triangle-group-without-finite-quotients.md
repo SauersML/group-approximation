@@ -31,6 +31,20 @@ nontrivial finite quotient, nor some member having none.
   way. `cckw-ghb2-kms-group-structure` has `SL_4(F_7)`, but its vertex groups are
   unipotent, not simple. A candidate therefore needs edge identifications with no
   common finite overgroup of small size.
+- **Closest data: Caprace–Conder–Kaluba–Witzel, arXiv:2011.09276** (text extraction
+  `cckw2.txt` on MSI, read 2026-09-12). Their Theorem 3.1(iv) is the vertex-injective
+  torsion-free kernel criterion used here. They enumerate 252 trivalent triangle groups,
+  with edge groups of order 3 and vertex groups acting regularly on the edges of small
+  cubic graphs. These vertex groups have orders at most about 54, so they are not
+  simple, and the Lemma does not apply. Their §4 overview says verbatim: "for some of
+  the hyperbolic groups with girth triple (4,8,8), (6,6,6) and (6,6,8) on our list, we
+  could not find any (non-abelian) finite simple quotient at all". The searches covered
+  simple quotients of order at most `5·10^7` and alternating quotients of degree at most
+  30 (sometimes 40). They also warn that such searches miss large quotients:
+  `G^{14,14,18}_4` showed no small simple quotient, yet a degree-6 unitary representation
+  gives `PSp_6(p)` quotients, and it is virtually torsion-free (their Remark 5.16).
+  A simple-vertex analogue of their unresolved cases is exactly a candidate for this
+  claim.
 - **Closest literature.** Lubotzky–Manning–Wilton, arXiv:1702.08200v2, build k-fold
   triangle groups from LPS Ramanujan graphs. Their vertex groups are finite quotients
   of free groups, and the edge groups meeting `G_0` are trivial, so the Lemma does not
