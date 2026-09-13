@@ -23,6 +23,14 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
     - `TorsionFreePrinted.FournierFacioParagraph`;
     - `PrintedTorsionFreeTheorem`, plus its radical, Osin and limit-set forms;
     - `PrintedRegularNonMFAlgebra`, plus its Osin and limit-set forms.
+- `de1ccf8b3` and `5f94c76f9`: docstring-only fixes; no statement changed. Both modules cited
+  `thm:hull` at tex lines 1624–1628, and both now cite 1636–1642:
+  - `TorsionFreeLimitSetNotion`, two docstrings (reported by sec5-sentences); probe
+    0913-020633-75804 green;
+  - `TorsionFreeHullPrintedLeastArea`, the module docstring; probe 0913-021058-94913 green.
+
+  No other tex line reference in this lane's modules is out of date.
+- `96ebd17c2`: the TorsionFreeKOLeaves decision (section below).
 
 ## Residual statements (exact)
 
@@ -178,5 +186,17 @@ the closed endpoint and says "retires open-predicate <decl>".
   does not import it yet.
 - Row f2bf6328169e (tex 1725, the DGO and GO sentence) belongs to cite-osin, which grades it
   formalized. census2 U3 lists it as a stale re-grade. It is not this lane's row.
-- This lane has no closed theorem to land until a wall closes. It can take a case of a wall
-  leaf if the lead assigns one.
+- This lane has no closed theorem to land until a wall closes. The one-line flips stay here
+  as the walls close.
+- W1 assignment (lead, 2026-09-13): `OsinDescentStepInput`
+  (Estimating/OsinAppendixAssemblyDescent.lean:94), or whichever piece dgo-analytic hands over
+  from its pocket cut core in `Estimating/OsinPocket*`:
+  - (a) the face set enclosed by a closed walk;
+  - (b) the least-area four-section cut;
+  - (c) glue-back transport.
+
+  Caveat: dgo-analytic's Finding 3 says the StepInput producer is circular (it needs clause
+  (a) at the pocket), and the pocket route through `descentInput_of_sectionPocketCut` replaces
+  it. Nothing on main outside OsinAppendixAssemblyDescent consumes StepInput. So this lane has
+  asked dgo-analytic which piece to take, and will build on the (a) face-set interface once
+  it lands.
