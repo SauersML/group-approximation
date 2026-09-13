@@ -364,7 +364,7 @@ theorem innerVertexClass_sigma_of_mem (hw : IsNoncrossingClosedWalk M w) (hM : M
       w.next (M.alpha x.1) ha :=
     (reclosed_sigma_val_of_mem (hw.innerCycle hM) x hx).trans
       (hw.innerCycle_boundaryPerm_val hM _)
-  have hfmem : w.next (M.alpha x.1) ha ∈ w := List.next_mem ha
+  have hfmem : w.next (M.alpha x.1) ha ∈ w := List.next_mem w _ ha
   have hb : IsBoundaryDart M (sideOutside M w) (M.alpha (w.next (M.alpha x.1) ha)) :=
     (hw.isBoundaryDart_sideOutside_iff hM _).mpr (by rw [M.alpha_involutive]; exact hfmem)
   have key : ∀ (b : M.Dart) (hb' : b ∈ w), b = w.next (M.alpha x.1) ha →
