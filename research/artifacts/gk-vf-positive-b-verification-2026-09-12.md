@@ -774,3 +774,80 @@ PASS. Nothing in Section 7 is decision-level, and nothing is refuted.
 
 The Attempts entry `c671f5ac1` on `bernoulli-rokhlin-entropy-maximal-for-every-group` uses `m` for the bound read degree, which
 is correct as written. Both OPEN nodes stay OPEN. Follow-up PASS.
+
+## 8. w5-quant-surj: quotient restriction and the quantitative surjunctivity residue (`b19ca5490`, `bbaa36844`)
+
+The artifact is `research/artifacts/quantitative-surjunctivity-residue-2026-09-12.md`. The lane drafts were byte-identical
+to main for all five nodes and for Sections 1–2 of the artifact, so the derivation below is against main.
+
+**Conventions.**
+- Automata are `tau(x)(g) = mu((x(gm))_(m in M))`, and left translation is `(h.x)(g) = x(h^-1 g)`.
+- `Fix_H` is the set of configurations constant on the right cosets `Hg`.
+- QS is as defined on `surjunctive-groups-are-quantitatively-surjunctive`: for every `B`, proper `Y`, `D`, `n >= 1` and
+  `j, j' >= 0`. This matches Section 0 of the artifact.
+
+### 8.1 `product-automata-images-contain-fibre-invariant-configurations` (Proposition 1.1). PASS.
+
+- **Restriction.** `N x 1` is normal with quotient `(G/N) x K`, so `Fix_(N x 1)` is translation invariant and `tau` maps it
+  into itself. Put `x(g,k) = y(gN,k)`. Then `tau(x)(g,k) = mu((y(g g_m N, k k_m))_m)`, since `(gN)(g_m N) = g g_m N`. This is
+  an automaton over `(G/N) x K` with memory `{(g_m N, k_m)}`. It is conjugate to a restriction of `tau`, so it is injective,
+  and it is onto when `(G/N) x K` is surjunctive. So `Fix_(N x 1)` lies in `X`. This is part 4 of
+  `injective-automata-restrict-to-schreier-graph-automata` at `H = N x 1`, as the node's `distinct_from` says.
+- **Cases.** A pattern extends to `Fix_(N x 1)` iff it is constant on each `(gN x {k}) cap E`. The case `N = G` gives the first
+  case and single fibres. When `K` and `G/N` are sofic, `(G/N) x K` is sofic, and `sofic-groups-are-surjunctive` gives the
+  second case.
+- **Filter.** A Garden of Eden pattern does not extend, so it differs at two sites `(g,k)` and `(g',k)` with `gN = g'N`, that is
+  `g' g^-1 in N`.
+- **Single fibres.** `strict-product-automata-have-no-single-fibre-garden-of-eden` concludes that patterns on `{g} x F` are
+  realized. The case `N = G` gives this for every `G` once `K` is surjunctive, so the paragraph added to that node is correct.
+  The symmetric statement follows with `1 x K`.
+- **Theorem Q.** `Y` misses a point of `Fix_N` iff `p` extends to `Fix_(N x 1)`.
+  - *If:* the column configuration of an extension lies in `Fix_N` and shows `p` at `1`.
+  - *Only if:* translating a witness by `g^-1` keeps it in `Fix_N`, because `g N g^-1 = N`, and padding off `G x E_K` keeps it
+    invariant.
+  - So the subshift of a Garden of Eden pattern contains `Fix_N` for every `N` with `G/N` sofic.
+
+### 8.2 `quantitative-surjunctivity-constants-lift-from-quotients` (Proposition 2.1, Corollaries 2.2–2.5). PASS.
+
+- **Lift.** An injective `Phi` into `Y^n x (D^(j'))^G` commutes with translations. So it maps `Fix_N` of the source into
+  `(Y cap Fix_N)^n x Fix_N((D^(j'))^G)`. `G` acts on `Fix_N = B^(G/N)` through `G/N`, so `Y_N` is a subshift, and it is proper
+  because `Fix_N` does not lie in `Y`. The restriction is an injective automaton over `G/N` with memory `MN/N` and the same
+  parameters, and a constant of `Y_N` excludes it.
+- **Constants.** Constant configurations go injectively to constant configurations. So `|B|^n |D|^j <= c_Y^n |D|^(j')`, that is
+  `(j'-j) log|D| >= n log(|B|/c_Y)`. When `c_Y = 0` there is no equivariant map at all.
+- **Periodic points.** For `H` of index `m`, `Fix_H` has `(|B|^n |D|^j)^m` source points and `|Per_H(Y)|^n |D|^(j' m)` target
+  points. Dividing the logarithms by `m` gives the displayed constant.
+- **Residually finite groups.**
+  - Choose `W` injecting into `G/H`. Then periodic points avoid `r` on every window `gW` of `G/H`.
+  - A point lies in at most `|W|` windows, so a window meets at most `|W|^2`. Greedy selection gives `s >= m/|W|^2` disjoint
+    windows whose constraints are independent, so `|Per_H(Y)| <= |B|^m (1 - |B|^(-|W|))^s`.
+  - Corollary 2.3 then gives at least `-log(1 - |B|^(-|W|))/|W|^2`, and a smaller positive number is still a constant. The
+    constants displayed on the node match.
+- **Residue.** It follows from Proposition 2.1 and the sofic count `-log(1 - |B|^(-|W|))/(|W|^2 + 1)`.
+  - For sofic `G` the residue is empty.
+  - If `G` has no nontrivial sofic quotient, `Nsof(G) = {G}`, and the residue is the proper subshifts containing all constant
+    configurations.
+- **Dependency point (no change needed).** The residue bullet uses the sofic count. That count exists only as prose on the
+  OPEN target node and in Section 3 of the fibre artifact, verified in `w3-vf-positive` Section 16.3, and is not an
+  ESTABLISHED node.
+  - The node says so. The route `quotient-restriction-deficit-proof` rightly covers only Proposition 2.1 and Corollaries 2.2–2.4.
+  - With "`G/N` quantitatively surjunctive" in place of "`G/N` sofic", the residue statement needs nothing imported.
+- **Subsumption.** None of the 137 surjunctivity titles on main lifts QS constants from quotients or gives the residually
+  finite constant. The closest is the sofic count on the target node. Corollary 2.4 reproves its residually finite case with
+  `|W|^2` in place of `|W|^2 + 1`.
+
+### 8.3 Sections 3–5 (prose Attempts, `bbaa36844`)
+
+I checked these on paper. They make no graph claims.
+- **Proposition 3.1.** An injective `tau` that is not onto is the case `n = 1`, `j = j' = 0`. Conversely, composing with an
+  injective symbol map `D^(j') -> D^j` gives an injective automaton that is not onto, since `Y^n` is proper.
+- **Sections 4.1–4.5.** Proposition 3.1 forces `|D_i| >= 2` and `j'_i > j_i`, so `m_i >= log 2` and `n_i -> infinity`. The
+  bit-interleaving map is injective and equivariant. Sections 4.2 and 4.3 are correct as prose: constant configurations block
+  recoding. So is Section 4.5: fixed-point fractions bounded away from `1`, amplified by tensor powers, give soficity.
+- **Proposition 5.1.**
+  - Part (1) projects the memory to `G`, and the converse is `surjunctivity-passes-to-subgroups`.
+  - Part (2) is `products-with-lef-permanence-closure-factors-are-surjunctive`, whose `P(G)` contains every LEF group.
+  - Both implications around the candidate equivalence are correct.
+- The Attempts added to `surjunctive-groups-are-quantitatively-surjunctive` match these sections.
+
+PASS. Nothing in Section 8 is decision-level, and nothing is refuted.

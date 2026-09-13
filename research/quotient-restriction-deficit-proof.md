@@ -20,4 +20,8 @@ Proposition 2.1 and Corollaries 2.2–2.4 of the artifact.
 - **Residually finite case.** Take `H` normal with `W` injecting into `G/H`. Periodic points avoid the pattern on
   at least `m / |W|^2` disjoint windows.
 
-Pending verification by `w4-vf-positive-b`.
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 8.2 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
+- **Re-derived:** the restriction to `Fix_N`, the constant and periodic counts, and the greedy bound of at least
+  `m / |W|^2` disjoint windows.
+- **Note:** the residue corollary on the claim uses the sofic count. This route rightly does not cover it.

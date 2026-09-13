@@ -18,4 +18,7 @@ Proposition 1.1 of the artifact.
 - **Single fibres.** A pattern on `{g} x F` extends to the configuration constant along each `G x {k}`.
 - **Sofic case.** A product of two sofic groups is sofic, and `sofic-groups-are-surjunctive` applies.
 
-Pending verification by `w4-vf-positive-b`.
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 8.1 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
+- **Re-derived:** the restriction of the automaton to `Fix_(N x 1)`, an automaton over `(G/N) x K` with memory
+  `{(g_m N, k_m)}`; the extension criterion; the single-fibre case; and the Theorem Q equivalence.
