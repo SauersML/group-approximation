@@ -264,3 +264,29 @@ For EVERY census row in your range with status formalized or definition, and eve
 - Baseline: hs-vanishes takes the operator-algebra findings, agreed line by line with debt-conditional.
 - Orphans left on main, unwired, no deletion: GHWEntries (87790c4fa, dedupe by ghw-assembly), IntroLimitingTraceSentence (duplicate of sec2-sentences' L187), TorsionFreeKOLeaves and KotowskiOllivierLeaves (superseded by kotowskiOllivier_of_leaves).
 - Stale-docstring backlog, parked: 14 modules that name retired TheoremC declarations (list in theoremc-retire.md); scripts/TheoremCCompletionAudit.lean; MF_RECOGNITION_SENTENCE_MAP row c6172bdc109a.
+
+## Reassignments 09-13 ~02:30
+
+- **W4 hW.** hW now depends only on `LemmaFourSixDynamicsStatement`.
+  - simple-group: QTwoLemmaFourSixAssembly landed at 3e2e73c3d, probe green. It adds `finitelyPresentedInfiniteSimple_closed` once the dynamics module is green.
+  - hl-lemma46: landed a full proof, `lemmaFourSixDynamics`, at de535e84c. Unverified; the probe is running.
+  - Freed: fff-quotient (|I|=1 was proved by simple-group), kh-ejz (done), and leavitt-units (its duplicate draft stays unlanded in scratchpad lu-hl/).
+- **W3 hKO.** hT6 is proved except hzip and hfold, at every X (kh-cckw, 7d64d1118). The KO route drops the hT6 binder. Residual:
+  - (a) `ZipPinchStatement`: systolic-counts. kh-torsion offers to take the spur subcase; its fallback is a W1 PlanarRunInput piece from hull-unbound.
+  - (b) `MirrorFoldDistinctStatement`: ko-closed. kh-cckw offers a split; its fallback is a hull-unbound piece.
+  - (c) `MirrorFoldPinchedStatement`: moved to theoremc-retire, since fff-periodic had no landing this campaign and was asked for status. theoremc-retire also flips TheoremCAssemblyKOLeaves to `_of_leastAreaZipFold`.
+- **W1 h94.** hull-unbound replaced `no_connector` with `osinLemma94Section_of_pieces` (b8441172e).
+  - `OsinLemma94AntiparallelMetricStatement`: hull-count94, helped by sec5-sentences and hs-vanishes (two unstarted oriented-layer pieces).
+  - `OsinLemma94PlanarRunInput`: hull-unbound.
+  - `OsinLemma94RunInput` and `OsinLemma94Counting` are superseded.
+- **W1, other helpers.** kh-ejz takes a part of `PhiPrimeCountInput` from hull-euler.
+- **W2 hbridge.** debt-conditional and leavitt-units each take one of CutOutcome, Cut and Holds from hull-bridge. fff-quotient takes a part of CutFaces from hull-component.
+- **Hull Corollary 7.4 at printed generality.** cite-hull takes K(G), AH0, Lemma 5.10 and Corollary 7.3 over the walls. baseline-debt takes general Lemma 3.5.
+- **Audits.**
+  - audit-sec5: probe and queue TorsionFreeAlgebraSentencesClosed, then audit the truth of the W1 and W2 leaf Props.
+  - W3 leaf truth audit: whichever of audit-intro and audit-sec3 finishes first.
+- **census.** Re-baseline after 2c3c8cb40, which predates no merge yet. Retire the 19 historical carriers debt-conditional classified. Register baseline-debt's retirements (a)-(d), and hs-vanishes's lines 66 and 79.
+- **Hygiene.**
+  - sec2-sentences: the stale TheoremC docstring backlog.
+  - baseline-debt: audit-sec5's three docstrings.
+- **root-wire.** Wave 1 root build was red only on `OsinUnboundSharedEdge` (hull-unbound: whnf timeout at :147, instance failures at :227 and :251). Rerunning the other 107 modules merged with wave 2.
