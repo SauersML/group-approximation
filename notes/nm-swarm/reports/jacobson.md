@@ -83,23 +83,43 @@ Why it was partial:
   - `presPair`, the pair `presS, presT`;
   - the printed inverse matrix of `u`.
 
+## GHW Theorem 4 re-grade (tex 1146--1151)
+ghw-assembly closed GHW Theorem 4 at the printed generality:
+- `GHW.printedGHWTheoremFour : PrintedGHWTheoremFour` says every countable subgroup of `GL_2` over
+  every field has the Haagerup property (66417a372; probe 0913-044200-34335).
+- `GHW.printedJacobsonRankTwoKazhdanFiniteField` (8d44c0d7a; probe 0913-045036-56628) applies it
+  at `F_2(z)` inside `JacobsonRankTwo.manuscriptSentence_kazhdanSubgroupFinite`. The kernel of
+  `glSymbolMap 2` is locally finite. Every Kazhdan `L ≤ GL_2(J)` has finite image in `GL_2(F_2(z))`
+  and a locally finite kernel of finite index, and is finite.
+
+Both endpoints carry `#audit_closed_axioms` and are root-imported. Their green-record md5s match
+the bytes on main. `merge_rows` grades a union partial if any lane row is partial, so this lane's
+rows were edited in place:
+- LINE:1147 and both LINE:1146 rows went from partial to formalized, citing the closed endpoints.
+- the LINE:1148 note no longer points at a partial row 1146.
+
 ## Census and wiring
-- Rows appended to `metadata/nm-census-rows/jacobson.tsv`, keyed by row hash: b47d06c5c362,
-  11137e57b26d, d5e56b196927, 0a08ffd095d6, c149d33e8f7e and 3009704fef89.
-- Queued in `wire-queue.txt`, in this order: JacobsonPresented, JacobsonPresentedSentences,
-  JacobsonComplementaryPresented, JacobsonThreePlusOnePresented.
-  - JacobsonPresented imports the root-imported JacobsonFiniteMatrices.
-  - JacobsonKernelFinitary is reachable through the root-imported JacobsonRankTwoCarrier.
-  - FullDefectRingEJZUnconditional is reachable through the root-imported
-    JacobsonComplementarySentence.
-  - EJZCitationSentences and FinitelyGeneratedRingPermanence are root-imported.
+- Rows in `metadata/nm-census-rows/jacobson.tsv`, keyed by row hash: b47d06c5c362, 11137e57b26d,
+  d5e56b196927, 0a08ffd095d6, c149d33e8f7e and 3009704fef89. Every one of the 26 rows is graded
+  formalized, except LINE:1131, which is graded definition.
+- Root-imported (root 4a6cb4e55): JacobsonPresented, JacobsonPresentedSentences,
+  JacobsonComplementaryPresented and JacobsonComplementarySentence.
+- Still queued in `wire-queue.txt`: JacobsonThreePlusOnePresented (2104ff622). Its imports
+  `JacobsonPresented`, `EJZCitationSentences` and `FinitelyGeneratedRingPermanence` are
+  root-imported.
 
 ## Residual Props
 None for the roster target (the four L1122 rows and c149d33e8f7e) or for 3009704fef89. The
-endpoints become root-reachable once the four modules are wired.
+3009704fef89 endpoints become root-reachable once JacobsonThreePlusOnePresented is wired.
 
-Adjacent partial row that cites this lane's rows: b6d1590be7ab (GHW Theorem 4), owned by
-ghw-assembly.
+Other lanes' partial rows keep these unions partial:
+- LINE:1155, cite-ejz. Its row covers the first half only; this lane's row carries the whole
+  sentence.
+- b6d1590be7ab, ghw-charp2 (ghw-assembly grades it formalized).
+
+Optional, not a residual: `PrintedJacobsonRankTwoKazhdanFiniteField` is stated for the operator
+model `jacobsonAlgebra`. It could be transported to the presented `ToeplitzJacobson` along
+`jacobsonEquiv`.
 
 ## Next
 The roster items are done. Awaiting the next assignment from the lead.
