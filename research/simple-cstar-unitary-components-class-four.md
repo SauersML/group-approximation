@@ -33,6 +33,21 @@ cofinally (block-component-group-class-at-most-excess-plus-two).
   bundle on its 8-cell is divisible by 6. No example is known.
 - *Framed trapping.* Needs TX ≅_s (Q* (x)_C H)_R. Then the parity is χ(X) mod 2.
   Gr_2(C^4) and HP^2 fail on p_1.
-- *Larger protected blocks C^k, k >= 3.* Unexplored. The spin-bordism images
-  of unstable classes in pi_*U(k) can involve cells of SU(k) above the bottom
-  one, so the depth cap for rank two need not apply.
+- *Other U(2) seeds under spin trapping.* Capped. Every element of
+  pi_*U(2) is omega o h. Bracketing with alpha composes with eta_3. Bracketing
+  with omega composes with nu', which stabilizes to 2 nu. So a depth-three
+  bracket of seeds pulled back through sphere collapses has stable image
+  eta^a (2 nu)^b · (stable images of the leaves), with a + b = 3. The unit
+  S -> MSpin is a ring map, and Omega^Spin_3 = 0 kills both eta^3 and nu.
+  Hence every such image is invisible to spin trapping. The same holds for
+  [[u_1, v_1], [u_2, v_2]], whose image is 2 nu·eta^2.
+- *Larger protected blocks C^k, k >= 3, with alpha-brackets.* Dead by
+  bilinearity. <alpha, a_k> = (k−1)!·g in pi_{2k}U(k) ≅ Z/k!. Then
+  <alpha, <alpha, a_k>> = (k−1)!·<alpha, g> lies in pi_{2k+1}U(k), which is
+  Z/2 or 0, and (k−1)! is even. For k >= 3, brackets <a_i, a_j> have even
+  coefficient (i−1)!(j−1)! unless i, j <= 2. Higher brackets such as
+  <a_3, <a_2, a_2>> in pi_11 U(3) are unexplored.
+- *Non-spherical seed manifolds.* Unexplored. The trapped class of a nested
+  commutator on M is read by preimages in Omega^Spin_{m−3}. The
+  eta^a (2 nu)^b cap is proved only for commutators that factor through a
+  single sphere collapse.
