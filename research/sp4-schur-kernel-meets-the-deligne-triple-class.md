@@ -65,3 +65,13 @@ from the first homology of the relation module of the adjunction.
    search is only worth running with a structural candidate in hand: an
    adjunction whose relation module has first homology meeting Meyer's class
    modulo three.
+5. **Torsion-free packets.** Dead at amenable shapes by
+   `amenable-t-shape-adjunctions-kill-no-schur-class`, however much torsion
+   `Sp_4(Z)` has outside the packet. For example, every equation of exponent sum `±1` with
+   coefficients in a torsion-free congruence subgroup is excluded. So a
+   certificate needs a coefficient subgroup `B` with torsion, or a
+   non-amenable reduced `t`-shape: a proper-power shape, or a root with at
+   least two clumps. This is a partial pruning invariant for Attempt 4. By
+   `kl-holds-over-central-extensions-of-torsion-free-groups`, the preimage of
+   a torsion-free `B` in `E_3` satisfies Kervaire--Laudenbach at amenable
+   shapes.

@@ -52,3 +52,9 @@ companion of `kervaire-laudenbach-nonsingular-conjecture`.
    extension whose quotient adjunction injects forces a nonzero Schur kernel.
 6. **Deligne.** Open as `sp4-schur-kernel-meets-the-deligne-triple-class`,
    which gives the stronger central collapse for `E_3` directly.
+7. **Torsion-free coefficient subgroups at amenable shapes.** Dead by
+   `amenable-t-shape-adjunctions-kill-no-schur-class`. By Forester--Rourke the
+   cellular model over the coefficient subgroup is aspherical, and the
+   coefficient lemma of Bogley--Edjvet--Williams carries that to any ambient
+   group. A witness needs torsion in its coefficient subgroup, or a
+   non-amenable reduced `t`-shape.

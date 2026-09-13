@@ -61,3 +61,16 @@ The same audit reported this graph as attempting a "weakly sofic implies
 Kervaire--Laudenbach" implication; no such implication is asserted anywhere in
 this repository — the hypothesis in use is hyperlinearity, with the citation
 correction already recorded on `kervaire-laudenbach-holds-for-hyperlinear`.
+
+## Update 2026-09-13: the degree scope depends on the t-shape
+
+Forester--Rourke (arXiv:math/0306088, l.193–195) record that Fenn--Rourke
+proved injectivity for torsion-free coefficients under an amenable `t`-shape.
+Every shape of exponent sum `±1` is amenable. So are the one-clump roots
+`t^p (t t^-1)^q` of every exponent sum `p`, for example `t t t t^-1`. Over a
+torsion-free candidate the falsification instrument is therefore dead at every
+amenable shape, and survives only at non-amenable shapes, not at all of
+`|m| >= 2`. The claim above is unchanged. See
+`torsion-free-amenable-t-shape-adjunctions-are-aspherical` and the pins in
+`research/artifacts/kl-torsion-free-asphericity-pins-2026-09-13.md`; the
+Fenn--Rourke paper itself was not read.

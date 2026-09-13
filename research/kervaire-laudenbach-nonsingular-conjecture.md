@@ -173,3 +173,13 @@ one.
 A seventh non-attempt worth writing down because it looks tempting from
 inside this program: nonsoficity and non-MF-ness of a group are not evidence
 that it violates this claim.  They supply no equation and no identity.
+
+**2026-09-13: central torsion, no approximation input.**
+`kl-holds-over-central-extensions-of-torsion-free-groups` proves the conjecture
+for every central extension of a torsion-free group, at every amenable
+`t`-shape, in particular at exponent sum `±1`. So it holds over every group
+whose elements of finite order are all central. That includes covers that are
+not residually finite, such as preimages in Deligne's cover of torsion-free
+subgroups of `Sp_4(Z)`, whose hyperlinearity is open. The proof uses
+Forester--Rourke asphericity and then the Schur criterion. It says nothing at
+non-amenable shapes or over non-central torsion.
