@@ -58,7 +58,8 @@ are not treated.
       symmetry, Lemma 3.2 has no written proof, and the `c`-cycle table differs in form from the `a`-cycle table.
     - **Not re-derived.** The minimal sets, residuals, `I_0` closures and counts.
     - **Notes applied** (w7-two-patch-census). Section 2 of the artifact gives the symmetry argument for `1b` and
-      `ab`. Section 3 proves Lemma 3.2 and writes out the `c`-cycle table. These additions are unverified.
+      `ab`. Section 3 proves Lemma 3.2 and writes out the `c`-cycle table. w7-vf-nonlinear verified these additions
+      (PASS, Section 5 of the verification artifact).
 - **Strict swaps** (superseded). Forcing equal values on the `e^2` context pairs of swaps left 174 rules open.
   Lemma 3.1 shows that no `e^2` holds beside `d^2` on a nonamenable placement, so those equalities are unnecessary.
 - **Slow searches** (superseded). Two searches were too slow and were replaced by a feasibility search and a dynamic

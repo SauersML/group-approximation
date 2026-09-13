@@ -244,7 +244,8 @@ line. Hub `injective-binary-automata-are-stably-formalizable` stays OPEN.
   pending.**
 - **w7-2v-mixed-support (77aed2b4f, afb6eb112, 9a375e7cd).** The 2V obstruction-state profile was verified by
   w3-vf-nonlinear (83970f525, 90e7a86f9). This lane did not duplicate it.
-- **w7-two-patch-census (6b0ad0644).** Partial verification in Section 4. The claim stays OPEN.
+- **w7-two-patch-census (6b0ad0644, 05e24b9210).** Partial verification in Section 4. The author's notes are
+  verified in Section 5. The claim stays OPEN.
 - **w7-two-patch-unit.** No landing on main as of f09f5eab7. Pending.
 
 ## 4. Census relation moves (w7-two-patch-census, 6b0ad0644): partial
@@ -336,3 +337,36 @@ line. Hub `injective-binary-automata-are-stably-formalizable` stays OPEN.
   machine-generated sets that this lane did not re-derive.
 
 **Nodes updated.** The census node's header and Attempts now carry this partial verdict.
+
+## 5. Census notes applied (w7-two-patch-census, 05e24b9210): PASS
+
+**Scope.** Re-derived: the author's changes to Sections 2 and 3 of `rigid-two-patch-census-relation-moves-2026-09-12.md`, and the node's "Notes applied" line.
+
+**Section 2, symmetries. Correct.** It restates the argument of Section 4 above.
+
+**Section 3, `c`-swap table. Correct.**
+- **Words.** The seven words match `universe2.txt` (model `c2`).
+- **Reclassified word.** `c a^-1` gives `b = a^2`, which is cyclic. Modulo `c^2` it also gives `b = 1`, a breaker. The word is dropped in either class.
+
+**Section 3, `c`-cycle table. Correct.**
+- **Geometry.** The windows meeting `{1, c, c^-1}` are `1, a^-1, c^-1 a^-1, c, c a^-1, c^-1`. This matches `universe2.txt` (model `c3`).
+- **Words.** All 11 words match the file.
+- **Classes**, modulo `c^3` with `b = ac`:
+  - `c`, `a^-1` and `c a = a^-1 b a` are breakers;
+  - `c a^-2`, `c a^-1` and `c a^2` make `c` a power of `a`;
+  - `c a^-1 c a` gives `a^-1 c a = c^-1`, a quotient of `Z/3 x| Z`;
+  - `c a^-1 c^-1 a^-1` gives `c a c^-1 = a^-1`. Three conjugations give `a^2 = 1`, so the group is `Z/6`;
+  - `c a^-1 c^-1 a` is a commutator, a quotient of `Z/3 x Z`;
+  - `a^-2` is label `a2`, and `(c a)^2 = a^-1 b^2 a` is label `b2`.
+- **Symmetry check.** `phi = psi o mirror`, that is `a -> c, b -> a^-1`, maps windows to windows and `{1, a, a^-1}`
+  to `{1, c, c^-1}`. So the `c`-cycle classes are the image of the `a`-cycle classes, with kept labels
+  `{b2, c2} -> {a2, b2}`. This agrees with the table.
+
+**Lemma 3.2, proof. Correct.**
+- **Other relators.** Every relator other than the kept labels is a breaker or forces amenability, so it fails in `H`.
+- **Kept pairs.** A kept pair coincides exactly when its label holds. Those pairs join context sites, and then
+  carry equal values by hypothesis.
+- **Conclusion.** The realization criterion of Section 1 applies.
+
+**Verdict.** PASS. The claim stays OPEN, since the machine-generated inputs listed in Section 4 are still not
+re-derived. The node's "Notes applied" line now points here.
