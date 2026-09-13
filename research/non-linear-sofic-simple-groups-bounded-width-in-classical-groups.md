@@ -51,6 +51,10 @@ of `R^x` must use non-simple finite groups. That is the room of Glebsky's extens
     and the three other classical types, is not done here.
 - **What bounded chief length would add.** The template trick with conjugate pairs
   `(r, r^-1)` handles products and wreath products with coordinatewise good factors and abelian or
-  bounded-solvable permuting groups. With unbounded chief length the constants multiply. So the
-  honest remaining room is finite groups of unbounded chief length, for example `p`-groups of
-  growing class, and classical groups until this claim is proved.
+  bounded-solvable permuting groups. With unbounded chief length the constants multiply in the
+  naive induction.
+- **Correction (same lane, later).** An earlier version of this bullet listed `p`-groups of growing
+  class as room. They are not: `perfect-group-relator-width-over-nilpotent-groups` bounds the width
+  of a perfect group over every nilpotent group, of any class, by one fixed template. So the room is
+  non-nilpotent finite groups of unbounded chief length outside the good simple classes, for example
+  iterated wreath products with non-nilpotent tops, and classical groups until this claim is proved.
