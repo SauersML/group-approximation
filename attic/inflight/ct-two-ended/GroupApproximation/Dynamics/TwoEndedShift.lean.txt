@@ -180,6 +180,11 @@ theorem isClosed_setOf_monotone : IsClosed {f : ℤ → Bool | Monotone f} := by
 instance : CompactSpace TwoEnded := by
   exact isCompact_iff_compactSpace.1 isClosed_setOf_monotone.isCompact
 
+instance : TopologicalSpace.MetrizableSpace TwoEnded := by
+  haveI : TopologicalSpace.MetrizableSpace Bool := inferInstance
+  haveI : TopologicalSpace.MetrizableSpace (ℤ → Bool) := TopologicalSpace.metrizableSpace_pi
+  exact TopologicalSpace.MetrizableSpace.subtype {f : ℤ → Bool | Monotone f}
+
 theorem tendsto_pt_atTop : Tendsto pt atTop (𝓝 posInf) := by
   rw [tendsto_subtype_rng, tendsto_pi_nhds]
   intro i
