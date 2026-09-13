@@ -119,6 +119,8 @@ Some rows cover two to five claims; the rows total 26.
 | 3 | `bgw-trivial-coefficient-agreement-is-open` (+ `-citation`) | **PASS at source after a notation FAIL.** Lemma A.1 of the erratum is about quotients onto `ℂ`; with an arbitrary quotient it would be false. Corrected forward in both nodes; no consumer misused it |
 | 4 | five quantum-PCP imports (Aharonov–Eldar, Natarajan–Nirkhe, Anshu–Breuckmann–Nirkhe, Brandão–Harrow ×2) and three unique-games imports (RST, Bafna–Minzer, BBKSS) | **PASS at source** (SSEH ⇒ UGC through RST Cor. 3.3) |
 | 4 | `port-generated-square-completions-force-coset-support`, `galois-games-round-linearly-for-bounded-fibre-size`, `abelian-normal-closure-fibres-round-linearly` | **PASS** (the first at artifact level; logic-quantum had all three at node level only) |
+| 5 | wave-2 census: `forbidden-pair-splits-are-central-rectangle-splittings`, `fibre-commutative-quantum-isomorphisms-are-coset-systems` | **PASS** (MSSV Def. 2.7, Thm 3.1 and Lin Def. 3.15 checked at source) |
+| 5 | `atiyah-base-change-in-transcendence-degree-two-under-det`, `atiyah-algebraic-jumps-lie-in-a-proper-zariski-closed-set`, `determinant-conjecture-bounds-determinants-over-galois-orbits` | **PASS**, conditional as stated. Lemma H had a local GAP for rational points (`D = 1`); corrected forward in artifact part 2 |
 
 ## 4. Census tally (32 established, unpassed claims at the start)
 
@@ -163,3 +165,5 @@ Some rows cover two to five claims; the rows total 26.
   Atiyah imports at source, and two derived claims.
 - `research/artifacts/ex-review2-quantum-l2-2026-09-13-part3.md`: §3. The Baum–Connes, Kadison–Kaplansky
   and fixed-price imports at source, and the BGW notation fix.
+- `research/artifacts/ex-review2-quantum-l2-2026-09-13-part4.md`: §4. The quantum-PCP and unique-games imports at source; port-generated completions and two Galois-game rounding claims.
+- `research/artifacts/ex-review2-quantum-l2-2026-09-13-part5.md`: §5. The wave-2 lanes ex2-kac-forbidden-pair and ex2-atiyah-base-change-td2, and the retraction note.
