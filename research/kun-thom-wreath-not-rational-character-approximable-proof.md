@@ -19,9 +19,17 @@ precision `eps`.
    of unitary groups in normalized Hilbert--Schmidt, with maximal separation.
    - The length `ell(k) = ||k - 1||_2` on the finite group `rho(F)` is
      conjugation invariant.
-   - It is Hilbert embeddable, being the square root of the conditionally
-     negative definite `1 - Re (1/d) Tr`.
-   - So the models are Hilbert embeddable weak-soficity witnesses, with defect
-     tending to `0` and separation near `sqrt 2`.
+   - **Correction (ex-verify2-quantum-l2, 2026-09-13).** The text said `ell` is
+     Hilbert embeddable "being the square root of the conditionally negative
+     definite `1 - Re (1/d) Tr`". In the convention of
+     `hilbert-embeddable-length-hyperlinearity`, the length itself must be
+     conditionally negative definite, and `ell` need not be. Its square is:
+     `ell(a^-1 b)^2 = ||a - b||_2^2` is a squared Hilbert distance. The witness
+     notion refuted by `hilbert-embeddable-witness-impossible` allows one
+     `n`-independent increasing `f` with `f(0) = 0`, continuous at `0`, such that
+     `f o ell` is Hilbert embeddable and bounded by `1`
+     (`hilbert-embeddable-witness-for-kun-thom-wreath`). Take `f(t) = t^2/4`.
+   - So the models are Hilbert embeddable weak-soficity witnesses. `f o ell` has
+     defect at most `eps^2/4` and separation at least `(1 - eps)/2`.
 4. **Contradiction.** `hilbert-embeddable-witness-impossible` says `W` has no
    such witness (`W` is not in `C_FU`). QED

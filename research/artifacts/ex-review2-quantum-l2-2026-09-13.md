@@ -107,6 +107,14 @@ Some rows cover two to five claims; the rows total 26.
 4. The remaining derived claims.
 5. The remaining imports, from PDFs on MSI.
 
+## 3. Verdict index
+
+| part | items | verdict |
+|---|---|---|
+| 1 | Theorems 12, 14, 15 and 16, Proposition 13, Corollary 17 and Remark 18 of the ugc-rounding normal-fibre artifacts, read line by line | **PASS** |
+| 1 | `kun-thom-wreath-is-not-rational-character-approximable` | **PASS at the checked steps**, conditional on the pre-EX `hilbert-embeddable-witness-impossible`. Step 3's length convention was misstated; corrected forward in the route |
+
 ## Part files
 
-(none yet)
+- `research/artifacts/ex-review2-quantum-l2-2026-09-13-part1.md`: §1. Galois-game rounding at artifact
+  level, and the Kun–Thom rational-character obstruction.
