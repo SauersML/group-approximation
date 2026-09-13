@@ -16,7 +16,7 @@ at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-d
     `Classical.choice` and `Quot.sound`.
   - The three new modules are queued for wiring.
 - `bf625daf4`: this report and the census rows.
-- Docstring landing, probe 0913-025420-71482: the stale docstrings that audit-sec5 found
+- `72599dad7`, probe 0913-025420-71482: the stale docstrings that audit-sec5 found
   in `RegularNonMFAlgebra` and `TorsionFreePrintedSentences`. No statement changed.
   - The printed corollary and proof are quoted as they now read (tex 1718-1736). The
     not-MF clause cites `prop:mf-residual-calculus`, not an embedding into the corona's
@@ -108,3 +108,36 @@ closed by `finitelyPresentedInfiniteSimple_closed` (47b31bef8, simple-group).
   `HullSCFreeProductFactor` covers only the finitely presented torsion-free case. The
   statement lands first, then the proof. cite-hull owns the other pieces (K(G), AH0,
   Lemma 5.10, Corollary 7.3).
+
+## Hull Lemma 3.5 (in progress)
+
+- Source checked against arXiv:1308.4345v2 (`pdftotext -layout`).
+  - Lemma 3.5 is on p. 12 of §3. Hull prints it without a proof, as a "simplification of
+    [DGO, Proposition 4.35]".
+  - Definition 3.1 defines `{H_λ} ↪h G` as `↪h (G, X)` for some `X ⊆ G`.
+  - The proof of Corollary 7.4 (§7) says "Since `{G₁, G₂} ↪h F`, Lemma 3.5 gives that
+    `{⟨f₁⟩, ⟨f₂⟩, ⟨h₁⟩, ⟨h₂⟩} ↪h F`".
+  - Hull's Lemma 5.9 also "follows from Lemma 5.8 and Lemma 3.5".
+- Statement module `GGT/HullLemma35Printed.lean`, probe 0913-034738-16893 green. It is new,
+  unwired, and holds only definitions:
+  - `IsHypEmbeddedFamily G H := ∃ D : RelGenSet G Λ, D.fam = H ∧ D.IsHyperbolicallyEmbedded`;
+  - `PrintedHullLemma35.{u}`: all `n`, `H : Fin n → Subgroup G`, `m`, and
+    `K : ∀ i, Fin (m i) → Subgroup (H i)`, with the family indexed by `Σ i, Fin (m i)`;
+  - `PrintedFreeFactorsHypEmbedded.{u}`: `![inl.range, inr.range]` in
+    `Monoid.Coprod G₁ G₂`, for all groups.
+- Residual Props: `GGT.PrintedFreeFactorsHypEmbedded`, `GGT.PrintedHullLemma35`.
+- Plan for `printedFreeFactorsHypEmbedded`, with `X = ∅`:
+  - Local finiteness: a `Type u` HeadsPartner invariant (the generic letter lemmas of
+    `RelHypFreeProductPeripheral` are universe-polymorphic) gives relative balls `{1}`.
+  - Hyperbolicity: `isFourPointHyperbolic_unionCarrier` at the full factor alphabets
+    (`isFourPointHyperbolic_of_bounded`), transported through a `Type u`
+    `Monoid.Coprod ≃* CoprodI` built with `lift`, since `Higman.coprodEquiv` is only
+    `Type 0`.
+- Plan for `printedHullLemma35`. This is DGO 4.35 at `Fin n`;
+  `RelHyp.DGOProposition435PrintedStatement` is unproved, is used only as `h435` in its own
+  file, and has no lane owner.
+  - Local finiteness: an excursion of a target path between two vertices of `H_i` ends in
+    the finite `D.relBall i n`. Adding those elements as base letters and applying the
+    proved Corollary 4.27 local half, `localFiniteness_of_finite_base_diff`, bounds the ball.
+  - Hyperbolicity of `Γ(G, X ∪ ⋃ (Y_i ∪ K^i))`: guessing geodesics with `dgoProposition414Uniform`.
+    This extends the `Uncone` modules from cyclic members to hyperbolic replacement graphs.
