@@ -3,6 +3,88 @@
 Lane of the non-MF verbatim swarm. It owns the geometric DGO/Osin carriers and the GHW archimedean
 modules `Kazhdan/GHWArchimedeanMinkowski` and `Kazhdan/GHWArchimedeanWalls`.
 
+## 2026-09-13: W3 MirrorFold leaf truth audit
+
+The lead's assignment:
+- check that `Systolic.MirrorFoldDistinctStatement X` and `Systolic.MirrorFoldPinchedStatement X`
+  (`GGT/SystolicDiscMirrorFoldCases`, 0fb6f2305) hold for every triangle complex `X`;
+- build models;
+- check the consumer.
+
+Checked against origin 19461b5bc.
+
+### Verdict: both Props are true for every `X`
+- The proof uses only irreflexivity of `X.G` and `tri_adj`.
+  - Write the face of `d` as `[d, d1, d2]` (vertices `u → v → w`) and the face of `alpha d` as
+    `[alpha d, e1, e2]` (`v → u → w'`).
+  - Adjacent labels make `u, v, w` pairwise distinct disc vertices, and likewise `u, v, w'`.
+  - No edge joins `w` and `w'`.
+- No systolic, 6-large, simply connected or locally finite hypothesis enters.
+- `TriangulatedDisc` asks for no simplicity, no injective labels and no simple boundary.
+
+**Distinct (`w ≠ w'`).**
+- The fold:
+  - delete the six triangle darts;
+  - pair `alpha d2 ↔ alpha e1` and `alpha d1 ↔ alpha e2`;
+  - keep `facePerm` on the remaining darts.
+- Counts: the rotations at `u` and `v` stay single cycles, and those at `w` and `w'` merge. So V−1,
+  E−3, F−2, the map stays connected, and χ = 2.
+- The outer cycle and `base` are unchanged, so `γ` is kept and `innerFaceCount` drops by exactly 2.
+- In repo primitives:
+  1. `EdgeDeletion` of `d`;
+  2. `FoldMap.IsFoldable (p := d1) (d := d2) (e := e1)`, whose `distinct_ends` is exactly `w ≠ w'`;
+  3. `FoldStage.deleteDigon`.
+
+**Pinched (`w = w'`).**
+- Delete the edge of `d`. The face `[d1, d2, e1, e2]` passes through `w` twice.
+- Split `w` with `FoldMap.joined M d1 e1`, which is `PinchLemma` with `(p, d, e) := (d1, d2, e1)`:
+  - `split_euler` gives χ = 4;
+  - `reach_or_reach` and `not_reach_p` give exactly two components, with faces `[d1, e2]` and
+    `[d2, e1]`;
+  - `CombMap.restrict_planar_of_euler_four` makes both planar.
+- Keep the component with the outer face and delete its digon. The drop is at least 2 and `γ` is
+  kept. The loss can exceed 2, which is why the Prop says `+ 2 ≤`.
+- Coinciding edges:
+  - a coinciding `u–w` edge (`e1 = alpha d2`) or `v–w` edge needs no special case, because the spur
+    side is a one-edge sphere that cannot contain the outer face;
+  - both coinciding is impossible, because the pair would close up with no outer face.
+- `eulerCharacteristic_le_two` is proved in `VanKampen/CombMapEulerUpperBound`.
+
+### Models (paper, dart level)
+`X` is the 2-simplex on `{a, b, c}`, with `x̄ = alpha x` and `sigma = facePerm ∘ alpha`.
+
+1. **Distinct.** `u=a, v=b, w=c, w'=c`.
+   - Darts: `d:u→v, p:v→w, q:w→u, r:u→w', s:w'→v` and their reverses.
+   - Faces: `[d,p,q]`, `[d̄,r,s]`, outer `[q̄,p̄,s̄,r̄]`. V=4, E=5, F=3, and `γ = [a,c,b,c,a]`.
+   - D' is the path `a–c–b` (V=3, E=2, F=1). `innerFaceCount` goes 2 → 0.
+2. **Pinched, shared `u–w` edge.**
+   - Darts: `d:u→v, p:v→w, q:w→u, s:w→v` and their reverses.
+   - Faces: `[d,p,q]`, `[d̄,q̄,s]`, outer `[s̄,p̄]`. V=3, E=4, F=3, and `γ = [b,c,b]`.
+   - D' is the single edge `b–c`. `innerFaceCount` goes 2 → 0.
+3. **Pinched, two lobes.** Add `x=a`.
+   - Darts: `d,p,q`, `d̄, r:u→w, s:w→v`, `t:v→x, m:w→x`, and their reverses (14 in all).
+   - Faces: `[d,p,q]`, `[d̄,r,s]`, outer `[q̄,r̄]`, `[p̄,t,m̄]`, `[s̄,m,t̄]`. V=4, E=7, F=5, and
+     `γ = [a,c,a]`.
+   - The split leaves the outer edge `a–c` and a separate lobe with χ = 2. `innerFaceCount` goes 4 → 0.
+
+### Consumer
+- `CCKW.systolicInvariantClique_of_zipFold` takes `∀ (V : Type) (X), MirrorFoldStatement X`.
+  - It uses it only at its own `X`, through `exists_invariantClique_of_linksSixLarge`.
+  - That lemma passes it to the projection-clique, triangle-condition and no-induced-4/5-cycle lemmas.
+- `mirrorFoldStatement_of_cases` splits on `third d = third (alpha d)`. It hands the two Props the
+  same `X` and nothing else.
+- `hzip` is closed: `zipSpurStatement` in `GGT/SystolicDiscZip`.
+- Universes: the Props live at `V : Type u` with `map : CombMap.{0}`, and every construction above is
+  a subtype of `Dart`.
+- Once both leaves close: `hfold := fun V X => mirrorFoldStatement_of_cases X (distinct X) (pinched X)`.
+
+### Sent, residual and next
+- Sent to main and to the owners, fff-periodic and systolic-counts (Pinched) and ko-closed and
+  kh-cckw (Distinct).
+- Residual Props owned by this lane: none.
+- Next, unless the lead redirects: a Lean nonvacuity fixture of models 1 and 2, built with
+  `OrbitClassifier.orbitEquiv` as in `VanKampen/SelfContiguityModel`.
+
 ## 2026-09-13: GHW char 0 handed to ghw-assembly; archimedean half on main
 
 This lane's section of ROSTER-0913 says: "Target: closed GHWCharZeroFiniteness. Also: GHWArchimedeanBound and
