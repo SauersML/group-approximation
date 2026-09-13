@@ -26,8 +26,16 @@ Llosa Isenrich–Schesler–Wu arXiv:2510.01952v1.
   overgroups (arXiv:1610.05813) come with no such action; the natural actions
   (regular, on cube complexes, imprimitive wreath actions over a regular base)
   all have infinitely many pair orbits. This is where the attempt stands.
-- **Röver–Nekrashevych envelopes.** Llosa Isenrich–Schesler–Wu get simple groups
-  with prescribed finiteness from self-similar linear groups. A faithful
-  self-similar action on a rooted tree forces residual finiteness of the
-  acting group, so arbitrary inputs must enter as subgroups of the envelope,
-  not as the self-similar group itself. Not pursued yet.
+- **Röver–Nekrashevych envelopes (dead for general inputs).** Llosa
+  Isenrich–Schesler–Wu get simple groups with prescribed finiteness from
+  self-similar linear groups (`rational-linear-groups-embed-in-simple-groups-same-finiteness`).
+  The 1.20 lane established `rover-nekrashevych-groups-have-co-re-word-problem`:
+  every finitely generated subgroup of `V_d(G)`, with `G` finitely generated
+  self-similar, has co-r.e. word problem. So no such envelope contains a
+  2-generator group whose word problem is not co-r.e., and envelopes for general
+  inputs must come from constructions without finite state data, such as `SV_G`.
+- **Consequence side.** A yes answer forces continuum many simple `FP_2` groups,
+  some not recursively presented (`universal-fp2-simple-envelopes-force-uncountably-many`).
+  The 1.20 lane wired that into `uncountably-many-simple-groups-of-type-fp2`, and
+  its contrapositive into the negative answer here.
+- Exploration record: `research/artifacts/zp-fp2-simple-envelopes-2026-09-13.md`.

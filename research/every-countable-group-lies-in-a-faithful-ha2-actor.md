@@ -35,6 +35,23 @@ problem restriction.
   infinite fibre group forces zero translation, since a permutation that agrees
   with a translation of infinite fibres outside finitely many points must
   translate by zero.
+- **Lampshuffler actors (fp version dead; FP_2 open, unpromising).** For infinite
+  `Γ` of type `FP_2` containing the input (e.g. Leary's group times `Z`, which is
+  one-ended), `FSym(Γ) ⋊ Γ` acts faithfully and highly transitively on `Γ` with
+  finitely generated point stabilizers, so it would be a faithful `[HA_2]` actor
+  if it were `FP_2`. Genevois–Tessera, arXiv:2401.13520v1, Theorem 1.5 (a halo
+  product with a finite `F` and infinitely many `h` with
+  `⟨F, hFh^{-1}⟩ ≠ ⟨F⟩ ∗ ⟨hFh^{-1}⟩` is not finitely presented) give: "lampshuffler
+  groups over infinite groups are never finitely presented" (read through fetched
+  quotations). Whether some are `FP_2` is not settled there. Their mechanism
+  replaces far commutations by free products, and the resulting kernels look
+  non-perfect (in `Z/2 ∗ Z/2` the kernel onto `Z/2 × Z/2` is infinite cyclic), so
+  the Bieri–Strebel route to `FP_2` does not suggest itself.
+- **Weaker target recorded by the 1.20 lane.** An uncountable family of faithful
+  `[HA_2]` actors already gives uncountably many simple `FP_2` groups
+  (`uncountably-many-fp2-groups-have-faithful-ha2-actions`). One fixed finitely
+  generated actor group has only countably many `[HA_2]` actions, since point
+  stabilizers are finitely generated subgroups.
 - **Perfect orbit quotients (live tool).** By
   `perfect-orbit-quotients-of-fp2-actors-are-ha2-actors`, an `FP_2` group with
   finitely many pair orbits and finitely generated stabilizers, divided by a
