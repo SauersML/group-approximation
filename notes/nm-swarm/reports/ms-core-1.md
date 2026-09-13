@@ -62,6 +62,19 @@ None in this range.
   - ct-return-tower owns item 2, the return unitary and covariance (`Dynamics/ReturnRingUnit`: `returnP`, `ReturnCorner`,
     `returnV`, `returnW`, `returnUnit`, `returnV_mul_coeff_extend`). It also keeps `Dynamics/ReturnCells`. Items 3 and 4
     consume both once they are on origin.
+  - 09-13 ~18:05: main moved SURJECTIVITY to ct-return-tower (`Dynamics/ReturnCornerGeneration`,
+    `surjective_of_generators`). The ms-core-1 surjectivity draft was withdrawn unlanded, and a copy is kept in the lane
+    backup.
+
+## ReturnRing modules (ms-core-1)
+
+| module | contents | status |
+|---|---|---|
+| `Algebra/ZCrossedProductLift` | `unitPowHom`, `covariant_zpow`, `liftOfUnit` (`_single`, `_C`, `_unit_zpow`, `_unit`, `_sum_C_mul_unit_zpow`), `ringHom_ext` | LANDED 8c0e01a29 (probe 0913-174102-15223 GREEN) |
+| `Algebra/ZCrossedProductDegree` | `DegreesGE`/`DegreesLE`, closure under sums, products and powers, monomials, degree-zero readout | red on section-variable lints (fixed); re-probing |
+| `Dynamics/ReturnRingLift` | `extendCorner`, `returnCoeffHom`, `returnUnit_mul_returnCoeffHom`, `returnRingHom` (θ), `coe_returnRingHom_coeff` / `_unit` / `_unit_inv` / `_unit_zpow` | BUILT in probe 0913-180618-99791 (overall red on Degree); lands with the next green |
+| `Dynamics/ReturnRingInjective` | `cellCoeff_zero`, `degreesGE_one_returnV`, `degreesLE_neg_one_returnW`, `coeff_one_coe_returnRingHom`, `returnRingHom_injective` | first probe pending (blocked on Degree) |
+| `Dynamics/ReturnRingCrossedProduct` | `returnRingHom_surjective` (via `surjective_of_generators`), `returnRingEquiv`, closed `returnRingCrossedProductStatement_holds` | waits for ct-return-tower's `ReturnCornerGeneration` |
 
 ## Notes for the owners (relayed through main)
 
