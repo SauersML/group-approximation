@@ -88,6 +88,15 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   (`thompson-f-interval-orbit-relation-is-hyperfinite`, refuting
   `thompson-f-interval-orbit-relation-is-nonamenable`). Map of classes:
   `research/artifacts/zp-thompson-f-nonamenability-certificates-2026-09-13.md`.
+- **C*-simplicity of T, and a local subgroup certificate.** Non-amenability of `F` is
+  equivalent to C*-simplicity of `T` (`thompson-f-not-amenable-iff-thompson-t-cstar-simple`,
+  Le Boudec–Matte Bon and Haagerup–Olesen; route `thompson-f-not-amenable-from-t-cstar-simple`).
+  It is also equivalent to the existence of one C*-simple subgroup of `T` containing two
+  nontrivial disjointly supported elements (`thompson-t-disjoint-pair-cstar-simple-subgroup-criterion`,
+  route `thompson-f-not-amenable-from-cstar-simple-disjoint-pair`). The most concrete witness
+  shape is a free product `A * B` with a disjoint pair in `A`. Classical ping-pong is
+  impossible there (`free-product-disjoint-pair-no-support-separating-element`), and no
+  construction is known. Map: `research/artifacts/zp-thompson-f-nonamenability-certificates-2026-09-13-part2.md`.
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.
