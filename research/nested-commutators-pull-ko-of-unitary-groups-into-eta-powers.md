@@ -22,7 +22,9 @@ c_j is the j-fold commutator map.
 
 So for every rank N, the KO-characteristic numbers (with reduced
 coefficients) of a fourfold commutator vanish, and so do its Stiefel–Whitney
-numbers. Whether these numbers detect reduced spin bordism of U(N) for
-N >= 3 is not addressed.
+numbers. This node does not prove full blindness of reduced spin bordism
+for N >= 3. The peer claim
+spin-trapping-blind-to-fourfold-commutators-in-every-rank proves it, by
+splitting MSpin_(2) into ko-modules.
 
 Complete argument. Not independently reviewed.

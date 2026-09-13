@@ -61,7 +61,11 @@ three (j = 4). So does every Stiefel–Whitney number with reduced coefficients,
 from depth one (j = 2). For N = 2, the peer's Anderson–Brown–Peterson step
 turns this into [M, f]_red = 0. For N >= 3, KO^*(U(N)) is not free over KO_*.
 This lane has not verified that these numbers detect Omega-tilde^Spin_*(U(N)),
-so for N >= 3 bordism blindness is *not* claimed.
+so for N >= 3 bordism blindness is *not* claimed here. *Later on 13 Sep
+2026*, the peer landing 2d7d577ab3
+(`spin-trapping-blind-to-fourfold-commutators-in-every-rank`) proved it in
+every rank. Its proof splits MSpin_(2) into ko-modules and adds one eta per
+bracket at the level of ko-module spectra.
 
 ## 11. The class-five target
 

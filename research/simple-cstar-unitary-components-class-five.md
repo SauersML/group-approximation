@@ -47,10 +47,12 @@ algebra with a nonzero fivefold commutator.
   of Bott brackets die there.
 - *Spin detection in any rank.* For every N, KO- and Stiefel–Whitney numbers
   with reduced coefficients vanish on fourfold commutators
-  (nested-commutators-pull-ko-of-unitary-groups-into-eta-powers). Bordism
-  blindness for N >= 3 is not proved, because detection of
-  Omega-tilde^Spin_*(U(N)) by these numbers is unverified. A fivefold input
-  therefore needs invariants beyond KO- and Stiefel–Whitney numbers.
+  (nested-commutators-pull-ko-of-unitary-groups-into-eta-powers). Spin
+  bordism itself is blind on fourfold commutators in every rank, because
+  MSpin_(2) splits into ko-modules
+  (spin-trapping-blind-to-fourfold-commutators-in-every-rank). So a fivefold
+  input needs a structure whose bordism is not a sum of ko-modules, such as
+  lambda mod m.
 - *Spin_m detection, m >= 2.* Open. The relative lambda-mod-m e-invariant
   reaches eta^3 at depth three. Depth four would need a length-four torsion
   product visible in Omega^{Spin_m}_*, or classes carried by higher cells of
