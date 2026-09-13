@@ -215,3 +215,7 @@ Items 1–7 of `bernoulli-isomorphism-collapse-set-is-a-subgroup` were re-derive
 
 - `research/artifacts/ex-review-dynamics-2026-09-12-part1.md`: §2–§8.
 - `research/artifacts/ex-review-dynamics-2026-09-12-part2.md`: §9–§14.
+- `research/artifacts/ex-review-dynamics-2026-09-12-part3.md`: §8b, the priority re-review of the lattice-space
+  soficity theorem. All four load-bearing steps pass: Theorem P, smoothing and equidistribution, finite orbits as
+  commensurator points, and the class extension. Both model tests pass against the sources, Păunescu Proposition
+  3.4 and Theorem 3.9, and Kun–Thom p. 2 and Corollary D.
