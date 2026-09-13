@@ -38,6 +38,17 @@ namespace FinitaryGL
 open Finsupp
 open Multiplicative (ofAdd toAdd)
 
+/-- `xy − 1 = (x − 1)(y − 1) + (x − 1) + (y − 1)`, stated over an arbitrary ring so that it
+applies to `Module.End` by unification. -/
+theorem ring_mul_sub_one {R : Type*} [Ring R] (x y : R) :
+    x * y - 1 = (x - 1) * (y - 1) + (x - 1) + (y - 1) := by
+  noncomm_ring
+
+/-- `xyz − 1 = x(y − 1)z` when `xz = 1`. -/
+theorem ring_conj_sub_one {R : Type*} [Ring R] {x z : R} (hxz : x * z = 1) (y : R) :
+    x * y * z - 1 = x * (y - 1) * z := by
+  rw [mul_sub, sub_mul, mul_one, hxz]
+
 variable (k : Type*) [CommRing k]
 
 /-- **Finite matrix support**: only finitely many entries `(A e_j)_i` of `A` are nonzero. -/
@@ -49,6 +60,14 @@ def SupportedIn (S : Finset ℤ) (A : Module.End k (ℤ →₀ k)) : Prop :=
   (∀ v, A v ∈ supported k k (S : Set ℤ)) ∧ ∀ v ∈ supported k k ((S : Set ℤ)ᶜ), A v = 0
 
 variable {k}
+
+theorem hasFiniteMatrixSupport_zero : HasFiniteMatrixSupport k (0 : Module.End k (ℤ →₀ k)) := by
+  have h : {p : ℤ × ℤ | (0 : Module.End k (ℤ →₀ k)) (single p.2 1) p.1 ≠ 0} = ∅ := by
+    ext p
+    simp
+  show Set.Finite {p : ℤ × ℤ | (0 : Module.End k (ℤ →₀ k)) (single p.2 1) p.1 ≠ 0}
+  rw [h]
+  exact Set.finite_empty
 
 theorem SupportedIn.apply_single_eq_zero {S : Finset ℤ} {A : Module.End k (ℤ →₀ k)}
     (h : SupportedIn k S A) {j : ℤ} (hj : j ∉ S) : A (single j 1) = 0 :=
@@ -85,8 +104,8 @@ theorem hasFiniteMatrixSupport_iff (A : Module.End k (ℤ →₀ k)) :
       intro j hj
       ext i
       by_contra hne
-      exact hj (Finset.mem_union_right _
-        (Finset.mem_image_of_mem Prod.snd (hA.mem_toFinset.2 hne)))
+      have hmem : (i, j) ∈ hA.toFinset := hA.mem_toFinset.2 hne
+      exact hj (Finset.mem_union_right _ (Finset.mem_image_of_mem Prod.snd hmem))
     refine ⟨hA.toFinset.image Prod.fst ∪ hA.toFinset.image Prod.snd, fun v => ?_, fun v hv => ?_⟩
     · have hv : v ∈ Submodule.span k ((fun i => single i (1 : k)) '' Set.univ) := by
         rw [← supported_eq_span_single, supported_univ]
@@ -205,9 +224,12 @@ has finite matrix support. -/
 def GLfin : Subgroup (LinearMap.GeneralLinearGroup k (ℤ →₀ k)) where
   carrier := {g | HasFiniteMatrixSupport k ((g : Module.End k (ℤ →₀ k)) - 1)}
   one_mem' := by
-    show HasFiniteMatrixSupport k ((1 : Module.End k (ℤ →₀ k)) - 1)
-    rw [sub_self]
-    simp [HasFiniteMatrixSupport]
+    have h : ((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1 = 0 :=
+      sub_self _
+    show HasFiniteMatrixSupport k
+      (((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1)
+    rw [h]
+    exact hasFiniteMatrixSupport_zero
   mul_mem' := by
     intro a b ha hb
     obtain ⟨S, hS⟩ := (hasFiniteMatrixSupport_iff _).1 ha
@@ -215,12 +237,13 @@ def GLfin : Subgroup (LinearMap.GeneralLinearGroup k (ℤ →₀ k)) where
     refine (hasFiniteMatrixSupport_iff _).2 ⟨S ∪ S', ?_⟩
     have e : ((a * b : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1 =
         ((a : Module.End k (ℤ →₀ k)) - 1) * ((b : Module.End k (ℤ →₀ k)) - 1) +
-          ((a : Module.End k (ℤ →₀ k)) - 1) + ((b : Module.End k (ℤ →₀ k)) - 1) := by
-      rw [Units.val_mul]
-      noncomm_ring
+          ((a : Module.End k (ℤ →₀ k)) - 1) + ((b : Module.End k (ℤ →₀ k)) - 1) :=
+      ring_mul_sub_one (a : Module.End k (ℤ →₀ k)) b
     rw [e]
-    have hA := hS.mono Finset.subset_union_left
-    have hB := hS'.mono Finset.subset_union_right
+    have hA : SupportedIn k (S ∪ S') ((a : Module.End k (ℤ →₀ k)) - 1) :=
+      hS.mono Finset.subset_union_left
+    have hB : SupportedIn k (S ∪ S') ((b : Module.End k (ℤ →₀ k)) - 1) :=
+      hS'.mono Finset.subset_union_right
     exact ((hA.mul hB).add hA).add hB
   inv_mem' := by
     intro g hg
@@ -249,12 +272,12 @@ theorem shiftGL_zpow_single (n j : ℤ) (c : k) :
     (((shiftGL k) ^ n : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k))
       (single j c) = single (j + n) c := by
   induction n using Int.induction_on generalizing j with
-  | hz => rw [zpow_zero, Units.val_one, Module.End.one_apply, add_zero]
-  | hp n ih =>
+  | zero => rw [zpow_zero, Units.val_one, Module.End.one_apply, add_zero]
+  | succ n ih =>
       rw [zpow_add_one, Units.val_mul, Module.End.mul_apply, shiftGL_single, ih]
       congr 1
       omega
-  | hn n ih =>
+  | pred n ih =>
       rw [zpow_sub_one, Units.val_mul, Module.End.mul_apply, shiftGL_inv_single, ih]
       congr 1
       omega
@@ -280,7 +303,8 @@ theorem conj_mem_GLfin (n : ℤ) {g : LinearMap.GeneralLinearGroup k (ℤ →₀
         ((g : Module.End k (ℤ →₀ k)) - 1) *
           ((shiftGL k ^ (-n) : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) :
             Module.End k (ℤ →₀ k)) := by
-    rw [zpow_neg, Units.val_mul, Units.val_mul, mul_sub, sub_mul, mul_one, Units.mul_inv]
+    rw [zpow_neg]
+    exact ring_conj_sub_one (Units.mul_inv (shiftGL k ^ n)) _
   show HasFiniteMatrixSupport k (((shiftGL k ^ n * g * (shiftGL k ^ n)⁻¹ :
     LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1)
   rw [e]
@@ -290,7 +314,8 @@ theorem conj_mem_GLfin (n : ℤ) {g : LinearMap.GeneralLinearGroup k (ℤ →₀
         ((shiftGL k ^ (-n) : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) :
           Module.End k (ℤ →₀ k))) (single p.2 1) p.1 ≠ 0 := hp
   rw [Module.End.mul_apply, Module.End.mul_apply, shiftGL_zpow_single, shiftGL_zpow_apply] at hp'
-  refine Set.mem_image.2 ⟨(p.1 - n, p.2 - n), ?_, Prod.ext (sub_add_cancel _ _) (sub_add_cancel _ _)⟩
+  refine (Set.mem_image _ _ _).2
+    ⟨(p.1 - n, p.2 - n), ?_, Prod.ext (sub_add_cancel _ _) (sub_add_cancel _ _)⟩
   show ((g : Module.End k (ℤ →₀ k)) - 1) (single (p.2 - n) 1) (p.1 - n) ≠ 0
   exact hp'
 
