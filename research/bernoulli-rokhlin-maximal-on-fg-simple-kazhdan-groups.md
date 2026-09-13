@@ -148,3 +148,17 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
     `log |A| sup |F|/|F E|`.
   - **Open.** Bounding one site entropy on a simple Kazhdan host without finite models. No mechanism is
     known. Artifact `finitary-generation-single-site-criterion-2026-09-12.md`.
+- **Window filters (w5-inf-c, 2026-09-12).** On any host, a deficit witness `(k, E, F, psi)` has:
+  - an infinite, non-Rokhlin-maximal `<E E^-1>`, so `|E| >= 3`
+    (`bernoulli-deficit-windows-need-a-non-maximal-difference-subgroup`);
+  - if `Phi < log q / m`, then `|E| > m`, where `m` codewords read the site
+    (`bernoulli-witness-information-is-bounded-by-code-reads`).
+
+  On hosts with centralized self-copies such as `U`, one deficit gives Rokhlin entropy `0` for every
+  Bernoulli shift, through configurations of arbitrarily small value and unbounded windows
+  (`self-copy-host-rokhlin-deficits-need-unbounded-windows`). A strict automaton over `U` would force
+  exactly this. The artifact's Section 4 audit reduces cost, ℓ²-Betti numbers, ergodic decomposition,
+  Koopman data and co-induction to the dead entries above, or to this claim.
+  - **Where it dies:** a lower bound on `Phi` uniform in `m`. It needs an averaging over codewords
+    beyond subadditivity, and the only known averaging counts on finite models.
+  - Artifact: `research/artifacts/rokhlin-window-localization-and-read-bound-2026-09-12.md`.

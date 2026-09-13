@@ -73,3 +73,25 @@ finiteness conjecture over finite fields.
 * **Simple Kazhdan hosts.** `rokhlin-maximality-via-fg-simple-kazhdan-hosts`
   reduces this claim to `bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups`,
   by the container embedding and subgroup heredity.
+* **Window filters and mechanism audit (w5-inf-c, 2026-09-12).** Three proved constraints on a
+  deficit witness `(k, E, F, psi)`, all from Shannon inequalities:
+  - `bernoulli-deficit-windows-need-a-non-maximal-difference-subgroup`: if `<E E^-1>` is finite or
+    Rokhlin-maximal, then `Phi >= log q`. So windows with `|E| <= 2` never witness, and every
+    witness window has an infinite, nonsofic, non-maximal difference subgroup, whatever `F` is;
+  - `bernoulli-witness-information-is-bounded-by-code-reads`: if `m` codewords read the site, then
+    `Phi >= log q / m`;
+  - `self-copy-host-rokhlin-deficits-need-unbounded-windows`: on a host with `h_sup ∈ {0, ∞}`, such
+    as the binary Leavitt unit group or Thompson's `V`, one deficit gives Rokhlin entropy `0` for
+    every Bernoulli shift, through configurations of arbitrarily small value and unbounded windows.
+
+  Audit (artifact Section 4). Each candidate mechanism reduces to a landed barrier or to this claim:
+  - cost and ℓ²-Betti numbers are weak-equivalence invariants
+    (`weak-invariants-give-no-bernoulli-rokhlin-lower-bound`);
+  - ergodic decomposition is trivial on Bernoulli shifts, and Koopman data do not depend on the base;
+  - induction from a subgroup needs co-amenability. Restriction and co-induction give only upper
+    bounds, and co-induced Bernoulli is Bernoulli, so that lower bound is this claim itself.
+
+  Where it dies: a lower bound on `Phi` uniform in the read degree `m`. That needs an averaging over
+  codewords beyond subadditivity, the Rokhlin-level analogue of
+  `injective-ca-random-order-transport-is-dominated`, and the only known averaging counts on finite
+  models. Artifact `research/artifacts/rokhlin-window-localization-and-read-bound-2026-09-12.md`.
