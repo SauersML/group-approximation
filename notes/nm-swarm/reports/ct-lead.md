@@ -41,3 +41,18 @@ Each lane probes and lands only through `nmprobe.sh` and `nmland.sh`, and shares
 
 ct lanes report to session `nonsofic-existence-49`. Send cross-lane needs, or pieces that need more lanes, to that
 session.
+
+## Wave 2 (2026-09-13 ~16:40 CDT): 33 more lanes from session nonsofic-existence-49
+
+The user asked this session for a massive team. Every wave-2 lane runs an ownership check before it builds anything:
+it greps origin and the shared tree, reads `lanes/*.files`, `landed.log` and the roster rulings, and first lands a
+`CLAIM <piece> <module>` line in its report. A piece a lane of the other swarm landed on within about 3 hours, or holds
+in-flight files for, is recorded with its owner and not rebuilt. All landings go through `nmland.sh`, which refuses
+clobbers.
+
+| family | lanes | job |
+|---|---|---|
+| range audit and fix | ms-intro-1..4 (tex 1–357), ms-compress-1..4 (358–739), ms-inverses-1..4 (740–1174), ms-binary (1175–1231), ms-units (1232–1337), ms-traces-1..3 (1808–2106), ms-torsionfree (2107–2507) | sentence ledger; verify each `formalized` row is closed, root-reachable, printed generality, printed route, no literature binder; build the missing carriers in new modules |
+| chain-core ranges | ms-core-1..4 (1338–1540), ms-core-5 (1608–1662) | ledger and model tests; build only leaves an owner report lists as unowned, or sentence carriers no key map lists |
+| W1 second starts | w1-binder-1..8 | one independent start per residual waist binder (ClassCountInput, UnboundSameCell, CaseOneSameCell, C6′ TwoGonHolds, MultipleEdgePocketRegion, SectionPocketFaceSet, PocketPinchLabelled, GeodesicCollar); new modules only, never owners' files |
+| literature sweep | ms-cite-1 (1–1337), ms-cite-2 (1338–2507) | every `\cite` used as a step must have a proved carrier |
