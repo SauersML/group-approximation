@@ -40,6 +40,11 @@ remains open we shall prove this fact for a family of groups."* That goal is
 `sofic-groups-in-paunescu-sofic-action-class`, refuted by
 `kun-thom-free-nonsofic-action`.
 
-Further permanence proved in this graph: `sofic-action-class-closed-under-commensurability`.
+Further permanence proved in this graph: `sofic-action-class-closed-under-commensurability`
+(subgroup closure there is also Alpeev, arXiv:1706.01864, Theorem 5.2, who proves treeable
+groups lie in `𝒮` as Theorem 5.1), `paunescu-class-is-measure-equivalence-invariant`
+(measure equivalence, through `sofic-free-actions-are-soe-invariant`),
+`paunescu-class-closed-under-amenable-extensions` (extensions with amenable quotient), and
+the instance `hyperbolic-3-manifold-groups-in-paunescu-class` (lattices of `PSL_2(C)`).
 
 **Trust surface.** Refereed; verbatim from the arXiv v5 PDF; not formalised.

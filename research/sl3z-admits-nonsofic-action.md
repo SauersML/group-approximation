@@ -46,3 +46,11 @@ every finite-index subgroup of `SL_3(Z)` and every group commensurable with it.
   lies outside Păunescu's class. A nonsofic action of a lattice of any other
   Howe--Moore group answers only the mixing root
   (`simple-group-lattice-admits-nonsofic-action`).
+* **Positive side, rank-one contrast.** Every lattice of `PSL_2(C)` lies in
+  Păunescu's class (`hyperbolic-3-manifold-groups-in-paunescu-class`): a fibered
+  finite cover is surface-by-`Z`, and `paunescu-class-closed-under-amenable-extensions`
+  induces sofic embeddings over Følner windows of the quotient. That mechanism needs
+  a normal subgroup in `𝒮` with amenable quotient. `SL_3(Z)` has none of infinite
+  index (Margulis normal subgroup theorem), and its finite-index subgroups bring
+  nothing new, so a proof that `SL_3(Z) ∈ 𝒮` cannot come from extensions and would
+  need a genuinely higher-rank construction.
