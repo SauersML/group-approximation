@@ -38,3 +38,8 @@ With `m = 1` this is `full-defect-ring-non-mf-at-rank-two`.
 - A full defect `1 = Σ_(j<=k) a_j e b_j` in `M_m(R)` gives `(km+m)[1] <= km[1]`, a paradox at a level at most
   `km`. So the rank bound `2m` here can be smaller when `k > 1`.
 - For simple rings the two levels coincide.
+
+**Canonical node** (un-architect ruling, 2026-09-13). The canonical UN node for the paradox form is
+`stably-infinite-ring-elementary-groups-have-no-mf-quotient` (un-paradox). This node is the explicit-defect form:
+it contains that theorem at `m = n`, and it can give a smaller rank bound when the defect needs several terms.
+Credit `un-paradox`, `un-middle` and `un-converse`.

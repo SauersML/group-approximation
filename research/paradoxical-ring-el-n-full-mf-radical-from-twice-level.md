@@ -28,4 +28,6 @@ Then for every `N ≥ 2n`, every homomorphism from `EL_N(R)` to an MF group is t
 - add `[R]` repeatedly;
 - use `(n+1)[R] <= 2n[R]`.
 
-Credit both lanes. This node keeps its own proof and calibrations.
+Lane `un-converse` found the same theorem at the same time, as the explicit-defect form
+`full-defect-in-m-by-m-kills-mf-quotients-of-el-2m` (which contains it at `m = n`). Credit `un-paradox`, `un-middle`
+and `un-converse`. This node keeps its own proof and calibrations.

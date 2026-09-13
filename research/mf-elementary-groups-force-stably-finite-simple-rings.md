@@ -29,3 +29,9 @@ Model tests:
 - `M_d(F)`: vacuous.
 
 So, for simple rings: exactly matricial ⇒ `EL_N(R)` LEF for all `N` ⇒ MF for all `N` ⇒ stably finite.
+
+**Canonical node for item 1** (un-architect ruling, 2026-09-13). Item 1 is the simple-ring case of the canonical UN
+node `stably-infinite-ring-elementary-groups-have-no-mf-quotient` (un-paradox). For simple `R`, `M_m(R)` is not
+directly finite iff `(m+1)[R] <= m[R]`: both conditions are upward closed in `m`, with the same least value
+(`simple-ring-stably-finite-iff-unit-not-paradoxical`). Items 2 and 3 are this node's own contribution, and the UN
+root consumes them for (M⇒). Credit `un-paradox`, `un-middle` and `un-converse`.

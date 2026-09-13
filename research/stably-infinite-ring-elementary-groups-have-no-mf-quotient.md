@@ -7,6 +7,8 @@ distinct_from:
   full-defect-ring-non-mf-at-rank-two: that needs a properly infinite unit in R itself and gives every rank from two; this needs one only in some M_n(R) and gives every rank from 2n.
   simple-dedekind-infinite-ring-elementary-full-mf-radical: that is the simple, not directly finite case; this adds simple rings that are directly finite but not stably finite, at large rank.
   paradoxical-ring-el-n-full-mf-radical-from-twice-level: that is lane un-middle's independent statement of the same theorem, under the equivalent hypothesis (n+1)[R] <= n[R], with its M_n(R) proof and level calibrations; this is the canonical UN node for the ring-level theorem, by un-architect's ruling of 2026-09-13.
+  full-defect-in-m-by-m-kills-mf-quotients-of-el-2m: that is lane un-converse's explicit-defect form (a full complementary idempotent in M_m(R), rank 2m), which contains this theorem as the case m = n and can give a smaller rank when the defect needs several terms; this is the canonical paradox-in-V(R) form.
+  mf-elementary-groups-force-stably-finite-simple-rings: item 1 of that node (un-converse) is the simple-ring corollary here, since for simple R, M_m(R) is not directly finite iff (m+1)[R] <= m[R]; items 2 and 3 there are the contrapositive, which the UN root consumes for (M⇒).
 artifacts:
   - research/artifacts/un-paradox-stable-infiniteness-2026-09-13.md
 ---
@@ -38,4 +40,11 @@ as `paradoxical-ring-el-n-full-mf-radical-from-twice-level`. Its hypothesis `(n+
 - adding `[R]` repeatedly gives `(n+j)[R] <= n[R]` for every `j >= 1`;
 - conversely, `(n+1)[R] <= 2n[R]` in the algebraic preorder when `n >= 1`.
 
-Credit both lanes. The UN root `kazhdan-elementary-approximation-type-mirrors-ring-type` cites this node.
+Lane `un-converse` found the same stabilisation at the same time:
+- `full-defect-in-m-by-m-kills-mf-quotients-of-el-2m`, the explicit-defect form, which contains this theorem at
+  `m = n`;
+- item 1 of `mf-elementary-groups-force-stably-finite-simple-rings`, the simple-ring case.
+
+Credit `un-paradox`, `un-middle` and `un-converse`, with `un-prior-art` for the simple-ring derivation. The UN root
+`kazhdan-elementary-approximation-type-mirrors-ring-type` cites this node, and `un-verify` should review it as the
+canonical one.
