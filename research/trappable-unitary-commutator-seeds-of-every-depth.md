@@ -48,5 +48,17 @@ unital AH algebra with a non-nilpotent unitary component group.
   detectors see products with at most three factors eta, and image-of-J
   products vanish at odd primes. Visible depth may therefore be bounded
   independently of N. That is not proved.
-- *Unexplored.* Brackets detected in stems 6 (nu^2) or 10 (eta·mu_9), tmf-type
-  structures on TX − W_R, and non-spherical seeds in rank three or four.
+- *Unexplored.* Brackets detected in stems 6 (nu^2) or 10 (eta·mu_9), and
+  non-spherical seeds in rank three or four.
+- *Reduction to string bordism.* Every Spin_m detector factors through
+  MString (spin-m-trapping-factors-through-string-bordism). Conversely, for
+  m divisible by m_k, MSpin_m agrees with MString ∧ Sigma^∞_+ K(Z,4) through
+  degree k − 1 (lambda-mod-m-bordism-splits-as-string-bordism-in-a-range).
+  So tmf-type detection needs no string structure on TX − W_R: the
+  quaternionic steps with m divisible by m_{dim M + 1} already see every
+  string seed. So the crux follows from: for every c, string seeds in
+  unboundedly many U(N) whose c-fold commutator has nonzero reduced
+  string-bordism class, with m_c growing with c as Part 3, Section 9
+  permits. Conversely the crux forces MString ∧ Sigma^∞ cbar_c to be
+  essential for those N. In rank three the fivefold map has 2-power order
+  (rank-three-stable-fivefold-commutator-two-primary).

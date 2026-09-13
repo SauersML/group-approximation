@@ -61,13 +61,16 @@ algebra with a nonzero fivefold commutator.
   Spin_m detector is blind in rank p, on every seed manifold
   (spin-m-trapping-factors-through-string-bordism). A class-five input in
   rank p therefore needs an essential MString ∧ Sigma^∞ cbar_5.
-- *String or tmf detection.* That would see nu^2 and products involving
-  kappa-bar, but it needs lambda(TX − W_R) = 0 exactly. Quaternionic steps
-  have defect k·q_1 with k >= 1, and complex Grassmannians carry a c_1^2
-  term. No step family with defect zero and odd Euler count is known.
-  Quaternionic partial flag manifolds with tautological Q never give one,
-  whatever the protected rank
-  (quaternionic-flag-trapping-steps-are-never-string).
+- *String or tmf detection.* Available, without string steps. For m
+  divisible by m_k, MSpin_m agrees with MString ∧ Sigma^∞_+ K(Z,4) through
+  degree k − 1, so a string seed M with nonzero reduced string-bordism class
+  of its commutator is already Spin_m-visible, and the quaternionic steps
+  Gr_m(H^{m+pd}) run the tower
+  (lambda-mod-m-bordism-splits-as-string-bordism-in-a-range). Steps with
+  lambda-defect zero are not needed; quaternionic flags never give them
+  (quaternionic-flag-trapping-steps-are-never-string). Class five is now
+  exactly the question whether MString ∧ Sigma^∞ cbar_5 of some U(p) is
+  nonzero on string seed classes. By the first bullet above, p >= 3.
 - *Odd primes are exhausted in small rank.* The witness has finite order, so
   its class splits into p-primary parts. So, arXiv:1707.00739v2, p. 1:
   "Kaji and Kishimoto [3] showed that p-regular Lie groups have homotopy
