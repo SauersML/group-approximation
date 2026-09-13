@@ -1,0 +1,46 @@
+# Lane ms-intro-4: tex 295–357 (thm:torsion-free, Related work)
+
+Lead: session nonsofic-existence-49 (wave 2). Range at origin/main 68481e4d7. Census rows are matched by text; the
+generated census still carries the pre-chain-core line numbers (285, 291, 298, 324).
+
+## Sentence ledger
+
+| key | tex | status | verdict |
+|---|---|---|---|
+| `0f22bdbc4184` | 297–300 thm:torsion-free statement (incl. "In particular, no nontrivial quotient of Q is MF") | partial | W1 wall. `_of_greendlinger` forms (TorsionFreeGreendlingerLeaf, TorsionFreeGreendlingerForms) over hgreendlinger alone; hbridge, hKO, hW closed. Owners: the W1 waist lanes of the other swarm (8 residual binders, roster 14:50–16:17). Not rebuilt here. |
+| `27e0c2f96db3` | 303–305 "Section builds Q from FFF §2 and Hull" | attribution | Honest: construction summary; the mathematics is carried by the thm:torsion-free rows. |
+| `dce7a9ff4e83` | 305–306 "Its reduced C*-algebra is simple, unique trace, stable rank one, not MF" | partial | W1 wall, same binder and owners as `0f22bdbc4184`. Not rebuilt here. |
+| `27d456b915c0` | 310–311 BK94 abstract | attribution | Honest (history). |
+| `5d8b94bc850e` | 311–313 NF / strong NF / nuclear stably finite might coincide | attribution | Honest (history). |
+| `14ee41b7f3cc` | 313–315 BK97: NF iff nuclear and MF | attribution | Honest: a cited theorem, not used by any proof in the paper. |
+| `82cac0c03a39` | 315–318 quasidiagonality question; TWW answers it under UCT + faithful trace | attribution | Honest: not used as a proof step. |
+| `ba77c51e9726` | 319–321 the MF problem | attribution | Honest (history). |
+| `6edef6dc2d68` | 321–325 positive answer ⇒ every countable group MF | formalized | PASS. `manuscriptSentence_positiveMFProblemAnswerMakesEveryCountableGroupMF` (IntroSentences, root-imported, `#audit_closed_axioms`); faithful conditional form, proof via `reducedGroupCStar_separable_stablyFinite`. |
+| `c8241b12c037` | 325–327 CDE introduced MF groups; question open | attribution | Honest (history). |
+| `abfcbcb3af2b` | 327–332 MIP*=RE ⇒ separable stably finite non-MF algebra (GH Prop 6.1, Rem 6.2) | formalized | PASS for the mathematical conclusion: `printedNegativeConnesEmbeddingSentence` (PriorWorkConnesEmbedding, root-imported, audited) proves existence through the paper's own reduced group algebra. The printed route (MIP*=RE, GH 6.1) is credit by lead ruling 09-12 and is consumed nowhere. |
+| `4c82f6049796` | 332–334 thm:headline gives a counterexample among reduced group C*-algebras and answers the group question | formalized | PASS. `manuscriptUnitGroupHeadline : PrintedUnitGroupHeadline` (root-imported, audited) contains ¬IsCDEOperatorMF and separable ∧ stably finite ∧ ¬IsMFAlgebra for C*_r. |
+| `213a6657c8ff` | 336–339 configuration of OAI Prop 2.3 | attribution | Honest. |
+| `de554b7cd342` | 339–342 soficity, Kun, Kun–Thom, V | attribution | Honest: describes OAI's proof, not used here. |
+| `523f02126056` | 343–349 rigidity from the Kazhdan projection in a stably finite corona; commutator killed in HS norm; thm:normal-kazhdan | formalized | IN PROGRESS, see below. |
+| `b89e90ea6607` | 349–351 H is OAI's group; FFF configuration | attribution | Honest. |
+| `9e2046c330c8` | 351–353 BDL Prop 1.5 | attribution | Honest: not used. |
+| `ea89f566cf20` | 353–354 compression relation replaces stability | structural | Honest. |
+| `a494a9e94d28` | 354–356 Eckhardt's note | attribution | Honest. |
+
+## Finding on `523f02126056`
+
+The row names five carriers. Two of them prove adjacent sentences, not this sentence's clauses:
+- `manuscriptSentence_coronaKazhdanComplementIsInvariantCorner` is the NORMAL-K corner statement from the paragraph after
+  thm:compression-criterion. The printed clause here is about the Kazhdan projection of L commuting with the compressor
+  because the corona is stably finite.
+- `manuscriptSentence_kazhdanInequalityKillsCornerOnDefect` is sentence `0418dd5f3a67` (the corner vanishes). The printed
+  clause here is that every operator norm asymptotic representation sends the defect commutator to 1 in HS norm.
+- The faithful carriers already exist on main: `TransportProjectionCommutation.commute_sigmaB_projection`,
+  `manuscriptSentence_stableFinitenessGivesProjectionEquality`, `manuscriptSentence_defectAsymptoticallyTrivialInHS` and
+  `manuscriptSentence_commutatorHilbertSchmidtVanishing`.
+- `KazhdanTransportSentences.lean` and `RankTwelveConfiguration.lean` carry no `#audit_axioms` lines.
+
+Plan: land one closed carrier for the sentence (three clauses, composed from the existing theorems, `#audit_closed_axioms`,
+plus `#audit_axioms` on the consumed sentence theorems), then re-grade the row.
+
+CLAIM `523f02126056` closed carrier: GroupApproximation/Manuscript/NonMFSentences/RelatedWorkKazhdanRigidity.lean
