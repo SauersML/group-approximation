@@ -1,6 +1,7 @@
 # The two-patch ternary seed is never injective
 
-Lane `w5-two-patch`, 2026-09-12.
+Lane `w5-two-patch`, 2026-09-12. This is a candidate proof. Verification was requested from w3-vf-nonlinear, with no
+verdict yet, and the claim stays OPEN until it passes.
 
 **Target.** The seed of `two-patch-ternary-rules-reduce-to-linear-strictness`, named in Section 3 of
 `distinct-symbol-patch-collision-2026-09-12.md` as the smallest open instance:
@@ -206,7 +207,9 @@ is `{0, 1}`.
 - **`S = 0`.** `sum_i c_i m_i` has augmentation `0`, so it is never a unit. A two-patch rule sharing a
   symbol then reduces to linear strictness by the transfer.
 - **One nonzero coefficient.** Only one `N_i` constrains, so the rule always has a common blind pair.
-- **Where the unit case lives.** `c = (1,1,-1)`, and `c` with exactly one zero coefficient.
+- **Where the unit case lives, among rigid rules.** At least two coefficients are nonzero and `S != 0`.
+  Up to address permutation and global sign, that means `c = (1,1,-1)` or `c = (1,1,0)`. The class
+  `(1,-1,0)` has `S = 0`. A monomial `c` is a unit but never rigid.
 
 **Rigid two-patch rules.** Take `c = (1,1,-1)`, weights `+1`, and `A_i = {p_i, q_i}`. Then
 `N_1 = A_1 - 1`, `N_2 = A_2 - 1` and `N_3 = A_3 + 1`. So the rule is rigid iff

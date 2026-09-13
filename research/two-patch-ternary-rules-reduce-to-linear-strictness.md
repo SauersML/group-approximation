@@ -36,8 +36,9 @@ automata. A counterexample refutes Gottschalk's conjecture.
   - vary the background near the support.
 - **Where it stops.** No collision is known for the seed over a group where `1 - a + b` is a unit and its
   inverse support absorbs single-address translates. No obstruction to such a collision is known either.
-- **Seed closed** (w5-two-patch, `ternary-two-patch-seed-rule-is-never-injective`, artifact
-  `two-patch-seed-relation-moves-2026-09-12.md`).
+- **Seed decided on paper, awaiting verification** (w5-two-patch, open claim
+  `ternary-two-patch-seed-rule-is-never-injective`, artifact `two-patch-seed-relation-moves-2026-09-12.md`;
+  verification requested from w3-vf-nonlinear).
   - **Not rigid.** `{0, 1}` is a blind pair of all three coordinates.
   - **Nonamenable placements.** One-site collisions work unless `a^2 = 1`, `b^2 = 1`, `ab = 1`, `b = a^2`
     or `a = b^2`, and two-site moves cover `a^2 = 1` and `b^2 = 1`.
