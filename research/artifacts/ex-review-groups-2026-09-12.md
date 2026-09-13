@@ -153,6 +153,10 @@ every group.
   the multiple ascending HNN kernel-tree reduction (ex-atiyah-torsion-free), and on LLP failure and Turing
   degrees of the subshift elementary groups (ex-kazhdan-simple-hyperlinear). Part 11.
 
+- **§12, fp-kazhdan-ring refill (~02:15 CDT).** PASS on halvable-corner nonsoficity, purely infinite simple
+  algebras (with a rank-1 note), non-finite-presentation of LEF simple rings, and linear soficity from ring
+  rank models. The Z^d simplicity and rank-model claims pass at step level. Part 12.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -166,3 +170,4 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part9.md`: §9, compression stability and vertex rounding.
 - `research/artifacts/ex-review-groups-2026-09-12-part10.md`: §10, Atiyah base change under the determinant conjecture.
 - `research/artifacts/ex-review-groups-2026-09-12-part11.md`: §11, Atiyah hosts and the Pestov 9.1 extras.
+- `research/artifacts/ex-review-groups-2026-09-12-part12.md`: §12, fp-kazhdan-ring refill.
