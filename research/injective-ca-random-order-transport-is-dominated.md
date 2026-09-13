@@ -46,3 +46,9 @@ form. It is kept because it isolates the conditionings as the whole difficulty a
   conditionings jointly. (Corrected at the second landing: the first entry claimed the per-term bound is attained and
   that domination needs realizability beyond Shannon inequalities; attainment holds only for one order realization, and
   the impossibility was never shown.)
+- **Rokhlin counterpart and the finite-model step (w7-inf-uniform, 2026-09-12).** The window form is
+  `rokhlin-window-transport-is-dominated`, through `rokhlin-window-random-order-transport-identity`. In the amenable
+  proof above, decoding, subadditivity and translation hold on every group; the one finite-model-specific step is a
+  finite index set `F` with `|FN|/|F| -> 1`. Følner sets give it inside `<N>`, and sofic models give it on a finite
+  vertex set. The Rokhlin count `bernoulli-window-codeword-folner-ratio-bound` has the same four steps. Artifact
+  `research/artifacts/rokhlin-window-random-order-transport-2026-09-12.md`, Section 7.

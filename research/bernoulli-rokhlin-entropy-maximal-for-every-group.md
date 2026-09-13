@@ -95,3 +95,23 @@ finiteness conjecture over finite fields.
   codewords beyond subadditivity, the Rokhlin-level analogue of
   `injective-ca-random-order-transport-is-dominated`, and the only known averaging counts on finite
   models. Artifact `research/artifacts/rokhlin-window-localization-and-read-bound-2026-09-12.md`.
+* **Random-order transport and the codeword Følner count (w7-inf-uniform, 2026-09-12).** Target: a bound on `Phi`
+  uniform in the read degree `m`. Not found. Proved, on every group:
+  - `rokhlin-window-random-order-transport-identity`: `I(x(1); y_F)` equals a sum of conditional informations into the
+    single output `y_1` along an i.i.d. order. So this claim is `rokhlin-window-transport-is-dominated` (two routes), and
+    domination with any constant `C` gives `rho_q(G) >= log q / C`, which is INF on a self-copy host;
+  - `bernoulli-window-codeword-folner-ratio-bound`: `Phi >= log q / lambda(F)` with `lambda(F) = inf_S |SF|/|S|`, so
+    `Phi >= log q` when `<F F^-1>` is amenable, whatever `m` is;
+  - domination on reading sunflowers and for affine `psi` over a field on every incidence pattern (all `k`, extending
+    the linear-witness bullet above); a noncancellative star with a pointer code has `Phi -> 0`, so a proof must use
+    right cancellation;
+  - via Seward's upper bound as quoted in Alpeev (arXiv:1705.08559, Theorem 1.1), this claim is equivalent to
+    random-past entropy `>= k log q` for every generating partition. Copy codes have random-past entropy exactly
+    `k log q` on every group.
+
+  Where it dies: every proved domination instance, CA or Rokhlin, ends with a count over a finite index set closed under
+  the codewords with ratio `1` (Følner sets, a finite subgroup, permutation models). The identity and the per-term
+  bounds use no finite model. Finite truncations of the random-order chain rule pay a boundary term that is a fixed
+  fraction over nonamenable groups, and the order has no infinite form. A counterexample family needs `m` and
+  `lambda(F)` unbounded, a nonlinear `psi`, non-reading codewords or overlapping windows, and a non-maximal difference
+  subgroup; none is known. Artifact `research/artifacts/rokhlin-window-random-order-transport-2026-09-12.md`.
