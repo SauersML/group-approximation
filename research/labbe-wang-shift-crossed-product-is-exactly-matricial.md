@@ -54,3 +54,18 @@ ultraproduct `∏_ω M_(d_k)(F_k)` of matrix algebras over fields?
 - **Rank model is unconditional (un-labbe-ring, unreviewed).** `labbe-wang-shift-has-polynomial-pattern-complexity`
   with `subexponential-complexity-zd-subshift-rings-have-rank-models` gives `R` a unital rank model over `F_q`. So the
   "no" polarity would realize the middle rung with no extra input.
+- **Self-similar inflation: does not reach `Ω_U` (un-labbe-torus-decider, unreviewed).**
+  - **What holds.** Torus modules descend in scale (`torus-tiling-modules-restrict-to-smaller-scales`). An
+    `Ω`-preserving substitution of constant shape inflates them to strictly larger scales
+    (`constant-shape-substitutions-inflate-torus-tiling-modules`). So for free minimal SFTs with such a self-similarity,
+    exact matriciality is equivalent to ONE nonzero module at scale `3` (`self-similar-sft-matricial-iff-one-torus-module`).
+  - **Where it dies for `Ω_U`.** Labbé's `ω = αβγ` sends letters to letters or dominoes, so its letter images have
+    several shapes. In a module, "which columns widen" and "which rows heighten" are projections that are constant
+    along columns and rows, and the inflated torus is not a fixed set unless they are scalar. Scalar skeletons at every
+    level would describe a hierarchical configuration on a finite torus, i.e. a periodic legal point. So a renormalized
+    witness must keep a non-scalar skeleton at some level (heuristic; module desubstitution is not written).
+  - **No recognizable constant-shape self-similarity (recalled, not imported).** It would give rational eigenvalues
+    (an `S`-adic odometer factor), while `Ω_U` has the golden rotation `φ^(-2)` as its factor.
+  - **Searches not run.** A meaningful search needs `D >= D_0` (not explicit), simple factors of dimension `>= 3`, and
+    tori of at least `14 × 14` at `D = 3` (`196` sites, `19` idempotents each), which is beyond the compute budget.
+    Details: `research/artifacts/un-labbe-torus-decider-inflation-2026-09-13.md` §5.
