@@ -27,7 +27,8 @@ project:
     infinite simple group with property (T) that is hyperlinear, and of one
     that is sofic, with property (T), soficity and hyperlinearity defined in
     the Challenge from the textbook sources; their axiom closure is propext,
-    Classical.choice and Quot.sound.
+    Classical.choice and Quot.sound. The prose of this submission, this
+    abstract included, was written by Claude (Anthropic).
   authors: [Sauers]
   responsible_maintainers: [SauersML]
   license: Apache-2.0
