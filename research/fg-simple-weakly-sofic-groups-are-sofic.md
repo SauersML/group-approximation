@@ -102,14 +102,15 @@ nonsofic group refutes it.
   - kernels under a simple top reduce to the top. If `Q/Q_0` is a finite simple group, as for `F_q^n x| SL_n(q)`
     and `SL_n(R)` over chain rings, the width over `Q` is bounded in terms of the width over that simple group, with
     no condition on the kernel's layers.
-- **What a refutation would look like now.** A simple nonsofic group with relator width tending to infinity over
-  subdirect products of almost simple groups whose socles are alternating or of Lie type of unbounded order.
-  - *Simple socles.* By the classical and alternating results above, unbounded width over simple groups themselves
-    forces linear soficity over finite fields, which is kind (a).
-  - *What is left.* Almost simple groups with outer automorphisms, such as field automorphisms or `Sym(n)` over
-    `Alt(n)`, and subdirect products in which the tuple twists several large socle factors together.
-  - *Earlier shapes.* The following reduce to their almost simple quotients this way: towers of unbounded degree
-    under non-symmetric tops; bases under symmetric tops; and `p`-groups under classical tops with any layers (the
-    "Not covered" list of `simple-group-width-over-congruence-targets`).
-
-  No such construction is known.
+- **Kind (b) is empty (2026-09-13, lane `ex2-weak-sofic-bounded-factors`, unreviewed).**
+  `fp-simple-weak-soficity-is-finite-field-linear-soficity`: an infinite finitely presented simple group is weakly sofic
+  iff it is linear sofic over finite fields. Otherwise its relator width is bounded over every finite group.
+  - *Twisted almost simple targets.* Outer automorphisms, twisted socle factors and kernels of any shape are handled by
+    one device. The words `w_x in F^(3)` represent the generators, so `w(a)` lies in the socle product `L` of `Q/Q_0`,
+    since `Out` of a simple group has derived length `<= 3`. There the finite-simple templates apply.
+  - *Earlier shapes.* Towers of unbounded degree under non-symmetric tops, bases under symmetric tops, and `p`-groups
+    under classical tops with any layers are covered too.
+- **What a refutation would look like now.** For finitely presented `G`, only kind (a): a finitely presented simple
+  group that is linear sofic over finite fields and not sofic. So this claim, restricted to finitely presented groups,
+  is equivalent to *every finitely presented simple group linear sofic over finite fields is sofic*. No construction
+  is known.

@@ -110,11 +110,18 @@ for any group (`howie-pro-p-tuple-fails-the-profinite-certificate-at-a5`).
     `GL_n(F_2[t]/t^k)` with fixed `n` give no weak models, for every `k`;
   - `H wr Sym(n)` and `H wr Alt(n)` with `|H|` bounded
     (`simple-nonsofic-width-over-bounded-base-symmetric-wreath`).
-- **What is left.** Lengths not determined by one action or semisimple representation.
-  These are capped conjugation word lengths on finite groups with large normal subgroups
-  carrying small lengths, and ranks in characteristic `2` with deep unipotent structure under an
-  unbounded top. The group-theoretic room is:
-  - finite groups whose Fitting quotients leave every locally finite variety;
-  - subgroups of towers, where conjugators are scarce. These include every finite group with bounded
-    composition factors, by the Kaloujnine--Krasner embedding.
-  No construction of any of these kinds is known for `R^x` or for `V`.
+- **Every finite target: exactly linear soficity over finite fields** (lane `ex2-weak-sofic-bounded-factors`,
+  2026-09-13, unreviewed). By `fp-simple-weak-soficity-is-finite-field-linear-soficity`, `R^x` is weakly sofic iff
+  it is linear sofic over finite fields. If it is not, its relator width is bounded over every finite group. The
+  proof moves in two steps:
+  - it reduces a target `Q` to `Q/Q_0`, a subdirect product of almost simple groups
+    (`relator-width-bounded-by-almost-simple-quotients`, through Nikolov--Segal);
+  - it moves the tuple into the socle product by words in the third derived subgroup, where the finite-simple
+    templates apply.
+
+  So this claim is equivalent to `R^x` being linear sofic over finite fields, and the Gottschalk gate
+  `binary-leavitt-unit-group-is-f2-linear-sofic` would imply it.
+- **What was left before, now closed by that reduction.** Finite groups whose Fitting quotients leave every
+  locally finite variety, and subgroups of towers where conjugators are scarce. The second case includes
+  every finite group with bounded composition factors (`simple-nonsofic-width-over-bounded-composition-factor-groups`).
+  Capped conjugation word lengths on such groups give nothing beyond linear soficity over finite fields.
