@@ -1,27 +1,25 @@
 import GroupApproximation.GroupTheory.HydeLodha.QTwoFinitelyPresented
 import GroupApproximation.GroupTheory.HydeLodha.QTwoFinitePresentationStabK
 import GroupApproximation.GroupTheory.HydeLodha.QTwoLemmaFourSixAssembly
+import GroupApproximation.GroupTheory.HydeLodha.QTwoLemmaFourSixDynamics
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# hW: `FinitelyPresentedInfiniteSimpleStatement` over Lemma 4.6
+# hW: `FinitelyPresentedInfiniteSimpleStatement`, closed
 
-Hyde–Lodha, proof of Theorem 1.1: "`Q_n` is simple from Proposition [simplicity], and of type `F_∞` from
-Theorem 4.8."  At `n = 2`, in the finite-presentation form the Fournier-Facio paragraph needs.
+Hyde–Lodha, Theorem 1.1 at `n = 2`: `Q₂` is simple and of type `F_∞` (by Theorem 4.8), in the
+finite-presentation form the Fournier-Facio paragraph needs.
 
-The chain, with its one open leaf:
+The chain:
 
-* the dynamics in the proof of Lemma 4.6: `LemmaFourSixDynamicsStatement` (`QTwoLemmaFourSixStatements`),
-  the open leaf;
+* the dynamics in the proof of Lemma 4.6: `lemmaFourSixDynamics` (`QTwoLemmaFourSixDynamics`);
 * Lemma 4.6: `UpsilonFinitelyPresented` (`QTwoFinitePresentationStabK`), from the dynamics by
   `upsilonFinitelyPresented_of_dynamics` (`QTwoLemmaFourSixAssembly`);
 * Proposition 4.7: `isFinitelyPresented_stabK_of_upsilon`, packaged here as
   `stabKFinitelyPresented_of_upsilon`;
 * Theorem 4.8 and simplicity: `finitelyPresentedInfiniteSimpleStatement_of_stabK`
-  (`QTwoFinitelyPresented`).
-
-When `LemmaFourSixDynamicsStatement` closes, the closed `finitelyPresentedInfiniteSimple_closed` is added
-here.
+  (`QTwoFinitelyPresented`);
+* `finitelyPresentedInfiniteSimple_closed`: hW.
 -/
 
 namespace GroupApproximation
@@ -46,9 +44,15 @@ theorem finitelyPresentedInfiniteSimpleStatement_of_dynamics (hdyn : LemmaFourSi
     FinitelyPresentedInfiniteSimpleStatement :=
   finitelyPresentedInfiniteSimpleStatement_of_upsilon (upsilonFinitelyPresented_of_dynamics hdyn)
 
+/-- **hW**: a finitely presented, power-torsion-free, infinite simple group, `Q₂ = [Γ₂, Γ₂]`
+(Hyde–Lodha, Theorem 1.1 at `n = 2`). -/
+theorem finitelyPresentedInfiniteSimple_closed : FinitelyPresentedInfiniteSimpleStatement :=
+  finitelyPresentedInfiniteSimpleStatement_of_dynamics lemmaFourSixDynamics
+
 #audit_axioms GroupApproximation.HydeLodha.stabKFinitelyPresented_of_upsilon
 #audit_axioms GroupApproximation.HydeLodha.finitelyPresentedInfiniteSimpleStatement_of_upsilon
 #audit_axioms GroupApproximation.HydeLodha.finitelyPresentedInfiniteSimpleStatement_of_dynamics
+#audit_closed_axioms GroupApproximation.HydeLodha.finitelyPresentedInfiniteSimple_closed
 
 end HydeLodha
 end GroupApproximation
