@@ -30,5 +30,7 @@ The six-term sequence of `0 -> J -> A_T -> O_2 * T_2 -> 0` then gives `K_1(J) = 
 K1-injectivity of `J~` means that `U(J~)` is connected.
 
 Since LXI implies the halving homotopy, a counterexample to LXI is either a counterexample to the halving
-homotopy (the `[1] = 0` case) or a non-null unitary in `J~`. Whether LXI implies K1-injectivity of `J~` is
-not known.
+homotopy (the `[1] = 0` case) or a non-null unitary in `J~`.
+- Update (lane ex2-k1-defect-ideal, 2026-09-13): LXI does imply K1-injectivity of `J~`, by route
+  `toeplitz-defect-ideal-unitization-k1-injective-from-lxi`.
+- So this split is an equivalence: LXI ⟺ (halving and `U(J~)` connected).

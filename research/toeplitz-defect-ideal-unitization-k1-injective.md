@@ -18,10 +18,16 @@ Facts, all proved in the route `lxi-from-halving-and-toeplitz-defect-ideal`:
 - So the claim is exactly K1-injectivity of `J~`.
 - With the halving homotopy `o2-free-circle-halving-homotopy`, this claim implies STW Problem LXI.
 
+The claim follows from LXI (route `toeplitz-defect-ideal-unitization-k1-injective-from-lxi`). So LXI is
+equivalent to halving together with this claim, and a non-null unitary in `J~` refutes LXI
+(`toeplitz-defect-ideal-connected-iff-extension-k1-injective`).
+
 ## Attempts
 
-- Stability shortcut: dead. `J` has the unital quotient `O_∞`. Send `iota_1(s_k)` to the first two
-  generators of `O_∞`, so that e becomes a full projection, and send `iota_2` anywhere.
+- Stability shortcut: dead. `J` has a unital quotient. The map `iota_1(s_1), iota_1(s_2), iota_2(s_1),
+  iota_2(s_2) -> r_1, r_2, r_3, r_2` onto `O_3` sends e to `r_3r_3^* ≠ 0`, so J maps onto O_3.
+  - Correction (lane ex2-k1-defect-ideal): the earlier recipe "first two generators of `O_∞`, `iota_2`
+    anywhere" does not always work. With `iota_2 = iota_1`, the image is `T_2` and J maps onto K.
 - Module picture: `J = K(X)` for the Hilbert `eA_Te`-module `X = A_T e`. The orthonormal family
   `iota_1(s_w) e` spans a copy of `H_{eA_Te}` inside X. It cannot be complemented, since otherwise
   Kasparov stabilization would make J stable.
@@ -31,3 +37,14 @@ Facts, all proved in the route `lxi-from-halving-and-toeplitz-defect-ideal`:
 - Cancellation route: `o2-ideal-projection-unit-witness-fails-cancellation` would apply if `J` had an
   approximate unit of full projections with order cancellation. No projection approximate unit of J is
   known. The finite Fock projections `iota_1(sum_{|w|<=n} s_w p_3 s_w^*)` do not converge strictly on J.
+- Multiplier criterion: dead. `M(J)` contains no unital `O_2`, since the O_3 quotient has `[1] ≠ 0`. So
+  `o2-multiplier-extension-k1-injective-iff-unitization` cannot convert the halving homotopy into this claim.
+- Quotient criterion (lane ex2-k1-defect-ideal): `B_J = J + iota_1(T_2)` is an extension of `O_2` by J.
+  - By `o2-quotient-extension-ideal-k1-injective-iff-algebra`, the claim is equivalent to K1-injectivity
+    of `B_J`.
+  - `B_J` has `[1] = ` generator of `K_0(B_J) = Z`, so the halving theorem does not apply to it directly.
+  - Under halving, the corner `p B_J p` with `p = 1 - iota_1(s_1s_1^*)` has `[p] = 0` and is K1-injective.
+  - Passing back to `B_J ≅ iota_1(s_2) B_J iota_1(s_2)^*` is the unit axiom: for every
+    `u = 1 + x ∈ U(1+J)`, is `u ~_h 1 + S x S^*` in `U(1+J)`, where `S = iota_1(s_2)`?
+  - Strict isometry paths from 1 to S in `M(J)` would give this, but they pass to the O_3 quotient,
+    where no norm path of isometries from 1 to `r_2` exists.
