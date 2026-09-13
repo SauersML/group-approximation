@@ -4,6 +4,9 @@ id: zaremsky-3-05-four-strand-burau-faithful
 kind: claim
 title: "Zaremsky Problem 3.5 resolved: is the 4-strand Burau representation faithful?"
 root: true
+artifacts:
+  - research/artifacts/zp-burau-n4-verification-2026-09-13-part1.md
+  - research/artifacts/zp-burau-n4-verification-2026-09-13-part2.md
 ---
 
 M. C. B. Zaremsky, *Some open problems* (version of July 12, 2026,
@@ -21,23 +24,37 @@ This claim is the question. It is established only through an answer route:
 Never write a `requires: []` route into this claim.
 
 **Reading.** The Burau representation of the braid group `B_n` sends the
-standard generator `sigma_i` to the matrix acting as
-`[[1-t, t], [1, 0]]` on coordinates `i, i+1` and as the identity elsewhere,
-giving `B_n -> GL_n(Z[t, t^{-1}])`; it splits off a trivial summand over
-`Q(t)`, and the reduced and unreduced versions have the same kernel. The
-question asks whether this homomorphism is injective for `n = 4`.
+standard generator `sigma_i` to the matrix `[[1-t, t], [1, 0]]` on
+coordinates `i, i+1`, and to the identity elsewhere. This gives
+`B_n -> GL_n(Z[t, t^{-1}])`. Over `Q(t)` it splits off a trivial summand, and
+the reduced and unreduced versions have the same kernel. The question asks
+whether this homomorphism is injective for `n = 4`.
 
-**Known before the list.** Faithful for `n <= 3` (Magnus–Peluso, 1969).
-Not faithful for `n >= 9` (Moody, 1991), for `n >= 6` (Long–Paton, 1993),
-and for `n = 5` (Bigelow, 1999). The list (July 12, 2026) records `n = 4`
-as open.
+**Known before the list.**
+
+- Faithful for `n <= 3` (Magnus–Peluso, 1969).
+- Not faithful for `n >= 9` (Moody, 1991), for `n >= 6` (Long–Paton, 1993),
+  and for `n = 5` (Bigelow, 1999).
+- The list (July 12, 2026) records `n = 4` as open.
 
 ## Attempts
 
-- 2026-09-13: arXiv:2607.05283v1 (V. Bharathram, J. S. Birman, T. E.
-  Brendle, "The Burau representation of the braid group is faithful for
-  n = 4", posted July 6, 2026, 26 pages, unrefereed, no later version or
-  withdrawal as of September 13, 2026) claims the Yes answer, using ideas of
-  Moody, Long, Long–Paton and Bigelow. A line-by-line check of that argument
-  is in progress (artifact `research/artifacts/zp-burau-n4-verification-2026-09-13*.md`
-  once landed). Neither answer route is complete until that check lands.
+- **2026-09-13, the preprint.** arXiv:2607.05283v1 (V. Bharathram,
+  J. S. Birman, T. E. Brendle; posted July 6, 2026; 26 pages; unrefereed; no
+  later version or withdrawal as of September 13, 2026) claims the Yes
+  answer.
+- **2026-09-13, line-by-line check: GAP.** Details in
+  `research/artifacts/zp-burau-n4-verification-2026-09-13-part1.md` and
+  `-part2.md`.
+  - Verified: the reduction to the Brunnian subgroup, Moody's criterion,
+    parity implying no cancellation, and the new proof for `n = 3`.
+  - Not verified: the `n = 4` core.
+    - Lemmas 6.2–6.3 are supported by figures only.
+    - Proposition 6.4's last step asserts, without proof, that the modified
+      push map still satisfies parity and strictly increases the
+      intersection count. Together those facts amount to the theorem for the
+      braid in question.
+  - That step is recorded as the open claim
+    `brunnian-four-braids-admit-parity-correcting-push`, with route
+    `four-strand-burau-faithful-via-parity-correction`.
+  - Neither answer route is complete.
