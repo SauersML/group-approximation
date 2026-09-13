@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides
+import GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkSides
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -18,10 +19,18 @@ The argument is about face classes only.  The side of a walk `w` is a union of f
 
 * `SimpleClosedWalkSides.disjoint_sideFaces_of_across`: the sides are disjoint when the faces
   across each walk are off the side of the other and no edge of `w₂` is an edge of `w₁`.
+* `SimpleClosedWalkSides.not_walkKeep_of_across` and `disjoint_sideFaces_of_across_of_not_mem`:
+  a dart of `w₂` reversed on `w₁` contradicts the first barrier condition, so it is enough that
+  the walks share no dart.
 * `SimpleClosedWalkSides.not_mem_sideFaces_or_of_across`: any face, the exterior face included,
   is off one of the two sides.
 * `SimpleClosedWalkSides.disjoint_sideFaces_of_barrier`: for simple closed walks in a planar
   map, it is enough that every face across one walk is also across the other.
+* `SimpleClosedWalkSides.disjoint_sideFaces_of_barrier_noncrossing` and
+  `not_mem_sideFaces_or_of_barrier_noncrossing`: the same for noncrossing closed walks, which may
+  touch themselves at a vertex, with no common dart.  For the pocket walks of Case 1 the walks
+  share no dart because the face walk and the carrier of the cell have no repeated dart and `f`
+  is not `Π`.
 
 ## Manuscript status
 
@@ -98,6 +107,27 @@ theorem disjoint_sideFaces_of_across {w₁ w₂ : List M.Dart}
     .rel _ _ (Or.inr ⟨hoff d hd, rfl⟩)
   exact hacross₂ d hd ((mem_sideFaces_iff_of_eqvGen w₁ hcross).mp hd₁)
 
+/-- **A dart reversed on the other walk.**  If the faces across `w₁` are off the side of `w₂` and
+the walks share no dart, no dart of `w₂` lies on an edge of `w₁`: a dart `d` of `w₂` with
+`alpha d` on `w₁` would put the face of `d`, which is on the side of `w₂`, across `w₁`. -/
+theorem not_walkKeep_of_across {w₁ w₂ : List M.Dart}
+    (hacross₁ : ∀ d ∈ w₁, M.faceOf (M.alpha d) ∉ sideFaces M w₂)
+    (hcommon : ∀ d ∈ w₂, d ∉ w₁) {d : M.Dart} (hd : d ∈ w₂) : ¬ walkKeep M w₁ d := by
+  rintro (hmem | hmem)
+  · exact hcommon d hd hmem
+  · have h := hacross₁ (M.alpha d) hmem
+    rw [M.alpha_involutive d] at h
+    exact h ((mem_sideFaces_iff M w₂ d).mpr ⟨d, hd, .refl _⟩)
+
+/-- **Two walks with barrier faces and no common dart have disjoint sides.** -/
+theorem disjoint_sideFaces_of_across_of_not_mem {w₁ w₂ : List M.Dart}
+    (hacross₁ : ∀ d ∈ w₁, M.faceOf (M.alpha d) ∉ sideFaces M w₂)
+    (hacross₂ : ∀ d ∈ w₂, M.faceOf (M.alpha d) ∉ sideFaces M w₁)
+    (hcommon : ∀ d ∈ w₂, d ∉ w₁) :
+    Disjoint (sideFaces M w₁) (sideFaces M w₂) :=
+  disjoint_sideFaces_of_across hacross₁ hacross₂
+    fun _ hd => not_walkKeep_of_across hacross₁ hcommon hd
+
 /-- **Any face is off one of the two sides**, in the setting of `disjoint_sideFaces_of_across`.
 Applied to the exterior face, it picks the side that is a pocket. -/
 theorem not_mem_sideFaces_or_of_across {w₁ w₂ : List M.Dart}
@@ -131,6 +161,42 @@ theorem disjoint_sideFaces_of_barrier (hM : M.IsPlanar) {w₁ w₂ : List M.Dart
     rw [hde]
     exact hacross hw₁ e he
 
+/-- **Noncrossing closed walks with shared barrier faces and no common dart have disjoint
+sides.**  In a planar map, the face across a dart of a noncrossing closed walk is off its side, as
+for simple walks. -/
+theorem disjoint_sideFaces_of_barrier_noncrossing (hM : M.IsPlanar) {w₁ w₂ : List M.Dart}
+    (hw₁ : IsNoncrossingClosedWalk M w₁) (hw₂ : IsNoncrossingClosedWalk M w₂)
+    (hbarrier₁ : ∀ d ∈ w₁, ∃ e ∈ w₂, M.faceOf (M.alpha d) = M.faceOf (M.alpha e))
+    (hbarrier₂ : ∀ d ∈ w₂, ∃ e ∈ w₁, M.faceOf (M.alpha d) = M.faceOf (M.alpha e))
+    (hcommon : ∀ d ∈ w₂, d ∉ w₁) :
+    Disjoint (sideFaces M w₁) (sideFaces M w₂) := by
+  have hacross : ∀ {v : List M.Dart}, IsNoncrossingClosedWalk M v → ∀ e ∈ v,
+      M.faceOf (M.alpha e) ∉ sideFaces M v := by
+    intro v hv e he
+    exact (show M.faceOf e ∈ sideFaces M v ∧ M.faceOf (M.alpha e) ∉ sideFaces M v from
+      (hv.isBoundaryDart_sideFaces_iff hM e).mpr he).2
+  refine disjoint_sideFaces_of_across_of_not_mem (fun d hd => ?_) (fun d hd => ?_) hcommon
+  · obtain ⟨e, he, hde⟩ := hbarrier₁ d hd
+    rw [hde]
+    exact hacross hw₂ e he
+  · obtain ⟨e, he, hde⟩ := hbarrier₂ d hd
+    rw [hde]
+    exact hacross hw₁ e he
+
+/-- **Any face is off one of two noncrossing sides**, in the setting of
+`disjoint_sideFaces_of_barrier_noncrossing`.  Applied to the exterior face, it gives the input
+`hout` of `PocketRegion.ofNoncrossingClosedWalk` for one of the two walks. -/
+theorem not_mem_sideFaces_or_of_barrier_noncrossing (hM : M.IsPlanar) {w₁ w₂ : List M.Dart}
+    (hw₁ : IsNoncrossingClosedWalk M w₁) (hw₂ : IsNoncrossingClosedWalk M w₂)
+    (hbarrier₁ : ∀ d ∈ w₁, ∃ e ∈ w₂, M.faceOf (M.alpha d) = M.faceOf (M.alpha e))
+    (hbarrier₂ : ∀ d ∈ w₂, ∃ e ∈ w₁, M.faceOf (M.alpha d) = M.faceOf (M.alpha e))
+    (hcommon : ∀ d ∈ w₂, d ∉ w₁) (F : M.Face) :
+    F ∉ sideFaces M w₁ ∨ F ∉ sideFaces M w₂ := by
+  by_cases h : F ∈ sideFaces M w₁
+  · exact Or.inr (Finset.disjoint_left.mp
+      (disjoint_sideFaces_of_barrier_noncrossing hM hw₁ hw₂ hbarrier₁ hbarrier₂ hcommon) h)
+  · exact Or.inl h
+
 end SimpleClosedWalkSides
 
 end GroupApproximation.GGT.VanKampen
@@ -139,6 +205,13 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms
   GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.eqvGen_walkKeep_of_mem_sideFaces
 #audit_axioms GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.disjoint_sideFaces_of_across
+#audit_axioms GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_walkKeep_of_across
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.disjoint_sideFaces_of_across_of_not_mem
 #audit_axioms
   GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_mem_sideFaces_or_of_across
 #audit_axioms GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.disjoint_sideFaces_of_barrier
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.disjoint_sideFaces_of_barrier_noncrossing
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides.not_mem_sideFaces_or_of_barrier_noncrossing

@@ -56,6 +56,12 @@ CLAIM noncrossing barrier sides and the no-common-dart variant, GroupApproximati
     the barrier version for noncrossing closed walks. The dichotomy gives the input `hout` of
     `PocketRegion.ofNoncrossingClosedWalk` for one of the two walks.
 
+- 17:36: probe 0913-173352-83225 GREEN. It built the module with no warnings, and all nine
+  `#audit_axioms` report only `[propext, Classical.choice, Quot.sound]`. The module now imports
+  `NoncrossingClosedWalkSides`; no module imports it, on origin or in the shared tree. The extension
+  lands in the same commit as this entry. The 17:33 attic copy hit a ref-lock race and was not
+  needed.
+
 ## For the producer of the relator-cell branch (not built here)
 
 On the pocket walks `w₁ = invDarts X ++ invDarts B` and `w₂ = invDarts Y ++ invDarts A`:
