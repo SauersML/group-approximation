@@ -164,8 +164,8 @@ representatives 0 to 6. So:
 | 5 | 8 | 71 | 21 of 21 | `(0,1)` | `(1,2), (1,5), (1,7), (2,5)` |
 | 6 | 4 | 59 | 0 of 21 | none seen | `(0,1), (0,2), (0,3)`; out of memory at 24G |
 
-Only representative 1 has every case decided. That is the only one the claim
-uses.
+Only representative 1 has every case decided in this job. Representative 0 is
+decided after the rerun in job 689435, task 0 (section below).
 
 ## Case `(0,1)` on `box(S)` without `u0` (job 599042, array `0-6`, 24G)
 
@@ -231,3 +231,73 @@ array `0-8%6`). The task list `sbox2_tasks.txt` (md5
 Job 689436 reruns the verify script for representative 6 with 96G and a
 3-day limit. Both were pending at submission. Nothing in this section is
 used by any claim until its output is recorded here.
+
+
+## Representative 0 decided (job 689435, task 0)
+
+The support `S_0` of representative 0 of `census_pairs.json`, verbatim:
+
+```text
+[[[-1, -1, 1], [-3, 0, -1]], [[-1, -1, 1], [-1, -2, -1]], [[-1, -1, 1], [-1, 0, 1]], [[-1, -1, 1], [-1, 2, -1]], [[-1, -1, 1], [1, 0, -1]], [[-1, 1, -1], [-2, -1, -1]], [[-1, 1, -1], [-2, 1, 1]], [[-1, 1, -1], [0, -3, 1]], [[-1, 1, -1], [0, -1, -1]], [[1, -1, -1], [-3, 1, 0]], [[1, -1, -1], [-1, -1, 2]], [[1, -1, -1], [-1, 1, 2]], [[1, -1, -1], [1, -1, 0]], [[1, 1, 1], [-2, -2, -2]], [[1, 1, 1], [-2, -2, 0]], [[1, 1, 1], [-2, 0, -2]], [[1, 1, 1], [-2, 0, 0]], [[1, 1, 1], [0, -2, -2]], [[1, 1, 1], [0, -2, 0]], [[1, 1, 1], [0, 0, -2]], [[1, 1, 1], [0, 0, 0]]]
+```
+
+Its orbit has size 8 and its inverse support has word radius 5 (job 584612,
+2026-09-12 artifact). Task 0 of job 689435 ran
+`promislow-radius4-census-box-cases.py cases 0 box 64800 only=2,5`. On MSI the
+script `sbox2.py` has md5 `1475fa8724be6a203bd5097b8552202d`, `sbox2.sbatch`
+`9ae3af42a45ce7ddc5b9c96423ed9e1e`, `sbox2_tasks.txt`
+`0748a6cb9100c3b97c5cab2b82b2887d`, `census_pairs.json`
+`88d50831522fe612ef9412f27237bfb3` and `sbox_pairs.json`
+`1e5080225b5f3600d58ea3a5df69951d`, matching the table above. Slurm:
+`689435_0 uc0-sbox2 COMPLETED 03:15:09 0:0`. Output `sbox2_0_hard.out`, with
+the Singular warnings removed, verbatim:
+
+```text
+orbit 0: |S| = 21, |T'| = 77 (box), cells 338  [0.0s]
+orbit 0 box: i = 0 done  [0.0s]
+orbit 0 box: i = 1 done  [0.0s]
+orbit 0 box: i = 2 done  [11689.4s]
+orbit 0 box: i = 3 done  [11689.4s]
+orbit 0 box: i = 4 done  [11689.4s]
+orbit 0 box: i = 5 done  [11689.4s]
+orbit 0 box: i = 6 done  [11689.4s]
+orbit 0 box: i = 7 done  [11689.4s]
+orbit 0 box: i = 8 done  [11689.4s]
+orbit 0 box: i = 9 done  [11689.4s]
+orbit 0 box: i = 10 done  [11689.4s]
+orbit 0 box: i = 11 done  [11689.4s]
+orbit 0 box: i = 12 done  [11689.4s]
+orbit 0 box: i = 13 done  [11689.4s]
+orbit 0 box: i = 14 done  [11689.4s]
+orbit 0 box: i = 15 done  [11689.4s]
+orbit 0 box: i = 16 done  [11689.4s]
+orbit 0 box: i = 17 done  [11689.4s]
+orbit 0 box: i = 18 done  [11689.4s]
+orbit 0 box: i = 19 done  [11689.4s]
+orbit 0 box: i = 20 done  [11689.4s]
+orbit 0 box (only [(2, 5)], from 0): nonempty cases []; timeouts []; slowest (11689.366257429123, (2, 5))  [11689.4s]
+DONE
+```
+
+With job 598021 task 0 (21 of 21 rows, only `(0,1)` nonempty, only `(2,5)` at
+the limit) this decides all 210 cases for representative 0. Job 599042 task 0
+checked case `(0,1)`. This is the evidence for
+`research/promislow-radius4-orbit0-units-need-zeta8-any-inverse.md`.
+
+### Status of the other tasks at the time of this harvest
+
+`squeue` at harvest time: tasks 1 to 5 of 689435 (representatives 3, 4, 5, 2
+hard cases) and 689436 task 6 running for about 3.5 h; task 6 of 689435
+(representative 2 sweep) running for about 16 min; tasks 7 and 8
+(representative 6 sweep and row 0) pending. Their output files hold only the
+header and `i = 0 done`, so nothing else is decided.
+
+| k | decided | still open |
+| --- | --- | --- |
+| 0 | all 210 cases, `(0,1)` verified | none |
+| 1 | all 210 cases, `(0,1)` verified | none |
+| 2 | row 0 | `(1,2), (1,5)` running; rows 1 to 20 (sweep) running |
+| 3 | rows 0 to 20 except the timeouts | `(1,2), (1,5), (2,5)` running |
+| 4 | rows 0 to 20 except the timeouts | `(1,2), (1,5), (2,5)` running |
+| 5 | rows 0 to 20 except the timeouts | `(1,2), (1,5), (1,7), (2,5)` running |
+| 6 | nothing | `(0,1), (0,2), (0,3)` running; rows 1 to 20 and row 0 cases 4 to 20 pending; verify (689436) running |

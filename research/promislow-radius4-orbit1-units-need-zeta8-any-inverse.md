@@ -26,10 +26,12 @@ unit with `supp(u) in phi(S_1)`. If `u` is not `lambda g`, then
 So no nontrivial unit of `Q[P]`, `R[P]`, `Q_2[P]` or `Z[P]` is supported in
 any of these eight supports, whatever the support of its inverse.
 
-The other 44 census supports are covered only with the inverse support fixed
-(`promislow-radius4-support-pairs-need-zeta8`). The same computation on their
-six representatives left cases undecided at the time limit, ran out of
-memory, or did not finish, as recorded in the artifact. Units supported in
+The eight supports in the orbit of representative 0 are decided the same way
+(`promislow-radius4-orbit0-units-need-zeta8-any-inverse`). The other 36 census
+supports are covered only with the inverse support fixed
+(`promislow-radius4-support-pairs-need-zeta8`). On their five representatives
+the same computation left cases undecided at the time limit, ran out of
+memory, or had not finished, as recorded in the artifact. Units supported in
 `B(4)` outside the 52 supports, and anything at radius five, are not covered.
 
 DERIVATION

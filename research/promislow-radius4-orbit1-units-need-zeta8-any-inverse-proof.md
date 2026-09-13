@@ -82,7 +82,9 @@ from Tabei's census through `census_pairs.json`.
   the 3600 s limit. Representative 2 was cancelled at 12 h after one row.
   Representative 6 ran out of memory at 24G after three timeouts, and its
   verify task hit the 6 h limit. Jobs 689435 and 689436 rerun the undecided
-  parts with longer limits and more memory. See the artifact.
+  parts with longer limits and more memory. See the artifact. Task 0 of job
+  689435 decided representative 0's last case, giving
+  `promislow-radius4-orbit0-units-need-zeta8-any-inverse`.
 - The whole 155-element box of arXiv:2608.00103v1 as `T'` did not finish its
   first case in 30 minutes (job 584612, recorded in
   `promislow-radius4-support-pairs-zeta8-2026-09-12.md`). The per-support box
