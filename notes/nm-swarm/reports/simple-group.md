@@ -78,7 +78,8 @@ pieces in modules owned by this lane.
   (`+2`), `GFaceWordInsertion.exists_cell_output_dartCount` and `exists_corner_output_dartCount`
   (`∃ R : CornerOutput …, R.diagram.toCombMap.dartCount = Delta.toCombMap.dartCount + 2 * word.length`).
 
-- `VanKampen/Estimating/OsinLemma94CornerInsertion` (probe 0913-123745-5546, landed with the rewrite above): `GFaceWordInsertion.SplitOutput.dartCount_eq`
+- `VanKampen/Estimating/OsinLemma94CornerInsertion` (f7538e223, probe 0913-123745-5546; the rewrite above landed in
+  the same commit; queued for wiring): `GFaceWordInsertion.SplitOutput.dartCount_eq`
   (a split insertion adds exactly `2 * word.length` darts: the old darts, the path and the reversed path are
   disjoint), `SplitOutput.side_ne_outerFace`, `side_ne_cellFace`, and
   `GloballyDistinguishedSectionFamily.cornerInsertionInput : CornerInsertionInput`. The word goes in between the
