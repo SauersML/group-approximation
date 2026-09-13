@@ -117,3 +117,22 @@ The first cases are `SL_3(Z[t^(+-1)])` and the finitely generated subgroups of
      same linear part.
    - *Not settled:* whether any finitely presented full group with such local maps
      exists. See `research/artifacts/bh-full-cantor-ca-host-2026-09-12.md`.
+7. **Parameter-coordinate affine hosts** (lane `bh-sl3-zt-host`, 2026-09-12).
+   *Succeeds for polynomial coordinates.*
+   - **Action.** Let `R = Z[1/m][t_1..t_k]` and `p` a prime not dividing `m`.
+     `R^n x| E_n(R)` acts on `Z_p^n x Z_p^k` by `(g,b)(v,s) = (g(s)v + b(s), s)`.
+     The state at the vertex `(e,a)` is `(σ_a(g), (σ_a(g)e + σ_a(b) - c)/p)`, where
+     `σ_a` substitutes `t_j -> a_j + p t_j` and `c` is the digit of `g(a)e + b(a)`
+     (`polynomial-parameter-affine-groups-are-self-similar`). The linear part varies
+     with the parameter, which is how the obstruction of attempt 2 is escaped.
+   - **Finite presentation.** `E_n(R)` is finitely presented for `n >= k+4`
+     (`elementary-groups-over-polynomial-s-integers-are-fp`), and so is
+     `R^n x| E_n(R)` (`affine-extension-of-fp-elementary-group-is-fp`).
+   - **Conclusion:** `polynomial-linear-groups-satisfy-boone-higman`, which includes
+     `SL_3(Z[t])`.
+   - **Consistent with attempts 4--6.** The local group contains `E_3(Z[t])`, so it
+     is not linear over a number field and not a-T-menable.
+   - *Does not extend to Laurent coordinates as it stands:* `σ_a(t^(-1))` is not a
+     Laurent polynomial. Closing `Z[t^(+-1)]` under the substitutions adds the
+     infinitely many denominators `a_0 + p a_1 + ... + p^j t`, so the section-closed
+     ring is not finitely generated. See `research/artifacts/bh-sl3-zt-host-2026-09-12.md`.
