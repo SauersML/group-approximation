@@ -79,9 +79,16 @@ statement matches the printed sentence at the printed generality.
     `manuscriptSentence_compressorCentralizer`. Row b671ae1aab2b now names them.
   - Both modules are queued for wiring in `wire-queue.txt`.
 
+- 17:20 LANDED 0f5189f9a (probe 0913-171351-8828 GREEN, BUILT): `Manuscript/NonMFSentences/IntroMFDefinitionCoronaBridge.lean`,
+  `PrintedMFDefinitionCoronaForm` and `manuscriptSentence_mfDefinitionCoronaForm`. For every countable G, IsOperatorMF G ⟺
+  the printed definition of tex 87–98. Corona-form producers such as `isOperatorMF_of_isLEF` (tex "countable LEF groups
+  are MF", raised by ms-core-1) now reach the printed notion by `.mp`. Rows 88e8012cb87e and 8d0b87a46a51 name it; the
+  module is queued for wiring.
+
 ## State
 
-Every sentence of tex 1–165 is carried by a closed declaration or honestly classified. The two exceptions:
+Every sentence of tex 1–165 is carried by a closed declaration or honestly classified. The exceptions:
 - a16637da7249 (abstract, torsion-free clause) stays partial on W1;
-- the two new modules await root wiring.
+- the three new modules (KorchaginLiteralSentence, IntroCompressorCentralizerSentence, IntroMFDefinitionCoronaBridge) await
+  root wiring.
 Residual statements owned by this lane: none.
