@@ -20,7 +20,8 @@ not finitely presented. This is the negative answer to Serre's question
   (`sl3z-products-of-infinite-subgroups-are-polycyclic`).
 - Any witness `N` is Zariski dense of infinite index, since finitely
   generated subgroups that are not Zariski dense are finitely presented
-  (`sl3z-non-zariski-dense-fg-subgroups-are-fp`).
+  (`non-zariski-dense-subgroups-of-sl3z-are-coherent`; see also
+  `sl3z-incoherence-witnesses-are-zariski-dense-thin`).
 - Live criterion 1: a subgroup `G` of type F with `cd G = 2`, `chi(G) != 0`
   and an epimorphism `G -> Z` with finitely generated kernel; that kernel is
   then not finitely presented (Wang-sequence Euler characteristic argument).

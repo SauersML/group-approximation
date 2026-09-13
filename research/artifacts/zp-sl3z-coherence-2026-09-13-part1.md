@@ -14,7 +14,7 @@ the arXiv API was rate limited.
 | `sl3z-infinite-order-centralizers-are-solvable` | established (proof route) | eigenvalue case analysis |
 | `sl3z-products-of-infinite-subgroups-are-polycyclic` | established (route from the centralizer claim) | no `Z x F_2`, no `F_2 x F_2` |
 | `sl3z-contains-f2-times-f2` | refuted | its route `sl3z-incoherent-via-f2-times-f2` is dead |
-| `sl3z-non-zariski-dense-fg-subgroups-are-fp` | established (proof route) | witnesses are thin |
+| `non-zariski-dense-subgroups-of-sl3z-are-coherent` (peer z3-04-sl3z-coherent) | established | witnesses are thin; the independent duplicate `sl3z-non-zariski-dense-fg-subgroups-are-fp` was retired, and its case (2b), irreducible over Q but not absolutely irreducible implies abelian, is recorded in §6 |
 | `sl3z-contains-cd2-euler-positive-fibered-subgroup` | open | criterion 1 prerequisite |
 | `sl3z-incoherent-via-euler-fibered-subgroup` | route | Wang-sequence proof |
 | `sl3z-contains-rfrs-cd2-subgroup-with-positive-b2` | open | criterion 2 prerequisite |
@@ -138,3 +138,25 @@ property. So `C` must be thin. Combination theorems for thin subgroups of
 3. Decide whether thin free-by-cyclic subgroups `F_n x| Z` of `SL_3(Z)` with
    finitely generated fibre exist at all. That is a prerequisite for 4.4 and
    is interesting in its own right.
+
+## 6. Independent check of the non-dense case (retired node)
+
+This lane landed an independent proof that finitely generated non-dense
+subgroups are finitely presented, `sl3z-non-zariski-dense-fg-subgroups-are-fp`
+(d4dda172e9). It duplicated the earlier factored node
+`non-zariski-dense-subgroups-of-sl3z-are-coherent` of z3-04-sl3z-coherent
+(7b951a86fb) and was retired. Its case split is kept here as a cross-check.
+
+Let `Zc°` be the identity component of the Zariski closure and `H_1` the
+finite-index part of `H` inside it.
+
+- **Irreducible on `C^3`.** `Zc° = SO(q)` for a rational form `q`, so `H_1` is
+  finite or virtually a finitely generated Fuchsian group.
+- **Reducible over `Q`.** `H_1` lies in a block upper triangular integral
+  group `Z^2 x| (GL_2(Z) x {±1})`. Coherence follows from P. Hall's extension
+  lemma and virtual freeness of `GL_2(Z)`.
+- **Irreducible over `Q` but not absolutely irreducible.** The commutant of
+  `Q[H_1]` is a division algebra of dimension dividing 3 other than `Q`, hence
+  a cubic field `K`. Then `Q[H_1] <= K` and `H_1` is abelian. This sub-case
+  gives a short independent argument for the torus part of the
+  classification.

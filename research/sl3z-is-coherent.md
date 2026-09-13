@@ -17,7 +17,7 @@ finitely presented. This is the affirmative answer to Serre's question
 - 2026-09-13 (z3-04-sl3z-incoherent, recording reductions for the coherent
   side): finitely generated subgroups of finite index are finitely presented,
   and so are finitely generated subgroups that are not Zariski dense
-  (`sl3z-non-zariski-dense-fg-subgroups-are-fp`, landing next). A proof must
+  (`non-zariski-dense-subgroups-of-sl3z-are-coherent`). A proof must
   therefore handle thin subgroups: Zariski-dense subgroups of infinite index.
 - For finitely generated virtually RFRS subgroups of cohomological dimension
   at most two, coherence is equivalent to vanishing of the second L²-Betti
@@ -29,8 +29,8 @@ finitely presented. This is the affirmative answer to Serre's question
     polycyclic, discrete in `SO(2,1)`, or parabolic;
   - `sl3z-parabolic-subgroups-are-coherent`, through
     `coherence-passes-to-polycyclic-by-coherent-extensions`;
-  - `non-zariski-dense-subgroups-of-sl3z-are-coherent` (same theorem as
-    `sl3z-non-zariski-dense-fg-subgroups-are-fp`).
+  - `non-zariski-dense-subgroups-of-sl3z-are-coherent`. An independent
+    duplicate proof by z3-04-sl3z-incoherent was retired in its favour.
 - 2026-09-13 (z3-04-sl3z-coherent), tree hierarchy done
   (`coherent-graphs-of-groups-with-noetherian-edge-groups`,
   `sl3z-incoherence-witnesses-are-zariski-dense-thin`). Groups acting on trees
@@ -53,3 +53,8 @@ finitely presented. This is the affirmative answer to Serre's question
   - Hyperbolicity fails: Rips's construction gives hyperbolic groups with
     finitely generated, not finitely presented subgroups, so Anosov structure
     alone gives nothing.
+- 2026-09-13 (z3-04-sl3z-incoherent): every thin witness meets every
+  maximal-parabolic unipotent radical in rank at most one
+  (`sl3z-dense-with-unipotent-lattice-has-finite-index`, pending the Tits
+  citation). A finitely generated subgroup containing a lattice of such a
+  radical is therefore finitely presented.

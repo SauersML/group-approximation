@@ -19,7 +19,7 @@ self-contained reduction to the finite-index statement
 **Consequences for Serre's question.**
 
 - Any finitely generated, not finitely presented subgroup `N <= SL_3(Z)` is
-  thin (`sl3z-non-zariski-dense-fg-subgroups-are-fp`). So it meets every such
+  thin (`non-zariski-dense-subgroups-of-sl3z-are-coherent`). So it meets every such
   `U(Z)` in a subgroup of rank at most one.
 - `N` contains no finite-index subgroup of any rational conjugate of the
   integral Heisenberg group, since that group contains `U(Z)` for

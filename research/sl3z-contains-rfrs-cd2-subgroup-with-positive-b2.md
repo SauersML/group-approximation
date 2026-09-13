@@ -5,6 +5,7 @@ kind: claim
 title: SL_3(Z) contains a finitely generated virtually RFRS subgroup of cohomological dimension two with positive second L2-Betti number
 distinct_from:
   sl3z-contains-cd2-euler-positive-fibered-subgroup: that asks for a fibration onto Z with finitely generated kernel and nonzero Euler characteristic, with no residual hypothesis; this asks for a virtually RFRS subgroup with positive b_2^(2), with no fibration
+  sl3z-coherence-forces-rfrs-cd2-subgroups-free-by-cyclic: that is the implication from coherence to virtually free-by-cyclic structure; this is the existence statement for a subgroup violating it
 ---
 
 There is a finitely generated, virtually RFRS subgroup `G <= SL_3(Z)` with
@@ -15,7 +16,7 @@ For `G` of type F with `cd G = 2` and `G` infinite, `b_2^(2)(G) = chi(G) + b_1^(
 So a positive Euler characteristic suffices.
 
 **Necessary conditions.** `G` is Zariski dense of infinite index. It is not
-Zariski dense only if it is coherent (`sl3z-non-zariski-dense-fg-subgroups-are-fp`),
+Zariski dense only if it is coherent (`non-zariski-dense-subgroups-of-sl3z-are-coherent`),
 and finite-index subgroups have virtual cohomological dimension 3. `G`
 contains no `Z x F_2` (`sl3z-products-of-infinite-subgroups-are-polycyclic`).
 

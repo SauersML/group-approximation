@@ -15,7 +15,7 @@ generated and not finitely presented.
 **Necessary conditions on any such `G`** (from the established region):
 
 - `ker phi` is a finitely generated, not finitely presented subgroup, so it is
-  Zariski dense (`sl3z-non-zariski-dense-fg-subgroups-are-fp`). Hence `G` is
+  Zariski dense (`non-zariski-dense-subgroups-of-sl3z-are-coherent`). Hence `G` is
   Zariski dense.
 - `G` has infinite index. Finite-index subgroups of `SL_3(Z)` have property
   (T) (Kazhdan), so they have finite abelianization and no epimorphism onto
