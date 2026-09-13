@@ -56,6 +56,25 @@ disk and on origin; the adjacent lanes are ms-traces-1 (tex 1808–1858) and ms-
 - CLAIM G1 `GroupApproximation/Sofic/VerticalAscendingHNN.lean`: `V ≃* HNNExtension Γ ⊤ α.range` (`t ↦ t`, `ι ↦ of`) and
   `T_α = ⋃_{n≥0} t^{-n}Γt^n` inside V.
 
+## Item 2 (main ~18:45): binder 3's island case, helping ms-intro-1
+
+Context: a Case 1 X-walk `X₁ t X₂ t⁻¹ X₃` runs through a cutting path t around an island that holds a relator cell. The
+pocket side is disconnected across t, so it is not a PocketRegion, and the walk is not simple. Main's ruling: ms-intro-1
+lands `OsinLemma94CaseOneIslandStatement`; the loop cut comes from the enclosed singular subdiagram of the closed walk,
+Osin's Γ joined along t. I proposed the split to ms-intro-1 in one direct message (~18:50): ms-intro-1 owns the island
+statement, its reduction and the audit of `ofPlanar`, `isRelatorProduct_of_planar`, `InnerDiscRegion` and the zero-cell
+merge; this lane owns A–C below.
+
+- CLAIM A `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedSubdiagram.lean`: `EnclosedFaceSet`,
+  `ClosedWalkEnclosedSubdiagramStatement` (Ξ reads the walk, carries the enclosed relator cells, least area inherited) and
+  `enclosedSubdiagram_leastAreaCut`.
+- CLAIM B `GroupApproximation/GGT/VanKampen/Estimating/OsinEnclosedSubdiagramLoopCut.lean`:
+  `OsinLoopCut.ofEnclosedSubdiagram`, `EnclosedSubdiagramLoopCutStatement` and `EnclosedCellTransportStatement`.
+- CLAIM C `GroupApproximation/GGT/VanKampen/ClosedWalkIslandModel.lean`: a closed island model (not simple; enclosed and
+  disconnected across t; calibration of Ξ).
+
+Ownership check (~18:50): the paths and names are free on origin, in the shared tree and in every `lanes/*.files`.
+
 ## Progress log
 
 - 17:16: ledger landed (677b7cf09).
