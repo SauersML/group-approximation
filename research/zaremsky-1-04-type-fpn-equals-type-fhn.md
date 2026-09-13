@@ -88,3 +88,10 @@ candidates for a No answer.
 - Proved pieces (unreviewed): `proper-and-free-type-fhn-coincide`,
   `type-fhn-groups-are-of-type-fpn`, `type-fp2-groups-are-of-type-fh2`.
   Proofs: `research/artifacts/zp-fpn-fhn-2026-09-13-part1.md` and `-part2.md`.
+- Candidate family eliminated (unreviewed):
+  `isolated-type-fn-vertex-stabilizers-give-type-fhn` (a geometric `FH_n`
+  form of Brown's criterion for isolated singular vertices) gives
+  `leary-groups-with-cofinite-s-are-type-fhn`. So every Leary group
+  `G_L(S)` of type `FP_n`, with `π_1(L)` of type `FP_n`, is of type `FH_n`,
+  including Leary's stated open case `ℤ − S` finite. Proof:
+  `research/artifacts/zp-fpn-fhn-2026-09-13-part3.md`.

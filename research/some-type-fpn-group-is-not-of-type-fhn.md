@@ -23,15 +23,21 @@ because the implication holds for `n ≤ 2`.
   Low-degree homology does not obstruct: a superperfect kernel gives
   `H_k(Q; M) ≅ H_k(G; M)` for `k ≤ 2` and all `ℤG`-modules `M`, and this is
   compatible with `FP_3`. No invariant found yet.
-- Main candidate family, the open case stated by Leary (arXiv:1512.06609,
-  checked from the TeX source 2026-09-13): `G_L(S)` with `L` a finite
-  `R`-acyclic flag complex, `ℤ − S` finite and nonempty, and `L̃` not
-  acyclic. Leary shows these are `FP(R)` and writes "we do not know whether
-  `G_L(S)` is necessarily `FH(R)`". His method would give `FH` from a
-  `π_1(L)`-equivariant map from the vertex link to an acyclic free cocompact
-  `π_1(L)`-complex. By `type-fh3-iff-fp3-and-superperfect-kernel-over-fp-group`,
-  a separation at `n = 3` would need to rule out every finitely presented
-  `Q ↠ G_L(S)` with superperfect kernel.
+- Dead candidate: Leary's open case (arXiv:1512.06609, checked from the TeX
+  source 2026-09-13): `G_L(S)` with `L` a finite acyclic flag complex,
+  `π_1(L)` of type `FP`, `ℤ − S` finite and nonempty, and `L̃` not acyclic.
+  Leary shows these are `FP` and writes "we do not know whether `G_L(S)` is
+  necessarily `FH(R)`". At every finite `n` they are of type `FH_n` over `ℤ`
+  (`leary-groups-with-cofinite-s-are-type-fhn`, unreviewed). Leary's other
+  cases were already `FH_n` whenever `FP_n`. So Leary's family gives no
+  separation of `FP_n` from `FH_n`; it can only bear on `FP` versus `FH`.
+- The obstruction has to be of a new kind. By
+  `type-fh3-iff-fp3-and-superperfect-kernel-over-fp-group`, a witness at
+  `n = 3` is an `FP_3` group such that every finitely presented `Q ↠ G` with
+  perfect kernel has `H_2(ker) ≠ 0`. By
+  `isolated-type-fn-vertex-stabilizers-give-type-fhn`, the witness admits no
+  cocompact action on a 2-acyclic complex with only isolated type-`F_3`
+  singular vertices.
 - Not candidates: Brown–Leary's graphical small-cancellation groups `G(S)`
   (arXiv:2004.04550) are stated there to be of type `FH`, of cohomological
   dimension two.
