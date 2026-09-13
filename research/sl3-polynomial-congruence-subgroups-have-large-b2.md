@@ -2,13 +2,17 @@
 rg: 2
 id: sl3-polynomial-congruence-subgroups-have-large-b2
 kind: claim
-title: Congruence subgroups of SL_3(F_q[t]) of level degree at least 2 have large second Betti number, computed from the Soulé sector
+title: Given Soulé's strict fundamental domain, the congruence subgroups of SL_3(F_q[t]) computed at q = 2, 3 and level degree 2 or 3 have large second Betti number
 distinct_from:
   sl3-polynomial-finite-index-z-extension-center-survives: that is the open premise, asking for a central Z-extension of a finite-index subgroup with the centre visible in finite quotients; this establishes only its necessary first step, nonzero real H^2, at explicit congruence levels.
   finite-multiplier-projective-models-round-strictly: that voids scalar-cocycle instability at groups with finite H_1 and H_2; this shows that the congruence subgroups of the one-variable retract of the Kun--Thom vertex are not such groups.
 ---
 
-**ESTABLISHED (unreviewed), conditional on the named hypothesis (S).**
+**ESTABLISHED, conditional on the named hypothesis (S).**
+
+Reviewed in `research/artifacts/ex-review2-dynamics-2026-09-13-part1.md`, §1.6. Verdict: PASS as a
+conditional statement, with the `D = 2` rows re-derived by hand. The title was corrected on 2026-09-13
+because it asserted every level of degree at least 2 and did not name (S).
 
 **Setting.**
 - `X` is the Bruhat--Tits building of `SL_3(F_q((1/t)))`, and `Q` the sector of the standard
