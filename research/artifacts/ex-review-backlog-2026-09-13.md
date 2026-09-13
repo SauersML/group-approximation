@@ -51,6 +51,18 @@ parts 1--2.
 | `non-vtf-hyperbolic-counterexample-may-be-one-ended` | hyperbolic-vtf | PASS | 2 §3.2 |
 | `lattice-forced-torsion-dies-in-hyperbolic-quotients`, with its dead route | hyperbolic-vtf | PASS | 2 §3.3 |
 | triangle quotient search (artifact, and the open claim's Attempts) | hyperbolic-vtf | labelling PASS, support argument PASS, code not rerun | 2 §3.4 |
+| `leavitt-unit-groups-have-fixed-price-one` | free-bridges | PASS | 3 §4.1 |
+| `uniqueness-phase-cluster-relations-inherit-nonsoficity` and `nonsofic-groups-have-cluster-soficity-threshold-in-pc-pu` | free-bridges | PASS; the Benjamini--Schramm route correctly does not fire | 3 §4.2 |
+| `nonsofic-actions-have-cluster-soficity-threshold-in-pc-pu` and `nonsofic-subgroup-bounds-cluster-soficity-threshold` | free-bridges | PASS | 3 §4.3 |
+| `sofic-coset-action-makes-amalgam-double-sofic` | hidden-solved | PASS | 3 §5.1 |
+| `free-group-doubles-over-any-subgroup-are-sofic` and `gkp-free-group-actions-are-sofic` | unused-power | PASS | 3 §5.2 |
+| `one-kun-thom-compressor-is-relatively-embeddable` | hidden-solved | PASS | 3 §5.3 |
+| `commuting-kun-thom-compressors-are-relatively-embeddable` and `heisenberg-kun-thom-slice-is-relatively-embeddable` | hidden-solved | PASS at the checked steps | 3 §5.4 |
+| `opposite-transvections-are-first-nonore-relative-gate` | hidden-solved | PASS | 3 §5.5 |
+| the Farey, one-relator, two-coordinate, three-symbol and torsion-corner K2 claims | hidden-solved | PASS | 3 §5.6 |
+| `rank-five-laurent-k2-stability-is-dimension-free` | hidden-solved | PASS, justification note on centrality | 3 §5.6 |
+| `sofic-linear-weakly-sofic-chain-has-a-strict-link` | unused-power | PASS | 3 §5.7 |
+| `howie-pro-p-tuple-fails-the-profinite-certificate-at-a5` | weak-soficity | PASS | 3 §6 |
 
 No FAIL on a claim that decides a famous problem. No false establishment found.
 
@@ -92,16 +104,29 @@ parts 1--2:
 **Open claims without routes carry Attempts:** `kun-thom-double-is-l2-acyclic` and
 `decidable-group-with-noncomputable-l2-betti-number`.
 
+**Refill landings, first sweep at 01:07.** No refill route fires into a famous root.
+- `non-vtf-hyperbolic-from-non-vtf-triangle` requires the open
+  `hyperbolic-triangle-of-finite-groups-not-virtually-torsion-free`.
+- `no-heisenberg-from-linear-depth-growth` requires the open
+  `leavitt-units-of-infinite-order-have-linear-depth-growth`.
+- The two triangle routes between the non-VTF triangle claim and the simple-triangle claim form a 2-cycle,
+  and both endpoints are open.
+
 ## 4. Queue
 
-- ex-free-bridges: the three bridges. The re-derivation is done; part 3 is still to land.
-- ex-free-unused-power: the hidden-solved claims.
-- `howie-pro-p-tuple-fails-the-profinite-certificate-at-a5`.
 - The ex-q34-* lanes and ex-nh-fresh.
-- Refills, as they land.
+- Refills, established but unreviewed:
+  - `rf-kazhdan-group-not-flexibly-hs-stable`, with `bdhv-central-extension-property-t`;
+  - `finite-multiplier-projective-models-round-strictly`;
+  - `one-compressor-actor-models-with-exact-origin-vertex`;
+  - `relator-width-over-nilpotent-by-locally-finite-groups`;
+  - `simple-group-psl-width-is-finite-field-linear-soficity`;
+  - `simple-vertex-triangles-are-universal-for-triangle-vtf`.
 
 ## Part files
 
 - `ex-review-backlog-2026-09-13-part1.md`: L²-acyclicity region (ex-lueck-approximation).
 - `ex-review-backlog-2026-09-13-part2.md`: weak-soficity collapse and width (ex-weak-soficity), and VTF
   beyond Chern--Quillen (ex-hyperbolic-vtf).
+- `ex-review-backlog-2026-09-13-part3.md`: percolation bridges (ex-free-bridges); hidden-solved imports and
+  the K2 chain (ex-free-unused-power); Howie's tuple.
