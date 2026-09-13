@@ -41,6 +41,12 @@ cover of `K` by division sets of weight `1/N + δ ≤ ω`. Since
 So a counterexample confines the local divisions of matrix size `N` to sets of
 `ρ`-diameter `2^{−cN}`, heuristically pinning about `cN` coordinates.
 
+**Defect-uniform form** (`bauer-unit-division-defect-uniform-criterion`). The defect only
+needs a uniform bound. If the unit does not divide, some `κ_0 > 0` has
+`ℓ_A(N, κ_0) ≤ 16 · 2^{−κ_0 N}` for every `N`, where `ℓ_A(N, δ)` is the Lebesgue number of
+division sets with matrix size `≥ N` and defect `≤ δ`. So confinement must be driven by the
+matrix size, at a fixed defect.
+
 **Base status.** Theorem E, Proposition 8.2 and Corollary F on main
 (`research/artifacts/ex-tw-c-space-unit-division-part4-2026-09-13.md` and parts 1–3)
 have no ex-verify review yet (`ex-verify2-analysis` unreviewed list). Lane
