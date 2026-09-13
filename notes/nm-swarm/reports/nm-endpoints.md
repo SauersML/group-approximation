@@ -8,8 +8,8 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
 
 - `12e1d1af8`: `GroupApproximation/Manuscript/NonMF/TorsionFreeFourLeaves.lean`. It was
   probed green (probe 0913-013032-80446, the bytes on main), and the `#audit_axioms` line
-  of each theorem shows only `propext`, `Classical.choice` and `Quot.sound`. It is queued
-  for wiring. The module has 19 theorems
+  of each theorem shows only `propext`, `Classical.choice` and `Quot.sound`. It is now
+  root-imported (GroupApproximation.lean:4834). The module has 19 theorems
   `*_of_fourLeaves`, each over exactly the walls its proof uses.
   - Greendlinger and bridge walls only:
     - `thm:hull` at Hull's notion, at Osin's notion, at the limit-set notion, and at a
@@ -28,14 +28,12 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
   - `TorsionFreeLimitSetNotion`, two docstrings (reported by sec5-sentences); probe
     0913-020633-75804 green;
   - `TorsionFreeHullPrintedLeastArea`, the module docstring; probe 0913-021058-94913 green.
-
-  No other tex line reference in this lane's modules is out of date.
 - `96ebd17c2`: the TorsionFreeKOLeaves decision (section below).
-- Landed together with this report version: docstring-only updates to
-  `TorsionFreeLeafAssembly`, `TorsionFreeLiteratureInputsLeastArea` and
-  `TorsionFreeSaturationFromCorrected` (reported by sec2-sentences), probed green. They
-  named `TheoremCAssembly` declarations that 2c3c8cb40 deleted: `hullOneStep`,
-  `hullTheorem71`, `literatureInputs` and the estimating admissions. They now name
+- `fe61152ed`: docstring-only updates to `TorsionFreeLeafAssembly`,
+  `TorsionFreeLiteratureInputsLeastArea` and `TorsionFreeSaturationFromCorrected` (reported
+  by sec2-sentences), probe 0913-030945-26927 green for all three. They named
+  `TheoremCAssembly` declarations that 2c3c8cb40 deleted: `hullOneStep`, `hullTheorem71`,
+  `literatureInputs` and the estimating admissions. They now name
   `HullSC.hullOneStepStatement_of_leastAreaLeaves`,
   `TorsionFree.hullTheorem71_of_leastAreaLeaves` and the surviving
   `GGT.VanKampen.Estimating*Statement`s.
@@ -48,9 +46,15 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
 2. `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}`. Its
    producer still takes `QuotientPeripheralLetterPullbackStatement`
    (`relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_letterPullback`).
-3. `TheoremC.KotowskiOllivierStatement`, which is `Hyperbolic.SharpExistence`. Its producer
-   `KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_of_leaves` (c5a8ae8fb) still takes the
-   zip, fold and fixed-clique leaves of GHB(7).
+3. `TheoremC.KotowskiOllivierStatement`, which is `Hyperbolic.SharpExistence`. After hzip
+   closed, the fixed-clique leaf is no longer needed, and the only open leaf is
+   `Systolic.MirrorFoldStatement CCKW.cosetComplex`:
+   - `KMSGroup.sharpExistence_ghb7_of_zipFoldHyp hzip hfold hhyp`
+     (Kazhdan/CCKWSystolicInvariantClique.lean:68) concludes `Hyperbolic.SharpExistence`;
+   - `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold hzip hfold`
+     (Kazhdan/GHBHyperbolicDiscCounts.lean:84) gives `hhyp`;
+   - `CCKW.zipSpur_cosetComplex` (GGT/SystolicDiscZip.lean:131, 8389a0e6c) gives `hzip`. It
+     carries `#audit_closed_axioms` and is root-imported (GroupApproximation.lean:4755).
 4. CLOSED: `TorsionFreePrinted.FinitelyPresentedInfiniteSimpleStatement`. It is proved by
    `HydeLodha.finitelyPresentedInfiniteSimple_closed`
    (GroupTheory/HydeLodha/FinitelyPresentedInfiniteSimpleClosed.lean:49, 47b31bef8), which
@@ -69,7 +73,10 @@ followed by `#audit_closed_axioms`.
 
 - Walls 1 and 2: `thm:hull`, `lem:saturation`, `HullCommonQuotientStatement`,
   `FournierFacioQuotientStatement`.
-- Walls 1 to 3: `LiteratureInputs` and `Configuration` (row dab2f2bfe084).
+- Walls 1 to 3: `LiteratureInputs` and `Configuration` (row dab2f2bfe084). Once hfold closes,
+  `hKO` is
+  `KMSGroup.sharpExistence_ghb7_of_zipFoldHyp CCKW.zipSpur_cosetComplex hfold
+  (GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold CCKW.zipSpur_cosetComplex hfold)`.
 - All four walls: `FournierFacioParagraph`, `thm:torsion-free`, `cor:regular-nonmf-algebra`.
   Wall 4 is closed, so these wait on walls 1 to 3 only. The flip passes
   `HydeLodha.finitelyPresentedInfiniteSimple_closed` as `hW`. This lane lands no three-leaf
@@ -92,15 +99,18 @@ None of them retires a baseline finding: a four-leaf form reshapes a conditional
 not discharge one. No row was added for the proof-step rows bcc99703f838, 2d1cd22e5f49,
 2f997e5af4e6 and 721da4c14d11, because no four-leaf theorem proves those sentences exactly.
 
-## Wall status on main (checked 2026-09-13 at origin 4b4db96a4)
+## Wall status on main (checked 2026-09-13 at origin f495cf119)
 
-- Wall 4 is closed (`HydeLodha.finitelyPresentedInfiniteSimple_closed`, 47b31bef8,
-  root-imported).
-- Walls 1 to 3 have no closed producer. No closed producer of
+- Wall 4 is closed (above).
+- Wall 3: hzip is closed (above). The open leaf is hfold, and its remaining cases are
+  `MirrorFoldDistinctStatement` and `MirrorFoldPinchedStatement`. dgo-geometric's truth
+  audit found both true for every triangle complex. theoremc-retire's
+  `TheoremCAssemblyFoldLeaf` (f019265bb) states Theorem C over hgreendlinger, hbridge and
+  hfold at every triangle complex. The root does not import it.
+- Walls 1 and 2 have no closed producer. No closed producer of
   `OsinLemma97SectionStatement` or `QuotientPeripheralLetterPullbackStatement` has landed.
-- `KotowskiOllivierClosed.kotowskiOllivier_closed` has not landed.
-  `kotowskiOllivier_of_leaves` (Kazhdan/KotowskiOllivierClosed.lean:47) still takes
-  `hzip`, `hfold` and `hT6`. ko-closed will message this lane when it lands.
+  The W1 pocket carrier is dgo-analytic's `PocketRegion`
+  (Estimating/OsinPocketRegion.lean:68, 497542415).
 - `TheoremCAssembly` has no `sorry` left (2c3c8cb40). `kotowskiOllivier` there became the
   hypothesis `hKO`.
 
@@ -112,51 +122,34 @@ line:
   `RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v}`;
 - `relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_letterPullback` concludes
   `.{u, v, w}`;
-- `KotowskiOllivierClosed.kotowskiOllivier_of_leaves` concludes
-  `Manuscript.NonMF.TheoremC.KotowskiOllivierStatement`;
-- `HydeLodha.finitelyPresentedInfiniteSimpleStatement_of_leaves` concludes the unique
+- `KMSGroup.sharpExistence_ghb7_of_zipFoldHyp` concludes `Hyperbolic.SharpExistence`, the
+  body of `Manuscript.NonMF.TheoremC.KotowskiOllivierStatement`;
+- `HydeLodha.finitelyPresentedInfiniteSimple_closed` concludes the unique
   `TorsionFreePrinted.FinitelyPresentedInfiniteSimpleStatement`
   (FournierFacioParagraphFromSimpleFactor.lean:353).
 
-Finer routes on main since 12e1d1af8 are still conditional and do not collide with the
+Two orphan modules from 3cf9bd845 close no wall and do not collide with the
 `TorsionFreeFourLeaves` names:
-- 232d6b12b adds `HydeLodha.finitelyPresentedInfiniteSimpleStatement_of_upsilon
-  (hU : UpsilonFinitelyPresented)`, so the Hyde–Lodha wall now waits only on Lemma 4.6.
-- 3cf9bd845 lands two orphan modules unverified:
-  - `Kazhdan/KotowskiOllivierLeaves` (now ko-closed's) has `kotowskiOllivierStatement_of_leaves`
-    and the `*_of_leastAreaKOLeaves` forms, over the zip, fold and fixed-clique leaves.
-  - `Manuscript/NonMF/TorsionFreeKOLeaves` (now this lane's; decision below) has the
-    `*_of_leastAreaFixedCliqueHyp` and `*_of_hullFixedCliqueHyp` forms, over the fixed-clique
-    leaf and the hyperbolicity of `GHB(7)`.
-  - Neither module closes a wall.
+- `Kazhdan/KotowskiOllivierLeaves` (ko-closed's) has `kotowskiOllivierStatement_of_leaves` and
+  the `*_of_leastAreaKOLeaves` forms, over the zip, fold and fixed-clique leaves;
+- `Manuscript/NonMF/TorsionFreeKOLeaves` (this lane's; decision below) has the
+  `*_of_leastAreaFixedCliqueHyp` and `*_of_hullFixedCliqueHyp` forms, over the fixed-clique
+  leaf and the hyperbolicity of `GHB(7)`.
 
 `#audit_axioms` throws on any axiom outside the classical allowlist
 (Meta/AxiomGuard.lean), so the green probe shows that no four-leaf chain uses `sorryAx`.
 
-## TorsionFreeKOLeaves (assigned to this lane 2026-09-13): retire, do not wire
+## TorsionFreeKOLeaves: unwired orphan, no deletion (agreed with the lead)
 
-Decision:
-- Leave `Manuscript/NonMF/TorsionFreeKOLeaves.lean` unchanged on main (blob 4c6a119ae).
-- Do not probe it and do not queue it for wiring.
-- Recommend that the lead retire it. Lanes may not delete modules (COMMON_RULES line 70), so this
-  lane lands no deletion.
-
-Reasons:
+- Leave `Manuscript/NonMF/TorsionFreeKOLeaves.lean` unchanged on main (blob 4c6a119ae). Do not
+  probe it and do not queue it for wiring.
 - Each of its seven forms is the matching `TorsionFreeFourLeaves.*_of_fourLeaves` form with
   `hKO := KMSGroup.sharpExistence_ghb7_of_fixedCliqueHyp hT6 hhyp`
-  (Kazhdan/GHBSharpExistenceSystolic.lean:47).
-- Its leaf `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7)` already has a producer,
-  `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold` (Kazhdan/GHBHyperbolicDiscCounts.lean:84).
-  - So the module sits between the Kotowski-Ollivier wall and ko-closed's three leaves.
-  - The flip goes through `KotowskiOllivierClosed.kotowskiOllivier_of_leaves`, then
-    `kotowskiOllivier_closed`, and never needs this module.
+  (Kazhdan/GHBSharpExistenceSystolic.lean:47). The flip never needs it, and wiring it would
+  add seven open-predicate findings to the baseline and retire none.
 - Its two `cor:regular-nonmf-algebra` forms still take `hDGO` and `hGO`, but both citations are
   already proved: `TorsionFreeSectionAssembly.simpleUniqueTraceAtHypEmbedded_closed` and
   `TorsionFreePrinted.gerasimovaOsinTheorem11Printed`.
-- Wiring it would add seven open-predicate findings to the baseline and retire none.
-- Nothing on main imports it, no lane's files list names it, and no census row names it.
-- Its bodies match the signatures of `TorsionFreeLiteratureInputsLeastArea` at origin, but it
-  has never been probed.
 
 ## Open-predicate findings over the least-area leaves (classification)
 
@@ -193,24 +186,24 @@ the closed endpoint and says "retires open-predicate <decl>".
 ## Next
 
 - Watch main for closed wall producers and flip. A closed `LiteratureInputs` needs its own
-  namespace, because `TheoremC.literatureInputs` in TheoremCAssembly.lean is the sorry form.
+  namespace, because `TheoremC.literatureInputs` was the name of the deleted admission.
 - The Greendlinger and bridge walls unlock thm:hull, lem:saturation, the quotient field and
   common quotient, and their 12 findings above.
-- `TorsionFreeFourLeaves` is queued for wiring (wire-queue line 349). At 4062bc4b8 the root
-  does not import it yet.
 - Row f2bf6328169e (tex 1725, the DGO and GO sentence) belongs to cite-osin, which grades it
   formalized. census2 U3 lists it as a stale re-grade. It is not this lane's row.
 - This lane has no closed theorem to land until a wall closes. The one-line flips stay here
   as the walls close.
 - W1 assignment (lead, 2026-09-13): `OsinDescentStepInput`
-  (Estimating/OsinAppendixAssemblyDescent.lean:94), or whichever piece dgo-analytic hands over
-  from its pocket cut core in `Estimating/OsinPocket*`:
-  - (a) the face set enclosed by a closed walk;
-  - (b) the least-area four-section cut;
-  - (c) glue-back transport.
-
-  Caveat: dgo-analytic's Finding 3 says the StepInput producer is circular (it needs clause
-  (a) at the pocket), and the pocket route through `descentInput_of_sectionPocketCut` replaces
-  it. Nothing on main outside OsinAppendixAssemblyDescent consumes StepInput. So this lane has
-  asked dgo-analytic which piece to take, and will build on the (a) face-set interface once
-  it lands.
+  (Estimating/OsinAppendixAssemblyDescent.lean:94), or a piece of dgo-analytic's pocket core.
+  - StepInput is off the live route:
+    - dgo-analytic's Finding 3 says its producer is circular;
+    - audit-sec5 found that its binders carry no `OsinCCondition` and no induction hypothesis;
+    - the live route is `OsinSection97PocketInputsStatement` through
+      `descentInput_of_sectionPocketCut`;
+    - nothing outside OsinAppendixAssemblyDescent consumes StepInput.
+  - audit-sec5 recommended retiring it to the lead. This lane builds nothing on it.
+  - The pocket pieces (a)–(c) were split at ~04:05 among dgo-analytic, kh-ejz, kh-torsion,
+    hull-respell, hull-select and go-lemma42, on `PocketRegion`.
+  - This lane is waiting for the lead to reassign it. audit-sec5's candidate is the merge
+    producer consumed by `GloballyDistinguishedSectionFamily.false_of_collapse_singleton`
+    (Estimating/OsinAppendixCutMerge.lean:120), which has no users yet.
