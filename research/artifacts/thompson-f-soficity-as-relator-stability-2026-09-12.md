@@ -157,3 +157,43 @@ affirmative answer also makes Thompson's `V` nonsofic.
   stability of the abelianization `Z^2`. By Dudko--Medynets Corollary 3.3(2) and the `k`-tuple Main
   Theorem, the same proof should apply to every `F_(n,r)`, with abelianization `Z^n`. That variant is
   not written out here.
+
+## 5. The Hilbert--Schmidt version: hyperlinearity of F
+
+Normalized trace `tr = Tr/n` on `M_n(C)`, `||x||_2 = tr(x^* x)^(1/2)`. An *HS almost-representation* is
+`pi_n : F -> U(k_n)` with `||pi_n(gh) - pi_n(g) pi_n(h)||_2 -> 0`. A `delta`-solution in `U(n)` of a word
+system is a tuple with every word within `delta` of `1` in `||.||_2`. The relevant stability input is that
+`Z^2` is same-dimension HS-stable, a right-angled Artin group on a chordal graph
+(`chordal-abelian-graph-products-hs-stable`, Spaas arXiv:2603.02058).
+
+**Theorem 5.1.** For Thompson's group `F` the following are equivalent.
+1. `F` is not hyperlinear.
+2. The relator system of `F` is stable for unitary matrices in normalized HS norm: every
+   `delta`-solution is within `epsilon(delta) -> 0` of an exact solution, uniformly in `n`.
+3. For every `epsilon > 0` there is `delta > 0` such that every `delta`-solution `(U, W)` in `U(n)`
+   has `||UW - WU||_2 < epsilon`.
+
+*Proof.* Replace fixed-point proportions by normalized traces.
+- **Character.** `chi(g) = lim_omega tr(pi_n(g))` is normalized, a class function, and positive definite,
+  since `sum c_i conj(c_j) tr(pi(g_j)^* pi(g_i)) = tr(X^* X) >= 0` for `X = sum c_i pi(g_i)`, up to
+  `o(1)`. By Dudko--Medynets, `chi = t tau_reg + (1-t) chi_ab`, and `chi = 1 - t` on `F' \ {e}`.
+- **Amplification (`t > 0` gives hyperlinearity).** Use `pi_n^(⊗ m) ⊗ (lambda_((Z/N)^2) o ab)`.
+  - The HS defect grows at most by a factor `m`, by telescoping unitaries.
+  - The trace is `chi^m` times the indicator that `ab(g) = 0 mod N`.
+  - So the trace tends to `0` on every `g != e` once `m` and `N` are large: `(1-t)^m` on
+    `F' \ {e}`, and `0` off `F'`.
+
+  This is a separating HS approximation, so `F` is hyperlinear.
+- **`4 => 3`, in the HS reading.** A family of `delta_n`-solutions with `||U_n W_n - W_n U_n||_2 >= epsilon`
+  gives an almost-representation with `||pi_n([a,b]) - 1||_2 >= epsilon`, and
+  `||x - 1||_2^2 = 2 - 2 Re tr(x)` for unitary `x`. So `Re chi([a,b]) <= 1 - epsilon^2/2`, hence `t > 0`.
+- **`3 => 2`.** Almost-commuting unitaries are near commuting unitaries in the same dimension
+  (HS-stability of `Z^2`). Commuting pairs are exact solutions.
+- **`2 => 1`.** A separating HS approximation has `tr(pi_n([a,b])) -> 0`. Stability puts the generators near
+  commuting unitaries, and then `||pi_n([a,b]) - 1||_2 -> 0`, a contradiction. Alternatively use
+  `hyperlinear-hs-stable-is-residually-finite`, since `F` is finitely presented and not residually finite.
+  ∎
+
+**Reading.** Hyperlinearity of `F` is the failure of HS-stability of the two Thompson relators. Every
+unitary almost-solution that keeps the generators a fixed HS distance from commuting makes `F`
+hyperlinear. Since `F <= V`, a proof of (3) also makes `V` nonhyperlinear.
