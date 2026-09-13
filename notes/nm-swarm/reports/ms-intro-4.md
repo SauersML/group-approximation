@@ -168,3 +168,23 @@ CLAIM, new modules:
   `not_simple_of_full_firstArc` / `_secondArc`.
 - `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellTransport.lean`: `CellPocketFaceSet` across the edge
   doublings (outside and inside) and the pinch splits (avoiding and inside), over the map-level layer.
+
+w1-binder-7 agreed on the reuse split. It has no generic rebuilt-copy layer: `PocketFaceSet.exists_trimDouble` (in flight,
+`OsinPocketTrimDouble`) stays at PocketFaceSet level, and the cell version mirrors its pattern.
+
+### LANDED a86056b69 (probe 0913-184743-35217 GREEN; ArcTrim BUILT, PinchStep compiled in 0913-183407-69677 and restored)
+
+Both modules are new and unwired, and both are queued for wiring. Neither adds a census row.
+- `Estimating/OsinPocketCellPinchStep`: `CellPocketFaceSet.repeatedVisits`, `simple_of_closedWalk_of_unpinched`,
+  `CellPocketPinchStepPosStatement`, and `cellPocketPinchPosStatement_of_stepPos` (strong induction on repeated visits).
+  So residual (1) reduces to the step Prop.
+- `Estimating/OsinPocketCellArcTrim`:
+  - `firstArc_darts_ne_nil` and `secondArc_darts_ne_nil`;
+  - `trimFirstLast` and `trimSecondLast`, which need room on the side and at least two arc darts; each keeps the cycle,
+    with `closedWalk_`, `repeatedVisits_` and `simple_..._iff` lemmas and a shorter arc;
+  - `not_simple_of_full_firstArc` and `_secondArc`: a full cell arc is never simple, with no remainder hypothesis.
+  - It reuses w1-binder-7's `CyclicArc.dropLastArc`, `PocketFaceSet.invDarts_eq_getLast_cons` and `invDarts_eq_tail_append`,
+    and the `PocketFullArc` helpers.
+
+Next: `Estimating/OsinPocketCellTransport`, cell pockets across the edge doublings outside and inside the face set (probing).
+Then the pinch splits and the trim–double step at the cells.
