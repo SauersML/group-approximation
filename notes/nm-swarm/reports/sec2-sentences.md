@@ -140,10 +140,40 @@ Files owned by other lanes were not edited. Their owners were messaged on 2026-0
   TorsionFreeSaturationFromCorrected.lean:21, 74, 264, 435.
   nm-endpoints fixed all three at fe61152ed, after probe 0913-030945-26927 GREEN.
 
+All four owners have fixed their files, so no ask is still open.
+
 Some hits were left unchanged:
 - Accurate history: the TheoremCAssembly header, SeedFromTheoremC.lean:29-32, and theoremc-retire's row and report.
 - Field names or unrelated declarations that share a name: RelHypFournierFacio:9, RelHypFournierFacioProp23:10,
   FournierFacioInput, TorsionFreeFourLeaves:158, GHBLatticeRouteKazhdan:23, and hull-respell's row.
+
+## W1 (c) glue-back transport (2026-09-13)
+
+Status 2026-09-13 08:00: waiting.  The lead gave sec2 one (c) module or instance, to be named by go-lemma42 and written
+in a module sec2 owns.  go-lemma42 owns `DiscDiagram.regionPiece_transport` and `OsinLoopCut.ofRegionPiece`.  The
+carrier is dgo-analytic's `PocketRegion` (Estimating/OsinPocketRegion).  sec2 asked go-lemma42 to name a piece it has
+not started.  No reply has come, and no reminder was sent.
+
+go-lemma42 has since landed the combinatorial glue (namespace `Surgery.PocketGlue`):
+
+| module | carries | landed |
+|---|---|---|
+| GGT/VanKampen/SurgeryPocketGlue | `Seam`, `Seam.glueMap`, `Seam.glue_isRestriction` | 1e3497e4b, 0358f4537 |
+| GGT/VanKampen/SurgeryPocketGlueCount | `glue_dartCount`, `glue_edgeCount`, `glue_faceCount` | 3af801bac |
+| GGT/VanKampen/SurgeryPocketGlueVertices | `glue_vertexCount` | 0cdb0dc87 |
+| GGT/VanKampen/SurgeryPocketGluePlanar | `glueMap_connected`, `glueMap_planar` | 291ae2c87 |
+
+So the χ counts are done.  Still to come: Estimating/OsinPocketGlueDiagram, the diagram on `glueMap` through
+`DiscDiagram.ofPlanar`, and Estimating/OsinPocketGlueTransport.  Of the lead's two examples, only the SectionPocketCut
+instance (`cellTransport`, `sectionTransport`) is left.
+
+Inputs `ofPlanar` needs on `glueMap`, as read.  M is Δ', the seam faces are `P.outside`, X is the O-equivalent copy,
+and `outer` is its outer face:
+- a label: M's label on `inl` and X's on `inr`.  `label_alpha` holds across the seam only if X's label on each `outer`
+  dart equals M's label on the matching boundary dart;
+- the outer face, the image of Δ'.outerFace (`outerFace_mem` puts it in `P.outside`);
+- a `FaceBoundary` for every glued face, transported along `Seam.glueFaceEquiv`;
+- `relFaces`, `hword` and `htriv`.
 
 ## Census
 
