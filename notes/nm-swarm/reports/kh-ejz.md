@@ -143,10 +143,34 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
 4. **Residual (mine): the region-side geometry.**
    - Starting point: two distinct regions a ≠ b in S.family join cells i ≠ j. They are face-disjoint, and their arcs
      on a cell are disjoint by `RegionCandidate.cellArcDarts_disjoint`.
-   - To produce: the pocket face set, and the split of its boundary into sides and cell arcs.
-   - Its exact form waits on OsinPocketPieces. Two open questions: is the split the uncollared s₁ t₁ s₂ t₂ or the
-     collared g₁ t₁ g₂ t₂, and is the kept cell part of my discharge?
-   - I asked dgo-analytic; no reply yet.
+   - Rulings (~06:30). The lead: state the Prop myself over `PocketRegion`, uncollared, on Δ; do a ≠ b first;
+     LoopCutInput is on HOLD. dgo-analytic: the split is uncollared, the sides are the ContiguityGeometry sides with
+     length and word norm ≤ ε, and the kept cell (the m₁ = 0 exclusion by merging a and b) is part of my discharge.
+   - **Stated:** new module `GGT/VanKampen/Estimating/OsinPocketRegionSide`, landed unverified at d00f94876. Green
+     probe 0913-064335-8857 on the same bytes. It is unwired, since it imports the unwired OsinPocketRegion.
+     ```lean
+     def MultipleEdgePocketRegionInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+         (W : Set (List (RelLetter G Lambda))) : Prop :=
+       -- binders of MultipleEdgeCutInput, then
+       ∃ (P : PocketRegion S.diagram) (C : RelatorCell S.diagram.toCombMap S.diagram.outerFace W)
+         (s₁ s₂ : List S.diagram.toCombMap.Dart)
+         (A₁ : CyclicArc (cellDarts S.diagram i)) (A₂ : CyclicArc (cellDarts S.diagram j)),
+         C ∈ S.diagram.relatorCells ∧ C.face ∈ P.faces ∧
+           (cell S.diagram i).face ∉ P.faces ∧ (cell S.diagram j).face ∉ P.faces ∧
+           invDarts S.diagram P.outer.cycle =
+             s₁ ++ invDarts S.diagram A₁.darts ++ s₂ ++ invDarts S.diagram A₂.darts ∧
+           s₁.length ≤ eps ∧ s₂.length ≤ eps ∧
+           wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord S.diagram s₁)) ≤ eps ∧
+           wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord S.diagram s₂)) ≤ eps ∧
+           P.inner.FollowsBoundary ∧ P.outer.FollowsBoundary
+     ```
+   - Consumer: `OsinMultipleEdgeCut.ofPocketRegion` with `equiv := S.equiv` and `C' := cell S.diagram i`. hquasi on
+     the arc parts comes from OsinPocketCellArcs, and on the sides only after kh-torsion's collar.
+   - ~06:45: I sent the name to dgo-analytic to adopt in OsinPocketPieces, and to dgo-geometric for the model test.
+     The three risks I raised:
+     - pinched pockets, with sides touching at a vertex;
+     - a non-simple cell boundary in the gap, where the arc part may be two intervals rather than one CyclicArc;
+     - merge absorption of third regions inside the pocket.
 5. **Next.**
    - State and prove the region-side data once OsinPocketPieces lands, then tell go-lemma42.
    - When hull-euler's C6 Prop arrives, check it against this output.
