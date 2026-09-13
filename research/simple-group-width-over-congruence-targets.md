@@ -52,6 +52,10 @@ iff it is linear sofic over finite fields.
 - *Trivial model.* A sofic group fails (i), and its width is unbounded already over `R = F_q`.
 - *Real object.* No finitely presented simple group is known to satisfy (i). So (i) => (ii) is a
   reduction. (iii) => (i), item 1, and the bound over congruence towers in fixed rank are unconditional.
+- *Computed check of the kernel step.* The Singer pair lemmas were checked for `p <= 7`, `n <= 6`. The
+  covering `K_1 = [g_1, K_1][g_2, K_1]` was checked by brute force in `SL_3(Z/4)`, `SL_2(Z/9)`,
+  `SL_2(Z/27)` and `SL_2(Z/25)`. One Singer element alone fails.
+  (`research/artifacts/congruence-singer-model-test-2026-09-13.md`). The near-scalar case is not computed.
 - *Where each hypothesis is used.* Item 1 uses none. The near-scalar and proportional cases for unbounded
   `n` use the uniform collapse constant of (i).
 
