@@ -224,6 +224,16 @@ Model test (in the module docstring):
   (`SurgeryFaceEdgeDoubling`), and a spur of `∂Δ` is thickened (`SurgeryOuterSpurThickening`).
 - Least area is used: the disc bounded by a gap holds no relator cell. `S.diagram` has least area
   through `S.equiv`, which keeps the boundary word and gives a bijection of relator cells.
+- The bubble avoids every selected region, so `transportDistinguished` applies (sent to
+  simple-group). The gap between sides `s` and `s + 1` is a closed path at their junction `v`.
+  - For a simple loop, least area puts the exterior on the side of `Π`, so the other side holds
+    only G-faces. At each loop vertex the `Π` side holds only corners of `Π`, and of `f` at `v`.
+  - A region holding a bubble face then has both arcs on `Π`. `RespectsSections`
+    (`target ≠ some source`) and `nondegenerate` exclude it.
+  - `FaceShelling.step` allows an empty arc, so the pasting witness alone does not exclude
+    pinched regions.
+  - A hair part of the gap has `Π` on both sides, so the pinch face is `Π` and `PinchSplit.Input`
+    fails there. That is kh-cckw's hair opening.
 
 The pick is (a). This lane recommended it and ko-closed confirmed it.
 - It has the consumer's shape: one piece per arc is `false_of_quadrilateral_face`, and the class
@@ -233,12 +243,20 @@ The pick is (a). This lane recommended it and ko-closed confirmed it.
 - ko-closed: the `(side, gap)` pieces give the gap-reads-1 identities that the `OneCellWindow` kills
   take, so the class-word same-cell branch can take its pieces from `pinchedPieces` too.
 
+Ruled 09-13 ~16:17: both members stand.
+- (a) serves Case 1 when the target is a different cell or the boundary, and ko-closed consumes it.
+  simple-group writes its producer over fff-periodic's `PinchSplit` layer. It builds the multi-face
+  gap collapse and consumes hair opening at a pinch as a Prop.
+- (b) is needed by sec5-sentences' `OsinLemma94LongTransitionInput`
+  (`Estimating/OsinLemma94ClassTransitions.lean`, 2767e402d), and sec5-sentences proves it. It
+  states the two Props it consumes: hair opening (owner kh-cckw) and bubble un-pinch (owner
+  leavitt-units).
+
 ## Risks
 - Budget: `K` independent of `ε` needs the number of unselected `G`-faces and their sides bounded by
   an Euler count in `n` alone (hull-count94).
-- Case 1 over classes: `OsinLemma94PinchedQuadrilateralStatement` has no producer and no ruled
-  owner yet. Its proof needs collapsing a multi-face gap and a hair opening at a pinch, and neither
-  is on main.
+- Case 1 over classes: `OsinLemma94PinchedQuadrilateralStatement` has no producer yet. Its proof
+  needs collapsing a multi-face gap and a hair opening at a pinch, and neither is on main.
 
 ## One-cell connector pair (option (1), ruled 09-13 ~14:07)
 - Option (1) wins: ko-closed's metric kill at the printed threshold, in a new module over
@@ -300,8 +318,8 @@ Closed pieces plugged in:
   `OsinLemma94PolygonLists`, `PolygonKinds`, `PolygonSides` and `PolygonMaximal`.
 
 ## Next
-- The lead's ruling on who writes the producer of `OsinLemma94PinchedQuadrilateralStatement`. The
-  proof collapses a multi-face gap and opens a hair at a pinch, over main's `PinchSplit` layer
+- Nothing open in this lane. simple-group writes the producer of
+  `OsinLemma94PinchedQuadrilateralStatement` over main's `PinchSplit` layer
   (`SurgeryPinchSplitDiagram`, `SurgeryPinchSplitExtremal`).
 - Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once waist binders 1 to 3 close and
   the class-word respell lands with the pinched-window producer.
