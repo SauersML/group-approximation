@@ -4994,6 +4994,8 @@ import GroupApproximation.CStarLimits.TowerLift
 import GroupApproximation.KTheory.Suspension
 import GroupApproximation.KirchbergAlgebra.Basic
 import GroupApproximation.KirchbergAlgebra.CuntzCriterion
+import GroupApproximation.KTheory.K1Functorial
+import GroupApproximation.KTheory.K1Scalar
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
