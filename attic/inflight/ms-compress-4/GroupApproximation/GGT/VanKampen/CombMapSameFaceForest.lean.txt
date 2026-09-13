@@ -26,21 +26,22 @@ universe u
 
 namespace CombMap
 
-open Classical in
 /-- The darts with the face `f` on both sides. -/
-noncomputable def sameFaceDarts (M : CombMap.{u}) (f : M.Face) : Finset M.Dart :=
-  Finset.univ.filter fun d => M.faceOf d = f ∧ M.faceOf (M.alpha d) = f
+noncomputable def sameFaceDarts (M : CombMap.{u}) (f : M.Face) : Finset M.Dart := by
+  classical
+  exact Finset.univ.filter fun d => M.faceOf d = f ∧ M.faceOf (M.alpha d) = f
 
 theorem mem_sameFaceDarts (M : CombMap.{u}) (f : M.Face) (d : M.Dart) :
     d ∈ M.sameFaceDarts f ↔ M.faceOf d = f ∧ M.faceOf (M.alpha d) = f := by
+  classical
   unfold sameFaceDarts
   rw [Finset.mem_filter]
   exact ⟨fun h => h.2, fun h => ⟨Finset.mem_univ d, h⟩⟩
 
-open Classical in
 /-- The vertices at which the darts with the face `f` on both sides start. -/
-noncomputable def sameFaceVertices (M : CombMap.{u}) (f : M.Face) : Finset M.Vertex :=
-  (M.sameFaceDarts f).image M.vertexOf
+noncomputable def sameFaceVertices (M : CombMap.{u}) (f : M.Face) : Finset M.Vertex := by
+  classical
+  exact (M.sameFaceDarts f).image M.vertexOf
 
 end CombMap
 
