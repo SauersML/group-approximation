@@ -33,10 +33,11 @@ nontrivial defect, then for every class with (U), `H not in C` iff `NORM_C` hold
 | Hilbert--Schmidt | iff `R^x` not hyperlinear | OPEN; its failure is `binary-leavitt-unit-group-hyperlinear`, a hyperlinear nonsofic group |
 | rank over `F_2` | iff `R^x` not `F_2`-linear sofic | OPEN; the gate `binary-leavitt-unit-group-is-f2-linear-sofic` of the Gottschalk campaign |
 | rank over `C` | iff `R^x` not `C`-linear sofic | OPEN |
-| operator norm | iff `R^x` not weak MF | see `binary-leavitt-all-ranks-full-mf-radical` for the MF radical |
+| operator norm | iff `R^x` not weak MF | holds: every homomorphism from `R^x` to an MF group is trivial (`binary-leavitt-all-ranks-full-mf-radical`) |
 
 So the four approximation questions about the first nonsofic group are one inequality, read in four
-metrics. The Hamming reading is the only one known.
+metrics. The Hamming and operator-norm readings are known. In the operator norm the same inequality
+fails at the Kun--Thom Theorem E pair, through the MF amalgams `H_K`.
 
 **Contrast with the Kun--Thom pair.** At the Theorem E pair the actor `G` is residually finite, so it
 is in every class, and a wall produces a *different* group `<sigma(G), z>`. That is why the crux

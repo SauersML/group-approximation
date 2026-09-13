@@ -36,7 +36,11 @@ are equivalent.
     `binary-leavitt-unit-group-hyperlinear`, which makes `R^x` a hyperlinear nonsofic group.
   - *Rank over `F_2`.* (3) is equivalent to the negative answer to
     `binary-leavitt-unit-group-is-f2-linear-sofic`, the gate of the Gottschalk campaign.
-  - *Operator norm.* (3) is equivalent to `R^x` not weak MF.
+  - *Operator norm.* (3) is equivalent to `R^x` not weak MF, and it holds: every homomorphism
+    from `R^x` to an MF group is trivial (`binary-leavitt-all-ranks-full-mf-radical`). The same
+    inequality fails at the Kun--Thom Theorem E pair
+    (`kazhdan-commutant-compression-stability-is-finitary`, weak MF row). So in the operator norm
+    the inequality separates the two configurations.
 - **At this pair, all known Hilbert--Schmidt handles coincide.** With
   `leavitt-pair-vertex-rounding-is-nonhyperlinearity`: vertex rounding (H1), the uniform inequality,
   normalization for every model, and nonhyperlinearity of `R^x` are the same statement.

@@ -41,7 +41,16 @@ such that for all `n`, every map `u` from the `R`-ball of `G` to `U(n)` with `u_
 
 By [[kazhdan-commutant-compression-stability-is-finitary]] the claim is equivalent to
 normalization of `C(sigma(Gamma))` by `sigma(G)` for every homomorphism
-`sigma : G -> U(prod_U M_n)`. For fixed rational `eta, eps` and integers `R, n`, the inner
+`sigma : G -> U(prod_U M_n)`.
+- The same then holds in every Connes-embeddable finite tracial algebra `M`: embed `M` in a matrix
+  ultraproduct and intersect the larger centralizer with `M`, which `sigma(G)` preserves.
+- Conversely, a non-normalizing model in such an `M` has a countably generated witness, which
+  embeds in a matrix ultraproduct.
+- So at this pair the claim is the negation of the Connes-embeddable form of
+  `kt-canonical-hs-normalization-fails`.
+
+At the nine-leaf Leavitt pair the same inequality is exactly equivalent to nonhyperlinearity of the
+Leavitt unit group (`leavitt-unit-group-outside-class-iff-compression-stability`). For fixed rational `eta, eps` and integers `R, n`, the inner
 statement is a first-order sentence over the reals, decidable by Tarski--Seidenberg. This uses
 that `G` has solvable word problem: its elements are pairs of a matrix over
 `F_q[x_1^(+-1),x_2^(+-1),x_3^(+-1)]` and a matrix in `SL_3(Z)`. So the claim is a `Pi^0_3`
