@@ -1,0 +1,284 @@
+========================================================================
+shape 111g scheme X orders {'x': 2, 'y': 2} weights [1.0, 1.0, 1.0, 0.0, 1.0, 0.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure X power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 5
+   W=0.0  x
+   W=1.0  g^-1
+   W=1.0  y
+   W=1.0  g^-1 x
+   W=1.0  g^-1 y g x
+D. nontrivial labels, W < 3, receiver-adjacent: 2
+   W=2.0  g^-1 y
+   W=2.0  g^-1 y x
+========================================================================
+shape 11g1 scheme X orders {'x': 2, 'y': 2} weights [1.0, 1.0, 0.0, 1.0, 1.0, 0.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure X power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 5
+   W=0.0  x
+   W=1.0  g^-1
+   W=1.0  y
+   W=1.0  g^-1 x
+   W=1.0  g^-1 y g x
+D. nontrivial labels, W < 3, receiver-adjacent: 2
+   W=2.0  g^-1 y
+   W=2.0  g^-1 y x
+========================================================================
+shape 1g11 scheme X orders {'x': 2, 'y': 2} weights [1.0, 0.0, 1.0, 1.0, 1.0, 0.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure X power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 5
+   W=0.0  x
+   W=1.0  g^-1
+   W=1.0  y
+   W=1.0  g^-1 x
+   W=1.0  g^-1 y g x
+D. nontrivial labels, W < 3, receiver-adjacent: 2
+   W=2.0  g^-1 y
+   W=2.0  g^-1 y x
+========================================================================
+shape g111 scheme Y orders {'x': 2, 'y': 2} weights [0.0, 1.0, 1.0, 1.0, 0.0, 1.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure Y power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 5
+   W=0.0  y
+   W=1.0  g^-1
+   W=1.0  x
+   W=1.0  g^-1 y
+   W=1.0  g^-1 y g x
+D. nontrivial labels, W < 3, receiver-adjacent: 2
+   W=2.0  g^-1 x
+   W=2.0  g^-1 y x
+========================================================================
+shape 11g1 scheme Y orders {'x': 2, 'y': 2} weights [1.0, 1.0, 0.0, 1.0, 0.0, 1.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure Y power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 5
+   W=0.0  y
+   W=1.0  g^-1
+   W=1.0  x
+   W=1.0  g^-1 y
+   W=1.0  g^-1 y g x
+D. nontrivial labels, W < 3, receiver-adjacent: 2
+   W=2.0  g^-1 x
+   W=2.0  g^-1 y x
+========================================================================
+shape 1g11 scheme Y orders {'x': 2, 'y': 2} weights [1.0, 0.0, 1.0, 1.0, 0.0, 1.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure Y power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 5
+   W=0.0  y
+   W=1.0  g^-1
+   W=1.0  x
+   W=1.0  g^-1 y
+   W=1.0  g^-1 y g x
+D. nontrivial labels, W < 3, receiver-adjacent: 2
+   W=2.0  g^-1 x
+   W=2.0  g^-1 y x
+========================================================================
+shape 111g scheme X orders {'x': 3, 'y': 3} weights [1.0, 1.0, 1.0, 0.0, 1.0, 0.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure X power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 7
+   W=0.0  x^-1
+   W=1.0  g^-1
+   W=1.0  y^-1
+   W=1.0  g^-1 x^-1
+   W=1.0  g^-1 x
+   W=1.0  g^-1 y^-1 g x^-1
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 6
+   W=2.0  g^-1 y^-1
+   W=2.0  g^-1 y
+   W=2.0  g^-1 y^-1 x^-1
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x^-1
+   W=2.0  g^-1 y x
+========================================================================
+shape 11g1 scheme X orders {'x': 3, 'y': 3} weights [1.0, 1.0, 0.0, 1.0, 1.0, 0.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure X power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 7
+   W=0.0  x^-1
+   W=1.0  g^-1
+   W=1.0  y^-1
+   W=1.0  g^-1 x^-1
+   W=1.0  g^-1 x
+   W=1.0  g^-1 y^-1 g x^-1
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 6
+   W=2.0  g^-1 y^-1
+   W=2.0  g^-1 y
+   W=2.0  g^-1 y^-1 x^-1
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x^-1
+   W=2.0  g^-1 y x
+========================================================================
+shape 1g11 scheme X orders {'x': 3, 'y': 3} weights [1.0, 0.0, 1.0, 1.0, 1.0, 0.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure X power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 7
+   W=0.0  x^-1
+   W=1.0  g^-1
+   W=1.0  y^-1
+   W=1.0  g^-1 x^-1
+   W=1.0  g^-1 x
+   W=1.0  g^-1 y^-1 g x^-1
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 6
+   W=2.0  g^-1 y^-1
+   W=2.0  g^-1 y
+   W=2.0  g^-1 y^-1 x^-1
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x^-1
+   W=2.0  g^-1 y x
+========================================================================
+shape g111 scheme Y orders {'x': 3, 'y': 3} weights [0.0, 1.0, 1.0, 1.0, 0.0, 1.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure Y power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 7
+   W=0.0  y^-1
+   W=1.0  g^-1
+   W=1.0  x^-1
+   W=1.0  g^-1 y^-1
+   W=1.0  g^-1 y
+   W=1.0  g^-1 y^-1 g x^-1
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 6
+   W=2.0  g^-1 x^-1
+   W=2.0  g^-1 x
+   W=2.0  g^-1 y^-1 x^-1
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x^-1
+   W=2.0  g^-1 y x
+========================================================================
+shape 11g1 scheme Y orders {'x': 3, 'y': 3} weights [1.0, 1.0, 0.0, 1.0, 0.0, 1.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure Y power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 7
+   W=0.0  y^-1
+   W=1.0  g^-1
+   W=1.0  x^-1
+   W=1.0  g^-1 y^-1
+   W=1.0  g^-1 y
+   W=1.0  g^-1 y^-1 g x^-1
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 6
+   W=2.0  g^-1 x^-1
+   W=2.0  g^-1 x
+   W=2.0  g^-1 y^-1 x^-1
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x^-1
+   W=2.0  g^-1 y x
+========================================================================
+shape 1g11 scheme Y orders {'x': 3, 'y': 3} weights [1.0, 0.0, 1.0, 1.0, 0.0, 1.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure Y power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 7
+   W=0.0  y^-1
+   W=1.0  g^-1
+   W=1.0  x^-1
+   W=1.0  g^-1 y^-1
+   W=1.0  g^-1 y
+   W=1.0  g^-1 y^-1 g x^-1
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 6
+   W=2.0  g^-1 x^-1
+   W=2.0  g^-1 x
+   W=2.0  g^-1 y^-1 x^-1
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x^-1
+   W=2.0  g^-1 y x
+========================================================================
+shape 111g scheme X orders {'x': 2, 'y': 3} weights [1.0, 1.0, 1.0, 0.0, 1.0, 0.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure X power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 5
+   W=0.0  x
+   W=1.0  g^-1
+   W=1.0  y^-1
+   W=1.0  g^-1 x
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 4
+   W=2.0  g^-1 y^-1
+   W=2.0  g^-1 y
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x
+========================================================================
+shape 11g1 scheme X orders {'x': 2, 'y': 3} weights [1.0, 1.0, 0.0, 1.0, 1.0, 0.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure X power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 5
+   W=0.0  x
+   W=1.0  g^-1
+   W=1.0  y^-1
+   W=1.0  g^-1 x
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 4
+   W=2.0  g^-1 y^-1
+   W=2.0  g^-1 y
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x
+========================================================================
+shape 1g11 scheme X orders {'x': 2, 'y': 3} weights [1.0, 0.0, 1.0, 1.0, 1.0, 0.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure X power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 5
+   W=0.0  x
+   W=1.0  g^-1
+   W=1.0  y^-1
+   W=1.0  g^-1 x
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 4
+   W=2.0  g^-1 y^-1
+   W=2.0  g^-1 y
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x
+========================================================================
+shape g111 scheme Y orders {'x': 2, 'y': 3} weights [0.0, 1.0, 1.0, 1.0, 0.0, 1.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure Y power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 6
+   W=0.0  y^-1
+   W=1.0  g^-1
+   W=1.0  x
+   W=1.0  g^-1 y^-1
+   W=1.0  g^-1 y
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 3
+   W=2.0  g^-1 x
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x
+========================================================================
+shape 11g1 scheme Y orders {'x': 2, 'y': 3} weights [1.0, 1.0, 0.0, 1.0, 0.0, 1.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure Y power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 6
+   W=0.0  y^-1
+   W=1.0  g^-1
+   W=1.0  x
+   W=1.0  g^-1 y^-1
+   W=1.0  g^-1 y
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 3
+   W=2.0  g^-1 x
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x
+========================================================================
+shape 1g11 scheme Y orders {'x': 2, 'y': 3} weights [1.0, 0.0, 1.0, 1.0, 0.0, 1.0] MAXLEN 10 closed paths 20168
+A. trivial, W < 2, not a pure Y power: 0
+B. trivial, W < 3, receiver-adjacent: 0
+C. nontrivial labels, W < 2: 6
+   W=0.0  y^-1
+   W=1.0  g^-1
+   W=1.0  x
+   W=1.0  g^-1 y^-1
+   W=1.0  g^-1 y
+   W=1.0  g^-1 y^-1 g x
+D. nontrivial labels, W < 3, receiver-adjacent: 3
+   W=2.0  g^-1 x
+   W=2.0  g^-1 y^-1 x
+   W=2.0  g^-1 y x
+LIGHT_END_CLAIM_A_DONE
+EXIT=0
