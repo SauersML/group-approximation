@@ -57,12 +57,17 @@ presentation, which is open.
     finitely presented." Every finite-presentation theorem found for full groups
     (Matui, Li, Nekrashevych, Belk--Bleak--Matucci--Zaremsky) uses compression,
     which an invariant measure of full support forbids.
-- **Kac--Moody lattices without (T).** Not excluded by the Kazhdan barrier. The
-  Scope paragraph of the stabilizer-rigid claim applies to groups with only
-  trivial ergodic invariant random subgroups. `caprace-thom-v2-leaves-km-character-rigidity-open`
-  records such IRS rigidity for specified compact-hyperbolic Kac--Moody lattices,
-  but whether those include the finitely presented simple family, and the
-  measurable details of the IRS variant, were not checked.
+- **IRS-rigid non-amenable groups.** Dead:
+  `irs-rigid-nonamenable-groups-avoid-amenable-orbit-full-groups`. A realization free
+  off its fixed points forces amenability, and ergodic decomposition turns IRS
+  rigidity into that freeness. So a non-amenable witness must be a finitely presented
+  infinite simple group with a **nontrivial ergodic invariant random subgroup**.
+  - `caprace-thom-v2-leaves-km-character-rigidity-open` records IRS rigidity for
+    specified compact-hyperbolic Kac--Moody lattices. Those are excluded with or
+    without (T). Whether that class contains the finitely presented simple
+    Caprace--Rémy lattices was not cross-checked.
+  - Both live candidates below do have nontrivial IRSs: stabilizers of random points
+    of their non-free measure-preserving Cantor actions.
 - **Lattices in products of trees (Burger--Mozes, Rattaggi).** Not excluded: they
   have the Haagerup property, so the Kazhdan barrier does not apply, and no
   character or IRS classification for them is recorded here. A realization would
