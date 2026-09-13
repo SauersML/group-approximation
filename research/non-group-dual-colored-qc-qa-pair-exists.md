@@ -31,6 +31,9 @@ non-embeddable quantum symmetry that is genuinely quantum.
     keeps the gap and has a symmetry that is not a group dual.
 - The converse direction is the point.  Instances where nonabelian local
   symmetry carries the gap are not known to give a nonhyperlinear group.
+  Torsor instances whose relation sets admit an affine relabeling do give
+  one (`relabelable-coset-systems-are-solution-group-corners`), even when
+  their symmetry is not a group dual.
 
 **Syntax.**  `coset-systems-are-torsor-isomorphism-games` reduces the problem,
 on torsor digraphs, to a tracial non-`R^U` coset constraint system with a

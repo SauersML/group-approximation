@@ -24,8 +24,14 @@ group dual.  As for every colored isomorphism algebra, C*-satisfiability
 already implies traciality.
 
 **Caveat.**  A nonhyperlinear group gives this trivially, by adjoining an
-unconstrained `S_3` fibre to a linear-system gap.  The instances of interest are
-those whose gap is not inherited from an embedded linear system.
+unconstrained `S_3` fibre to a linear-system gap.  More generally, by
+`relabelable-coset-systems-are-solution-group-corners`, a system that admits
+an affine relabeling (bijections of the fibres onto abelian groups turning
+every relation set into an abelian coset) has a solution-group gap.  Its torsor
+symmetry may still fail to be a group dual.  So an instance beyond the goal
+needs a system with no affine relabeling, where several quotient partitions of
+one fibre interlock around cycles of the constraint graph.  No
+non-relabelable system with nonzero algebra is known.
 
 ## Attempts
 
