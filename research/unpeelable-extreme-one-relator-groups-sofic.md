@@ -110,3 +110,13 @@ remainder is [[no-magnus-envelope-one-relator-groups-sofic]], routed by
    18–19 has one at index `<= 11`. Row 16 has the same exponent sums and is
    certified at index 12, so the sums are not an obstruction. A finite census
    cannot establish the claim, so it stays OPEN.
+7. **No intermediate overgroup for row 29's Magnus subgroups.** *Closes the recorded
+   envelope shape for the last length-15 class; soficity stays open.* For
+   `AAttATaTAttaaTT` the Magnus piece is `F(x,y)`, with `F_- = <x, v>`,
+   `F_+ = <v, y>` and `v = x^(-1) y^2 x^(-2) y^(-1)`. By
+   [[row29-magnus-subgroups-have-no-intermediate-rank-two-overgroups]], the only
+   rank-two subgroups containing `F_-` or `F_+` are the subgroup itself and
+   `F(x,y)`. Vertex groups of infinite cyclic splittings of `F(x,y)` have rank
+   at most 2, so the shape in attempt 5 (a rank-two vertex group properly
+   containing a Magnus subgroup) does not exist here. The envelope route is left
+   only with `F_-` or `F_+` being itself a vertex group of a cyclic splitting.
