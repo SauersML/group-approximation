@@ -128,6 +128,19 @@ and weak-sofic-classical-covering.
 | ex2-weak-sofic-affine-targets (3), ex2-weak-sofic-bounded-factors (1) | PASS | 7 §1 |
 | ex2-triangle-persistence (6) | PASS; spectral-gap certificates rerun on MSI | 7 §2 |
 
+**Coordinator's queue after the restart (parts 8--9).**
+
+| item | verdict | part |
+|---|---|---|
+| strict compression route and body | PASS on (SCI1)--(SCI5); body scoped to the route (f5dbceab4f) | 8 §1 |
+| near-scalar Lemmas 2.1, 3.1, 4.2(ii), 4.3; free-wreath counterexample pair and induction theorem | PASS; untruncated subsumption scans | 8 §§1--2 |
+| `fp-simple-weak-soficity-is-finite-field-linear-soficity`, `relator-width-bounded-by-almost-simple-quotients` | PASS (NST Theorem 4, Nikolov--Segal Theorems 1.1--1.2 checked in the PDFs) | 8 §3 |
+| Theorem Q, `zd-derived-full-group-fp-forces-quantum-rigidity`, with `zd-derived-full-group-fp-forces-finite-type` | PASS at the checked steps; 17-term certificate and mod-p runs reproduced on MSI | 9 §1 |
+| Labbé Theorems A, B, C, D | PASS; Matte Bon Theorem 6.1 verbatim | 9 §2 |
+| bounded factors (iii) => (i) and the PSL direction behind it | PASS | 9 §3 |
+| `free-kernel-tree-actions-embed-in-free-generalized-wreath`, `sofic-set-actions-pass-to-finite-fibred-quotients` | PASS | 9 §4 |
+| `radu-xz-slab-is-second-tree-edge-stabilizer`, `radu-edge-stabilizer-is-second-prime-congruence-subgroup`, `radu-horizontal-sign-is-local-action-on-second-tree` | **GAP**: derivations PASS, local actions are uncertified fixed-precision 2-adic numerics | 9 §4 |
+
 **Wave-1 correction.** Six part-4 items already had PASS verdicts in ex-verify-groups parts whose headings do not name
 the id (part 5 §0). Part 4 is a second pass on each.
 
