@@ -53,13 +53,30 @@ statements are imported in separate citation nodes):
 - reduction: E. Godelle and L. Paris, arXiv:1007.1365, Math. Z. 272 (2012): if every
   free-of-infinity parabolic subgroup satisfies the conjecture, so does the group.
 
+- hyperbolic cyclic type: T. Haettel and J. Huang, Duke Math. J. 174 (2025); locally reducible
+  (spherical parabolic subgroups of dimension ≤ 2 or of type `A_3`): R. Charney (2004).
+
 Here the dimension of `A_Γ` is the largest size of a subset `T ⊆ S` generating a finite
 Coxeter group. Taking the preprint of Huang–Przytycki at face value, every Artin group of
-dimension at most 3 is of type F, and dimension 4 is the first open dimension.
+dimension at most 3, and every Artin group on at most 4 generators, is of type F. So
+dimension 4 and rank 5 are the first open cases.
 
 ## Attempts
 
-- 2026-09-13, lane z1-05-artin-kpi1: the K(π,1) route. Import the known classes and the
-  Godelle–Paris reduction with verified statements, assemble the largest class they give,
-  then attack dimension 4.
+- 2026-09-13, lane z1-05-artin-kpi1: the K(π,1) route.
+  - Verified imports of the known classes and of two reductions: Godelle–Paris
+    (`artin-k-pi-1-reduces-to-free-of-infinity-parabolics`) and Huang–Przytycki
+    (`artin-k-pi-1-reduces-to-triangle-free-diagrams`).
+  - Every Artin group on at most 4 generators satisfies the conjecture and is of type F
+    (`artin-groups-of-rank-at-most-four-satisfy-k-pi-1`, through the preprint).
+  - Assembly: the conjecture holds when every maximal free-of-infinity subset spans a group
+    that satisfies it (`artin-k-pi-1-from-maximal-free-of-infinity-subsets`).
+  - First uncovered almost spherical cases: the four compact hyperbolic Coxeter 4-simplex
+    groups with tree diagrams (`compact-hyperbolic-4-simplex-artin-groups-satisfy-k-pi-1`).
 - 2026-09-13, lane z1-05-artin-direct: type `F_∞` without the K(π,1) conjecture.
+  - Reduced to free-of-infinity graphs (`artin-type-f-n-reduces-to-free-of-infinity-graphs`).
+  - `F_{k+1}` holds iff the first nonvanishing `π_k(Sal)` is finitely generated
+    (`artin-type-f-k-plus-1-iff-salvetti-pi-k-fg`).
+  - Brown's criterion on Deligne or Artin complexes needs connectivity at the level of the
+    K(π,1) conjecture (`deligne-connectivity-iff-artin-complex-connectivity`).
+  - No independent route was found.

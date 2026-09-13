@@ -6,6 +6,7 @@ title: "Godelle–Paris: an Artin group satisfies the K(π,1) conjecture when al
 distinct_from:
   artin-k-pi-1-reduces-to-triangle-free-diagrams: that reduces the conjecture for all Artin groups to contractibility and a girth condition for triangle-free diagrams; this reduces one Artin group to its standard parabolic subgroups with no infinite label.
   artin-k-pi-1-passes-to-standard-parabolic-subgroups: that passes the K(π,1) property down to standard parabolic subgroups; this passes it up from the free-of-infinity ones.
+  artin-type-f-n-reduces-to-free-of-infinity-graphs: that is the finiteness-property analogue, type F_n reduced to free-of-infinity graphs; this is the asphericity statement.
 ---
 
 Let `Γ` be a finite Coxeter graph with vertex set `S`. Call `X ⊆ S` *free of infinity*
