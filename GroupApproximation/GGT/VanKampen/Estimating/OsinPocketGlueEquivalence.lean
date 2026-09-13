@@ -161,7 +161,7 @@ theorem glueCellFace_injective (O : OEquivalentDiscDiagram P.diagram Xi)
   · by_cases h2 : f₂.1 ∈ P.outside
     · have h := (P.glueCellFace_of_mem O hwalk f₁ h1).symm.trans
         (hval.trans (P.glueCellFace_of_mem O hwalk f₂ h2))
-      exact Subtype.ext (congrArg Subtype.val ((P.glueSeam O).leftFace_injective h))
+      exact Subtype.ext (Subtype.mk.inj ((P.glueSeam O).leftFace_injective h))
     · exact absurd ((P.glueCellFace_of_mem O hwalk f₁ h1).symm.trans
         (hval.trans (P.glueCellFace_of_not_mem O hwalk f₂ h2)))
         ((P.glueSeam O).leftFace_ne_rightFace _ _)
@@ -175,7 +175,7 @@ theorem glueCellFace_injective (O : OEquivalentDiscDiagram P.diagram Xi)
             {F : P.diagram.toCombMap.Face // F ∈ P.diagram.relatorCells.map RelatorCell.face}) =
           ⟨keptFace Delta.toCombMap P.outside P.outer f₂.1 h2, P.kept_mem f₂.2 h2⟩ :=
         O.faceEquiv.injective
-          (Subtype.ext (congrArg Subtype.val ((P.glueSeam O).rightFace_injective h)))
+          (Subtype.ext (Subtype.mk.inj ((P.glueSeam O).rightFace_injective h)))
       exact Subtype.ext
         (keptFace_inj Delta.toCombMap P.outside P.outer f₁.1 f₂.1 h1 h2 (congrArg Subtype.val hk))
 
