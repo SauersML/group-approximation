@@ -28,3 +28,19 @@ building of `SL_3(F_2((t)))`.
   fundamental domain of `C` at the place `1/t`, or the Curtis--Tits colimit
   presentation of the affine Kac--Moody group `Lambda`.  Neither has been
   turned into approximate labelled models.
+- **Exact approximants of the pair.**  Excluded as well, and not only exact
+  actions of `Lambda` itself.  `Lambda` is finitely presented
+  (`laurent-s-arithmetic-finiteness-lengths`) and `C` is finitely generated.
+  Items 5 and 7 of `sofic-coset-actions-pass-to-marked-colimits` then show
+  that `(Lambda,C)` is not a limit of marked pairs with separable
+  stabilizers, and in particular not an LEF pair.  Any sofic model is a
+  non-group almost-action.  By
+  `codense-tau-coset-soficity-forces-permutation-instability`, such a model
+  also witnesses that `Lambda` is not flexibly permutation-stable.
+  (Lane `ex2-hecke-pair-positive`, 2026-09-13.)
+- **Rank-one corner.**  A necessary condition is
+  `function-field-rank-one-vertex-action-is-sofic`, the `SL_2` corner orbit.
+  It escapes the finite-presentation stop, because `SL_2(F_2[t,1/t])` is not
+  finitely presented and `SL_2(F_2[t])` is not finitely generated.  There
+  the colimit route reduces soficity to separability in truncated virtually
+  free amalgams (`sl2-laurent-f2-amalgam-approximants-separate-the-vertex`).
