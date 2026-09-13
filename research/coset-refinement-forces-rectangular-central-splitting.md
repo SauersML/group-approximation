@@ -4,6 +4,7 @@ id: coset-refinement-forces-rectangular-central-splitting
 kind: claim
 title: A trace that factors through a coset refinement splits every question pair centrally into accepted rectangles
 distinct_from:
+  port-generated-square-completions-force-coset-support: that classifies Latin completions whose padding lies inside the port algebra, derives regular groups, and proves coset-hull safety; this allows padding in any trace-preserving extension through many-to-one maps K_q -> A_q, and gives a central splitting condition on the pair algebras that recovers coset-hull safety only when there is no padding.
   locally-affine-support-bcs-is-exactly-the-lcs-boundary: that is the elementary abelian case without padding, where the obstruction is the affine hull of the local support; this treats coset refinements over arbitrary finite groups with padded answers, and gives a group-independent necessary condition on the pair von Neumann algebras.
   coset-systems-are-torsor-isomorphism-games: that proves coset systems are torsor isomorphism games; this says which perfect traces of a given game can come from a coset system at all.
   jnvwy-active-output-has-no-affine-safe-perfect-model: that excludes affine-safe perfect models of one concrete verifier; this is a general firewall for coset refinements of any synchronous game.
@@ -67,7 +68,11 @@ every answer used on `q'`.
    ```
 
    and this coset hull contains the rectangular (Mal'tsev) closure of
-   `S_(qq')`, whatever the group structure.
+   `S_(qq')`, whatever the group structure.  For Latin completions inside the
+   port algebra the same hull condition, with the group structure derived
+   rather than assumed, is (L2) of
+   `port-generated-square-completions-force-coset-support`, which landed
+   independently.
 
 **Model tests.**
 

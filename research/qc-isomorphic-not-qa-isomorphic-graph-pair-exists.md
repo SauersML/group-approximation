@@ -56,8 +56,16 @@ general graphs.
   with a perfect trace, no `R^U` model, and support closed under linking gives
   a colored-digraph pair of this kind.  Where it dies:
   - independent-set games (Lin via Mančinska--Spaas--Spirig--Vernooij) are
-    automatically closure-safe but not square, so the missing step is
-    completing a quantum injection to a quantum bijection;
+    automatically closure-safe but not square.  Their perfect models split as
+    a quantum bijection of question labels times a perfect model of the
+    source game (`independent-set-injection-splits-as-question-bijection`).
+    So the missing step is a closure-safe square presentation of the source
+    game itself;
+  - a torsor squarification of any source is a coset refinement.  A trace
+    that factors through one must split every pair algebra centrally into
+    accepted rectangles (`coset-refinement-forces-rectangular-central-splitting`).
+    The version of this claim with non-group-dual symmetry is
+    `non-group-dual-colored-qc-qa-pair-exists`;
   - no colored-to-plain reduction preserving both `qc` and `qa` is landed.
 - **Recursion-theoretic compiler.**
   - `A(Iso(X,Y)) = 0` is recursively enumerable, so `qc`-isomorphism is coRE.

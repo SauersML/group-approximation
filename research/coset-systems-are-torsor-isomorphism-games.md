@@ -4,6 +4,7 @@ id: coset-systems-are-torsor-isomorphism-games
 kind: claim
 title: Coset constraint systems over finite groups are colored torsor isomorphism games, whose quantum symmetry is not a group dual once a fibre image is nonabelian
 distinct_from:
+  torsor-cfi-isomorphism-algebra-is-coset-constraint-algebra: that landed first and treats H-valued contexts whose edges say agree on shared coordinates, so the variables of one context commute; this treats arbitrary pair subgroups D <= K_q x K_q' with a separate group per fibre, where adjacent fibre PVMs need not commute inside a block, and proves that the union symmetry Qut(Z) used by the rung is not a group dual.
   colored-cfi-rung-is-the-solution-group-case: that cites Roberson--Schmidt for binary linear systems, where every fibre group is elementary abelian and the quantum symmetry is dual to a solution group; this proves the dictionary for coset constraints over arbitrary finite groups and shows the symmetry is not a group dual once a fibre image is nonabelian.
   closure-safe-support-is-exactly-the-colored-iso-rung: that characterizes the bisynchronous gaps feeding the colored rung through linking-closed support; this supplies an explicit square syntax, coset systems, on which every perfect trace is closure-safe, together with the Hopf structure of the resulting quantum symmetry.
   finite-phase-monomial-game-algebra-dictionary: that twists magic unitaries by abelian phases (quantum reflection groups); this keeps magic unitaries and makes each fibre a torsor of a possibly nonabelian finite group.
@@ -108,10 +109,23 @@ the lifting of the source's answers to coset-valued answers.
 - The mechanism is Roberson--Schmidt's for elementary abelian fibres: the
   fibre block depends only on `alpha △ beta` (their Lemma 3.6), and the
   linking algebra is the linear-system algebra (their Theorem 6.7).
-- New here:
-  - the extension to coset constraints over arbitrary finite groups;
-  - the left-translation form for nonabelian fibres;
-  - the non-cocommutativity criterion (T3).
+- **Priority.**  The case of `H`-valued contexts that agree on shared
+  coordinates landed first, independently, in
+  `torsor-cfi-isomorphism-algebra-is-coset-constraint-algebra` (lane
+  ex-kac-quantum-compiler, 2026-09-13 00:54).  That node already has:
+  - the left-coset form;
+  - the fibre coproduct;
+  - the conclusion that a nonabelian `L` gives a symmetry that is not a group
+    dual.
+- **What this node adds on top of that.**
+  - Arbitrary pair subgroups `D <= K_q x K_(q')`, a separate group per fibre,
+    and edges that need not share coordinates.  Inside a block of `cD` the
+    two fibre PVMs are unconstrained, so they need not commute.  In
+    shared-coordinate syntax the shared coordinates commute with both
+    contexts.
+  - The Hopf-quotient step (T4) showing that the union `Qut Z`, the quantum
+    group whose Haar algebra the rung makes non-embeddable, is not a group
+    dual.
 - **Bounded check.**  The novelty check covers Roberson--Schmidt,
   Lupini--Mančinska--Roberson, BCEHPSW, AMRSSV and Paddock--Slofstra.  No web
   search was possible in this session, so the check is bounded to those five

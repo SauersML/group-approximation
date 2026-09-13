@@ -4,6 +4,7 @@ id: tracial-non-ru-coset-system-with-nonabelian-fibre-exists
 kind: claim
 title: Some coset constraint system over finite groups with a nonabelian fibre image is tracial but not R^U
 distinct_from:
+  perfect-completeness-isomorphism-compiler: that asks for a machine-indexed family of graph pairs with finite-dimensional completeness on halting inputs; this asks for one coset system with a tracial state and no R^U model.
   mipstar-bcs-tracial-nonru-exists: that is a general Boolean constraint system with the gap, whose trace no symmetry selects; this asks for the gap in coset syntax, where the algebra is a bigalois torsor algebra with an invariant trace and a genuinely quantum symmetry.
   lcs-tracial-ru-gap-equiv-nonhyperlinear: that is the elementary abelian case (binary linear systems), equivalent to a finitely presented nonhyperlinear group; this allows nonabelian fibre groups, where no such equivalence is known.
 ---
@@ -64,6 +65,18 @@ those whose gap is not inherited from an embedded linear system.
   - Lifts that carry information beyond `x_v` must commute with every context
     containing `v`.  No construction of such lifts is known, and no firewall
     excludes them.
+- **Gadgets and completions inside the port algebra (lane
+  ex-kac-quantum-compiler).**
+  - By `torsor-cfi-port-profiles-are-cosets`, scalar port profiles of torsor
+    CFI gadgets are cosets, and affine on Boolean ports, at the `q`, `qa` and
+    `qc` levels.
+  - By `port-generated-square-completions-force-coset-support`, a closure-safe
+    squarification from the verifier's own port projections forces regular
+    groups and coset-hull safety.
+  - Where it dies: atom-by-atom compilation meets the affine firewall.
+  - Not excluded: padding outside the port algebra, which is the regime of
+    `coset-refinement-forces-rectangular-central-splitting`, and non-scalar
+    ports.
 - **Classical index padding.**
   - Every set of classical solutions is the coarse-graining of the coset
     system "all indices equal".
