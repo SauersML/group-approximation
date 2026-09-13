@@ -77,7 +77,7 @@ commuting pairs pay about twice their separation in relator defect.
 
 ## 3. Exact profiles
 
-MSI node acn112, python3 with numpy. The script and log are in
+An MSI compute node, python3 with numpy. The script and log are in
 `thompson-f-spatial-permutation-models-2026-09-13-search/`: `fmodels.py`, `fmodels.log`. Every
 model takes the true map where the image stays in `S`, and matches the leftover points to the missed
 points, in sorted order or at random.
