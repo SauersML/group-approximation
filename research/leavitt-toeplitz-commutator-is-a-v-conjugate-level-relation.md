@@ -28,3 +28,11 @@ So `[x_12(t0), x_23(s0)] = x_13(1)` is the `w`-conjugate of `[1 + e_(00,10), 1 +
 - **No obstruction.** The relation cannot by itself force `rk(1 − [z]) = 0` in characteristic three. It holds in
   a finite subgroup containing `z`, which has anti-central models such as `σ_reg ∘ Ad(w^(−1))`.
 - **Candidate (b).** An extension that assigns the root elements `X_w σ_reg(·) X_w^(−1)` satisfies it exactly.
+
+## Attempts
+
+- 2026-09-12 `w7-hnn-cocycle` (artifact Section 5). The computation is direct: `t0 t_10 = t_100`, `s_10 s0 = s_100`,
+  and `w s_α t_β w^(−1) = s_(w(α)) t_(w(β))` on domain-code words.
+  - **Why this lane.** It tested the Toeplitz commutator as a candidate obstruction in the extension target. It is
+    not one.
+  - **Where it stops.** Held OPEN until `w3-vf-linear` re-derives it. No route is landed.
