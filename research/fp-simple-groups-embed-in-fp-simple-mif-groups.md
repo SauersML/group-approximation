@@ -75,3 +75,34 @@ explicit hinge between the two conjectures.
      a two-variable Laurent ring.
    - **Census.** `research/artifacts/q34-known-actors-coverage-2026-09-13.md` records
      the family-by-family coverage.
+6. **Binary Leavitt unit group: MIF, which decides the test of Attempt 4
+   (2026-09-13, lane `solve-mif-leavitt-units`).** `binary-leavitt-unit-group-is-mif`
+   shows that `L_(F_2)(1,n)^×` has no mixed identity for every `n >= 2`. It has not
+   been independently reviewed.
+   - **How.** The criterion `linearly-transitive-groups-without-finite-rank-elements-are-mif`
+     is a linear analogue of high transitivity. On the Cantor module, depth-`K` matrix
+     units extend every finite-dimensional partial isomorphism, and simplicity of the
+     algebra gives `g - 1` infinite rank for `g != 1`.
+   - **Consequences.** `U = L_(F_2)(1,2)^×` is itself a finitely presented simple MIF
+     group. So this question holds for `U` with `U` as its own overgroup, Theorem E
+     applies to `U`, and the commutator of Attempt 4 is not a mixed identity.
+   - **Not known.** Whether `U` is highly transitive. BFFHZ Remark 3.5 (l.730--731) knows
+     of no finitely presented simple group that is MIF but not highly transitive.
+   - **Scope.** Over `F_p` with `p > 2` the unit group has central scalars, so MIF is
+     claimed only over `F_2`. The quotients of Attempt 5 were not tested for MIF.
+   - **Commutator subgroups of Röver--Nekrashevych groups.** These are already covered
+     by BFFHZ Remark 3.5 (`bh-reviewer/2503.21882.txt` l.733--738): "This includes any
+     finitely presented simple groups of homeomorphisms of the Cantor space
+     {1,...,n}^N that contain the commutator subgroup of the Higman–Thompson group V_n.
+     In particular this includes Thompson's group V itself, along with all finitely
+     presented commutator subgroups of Röver–Nekrashevych groups V_n(G) [Nek18,
+     Theorem 4.7]."
+     - BFFHZ call these "obviously" highly transitive, hence MIF by the Hull--Osin
+       dichotomy.
+     - That dichotomy is arXiv:1501.04182, `HTA-final.tex` l.937--943, theorem
+       `dichoto`, cited by BFFHZ as [HO16, Theorem 5.9]: "Let $G$ be a highly
+       transitive countable group. Then one of the following two mutually exclusive
+       conditions holds. (a) $G$ contains a normal subgroup isomorphic to
+       $Alt(\mathbb N)$. (b) G is MIF."
+     - The high-transitivity argument is not written out in BFFHZ and was not
+       re-derived here.
