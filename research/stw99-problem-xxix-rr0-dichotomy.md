@@ -119,3 +119,13 @@ subalgebra" the exact pure-infiniteness criterion.
   * The design is `stw29-mixed-rr0-af-crossed-product-exists`.  Its commutative
     core is `measure-free-minimal-cantor-action-with-finite-clopen-type`, a
     sharpened form of Rainone's page-33 question.
+  * The dichotomy holds beyond AF: for exact real-rank-zero stable-rank-one
+    coefficients with unperforated `K_0` and no integer layer
+    (`rr0-sr1-coefficient-crossed-products-dichotomy`,
+    `dimension-group-divisible-iff-no-integer-subquotient`).
+  * In the Cantor regime, a normal infinite cyclic or locally finite subgroup
+    acting minimally smooths `K_0` enough for the lemma
+    (`smoothing-normal-subgroup-cantor-dichotomy`).
+  * The remaining commutative rounding problem reads as a continuous
+    sourceless-orientation problem, the standard separator of Borel from
+    clopen combinatorics.
