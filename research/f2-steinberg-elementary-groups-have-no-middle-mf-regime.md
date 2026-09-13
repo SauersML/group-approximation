@@ -22,5 +22,7 @@ regime) is automatic.
 (`N ≥ 4`) is non-LEF and either MF or MF-rigid, with no third outcome (artifact §3).
 
 The same conclusion holds for non-Hausdorff ample `𝒢` with a simple Steinberg algebra, through
-`ample-steinberg-el-simple-mod-centre-without-hausdorff`. Over `F_q` with `q` odd, a middle rank forces MF to fail to lift
+`ample-steinberg-el-simple-mod-centre-without-hausdorff`, provided the centre of `A_(F_2)(𝒢)` is `F_2` (that node proves simplicity modulo centre but does not identify the centre; scope repair by un-verify, 2026-09-13). Over `F_q` with `q` odd, a middle rank forces MF to fail to lift
 through some nontrivial subgroup of `F_q^× I_N ∩ EL_N(R)`.
+
+**Review (un-verify, 2026-09-13): PASS, one scope repair.** For Hausdorff minimal effective `𝒢` with compact infinite unit space, the reviewed simplicity theorem gives central-or-everything normal subgroups and `Z(EL_N(R)) ⊆ F_2^× I_N = {I_N}`, so Theorem S(b) applies for `N ≥ 3`. The non-Hausdorff remark needed the centre of the algebra to be `F_2`, which `ample-steinberg-el-simple-mod-centre-without-hausdorff` does not establish; the remark now says so. See `research/artifacts/un-review-2026-09-13-part11.md` §2.

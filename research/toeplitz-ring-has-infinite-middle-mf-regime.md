@@ -31,3 +31,5 @@ non-central normal subgroup, and the middle regime of `J` is infinite. When `EL_
 the middle regime at `N` is empty (`simple-el-group-middle-regime-is-a-central-extension-effect`).
 
 Not claimed: the exact value of `mf(J)` within `{1, 2, 3}`, and anything about soficity of `EL_N(J)`.
+
+**Review (un-verify, 2026-09-13) of the corrected relation paragraph: PASS.** The open converse is equivalent to `rig = ∞` plus an empty middle regime for simple stably finite rings, not to "empty middle regime" for simple rings; `J` is non-simple with a proper non-central `EL_N(J, JeJ)`, consistent with Theorem S. The theorem of this node itself was not re-reviewed here. See `research/artifacts/un-review-2026-09-13-part11.md` §3.

@@ -20,3 +20,5 @@ normal subgroup of `G` is central or all of `G`.
 
 Proof in the route (artifact §2). The statement is elementary and very likely folklore in substance. Its use here is
 the collapse of the MF spectrum of simple rings: see `f2-steinberg-elementary-groups-have-no-middle-mf-regime`.
+
+**Review (un-verify, 2026-09-13): PASS.** (a) a proper normal subgroup is central and the image is MF as a subgroup; (b) trivial centre makes a nontrivial MF map injective, and the identity witnesses the converse since `e_12(1) ≠ I`; (c) follows. Elementary and folklore in substance (for simple groups, MF iff a nontrivial MF quotient exists), as the node says. See `research/artifacts/un-review-2026-09-13-part11.md` §1.

@@ -65,7 +65,7 @@ Either answer sharpens the UN boundary (`research/artifacts/un-converse-stable-f
   `f2-steinberg-elementary-groups-have-no-middle-mf-regime`: over `F_2`, for minimal effective `𝒢`, each `EL_N`,
   `N ≥ 3`, is MF or MF-rigid. On that class this claim reduces to its rigidity half.
   - The Labbé ring over `F_2` is in the class. If it is not exactly matricial, each `EL_N` over it (`N ≥ 4`) is non-LEF,
-    and is either MF (refuting the strong converse) or MF-rigid (refuting this claim), with no third outcome.
+    and is either MF or MF-rigid. By monotonicity (`mf-rigidity-is-monotone-in-matrix-rank`), either all of them are MF (refuting the strong converse) or all large ones are MF-rigid (refuting this claim), with no third outcome (wording repair by un-verify, 2026-09-13).
   - Over `F_q`, `q` odd, a middle rank would force MF to fail to lift through a central subgroup of `F_q^× I_N`.
 - **Firewalls for a proof (artifact §4, unreviewed).**
   - F1: in characteristic `p`, finite pieces are uniformly stable (Kazhdan ε-representations, recalled), so any
@@ -76,3 +76,5 @@ Either answer sharpens the UN boundary (`research/artifacts/un-converse-stable-f
   - F4: the canonical trace is never amenable here, even when `EL_N` is LEF, so tex l.1349 cannot separate the cases.
   - F5: minimally almost periodic, so MF models must be genuinely asymptotic, and ring-induced models do not converge
     strongly.
+
+**Review (un-verify, 2026-09-13) of the un-m-converse Attempts: PASS, one wording repair.** The correction is right: "empty middle regime", "`mf = ∞` or `rig < ∞`" and this claim are inequivalent, and this claim ⟺ `mf(R) = ∞` for every simple stably finite `R` ⟺ `rig = ∞` and an empty middle regime. The Labbé test-object dichotomy is now phrased at the level of the whole spectrum. See `research/artifacts/un-review-2026-09-13-part11.md` §3.
