@@ -103,7 +103,8 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     exactly those produced by `trimSourceLast` and `trimTargetHead`.
   - So the innermost-circuit rescue of ms-cite-1's record 5f21c733e does not prove the Pos binder, and the step has to build
     copies: trim, double the trimmed side dart, split.
-- **In flight: `Estimating/OsinPocketTrimDouble`** (attic 63661a8ae; probe 0913-18xx running), the first stage of the wrap-case step:
+- **LANDED b2c347f69 `Estimating/OsinPocketTrimDouble`** (probe 0913-183017-52812 GREEN, BUILT and COMPILED; unwired, queued
+  for wiring), the first stage of the wrap-case step:
   - `PocketFaceSet.exists_trimDouble K hlabel hne hroom hlen hK`: first `trimSourceLast`, then hull-respell's
     `faceEdgeDoubling` at the source face on the trimmed dart. After the trim that dart is off the source arc, which supplies
     `hsrc`.
