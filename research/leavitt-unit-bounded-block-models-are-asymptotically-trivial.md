@@ -37,6 +37,28 @@ This is a short corollary of trace-free block-diagonality and full MF radical.
 Its new content is dropping the regularity and injectivity hypotheses and the
 explicit size threshold.
 
+- **Overgroups.**  No group `H` containing `U`, in particular no group
+  containing `EL_9(R) ≅ U`, has an injective block-monomial HS model
+  satisfying (BB) on pairs from `U`.  Restricting such a model to `U` gives a
+  model of `U` that satisfies (BB), and it sends every element of `U` to the
+  identity.
+- **Scope and novelty.**  The nh-nonsofic-transfer idea file
+  (`research/artifacts/ideas-2026-09-13/nh/nh-nonsofic-transfer.md`, approach
+  A4) proposed a fixed-block non-approximability theorem for configuration
+  groups as a new intermediate class.  For **regular** models it was already
+  on main:
+  - `leavitt-units-admit-no-bounded-block-monomial-hs-model` clause 2 covers
+    groups containing `EL_9(R)`;
+  - the corollary of `block-monomial-hs-models-sofic-mod-amenable-soft-kernel`
+    covers every nonsofic group with trivial amenable radical.
+
+  That lane had checked only the uniformly discrete fence.  This node adds the
+  non-regular, non-injective case and the threshold, for `U` and its
+  overgroups.  Configuration groups without full MF radical are covered only
+  in the regular form.  Two web searches (September 2026) found no literature
+  on approximation by `U(k) wr S_n` in normalized HS; the scan is not
+  exhaustive.
+
 ## Attempts
 
 Established; see `leavitt-unit-bounded-block-triviality-via-mf-radical`.
