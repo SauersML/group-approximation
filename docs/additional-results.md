@@ -22,6 +22,16 @@ of finite groups. The same host works for every countable locally finite
 input. Cairn graph validation passed on MSI; the extension is not yet
 Lean-formalized.
 
+The [centralizer strengthening](../research/artifacts/pestov91-universal-host-finite-centralizers-2026-09-13.md)
+keeps any prescribed finite subgroup `F` of the diagonal matrix core
+fixed. For every positive `r`, there is another infinite simple Kazhdan
+LEF universal host `H` and an embedding
+`F x (H^r semidirect Sym(r)) -> S` restricting to the inclusion on `F`.
+Thus each such finite centralizer contains arbitrarily many commuting
+isomorphic universal Kazhdan hosts with their permutation symmetries.
+The proof uses cyclic corners and matrix multiplicity spaces; it is not
+yet Lean-formalized.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
