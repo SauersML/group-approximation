@@ -87,3 +87,16 @@ ultraproduct of partition algebras of expander components.
   - Under (H1), `Q` is the fixed-point algebra of an `SL_d(Z)`-action on `prod_U pi_n(Gamma)'`
     (artifact part 2, Section 3). That is a Kun-type problem on isotypic labels, with
     finite-dimensional fibres. It is not pursued, because nothing consumes it.
+- **The center lifts; the fibres remain (same lane, artifact part 3).**
+  `theorem-e-vertex-types-equidistribute-on-finite-sl-d-orbits` (established from the unit-type
+  chain). Under (H1), `SL_d(Z)` acts on the unit types of `pi_n` by a genuine action, and every
+  orbit is finite (level `m` factors through `SL_d(Z/m)`).
+  - Property (T) of `SL_d(Z)` on `l^2` of the type set makes almost invariant center-valued
+    observables orbit functions.
+  - So `Q cap prod_U Z(A_n)` lifts to orbit partitions, and the type measure equidistributes on
+    orbits.
+  - The type-cycle mechanism of the counterexample bullet cannot occur here.
+  - Asymptotically multiplicity-free roundings satisfy this claim.
+  - What remains open is only the multiplicity fibres: relative commutants of the holonomy
+    almost-representations of the type stabilizers, which are Kazhdan congruence-type subgroups of
+    `SL_d(Z)`, on multiplicity spaces.
