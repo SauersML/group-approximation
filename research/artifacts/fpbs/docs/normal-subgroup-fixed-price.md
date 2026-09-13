@@ -256,7 +256,9 @@ counterexample branch in the negative direction, since
   Theorem 1.1, `inf |F S F^(-1)| / |F|^2 = 0`). It yields fixed price one
   directly where it applies. Donoso-Echenique--Silva note that verifying it
   for free Burnside groups "may be challenging" because of Coulon--Steenbock
-  product-set growth. Not examined further here.
+  product-set growth. Section 6 records what the criterion gives for closed
+  hyperbolic 3-manifold groups: balls fail it, sets inside cyclic subgroups
+  fail it, and the general case is not settled.
 
 ## 5. A quantitative floor for ergodic percolation on Kazhdan groups
 
