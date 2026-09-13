@@ -43,7 +43,15 @@ All three declarations depend only on the axioms [propext, Classical.choice, Quo
   noncrossing residual alone.
 - All three declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
 
-## In flight: `BoundaryCycleFaceClass` (probing; attic c5e142c1b)
+## In flight: `Estimating/OsinAppendixEulerTwoGonWalkHypInner` (L5b, probing; attic 1b068764a)
+
+- `cellFace_not_mem_sideFaces_of_source_mem`: the face of the cell is off the side of a noncrossing walk through a
+  reversed arc of that cell.
+- `twoGonWalkHyp_of_innerFollows : TwoGonWalkHyp a b i walk`, for a noncrossing walk whose inner cycle follows:
+  - `outer_off`, `cell_off` and `connected` are proved;
+  - `left_side`, `right_side` and `base` are hypotheses, which w1-binder-1's L5a supplies.
+
+## Landed: `BoundaryCycleFaceClass` (a19fd73b8, probe 0913-183317-65387 GREEN, unwired; first probe red on a placeholder, fixed)
 
 - `BoundaryCycle.eqvGen_of_mem_of_followsBoundary`: all darts of a following boundary cycle lie in one face class of the
   walk.
