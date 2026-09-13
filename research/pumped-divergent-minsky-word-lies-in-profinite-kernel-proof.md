@@ -13,7 +13,8 @@ artifacts:
 The full proof is Lemma A (Section 3) of
 `research/artifacts/rf-fp-pumped-minsky-part1-2026-09-12.md`.
 
-**Step 1.**  The pumped input `c' = (c; 1, 0)` is not accepted by `P(M)`.
+**Step 1.**  The pumped input `c' = (c; 1 + e_tau(c), 0)` is not accepted by
+`P(M)`.
 
 - Every command preserves `iota = e_pi - e_rho - e_tau`, and `iota(c') = 1`.
   A drain needs `e_pi = e_rho = 0`, which forces `iota = -e_tau <= 0`.
@@ -29,9 +30,9 @@ So the semigroup word of `c'` is nonzero, and by the simulation theorem
 1. `f |-> f * a_pi` is a product of conjugates.  It therefore induces an
    endomorphism `P̄` of `V`, and some `P̄^D` is idempotent, so
    `P̄^m = P̄^(m+tD)` for `m >= D`.
-2. Along the lifted divergent computation `e_rho = 0`, and `e_pi` increases by
-   one at every Add, taking every value `>= 1`.  Choose a configuration `d`
-   with `e_pi(d) = tD`.
+2. Along the lifted divergent computation `e_rho = 0` and
+   `e_pi = 1 + e_tau`, which increases by one at every Add and takes every
+   value `>= 1 + e_tau(c)`.  Choose a configuration `d` with `e_pi(d) = tD`.
 3. Pump `D` times.  Under `phi`, the block `(*a_pi)^(tD+D)` of the
    configuration word collapses to `P̄^D`, so `phi(w(d; tD+D, D)) =
    phi(w(d; D, D))`.
@@ -40,3 +41,6 @@ So the semigroup word of `c'` is nonzero, and by the simulation theorem
 
 By clause 4 each semigroup equality is a group equality.  Chaining gives
 `phi(w(c')) = phi(w(0; 0..0))`.
+
+(Corrected after review by `ex-verify-groups`: the earlier input `(c; 1, 0)`
+has invariant `1 - e_tau(c)`, not `1`.)

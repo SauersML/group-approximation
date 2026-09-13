@@ -153,9 +153,20 @@ relations preserve letter counts.                                     (INV)
 
 **Lemma A.**  Let `M` be clocked and deterministic, and let `c` be a
 configuration of `M` whose forward computation is infinite.  Put
-`c' = (c; e_pi = 1, e_rho = 0)`.  Then `w(c') != w(0; 0..0)` in `G(P(M))`,
-but every homomorphism from `G(P(M))` to a finite group identifies them.
-In particular `G(P(M))` is not residually finite.
+`c' = (c; e_pi = 1 + e_tau(c), e_rho = 0)`, so that `iota(c') = 1`.  Then
+`w(c') != w(0; 0..0)` in `G(P(M))`, but every homomorphism from `G(P(M))` to a
+finite group identifies them.  In particular `G(P(M))` is not residually
+finite.
+
+*Correction (2026-09-12, after review by `ex-verify-groups`).*  An earlier
+version took `c' = (c; 1, 0)` and asserted `iota(c') = 1`.  In fact
+`iota((c; 1, 0)) = 1 - e_tau(c)`, and the statement is then false.  If the
+first step of a divergent computation from `c_0` (with `e_tau(c_0) = 0`) is
+an Add into `c`, then running that Add backward from `(c; 1, 0)` reaches
+`(c_0; 0, 0)`, the drain applies, and the word is `0`.  The pumped glass must
+start one above the clock reading.  The completeness reduction is unaffected:
+the divergent configuration of Lemma C has `e_tau = 0`, where the two inputs
+coincide.
 
 *Step 1: `c'` is not accepted by `P(M)`.*  Take a computation of
 `Sym(P(M))` from `c'` and stop it just before the first command with number
@@ -185,8 +196,8 @@ some power `P̄^D` (`D >= 1`) is idempotent.  Then `P̄^m = P̄^(m + tD)` for al
 
 Along the forward computation of `M` from `c`, `e_tau` grows by exactly one at
 each Add step and tends to infinity.  In `P(M)` the lifted computation from
-`c'` keeps `e_rho = 0` and `e_pi = 1 + e_tau - e_tau(c)`, which therefore
-takes every value `>= 1`.  Choose a configuration `d` on it with
+`c'` keeps `e_rho = 0` and `e_pi = 1 + e_tau`, which therefore takes every
+value `>= 1 + e_tau(c)`.  Choose a configuration `d` on it with
 `e_pi(d) = tD` for some `t >= 1`, at command `i != 0`.  In `S(P(M))`, hence by
 Theorem 4.3(b) in `G(P(M))`,
 

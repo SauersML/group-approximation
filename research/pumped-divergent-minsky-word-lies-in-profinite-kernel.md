@@ -8,8 +8,9 @@ distinct_from:
   pumped-halting-clocked-minsky-group-is-residually-finite: that is the positive half for universally halting machines; this is the negative half for machines with a divergent configuration.
 ---
 
-ESTABLISHED (unreviewed).  Let `M` be a deterministic Minsky machine clocked
-by a glass `tau`:
+ESTABLISHED (unreviewed; statement corrected 2026-09-12 after review by
+`ex-verify-groups`).  Let `M` be a deterministic Minsky machine clocked by a
+glass `tau`:
 
 - no command subtracts from or tests `tau`;
 - every Add adds a coin to `tau`;
@@ -21,12 +22,13 @@ Let `P(M)` add two glasses `pi, rho`, with these commands:
 - at each nonzero command number `i`, a pump `i -> Add(pi, rho); i`;
 - at each nonzero command number `i`, a drain `i; e_pi = 0, e_rho = 0 -> 0`.
 
-If some configuration `c` of `M` has an infinite forward computation, then in
-the finitely presented group `G(P(M))`,
+Suppose some configuration `c` of `M` has an infinite forward computation, and
+put `c' = (c; pi = 1 + e_tau(c), rho = 0)`.  Then in the finitely presented
+group `G(P(M))`,
 
 ```text
-w(c; pi=1, rho=0) != w(0; 0...0),
-phi(w(c; pi=1, rho=0)) = phi(w(0; 0...0))   for every finite quotient phi,
+w(c') != w(0; 0...0),
+phi(w(c')) = phi(w(0; 0...0))   for every finite quotient phi,
 ```
 
 so `G(P(M))` is not residually finite.
@@ -34,12 +36,18 @@ so `G(P(M))` is not residually finite.
 Two ingredients:
 
 - *Non-acceptance.*  `iota = e_pi - e_rho - e_tau` is invariant under every
-  command, so a drain never applies from this input.  Lemma 2.1 excludes
-  reaching stop through `M`.
+  command, and `iota(c') = 1`.  A drain would need `iota = -e_tau <= 0`.
+  Lemma 2.1 excludes reaching stop through `M`.
 - *Finite quotients.*  The operator `*a_pi` induces an endomorphism of the
   finite group `phi(T)`, some power `P̄^D` of which is idempotent.  Run the
   divergent computation until `e_pi = tD`, pump `D` times, replace `P̄^(tD+D)`
   by `P̄^D`, unpump to `(0,0)`, and drain.
+
+**Correction.**  An earlier version used `c' = (c; 1, 0)`.  Its invariant is
+`1 - e_tau(c)`, and the statement fails when `c` is reached from a clock-zero
+configuration by an Add: run that Add backward, then drain.
+[[rf-fp-completeness-via-pumped-minsky-groups]] is unaffected, because its
+divergent configuration has `e_tau = 0`.
 
 DERIVATION
 [[pumped-divergent-minsky-word-lies-in-profinite-kernel-proof]]
