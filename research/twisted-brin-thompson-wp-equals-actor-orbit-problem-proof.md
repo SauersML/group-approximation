@@ -4,7 +4,7 @@ id: twisted-brin-thompson-wp-equals-actor-orbit-problem-proof
 kind: route
 title: Track one brick through the word, resolving coordinate equalities by stabilizer-membership queries
 target: twisted-brin-thompson-wp-equals-actor-orbit-problem
-requires: [twisted-btb-clopen-action-is-type-a, twisted-brin-thompson-finite-presentation-criterion]
+requires: [twisted-btb-clopen-action-is-type-a, twisted-brin-thompson-finite-presentation-criterion, fp-simple-highly-transitive-groups-satisfy-pbh]
 ---
 
 Notation is the brick calculus of `twisted-btb-clopen-action-is-type-a`.
@@ -111,6 +111,21 @@ path is a polynomial-size nontriviality witness when some leaf rejects.
 - *3 => 1.* A finitely presented `SV_G` has a faithful type (A) actor `G`, so
   `twisted-btb-clopen-action-is-type-a` applies. It makes `SV_G` itself a faithful
   type (A) actor on the clopen sets of its cube, with the same word problem.
+- *3 => 4.* A finitely presented `SV_G` satisfies (ii) of Theorem C in
+  `fp-simple-highly-transitive-groups-satisfy-pbh`, trivially, so it embeds in a
+  finitely presented simple highly transitive group `H`. Substitution gives
+  `WP(SV_G) <= WP(H)` in the sense of (c), so `H` is outside `F(T)` whenever
+  `SV_G` is outside `F(T+)`. Every highly transitive finitely generated simple
+  group is MIF; under 4 either adjective may be chosen, since (iii) and (iv) of
+  Theorem C are equivalent.
+- *4 => 1.* A finitely presented simple MIF (or highly transitive) group `Γ`
+  satisfies (iv) (or (iii)) of Theorem C, hence (i): `Γ <= G` for some `G` with a
+  type (A) action. After passing to the faithful image, the action stays of
+  type (A). Substitution gives `WP(Γ) <= WP(G)`.
+
+  The faithful image needs one check. Theorem C's (i) uses Zaremsky's type (A),
+  which includes faithfulness, as quoted in
+  `type-a-action-gives-boone-higman-for-subgroups`, so no quotient is needed.
 
 **Iteration.** The clopen stabilizer membership test, `f(U) = U` for a clopen `U`
 given as a finite union of bricks, runs the same brick tracking on the bricks of

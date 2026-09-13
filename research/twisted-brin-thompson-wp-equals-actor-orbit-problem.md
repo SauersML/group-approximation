@@ -57,20 +57,38 @@ needs a hard actor, hard either in its word problem or in stabilizer membership.
 This is the twisted Brin--Thompson counterpart of
 `rover-nekrashevych-word-problem-reduces-to-self-similar-group`.
 
-**(d) Three equivalent unbounded statements.** The following are equivalent:
+**(d) Four equivalent unbounded statements.** The following are equivalent:
 
 1. for every recursive `T`, some faithful type (A) action has word problem of `G`
    outside `F(T)`;
 2. for every recursive `T`, some faithful type (A) action has `OP(G,S)` outside
    `F(T)`;
 3. for every recursive `T`, some finitely presented twisted Brin--Thompson group
-   has word problem outside `F(T)`.
+   has word problem outside `F(T)`;
+4. for every recursive `T`, some finitely presented simple group that is MIF, or
+   highly transitive, has word problem outside `F(T)`.
 
-Here 1 implies 2 trivially, 2 implies 3 by (a), and 3 implies 1 because a
-finitely presented `SV_G` acts on the proper clopen subsets of its cube with
-type (A) (`twisted-btb-clopen-action-is-type-a`), so it is itself a hard actor.
+The implications:
+- 1 implies 2 trivially.
+- 2 implies 3 by (a).
+- 3 implies 1: a finitely presented `SV_G` acts on the proper clopen subsets of
+  its cube with type (A) (`twisted-btb-clopen-action-is-type-a`), so it is itself
+  a hard actor.
+- 3 implies 4 and 4 implies 1: both use Theorem C of
+  Belk--Fournier-Facio--Hyde--Zaremsky (`fp-simple-highly-transitive-groups-satisfy-pbh`)
+  and substitution.
+
 Statement 1 is the open claim `type-a-actors-with-arbitrarily-hard-word-problem`.
 Statement 3 implies `fp-simple-groups-with-arbitrarily-complex-word-problem`.
+
+**What the root still needs beyond (d).** Every hard witness for the root can
+be moved into a type (A) actor, except finitely presented simple groups that
+satisfy a nontrivial mixed identity and embed in no finitely presented simple
+MIF group. So a positive answer to BFFHZ Question 3.4
+(`fp-simple-groups-embed-in-fp-simple-mif-groups`) would make the root itself
+equivalent to statements 1--4. Every finitely presented simple group would then
+embed in an MIF one, and an embedding only increases word-problem complexity
+up to substitution.
 
 **Iteration stays elementary.** Applying (b) to the clopen action of `SV_G`
 bounds `OP(SV_G, clopen sets)` by the same form `(TBO2)`. So a tower of `m`

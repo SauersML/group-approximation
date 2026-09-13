@@ -19,7 +19,14 @@ this is equivalent to:
 - the same with "word problem" replaced by the orbit problem
   `OP(G,S)` (word problem plus point-stabilizer membership);
 - for every recursive `T`, some finitely presented twisted Brin--Thompson group
-  beats `T`.
+  beats `T`;
+- for every recursive `T`, some finitely presented simple MIF group (equivalently,
+  highly transitive) beats `T`. This one uses BFFHZ Theorem C,
+  `fp-simple-highly-transitive-groups-satisfy-pbh`.
+
+So the root restricted to MIF witnesses *is* this claim. A positive answer to
+BFFHZ Question 3.4 (`fp-simple-groups-embed-in-fp-simple-mif-groups`) would make
+the whole root equivalent to it.
 
 Its consequences:
 - through `arbitrarily-complex-fp-simple-via-hard-type-a-actors` it implies the
