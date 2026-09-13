@@ -18,5 +18,16 @@ conjecture, which gives the stronger type F.
 - Via the K(π,1) conjecture (`artin-group-k-pi-1-conjecture`): proved for the classes
   listed in the root, in particular every Artin group of dimension at most 3 (the
   dimension-3 case is the preprint arXiv:2509.06914). Open from dimension 4 on.
-- Without asphericity: a cocompact action on a highly connected complex with cell
-  stabilizers of type `F_∞`, fed to Brown's criterion. Lane z1-05-artin-direct.
+- Without asphericity (lane z1-05-artin-direct, 2026-09-13; details in
+  `research/artifacts/zp-artin-direct-f-infinity-2026-09-13.md`):
+  - it reduces to graphs with only finite labels
+    (`artin-type-f-n-reduces-to-free-of-infinity-graphs`, route
+    `artin-f-infinity-from-free-of-infinity-case`);
+  - type `F_{k+1}` holds iff the first nonvanishing homotopy module of the Salvetti
+    complex is finitely generated over `ZA` (`artin-type-f-k-plus-1-iff-salvetti-pi-k-fg`),
+    so the first open step is finite generation of `π_2(Sal)`, i.e. type `F_3`;
+  - Brown's criterion on the Deligne complex or on the Artin complex needs connectivity
+    that is equivalent, degree by degree, to that of the Deligne complex
+    (`deligne-connectivity-iff-artin-complex-connectivity`), and only simple connectivity
+    is known in general.
+  No route independent of the K(π,1) conjecture was found.
