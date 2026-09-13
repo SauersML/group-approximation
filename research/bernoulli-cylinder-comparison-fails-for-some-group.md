@@ -32,8 +32,8 @@ triple.
   - `ρ` is a weak K-equivalence (Claim W of `research/artifacts/bc-bernoulli-rank-functionals-torsion-2026-09-13.md`),
     so `K_*(C_ρ ⋊ H) = 0` for finite `H`, and going-down gives `K^top_*(G; C_ρ) = 0`.
   - So the claim says that `G` fails Baum--Connes at the weakly contractible coefficient `C_ρ`.
-- For torsion-free `G` and `Z = G`, some class of shape (a), (b) or (c) of `bernoulli-assembly-injective-beyond-the-host`
-  exists.
+- For torsion-free `G` and `Z = G`, some class of shape (b) or (c) of `bernoulli-assembly-injective-beyond-the-host`
+  exists. Shape (a) never occurs (`bernoulli-pattern-expansions-are-finite`).
 
 **Model test.** `G = Z` (amenable) fails the claim, because `T_r` is an isomorphism by Pimsner--Voiculescu. So does
 every group satisfying Baum--Connes with coefficients. No group satisfying it is known.
@@ -44,15 +44,17 @@ every group satisfying Baum--Connes with coefficients. No group satisfying it is
   arXiv:2210.09209, Theorem 2.8, second sentence). So a witness fails Baum--Connes with coefficients. Among known groups
   that means a large-girth expander monster (`osajda-monster-hosts-for-bc-module-route`), whose known failure is
   injective-not-surjective (Willett--Yu I, Corollary 1.7) at a coefficient that is not a module dual.
-- **Rank functionals.** Ranks at finite-support configurations prove injectivity and see shape (a). They vanish on the
-  rank-invisible tail classes of shape (b) and do not see `K_1`, shape (c).
+- **Rank functionals.** Ranks at finite-support configurations prove injectivity and would see shape (a). They vanish on
+  the rank-invisible tail classes of shape (b) and do not see `K_1`, shape (c). Shape (a) turned out to be empty; see
+  the locality bullet below.
 - **Gapped induced-subgraph operators.** A shape-(a) candidate is a projection whose rank at a configuration counts a
   non-local invariant of its support, such as the kernel dimension of the Laplacian of the induced subgraph (its number
   of components). Such kernel projections are not in the algebra. The full shift contains every induced subgraph,
   including long paths, whose small nonzero eigenvalues close the gap. A monster's embedded expanders give a uniform gap
   only on the subshift of expander markings, and that subshift is not a module dual.
-- **Where it stops.** A witness needs a spectral gap uniform over all Bernoulli configurations, or a K-theory class not
-  produced by functional calculus from local operators. Neither is known over any group.
+- **Where it stopped (before 2026-09-13 locality).** A witness seemed to need a spectral gap uniform over all Bernoulli
+  configurations, or a K-theory class not produced by functional calculus from local operators. The locality theorem
+  below rules out the first option on every host.
 - **Subgroup tubes (2026-09-13, `bernoulli-defects-vanish-along-bcc-subgroup-tubes`, established).**
   - Regular representations at configurations supported in a tube `HF` live on a finite union of right `H`-cosets. This
     gives a restriction *-homomorphism to the Bernoulli datum `(H, HF)`.
@@ -62,3 +64,17 @@ every group satisfying Baum--Connes with coefficients. No group satisfying it is
     shapes that escape every good tube, as a monster's embedded expanders do.
   - Where it stops: the tubes of good subgroups do not cover the expander-shaped patterns, so the restriction decides
     nothing there.
+- **Locality of ranks (2026-09-13, `bernoulli-pattern-expansions-are-finite`, established, unreviewed).**
+  - For every projection over `C_0(Λ^G \ {0}) ⋊_r G`, the mixed second difference of its ranks at two far sites is an
+    integer trace through gapped resolvents. It is bounded by `C e^(-α d)`, with no growth factor (Combes--Thomas), so
+    it is `0`.
+  - Hence every class has a finite pattern expansion, and shape (a) never occurs, over any torsion-free host (monsters
+    included).
+  - Any local operator gapped uniformly over the full shift has local ranks. Embedded expanders, isometric or weak,
+    cannot produce a witness through ranks.
+  - Where it stops: a witness is invisible to every finite-support orbit representation. It is either a rank-zero class
+    in `∩_k im K_0(I_k ⋊_r G)` (shape (b)) or an odd class (shape (c)).
+  - Its detector must use infinite-support configurations. One candidate is a restriction to a closed invariant subset
+    such as the expander-marking subshift. Another is the Haar trace with Lück's ring `Z[1/p]`.
+  - A sharp open sub-question: does the marking-subshift ghost class lift along
+    `I_1 ⋊_r G -> C_0(Y_A \ {0}) ⋊_r G`?
