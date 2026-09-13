@@ -78,6 +78,15 @@ is proved or refuted by that counterexample.
 * **Padding the alphabet with random dummy labels.**  **Dead**:
   `dummy-padding-cannot-beat-the-random-guessing-floor` -- an alphabet-sized
   decoding list only reproduces the game's own random-assignment value.
+* **Symmetric quotient (Galois) gap instances.** A unique game whose lift is
+  a Cayley graph with coset fibres, the Khot--Vishnoi type, is described
+  exactly by `galois-unique-game-value-is-transversal-expansion`. Over
+  `F_p^N`, `elementary-abelian-galois-games-round-with-linear-loss` rounds any
+  SDP value `1-eps` to a subgroup complement of value `1 - O_p(eps log k)`,
+  tight on Khot--Vishnoi. Such constructions are gaps only when
+  `eps log k -> infinity`, and the exponent hypothesis is needed (cyclic
+  quotients lose `sqrt(eps)`). This is structure for integrality-gap and
+  dictatorship-test design, not a route in either direction.
 * **Refuting the conjecture** (an algorithm closing the gap) is not
   represented here; a refutation would land as an established negation
   claim, not as a route.
