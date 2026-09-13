@@ -88,3 +88,10 @@ and establishes no root.
 - **What any working mechanism must do.** Force `Q = 0` exactly on `H_inf`.
   Index theory supplies no intermediate quantity: `Ind(E_P)` jumps from `1` to
   `2` as soon as `Q != 0`, however small `Q` is. **This is where it stops.**
+
+**Scope (2026-09-12).** `unbounded-defect-sector-vanishes-in-koopman-models`
+shows that in every sofic model `H_inf = 0`, and `Q = 0` for every `rho`. So the
+setting above is empty for the Leavitt cover, and `Ind(E_P) = 1` throughout.
+Items 1 and 2 concern an arbitrary inclusion and an arbitrary pair `P' <= P`, and
+remain true. The last Attempts bullet asks a mechanism to force `Q = 0` on
+`H_inf`. That holds automatically, with no (T), and gives no leverage for RNORM.

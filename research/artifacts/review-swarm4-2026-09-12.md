@@ -1857,3 +1857,220 @@ The import is swarm 5 §9b (conclusion correct). Its use here is in scope. `Gamm
   - Together they give `D(K_I)` semisimple Artinian, and `16 tr(e) in Z` from item 2, as the node says.
 - **Status.** Nothing at the tip proves `8 rk_{K_I}(B) in Z`, so OPEN is correct. The crossed-product reformulation and
   the discrete-Iwahori sufficient condition are recorded as attempts, not as claims.
+
+## 42. `fpbs-finite-window-twisted-levels-disconnected` (e24fdc2d0, e7fb98833): PASS, with two wiring nits
+
+Read at `b850838e7`: the claim, the route, `research/artifacts/fpbs/docs/cross-line-transport-sets-finite-windows.md` in
+full, the e7fb98833 diff, and main's Section 4 (`twisted-level-percolation-low-density-disconnection.md`).
+
+### 42.1 What is claimed
+
+- **Setting.**
+  - `Gamma = N semidirect_phi Z` is torsion-free and hyperbolic.
+  - `S` is a finite symmetric generating set of `N` with `e ∉ S`.
+  - `delta_0` is main's constant.
+  - The shift is Bernoulli on `[0,1]^Gamma`.
+  - `A` is `W`-local, and `D(W) = |W^-1 W|`.
+- **Item 1.** If `mu(A) < delta_0^D(W)`, the twisted return graph is almost surely disconnected. So
+  `{t} ∪ {s|_A}` does not generate.
+- **Item 2.** Small generating sets exist iff local ones do, iff `mu(A) + sum_s mu(E_s^r(A))` can be made small.
+- **Item 3.** It is the contrapositive of item 1: `D(W) >= log(1/mu(A)) / log(1/delta_0)`.
+- **Scope.** This is a non-generation theorem for one family of graphings. It refutes nothing, proves no fixed price,
+  and the node says so.
+
+### 42.2 Proof check: PASS
+
+- **Step 2 for windows.**
+  - `omega(g) = 1_A(g.x)` reads `x|_(W g)`, and `W g` meets `W g'` iff `g' in W^-1 W g`.
+  - Greedy extraction from the at least `l/2` distinct witness values leaves at least `l/(2D)` points whose windows are
+    pairwise disjoint.
+  - Their events are independent with probability `delta` each. With main's `(2|S|)^l` choice functions this gives
+    `(2|S|)^l delta^(l/(2D))`.
+- **Step 4.** It is main's sum with `rho` at `delta^(1/D)`. So `P(e <-> s) < 1` when `mu(A) < delta_0^D`.
+- **Step 5.** The event is `Gamma`-invariant and the shift is ergodic. By item (1) of
+  `fpbs-twisted-level-graph-generates-cyclic-extension` and freeness, generation is connectivity. So the event has
+  probability 0 or 1, and at most `P(e <-> s) < 1`.
+- **Calibration.** `W = {e}` gives `D = 1`, which is main. This is a consistency check only.
+- **Lemma R.**
+  - **(c) ⇒ (a), patching.** On `E_s^r(A)` the added `s|_(A')` joins `x` to `s x`. Off it, `A`'s paths do. Since
+    `S ∪ {t}` generates, `A' = A ∪ U_s E_s^r(A)` generates.
+  - **(a) ⇒ (c).** `E_s^r(A)` decreases to a null set.
+  - **Localizing.** `E_s^r` is Boolean in `1_A` on `B_r x`. So `A_1` with `mu(A Δ A_1) < eta` moves each measure by at
+    most `|B_r| eta`, and the total error is `(1 + |S||B_r|) eta`.
+- **Section 4.** Examples 4.1–4.4 check, including the explicit 4.3 constants. 4.5 is labeled heuristic.
+- **e7fb98833.** All six fixes are correct:
+  - Lemma R wording;
+  - "essentially free";
+  - "Steps 1 and 3";
+  - dictionary plus freeness;
+  - the 4.3 constants;
+  - `B_R C(x)` for the undefined `O(x)`.
+
+### 42.3 Hypotheses and a model test
+
+- **Hyperbolicity is necessary.**
+  - *Model test.* Take `Gamma = Z^2 = <a> x <t>`, `phi = id`, `S = {a, a^-1}`, `A = {x(e) < delta}`, so `W = {e}`.
+  - Every `t`-line meets `A` almost surely. Item (4) of the criterion says that for `phi = id` the graph is the Cayley
+    graph of `N`. It is connected for every `delta > 0`, so item 1 fails.
+  - What breaks is main's Step 3: `t`-components are not isolated, and no `K` exists.
+- **Torsion-freeness** enters through `E(t) = <t>` in (H1)–(H2) and 4.4.1. It is not tested for necessity.
+- **`e ∉ S`** is harmless, since `e` only adds loops.
+- **"S generates N"** is used in patching and in item (1) of the criterion. "`S ∪ {t}` generates `Gamma`" looks
+  sufficient and would cover non-finitely-generated fibres, such as `F_2 = F_∞ ⋊ Z`. This was not checked in detail. It
+  does not matter for the root, whose fibres are closed-surface groups.
+
+### 42.4 Subsumption: none found
+
+- **fpbs nodes.**
+  - `fpbs-twisted-level-percolation-disconnected-at-low-density` is `D = 1` with independent open pairs. Theorem W is
+    its finite-range-dependence extension.
+  - `fpbs-line-independent-twisted-levels-disconnected` has any dependence along lines, independence across them and a
+    uniform threshold. The two are incomparable, and `distinct_from` is right.
+  - `fpbs-cross-line-correlated-transport-set-generates` is (a). Its Attempts bullet "Finite windows and clumps" is
+    consistent with the new node.
+  - Grep for `block factor|finitely many coordinates|cylinder set|local generating|taken local|finitary graphing` over
+    `research/fpbs-*.md` hits only this node, the open claim, the root and the line-independent node.
+- **Gaboriau's lecture notes**, version of 3 October 2025. I read the `pdftotext` output of the PDF.
+  - **Table 2.9.** No row covers a torsion-free hyperbolic `N ⋊ Z` beyond the free and surface rows. The hyperbolic
+    lattices listed are in `SO(2,1)`. "Normal fixed price 1 subgroup" fails, since the fibre has fixed price `2g-1`.
+  - **Corollary 2.40.** It glues cost-one subrelations along infinite intersections, and (c) handles increasing unions
+    with cost tending to 1.
+    - Infinite cyclic subgroups meet infinitely only inside one maximal elementary subgroup `E(g)`, so cyclic chains do
+      not leave `E(g)`.
+    - A finitely generated group is no strictly increasing union of subgroups.
+    - The root's Attempts records that the chain criteria die.
+  - **Corollary 2.52** needs a product, two commuting infinite subgroups, or a centre with a fixed-price-one subgroup.
+    Centralizers here are cyclic and the centre is trivial.
+  - **Theorem 2.56** gives `C_*(Gamma) = 1` from `C_*(N) < ∞`. That is infimal cost only, as the root says.
+- **Slutsky, arXiv:2607.20273v1, Theorem 1.1** (arXiv HTML).
+  - **Statement.** `Gamma` is finitely generated, and `S` is finite, symmetric and generating with `e in S`. If there
+    are finite `F_n` containing `e` with `|F_n S F_n^-1| / |F_n|^2 -> 0`, then `Gamma` has fixed price one.
+  - **Applications.** The abstract and introduction list higher-rank lattices, buildings, amenable groups and products,
+    and nothing hyperbolic.
+  - **Obvious test sets fail.** Take `F_n ⊆ E(g) = <g>` and `s in S \ E(g)`.
+    - `g^i s g^-j = g^i' s g^-j'` gives `s^-1 g^(i-i') s = g^(j-j')`.
+    - If `i != i'`, then `s` normalizes `E(g)`, which is self-normalizing, so `s ∈ E(g)`, a contradiction.
+    - So `|F_n S F_n^-1| >= |F_n|^2`. General `F_n` were not examined.
+  - **Relation.** It is a positive fixed-price criterion, while Theorem W is a negative statement about one family of
+    graphings. Neither subsumes the other.
+- **Standard parts.** Finite-range block extraction and finite-range approximation are standard. The node claims no
+  novelty, which is correct.
+
+### 42.5 Display and wiring
+
+- **Display.** "**ESTABLISHED** through `fpbs-finite-window-twisted-levels-disconnected-proof`" follows the fpbs
+  convention. Status of the requirements at the tip:
+  - `osin-isolated-components-bounded-by-relative-area`: ESTABLISHED, literature import;
+  - `fpbs-twisted-level-graph-generates-cyclic-extension`: ESTABLISHED;
+  - `hyperbolic-group-relative-to-maximal-elementary-subgroup`: an import node, the same one main's route requires.
+- **Nit 1 (wiring).** The claim defines `delta_0` as main's constant, and route item 3 reuses main's Steps 3–4. But
+  `requires:` omits `fpbs-twisted-level-percolation-disconnected-at-low-density`, so a retraction of main would not
+  propagate. Add it.
+- **Nit 2 (route wording).** Route item 1 still says "Steps 1, 3 and 4 ... use no probability". Main's Step 4 is the
+  two-point bound, a sum of Step 2's probabilities. e7fb98833 fixed the artifact to "Steps 1 and 3" but not the route.
+  The mathematics is unaffected, since route item 3 redoes Step 4.
+- **Left to the lane.** Its `cairn check` was running, so neither nit is landed on the lane's files here. The status
+  is unaffected.
+- **Root.** `fpbs-hyperbolic-3-manifold-groups-fixed-price-one` stays OPEN, and its pointer to the new node is correct.
+
+## 43. `unbounded-defect-sector-vanishes-in-koopman-models` (faddfdbc3, fb6e743e6, fdf10525a): (a)–(d) PASS, (e) propagated forward
+
+Read at `b850838e7`: the claim, the route, `research/artifacts/rnorm-fibrewise-defect-2026-09-12.md` in full, the three
+input nodes, the fibrewise bullet of `relative-normalization-modulo-kazhdan-kernel`, and the Jones node.
+
+### 43.1 (a) Gram densities: PASS
+
+- **Integrability.** `g_(T,S) = sum_k (T e_k) conj(S e_k)` is in `L^1`, since `T e_k, S e_k in L^2`.
+- **Invariance.** Koopman operators are multiplicative and commute with conjugation. With `F_T = (T e_1, ..., T e_d)`,
+  `pi(n) F_T = F_T rho(n)`, so `pi(n) g_(T,S) = F_T rho(n) rho(n)^* F_S^* = g_(T,S)`.
+- **Measurability.** An invariant element of the measure algebra is measurable for the invariant sigma-algebra, so
+  `g_(T,S)` is `A`-measurable.
+- **Densities compute the pairing.**
+  - `d <T,S>_W = tr(S^* T) = int g_(T,S)`, and `g_(aT,S) = a g_(T,S)`.
+  - So `<aT,S>_W = (1/d) int a g_(T,S)`, and these integrals determine an `A`-measurable `L^1` function.
+- **Pointwise Gram matrices.** `[g_(T_i,T_j)(y)]` is the Gram matrix of the rows `F_(T_i)(y)` in `C^d`, off one null
+  set for countably many `T_i`.
+- **Step 2.1.** Densities `delta_ij g_0` give the Gram matrix `g_0(y) I_(d+1)` of `d+1` vectors in `C^d`. So
+  `g_0^(d+1) = 0` almost everywhere, and `xi_0 = 0`.
+- **Step 2.2.**
+  - `A_rho` is abelian, so `A_rho'` is type I with `A_rho` central.
+  - A summand of degree at least `d+1` gives `d+1` orthogonal equivalent abelian projections, with
+    `v_j^* v_i = delta_ij p_0`, which is the hypothesis of 2.1.
+  - So every degree is at most `d`, and `A_rho'` is finite.
+- **Model test.**
+  - `S_3` translates itself with uniform measure, so `A = C`, the action being transitive.
+  - The 2-dimensional `rho` occurs twice in `L^2(S_3)`, so the multiplicity is `2 = d`. The bound is attained.
+
+### 43.2 (b) "Nested in its own unitary conjugate ⇒ equal": PASS
+
+- **Step 3.** `V^* P V <= P` makes `Q_k = V^(*k) Q V^k` pairwise orthogonal, and they commute with `A_rho`. For
+  `xi in Q W_rho`, the vectors `xi_k = V^(*k) xi` satisfy:
+  - `<a xi_i, xi_j> = 0` for `i != j`;
+  - `<a xi_k, xi_k> = <a xi, xi>`, because `V` commutes with `a`.
+  Step 2.1 applied to `d+1` of them gives `xi = 0`.
+- **Standard version.** In a finite algebra `V^* P V ~ P`, and the center-valued trace forces equality. The route uses
+  Step 2.1 directly and needs no trace.
+- **Finiteness is needed.** On `l^2(Z)` with `A = C`, the shift `V e_n = e_(n+1)` and `P` onto `span{e_n : n >= 0}`
+  give `P < V^* P V`.
+- **Observation (not a defect).** The Scalars step makes `W_rho(u)` scalar, and that alone gives `P' = P`. So Step 3
+  is redundant for `Q = 0`. It is still worth keeping: it reaches `Q = 0` from item 1 and block invariance alone,
+  without the residual-finiteness input behind item 4 of `kazhdan-kernel-isotypic-sectors-extend-within-kernel-closure`
+  (§38.2).
+
+### 43.3 (c) The invariant algebra: PASS
+
+- **Diagonal algebra.** `D_U` is the tracial ultraproduct of the diagonals. Every Loeb set agrees almost everywhere with
+  an internal set, so `D_U = L^inf(X_U, mu_U)`.
+- **Applying item 1.** `sigma(N)` acts on the Loeb measure algebra, so Step 1 applies with `Y = X_U`. The algebra
+  `D^N` is `L^inf` of the invariant sigma-algebra, which is exactly item 1's `A`.
+  - It matches `A = D^N = D^G` of `kazhdan-kernel-blocks-invariant-under-sofic-invisible-quotient` and the block
+    algebra of the bounded-multiplicity node.
+  - Loeb spaces are not standard, but only `L^1`–`L^inf` duality is used, and nothing is disintegrated.
+- **Commutation.**
+  - `1 (x) A_rho` commutes with `U_rho(u) (x) W_rho(u)`, and `U_rho(u)` is unitary, so `A_rho` commutes with
+    `W_rho(u)`.
+  - `P` lies in `W_rho(Gamma_hat)'' ⊆ A_rho'`.
+
+### 43.4 (d) The quasi-regular example is correctly excluded: PASS
+
+- **`Q != 0`.** In `l^2(R^x / EL_alpha(R)) (x) l^2(Nat)`, the base coset is fixed by `EL_alpha(R)`. It is moved by every
+  element of `u^-1 EL_alpha(R) u` outside `EL_alpha(R)`, so `Q != 0`.
+- **Infinite multiplicity.** Strict compression forces infinite index, since conjugates of a finite-index subgroup cannot
+  be strictly nested. So `A_rho = 1 (x) l^inf(Nat)` has multiplicity `dim l^2(R^x / EL_alpha(R)) = infinity`, which
+  Step 2 forbids in every Koopman model.
+- **Verdict.** The example is a representation that no measure-preserving action realizes, as the node says. The
+  uniform gap is a remark and is not used.
+
+### 43.5 (e) The correction on the crux node: accurate, but not propagated. Corrected forward here
+
+- **Accuracy.** The fibrewise bullet of `relative-normalization-modulo-kazhdan-kernel` matches the route:
+  - the multiplicity bound;
+  - `Q = 0`;
+  - "There are none: `H_inf = 0` and `H_b = H (-) H_wm`";
+  - lines (a)–(c);
+  - "the finite trace ... exists, on `End_A(W_rho)`, and the ratio it gives is `1`".
+- **Not propagated.** Two ESTABLISHED nodes contradicted it at the tip:
+  - `bounded-multiplicity-kazhdan-sectors-miss-leavitt-cover-defect`: its "What survives" says `W_rho` "can be
+    non-scalar" on unbounded-multiplicity sectors;
+  - `jones-index-blind-on-unbounded-defect-sector`: its setting is `H_inf`, and its last Attempts bullet asks a mechanism
+    to force `Q = 0` there.
+- **Fixed in this landing.** Both nodes now end with a dated paragraph pointing to the new claim. Status lines and items
+  are unchanged, and Jones items 1–2 stay true abstractly.
+- **§38.3 of this review.** It said "what survives" names the unbounded-multiplicity sectors. The PASS on items 1–4
+  stands, and that paragraph is now superseded.
+- **Stale artifacts.** `rnorm-kazhdan-projection-sizes-2026-09-12.md` and `rnorm-jones-index-2026-09-12.md` are
+  historical and are not edited.
+
+### 43.6 Subsumption and display
+
+- **Subsumption.** Nodes and routes that mention both Koopman and a multiplicity or simple-spectrum phrase:
+  - the new pair;
+  - the two RNORM artifacts;
+  - `bs14-periodic-koopman-firewall-proof`, a simple spectrum of a BS(1,4) clock, unrelated.
+
+  No earlier node bounds block-algebra multiplicity. Item 1 is the matrix-valued relative form of simple spectrum, and
+  the node calls it standard.
+- **Display.** "**ESTABLISHED** (route `unbounded-defect-sector-vanishes-proof`)". All three required nodes are
+  ESTABLISHED at the tip. "Not independently reviewed" can now point here, which is the lane's call.
+- **Scope.** It is no-leverage, and `relative-normalization-modulo-kazhdan-kernel` and `nonsofic-hyperbolic-group` stay
+  OPEN.

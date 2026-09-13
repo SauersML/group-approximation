@@ -67,3 +67,14 @@ mixing part of `sigma|_N` every Kazhdan projection vanishes. A size there must b
 a relative index, invariant under conjugation and quantized, for instance a Jones
 index bounded below `2` by a median argument. None is constructed (artifact,
 Section 4).
+
+**Superseded in part (2026-09-12).** `unbounded-defect-sector-vanishes-in-koopman-models`
+shows that in every sofic model each finite-dimensional kernel type has
+multiplicity at most `dim rho` over the block algebra. So no Kazhdan sector lies
+outside `H_b` and `H_wm`: `H_inf = 0`, `H_b = H (-) H_wm`, and `W_rho(g)` is
+scalar on every `W_rho`. The first two sentences of the paragraph above describe
+a sector that is empty in every sofic model. There `W_rho` is never non-scalar,
+and the nested fixed spaces coincide. Items 1–4 hold on all of `H (-) H_wm`. The
+Jones-index proposal is `jones-index-blind-on-unbounded-defect-sector`, and it
+gives nothing. A size that registers the defect must be read on `H_wm` or from
+realizers.
