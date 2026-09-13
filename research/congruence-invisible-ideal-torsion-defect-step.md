@@ -23,3 +23,5 @@ The proof uses no matrix identity in a quotient group: it passes to the ring `R/
 genuine one-sided pair, and pulls the absolute statement back. The hypothesis is strictly stronger than
 `EL_n(R,J) <= Rad_MF(EL_n(R))`, and the difference matters: see the `A_m` calibration in
 `relative-torsion-defect-mf-radical-step`.
+
+**Review (un-verify, 2026-09-13): PASS.** Radical descent through the exact kernel `K = EL_n(R) ∩ GL_n(R, J)` of `EL_n(R) ↠ EL_n(R/J)`; the absolute torsion-defect statement over the countable unital ring `R/J`; normal spreading to `EL_n(R/J, (R/J)ē(R/J))`; pull-back. No quotient-group identity is used, so the gap of `relative-torsion-defect-mf-radical-step` does not arise. See `research/artifacts/un-review-2026-09-13-part8.md` §4.

@@ -29,3 +29,17 @@ unconditionally whenever `hh(R) = d(R)`, which is `hilbert-hotel-radical-is-reac
 particular in every calibrating ring known here.
 
 **Review (un-verify, 2026-09-13): GAP.** The successor step invokes `relative-torsion-defect-mf-radical-step`, which has a gap (review line there). Stage 0 and the limit step are correct. See `research/artifacts/un-review-2026-09-13-part8.md` §2.
+
+## Attempts
+
+- **Successor step through the relative torsion step: gap** (review, un-verify, 2026-09-13). The route's successor
+  step uses `relative-torsion-defect-mf-radical-step`, which is open. Its identities hold exactly only in
+  `EL_n(R/hh_a)`; in `EL_n(R)/EL_n(R, hh_a)` they hold up to `(EL_n(R) ∩ GL_n(R, hh_a))/EL_n(R, hh_a)`. No route with
+  `requires: []` targets this claim.
+- **Repair A (congruence kernel).** Strengthen the stage-`a` statement to `EL_n(R) ∩ GL_n(R, hh_a) ≤ Rad_MF(EL_n(R))`
+  and use `congruence-invisible-ideal-torsion-defect-step` at the successor. What is missing: passing from
+  `EL_n(R, hh_(a+1)) ≤ Rad_MF` to the congruence form at stage `a+1`, a relative `K_1` statement for `(R, hh_(a+1))`.
+- **Repair B (Steinberg group).** Run the printed construction in `St_n(U_m)`, `U_m = Z⟨σ,τ⟩/(τσ − 1, m(1 − στ))`,
+  which maps into `EL_n(R)/EL_n(R, hh_a)` by lifting entries. What is missing: control of `K_2(n, U_m)`.
+- **Unconditional case.** If `hh(R) = d(R)` (`hilbert-hotel-radical-is-reached-in-one-step`, open), the claim follows
+  from `mf-radical-contains-defect-ideal-elementary-subgroup`.

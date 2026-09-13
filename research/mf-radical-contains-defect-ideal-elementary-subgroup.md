@@ -23,3 +23,5 @@ EL_n(R, d(R)) <= Rad_MF(EL_n(R)).
 In every calibration known here `d(R)` already equals the Hilbert-hotel radical `hh(R)`, the smallest
 ideal with directly finite quotient: `d = R` for simple rings that are not directly finite, `d = 0` for
 the Pestov 9.1 ring, and `d = JeJ` for the Toeplitz-Jacobson algebra.
+
+**Review (un-verify, 2026-09-13): PASS.** Each defect is a genuine one-sided pair of `R` with finite additive order, so the absolute printed statement applies with exact identities; normality, `[e_ki(a), e_ij(e)] = e_kj(ae)`, `[e_kj(ae), e_jl(b)] = e_kl(aeb)`, signed permutations and additivity give `EL_n(R, d(R))`. See `research/artifacts/un-review-2026-09-13-part8.md` §4.

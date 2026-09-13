@@ -43,5 +43,16 @@ positively would make `mf-radical-contains-hilbert-hotel-elementary-subgroup` un
 - **What a proof needs.** Either a lift of the pair to a genuine one-sided pair of `R` (the obstruction is
   an index in the slack group; see `hilbert-hotel-radical-is-reached-in-one-step`), or a version of the
   compression argument whose identities are Steinberg-group consequences valid in `Gbar` exactly.
+- **Two repair routes (recorded by review, un-verify, 2026-09-13).** The exact gap: the identities of the printed
+  construction hold exactly in `EL_n(R/J)`, and in `Gbar = EL_n(R)/EL_n(R,J)` only up to elements of
+  `(EL_n(R) ∩ GL_n(R,J))/EL_n(R,J)`.
+  - *Congruence-kernel invisibility as the induction hypothesis.* Assume `EL_n(R) ∩ GL_n(R,J) ≤ Rad_MF(EL_n(R))`.
+    Radical descent through the exact reduction `EL_n(R) ↠ EL_n(R/J)` then gives the step with no quotient-group
+    identity. This is landed as `congruence-invisible-ideal-torsion-defect-step`. Along the Hilbert-hotel chain it
+    needs the congruence form at every successor stage, which is again a relative `K_1` question.
+  - *Steinberg-group construction.* Put `U_m = Z⟨σ,τ⟩/(τσ − 1, m(1 − στ))`. Lifting entries along `U_m → R/J` gives
+    a well-defined homomorphism `St_n(U_m) → Gbar`, since the Steinberg relations hold modulo `J` at generator level.
+    The printed identities hold in `EL_n(U_m)`, so the construction runs in `Gbar` once they hold in `St_n(U_m)`, i.e.
+    under control of `K_2(n, U_m) = ker(St_n(U_m) → EL_n(U_m))` on the words involved.
 
 **Review (un-verify, 2026-09-13): GAP.** The transfer of the printed identities to `Ḡ = EL_n(R)/EL_n(R,J)` is justified only for single generators (`e_ij(x)` and `e_ij(x′)` with `x ≡ x′ mod J` differ by `e_ij(x′−x) ∈ EL_n(R,J)`). The identities the construction needs (`vcv⁻¹ = e_14(f_02)`, `vzv⁻¹ = z`, centrality of `z`, `[y,d] = z⁻¹`) are matrix identities proved by multiplication using `ts = 1`, `es = te = 0`, `me = 0`; with these holding only modulo `J`, the two sides differ by an element of `EL_n(R) ∩ GL_n(R,J)`, which need not lie in `EL_n(R,J)`. So the relations hold exactly in `EL_n(R/J)`, not in `Ḡ`, and the compression criterion needs exact relations in `B̄ ≤ Ḡ`. See `research/artifacts/un-review-2026-09-13-part8.md` §2.

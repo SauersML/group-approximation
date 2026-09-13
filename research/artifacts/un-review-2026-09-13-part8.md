@@ -107,3 +107,27 @@ group elements of `EL_4(S) ≤ EL_n(R)`.
   - `[e_13(e), e_32(b)] = e_12(eb)` and `[e_31(a), e_12(eb)] = e_32(aeb)`.
   - Signed permutations move this to every root, and additivity gives `E_N(R, ReR)`.
 - **Simple case:** `ReR = R`.
+
+## 4. Demotion state after review (checked at tip, 2026-09-13)
+
+- **`relative-torsion-defect-mf-radical-step`: OPEN.** The owner withdrew the route at `27aa7b6a1`, and no route
+  targets the claim.
+  - Attempts carry the exact gap and both repair routes: congruence-kernel invisibility as the induction hypothesis,
+    and the `St_n(U_m)` construction with `K_2(n,U_m)` control.
+- **`mf-radical-contains-hilbert-hotel-elementary-subgroup`: OPEN / conditional.** Its only route requires the open
+  step, so it does not fire. Attempts added: the gap, repairs A and B, and the unconditional case `hh = d`.
+- **`mf-radical-sandwiched-by-hilbert-hotel-radical`: PASS after restatement.** The owner split cleanly.
+  - The left bound is now the first-stage defect ideal, `EL_n(R, d) ≤ Rad_MF(EL_n(R))`, through
+    `mf-radical-contains-defect-ideal-elementary-subgroup`, reviewed PASS below. The right containment is unchanged.
+  - The `hh`-level bound lives in the open node above.
+- **Reviewed PASS here:**
+  - `mf-radical-contains-defect-ideal-elementary-subgroup`. Every defect of `R` itself is an exact one-sided pair with
+    finite additive order, and the absolute printed proposition applies. Normal spreading plus additivity give
+    `EL_n(R, d(R))`.
+  - `congruence-invisible-ideal-torsion-defect-step`. Radical descent through the exact reduction kernel
+    `EL_n(R) ∩ GL_n(R,J)`, the absolute statement over `R/J`, and pull-back. It uses no identity in a quotient group,
+    so the gap does not arise.
+- **Route audit:**
+  - no `requires: []` route targets either open node;
+  - `mf-radical-contains-hilbert-hotel-elementary-proof` requires the open step;
+  - `mf-radical-sandwiched-by-hilbert-hotel-proof` requires only the established first-stage node.
