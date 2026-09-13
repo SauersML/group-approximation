@@ -100,7 +100,7 @@ This lane owns the value.
   - given `hwalk`, every embedded boundary rotates the pocket cycle
     (`FaceSetBoundary.exists_cycle_eq_rotate`).
 
-## Residual statements (exact, at origin 3c6b4b505)
+## Residual statements (exact, at origin 8d2201b29)
 
 1. OPEN: `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`. It has
    no closed producer on main.
@@ -109,6 +109,53 @@ This lane owns the value.
      Props: `OsinLemma94SectionStatement`, `OsinMultipleEdgeCutSectionStatement`,
      `OsinLoopCutSectionStatement`, `OsinPhiPrimeCountSectionStatement` and
      `OsinSectionPocketCutSectionStatement`.
+   - The loop slot closes under LoopCut ruling (A) by ghw-charp2's patch 07,
+     `osinLoopCutSection : OsinLoopCutSectionStatement`. That patch is not on origin yet
+     (patches 01-10 land as one co-probe). This lane then lands
+     `relativeGreendlingerQuasiGeodesicLeastArea_of_loopClosed`
+     (Estimating/OsinAppendixGreendlingerLoopClosed, drafted, not in the repo) over the other four
+     slots.
+   - Below, "no producer" means that no theorem on origin concludes the Prop. The binder-free
+     producers named below carry `#audit_axioms`, not `#audit_closed_axioms`, unless marked closed.
+   - `OsinLemma94SectionStatement` comes from `osinLemma94Section_of_planarPieces`
+     (OsinLemma94PlanarPieces.lean:441, root-imported):
+     - `OsinLemma94AntiparallelMetricStatement` is closed (`osinLemma94AntiparallelMetric`).
+     - `OsinLemma94PolygonRealizationInput` comes from `osinLemma94PolygonRealizationInput_of_pieces`
+       (OsinLemma94PolygonRealization.lean:151). Its open leaf is `OsinLemma94PolygonPartitionInput`
+       (no producer; ghw-assembly).
+       - CellArcs has the binder-free `osinLemma94CellArcsInput_holds`.
+       - BoundaryArcs is closed (`osinLemma94BoundaryArcsInput`).
+       - CuttingChains goes through `chainRespellInput_of_pieces` and
+         `separatingPathRemovalInput_of_pendant` to the binder-free `cornerInsertionInput`,
+         `pendantPathRemovalInput` and `quasiGeodesicRespellInput`.
+     - `OsinLemma94PolygonCountInput` comes from `osinLemma94PolygonCountInput_of_sideBudget`, over
+       `OsinLemma94PolygonSideBudgetInput` (no producer; hull-count94).
+     - `OsinLemma94CaseOneInput` is `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk` on
+       origin. Patch 10 (f) deletes that form. The route then is
+       `osinLemma94CaseOneInput_of_walk_of_sameCell`, over `OsinLemma94CaseOneSameCellStatement`
+       (theoremc-retire).
+     - `OsinLemma94CaseTwoInput` has no producer (sec5-sentences).
+     - Patch 10 (d): under (A), `alpha_faceOf_not_cell_of_unbound` loses the dart of cell i whose
+       reverse also lies on cell i. So `osinLemma94PolygonCoversInput`, closed on origin, reopens
+       unless that case gets its own count or exclusion (ghw-charp2 site 5).
+   - `OsinMultipleEdgeCutSectionStatement` comes from `osinMultipleEdgeCutSection_of_pieces`
+     (OsinPocketMultipleEdgeAssembly.lean:207, hull-select, 2db85602c, root-imported). Its leaves have
+     no producer: `OsinMultipleEdgePocketRegionSectionStatement` (kh-ejz), `GeodesicCollarStatement`
+     (kh-torsion) and `PocketCellTransportStatement` (go-lemma42).
+   - `OsinPhiPrimeCountSectionStatement` comes from `osinPhiPrimeCountSection_of_pieces`
+     (OsinAppendixEulerSection.lean:62, hull-euler, 6401c70a6, landed unverified, not root-imported).
+     C5 is applied inside by `cellFaceCountInput`. Its leaves have no producer: C4
+     `OsinCornerTwoGonSectionStatement` (leavitt-units) and C6′ `OsinTwoGonHoldsSectionStatement`
+     (debt-conditional).
+   - `OsinSectionPocketCutSectionStatement` comes from `osinSectionPocketCutSection_of_pieces`
+     (OsinPocketPieces.lean:502, root-imported).
+     - `PocketRegionOfSimpleStatement` is closed (`pocketRegionOfSimple`).
+     - The collar goes through `pocketCollarStatement_of_geodesicCollar` to `GeodesicCollarStatement`.
+     - The pinch goes through `pocketPinchLabelledStatement_of_pocketPinchStatement` and
+       `pocketPinchStatement_of_pinched` to `PocketPinchPinchedStatement` (kh-cckw).
+     - Its leaves with no producer: `OsinSectionPocketFaceSetSectionStatement` (kh-ejz),
+       `PocketPinchPinchedStatement`, `GeodesicCollarStatement`, `PocketCellTransportStatement` and
+       `PocketOuterTransportStatement` (go-lemma42).
    - The other producers take `OsinLemma97SectionStatement` (`_of_osinLemma97`), the five parts
      of `_of_parts`, or `OsinSection97PocketInputsStatement` (`_of_pocketInputs`).
    - This lane's value half of the zero-cell merge is at 93cb4e04f.
@@ -267,9 +314,14 @@ row names the closed endpoint and says "retires open-predicate <decl>".
 - `OsinDescentStepInput` is RETIRED as off route (lead, 2026-09-13; audit-sec5 and
   dgo-analytic agree). This lane built nothing on it and deleted nothing. dgo-analytic adds the
   docstring note.
-- The next build piece is the loop-cap Prop for `LoopCutInput`
-  (GGT/VanKampen/Estimating/OsinAppendixSectionInduction.lean:86). It starts once audit-sec5
-  reports its cap test and the lead rules on the shape. Nothing is built before that ruling.
+- LoopCut is ruled (A), final: `RespectsSections` gains `target ≠ some source` as its first
+  conjunct. ghw-charp2 lands patches 01-10 as one co-probe, and this lane holds every
+  `LoopCutInput` edit and runs no probe until then. When patch 07's `osinLoopCutSection` is on
+  origin:
+  - land `Estimating/OsinAppendixGreendlingerLoopClosed` (unverified), probe it, land it plain
+    after green, and queue it for wiring;
+  - re-grade the ten rows (hgreendlinger stays residual, over the four slots above), and update
+    their residual notes.
 - Meanwhile, keep the ten rows current. Wall 1 (`hgreendlinger`) is their only residual.
 - A closed `LiteratureInputs` needs its own namespace, because `TheoremC.literatureInputs` was
   the name of the deleted admission.
