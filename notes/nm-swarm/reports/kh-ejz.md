@@ -235,13 +235,29 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
      - (i) `IsSimpleClosedWalk S.diagram.toCombMap K.walk`. This is false in general: a pinched pocket repeats a vertex.
        hull-respell's `PocketPinchStatement` and its reduction `PocketPinchPinchedStatement` (OsinPocketPinchUnpinched)
        both take a `PocketFaceSet` as input, so the pinched case still needs a face set first.
-       Wanted: a sides theorem for closed walks with distinct darts that touch but never cross (sub-piece P2, open to
+       Wanted: a sides theorem for closed walks with distinct darts that touch but never cross (sub-piece P2', open to
        fff-quotient). Reduction: take the faces reachable from the left faces of the walk without crossing an edge of
        the walk. The `BoundaryCycle` conditions then follow once no right face of the walk is reachable.
+       Criterion: in the restriction of the map to the walk edges, the rotation alternates between incoming and
+       outgoing walk darts at every walk vertex. Then the walk is closed under the restricted face permutation, and
+       `CombMap.IsRestriction.faceOf_eq_of_faceClass` separates the left faces from the right ones. In
+       SimpleClosedWalkSides, vertex injectivity reaches the separation proof only through `keep_at_vertex` (line 273).
      - (ii) the kept cell on the side of the walk. Without it, the pocket holds no relator cell, and hull-select's
        zero-cell merge should contradict weight maximality. `OsinPocketZeroCellMerge` (`innerBoundary`,
        `toInnerGRegion`, `mergedGeometry`) is on main. The contradiction module `OsinPocketZeroCellMergeFalse`, which
        its docstring names, is not.
+     - (iii) **Construction gap, reported to main with a ruling request.** `cycle_mem_iff` forbids a dart and its
+       reverse in one boundary cycle. The pocket walk contains both darts of an edge in three configurations that
+       `DiscDiagram` allows:
+       - (a) a spur of section `j` between the two targets. Both darts are `outerDarts` with `faceOf = outerFace`.
+         `OEquivalentDiscDiagram` keeps `boundaryWord`, and `SurgeryFaceEdgeDoubling` needs `f ≠ outerFace`.
+       - (b) an edge of the gap arc with cell `i` on both sides.
+       - (c) `x.right` sharing an edge with `y.left` behind the cell.
+       The manuscript's `Γ_1`, with sides `inv y.right` and `inv x.left`, avoids (c) only. No model test was run.
+       Options put to main:
+       - (A) keep the statement, build P2', and rule (a)–(c) out;
+       - (B) produce the face set on an O-equivalent copy, with a boundary edge doubling for spurs;
+       - (C) merge the Prop with `PocketPinchStatement`.
    - When hull-euler's C6 Prop arrives, check it against this output.
 
 ## W1 assignment (2026-09-13 ~03:00)
