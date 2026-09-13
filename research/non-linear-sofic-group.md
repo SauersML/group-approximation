@@ -46,3 +46,19 @@ A non-weakly-sofic group would close this root for every field at once, by
   - Non-weak-soficity cannot be reached this way at all: the Kun--Thom wreath is weakly
     sofic and carries a rigid defect ([[weakly-sofic-groups-can-carry-rigid-defects]]).
   - See `research/artifacts/weakly-sofic-extension-metric-scope-2026-09-12.md`.
+- **The Bowen--Chapman double, transcribed (2026-09-12, lane `nls-rank-metric-witness`).**
+  - **The consumer transfers.** Suppose the peripheral subgroup normalizes rank
+    almost-centralizers over `F`. Then the Lean double
+    `SymmetricDouble Ambient Peripheral` is not `F`-linear sofic.
+  - **The step-by-step proof of that normalization is dead in characteristic two**
+    ([[non-linear-sofic-via-bowen-chapman-rank-transcription]]). Congruence
+    representations of the ambient group itself defeat both rounding steps
+    ([[bowen-chapman-ambient-rank-models-do-not-round-peripheral]]).
+  - **Still open:**
+    - the normalization itself, over any field;
+    - expander pieces of sublinear dimension;
+    - step (K) in odd or zero characteristic.
+  - **The double decides a strict link.** It is weakly sofic
+    ([[residually-finite-doubles-are-weakly-sofic]]) and nonsofic, so it decides a
+    strict link of the chain, as the wreath does.
+  - See `research/artifacts/nls-rank-metric-witness-2026-09-12.md`.
