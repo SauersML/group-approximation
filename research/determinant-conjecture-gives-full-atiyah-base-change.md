@@ -7,19 +7,37 @@ distinct_from:
   strong-atiyah-base-change-algebraic-to-complex: that asks whether Strong Atiyah over Qbar for all torsion-free groups gives it over C, with no determinant hypothesis; this asks it group by group under the determinant conjecture, where transcendence degree one is already proved.
   atiyah-base-change-in-transcendence-degree-one-under-det: that is the established case of coefficient fields of transcendence degree at most one; this is the full statement, open from transcendence degree two.
   strong-atiyah-base-change-from-galois-invariance: that derives the conclusion from full Galois invariance; this asks for it from the determinant conjecture, which gives invariance only in transcendence degree one so far.
+  atiyah-base-change-in-transcendence-degree-two-under-det: that is the established purely transcendental case Qbar(z_1, z_2); this is the full statement, still open for finite extensions of such fields and from transcendence degree three.
 artifacts:
   - research/artifacts/atiyah-transcendence-degree-one-base-change-2026-09-13.md
+  - research/artifacts/atiyah-two-variable-base-change-2026-09-13-part3.md
 ---
 
 **OPEN.** Let `G` be torsion-free and satisfy Strong Atiyah over `Qbar` and
 Lueck's determinant conjecture. Then every matrix over `C[G]` has integral von
 Neumann kernel dimension.
 
-**Known part.** Coefficient fields of transcendence degree at most one
-([[atiyah-base-change-in-transcendence-degree-one-under-det]]). By
-`atiyah-base-change-holds-off-a-countable-set`, in several variables the
-exceptional parameter set is a Borel, null, meagre set, so what remains is that
-set being empty.
+**Known part.**
+- **Transcendence degree at most one.**
+  [[atiyah-base-change-in-transcendence-degree-one-under-det]] covers every such
+  coefficient field.
+- **Purely transcendental, degree two.**
+  [[atiyah-base-change-in-transcendence-degree-two-under-det]] covers
+  `Qbar(z_1, z_2)`. It is unreviewed.
+- **Several variables.** By `atiyah-base-change-holds-off-a-countable-set`, the
+  exceptional parameter set is a Borel, null, meagre set, so what remains is
+  showing it is empty.
+
+**What remains.**
+1. **Finite extensions of `Qbar(z_1, z_2)`.** The transcendence-degree-one
+   argument should carry over, with fibre sums constant off the jump locus,
+   continuity and connectedness, but it is not written out.
+2. **Transcendence degree at least three.** The cycle inequality of
+   [[determinant-conjecture-bounds-determinants-over-galois-orbits]] and Lemma J
+   extend verbatim to `A^s`. The missing input is Diophantine: an integral
+   product `F` of linear forms at affine points with
+   `a(F) + (B-1) b(F) + C deg F < 0` at a point with algebraically independent
+   coordinates.
 
 **Why it matters.** Through `algebraic-atiyah-and-determinant-one-group-tester`,
 this claim together with `SA(E)` and `Det(E)` for the master host proves the root
@@ -29,7 +47,25 @@ Atiyah conjecture would then be two statements about one group.
 
 ## Attempts
 
-(Details in the artifact, Section 9.)
+(Details in the transcendence-degree-one artifact, Section 9, and in the
+two-variable artifact, Parts 1-3.)
+
+* **Integral models of zero-dimensional cycles, plus one small bivariate
+  irreducible and one small univariate polynomial.** This settles the purely
+  transcendental case in degree two (unreviewed).
+  - Multiplication maps on monomial lattices of `Q(zeta)` give (RES2),
+    `Delta(X) = [Lambda_(k+1):Lambda_k]^N prod_j Delta(M(sigma_j zeta))`.
+  - The Chow form of `V(p_1, q)` with `q in Z[x_1]` violates the resulting
+    inequality. No transversality condition arises.
+  - The naive extension to three variables dies on degrees. The chain
+    `V(q(x_1), p_2(x_1,x_2), p_3(x_1,x_2,x_3))` needs `n_1 >> n_2 n_3`,
+    `n_2^2 >> n_1 n_3` and `n_3^3 >> n_1 n_2`, which are incompatible.
+  - Using a two-variable cycle as the base loses a factor of its degree, about
+    `B^5`, against the gain `n_3^3`. That does not close either.
+  - A proof in degree three needs either a construction of degree about `B`,
+    which heuristic counting suggests exists, or Philippon's approximation of
+    points by zero-dimensional cycles (J. Number Theory 81, 2000, not yet
+    checked against the source).
 
 * **Kronecker product of companion pencils.** Dies on distances. It gives an
   integral model with
