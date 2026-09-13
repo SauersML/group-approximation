@@ -6,6 +6,8 @@ title: For every eps > 0 there is an alphabet size making it NP-hard to tell uni
 root: true
 goal: true
 artifacts:
+  - research/artifacts/unique-games-finite-density-moments-2026-09-12.md
+  - research/artifacts/unique-games-smooth-design-richness-2026-09-11.md
   - research/artifacts/unique-games-affine-orientation-2026-08-24.md
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md
   - research/artifacts/unique-games-noisy-direction-counterexample-2026-09-07.md
@@ -38,15 +40,39 @@ perfect classical labeling; that rigidity is the mechanism behind
 `unique-constraints-orient-at-most-half-of-a-fiber` below, and it is why no
 quantum relaxation of the unique-constraint alphabet evades the wall.
 
-The live equivalence route here goes through
+The published equivalence route here goes through
 `rich-2to1-games-conjecture`, which is *equivalent* to this claim by
 Braverman--Khot--Minzer. The proposed `F_lin` attack was closed on
 2026-09-07: `noisy-affine-selector-defeats-bounded-hitting` refutes both
 `affine-orientation-glue-lemma` and its proposed star-density input.
-The conditional globalization theorem remains valid. A new analytic
-formulation and an explicit hardness reduction are needed; the prior
-two-hole plan is no longer usable. Neither UGC nor Rich 2-to-1 hardness
+The conditional globalization theorem remains valid. The prior two-hole
+plan is no longer usable; the smooth-design formulation below replaces its
+analytic input but still needs an explicit hardness reduction. Neither UGC
+nor Rich 2-to-1 hardness
 is proved or refuted by that counterexample.
+
+**Current outer-hardness frontier (September 12, 2026).** The live route
+`ugc-from-smooth-design-rich-2to1` combines the established analytic transfer
+`noise-test-sound-on-smooth-design-rich-inputs` with the OPEN hardness claim
+`smooth-design-rich-2to1-hardness`. Its hypothesis fixes the test alphabet and
+balance parameter before selecting a smooth pairing design; it does not ask
+one small family to work for all test alphabets simultaneously. The available
+weighted design construction proves existence of admissible distributions,
+not NP-hardness of games with those distributions. The reverse route
+`smooth-design-rich-2to1-from-ugc` proves that this outer-hardness assertion
+is itself equivalent to UGC. Neither direction supplies the missing hardness
+input. The refuted affine test remains invalid and the root remains OPEN.
+
+The further route `ugc-from-finite-moment-pairing-hardness` replaces
+pointwise density domination by one finite density moment after the fixed
+noise already present in the reduction. Its proved input
+`finite-density-moments-control-noisy-tails` gives a dimension-independent
+tail bound. The new OPEN hardness premise keeps the moment constant
+independent of the source error and design strength; these quantifiers
+allow the noise, moment order, constant, and degree cutoff to be chosen
+without circularity. The matching-union formula makes the moment condition
+an exact combinatorial overlap bound. No hard outer construction satisfying
+it is supplied, and the exponential pairing-support obstruction persists.
 
 ## Attempts
 
