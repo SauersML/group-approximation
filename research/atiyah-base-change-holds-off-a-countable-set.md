@@ -41,7 +41,9 @@ root `strong-atiyah-torsion-free` is not reached. The one-variable exceptional
 points are exactly what `vn-rank-galois-invariant-for-torsion-free-groups` would
 remove.
 
-**Under the determinant conjecture** the exceptional points are badly
+**Under the determinant conjecture `E_G` is empty**
+(`determinant-conjecture-gives-one-variable-atiyah-base-change`, unreviewed).
+An earlier and weaker consequence says the exceptional points are badly
 approximable by algebraic numbers of every bounded degree
 (`determinant-conjecture-excludes-liouville-atiyah-exceptions`).
 

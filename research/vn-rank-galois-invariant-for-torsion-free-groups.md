@@ -40,8 +40,11 @@ over `N(K)` and `N(H)` (Step 1 of `algebraic-atiyah-determinant-colimit-proof`).
     countable set `E_H` of exceptional transcendental numbers. Off `E_H`, the
     division closure of `Qbar(z)[H]` is `D_(Qbar[H])(x)` and ranks do not depend
     on `z`.
-  - Under the determinant conjecture every point of `E_H` is badly approximable
-    by algebraic numbers of each bounded degree
-    (`determinant-conjecture-excludes-liouville-atiyah-exceptions`).
-  - So a failure of invariance, given Strong Atiyah over `Qbar`, sits at
-    countably many Diophantine transcendental parameters.
+  - Under the determinant conjecture `E_H` is empty
+    (`determinant-conjecture-gives-one-variable-atiyah-base-change`, unreviewed).
+    So the one-variable case of this claim holds for every torsion-free group
+    with Strong Atiyah over `Qbar` and the determinant conjecture, nonsofic or
+    not. The proof uses companion models of small integer polynomials at `z`, not
+    approximation.
+  - Left open: invariance for coefficient fields of transcendence degree at
+    least 2, and for algebraic extensions of `Qbar(z)`.

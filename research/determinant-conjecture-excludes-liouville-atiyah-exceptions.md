@@ -13,6 +13,14 @@ artifacts:
 
 **ESTABLISHED** by [[liouville-atiyah-exceptions-proof]].
 
+*Superseded (same day, same lane).*
+`determinant-conjecture-gives-one-variable-atiyah-base-change` proves under the
+same hypotheses that the exceptional set is empty. The statements below remain
+true, but they are weaker than that result. The earlier remark that the box
+principle only gives a bounded excess was wrong. It concerned algebraic
+approximants of the parameter. Small integer polynomial values at the parameter,
+used through a resultant identity, do empty the set.
+
 **Setting.**
 * `G` is torsion-free and satisfies Lueck's determinant conjecture and Strong
   Atiyah over `Qbar`.

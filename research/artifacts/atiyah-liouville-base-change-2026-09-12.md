@@ -221,17 +221,17 @@ Theorem 1 of the countable-exceptions artifact, `z_0` is not in `E_A` for any
   `SA(E)` and `Det(E)` give both hypotheses for every torsion-free group, hence
   this conclusion for every torsion-free group. That node records "Nothing over
   C". This is a first complex-coefficient consequence of the same conjunction.
-* **No measure gain.** Almost every complex number is badly approximable in this
-  sense, so Theorem 2 adds nothing measure-theoretic to the countability of
-  Theorem 1. It adds arithmetic: exceptional values must look like "generic"
-  constants such as `e` or `pi`, never like Liouville's constant.
-* **Why the box principle does not remove the exceptions.**
-  - `serre-class-atoms-obey-degree-bound` excludes transcendental atoms by
-    evaluating integer polynomials `p` of degree `l` in a fixed-size integral
-    matrix. The gain `l log H` in `log(1/|p(z)|)` beats the cost `log H + l const`.
-  - For the companion matrices `C_i` over the skew field `D` needed here, `p(C_i)`
-    has no fixed-size integral model. A linear representation of `p(C_i)` over
-    `Qbar[G]` has size growing linearly in `l`, so the cost becomes
-    `l log H` as well, and the argument gives only a bounded excess, not zero.
+* **Correction (same day): superseded.** An earlier version of this section said
+  Theorem 2 gives no measure gain and that the box principle cannot remove the
+  exceptions. That conclusion was wrong.
+  - Polynomials in the companion matrices do grow without bound.
+  - But one can use small integer polynomial *values* at the parameter, together
+    with the resultant identity `Delta(M_0 (x) E + M_1 (x) F) = |a|^N prod_j Delta(M(alpha_j))`
+    for the companion pencil `(E, F)` of `p`. That loses only `N log M(p)` against
+    Minkowski's gain `n log H`.
+  - This empties the exceptional set: see
+    `research/artifacts/atiyah-one-variable-base-change-2026-09-12.md` and
+    `determinant-conjecture-gives-one-variable-atiyah-base-change`.
+  - Theorem 2 above stays true but is weaker.
 * **Not covered.** Algebraic extensions of `Qbar(z)`, as in Section 4 of the
   countable-exceptions artifact.

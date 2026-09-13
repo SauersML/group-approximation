@@ -44,9 +44,17 @@ conjecture over C".
     `D_(Qbar[G])[x]` and independence of eigenspaces, with no approximation of the
     group.
   - One-variable Galois invariance is equivalent to `E_G = ∅`.
-  - Under the determinant conjecture, no point of `E_G` is algebraically
-    Liouville, and each is badly approximable by algebraic numbers of every
-    bounded degree (`determinant-conjecture-excludes-liouville-atiyah-exceptions`).
-  - What is left: emptiness of `E_G`, and finite extensions `F` of
+  - Under the determinant conjecture `E_G` is empty
+    (`determinant-conjecture-gives-one-variable-atiyah-base-change`, unreviewed).
+    - The proof has three steps. Reduce to a square pencil over `Z[G]`. Then
+      compare `Delta(M_0 (x) E + M_1 (x) F) = |a|^N prod_j Delta(M(alpha_j))`
+      (companion pencil of an integer polynomial `p`) with the determinant bound.
+      This gives `|p(z)| >= c M(p)^(-(N-kappa)/kappa)` at an exceptional `z`, and
+      Minkowski's small values contradict it.
+    - So, under the determinant conjecture, the implication holds group by group
+      for coefficient fields `Qbar(z)`.
+  - What is left, under the determinant conjecture: coefficient fields of
+    transcendence degree at least 2, where the Kronecker product of companion
+    pencils loses a product of degrees; and finite extensions `F` of
     `Qbar(z_1..z_s)`, where `D(x_1..x_s) (x) F` must stay a skew field in `U(G)`
     (Jaikin-Zapirain--Lopez-Alvarez, arXiv:1810.12135v4, Conjecture 3).

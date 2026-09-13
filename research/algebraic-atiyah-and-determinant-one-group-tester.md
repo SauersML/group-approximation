@@ -54,4 +54,12 @@ proves neither `SA(E)` nor `Det(E)`.  The continuity argument is classical;
 what is new is the permanence of the conjunction and its combination with the
 torsion-free universal host.
 
+*Amendment (2026-09-12, lane `ex-atiyah-torsion-free`, unreviewed).* "Nothing
+over `C`" is now too strong. `determinant-conjecture-gives-one-variable-atiyah-base-change`
+shows the conjunction gives Strong Atiyah over `Qbar(z)` for every complex `z`,
+with one-variable Galois invariance. The proof applies the determinant bound to
+companion models of small integer polynomials at `z`. So `SA(E)` and `Det(E)`
+give this for every torsion-free group. Transcendence degree at least 2, and
+algebraic extensions of `Qbar(z)`, remain uncovered.
+
 **ESTABLISHED 2026-09-11** by [[algebraic-atiyah-determinant-tester-proof]].

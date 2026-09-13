@@ -136,3 +136,16 @@ point.  The audit artifact traces each.
      produce one are this permanence and nonsofic locally indicable groups, for
      instance a nonsofic one-relator group
      (`one-relator-groups-satisfy-strong-atiyah`).
+9. **Base change for one transcendental coefficient (2026-09-12).**  Proved
+   under the determinant conjecture, unreviewed.
+   - For a torsion-free group with Strong Atiyah over `Qbar`, integrality over
+     `Qbar(z)` can fail only at a countable set of transcendental `z`
+     (`atiyah-base-change-holds-off-a-countable-set`).
+   - Under the determinant conjecture that set is empty
+     (`determinant-conjecture-gives-one-variable-atiyah-base-change`). The proof
+     is a resultant identity for companion models together with Minkowski's small
+     polynomial values. No approximation of the group is used.
+   - So attempt 7's master-host conjunction `SA(E)` and `Det(E)` gives Strong
+     Atiyah over every `Qbar(z)` for every torsion-free group.
+   - What separates this from the root: transcendence degree at least 2, and
+     algebraic extensions of `Qbar(z)`.
