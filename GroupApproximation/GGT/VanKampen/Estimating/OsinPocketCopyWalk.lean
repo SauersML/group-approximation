@@ -98,9 +98,11 @@ theorem mem_rightSide_boundary (x : RegionCandidate D eps X) {d : X.toCombMap.Da
 /-- A dart of the source arc read backwards has the source cell across it. -/
 theorem faceOf_alpha_of_mem_invDarts_sourceArc (K : PocketWalk D eps X lo hi)
     {d : X.toCombMap.Dart} (hd : d ∈ invDarts X K.sourceArc.darts) :
-    X.toCombMap.faceOf (X.toCombMap.alpha d) = (cell X K.source).face :=
-  ((X.faceBoundary (cell X K.source).face).mem_iff _).mp
-    (K.sourceArc.mem_cycle_of_mem_darts ((mem_invDarts_iff _ _).mp hd))
+    X.toCombMap.faceOf (X.toCombMap.alpha d) = (cell X K.source).face := by
+  obtain ⟨e, he, rfl⟩ := List.mem_map.mp hd
+  rw [X.toCombMap.alpha_involutive e]
+  exact ((X.faceBoundary (cell X K.source).face).mem_iff e).mp
+    (K.sourceArc.mem_cycle_of_mem_darts (List.mem_reverse.mp he))
 
 /-- A dart of the target arc has the exterior face across it. -/
 theorem faceOf_alpha_of_mem_targetArc (K : PocketWalk D eps X lo hi)
@@ -141,7 +143,9 @@ theorem walk_nodup_of_copyClean (K : PocketWalk D eps X lo hi) {x y : RegionCand
     rw [hfirst, hsecond]
     exact hclean.side_outer
   show (K.firstSide ++ invDarts X K.sourceArc.darts ++ K.secondSide ++ K.targetArc.darts).Nodup
-  refine nodup_append_four ?_ (invDarts_nodup (K.sourceArc.darts_nodup (cellDarts_nodup X _)))
+  refine nodup_append_four ?_
+    ((List.nodup_reverse.mpr (K.sourceArc.darts_nodup (cellDarts_nodup X _))).map
+      X.toCombMap.alpha_involutive.injective)
     ?_ (K.targetArc.darts_nodup ((List.nodup_reverse.mpr (X.faceBoundary X.outerFace).nodup).map
       X.toCombMap.alpha_involutive.injective)) ?_ ?_ ?_ ?_ ?_ ?_
   · rw [hfirst]
