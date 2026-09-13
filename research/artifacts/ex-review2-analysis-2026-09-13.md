@@ -160,7 +160,23 @@ Filled in as each part lands.
 
 | claim | lane | verdict | part |
 |---|---|---|---|
+| `eta-cubed-survives-in-lambda-mod-eight-bordism` | unitary-string-trapping | PASS | 1 §1.2 |
+| `trapped-lambda-mod-eight-class-over-seed-factor` | unitary-string-trapping | PASS, SU(2)/U(2) note | 1 §1.3 |
+| `eta-cubed-commutator-has-nonzero-lambda-mod-eight-class` | unitary-string-trapping | PASS | 1 §1.4 |
+| `quaternionic-grassmannian-trapping-defect-is-rank` | unitary-string-trapping | PASS | 1 §1.5 |
+| `simple-ah-algebra-with-class-four-component-group` | unitary-string-trapping | PASS | 1 §1.6 |
+| `simple-cstar-unitary-components-class-four` (root, flips) | unitary-string-trapping | PASS | 1 §1.1, §1.6 |
+| `unitary-word-transfer-to-simple-ah-via-trapping` | unitary-string-trapping | PASS | 1 §1.7 |
+| route `nonnilpotent-via-glued-trapping-towers` | unitary-string-trapping | PASS, conditional, does not fire | 1 §1.8 |
+| `rank-two-trapping-blind-to-fivefold-sphere-commutators` | unitary-string-trapping | PASS | 1 §1.9 |
+| `nested-commutators-pull-ko-of-unitary-groups-into-eta-powers` | unitary-string-trapping | PASS | 1 §1.10 |
+| `quaternionic-flag-trapping-steps-are-never-string` | unitary-string-trapping | PASS | 1 §1.11 |
+| `rank-two-spin-trapping-blind-to-depth-three-brackets` | unitary-higher-brackets | PASS, ABP recalled | 1 §1.12 |
+| `rank-two-trapping-blind-to-depth-four-brackets` | unitary-higher-brackets | PASS | 1 §1.12 |
+| `spin-trapping-blind-to-fourfold-commutators-in-every-rank` | unitary-higher-brackets | PASS, ABP and Wood recalled | 1 §1.12 |
 
 ## 3. Part files
 
-None yet.
+- `ex-review2-analysis-2026-09-13-part1.md`: the class-four chain (λ-mod-8 trapping over quaternionic
+  Grassmannians), the transfer theorem, the gluing proposition, and the depth limits of rank-two and
+  rank-N trapping.
