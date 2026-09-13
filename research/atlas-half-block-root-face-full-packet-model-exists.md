@@ -204,5 +204,17 @@ the nested output is the identity coefficient. A viable third direction
 must therefore meet the unstripped mode or its payload directly, not merely
 move the stripped identity between chart frames.
 
+The automated literal census is now complete. By
+`atlas-literal-packet-cannot-authenticate-any-common-mode`, every one of the
+4,648 packet entries projects, in the free rectangular language over `F_2`,
+to zero or to one equality of two monomials. So the constant vector on every
+incidence component survives the whole packet. All 320 two-letter
+right-hand-side stars have increment exactly two. The only increments above
+two (up to five) come from one-letter stars with displayed constant
+coefficients, and they control path differences, never the common mode. No
+grouping of literal rows supplies the third quotient direction. A viable
+family must use normal-closure consequences or ring relations among the
+coefficient letters.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear
