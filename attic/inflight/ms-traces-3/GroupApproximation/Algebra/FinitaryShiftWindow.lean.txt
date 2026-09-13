@@ -1,5 +1,6 @@
 import GroupApproximation.Algebra.FinitaryGeneralLinear
 import Mathlib.Algebra.Order.Group.Unbundled.Int
+import Mathlib.Data.Int.Interval
 import Mathlib.Data.ZMod.Basic
 
 /-!
