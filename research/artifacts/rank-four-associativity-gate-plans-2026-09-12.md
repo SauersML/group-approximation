@@ -31,7 +31,11 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
       distortion input of L5 would also do, and so would the Sylvester form
       `sylvester-disjoint-cylinder-defects-strictly-submultiplicative`, which implies the model form (L9). At
       an exact minimizer the Sylvester chain reproduces the numbers of the independent firewall profile, so
-      the content of the deficit is that no minimizer exists (w7-sylv-global §4.2).
+      the content of the deficit is that no minimizer exists (w7-sylv-global §4.2). In characteristic three
+      this is now a theorem in both scopes (w7-matrix-state-deficit, f3545c8591; held OPEN until
+      w4-vf-linear-b re-derives it; lead check passes; L9b). Over anti-central rank functions the deficit
+      holds iff there are none, which is the kill claim. Over matrix states it holds iff `S_-` fails the
+      rank condition. So the deficit is the local form a proof would take, not a reduction.
   * **Constraints on any proof** (L5, L7). It cannot come from any of these:
     * relations of locally finite subgroups;
     * single conjugations of locally finite data;
@@ -39,7 +43,10 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
     * witnesses from rank-modelled subgroups off the cylinder set;
     * relations of any sofic subgroup containing both frames (w5-sub-fock, verifier PASS);
     * Steinberg relations arranged in a graph of locally finite subgroups, the depth-mismatched pair
-      `T_(0,1)`, `T_(1,00)` included (w6-mismatch-c2, verifier PASS §29).
+      `T_(0,1)`, `T_(1,00)` included (w6-mismatch-c2, verifier PASS §29);
+    * the multi-letter systems of w7-sub-multiletter: cylinder swaps `G wr S_k`, the lexicographic Borel
+      group `U_< ⋊ P` with amenable `P <= F`, and one-chart coefficients (37bafd8f30; held OPEN until
+      w4-vf-gate re-derives it; L5).
 
     It has to use relations beyond those shapes: straddling units as factors in a nonsofic configuration
     that no graph of locally finite subgroups routes, properties that no rank model has, or global inputs
@@ -65,7 +72,8 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
       asks whether `EL_3(J)` is finitely presented and what the amalgam kernel is.
     * w7-sub-multiletter works on L1 SUB from the multi-letter inputs only: V's multiplication table on
       depth-changing letters, commutation of disjointly supported depth-changing letters, and the
-      Toeplitz quarter.
+      Toeplitz quarter. Landed 37bafd8f30 (held OPEN): no deficit. Every system examined lies inside one
+      of three firewalls, and the smallest system outside all three is `Gamma_b` (L5).
     * w7-sylv-global (verifier w4-vf-linear-b) works on the Sylvester counterparts of the descent line on
       `F_2[R^x]`: `sylvester-leavitt-kazhdan-fixed-ideals-are-global` and
       `sylvester-near-minimal-leavitt-defects-are-multiplicative`. Both landed established
@@ -75,7 +83,9 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
       open order-char cycle law at `p = 2` and `p = 3`. w7-v-cycle-c2 landed a candidate proof of the law
       for every `p`, through trivial-plus-regular ranks on every finite subgroup of `V` (ce8be16cd1; held
       OPEN until w3-vf-linear re-derives it; L8). It turns the gate into `phi_V in {0, 1}` and is not
-      decisive.
+      decisive. w7-v-cycle-c3 landed a second derivation of that formula and a firewall candidate
+      (2e8bf4f44d; held OPEN; L8). Rank data inside `p`-groups cannot force the law, and the ternary gate
+      stays open at `<x_0, x_1, s>`.
 
 Commit hashes below are the ones reported by the landing lanes. Node ids are the stable references.
 
@@ -398,6 +408,29 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
     * *(lead)* Every local relation is finite data, so a relation-only `theta < 1` needs a global cycle of
       Steinberg relations, since the `K_2(3,R)` kind is empty if the candidate passes. The inputs of w7-sub-multiletter, V's multiplication table and commutation of
       disjoint depth-changing letters, are where such a cycle would have to come from.
+    * **w7-sub-multiletter** (37bafd8f30; artifact
+      `research/artifacts/multiletter-split-borel-and-coefficient-firewalls-2026-09-12.md`; held OPEN until
+      w4-vf-gate re-derives it). No deficit in that class.
+      * **Three firewalls, each model-tested.**
+        * Cylinder swaps `G wr S_k` carry permuted tensor powers of any rank model of `G`, with `theta = 1`.
+        * The lexicographic Borel group `U_< ⋊ P`, with `P <= F` amenable, is amenable.
+        * One-chart coefficients `Phi_Q(GL_#Q(F_2<s_0, s_1>))` are residually finite.
+        * The last two fall to Theorem S.
+      * **Consequences.**
+        * A deficit from the swap relations with `G = R^x` would be the gate itself.
+        * A deficit from relations of `U_< ⋊ F` would prove `F` nonamenable.
+        * The order-128 Toeplitz group lies in `U_<`, so the Toeplitz quarter is finite-subgroup data.
+      * **Next live systems, soficity open.**
+        * `Gamma_b = <iota_A(D_8), iota_(A1)(D_8), b>`, where `b` in `V \ F` is the right-child exchange product.
+          By Lemma 6.1, `b` preserves no order in which the frame roots all move one way.
+        * `U_< ⋊ F`.
+        * `EL_3(J)` at one frame (w7-el3j-sofic).
+      * *(lead check, on paper)* Lemma 6.1 passes. Downward roots force `[A10] < [A110] < [A111]`, so
+        `[A10] < [A11]`. If `b` preserved the order, then `[A100] < [A11] < [A101]`, but `[A101]` lies in
+        `[A10]`.
+      * *(lead)* This is the fourth host with the same shape. Ordered or one-sided data are approximable,
+        and the load sits on a letter that breaks the order, here `b`. That locates the load and gives no
+        deficit.
 
 ### L6. Status
 
@@ -416,7 +449,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | Toeplitz input and sofic firewall | w5-sub-fock (family SUB) | Established, verifier PASS §28: the Toeplitz pair is finite-subgroup data; `sofic-subgroups-carry-independent-cylinder-defects`; `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`. Open input shared with L8: soficity of `EL_3(J)` (L5) |
 | graph-of-groups firewall | w6-mismatch-c2 (family SUB) | Established, verifier PASS §29 (d0f2b3f648; verdict 4373d18c44): `graphs-of-locally-finite-groups-carry-regular-rank-models`; the depth-mismatched pair is inert as a factor; Attempts entries on the SUB target and on `binary-complement-corner-has-no-weakly-finite-image` (L5) |
 | depth-monotone firewall (char 3) | w6-mismatch-c3 (family SUB) | Established, verifier PASS §30 (74247b5cff, a5226d4756; verdict 794ae892b2; established f31c52ae43): `depth-monotone-leavitt-subalgebras-are-stably-finite`; `depth-monotone-configurations-cannot-force-ternary-minus-one`. The pair is inert for the anti-central form; the defect form is not firewalled (L9b) |
-| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established, verifier PASS w4-vf-linear-b §39 at ae0a4005ef; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6, 07d43b6a32; verifier PASS §31 at 216396d9ee and §32 at 6bc9bfc1a2): no containment reduction; Kazhdan, so LEA iff LEF; both one-sided halves are LEF, and `EL_3(J)` is a proper quotient of their amalgam; verdict open (L5). w7-v-cycle-c2 landed a candidate proof of trivial-plus-regular ranks on finite subgroups of `V` (ce8be16cd1; held OPEN until w3-vf-linear re-derives it; L8). w7-sub-multiletter and w7-v-cycle-c3 have not landed. w7-k2-unstable landed a candidate `K_2(3,R) = 0` for both hosts (8afa079662; held OPEN until w4-vf-gate re-derives it; L5). Other follow-up lanes on the same inputs, none landed: w7-el3j-presentation, w7-escape-set, w7-matrix-state-deficit. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
+| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established, verifier PASS w4-vf-linear-b §39 at ae0a4005ef; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6, 07d43b6a32; verifier PASS §31 at 216396d9ee and §32 at 6bc9bfc1a2): no containment reduction; Kazhdan, so LEA iff LEF; both one-sided halves are LEF, and `EL_3(J)` is a proper quotient of their amalgam; verdict open (L5). w7-v-cycle-c2 landed a candidate proof of trivial-plus-regular ranks on finite subgroups of `V` (ce8be16cd1; held OPEN until w3-vf-linear re-derives it; L8). w7-v-cycle-c3 landed (2e8bf4f44d; L8). w7-sub-multiletter landed (37bafd8f30; held OPEN): no deficit from multi-letter inputs, three firewalls (L5). Follow-up w7-matrix-state-deficit landed (f3545c8591; held OPEN): the ternary deficit restates emptiness in both scopes (L9b). w7-k2-unstable landed a candidate `K_2(3,R) = 0` for both hosts (8afa079662; held OPEN until w4-vf-gate re-derives it; L5). Other follow-up lanes on the same inputs, none landed: w7-el3j-presentation, w7-escape-set, w7-matrix-state-deficit. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
 | verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §32, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
 ### L7. The listed mechanism dies
@@ -538,6 +571,26 @@ without completeness.
       * The inputs [TS] Theorem 1.3 and [FR] Theorem 1.2 were not re-read.
       * If the proof passes, it also covers the target of w7-v-cycle-c3, and the V gate keeps no torsion
         content. That is a reformulation, not a decisive input.
+    * **w7-v-cycle-c3** (2e8bf4f44d; held OPEN until w3-vf-linear re-derives it).
+      * It derives the trivial-plus-regular formula a second way, with one prime `q` and `k -> infinity`.
+      * Firewall candidate `p-cycle-tree-invariance-cannot-force-order-char-law`. On an elementary abelian
+        `p`-group `E` with basis `(tau_i)`, put `L = F(t_i)` and `lambda(tau_i) = t_i`, extended
+        additively. For `1 <= m <= p`, set `rho_m([g]) = exp_m(lambda(g) u)` in `L[u]/(u^m)` and
+        `rk_m = rank_L rho_m / m`. Each `rk_m` is a Sylvester rank function, invariant under injective
+        homomorphisms, with profile `max(m - j, 0)/m`. Mixtures of `rk_1, ..., rk_p` realize every profile
+        that Frobenius allows. So rank data inside `p`-groups cannot force the order-char law, and a proof
+        needs a prime other than `p`. For `2 <= m < p`, the first premise the model breaks is
+        single-element V-conjugacy at `W = E_p ⋊ <s>`: there `s` gets the regular profile and `tau_1` gets
+        the `rk_m` profile. For `m = p` only the joint fixed rank rules the model out, through a `q`-group
+        with `q != p`.
+      * *(lead spot-check, on paper)* `exp_m` is multiplicative modulo `u^m`, because `j!` is invertible for
+        `j < m <= p`. For `g != 1`, `lambda(g)` is a nonzero `F_p`-combination of independent `t_i`, so
+        `1 - rho_m([g])` is `u` times a unit, and `(1 - [g])^j` has rank `m - j`. An injective homomorphism
+        substitutes independent linear forms for the `t_i`, which extends to a field embedding, and field
+        embeddings preserve rank.
+      * The ternary gate stays OPEN at `<x_0, x_1, s>`. Two items are open: the abstract reduced quotient
+        `(rk - phi_V rk_aug)/(1 - phi_V)`, and joint rank data on `F_3[B ⋊ <x>]` and
+        `F_3[<x_0, x_1, s>]`. A proof has to mix infinite-order elements with 3-torsion.
   * *(lead)* The first firewall is the V-side analogue of the sofic cylinder-defect firewall in L5. So a
     proof of either gate has to work in a configuration not known to be sofic.
 
@@ -677,7 +730,7 @@ statements say. It is not a re-verification.
     claim is open.
   * **Extension claim, reduced** (lane w6-v-extend; 0144b771c7, 60501cc208; artifact
     `v-rank-extension-to-ternary-leavitt-units-2026-09-12.md`; the claim node stays OPEN, with an Attempts
-    entry at 4ae2882d79).
+    entry at 4ae2882d79; verifier PASS w4-vf-gate §33 at 5b4dce2717 on Sections 1--5, no corrections).
     * **Reduction.** Link 1, the minus-one gate, says no rank function on `F_3[G_3]` moves `z`. The V gate
       says no rank function on `F_3[V]` is detecting. "V gate ⟹ link 1" is known, and the extension claim
       is "link 1 ⟹ V gate". So the extension claim is equivalent to "link 1 ⟺ V gate". It fails exactly
@@ -800,3 +853,26 @@ statements say. It is not a re-verification.
         *(lead)* The kernel compression and triangular count of w7-sylv-global (L9) use only the Sylvester
         axioms, so they hold over `F_3` and supply the kernel corner in abstract scope. Exact globality with
         `z` central and the sector limit are unchecked, so no port is claimed.
+      * **The deficit restates emptiness** (w7-matrix-state-deficit, f3545c8591; artifact
+        `research/artifacts/matrix-state-deficit-item-two-2026-09-12.md`; held OPEN until w4-vf-linear-b
+        re-derives it).
+        * **Theorem 2.2.** Over anti-central Sylvester rank functions, the target holds iff there are none,
+          which is the kill claim. Over anti-central matrix states, it holds iff there are none, iff `S_-`
+          fails the rank condition, which is `ternary-anti-central-unit-class-is-nonpositive`.
+        * **Proof.**
+          * The scope is compact, and `d(D)` attains a positive minimum `c`.
+          * At a minimizer `d_0` where item 1 holds, `h(d_0) > 0` and the compression `d_0'` lies in the
+            scope.
+          * So `d_0'(D) >= c = d_0(D) > theta d_0(D)` for every `theta < 1`.
+          * Emptiness gives the target vacuously.
+        * **Proposition 4.1.** Over matrix states, proving item 2 is the same as exhibiting `X` of size
+          `n x (n-1)` and `Y` over `S_-` with `XY = I_n`. That certificate is the counterexample itself.
+        * **Other findings.**
+          * Socle-type states break only the upper bound `c_3 <= 2/3`, which is not part of the target.
+          * Hung–Li (arXiv:2201.01432, Question 3.4) pose `rank-condition-rings-carry-sylvester-rank-functions`
+            as an open question.
+        * *(lead check, on paper)* Lemma 2.1 passes. It uses only compactness, positivity of the gap, closure
+          of the scope under compression, and (F4).
+        * *(lead)* Characteristic two already had this shape (w7-sylv-global §4.2). So in both characteristics the
+          strict deficit is the gate restated locally. Gap, descent and deficit together form a valid route
+          whose last premise is its conclusion. The assembly closes only through a certificate for emptiness.
