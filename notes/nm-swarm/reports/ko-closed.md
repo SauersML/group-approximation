@@ -3,6 +3,40 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
+## STATE (09-13 ~14:55): face-level one-cell kills GREEN (0913-145215-56485), queued; OneCellInput withdrawn
+- theoremc-retire withdrew `OsinLemma94CaseOneOneCellInput`, so case (a) below is not written against it.  The consumer
+  is now jacobson's producer of `OsinLemma94CaseOneSameCellStatement` (roster l.919).  It composes ko-closed's
+  cell-free branch (1) with `nonempty_osinLoopCut_of_pocketRegion`, and jacobson routes the PocketRegion.
+- `GGT/VanKampen/Estimating/OsinLemma94OneCellFace.lean` (303 lines):
+  - Landed at f8d2571ba.
+  - GREEN 0913-145215-56485: base f8d2571ba, BUILT, empty error index, md5 76546585 equal to origin/main, all seven
+    `#audit_axioms` pass.
+  - Queued for wiring.
+  - `polygon_segment_value`, `polygon_face_value`, `polygon_face_isRotated`: corner values along a side window, the
+    face value 1, and the face rotation read as `X ++ invDarts q ++ Y ++ invDarts p`.
+  - `wordNorm_lt_of_start_connector` / `_end_connector` and `lt_wordNorm_of_source_segment` / `_target_segment`: the
+    norms from `start_short`, `end_short`, `source_long` and `target_long` over `symmetricLabelAlphabet D`.
+  - `osinLemma94CaseOneWalk_sameCell P k C (hback : C.b' < C.b) (hkind : P.kind k C.source = P.kind k C.target)`:
+    - one relator cell `j` with `P.kind k C.source = .cell j`;
+    - arcs `sourceArc` and `targetArc` of `cellDarts j`, both of positive length;
+    - a face rotation `X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts`;
+    - the values of `[a, a']`, `[b', b]`, `X` and `Y`.
+  - `false_of_cellFree_pocket_face_X_morse` and `_Y_morse` conclude False.  Their inputs:
+    - `hW : OsinCCondition`, `0 ≤ λ`, `hmorse`, and `2κ + c ≤ λε`;
+    - the polygon and the pair C over `symmetricLabelAlphabet D`;
+    - the output of `_sameCell`;
+    - a cell-free PocketRegion with outer cycle `~r X ++ M` (or `Y ++ M`);
+    - an arc T of cell `j` with `T.darts = targetArc ++ M ++ sourceArc` (or `sourceArc ++ M ++ targetArc`).
+- Finding: the landed `OsinLemma94CaseOneWalkStatement` exports no segment values and cannot force
+  `target = some source` when the kinds agree.  So the same-cell branch uses `osinLemma94CaseOneWalk_sameCell`, and no
+  existing Prop changes.
+- Sent to jacobson:
+  - the signatures;
+  - the threshold: `exists_morse_threshold_of_fourPoint D hhyp λ c hλ`, then `eps0 := max eps1 eps2`.
+- jacobson builds Q, M, T and the R-cell branch (Rule 16).  If jacobson spells the pocket differently, the adapter goes in
+  my file.  theoremc-retire has been informed.
+- Residual Props owned by ko-closed: NONE.
+
 ## STATE (09-13 ~14:30): (a) metric kill GREEN (0913-142447-72008) and queued for wiring; value module GREEN
 - The lead forwarded three questions to ko-closed (ROSTER 843–850). ko-closed ruled at ~14:10 and sent the ruling to main
   and audit-sec5:
