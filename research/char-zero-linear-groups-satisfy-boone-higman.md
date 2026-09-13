@@ -11,7 +11,12 @@ distinct_from:
   positive-char-surface-linear-groups-satisfy-boone-higman: that is a positive-characteristic class; this is characteristic zero.
 ---
 
-**OPEN.** Let `K` be a field of characteristic zero and let `H <= GL_n(K)` be
+**ESTABLISHED (2026-09-12)** through
+`char-zero-linear-bh-via-polynomial-s-integer-hosts`. That route rests on
+`polynomial-linear-groups-satisfy-boone-higman`, whose independent review is still
+pending (lane `bh-poly-linear-review`).
+
+**Statement.** Let `K` be a field of characteristic zero and let `H <= GL_n(K)` be
 finitely generated. Then `H` embeds in a finitely presented simple group.
 
 *Marked `root` because it is a natural class question in its own right.* Such
@@ -26,11 +31,20 @@ the Boone--Higman conjecture.
   `GL_N(Z[1/m][t_1..t_k])` embeds in a finitely presented simple group. That
   includes every finitely generated subgroup of `GL_N(Q[t_1..t_k])`, and in
   particular `SL_3(Z[t])`.
+- **Every transcendence degree** (2026-09-12, attempt 8):
+  `char-zero-linear-groups-embed-in-polynomial-s-integer-groups`. Every finitely
+  generated `H <= GL_n(K)` embeds in some `GL_M(Z[1/m][s_1..s_k])`. The proof uses
+  restriction of scalars, Noether normalization over `Z`, miracle flatness and
+  Quillen's theorem over a PID. The polynomial theorem then applies.
 
-**Open part.** The finitely generated linear groups over fields of positive
-transcendence degree that are not known to embed in any `GL_M(Z[1/m][t_1..t_k])`.
-The first cases are `SL_3(Z[t^(+-1)])` and the finitely generated subgroups of
-`GL_n(Q(t))` whose entries need non-constant denominators.
+**Former open part.** The first open cases named here were `SL_3(Z[t^(+-1)])` and
+the finitely generated subgroups of `GL_n(Q(t))` whose entries need non-constant
+denominators. Attempt 8 covers both:
+- `SL_3(Z[t^(+-1)]) <= SL_6(Z[s])`, with `s = t + t^-1`;
+- after inverting one integer, `Z[t][1/f]` becomes finite free over some
+  `Z[1/m][s]`.
+
+Nothing is open beyond the review of the polynomial theorem.
 
 ## Attempts
 
@@ -136,3 +150,19 @@ The first cases are `SL_3(Z[t^(+-1)])` and the finitely generated subgroups of
      Laurent polynomial. Closing `Z[t^(+-1)]` under the substitutions adds the
      infinitely many denominators `a_0 + p a_1 + ... + p^j t`, so the section-closed
      ring is not finitely generated. See `research/artifacts/bh-sl3-zt-host-2026-09-12.md`.
+8. **Change the coordinate ring, not the host** (lane `bh-char0-linear-reduction`,
+   2026-09-12). *Succeeds.*
+   - **Only the coordinates block attempt 7.** Its substitutions `σ_a` do not
+     preserve `Z[t^(+-1)]`. But `Z[t^(+-1)]` is free with basis `1, t` over the
+     polynomial ring `Z[s]`, where `s = t + t^-1`. So `SL_3(Z[t^(+-1)]) <= SL_6(Z[s])`,
+     and attempt 7 applies there.
+   - **In general** (`char-zero-linear-groups-embed-in-polynomial-s-integer-groups`):
+     - restrict scalars from the field of entries to `Q(t_1..t_k)`;
+     - clear denominators into `A = Z[t][1/f]`;
+     - a Nagata change of variables makes `A[1/m]` finite over
+       `P = Z[1/m][s_1..s_k]`;
+     - miracle flatness makes it projective (Stacks 00R4, with going down, 00H8,
+       for the dimension count);
+     - Quillen's theorem over a PID makes it free.
+   - **Conclusion:** route `char-zero-linear-bh-via-polynomial-s-integer-hosts`
+     settles the root, resting on attempt 7.
