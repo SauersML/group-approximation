@@ -82,7 +82,24 @@ kh-torsion wires the endpoint and queues both modules.
     because 6a5f25704 renamed the lemma to `embed_injective_faceCycles`;
   * census2 line 52, "red `GGT/SystolicDiscCounts`".
 
+### Current item: HC6, pinched case (`MirrorFoldPinchedStatement X`), one step, offer pending
+
+The lead assigned a piece of `MirrorFoldPinchedStatement X` (`GGT/SystolicDiscMirrorFoldCases.lean:102`).
+fff-periodic owns it: the staging layer `FoldStage` and `deleteDigon` are on main (d6f6ccc19, c88b8c1db).
+This lane offered fff-periodic the vertex-split step and writes no Lean until they answer.
+
+* Proposed file: `GGT/SystolicDiscMirrorFoldSplit.lean`, importing `SystolicDiscMirrorFoldStage`,
+  `VanKampen.PinchLemma` and `VanKampen.CombMapInvariantRestrict`.
+* Proposed interface: `FoldStage.exists_split_pinch`.
+  * Input: a planar stage `S` whose pending darts are exactly a face cycle `[x₁, x₂, x₃, x₄]`, with the
+    ends of `x₁` and `x₃` at one vertex.
+  * Output: a planar stage `T` with a pending digon and nothing else pending, the same boundary, and
+    `T.map.faceCount ≤ S.map.faceCount`.
+* fff-periodic keeps the edge-deletion stage and the assembly.
+* If fff-periodic declines, this lane takes an unstarted `PlanarRunInput` case (W1 Lemma 9.4) from
+  hull-unbound.
+
 ## Next
 
-* Messaged kh-torsion the green SHA; kh-torsion wires the closed `ZipSpurStatement X` endpoint.
-* Waiting for the next item from main.
+* kh-torsion has the green SHA and wires the closed `ZipSpurStatement X` endpoint.
+* Settle the file name and interface with fff-periodic, then write and probe the split module.
