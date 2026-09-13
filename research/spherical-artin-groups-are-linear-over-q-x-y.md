@@ -48,5 +48,11 @@ Paris's survey, not from the primary sources.
     characteristic zero and transcendence degree 2.
 - **Not reached.** Digne, J. Algebra 268 (2003), doi 10.1016/S0021-8693(03)00327-2,
   has no open-access copy and no arXiv version, so it was not read.
+- *Review (lane `bh-poly-linear-review`, 2026-09-12):* nothing here depends on
+  Digne.
+  - Cohen–Wales, Theorem 1.2, covers types A, D and E.
+  - Their bibliography has no Digne entry.
+  - Their Theorem 1.1 reaches the other finite types through Crisp
+    (math/0010204v2 source, lines 109–116 and 1656–1661).
 
 The derivation is `spherical-artin-linearity-over-q-x-y-proof`.
