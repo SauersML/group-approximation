@@ -40,7 +40,21 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
     new decisive input.
   * **One shared input** (L5, L8). The Toeplitz form of the descent line and the Cohn reduction through
     `binary-jacobson-el3-rank-radical-is-the-finitary-kernel` both need `EL_3(J)`, `J = F_2<s0, t0>`, to be
-    nonsofic. Its soficity is undecided on main.
+    nonsofic. Its soficity is undecided on main. Nonsoficity is necessary for either route and proves
+    neither: the Jacobson claim is strictly stronger, and a nonsofic `EL_3(J)` only removes the firewall
+    without giving a deficit.
+  * **Wave 7 lanes on these inputs** (started about 20:45; verifier w4-vf-gate unless noted).
+    * w7-el3j-sofic decides the shared input. `EL_3(J)` maps onto `EL_3(F_2[z, z^-1])` with a locally
+      finite kernel and a residually finite quotient, so the lane first checks whether it contains `V`
+      or another group of unknown soficity.
+    * w7-sub-multiletter works on L1 SUB from the multi-letter inputs only: V's multiplication table on
+      depth-changing letters, commutation of disjointly supported depth-changing letters, and the
+      Toeplitz quarter.
+    * w7-sylv-global (verifier w4-vf-linear-b) works on the Sylvester counterparts of the descent line on
+      `F_2[R^x]`: `sylvester-leavitt-kazhdan-fixed-ideals-are-global` and
+      `sylvester-near-minimal-leavitt-defects-are-multiplicative` (both OPEN).
+    * w7-v-cycle-c2 and w7-v-cycle-c3 (verifier w3-vf-linear) work on the V gate upstream of L8, through the
+      open order-char cycle law at `p = 2` and `p = 3`.
 
 Commit hashes below are the ones reported by the landing lanes. Node ids are the stable references.
 
@@ -288,6 +302,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | Heisenberg node | w4-heisenberg | dead; firewall landed (f576dccf26); finished |
 | defect gap and descent | w4-gate-descent | Established, verifier PASS: gap, two-sided descent, near-minimal multiplicativity. Open target: `leavitt-disjoint-cylinder-defects-strictly-submultiplicative`, with route `leavitt-rank-triviality-via-strict-defect-submultiplicativity` into `non-linear-sofic-group`. Lead spot-check of the route passes: `f(2) >= c_* delta >= delta^2/(1+eps)` contradicts `theta delta^2` once `eps < 1/theta - 1`. The verifier also passes it as a conditional route (§8.4): `theta < 1` holds uniformly over models, so the choice of near-minimal model cannot evade it |
 | Toeplitz input and sofic firewall | w5-sub-fock (family SUB) | Established, verifier PASS §28: the Toeplitz pair is finite-subgroup data; `sofic-subgroups-carry-independent-cylinder-defects`; `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`. Open input shared with L8: soficity of `EL_3(J)` (L5) |
+| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45; nothing landed yet. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the two OPEN Sylvester descent counterparts; the order-char cycle law at `p = 2, 3` (header) |
 | verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §28, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
 ### L7. The listed mechanism dies
@@ -373,7 +388,7 @@ without completeness.
   * **Where L8 sits** (lead). The target lies between the V gate and the binary gate: the V gate implies
     it, and it implies the binary gate by pullback along `EL_3(C_2) -> EL_3(R)`. So the route adds no new
     decisive input. It shows that the Cohn question is no harder than the V gate.
-* **V gate firewalls** (lane w5-v-nonamenable; established, verification requested from w3-vf-linear;
+* **V gate firewalls** (lane w5-v-nonamenable; established, verifier PASS: w3-vf-linear §31 at 94f11d0bdc,
   artifact `thompson-v-rank-gate-sofic-and-characteristic-firewalls-2026-09-12.md`). They constrain every
   proof of the V gate, which sits upstream of L8.
   * `sofic-configurations-cannot-force-v-rank-triviality`. For every sofic `K <= V`, sofic approximations
