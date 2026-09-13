@@ -147,3 +147,29 @@ part, high transitivity, which this node asks.
      action, topologically free on the limit set, into a highly transitive action without
      using a splitting, or a confined subgroup of `S_q` with no faithful highly transitive
      action.
+5. **Confined-subgroup obstructions cannot work with the known tests (2026-09-13,
+   lane solve-ht-confined).**
+   - **Theorem** (`confined-subgroups-of-lim-free-actions-have-full-limit-set`): if a
+     group acts on a hyperbolic space with general type and topologically freely on
+     the limit set, every confined subgroup is of general type with the full limit
+     set, fixes no boundary point, and is lim-free.
+   - **For `S_q`** (`kac-moody-lattice-confined-subgroups-are-lim-free-and-mif`), with
+     Rybak's action on `E(X_D)`, every confined subgroup:
+     - is lim-free and MIF;
+     - satisfies no identity and is not partially finitary;
+     - has trivial centralizers of nontrivial normal subgroups;
+     - has every finite group as a subquotient.
+
+     A subgroup is not confined if it has a bounded orbit, a smaller limit set, or a
+     fixed limit point.
+   - **Consequence for route (b).**
+     - Le Boudec--Matte Bon Theorem 1.1 and Corollary 1.4, combined with the
+       obstructions of their §2.4 (the only ones they know), cannot show that `S_q` is
+       not highly transitive.
+     - The natural candidates, such as stabilizers of chambers, of spherical residues
+       and of boundary points, are not confined at all.
+     - A negative answer needs a new obstruction that some lim-free MIF group
+       satisfies.
+   - **Gap.** Either a positive globalization mechanism for lim-free weakly hyperbolic
+     groups without splittings, or a new obstruction to high transitivity beyond LBMB
+     §2.4. Pins and search record: `research/artifacts/solve-ht-confined-2026-09-13.md`.
