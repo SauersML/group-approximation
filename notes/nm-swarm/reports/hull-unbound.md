@@ -150,11 +150,18 @@ A1 is ruled and A2 is false. `OsinLemma94SectionStatement` and `UnboundInput` ga
 concluding `Nonempty (OsinLoopCut …)`, and the consumer closes the branch with `false_of_below`.
 theoremc-retire lands the threading through `OsinAppendixSections` after (A) and F1 (lead,
 09-13), and ko-closed writes case (a) and the `OsinLoopCut` construction. theoremc-retire drafts
-the PlanarPieces statement patch (the A1
-premise, the one-cell Prop, the consumer split), rebased after F1, and this lane lands it. It waits
-for ghw-charp2's co-probe of census patches 01-10. Rule 22 users of
-PlanarPieces include `OsinLemma94SectionResiduals`, `OsinLemma94DartMinimal` and
-`OsinLemma94CaseOneWalk`.
+the PlanarPieces statement patch (the A1 premise, the one-cell Prop, the consumer split), rebased
+after F1, and this lane lands it after ghw-charp2's co-probe of census patches 01-10 lands.
+Rule 22 users on origin at 1b6c528fa:
+- `OsinLemma94CaseOneInput` (PlanarPieces:395): `OsinUnboundCaseOneFace`,
+  `OsinUnboundCaseOneRun`, `OsinLemma94CaseOneWalk` and `OsinLemma94SectionResiduals`.
+  `OsinCConditionLineModel` names it only in its docstring.
+- `osinLemma94Section_of_planarPieces`: only `OsinLemma94SectionResiduals`.
+- Other direct importers of PlanarPieces: `OsinLemma94DartMinimal`, `OsinLemma94ChainRespell`,
+  `OsinLemma94InsertionTransport`, `OsinLemma94PolygonCovers` and `DiscEmbeddingAwayUnbound`.
+- Co-probe list: `OsinLemma94SectionResiduals`, `OsinUnboundCaseOneRun`,
+  `OsinLemma94CaseOneWalkHolds`, `OsinLemma94DartMinimal`, `OsinLemma94PolygonCount` (it reaches
+  `PolygonCovers`) and `DiscEmbeddingAwayUnbound`.
 
 ## On main (surgery layer)
 - `Estimating/SingletonFaceRegion.lean` (bd53291cd): `ContiguityGeometry.ofSingletonFace`,
