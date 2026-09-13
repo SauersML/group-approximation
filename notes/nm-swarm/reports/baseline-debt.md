@@ -51,7 +51,16 @@ at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-d
     and hexagon bounds, `nearBetween_quad`, `nearBetween_hexagon`);
   - `1369b2bed`, probe 0913-101453-98311: `GGT/HullLemma35PieceWords.lean` (`transEx`, the
     expansion of member letters into shortest words of `E i`; `properRelGenSet`; bounded
-    expansions of relative balls).
+    expansions of relative balls);
+  - `520f03021`, probe 0913-104731-79425: `GGT/HullLemma35PieceSides.lean` (coset
+    coordinates, connector distances in `Γ(H i, E i)`, component letters as geodesic segments
+    of the coset points, `exists_near_of_nearBetween`);
+  - `0efcdd55c`, probe 0913-114118-23523: `GGT/HullLemma35Letter.lean`
+    (`letterNear_properRelGenSet`, the quadrilateral and hexagon cases).
+- `b5f91627e`, probe 0913-123731-5219 (both modules BUILT): `GGT/HullLemma35Closed.lean` (new)
+  proves `printedHullLemma35 : PrintedHullLemma35`. The module doc of `HullLemma35Printed`
+  now records the proof. `#audit_closed_axioms` shows only `propext`, `Classical.choice` and
+  `Quot.sound`. Queued for wiring.
 
 | module | declarations |
 |---|---|
@@ -63,6 +72,7 @@ at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-d
 | `GGT/HullLemma35FreeFactors.lean` (new) | `printedFreeFactorsHypEmbedded : PrintedFreeFactorsHypEmbedded`, `FreeFactorsHypEmbedded.factorsRelGenSet`, `FreeFactorsHypEmbedded.relBall_finite`, `FreeFactorsHypEmbedded.isFourPointHyperbolic_alphabet` |
 | `GGT/HullLemma35Transitive.lean` (new) | `HullLemma35.transitiveRelGenSet`, `isSymmetricGeneratingSet_transitive`, `transitive_alphabet_subset` |
 | `GGT/HullLemma35LocalFinite.lean` (new) | `HullLemma35.relBall_finite_transitive`, `exists_enlargedWord`, `relBall_subset_image` |
+| `GGT/HullLemma35Closed.lean` (new) | `printedHullLemma35 : PrintedHullLemma35`, `HullLemma35.isHyperbolicallyEmbedded_transitiveRelGenSet`, `HullLemma35.exists_guessingData_transitive` |
 
 ## Findings closed
 
@@ -128,7 +138,7 @@ citation.
 These walls are owned by other lanes: hull-*, kh-* / ko-closed, and simple-group. Wall 4 is
 closed by `finitelyPresentedInfiniteSimple_closed` (47b31bef8, simple-group).
 
-This lane's own open item is `GGT.PrintedHullLemma35.{u}` (below).
+This lane's own item `GGT.PrintedHullLemma35.{u}` is closed (below).
 
 ## Hull Lemma 3.5
 
@@ -155,7 +165,8 @@ stands off it.
     `1` or its reduced word begins in the other factor" uses `RelHyp.headIdx_mul_of`.
   - Hyperbolicity: `isFourPointHyperbolic_unionCarrier` at the full factor alphabets
     (`δ = 1`), carried along `coprodIBoolEquiv` in every universe.
-- **`PrintedHullLemma35`: open. Local finiteness is closed; hyperbolicity remains.**
+- **`PrintedHullLemma35`: closed** by `printedHullLemma35` in `GGT/HullLemma35Closed.lean`
+  (`b5f91627e`, probe 0913-123731-5219), with `#audit_closed_axioms`.
   - The witness is `transitiveRelGenSet D E` (`be6e71f04`). Its base is `RelHyp.properBase D`
     together with the images of the bases of the `E i`, and its members are the `K_{ij}`.
     The letters of `D.base` that lie in some `H i` are dropped. Keeping them fails, because
@@ -165,20 +176,24 @@ stands off it.
     through `H i`. Every excursion out of `H i`, and every letter of another member, becomes
     one letter of the finite set `excursionLetters D i n ⊆ D.relBall i n`. The bound is the
     Corollary 4.27 local half, `RelHyp.relBall_finite_adjoinBase'`.
-  - Remaining: `Γ(G, transitive alphabet)` is hyperbolic. The route is Bowditch's criterion
-    (`OsinEnlargement.guessingGeodesics`) along a geodesic word of `properRelGenSet D`, with
-    each component letter expanded into a shortest word of `E i` (`transEx D E`). This
-    generalizes the `Uncone` chain from cyclic members to hyperbolic replacement graphs.
-    - Step and short-path conditions: `wordDist_guessPath_le`, `guessPath_short` and
-      `length_transEx_le_of_wordNorm_le_one` (landed).
-    - Thin-triangle condition: `thin` (landed), given `LetterNear (properRelGenSet D)
-      (transEx D E) S T`, the bound on the expansion of a letter whose coset another side
-      meets.
-    - `LetterNear`, in progress: the triangle connectors (`Uncone.TriangleConnectors`) close a
-      quadrilateral (one other side meets the coset) or a hexagon (both do) in `Γ(H i, E i)`,
-      bounded by `nearBetween_quad` / `nearBetween_hexagon` (landed). The coset coordinates,
-      connector sides and the transfer back are `GGT/HullLemma35PieceSides.lean` (probing); the
-      case split is `GGT/HullLemma35Letter.lean` (next).
+  - Hyperbolicity: `isHyperbolicallyEmbedded_transitiveRelGenSet`. The route is the guessing
+    geodesics criterion (`OsinEnlargement.exists_isFourPointHyperbolic_of_guessingData`)
+    along a geodesic word of `properRelGenSet D`, with each component letter expanded into a
+    shortest word of `E i` (`transEx D E`). `exists_guessingData_transitive` builds the
+    `GuessingData`. This generalizes the `Uncone` chain from cyclic members to hyperbolic
+    replacement graphs.
+    - Step and short-path conditions: `wordDist_guessPath_succ`, `guessPath_short` and
+      `length_transEx_le_of_wordNorm_le_one`.
+    - Thin-triangle condition: `thin`, given `LetterNear (properRelGenSet D) (transEx D E) S T`,
+      the bound on the expansion of a letter whose coset another side meets.
+    - `LetterNear`: `letterNear_properRelGenSet`. The triangle connectors
+      (`Uncone.TriangleConnectors`) close a quadrilateral (one other side meets the coset) or
+      a hexagon (both do) in `Γ(H i, E i)`, bounded by `nearBetween_quad` /
+      `nearBetween_hexagon`. `HullLemma35PieceSides` gives the coset coordinates, the
+      connector sides and the transfer back to the transitive alphabet.
+    - Constants: `δ` and the hexagon bound `C` of `properRelGenSet D`
+      (`sixBound_one_of_fourPointHyperbolic`), one `δE` for all `E i` (the index `Fin n` is
+      finite), and the expansion bounds of `exists_pieceWord_length_le`.
 - **Finding: `RelHyp.DGOProposition435PrintedStatement` is false as formalized.**
   - Counterexample: `G = Multiplicative (ZMod 5)` with generator `t`, `D.base = {t²}`,
     `fam = ⊤`, `M = PEmpty`, `E.base = {t, t⁻¹}`.
@@ -189,9 +204,10 @@ stands off it.
 
 ## Next
 
-- Wiring: `296386753` (three modules), `dd0412114`, `87762b46c`, `be6e71f04` (two modules),
-  `5acca195c` (two modules), `28fbaaffe`, `6dd556d61`, `7401027ce` and `1369b2bed` are queued.
+- Wiring: the root on origin/main imports every module of `296386753`, `dd0412114`,
+  `87762b46c`, `be6e71f04`, `5acca195c`, `28fbaaffe`, `6dd556d61`, `7401027ce`, `1369b2bed`
+  and `520f03021`. `HullLemma35Letter` (`0efcdd55c`) and `HullLemma35Closed` (`b5f91627e`)
+  are queued.
 - The team lead accepted (a) through (d) as closed; census registers them at its re-baseline.
-- Hyperbolicity for `PrintedHullLemma35`: `HullLemma35PieceSides` and `HullLemma35Letter`
-  (`LetterNear` for `properRelGenSet D`), then the assembly through `guessingGeodesics`, then
-  the endpoint `printedHullLemma35 : PrintedHullLemma35` with `#audit_closed_axioms`.
+- Census row LINE:1682 (partial) records `printedHullLemma35`. Hull Corollary 7.4 and Lemma 5.9
+  use Lemma 3.5. They belong to other lanes. This lane awaits its next assignment.
