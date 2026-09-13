@@ -1349,3 +1349,19 @@ These are Attempts entries on the OPEN `binary-jacobson-el3-rank-radical-is-the-
     established. The open node's `distinct_from` is right.
 * **Verdict.** Both firewalls PASS. Neither decides a gate. No rank model of `V`, `R^x` or `G_3` is constructed or
   excluded. The open node's range correction (77400e393) passes, and the law stays OPEN.
+
+### 31.5 Follow-up: the author's precision fixes (70e19044b): PASS
+
+* **Wording.** The intro now says "complements" and explains why the two results are incomparable. Lemma 1.1 step 4
+  carries the `σ_k(q([g]))` estimate. Theorem 1.2 and its claim node require `K != 1`. The status lines of both
+  firewall nodes cite Sections 31.1 and 31.2. Each change matches the note it applies.
+* **Definition of a clopen `n`-cycle, now stated.** Artifact Section 0 and the cycle-law node now include the nonempty
+  complement in the definition. I re-ran the added conjugacy computation. With `h = s'^i h_0 s^-i` on `U_i`, on `U'_i`
+  `hsh^-1 = s'^(i+1) h_0 s^-(i+1) · s · s^i h_0^-1 s'^-i = s'`, and for `i = n − 1` this uses `s^n = s'^n = 1`.
+  `hsh^-1` fixes exactly `h(Fix s)`, so the complement condition is needed.
+* **Characteristic-2 identity, restated in the cycle-law node and the `F_2` gate's Attempts line.** Let `t_1` swap
+  `U_0` and `U_1`, and `t_2` swap `W_0` and `W_1`, with disjoint supports.
+  * `t_1 t_2` is a clopen `2`-cycle on `(U_0 ∪ W_0) ⊔ (U_1 ∪ W_1)`.
+  * It is conjugate to `t_1` exactly when the complement of the four sets is nonempty. If that complement is empty,
+    `t_1 t_2` has no fixed points while `t_1` does.
+  * `[t_1]` is a unit and rank is conjugation-invariant, so `rk(x_1 + x_2) = rk([t_1](1 + [t_1 t_2])) = rk(x_1)`.
