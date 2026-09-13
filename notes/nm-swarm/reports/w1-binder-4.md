@@ -12,8 +12,13 @@ hs-vanishes and sec2-sentences. This lane never edits their files.
 - CLAIM C6′ copy-route assembly `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEitherFollowsCopy.lean`
 - CLAIM C6′ inner-builder discharge `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonInnerFollowsClosed.lean`
   (waits for ms-torsionfree's `OsinPocketRegionInnerFollows`)
-- CLAIM L4/L5 producers of `TwoGonClassHyp` and `TwoGonWalkHyp` `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonClassWalkHyp.lean`
-  - At 18:20 neither producer is on origin or in the shared tree. debt-conditional last landed at 16:47.
+- CLAIM (dropped 18:40) L4/L5 in `OsinAppendixEulerTwoGonClassWalkHyp.lean`. The split with w1-binder-1 replaces it:
+  - w1-binder-1 takes L4 (`TwoGonClassHyp`) and L5a (`left_side`, `right_side`, `base`) in
+    `Estimating/OsinAppendixEulerTwoGonClassHyp.lean`, plus the following clause on the copy walk and the Configuration A
+    per-lobe argument.
+- CLAIM L5b (`connected`, `outer_off`, `cell_off`) and the `TwoGonWalkHyp` assembly
+  `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonWalkHypInner.lean`
+- CLAIM face-class connectivity of following boundary cycles `GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean`
 
 Split of L1 (ms-inverses-2's proposal, no collision):
 - ms-inverses-2 takes L1a: rotation invariance of noncrossing walks, and `hw` in the decomposition spelling from `CopyClean`.
