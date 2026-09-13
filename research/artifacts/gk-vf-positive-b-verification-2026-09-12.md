@@ -1175,3 +1175,15 @@ not decision-level, and nothing is refuted. The Status bullet can cite Section 1
 
 PASS for Theorem 4, Corollary 5, Lemmas 6 and 8, and Propositions 7 and 10. The claim stays OPEN at a shared prime, and
 Question 9 stays open for non-normal `H`. Nothing here is decision-level, and nothing is refuted.
+
+**Follow-up (`6ce9885b8`).** The lane applied the three optional notes. I checked the diff against Sections 10.2 to 10.4.
+- (a) At a shared prime, the finite-normal Attempts entry and the claim node's Status now say that no retraction onto
+  `Y` commutes with constants, so the averaging proof does not run. This follows from Lemma 2.
+  - Let `Q` be an automaton into `Y` that commutes with constants. Take `h` of order `p` in `H`, `a` of order `p` in
+    `A`, and `z` with `z(hx) = z(x)a`. Then `Q(z)(1)a = Q(z)(h) = Q(z)(1)`, so `a = 1`, a contradiction.
+  - The Status adds that other automaton retractions onto `Y` exist, such as min, and that no extension of `tau`
+    through one is known. That is accurate.
+- (b) Artifact Section 4 now limits "Question 9 holds there" to finite `K`, which is what the amenable case gives.
+- (c) The Status bullets for artifact Sections 3 and 4 now cite Sections 10.3 and 10.4.
+
+The three blobs on main are the ones at `6ce9885b8`. Follow-up PASS.
