@@ -23,10 +23,63 @@ Updated 2026-09-13.
     Face and Run.
   - LoopCut ruling (A) is final, and it removes the competitor that Case 1 uses for one-cell
     pairs (below).
-  - This lane picked A1. A2 is false, and the separate count needs the Lemma 9.7 induction
-    hypothesis. Both findings went to the lead, and the ruling on the consumer is pending.
+  - This lane picked A1, and A2 is false. The lead ruled option (i): `OsinLemma94SectionStatement`
+    and `UnboundInput` gain `OsinLemma97Below … Delta.rCellCount`, and PlanarPieces gains
+    `OsinLemma94CaseOneOneCellInput`, concluding `Nonempty (OsinLoopCut …)`. For case (a), the
+    lead ruled option (2), gated on the metric owners (roster 777-780).
+  - Roster 13:40:
+    - patch 10(f)'s deletion is overruled, so `osinLemma94CaseOneInput_of_walk` stays and takes
+      a same-cell binder after (A), with no composed endpoint today;
+    - hull-unbound drafts the option (2) Dense respelling in `OsinLemma94Pieces`;
+    - CaseOneInput and CaseOneWalk take pairs on class words, gaps included;
+    - audit-sec5's same-cell model test found no count failure, and its case (2) needs this
+      lane's threading.
+  - Draft on disk: `$NM/backup/theoremc-retire/threading-option-i-draft.lean.txt` (base
+    c8bd88c14, not probed).
+    - T1-T6, the `OsinLemma97Below` threading:
+      - Sections: `OsinLemma97bConclusion` moves above the Lemma 9.4 statement, and the
+        binder goes after `0 < Delta.rCellCount`.
+      - SectionInduction: `UnboundInput` gains `mu` and the binder.
+      - DescentInduction: `mu` at :55/:133/:243 and `hbelow` at :101.
+      - Assembly and Lemma97Pocket: the lifts.
+      - Counting, Pieces and PlanarPieces: the intro gains `_hbelow`.
+    - OC1-OC5, the PlanarPieces text for hull-unbound's Dense co-probe:
+      - the one-cell Prop `OsinLemma94CaseOneOneCellInput`, with premise
+        `λ⁻¹(ε + c) ≤ d(a, a') + d(b', b)`;
+      - the consumer's three-way split through `OsinLoopCut.false_of_below`;
+      - `hcell` in SectionResiduals.
+    - OC6, this lane's Run patch in the (A) co-probe:
+      - `osinLemma94CaseOne_false_of_walk` gains `hkind`, which gives `target ≠ some source`;
+      - `osinLemma94CaseOneInput_of_walk` takes `hsame : OsinLemma94CaseOneSameCellStatement`;
+      - `_of_walk_of_sameCell` is deleted.
+  - Sent (09-13 ~14:00):
+    - ko-closed: the one-cell Prop text, the gap finding, and the parked partial LoopCut draft;
+    - hull-unbound: OC1-OC5, plus the T5/T6 hunks in its files;
+    - main: the milestone, the gap finding, and the ownership question.
+  - Open question to main: T touches files that other lanes own:
+    - Sections and SectionInduction: ghw-charp2, hull-select;
+    - DescentInduction: dgo-analytic, hull-select;
+    - Counting: hull-count94;
+    - Pieces and PlanarPieces: hull-count94, hull-unbound.
+
+    No lane lists Assembly or Lemma97Pocket. The proposal is one co-probed landing by this lane
+    right after (A), with the owners holding their files.
+  - Gap finding (roster l.786, l.849). `false_of_quadrilateral_face` (OsinUnboundCaseOneFace:392-393)
+    and the walk Prop's conclusion need `sourceArc.reverseDarts` to be a literal piece of the
+    face walk, with the junction values pinned to the connector endpoints.
+    - Take a class-word pair whose `[a, a']` or `[b', b]` strictly contains a gap: a bubble of Π,
+      whose reversed darts lie on inner faces, or a hair of the face. That pair has no split the
+      user accepts.
+    - So Case 1 on class words needs the walk to avoid such pairs, or the opening surgeries
+      (l.850).
+  - The wrap-pair note (l.825) does not touch Case 1: neither `false_of_walk` nor the walk Prop
+    takes `P.Maximal`.
   - Hold: no edits to `OsinUnboundCaseOneFace` or `OsinUnboundCaseOneRun` until ghw-charp2
-    lands census patches 01-10. As of origin 35866daf3 they have not landed.
+    lands census patches 01-09 (with this lane's OC6). As of origin c8bd88c14 they have not
+    landed, and ghw-charp2's report says no probe has run.
+  - Residual Props owned by this lane: none new. `OsinLemma94CaseOneSameCellStatement` stays as
+    the named binder of `osinLemma94CaseOneInput_of_walk`. As spelled, no lane proves it
+    (roster 777).
 
 ## Landed
 
