@@ -3,14 +3,33 @@ rg: 2
 id: free-subgroup-rounding-is-universal-at-bounded-exponent
 kind: claim
 title: For groups of exponent m, SDP value 1-eps of a symmetric Galois game gives a subgroup acting freely on G/K with mu-mass 1 - C(m) eps log k
+refuted_by:
+  - free-subgroup-rounding-fails-for-non-normal-fibres
 distinct_from:
   galois-games-round-through-free-subgroups: that proves free-subgroup rounding and the kernel version with a dimension-weighted cost; this asks whether the cost can always be made dimension-free at bounded exponent.
 ---
 
-**OPEN.** Is there `C(m)` such that for every finite group `G` of exponent `m`,
+**REFUTED as stated (2026-09-13), for arbitrary `K`.**
+`free-subgroup-rounding-fails-for-non-normal-fibres` gives `G = F_2 wr F_2^n`
+(exponent `4`), `K = <e_0>` (`k = 2`) and coordinate noise `mu_delta`. Then
+`SDP >= 1 - delta` and `val >= 1 - delta`, but every subgroup acting freely on
+`G/K` has `mu(G \ H) >= (N - 1) delta` when `delta = N^-2`. The failure is in
+freeness, not in the value: a permutable subgroup still rounds.
+
+**The sharper form for normal `K` holds over M-groups.**
+`normal-fibre-galois-games-round-linearly-over-m-groups`: if `K` is normal and
+the irreducibles carrying the certificate are monomial (every nilpotent group,
+in particular every `p`-group), some `L` with `L cap K = {e}` has
+`mu(G \ L) <= 3 eps log_q k/(1 - cos(2 pi/m))`. That is the abelian constant,
+with no dimension factor. Large irreducibles of `p`-groups are no obstruction.
+Artifact: `research/artifacts/ugc-rounding-normal-fibres-2026-09-13.md`.
+
+The original statement and attempts are kept below as history.
+
+**Original (OPEN until 2026-09-13).** Is there `C(m)` such that for every finite group `G` of exponent `m`,
 every `K <= G`, and every symmetric conjugation-invariant `mu`,
-`SDP Gal(G,K,mu) >= 1 - eps` implies a subgroup `H` acting freely on `G/K` with
-`mu(G \ H) <= C(m) eps log k`?
+`SDP Gal(G,K,mu) >= 1 - eps` implies a subgroup `H` acting freely on `G/K`
+with `mu(G \ H) <= C(m) eps log k`?
 
 A yes would mean symmetric quotient gap constructions over bounded-exponent
 groups never beat the linear loss `Theta(eps log k)`. That loss is attained by
@@ -52,3 +71,11 @@ the same value?
   with orthonormal `K`-translates that is almost invariant under `mu` should
   yield a subgroup of large `mu`-mass meeting no conjugate of `K`. No such lemma
   is known here.
+* **Inducing kernels (2026-09-13, lane `ex-ugc-rounding-pgroups`).** The
+  stability lemma exists for monomial representations. If
+  `rho = Ind_H theta`, then against conjugation-invariant `mu` the normalized
+  character equals `sum_(h in H) mu(h) theta(h)`, the value of the single
+  vector `e_H`, whose eigenvalue-one stabilizer is `ker theta`. For normal `K`
+  this gives the dimension-free bound over M-groups. For non-normal `K` the
+  conjugates of `ker theta` need not avoid the conjugates of `K`, and the
+  wreath-product counterexample shows the loss grows with `[G : N_G(K)]`.
