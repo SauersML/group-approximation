@@ -101,6 +101,30 @@ Namespace `...VanKampen.OuterSideThickening`:
 - `side_outer_of_noOuterSideDart` gives `CopyClean.side_outer`.
 - Closed `outerSideThickening : OuterSideThickeningStatement` has the `OuterCellThickeningStatement` output plus no outer side dart.
 
+## CLAIM (18:3x, main's item): the pocket-level assembly of binder 6 on the copy
+
+`CLAIM binder-6 pocket assembly GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFaceSetOnCopy.lean`. Ownership check: no
+in-flight draft in `kh-ejz.files`, in the shared tree, or among unlanded users of `SectionPocketFaceSetInput`.
+
+Design (under probe):
+- `PocketFaceSetOnCopy.exists_copyClean` composes the four stages:
+  1. `outerSideThickening` (acd63f3bb)
+  2. `cellSideThickeningPreserving` (ms-cite-2, c3bd2ee44)
+  3. `cellHairSidesThickening` (ms-binary, a36060868)
+  4. named residual `SectionPocketRegionsCopyStatement` (ms-intro-2's stage, in the global `CopyClean.regions` form)
+
+  It then builds all six `CopyClean` fields for every pair of distinct exterior regions of one cell.
+- Named residual `SectionPocketKeptCellStatement`: on a least-area copy, the pocket walk of two distinct exterior regions
+  of one cell to one section, satisfying `CopyClean`, has a relator cell on its side. This is Osin's "a pocket without an
+  R-cell merges the two regions".
+  - It replaces `hfollows`: sec2-sentences' lake (Configuration B, sides touching at a vertex) breaks `hfollows` and
+    `FirstTurn` for `K.walk`, and `CopyClean` forbids shared edges, not vertex touches.
+  - `hfollows` implies the kept cell (`exists_kept_of_noncrossing_of_value`), so the residual is weaker.
+- `sectionPocketFaceSetInput_of_residuals` goes through `RegionProfileTransport.exists_exteriorPair` and kh-ejz's first
+  variant `exists_pocketFaceSet_of_exteriorAt`.
+  - `one_lt_boundaryWord_length` gets the length hypothesis from two distinct regions to the boundary.
+  - `osinSectionPocketFaceSetSection_of_residuals` then gives waist residual 5 with `eps0 = 0`, `rho0 = 1`.
+
 ## Plan for `side_outer`
 
 - Mirror ms-cite-2's cell-side statement for the exterior: `IsOuterSideDart Delta family x` holds when `faceOf x` is
