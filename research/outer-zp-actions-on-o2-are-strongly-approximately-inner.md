@@ -27,5 +27,14 @@ remark does not single out outer actions.
   asymptotically and with invariant unitary paths (item 2 of that node).
 - **Consequence for Barlak–Li.** Where it holds, the hypothesis "strongly
   approximately inner" in Barlak–Li Theorem 4.16 is automatic for outer actions.
+- **Up to a sign at `p = 2` (lane ex2-uct-dual-action-transfer, unreviewed).**
+  Let `α` be an outer `Z/2`-action on `O_2` whose crossed product is `O_2`.
+  By `z2-o2-actions-anti-inner-and-o3-rokhlin-criterion`:
+  - `α` is approximately inner by anti-invariant unitaries;
+  - it is strongly approximately inner iff `2[1] = 0` in `K_0` of the fixed
+    central sequence algebra, iff that algebra contains a unital `O_3`.
+
+  For general `p`, the forms twisted by characters are the fixed points of the
+  unit class in `o2-central-sequence-k-theory-bi-cyclotomic-transfer`.
 
 Route: `outer-zp-actions-on-o2-strongly-approx-inner-via-detection`.

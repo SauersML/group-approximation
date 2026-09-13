@@ -144,6 +144,34 @@ K-theory isomorphism between UCT algebras, hence a KK-equivalence, and
     Kazhdan hyperbolic `Γ`. A nonzero `θ − 1` after tensoring with `1_T`
     would answer Meyer–Nadareishvili negatively for separable algebras.
     Not computed.
+* **Dual-action transfer (lane ex2-uct-dual-action-transfer, 2026-09-13,
+  unreviewed).**
+  - *Two commuting actions.*  By
+    `o2-central-sequence-k-theory-bi-cyclotomic-transfer`, for outer `α` on
+    `O_2` the group `M_* = K_*((A_∞ ∩ A')^α)` carries two commuting actions:
+    - `φ` of `Ĝ`, through eigen-isometries;
+    - `ψ` of `G`, through invariant isometries implementing `α_g`.  These are
+      the dual action's eigen-isometries.
+  - *Transfer.*  Corner transfer through the `O_2`-absorbing algebras
+    `A_∞ ∩ A'` and `B_∞ ∩ B'` gives `N_φ = 0` always, and `N_ψ = 0` when
+    `O_2 ⋊ G ≃ 0`.
+  - *Baaj–Skandalis.*  This sidesteps the self-duality in the "Duality" bullet
+    above.  Both hypotheses become commuting norm identities on one self-dual
+    group; duality swaps the identities and fixes `[1]`.
+  - *Unit class.*  `φ_λ ψ_h [1] = [1]` iff `α_h` is inner, sequentially, by
+    `λ`-eigen unitaries.  Transfer alone gives: strong approximate innerness
+    implies `p[1] = 0`.
+  - *p = 2* (`z2-o2-actions-anti-inner-and-o3-rokhlin-criterion`).  Here
+    `φ = ψ = −1`.  So every such action is approximately inner by
+    anti-invariant unitaries.  Detection at `2` says `2[1] = 0`, equivalently a
+    unital `O_3` in the fixed central sequences.
+  - *Dies at non-formal input.*
+    - The free module over `Λ = Z[ζ_p] ⊗ Z[ζ_p]` satisfies every transfer
+      relation, with `1 ≠ 0`.
+    - The algebras with known vanishing K-theory here are `A_∞ ∩ A'`,
+      `B_∞ ∩ B'` and `B_∞ ∩ A'`.  They yield only the two isotropic relations.
+    - Open inputs: removing the sign at `p = 2`, and the `p − 1` anisotropic
+      components of `M_*[1/p]` for odd `p`.
 
 A positive answer is a noncommutative isotropy-separation principle.  A negative
 answer needs an equivariant phantom, which by the fence node no K-theoretic
