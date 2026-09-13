@@ -6,6 +6,7 @@ title: If some multiple of the unit is properly infinite, elementary groups of r
 distinct_from:
   full-defect-ring-non-mf-at-rank-two: that needs a properly infinite unit in R itself and gives every rank from two; this needs one only in some M_n(R) and gives every rank from 2n.
   simple-dedekind-infinite-ring-elementary-full-mf-radical: that is the simple, not directly finite case; this adds simple rings that are directly finite but not stably finite, at large rank.
+  paradoxical-ring-el-n-full-mf-radical-from-twice-level: that is lane un-middle's independent statement of the same theorem, under the equivalent hypothesis (n+1)[R] <= n[R], with its M_n(R) proof and level calibrations; this is the canonical UN node for the ring-level theorem, by un-architect's ruling of 2026-09-13.
 artifacts:
   - research/artifacts/un-paradox-stable-infiniteness-2026-09-13.md
 ---
@@ -30,3 +31,11 @@ every `N >= 2n`.
 - Not claimed: triviality for `2 <= N < 2n`, and simplicity of `EL_N(R)` modulo its centre.
 
 Proof in the artifact, Sections 1–4 (unreviewed). Independently derived by lane `un-prior-art`.
+
+**Canonical UN node** (un-architect ruling, 2026-09-13). Lane `un-middle` proved the same theorem independently
+as `paradoxical-ring-el-n-full-mf-radical-from-twice-level`. Its hypothesis `(n+1)[R] <= n[R]` is equivalent to
+`2n[R] <= n[R]` with the same `n`:
+- adding `[R]` repeatedly gives `(n+j)[R] <= n[R]` for every `j >= 1`;
+- conversely, `(n+1)[R] <= 2n[R]` in the algebraic preorder when `n >= 1`.
+
+Credit both lanes. The UN root `kazhdan-elementary-approximation-type-mirrors-ring-type` cites this node.

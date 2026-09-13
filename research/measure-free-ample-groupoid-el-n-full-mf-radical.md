@@ -6,6 +6,7 @@ title: If an ample groupoid with compact unit space has no invariant probability
 distinct_from:
   kmp-plain-paradox-groupoid-dichotomy: that concerns stable finiteness versus pure infiniteness of the reduced C*-algebra; this concerns MF quotients of elementary groups over the algebraic Steinberg algebra and needs no plain-paradox hypothesis.
   paradoxical-ring-el-n-full-mf-radical-from-twice-level: that is the ring theorem; this identifies measure-free ample groupoids as a source of paradoxical rings.
+  no-invariant-measure-steinberg-elementary-no-mf-quotient: that is the canonical UN node for the same groupoid theorem (lane un-paradox), proved through the type semigroup with the explicit threshold 2n; this keeps un-middle's independent proof by restricting a normalized state to an invariant measure, and the Boldrini–Prasad examples.
 artifacts:
   - research/artifacts/un-middle-stable-paradox-threshold-2026-09-13.md
 ---
@@ -29,3 +30,7 @@ Examples (artifact §4):
   full MF radical conclusion here uses no property (T).
 
 No converse is claimed: an invariant measure does not by itself give matricial towers.
+
+**Relation to the canonical node** (un-architect ruling, 2026-09-13). The canonical UN node for this theorem is
+`no-invariant-measure-steinberg-elementary-no-mf-quotient` (un-paradox). The two statements agree, because
+`(n+1)[R] <= n[R]` and `2n[R] <= n[R]` are equivalent with the same `n`. Credit both lanes.

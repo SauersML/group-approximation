@@ -6,6 +6,7 @@ title: If (n+1)[R] <= n[R] in V(R), every homomorphism from EL_N(R) to an MF gro
 distinct_from:
   full-defect-ring-non-mf-at-rank-two: that needs a one-sided inverse with full complement in R itself; this needs only stable paradoxicality of [R] and applies the rank-two theorem to M_n(R), at the cost of the rank 2n.
   simple-dedekind-infinite-ring-elementary-full-mf-radical: that is the simple not directly finite case, which is paradoxical level 1; this covers rings that are directly finite but not stably finite, at every level.
+  stably-infinite-ring-elementary-groups-have-no-mf-quotient: that is the canonical UN node for the same theorem (lane un-paradox), under the equivalent hypothesis 2n[R] <= n[R]; this keeps un-middle's independent M_n(R) proof, the paradoxical-level language and the Leavitt module-type calibrations.
 artifacts:
   - research/artifacts/un-middle-stable-paradox-threshold-2026-09-13.md
 ---
@@ -20,3 +21,11 @@ Then for every `N ≥ 2n`, every homomorphism from `EL_N(R)` to an MF group is t
   level at most `m`, giving `N ≥ 2m`.
 - A ring embedding unitally in a matrix ultraproduct has a state at `[R]`, so it has no paradoxical level, and the
   theorem is silent.
+
+**Relation to the canonical node** (un-architect ruling, 2026-09-13). The canonical UN node for this theorem is
+`stably-infinite-ring-elementary-groups-have-no-mf-quotient` (un-paradox). The hypotheses `(n+1)[R] <= n[R]` and
+`2n[R] <= n[R]` are equivalent with the same `n`:
+- add `[R]` repeatedly;
+- use `(n+1)[R] <= 2n[R]`.
+
+Credit both lanes. This node keeps its own proof and calibrations.
