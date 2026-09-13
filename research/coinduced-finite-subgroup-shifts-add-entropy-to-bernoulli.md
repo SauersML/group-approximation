@@ -2,7 +2,7 @@
 rg: 2
 id: coinduced-finite-subgroup-shifts-add-entropy-to-bernoulli
 kind: claim
-title: Over every countable group, a shift co-induced from a finite subgroup adds H(Y)/|F| to the base entropy of a Bernoulli shift
+title: Over every countably infinite group, a shift co-induced from a finite subgroup adds H(Y)/|F| to the base entropy of a Bernoulli shift
 distinct_from:
   bernoulli-shifts-with-equal-base-entropy-are-isomorphic: that is Seward's isomorphism theorem for Bernoulli shifts, the case of co-induction from F-shifts; this extends his construction to actions co-induced from arbitrary finite F-spaces, which are not Bernoulli shifts themselves.
   bernoulli-isomorphism-collapse-set-is-a-subgroup: that organizes isomorphisms between Bernoulli shifts of different entropy on one group; this proves, on every group, isomorphisms between Bernoulli shifts and products of Bernoulli shifts with non-Bernoulli co-induced actions, at the entropy a sofic count predicts.
@@ -11,15 +11,23 @@ artifacts:
   - research/artifacts/bernoulli-negative-induced-absorption-2026-09-12.md
 ---
 
-**ESTABLISHED (unreviewed)** by [[coinduced-finite-subgroup-shifts-add-entropy-proof]].
+**ESTABLISHED** by [[coinduced-finite-subgroup-shifts-add-entropy-proof]].
 
-Let `G` be a countable group and `F <= G` finite. For a standard probability space `(Y, nu)` with a
+**Reviewed** by `ex-verify-dynamics` (§1 of `research/artifacts/ex-review-dynamics-2026-09-12.md`).
+Corollary D passes. The review made two corrections, both included in the statement below.
+- `G` must be infinite. For `G = F`, `Coind(Y) = Y`, and two non-isomorphic F-spaces of equal entropy can
+  share a free orbit. Step 2 of the proof uses that `G/F` is infinite.
+- Theorem C needs `H(nu_i|P) < ∞`. Otherwise Step 4 cancels an infinite term, and the complements can have
+  different entropy. Every use in the graph has a finite free orbit `P`, so no consumer is affected.
+
+Let `G` be a countably infinite group and `F <= G` finite. For a standard probability space `(Y, nu)` with a
 measure-preserving `F`-action, let `Coind(Y)` be the space of `x: G -> Y` with `x(tf) = f^-1 . x(t)`, with
 the product measure over a transversal of `G/F` and `(g.x)(t) = x(g^-1 t)`. Bernoulli shifts are the case
 `Y = L^F`.
 
 **Theorem C.** If two F-spaces `Y_1, Y_2` have equal Shannon entropy and share an `F`-invariant set `P` of
-positive measure on which `F` acts freely and the two measures agree, then `Coind(Y_1) ≅ Coind(Y_2)`.
+positive measure on which `F` acts freely and the two measures agree and have finite
+Shannon entropy on `P`, then `Coind(Y_1) ≅ Coind(Y_2)`.
 
 **Corollary D.** If `|F| >= 2`, `H(Y) < ∞` and `0 < H(K) < ∞`, then
 

@@ -13,7 +13,7 @@ Nothing here decides soficity. Part 2 (`bernoulli-negative-induced-absorption-20
 
 ## 1. Co-induced actions
 
-Let `G` be a countable group and `F <= G` finite. An **F-space** is a standard probability space
+Let `G` be a countably infinite group and `F <= G` finite. An **F-space** is a standard probability space
 `(Y, nu)` with a measure-preserving action of `F`. Put
 
     Coind(Y) = { x: G -> Y : x(tf) = f^-1 . x(t) for all t in G, f in F },   (g.x)(t) = x(g^-1 t).
@@ -32,9 +32,10 @@ rooted at `t`*; labels at different cosets are independent.
 
 **Theorem C.** Let `(Y_1, nu_1)`, `(Y_2, nu_2)` be F-spaces with `H(Y_1) = H(Y_2)`. Suppose `P` is a Borel set
 contained in both, `F`-invariant for both actions, on which the two actions agree and act freely, with
-`nu_1|P = nu_2|P` and `nu_1(P) > 0`. Then `G ↷ Coind(Y_1)` and `G ↷ Coind(Y_2)` are isomorphic.
+`nu_1|P = nu_2|P`, `nu_1(P) > 0` and `H(nu_1|P) < ∞`. Then `G ↷ Coind(Y_1)` and `G ↷ Coind(Y_2)` are isomorphic.
 
-For `Y_i = L_i^F` with `|F| >= 5` this is Seward's relation `R_Gamma` and his Theorem 3.2 in that case.
+For `Y_i = L_i^F` with `|F| >= 5` this is Seward's relation `R_Gamma`. Theorem C is then the `R_Gamma` case
+of the proof of his Theorem 3.2, with the finite-entropy condition on `P` made explicit.
 
 *Proof.* Write `rho = nu_1(P) = nu_2(P)`. If `rho = 1`, then `Y_1 = Y_2 = P` as F-spaces up to null sets,
 and there is nothing to prove. Assume `0 < rho < 1`.
@@ -71,7 +72,9 @@ are infinite a.e. By [6, Lem. 3.25] fix an aperiodic Borel bijection `T: V -> V`
 
 **Step 4: Ornstein along the rows.** Put `A_i = Y_i \ P` with the normalized restriction `alpha_i` of `nu_i`.
 Expanding `H(Y_i) = H_(nu_i)({P, A_i}) + rho H(P, nu_i|P / rho) + (1 - rho) H(A_i, alpha_i)`, the first two
-terms agree for `i = 1, 2`, so `H(A_1) = H(A_2)`. By [17, 18] there is a `Z`-isomorphism
+terms agree for `i = 1, 2`. They are finite because `H(nu_1|P) < ∞`, so `H(A_1) = H(A_2)`. Without that
+hypothesis the cancellation fails. Example: `F = C_2`, `P` nonatomic and free, `A_1` one fixed point, `A_2`
+two fixed points. By [17, 18] there is a `Z`-isomorphism
 `zeta: (A_1^Z, alpha_1^Z) -> (A_2^Z, alpha_2^Z)` for the shift `S(y)(n) = y(n-1)`. Define
 `f_i: V_i -> A_i^Z` by `f_i(x)(n) = T_i^-n(x)(1_G)`. Then `f_i ∘ T_i = S ∘ f_i`.
 
