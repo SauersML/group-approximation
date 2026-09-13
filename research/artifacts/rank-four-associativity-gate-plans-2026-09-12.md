@@ -32,10 +32,13 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
     * single conjugations of locally finite data;
     * finite-subgroup rank calculus;
     * witnesses from rank-modelled subgroups off the cylinder set;
-    * relations of any sofic subgroup containing both frames (w5-sub-fock, verifier PASS).
+    * relations of any sofic subgroup containing both frames (w5-sub-fock, verifier PASS);
+    * Steinberg relations arranged in a graph of locally finite subgroups, the depth-mismatched pair
+      `T_(0,1)`, `T_(1,00)` included (w6-mismatch-c2, verification requested).
 
-    It has to use relations beyond those shapes: straddling units as factors in a nonsofic configuration,
-    properties that no rank model has, or global inputs such as corner locality.
+    It has to use relations beyond those shapes: straddling units as factors in a nonsofic configuration
+    that no graph of locally finite subgroups routes, an element of `K_2(3,R)`, properties that no rank
+    model has, or global inputs such as corner locality.
   * **Cohn coefficients** (L8). This question lies between the V gate and the binary gate, so it adds no
     new decisive input.
   * **One shared input** (L5, L8). The Toeplitz form of the descent line and the Cohn reduction through
@@ -287,6 +290,35 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
         * `leavitt-first-offdiagonal-core-is-marked-non-lef`: the Toeplitz core over `R` is not LEF.
         * So weak soficity holds, exact finite images of `EL_28(J)` erase the head, and soficity is the
           approximation notion still open.
+  * **Graph-of-groups firewall and the mismatched pair** (lane w6-mismatch-c2, family SUB; d0f2b3f648;
+    artifact `mismatched-factor-graph-of-groups-firewall-2026-09-12.md`; established, verification
+    requested from w4-vf-gate).
+    * `graphs-of-locally-finite-groups-carry-regular-rank-models`. Let `Y` be a countable graph of groups
+      whose vertex groups are locally finite subgroups of `R^x`, with edges identifying subgroups through
+      units. Then `pi_1(Y)` has a weakly finite characteristic-two rank model. The model is free on every
+      finite subgroup of every vertex group, nontrivial, and fixed-point-free once some vertex group is
+      infinite. When the frames at disjoint cylinders lie in one vertex group,
+      `rk(D_(A_1)...D_(A_k)) = (3/8)^k`, so `theta = 1`.
+      * **Consequence.** The HNN firewall above extends from single partial conjugations to amalgamation
+        along any graph of locally finite subgroups, whatever its image in `R^x` (all of `R^x` included).
+        The model does not realize commutation between elements that lie in no common vertex group.
+    * **The mismatched pair.** `T_(0,1)` and `T_(1,00)` are involutions whose product has infinite order.
+      They lie in `R_0^x` and `g^-1 R_0^x g` for some `g ∈ V`. `T_(1,00)` commutes with `T_(01,00)` inside
+      a locally finite block-triangular group `H`. The tree `L_0 - R_0^x - H - g^-1 R_0^x g`, with the
+      frames in `L_0`, carries the model above, so the pair is inert as a factor.
+    * **Broken relation.** The single-letter HNN extension breaks `[T_(01,00), T_(1,00)] = 1` (Britton's
+      lemma), and the vertex `H` repairs it.
+    * **Steinberg residue** (artifact Remark 3.2).
+      * `R^x = EL_3(R)`, so every relation of `R^x` follows from the Steinberg relations and `K_2(3,R)`.
+        Over `F_2` each Steinberg relation holds in a finite subgroup of order at most 8.
+      * Inert: trees of such relations with a frame vertex, cycles whose elements one locally finite
+        subgroup contains, and any family inside a sofic subgroup.
+      * A relation-only proof through the pair must use one of: a cycle of Steinberg relations whose
+        elements generate a nonsofic subgroup that no graph of locally finite subgroups routes; an element
+        of `K_2(3,R)`; or a global input.
+    * *(lead)* Every local relation is finite data, so a relation-only `theta < 1` needs a global cycle of
+      one of those two kinds. The inputs of w7-sub-multiletter, V's multiplication table and commutation of
+      disjoint depth-changing letters, are where such a cycle would have to come from.
 
 ### L6. Status
 
@@ -303,6 +335,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | Heisenberg node | w4-heisenberg | dead; firewall landed (f576dccf26); finished |
 | defect gap and descent | w4-gate-descent | Established, verifier PASS: gap, two-sided descent, near-minimal multiplicativity. Open target: `leavitt-disjoint-cylinder-defects-strictly-submultiplicative`, with route `leavitt-rank-triviality-via-strict-defect-submultiplicativity` into `non-linear-sofic-group`. Lead spot-check of the route passes: `f(2) >= c_* delta >= delta^2/(1+eps)` contradicts `theta delta^2` once `eps < 1/theta - 1`. The verifier also passes it as a conditional route (§8.4): `theta < 1` holds uniformly over models, so the choice of near-minimal model cannot evade it |
 | Toeplitz input and sofic firewall | w5-sub-fock (family SUB) | Established, verifier PASS §28: the Toeplitz pair is finite-subgroup data; `sofic-subgroups-carry-independent-cylinder-defects`; `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`. Open input shared with L8: soficity of `EL_3(J)` (L5) |
+| graph-of-groups firewall | w6-mismatch-c2 (family SUB) | Established, verification requested from w4-vf-gate (d0f2b3f648): `graphs-of-locally-finite-groups-carry-regular-rank-models`; the depth-mismatched pair is inert as a factor; Attempts entries on the SUB target and on `binary-complement-corner-has-no-weakly-finite-image` (L5) |
 | wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45; nothing landed yet. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the two OPEN Sylvester descent counterparts; the order-char cycle law at `p = 2, 3` (header) |
 | verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §28, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
