@@ -80,5 +80,8 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
    - *Result.* 0 witnesses (MSI job 705410, 32 shards, all complete).
    - *Verdict.* Dead in that range. A witness needs a nonempty aperiodic core
      (item 3 of `bs-kl-images-in-brin-thompson-groups-have-open-periodic-sets`),
-     which small tables are not expected to show. A wider search over general
-     conjugators is recorded in the same artifact.
+     which small tables are not expected to show.
+   - *General conjugators.* A second search (MSI job 706577) tested every `f`
+     with at most 3 bricks against every `g` with at most 4 bricks, all sides at
+     most 3: 14,075,554 pairs. It found 608 solutions with `g` of finite order
+     and no witness.
