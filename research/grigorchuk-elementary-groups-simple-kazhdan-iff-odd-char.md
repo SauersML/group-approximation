@@ -27,3 +27,5 @@ imported here.
 Instance on the paradox side of `kazhdan-elementary-approximation-type-mirrors-ring-type`. Artifact §3.
 
 Route: `grigorchuk-elementary-groups-simple-kazhdan-iff-odd-char-proof`.
+
+**Review (un-verify, 2026-09-13): PASS.** (B1) spanning sentence verbatim at CEPSS l.2512–2513 and the germ factorization `1_B = s_(α′) u_h s_(β′)^*`; (B2) Leavitt family; (B3) via the reviewed Lean input (part 6); (B4) full defect `s_1^*(s_1s_1^*)s_1 = 1`; (B5); (B6) the singular ideal gives a proper noncentral `E_n(R_q,I)Z/Z` since `EL_n(R_q/I)` is perfect and nontrivial; (B7). See `research/artifacts/un-review-2026-09-13-part7.md` §3.

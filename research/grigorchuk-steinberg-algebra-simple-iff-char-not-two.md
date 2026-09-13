@@ -25,3 +25,5 @@ The odd-characteristic case is an immediate reading of their proof, and may alre
 was not checked (no web search available).
 
 Route: `grigorchuk-steinberg-algebra-simple-iff-char-not-two-proof`.
+
+**Review (un-verify, 2026-09-13): PASS.** The six equations give `c_b = c_c = c_d = −c_e` and `−2c_e = 0`; every occurrence of "characteristic" in the CEPSS TeX source was audited (lines 465–488 are the char-0 clause of `lem:key`, unused in the Grigorchuk chain; the rest are the hypotheses of `lem:LCzero`, `lem:zeinterior`, `lem:grigsingular`, `thm:grigsimple`), so characteristic enters only at `lem:LCzero` line 2424; the char-2 witness `f = 1_{z_e,z_b,z_c,z_d}` works over every characteristic-2 field. See `research/artifacts/un-review-2026-09-13-part7.md` §2.

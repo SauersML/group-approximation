@@ -22,3 +22,5 @@ to non-Hausdorff groupoids*, arXiv:1806.04362. Read from the arXiv TeX source on
   `lem:zeinterior` and `lem:grigsingular` then use.
 
 Verbatim quotes: `cepss-nonhausdorff-steinberg-simplicity-citation`.
+
+**Review (un-verify, 2026-09-13): PASS (import).** `thm:simple` (l.809–818), `prop:singularideal` (l.612–614), `lem:LCzero` with the six equations (l.2395–2426), `cor:grigZ2notsimple` (l.2431–2440) and the spanning sentence (l.2512–2513) checked verbatim against the arXiv e-print `CEPSS_revision_Mar07_2019.tex` of arXiv:1806.04362. See `research/artifacts/un-review-2026-09-13-part7.md` §2.

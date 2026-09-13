@@ -23,3 +23,5 @@ groupoid over any field of characteristic `≠ 2` (`grigorchuk-steinberg-algebra
 Clark–Exel–Pardo–Sims–Starling criterion (`cepss-nonhausdorff-steinberg-simplicity`).
 
 Route: `ample-steinberg-el-simple-mod-centre-without-hausdorff-proof`.
+
+**Review (un-verify, 2026-09-13): PASS.** Local annihilation (part 1 §1) uses only that elements are finite combinations of `χ_B` and that the unit space is compact, infinite, Hausdorff and zero-dimensional, so it holds for non-Hausdorff `𝒢`; unital simple algebra gives `IsSimpleRing`; the Lean criterion, infiniteness and the (T) clause (finite `k`, finitely generated `A`) re-derived. See `research/artifacts/un-review-2026-09-13-part7.md` §1.
