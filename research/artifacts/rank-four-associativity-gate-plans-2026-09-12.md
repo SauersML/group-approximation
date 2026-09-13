@@ -264,6 +264,14 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
         already all of `R^x`, so a relation-only proof would isolate no smaller certificate.
       * The soficity of `EL_3(J)` is undecided on main: locally finite kernel, residually finite
         quotient, and the literature check owed in L8 still stands.
+      * **Archive context** (09-08 Jacobson region; lead summary).
+        * `binary-jacobson-core-is-weakly-sofic-with-fd-head-radical`: `EL_28(J)` is weakly sofic by
+          Glebsky's extension theorem, and every finite-dimensional unitary representation of it kills the
+          finitary kernel. The block subgroup `EL_3(J)` is therefore weakly sofic.
+        * `binary-jacobson-mf-radical-dichotomy`: the MF radical of `EL_5(J)` is `1` or the finitary kernel.
+        * `leavitt-first-offdiagonal-core-is-marked-non-lef`: the Toeplitz core over `R` is not LEF.
+        * So weak soficity holds, exact finite images of `EL_28(J)` erase the head, and soficity is the
+          approximation notion still open.
 
 ### L6. Status
 
