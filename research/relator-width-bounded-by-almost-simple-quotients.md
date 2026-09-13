@@ -47,8 +47,11 @@ For a general finite `Q` and `a in Q^X`, the width with conjugators in `Q` is at
 - **Supersedes** the tower, nilpotent-by-locally-finite and abelian-by-nilpotent width bounds, as statements. Those
   proofs stay useful because they avoid the classification and give explicit constants.
 
-**Credit and novelty.** The argument is a short application of Nikolov--Segal, Theorems 1.1 and 1.2. The
-graph has no earlier node applying either theorem to relator width (grep for Nikolov and Schneider). Web search
-was exhausted and the arXiv API query returned no data. So prior appearances in the metric approximation
-literature were not checked, for example in work of Nikolov, Schneider and Thom on iterated wreath products.
-A novelty pass should check that literature before this is credited as new. **Unreviewed.**
+**Credit.** The argument is a short application of Nikolov--Segal, Theorems 1.1 and 1.2, and it is **not new in
+substance**. Nikolov, Schneider and Thom (`nst-simple-weakly-sofic-groups-are-psl-approximable`, arXiv:1703.06092)
+proved in their Theorem 1 that no non-trivial finitely generated perfect group is approximable by finite solvable
+groups. That is item (d) for soluble targets in length form, and more, since finite presentation is not needed. Their
+Theorem 4 reduces approximation by all finite groups to `PSL_n(q)`-approximation of a quotient, with the same generation
+tools. This node records the width form with explicit dependence on `nu`, `nu_0` and `Q/Q_0`. The graph had no node
+applying either paper before 2026-09-13. The literature check was bounded to the arXiv abstracts and theorem
+statements of those two papers. **Unreviewed.**

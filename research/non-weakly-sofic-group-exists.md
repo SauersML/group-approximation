@@ -40,5 +40,12 @@ quotients.
     over every symmetric, alternating, sporadic, bounded-rank Lie type and nilpotent group
     (`simple-group-relator-width-in-finite-simple-targets`,
     `perfect-group-relator-width-over-nilpotent-groups`).
+  - *Exact target (2026-09-13, lane `ex2-weak-sofic-bounded-factors`, unreviewed).* An infinite finitely
+    presented simple group is not weakly sofic iff it is not linear sofic over finite fields
+    (`fp-simple-weak-soficity-is-finite-field-linear-soficity`). Two routes lead there: Nikolov--Schneider--Thom
+    Theorem 4 with the PSL dichotomy, and a width-form route through `relator-width-bounded-by-almost-simple-quotients`.
+    So this claim follows from one finitely presented simple group, such as `R^x` or Thompson's `V`, that embeds in no
+    rank-metric ultraproduct of groups `GL_n(F_q)`. Conversely, for simple candidates nothing weaker can work: every
+    certificate over finite groups is a non-linear-soficity certificate over finite fields.
 - **Concrete candidate.** The binary Leavitt unit group (`binary-leavitt-unit-group-is-weakly-sofic`),
   finitely presented, simple, Kazhdan and nonsofic.

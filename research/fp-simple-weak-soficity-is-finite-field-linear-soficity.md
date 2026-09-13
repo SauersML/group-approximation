@@ -47,7 +47,12 @@ reduce to direct products of finite simple groups.
   Simplicity is also used in the dichotomy for simple targets. Finitely presented groups without finite quotients
   that are not simple are not covered by (iii) => (i).
 
-**Credit.** A short assembly of Nikolov--Segal generation theorems with the lane-built simple-group templates; the
-new step is the move of the tuple into the socle through a word in the third derived subgroup. Novelty against the
-metric-approximation literature (Arzhantseva--Paunescu on linear soficity, Nikolov--Schneider--Thom) was not checked:
-web search was exhausted.
+**Credit.** The group-theoretic reduction is due to Nikolov, Schneider and Thom. By their Theorem 4
+(`nst-simple-weakly-sofic-groups-are-psl-approximable`), every simple weakly sofic group is approximable by the groups
+`PSL_n(q)` with invariant lengths. Combined with the PSL dichotomy of `simple-group-psl-width-is-finite-field-linear-soficity`
+(lane `ex-weak-sofic-classical-covering`, unreviewed), this gives (iii) => (i) directly; see route
+`fp-simple-weak-soficity-via-nst-psl-approximation`. So the new content is the combination with that PSL
+dichotomy, which identifies the target property as linear soficity over finite fields. The width-form proof in
+`fp-simple-weak-soficity-is-finite-field-linear-soficity-proof` is a second, independent route through the finite-simple
+templates. Arzhantseva--Paunescu were not re-read for a stated converse. The check covered the Nikolov--Schneider--Thom
+abstract and Theorems 1 and 4 only.
