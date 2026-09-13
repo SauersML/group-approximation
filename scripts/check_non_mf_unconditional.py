@@ -63,20 +63,24 @@ the `sorry`-tainted producers removed, and the difference is its own detector:
 * `conditional-debt` -- the corpus produces it, but every producer rests on a
   `sorry`.
 
-The case this was written for: `TheoremC.LiteratureInputs` is inhabited by
-`TheoremCAssembly.literatureInputs`, which is assembled from three unfinished
-literature theorems.  Before the split, every theorem taking `LiteratureInputs`
-read as unconditional, because the gate asked whether a producer existed and
-not whether it was honest.  `HullInputsCorrected`, by contrast, has an
-untainted producer and stays clean, which is the test the detector has to pass:
-it must discriminate, not condemn a whole surface.
+The case this was written for: `TheoremC.LiteratureInputs` was inhabited by
+`TheoremCAssembly.literatureInputs`, which was assembled from three unfinished
+literature theorems.  (That producer was retired on 2026-09-13 with the
+`sorry`s under it; the producer now is
+`TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves`,
+which takes the open leaves as hypotheses.)  Before the split, every theorem
+taking `LiteratureInputs` read as unconditional, because the gate asked whether
+a producer existed and not whether it was honest.  `HullInputsCorrected`, by
+contrast, has an untainted producer and stays clean, which is the test the
+detector has to pass: it must discriminate, not condemn a whole surface.
 
 Taint is transitive, and one refinement in its reference scan matters.  An
 identifier whose first component is one of the declaration's own binder names
 is NOT a reference: `exists_configuration (I : LiteratureInputs)` writes
-`I.kotowskiOllivier`, a field of its hypothesis whose last component collides
-with the name of a `sorry`-backed theorem elsewhere.  Reading that as a
-reference tainted four Theorem C declarations that rest on no `sorry` at all.
+`I.kotowskiOllivier`, a field of its hypothesis whose last component collided
+with the name of a `sorry`-backed theorem elsewhere (`TheoremC.kotowskiOllivier`,
+retired on 2026-09-13).  Reading that as a reference tainted four Theorem C
+declarations that rest on no `sorry` at all.
 
 This is a lexical scan, not a kernel fact.  The authoritative version is the
 axiom set: `#audit_closed_axioms` and `scripts/Audit.lean` walk the transitive
@@ -777,8 +781,9 @@ def sorry_tainted(
     An identifier whose first component is one of the declaration's own binder
     names is NOT a reference.  `exists_configuration (I : LiteratureInputs)`
     writes `I.chiodo` and `I.kotowskiOllivier`: those are fields of its
-    hypothesis, and their last components collide with the names of the
-    `sorry`-backed theorems that inhabit `LiteratureInputs` elsewhere.  Reading
+    hypothesis, and their last components collided with the names of the
+    `sorry`-backed theorems that inhabited `LiteratureInputs` elsewhere (in
+    `TheoremCAssembly`, retired on 2026-09-13).  Reading
     them as references tainted `exists_configuration`, and through it
     `Configuration`, `manuscriptTorsionFreeFullMFRadical` and both printed forms
     of Theorem C -- four declarations that rest on no `sorry` at all.  Dropping
