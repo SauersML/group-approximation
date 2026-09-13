@@ -246,3 +246,21 @@ For EVERY census row in your range with status formalized or definition, and eve
   - never wire a module whose last probe was red;
   - read the memory files on the root docstring import trap and on transitive dangling imports.
 - Also compute the census-carrier modules that are not reachable from the root, and wire them.
+
+## Reassignments 09-13 ~02:00 (lanes whose targets closed, sent to open wall pieces)
+- W1 pocket cut core. This blocks SectionPocketCut, MultipleEdgeCut and LoopCut, and hull-euler's empty 2-gon pocket.
+  - dgo-analytic owns it, in new `Estimating/OsinPocket*` modules: (a) the face set enclosed by a closed walk, with its embedded boundary; (b) the least-area cut with four sections; (c) glue-back transport.
+  - Proposed split: (b) to hull-select, (c) to go-lemma42.
+  - hull-respell: the shelling producer (`FaceSetEarStatement`, `VanKampen/FaceSetPeelProducer.lean:171`).
+  - nm-endpoints: `OsinDescentStepInput`, or whichever piece dgo-analytic gives it.
+  - hull-euler consumes (a) for its pocket extraction.
+- W1 h94: `OsinLemma94RunInput.no_connector` is not provable unoriented, since the planar Case 1 only contradicts antiparallel pairs.
+  - hull-count94 owns a new oriented metric layer (oriented Lemma 25 for polygons with at most 8 sides, OrientedSidePair/ClassPair, the three-class lemma, a monotone Morse index, WordConnectorPair target_backward) and restates RunInput/Counting on it.
+  - sec5-sentences helps with one piece. Its four sentence forms flip when W1 and W2 land.
+- W2 M2 split: hull-component writes `HullSCLemma51LetterPullbackCutFaces` (five cutFace_* lemmas). hull-bridge writes CutOutcome, Cut, Holds and EmbeddedBridgeHolds.
+- W3 hT6: theoremc-retire helps kh-cckw. `Systolic.exists_invariantClique_of_neighborSet_finite` and "systolic balls are dismantlable" are absent from main; their owner sec4-sentences is dead.
+- W4: leavitt-units helps hl-lemma46 with `LemmaFourSixDynamicsStatement`. kh-ejz owns `UpsilonShortOfCaseOne`; its Case 2 draft is orphaned at 9711ad726.
+- GHW char 0: moved from dgo-geometric to ghw-assembly (`Kazhdan/GHWCharZero`, `Algebra/IntegerGridFinite`), which consumes sec2-sentences' closed `GHWCountablePlaces`. ghw-charp2 takes a piece, e.g. the places over ℚ.
+- Baseline: hs-vanishes takes the operator-algebra findings, agreed line by line with debt-conditional.
+- Orphans left on main, unwired, no deletion: GHWEntries (87790c4fa, dedupe by ghw-assembly), IntroLimitingTraceSentence (duplicate of sec2-sentences' L187), TorsionFreeKOLeaves and KotowskiOllivierLeaves (superseded by kotowskiOllivier_of_leaves).
+- Stale-docstring backlog, parked: 14 modules that name retired TheoremC declarations (list in theoremc-retire.md); scripts/TheoremCCompletionAudit.lean; MF_RECOGNITION_SENTENCE_MAP row c6172bdc109a.
