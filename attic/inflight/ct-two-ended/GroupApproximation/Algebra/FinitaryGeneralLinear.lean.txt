@@ -224,8 +224,8 @@ has finite matrix support. -/
 def GLfin : Subgroup (LinearMap.GeneralLinearGroup k (ℤ →₀ k)) where
   carrier := {g | HasFiniteMatrixSupport k ((g : Module.End k (ℤ →₀ k)) - 1)}
   one_mem' := by
-    have h : ((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1 = 0 :=
-      sub_eq_zero.2 Units.val_one
+    have h : ((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1 = 0 := by
+      simp
     show HasFiniteMatrixSupport k
       (((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1)
     rw [h]
