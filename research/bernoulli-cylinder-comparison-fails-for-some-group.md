@@ -78,3 +78,14 @@ every group satisfying Baum--Connes with coefficients. No group satisfying it is
     such as the expander-marking subshift. Another is the Haar trace with Lück's ring `Z[1/p]`.
   - A sharp open sub-question: does the marking-subshift ghost class lift along
     `I_1 ⋊_r G -> C_0(Y_A \ {0}) ⋊_r G`?
+- **HLS ghost lift (2026-09-13, `hls-ghost-lift-needs-forest-shift-failure`, established, unreviewed).**
+  - HLS Section 7's projection is a Bernoulli coefficient on the marking subshift of isometrically embedded expanders.
+    It has rank `1` at each marked expander and vanishes on the tree boundary (`hls-ghost-projection-breaks-k-exactness`).
+  - Assume max-to-reduced K_0 injectivity at the tree boundary (`expander-tree-boundary-k0-max-reduced-injective`). A
+    full-shift class with vanishing tree-boundary part and nonzero ranks at infinitely many marked expanders is then a
+    witness here (route `bc-bernoulli-defect-via-hls-ghost-lift`, via `hls-ghost-class-lifts-to-the-bernoulli-full-shift`).
+  - It also forces Baum--Connes surjectivity to fail at the forest coefficient
+    (`forest-shift-bernoulli-comparison-is-surjective`).
+  - Where it stops: whether the ghost lifts is now a question about forest configurations. If the forest comparison is
+    surjective, the ghost never lifts.
+  - The Haar trace door (`μ(T) = μ(Ŷ) = 0`) and `K_1` stay independent.
