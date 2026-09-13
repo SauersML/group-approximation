@@ -16,4 +16,5 @@ The complete proof is in Sections 1–3 of the artifact:
 - Lemma 2.2: the box set is equivariant under conjugation by elements lying over T.
 - Lemma 3.1: the breakpoint set is finite, nonempty, dyadic and equivariant.
 
-Unreviewed as of 2026-09-13.
+Reviewed: PASS by z-verify-groups on 2026-09-13, §8 of
+`research/artifacts/zp-review-groups-2026-09-13-part1.md` (c0ff0a5f90).

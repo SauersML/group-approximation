@@ -37,12 +37,15 @@ is invariant under conjugation.
 ## Attempts
 
 - 2026-09-13 (lane z2-11-bv-inner-amen): negative answer proved in
-  `braided-v-is-not-inner-amenable`, UNREVIEWED; the artifact is
+  `braided-v-is-not-inner-amenable`; the artifact is
   `research/artifacts/zp-braided-v-not-inner-amenable-2026-09-13.md`.
   - Method: apply the Haagerup–Olesen centralizer criterion to a free subgroup lifted from their
     copy Λ of PSL(2,Z) in T. Nontrivial kernel elements carry finite dyadic breakpoint sets,
     which centralizing elements of Λ must permute.
-  - The route `zaremsky-2-11-by-no` lands after a verifier PASS.
+  - Review: PASS by z-verify-groups, §8 of `research/artifacts/zp-review-groups-2026-09-13-part1.md`
+    (c0ff0a5f90). The answer route `zaremsky-2-11-by-no` has landed.
+  - Novelty check: pending with z-status-b. Until it reports, do not describe this as a first
+    answer.
   - A bounded arXiv search on 2026-09-13 found no earlier answer. Bashwinger–Zaremsky
     (2104.04826, 2203.13798) and Bashwinger–DeBonis (2507.18821) do not treat inner amenability
     of bV.

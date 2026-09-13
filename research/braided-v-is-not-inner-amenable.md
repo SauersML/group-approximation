@@ -17,6 +17,9 @@ Consequences:
   also not inner amenable.
 
 This answers Zaremsky's Problem 2.11 negatively (root `zaremsky-2-11-braided-v-inner-amenable`).
-UNREVIEWED as of 2026-09-13.
+
+Reviewed: PASS by z-verify-groups on 2026-09-13, §8 of
+`research/artifacts/zp-review-groups-2026-09-13-part1.md` (c0ff0a5f90). The novelty check is
+pending.
 
 Route: `braided-v-is-not-inner-amenable-proof`.
