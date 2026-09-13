@@ -40,6 +40,15 @@ INV(G) is either a proof of INF(G) or a proof that such approximations cannot cl
 `semicontinuous-invariants-blind-above-rokhlin-supremum` records which invariants
 cannot give the second kind of proof.
 
+**Hosts.**
+- **Sofic groups.** `s = ∞`, so AINV holds, as sofic entropy predicts.
+- **Dichotomy hosts.** Suppose `h^Rok_sup(G) ∈ {0, ∞}`, as for the binary Leavitt unit
+  group and Thompson's `V` (`rokhlin-supremum-dichotomy-with-centralized-self-copies`).
+  Then AINV(G) ⟺ INF(G) ⟺ POS(G), with `positive-rokhlin-entropy-action-gives-positive-supremum`
+  for the last step.
+- **Kun–Thom wreaths.** By Theorem 1.10, `h^Rok_W(A^W) = log |A|` for every finite `A`
+  exactly when `s = ∞`. So `kun-thom-wreath-bernoulli-rokhlin-maximal` is AINV(W).
+
 **Credit and novelty.** Items 1 and 2 are immediate from Seward's Corollary 6.1 and
 Lemma 6.2 (`seward-approximate-bernoulli-models-and-semicontinuity`). The formulation
 as a threshold, and the equivalence AINV ⟺ INF, were not found in arXiv:1501.03367v4
