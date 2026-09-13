@@ -173,5 +173,17 @@ Rokhlin package (part 6): the quotient formula, descent of maximality, and the a
   norm nodes.
 - *Credit correction.* Ioana's Remark (2) was added forward to `sl3z-cocompact-not-factor-of-bernoulli-times-profinite`.
 
+**Wave 2 (parts 8–9).** Lanes: ex2-hecke-pair-negative, ex2-bernoulli-exactification, ex2-rokhlin-almost-cocycle,
+ex2-rokhlin-liftable-positive, ex2-hecke-pair-positive and ex2-ft-actor-models.
+- *Part 8, ex2-hecke-pair-negative.*
+  - Harder 1977 (Satz, pp. 135–136) matches verbatim.
+  - The Laurent chamber-quotient cohomology and the central-cover no-go pass. Two corrections landed at bd533259ab:
+    (FP) is now wired to the established Rank Theorem import, and the `b_4` table wording was fixed.
+- *Part 9, fourteen established landings.* All pass.
+  - The spectral-gap exactification theorem passes at its self-corrected constant (66b3f0952f). It proves the three
+    zero-supremum claims equivalent to Seward's question; it does not refute them.
+  - Imports checked verbatim: Bowen's vND Theorem 1.1 and Burton–Kechris.
+- *Firing.* Every famous-level target of these lanes stays OPEN at `4200f08d51`.
+
 **Not re-derived in this wave.** The remaining first-wave PASSes of the Rokhlin-ascent, Rokhlin-lower,
 Bernoulli-positive, Bernoulli-zero-supremum and Păunescu-class lanes.
