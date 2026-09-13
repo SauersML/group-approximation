@@ -1,9 +1,15 @@
 # Pestov Open Question 9.1: simulated Palomar registry review, 2026-09-13 (part 1 of 2)
 
-Lane `pc-registry` of the PC swarm, 02:00–02:30 CDT.  Part 1 fixes every requirement a Pestov 9.1 Comparator
-configuration must meet and grades main at `e6b547260` against them.  Part 2,
-`pestov91-registry-review-2026-09-13-part2.md`, grades the files landed by pc-palomar, pc-assembly and pc-integrate
-and gives the readiness verdict.
+Lane `pc-registry` of the PC swarm, 02:00–02:45 CDT.  Part 1 fixes every requirement a Pestov 9.1 Comparator
+configuration must meet and grades main against them.  Part 2, `pestov91-registry-review-2026-09-13-part2.md`,
+grades the files landed by pc-palomar, pc-assembly and pc-integrate and gives the readiness verdict.
+
+**Correction (02:45 CDT).** The first landing of this file (6965e0292) graded `e6b547260` and missed two commits
+already on main:
+- 257b50a5d, the model tests;
+- 764023101, lane fz-integrate: the pending gate entry, the drivers, the lakefile libraries and the workflow steps.
+
+Items B1–B3, C1–C5 and E3, and the table in §3, are regraded here at `3e9636d74`.
 
 ## 0. What was read
 
@@ -15,11 +21,11 @@ and gives the readiness verdict.
     `literature` and `clarity`. The minimum is 4 on each, and only notability is mandatory.
   - `prompts/00`–`04`, `prompts/materiality.md`, `taxonomies/classification-guide.md`.
 - **Repository gates on main.**
-  - `scripts/check_palomar_submission.py` (intake rules, shared block, signatures, metadata, self-test);
+  - `scripts/check_palomar_submission.py`;
   - `scripts/check_palomar_statement_match.sh`;
+  - `scripts/PalomarPestov91{Axioms,ChallengeType,SolutionType}.lean`;
   - `.github/workflows/palomar-check.yml` and `palomar-comparator.yml`;
-  - `tools/nm-swarm/palomar-verify.sh` and its remote template, which verify the LIX-strong surface only and are no
-    path for Pestov 9.1.
+  - `tools/nm-swarm/palomar-verify.sh` and its remote template, which verify the LIX-strong surface only.
 - **Precedent.**
   - `Palomar/BowenChapman{Challenge,Solution}.lean`, `Palomar/comparator-bowen-chapman.json`;
   - `scripts/PalomarBowenChapman{Axioms,ChallengeType,SolutionType}.lean`;
@@ -46,8 +52,7 @@ Status key:
 - **PENDING**: cannot hold until the hypothesis-free endpoint lands.
 - **ADVISORY**: not a registry defect.
 
-Owners are in brackets. Inputs owed to pc-integrate come from pc-review, pc-priority-credit and pc-lit-background, as
-its FILL map says.
+Owners are in brackets. Inputs owed to pc-integrate come from pc-review, pc-priority-credit and pc-lit-background.
 
 ### A. Mechanical intake: failures here stop the submission before review
 
@@ -61,14 +66,12 @@ its FILL map says.
 - **A5 PENDING [pc-palomar, pc-assembly].** Every selected theorem must be declared in both modules. On main the
   Solution declares only `_of` forms, which take an infinite simple LEF group as a hypothesis.
 - **A6 PASS [repository].** Toolchain v4.32.0 is at or above v4.28.0. There is one lakefile, the manifest pins full
-  SHAs on github.com, and there is one Apache-2.0 `LICENSE`. There are no tracked artifacts, submodules or LFS
-  (§2.1, §2.4, §2.5). bcx-registry found these clean, and the gate re-checks them on every run.
-- **A7 PASS [pc-integrate].** The sources satisfy exactly one origin alternative: every `original-proof` row is
-  `other`, and no row is `formalizes`, `adapts` or `independently-proves` (§3.2).
+  SHAs on github.com, and there is one Apache-2.0 `LICENSE`. There are no tracked artifacts, submodules or LFS.
+- **A7 PASS [pc-integrate].** The sources satisfy exactly one origin alternative (§3.2).
   - A third `original-proof` row keeps `result_origin: original`.
-  - Any substantive relationship on a Pestov 9.1 row is a mechanical failure, not a finding.
-- **A8 PASS [pc-integrate].** No AI system in `project.authors` or `responsible_maintainers` (materiality). They are
-  `[Sauers]` and `[SauersML]`.
+  - Any `formalizes`, `adapts` or `independently-proves` row is a mechanical failure, not a finding.
+- **A8 PASS [pc-integrate].** No AI system in `project.authors` or `responsible_maintainers`. They are `[Sauers]` and
+  `[SauersML]`.
 
 ### B. The three Comparator verdicts
 
@@ -76,42 +79,44 @@ its FILL map says.
   elaboration, and every constant in their transitive closure to be identical in type and value. It rejected this
   repository twice on byte-identical source: an instance resolved differently in the challenge and the solution
   (non-MF, 2026-08-19; LIX, 2026-09-10).
-  - On main the shared block is byte-identical (diffed here), so the text check holds.
-  - The elaborated check is absent: there are no `scripts/PalomarPestov91ChallengeType.lean` and
-    `...SolutionType.lean`, and `check_palomar_statement_match.sh` loops only over the prefixes "", `LIX`,
-    `BowenChapman` (plus pending `LIXStrong`).
-  - Capture risks particular to this block: `Matrix.unitaryGroup Y ℂ`, the matrix product `U g * U h`, the
-    decidability in `Finset.univ.filter`, the group structure on `E ≃ₗᵢ[ℂ] E`, and the coercion in `‖ρ q x - x‖`.
-  - The drivers must walk the values of all six shared definitions, as the Bowen–Chapman drivers do.
-- **B2 GAP [pc-palomar].** Axiom closure of each selected Solution theorem within the permitted three (§2.3). There is
-  no `scripts/PalomarPestov91Axioms.lean` on main; b490bf08d records only a probe-only driver.
-- **B3 GAP [pc-integrate].** A real Comparator run with NanoDa on the submission commit must report "nanoda kernel
-  accepts the solution / Lean default kernel accepts the solution / Your solution is okay!".
+  - The shared block is byte-identical on main (diffed here).
+  - 764023101 added the two type drivers and put `Pestov91` in the pending loop of
+    `check_palomar_statement_match.sh`, which gates on everything before `pending-boundary:`.
+  - **The gated part is blind to the defect it is for.** For the six shared definitions, the walk is seeded from each
+    definition's type only (`info.type.getUsedConstants`), and no hash of the definition's value is printed.
+    - The type of `IsSoficGroup` is `(G : Type) → [Group G] → Prop`.
+    - So the bodies are never compared: `hammingDist`, `Fintype.card`, the carrier instances, `Matrix.unitaryGroup Y ℂ`,
+      `U g * U h`, the group on `E ≃ₗᵢ[ℂ] E`.
+    - `scripts/PalomarBowenChapmanChallengeType.lean` seeds its walk from the value of each shared definition.
+    - While the pair is pending, a captured instance inside the block passes this gate and fails the real Comparator.
+      Once the pair is submittable, the statement section walks these values.
+    - Sent to pc-palomar, which rewrites the drivers' target lists when it lands the renamed block.
+- **B2 PASS [pc-palomar].** `scripts/PalomarPestov91Axioms.lean` (764023101) gates the axiom closure of both `_of`
+  forms against the three permitted axioms, and logs an error on a missing name. Its list becomes the configuration's
+  names when the configuration moves to `PALOMAR_CONFIGS`.
+- **B3 PENDING [pc-integrate].** A real Comparator run with NanoDa on the submission commit must report "nanoda
+  kernel accepts the solution / Lean default kernel accepts the solution / Your solution is okay!".
   - The run is `palomar-comparator.yml` with `config=Palomar/comparator-pestov91.json` and `nanoda=true`.
-  - Today its build step builds eight libraries, none of them Pestov 9.1, and `lakefile.toml` has no Pestov 9.1
-    `lean_lib`.
-- **B4 PENDING [pc-integrate].** Carry-over. A Comparator pass on commit P holds at a later commit S only if the
-  Palomar import closure, toolchain, manifest, lakefile, configuration and workflow are byte-identical from P to S
-  (BC audit §1, 428 files there).
+  - Since 764023101 the workflow builds both Pestov91 libraries.
+  - The run waits for the endpoint.
+- **B4 PENDING [pc-integrate].** Carry-over. A pass on commit P holds at a later commit S only if the Palomar import
+  closure, toolchain, manifest, lakefile, configuration and workflow are byte-identical from P to S (BC audit §1).
 
 ### C. Repository gates
 
-- **C1 GAP [pc-integrate].** `Palomar/comparator-pestov91.json` is in neither `PALOMAR_CONFIGS` nor
-  `PALOMAR_PENDING_CONFIGS`.
-  - While the Solution has only `_of` forms it belongs in the pending list, where the gate requires each `<name>_of`.
-  - It moves to `PALOMAR_CONFIGS` in the same change that adds the `status.main_results` rows.
-- **C2 GAP [pc-integrate].** `SURFACE_FILES` needs the three Pestov 9.1 paths. `CALIBRATION` needs Pestov 9.1
-  planters: a project-local import, a one-sided shared-block edit, a one-sided signature edit (or a missing `_of`
-  while pending), a fourth permitted axiom, and a result dropped from the metadata. Bowen–Chapman has five.
-- **C3 GAP [pc-integrate].** `palomar-check.yml` needs the Pestov 9.1 drivers in the path filter, both libraries in
-  the build step, an axiom-closure step, and that step in the final reject condition.
-- **C4 GAP [pc-palomar, pc-integrate].** `lakefile.toml` needs `PalomarPestov91Challenge` and
-  `PalomarPestov91Solution`. They join `defaultTargets` once the configuration is no longer pending.
-- **C5 GAP [pc-integrate].** Eight modules sit at final paths with no import line in `GroupApproximation.lean`:
-  Assembly, Centre, CentreSkew, Kazhdan, KazhdanUnitary, LEFHyperlinear, RingSimple and SplitSimplicity.
-  - Each landing commit touched only its module.
-  - `scripts/check.py`'s `check_import_closure` reports modules outside the root closure.
-  - This is not a registry input, but it is a finding of the repository's own Source scan.
+- **C1 PASS [pc-integrate].** `Palomar/comparator-pestov91.json` is in `PALOMAR_PENDING_CONFIGS` (764023101). It moves
+  to `PALOMAR_CONFIGS` in the same change that adds the `status.main_results` rows.
+- **C2 PASS [pc-integrate].** `SURFACE_FILES` lists the three paths, and four Pestov 9.1 calibrations exist: a
+  project-local import, a one-sided shared-block edit, a missing `_of`, a fourth axiom. The metadata calibration
+  arrives with the move to `PALOMAR_CONFIGS`. A rename of the `_of` theorems must also rename the planter's target
+  string, or the self-test fails.
+- **C3 PASS [pc-integrate].** `palomar-check.yml` has the Pestov91 driver paths, both libraries in the build step, an
+  axiom-closure step and its reject variable.
+- **C4 PASS [pc-integrate].** `lakefile.toml` has `PalomarPestov91Challenge` and `PalomarPestov91Solution`, outside
+  `defaultTargets` while pending.
+- **C5 GAP [pc-integrate].** At `3e9636d74`, `GroupApproximation.lean` has one Pestov91 import line for eleven files
+  under `GroupApproximation/Pestov91/`. `scripts/check.py`'s `check_import_closure` reports every module outside the
+  root closure. This is not a registry input, but it is a finding of the repository's own Source scan.
 
 ### D. `formalization.yaml`: statement alignment, clarity, provenance
 
@@ -119,9 +124,8 @@ its FILL map says.
   abstract "omits a distinct principal result family represented by the selection" (BC D1).
 - **D2 GAP [pc-integrate].** `project.name`, the default public entry title, names only the other two results
   (BC D6).
-- **D3 GAP [pc-integrate].** `status.scope` must name `Palomar/Pestov91Challenge.lean` and
-  `Palomar/Pestov91Solution.lean` and say what they state. Materiality: submission-specific prose must not misstate
-  what the configuration contains (BC D2).
+- **D3 GAP [pc-integrate].** `status.scope` must name both Pestov91 modules and say what they state (materiality;
+  BC D2).
 - **D4 PENDING [pc-integrate].** `status.main_results` needs one row per selected theorem, with
   `comparator_config: Palomar/comparator-pestov91.json`, `sorry_count: 0` and the axioms. Fill them only from a
   completed axiom run.
@@ -130,12 +134,9 @@ its FILL map says.
 - **D6 GAP [pc-integrate ← pc-priority-credit].** `automation.methods` and `notes` must say who solved the problem and
   which systems wrote the Lean and the prose. "The two methods entries above" becomes three (prompt 01; BC D11).
 - **D7 GAP [pc-integrate ← pc-review].** `review.notes` must point to a Pestov 9.1 review record that exists at the
-  pinned commit (BC D12). A pointer counts only once resolved (materiality).
-- **D8 ADVISORY.** The classification check is an egregious-mismatch screen only (prompt 00): a missing or better code
-  is never a criticism.
-  - `math.GR`, 20F65 and 22D55 already describe the result.
-  - MSC is at the cap of 8, so no change is required.
-  - `math.RA` may be added (5 of 8 arXiv classes).
+  pinned commit (BC D12).
+- **D8 ADVISORY.** The classification check is an egregious-mismatch screen only (prompt 00). `math.GR`, 20F65 and
+  22D55 already describe the result, and MSC is at the cap of 8, so no change is required. `math.RA` may be added.
 
 ### E. Fidelity and alignment
 
@@ -149,93 +150,81 @@ its FILL map says.
      squared normalized Hilbert–Schmidt distance. Theorems 3.5–3.6 ask it only when gh ∈ F, with an identity clause
      and separation 1/4; Remark 3.7 allows any constant up to √2. In an existential theorem, stronger conditions give
      a stronger theorem.
-  3. Property (T) quantifies over complex Hilbert spaces in `Type` only. Restricting the universe formally weakens
-     the definition, and the orbit-span argument shows nothing is lost: the closed span of one orbit of a
-     representation of a group in `Type` is isometric to a Hilbert space in `Type`. The development proves the
-     complex–real bridge (`hasKazhdanPropertyT_iff_complex`).
+  3. Property (T) quantifies over complex Hilbert spaces in `Type` only. The restriction weakens the definition
+     formally, and the orbit-span argument shows nothing is lost. The complex–real bridge is
+     `hasKazhdanPropertyT_iff_complex`.
   4. For a discrete group the compact Kazhdan sets are the finite ones (Bekka–de la Harpe–Valette, Definition 1.1.3).
   5. Groups range over `Type 0`, and the witness is in `Type 0`.
-- **E3 ADVISORY [pc-palomar].** Model tests of the shared definitions in the pinned tree. A definition-fidelity score
-  of 4 needs concrete positive evidence (§7).
-  - Positive controls: finite groups have (T) and are sofic and hyperlinear.
-  - Negative controls: ℤ lacks (T), and the trivial group is neither infinite nor simple.
-  - None exist on main; pc-palomar's draft Solution has them.
+- **E3 ADVISORY [pc-palomar].** Model tests. `wip/pestov91/fidelity/Pestov91ModelTests.lean` (257b50a5d) holds 22
+  declarations in the Challenge vocabulary, with probe 0913-021315-6428 green.
+  - Positive controls: finite groups and ℤ.
+  - Negative controls: ℤ lacks (T), and PUnit is not simple.
+  - `isSoficGroup_iff_isPestovSofic`, and `isPestovHyperlinear_of_isHyperlinearGroup` for Theorem 3.6 (1) and (3).
+  - It is unwired, so its probe record is the only evidence. A `review.notes` pointer to it counts only once resolved
+    at the pinned commit.
 
 ### F. Sources: literature
 
-- **F1 GAP [pc-integrate ← pc-lit-background].** The existing Pestov 2008 row needs `location` Open question 9.1,
-  p. 21, and the question verbatim. Its note today serves Bowen–Chapman alone ("does not pose the converse").
+- **F1 GAP [pc-integrate ← pc-lit-background].** The Pestov 2008 row needs `location` Open question 9.1, p. 21, and the
+  question verbatim. Its note today serves Bowen–Chapman alone.
 - **F2 GAP.** Add Ozawa, *About the QWEP conjecture*, Internat. J. Math. 15 (2004), arXiv:math/0306067, which is
-  Pestov's [64] and the origin of the question: "It is unknown whether there exists a simple property (T) group Γ
-  which is hyperlinear".
-- **F3 GAP.** The Ershov–Jaikin-Zapirain row (`other`) must also say that it gives the Pestov 9.1 witness property
-  (T).
+  Pestov's [64] and the origin of the question.
+- **F3 GAP.** The Ershov–Jaikin-Zapirain row must also say that it gives the Pestov 9.1 witness property (T).
 - **F4 GAP.** Rows for the mechanisms the Lean transfers or reproves, each `other` with what is reproved, or
-  `background`, and never `adapts`:
+  `background`:
   - Grigorchuk–Medynets, arXiv:1105.0719, Theorem 2.6;
   - Brown–Clark–Farthing–Sims, arXiv:1204.3127, Theorem 4.1;
   - Clark–Edie-Michell, arXiv:1403.4684, Corollary 4.6;
   - Steinberg, arXiv:1408.6014, Corollary 3.6;
-  - Elek–Szabó, soficity implies hyperlinearity.
+  - Elek–Szabó.
 - **F5 GAP.** The nearest earlier objects and the status of the question:
-  - Thom, arXiv:0810.2180, Theorem 1.4: a finitely generated LEF Kazhdan group, not simple. Kirchberg's theorem is
-    Theorem 1.1 there.
-  - Caprace–Rémy and Gromov, the two known sources of infinite simple Kazhdan groups.
+  - Thom, arXiv:0810.2180, Theorem 1.4, not simple, and Kirchberg's theorem, Theorem 1.1 there;
+  - Caprace–Rémy and Gromov;
   - Pestov–Kwiatkowska, arXiv:0911.4266, still calling the question open.
 - **F6 GAP.** Dadarlat, arXiv:2007.12655v2, introduction: "It is clear from definitions that MF ⇒ weak
   quasidiagonality".
-  - With his remark (ii), that arrow makes every infinite simple Kazhdan group non-MF, hence non-LEF, and the witness
-    contradicts it. See the ex-novelty deep pass, "A tension to state explicitly", and writeup part 3 §8.
-  - A printed statement the result contradicts is the "omitted prior result … that changes the public account" of
-    prompt 04.
-- **F7 GAP [← pc-priority-credit].** Novelty must be stated together with its search bound (§3.4: "Do not claim
-  novelty without a credible literature search").
-  - The bound, from writeup part 3 §10 and the ex-novelty pass: 12 LaTeX sources grepped; citing works of Ozawa,
-    Pestov, Thom and six others by title and abstract; two surveys unread (Pisier 2020, Arzhantseva 2014).
-  - The note must claim no more than "within this bound, no earlier answer was found".
+  - With his remark (ii) that arrow makes every infinite simple Kazhdan group non-LEF, and the witness contradicts
+    it (ex-novelty deep pass; writeup part 3 §8).
+  - Leaving that out is the "omitted prior result … that changes the public account" of prompt 04.
+- **F7 GAP [← pc-priority-credit].** Novelty must be stated with its search bound (§3.4).
+  - The bound (writeup part 3 §10, the ex-novelty pass): 12 LaTeX sources grepped; citing works by title and abstract;
+    Pisier 2020 and Arzhantseva 2014 unread.
+  - The note claims no more than "within this bound, no earlier answer was found".
 
 ### G. Prose rules
 
 - **G1 PASS [pc-palomar].** The Challenge docstring quotes the question verbatim, with a locator.
 - **G2 PASS [pc-palomar].** Every shared definition has a docstring giving its ordinary meaning (§2.2).
-- **G3 PASS [pc-palomar].** No prose says "proves" while the Solution is conditional (the erdos501 warning shape). Main's
-  Solution header says it "derives the statements … from any infinite simple LEF group of the development".
-- **G4 PASS [pc-palomar].** Both modules carry "The prose of this module was written by Claude (Anthropic)." (BC
-  batch 2).
-- **G5 PENDING [pc-integrate].** Any informal proof account in the README, the yaml or the Challenge docs triggers
-  rubric step `proof_account`, which compares it with the Lean that is actually present (§3.4).
-  - The Lean witness uses the period-doubling Toeplitz subshift (blueprint D1).
-  - `research/artifacts/pestov-9-1-writeup-2026-09-13-part1.md` §2.4 uses the Fibonacci subshift.
-  - Any account a `review.notes` pointer reaches must say which one the Lean uses.
+- **G3 PASS [pc-palomar].** No prose says "proves" while the Solution is conditional. Main's Solution header says it
+  "derives the statements … from any infinite simple LEF group of the development".
+- **G4 PASS [pc-palomar].** Both modules carry "The prose of this module was written by Claude (Anthropic)."
+- **G5 PENDING [pc-integrate].** An informal proof account in the README, the yaml or the Challenge docs triggers rubric
+  step `proof_account`, which compares it with the Lean that is actually present (§3.4).
+  - Simplicity of `EL₃(R)` on main is root detection with split annihilators (`Pestov91/SplitSimplicity.lean`), not
+    towers of cylinders.
+  - The witness subshift is period-doubling (blueprint D1), while writeup part 1 §2.4 uses Fibonacci.
 - **G6 GAP [pc-integrate].** The README needs a section on the result (§3.4; BC D7).
 - **G7 PASS.** No public text states, bounds or implies a registry score (§7).
 - **G8 GAP [all].** The famous-problem clause (§1) requires a careful comparison with the question (E2), a serious
-  literature account (F1–F7), and an honest statement of gaps (A5, D4, F7). A clear failure there is `rejected`, not
-  `revision_required`.
+  literature account (F1–F7), and an honest statement of gaps (A5, D4, F7). A clear failure there is `rejected`.
 
-## 3. State of main at `e6b547260`
+## 3. State of main at `3e9636d74`
 
 | status | count | items |
 |---|---|---|
-| PASS | 12 | A1–A4, A6–A8, G1–G4, G7 |
-| GAP | 25 | B1–B3, C1–C5, D1–D3, D5–D7, E1–E2, F1–F7, G6, G8 |
-| PENDING | 4 | A5, B4, D4, G5 |
+| PASS | 17 | A1–A4, A6–A8, B2, C1–C4, G1–G4, G7 |
+| GAP | 19 | B1, C5, D1–D3, D5–D7, E1–E2, F1–F7, G6, G8 |
+| PENDING | 5 | A5, B3, B4, D4, G5 |
 | ADVISORY | 2 | D8, E3 |
 
-**Not ready.** On main the Pestov 9.1 surface is a Mathlib-only Challenge, a text-identical Solution holding `_of`
-forms, and a well-formed configuration. Nothing checks it, builds it or describes it:
-- no statement-match or axiom driver;
-- no lakefile library;
-- no gate entry;
-- no workflow step;
-- no metadata;
-- no README section.
-
-The hypothesis-free endpoint is owed by pc-assembly.
+**Not ready.** The Pestov 9.1 surface is gated as pending: drivers, gate entry, lakefile libraries and workflow steps
+are on main. Four things remain:
+- the Solution holds only `_of` forms, and the hypothesis-free endpoint is owed by pc-assembly;
+- the pending statement-match gate does not compare the shared definitions' values (B1);
+- the root carries one Pestov91 import line for eleven module files (C5);
+- the metadata, sources, fidelity paragraph and README section are not written.
 
 Expected editorial grading once the gaps close:
 - Notability: the question is printed in Pestov's survey and originates with Ozawa, and the audience is operator
-  algebras (Connes embedding and LLP, via Ozawa) and approximation of groups. That is the anchor "unusually
-  consequential, with clear interest beyond a narrow specialist audience".
-- The risks are F6 (the Dadarlat sentence) and F7 (the bounded search). Both are presentation gaps that can be
-  corrected.
+  algebras and approximation of groups. That fits the anchor "clear interest beyond a narrow specialist audience".
+- The risks are F6 (the Dadarlat sentence) and F7 (the bounded search). Both are correctable presentation gaps.
