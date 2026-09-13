@@ -73,8 +73,21 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   evacuation scheme in which each edge is used at most `C` times. This is survey
   Propositions 1.3 and 2.3, and by Proposition 2.4 (König) it can be checked on finite
   fragments. Dies for `C = 1`: the Cheeger constant of `F` is below 1 for
-  `{x_0, x_1, x_1 x_0^-1}` and for `{x_0, x_1, x_2}` (survey Theorems 2.5, 2.6, 2.8). Open
-  for `C >= 2`.
+  `{x_0, x_1, x_1 x_0^-1}` and for `{x_0, x_1, x_2}` (survey Theorems 2.5, 2.6, 2.8). For
+  `{x_0, x_1}` capacity 2 dies too: a finite subgraph of density `> 3.5` forces capacity
+  `>= 3` (`thompson-f-evacuation-schemes-need-capacity-three`). Open for `C >= 3` there.
+- **Schreier graphs of natural F-sets.** A non-amenable Schreier graph of any `F`-set would
+  prove non-amenability (`thompson-f-not-amenable-from-orbital-schreier-graph`). Dies for
+  every orbit of points or of finite configurations of `(0,1)`, and for every `F/H` with `H`
+  containing a rigid stabilizer of an end interval: long `x_0`-rays toward an end are almost
+  invariant (`thompson-f-end-rigid-schreier-graphs-are-amenable`). A certificate of this shape
+  must use a coset space `F/H` whose `H` contains no end-rigid stabilizer.
+- **Measured orbit relation (Monod's mechanism).** Monod proves `H(A)` non-amenable through a
+  non-amenable orbit relation (arXiv:1209.5229, Theorem 1.1). Dies for `F`: its orbit relation
+  on `(0,1)` is the dyadic affine relation, hyperfinite for every quasi-invariant measure
+  (`thompson-f-interval-orbit-relation-is-hyperfinite`, refuting
+  `thompson-f-interval-orbit-relation-is-nonamenable`). Map of classes:
+  `research/artifacts/zp-thompson-f-nonamenability-certificates-2026-09-13.md`.
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.
