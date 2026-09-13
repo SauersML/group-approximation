@@ -50,6 +50,9 @@ Zaremsky Problem 1.10 negatively, through `zaremsky-1-10-by-nonexistence`.
     groups (Chou 1980).
   - `fg-simple-projective-interval-groups-are-trivial`: subgroups of `F`,
     `PL_+[0,1]` and piecewise-projective groups of a compact interval.
+  - `fp-simple-groups-have-no-interval-exchange-action`: every group of interval
+    exchanges, through LEF by rational specialisation, including the amenable rank-2
+    interval exchange groups and their non-free realizations.
 - **Census.** Every candidate class with its killing reason is tabulated in the
   part 1 artifact, Section 1. Three classes are live:
   - free minimal SFTs over one-ended amenable groups (Labbé, Penrose);

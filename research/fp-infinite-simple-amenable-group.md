@@ -108,3 +108,10 @@ presented infinite simple group with no free subgroups.
     finitely generated simple group of line homeomorphisms, with or without periodic
     structure, including Hyde–Lodha's groups from quasi-periodic labellings, and every
     group acting faithfully and orientation-preservingly on one orbit of a flow.
+- **Interval exchange groups (2026-09-13, z1-10-simple-amen-build).** Dead:
+  `fp-simple-groups-have-no-interval-exchange-action`. Finitely generated interval
+  exchange groups are LEF by rational specialisation (`interval-exchange-groups-are-lef`),
+  so they contain no finitely presented infinite simple group. This removes the host
+  where amenability is proved, the rank-2 interval exchange groups of
+  Juschenko–Matte Bon–Monod–de la Salle. Polygon exchanges, where Labbé's shift lives,
+  are not covered.

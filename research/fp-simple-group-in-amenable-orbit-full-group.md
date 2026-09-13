@@ -89,5 +89,12 @@ presentation, which is open.
   `no-proper-character-groups-avoid-amenable-orbit-full-groups` excludes.
 - **Interval and polygon exchange groups.** Every countable group of them with
   translations in an essentially free countable abelian group lies in some
-  `W(Lambda ~ X)`, so it is sofic. No finitely presented infinite simple subgroup
-  is recorded, and none was searched for.
+  `W(Lambda ~ X)`, so it is sofic.
+  - Interval exchanges: dead (2026-09-13, z1-10-simple-amen-build). Finitely generated
+    interval exchange groups are LEF by rational specialisation
+    (`interval-exchange-groups-are-lef`), so no finitely presented infinite simple group
+    acts nontrivially by interval exchanges
+    (`fp-simple-groups-have-no-interval-exchange-action`).
+  - Polygon exchanges: not covered. Rational perturbation of a toral polygon exchange
+    creates sliver atoms (`labbe-shift-derived-full-group-is-lef`, Attempts). No finitely
+    presented infinite simple subgroup is recorded, and none was searched for.
