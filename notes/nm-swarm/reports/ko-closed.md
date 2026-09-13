@@ -3,6 +3,58 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
+## STATE (09-13 ~15:25): the Morse kill through windows GREEN (0913-150725-78874), queued; pinched-window pick (i)
+- hull-unbound's model test (roster l.935), on audit-intro's pinched cell:
+  - on class words, every long window contains a pinch junction;
+  - a junction window is not a `CyclicArc.reverseDarts`, so literal-arc members refuse it;
+  - hull-unbound recommends gap-free class words and one named pinched-window item.
+- Kill side, checked against the landed code: `false_of_cellFree_pocket_X_morse` uses the face rotation only through
+  values.  A gap-free window `p'` through a pinch vertex skips a loop of `∂Π` that reads 1.  So `p'` reads the inverse of
+  the with-gap arc `p~` of `Π`, and `S = q~ M p~` is still a relator subword.  The kill needs no split at the pinch
+  vertex and runs at any `ε ≥ ⌈(2κ + c)/λ⌉`.
+- `GGT/VanKampen/Estimating/OsinLemma94OneCellWindow.lean` (163 lines):
+  - Landed at 07cb99953.
+  - GREEN 0913-150725-78874: base 498b0ca80, BUILT, 0 warnings or errors, md5 87cdaa34 equal to origin/main, all five
+    `#audit_axioms` pass.
+  - Queued for wiring after OsinLemma94OneCellMorse.
+  - `Embedded.listVal_dartWord_eq_of_isRotated_windows`: a closed word of value one read as `X q' Y p'`, with
+    `val q' = (val q)⁻¹` and `val p' = (val p)⁻¹`, reads `Y` as `q X⁻¹ p`.
+  - `listVal_dartWord_eq_of_cellFree_pocket_windows_X` / `_Y`: the value steps.
+  - `false_of_cellFree_pocket_windows_X_morse` / `_Y_morse`: the landed binders with `hrot : l ~r X ++ q' ++ Y ++ p'`,
+    plus `hq'` and `hp'`.
+- The producer still has to supply three things (jacobson, or whoever the lead names for the pinched window):
+  - the with-gap arcs, with their two value identities;
+  - a cell-free PocketRegion with outer cycle `~r X ++ M`;
+  - `T = q~ ++ M ++ p~`.
+- audit-sec5's three checks (the constant, the alphabet, the orientation) already hold in the landed code: the Morse
+  word is the relator subword `S` at `(λ, c)`, the metrics are joined by `symmetricLabelAlphabet.wordNorm_eq`, and both
+  X and Y pockets are covered.
+- Pinched-window pick (roster l.1098; team-lead 15:16: hull-unbound owns the item, ko-closed picks): sketch (i), a
+  Case 1 member that accepts a window crossing a junction.  Not (ii), the l.850 un-pinch.
+  - Why: roster l.786 gates the un-pinch on a Case 1 user that cannot accept a gap window.  The kill side of (i) is on
+    main (07cb99953) and reads the windows only through values.  So there is no split at the pinch vertex, and no
+    connector from `v` to `T` is needed.  hull-unbound's objection (Morse gives only `ε` plus a constant) does not arise.
+  - The item then delivers the class-word form of `osinLemma94CaseOneWalk_sameCell`, for a backwards same-cell pair on
+    gap-free class words of cell `j`:
+    - windows `p'`, `q'` on the walk `l` of `f` with `l ~r X ++ q' ++ Y ++ p'`;
+    - with-gap arcs `p~`, `q~` of `cellDarts j` with `val p' = (val p~)⁻¹` and `val q' = (val q~)⁻¹`;
+    - the values of `X` and `Y`, and the norms of the four segments.
+  - The producer (jacobson) supplies the pocket: a PocketRegion with outer `~r X ++ M` (or `Y ++ M`) and an arc `T` with
+    `T.darts = q~ ++ M ++ p~`.  This pocket contains the bubbles, as Osin's `Γ` does.  If it is cell-free, the kill
+    applies.  Otherwise it goes to the loop cut, whose `hin : P.inner.FollowsBoundary` (OsinPocketLoopCut.lean:209) is
+    the open point recorded in rulings 15:05.
+  - Model: on audit-intro's pinched cell the gaps `abc` read 1, so the identities hold with `p~` the arc through the
+    gaps.
+- T LANDED 48c6cc71e.  `OsinLemma94CaseOneSameCellStatement` now takes `OsinLemma97Below … Delta.rCellCount` after
+  `Delta.LeastArea → 0 < Delta.rCellCount →`.
+  - The kills take none of the new binders.
+  - Every kill binder is in scope after the statement's intros: `hW`, `hmorse` and `κ` through
+    `exists_morse_threshold_of_fourPoint`, `P`, `C`, `hback` and `hkind`.
+  - No Lean change on this lane's side.
+- team-lead plan: CaseOneInput and the walk Prop are restated over gap-free class words, plus one named pinched-window
+  item (hull-unbound).
+- Residual Props owned by ko-closed: NONE.
+
 ## STATE (09-13 ~14:55): face-level one-cell kills GREEN (0913-145215-56485), queued; OneCellInput withdrawn
 - theoremc-retire withdrew `OsinLemma94CaseOneOneCellInput`, so case (a) below is not written against it.  The consumer
   is now jacobson's producer of `OsinLemma94CaseOneSameCellStatement` (roster l.919).  It composes ko-closed's
