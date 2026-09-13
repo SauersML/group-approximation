@@ -47,4 +47,12 @@ point stabilizers that are internal congruence subgroups `Γ(N_k)`. Untwisting t
 fibres, so it returns a `Λ`-valued almost-cocycle with a vanishing fraction of defects, which is the
 problem again.
 
+**Credit (ex-verify2-dynamics, 2026-09-13).** The untwisting in steps 2–3 of the proof, a cocycle of profinite
+times Bernoulli cohomologous to one over a finite level of the profinite factor, is already stated by Ioana.
+- *Source.* arXiv:0805.2998v1, §3, Remark (2): "let w : Γ × (X × Y) → Λ be a cocycle for the diagonal product action
+  α × ρ ... Then there exist n such that w is cohomologous to a cocycle w′ ... of the form w′ = w′′∘(id × s_n)".
+- *What is new here.* Steps 4–8: killing the holonomy under (R) through Bass–Milnor–Serre and almost-simplicity, and
+  then properness.
+- *Review.* `research/artifacts/ex-review2-dynamics-2026-09-13-part7.md`, §7.2 (PASS).
+
 Proof in `sl3z-cocompact-not-factor-of-bernoulli-times-profinite-proof`.

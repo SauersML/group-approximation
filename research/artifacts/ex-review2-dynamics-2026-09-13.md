@@ -166,5 +166,12 @@ famous problem, so nothing was escalated to main.
 `finite-multiplier-projective-models-round-strictly`, `generators-dense-iff-zero-rokhlin-entropy`, and the finite-kernel
 Rokhlin package (part 6): the quotient formula, descent of maximality, and the ascent equivalence.
 
+**Tip recheck and refills (part 7).**
+- *Tip `ee8d13842`.* Every famous-level target is still OPEN, and both new routes into them are unfired.
+- *Ten new established refill claims on these lanes' nodes.* All PASS: the SL3 Bernoulli-times-profinite exclusion,
+  the Popa and Ioana imports, three Radu metabelian nodes, two Bernoulli exactification reductions, and two Gohla–Thom
+  norm nodes.
+- *Credit correction.* Ioana's Remark (2) was added forward to `sl3z-cocompact-not-factor-of-bernoulli-times-profinite`.
+
 **Not re-derived in this wave.** The remaining first-wave PASSes of the Rokhlin-ascent, Rokhlin-lower,
 Bernoulli-positive, Bernoulli-zero-supremum and Păunescu-class lanes.
