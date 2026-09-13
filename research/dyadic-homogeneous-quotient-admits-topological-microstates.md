@@ -28,7 +28,8 @@ finite set `V` and maps `σ : F → Sym(V)`, `y : V → L/Λ` satisfying `(HV1)`
 **Stakes.** True ⇒ `dyadic-bruhat-tits-vertex-action-is-sofic` (route
 `dyadic-vertex-action-sofic-from-homogeneous-microstates`) ⇒ the centralizer HNN `G_2` is sofic
 (`sofic-dyadic-coset-action-makes-hnn-sofic`), killing family D at `n = 2`. False for some `Λ` ⇒
-nothing yet about the vertex action, because the converse of the covering-label theorem is open.
+false for every `Λ`, and the vertex action is nonsofic. This claim is equivalent to the vertex
+question (`dyadic-vertex-soficity-equals-frame-dynamics-soficity`).
 
 ## Attempts
 

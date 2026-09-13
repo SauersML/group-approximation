@@ -52,9 +52,11 @@ free and exactly.
 * The same statement applies verbatim to `SL_3(Z[1/2]) < SL_3(Q_2)`, to function-field pairs, and to
   every S-arithmetic pair with a compact open `K`.
 
-**What it does not say.** The converse is unknown. A sofic vertex action need not come with marks
-in `L/Λ_N`: a label configuration is a proper colouring of the tree, not a covering map onto a fixed
-finite graph. Nothing is claimed about the crossed-product question
+**What it does not say.** For a general pair the converse is unknown: a label configuration is a
+proper colouring of the tree, not a covering map onto a fixed finite graph. For the dyadic pair the
+converse does hold. A gauge on chart labels plus a correction lemma give twin deep models, and hence
+microstates for every lattice (`dyadic-vertex-soficity-equals-frame-dynamics-soficity`). Nothing is
+claimed about the crossed-product question
 `sl2-homogeneous-quotient-crossed-product-is-connes-embeddable`, except the standard remark (not
 recorded as an edge) that p.m.p. soficity of `A ↷ X_N` gives Cartan microstates of that crossed
 product.
