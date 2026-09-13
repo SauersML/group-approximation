@@ -172,3 +172,21 @@ finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
     `marker-ancilla-linear-dirt-invariant-2026-09-12`).
   - **Scope.** This is a class result. The `4Z` word lies outside the class (its data are four tracks),
     and no route is invalidated.
+- **Nonlinear ancilla reads for `tau_Z x id` (w7-marker-nonlinear; OPEN, verification requested from w7-vf-nonlinear).**
+  - **Second closed class.** Words of track shears that read the data track only while it is exact
+    realize only `x + c` (`data-exact-read-ancilla-words-realize-only-translations`). The two closed
+    classes are incomparable. Together they show that a realization needs a gate reading dirty data
+    and a nonlinear gate whose read value depends on `y`.
+  - **Normal form.** A realization with `k` ancillas gives one with `k + 1` ancillas whose only data
+    writes are two copies of `x += y_1` (`marker-realizations-reduce-to-two-linear-data-writes`). So a
+    negative proof cannot count data writes or filter by the data track's ancilla degree.
+  - **Checked, no obstruction.**
+    - Sign and gyration invariants of the centralizer of `sigma` at periods 5 through 12 vanish on
+      `tau x id` for `k >= 1`, although shears realize nonzero values.
+    - No stabilized automorphism group invariant is on main.
+  - **Failed schemes.**
+    - Keeping dirt on marker cells: the first `y`-dependent write flips a cell at `x = 0`.
+    - A clean copy by linear basis change stays in the linear-dirt class.
+    - The normal form is circular as a construction.
+  - **Where it stops.** Class U (linear moves, exact reads, and `y`-only reads with nonlinear `B`) is
+    open, and so is the decision (artifact `marker-nonlinear-ancilla-words-2026-09-12`, Section 7).

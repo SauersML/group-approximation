@@ -75,3 +75,15 @@ one.
     toggle fails because dirty data writes move other markers' controls (artifact
     `marker-ancilla-linear-dirt-invariant-2026-09-12`, Sections 3–4).
   - **Consequence.** A realization needs a read whose value depends on the ancillas, cancelled later.
+- **Words that never read dirty data are ruled out, and data writes normalize (w7-marker-nonlinear; verification requested from w7-vf-nonlinear).**
+  - **Class.** Words whose data-reading gates act only while the data is exact.
+  - **Result.** They realize only `x + c`
+    (`data-exact-read-ancilla-words-realize-only-translations`). A realization therefore reads dirty
+    data with a `y`-dependent nonlinear gate, as `A'` does.
+  - **Lemma 2.4 is sharp as a count.** With one more ancilla, two writes `x += y_1` suffice
+    (`marker-realizations-reduce-to-two-linear-data-writes`).
+  - **Range lemma.** The first `y`-dependent data write flips an arbitrary cell even at `x = 0`. So
+    dirt cannot be confined to `M(x)`, and the "hold controls fixed" route cannot start by keeping dirt
+    on marker cells.
+  - **Periodic invariants.** Sign and gyration invariants at periods 5–12 give no obstruction (artifact
+    `marker-nonlinear-ancilla-words-2026-09-12`, Sections 4–7).
