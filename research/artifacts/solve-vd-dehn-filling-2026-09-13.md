@@ -55,3 +55,10 @@ Not attempted beyond a remark, recorded under Attempts of `rover-nekrashevych-de
 - The projection argument should run on the Skipper–Witzel–Zaremsky complex for `V_d(G)`, with `G`-labels on pieces.
 - Square words then pick up `G`-relators on leaves, with area controlled by `δ_G`.
 - The distortion estimate `(a)` still has to be proved: conjugate `ι_w(G)` to a standard cone at cost `O(|w|)`, then use Zaremsky's quasi-retraction (arXiv:2305.15176 l.258).
+
+### 4a. Zaremsky's quasi-retraction, pinned (arXiv:2305.15176 e-print, `main.tex`, fetched on MSI)
+
+- **Corollary `cor:simple_and_qr`, verbatim:** "Let $G\le\Aut(\tree_d)$ be a finitely generated, persistent, weakly diagonal, rational, self-similar group. Then $V_d(G)$ is virtually simple by virtue of $[V_d(G),V_d(G)]$ being simple and finite index, and there exists a quasi-retraction $V_d(G)\to G$. If $G$ is finitely presented, then so is $V_d(G)$ and we have $\delta_G\preceq \delta_{V_d(G)}$."
+- **Its proof** takes the quasi-retraction from Skipper–Witzel–Zaremsky, Proposition 5.5, which was not read here.
+- **Lemma `lem:v_simple`:** "$\iota_w(h)$ is conjugate in $V_d(G)$ to $\iota_{w'}(h)$, via conjugation by an element of $V_d$, for any $h\in V_d(G)$ and any non-empty $w$ and $w'$."
+- **Consequence for distortion estimate (a).** The quasi-retraction controls the root copy of `G`, i.e. `|g|_G <= C|g|_{V_d(G)} + C`. Transport to `ι_w(G)` costs `O(|w|)` in the conjugator. But passing between `ι_1(g)` and root `g` goes through the wreath recursion `g = ρ(g) ι_1(g_1) ⋯ ι_d(g)` (persistence), whose states `g_i` need not be shorter than `g`. So the estimate isn't immediate from the corollary: it needs the explicit retraction of SWZ Proposition 5.5, which is still unproved here.
