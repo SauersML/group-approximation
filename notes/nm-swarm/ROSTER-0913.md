@@ -743,3 +743,58 @@ For EVERY census row in your range with status formalized or definition, and eve
   - dgo-analytic: the R2 restatement co-probe.
   - dgo-geometric: model tests of A and B.
   - systolic-counts: the off-route flip list.
+
+## Rulings 09-13 ~13:05–13:40
+
+- **Closed.**
+  - Lemma 9.4 Case 2: `osinLemma94CaseTwoInput` (sec5-sentences, OsinLemma94CaseTwo, e0e94015d, green), over `separatedCornerInsertionInput` (sec2-sentences, 619b70139, green).
+  - C4: `cornerTwoGonInput` (90245333d) and `osinCornerTwoGonSection` (0c42391c2), leavitt-units. hull-euler checked both against main. The Lemma 9.3 section now waits only on C6′, OsinTwoGonHoldsSectionStatement.
+  - Face partition: `osinLemma94PolygonPartitionInput` (ghw-assembly, OsinLemma94PolygonPartition, 746028b24, green), over PolygonLists 269a91ab3, PolygonKinds 5c69ca42d, PolygonSides a76186267 and PolygonMaximal 9f03bfcd3.
+    - `osinLemma94Section_of_residuals` (hull-unbound, 0087a5095) now has two open hypotheses: OsinLemma94PolygonCountInput and OsinLemma94CaseOneInput.
+  - Collar join: `GeodesicCollar.joinStatement` (hull-bridge, SurgeryGeodesicCollarJoin, ce39bca65, green).
+  - Monogon strip: `MonogonDoubling.monogonStrip : MonogonStripStatement` (fff-quotient, SurgeryMonogonDoublingStrip, a46e7beda, green). It is StripStatement at s = [d], without the IsSimpleClosedWalk hypothesis.
+  - `CellPocketWalk.exists_of_joinsCells` (jacobson, OsinPocketCellWalk, 65e5e758c, green): the pocket walk of two regions joining the same two cells.
+  - kh-ejz: NoncrossingClosedWalkSides (26a7858f2; 37957f19b, the pinched two-gon pocket is a noncrossing closed walk; aa2df0eaa, the pocket face set in walk order).
+  - C6′ module 1: OsinAppendixEulerTwoGonLabels (debt-conditional, 81cb719d3).
+  - `RelHyp.not_dgoProposition435PrintedStatement` (baseline-debt, DGOProposition435PrintedCounterexample, 7976a7ca7, green).
+    - It refutes the Lean spelling, not DGO's printed Proposition 4.35: the forced base is not inversion-closed.
+    - Its three `h435` consumers in DGOProposition435Printed are vacuous, and none is a carrier.
+- **Wiring.** Wave 12 is ROOT GREEN (LANDED ROOT 141bea9e6, five modules). Wave 13 is in pre-flight over queue lines 613–647.
+- **R2 Simple and the Euler lemma.**
+  - IsNoncrossingClosedWalk alone is too weak (hull-euler, checked by dgo-analytic). A three-petal rose passes every field, because `turn_mem` forbids crossing only at vertices passed twice, and reclosing gives χ = 0.
+  - With outer FollowsBoundary the Euler lemma holds, so that conjunct of R2's `Simple` is load-bearing. hull-euler has the lemma in that form.
+  - The "never crosses" docstring of NoncrossingClosedWalkSides is wrong at vertices passed three or more times. kh-ejz has been told.
+- **R1 against R2: still open.**
+  - fff-quotient, splitting with kh-torsion, either ports StripStatement from IsSimpleClosedWalk to noncrossing plus outer FollowsBoundary, or finds the configuration where the port fails.
+  - hull-bridge takes a Strip sub-module (Double or Pinch) from kh-torsion.
+  - InsertStatement stays with simple-group, overriding kh-torsion's handoff to hull-bridge.
+- **Pocket circuit identification.**
+  - kh-ejz: the turning condition for K.walk is not local. It reduces to identifying the `FaceSetCircuits.boundaryPerm` circuit through a gap dart with the pocket's complement cycle: x.left, the gap on Π_i, y.right, then the ∂X gap reversed.
+  - Nothing on main produces that identification, or the single-circuit hypothesis `hall` of `FaceSetCircuits.toDiscRegion`.
+  - kh-ejz owns the Prop. It checks first whether the Prop is the producer of R2's `Simple` for the pocket walk, then model-tests it on OsinPocketPinchedTwoGonModel. cite-hull co-proves it.
+  - Case (d) is a cell-i edge on ∂X that lies in both gaps. If the model realizes it, it goes to hs-vanishes together with (a). If planarity excludes it, the exclusion goes inside the identification Prop.
+- **Case 1, one-cell pairs.**
+  - OsinLemma94CaseOneSameCellStatement (OsinUnboundCaseOneFace:466) has no OsinLemma97Below binder. As spelled it is as hard as Lemma 9.7 on smaller diagrams, so no lane proves that spelling.
+  - ko-closed's Shape 1: a spur x x⁻¹ of Π's boundary sits at the junction of two consecutive sides, and the pocket is empty. NoLoops, GFacesApart and DartMinimal all hold and no OsinLoopCut exists, so case (a) does not follow from them.
+  - Ruling: option (2). The metric Prop delivers one-cell pairs at λ⁻¹(ε + c), and ko-closed proves (a) by the value argument. This is gated on the metric owners confirming F1's quantifier order.
+  - The fallback, option (1) (count one-cell pairs separately), needs a new ruling together with hull-count94.
+  - (b) needs the X-pocket as a PocketRegion plus a collar. jacobson offers ko-closed the collar step.
+- **SideBudget and Covers** (audit-intro's pinched-cell model: n = 1, λ = 1/8, c = 3, relator g_1·abc·…·g_{t+1} with abc = 1).
+  - The patched budget passes, with two spelling points. A class is a maximal run of consecutive `.cell j` sides whose gaps have listVal 1. A one-sided bubble is a polygon with exactly one class, of kind (A1).
+  - Covers fails when the class word concatenates P's side words, since the 3t bubble darts stay unbound.
+  - Ruling: the class word is `dartWord` of the reversed cell arc, gaps included, and L = 24ε + 2(K+24)⌈(c+2)/λ⌉, fixed after K. The Covers producer (2b2e16cc6) is respelled in the same co-probed landing.
+  - Case 1 users accept a connector endpoint on a gap dart. Nobody builds the un-pinch surgery unless theoremc-retire or ko-closed shows that a user cannot accept it.
+- **Pinch.**
+  - dgo-geometric's lobe fixture (OsinPocketPinchedTwoGonLobe, 4181011af, green) shows that PocketPinchPinchedStatement ties K' to K only through D, eps, lo and hi. So the lobe with X' = X satisfies it, which matches hull-respell's lobe selection.
+  - The wrap case is the one pinch residual with no planned proof.
+- **Assignments.**
+  - fff-quotient: the noncrossing StripStatement, with kh-torsion.
+  - hull-bridge: a Strip sub-module from kh-torsion.
+  - cite-hull: the pocket circuit identification, with kh-ejz.
+  - sec5-sentences: OsinLemma94PolygonCountInput, with hull-count94.
+  - baseline-debt: C6′, with debt-conditional.
+  - ghw-assembly: the wrap case, with dgo-geometric and hull-respell.
+  - dgo-geometric: model the wrap case.
+  - ko-closed: case (a) by the value argument, after the threshold gate.
+  - jacobson: the (b) collar step, if ko-closed agrees.
+  - root-wire: wave 13.
