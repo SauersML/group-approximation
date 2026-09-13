@@ -98,28 +98,50 @@ rows were edited in place:
 - LINE:1147 and both LINE:1146 rows went from partial to formalized, citing the closed endpoints.
 - the LINE:1148 note no longer points at a partial row 1146.
 
+## Rank-two sentence at the printed J (tex 1146--1151)
+`JacobsonPresentedKazhdanFinite.lean` (29632bb14; probe 0913-072919-58371) proves the sentence
+for the presented `ToeplitzJacobson = F_2⟨s,t⟩/(ts = 1)`. It was the operator model before.
+- `PrintedPresentedJacobsonRankTwoKazhdanFiniteField` has five conjuncts. The first is GHW Theorem
+  4. The next two are `presSymbol presS = z` and `presSymbol presT = z^{-1}`. The fourth says the
+  kernel of `presGLSymbolMap : GL_2(J) → GL_2(F_2[z,z^{-1}])` is locally finite. The fifth says
+  every Kazhdan `L ≤ GL_2(J)` has finite image under `presGLFieldSymbolMap : GL_2(J) →
+  GL_2(F_2(z))` and a locally finite kernel of finite index, and is finite.
+- `presGLSymbolMap` is `glSymbolMap 2` precomposed with `GL_2(jacobsonEquiv)`, which is injective
+  (`presGLEquivMap_injective`). So the locally finite operator kernel gives a locally finite kernel
+  at J. `JacobsonRankTwo.manuscriptSentence_kazhdanSubgroupFinite` is then applied at
+  `presGLFieldSymbolMap`, with `GHW.printedGHWTheoremFour` at `F_2(z)`. No transport of (T) is
+  needed.
+- `#audit_closed_axioms` on `printedPresentedJacobsonRankTwoKazhdanFiniteField` and
+  `isLocallyFiniteGroup_ker_presGLSymbolMap`. The endpoint is a carrier on rows LINE:1147 and both
+  LINE:1146.
+
 ## Census and wiring
 - Rows in `metadata/nm-census-rows/jacobson.tsv`, keyed by row hash: b47d06c5c362, 11137e57b26d,
   d5e56b196927, 0a08ffd095d6, c149d33e8f7e and 3009704fef89. Every one of the 26 rows is graded
   formalized, except LINE:1131, which is graded definition.
 - Root-imported (root 4a6cb4e55): JacobsonPresented, JacobsonPresentedSentences,
   JacobsonComplementaryPresented and JacobsonComplementarySentence.
-- Still queued in `wire-queue.txt`: JacobsonThreePlusOnePresented (2104ff622). Its imports
-  `JacobsonPresented`, `EJZCitationSentences` and `FinitelyGeneratedRingPermanence` are
-  root-imported.
+- Root-imported (root 830b05464): JacobsonThreePlusOnePresented (2104ff622).
+- Queued in `wire-queue.txt`: JacobsonPresentedKazhdanFinite (29632bb14). Its imports
+  `GHWJacobsonKazhdanFinite` and `JacobsonPresentedSentences` are root-imported.
 
 ## Residual Props
-None for the roster target (the four L1122 rows and c149d33e8f7e) or for 3009704fef89. The
-3009704fef89 endpoints become root-reachable once JacobsonThreePlusOnePresented is wired.
+None for the roster target (the four L1122 rows and c149d33e8f7e), for 3009704fef89 or for the
+rank-two transport. The transport endpoint becomes root-reachable once JacobsonPresentedKazhdanFinite
+is wired.
 
 Other lanes' partial rows keep these unions partial:
 - LINE:1155, cite-ejz. Its row covers the first half only; this lane's row carries the whole
-  sentence.
+  sentence. ghw-assembly handles that row.
 - b6d1590be7ab, ghw-charp2 (ghw-assembly grades it formalized).
 
-Optional, not a residual: `PrintedJacobsonRankTwoKazhdanFiniteField` is stated for the operator
-model `jacobsonAlgebra`. It could be transported to the presented `ToeplitzJacobson` along
-`jacobsonEquiv`.
-
 ## Next
-The roster items are done. Awaiting the next assignment from the lead.
+The free-product centralizer lemma for Hull Corollary 7.4, used for factor suitability in
+`Γ = G1' ∗ G2'`. It goes in a new module of this lane once cite-hull sends the Lean name and file.
+Planned proof, for `a ≠ 1` in a factor `G_i`:
+- Write an element commuting with `of a` as `w · of b`, where the normal form of `w` is empty or
+  ends outside `i`.
+- If `w ≠ 1`, then `w · of(bab⁻¹) · w⁻¹` is reduced with at least three syllables, so it is not
+  `of a`. Hence `w = 1`.
+- For finite subgroups, conjugate into a factor, then use `exists_pow_commute_of_finite`
+  (`HullFiniteRadical`).
