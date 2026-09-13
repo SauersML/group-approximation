@@ -68,6 +68,30 @@ some `a in D_+` has `tau -> d_tau(a)` continuous and non-constant on `T(A)`.
   half-filled lines cost nothing. For `D` the only analytic condition is
   `sup_tau nu_tau({0 < a < eps}) -> 0`, i.e. boundaries of `U` are uniformly
   null.
-- **Open next step.** Either build per-line open sets using sibling-subtree
-  averages at all heights as offsets, or find a family of traces off the
-  product and point families that forces boundary mass.
+- **Dead: tree-symmetric realizers (argument complete here).**
+  - Swapping the two subtrees at a node is an automorphism of `D`. It commutes
+    with the connecting maps and preserves the restricted traces.
+  - Suppose every `a_m` is invariant under all such swaps. Take a stage-`M` point
+    `w` with every leaf at the same `x in X_1`. The swaps fix `w` and act
+    transitively on the `K = 2^(M-1)` leaves, so each leaf has the same number of
+    lines on. Hence `R_M(w)` is a multiple of `K`, while `r_M = K d`.
+  - The sandwich then needs an integer in `[d h(x) - d eps_M, d h(x)]` for every
+    `x`. Since `d h(x)` takes every fractional part, `eps_M >= 1/d` for all `M`,
+    which contradicts `eps_M -> 0`. So a realizer must break the tree symmetry.
+- **Proved: bounded delays align walls.**
+  `toms-monotone-block-rounding-obeys-a-miranda-granularity-bound`:
+  - per-copy monotonicity plus the slack budget produce an all-wall point once
+    `K <= rho/eps_n`, so there `eps_M >= 1/r_n`, and precision cannot decay faster
+    than `r^(-(sqrt 5 - 1)/2)`;
+  - chains of heals (each heal moves a wall outward by one line) are bounded
+    delays, so the healing constraint above cannot be met by them at scale.
+  So a realizer must use **macroscopic delays**. At some points a few copies
+  sit about `r_n rho/2` lines above their inherited rank. The budget allows at
+  most a fraction `4 eps_n/rho` of the copies to do this at once.
+- **Open next step.** There are two ways forward.
+  - A Poincare–Miranda bound robust to a small fraction of macroscopically
+    delayed copies would give `eps_M >= c/r_n` for **all** `M > n`, and so kill
+    every realizer in `D`.
+  - An asymmetric design that selects its delayed copies continuously, for
+    instance by soft ranks of copy averages, would realize a non-constant
+    continuous rank in both towers.
