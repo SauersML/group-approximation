@@ -8,8 +8,9 @@ Reviewer lane `review-zds22`. The reviewer did not write any of the reviewed mat
 `research/artifacts/zero-divisor-search-2026-09-12.md` and the bundle in
 `research/artifacts/zero-divisor-search-2026-09-12-search/`.
 
-Each item gets a verdict: PASS, FAIL or NIT. Items waiting on MSI job 692041 are marked PENDING and are
-filled in by a later landing.
+Each item gets a verdict: PASS, FAIL or NIT. All items are complete. The MSI evidence comes from jobs
+692041 and 693043. Their outputs are in `/projects/standard/hsiehph/sauer354/review-zds/out/`, with the
+harness `harness.c` and generator `gen.py` beside them.
 
 ## 1. Abdollahi–Taheri, read in the source: PASS
 
@@ -67,7 +68,7 @@ runs one level further than the claim says.
   So fixing the root's ports loses nothing. The code works in the opposite group
   (`g_u p = g_v q`), which is again torsion-free, and the relators follow that convention consistently.
 
-## 3. Soundness of `zds3.c`: PASS (the sieve 5 must-fire test is PENDING)
+## 3. Soundness of `zds3.c`: PASS, with a NIT (sieve 5 never fires)
 
 The landed source (md5 `18a83240ff82d0bcdcdcd33c15780d72`) was read in full.
 
@@ -154,8 +155,25 @@ never invent one. It can only weaken pruning.
     (0 mismatches).
   - The independent verdict is the nullity of the system h_u + φ(p) = h_v + φ(q) in h and φ(x), φ(y).
   - All 385 cases have rank 2, so this only tests that the sieve does not fire wrongly.
-  - The must-fire direction is PENDING. It enumerates every labelling of the graphs with 6 and 8
-    vertices.
+- **Sieve 5, exhaustive (MSI job 693043, COMPLETED, exit 0).**
+  - Every port labelling with different ports at the two ends of each edge of the connected
+    triangle-free cubic graphs with 6 vertices (1 graph, 1248 labellings) and 8 vertices (2 graphs,
+    26,784 labellings).
+  - The landed rank test agrees with the independent nullity in all 28,032 cases, and every case has
+    rank 2.
+- **NIT: sieve 5 is inert when |supp α| = 3, for every complete labelling.** Proof, the argument of §4
+  of the artifact with Z-valued φ and no torsion-freeness:
+  - Suppose φ: F(x, y) → Z kills every cycle word. Then there are h: V → Z and φ(1) = 0 with
+    h_u + φ(p) = h_v + φ(q) on every edge.
+  - Let a be a port with φ(a) minimal, and follow at each vertex its port-a edge. That defines a map
+    b ↦ b′, where the edge reaches b′ at a port c ≠ a.
+  - On a cycle of this map, Σ(φ(a) − φ(c_i)) = Σ(h_(b_(i+1)) − h_(b_i)) = 0. Every term is ≤ 0, so
+    φ(c_i) = φ(a) with c_i ≠ a. So the minimum of φ on {1, x, y} is attained at no fewer than two ports,
+    and likewise the maximum.
+  - With three ports, φ is then constant, so φ(x) = φ(y) = 0 and the rank is 2.
+  - So sieve 5 can never discard a labelling here. That agrees with `ab 0` in the n = 18 and n = 20
+    aggregates and with both tests above. It has no effect on soundness; the claim and the route simply
+    list a sieve that contributes nothing at |A| = 3.
 
 ## 4. Aggregation integrity: PASS
 
@@ -206,3 +224,18 @@ never invent one. It can only weaken pruning.
     bound 20.
   - The arXiv API refused queries ("Rate exceeded"), so the search is not exhaustive.
   - No bound of 21 or more over F_2 for |supp α| = 3 was found.
+
+## Summary
+
+| item | verdict |
+|---|---|
+| 1. A–T Thm 2.9, §6 evenness, Table 3, Thm 6.1, Cor 6.2 quoted from the source | PASS; NIT: Thm 2.9 is proved by reference to Schweitzer Thm 4.2, which was not re-read |
+| 2. Quantifiers and scope (every torsion-free G, odd sizes by evenness, 21 excluded, normalization) | PASS |
+| 3. Soundness of `zds3.c` (code reading, harness tests in 9 torsion-free and 5 torsion groups) | PASS; NIT: sieve 5 is inert at \|A\| = 3; NIT: a `scan` pointer overwrite can only weaken pruning |
+| 4. Aggregation integrity (records, fresh build, geng recount, 47-graph rerun node for node) | PASS; NIT: compile command not recorded in `n20.sbatch` |
+| 5. Prior bounds and wording (N–S Thm 1.4 quoted, citation spot-check) | PASS (not exhaustive) |
+
+**Overall: PASS.** `f2-support-three-zero-divisors-need-support-at-least-22` may stay ESTABLISHED. The
+statement rests on A–T Thm 2.9 (Schweitzer's proof), A–T Cor 6.2, `nauty-geng`, and the landed program,
+and the review found no gap in any of them. There is no per-graph proof object. The review found no
+reason for `invalidates:`.
