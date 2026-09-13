@@ -25,20 +25,30 @@ of `metadata/NON_MF_SENTENCE_MAP.tsv` that the root does not reach.  Root builds
 * A module is held when no GREEN record newer than its last failed probe covers its bytes.
 * `rw/rwtool.py <sha> census`: census tokens resolved to declaring files; carriers whose files are not
   root-reachable.
+* The whole queue is swept against the root closure, not only the entries added since the last wave.  The
+  sweep at 00ccbca81 found two entries that the wave 3 to 6 candidate lists had missed (wave 7, below).
 
-## 09-13 root state (origin/main f495cf119, 04:44)
+## 09-13 root state (origin/main e32bac3f3, 05:40)
 
-* Root at f495cf119 (wave 4): 4828 GroupApproximation import lines, all before the module docstring (OK);
-  no missing module, no duplicate line; closure 6228 modules; 0 dangling imports inside it.  360 modules on
-  main are not reachable from the root (352 at 1a033dfb3, 449 at 6292a1395).
-* 8e61df1ae (another campaign, 04:03, "root the GKP 4.2 endpoint") added four root lines by hand,
+* Root at e32bac3f3 (after wave 6): 4889 GroupApproximation import lines, all before the module docstring
+  (OK); no missing module, no duplicate line; closure 6291 modules; 0 dangling imports inside it.  313
+  modules on main are not reachable from the root (360 at f495cf119).
+* Census at e32bac3f3: one carrier module is not root-reachable, `Algebra.IntegerPlacesMinpoly` (row
+  b6d1590be7ab), in wave 7.  One census token resolves to no declaration: row 8fdc908a49c7 (definition)
+  `GroupApproximation.StableWhitehead.elementaryColim_normal`.
+
+### Root lines added by other campaigns
+
+* 8e61df1ae (04:03, "root the GKP 4.2 endpoint") added four root lines by hand,
   `CommutingSoficActions.{DiagonalRestriction, Endpoint, FreeActionSofic, KunThomCosetAction}`, and changed
   the docstring of `Algebra.DiagonalCosetAction`.  The fz record fz-integrate 0913-034654-15072 (GREEN, base
   e12190690, `# mods` naming `Endpoint` and `DiagonalCosetAction`) carries all five files with the bytes that
-  wave 4's root build compiled.  No root line was added by others between fa40bb30c and b3a3818b5.
-* Census merge 4 (86df293af) listed five unwired carrier modules: three landed in wave 3, two in wave 4.
-  One census token resolves to no declaration: row 8fdc908a49c7 (definition)
-  `GroupApproximation.StableWhitehead.elementaryColim_normal`.
+  wave 4's root build compiled.
+* c2cbd9e3e and 0badf535c (after aea484f30) added 44 root lines by hand: `PalomarBridges.X1`, 18
+  `Pestov91.*`, 10 `ThompsonOre.*` and 15 `TypeA2.*`.  The wave 5 build did not compile 37 of their files;
+  each is covered by an fz record: p91-palomar 0913-034120-900, p91-simple-mod-centre 0913-033826-92978,
+  gq-x1-answer 0913-040618-59823, a2-palomar 0913-035442-32915, x1-palomar 0913-045040-57258.  Wave 6's
+  root build compiled them.
 
 ## Wave 1 (launched 09-13 01:54, root build 0913-015433-16599, base c737ec92d): RED
 
@@ -111,14 +121,17 @@ The wave 3 build did not compile 23 files of the new closure; each has a GREEN r
   `HullSCLemma44JointRelabel`, `HullSCLemma49PowerDiagramFromComponents`,
   `FournierFacioParagraphFromSimpleFactor`, `HullFillTheoremCCorrected` and `TorsionFreeSectionCitations`
   from sec2-sentences 0913-025915-88905, and `Kazhdan.GHBLatticeRouteKazhdan` from kh-ejz 0913-034435-10433;
-* the five files of 8e61df1ae (root state, above), from fz-integrate 0913-034654-15072.
+* the five files of 8e61df1ae (root lines added by other campaigns, above), from fz-integrate
+  0913-034654-15072.
 
 hull-count94's newer GREEN 0913-035614-34211 carries other `OsinLemma94AntiparallelMetric` bytes, not
 landed.  That module is root-reachable since f495cf119, so landing those bytes changes the root closure.
 
-## Wave 5 (launched 09-13 04:47, pre-flight at b3a3818b5)
+## Wave 5 (launched 09-13 04:47, root build 0913-044703-46028, base aea484f30): GREEN, LANDED ROOT a68ab2c6c
 
-10 modules, 11 newly reachable files.  Module list: `$NM/rw-wave5.mods`.
+10 modules, 11 newly reachable files.  Module list: `$NM/rw-wave5.mods`.  Pre-flight at b3a3818b5;
+`nmwire.sh` built on origin aea484f30, and no root line was added between the two.  1 module rebuilt,
+`GroupApproximation` in 71 s.  At e32bac3f3 all 10 lines are present.
 
 | module | evidence (bytes on b3a3818b5 = record) | owner |
 |---|---|---|
@@ -138,6 +151,59 @@ The wave 4 build did not compile 17 files of the new closure; each has a GREEN r
   `TorsionFreeLeafAssembly`, `TorsionFreeLiteratureInputsLeastArea` and `TorsionFreeSaturationFromCorrected`
   from nm-endpoints 0913-030945-26927; and `Kazhdan.GHWCharZeroPlaces` from ghw-charp2 0913-044256-36897.
 
+## Wave 6 (launched 09-13 05:02, root build 0913-050254-77102, base f2f00aada): GREEN, LANDED ROOT 1faafe122
+
+7 modules, 14 newly reachable files.  Module list: `$NM/rw-wave6.mods`.  Pre-flight at f2f00aada, which was
+also the build base.  1 module rebuilt, `GroupApproximation` in 316 s.  At e32bac3f3 all 7 lines are present.
+
+| module | evidence (bytes on f2f00aada = record) | owner |
+|---|---|---|
+| `GGT.HullSCLemma51LetterPullbackCut`, with `GGT.HullSCLemma51LetterPullbackCutLift` | GREEN 0913-044157-34176; the `CutLift` blob at its base 457c543a8 equals main | debt-conditional |
+| `GGT.HullSCLemma51LetterPullbackCutBlocks`, `…CutSides`, `…CutFaces`, reached through `Cut` | GREEN 0913-045018-55444 | hull-component |
+| `Kazhdan.GHWTheoremFourClosed`, with `Kazhdan.GHWCharZero` and `Algebra.IntegerGridFinite`; `Kazhdan.GHWJacobsonKazhdanFinite` | GREEN 0913-045036-56628 | ghw-assembly |
+| `OneSidedMFRadical.JacobsonPresented`, `OneSidedMFRadical.JacobsonPresentedSentences`, `OneSidedMFRadical.JacobsonComplementaryPresented` | GREEN 0913-045006-54503 | jacobson |
+| `Estimating.OsinPocketCellArcs`, with `Estimating.OsinAppendixCutSections` | GREEN 0913-044529-42148; the `CutSections` blob at its base fbd723e92 equals main | kh-ejz |
+
+Pre-flight at f2f00aada: no dangling import, no lexical sorry, no cycle; dupcheck predicts no collision.
+The wave 5 build did not compile 53 files of the new closure; each has a GREEN record:
+
+* the 14 newly reachable files above;
+* 37 files rooted by hand in c2cbd9e3e and 0badf535c (root lines added by other campaigns, above);
+* `GGT.SystolicDiscMirrorFoldDistinct`, made root-reachable by another landing, and
+  `Kazhdan.KotowskiOllivierClosed`, changed since aea484f30: ko-closed 0913-045023-55941.
+
+Queue entries already root-reachable, not rewired: `SystolicDiscMirrorFoldDistinct`, `KotowskiOllivierClosed`.
+
+## Wave 7 (launched 09-13 05:43, root build 0913-054318-33163, base d18407e34)
+
+9 modules, 9 newly reachable files.  Module list: `$NM/rw-wave7.mods`.  Pre-flight at e32bac3f3;
+`nmwire.sh` built on origin d18407e34, so the wave 8 gate diffs against d18407e34.
+
+| module | evidence (bytes on e32bac3f3 = record) | owner |
+|---|---|---|
+| `GGT.HullSCLemma51LetterPullbackCutOutcome`, `…CutOutcomeSides`, `…CutOutcomeRight` | GREEN 0913-050027-71372 builds them through `…Holds`; the blobs at its base 245a1c0c2 equal main.  hull-component's GREEN 0913-041859-87013, 0913-044512-41174 and 0913-045018-55444 name them | hull-component |
+| `GGT.HullSCLemma51LetterPullbackHolds`, `GGT.HullSCLemma51EmbeddedBridgeHolds` | GREEN 0913-050027-71372 | hull-bridge |
+| `Algebra.IntegerPlacesMinpoly` (census carrier, row b6d1590be7ab) | GREEN 0913-033545-85262 names it; also in 0913-044256-36897 | ghw-charp2 |
+| `GGT.HullLemma35FreeFactors` | GREEN 0913-051219-87168 | baseline-debt |
+| `GGT.SystolicDiscMirrorFoldPinchedStage` | GREEN 0913-051405-91655 names it; also in 0913-052528-4751 | fff-periodic |
+| `HydeLodha.QTwoLemmaFourSixCaseTwo` | GREEN 0913-020001-45307 | kh-ejz |
+
+Pre-flight at e32bac3f3: no dangling import, no lexical sorry, no cycle; dupcheck predicts no collision.
+The wave 6 build did not compile 11 files of the new closure; each has a GREEN record:
+
+* the 9 newly reachable files above;
+* 2 files changed since f2f00aada: `GGT.HullLemma35Printed` from baseline-debt 0913-051219-87168 and
+  `Estimating.OsinPocketCellArcs` from kh-ejz 0913-052330-1543.
+
+`IntegerPlacesMinpoly` (queue line 414) and `QTwoLemmaFourSixCaseTwo` (queue line 377) were queued before
+wave 3, and the wave 3 to 6 candidate lists missed them.  The full sweep at 00ccbca81 found no other unwired
+non-LIX entry whose module is on main.
+
+Queued after the wave 7 pre-flight, for wave 8: `GGT.SystolicDiscMirrorFold` (fff-periodic),
+`NonMF.HullCorollary73` (cite-hull), `NonMF.TheoremCAssemblyFoldLeaf` (theoremc-retire),
+`OneSidedMFRadical.JacobsonThreePlusOnePresented` (jacobson).  `Kazhdan.KotowskiOllivierClosed` is already
+root-reachable.
+
 ### Held
 
 | module | reason | owner |
@@ -145,7 +211,8 @@ The wave 4 build did not compile 17 files of the new closure; each has a GREEN r
 | `CharClass.*`, `Analysis.LIX*`, `ProblemLIXStrongAssemblyHalves` | LIX campaign files, in flight in the shared tree | LIX lanes |
 
 Released from the wave 4 holds, all in wave 5: `NonMF.Audit.Sec3` (audit-sec3's green bytes landed at
-80abe6604), `Estimating.OsinUnboundSharedEdge` (new green probe), `GGT.SystolicDiscMirrorFoldSteps`.
+80abe6604), `Estimating.OsinUnboundSharedEdge` (new green probe), `GGT.SystolicDiscMirrorFoldSteps`.  No
+new holds since.
 
 ## Stale notes superseded
 
@@ -158,3 +225,10 @@ Released from the wave 4 holds, all in wave 5: `NonMF.Audit.Sec3` (audit-sec3's 
   kh-cckw's green bytes landed minutes later, and the module landed in wave 2.
 * The 03:13 audit-sec3 queue line for `Audit.Sec3` cites probe 0913-025304-66495 as GREEN; that record
   says FAILED rc=1.
+* Eight queue lines give old module paths.  Lines 53–55
+  `Manuscript.NonMF.TorsionComplementaryIdempotents{Sentences, Jacobson, Ideal}` are now under
+  `Manuscript.OneSidedMFRadical`; line 98 `GGT.GerasimovaOsinLemma43` is `Manuscript.NonMF.GerasimovaOsinLemma43`;
+  lines 104–107 `Algebra.{FoxComplexZ, FoxComplexLowExact, FreeGroupFoxHomotopy, FoxFreeCalculus}` are
+  under `Kazhdan`.  At e32bac3f3 all eight modules are root-reachable under the current paths.
+* root-wire's 05:06 queue note said 38 of the 53 wave 6 files were rooted by hand in c2cbd9e3e and
+  0badf535c; 37 were, and the 38th file rooted by others was `SystolicDiscMirrorFoldDistinct`.
