@@ -155,7 +155,28 @@ Why C6′ holds, the route for debt-conditional:
   in the gap, `a` and `b` target one section.
 - A cell inside the pocket that is an end of `C` would be a vertex inside the face `f`. So with
   `¬HoldsCellO`, the pocket holds no relator cell. A region outside `C` has no end on the pocket,
-  so it avoids it. `EmptyTwoGonInput` then gives `False`.
+  so it avoids it. `EmptyTwoGonInput` then gives `False`, once there is a `PocketRegion` whose
+  complement cycle reads `source.reverseDarts ++ a.rightSide ++ target.darts ++ b.leftSide`.
+- audit-sec3's verdict (09-13): C6′ is true as stated and the orientation is right, but it is not
+  proved. No landed theorem has type `TwoGonHoldsInput`. Over `S.diagram` no such `PocketRegion`
+  exists in three configurations:
+  - (a) A backtrack of section `j` between the targets. Its darts have the outer face on both
+    sides. Copy: hs-vanishes' spur thickening.
+  - (b) An edge of the source gap with cell `i` on both sides. Copy: `FaceEdgeDoubling` on cell
+    `i`. `SurgeryFaceEdgeDoublingRegions` carries every region.
+  - (c) `a.rightSide` and `b.leftSide` share an edge behind cell `i`, so the union is an annulus.
+    Copy: `FaceEdgeDoubling` in the face of `a` at the shared edge, which leaves a pinched disc.
+    The Regions transport carries only regions that avoid the doubled face and the face across it,
+    so `a` and `b` need their own transport.
+  - Ruling (B) (bdc7337fd) names only (a) and (b). Checked 09-13.
+  - No landed declaration builds a `PocketRegion` from a pinched walk.
+    `noncrossingClosedWalkSides` (26a7858f2) concludes only two `BoundaryCycle`s, and
+    `bothFollowUnpinched` (74d4ebd34) needs `FollowsBoundary` on both cycles. Checked 09-13.
+  - The turning condition for the pocket walk is open (kh-ejz).
+  - Both optimality clauses range over every realized family of `Delta`, so the contradiction
+    carries over from a copy.
+  - debt-conditional's `OsinAppendixEulerTwoGonLabels` (81cb719d3, landed unverified) reads the
+    labels `i`, `j`, `a`, `b` of `EmptyTwoGonInput` off the two-gon.
 - Orientation, checked 0913: `GapAtOHoldsCorner` reads the gap inside `f`.
   - `CombMap.facePerm = sigma * alpha`, `dual.sigma = facePerm`, and `phiMapO` rotates by first
     return. So at `O` its rotation follows `Delta`'s face permutation around the outer face.
