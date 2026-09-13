@@ -7,7 +7,7 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # `thm:hull` as printed, over the least-area leaves
 
-`thm:hull` (tex lines 1624-1628) at every acylindrically hyperbolic group, with no
+`thm:hull` (tex lines 1636–1642) at every acylindrically hyperbolic group, with no
 torsion hypothesis, from the two leaves of the Hull chain: the least-area
 Greendlinger waist and the embedded bridge.  It is given both at Hull's
 Cayley-graph notion (`PrintedHullSmallCancellationCurrent`) and at Osin's notion,
