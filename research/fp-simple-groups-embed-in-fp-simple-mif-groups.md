@@ -26,9 +26,34 @@ presented simple MIF group?" The question number was confirmed by lane
 
 ## Attempts
 
-None recorded in Cairn. The claim was opened on 2026-09-12 by lane
-`bh-twisted-brin-thompson` as the explicit hinge between the two conjectures.
-The natural first test is the repo's finitely presented simple groups not built
-as twisted Brin--Thompson groups, in particular the Leavitt unit groups
-`L_(F_2)(1,2)^x` and `(L⊗L)^x`. Do they satisfy a mixed identity, or embed in an
-MIF finitely presented simple group? That was not attempted.
+The claim was opened on 2026-09-12 by lane `bh-twisted-brin-thompson` as the
+explicit hinge between the two conjectures.
+
+1. **Relative automorphism reformulation (2026-09-13, lane `solve-bh-q34`):
+   an equivalence, not an answer.** By
+   `pbh-passes-to-relative-free-group-automorphisms`, for a finitely presented
+   simple `S` and `n >= 2`, this question for `S` holds exactly when
+   `Aut_S(S * F_n)` embeds in some group with an action of type (A). For
+   centerless `S` that group is finitely presented (BFFHZ Proposition 1.1), so
+   the question becomes one permutational instance for an explicit finitely
+   presented group. A positive answer to BFFHZ Question 3.2 for `S` would give it.
+2. **Faithfulness through a larger target: killed.** Acting on
+   `Hom_S(S * F_n, M)` for a simple MIF overgroup `M ⊋ S`, not required to be
+   finitely presented, makes the action faithful. But the subgroup
+   `⟨S, m_1, ..., m_n⟩` of `M` is invariant under precomposition, so already the
+   points fall into infinitely many orbits whenever `M ≠ S`. Restricting to tuples
+   inside `S` brings back the original kernel.
+3. **Rank one: blocked by a known open problem.** For `n = 1` the action on
+   `Hom_S(S * F_1, S) = S` is faithful for every centerless `S` (BFFHZ
+   Observation 2.4). But BFFHZ note right after it that finitely many orbits of
+   pairs would force finitely many conjugacy classes, and no infinite finitely
+   presented example is known (Makowsky's problem FP19, checked on Shpilrain's
+   list; see `research/artifacts/ideas-2026-09-13/bh/bh-pbh-separation.md`).
+4. **Leavitt unit groups: test not decided.** The repo's finitely presented simple
+   Leavitt unit groups (`binary-leavitt-unit-group-is-simple`,
+   `leavitt-unit-group-finitely-presented`) contain Thompson-type permutation
+   units, but they are not groups of homeomorphisms of the Cantor space, so BFFHZ
+   Remark 3.5 does not apply. A hand computation shows that the characteristic-2
+   unipotent commutator `[1+e, x(1+e)x^-1]` with `e^2 = 0` is not a mixed
+   identity: with `f = x e x^-1` it expands to `1 + ef + fe + efe + fef + efef`.
+   No mixed identity and no MIF proof was found.
