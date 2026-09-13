@@ -253,7 +253,8 @@ structure PestovHyperlinearModel (G : Type) [Group G] (F : Finset G) (ε : ℝ) 
   separated : ∀ g ∈ F, ∀ h ∈ F, g ≠ h →
     1 / 4 ≤ Real.sqrt (hsDistSq carrier (map g) (map h))
 
-/-- Hyperlinearity in the form of Pestov's Theorem 3.6. -/
+/-- Conditions (1) and (3) of Pestov's Theorem 3.6, without condition (2), which
+`PestovHyperlinearModel` leaves out. -/
 def IsPestovHyperlinear (G : Type) [Group G] : Prop :=
   ∀ (F : Finset G) (ε : ℝ), 0 < ε → Nonempty (PestovHyperlinearModel G F ε)
 

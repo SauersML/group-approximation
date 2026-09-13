@@ -8,47 +8,64 @@ distinct_from:
   simple-kazhdan-lef-group-from-minimal-subshift: that is the mathematical theorem about one explicit group; this is its formal proof in the development, closing over propext, Classical.choice and Quot.sound only.
 ---
 
-The development proves, in `GroupApproximation/Pestov91/Endpoint.lean`, the theorem
-`GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_sofic_hyperlinear`:
+The development proves, in `GroupApproximation/Pestov91/WitnessAssembly.lean`, the theorem
+`GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef`:
 
-`∃ (E : Type) (_ : Group E), Infinite E ∧ IsSimpleGroup E ∧ HasKazhdanPropertyT.{0, 0} E ∧ IsSofic E ∧ IsHyperlinear E`
+`∃ (E : Type) (_ : Group E), Infinite E ∧ IsSimpleGroup E ∧ HasKazhdanPropertyT.{0, 0} E ∧ IsLEF E`
 
-with no hypotheses. Its axiom closure is exactly `[propext, Classical.choice, Quot.sound]`, so it uses no
-`sorry`, no added axiom and no literature input stated as a hypothesis.
+with no hypotheses. `Palomar/Pestov91Solution.lean` derives from it the two theorems compared by
+`Palomar/comparator-pestov91.json`, `Pestov91.exists_infinite_simple_propertyT_hyperlinear` and
+`Pestov91.exists_infinite_simple_propertyT_sofic`, whose statements use Mathlib and the challenge's own
+definitions only. The axiom closure of all three is exactly `[propext, Classical.choice, Quot.sound]`
+(`scripts/PalomarPestov91Axioms.lean`, run by `.github/workflows/palomar-check.yml`): no `sorry`, no added
+axiom, no literature input stated as a hypothesis.
 
 The predicates:
 - `HasKazhdanPropertyT.{0, 0}` asks for a Kazhdan pair over real Hilbert spaces in `Type`
   (`GroupApproximation/Kazhdan/Kazhdan.lean`). The same pairs work in the complex-unitary form of Bekka--de la
-  Harpe--Valette, Definition 1.1.3 (`hasKazhdanPropertyT_iff_complex`), which is the form of Pestov's question.
-- `IsSofic` and `IsHyperlinear` ask for finite-set models, by permutations under the normalized Hamming distance and by
-  unitary matrices under the normalized Hilbert--Schmidt distance (`GroupApproximation/Sofic/Sofic.lean`,
-  `GroupApproximation/Sofic/Hyperlinear.lean`).
+  Harpe--Valette, Definition 1.1.3 (`hasKazhdanPropertyT_iff_complex`), which is the form of the question and
+  of the challenge's `HasPropertyT`.
+- `IsLEF` is local embeddability into finite groups; `isSofic_of_isLEF` and `isHyperlinear_of_isSofic` give the
+  finite-set models by permutations under the normalized Hamming distance and by unitary matrices under the
+  normalized Hilbert--Schmidt distance (`GroupApproximation/Sofic/Sofic.lean`,
+  `GroupApproximation/Sofic/Hyperlinear.lean`), which the Solution repackages into the challenge's
+  `IsSoficGroup` and `IsHyperlinearGroup`.
 
-The witness is `EL_3(R)` for the crossed product `R = LC(X, F_2) ⋊ Z` of the Toeplitz subshift `X`. Its centre is
-trivial, so it is its own quotient by the centre. The plan is the blueprint
-`research/artifacts/pestov91-lean-blueprint-2026-09-13.md`, items G1--G9.
+The witness is `EL_3(R)` for the crossed product `R = LC(X, F_2) ⋊ Z` of the Toeplitz subshift `X`. Its centre
+is trivial, so no quotient is taken.
 
-**Status: open.** No binder-free theorem is on main yet.
+**Status: established (2026-09-13).** The Palomar theorems landed at 5f9c16b7b on the witness modules below.
+The `Palomar comparator` workflow with NanoDa passed on `Palomar/comparator-pestov91.json` at e32bac3f3
+(run 34751904895).
 
-## Attempts
+## Proof architecture, as formalized
 
-- **Assembly from explicit leaves (pc-assembly, 2026-09-13; in progress).**
-  - Landed on main and consumed:
-    - `Kazhdan.lean`: property (T) for `EL_n` over finitely generated rings, by Ershov--Jaikin-Zapirain, proved in
-      the repository.
-    - `Centre.lean` and `CentreSkew.lean`: the centre, and infiniteness.
-    - `RingSimple.lean`: simplicity of `LC(X, K) ⋊ Z` for a free minimal system.
-    - `SplitSimplicity.lean`: `EL_n(R)` simple from ring simplicity, centre `{0, 1}` and split annihilators.
-    - `Assembly.lean`.
-    - `LEFHyperlinear.lean`: LEF gives sofic and hyperlinear.
-    - `CrossedProduct.lean` and `CrossedProductFG.lean`: covariance, normal form and finite generation criteria.
-  - The reduction `EndpointOfLeaves.lean` takes the remaining ingredients as explicit hypotheses. It is not yet
-    landed; it lands after a green probe.
-  - It stops at the witness-level leaves of the blueprint:
-    - G1: the Toeplitz shift is free and minimal, on a compact totally separated space.
-    - G7: the witness ring as a crossed product, with `hconj`, `hspan` and `Infinite`.
-    - G2: the witness ring is simple.
-    - G3: its central elements are `0` or `1`.
-    - G5: it is finitely generated.
-    - G6: `EL_3` of it is LEF, through local matrix models.
-  - The binder-free endpoint (G8) applies the ring-leaves form to those theorems once they land.
+- `Toeplitz.lean`, `ToeplitzModel.lean`, `Subshift.lean`, `SubshiftAlgebra.lean`, `SubshiftMinimal.lean`: the
+  Toeplitz sequence `n ↦ parity of ν₂(3n - 1)`, its `2^K`-periodic models, the subshift `X`, freeness and
+  minimality of the shift.
+- `CrossedProduct.lean`, `CrossedProductFG.lean`, `WitnessRing.lean`, `RingFinitelyGenerated.lean`: the ring `R`
+  as a skew monoid algebra and its finite generation.
+- `RingSimple.lean`, `WitnessCentre.lean`, `WitnessSimple.lean`: `R` is simple with centre `{0, 1}` for a free
+  minimal action, by the diagonal cut.
+- `SplitSimplicity.lean`: `EL_3(R)` is simple, from ring simplicity, the centre and split annihilators, by root
+  extraction; no division and no stable range.
+- `Kazhdan.lean`, `KazhdanUnitary.lean`: property (T), by the Ershov--Jaikin-Zapirain theorem proved in the
+  repository, in real and complex forms.
+- `LEFCrossedProduct.lean`, `LEFWitness.lean`, `LEF.lean`, `LEFHyperlinear.lean`: `R` is an LEF ring by
+  periodic models on cycles `Z/N`, so `EL_3(R)` is LEF, sofic and hyperlinear.
+- `Assembly.lean`, `WitnessAssembly.lean`: the endpoint.
+
+This is narrower than the three-part prose write-up (`research/artifacts/pestov-9-1-writeup-2026-09-13-part1.md`
+and its parts 2 and 3), which treats every finite field and every infinite minimal subshift and proves
+simplicity modulo the centre by a tower argument. The registered theorem is the existence statement through
+this one witness; the general prose theorem is not formalized.
+
+## History
+
+- **Assembly from explicit leaves (pc-assembly, 2026-09-13).** Historical: the leaves G1--G8 of the blueprint
+  `research/artifacts/pestov91-lean-blueprint-2026-09-13.md` were landed one by one (subshift 9f5b9477d, LEF
+  59d538039, WitnessRing 1dc71ce96, LEFWitness cdc493958, SimpleModCentreCrossed 4cacfbe04, CrossedProduct
+  21147debe, WitnessSimple and WitnessAssembly with the Solution at 5f9c16b7b). The reduction
+  `EndpointOfLeaves.lean` and the combined endpoint `exists_infinite_simple_kazhdan_sofic_hyperlinear` named
+  by earlier versions of this page were never landed; the Solution takes soficity and hyperlinearity from
+  `IsLEF` instead.

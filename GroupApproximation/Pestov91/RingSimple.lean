@@ -12,8 +12,11 @@ import Mathlib.Topology.Clopen
 For Pestov's Open Question 9.1 the witness ring is `R = LC(X, 𝔽_q) ⋊ ℤ`, with `X` an infinite
 minimal subshift. This module proves that `R` is a simple ring: its only two-sided ideals are
 `⊥` and `⊤`. The argument is the diagonal cut of
-`research/artifacts/simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md`, §1.3, a special
-case of the simplicity criterion of Brown, Clark, Farthing and Sims (arXiv:1204.3127).
+`research/artifacts/simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md`, §1.3. It is the
+case that the witness needs of the field-general simplicity criterion for Steinberg algebras
+(Clark and Edie-Michell, arXiv:1403.4684, Corollary 4.6; Steinberg, arXiv:1408.6014,
+Corollary 3.6), whose origin is the criterion of Brown, Clark, Farthing and Sims
+(arXiv:1204.3127), stated over `ℂ`. Nothing is imported: the case needed is proved below.
 
 1. `crossedProduct_one_mem` is the ring-theoretic core. Let `R` be a ring, `ι : A →+* R` with `A`
    commutative, and `u` a unit with `u ^ j * ι a = ι (σ j a) * u ^ j`, such that every element is

@@ -49,7 +49,7 @@ Combining the three, and the root-detection argument of the second step, are the
   whether such a group exists. This is the origin of 9.1.
 - **Earlier examples.** The known infinite simple Kazhdan groups, Kac–Moody lattices (Caprace–Rémy) and Gromov's
   quotients of hyperbolic Kazhdan groups, are not known to be sofic or hyperlinear. Kac–Moody lattices are finitely
-  presented, and a finitely presented LEF group is residually finite, so no finitely presented simple group is LEF.
+  presented, and a finitely presented LEF group is residually finite, so no infinite finitely presented simple group is LEF.
 - **Nearest prior object.** Thom (arXiv:0810.2180, Theorem 1.4) gave a finitely generated LEF Kazhdan group that
   is not residually finite. It is not simple.
 
