@@ -66,5 +66,16 @@ The lead assigned the uncollared pocket carrier with both FollowsBoundary over
   together with this module in dgo-analytic probe 0913-090829-84396.
 - dgo-analytic has no further sub-piece for this lane.
 
+## Respelling lemma (09-13): helper to hull-unbound on the Lemma 9.4 cutting chains
+The lead assigned the word-metric respelling lemma inside hull-unbound's split of
+`OsinLemma94PolygonRealizationInput`. The earlier item, `SeparatingPathRemovalInput`, was stood off because
+hull-unbound had started it; hull-unbound proved it at 7d4a2515f.
+- GGT/VanKampen/Estimating/OsinLemma94WordRespelling (GREEN 0913-101505-99170; the lead approved the word form):
+  `exists_shorter_respelling_of_not_isLambdaCQuasiGeodesicWord`, with the binders of hull-unbound's
+  `QuasiGeodesicRespellInput` (Estimating/OsinLemma94PolygonRealization). Take a violating subword with n letters
+  and value g, so |g| + 2 < n. If g ≠ 1, a geodesic spelling is shorter. If g = 1, then n ≥ 3, and without its last
+  letter the subword is spelled by the inverse of that letter.
+- Consumer: hull-unbound's `OsinLemma94CuttingChainsInput`, with `ChainRespellInput` and `PendantPathRemovalInput`.
+
 ## Next
-Asking the lead for the next item.
+Probe the respelling module, land it, and send hull-unbound the SHA.
