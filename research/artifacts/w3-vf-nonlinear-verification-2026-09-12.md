@@ -1430,3 +1430,30 @@ Artifact `research/artifacts/brin-thompson-2v-gottschalk-host-2026-09-12.md`, Se
 **Goal `refuted_by`.**
 - **4d9ce3b2d.** It adds `brin-thompson-2v-nonsurjunctive`. Eight other roots, Higman's among them, are OPEN claims, so this follows the convention. Unlike the Higman addition, it adds no host paragraph to the goal body. One would be optional.
 - **56770876c (w5-free-neg-c).** It adds `higman-group-nonsurjunctive` and the "Higman host" paragraph. The splitting and edge-group statements are the two claims passed in Section 23, both now ESTABLISHED, and the copying maps are Lemma 2.1 and Remark 2.2 there. Correct.
+
+**Follow-up (a6d7e0a3d, Section 4: the baker subgroup; ea9153822). PASS.** No decision.
+- **Lemma 4.1 (ternary index). Correct.**
+  - At an aperiodic `y`, two solutions give `σ^(q')(y') = σ^(q + p' - p)(y')`. If the exponents differed, `y'` would be eventually periodic, and so would `y`, which shares a tail with it. So `p - q` is forced at such a point, and so is `k`.
+  - Products compose the shifts: `σ^(p + p')(y) = σ^(q + p')(y') = σ^(q + q')(y'')`. Inverses read the defining equation at `h(x, y)`.
+  - `V_1` has `p = q = 0`, and `u(x, w_i y) = (w_i x, y)` has `p = 1`, `q = 0`. This matches the point map of Lemma 2.3(a) under the convention that `s_α t_β` sends `βx` to `αx`.
+- **Proposition 4.2. Correct.**
+  - Lemma 2.3(b) gives the relations.
+  - `τ^(-n) x τ^m · τ^(-n') x' τ^(m')` is `τ^(-n) (x D_2^(m-n')(x')) τ^(m-n'+m')` when `m >= n'`, and `τ^(-(n+n'-m)) (D_2^(n'-m)(x) x') τ^(m')` when `m < n'`. So normal forms are closed under products.
+  - On `u^(-n) (x ⊗ 1) u^m`, `ι` reads `m - n`, so the kernel is trivial.
+- **Corollary 4.3. Correct.**
+  - `V_1 ⊆ u^(-1) V_1 u` makes `N` an increasing union of subgroups containing `V_1`, and `u V_1 u^(-1) = D_2(V) ⊗ 1` gives `u N u^(-1) ⊆ N`. So `N` is normal, and `ι` identifies the quotient with `Z`.
+  - Local soficity of `N` and `sofic-kernel-amenable-quotient-permanence` give the converse. `ascending-hnn-cannot-create-nonhyperlinearity` is cited only as the analogue.
+- **Corollary 4.4. Correct.**
+  - `u^(-(j+1)) (g ⊗ 1) u^(j+1) = u^(-j) (1 ⊗ g) u^j = 1 ⊗ D_2^j(g)`, by Lemma 2.3(d) and then (c) applied `j` times. So every `E_(k-j) ⊗ E_j` and every product in Proposition 2.5 lies in `F_2[H_u]`.
+  - Given a solution supported in `H_u`, the chain is: not directly finite, so not surjunctive, so not sofic, so by Corollary 4.3 `V` is not sofic. `thompson-v-not-sofic` is OPEN on main, as the corollary treats it.
+- **Remark 4.5. Correct.**
+  - `000y'' = w_1 w_1 w_1 y''` goes to `010y'' = w_1 w_2 y''`, with index `1`. `0010y'' = w_1 w_1 w_2 y''` goes to `0110y'' = w_1 w_3 w_1 y''`, with index `0`. With `y''` aperiodic both indices are forced, so `1 ⊗ h` is not in `H`.
+  - `u^(-1)(w_i x, y) = (x, w_i y)` has first-coordinate index `1` and `V_2` has index `0`. With Lemma 2.3(c), `⟨V_2, u⟩ ≅ V *_(D_2)`.
+  - `g ⊗ 1 = u (1 ⊗ g) u^(-1)` by Lemma 2.3(d).
+  - `⟨V_1, 1 ⊗ h, u⟩` lies in none of the three subgroups. It is not in `V_1 × V_2`, because the first output of `u` depends on the second input. It is not in `H_u`, because `1 ⊗ h ∉ H`. It is not in `⟨V_2, u⟩`, because `h ⊗ 1` has first-coordinate indices `1` and `0`.
+- **Node entries. Accurate.** The a6d7e0a3d Attempts bullets on the root and the gate summarize Section 4.
+- **Scope note. Applied at ea9153822.**
+  - Proposition 2.1's first bullet and the root's second "Why this host" bullet now credit the three proof inputs, not the Scope paragraph.
+  - The display `(π ⊗ 1) D(h) (π ⊗ 1)^(-1) = Σ_i (s_(τ(i)) ⊗ 1) h (t_(τ(i)) ⊗ 1) = D(h)` checks, and so does the direct-finiteness step.
+  - The route body keeps "whichever orientation". Its verdict paragraph records the caveat, which is enough.
+- **Wording (Section 3, optional).** "Section 4 shows that `V_1` together with the baker unit is not enough" reads as an impossibility. Corollary 4.4 shows only that a solution supported in `H_u` would settle `thompson-v-not-sofic`. Suggested wording: "Section 4 shows that a solution using only `V_1` and the baker unit would already show that `V` is not sofic."
