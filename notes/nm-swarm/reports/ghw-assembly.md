@@ -191,9 +191,28 @@ equal to origin.
    - This row is the only partial feeder of merged row a9dd4b90e479.
    - Proposal sent to sec5-sentences.
 
+## PolygonRealization (2026-09-13, current item)
+
+The lead's item: help hull-unbound close `OsinLemma94PolygonRealizationInput`. It is the h94 piece
+of `osinLemma94Section_of_planarPieces` (`GGT/VanKampen/Estimating/OsinLemma94PlanarPieces.lean`,
+hull-unbound, 80790fad1).
+
+- Per the lead, this lane writes no Lean until hull-unbound names a sub-piece. hull-unbound has been
+  asked.
+- Candidate sub-pieces proposed:
+  - (a) classify the darts of an unselected G-face walk by the face across;
+  - (b) cut the walk into maximal runs of one kind, giving `P.Maximal`;
+  - (c) the quasi-geodesic and short side fields;
+  - (d) the `closed` field;
+  - (e) the face enumeration (`count`, `face`, `face_injective`, `face_complete`).
+- Available input: sec5-sentences' `OsinLemma94DartMinimal` (b6bda9923). Its
+  `exists_reduced_dartMinimal` gives a family that is merged, split at pinches and dart-minimal,
+  with the same card and unbound sum.
+- Residual Props: `OsinLemma94PolygonRealizationInput`. No sub-piece has been assigned yet.
+
 ## Next
 
-Waiting for three things:
-- dgo-analytic, baseline-debt and sec5-sentences to re-grade their rows;
-- census to re-grade or retire cite-ejz's LINE:1155, retire baseline lines 369/370 and re-merge;
-- the lead to assign the next item.
+- Take the sub-piece hull-unbound names, then write, probe and land it.
+- Still waiting on the audit:
+  - dgo-analytic, baseline-debt and sec5-sentences to re-grade their rows;
+  - census to re-grade or retire cite-ejz's LINE:1155, retire baseline lines 369/370 and re-merge.
