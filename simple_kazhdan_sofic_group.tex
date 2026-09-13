@@ -1,970 +1,340 @@
-\IfFormatAtLeastTF{2025-06-01}{\DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}}{}
 \documentclass[11pt]{amsart}
 \usepackage[T1]{fontenc}
-\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
-\usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{etoolbox}
-\usepackage[letterpaper,textwidth=5.6in,textheight=\textheight,hmarginratio=1:1]{geometry}
-\usepackage[nopatch=footnote]{microtype}
-\usepackage{xcolor}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=1.15in]{geometry}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
-\newif\ifanonymous
-\anonymousfalse
-\ifanonymous
-  \newcommand{\paperauthor}{Anonymous}
-\else
-  \input{coderepo.tex}
-  \newcommand{\paperauthor}{\paperauthorname}
-\fi
-\hypersetup{pdftitle={A sofic infinite simple group with Kazhdan's property (T)},pdfauthor={\paperauthor},pdfsubject={Sofic and hyperlinear groups, property (T)},pdfkeywords={sofic groups, hyperlinear groups, property (T), simple groups, LEF groups, minimal subshifts, elementary groups over rings}}
-\newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
-\allowdisplaybreaks
-\raggedbottom
-\emergencystretch=1.5em
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
+\input{coderepo.tex}
+\hypersetup{pdftitle={An infinite simple Kazhdan sofic group},pdfauthor={\paperauthorname}}
+\newtheorem{theorem}{Theorem}
 \newtheorem{corollary}[theorem]{Corollary}
-\theoremstyle{plain}
-\newtheorem{mainthm}{Theorem}
-\renewcommand{\themainthm}{\Alph{mainthm}}
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
 \newcommand{\F}{\mathbb F}
 \newcommand{\Z}{\mathbb Z}
-\newcommand{\N}{\mathbb N}
-\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\LC}{\operatorname{LC}}
 \newcommand{\EL}{\operatorname{EL}}
+\newcommand{\GL}{\operatorname{GL}}
 \newcommand{\SL}{\operatorname{SL}}
 \newcommand{\PSL}{\operatorname{PSL}}
-\newcommand{\LC}{\operatorname{LC}}
-\newcommand{\diag}{\operatorname{diag}}
-\newcommand{\U}{\mathcal U}
-
-\makeatletter
-\patchcmd{\abstract}{\item[\hskip\labelsep\scshape\abstractname.]}{\item[]}{}{\PackageError{self-compression}{Could not remove abstract heading}{}}
-\makeatother
-\newcommand{\draftnotice}{%
-  \begin{center}
-    \small\itshape Draft. This manuscript is under revision.
-  \end{center}}
+\newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
+\raggedbottom
+\emergencystretch=1.5em
 
 \begin{document}
-\frenchspacing
-\title{A sofic infinite simple group with Kazhdan's property (T)}
-\author{\paperauthor}
-\subjclass[2020]{Primary 20E32; Secondary 20F65, 22D10, 37B10, 16S35, 20H25}
-\keywords{sofic groups, hyperlinear groups, property (T), simple groups, LEF groups, minimal subshifts, elementary groups over rings}
+\title{An infinite simple Kazhdan sofic group}
+\author{\paperauthorname}
+\date{}
+\subjclass[2020]{Primary 20E32; Secondary 22D10, 37B10, 16S35}
 
 \begin{abstract}
-\addtolength{\leftskip}{1.5pc}\addtolength{\rightskip}{1.5pc}
-Let $X$ be an infinite minimal subshift over a finite alphabet, let $q$
-be a prime power, and let $R=\LC(X,\F_q)\rtimes\Z$ be the algebraic
-crossed product of the locally constant functions on $X$ by the shift.
-The elementary group $\EL_3(R)$ modulo its finite center is an infinite
-finitely generated simple group with Kazhdan's property~\textup{(T)}
-that is locally embeddable into finite groups, so it is sofic and
-hyperlinear.  Brown asked in 2001 and Ozawa in 2003 whether an infinite
-simple group with property~\textup{(T)} can be hyperlinear, and Pestov
-printed the question, with the sofic form added, as Open question~9.1 of
-his guide to hyperlinear and sofic groups.  Sturmian subshifts give
-continuum many pairwise non-isomorphic such groups, one for every Turing
-degree of the word problem.
+For every infinite minimal subshift $X$, the group
+$\EL_3(\LC(X,\F_2)\rtimes\Z)$ is infinite, simple, finitely generated,
+and has property~\textup{(T)}. It is locally embeddable into finite
+groups, hence sofic and hyperlinear. This answers the questions of
+Brown, Ozawa, and Pestov. The proof combines periodic approximation
+with a commutator supported on a finite tower. Every Turing degree
+occurs as the word-problem degree of one of these groups.
 \end{abstract}
-
 \maketitle
-\draftnotice
 
-\section{Introduction}
+Can an infinite simple Kazhdan group be hyperlinear? Brown asked this
+in its von Neumann algebra form in 2001~\cite[\S11, Question~7]{Brown},
+and Ozawa in the hyperlinear form in 2003~\cite[p.~527]{Ozawa}.
+Pestov's Open question~9.1 adds the sofic version~\cite{Pestov}.
+The following construction answers both forms positively.
 
-A group $G$ is \emph{sofic}~\cite{Gromov99,Weiss} if for every finite
-$F\subseteq G$ and $\varepsilon>0$ there are a finite set $Y$ and a map
-$\sigma\colon F\to\operatorname{Sym}(Y)$ such that
-$\sigma(g)\sigma(h)$ and $\sigma(gh)$ differ on at most $\varepsilon|Y|$
-points whenever $g,h,gh\in F$, and $\sigma(g)$ moves at least
-$(1-\varepsilon)|Y|$ points for $g\ne1$ in $F$.  It is
-\emph{hyperlinear} if the same holds with unitary groups $\U(n)$ and the
-normalized Hilbert--Schmidt distance in place of symmetric groups and the
-normalized Hamming distance.  Sofic groups are
-hyperlinear~\cite{ElekSzabo}.  A group is \emph{locally embeddable into
-finite groups}, or \emph{LEF}~\cite{VershikGordon}, if for every finite
-$F\subseteq G$ there are a finite group $Q$ and an injective map
-$\phi\colon F\to Q$ with $\phi(gh)=\phi(g)\phi(h)$ whenever
-$g,h,gh\in F$.  LEF groups are sofic, by the regular representations of
-the finite groups $Q$.  Pestov's guide~\cite{Pestov} surveys these
-notions.
-
-In 2001 Brown asked whether an infinite simple discrete group with
-Kazhdan's property~(T) can embed into the unitary group of an
-$R^\omega$-embeddable McDuff factor~\cite[Section~11, Question~7]{Brown01},
-which for a countable group amounts to hyperlinearity.  Ozawa asked it
-in that form: ``It is unknown whether there exists a simple
-property~(T) group $\Gamma$ which is hyperlinear''~\cite[p.~527]{Ozawa}.
-Pestov printed the question, citing Ozawa and adding the sofic form, as
-Open question~9.1 of~\cite{Pestov}.  The interest comes from Kirchberg's theorem that a group with
-property~(T) and the factorization property is residually
-finite~\cite[Theorem~1.1]{Kirchberg}.  An infinite simple group is not
-residually finite, so an infinite simple Kazhdan group has no
-factorization property, and if it is hyperlinear, then its full group
-$C^*$-algebra fails the local lifting property~\cite[p.~527]{Ozawa}.
-Infinite simple Kazhdan groups arise as quotients of hyperbolic
-groups~\cite{Gromov} and as the Kac--Moody lattices of Caprace and
-R\'emy~\cite{CapraceRemy}; none of them is known to be hyperlinear.  The
-Kac--Moody lattices are finitely presented, and a finitely presented LEF
-group is residually finite, so no infinite finitely presented simple
-group is LEF\@.  Thom constructed a finitely generated LEF group with
-property~(T) that is not residually finite~\cite[Theorem~1.4]{Thom}; it
-is not simple.
-
-The answer to the question is yes, in both forms.
-
-\begin{mainthm}\label{thm:main}
-Let $A$ be a finite alphabet, let $X\subseteq A^{\Z}$ be an infinite
-minimal subshift, let $q$ be a prime power, and let
-$R=\LC(X,\F_q)\rtimes\Z$ be the algebraic crossed product of the ring
-of locally constant functions $X\to\F_q$ by the shift.  Put
-$G=\EL_3(R)$ and $S=G/Z(G)$.  Then $Z(G)$ is finite, and $S$ is a
-finitely generated infinite simple group with Kazhdan's
-property~\textup{(T)} that is locally embeddable into finite groups.
-In particular $S$ is sofic and hyperlinear.
-\end{mainthm}
-
-The ring $R$ is finitely generated, so $G$ has property~(T) by the
-theorem of Ershov and Jaikin-Zapirain on elementary groups over finitely
-generated rings~\cite[Theorem~1.1]{EJZ}.  Local embeddability comes from
-periodic approximation of the subshift, the mechanism behind the theorem
-of Grigorchuk and Medynets that topological full groups of Cantor
-minimal systems are LEF~\cite[Theorem~2.6]{GrigorchukMedynets}, applied
-here to the ring: a long return word of $X$ gives a unital ring
-homomorphism from a large finite subset of $R$ into a matrix algebra
-$M_N(\F_q)$, and then $G$ embeds into an ultraproduct of the finite
-groups $\GL_{3N}(\F_q)$.  Simplicity rests on the simplicity of $R$ and
-on one commutator: a noncentral element of a normal subgroup of $G$ is
-pushed into a matrix ring supported on a tower of small cylinders, where
-it yields a nonzero elementary matrix in the normal subgroup, and
-simplicity of $R$ spreads that matrix to all of $G$.  The extraction of
-an elementary matrix follows Stepanov's description of the normal
-subgroups of linear groups over rings~\cite{Stepanov}; the tower supplies
-the noncentral element his method needs.
-
-The construction is concrete.  For the Fibonacci subshift over a prime
-field $\F_p$, the group $G$ is generated by the $24$ matrices
-$e_{ij}(1)$, $e_{ij}(u^{\pm1})$ and $e_{ij}(\chi_{\{x_0=a\}})$, and its
-first finite model is $\SL_{15}(\F_p)$, from the return word $abaab$
-(Remark~\ref{rem:fibonacci}).  The argument for the binary Toeplitz
-subshift over $\F_2$ has been formalized in Lean~4 in the repository
-accompanying this paper.\footnote{\url{https://github.com/SauersML/group-approximation}}
-
-The construction depends on the subshift, and the dependence is visible
-in the word problem.
-
-\begin{mainthm}\label{thm:degrees}
-Let $S_X$ be the group of Theorem~\textup{\ref{thm:main}}.  The word
-problem of $S_X$ has the same Turing degree as the language of $X$.  For the Sturmian subshift
-$X_\alpha$ of an irrational slope $\alpha$, that degree is the degree of
-$\alpha$.  So for every prime power $q$ and every Turing degree $d$
-there is an infinite finitely generated simple group with
-property~\textup{(T)} that is LEF, hence sofic and hyperlinear, and
-whose word problem has degree $d$.  In particular there are continuum
-many pairwise non-isomorphic such groups.
-\end{mainthm}
-
-The groups also have the following properties (Section~\ref{sec:consequences}).
-They are not finitely presented and have no nontrivial finite quotient;
-they have no factorization property, and their full $C^*$-algebras fail
-the local lifting property; they are MF groups that are not weakly
-quasidiagonal, contrary to a sentence in the introduction
-of~\cite{Dadarlat}; and the finite simple groups $\PSL_{3N}(\F_q)$,
-marked by the images of the generators of $G$, converge to $S$ in the
-space of marked groups, while forming a family of expanders.
-
-The ring $R$ appears in~\cite{NonMF}, where the crossed product of a
-zero-dimensional system by $\Z$ is shown to be LEF exactly when every
-point is chain recurrent, and where elementary groups over certain rings with a proper
-one-sided inverse, such as Leavitt algebras, are shown to have no
-nontrivial homomorphism to an MF group.  A minimal subshift is chain recurrent, so the LEF property
-of $R$ is a case of that theorem; the proof below is included because
-its finite models are needed for the marked convergence and for
-Theorem~\ref{thm:degrees}.
-
-\subsection*{Notation}
-$A$ is a finite alphabet and $T$ is the shift on $A^{\Z}$,
-$(Tx)_n=x_{n+1}$.  A subshift is a closed $T$-invariant subset
-$X\subseteq A^{\Z}$; it is minimal if every orbit is dense.  $L_m(X)$ is
-the set of words of length $m$ occurring in points of $X$, and
-$L(X)=\bigcup_m L_m(X)$ is the language of $X$.  For a word $v$ of odd
-length $2k+1$ the cylinder of radius $k$ is
-$C(v)=\{x\in X: x_{[-k,k]}=v\}$.  Every clopen subset of $X$ is a
-finite union of cylinders of any sufficiently large radius.
-
-$\LC(X,\F_q)$ is the commutative ring of locally constant functions
-$X\to\F_q$, and $\alpha(f)=f\circ T^{-1}$.  The crossed product
-$R=\LC(X,\F_q)\rtimes\Z$ consists of the finite sums $\sum_j f_ju^j$,
-with $(fu^i)(gu^j)=f\,\alpha^i(g)\,u^{i+j}$; the normal form is unique.
-For a clopen $W$ we write $\chi_W$ for its indicator, and then
-$u\chi_Wu^{-1}=\chi_{TW}$.  An element $\sum_jf_ju^j$ has
-\emph{propagation} at most $w$ if $f_j=0$ for $|j|>w$.  A function
-$f\in\LC(X,\F_q)$ has \emph{radius} at most $\rho$ if
-$f(x)=\Phi(x_{[-\rho,\rho]})$ for some $\Phi\colon A^{2\rho+1}\to\F_q$.
-
-For $i\ne j$ and $r\in R$, $e_{ij}(r)=I+rE_{ij}\in\GL_3(R)$, and
-$G=\EL_3(R)$ is the group they generate.  With $[x,y]=xyx^{-1}y^{-1}$,
-\begin{equation}\label{eq:steinberg}
-e_{ij}(r)e_{ij}(s)=e_{ij}(r+s),\qquad
-[e_{ik}(r),e_{kj}(s)]=e_{ij}(rs)\quad(\{i,j,k\}=\{1,2,3\}).
-\end{equation}
-So if $R$ is generated as a ring by a finite set $\Sigma$, then $G$ is
-generated by the matrices $e_{ij}(s)$ with $s\in\Sigma\cup\{1\}$.
-
-\section{The ring}\label{sec:ring}
-
-Throughout, $X$ is an infinite minimal subshift.  It has no periodic
-point, since a finite orbit would be a proper closed invariant subset.
-
-\begin{lemma}\label{lem:subshift}
-\begin{enumerate}
-\item[\textup{(U)}] For every $m$ there is $\ell(m)$ such that every
-word of $L_{\ell(m)}(X)$ contains every word of $L_m(X)$.
-\item[\textup{(P)}] For every $L$ there is $k_L$ such that every
-cylinder $C$ of radius $k\ge k_L$ satisfies $T^jC\cap C=\emptyset$ for
-$0<|j|\le L$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-(U) is uniform recurrence.  For $v\in L_m(X)$ the open sets
-$T^{-n}\{x: x_{[0,m)}=v\}$, $n\ge0$, cover $X$ by minimality, and
-finitely many, with $n\le n_v$, suffice by compactness.  So every $x\in X$
-has an occurrence of $v$ starting at some $n\le n_v$, and
-$\ell(m)=m+\max_vn_v$ works.
-
-(P) If $T^jC(v)\cap C(v)\ne\emptyset$, then $v$ occurs twice in some
-point at distance $|j|$, so $v$ has period $|j|$.  If (P) failed for
-some $L$, one $j$ with $0<|j|\le L$ would be a period of words
-$v_k\in L_{2k+1}(X)$ for infinitely many $k$.  A limit point of points
-$x_k\in C(v_k)$ is then $j$-periodic, which is impossible.
-\end{proof}
-
-\begin{lemma}\label{lem:generation}
-$R$ is generated as a ring by $u$, $u^{-1}$, the letter indicators
-$\chi_a=\chi_{\{x_0=a\}}$ for $a\in A$, and one element $\lambda$ with
-$\F_p[\lambda]=\F_q$.
-\end{lemma}
-
-\begin{proof}
-$u^{-t}\chi_au^{t}=\chi_a\circ T^{t}=\chi_{\{x_t=a\}}$.  Products of
-these are the indicators of all cylinders, their $\Z$-linear
-combinations are $\LC(X,\F_p)$, and $\lambda$ extends the scalars to
-$\F_q$.
-\end{proof}
-
-\begin{proposition}\label{prop:simple-ring}
-$R$ is a simple ring, and its center is $\F_q$.
-\end{proposition}
-
-\begin{proof}
-Let $J\ne0$ be a two-sided ideal and choose
-$0\ne P=\sum_{j\in F}f_ju^j\in J$ with $F$ finite.  After multiplying
-by a power of $u$ we may assume $f_0(x)=c\ne0$ for some $x\in X$.  Since
-$T^jx\ne x$ for $0\ne j\in F$, there is a clopen $W\ni x$ with
-$f_0|_W=c$ and $T^jW\cap W=\emptyset$ for $0\ne j\in F$.  Then
+\begin{theorem}\label{thm:main}
+Let $X\subseteq A^{\Z}$ be an infinite minimal subshift over a finite
+alphabet, with shift $T$. Then
 \[
-\chi_WP\chi_W=\sum_jf_j\,\chi_W\chi_{T^jW}\,u^j=c\,\chi_W\in J.
+  G_X=\EL_3\bigl(\LC(X,\F_2)\rtimes_T\Z\bigr)
 \]
-The set $\bigcup_nT^nW$ is open, invariant and nonempty, so it is $X$,
-and by compactness $X=T^{i_1}W\cup\dots\cup T^{i_s}W$.  Each
-$\chi_{T^iW}=u^i\chi_Wu^{-i}$ lies in $J$, and
-$1=1-\prod_t(1-\chi_{T^{i_t}W})$ expands into terms each containing a
-factor in $J$.  So $J=R$.
-
-Let $c=\sum_jf_ju^j$ be central.  For every clopen $W$,
-$c\chi_W=\chi_Wc$ gives $f_j(\chi_{T^jW}-\chi_W)=0$ for all $j$.  For
-$j\ne0$ and $x\in X$, choose $W\ni x$ with $T^{-j}x\notin W$; then the
-bracket equals $-1$ at $x$, so $f_j(x)=0$.  From $cu=uc$ we get
-$f_0\circ T=f_0$, and a continuous invariant function on a minimal
-system is constant.
-\end{proof}
-
-\subsection{Towers}\label{subsec:towers}
-Let $U$ be clopen with $T^jU\cap U=\emptyset$ for $0<|j|\le2m$.  The
-levels $T^aU$, $|a|\le m$, are pairwise disjoint.  For clopen
-$W\subseteq U$ and $|a|,|b|\le m$ put
-\[
-E_{ab}(W)=\chi_{T^aW}\,u^{a-b}=u^{a-b}\,\chi_{T^bW}.
-\]
-Then $E_{ab}(W)E_{cd}(W')=\chi_{T^aW\cap T^{a-b+c}W'}\,u^{a-b+c-d}$,
-and for $b\ne c$ the levels $T^aU$ and $T^{a-b+c}U$ are disjoint, so
-\begin{equation}\label{eq:matrix-units}
-E_{ab}(W)\,E_{cd}(W')=\delta_{bc}\,E_{ad}(W\cap W').
-\end{equation}
-The linear span $B_m(U)$ of these elements is a subring of $R$ with unit
-$\chi_V$, where $V=\bigsqcup_{|a|\le m}T^aU$, and
-\[
-(F_{ab})_{a,b}\longmapsto\sum_{a,b}(F_{ab}\circ T^{-a})\,\chi_{T^aU}\,u^{a-b}
-\]
-is a ring isomorphism $M_{2m+1}(\LC(U,\F_q))\to B_m(U)$; it is injective
-because distinct levels have disjoint supports.  For clopen
-$W\subseteq U$ and $m'\le m$ put $V_{m'}(W)=\bigsqcup_{|a|\le m'}T^aW$.
-By~\eqref{eq:matrix-units}, $\chi_{V_{m'}(W)}$ commutes with
-$B_{m'}(U)$ and with $\LC(X,\F_q)$, and under the isomorphism it is the
-central idempotent $\chi_W\cdot I$.
-
-\begin{lemma}[absorption]\label{lem:absorption}
-Suppose $T^jU\cap U=\emptyset$ for $0<|j|\le2(m+w)$.  If $r,r'\in R$
-have propagation at most $w$ and $b\in B_m(U)$, then
-$rbr'\in B_{m+w}(U)$.
-\end{lemma}
-
-\begin{proof}
-By linearity take $r=fu^i$, $b=E_{ab}(W)$ and $r'=f'u^j$ with
-$|i|,|j|\le w$.  Then
-$rbr'=f\,\chi_{T^{a+i}W}\,\alpha^{i+a-b}(f')\,u^{i+a-b+j}$.  Split $W$
-into clopen pieces $W_k$ such that $f\,\alpha^{i+a-b}(f')$ is constant,
-equal to $c_k$, on $T^{a+i}W_k$.  Then
-$rbr'=\sum_kc_k\,E_{a+i,\,b-j}(W_k)$ with $|a+i|,|b-j|\le m+w$.
-\end{proof}
-
-\section{Local embeddability}\label{sec:lef}
-
-\subsection{Periodic models}
-Fix $k\ge1$.  By (U) choose a point $x\in X$, a word $v\in L_{2k}(X)$
-and two occurrences of $v$ in $x$ at positions $p<p'$ with
-$N=p'-p\ge\max(2k+1,\ell(2k+1))$.  Put $w=x_{[p,p')}$, and let $y$ be
-the $N$-periodic sequence with $y_{[0,N)}=w$.
-
-\begin{lemma}\label{lem:windows}
-$L_{2k+1}(y)=L_{2k+1}(X)$.
-\end{lemma}
-
-\begin{proof}
-A window of $y$ of length at most $2k+1\le N$ contains at most one seam,
-that is, at most one pair of consecutive positions $(nN-1,nN)$.  A
-window without a seam is a subword of $w$, hence of $x$.  A window with
-a seam reads $\operatorname{suffix}_s(w)\operatorname{prefix}_t(w)$
-with $s,t\ge1$ and $s+t\le2k+1$, so $t\le2k$.  Since $v$ is a prefix of
-$w$ and $x_{[p',p'+2k)}=v$, the prefix is $x_{[p',p'+t)}$, while the
-suffix is $x_{[p'-s,p')}$; so the window is
-$x_{[p'-s,p'+t)}\in L(X)$.  Conversely $|w|\ge\ell(2k+1)$, so every word
-of $L_{2k+1}(X)$ occurs in $w$.
-\end{proof}
-
-Let $P$ be the cyclic shift $\delta_n\mapsto\delta_{n+1}$ on
-$\F_q^{\Z/N}$.  For $f\in\LC(X,\F_q)$ of radius $\rho\le k$, represented
-by $\Phi$, put
-\[
-D_k(f)=\diag\bigl(\Phi(y_{[n-\rho,n+\rho]})\bigr)_{n\in\Z/N}.
-\]
-This is well defined: if $\Phi$ and $\Phi'$ of radii $\rho,\rho'\le k$
-both represent $f$, then with $K=\max(\rho,\rho')$ the window
-$y_{[n-K,n+K]}$ lies in $L(X)$ by Lemma~\ref{lem:windows}, so it equals
-$x_{[-K,K]}$ for some $x\in X$, and both formulas give $f(x)$.  Since
-$D_k$ is evaluation at points, it is a ring homomorphism on functions of
-radius at most $k$.  Put
-\[
-\psi_k\Bigl(\sum_jf_ju^j\Bigr)=\sum_jD_k(f_j)P^j
-\]
-whenever each $f_j$ has radius at most $k$.
-
-\begin{lemma}\label{lem:model}
-\begin{enumerate}
-\item If $g$ has radius $\rho$ and $\rho+|i|\le k$, then
-$P^iD_k(g)P^{-i}=D_k(\alpha^i(g))$.
-\item $\psi_k$ is additive and unital.  If every coefficient radius
-$\rho$ and every exponent $i$ occurring in $r$ and in $r'$ satisfy
-$\rho+|i|\le k$, then $\psi_k(rr')=\psi_k(r)\psi_k(r')$.
-\item If $r\ne0$, then $\psi_k(r)\ne0$ for all sufficiently large $k$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-(1) $P^iD_k(g)P^{-i}\delta_n=\hat g(n-i)\delta_n$ with
-$\hat g(n)=\Phi_g(y_{[n-\rho,n+\rho]})$.  Also
-$\alpha^i(g)(x)=g(T^{-i}x)=\Phi_g(x_{[-\rho-i,\rho-i]})$ has radius at
-most $\rho+|i|$, and at position $n$ it reads $\hat g(n-i)$.
-
-(2) By (1),
-$\psi_k((fu^i)(gu^j))=D_k(f)D_k(\alpha^ig)P^{i+j}=D_k(f)P^iD_k(g)P^j$;
-extend bilinearly.
-
-(3) Let $f_j\ne0$, nonzero on some word of $L_{2\rho+1}(X)$.  For
-$k\ge\rho$ that word occurs in $y$ by Lemma~\ref{lem:windows}, so
-$D_k(f_j)\ne0$.  The term $D_k(f_j)P^j$ is supported on the entries
-$(n+j,n)$.  Once $N>2\max|j|$, distinct exponents occupy disjoint
-entries, so there is no cancellation.
-\end{proof}
-
-\subsection{An embedding into an ultraproduct of matrix algebras}
-Choose the data above for every $k$, with sizes $N_k$, and fix a
-nonprincipal ultrafilter $\omega$ on $\N$.  For $r\in R$ put
-$\Psi(r)=[\psi_k(r)]_\omega\in\prod_\omega M_{N_k}(\F_q)$, with
-arbitrary values at the finitely many $k$ where $\psi_k(r)$ is not
-defined.
-
-\begin{proposition}\label{prop:ultraproduct}
-$\Psi$ is an injective unital ring homomorphism with
-$\Psi(\lambda)=\lambda I$ for $\lambda\in\F_q$.
-\end{proposition}
-
-\begin{proof}
-Each identity $\Psi(r+r')=\Psi(r)+\Psi(r')$ and
-$\Psi(rr')=\Psi(r)\Psi(r')$ holds for all large $k$ by
-Lemma~\ref{lem:model}(2), hence $\omega$-almost everywhere.  Injectivity
-is Lemma~\ref{lem:model}(3), and constants have radius $0$.
-\end{proof}
-
-\subsection{$G$ and $S$ are LEF}
-\begin{lemma}\label{lem:ultraproduct-lef}
-Every subgroup of an algebraic ultraproduct $\prod_\omega Q_k$ of finite
-groups is LEF\@.
-\end{lemma}
-
-\begin{proof}
-Choose representatives for the elements of a finite subset $F$.  The
-finitely many identities $gh=g'$ and inequalities $g\ne g'$ among
-elements of $F$ each hold on an $\omega$-large set of indices.  The
-intersection of these sets is nonempty, and any $k$ in it gives
-$\phi$.
-\end{proof}
-
-\begin{proposition}\label{prop:lef}
-$G$ and $S=G/Z(G)$ are LEF, hence sofic and hyperlinear.
-\end{proposition}
-
-\begin{proof}
-$\Psi$ induces an injective ring homomorphism
-$M_3(R)\to\prod_\omega M_{3N_k}(\F_q)$.  The units of the target form
-$\prod_\omega\GL_{3N_k}(\F_q)$, so $G\le\GL_3(R)$ embeds in an
-ultraproduct of finite groups and is LEF by
-Lemma~\ref{lem:ultraproduct-lef}.
-
-By Proposition~\ref{prop:center} below, $Z(G)=\Lambda I_3$ with
-$\Lambda=\{\lambda\in\F_q^\times:\lambda I_3\in G\}$.  Let $C=\Lambda I$,
-a finite central subgroup of each $Q_k=\GL_{3N_k}(\F_q)$.  The map
-$\prod_\omega Q_k\to\prod_\omega(Q_k/C)$ is onto, and its kernel
-consists of the classes $[a_k]$ with $a_k\in C$ for $\omega$-almost
-every $k$; since $C$ is finite, such a class is $\omega$-almost
-everywhere constant, equal to some $[\lambda I]=\Psi(\lambda I_3)$.  If
-$\Psi(g)=\Psi(\lambda I_3)$ for $g\in G$, then $g=\lambda I_3\in Z(G)$
-by injectivity.  So $S$ embeds in $\prod_\omega(Q_k/C)$ and is LEF\@.
-
-For a finite $F\subseteq S$, apply the LEF property to $F\cup F\cdot F$
-and compose with the left regular action of $Q$ on itself.  This gives
-permutations $\sigma(g)$ of the finite set $Q$ that are exactly
-multiplicative on $F$, and $\sigma(g)$ has no fixed point for $g\ne1$.
-So $S$ is sofic.  The permutation matrices are unitaries with
-$\|\sigma(g)-I\|_2=\sqrt2$ in the normalized Hilbert--Schmidt norm, so
-$S$ is hyperlinear.
-\end{proof}
-
-\subsection{Finite simple approximants}\label{subsec:approximants}
-Replace $w$ by its primitive root $z$, so that $w=z^e$ with $z$ not a
-proper power.  This leaves $y$ unchanged, so
-Lemmas~\ref{lem:windows} and~\ref{lem:model} hold with $N_k=|z|$.  An
-aperiodic sequence has at least $m+1$ words of length $m$ (Morse and
-Hedlund~\cite{MorseHedlund}), and a cyclic word of length $N$ has at
-most $N$ cyclic windows, so $N_k\ge2k+2$ by Lemma~\ref{lem:windows}.
-
-The images of the generators $u^{\pm1}$, $\chi_a$ and $\lambda$ of
-Lemma~\ref{lem:generation} are $P^{\pm1}$, the diagonal matrices $D_a$
-of the positions of $a$ in $z$, and $\lambda I$.  Since $P^iD_aP^{-i}$
-is the indicator of the positions $n$ with $y_{n-i}=a$, and the
-rotations of a primitive word are distinct, these indicators and their
-complements separate positions.  So every diagonal matrix unit, and
-with $P$ every matrix unit, lies in the ring generated by the images:
-they generate $M_{N_k}(\F_q)$.  The generators $e_{ij}(s)$ of $G$,
-$s\in\{1,u^{\pm1},\chi_a,\lambda\}$, are sent to generators of
-$\EL_3(M_{N_k}(\F_q))=\SL_{3N_k}(\F_q)$.
-
-\begin{proposition}\label{prop:marked}
-With these markings, $\SL_{3N_k}(\F_q)\to G$ and
-$\PSL_{3N_k}(\F_q)\to S$ in the space of marked groups.
-\end{proposition}
-
-\begin{proof}
-A word $\mathsf w$ of length $n$ in the generators has a value
-$g_{\mathsf w}\in G$ whose coefficient radii and exponents are $O(n)$, and by
-Lemma~\ref{lem:model}(2) its value in $\SL_{3N_k}(\F_q)$ is
-$\psi_k(g_{\mathsf w})$ for $k\gg n$.  By Lemma~\ref{lem:model}(3),
-$\mathsf w=1$ in $G$ if and only if $\mathsf w=1$ in $\SL_{3N_k}(\F_q)$ for
-all large $k$.  If $g_{\mathsf w}=\lambda I_3$, then
-$\psi_k(g_{\mathsf w})=\lambda I$ is scalar.  Conversely, if
-$\psi_k(g_{\mathsf w})$ is scalar for infinitely many $k$, then some
-$\mu\in\F_q^\times$ occurs infinitely often, so
-$\psi_k(g_{\mathsf w}-\mu I_3)=0$ infinitely often, and
-Lemma~\ref{lem:model}(3) gives $g_{\mathsf w}=\mu I_3\in Z(G)$.
-\end{proof}
-
-\begin{remark}[the Fibonacci subshift]\label{rem:fibonacci}
-Let $\sigma$ be the substitution $a\mapsto ab$, $b\mapsto a$, with fixed
-point $\varphi=abaababaabaab\cdots$, and let $X$ be the set of
-$x\in\{a,b\}^{\Z}$ all of whose finite subwords occur in $\varphi$.  It
-is minimal because $\sigma$ is primitive, and aperiodic because it is
-Sturmian: $|L_m(X)|=m+1$.  With $\pi=\chi_a$, so that $1-\pi=\chi_b$, the
-ring $R$ over a prime field $\F_p$ is generated by $u$, $u^{-1}$ and
-$\pi$, and $G$ by the $24$ matrices $e_{ij}(1)$, $e_{ij}(u^{\pm1})$,
-$e_{ij}(\pi)$.  The relation $(1-\pi)\,u(1-\pi)u^{-1}=0$ says that $bb$ never
-occurs.  The return word $z=abaab$ has $N=5$, and its cyclic windows of
-length $3$ are $aba$, $baa$, $aab$, $aba$, $bab$, exactly
-$L_3(X)=\{aab,aba,baa,bab\}$.  Sending $u\mapsto P$ and
-$\pi\mapsto D=\diag(1,0,1,1,0)$ gives the first finite model: the $24$
-generators go to $I_{15}+E_{ij}\otimes P^{\pm1}$,
-$I_{15}+E_{ij}\otimes D$ and $I_{15}+E_{ij}\otimes I_5$, which generate
-$\SL_{15}(\F_p)$.
-\end{remark}
-
-\section{Property (T)}\label{sec:kazhdan}
-
-Ershov and Jaikin-Zapirain proved that for every finitely generated
-associative ring $R$ with $1$ and every $n\ge3$, the group $\EL_n(R)$
-has Kazhdan's property~(T)~\cite[Theorem~1.1]{EJZ}.  Before their
-theorem, property~(T) for $\EL_n(R)$ was known only for commutative
-rings or under stable range conditions.  By Lemma~\ref{lem:generation}
-our $R$ is finitely generated, so $G=\EL_3(R)$ has property~(T), and so
-does its quotient $S$.
-
-\section{Normal subgroups}\label{sec:normal}
-
-\subsection{The level ideal}
-For a normal subgroup $N\trianglelefteq G$ put
-\[
-I(N)=\{a\in R: e_{12}(a)\in N\}.
-\]
-
-\begin{lemma}\label{lem:level}
-$I(N)$ is a two-sided ideal of $R$.  If $I(N)\ne0$, then $N=G$.
-\end{lemma}
-
-\begin{proof}
-$I(N)$ is an additive subgroup by~\eqref{eq:steinberg}.  The Weyl
-elements
-\[
-w_{ij}=e_{ij}(1)\,e_{ji}(-1)\,e_{ij}(1)\in G
-\]
-are monomial matrices, and conjugation by them takes each $e_{kl}(a)$
-to some $e_{k'l'}(\pm a)$, reaching every pair $k'\ne l'$.  So
-$e_{kl}(a)\in N$ for one pair $k\ne l$ if and only if for all pairs.  Commutators of elements
-of $N$ with elements of $G$ lie in $N$, and
-\[
-[e_{12}(a),e_{23}(b)]=e_{13}(ab),\qquad [e_{31}(b),e_{12}(a)]=e_{32}(ba),
-\]
-so $ab,ba\in I(N)$ for $a\in I(N)$ and $b\in R$.  If $I(N)\ne0$, then $I(N)=R$ by
-Proposition~\ref{prop:simple-ring}, every $e_{ij}(r)$ lies in $N$, and
-$N=G$.
-\end{proof}
-
-\subsection{The center}
-\begin{proposition}\label{prop:center}
-$Z(G)=\Lambda I_3$ with $\Lambda=\{\lambda\in\F_q^\times:\lambda I_3\in G\}$,
-a finite group, and $S=G/Z(G)$ is infinite.  Every homomorphism from
-$G$, or from $S$, to a finite group is trivial.
-\end{proposition}
-
-\begin{proof}
-If $g$ commutes with every $e_{ij}(1)$, then $gE_{ij}=E_{ij}g$ for all
-$i\ne j$, so $g=cI_3$ with $c\in R$.  Commuting with every $e_{12}(r)$
-forces $c\in Z(R)^\times=\F_q^\times$ by
-Proposition~\ref{prop:simple-ring}.  Scalars are central, so
-$Z(G)=\Lambda I_3$.  The subgroup $e_{12}(\LC(X,\F_q))$ is infinite and
-meets $Z(G)$ trivially, so $S$ is infinite.  If $N$ is a normal subgroup
-of finite index in $G$, then $I(N)$ has finite index in the infinite
-group $(R,+)$, so $I(N)\ne0$ and $N=G$ by Lemma~\ref{lem:level}.  The
-same holds for $S$.
-\end{proof}
-
-\subsection{Root detection}
-\begin{theorem}\label{thm:root}
-If $N\trianglelefteq G$ contains an element $g\notin Z(G)$, then
-$I(N)\ne0$.
+is an infinite finitely generated simple group with Kazhdan's
+property~\textup{(T)} that is locally embeddable into finite groups
+\textup{(LEF)}. In particular, it is sofic and hyperlinear.
 \end{theorem}
 
-\begin{proof}
-\emph{A localized root that does not commute with $g$.}  Let $w$ bound
-the propagation of all entries of $g$ and $g^{-1}$, and put $L=2w+3$.
-Let $\Sigma_L$ be the set of elements $\lambda\chi_C$,
-$\lambda\chi_Cu$ and $\lambda\chi_Cu^{-1}$ with $\lambda\in\F_q$ and
-$C$ a cylinder of radius at least $k_L$ from Lemma~\ref{lem:subshift}(P).
-The set $C_g=\{s\in R: g\text{ commutes with }e_{ij}(s)\text{ for all }i\ne j\}$
-is closed under sums and negatives by~\eqref{eq:steinberg}, and under
-products since $e_{ij}(st)=[e_{ik}(s),e_{kj}(t)]$.  The additive span of
-$\Sigma_L$ contains $1=\sum_C\chi_C$, $u^{\pm1}=\sum_C\chi_Cu^{\pm1}$,
-every $\lambda$ and every letter indicator.  If $\Sigma_L\subseteq C_g$,
-then $C_g=R$ by Lemma~\ref{lem:generation} and $g$ is central.  So some
-$h=e_{ij}(s)$ with $s\in\Sigma_L$ does not commute with $g$.  Moreover
-$s\in B_1(U)$ for some $U\in\{C,T^{-1}C,TC\}$, since
-$\chi_C=E_{00}(C)$, $\chi_Cu=E_{10}(T^{-1}C)$ and
-$\chi_Cu^{-1}=E_{-1,0}(TC)$, and every translate of $C$ has return
-times exceeding $L$.
+The subshift algebra is classical; see Nekrashevych~\cite{Nekrashevych}.
+Property~(T) is supplied by Ershov--Jaikin-Zapirain~\cite{EJZ}.
+Our finite models use the periodic-approximation mechanism of
+Grigorchuk--Medynets~\cite{GM}. The new step is the simplicity argument:
+a nontrivial normal subgroup meets a finite simple matrix group
+supported on a clopen tower, and therefore contains an elementary
+matrix. This is an explicit elementary-matrix extraction argument,
+in the normal-structure tradition described by Stepanov~\cite{Stepanov}.
+Thom had already constructed a finitely generated Kazhdan LEF group
+that is not residually finite~\cite[Theorem~1.4]{Thom}; his example
+is not simple.
 
-\emph{Localization.}  Put $k=[g,h]\in N$, so $k\ne1$, and $m'=w+1$.
-The entries of $ghg^{-1}-I$ are $g_{pi}\,s\,(g^{-1})_{jq}$, which lie in
-$B_{m'}(U)$ by Lemma~\ref{lem:absorption}, since $2(1+w)<L$.  Also
-$h^{-1}-I=-sE_{ij}$.  With $Y=ghg^{-1}-I$ and $Y'=h^{-1}-I$,
-$k-I=Y+Y'+YY'\in M_3(B_{m'}(U))$, and likewise $k^{-1}-I$.  Let
-$e=\chi_V$ be the unit of $B_{m'}(U)$ and put
-$Q_U=(1-e)I_3+M_3(B_{m'}(U))$.  It is closed under products, because
-$(1-e)b=b(1-e)=0$ for $b\in B_{m'}(U)$, and it contains $k$ and
-$k^{-1}$.  Through
+\section{Proof of Theorem~\ref{thm:main}}
+
+\subsection*{The ring and property (T)}
+Write $e_U$ for the indicator of a clopen set $U\subseteq X$. Our
+conventions are $(Tx)_n=x_{n+1}$ and
 \[
-M_3(B_{m'}(U))\cong M_3\bigl(M_{2m'+1}(\LC(U,\F_q))\bigr)\cong\LC(U,M_d(\F_q)),
-\qquad d=3(2m'+1)\ge9,
+ R=\LC(X,\F_2)\rtimes_T\Z
+   =\left\{\sum_j f_j u^j:\text{finite sums}\right\},
+ \qquad ufu^{-1}=f\circ T^{-1},
 \]
-multiplication in $Q_U$ is pointwise in $x\in U$, and $k$ corresponds
-to a locally constant $\kappa\colon U\to\GL_d(\F_q)$ with
-$\kappa\not\equiv I$.
+where $\LC$ denotes locally constant functions. Thus $ue_Uu^{-1}=e_{TU}$.
+Minimality and infiniteness imply that $T$ has no periodic points.
+For each $L$, every point therefore has a clopen neighborhood $U$ with
+$U\cap T^jU=\varnothing$ for $0<|j|\le L$. Compactness gives finite
+clopen partitions with this property, refining any prescribed clopen
+partition.
 
-\emph{Case 1: some value $\kappa(x_0)$ is not scalar.}  Choose a clopen
-$W\ni x_0$ in $U$ with $\kappa|_W=\kappa_0$.  For
-$\varepsilon\in\GL_d(\F_q)$ let $\iota_W(\varepsilon)\in Q_U$ be the
-element corresponding to the function equal to $\varepsilon$ on $W$ and
-to $I$ on $U\setminus W$; explicitly
-$\iota_W(\varepsilon)=(1-\chi_{V_{m'}(W)})I_3+\sum\varepsilon_{(p,a),(p',b)}\,E_{ab}(W)\,E_{pp'}$,
-the sum over $p,p'\in\{1,2,3\}$ and $|a|,|b|\le m'$.  Then
-$\iota_W$ is a homomorphism $\GL_d(\F_q)\to\GL_3(R)$, and
-$\iota_W(\SL_d(\F_q))\le G$: the group $\SL_d(\F_q)$ is generated by the
-transvections $t=I+c\,e_{(p,a),(p',b)}$, and
-\begin{itemize}
-\item if $p\ne p'$, then $\iota_W(t)=e_{pp'}(cE_{ab}(W))\in G$;
-\item if $p=p'$, then $a\ne b$; put $x=cE_{ab}(W)$ and $y=E_{bb}(W)$, so
-that $xy=x$, $yx=0$ and $x^2=0$.  For $p''\ne p$ the matrices
-$M=xE_{pp''}$ and $M'=yE_{p''p}$ satisfy $M^2=M'^2=M'M=0$ and
-$MM'=xE_{pp}$, so
-$[e_{pp''}(x),e_{p''p}(y)]=(I+M)(I+M')(I-M)(I-M')=I+xE_{pp}=\iota_W(t)$.
-\end{itemize}
-Multiplication in $Q_U$ is pointwise, so
-$[k,\iota_W(\varepsilon)]=\iota_W([\kappa_0,\varepsilon])$.  The group
-$N_W=\{\varepsilon\in\SL_d(\F_q):\iota_W(\varepsilon)\in N\}$ is normal
-in $\SL_d(\F_q)$ and contains every $[\kappa_0,\varepsilon]$.  If $N_W$
-were central, then $\varepsilon\mapsto[\kappa_0,\varepsilon]$ would be a
-homomorphism into the abelian group $Z(\SL_d(\F_q))$, because
-$[\kappa_0,\varepsilon\delta]=[\kappa_0,\varepsilon]\,\varepsilon[\kappa_0,\delta]\varepsilon^{-1}=[\kappa_0,\varepsilon][\kappa_0,\delta]$
-when $[\kappa_0,\delta]$ is scalar.  Since $\SL_d(\F_q)$ is perfect for
-$d\ge3$, the homomorphism is trivial, so $\kappa_0$ commutes with every
-transvection and is scalar, a contradiction.  So $N_W$ is a noncentral
-normal subgroup; as $\PSL_d(\F_q)$ is simple, $N_WZ=\SL_d(\F_q)$, the
-quotient $\SL_d(\F_q)/N_W$ is abelian, and perfectness gives
-$N_W=\SL_d(\F_q)$.  In particular
-$e_{12}(\chi_W)=\iota_W(I+e_{(1,0),(2,0)})\in N$ with $\chi_W\ne0$.
+The ring $R$ is generated by $u,u^{-1}$ and the letter indicators
+$e_a=e_{\{x:x_0=a\}}$: their translates and products give all cylinder
+indicators. Put $G=\EL_3(R)$ and $e_{ij}(r)=I_3+rE_{ij}$, where $E_{ij}$
+is the usual matrix unit. The elementary identities
+\begin{equation}\label{eq:elementary}
+ \begin{aligned}
+ e_{ij}(r+s)&=e_{ij}(r)e_{ij}(s),\qquad i\ne j,\\
+ [e_{ik}(r),e_{kj}(s)]&=e_{ij}(rs),\qquad i,j,k\text{ distinct}.
+ \end{aligned}
+\end{equation}
+show that the matrices $e_{ij}(s)$, for
+$s\in\{1,u,u^{-1}\}\cup\{e_a:a\in A\}$, generate $G$.
+Here $[g,h]=ghg^{-1}h^{-1}$.
+Ershov--Jaikin-Zapirain's theorem says that $\EL_n(R)$ has property~(T)
+for every finitely generated unital associative ring $R$ and
+$n\ge3$~\cite[Theorem~1.1]{EJZ}. Hence $G$ has property~(T).
+It is infinite because $e_{12}(\LC(X,\F_2))$ is infinite.
 
-\emph{Case 2: $\kappa=\lambda I_d$ with $\lambda\colon U\to\F_q^\times$
-locally constant and $\lambda\not\equiv1$.}  Then $k=cI_3$ with
-$c\in\LC(X,\F_q)^\times$ equal to $\lambda\circ T^{-a}$ on $T^aU$ for
-$|a|\le m'$ and to $1$ off $V$.  Choose a clopen $W\subseteq U$ with
-$\lambda|_W=\lambda_0\ne1$ and put
-$r=\chi_{T^{m'+1}W}\,u=u\,\chi_{T^{m'}W}\ne0$.  The set $T^{m'+1}W$ is
-disjoint from $V$, because $m'+1-a\in[1,2m'+1]=[1,L]$ for $|a|\le m'$;
-so $c=1$ there, while $\alpha(c^{-1})=c^{-1}\circ T^{-1}=\lambda_0^{-1}$
-there, since $T^{-1}$ maps $T^{m'+1}W$ onto level $m'$ of the tower over
-$W$.  So $crc^{-1}=c\,\chi_{T^{m'+1}W}\,\alpha(c^{-1})\,u=\lambda_0^{-1}r$,
-and
+We will also need that $R$ is simple and $Z(R)=\F_2$.
+These are standard groupoid-algebra facts~\cite{BCFS,ClarkEdie,Steinberg};
+here is the direct argument. A nonzero two-sided ideal contains an
+element $r=\sum_j f_ju^j$ with $f_0\ne0$, after multiplication by a
+power of $u$. Choose a nonempty clopen $U$ on which $f_0=1$, disjoint
+from $T^jU$ for every nonzero exponent occurring in $r$. Then
+$e_Ure_U=e_U$. Finitely many translates of $U$ cover $X$, so the ideal
+contains $1=1-\prod_i(1-e_{T^{n_i}U})$.
+If $r$ is central, commuting with all clopen indicators forces $f_j=0$
+for $j\ne0$: otherwise a point in the support of $f_j$ and its
+$T^{-j}$-translate can be separated by a clopen set. Commuting with
+$u$ then makes $f_0$ invariant, hence constant by minimality.
+Finally, commuting with every $e_{ij}(1)$ forces a central element of
+$G$ to be $cI_3$; commuting with all $e_{ij}(r)$ gives
+$c\in Z(R)^\times=\{1\}$. Thus $Z(G)=\{1\}$.
+
+\subsection*{Finite models}
+A group is LEF if every finite subset embeds injectively into a finite
+group, preserving all products that stay in that subset.
+We construct such models for $R$, and then apply them entrywise.
+
+For each $k$, there is a periodic sequence $y=w^\infty$ with exactly
+the same words of length $2k+1$ as $X$. Indeed, minimality implies
+uniform recurrence. In a point of $X$, choose two occurrences of the
+same word of length $2k$, separated by a segment $w$ long enough to
+contain every word of length $2k+1$. Repeating this segment introduces
+no new word of that length at the join. Its length $N$ can be chosen
+arbitrarily large.
+
+Let $P\delta_n=\delta_{n+1}$ on $\F_2^{\Z/N\Z}$. If $f$ depends on a
+window $[-\rho,\rho]$, evaluate its local table along $y$ to obtain a
+diagonal matrix $D_y(f)$. Send
 \[
-[k,e_{12}(r)]=e_{12}(crc^{-1})\,e_{12}(-r)=e_{12}\bigl((\lambda_0^{-1}-1)r\bigr)\in N,
-\qquad(\lambda_0^{-1}-1)r\ne0.
+  \sum_j f_ju^j\ \longmapsto\ \sum_j D_y(f_j)P^j.
 \]
-In both cases $I(N)\ne0$.
-\end{proof}
+For any fixed finite list of sums and products in $R$, choose $k$
+larger than all windows involved, including those shifted in the
+products. The relation
+$P^iD_y(f)P^{-i}=D_y(f\circ T^{-i})$ then preserves every listed
+operation. Nonzero coefficients remain nonzero, since every allowed
+window occurs in $y$. Taking $N$ larger than twice the largest absolute
+exponent makes the corresponding cyclic diagonals distinct; hence
+nonzero differences also remain nonzero.
 
-\begin{corollary}\label{cor:simple}
-Every normal subgroup of $G$ is contained in $Z(G)$ or equal to $G$.
-So $S=G/Z(G)$ is simple.
+For a finite subset of $G$, include the entries of its elements,
+their inverses, their differences, and all intermediate sums and
+products needed for matrix multiplication. The resulting model is an
+injective partial homomorphism into $\GL_{3N}(\F_2)$. Thus $G$ is LEF.
+The regular permutation actions of these finite groups give sofic
+models; their permutation matrices give hyperlinear models
+\cite{Pestov}.
+
+\subsection*{A finite tower detects every normal subgroup}
+Suppose the levels $T^aU$ are disjoint for all indices needed below.
+For $|a|,|b|\le m$ and clopen $W\subseteq U$, put
+\[
+  E_{ab}(W)=e_{T^aW}u^{a-b}.
+\]
+These satisfy
+$E_{ab}(W)E_{cd}(W')=\delta_{bc}E_{ad}(W\cap W')$.
+Their span is a subring
+\[
+  B_m(U)\cong M_{2m+1}(\LC(U,\F_2)),
+\]
+with unit $e_{\bigcup_{|a|\le m}T^aU}$. If $r,r'$ involve only powers
+$u^j$ with $|j|\le w$, then
+\begin{equation}\label{eq:absorb}
+  r B_m(U)r'\subseteq B_{m+w}(U),
+\end{equation}
+provided the larger tower is disjoint. To see this, multiplying
+$E_{ab}(W)$ on the left by $fu^i$ and on the right by $f'u^j$ changes
+its indices to $(a+i,b-j)$ and restricts its clopen coefficient.
+
+Let $1\ne N\trianglelefteq G$, and choose $1\ne g\in N$.
+Let $w\ge0$ bound the absolute values of the exponents in all entries
+of $g$ and $g^{-1}$.
+Choose a finite clopen partition $\mathcal P$ refining the letter
+partition, with $C\cap T^jC=\varnothing$ for $C\in\mathcal P$ and
+$0<|j|\le2w+3$. Some matrix
+\[
+ h=e_{ij}(s),\qquad
+ s\in\{e_C,e_Cu,e_Cu^{-1}:C\in\mathcal P\},
+\]
+does not commute with $g$. Otherwise, by~\eqref{eq:elementary}, the
+coefficients $s$ for which $g$ commutes with every $e_{ij}(s)$ form
+a subring containing all ring generators, so $g\in Z(G)=\{1\}$.
+
+Each such $s$ lies in $B_1(U)$ for a translate $U$ of $C$:
+\[
+ e_C=E_{00}(C),\quad e_Cu=E_{10}(T^{-1}C),\quad
+ e_Cu^{-1}=E_{-1,0}(TC).
+\]
+Set $k=[g,h]\in N\setminus\{1\}$ and $m=w+1$.
+By~\eqref{eq:absorb}, both $k-I_3$ and $k^{-1}-I_3$ lie in
+$M_3(B_m(U))$. If $e$ is the unit of $B_m(U)$, then
+$k=(1-e)I_3+ek e$. Its corner part is invertible and therefore
+corresponds to a locally constant function
+\[
+ \kappa:U\longrightarrow\GL_d(\F_2),\qquad d=3(2m+1)\ge9.
+\]
+Choose nonempty clopen $W\subseteq U$ on which $\kappa$ is a constant
+$\kappa_0\ne I_d$.
+
+Let $H_W$ be the copy of $\GL_d(\F_2)$ acting on the tower over $W$
+and as the identity elsewhere. It lies in $G$. Indeed, index its
+coordinates by $(p,a)$, where $1\le p\le3$ and $|a|\le m$.
+A transvection between $(p,a)$ and $(q,b)$ with $p\ne q$ is
+$e_{pq}(E_{ab}(W))$. For $p=q$ and $a\ne b$, take $q\ne p$ and use
+\[
+ [e_{pq}(E_{ab}(W)),e_{qp}(E_{bb}(W))]
+       =I_3+E_{ab}(W)E_{pp}.
+\]
+This follows from $E_{ab}E_{bb}=E_{ab}$ and $E_{bb}E_{ab}=0$.
+These transvections generate $H_W$.
+
+Over $\F_2$, the group $\GL_d(\F_2)=\SL_d(\F_2)=\PSL_d(\F_2)$
+is simple and centerless for $d\ge3$. Conjugation by $k$ on $H_W$
+is conjugation by $\kappa_0$, so $[k,H_W]\subseteq N\cap H_W$
+contains a nonidentity element. Since $N\cap H_W$ is normal in $H_W$,
+we get $H_W\subseteq N$. In particular, $e_{12}(e_W)\in N$.
+
+Finally, $I_N=\{r\in R:e_{12}(r)\in N\}$ is a two-sided ideal:
+permutation matrices in $G$ move any elementary position to any other,
+and~\eqref{eq:elementary} gives addition and multiplication on either
+side by arbitrary ring elements. Since $0\ne e_W\in I_N$ and $R$ is
+simple, $I_N=R$. Thus $N=G$, completing the proof.\hfill$\square$
+
+\section{Every word-problem degree}
+
+\begin{corollary}
+Every Turing degree occurs as the word-problem degree of an infinite
+simple Kazhdan LEF group. Consequently, there are continuum many
+isomorphism classes of these groups.
 \end{corollary}
 
 \begin{proof}
-Theorem~\ref{thm:root} and Lemma~\ref{lem:level}.
-\end{proof}
-
-\begin{proof}[Proof of Theorem~\textup{\ref{thm:main}}]
-$G$ is finitely generated by Lemma~\ref{lem:generation}
-and~\eqref{eq:steinberg}.  $Z(G)$ is finite and $S$ is infinite by
-Proposition~\ref{prop:center}; $S$ is simple by
-Corollary~\ref{cor:simple}; $S$ has property~(T) by
-Section~\ref{sec:kazhdan}; and $S$ is LEF, sofic and hyperlinear by
-Proposition~\ref{prop:lef}.
-\end{proof}
-
-\section{Consequences}\label{sec:consequences}
-
-\begin{corollary}\label{cor:consequences}
-Let $G$ and $S$ be as in Theorem~\textup{\ref{thm:main}}.
-\begin{enumerate}
-\item $S$ is not finitely presented, and neither is $G$.
-\item $S$ does not have the factorization property, and $C^*(S)$ does
-not have the local lifting property.
-\item $G$ and $S$ are MF groups that are not weakly quasidiagonal.
-\item The marked finite simple groups $\PSL_{3N_k}(\F_q)$ of
-Proposition~\textup{\ref{prop:marked}} converge to $S$, and their
-Cayley graphs form a family of expanders.
-\end{enumerate}
-\end{corollary}
-
-\begin{proof}
-(1) A finitely presented LEF group is residually finite: the finitely
-many relators already hold in the finite model of a large ball, which
-then gives a homomorphism to a finite group injective on that ball.  By
-Proposition~\ref{prop:center}, $G$ and $S$ have no nontrivial finite
-quotient.
-
-(2) A group with property~(T) and the factorization property is
-residually finite~\cite[Theorem~1.1]{Kirchberg}, and $S$ is not
-residually finite.  Ozawa shows that if an infinite simple group with
-property~(T) is hyperlinear, then its full $C^*$-algebra fails the
-local lifting property~\cite[p.~527]{Ozawa}.
-
-(3) A group is MF~\cite{CDE} if it has a separating sequence of
-asymptotically multiplicative maps to unitary groups, and weakly
-quasidiagonal~\cite{Dadarlat} if the maps can be taken unital
-completely positive on $C^*(G)$.  Exactly multiplicative permutation
-models exist by the LEF property, and their permutation matrices
-satisfy $\|\sigma(g)-I\|\ge\sqrt2$ for $g\ne1$, so $G$ and $S$ are MF\@.
-By a theorem of Ozawa and Thom, an infinite weakly quasidiagonal group
-with property~(T) has an infinite residually finite
-quotient~\cite[Proposition~3.19]{Dadarlat}.  Every quotient of $S$ is
-$S$ or trivial, and every finite quotient of $G$ is trivial, so neither
-group is weakly quasidiagonal.  The introduction of~\cite{Dadarlat}
-states that MF groups are weakly quasidiagonal; the implication that
-follows from the definitions is the converse, by polar decomposition.
-
-(4) Convergence is Proposition~\ref{prop:marked}.  The images of
-$u^{\pm1}$, $\chi_a$ and $\lambda$ generate $M_{N_k}(\F_q)$, so each
-$\SL_{3N_k}(\F_q)$ with its marking is a quotient of
-$\EL_3(\F_q\langle t_1,\dots,t_r\rangle)$ marked by the corresponding
-elementary matrices, and that group has property~(T)
-by~\cite[Theorem~1.1]{EJZ}.  Cayley graphs of quotients of a Kazhdan
-group with respect to the images of a fixed generating set form a family
-of expanders.
-\end{proof}
-
-\begin{remark}
-Theorem~\ref{thm:main} holds, with the same proof and for every rank
-$n\ge3$, over any ring $R$ that is finitely generated, simple with
-center $\F_q$, embedded unitally in an ultraproduct of matrix algebras
-over $\F_q$, and equipped with tower subrings as in
-Section~\ref{subsec:towers} satisfying the absorption lemma.
-\end{remark}
-
-\section{Word problems}\label{sec:degrees}
-
-Fix $A$ and $q$.  For an infinite minimal subshift $X\subseteq A^{\Z}$
-write $R_X$, $G_X$ and $S_X$ for the ring and the groups of
-Theorem~\ref{thm:main}, and let $\Sigma_0$ be the generating set
-$\{e_{ij}(s): i\ne j,\ s\in\{1,u,u^{-1},\chi_a\ (a\in A),\lambda\}\}$
-of $G_X$; its image generates $S_X$.  The word problem $\mathrm{WP}(S_X)$
-is the set of words in $\Sigma_0^{\pm1}$ that equal $1$ in $S_X$.  Its
-Turing degree does not depend on the finite generating set, so it is an
-isomorphism invariant of $S_X$.
-
-\begin{proposition}\label{prop:degree}
-$\mathrm{WP}(S_X)$ and $L(X)$ have the same Turing degree.
-\end{proposition}
-
-\begin{proof}
-\emph{$L(X)$ is computable from $\mathrm{WP}(S_X)$.}  For a word
-$v=v_0\cdots v_{n-1}\in A^n$,
+The word problem of $G_X$, in the finite generators above, has the same
+Turing degree as the language $L(X)$ of finite words occurring in $X$.
+An oracle for $L(X)$ decides whether a matrix word equals $I_3$, by
+checking the coefficient tables of its difference from $I_3$ on the
+allowed windows. Conversely, for a word $v=v_0\cdots v_{n-1}$, the cylinder
+indicator
 \[
-\chi_{[v]}=\prod_{t=0}^{n-1}u^{-t}\chi_{v_t}u^{t}
+ e_{[v]}=\prod_{t=0}^{n-1}u^{-t}e_{v_t}u^t
 \]
-is the indicator of the cylinder $\{x: x_{[0,n)}=v\}$, by
-Lemma~\ref{lem:generation}.  By~\eqref{eq:steinberg}, for any product
-$s_1\cdots s_r$ of elements of $\{u,u^{-1},\chi_a\}$ there is a nested
-commutator word in $\Sigma_0$, computable from $s_1,\dots,s_r$, whose
-value is $e_{12}(s_1\cdots s_r)$: use $e_{ik}(st)=[e_{ij}(s),e_{jk}(t)]$
-with a third index $j$ at each step.  Then a group word $W_v$ with value
-$e_{12}(\chi_{[v]})$ is computable from $v$.  An element $e_{12}(f)$ is
-central in $G_X$ if and only if $f=0$, by Proposition~\ref{prop:center}.
-So $W_v=1$ in $S_X$ if and only if the cylinder of $v$ is empty, that is,
-if and only if $v\notin L(X)$.
+can be converted effectively, using~\eqref{eq:elementary}, to a group
+word representing $e_{12}(e_{[v]})$. This word equals $1$ precisely
+when $v\notin L(X)$.
 
-\emph{$\mathrm{WP}(S_X)$ is computable from $L(X)$.}  Represent an
-element of $R_X$ as a finite formal sum $\sum_jf_ju^j$, each $f_j$
-given by a table $\Phi_j\colon A^{2\rho+1}\to\F_q$ for a common radius
-$\rho$.  Sums and products of such representations are computable, by
-the rule $(fu^i)(gu^j)=f\,\alpha^i(g)\,u^{i+j}$ and shifting of windows.
-Two representations define the same element of $R_X$ if and only if the
-tables of each coefficient agree on $L_{2\rho+1}(X)$, which is decided
-with the oracle $L(X)$.  Given a word in $\Sigma_0^{\pm1}$, compute its
-value $g\in M_3(R_X)$ in this representation.  Since $g\in G_X$, it is
-trivial in $S_X$ if and only if $g=\mu I_3$ for some
-$\mu\in\F_q^\times$, by Proposition~\ref{prop:center}; that is finitely
-many equality tests.
+Now use the infinite minimal Sturmian subshift of an irrational slope
+$\alpha\in(0,1)$~\cite{MorseHedlund}. Its language is computable from
+$\alpha$: words of length $n$ are determined by the cyclic order of
+the distinct rotation endpoints $-j\alpha\bmod1$, $0\le j\le n$.
+Conversely, the minimum number of $1$'s in a word of length $n$ is
+$\lfloor n\alpha\rfloor$, so the language computes $\alpha$.
+Every Turing degree has an irrational representative: use $\sqrt2-1$
+for the computable degree, and interleave the characteristic sequence
+of a noncomputable set with $1$'s in a binary expansion for any other
+degree. There are continuum many degrees, and the word-problem degree
+of a finitely generated group is an isomorphism invariant.
 \end{proof}
 
-For an irrational $\alpha\in(0,1)$, the Sturmian subshift
-$X_\alpha\subseteq\{0,1\}^{\Z}$ is the closure of the codings
-$n\mapsto\lfloor(n+1)\alpha+\theta\rfloor-\lfloor n\alpha+\theta\rfloor$,
-$\theta\in[0,1)$, of the rotation by $\alpha$.  It is infinite and
-minimal, and $|L_m(X_\alpha)|=m+1$ for every $m$
-(Morse and Hedlund~\cite{MorseHedlund40}).
-
-\begin{lemma}\label{lem:sturmian}
-$L(X_\alpha)$ and $\alpha$ have the same Turing degree.
-\end{lemma}
-
-\begin{proof}
-A word $v\in\{0,1\}^m$ lies in $L_m(X_\alpha)$ if and only if the
-intersection of the arcs $\{\theta: \lfloor\theta+(t+1)\alpha\rfloor-\lfloor\theta+t\alpha\rfloor=v_t\}$,
-$0\le t<m$, of the circle is nonempty.  Each arc has endpoints in
-$\{-t\alpha\bmod1: 0\le t\le m\}$, and these points are distinct because
-$\alpha$ is irrational; so nonemptiness is decided by the cyclic order
-of finitely many points $-t\alpha\bmod1$, which is computable from
-$\alpha$ to sufficient precision.  Conversely, every word of
-$L_m(X_\alpha)$ has $\lfloor m\alpha\rfloor$ or
-$\lfloor m\alpha\rfloor+1$ letters equal to $1$, and both values occur,
-so $\lfloor m\alpha\rfloor$ is computable from $L(X_\alpha)$ for every
-$m$, and with it $\alpha$.
-\end{proof}
-
-\begin{proof}[Proof of Theorem~\textup{\ref{thm:degrees}}]
-The first two sentences are Proposition~\ref{prop:degree} and
-Lemma~\ref{lem:sturmian}.  Let $d$ be a Turing degree and
-$B\subseteq\N$ a set of degree $d$.  If $d$ is the computable degree,
-take $\alpha=\sqrt2-1$.  Otherwise let $\alpha$ have the binary
-expansion $0.1\,b_0\,1\,b_1\,1\,b_2\cdots$, where $b_n=1$ if $n\in B$
-and $b_n=0$ otherwise.  The expansion is not eventually periodic, since
-$B$ is not computable, so $\alpha$ is irrational, and $\alpha$ and $B$
-are computable from each other.  Then $S_{X_\alpha}$ has the required
-properties by Theorem~\ref{thm:main}, and its word problem has degree
-$d$.  There are continuum many Turing degrees, and the degree of the
-word problem is an isomorphism invariant, so the groups
-$S_{X_\alpha}$ fall into continuum many isomorphism classes.
-\end{proof}
-
-\begin{remark}
-For computable $\alpha$, for example the Fibonacci subshift, the word
-problem of $S_{X_\alpha}$ is decidable.  Whether $S_X\cong S_Y$ forces
-a dynamical relation between $X$ and $Y$ is not addressed here.
-\end{remark}
-
-\section*{Origin and authorship}
-
-The construction and the proofs in this paper were found by Claude
-(Anthropic), running in Claude Code agent sessions under the author's
-direction, on September 12, 2026.  Two further agent sessions
-re-derived every step independently before the paper was written, and
-a Lean~4 formalization of the argument for the binary Toeplitz subshift
-over $\F_2$ was produced in the same way.  Claude wrote the text of
-this paper.  The author set the direction and is responsible for the
-final form.  The complete exchange is in
-the public commit history of the
-repository.\footnote{\url{https://github.com/SauersML/group-approximation}}
+\subsection*{Origin and authorship}
+Claude (Anthropic) found the construction and original proofs under
+the author's direction on September~12, 2026, and wrote the original
+manuscript. Codex (OpenAI) shortened and edited this version.
+The author is responsible for the final manuscript. Proof records are
+in the \href{https://github.com/SauersML/group-approximation}{project repository}.
 
 \begin{thebibliography}{99}
 
-\bibitem[Br01]{Brown01}
-N.~P. Brown,
-\emph{Tracial invariants, classification and $\mathrm{II}_1$ factor
-representations of Popa algebras},
+\bibitem{Brown}
+N.~P. Brown, \emph{Tracial invariants, classification and
+$\mathrm{II}_1$ factor representations of Popa algebras},
 \href{https://arxiv.org/abs/math/0111286}{arXiv:math/0111286} (2001).
 
-\bibitem[CR]{CapraceRemy}
-P.-E. Caprace and B.~R\'emy,
-\emph{Simplicity and superrigidity of twin building lattices},
-Invent. Math. \textbf{176} (2009), no.~1, 169--221,
-\doi{10.1007/s00222-008-0162-6}.
+\bibitem{BCFS}
+J.~H. Brown, L.~O. Clark, C.~Farthing, and A.~Sims,
+\emph{Simplicity of algebras associated to \'etale groupoids},
+Semigroup Forum \textbf{88} (2014), 433--452.
+\href{https://arxiv.org/abs/1204.3127}{arXiv:1204.3127}.
 
-\bibitem[CDE]{CDE}
-J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
-\emph{On groups with quasidiagonal $C^*$-algebras},
-J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
-\doi{10.1016/j.jfa.2013.04.004}.
+\bibitem{ClarkEdie}
+L.~O. Clark and C.~Edie-Michell,
+\emph{Uniqueness theorems for Steinberg algebras},
+Algebr. Represent. Theory \textbf{18} (2015), 907--916.
+\href{https://arxiv.org/abs/1403.4684}{arXiv:1403.4684}.
 
-\bibitem[Da]{Dadarlat}
-M.~Dadarlat,
-\emph{Obstructions to matricial stability of discrete groups and almost
-flat $K$-theory},
-Adv. Math. \textbf{384} (2021), 107722,
-\doi{10.1016/j.aim.2021.107722}.
-
-\bibitem[EJZ]{EJZ}
+\bibitem{EJZ}
 M.~Ershov and A.~Jaikin-Zapirain,
 \emph{Property~\textup{(T)} for noncommutative universal lattices},
-Invent. Math. \textbf{179} (2010), no.~2, 303--347,
+Invent. Math. \textbf{179} (2010), 303--347.
 \doi{10.1007/s00222-009-0218-2}.
 
-\bibitem[ES]{ElekSzabo}
-G.~Elek and E.~Szab\'o,
-\emph{Hyperlinearity, essentially free actions and $L^2$-invariants.
-The sofic property},
-Math. Ann. \textbf{332} (2005), no.~2, 421--441,
-\doi{10.1007/s00208-005-0640-8}.
-
-\bibitem[GM]{GrigorchukMedynets}
+\bibitem{GM}
 R.~Grigorchuk and K.~Medynets,
 \emph{On algebraic properties of topological full groups},
-Sb. Math. \textbf{205} (2014), no.~6, 843--861,
+Sb. Math. \textbf{205} (2014), 843--861.
 \doi{10.1070/SM2014v205n06ABEH004400}.
 
-\bibitem[Gr87]{Gromov}
-M.~Gromov,
-\emph{Hyperbolic groups},
-Essays in group theory, Math. Sci. Res. Inst. Publ. \textbf{8},
-Springer, New York, 1987, pp.~75--263,
-\doi{10.1007/978-1-4613-9586-7_3}.
-
-\bibitem[Gr99]{Gromov99}
-M.~Gromov,
-\emph{Endomorphisms of symbolic algebraic varieties},
-J. Eur. Math. Soc. \textbf{1} (1999), no.~2, 109--197,
-\doi{10.1007/PL00011162}.
-
-\bibitem[Ki]{Kirchberg}
-E.~Kirchberg,
-\emph{Discrete groups with Kazhdan's property~\textup{T} and
-factorization property are residually finite},
-Math. Ann. \textbf{299} (1994), 551--563,
-\doi{10.1007/BF01459798}.
-
-\bibitem[MH38]{MorseHedlund}
-M.~Morse and G.~A. Hedlund,
-\emph{Symbolic dynamics},
-Amer. J. Math. \textbf{60} (1938), no.~4, 815--866,
-\doi{10.2307/2371264}.
-
-\bibitem[MH40]{MorseHedlund40}
+\bibitem{MorseHedlund}
 M.~Morse and G.~A. Hedlund,
 \emph{Symbolic dynamics II. Sturmian trajectories},
-Amer. J. Math. \textbf{62} (1940), 1--42,
+Amer. J. Math. \textbf{62} (1940), 1--42.
 \doi{10.2307/2371431}.
 
-\bibitem[NonMF]{NonMF}
-\paperauthor,
-\emph{Non-MF groups},
-preprint, 2026.
+\bibitem{Nekrashevych}
+V.~Nekrashevych, \emph{Growth of \'etale groupoids and simple algebras},
+Internat. J. Algebra Comput. \textbf{26} (2016), 375--397.
+\href{https://arxiv.org/abs/1501.00722}{arXiv:1501.00722}.
 
-\bibitem[Oz]{Ozawa}
-N.~Ozawa,
-\emph{About the QWEP conjecture},
-Internat. J. Math. \textbf{15} (2004), no.~5, 501--530,
+\bibitem{Ozawa}
+N.~Ozawa, \emph{About the QWEP conjecture},
+Internat. J. Math. \textbf{15} (2004), 501--530.
 \doi{10.1142/S0129167X04002417}.
 
-\bibitem[Pe]{Pestov}
-V.~G. Pestov,
-\emph{Hyperlinear and sofic groups: a brief guide},
-Bull. Symbolic Logic \textbf{14} (2008), no.~4, 449--480,
+\bibitem{Pestov}
+V.~G. Pestov, \emph{Hyperlinear and sofic groups: a brief guide},
+Bull. Symbolic Logic \textbf{14} (2008), 449--480.
 \doi{10.2178/bsl/1231081461}.
 
-\bibitem[St]{Stepanov}
-A.~V. Stepanov,
-\emph{On the normal structure of the general linear group over a ring},
-Zap. Nauchn. Sem. POMI \textbf{236} (1997); English transl.,
-J. Math. Sci. (New York) \textbf{95} (1999), no.~2, 2146--2155,
+\bibitem{Steinberg}
+B.~Steinberg, \emph{Simplicity, primitivity and semiprimitivity of
+\'etale groupoid algebras with applications to inverse semigroup algebras},
+\href{https://arxiv.org/abs/1408.6014}{arXiv:1408.6014} (2014).
+
+\bibitem{Stepanov}
+A.~V. Stepanov, \emph{On the normal structure of the general linear
+group over a ring}, Zap. Nauchn. Sem. POMI \textbf{236} (1997), 166--182;
+English transl., J. Math. Sci. \textbf{95} (1999), 2146--2155.
 \doi{10.1007/BF02169976}.
 
-\bibitem[Th]{Thom}
-A.~Thom,
-\emph{Examples of hyperlinear groups without factorization property},
-Groups Geom. Dyn. \textbf{4} (2010), no.~1, 195--208,
+\bibitem{Thom}
+A.~Thom, \emph{Examples of hyperlinear groups without factorization
+property}, Groups Geom. Dyn. \textbf{4} (2010), 195--208.
 \doi{10.4171/GGD/80}.
 
-\bibitem[VG]{VershikGordon}
-A.~M. Vershik and E.~I. Gordon,
-\emph{Groups that are locally embeddable in the class of finite groups},
-Algebra i Analiz \textbf{9} (1997), no.~1, 71--97; English transl.,
-St. Petersburg Math. J. \textbf{9} (1998), no.~1, 49--67.
-
-\bibitem[We]{Weiss}
-B.~Weiss,
-\emph{Sofic groups and dynamical systems},
-Sankhy\=a Ser. A \textbf{62} (2000), no.~3, 350--359.
-
 \end{thebibliography}
-
 \end{document}
