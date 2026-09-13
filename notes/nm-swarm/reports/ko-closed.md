@@ -88,8 +88,27 @@ imports it.
 - kh-cckw: the every-X HC6 is `Systolic.mirrorFold`.  This corrects my earlier name `mirrorFoldStatement`.
 - sec2-sentences: docstring fixed (4be3a3a5c).
 
-## NEXT (lead, 09-13 ~07:25): help theoremc-retire with `OsinLemma94CaseOneInput`
+## NEXT (lead, 09-13 ~07:25; restated after the ~08:30 restart): help theoremc-retire with `OsinLemma94CaseOneInput`
 The Prop is in hull-unbound's `GGT/VanKampen/Estimating/OsinLemma94PlanarPieces.lean` (80790fad1).  theoremc-retire
-sends ko-closed one sub-piece as a stated Prop.  Meanwhile ko-closed reads that module and
-`RealizedSectionFamily.false_of_quadrilateral_region` (`Estimating/OsinUnboundCaseOne.lean`).  No Prop is owned yet.
+landed the face-walk piece `OsinLemma94CaseOneWalkStatement` (`Estimating/OsinLemma94CaseOneWalk.lean`, 8a36ad06c).
+ko-closed asked theoremc-retire which sub-piece is its own and writes nothing until the answer arrives.  No Prop is owned
+yet, and no probe or landing was in flight at the restart.
+
+Findings sent to theoremc-retire and main.  Two gaps separate CaseOneWalk from
+`RealizedSectionFamily.false_of_quadrilateral_region`:
+- (B1) `NoInternalFaceDart` for `P.face k` is false when polygon `k` has a cutting side, because `cutting_internal` puts
+  both sides of the path in face `k`.  So `FaceSetBoundary.ofSingleton`, and with it the singleton `InnerGRegion`, is
+  unavailable.  But `GFaceWordInsertion.exists_quadrilateral_region` uses `hno` only in `hold_face`
+  (`GFaceQuadrilateralRegion.lean:255-262`), applied at :280 to darts of the source arc `P` and at :290 to darts of the
+  target arc `T`.  For those darts `faceOf (alpha z) ≠ f` follows from `hcells` and `hf`.
+- (B2) CaseOneWalk gives `darts.rotate r`, while the surgery needs `r = 0`.  `faceBoundary` is a `DiscDiagram` field
+  (`DiscDiagram.lean:111`), but re-basing it does not carry `S` by `rfl`.
+
+Proposed pieces:
+- (a) a rotated, `hno`-free `exists_quadrilateral_region`;
+- (b) `false_of_quadrilateral_face` on `S.diagram` directly;
+- (c) connector glue: `s1 := endConnector`, `s2 := startConnector`, an empty connector padded to `[l, inv l]` with `l`
+  a label on `P`, and `eps0 ≥ 2`;
+- (d) the assembly `OsinLemma94CaseOneInput`.
+
 nm-endpoints swaps the carrier on its row 8097c371f35d, and census retires baseline lines 369-370 at its next merge.
