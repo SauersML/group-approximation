@@ -2,6 +2,7 @@
 rg: 2
 id: row29-magnus-overgroups-via-stallings-quotients
 kind: route
+title: Stallings quotient enumeration shows the row-29 Magnus subgroups have no intermediate rank-two overgroups
 target: row29-magnus-subgroups-have-no-intermediate-rank-two-overgroups
 requires: []
 artifacts:
