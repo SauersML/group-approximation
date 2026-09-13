@@ -58,7 +58,7 @@ theorem isClopen_towerLevel (hC : IsReturnSection T r C) (i : ℕ) :
 /-- **For `i < r` we have `D_i = C`** (tex 1734). -/
 theorem towerLevel_of_lt (hC : IsReturnSection T r C) {i : ℕ} (hi : i < r) :
     towerLevel T C i = C :=
-  Subset.antisymm towerLevel_subset fun x hx => ⟨hx, lt_of_lt_of_le hi (le_returnTime hC hx)⟩
+  Subset.antisymm towerLevel_subset fun _ hx => ⟨hx, lt_of_lt_of_le hi (le_returnTime hC hx)⟩
 
 /-- Every point visits `C` backwards within `2r - 2` steps. -/
 theorem IsReturnSection.exists_backward (hC : IsReturnSection T r C) (x : X) :
