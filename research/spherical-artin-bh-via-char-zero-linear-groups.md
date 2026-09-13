@@ -2,7 +2,7 @@
 rg: 2
 id: spherical-artin-bh-via-char-zero-linear-groups
 kind: route
-title: Spherical Artin groups are linear over Q(x,y), so the characteristic-zero linear root would give them simple envelopes
+title: Spherical Artin groups are linear over Q(x,y), so the characteristic-zero linear root gives them simple envelopes
 target: spherical-artin-groups-satisfy-boone-higman
 requires:
   - spherical-artin-groups-are-linear-over-q-x-y

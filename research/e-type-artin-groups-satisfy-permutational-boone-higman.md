@@ -25,9 +25,13 @@ for every spherical-type Artin group.
    arXiv:0711.2372, §7.1). No other faithful embedding of an E-type Artin group
    in a mapping class group of a surface with boundary or punctures is recorded
    in the sources read.
-2. **Through linearity.** *Gives at most the plain form.*
-   `spherical-artin-groups-are-linear-over-q-x-y` places these groups over
-   `Q(x,y)`, and the open root `char-zero-linear-groups-satisfy-boone-higman`
-   would give simple envelopes. Whether those envelopes come from type (A)
-   actions is not asked there, and the E-reduction needs the permutational form,
-   because only that form is known to be closed under direct products.
+2. **Through linearity.** *Gives the plain form only* (2026-09-12).
+   - **Envelopes.** `spherical-artin-groups-are-linear-over-q-x-y` places these
+     groups over `Q(x,y)`. The root `char-zero-linear-groups-satisfy-boone-higman`,
+     now established, gives simple envelopes, so
+     `spherical-artin-groups-satisfy-boone-higman` holds.
+   - **Trust.** That rests on `polynomial-linear-groups-satisfy-boone-higman`,
+     whose review is pending (lane `bh-poly-linear-review`).
+   - **Why this claim stays open.** Whether those envelopes come from type (A)
+     actions is not asked there. The E-reduction needs the permutational form,
+     because only that form is known to be closed under direct products.

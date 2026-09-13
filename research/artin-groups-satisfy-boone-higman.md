@@ -69,9 +69,15 @@ Per the attached artifact:
    - *Dies for E_6, E_7, E_8.* Paris, §7.1: the Perron--Vannier geometric
      monodromy is faithful only for types A and D.
 2. **Linearity.** Spherical types are linear over `Q(x,y)`: Paris, Corollary 6.5,
-   together with Crisp's embedding into products of A, D, E factors.
-   - *Stops* at the open root `char-zero-linear-groups-satisfy-boone-higman`,
-     transcendence degree 2. Zaremsky's `GL_n(Q)` theorem does not reach it.
+   together with Crisp's embedding into products of A, D, E factors. The same
+   statement is Cohen--Wales, arXiv:math/0010204v2, Theorem 1.1.
+   - *Works for every spherical type, in the plain form* (2026-09-12).
+     - `char-zero-linear-groups-satisfy-boone-higman` is now established, and so
+       is `spherical-artin-groups-satisfy-boone-higman`.
+     - Both rest on `polynomial-linear-groups-satisfy-boone-higman`, whose review
+       is pending (lane `bh-poly-linear-review`).
+     - Zaremsky's `GL_n(Q)` theorem alone does not reach these groups.
+   - *Does not reach this root.* Linearity is used here only for spherical types.
 3. **Groups acting on locally finite trees** (BLIW Theorem C over F_2).
    - *Works* for the Euclidean triangles, through Squier's finite-index
      splittings.

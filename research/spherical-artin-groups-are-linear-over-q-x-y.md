@@ -38,5 +38,15 @@ representation of `A(Γ)`.
 
 **Trust.** Crisp's theorem and the primary faithfulness proofs are read through
 Paris's survey, not from the primary sources.
+- **Primary check (2026-09-12).** Cohen--Wales, arXiv:math/0010204v2, was read
+  from the PDF.
+  - Theorem 1.1: "Every Artin group of finite type is linear."
+  - Theorem 1.2, types A, D and E: coefficients lie in `Z[r,t,r^-1,t^-1]` and
+    `V` is free on the positive roots. The representation is faithful after
+    `r -> r_0` with `0 < r_0 < 1`.
+  - Source (2) is therefore confirmed from a primary source, over a field of
+    characteristic zero and transcendence degree 2.
+- **Not reached.** Digne, J. Algebra 268 (2003), doi 10.1016/S0021-8693(03)00327-2,
+  has no open-access copy and no arXiv version, so it was not read.
 
 The derivation is `spherical-artin-linearity-over-q-x-y-proof`.
