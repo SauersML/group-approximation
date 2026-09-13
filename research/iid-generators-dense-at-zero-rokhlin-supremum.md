@@ -17,8 +17,9 @@ with `H(κ), H(λ) > 0`, and put `X = (K^G, κ^G)` with measure `µ`. Let `Ind_�
 **Payoff.** By route `zero-supremum-collapse-via-dense-iid-generators` and the Baire category theorem,
 `K^G ≅ L^G` for all such bases with `Ind_λ(X)` non-empty. So all Bernoulli shifts of finite positive base
 entropy over `G` would be isomorphic. That is the finite-entropy part of the strong form of
-`zero-rokhlin-supremum-forces-bernoulli-collapse`. It would apply to the binary Leavitt unit group, Thompson's
-`V` and the tester host as soon as their supremum is zero.
+`zero-rokhlin-supremum-forces-bernoulli-collapse`. It would apply to the binary Leavitt unit group and the tester
+host as soon as their supremum is zero, provided they contain no free subgroup of rank two. It cannot apply to
+Thompson's `V`, which contains `F_2` (`ornstein-weiss-map-has-no-approximate-right-inverses`).
 
 **Model tests.**
 - Sofic and amenable groups have `s = ∞` and fail the hypothesis. There the conclusion is false for
@@ -63,5 +64,12 @@ entropy over `G` would be isomorphic. That is the finite-entropy part of the str
   shifts has approximate right inverses by endomorphisms, `d(φ ∘ ζ, id) < ε`. The isomorphism then comes from
   category in the space of joinings (`bernoulli-isomorphism-from-approximate-right-inverses`, route
   `zero-supremum-collapse-via-approximate-right-inverses`). This claim implies that property.
+- **Free subgroups (same lane).** On a group containing `F_2`, generating i.i.d. partitions are not dense for any
+  pair of bases of different entropy, nor for `H(λ) >= log 4`, at every supremum
+  (`ornstein-weiss-map-has-no-approximate-right-inverses`). A right inverse of the Ornstein–Weiss endomorphism would
+  give an odd almost invariant vector for `F_2` on `L²_0` of a Bernoulli shift, which Kesten's spectral bound
+  excludes. So this claim implies that no group with zero supremum contains `F_2`, and the routes through it cannot
+  give a collapse over `V`.
 - **Where it dies.** Exactness: no construction changes an exactly i.i.d. partition on a small set, keeps it
-  exactly i.i.d., and increases the information it carries.
+  exactly i.i.d., and increases the information it carries. On groups containing `F_2` the needed exactification is
+  refuted by the spectral bound above; on groups without free subgroups it is open.

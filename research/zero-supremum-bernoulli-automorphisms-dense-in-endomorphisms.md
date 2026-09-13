@@ -29,6 +29,9 @@ Conversely that claim contains this one, the case `κ = λ`.
 - Over `Z`, where the supremum is `∞`, the property is expected from Ornstein theory; this was not verified from a
   source here. If so, the property characterizes `s = 0` only among nonamenable groups.
 - No group with `s = 0` is known.
+- On every group containing `F_2`, at every supremum, the property fails for bases of entropy `>= log 4`
+  (`ornstein-weiss-map-has-no-approximate-right-inverses`). So this claim implies that no group with zero supremum
+  contains a free subgroup of rank two.
 
 ## Attempts
 

@@ -31,6 +31,9 @@ Equivalently (item 1 of `bernoulli-isomorphism-from-approximate-right-inverses`)
   so the property characterizes supremum zero only among nonamenable groups.
 - The content is only in non-invertible `φ`. For an automorphism, `ζ = φ^-1` is exact.
 - No group with `s = 0` is known.
+- On every group containing `F_2`, at every supremum, the property fails for bases of entropy `>= log 4`, and no two
+  shifts of different entropy both have it (`ornstein-weiss-map-has-no-approximate-right-inverses`). So this claim
+  implies that no group with zero supremum contains a free subgroup of rank two.
 
 ## Attempts
 
@@ -46,5 +49,10 @@ Equivalently (item 1 of `bernoulli-isomorphism-from-approximate-right-inverses`)
 - **Seward's small-support generators.** They give, for every `φ`, generating partitions of `X` within any `r` of
   `ξ^φ` with the same labels. These are approximate inverses of `φ` in a non-exact sense: their laws are only within
   d-bar `r` of `λ^G`. The endomorphism `ζ` must have law exactly `λ^G`.
-- **Where it dies.** For a non-invertible `φ` at zero supremum, no construction is known of an endomorphism `ζ` that
-  invents the fibre information of `φ` with exact i.i.d. law.
+- **Free subgroups.** Refuted where `F_2 <= G`. A right inverse of the Ornstein–Weiss endomorphism must invent one bit
+  for each coset of `F_2`, constant along its tree. It yields an odd, almost invariant unit vector for `F_2` on `L²_0`
+  of a Bernoulli shift, which Kesten's bound excludes. By contrast, fibres that run along one partial injection can
+  be cut into finite segments with small boundary, and there approximate inverses by automorphisms exist; this
+  contrast is a sketch, not landed as a node.
+- **Where it dies.** On groups without free subgroups of rank two, no construction is known, at zero supremum, of an
+  endomorphism `ζ` that invents the fibre information of a non-invertible `φ` with exact i.i.d. law.

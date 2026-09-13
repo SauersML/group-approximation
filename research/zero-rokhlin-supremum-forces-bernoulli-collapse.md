@@ -156,3 +156,9 @@ isomorphic, i.e. `X_h ≅ X_∞` for every `h > 0`.
 
   Dies at: approximate right inverses, with exact i.i.d. law, for non-invertible endomorphisms whose fibres spread
   along a nonamenable structure. An example is the Ornstein–Weiss map on a group containing `F_2`.
+  - **Refuted where `F_2 <= G` (same lane).** There the Ornstein–Weiss endomorphism has no approximate right inverses,
+    by Kesten's spectral bound. No two Bernoulli shifts of different entropy both have approximate right inverses,
+    and generating i.i.d. partitions are dense for no pair of different entropies
+    (`ornstein-weiss-map-has-no-approximate-right-inverses`). So neither the joining-space route nor the
+    partition-space route can give a collapse over a group containing `F_2`, such as Thompson's `V`, at any
+    supremum. Over such groups a proof of this claim needs a different mechanism.
