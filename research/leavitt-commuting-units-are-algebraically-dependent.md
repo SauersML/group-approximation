@@ -42,3 +42,21 @@ claim (`algebraic-dependence-from-finite-centralizer-rank`).
   (`research/artifacts/leavitt-unit-centralizer-rank-2026-09-13.md`, Section 3).
 - No general argument is known. For a linear unit with a large torsion-free centralizer, nothing forces a
   relation, and this is where the attempt stops.
+
+**Linear north--south units (proved, lane `ex2-q34-commuting-units`).**
+`leavitt-annulus-north-south-units-have-cyclic-centralizers` gives `C_R(u) = F_2[u^(+-1)]` for every unit with
+clean prefix attraction and repulsion and a linear middle permuting clopen annuli. This includes non-Thompson
+units such as `c(1 + n)` with `n` nilpotent in `s_10 R t_10`. So every commuting pair containing a conjugate of
+such a unit is algebraically dependent.
+
+**Persistent leading terms (task of this lane; not proved).** Let `u` have a persistent free-group leading term
+`s_(νγ) 1_E t_ν` (`leavitt-free-group-leading-term-forces-linear-depth`).
+- *What survives.* At a clean germ (`u s_ζ = s_(ζγ)`, `t_(ζγ) u = t_ζ`), the compression `t_ζ g s_ζ` of any
+  `g ∈ C_R(u)` is a polynomial in `s_γ, t_γ`, and `g -> Σ ε_d t^d` is `F_2[u^(+-1)]`-linear into
+  `F_2[t^(+-1)]`. See `research/artifacts/leavitt-annulus-north-south-centralizer-2026-09-13.md`, Section 6.
+- *Where it dies.* A persistent leading term only gives an attracting ray for the leading part. Lower terms of
+  `u` exit the ray and return to it, so no power of `u` has a clean germ. The compressions are not multiplicative,
+  and elements with zero germ are not controlled. No substitute for the middle-region hypothesis is known.
+
+**Relative commutants (a second route to Question 5.7).** `leavitt-endomorphism-relative-commutants-are-finite`
+(open; proved for core and triangular units) decides Question 5.7 without passing through this claim.

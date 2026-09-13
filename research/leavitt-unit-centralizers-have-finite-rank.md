@@ -26,6 +26,17 @@ Theorem E actor.
 - `rho(phi^j(c)) = 4^j`.
 - These arguments need point dynamics. For a genuinely linear unit there is no attractor, and no general
   description of `C_R(u)` is known. This is where the direct attempt stops.
+- **Linear annulus units (lane `ex2-q34-commuting-units`).** `rho = 1` for every north--south annulus unit
+  (`leavitt-annulus-north-south-units-have-cyclic-centralizers`). This covers linear twists `c(w + 1 - 1_([10]))`
+  with `w` a unit of the corner at `[10]`.
+  - The point dynamics is replaced by clean prefix germs `u s_ζ = s_(ζγ)`, `t_(ζγ) u = t_ζ` at both ends.
+  - The linear middle only has to permute clopen annuli.
+- **Germ map.** At one clean attracting germ, `g -> t_ζ g s_ζ` gives an `F_2[u^(+-1)]`-linear map
+  `C_R(u) -> F_2[t^(+-1)]`. It bounds the rank seen at that germ by `1`, and says nothing about elements with
+  zero germ there.
+- **Persistent leading terms.** They give an attracting ray for the leading part only. Lower terms exit and
+  return, so the germ map is unavailable. This is where the extension stops
+  (`research/artifacts/leavitt-annulus-north-south-centralizer-2026-09-13.md`, Section 6).
 
 **Exact data.** For four random infinite-order units of depth 2 or 3, `dim(C_R(u) ∩ R_4)` equals the dimension
 of the span of the powers of `u` in `R_4`, so the centralizer is `F_2[u^(+-1)]` up to depth 4. The diagonal copy
