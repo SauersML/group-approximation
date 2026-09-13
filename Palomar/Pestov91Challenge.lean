@@ -11,15 +11,28 @@ import Mathlib.GroupTheory.Subgroup.Simple
 import Mathlib.LinearAlgebra.UnitaryGroup
 
 /-!
-# Ozawa's question, Pestov's Open Question 9.1: an infinite simple hyperlinear Kazhdan group
+# Brown's question, Ozawa's hyperlinear form, Pestov's Open Question 9.1
 
+N. P. Brown, *Tracial invariants, classification and II₁ factor representations
+of Popa algebras*, arXiv:math/0111286 v1 (27 November 2001), Section 11,
+Question 7, page 33, verbatim:
+
+> Can an infinite, simple, discrete group with Kazdan's property T be embed
+> into the unitary group of an Rω-embeddable McDuff factor?
+
+This is the earliest written formulation we have located.  For an infinite
+simple group it is hyperlinearity: such a group is ICC, a hyperlinear group
+has its von Neumann algebra `L(G)` embedded in `Rω` (Ozawa, Proposition 7.1),
+and `L(G) ⊗ R` is an `Rω`-embeddable McDuff factor containing `G` in its
+unitary group; conversely a subgroup of `U(M)` with `M ⊂ Rω` lies in `U(Rω)`.
 N. Ozawa, *About the QWEP conjecture*, Internat. J. Math. 15 (2004) 501–530
-(arXiv:math/0306067, 2003), Section 7, page 26 of the arXiv PDF, verbatim:
+(arXiv:math/0306067, 2003), Section 7, page 26 of the arXiv PDF, asks it in
+hyperlinear language, verbatim:
 
 > It is unknown whether there exists a simple property (T) group Γ which is
 > hyperlinear.
 
-This is the first printed form of the question.  V. G. Pestov, *Hyperlinear
+V. G. Pestov, *Hyperlinear
 and sofic groups: a brief guide*, Bull. Symbolic Logic 14 (2008) 449–480
 (arXiv:0804.3968), Section 9, page 21 of the arXiv PDF, prints it with the
 sofic form added, verbatim:
@@ -30,7 +43,7 @@ sofic form added, verbatim:
 The two theorems below answer **yes**, in both of the question's forms:
 
 * `exists_infinite_simple_propertyT_hyperlinear` is the hyperlinear form,
-  Ozawa's question;
+  Brown's and Ozawa's question;
 * `exists_infinite_simple_propertyT_sofic` is the parenthetical sofic form,
   which is the stronger of the two because sofic groups are hyperlinear.
 
@@ -77,7 +90,7 @@ other subshifts.
 
 * Ozawa's sentence does not say "infinite"; finite groups are simple, Kazhdan,
   sofic and hyperlinear for trivial reasons, so both theorems ask `Infinite G`,
-  as Pestov's wording does.
+  as Brown's and Pestov's wordings do.
 * The block's separation thresholds, `1 - ε` for permutations and `2 - ε` for
   unitaries, are stronger than the fixed `1/4` of Pestov's Theorems 3.5 and
   3.6, so the block's notions imply his (all three conditions of each
@@ -180,17 +193,17 @@ def IsHyperlinearGroup (G : Type) [Group G] : Prop :=
 
 -- END SHARED BLOCK
 
-/-- **Ozawa's question, the hyperlinear form of Open question 9.1, has a
-positive answer**: some infinite simple group with Kazhdan's property `(T)`
-is hyperlinear. -/
+/-- **Brown's 2001 question, in Ozawa's hyperlinear form and as the hyperlinear
+form of Open question 9.1, has a positive answer**: some infinite simple group
+with Kazhdan's property `(T)` is hyperlinear. -/
 theorem exists_infinite_simple_propertyT_hyperlinear :
     ∃ (G : Type) (_ : Group G), Infinite G ∧ IsSimpleGroup G ∧ HasPropertyT G ∧
       IsHyperlinearGroup G := by
   sorry
 
-/-- **The sofic form of Open question 9.1, Pestov's addition to Ozawa's
-question, has a positive answer**: some infinite simple group with Kazhdan's
-property `(T)` is sofic. -/
+/-- **The sofic form of Open question 9.1, Pestov's addition to Brown's and
+Ozawa's question, has a positive answer**: some infinite simple group with
+Kazhdan's property `(T)` is sofic. -/
 theorem exists_infinite_simple_propertyT_sofic :
     ∃ (G : Type) (_ : Group G), Infinite G ∧ IsSimpleGroup G ∧ HasPropertyT G ∧
       IsSoficGroup G := by

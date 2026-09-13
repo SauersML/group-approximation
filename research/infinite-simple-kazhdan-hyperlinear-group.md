@@ -2,7 +2,7 @@
 rg: 2
 id: infinite-simple-kazhdan-hyperlinear-group
 kind: claim
-title: Some infinite simple group with Kazhdan's property (T) is hyperlinear (Ozawa's question of 2003, printed as Pestov Open Question 9.1)
+title: Some infinite simple group with Kazhdan's property (T) is hyperlinear (Brown's question of 2001, Ozawa's hyperlinear form of 2003, printed as Pestov Open Question 9.1)
 root: true
 distinct_from:
   binary-leavitt-unit-group-hyperlinear: that is the yes/no question for one explicit group; this is the existential question from the literature, which that group would answer positively but whose negation it cannot supply.
@@ -34,9 +34,13 @@ It stays in the repository: publishing it outside needs the user's approval.
 
 ## Source
 
-The question was first asked by N. Ozawa, *About the QWEP conjecture*, Internat. J. Math. 15
+The earliest written formulation located is N. P. Brown, *Tracial invariants, classification and II_1 factor
+representations of Popa algebras*, arXiv:math/0111286 v1 (2001-11-27), Section 11, Question 7, p. 33, read from
+the PDF on 2026-09-13: "Can an infinite, simple, discrete group with Kazdan's property T be embed into the unitary
+group of an R^ω-embeddable McDuff factor?" For an infinite simple group this is hyperlinearity (ICC, plus Ozawa's
+Proposition 7.1 that L(G) embeds in R^ω iff G is hyperlinear). The hyperlinear wording is N. Ozawa, *About the QWEP conjecture*, Internat. J. Math. 15
 (2004) 501–530, arXiv:math/0306067 (v1 2003-06-03; v2 2004-05-10 identical), Section 7, page 26
-of the arXiv PDF, read from the PDF on 2026-09-13, without attribution to anyone:
+of the arXiv PDF, read from the PDF on 2026-09-13, without attribution:
 
 > It is unknown whether there exists a simple property (T) group Γ which is hyperlinear.
 

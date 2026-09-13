@@ -15,7 +15,7 @@ import GroupApproximation.Sofic.LEFSofic
 import GroupApproximation.Pestov91.WitnessAssembly
 
 /-!
-# Proof of the theorems on Ozawa's question, Pestov's Open Question 9.1
+# Proof of the theorems on Brown's question, Ozawa's hyperlinear form, Pestov's Open Question 9.1
 
 This file repeats the challenge's shared block byte for byte, translates the
 development's vocabulary into it, and derives the statements
@@ -240,18 +240,18 @@ theorem exists_infinite_simple_propertyT_sofic_of
   exact ⟨E, inferInstance, hinf, hsimple, hasPropertyT_iff_hasKazhdanPropertyT.mpr hT,
     isSoficGroup_of_isLEF hlef⟩
 
-/-- **Ozawa's question, the hyperlinear form of Open question 9.1, has a
-positive answer**: some infinite simple group with Kazhdan's property `(T)`
-is hyperlinear. -/
+/-- **Brown's 2001 question, in Ozawa's hyperlinear form and as the hyperlinear
+form of Open question 9.1, has a positive answer**: some infinite simple group
+with Kazhdan's property `(T)` is hyperlinear. -/
 theorem exists_infinite_simple_propertyT_hyperlinear :
     ∃ (G : Type) (_ : Group G), Infinite G ∧ IsSimpleGroup G ∧ HasPropertyT G ∧
       IsHyperlinearGroup G :=
   exists_infinite_simple_propertyT_hyperlinear_of
     GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef
 
-/-- **The sofic form of Open question 9.1, Pestov's addition to Ozawa's
-question, has a positive answer**: some infinite simple group with Kazhdan's
-property `(T)` is sofic. -/
+/-- **The sofic form of Open question 9.1, Pestov's addition to Brown's and
+Ozawa's question, has a positive answer**: some infinite simple group with
+Kazhdan's property `(T)` is sofic. -/
 theorem exists_infinite_simple_propertyT_sofic :
     ∃ (G : Type) (_ : Group G), Infinite G ∧ IsSimpleGroup G ∧ HasPropertyT G ∧
       IsSoficGroup G :=
