@@ -58,3 +58,10 @@ CLAIM `523f02126056` closed carrier: GroupApproximation/Manuscript/NonMFSentence
 Every sentence of tex 295–357 is carried by a closed root-reachable declaration or honestly classified, except the two
 W1-wall rows (`0f22bdbc4184`, `dce7a9ff4e83`). Those wait on hgreendlinger, which the other swarm owns. The new module
 becomes root-reachable when root-wire wires it.
+
+## Item 2: help W1 binder 7 (agreed with w1-binder-7, 17:3x)
+
+CLAIM first-turn order across the edge doublings: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEdgeDoublingFirstTurns.lean (new module).
+- `EdgeInsertion` rotation on embedded darts, and first turns transport along `embed` for distinct corners;
+- the first-turn chain of a pocket survives `faceEdgeDoubling` (hull-respell) and `faceEdgeDoublingInside` (ghw-assembly).
+  The chain condition is stated inline; the unregistered draft `OsinPocketPinchFirstTurn` defines `PocketFaceSet.FirstTurns`, which this module does not redeclare.
