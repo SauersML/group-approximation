@@ -35,6 +35,43 @@ residually finite.
   classes in `H^2(N;F_p)` reached by twists are not profinitely visible, which is
   consistent with `H^1(N';F_p) = 0` along many covers.
 - **Computation.** The test for one `N` is linear algebra of size `|Q| × 3|Q|/p` over
-  `F_p`. Natural first inputs are the small Caprace–Conder–Kaluba–Witzel triangle groups
-  with known finite quotients (`PSL_2(q)`, `PSp_6(p)`, `PSL_3(F_q)`), with `p` the order
-  of the edge groups. Not yet run.
+  `F_p`.
+- **First-level data (2026-09-13, GAP 4.14 on MSI).** Scripts and raw outputs are in
+  `experiments/edge-twist-moments/` (`moments.g`, `run1.g`, `run2.g`, `run1.out`,
+  `run2.out`; `run1.out` predates the extra columns).
+  - *Method.* Take random triples `x_12, x_13, x_23` of elements of prime order `p` in
+    `Q = PSL(2,q)`. Form the coset triangle with vertex groups `<x_12,x_13>`,
+    `<x_12,x_23>`, `<x_13,x_23>` and keep the hyperbolic ones (half-girths with
+    `Σ 1/m_v < 1`). For `N = ker(Λ -> <x_12,x_13,x_23>)` compute:
+    - `dim Z_N = |G| - rank(B)`, where `B` is the incidence matrix of right cosets
+      against elements;
+    - `dim I_N = rank([B; μ]) - rank(B)`;
+    - `b_1(N;F_p)` from `χ(N\X) = 1 - b_1 + b_2`. It is printed only in `run2.out`;
+      for `p = 3` the `run1.out` triples give `dim Z_N` and `dim I_N` only.
+  - *Sanity check.* The Euler characteristic count gives an integer `b_1 >= 0` in every
+    case.
+
+  | `Q` | `p` | girths | `dim Z_N` | `b_1(N;F_p)` | `dim I_N` |
+  |---|---|---|---|---|---|
+  | `PSL(2,19)` (5 triples) | 5 | (6,8,8), (6,8,6), (6,6,8), (8,6,8), (6,8,6) | 1370 | 0 | 3 |
+  | `PSL(2,29)` (2) | 7 | (8,8,8), (8,6,6) | 6962 | 0 | 3 |
+  | `PSL(2,29)` (2) | 5 | (8,6,6) | 4874 | 0 | 3 |
+  | `PSL(2,31)` | 5 | (6,10,10) | 5954 | 0 | 3 |
+  | `PSL(2,27)` | 7 | (6,6,8) | 5618 | 0 | 3 |
+  | `PSL(2,23)` (5 triples) | 3 | e.g. (16,14,8), (4,14,14) | 178–584 | 44–176 | 1–2 |
+
+  In every hyperbolic coset triangle with `p >= 5`, all three vertex groups equal `Q`,
+  `N` has no `F_p`-homology in degree 1, and no nonzero edge twist splits at the first
+  level. So the cheap vanishing mechanism (cup products and Bocksteins from
+  `H^1(N;F_p)`) is unavailable there. With `p = 3` there is plenty of `H^1`, and the
+  moment space is already smaller.
+- **Cartan–Leray filter (standard; not re-derived at chain level).** Let `N'' <= N` be
+  normal in `Λ`, with `R = N/N''`. Pushing forward `H_2(N'';F_p) -> H_2(N;F_p)` is the
+  edge map of `E^2_{s,t} = H_s(R; H_t(N'';F_p))`. Its cokernel is filtered by
+  subquotients of `H_1(R; H_1(N'';F_p))` and `H_2(R;F_p)`. So `I_{N''} = I_N` unless `N`
+  has a finite quotient `R` with `p`-torsion in `H_2(R;Z)`, or with
+  `H_1(R; H_1(N'';F_p)) != 0`.
+
+  For the `p >= 5` examples above, a persistence proof would therefore need exactly
+  this: no finite quotient of `N` carries such `p`-local second homology along the
+  tower. That is the concrete shape of the open problem for these explicit groups.
