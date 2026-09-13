@@ -33,5 +33,14 @@ answer to Zaremsky Problem 4.4. True for `n <= 2`
   edge of a flag complex satisfies it. But after contraction the complex need
   not be flag, and replacing it by the clique complex of its 1-skeleton can
   change the homotopy type. Open.
-- Special classes: level sets of CAT(0) cube complexes with a single vertex
-  orbit (in progress, lane z4-04-fn-rips).
+- Special classes, established 2026-09-13:
+  - direct products of positive cases
+    (`connected-rips-complexes-pass-to-direct-products`);
+  - groups acting freely and transitively on the vertices of an
+    (n−1)-connected level set of a CAT(0) cube complex
+    (`cube-level-set-clique-complexes-model-the-level-set`);
+  - every Bestvina–Brady group of type `F_n`
+    (`bestvina-brady-groups-have-connected-rips-complexes`).
+  The cube method never reaches infinite Kazhdan groups of type `F_n` (e.g.
+  `SL_3(Z)`), since (T) groups have a global fixed point on CAT(0) cube
+  complexes and so cannot act freely on vertices.

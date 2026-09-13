@@ -22,7 +22,14 @@ This is the negative answer to Zaremsky Problem 4.4. By
   Rips complexes: one free vertex orbit and the flag condition, i.e. the
   combinatorics of cliques in Cayley graphs
   (`group-rips-complexes-are-cayley-graph-flag-complexes`).
+- Ruled out, 2026-09-13: Bestvina–Brady groups, including the Bieri–Stallings
+  groups of type `F_n` not `F_{n+1}`
+  (`bestvina-brady-groups-have-connected-rips-complexes`); direct products of
+  groups with (n−1)-connected Rips complexes
+  (`connected-rips-complexes-pass-to-direct-products`); hyperbolic groups and
+  `Z^n` (contractible at large scale).
 - Candidate families to test: groups of type `F_n` whose Rips complexes are
-  hard to analyze at every scale (lattices without a known combing,
-  Thompson-type groups at a fixed `n`, `F_n`-not-`F_{n+1}` groups that are not
-  Bestvina–Brady kernels). Nothing found as of 2026-09-13.
+  hard to analyze at every scale and that no cube-level-set method reaches:
+  higher-rank lattices such as `SL_3(Z)` (type `F_∞`, Kazhdan, not
+  cubulable), Thompson-type groups at a fixed `n`, `F_n`-not-`F_{n+1}` groups
+  that are not Bestvina–Brady kernels. Nothing found as of 2026-09-13.

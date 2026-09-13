@@ -138,7 +138,14 @@ finitely many cubes, and symmetric because `v_0, g v_0 ∈ Q` gives
 `N`, and `Flag(Cay(N,T)) = R_1(N,T)` by
 `group-rips-complexes-are-cayley-graph-flag-complexes`. ∎
 
-## Corollary B (Bestvina–Brady groups) — pending the Morse-lemma citation
+## Corollary B (Bestvina–Brady groups)
+
+Landed as `bestvina-brady-groups-have-connected-rips-complexes`, with the
+verified proof in its `-proof` route. BB97 Theorem 5.12(2)–(4), Corollary 2.6
+(1)–(2) and the Main Theorem were read from the source on 2026-09-13. The
+simplest form of the connectivity step is Corollary 2.6 for `J = {0} ⊆ R`. The
+slab argument in the bullets below is an alternative, and Lemma 2.3 of BB97
+makes it redundant.
 
 Let `Γ` be a finite simplicial graph with flag complex `Δ_Γ`, `A_Γ` its
 right-angled Artin group, and `X_Γ` the universal cover of the Salvetti
@@ -158,12 +165,10 @@ transitively on vertices. Let `φ: A_Γ → Z` send every generator to `1`, let
 - Bestvina–Brady Morse theory: ascending and descending links in `X_Γ` are
   copies of `Δ_Γ`, and the level set `X_{[−1/2,1/2]}` includes into the
   contractible `X_Γ` by an `n`-connected map when `Δ_Γ` is (n−1)-connected.
-  Hence `X_{[−1/2,1/2]}` is (n−1)-connected. The level-set Morse lemma needed
-  is Bestvina–Brady, Invent. Math. 129 (1997), Corollary 2.6. Hulbert–Zaremsky
-  arXiv:2608.25614 cite that numbering before their simplicial Lemma 3.1, a
-  sublevel-set form that does not cover level sets. **The statement of BB97
-  Corollary 2.6 is to be read in the source before the corollary is landed as
-  established.**
+  Hence `X_{[−1/2,1/2]}` is (n−1)-connected. BB97 Corollary 2.6 states
+  isomorphisms on `H̃_i` (homologically connected links) and on `π_1` (simply
+  connected links) for inclusions `X_J ↪ X_{J'}` of preimages of nonempty
+  connected sets. Homotopy connectivity then follows by Hurewicz.
 - Conclusion: if `Δ_Γ` is (n−1)-connected, equivalently (Bestvina–Brady)
   `BB_Γ` is of type `F_n`, then `R_1(BB_Γ, T)` is (n−1)-connected. Taking `Δ_Γ`
   (n−1)-connected but not n-connected gives groups of type `F_n` not `F_{n+1}`

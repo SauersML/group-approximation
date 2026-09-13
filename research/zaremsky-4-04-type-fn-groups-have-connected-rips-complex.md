@@ -76,7 +76,10 @@ Never write a `requires: []` route into this claim.
 - This lane: closure under direct products
   (`connected-rips-complexes-pass-to-direct-products`), and level sets of
   CAT(0) cube complexes (`cube-level-set-clique-complexes-model-the-level-set`).
-  The latter covers Bestvina–Brady groups once one citation check is done.
+  With Bestvina–Brady Morse theory the latter gives
+  `bestvina-brady-groups-have-connected-rips-complexes`: every Bestvina–Brady
+  group of type `F_n`, including the Bieri–Stallings groups of type `F_n` not
+  `F_{n+1}`, has an (n−1)-connected Rips complex. Unreviewed.
 - In these sources the problem is open for `n > 2` as of 2026-09-13.
 
 ## Attempts
@@ -85,5 +88,6 @@ Never write a `requires: []` route into this claim.
   and product closure. Level sets: when a group acts freely and transitively on
   the vertices of a level set of a CAT(0) cube complex, the Helly property of
   cubes and the nerve theorem show the Cayley clique complex is homotopy
-  equivalent to the level set. This reaches Bestvina–Brady kernels, which are
-  of type `F_n` but not `F_{n+1}`, but never infinite Kazhdan groups.
+  equivalent to the level set. This covers every Bestvina–Brady group of type
+  `F_n` (landed), but never infinite Kazhdan groups, which admit no free
+  vertex actions on CAT(0) cube complexes.
