@@ -274,6 +274,10 @@ Filled in as each part lands.
   rounding no-go, and uniform convergence of Cuntz suprema.
 - `ex-review2-analysis-2026-09-13-part8.md`: the K1-kernel of unital AH component groups is locally finite. This was the
   one census claim missed by parts 1--7, and a reconciliation of census ids against verdict rows caught it.
+- `ex-review2-analysis-2026-09-13-part9.md` (wave-2 priority review, outside the census): the Pauli tower's nontrivial
+  R-fibre W*-bundle (BBSTWW Question 3.14), with PASS on Theorems A, B and C and on fidelity to Definition 3.1; and
+  negative answers to CCEGSTW Questions 1.5 (routes via Toms and via the Pauli tower) and 5.29 (via Toms), with PASS and
+  every definition read verbatim.
 
 ## 4. Outcome of the census
 
