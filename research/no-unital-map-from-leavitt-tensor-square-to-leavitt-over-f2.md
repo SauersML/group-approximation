@@ -6,6 +6,8 @@ title: There is no unital homomorphism from L_(F_2)(1,2) ⊗ L_(F_2)(1,2) to L_(
 distinct_from:
   leavitt-tensor-powers-are-left-coherent: that is coherence of tensor powers, whose Attempts record the embedding question as open; this is the embedding question itself in characteristic two, as a target for implications.
   leavitt-commuting-units-are-algebraically-dependent: that is a statement about pairs of commuting units; this is the tensor-square nonembedding that it implies.
+artifacts:
+  - research/artifacts/brownlowe-sorensen-transfer-to-f2-2026-09-13.md
 root: true
 ---
 
@@ -29,13 +31,21 @@ arXiv:2512.09241v2 (22 Dec 2025), page 6, Question 2.8, read from the PDF:
 - "It is not yet known whether Kumjian-Pask algebras can be embedded into L_k(1,2)."
 - "If affirmative, this in particular answers the question whether L_k(1,2) ⊗_k L_k(1,2) embeds into
   L_k(1,2) as L_k(1,2) ⊗_k L_k(1,2) can be realized as the Kumjian-Pask algebra of the 2-graph".
-- Their bibliography lists N. Brownlowe and A. P. W. Sørensen, "L_{2,Z} ⊗ L_{2,Z} does not embed in
-  L_{2,Z}", J. Algebra 456 (2016) 1–22. That paper was not read, so its exact hypotheses (coefficient ring `Z`,
-  type of homomorphism) are unverified. Nothing over `F_2` follows from its title.
+- N. Brownlowe and A. P. W. Sørensen, *L_{2,Z} ⊗ L_{2,Z} does not embed in L_{2,Z}*, arXiv:1603.03618v1, J. Algebra
+  456 (2016) 1–22, read from the PDF on 2026-09-13 by lane `ex3-ara-cortinas-q57`.
+  - Theorem 4.1 reads: "There is no unital ∗-algebraic embedding of L2,Z ⊗ L2,Z into L2,Z."
+  - Page 2 calls the question over fields "an open problem in the subject".
+  - The proof needs integer positivity (Lemma 2.1, Proposition 4.4), and their Example 2.2 shows it fails over
+    `Z/2Z`. So nothing over `F_2` follows (artifact, Sections 1–2).
 - Their Weyl-algebra obstruction (Theorem 3.5) passes through a C*-norm and needs characteristic zero. It says
   nothing over `F_2`.
 
-No other source was searched (web search budget exhausted; arXiv API rate-limited).
+**Later check (lane `ex3-ara-cortinas-q57`).**
+- *Read and does not address the question.* H. V. Khanh, *Group algebras that do not embed into L_K(1,2)*,
+  Res. Math. Sci. 13 (2026) 72. Its obstruction is an unsolvable word problem.
+- *Checked by title only.* The other seven works that OpenAlex lists as citing Brownlowe–Sørensen. None announces an
+  answer.
+- *Not searched.* Web search was exhausted and the arXiv API was rate-limited. See the artifact, Sections 3–4.
 
 **What it would change.**
 - A positive answer, a unital embedding, would put the Brin--Thompson-type unit group `(L ⊗ L)^x`, which contains
@@ -52,6 +62,15 @@ No other source was searched (web search budget exhausted; arXiv API rate-limite
 **Commuting units.** A unital map sends `c ⊗ 1` and `1 ⊗ c`, for the north--south unit `c`, to algebraically
 independent commuting units. An obstruction to such pairs in `L` therefore decides the question; see the route
 above. No such obstruction is proved.
+
+**Thompson units (Brownlowe--Sørensen transfer, lane `ex3-ara-cortinas-q57`, unreviewed).**
+- *Their integer argument does not transfer.* Images here are arbitrary units, not unitaries, and even ∗-unitaries
+  over `F_2` need not be monomial (their Example 2.2).
+- *Their Proposition 3.4 does transfer.* Commuting elements of `U_V` satisfy a nonzero polynomial relation, over any
+  commutative ring, and the proof uses only the dynamics of `V`.
+- *Consequence.* For any unital `f` and any transcendental units `u, v` (e.g. `c`), `f(u ⊗ 1)` and `f(1 ⊗ v)` are not
+  both conjugate, by one unit, into `U_V` (artifact, Section 2).
+- *Where it dies.* Linear units with components of both signs.
 
 **Relative commutants (proved reformulation, lane `ex2-q34-commuting-units`).** Put `R = L` and
 `phi(z) = s_0 z t_0 + s_1 z t_1`, a unital endomorphism.
