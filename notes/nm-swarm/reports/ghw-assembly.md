@@ -136,7 +136,64 @@ and HydeLodha consumers of `FinitelyPresentedInfiniteSimpleStatement`, zipSpur, 
     `Manuscript/NonMF/TorsionFreeSectionAssemblyClosedGO`. nm-endpoints owns the module, and the
     partition names no lane for them, so the lead has been asked.
 
+The lead ruled that 301, 304 and 307 are ko-closed's.
+
+## Stale partial-row audit (2026-09-13)
+
+The lead's item is an audit of five partial census rows that looked stale. Each carrier was checked
+for four things: no binder, an `#audit_closed_axioms` line, reachability from the root, and bytes
+equal to origin.
+
+- Evidence common to all five rows:
+  - The green wave 7 root 4a6cb4e55 (tag 0913-054318-33163) imports all 25 carrier modules.
+  - Their bytes are the same at origin bf6beb797, at the wave 7 base d18407e34 and on disk.
+  - No live baseline line names a declaration below, so no re-grade needs a "retires" clause.
+- Each row still names at least one `#audit_closed_axioms` endpoint. Its other carriers are lemmas
+  whose binders are all subject binders, under `#audit_axioms`.
+
+1. b6d1590be7ab (ghw-charp2): formalized.
+   - ghw-charp2 re-graded the row at 58ad1d6e0.
+   - Its closed carriers are `printedGHWTheoremFour` and `ghwFinitelyGeneratedCharP`.
+   - Its lemmas are `hasHaagerupProperty_closure_of_charP` and `exists_places_minpoly_coeff`.
+   - The merged map (merge at 245a1c0c2) still shows partial until the next merge.
+2. LINE:1688 (dgo-analytic): formalized once the row names the closed forms.
+   - The one open Prop, `NaiveFreeProductAtAcylindricallyHyperbolic`, is proved by
+     `naiveFreeProductAtAcylindricallyHyperbolic`.
+   - The replacements are `dgoTheorem235Printed` and `simpleUniqueTraceAtHypEmbedded_closed`.
+     The second has no binder, but its audit line is `#audit_axioms` (nm-endpoints' module).
+   - The third replacement is `powersAveragingEstimate_of_isAcylindricallyHyperbolic`, with binders
+     `G` and `hrad`.
+   - The row's note quotes the DGO sentence f2bf6328169e, but the merge puts its decls on
+     92115dd7edef.
+   - Proposal sent to dgo-analytic.
+3. LINE:1725 (baseline-debt): formalized once four conditional decls are dropped.
+   - They are the two `_of_naiveFreeProduct` forms, `powersAveragingEstimate_of_naiveFreeProductProperty`
+     and `manuscriptSentence_algebraSimpleUniqueTraceStableRank` (hDGO, hGO).
+   - The closed carriers are already in the row: `dgoTheorem235Printed`,
+     `naiveFreeProductAtAcylindricallyHyperbolic` and `gerasimovaOsinTheorem11Printed`.
+   - Rows 2 and 3 are the only partial feeders of merged row 92115dd7edef.
+   - Proposal sent to baseline-debt.
+4. LINE:1155 (cite-ejz, no live lane): formalized, through census.
+   - The carrier `manuscriptSentence_jacobsonThreeCoordinatesCarryPropertyT :
+     PrintedJacobsonThreeCoordinatesCarryPropertyT` carries `#audit_closed_axioms`.
+   - jacobson's formalized LINE:1155 row carries the whole sentence.
+   - This row is the only partial feeder of merged row 3009704fef89.
+   - Keeping it keeps the one named-Prop carrier of the clause. Retiring it is the alternative.
+   - Sent to census.
+5. LINE:1629 (sec5-sentences): formalized once the row names the closed forms.
+   - The hard direction of Osin Theorem 1.1 is proved: `isAcylindricallyHyperbolicOsin_of_limitSet`
+     (`GGT/OsinLimitSetSpelling.lean:47`, dgo-geometric). Its type is a ∀, so its audit line is
+     `#audit_axioms`.
+   - The sentence's closed endpoint is `printedHullGeneratingSetLimitSet :
+     PrintedHullGeneratingSetLimitSet`. cite-hull's formalized row already names it.
+   - The row should replace `manuscriptSentence_hullGeneratingSetLimitSet`, whose hhard binder
+     stands for that direction.
+   - This row is the only partial feeder of merged row a9dd4b90e479.
+   - Proposal sent to sec5-sentences.
+
 ## Next
 
-Waiting for the census lane to retire lines 369/370, and for the lead to rule on lines 301/304/307
-and assign the next item.
+Waiting for three things:
+- dgo-analytic, baseline-debt and sec5-sentences to re-grade their rows;
+- census to re-grade or retire cite-ejz's LINE:1155, retire baseline lines 369/370 and re-merge;
+- the lead to assign the next item.
