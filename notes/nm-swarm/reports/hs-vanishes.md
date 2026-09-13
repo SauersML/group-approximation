@@ -209,8 +209,25 @@ Open, as read from origin:
 
 The lead reports that debt-conditional and leavitt-units each hold one of CutOutcome, Cut and Holds.
 `CutMove` (hull-component) and `CutLift` (hull-bridge) carry nearly the same data.  hs-vanishes asked
-hull-bridge once for one unstarted piece: its statement, its consumer and a module name.  This lane
-writes no Lean until hull-bridge names the piece.
+hull-bridge once for one unstarted piece.  The lead then reported that hull-bridge has no W2 piece
+left, so this lane wrote no Lean on W2.
+
+## W1 C5 of `PhiPrimeCountInput` (lead assignment, 2026-09-13)
+
+`PhiPrimeCountInput` (`GGT/VanKampen/Estimating/OsinAppendixEulerCount.lean:52`, owned by hull-euler) is
+the Euler count `|M| ≤ 3(n + r − 1)` of Osin's `Φ'_M` (Appendix, Lemma 9.3).  hull-euler's plan (report
+`fbef94518`) proves it with one merged outer vertex `O`, in steps C1 to C6.  The lead gave this lane
+C5:
+
+* C5 injects every two-gon that C4 does not cover, and whose face class holds a cell, into the
+  components not linked to `O` and the isolated cells.
+* It uses (J) `CombMap.IsRestriction.faceOf_eq_of_faceClass` (`CombMapRestrictionFaceClasses`,
+  `9fdb80035`, probe `0913-032836-75226` green).  It sums over the components with
+  `card_le_of_linked` (`OsinAppendixEulerPhiBound`).
+
+hull-euler states C5 as a named proposition and sends this lane its Lean name and file.  This lane
+writes no Lean until then.  After that it proves C5 in a new module of its own: statement landed
+unverified, then proof, probe and landing.
 
 ## Rows (`metadata/nm-census-rows/hs-vanishes.tsv`)
 
@@ -226,7 +243,7 @@ writes no Lean until hull-bridge names the piece.
 * Probe `0913-014626-72541` GREEN on base `a763cb445` (BUILT and COMPILED both modules).  The bytes
   on origin are identical, so the green landing reported NOTHING TO LAND (`49ad84503`).
 * Rows LANDED `d785326e7`.  Report LANDED `031bcc87b`, updated in `3e34da4ea`, `a4c5b47db`,
-  `840e6a1d8` and by the commit that carries this section.
+  `840e6a1d8`, `395b3c31c` and by the commit that carries this section.
 * Wire queue: `GroupApproximation.Manuscript.OneSidedMFRadical.HSVanishesProducers` at `850cd7b7d`;
   root-imported by root-wire's wave 2, `c72bdfd5d` (02:45).
 * Census merge `63f147d7b` (files at `94bb0a9f8`, 02:41): baseline lines 66 and 79 removed as stale.
@@ -234,5 +251,6 @@ writes no Lean until hull-bridge names the piece.
   needs its carriers in the root closure; the next merge regrades them.
 * Residual propositions owned by this lane: none.  The target is met by the producer.
 * W1 h94: no piece for this lane.  The metric layer closed through sec5-sentences (`e3da1ba60`).
-* Next: one W2 certificate cut piece, named by hull-bridge (asked at 04:25, origin `57071835a`).
-  If nothing is left to split, the lead reassigns this lane.  No Lean in flight.
+* W2 hbridge: no piece for this lane.  hull-bridge has none left.
+* Next: C5 of `PhiPrimeCountInput`, once hull-euler names the proposition and its file.  No Lean in
+  flight.
