@@ -13,10 +13,25 @@ distinct_from:
   boone-higman-conjecture: that is the conjecture for all decidable finitely generated groups; this is its named metabelian case.
 artifacts:
   - research/artifacts/bh-metabelian-products-2026-09-12.md
+  - research/artifacts/bh-quasi-linear-pbh-2026-09-13.md
 ---
 
-**OPEN.** Every finitely presented metabelian group embeds in a finitely
-presented simple group.
+**ESTABLISHED (2026-09-13)** through `fp-metabelian-bh-via-quasi-linear-pbh`
+(lane `bh-metabelian`). **Not independently reviewed.** Every finitely presented
+metabelian group embeds in a finitely presented simple group. In fact every
+finitely generated metabelian group lies in the permutational class `B_A`.
+
+- **How.** Each characteristic-`p` factor now sits inside a finitely presented
+  self-similar affine group over `F_p[s_1..s_k]`
+  (`char-p-linear-groups-satisfy-permutational-boone-higman`). So does the
+  characteristic-zero factor. So the product step happens inside `B_A`
+  (`quasi-linear-groups-satisfy-permutational-boone-higman`).
+- **Review.** The new nodes are listed in §1 of the artifact
+  `bh-quasi-linear-pbh-2026-09-13.md`, and the sources checked in §3.
+- **History.** The sections "What is missing, precisely", "Route status" and
+  "Attempts" below describe the state before 2026-09-13 and are kept unchanged. The
+  older route `fp-metabelian-bh-via-linear-factors-and-products` still stops at
+  `boone-higman-closed-under-finite-direct-products`, which stays OPEN.
 
 *Marked `root` because it is a named open class:* item (7) of Problem 5.3 in
 Belk--Bleak--Matucci--Zaremsky, arXiv:2306.16356v3, still open after their
