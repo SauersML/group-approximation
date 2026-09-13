@@ -37,3 +37,12 @@ error.
     - `x_0`-rays drive defect and separation to 0 together;
     - perturbed commuting pairs pay about twice their separation in defect.
   - **Gap.** A witness with separation `ε` must be `min(ε/8, ε²/(24k²))`-far from following every such action.
+- **Following models reduce to invariant means (2026-09-13).**
+  - **Equivalence.** Models following an `F`-set with error `→ 0` separate the commutator exactly when some invariant
+    mean on that `F`-set charges `Moved(c)`. Every such mean gives all nontrivial elements of `F'` the same moved mass,
+    and makes slabs over the interval null (`thompson-f-following-models-separate-iff-mean-charges-commutator`).
+  - **Collapse.** On pointwise stabilizers of finite unions of intervals with interior, including the end-rigid cosets
+    `F_[0,a]` and `F_[a,1]`, and on `F/H` for amenable `H`, such means exist only if `F` is amenable
+    (`thompson-f-interval-stabilizer-cosets-separate-only-if-amenable`).
+  - **Gap.** A following witness needs a non-amenable co-amenable subgroup outside these families, or infinitely many
+    orbit types. Models following no `F`-set are untouched (`research/artifacts/thompson-f-nonspatial-f-sets-2026-09-13.md`).
