@@ -174,6 +174,7 @@ Filled in as each part lands.
 | `rank-two-spin-trapping-blind-to-depth-three-brackets` | unitary-higher-brackets | PASS, ABP recalled | 1 §1.12 |
 | `rank-two-trapping-blind-to-depth-four-brackets` | unitary-higher-brackets | PASS | 1 §1.12 |
 | `spin-trapping-blind-to-fourfold-commutators-in-every-rank` | unitary-higher-brackets | PASS, ABP and Wood recalled | 1 §1.12 |
+| `ah-unitary-component-kernel-is-locally-finite` | unitary-higher-brackets | PASS | 8 §8.1 |
 | `bauer-c-space-strict-comparison-divides-unit` (Theorem A; Lemma 3 of part 1, Section 3 of part 2) | tw-rotation-gluing | PASS, wording note | 2 §2.2, §2.3 |
 | `bauer-c-space-strict-comparison-pure-and-z-stable` | tw-rotation-gluing | PASS | 2 §2.4 |
 | `bauer-strict-comparison-unit-division-is-local` | tw-rotation-gluing | PASS | 2 §2.5 |
@@ -271,10 +272,13 @@ Filled in as each part lands.
 - `ex-review2-analysis-2026-09-13-part7.md`: Baum--Connes at Bernoulli coefficients (weak K-equivalence, host splitting,
   injectivity over every host), the module-route host constraints, the Deligne and stability imports, the wreath
   rounding no-go, and uniform convergence of Cuntz suprema.
+- `ex-review2-analysis-2026-09-13-part8.md`: the K1-kernel of unital AH component groups is locally finite. This was the
+  one census claim missed by parts 1--7, and a reconciliation of census ids against verdict rows caught it.
 
 ## 4. Outcome of the census
 
-- **Verdicts.** All 86 census claims were reviewed: 86 PASS, 0 FAIL, 0 GAP.
+- **Verdicts.** All 86 census claims were reviewed: 86 PASS, 0 FAIL, 0 GAP. Parts 1--7 covered 85. The reconciliation
+  added the 86th (part 8), and the id check found no other gap.
 - **Graph fix.** One, landed at `d16d59955a`: requires for `zp-detection-iff-bootstrap-sufficiency-and-kk-g-generation-proof`.
 - **Wording notes.** Three, each sent to its owner: the cut levels and inactive members in tw-rotation-gluing, and the
   left-sided compression in rank-toms-b-obstruct.
