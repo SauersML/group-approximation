@@ -43,84 +43,69 @@ theorem vertexOf_alpha_getElem_last (hw : IsClosedDartWalk M walk) (h0 : 0 < wal
   obtain ⟨hne, _, hclose⟩ := hw
   simpa only [List.getLast_eq_getElem, List.head_eq_getElem] using hclose
 
+/-- **Rotating a closed dart walk keeps it closed**, through the chain-level
+`ClosedWalkFaceColouring.closedChain_append_comm`. -/
+theorem append_comm {P Q : List M.Dart} (hw : IsClosedDartWalk M (P ++ Q)) :
+    IsClosedDartWalk M (Q ++ P) := by
+  obtain ⟨hne, hcc⟩ := isClosedDartWalk_iff_closedChain.mp hw
+  refine isClosedDartWalk_iff_closedChain.mpr
+    ⟨fun h => hne ?_, ClosedWalkFaceColouring.closedChain_append_comm hcc⟩
+  obtain ⟨hQ, hP⟩ := List.append_eq_nil_iff.mp h
+  rw [hP, hQ, List.nil_append]
+
+/-- The rotation of a closed dart walk that starts at position `i`. -/
+theorem rotate_at (hw : IsClosedDartWalk M walk) (i : ℕ) :
+    IsClosedDartWalk M (walk.drop i ++ walk.take i) := by
+  have h : IsClosedDartWalk M (walk.take i ++ walk.drop i) := by
+    rwa [List.take_append_drop]
+  exact h.append_comm
+
+/-- The dart at position `m` of the rotation starting at `i`, for `m` before the wrap. -/
+theorem getElem_rotate_at {i m : ℕ} (him : i + m < walk.length) :
+    (walk.drop i ++ walk.take i)[m]'(by
+      rw [List.length_append, List.length_drop, List.length_take]; omega) =
+      walk[i + m] := by
+  rw [List.getElem_append_left (by rw [List.length_drop]; omega), List.getElem_drop]
+
 /-- **The lobe.**  If two darts at positions `i < j` start at one vertex, the darts at positions
 `i, …, j - 1` form a closed dart walk. -/
 theorem lobe (hw : IsClosedDartWalk M walk) {i j : ℕ} (hij : i < j) (hj : j < walk.length)
     (hpinch : M.vertexOf walk[i] = M.vertexOf walk[j]) :
     IsClosedDartWalk M ((walk.drop i).take (j - i)) := by
-  have hlen : ((walk.drop i).take (j - i)).length = j - i := by
-    rw [List.length_take, List.length_drop]
+  have hrot := hw.rotate_at i
+  have hlen : j - i < (walk.drop i ++ walk.take i).length := by
+    rw [List.length_append, List.length_drop, List.length_take]
     omega
-  have hne : (walk.drop i).take (j - i) ≠ [] := by
-    intro h
-    have h' := congrArg List.length h
-    rw [hlen, List.length_nil] at h'
-    omega
-  refine ⟨hne, List.isChain_iff_getElem.mpr fun m hm => ?_, ?_⟩
-  · have hm' : i + m + 1 < walk.length := by
-      rw [hlen] at hm
-      omega
-    simpa only [List.getElem_take, List.getElem_drop, Nat.add_assoc] using
-      hw.vertexOf_alpha_getElem hm'
-  · rw [List.getLast_eq_getElem, List.head_eq_getElem]
-    simp only [List.getElem_take, List.getElem_drop, hlen, Nat.add_zero]
-    have hidx : i + (j - i - 1) + 1 = j := by omega
-    have h := hw.vertexOf_alpha_getElem (i := i + (j - i - 1)) (by omega)
-    rw [hidx] at h
-    exact h.trans hpinch.symm
+  have h0 := getElem_rotate_at (walk := walk) (i := i) (m := 0) (by omega)
+  have hk := getElem_rotate_at (walk := walk) (i := i) (m := j - i) (by omega)
+  have hidx : i + (j - i) = j := by omega
+  have hpinch' : M.vertexOf (walk.drop i ++ walk.take i)[0] =
+      M.vertexOf (walk.drop i ++ walk.take i)[j - i] := by
+    rw [h0, hk]
+    simpa only [Nat.add_zero, hidx] using hpinch
+  have hlobe := hrot.take (k := j - i) (by omega) hlen hpinch'
+  rwa [List.take_append_of_le_length (by rw [List.length_drop]; omega)] at hlobe
 
 /-- **The walk with the lobe removed.**  If two darts at positions `i < j` start at one vertex,
 the darts before position `i` and from position `j` on form a closed dart walk. -/
 theorem excise (hw : IsClosedDartWalk M walk) {i j : ℕ} (hij : i < j) (hj : j < walk.length)
     (hpinch : M.vertexOf walk[i] = M.vertexOf walk[j]) :
     IsClosedDartWalk M (walk.take i ++ walk.drop j) := by
-  have hlen : (walk.take i ++ walk.drop j).length = i + (walk.length - j) := by
-    rw [List.length_append, List.length_take, List.length_drop]
+  have hrot := hw.rotate_at i
+  have hlen : j - i < (walk.drop i ++ walk.take i).length := by
+    rw [List.length_append, List.length_drop, List.length_take]
     omega
-  have hne : walk.take i ++ walk.drop j ≠ [] := by
-    intro h
-    have h' := congrArg List.length h
-    rw [hlen, List.length_nil] at h'
-    omega
-  have hget : ∀ m (hm : m < (walk.take i ++ walk.drop j).length),
-      (walk.take i ++ walk.drop j)[m] =
-        if hmi : m < i then walk[m] else walk[j + (m - i)]'(by rw [hlen] at hm; omega) := by
-    intro m hm
-    by_cases hmi : m < i
-    · rw [dif_pos hmi, List.getElem_append_left (by rw [List.length_take]; omega),
-        List.getElem_take]
-    · rw [dif_neg hmi, List.getElem_append_right (by rw [List.length_take]; omega),
-        List.getElem_drop]
-      congr 1
-      rw [List.length_take]
-      omega
-  refine ⟨hne, List.isChain_iff_getElem.mpr fun m hm => ?_, ?_⟩
-  · rw [hget m (by omega), hget (m + 1) hm]
-    by_cases hmi : m + 1 < i
-    · rw [dif_pos (show m < i by omega), dif_pos hmi]
-      exact hw.vertexOf_alpha_getElem (by omega)
-    · by_cases hmi' : m < i
-      · rw [dif_pos hmi', dif_neg hmi]
-        have hm1 : m + 1 = i := by omega
-        have h := hw.vertexOf_alpha_getElem (i := m) (by omega)
-        simp only [hm1] at h
-        simpa only [hm1, Nat.sub_self, Nat.add_zero] using h.trans hpinch
-      · rw [dif_neg hmi', dif_neg hmi]
-        have hidx : j + (m + 1 - i) = j + (m - i) + 1 := by omega
-        simp only [hidx]
-        exact hw.vertexOf_alpha_getElem (by rw [hlen] at hm; omega)
-  · rw [List.getLast_eq_getElem, List.head_eq_getElem, hget _ (by omega), hget 0 (by omega)]
-    by_cases hi0 : 0 < i
-    · rw [dif_pos hi0, dif_neg (show ¬ (i + (walk.length - j) - 1 < i) by omega)]
-      have hidx : j + (i + (walk.length - j) - 1 - i) = walk.length - 1 := by omega
-      simp only [hidx]
-      exact hw.vertexOf_alpha_getElem_last (by omega)
-    · have hi0' : i = 0 := by omega
-      subst hi0'
-      rw [dif_neg (show ¬ (0 + (walk.length - j) - 1 < 0) by omega), dif_neg (by omega)]
-      have hidx : j + (0 + (walk.length - j) - 1 - 0) = walk.length - 1 := by omega
-      simp only [hidx, Nat.sub_zero, Nat.add_zero]
-      exact (hw.vertexOf_alpha_getElem_last (by omega)).trans hpinch
+  have h0 := getElem_rotate_at (walk := walk) (i := i) (m := 0) (by omega)
+  have hk := getElem_rotate_at (walk := walk) (i := i) (m := j - i) (by omega)
+  have hidx : i + (j - i) = j := by omega
+  have hpinch' : M.vertexOf (walk.drop i ++ walk.take i)[0] =
+      M.vertexOf (walk.drop i ++ walk.take i)[j - i] := by
+    rw [h0, hk]
+    simpa only [Nat.add_zero, hidx] using hpinch
+  have hrest := hrot.drop (k := j - i) hlen hpinch'
+  rw [List.drop_append_of_le_length (by rw [List.length_drop]; omega), List.drop_drop,
+    Nat.add_sub_cancel' hij.le] at hrest
+  exact hrest.append_comm
 
 end IsClosedDartWalk
 
