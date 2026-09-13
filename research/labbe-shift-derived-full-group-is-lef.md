@@ -41,7 +41,17 @@ artifacts:
 - **Schreier rigidity.**
   - Mechanism: a finite model whose Schreier balls all look orbital yields charts, commuting moves and a legal periodic colouring.
   - Failure point: this only shows that some vertex of every finite model is non-orbital (artifact, Section 5). LEF models act regularly on finite groups, and they are not refuted.
-- **Still open.** Two routes remain:
-  - (C1) the spatial crux, `labbe-relator-shifts-carry-patch-rich-periodic-points`;
-  - (C2) non-spatial finite groups exact on large balls.
+- **(C1), the spatial crux: refuted (2026-09-13, ex2-labbe-lef-crux, unreviewed).**
+  - `labbe-relator-shifts-carry-patch-rich-periodic-points` is false, by
+    `labbe-relator-shift-periodic-points-carry-trivial-actions`. The route
+    `labbe-full-group-lef-via-periodic-relator-shifts` is dead.
+  - Mechanism: every `Gamma`-set of `o(k^4)` Schreier growth consists of fixed points and standard orbits
+    (`labbe-full-group-small-growth-actions-are-standard`, via Matte Bon's classification of confined subgroups).
+  - So finite `n`-exact models of quadratic growth are trivial for `n >= n_0`
+    (`labbe-full-group-finite-small-growth-models-are-trivial`).
+  - This completes the Schreier rigidity item above, for models whose balls are all trivial or orbital.
+- **Still open: (C2), narrowed.** Finite groups `G_n` exact on `B_n(Gamma)` all of whose actions of quadratic
+  growth up to scale `n` are trivial (artifact `research/artifacts/labbe-lef-crux-small-growth-models-2026-09-13.md`,
+  Section 6). Tower-type approximations, as for minimal `Z`-subshifts, are excluded. A witness must, at every
+  nontrivial action, have Schreier balls larger than `C k^2` somewhere below scale `n`.
 - **fp methods.** The artifact, Section 7, checks Brin's `2V`, the `Sigma`-invariants and Matte Bon. The first rests on compression, which a full-support invariant probability forbids. The `Sigma`-invariants are vacuous for a perfect group. Matte Bon's two papers have no finite presentation criterion.

@@ -24,7 +24,14 @@ would invalidate the three Labbé routes named above.
 ## Attempts
 
 - **LEF.** Live: `labbe-not-fp-via-lef`. An infinite simple LEF group is not finitely presented.
-  The LEF question has its own claim and crux (`labbe-relator-shifts-carry-patch-rich-periodic-points`).
+  - The LEF question has its own claim, `labbe-shift-derived-full-group-is-lef`.
+  - Its spatial crux is refuted (2026-09-13, unreviewed): finite models of quadratic Schreier growth that satisfy
+    the short relators are trivial (`labbe-full-group-finite-small-growth-models-are-trivial`).
+  - So a LEF refutation of finite presentation needs finite groups that act trivially whenever the growth is
+    small.
+- **Finite marked approximants of small growth.** Dead for the same reason. Any refutation through
+  non-isolation needs infinite approximating marked groups, or finite ones none of whose nontrivial
+  actions has quadratic growth up to scale `n`.
 - **Infinitely generated homology.** Dead: `labbe-not-fp-via-infinitely-generated-homology`.
   `H_2 ≅ Z ⊕ T` with `T` finite, and all `H_j` are finitely generated
   (`labbe-shift-derived-full-group-homology-is-finitely-generated`).
