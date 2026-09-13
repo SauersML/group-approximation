@@ -83,5 +83,15 @@ sieve 6. Every exit code is 0, and no run hits a limit or writes to stderr.
 `nauty-geng`, and the correctness of `zds3.c`. The finite-group test cannot
 exercise sieves 2, 3, 5 and 6, because they would prune genuine solutions in
 groups with torsion. There is no per-graph proof object; the landed evidence
-is the program, the job scripts and the logs. The next case is not settled:
-at 22 vertices some labellings survive every sieve (§6 of the artifact).
+is the program, the job scripts and the logs. The next case is not settled
+(§6 of the artifact).
+
+## Attempts
+
+- **Toward `>= 24` (2026-09-13).** The full `n = 22` run (job 603988, `-pw 4 8`) left six
+  labellings on two graphs that pass every sieve. With the exponent bound of sieve 6 raised to
+  12, all six are excluded. Each forces 52 power relations `u^11 = 1`, and GAP recomputes that
+  the quotient by those roots has order 3 or 1, which merges distinct products. So the exponent
+  bound, not the coset limit, was the obstacle. `>= 24` is not claimed: the other shards run with
+  the same bound, not all of them have finished, and shard 76 timed out with 940 graphs
+  unsearched (artifact §6).

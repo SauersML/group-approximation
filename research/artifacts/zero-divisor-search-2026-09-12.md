@@ -328,3 +328,32 @@ exactly when some torsion-free quotient of `G_Gamma` is injective on the vertice
   unresolved search survivors, not zero divisors: nothing is known yet about whether the
   corresponding groups have a torsion-free quotient that is injective on the vertices. A bound
   `>= 24` needs them excluded, by a stronger enumeration or a structural argument.
+  - Survivors decided (`surv22.sbatch`, `surv22b.sbatch`, `pwdbg.sbatch`; MSI jobs 706163, 706602
+    and 706972; logs `surv22.706163.log`, `surv22b.706602.log`, `pwdbg.706972.log`). All six are
+    excluded by sieve 6 once its exponent bound reaches 11.
+    - Which setting decides. The unmodified `n = 22` binary (source md5
+      `18a83240ff82d0bcdcdcd33c15780d72`) on the two graphs leaves the six labellings with
+      `-pw 4 8`, with `-pw 5 8`, and with `-pw 4 8` at leaf coset limits 262144 and 1000000. It
+      leaves none with `-pw 4 12`, or with `-pw 6 12` at leaf limits 64000 and 262144. Every run
+      searches the same tree (295,603 nodes, 185,922 coincidence and 9,321 finite prunes), so
+      exactly these six leaves change status.
+    - Second tree. Root vertex 19 gives 282,941 nodes, six survivors with `-pw 4 8` and none with
+      `-pw 6 12`.
+    - Power relations. `zdsdbg.c` is `zds3.c` with `MAXC` raised to `2^22` and a print at each leaf
+      excluded by sieve 6, with no other change (`pwdbg.out`). At each of the six leaves the table
+      shows 52 relations `u^11 = 1`, with `u` of length 1 to 6, and 11 is the exponent in every
+      one. The abelianizations are `Z/3 x Z/11` on graph 1 and `Z/11` on graph 2
+      (`surv22.gap.out`); `<x, y | cycle words>` is not detected finite (enumeration exceeds
+      4,000,000 cosets).
+    - Independent recheck in GAP (`pwcheck.g`, output in `pwdbg.706972.log`). For each leaf,
+      `Q = <x, y | cycle words, the 52 roots u>` is finite, of order 3 on graph 1 and trivial on
+      graph 2, and the 33 edge products take 3 and 1 values in `Q`. So the roots merge distinct
+      products, which is the contradiction sieve 6 reports. GAP does not re-derive `u^11 = 1` in
+      `<x, y | cycle words>`; that step rests on the program's coset table.
+    - On graph 2, survivors 3 and 6, and survivors 4 and 5, have cycle-word sets that differ by the
+      swap `x <-> y`, compared up to cyclic permutation and inversion.
+    - No labelling of these two graphs survives. This does not give `>= 24`. The full run uses
+      `-pw 4 8`, so other shards can leave survivors of the same kind. When this was written, 208
+      of 512 shards had finished, and only shards 17 and 52 had survivors. Shard 76 hit the
+      28000 s timeout (rc 124) after 3106 of its 4046 graphs, so 940 of its graphs are unsearched.
+      The harvest needs those graphs rerun and every survivor rechecked with `-pw 4 12` or more.
