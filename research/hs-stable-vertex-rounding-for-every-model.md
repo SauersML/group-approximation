@@ -74,9 +74,11 @@ extend to trace-preserving representations of `G`.
   - **Most concrete handle: the Laurent sibling.** theorem-e also has route
     `unit-type-rounding-via-laurent-vertex-rounding` (requires `laurent-vertex-rounds-for-every-model`).
     Lane `nh-laurent-commutant` (52efa2195) reduced its converse to a relative-(T) question: is the
-    mixed-level root group `K_i` Kazhdan for `r >= 4`? Unlike flexible stability, relative (T) is
-    within reach of Ershov–Jaikin-Zapirain angle methods, so `K_i` Kazhdan is the one point where the
-    existence problem becomes a (T)-style question the corpus has tools for. Recommended sub-target.
+    mixed-level root group `K_i` Kazhdan for `r >= 4`? **Answered (lane `nh-ki-kazhdan`, 44267adad; PASS in
+    `research/artifacts/review-swarm6-analysis-2026-09-12.md` §5):** yes for `r >= 5`
+    (`mixed-level-root-group-is-kazhdan-in-rank-at-least-five`), no for `r = 4`
+    (`mixed-level-root-group-is-not-kazhdan-in-rank-four`). The sub-target is settled. What it gives the
+    converse is recorded in the correcting bullet on `laurent-vertex-rounds-for-every-model`.
 - **Congruence-kernel projections (2026-09-12, lane `nh-h1-theorem-e-instance`).** Void at every fixed level
   (`theorem-e-congruence-projections-vanish-at-regular-trace`). The route was: take almost-invariant vectors of
   the congruence kernels `Γ(I)`, project onto their fixed subspaces, then correct with a Kazhdan projection.
