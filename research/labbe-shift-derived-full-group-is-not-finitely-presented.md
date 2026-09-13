@@ -61,3 +61,9 @@ would invalidate the three Labbé routes named above.
   - The open input is `labbe-tiles-admit-periodic-quantum-tilings-at-every-scale`. By
     `periodic-quantum-tilings-refute-quantum-rigidity`, such a tiling must be contextual: no
     one-dimensional composition factor, and none of dimension 2 if `Omega_U` is wall-rigid.
+- **Noncommuting operator families (ex2-labbe-relation-climbing, 2026-09-13).** Any noncommuting family
+  (Q1)–(Q3) of Labbé's tiles at every scale, over a field of characteristic other than 3 and 5, refutes
+  finite presentation (`zd-derived-full-group-fp-forces-quantum-rigidity`, established, unreviewed).
+  Equivalently, a refutation of `labbe-wang-shift-crossed-product-is-finitely-presented` over `F_q`
+  with `q` prime to 15 refutes the positive claim (read `labbe-crossed-product-fp-via-group-fp` in
+  reverse). By `labbe-shift-is-wall-rigid` such a family must be contextual.

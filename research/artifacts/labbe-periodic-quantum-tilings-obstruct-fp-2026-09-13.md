@@ -25,7 +25,8 @@ Lane `ex2-labbe-relation-climbing`, 2026-09-13. Unreviewed. It backs:
 6. **Section 4 (data, not a theorem).** Infinite-dimensional families also give representations of
    every local presentation. The operator form of ChJN's nested commutator keeps its 3-cycle form
    for the nilpotent-difference pairs tested and loses it for most random pairs. Whether finite
-   presentation of `G` forces full quantum rigidity is open.
+   presentation of `G` forces full quantum rigidity is settled in part 2: it does, outside
+   characteristics 3 and 5.
 
 ## 1. Setting and the unit map
 
@@ -150,12 +151,14 @@ least prove this finite-dimensional rigidity for Labbé's tiles.
   upper-triangular wall families of `sft-wall-rigidity-iff-idempotent-commutator-ideal`. So the
   relations of two-generator subgroups cannot see wall-type noncommutation; only relations of large
   radius could.
-- **Open.** Does finite presentation of `G` force `D`-quantum rigidity of `X`, hence finite
-  presentation of `R_X`? Not claimed.
+- **Settled in part 2** (`research/artifacts/labbe-group-fp-forces-quantum-rigidity-2026-09-13.md`).
+  Finite presentation of `G` does force `D`-quantum rigidity, outside characteristics 3 and 5
+  (`zd-derived-full-group-fp-forces-quantum-rigidity`). The relation that does it is `[a, b]^3 = 1`
+  together with its complementary-pattern version, through an exact two-idempotent certificate.
 
 ## 5. Next targets
 
 1. Search for small periodic quantum tilings of Labbé's tiles (`D = 1, 2`, over `F_2` and `F_3`,
    small `W` and `Λ`). This can only be evidence, since the route needs every large `D`.
-2. The infinite-dimensional transfer of Section 4.
+2. The infinite-dimensional transfer of Section 4 (done in part 2).
 3. On the positive side, the finite-dimensional rigidity of Section 3 for Labbé's tiles.

@@ -111,7 +111,9 @@ only together with `labbe-shift-derived-full-group-is-amenable`.
     `labbe-wang-shift-crossed-product-is-finitely-presented`, implied by quantum rigidity but not
     known to be equivalent to it.
   - Classical spatial models, including gated ones, are the case `W = k` of these families.
-  - Whether finite presentation forces full quantum rigidity (infinite-dimensional families) is open.
-    The operator form of ChJN's nested commutator loses its 3-cycle shape for generic noncommuting
-    pairs and keeps it for nilpotent-difference (wall-type) pairs (artifact
-    `research/artifacts/labbe-periodic-quantum-tilings-obstruct-fp-2026-09-13.md`, Section 4).
+  - **Full quantum rigidity is necessary too** (same lane, landing `661fd5216b`, unreviewed):
+    `zd-derived-full-group-fp-forces-quantum-rigidity`, for every field of characteristic other than 3
+    and 5. The route `labbe-crossed-product-fp-via-group-fp` sends this claim to
+    `labbe-wang-shift-crossed-product-is-finitely-presented`. With `labbe-shift-is-wall-rigid`, a proof
+    of this claim must prove that the idempotent commutator ideal `J_D` vanishes. The converse (ring
+    finite presentation implying this claim) is open.

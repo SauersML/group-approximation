@@ -62,3 +62,8 @@ This claim holds iff `J_D = 0` for some `D` (`labbe-shift-is-wall-rigid`). Route
     through scalar rays.
   - Undecidability results for constraint systems suggest that no general algorithm decides rigidity; that
     is a heuristic, not a proof for this shift.
+- **Group finite presentation implies this claim (ex2-labbe-relation-climbing, 2026-09-13).** Route
+  `labbe-crossed-product-fp-via-group-fp`, for `q` prime to 15. It does not fire, because
+  `labbe-shift-derived-full-group-is-finitely-presented` is open. Read in reverse, a noncommuting family
+  at every scale here also refutes finite presentation of Labbé's derived full group
+  (`zd-derived-full-group-fp-forces-quantum-rigidity`).
