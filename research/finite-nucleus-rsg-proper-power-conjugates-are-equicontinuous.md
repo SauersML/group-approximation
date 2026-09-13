@@ -62,3 +62,39 @@ of Kazhdan subgroups, so it does not apply either.
      - a pumping lemma producing a rational periodic point with infinite-order
        germ from non-equicontinuity.
    - See §3 of the artifact.
+3. **Bi-Lipschitz exponents and weighted similarities** (2026-09-13, lane
+   `solve-rsg-equicontinuity`). *Two sub-cases settled; the general case is
+   reduced, not proved.*
+   - **Input 1, bi-Lipschitz form.**
+     - `bilipschitz-proper-power-conjugates-have-zero-periodic-exponents`: for any
+       bi-Lipschitz action, a proper-power relation kills the asymptotic
+       Lipschitz exponents at every periodic point. The bound needed is
+       `C_g`, not a bound on normalized shifts.
+     - `bilipschitz-finite-nucleus-rsg-proper-power-germs-are-torsion`: if some
+       positive edge weighting makes every nuclear map bi-Lipschitz, the germs
+       of `g` at all rational periodic points have finite order, with no
+       finite-orbit hypothesis.
+     - The involution `q` of the artifact is bi-Lipschitz for `w(0) = 2`,
+       `w(1) = 1`.
+   - **Input 2, exact similarities.**
+     `weighted-similarity-proper-power-conjugates-are-equicontinuous` runs the
+     graph pumping proof for positive edge weights, without surjectivity. So the
+     target holds when every nuclear map is a `w`-similarity.
+   - **Exact gap.**
+     - (a) **Pumping for bi-Lipschitz, non-similarity nuclei.** The pumped cone
+       is mapped by a composite of `D` nuclear maps along an orbit. Pair-lag
+       errors of up to `K` per step add up to `DK`, while the pigeonhole only
+       guarantees an increment `Δ ≥ 1`, so the contraction step fails. An exact
+       cocycle with uniformly bounded pair error would repair it. That needs a
+       potential `P` on `Nuc` and weights `w` with
+       `P(strip(pq)) = P(p) + P(q) + w(lcp(pq(C)))` for composable nuclear `p, q`.
+       No such `P` is known.
+     - (b) **Existence of bi-Lipschitz weights.** For a single nuclear map this
+       amounts to zero net weight on the cycles of its transducer. Rates at
+       rational fixed points are `1`, because germ groups there are virtually
+       cyclic (observation, not landed). Realizing the rate coboundary by edge
+       weights, or by block weights as for maps like `01 → 1`, `1 → 01`, is not
+       proved.
+     - (c) **Irrational periodic points.** Not addressed.
+   - **Not done.** The counterexample search on small graphs was not run, and
+     the BBMZ TeX was not re-read: the MSI search for it timed out.
