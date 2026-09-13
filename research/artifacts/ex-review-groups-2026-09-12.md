@@ -99,6 +99,12 @@ every group.
   convention. There are two wording notes and one credit note. Dead routes and stale prose that rested
   on the refuted implication are listed in part 1 §1.6. No established claim rests on it. Part 1.
 
+- **§2, sweep and three checks (to ~23:05 CDT).** The false-establishment sweep over all landings of the
+  24 lanes, run as a local fixpoint, shows no famous root flip, no firing dead route and no prose
+  mismatch. PASS on the Chern–Quillen VTF chain (ex-hyperbolic-vtf), the unique-product dichotomy
+  (ex-left-orderable-nonsofic) and norm quantization below two (ex-determinant-monster). Part 2.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
+- `research/artifacts/ex-review-groups-2026-09-12-part2.md`: §2, sweep, VTF chain, dichotomy, quantization.
