@@ -118,10 +118,9 @@ Below `hzip` and `hfold`, main already reduces each one to disc cases:
 On origin (checked at e1b326ec3), none of the three case Props has a producer,
 but all three are in progress:
 - `Systolic.ZipPinchStatement X` (`GGT/SystolicDiscZipFold.lean:281`):
-  systolic-counts.
-  - Its `GGT/SystolicDiscZipPinch.lean` sits unlanded in the shared tree.
-  - It already states `theorem zipPinchStatement (X) : ZipPinchStatement X`.
-  - No lane's `.files` lists it.
+  systolic-counts. Its `GGT/SystolicDiscZipPinch.lean`, which states
+  `theorem zipPinchStatement (X) : ZipPinchStatement X`, landed unverified in
+  d74b84054. Its probe is running.
 - `Systolic.MirrorFoldPinchedStatement X` (`GGT/SystolicDiscMirrorFoldCases.lean:102`):
   fff-periodic. Its staging layer `GGT/SystolicDiscMirrorFoldStage.lean` landed in
   d6f6ccc19.
