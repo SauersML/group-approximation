@@ -120,3 +120,17 @@ single class `[1_A]`.
   - **For twisted homogeneous blocks this is a period–index constraint.** Projections of `M_k ⊗ B`
     have ranks divisible by the index of the Dixmier–Douady class.
   - Not attempted beyond this observation.
+- **Hilbert cube boundaries (2026-09-13, lane `ex2-tw-hilbert-cube-boundary`, unreviewed).**
+  - **Fixed defect.** Only the matrix sizes of local divisions have to be summed; defects need a uniform
+    bound (`bauer-unit-division-defect-uniform-criterion`). Over the Hilbert cube, an indivisible unit
+    forces `ℓ_A(N, κ_0) ≤ 16 · 2^{−κ_0 N}` at a fixed defect `κ_0`.
+  - **Rigidity is the witness property.** Take `A` exact with strict comparison and a Bauer simplex. The
+    unit divides iff for every `ε` some self-adjoint element has only eigenvalues of trace `< ε` at every
+    extreme trace (`bauer-strict-comparison-unit-divides-iff-atomless-element`).
+  - A witness on this locus is exactly an algebra with some `ε_0` for which every self-adjoint element
+    has an `ε_0`-heavy eigenvalue somewhere on the boundary. The Pauli scalar point property is the case
+    `ε_0 = 1`, without simplicity.
+  - **No boundary hypothesis needed.** A zero-dimensional diagonal carrying atomless extreme traces forces
+    division (`zero-dimensional-atomless-diagonal-divides-unit`).
+  - **Open nodes for this boundary.** `hilbert-cube-bauer-strict-comparison-divides-unit` and
+    `hilbert-cube-bauer-strict-comparison-indivisible-unit-exists`.

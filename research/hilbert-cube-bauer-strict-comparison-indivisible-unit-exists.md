@@ -32,8 +32,10 @@ same locus; it is not recorded as a separate claim.
   `Q`. A trivial bundle gives uniform Gamma
   (`bauer-uniform-gamma-iff-trivial-tracial-bundle`), and uniform Gamma with strict
   comparison gives `Z`-stability (`uniform-gamma-algebras-satisfy-toms-winter`).
-  So a witness also answers BBSTWW Question 3.14, and the negative side is at least
-  as hard as `nontrivial-w-star-bundle-with-r-fibres-exists`.
+  Nontrivial bundles over bases containing a Hilbert cube now exist without comparison:
+  the Pauli tower (`pauli-tower-bundle-has-scalar-point-property`, lane
+  `ex2-tw-unsplittable-tails`, unreviewed). So bundle nontriviality is no longer the barrier;
+  simplicity and strict comparison are.
 - **Tracial eigenvalue rigidity.** Some `ε_0 > 0` works for every self-adjoint `h ∈ A`: at some
   extreme trace `λ`, `π_λ(h)` has an eigenprojection of trace at least `ε_0`
   (`bauer-strict-comparison-unit-divides-iff-atomless-element`, unreviewed).
@@ -73,6 +75,19 @@ same locus; it is not recorded as a separate claim.
   coordinates as the tail ranks require, logarithmically many in `N` when ranks grow
   geometrically. These algebras are not simple. Lane `ex2-tw-unsplittable-tails` owns
   `some-tensor-tower-has-unsplittable-tails`.
+- **Simple upgrade of the Pauli tower (analysis, not proved).**
+  - **Where its rigidity comes from.** The Pauli tower has rigidity at `ε_0 = 1` (every self-adjoint
+    element is somewhere scalar). The source is the top Stiefel–Whitney class of the traceless part of
+    a twisted `M_{2^m}`-bundle over a base of dimension `4^m − 1`: the quadratic regime of the rigidity
+    count above. It is Bauer because it uses a single coordinate chain, and it is not simple.
+  - **Simplicity.** Mixing connecting maps (point evaluations, several coordinate copies) add trivial
+    summands to the traceless bundle, which kills the top class. What would have to survive is an
+    `ε_0`-heavy eigenvalue. Its forcing class is a Porteous-type class of the multiplicity-`ε_0 n`
+    stratum in a twisted bundle, in degree about `ε_0² n²`. Not computed.
+  - **Strict comparison.** At base dimension about `ε_0² n²`, general position gives a comparison radius
+    of order `d/n`, which is useless. A witness needs a comparison mechanism specific to twisted blocks.
+    One hope: index restrictions remove the small projections that Villadsen-type certificates use.
+    Nothing is proved.
 - **Doubling versus Bauer.** Toms-style propagation uses two independent copies of
   the old base, which averages point traces and destroys closedness of the extreme
   boundary (`research/artifacts/tw-hilbert-cube-projection-invariant-2026-09-12.md`,
