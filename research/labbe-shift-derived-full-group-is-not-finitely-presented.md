@@ -43,3 +43,12 @@ would invalidate the three Labbé routes named above.
   groups. LEF (`labbe-not-fp-via-lef`) is the recorded candidate of that shape.
 - **Homology with nontrivial coefficients** (Bieri–Eckmann criterion for `FP_2`). Not attempted.
   Li's theorem reaches only coefficients pulled back from abelian covers.
+- **Periodic quantum tilings (ex2-labbe-relation-climbing, 2026-09-13).** Live:
+  `labbe-not-fp-via-periodic-quantum-tilings`.
+  - A nonzero periodic operator-valued tiling of Labbé's tiles at every scale refutes finite
+    presentation (`zd-derived-full-group-fp-excludes-periodic-quantum-tilings`, established,
+    unreviewed). It needs no defect, no extended rule and no injectivity on balls, so it is a
+    different mechanism from LEF.
+  - The open input is `labbe-tiles-admit-periodic-quantum-tilings-at-every-scale`. By
+    `periodic-quantum-tilings-refute-quantum-rigidity`, such a tiling must be contextual: no
+    one-dimensional composition factor, and none of dimension 2 if `Omega_U` is wall-rigid.

@@ -97,3 +97,19 @@ only together with `labbe-shift-derived-full-group-is-amenable`.
   - the Bieri--Geoghegan--Kochloffel `Σ`-invariants;
   - Matte Bon's work.
   - The Kerr--Nowak input seen, via Ma arXiv:2209.00580 near line 1287, concerns residual finiteness only.
+- **A finite-dimensional rigidity theorem is necessary (ex2-labbe-relation-climbing, 2026-09-13).**
+  - Finite presentation forces the local tiling algebra `A_D(Omega_U, k)` to have no nonzero
+    finite-dimensional module for large `D` and every field `k`
+    (`zd-derived-full-group-fp-excludes-periodic-quantum-tilings`, established, unreviewed).
+  - Mechanism: rule 3-cycles map to units of `A_D` by bounded identities; Malcev's theorem makes
+    every finite-dimensional image of the simple group trivial; and
+    `chi[pi](U_s - 1)chi[pi] = -chi[pi]` kills the module.
+  - So any proof of this claim must exclude contextual periodic quantum tilings of Labbé's tiles at
+    large scale. That is a finite-dimensional piece of
+    `labbe-wang-shift-crossed-product-is-finitely-presented`, implied by quantum rigidity but not
+    known to be equivalent to it.
+  - Classical spatial models, including gated ones, are the case `W = k` of these families.
+  - Whether finite presentation forces full quantum rigidity (infinite-dimensional families) is open.
+    The operator form of ChJN's nested commutator loses its 3-cycle shape for generic noncommuting
+    pairs and keeps it for nilpotent-difference (wall-type) pairs (artifact
+    `research/artifacts/labbe-periodic-quantum-tilings-obstruct-fp-2026-09-13.md`, Section 4).
