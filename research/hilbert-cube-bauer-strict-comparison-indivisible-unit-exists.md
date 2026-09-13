@@ -34,6 +34,13 @@ same locus; it is not recorded as a separate claim.
   comparison gives `Z`-stability (`uniform-gamma-algebras-satisfy-toms-winter`).
   So a witness also answers BBSTWW Question 3.14, and the negative side is at least
   as hard as `nontrivial-w-star-bundle-with-r-fibres-exists`.
+- **Tracial eigenvalue rigidity.** Some `ε_0 > 0` works for every self-adjoint `h ∈ A`: at some
+  extreme trace `λ`, `π_λ(h)` has an eigenprojection of trace at least `ε_0`
+  (`bauer-strict-comparison-unit-divides-iff-atomless-element`, unreviewed).
+  - In particular `A` has no unital zero-dimensional `C(Y)` on which extreme traces are atomless, so
+    no Cantor Cartan subalgebra of that kind (`zero-dimensional-atomless-diagonal-divides-unit`).
+  - Heuristically, in (sub)homogeneous blocks of size `n` over `d`-dimensional spectra this needs
+    `d ≳ ε_0² n²`: multiplicity `ε_0 n` is a stratum of codimension about `ε_0² n²`.
 - **No projection certificate.** Its tracial ultrapower compares projections by
   limit traces in every matrix size
   (`strict-comparison-compares-ultrapower-projections`, reviewer PASS). So

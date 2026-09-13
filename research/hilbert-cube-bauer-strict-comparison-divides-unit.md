@@ -83,6 +83,18 @@ Lemma 8.1 and the bounds of Proposition 8.2, and found no error.
     every dimension up to `D`. Nothing on main supplies them without complemented
     partitions of unity or uniform Gamma. At a fixed precision each homotopy step
     also loses a square root of the defect.
+- **One diffuse element instead of matrix units (2026-09-13, proved reformulation).** By
+  `bauer-strict-comparison-unit-divides-iff-atomless-element`, the claim holds for `A` iff for every
+  `ε > 0` some self-adjoint `h ∈ A` has only eigenvalues of trace `< ε` at every extreme trace.
+  - A central CDF transform makes such an `h` uniformly Lebesgue. Constant-trace projections and
+    ultrapower comparison then finish.
+  - So the positive side asks whether central convex combinations `Σ θ(g_i) k_i` of local diffuse
+    elements can avoid heavy atoms everywhere on `Q`.
+  - **Where it dies.** In `Herm_n`, multiplicity `m` has codimension `m² − 1`, so finite-dimensional
+    faces are avoided generically. The Hilbert cube has faces of every dimension, and no dimension
+    count applies.
+  - **Positive locus.** Algebras with a zero-dimensional diagonal carrying atomless extreme traces
+    divide (`zero-dimensional-atomless-diagonal-divides-unit`).
 - **Selection analogy (heuristic).** Local divisions form an lower semicontinuous
   family with contractible fibres. Selection theorems for such families hold on
   C-spaces and fail in general on the Hilbert cube (Uspenskij). No specific
