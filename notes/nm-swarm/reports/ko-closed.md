@@ -3,7 +3,7 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
-## STATE (09-13 ~14:45): (a) metric kill written, landed unverified at 5063f177b, probe running; value module GREEN
+## STATE (09-13 ~14:30): (a) metric kill GREEN (0913-142447-72008) and queued for wiring; value module GREEN
 - The lead forwarded three questions to ko-closed (ROSTER 843–850). ko-closed ruled at ~14:10 and sent the ruling to main
   and audit-sec5:
   - (1) audit-sec5's metric kill replaces the `λ⁻¹(ε + c)` respelling. hull-unbound's option (2) draft in
@@ -40,7 +40,9 @@ closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
   - `false_of_cellFree_pocket_X` and `false_of_cellFree_pocket_Y`: the value argument in its two cases (pocket across
     X, or across Y).
 - `GGT/VanKampen/Estimating/OsinLemma94OneCellMorse.lean` (237 lines):
-  - Landed unverified at 5063f177b. Probe bxgtm3yim is running.
+  - Landed at 5063f177b.
+  - GREEN 0913-142447-72008: base 5063f177b, BUILT, empty error index, all seven `#audit_axioms` pass.
+  - Queued for wiring after OsinLemma94OneCellValue, which it imports.
   - `IsLambdaCQuasiGeodesicWord.vertex_detour_le_morse`: under `UnboundEstimate.IsWordMorseRadius D λ c κ`, vertex
     `i` of a quasi-geodesic word has `|x_i| + d(x_i, val w) ≤ 2κ + |val w|`.
   - `IsLambdaCQuasiGeodesicWord.lambda_eps_lt_of_hairpin`: for a quasi-geodesic word `A ++ M ++ B` with `0 ≤ λ`,
