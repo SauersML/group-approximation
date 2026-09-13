@@ -25,16 +25,28 @@ CAT(0) groups. Two nearby readings change the question:
   completion is CAT(0), but the action on the completion has infinite point
   stabilizers (sources to verify).
 
-Known: true for `n <= 7`, because a geometric action is a proper action on a
-proper space (route `braid-proper-cat0-action-from-geometric-action`).
+Known: true for `n <= 6`, because a geometric action is a proper action on a
+proper space (routes `braid-proper-cat0-action-from-geometric-action` and
+`braid-groups-on-at-most-six-strands-are-cat0`; `n = 7` per Jeong's preprint).
 
 ## Attempts
 
+- **Number-field linearity (lane z3-02-braid-glnz).** Route
+  `braid-proper-cat0-action-via-number-field-linearity`: a finitely generated
+  subgroup of `GL_m(F)`, `F` a number field, is discrete in a finite product of
+  local groups and acts properly on a product of symmetric spaces and
+  Bruhat–Tits buildings, a proper CAT(0) space
+  (`number-field-linear-groups-act-properly-on-cat0-spaces`). So
+  number-field linearity of `B_n` (hence a yes to Problem 3.2) would give this
+  claim, and a no here refutes Problem 3.2.
+- **Lawrence–Krammer linearity is not enough as it stands.** `B_n` embeds in
+  `GL_m(Z[q^{±1}, t^{±1}])` (Bigelow, Krammer). This lane's sketch: that group
+  acts metrically properly on an ℓ²-product of the four Bruhat–Tits buildings of
+  the valuations `v_q, v_{1/q}, v_t, v_{1/t}` (residue fields `Q(t)` or `Q(q)`,
+  so not locally finite), a Euclidean plane for `det`, and a weighted infinite
+  ℓ²-product of symmetric spaces `GL_m(C)/U(m)` at a dense sequence of
+  specializations. The result is complete but not locally compact, so it answers
+  only the complete-space reading; not yet written up as its own node.
 - Without cocompactness, isometries need not be semisimple, so the
   translation-length obstructions in `some-braid-group-is-not-cat0` do not
-  apply to this claim. A negative answer would need an obstruction to proper
-  actions with parabolic elements, for which no candidate is known.
-- A positive answer for all `n` could come from a proper but non-cocompact
-  space built from the Garside structure (e.g. a CAT(0) metric on an
-  infinite-type complex), which would not need the finite link checks of the
-  orthoscheme route.
+  apply to this claim.
