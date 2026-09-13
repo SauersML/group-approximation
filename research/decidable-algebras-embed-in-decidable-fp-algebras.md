@@ -25,36 +25,82 @@ This is the algebra form of Clapham's theorem for groups
   finitely presented algebras with solvable word problem.
 - **Benchmark.** The monomial algebras `A_X = K<x,y>/(x y^n x : n in X)`, with `X`
   decidable of high complexity, are the hard inputs of
-  `no-fp-simple-algebra-hosts-every-decidable-algebra`. They are also the natural
-  test inputs here.
+  `no-fp-simple-algebra-hosts-every-decidable-algebra`. This claim holds for them:
+  `monomial-algebras-embed-in-decidable-fp-algebras` (2026-09-13) covers every
+  finitely generated monomial algebra with solvable word problem.
 
 ## Literature
 
-- **Associative Higman theorem (secondary only).** The Gröbner--Shirshov survey of
-  Bokut and Chen (arXiv:1303.5366, text extracted from the arXiv PDF) says: "The
-  problem [21] whether an analogue of the Higman embedding theorem is valid for Lie
-  algebras is still open. For associative algebras a similar problem [21] was solved
-  positively by V. Y. Belyaev [10]." Reference [10] is V. Ya. Belyaev, *Subrings of
-  finitely presented associative rings*, Algebra i Logika. The survey states the
-  recursively-presented-into-finitely-presented embedding. It does not state that
-  solvability of the word problem is preserved. Belyaev's paper was not read.
-- **Semigroups (not read).** J.-C. Birget, *Time-complexity of the word problem for
-  semigroups and the Higman embedding theorem*, Internat. J. Algebra Comput. 8 (1998),
-  DOI 10.1142/S0218196798000132. The title was found through Crossref, but the World
-  Scientific PDF was not accessible, so no statement from it is used.
+- **Belyaev's associative Higman theorem (read 2026-09-13).** V. Ya. Belyaev,
+  *Subrings of finitely presented associative rings*, Algebra i Logika 17 (1978),
+  no. 6, 627--638; English translation in Algebra and Logic 17 (1978), 407--414,
+  DOI 10.1007/BF01673571. Read from the Springer scan, text extracted with
+  `pdftotext`. Most formulas are lost in extraction; the prose is legible.
+  - **Statement.** "Suppose that K is either a commutative associative finitely
+    generated ring with unity or a finitely generated extension of a prime field.
+    We will show that any associative K-algebra with a recursively enumerable set
+    of defining relations can be embedded in a finitely presented associative
+    K-algebra." Also: "The unity of an algebra, if there is one, is not fixed in
+    the signature."
+  - **Proof structure.**
+    - *Lemma 1.* Given a `K`-module endomorphism that is a homomorphism on a
+      finitely generated subalgebra, it adjoins solutions of a system of
+      equations in an overalgebra. The ring case is credited to Taitslin.
+    - *Lemma 2.* It embeds an algebra with a recursively enumerable presentation
+      of a special form in one whose relations are, except one, word equalities.
+    - *Lemma 3.* A modification of Mal'tsev's theorem: a countable algebra
+      `{a_1, a_2, ...}` sits in an algebra with elements `a, b, c` such that
+      `a_i = a b^i c`.
+    - *The theorem.* Its proof applies Murskii's semigroup embedding theorem
+      (Mat. Zametki 1 (1967), 217--224) twice and Lemma 1 three times.
+  - **Decidability.** The paper never mentions the word problem. Its only uses of
+    "solvable" refer to systems of equations. This agrees with the secondary quote
+    in the Gröbner--Shirshov survey of Bokut and Chen (arXiv:1303.5366): "For
+    associative algebras a similar problem [21] was solved positively by
+    V. Y. Belyaev [10]."
+- **Semigroups (statement from the abstract).** Birget 1998, Internat. J. Algebra
+  Comput. 8, 235--294. Every finitely generated semigroup with solvable word
+  problem embeds in a finitely presented semigroup with solvable word problem, by a
+  conjunctive linear-time reduction of word problems. It is imported as
+  `birget-semigroup-embedding-preserves-word-problem`, which quotes the abstract.
+  The paper body was not accessible.
 
 ## Attempts
 
 1. **Direct finite complete rewriting system for `A_X`** (2026-09-13). Adjoin head letters
    and a trigger rule `x y -> x h_0 y` that runs a total decider for `X` on the `y`-block
    and produces `0` on acceptance. Acceptance kills exactly the words containing
-   `x y^n x`, `n in X`. *Unclear, not landed.* The simulation keeps the `x, y`
-   skeleton, so distinct basis words keep distinct normal forms. The difficulty is
-   global confluence and termination on arbitrary words over the enlarged alphabet:
-   several heads, heads meeting the trigger (the overlap `h_q x y`), and heads at the
-   end of a word.
-2. **Through contracted semigroup algebras.** An embedding of the monoid-with-zero
-   `M_X` into a finitely presented monoid-with-zero with solvable word problem, with
-   zero preserved, gives (C) for `A_X`, because contracted semigroup algebras of
-   monoids with zero preserve such embeddings. *Blocked on sources:* a semigroup
-   theorem that preserves the zero element was not found.
+   `x y^n x`, `n in X`.
+   - *Superseded for `A_X` by attempt 2; confluence was never settled.* The
+     simulation keeps the `x, y` skeleton, so distinct basis words keep distinct
+     normal forms.
+   - The difficulty is global confluence and termination on arbitrary words over
+     the enlarged alphabet: several heads, heads meeting the trigger (the overlap
+     `h_q x y`), and heads at the end of a word.
+2. **Through contracted semigroup algebras** (2026-09-13). *Works for monomial
+   algebras* (`monomial-algebras-embed-in-decidable-fp-algebras`).
+   - **The zero problem is avoided.** The earlier blocker was the need for a
+     semigroup theorem that preserves the zero. Instead, embed the monoid with zero
+     `M` in Birget's envelope `H` by `phi`, set `e = phi(0)`, and map
+     `m -> phi(m) - e` inside `K[H^1]`. This kills `0`, it is multiplicative
+     because `e` absorbs `phi(M)`, and it is injective because `phi` is. Adding a
+     character times `1 - phi(1) + e` makes it unital.
+   - *Dies for general algebras.* A general finitely generated algebra is not a
+     contracted monoid algebra. No embedding of an arbitrary algebra with solvable
+     word problem into a contracted monoid algebra with solvable word problem is
+     known here.
+3. **Belyaev's construction with Birget in place of Murskii** (2026-09-13). *Open,
+   unchecked.* Every step of Belyaev 1978 would have to keep a solvable word
+   problem when its input has one:
+   - **(i)** Lemma 3, with a computable enumeration and an overalgebra that has a
+     solvable word problem;
+   - **(ii)** Lemma 2, for presentations whose relations are decidable, not only
+     enumerable;
+   - **(iii)** the extensions of Lemma 1;
+   - **(iv)** the two semigroups the proof feeds to Murskii's theorem, which would
+     need solvable word problems so that
+     `birget-semigroup-embedding-preserves-word-problem` can replace Murskii.
+
+   The paper also takes `K` finitely generated over its prime field, or a finitely
+   generated commutative ring, and its last relations express the generators of
+   `K`. An arbitrary computable field needs separate treatment.
