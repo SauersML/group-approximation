@@ -47,8 +47,11 @@ of that statement to the manuscript's use of property (T).
      (Manuscript/NonMF/FournierFacioInput.lean), the field `kotowskiOllivier` of
      `TheoremC.LiteratureInputs`, consumed as `hKO` by `HullSC.literatureInputs_of_leastAreaLeaves`
      and `manuscriptTorsionFreeTheorem_of_hullLeaves` (TorsionFreeLiteratureInputsLeastArea).
-     `TheoremC.kotowskiOllivier` (TheoremCAssembly) is still `sorry`. Once `hconj` and `hhyp` are
-     proved, `kotowskiOllivierStatement_of_ghb7ConjHyp` replaces that `sorry` with GHB(7) as witness.
+     Theorem C takes it as the hypothesis `hKO` of `TheoremC.manuscriptTorsionFreeFullMFRadical_of_leastAreaInputs`
+     and `TheoremC.manuscriptTorsionFreeSimplified_of_leastAreaInputs` (TheoremCAssembly). The former
+     `sorry` `TheoremC.kotowskiOllivier` was retired at 2c3c8cb40.
+   - Once `hconj` and `hhyp` are proved, `kotowskiOllivierStatement_of_ghb7ConjHyp` discharges `hKO` with GHB(7) as
+     the witness. The other route is ko-closed's `kotowskiOllivier_of_leaves` (Kazhdan/KotowskiOllivierClosed).
 
 Census: metadata/nm-census-rows/kh-ejz.tsv, LINE:1675 `partial` (does not carry the sentence).
 

@@ -65,8 +65,9 @@ theorem sharpExistence_of_ghb7ConjHyp (hconj : CCKWFiniteOrderConjugateIntoVerte
   sharpExistence_of_ghb7KazhdanLeaves hconj card_U3_seven_le card_U4_seven_le hhyp
 
 /-- **The hyperbolic property (T) input of [FFF §2], from `GHB(7)`**, over `hconj` and `hhyp`.
-`TheoremC.KotowskiOllivierStatement` is `Hyperbolic.SharpExistence`.  `TheoremC.kotowskiOllivier`
-records it as a citation of Kotowski--Kotowski and Ollivier--Wise; the witness here is `GHB(7)`. -/
+`TheoremC.KotowskiOllivierStatement` is `Hyperbolic.SharpExistence`, which Theorem C takes as the
+hypothesis `hKO` of `TheoremC.manuscriptTorsionFreeFullMFRadical_of_leastAreaInputs`; the witness
+here is `GHB(7)`. -/
 theorem kotowskiOllivierStatement_of_ghb7ConjHyp (hconj : CCKWFiniteOrderConjugateIntoVertex)
     (hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7)) :
     Manuscript.NonMF.TheoremC.KotowskiOllivierStatement :=
