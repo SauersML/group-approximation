@@ -53,6 +53,13 @@ Then `σ|Γ` is either fully roundable or totally non-roundable.
 - **Følner layering along one compressor.** It gives an exact origin-type vertex at the Theorem E pair
   (`one-compressor-actor-models-with-exact-origin-vertex`). A layered witness needs a non-genuine layer,
   and at a Kazhdan actor there are no Følner layers along `SL_d(Z)`.
+  - **Calibration (lane `ex2-ft-actor-models`).** At the one-compressor affine symplectic pair, layered
+    Schrödinger--Weil models are totally non-roundable and do normalize the commutant
+    (`layered-weil-actor-models-non-roundable-and-normalizing`).
+    - So witnesses of the first, normalizing kind exist at some infranormal pair with a residually finite
+      Kazhdan vertex.
+    - They spend a rational vertex class and Følner layers along a `Z` quotient. The Theorem E pair has
+      neither.
 - **Kazhdan covers of the actor (lane `ex2-ft-actor-models`, 2026-09-13).** The criterion needs no trace
   hypothesis.
   - **Setting.** `q : G~ -> G` is finitely generated with kernel `N` and section `s`. `Γ^ ≤ G~` is a finitely
@@ -74,6 +81,12 @@ Then `σ|Γ` is either fully roundable or totally non-roundable.
     - For `r >= d + 3`, `St_r(F_q[Z^d])` is finitely presented (`steinberg-finite-presentation-and-kazhdan-theorem`).
     - `K_2(r, F_q[Z^d]) = K_2(F_q[Z^d])` is finitely generated (same unverified imports).
     - So `G` is finitely presented, and every truncated cover equals `G` from some stage on.
+  - **A producer that needs no finite quotients** (`hyperlinear-truncated-actor-covers-refute-vertex-rounding`).
+    - Suppose infinitely many truncated presentations `G_L` are hyperlinear with infinite vertex kernel. Then a
+      witness exists.
+    - Under (H1), those `G_L` would be finitely presented non-hyperlinear groups.
+    - At rank 3, torus degree shifting reduces the question (sketch) to finite generation of `K_2(3, F_q[Z^d])`
+      as an `SL_d(Z)`-module.
   - **What survives.** A Kazhdan cover whose vertex kernel is infinite, non-central, finitely normally
     generated and without relative property (T) in `Γ^`. It must also carry representations almost trivial
     on `N` with fixed mass bounded away from 1. No such cover of any higher-rank Kazhdan group is known.
