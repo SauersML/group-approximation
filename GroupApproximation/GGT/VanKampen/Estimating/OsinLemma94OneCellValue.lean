@@ -79,7 +79,7 @@ theorem exists_darts_eq_of_rotate_eq {Dart : Type v} {cycle : List Dart} {m : �
     omega
   have hstart : cycle.rotate (m % cycle.length % (cycle.length + 1)) = cycle.rotate m := by
     rcases Nat.eq_zero_or_pos cycle.length with h | h
-    · rw [List.length_eq_zero_iff.mp h, List.nil_rotate, List.nil_rotate]
+    · rw [List.length_eq_zero_iff.mp h, List.rotate_nil, List.rotate_nil]
     · rw [Nat.mod_eq_of_lt (Nat.lt_succ_of_lt (Nat.mod_lt m h)), List.rotate_mod]
   refine ⟨⟨⟨m % cycle.length % (cycle.length + 1), Nat.mod_lt _ (Nat.succ_pos _)⟩, a.length,
     hlength⟩, ?_⟩
