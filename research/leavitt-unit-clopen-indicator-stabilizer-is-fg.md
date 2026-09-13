@@ -26,5 +26,6 @@ generated.
    (`leavitt-cylinder-swaps-generate-thompson-in-el`), `Stab_V(χ)` is the setwise
    stabilizer of `[0]`, which is `V_[0] × V_[1] ≅ V × V`, finitely generated. This says
    nothing about `U`: `U` acts linearly, not by homeomorphisms, so `Stab_U(χ)` contains
-   non-geometric units, e.g. `1 + s_μ t_ν` with `[μ]`, `[ν]` disjoint from `[0]`, and
-   finite generation does not follow from the geometric part. Not settled.
+   non-geometric units, e.g. the involutions `1 + s_μ t_ν` with `[μ]`, `[ν]` disjoint
+   from `[0]` and from each other (then `t_ν s_μ = 0`), and finite generation does not
+   follow from the geometric part. Not settled.
