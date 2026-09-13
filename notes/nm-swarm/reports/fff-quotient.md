@@ -22,12 +22,18 @@ PiFinitePresentation (kh-ejz), closed.  Consumer: `hW : FinitelyPresentedInfinit
   (`Γ_K = Γ_{K+ℤ}` for `Γ ≤ Γ₂`), `PrintedPropositionFourSeven`, `printedPropositionFourSeven_of_upsilon`.
 
 ## Residual
-Exactly Lemma 4.6 (hl-lemma46):
-```lean
-def UpsilonFinitelyPresented : Prop :=
-  ∀ Γ : Subgroup (Equiv.Perm ℚ), qTwo ≤ Γ → Γ ≤ gammaTwo → ∀ a b : ℚ, (∃ M, a ∈ Grid 6 M) →
-    (∃ M, b ∈ Grid 6 M) → a < b → b ≤ a + 1 → Group.IsFinitelyPresented ↥(upsilon Γ a b)
-```
+Lemma 4.6, `UpsilonFinitelyPresented`, is assembled on main by the lane owners, not by this lane:
+`upsilonFinitelyPresented_of_dynamics` (QTwoLemmaFourSixAssembly 3e2e73c3d, simple-group; its `|I| = 1`
+case generalizes `QTwoFinitePresentationLong` to `Q₂ ≤ Γ ≤ Γ₂`) and
+`lemmaFourSixDynamics : LemmaFourSixDynamicsStatement` (QTwoLemmaFourSixDynamics de535e84c, landed
+unverified, probe pending).  Once that probe is green, hW is
+`finitelyPresentedInfiniteSimpleStatement_of_dynamics lemmaFourSixDynamics`
+(FinitelyPresentedInfiniteSimpleClosed).
+
+## Next
+Lemma 4.6 is split among hl-lemma46 (dynamics), simple-group (Case 1 and assembly) and kh-ejz (casing
+pair and the unit-frame reduction).  The `|I| = 1` item assigned to this lane was already landed by
+simple-group, so this lane has no open item and is waiting for the lead to assign one.
 
 ## Census
 No row: these modules prove the cited group consumed at tex 1679 and do not carry a sentence (same
