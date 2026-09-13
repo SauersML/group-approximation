@@ -22,7 +22,7 @@ Lane `thompson-f-amenability`, 2026-09-12. This is the second pass after
 | Closed-walk counts | non-amenable | dead (`thompson-f-moment-data-cannot-certify-nonamenability`) |
 | Pure evacuation scheme (capacity 1) | non-amenable | Dead for `{x_0, x_1, x_1 x_0^-1}` and `{x_0, x_1, x_2}`: Cheeger constant `< 1` (survey Thms 2.5, 2.6, 2.8). |
 | Evacuation with capacity `C >= 2`, or a bounded flow with inflow `>= epsilon` | non-amenable | open, and equivalent (survey Props 1.3, 2.3, 2.4) |
-| Non-Ore pair `a u = b v` | non-amenable | open, and equivalent (Kielak Thm A.1). Excluded: pairs where either side is a unit times a product of twisted binomials `1 + lambda g` with `g` in `O_1` (§2). That covers `1 - x_0`, `1 - x_1`, `x_0 - x_1`, `1 - x_2 x_1^-1`, all their conjugates, and the pairs `(1 - a, 1 - c)`. Also excluded: degree-one homogeneous pairs `P_(1,m)` and `P_(2,1)` (survey Thms 3.10, 3.11, 3.14). |
+| Non-Ore pair `a u = b v` | non-amenable | open, and equivalent (Kielak Thm A.1). Excluded: pairs where either side is a unit times a product of twisted binomials `1 + lambda g` with `g` any one-bump element (§2, items 4–5). That covers `1 - x_0`, `1 - x_1`, `x_0 - x_1`, `1 - x_2 x_1^-1`, all their conjugates, and the pairs `(1 - a, 1 - c)`. Also excluded: degree-one homogeneous pairs `P_(1,m)` and `P_(2,1)` (survey Thms 3.10, 3.11, 3.14). |
 | Non-Ore system `Q_k` | non-amenable | `Q_3` excluded (survey Cor 3.13). New: every `Q_k` with at most one form `alpha x_0 + beta x_1 + gamma x_2` having all coefficients nonzero, and every `Q_k` over `F_2`. Open: over other fields with at least two full trinomials. Guba names `Q_4` there as a candidate. |
 | `(1 - x_1) u = b v` with only zero solutions (survey Q 3.20; arXiv:2201.02308 Question 1) | non-amenable | **dead**, answered positively here (`thompson-f-one-minus-x1-is-ore-with-every-element`) |
 | Bounded-coefficient series identity `sum_g g = (1 - x_0) S_1 + (1 - x_1) S_2` | non-amenable | open, and equivalent (survey Thm 3.22) |
@@ -57,6 +57,15 @@ Lane `thompson-f-amenability`, 2026-09-12. This is the second pass after
      exactly in `experiments/thompson-f/pl_check.py`.
    - *Consequences.* Items 1–3 above are special cases, and Guba's `Q_k` holds over `F_2`
      for every `k`.
+5. **`thompson-f-one-bump-binomials-have-common-multiples`.** `O_1` is every one-bump
+   element, whatever its endpoint slopes, so item 4's families and product statements hold
+   for all of them.
+   - *Slope `1/2` at `0`.* The weighted coset test absorbs the germ at `0`. Near `1`,
+     conjugation by `g` acts as a power `phi^n` of the shift, so Guba's letter-window count
+     runs with `phi^n`.
+   - *Slope `2^-m` at `0`.* A self-similar conjugacy identifies the index-`m` subgroup
+     `{f : m | e(f)}` with `F` and turns that slope into `1/2`. Intersecting over the
+     conjugates `t^-1 g t`, `t` in `supp b`, gives the general case.
 
 ## 3. Small-degree census over `F_2` (guidance only)
 
@@ -78,9 +87,13 @@ monoid, with homogeneous `u, v` of degree `D` and letters `<= L`. Outputs are in
    `O_1`-product class. The smallest listed candidates are `Q_4` over a field `≠ F_2`
    with at least two forms having all three coefficients nonzero, and generic `P_(2,2)`
    pairs.
-2. **One-bump elements with other germ slopes, and multi-bump elements.** Is
-   `(1 + lambda g) R` Ore against everything? This is open, for example for `g` with slopes
-   `2^-1` at the left end and `4` at the right. The shift argument needs a positive-monoid
-   structure adapted to `g`.
+2. **Multi-bump elements.** Is `(1 + lambda g) R` Ore against everything when `g` has two
+   or more bumps? One-bump elements of every slope are settled (§2 item 5).
+   - *Reduction.* By the coset test, `(1 + lambda g) R ∩ b R ≠ 0` whenever some finite
+     `S ⊆ F` gives fewer than `|S|` cosets `<g> h s` with `h` in `supp b` and `s` in `S`.
+     Each such coset imposes one linear condition on `w = sum_(s in S) c_s s`, so some
+     `w ≠ 0` has `b w` in `(1 + lambda g) R`.
+   - *Obstacle.* The one-bump proof builds `S` from the shift `phi`. For multi-bump `g`, no
+     such `S` is known against `b` whose support moves an interior fixed point of `g`.
 3. **Evacuation with capacity 2** on the triple-of-trees fragments `Γ_n` (survey Thm 4.1),
    checked on finite fragments by König.
