@@ -102,3 +102,41 @@ fidelity gap was closed by f797a21d6. The new module is queued for wiring.
   `ClopenCrossedProduct.bilateralCell_z_pow_eq_one_iff`, `ClopenCrossedProduct.nsmul_defectD_eq_zero_iff`,
   `BilateralThreeCell.ZOrder.z_pow_val`, `BilateralThreeCell.ZOrder.z_pow_eq_one_iff`. Census row `e94a87793eb1`
   (ct-sentences had graded it partial); module queued in wire-queue.txt.
+
+## Item 3 (main ~18:3x): `OsinLemma94CaseOneTouchVertexStatement`, shape 3 of binder 3
+
+Stated by ms-intro-1 at f82985905 (`Estimating/OsinLemma94SameCellPocketPinch.lean`).
+
+### Model verdict: true, and blocked as a leaf by its spelling
+
+- **Not refutable.** Split the touch vertex in an O-equivalent diagram. `OEquivalentDiscDiagram` fixes only the boundary word and
+  the relator-cell words, and `PinchSplit.Input.diagram` keeps darts, labels, relator words and the exterior word. After the
+  split the pocket side is a disc bounded by `s = invDarts X` (norm `< ε`) and an arc of `Π`. With a relator cell inside, the loop
+  cut refutes it below `Δ` (Lemma 9.7(b), two sections: one short, one a relator piece).
+- **Route (a), value only: fails.** The lobe reading `≠ 1` has side `X₁` or `X₂`, whose norm is uncontrolled, and Lemma 9.7(b)
+  needs few quasi-geodesic sections.
+- **Route (b), Osin's printed Case 1 (pdftotext, lines 1633–1637): silent on touches.** Osin draws `s₁`, `s₂` inside the
+  R-cell-free `Δ̃ᵢ` and contradicts maximality of `M`. He never forms a pocket along the face boundary.
+- **Binder 7 does not apply.** `PocketFaceSet` bounds sides by length (`firstSide_length_le`), and its target arc lies on the
+  exterior. X has only a norm bound.
+- **Spelling defect (the blocker).** `PocketWalkTouchVertexShape` asks only for a touch. So the statement also covers walks with a
+  spur or a repeated vertex besides the touch, such as ms-intro-1's island walk `X = X₁ t X₂ t⁻¹ X₃` touching `Π`. As a leaf it
+  therefore contains the open island part of the spur and face-bubble leaves.
+- **Corrected spelling.** `PocketWalkTouchOnlyShape`: a touch, no spur, and no repeated vertex on either part. The X-pocket still
+  follows from the five shapes with this leaf (`osinLemma94CaseOneXPocket_of_touchOnly`), because the case split tests spur, bubble
+  and pinch first.
+- **Route for the touch-only leaf.**
+  - At a touch vertex `v`: `σ x_out = alpha x_in` (the corner of `f`) and `σ b_out = alpha b_in` (the corner of `Π`).
+  - Split at `alpha x_in` and `alpha b_in`. The new vertex of `alpha x_in` holds `x_out` and the new vertex of `alpha b_in` holds
+    `b_out` (`sameCycle_x_of_stretch`), so the touch drops and the walk stays closed.
+  - Repeat until no touch is left. The walk is then simple, and w1-binder-8's in-flight `false_of_simpleWalk_of_below` (closed
+    collar) finishes.
+  - Open inputs:
+    - the two merged corners (`faceOf x_in`, `faceOf b_in`) must be G-faces, which is false at a relator-cell corner and needs a
+      thickening there;
+    - they must lie on distinct faces (planarity: `f` and `Π` share the arc `p`);
+    - they must be off the exterior (from `hout`).
+
+CLAIM corrected spelling of shape 3 and the reduction with it — `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellTouchOnly.lean`
+(new module; imports only ms-intro-1's landed `OsinLemma94SameCellPocketPinch`). Path free on origin, in the shared tree and in
+every `lanes/*.files` (checked 18:5x).
