@@ -109,6 +109,16 @@ the same kernel and quotient. Every member is Hopfian and infinitely
 presented, including those with decidable word problem. The proof is
 written mathematics and has not been formalized in Lean.
 
+The [return-tower rank reduction](../research/artifacts/pestov91-return-towers-lower-mf-rank-2026-09-13.md)
+detects the exact MF/LEF word-graph boundary in rank two whenever the
+subshift has no fixed points, and in the unit group whenever it has
+no points of periods below four. Clopen return sections put the needed
+matrix blocks inside the original ring. For aperiodic seams the full
+MF radical is already the simple finitary kernel in units and rank
+two; rank three prescribes the original simple endpoint factors with
+four torsion generators. The proof is written, not Lean-verified; the
+general rank-three case with fixed points is not settled here.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
