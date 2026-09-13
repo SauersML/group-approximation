@@ -67,3 +67,14 @@ Röver--Nekrashevych commutators.
    embeds in no such completion, whatever its minimality and aperiodicity. Any
    hosting completion needs a finitely presented base whose own word problem
    carries the decision procedure for `X`.
+4. **Trivial recursion on a simple base: equivalent to the root** (2026-09-13). By
+   `simple-ln-completion-premise-is-equivalent-to-algebra-bh`, if `A` lies in a finitely
+   presented simple `S`, then `B = S` with `psi(b) = b I_d` satisfies every clause:
+   `O_psi ≅ S ⊗ L_d`, every ideal is saturated, and the off-degree core centralizer
+   vanishes by linear independence plus the Leavitt calibration. So this premise is
+   a normal form for `algebra-boone-higman-conjecture`, not a weakening. Attempt 1's
+   kill only says that trivial recursions add no simplicity. The root splits as the
+   algebra Clapham theorem `decidable-algebras-embed-in-decidable-fp-algebras` (OPEN;
+   Belyaev's associative Higman theorem is known here only from a secondary source)
+   together with Boone--Higman for finitely presented algebras with solvable word
+   problem.
