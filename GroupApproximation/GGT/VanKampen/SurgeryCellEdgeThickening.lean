@@ -304,23 +304,32 @@ noncomputable def sectionFamily (S : GloballyDistinguishedSectionFamily D lambda
       (S.card_minimal other hother (hweight.trans
         (FaceEdgeDoubling.regionFamily_weight S.diagram f j hlen hf S.family havoid)))
 
-/-- **Induction on the number of cell-edge darts**, keeping the absence of relator words of value
-one. -/
-theorem exists_cellEdgeFree (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
-    (hvalue : ∀ C ∈ S.diagram.relatorCells, RelLetter.listVal C.word ≠ 1) :
+/-- **Induction on the number of cell-edge darts, carrying an invariant**, and keeping the absence of
+relator words of value one.  Every property of distinguished section families that one doubling
+step `sectionFamily` preserves also holds for the output. -/
+theorem exists_cellEdgeFree_of_invariant
+    (P : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts → Prop)
+    (hP : ∀ (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+      (f : S.diagram.toCombMap.Face) (j : Fin (S.diagram.faceBoundary f).darts.length)
+      (hlen : 1 < (S.diagram.faceBoundary f).darts.length) (hf : f ≠ S.diagram.outerFace)
+      (havoid : ∀ a ∈ S.family, f ∉ a.1 ∧ S.diagram.toCombMap.faceOf
+        (S.diagram.toCombMap.alpha (FaceEdgeDoubling.dart S.diagram f j)) ∉ a.1),
+      P S → P (sectionFamily S f j hlen hf havoid))
+    (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+    (hvalue : ∀ C ∈ S.diagram.relatorCells, RelLetter.listVal C.word ≠ 1) (hS : P S) :
     ∃ (S' : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
       (e : S.family ≃ S'.family),
       Nonempty (OEquivalentDiscDiagram S.diagram S'.diagram) ∧
         (∀ x, ¬ IsCellEdgeDart S'.diagram x) ∧
           (∀ C ∈ S'.diagram.relatorCells, RelLetter.listVal C.word ≠ 1) ∧
             S'.toRealizedSectionFamily.weight = S.toRealizedSectionFamily.weight ∧
-              ∀ a, RegionCandidate.SameTargetProfile (e a).1 a.1 ∧
-                (e a).1.2.source.val = a.1.2.source.val := by
-  revert hvalue
+              (∀ a, RegionCandidate.SameTargetProfile (e a).1 a.1 ∧
+                (e a).1.2.source.val = a.1.2.source.val) ∧ P S' := by
+  revert hvalue hS
   generalize hn : cellEdgeCount S.diagram = n
   induction n using Nat.strong_induction_on generalizing S with
   | _ n ih =>
-    intro hvalue
+    intro hvalue hS
     by_cases hcell : ∃ x, IsCellEdgeDart S.diagram x
     · obtain ⟨x, hx⟩ := hcell
       have hlen : 1 < (S.diagram.faceBoundary (S.diagram.toCombMap.faceOf x)).darts.length :=
@@ -336,15 +345,15 @@ theorem exists_cellEdgeFree (S : GloballyDistinguishedSectionFamily D lambda c e
         rw [FaceEdgeDoubling.dart_eq_get, hj]
         exact hx
       have havoid := cell_avoid S.diagram _ j hvalue hcell2 S.family
-      obtain ⟨S', e, ⟨equiv'⟩, hfree', hvalue', hweight, hprofile⟩ :=
+      obtain ⟨S', e, ⟨equiv'⟩, hfree', hvalue', hweight, hprofile, hPS'⟩ :=
         ih _ (lt_of_lt_of_eq (cellEdgeCount_lt S.diagram _ j hlen hf hcell2) hn)
           (sectionFamily S _ j hlen hf havoid) rfl
-          (relatorValue_ne_one S.diagram _ j hlen hf hvalue)
+          (relatorValue_ne_one S.diagram _ j hlen hf hvalue) (hP S _ j hlen hf havoid hS)
       refine ⟨S', (regionFamilyEquiv S.diagram _ j hlen hf S.family havoid).trans e,
         ⟨(FaceEdgeDoubling.oEquivalent S.diagram _ j hlen hf).trans equiv'⟩, hfree', hvalue',
         hweight.trans
           (FaceEdgeDoubling.regionFamily_weight S.diagram _ j hlen hf S.family havoid),
-        fun a => ?_⟩
+        fun a => ?_, hPS'⟩
       obtain ⟨hprof, hsource⟩ :=
         hprofile (regionFamilyEquiv S.diagram _ j hlen hf S.family havoid a)
       exact And.intro
@@ -352,7 +361,24 @@ theorem exists_cellEdgeFree (S : GloballyDistinguishedSectionFamily D lambda c e
         (hsource.trans (regionFamilyEquiv_source S.diagram _ j hlen hf S.family havoid a))
     · exact ⟨S, Equiv.refl _, ⟨OEquivalentDiscDiagram.refl _⟩, fun x hx => hcell ⟨x, hx⟩,
         hvalue, rfl,
-        fun _ => And.intro (And.intro Iff.rfl (And.intro rfl (And.intro rfl rfl))) rfl⟩
+        fun _ => And.intro (And.intro Iff.rfl (And.intro rfl (And.intro rfl rfl))) rfl, hS⟩
+
+/-- **Induction on the number of cell-edge darts**, keeping the absence of relator words of value
+one. -/
+theorem exists_cellEdgeFree (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+    (hvalue : ∀ C ∈ S.diagram.relatorCells, RelLetter.listVal C.word ≠ 1) :
+    ∃ (S' : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+      (e : S.family ≃ S'.family),
+      Nonempty (OEquivalentDiscDiagram S.diagram S'.diagram) ∧
+        (∀ x, ¬ IsCellEdgeDart S'.diagram x) ∧
+          (∀ C ∈ S'.diagram.relatorCells, RelLetter.listVal C.word ≠ 1) ∧
+            S'.toRealizedSectionFamily.weight = S.toRealizedSectionFamily.weight ∧
+              ∀ a, RegionCandidate.SameTargetProfile (e a).1 a.1 ∧
+                (e a).1.2.source.val = a.1.2.source.val := by
+  obtain ⟨S', e, hequiv, hfree, hvalue', hweight, hprofile, -⟩ :=
+    exists_cellEdgeFree_of_invariant (fun _ => True) (fun _ _ _ _ _ _ _ => trivial) S hvalue
+      trivial
+  exact ⟨S', e, hequiv, hfree, hvalue', hweight, hprofile⟩
 
 end Family
 
@@ -395,4 +421,5 @@ end GroupApproximation.GGT.VanKampen.CellEdgeThickening
 #audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_avoid
 #audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.regionFamilyEquiv
 #audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.sectionFamily
+#audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_cellEdgeFree_of_invariant
 #audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_cellEdgeFree
