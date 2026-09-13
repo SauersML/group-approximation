@@ -36,6 +36,11 @@ Per the attached artifact:
   - every C̃_n, `c-tilde-artin-groups-satisfy-permutational-boone-higman`.
     This follows from the Charney--Crisp embedding `A(C̃_n) <= B_(n+2)`
     (arXiv:math/0408412) together with BFFHZ.
+  - every B̃_n with `n >= 3`,
+    `b-tilde-artin-groups-satisfy-permutational-boone-higman`. A finite-index
+    subgroup maps into `Aut(F_r) × P_(n+1) <= Aut(F_(r+n+1))` through the free
+    fibre group of the Li--Roushon fibration (arXiv:2403.09533v2).
+    Krasner--Kaloujnine then induces up inside `Aut(F_M)`.
 - **Boone--Higman:** right-angled Artin groups, by survey Theorem 5.1(3).
 - **Forest defining graphs, secondary source only.**
   - Jankiewicz, arXiv:2103.01343, quotes Brunner and Hermiller--Meier: these are
@@ -59,6 +64,8 @@ Per the attached artifact:
      braid groups of orbifolds with cone points of order 2. A braid around a
      cone point has finite order, so the punctured-plane argument does not
      apply.
+   - *B̃_n was later reached another way*, without braid pictures, by
+     `b-tilde-artin-pbh-via-free-fibre-kernel-proof`. D̃_n stays open.
    - *Dies for E_6, E_7, E_8.* Paris, §7.1: the Perron--Vannier geometric
      monodromy is faithful only for types A and D.
 2. **Linearity.** Spherical types are linear over `Q(x,y)`: Paris, Corollary 6.5,

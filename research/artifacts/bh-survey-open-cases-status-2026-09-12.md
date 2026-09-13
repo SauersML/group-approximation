@@ -102,7 +102,7 @@ Not in the survey, but open or active in Cairn:
 | Ã_n | settled | BFFHZ Cor. B |
 | C̃_n, all n | settled in Cairn | `c-tilde-artin-groups-satisfy-permutational-boone-higman` → ESTABLISHED (A(C̃_n) ≤ B_(n+2)). The survey still lists n ≥ 3 as open. |
 | Ã_2, C̃_2 = B̃_2, G̃_2 | settled | [40], Euclidean triangle groups |
-| B̃_n, n ≥ 3 | open | the target of this lane, §4 |
+| B̃_n, n ≥ 3 | settled in Cairn by this lane | `b-tilde-artin-groups-satisfy-permutational-boone-higman` → ESTABLISHED, landed `8bd8f63a9`. A(B̃_n) ≤ Aut(F_M) through the Li–Roushon fibration; see §4. The survey still lists it as open. |
 | D̃_n, n ≥ 4 | open | no fibration with f.g. free fibres is known; see §4 |
 | Ẽ_6, Ẽ_7, Ẽ_8, F̃_4 | open | no structural input found |
 | other types with solvable WP (2-dim, large, FC, ...) | open in general | `admissibly-oriented-artin-groups-satisfy-boone-higman` → OPEN; `artin-groups-satisfy-boone-higman` → OPEN |
@@ -131,6 +131,16 @@ Unstaffed items ranked by how much existing Cairn machinery bears on them:
      class, then A(B̃_n) lies in that class.
    - **To check against the source:** the model space and its relation to
      A(B̃_n); the base group; exactness on the left.
+   - **Outcome (2026-09-12): proved.**
+     - All three points check out against the source.
+     - The base group is the pure braid group P_(n+1), which lies in
+       Aut(F_(n+1)).
+     - Krasner–Kaloujnine inside Aut(F_M) replaces the finite-extension closure.
+     - Nodes: `b-tilde-artin-complement-fibres-over-configuration-space`
+       (literature import, landed `3f00db1ab`) and
+       `b-tilde-artin-groups-satisfy-permutational-boone-higman` (landed
+       `8bd8f63a9`).
+     - Artifact: `bh-b-tilde-artin-2026-09-12.md`.
 2. **(13), type D̃_n.** Same method, but no fibration is available.
    - Flechsig, arXiv:2305.04273, shows the pure orbifold braid sequence has a
      nontrivial kernel K. That corrects Roushon, arXiv:2006.07106, Thm 2.14.
