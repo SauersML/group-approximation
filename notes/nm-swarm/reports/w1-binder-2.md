@@ -39,6 +39,16 @@ CLAIM classCovers_of_sameCellFactor GroupApproximation/GGT/VanKampen/Estimating/
 (i) is what `classCovers_of_endLoops` proves once `hsameCell` is dropped; (ii) is fff-periodic's planned count with
 `M₀ = ⌈1/λ⌉₊`. The module imports only `OsinLemma94PolygonClasses`, so the red cover module does not block it.
 
+## Landed
+
+- **`OsinLemma94ClassPolygons.classCovers_of_sameCellFactor` LANDED 2336592ee** (module
+  `Estimating/OsinLemma94ClassCoversSameCellFactor`, probe 0913-170844-86401 GREEN, BUILT line checked). Closed, with no
+  residual Props; `#audit_axioms` on it and on `OsinLemma94ClassCoversSameCellFactor.add_le_of_factor`. Queued for wiring.
+- Consumers: the class-cover producer (hull-component's `classCovers_of_endLoops` after it drops `hsameCell`) supplies
+  hypothesis (i). fff-periodic's planned `OsinUnboundSameCellCount` supplies hypothesis (ii) with `M₀ = ⌈1/λ⌉₊`.
+  Composed, they give `ClassCovers (⌈1/λ⌉₊ + 1) L`, which is what `OsinLemma94ClassCountInput` asks for (`0 < M`).
+
 ## Progress log
 
-- 17:0x: verdict and ownership map; claim landed.
+- 17:0x: verdict and ownership map; claim landed (7564433ff).
+- 17:1x: factor cover landed (2336592ee).
