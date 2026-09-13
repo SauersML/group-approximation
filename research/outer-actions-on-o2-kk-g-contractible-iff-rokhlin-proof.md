@@ -94,3 +94,27 @@ to `(C, α̂)` gives `(C, α̂) ≃_(KK^Ĝ) 0`.  By (TD), the dual crossed produ
 `C ⋊ Ĝ` is KK^G-equivalent to `(O_2, α)`, so `α ≃_(KK^G) 0`.  Item 2 then
 makes `α` Rokhlin.  For outer strongly approximately inner actions, item 3 of
 that node gives approximate representability when `p` is prime.
+
+**Item 5.**  Source: Szabó, *Rokhlin dimension: absorption of model actions*,
+arXiv:1804.04411, read 2026-09-13.
+* Definition 4.1(i): `dim^c_Rok(α, H)` is the least `d` such that there are
+  equivariant c.p.c. order zero maps
+  `φ^(0), …, φ^(d) : (C(G/H), G-shift) → (F_(∞,α)(A), α̃_∞)` with pairwise
+  commuting ranges and `1 = φ^(0)(1) + ⋯ + φ^(d)(1)`.  Item (iii) takes the
+  supremum over closed cocompact `H ⊇ N`.  For finite `G` and `N = 1` this
+  supremum is attained at `H = 1`, because `C(G/H) ⊆ C(G)` equivariantly.
+* Corollary B: "Let G be a second-countable, locally compact group. Suppose
+  that G contains a discrete, normal, cocompact subgroup that is residually
+  finite and has a box space with finite asymptotic dimension. Let A be a
+  separable C\*-algebra with an action α : G y A. Suppose that D is a
+  strongly self-absorbing C\*-algebra with A ≅ A ⊗ D. If the Rokhlin dimension
+  of α with commuting towers is finite, then it follows that α is γ-absorbing
+  for every semi-strongly self-absorbing action γ : G y D."
+* Theorem 1.8 and the Remark after it: "γ-absorbing" means strongly cocycle
+  conjugate to `α ⊗ γ`.
+
+For finite `G`, the trivial subgroup is discrete, normal, cocompact and
+residually finite, and its box space is a point.  The trivial action on the
+strongly self-absorbing algebra `O_2` is strongly self-absorbing (Szabó,
+arXiv:1509.08380, Example 3.2).  So `α ≃_scc α ⊗ id_(O_2)`.  Conclude as in
+item 1, using (CC).

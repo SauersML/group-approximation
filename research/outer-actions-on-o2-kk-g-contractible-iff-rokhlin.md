@@ -42,6 +42,15 @@ standard inputs flagged in the proof).**  Let `G` be a finite group.
    `p` (route `zp-detection-from-strong-approximate-innerness`).  So detection
    at `p` is equivalent to the open question of Barlak--Li II,
    Remark 4.14(2), for outer actions of order `p`.
+5. **Finite Rokhlin dimension with commuting towers.**  Item 1 holds more
+   generally.  Let `A` be separable, not necessarily unital, with
+   `A ≅ A ⊗ O_2`, and let `α : G ↷ A` have finite Rokhlin dimension with
+   commuting towers.  Then `α` is strongly cocycle conjugate to
+   `α ⊗ id_(O_2)`, so it is KK^G-contractible.  So a pointwise outer action
+   on `O_2` with finite commuting-tower Rokhlin dimension has the Rokhlin
+   property, by item 2.  A phantom candidate in item 3 therefore has infinite
+   commuting-tower Rokhlin dimension, and so does its dual when the dual is
+   outer.
 
 This replaces the unverified Rokhlin sketch in the Attempts of the detection
 claim.  That sketch invoked Izumi's uniqueness theorem.  The argument here
