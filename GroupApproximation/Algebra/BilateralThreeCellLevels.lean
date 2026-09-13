@@ -95,7 +95,7 @@ theorem conj_conj (i j : ℤ) (x : R) :
 /-- The level idempotent `u^j p u^{-j}` (in `R_X`: `1_{T^j(P)}`). -/
 def lvl (j : ℤ) : R := C.pw j * C.p * C.pw (-j)
 
-theorem conj_p (j : ℤ) : C.pw j * C.p * C.pw (-j) = C.lvl j := rfl
+@[simp] theorem conj_p (j : ℤ) : C.pw j * C.p * C.pw (-j) = C.lvl j := rfl
 
 theorem lvl_zero : C.lvl 0 = C.p := by
   rw [lvl, neg_zero, pw_zero, one_mul, mul_one]
