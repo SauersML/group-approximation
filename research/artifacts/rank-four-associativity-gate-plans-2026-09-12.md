@@ -50,8 +50,8 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
 
     It has to use relations beyond those shapes: straddling units as factors in a nonsofic configuration
     that no graph of locally finite subgroups routes, properties that no rank model has, or global inputs
-    such as corner locality. The remaining option, an element of `K_2(3,R)`, is empty if the candidate
-    `K_2(3,R) = 0` of w7-k2-unstable passes (8afa079662; held OPEN until w4-vf-gate re-derives it; L5).
+    such as corner locality. The remaining option, an element of `K_2(3,R)`, is empty: `K_2(3,R) = 0` in
+    both hosts (w7-k2-unstable, 8afa079662; verifier PASS w4-vf-gate §34 at b55d89486d; L5).
   * **Cohn coefficients** (L8). This question lies between the V gate and the binary gate, so it adds no
     new decisive input.
   * **One shared input** (L5, L8). The Toeplitz form of the descent line and the Cohn reduction through
@@ -81,8 +81,8 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
       `sylvester-disjoint-cylinder-defects-strictly-submultiplicative` (L9).
     * w7-v-cycle-c2 and w7-v-cycle-c3 (verifier w3-vf-linear) work on the V gate upstream of L8, through the
       open order-char cycle law at `p = 2` and `p = 3`. w7-v-cycle-c2 landed a candidate proof of the law
-      for every `p`, through trivial-plus-regular ranks on every finite subgroup of `V` (ce8be16cd1; held
-      OPEN until w3-vf-linear re-derives it; L8). It turns the gate into `phi_V in {0, 1}` and is not
+      for every `p`, through trivial-plus-regular ranks on every finite subgroup of `V` (ce8be16cd1;
+      verifier PASS w3-vf-linear §32 at 87e69e1510; L8). It turns the gate into `phi_V in {0, 1}` and is not
       decisive. w7-v-cycle-c3 landed a second derivation of that formula and a firewall candidate
       (2e8bf4f44d; held OPEN; L8). Rank data inside `p`-groups cannot force the law, and the ternary gate
       stays open at `<x_0, x_1, s>`.
@@ -386,9 +386,10 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
       * A relation-only proof through the pair must use one of: a cycle of Steinberg relations whose
         elements generate a nonsofic subgroup that no graph of locally finite subgroups routes; an element
         of `K_2(3,R)`; or a global input.
-      * **Unstable `K_2`, candidate** (lane w7-k2-unstable; 8afa079662; artifact
-        `leavitt-unstable-k2-steinberg-reduction-2026-09-12.md`; OPEN claim
-        `leavitt-unit-groups-have-no-unstable-k2-at-rank-three`, held until w4-vf-gate re-derives it).
+      * **Unstable `K_2`** (lane w7-k2-unstable; 8afa079662; artifact
+        `leavitt-unstable-k2-steinberg-reduction-2026-09-12.md`; claim
+        `leavitt-unit-groups-have-no-unstable-k2-at-rank-three`; verifier PASS w4-vf-gate §34 at
+        b55d89486d on Sections 1--5, the claim display and both Attempts entries, no corrections).
         * `K_n(R) = 0` for every `n`, and `K_2(3,R) = 0` for `R = L_(F_p)(1,2)`, `p = 2, 3`. This specializes
           Khanh's Theorem 5.4 at `r = 3`, with Voronetsky's refinement read from the source. It is a
           literature import, not a new theorem.
@@ -406,7 +407,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
           both hosts a decisive relation is a closing relation of a graph of approximable groups. That
           locates the load but gives no deficit.
     * *(lead)* Every local relation is finite data, so a relation-only `theta < 1` needs a global cycle of
-      Steinberg relations, since the `K_2(3,R)` kind is empty if the candidate passes. The inputs of w7-sub-multiletter, V's multiplication table and commutation of
+      Steinberg relations, since the `K_2(3,R)` kind is empty (verifier PASS §34). The inputs of w7-sub-multiletter, V's multiplication table and commutation of
       disjoint depth-changing letters, are where such a cycle would have to come from.
     * **w7-sub-multiletter** (37bafd8f30; artifact
       `research/artifacts/multiletter-split-borel-and-coefficient-firewalls-2026-09-12.md`; held OPEN until
@@ -449,7 +450,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | Toeplitz input and sofic firewall | w5-sub-fock (family SUB) | Established, verifier PASS §28: the Toeplitz pair is finite-subgroup data; `sofic-subgroups-carry-independent-cylinder-defects`; `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`. Open input shared with L8: soficity of `EL_3(J)` (L5) |
 | graph-of-groups firewall | w6-mismatch-c2 (family SUB) | Established, verifier PASS §29 (d0f2b3f648; verdict 4373d18c44): `graphs-of-locally-finite-groups-carry-regular-rank-models`; the depth-mismatched pair is inert as a factor; Attempts entries on the SUB target and on `binary-complement-corner-has-no-weakly-finite-image` (L5) |
 | depth-monotone firewall (char 3) | w6-mismatch-c3 (family SUB) | Established, verifier PASS §30 (74247b5cff, a5226d4756; verdict 794ae892b2; established f31c52ae43): `depth-monotone-leavitt-subalgebras-are-stably-finite`; `depth-monotone-configurations-cannot-force-ternary-minus-one`. The pair is inert for the anti-central form; the defect form is not firewalled (L9b) |
-| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established, verifier PASS w4-vf-linear-b §39 at ae0a4005ef; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6, 07d43b6a32; verifier PASS §31 at 216396d9ee and §32 at 6bc9bfc1a2): no containment reduction; Kazhdan, so LEA iff LEF; both one-sided halves are LEF, and `EL_3(J)` is a proper quotient of their amalgam; verdict open (L5). w7-v-cycle-c2 landed a candidate proof of trivial-plus-regular ranks on finite subgroups of `V` (ce8be16cd1; held OPEN until w3-vf-linear re-derives it; L8). w7-v-cycle-c3 landed (2e8bf4f44d; L8). w7-sub-multiletter landed (37bafd8f30; held OPEN): no deficit from multi-letter inputs, three firewalls (L5). Follow-up w7-matrix-state-deficit landed (f3545c8591; held OPEN): the ternary deficit restates emptiness in both scopes (L9b). w7-k2-unstable landed a candidate `K_2(3,R) = 0` for both hosts (8afa079662; held OPEN until w4-vf-gate re-derives it; L5). Other follow-up lanes on the same inputs, none landed: w7-el3j-presentation, w7-escape-set, w7-matrix-state-deficit. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
+| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established, verifier PASS w4-vf-linear-b §39 at ae0a4005ef; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6, 07d43b6a32; verifier PASS §31 at 216396d9ee and §32 at 6bc9bfc1a2): no containment reduction; Kazhdan, so LEA iff LEF; both one-sided halves are LEF, and `EL_3(J)` is a proper quotient of their amalgam; verdict open (L5). w7-v-cycle-c2 landed a proof of trivial-plus-regular ranks on finite subgroups of `V` (ce8be16cd1; verifier PASS w3-vf-linear §32 at 87e69e1510; L8). w7-v-cycle-c3 landed (2e8bf4f44d; L8). w7-sub-multiletter landed (37bafd8f30; held OPEN): no deficit from multi-letter inputs, three firewalls (L5). Follow-up w7-matrix-state-deficit landed (f3545c8591; held OPEN): the ternary deficit restates emptiness in both scopes (L9b). w7-k2-unstable landed `K_2(3,R) = 0` for both hosts (8afa079662; verifier PASS w4-vf-gate §34 at b55d89486d; L5). Other follow-up lanes on the same inputs, not yet landed: w7-el3j-presentation, w7-escape-set. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
 | verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §32, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
 ### L7. The listed mechanism dies
@@ -551,9 +552,9 @@ without completeness.
   * **Next step, open.** `v-rank-order-char-cycles-are-trivial-plus-regular`: the Jordan profile
     `rk((1 - [s])^j) = (1 - phi_V)(p - j)/p` for `1 <= j <= p` (range corrected by the lane after the
     restart). The lane records that the law does not imply the gate.
-    * **Candidate proof for every `p`** (lane w7-v-cycle-c2; ce8be16cd1; artifact
-      `thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md`, Section 1; held OPEN until
-      w3-vf-linear re-derives it). `v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`: on every
+    * **Proof for every `p`** (lane w7-v-cycle-c2; ce8be16cd1; artifact
+      `thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md`, Section 1; verifier PASS
+      w3-vf-linear §32 at 87e69e1510, which clears the node to land ESTABLISHED). `v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`: on every
       finite subgroup `G <= V`, in every characteristic,
       `rk(A) = phi_V rank_F eps(A) + (1 - phi_V) rank_F Reg(A)/|G|`. The proof adjoins a clopen-cycle group
       `Q = (Z/p)^Pi` normalized by `G`, for primes `p != char F`. It splits `rk` along the `G`-orbits of
@@ -569,8 +570,8 @@ without completeness.
       * Non-free orbits cost at most `n (|G| - 1)(1 - phi)/p`, because `G` acts faithfully on `Pi`: a
         prefix replacement that fixes a cylinder is the identity on it.
       * The inputs [TS] Theorem 1.3 and [FR] Theorem 1.2 were not re-read.
-      * If the proof passes, it also covers the target of w7-v-cycle-c3, and the V gate keeps no torsion
-        content. That is a reformulation, not a decisive input.
+      * The proof passes (w3-vf-linear §32 at 87e69e1510), so it also covers the target of w7-v-cycle-c3,
+        and the V gate keeps no torsion content. That is a reformulation, not a decisive input.
     * **w7-v-cycle-c3** (2e8bf4f44d; held OPEN until w3-vf-linear re-derives it).
       * It derives the trivial-plus-regular formula a second way, with one prime `q` and `k -> infinity`.
       * Firewall candidate `p-cycle-tree-invariance-cannot-force-order-char-law`. On an elementary abelian
