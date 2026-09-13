@@ -62,9 +62,12 @@ noncomputable section
 
 -- BEGIN SHARED BLOCK (kept byte-identical in `Palomar/Pestov91Challenge.lean` and `Palomar/Pestov91Solution.lean`)
 
-/-- A Kazhdan pair for a discrete group: every unitary representation on a
-complex Hilbert space with a `(Q,ε)`-almost invariant unit vector has a nonzero
-invariant vector. -/
+/-- A Kazhdan pair for a discrete group (Bekka–de la Harpe–Valette,
+*Kazhdan's Property (T)*, Definitions 1.1.1 and 1.1.3): every unitary
+representation on a complex Hilbert space with a `(Q,ε)`-almost invariant unit
+vector has a nonzero invariant vector.  Since `Q` is finite, the supremum in
+Definition 1.1.1 is a maximum, so the strict bound is asked element by
+element. -/
 def IsKazhdanPair (G : Type) [Group G] (Q : Finset G) (ε : ℝ) : Prop :=
   0 < ε ∧
     ∀ (E : Type) [NormedAddCommGroup E] [InnerProductSpace ℂ E] [CompleteSpace E],
@@ -73,7 +76,9 @@ def IsKazhdanPair (G : Type) [Group G] (Q : Finset G) (ε : ℝ) : Prop :=
           ∃ y : E, y ≠ 0 ∧ ∀ g : G, ρ g y = y
 
 /-- Kazhdan's property `(T)`: some finite set and some positive tolerance form
-a Kazhdan pair. -/
+a Kazhdan pair.  Definition 1.1.3 of Bekka–de la Harpe–Valette asks for a
+compact Kazhdan set, and the compact subsets of a discrete group are the finite
+ones. -/
 def HasPropertyT (G : Type) [Group G] : Prop :=
   ∃ (Q : Finset G) (ε : ℝ), IsKazhdanPair G Q ε
 
@@ -94,11 +99,16 @@ instance finiteCarrierCoeSort : CoeSort FiniteCarrier Type :=
     DecidableEq Y :=
   Y.decidableEq
 
-/-- The proportion of points where two finite permutations differ. -/
+/-- The proportion of points where two finite permutations differ: the
+normalized Hamming distance of Pestov, arXiv:0804.3968, Example 2.3 (page 5). -/
 def hammingDist (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=
   ((Finset.univ.filter fun y : Y ↦ p y ≠ q y).card : ℝ) / Fintype.card Y
 
-/-- Soficity in the finite-set normalized-Hamming formulation. -/
+/-- Soficity in the finite-set normalized-Hamming formulation.  It is equivalent
+to the local criterion of Pestov, Theorem 3.5 (page 8), which asks
+multiplicativity only when `gh ∈ F`, closeness of `θ(e)` to the identity, and
+separation `1/4` in place of `1 - ε` (`isSoficGroup_iff_isPestovSofic` in
+`wip/pestov91/fidelity/Pestov91ModelTests.lean`). -/
 def IsSoficGroup (G : Type) [Group G] : Prop :=
   ∀ (F : Finset G) (ε : ℝ), 0 < ε →
     ∃ (Y : FiniteCarrier) (σ : G → Equiv.Perm Y),
@@ -107,11 +117,15 @@ def IsSoficGroup (G : Type) [Group G] : Prop :=
       (∀ g ∈ F, ∀ h ∈ F, g ≠ h → 1 - ε ≤ hammingDist Y (σ g) (σ h))
 
 /-- The squared normalized Hilbert–Schmidt distance between two matrices
-indexed by a finite carrier. -/
+indexed by a finite carrier: the square of the distance of Pestov, Example 2.7
+(page 6), normalized so that the identity has norm one. -/
 def hsDistSq (Y : FiniteCarrier) (A B : Matrix Y Y ℂ) : ℝ :=
   (∑ i : Y, ∑ j : Y, Complex.normSq (A i j - B i j)) / Fintype.card Y
 
-/-- Hyperlinearity in the finite-set normalized-Hilbert–Schmidt formulation. -/
+/-- Hyperlinearity in the finite-set normalized-Hilbert–Schmidt formulation.
+Pestov's Theorem 3.6 (page 9) is the same local criterion with separation `1/4`;
+by Remark 3.7 (page 9) the separation can be taken as close to `√2` as desired,
+which is `2 - ε` for the squared distance. -/
 def IsHyperlinearGroup (G : Type) [Group G] : Prop :=
   ∀ (F : Finset G) (ε : ℝ), 0 < ε →
     ∃ (Y : FiniteCarrier) (σ : G → Matrix Y Y ℂ),
