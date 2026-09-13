@@ -209,6 +209,13 @@ every group.
 
   Part 18.
 
+- **§19, Labbé climbing layer (~03:15 CDT).** PASS on (ex-fp-simple-relation-climbing):
+  - the supertile corner endomorphism of Labbé's full group;
+  - the exact ball-legality computation: code read, completeness re-derived, and every number reproduced by one
+    MSI run.
+
+  Part 19.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -229,3 +236,4 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part16.md`: §16, nonsofic doubles in dimension three, bounded-block transport, finite type.
 - `research/artifacts/ex-review-groups-2026-09-12-part17.md`: §17, homology of derived full groups (integral H² correction), crossed-product rigidity, gated models.
 - `research/artifacts/ex-review-groups-2026-09-12-part18.md`: §18, the Atiyah–determinant tester, norm-two matrices, the Penrose group, citation imports.
+- `research/artifacts/ex-review-groups-2026-09-12-part19.md`: §19, Labbé climbing layer: supertile corner endomorphism, ball legality.
