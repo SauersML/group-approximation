@@ -62,4 +62,17 @@ open inputs.
 
 ## Next
 
-This lane's scope is done, and the lead has been asked for the next item.
+The lead's next item (09-13): take one case of hzip, stated for an arbitrary `X : TriangleComplex V`.
+ko-closed found that the hT6 route needs hfill, and hence hd, at every X.
+
+* systolic-counts has offered kh-torsion the spike case or the pinch case: a named Prop plus a closed
+  theorem, in a new module owned by this lane.  kh-torsion names the exact Prop and keeps the other cases and
+  the assembly in `GGT/SystolicDiscZip.lean`.
+* This lane writes no Lean until kh-torsion answers.
+* Tools already on main:
+  * `VanKampen/SpikeDeletion` (removing a spike, i.e. a degree-one vertex);
+  * `VanKampen/FoldMap` and `FoldDiagram` (folding);
+  * `VanKampen/PinchLemma` (`split_euler`, `split_isFaceCycle_rest`);
+  * `VanKampen/CombMapInvariantRestrict` (`restrict_planar_of_euler_four`);
+  * the adapter pattern `CycleDisc.exists_of_triangulatedDisc`, `split_boundary` and
+    `toTriangulatedDisc` (`GGT/SystolicDiscMovesAdapter.lean:66-136`).
