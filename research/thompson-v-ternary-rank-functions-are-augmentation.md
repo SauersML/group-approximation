@@ -10,6 +10,7 @@ distinct_from:
   thompson-v-has-no-nontrivial-f2-rank-model: that is triviality of matricial characteristic-two rank models of V; this is the abstract Sylvester statement over F_3, which is the form the ternary counterexample chain consumes.
   sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one: that is the gate for the whole ternary unit group, which this implies through the signed Thompson group; the converse is not known, since a rank function on F_3[V] need not extend to the unit group.
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/signed-thompson-minus-one-gate-is-v-rank-gate-2026-09-12.md
 ---
 
@@ -103,3 +104,5 @@ the augmentation rank.
     - **Abstract reduced quotient.** Is `(rk - phi_V rk_aug)/(1 - phi_V)` always a rank function? If so, the gate is
       equivalent to: no rank function on `F_3[V]` has `phi_V = 0`.
     - **Joint data** on `F_3[B ⋊ <x>]` and `F_3[<x_0, x_1, s>]`.
+
+*Verification by `w3-vf-linear` (2026-09-12), §33.4 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on the w7-v-cycle-c3 entry: convexity via [FR] Corollary 1.3(3), the locally finite formula and inertness all re-derive. Scope: "The law needs a prime other than 3" is proved only for elementary abelian 3-group data (§33.3). The cylinder-group node is now ESTABLISHED, not a candidate. The gate stays OPEN.*

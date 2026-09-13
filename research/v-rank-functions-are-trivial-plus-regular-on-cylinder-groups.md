@@ -87,3 +87,5 @@ rk(A) = phi_V rank_F eps(A) + (1 - phi_V) rank_F Reg(A) / |G|.
   - **Inputs.** The same as Section 1 of this node's artifact.
 
 *Verification by `w3-vf-linear` (2026-09-12), §32.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on w7-v-cycle-c2 ce8be16cd1. Theorem 1.1 re-derived: Steps 1–5, including the left-ideal exchange, the block trick, `f_O ~ I_|G| ⊗ e_chi` and the non-free count; the total error is at most `2n|G|/p`. The scope via the canonical partition is correct. The planned route may land this claim ESTABLISHED. The w7-v-cycle-c3 entries are checked separately.*
+
+*Verification by `w3-vf-linear` (2026-09-12), §33.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on the w7-v-cycle-c3 "Second derivation": (S9) matrix units, Steps 0–5 and the bound `3n(|G|+1)(1-phi_V)q^(-k)` all re-derive. It uses the same inputs, so it is a cross-check.*

@@ -8,6 +8,7 @@ distinct_from:
   sofic-configurations-cannot-force-v-rank-triviality: that firewall's models are sofic ranks, which satisfy the order-char law; these models violate it and break single-element V-conjugacy once induced to a wreath configuration.
   v-rank-order-char-cycles-are-trivial-plus-regular: that is the profile every rank function on F[V] must give a clopen p-cycle; this describes the profiles endomorphism-invariant rank functions on p-groups can give.
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md
 ---
 
@@ -65,3 +66,5 @@ rho_m([g]) = exp_m(lambda(g) u) in L[u]/(u^m),      rk_m(M) = rank_L rho_m(M) / 
   - **Ultralimit.** Schwartz–Zippel over `F_(p^k)`, on generic minors of degree at most `2n`.
   - **Wreath extension.** The induced module restricted to `<s>` is free (Mackey). Its restriction to `E_p` is the
     average of `rk_m` over cyclic shifts, which by coherence is `rk_m` again.
+
+*Verification by `w3-vf-linear` (2026-09-12), §33.3 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on w7-v-cycle-c3 2e8bf4f44 for claims 1–6: the exp_m homomorphism, the Lemma 2.1 substitution, the profiles, the Frobenius vertices, the Schwartz–Zippel bound `k(k+1)/p^k`, non-extension (`w_1 = 1`), and both Mackey restrictions of the wreath induction all re-derive. Before ESTABLISHED, the scope must be corrected. The models exist only on elementary abelian p-groups, and the only extension to `W = E_p ⋊ <s>` that was examined breaks V-conjugacy. So the title and "Why it matters" must say elementary abelian p-subgroups, not p-groups. Not decision-level.*
