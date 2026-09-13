@@ -9,8 +9,10 @@ distinct_from:
 ---
 
 ESTABLISHED.  Let `Gamma <= G` be the Kun--Thom Theorem E infranormal
-non-normal Kazhdan pair ([[kun-thom-nonsofic-wreath]]), let `G_e = G(P(M_e))`
-be the pumped clocked machine group, and let `Phi_e <= Z(G_e)` be its
+non-normal Kazhdan pair ([[kun-thom-nonsofic-wreath]]), let `G_e = G_0(P(M_e))`
+be the pumped clocked machine group with the KMS stop relations
+([[kms-group-with-stop-relations-simulates-all-words]]; corrected 2026-09-13 by
+`ex-verify-logic-quantum`, matching its prerequisite), and let `Phi_e <= Z(G_e)` be its
 switchable center ([[machine-center-vanishes-exactly-on-inf]]).  For every
 `e in FIN` the abstract target of the amplifier
 ([[kazhdan-lamp-amplifier-for-machine-center]], attempt A3),

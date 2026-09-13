@@ -58,6 +58,11 @@ The sweep criteria are those of the sibling reviews:
 | 4 | `primitive-projective-representations-have-a-trace-gap`, `normal-fibre-galois-games-round-linearly-over-m-groups`, `-over-all-groups`, `galois-games-round-linearly-for-bounded-fibre-size`, `abelian-normal-closure-fibres-round-linearly`, `free-rounding-pays-the-number-of-fibre-conjugates` | ugc-rounding-pgroups | **PASS.**  Uniformity in `m` uses CFSG, as stated |
 | 4 | `torsor-cfi-isomorphism-algebra-is-coset-constraint-algebra` | kac-quantum-compiler | **PASS** |
 
+| 5 | `uniform-folner-gap-switches-have-sigma1-amenable-locus` (Cavaleri citation checked at source), `polycyclic-type-classes-of-fp-groups-are-sigma1-complete`, `normalizer-image-of-type-a-actor-is-type-a`, `twisted-brin-thompson-wp-equals-actor-orbit-problem` | complexity-amenable | **PASS** |
+| 5 | `machine-center-vanishes-exactly-on-inf`, `machine-center-amplifier-target-not-finitely-presented` | complexity-sofic | **PASS**; one stale group name corrected forward |
+| 5 | `amenable-type-cycle-kills-liftable-masas`, `liftable-masa-in-every-model-iff-uniform-hs-kun-partitions`, `vertex-rounding-alone-normalizes-each-theorem-e-model` | hs-masa-lift-counter, hs-masa-lift-positive | **PASS** |
+| 5 | `torsor-cfi-port-profiles-are-cosets` | kac-quantum-compiler | **PASS** |
+
 ## Part files
 
 - `research/artifacts/ex-review-logic-quantum-2026-09-12-part1.md`: §1, residual finiteness and
