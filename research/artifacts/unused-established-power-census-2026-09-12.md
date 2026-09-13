@@ -186,6 +186,42 @@ literature: `vn-rank-galois-invariant-for-torsion-free-groups`,
     involution normally generates `EL_m(R)` for `m ≥ 4` and every nonzero
     ring `R`.
 
+## 5a. Follow-up sweep at tip 83ff567eb (23:19 CDT)
+
+| quantity | value |
+|---|---|
+| claims | 9,754 |
+| routes | 10,023 |
+| established | 8,104 |
+| refuted | 188 |
+| invalidated routes | 522 |
+| newly established since §1 | 315 (none lost) |
+
+Routeless required open claims: 565. Six of them carry import markers
+("literature input", "source re-read", "verbatim", "read from the PDF")
+and have no Attempts section. Only one was a real missing citation:
+`sinchuk-a1-invariance-for-a4-containing-types`. Its citation route landed
+(010b3d3524) and establishes `rank-five-laurent-k2-stability-is-dimension-free`.
+The other five are open claims or restatements that quote literature:
+- `wreath-amenable-near-representation`
+- `simultaneous-dilation-splice`
+- `mf-trace-gap-defect-ratio-models`
+- `exel-loring-mark-quantization`
+- `commutant-projection-extraction`
+
+The prose audit is unchanged at 83 rows, 17 routeless and 1 missing route,
+all in the unreachable Reynolds/Mersenne/Iwahori family.
+
+Newly established roots in this interval, landed by other lanes:
+- `infinite-simple-kazhdan-hyperlinear-group` (Pestov Q9.1)
+- `char-zero-linear-groups-satisfy-boone-higman`
+- `spherical-artin-groups-satisfy-boone-higman`
+- `simple-cstar-unitary-components-class-three`
+
+A peer landing refuted `simple-kazhdan-groups-have-full-mf-radical`, via the
+simple LEF Kazhdan subshift group. The Titz--Witzel routes that required it
+lose their support.
+
 ## 5. Bounded negative result
 
 No unused established claim, alone or combined with one other established
