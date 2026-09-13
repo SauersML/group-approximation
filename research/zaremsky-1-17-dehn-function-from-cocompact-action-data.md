@@ -68,3 +68,12 @@ answer claim with its own route here.
   stabilizers is forced. Products of trees violate the hypothesis; checking
   that they satisfy (UB) (Theorem B for the factors plus the product formula
   for Dehn functions) is the first calibration.
+- 2026-09-13, same lane: `research/artifacts/zp-dehn-cocompact-face-collapse-2026-09-13.md`
+  and its part 2. Without finite-index faces the lifted complex `X̂` of the
+  paper is still simply connected, so `δ_G ≃ δ_{X̂}` throughout (S). (UB)
+  reduces to bounding face-collapse detours; with trivial face stabilizers
+  these are twists along infinite edge links, i.e. relations among
+  edge-stabilizer elements inside vertex stabilizers. Products of trees keep
+  twists linear. Related work to read before any novelty claim: Sauer–Weis,
+  arXiv:2606.25897 (polynomial homological Dehn functions from non-proper
+  actions).

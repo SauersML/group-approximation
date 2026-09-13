@@ -40,3 +40,10 @@ This is the upper-bound reading of Zaremsky Problem 1.17
   corner coarse-intersection function `κ_X` of pairs of edge stabilizers
   inside vertex stabilizers. It is bounded under finite index and linear for
   products of trees.
+- 2026-09-13 (`research/artifacts/zp-dehn-cocompact-face-collapse-2026-09-13-part2.md`):
+  Lemma 3.4 holds with the detour `d_{EG_e}(γ(0), ψ_{e,σ}(G_σ))`, so `X̂` is
+  simply connected and `δ_G ≃ δ_{X̂}` in general. By the accounting corollary,
+  this claim holds once some filling of area `≼ δ_X(n)` has detours bounded by
+  the stated data. With trivial face stabilizers the detours are twists
+  forming relations among edge-stabilizer elements in `G_w` around interior
+  vertices. A bounded-twist filling lemma is the missing step.
