@@ -30,12 +30,11 @@ this part no.
 - **Amenability, growth, ends, finiteness.** F × Z is amenable iff F is; both have
   exponential growth, one end, and type F_∞; both have quadratic Dehn function
   (Guba for F, and F × Z by the product structure). Dies: none of these separates.
-- **Cohomology with group-ring coefficients.** `H^*(G; ZG)` is a quasi-isometry
-  invariant for groups of type F_∞ (Gersten). If `H^*(F; ZF) = 0` in every degree,
-  as reported by Brown–Geoghegan (Invent. Math. 77, 1984; statement not yet
-  re-read from the source here), then the Künneth formula for groups of type
-  FP_∞ gives `H^*(F × Z; Z[F × Z]) = 0` as well. Dies if that vanishing is
-  confirmed.
+- **Cohomology with group-ring coefficients.** `H^*(G; ZG)` is the classical coarse
+  invariant of groups of finite type (quasi-isometry invariance: Gersten; not yet
+  imported). It vanishes identically on F (Brown–Geoghegan 1984, Theorem 7.2:
+  `thompson-f-has-vanishing-zg-cohomology`) and on `F × Z`
+  (`thompson-products-have-vanishing-zg-cohomology`). Dies.
 - **Open lines.** (i) A coarse invariant sensitive to a central Z factor that
   survives passage to a quasi-isometry (for instance coarse fibrations over Z with
   uniformly coarsely equivalent fibres). (ii) An explicit quasi-isometry built from

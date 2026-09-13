@@ -31,8 +31,12 @@ requiring the corresponding established answer claim; never by a
   non-amenability of T gives no obstruction to such an embedding. Where it stands:
   open; a proof that T does not coarsely embed in F would answer this part no.
 - **Cohomology with group-ring coefficients.** F has `H^*(F; ZF) = 0` in all
-  degrees (Brown–Geoghegan 1984, to be re-read). T is of type F_∞ (Brown 1987), so
-  `H^*(T; ZT)` is a quasi-isometry invariant (Gersten). A nonzero `H^k(T; ZT)` for
-  some `k` would answer this part no. T is simple, so the ascending-HNN argument
-  that works for F does not apply to T. Where it stands: `H^*(T; ZT)` not computed
-  here yet.
+  degrees (`thompson-f-has-vanishing-zg-cohomology`, Brown–Geoghegan 1984,
+  Theorem 7.2). T is of type F_∞ (Brown 1987), so a nonzero `H^k(T; ZT)` would
+  answer this part no, given Gersten's quasi-isometry invariance (not yet
+  imported). T is simple, so the ascending-HNN argument of Brown–Geoghegan does
+  not apply to T. But Brown–Geoghegan announce (p. 368), about the finitely
+  presented simple group of Thompson that they show is of type FP_∞: "We will show
+  elsewhere that the simple FP_∞ group mentioned above also has this property",
+  namely `H^*(G; ZG) = 0`. If that group is T, this line dies. Where it stands: the
+  announced result is not yet located.

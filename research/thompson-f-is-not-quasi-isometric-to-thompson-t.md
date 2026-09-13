@@ -23,9 +23,11 @@ Zaremsky Problem 2.4 (`thompson-f-qi-to-thompson-t-resolved`).
   asymptotic dimension is infinite for both (F contains `Z^n` for every `n`), and
   non-amenability of T does not obstruct coarse embeddings into amenable groups.
   Where it stands: open.
-- **Cohomology with group-ring coefficients.** `H^*(G; ZG)` is a quasi-isometry
-  invariant among groups of type F_∞ (Gersten), F and T are both of type F_∞
-  (Brown–Geoghegan; Brown), and `H^*(F; ZF) = 0` in every degree is reported by
-  Brown–Geoghegan (Invent. Math. 77, 1984). A single nonzero `H^k(T; ZT)` would
-  prove this claim. Where it stands: the three imports are not yet re-read from
-  the sources; `H^*(T; ZT)` is not computed.
+- **Cohomology with group-ring coefficients.** `H^*(F; ZF) = 0` in every degree
+  (`thompson-f-has-vanishing-zg-cohomology`, Brown–Geoghegan 1984, Theorem 7.2).
+  Given Gersten's quasi-isometry invariance of `H^*(G; ZG)` among groups of type
+  F_∞ (not yet imported), a single nonzero `H^k(T; ZT)` would prove this claim.
+  Brown–Geoghegan announce (p. 368) that Thompson's finitely presented simple FP_∞
+  group also has vanishing group-ring cohomology; if that group is T, this line
+  dies. Where it stands: the announced result is not located; `H^*(T; ZT)` is not
+  computed.

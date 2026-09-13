@@ -26,5 +26,7 @@ no-answer here gives a no-answer to part (a).
 - **Obstructions inherited by quasi-retracts.** Quasi-retracts inherit type F_n
   (Alonso 1994) and Dehn functions are bounded by those of the ambient space; all
   groups here are of type F_∞ with quadratic Dehn function. Dies: no obstruction.
-  If `H^*(F; ZF) = 0` (Brown–Geoghegan, to be re-read), coarse cohomology gives no
-  obstruction either.
+  Group-ring cohomology vanishes identically on F and on `F × Z`
+  (`thompson-f-has-vanishing-zg-cohomology`,
+  `thompson-products-have-vanishing-zg-cohomology`), so it gives no obstruction
+  either. Dies.

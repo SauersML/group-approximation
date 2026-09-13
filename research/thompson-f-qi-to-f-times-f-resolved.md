@@ -19,9 +19,10 @@ requiring the corresponding established answer claim; never by a
   and F × F embed in one another as subgroups (established:
   `thompson-f-f-times-z-f-times-f-are-mutual-subgroups`). Every invariant monotone
   under coarse embeddings or under regular maps takes the same value on both. Dies.
-- **Cohomology with group-ring coefficients.** If `H^*(F; ZF) = 0` in every degree
-  (Brown–Geoghegan 1984, to be re-read), then `H^*(F × F; Z[F × F]) = 0` by the
-  Künneth formula. Dies if confirmed.
+- **Cohomology with group-ring coefficients.** `H^*(F; ZF) = 0` in every degree
+  (Brown–Geoghegan 1984, Theorem 7.2: `thompson-f-has-vanishing-zg-cohomology`), and
+  so `H^*(F × F; Z[F × F]) = 0` by the Künneth formula
+  (`thompson-products-have-vanishing-zg-cohomology`). Dies.
 - **Coset-bundle retraction.** A quasi-retraction `F -> Stab_F(1/2)` of the form
   `g ↦ g·s(g^{-1}(1/2))^{-1}`, for a section `p ↦ s(p)` with `s(p)(p) = 1/2`, is
   coarsely Lipschitz exactly when conjugation by `s(p)` carries short elements of
