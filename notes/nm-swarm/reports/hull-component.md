@@ -88,10 +88,11 @@ The lead assigned one sub-piece of Stage B, and hull-count94 picked the gap-leng
 - Consumer: hull-count94's Estimating/OsinLemma94PolygonClasses. It counts the gaps at class ends against
   L = 24ε + 2(K+24)⌈(c+2)/λ⌉. fff-periodic's unlanded `stretch_le_length` covers this as its `alt = []` case,
   but this module does not import it.
-- Estimating/OsinLemma94BudgetFilter (GREEN 0913-134955-22334; unlanded; candidate (a), the reindexing lemma):
-  `classWordLength_eq_zero_of_forall_not_mem` and `OsinLemma94DensePolygonsAntiparallel.exists_of_budget_on`. The
-  metric half applies with the side budget summed over any set of polygons that contains every polygon with an
-  (A1) side. It lands only if hull-count94's class-spelling `unbound_lt_of_pieces` consumes it.
+- GGT/VanKampen/Estimating/OsinLemma94BudgetFilter (GREEN 0913-134955-22334; unwired; candidate (a), the
+  reindexing lemma): `classWordLength_eq_zero_of_forall_not_mem` and
+  `OsinLemma94DensePolygonsAntiparallel.exists_of_budget_on`. The metric half applies with the side budget summed
+  over any set of polygons that contains every polygon with an (A1) side.
+- Consumer: hull-count94's Estimating/OsinLemma94PolygonClasses imports it and uses `exists_of_budget_on`.
 
 ## Next
 Bubble accounting for `ClassCovers`, after hull-count94's PolygonClasses draft probes.
