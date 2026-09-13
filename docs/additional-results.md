@@ -166,6 +166,17 @@ Sturmian endpoints, linear language complexity yields polynomial-time
 algorithms for arbitrary word, normal-closure and MF-consequence
 queries, measured in expanded word length. These are written proofs.
 
+The [optimal-certificate results](../research/artifacts/pestov91-optimal-mf-certificates-2026-09-13.md)
+prove that the finite normal detector has the smallest possible order,
+even among nonabelian finite detectors, and give the sharp ordinary
+premise count from incidence antichains. Minimum-cost individual edge
+relations forcing MF vanishing are computed by a directed minimum cut,
+with a path-packing dual in the unit-cost case. Grouping edge factors
+into designated involution relations makes minimum selection NP-complete
+as the graph varies, by an exact vertex-cover reduction. All source
+groups in that reduction are LEF Kazhdan, and the output remains
+algebraically nontrivial after every allowed selection of relations.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
