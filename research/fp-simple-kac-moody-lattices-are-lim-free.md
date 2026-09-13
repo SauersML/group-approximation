@@ -20,7 +20,7 @@ lim-free weakly hyperbolic group.
 (`/scratch.global/sauer354/km-ht/2605.14159.d/main.tex`), proof of Proposition A
 (`Kac-Moody`):
 - l.1549: "We want to show that $G(F)$ is lim-free weakly hyperbolic."
-- l.1557 (end of the first part): "Thus, we can pass to the space $E(X_D)$ to
+- l.1558 (end of the first part): "Thus, we can pass to the space $E(X_D)$ to
   conclude that $G(F)$ is faithful weakly hyperbolic."
 - l.1560: "Therefore, the action of $G(F)$ on $\Lambda_{E(X_D)}(G(F))$ is
   topologically free and, by Theorem \ref{main_theorem}, $G(F)$ is MIF."

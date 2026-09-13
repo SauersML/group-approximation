@@ -46,4 +46,4 @@ of some `F_k`, and `F_k ≤ F_2`, so it is a subquotient of `H`.
 **(5)** This is the Remark after Step 3 of
 `lim-free-confined-subgroups-full-limit-set-proof`, applied to `G ↷ S`. Point
 stabilizers of `X_D` have a fixed point in `S`, since the injective hull embedding is
-`Isom(X_D)`-equivariant (Rybak l.1555, quoting PSZ Proposition N). ∎
+`Isom(X_D)`-equivariant (Rybak l.1554, quoting PSZ Proposition N). ∎
