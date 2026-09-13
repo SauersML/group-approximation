@@ -13,7 +13,10 @@ the diagram half again, over the faces of the optimal diagram itself.
   into sides of four kinds.  A side of kind `cell j` is an arc of the `j`-th relator cell (type
   (A1)), `boundary j` an arc of section `j` of `∂Δ` (type (A2)), `cutting` a path with the same
   face on both sides (Osin's cutting paths `t_1, …, t_l`), and `short` a path along a selected
-  region (type (A3)).  The side words are the dart labels.
+  region (type (A3)).  The side words are the dart labels.  The labels of an optimal family
+  are legal over `symmetricLabelAlphabet D` only, so the sides are measured over that
+  alphabet, which has the same Cayley graph.  The cutting paths are quasi-geodesic with the
+  constant `c + 2`: a subpath that is not can be respelled by a strictly shorter word.
 * `OsinLemma94RealizedPolygons.Maximal`: no two consecutive sides of one kind can be joined.
 * `GloballyDistinguishedSectionFamily.DartMinimal`: the fewest darts among the optimal families
   with the same unbound sum.  It is the measure for Case 2, in place of `∑ l(t_i)`.
@@ -109,12 +112,15 @@ structure OsinLemma94RealizedPolygons {G : Type u} [Group G] {Lambda : Type w}
   /-- The polygon closes up in `G`. -/
   closed : ∀ k, RelLetter.listVal
     ((List.range (sideCount k)).flatMap fun i => Embedded.dartWord S.diagram (sideDarts k i)) = 1
-  /-- (A1) arcs, (A2) arcs and cutting paths are `(λ, c)`-quasi-geodesic. -/
+  /-- (A1) arcs, (A2) arcs and cutting paths are `(λ, c + 2)`-quasi-geodesic over the
+  symmetric label alphabet. -/
   quasiGeodesic : ∀ k i, i < sideCount k → kind k i ≠ .short →
-    IsLambdaCQuasiGeodesicWord D lambda c (Embedded.dartWord S.diagram (sideDarts k i))
+    IsLambdaCQuasiGeodesicWord (symmetricLabelAlphabet D) lambda (c + 2)
+      (Embedded.dartWord S.diagram (sideDarts k i))
   /-- (A3) sides have length at most `ε`. -/
   short : ∀ k i, i < sideCount k → kind k i = .short →
-    HullSC.RelWord.IsAdmissible D (Embedded.dartWord S.diagram (sideDarts k i)) ∧
+    HullSC.RelWord.IsAdmissible (symmetricLabelAlphabet D)
+        (Embedded.dartWord S.diagram (sideDarts k i)) ∧
       (Embedded.dartWord S.diagram (sideDarts k i)).length ≤ eps
 
 namespace GloballyDistinguishedSectionFamily
@@ -272,7 +278,7 @@ theorem corner_closed (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) :
 
 theorem quasiGeodesic_of_mem (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) (i : ℕ)
     (hi : i < P.sideCount k) (hmem : i ∈ P.relatorSides k ∨ i ∈ P.longSides k) :
-    IsLambdaCQuasiGeodesicWord D lambda c (P.word k i) := by
+    IsLambdaCQuasiGeodesicWord (symmetricLabelAlphabet D) lambda (c + 2) (P.word k i) := by
   refine P.quasiGeodesic k i hi ?_
   rcases hmem with hcell | hlong
   · obtain ⟨j, hj⟩ : ∃ j, P.kind k i = .cell j := hcell
@@ -283,7 +289,8 @@ theorem quasiGeodesic_of_mem (P : OsinLemma94RealizedPolygons S) (k : Fin P.coun
 
 theorem short_of_not_mem (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) (i : ℕ)
     (hi : i < P.sideCount k) (hnot : i ∉ P.longSides k) :
-    HullSC.RelWord.IsAdmissible D (P.word k i) ∧ (P.word k i).length ≤ eps := by
+    HullSC.RelWord.IsAdmissible (symmetricLabelAlphabet D) (P.word k i) ∧
+      (P.word k i).length ≤ eps := by
   refine P.short k i hi ?_
   by_contra hne
   exact hnot hne
@@ -324,9 +331,9 @@ theorem unbound_lt_of_pieces (P : OsinLemma94RealizedPolygons S) {K L rho rhom :
     (hcells : 0 < Delta.rCellCount) (hbudget : P.SideBudget K) (hcovers : P.Covers L)
     (hrhom : 4 * rhom ≤ rho) (hL : 4 * L * L ≤ rho)
     (hmetric : ∀ rho' : ℕ, rhom ≤ rho' →
-      OsinLemma94DensePolygonsAntiparallel D lambda c eps rho' K)
-    (hcases : ∀ (k : Fin P.count) (C : WordConnectorPair D (P.corner k) (P.word k)
-      (P.sideCount k) (P.relatorSides k) (P.longSides k) eps), C.b' < C.b → False) :
+      OsinLemma94DensePolygonsAntiparallel (symmetricLabelAlphabet D) lambda (c + 2) eps rho' K)
+    (hcases : ∀ (k : Fin P.count) (C : WordConnectorPair (symmetricLabelAlphabet D) (P.corner k)
+      (P.word k) (P.sideCount k) (P.relatorSides k) (P.longSides k) eps), C.b' < C.b → False) :
     (∑ i : Fin S.diagram.rCellCount,
         ((RegionCandidate.unboundDarts S.family i).card : ℝ)) <
       (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ) := by
@@ -398,8 +405,9 @@ def OsinLemma94CaseOneInput : Prop :=
               ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
                 S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
                   ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
-                    ∀ (k : Fin P.count) (C : WordConnectorPair D (P.corner k) (P.word k)
-                      (P.sideCount k) (P.relatorSides k) (P.longSides k) eps),
+                    ∀ (k : Fin P.count) (C : WordConnectorPair (symmetricLabelAlphabet D)
+                      (P.corner k) (P.word k) (P.sideCount k) (P.relatorSides k)
+                      (P.longSides k) eps),
                       C.b' < C.b → P.kind k C.target ≠ .cutting → False
 
 /-- **Case 2 of Lemma 9.4.**  "Case 2 … This contradicts our assumption that `∑ l(t_i)` is
@@ -419,8 +427,9 @@ def OsinLemma94CaseTwoInput : Prop :=
               ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
                 S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
                   ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
-                    ∀ (k : Fin P.count) (C : WordConnectorPair D (P.corner k) (P.word k)
-                      (P.sideCount k) (P.relatorSides k) (P.longSides k) eps),
+                    ∀ (k : Fin P.count) (C : WordConnectorPair (symmetricLabelAlphabet D)
+                      (P.corner k) (P.word k) (P.sideCount k) (P.relatorSides k)
+                      (P.longSides k) eps),
                       C.b' < C.b → P.kind k C.target = .cutting → False
 
 /-- **Osin's Lemma 9.4 from the metric half and four planar pieces.**  The count piece fixes
@@ -436,7 +445,12 @@ theorem osinLemma94Section_of_planarPieces
     OsinLemma94SectionStatement.{u, w, v} := by
   intro G _ Lambda D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
   obtain ⟨K, eps1, hcountK⟩ := hcount D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
-  obtain ⟨eps2, hmetricK⟩ := hmetric D hhyper lambda c hlambda hc K
+  have hhyperE : ∃ delta : ℕ,
+      Hyperbolic.IsFourPointHyperbolic (symmetricLabelAlphabet D).alphabet.carrier delta := by
+    rw [symmetricLabelAlphabet.carrier_eq]
+    exact hhyper
+  obtain ⟨eps2, hmetricK⟩ :=
+    hmetric (symmetricLabelAlphabet D) hhyperE lambda (c + 2) hlambda (by linarith) K
   obtain ⟨eps3, hrealEps⟩ := hreal D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
   obtain ⟨eps4, honeEps⟩ := hone D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
   obtain ⟨eps5, htwoEps⟩ := htwo D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
