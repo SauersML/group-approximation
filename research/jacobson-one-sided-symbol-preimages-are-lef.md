@@ -12,8 +12,8 @@ artifacts:
   - research/artifacts/jacobson-el3-soficity-firewalls-2026-09-12.md
 ---
 
-**ESTABLISHED** (route `jacobson-one-sided-symbol-preimages-lef-proof`; artifact Section 3). Independent
-re-derivation requested from `w4-vf-gate`.
+**ESTABLISHED** (route `jacobson-one-sided-symbol-preimages-lef-proof`; artifact Section 3). Independently
+re-derived by `w4-vf-gate`: PASS, Section 32.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`.
 
 **Statement.** Let `F` be a finite field, `J_F = F<S,T | TS=1>`, `E_F = EL_3(J_F)` and `π` the symbol map to
 `SL_3(F[z,z^(-1)])`, with kernel `L_3`. Put `H_+ = π^(-1) SL_3(F[z])`, `H_- = π^(-1) SL_3(F[z^(-1)])` and
