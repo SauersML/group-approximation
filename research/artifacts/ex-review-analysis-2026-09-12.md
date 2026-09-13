@@ -182,3 +182,9 @@ Theorem 14 and Proposition 15) applies, and the Item 1 argument runs verbatim.
 - The credit paragraph states the hypotheses of Dykema--Rørdam, GAFA 8 (1998) 1--16: Avitzour
   conditions plus nuclear factors. I did not check that statement against the source.
 - Novelty is correctly marked unverified. The bounded check was two web searches.
+
+## Index of part files
+
+- `ex-review-analysis-2026-09-12-part1.md`, §1.2: the class-three root
+  `simple-cstar-unitary-components-class-three` through Toms's trapping tower over T^2 × S^3. PASS
+  on all five requested items, plus the excess bound and the class-four finite stage.
