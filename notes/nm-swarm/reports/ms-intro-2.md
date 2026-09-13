@@ -29,4 +29,13 @@ CLAIM carriers for 9bab404c96c5, 6b5d4b5c3081, 29d7a8ccf93a, 270c3118af88 in mod
 `\cite{Leavitt}` at tex 226 names the algebra; it is not used as a proof step.
 
 ## Progress log
-- 16:55 ledger landed; module claimed.
+- 16:55 ledger landed (2185fb750); module claimed.
+- 17:06 probe 0913-170556-76424 GREEN, BUILT IntroCompressorSentences.
+- LANDED ef4e63c90 `GroupApproximation/Manuscript/NonMFSentences/IntroCompressorSentences.lean`, queued for wiring:
+  - `PrintedIntroCriterionKillsMFImages` / `manuscriptSentence_introCriterionKillsMFImages` (270c3118af88)
+  - `PrintedAscendingHNNStableLetterCompressor` / `manuscriptSentence_ascendingHNNStableLetterCompressor` (9bab404c96c5)
+  - `PrintedIntroPairGivesCompressor` / `manuscriptSentence_introPairGivesCompressor` (6b5d4b5c3081)
+  - `PrintedIntroUniversalGroupMapsEveryEL` / `manuscriptSentence_introUniversalGroupMapsEveryEL` (29d7a8ccf93a)
+- Census rows for all six defects: `metadata/nm-census-rows/ms-intro-2.tsv`.
+- Range status: after the census merge and wiring, every sentence of tex 166–232 is carried by a closed declaration at the
+  printed generality or honestly classified. No residual Props.
