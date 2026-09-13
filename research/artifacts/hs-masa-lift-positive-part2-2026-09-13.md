@@ -36,9 +36,14 @@ These are steps 1-3 of route `theorem-e-vertex-unit-type-via-deep-root-mass`, re
     `kt-wreath-nonhyperlinear-via-unit-type-vertex-rounding` needs only (H1).
 - **Exact consequence for `non-hyperlinear-group`, through the unified theorem.** By
   `kazhdan-commutant-compression-stability-is-finitary`, `UCS_HS(F, {A, B})` at the pair is
-  equivalent to normalization for every model.
-  - (H1) for every model already gives normalization for every model.
-  - (LM) for every model adds nothing to this implication.
+  equivalent to normalization for every homomorphism, with any trace.
+  - Here "trace-preserving" means `tau o sigma = delta_e`, as in
+    `theorem-e-congruence-projections-vanish-at-regular-trace`. The Section 1 premises are stated for
+    such models.
+  - For `non-hyperlinear-group` only such models matter, because a hyperlinear embedding of the
+    wreath restricts to one. (H1) at them gives normalization at them.
+  - (LM) adds nothing to this implication. The step to `UCS_HS` itself needs the premises at arbitrary
+    traces, which is not checked here.
   - The remaining input on this chain is (H1) for every model at the Theorem E pair: the Theorem E
     instance of `hs-stable-vertex-rounding-for-every-model`. Read in general form, that claim is
     false at the Fournier--Facio pair, and the instance is unaffected.

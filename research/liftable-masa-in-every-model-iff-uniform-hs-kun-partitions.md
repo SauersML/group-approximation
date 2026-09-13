@@ -40,6 +40,15 @@ item 1. If `G` has solvable word problem, `DEC_kappa` is a `Pi^0_3` sentence (Ta
 for the inner statement), so item 1 is absolute: it does not depend on the ultrafilter or on set
 theory.
 
+**Trace scope.** Item 1 ranges over every homomorphism, with any trace. The input
+`hs-block-gap-iff-liftable-masa-of-actor-commutant` is stated for trace-preserving asymptotic
+representations. Its derivation, `hs-block-gap-liftable-masa-proof`, uses only three facts:
+- random-sign identities;
+- property (T) for the genuine representation `Ad sigma` on `L^2(M)`;
+- bimodularity of `E_Q`.
+
+None uses the trace of `sigma`, so items 1-4 there hold for every homomorphism.
+
 **Reading.** In the Hilbert--Schmidt row the localization face (L) is exactly a dimension-uniform
 partition inequality. It is the bounded, block-summed HS form of Kun's decomposition. Property (T)
 fixes the gap constant for free. What is open is only whether partitions with vanishing boundary

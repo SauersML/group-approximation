@@ -26,9 +26,15 @@ padding there are genuine `pi_n : Gamma -> U(n')`, `n'/n -> 1`, with
 - `hs-vertex-rounding-and-liftable-masa-force-normalization` is dominated at this pair, and the
   route `hs-normalization-via-vertex-rounding-and-liftable-masa` consumes
   `actor-commutant-has-liftable-masa-in-every-model` for nothing.
-- Through `kazhdan-commutant-compression-stability-is-finitary`, the inequality
-  `hs-uniform-compression-stability-at-the-theorem-e-pair` follows from (H1) for every model
-  (Theorem E instance) alone. A liftable masa adds nothing on the way to `non-hyperlinear-group`.
+- For `non-hyperlinear-group`, only trace-preserving models (`tau o sigma = delta_e`) matter:
+  a hyperlinear embedding of the wreath restricts to one. So the route
+  `kt-wreath-nonhyperlinear-via-unit-type-vertex-rounding` already needs only (H1) at such models,
+  and a liftable masa adds nothing on the way to `non-hyperlinear-group`.
+- **Scope.** The uniform inequality `hs-uniform-compression-stability-at-the-theorem-e-pair` is
+  equivalent to normalization for every homomorphism, with any trace
+  (`kazhdan-commutant-compression-stability-is-finitary`). The root-mass premises are stated for
+  trace-preserving models. So this claim gives that inequality from (H1) only at models whose trace
+  those premises cover. Extending them to arbitrary traces is not checked here.
 - In the three-faces readoff of `research/artifacts/unified-compression-rigidity-2026-09-12.md`, the
   localization face at this pair is supplied by the Laurent torus (shallow mass) and the compressor
   attractors (deep mass) once rounding holds, not by a masa.

@@ -7,9 +7,12 @@ distinct_from:
   hs-coarse-actor-gap-at-compressor-generators: that asks for blocks with a homogeneous Poincare gap on every block plus boundary and center clauses; this asks only for one liftable masa of the actor commutant, which by hs-vertex-rounding-and-liftable-masa-force-normalization is all the median route consumes.
   hs-block-gap-iff-liftable-masa-of-actor-commutant: that is the established equivalence between a liftable masa and the summed block gap for one model; this is the open existence statement for every model.
   hs-one-level-expander-block-decomposition: that asks for a quantitative block decomposition of every almost representation of a Kazhdan group; this asks only for the ultraproduct object, a masa of the actor commutant that is an ultraproduct of partition algebras.
+  liftable-masa-in-every-model-iff-uniform-hs-kun-partitions: that is the established equivalence, for all models of any Kazhdan group with no rounding hypothesis, between liftable masas and a Pi^0_3 partition inequality; this is the open existence statement at the Kun--Thom actor for models with vertex rounding.
 artifacts:
   - research/artifacts/hs-coarse-gap-aspect-scales-2026-09-12.md
   - research/artifacts/unified-compression-rigidity-2026-09-12.md
+  - research/artifacts/hs-masa-lift-positive-2026-09-13.md
+  - research/artifacts/hs-masa-lift-positive-part2-2026-09-13.md
 ---
 
 **OPEN.** Let `Gamma < G` be the Kun--Thom Theorem E pair. For every trace-preserving
@@ -18,10 +21,11 @@ the algebra `Q = sigma(G)' cap prod_U M_n` has a maximal abelian subalgebra of t
 `prod_U C_n`, where each `C_n` is spanned by a finite partition of unity of `M_n` by projections.
 
 With (H1) for every model, this gives `kt-centralizer-normalization-hs` through
-`hs-normalization-via-vertex-rounding-and-liftable-masa`. It is the localization face (L) of
-property (T) in the Hilbert--Schmidt row
-(`research/artifacts/unified-compression-rigidity-2026-09-12.md`, Section 3). Its Hamming
-analogue is Kun--Thom Lemma 2.3 for `G`: the `sigma(G)`-fixed diagonal algebra is an
+`hs-normalization-via-vertex-rounding-and-liftable-masa`. (H1) for every model gives the same
+conclusion without this claim (`vertex-rounding-alone-normalizes-each-theorem-e-model`; see the
+consumption audit below). It is the localization face (L) of property (T) in the
+Hilbert--Schmidt row (`research/artifacts/unified-compression-rigidity-2026-09-12.md`, Section 3).
+Its Hamming analogue is Kun--Thom Lemma 2.3 for `G`: the `sigma(G)`-fixed diagonal algebra is an
 ultraproduct of partition algebras of expander components.
 
 ## Attempts
@@ -61,3 +65,25 @@ ultraproduct of partition algebras of expander components.
   Fournier--Facio pair (H1) fails at every faithful model
   (`fournier-facio-vertex-rounding-fails-at-every-model`). So this claim is vacuously true at both
   pairs. It says nothing about (H1) there, and no counterexample to it can live there.
+- **Uniform form (lane `ex-hs-masa-lift-positive`, 2026-09-13).** By
+  `liftable-masa-in-every-model-iff-uniform-hs-kun-partitions`, (LM) for every model of the actor,
+  with no rounding hypothesis, is the `Pi^0_3` partition inequality `DEC_kappa`.
+  - Any positive gap constant forces the Kazhdan constant.
+  - For one model, a liftable masa is the same as an internal block algebra
+    `D = prod_U (direct_sum_A q_A M_n q_A)` containing `sigma(G)` with `sigma(G)' cap D = Z(D)`.
+  - Two statements imply it: the universal one-level decomposition (route
+    `actor-liftable-masa-from-one-level-hs-kun-decomposition`), and coordinate capture (OP 6.2)
+    for the model.
+  - Excess is monotone, and countable chains of liftable abelian subalgebras have liftable upper
+    bounds. So the Zorn obstruction is exactly a chain of uncountable cofinality (artifact part 1,
+    Section 4).
+- **Consumption audit: dominated at this pair (same lane).** By
+  `vertex-rounding-alone-normalizes-each-theorem-e-model`, (H1) for a single model already
+  normalizes that model, through the unit-type root-mass chain.
+  - The only route consuming this claim, `hs-normalization-via-vertex-rounding-and-liftable-masa`,
+    also consumes (H1), which suffices by itself.
+  - So this claim has no consequence for `non-hyperlinear-group` beyond (H1). What survives is its
+    structural interest.
+  - Under (H1), `Q` is the fixed-point algebra of an `SL_d(Z)`-action on `prod_U pi_n(Gamma)'`
+    (artifact part 2, Section 3). That is a Kun-type problem on isotypic labels, with
+    finite-dimensional fibres. It is not pursued, because nothing consumes it.
