@@ -59,11 +59,32 @@ are in `GloballyDistinguishedSectionFamily`.
   unbound sum, and the chain runs between two distinct unselected `G`-faces.
 - `PendantPathRemovalInput` (jacobson): remove a path that starts at a leaf inside an unselected
   `G`-face. The result has `2 |path|` fewer darts and the same unbound sum.
-- `SeparatingPathRemovalInput` (hull-unbound): `Surgery.GFaceMerge` on the first edge, then
-  `PendantPathRemovalInput` on the rest.
+- `SeparatingPathRemovalInput`: PROVED by `separatingPathRemovalInput_of_pendant` in
+  `Estimating/OsinLemma94SeparatingRemoval.lean` (7d4a2515f, green in probe 0913-093115-86638).
+  A `Surgery.GFaceMerge` on the first edge leaves the rest as a pendant path in the merged face
+  (`GFaceMerge.facePerm_keep_of_ne`, `GFaceMerge.sigma_keep_eq_self`).
 - `ChainRespellInput`: a strictly shorter nonempty legal word with the value of the chain gives
   fewer darts and the same unbound sum. `chainRespellInput_of_pieces` derives it from the insertion
-  and the separating removal.
+  and the separating removal. So it needs only `CornerInsertionInput` and `PendantPathRemovalInput`.
+
+## Realization split (landed)
+`Estimating/OsinLemma94PolygonRealization.lean` (1130c8dbc, green in probe 0913-095511-56070).
+`osinLemma94PolygonRealizationInput_of_pieces (hcutting) (hcells) (hboundary) (hpartition) :
+OsinLemma94PolygonRealizationInput`, with `ε₀ = ρ₀ = 1`.
+- `gFacesApart_of_dartMinimal` (proved): two different unselected `G`-faces share no edge, since a
+  `G`-face merge removes two darts and keeps the unbound sum.
+- `OsinLemma94CuttingChainsInput` (hull-unbound): `λ ≤ 1 → 0 ≤ c → S.DartMinimal →
+  S.CuttingChainsQuasiGeodesic`. Route: `ChainRespellInput`, `PendantPathRemovalInput` (a leaf in
+  an unselected `G`-face contradicts `DartMinimal`, so a cutting chain has no dart together with
+  its reverse) and `QuasiGeodesicRespellInput`.
+- `QuasiGeodesicRespellInput` (hull-unbound): a legal word over the symmetric alphabet that is not
+  `(λ, c + 2)`-quasi-geodesic has a subword with a strictly shorter nonempty legal spelling.
+- `OsinLemma94CellArcsInput` (hull-unbound): arcs of relator cells, read from across, from
+  `OsinCCondition.quasiGeodesic`, `rotate_mem`, `inv_mem` and `label_alpha`.
+- `OsinLemma94BoundaryArcsInput` (hull-unbound): arcs of `∂Δ` inside one section, from
+  `SectionCuts.quasiGeodesic` and `OEquivalentDiscDiagram.boundaryWord_eq`.
+- `OsinLemma94PolygonPartitionInput` (ghw-assembly): the combinatorial partition of the face walks
+  into maximal sides, given `GFacesApart` and the three arc properties.
 
 ## Findings
 - Connector orientation: `WordConnectorPair` fixes `a < a'` and leaves `b`, `b'` in either order.
@@ -79,6 +100,9 @@ are in `GloballyDistinguishedSectionFamily`.
   - If its endpoints differ, a geodesic word of length at most `L − 3` respells it.
   - Otherwise `L ≥ 3`, and the subpath without its last letter is respelled by one letter.
   In both cases `ChainRespellInput` against `DartMinimal` refutes it.
+- Empty arcs: `(λ, c + 2)` on the empty word needs `c ≥ −2`, so the arc pieces take `0 ≤ c`.
+- `Maximal` never checks the wrap pair (last side, side 0). With one section, the forced cut at
+  outer position 0 must be the base of its face.
 - LoopCut gate: none of the three producers of competitor regions excludes `target = some source`.
   - Case 1 with both connector sides on arcs of one cell forces a loop competitor.
   - So does SharedEdge on an edge with one cell on both sides.
@@ -87,7 +111,6 @@ are in `GloballyDistinguishedSectionFamily`.
 - Budget: `K` independent of `ε` needs the number of unselected `G`-faces and their sides bounded by
   an Euler count in `n` alone.
 - Case 1 on one cell needs a loop competitor (LoopCut gate above).
-- Separating removal needs dart identification through `Surgery.GFaceMerge.keep` (in progress).
 
 ## On main (surgery layer)
 - `Estimating/SingletonFaceRegion.lean` (bd53291cd): `ContiguityGeometry.ofSingletonFace`,
@@ -101,15 +124,19 @@ are in `GloballyDistinguishedSectionFamily`.
   the exterior contradicts maximality.
 
 ## Residual Props of `osinLemma94Section_of_planarPieces`
-- `OsinLemma94PolygonRealizationInput` (hull-unbound). It needs `ChainRespellInput`, hence
-  `CornerInsertionInput` (simple-group) and `PendantPathRemovalInput` (jacobson).
+- `OsinLemma94PolygonRealizationInput` (hull-unbound), over its four pieces:
+  - `OsinLemma94CuttingChainsInput` (hull-unbound), needing `CornerInsertionInput` (simple-group),
+    `PendantPathRemovalInput` (jacobson) and `QuasiGeodesicRespellInput` (hull-unbound);
+  - `OsinLemma94CellArcsInput` and `OsinLemma94BoundaryArcsInput` (hull-unbound);
+  - `OsinLemma94PolygonPartitionInput` (ghw-assembly).
 - `OsinLemma94PolygonCountInput` (hull-count94).
 - `OsinLemma94CaseOneInput` (theoremc-retire).
 - `OsinLemma94CaseTwoInput` (sec5-sentences).
 
 ## Next
-- Prove `SeparatingPathRemovalInput` from `PendantPathRemovalInput`.
-- Build `Estimating/OsinLemma94PolygonRealization.lean` over `ChainRespellInput`, with
-  ghw-assembly.
+- Prove `OsinLemma94CuttingChainsInput` from `ChainRespellInput`, `PendantPathRemovalInput` and
+  `QuasiGeodesicRespellInput`.
+- Prove `OsinLemma94CellArcsInput`, `OsinLemma94BoundaryArcsInput` and
+  `QuasiGeodesicRespellInput`.
 - Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once the other pieces close.
 - Then help hull-respell with hgreendlinger.
