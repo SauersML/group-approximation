@@ -35,6 +35,8 @@ development's vocabulary into it, and proves the two theorems
 The group is supplied by `GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic`
 in `GroupApproximation/BowenChapman/Endpoint.lean`: the symmetric double
 `G *_Γ G` of `Γ = EL₃(𝔽₂[x₁, x₂, x₃]) ≤ G = EL₃(𝔽₂[x₁^±¹, x₂^±¹, x₃^±¹]) ⋊ EL₃(ℤ)`.
+
+The prose of this module was written by Claude (Anthropic).
 -/
 
 namespace BowenChapman

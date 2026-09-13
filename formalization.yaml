@@ -11,13 +11,16 @@ project:
     K-theory.
 
     Gromov and Weiss proved that every sofic group is surjunctive. The converse
-    is recorded as open by Arzhantseva and Gal in 2013 and printed as Problem
-    1.1 by Bowen and Chapman in 2025 (arXiv:2511.06586): are all surjunctive
-    groups sofic? The answer is no, already for a finitely generated group. The
-    witness is the symmetric double of the pair
+    is asked in print by Ceccherini-Silberstein and Coornaert in 2010, as open
+    problem (OP-11) of Cellular Automata and Groups, is recorded as open by
+    Arzhantseva and Gal in 2013, and is printed as Problem 1.1 by Bowen and
+    Chapman in 2025 (arXiv:2511.06586): are all surjunctive groups sofic? The
+    answer is no, already for a finitely generated group. The witness is the
+    symmetric double of the pair
     Γ = EL₃(𝔽₂[x₁, x₂, x₃]) ≤ G = EL₃(𝔽₂[x₁^±¹, x₂^±¹, x₃^±¹]) ⋊ EL₃(ℤ), the
     q = 2, r = d = 3 member of the family in Kun and Thom's Theorem E, with the
-    elementary group EL₃(ℤ) in place of SL₃(ℤ) acting by monomial substitution.
+    acting group SL₃(ℤ) written as EL₃(ℤ), which is the same group, acting by
+    monomial substitution.
     Reducing exponents modulo n makes G residually finite, so G is surjunctive,
     and the development proves that the double G *_Γ G of a surjunctive group
     is surjunctive over every subgroup (isSurjunctive_symmetricDouble in
@@ -79,18 +82,20 @@ sources:
     note: >-
       The negative answer to Problem 1.1, the question checked by
       Palomar/comparator-bowen-chapman.json, is first presented in this project.
-      Arzhantseva and Gal record the question as open in 2013, twelve years
-      before Bowen and Chapman print it as Problem 1.1: "It is still unknown
-      whether every group is surjunctive and whether there exists a non-sofic
-      surjunctive group" (Ann. Math. Blaise Pascal 27 (2020), p. 127;
-      arXiv:1312.7682 v1, 2013-12-30). Kun and Thom supply the nonsoficity
+      Ceccherini-Silberstein and Coornaert ask the question in 2010, fifteen
+      years before Bowen and Chapman print it as Problem 1.1: "(OP-11) Does
+      there exist a surjunctive group which is non-sofic?" (Cellular Automata
+      and Groups, p. 417; still marked open on p. 527 of the 2023 second
+      edition). Arzhantseva and Gal record it as open in 2013 (Ann. Math.
+      Blaise Pascal 27 (2020), p. 127; arXiv:1312.7682 v1, 2013-12-30). Kun and
+      Thom supply the nonsoficity
       mechanism, which is reproved here down to their centralizer normalization
       theorem rather than assumed; the new ingredient is the surjunctivity
       half, Dynamics.DoubleFinitarySite.isSurjunctive_symmetricDouble, that the
       symmetric double of a surjunctive group is surjunctive over every
       subgroup, whose trivial-subgroup case gives that G * G is surjunctive
-      whenever G is. The argument was first recorded in this public repository
-      on 2026-09-12 03:24:37 UTC (05a8aff7a), through the permutational wreath
+      whenever G is. The argument was committed to this public repository on
+      2026-09-12 03:24:37 UTC (05a8aff7a), through the permutational wreath
       product (Z/2) wr_{G/Γ} G, with the group double recorded as a second
       witness the same day at 04:43 UTC (dd87a6b2b); the Lean endpoint
       GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic landed
@@ -345,14 +350,13 @@ sources:
     relationship: background
     note: >-
       Ann. Math. Blaise Pascal 27(1):125-130; arXiv:1312.7682, v1 2013-12-30.
-      Page 127 carries the earliest statement found of the question answered
-      here, twelve years before Bowen and Chapman print it as Problem 1.1: "It
-      is still unknown whether every group is surjunctive and whether there
-      exists a non-sofic surjunctive group." The paper proves that a split
-      extension with a finitely generated residually finite kernel and a
+      Page 127 (page 3 of arXiv v1) records the question answered here as
+      open: "It is still unknown whether every group is surjunctive and whether
+      there exists a non-sofic surjunctive group." The paper proves that a
+      split extension with a finitely generated residually finite kernel and a
       surjunctive quotient is surjunctive, which settles the direct product of
-      a surjunctive group with the integers, and records on page 128,
-      attributing the question to Weiss 2000, that the product of two arbitrary
+      a surjunctive group with the integers, and records on page 128 (v1 page
+      4), attributing the question to Weiss 2000, that the product of two arbitrary
       surjunctive groups remains open for direct and free products alike, the
       free product with the integers included. The free-product case was still
       stated as a conjecture by Doucha and Gismatullin in Groups Geom. Dyn. 16
@@ -373,7 +377,7 @@ sources:
       conjecture is numbered 3.10. Conjectures that the free product of the
       integers with a surjunctive group is surjunctive, and likewise for dual
       surjunctivity, which is the free-product case Arzhantseva and Gal record
-      as open, in print and unresolved twelve years later.
+      as open.
 
   - title: Some general dynamical notions
     authors: [Walter Gottschalk]
@@ -413,7 +417,7 @@ sources:
     note: >-
       J. Eur. Math. Soc. 1(2):109-197. Sofic groups are surjunctive, the
       implication whose converse Problem 1.1 asks about. Bowen and Chapman
-      credit Problem 1.1 to this paper and to Weiss's.
+      present Problem 1.1 as arising from this paper and Weiss's.
 
   - title: Sofic groups and dynamical systems
     authors: [Benjamin Weiss]
@@ -422,9 +426,9 @@ sources:
     relationship: background
     note: >-
       Sankhya Ser. A 62(3):350-359. Names sofic groups and proves that they are
-      surjunctive. Bowen and Chapman credit Problem 1.1 to this paper and to
-      Gromov's, and Arzhantseva and Gal credit the free-product surjunctivity
-      question to it.
+      surjunctive. Bowen and Chapman present Problem 1.1 as arising from this
+      paper and Gromov's, and Arzhantseva and Gal cite it for the question
+      whether a product of two surjunctive groups is surjunctive.
 
   - title: Sofic groups and direct finiteness
     authors: [Gabor Elek, Endre Szabo]
@@ -454,14 +458,20 @@ sources:
     year: 2010
     type: book
     id: https://doi.org/10.1007/978-3-642-14034-1
-    relationship: other
+    location: Open Problems, p. 417
+    relationship: background
     note: >-
       Springer Monographs in Mathematics. Its chapter on surjunctive groups is
       the reference for the attributions to Lawton, Gromov and Weiss. The
       Curtis-Hedlund-Lyndon theorem and the textbook facts on surjunctivity
       used here are proved in this development rather than imported, the
       bridge between the two descriptions of a cellular automaton as
-      Surjunctivity.isFiniteMemory_of_continuous_equivariant.
+      Surjunctivity.isFiniteMemory_of_continuous_equivariant. Its list of open
+      problems asks the question this project answers, on page 417: "(OP-11)
+      Does there exist a surjunctive group which is non-sofic?", fifteen years
+      before Bowen and Chapman print it as Problem 1.1. The second edition
+      (2023, doi:10.1007/978-3-031-43328-3) reprints it on page 527, still
+      marked open.
 
   - title: On sofic approximations of Property (T) groups
     authors: [Gabor Kun]
@@ -504,14 +514,14 @@ sources:
       residually finite Kazhdan pairs Γ = EL_r(F_q[x_1, ..., x_d]) inside
       G = EL_r(F_q[x_1^±1, ..., x_d^±1]) ⋊ SL_d(Z), for q a prime power and
       r, d at least 3, and the witness used here is the q = 2, r = d = 3
-      member, with the elementary group EL_3 of the integers in place of SL_3.
-      Theorem 4.1, the permutation centralizer normalization theorem behind
-      Theorem A, is proved in this development in a general sequential form,
-      for an arbitrary countable Kazhdan group with a Kazhdan infranormal
-      subgroup, and the nonsoficity of the double is derived from it here. Kun
-      and Thom mention surjunctivity once, in their introduction's history of
-      Gromov's theorem; they cite neither Gottschalk nor Bowen and Chapman, and
-      they do not observe that these doubles are surjunctive.
+      member, with the acting group SL_3 of the integers written as EL_3, which
+      is the same group. Theorem 4.1, the permutation centralizer normalization
+      theorem behind Theorem A, is proved in this development in a general
+      sequential form, for an arbitrary countable Kazhdan group with a Kazhdan
+      infranormal subgroup, and the nonsoficity of the double is derived from
+      it here. Kun and Thom mention surjunctivity only in recalling Gromov's
+      theorem, cite neither Gottschalk nor Bowen and Chapman, and do not
+      observe that these doubles are surjunctive.
 
   - title: Property (T) for noncommutative universal lattices
     authors: [Mikhail Ershov, Andrei Jaikin-Zapirain]
@@ -550,7 +560,7 @@ sources:
       first nonsofic group, the unit group R× of the binary Leavitt algebra,
       built from Kun's expander decomposition and the Kun-Thom centralizer
       obstruction, and its mechanism is what Kun and Thom analyze. The same
-      chapter, page 79, records the question answered here as open as of that
+      chapter, page 80, records the question answered here as open as of that
       date: "We do not know whether R× is surjunctive. A positive answer would
       produce a surjunctive nonsofic group", and it observes that the
       Bowen-Chapman example for invariant random subgroups "does not produce a
