@@ -4731,6 +4731,7 @@ import GroupApproximation.KunThom.CompressorNormalizationAssemblyRelativeData
 import GroupApproximation.KunThom.CompressorNormalizationCore
 import GroupApproximation.BowenChapman.Endpoint
 import GroupApproximation.Dynamics.FreeProductSurjunctivity
+import GroupApproximation.Pestov91.RingFinitelyGenerated
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
