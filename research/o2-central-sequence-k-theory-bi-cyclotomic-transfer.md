@@ -6,6 +6,7 @@ title: K-theory of the fixed central sequence algebra of an outer action on O_2 
 distinct_from:
   o2-rokhlin-iff-unit-vanishes-in-fixed-central-sequences: that proves the Rokhlin property is the vanishing of the unit class and introduces the Ĝ-action; this adds the dual G-action from the crossed product, proves both norm operators vanish, and reads the fixed points of both actions on the unit class dynamically.
   zp-restriction-trivial-splits-cellular-plus-phantom: that works in the ring KK^G(D, D) with the operators χ and θ; this works in K_* of a non-separable central sequence algebra, where the analogous operators are conjugations by eigen-isometries and by invariant implementing isometries.
+  zp-o2-generator-kk-class-is-twisted-asymptotic-innerness: that splits KK^G(E, E) into Galois components where θ = χ^k and reads each through Gabe–Szabó uniqueness; this splits K_* of the fixed central sequence algebra over the same ring by transfer, and reads fixed points of the unit class by Cuntz comparison, with no uniqueness theorem.
 ---
 
 **ESTABLISHED (derivation; standard inputs flagged in the proof; unreviewed).**

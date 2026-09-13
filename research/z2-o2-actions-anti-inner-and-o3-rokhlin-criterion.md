@@ -7,6 +7,8 @@ distinct_from:
   o2-central-sequence-k-theory-bi-cyclotomic-transfer: that proves the two transfer identities and the dynamical reading of fixed points for any finite abelian group; this specializes to p = 2, where the identities force both dual actions to be −1 and so produce an implementing unitary from K-theory alone.
   outer-zp-actions-on-o2-are-strongly-approximately-inner: that is the open question whether invariant implementing unitaries exist; this proves anti-invariant ones exist whenever the crossed product is O_2, and reduces the open question to a unital copy of O_3.
   o2-rokhlin-iff-unit-vanishes-in-fixed-central-sequences: that characterizes the Rokhlin property by a unital O_2 in the fixed central sequences; this shows that at p = 2 a unital O_3 already suffices, given Izumi's theorem.
+  zp-o2-generator-kk-class-is-twisted-asymptotic-innerness: that proves through Gabe–Szabó uniqueness in KK^G that a contractible crossed product is equivalent to odd asymptotic innerness along continuous paths; this derives sequential odd innerness from transfer in central-sequence K-theory with no uniqueness theorem, and adds that strong approximate innerness is a unital O_3 in the fixed central sequences.
+  zp-o2-contractible-crossed-product-only-coboundaries: that proves for every prime, from Izumi and Gabe–Szabó 5.14, that a central eigen-unitary of a nontrivial character is equivalent to the Rokhlin property; this shows at p = 2 that such a unitary exists iff 2[1] = 0, iff a unital O_3 sits in the fixed central sequences.
 ---
 
 **ESTABLISHED (derivation; unreviewed).**  Let `α : Z/2 ↷ O_2` be pointwise
@@ -65,6 +67,19 @@ Use the operators `φ` (the nontrivial character) and `ψ` (the generator) of
 - The two isotropic lines act by `−1`.
 - The open part is whether the isotropic operators `φ` and `ψ` also fix `[1]`,
   which happens iff `[1] = −[1]`.
+
+**Relation to peer nodes (lane ex2-uct-unit-class-cohomology, landed after
+this node).**
+- Item 6 of `zp-o2-generator-kk-class-is-twisted-asymptotic-innerness` proves,
+  through Gabe–Szabó Theorem 5.8, the asymptotic form of item 2(a) together with
+  its converse.  Here the converse is: odd asymptotic innerness forces
+  `O_2 ⋊ Z/2 ≅ O_2`.
+- The two proofs are independent: KK^G uniqueness there, central-sequence
+  transfer and Cuntz comparison here.  So they cross-check each other.
+- Item 5 of `zp-o2-contractible-crossed-product-only-coboundaries` is the
+  eigen-unitary criterion for every prime.  At `p = 2`, item 1 above
+  identifies it with `2[1] = 0` and with a unital `O_3`.
+- None of those nodes has the `O_3` form.
 
 **Model tests.**
 - *Rokhlin model* `μ = ⊗_n Ad(diag(1, −1))` on `O_2 ⊗ M_(2^∞)`.  Put
