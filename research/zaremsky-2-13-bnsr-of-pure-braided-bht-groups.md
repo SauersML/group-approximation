@@ -55,12 +55,17 @@ Never write a `requires: []` route into this claim.
 
 ## Attempts
 
-- 2026-09-13 (lane z2-13-pure-braided-bht): computing `Hom(bF_{n,r}, R)` as
-  `Hom(F_{n,r}, R)` plus the `F_{n,r}`-invariant characters of `PB_infinity`.
-  The invariant characters are functions on orbit types of ordered pairs of
-  leaf intervals, additive under `n`-fold splitting. For `n >= 3` the orbit
-  types carry residues mod `n - 1` (a PL map with slopes in `<n>` preserves
-  interval lengths mod `(n - 1)Z[1/n]`), so there are more braid characters
-  than for `F_br`; the count is being checked. Then: extend the CAT(0) cube
-  complex and descending-link argument of arXiv:1803.02717 to `n`-ary forests
-  with `r` roots.
+- 2026-09-13 (lane z2-13-pure-braided-bht), unreviewed:
+  - `Hom(bF_{n,r}, R)` has rank `n^2`: the pure braid kernel contributes
+    `n(n-1)` invariant characters, more than the two of `F_br` once `n >= 3`,
+    because orbit types of leaf pairs carry residues mod `n - 1`
+    (`pure-braided-bht-braid-characters-dimension-n-n-minus-1`).
+  - Characters seen by large full twists lie in `Sigma^infinity`, by Meinert's
+    criterion on the Skipper–Wu Stein space
+    (`bf-n-r-twist-detected-characters-lie-in-sigma-infinity`).
+  - Holes of `F_{n,r}` pull back (`bf-n-r-sigma-m-holes-of-f-n-r-pull-back`).
+  - The open core, for `n >= 3`, is the `(n(n-1) - 2)`-dimensional
+    full-twist-invisible braid characters
+    (`bf-n-r-twist-invisible-braid-characters-in-sigma-infinity`), reduced to
+    BNSR invariants of pure braid groups. Also open: pulled-back characters
+    outside the endpoint hull (`bf-n-r-pulled-back-characters-follow-endpoint-hull`).

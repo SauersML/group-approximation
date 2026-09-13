@@ -9,8 +9,10 @@ distinct_from:
 
 Candidate answer to Zaremsky Problem 2.13. For all `n >= 2` and `r >= 1`,
 write `pi: bF_{n,r} -> F_{n,r}` for the forgetful map and `chi_0`, `chi_1` for
-the characters of `F_{n,r}` given by the log base `n` of the slope at the left
-and right endpoints (conventions as in Zaremsky, arXiv:1502.02620). Then:
+the first- and last-leaf depth characters of `F_{n,r}` (Zaremsky,
+arXiv:1502.02620; up to sign, the log base `n` of the slopes at the two
+endpoints). `Hom(bF_{n,r}, R)` has rank `n^2`
+(`pure-braided-bht-braid-characters-dimension-n-n-minus-1`). Then:
 
 1. `[chi] notin Sigma^1(bF_{n,r})` iff `[chi]` is `[chi_0 o pi]` or
    `[chi_1 o pi]`;
@@ -27,11 +29,15 @@ computation for `F_{n,infinity}` (arXiv:1502.02620, Theorem A).
 
 ## Attempts
 
-- 2026-09-13: open. Needed pieces: (a) a basis of `Hom(bF_{n,r}, R)`;
-  (b) characters nonzero on the braid kernel lie in `Sigma^infinity`;
-  (c) pulled-back characters follow `Sigma^m(F_{n,r})` on both sides; (d) the
-  identification of `Sigma^m(F_{n,r})` for finite `r` with the `F_{n,infinity}`
-  formula. For `F_br`, (b) and (c) come from a CAT(0) Stein–Farley complex,
-  Morse theory, central-element and HNN-decomposition criteria. Whether
-  those arguments survive the residue-mod-`(n-1)` braid characters that
-  appear for `n >= 3` is the crux.
+- 2026-09-13, split into parts by route `pure-braided-bht-sigma-formula-from-parts`:
+  - proved (unreviewed): the character splitting and rank `n^2`;
+  - proved (unreviewed): characters whose braid part is nonzero on large full
+    twists lie in `Sigma^infinity`;
+  - proved (unreviewed): holes of `F_{n,r}` pull back, and the endpoint hull is
+    a hole for `r ≡ 1 mod (n-1)`;
+  - open: braid parts in the `(n(n-1) - 2)`-dimensional full-twist-invisible
+    subspace (`n >= 3` only), reduced to BNSR invariants of pure braid groups;
+  - open: pulled-back characters outside the hull lift to `Sigma^m`, and the
+    formula for `F_{n,r}` when `r ≢ 1 mod (n-1)`.
+- For `n = 2`, `r = 1` the formula is Zaremsky's theorem, so the open content is
+  `n >= 3` or `r >= 2`.
