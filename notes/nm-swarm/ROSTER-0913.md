@@ -857,3 +857,51 @@ For EVERY census row in your range with status formalized or definition, and eve
 - debt-conditional C6′: module 1 81cb719d3 green; module 2 OsinAppendixEulerTwoGonFaceClass ee96efa9d, probing.
   - Ruling: no new pinched-walk Prop. The two-gon pocket walk has the section pocket shape, so module 4 consumes kh-ejz's O-equivalent face set, then PocketPinchLabelledStatement, then ofSimpleClosedWalk and EmptyTwoGon.
   - The pinch statement must cover that pocket.
+
+## Rulings 09-13 ~14:00–14:01
+
+- Roster 0da58be4b records the 13:40–14:00 rulings.
+- InsertStatement: simple-group and hull-bridge both claimed it about 13 seconds apart, after kh-torsion re-offered it to hull-bridge.
+  - Ruled (third time): Insert stays with simple-group.
+  - hull-bridge sends any draft to simple-group and takes a Strip sub-module (Double or Pinch) from kh-torsion, stated in fff-quotient's port form.
+- hl-lemma46 takes PocketOuterTransportStatement (OsinPocketPieces:332) outright; hull-select is blocked on the co-probe and sends any draft.
+  - go-lemma42 keeps PocketCellTransportStatement.
+- leavitt-units stops waiting on the copies (b) and (c): the output is ruling (B)'s O-equivalent copy, with the doubled edges gone.
+  - It consumes or writes the FaceEdgeDoubling dart transport and model-tests first. This comes ahead of the gated bubble un-pinch.
+- Pocket circuit identification: REFUTED by kh-ejz.
+  - A pinch of x makes the boundaryPerm circuit mix C_P and C_Q; a lake makes the gap circuit bound only P1. K.walk is still noncrossing.
+  - Replacement, the parity route:
+    - (A') a nodup closed walk equal to ∂U is noncrossing, with no planarity;
+    - (B) a Z/2 face colouring on planar maps, col(face α d) ≠ col(face d) ↔ walkKeep, by strong induction splitting at a repeated vertex;
+    - (C) col is constant on x and y, so the walk darts carry colour c0;
+    - (D) U = {col = c0} has ∂U = K.walk, then toPocketFaceSetOfNoncrossing.
+  - Residuals: (iii') nodup + alpha_not_mem of K.walk on the copy (the copies (a) hs-vanishes, (b)/(c) leavitt-units) and (ii) kept ∈ U.
+  - Rulings:
+    - kh-ejz builds (B), (C), (D) in a new module, not NoncrossingClosedWalkSides (three landed importers). It model-tests (C) on the pinched two-gon model and the lake complement.
+    - (A') is not rebuilt: check hull-respell's BoundaryCycle.isNoncrossingClosedWalk (24ff94312) first. cite-hull's FaceSetCircuitNoncrossing (i) is the same claim; its (ii) is dropped unless (D) uses it. cite-hull may take (C) from kh-ejz.
+    - Q1: hs-vanishes' thickening is stated at 0a7715b56.
+    - Q2: dgo-analytic states the zero-cell merge on the copy (SectionPocketCutInput, l.405, l.617).
+- Wave 13 ROOT GREEN, LANDED ROOT e0dcf8b99 (13:51, 30 modules, partition chain + SectionResiduals + CollarJoin). Wave 14 from the queue: GlueOuterArc, GlueOuterTransport, QuasiGeodesicValueOneGap, ShortSides, FaceSetCircuitNoncrossing.
+- PocketOuterTransportStatement CLOSED by hull-select: `pocketOuterTransport` 71d59592c over OsinPocketGlueOuterArc 4a4f1a6b6 (probes 0913-134953-22063, 0913-134755-12194), using only go-lemma42's glue interface. hl-lemma46's assignment is void.
+  - Free lanes hull-select and hl-lemma46: go-lemma42 names at most two disjoint sub-pieces of PocketCellTransportStatement, one per lane.
+- `hin` finding (hull-select): the assembly feeds inner FollowsBoundary to exists_twoCollars_of_ne_or → GeodesicCollarStatement (SurgeryGeodesicCollar:71), which also returns inner FollowsBoundary.
+  - dgo-geometric e533e5581 (green, unwired, OsinPocketPinchedTwoGonOuterFollows): in Configuration A the inner cycle fails and the outer follows; pinchedK satisfies R2 Simple, so this pocket needs no pinch.
+  - So under R2 the collar must be restated over the outer spelling. kh-torsion decides R1/R2 with this.
+  - dgo-geometric corrects C3–C6: all proved (exterior_of_isTwoGon, cornerTwoGonInput 90245333d, cellFaceCountInput, emptyTwoGonInput_holds 2aa17abb0); only C6′ is a stated input. Configuration B (two-petal rose) is next.
+- kh-torsion: Walk 5197fa6fc landed; stripSingleton (Double) probing. Corrected: Insert stays with simple-group (fourth notice); Join is on main at ce39bca65. hull-bridge takes ONE Strip sub-module (pinch step or induction).
+- cite-hull 67ec49f02 FaceSetCircuitNoncrossing: isNoncrossingClosedWalk_of_isChain_boundaryWalk = (A'), no planarity. Middle-walk chain lemmas over C = x ∪ y ∪ {Π_i, outer} are held (the refuted claim); chain lemmas only against kh-ejz's U.
+- Lemma 9.4 side budget:
+  - short sides ≤ 2ε|M| landed by sec5-sentences 4b6dd3cd8 (OsinLemma94ShortSides; audit-intro's duplicate avoided);
+  - gap lemma hull-component a3169d05f (QuasiGeodesicValueOneGap).
+  - sec5-sentences finding: nothing on main gives #A1 + #A2 ≤ 2|M| + n + r at diagram level (typeA12_le and RunInput carry it as fields).
+  - Ruled: sec5-sentences writes the diagram-level class-transition count over realized polygons; hull-count94 writes the respelling in PolygonClasses and consumes it.
+  - hull-component's BudgetFilter lands only if hull-count94 consumes it. audit-intro and hull-component wait on the PolygonClasses names.
+- C6′ module 4 (baseline-debt): SectionPocketFaceSetInput gives a copy with a kept cell, while EmptyTwoGonInput needs a relator-free region on S.diagram.
+  - Ruled: module 4 targets an O-equivalent copy, with a transport lemma for the empty-two-gon conclusion; check first that the conclusion is O-invariant.
+  - The merge (dgo-analytic) is also on a copy. debt-conditional keeps the direct plan for the noncrossing, non-leaking case.
+- ghw-charp2 (A) co-probe: approved to co-land leavitt-units' OsinAppendixEulerCornerTwoGonCount one-line fix at l.497, with an origin-blob check at push. LoopCutCapCounterexample is probed without; audit-sec5 rewrites after (A) lands.
+- theoremc-retire, option (i) threading T (draft $NM/backup/theoremc-retire/threading-option-i-draft.lean.txt, base c8bd88c14, unprobed): OsinLemma97Below binder through Sections, SectionInduction, DescentInduction, Assembly, Lemma97Pocket, Counting, Pieces, PlanarPieces.
+  - Ruled: T lands only if ko-closed picks (2), the R-cell case that needs hbelow. It then runs as one co-probed landing after (A), folded with hull-unbound's Dense respelling (same Pieces/PlanarPieces files), with hold notices and origin-blob checks. theoremc-retire adds the unowned Assembly and Lemma97Pocket to its files.
+  - OC6 Run patch rides in ghw-charp2's (A).
+  - Gap finding (l.786/849): false_of_quadrilateral_face needs the reversed source arc as a literal piece of f's walk, so pairs whose [a,a'] or [b',b] strictly contains a gap (bubble or hair) have no quadrilateral split. Case 1 on class words needs the walk to avoid them, or the l.850 surgeries. ko-closed decides; the surgery split (hs-vanishes hair, leavitt-units bubble) stands.
+- leavitt-units found idle since 13:20; the 13:49 ruling had not woken it. Resumed with the (B)-shape order plus (iii') and the co-land notice.
