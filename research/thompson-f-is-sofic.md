@@ -23,3 +23,7 @@ error.
 ## Attempts
 
 - Through `thompson-f-sofic-from-amenability` (waits on `thompson-f-is-amenable`) and `thompson-f-sofic-from-v-sofic` (waits on `thompson-v-is-sofic`). The equivalent almost-commuting form is in `research/artifacts/thompson-f-soficity-as-relator-stability-2026-09-12.md`, section 3.
+- **Local embeddability into amenable groups collapses (2026-09-13).** `F` is finitely presented and every proper
+  quotient is abelian, so a local embedding of a ball containing both relators and `[a,b]` into an amenable group
+  is an injective homomorphism. So `F` is LEA only if amenable (`thompson-f-is-lea-only-if-amenable`), and LEA is
+  not an independent soficity route.
