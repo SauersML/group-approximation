@@ -426,9 +426,21 @@ face and a relator cell. Coordinate with hull-respell.
     (8 n 3 1 6).
   - Split at `x = 1`, `y = n`, whose corners `b` and `δ` are both in `collarFaceSet K`, with
     `e₁ = 3` and `e₂ = 6`. The repeated visits drop from 1 to 0.
-- Model B (the labelled two-petal rose) is not reached by this module. This lane's paper check: the
-  gap between the two visits is one corner flanked by darts of one arc. It belongs to the non-split
-  branch that hull-respell is splitting.
+- Rulings 16:00 (roster l.1284): T1', a relator face inside `K`, goes to this lane as this module,
+  and hull-respell consumes it. hull-respell writes the step under condition (b): a FirstTurn chain
+  on the complement side, with a split inside `K` (go-lemma42's (ii)), where T1' is the corner fix.
+- Model B (the labelled two-petal rose) is not reached, and a step under (b) owes nothing there.
+  - It admits no split at all (audit-sec3's `isEmpty_input`), and its `pinchedK` lies outside (b)
+    (formal, audit-sec3).
+  - Correction: this lane's 16:44 messages to main and hull-respell sent B to a non-split branch.
+    That was wrong, and both got the correction.
+- dgo-geometric's `pocketPinchWrapRefutation` (`OsinPocketWrapRose`, 87358b0ad, probe
+  0913-163031-39703 GREEN) refutes `PocketPinchLabelledStatement` and `PocketPinchStepStatement` at
+  ε = 0 on a three-petal rose.
+  - Per audit-sec3, it refutes the Props restricted to (a) or to (a) ∨ (b), but not to (b).
+  - So binder 7 of `_of_openResiduals` is false as stated. The respelling is the lead's call, and
+    the Rule 22 co-probe runs in hull-respell's lane.
+  - Configuration A is the calibration case under (b).
 - Next in this item:
   - a monogon version inside `K` (`MonogonDoubling`), from `isBoundaryDart_embed_iff`,
     `faceOf_some_none_mem` and `faceOf_alpha_some_none_mem`;
@@ -441,8 +453,9 @@ face and a relator cell. Coordinate with hull-respell.
 - W1 composition: nothing open. Swap a binder when its producer lands: hull-count94 for 1,
   fff-periodic for 2, jacobson for 3.
 - Binder 7 piece (i), corners into G-digons. The case of a relator corner inside `K` landed at
-  a847c7e01 (section above). Next come the monogon version inside `K` and the model test at A.
-  Model B goes to hull-respell's non-split branch.
+  a847c7e01 (section above); it is T1' of the 16:00 rulings, and hull-respell consumes it. Next
+  come the monogon version inside `K` and the model test at A, the calibration case under (b).
+  Model B admits no split and lies outside (b) (audit-sec3), so it owes nothing here.
 - Binders 2-3 get respelled when the site-5 Covers co-probe (fff-periodic with hull-count94) or
   theoremc-retire's T changes `_of_sideBudget` or `_of_walk`. Rule 22 applies to those lanes.
 - Wrap case (parked): when both replies are in, propose a split with dgo-geometric and hull-respell.
