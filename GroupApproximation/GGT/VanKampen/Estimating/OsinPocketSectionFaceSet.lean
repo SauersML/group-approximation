@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPieces
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGapArcs
+import GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkSides
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -28,8 +29,15 @@ This module proves steps towards `SectionPocketFaceSetInput`.
   start of `x`'s outer arc to the end of `y`'s.
 * `PocketWalk.toPocketFaceSet`: a simple pocket walk with a relator cell on its side gives a
   `PocketFaceSet`.
+* `PocketFaceSet.ofBoundaryCycle`: a face set with boundary cycle `s_1 t_1 s_2 t_2` that contains a
+  relator cell is a `PocketFaceSet`.  A boundary dart has its own face inside and the face across
+  it outside, so the exterior face and the source cell, which lie across `t_2` and `t_1`, are
+  outside.
+* `PocketWalk.toPocketFaceSetOfNoncrossing`: a noncrossing pocket walk (`IsNoncrossingClosedWalk`,
+  which lets the walk touch itself at a vertex) with a relator cell on its side gives a
+  `PocketFaceSet` with the walk as its boundary cycle.
 
-Not proved here: that the pocket walk is simple, and that a relator cell lies on its side.
+Not proved here: that the pocket walk is noncrossing, and that a relator cell lies on its side.
 
 ## Manuscript status
 
@@ -173,6 +181,85 @@ theorem ofSimpleClosedWalk_simple (source kept : Fin X.rCellCount)
       htarget hkept hfirst hsecond hfirstNorm hsecondNorm hlo hhi).Simple :=
   hw
 
+/-- **The pocket face set of a boundary cycle.**  Let `faces` have the boundary cycle
+`s_1 t_1 s_2 t_2`, with `t_1` a nonempty arc of the cell `source` read backwards, `t_2` a nonempty
+arc of `∂X` between the positions `lo` and `hi`, and sides no longer than `ε` with values no
+longer than `ε`.  When `faces` contains the cell `kept`, it is a pocket face set with that
+boundary cycle. -/
+noncomputable def ofBoundaryCycle {faces : Finset X.toCombMap.Face}
+    (boundary : Surgery.MapCollapse.BoundaryCycle X.toCombMap faces)
+    (source kept : Fin X.rCellCount)
+    (sourceArc : CyclicArc (cellDarts X source)) (targetArc : CyclicArc (outerDarts X))
+    (firstSide secondSide : List X.toCombMap.Dart)
+    (hcycle : boundary.cycle =
+      firstSide ++ invDarts X sourceArc.darts ++ secondSide ++ targetArc.darts)
+    (hsource : 0 < sourceArc.length) (htarget : 0 < targetArc.length)
+    (hkept : (cell X kept).face ∈ faces)
+    (hfirst : firstSide.length ≤ eps) (hsecond : secondSide.length ≤ eps)
+    (hfirstNorm :
+      wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X firstSide)) ≤ eps)
+    (hsecondNorm :
+      wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X secondSide)) ≤ eps)
+    (hlo : lo ≤ targetArc.start.1) (hhi : targetArc.start.1 + targetArc.length ≤ hi) :
+    PocketFaceSet D eps X lo hi where
+  faces := faces
+  outerFace_not_mem := by
+    obtain ⟨d, hd⟩ := targetArc.exists_mem_darts htarget
+    obtain ⟨e, he, rfl⟩ := List.mem_map.mp (targetArc.mem_cycle_of_mem_darts hd)
+    have hface : X.toCombMap.faceOf e = X.outerFace :=
+      ((X.faceBoundary X.outerFace).mem_iff e).mp (List.mem_reverse.mp he)
+    have hmem : X.toCombMap.alpha e ∈ boundary.cycle := by
+      rw [hcycle]
+      exact List.mem_append_right _ hd
+    have h := And.right ((boundary.cycle_mem_iff (X.toCombMap.alpha e)).mp hmem)
+    rwa [X.toCombMap.alpha_involutive e, hface] at h
+  source := source
+  source_not_mem := by
+    obtain ⟨e, he⟩ := sourceArc.exists_mem_darts hsource
+    have hface : X.toCombMap.faceOf e = (cell X source).face :=
+      ((X.faceBoundary (cell X source).face).mem_iff e).mp (sourceArc.mem_cycle_of_mem_darts he)
+    have hinv : X.toCombMap.alpha e ∈ invDarts X sourceArc.darts :=
+      List.mem_map_of_mem (List.mem_reverse.mpr he)
+    have hmem : X.toCombMap.alpha e ∈ boundary.cycle := by
+      rw [hcycle]
+      exact List.mem_append_left _ (List.mem_append_left _ (List.mem_append_right _ hinv))
+    have h := And.right ((boundary.cycle_mem_iff (X.toCombMap.alpha e)).mp hmem)
+    rwa [X.toCombMap.alpha_involutive e, hface] at h
+  kept := kept
+  kept_mem := hkept
+  sourceArc := sourceArc
+  targetArc := targetArc
+  firstSide := firstSide
+  secondSide := secondSide
+  boundary := boundary
+  decomposition := hcycle
+  firstSide_length_le := hfirst
+  secondSide_length_le := hsecond
+  firstSide_norm_le := hfirstNorm
+  secondSide_norm_le := hsecondNorm
+  lo_le := hlo
+  le_hi := hhi
+
+/-- **The pocket face set of a noncrossing boundary walk.**  As `ofSimpleClosedWalk`, for a walk
+`s_1 t_1 s_2 t_2` that may touch itself at a vertex without crossing. -/
+noncomputable def ofNoncrossingClosedWalk (source kept : Fin X.rCellCount)
+    (sourceArc : CyclicArc (cellDarts X source)) (targetArc : CyclicArc (outerDarts X))
+    (firstSide secondSide : List X.toCombMap.Dart)
+    (hw : IsNoncrossingClosedWalk X.toCombMap
+      (firstSide ++ invDarts X sourceArc.darts ++ secondSide ++ targetArc.darts))
+    (hsource : 0 < sourceArc.length) (htarget : 0 < targetArc.length)
+    (hkept : (cell X kept).face ∈ sideFaces X.toCombMap
+      (firstSide ++ invDarts X sourceArc.darts ++ secondSide ++ targetArc.darts))
+    (hfirst : firstSide.length ≤ eps) (hsecond : secondSide.length ≤ eps)
+    (hfirstNorm :
+      wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X firstSide)) ≤ eps)
+    (hsecondNorm :
+      wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X secondSide)) ≤ eps)
+    (hlo : lo ≤ targetArc.start.1) (hhi : targetArc.start.1 + targetArc.length ≤ hi) :
+    PocketFaceSet D eps X lo hi :=
+  ofBoundaryCycle (hw.innerCycle X.planar) source kept sourceArc targetArc firstSide secondSide
+    rfl hsource htarget hkept hfirst hsecond hfirstNorm hsecondNorm hlo hhi
+
 end PocketFaceSet
 
 /-! ## The pocket walk of two exterior regions -/
@@ -228,6 +315,22 @@ theorem toPocketFaceSet_simple (K : PocketWalk D eps X lo hi) (kept : Fin X.rCel
     (hkept : (cell X kept).face ∈ sideFaces X.toCombMap K.walk) :
     (K.toPocketFaceSet kept hw hkept).Simple :=
   hw
+
+/-- A noncrossing pocket walk with a relator cell on its side gives a pocket face set. -/
+noncomputable def toPocketFaceSetOfNoncrossing (K : PocketWalk D eps X lo hi)
+    (kept : Fin X.rCellCount) (hw : IsNoncrossingClosedWalk X.toCombMap K.walk)
+    (hkept : (cell X kept).face ∈ sideFaces X.toCombMap K.walk) :
+    PocketFaceSet D eps X lo hi :=
+  PocketFaceSet.ofNoncrossingClosedWalk K.source kept K.sourceArc K.targetArc K.firstSide
+    K.secondSide hw K.sourceArc_pos K.targetArc_pos hkept K.firstSide_length_le
+    K.secondSide_length_le K.firstSide_norm_le K.secondSide_norm_le K.lo_le K.le_hi
+
+/-- The pocket face set of a noncrossing pocket walk has the walk as its boundary cycle. -/
+theorem toPocketFaceSetOfNoncrossing_cycle (K : PocketWalk D eps X lo hi)
+    (kept : Fin X.rCellCount) (hw : IsNoncrossingClosedWalk X.toCombMap K.walk)
+    (hkept : (cell X kept).face ∈ sideFaces X.toCombMap K.walk) :
+    (K.toPocketFaceSetOfNoncrossing kept hw hkept).boundary.cycle = K.walk :=
+  rfl
 
 end Diagram
 
@@ -346,3 +449,5 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketWalk.toPocketFaceSet_simple
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketWalk.cut_le_length_outerDarts
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketWalk.exists_of_exteriorAt
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.ofBoundaryCycle
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketWalk.toPocketFaceSetOfNoncrossing_cycle

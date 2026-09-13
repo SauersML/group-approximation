@@ -232,16 +232,31 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
    - Orientation: `x` is the region whose outer arc starts first. `t₁` runs forward on `∂Π_i` from `x`'s source arc to
      `y`'s, and `t₂` runs on `∂X` from the start of `x`'s outer arc to the end of `y`'s.
    - **Residual** for `SectionPocketFaceSetInput`, given `exists_of_exteriorAt`:
-     - (i) `IsSimpleClosedWalk S.diagram.toCombMap K.walk`. This is false in general: a pinched pocket repeats a vertex.
-       hull-respell's `PocketPinchStatement` and its reduction `PocketPinchPinchedStatement` (OsinPocketPinchUnpinched)
-       both take a `PocketFaceSet` as input, so the pinched case still needs a face set first.
-       Wanted: a sides theorem for closed walks with distinct darts that touch but never cross (sub-piece P2', open to
-       fff-quotient). Reduction: take the faces reachable from the left faces of the walk without crossing an edge of
-       the walk. The `BoundaryCycle` conditions then follow once no right face of the walk is reachable.
-       Criterion: in the restriction of the map to the walk edges, the rotation alternates between incoming and
-       outgoing walk darts at every walk vertex. Then the walk is closed under the restricted face permutation, and
-       `CombMap.IsRestriction.faceOf_eq_of_faceClass` separates the left faces from the right ones. In
-       SimpleClosedWalkSides, vertex injectivity reaches the separation proof only through `keep_at_vertex` (line 273).
+     - (i) `IsNoncrossingClosedWalk S.diagram.toCombMap K.walk`. Simplicity (`IsSimpleClosedWalk`) is false in general:
+       a pinched pocket repeats a vertex. hull-respell's `PocketPinchStatement` and its reduction
+       `PocketPinchPinchedStatement` (OsinPocketPinchUnpinched) both take a `PocketFaceSet` as input, so the pinched
+       case still needs a face set first.
+       **P2' landed with this report** (green probe 0913-111928-29730): new module `GGT/VanKampen/NoncrossingClosedWalkSides`,
+       unwired. `IsNoncrossingClosedWalk` asks for distinct darts, no edge used in both directions, and a turning
+       condition: rotating from `alpha d` for a walk dart `d`, the first dart on a walk edge is a walk dart. The
+       restriction to the walk edges is then connected (`PermFirstReturn.sameCycle_iff`), its faces advance along walk
+       darts, and the separation proof of SimpleClosedWalkSides goes through unchanged.
+       ```lean
+       def NoncrossingClosedWalkSidesStatement : Prop :=
+         ∀ (M : CombMap) (w : List M.Dart), M.IsPlanar → IsNoncrossingClosedWalk M w →
+           ∃ (faces outside : Finset M.Face) (inner : BoundaryCycle M faces) (outer : BoundaryCycle M outside),
+             (∀ f, f ∈ outside ↔ f ∉ faces) ∧ inner.cycle = w ∧ outer.cycle = w.reverse.map M.alpha
+       theorem noncrossingClosedWalkSides : NoncrossingClosedWalkSidesStatement   -- #audit_closed_axioms
+       theorem IsSimpleClosedWalk.isNoncrossingClosedWalk (hw : IsSimpleClosedWalk M w) : IsNoncrossingClosedWalk M w
+       ```
+       No `FollowsBoundary` claim: a pinched cycle need not follow its face set
+       (`OsinPocketPinchedTwoGonModel.not_followsBoundary`).
+       Consumers added to OsinPocketSectionFaceSet (additive, `#audit_axioms`): `PocketFaceSet.ofBoundaryCycle` (any
+       face set whose boundary cycle is `s_1 t_1 s_2 t_2` and which contains a relator cell),
+       `PocketFaceSet.ofNoncrossingClosedWalk`, `PocketWalk.toPocketFaceSetOfNoncrossing`, and
+       `toPocketFaceSetOfNoncrossing_cycle` (the boundary cycle is `K.walk`).
+       Open: the turning condition for `K.walk`. P2' does not touch (iii): a walk holding both darts of an edge
+       violates `alpha_not_mem`.
      - (ii) the kept cell on the side of the walk. Without it, the pocket holds no relator cell, and hull-select's
        zero-cell merge should contradict weight maximality. `OsinPocketZeroCellMerge` (`innerBoundary`,
        `toInnerGRegion`, `mergedGeometry`) is on main. The contradiction module `OsinPocketZeroCellMergeFalse`, which
