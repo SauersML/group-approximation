@@ -2,7 +2,7 @@
 rg: 2
 id: scale-preserving-hard-half-finite-permutations-exist
 kind: claim
-title: For every recursive bound there is a half-finite scale-preserving involution below it in complexity with sub-double displacement
+title: For every recursive bound there is a half-finite scale-preserving involution with sub-double displacement whose evaluation beats that bound
 distinct_from:
   hard-half-finite-permutations-have-fp-shift-envelopes: that also demands finite presentation of the envelope with E_2; this supplies only the generator, half-finite with displacement below 4x and hard, and makes no finite-presentation claim, so it isolates finite presentation as the entire remaining content of that target.
   fp-bounded-displacement-e2-envelopes-are-eventually-periodic: that shows bounded-displacement generators of a finitely presented envelope are eventually periodic hence easy; this exhibits a hard generator, so its displacement is necessarily unbounded, and it is realized scale-preservingly with sup_x gamma(x)/x <= 2.

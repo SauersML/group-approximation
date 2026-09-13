@@ -26,9 +26,10 @@ one contributed by each `e`:
 
 - Run `M_e` on `a_e` for `e*R(e*a_e) + e*a_e + e` steps. If it halts with a
   natural-number output, call that output `v_e`; otherwise `v_e` is undefined.
-- Choose `b_e` to be an odd element of `B_(j(e))` with `b_e != a_e` and
-  `b_e != v_e`. This is possible: `B_(j(e))` has at least `8` odd elements, and
-  at most two are excluded.
+- Let `b_e` be the **least** odd element of `B_(j(e))` with `b_e != a_e` and
+  `b_e != v_e` (when `v_e` is undefined, only `a_e` is excluded). It exists:
+  `B_(j(e))` has at least `8` odd elements, and at most two are excluded. The
+  rule is deterministic, so `b_e` is a computable function of `e`.
 - `gamma` swaps `a_e` and `b_e`.
 
 On every point lying in no pair `{a_e, b_e}`, `gamma` is the identity. The pairs
