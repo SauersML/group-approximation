@@ -175,6 +175,36 @@ and `outer` is its outer face:
 - a `FaceBoundary` for every glued face, transported along `Seam.glueFaceEquiv`;
 - `relFaces`, `hword` and `htriv`.
 
+## Lemma 9.4 Case 2: carrying the optimum across the connector insertion (2026-09-13)
+
+Status 2026-09-13 09:43: **done**.  The lead assigned sec2 to help sec5-sentences on CaseTwo of Lemma 9.4.  sec5 handed
+over one sub-piece: carry the optimal section family across the connector insertion.  The steps after it are the merge
+(`GFaceMerge.transportDistinguished`), the spike deletions and `DartMinimal.false_of_dartCount_lt`, and they belong to sec5.
+
+| module | carries | state |
+|---|---|---|
+| Estimating/OsinLemma94InsertionTransport | `GloballyDistinguishedSectionFamily.insertionTransport` with `_diagram`, `_family`, `_card`, `_unboundSum`, `_dartCount_le`, `_avoid`, `_profile` | compiled: probe 0913-094211-23583 GREEN at base 0090d6edc, which contains the landing commit c652fa749 (md5 9fdb8cc7dfc51d96a8ecd722591ce8ef); every `#audit_axioms` gives propext, Classical.choice, Quot.sound; queued for wiring |
+
+The inputs are:
+- S, a globally distinguished section family;
+- R : SplitCornerOutput (symmetricLabelAlphabet D) S.diagram f hf hcells start finish word;
+- havoid : ∀ a ∈ S.family, f ∉ a.1.
+
+Every field transports, so nothing was restated.  Write T for the transported family:
+- `_diagram` and `_family` hold by rfl.  T.diagram = R.diagram, and T.family is the `regionFamily` of the original embedding.
+- `_card` and `_unboundSum`: T has as many regions as S and the same unbound sum.
+- `_dartCount_le`: T.diagram has at most S.diagram's dart count plus 2 * word.length.
+- `_avoid`: no region of T contains R.prefixSide or R.suffixSide.
+- `_profile`: every region of T has the `SameTargetProfile` of some region of S.
+
+Helper lemmas in the same module:
+- `DiscEmbeddingAway.unboundDarts_regionFamily`: the unbound darts of a transported cell are the old ones, through the dart
+  embedding.  `sum_unboundDarts_regionFamily_card` sums this over the cells.
+- `GFaceWordInsertion.SplitOutput.faceOf_retained_or_sides`: every face of a split insertion is a retained face, the prefix
+  side or the suffix side.  These are F + 1 distinct faces, and the insertion has F + 1 faces.
+- `mem_range_or_path` and `dartCount_le_add_two_mul`: so every dart is a retained dart, a dart of the path or the reverse of one.
+- `RealizedSectionFamily.insertionSection` with `_weight`, `_card` and `_labelLegal`.
+
 ## Census
 
 Rows: `metadata/nm-census-rows/sec2-sentences.tsv`.  The four sentences with no declarations
@@ -194,3 +224,5 @@ Rows: `metadata/nm-census-rows/sec2-sentences.tsv`.  The four sentences with no 
   Keep scripts and metadata out of that file; nmland does not check them against a green record.
 - `metadata/MF_RECOGNITION_SENTENCE_CENSUS.md` says "Do not edit", but CI regenerates it with `--check`.
   A note change in the map must also be made in the matching md line, exactly as `scripts/sentence_census.py` writes it (`  * {note}`).
+- `CornerOutput.originalReplacement`, `originalEmbedding` and `originalCellMap` already start from the original diagram.
+  Adding a `GFaceRebase.replacement` step in front gives an application type mismatch (probe 0913-093536-9874).
