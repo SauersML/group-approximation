@@ -71,11 +71,11 @@ extend to trace-preserving representations of `G`.
     non-hyperlinear is established (modulo review); the converse — that hyperlinearity of the wreath
     yields a `G`-model whose vertex restriction does not round — is not on main. So (H1) is
     un-reduced, not proven strictly as hard as the target.
-    **Update (lane `ex-q34-kt-double`, 2026-09-12).** The implication quoted as "not on main" is the
-    contrapositive of the established one, and it is now the established claim
-    `kt-hyperlinear-coset-wreath-forces-nonroundable-vertex`. It extracts one explicit non-roundable model
-    from any hyperlinear intermediate coset wreath or from the double. What stays open is a genuine
-    converse: that failure of (H1) at some model produces a hyperlinear wreath.
+    **Update (lane `ex-q34-kt-double`, 2026-09-12).** The implication quoted as "not on main" is now on
+    main as `kt-wreath-models-never-round-on-the-vertex` (landed 22:14, base wreath, every wreath model).
+    `kt-hyperlinear-coset-wreath-forces-nonroundable-vertex` extends it to every intermediate coset wreath
+    `W_K` with `N` not in `K`. What stays open is a genuine converse: that failure of (H1) at some model
+    produces a hyperlinear wreath.
   - **Most concrete handle: the Laurent sibling.** theorem-e also has route
     `unit-type-rounding-via-laurent-vertex-rounding` (requires `laurent-vertex-rounds-for-every-model`).
     Lane `nh-laurent-commutant` (52efa2195) reduced its converse to a relative-(T) question: is the

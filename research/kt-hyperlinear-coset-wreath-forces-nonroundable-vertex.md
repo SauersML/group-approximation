@@ -8,6 +8,7 @@ distinct_from:
   theorem-e-vertex-rounds-to-unit-type-representations: that is the open universal unit-type rounding statement; this is the proved per-model contrapositive of its route, extended from the base wreath to every intermediate coset wreath and to the double.
   kt-canonical-hs-normalization-fails: that is the open existence of a Connes-embeddable non-normalized model; this shows that every trace-preserving model extracted from a hyperlinear intermediate wreath has a non-roundable vertex restriction.
   sl2-half-stability-excludes-hnn-hyperlinearity: that is the same stability-versus-hyperlinearity fork for the arithmetic pair SL2(Z) < SL2(Z[1/2]) and its centralizer HNN group, through the tau gap and co-density; this is the fork for the Kun--Thom Theorem E pair, through the unit-type rounding chain, for every intermediate coset wreath and the double.
+  kt-wreath-models-never-round-on-the-vertex: that is the earlier claim for the base wreath W_Gamma, at every trace-preserving wreath model, with its equivalence corollaries; this extends the no-rounding conclusion to every intermediate coset wreath W_K with N not in K, by a lamp moved off a conjugate of K.
 ---
 
 **ESTABLISHED.** Let `Gamma = EL_r(F_q[x_1..x_d]) < G = EL_r(F_q[x^(+-1)]) rtimes SL_d(Z)`,
