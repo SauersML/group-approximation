@@ -61,8 +61,8 @@ X,  [y_1 <- y_1 + x],  V',  [y_1 <- y_1 + x],  X,  [y_1 <- y_1 + m(x)]      (app
   of the data track.
 - The proposition does not remove the ancilla: it trades a realization with `k` ancillas for a
   normal form with `k + 1`.
-- In the normal form the data track has ancilla degree at most 1 at every time: it is `x` or
-  `x + y_1`. So a filtration by the ancilla degree of the data track, including a top homogeneous
+- In the normal form the data track has ancilla degree at most 1 at every time: it is `x`,
+  `x + y_1`, or `tau x` (after the second `X`). So a filtration by the ancilla degree of the data track, including a top homogeneous
   part of `Q`, cannot obstruct. Such an invariant would have to see the ancilla tracks.
 
 ## 3. Closed class: data-reading gates act only while the data is exact
