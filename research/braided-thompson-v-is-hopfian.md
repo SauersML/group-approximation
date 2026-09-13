@@ -15,7 +15,9 @@ Question 4.7 of arXiv:1403.8132v2 affirmatively. It does not decide whether ever
 quotient of `bV` is finitely presented.
 
 Status: complete argument in `research/artifacts/zp-braided-v-hopfian-2026-09-13.md`
-(§§1–5), UNREVIEWED.
+(§§1–5). Reviewed PASS by z-verify-groups (d228d90964): see
+`research/artifacts/zp-review-groups-2026-09-13-part2.md` §11. The novelty check is pending,
+so do not describe this as a first answer yet.
 
 ## Attempts
 

@@ -41,9 +41,10 @@ surjective endomorphism form an ascending chain.
 
 ## Attempts
 
-- 2026-09-13 (z2-10-bv-hopfian): (H) has a complete argument, unreviewed; see
-  `braided-thompson-v-is-hopfian` and
-  `research/artifacts/zp-braided-v-hopfian-2026-09-13.md`.
+- 2026-09-13 (z2-10-bv-hopfian): (H) is ESTABLISHED; see `braided-thompson-v-is-hopfian`
+  and `research/artifacts/zp-braided-v-hopfian-2026-09-13.md`. It was reviewed PASS by
+  z-verify-groups (d228d90964; `research/artifacts/zp-review-groups-2026-09-13-part2.md`
+  §11). The novelty check is pending.
   - Zaremsky's Corollary 2.8 forces every surjective endomorphism to preserve `P_br`.
   - `P_br` is residually nilpotent.
   - Each graded quotient `gamma_c/gamma_{c+1}` of `P_br` gives a finitely generated

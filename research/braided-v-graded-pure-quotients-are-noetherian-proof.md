@@ -32,8 +32,11 @@ generated abelian group.
    `N(n)` be the image in `L_c(n)` of `N ∩ L_c(PB_T)`, for any tree `T` with `n` leaves.
    - `N(n)` does not depend on `T`: `(T_2, 1, T_1)(T_1, q, T_1)(T_1, 1, T_2) = (T_2, q, T_2)`.
    - `N(n)` is invariant under bijections, via `(T, b, T)`.
-   - `N(n)` is carried into `N(m)` by every `L_c(f)`: expand the leaves of `T` along
-     the fibres of `f`, then conjugate by `(T', b, T')` with `b` a permutation braid.
+   - `N(n)` is carried into `N(m)` by every `L_c(f)`. Expanding the leaves of `T` along
+     the fibres of `f` changes nothing: `(T, q, T) = (T', κ(q), T')` is an equality of
+     elements of `P_br`, where `κ` clones along consecutive fibres. Only moving the
+     clones into position is a conjugation, by `(T', b, T')` with `b` a permutation braid,
+     and a `V`-invariant `N` is preserved by it.
    So `n ↦ N(n)` is a subrepresentation. An element of `N' \ N` lies in some
    `L_c(PB_T)`, so `N ⊊ N'` forces `N(n) ⊊ N'(n)` for some `n`.
 4. **Conclusion.** An ascending chain of `V`-invariant subgroups gives an ascending
