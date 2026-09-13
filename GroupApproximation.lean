@@ -5108,6 +5108,18 @@ import GroupApproximation.GGT.VanKampen.SurgeryMonogonDoublingStrip
 import GroupApproximation.GGT.DGOProposition435PrintedCounterexample
 import GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarJoin
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SectionResiduals
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonFaceClass
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueOuterArc
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueOuterTransport
+import GroupApproximation.GGT.VanKampen.Estimating.QuasiGeodesicValueOneGap
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ShortSides
+import GroupApproximation.GGT.VanKampen.FaceSetCircuitNoncrossing
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCell
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellValue
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLoopCut
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionNoncrossingWalk
+import GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BudgetFilter
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
