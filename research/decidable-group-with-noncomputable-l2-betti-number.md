@@ -11,8 +11,12 @@ distinct_from:
 **OPEN.** There are a finitely generated group `G` with decidable word problem and a matrix
 `T` over `Q[G]` such that `dim_vN ker T` is not a computable real.
 
-**Payoff.** By `decidable-groups-have-right-computable-l2-betti-numbers`, `G` violates Lück's
-determinant conjecture (route `determinant-counterexample-via-noncomputable-l2-betti-number`).
+**Payoff.** By `decidable-groups-have-right-computable-l2-betti-numbers` (Löh--Uschold,
+arXiv:2202.03159, Theorems 1.1–1.2; Groth 2012 in degree 0), `G` violates Lück's determinant
+conjecture (route `determinant-counterexample-via-noncomputable-l2-betti-number`). Löh--Uschold
+Theorem 1.4 shows that groups of determinant class with decidable word problem realize exactly
+the nonnegative computable reals. So the claim asks for a value in the gap between their
+Theorems 1.1 and 1.4.
 
 ## Attempts
 
@@ -37,3 +41,6 @@ determinant conjecture (route `determinant-counterexample-via-noncomputable-l2-b
   - A witness would need an operator whose spectral mass near `0` escapes every computable
     bound, which is exactly the determinant failure the program lacks.
   - No construction.
+- **Literature bound.** Löh--Uschold (2022/2023) prove the upper bounds and the determinant-class
+  realization. In their introduction they do not claim a noncomputable value over a decidable
+  group. No wider search was made.
