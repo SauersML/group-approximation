@@ -37,7 +37,10 @@ CLAIM cutting-side count GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94
   - So #turn corners `≤ 3·#attachment − 6`.
   - So `#cutting ≤ #entries + #turns + 1 ≤ 4·#entries + 1`.
 
-## Modules (unlanded; probing)
+## Modules (LANDED; queued for wiring)
+
+- Statements c22052062 (probe 0913-175651-60438, COMPILED). Count ca497ee7a (probe 0913-180018-76961 GREEN, BUILT; audits are only propext, Classical.choice and Quot.sound).
+- `OsinLemma94CuttingSidesStatement` is PROVED over `SameFaceDartForestStatement` alone: `osinLemma94CuttingSides_of_forest`.
 
 - `Estimating/OsinLemma94CuttingSides.lean` (statements):
   - `CombMap.sameFaceDarts f`: the darts with `f` on both sides. `CombMap.sameFaceVertices f`: the vertices they start at.
@@ -62,3 +65,6 @@ CLAIM cutting-side count GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94
 - 17:19: the lead restarted. Resumed at 17:21; nothing was lost.
 - 17:2x: the first attic landing was refused (`NM_ATTIC` flag missing), and the first probe failed on fetch contention (infra).
 - 17:3x: statement module v2 and the counting module written; attic landing and probe of both launched.
+- 17:51 probe: 3 missing `DecidablePred` instances (`open Classical in` on the `mem_` lemmas), fixed.
+- 17:56 probe: statements COMPILED and landed c22052062. The count failed on one name (`Embedded.isChain_rotate_of_isChain_closes`); fixed.
+- 18:00 probe GREEN: count landed ca497ee7a. Both modules appended to the wire queue.
