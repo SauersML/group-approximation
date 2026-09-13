@@ -1,0 +1,195 @@
+# Zero-divisor supports beyond the published bounds (2026-09-12)
+
+Lane `zero-divisor-search`. Target: `kaplansky-zero-divisor-conjecture`. Every published bound
+and every structural fact below was read from the paper's PDF. All computation for this lane
+runs on MSI.
+
+## 1. Coverage already in the repository (main at `11c6d1a50`)
+
+| node or artifact | group | coefficients | content |
+|---|---|---|---|
+| `e33-balls-have-no-small-zero-divisors` | `E_3(3) <= SL_3(Z)` | `F_2`, `F_3`, `Q` | SAT census in radius-two balls (runs `e33-p2-r22`, `e33-p3-r22`, `e33-p2-r23`) |
+| `e33-no-unique-product-pairs-of-small-radius` | `E_3(3)` | every field | no pair without unique products with radii at most `(3,3)`, or radii `(2,4)` or `(4,2)` |
+| root node, Attempts | `E_3(3)` | characteristic 0 and 3 | not a host (congruence-kernel constraint) |
+| `zero-divisor-support-subgroup-host-constraints` | any torsion-free | every field | host is finitely generated, not UP, not elementary amenable (EA); in characteristic 0 it violates Strong Atiyah |
+| `zero-divisor-host-is-not-virtually-compact-special`, `fisher-sanchez-peralta-special-and-3-manifold-domains` | any torsion-free | every field | host is not virtually compact special and not a 3-manifold group |
+| `fixed-tester-finite-field-group-rings-are-domains` | the fixed torsion-free tester | finite fields | domain |
+| `promislow-radius4-one-sided-and-integral-separation` | Promislow `P` | `F_2` | unit census, not zero divisors |
+| `minimal-five-seven-partner-cannot-escape-support-subgroup` | any group | `F_2` | inverse pairs, not zero divisors |
+| `kaplansky-df-sat-search-2026-09-12`, `kaplansky-collision-partner-search-2026-09-12` | `L_(F_2)(1,2)^x` | `F_2` | direct finiteness |
+| `crossed-product-zero-divisor-filters-2026-09-12` | odd-measure crossed product | `F_2` | Cohn-family witnesses, not group rings of torsion-free groups |
+
+None of these gives a support-size bound over an arbitrary torsion-free group. Those bounds come
+only from the literature in §3.
+
+## 2. Hosts excluded before any search
+
+* **The Promislow group.** `P = F(2,6)` (DLNV = Dietrich--Lee--Nies--Vinyals, arXiv:2603.22640,
+  §4 fact (3)). It is torsion-free and virtually `Z^3`, hence EA. By Kropholler--Linnell--Moody
+  (KLM), `k[P]` is a domain for every field `k`, as the root node records. So route (a) of the lane
+  brief, zero divisors in `F_2[P]` or `F_p[P]`, is void by theorem. No search was run on `P`.
+* **The Fibonacci groups `H_n = F(n-1,n)`.** For even `n >= 4` these are torsion-free 3-manifold
+  groups whose group rings over any domain have no zero divisors (DLNV §4.1). `H_4` is a torsion-free
+  polycyclic group (DLNV Prop 5.1).
+* **The Nielsen--Soelberg group `G_1`.** Its subgroup `H` of index 32 is normal, with presentation
+  (N--S (3.2)) `<h_1,...,h_4 | h_1, h_2 central, h_4 h_3 = h_2^8 h_3 h_4>`. So `H` is `Z` times a
+  torsion-free class-2 nilpotent group. `G_1` is virtually nilpotent, hence EA, and `K[G_1]` is a
+  domain for every field `K`. N--S end §4 with: "We leave it as an open question whether or not
+  any of the three group rings `R[G_i]`, for `i in {1,2,3}`, is a domain." For `i = 1`, and `R`
+  a field or a commutative domain (through its fraction field), KLM answers this.
+* **`G_2` and `G_3`** (N--S (3.5) and §4) are checked in §6.
+
+## 3. Published frontier (read from the PDFs)
+
+A zero divisor `alpha beta = 0` over a domain has `supp alpha * supp beta` without unique
+products. So non-UP bounds are zero-divisor bounds.
+
+| `|supp alpha|` | bound on `|supp beta|` | coefficients | source |
+|---|---|---|---|
+| 3 | `>= 19` | any domain | Nielsen--Soelberg, Thm 1.4 |
+| 4 | `>= 14` | any domain | N--S Thm 1.4 |
+| 5 | `>= 11` | any domain | N--S Thm 1.4 |
+| 6 | `>= 10` | any domain | N--S Thm 1.4 |
+| 7 | `>= 9` | any domain | N--S Thm 1.4 |
+| any | `|supp alpha| + |supp beta| >= 16` | any domain | N--S Thm 1.4 |
+| `alpha^2 = 0` | `|supp alpha| >= 8`; sharp for `A^2` non-UP | any domain | N--S Thm 1.2 |
+| 3 | `>= 20` | `F_2` | Abdollahi--Taheri, Thm 6.1 and Cor 6.2 |
+| 4 | `>= 9` | `F_2` | Abdollahi--Jafari, arXiv:1709.08204 (superseded) |
+| 3 | `>= 12` | any field | Abdollahi--Jafari, arXiv:1808.08708 (superseded) |
+| 3, 4 | `> 16`, `> 7` | `Q` | Schweitzer, arXiv:1202.6645 (superseded) |
+
+Sources: N--S = P. P. Nielsen and C. Soelberg, *Small sets without unique products*, J. Algebra
+Appl. 23 (2024) 2550050 (preprint `mathdept.byu.edu/~pace/KaplanskyConjecture_web.pdf`).
+A--T = arXiv:1612.00934.
+
+**Methods and costs.**
+- *N--S.* Magma search over the universal groups
+  `G_X = <a_i, b_j | a_i b_j = a_k b_l for (i,j,k,l) in X>` with `a_1 = b_1 = 1`. Patterns `X` are
+  extended one quadruple at a time, with reductions under `S_m x S_n`, and a pattern is rejected
+  when it forces "simple" torsion (orders at most 100 were tested). The search for Thm 1.2 ran one
+  year on a personal computer (`n <= 7`), then one year on BYU's Mary Lou supercomputer (`n = 8`,
+  not exhaustive). Thm 1.4 took a four-year computation on BYU supercomputers.
+  The two survivors are `G_1` and `G_2`. §4 shows they share one two-set pattern, realized by
+  `G_3 = <x,y | (yx)^2(xy)^2 = (xy^-1)^2(xy)^2 = 1>`.
+- *Schweitzer.* Matched rectangles, pruned by cyclic closure in a core subgroup, periodic cycles,
+  and mismatching parallel sequences. The unpruned rectangles are resolved in GAP. Figure 8, on
+  Xeon E5620 cores:
+
+  | `|supp alpha|` × `|supp beta|` | 3 × 10 | 3 × 12 | 3 × 14 | 3 × 16 | 4 × 6 | 7 × 4 |
+  |---|---|---|---|---|---|---|
+  | time | 4 s | 34 s | 1877 s | 111657 s | 436 s | 17570 s |
+
+  At 3 × 16, 4068 rectangles went to GAP. The step from 14 to 16 grows about 59 times. If that
+  rate held, 3 × 20 would take about `4e8` s.
+- *A--T, `F_2` and `|supp alpha| = 3`.* The Kaplansky graph on `supp beta` is connected, simple,
+  cubic and triangle-free (Thm 2.9). The paper has 44 forbidden subgraphs, and the families `L_n`
+  and `M_n` (Thm 4.5) are also excluded. Table 3 counts connected cubic triangle-free graphs:
+
+  | `n` | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 |
+  |---|---|---|---|---|---|---|---|---|---|
+  | graphs | 0 | 1 | 2 | 6 | 22 | 110 | 792 | 7805 | 97546 |
+
+  All of them are excluded for `n <= 18`. **1120 graphs remain at `n = 20`** (Thm 6.1).
+
+**First open cases.**
+- Over `F_2` with `|supp alpha| = 3`: `|supp beta| = 20`, the 1120 graphs.
+- Over any domain: `(3,19)`, `(4,14)`, `(5,11)`, `(6,10)`, `(7,9)`.
+- `alpha^2 = 0` with `|supp alpha| = 8`, in a host that is not EA.
+
+Tabei (arXiv:2607.18346) works only inside `P`, which is EA.
+
+## 4. Theorem: a small left support has no orderable quotient
+
+**Theorem.** Let `G` be torsion-free, and let `A, B` be finite nonempty subsets such that no
+element of `AB` has a unique expression `ab`. Assume `1 in A` and put `H = <A>`. Let
+`phi: H -> L` be a homomorphism to a left-ordered group. Then the minimum of `phi(A)` is attained
+at no fewer than three elements of `A`, and so is the maximum. Hence:
+1. if `phi` is not constant on `A`, then `|A| >= 6`. When `|A| = 6` the fibre sizes are 3+3;
+   when `|A| = 7` they are 3+4, 4+3 or 3+1+3;
+2. if `|A| <= 5`, then `H` has no nontrivial left-orderable quotient. So `H^ab` is finite, every
+   homomorphism from `H` to `Z`, to a free group, to a torsion-free nilpotent group or to
+   `Homeo^+(R)` is trivial, and `H` is not locally indicable;
+3. if `1 in B` and `|B| <= 5`, the same holds for `<B>`.
+
+**Proof.** Fix `a in A` with `phi(a)` minimal. For each `b in B` the product `ab` has a second
+expression `ab = c b'`. Here `c != a`, since `c = a` forces `b' = b`. Choose one such `c = c(b)`
+and put `p(b) = b' = c^-1 a b`. Iterating `p: B -> B` from any point reaches a cycle
+`b_0, b_1 = p(b_0), ..., b_k = b_0` with `k >= 1`. With `c_i = c(b_i)` and `u_i = c_i^-1 a`,
+
+```text
+u_(k-1) ... u_1 u_0 = b_k b_0^-1 = 1   in H.                                   (*)
+```
+
+(i) If every `c_i` equals one element `c`, then `(c^-1 a)^k = 1` with `c^-1 a != 1`, which is
+torsion. So at least two distinct elements `c_i` occur.
+
+(ii) Since `phi(a) <= phi(c_i)`, left invariance gives `phi(u_i) = phi(c_i)^-1 phi(a) <= 1`. Put
+`w_i = phi(u_(k-1) ... u_i)`. Then `w_i = w_(i+1) phi(u_i) <= w_(i+1)`, strictly when
+`phi(u_i) < 1`, and `w_(k-1) = phi(u_(k-1)) <= 1`. So `w_0 <= 1`, with equality only if every
+`phi(u_i) = 1`. Since `w_0 = 1` by `(*)`, `phi(c_i) = phi(a)` for all `i`.
+
+So the fibre of the minimum contains `a` and at least two further elements. The maximum is
+symmetric, using the reversed order. If `phi` is not constant on `A`, the two fibres are disjoint,
+so `|A| >= 6`, and the listed splits are the only ones. If `|A| <= 5`, then `phi` is constant on
+`A`, so `phi(A) = {phi(1)} = {1}` and `phi(H) = 1`.
+
+For 2: `Z`, free groups, torsion-free nilpotent groups and subgroups of `Homeo^+(R)` are
+left-orderable. `H` is finitely generated, so infinite `H^ab` maps onto `Z`. `H != 1`, since
+`A = {1}` makes every product unique. For 3: `(AB)^-1 = B^-1 A^-1` has the same multiplicities,
+and `<B^-1> = <B>`. QED
+
+**For zero divisors.** Take `alpha beta = 0` with `alpha, beta != 0` over a field and
+`a_0 in supp alpha`. Put `A = a_0^-1 supp alpha`; then `H = <a^-1 c : a, c in supp alpha>` does
+not depend on `a_0`. If `|supp alpha| <= 5`, `H` has no nontrivial left-orderable quotient. For
+example, a support-3 zero divisor `r_1 g + r_2 g x + r_3 g y` needs `<x,y>` to have finite
+abelianization and no nontrivial action on the line.
+
+**Remarks.**
+- *Sanity check.* With `L = H` and `phi` the identity the fibres are singletons. So the theorem
+  contains the classical fact that left-orderable groups have unique products.
+- *A sieve for complete patterns.* Let `X` be a complete coincidence pattern: every pair `(i,j)`
+  has a partner in `X`. Put `G_X` as in N--S (2.1) with `a_1 = b_1 = 1`, and suppose `X` is
+  realized in a torsion-free group with `A` and `B` injective. The relations `(*)` already hold in
+  `G_X`. The two facts used outside `(*)`, `c != a` and `(c^-1 a)^k != 1`, hold in the realization,
+  hence as statements about the indices. So the proof runs verbatim for every
+  `phi: <A>_(G_X) -> L`. **If `|A| <= 5` and `<A> <= G_X` has a nontrivial left-orderable
+  quotient, for instance `G_X -> Q` nonzero on some `a_i`, then `X` is not realizable.** This test
+  is exact and cheap: the rank of the matrix of exponent sums. It does not apply to incomplete
+  patterns in an incremental search, since completing a pattern passes to a quotient of `G_X`.
+- *Novelty is not established.* The statement is not in N--S, Schweitzer, A--T, both A--J papers,
+  DLNV or Tabei. It is not in the repository either: a grep of `research/` at `11c6d1a50` for
+  "unique product" finds `agent-bloop-unique-product-quotient-obstruction`, which is a different
+  statement. The wider literature was not searched.
+
+## 5. `F_2` and `|supp alpha| = 3` as a folded graph (search model)
+
+Left-translate so that `alpha = 1 + x + y` and put `beta = sum_(b in B) b` with `|B| = n`. Over
+`F_2` every element of `S = AB` has exactly two expressions, since one or three give coefficient 1.
+So `|S| = 3n/2`, `B <= S`, and `E = S \ B` has `n/2` elements. Let `Gamma` be the graph on `S`
+with an `x`-edge `b -> xb` and a `y`-edge `b -> yb` for each `b in B`. Then:
+- each vertex of `B` has in-degree exactly 1;
+- each vertex of `E` has one incoming `x`-edge, one incoming `y`-edge, and no outgoing edges;
+- there are no pure `x`-cycles (`x^k = 1`), and likewise for `y`.
+
+Contracting each `E`-vertex to an edge recovers A--T's Kaplansky graph. Its edge-ends carry the
+port labels `1, x, y`, with the two ends of an edge labelled differently. `Gamma` is connected,
+with `3n/2` vertices and `2n` edges, so `pi_1(Gamma)` is free of rank `n/2 + 1`: 11 cycle words
+at `n = 20`. Put `G_Gamma = <x,y | cycle words>`. A zero divisor with this labelled graph exists
+exactly when some torsion-free quotient of `G_Gamma` is injective on the vertices.
+
+**Sound sieves.** Each is exact and passes to every quotient, or is §4.
+1. Coincidence: a relator read from a vertex returns to a different vertex. This is a Todd--Coxeter
+   scan that defines no new cosets.
+2. Roots: a closed path reading a proper power `w^k` forces `w = 1`. Add `w` and rescan.
+3. `G_Gamma` finite, detected by a bounded coset enumeration.
+4. `G_Gamma` EA (KLM).
+5. Orderable quotient (§4, complete pattern, `|A| = 3`): exclude when the `2 x (n/2 + 1)` matrix of
+   exponent sums of the cycle words has rank less than 2.
+
+## 6. Status
+
+- Landed now: §§1--5.
+- Pending, on MSI: GAP structure of `G_2` and `G_3`, through the finite-index subgroups `H` named
+  by N--S. After that, the folded-graph search over `F_2`: check that every graph with `n <= 16`
+  is excluded, measure growth, then try the 1120 graphs at `n = 20`. Results, encodings and logs
+  will be added here.
