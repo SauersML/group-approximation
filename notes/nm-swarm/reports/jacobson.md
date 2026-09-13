@@ -125,7 +125,7 @@ for the presented `ToeplitzJacobson = F_2⟨s,t⟩/(ts = 1)`. It was the operato
 - Root-imported (checked on origin/main at 13:12): JacobsonPresentedKazhdanFinite (29632bb14) and
   OsinLemma94PendantRemoval (61c2ade8e).
 - Root-imported (checked on origin/main at 13:57): OsinPocketCellWalk (65e5e758c).
-- Queued in `wire-queue.txt` with this landing: OsinPocketLoopCut. Its imports are root-imported.
+- Queued in `wire-queue.txt` (landed 70f8cd913): OsinPocketLoopCut. Its imports are root-imported.
 
 ## Residual Props
 None owned by this lane.
@@ -195,8 +195,14 @@ The lead assigned the producer side of kh-ejz's `MultipleEdgePocketRegionInput`
     `CyclicArc.exists_spanArc`.
 - Not stated yet: the walk is noncrossing, which of the two orders `(a, b)`, `(b, a)` bounds the
   pocket that avoids the exterior face, the face set, and the pocket region. The lead ordered these
-  to wait for dgo-analytic's restatement dropping `P.inner.FollowsBoundary`. At 13:57
+  to wait for dgo-analytic's restatement dropping `P.inner.FollowsBoundary`. At 8bbf0a9c8
   OsinPocketRegionSide:67 still has it.
+- The region builder is now on main: `PocketRegion.ofNoncrossingClosedWalk` (8bbf0a9c8) takes a
+  noncrossing walk, the outer face off its side, outer FollowsBoundary and an Euler equality. It
+  gives no inner FollowsBoundary, so it serves `MultipleEdgePocketRegionInput` only after R2.
+- hull-select's copy form (draft r1, 14:00) moves the conclusion to an O-equivalent copy with legal
+  labels and drops the side-length bounds. `CellPocketWalk.walk` already has that split and
+  orientation. This lane accepted the form.
 - Status (13:10): probe GREEN 0913-130857-87977 (base 3b5232827, BUILT OsinPocketCellWalk). All
   four `#audit_axioms` pass. Landed 65e5e758c (bytes verified against origin/main). It is a new
   file importing only modules on main (OsinPocketSectionFaceSet, OsinAppendixSectionInduction),
@@ -244,16 +250,27 @@ How a consumer gets the pocket region:
   - take `s = invDarts X` and `A.darts = M'`, so the walk is `invDarts (M' ++ X)`;
   - the side norm is the norm of the value of `X`, by `listVal_dartWord_invDarts` and
     `wordNorm_inv`.
-- When spurs make the walk non-simple, the region has to come from dgo-analytic's R2
-  noncrossing-walk builder.
+- When spurs make the walk non-simple, take `PocketRegion.ofNoncrossingClosedWalk` (8bbf0a9c8,
+  OsinPocketRegionNoncrossingWalk:51). It needs `IsNoncrossingClosedWalk`, the outer face off the
+  walk's side, outer FollowsBoundary and an Euler equality. It gives no inner FollowsBoundary, so
+  it feeds this theorem only after R2.
+- No producer on main supplies those facts for the Case 1 walk `X ++ M'`. The producers cover
+  simple walks, PocketFaceSet closed walks and face-set circuits. `CellPocketWalk` does not apply
+  either: `exists_of_joinsCells` takes two regions, not one face touching one cell twice.
 
 Status (13:55): probe GREEN 0913-135346-38278 (base 4b6dd3cd8, BUILT OsinPocketLoopCut), with an
-empty error index. All six `#audit_axioms` pass. The module lands in the same commit as this
-section. It imports OsinPocketMultipleEdgeAssembly and Meta.AxiomGuard. It has no consumer yet,
-because theoremc-retire's `OsinLemma94CaseOneOneCellInput` is not on main.
+empty error index. All six `#audit_axioms` pass. Landed 70f8cd913 (bytes verified against
+origin/main) and queued for wiring. It imports OsinPocketMultipleEdgeAssembly and Meta.AxiomGuard.
+It has no consumer yet, because theoremc-retire's `OsinLemma94CaseOneOneCellInput` is not on main.
+
+R2: the theorem passes `P.inner.FollowsBoundary` to `exists_twoCollars_of_ne_or` (binder at :209,
+argument at :228). When R2 restates the collar, both lines go, in dgo-analytic's Rule 22
+co-probe. This lane told dgo-analytic and hull-select. It asked dgo-analytic either to include
+the deletion in the co-probe or to send the final form for this lane to probe and land after.
 
 Not done here:
 - the X-pocket region for the Case 1 walk (see above);
 - case (a) (ko-closed);
-- the one-cell statement itself (theoremc-retire). This lane's 13:16 question about its post-09(d)
-  spelling is still unanswered.
+- the one-cell statement itself (theoremc-retire). This lane's 13:16 question got no direct
+  answer. theoremc-retire's report (~14:00) says it sent ko-closed the one-cell Prop text, with
+  premise `λ⁻¹(ε + c) ≤ d(a, a') + d(b', b)`. The Prop is not on main at 8bbf0a9c8.
