@@ -71,3 +71,20 @@ is trivial. The statement no longer mentions `g`.
     claim has to use `t = 1`.
 
     Artifact `research/artifacts/leavitt-unstable-k2-steinberg-reduction-2026-09-12.md`.
+- 2026-09-12 `w7-hexagon-closing`: the closing letter `t`. Obstruction to one refutation route, no mechanism. Held
+  OPEN until `w4-vf-gate` re-derives it.
+  - **The letter.** `t` is hyperbolic and maps to a generator of `Z`. Killing it identifies the two lifts of
+    `x_12(R)` and `x_13(R)` across the cut edge `132 -> 123`. In the graph-of-groups model the forest data fix
+    `σ(t)` only up to the free external holonomy `K_n wr Sym(r_n)`.
+  - **No exact closing.** `G` is finitely presented and has no finite quotients. So by Łoś every model of
+    `π_1(Y_hex)` in an algebraic ultraproduct of finite groups that kills `t` is trivial. At large stages the
+    six-piece stage colimit kills `x_12(1)` in every finite quotient.
+  - **No rank-null closing.** `rk(σ(t) - 1) >= ε > 0` in every monomial rank model, because `G` is nonsofic.
+  - **Calibrated.** The hexagon closes over `F_2`, `F_3`, `R_0` and `F_2[x]`.
+  - **Where a refutation must live.** A refutation through `t = 1` needs a non-monomial linear or non-metric weakly
+    finite target (`binary-leavitt-unit-group-is-f2-linear-sofic`).
+  - **What a proof must use.** A certificate valid in every weakly finite ring: "must use `t = 1`" is automatic for
+    ultraproduct targets.
+
+    OPEN claim `stage-models-cannot-close-the-leavitt-hexagon`; artifact
+    `research/artifacts/hexagon-closing-letter-stage-obstruction-2026-09-12.md`.

@@ -1,0 +1,52 @@
+---
+rg: 2
+id: stage-models-cannot-close-the-leavitt-hexagon
+kind: claim
+title: No stage model of the Leavitt hexagon kills the closing letter, exactly or in rank, so hexagon closing cannot refute the binary corner claim
+distinct_from:
+  leavitt-unit-groups-have-no-unstable-k2-at-rank-three: that presents the unit group as the hexagon fundamental group modulo one closing letter; this shows that no nontrivial stage model realizes the closing relation, exactly or up to rank zero.
+  isolated-regular-a2-hexagon-has-free-external-holonomy: that shows one cell with a coherent finite realization closes after a gauge; this shows the full-radius hexagon over the Leavitt algebra has no coherent finite realization at large stages, so its holonomy is forced.
+  monomial-rank-models-are-hamming-models: that compares rank and Hamming distance for monomial matrices; this applies it to the closing letter and adds an exact per-stage obstruction that uses only finite presentation and simplicity.
+  graphs-of-locally-finite-groups-carry-regular-rank-models: that builds weakly finite models of graphs of locally finite groups; this shows that on the hexagon every such model keeps the closing letter rank-far from the identity.
+artifacts:
+  - research/artifacts/hexagon-closing-letter-stage-obstruction-2026-09-12.md
+---
+
+**OPEN** (candidate proof on paper in the artifact, Sections 1–5; verification requested from `w4-vf-gate`).
+
+Let `p ∈ {2,3}`, `R = L_(F_p)(1,2)` and `G = R^x ≅ π_1(Y_hex)/<<t>>`, with `Y_hex` and `t` as in
+`leavitt-unit-groups-have-no-unstable-k2-at-rank-three`, point 4.
+
+1. **The letter.** `t` maps to a generator of `π_1(hexagon graph) = Z` and has infinite order. No power of it is
+   conjugate into a vertex group. Killing `t` is the same as killing the words
+   `x_ij^132(r)^-1 x_ij^123(r)` for `(i,j) ∈ {(1,2),(1,3)}` and `r` in a basis of `R`, in the tree amalgam.
+2. **No exact closing.** Every homomorphism of `π_1(Y_hex)` into an algebraic ultraproduct of finite groups, or of
+   `GL_(m_n)(A_n)` with `A_n` commutative, that kills `t` is trivial. Per stage, for exhausting finite pieces there
+   is `n_1` such that for all `n >= n_1`, every finite quotient of the six-piece stage colimit `C_n` kills `x_12(1)`.
+   So no choice of forest bijections in Theorem 1.1 of
+   `graphs-of-locally-finite-groups-carry-regular-rank-models` makes the letter permutation the identity.
+3. **No rank-null closing.**
+   * Every monomial rank model of `π_1(Y_hex)` with `rk(σ(x_12(1)) - 1) > 0` has `rk(σ(t) - 1) > 0`.
+   * There is `ε_p > 0` such that every Theorem 1.1 model has `rk(σ(t) - 1) >= ε_p`.
+   * The reason: `rk(σ(t) - 1) = 0` would place `G` in a universal sofic group.
+4. **Calibrated.** The hexagon closes exactly over `F_2` and `F_3` (radicals of order 8 and 27 in `SL_3(F_p)`), over
+   the locally finite ring `R_0`, and over `F_2[x]` in finite quotients. So "infinite", "finitely generated" and
+   "simple" are each needed.
+
+**Inputs.**
+* Point 2: `leavitt-unit-group-finitely-presented`, `binary-leavitt-unit-group-is-simple`, and, for the ternary case,
+  `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre`, conditional as that claim is.
+* Point 3: `openai-leavitt-unit-nonsofic` and `d-ary-leavitt-groups-nonsofic-over-finite-fields`, together with
+  `monomial-rank-models-are-hamming-models`, and Elek–Szabó's embedding criterion for soficity (literature).
+
+**Payoff.** A nontrivial weakly finite model of `π_1(Y_hex)` killing `t` would refute
+`binary-complement-corner-has-no-weakly-finite-image`. By points 2–3 it cannot live in an algebraic ultraproduct of
+finite or commutative-linear matrix groups, nor in a monomial rank model. The next target class is non-monomial
+`F_2`-linear rank models, which is `binary-leavitt-unit-group-is-f2-linear-sofic`.
+
+On the proof side, "a relation-only proof must use `t = 1`" is no constraint for arguments valid in ultraproduct
+targets, because `t = 1` already trivializes them. A proof of the representation form must be a certificate valid in
+every weakly finite ring.
+
+**Not claimed.** Nothing about non-monomial linear models, or about weakly finite rings with no metric structure.
+Nothing about the rank-two kernel beyond artifact Section 6.
