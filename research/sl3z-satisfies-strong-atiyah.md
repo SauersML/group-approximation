@@ -99,3 +99,15 @@ Established so far:
      projection `e` in `D(K_I)`. What is known is `16 tr(e) in Z`.
    - **A sufficient condition.** SAC for the pro-2 Iwahori `I`, as a discrete
      group, implies the target by induction from `K_I` to `I`.
+7. **Torsion-free finite-index subgroups of 2-adic valuation 3 (2026-09-13).**
+   *Dead.* Every torsion-free finite-index subgroup of `SL_3(Z)` has index
+   divisible by 48, whatever its `p`-adic closures
+   (`sl3z-torsion-free-subgroups-have-index-divisible-by-48`). So Strong Atiyah
+   for torsion-free groups, applied by restriction, never gives more than
+   denominator 48. What survives is a torsion-free test group pointing the other
+   way. The level-15 subgroup
+   `sl3z-level-15-torsion-free-subgroup-outside-p-adic-hosts` has index
+   `65286000`, lies in no torsion-free profinite group, and has ranks in
+   `(1/2)Z`. This claim implies its Strong Atiyah, and the missing factor 2 there
+   is a twisted norm equation in the Linnell division ring of an index-2
+   subgroup of `Gamma(3)`.
