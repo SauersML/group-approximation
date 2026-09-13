@@ -86,10 +86,10 @@ variable {X : Type*} {m : ℕ} (W : Fin m → Set X) (K : Set X)
 
 /-- The `j`-th piece `K ∩ W j ∖ ⋃_{i<j} W i` of the cover of `K` by the sets `W i`. -/
 def coverPiece (j : Fin m) : Set X :=
-  K ∩ W j \ ⋃ i ∈ Finset.univ.filter (· < j), W i
+  (K ∩ W j) \ ⋃ i ∈ Finset.univ.filter (· < j), W i
 
 theorem coverPiece_subset (j : Fin m) : coverPiece W K j ⊆ K ∩ W j :=
-  Set.diff_subset
+  Set.sdiff_subset
 
 theorem isClopen_coverPiece [TopologicalSpace X] (hK : IsClopen K) (hW : ∀ i, IsClopen (W i))
     (j : Fin m) : IsClopen (coverPiece W K j) :=
@@ -131,8 +131,8 @@ structure IsPlacement (n : ℕ) (A : Fin m → ℕ → Set X) : Prop where
   bounds : ∀ j h, (A j h).Nonempty → (j : ℕ) < n ∧ 0 < h ∧ h ≤ 2 * m * H
   cover : ∀ j : Fin m, (j : ℕ) < n → ∀ x ∈ coverPiece W K j, ∃ h, x ∈ A j h
   disjoint_same : ∀ j h h', h ≠ h' → Disjoint (A j h) (A j h')
-  target : ∀ j h, ⇑(T ^ (h : ℤ)) '' A j h ⊆ C \ K
-  disjoint_target : ∀ j h j' h', (j, h) ≠ (j', h') →
+  target : ∀ j (h : ℕ), ⇑(T ^ (h : ℤ)) '' A j h ⊆ C \ K
+  disjoint_target : ∀ j (h : ℕ) j' (h' : ℕ), (j, h) ≠ (j', h') →
     Disjoint (⇑(T ^ (h : ℤ)) '' A j h) (⇑(T ^ (h' : ℤ)) '' A j' h')
 
 theorem isPlacement_zero : IsPlacement T W K C H 0 fun _ _ => ∅ where
@@ -140,7 +140,7 @@ theorem isPlacement_zero : IsPlacement T W K C H 0 fun _ _ => ∅ where
   subset _ _ := Set.empty_subset _
   bounds _ _ h := absurd h Set.not_nonempty_empty
   cover _ hj := absurd hj (Nat.not_lt_zero _)
-  disjoint_same _ _ _ _ := Set.disjoint_empty_left _
+  disjoint_same _ _ _ _ := by simp
   target _ _ := by simp
   disjoint_target _ _ _ _ _ := by simp
 
@@ -310,7 +310,7 @@ theorem isPlacement_succ (hK : IsClopen K) (hC : IsClopen C) (hW : ∀ i, IsClop
       · exact Finset.mem_union_left _ (Finset.mem_filter.2 ⟨hg, hgK⟩)
       · by_cases hgB : (T ^ (g : ℤ)) x ∈ B
         · exact Finset.mem_union_right _ (Finset.mem_filter.2 ⟨hg, hgB⟩)
-        · refine absurd ⟨g, (mem_good g x).2 ⟨hg1, hg2, (Set.mem_diff _).2 ⟨hgC, ?_⟩⟩⟩ hno
+        · refine absurd ⟨g, (mem_good g x).2 ⟨hg1, hg2, (Set.mem_sdiff _).2 ⟨hgC, ?_⟩⟩⟩ hno
           exact fun hKB => ((Set.mem_union _ _ _).1 hKB).elim hgK hgB
     have h1 := Finset.card_le_card hsub
     have h2 := Finset.card_union_le (R.filter fun h : ℕ => (T ^ (h : ℤ)) x ∈ K)
@@ -346,12 +346,12 @@ theorem isPlacement_succ (hK : IsClopen K) (hC : IsClopen C) (hW : ∀ i, IsClop
   · intro j hj x hx
     by_cases hjj : j = j₀
     · have hx₀ : x ∈ coverPiece W K j₀ := hjj ▸ hx
-      obtain ⟨g, hg⟩ := hexists x hx₀
-      refine ⟨Nat.find ⟨g, hg⟩, ?_⟩
+      have hex : ∃ g, x ∈ good g := hexists x hx₀
+      refine ⟨Nat.find hex, ?_⟩
       rw [hA', if_pos hjj]
-      refine ⟨⟨hx₀, Nat.find_spec ⟨g, hg⟩⟩, ?_⟩
+      refine ⟨⟨hx₀, Nat.find_spec hex⟩, ?_⟩
       simp only [Set.mem_iInter, Set.mem_compl_iff, Finset.mem_range]
-      exact fun g' hg' => Nat.find_min ⟨g, hg⟩ hg'
+      exact fun g' hg' => Nat.find_min hex hg'
     · have hjn : (j : ℕ) < n := by
         have : (j : ℕ) ≠ n := fun h => hjj (Fin.ext (h.trans hj₀.symm))
         omega
@@ -371,8 +371,8 @@ theorem isPlacement_succ (hK : IsClopen K) (hC : IsClopen C) (hW : ∀ i, IsClop
     split_ifs
     · rintro _ ⟨x, ⟨⟨_, hxg⟩, _⟩, rfl⟩
       obtain ⟨_, _, hxG⟩ := (mem_good g x).1 hxg
-      obtain ⟨hxC, hxKB⟩ := (Set.mem_diff _).1 hxG
-      exact (Set.mem_diff _).2 ⟨hxC, fun hxK => hxKB (Set.mem_union_left _ hxK)⟩
+      obtain ⟨hxC, hxKB⟩ := (Set.mem_sdiff _).1 hxG
+      exact (Set.mem_sdiff _).2 ⟨hxC, fun hxK => hxKB (Set.mem_union_left _ hxK)⟩
     · exact hA.target j g
   · intro j g j' g' hne
     rw [hA', hA']
@@ -391,13 +391,13 @@ theorem isPlacement_succ (hK : IsClopen K) (hC : IsClopen C) (hW : ∀ i, IsClop
     · rw [if_pos hj, if_neg hj', Set.disjoint_left]
       rintro _ ⟨x, ⟨⟨_, hxg⟩, _⟩, rfl⟩ hmemB
       obtain ⟨_, _, hxG⟩ := (mem_good g x).1 hxg
-      refine ((Set.mem_diff _).1 hxG).2 (Set.mem_union_right _ ?_)
+      refine ((Set.mem_sdiff _).1 hxG).2 (Set.mem_union_right _ ?_)
       rw [hB]
       exact Set.mem_iUnion₂.2 ⟨j', g', hmemB⟩
     · rw [if_neg hj, if_pos hj', Set.disjoint_left]
       rintro _ hmemB ⟨x, ⟨⟨_, hxg⟩, _⟩, hxeq⟩
       obtain ⟨_, _, hxG⟩ := (mem_good g' x).1 hxg
-      refine ((Set.mem_diff _).1 hxG).2 (Set.mem_union_right _ ?_)
+      refine ((Set.mem_sdiff _).1 hxG).2 (Set.mem_union_right _ ?_)
       rw [hB, hxeq]
       exact Set.mem_iUnion₂.2 ⟨j, g, hmemB⟩
     · rw [if_neg hj, if_neg hj']
