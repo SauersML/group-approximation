@@ -7,6 +7,7 @@ distinct_from:
   izumi-rokhlin-approximately-representable-duality: that imports the duality between the Rokhlin property and approximate representability; this proves that on O_2 the Rokhlin property is exactly KK^G-contractibility for outer actions.
   gardella-rokhlin-actions-preserve-uct: that is permanence of the UCT along Rokhlin actions; this identifies Rokhlin actions on O_2 with the zero object of KK^G.
   zp-detection-iff-bootstrap-sufficiency-and-kk-g-generation: that gives triangulated, bootstrap and stable-dynamical forms of detection; this gives the unital dynamical form, the Rokhlin property.
+  zp-o2-action-kkg-trivial-iff-invariant-asymptotic-inner: that characterizes KK^G-triviality of the generator by invariant asymptotic innerness; this characterizes KK^G-contractibility of the whole action by the Rokhlin property.
 ---
 
 **ESTABLISHED (derivation from Hirshberg--Winter, Szabó and Gabe--Szabó;
@@ -35,6 +36,12 @@ standard inputs flagged in the proof).**  Let `G` be a finite group.
    `α` has the Rokhlin property.  With Izumi's Theorem 4.6 (as cited in
    `izumi-rokhlin-approximately-representable-duality`, item 3), detection
    holds for every outer strongly approximately inner `Z/p`-action on `O_2`.
+   With item 3 this gives the converse of
+   `outer-zp-actions-on-o2-strongly-approx-inner-via-detection`: if every outer
+   `Z/p`-action on `O_2` is strongly approximately inner, detection holds at
+   `p` (route `zp-detection-from-strong-approximate-innerness`).  So detection
+   at `p` is equivalent to the open question of Barlak--Li II,
+   Remark 4.14(2), for outer actions of order `p`.
 
 This replaces the unverified Rokhlin sketch in the Attempts of the detection
 claim.  That sketch invoked Izumi's uniqueness theorem.  The argument here
