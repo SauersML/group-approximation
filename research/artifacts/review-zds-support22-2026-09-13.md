@@ -67,7 +67,7 @@ runs one level further than the claim says.
   So fixing the root's ports loses nothing. The code works in the opposite group
   (`g_u p = g_v q`), which is again torsion-free, and the relators follow that convention consistently.
 
-## 3. Soundness of `zds3.c`: PASS on the code reading; harness tests PENDING
+## 3. Soundness of `zds3.c`: PASS (the sieve 5 must-fire test is PENDING)
 
 The landed source (md5 `18a83240ff82d0bcdcdcd33c15780d72`) was read in full.
 
@@ -112,16 +112,52 @@ If the backward end b equals the original forward end f, and s[j−1] is the inv
 are true equations (d1 and f' both stand for img(b)·s[i]), so the overwrite can lose a coincidence but
 never invent one. It can only weaken pruning.
 
-**Harness tests (job 692041): PENDING.** The harness includes the landed `zds3.c` unchanged and calls
-`sieve` on inputs with known ground truth:
-- partial structures genuinely realized in torsion-free groups: Z^2 twice, H_3(Z), BS(1,2) twice, the
-  Klein bottle group, F_2 twice, and the Promislow group as affine maps. Any prune there, or any relator
-  that is not trivial in the realizing group, is a bug;
-- sieve 1 alone on genuine structures in groups with torsion;
-- must-fire runs with sieves 2, 3 and 6;
-- an independent linear-algebra check of the sieve 5 rank on random complete labellings.
+**Harness tests (MSI job 692041, COMPLETED, exit 0, 7 min).**
+- **Setup.** `harness.c` does `#include "zds3.c"` on the landed file (md5 `18a83240…` printed by the
+  job), renames its `main`, and calls `sieve` directly. `gen.py` builds the inputs and evaluates the
+  relators.
+- **Input structures.** A structure is a set B, grown from 1, of 3 to 18 elements genuinely realized in
+  a group G. The rule: every product b·p (p ∈ {1, x, y}) has at most two expressions. Products with two
+  expressions become edges; products with one become half-edges to dummy vertices, so the pattern is
+  partial.
+- **Must not fire (torsion-free G).**
+  - Groups: Z^2 twice, H_3(Z), BS(1,2) twice, the Klein bottle group, F_2 twice, and the Promislow
+    group as affine maps of R^3 (its relations `x^-1 y^2 x y^2` and `y^-1 x^2 y x^2` checked).
+  - 300 structures per group.
+  - Sieves 1, 2, 3 and 6 on: power sieve at every depth, words of length at most 4, e ≤ 8, coset limits
+    0, 1000, 4000, and the leaf limit 64000.
+  - Result: 0 prunes in 10,800 runs. Every relator in the final table, including the power relators the
+    sieve added, evaluates to 1 in the realizing group (0 bugs).
+- **Sieve 1 must not fire in any group.**
+  - Genuine structures in Z/2×Z, Z/3×Z, D_∞, S_4 and (Z/5)^2, with sieves 2, 3 and 6 off.
+  - Result: 0 prunes in 1500 runs, and every relator is 1 in the realizing group.
+- **Must fire.** The same torsion structures, one sieve switched on at a time. Each sieve discards
+  genuine realizations in groups with torsion, as it should:
 
-## 4. Aggregation integrity: PASS on the landed records; rerun PENDING
+  | group | sieve 2 on (via coinc) | sieve 6 on (power) | sieve 3 on (finite) |
+  |---|---|---|---|
+  | Z/2×Z | 172 | 285 | 0 (infinite group) |
+  | Z/3×Z | 60 | 221 | 0 (infinite group) |
+  | D_∞ | 297 | 297 | 0 (infinite group) |
+  | S_4 | 288 | 288 | 167 |
+  | (Z/5)^2 | 37 | 189 | 95 |
+
+  Out of 300 structures each. Sieve 3 fires only on finite groups, as expected.
+- **Must fire, perturbed labellings (informational).** The last `gen.py` must-fire test relabels one
+  vertex of a genuine structure. After the relabelling, many dummy half-edges carry the same port at
+  both ends, and the harness rejected those inputs as malformed. The remaining inputs have no ground
+  truth, so this test carries no verdict either way.
+- **Sieve 5, agreement on random complete labellings.**
+  - 385 random complete port labellings of the connected triangle-free cubic graphs with 10–16
+    vertices.
+  - The landed rank test over `build_relators` agrees with an independent verdict in all 385 cases
+    (0 mismatches).
+  - The independent verdict is the nullity of the system h_u + φ(p) = h_v + φ(q) in h and φ(x), φ(y).
+  - All 385 cases have rank 2, so this only tests that the sieve does not fire wrongly.
+  - The must-fire direction is PENDING. It enumerates every labelling of the graphs with 6 and 8
+    vertices.
+
+## 4. Aggregation integrity: PASS
 
 - `check20.595808.out`:
   - 97546 input graphs equal the 97546 graphed ones, all distinct;
@@ -134,11 +170,19 @@ never invent one. It can only weaken pruning.
   alongside one binary md5 `03dd355c946e27c7780c7d5d460c2121`.
 - **NIT.** `n20.sbatch` says the binary "is compiled once from zds3.c before submission" but does not
   record the compile command. `ladder.sbatch` and `exp14.sbatch` use `gcc -O2 -std=gnu99 -Wall`.
-- **PENDING (job 692041).**
-  - `nauty-geng -c -t -d3 -D3 -u 20`;
-  - a fresh build of the landed source;
-  - a rerun of 47 sampled n = 20 graphs (45 random, plus the two heaviest) with roots 0 and 19, compared
-    per graph (nodes, surv) against `r20.lines.txt.gz` and `r20b.lines.txt.gz`.
+- **Independent rerun (MSI job 692041).**
+  - `nauty-geng -c -t -d3 -D3 -u 20` in the same SageMath 10.7 container reports ">Z 97546 graphs
+    generated". That matches A–T Table 3 and the shard total.
+  - The landed source was compiled fresh with `gcc (GCC) 8.5.0 -O2 -std=gnu99 -Wall`, giving binary md5
+    `17793a94…`. It differs from `zds20` (`03dd355c…`) only through the build, since the source md5 is
+    the same.
+  - The job reran 47 n = 20 graphs through it: 45 sampled at random (seed 20260913) from
+    `r20.lines.txt.gz`, plus the two with the most nodes, one of them at 1,237,042 nodes. It used the
+    options of the run, `-c 1000 -cl 64000 -pw 4 8`.
+    - With root 0, all 47 GRAPH lines match `r20.lines.txt.gz` exactly in node count and `surv 0`
+      (0 mismatches, 4,539,615 nodes).
+    - With `-root 19`, all 47 match `r20b.lines.txt.gz` (0 mismatches, 995,051 nodes).
+  - So the run is reproducible from the landed source, node for node.
 
 ## 5. Novelty statement and the prior bounds: PASS
 
