@@ -42,9 +42,16 @@ permutational wreath product `Q = T_1 wr T_2 wr ... wr T_d` of transitive groups
   soficity input (`relator-width-bounded-over-simple-iterated-wreath-products`). The mechanism is a
   balanced template, a spanning tree of dipoles, and nested commutators for one defect, with the
   uniform commutator width of the towers (`iterated-simple-wreath-bounded-commutator-width`). The
-  depth-two case with symmetric tops is `simple-nonsofic-width-over-bounded-base-symmetric-wreath`. So
-  what remains open here is towers with abelian or solvable layers, such as `C_2 wr Alt(5) wr C_3 wr ...`.
-  There the defect lies in a module and is not a bounded product of commutators.
+  depth-two case with symmetric tops is `simple-nonsofic-width-over-bounded-base-symmetric-wreath`.
+- **Every tower class with bounded commutator width: settled positively.**
+  `relator-width-over-towers-of-bounded-commutator-width` reduces the claim, for any vertex groups, to a
+  uniform bound on the commutator width of derived subgroups of the subtree towers. That bound is proved
+  for towers whose vertex groups contain a full cycle normally generating enough
+  (`full-cycle-wreath-towers-bounded-commutator-width`, elementary). So solvable towers of unbounded
+  derived length are included. What remains open is exactly the tower classes where no such bound is on
+  record: vertex groups with no full cycle that are not simple, or simple levels without full cycles
+  mixed with non-simple levels. A counterexample to this claim would need unbounded commutator width in
+  such towers. A proof needs a commutator width inheritance lemma for general transitive vertex groups.
 - **Direct products and the top-level reduction.** A *template* for `x` is a fixed word in `R^(+-1)`
   whose letters can be conjugated to give `a_x`. A template valid for every tuple in a class stays
   valid over direct products of that class, with conjugators chosen coordinatewise; trivial coordinates
