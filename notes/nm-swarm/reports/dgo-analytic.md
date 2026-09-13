@@ -58,7 +58,7 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 | `PocketPinchLabelledStatement`, implied by `PocketPinchStatement` | hull-respell | a `PocketFaceSet` in walk order (`ClosedWalk`) of a diagram with legal labels has an O-equivalent copy with a `Simple` one (boundary cycle `IsSimpleClosedWalk`), by simple circuits or a 0-refinement |
 | `PocketRegionOfSimpleStatement` | dgo-analytic | a `Simple` face set gives a `PocketCarrier` (both cycles `FollowsBoundary`, sides of length and norm at most `ε`) |
 | `PocketCollarStatement` | dgo-analytic from kh-torsion's `GeodesicCollarStatement` | a `Nondegenerate` `PocketCarrier` has an O-equivalent copy with a `Collared` carrier (sides admissible geodesic words) |
-| `PocketCellTransportStatement`, `PocketOuterTransportStatement` | go-lemma42 | regions of copies of the pocket to `t_1` and `t_2` glue back, target `OsinMultipleEdgeCut.ofPocketRegion` |
+| `PocketCellTransportStatement`, `PocketOuterTransportStatement` | go-lemma42; the outer one closed by hull-select (`pocketOuterTransport`, 71d59592c) | regions of copies of the pocket to `t_1` and `t_2` glue back, target `OsinMultipleEdgeCut.ofPocketRegion` |
 
 Assembly, proved:
 
@@ -179,6 +179,16 @@ R2 with kh-ejz's `IsNoncrossingClosedWalk` (26a7858f2) as `Simple` (~13:20, sent
   * Every listing in walk order is noncrossing in kh-ejz's sense, so the `∃ hw` in R2's `Simple` is free. Checked here: rotating from `alpha d` stays in selected faces until it meets a listed dart.
   * The pinch hypothesis stays `K.ClosedWalk` under R1 and R2. That is what the face set producer supplies (aa2df0eaa), and inner FollowsBoundary has no producer.
   * The pinch therefore re-pairs at vertices passed three or more times, as in the rose. If that can fail, the face set output is strengthened with kh-ejz, not the pinch hypothesis.
+* Lead rulings (~13:40 and ~14:00):
+  * hull-euler builds `NoncrossingClosedWalkEuler`: `IsNoncrossingClosedWalk.reclosed_euler`, with outer following as a hypothesis, model-tested on the rose.
+  * This lane drafts the noncrossing-walk region builder over hull-euler's signature and lands it unwired.
+  * The restatement co-probe (`Simple`, `PocketRegionOfSimpleStatement`, `PocketCarrier`, the collar) waits for a green Euler lemma and no port failure from fff-quotient.
+  * Q2: this lane states the zero-cell merge on the copy (roster l.405 and l.617). kh-ejz's kept cell (`Estimating/OsinPocketKeptCell`, d858a8fbd) is stated on the diagram of the thickened family `S'`, so this covers only the copies that are not diagrams of a family (leavitt-units' (b) and (c)). Scope to be confirmed with the lead.
+* Builder (this lane): `Estimating/OsinPocketRegionNoncrossingWalk`, `PocketRegion.ofNoncrossingClosedWalk hw hout hfollows heuler`.
+  * The inner region comes from `toDiscRegion_of_euler` and the outer from `toDiscRegion_of_followsBoundary`. The inverse complement cycle is the walk.
+  * `heuler` has the type of the conclusion of hull-euler's lemma, so the co-probe passes `hw.reclosed_euler X.planar hfollows` and nothing unlanded is imported here.
+* Further evidence for R1: kh-torsion's 5197fa6fc (`SurgeryGeodesicCollarWalk`) carries simple closed walks through the edge insertion and the vertex pinch.
+* dgo-geometric's e533e5581 (probe 0913-134649-6539, green) confirms Configuration A on the pinched two-gon. The inner cycle fails, the outer follows, and under R2's `Simple` that pocket needs no pinch.
 
 ### Truth caveats sent to dgo-geometric for model tests
 
@@ -202,7 +212,8 @@ New with the ruled order:
 * `OsinSectionPocketFaceSetSectionStatement` (kh-ejz).
 * `PocketPinchLabelledStatement` (hull-respell), or `PocketPinchStatement` through the weakening lemma. kh-cckw reduced the unlabelled one to `PocketPinchPinchedStatement` (33951a5b6). Configurations A and B are escalated.
 * `GeodesicCollarStatement` (kh-torsion, `SurgeryGeodesicCollar.lean:67`), in place of `PocketCollarStatement`.
-* `PocketCellTransportStatement` and `PocketOuterTransportStatement` (go-lemma42).
+* `PocketCellTransportStatement` (go-lemma42).
+* `PocketOuterTransportStatement` is closed. hull-select's `pocketOuterTransport` is in `Estimating/OsinPocketGlueOuterTransport` (71d59592c, `#audit_closed_axioms`), and the final assembly passes it as `houter`. That needs a separate module, since `OsinPocketGlueOuterTransport` imports `OsinPocketPieces`.
 * Outside `SectionPocketCutInput`, `descentInput_of_sectionPocketCut` still takes `LoopCutInput` (ruling (A) final), `MultipleEdgeCutInput`, `EulerCountInput`, `UnboundInput` and `O52LeastAreaStatement`.
 
 Closed here:
