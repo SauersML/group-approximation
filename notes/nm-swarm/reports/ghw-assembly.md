@@ -380,14 +380,69 @@ The lead's item: the least-area Greendlinger waist
       `OsinLemma94CaseOneInput` and `OsinLemma94CaseOneSameCellStatement`, so binder 3 keeps its
       name and assumes more.
 
+## Binder 7 piece (i): relator corners inside `K` into G-digons (2026-09-13, current item)
+
+The lead's item (15:25): find the route for piece (i). `PinchSplit.Input` needs both merged corners
+to be G-faces. At both pinch vertices of the on-main models, the complement corners are the exterior
+face and a relator cell. Coordinate with hull-respell.
+
+- What main already has:
+  - hull-respell's `OsinPocketEdgeDoubling` (6a0ab4e33): a relator face `f ∉ K.faces`, off the
+    source arc.
+  - kh-cckw's T2 (`outerSpurThickening`): the exterior corner.
+  - go-lemma42's (ii) (`OsinPocketPinchCarry`, 9acc804f2): `exists_pinchStep_of_inside`, for a
+    split whose two corners are both in `K`.
+  - Missing: a relator face inside `K`. hull-respell's report lists it as not covered, because the
+    digon joins the face set.
+- New module `Estimating/OsinPocketEdgeDoublingInside` (this lane).
+  - `FaceEdgeDoubling.collarBoundaryCycle hS B`: for `f ∈ S`, the boundary cycle of
+    `collarFaceSet S` on the doubled diagram is `B.cycle` mapped by the dart embedding. It comes
+    from `isBoundaryDart_collarFaceSet_iff` (`SurgeryGeodesicCollarDouble`).
+  - `PocketFaceSet.faceEdgeDoublingInside K f j hlen hf hs`, for `hs : f ∈ K.faces`:
+    - the faces are `collarFaceSet`, and the cells go through `cellMap.indexEquiv`;
+    - the source arc uses `carrierImage_of_ne`, because the source cell is outside `K` and so is not
+      `f`;
+    - the target arc uses `outerDarts_eq`.
+
+    Unlike the outside case, no source-arc hypothesis is needed.
+  - `faceEdgeDoublingInside_closedWalk hK`; `faceEdgeDoublingInside_repeatedVisits` is an equality.
+  - `exists_pinchStep_of_faceEdgeDoublingInside`: for a split `I` of the doubled diagram inside the
+    new faces, and the hypotheses of `exists_pinchStep_of_inside`, there are `X'` and `K'` with:
+    - `Nonempty (OEquivalentDiscDiagram X X')`;
+    - letter labels;
+    - `K'.ClosedWalk`;
+    - `K'.repeatedVisits < K.repeatedVisits`.
+
+    The O-equivalence is `FaceEdgeDoubling.oEquivalent` composed with the split's.
+  - Rule 22: a new file, so it has no users.
+- State: LANDED a847c7e01 (parent fa3546db4). Probe 0913-162842-24136 is GREEN on base 12f2f1daf,
+  and md5 87dd14ce matches the landed bytes. The module is unwired and on the wire queue after
+  `OsinPocketEdgeDoubling` and `OsinPocketPinchCarry`. No census row, because the module certifies
+  no printed sentence.
+- Route at model A (`lobeDiagram`). This is a check on paper, not a Lean model test yet.
+  - The rotation at the pinch vertex is (1 6 8 3). The corners are `b`, the exterior, `a` and `Π`.
+    `a = [3,4]` is a relator cell in `K`, and `b` is a G-face in `K`.
+  - Double dart 3 of `a`. The digon `δ = [3, none]` takes the corner of `a`, and the new rotation is
+    (8 n 3 1 6).
+  - Split at `x = 1`, `y = n`, whose corners `b` and `δ` are both in `collarFaceSet K`, with
+    `e₁ = 3` and `e₂ = 6`. The repeated visits drop from 1 to 0.
+- Model B (the labelled two-petal rose) is not reached by this module. This lane's paper check: the
+  gap between the two visits is one corner flanked by darts of one arc. It belongs to the non-split
+  branch that hull-respell is splitting.
+- Next in this item:
+  - a monogon version inside `K` (`MonogonDoubling`), from `isBoundaryDart_embed_iff`,
+    `faceOf_some_none_mem` and `faceOf_alpha_some_none_mem`;
+  - the model test at A, computing the split hypotheses on the doubled `lobeDiagram`.
+
+  If the lead or hull-respell assigns piece (i) elsewhere, this lane stops.
+
 ## Next
 
 - W1 composition: nothing open. Swap a binder when its producer lands: hull-count94 for 1,
   fff-periodic for 2, jacobson for 3.
-- Binder 7 piece (i), corners into G-digons: named in the lead's 14:50 rulings draft, if
-  hull-respell confirms it is open. It is not assigned yet. The starting surgery on main is
-  `SurgeryFaceEdgeDoubling`, `SurgeryFaceEdgeDoublingRegions` and `SurgeryOuterSpurThickening`.
-  No lane stages a corner-digon module.
+- Binder 7 piece (i), corners into G-digons. The case of a relator corner inside `K` landed at
+  a847c7e01 (section above). Next come the monogon version inside `K` and the model test at A.
+  Model B goes to hull-respell's non-split branch.
 - Binders 2-3 get respelled when the site-5 Covers co-probe (fff-periodic with hull-count94) or
   theoremc-retire's T changes `_of_sideBudget` or `_of_walk`. Rule 22 applies to those lanes.
 - Wrap case (parked): when both replies are in, propose a split with dgo-geometric and hull-respell.
