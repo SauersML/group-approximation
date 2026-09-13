@@ -37,14 +37,15 @@ whose target side is not a cutting path, some rotation of the face walk reads
 one section when it lies on `∂Δ`), and `X`, `Y` join the corners of the two segments with the
 values of the corners they join.  The source cell is the cell across side `C.source`, and a
 target cell is the cell across side `C.target`, so a region from a cell to itself arises only
-when both sides are arcs of one cell. -/
+when both sides are arcs of one cell.  The walk does not depend on the alphabet `E` of the
+connectors, which `OsinLemma94CaseOneInput` takes to be `symmetricLabelAlphabet D`. -/
 def OsinLemma94CaseOneWalkStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
-    {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+    {D E : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
     {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
     {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
     (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
-    (C : WordConnectorPair D (P.corner k) (P.word k) (P.sideCount k) (P.relatorSides k)
+    (C : WordConnectorPair E (P.corner k) (P.word k) (P.sideCount k) (P.relatorSides k)
       (P.longSides k) eps),
     C.b' < C.b → P.kind k C.target ≠ .cutting →
       ∃ (source : Fin S.diagram.rCellCount) (target : Option (Fin S.diagram.rCellCount))
