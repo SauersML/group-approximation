@@ -31,10 +31,17 @@ the non-residually-finite Kazhdan group `E_3` non-hyperlinear — the
 route `non-hyperlinear-from-e3-fibre-llp` — and by the equivalence
 `deligne-sector-gap-is-exactly-nonhyperlinearity` simultaneously yields
 the mod-three Maslov defect gap and the one-word central collapse of the
-Deligne lane.  This is Fournier-Facio--Willett Question 1.12 (does the
-LLP pass from a group to its twisted algebras?) at its sharpest live
-instance: a positive answer to their question reduces this claim to the
-untwisted fibre.
+Deligne lane.  This is Fournier-Facio--Willett Question 1.12
+(arXiv:2603.18456v2, p. 7, verbatim from the PDF): *let `Gamma` be a group
+**with the (L)LP** and let `sigma in Z^2(Gamma; S^1)` be a normalized
+`S^1`-valued 2-cocycle; does the twisted group C-star algebra
+`C^*(Gamma; sigma)` have the (L)LP?*  For `Gamma = Sp_4(Z)` the hypothesis
+of Q1.12 is itself the open untwisted fibre
+`sp2g-z-full-c-star-algebra-has-llp`, so this is the sharpest live instance
+in which that hypothesis is not gratuitous: a positive answer to Q1.12
+**together with** the untwisted fibre gives this claim.  LLP of
+`C^*(Sp_4(Z))` is not known in either direction (it is that node, open at
+`g = 2`).
 
 There is also a sharper trace-localized consequence which does not require
 the untwisted fibre.  By `llp-makes-hyperlinear-traces-amenable`, LLP of
@@ -159,3 +166,33 @@ hyperlinear whenever `E_3` is hyperlinear.  Thus this claim **alone** forces
   `maslov-bounded-block-sector-gap` already fences the would-be
   hyperlinear models of the twisted sectors to decompositions in which
   asymptotically all block dimensions are unbounded.
+- **Having no finite-dimensional representation is not evidence against
+  LLP.**  FFW's own discussion immediately after Q1.12 (same page, verified
+  from the PDF) gives the residual-finite-dimensionality analogue of this
+  question a NEGATIVE answer through `Gamma = Z^2`: for a suitable cocycle
+  `sigma`, `C^*(Z^2; sigma)` is the irrational rotation algebra
+  `A_theta`, which is simple and infinite-dimensional and so has no nonzero
+  finite-dimensional representation.  Yet `A_theta` is nuclear and
+  therefore has the LLP.  Hence `deligne-triple-cover-fd-central-invisibility`
+  (the twisted fibre has no fd representation) makes the RFD and
+  Ioana--Spaas--Wiersma finite-dimensional machinery inapplicable but is by
+  itself no obstruction to `(TF3)`; fd-invisibility cuts only against
+  fd-representation tools, in either direction.  The gap between `A_theta`
+  and `A_alpha` is exactly non-nuclearity: `A_alpha` has C-star property
+  (T) and no amenable trace, so the nuclear route by which `A_theta` gets
+  LLP is closed and gives `(TF3)` no help.
+- **Twisted subgroup permanence fences `(TF3)`, but has no ammunition.**
+  For `H <= Gamma` the canonical conditional expectation
+  `C^*(Gamma; alpha) -> C^*(H; alpha|_H)` that projects onto the
+  `H`-supported projective generators is ucp, so by Kirchberg's tensor
+  characterization `LLP <=> (x)_max B(l^2) = (x)_min B(l^2)` the LLP
+  descends: `(TF3)` implies LLP of `C^*(H; alpha|_H)` for every subgroup
+  `H`.  This is the twisted counterpart of the subgroup audit that refutes
+  `sp2g-z-full-c-star-algebra-has-llp` for `g >= 3`.  Here it is inert: a
+  refutation this way would need a subgroup `H <= Sp_4(Z)` with
+  `C^*(H; alpha|_H)` KNOWN to fail LLP, and the untwisted affine/parabolic
+  audit (`sp4-contains-no-isw-affine-subgroup`,
+  `isw-scalar-cocycle-obstruction-dies-on-sp4-parabolic-radicals`) shows
+  `Sp_4(Z)` contains no recorded LLP-failing subgroup, and no
+  twisted-algebra LLP failure is published for any group.  So the fence is
+  real but symmetric, and `(TF3)` stays OPEN in both directions.
