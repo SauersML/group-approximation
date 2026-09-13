@@ -34,6 +34,22 @@ decide the approximation type of `EL_n(A_k(𝒢))` uniformly in `k`.
   Kakutani–Rokhlin towers over arbitrary index groups and are the natural common generalization of the
   two settled cases; lane `un-measure` owns that target. An invariant measure alone is not expected to
   suffice, since it gives no towers.
+- **Residually finite actions: settled for every field, in the stronger exact form** (lane `un-measure`,
+  unreviewed). `residually-finite-actions-give-matricial-crossed-products`: a minimal topologically free
+  Kerr–Nowak residually finite action of any countable group gives `LC(X,k) ⋊ Γ ↪ ∏_ω M_N(k)`, hence a
+  faithful rank function. Its measure is the ω-limit of the empirical measures of the finite models, so
+  it equals the given `μ` when the action is uniquely ergodic. Matching an arbitrary prescribed `μ` is not
+  claimed.
+  - **Free groups.** `free-group-crossed-product-matricial-iff-invariant-measure`: invariant measure ⟺
+    residually finite ⟺ matricial ⟺ rank function. The first step is a secondary import of Kerr–Nowak
+    Theorem 5.2.
+  - **No conflict with the Kaplansky firewall.** A topologically free residually finite action puts `Γ`
+    inside `∏_ω Sym(E_n)`, so `Γ` is LEF and `k[Γ]` is already stably finite.
+- **Free minimal `Z^2`-SFTs: measure present, towers absent.** The action is not residually finite. The
+  rank-metric form holds over finite fields (`free-minimal-crossed-products-are-simple-with-rank-models`),
+  but the exact form holds iff covariant finite-dimensional (Q1)–(Q3) families exist at every scale
+  (`matricial-z2-sft-crossed-products-give-quantum-tilings`), and fails for quantum-rigid SFTs. This
+  separates the exact and rank-metric forms inside the measure branch.
 - **Firewall: the weaker form is already Kaplansky-hard.**
   `measure-side-stable-finiteness-contains-char-p-kaplansky` shows that even proving *invariant
   measure ⟹ stably finite* for all free minimal Cantor actions over `k` proves Kaplansky's stable
