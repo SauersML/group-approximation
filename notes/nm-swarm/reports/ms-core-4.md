@@ -122,3 +122,23 @@ CLAIM transient-ideal-generation GroupApproximation/Dynamics/TransientIdealDefec
 
 Local matriciality is NOT claimed here. ms-units proposed a split (17:5x): it takes the tower and classes step, in
 `Dynamics/TransientIdealLocallyMatricialFTwo.lean`, and ms-core-4 takes only the defect span.
+
+### Landed: generation clause
+
+Module `GroupApproximation.Dynamics.TransientIdealDefectSpan`, LANDED 784fe34ad (probe GREEN 0913-181653-59895), queued for
+wiring. Namespace `GroupApproximation.ClopenCrossedProduct`:
+- `compressedDefectSet T k`, the same set as BilateralThree's `clopenDefectSet`;
+- `exists_isClopen_coeff_charFn_zpow_image_mem`: translates `1_{T^n(D)}` of an indicator lie in the ideal;
+- `coeff_mem_of_support_subset_biUnion`: the finite clopen subdivision;
+- `coeff_mem_span_compressedDefectSet`, `transientIdeal_le_span_compressedDefectSet` (from the cover);
+- `defectD_mem_transientIdeal`, `span_compressedDefectSet_le_transientIdeal` (from avoidance);
+- `transientIdeal_eq_span_compressedDefectSet (hcover) (havoid)` for any invariant `Y`;
+- `disjoint_diff_image_chainRecurrentSet`: `P∖T(P)` misses `CR(T)` (chain argument; needs no directly finite `R_Y`);
+- `transientIdeal_chainRecurrentSet_eq_span T k`, `chainRecurrentSet_eq_univ_of_forall_defectD_eq_zero`;
+- closed endpoint `printedTransientIdealGeneratedByDefects`.
+
+Census rows: `2546c17d9884` formalized, `f0c16e5c8519` partial (the locally matricial clause is ms-units').
+
+In probe: `GroupApproximation.Manuscript.ChainCore.TransientIdealDefectSpanConsumers`, with
+`defectIdeal_eq_transientIdeal_chainRecurrentSet` (BilateralThree's `defectIdeal` = the kernel at `CR(T)`) and
+`chainRecurrentSet_eq_univ_of_isDedekindFiniteMonoid`.
