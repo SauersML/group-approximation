@@ -54,6 +54,7 @@ def fullShiftHomeomorph : (ℤ → A) ≃ₜ (ℤ → A) where
 theorem fullShiftHomeomorph_apply (x : ℤ → A) : fullShiftHomeomorph x = shift 1 x :=
   rfl
 
+omit [TopologicalSpace A] in
 theorem shift_neg_one_shift_one (x : ℤ → A) : shift (-1) (shift 1 x) = x := by
   funext i
   simp only [shift_apply, add_neg_cancel_left]
@@ -70,6 +71,12 @@ theorem itinerary_symm_apply (S : DiscreteQuotient X) (x : X) :
   have h := itinerary_apply_self T S (T.symm x)
   rw [Homeomorph.apply_symm_apply] at h
   rw [h, shift_neg_one_shift_one]
+
+/-- The zero coordinate of an itinerary is the atom of the point. -/
+theorem itinerary_apply_zero (S : DiscreteQuotient X) (x : X) :
+    itinerary T S x 0 = S.proj x := by
+  rw [itinerary_apply, zpow_zero]
+  rfl
 
 variable (S : ℕ → DiscreteQuotient X)
 

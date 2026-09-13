@@ -73,11 +73,6 @@ section Factor
 
 variable {X : Type*} [TopologicalSpace X] (T : X ≃ₜ X) (S : ℕ → DiscreteQuotient X)
 
-theorem itinerary_apply_zero (S' : DiscreteQuotient X) (x : X) :
-    itinerary T S' x 0 = S'.proj x := by
-  rw [itinerary_apply, zpow_zero]
-  rfl
-
 /-- **A locally constant function constant on the atoms of `S l` factors through `π_l`.** -/
 theorem exists_comap_coreFactorMap_eq {β : Type*} [Zero β] (f : LocallyConstant (generalCore T S) β)
     (l : ℕ) (hf : ∀ x y : generalCore T S, (S l).proj x = (S l).proj y → f x = f y) :
