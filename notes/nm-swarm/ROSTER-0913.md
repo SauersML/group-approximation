@@ -457,6 +457,10 @@ For EVERY census row in your range with status formalized or definition, and eve
   - fff-periodic: TorsionFreeFourLeaves (38) and SectionSentencesFourLeaves (12). No Theorem C names.
   - ko-closed: nm-endpoints' five endpoint modules (LeastAreaAssembly, OsinNotion, HullPrintedLeastArea, LimitSetEndpoints, SectionAssembly: 27 findings), each in a new module; plus the row 8097c371f35d carrier swap to `_closed`.
   - hull-bridge: unchanged. ghw-assembly's set was only `kotowskiOllivier_of_leaves`, already superseded.
+  - Correction ~06:40, superseding the two lines above:
+    - ko-closed: the row 8097c371f35d carrier swap to `_closed`, and `Hyperbolic.SharpExistence`.
+    - hull-bridge: its own modules plus nm-endpoints' five endpoint modules (LeastAreaAssembly, OsinNotion, HullPrintedLeastArea, LimitSetEndpoints, SectionAssembly: 27 findings). Its unlanded TorsionFreeGreendlingerForms and TorsionFreeGreendlingerSentences (06:36) already cover them. The ~06:30 assignment of those modules to ko-closed was retracted.
+    - ghw-assembly's set was only `kotowskiOllivier_of_leaves`, already superseded.
 - **Hull Corollary 7.3 LANDED** by cite-hull (a2299c82c, HullCorollary73).
   - Correction: the ~05:00 handout of K(G), AH0 and 5.10 was stale. `finiteRadical`, `IsAH0`, `finiteRadical_eq_bot_of_suitable` (HullFiniteRadical) and `printedHullLemma510` (HullLemma510) were already on main. hull-component's Cor 7.3 draft is not landed.
   - cite-hull splits the Cor 7.4 route: free-product centralizer (jacobson), factor suitability with torsion (simple-group), first tower along inr(G2) (hull-component), f.g. second tower giving AH0 (hl-lemma46), countable case via 7.3 (fff-quotient). It adds `_of_greendlinger` forms of 7.3 and 7.4.
@@ -469,3 +473,60 @@ For EVERY census row in your range with status formalized or definition, and eve
 - **root-wire wave 7 ROOT GREEN** 4a6cb4e55: 9 modules, closure 6301, every census carrier root-reachable. Wave 8 launched: HullCorollary73, TheoremCAssemblyFoldLeaf, JacobsonThreePlusOnePresented.
 - **Stale partial rows** go to ghw-assembly to audit and re-grade: b6d1590be7ab, LINE:1688, LINE:1725, LINE:1155 (cite-ejz, no live lane) and LINE:1629.
 - **jacobson.** All 26 rows are formalized. Next: transport PrintedJacobsonRankTwoKazhdanFiniteField to the presented J, then the Cor 7.4 centralizer.
+
+## Reassignments 09-13 ~08:05
+
+- **LoopCutInput is FALSE as stated** (audit-sec5).
+  - At eps = 0 there is a cap counterexample: a region whose target is its own source cell, with an empty arc (GGT/VanKampen/LoopCutCapCounterexample, landing). It refutes LoopCutInput only for its W, not under OsinCCondition.
+  - At eps ≥ 2, maximal families put caps in every two-dart gap.
+  - Provisional ruling (A): loops leave the candidate class through a `RespectsSections` conjunct `target ≠ some source`. NoLoops then follows from `S.respects`, and LoopCutInput closes vacuously. (B) is out. (C), counting loops separately, is the fallback.
+  - Before any edit to OsinAppendixSections:
+    - ghw-charp2's read-only site census: every RealizedSectionFamily construction and every weight_maximal, card_minimal and RespectsSections use, on main and in drafts, with loop-freeness per site and patches kept in its backup;
+    - audit-sec5's exact definition change;
+    - one-line answers from hull-unbound (SingletonFaceRegion, OsinUnboundSharedEdge, the quadrilateral region), theoremc-retire (Case 1) and sec5-sentences (Case 2).
+- **Separation for simple walks is on main.** hull-respell:
+  - `simpleClosedWalkSides : SimpleClosedWalkSidesStatement` (GGT/VanKampen/SimpleClosedWalkSides, 4dce22f1e, probe 0913-072751-55574, `#audit_closed_axioms`);
+  - `PocketRegion.ofSimpleClosedWalk` (Estimating/OsinPocketRegionSimpleWalk, a11a8d850, probe 0913-074604-81036).
+  - The pocket producers consume these instead of rebuilding separation. Pinched walks (a repeated vertex) are hull-respell's, with kh-cckw.
+- **SectionPocketCut pieces reordered.**
+  - dgo-analytic's OsinPocketPieces (9cb70824c) put the collar before the pinch. kh-torsion showed `PocketCollarStatement` on a PocketFaceSet is not provable locally. Without FollowsBoundary the sides need not be edge paths, and a closed side of value 1 at a repeated vertex needs the pinch.
+  - New order:
+    1. pinch (hull-respell, `Collared` dropped);
+    2. region (dgo-analytic: an uncollared carrier with both FollowsBoundary);
+    3. collar (kh-torsion: `GeodesicCollarStatement`, e6d609771, applied twice with `withOuter`).
+  - dgo-analytic restates the Props. kh-ejz takes `SectionPocketFaceSetInput` next.
+- **Pinch gap in the zero-cell merge** (dgo-geometric).
+  - `EmptyTwoGonInput` is true, but a discharge through `InnerGRegion.ofPocketRegion` (93cb4e04f) fails on pinched pockets: two regions meeting at one vertex give no FaceSetBoundary. The models are Estimating/OsinPocketPinchedTwoGonModel and ...Region (landing).
+  - Route A goes to fff-periodic: collapse with `Surgery.MapCollapse.replaceGRegion`, take the value from `PocketRegion.listVal_inner_eq_one`, get one region by `ContiguityGeometry.ofSingletonFace`, transport the other regions, and so produce `EmptyTwoGonInput`. Route B is not taken.
+  - hull-select states the merge over IsDiscRegion data; the target is a section or a second cell.
+- **W1 PhiPrimeCount (Lemma 9.3).**
+  - C3 closed by hull-euler (`exterior_of_isTwoGon`, c48f20f41); linked components by ghw-charp2 (cbca8029b).
+  - `EmptyTwoGonInput` stays C6's interface.
+  - C6′ (`f ∈ T → ¬HoldsCorner f → ¬HoldsCell f → False`): hull-euler states it, and debt-conditional proves it over simpleClosedWalkSides and hull-respell's pinched Prop.
+  - C4 leavitt-units, C5 hs-vanishes. hull-euler keeps the assembly.
+- **W1 h94 pieces.**
+  - hull-unbound: `osinLemma94Section_of_planarPieces` (Estimating/OsinLemma94PlanarPieces, 80790fad1, probe 0913-070239-32512). The metric half is closed (e3da1ba60).
+  - Piece owners and helpers: PolygonRealization, hull-unbound (ghw-assembly); PolygonCount, hull-count94 (audit-intro); CaseOne, theoremc-retire (ko-closed); CaseTwo, sec5-sentences (sec2-sentences).
+  - sec5-sentences re-based OsinLemma94DartMinimal on PlanarPieces (b6bda9923, probe 0913-074213-73156) and retired the PlanarRunInputReduced forms. The ~06:30 defaults over the reduced input are superseded.
+- **W1 MultipleEdgeCut.**
+  - go-lemma42: SurgeryPocketGlueVertices (0cdb0dc87), SurgeryPocketGlueCount (3af801bac) and SurgeryPocketGluePlanar (291ae2c87, probe 0913-074643-82657). The glued map is planar and connected.
+  - go-lemma42 next: Estimating/OsinPocketGlueDiagram, then the `htransport` of `OsinMultipleEdgeCut.ofPocketRegion` at j = 1, 3. FollowsBoundary is a hypothesis there.
+  - kh-ejz's `MultipleEdgePocketRegionInput` (d00f94876) has no consumer yet. hull-select states the MultipleEdgeCut assembly over it, the collar, go-lemma42's transport and the merge.
+  - hull-bridge helps kh-torsion with the collar steps.
+- **Verifier defects** in `scripts/check_non_mf_unconditional.py`, found by census (merge 11 did not land; merge 12 runs with the corrected register.py).
+  - False red on hKO. Namespaces are recorded only as the bare token and the full stack path, so a conclusion written as a partial path (`Manuscript.NonMF.TheoremC.KotowskiOllivierStatement` inside `GroupApproximation.KMSGroup`) never resolves. About 40 baseline lines rest on it.
+  - Blind spot. A Prop structure built by an anonymous constructor (`CutLift`, HullSCLemma51LetterPullbackCut.lean:87) has no producer entry.
+  - The script had no owner. systolic-counts fixes both, with a calibration fixture where a Prop with no producer still reports red. census then re-runs verify-unconditional on MSI.
+- **Closed ~06:45–07:50:**
+  - hull-bridge's flips 2aa98f8cc (HullSCGreendlingerForms, TorsionFreeGreendlingerSentences);
+  - fff-periodic's TorsionFreeGreendlingerLeaf 1edf0f7b4: 23 forms, which covered nm-endpoints' five endpoint modules, so hull-bridge dropped its duplicate;
+  - ko-closed's `Hyperbolic.sharpExistence_closed` (b0ab67b4a);
+  - jacobson's `printedPresentedJacobsonRankTwoKazhdanFiniteField` (29632bb14);
+  - kh-ejz's gap arcs `CyclicArc.exists_gapArcs` (b389a81cf, probe 0913-073424-67369).
+- **Wiring.**
+  - hT6's carrier Kazhdan/CCKWSystolicInvariantCliqueClosed (61eddb4a9) had never been queued; the lead queued it.
+  - Also unrooted: TorsionFreeGreendlingerLeaf (queue line 501), TheoremCAssemblyGreendlingerLeaf (wave 9), OsinLemma94PlanarPieces and OsinLemma94DartMinimal (line 522), SimpleClosedWalkSides (line 520).
+- **Other.**
+  - cite-hull lands the Cor 7.4 piece statements now. jacobson, simple-group, hl-lemma46, fff-quotient and hull-component wait on the names.
+  - nm-endpoints adds `#audit_closed_axioms` for `simpleUniqueTraceAtHypEmbedded_closed`.
+  - dgo-analytic's lane report on main (09-12) still names hull-respell for SectionPocketCutInput. The roster names dgo-analytic, and dgo-analytic refreshes the report.
