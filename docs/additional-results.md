@@ -79,6 +79,17 @@ It is residually finite, and the MF radical also equals the finite
 residual. This computes the entire kernel beyond the earlier single
 invisible root; the proof remains to be formalized in Lean.
 
+The [prescribed-endpoint construction](../research/artifacts/pestov91-heteroclinic-prescribed-mf-quotients-2026-09-13.md)
+replaces the fixed points by any two infinite minimal binary subshifts.
+It gives a Kazhdan non-MF group with three torsion generators and no
+nontrivial finite quotients, whose maximal MF quotient is the product
+of the two prescribed rank-six endpoint groups. Each factor is itself
+an infinite simple Kazhdan LEF binary Pestov group: letter doubling
+realizes the necessary matrix amplification, and recognizable binary
+interleaving supplies the ambient three-generator marking. The MF radical stays
+infinite simple locally finite, while the finite residual becomes the
+whole ambient group. This is a written proof awaiting Lean formalization.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
