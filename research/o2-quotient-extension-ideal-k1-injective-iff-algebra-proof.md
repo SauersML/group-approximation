@@ -28,3 +28,16 @@ The full derivation is in artifact sections 1 and 2.
    (c)(⟹) is `k1-injectivity-extends-over-properly-infinite-quotients`, with the properly infinite,
    K1-injective quotient O_2 (Cuntz 1981).
 5. (d): every unitary of `I~` has class in `K_1(I) ≅ K_1(B) = 0`.
+6. **Z-stable quotients** (artifact `k1-defect-ideal-z-stable-quotients-2026-09-13`, Lemma 1' and
+   Corollary 3').
+   - If Q is unital and Z-stable with `K_0(Q) = 0`, then `C(T) ⊗ Q` is Z-stable. A based loop `f` has
+     class in `K_1(SQ) ≅ K_0(Q) = 0`, so `f ∈ U_0(C(T) ⊗ Q)` by Jiang, and the constant correction of
+     step 1 applies. So step 2 goes through.
+   - `K_1(I) -> K_1(B)` is injective because `K_0(Q) = 0`.
+   - (⟹) uses that Q is properly infinite and K1-injective by Jiang.
+7. **Applications.** `O_2 ⊗ C(T)` is admissible.
+   - For `J_c ⊆ O_2 * C(T)`, K1-injectivity of `J_c~` is equivalent to K1-injectivity of `O_2 * C(T)`,
+     which is the halving homotopy.
+   - For `I_c ⊆ T_2 * T_2`, `K_1(I_c) ≅ K_1(T_2 * T_2) = 0`, so connectivity of `U(I_c~)` is
+     K1-injectivity of `T_2 * T_2`. That is LXI by Blanchard arXiv:0804.4624v13, Proposition 4.2
+     (i) <=> (v), read in the PDF.
