@@ -17,8 +17,8 @@ Lane `solve-q34-known-actors`. The target stays OPEN:
 | Finitely presented simple non-affine Kac–Moody groups | yes | `fp-simple-kac-moody-lattices-satisfy-pbh` (Rybak MIF, Theorem C) |
 | `L_(F_2)(1,2)^×` | yes, two independent routes | `leavitt-pbh-via-cantor-module-affine-actor` (19108f02e) and `binary-leavitt-pbh-via-chen-module-lines` (98a1b7f25) |
 | `L_(F_p)(1,2)^× / F_p^×`, `p` odd | **yes (new)** | `leavitt-unit-groups-mod-scalars-satisfy-pbh` (98a1b7f25) |
-| `(L_(F_2)(1,2) ⊗ L_(F_2)(1,2))^×` and `(L_p ⊗ L_p)^× / F_p^×` | not decided | see §3 |
-| `L_(F_2)(E)^×` for other graphs `E` | not decided | finite presentation and simplicity are still OPEN (`f2-leavitt-path-unit-groups-fp-simple-steinberg`) |
+| `(L_(F_2)(1,2) ⊗ L_(F_2)(1,2))^×` and `(L_p ⊗ L_p)^× / F_p^×` | **yes (added after this census)** | `leavitt-square-unit-groups-mod-scalars-satisfy-pbh` (lane `solve-q34-tensor-leavitt`) |
+| `L_(F_2)(E)^×` for other graphs `E` | yes as groups, by embedding (`char-two-leavitt-path-unit-groups-satisfy-pbh`); not yet a finitely presented simple instance | finite presentation and simplicity are still OPEN (`f2-leavitt-path-unit-groups-fp-simple-steinberg`) |
 | Lodha's finitely presented simple circle group; Rattaggi-type simple lattices in products of trees; Stein groups, irrational-slope `T_τ`, `V_τ`; BBMZ hyperbolic hosts | not checked against sources in this lane | see §3 |
 
 ## 2. The new mechanism: the Chen-module line action
@@ -55,6 +55,7 @@ The nodes landed in 98a1b7f25, none independently reviewed:
 ## 3. Candidates not settled, and first tests
 
 1. **Tensor squares `L ⊗ L`.**
+   - **Settled after this census.** See `leavitt-square-units-act-two-transitively-on-chen-lines`. The Euclidean step is replaced by a four-move reduction through a fresh point, so no Suslin-type theorem is needed. The original first tests follow.
    - The simple module `F_p[D] ⊗ F_p[D]` is the natural analogue.
    - Matrix units on products of cones should again give 2-transitivity on lines.
    - The stabilizer germs become a two-variable Laurent ring `F_p[s_1^±, s_2^±]`, which is
