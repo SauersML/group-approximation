@@ -192,3 +192,13 @@ constraint ideal, and which satisfies the Parseval condition `(PGR3)`.
   bounded coordinates but not `(GFB1)`; the missing information is exactly
   a regular multiplicative group law, and a non-CE factor forces some basis
   products to spread over several coordinates.
+- **Hecke algebras of totally disconnected groups add no host class.**
+  `hecke-corner-uniform-lattice-transfers-embeddability` restricts the
+  permutation representation on `l^2(G/K)` to a uniform lattice `Gamma`. It
+  embeds the Hecke von Neumann algebra `pi(G)'` trace-preservingly into a corner
+  of `M_m(L(Gamma))`.
+  - So a model of `(GFB1)` in a Hecke algebra of `(G, K)` is already a model
+    in a corner of `L(Gamma)` for every uniform lattice `Gamma` of `G`.
+  - None exists when `G` has a hyperlinear uniform lattice.
+  - Products of regular trees contain `W_a x W_b`, so their Hecke algebras
+    cannot host `A(B_*)` (route A6 of the 09-13 groupify idea file).
