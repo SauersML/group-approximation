@@ -25,9 +25,17 @@ landed afterwards. Findings stay here, since fz lanes cannot be messaged.
 - **`IsSoficGroup ↔ IsSofic`, `IsHyperlinearGroup ↔ IsHyperlinear`.** These repackage `FiniteCarrier` as
   `FiniteModel`. The fields (`nonempty`, `map`, `isUnitary`, `multiplicative`, `separated`) transfer verbatim, with
   identical bodies.
-- **LEF ⇒ sofic.** `isSofic_of_isLEF (h : IsLEF G) : IsSofic G` (`Sofic/LEFSofic.lean:85`). I verified the statement
-  and its closure (record 0913-013243-89830), not the proof. `IsLEF` is equivalent to textbook LEF by
-  `isLEF_iff_textbook` (`Sofic/LEF.lean`).
+- **LEF ⇒ sofic.** `isSofic_of_isLEF (h : IsLEF G) : IsSofic G` (`Sofic/LEFSofic.lean:85`), proof read in full.
+  - The model is `g ↦ leftRegular (f g)`, left multiplication on the finite group `Perm (Fin n)`.
+  - The multiplicative defect is exactly `0`, because `f` is multiplicative on `F`.
+  - Separation is exactly `1`, because `f` is injective on `F` and left translations by distinct elements disagree
+    everywhere.
+  - The carrier is nonempty even for `n = 0`.
+  - The closure is classical (record 0913-013243-89830). `IsLEF` is equivalent to textbook LEF by
+    `isLEF_iff_textbook` (`Sofic/LEF.lean`).
+- **Real ⇔ complex (T).** `hasKazhdanPropertyT_iff_complex`, proof read: `⟨Q, a, h.toComplex⟩` and
+  `⟨Q, a, h.toReal⟩`, with the same control set and tolerance. In `toReal`, the real and imaginary parts of a nonzero
+  invariant vector of the complexification are invariant, and one of them is nonzero.
 - **Sofic ⇒ hyperlinear.** `isHyperlinear_of_isSofic` (`Sofic/Hyperlinear.lean:175`), proof read in full. It uses
   `σ ↦ (σ⁻¹).permMatrix ℂ`, a genuine homomorphism, and `hsDistSq = 2·hammingDistance` on permutation matrices, with
   tolerance `ε/2`. This matches Pestov's Theorem 3.3 computation.
