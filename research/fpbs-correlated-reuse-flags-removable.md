@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/fpbs/docs/sparse-base-surgery.md
   - research/artifacts/fpbs/docs/cost-rank-duality.md
   - research/artifacts/fpbs/docs/finite-fiber-cost-descent.md
+  - research/artifacts/fpbs/docs/binary-descent-entropy-tail.md
   - research/artifacts/fpbs/docs/relative-cycle-exchange.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-compression.md
@@ -16,6 +17,8 @@ artifacts:
 **OPEN.** For a factor map pi from a free action Y onto a free action X of a finitely generated group, and in particular for the projection a x b -> b onto a Bernoulli action, prove that there are finite routing plans on Y with budget tending to C(Y) whose conditional traffic defect for pi tends to zero. Equivalently, prove that every free extension generated over its base by the orbit name of one binary observable preserves cost; equivalently, that the pushforwards of the unused-edge measures and of the repeated-use measures can be made asymptotically singular while the near-optimal edge budget is preserved.
 
 This is the isolated remaining step of the reuse programme. The savings to be preserved are those of a connection used many times and paid for once, and the question is whether they can depend irreducibly on group-correlated information of the source action. No route establishes it.
+
+**Scope audit, September 12, 2026: this claim restates cost preservation rather than reducing it.** For one fixed free factor pi, the requested plans exist exactly when C(X)=C(Y). If they exist, the zero-gap criterion of `fpbs-traffic-variational-cost-identities` gives equality. Conversely, if C(X)=C(Y), lifts of near-optimal base plans have J_pi=0 and budget tending to C(Y). Over all free factor maps of one finitely generated group, the claim is therefore fixed price for that group by `fpbs-factor-invariance-equals-fixed-price`; this is the third form already recorded in `fpbs-cost-drop-witnessed-by-one-binary-observable`. On the product projection a x b -> b it is C(a x b)=C(b). With `fpbs-bernoulli-noise-does-not-change-cost` that is C(a)=C(b), which with `fpbs-bernoulli-maximal-cost` is equivalent to the target of `fpbs-bernoulli-lower-bound-from-reuse-removal`. A counterexample for a single pi would be a group without fixed price. The last attempt below records what a removal statement that genuinely reduces the problem must look like.
 
 ## Attempts
 
@@ -104,6 +107,18 @@ Push the information limit for a fixed plan. Conditional Jensen gives only nonne
 
 Make the signal negligible. Relative to a cost-one hyperfinite spine the flags can be supported on a set of arbitrarily small measure, but a rare connector may serve many requests: a hypothetical gap Delta with relative budget b forces traffic at least Delta/b, and no uniform traffic bound is available (reuse-localization artifact, Section 6).
 
+Control one-site flag entropy. The proved
+`fpbs-binary-entropy-traffic-tail-bound` supplies the positive estimate
+J<=T H/(2 log 2)+sum_j integral Q_j 1_{Q_j>T}, with Q_j=(k_j-1)_+
+and H the sum of the integrated conditional entropies of every reuse flag.
+Vanishing H and uniformly integrable repeated traffic therefore suffice
+along source-near-optimal plans. The tail control is not proved universally.
+On one fixed Bernoulli Z times 2-adic odometer factor, the same artifact
+constructs fully covered plans with two fixed labels, exact optimal budget
+B=1, H->0, and J=1. Both actions have cost one and admit other plans with
+J=0. Thus this countermodel rules out the entropy-only inference for
+specified plans, not cost preservation or any named live route.
+
 Unite independent copies of a source graphing. This preserves generation but
 can destroy optimality even when every input attains the action cost. The
 September 10 calculation in the reuse-compression artifact, Section 8,
@@ -113,3 +128,30 @@ costs 2, whereas the union of k independent copies costs exactly
 but its excess cost is arbitrarily large. A successful version must also
 remove edges with a proved cost and connectivity bound. The example does
 not exclude such removal and is not a counterexample to this open claim.
+
+Test the claim where fixed price is known, then ask what removal can add.
+Where the graph has a fixed-price theorem, every factor map preserves cost,
+so the claim holds, witnessed by lifted base plans rather than by removing
+flags from a source plan. This covers amenable groups, inside
+`fpbs-amen2-fixed-price-one`; closed orientable surface groups, in
+`fpbs-fibered-3-manifold-cost-inputs`; and SL_3(Z), the case R=Z, r=3 with
+trivial H of `fpbs-elementary-matrix-semidirect-fixed-price-one`. No such
+test can separate the claim from fixed price. For the same reason neither
+consuming route is invalid: each is a correct deduction from a premise
+equivalent to its target, not a reduction to something weaker.
+
+The equivalence survives every added plan property of the same form. Let P
+be a property of plan sequences that, together with B->C(Y), forces
+J_pi->0, and that lifts of near-optimal base plans satisfy. Then "some
+source-near-optimal plans satisfy P" is again equivalent to C(X)=C(Y). The
+moving-cutoff form of `fpbs-binary-entropy-traffic-tail-bound` is an
+example: lifted plans have H=0 and bounded traffic. Its fixed-cutoff
+uniform-integrability form implies cost preservation but is not known to
+follow from it, so it is a priori stronger, not weaker. A removal statement
+that is not a restatement must therefore do one of two things. It can
+quantify over the given plans, deriving the new plans from arbitrary
+source-near-optimal ones through edits of explicitly bounded cost and
+defect. Or it can be restricted to a family of factor maps or groups where
+an independent argument applies, which would give a new fixed-price class.
+Either hypothesis can fail without refuting fixed price. No statement of
+either kind is proved here.
