@@ -47,7 +47,22 @@ and the search bound are in
   reduced algebra.  `SL_3(Z)` is open: Deligne's representations of
   `SL_3(F_p)` (MdlS Example 2.2) have no invariant vector for the block
   `SL_2`, and Magee's survey (arXiv:2503.21619, Section 2.4) calls `d = 3` "a
-  curious gap".  Approximate models are not excluded for any `d`.
+  curious gap".  Approximate models are not excluded for any `d`; for
+  `d >= 4` they would be excluded by point-norm matricial stability of
+  `SL_4(Z)` (`matricially-stable-overgroups-of-sl4z-are-not-reduced-mf`, open
+  crux `sl4z-matricially-stable`).
+* **Genuine representations of `SL_3(Z)`.**  Live as
+  `sl3z-purely-matricial-field` (route `kazhdan-mf-reduced-from-sl3z-pmf`).  No
+  finite family of invariant-vector witnesses can refute it
+  (`sl3z-has-no-invariant-vector-witnesses`); Deligne's representations are
+  caught by the principal `SL_2` and do not converge strongly
+  (`deligne-sl3-representations-have-principal-sl2-invariants`).
+* **Cocompact lattices `SL_1(O_D)`, `D` a cubic division algebra.**  Live as
+  `cubic-division-lattice-purely-matricial-field` (route
+  `kazhdan-mf-reduced-from-cubic-division-lattice-pmf`).  Every nonamenable
+  subgroup is Zariski dense (`cubic-division-lattice-subgroups-are-zariski-dense`),
+  so no invariant-vector obstruction exists at large levels: the sharpest
+  Kazhdan target for genuine representations.
 * **Known strongly convergent classes.**  Dead as sources.  Van Handel's survey
   (arXiv:2510.12520, Section 2.3) lists limit groups (Louder--Magee) and
   right-angled Artin groups with the groups virtually embedding in them
