@@ -47,6 +47,16 @@ Every property in that list except weak cancellation and (O6+) holds for
 fails (O6+) or fails weak cancellation**, and the maximal soft element
 `alpha(f) = sup L'_f` of Thiel's proof does not exist as a supremum of `L'_f`.
 
+**Corollary (no maximal soft realizer below `f`).** The soft classes `x` with
+`d(x) <= f = (5/4) t_m` have no largest element. Adding a soft class of rank at
+most `t_m/4` to `[p_m]` or `[q^_m]` gives soft classes of rank at most `f`. A
+largest such class would dominate both and have rank at most `f`
+everywhere, contradicting the theorem. So Thiel's Galois connection
+`alpha -| kappa` between `LAff(K)_(++)` and the soft part of the Cuntz semigroup
+does not exist in `B`. In the language of
+`rank-density-and-small-joins-give-all-ranks`, `B` has rank density but fails
+small joins, and lies exactly outside that cell.
+
 This does not refute rank realization. The constant `f` is a rank in `B`, a
 countable sum of projections. It shows that the stable-rank-one mechanism, namely
 upper bounds with controlled rank below a target, is provably unavailable.

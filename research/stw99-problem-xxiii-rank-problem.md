@@ -53,6 +53,17 @@ rank one nor comparison.
     built as an orthogonal sum of finite-stage pieces is constant
     (`doubling-ah-finite-stage-continuous-ranks-are-constant`).
   - So orthogonal-sum methods cannot decide the candidate above.
+* **Rank density plus small joins (2026-09-12).**
+  `rank-density-and-small-joins-give-all-ranks`: uniform density of ranks plus
+  upward directedness of Thiel's sets `L'_f` gives all ranks, through the
+  maximal soft class `sup L'_f`. No (O6+), weak cancellation or comparison is
+  used, and strict comparison supplies the joins.
+  - All AH algebras have rank density.
+  - Toms's no-Gamma AH algebra has rank density but no small joins
+    (`toms-schubert-algebra-has-no-small-joins`): a Thom--Porteous pair of
+    constant rank `t` has no common upper bound of rank below `2(1 - eta) t`
+    everywhere.
+  - So the candidate lies exactly outside this cell.
 * `stw23-skew-product-diffuse-fibres-have-all-ranks` gives a direct new
   many-trace class.  For a free minimal central dynamical coordinate and a
   unique-trace exact fibre containing one Lebesgue-distributed positive

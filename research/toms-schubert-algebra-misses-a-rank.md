@@ -63,6 +63,16 @@ of continuous ranks on `T(B)`.
   two compact classes of constant rank `t` in `B` have no common Cuntz upper bound
   of rank below `2(1 - eta) t` everywhere. So `L'_f` is not upward directed for
   `f = (5/4) t`, and `Cu(B)` fails (O6+) or weak cancellation.
+- **The exact cell `B` escapes.** `rank-density-and-small-joins-give-all-ranks`:
+  rank density plus upward directedness of every `L'_f` gives all ranks, with no
+  (O6+), weak cancellation or comparison. `B` has rank density and fails
+  directedness. So a realizer of a non-constant affine function in `B` has two
+  constraints:
+  - it is not a countable orthogonal sum of finite-stage pieces;
+  - it is not the maximal soft class below its rank, since no such class exists
+    for small constant targets.
+  What survives is a Cuntz supremum that selects among incompatible upper bounds
+  coherently across the Poulsen simplex.
 - **Open positive mechanism: central diffuse independence.** Suppose that for
   a uniformly dense family of stage-central `0 <= c <= 1`, some positive
   contraction `b` commutes with `c` and has joint law `mu_(c,tau)` times
