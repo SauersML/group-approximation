@@ -4,12 +4,12 @@ Lane `or-length15-residue`, 2026-09-13. Input: the 30 classes of `|w| = 15`
 two-generator one-relator relators left uncertified by
 `research/artifacts/or-unpeelable-extreme-2026-09-12.md`.
 
-**Status:** 21 of the 30 classes are **residually finite, hence sofic**. Each
-has an explicit subgroup `H` of index `k ≤ 10` and a character `φ : H ↠ Z`
+**Status:** 28 of the 30 classes are **residually finite, hence sofic**. Each
+has an explicit subgroup `H` of index `k ≤ 12` and a character `φ : H ↠ Z`
 with free kernel of finite rank, so `H ≅ F_n ⋊ Z`. Every certificate was
-re-checked from scratch by an independent verifier. The other 9 classes have
-no certificate in covers of index `≤ 10`. No root is marked ESTABLISHED on the
-strength of a finite census.
+re-checked from scratch by an independent verifier. The other 2 classes
+(rows 18 and 29) have no certificate in covers of index `≤ 12`. No root is
+marked ESTABLISHED on the strength of a finite census.
 
 ## 1. The residue
 
@@ -140,23 +140,23 @@ Route for every row: virtual fibring (route 1). "open" means no certificate for
 |---|---|---|---|---|---|---|
 | 1 | AAtAtAATTAttaTT | (1,2,−1,1,2) | [−3,−1,−1] | 5 | k=10, S=5, F_26 | RF, sofic |
 | 2 | AAtAtAATTattaTT | (1,2,−1,−1,2) | [−1,−1,−1] | 3 | k=3, S=5, F_8 | RF, sofic |
-| 3 | AAtAtATTAttaaTT | (1,1,1,−2,2) | [−3,−1,1] | 3 | none, k ≤ 10 | open |
+| 3 | AAtAtATTAttaaTT | (1,1,1,−2,2) | [−3,−1,1] | 3 | k=12, S=6, F_27 | RF, sofic |
 | 4 | AAtAtATTattAATT | (1,1,−1,2,2) | [−1,−1,−3] | 5 | k=4, S=8, F_18 | RF, sofic |
 | 5 | AAtAtATTattaaTT | (1,1,−1,−2,2) | [−1,−1,1] | 1 | k=5, S=6, F_13 | RF, sofic |
-| 6 | AAtAtaTTAttAATT | (1,−1,1,2,2) | [−3,−1,−1] | 5 | none, k ≤ 10 | open |
+| 6 | AAtAtaTTAttAATT | (1,−1,1,2,2) | [−3,−1,−1] | 5 | k=12, S=6, F_27 | RF, sofic |
 | 7 | AAtAtaTTAttaaTT | (1,−1,1,−2,2) | [−3,−1,3] | 1 | k=9, S=5, F_18 | RF, sofic |
 | 8 | AAtAtaTTattAATT | (1,−1,−1,2,2) | [−1,−1,−1] | 3 | k=3, S=5, F_8 | RF, sofic |
-| 9 | AAtAtaTTattaaTT | (1,−1,−1,−2,2) | [−1,−1,3] | 1 | none, k ≤ 10 | open |
-| 10 | AAtAtaaTTAttATT | (1,2,1,1,−2) | [−3,−1,1] | 3 | none, k ≤ 10 | open |
+| 9 | AAtAtaTTattaaTT | (1,−1,−1,−2,2) | [−1,−1,3] | 1 | k=12, S=6, F_31 | RF, sofic |
+| 10 | AAtAtaaTTAttATT | (1,2,1,1,−2) | [−3,−1,1] | 3 | k=12, S=4, F_19 | RF, sofic |
 | 11 | AAtAtaaTTAttaTT | (1,2,−1,1,−2) | [−3,−1,3] | 1 | k=6, S=4, F_11 | RF, sofic |
 | 12 | AAtAtaaTTattATT | (1,2,1,−1,−2) | [−1,−1,1] | 1 | k=6, S=4, F_9 | RF, sofic |
 | 13 | AAtAtaaTTattaTT | (1,2,−1,−1,−2) | [−1,−1,3] | 1 | k=4, S=6, F_12 | RF, sofic |
 | 14 | AAtatAATTAttaTT | (1,−2,−1,1,−2) | [−3,1,−1] | 3 | k=10, S=10, F_42 | RF, sofic |
 | 15 | AAtatAATTattaTT | (1,−2,1,1,−2) | [−1,1,−1] | 1 | k=5, S=4, F_11 | RF, sofic |
-| 16 | AAtatATTAttaaTT | (1,−1,−1,2,−2) | [−3,1,1] | 1 | none, k ≤ 10 | open |
+| 16 | AAtatATTAttaaTT | (1,−1,−1,2,−2) | [−3,1,1] | 1 | k=12, S=17, F_74 | RF, sofic |
 | 17 | AAtatATTattAATT | (1,−1,1,−2,−2) | [−1,1,−3] | 3 | k=8, S=3, F_11 | RF, sofic |
-| 18 | AAtatATTattaaTT | (1,−1,1,2,−2) | [−1,1,1] | 1 | none, k ≤ 10 | open |
-| 19 | AAtataTTAttAATT | (1,1,−1,−2,−2) | [−3,1,−1] | 3 | none, k ≤ 10 | open |
+| 18 | AAtatATTattaaTT | (1,−1,1,2,−2) | [−1,1,1] | 1 | none, k ≤ 12 | open |
+| 19 | AAtataTTAttAATT | (1,1,−1,−2,−2) | [−3,1,−1] | 3 | k=12, S=5, F_21 | RF, sofic |
 | 20 | AAtataTTAttaaTT | (1,1,−1,2,−2) | [−3,1,3] | 1 | k=9, S=6, F_21 | RF, sofic |
 | 21 | AAtataTTattAATT | (1,1,1,−2,−2) | [−1,1,−1] | 1 | k=3, S=5, F_9 | RF, sofic |
 | 22 | AAtataTTattaaTT | (1,1,1,2,−2) | [−1,1,3] | 3 | k=8, S=6, F_23 | RF, sofic |
@@ -166,31 +166,36 @@ Route for every row: virtual fibring (route 1). "open" means no certificate for
 | 26 | AAttAATTatataTT | (1,1,−2,−2,1) | [−1,1,−1] | 1 | k=3, S=5, F_9 | RF, sofic |
 | 27 | AAttATATAttaaTT | (1,1,−2,2,1) | [−3,−1,1] | 3 | k=6, S=5, F_15 | RF, sofic |
 | 28 | AAttATATattaaTT | (1,1,2,−2,−1) | [−1,−1,1] | 1 | k=10, S=5, F_23 | RF, sofic |
-| 29 | AAttATaTAttaaTT | (1,−1,−2,2,−1) | [−3,1,1] | 1 | none, k ≤ 10 | open |
-| 30 | AAttaTATAttaaTT | (1,1,−2,2,−1) | [−3,−1,3] | 1 | none, k ≤ 10 | open |
+| 29 | AAttATaTAttaaTT | (1,−1,−2,2,−1) | [−3,1,1] | 1 | none, k ≤ 12 | open |
+| 30 | AAttaTATAttaaTT | (1,1,−2,2,−1) | [−3,−1,3] | 1 | k=12, S=7, F_29 | RF, sofic |
 
 The full certificates (`a`, `t`, `c`, `pot`, `cp`, `Δ`) are in
-`or-length15-residue-scripts/certs13.txt` (index `≤ 6`) and `certs10.txt`
-(index 8–10). The verifier transcripts are `verify13.out` and `verify10.out`.
+`or-length15-residue-scripts/certs13.txt` (index `≤ 6`), `certs10.txt`
+(index 8–10), and `certs12.txt` and `certs12b.txt` (index 12). The verifier
+transcripts are `verify13.out`, `verify10.out`, `verify12.out` and
+`verify12b.out`.
 
-## 5. The 9 open classes
+## 5. The 2 open classes
 
-Open: rows 3, 6, 9, 10, 16, 18, 19, 29, 30.
-- **Certification index.** Of the 21 certified classes, 13 are certified at
-  index 3–6 and 8 at index 8–10. The index `≤ 7` sweep ran on all 30 classes;
-  the index 8–10 sweep ran on the 17 then open (`words17.txt`).
-- **Rows 16 and 29.** These are the two classes with `δ = [−3,1,1]`, i.e.
-  `Δ = t^2 + t − 3`. In both, no character of a subgroup of index `≤ 10` passes
-  the monic filter at `LAM = 2`.
-- **Row 18** (`Δ = t^2 + t − 1`, unit ends). Already `χ` passes the monic
-  filter, and at index 10 42 characters pass it. None has a collapsing
-  representative with `RPOT = 1`.
-- **Rows 3, 6, 9, 10, 19, 30.** Some character passes the monic filter at some
-  index `≤ 10`, but none collapses.
-- **Δ alone does not separate the classes.** Apart from `[−3,1,1]` and
-  `[−1,1,1]`, every open `δ` also occurs in a certified class. All six classes
-  with cyclotomic `Δ` (rows 2, 8, 15, 21, 25, 26) are certified at index `≤ 5`.
-- **No obstruction isolating the 9 has been identified.** A certificate is
+Open: rows 18 and 29.
+- **Certification index.** Of the 28 certified classes, 13 are certified at
+  index 3–6, 8 at index 8–10 and 7 at index 12. The index `≤ 7` sweep ran on
+  all 30 classes, the index 8–10 sweep on the 17 then open (`words17.txt`),
+  and the index 11–12 sweep on the 9 then open (`words9.txt`). Of those 9,
+  rows 3, 6, 9, 10, 16, 19 and 30 have index-12 certificates.
+- **Row 29** (`δ = [−3,1,1]`, `Δ = t^2 + t − 3`). No character of a subgroup of
+  index `≤ 10` passes the monic filter at `LAM = 2`. At index 12, 28 of 116
+  characters pass it, but none has a collapsing representative with
+  `RPOT = 1`. Row 16 has the same `δ` and is certified at index 12 (`S = 17`,
+  `F_74`), so this `δ` is not an obstruction.
+- **Row 18** (`Δ = t^2 + t − 1`, unit ends). `χ` already passes the monic
+  filter, and at index 12 8 of 24 characters pass it. None collapses with
+  `RPOT = 1`. Its `δ = [−1,1,1]` occurs in no certified class.
+- **Nielsen images.** `images.py 17` finds 7 automorphic images of length
+  15–17 for each of rows 18 and 29 (`images1829.out`). They present the same
+  groups with different presentation complexes. None has a certificate at
+  index `≤ 8` (`pipe1829.sh`).
+- **No obstruction isolating the 2 has been identified.** A certificate is
   sufficient but not necessary: a character that fibres can still fail the
   collapse test for every small potential.
 
@@ -206,6 +211,10 @@ directory on `PYTHONPATH`. All runs used Python 3.11 on MSI.
     ./sweep.sh words17.txt vf10 10 1 2 17 8          # index 8..10 -> certs10.txt
     python3.11 verify.py certs13.txt > verify13.out  # 13 VERIFIED
     python3.11 verify.py certs10.txt > verify10.out  # 8 VERIFIED
+    ./sweep.sh words9.txt vf12 12 1 2 9 11           # index 11..12 -> certs12.txt, certs12b.txt
+    python3.11 verify.py certs12.txt > verify12.out  # 4 VERIFIED (rows 6, 16, 19, 30)
+    python3.11 verify.py certs12b.txt > verify12b.out  # 3 VERIFIED (rows 3, 9, 10)
+    ./pipe1829.sh                                    # rows 18, 29: images at index <= 8, originals at index 13
     python3.11 verify.py negcert.txt                 # 2 FAIL
     python3.11 vfib.py atataTAAT 1 1 2               # positive control
     python3.11 vfib.py taTAA 6 1 2                   # no CERT
