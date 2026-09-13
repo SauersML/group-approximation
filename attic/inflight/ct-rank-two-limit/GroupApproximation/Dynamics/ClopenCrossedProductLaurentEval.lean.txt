@@ -111,31 +111,34 @@ theorem coeff_evalLaurent {x : X} (hx : T x = x) (y : ClopenCrossedProduct T k) 
       SkewMonoidAlgebra.coeff_add, Finsupp.add_apply, map_add]
     rfl
 
-/-- The transposition matrix `P`. -/
-def swapMat (L : Type*) [CommRing L] : Matrix (Fin 2) (Fin 2) L := !![0, 1; 1, 0]
-
-theorem swapMat_mul_self (L : Type*) [CommRing L] : swapMat L * swapMat L = 1 := by
-  ext i j
-  fin_cases i <;> fin_cases j <;> simp [swapMat, Matrix.mul_apply]
-
-/-- `n ↦ zⁿ Pⁿ`: `Pⁿ = 1` for even `n` and `P` for odd `n`. -/
+/-- `n ↦ zⁿ Pⁿ`, with `P` the transposition: `zⁿ` on the diagonal for even `n`, off the diagonal
+for odd `n`. -/
 noncomputable def laurentSwap : Multiplicative ℤ →* Matrix (Fin 2) (Fin 2) (LaurentPolynomial k) where
-  toFun j := (LaurentPolynomial.T (toAdd j) : LaurentPolynomial k) •
-    (if Even (toAdd j) then 1 else swapMat (LaurentPolynomial k))
+  toFun j := if Even (toAdd j) then !![LaurentPolynomial.T (toAdd j), 0; 0, LaurentPolynomial.T (toAdd j)]
+    else !![0, LaurentPolynomial.T (toAdd j); LaurentPolynomial.T (toAdd j), 0]
   map_one' := by
-    show (LaurentPolynomial.T (toAdd (1 : Multiplicative ℤ)) : LaurentPolynomial k) •
-      (if Even (toAdd (1 : Multiplicative ℤ)) then 1 else swapMat (LaurentPolynomial k)) = 1
-    simp only [toAdd_one, LaurentPolynomial.T_zero, Even.zero, ↓reduceIte, one_smul]
+    simp only [toAdd_one, Even.zero, ↓reduceIte, LaurentPolynomial.T_zero, Matrix.one_fin_two]
   map_mul' a b := by
-    dsimp only
-    by_cases ha : Even (toAdd a) <;> by_cases hb : Even (toAdd b) <;> ext i l <;>
-      fin_cases i <;> fin_cases l <;>
-        simp [ha, hb, Int.even_add, swapMat, Matrix.mul_apply, LaurentPolynomial.T_add, mul_comm]
+    obtain ⟨m, rfl⟩ : ∃ m : ℤ, ofAdd m = a := ⟨toAdd a, rfl⟩
+    obtain ⟨n, rfl⟩ : ∃ n : ℤ, ofAdd n = b := ⟨toAdd b, rfl⟩
+    by_cases hm : Even m <;> by_cases hn : Even n
+    · have h : Even (m + n) := Int.even_add.mpr (iff_of_true hm hn)
+      simp only [toAdd_mul, toAdd_ofAdd, hm, hn, h, ↓reduceIte, LaurentPolynomial.T_add,
+        Matrix.mul_fin_two, mul_zero, zero_mul, add_zero, zero_add]
+    · have h : ¬Even (m + n) := fun h ↦ hn ((Int.even_add.mp h).mp hm)
+      simp only [toAdd_mul, toAdd_ofAdd, hm, hn, h, ↓reduceIte, LaurentPolynomial.T_add,
+        Matrix.mul_fin_two, mul_zero, zero_mul, add_zero, zero_add]
+    · have h : ¬Even (m + n) := fun h ↦ hm ((Int.even_add.mp h).mpr hn)
+      simp only [toAdd_mul, toAdd_ofAdd, hm, hn, h, ↓reduceIte, LaurentPolynomial.T_add,
+        Matrix.mul_fin_two, mul_zero, zero_mul, add_zero, zero_add]
+    · have h : Even (m + n) := Int.even_add.mpr (iff_of_false hm hn)
+      simp only [toAdd_mul, toAdd_ofAdd, hm, hn, h, ↓reduceIte, LaurentPolynomial.T_add,
+        Matrix.mul_fin_two, mul_zero, zero_mul, add_zero, zero_add]
 
 theorem laurentSwap_ofAdd (n : ℤ) :
     laurentSwap k (ofAdd n) =
-      (LaurentPolynomial.T n : LaurentPolynomial k) •
-        (if Even n then 1 else swapMat (LaurentPolynomial k)) :=
+      if Even n then !![LaurentPolynomial.T n, 0; 0, LaurentPolynomial.T n]
+      else !![0, LaurentPolynomial.T n; LaurentPolynomial.T n, 0] :=
   rfl
 
 /-- `f ↦ diag(f(x), f(T x))`. -/
@@ -145,10 +148,12 @@ noncomputable def coeffPair (x : X) :
     (RingHom.pi fun i : Fin 2 ↦ LaurentPolynomial.C.comp
       ((LocallyConstant.evalRingHom (![x, T x] i)).comp (ClopenCoeff.of T k).symm.toRingHom))
 
-theorem coeffPair_apply (x : X) (c : ClopenCoeff T k) (i l : Fin 2) :
-    coeffPair T k x c i l =
-      if i = l then LaurentPolynomial.C ((ClopenCoeff.of T k).symm c (![x, T x] i)) else 0 :=
-  rfl
+theorem coeffPair_eq (x : X) (c : ClopenCoeff T k) :
+    coeffPair T k x c =
+      !![LaurentPolynomial.C ((ClopenCoeff.of T k).symm c x), 0;
+        0, LaurentPolynomial.C ((ClopenCoeff.of T k).symm c (T x))] := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> rfl
 
 /-- **Evaluation at a point of period at most two**, `R_X → M_2(k[z,z^{-1}])`:
 `f ↦ diag(f(x), f(T x))` and `u ↦ z P`, when `T ∘ T = id`. -/
@@ -161,17 +166,12 @@ noncomputable def evalPair (hT : ∀ y, T (T y) = y) (x : X) :
       intro y
       show (ClopenCoeff.of T k).symm c ((T ^ (-n)) y) = _
       simp only [zpow_apply_of_apply_apply_eq hT, even_neg]
-    rw [laurentSwap_ofAdd]
+    rw [coeffPair_eq, coeffPair_eq, laurentSwap_ofAdd]
     by_cases hn : Even n
-    · have h1 : ∀ y, (ClopenCoeff.of T k).symm (ofAdd n • c) y =
-          (ClopenCoeff.of T k).symm c y := fun y ↦ by rw [hev, if_pos hn]
-      ext i l
-      fin_cases i <;> fin_cases l <;> simp [coeffPair_apply, h1, hn, Matrix.mul_apply, mul_comm]
-    · have h1 : ∀ y, (ClopenCoeff.of T k).symm (ofAdd n • c) y =
-          (ClopenCoeff.of T k).symm c (T y) := fun y ↦ by rw [hev, if_neg hn]
-      ext i l
-      fin_cases i <;> fin_cases l <;>
-        simp [coeffPair_apply, h1, hn, hT, swapMat, Matrix.mul_apply, mul_comm])
+    · simp only [hev, hn, ↓reduceIte, Matrix.mul_fin_two, mul_zero, zero_mul, add_zero, zero_add,
+        LaurentPolynomial.T_mul]
+    · simp only [hev, hn, ↓reduceIte, hT, Matrix.mul_fin_two, mul_zero, zero_mul, add_zero,
+        zero_add, LaurentPolynomial.T_mul])
 
 theorem evalPair_single (hT : ∀ y, T (T y) = y) (x : X) (m : ℤ) (c : ClopenCoeff T k) :
     evalPair T k hT x (SkewMonoidAlgebra.single (ofAdd m) c) =
@@ -182,10 +182,12 @@ theorem evalPair_single_row (hT : ∀ y, T (T y) = y) (x : X) (m : ℤ) (c : Clo
     evalPair T k hT x (SkewMonoidAlgebra.single (ofAdd m) c) 0 0 +
         evalPair T k hT x (SkewMonoidAlgebra.single (ofAdd m) c) 0 1 =
       LaurentPolynomial.C ((ClopenCoeff.of T k).symm c x) * LaurentPolynomial.T m := by
-  rw [evalPair_single, laurentSwap_ofAdd]
+  rw [evalPair_single, laurentSwap_ofAdd, coeffPair_eq]
   by_cases hm : Even m
-  · simp [coeffPair_apply, hm, Matrix.mul_apply, mul_comm]
-  · simp [coeffPair_apply, hm, swapMat, Matrix.mul_apply, mul_comm]
+  · simp only [hm, ↓reduceIte, Matrix.mul_fin_two, mul_zero, zero_mul, add_zero, zero_add,
+      Matrix.of_apply, Matrix.cons_val_zero, Matrix.cons_val_one]
+  · simp only [hm, ↓reduceIte, Matrix.mul_fin_two, mul_zero, zero_mul, add_zero, zero_add,
+      Matrix.of_apply, Matrix.cons_val_zero, Matrix.cons_val_one]
 
 /-- The first row of `evalPair y` recovers the Laurent coefficients of `y` at `x`. -/
 theorem coeff_evalPair_row (hT : ∀ y, T (T y) = y) (x : X) (y : ClopenCrossedProduct T k)
