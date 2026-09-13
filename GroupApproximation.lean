@@ -4990,6 +4990,9 @@ import GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms
 import GroupApproximation.GGT.HullLemma35Transitive
 import GroupApproximation.GGT.HullLemma35LocalFinite
 import GroupApproximation.CuTensor.ObstructionGrothendieck
+import GroupApproximation.CStarLimits.TowerLift
+import GroupApproximation.KTheory.Suspension
+import GroupApproximation.KirchbergAlgebra.Basic
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
