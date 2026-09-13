@@ -86,3 +86,23 @@ automaton on `(F_p^n)^(Gamma_R)`, that is `radu-bmw-lattice-nonsurjunctive`
     (`strict-pairs-transfer-to-table-realizations`), makes every Garden of Eden window distinguish two
     cells that differ by an element of `Gamma_0`, so its diameter is at least eight. No candidate is
     known.
+* **Radius four and five, idempotent screen (w7-radu-r4-linear, 2026-09-12).**
+  Artifact: `research/artifacts/radu-lattice-radius-four-linear-pairs-2026-09-12.md`.
+  - **Source check.** Remark 3.6 of Titz Mite--Witzel states what the finite-residual screen uses:
+    `Gamma_0 ∩ B_8 ⊆ {1, delta^(+-4)}`, through the residually finite image of `Phi`. No correction.
+  - **Radius four excluded** (`radu-lattice-one-sided-pairs-need-radius-five`). The only residual
+    coincidence in `B_4` is `{delta^2, delta^(-2)}`, so `D = I_n - A B = E (delta^2 - delta^(-2))` with
+    `E` scalar, and `D = D^2 = E^2 (delta^4 - 2 + delta^(-4))` forces `E = 0`. So `(B_2,B_2)` and
+    `(B_1,B_3)` carry no pair over any field, and no pair of any size is built on the `delta^4`
+    coincidence there.
+  - **Criterion.** If the coincidence points of `B_k` form a product-free set, radius `k` is excluded.
+    Under H10 (`Gamma_0 ∩ S_10 ⊆ {y delta^(+-4) y}`) this holds at `k = 5`.
+  - **Failed finer invariants.** Finite quotients, linear representations, letter identifications, the
+    horizontal-tree image and Jennings filtrations do not separate `delta^2` from `delta^(-2)`.
+    `[Gamma_0, Gamma_0]` gives a valid sofic screen, but it helps only if
+    `delta^4 ∉ [Gamma_0, Gamma_0]`. The `J`-adic filtration needs `H_1(Gamma_0; K) != 0`. Both are
+    unknown.
+  - **Where it stops.** H10 is a finite check, the Remark 3.6 computation run to length ten, and it was
+    not run under the compute rules. At radius six the coincidence set contains `delta` and
+    `delta^2 = delta delta`. So supports give nothing there, and the coefficient equations of `D = D^2`
+    are needed.
