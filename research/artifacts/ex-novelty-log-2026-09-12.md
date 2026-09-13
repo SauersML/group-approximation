@@ -247,6 +247,37 @@ main was messaged at 23:20.
   - 8f81b394fc (the AMRSSV credit was already requested);
   - 5a34c7f6f4 (credits the Caprace–Conder–Kaluba–Witzel data).
 
+## Entries 22:56–23:02
+
+- **ex-thompson-v-soficity, 183c0f394e.** `thompson-f-is-sofic` and `thompson-f-is-not-sofic`, both OPEN, with the
+  equivalence route `thompson-f-sofic-iff-relator-system-unstable`.
+  - It credits Arzhantseva–Păunescu for almost-commuting permutations and for posing the finitary relator
+    form.
+  - The general "sofic and stable ⇒ residually finite" principle is on main as `sofic-stable-implies-residually-finite`.
+  - Credit is adequate.
+- **ex-hyperbolic-vtf, b6178d5340.** `non-vtf-hyperbolic-counterexample-may-be-one-ended`, via the Dunwoody
+  decomposition. Marked "No novelty is claimed". Adequate.
+- **ex-blackadar-kirchberg, 8dbc69d167.** `bk-primitive-quotients-qd-or-traceless-force-qd` is marked "lane proof,
+  not externally reviewed". Problem VII for T_1 spectra is reduced to the simple case, which stays OPEN.
+  No priority check possible (see the note below).
+- **ex-fp-simple-sofic, 3b28586846.** `no-proper-character-groups-avoid-amenable-orbit-full-groups` credits
+  Dudko–Medynets arXiv:1212.1230. Adequate.
+- **ex-complexity-sofic, 33ef1a93f3.** The ledger marks the residual-finiteness and LEF finite-presentation cells
+  "CLOSED (unreviewed)". The prior-art check stands as in the entry above. Review before external use.
+- **ex-nh-mipstar, ed270bac5f.** Adds the Lupini–Mančinska–Roberson and AMRSSV credits requested at 22:35 and
+  23:10.
+- **Low risk, subject line only:** 6bf99b8316, 203674d9b1, d7a988a3fc, 32cc9569fb, 33b9e1597c, f1ba568e97,
+  fbd2aefb11, eed9297d75, 604cc0a50f, f83b2e1299, e3db1ad41d, a4df45dd7b, 1373122d44.
+  02d793f9c5 credits CETW Corollary 3.2.
+
+## Tooling note (23:25)
+
+- The session's WebSearch budget is exhausted (200 of 200).
+- The export.arxiv.org API returns HTTP 429.
+- Checks still possible: WebFetch of `arxiv.org/abs/<id>` and `arxiv.org/html/<id>`, the arxiv.org search UI
+  (intermittent 429), and curl of `arxiv.org/abs` from MSI (HTTP 200 at 22:08).
+- Later novelty checks can only read named papers. They cannot search for unknown ones.
+
 ## Boggi note
 
 Boggi–Zalesskii, arXiv:2406.08639 (Bull. LMS 2025), abstract (P): "Let G be a residually finite, good
