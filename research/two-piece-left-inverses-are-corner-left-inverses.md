@@ -10,7 +10,7 @@ artifacts:
 ---
 
 **ESTABLISHED** (proof: artifact Section 2, route `two-piece-left-inverses-are-corner-left-inverses-proof`).
-Re-derivation requested from `w4-vf-linear-b`.
+Verified: `w4-vf-linear-b` PASS (Section 41 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`, 110282f9eb).
 
 Let `S` be a unital ring, `P` an idempotent, `P' = 1 - P`, `u0, u1` units, `h = u0^(-1) u1`, and
 `a = u0 P + u1 P'`. Then `a` has a left inverse in `S` iff some `v in P'SP'` satisfies `v · P'hP' = P'`.

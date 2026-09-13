@@ -12,7 +12,7 @@ artifacts:
 ---
 
 **ESTABLISHED** (proof: artifact Section 8, route `finite-dimensional-chart-reps-kill-one-transvection-lift-proof`).
-Re-derivation requested from `w4-vf-linear-b`.
+Verified: `w4-vf-linear-b` PASS (Section 41 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`, 110282f9eb).
 
 **Setting.** `G = L_(F_3)(1,2)^x`, `S_- = eps_- F_3[G]`, `d1 = 1 + s1 t1`, `P1 = 2(1 - [d1])`, and
 `h = [[0,1],[-1,s0]]` in the `{0,1}` chart, as in `one-transvection-ternary-s0-lift-is-left-invertible`.
