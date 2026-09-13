@@ -39,6 +39,22 @@ CLAIM classCovers_of_sameCellFactor GroupApproximation/GGT/VanKampen/Estimating/
 (i) is what `classCovers_of_endLoops` proves once `hsameCell` is dropped; (ii) is fff-periodic's planned count with
 `M₀ = ⌈1/λ⌉₊`. The module imports only `OsinLemma94PolygonClasses`, so the red cover module does not block it.
 
+CLAIM otherFacingCover_of_endLoops GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassCoversOtherFacing.lean
+
+Lead item 17:2x: a green port of hull-component's `classCovers_of_endLoops` without `hsameCell`, proving hypothesis (i)
+directly in a new namespace (`OsinLemma94OtherFacingCover`), so it never collides with hull-component's module when that
+one is fixed and wired.
+
+CLAIM sameCellFactor_of_scan GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellFactorInput.lean
+
+Ownership check 17:3x: no `OsinUnboundSameCellCount` file on origin, in the shared tree or in any `lanes/*.files` (the only
+hit is the forward reference in `OsinUnboundSameCellSegments`' docstring). ko-closed's `OsinLemma94SameCellSpan` is Case 1
+infrastructure (binder 3), not the site-5 count. This module states (ii) as `OsinLemma94SameCellFactorInput`
+(`M₀ = ⌈1/λ⌉₊`, `T = 25 ⌈c/λ⌉₊`) and the dart-level scan residual `OsinLemma94SameCellScanInput`, and proves the
+counting step `OsinLemma94SameCellScanInput → OsinLemma94SameCellFactorInput`. The scan residual is what
+`OsinUnboundSameCellScanBound` gives on each cell word, with the pocket value clause `OsinLemma94SameCellPocketInput` for
+the blocks. That instantiation stays with fff-periodic.
+
 ## Landed
 
 - **`OsinLemma94ClassPolygons.classCovers_of_sameCellFactor` LANDED 2336592ee** (module
