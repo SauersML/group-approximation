@@ -41,3 +41,11 @@ not by itself settle the non-unital part of
   `stw18-strict-comparison-non-z-stable-algebra-exists`: no uniform Gamma, a
   tracial ultrapower that nevertheless compares projections by limit traces,
   and, for locally finite nuclear dimension, failure of rank density.
+- **Bauer simplices (2026-09-12, lane `ex-toms-winter`).** Suppose `T(A)` is
+  Bauer and `A` has tracially locally finite nuclear dimension. Under strict
+  comparison, `A` is Z-stable iff its unit is tracially `N`-divisible for large
+  `N` (`toms-winter-bauer-tlfnd-iff-tracially-divisible-unit`).
+  - So `toms-winter-holds-on-bauer-tlfnd-locus` reduces to
+    `strict-comparison-forces-tracially-divisible-unit`.
+  - On that locus a unital `Z`, a unital UHF algebra, or unital `Z_{n,n+1}` for
+    large `n` already gives Z-stability.

@@ -97,3 +97,13 @@ Every unital counterexample with a Bauer simplex yields such a bundle.
     strict comparison, equal-trace projections of the completion are
     approximately equivalent.  So a C*-algebraic witness certified this way fails
     strict comparison.  The bundle question itself has no comparison hypothesis.
+- **What a strict-comparison witness must lack instead (2026-09-12, lane
+  `ex-toms-winter`).** Let the bundle be the strict closure of a unital simple
+  separable nuclear algebra that has strict comparison and tracially locally
+  finite nuclear dimension but is not Z-stable.
+  - By `toms-winter-bauer-tlfnd-iff-tracially-divisible-unit`, for large `N`
+    its reduced powers contain no projection `P` with `E(P) = 1/N`. There is no
+    uniform tracial halving of the unit, central or not.
+  - Every fibre `R` halves its unit, but not uniformly over the base.
+  - So such a witness is certified by an existence gap at a constant profile,
+    not by a comparison gap.

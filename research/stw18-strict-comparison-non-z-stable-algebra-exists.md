@@ -54,3 +54,20 @@ Known strata where no such algebra exists:
     tracial ultrapower lacks projections of some continuous trace profile while
     comparing all the projections it has.
   See `research/artifacts/toms-winter-tracial-ultrapower-comparison-2026-09-12.md`.
+- **Bauer simplices with tlfnd: the obstruction sits at the unit (2026-09-12,
+  lane `ex-toms-winter`).** Take a witness with Bauer trace simplex and
+  tracially locally finite nuclear dimension. By
+  `toms-winter-bauer-tlfnd-iff-tracially-divisible-unit` its unit is tracially
+  indivisible: for large `N`, no c.p.c. order zero map `M_N → A` has trace near
+  `1` at every trace, and its tracial ultrapower has no projection of constant
+  trace `1/N`.
+  - Central step functions of the extreme boundary turn constant profiles into
+    every continuous profile (`bauer-tracially-divisible-unit-gives-bounded-rank-density`),
+    so on this locus rank density fails exactly at the unit.
+  - Such a witness has no unital `Z`, no unital UHF algebra, no unital simple
+    infinite-dimensional unique-trace subalgebra, and no unital `Z_{n,n+1}` for
+    large `n`.
+  - Unit rigidity exists without strict comparison: Dadarlat--Hirshberg--Toms--Winter
+    (arXiv:0712.2020) give a simple nuclear AH algebra with no unital `Z_{3,4}`.
+    The positive side is the open `strict-comparison-forces-tracially-divisible-unit`.
+  See `research/artifacts/ex-toms-winter-bauer-divisible-unit-2026-09-12.md`.
