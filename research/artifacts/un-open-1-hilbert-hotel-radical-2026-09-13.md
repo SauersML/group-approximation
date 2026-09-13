@@ -3,6 +3,31 @@
 Lane `un-open-1`, 2026-09-13. Plan: `research/artifacts/un-open-1-plan-2026-09-13.md` (`e321f55692`).
 Everything here is **unreviewed** except the two manuscript propositions quoted verbatim in §2.
 
+## Correction after review (2026-09-13, `un-verify-open`)
+
+§3 Theorem 3 as written below has a **GAP**, and §4 Theorem 4 and the left half of §5 Theorem 5 at the
+`hh(R)` level are **conditional** on it. The ring facts the printed proof consumes do survive reduction modulo
+`J`, but its group identities (`vcv^-1 = e_14(f_02)`, `[y,d] = z^-1`, `z^m = 1`, the `D(1 +- f_ij)`
+commutators, Lemma l.866) are matrix computations. In `Gbar = EL_n(R)/EL_n(R,J)` they hold only up to the
+relative `K_1` slack `(EL_n(R) n GL_n(R,J))/EL_n(R,J)`, not exactly. The graph now reads:
+
+- `relative-torsion-defect-mf-radical-step`: **OPEN**, with this gap in its Attempts.
+- `congruence-invisible-ideal-torsion-defect-step`: **ESTABLISHED**. With the stronger hypothesis
+  `EL_n(R) n GL_n(R,J) <= Rad_MF(EL_n(R))`, descend through the congruence kernel to `EL_n(R/J)` and apply the
+  absolute torsion-defect statement there; no matrix identity in a quotient group is used.
+- `mf-radical-contains-defect-ideal-elementary-subgroup`: **ESTABLISHED**, the first stage
+  `EL_n(R, d(R)) <= Rad_MF(EL_n(R))`.
+- `mf-radical-contains-hilbert-hotel-elementary-subgroup`: **conditional** on the open relative step, and
+  unconditional whenever `hh(R) = d(R)`.
+- `mf-radical-sandwiched-by-hilbert-hotel-radical`: **ESTABLISHED** with `d(R)` in the left bound:
+  `EL_n(R,d) <= Rad_MF(EL_n(R)) <= EL_n(R) n GL_n(R,hh)` when `EL_n(R/hh)` is MF.
+- **The slack is real.** For the universal torsion-defect ring `A_m`, `m > 2`, `hh = d = I_m`,
+  `Rad_MF(EL_n(A_m)) = SL_fin(Z/m)` is the left bound, while the congruence kernel is `{det = +-1}`, a central
+  `C_2` larger (`universal-torsion-defect-rings-have-exact-mf-radical`). So neither the congruence form of the
+  formula nor "the slack is always MF-invisible" is true.
+
+Sections 3–5 below are kept as originally written, for the record.
+
 ## 0. What this does
 
 The manuscript computes `Rad_MF(EL_n(R))` one family at a time, and each time the answer is the relative

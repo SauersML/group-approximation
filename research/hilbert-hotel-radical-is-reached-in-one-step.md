@@ -14,9 +14,10 @@ Equivalently: if `R/d(R)` carries a one-sided pair, must some one-sided pair of 
 generating more than `d(R)` does? Nothing formal forces this, because a one-sided pair of a
 quotient need not lift: lifting `ts = 1` only gives `ts = 1 + j` with `j in d(R)`.
 
-A positive answer would make the Hilbert-hotel radical computable in one step and would simplify
-`mf-radical-contains-hilbert-hotel-elementary-subgroup` to a single application of
-`finite-additive-order-one-sided-defects-are-mf-invisible`. A negative answer would exhibit a ring
+A positive answer would make the Hilbert-hotel radical computable in one step and would make
+`mf-radical-contains-hilbert-hotel-elementary-subgroup` unconditional, since it would then coincide with the
+proved first stage `mf-radical-contains-defect-ideal-elementary-subgroup`. That matters because the relative
+step that was meant to carry the transfinite induction, `relative-torsion-defect-mf-radical-step`, is open. A negative answer would exhibit a ring
 whose MF radical is only reached after an iteration, which is itself a new phenomenon for the
 non-MF machinery.
 

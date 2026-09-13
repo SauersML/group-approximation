@@ -29,7 +29,7 @@ a compact zero-dimensional system has a basis of clopen trapping regions around 
 **Calibration.** For `X = Z u {-inf, +inf}`, the two-point compactification with `T(n) = n+1`, take
 `U = {+inf} u Z_(>=0)`. Then `T(U) = {+inf} u Z_(>=1)` and the defect is `chi_({0})`, whose ideal
 is the finitary ideal `M_fin(Z,k)`; the quotient is `C({-inf,+inf},k) ⋊ Z = k[z,z^-1] x k[z,z^-1]`,
-which is directly finite. So `hh(R)` is exactly the core-vanishing ideal here, and the printed
-chain-core formula for the MF radical is the corresponding instance of
-`mf-radical-sandwiched-by-hilbert-hotel-radical`. The same computation on the one-sided shift is the
+which is directly finite. So `d(R) = hh(R)` is exactly the core-vanishing ideal here. The bounds of
+`mf-radical-sandwiched-by-hilbert-hotel-radical` are consistent with the printed chain-core formula for the
+MF radical, whose equality with the left bound is the printed theorem, not a consequence of the sandwich. The same computation on the one-sided shift is the
 Toeplitz-Jacobson algebra `k<s,t | ts=1>` of the manuscript.

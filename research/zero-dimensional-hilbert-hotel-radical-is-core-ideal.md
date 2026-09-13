@@ -19,9 +19,11 @@ hh(R) = { a in R : a vanishes on the chain-recurrent core of (X,T) } ?
 
 The right-hand side is the ideal whose group-level restriction kernel is the MF radical in
 `zero-dimensional-system-mf-radical-is-core-restriction` and in the manuscript's
-`thm:core-mf-radical`. A positive answer would make that printed dynamical theorem a corollary of
-`mf-radical-sandwiched-by-hilbert-hotel-radical`, and would read the chain-recurrent core as the
-dynamical avatar of a purely ring-theoretic radical: **defects live exactly off the core**.
+`thm:core-mf-radical`. A positive answer would identify the ideal behind that printed dynamical theorem: through
+`mf-radical-sandwiched-by-hilbert-hotel-radical` the printed equality would become the statement that the
+defect ideal is the whole core-vanishing ideal and that the relative `K_1` slack between the two bounds is
+MF-invisible there. It would read the chain-recurrent core as the dynamical avatar of a purely ring-theoretic
+radical: **defects live exactly off the core**.
 
 ## Attempts
 
