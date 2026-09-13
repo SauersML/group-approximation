@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundMonotoneMorseIndex
 import GroupApproximation.GGT.VanKampen.Estimating.UnboundWordConnectors
+import GroupApproximation.GGT.OlshanskiiOrientedClasses
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -21,6 +22,8 @@ segments forwards, as the polygon does.
   indices and keeps the orientation.  Morse proximity supplies the indices, and the
   monotone index choice (`index_lt_of_prefix_near`) orders them, since the segment
   length of the scale exceeds `3 kappa + 6 δ` (`OsinUnboundScale.morse_gap_lt`).
+* `OsinUnboundScale.orientedWordSidePair_of_orientedClassPair` applies it to an
+  `OrientedClassPair` (`OlshanskiiOrientedClasses`) of the replacement polygon.
 -/
 
 namespace GroupApproximation.GGT.VanKampen.UnboundEstimate
@@ -200,6 +203,30 @@ theorem OsinUnboundScale.orientedWordSidePair_of_parameters
   · simpa only [dist_vertexQuot, Nat.cast_lt] using hlong
   · simpa only [dist_vertexQuot, Nat.cast_lt] using hlong'
 
+/-- **Oriented class pair to original vertices.**  An antiparallel pair
+(`OrientedClassPair`) of the geodesic replacement polygon, at the segment length of the
+scale and closeness `12 (δ + 1)`, gives an oriented word pair at `eps`.  In
+`OrientedSidePair`, `sides i u` is close to `sides j t'` and `sides i u'` to `sides j t`,
+with `u < u'` and `t < t'`.  The original vertices therefore satisfy `a < a'` on the
+first side and `b' < b` on the second. -/
+theorem OsinUnboundScale.orientedWordSidePair_of_orientedClassPair
+    {D : RelGenSet G Lambda} {δ lambda c mu kappa : ℝ} {eps rho : ℕ}
+    (scale : OsinUnboundScale lambda c mu kappa (12 * (δ + 1)) (100000 * (δ + 1)) eps rho)
+    (hδ : IsHyperbolicSpace δ (PointQuot D.alphabet)) (hδ0 : 0 ≤ δ)
+    (hmorse : IsWordMorseRadius D lambda c kappa)
+    {n : ℕ} {v : ℕ → G} {word : ℕ → List (RelLetter G Lambda)}
+    {sides : ℕ → ℝ → PointQuot D.alphabet}
+    (hpoly : IsClosedPolygonAt (fun i => vertexQuot D.alphabet (v i)) sides 0 n)
+    (hends : ∀ i < n, v (i + 1) = v i * RelLetter.listVal (word i)) (A B : Set ℕ)
+    (hquasi : ∀ i < n, i ∈ A ∨ i ∈ B → IsLambdaCQuasiGeodesicWord D lambda c (word i))
+    (hpair : OrientedClassPair (fun i => vertexQuot D.alphabet (v i)) sides n A B
+      ((lambda * Real.sqrt (rho : ℝ) / 240 - c) / 1000) (12 * (δ + 1))) :
+    OrientedWordSidePair D v word n A B eps := by
+  obtain ⟨i, hi, j, hj, hiA, hjB, hne, u, hu, u', hu', t, ht, t', ht', hlen, hlen', hc, hc'⟩ :=
+    hpair
+  exact scale.orientedWordSidePair_of_parameters hδ hδ0 hmorse hpoly hends A B hquasi
+    hi hj hiA hjB hne hu hu' ht' ht hlen hlen' hc hc'
+
 end Transfer
 
 end GroupApproximation.GGT.VanKampen.UnboundEstimate
@@ -208,3 +235,4 @@ end GroupApproximation.GGT.VanKampen.UnboundEstimate
 #audit_axioms GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordSidePair.toWordSidePair
 #audit_axioms GroupApproximation.GGT.VanKampen.UnboundEstimate.OrientedWordSidePair.exists_connectors
 #audit_axioms GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.orientedWordSidePair_of_parameters
+#audit_axioms GroupApproximation.GGT.VanKampen.UnboundEstimate.OsinUnboundScale.orientedWordSidePair_of_orientedClassPair
