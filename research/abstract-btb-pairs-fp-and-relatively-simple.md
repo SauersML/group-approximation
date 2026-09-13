@@ -4,7 +4,7 @@ id: abstract-btb-pairs-fp-and-relatively-simple
 kind: claim
 title: For a type [A_2] action the abstract twisted Brin--Thompson group is finitely presented and relatively simple, and the actor pair embeds in it
 distinct_from:
-  twisted-brin-thompson-finite-presentation-criterion: that is the finite-presentation criterion for twisted Brin--Thompson groups of FAITHFUL actions, where SV_G is simple and contains G; this is the non-faithful case, where SV_G is only relatively simple and the actor embeds as a normal pair.
+  twisted-brin-thompson-finite-presentation-criterion: that is the finite-presentation criterion, stated for every action and cross-checked against FFWZ Theorem B, so item 1 here restates it at type [A_2]; this adds relative simplicity of SV_G for non-faithful actions, where SV_G is not simple, and the pair embedding of the actor.
   abstract-btb-simple-quotient-fp-gate: that compares finite presentation of the simple quotient with finite presentation of the action image; this records finite presentation and relative simplicity of the abstract group itself, and the pair embedding of the actor.
   boone-higman-implies-relative-permutational-bh: that is FFWZ Theorem C, placing a Boone--Higman group in some type [A_2] actor; this holds for every type [A_2] action and turns sharp embeddings in actor pairs into sharp embeddings in finitely presented relatively simple groups.
 artifacts:

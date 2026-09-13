@@ -368,3 +368,93 @@ These landed shortly before 17:00, and no review file has a verdict on them. Two
   - The ESTABLISHED hits are unrelated: `fpbs-line-independent-twisted-levels-disconnected` and
     `kazhdan-groups-without-fd-reps-violate-two-root-identity`.
   - No older node states the obstruction.
+
+## 11. bh-simple-products-embed (ad6a66ac6, 970135775): two PASS, route does not fire, one entry corrected
+
+FFWZ line numbers are from MSI `bh-reviewer/2603.24687.txt` (226990 bytes), re-read for this section. BFFHZ line numbers
+are from `bh-outfn-mcg/2503.21882v2.txt`, also re-read.
+
+### 11.1 `abstract-btb-pairs-fp-and-relatively-simple` (970135775): PASS, source re-read, distinct_from corrected forward
+
+- **Item 1.** Theorem 4.1 (lines 747–753): "Let G be a group acting on a non-empty set S. Then: … (ii) SV_G is finitely
+  presented if and only if G ↷ S is of type [A_2]." The node uses the "if" direction.
+- **Type [A_2].** Definition 1.3 (lines 83–91) at `n = 2`: `G` of type `F_2`, point stabilizers of type `F_1`, and
+  finitely many orbits on `S^2`. Pair stabilizers get type `F_0`, which asks nothing. This matches the reading in
+  `relative-pbh-closed-under-finite-direct-products`.
+- **Item 2.** Theorem 3.6 (lines 667–670): "Let G be a group acting on a non-empty set S. The abstract twisted
+  Brin–Thompson group SV_G is relatively simple, with largest normal subgroup the canonical kernel SK_G."
+  - `SK_G = ker(SV_G → SV_{G/ker})` (lines 69–74).
+  - Definition 1.2 (lines 56–60) makes the pair proper, and line 60 gives `G/N` simple.
+- **Item 3.** Lemma 5.2 (lines 1204–1210) has no hypothesis.
+  - Its proof checks only that `λ(g) ∈ SK_G` forces `g ∈ K`. The inclusion `λ(K) ⊆ SK_G` holds because `K` maps to 1
+    in `SV_{G/K}`.
+  - Injectivity is not argued in the proof. It is part of what "embeds" asserts (Definition 1.6). Nit, source-side.
+- **The four requested checks, for the product actor** `A = A_1 x A_2` on `X_1 ⊔ X_2` (route Steps 2–3).
+  - `SV_A` is finitely presented. This is item 1, because the product action has type [A_2] (swarm4 §34.3, PASS).
+  - `SK_A` contains every proper normal subgroup of `SV_A`. This is item 2.
+  - `P ∩ SK_A = 1`. Recomputed: `λ(Γ) ∩ SK_A ⊆ λ(A) ∩ SK_A = λ(K)`, so `λ(Γ) ∩ SK_A = λ(Γ ∩ K)` by injectivity.
+    With `Γ = S_1 x S_2` and `K = K_1 x K_2`, `Γ ∩ K = (S_1 ∩ K_1) x (S_2 ∩ K_2) = 1`.
+  - `SV_A / SK_A = SV_{A/K}` is simple, by line 60. The map `SV_A → SV_{A/K}` is onto, since each generator
+    `[T,σ,(g_i),U]` of the target lifts.
+- **Hidden hypothesis on the actors.**
+  - FFWZ Theorem 5.1 (lines 1199–1202) says only "Let Γ be a finitely presented simple group".
+  - Its proof (lines 1211–1232) uses three BFFHZ results:
+    - Proposition 2.3, "Suppose G is an infinite simple group, and n ≥ 2" (lines 307–308);
+    - Proposition 2.6, for finitely generated `G` (line 415);
+    - Proposition 1.1, "If G is finitely presented and has trivial center" (lines 223–224).
+  - An infinite simple group is nonabelian, so its center is trivial. The proof therefore covers every infinite `Γ`.
+  - For finite `Γ` the proof does not apply; for `Z/p`, Proposition 1.1 fails. The statement still holds: `Γ` acting on
+    itself by left translation has type [A_2] and trivial kernel.
+  - So route Step 1 has actors for every finitely presented simple `S_i`. `boone-higman-implies-relative-permutational-bh`
+    already has a PASS (review-bh-swarm §12). Only this point is added.
+- **Subsumption scan.** Terms: "relatively simple", "SV_G", "SK_G", "canonical kernel", "twisted Brin", "Lemma 5.2" and
+  "Theorem 3.6". No truncation; about 100 files.
+  - No other node states relative simplicity of `(SV_G, SK_G)` or the pair embedding. Among ESTABLISHED claims,
+    `boone-higman-implies-relative-permutational-bh` mentions Theorem A in prose only. The other "Lemma 5.2" and
+    "Theorem 3.6" hits cite other papers.
+  - Item 1 is already `twisted-brin-thompson-finite-presentation-criterion`, which cairn why reports ESTABLISHED at
+    faca304bb. That node is stated for every action, and its route cross-checks it against FFWZ Theorem B.
+  - **Corrected forward.** The distinct_from entry called that node the criterion "of FAITHFUL actions". FFWZ
+    lines 98–99 do say Zaremsky's theorem assumes a faithful action. The graph node is not restricted, though, and it
+    cites Theorem B for the general case. The entry now says item 1 restates that node, and this node adds items 2–3.
+  - Not a duplicate. The new content is items 2–3 and the Consequence.
+
+### 11.2 `fp-relatively-simple-pairs-embed-with-fng-kernels` (ad6a66ac6, OPEN): quote verbatim, Attempt 1 holds
+
+- **Verbatim.** Lines 1344–1346 read: "Does every finitely presented relatively simple (G,N) sharply embed in a finitely
+  presented relatively simple (G′,N′) such that N′ is finitely normally generated in G′?" The node quotes exactly this.
+  Its quotations from the note at lines 1347–1351 are also exact.
+- **"Sharply embed" for pairs.**
+  - Definition 1.6 (lines 152–157) defines "embeds" for pairs, but "sharply embeds" only for a group in a pair.
+  - Lemma 5.2 says "(G,K) sharply embeds in SV_G", and its proof establishes `λ(G) ∩ SK_G = λ(K)`. So the node's
+    reading, `ι(G) ∩ N′ = ι(N)`, is the source's usage.
+  - The other reading, `ι(G) ∩ N′ = 1`, would make Lemma 5.2 false whenever `K ≠ 1`.
+- **Attempt 1, a positive answer forces N recursive: checked.**
+  - Since `N` is the largest proper normal subgroup, `g ∉ N` iff `⟨⟨g⟩⟩ = G`. So `N` is co-r.e.
+  - Given `ι`, `G′/N′` is finitely presented and simple, so it has solvable word problem (Kuznetsov).
+  - `ι` is computable on words, because `G` is finitely generated. So `N = ι⁻¹(N′)` is recursive.
+  - Twisted pairs. `λ` is computable and `K = λ⁻¹(SK_H)`. So a type [A_2] action with non-recursive kernel refutes this
+    claim. By `a2-kernel-removal-forces-recursive-kernel` (b) (swarm4 §31.2, PASS), it also refutes the first part, so
+    "at once" is right.
+  - FFWZ's example (lines 1251–1254) acts on one point, so its action image is trivial. Corollary 4.2 (lines 757–760)
+    makes the simple quotient finitely presented, so the pair is its own witness.
+- **Attempt 3.** `G_1 x N_2` is normal and proper. It is not inside `N_1 x N_2`, because `N_1 ≠ G_1`. Right.
+- **Status.** cairn why at faca304bb: OPEN, "frontier hole: no live routes into it". The product route is the only route
+  waiting on it.
+- **Subsumption.** No node states the second part. `a2-pairs-embed-in-a2-pairs-with-fng-kernels` (OPEN) is the first
+  part, as distinct_from says.
+
+### 11.3 Route `bh-product-closure-via-relatively-simple-kernel-removal`: does not fire, closure still OPEN
+
+- **Display check.**
+  - Step 4: `ι(P) ∩ N′ = ι(P) ∩ ι(SV_A) ∩ N′ = ι(P) ∩ ι(SK_A) = ι(P ∩ SK_A) = 1`, by injectivity.
+  - Step 5: `G′/N′` is finitely presented, since adding the finitely many normal generators of `N′` as relators presents
+    it. It is simple by Definition 1.2, and it contains `ι(P) ≅ S_1 x S_2`.
+- **Premises.** `boone-higman-implies-relative-permutational-bh`, `relative-pbh-closed-under-finite-direct-products` and
+  `abstract-btb-pairs-fp-and-relatively-simple` are ESTABLISHED. `fp-relatively-simple-pairs-embed-with-fng-kernels` is
+  OPEN.
+- **cairn why at faca304bb.**
+  - `boone-higman-closed-under-finite-direct-products [OPEN]`.
+  - The OPEN premise reports "if established: completes bh-product-closure-via-relatively-simple-kernel-removal ->
+    boone-higman-closed-under-finite-direct-products". If it is refuted, the closure claim "keeps 3 other live route(s)".
+  - So the route does not fire, and the node's "None fires while its premises are open" is right.
