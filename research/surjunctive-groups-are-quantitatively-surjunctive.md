@@ -41,3 +41,27 @@ and all `n >= 1`, `j, j' >= 0` with `(j' - j) log|D| < delta_Y n`, no injective 
   - **Theorem Q meets only the residue.** A Garden of Eden pattern whose subshift misses an `N`-invariant point is
     realized (`product-automata-images-contain-fibre-invariant-configurations`).
   - Artifact `research/artifacts/quantitative-surjunctivity-residue-2026-09-12.md`, Sections 1–2.
+- **Zero margin and routes that die (w5-quant-surj).** Artifact Sections 3–4.
+  - **Zero margin.** The case `j' <= j` is equivalent to surjunctivity. So surjunctivity already gives a margin
+    of at least `log 2`, and the content of the claim is linear growth of the margin in `n`.
+  - **Compactness.** A failure forces `n_i -> infinity`. A limit with infinitely many tracks is realized over
+    every group by interleaving tracks, so no contradiction comes from the limit.
+  - **Amplification.** Products keep the ratio, and composition adds margins.
+  - **Recoding the output.** No injective automaton from a subshift containing the image into a smaller full
+    shift exists over any group, since the image contains `|B|^n |D|^j` constant configurations.
+  - **Clauses.** Surjunctivity forbids finite certificates of ratio `<= 0`. The claim forbids those below an
+    unknown `delta`, and turning one kind into the other needs a recoding.
+  - **Amenable Schreier graphs.** Følner counting on `H\G` gives constants when a positive density of vertices
+    is `W`-injective for every `W`. By tensor-power amplification that makes `G` sofic, where the claim is known.
+  - **Peeling.** In Theorem 0 of `research/artifacts/finitary-split-extension-surjunctivity-2026-09-11.md`, the
+    transplants commute only with stabilizers `G_U`. The peeled stages compose with inverses of earlier stages,
+    so none of them carries the subshift constraint. A constant would also have to grow with the block size
+    `|Q_U|`, and the property gives no such bound.
+- **Products with finite groups or `Z` (w5-quant-surj).** Artifact Section 5.
+  - `G x F` for finite `F` and `G x Z` are surjunctive exactly when `G` is. So neither is equivalent to the
+    claim unless the claim holds.
+  - **The candidate equivalence.** "Quantitatively surjunctive iff `G x K` is surjunctive for every sofic `K`"
+    holds forward by Theorem Q.
+    - Its converse needs a construction from small-margin maps over `G` to strict automata over `G x K`, and
+      none is known.
+    - If the equivalence holds, this claim is equivalent to `products-with-a-sofic-factor-are-surjunctive`.
