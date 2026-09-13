@@ -169,7 +169,20 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
 - `osinLemma94CaseOneXPocket_of_shapes` proves the X-pocket statement from the five. When there is no spur, no touch and
   no repeated vertex on either part, the whole walk repeats no vertex (`List.nodup_append`).
 - First probe 0913-181127-19691 FAILED: the FaceBubble and CellPinch predicates picked up only one of the section
-  variables `x b`. Fixed with explicit binders, and the co-probe is running.
+  variables `x b`. Fixed with explicit binders.
+- LANDED f82985905 (co-probe 0913-181424-38318 GREEN, both modules BUILT):
+  - `Estimating/OsinLemma94SameCellPocketPinch.lean`: the five shape statements and `osinLemma94CaseOneXPocket_of_shapes`.
+  - `ClosedWalkPinchSplit.lean` update: `isClosedDartWalk_iff_closedChain` and
+    `listVal_dartWord_drop_eq_of_take_eq_one`.
+  - Both modules queued in `wire-queue.txt`.
+- Residual statements this module leaves open, with owners still to be ruled by the -ce lead:
+  - `OsinLemma94CaseOneSimplePocketStatement` (the loop-cut case; jacobson's route through `false_of_pocketRegion_of_below`
+    plus w1-binder-3's `hi` and side selection);
+  - `OsinLemma94CaseOneFaceBubbleStatement` (shape 1);
+  - `OsinLemma94CaseOneCellPinchStatement` (shape 2);
+  - `OsinLemma94CaseOneTouchVertexStatement` (shape 3, no exclusion from the definitions);
+  - `OsinLemma94CaseOneSpurStatement` (pendant removal, 61c2ade8e, is the candidate producer).
+  The Y-pocket twin is not stated; it is the same statement with `Y A`.
 
 ## State
 
