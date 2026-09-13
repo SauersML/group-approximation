@@ -63,6 +63,10 @@ The sweep criteria are those of the sibling reviews:
 | 5 | `amenable-type-cycle-kills-liftable-masas`, `liftable-masa-in-every-model-iff-uniform-hs-kun-partitions`, `vertex-rounding-alone-normalizes-each-theorem-e-model` | hs-masa-lift-counter, hs-masa-lift-positive | **PASS** |
 | 5 | `torsor-cfi-port-profiles-are-cosets` | kac-quantum-compiler | **PASS** |
 
+| 6 | `independent-set-injection-splits-as-question-bijection`, `coset-systems-are-torsor-isomorphism-games`, `coset-refinement-forces-rectangular-central-splitting`, `exact-label-coset-refinements-are-affine`, `relabelable-coset-systems-are-solution-group-corners`, `port-generated-square-completions-force-coset-support` | kac-quantum-bijection, kac-quantum-compiler | **PASS** (some items at node level) |
+| 6 | `mikhailova-coset-action-is-two-sided-q-action`, `amenable-base-makes-mikhailova-edge-co-amenable`, `machine-center-amplifier-does-not-bypass-the-sofic-compiler` | complexity-sofic | **PASS** |
+| 6 | `one-compressor-liftable-masa-iff-type-orbits-tight`, `liftable-abelian-subalgebras-are-amplification-invariant`, `theorem-e-liftable-masa-crux-contains-sl-d-z-dec`, `theorem-e-vertex-types-equidistribute-on-finite-sl-d-orbits` | hs-masa-lift-counter, hs-masa-lift-positive | **PASS** |
+
 ## Part files
 
 - `research/artifacts/ex-review-logic-quantum-2026-09-12-part1.md`: §1, residual finiteness and
