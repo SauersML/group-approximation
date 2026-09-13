@@ -48,7 +48,8 @@ theorem deviation_mul (g h : GLfin k) :
 
 theorem deviation_one : deviation (1 : GLfin k) = 0 := by
   show ((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1 = 0
-  rw [Units.val_one, sub_self]
+  rw [Units.val_one]
+  exact sub_self _
 
 theorem deviation_mul_inv (g : GLfin k) :
     deviation g * deviation g⁻¹ + deviation g + deviation g⁻¹ = 0 := by
@@ -173,7 +174,10 @@ theorem cycleModel_eq_imp [Nontrivial k] {W : Finset ℤ}
     have hv := congrArg (fun u : LinearMap.GeneralLinearGroup k (ZMod N →₀ k) =>
       ((u : LinearMap.GeneralLinearGroup k (ZMod N →₀ k)) : Module.End k (ZMod N →₀ k))) hw
     rw [windowUnit_val N hx hinj, windowUnit_val N hy hinj] at hv
-    exact add_left_cancel hv
+    refine LinearMap.ext fun v => ?_
+    have hvv := LinearMap.congr_fun hv v
+    rw [LinearMap.add_apply, LinearMap.add_apply, Module.End.one_apply] at hvv
+    exact add_left_cancel hvv
   have hdev : deviation x.left = deviation y.left := by
     refine Finsupp.lhom_ext fun j a => ?_
     by_cases hj : j ∈ W
