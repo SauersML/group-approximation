@@ -44,6 +44,7 @@ so that it also assigns consistent ranks to matrices involving `[x]`.
     depth-mismatched transvection pairs.
   - **Where it stops.** No construction, and no obstruction to extension.
 - 2026-09-12 `w6-v-extend` (`research/artifacts/v-rank-extension-to-ternary-leavitt-units-2026-09-12.md`).
+  Verified with no corrections by `w4-vf-gate`, Section 33 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`.
   - **Reduction.** The claim is equivalent to "link 1 iff V gate". When `F_3[V]` has a detecting function, the claim
     fails iff link 1 holds (Corollary 5.1). No Hamming model of `V` extends, since `G_3` and `PG_3` are nonsofic.
     Averaging from `V` is unavailable, since `[G_3 : V]` is infinite and `G_3` has (T).
