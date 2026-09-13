@@ -137,6 +137,26 @@ Ownership check 09-13 ~17:50: no declaration or file on origin or in the shared 
 
 Both claimed leaves are landed. Nothing open in this lane's binder-7 share.
 
+## Item 3 (main, 09-13 ~18:15): help W1 binder 4, `OsinTwoGonHoldsSectionStatement` (C6′), leaf L1
+
+Split proposed to w1-binder-4 in one message (18:20), no collision reported.
+- ms-torsionfree holds the inner-following builder (L2 inner, L3).
+- w1-binder-4 holds the assemblies (either-follows, copy route), L2 outer, L4/L5.
+- The `CopyClean` clause producers belong to w1-binder-6 (spur, cell_outer, side_outer), ms-binary (cell_self), ms-cite-2
+  (side_cell) and w1-binder-5 (cell-pocket clauses).
+
+Ownership check 09-13 ~18:25: no rotation lemma for `IsNoncrossingClosedWalk` and no producer of the `regions` clause of
+`PocketWalk.CopyClean`, on origin, in the shared tree or in `lanes/*.files`. baseline-debt's landed
+`PocketWalk.isNoncrossingClosedWalk_of_copyClean` gives L1 for `K.walk` from `CopyClean`; w1-binder-4's spelling
+`source.reverseDarts ++ a.rightSide ++ target.darts ++ b.leftSide` is a rotation of `K.walk`.
+
+- CLAIM L1a GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyCleanWalk.lean:
+  `IsNoncrossingClosedWalk.rotate` and `append_comm`, and the decomposition walk of two ordered exterior regions is
+  noncrossing at least area under the edge conditions, with the arc bounds of `TwoGonEitherFollowsPocketInput`.
+- CLAIM L1b GroupApproximation/GGT/VanKampen/SurgeryRegionEdgeThickening.lean (provisional): the `regions` clause, a G-digon on
+  every edge joining faces of two distinct selected regions. Model test first; `FaceEdgeDoubling.regionFamily` transports only
+  regions avoiding the doubled face, so the region holding it needs a new transport.
+
 ## Progress log
 
 - 09-13 ~17:01: ledger landed (d5d320909).
