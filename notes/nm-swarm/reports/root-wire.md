@@ -27,15 +27,17 @@ of `metadata/NON_MF_SENTENCE_MAP.tsv` that the root does not reach.  Root builds
   root-reachable.
 * The whole queue is swept against the root closure, not only the entries added since the last wave.  The
   sweep at 00ccbca81 found two entries that the wave 3 to 6 candidate lists had missed (wave 7, below).
+* `nmwire.sh` builds on the origin at launch, which can be newer than the pre-flight sha.  The next wave's
+  gate diffs against that build base, so the files that changed in between are gated there.
 
-## 09-13 root state (origin/main e32bac3f3, 05:40)
+## 09-13 root state (origin/main 5f789a7ba, 06:10)
 
-* Root at e32bac3f3 (after wave 6): 4889 GroupApproximation import lines, all before the module docstring
-  (OK); no missing module, no duplicate line; closure 6291 modules; 0 dangling imports inside it.  313
-  modules on main are not reachable from the root (360 at f495cf119).
-* Census at e32bac3f3: one carrier module is not root-reachable, `Algebra.IntegerPlacesMinpoly` (row
-  b6d1590be7ab), in wave 7.  One census token resolves to no declaration: row 8fdc908a49c7 (definition)
-  `GroupApproximation.StableWhitehead.elementaryColim_normal`.
+* Root at 5f789a7ba (after wave 7): 4898 GroupApproximation import lines, all before the module docstring
+  (OK); no missing module, no duplicate line; closure 6301 modules; 0 dangling imports inside it.  310
+  modules on main are not reachable from the root (313 at e32bac3f3, 360 at f495cf119).
+* Census at 5f789a7ba: every carrier module is root-reachable.  The last one, `Algebra.IntegerPlacesMinpoly`
+  (row b6d1590be7ab), landed in wave 7.  One census token resolves to no declaration: row 8fdc908a49c7
+  (definition) `GroupApproximation.StableWhitehead.elementaryColim_normal`.
 
 ### Root lines added by other campaigns
 
@@ -174,10 +176,11 @@ The wave 5 build did not compile 53 files of the new closure; each has a GREEN r
 
 Queue entries already root-reachable, not rewired: `SystolicDiscMirrorFoldDistinct`, `KotowskiOllivierClosed`.
 
-## Wave 7 (launched 09-13 05:43, root build 0913-054318-33163, base d18407e34)
+## Wave 7 (launched 09-13 05:43, root build 0913-054318-33163, base d18407e34): GREEN, LANDED ROOT 4a6cb4e55
 
 9 modules, 9 newly reachable files.  Module list: `$NM/rw-wave7.mods`.  Pre-flight at e32bac3f3;
-`nmwire.sh` built on origin d18407e34, so the wave 8 gate diffs against d18407e34.
+`nmwire.sh` built on origin d18407e34.  2 modules rebuilt, `GroupApproximation` in 60 s.  At 5f789a7ba all
+9 lines are present.
 
 | module | evidence (bytes on e32bac3f3 = record) | owner |
 |---|---|---|
@@ -199,10 +202,31 @@ The wave 6 build did not compile 11 files of the new closure; each has a GREEN r
 wave 3, and the wave 3 to 6 candidate lists missed them.  The full sweep at 00ccbca81 found no other unwired
 non-LIX entry whose module is on main.
 
-Queued after the wave 7 pre-flight, for wave 8: `GGT.SystolicDiscMirrorFold` (fff-periodic),
-`NonMF.HullCorollary73` (cite-hull), `NonMF.TheoremCAssemblyFoldLeaf` (theoremc-retire),
-`OneSidedMFRadical.JacobsonThreePlusOnePresented` (jacobson).  `Kazhdan.KotowskiOllivierClosed` is already
-root-reachable.
+## Wave 8 (launched 09-13 06:11, root build 0913-061132-68868, base 2d25ebab5)
+
+3 modules, 3 newly reachable files.  Module list: `$NM/rw-wave8.mods`.  Pre-flight at 5f789a7ba;
+`nmwire.sh` built on origin 2d25ebab5.
+
+| module | evidence (bytes on 5f789a7ba = record) | owner |
+|---|---|---|
+| `NonMF.HullCorollary73` | GREEN 0913-053322-22543, newer than the FAILED record 0913-052223-99167 | cite-hull |
+| `NonMF.TheoremCAssemblyFoldLeaf` | GREEN 0913-055250-45566 (ko-closed) names it; the blob at its base 84e93eebd equals main.  theoremc-retire's GREEN 0913-034425-9721 names it too | theoremc-retire |
+| `OneSidedMFRadical.JacobsonThreePlusOnePresented` | GREEN 0913-053713-26835 | jacobson |
+
+Pre-flight at 5f789a7ba: no dangling import, no lexical sorry, no cycle; dupcheck predicts no collision.
+The wave 7 build did not compile 5 files of the new closure; each has a GREEN record:
+
+* the 3 newly reachable files above;
+* `Kazhdan.KotowskiOllivierClosed`, changed since d18407e34 by f65f99f17 ("Close the Kotowski-Ollivier input
+  from GHB(7)"), and `GGT.SystolicDiscMirrorFold`, which that version imports: ko-closed 0913-055250-45566,
+  md5 = main.
+
+Queue entries not rewired, both root-reachable: `SystolicDiscMirrorFold` (through `KotowskiOllivierClosed`)
+and `KotowskiOllivierClosed`, which has its own root line.  Its bytes went through three root builds: the
+wave 6 build compiled the cf1675f3b version and the wave 7 build the 4be3a3a5c version, and wave 8 compiles
+f65f99f17.
+
+Queued after the wave 8 launch, for wave 9: `NonMF.TheoremCAssemblyGreendlingerLeaf` (theoremc-retire).
 
 ### Held
 
