@@ -29,3 +29,21 @@ infinite minimal). Is C*_r(EL_n(R_X)) an MF algebra, i.e. does it embed in a nor
   ‖λ_G(Σ_s u_s)‖ < |S| for non-amenable G (Kesten). Any strong-convergence approach must use pieces
   orthogonal to invariant-like vectors. Property (T) supplies no uniform spectral gap there, because the
   finite models are not representations.
+- **Orthogonal to constants is not enough (2026-09-13, un-reduced-cstar).**
+  - Inside ℓ²_0(F_k), the permutation module on unimodular columns of the ring models contains a vector exactly
+    invariant under σ_k of a non-amenable stabilizer of e_1. That stabilizer is EL_{n−1}(R_X), which is Kazhdan
+    for n ≥ 4.
+  - So λ^0_{F_k}∘σ_k, and any representation containing that module, still has norm-1 outliers
+    (`ring-model-permutation-vectors-block-strong-convergence`).
+- **Genuine representations are excluded (2026-09-13, un-reduced-cstar).** EL_n(R_X), for X infinite minimal,
+  has no nontrivial finite quotient, hence no nontrivial finite-dimensional unitary representation, so it is not
+  PMF (`minimally-almost-periodic-groups-are-not-pmf`). An MF embedding must use asymptotic representations far
+  from genuine ones.
+- **What any MF model must satisfy (2026-09-13, un-reduced-cstar; artifact
+  `research/artifacts/un-reduced-cstar-2026-09-13-part1.md` §2.2–2.4).**
+  - The lower bound liminf ‖V_k(z)‖ ≥ ‖λ(z)‖ is automatic once normalized traces converge to τ.
+  - Along ω the traces do converge to τ for every MF embedding, once the amenable radical is trivial (BKKO
+    Thm 4.1, `bkko-reduced-traces-concentrate-on-amenable-radical`).
+  - What is missing is exactly a deterministic no-outlier upper bound for models with no almost invariant vectors
+    under non-amenable subgroups, e.g. cuspidal-type irreducibles of the finite models (heuristic). The paradox-side
+    counterpart is decided: `measure-free-steinberg-el-n-reduced-cstar-not-mf`.
