@@ -92,8 +92,44 @@ Assembly, `GGT/SystolicDiscZip` (9445c7860):
 Evidence: probe 0913-015959-45107 (base 9445c7860) is PROBE GREEN with
 `BUILT GroupApproximation.GGT.SystolicDiscZipFold` and `BUILT GroupApproximation.GGT.SystolicDiscZip`,
 and no warnings.  `zipSpurStatement_of_zipPinch` depends on axioms `[propext, Classical.choice, Quot.sound]`.
-Both modules are unwired.
+root-wire's wave 2 (c72bdfd5d) put both modules in the root.
 
-Residual: `ZipPinchStatement X` (systolic-counts).  After that lands green, this lane adds
-`theorem zipSpurStatement : ZipSpurStatement X` and `CCKW.zipSpur_cosetComplex`, audits both
-with `#audit_closed_axioms`, and queues `GroupApproximation.GGT.SystolicDiscZip` for wiring.
+### hzip closed
+
+systolic-counts proved the pinch case, `theorem zipPinchStatement (X : TriangleComplex V) :
+ZipPinchStatement X` in `GGT/SystolicDiscZipPinch` (d74b84054, probe 0913-023335-5925 green).
+`GGT/SystolicDiscZip` (LANDED 8389a0e6c) now closes HC3(d):
+
+```lean
+namespace GroupApproximation.Systolic
+theorem zipSpurStatement : ZipSpurStatement X :=
+  zipSpurStatement_of_zipPinch (zipPinchStatement X)
+end GroupApproximation.Systolic
+
+namespace GroupApproximation.KMSGroup.CCKW
+theorem zipSpur_cosetComplex : Systolic.ZipSpurStatement cosetComplex :=
+  Systolic.zipSpurStatement
+end GroupApproximation.KMSGroup.CCKW
+```
+
+Evidence: probe 0913-030432-13308 (base 2a5ddc58f) is PROBE GREEN with
+`BUILT GroupApproximation.GGT.SystolicDiscZip`, an empty errors section and no warnings.  In that
+build `#audit_closed_axioms` prints `'GroupApproximation.KMSGroup.CCKW.zipSpur_cosetComplex' depends
+on axioms: [propext, Classical.choice, Quot.sound]`.  The `#audit_axioms` lines, including
+`zipSpurStatement`, pass without error.
+
+Consumers can drop hzip:
+* `CCKW.systolicInvariantClique_of_zipFold` (kh-cckw) takes `hzip : ∀ V X, ZipSpurStatement X`.
+  Pass `fun _ _ => Systolic.zipSpurStatement`.
+* `KotowskiOllivierClosed.kotowskiOllivier_of_leaves` (ko-closed),
+  `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold`, `KotowskiOllivierLeaves` and
+  `TheoremCAssemblyKOLeaves` take `hzip : ZipSpurStatement CCKW.cosetComplex`.  Pass
+  `CCKW.zipSpur_cosetComplex`.
+* `SystolicDiscFilling` (`hd`) and `SystolicInvariantClique.exists_invariantClique_of_linksSixLarge`
+  take the Prop for a general `X`.  Pass `Systolic.zipSpurStatement`.
+
+`GGT/SystolicDiscZip` was already in the root, so these bytes bring `GGT/SystolicDiscZipPinch` and
+`GGT/VanKampen/PinchLemma` into the root closure.  A name scan found no clashes with other declarations.
+
+Residual in this lane: none.  hKO still waits on hfold (`MirrorFoldDistinct` with ko-closed,
+`MirrorFoldPinched` with theoremc-retire).
