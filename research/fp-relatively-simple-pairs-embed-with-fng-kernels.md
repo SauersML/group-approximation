@@ -9,6 +9,7 @@ distinct_from:
   abstract-btb-simple-quotient-fp-gate: that says when the simple quotient of one finitely presented abstract twisted Brin--Thompson group is finitely presented; this asks that every finitely presented relatively simple group embed compatibly in one whose simple quotient is.
   a2-kernel-removal-forces-recursive-kernel: that proves a removable action kernel is recursive; this is the universal removal assertion for largest normal subgroups, whose computability condition is Attempt 1 here.
   proper-normal-subgroups-miss-the-normally-generating-core: that shows every proper normal subgroup meets trivially a simple subgroup containing a normal generator; this asks for enlargements in which the largest normal subgroup becomes finitely normally generated.
+  relatively-simple-removal-between-pbh-and-bh-of-quotient: that proves one pair is removable when its simple quotient embeds in a type (A_2) actor, and only when that quotient embeds in a finitely presented simple group; this asserts removability for every finitely presented relatively simple pair.
 artifacts:
   - research/artifacts/bh-simple-products-embed-2026-09-12.md
 ---
@@ -75,7 +76,12 @@ are all equivalent to each other". In this graph it is the last premise of
      claim for twisted pairs.
    - **This one to the first part.** The output here carries no action. Turning
      even a twisted Brin--Thompson pair into an action pair is FFWZ Question 5.7.
-   - *Stops*: neither part is known to give the other.
+   - *Stops*: neither part is known to give the other in general.
+   - **Partial link (09-13).** Suppose the first part holds, and the simple
+     quotient `G/N` embeds in the image of some type [A_2] action. Then `G/N`
+     embeds in a type (A_2) actor (`a2-kernel-removable-iff-image-in-type-a2-actor`),
+     and `(G,N)` is removable by Attempt 4. This gives the second part only for
+     pairs whose simple quotient lies inside a type [A_2] action image.
 3. **Removal does not multiply over factors.** For proper pairs,
    `(G_1 x G_2, N_1 x N_2)` is not relatively simple: `G_1 x N_2` is a proper
    normal subgroup outside `N_1 x N_2`. Kernel removability in the first part
@@ -83,3 +89,17 @@ are all equivalent to each other". In this graph it is the last premise of
    item 3). This claim for two factors gives no relatively simple pair for the
    product. The product route therefore applies it once, to the abstract twisted
    Brin--Thompson group of the product actor. *Consequence only.*
+4. **Bounds by the simple quotient.**
+   `relatively-simple-removal-between-pbh-and-bh-of-quotient`:
+   - **Sufficient.** If `G/N` embeds in a type (A_2) actor `Λ`, let `G x Λ` act
+     through `Λ` and pass to its abstract twisted Brin--Thompson group. Then
+     `(G,N)` is removable.
+   - **Necessary.** Removal forces `G/N` into a finitely presented simple group,
+     which recovers Attempt 1.
+   - **Consequences.** A no answer with recursive `N` would refute FFWZ
+     Conjecture 1.5. If Conjecture 1.5 holds, this claim is equivalent to
+     recursiveness of `N` for every finitely presented relatively simple pair.
+
+   *Reformulation only*: no finitely presented relatively simple pair with
+   non-recursive `N` is known here, and the gap between the two bounds is BH
+   versus PBH for `G/N`.

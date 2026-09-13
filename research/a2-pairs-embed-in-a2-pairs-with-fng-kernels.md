@@ -8,6 +8,7 @@ distinct_from:
   fp-simple-groups-embed-in-fp-simple-mif-groups: that is BFFHZ Question 3.4, removing mixed identities by enlarging a finitely presented simple group; this is FFWZ Question 5.9, removing an action kernel by enlarging a type [A_2] pair.
   a2-kernel-removal-forces-recursive-kernel: that proves a recursive kernel is necessary for one pair; this is the universal assertion.
   a2-action-with-non-finitely-presented-image: that is one pair whose image is not finitely presented but whose kernel is removable; this asserts removability for every pair.
+  a2-kernel-removable-iff-image-in-type-a2-actor: that proves one pair is removable exactly when its image embeds in a type (A_2) actor; this asserts that every pair is removable, that is, that every type [A_2] action image lies in that class.
 artifacts:
   - research/artifacts/bh-type-a-actions-2026-09-12.md
 ---
@@ -51,3 +52,14 @@ would then all be equivalent. The graph carries this as the route
    faithful. That is BFFHZ Question 3.4
    (`fp-simple-groups-embed-in-fp-simple-mif-groups`), also open, so this only
    trades one open question for another.
+4. **Exact criterion.** By `a2-kernel-removable-iff-image-in-type-a2-actor`, one
+   pair is removable exactly when its image `G/K` embeds in a group admitting a
+   type (A_2) action. The witness is `G x Λ` acting through `Λ`, with `G`
+   embedded along the graph of `G → Λ`. So this claim is the permutational
+   Boone--Higman conclusion for every type [A_2] action image. Consequences:
+   - a no answer with a recursive kernel would refute FFWZ Conjecture 1.5;
+   - if Conjecture 1.5 holds, this claim is equivalent to recursiveness of
+     every type [A_2] kernel.
+
+   *Reformulation only*: it settles neither direction, and no type [A_2] action
+   with a non-recursive kernel is known here.
