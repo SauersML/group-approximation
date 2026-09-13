@@ -391,7 +391,8 @@ def OsinLemma94PolygonCountInput : Prop :=
 
 /-- **Case 1 of Lemma 9.4.**  "Case 1 … This contradicts the maximality of `M`."  A backwards
 connector pair (39) from an (A1) side to an (A1) or (A2) side of a maximal polygon bounds a new
-contiguity region. -/
+contiguity region.  Clause (b) of Lemma 9.7 below the number of relator cells of `Δ` is a
+hypothesis, used against a loop cut enclosed by a pair with both sides on one relator cell. -/
 def OsinLemma94CaseOneInput : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
     (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
@@ -403,6 +404,11 @@ def OsinLemma94CaseOneInput : Prop :=
             ∀ (Delta : DiscDiagram.{u, w, v} W)
               (cuts : SectionCuts D lambda c Delta.boundaryWord),
               Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
               ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
                 S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
                   ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
@@ -468,7 +474,7 @@ theorem osinLemma94Section_of_planarPieces
     lt_of_lt_of_le hrho1 (le_max_left _ _), fun rho hrho => ?_⟩
   simp only [max_le_iff] at hrho
   obtain ⟨hr1, hr2, hrL, hr3, hr4, hr5⟩ := hrho
-  intro W hW Delta cuts hleast hcells S hcard
+  intro W hW Delta cuts hleast hcells hbelow S hcard
   obtain ⟨T, hTcard, hTsum, hTmin⟩ := S.exists_dartMinimal
   have hTcard' : T.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) := by
     rw [hTcard]
@@ -482,7 +488,7 @@ theorem osinLemma94Section_of_planarPieces
   intro k C hback
   by_cases hcut : P.kind k C.target = .cutting
   · exact htwoRho rho hr5 W hW Delta cuts hleast hcells T hTcard' hTmin P hP k C hback hcut
-  · exact honeRho rho hr4 W hW Delta cuts hleast hcells T hTcard' hTmin P hP k C hback hcut
+  · exact honeRho rho hr4 W hW Delta cuts hleast hcells hbelow T hTcard' hTmin P hP k C hback hcut
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.family_card_eq
 #audit_axioms GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_dartMinimal

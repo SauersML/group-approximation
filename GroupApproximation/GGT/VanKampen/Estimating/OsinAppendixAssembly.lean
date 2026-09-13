@@ -122,9 +122,9 @@ theorem osinLemma97Section_of_inputs
   obtain ⟨h1, h2⟩ := max_le_iff.mp hleft
   obtain ⟨h3, h4⟩ := max_le_iff.mp hright
   obtain ⟨hmulti, hloop, heuler, hdescent⟩ := hinRho rho h2 W hcondition
-  have hunbound : UnboundInput.{u, w, v} D lambda c eps rho W :=
-    fun Delta cuts hlea hcells S hcard =>
-      h94rho rho h1 W hcondition Delta cuts hlea hcells S hcard
+  have hunbound : UnboundInput.{u, w, v} D lambda c mu eps rho W :=
+    fun Delta cuts hlea hcells hbelow S hcard =>
+      h94rho rho h1 W hcondition Delta cuts hlea hcells hbelow S hcard
   exact osinLemma97_atParameters_of_inputs hcondition hlambda hmu hmuUpper
     (lt_of_lt_of_le hrho94pos h1) (hLarge rho h3) (hThr rho h4) hO52 hmulti hloop heuler
     hunbound hdescent

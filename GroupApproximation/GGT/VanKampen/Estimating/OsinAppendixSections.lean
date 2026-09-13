@@ -284,42 +284,6 @@ structure GloballyDistinguishedSectionFamily {G : Type u} [Group G]
 
 /-! ## The lemmas of the induction -/
 
-/-- **Osin's Lemma 9.4, at up to four sections.**  (Owner: lane `hull-unbound`.)
-
-"Suppose that `Δ` satisfies `(∗)`.  Let `S` denote the sum of lengths of all
-unbound arcs of type (A1) in `Δ`.  Then `S < n √ρ`."  The parameters are
-chosen as in (36) and "`ρ` sufficiently large"; the thresholds are monotone
-(`ε ≥ ε₀`, then `ρ ≥ ρ₀`) so that they combine with the other lemmas by taking
-maxima.  Condition `(∗)` enters the proof only through Lemma 9.3, whose Euler
-count is `e ≤ 3(v − 1)` for `Φ'_M` with `v = n + r` vertices and `e = |M|`
-edges; that count is the hypothesis here.  The unbound arcs of type (A1) are
-the darts of the relator cells covered by no selected region.
-
-The conclusion is on the optimum `S` itself.  Osin's "passing to an
-O-equivalent diagram if necessary" is available inside the proof: `S` is optimal
-over every reduced O-equivalent diagram, so a surgery that enlarges the family
-contradicts `weight_maximal`, and a surgery that keeps the relator cells and the
-selected regions (a `Surgery.GRegionReplacement`, through
-`OEquivalentDiscDiagram.ofGRegionReplacement` and `replacement.reduced`) lands in
-the same class.  No symmetry of `D.base` is assumed: `RelGenSet` makes
-`base ∪ ⋃ H_λ` symmetric, so every alphabet element is one legal letter. -/
-def OsinLemma94SectionStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
-    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
-    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
-      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
-        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
-          ∀ (W : Set (List (RelLetter G Lambda))),
-            OsinCCondition D W eps mu lambda c rho →
-            ∀ (Delta : DiscDiagram.{u, w, v} W)
-              (cuts : SectionCuts D lambda c Delta.boundaryWord),
-              Delta.LeastArea → 0 < Delta.rCellCount →
-              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
-                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) →
-                  (∑ i : Fin S.diagram.rCellCount,
-                      ((RegionCandidate.unboundDarts S.family i).card : ℝ)) <
-                    (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ)
-
 /-- **Clause (b) of Lemma 9.7, verbatim.**  "There is an `R`-cell `Π` of `Δ` and
 disjoint `ε`-contiguity subdiagrams `Γ_j` of `Π` to sections `q_j`,
 `j = 1, …, r`, of `∂Δ` (some of them may be absent) such that
@@ -340,6 +304,51 @@ def OsinLemma97bConclusion {G : Type u} [Group G] {Lambda : Type w}
       (∀ j ∈ present, ∀ k ∈ present, j ≠ k →
         RegionCandidate.Compatible (region j) (region k)) ∧
       1 - 13 * mu < ∑ j ∈ present, (region j).contiguityDegree
+
+/-- **Osin's Lemma 9.4, at up to four sections.**  (Owner: lane `hull-unbound`.)
+
+"Suppose that `Δ` satisfies `(∗)`.  Let `S` denote the sum of lengths of all
+unbound arcs of type (A1) in `Δ`.  Then `S < n √ρ`."  The parameters are
+chosen as in (36) and "`ρ` sufficiently large"; the thresholds are monotone
+(`ε ≥ ε₀`, then `ρ ≥ ρ₀`) so that they combine with the other lemmas by taking
+maxima.  Condition `(∗)` enters the proof only through Lemma 9.3, whose Euler
+count is `e ≤ 3(v − 1)` for `Φ'_M` with `v = n + r` vertices and `e = |M|`
+edges; that count is the hypothesis here.  The unbound arcs of type (A1) are
+the darts of the relator cells covered by no selected region.
+
+The conclusion is on the optimum `S` itself.  Osin's "passing to an
+O-equivalent diagram if necessary" is available inside the proof: `S` is optimal
+over every reduced O-equivalent diagram, so a surgery that enlarges the family
+contradicts `weight_maximal`, and a surgery that keeps the relator cells and the
+selected regions (a `Surgery.GRegionReplacement`, through
+`OEquivalentDiscDiagram.ofGRegionReplacement` and `replacement.reduced`) lands in
+the same class.  No symmetry of `D.base` is assumed: `RelGenSet` makes
+`base ∪ ⋃ H_λ` symmetric, so every alphabet element is one legal letter.
+
+Clause (b) of Lemma 9.7 below the number of relator cells of `Δ` (the inductive assumption)
+is a hypothesis too.  Case 1 uses it when a connector pair with both sides on one relator cell
+encloses a loop cut. -/
+def OsinLemma94SectionStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) →
+                  (∑ i : Fin S.diagram.rCellCount,
+                      ((RegionCandidate.unboundDarts S.family i).card : ℝ)) <
+                    (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ)
 
 /-- **Osin's Lemma 9.7, at up to four sections.**  (Owner: lane `hull-select`.)
 

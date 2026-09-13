@@ -470,7 +470,9 @@ open GroupApproximation.GGT.VanKampen.UnboundEstimate in
 /-- **Case 1 of Lemma 9.4 for a pair with sides of one kind.**  `OsinLemma94CaseOneInput`
 restricted to the backwards connector pairs whose source and target sides have the same kind.
 When both sides lie across one relator cell, the quadrilateral of Case 1 is a region from that
-cell to itself, and this statement is kept as a named hypothesis for those pairs. -/
+cell to itself, and this statement is kept as a named hypothesis for those pairs.  Clause (b) of
+Lemma 9.7 below the number of relator cells of `Δ` is a hypothesis too, so a producer may refute
+a loop cut through `OsinLoopCut.false_of_below`. -/
 def OsinLemma94CaseOneSameCellStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
     (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
@@ -482,6 +484,11 @@ def OsinLemma94CaseOneSameCellStatement : Prop :=
             ∀ (Delta : DiscDiagram.{u, w, v} W)
               (cuts : SectionCuts D lambda c Delta.boundaryWord),
               Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
               ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
                 S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
                   ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →

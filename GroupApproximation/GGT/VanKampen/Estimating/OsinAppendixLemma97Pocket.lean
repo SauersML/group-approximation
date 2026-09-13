@@ -78,9 +78,9 @@ theorem osinSection97Inputs_of_pocketInputs
   obtain ⟨hmulti, hloop, hcount, hpocket⟩ := hinRho rho h2 W hcondition
   have heuler : EulerCountInput.{u, w, v} D lambda c eps W :=
     eulerCountInput_of_phiPrimeCount hcount
-  have hunbound : UnboundInput.{u, w, v} D lambda c eps rho W :=
-    fun Delta cuts hlea hcells S hcard =>
-      h94rho rho h1 W hcondition Delta cuts hlea hcells S hcard
+  have hunbound : UnboundInput.{u, w, v} D lambda c mu eps rho W :=
+    fun Delta cuts hlea hcells hbelow S hcard =>
+      h94rho rho h1 W hcondition Delta cuts hlea hcells hbelow S hcard
   exact ⟨hmulti, hloop, heuler,
     descentInput_of_sectionPocketCut hcondition hlambda hmu hmuUpper
       (lt_of_lt_of_le hrho94pos h1) (hLarge rho h3) (hThr rho h4) hO52 hmulti hloop heuler

@@ -52,7 +52,7 @@ theorem exists_elevenCell_of_below
     (hmulti : MultipleEdgeCutInput.{u, w, v} D lambda c eps W)
     (hloop : LoopCutInput.{u, w, v} D lambda c eps W)
     (heuler : EulerCountInput.{u, w, v} D lambda c eps W)
-    (h94 : UnboundInput.{u, w, v} D lambda c eps rho W)
+    (h94 : UnboundInput.{u, w, v} D lambda c mu eps rho W)
     (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord)
     (hlea : Delta.LeastArea) (hcells : 0 < Delta.rCellCount)
     (hbelow : OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount) :
@@ -98,7 +98,7 @@ theorem exists_elevenCell_of_below
   have hinterior := RegionCandidate.interior_total_le_of_o52 hO52 hleaS S.family
     S.pairwise hloopsEdge hplanar hcondition hlambda hmu hlarge
   have hcountEq : S.diagram.rCellCount = Delta.rCellCount := S.equiv.rCellCount_eq
-  have hunbound94 := h94 Delta cuts hlea hcells S hcard
+  have hunbound94 := h94 Delta cuts hlea hcells hbelow S hcard
   have hunbound := RegionCandidate.unbound_total_lt_mu S.family
     (fun i => hcondition.long _ (cell S.diagram i).word_mem) hmu.le
     (by rw [← hcountEq] at hunbound94; exact hunbound94) hthreshold
@@ -130,7 +130,7 @@ theorem OsinSectionPocketCut.exists_large_region
     (hmulti : MultipleEdgeCutInput.{u, w, v} D lambda c eps W)
     (hloop : LoopCutInput.{u, w, v} D lambda c eps W)
     (heuler : EulerCountInput.{u, w, v} D lambda c eps W)
-    (h94 : UnboundInput.{u, w, v} D lambda c eps rho W)
+    (h94 : UnboundInput.{u, w, v} D lambda c mu eps rho W)
     (hpocket : SectionPocketCutInput.{u, w, v} D lambda c eps W)
     {n : ℕ} (hbelow : OsinLemma97Below.{u, w, v} D lambda c mu eps W n) :
     ∀ (m : ℕ) (Delta : DiscDiagram.{u, w, v} W)
@@ -240,7 +240,7 @@ theorem descentInput_of_sectionPocketCut
     (hmulti : MultipleEdgeCutInput.{u, w, v} D lambda c eps W)
     (hloop : LoopCutInput.{u, w, v} D lambda c eps W)
     (heuler : EulerCountInput.{u, w, v} D lambda c eps W)
-    (h94 : UnboundInput.{u, w, v} D lambda c eps rho W)
+    (h94 : UnboundInput.{u, w, v} D lambda c mu eps rho W)
     (hpocket : SectionPocketCutInput.{u, w, v} D lambda c eps W) :
     DescentInput.{u, w, v} D lambda c mu eps W := by
   rintro Delta cuts hlea _hcells hbelow S _hloopsS _hmultiS ⟨i, h11⟩

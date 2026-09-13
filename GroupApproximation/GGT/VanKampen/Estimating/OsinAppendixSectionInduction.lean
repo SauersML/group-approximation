@@ -118,11 +118,12 @@ def EulerCountInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
             HasEndpointClosedPlanarEdgeBound
               (RegionCandidate.InteriorEdge.Incident (selected := S.family))
 
-/-- **G5**: Lemma 9.4 at the fixed parameters. -/
-def UnboundInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps rho : ℕ)
+/-- **G5**: Lemma 9.4 at the fixed parameters, under the inductive assumption. -/
+def UnboundInput (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps rho : ℕ)
     (W : Set (List (RelLetter G Lambda))) : Prop :=
   ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
     Delta.LeastArea → 0 < Delta.rCellCount →
+      OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount →
       ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
         S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) →
           (∑ i : Fin S.diagram.rCellCount,
@@ -159,7 +160,7 @@ theorem osinLemma97_atParameters_of_inputs
     (hmulti : MultipleEdgeCutInput.{u, w, v} D lambda c eps W)
     (hloop : LoopCutInput.{u, w, v} D lambda c eps W)
     (heuler : EulerCountInput.{u, w, v} D lambda c eps W)
-    (h94 : UnboundInput.{u, w, v} D lambda c eps rho W)
+    (h94 : UnboundInput.{u, w, v} D lambda c mu eps rho W)
     (hdescent : DescentInput.{u, w, v} D lambda c mu eps W) :
     ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
       Delta.LeastArea → 0 < Delta.rCellCount →
@@ -219,7 +220,7 @@ theorem osinLemma97_atParameters_of_inputs
         have hinterior := RegionCandidate.interior_total_le_of_o52 hO52 hleaS S.family
           S.pairwise hloopsEdge hplanar hcondition hlambda hmu hlarge
         have hcountEq : S.diagram.rCellCount = Delta.rCellCount := S.equiv.rCellCount_eq
-        have hunbound94 := h94 Delta cuts hlea hcells S hcard
+        have hunbound94 := h94 Delta cuts hlea hcells hbelow S hcard
         have hunbound := RegionCandidate.unbound_total_lt_mu S.family
           (fun i => hcondition.long _ (cell S.diagram i).word_mem) hmu.le
           (by rw [← hcountEq] at hunbound94; exact hunbound94) hthreshold

@@ -97,7 +97,7 @@ theorem osinLemma94Section_of_runInput (hrun : OsinLemma94RunInput.{u, w, v}) :
   obtain ⟨rho1, hrho1, hmetricEps⟩ := hmetric eps (le_trans (le_max_left _ _) heps)
   obtain ⟨rho2, _, hproducerEps⟩ := hproducer eps (le_trans (le_max_right _ _) heps)
   refine ⟨max rho1 rho2, lt_of_lt_of_le hrho1 (le_max_left _ _), fun rho hrho => ?_⟩
-  intro W hW Delta cuts hleast hcells S hcard
+  intro W hW Delta cuts hleast hcells _hbelow S hcard
   obtain ⟨P⟩ := hproducerEps rho (le_trans (le_max_right _ _) hrho) W hW Delta cuts
     hleast hcells S hcard
   exact P.unbound_lt hcells hcard (hmetricEps rho (le_trans (le_max_left _ _) hrho)).2

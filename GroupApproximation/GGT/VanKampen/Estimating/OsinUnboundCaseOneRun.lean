@@ -90,9 +90,10 @@ theorem osinLemma94CaseOneInput_of_walk (hwalk : OsinLemma94CaseOneWalkStatement
   refine ⟨max 3 eps1, fun eps heps => ?_⟩
   obtain ⟨rho0, hrho0, hsame2⟩ := hsame1 eps ((le_max_right 3 eps1).trans heps)
   refine ⟨rho0, hrho0, ?_⟩
-  intro rho hrho W hW Delta cuts hleast hpos S hcard hmin P hmax k C hback hcut
+  intro rho hrho W hW Delta cuts hleast hpos hbelow S hcard hmin P hmax k C hback hcut
   by_cases hkind : P.kind k C.source = P.kind k C.target
-  · exact hsame2 rho hrho W hW Delta cuts hleast hpos S hcard hmin P hmax k C hback hcut hkind
+  · exact hsame2 rho hrho W hW Delta cuts hleast hpos hbelow S hcard hmin P hmax k C hback hcut
+      hkind
   · exact osinLemma94CaseOne_false_of_walk hwalk ((le_max_left 3 eps1).trans heps) P k C hback
       hcut hkind
 
