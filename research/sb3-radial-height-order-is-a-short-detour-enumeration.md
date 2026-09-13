@@ -28,3 +28,12 @@ Take the generating set { x_i y_j^{-1} : i ≠ j, x, y ∈ {a, b} }. Order the v
 - Proof plan (part 3 §3): a finite configuration census over the last few letters of each coordinate and
   clipped heights, reduced by symmetry and a hub neighbour, or a human case analysis built on the star
   lemma of part 1.
+- 2026-09-13, computer-assisted proof complete but UNREVIEWED:
+  `research/artifacts/zp-sb3-short-detour-2026-09-13-part4.md`.
+  - Configurations record the last 2 letters of each coordinate and heights clipped at ±3.
+  - Moves into unknown prefixes are forbidden, and undetermined comparisons count as "not earlier". The
+    set of earlier neighbours is exact.
+  - All 197416 feasible configurations have an earlier neighbour, and all earlier neighbours are reached
+    within 6 steps through strictly earlier vertices. So L = 12.
+  - The proof route is held back until z-verify-topology reviews the artifact (soundness argument §2 and
+    script §5), so that the Problem 1.3 root does not compile as established before a PASS.
