@@ -58,8 +58,17 @@ lower bound.
   linearly growing depth, with rational late slopes between `1/4` and `4`, or had
   bounded depth and order `31`. No sublinear growth was seen. This is evidence only.
 
-**Thompson flows cannot be split by units (argument outline, unreviewed, lane
-`ex-q34-leavitt-hs`).** Let `u, z` be elements of `V` with disjoint clopen
+**Thompson centers are excluded (established).**
+`leavitt-north-south-thompson-unit-has-cyclic-centralizer` proves that the north--south
+unit `c = s_00 t_0 + s_01 t_10 + s_1 t_11` has `C_Q(c^a) = <c>` for all `a != 0`, and that
+`g c^a g^-1 = c^b` forces `b = +-a`. So no Heisenberg center is conjugate to a power of
+`c`, and neither is the base of any `BS(1,k)` with `|k| >= 2`. The proof reads
+coefficients on deep fundamental domains near the attractor, so it needs a unit with
+point dynamics. A genuinely linear center has none. There `K_0(R) = 0` also kills the
+determinant-degree invariant that would work over commutative coefficients (artifact,
+Section 4).
+
+**Earlier outline, now subsumed.** Let `u, z` be elements of `V` with disjoint clopen
 supports `U, Z`. Suppose each acts on its support as a north--south map: one
 attracting and one repelling fixed point, with every other orbit running from
 the repeller to the attractor. Then no `w` in `Q` satisfies `w u w^-1 = u z`. In
