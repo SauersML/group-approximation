@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatedInsertion
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatedInsertionProof
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingChains
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SeparatingRemoval
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PendantRemoval
@@ -31,7 +32,9 @@ unselected `G`-faces and is removed (`separatingPathRemovalInput_of_pendant`).  
 fewer than `2ε` darts, and the removal takes away `2 (b - b') > 2ε` darts, against `DartMinimal`.
 
 `osinLemma94CaseTwoInput_of_insertion` proves `OsinLemma94CaseTwoInput` from
-`SeparatedCornerInsertionInput`, with `ε₀ = 3` and `ρ₀ = 1`.
+`SeparatedCornerInsertionInput`, with `ε₀ = 3` and `ρ₀ = 1`.  The insertion is proved
+(`GloballyDistinguishedSectionFamily.separatedCornerInsertionInput`), so `osinLemma94CaseTwoInput`
+is closed.
 -/
 
 namespace GroupApproximation.GGT.VanKampen
@@ -295,6 +298,13 @@ theorem osinLemma94CaseTwoInput_of_insertion
   intro rho _ W _ Delta cuts _ _ S _ hS P _ k C hback hcut
   exact osinLemma94CaseTwo_false hinsert heps hS P k C hback hcut
 
+/-- **Case 2 of Lemma 9.4.**  "Case 2 … This contradicts our assumption that `∑ l(t_i)` is
+minimal."  A backwards connector pair (39) from an (A1) side to a cutting side shortens the
+cutting path, against `DartMinimal`. -/
+theorem osinLemma94CaseTwoInput : OsinLemma94CaseTwoInput.{u, w, v} :=
+  osinLemma94CaseTwoInput_of_insertion
+    GloballyDistinguishedSectionFamily.separatedCornerInsertionInput
+
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.CaseTwoWalk.rotate_add_length_of_eq
@@ -303,3 +313,4 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.CaseTwoWalk.runsBackAcross_window
 #audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94CaseTwo_false
 #audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94CaseTwoInput_of_insertion
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.osinLemma94CaseTwoInput
