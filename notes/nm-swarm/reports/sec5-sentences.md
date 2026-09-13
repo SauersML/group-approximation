@@ -96,12 +96,28 @@ Both files LANDED at b1bd127ec. Probe 0913-025907-87619 GREEN (base b1bd127ec): 
     bytes = origin/main; queued for wiring at 73caa3848): hull-count94's `OrientedClassPair` of the replacement
     polygon, at `(λ√ρ/240 - c)/1000` and `12(δ+1)`, gives `OrientedWordSidePair` at `eps`.
 
+## Closed: the metric half of Osin's Lemma 9.4, oriented
+
+`OsinLemma94AntiparallelMetricStatement` (hull-unbound's `OsinLemma94Pieces`) is proved, with `#audit_closed_axioms`.
+- Both files LANDED: 779509227 and e3da1ba60.
+- Probe 0913-034427-9910 GREEN (base 5f9c16b7b): both modules BUILT; the bytes equal origin/main.
+- Queued for wiring after UnboundMonotoneMorseIndex, UnboundOrientedWordConnectors, OlshanskiiOrientedThreeClasses
+  and OsinLemma94Pieces.
+- `GGT/VanKampen/Estimating/UnboundOrientedWordPolygon.lean`:
+  - `OsinUnboundScale.exists_orientedPolygonPair`: `exists_polygonPair` with `exists_orientedClassPair_of_aggregate_all`;
+  - `unboundOrientedWordPolygonMonotone : UnboundOrientedWordPolygonMonotoneStatement` (closed):
+    `UnboundWordPolygonMonotoneStatement` with the conclusion `OrientedWordSidePair`.
+- `GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetric.lean`:
+  - `exists_component_dense_of_sideBudget`: `∑ k_i ≤ K n`, `K s < t` and `n t ≤ ∑ S_i` give `k_i s < S_i`;
+  - `osinLemma94AntiparallelMetric : OsinLemma94AntiparallelMetricStatement` (closed).
+    - The four-point Cayley graph is hyperbolic.
+    - `unboundOrientedWordPolygonMonotone` is applied at `μ = 1`, with `ρ0 = (K+1)² ρ1` and `ρ' = ρ/(K+1)²`.
+    - The pair comes from `OrientedWordSidePair.exists_connectors`, and `target_backward` gives `C.b' < C.b`.
+
+The remaining input of `osinLemma94Section_of_pieces` is `OsinLemma94PlanarRunInput` (hull-unbound).
+
 ## Next
 
-1. New file `GGT/VanKampen/Estimating/UnboundOrientedWordPolygon.lean`, the oriented form of
-   `UnboundWordPolygonMonotone`:
-   - `OsinUnboundScale.exists_orientedPolygonPair` from `exists_orientedClassPair_of_aggregate_all`;
-   - `unboundOrientedWordPolygonMonotone`, which concludes `OrientedWordSidePair`;
-   - `unboundOrientedComponentWordPolygonsMonotone`, which concludes `Nonempty (OrientedWordConnectorPair ..)`.
+1. Take the next W1 piece that hull-count94 or the lead gives this lane.
 2. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
    re-grade the rows formalized.
