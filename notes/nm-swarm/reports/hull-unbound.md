@@ -6,7 +6,7 @@ Integrator of h94: the closed `theorem osinLemma94Section_closed : OsinLemma94Se
 owns the planar half (Cases 1 and 2 against `weight_maximal` and cut minimality). The pieces follow.
 
 ## Piece Props (landed)
-`Estimating/OsinLemma94Pieces.lean` (b8441172e, landed unverified, probe running):
+`Estimating/OsinLemma94Pieces.lean` (b8441172e, built in probe 0913-022343-56095, queued for wiring):
 ```lean
 theorem osinLemma94Section_of_pieces
     (hmetric : OsinLemma94AntiparallelMetricStatement.{u, w})
@@ -40,8 +40,10 @@ theorem osinLemma94Section_of_pieces
   `RegionCandidate.respectsSections_of_sameTargetProfile`.
 - `SurgeryFaceEdgeDoubling.lean` (ceb7135c3, compiled) and `SurgeryFaceEdgeDoublingRegions.lean`
   (b67574c33, compiled): `FaceEdgeDoubling.diagram`, `regionFamily` and its transports.
-- `Estimating/OsinUnboundSharedEdge.lean` (b52365364, landed unverified, in the running probe):
-  `SectionCuts.exists_section_of_lt`, `RealizedSectionFamily.false_of_unbound_shared_edge`.
+- `Estimating/OsinUnboundSharedEdge.lean` (b52365364 was red: a list-append elaboration failure
+  and a heartbeat timeout in one long proof; now split into small lemmas and re-probed):
+  `SectionCuts.exists_section_of_lt`, `FaceEdgeDoubling.digon_decomposition`,
+  `RealizedSectionFamily.false_of_digon_region`, `false_of_unbound_shared_edge`.
 
 ## Case 2 inputs (sec5-sentences)
 - `Estimating/OsinUnboundMerged.lean` (8f7a8f1e1): `GloballyDistinguishedSectionFamily.UnselectedGFacesMerged`,
