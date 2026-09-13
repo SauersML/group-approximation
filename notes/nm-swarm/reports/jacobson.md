@@ -62,25 +62,44 @@ conjunction of:
 The older carrier `JacobsonSymbol.PrintedTwoResultsComplementary` is root-wired (f495cf119), but its
 second half is only the operator-model witness.
 
+## Three coordinates carry (T), the fourth compresses (3009704fef89, tex 1155--1157)
+The census worklist puts this row under ghw-assembly by its mechanical owner rule. Its carriers are
+jacobson modules, and the ghw-assembly roster names only b6d1590be7ab.
+
+Why it was partial:
+- the `JacobsonRankFour` theorems have ∀-typed statements, so they carry only `#audit_axioms`;
+- the one closed carrier, `EJZCitationSentences`, covers only the first half, for the operator
+  model.
+
+`Manuscript/OneSidedMFRadical/JacobsonThreePlusOnePresented.lean` (2104ff622; probe
+0913-053713-26835, BUILT, three `#audit_closed_axioms`):
+- `PrintedThreePlusOneGeneral`, with two parts:
+  - for every finitely generated ring `A`, the core `EL_3(A)` of `EL_4(A)` has property (T). This
+    is the EJZ theorem as proved in `IntegralColumnPlaneClosure`.
+  - for every pair `ts = 1`: `EL_3(A)` embeds onto the core, and the fourth coordinate lies outside
+    it. The compressor `u ∈ EL_4(A)` sends `e_ij(a)` to `e_ij(s a t)`, so `u L u⁻¹ ≤ L`.
+- `PrintedThreePlusOnePresented`: the same at the presented `J` with its printed generators, with:
+  - `isFinitelyGeneratedRing_toeplitzJacobson`, obtained by transport along `jacobsonEquiv`;
+  - `presPair`, the pair `presS, presT`;
+  - the printed inverse matrix of `u`.
+
 ## Census and wiring
 - Rows appended to `metadata/nm-census-rows/jacobson.tsv`, keyed by row hash: b47d06c5c362,
-  11137e57b26d, d5e56b196927, 0a08ffd095d6 and c149d33e8f7e.
+  11137e57b26d, d5e56b196927, 0a08ffd095d6, c149d33e8f7e and 3009704fef89.
 - Queued in `wire-queue.txt`, in this order: JacobsonPresented, JacobsonPresentedSentences,
-  JacobsonComplementaryPresented.
+  JacobsonComplementaryPresented, JacobsonThreePlusOnePresented.
   - JacobsonPresented imports the root-imported JacobsonFiniteMatrices.
   - JacobsonKernelFinitary is reachable through the root-imported JacobsonRankTwoCarrier.
   - FullDefectRingEJZUnconditional is reachable through the root-imported
     JacobsonComplementarySentence.
+  - EJZCitationSentences and FinitelyGeneratedRingPermanence are root-imported.
 
 ## Residual Props
-None for the roster target: the four L1122 rows and c149d33e8f7e. The endpoints become
-root-reachable once the three modules are wired.
+None for the roster target (the four L1122 rows and c149d33e8f7e) or for 3009704fef89. The
+endpoints become root-reachable once the four modules are wired.
 
-Adjacent partial rows that cite this lane's rows:
-- b6d1590be7ab (GHW Theorem 4) belongs to ghw-assembly.
-- 3009704fef89 ("Three coordinates carry property (T) [EJZ Thm 1.1], and the fourth makes the
-  compression by s invertible") merges a cite-ejz row marked "first half only" with the jacobson
-  row (JacobsonRankFour, compiled 8e0bf35e2). Its grade needs a census check.
+Adjacent partial row that cites this lane's rows: b6d1590be7ab (GHW Theorem 4), owned by
+ghw-assembly.
 
 ## Next
 The roster items are done. Awaiting the next assignment from the lead.
