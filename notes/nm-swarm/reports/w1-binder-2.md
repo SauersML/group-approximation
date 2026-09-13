@@ -64,6 +64,19 @@ the blocks. That instantiation stays with fff-periodic.
   hypothesis (i). fff-periodic's planned `OsinUnboundSameCellCount` supplies hypothesis (ii) with `M₀ = ⌈1/λ⌉₊`.
   Composed, they give `ClassCovers (⌈1/λ⌉₊ + 1) L`, which is what `OsinLemma94ClassCountInput` asks for (`0 < M`).
 
+- **Hypothesis (i) LANDED e3bbcf801** (module `Estimating/OsinLemma94ClassCoversOtherFacing`, probe 0913-172833-62676
+  GREEN, BUILT line checked; the MSI build log shows `[propext, Classical.choice, Quot.sound]` on all nine audited
+  declarations). Queued for wiring.
+  - `OsinLemma94OtherFacingCover.otherFacingCover_of_endLoops`: the unbound darts whose reverse lies on a different face
+    number at most `∑ S_i + (24 ε + 2 (K + 24) B) n`, from the end-loop hypotheses of hull-component's
+    `classCovers_of_endLoops`, without `hsameCell`.
+  - `OsinLemma94OtherFacingCover.classCovers_of_endLoops_sameCellFactor`: composed with `classCovers_of_sameCellFactor`,
+    `ClassCovers (M₀ + 1) ((M₀ + 1) (24 ε + 2 (K + 24) B) + T)` from the end loops and hypothesis (ii).
+  - Helper names live in `OsinLemma94OtherFacingCover`, so hull-component's module can still be wired without collisions.
+    Once it is fixed, the duplicated helpers can be merged.
+  - Residual premises (as in the original): `hside`, `hbubble`, the end-loop bounds `hclassEnd`/`hregionEnd` and
+    `ClassBudget K`. hull-component's end-loop producers supply them.
+
 ## Progress log
 
 - 17:0x: verdict and ownership map; claim landed (7564433ff).
