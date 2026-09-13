@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullSCTheorem71GeneralLeastArea
+import GroupApproximation.GGT.HullSCLemma51EmbeddedBridgeHolds
 import GroupApproximation.GGT.HullSCLemma44BoundaryTransfer
 import GroupApproximation.GGT.WPDAcylindricalHyperbolicity
 import GroupApproximation.Manuscript.NonMF.HullTheorem312Lemma58
@@ -42,7 +43,9 @@ common nonzero power, and `Q` is not virtually cyclic.
 
 Theorem 7.1 enters as `HullSC.HullTowerStatementGeneral`.  On main it is proved from the two
 least-area wall statements (`HullSC.hullTowerStatementGeneral_of_leastAreaLeaves`), so
-`printedHullCorollary73_of_leastAreaLeaves` takes exactly those two statements.
+`printedHullCorollary73_of_leastAreaLeaves` takes exactly those two statements.  The embedded
+bridge is proved (`HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed`), so
+`printedHullCorollary73_of_greendlinger` takes the Greendlinger wall alone.
 -/
 
 namespace GroupApproximation
@@ -431,6 +434,17 @@ theorem printedHullCorollary73_of_leastAreaLeaves
     (HullSC.hullTowerStatementGeneral_of_leastAreaLeaves hgreendlinger hbridge)
 
 #audit_axioms printedHullCorollary73_of_leastAreaLeaves
+
+/-- Hull's Corollary 7.3 from the least-area Greendlinger wall alone: the embedded bridge is
+`HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed`. -/
+theorem printedHullCorollary73_of_greendlinger
+    (hgreendlinger :
+      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    PrintedHullCorollary73 :=
+  printedHullCorollary73_of_leastAreaLeaves hgreendlinger
+    HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed
+
+#audit_axioms printedHullCorollary73_of_greendlinger
 
 end HullCorollary73
 end NonMF
