@@ -216,6 +216,11 @@ Theorem 14 and Proposition 15) applies, and the Item 1 argument runs verbatim.
   - §1.15, ex-mf-kazhdan-cstar invariant-vector obstructions (Magee--de la Salle import, matricially
     stable overgroups, the principal SL_2 in Deligne's representations, SL_3(Z) witnesses, cubic
     division lattices): PASS.
+- `ex-review-analysis-2026-09-12-part8.md`:
+  - §1.16, the remaining ex-k1-properly-infinite establishments (Blanchard's Question 5.4 through the
+    DD Toeplitz algebra, Euler protection in O_2-self-similar modules): PASS.
+  - §2.1, spot check of ten citation imports used by reviewed proofs. One thin pre-EX import
+    (Vigdorovich) is noted.
 
 ## 2. Sweep of in-scope landings to 23:35 CDT
 
