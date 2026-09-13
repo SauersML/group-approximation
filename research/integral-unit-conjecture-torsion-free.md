@@ -51,7 +51,16 @@ support (`rational-units-rescale-to-integral-units`).
   No nontrivial unit of `Z[P]` or `Q[P]` lives on it, and a characteristic-zero
   field carries one only if it contains `zeta_8`
   (`gardam-support-pair-has-no-rational-units`). The attack dies at the choice
-  of support, because no other support pair is covered.
+  of support. The next bullet covers the other pairs of the radius-four census.
+* **The radius-four census pairs.** Let `S` be the support of one of the 52
+  units of `F_2[P]` supported in `B(4)`, and `T` the support of its inverse.
+  No nontrivial unit of `Z[P]` or `Q[P]` has support in `S` and inverse
+  support in `T`, whatever its residue mod 2. A characteristic-zero field
+  carries one only if it contains `zeta_8`
+  (`promislow-radius4-support-pairs-need-zeta8`). This reaches the
+  residue-trivial units of Case A on these supports, but only with the inverse
+  support fixed. The attack dies at the inverse support: a unit supported in
+  `S` whose inverse has support elsewhere in Tabei's box is not covered.
 * **Untwisting Gardam's unit.** Every coefficient of Gardam's unit in
   `R[P]`, `R = Z[s,t]/(s^4+1, t^4+1)`, is a signed monomial `+-s^i t^j`
   (rechecked exactly in `research/artifacts/gardam-support-pair-gsp.py`).

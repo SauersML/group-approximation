@@ -37,8 +37,15 @@ The route `integral-unit-conjecture-from-rational-proof` derives
   pair, a field of characteristic zero carries a nontrivial unit only if it
   contains `zeta_8` (`gardam-support-pair-has-no-rational-units`). So the
   complex units do not descend to `Q`, or even to `R` or `Q_2`, on their own
-  support. The attack dies at the choice of support: other supports at word
-  radius four and five are not covered.
+  support. The attack dies at the choice of support. The next bullet extends
+  it to the other pairs of the radius-four census.
+* **Descent on the radius-four census pairs.** Let `S` be the support of one
+  of the 52 units of `F_2[P]` supported in `B(4)`, and `T` the support of its
+  inverse. A field of characteristic zero carries a nontrivial unit with
+  support in `S` and inverse support in `T` only if it contains `zeta_8`
+  (`promislow-radius4-support-pairs-need-zeta8`). The attack dies at the
+  inverse support, which is fixed to `T`, and at supports that are not the
+  support of a unit of `F_2[P]`.
 * **Galois norm of Gardam's unit.** Galois conjugates of Gardam's unit are
   units of `Q(zeta_8)[P]`. The ring is noncommutative, so a product of
   conjugates is not Galois-invariant and there is no norm into `Q[P]`.
