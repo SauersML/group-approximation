@@ -905,3 +905,31 @@ For EVERY census row in your range with status formalized or definition, and eve
   - OC6 Run patch rides in ghw-charp2's (A).
   - Gap finding (l.786/849): false_of_quadrilateral_face needs the reversed source arc as a literal piece of f's walk, so pairs whose [a,a'] or [b',b] strictly contains a gap (bubble or hair) have no quadrilateral split. Case 1 on class words needs the walk to avoid them, or the l.850 surgeries. ko-closed decides; the surgery split (hs-vanishes hair, leavitt-units bubble) stands.
 - leavitt-units found idle since 13:20; the 13:49 ruling had not woken it. Resumed with the (B)-shape order plus (iii') and the co-land notice.
+
+## Rulings 09-13 ~14:05–14:07
+
+- Roster f62aaf7fd records the 14:00–14:05 rulings.
+- sec2-sentences, kept cell (ii), PARTIAL: OsinPocketKeptCell 492057fb6 (probe 0913-140023-67387, unwired, queued).
+  - exists_kept_of_pocketRegion; exists_kept_of_simple over kh-ejz's PocketWalk.exists_of_exteriorAt + IsSimpleClosedWalk + havoid.
+  - No transport needed: OEquivalentDiscDiagram keeps no darts, so X' = S'.diagram from hs-vanishes' OuterSpurThickeningStatement.
+  - Blocker 1, the pinched walk: a PocketRegion needs FollowsBoundary. Covered by dgo-analytic's R2 region builder (hull-euler's Euler lemma) or by kh-ejz's U; exists_kept is restated against U if U comes first.
+  - Blocker 2, havoid: ruled the absorbed-set version, with "meets implies contained" as a named statement, model-tested first on (a) touching lobes at an empty arc and (b) cell i's face outside the member, via distinct cell arcs.
+- jacobson 70f8cd913 OsinPocketLoopCut (probe 0913-135346-38278, unwired, queued): nonempty_osinLoopCut_of_pocketRegion, the R-cell branch of Case 1 one-cell pairs, plus PocketRegion.twoSectionCuts and OsinLoopCut.ofPocketRegion.
+  - Binders: GeodesicCollarStatement and PocketCellTransportStatement.
+  - Ruled: jacobson owns the producer of OsinLemma94CaseOneSameCellStatement (unowned until now). It composes the cell-free branch (ko-closed's pick: ea9016135 or audit-sec5's metric kill) with the R-cell branch, drafts against ghw-charp2's staged spelling, and lands after (A).
+- Wrap pair (13:40 note): no code fix. audit-sec3's single-side face shows fix (b) in Maximal falsifies PartitionInput. The extra side per polygon goes into L, one class per polygon (audit-intro checks). ghw-assembly is free.
+- audit-sec3 next: truth audit of GeodesicCollarStatement, PocketCellTransportStatement and PocketPinchLabelledStatement against the pinched two-gon model and Configurations A and B. Verdicts go to the owners.
+- root-wire resumed by raw id (wave 14). root-wire and leavitt-units did not wake on by-name sends; a raw-id send woke leavitt-units.
+- ko-closed ruling on the one-cell items (roster l.843–850):
+  - (1) wins: the metric kill at the printed threshold.
+    - WordConnectorPair (UnboundWordConnectors:43-46) has source_long and target_long, and the connectors are geodesic and shorter than ε.
+    - Case (a): S = A M B reads a connector, so |val S| < ε (OsinLemma94OneCellValue 36524dbf0, probe 0913-135819-58619, queued).
+    - Morse radius κ from exists_word_replacement_morse after isHyperbolicSpace_cayley_of_fourPoint; δ, λ, c are bound before eps0 (PlanarPieces:397), so no statement changes.
+    - d(x0,x1) + d(x1,x3) ≤ 2κ + d(x0,x3), plus λ|B| − c ≤ d(x1,x3), give λε − c < 2κ. So any ε₀ > (2κ + c)/λ kills case (a).
+    - No DartMinimal, Maximal or least area.
+  - The λ⁻¹(ε+c) respelling is CANCELLED: hull-unbound's Dense draft is dropped and sec5-sentences' ρ₀ fold is not needed.
+  - Correction to ko-closed 8e9f6b1ce: Shape 1 is not a counterexample at the printed threshold.
+  - ko-closed writes (1) in a new module over OsinLemma94OneCellValue.
+  - (2): jacobson's nonempty_osinLoopCut_of_pocketRegion stays, and audit-sec5 writes no second LoopCut producer.
+  - T threading (OsinLemma97Below) stays with theoremc-retire and lands as its own co-probe after (A).
+- hull-unbound next: model test of theoremc-retire's gap finding (can CaseOneWalk produce a gap-containing pair; would gap-free endpoints lose the ClassCovers count). Verdict to ko-closed and theoremc-retire.
