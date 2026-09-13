@@ -37,7 +37,7 @@ These lattices are CAT(0) groups, so this is a special case of
    hyperbolic, and `hyperbolic-groups-satisfy-boone-higman` doesn't apply.
 4. **Self-similar hosts** (`fp-self-similar-subgroups-satisfy-permutational-boone-higman`).
    A faithful action on a locally finite rooted tree forces residual finiteness.
-   Titz Mite--Witzel l.195 record that "conjecturally none of them is residually
+   Titz Mite--Witzel l.194 record that "conjecturally none of them is residually
    finite", citing BCL Conjecture 1.5.
 5. **MIF envelopes** (`fp-simple-highly-transitive-groups-satisfy-pbh`). This
    needs a finitely presented simple MIF overgroup. No simple group containing
