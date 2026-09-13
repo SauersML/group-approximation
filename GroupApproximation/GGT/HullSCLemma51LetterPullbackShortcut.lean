@@ -35,8 +35,7 @@ theorem letterStepBound_of_not_isRelGeodesic (D : GGT.RelGenSet G Lambda)
   have hg : ∀ a ∈ g, D.IsLetter a := hgadm
   have hslen : x.length + y.length = p.length := by
     have e := congrArg List.length hrot
-    simp only [List.length_rotate, List.length_append, List.length_cons, List.length_singleton,
-      List.length_nil] at e
+    simp only [List.length_rotate, List.length_append, List.length_cons, List.length_nil] at e
     omega
   have hglen' : g.length ≤ x.length + y.length := by
     simp only [List.length_append, List.length_cons] at hglen
