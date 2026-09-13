@@ -20,6 +20,8 @@ artifacts:
   - research/artifacts/stw61-four-compression-calkin-continuity-obstruction-2026-09-05.md
   - research/artifacts/lxi-dd-toeplitz-proper-infiniteness-2026-09-12.md
   - research/artifacts/lxi-uniform-unitary-length-reformulation-2026-09-12.md
+  - research/artifacts/lxi-o2-multiplier-reduction-2026-09-12.md
+  - research/artifacts/lxi-halving-homotopy-and-extensions-2026-09-12.md
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -55,7 +57,7 @@ section 6).
 
 ## Attempts
 
-Lane `ex-k1-properly-infinite` (2026-09-12) added two results.
+Lane `ex-k1-properly-infinite` (2026-09-12) added the following results.
 
 First, `properly-infinite-unstable-length-uniformly-bounded` and
 its two routes make LXI equivalent to a uniform
@@ -69,6 +71,28 @@ Blanchard's Question 5.4. His explicit Pimsner--Toeplitz fields
 of `O_∞` over the Hilbert cube, proposed as test cases for BRR
 5.5(ii), are properly infinite. The Dixmier--Douady obstruction
 has codimension one in `E` and disappears in `E ⊗ E`.
+
+Third, `o2-multiplier-extension-k1-injective-iff-unitization`
+changes the arena for detection. Let `I` be non-unital with a
+unital `O_2` in `M(I)`. Then `C*(I, O_2)` is properly infinite, and
+it is K1-injective iff `Ĩ` is. So a stably finite `I` whose
+unitization fails K1-injectivity refutes LXI (route
+`lxi-negation-from-o2-multiplier-ideal` into the negation claim
+`properly-infinite-unital-algebra-not-k1-injective-exists`). The
+self-similarity kills Euler-class protection of witnesses over
+commutative stages
+(`euler-class-protection-fails-for-o2-self-similar-modules`), so the
+LIX parity and Toms's spin-bordism mechanisms cannot be reused
+there.
+
+Fourth, `k1-injectivity-extends-over-properly-infinite-quotients`
+excludes extensions of K1-injective properly infinite algebras by
+ideals with K1-injective unitization.
+`trivial-unit-class-lxi-iff-universal-halving-homotopy` shows that
+K1-injectivity of every properly infinite algebra with `[1] = 0` is
+equivalent to K1-injectivity of `O_2 * O_2 ≅ O_2 * C(T)`, and to the
+single homotopy `z ~_h s_1 z s_1^* + s_2 s_2^*`. That homotopy is the
+open claim `o2-free-circle-halving-homotopy`.
 
 The free-envelope candidate `A_LIX * T2` has a stably null witness,
 but its non-nullness remains unproved. The attached compression notes
