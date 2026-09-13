@@ -26,6 +26,7 @@ universe u w
 
 variable {G : Type u} [Group G] {Lambda : Type w}
 
+omit [Group G] in
 theorem exists_eq_comp_of_isCompOf {lam : Lambda} {a : GGT.RelLetter G Lambda}
     (hc : GGT.RelLetter.IsCompOf lam a) : ∃ (mu : Lambda) (h : G), a = GGT.RelLetter.comp mu h := by
   cases a with
