@@ -286,7 +286,8 @@ Filled in as each part lands.
   established claims without a PASS, 33 remain after parts 9 and 10.
 - `ex-review2-analysis-2026-09-13-part12.md` (priority): the KK norm functor. PASS at p = 2 on Theorem A, Theorem B and
   the Rokhlin property of the flip on O_2 ⊗ O_2. GAP at odd p: in Proposition 1 the cross terms of F̃² need the
-  partition operators to commute modulo compacts, and nothing supplies that.
+  partition operators to commute modulo compacts, and nothing supplies that. Addendum §12.5: Nishikawa--Petrosyan
+  arXiv:2509.15070v2 (Theorems 5.10 and 5.11, Remark 5.12) repair odd p by citation, and items 1--3 are their theorem.
 - `ex-review2-analysis-2026-09-13-part13.md` (priority): Toms's rank theorems on block-diagonal realizers in the
   non-simple limit A and the simple algebra B. PASS, with wording notes: the hypothesis must hold at every large stage,
   one justification is wrong, and requires are missing. Section 4, Lemma 2 and Proposition 4 were checked against
@@ -295,6 +296,10 @@ Filled in as each part lands.
   extensions of O_2 and of Z-stable quotients with trivial K_0, the Toeplitz defect ideal (connectivity is forced by
   LXI and, with halving, gives LXI), fullness of nonzero-fibre projections under weak ω-comparison, and the Jiang
   import. Jiang 2, Blanchard 4.2 and 4.4, and OPR 4.5, 4.8 and 2.21 were checked verbatim.
+- `ex-review2-analysis-2026-09-13-part15.md` (census B): UCT dynamics on O_2. PASS on the cocycle-component rigidity, the
+  1/2 commutator threshold, only-coboundaries under a contractible crossed product, twisted asymptotic innerness with
+  Galois components, the bi-cyclotomic transfer, the anti-inner and O_3 criterion at p = 2, and four imports (Izumi via
+  Barlak--Li, BEMSW, GHS, Gabe--Szabó), all checked verbatim.
 
 ## 4. Outcome of the census
 

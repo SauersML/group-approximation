@@ -99,3 +99,27 @@ remaining census, because lane ex3-uct-tate-diagonal builds on it.
   - scope their ESTABLISHED status to `p = 2`;
   - for odd `p`, record Proposition 1 as an open partition lemma, and route the odd-`p` items through it.
 - Owner notice sent to ex2-uct-norm-functor, and to the live consumer ex3-uct-tate-diagonal.
+
+## 12.5 Addendum: the literature repairs odd p, and credit belongs to Nishikawa--Petrosyan
+
+- **The import.** After this review, ex3-uct-tate-diagonal (`a830fde9f5`) imported
+  `nishikawa-petrosyan-equivariant-power-functor`: Nishikawa--Petrosyan, arXiv:2509.15070v2. It also added a credit
+  block to `kk-tensor-power-norm-functor-to-kk-zp`.
+- **Checked on MSI.**
+  - After Definition 5.13, verbatim: "For the separable ungraded G-C˚-algebras, it is a unique functor from KK_G to
+    KK_{G≀ΩF} sending [φ] to [φ^{⊗̂Ω}] for any G-˚-homomorphism φ: A → B, as shown in Theorem 5.10."
+  - Theorem 5.11 ("c.f. [Kas88, Theorem 1.4]") supplies the symmetric, essentially commuting partition.
+  - The independence argument joins two partitions through a third that commutes with both, as §12.2 suggested.
+  - Remark 5.12 records the gap of §12.2: "take a standard partition of unity ... and take their S_N-averages ... this
+    will not work unless N = 2 ... we want a condition like [N'_1, w(N'_1)] ∈ K(E) for w ∈ S_3, which is not automatic
+    from the standard construction".
+  - Theorem 5.16 (gamma elements) is present.
+- **Consequence.**
+  - Items 1--3 of `kk-tensor-power-norm-functor-to-kk-zp` hold for every prime by citation: the case `G = 1`,
+    `F = Ω = Z/p`, where item 1 follows from functoriality.
+  - `o2-tensor-power-shift-is-rokhlin` then holds at every prime as well.
+  - The GAP stays a gap in the lane's own Proposition 1, not in the claims.
+- **Credit.** Items 1--3 are Nishikawa--Petrosyan's. What is new is items 4--5 and the Rokhlin corollary, as the node now
+  records.
+- **Graph.** The odd-p items should route through the import. Either add `nishikawa-petrosyan-equivariant-power-functor`
+  to the requires of a citation route to the claim, or scope `kk-tensor-power-norm-functor-to-kk-zp-proof` to `p = 2`.
