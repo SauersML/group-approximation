@@ -51,10 +51,16 @@ theorem faceClassO_facePerm (y : (phiMapO family E).Dart) :
   obtain ⟨m, hm, hpm, havoid⟩ := hR.sigma_firstReturn ((phiMapO family E).alpha y)
   have halpha : (Function.Embedding.subtype (PhiKeepO family E)) ((phiMapO family E).alpha y) =
       (collapsedMap family).dual.alpha y.1 := hR.alpha_map y
-  rw [halpha] at hpm havoid
+  have hpm' : ((collapsedMap family).dual.sigma ^ m) ((collapsedMap family).dual.alpha y.1) =
+      ((phiMapO family E).facePerm y).1 :=
+    (congrArg (fun z => ((collapsedMap family).dual.sigma ^ m) z) halpha).symm.trans hpm
+  have hnk : ∀ k, 0 < k → k < m → ¬ PhiKeepO family E
+      (((collapsedMap family).dual.sigma ^ k) ((collapsedMap family).dual.alpha y.1)) :=
+    fun k hk0 hkm hk => havoid k hk0 hkm
+      ⟨⟨_, hk⟩, (congrArg (fun z => ((collapsedMap family).dual.sigma ^ k) z) halpha).symm⟩
   have h := SimpleClosedWalkSides.faceClass_run (collapsedMap family).dual (PhiKeepO family E)
-    y.1 m (fun k hk0 hkm hk => havoid k hk0 hkm ⟨⟨_, hk⟩, rfl⟩) m hm le_rfl
-  rw [hpm] at h
+    y.1 m hnk m hm le_rfl
+  rw [hpm'] at h
   exact h
 
 /-- **L4: the class hypotheses of a two-gon.**  Let `y` be the outer cell dart of a two-gon of
@@ -113,8 +119,8 @@ theorem twoGonClassHyp_of_outer (P : ExtPhiData family E)
     rw [hside, hy, crossO_false_of_eq_none _ ht, Bool.not_true, cross_false,
       Option.map_eq_some_iff] at hc
     obtain ⟨p, hp, hpy⟩ := hc
-    simp only [cross, if_true] at hp
-    rw [hp, ← hpy, Delta.toCombMap.alpha_involutive p]
+    have hp' : (phiRegionO y).2.targetArc.darts.head? = some p := hp
+    rw [hp', ← hpy, Delta.toCombMap.alpha_involutive p]
   have hstart_right :
       (phiRegionO ((phiMapO family E).facePerm
         ((phiMapO family E).facePerm y))).2.sourceArc.darts.head? =
