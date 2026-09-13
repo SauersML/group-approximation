@@ -113,3 +113,18 @@ This premise feeds `out-fn-bh-via-virtual-embedding-in-aut-fn`.
      `F_n`-conjugates gives `Aut(F_n)`, not `Out(F_n)`, and direct products give
      hosts that are not free. Details:
      `research/artifacts/bh-out-fn-into-aut-fm-2026-09-12.md`.
+7. **Even rank reduces to a once-punctured Birman sequence** (2026-09-13).
+   - **Restriction.** A virtual section of `Aut(F_{2g}) → Out(F_{2g})` restricts,
+     through Dehn--Nielsen--Baer, to a virtual section of
+     `1 → π1(Σ_{g,1}) → PMod(Σ_{g,2}) → PMod(Σ_{g,1}) → 1`
+     (`free-group-virtual-sections-give-punctured-birman-sections`, established).
+   - **Target.** The open non-splitting target is
+     `once-punctured-birman-sequence-does-not-virtually-split`, which would give
+     `aut-free-to-out-free-does-not-virtually-split-in-even-rank`. That would kill
+     the lifting constructions of Attempts 1 and 6 in even rank.
+   - **Why Chen--Salter doesn't apply directly.** Their theorem is only for closed
+     bases. The adaptation map (x-pushing group, twist-lift lemma, remaining
+     based-comparison step) is in
+     `research/artifacts/solve-bh-mcg-outfn-2026-09-13.md`.
+   - **What survives.** It would not exclude the premise: an exotic faithful action
+     of a finite-index subgroup on a free group is untouched.
