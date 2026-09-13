@@ -86,8 +86,6 @@ theorem printedConjDDefinition : PrintedConjDDefinition := by
   change dM = _
   rw [dM_eq_dScale]
   congr 1
-  funext i
-  fin_cases i <;> simp [dScale]
 
 /-- **Printed sentence** (tex 1608).
 
