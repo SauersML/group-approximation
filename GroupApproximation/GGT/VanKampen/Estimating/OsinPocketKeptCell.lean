@@ -91,9 +91,9 @@ end RealizedSectionFamily
 namespace GloballyDistinguishedSectionFamily
 
 /-- **The kept cell of a pocket region.**  Let `x ≠ y` be exterior regions of the cell `i` to
-section `j`, the target arc of `x` starting first, and `K` their pocket walk, as given by
-`PocketWalk.exists_of_le`: the source arc of `K` spans those of `x`, a gap and `y`, and its target
-arc runs from the start of the target arc of `x` to the end of that of `y`.  Let `P` be a pocket
+section `j`, and `K` their pocket walk, as given by `PocketWalk.exists_of_exteriorAt`: the source
+arc of `K` spans those of `x`, a gap and `y`, and its target arc runs from the start of the target
+arc of `x` to the end of that of `y`, so the target arc of `x` starts first.  Let `P` be a pocket
 region whose cycle is the walk, avoided by every other selected region.  Then a relator cell lies
 in `P`.  Otherwise `P` merges `x` and `y` into one contiguity region to section `j`, with arcs at
 least as long as theirs together. -/
@@ -104,7 +104,6 @@ theorem exists_kept_of_pocketRegion
     (hy : y ∈ RegionCandidate.exteriorAt S.family i) (hxy : x ≠ y)
     (hjx : RegionCandidate.TargetsSectionIndex cuts j x)
     (hjy : RegionCandidate.TargetsSectionIndex cuts j y)
-    (hle : x.2.targetArc.start.1 ≤ y.2.targetArc.start.1)
     (K : PocketWalk D eps S.diagram (cuts.cut j.castSucc) (cuts.cut j.succ))
     (hgap : ∃ Gap : CyclicArc (cellDarts S.diagram i),
       K.sourceArc.darts = x.2.sourceArc.darts ++ Gap.darts ++ y.2.sourceArc.darts)
@@ -121,6 +120,12 @@ theorem exists_kept_of_pocketRegion
     exact hno ⟨n, hmem⟩
   have hxS : x ∈ S.family := (Finset.mem_filter.mp (Finset.mem_filter.mp hx).1).1
   have hyS : y ∈ S.family := (Finset.mem_filter.mp (Finset.mem_filter.mp hy).1).1
+  have hle : x.2.targetArc.start.1 ≤ y.2.targetArc.start.1 := by
+    by_contra hne
+    have hyx := RealizedSectionFamily.targetArc_end_le_start S.toRealizedSectionFamily hyS hxS
+      (Ne.symm hxy) hjy hjx (not_le.mp hne).le
+    have hpos := K.targetArc_pos
+    omega
   have horder := RealizedSectionFamily.targetArc_end_le_start S.toRealizedSectionFamily hxS hyS
     hxy hjx hjy hle
   obtain ⟨Gap, hGap⟩ := hgap
@@ -162,7 +167,6 @@ theorem exists_kept_of_simple
     (hy : y ∈ RegionCandidate.exteriorAt S.family i) (hxy : x ≠ y)
     (hjx : RegionCandidate.TargetsSectionIndex cuts j x)
     (hjy : RegionCandidate.TargetsSectionIndex cuts j y)
-    (hle : x.2.targetArc.start.1 ≤ y.2.targetArc.start.1)
     (K : PocketWalk D eps S.diagram (cuts.cut j.castSucc) (cuts.cut j.succ))
     (hgap : ∃ Gap : CyclicArc (cellDarts S.diagram i),
       K.sourceArc.darts = x.2.sourceArc.darts ++ Gap.darts ++ y.2.sourceArc.darts)
@@ -181,7 +185,7 @@ theorem exists_kept_of_simple
     exact List.mem_append_right _ hd
   have hout := PocketFaceSet.outerFace_not_mem_sideFaces_of_mem_outerDarts hw hdw
     (K.targetArc.mem_cycle_of_mem_darts hd)
-  exact S.exists_kept_of_pocketRegion hx hy hxy hjx hjy hle K hgap hstart hend
+  exact S.exists_kept_of_pocketRegion hx hy hxy hjx hjy K hgap hstart hend
     (PocketRegion.ofSimpleClosedWalk hw hout) (PocketRegion.ofSimpleClosedWalk_inner_cycle hw hout)
     havoid
 
