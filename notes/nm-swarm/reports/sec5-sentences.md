@@ -239,16 +239,29 @@ with hull-count94. `OsinLemma94CaseOneInput` stays with theoremc-retire, ko-clos
      exclusion. These land with the Case 1 users.
   2. The respelled side budget, proved from the Lemma 9.3 counts on main (`PhiPrimeCountInput`, `CellFaceCountInput`).
 - I offered hull-count94 step 2 (~13:31) and asked for the target Prop, its file and the spelling.
-- audit-intro is model-testing the patched budget. Until that test is back nothing is built on the budget spelling, and
-  this lane does read-only groundwork.
+- audit-intro's model test is back (0c95c8298), and main has ruled (ROSTER 13:05-13:40):
+  - a class is a maximal run of consecutive `.cell j` sides whose gaps read words of value one;
+  - a one-sided bubble (exactly one class, of kind (A1)) is dropped, and the budget sums only over polygons with an
+    (A1) side;
+  - the class word is the `dartWord` of the reversed cell arc, gaps included, and `L = 24ε + 2(K+24)⌈(c+2)/λ⌉`.
+  The respelled `SideBudget` is hull-count94's step 1 and is not on main yet.
+- I sent hull-count94 the step-2 finding below and proposed a split (msg 7ca57652): hull-count94 writes the
+  respelling, and this lane writes the diagram-level class count. No reply yet.
 
-Groundwork, read-only:
+Groundwork:
 - The covering half is closed (`osinLemma94PolygonCoversInput`, 2b2e16cc6). The residual is
   `OsinLemma94PolygonSideBudgetInput` (`Estimating/OsinLemma94PolygonCount.lean:81`), with
   `SideBudget P K := ∑ k, P.sideCount k ≤ K n` (PlanarPieces:217).
 - The binders give `|M| ≤ 3(n + r − 1)` and `DartMinimal`, and `cuts.count_le` gives `r ≤ 4`.
-- Short sides. The dart across every dart of a short side lies on a side of a selected region, so the short sides number
-  at most `2 ε |M|`. This is the argument of audit-intro's `sum_card_regionFacingUnbound_le` (RegionSideCount:151).
+- Short sides, LANDED. `GGT/VanKampen/Estimating/OsinLemma94ShortSides.lean`: LANDED 4b6dd3cd8; probe
+  0913-135154-29800 GREEN (base e0dcf8b99), BUILT; queued for wiring after `OsinLemma94PlanarPieces` and
+  `OsinLemma94RegionSideCount`. It does not depend on the budget spelling. It is Osin's "Clearly the number of arcs of
+  type (A3) is at most 2|M|", at the level of polygon sides.
+  - `OsinLemma94RealizedPolygons.shortSides`, `faceOf_of_mem_sideDarts`, `sideDarts_disjoint`;
+  - `alpha_mem_sides_of_short`: the reverse of a dart of a short side lies on a side of a selected region (it is on
+    neither contiguity arc, since the polygon's face is no relator cell, and not on `∂Δ`);
+  - `sum_card_shortSides_le`: `∑ k, #(shortSides k) ≤ 2 ε |M|`;
+  - `sum_card_shortSides_le_mul`: `≤ 24 ε n` from `0 < n` and `|M| ≤ 3(n + r − 1)`.
 - (A1) and (A2) sides. I found no diagram-level producer of Lemma 9.3's `#A1 + #A2 ≤ 2|M| + n + r`:
   `ComplementaryComponents.typeA12_le` is a structure field with only a zero model, and `lemma61_arcCount_le` is only
   its arithmetic. So step 2 has to count the maximal unbound runs on cells and sections itself. My reading is that
@@ -259,7 +272,7 @@ Groundwork, read-only:
 
 ## Next
 
-1. Wait for hull-count94's answer on the split and for audit-intro's model test. Then write step 2 in a new module of
-   this lane, over the patched spelling.
+1. Wait for hull-count94's answer on the split (msg 7ca57652). Then write the class count in a new module of this lane,
+   on hull-count94's respelled `SideBudget`, with `sum_card_shortSides_le_mul` for the short sides.
 2. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
    re-grade the rows formalized.
