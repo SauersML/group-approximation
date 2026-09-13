@@ -6,6 +6,7 @@ title: Fixed price for all finitely generated groups would give it for all count
 artifacts:
   - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-compression.md
+  - research/artifacts/fpbs/docs/fixed-price-countable-passage.md
 ---
 
 **OPEN.** Assume every infinite finitely generated group has fixed price. Prove that every countably infinite group does. The original finite-routing arguments use finitely many generator demands. Section 9 of the conditional-traffic artifact now extends the variational identities to arbitrary countable groups when the base action has finite cost, by explicitly paying a generating graphing's unprocessed tail. It does not produce vanishing defect from the finitely generated Fixed Price hypothesis, or handle a finite-cost source over an infinite-cost base. No route establishes the passage.
@@ -56,3 +57,54 @@ extensions of infinite-cost free bases. The first would equate all finite
 action costs via product projections. The second would exclude mixed
 finite/infinite action costs. Neither follows here from the hypothesis
 of this node, and neither is asserted proved.
+
+**Countable passage audit, September 12, 2026.** Details and proofs are in
+`research/artifacts/fpbs/docs/fixed-price-countable-passage.md`. Every tool
+used was re-read from source:
+- Tucker-Drob arXiv:1211.6395, Sections 6 and 7;
+- Abert-Weiss arXiv:1103.1063;
+- Burton-Kechris arXiv:1611.07921, Section 7.1;
+- Gaboriau's Cout paper and his lecture notes of October 3, 2025.
+
+The results:
+
+- **Unconditional criterion.** A countably infinite Gamma has fixed price iff
+  C(Gamma) = infinity, or C(s_Gamma) = C(Gamma) < infinity and every free
+  action has finite cost.
+  - The proof uses Abert-Weiss, Tucker-Drob Corollaries 6.8 and 6.20, and
+    Proposition 6.26(1).
+  - Suppose C(s_Gamma) = C(Gamma) < infinity. Then a free action of infinite
+    cost gives, on its own orbit relation, a positive answer to Tucker-Drob
+    Question 7.6.
+- **Optimized exhaustion.** Take the bound PC <= liminf_n c_n above over the
+  best finitely generated exhaustion. It equals
+  sigma(a) = sup_F inf{C(a|Delta) : Delta f.g., F in Delta}.
+  In the F_(4^n) x (Z/2Z)^n example, sigma = 1.
+- **Under this node's hypothesis.** Let c* = sup_F inf c(Delta), with the inf
+  over infinite f.g. Delta containing F. If C(Gamma) < infinity, every free
+  action a satisfies C(Gamma) <= PC(a) <= PC(s_Gamma) <= c*.
+  - So fixed price follows from two conditions together:
+    (L) c* <= C(Gamma), and (U) every free action has finite cost.
+  - (U) holds unconditionally in three cases (lectures Theorem 2.45,
+    Corollaries 2.48 and 2.49): Gamma has an infinite f.g. normal subgroup,
+    an infinite f.g. commensurated subgroup, or is a Gaboriau chain over an
+    infinite f.g. base.
+- **Obstruction.** The hypothesis fixes only the costs of subgroup relations
+  E_{a|Delta}. By contrast, p_F and PC are infima over arbitrary intermediate
+  relations (Tucker-Drob Lemmas 6.2 and 6.14), which the hypothesis does not
+  control. A group Gamma for which the passage fails must be neither f.g. nor
+  locally finite, must have C(Gamma) < infinity, and must fall into one of
+  two cases:
+  - **(A)** C(Gamma) < PC(s_Gamma) <= c*. Here (L) fails and s_Gamma is not
+    treeable.
+  - **(B)** PC(b) = C(Gamma) for all free b, but some free b has
+    C(b) = infinity. This is a free-action positive answer to Question 7.6,
+    and Gamma then has none of the subgroups listed under (U).
+- **Test group.** Gamma_inf = ker(<a,b,t | tat^-1 = aba^-1, tbt^-1 = b^2> -> Z)
+  is locally free, not f.g., and not free. It has fixed price 2 and c* = 2.
+  - The upper bound is Theorem 2.45 over F_2.
+  - The lower bound is the cost vs beta_1 inequality with beta_1^(2) = 1.
+    The beta_1 computation uses Lueck's dimension theory, which was not
+    re-read from source.
+
+None of this derives (L) or (U) from the hypothesis. The node stays open.
