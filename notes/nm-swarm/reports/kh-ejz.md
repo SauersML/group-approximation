@@ -171,16 +171,39 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
      - pinched pockets, with sides touching at a vertex;
      - a non-simple cell boundary in the gap, where the arc part may be two intervals rather than one CyclicArc;
      - merge absorption of third regions inside the pocket.
-5. **Next.**
-   - State and prove the region-side data once OsinPocketPieces lands, then tell go-lemma42.
+   - **Gap arcs** (the list-level part of the pocket walk): new module `GGT/VanKampen/Estimating/OsinPocketGapArcs`,
+     landed unverified at b389a81cf. Green probe 0913-073424-67369 ran on the same bytes (md5 checked). It is unwired.
+     All four declarations below are under `#audit_axioms`:
+     ```lean
+     def CyclicArc.shorten (arc : CyclicArc cycle) (m : ℕ) (hm : m ≤ arc.length) : CyclicArc cycle
+     theorem CyclicArc.shorten_darts : (arc.shorten m hm).darts = arc.darts.take m
+     theorem CyclicArc.rest_darts (arc : CyclicArc cycle) : arc.rest.darts = arc.rotated.drop arc.length
+     theorem CyclicArc.exists_gapArcs (X Y : CyclicArc cycle) (hX : 0 < X.length)
+         (hXY : ∀ d ∈ X.darts, d ∉ Y.darts) :
+         ∃ G₁ G₂ : CyclicArc cycle, G₁.start = X.rest.start ∧ G₂.start = Y.rest.start ∧
+           X.rotated = X.darts ++ G₁.darts ++ Y.darts ++ G₂.darts
+     ```
+     - It needs no duplicate-free hypothesis, because overlapping positions share a dart.
+     - It applies to `cellDarts Δ i`, giving the cell part t₁.
+     - It also applies to `outerDarts Δ`, giving t₂ of the section pocket.
+5. **Next** (~07:45).
+   - Planar separation (A) is now on main: `simpleClosedWalkSides : SimpleClosedWalkSidesStatement`
+     (GGT/VanKampen/SimpleClosedWalkSides, 79008d7e5 and 4dce22f1e, `#audit_closed_axioms`).
+     - Both sides of a simple closed walk `w` in a planar map are disc regions.
+     - Their cycles are `w` and `w.reverse.map alpha`, and both follow the boundary.
+     - A walk with a repeated vertex (a pinch) is not covered.
+   - dgo-analytic's `OsinPocketPieces` (9cb70824c) names kh-ejz for `SectionPocketFaceSetInput` and
+     `OsinSectionPocketFaceSetSectionStatement`.
+     - The statement: two exterior regions of cell `i` to section `j` enclose a `PocketFaceSet`.
+     - A `PocketFaceSet` is a face set with a BoundaryCycle split `s₁ ++ invDarts t₁ ++ s₂ ++ t₂`, where `t₂` is an arc
+       of `∂X`, and with a kept cell inside.
+     - It does not consume `MultipleEdgePocketRegionInput`.
+     - At ~07:45 I asked main which comes first. The default is the section pocket.
+   - The route for the section pocket:
+     - build the walk from the two region sides and the two gap arcs;
+     - take `PocketFaceSet.boundary` from the inner side of `simpleClosedWalkSides` when the walk is simple;
+     - get the kept cell through hull-select's zero-cell merge. OsinPocketZeroCellMerge is not on main at 07:45.
    - When hull-euler's C6 Prop arrives, check it against this output.
-   - Status at 05:22:
-     - C6 is not on main. The roster (07169dd31) makes C6 a named piece Prop in hull-euler's module, shaped for the
-       ofPlanar carrier, with kh-ejz and hull-select discharging it. hull-euler's report (fbef94518) still asks the
-       lead whether to state it.
-     - OsinPocketPieces is not on main either.
-     - At ~05:25 I asked the lead two things: may I state the region-side Prop over `PocketRegion` myself, and should
-       the split be uncollared or collared?
 
 ## W1 assignment (2026-09-13 ~03:00)
 The lead's order: work on W1 hgreendlinger. hull-euler owns `PhiPrimeCountInput` alone, so take one separable part
