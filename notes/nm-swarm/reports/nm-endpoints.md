@@ -94,6 +94,16 @@ line:
   `TorsionFreePrinted.FinitelyPresentedInfiniteSimpleStatement`
   (FournierFacioParagraphFromSimpleFactor.lean:353).
 
+Finer routes on main since 12e1d1af8 are still conditional and do not collide with the
+`TorsionFreeFourLeaves` names:
+- 232d6b12b adds `HydeLodha.finitelyPresentedInfiniteSimpleStatement_of_upsilon
+  (hU : UpsilonFinitelyPresented)`, so the Hyde–Lodha wall now waits only on Lemma 4.6.
+- 3cf9bd845 lands two orphan modules unverified. `Kazhdan/KotowskiOllivierLeaves` has
+  `kotowskiOllivierStatement_of_leaves` and the `*_of_leastAreaKOLeaves` forms.
+  `Manuscript/NonMF/TorsionFreeKOLeaves` has the `*_of_hullFixedCliqueHyp` forms. Both
+  state the endpoints over the zip, fold and fixed-clique leaves instead of the
+  Kotowski-Ollivier wall.
+
 `#audit_axioms` throws on any axiom outside the classical allowlist
 (Meta/AxiomGuard.lean), so the green probe shows that no four-leaf chain uses `sorryAx`.
 
