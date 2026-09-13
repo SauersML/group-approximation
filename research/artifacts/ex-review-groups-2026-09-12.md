@@ -167,6 +167,26 @@ every group.
   and at the combining step on monomial models of the Kun–Thom wreath (ex-q34-kt-wreath-soft-kernel).
   Part 14.
 
+- **§15, eighteen-relator tests, exclusions from amenable orbit full groups, Lodha–Moore, Serre atoms (~02:35 CDT).**
+  PASS on:
+  - the Hamming and unitary eighteen-relator tests and the Kazhdan transfer (ex-free-objects);
+  - the IRS-rigid, stabilizer-rigid and no-proper-character exclusions (ex-fp-simple-sofic);
+  - the Lodha–Moore bi-order and non-LEA (ex-left-orderable-nonsofic);
+  - the Serre-class atoms (ex-determinant-monster).
+
+  Part 15.
+
+- **§16, nonsofic doubles in dimension three, bounded-block transport, finite type (~02:40 CDT).** PASS on
+  (ex-fp-kazhdan-titz-witzel, with the Ollivier–Wise citation checked against the PDF):
+  - compressed doubles raising cohomological dimension;
+  - the dimension-two infranormal pair, which refutes the dimension-two fence;
+  - the finitely presented torsion-free nonsofic double of dimension exactly three;
+  - trivial centralizers in CAT(0) dimension two.
+
+  Also PASS, at step level, on bounded-block soft transport (ex-q34-kt-wreath-soft-kernel), and PASS on
+  finite presentation forcing finite type for Z^d derived full groups (ex-fp-simple-relation-climbing).
+  Part 16.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -183,3 +203,5 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part12.md`: §12, fp-kazhdan-ring refill.
 - `research/artifacts/ex-review-groups-2026-09-12-part13.md`: §13, fp-kazhdan Kac–Moody and Titz–Witzel refills.
 - `research/artifacts/ex-review-groups-2026-09-12-part14.md`: §14, finite-cd doubles, SFT presentations, wreath monomial models.
+- `research/artifacts/ex-review-groups-2026-09-12-part15.md`: §15, eighteen-relator tests, exclusions from amenable orbit full groups, Lodha–Moore, Serre atoms.
+- `research/artifacts/ex-review-groups-2026-09-12-part16.md`: §16, nonsofic doubles in dimension three, bounded-block transport, finite type.
