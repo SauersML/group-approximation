@@ -31,3 +31,12 @@ This is the upper-bound reading of Zaremsky Problem 1.17
   the corners of `σ`, and its length is controlled only by distortion of
   intersections of stabilizers. Whether distortion over cells of dimension
   ≤ 2 is enough is the open point.
+- 2026-09-13, after reading pp. 10–14 of arXiv:2608.07191
+  (`research/artifacts/zp-dehn-cocompact-face-collapse-2026-09-13.md`): the
+  hypothesis enters only through Lemma 3.4, the face collapse, whose cost
+  without it is `min_{s ∈ G_σ} d_{G_e}(p, ψ_{e,σ}(s))`, the distance from the
+  loop to the disks over `σ`. Loop length does not bound that distance. A proof
+  has to choose `G`-close fillings; the candidate controlling datum is the
+  corner coarse-intersection function `κ_X` of pairs of edge stabilizers
+  inside vertex stabilizers. It is bounded under finite index and linear for
+  products of trees.

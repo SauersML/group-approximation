@@ -30,3 +30,12 @@ negatively (route `zaremsky-1-17-by-no`).
   expected to satisfy the bound. Triangles of groups with trivial face group
   and large edge groups are the first place to look; the development has to
   stay simply connected with finite `δ_X`.
+- 2026-09-13 (`research/artifacts/zp-dehn-cocompact-face-collapse-2026-09-13.md`):
+  the uncontrolled cost is the `G`-distance from the loop to the disks over a
+  2-cell. A counterexample should have superpolynomial corner
+  coarse-intersection function `κ_X` (pairs of edge stabilizers that
+  fellow-travel inside a vertex stabilizer far from their intersection) while
+  `δ_X`, the vertex Dehn functions and all stabilizer distortions stay
+  polynomial. Convex or quasiconvex stabilizers (CAT(0), hyperbolic, Deligne
+  complexes of 2-dimensional Artin groups) and products of trees keep `κ_X`
+  linear and are ruled out as candidates.
