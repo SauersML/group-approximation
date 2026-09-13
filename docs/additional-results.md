@@ -177,6 +177,15 @@ as the graph varies, by an exact vertex-cover reduction. All source
 groups in that reduction are LEF Kazhdan, and the output remains
 algebraically nontrivial after every allowed selection of relations.
 
+The [cycle-core reflection theorem](../research/artifacts/pestov91-cycle-core-exact-mf-reflection-2026-09-13.md)
+removes the finite-seam assumption entirely in rank at least four.
+For every finite-alphabet subshift over `F_2`, the full MF radical is
+the kernel of restriction to its chain-recurrent cycle core. That
+kernel is locally finite and the quotient is LEF. The key local
+algebra result puts every finite part of the transient ideal into
+a finite product of matrix algebras, using finite wandering clopen
+covers. These are written proofs, not Lean formalizations.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
