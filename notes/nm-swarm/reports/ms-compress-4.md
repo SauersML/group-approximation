@@ -11,7 +11,7 @@ CLAIM thm:normal-kazhdan hypothesis at printed generality (V_n(1)=1) GroupApprox
 | tex | key | sentence (abbrev.) | status | carrier(s) | verdict |
 |---|---|---|---|---|---|
 | 659 | efed62e83cca | Let G be countable and let K ⊴ G have (T). | formalized | `manuscriptNormalKazhdanRadical`, `manuscriptNormalKazhdanPrintedRadical` | OK (setup of the statement) |
-| 660–662 | 7778d54e679f | If every op-norm asymptotic rep satisfies ‖V_n(k)−1‖₂→0 … every corona hom is trivial on K. | formalized | `PrintedNormalKazhdan`, `manuscriptPrintedNormalKazhdan` | GAP F5, being fixed |
+| 660–662 | 7778d54e679f | If every op-norm asymptotic rep satisfies ‖V_n(k)−1‖₂→0 … every corona hom is trivial on K. | formalized | `NonMFSentences.manuscriptPrintedNormalKazhdanNormalizedHypothesis` (796b5b00f), over `manuscriptPrintedNormalKazhdan` | FIXED (F5) |
 | 668–669 | 99a3c8b3d8f9 | Suppose that a corona hom Θ is nontrivial on K. | structural | route endpoints | OK |
 | 670–672 | a7997fb95c84 | Let e_K … and p its image … induced by Θ|_K. | formalized | `NormalKazhdanPrintedRoute.manuscriptSentence_kazhdanProjectionImage` | OK |
 | 673–674 | 9658ec21017b | In any faithful rep of the corona, p is the projection onto the K-fixed vectors. | formalized | `manuscriptSentence171_maximalProjectionImageIsFixedProjection` (+ all universes), `KazhdanData.projection`, `exists_kazhdanData`, `CorrectedCornerProvenanceData` | OK; `exists_kazhdanData` is proved in-repo, and `CorrectedCornerProvenanceData` is data built by `exists_correctedCornerProvenanceData`, not a literature binder |
@@ -70,7 +70,8 @@ No `\cite` occurs in tex 658–737.
     (`SentenceNormalizedAlmostRepresentationClosure`).
   - Proof: `normalizedHSHypothesis_iff` (normalization via `opAlmostRepresentationToPrinted`; at the identity
     ‖A_n(1)−1‖₂ ≤ ‖A_n(1)−1‖ → 0 by `map_one_vanishing`), then `manuscriptPrintedNormalKazhdan`.
-  - Status: probing.
+  - Status: CLOSED. LANDED 796b5b00f (probe 0913-170955-91871 GREEN, BUILT, `#audit_closed_axioms` in the module); queued for
+    wiring. Row 7778d54e679f is re-graded onto it in `metadata/nm-census-rows/ms-compress-4.tsv`.
 - **F2 (tex badge, sent to main).** tex 664 badges `NormalKazhdanPrintedRoute.manuscriptNormalKazhdanRadical_printedRoute`, the
   old limsup-combination proof. The printed proof is the ultrafilter-trace route
   `NonMFSentences.manuscriptNormalKazhdanRadical_ultrafilterRoute`.
