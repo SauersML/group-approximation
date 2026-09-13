@@ -27,8 +27,12 @@ contain a principal congruence subgroup `A(f)`. Under the congruence subgroup pr
 
 **Hypothesis (FP).** `A` is finitely presented, hence so is `Δ`. This is Behr's theorem on
 finite presentation of `S`-arithmetic groups over function fields, where the local ranks of `SL_3`
-at the two places add to `4`. It is also the case `m = 4` of the Bux--Köhl--Witzel rank theorem
-(type `F_(m-1)`). Import, not re-read.
+at the two places add to `4`. It is also the case `m = 4` of the Bux--Köhl--Witzel rank theorem,
+arXiv:1102.0428 (Ann. of Math. 177 (2013)). Its abstract, read on 2026-09-13, says: "the
+finiteness length of an S-arithmetic subgroup Γ in a noncommutative isotropic absolutely almost
+simple group G over a global function field is one less than the sum of the local ranks of G
+taken over the places in S". For `SL_3` and `S = {0,∞}` the sum is `4`, so `A` is of type `F_3`,
+hence finitely presented. Only the abstract was read; the numbered theorem was not.
 
 Derivation: `laurent-sl3-central-covers-never-witness-instability-proof`.
 

@@ -34,3 +34,35 @@ Consequences, through the routes below:
   `non-hyperlinear-from-hnn-over-sln-z` and is open.  No tool specific to
   characteristic `p` is known to help.  The torus recurrence proving
   co-density is exact and says nothing about approximate models.
+- **Cohomological instability is void on the whole commensurability class
+  (2026-09-13, lane ex2-hecke-pair-negative).**
+  - By Harder (`harder-function-field-s-arithmetic-cohomology-vanishing`),
+    every congruence subgroup of `A` has rational cohomology only in degrees
+    0 and 4.
+  - `laurent-sl3-real-cohomology-from-chamber-quotient`: `A(f)` acts on the
+    `t`-adic building with one chamber as quotient. None of the real `H^2`
+    classes of the one-place vertex groups (927 at level `t^2+1`) extends
+    compatibly across the three edge groups.
+  - `laurent-sl3-central-covers-never-witness-instability`: at every subgroup
+    containing a congruence subgroup, central Kazhdan covers have finite
+    kernel, so their pulled-back models round strictly. Asymptotically
+    projective models also round strictly.
+  - So neither Ioana--Spaas--Wiersma Theorem A nor Dogon's Theorem 1.3, the
+    mechanism of `rf-kazhdan-group-not-flexibly-hs-stable`, has input here.
+    `A` is finitely presented (Bux--Köhl--Witzel rank theorem, local ranks
+    `2+2`), so the infinitely-presented corollary of
+    `kazhdan-cover-models-round-iff-kernel-fixed-mass-one` does not apply
+    either.
+  - A witness of instability needs genuinely non-scalar defects. The
+    remaining shape is a non-central Kazhdan cover whose kernel admits
+    almost-trivial representations without fixed vectors.
+  - If the kernel `N` is abelian, the trace of such a model gives
+    `A`-invariant probability measures on the dual of `N` that concentrate at
+    the trivial character without an atom there. This is excluded when the
+    conjugation action on `N` has finite image, which reduces to the central
+    case, and when `(N ⋊ A, N)` has relative property (T).
+  - What is left is modules with infinite orbits and no relative (T), such as
+    permutation modules on the vertex set `A/SL_3(F_2[t])` of the building.
+    That is the coset-wreath shape of the positive polarity
+    (`function-field-hecke-pair-is-relatively-embeddable`). The last two
+    bullets are a sketch, not an established node.
