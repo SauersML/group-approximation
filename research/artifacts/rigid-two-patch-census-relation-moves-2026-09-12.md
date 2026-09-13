@@ -72,9 +72,9 @@ await independent re-derivation by w7-vf-nonlinear.
 
 ## 2. Level 1: two-site shapes over free memory
 
-- **Shapes.** The shape `1a` has support `{1, a}`, 5 windows and 11 sites. The shapes `1b` and `ab` are analogous
-  (`shape_words` in `tp.py`). A rule's class is the number of shapes that have a valid move.
-- **Relators.** By hand, every relator among the 55 pairs of every shape falls in one class:
+- **Shapes.** The shape `1a` has support `{1, a}`, 5 windows and 11 sites. The shapes `1b` and `ab` come from `1a`
+  by the symmetries below (`shape_words` in `tp.py`). A rule's class is the number of shapes that have a valid move.
+- **Relators.** By hand, every relator among the 55 pairs of `1a` falls in one class:
 
   | class | relators |
   |---|---|
@@ -83,6 +83,16 @@ await independent re-derivation by w7-vf-nonlinear.
   | Klein bottle group | `AAbb` (`a^2 = b^2`), `ABAb`, `ABaB` |
   | `Z^2` | `ABab` |
   | kept | `AA`, `AAA`, `BB`, `BBB`, `AbAb`, `AbAbAb`, the labels `a2 ... c3` |
+- **Other shapes.** Two automorphisms carry the table to `1b` and `ab`:
+  - the mirror `a <-> b` maps windows to windows and `1a` to `1b`;
+  - the involution `psi: a -> a^-1, b -> a^-1 b` satisfies `psi(g{1, a, b}) = psi(g) a^-1 {1, a, b}`, so
+    `x -> psi(a^-1 x)` maps windows to windows and `ab` to `1b`.
+
+  Both permute the breakers, preserve amenability and permute the labels. The mirror swaps `a` with `b`, and `psi`
+  fixes `a2`, `a3` and swaps `b` with `c`. So every relator of `1b` and `ab` falls in the class of its preimage.
+- **Why completeness matters.** `census_moves.py` keeps only the words in `TORS` and drops every other relator, so
+  level-1 soundness rests on this table covering every pair. Every pair that meets a changed site counts as
+  conflicting, which is the safe direction.
 - **Conflict sets.** `census_moves.py` computes, for every valid move of every shape, the set of kept labels on
   conflicting pairs. It keeps the minimal ones.
 - **Residuals.** If no level-1 move realizes, then `T(H)` meets every minimal set. A *residual* is a minimal pattern,
@@ -102,8 +112,10 @@ await independent re-derivation by w7-vf-nonlinear.
 - `a b^-2`: `a = b^2`, so `H` is cyclic;
 - `a b^-1 a b`: with `a = a^-1` this says that `a` commutes with `b`, so `H` is a quotient of `Z/2 x Z`.
 
-The table for `d = b` is the mirror image. For `d = c` it is the same table in the generators `a, c`, with `b = ac`:
-- `c`, `a^-1`, `c a^-1`: breakers;
+The table for `d = b` is the mirror image. For `d = c` it has the same words in the generators `c, a` (rename
+`a -> c`, `b -> a`), with `b = ac`. One class changes:
+- `c`, `a^-1`: breakers;
+- `c a^-1`: `c = a`, so `b = a^2` and `H` is cyclic;
 - `a^-2` and `(c a^-1)^2`: quotients of `D_infinity`;
 - `c a^-2`: cyclic;
 - `c a^-1 c a`: `c` commutes with `a`.
@@ -124,11 +136,25 @@ hand, the relators for `d = a`, taken modulo `a^3`, are:
 - `b^-2` and `(a b^-1)^2`: the labels `b2` and `c2`, since `(a b^-1)^2` is conjugate to `c^-2`. They are kept
   because `Z/3 * Z/2` is nonamenable.
 
-The tables for `b` and `c` are analogous (`universe2.txt`, models `b3`, `c3`). `level2b.py` asserts that every `e2`
-pair of a cycle joins two context sites.
+The table for `d = b` is the mirror image, with kept labels `a2` and `c2`. The table for `d = c` (`universe2.txt`,
+model `c3`) is not the `a`-table renamed, but it has the same classes. By hand, modulo `c^3`, with `b = ac`:
+- `c`, `a^-1`, `c a`: breakers (`c a = 1` says `b = 1`);
+- `c a^-2`, `c a^-1`, `c a^2`: `c` is a power of `a`, so `H` is cyclic;
+- `c a^-1 c a`: `a^-1 c a = c^-1`, so `H` is a quotient of `Z/3 x| Z`;
+- `c a^-1 c^-1 a^-1`: `c a c^-1 = a^-1`. Conjugating three times gives `a = a^-1`, and then `a` and `c` commute:
+  `Z/6`;
+- `c a^-1 c^-1 a`: `c` commutes with `a`, so `Z/3 x Z`;
+- `a^-2` and `(c a)^2`: the labels `a2` and `b2`, since `(c a)^2 = a^-1 b^2 a`. They are kept.
+
+`level2b.py` asserts that every `e2` pair of a cycle joins two context sites.
 
 **Lemma 3.2.** Let `H` be nonamenable, with `1, a, b` distinct and `d^3 = 1`. Then a valid `d`-cycle realizes in `H`
 provided that every `e2` context pair with `e^2 = 1` in `H` carries equal values.
+
+*Proof.* By the cycle tables, every pair relator other than the two kept labels is a breaker or makes `H` amenable,
+so it does not hold in `H`. The kept labels are `e2` for the two letters `e` other than `d`, and their pairs join
+two context sites. If `e^2 ≠ 1` in `H`, those sites stay distinct. If `e^2 = 1`, they carry equal values by
+hypothesis. So coinciding sites always carry equal data. ∎
 
 **Closure test** (`close` in `level2b.py`). For each residual `R`, and each pattern `P ⊇ R` that is not forced
 amenable, find one of:
