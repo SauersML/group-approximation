@@ -5,7 +5,7 @@ kind: route
 title: Let G x Λ act through Λ, pass to its abstract twisted Brin--Thompson group, and embed G along the graph of G → Λ
 target: relatively-simple-removal-between-pbh-and-bh-of-quotient
 requires:
-  - a2-kernel-removal-via-product-with-image-actor
+  - a2-kernel-removable-iff-image-in-type-a2-actor
   - abstract-btb-pairs-fp-and-relatively-simple
   - abstract-btb-simple-quotient-fp-gate
   - fp-quotient-iff-kernel-finitely-normally-generated
