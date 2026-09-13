@@ -163,3 +163,22 @@ were not recomputed here.
   - The line model lived on ℕ, so after the shift a transvection with j = 0 changes the source column −1, which the
     half-line cannot see. `windowCheck 11` then disagreed with the cycle.
   - Fix: supports offset to [5, 9], line columns 0..11. Re-probing.
+- 09-13 ~17:45: `Dynamics/TwoEndedTailModels` LANDED 8ede5da57 (probe 0913-174308-20885 GREEN, BUILT line checked).
+  NO PRINTED CLAIM FAILS.
+  - Codimension count: 2N − 1 and 2N − 1 + a₊ − a₋ for N ∈ {3,4,5}, |a±| ≤ 2; the reversed orientation fails.
+  - Calibration: ts = 1, st = 1 − 1_{0}; s (symbols 0, 1) misses exactly e₀, while u and t miss nothing; u⁻¹(u g) = g for
+    the finite block g.
+  - Window: on a table of 20 elements of GL_fin ⋊ ℤ, equality of the copies in the cycle of length 11 is equality on the
+    line; products agree; different exponents are separated outside the supports and equal exponents inside them.
+    In the cycle of length 3 the copy is not well defined (disjoint transvections stop commuting).
+- Rows LANDED 01da5e6c1.
+  - WITHDRAWN: the eleven ct-bilateral-cell rows of 9aef9cddf. That lane landed its own `ct-bilateral-cell.tsv`
+    (98d48db08, keys LINE:1550–1589, all partial) for the same sentences, so the two sets would collide at the merge.
+    My statement readings graded f_mul_f (30e2f83b735e), p_mul_f/f_mul_p (8a69e48d6382) and the
+    c∈C_B(L) display (4f649a2dcbfa) formalized, over `printedBilateralThreeCellIdentities` and `bilateralCell`.
+    The census lane may upgrade them.
+  - Two rows for ct-two-ended's closed endpoint `TwoEndedShift.printedTwoEndedCoreAndDefect` (049c6689a), 54044aad03be and
+    9fdbaf282687, were landed in 01da5e6c1 and then WITHDRAWN. ct-two-ended landed its own `ct-two-ended.tsv` (c62e2c7c0:
+    LINE:1769 partial, LINE:1770 and LINE:1772 formalized) for the same sentences.
+  - Kept: the six structural rows only. Every ct lane except ct-involution and ct-rank-two-limit now keeps its own row
+    file, and neither of those two has a closed endpoint yet.
