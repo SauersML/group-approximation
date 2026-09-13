@@ -22,6 +22,9 @@ Lane `hull-select` of the non-MF every-line swarm (09-13).
   2. After dgo-analytic fixes the carrier form (R2 or R1), restate
      `MultipleEdgePocketRegionInput` on the O-equivalent copy in one co-probe with the assembly
      (kh-ejz owns the Prop), then send jacobson the final form.
+- Item from the lead (15:00): one module producing the four inputs of
+  `PocketRegion.ofNoncrossingClosedWalk` (8bbf0a9c8) for non-simple pocket walks, for jacobson
+  (Case 1 walk `X ++ M'`) and fff-periodic (site 5). Done at a29b02280.
 
 ## Landed
 
@@ -80,6 +83,32 @@ Lane `hull-select` of the non-MF every-line swarm (09-13).
     with the image carrier.
   - `pocketOuterTransport : PocketOuterTransportStatement`, closed. It consumes go-lemma42's
     `glueEmbeddingAway`, `glueRight_mem`, `glueXFace_of_ne` and `glueOEquivalent`.
+- a29b02280, `Estimating/OsinPocketFirstTurnWalk.lean` (green 0913-153749-2116; axioms propext,
+  Classical.choice, Quot.sound; unwired):
+  - `FirstTurn M c x y`: rotating from `alpha x`, the first dart that lies in `c` or reverses a
+    dart of `c` is `y`.
+  - `FirstTurnWalkPocketInputsStatement` / `firstTurnWalkPocketInputs`, closed. Take a planar map
+    and a nonempty, duplicate-free list `c` that uses no edge in both directions, in which each
+    dart reaches the next, and the last the first, by a first turn. Then the reversed walk
+    `c.reverse.map alpha` is noncrossing (hull-respell's `BoundaryCycle.isNoncrossingClosedWalk`),
+    no face on the side of `c` lies on its side, its outer cycle follows its boundary, and the
+    reclosed Euler equality holds (hull-euler's `reclosed_euler`).
+  - `PocketRegion.ofFirstTurnWalk`: the pocket region, given in addition only
+    `hout : Delta.outerFace ∈ sideFaces Delta.toCombMap c`, with its faces, cycle and `invDarts`
+    lemmas.
+  - Producers: `FirstTurn.of_facePerm`, `of_sigma_alpha`, `of_sigma_sigma_alpha`,
+    `of_boundaryWalk`, `mono`, and `FirstTurnWalk.faceOf_mem_sideFaces` (for `hout`).
+  - Sent to jacobson and fff-periodic (15:50).
+- `Estimating/OsinPocketFirstTurnWalkModel.lean` (green 0913-161209-37045; axioms propext,
+  Classical.choice, Quot.sound; unwired), model tests, closed endpoint
+  `FirstTurnWalkModelStatement` / `firstTurnWalkModel`:
+  - Configuration A: the complement spelling `[9,8,0,1]` satisfies every hypothesis and its side
+    holds the exterior face. The walk it certifies, `[5,3,4,6]`, is not simple, and the builder
+    gives face set `pinchFaces`.
+  - The lake: the outer cycle `[3,1]` fails a first turn, as it must, since that outer cycle does
+    not follow its boundary (`lakeCycle_outerCycle_not_followsBoundary`).
+  - A pendant spur: the trimmed spelling `[0]` gives the four inputs. The untrimmed facial
+    spelling `[0,2,3]` fails the edge condition.
 
 ## Residual Props for `OsinMultipleEdgeCutSectionStatement`
 
@@ -99,13 +128,22 @@ Notes for the producers:
 
 ## Holds and next
 
-- Hold: no edits to `OsinPocketZeroCellMerge.lean` or `OsinPocketZeroCellMergeFalse.lean` until
-  ghw-charp2's LoopCut census patches 01-10 land (ruling A). The loop-ruling version of the False
-  module is at `$NM/backup/hull-select/loopcensus-OsinPocketZeroCellMergeFalse.lean.patched`.
+- First-turn inputs: the consumers' residual is `hout` plus the hypotheses on `c`. Waiting for
+  jacobson (does 61c2ade8e make the Case 1 walk simple?) and fff-periodic (the site 5 arc) to
+  confirm their walks fit `FirstTurn`.
+- hull-euler confirms `reclosed_euler` is final (19866c7d6). A restatement would co-probe both
+  first-turn modules.
+- LoopCut (A) landed at f04929ebb, including the loop-ruling version of
+  `OsinPocketZeroCellMergeFalse.lean`, so the hold on the zero-cell merge files is released.
+  theoremc-retire's T landed at 48c6cc71e.
 - `pocketOuterTransport` closes the `houter` binder of the section pocket cut assembly
   (`OsinPocketPieces`). The cell transport `hcell` is still go-lemma42's.
-- Next: item 2, the O-equivalent-copy restatement of `MultipleEdgePocketRegionInput`. It waits
-  for dgo-analytic's R2/R1 carrier fix (ROSTER line 743) and kh-ejz's OK to edit its file.
+- Now: item 2, the O-equivalent-copy restatement of `MultipleEdgePocketRegionInput`. Main's
+  15:45 ruling, after audit-sec5's truth audit: on `S.diagram`, configuration (b′) has no `P`, so
+  that form holds only through Lemma 9.7(b) itself. Land the R1 copy forms through the Rule 22
+  co-probe of `OsinPocketRegionSide`, `OsinPocketMultipleEdgeAssembly`, `OsinDescentResiduals` and
+  `OsinGreendlingerOpenResiduals` (probing). audit-sec5 owns the cell-to-cell pinch Prop that the
+  producer needs, since the (b′) pocket on the copy is pinched.
   - Drafts, R1 form: `$NM/drafts/hull-select-RegionSide-copy-r1.lean` (the whole module) and
     `$NM/drafts/hull-select-MultipleEdgeAssembly-copy-r1.lean` (the new
     `multipleEdgeCutInput_of_pieces`).
