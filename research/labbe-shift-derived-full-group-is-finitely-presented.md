@@ -54,6 +54,23 @@ only together with `labbe-shift-derived-full-group-is-amenable`.
 - **Presentations for minimal subshifts (arXiv:1508.04454, Theorem `IntroMain`, lines 70--96, read from source).**
   - It gives an infinite presentation, with generators indexed by words of the language, and a solvable word problem iff the language is recursive.
   - It gives no finite presentation and no finiteness criterion.
+- **Expert heuristic (read from source).** Nekrashevych, arXiv:2509.05524, TeX line
+  3362: "Full groups of shift-invariant groupoids, on the other hand, are rarely
+  finitely presented." It is a remark, not a theorem; the only finite presentation
+  proved there is for the purely infinite extension by the shift (line 3359).
+  Nekrashevych arXiv:1511.08241, line 110, "or even finitely presented (for
+  groupoids associated with one-sided shifts of finite type)", again refers only to
+  Matui's compressible case.
+- **Homology gives no obstruction.** For minimal ample groupoids with comparison, Li's
+  exact sequence `H_2(A(G)) -> H_2(G) -> H_0(G; Z/2) -> H_1(F(G)) -> H_1(G) -> 0`
+  (Li, Corollary 6.14, as quoted in arXiv:2509.05524, Theorem `th:Li`) holds. Here
+  `G = Z^2 ~ Omega_U` is almost finite (Matui, Lemma 6.3, quoted there), so it has
+  comparison. By Poincaré duality for `Z^2` and minimality,
+  `H_2(G) = H_2(Z^2; C(Omega_U, Z)) ≅ C(Omega_U, Z)^(Z^2) = Z`. The sequence only
+  locates the image of `H_2(A(G))` inside `Z`, so it cannot show `H_2(A(G))` is
+  infinitely generated.
+- **A second instance.** The Penrose tiling group has the same profile and the same
+  consequence: `penrose-derived-full-group-is-finitely-presented`.
 - **Li, products of one-sided SFTs (arXiv:2110.04505, abstract only).** Proves type `F_∞` for topological full groups from products of shifts of finite type, through Garside categories of bisections. Those groupoids are compressible, so the method does not reach an invariant-measure groupoid such as `Z^2 ~ Omega_U`.
 - **Not verified from source:**
   - Brin's `2V` method;

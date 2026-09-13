@@ -64,6 +64,11 @@ Preferred strengthenings, in order: `S` torsion-free; `S` sofic.
     infinite simple Kazhdan group
     (`kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf`).  A non-amenable
     realization must have non-free stabilizers off its fixed points.
-  - The one live instance: `fp-simple-amenable-orbit-via-labbe-shift`.  The root
-    waits there on the single open claim
-    `labbe-shift-derived-full-group-is-finitely-presented`.
+  - Two live instances, each waiting on one open finite-presentation claim:
+    Labbé's Wang shift (`fp-simple-amenable-orbit-via-labbe-shift`, gated by
+    `labbe-shift-derived-full-group-is-finitely-presented`) and the Penrose
+    tiling group (`fp-simple-amenable-orbit-via-penrose-group`, gated by
+    `penrose-derived-full-group-is-finitely-presented`).  Nekrashevych
+    (arXiv:2509.05524, line 3362) expects full groups of such shift-invariant
+    groupoids to be "rarely finitely presented"; that is a heuristic, and no
+    obstruction is known.

@@ -42,11 +42,21 @@ presentation, which is open.
   Titz Mite--Witzel kernels.
 - **Minimal `Z`-subshifts, topological realizations.** Dead:
   `periodic-approximable-subshifts-host-no-fp-simple-group`.
-- **Minimal aperiodic `Z^2` SFTs.** Live, and the only gate is finite presentation:
-  `fp-simple-amenable-orbit-via-labbe-shift` needs
-  `labbe-shift-derived-full-group-is-finitely-presented` and nothing else open.
-  Unlike `fp-simple-amenable-via-labbe-shift-full-group`, it does not need
-  `labbe-shift-derived-full-group-is-amenable`.
+- **Aperiodic tiling full groups with an invariant measure.** Live, with two named
+  instances. Each is gated only by finite presentation, and neither needs amenability.
+  - Labbé's Wang shift: `fp-simple-amenable-orbit-via-labbe-shift` needs
+    `labbe-shift-derived-full-group-is-finitely-presented`. Unlike
+    `fp-simple-amenable-via-labbe-shift-full-group`, it does not need
+    `labbe-shift-derived-full-group-is-amenable`.
+  - The Penrose tiling group of Chornyi--Juschenko--Nekrashevych, which is the full
+    group of a free translation action of `Z^2 ⊕ Z/5` on a cut torus:
+    `fp-simple-amenable-orbit-via-penrose-group` needs
+    `penrose-derived-full-group-is-finitely-presented`.
+  - **Expert heuristic against this gate.** Nekrashevych, arXiv:2509.05524, line
+    3362: "Full groups of shift-invariant groupoids, on the other hand, are rarely
+    finitely presented." Every finite-presentation theorem found for full groups
+    (Matui, Li, Nekrashevych, Belk--Bleak--Matucci--Zaremsky) uses compression,
+    which an invariant measure of full support forbids.
 - **Kac--Moody lattices without (T).** Not excluded by the Kazhdan barrier. The
   Scope paragraph of the stabilizer-rigid claim applies to groups with only
   trivial ergodic invariant random subgroups. `caprace-thom-v2-leaves-km-character-rigidity-open`
