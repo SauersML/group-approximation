@@ -26,3 +26,10 @@ nontriviality.
   the image of the unstable group pi_1 G(E+1). A Sq^2/Wu-type invariant
   analogous to the mod-2 top Chern class used for LIX is the natural
   candidate. Not yet computed.
+- *Toms trapping (12 Sep 2026).* Does not apply at excess one. It needs
+  dim X = 4·rank Q, so that the block-diagonal locus has the seed's
+  dimension. Here Hom(Q, C^2) has real rank above dim X, and generic loci
+  are empty. The class-three root no longer depends on this claim: it is
+  answered over a trapping tower with base dimension about four times the
+  rank (simple-ah-algebra-with-class-three-component-group). This claim stays
+  open as a question about the excess-one CP towers themselves.
