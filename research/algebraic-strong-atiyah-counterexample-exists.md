@@ -100,3 +100,13 @@ distinct_from:
   - Rational expressions in a fixed matrix size give no commuting independent
     family of non-integral-rank projections.  This is a recorded reason, not a
     theorem: no percolation mechanism over torsion-free lamps is known.
+* **A torsion-free lattice outside the p-adic hosts (2026-09-13).** *Live test group.*
+  - `sl3z-level-15-torsion-free-subgroup-outside-p-adic-hosts` is a torsion-free
+    finite-index subgroup `H` of `SL_3(Z)`. It lies in no torsion-free profinite
+    group, and its ranks lie in `(1/2)Z`.
+  - By `index-two-strong-atiyah-is-a-twisted-norm-equation`, a counterexample
+    over `H` is exactly an `a` in `D(N)`, for `N = H cap Gamma(3)`, with
+    `sigma(a) a = h^2`.
+  - A solution `a` in `C[N]` would give the zero divisor
+    `(sigma(a) - h)(a + h) = 0` in `C[H]`.
+  - Strong Atiyah for `SL_3(Z)` with denominator 24 excludes all of this.
