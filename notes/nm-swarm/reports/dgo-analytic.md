@@ -175,6 +175,10 @@ R2 with kh-ejz's `IsNoncrossingClosedWalk` (26a7858f2) as `Simple` (~13:20, sent
   * `turn_mem` rules out crossing only at vertices passed twice.
   * The lemma therefore takes `(hw.outerCycle hM).FollowsBoundary`, which R2's `Simple` carries.
   * Route: χ(N_in) + χ(N_out) = χ(M) + 2, and the outer side preserves χ.
+* hull-respell (~14:05, probe 0913-133554-56930): `Estimating/OsinPocketClosedWalkNoncrossing` proves `PocketFaceSet.ClosedWalk.isNoncrossingClosedWalk` via `BoundaryCycle.turn_mem_cycle`.
+  * Every listing in walk order is noncrossing in kh-ejz's sense, so the `∃ hw` in R2's `Simple` is free. Checked here: rotating from `alpha d` stays in selected faces until it meets a listed dart.
+  * The pinch hypothesis stays `K.ClosedWalk` under R1 and R2. That is what the face set producer supplies (aa2df0eaa), and inner FollowsBoundary has no producer.
+  * The pinch therefore re-pairs at vertices passed three or more times, as in the rose. If that can fail, the face set output is strengthened with kh-ejz, not the pinch hypothesis.
 
 ### Truth caveats sent to dgo-geometric for model tests
 
