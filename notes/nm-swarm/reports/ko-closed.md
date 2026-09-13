@@ -3,14 +3,32 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
-## STATE (09-13 ~14:00): ruling option (2); case (a) pieces authored, gate still open; (b) belongs to jacobson
-- The ruling (ROSTER 778–799) is option (2):
-  - The metric Prop delivers one-cell pairs at `λ⁻¹(ε + c)`, and ko-closed proves (a) by the value argument.
-  - This is gated on the metric owners confirming F1's quantifier order. No confirmation is in the roster yet.
-- (b) belongs to jacobson: the X-pocket as a PocketRegion plus the collar step. ko-closed agreed, so it does not build (b)
-  (Rule 16).
-- New module `GGT/VanKampen/Estimating/OsinLemma94OneCellValue.lean`. Its lemmas take ordinary hypotheses and do not
-  depend on the gate:
+## STATE (09-13 ~14:10): (a) goes by the metric kill at the printed threshold; value module GREEN; ruling sent
+- The lead forwarded three questions to ko-closed (ROSTER 843–850). ko-closed ruled at ~14:10 and sent the ruling to main
+  and audit-sec5:
+  - (1) audit-sec5's metric kill replaces the `λ⁻¹(ε + c)` respelling. hull-unbound's option (2) draft in
+    OsinLemma94Pieces can be cancelled. `osinLemma94AntiparallelMetric` stays as spelled.
+  - (2) jacobson's `nonempty_osinLoopCut_of_pocketRegion` (OsinPocketLoopCut, GREEN 0913-135346-38278) produces (b).
+    audit-sec5 writes no second LoopCut producer.
+  - ko-closed writes (1), not audit-sec5. audit-sec5 was asked for any draft statement, so that its spelling is used
+    rather than duplicated.
+- The kill:
+  - `WordConnectorPair` (UnboundWordConnectors:43-46) has `source_long` and `target_long`: both sides span a word
+    distance greater than ε.
+  - The value lemmas below make the cell arc `S = A M B` read a connector, so `|val S| < ε`.
+  - A Morse radius κ for `(λ, c)` exists before ε₀. It comes from `isHyperbolicSpace_cayley_of_fourPoint` and
+    `exists_word_replacement_morse`. δ, λ and c are bound before `eps0` in `OsinLemma94CaseOneInput` (PlanarPieces:397),
+    so no statement changes.
+  - Morse gives `d(x0,x1) + d(x1,x3) ≤ 2κ + d(x0,x3)`. The subpath bound gives `λ|B| − c ≤ d(x1,x3)`.
+  - So `λε − c < 2κ`, which fails once `ε ≥ ⌈(2κ + c)/λ⌉`. No DartMinimal, Maximal or least area is used.
+- Correction to the ~13:25 STATE below: Shape 1 checked only the whole-arc bound. With the subpath bound and a Morse
+  radius it forces `ε < (2κ + c)/λ`. So it is not a counterexample at the printed threshold.
+- (b) belongs to jacobson (Rule 16).
+- `GGT/VanKampen/Estimating/OsinLemma94OneCellValue.lean`:
+  - GREEN 0913-135819-58619 (base 36524dbf0, BUILT, empty error index, all nine `#audit_axioms` pass).
+  - Landed at ea9016135. The fix `List.nil_rotate` → `List.rotate_nil` landed at 36524dbf0.
+  - Queued for wiring.
+  - Its lemmas take ordinary hypotheses:
   - `Embedded.listVal_dartWord_eq_inv_of_isRotated`: a closed word of value one, rotated to `s ++ t`, reads `t` as
     `s⁻¹`.
   - `PocketRegion.listVal_outer_eq_one` and `listVal_eq_inv_of_outer_isRotated`: the outer cycle of a cell-free pocket
@@ -21,9 +39,16 @@ closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
     reads an element of word norm at least `λL − c`.
   - `false_of_cellFree_pocket_X` and `false_of_cellFree_pocket_Y`: the value argument in its two cases (pocket across
     X, or across Y).
-  - It is landed unverified; the probe comes next.
-- Not written: case (a) of theoremc-retire's `OsinLemma94CaseOneOneCellInput`. It waits on that statement's text and
-  on the gate. The consumer then supplies:
+- Next: `OsinLemma94OneCellMorse.lean`:
+  - the word-level Morse inequality `d(x0,x1) + d(x1,x3) ≤ 2κ + d(x0,x3)`;
+  - the hairpin bound `λε − c < 2κ`;
+  - the ε₀ threshold;
+  - κ from four-point hyperbolicity;
+  - the two cell-free pocket kills at the printed threshold.
+  The new module restates the value step as a named lemma, so the green value module stays byte-identical to its queued
+  SHA.
+- Not written: case (a) of theoremc-retire's `OsinLemma94CaseOneOneCellInput`, which is not on main. The consumer then
+  supplies:
   - the face value 1, from `inner_face` with f a G-face;
   - the walk rotation;
   - a PocketRegion whose outer cycle is `X ++ M'` (or `Y ++ M`);
