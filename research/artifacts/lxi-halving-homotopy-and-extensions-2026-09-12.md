@@ -25,8 +25,18 @@ convention requires it, and call the result `y'`. Now `y y'^*` lies in `U(I~)` w
 `K_1(I)`, so by hypothesis it is in `U_0(I~)`, which is contained in `U_0(A)`. Hence
 `u = (y y'^*) y' w` is in `U_0(A)`. Square.
 
-Special cases: the ideal is stable, or `I~` has stable rank one (Rieffel) or real rank zero (Lin), or I
-is Z-stable (Jiang). The quotient can be any Kirchberg algebra. Consider a unital Toeplitz--Pimsner
+Special cases in which the unitization is K1-injective, so that Lemma 1 applies:
+- I stable. A unitary of `I~` is homotopic to one in `M_n(J)~` for `I ~= J (x) K`, and a null-homotopy
+  in a larger matrix algebra transports back through a corner embedding.
+- `I~` of stable rank one (Rieffel, Proc. London Math. Soc. 46 (1983), Theorem 10.12).
+- I of real rank zero, conditionally on Lin's theorem that unital real rank zero algebras are
+  K1-injective. It is quoted as [Lin01, Corollary 4.2.10] in Blanchard arXiv:0804.4624v13, proof of
+  Proposition 3.2, and the real rank of I is by definition that of `I~`. The citation was not checked
+  against Lin's book.
+- Z-stable ideals are not claimed. Jiang's theorem (arXiv:math/9707228) is for unital algebras, and
+  the unitization of a non-unital Z-stable algebra is not Z-stable.
+(Correction of 2026-09-13 after review `ex-review-analysis-2026-09-12-part3` section 1.6.)
+The quotient can be any Kirchberg algebra. Consider a unital Toeplitz--Pimsner
 algebra `T(E)` of a correspondence E over B, with Fock module isomorphic to `H_B` and properly infinite
 Cuntz--Pimsner quotient. Its compact ideal `K(F(E)) ~= B (x) K` is stable, so `T(E)` is K1-injective as
 soon as the quotient is.
