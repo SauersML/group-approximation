@@ -30,8 +30,10 @@ for every spherical-type Artin group.
      groups over `Q(x,y)`. The root `char-zero-linear-groups-satisfy-boone-higman`,
      now established, gives simple envelopes, so
      `spherical-artin-groups-satisfy-boone-higman` holds.
-   - **Trust.** That rests on `polynomial-linear-groups-satisfy-boone-higman`,
-     whose review is pending (lane `bh-poly-linear-review`).
+   - **Trust.** That rests on `polynomial-linear-groups-satisfy-boone-higman`~~,
+     whose review is pending (lane `bh-poly-linear-review`)~~. *Reviewed (lane
+     `bh-poly-linear-review`, 2026-09-12):* that claim stands, with one corrected
+     step.
    - **Why this claim stays open.** Whether those envelopes come from type (A)
      actions is not asked there. The E-reduction needs the permutational form,
      because only that form is known to be closed under direct products.
