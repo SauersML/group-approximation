@@ -161,6 +161,31 @@ relator face and for a relator–relator edge.
   5. step 4 (ms-intro-2), step 5 (ms-intro-2, 15e21098e), step 6 (ms-intro-4);
   6. `MultipleEdgePocketRegionCopyInput`.
 
+### Composition and invariants (18:3x–18:4x)
+
+- **LANDED a426c4f1b** `SurgeryCellEdgeSideThickening`: probe 0913-182916-47357 GREEN, wire-queued.
+  - Closed endpoint `cellEdgeSideThickening : CellEdgeSideThickeningStatement`: T1, then T2 through
+    `CellSideThickening.exists_cellSideFree_of_invariant`, carrying the absence of cell-edge darts and of relator words
+    of value one.
+  - `copyClean_of_noDarts`: in a realized family with no cell-edge dart, no cell-side dart and no relator word of value
+    one, two distinct regions joining `i ≠ j` satisfy every `CellPocketWalk.CopyClean` clause, with `regions` taken as a
+    hypothesis. It uses `one_lt_cellDarts_length` (two disjoint nondegenerate arcs give the cell two darts) and
+    `side_of_noCellSideDart`.
+- **Why invariants.** The thickenings' opaque outputs keep only `SameTargetProfile` and `source.val`, and
+  `SameTargetProfile` does not keep the target cell index. So `JoinsCells` is carried per doubling step as an
+  invariant. Every transport sets `source := indexEquiv H.source` and `target := H.target.map indexEquiv`.
+- **T1 invariant edit (probing).** `CellEdgeThickening.exists_cellEdgeFree_of_invariant` is added, and the plain
+  `exists_cellEdgeFree` is derived from it; the statement is unchanged. Attic copy 21daf6d29.
+- **Producer part 1 (probing).** `Estimating/OsinPocketCellCopyProducer.lean`, attic copy after landing:
+  - `HasCellPair`;
+  - `joinsCells_map`;
+  - `hasCellPair_cellEdgeStep` and `hasCellPair_cellSideStep`;
+  - `exists_cellEdgeSideFree_pair`.
+- **Agreed with ms-intro-2.** `RegionPairThickening.exists_regionPairFree_of_invariant` will take a named one-step family
+  with the same index transport, and the closed statement will gain a target-index clause. ms-intro-2 proves the
+  no-cell-edge and no-cell-side `hP` instances; this lane proves the `HasCellPair` instance and the final
+  `cellPocketCopyClean : CellPocketCopyCleanStatement`.
+
 ### T3 side–side thickening (claimed, then withdrawn; see above)
 
 CLAIM T3 side–side thickening:
