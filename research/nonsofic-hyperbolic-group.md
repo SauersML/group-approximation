@@ -75,3 +75,33 @@ groups would refute it (`random-complex-cheeger-capped-by-triangle-count`).
     with bounded size.
   - What remains is the unbounded-cocycle conjugacy hinge recorded on
     `sofic-groups-kill-rigid-defects-modulo-kazhdan-kernels`.
+
+- **Embed a known nonsofic witness by subgroup permanence: dead for the
+  expander-matching witnesses.**
+  - `EL_D(R) <= L_(F_2)(1,2)^x` contains `Γ × V` with `Γ` Kazhdan.
+  - By `expander-matching-mechanism-has-no-hyperbolic-instance`, no group
+    containing `Γ × J` with `Γ` infinite Kazhdan and `J` infinite embeds in a
+    hyperbolic group, so this witness cannot be carried into the hyperbolic
+    class, and the criterion itself never fires inside one.
+  - The coset-wreath and group-double witnesses were not checked here against
+    hyperbolicity; their normality test is dead in hyperbolic groups by
+    `nonsofic-hyperbolic-via-kun-thom-centralizer`.
+- **Rips construction with a nonsofic quotient: no forcing theorem.**
+  - `belegradek-osin-rips-construction` gives `1 -> N -> H -> Q -> 1` with `H`
+    hyperbolic and `N` finitely generated.
+  - A nonsofic `Q` does not make `H` nonsofic: soficity is not closed under
+    quotients (`sofic-quotient-nonclosure`), and the permanence theorem runs the
+    other way, sofic kernel with amenable quotient giving a sofic group.
+  - The Rips kernel is not amenable, so no permanence input applies. A proof
+    along this line would have to show the kernel `N` itself carries the
+    obstruction; nothing recorded here does that.
+- **What any mechanism inside a hyperbolic group must avoid.**
+  - infinite commuting factors of Kazhdan subgroups
+    (`expander-matching-mechanism-has-no-hyperbolic-instance`);
+  - compression-equalized centralizers
+    (`hyperbolic-compression-centralizer-rigidity`);
+  - non-normal centralizers of infranormal Kazhdan subgroups
+    (`nonsofic-hyperbolic-via-kun-thom-centralizer`).
+  So the (T)-compression-plus-commuting-factor pattern has no hyperbolic
+  instance. The only live mechanism recorded is the local-testability / Cheeger
+  route `nonsofic-hyperbolic-via-cheeger-threshold`.
