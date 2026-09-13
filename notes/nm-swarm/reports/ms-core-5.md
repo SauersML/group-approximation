@@ -98,3 +98,4 @@
     along `transientIdeal ≤ defectIdeal`. That is chain-radical's module 6 territory.
 - `MFRadicalTransport.mfHomKernel_le_ker` is the opposite inclusion (Rad_MF ≤ ker). The kill direction uses
   `mem_mfHomKernel_iff`, so this module does not consume it. The budget assembly uses it for radical equality.
+- LANDED bec8b25e6: probe 0913-173847-9539 GREEN, `BUILT GroupApproximation.Manuscript.NonMFSentences.CoreMFRadicalGLKill`, both audited theorems depend on [propext, Classical.choice, Quot.sound]; wiring queued.  Census row `2b6b9904f2d6` partial.
