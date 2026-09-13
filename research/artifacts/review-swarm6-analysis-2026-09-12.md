@@ -129,6 +129,12 @@ identity, both standard.
   - For non-exact `A`, Lin's rank map lands in functions on quasitraces, while RD_b controls only traces.
     That case is not visibly covered.
   - The node asserts no novelty, so no correction is needed.
+- **Cross-check with `review-swarm4-2026-09-12.md` §40.4 (8cf12afc4): agreement, no disagreement.**
+  - §40.4 also passes this claim. Its one check is the estimate `|d_τ((q − 1/2)_+) − τ(q)| ≤ 2τ(q − q²)`, which
+    §3 below uses for rank surjectivity. This claim's own proof does not use it.
+  - The line-by-line reading above was made separately.
+  - §40.4 does not assess the artifact's "no nuclearity, dimension or Gamma hypothesis" remark. The
+    hidden-hypotheses bullet above is the only check of it.
 
 ## 3. `toms-winter-holds-on-tlfnd-rank-density-locus`: PASS as a proof; the locus is covered by known results
 
@@ -180,11 +186,30 @@ Route: `toms-winter-tlfnd-rank-density-locus-proof`. Artifact: the same file, §
   dimension." That part already follows from Lin, Vaccaro and CETW.
   - Vaccaro (TeX line 305) also records that no nuclear algebra without locally finite nuclear dimension is
     known. So that part of the locus may be empty.
-  - A forward correction of this bullet is already in the shared working tree, but it is not on main at
-    44267adad. It cites a draft §40 of review-swarm4 and gives the (⟹) argument. This review agrees with it
-    and leaves the node to that lane.
-- **Verdict.** PASS on the mathematics, with the Scope novelty sentence overstated. The node itself asserts
-  no novelty.
+  - The forward correction is now on main (8cf12afc4). At c43a30d2e the Scope says the tracially-but-not-norm
+    case "is also a corollary of known results". It gives the (⟹) argument with the same `6η_n` choice, cites
+    review-swarm4 §40, and asserts no novelty. It agrees with the argument above, and no further edit is needed.
+- **Cross-check with review-swarm4 §40.4 (8cf12afc4): agreement, no disagreement.**
+  - §40.4 reaches the same verdict: PASS, subsumed by Lin, Vaccaro and CETW.
+  - §40.4 took the Lin and Vaccaro statements from the graph's citation nodes and did not re-extract them. This
+    section re-read Lin Theorem 1.1, Vaccaro Definition 1.5 and Vaccaro Theorem B from the TeX sources, so the
+    subsumption now rests on a source check.
+  - Two points are not in §40.4:
+    - the (⟸) direction, so on this locus RD_b is equivalent to surjectivity, not only sufficient for it;
+    - Vaccaro's remark that no nuclear algebra without locally finite nuclear dimension is known.
+  - The Theorem's "finite nuclear dimension" conclusion also comes from step 5. The import node's statement
+    includes it, and review-backlog-3 §23 passes that statement.
+- **`comparison-forces-tracial-support-projections`: correctly OPEN** (agreeing with §40.4).
+  - It assumes projection comparison by limit traces, not strict comparison of `A`.
+  - §2's proof uses strict comparison in `A` (Rørdam's lemma at size `k`), and Lin's Theorem 1.1 needs it too.
+    Neither route applies.
+  - The node's own real-rank-zero attempt names its missing step as the converse of CCEGSTW Proposition 7.2.
+  - At c43a30d2e its only `requires:` consumer is `lfnd-locus-gamma-via-support-projections`.
+  - **Wording note.** "Every unital Toms–Winter counterexample on this locus would refute it" is now vacuous,
+    because this section's claim shows there is no such counterexample. The node's Attempts bullet already
+    says so, and no edit is needed.
+- **Verdict.** PASS on the mathematics. The Scope novelty sentence was overstated at 44267adad and is corrected on
+  main by 8cf12afc4. The node itself asserts no novelty.
 
 ## 4. `theorem-e-congruence-projections-vanish-at-regular-trace`: PASS, with two wording notes
 
@@ -250,6 +275,11 @@ Route: `theorem-e-congruence-projections-vanish-at-regular-trace-proof`. Artifac
   - Hence the fixed-level route is void for every model (H1) concerns, and keeping (H1) OPEN is right.
   - The `distinct_from` entry and the (H1) Attempts bullet agree with this.
   - No forward correction is needed.
+- **Cross-check with review-swarm4 §40.5 (8cf12afc4): agreement, no disagreement.**
+  - §40.5 checks items 1, 2 and 4, and item 3 in outline only. Item 3 is checked in full above.
+  - For item 1 it uses `T = X^*X/m` with `X = Σ_i σ(k_i)`, so `τ(T) = 1` and `Tp = mp`. That is a different
+    computation giving the same bound `τ(p) ≤ 1/m`.
+  - §40.5 does not raise the two wording notes above. They stand.
 
 ## 5. The mixed-level root group `K_i` (lane `nh-ki-kazhdan`, 44267adad)
 
