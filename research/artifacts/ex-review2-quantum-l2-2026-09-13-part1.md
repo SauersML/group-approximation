@@ -11,7 +11,7 @@ Lane `ex-verify2-quantum-l2`, 2026-09-13. Index: `ex-review2-quantum-l2-2026-09-
 | `normal-fibre-galois-games-round-linearly-over-all-groups` (part 2, Theorem 16, Remark 18) | ugc-rounding-pgroups | PASS, artifact level. Uniformity in `m` uses CFSG, as stated |
 | `free-subgroup-rounding-fails-for-non-normal-fibres` (part 1, Proposition 13) | ugc-rounding-pgroups | PASS, independently of logic-quantum part 2 |
 | `free-rounding-pays-the-number-of-fibre-conjugates` (part 1, Theorem 14; part 2, Corollary 17) | ugc-rounding-pgroups | PASS |
-| `kun-thom-wreath-is-not-rational-character-approximable` (+ `-proof`) | determinant-monster | PASS at the checked steps, conditional on the established pre-EX `hilbert-embeddable-witness-impossible`. One justification (step 3) was wrong about the length convention and is corrected forward (1.6) |
+| `kun-thom-wreath-is-not-rational-character-approximable` (+ `-proof`) | determinant-monster | PASS at the checked steps, conditional on the established pre-EX `hilbert-embeddable-witness-impossible`. The original step 3 was correct. The "wording FAIL" this review first recorded was itself false and is retracted (1.6) |
 
 **Artifacts.**
 - Part 1: `research/artifacts/ugc-rounding-normal-fibres-2026-09-13.md`.
@@ -122,26 +122,32 @@ The value bound in (a) rests on Theorem 10, which was not re-read (1.0).
   divides one order by at least `q`, and there are at most `r log_q k` steps. The cost bound follows.
 - Proposition 13 has `r = N` and `k = 2`, so (14.1) is tight up to the constant.
 
-## 1.6 `kun-thom-wreath-not-rational-character-approximable-proof`: PASS at the checked steps; step 3 justification corrected
+## 1.6 `kun-thom-wreath-not-rational-character-approximable-proof`: PASS at the checked steps (an earlier wording finding is retracted)
 
 - **Step 1.**
   - `rho(F) <= GL_d(Q)` preserves a positive definite `q`. A `q`-orthonormal real basis puts `rho(F)` in
     `O(d) <= U(d)`, with the same normalized Hilbert–Schmidt norm.
   - Multiplicativity is unitarily invariant: `||k k' k''^-1 - 1||_2 = ||k k' - k''||_2`.
 - **Step 2.** `||rho phi(s) - 1||_2^2 = 2 - 2 Re Tr/d >= 2 - 2 eps`.
-- **Step 3, the wrong justification.** The route says the length `ell(k) = ||k - 1||_2` "is Hilbert
-  embeddable, being the square root of the conditionally negative definite `1 - Re (1/d) Tr`". In the
-  repository's convention (`hilbert-embeddable-length-hyperlinearity`), a length is Hilbert embeddable
-  when `(a,b) -> ell(a^-1 b)` is itself conditionally negative definite. The square of `ell` has that
-  property; `ell` itself need not.
-- **What makes the step true.** The witness notion refuted by `hilbert-embeddable-witness-impossible`,
-  as stated in `hilbert-embeddable-witness-for-kun-thom-wreath`, allows one increasing `f` with
-  `f(0) = 0`, continuous at `0` and independent of `n`, such that `f o d_n` is Hilbert embeddable and
-  bounded by `1`.
-  - Take `d_n(k) = ||k - 1||_2` and `f(t) = t^2/4`. Then `f(d_n(a^-1 b)) = ||a - b||_2^2/4`, a squared
-    Hilbert distance, so it is conditionally negative definite and at most `1`.
-  - The defect is at most `eps^2/4`, and the separation is at least `(1 - eps)/2`.
-  - So the models are witnesses in the refuted sense, and step 4 applies. The conclusion stands.
+- **Step 3: PASS as written. Retraction (2026-09-13, same day).** This section first called the step's
+  justification wrong, saying that `ell(k) = ||k - 1||_2` "need not be" conditionally negative definite.
+  That was false; ex-determinant-monster pointed it out.
+  - `psi(a,b) = ||a - b||_2^2` is a squared Hilbert distance, hence conditionally negative definite.
+  - `t -> t^(1/2)` is a Bernstein function:
+    `t^(1/2) = (2 sqrt(pi))^-1 ∫_0^∞ (1 - e^(-st)) s^(-3/2) ds`, since
+    `∫_0^∞ (1 - e^(-u)) u^(-3/2) du = 2 Γ(1/2)`.
+  - By Schoenberg, `e^(-s psi)` is positive definite with `1` on the diagonal, so `1 - e^(-s psi)` is
+    conditionally negative definite, and positive integrals of such kernels stay so.
+  - Hence `ell(a^-1 b) = psi(a,b)^(1/2)` is itself conditionally negative definite, and "being the
+    square root of the conditionally negative definite ..." is a correct justification. This matches
+    `hilbert-embeddable-witness-for-kun-thom-wreath`: on `S_3` the `F_2`-rank length is not Hilbert
+    embeddable, while its square root is.
+- **Second argument.** The witness notion refuted by `hilbert-embeddable-witness-impossible` allows one
+  `n`-independent increasing `f` with `f(0) = 0`, continuous at `0`. With `f(t) = t^2/4`,
+  `f o ell = psi/4`, with defect at most `eps^2/4` and separation at least `(1 - eps)/2`. This needs no
+  Bernstein-function input.
+- **State on main.** The owner's merge `979f1c1def` keeps both arguments and marks the false sentence of
+  this review's first correction. No other node was affected, and the conclusion never changed.
 - **Step 4.** It is conditional on `hilbert-embeddable-witness-impossible`, which is pre-EX and
   established through `witness-yields-two-point-approximation` and `two-point-approximation-fails`. Its
   trust surface is Kun–Thom arXiv:2608.06222 Theorem 4.1. That chain is not re-derived here.

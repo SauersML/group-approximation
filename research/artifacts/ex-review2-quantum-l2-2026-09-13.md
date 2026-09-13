@@ -112,7 +112,7 @@ Some rows cover two to five claims; the rows total 26.
 | part | items | verdict |
 |---|---|---|
 | 1 | Theorems 12, 14, 15 and 16, Proposition 13, Corollary 17 and Remark 18 of the ugc-rounding normal-fibre artifacts, read line by line | **PASS** |
-| 1 | `kun-thom-wreath-is-not-rational-character-approximable` | **PASS at the checked steps**, conditional on the pre-EX `hilbert-embeddable-witness-impossible`. Step 3's length convention was misstated; corrected forward in the route |
+| 1 | `kun-thom-wreath-is-not-rational-character-approximable` | **PASS at the checked steps**, conditional on the pre-EX `hilbert-embeddable-witness-impossible`. The original step 3 was correct: square roots of conditionally negative definite kernels are conditionally negative definite. This review's first "correction" was false and is retracted. Main now carries both arguments (`979f1c1def`) |
 | 2 | eleven L², determinant and Strong Atiyah imports: Khanh, Thom, AGP, Abrams–Aranda Pino, Grabowski ×2, McKee–Smyth, Smith, Jaikin-Zapirain–López-Álvarez ×2, plus the Lück survey rows quoted in backlog part 1 | **PASS at source** |
 | 2 | `purely-infinite-leavitt-path-v-monoid-cancellation`, `determinant-conjecture-excludes-liouville-atiyah-exceptions` | **PASS** (the second as a statement) |
 | 3 | `amenable-kernel-bc-transfer-and-ktop-half-exactness`, `lueck-surjective-assembly-traces-lie-in-lambda-g`, `zariski-dense-psl-subgroups-are-completely-selfless`, `gaboriau-commensurated-chain-fixed-price-criterion` | **PASS at source** |
