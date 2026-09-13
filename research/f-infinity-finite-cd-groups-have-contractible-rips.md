@@ -41,8 +41,14 @@ Bass's question whether type FP implies type FF.
   amalgams, HNN extensions over finite groups and free products of type `ℝ`
   marked groups (Theorems 1.3, 1.4, Corollary 3.1). Finite direct products of
   groups with contractible Rips complexes have them too
-  (`contractible-rips-groups-closed-under-direct-products`). None of these reaches
-  a group known only to be `F_∞` with finite cd.
+  (`contractible-rips-groups-closed-under-direct-products`). The Problem 4.7 lane
+  adds `torsion-free-asymptotically-cat0-groups-have-contractible-rips`,
+  `coarsely-injective-groups-have-contractible-rips-complexes`,
+  `torsion-free-hhg-subgroups-have-contractible-rips-complexes` and
+  `helly-groups-have-contractible-rips-complexes`. As of 73e31d2c69 the last three
+  are unreviewed. So this claim holds for every group of type `F_∞` with finite cd
+  in those classes. None of these classes reaches a group known only to be `F_∞`
+  with finite cd.
 - **Equivalence, wired.** `f-infinity-fcd-contractible-rips-from-1-21-and-4-07`
   proves this claim from `f-infinity-groups-of-finite-cd-are-of-type-f` (Problem
   1.21, yes) and `every-type-f-group-has-a-contractible-rips-complex` (Problem 4.7,

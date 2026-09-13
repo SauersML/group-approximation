@@ -32,7 +32,7 @@ The negative answer to Zaremsky Problem 4.6
   requires `some-type-f-group-has-no-contractible-rips-complex`. Where it stops:
   an obstruction must hold for every finite generating set and every scale.
   Rescaling (`R_r(G,S) = R_1(G, B_S(r) ∖ {1})`,
-  `rips-complex-of-a-group-is-a-flag-cayley-complex`) shows this means `G`
+  `group-rips-complexes-are-cayley-graph-flag-complexes`) shows this means `G`
   admits no simplicial action on a locally finite contractible flag complex that is
   simply transitive on vertices. The Euler characteristic does not obstruct: with
   `c_k` the number of `k`-simplices of `R_1(G,S)` containing the identity,

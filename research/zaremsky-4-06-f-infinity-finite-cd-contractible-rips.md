@@ -63,7 +63,7 @@ By `f-infinity-finite-cd-group-with-zero-reduced-k0-is-type-f`, a counterexample
 through (1.21) must have `K̃_0(ZG) ≠ 0` for a torsion-free group. So a realistic
 search for a no answer is Problem 4.7's search: a type F group none of whose
 Cayley flag complexes is contractible
-(`rips-complex-of-a-group-is-a-flag-cayley-complex`).
+(`group-rips-complexes-are-cayley-graph-flag-complexes`).
 
 **Status (bounded check, 2026-09-13).** Open. z-status-b's table
 (`research/artifacts/zp-open-status-sections-2-4-2026-09-13-part*.md`)
