@@ -53,3 +53,29 @@ Atiyah conjecture would then be two statements about one group.
   theorem gives `integral_T (k(z_1, omega) - g_0) d omega = 0` with a nonnegative
   integrand. So the excess vanishes for almost every `omega`, not at a chosen
   point.
+* **Lelong-number analytic sets (Siu).** Dies at algebraicity of analytic sets.
+  - `U(x) = log Delta(M(x_1, x_2))` is plurisubharmonic. At a point with kernel
+    excess `kappa` it satisfies `U(w) <= kappa log ||w - z|| + C` nearby, so its
+    Lelong number there is at least `kappa`. By Siu's theorem (Invent. Math. 27
+    (1974)) the sets `{nu_U >= c}` are closed analytic subvarieties of `C^2`, and
+    the exceptional points lie in them.
+  - Restricted to a Qbar-line that is not a jump line, the proof of
+    `determinant-conjecture-gives-one-variable-atiyah-base-change` runs verbatim
+    with the Lelong number of `log Delta` in place of the kernel dimension. So
+    Lelong numbers vanish at transcendental points of such lines, and
+    `{nu_U >= c}` meets generic Qbar-lines only in algebraic points.
+  - That does not make the components algebraic. A transcendental analytic curve
+    can meet every algebraic line only at algebraic points, as in Staeckel-type
+    constructions. Pushing algebraic points of degree `d` towards a transcendental
+    curve by Dirichlet counting gives distance about `H^(-d)`, which is only the
+    order of the loss `N d log H` from the conjugates.
+* **Iterated resultants over `Z[x_1]`.** Dies at transcendence measures.
+  - The companion model of `p in Z[x_2]` is an integral family `X(x_1)` in `x_1`.
+    The one-variable argument at `z_1` would need
+    `log Delta(X(z_1)) >= -o(n log H)`, with `n = deg p` and `H = H(p)`.
+  - For `G = 1` this is a lower bound for the resultant polynomial
+    `Res_(x_2)(p, det M)` at `z_1`. Even for numbers with a transcendence measure
+    it is only `-C N d (N d + log H)`, already the size of the gain.
+  - So the one-variable determinant bound cannot be iterated one coordinate at a
+    time. A proof needs genuinely two-dimensional elimination, with products of
+    distances over zero-dimensional schemes (Nesterenko--Philippon).
