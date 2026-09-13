@@ -199,7 +199,6 @@ theorem CycleDisc.exists_of_embed (D : CycleDisc X) {N : CombMap.{0}} (hN : N.Is
 
 end GroupApproximation.Systolic
 
-#audit_axioms GroupApproximation.GGT.VanKampen.EdgeDeletion.value_facePerm_of_ne
 #audit_axioms GroupApproximation.GGT.VanKampen.EdgeDeletion.digonBack_injective
 #audit_axioms GroupApproximation.GGT.VanKampen.EdgeDeletion.digonBack_facePerm
 #audit_axioms GroupApproximation.Systolic.isFaceCycle_of_embed
