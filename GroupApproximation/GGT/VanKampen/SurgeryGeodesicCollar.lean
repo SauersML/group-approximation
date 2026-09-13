@@ -36,8 +36,8 @@ of `Δ` and a word `g`: an O-equivalent diagram `Δ''` with a pocket region `P''
 and complement follow their boundary walks, and a path `collar` reading `g`, such that the
 inverse complement cycle of `P''` is `collar` followed by the image of `rest`.  The darts of
 `Δ` embed into `Δ''` compatibly with `alpha` and the labels, and the labels of `Δ''` are
-letters of `D`.  Relator cells outside `P` keep their boundary darts, and every relator cell
-stays on its side of the pocket. -/
+letters of `D`.  The outer boundary and the relator cells outside `P` keep their darts, and
+every relator cell stays on its side of the pocket. -/
 def GeodesicCollarOutput {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (RelLetter G Lambda))} (D : RelGenSet G Lambda)
     {Delta : DiscDiagram.{u, w, v} W} (P : PocketRegion Delta)
@@ -51,6 +51,7 @@ def GeodesicCollarOutput {G : Type u} [Group G] {Lambda : Type w}
     Embedded.dartWord Delta'' collar = g ∧
     (∀ d, Delta''.toCombMap.alpha (ι d) = ι (Delta.toCombMap.alpha d)) ∧
     (∀ d, Delta''.label (ι d) = Delta.label d) ∧
+    Embedded.outerDarts Delta'' = (Embedded.outerDarts Delta).map ι ∧
     (∀ i : Fin Delta.rCellCount, (Embedded.cell Delta i).face ∈ P.outside →
       Embedded.cellDarts Delta'' (E.cellIndex i) = (Embedded.cellDarts Delta i).map ι) ∧
     (∀ i : Fin Delta.rCellCount,
@@ -84,9 +85,10 @@ theorem geodesicCollarOutput_nil {G : Type u} [Group G] {Lambda : Type w}
     (hdecomposition : Embedded.invDarts Delta P.outer.cycle = [] ++ rest) :
     GeodesicCollarOutput D P rest [] := by
   refine ⟨Delta, OEquivalentDiscDiagram.refl Delta, P, [], Function.Embedding.refl _, hlabel,
-    hin, hout, ?_, rfl, fun _ => rfl, fun _ => rfl, ?_, fun _ => Iff.rfl⟩
+    hin, hout, ?_, rfl, fun _ => rfl, fun _ => rfl, ?_, ?_, fun _ => Iff.rfl⟩
   · rw [hdecomposition]
     exact congrArg (fun l => [] ++ l) (List.map_id rest).symm
+  · exact (List.map_id _).symm
   · intro i _
     exact (List.map_id _).symm
 
