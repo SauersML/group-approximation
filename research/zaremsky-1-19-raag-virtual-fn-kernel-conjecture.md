@@ -44,12 +44,24 @@ finite cover of the Salvetti complex that realize them need not come from
 characters of `A_L`. The conjecture says none of these extra characters can have
 better kernels than the best character of `A_L`.
 
+**Status (2026-09-13, unreviewed).**
+
+- Homological form proved: `raag-virtual-fp-n-kernel-forces-acyclic-flag-complex`. If a
+  finite-index subgroup maps onto `Z` with kernel of type `FP_n(F)` (field `F`) or `FP_n(Z)`,
+  then `L` is `(n−1)`-acyclic over `F`, resp. `Z`, so `BB_L` has the same finiteness type.
+- Case `n = 1` proved: `raag-virtual-fg-kernel-implies-fg-kernel`.
+- Reduction: the conjecture for every `n` follows from one open claim,
+  `raag-virtual-fp-kernel-forces-simply-connected-flag-complex` (a finitely presented virtual
+  kernel forces `π_1(L) = 1`), through the route
+  `raag-virtual-fn-kernel-conjecture-via-simple-connectivity`. A counterexample needs `n ≥ 2`
+  and a nontrivial perfect `π_1(L)`.
+
 ## Attempts
 
 - 2026-09-13, lane z1-19-raag-kernel: Betti numbers over division rings do not see
-  which character was chosen and scale with the index, so they transfer
-  information from `H` back to `A_L`. The plan: (1) compute them for every
-  finite-index subgroup of `A_L` from the Salvetti complex; (2) show that a kernel
-  of type `FP_n(F)` kills them in degrees `≤ n` for a Malcev--Neumann division ring;
-  (3) conclude the homological form of the conjecture over every field and over
-  `Z`, leaving only a question about `π_1(L)`.
+  which character was chosen and scale with the index, so they transfer information
+  from `H` back to `A_L`. Computed for every finite-index subgroup of `A_L` from the
+  Salvetti complex (`raag-skew-field-betti-numbers-of-finite-index-subgroups`); a kernel of
+  type `FP_n(F)` kills them in degrees `≤ n` for a Malcev--Neumann division ring
+  (`bi-orderable-fp-n-fibre-kills-malcev-neumann-homology`). This settles everything except
+  `π_1(L)`. Details: `research/artifacts/zp-raag-virtual-kernels-2026-09-13-part1.md`.
