@@ -54,18 +54,18 @@ theorem osinLemma94Section_of_planarPieces
 are in `GloballyDistinguishedSectionFamily`.
 - Definitions: `UnselectedGFace`, `RunsBackAcross` (the `cutting_interior` form) and
   `DegreeTwoJoints`.
-- `CornerInsertionInput` (simple-group): insert a legal word across an unselected `G`-face, from the
-  corner before a chain to the corner after it. The result has `2 |word|` more darts and the same
-  unbound sum, and the chain runs between two distinct unselected `G`-faces.
-- `PendantPathRemovalInput` (jacobson): remove a path that starts at a leaf inside an unselected
-  `G`-face. The result has `2 |path|` fewer darts and the same unbound sum.
+- `CornerInsertionInput` (simple-group, OPEN): insert a legal word across an unselected `G`-face,
+  from the corner before a chain to the corner after it. The result has `2 |word|` more darts and
+  the same unbound sum, and the chain runs between two distinct unselected `G`-faces.
+- `PendantPathRemovalInput`: PROVED by jacobson, `pendantPathRemovalInput` in
+  `Estimating/OsinLemma94PendantRemoval.lean` (61c2ade8e, green in probe 0913-102123-19053).
 - `SeparatingPathRemovalInput`: PROVED by `separatingPathRemovalInput_of_pendant` in
   `Estimating/OsinLemma94SeparatingRemoval.lean` (7d4a2515f, green in probe 0913-093115-86638).
   A `Surgery.GFaceMerge` on the first edge leaves the rest as a pendant path in the merged face
   (`GFaceMerge.facePerm_keep_of_ne`, `GFaceMerge.sigma_keep_eq_self`).
 - `ChainRespellInput`: a strictly shorter nonempty legal word with the value of the chain gives
   fewer darts and the same unbound sum. `chainRespellInput_of_pieces` derives it from the insertion
-  and the separating removal. So it needs only `CornerInsertionInput` and `PendantPathRemovalInput`.
+  and the separating removal. So it needs only `CornerInsertionInput`.
 
 ## Realization split (landed)
 `Estimating/OsinLemma94PolygonRealization.lean` (1130c8dbc, green in probe 0913-095511-56070).
@@ -73,18 +73,38 @@ are in `GloballyDistinguishedSectionFamily`.
 OsinLemma94PolygonRealizationInput`, with `ε₀ = ρ₀ = 1`.
 - `gFacesApart_of_dartMinimal` (proved): two different unselected `G`-faces share no edge, since a
   `G`-face merge removes two darts and keeps the unbound sum.
-- `OsinLemma94CuttingChainsInput` (hull-unbound): `λ ≤ 1 → 0 ≤ c → S.DartMinimal →
-  S.CuttingChainsQuasiGeodesic`. Route: `ChainRespellInput`, `PendantPathRemovalInput` (a leaf in
-  an unselected `G`-face contradicts `DartMinimal`, so a cutting chain has no dart together with
-  its reverse) and `QuasiGeodesicRespellInput`.
-- `QuasiGeodesicRespellInput` (hull-unbound): a legal word over the symmetric alphabet that is not
-  `(λ, c + 2)`-quasi-geodesic has a subword with a strictly shorter nonempty legal spelling.
-- `OsinLemma94CellArcsInput` (hull-unbound): arcs of relator cells, read from across, from
-  `OsinCCondition.quasiGeodesic`, `rotate_mem`, `inv_mem` and `label_alpha`.
-- `OsinLemma94BoundaryArcsInput` (hull-unbound): arcs of `∂Δ` inside one section, from
-  `SectionCuts.quasiGeodesic` and `OEquivalentDiscDiagram.boundaryWord_eq`.
-- `OsinLemma94PolygonPartitionInput` (ghw-assembly): the combinatorial partition of the face walks
-  into maximal sides, given `GFacesApart` and the three arc properties.
+- `OsinLemma94CuttingChainsInput`: DERIVED by `osinLemma94CuttingChainsInput_of_pieces` in
+  `Estimating/OsinLemma94CuttingChains.lean` (108236c25, green in probe 0913-111910-27621), from
+  `ChainRespellInput`, `PendantPathRemovalInput` and `QuasiGeodesicRespellInput`.
+  - A leaf inside an unselected `G`-face contradicts `DartMinimal` (`not_leaf_of_dartMinimal`).
+  - So a cutting chain never holds a dart together with its reverse
+    (`alpha_not_mem_of_dartMinimal`).
+  - A violating subchain is rotated to the front of the face walk and respelled.
+- `QuasiGeodesicRespellInput`: PROVED by `quasiGeodesicRespellInput` in
+  `Estimating/OsinLemma94QuasiGeodesicRespell.lean` (bbb8585ab, green in probe 0913-120651-61632).
+- `OsinLemma94CellArcsInput`: PROVED by ko-closed, `osinLemma94CellArcsInput_holds` in
+  `Estimating/OsinLemma94CellArcs.lean` (5e5a98049, green in probe 0913-104724-79090).
+- `OsinLemma94BoundaryArcsInput` (OPEN): arcs of `∂Δ` inside one section. The module
+  `Estimating/OsinLemma94BoundaryArcs.lean` is claimed by cite-hull. Route:
+  `SectionCuts.quasiGeodesic`, `isLambdaCQuasiGeodesicWord_drop_take`, `dartWord_outerDarts` and
+  `OEquivalentDiscDiagram.boundaryWord_eq`, then `isLambdaCQuasiGeodesicWord_symmetricLabelAlphabet`.
+- `OsinLemma94PolygonPartitionInput` (ghw-assembly, OPEN): the combinatorial partition of the face
+  walks into maximal sides, given `GFacesApart` and the three arc properties.
+
+## Assembly over the open pieces
+`Estimating/OsinLemma94SectionResiduals.lean` (probe pending):
+```lean
+theorem osinLemma94Section_of_residuals
+    (hinsert : GloballyDistinguishedSectionFamily.CornerInsertionInput.{u, w, v})
+    (hboundary : OsinLemma94BoundaryArcsInput.{u, w, v})
+    (hpartition : OsinLemma94PolygonPartitionInput.{u, w, v})
+    (hcount : OsinLemma94PolygonCountInput.{u, w, v})
+    (hone : OsinLemma94CaseOneInput.{u, w, v})
+    (htwo : OsinLemma94CaseTwoInput.{u, w, v}) :
+    OsinLemma94SectionStatement.{u, w, v}
+```
+It plugs `osinLemma94AntiparallelMetric`, `pendantPathRemovalInput`, `quasiGeodesicRespellInput`
+and `osinLemma94CellArcsInput_holds` into `osinLemma94Section_of_planarPieces`.
 
 ## Findings
 - Connector orientation: `WordConnectorPair` fixes `a < a'` and leaves `b`, `b'` in either order.
@@ -123,20 +143,16 @@ OsinLemma94PolygonRealizationInput`, with `ε₀ = ρ₀ = 1`.
   wave 5): `false_of_unbound_shared_edge`. An unbound dart on an edge shared with a relator cell or
   the exterior contradicts maximality.
 
-## Residual Props of `osinLemma94Section_of_planarPieces`
-- `OsinLemma94PolygonRealizationInput` (hull-unbound), over its four pieces:
-  - `OsinLemma94CuttingChainsInput` (hull-unbound), needing `CornerInsertionInput` (simple-group),
-    `PendantPathRemovalInput` (jacobson) and `QuasiGeodesicRespellInput` (hull-unbound);
-  - `OsinLemma94CellArcsInput` and `OsinLemma94BoundaryArcsInput` (hull-unbound);
-  - `OsinLemma94PolygonPartitionInput` (ghw-assembly).
+## Residual Props of `osinLemma94Section_of_residuals`
+- `GloballyDistinguishedSectionFamily.CornerInsertionInput` (simple-group).
+- `OsinLemma94BoundaryArcsInput` (roster: hull-unbound; module claimed by cite-hull).
+- `OsinLemma94PolygonPartitionInput` (ghw-assembly).
 - `OsinLemma94PolygonCountInput` (hull-count94).
 - `OsinLemma94CaseOneInput` (theoremc-retire).
 - `OsinLemma94CaseTwoInput` (sec5-sentences).
 
 ## Next
-- Prove `OsinLemma94CuttingChainsInput` from `ChainRespellInput`, `PendantPathRemovalInput` and
-  `QuasiGeodesicRespellInput`.
-- Prove `OsinLemma94CellArcsInput`, `OsinLemma94BoundaryArcsInput` and
-  `QuasiGeodesicRespellInput`.
+- Land `OsinLemma94SectionResiduals` once green.
+- `OsinLemma94BoundaryArcsInput`: cite-hull holds the module; build it here only if main releases it.
 - Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once the other pieces close.
 - Then help hull-respell with hgreendlinger.
