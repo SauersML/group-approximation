@@ -144,3 +144,5 @@ the augmentation rank.
     `F_3[T]` whose rank is forced both through `(1 - [C])^3 = 0` and through the wandering bound on `x_0`.
 
 *Verification by `w3-vf-linear` (2026-09-12), §34 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: partial on w7-v-gate-c3 f5b2406fa, Sections 1–3 re-derived except the cited [CFP] and [VX] inputs. Claims 1.1–1.2, the Section 1.3 computation, Claim 2.1 and Claims 3.1–3.3 PASS. Fix: `C` covers `X`, so it is a product of two disjoint clopen 3-cycles, not a clopen 3-cycle, and `T` contains no clopen 3-cycle. The gate stays OPEN.*
+
+*Verification by `w3-vf-linear` (2026-09-12), §34.7 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on the w7-v-gate-c3 fix application 71434d4009. Fixes 1–2 and notes 1–5 of §34 are applied. The new bullet re-derives: given the OPEN `v-rank-functions-split-as-augmentation-plus-reduced`, the gate is equivalent to no rank function on `F_3[V]` with `phi_V = 0`. The §34 partial verdict stands, and the gate stays OPEN.*
