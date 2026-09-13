@@ -15,7 +15,10 @@ arXiv:2608.06222) through this construction answers Question 4.2 of
 Gao–Kunnawalkam Elayavalli–Patchell (arXiv:2401.04945) in the negative: two
 commuting sofic actions whose combination is not sofic.  The soficity
 transfers themselves (their Theorem 2.14, Propositions 2.15 and 2.16) are
-cited external inputs, not formalized; this file certifies every
+formalized, in the cases this construction needs, in
+`GroupApproximation/CommutingSoficActions/`: `FreeActionSofic`,
+`DiagonalRestriction` and `KunThomCosetAction`, assembled in `Endpoint` as
+`exists_commuting_sofic_actions_not_sofic`.  This file certifies every
 group-theoretic step of the construction.  Graph nodes:
 `research/nonsofic-orbit-forces-commuting-counterexample.md` (statement),
 `research/diagonal-coset-commuting-counterexample-proof.md` (route),

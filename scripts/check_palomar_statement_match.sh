@@ -26,8 +26,8 @@
 # original `Palomar/comparator.json` -- so it is submitted once per
 # configuration and each pair has to match on its own.  The loops below are
 # over the driver prefixes: empty for the non-MF pair, `LIX` and `BowenChapman`
-# for the submittable pairs, and `LIXStrong`, `Pestov91` and `TypeA2` for the
-# pending ones.  Every pair is run even after one
+# for the submittable pairs, and `LIXStrong`, `Pestov91`, `TypeA2` and
+# `GubaThompson` for the pending ones.  Every pair is run even after one
 # fails: knowing that both differ is different information from knowing that
 # one does, and a script that stopped at the first would need a second
 # invocation to find out.
@@ -121,7 +121,7 @@ done
 # gated -- and the part of the report before `pending-boundary:` must match.
 # The part after it is printed and not gated, because the solution's theorems
 # still carry the outstanding hypothesis.
-for prefix in LIXStrong Pestov91 TypeA2; do
+for prefix in LIXStrong Pestov91 TypeA2 GubaThompson; do
   label="$prefix"
   pair_ok=1
 

@@ -170,7 +170,12 @@ PALOMAR_CONFIGS = (
 #   * `Palomar/Pestov91Solution.lean` proves both of its theorems from the
 #     existence of an infinite simple LEF group with property (T);
 #   * `Palomar/TypeA2Solution.lean` proves its theorem from
-#     `GroupApproximation.TypeA2.Question58`.
+#     `GroupApproximation.TypeA2.Question58`;
+#   * `Palomar/GubaThompsonSolution.lean` proves both of its theorems from three
+#     facts about Thompson's group F: K[F] has no zero divisors, Guba's Theorem
+#     3.18 holds for x0, and x1 lies in a subgroup isomorphic to F by an
+#     isomorphism sending x1 to x0, which contains or is contained in each of
+#     its conjugates.
 #
 # That is the honest state of the work and not a defect, so each such pair is
 # checked for everything that is meaningful now -- the configuration's shape,
@@ -194,6 +199,7 @@ PALOMAR_PENDING_CONFIGS = (
     "Palomar/comparator-lix-strong.json",  # the three ProblemLIXStrong theorems
     "Palomar/comparator-pestov91.json",  # the two Pestov Open Question 9.1 theorems
     "Palomar/comparator-type-a2.json",  # the FFWZ Question 5.8 theorem
+    "Palomar/comparator-guba-thompson.json",  # the two Guba Question 3.20 theorems
 )
 
 # The files `copy_surface` copies and `--self-test` plants defects into.  The
@@ -211,7 +217,8 @@ SURFACE_FILES = (
     "Palomar/comparator-pestov91.json",
     "Palomar/TypeA2Challenge.lean", "Palomar/TypeA2Solution.lean",
     "Palomar/comparator-type-a2.json",
-    "Palomar/GubaThompsonChallenge.lean", "Palomar/comparator-guba-thompson.json",
+    "Palomar/GubaThompsonChallenge.lean", "Palomar/GubaThompsonSolution.lean",
+    "Palomar/comparator-guba-thompson.json",
     "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
     "formalization.yaml",
 )
@@ -855,6 +862,15 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "does not declare `exists_isTypeA2_quotient_not_isFinitelyPresented_of`"),
     ("type-a2 comparator permitting a fourth axiom",
      "Palomar/comparator-type-a2.json: permitted_axioms"),
+    # The Guba Question 3.20 surface, pending.
+    ("guba-thompson challenge with a project-local import",
+     "Palomar/GubaThompsonChallenge.lean:1:"),
+    ("guba-thompson shared block edited on one side",
+     "Palomar/comparator-guba-thompson.json: shared block diverges"),
+    ("guba-thompson solution missing an `_of` form",
+     "does not declare `question_3_20_common_multiple_of`"),
+    ("guba-thompson comparator permitting a fourth axiom",
+     "Palomar/comparator-guba-thompson.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("nine arXiv classes", "one to eight distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
@@ -977,6 +993,24 @@ def plant(name: str, root: Path) -> None:
             "theorem exists_isTypeA2_quotient_not_isFinitelyPresented_renamed", 1))
     elif name == "type-a2 comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-type-a2.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
+    elif name == "guba-thompson challenge with a project-local import":
+        path = root / "Palomar" / "GubaThompsonChallenge.lean"
+        path.write_text(
+            "import GroupApproximation.ThompsonOre.X1Answer\n"
+            + path.read_text())
+    elif name == "guba-thompson shared block edited on one side":
+        path = root / "Palomar" / "GubaThompsonSolution.lean"
+        path.write_text(path.read_text().replace(
+            "def conjBy (a b : FreeGroup (Fin 2)) : FreeGroup (Fin 2) :=",
+            "def conjBy' (a b : FreeGroup (Fin 2)) : FreeGroup (Fin 2) :=", 1))
+    elif name == "guba-thompson solution missing an `_of` form":
+        path = root / "Palomar" / "GubaThompsonSolution.lean"
+        path.write_text(path.read_text().replace(
+            "theorem question_3_20_common_multiple_of",
+            "theorem question_3_20_common_multiple_renamed", 1))
+    elif name == "guba-thompson comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-guba-thompson.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
     elif name == "LIX result dropped from the metadata":
         _edit_metadata(root,

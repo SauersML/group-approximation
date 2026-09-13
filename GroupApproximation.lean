@@ -4875,6 +4875,10 @@ import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerMultigraph
 import GroupApproximation.Manuscript.NonMF.NaiveFreeProductPropertyOfAcylindricallyHyperbolic
 import GroupApproximation.Manuscript.NonMFSentences.FullDefectPairLeavitt
 import GroupApproximation.Sofic.StrongConvergenceMFSubsingleton
+import GroupApproximation.CommutingSoficActions.DiagonalRestriction
+import GroupApproximation.CommutingSoficActions.Endpoint
+import GroupApproximation.CommutingSoficActions.FreeActionSofic
+import GroupApproximation.CommutingSoficActions.KunThomCosetAction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

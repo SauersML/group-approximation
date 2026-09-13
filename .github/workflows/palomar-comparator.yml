@@ -28,6 +28,7 @@ name: Palomar Comparator
 #   Palomar/comparator-bowen-chapman.json  the two Bowen-Chapman Problem 1.1 theorems
 #   Palomar/comparator-pestov91.json     the two Pestov Open Question 9.1 theorems
 #   Palomar/comparator-type-a2.json      the FFWZ Question 5.8 theorem
+#   Palomar/comparator-guba-thompson.json  the two Guba Question 3.20 theorems
 #
 # The values after the first are the entries of `PALOMAR_CONFIGS` and
 # `PALOMAR_PENDING_CONFIGS` in `scripts/check_palomar_submission.py`, which is
@@ -43,10 +44,14 @@ name: Palomar Comparator
 # `GroupApproximation.NinetyNineProblems.LemmaTwoHoldsAtPowers`
 # (`climbedPowersOutside_of_lemmaTwoHoldsAtPowers`);
 # `Palomar/Pestov91Solution.lean` assumes an infinite simple LEF group with
-# property (T); and `Palomar/TypeA2Solution.lean` assumes
-# `GroupApproximation.TypeA2.Question58`.  They are listed here so that the day
-# the theorems exist the dispatch takes no editing, and
-# `scripts/check_palomar_submission.py` is where that state is recorded.
+# property (T); `Palomar/TypeA2Solution.lean` assumes
+# `GroupApproximation.TypeA2.Question58`; and `Palomar/GubaThompsonSolution.lean`
+# assumes three facts about Thompson's group F: K[F] has no zero divisors, Guba's
+# Theorem 3.18 holds for x_0, and x_1 lies in a subgroup isomorphic to F by an
+# isomorphism sending x_1 to x_0, which contains or is contained in each of its
+# conjugates.  They are listed here so that the day the theorems exist the
+# dispatch takes no editing, and `scripts/check_palomar_submission.py` is where
+# that state is recorded.
 #
 # WHY MANUAL ONLY.  It builds two extra toolchains and a Rust kernel checker,
 # and the answer only changes when the Palomar surface changes.  Run it before
@@ -159,7 +164,8 @@ jobs:
                      PalomarLIXStrongChallenge PalomarLIXStrongSolution \
                      PalomarBowenChapmanChallenge PalomarBowenChapmanSolution \
                      PalomarPestov91Challenge PalomarPestov91Solution \
-                     PalomarTypeA2Challenge PalomarTypeA2Solution
+                     PalomarTypeA2Challenge PalomarTypeA2Solution \
+                     PalomarGubaThompsonChallenge PalomarGubaThompsonSolution
 
       # Comparator's sandbox.  Landrun is Go; the runner ships a toolchain.
       # Two things about the path, both learned the hard way: the module is

@@ -152,11 +152,18 @@ roots = ["Palomar.TypeA2Solution"]
 # `Palomar/GubaThompsonChallenge.lean` imports Mathlib only and carries its own
 # copy of the presentation of F.
 #
-# Only the challenge library exists yet.  `Palomar/GubaThompsonSolution.lean` is
-# not written, so the configuration is in neither list in
-# `scripts/check_palomar_submission.py`, and this library is not in
-# `defaultTargets`.  The solution library is added when that file lands.
+# NOT in `defaultTargets`, for the same reason: `Palomar/GubaThompsonSolution.lean`
+# proves both statements from three facts about F that the development does not
+# prove on F yet -- K[F] has no zero divisors, Guba's Theorem 3.18 holds for x_0,
+# and x_1 lies in a subgroup H with an isomorphism H -> F sending x_1 to x_0,
+# which contains or is contained in each of its conjugates -- so the
+# configuration is pending.  Both libraries join `defaultTargets` when those
+# facts are proved.
 
 [[lean_lib]]
 name = "PalomarGubaThompsonChallenge"
 roots = ["Palomar.GubaThompsonChallenge"]
+
+[[lean_lib]]
+name = "PalomarGubaThompsonSolution"
+roots = ["Palomar.GubaThompsonSolution"]

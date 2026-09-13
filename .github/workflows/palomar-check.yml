@@ -18,21 +18,22 @@ name: Palomar check
 # `Palomar/comparator-lix.json` for the three STW Problem LIX theorems,
 # `Palomar/comparator-lix-strong.json` for the three strengthened ones,
 # `Palomar/comparator-bowen-chapman.json` for Bowen-Chapman Problem 1.1,
-# `Palomar/comparator-pestov91.json` for Pestov's Open Question 9.1, and
+# `Palomar/comparator-pestov91.json` for Pestov's Open Question 9.1,
 # `Palomar/comparator-type-a2.json` for Question 5.8 of Fournier-Facio, Wu and
-# Zaremsky.  So there are two libraries, one axiom driver and one
-# statement-match pair per configuration, and every check below runs for all of
-# them.  A step that covered only some would leave a surface ungated while
-# looking exactly like a green gate.
+# Zaremsky, and `Palomar/comparator-guba-thompson.json` for Question 3.20 of
+# Guba's survey on Thompson's group F.  So there are two libraries, one axiom
+# driver and one statement-match pair per configuration, and every check below
+# runs for all of them.  A step that covered only some would leave a surface
+# ungated while looking exactly like a green gate.
 #
-# Three are PENDING -- the strengthened LIX pair, Pestov 9.1 and FFWZ 5.8: each
-# solution proves each selected statement from a proposition the development
-# still owes, so its theorems carry a hypothesis the challenge's do not.  Two
-# consequences, both deliberate.  The statement-match script gates those pairs
-# on the SHARED BLOCK only, which is the part that can hold and is the part that
-# failed here on 2026-09-10; and their axiom-closure drivers gate in full,
-# because the `_of` forms are sorry-free and their closure is already the
-# closure the finished theorems will have.
+# Four are PENDING -- the strengthened LIX pair, Pestov 9.1, FFWZ 5.8 and Guba
+# 3.20: each solution proves each selected statement from a proposition the
+# development still owes, so its theorems carry a hypothesis the challenge's do
+# not.  Two consequences, both deliberate.  The statement-match script gates
+# those pairs on the SHARED BLOCK only, which is the part that can hold and is
+# the part that failed here on 2026-09-10; and their axiom-closure drivers gate
+# in full, because the `_of` forms are sorry-free and their closure is already
+# the closure the finished theorems will have.
 # `scripts/check_palomar_submission.py` is where the pending list lives.
 #
 # WHAT IT DOES NOT DO.  It does not run Comparator; that is
@@ -68,6 +69,9 @@ on:
       - 'scripts/PalomarTypeA2ChallengeType.lean'
       - 'scripts/PalomarTypeA2SolutionType.lean'
       - 'scripts/PalomarTypeA2Axioms.lean'
+      - 'scripts/PalomarGubaThompsonChallengeType.lean'
+      - 'scripts/PalomarGubaThompsonSolutionType.lean'
+      - 'scripts/PalomarGubaThompsonAxioms.lean'
       - 'formalization.yaml'
       - 'lakefile.toml'
       - 'lean-toolchain'
@@ -162,7 +166,8 @@ jobs:
                      PalomarLIXStrongChallenge PalomarLIXStrongSolution \
                      PalomarBowenChapmanChallenge PalomarBowenChapmanSolution \
                      PalomarPestov91Challenge PalomarPestov91Solution \
-                     PalomarTypeA2Challenge PalomarTypeA2Solution
+                     PalomarTypeA2Challenge PalomarTypeA2Solution \
+                     PalomarGubaThompsonChallenge PalomarGubaThompsonSolution
 
       # The check that reproduces Comparator's comparison, for every pair;
       # the script loops over the configurations and fails if a
@@ -211,8 +216,9 @@ jobs:
         if: always()
         run: lake env lean scripts/PalomarBowenChapmanAxioms.lean
 
-      # The Pestov 9.1 and FFWZ Question 5.8 surfaces are pending too, and gate
-      # in full for the reason given for the strengthened LIX surface.
+      # The Pestov 9.1, FFWZ Question 5.8 and Guba Question 3.20 surfaces are
+      # pending too, and gate in full for the reason given for the strengthened
+      # LIX surface.
       - name: Palomar axiom closure (Pestov 9.1)
         id: axioms-pestov91
         continue-on-error: true
@@ -225,6 +231,12 @@ jobs:
         if: always()
         run: lake env lean scripts/PalomarTypeA2Axioms.lean
 
+      - name: Palomar axiom closure (Guba 3.20)
+        id: axioms-guba-thompson
+        continue-on-error: true
+        if: always()
+        run: lake env lean scripts/PalomarGubaThompsonAxioms.lean
+
       - name: Reject a run whose axiom closures were not all clean
         if: always()
         run: |
@@ -234,17 +246,20 @@ jobs:
           bc='${{ steps.axioms-bowen-chapman.outcome }}'
           p91='${{ steps.axioms-pestov91.outcome }}'
           a2='${{ steps.axioms-type-a2.outcome }}'
+          gq='${{ steps.axioms-guba-thompson.outcome }}'
           echo "non-MF closure: $nonmf"
           echo "LIX closure: $lix"
           echo "LIX strengthened closure: $strong"
           echo "Bowen-Chapman closure: $bc"
           echo "Pestov 9.1 closure: $p91"
           echo "FFWZ 5.8 closure: $a2"
+          echo "Guba 3.20 closure: $gq"
           # `skipped` counts as a failure: the closure was not computed, and a
           # check that did not run must not read like one that passed.
           if [ "$nonmf" != success ] || [ "$lix" != success ] \
              || [ "$strong" != success ] || [ "$bc" != success ] \
-             || [ "$p91" != success ] || [ "$a2" != success ]; then
+             || [ "$p91" != success ] || [ "$a2" != success ] \
+             || [ "$gq" != success ]; then
             echo "::error::an axiom-closure driver did not report success"
             exit 1
           fi
