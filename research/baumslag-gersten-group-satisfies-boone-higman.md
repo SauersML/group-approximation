@@ -48,9 +48,15 @@ group contains it.
       (`almost-automorphism-conjugate-to-proper-power-is-equicontinuous`);
     - an equicontinuous `a` acts trivially on any compact zero-dimensional
       space (`baumslag-gersten-equicontinuous-generator-acts-trivially`).
-- **Eventually-similar hosts beyond the full shift (open).**
-  - The obstruction above does not reach shifts of finite type with several
-    cone types, or local groupoids that are not isometric.
+- **Graph path-space hosts (dead, 2026-09-13).** Every homomorphism from `BG`
+  to the almost-automorphism group `A(E)` of the path space of a finite graph
+  kills `a` (`baumslag-gersten-embeds-in-no-graph-almost-automorphism-group`).
+  The pumping argument runs on any finite graph, so topological full groups of
+  one-sided shifts of finite type with several cone types, and any group acting
+  piecewise by prefix replacement followed by path isometries, are excluded.
+- **Eventually-similar hosts beyond graph path spaces (open).**
+  - The obstruction above does not reach local groupoids that are not
+    isometric, non-expansive groupoids, or Brin--Thompson `nV`.
   - `fw-subgroups-of-eventually-similar-groups-virtually-embed` needs FW, so
     it does not apply either.
   - In every Cantor-space host, the image of `a` must fail to be
@@ -70,6 +76,11 @@ group contains it.
   presented overgroup, was found. For Brin--Thompson `nV`, the image of `a`
   has exponent vector zero at every periodic point. But the pumping step of
   the Röver--Nekrashevych obstruction fails there, so `nV` stays open.
+
+**Literature (checked 2026-09-13).** BBMZ arXiv:2306.16356v3 (Problem 5.3, text
+lines 823–849) does not name `BG`. It lies in item (9), one-relator groups
+without torsion. Remark 5.4 records that Bux--Llosa Isenrich--Wu settled items (4),
+all Baumslag--Solitar groups, and (8), free-by-cyclic groups; `BG` is in neither class.
 
 See `research/artifacts/bh-baumslag-gersten-2026-09-12.md` for the host table,
 and `research/artifacts/bh-bg-similarity-hosts-2026-09-12.md` for the
