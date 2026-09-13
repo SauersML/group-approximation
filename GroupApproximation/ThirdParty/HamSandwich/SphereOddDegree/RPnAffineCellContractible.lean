@@ -18,6 +18,11 @@ The chart is built upstairs on the antipodal-saturated set
 which is invariant under the antipodal replacement `(v,t) ↦ (-v,-t)`, so it
 descends to the projective quotient.  The inverse sends `a ∈ R^(n+1)` to the
 projective class of `(a, 1) / sqrt(1 + ‖a‖²)`.
+
+Porting changes for Mathlib v4.32 (no statement is changed):
+
+* `affineInverseSphereVec_mem` and `affineInverse_forward_antipodal` call `ring_nf` at the
+  three places where `ring` fell back to it, so the build prints no `Try this` suggestion.
 -/
 
 noncomputable section
@@ -131,7 +136,7 @@ theorem affineInverseSphereVec_mem (n : Nat)
   simp [affineInverseSphereVec];
   rw [ norm_smul, Real.norm_of_nonneg ( by positivity ), EuclideanSpace.norm_eq ];
   norm_num [ EuclideanSpace.norm_eq, Fin.sum_univ_castSucc ];
-  rw [ Real.sq_sqrt <| by positivity, inv_mul_eq_div, div_eq_iff ] <;> ring ; positivity
+  rw [ Real.sq_sqrt <| by positivity, inv_mul_eq_div, div_eq_iff ] <;> ring_nf ; positivity
 
 /-- The inverse chart lands on the sphere. -/
 noncomputable def affineInverseSphere (n : Nat)
@@ -218,10 +223,10 @@ theorem affineInverse_forward_antipodal
     AntipodalRel (affineInverseSphere n (affineForwardFun n x)) x.1 := by
   have h_norm : ‖(affineForwardFun n x : EuclideanSpace ℝ (Fin (n + 1)))‖^2 + 1 = 1 / (sphereLastCoord n x.1)^2 := by
     have h_norm : ‖(affineForwardFun n x : EuclideanSpace ℝ (Fin (n + 1)))‖^2 = lowerNormSq n x.1 / (sphereLastCoord n x.1)^2 := by
-      unfold affineForwardFun lowerNormSq sphereLastCoord; simp +decide [ EuclideanSpace.norm_eq, Fin.sum_univ_castSucc ] ; ring;
+      unfold affineForwardFun lowerNormSq sphereLastCoord; simp +decide [ EuclideanSpace.norm_eq, Fin.sum_univ_castSucc ] ; ring_nf;
       rw [ Real.sq_sqrt <| by positivity ] ; norm_num [ ← Finset.sum_mul _ _ _ ] ; ring;
     rw [ h_norm, lowerNormSq_eq_one_sub_last_sq ];
-    rw [ div_add_one ] <;> ring ; aesop;
+    rw [ div_add_one ] <;> ring_nf ; aesop;
   cases lt_or_gt_of_ne ( show sphereLastCoord n x.1 ≠ 0 from x.2 ) <;> simp_all +decide [ AntipodalRel ];
   · refine Or.inr <| Subtype.ext <| ?_;
     ext i; exact (by
