@@ -89,3 +89,9 @@ Statement checks, theorem rows:
 Corollary rows (`dcf6fa4be4de`, `6aef426dfc7a`, `7916c8696def`, `3c68c15758e8`, `4321530b3fec`, `f6962254d259`, `6d3ca647302e`) were re-read word by word by leavitt-units (report on main).  Their carriers are closed and root-reachable.  No new defect was found.
 
 No literature input remains in the range: AGP 1.5 / 1.7 / 2.4, the Menal–Moncasi reduction, Blackadar–Kirchberg (via the RFD route), Morita invariance and Khanh–Thanh are all proved in the tree.
+
+## Status
+
+- LANDED 9f9f5dedc: `GroupApproximation/Manuscript/NonMFSentences/MFQuotientUnitsDisplaysGeneral.lean` (probe 0913-170155-54436 PROBE GREEN, module BUILT and COMPILED, audits in the build log).  Endpoints `PrintedSteinbergDisplaysAtItemA` / `manuscriptSentence_steinbergDisplaysAtItemA` and `PrintedKOneCountableAbelianMF` / `manuscriptSentence_kOneCountableAbelianMF`, both closed.  Queued in wire-queue.
+- Census rows: `metadata/nm-census-rows/ms-units.tsv` (keys 2d6574150d4d, c34115be7c92).
+- Residual in range: none.  Both gaps are closed; every other row reads adequate.
