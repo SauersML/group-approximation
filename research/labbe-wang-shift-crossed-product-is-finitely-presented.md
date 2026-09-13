@@ -20,36 +20,45 @@ function. It would then be the gate (a) instance for
 `sofic-fp-simple-kazhdan-group-from-fp-simple-ring`, and `EL_n(R_U)` would be `F_q`-linear sofic
 and Kazhdan. Simplicity and the rank model are to be written up. Gates (b) and (c) stay open.
 
-**Refutation.** A non-commuting operator-valued local tiling of Labbé's tiles.
+**Refutation.** A non-commuting operator-valued local tiling of Labbé's tiles. By
+`labbe-shift-is-wall-rigid`, for large `D` it must be genuinely contextual, with no two-dimensional or
+finitely filtered piece.
+
+**Current reduction.** For `D >= D_0` the local tiling algebra has an idempotent commutator ideal `J_D`.
+This claim holds iff `J_D = 0` for some `D` (`labbe-shift-is-wall-rigid`). Route in:
+`labbe-crossed-product-fp-via-wall-rigidity`, through the open `wall-rigid-z2-sft-is-quantum-rigid`.
 
 ## Attempts
 
 - **Periodic models.** Useless in either direction: `Ω_U` has no finite orbit (peer Theorem A in
   `research/artifacts/fp-simple-amenable-z2-sft-2026-09-12.md`). Classical finite models cannot
   refute rigidity, and none are needed to prove it.
+- **Periodic quantum tilings: live refutation target.** Operator-valued periodic tilings would refute
+  rigidity at their scale (`periodic-quantum-tilings-refute-quantum-rigidity`). For `D >= D_0` every
+  composition factor would have dimension `>= 3`. None is known, and none was searched for.
 - **Entropy walls: dead.** `Ω_U` is self-similar, so it has zero entropy. For a minimal SFT, a wall
   certificate with a finite side forces positive entropy
   (`research/artifacts/sft-crossed-product-presentation-rigidity-2026-09-13.md`, Proposition 4).
   So `positive-entropy-sft-crossed-products-are-not-fp` does not apply.
-- **Structure of `Ω_U` (verified from the abstract of Labbé, arXiv:1903.06137v3, read 2026-09-13).**
-  - `Ω_U` is the symbolic system of a Markov partition for a toral `Z^2`-rotation.
-  - That rotation is its maximal equicontinuous factor.
-  - The factor map has fibre cardinalities `{1, 2, 8}`, and `Ω_U` is uniquely ergodic.
-- **Infinite walls: open.**
-  - A refutation of the two-basis type needs two tilings agreeing on a wall of width `> 2D` that
-    separates two infinite regions where they differ.
-  - Heuristic, not checked: if agreement on a thick infinite strip forces the same torus point,
-    every such pair lies in one fibre, which has at most 8 points. Its difference set is the set of
-    sites whose orbit points meet the partition boundary. The boundary heights form a finite set, so
-    parallel components of the difference set have bounded gaps. Walls would then exist only at
-    bounded scale, and `Ω_U` would be wall-rigid for large `D`.
-  - Hierarchical tilings have fault lines, but each known ambiguity is one-sided: a single infinite
-    supertile lies on each side, and no pair differing along two parallel faults is known.
-  - This is heuristic, not checked for `Ω_U`.
-- **Permutive propagation: open.** Ledrappier's rigidity propagates commutation from the row above
-  through a group law. Whether Labbé's 19 tiles have a propagation law of this kind (a tile
-  determined, and inverted, by two neighbours along some direction) was not checked.
-- **Genuinely quantum families: open.** Contextual constraint systems such as the magic square have
-  operator solutions with no classical counterpart. So wall rigidity need not imply quantum
-  rigidity. Undecidability results for such systems suggest that no general algorithm decides
-  rigidity; that is a heuristic and not a proof for this shift.
+- **Structure of `Ω_U`: imported** (`labbe-shift-is-a-toral-rotation-coding`, from the TeX source of Labbé,
+  arXiv:1903.06137).
+  - `Ω_U` is the coding of `x + φ^(-2) n` through a Markov partition. That rotation is the maximal
+    equicontinuous factor, the fibre cardinalities are `{1, 2, 8}`, and `Ω_U` is strictly ergodic.
+  - The boundary segments point in the directions `(1,0)`, `(0,1)`, `(1,-1)`, `(1,-φ)`.
+- **Infinite walls: dead** for `D >= D_0` (`labbe-shift-is-wall-rigid`).
+  - Nearby torus points differ along crossing networks of fault sheets. Far ones differ syndetically. Within
+    a fibre the differences are unions of full fault lines, with finite clusters excluded by entropy.
+  - So two-basis certificates, and every family on `k^2` or with a finite filtration, commute.
+- **Permutive propagation: dead as it stands.**
+  - In Labbé's 19 tiles, left and right colours determine the tile (19 distinct pairs). Left and bottom do
+    not (tiles 2 and 6 share `(F, P)`), and neither do right and top (tiles 0 and 1 share `(F, O)`).
+  - Heuristically no recoding is triangle-permutive. `Ω_U` has four nonexpansive fault directions,
+    including the irrational `(φ, 1)`, while a triangle-permutive SFT should be expansive off its three
+    side directions. The last point is not checked.
+- **Genuinely quantum families: open, and now the whole question.** Contextual constraint systems such as
+  the magic square have operator solutions with no classical counterpart.
+  - By `sft-wall-rigidity-iff-idempotent-commutator-ideal` these are exactly the remaining obstructions.
+  - Frame analysis in dimension 3 kills loops through two-letter bands, but not triangles of frames glued
+    through scalar rays.
+  - Undecidability results for constraint systems suggest that no general algorithm decides rigidity; that
+    is a heuristic, not a proof for this shift.
