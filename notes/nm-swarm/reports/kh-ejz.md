@@ -110,7 +110,23 @@ that hull-euler has not started. Land the statement first, then the proof.
      - two-gons that straddle a cut number at most r;
      - every other pocket has a nonempty, region-closed, disjoint cell set C_P holding at most 3(|C_P| − 1) regions;
      - with one outer-face vertex, the total is at most 3n + r − 3.
-5. **Next.** Waiting for hull-euler to say which part of the assembly, if any, I should take.
+5. **Next.** hull-euler has not replied, and its report on main ends "Whether hull-euler takes on
+   `PhiPrimeCountInput` is the lead's call." So on 2026-09-13 at ~03:50 I sent the lead a proposed split:
+   - (A) The Φ'_M builder: `phiSubdividedGraph` with the exterior regions kept, and the outer face of `collapsedMap`
+     as one vertex. `RegionCandidate.cross` already gives crossing darts on an exterior target arc.
+   - (B) The bound on `t`:
+     - there are at most r straddling two-gons;
+     - a same-section pocket with no R-cell is contradicted by `false_of_collapse_singleton` (OsinAppendixCutMerge);
+     - a pocket holding an R-cell is charged to a cell that is not an endpoint.
+   - `NoMultipleEdges` covers only pairs of cells (`JoinsCells`), so (B) does not follow from the hypotheses.
+   - With `t ≤ r + (n − endpoint cells)`, the count gives `|M| ≤ 3n + r − 3 ≤ 3(n + r − 1)`.
+   Waiting for the lead's ruling. Nothing is being built in hull-euler's files.
+6. **Text fix, landed 46f1c36a2** (green probe 0913-034435-10433), from sec2-sentences's stale-mention backlog. Three
+   texts now say Theorem C takes `KotowskiOllivierStatement` as the hypothesis `hKO`:
+   - the GHBLatticeRouteKazhdan docstring;
+   - the census row for tex line 1675;
+   - the Fidelity item under Results.
+   No Prop changed.
 
 ## Current assignment (2026-09-13)
 Roster: target PiFinitePresentation (the finite-presentation transfer `hW` needs), then row LINE:1675 with
