@@ -246,6 +246,8 @@ The verdicts went to the owners and to the lead at about 13:05. Nothing fails as
        a copy where the union is a pinched disc. That copy needs a transport of `a` and `b`, since
        `SurgeryFaceEdgeDoublingRegions` carries only regions that avoid the doubled face and the
        face across.
+     - Ruled this way by the lead (~13:25), after `dfb09b83f`: configuration (c) takes
+       "FaceEdgeDoubling in x's face, plus a transport of x and y".
      - Pinched unions. `noncrossingClosedWalkSides` gives only a `BoundaryCycle`, and
        `bothFollowUnpinched` (`74d4ebd34`) needs `FollowsBoundary` on both cycles. So no landed
        declaration builds a `PocketRegion` from a pinched walk. `PocketPinchPinchedStatement`
@@ -277,6 +279,53 @@ The verdicts went to the owners and to the lead at about 13:05. Nothing fails as
    - Consumer caveat. The conclusion is a `BoundaryCycle`, which has no chain condition. It gives no
      `FollowsBoundary`, no `FaceSetBoundary` and no `IsDiscRegion`.
    - No message with the statement came from kh-ejz; it was read on main.
+
+## Lemma 9.4 residuals (lead item, 2026-09-13 ~13:25)
+
+The item: say whether hull-unbound's residual Props in `OsinLemma94SectionResiduals` (`0087a5095`)
+are true, false or vacuous, and whether `osinLemma94PolygonRealizationInput_of_partition` is
+non-vacuous. `OsinLemma94PolygonCountInput` (audit-intro) and `OsinLemma94CaseOneInput`
+(theoremc-retire) are out of scope. The verdicts went to ghw-assembly, cite-hull, sec5-sentences
+and the lead at about 13:35.
+
+1. **`OsinLemma94PolygonPartitionInput`: true, not vacuous, proved.**
+   - ghw-assembly proved it: `osinLemma94PolygonPartitionInput` (`OsinLemma94PolygonPartition`,
+     `746028b24`), `#audit_closed_axioms`, probe GREEN `0913-132334-2532`. No sorry, axiom or
+     native_decide in `PolygonPartition`, `PolygonMaximal`, `PolygonSides` or `PolygonKinds`.
+   - It is applied at real instances: `osinLemma94PolygonRealizationInput_of_pieces` produces all
+     four hypotheses from closed pieces and `gFacesApart_of_dartMinimal`.
+   - There is no wire-queue line yet for `OsinLemma94PolygonPartition` or its imports.
+   - Fidelity note, not a truth defect. `Maximal` (`OsinLemma94PlanarPieces:205`) checks only pairs
+     with `i + 1 < sideCount`, never the wrap pair `(sideCount − 1, 0)`. `baseOf`
+     (`OsinLemma94PolygonKinds:76`) is the `idxOf` of the head of `outerDarts`, which is the walk
+     length, so no rotation, on every face that does not contain that dart. So a run of one kind
+     can be split at the base of each polygon without a turn: at most one extra side per polygon.
+     Osin's sides are maximal around the whole boundary. Case 2 is proved with the linear form. The
+     lead holds the routing to the count and Case 1 owners.
+2. **`OsinLemma94CaseTwoInput`: true, proved.** `osinLemma94CaseTwoInput` (`OsinLemma94CaseTwo`,
+   `e0e94015d`), probe GREEN `0913-131149-5355`, on the wire queue. The Prop ends in `→ False`, so
+   an unmet hypothesis is its content.
+3. **`osinLemma94PolygonRealizationInput_of_partition`: its only hypothesis is proved.**
+   hull-unbound's unlanded local edit of `OsinLemma94SectionResiduals` (13:30) adds the closed
+   `osinLemma94PolygonRealizationInput` and plugs in Case 2, leaving `hcount` and `hone`.
+4. **Non-vacuity of the `OsinLemma94PolygonRealizationInput` prefix: met on paper, no formal
+   witness.**
+   - Every hypothesis but one has a producer on main:
+     - `OsinCCondition` at every threshold, over a 0-hyperbolic alphabet: `osinCConditionLineModel`;
+     - reduced diagrams with `rCellCount` equal to the area: `cactusRealizationStatement`, through
+       `exists_reduced_discDiagram_of_cactusRealization`;
+     - the family: `exists_globallyDistinguishedSectionFamily`;
+     - `DartMinimal`: `exists_dartMinimal`, which keeps the card.
+   - The card bound `S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)` has no closed
+     producer. `PhiPrimeCountInput` rests on C4 and C6′ (items 1 and 3 above: true, unproved) and
+     on the loop and multiple-edge cuts.
+   - The residuals introduce no new vacuity. `UnboundInput` (`OsinAppendixSectionInduction:113`)
+     and `OsinLemma94SectionStatement` (`OsinAppendixSections:315`) take the same hypothesis, and
+     `osinLemma97_atParameters_of_inputs` discharges it for every family inside the induction
+     (Osin, Lemma 9.7(a)).
+   - On paper: past Osin's thresholds, a one-cell diagram over the line model's `W m` meets every
+     hypothesis, with boundary `a^m` and `cuts` the whole word. `LeastArea` holds since
+     `a^m ≠ 1`. The lead declined a formal fixture for this instance at ~13:10.
 
 ## Open (owned by other lanes)
 
