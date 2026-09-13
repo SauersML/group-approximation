@@ -1,7 +1,7 @@
 # theoremc-retire lane report
 
 Lane `theoremc-retire` (clone cs-stages) of the non-MF every-line swarm.
-Updated 2026-09-13.
+Updated 2026-09-13 ~14:25.
 
 ## Status
 
@@ -19,67 +19,81 @@ Updated 2026-09-13.
   - The face walk is proved: `osinLemma94CaseOneWalk` (ko-closed, eb9010962 and 8f0f73966,
     probe `0913-095509-55850`).
   - On main, `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk` proves
-    `OsinLemma94CaseOneInput`. Probe `0913-093623-11190` is green on the 3292f7a20 bytes of
-    Face and Run.
-  - LoopCut ruling (A) is final, and it removes the competitor that Case 1 uses for one-cell
-    pairs (below).
-  - This lane picked A1, and A2 is false. The lead ruled option (i): `OsinLemma94SectionStatement`
-    and `UnboundInput` gain `OsinLemma97Below … Delta.rCellCount`, and PlanarPieces gains
-    `OsinLemma94CaseOneOneCellInput`, concluding `Nonempty (OsinLoopCut …)`. For case (a), the
-    lead ruled option (2), gated on the metric owners (roster 777-780).
-  - Roster 13:40:
-    - patch 10(f)'s deletion is overruled, so `osinLemma94CaseOneInput_of_walk` stays and takes
-      a same-cell binder after (A), with no composed endpoint today;
-    - hull-unbound drafts the option (2) Dense respelling in `OsinLemma94Pieces`;
-    - CaseOneInput and CaseOneWalk take pairs on class words, gaps included;
-    - audit-sec5's same-cell model test found no count failure, and its case (2) needs this
-      lane's threading.
-  - Draft on disk: `$NM/backup/theoremc-retire/threading-option-i-draft.lean.txt` (base
-    c8bd88c14, not probed).
-    - T1-T6, the `OsinLemma97Below` threading:
-      - Sections: `OsinLemma97bConclusion` moves above the Lemma 9.4 statement, and the
-        binder goes after `0 < Delta.rCellCount`.
-      - SectionInduction: `UnboundInput` gains `mu` and the binder.
-      - DescentInduction: `mu` at :55/:133/:243 and `hbelow` at :101.
-      - Assembly and Lemma97Pocket: the lifts.
-      - Counting, Pieces and PlanarPieces: the intro gains `_hbelow`.
-    - OC1-OC5, the PlanarPieces text for hull-unbound's Dense co-probe:
-      - the one-cell Prop `OsinLemma94CaseOneOneCellInput`, with premise
-        `λ⁻¹(ε + c) ≤ d(a, a') + d(b', b)`;
-      - the consumer's three-way split through `OsinLoopCut.false_of_below`;
-      - `hcell` in SectionResiduals.
-    - OC6, this lane's Run patch in the (A) co-probe:
-      - `osinLemma94CaseOne_false_of_walk` gains `hkind`, which gives `target ≠ some source`;
-      - `osinLemma94CaseOneInput_of_walk` takes `hsame : OsinLemma94CaseOneSameCellStatement`;
-      - `_of_walk_of_sameCell` is deleted.
-  - Sent (09-13 ~14:00):
-    - ko-closed: the one-cell Prop text, the gap finding, and the parked partial LoopCut draft;
-    - hull-unbound: OC1-OC5, plus the T5/T6 hunks in its files;
-    - main: the milestone, the gap finding, and the ownership question.
-  - Open question to main: T touches files that other lanes own:
-    - Sections and SectionInduction: ghw-charp2, hull-select;
-    - DescentInduction: dgo-analytic, hull-select;
-    - Counting: hull-count94;
-    - Pieces and PlanarPieces: hull-count94, hull-unbound.
-
-    No lane lists Assembly or Lemma97Pocket. The proposal is one co-probed landing by this lane
-    right after (A), with the owners holding their files.
-  - Gap finding (roster l.786, l.849). `false_of_quadrilateral_face` (OsinUnboundCaseOneFace:392-393)
-    and the walk Prop's conclusion need `sourceArc.reverseDarts` to be a literal piece of the
-    face walk, with the junction values pinned to the connector endpoints.
-    - Take a class-word pair whose `[a, a']` or `[b', b]` strictly contains a gap: a bubble of Π,
-      whose reversed darts lie on inner faces, or a hair of the face. That pair has no split the
-      user accepts.
-    - So Case 1 on class words needs the walk to avoid such pairs, or the opening surgeries
-      (l.850).
-  - The wrap-pair note (l.825) does not touch Case 1: neither `false_of_walk` nor the walk Prop
-    takes `P.Maximal`.
+    `OsinLemma94CaseOneInput` (probe `0913-093623-11190` on the 3292f7a20 bytes of Face and Run).
+    No landed declaration composes them.
+  - Rulings on the one-cell pair:
+    - Roster 705-707: option (i). Lemma 9.4 takes `OsinLemma97Below … Delta.rCellCount`, the
+      inductive assumption. The landing order is (A), then F1, then this lane's threading T.
+    - 13:40: patch 10(f)'s deletion is overruled. After (A), `osinLemma94CaseOneInput_of_walk`
+      takes `hsame : OsinLemma94CaseOneSameCellStatement`.
+    - 14:05: ko-closed's (1) wins, the metric kill at the printed threshold.
+      - The `λ⁻¹(ε + c)` respelling is cancelled, including hull-unbound's Dense draft. So this
+        lane's `OsinLemma94CaseOneOneCellInput` and its consumer split (old blocks OC1-OC5) are
+        withdrawn.
+      - jacobson owns the producer of `OsinLemma94CaseOneSameCellStatement`. It composes
+        ko-closed's kill (cell-free pocket) with `nonempty_osinLoopCut_of_pocketRegion`
+        (70f8cd913, pocket with a relator cell), and refutes the loop cut by the inductive
+        assumption.
+      - T stays with this lane as its own co-probed landing after (A). The owners get hold
+        notices, and each file's origin blob is checked at push. Assembly and Lemma97Pocket, which
+        no lane lists, join this lane's files for that landing.
+  - State of (A): not landed at origin 80df00345 (`RespectsSections` unchanged).
+    - ghw-charp2's co-probe `0913-135734-55169` failed (rc=1) at 14:03.
+    - Its staged Face (md5 a0dd5b3f) keeps the binders of `OsinLemma94CaseOneSameCellStatement`,
+      now at l.474-492.
+    - Its staged Run (md5 f598845e) is this lane's OC6 shape: `false_of_walk` takes `hkind`,
+      `_of_walk` takes `hsame`, and `_of_walk_of_sameCell` stays as an alias.
+  - F1 (hull-count94) is landed (9f8779c4e).
   - Hold: no edits to `OsinUnboundCaseOneFace` or `OsinUnboundCaseOneRun` until ghw-charp2
-    lands census patches 01-09 (with this lane's OC6). As of origin c8bd88c14 they have not
-    landed, and ghw-charp2's report says no probe has run.
-  - Residual Props owned by this lane: none new. `OsinLemma94CaseOneSameCellStatement` stays as
-    the named binder of `osinLemma94CaseOneInput_of_walk`. As spelled, no lane proves it
-    (roster 777).
+    reports (A) landed.
+  - Sent (~14:20):
+    - jacobson answers its 13:16 question:
+      - the SameCell spelling (staged Face l.474-492; patches 09(d)/(e) do not change its binders);
+      - T's binder;
+      - the names for the refutation: `OsinLoopCut.false_of_below`, `o52LeastArea`,
+        `exists_rho_widthBudget`.
+    - ko-closed: OneCellInput is withdrawn, so the OneCellMorse kills now feed jacobson's
+      producer.
+    - hull-unbound: OC1-OC5 are withdrawn. T now changes the statement of
+      `OsinLemma94CaseOneInput` and the consumer at l.471 and l.485. A hold notice follows at probe
+      time.
+  - Residual Props owned by this lane: none new (see Residual Props below).
+
+## The threading T (draft, not probed)
+
+Draft on disk: `$NM/backup/theoremc-retire/threading-option-i-draft.lean.txt`. None of the T
+files changed between 8bbf0a9c8 and origin 80df00345, so the draft's line numbers still hold on
+main.
+
+- T1 Sections: `OsinLemma97bConclusion` moves above l.284, and `OsinLemma94SectionStatement`
+  (l.303) gains the inductive assumption after `0 < Delta.rCellCount`.
+- T2 SectionInduction: `UnboundInput` gains `mu` and `OsinLemma97Below … Delta.rCellCount`. l.148
+  gains `mu`, and l.208 passes `hbelow` (in scope from l.167).
+- T3 DescentInduction: `mu` at l.55, l.133 and l.243; `hbelow` at l.101.
+- T4 Assembly l.125-127 and Lemma97Pocket l.81-83: the lifts pass `hbelow`.
+- T5 Counting l.100 and Pieces l.237: the intro gains `_hbelow`.
+- T6 PlanarPieces:
+  - `OsinLemma94CaseOneInput` (l.395) gains the binder after l.405;
+  - the consumer's intro (l.471) gains `hbelow` and passes it to `honeRho` at l.485.
+- T7 Face: `OsinLemma94CaseOneSameCellStatement` gains the binder (staged l.484).
+- T8 Run: `_of_walk`'s intro (staged l.93) and same-kind branch (staged l.95) pass `hbelow`.
+
+In PlanarPieces and Face the binder is spelled out, since neither module reaches
+`OsinAppendixSectionInduction`. By definition it is
+`OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount`. SectionResiduals needs no
+term change.
+
+- Co-probe (Rule 22): Sections, SectionInduction, DescentInduction, Assembly, Lemma97Pocket,
+  Counting, Pieces, PlanarPieces, SectionResiduals, GreendlingerParts, GreendlingerPocketParts,
+  Face, Run.
+- Owners of the edited files:
+  - ghw-charp2 and hull-select: Sections, SectionInduction;
+  - dgo-analytic and hull-select: DescentInduction;
+  - hull-count94: Counting, Pieces, PlanarPieces;
+  - hull-unbound: Pieces, PlanarPieces, SectionResiduals;
+  - ghw-charp2 and this lane: Face, Run.
+
+  hull-respell's GreendlingerParts and GreendlingerPocketParts are probed, not edited.
 
 ## Landed
 
@@ -90,7 +104,7 @@ Updated 2026-09-13.
 | 2c3c8cb40 | normal landing after the green probe: `TheoremCAssembly`, `SeedFromTheoremC`, `SeedRemarkTheoremC`. `TheoremCAssemblyKOLeaves` is recorded as compiled; its bytes are unchanged since 4874b8162 |
 | b1dc27674 | attic copy of the zip-and-fold flip of `TheoremCAssemblyKOLeaves` (before the probe) |
 | e1b326ec3 | normal landing of that flip after green probe `0913-021752-29195` (base b1dc27674) |
-| 84241b175, 3e9636d74, aa7391c47, a0607c71f, 1144b49f5, 9025704c3 | this report and the census row |
+| 84241b175, 3e9636d74, aa7391c47, a0607c71f, 1144b49f5, 9025704c3, b401d6d3d, 32643dcc6 | this report and the census row |
 | f019265bb | new `Manuscript/NonMF/TheoremCAssemblyFoldLeaf.lean` (before the probe). Probe `0913-034425-9721` (base 5f9c16b7b) compiled these exact bytes (md5 a2db324a), so there was no second landing |
 | c5f953323 | new `Manuscript/NonMF/TheoremCAssemblyGreendlingerLeaf.lean` (before the probe). Probe `0913-060950-64731` (base 5f789a7ba) compiled these exact bytes (md5 7dea5861), so there was no second landing |
 | 8a36ad06c, 0e3aaff95 | new `Estimating/OsinLemma94CaseOneWalk.lean` and its side-kind conjuncts. Probe `0913-084930-32564` green |
@@ -126,8 +140,8 @@ connector pairs are over `symmetricLabelAlphabet D`. The proof has four pieces.
 3. `Estimating/OsinUnboundCaseOneRun.lean` (5be5cb6fc, restructured in 3292f7a20):
    - `osinLemma94CaseOne_false_of_walk` handles one pair for `ε ≥ 3`. The connectors are
      respelled nonempty by `WordConnectorPair.exists_nonempty_connectors`.
-   - `osinLemma94CaseOneInput_of_walk (hwalk) : OsinLemma94CaseOneInput`, with `ε₀ = 3` and
-     `ρ₀ = 1`. It relies on the current `RespectsSections`.
+   - On main, `osinLemma94CaseOneInput_of_walk (hwalk) : OsinLemma94CaseOneInput`, with `ε₀ = 3`
+     and `ρ₀ = 1`, relies on the current `RespectsSections`.
 4. The same-cell split (3292f7a20):
    - `OsinLemma94CaseOneSameCellStatement` (in Face) is `OsinLemma94CaseOneInput` with the extra
      hypothesis `P.kind k C.source = P.kind k C.target`.
@@ -141,51 +155,45 @@ connector pairs are over `symmetricLabelAlphabet D`. The proof has four pieces.
 - ghw-charp2 lands census patches 01-10 as one landing. For this lane's files:
   - patch 09(d)/(e) adds `hloop : target ≠ some source` to `exists_quadrilateral_region_rotate`
     and `false_of_quadrilateral_face`;
-  - patch 10(f) adds `hkind : P.kind k C.source ≠ P.kind k C.target` to
-    `osinLemma94CaseOne_false_of_walk`, derives `hloop` from the side-kind conjuncts of the walk,
-    and deletes `osinLemma94CaseOneInput_of_walk`.
+  - OC6, this lane's Run patch, rides in (A): `osinLemma94CaseOne_false_of_walk` gains
+    `hkind : P.kind k C.source ≠ P.kind k C.target` and derives `hloop` from the side-kind
+    conjuncts of the walk, and `osinLemma94CaseOneInput_of_walk` takes `hsame` (patch 10(f)'s
+    deletion is overruled).
 - So after the landing, audit-sec3's note that `OsinLemma94CaseOneSameCellStatement` is redundant
   no longer holds: the one-cell pair has no competitor region.
 
-### The one-cell pair (this lane's item)
+### The one-cell pair
 
-The lead offered A1 (a premise in `OsinLemma94CaseOneInput`, with one-cell pairs counted
-separately) or A2 (a polygon field). This lane picked A1.
-
-- **A1 premise.** `P.kind k C.target ≠ P.kind k C.source`. It is the hypothesis `hkind` of
-  patch 10(f), so after the landing `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk`
-  proves the new `OsinLemma94CaseOneInput`.
+- **A1 premise** (this lane's pick). `P.kind k C.target ≠ P.kind k C.source` is `hkind` in OC6.
 - **A2 is false.** A field that forbids two sides on one cell fails whenever an unselected
   `G`-face touches a cell along two short arcs with the arc of another cell between them.
   `Maximal`, `DartMinimal` and least area all allow that.
 - **What remains.** The two sides are arcs `p`, `q` of one cell, and both walk portions between
   them have short value. One of the two pockets bounded by a walk portion and a subarc of the
   cell is bounded.
-  - Pocket without an R-cell: refutable from the hypotheses of Lemma 9.4, modulo a planar pocket
-    lemma. `NoLoops` (from `S.respects` under (A)) leaves no selected region inside, and
-    `gFacesApart_of_dartMinimal` no other unselected `G`-face. So the walk portion is arcs of the
-    cell plus spurs, and `PendantPathRemovalInput` against `DartMinimal`, or `Maximal` at a
-    junction without a spur, refutes it.
-  - Pocket with an R-cell: Osin's loop case ("the subdiagram `Ξ` will be bounded by `st`"). The
-    pocket, with the subarc and a connector as its two sections, is an `OsinLoopCut`, and
-    `OsinLoopCut.false_of_below` refutes it given `OsinLemma97Below ... Delta.rCellCount`.
+  - Pocket without an R-cell: ko-closed's metric kill (ruling (1)), over
+    `OsinLemma94OneCellValue` (ea9016135, 36524dbf0) and the OneCellMorse module in progress.
+  - Pocket with an R-cell: Osin's loop case. jacobson's `nonempty_osinLoopCut_of_pocketRegion`
+    gives an `OsinLoopCut`, and `OsinLoopCut.false_of_below` refutes it given the inductive
+    assumption, which T supplies.
+  - Not owned by this lane: the PocketRegion from the Case 1 walk decomposition. Neither ko-closed
+    nor jacobson has a producer on main for it.
 - **The count.** No true instance has a one-cell pair, but the second case needs the induction
   hypothesis. A count Prop without it is as hard as Lemma 9.7 on smaller diagrams. A count over
   all sides on a repeated cell is false, since a face may wrap a cell along two arcs with a
   long-valued walk between them.
-- **Options sent to the lead.**
-  - (i) Rule 22: `OsinLemma94SectionStatement` and `UnboundInput` gain `OsinLemma97Below` at
-    `Delta.rCellCount`. The one real call site (`OsinAppendixSectionInduction.lean:208`) has
-    `hbelow` in scope (l.167), and the lifts in `OsinAppendixAssembly` and
-    `OsinAppendixLemma97Pocket` pass it through. PlanarPieces then gains
-    `OsinLemma94CaseOneOneCellInput`, and the consumer splits Case 1 on the kind.
-    `OsinLemma97bConclusion` is defined after `OsinLemma94SectionStatement` in
-    `OsinAppendixSections.lean`, so the binder is spelled inline or the definition moves up.
-  - (ii) Keep the statements, so the one-cell pair stays a named hypothesis of PlanarPieces, which
-    leaves hgreendlinger conditional on it.
-  - This lane recommends (i). Its new module would hold the cell-free pocket and the
-    `OsinLoopCut` construction. `OsinAppendixSectionMultipleEdge` imports no Lemma 9.4 module,
-    so there is no import cycle.
+
+### Gap finding (roster l.786, l.849)
+
+- `false_of_quadrilateral_face` and the walk Prop's conclusion need `sourceArc.reverseDarts` to
+  be a literal piece of the face walk, with the junction values pinned to the connector endpoints.
+- Take a class-word pair whose `[a, a']` or `[b', b]` strictly contains a gap: a bubble of Π,
+  whose reversed darts lie on inner faces, or a hair of the face. That pair has no split the user
+  accepts. So Case 1 on class words needs the walk to avoid such pairs, or the opening surgeries
+  (l.850).
+- hull-unbound is model-testing this finding. The verdict goes to ko-closed and this lane.
+- The wrap-pair note (l.825) does not touch Case 1: neither `false_of_walk` nor the walk Prop
+  takes `P.Maximal`.
 
 ## Theorem C without hzip, and over hgreendlinger alone
 
@@ -242,12 +250,11 @@ Rule 22: every Lean importer of `TheoremCAssembly` went into the probe.
   (hgreendlinger; hull-respell and W1). It is the only binder of the
   `_of_greendlinger` forms of Theorem C.
 - Inside W1 h94, for this lane's item:
-  - On main, none: `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk` proves
-    `OsinLemma94CaseOneInput`, but no landed declaration composes them. The composition is held,
-    because patch 10(f) deletes `_of_walk`.
-  - After patches 01-10: the one-cell pair, today the named hypothesis
-    `GGT.VanKampen.OsinLemma94CaseOneSameCellStatement`. Its replacement, including whether
-    Lemma 9.4 takes `OsinLemma97Below`, waits on the lead's ruling.
+  - On main, none new: `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk` proves
+    `OsinLemma94CaseOneInput`, but no landed declaration composes them.
+  - After (A): `GGT.VanKampen.OsinLemma94CaseOneSameCellStatement`, the binder `hsame` of
+    `osinLemma94CaseOneInput_of_walk`. jacobson owns its producer. After T it carries the
+    inductive assumption.
 - Closed walls: hbridge, hzip, hfold, hT6, and hKO (f65f99f17).
 
 ## Census
@@ -268,13 +275,19 @@ binder `hrespell` at `GGT/HullSCLemma44FamilyAssembly.lean:548, 655, 670`,
 
 ## Next
 
-- On the lead's ruling:
-  - draft the PlanarPieces statement patch (A1 premise, the one-cell Prop, the consumer split)
-    and send it to hull-unbound, rebased after hull-count94's F1 landing;
-  - prove the cell-free pocket and the `OsinLoopCut` construction in a new module.
-- When ghw-charp2 reports patches 01-10 landed:
-  - land the composed Case 1 endpoint in the A1 form, then add a wire-queue line and a census row.
+- When ghw-charp2 reports (A) landed:
+  - rebase T on the landed bytes (T7 and T8 on the landed Face and Run; T1 and T2 if patches 01
+    and 07 shift lines);
+  - add the T files, Assembly and Lemma97Pocket included, to this lane's file list, and back
+    them up;
+  - send hold notices to ghw-charp2, hull-select, dgo-analytic, hull-count94 and hull-unbound, and
+    announce the window in wire-queue.txt;
+  - run one background probe over the co-probe set, check each file's origin blob at push, land,
+    then update this report and the census.
+- After jacobson's producer lands: the composed endpoint
+  `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk <producer>`, a wire-queue line and a
+  census row.
 - Offered to the lead: once GreendlingerLeaf is wired, re-point `SeedFromTheoremC.E` at
-  `_of_greendlinger` (rule 22: probe `SeedRemarkTheoremC` with it).
+  `_of_greendlinger` (Rule 22: probe `SeedRemarkTheoremC` with it).
 - One-application flip, this lane: once hgreendlinger closes, the `_of_greendlinger`
   forms become closed Theorem C, and LINE:284 can be regraded.
