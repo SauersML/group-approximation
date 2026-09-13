@@ -105,6 +105,23 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
        (invDarts Delta H.leftSide).length ≤ eps
    ```
    The side bounds give |s₁|, |s₂| ≤ ε for a side read across `alpha`.
+   New module `GGT/VanKampen/Estimating/OsinPocketFollowsBoundary`, landed unverified at d2b2ef55b. Its green probe
+   0913-055258-46066 matched the same bytes. It is not wired, because it imports the unwired OsinPocketRegionRotate.
+   It answers go-lemma42's request (i), under `#audit_axioms`:
+   ```lean
+   theorem BoundaryCycle.followsBoundary_congr (h : boundary.boundaryPerm = boundary'.boundaryPerm) :
+       boundary.FollowsBoundary ↔ boundary'.FollowsBoundary
+   theorem BoundaryCycle.followsBoundary_ofIsRotated_iff (h : boundary.cycle ~r l) :
+       (boundary.ofIsRotated h).FollowsBoundary ↔ boundary.FollowsBoundary
+   theorem IsDiscRegion.followsBoundary_ofIsRotated_iff (h : region.cycle ~r l) :
+       (region.ofIsRotated h).FollowsBoundary ↔ region.FollowsBoundary
+   theorem FaceSetCircuits.toDiscRegion_followsBoundary (c : Component M faces) (hall) (hM : M.IsPlanar) :
+       (toDiscRegion M faces c hall hM).FollowsBoundary
+   theorem PocketRegion.withOuter_outer_followsBoundary_iff (h : invDarts Delta P.outer.cycle ~r l) :
+       (P.withOuter h).outer.FollowsBoundary ↔ P.outer.FollowsBoundary
+   ```
+   So the complement follows the boundary whenever it is built by `toDiscRegion` and then restarted with
+   `withOuter`. I told go-lemma42 at ~05:55.
    The five cell-arc lemmas:
    ```lean
    theorem invDarts_darts (arc : CyclicArc cycle) : invDarts Delta arc.darts = arc.reverseDarts
