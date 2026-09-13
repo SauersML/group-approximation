@@ -26,4 +26,10 @@ The non-MF tex proves simplicity of `L_(F_2)(1,2)^×` through Preusser's sandwic
 route needs no exchange property. So one simplicity theorem serves both constructions. Their approximation behaviour
 (LEF versus no MF quotient) is decided by other invariants of the groupoid, not by simplicity.
 
+**Credit (un-stepanov-credit, 2026-09-13).** The transvection extraction inside the ring criterion is Stepanov's Lemma
+4.3 (J. Math. Sci. 95 (1999) p. 2151; `stepanov-linear-dependence-standard-normal-structure`). What is new here is the
+groupoid input, local annihilation, and the uniform statement it gives. Neither Stepanov's Theorem 4.4 condition (b)
+nor Vaserstein's stable-range criteria are known to hold for these algebras. See
+`research/artifacts/un-stepanov-credit-2026-09-13.md`.
+
 **Review (un-verify, 2026-09-13): PASS.** All five requires are present and established; the Lean criterion has exactly the cited hypotheses; the (T) clause is gated on finite `k` and finitely generated `R`, as EJZ needs. Subsumption scan and display check clean. See `research/artifacts/un-review-2026-09-13-part1.md` §§4–6.
