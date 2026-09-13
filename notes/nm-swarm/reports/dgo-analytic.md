@@ -33,6 +33,10 @@ Rulings (lead, 09-13):
   * `PocketFaceSet.Simple.closedWalk` shows that the simple output is in walk order.
   * dgo-geometric is asked to model-test the pinch without walk order.
   * kh-ejz's unlanded `PocketWalk.toPocketFaceSetOfNoncrossing` (`OsinPocketSectionFaceSet`) has the walk as its boundary cycle (`toPocketFaceSetOfNoncrossing_cycle`, `rfl`), so the `chain` and `closes` fields of `IsNoncrossingClosedWalk` supply `ClosedWalk`.
+* ~15:30 (lead):
+  * The hold on `OsinAppendixAssemblyDescent` is released. Patch 06a landed with (A) in f04929ebb, so this lane has nothing to land there.
+  * Binder 5 (`OsinMultipleEdgePocketRegionSectionStatement`) is not written here until kh-ejz or the lead confirms the handover.
+  * The model test of a multiple edge enclosing a lake goes ahead. It landed at 6e4ef1293; see "Binder 5 and a lake" below.
 
 Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 (`Estimating/OsinAppendixDescentInduction`).
@@ -54,9 +58,11 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 * `Estimating/OsinPocketRegionNoncrossingWalk.lean` (8bbf0a9c8, probe 0913-140151-74557, unwired, wire-queued): `PocketRegion.ofNoncrossingClosedWalk`.
 * `Estimating/OsinPocketCutResiduals.lean` (1b4053286, probe 0913-141538-35582, unwired, wire-queued): `sectionPocketCutInput_of_residuals` and `osinSectionPocketCutSection_of_residuals`, which pass the three closed pieces.
   * Restated after go-lemma42's `pocketCellTransport` (874a332a2; probe 0913-141750-43433 green, md5 equal to main). `hcell` is dropped, so both theorems pass four closed pieces. The two theorems had no Lean users. Probe 0913-142350-67007 green at base 538afe1ed, landed 5ef75ffa7.
-* `Estimating/OsinDescentResiduals.lean` (probe 0913-142842-93848 green at base b8231e36d, unwired): `osinDescentSection_of_residuals h94 hloop hcount hregion hfaces hpinch hgeodesic : OsinDescentSectionStatement`, and `relativeGreendlingerQuasiGeodesicLeastArea_of_residuals` with the same arguments.
+* `Estimating/OsinDescentResiduals.lean` (5be777f16, probe 0913-142842-93848 green at base b8231e36d, unwired): `osinDescentSection_of_residuals h94 hloop hcount hregion hfaces hpinch hgeodesic : OsinDescentSectionStatement`, and `relativeGreendlingerQuasiGeodesicLeastArea_of_residuals` with the same arguments.
   * It composes `osinDescentSection_of_pocketParts` with `osinMultipleEdgeCutSection_of_pieces hregion hgeodesic pocketCellTransport` and `osinSectionPocketCutSection_of_residuals hfaces hpinch hgeodesic`.
   * So the collar insertion is passed once, and nothing about the cell transport is left open.
+  * theoremc-retire's T (48c6cc71e) adds `mu` to `UnboundInput` and threads `hbelow` into the `h94` binders. Its Rule 22 co-probe 0913-145812-91168 (verdict line `PROBE GREEN`) compiled this module, and the disk copy equals main.
+* `Estimating/OsinPocketMultipleEdgeLakeModel.lean` (6e4ef1293, probe 0913-154539-52051 GREEN at base 282e779cb with 0 warnings, unwired, wire-queued): the model test of a multiple edge enclosing a lake. See "Binder 5 and a lake" below.
 
 ### The pieces, in the order of the assembly
 
@@ -200,7 +206,7 @@ R2 with kh-ejz's `IsNoncrossingClosedWalk` (26a7858f2) as `Simple` (~13:20, sent
 * Builder (this lane): `Estimating/OsinPocketRegionNoncrossingWalk`, `PocketRegion.ofNoncrossingClosedWalk hw hout hfollows heuler`.
   * The inner region comes from `toDiscRegion_of_euler` and the outer from `toDiscRegion_of_followsBoundary`. The inverse complement cycle is the walk.
   * `heuler` has the type of the conclusion of hull-euler's lemma, so the co-probe passes `hw.reclosed_euler X.planar hfollows` and nothing unlanded is imported here.
-  * hull-euler's `IsNoncrossingClosedWalk.reclosed_euler hw hM hout` (`NoncrossingClosedWalkEuler`, landed unverified 7e254eb66) has exactly that type at `M := Delta.toCombMap` and `hM := Delta.planar` (checked by reading). Its probe 0913-145807-90519 reads `PROBE FAILED rc=1`, and the module is not among the compiled files. So the co-probe gate "green Euler lemma" is not met.
+  * hull-euler's `IsNoncrossingClosedWalk.reclosed_euler hw hM hout` (`NoncrossingClosedWalkEuler`, landed unverified 7e254eb66) has exactly that type at `M := Delta.toCombMap` and `hM := Delta.planar` (checked by reading). Its first probe, 0913-145807-90519, read `PROBE FAILED rc=1`. The re-landed 19866c7d6 is on main, and its probe 0913-150114-7274 has the verdict line `PROBE GREEN`. So the gate "green Euler lemma" is met, and the restatement co-probe now waits only for kh-torsion's R1/R2 answer.
   * Model test (dgo-geometric, 80df00345, `Estimating/OsinPocketPinchedTwoGonNoncrossingRegion`, landed unverified): on the pinched pocket cycle `[5,3,4,6]` all four hypotheses hold together, and the region's inner cycle neither follows nor is simple. So the builder covers Configuration A, which `PocketRegion.ofSimpleClosedWalk` does not.
 * Further evidence for R1: kh-torsion's 5197fa6fc (`SurgeryGeodesicCollarWalk`) carries simple closed walks through the edge insertion and the vertex pinch.
 * dgo-geometric's e533e5581 (probe 0913-134649-6539, green) confirms Configuration A on the pinched two-gon. The inner cycle fails, the outer follows, and under R2's `Simple` that pocket needs no pinch.
@@ -214,6 +220,28 @@ R2 with kh-ejz's `IsNoncrossingClosedWalk` (26a7858f2) as `Simple` (~13:20, sent
     * The branch stays on the waist's path through binder 2, jacobson's `OsinLemma94CaseOneSameCellStatement`, even though `LoopCutInput` is closed.
 * R2 co-probe list, if R2 is ruled. `exists_twoCollars_of_ne_or` has four users: `OsinPocketCollarOfGeodesic`, `OsinPocketMultipleEdgeAssembly`, `OsinPocketTwoCollars` and `OsinPocketLoopCut`.
   * jacobson writes its own hunk at co-probe time, deleting the binder at :209 and the argument at :228. Nothing is staged on disk before then.
+
+### Binder 5 and a lake (model test, 6e4ef1293)
+
+`Estimating/OsinPocketMultipleEdgeLakeModel` tests the outer clause of kh-ejz's `MultipleEdgePocketRegionInput`: `C.face ∈ P.faces`, `(cell i).face ∉ P.faces`, `(cell j).face ∉ P.faces` and `P.outer.FollowsBoundary`.
+
+* The map `M` has 8 darts, with `alpha = (0 1)(2 3)(4 5)(6 7)` and `sigma` sending `0,…,7` to `1,2,6,5,0,7,4,3`. It has 2 vertices, 4 edges and 4 faces, so χ = 2 and `planar` holds (`OrbitClassifier.orbitEquiv`, `decide`).
+* Its faces are the pocket `K = [0,2,5]`, the lake `Π_i = [1]` (a monogon inside the loop `{0,1}`), `Π_j = [4,7]` and `O = [3,6]`.
+* `isNoncrossingClosedWalk_pocketCycle` and `pocketCycle_not_isSimpleClosedWalk`: the walk `[0,2,5]` is noncrossing and passes the vertex `v` twice.
+* `pocketCycle_innerCycle_followsBoundary` and `pocketCycle_outerCycle_not_followsBoundary`: the inner cycle follows its boundary and the outer cycle does not, as in Configuration B.
+* `not_followsBoundary_of_monogon` (general): suppose a face set has a boundary dart `y` with `facePerm y = y` and a second boundary dart. Then none of its boundary cycles follows its boundary. The boundary walk from `facePerm y = y` cannot move, because `y` is not internal, while `boundaryPerm` moves `y`.
+* `lake_not_followsBoundary`: no face set that contains `Π_i` and `Π_j` but not `K` has a following boundary cycle. `PocketRegion.outside` is the complement of `faces`, so no `PocketRegion` of `M` with `K` inside and `Π_i`, `Π_j` outside has `P.outer.FollowsBoundary`.
+* The endpoint `multipleEdgeLakePrediction : MultipleEdgeLakePrediction` is under `#audit_closed_axioms`.
+
+Consequences (map level only; the model has no labels, cells or sections):
+
+* When cell `i` lies in a lake of the pocket, binder 5 as stated has no witness.
+* hull-select's copy draft (`drafts/hull-select-RegionSide-copy-r1.lean`, l.64 and l.69) keeps `(cell X i').face ∉ P.faces` and `P.outer.FollowsBoundary`, so it has no witness either if the copy `X` carries the lake.
+* `hout` is load-bearing:
+  * `nonempty_osinMultipleEdgeCut_of_pocketRegion` (`OsinPocketMultipleEdgeAssembly.lean:88`) takes it at l.96 and passes it at l.120 and l.188.
+  * `OsinPocketTwoCollars` takes it at l.60 and passes it at l.96.
+* So one of three things is needed: the copy removes the lake, the producer excludes the lake upstream, or the outer clause changes.
+* This lane has not decided whether a least-area diagram with a globally distinguished section family can put cell `i` in a lake of the pocket. The question went to audit-sec5 (truth audit of binder 5), and the finding went to the lead, hull-select and kh-ejz (~15:55).
 
 ### Truth caveats sent to dgo-geometric for model tests
 
@@ -256,6 +284,16 @@ Closed here:
 * `PocketRegionOfSimpleStatement` (`pocketRegionOfSimple`).
 * The nondegeneracy of carriers at least area (`nondegenerate_of_leastArea`).
 * `PocketCollarStatement` from `GeodesicCollarStatement` (`pocketCollarStatement_of_geodesicCollar`, through hl-lemma46's two collars).
+
+Since T (48c6cc71e), `OsinLemma94SectionStatement` assumes clause (b) of Lemma 9.7 below the cell count, and `UnboundInput` takes `mu`. The six open Props are otherwise unchanged. The lake model adds no Prop; it bounds what binder 5 can promise.
+
+### Next (15:55)
+
+* Binder 5: not written here until kh-ejz or the lead confirms the handover. If this lane gets it, the outer clause is settled against the lake model first.
+* kh-torsion's R1/R2 answer. Its report was last touched at a67ce2a65, and there has been no answer since the 15:00 follow-up.
+  * Under R1: tell hull-select and kh-ejz that the carrier form is fixed.
+  * Under R2: send jacobson the final `exists_twoCollars_of_ne_or` signature. Then run one Rule 22 co-probe over `OsinPocketPieces`, `OsinPocketRegionOfSimple`, `OsinPocketCollarOfGeodesic`, kh-torsion's `GeodesicCollarStatement`, hl-lemma46's lemma and its four users, and land everything in one call.
+* No probe of this lane is running. All eleven lane files equal main.
 
 ## Scope 1: Dahmani–Guirardel–Osin Theorem 2.35, analytic half
 
