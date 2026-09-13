@@ -43,3 +43,5 @@ positively would make `mf-radical-contains-hilbert-hotel-elementary-subgroup` un
 - **What a proof needs.** Either a lift of the pair to a genuine one-sided pair of `R` (the obstruction is
   an index in the slack group; see `hilbert-hotel-radical-is-reached-in-one-step`), or a version of the
   compression argument whose identities are Steinberg-group consequences valid in `Gbar` exactly.
+
+**Review (un-verify, 2026-09-13): GAP.** The transfer of the printed identities to `Ḡ = EL_n(R)/EL_n(R,J)` is justified only for single generators (`e_ij(x)` and `e_ij(x′)` with `x ≡ x′ mod J` differ by `e_ij(x′−x) ∈ EL_n(R,J)`). The identities the construction needs (`vcv⁻¹ = e_14(f_02)`, `vzv⁻¹ = z`, centrality of `z`, `[y,d] = z⁻¹`) are matrix identities proved by multiplication using `ts = 1`, `es = te = 0`, `me = 0`; with these holding only modulo `J`, the two sides differ by an element of `EL_n(R) ∩ GL_n(R,J)`, which need not lie in `EL_n(R,J)`. So the relations hold exactly in `EL_n(R/J)`, not in `Ḡ`, and the compression criterion needs exact relations in `B̄ ≤ Ḡ`. See `research/artifacts/un-review-2026-09-13-part8.md` §2.

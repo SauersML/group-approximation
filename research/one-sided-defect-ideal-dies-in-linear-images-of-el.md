@@ -21,3 +21,5 @@ artifacts:
   the finitary part, and `EL_N(k[z,z^-1])` survives. At the MF level the integral case is undecided
   (`integral-jacobson-mf-radical-is-all-or-nothing`). So property (T) is needed only at the MF level.
 - **Pestov ring.** `LC(X,F_q) ⋊ Z` is directly finite, so the statement is vacuous there.
+
+**Review (un-verify, 2026-09-13): PASS.** The rank-four cell of tex Lemma l.866 re-derived for every unital ring with `ts = 1`: the `u_i` block `[[s,e],[0,t]]`, `u = u_3u_2u_1` with last column `(e, et, et², t³)`, `u e_ij(a) = e_ij(sat) u`, `c = [e_41(e), e_14(t)] = diag(1,1,1,1+et)`, `uc = e_12(e)u = u + et E_14`; then Lemma C and the Steinberg spread. See `research/artifacts/un-review-2026-09-13-part8.md` §3.

@@ -31,3 +31,5 @@ The chain increases, so it stabilises; call its value `hh(R)`, the **Hilbert-hot
 The point of the definition is that it is intrinsic: no dynamics, no groupoid, and no choice of a
 one-sided pair. Its two extreme values are the two calibrating rings of the UN program, `hh = R`
 for `L_k(1,m)` and `hh = 0` for `LC(X,F_q) ⋊ Z`.
+
+**Review (un-verify, 2026-09-13): PASS.** Items (1)–(5) re-derived: the chain increases and stabilizes; minimality by transfinite induction; surjective functoriality; `hh = R` iff no nonzero directly finite quotient; the stable version through `M_m(I)`. See `research/artifacts/un-review-2026-09-13-part8.md` §1.

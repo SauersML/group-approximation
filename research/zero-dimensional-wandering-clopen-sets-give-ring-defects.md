@@ -33,3 +33,5 @@ which is directly finite. So `d(R) = hh(R)` is exactly the core-vanishing ideal 
 `mf-radical-sandwiched-by-hilbert-hotel-radical` are consistent with the printed chain-core formula for the
 MF radical, whose equality with the left bound is the printed theorem, not a consequence of the sandwich. The same computation on the one-sided shift is the
 Toeplitz-Jacobson algebra `k<s,t | ts=1>` of the manuscript.
+
+**Review (un-verify, 2026-09-13): PASS.** `u χ_V u⁻¹ = χ_(T(V))`, `ts = χ_U`, `st = χ_(T(U))`, `s, t ∈ pRp`, the inflation `t′s′ = 1` with defect `χ_(U∖T(U))`, and the calibration on `Z ∪ {±∞}` recomputed. See `research/artifacts/un-review-2026-09-13-part8.md` §1.

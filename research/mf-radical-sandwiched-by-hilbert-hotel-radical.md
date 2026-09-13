@@ -39,3 +39,5 @@ residually finite actions or exact matricial models.
 **Model tests** (artifact section 6): `d = hh = R` for simple rings that are not directly finite recovers
 `cor:simple-infinite-ring`; `d = hh = 0` for the Pestov 9.1 ring; `d = hh = JeJ` for the Toeplitz-Jacobson
 algebra, where the manuscript proves `Rad_MF(EL_n(J)) = EL_n(J, JeJ)`, the left bound.
+
+**Review (un-verify, 2026-09-13): GAP on the left containment only.** The right containment `Rad_MF(EL_n(R)) ≤ EL_n(R) ∩ GL_n(R,hh)` (reduction to the MF group `EL_n(R/hh)`) is correct; the left containment inherits the gap of `relative-torsion-defect-mf-radical-step`. See `research/artifacts/un-review-2026-09-13-part8.md` §2.

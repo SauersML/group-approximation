@@ -27,3 +27,5 @@ In particular every finite group and every linear group has `D_G(L) = 1` for all
 
 Model test: in `GL_2(Q)`, the integer unitriangular `L` with `u = diag(2,1)` is a proper compression, and the
 defect is trivial, as it must be.
+
+**Review (un-verify, 2026-09-13): PASS.** Lemma C, the finite case by counting, and the linear case (the Zariski closure is a closed subgroup; its conjugate is a closed subgroup of equal dimension and component count, hence equal) re-derived; `D_G(L)` matches tex eq. `intrinsic-defect` (l.167) verbatim. See `research/artifacts/un-review-2026-09-13-part8.md` §3.
