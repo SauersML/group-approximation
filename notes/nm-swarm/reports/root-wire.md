@@ -30,12 +30,12 @@ of `metadata/NON_MF_SENTENCE_MAP.tsv` that the root does not reach.  Root builds
 * `nmwire.sh` builds on the origin at launch, which can be newer than the pre-flight sha.  The next wave's
   gate diffs against that build base, so the files that changed in between are gated there.
 
-## 09-13 root state (origin/main 5f789a7ba, 06:10)
+## 09-13 root state (origin/main 045b5f849, 08:54)
 
-* Root at 5f789a7ba (after wave 7): 4898 GroupApproximation import lines, all before the module docstring
-  (OK); no missing module, no duplicate line; closure 6301 modules; 0 dangling imports inside it.  310
-  modules on main are not reachable from the root (313 at e32bac3f3, 360 at f495cf119).
-* Census at 5f789a7ba: every carrier module is root-reachable.  The last one, `Algebra.IntegerPlacesMinpoly`
+* Root at 045b5f849 (after wave 8): 4907 GroupApproximation import lines, all before the module docstring
+  (OK); no missing module, no duplicate line; closure 6310 modules; 0 dangling imports inside it.  333
+  modules on main are not reachable from the root (310 at 5f789a7ba, 313 at e32bac3f3, 360 at f495cf119).
+* Census at 045b5f849: every carrier module is root-reachable.  The last one, `Algebra.IntegerPlacesMinpoly`
   (row b6d1590be7ab), landed in wave 7.  One census token resolves to no declaration: row 8fdc908a49c7
   (definition) `GroupApproximation.StableWhitehead.elementaryColim_normal`.
 
@@ -202,10 +202,11 @@ The wave 6 build did not compile 11 files of the new closure; each has a GREEN r
 wave 3, and the wave 3 to 6 candidate lists missed them.  The full sweep at 00ccbca81 found no other unwired
 non-LIX entry whose module is on main.
 
-## Wave 8 (launched 09-13 06:11, root build 0913-061132-68868, base 2d25ebab5)
+## Wave 8 (launched 09-13 06:11, root build 0913-061132-68868, base 2d25ebab5): GREEN, LANDED ROOT 830b05464
 
 3 modules, 3 newly reachable files.  Module list: `$NM/rw-wave8.mods`.  Pre-flight at 5f789a7ba;
-`nmwire.sh` built on origin 2d25ebab5.
+`nmwire.sh` built on origin 2d25ebab5.  1 module rebuilt.  At 2e11846a7, 830b05464 is an ancestor and all 3
+lines are present.
 
 | module | evidence (bytes on 5f789a7ba = record) | owner |
 |---|---|---|
@@ -226,7 +227,52 @@ and `KotowskiOllivierClosed`, which has its own root line.  Its bytes went throu
 wave 6 build compiled the cf1675f3b version and the wave 7 build the 4be3a3a5c version, and wave 8 compiles
 f65f99f17.
 
-Queued after the wave 8 launch, for wave 9: `NonMF.TheoremCAssemblyGreendlingerLeaf` (theoremc-retire).
+## Wave 9 (launched 09-13 08:54, root build 0913-085422-44704, base 045b5f849)
+
+23 modules, 30 newly reachable files.  Module list: `$NM/rw-wave9.mods`.  Pre-flight at 2e11846a7;
+`nmwire.sh` built on origin 045b5f849.  The two Lean files changed between them,
+`Estimating.OsinLemma94CaseOneWalk` and `Estimating.OsinPocketPinchedTwoGonModel`, lie outside the new
+closure.  The wave checks, dupcheck and gate, rerun at 045b5f849, give the same result.
+
+| module | evidence (bytes on 2e11846a7 = record) | owner |
+|---|---|---|
+| `Kazhdan.CCKWSystolicInvariantCliqueClosed` (hT6 carrier) | GREEN 0913-061054-67459, newer than the FAILED record 0913-052409 | kh-cckw |
+| `GGT.HullSCGreendlingerForms`, `NonMF.TorsionFreeGreendlingerForms` | GREEN 0913-081212-8538 | hull-bridge |
+| `NonMF.TorsionFreeGreendlingerSentences` | GREEN 0913-071409-41646 | hull-bridge |
+| `NonMF.HullCorollary74` | GREEN 0913-081206-8349 | cite-hull |
+| `NonMF.HullFreeFactorSuitable` | GREEN 0913-071556-43834 | cite-hull |
+| `NonMF.TorsionFreeGreendlingerLeaf` | GREEN 0913-063820-983 | fff-periodic |
+| `NonMF.TheoremCAssemblyGreendlingerLeaf` | GREEN 0913-060950-64731 | theoremc-retire |
+| `Estimating.OsinLemma94PlanarPieces` | GREEN 0913-070239-32512 | hull-unbound |
+| `Estimating.OsinLemma94DartMinimal` | GREEN 0913-074213-73156 (the b6bda9923 bytes; queue line 498's 88db0df7b entry was withdrawn) | sec5-sentences |
+| `VanKampen.SimpleClosedWalkSides` | GREEN 0913-072751-55574, newer than the FAILED record 0913-070150 | hull-respell |
+| `Estimating.OsinPocketMergeRegion` | GREEN 0913-062000-78681 | nm-endpoints |
+| `Estimating.OsinPocketOuterPart`, `…Region`, `…Pieces` | GREEN 0913-034443-10848, 0913-040221-49939, 0913-073133-62116 | dgo-analytic |
+| `VanKampen.SurgeryPocketGlue`, `…Count`, `…Vertices`, `…Planar` | GREEN 0913-062050-80403, 0913-070238-32448, 0913-072208-51095, 0913-074643-82657 | go-lemma42 |
+| `Estimating.OsinAppendixEulerExteriorLinked` | GREEN 0913-061116-68489 | ghw-charp2 |
+| `OneSidedMFRadical.JacobsonPresentedKazhdanFinite` | GREEN 0913-072919-58371, newer than the FAILED record 0913-072751 | jacobson |
+| `GGT.HullLemma35Transitive`, `GGT.HullLemma35LocalFinite` | GREEN 0913-081320-10853, newer than the FAILED records 0913-075817 and 0913-080412 | baseline-debt |
+
+Pre-flight at 2e11846a7: no dangling import, no lexical sorry, no cycle; dupcheck predicts no collision.
+The wave 8 build did not compile 41 files of the new closure; each has a GREEN record:
+
+* the 30 newly reachable files;
+* 5 files changed since 2d25ebab5:
+  * `GGT.HullSCOneStepQuasiGeodesicLeaves`: hull-respell 0913-072751-55574;
+  * `Estimating.OsinAppendixAssemblyDescent`: dgo-analytic 0913-073133-62116;
+  * `Kazhdan.KotowskiOllivierClosed` (queue line 512, b0ab67b4a): ko-closed 0913-065114-20727, and
+    hull-bridge 0913-081212-8538, where the blob at base 296b0173f equals main;
+  * `NonMF.TorsionFreeSectionAssembly`: nm-endpoints 0913-084302-12415;
+  * `ThirdParty.HamSandwich.SphereOddDegree.RPnAffineCellContractible`: fz x22-palomar 0913-082342-22326;
+* 6 files rooted by other campaigns since 2d25ebab5: `PalomarBridges.XXII` (fz x22-palomar
+  0913-054608-34854) and `Toeplitz.{FockModule, FockSpace, GramScalars, Sections, Wick}` (fz bq-formalize
+  0913-064342-9119 and 0913-074222-73251).
+
+The template of these probes restores built modules from the Lake artifact cache, and a restored module's
+empty log hides `sorry` warnings.  So the pre-flight also ran the lexical `sorry`/`admit`/`axiom` scan over
+all 41 gated files, not only the newly reachable ones: 0 hits.
+
+Not rewired: `KotowskiOllivierClosed`, which already has its own root line.
 
 ### Held
 
