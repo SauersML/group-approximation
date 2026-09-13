@@ -1,5 +1,6 @@
 import GroupApproximation.Manuscript.NonMF.TheoremCAssembly
 import GroupApproximation.Kazhdan.KotowskiOllivierClosed
+import GroupApproximation.Kazhdan.CCKWSystolicInvariantClique
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -17,10 +18,13 @@ three systolic leaves of the coset complex of `GHB(7)`:
   systolic complexes.
 
 This module composes the two, so both printed forms of Theorem C stand over five
-named leaves and no `sorry`.  It is not in the root closure, because
-`Kazhdan.KotowskiOllivierClosed` is not.  When `kotowskiOllivier_closed` lands,
-the three systolic binders go by one application, and the forms in
-`TheoremCAssembly` lose `hKO` the same way.
+named leaves and no `sorry`.  `sharpExistence_ghb7_of_zipFoldHyp`
+(`Kazhdan/CCKWSystolicInvariantClique.lean`) proves the fixed-clique theorem in
+the coset complex over `hzip` and `hfold`, so the `_of_leastAreaZipFold` forms
+stand over four leaves.  The module is not in the root closure, because
+`Kazhdan.KotowskiOllivierClosed` is not.  When `hzip` and `hfold` land, the
+systolic binders go by one application, and the forms in `TheoremCAssembly`
+lose `hKO` the same way.
 -/
 
 namespace GroupApproximation
@@ -55,6 +59,34 @@ theorem manuscriptTorsionFreeSimplified_of_leastAreaKOLeaves
   manuscriptTorsionFreeSimplified_of_leastAreaInputs hgreendlinger hbridge
     (KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_of_leaves hzip hfold hT6)
 
+/-- **Theorem C (`thm:torsion-free`), in radical form**, over the two least-area
+leaves and the zip and fold leaves of the coset complex of `GHB(7)`.  The
+fixed-clique theorem comes from `hzip` and `hfold`
+(`sharpExistence_ghb7_of_zipFoldHyp`). -/
+theorem manuscriptTorsionFreeFullMFRadical_of_leastAreaZipFold
+    (hgreendlinger :
+      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
+    (hzip : Systolic.ZipSpurStatement KMSGroup.CCKW.cosetComplex)
+    (hfold : Systolic.MirrorFoldStatement KMSGroup.CCKW.cosetComplex) :
+    PrintedTorsionFreeFullMFRadical :=
+  manuscriptTorsionFreeFullMFRadical_of_leastAreaInputs hgreendlinger hbridge
+    (KMSGroup.sharpExistence_ghb7_of_zipFoldHyp hzip hfold
+      (KMSGroup.GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold hzip hfold))
+
+/-- **Theorem C, in the simplified printed statement**, over the same four
+leaves. -/
+theorem manuscriptTorsionFreeSimplified_of_leastAreaZipFold
+    (hgreendlinger :
+      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
+    (hbridge : HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0})
+    (hzip : Systolic.ZipSpurStatement KMSGroup.CCKW.cosetComplex)
+    (hfold : Systolic.MirrorFoldStatement KMSGroup.CCKW.cosetComplex) :
+    PrintedTorsionFreeSimplified :=
+  manuscriptTorsionFreeSimplified_of_leastAreaInputs hgreendlinger hbridge
+    (KMSGroup.sharpExistence_ghb7_of_zipFoldHyp hzip hfold
+      (KMSGroup.GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold hzip hfold))
+
 end TheoremC
 end NonMF
 end Manuscript
@@ -62,3 +94,5 @@ end GroupApproximation
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical_of_leastAreaKOLeaves
 #audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_of_leastAreaKOLeaves
+#audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical_of_leastAreaZipFold
+#audit_axioms GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified_of_leastAreaZipFold
