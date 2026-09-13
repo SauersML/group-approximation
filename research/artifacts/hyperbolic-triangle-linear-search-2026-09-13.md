@@ -191,6 +191,44 @@ with no eigenbases.
 - **In dimension 4, characteristic 2,** no twist is possible: `λ·{1, ω, ω², ω⁴}` is one of the two
   eigenvalue types only for `λ = 1`.
 
+## 6. Synthesis: linear representations of dimension at most 7 in every characteristic
+
+**Dimension 5, characteristic 2, modules `4^{(*)} ⊕ 1`** (`lin5.py`, `lin5_cal.out`, `lin5_cands.out`).
+- **Parametrisation.** `t` has eigenvalue 1 with multiplicity 2, so `C(t) = GL_2 × T^3` in the eigenbasis, and
+  `H = [[a,b],[c,d]] ⊕ diag(h_2,h_3,h_4)`. The same 117 trace equations are used.
+- **Calibration.** On literal `A_8` and twisted `A_7` triples: 2 consistent type triples each, with
+  3-dimensional ideals, as the redundancy torus predicts.
+- **Candidates.** `G_2` and `G_4`: no consistent type triple, which is the sign invariant of §3. `G_1` and `G_3`: both
+  consistent triples give `(1)`.
+
+**Theorem (computer-assisted, unreviewed).** For each `i`, every field `K` and every `d <= 7`, every
+homomorphism `G_i -> GL_d(K)` is trivial. The case analysis is in the route of
+`a7a7a8-triangle-candidates-no-small-linear-representation`:
+- **`char K ∉ {2, 7}`.** The integral certificate `N = 1` in dimension 7; smaller dimensions are impossible.
+- **`char K = 7`.** The Jordan type `J_7` from the `A_8`-module forces free restrictions to a Sylow
+  7-subgroup at `A` and `B`. So their modules are projective, hence the permutation module, and `N = 1` applies.
+- **`char K = 2`.**
+  - **Uniform type.** The composition type is the same at all vertices.
+  - **Type 6.** `d6c2` for the irreducible `6`; `N = 1` for the factors `{6, 1}`.
+  - **Type 4.** The modules are semisimple, and `W_A + W_B + W_C` has dimension 4 or 5. Dimension 4 is §§2–4; dimension 5 is `lin5.py`.
+
+**Recalled inputs.**
+- The small modular irreducible degrees of `A_7` and `A_8` for `p = 2, 3, 5, 7`.
+- `H^1(L_4(2), F_2^4) = 0`.
+
+**Projective representations `G_i -> PGL_d(K)`, `d <= 7`: status.**
+- **Characteristic 0.** Excluded: 58 Galois orbits, all `(1)`. A cover of a vertex group acting
+  faithfully needs dimension 4, 6 or 8 for `A_7` and at least 8 for `2.A_8`. In dimension 4 or 6,
+  `A_8` has no projective module there away from characteristic 2.
+- **Characteristics 29 and 43.** Excluded: all 343 twists give `(1)`.
+- **Characteristic 7.** Excluded: `μ_7` is trivial, so projective equals linear.
+- **Characteristic 2.**
+  - **Type 4 and the irreducible `6`.** No twist is possible, because `λ·{eigenvalues}` is a
+    legal eigenvalue set only for `λ = 1`.
+  - **Type `{6,1}` in dimension 7.** Twists are possible and not yet decided.
+  - **Covers.** Vertex groups acting through `3.A_7` in dimension 6 are not covered.
+- **Other odd characteristics.** `μ_7`-twists pending the integral twisted certificate.
+
 **Not covered.**
 - **Projective twists** in odd characteristics other than 29, 43 and 7. The integral twisted certificate over
   `Z[z]/Φ_7(z)` (`linZ.py twist`) had not finished at this version.

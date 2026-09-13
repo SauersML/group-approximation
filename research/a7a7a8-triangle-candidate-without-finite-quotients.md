@@ -29,16 +29,14 @@ Claim: at least one `G_i` has no nontrivial finite quotient.
   (`a7a7a8-triangle-candidates-no-4dim-char2-representation`, computer-assisted). This is the
   smallest dimension of a faithful representation of `A_8` over any field. For `G_2` and `G_4` an
   eigenvalue sign obstruction already kills it; for `G_1` and `G_3` a trace-ideal Gröbner basis is `(1)`.
-- **Linear representations up to dimension 7 are ruled out in characteristic 0 and in
-  characteristics 3, 5, 11, 13, 29, 43**
-  (`a7a7a8-triangle-candidates-no-small-linear-representation`, computer-assisted). In
-  dimension 7 the modules are `1 ⊕ 6` and `7`, and the trace ideal is `(1)` for all four
-  candidates. In dimension 6, characteristic 2, with all vertex groups irreducible, the ideal
-  is also `(1)`. Still open in low dimension:
-  - projective `μ_7`-twists, which is where `PSL_7(p)` quotients with `p ≡ 1 mod 7` would live;
-  - characteristic 7;
-  - reducible modules in characteristic 2.
-  See `research/artifacts/hyperbolic-triangle-linear-search-2026-09-13.md` §5.
+- **Linear representations of dimension at most 7 are ruled out over every field**
+  (`a7a7a8-triangle-candidates-no-small-linear-representation`, computer-assisted, unreviewed).
+  - **Characteristic not 2 or 7.** Integral Gröbner certificate `N = 1` in dimension 7.
+  - **Characteristic 7.** Projectivity forces the permutation module, and the same certificate applies.
+  - **Characteristic 2.** Type `6`: trace ideals `(1)`. Type `4`: reduction to dimensions 4 and 5, both `(1)`.
+  - **Projective `μ_7`-twists.** Excluded in characteristics 0, 7, 29 and 43; the integral twisted
+    certificate for the remaining characteristics is running.
+  - **Status.** See `research/artifacts/hyperbolic-triangle-linear-search-2026-09-13.md` §§5–6.
 - **The small-degree permutation zeros are family-wide.** A configuration search covers every
   twist and every choice of vertex pairs at once. It shows that no hyperbolic
   `(A_7, A_7, A_8)` `Z/7`-triangle with link girths `(6,6,8)` acts nontrivially on at most
