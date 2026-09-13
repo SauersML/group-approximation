@@ -64,7 +64,7 @@ def matrixEmbedding (τ : ReturnTowerUnits R N r) (θ : A ≃+* τ.Base) :
     |>.toNonUnitalRingHom.comp τ.toMatrix
 
 theorem matrixEmbedding_injective (τ : ReturnTowerUnits R N r) (θ : A ≃+* τ.Base) :
-    Function.Injective (τ.matrixEmbedding θ) := fun x y h =>
+    Function.Injective (τ.matrixEmbedding θ) := fun _ _ h =>
   τ.toMatrix_injective (Matrix.map_injective θ.symm.injective h)
 
 /-- **The coefficient and index transport** `GL_{n·r}(A) ≃ GL_n(M_r(P_C))`: coefficients along
@@ -140,7 +140,7 @@ theorem coe_elEmbedding (τ : ReturnTowerUnits R N r) (θ : A ≃+* τ.Base) (n 
   rfl
 
 theorem elEmbedding_injective (τ : ReturnTowerUnits R N r) (θ : A ≃+* τ.Base) (n : ℕ)
-    (hn : 2 ≤ n) : Function.Injective (τ.elEmbedding θ n hn) := fun g h e =>
+    (hn : 2 ≤ n) : Function.Injective (τ.elEmbedding θ n hn) := fun _ _ e =>
   Subtype.ext (τ.glEmbedding_injective θ n (congrArg Subtype.val e))
 
 /-- **Unitization embeds `GL_r(P_C)` into `R_X^×`** (tex 1739 at `n = 1`), with `P_C` identified
