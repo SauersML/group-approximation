@@ -3,7 +3,7 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
-## STATE (09-13 ~16:10): pick (a) confirmed; cell-free branch of binder 3 offered to jacobson
+## STATE (09-13 ~16:20): cell-free branch of binder 3 LANDED 29c1eeae3 (GREEN, queued)
 - hull-unbound landed option (a) as `OsinLemma94PinchedQuadrilateralStatement`, d463383fa (probe 0913-160048-79943
   GREEN, queued).  It is the pick (i) below, so ko-closed confirmed it as final.
   - Scope: a different target cell or a boundary target (`target ≠ some source`).
@@ -14,16 +14,16 @@ closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
   - jacobson keeps the pocket construction and the R-cell branch (loop cut, `hin` kept under R1).
   - Offer sent 16:00.  Before it went out: no Lean file outside this lane's four modules uses the kills, and
     jacobson's files are unchanged since 13:53.
-- Draft `$NM/backup/ko-closed/OsinLemma94SameCellCellFree.draft.lean` (127 lines).  It is not in the tree and not
-  probed.
+- `OsinLemma94SameCellCellFree` LANDED 29c1eeae3.  Probe 0913-161512-55953 GREEN: `# PROBE GREEN`, 0 warnings,
+  md5 e34a71ad.  It is unwired and queued.
   - `PocketRegion.outer_isRotated_of_decomposition`: `invDarts Q.outer.cycle = invDarts s ++ invDarts A` gives
     `Q.outer.cycle ~r s ++ A`.
   - `false_of_sameCell_cellFree_pocketRegion_X` / `_Y`: the loop-cut spelling, over `osinLemma94CaseOneWalk_sameCell`,
     with `T.darts = q ++ A ++ p`.  They apply the OneCellFace kills.
-  - Waiting on jacobson's answers:
-    - (a) whether it already wrote this branch;
-    - (b) whether the pocket is over `S.diagram` or another O-equivalent copy;
-    - (c) decomposition or rotation input.
+  - Question (b) is settled by the statement: binder 3 works over `S.diagram`, so the pocket does too.
+  - Open with jacobson: (a) whether it already wrote this branch, and (c) decomposition or rotation input.
+  - The producer still has to build `T`, and no `CyclicArc` append lemma exists.  ko-closed can supply one on request
+    (`List.take_add` at core `Init/Data/List/Nat/TakeDrop.lean:178`).
 - Residual Props owned by ko-closed: NONE.
 
 ## STATE (09-13 ~15:25): the Morse kill through windows GREEN (0913-150725-78874), queued; pinched-window pick (i)
