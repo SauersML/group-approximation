@@ -69,6 +69,16 @@ makes the explicit Kun–Thom wreath non-hyperlinear (route
     - (iii) mixed constituents, nontrivial on both `A_u` and `A_nu`, which depth cannot see.
   - **Not done.** No model realizes (i)–(iii), and nothing here is reviewed. See
     `research/artifacts/nh-unit-type-rounding-2026-09-12.md`.
+  - **Update (lane `ex-hs-instability-extension`, 2026-09-13).** Regime (i) is realized, for one compressor.
+    - **The model.** `one-compressor-actor-models-with-exact-origin-vertex` stacks the pullbacks `(mod m_0^k)∘φ_A^j`,
+      `j <= N`, in cyclically shifted layers. That gives a trace-preserving model of `<Γ, A>` whose vertex is exactly
+      genuine and purely of origin type.
+    - **Sharpness.** Its transport defect is `<= 2/√(N+1)`, so the log-scale bound is attained up to constants.
+    - **Normalization fails there.**
+    - **Wreath models.** `one-compressor-wreath-has-models-with-exact-origin-vertex` adds lamps.
+    - **Consequence.** The "One-compressor groups" bullet below is now witnessed by an explicit exact-vertex model.
+      For the full actor, (i) stays excluded by the two attractors of
+      `vertex-rounding-deep-nonunit-root-mass-vanishes`.
 - **Mixed constituents merge into (i) and (ii) (lane nh-mixed-constituents).** Regime (iii) is gone.
   - **The claim.** `nonunit-component-root-mass-is-log-scale-folner` uses the depth of the non-unit component
     `χ_nu(f) = χ(e_nu f)`. That depth is finite for every character.

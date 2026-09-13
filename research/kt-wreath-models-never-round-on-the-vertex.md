@@ -85,3 +85,10 @@ Derivation: `kt-wreath-models-never-round-on-the-vertex-proof`.
     vertex a uniform distance from every genuine representation.
 - **Transfer to double models.** Not proved. The rigid defect uses a lamp that commutes with `Γ`, and the
   double has no such element. The `RE/C` equivalence does not keep the vertex restriction.
+- **One compressor (lane `ex-hs-instability-extension`, 2026-09-13).** The analogue of this claim is false.
+  - **The models.** `one-compressor-wreath-has-models-with-exact-origin-vertex` builds trace-preserving models of
+    `(⊕_(V/Γ) Z/2) ⋊ V`, with `V = <Γ, A>` for one positive compressor. Their vertex restriction is a genuine
+    origin-type representation at every coordinate.
+  - **Construction.** Layered origin congruence quotients, with a random `Γ`-invariant sign as the root lamp.
+  - **What this shows.** Steps 1–3 of the derivation are where the claim uses more than one compressor: the torus
+    and the two attractors. Wreath extension by itself does not obstruct an exact vertex.

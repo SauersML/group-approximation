@@ -52,8 +52,8 @@ On `⊕_(j=0)^N ℓ²(Q_0)` let
   - They act only through an assumed rounding, and they exclude these origin layers.
 - **Obstruction to extension.** By that chain, `σ|Γ` is not within `o_2(1)` on `F_Γ` of the vertex restriction of
   any trace-preserving `G`-model.
-- **Open.** Whether lamps can be added so that some trace-preserving model of the one-compressor wreath
-  `(⊕_(V/Γ) Z/2) ⋊ V` has an exact vertex. Item 4 finds room for the lamp at `AΓ`. What is missing is Bernoulli
-  independence of its `Γ`-translates. See artifact §5.4.
+- **Lamps can be added.** `one-compressor-wreath-has-models-with-exact-origin-vertex` puts a random `Γ`-invariant
+  sign on these layers and gets a trace-preserving model of `(⊕_(V/Γ) Z/2) ⋊ V` with the same exact vertex. So the
+  question in artifact §5.4 is settled positively.
 
 Derivation: `one-compressor-actor-models-with-exact-origin-vertex-proof`.
