@@ -74,6 +74,19 @@ in `mf-nonhyperlinear-collapse-structure`: its hyperlinear residual is
 infinite and contains no finite normal subgroup.  The torsion-central
 mechanism producing the non-MF theorems therefore cannot be recycled.
 
+**Residual with amenable quotient (2026-09-13).**
+`mf-nonhyperlinear-residual-with-amenable-quotient-is-critical`: if the
+hyperlinear residual `R` of a counterexample `G` has amenable quotient, then
+`R` is itself an MF counterexample with no nontrivial hyperlinear quotient.
+Such an `R` is perfect, has no finite quotients and is not Kazhdan, and
+augmentation extends on every corona realization of it.  For a Kazhdan
+counterexample, `G/R` is infinite and non-amenable.  So the root holds for
+every MF group with amenable residual quotient as soon as every nontrivial MF
+group has a nontrivial hyperlinear quotient.  For other quotient classes,
+residual restriction is equivalent to extension permanence
+(`hyperlinear-residual-restricts-along-amenable-quotients`).  The sofic
+analogue of that permanence fails for residually finite quotients.
+
 **One live general mechanism, plus a new fragment.**  The phase-cancelled
 amplification route through `mf-hyperlinear-via-hs-defect-gap-profile`
 survives.  The invariant-corner route is a valid conditional implication but
