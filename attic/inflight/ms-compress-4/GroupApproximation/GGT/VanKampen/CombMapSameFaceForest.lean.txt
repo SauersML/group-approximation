@@ -212,7 +212,7 @@ theorem exists_leaf (hM : M.IsPlanar) {f : M.Face} (T : Finset M.Dart)
 /-- **The count, by removing leaves.**  For a nonempty reversal-closed set `T` of darts with the
 face `f` on both sides, `#T + 2 ≤ 2 · #(vertices of T)`.  Removing a leaf dart and its reversal
 removes two darts and at least the leaf's vertex. -/
-theorem card_add_two_le (hM : M.IsPlanar) (f : M.Face) :
+theorem card_add_two_le [DecidableEq M.Vertex] (hM : M.IsPlanar) (f : M.Face) :
     ∀ (n : ℕ) (T : Finset M.Dart), T.card = n → (∀ d ∈ T, d ∈ M.sameFaceDarts f) →
       (∀ d ∈ T, M.alpha d ∈ T) → T.Nonempty →
         T.card + 2 ≤ 2 * (T.image M.vertexOf).card := by
