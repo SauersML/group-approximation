@@ -24,3 +24,11 @@ A bound `<= C H(y_1)` for one constant `C` gives `rho_q(G) >= log q / C`. On a h
 - **Codeword Følner count.** `Phi >= log q / lambda(F)`, where `lambda(F) = inf_S |SF|/|S|`. So the bound holds whenever `<F F^-1>` is amenable (`bernoulli-window-codeword-folner-ratio-bound`). This is the finite-count step. For a nonamenable `<F F^-1>` it loses a constant factor.
 - **Per-term bounds.** Each term is at most `H(y_1)`, which gives the bound `|F| H(y_1)`. The read-degree bound `m H(psi)` comes from an order that is not translation-invariant (artifact Section 3).
 - **Random past.** Seward's upper bound, as quoted by Alpeev (arXiv:1705.08559, Theorem 1.1), makes the goal equivalent to random-past entropy `>= k log q` for every generating partition. Finite truncations of the chain rule pay a boundary term that vanishes only along Følner sets, and the order has no infinite form (artifact Section 6).
+- **Associativity is used (w7-inf-cancellative, 2026-09-12).** This is `cancellative-incidence-patterns-do-not-force-domination`, held OPEN pending verification.
+  - A shared-pointer parity gadget satisfies (L) and (R), is realized in a finite loop, and has `Phi <= (log2 k + 1 + 1/k)/k`.
+  - No group realizes it. Pointer sharing makes the codewords `c_1, c_1 delta, c_1 delta^2`, and `(1 + delta)(1 + delta + delta^2) = 0` in `F_2[G]` contradicts the value XOR.
+  - So a proof must use associativity through translation invariance, not only cancellation, division or a closed finite index set.
+  - Counting on the loop gives domination on average over sites but not at `o`.
+  - On `T_3` fixing an end, a homogeneous pointer code has `Phi -> 0` but violates (R). Right-cancellative downward windows embed in the free monoid and are dominated.
+
+  Artifact `research/artifacts/right-cancellative-pattern-firewall-2026-09-12.md`.

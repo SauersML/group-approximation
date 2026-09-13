@@ -127,3 +127,16 @@ finiteness conjecture over finite fields.
   - local sources give no lower bound for any nonsofic group (Seward, arXiv:1805.08279, as recorded on
     `every-group-has-positive-rokhlin-entropy-action`). Each positive mechanism tried points upward or is
     base-independent (artifact Section 4).
+* **Loop firewall for domination (w7-inf-cancellative, 2026-09-12).** This is
+  `cancellative-incidence-patterns-do-not-force-domination`, held OPEN pending verification by w4-vf-positive-b.
+  - A shared-pointer parity gadget has every feature of the counterexample list above except that it is not a group
+    pattern. It satisfies both cancellation laws, is realized in a finite loop, and has
+    `Phi <= (log2 k + 1 + 1/k)/k -> 0`.
+  - No group realizes it, because `(1 + delta)(1 + delta + delta^2) = 0` in `F_2[G]` for the pointer shift `delta`.
+    So a proof of `rokhlin-window-transport-is-dominated` must use associativity through translation invariance.
+  - Counting on the closed finite loop gives domination on average over sites, not at `o`. So the finite-model step
+    and the translation step are separate inputs.
+
+  Where it stops: in a group, a shared-pointer gadget needs `sum_(K') kappa` to be a unit of `F_2[K]` for the
+  stabilizer `K` of the pointer set `P`. If the code XORs all value inputs, that forces `|E_val| <= |P|`. Artifact
+  `research/artifacts/right-cancellative-pattern-firewall-2026-09-12.md`.
