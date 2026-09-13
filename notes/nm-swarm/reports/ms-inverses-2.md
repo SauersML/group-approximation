@@ -1,0 +1,82 @@
+# Lane ms-inverses-2: tex 809–929 (lem:two-copies, lem:rank-two, lem:ring-compression-cell, eq:intertwine)
+
+Lead: session nonsofic-existence-49 (wave 2). Manuscript at origin/main 15ab3ebe5. The census rows are keyed at the
+pre-chain-core hash, so census line = tex line − 11 in this range. The comment lines at tex 927–929 are not sentences.
+
+## CLAIM
+
+- CLAIM G1 G2 G3 GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean
+  (ownership check 09-13 ~17:10: no declaration, file or in-flight draft on origin or in the shared tree; the only
+  `.files` hit is audit-sec3's RingCompressionCellGeneral, last landed 04:28).
+
+## Verification (37 census rows in range)
+
+Checks run on every carrier: the declaration exists on origin/main; its module is reachable from `GroupApproximation.lean`
+(OneSidedCompressor, OneSidedCompressorDefect, RankDescentEmbedding (which imports ProperlyInfiniteUnit and
+RankTwoNormalGeneration), RankTwoPrintedSteps, RingCompressionCellGeneral and FullDefectRingSentences are direct root
+imports; RankDescentPrintedLemmas and RankFourCompressionCellPrinted come in through OneSidedSentences); endpoints carry
+`#audit_closed_axioms`; `Audit/Sec3.lean` audits every named declaration; the statement is at printed generality (every
+unital ring; `R : Type` is the repo convention) along the printed route. No literature input: these are ring and
+elementary-matrix computations with no cited theorem.
+
+### lem:two-copies (tex 809–829)
+
+| key | sentence | verdict |
+|---|---|---|
+| d269b2fd7294 | statement hypothesis `ts=1`, `R(1-st)R=R` | PASS: `PrintedTwoCopiesLemma` spells fullness as a finite sum `∑ a_k(1-st)b_k = 1` (the two-sided ideal is `R` iff 1 lies in it) |
+| e123b14ddeee | `there are v₀,v₁,w₀,w₁ with w_iv_j=δ_ij` | PASS (forward direction; `∃ s t, …` → `∃ v w` is equivalent to the printed ∀) |
+| c90393ba6292 | `Conversely, such elements satisfy w₀v₀=1 and w₁(1-v₀w₀)v₁=1` | **GAP**: the carrier's converse is `∃ s t, ts=1 ∧ 1-st full`, not the two printed identities for the given elements. Fix G1 |
+| 9dbe7e587681 | `Put e=1-st, so that es=te=0, and choose a_j,b_j … with ∑a_jeb_j=1` | PASS in content; the row names only the def `RankDescent.ofFull`. Correction: add `OneSidedSentences.manuscriptSentence_twoCopiesSetup` |
+| 5870021d2e03 | display `v₀=s^m, w₀=t^m, v₁=∑s^jeb_j, w₁=∑a_jet^j` | PASS; correction: add `manuscriptSentence_twoCopiesDefine` (the four fields, by `rfl`) |
+| 91d76a509a2b | `e t^i s^j e = δ_ij e` and the middle-factor reasons | PASS: `e_mul_t_pow_mul_s_pow_mul_e` follows the printed route (`t_pow_mul_s_pow_of_le`/`_of_ge`, `e_mul_s_pow`, `t_pow_mul_e`). Correction: name those four |
+| f437c7807b77 | `w₀v₀=t^ms^m=1, w₁v₁=∑a_jeb_j=1, w₀v₁=∑t^{m-j}eb_j=0, w₁v₀=∑a_jes^{m-j}=0` | **GAP**: the carriers state only the endpoints; none of the printed middle sums is carried. Fix G2 |
+| 0bbf89803d26 | `Conversely, w₁(1-v₀w₀)v₁ = w₁v₁-(w₁v₀)(w₀v₁) = 1` | PASS in content; the carrier states only `=1` over the bundled structure. Correction: add `manuscriptSentence_twoCopiesConverse` (bare data, both equalities) |
+
+### lem:rank-two (tex 831–865)
+
+| key | sentence | verdict |
+|---|---|---|
+| 29f5f8b37797, a7e56a7fbc34, 9aa5019b614f | the statement | PASS: `PrintedRankTwoNormalGeneration`; `gen v b = ⁅upperRoot v, lowerRoot b⁆` by `rfl`, Mathlib's commutator `ghg⁻¹h⁻¹` matches the printed product |
+| dbdec0d73e03 | rows of `e₁₂(v)e₂₁(b)e₁₂(-v)`, then `D=diag(1+vb,1)` | PASS |
+| 053b6de1fe6b | `Let N be the normal closure of D` | PASS (definition `printedN`) |
+| 717152bfc217 | `[D,e₁₂(ar)]=e₁₂(vr)`, so `e₁₂(vR)≤N` | PASS |
+| 828a8cc4992b | `f=1-vw`, idempotent, `fv=0=wf` | PASS |
+| bd35898b630c | `r=vwr+fr`; reduction to `e₁₂(fR)` | PASS |
+| 69843250783b | display `z=vf+fw+1-f-vfw` (the splitter drops the display); `zf=vf` | PASS; correction: add `RankDescent.zElt`, `RankDescent.zElt_eq` for the display |
+| 5e2b45529464 | `x=vf, y=fw, q=vfw, c=1-f-q`, `z=x+y+c` | PASS |
+| a9865697e6f3 | the multiplication table, `z²=q+f+c=1`, `zf=xf+yf+cf=vf` | PASS (every clause and both chains) |
+| c97ce3c374b2 | the six-transvection factorization | PASS at the proof's `z` (`z²=1`, so `z⁻¹=z`) |
+| db1722e32d5d | `h=diag(z,z)∈EL₂(R)`, `he₁₂(fr)h⁻¹=e₁₂(zfrz)=e₁₂(vfrz)∈N` | PASS in content; correction: add `RankTwoPrintedSteps.manuscriptSentence_rankTwoConjugationIntoN` for `…∈N` |
+| 05233e222ae6 | `e₁₂(r)∈N`, then `e₂₁(R)≤N` | PASS |
+
+### lem:ring-compression-cell and eq:intertwine (tex 867–925)
+
+| key | sentence | verdict |
+|---|---|---|
+| 49be74c2726c | `Let R … ts=1, e=1-st` | PASS |
+| 1eb8329e0e6b | `In G=EL₄(R) let L=EL₃(R) occupy coordinates 1,2,3` | PASS; correction: add `OneSidedCompressor.coreEmbedding_range` (`core R` is the image of `EL₃(R)`) |
+| 8f9f00fd2f55 | `there are u,c with uLu⁻¹≤L, c∈C_G(L)` and the two identities | PASS (`printedEll = e₂₃(1)`, `printedDefectRoot = e₁₃(e)`) |
+| f417d06b695f | off-diagonal entries of `uLu⁻¹` are `sat` | PASS: closure induction over all of `uLu⁻¹`, not only generators |
+| fa78bbc31649 | `e²=e`, `es=te=0` | PASS |
+| 718cc7b04afd | `u_i = e_{4i}(t-1)e_{i4}(1)e_{4i}(s-1)e_{i4}(-t)` | PASS (RingCompressionCellGeneral, every ring) |
+| f52624ced12a | block `(s e;0 t)`, `u=u₃u₂u₁` is the displayed matrix | PASS |
+| c0383f82a141 | invertible as a product of elementary matrices | PASS |
+| 8ed7601a0e35 | `For 1≤i≠j≤3 and a∈R`, display `u e_ij(a) = e_ij(sat) u` | PASS; correction: add `OneSidedCompressor.compressor_mul_coreRoot`, which is the display itself (the row names only the conjugation form) |
+| 8782d1207725 | the entry computation `sa·ts=sa`, `sa·te·t^{j-1}=0` | PASS (every ring) |
+| 3e97a39311f3 | `So uLu⁻¹≤L, and eq:intertwine gives the last assertion` | PASS |
+| d1142160bf17 | `c=[e₄₁(e),e₁₄(t)]=diag(1,1,1,1+et)` | PASS |
+| 83ed5eb3b38c | `c∈C_G(L)` along the diagonal-shape route | PASS |
+| 0f4f9e94cc50 | `Both uc and e₁₂(e)u equal u+etE₁₄: last column (e,et,et²,t³)ᵀ(1+et) …; e₁₂(e)u adds e times row 2 …` | **GAP**: `compressor_mul_centralMark` proves `uc = e₁₂(e)u` by a single `fin_cases` computation; neither the common value `u+etE₁₄` nor the two printed column and row reasons is carried. Fix G3 |
+| 419d553a0d48 | `So ucu⁻¹=e₁₂(e)`, and the Steinberg relation gives the second identity | PASS; correction: add the Steinberg relation `elementaryRoot_commutator` used by `defect_eq` |
+
+## Builds (claimed)
+
+- G1 `PrintedTwoCopiesConverse`: for every ring and every `v, w : Fin 2 → R` with `w_iv_j = δ_ij`, `w₀v₀ = 1` and
+  `w₁(1-v₀w₀)v₁ = 1`, along `w₁v₁ - (w₁v₀)(w₀v₁)`.
+- G2 `PrintedTwoCopiesFourEquations`: the four printed equations with their printed middle sums.
+- G3 `PrintedCompressorMarkProducts`: `uc = u + etE₁₄`, `e₁₂(e)u = u + etE₁₄`, the last column of `uc` is the last column of
+  `u` times `1+et`, and the first row of `e₁₂(e)u` is row 1 plus `e` times row 2.
+
+## Progress log
+
+- 09-13 ~17:15: ledger landed; module written; probe queued.
