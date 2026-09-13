@@ -102,6 +102,32 @@ TS=""; [ -n "${CORES:-}" ] && TS="taskset -c $CORES"
 echo "[job] $(hostname -s) cores=${CORES:-slurm} threads=$LEAN_NUM_THREADS base=$SHA lane=$LANE mods: $MODS" >> "$LOG"
 T0=$(date +%s)
 timeout 10800 nice -n 5 $TS lake build $MODS >> "$LOG" 2>&1; RC=$?
+# Message replay (09-13; research/artifacts/probe-artifact-restore-empty-log-defect-2026-09-13.md): an overlay module
+# restored from the shared artifact cache gets a synthetic trace with an empty log, so its warnings and `#print axioms`
+# output never reach $LOG, and the hole gate below could pass an incomplete proof in a Palomar module. Rebuilding with
+# LAKE_RESTORE_ARTIFACTS=false restores it again, so every overlay module whose messages a gate reads (Palomar/*.lean
+# outside *Challenge.lean, and any file with `#print axioms` lines) that this build did not Build is elaborated once
+# more with `lake env lean`, which writes no outputs. Its messages are appended to $LOG in Lake's `severity: file:l:c:`
+# form (a closure line printed without a position gets `info: file:0:0:`); an elaboration failure fails the probe (rc=8).
+if [ $RC -eq 0 ]; then
+  while IFS= read -r p; do
+    case "$p" in *.lean) ;; *) continue;; esac
+    need=0
+    case "$p" in Palomar/*Challenge.lean) ;; Palomar/*.lean) need=1;; esac
+    grep -q '^#print axioms ' "$CLONE/$p" && need=1
+    [ $need = 1 ] || continue
+    m=${p%.lean}; m=${m//\//.}
+    { grep -qF "Built $m " "$LOG" || grep -qE "Built ${m//./\\.}\$" "$LOG"; } && continue
+    echo "[job] replay: $m was not Built by this build, so its messages did not print; elaborating it with lake env lean" >> "$LOG"
+    timeout 3600 nice -n 5 $TS lake env lean "$p" > "$CLONE/.nm/replay-$TAG.txt" 2>&1; rrc=$?
+    pe=${p//./\\.}
+    sed -E -e "s#^(${pe}:[0-9]+:[0-9]+): (info|warning|error): #\2: \1: #" \
+           -e "s#^('[^']*' (depends on axioms: |does not depend on any axioms))#info: ${p}:0:0: \1#" \
+      "$CLONE/.nm/replay-$TAG.txt" >> "$LOG"
+    [ $rrc -eq 0 ] || { echo "[job] replay: lake env lean $p exited $rrc" >> "$LOG"; RC=8; }
+  done < "$CLONE/.nm/ovpaths-$TAG"
+  rm -f "$CLONE/.nm/replay-$TAG.txt"
+fi
 echo "EXIT=$RC" >> "$LOG"
 echo "===== SUMMARY"
 echo "lane $LANE tag $TAG host $(hostname -s) cores ${CORES:-slurm} base ${SHA:0:9} seconds $(( $(date +%s) - T0 )) log $LOG"
@@ -121,6 +147,7 @@ for m in $MODS; do
   else echo "UP-TO-DATE-OR-NOT-REACHED $m"; fi
 done
 echo "--- rebuilt modules: $(grep -c 'Built GroupApproximation\|Built Palomar' "$LOG")"
+grep '^\[job\] replay:' "$LOG"
 echo "--- compiled overlay files (olean newer than the source as built; a cache restore counts: same input hash)"
 while IFS= read -r p; do
   case "$p" in *.lean) ;; *) continue;; esac
