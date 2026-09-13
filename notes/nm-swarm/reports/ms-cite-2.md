@@ -57,3 +57,36 @@ type, its audit line and its import path. No claim here rests on a local build.
 
 Every assumed cited result sits behind hgreendlinger, which the other swarm's W1 lanes and w1-binder-1..8 own, so this lane
 built no module.
+
+## Binder 6 help (09-13 ~17:40): `CopyClean.side_cell`
+
+Main's next item for this lane is one leaf of W1 binder 6 (`OsinSectionPocketFaceSetSectionStatement`). Binder 6 still
+needs an O-equivalent copy with legal labels that satisfies the six edge conditions `PocketWalk.CopyClean`
+(Estimating/OsinPocketCopyWalk). The owners of record are:
+
+| field | owner |
+|---|---|
+| `spur` | hs-vanishes, landed at 36ff632cd |
+| `cell_outer` | w1-binder-6 |
+| `side_outer` | w1-binder-6, after this lane's transport interface lands |
+| `cell_self`, `regions` | leavitt-units (ruling 14:00, copies (b) and (c)) |
+| `side_cell` | this lane (agreed with w1-binder-6 by direct message, 17:39) |
+
+CLAIM inner cell-side thickening:
+- `GroupApproximation/GGT/VanKampen/SurgeryCellSideThickening.lean`: the statement, the counting and the induction.
+- `GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions.lean`: the regions transport.
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCopySideCell.lean`: the `side_cell` field on the copy.
+
+The statement: a distinguished section family has a distinguished section family over the same cuts, on an
+O-equivalent diagram, in which no left or right side dart of a selected region has across it a relator face with at
+least two darts that lies in no selected region. The regions correspond with the same weight, target profiles and
+source indices.
+
+The route has four parts.
+- **Surgery.** `FaceEdgeDoubling.diagram` puts a G digon in the relator face at the dart across the side dart.
+- **Transport.** `FaceEdgeDoublingRegions.contiguityGeometry` needs the face across the doubled dart to lie in no
+  region, which fails for the region owning the side dart. The new transport replaces that hypothesis with: the
+  doubled dart lies in no source or target arc. This follows from the boundary cycle having no duplicate and from the
+  selected regions being disjoint.
+- **Induction.** Induct on the number of such darts, as in `SurgeryOuterSpurThickening.exists_spurFree`.
+- **Monogon source cells.** They need no copy: the one dart lies in the source arc of a nondegenerate exterior region.
