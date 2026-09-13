@@ -25,10 +25,12 @@ is finitely presented, torsion-free, not sofic, and `cd D <= 3`.
   that dimension is not controlled. Here it is at most three.
 - Its certificate is Kun--Thom Theorem A, the one recorded certificate not excluded in finite
   dimension by `kazhdan-compression-instances-have-infinite-vcd`.
+- Its dimension is exactly three. `compressed-doubles-raise-cohomological-dimension` (DB1) gives
+  `cd D >= 3`.
 - For roots that ask for nonsofic groups of dimension two (`nonsofic-one-relator-group`,
-  `nonsofic-one-vertex-square-complex-group`, `titz-witzel-kernel-nonsofic`), the gap is now one
-  dimension, and it sits exactly in the Mayer--Vietoris term
-  `H^2(Gamma_hat;M) -> H^3(D;M)`.
+  `nonsofic-one-vertex-square-complex-group`, `titz-witzel-kernel-nonsofic`), doubles cannot close
+  the last dimension: by (DB1), every double over a compressed Kazhdan subgroup has dimension at
+  least three.
 
 **Model tests.**
 - The double of `SL_3(Z)` over the normal subgroup `1` is sofic, so non-normality is used.

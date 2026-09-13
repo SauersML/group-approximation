@@ -14,9 +14,10 @@ refuted_by: [cd-two-group-with-infranormal-kazhdan-pair]
 pulls the nine-leaf Leavitt pair back through the Ollivier--Wise graphical Rips cover of
 `L_(F_2)(1,2)^x`. That cover is torsion-free with `cd <= 2` and has a Kazhdan kernel. The pulled-back
 pair is infranormal, not normal, Kazhdan, and has a strict compressor. The proved Attempts below
-remain valid as necessary conditions satisfied by that example. The question that matters for the
-Titz--Witzel kernels is narrower and still open: whether a Kun--Thom double, rather than a pair,
-can have cohomological dimension two.
+remain valid as necessary conditions satisfied by that example. The narrower question that
+matters for the Titz--Witzel kernels is whether a Kun--Thom double, rather than a pair, can have
+cohomological dimension two. `compressed-doubles-raise-cohomological-dimension` answers it
+negatively.
 
 The original statement follows.
 

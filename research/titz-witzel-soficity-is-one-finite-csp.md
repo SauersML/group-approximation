@@ -148,7 +148,8 @@ about the gate.
   - The expander-matching criterion, Kun--Thom wreath products and lamp configurations have no
     instance in any subgroup of `K`, by `vcd-two-groups-contain-no-kazhdan-commuting-pairs` and
     `kazhdan-compression-instances-have-infinite-vcd`.
-  - The Kun--Thom double is not excluded by that count.
+  - Kun--Thom doubles are excluded as well: they have dimension at least three
+    (`compressed-doubles-raise-cohomological-dimension`).
 - **Where it stops.** In both directions the missing ingredient is quantitative:
   - a construction whose sparse defects are exact on no relator, for the positive side;
   - the dimension-independent repair inequality of the audit, for the negative side.

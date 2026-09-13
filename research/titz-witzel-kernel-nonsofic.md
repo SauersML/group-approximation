@@ -51,8 +51,8 @@ group known today.
     (`cd-two-group-with-infranormal-kazhdan-pair`, refuting
     `cd-two-groups-have-no-infranormal-kazhdan-pairs`). Their double has dimension at most three
     (`fp-torsion-free-nonsofic-group-of-cd-at-most-three`).
-  - A proof of this claim through a double needs two things: a strictly compressed Kazhdan subgroup
-    `Gamma <= K`, and a double of dimension two that embeds in `K`. The obstruction is the
-    cokernel of `H^2(G;M) -> H^2(Gamma;M)` recorded in that proof. When `H_2(Gamma;Q)` is
-    finite-dimensional, the pair alone already forces every rational 2-class of `Gamma` to die in
-    `K`, by the proved Attempts on the refuted node.
+  - No such double embeds in `K`. By `compressed-doubles-raise-cohomological-dimension` (DB2),
+    a Kun--Thom double over a Kazhdan pair has cohomological dimension at least three. So every
+    recorded nonsoficity certificate is vacuous in `K`: the criterion, lamps, and doubles. A proof
+    of this claim needs a new mechanism, such as the repair inequality or the commutator collapse
+    above.

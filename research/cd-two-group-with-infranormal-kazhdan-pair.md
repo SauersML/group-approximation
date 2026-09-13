@@ -22,7 +22,8 @@ strictly compressed Kazhdan subgroup.
 - The refuted claim was a general fence. The specific question is still open: does some subgroup
   of a Titz--Witzel kernel `K` form such a pair?
 - For the Kun--Thom double to certify nonsoficity of `K`, the double itself would have to embed in
-  `K`, so it would need cohomological dimension at most two. The double built here is only shown
-  to have dimension at most three (`fp-torsion-free-nonsofic-group-of-cd-at-most-three`).
+  `K`. It cannot: every such double has dimension at least three
+  (`compressed-doubles-raise-cohomological-dimension`). The one built here has dimension exactly
+  three (`fp-torsion-free-nonsofic-group-of-cd-at-most-three`).
 
 Proof: `cd-two-group-with-infranormal-kazhdan-pair-proof`.

@@ -29,8 +29,9 @@ So there is a nonsofic group of finite cohomological dimension. Its subgroups co
 - The commuting-factor criterion and lamp wreath products never fire in finite virtual
   cohomological dimension (`kazhdan-compression-instances-have-infinite-vcd`). Theorem A doubles
   do.
-- For a group of cohomological dimension two, the only recorded certificate not yet excluded is a
-  Kun--Thom double of dimension two. The dimension of this `D` is not controlled, since `G` is built
+- In torsion-free dimension two even doubles are excluded: a double over a Kazhdan pair has
+  dimension at least three (`compressed-doubles-raise-cohomological-dimension`). The dimension of
+  this `D` is not controlled from above, since `G` is built
   over a lattice in `Sp(2,1)`. `fp-torsion-free-nonsofic-group-of-cd-at-most-three` uses the
   Ollivier--Wise cover instead, which gives finite presentation and dimension at most three.
 - `G_hat` is in fact all of `G`: the nine-leaf group is the whole unit group (see the proof of that

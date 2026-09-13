@@ -38,5 +38,6 @@ conjugate into a copy of `G`, which is torsion-free.
 **Where dimension two fails to follow.** `H^3(D;M)` is the cokernel of
 `H^2(G;M)^2 -> H^2(Gamma_hat;M)`. For a `G`-module pulled back along the fold map `D -> G`, this
 is the cokernel of restriction `H^2(G;M) -> H^2(Gamma_hat;M)`. By Shapiro's lemma and right
-exactness of `H^2(G;-)`, that cokernel is `H^2(G; CoInd_(Gamma_hat)^G M / M)`. Whether it vanishes
-for every `M` was not decided.
+exactness of `H^2(G;-)`, that cokernel is `H^2(G; CoInd_(Gamma_hat)^G M / M)`. It does not vanish
+for every `M`: `compressed-doubles-raise-cohomological-dimension` exhibits a coinduced module where
+it is nonzero, so `cd D = 3`.

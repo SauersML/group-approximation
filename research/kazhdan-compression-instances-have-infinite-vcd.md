@@ -60,9 +60,10 @@ finite-index subgroup of `G` has finite cohomological dimension:
 So the compression criterion and lamp wreath products never certify nonsoficity in finite virtual
 cohomological dimension, but Kun--Thom doubles do: the double of
 `fp-torsion-free-nonsofic-group-of-cd-at-most-three` is finitely presented, torsion-free and of
-dimension at most three. For a group of cohomological dimension two, such as a Titz--Witzel kernel,
-the question left is whether a Kun--Thom double of dimension two exists and embeds. The pairs
-themselves exist in dimension two (`cd-two-group-with-infranormal-kazhdan-pair`).
+dimension exactly three. For a torsion-free group of cohomological dimension two, such as a
+Titz--Witzel kernel, the doubles are excluded as well
+(`compressed-doubles-raise-cohomological-dimension`), even though the pairs themselves exist there
+(`cd-two-group-with-infranormal-kazhdan-pair`).
 
 Credit: the nesting is the argument of `fournier-facio-group-contains-simple-wreath-shift` (W7),
 stated for arbitrary criterion data. Proof: `kazhdan-compression-instances-have-infinite-vcd-proof`.
