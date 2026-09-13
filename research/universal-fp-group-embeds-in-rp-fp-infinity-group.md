@@ -69,16 +69,31 @@ containing an `F_∞` subgroup of finite index.
 - **Rope trick** (established: `higman-rope-trick-group-is-never-fp3`). The
   rope-trick outputs of Higman's and Leary's embeddings are never `FP_3(Q)`.
   So a recursively presented `FP_∞` host must come from a different device.
-- **Leary-type `FP` groups** (not yet evaluated). Bestvina--Brady kernels and
-  Leary's groups `G_L(S)` over acyclic flag complexes `L` are of type `FP` over
-  `Z` without being finitely presented. That is exactly the gap Theorem A lets
-  one use. Where it dies, or does not: these groups are built from
-  right-angled Artin groups and cube complexes. Whether they are torsion-free
-  has to be checked: a torsion-free host cannot contain `U`. Whether any
-  version with torsion (right-angled Coxeter or graph-product analogues)
-  contains arbitrary finitely presented subgroups is the open step. Pending:
-  reading Leary, *Uncountably many groups of type FP*, and *Subgroups of
-  almost finitely presented groups*, verbatim.
+- **Type-`FP` hosts: dead** (established, item 2 of
+  `universal-fp-group-hosts-have-unsolvable-word-problem`). A group of type
+  `FP` over a nonzero ring `R` has `cd_R < ∞`, while a host of `U` contains
+  `Z^k` for every `k`. That excludes Bestvina--Brady kernels `BB_L`, Leary's
+  groups `G_L(S)` over acyclic `L`, and every other type-`FP` group, whatever
+  their subgroup structure. So a recursively presented host has to be of type
+  `FP_∞` but not of type `FP`, with torsion of every order and infinite
+  cohomological dimension. That points to groups acting on
+  infinite-dimensional contractible complexes, not to cube-complex level
+  sets. Leary's `FP_2` embedding theorem is arXiv:1610.05813, and it goes
+  through the rope trick.
+- **Alexander-module test for form (3)** (necessary condition). Let
+  `N = ker(χ: U *_ψ → Z)`, which is the directed union of the conjugates
+  `t^{-j} U t^j`. If `U *_ψ` is of type `FP_m`, then for every `k <= m` the
+  module `H_k(N; Z) = colim_{ψ_*} H_k(U; Z)` is finitely generated over
+  `Z[t, t^{-1}]`. Reason: by Shapiro's lemma it is `H_k(U *_ψ; Z[t^{±1}])`,
+  computed from a free resolution that is finitely generated through degree
+  `m`, over a Noetherian ring. So `ψ_*` has to compress the homology of `U`,
+  which need not be finitely generated in any degree `>= 3`, to finitely
+  generated `Z[t^{±1}]`-modules. Factoring a power of `ψ` through an `FP_∞`
+  group does exactly that.
+- **Levelwise hosts.** If `U` has an `F_m` host for every finite `m`, does it
+  have an `F_∞` host? That is the open claim
+  `type-fn-plus-1-hosts-for-all-n-give-f-infinity-hosts`, and it is where the
+  two parts of Problem 1.1 could come apart.
 - **Defect criterion for HNN hosts** (standard; not yet a node). Let
   `H = HNN(V, L', α, β)` be finitely generated and `X = ∏_Λ ZH`. By the
   Bieri--Eckmann criterion, `H` is of type `FP_n` iff `H_k(H; X) = 0` for

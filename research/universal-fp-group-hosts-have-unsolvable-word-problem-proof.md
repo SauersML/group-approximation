@@ -17,8 +17,12 @@ Let `U ≤ H` with `U` universal finitely presented.
    run the ambient algorithm. So if `H` is finitely generated, its word
    problem is unsolvable.
 2. **Cohomological dimension.** `Z^k` is finitely presented, so `Z^k ≤ U ≤ H`
-   for every `k`. Cohomological dimension is monotone under passage to
-   subgroups and `cd(Z^k) = k`, so `cd(H) ≥ k` for all `k`. A group of finite
+   for every `k`. Cohomological dimension over a ring `R` is monotone under
+   passage to subgroups, and `cd_R(Z^k) = k` for every nonzero commutative `R`
+   (`H^k(Z^k; R) = R`, from the `k`-torus). So `cd_R(H) ≥ k` for all `k`. A
+   group of type `FP` over `R` has a finite-length resolution of `R` by
+   finitely generated projective `RH`-modules, so `cd_R(H) < ∞`; hence `H` is
+   not of type `FP` over `R`. A group of finite
    virtual cohomological dimension `d` contains no `Z^k` with `k > d`: a
    torsion-free finite-index subgroup `H_0` has `cd = d`, and `Z^k ∩ H_0` has
    finite index in `Z^k`, so it is free abelian of rank `k` with `cd ≤ d`.
