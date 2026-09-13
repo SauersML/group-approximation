@@ -54,6 +54,9 @@ and `(v,g)(w,h) = (v + g w, g h)`.
   `gamma t o = t o` iff `t^-1 gamma t in Gamma` iff `(e_1/2, I) in Gamma`, which fails.
 - So `[t z t^-1, gamma] = e_(t o) + e_(gamma t o) != 0` in the lamp group.
 
-**4. The HNN group.** `H` is the ordinary binary coset wreath of `Gamma <= G`. It is sofic,
-hence hyperlinear. By `binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` (1 iff 5),
-`G *_Gamma (Gamma x Z)` is hyperlinear. ∎
+Items 1–3 are proved. ∎
+
+**Remark (not used above).** `H` is the ordinary binary coset wreath of `Gamma <= G`, sofic and
+hence hyperlinear. The hyperlinearity of `G *_Gamma (Gamma x Z)` would follow from
+`binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` (1 iff 5). That node has its own
+route with open requirements, so this route does not consume it.
