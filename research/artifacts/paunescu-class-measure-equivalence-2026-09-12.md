@@ -226,12 +226,14 @@ infranormal non-normal Kazhdan pair lies outside 𝒮
 
 ## 5. What this gives the three action roots
 
-* `mixing-free-nonsofic-action-of-sofic-group`. If `Λ` is a nonsofic lattice and
-  `Γ` a sofic lattice in a group `L` with the Howe--Moore property, and
-  `Γ ↷ L/Λ` is essentially free, then it is a mixing nonsofic action of a sofic
-  group (Corollary 3.3 with `Z` trivial and Proposition 2.3). No such pair of
-  lattices is known, and on products of trees the decay of coefficients for the
-  product group needs its own check.
+* `mixing-free-nonsofic-action-of-sofic-group`. A nonsofic lattice is not needed.
+  `howe-moore-lattice-nonsofic-action-transfers-to-mixing` (lane
+  `ex-nonsofic-action-relative`) turns any ergodic nonsofic seed of a lattice `Γ` of a
+  Howe--Moore group `H` into the free mixing nonsofic action `Γ ↷ H ×_Γ (Z × {0,1}^Γ)`.
+  With Theorem 3.2, one lattice of `H` outside 𝒮 puts every lattice of `H` outside 𝒮,
+  and each of them then has such a witness. No lattice of a Howe--Moore group outside 𝒮
+  is known. Products of two tree groups are not Howe--Moore; their factorwise version is
+  `product-tree-mixing-transfer-2026-09-12.md`, which needs a nonsofic seed lattice.
 * `sl3z-admits-nonsofic-action`. A property of `SL_3(R)`; transfer from a nonsofic
   group is excluded by 4.3.
 * `hyperlinear-nonsofic-free-action`. Separating examples transfer along SOE.

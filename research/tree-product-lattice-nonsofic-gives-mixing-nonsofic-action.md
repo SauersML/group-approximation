@@ -36,6 +36,11 @@ mixing Koopman representation of `B` make each factor `G_i` ergodic on `W`, and
 factorwise Howe--Moore turns that into mixing. No Kazhdan subgroup is involved: lattices
 in products of trees have the Haagerup property.
 
-**Scope.** The seed must be a nonsofic group, not merely a group outside `𝒮`; the
-ergodicity step uses the Bernoulli seed only. Proof in
+**Scope.** The seed must be a nonsofic group, not merely a group outside `𝒮`: the
+ergodicity step uses the Bernoulli seed only. The Howe--Moore transfer accepts any ergodic
+nonsofic seed, but here that upgrade fails. With `Λ_2` a lattice of `G_2` and the seed
+`Z = G_2/Λ_2` (with `Γ` acting through `p_2`), the function `F(x, z) = h(xz)` on
+`G_1\L × Z = G_2 × Z` is invariant under `(x, z) ↦ (x p_2(γ), p_2(γ)^(-1) z)`. So `G_1` is not
+ergodic on `L ×_Γ Z'` and the induced action is not mixing. An arbitrary ergodic seed would
+need no factor on which `Γ` acts through a projection. Proof in
 `tree-product-lattice-mixing-transfer-proof`.
