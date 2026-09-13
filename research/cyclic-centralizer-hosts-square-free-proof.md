@@ -21,9 +21,10 @@ same inequality pattern as in `kaplansky-graph-squares-central-trefoil-proof`.
 The census `census2345.out` classifies them by explicit automorphisms of
 `F(h_2, h_3)`:
 - 18 tuples in 6 classes for length 2, all forcing `H` cyclic;
-- 66 tuples in 13 classes for length 3, of which 9 force `H` cyclic and 4
-  force `H` to be a quotient of `BS(1, +-1)`, `BS(1, +-2)` or the Klein bottle
-  group, hence solvable. That contradicts item 3 of
+- 66 tuples in 13 classes for length 3, of which 9 force `H` cyclic, 1 forces
+  `H` abelian (`p q^-1 p^-1 q`), and 3 force `H` to be a quotient of the Klein
+  bottle group `<p, q | p^2 = q^(+-2)>`. In the last two cases `H` is solvable,
+  which contradicts item 3 of
   `zero-divisor-support-subgroup-host-constraints`.
 
 This agrees with Schweitzer Thm 4.2 and A--T Thm 2.9 over `F_2`, and with
