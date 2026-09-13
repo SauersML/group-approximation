@@ -106,17 +106,29 @@ nm-endpoints.
    (TorsionFreeLiteratureInputsLeastArea). It flips only when all four walls close. nm-endpoints owns the flip.
 5. **Wiring.** QTwoFinitePresentationProduct and QTwoFinitePresentationNormal (mine, ba54a571f) are queued in
    the lead's wire queue. fff-quotient's Restrict, StabKSplit and StabK were already queued.
-6. **Orphan.** Before the re-split the lead assigned me Case 2 (`|I| = 1`) through `Υ'' = Υ'`.
-   - Its statement `LemmaFourSixCaseTwo` (QTwoLemmaFourSixCaseTwo, statement only, not compiled) landed as an
-     orphan at 9711ad726 so it is not lost.
-   - It is not on the Proposition 4.7 route.
+6. **Superseded route.** Before the re-split the lead assigned me Case 2 (`|I| = 1`) through `Υ'' = Υ'`.
+   - Its statement `LemmaFourSixCaseTwo` (QTwoLemmaFourSixCaseTwo, statement only) landed as an orphan at
+     9711ad726.
+   - The docstring now says the route is superseded and nothing consumes it (landed 5fd45c0bf after green probe
+     0913-020001-45307; attic copy 313612b9f).
    - The perfectness lemma for `|I| = 1` was never written.
-7. **Next.** simple-group names the Prop for my piece. I write no Lean until the name arrives.
-   - A draft proof is ready in my lane scratch, not in the tree:
-     `isFinitelyPresented_upsilon_unit_of_caseOne` (casing pair in the unit frame) and
-     `isFinitelyPresented_upsilon_short_of_caseOne` (via `exists_move_into_unit`, `upsilon_add_int` and
-     `upsilonConjEquiv`).
-   - Once the name arrives: rename the draft to match, probe, land after green.
+7. **My piece, landed unverified at 58cfe133e** (QTwoLemmaFourSixTransfer):
+   ```lean
+   def UpsilonShortOfCaseOne : Prop :=
+     LemmaFourSixCaseOneStatement →
+       ∀ Γ : Subgroup (Equiv.Perm ℚ), qTwo ≤ Γ → Γ ≤ gammaTwo → ∀ a b : ℚ, (∃ M, a ∈ Grid 6 M) →
+         (∃ M, b ∈ Grid 6 M) → a < b → b < a + 1 → Group.IsFinitelyPresented ↥(upsilon Γ a b)
+   theorem upsilonShortOfCaseOne : UpsilonShortOfCaseOne
+   ```
+   - Lemmas: `isFinitelyPresented_upsilon_unit_of_caseOne` (the casing pair in the unit frame) and
+     `isFinitelyPresented_upsilon_short_of_caseOne` (conjugation into the unit frame).
+   - The audit is `#audit_axioms`: the Prop is conditional on Case 1, so it is not a closed endpoint.
+   - Green probe 0913-020001-45307 (QTwoLemmaFourSixTransfer and QTwoLemmaFourSixCaseTwo, no warnings). Axioms
+     of `upsilonShortOfCaseOne`: `[propext, Classical.choice, Quot.sound]`.
+   - Consumed unchanged by simple-group's QTwoLemmaFourSixAssembly (3e2e73c3d, green probe 0913-021204-99418),
+     through `isFinitelyPresented_upsilon_short_of_caseOne` in `upsilonFinitelyPresented_of_caseOne`.
+     simple-group needs no further Lean from me on Lemma 4.6.
+   - Per simple-group, `LemmaFourSixDynamicsStatement` (hl-lemma46) is the only open leaf under hW.
 
 ## Assignment (2026-09-12)
 Hyde–Lodha Proposition 4.7, alongside fff-quotient:
