@@ -1,94 +1,115 @@
-# The Jones-index surviving shape for RNORM is dead
+# The Jones-index surviving shape for RNORM adds no leverage
 
-Date: 2026-09-12. Lane `rnorm-jones-index` (swarm 7).
+Date: 2026-09-12. Lane `rnorm-jones-index` (swarm 7). Corrected after the first
+landing.
 
 - **Target:** the surviving shape recorded on
   `relative-normalization-modulo-kazhdan-kernel` and in
   `rnorm-kazhdan-projection-sizes-2026-09-12.md` Section 4: a quantized Jones-type
   relative index on the unbounded-multiplicity Kazhdan sector `H_inf`, forced to
   `1` by an almost-invariance bound below `2`.
-- **Outcome:** no such index exists. Landed as
-  `jones-index-blind-on-unbounded-defect-sector`. RNORM and
-  `nonsofic-hyperbolic-group` stay OPEN.
+- **Outcome:** such an index exists, but it gives nothing.
+  - Its gap below `2` is automatic for every conditional expectation.
+  - "Index `< 2`" is equivalent to `P' = P`, which is the normalization on `H_inf`
+    itself.
+  - Landed as `jones-index-blind-on-unbounded-defect-sector`. The id wording is
+    historical. RNORM and `nonsofic-hyperbolic-group` stay OPEN.
+- **Correction.** The first version (commits 939a37611, eb8fd6e76) made two claims.
+  The first is false and the second is withdrawn (Section 2):
+  - the Pimsner--Popa index of a non-factor inclusion has no gap in `(1,2)`;
+  - quantization and the defect live on disjoint sectors.
 
 ## 1. What was proposed
 
-On `H_inf` the position of `Gamma_hat = EL_alpha(R)` is genuine data: `P` (fixed
-space of `W_rho(Gamma_hat)`) and `P' = W_rho(u)^* P W_rho(u)` are unitarily
-conjugate and nested, with strict inclusion allowed at infinite multiplicity. The
-proposal was to read a Jones index `[P:P'] in {4 cos^2(pi/n)} U [4, infinity)`,
-use a median/(T) argument to bound it below `2`, and conclude `= 1` (so `P = P'`,
-twist trivial, normalization, RNORM). This copies Kun--Thom's integer index below
-`2` on the *finite* cluster groupoid.
+On `H_inf` the position of `Gamma_hat = EL_alpha(R)` is genuine data. `P` is the
+fixed space of `W_rho(Gamma_hat)`, and `P' = W_rho(u)^* P W_rho(u)`. The two are
+unitarily conjugate and nested, and strict inclusion is allowed at infinite
+multiplicity. Relabel so that `P' <= P`, and put `Q = P - P'`.
 
-## 2. No quantization: the inclusion is not a subfactor
+The proposal had four steps, copying Kun--Thom's integer index below `2` on the
+*finite* cluster groupoid:
+1. read a Jones index `[P:P']`;
+2. use a median/(T) argument to bound it below `2`;
+3. conclude that it equals `1`, so `P = P'`;
+4. hence the twist is trivial, normalization holds, and RNORM follows.
 
-Jones' theorem quantizes `[M:N]` to `{4 cos^2(pi/n)} U [4, infinity)` **only for
-II_1 factors** `N <= M`. The relevant inclusion here has relative commutant
-containing `A_rho`, and on `H_inf` `A_rho` is diffuse by definition (that is what
-"unbounded multiplicity over the abelian block algebra `A`" means). So it is not a
-subfactor inclusion.
+## 2. The gap below 2 is free
 
-For a non-factor inclusion the Pimsner--Popa index
-`Ind(E) = inf{ lambda^-1 : E(x) >= lambda x }` of a conditional expectation is
-unrestricted: over the spectrum `(Spec A_rho, mu)` a diagonal expectation with a
-measurable weight `f >= 1` has `Ind = int f dmu`, which realizes every value in
-`[1, infinity)`. Concretely there is no gap in `(1,2)`. Therefore the crucial
-step of the proposal -- "bound below `2` forces `= 1`" -- has nothing to bite on.
+**Lemma 1.** Let `N <= M` be a unital inclusion of von Neumann algebras, `E : M -> N`
+a conditional expectation, and `Ind(E) = inf{lambda^-1 : E(y) >= lambda y, y >= 0}`.
+Then `Ind(E) in {1} U [2, infinity]`, and `Ind(E) = 1` iff `N = M`.
 
-This is the exact point where the analogy with Kun--Thom breaks. Their index was
-a ratio of **finite cardinalities** (orbit and isotropy sizes of a finite
-groupoid), landing in the integers, where "below `2`" does force `1`. Replacing
-finite cardinalities by an operator-algebra index only restores a gap when the
-inclusion is a subfactor.
+*Proof.* Suppose `N != M`.
+1. Some self-adjoint `a` lies outside `N`. Put `h = a - E(a)`, which is nonzero with
+   `E(h) = 0`.
+2. Normalize so that `||h|| = 1` and `1 in spec(h)`.
+3. Put `y = 1 + h >= 0`. Then `E(y) = 1`, and `1 >= lambda(1+h)` at the spectral
+   point `1` forces `lambda <= 1/2`. ∎
 
-## 3. No finite trace: relative dimension is indeterminate
+No factoriality, trace, Jones quantization, or (T) enters. The first version's
+"weighted diagonal with no gap in `(1,2)`" was wrong. The smallest check:
+`C <= C^2` with `E(a,b) = ta + (1-t)b` has `lambda = min(t, 1-t) <= 1/2`.
 
-The alternative reading of `[P:P']` is a ratio of von Neumann dimensions. In a
-trace-zero sofic model the canonical trace `tau(sigma(g)) = lim #Fix/|X_n|`
-vanishes on every infinite-conjugacy-class element. The fixed projections `P, P'`
-of the infinite group `W_rho(Gamma_hat)` on `H_inf` carry no finite-dimensional
-summand there, so a finite trace gives `tau(P) = tau(P') = 0`, and a semifinite
-trace gives `+infinity`. Either way `[P:P'] = tau(P)/tau(P')` is indeterminate.
-`W_rho(R^x)''` has no evident finite trace, as already noted on the crux node.
+So the analogy with Kun--Thom holds on this point, but it holds trivially.
+- Their step "integer below `2` is `1`" is the same free gap.
+- The content of their argument was the median/(T) estimate, not the gap.
 
-## 4. The dichotomy: quantization and the defect are disjoint sectors
+## 3. The index of `P' <= P` is the defect indicator
 
-Combine Sections 2--3 with `bounded-multiplicity-kazhdan-sectors-miss-leavitt-cover-defect`:
+**Lemma 2.** Put `M = P B(H_inf) P`, `N = P'MP' + QMQ`, and `E_P(x) = P'xP' + QxQ`,
+with `P != 0`. Then `Ind(E_P) = 1` if `P' = P`, and `Ind(E_P) = 2` if `P' != P`.
 
-| sector | relative commutant `A_rho` | quantized index? | defect visible? |
-|---|---|---|---|
-| `H_b` (bounded mult.) | trivial (subfactor) | yes | **no** -- Theorem B: `P = P'`, `sigma(G)` in closure of `T.sigma(N)` |
-| `H_wm` (weakly mixing) | -- | -- | no -- all Kazhdan projections vanish |
-| `H_inf` (unbounded mult.) | diffuse | **no** (Sec. 2--3) | yes, but unquantized |
+*Proof.*
+1. If `Q = 0`, then `N = M`.
+2. If `Q != 0`, then `P'MQ != 0`, since `P'` is conjugate to `P != 0`. So `N != M`
+   and `lambda <= 1/2`.
+3. Conversely, `(P'-Q)x(P'-Q) >= 0` gives `x <= 2E_P(x)` for `x >= 0`. ∎
 
-A relative index is Jones-quantized iff the inclusion is a subfactor iff the
-relative commutant is trivial iff multiplicity is bounded -- which is precisely
-the sector `H_b` where the datum is provably blind. The defect survives only on
-`H_inf`, where quantization fails. So **no sector supports a quantized index that
-sees the defect.** (T) cannot rescue this: trivializing `A_rho` to make a factor
-moves the analysis into `H_b`.
+The same holds for any expectation onto a subalgebra attached to `(P, P')` that
+equals the whole algebra exactly when `P' = P`: by Lemma 1, "index `< 2`" means
+`P' = P`.
+
+**Consequence.** The proposed bound "index `< 2`" is literally
+`W_rho(u)^* P W_rho(u) = P` on `H_inf`. The index does not jump in stages as the
+defect grows. It is `2` as soon as `Q != 0`, however small `Q` is in any trace.
+Jones' finer quantization `{4 cos^2(pi/n)}` in `[2,4)` is never used.
+
+## 4. Sector picture (corrected)
+
+| sector | `Ind(E_P)` | defect visible? |
+|---|---|---|
+| `H_b` (bounded mult.) | `1`: Theorem B gives `P' = P` | no |
+| `H_wm` (weakly mixing) | no `rho`-isotypic part, nothing to index | no |
+| `H_inf` (unbounded mult.) | `1` or `2`; `2` exactly when `P' != P` | yes, as the jump `1 -> 2` itself |
+
+The first version's table said `H_b` is quantized and `H_inf` is not. That is
+withdrawn: every expectation index has the gap below `2`, on every sector.
 
 ## 5. What survives
 
-Any working size on `H_inf` must detect a strict inclusion `P' subsetneq P` of
-unitarily conjugate, infinite-multiplicity `A_rho`-modules **without a trace and
-without quantization**: a monotone invariant of the pair
-`(W_rho(EL_alpha(R)), A_rho)` under the compressor `u` that no strict
-self-embedding of the defect witness `A = <eps_u^k(V_1000)>` can preserve. This is
-the same barrier reached by every prior RNORM lane, now sharpened to say why the
-one operator-algebraic candidate (a Jones index) cannot be it. None is
-constructed. **This is where it stops.**
+- **The index step is a relabeling.** Lemma 1 holds for amenable hosts too, so any
+  (T) input must go entirely into proving `P' = P` on `H_inf`.
+- **What a Kun--Thom-style argument would need.** On `H_inf`, `A_rho` commutes with
+  `W_rho(R^x)`: block invariance makes `1 (x) A_rho` commute with
+  `U_rho (x) W_rho`. So the argument would disintegrate over `A_rho` and need
+  `Q_omega = 0` fibre by fibre, which is the defect statement again. That is not
+  pursued here.
+- **The dimension-ratio reading is unsupported.** Reading `[P:P'] = tau(P)/tau(P')`
+  needs a trace on an algebra containing `P, P'` with `0 < tau(P) < infinity`.
+  None has been constructed, and `W_rho(R^x)''` has no evident finite trace in a
+  sofic model. The first version asserted that none exists. That is not proved,
+  and it is dropped.
+- **What any working mechanism must do.** Force `Q = 0` exactly. Index theory offers
+  no intermediate quantity. **This is where it stops.**
 
 ## 6. Red-flag check
 
-The obstruction uses only the structure of `H_inf` (diffuse `A_rho`) and
-trace-zero; it does not use soficity of `G`, holds whether or not `G` is sofic,
-and proves nothing about `V`. The diffuse relative commutant itself comes from the
-defect witness being infinite (Thompson's `V` inside `A`, strict self-embedding
-`eps_u`), which is the ultimate source of unbounded multiplicity. No property (T)
-is claimed to be used, because this is a no-go, not a nonsoficity proof.
+- **The (T) test.** The brief required that the index use (T) of `N` essentially
+  and fail for amenable hosts. The Jones-type index fails that test: its only gap
+  holds for every inclusion. This is why it cannot be the mechanism.
+- **Scope.** Nothing here uses soficity of `G` or proves anything about `V`, and no
+  root is established.
 
-Literature used as standard facts, not re-read from source in this lane: Jones
-(Invent. Math. 72, 1983), Pimsner--Popa (Ann. Sci. ENS 19, 1986), Kosaki
-(JFA 66, 1986).
+Literature: Pimsner--Popa (Ann. Sci. ENS 19, 1986) for the constant
+`lambda(E)`; Lemmas 1 and 2 are proved in full here. Jones (Invent. Math. 72,
+1983) is cited only for the finer quantization, which is unused.
