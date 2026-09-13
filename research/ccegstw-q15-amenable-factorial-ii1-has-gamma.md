@@ -26,6 +26,12 @@ amenable type II1 factorial tracially complete C∗-algebra satisfy property Γ?
   (`amenable-bauer-factorial-tracially-complete-without-gamma`) has a Bauer designated trace set. It
   fails Γ in the strongest form: its reduced power has no projection of constant trace `1/2`, central
   or not.
+## Attempts
+
+- **Refuted, so no proof attempt remains.** The negation is established through two independent routes,
+  `q15-negative-via-toms` and `q15-negative-via-bauer-pauli`, both unreviewed.
+- **Where a positive answer does hold.** `∂_e X` compact and totally disconnected (CCEGSTW
+  Proposition 5.28). Finite-dimensional `∂_e X` is announced there as forthcoming work.
 - **What survives.**
   - Γ from strict comparison, which is Toms–Winter itself.
   - Γ from a Winter-type tracial divisibility hypothesis, CCEGSTW's "modified Toms–Winter" variant.

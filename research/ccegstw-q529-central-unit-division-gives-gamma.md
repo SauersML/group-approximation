@@ -21,6 +21,14 @@ i = 1, . . . , k. Then (M, X) has property Γ."
 CCEGSTW add: "It remains open whether the approximately central division of the unit as in
 Proposition 5.27 implies property Γ outside the setting of Bauer simplices ([25, Question 3.5])."
 
+**CETW Question 3.5** (arXiv:1912.04207, MSI text copy, verbatim): "Let A be a separable C∗-algebra
+with no non-zero finite dimensional representations, and T(A) compact and non-empty. Suppose for some
+n ∈ N, there are projections p1, ..., pn ∈ A^ω ∩ A′ summing to 1_{A^ω} with τ(pi) = 1/n for each i and
+each τ ∈ T_ω(A). Must A have uniform property Γ?"
+- It asks for a single `n`, so it is weaker than Proposition 5.27's hypothesis.
+- Toms's algebra has central halving (`n = 2`), has no finite-dimensional representation, and lacks
+  uniform Γ. So it answers CETW Question 3.5 negatively as well.
+
 **REFUTED (2026-09-13, unreviewed)** by `central-unit-division-without-gamma-exists`.
 - **The witness.** The completion of Toms's simple no-Γ AH algebra over its Poulsen trace simplex.
 - **Why it works.**
@@ -30,3 +38,10 @@ Proposition 5.27 implies property Γ outside the setting of Bauer simplices ([25
 - **Credit.** The examples are Toms's, and the block mechanism is CETW's Proposition 5.10, as
   recorded on the block-balanced node.
 - **Conclusion.** The Bauer hypothesis in Proposition 5.27 cannot be dropped.
+
+## Attempts
+
+- **Refuted, so no proof attempt remains.** The negation is established through route
+  `central-unit-division-without-gamma-exists-via-toms` (unreviewed).
+- **Where it holds.** For Bauer `X` it is Proposition 5.27, and CETW Corollary 3.2 for C*-algebras.
+  There the argument needs extremality of limit traces, which fails on Poulsen simplices.
