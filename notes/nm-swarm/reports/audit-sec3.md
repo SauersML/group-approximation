@@ -160,8 +160,8 @@ pieces and the Euler-count chain. dgo-geometric covers the pocket Props and C3�
 5. **The Euler-count chain.** C1 `phiSubdividedMultigraphO` (`4e27d4965`), C2
    `card_add_six_le_of_linkedO` (`050822843`) and ghw-charp2's `hlinked` and `hV` producers are
    unconditional, and `DartMinimal` is sound.
-6. **Not audited.** `TwoGonHoldsInput` (C6′, `4beca2743`): its route goes through the pocket Prop
-   `EmptyTwoGonInput`, which is dgo-geometric's.
+6. **C6′ `TwoGonHoldsInput` (`4beca2743`).** Not audited in this item. The next lead item
+   audited it, in the section "Lemma 9.3 piece Props and P2".
 
 ### Candidate counterexample to `OsinLemma94PolygonSideBudgetInput`
 
@@ -191,6 +191,89 @@ pieces and the Euler-count chain. dgo-geometric covers the pocket Props and C3�
 - **Offered, not started.** A formal fixture for this instance. A one-cell `LeastArea` diagram
   over the line model, which would show that the hypotheses of `OsinLemma94SectionStatement`
   hold together.
+
+## Lemma 9.3 piece Props and P2 (lead item, 2026-09-13 ~11:40)
+
+The item has two parts:
+- The three Props that hull-euler's assembly `phiPrimeCountInput_of_smallFaces` (`4beca2743`)
+  takes: say whether each is true at the fixed parameters as stated, or give a model where it
+  fails.
+- The same for kh-ejz's sides theorem P2.
+
+The verdicts went to the owners and to the lead at about 13:05. Nothing fails as stated.
+
+1. **C4 `CornerTwoGonInput` (leavitt-units, `d0a41c1da`): true for every `E` and `P`; not
+   proved.**
+   - A two-gon face whose gap holds a corner sits at `O`, between consecutive exterior regions
+     `a` and `b` of `E`. Its gap runs from the end of `a`'s target arc to the start of `b`'s.
+   - Target arcs of different regions are disjoint in position, so the gaps are pairwise disjoint.
+     The arcs are disjoint because:
+     - the face of a target-arc dart lies in its region;
+     - `P.pairwise` makes the face sets disjoint;
+     - `P.nondegenerate` makes every arc nonempty;
+     - an arc stays inside one section.
+   - Sending a face to the corner its gap holds is injective into the `count` corner points.
+     `cut_zero` and `cut_last` name the same point, so the card is at most `cuts.count`.
+   - The assembly instantiates C4 at `E := linkedComponentO S.family a₀` through `P.mono`. This is
+     sound: the Prop quantifies over every `E` and `P`, and `hcorner` and `hsmall` receive the same
+     `P'`.
+2. **C5 `CellFaceCountInput` (hs-vanishes): proved.** `cellFaceCountInput` (`a6a2cadda`), probe
+   GREEN `0913-100213-68371`, bytes = main.
+3. **C6′ `TwoGonHoldsInput` (debt-conditional; hull-euler's assembly): true; the gap orientation is
+   right; not proved.**
+   - Orientation. `σ` at `O` runs through decreasing positions, so `GapAtOHoldsCorner` reads the
+     pocket-side gap. When `E` has two regions, the other face is the wrap gap, which holds corner
+     0 by `cut_zero`.
+   - With no corner in the gap, `a` and `b` target one section.
+   - A two-gon between two cells contradicts `NoMultipleEdges`. `NoLoops` and `P.noLoop` exclude
+     loops, so LoopCut ruling (A) adds nothing.
+   - `¬HoldsCellO` leaves no cell and no other region in the pocket. So `a ∪ pocket ∪ b` beats the
+     family, in `S.diagram` or in an O-equivalent copy. Both optimality clauses range over every
+     realized family of the same `Delta`.
+   - Formal debt:
+     - No landed theorem has type `TwoGonHoldsInput`. The closing pieces are over `S.diagram`:
+       `emptyTwoGonInput_holds` (`OsinPocketDiscEmptyTwoGon`) and `false_of_zeroCellPocket`
+       (`ce1028aa1`). Both take a `PocketRegion` whose complement cycle reads the merged
+       decomposition.
+     - `S.diagram` has no such region in three configurations:
+       - (a) a section backtrack between the targets;
+       - (b) a source-gap edge with cell `i` on both sides;
+       - (c) `a.rightSide` and `b.leftSide` sharing an edge behind cell `i`. The union is then an
+         annulus around cell `i`, with the shared edge inside it.
+     - Ruling (B) (`bdc7337fd`) names only (a) and (b). kh-ejz's report says `Γ₁` avoids (c). That
+       holds for the pocket walk, but not for the union the zero-cell merge needs, so (c) also
+       reaches the kept cell of `SectionPocketFaceSetInput`. A face-edge doubling in `a`'s face gives
+       a copy where the union is a pinched disc. That copy needs a transport of `a` and `b`, since
+       `SurgeryFaceEdgeDoublingRegions` carries only regions that avoid the doubled face and the
+       face across.
+     - Pinched unions. `noncrossingClosedWalkSides` gives only a `BoundaryCycle`, and
+       `bothFollowUnpinched` (`74d4ebd34`) needs `FollowsBoundary` on both cycles. So no landed
+       declaration builds a `PocketRegion` from a pinched walk.
+     - The turning condition for the pocket walk is open (kh-ejz).
+   - This verdict first went to hull-euler only, because I read the lead's "(debt-conditional)" as
+     a status. It names the owning lane, so `debt-conditional` received the verdict too.
+4. **P2 `NoncrossingClosedWalkSidesStatement` (kh-ejz, `26a7858f2`): proved; one docstring inference
+   is wrong.**
+   - `noncrossingClosedWalkSides` carries `#audit_closed_axioms`; probe GREEN `0913-111928-29730`.
+     `37957f19b` adds `turn_mem_of_first` and the pinched-pocket model test.
+   - It is not vacuous. These pass:
+     - every simple walk;
+     - the touching figure-eight;
+     - the pinched pocket `[5,3,4,6]`.
+     The crossing figure-eight fails, since its rotation reads in, in, out, out.
+   - `turn_mem` is alternation at each vertex, and it does not say which departure follows which
+     arrival. A model where the walk crosses:
+     - a vertex `v` with three two-edge petals, and `w = [out₁, in₂, out₂, in₃, out₃, in₁]`;
+     - the rotation at `v` is `alpha in₁, out₃, alpha in₂, out₁, alpha in₃, out₂`;
+     - the map is planar, with V 4, E 6 and F 4, and `turn_mem` holds;
+     - the pairs `(alpha in_k, out_k)` sit at positions (0,3), (2,5) and (4,1), and interleave
+       pairwise, so the walk crosses itself three times at `v`.
+     The theorem still holds for this walk: `w` bounds the three petal faces. The wrong part is the
+     docstring's "so the walk touches itself there but never crosses" (line 18). The statement is
+     fine.
+   - Consumer caveat. The conclusion is a `BoundaryCycle`, which has no chain condition. It gives no
+     `FollowsBoundary`, no `FaceSetBoundary` and no `IsDiscRegion`.
+   - No message with the statement came from kh-ejz; it was read on main.
 
 ## Open (owned by other lanes)
 
