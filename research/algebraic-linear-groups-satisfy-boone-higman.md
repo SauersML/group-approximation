@@ -17,8 +17,11 @@ Boone--Higman conjecture.
 
 This follows routinely from `rational-linear-groups-satisfy-boone-higman`, and no
 novelty is claimed; the reduction may be implicit in Zaremsky's paper. It is
-recorded because it is exactly the established part of
-`char-zero-linear-groups-satisfy-boone-higman`. In characteristic zero the open
-cases are the finitely generated linear groups whose matrix entries generate a
-field of positive transcendence degree, such as `SL_3(Z[t])` and the finitely
-generated subgroups of `GL_n(Q(t))`.
+recorded because it is the transcendence-degree-zero part of
+`char-zero-linear-groups-satisfy-boone-higman`.
+
+Positive transcendence degree is partly established by
+`polynomial-linear-groups-satisfy-boone-higman` (2026-09-12). It covers
+subgroups of `GL_N(Z[1/m][t_1..t_k])`, including `SL_3(Z[t])`. The first open
+cases are `SL_3(Z[t^(+-1)])` and the finitely generated subgroups of
+`GL_n(Q(t))` whose entries need non-constant denominators.
