@@ -18,6 +18,13 @@ function; (iii) there exists an algorithm with INPUT: n ∈ N, OUTPUT: F ⊂ F_X
 finite, such that π_Γ(F) contains an n-Følner set; (iv) Γ has computable Reiter
 functions."
 
+**Corollary 3.4**, verbatim: "For every n ∈ N fixed, the set of finitely
+generated recursive presentations of groups admitting n-Følner sets is
+recursively enumerable." The same page records, as Remark 3.5, that "for every
+n ∈ N fixed the property of admitting n-Følner sets is a presentation property,
+not a group property." The consumer is
+`uniform-folner-gap-switches-have-sigma1-amenable-locus`.
+
 **Corollary 3.6**, verbatim: "For every recursively enumerable class C of
 finitely generated recursive presentations of amenable groups there exists a
 recursive function U_C such that for every P_i ∈ C: F_(Γ_i,X_i) ≤ U_C
