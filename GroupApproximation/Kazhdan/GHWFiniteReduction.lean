@@ -29,14 +29,13 @@ theorem hasHaagerupProperty_of_closure_finite {G : Type} [Group G] (Γ : Subgrou
       Γ.subtype.comp (Subgroup.closure (s : Set Γ)).subtype x ∈
         Subgroup.closure (Γ.subtype '' (s : Set Γ)) := by
     intro x
-    rw [← Subgroup.map_closure]
+    rw [← MonoidHom.map_closure]
     exact Subgroup.mem_map_of_mem _ x.2
   refine HasHaagerupProperty.comap (h (Γ.subtype '' (s : Set Γ)) (s.finite_toSet.image _))
     ((Γ.subtype.comp (Subgroup.closure (s : Set Γ)).subtype).codRestrict _ hmem) ?_
   intro x y hxy
-  apply Subtype.val_injective
-  apply Subtype.val_injective
-  exact congrArg Subtype.val hxy
+  have h2 := congrArg Subtype.val hxy
+  exact Subtype.val_injective (Subtype.val_injective h2)
 
 end GHW
 end GroupApproximation
