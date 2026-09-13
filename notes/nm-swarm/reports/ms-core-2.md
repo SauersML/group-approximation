@@ -16,6 +16,10 @@ Snapshot: origin/main e1cce5941 (09-13 16:39). The tex range is byte-identical t
 CLAIM model test: step-subshift calibration of `IsCyclicEdge`, `CycleCondition`, `coreSubshift`,
 `reachableCylinderUnion` and `shift_mem_diff_of_not_isCyclicEdge` —
 `GroupApproximation/Dynamics/StepSubshiftCoreCalibration.lean`
+LANDED 66a51b0eb (probe 0913-172335-49867 GREEN, BUILT); queued for wiring. Results: the edge `false → true`
+is not cyclic, the cycle condition fails, `coreSubshift` is exactly the two constant configurations,
+`shift_mem_diff_of_not_isCyclicEdge` fires on the step point, and the reachable cylinder union from `true` is
+`{x | x 0 = true}`. It is a model test, not a carrier, so it has no census rows.
 
 ## Ledger
 
@@ -59,10 +63,10 @@ Status: `landed` means a carrier is on origin (unwired unless noted); `planned` 
 | `758517bf8d56` | 1410 | languages stabilize | `exists_language_retainedSubshift_eq` (dbb102249), `exists_restrict_image_eq_of_antitone` (239b3a4ca) | landed |
 | `647f44a95b8a` | 1411 | Y_0 has the cycle condition | `cycleCondition_coreSubshift` | planned |
 | `ffa61d258258` | 1412 | characterization of Y_0 | `mem_coreSubshift_iff` (dbb102249) | landed |
-| `048953d87f92` | 1415 | closed approximate orbits give closed walks | CoreSubshiftChainRecurrent (unlanded draft) | in progress |
-| `ae9c3d8b9922` | 1416 | cycles give closed approximate orbits | same | in progress |
-| `4fc54b29a740` | 1419 | overlap gives the accuracy | same | in progress |
-| `a08f25fce44c` | 1420 | Y_0 = CR(T) | `coreSubshift_eq_image_chainRecurrentSet` | in progress |
+| `048953d87f92` | 1415 | closed approximate orbits give closed walks | `reflTransGen_word_of_transGen` (CoreSubshiftChainRecurrent b34b97bfe) | landed |
+| `ae9c3d8b9922` | 1416 | cycles give closed approximate orbits | `transGen_of_reflTransGen` (b34b97bfe) | landed |
+| `4fc54b29a740` | 1419 | overlap gives the accuracy | `windowRel`, `exists_windowRel_subset`, `chainStep_windowRel_iff` (b34b97bfe) | landed |
+| `a08f25fce44c` | 1420 | Y_0 = CR(T) | `isChainRecurrent_iff_mem_coreSubshift`, `coreSubshift_eq_chainRecurrentSet`, `isMetricChainRecurrent_iff_mem_coreSubshift` (b34b97bfe) | landed |
 | `d8f8d764406c` | 1422 | noncyclic edge ⇒ forward-closed set excluding a | `not_reflTransGen_of_not_isCyclicEdge`, `reachableCylinderUnion` (dbb102249) | landed |
 | `9c49a2efb0ca` | 1424 | T(P) ⊆ P | `mapsTo_shift_reachableCylinderUnion` (dbb102249) | landed |
 | `854ec7cb0423` | 1424 | Tx ∈ P∖T(P) | `shift_mem_diff_of_not_isCyclicEdge` (dbb102249) | landed |
@@ -74,10 +78,10 @@ Status: `landed` means a carrier is on origin (unwired unless noted); `planned` 
 |---|---|---|---|---|---|
 | `3d8a2204752a` | 1428 | refining clopen partitions, mesh → 0 | chain-itinerary | `ChainCore.exists_refiningClopenPartitions` (3d9b2c4f0) | landed |
 | `fe2bd83087c0` | 1429 | itinerary subshifts π_m, cores Y_m, one-block factors ρ_lm | chain-itinerary | `itinerary`, `itinerarySubshift`, `oneBlock` (d616d6bcb) | landed |
-| `4bb19e581840` | 1432 | one-block maps preserve the cycle condition | chain-itinerary | `oneBlock_image_cycleCondition` | planned |
+| `4bb19e581840` | 1432 | one-block maps preserve the cycle condition | chain-itinerary | `cycleCondition_image_comp`, `cycleCondition_oneBlock_image`, `oneBlock_image_itineraryCore_subset` (OneBlockCycleCondition dd08aab94) | landed |
 | `ed348643e2ad` | 1434 | ρ_lm(Y_l) ⊆ Y_m; the display for Y_* | chain-itinerary | `inverseLimitCore`, `preimage_itinerary_antitone` (61363f1b9) | landed |
 | `807793f12a5e` | 1439 | π_m(Y_*) = ⋂ ρ_lm(Y_l) by fibre compactness | chain-itinerary | `itinerary_image_inverseLimitCore` (61363f1b9) | landed |
-| `b180421b55ab` | 1440 | the intersection has the cycle condition | chain-itinerary | `cycleCondition_itinerary_image_generalCore` | planned |
+| `b180421b55ab` | 1440 | the intersection has the cycle condition | chain-itinerary | `cycleCondition_iInter_oneBlock_image`, `cycleCondition_itinerary_image_generalCore` (ItineraryCoreCycleCondition dd08aab94) | landed |
 | `2df08eeac3cb` | 1442 | coefficient pullback injective unital; fine partitions | chain-itinerary | `CrossedProduct.coeffMap_injective` (f9390d923), `exists_forall_proj_eq_imp_of_locallyConstant` (3d9b2c4f0) | landed |
 | `c825bc73828a` | 1444 | R_{Y_*} increasing union of LEF rings | chain-itinerary | `isLEFRing_of_monotone_ringHom_range` (6ac372c36); `isLEFRing_crossedProduct_generalCore` planned | partial |
 | `c99bf0bdb029` | 1447 | chain recurrence passes to factors, so Y ⊆ Y_* | hull-euler | `Dynamics.mapsTo_chainRecurrentSet` (20911e5b2) | landed |
@@ -131,3 +135,8 @@ No false claim found. Each item gives the check.
 
 - 09-13 ~17:05: ledger and claim landed (7a29fbdf0).
 - 09-13 ~17:15: W1 and W3 resolved against origin; StepSubshiftCoreCalibration probing.
+- 09-13 ~17:30: after the lead restart, two red probes (an unused closedness lemma; `norm_num` not imported) were fixed.
+  StepSubshiftCoreCalibration GREEN 0913-172335-49867, LANDED 66a51b0eb, queued for wiring. Ledger refreshed against
+  b34b97bfe (Y_0 = CR(T)) and dd08aab94 (one-block cycle condition, intersection cycle condition). Still planned by owners:
+  the cycle-condition LEF theorem (chain-words), nonemptiness and the cycle condition of Z_r and Y_0 (chain-subshift),
+  `R_{Y_*}` LEF, `Y_* = Y`, the defect cover and `R_Y` LEF (chain-itinerary).
