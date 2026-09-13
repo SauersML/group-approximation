@@ -181,6 +181,9 @@ theorem isClosed_setOf_monotone : IsClosed {f : ℤ → Bool | Monotone f} := by
 instance : CompactSpace TwoEnded := by
   exact isCompact_iff_compactSpace.1 isClosed_setOf_monotone.isCompact
 
+instance : SecondCountableTopology TwoEnded :=
+  TopologicalSpace.secondCountableTopology_induced TwoEnded (ℤ → Bool) Subtype.val
+
 instance : TopologicalSpace.MetrizableSpace TwoEnded :=
   TopologicalSpace.metrizableSpace_of_t3_secondCountable TwoEnded
 
