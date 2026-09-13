@@ -124,6 +124,32 @@ exterior. A doubling separates them only if the digon lies in neither region, so
 changes. Its face goes to `cellFace` and the side dart `w_j` to the new dart. No landed transport covers a region
 holding `f`: `FaceEdgeDoubling.regionFamily`, `regionFamilyOfArcs` and `DiscEmbeddingAway` all need `f ∉ s`.
 
+**LANDED ef924c4d2** (probe 0913-182150-4009 GREEN, BUILT both; wire-queued):
+- `SurgeryRegionPairThickening`: `RegionPairThickening.IsRegionPairDart Delta family x` holds for a dart of a face with at
+  least 2 darts in a region `a` whose reverse lies in a region `b ≠ a`. Also `regionPairCount`,
+  `regionPairCount_eq_zero_iff`, and `regions_of_noRegionPairDart hno hx hy hxy hmono`, which gives the field `regions`
+  for every pair `x ≠ y`. `hmono`, the monogon case, is an explicit hypothesis for now.
+- `SurgeryRegionPairThickeningModel` (decide): after doubling the shared edge inside `A` no pair dart remains; `A`'s
+  boundary `{0, 3}` becomes `{3, 6}`, i.e. `0 ↦` the new dart; `B`'s boundary is unchanged. Calibration: counting the digon
+  inside `A` keeps both pair darts.
+
+Agreements with w1-binder-5 (18:3x):
+- It withdraws its side–side claim and consumes `regionPairThickening` for `CellPocketWalk.CopyClean.regions`.
+- The statement also keeps, when given, no `CellEdgeThickening.IsCellEdgeDart` and no
+  `CellSideThickening.IsCellSideDart`.
+- The induction carries an invariant, `exists_regionPairFree_of_invariant (P) (hP) (S) (hS)`, over a named one-step
+  family on `FaceEdgeDoubling.diagram` with `target := H.target.map indexEquiv`. This follows the shape of
+  `CellSideThickening.exists_cellSideFree_of_invariant`, so `JoinsCells` is carried along.
+
+In flight: `SurgeryFaceEdgeDoublingHoldingRegion` (M3 part 1, probing; attic copy made):
+- `facePerm_dartImage`: face rotation commutes with `dartImage` everywhere, by the two `insertBefore` corners `w_j` and
+  `facePerm w_j`.
+- `faceOf_dartImage`, `alpha_dartImage_of_ne`, `holdingFaceSet` (images of the faces, without the digon), boundary darts
+  `↔` images, internal moves and boundary steps lift, and `holdingBoundary : FaceSetBoundary` with cycle `B.cycle.map
+  dartImage`, under `faceOf (α w_j) ∉ s`.
+- Next (part 2): shelling transport, contiguity geometry, the one-step section family, count decrease, invariant
+  induction, closed statement.
+
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.
 - 17:06 probe 0913-170556-76424 GREEN, BUILT IntroCompressorSentences.
