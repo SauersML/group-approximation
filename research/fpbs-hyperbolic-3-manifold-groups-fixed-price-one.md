@@ -79,3 +79,23 @@ claim is the 3-manifold case of that alternative.
   exponentially many paths with one rare event. So the claim waits on a
   clump-level count, or on a construction with clumps much larger than
   `1/delta`.
+* **Direct fixed-price-one criteria.** Slutsky, arXiv:2607.20273, gives
+  Theorem 1.1 (`|F_n S F_n^(-1)| / |F_n|^2 -> 0`) and Corollary 1.4 (ball
+  growth). Bevilacqua--Bowen, arXiv:2510.05459, give Theorem 8.1 (a
+  limit-amenable, partially doubly recurrent imp action of normalized cost
+  one) and Corollary 9.4 (the overlapping neighbourhoods property). Gaboriau's
+  higher-rank theorem (lecture notes, Theorem 2.54) needs real rank at least
+  two. Since `pi_1(M)` is exact, Theorem 8.1 needs only an amenable, partially
+  doubly recurrent action with infinite, non-atomic, essentially free ergodic
+  components. **Where it waits:** Section 6 of
+  `research/artifacts/fpbs/docs/normal-subgroup-fixed-price.md` shows the
+  following.
+  - Balls in `H^3`, in `PSL(2,C)` and in word metrics fail Corollary 1.4,
+    because growth has no polynomial factor.
+  - The overlapping neighbourhoods property fails for word metrics on
+    hyperbolic groups.
+  - The actions on horospheres, on geodesics of `H^3` and on the horofunction
+    space have a null conservative part, so none of them is partially doubly
+    recurrent.
+  No sequence for Theorem 1.1 and no other amenable action for Theorem 8.1 is
+  known.
