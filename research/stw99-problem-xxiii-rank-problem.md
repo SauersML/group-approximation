@@ -36,6 +36,23 @@ rank one nor comparison.
   type I has sr1 (EHT) so Thiel applies despite the failure of strict
   comparison; type II has a unique trace.  There is currently no
   candidate on which the problem could fail.
+  - **Correction (2026-09-12).** There is now a candidate.
+    - Toms's 2026 simple AH algebra without uniform property Gamma
+      (arXiv:2606.12188v2) has stable rank greater than one (Toms, via
+      Vaccaro), the Poulsen simplex
+      (`toms-doubling-ah-trace-simplex-is-poulsen`), no strict comparison
+      and no Z-stability.
+    - So no known positive cell applies. Its open instance is
+      `toms-schubert-algebra-misses-a-rank`, routed into the negation root.
+* **Exact passage reformulated (2026-09-12).**
+  `all-ranks-occur-iff-continuous-ranks-are-dense`: all ranks occur iff the
+  rank functions that are continuous on `QT(A)` are uniformly dense. So on AH
+  algebras, where rank density is known, the problem is whether the
+  approximants can be chosen continuous.
+  - In doubling AH systems with connected spectra, every continuous rank
+    built as an orthogonal sum of finite-stage pieces is constant
+    (`doubling-ah-finite-stage-continuous-ranks-are-constant`).
+  - So orthogonal-sum methods cannot decide the candidate above.
 * `stw23-skew-product-diffuse-fibres-have-all-ranks` gives a direct new
   many-trace class.  For a free minimal central dynamical coordinate and a
   unique-trace exact fibre containing one Lebesgue-distributed positive

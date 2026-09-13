@@ -28,3 +28,13 @@ and the Dadarlat--Toms compact finite-dimensional case.
   map. This makes the XVIII K1 route and this root share one hard open
   prerequisite, `stw18-k1-witness-strict-comparison-not-k1-injective`. No
   candidate is known.
+- **Through Toms's no-Gamma AH algebra (2026-09-12).**
+  `stw23-counterexample-from-toms-schubert-algebra` needs only the open
+  instance `toms-schubert-algebra-misses-a-rank`. That algebra escapes every
+  known positive cell: stable rank greater than one, Poulsen simplex, no strict
+  comparison, no Z-stability. No strict comparison is needed, so this feeder is
+  independent of the K1 route.
+  - Orthogonal sums of finite-stage elements realize only constant continuous
+    ranks there (`doubling-ah-finite-stage-continuous-ranks-are-constant`).
+  - Any realizing element for a non-constant affine function is a genuine Cuntz
+    supremum.
