@@ -82,6 +82,16 @@ parts 1--2.
 | `relator-width-over-nilpotent-by-locally-finite-groups` | weak-sofic-deep-wreath | PASS | 5 §13 |
 | `simple-group-psl-width-is-finite-field-linear-soficity` | weak-sofic-classical-covering | PASS | 5 §14 |
 | `simple-vertex-triangles-are-universal-for-triangle-vtf` | hyperbolic-triangle-theory | PASS | 5 §15 |
+| `a7a7a8-triangle-candidates-no-small-linear-representation` and `a7a7a8-triangle-candidates-no-4dim-char2-representation` | hyperbolic-triangle-search | PASS on method; exhaustive elimination certificates, not re-run | 6 §17 |
+| `finite-simple-spectrum-gives-quotientless-hyperbolic-group` | hyperbolic-triangle-theory | PASS | 6 §18.1 |
+| `convergent-quotient-count-decides-gromov-question` | hyperbolic-triangle-theory | PASS (a reduction) | 6 §18.2 |
+| `deligne-symplectic-covers-are-not-schatten-approximated` | nh-deligne-hs | PASS | 6 §19 |
+| `kazhdan-cover-models-round-iff-kernel-fixed-mass-one` | hs-instability-kazhdan | PASS | 6 §20 |
+| `compressor-extension-makes-roundable-vertex-part-invariant` | hs-instability-extension | PASS at the checked steps | 6 §21.1 |
+| `actor-extension-lifts-vertex-rounding-to-the-laurent-vertex` | hs-instability-extension | PASS as an implication, outline level | 6 §21.2 |
+| `leavitt-triangular-units-have-linear-depth-growth` | q34-unit-depth | PASS | 6 §22.1 |
+| `leavitt-free-group-leading-term-forces-linear-depth` | q34-unit-depth | PASS | 6 §22.2 |
+| `leavitt-heisenberg-centers-have-infinite-centralizer-rank` | q34-unit-depth | PASS | 6 §22.3 |
 
 No FAIL on a claim that decides a famous problem. No false establishment found.
 
@@ -156,20 +166,10 @@ parts 1--2:
 
 ## 4. Queue
 
-- The two a7a7a8 representation exclusions.
-- Refill claims established since 01:09:
-  - `actor-extension-lifts-vertex-rounding-to-the-laurent-vertex`;
+- Refill claims established since 01:09 and not yet reviewed:
   - `unit-type-vertex-rounding-agrees-with-sigma-on-laurent-steinberg`;
-  - `compressor-extension-makes-roundable-vertex-part-invariant`;
   - `one-compressor-wreath-has-models-with-exact-origin-vertex`;
-  - `kazhdan-cover-models-round-iff-kernel-fixed-mass-one`;
-  - `deligne-symplectic-covers-are-not-schatten-approximated`, with its three citations;
-  - `finite-simple-spectrum-gives-quotientless-hyperbolic-group`;
-  - `convergent-quotient-count-decides-gromov-question`;
   - `linear-quotient-exclusion-lifts-from-char-zero`;
-  - `leavitt-free-group-leading-term-forces-linear-depth`;
-  - `leavitt-triangular-units-have-linear-depth-growth`;
-  - `leavitt-heisenberg-centers-have-infinite-centralizer-rank`;
   - `simple-group-classical-width-finite-field-linear-soficity`;
   - `simple-group-width-over-all-finite-simple-groups`;
   - `non-linear-sofic-simple-groups-bounded-width-in-classical-groups`;
@@ -188,3 +188,6 @@ parts 1--2:
   ex-q34-collapse) and ex-nh-fresh.
 - `ex-review-backlog-2026-09-13-part5.md`: refills, first batch (RF Kazhdan HS instability, finite
   multipliers, one-compressor models, nilpotent-by-locally-finite width, PSL width, triangle universality).
+- `ex-review-backlog-2026-09-13-part6.md`: refills, second batch (a7a7a8 exclusions, the finite simple spectrum
+  and quotient count, Deligne Schatten collapse, Kazhdan cover rounding, roundable-part invariance, Laurent
+  descent, Leavitt depth growth and centralizer rank).
