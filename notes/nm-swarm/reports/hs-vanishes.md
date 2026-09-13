@@ -303,6 +303,14 @@ Module `GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean`, names
     depends on axioms [propext, Classical.choice, Quot.sound].
   * Wire queue: `GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening` at `36ff632cd`.
   * No census rows: the module certifies no printed sentence on its own.
+* Consumption, as sent to kh-ejz for configuration (a) of `SectionPocketFaceSetInput`.
+  * The endpoint moves the family, not a `PocketWalk`.  Apply it before building the walk.
+  * Move `a ≠ b ∈ exteriorAt S.family i` to `e a ≠ e b`.  `SameTargetProfile` keeps `target = none`
+    and the target arc's start and length, so `TargetsSectionIndex cuts j` holds.  With
+    `source.val`, both lie in `exteriorAt S'.family` at one cell.
+  * Build the walk on `S'.diagram`.  A section backtrack there would be an outer spur.
+  * A literal `PocketWalk` transport would move the data (`cellDarts_eq`, `outerDarts_eq`) but not
+    the closed-walk property, so it is offered only on request.
 * No shared core with fff-quotient's same-corner monogon doubling.  That one doubles inside an inner
   face (`f ≠ outerFace`); this one reuses the `hf`-free pieces of `FaceEdgeDoubling` at the exterior.
 
@@ -337,6 +345,8 @@ Module `GroupApproximation/GGT/VanKampen/SurgeryOuterSpurThickening.lean`, names
   * LANDED `a6a2cadda`.  Wire queue:
     `GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces` at `a6a2cadda`.
   * No census rows: the module certifies no printed sentence on its own.
+  * audit-sec3's verdict: `CellFaceCountInput` is true as stated and `cellFaceCountInput` proves it.
+    The file is unchanged since `a6a2cadda`, and nothing is open against C5.
 * Residual propositions owned by this lane: none.  `cellFaceCountInput D eps W` discharges the
   `hcell` hypothesis of hull-euler's `phiPrimeCountInput_of_smallFaces`
   (`OsinAppendixEulerSmallFaces.lean:123`).  `CornerTwoGonInput` (C4) and `TwoGonHoldsInput` (C6′)
