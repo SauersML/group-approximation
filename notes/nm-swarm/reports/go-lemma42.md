@@ -8,7 +8,8 @@ so the interface mirrors kh-cckw's E4 (`OsinPocketPinchSplitWalk`, ceeb03ecd).
 ## Module `Estimating/OsinPocketPinchCarry` (unwired)
 - 9acc804f2: landed unverified. Probe 0913-153115-61308 FAILED with one error: `Finset.mem_image` on `I.faceSet s`
   needs `open scoped Classical in`, as in SurgeryPinchSplitRegions.
-- Re-probe of the fixed bytes: see LANDED below.
+- LANDED, green: 275e24b43. Probe 0913-153737-1399 GREEN (base 4bc730024, md5 7640a9ed, bytes = origin); every
+  `#audit_axioms` prints [propext, Classical.choice, Quot.sound]. Wire-queued 09-13 after OsinPocketPinchSplitWalk.
 - namespace `PinchSplit.Input`:
   - `Inside s`: `leftFace ∈ s ∧ rightFace ∈ s`;
   - `kept_mem_faceSet_iff_of_inside`, `faceOf_mem_faceSet_iff_of_inside`, `isBoundaryDart_iff_of_inside`: with both
