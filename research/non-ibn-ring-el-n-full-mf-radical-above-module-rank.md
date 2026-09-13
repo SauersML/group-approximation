@@ -14,7 +14,9 @@ Let `R` be a countable unital ring with `R^m ≅ R^{m+d}` for some `m ≥ 1` and
 `EL_N(R)` to an MF group is trivial for every `N ≥ max(m+1, 3)`.
 
 - Instances: every Leavitt algebra of module type `L_k(m, m+d)`. For `L_k(2,3)` the conclusion holds for every `N ≥ 3`.
-  With `elementary-groups-over-fg-rings-have-property-t`, these are finitely generated Kazhdan groups with no nontrivial
+  Over a finite field `k`, with `elementary-groups-over-fg-rings-have-property-t`, these are finitely generated Kazhdan groups with no nontrivial
   MF quotient.
 - Recalled, not verified: `L(m,n)` with `m ≥ 2` is a domain (Cohn), so the ring is directly finite. That lies outside
   `cor:simple-infinite-ring`.
+
+**Review (un-verify, 2026-09-13): PASS after scope repair.** The conjugation `Φ(g) = AgB` through `R^M ≅ R^N` with a free coordinate, the product formulas, the commutator isolating `e_{kc′}(1)` and normal generation re-derived; `L_k(2,3)` gives `N ≥ 3`; Cohn and Bergman enter only as remarks. Scope: finite generation and (T) of `EL_N(L_k(2,3))` need `k` finite (a field finitely generated as a ring is finite), and the instance bullet now says so. See `research/artifacts/un-review-2026-09-13-part4.md` §2.

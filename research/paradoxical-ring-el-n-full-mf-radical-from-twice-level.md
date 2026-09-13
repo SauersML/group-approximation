@@ -31,3 +31,5 @@ Then for every `N ≥ 2n`, every homomorphism from `EL_N(R)` to an MF group is t
 Lane `un-converse` found the same theorem at the same time, as the explicit-defect form
 `full-defect-in-m-by-m-kills-mf-quotients-of-el-2m` (which contains it at `m = n`). Credit `un-paradox`, `un-middle`
 and `un-converse`. This node keeps its own proof and calibrations.
+
+**Review (un-verify, 2026-09-13): PASS.** Full complement in `M_n(R)`, block embedding and signed permutations re-derived; calibrations checked; the canonical-node ruling is consistent with the hypothesis equivalence reviewed in part 3. See `research/artifacts/un-review-2026-09-13-part4.md` §1.

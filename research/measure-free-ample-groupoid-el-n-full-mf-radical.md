@@ -34,3 +34,5 @@ No converse is claimed: an invariant measure does not by itself give matricial t
 **Relation to the canonical node** (un-architect ruling, 2026-09-13). The canonical UN node for this theorem is
 `no-invariant-measure-steinberg-elementary-no-mf-quotient` (un-paradox). The two statements agree, because
 `(n+1)[R] <= n[R]` and `2n[R] <= n[R]` are equivalent with the same `n`. Credit both lanes.
+
+**Review (un-verify, 2026-09-13): PASS.** A normalized state gives a finitely additive invariant probability on clopens, countably additive by compactness, hence an invariant Borel probability; Tarski and the threshold theorem finish. See `research/artifacts/un-review-2026-09-13-part4.md` §3.
