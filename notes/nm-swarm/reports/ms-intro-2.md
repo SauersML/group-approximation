@@ -71,7 +71,39 @@ CLAIM binder 5 step 5, the kept relator cell of the cell pocket (17:55), in two 
   `GloballyDistinguishedSectionFamily.exists_kept_of_cellPocketRegion_of_value`, `CellPocketKeptCellStatement` /
   `cellPocketKeptCell`
 
-Next: step 5, the kept cell. This is the cell analogue of `exists_kept_of_pocketRegion_of_value`: at least area, a
+**Step 5 CLOSED** (both modules new, unwired, wire-queued):
+- **35700dfe9** `OsinPocketCellMeetsContained` (probe 0913-180013-76668, BUILT):
+  `RealizedRegionFamily.subset_of_not_disjoint_cellPocketRegion`, `CellPocketMeetsContainedStatement` /
+  `cellPocketMeetsContained`. If no relator word has value one, a selected region meeting a pocket region whose cycle is
+  `K.walk` lies in it. A dart leaving the pocket is on the walk. On a side it is a boundary dart of `a` or `b`. On
+  `t_1`/`t_2` it crosses into `Π_i`/`Π_j`, which is not a region face because its word has value `≠ 1`.
+- **15e21098e** `OsinPocketCellKeptCell` (probe 0913-180502-96781 GREEN, BUILT; `cellPocketKeptCell` depends on
+  [propext, Classical.choice, Quot.sound]):
+  ```lean
+  theorem GloballyDistinguishedSectionFamily.exists_kept_of_cellPocketRegion_of_value (S) (ha hb hab) (hij : i ≠ j)
+      (hai hbi) (K : CellPocketWalk D eps S.diagram i j) (hfirst : K.firstSide = b.sideFrom j)
+      (hsecond : K.secondSide = a.sideFrom i)
+      (h₁ : ∃ G₁, K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i)
+      (hvalue : ∀ C ∈ S.diagram.relatorCells, RelLetter.listVal C.word ≠ 1)
+      (P : PocketRegion S.diagram) (hinner : P.inner.cycle = K.walk) :
+      ∃ kept, (cell S.diagram kept).face ∈ P.faces
+  theorem …exists_kept_of_cellPocketRegion_of_leastArea   -- the same with hlea : S.diagram.LeastArea
+  def CellPocketKeptCellStatement : Prop   -- over exists_of_joinsCells: LeastArea → ∀ P, P.inner.cycle = K.walk → kept cell
+  theorem cellPocketKeptCell : CellPocketKeptCellStatement.{u, w, v}
+  ```
+  Route: if P held no relator cell, `Surgery.InnerDiscRegion.ofPocketRegion` collapses it and absorbs every selected
+  region meeting it. That includes `a` and `b`, whose arcs on `Π_i` lie on `t_1`. Their arc darts are pairwise distinct
+  and lie on `t_1 ++ t_2`, so the weights add up to at most `|t_1| + |t_2|`. The merged face reads `t_1, s_2, t_2, s_1`:
+  a contiguity region from `Π_i` to `Π_j ≠ Π_i`, and `false_of_disc_absorbed_section` gives the contradiction. The
+  pocket needs no FollowsBoundary.
+- Residual Props: none.
+- First probe red at one tactic step: `rw [mergedGeometry_target]` in the section goal, where the target arc's type
+  depends on the target. The fix refutes the `none` case inside the hypothesis.
+
+Binder 5 now: steps 2–5 are closed on origin. Open:
+- Step 6, the pocket face set, pinch, and region with both FollowsBoundary: audit-sec5 (15:25 ruling). Nothing is in
+  flight for it and audit-sec5's last landing was 10:43.
+- w1-binder-5's `CellPocketCopyCleanStatement`, stated, not proved. This is the cell analogue of `exists_kept_of_pocketRegion_of_value`: at least area, a
 pocket region whose cycle is the walk holds a relator cell. Otherwise it absorbs the regions meeting it and
 `false_of_disc_collapse_singleton` contradicts the distinguished choice.
 
