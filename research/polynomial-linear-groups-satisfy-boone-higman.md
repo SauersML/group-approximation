@@ -14,8 +14,11 @@ artifacts:
 ---
 
 **ESTABLISHED (2026-09-12)** through
-`polynomial-linear-groups-satisfy-boone-higman-via-zaremsky`. Not independently
-reviewed; see the imports of `elementary-groups-over-polynomial-s-integers-are-fp`.
+`polynomial-linear-groups-satisfy-boone-higman-via-zaremsky`. ~~Not independently
+reviewed; see the imports of `elementary-groups-over-polynomial-s-integers-are-fp`.~~
+*Reviewed (lane `bh-poly-linear-review`, 2026-09-12).* The status stands. The
+review corrected the embedding step of the route and two citations in the proof
+of `elementary-groups-over-polynomial-s-integers-are-fp`.
 
 **Statement.** Let `m >= 1`, `k >= 0`, `R = Z[1/m][t_1,...,t_k]` and `N >= 1`.
 Every subgroup of `GL_N(R)` embeds in a finitely presented simple group.
@@ -34,8 +37,13 @@ Every subgroup of `GL_N(R)` embeds in a finitely presented simple group.
 
 **The host.**
 - Let `n = max(k+4, 2N)` and let `p` be a prime not dividing `m`.
-- The input embeds by `g -> diag(g, g^-1)` in `E_(2N)(R) <= E_n(R)`, and so in
-  `G = R^n x| E_n(R)`.
+- ~~The input embeds by `g -> diag(g, g^-1)` in `E_(2N)(R) <= E_n(R)`, and so in
+  `G = R^n x| E_n(R)`.~~ *Corrected (review, 2026-09-12):* `g -> diag(g, g^-1)` is
+  not a homomorphism.
+  - The input embeds by `g -> diag(g, (g^T)^-1, I_(n-2N))` in `SL_n(R)`.
+  - `SL_n(R) = E_n(R)`, because `n >= k+3` lies in Vaserstein's stable range and
+    `SK_1(R) = 0`.
+  - So the input embeds in `G = R^n x| E_n(R)`.
 - `G` is finitely presented and self-similar on `Z_p^n x Z_p^k`.
 - The simple group is the commutator subgroup of a Röver–Nekrashevych group of `G`,
   as in Zaremsky's theorem.
