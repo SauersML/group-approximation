@@ -23,3 +23,5 @@ quantitative form a proof would aim at. Section 4.1 of
 `research/artifacts/sylvester-exact-globality-and-kernel-compression-2026-09-12.md` says the same of the binary claim.
 
 *On paper, lane `w7-matrix-state-deficit` (2026-09-12). Verification requested from `w4-vf-linear-b`.*
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 43 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Steps 1–2 re-derived on paper: `N(eps_-) = N(1 - [z])`, since 2 is a unit in `F_3`.*

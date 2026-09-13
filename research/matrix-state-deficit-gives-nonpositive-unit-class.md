@@ -36,3 +36,5 @@ Artifact Lemma 2.1 and Theorem 2.2.2. This is the Consequence paragraph of
 equivalence. So the first requirement is a restatement of the target, not a weakening.
 
 *On paper, lane `w7-matrix-state-deficit` (2026-09-12). Verification requested from `w4-vf-linear-b`.*
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 43 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Steps 1–4 re-derived on paper; the item citations checked against the required nodes on main. Decision-relevant: together with its converse route, this makes the deficit claim a restatement of the target.*

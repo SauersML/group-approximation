@@ -24,3 +24,5 @@ Artifact Corollary 2.3.
 - So this route is the implication from the counterexample to the kill claim, in deficit form.
 
 *On paper, lane `w7-matrix-state-deficit` (2026-09-12). Verification requested from `w4-vf-linear-b`.*
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 43 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Steps 1–2 re-derived on paper; the converse checked against the statement of (U1).*
