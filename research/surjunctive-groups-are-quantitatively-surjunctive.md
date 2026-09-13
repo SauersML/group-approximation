@@ -65,3 +65,20 @@ and all `n >= 1`, `j, j' >= 0` with `(j' - j) log|D| < delta_Y n`, no injective 
     - Its converse needs a construction from small-margin maps over `G` to strict automata over `G x K`, and
       none is known.
     - If the equivalence holds, this claim is equivalent to `products-with-a-sofic-factor-are-surjunctive`.
+- **Rokhlin markers on subshift tracks (w7-quant-residue).** Artifact
+  `research/artifacts/quantitative-surjunctivity-rokhlin-markers-2026-09-12.md`.
+  - **Theorem.** An injection into `n` tracks missing patterns, plus a free track, lowers the Rokhlin entropy of the
+    amplified Bernoulli shift by `sum_i eta_i / |W_i W_i^-1|`, at a marker cost of `log 3` per distinct window
+    (`subshift-track-injections-lower-rokhlin-entropy`). The pushed-forward measure gives every invariant
+    configuration measure zero, so the proof reaches the residue.
+  - **Consequence.** Groups with maximal Bernoulli Rokhlin entropy are quantitatively surjunctive with
+    `delta_Y = -log(1 - |B|^(-|W|)) / |W W^-1|`. A group that is not quantitatively surjunctive has finite Rokhlin
+    supremum (`maximal-bernoulli-rokhlin-entropy-makes-groups-uqs`). Route
+    `quantitative-surjunctivity-via-maximal-rokhlin-entropy`.
+  - **Where it stops.** Every group known to have maximal Bernoulli Rokhlin entropy is sofic. So no new group becomes
+    quantitatively surjunctive, and the residue stays open over every nonsofic group.
+  - **Converse.** The candidate equivalence above is now the open claim
+    `sofic-product-surjunctivity-forces-quantitative-deficits`. This claim holds iff that one and
+    `products-with-a-sofic-factor-are-surjunctive` both hold (route
+    `quantitative-surjunctivity-via-sofic-product-surjunctivity`). If that claim holds and this one fails, some sofic
+    group lies outside the LEF permanence closure.

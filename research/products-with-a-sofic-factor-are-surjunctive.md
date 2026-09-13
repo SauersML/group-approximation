@@ -37,3 +37,9 @@ artifacts:
     exactly the residue of `quantitative-surjunctivity-constants-lift-from-quotients`.
   - **Where it dies.** For `G` with no nontrivial sofic quotient, `Y` contains all constant configurations, and no
     known count gives a constant.
+- **Converse (w7-quant-residue).** This claim together with `sofic-product-surjunctivity-forces-quantitative-deficits`
+  is equivalent to `surjunctive-groups-are-quantitatively-surjunctive`.
+  - **Rokhlin markers.** Groups with maximal Bernoulli Rokhlin entropy satisfy this claim for every sofic factor
+    (`maximal-bernoulli-rokhlin-entropy-makes-groups-uqs` and Theorem Q). Every known one is sofic, so that gives no
+    new instance.
+  - Artifact `research/artifacts/quantitative-surjunctivity-rokhlin-markers-2026-09-12.md`, Section 4.

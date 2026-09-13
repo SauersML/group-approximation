@@ -34,3 +34,10 @@ artifacts:
 - **The zero-boundary case needs nothing.** When the decoder reads inside the kernel, plain surjunctivity suffices
   (`normal-surjunctive-decoder-memory-forces-surjectivity`). A counterexample to this claim must use decoders whose
   boundary cost is unbounded.
+- **Maximal Bernoulli Rokhlin entropy (w7-quant-residue).** It gives this property with
+  `delta(B, w) = -log(1 - |B|^(-w)) / w^2` (`maximal-bernoulli-rokhlin-entropy-makes-groups-uqs`). Each window gets
+  its own marker set, so tracks missing different patterns cost `log 3` per distinct window, and amplification
+  removes that cost. Route `uqs-via-maximal-bernoulli-rokhlin-entropy`.
+  - **Where it stops.** Every group known to have maximal Bernoulli Rokhlin entropy is sofic. For amenable extensions,
+    co-amenable ascent already gives the extension maximal entropy. So no new group follows.
+  - Artifact `research/artifacts/quantitative-surjunctivity-rokhlin-markers-2026-09-12.md`, Sections 1–2.
