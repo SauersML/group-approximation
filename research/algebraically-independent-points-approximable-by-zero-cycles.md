@@ -10,7 +10,12 @@ artifacts:
   - research/artifacts/atiyah-two-variable-base-change-2026-09-13-part4.md
 ---
 
-**OPEN for s >= 3. Proved for s = 2** (Part 3 of the artifact, unreviewed).
+**OPEN for s >= 4.**
+- **s = 2.** Proved in Part 3 of the artifact. It is also a case of Philippon,
+  JNT 81 (2000), Theoreme 1 with `n = 2`.
+- **s = 3.** Proved by [[points-of-c3-approximable-by-zero-cycles]]
+  (unreviewed), from Philippon's Theoreme 1 with `n = 3`, `d = 0`
+  ([[philippon-zero-cycles-approximate-points-of-p3]]).
 
 Let `s >= 3` and let `z in C^s` have algebraically independent coordinates. Put
 `theta~ = (1, z) in C^(s+1)`.
@@ -66,15 +71,19 @@ should exist in every dimension.
   transversality needs control of the successive minima. Not attempted.
   Philippon, *Approximations algebriques des points dans les espaces projectifs
   I*, J. Number Theory 81 (2000) 234-253, doi:10.1006/jnth.1999.2461, looks like
-  the natural source. Its statement and its normalization of the algebraic
-  distance have not been checked, because the source could not be retrieved in
-  this session.
+  the natural source.
+  - **Read on 2026-09-13.** Theoreme 1 (p. 236) holds for
+    `max(0, n-3) <= d <= n`, so it covers zero-cycles for `n <= 3` only.
+  - Its distance is defined from the eliminant form. For `d = 0` it is the sum
+    of point distances up to `O_n(d(Z))`.
 * **Literature (read from hal-00480924, pp. 2-3).**
   - The full claim follows from [[philippon-zero-cycle-approximation-conjecture]],
     through `zero-cycle-approximation-via-philippon-conjecture`.
-  - Philippon says he proved it in dimension `<= 3` in JNT 81 (2000). If that
-    covers the arithmetic zero-cycle statement for `n = 3`, transcendence degree 3
-    follows. The theorem number and statement still have to be read from JNT 81.
+  - Philippon says he proved it in dimension `<= 3` in JNT 81 (2000). This was
+    confirmed from JNT 81 on 2026-09-13: Theoreme 1 with `d = 0` gives the
+    case `s = 3` (`points-of-c3-approximable-by-zero-cycles-proof`).
+  - Transcendence degree 3 then needs only the three-variable operator side,
+    `atiyah-cycle-machinery-transcribes-to-three-variables`.
   - He calls it open for `n > 3`, blocked only by an effective lower bound for
     arithmetic Hilbert functions.
 * **Credit.** For `s = 2`, Part 3 is an elementary, self-contained proof of a
