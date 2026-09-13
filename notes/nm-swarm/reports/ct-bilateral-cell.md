@@ -65,6 +65,28 @@ over ct-two-ended's `FinitaryGeneralLinear` (f4678fca8) and `TwoEndedRepresentat
 | "a finite invertible block extended by identity" is a unit | `exists_unit_rho_eq_of_mem_GLfin` |
 | `g σ^a` is a unit, closed | `exists_unit_rho_eq_mul_shiftGL_zpow`, `printedTwoEndedFinitaryShiftUnits : PrintedTwoEndedFinitaryShiftUnits` |
 
+## Item 3: the reduced W1 waist (additive, while ghw-assembly is down)
+
+LANDED ffd56be61 (probe 0913-181624-55398 GREEN; axioms [propext, Classical.choice, Quot.sound]),
+module `GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV2`:
+`relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2 : … → RelativeGreendlingerQuasiGeodesicLeastAreaStatement`,
+through `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsPos` (4db9c6729). No file of ghw-assembly or
+nm-endpoints was edited; the eight-binder `_of_openResiduals` waist is unchanged.
+
+| waist binder (roster ~14:50) | V2 status |
+|---|---|
+| 1 `OsinLemma94PolygonSideBudgetInput` + 2 `OsinLemma94UnboundSameCellStatement` | merged into the named residual `OsinLemma94PolygonCountInput` (binder 2 is false as spelled; the class route has no section-level producer yet) |
+| 3 `OsinLemma94CaseOneSameCellStatement` | reduced to `OsinLemma94CaseOneRCellStatement` by `osinLemma94CaseOneSameCell_of_rCell` |
+| 4 `OsinTwoGonHoldsSectionStatement` | named residual |
+| 5 `OsinMultipleEdgePocketRegionSectionStatement` | named residual, as spelled (hull-select's r1 copy form not landed) |
+| 6 `OsinSectionPocketFaceSetSectionStatement` | named residual |
+| 7 `PocketPinchLabelledStatement` | repaired: `PocketPinchLabelledPosStatement` |
+| 8 `GeodesicCollarStatement` | closed: `GeodesicCollar.StripStep.geodesicCollarStatement_holds` |
+
+To close 1+2 along the class route, a producer `OsinLemma94ClassCountInput → OsinLemma94PolygonCountInput` (or a
+class-word Lemma 9.4 section producer) is still missing; it would consume `classCovers_of_endLoops_sameCellFactor`
+(e3bbcf801) and `osinLemma94SameCellFactorInput_of_scan` (95f0853ba) over `OsinLemma94SameCellScanInput`.
+
 ## Residual statements
 
-None in this scope.
+In this lane's own modules, none. The W1 waist's six residuals are listed above.
