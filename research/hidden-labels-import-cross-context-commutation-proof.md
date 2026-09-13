@@ -86,8 +86,16 @@ denote the central support in `N'` of a projection `n in N'`, which lies in
 - `P_c` lies in `W*(P_q, P_(q'))`, so commuting with `P_q` and `P_(q')`
   implies commuting with `P_c`.
 - `X_u = 2 P_q^a - 1`, so (HL) gives the stated commutation.
-- In a factor pair algebra, a projection of `W*(P_q, P_(q'))` that commutes
-  with both PVMs is central, hence `0` or `1`.
+- **Factor pair algebras.**  Put `N = W*(P_q, P_(q'))`.  The projection `m`
+  need not lie in `N`, but it lies in `N' ∩ M`, so as in (H6) its central
+  support `C(m)` lies in `Z(N) = C`.
+  - If `C(m) = 1`, then (HL) on `m` gives `[P_q^a, P_(q')^b] C(m) = 0` for all
+    `b`, so `P_q^a` is central in `N`, hence `0` or `1`.
+  - If `C(m) = 0`, then `m = 0`, and (HL) on `1 - m = 1` makes `P_(q')^(a')`
+    commute with `P_q`, so it is central, hence `0` or `1`.
+  *(Justification corrected by ex-verify2-quantum-l2, 2026-09-13.  The earlier
+  line applied "a projection of `W*(P_q, P_(q'))` commuting with both PVMs is
+  central" to `m`.  But `m` lies in the refined algebras and need not lie in `N`.)*
 
 **(H8) Model test (`M_3`).**
 - **Perfection.**
