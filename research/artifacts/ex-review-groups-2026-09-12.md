@@ -138,6 +138,11 @@ every group.
   and lattice-forced-torsion routes. GAP on the PSL-limit marking for non-prime `q`, corrected forward on
   both nodes. Part 8.
 
+- **§9, compression stability and vertex rounding (~01:45 CDT).** PASS on the finitary UCS ⇔ NORM
+  equivalence and its exact form at the nine-leaf Leavitt pair (ex-free-unified-theory), and on the two
+  vertex-rounding obstructions for Kun–Thom wreaths and the Fournier–Facio vertex (ex-q34-kt-double). These
+  are reformulations only. Part 9.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -148,3 +153,4 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part6.md`: §6, the determinant spectral chain.
 - `research/artifacts/ex-review-groups-2026-09-12-part7.md`: §7, L²-acyclicity, amenable-orbit full groups, weak models, Atiyah base change.
 - `research/artifacts/ex-review-groups-2026-09-12-part8.md`: §8, KMS stop-relation repair, mixing transfer, doubles, Brin–Thompson, killers, PSL limits.
+- `research/artifacts/ex-review-groups-2026-09-12-part9.md`: §9, compression stability and vertex rounding.
