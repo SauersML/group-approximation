@@ -139,3 +139,20 @@ Hand model test of the clause:
   cell with contiguity degree above `1 − 13μ` to the pocket word. That word is a subword of the cell's relator, which
   contradicts the small-piece clause, or a cancelling pair against least area.
 - Orientation is load-bearing. With the reverse dart oriented instead, the pocket from `d` would contain the exterior.
+
+## Pocket clause: scope finding (2026-09-13 ~18:55), sent to main as a blocker
+
+- Checked the kill machinery on origin. `OsinLoopCut.ofPocketRegion`, with `s = []` and `t` the pocket arc, together
+  with `twoSectionCuts_cellTransport`, `o52LeastArea` and `OsinLoopCut.false_of_below` (fed by `hbelow`), kills a relator
+  cell inside a pocket. It needs neither legal labels nor `GeodesicCollarStatement`. The cell-free branch follows from
+  `boundary_product` on `P.diagram`.
+- Both need a `PocketRegion` whose complement cycle is the arc. The only builder, `PocketRegion.ofNoncrossingClosedWalk`,
+  needs `IsNoncrossingClosedWalk` (including `alpha_not_mem`), outer `FollowsBoundary`, and `reclosed_euler`.
+- Gap 1: a pocket containing a nested same-cell pair violates `alpha_not_mem`, and its side is not edge-connected, so it
+  has no disc region.
+- Gap 2: pinched innermost pockets can fail outer `FollowsBoundary` (binder 7 territory).
+- Missing: a bridge-component surgery. Delete the bridge (`CombMapEdgeDeletion`), restrict to the far component, and
+  read the pocket arc as a face cycle. `isRelatorProduct_of_planar` then gives the cell-free branch; the relator branch
+  also needs the component as a disc diagram and a transport that re-glues at the bridge vertex.
+- Options sent to main: (a) the innermost boundary-following case over named nested and pinched residuals, (b) the
+  bridge-component surgery, (c) park. I am starting (a) unless redirected.
