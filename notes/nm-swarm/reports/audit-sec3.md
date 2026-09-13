@@ -5,8 +5,11 @@ Lane `audit-sec3` audits tex 785–1620 of `non_mf_groups_exist.tex`: Section
 
 ## Landed
 
-- `3ae281ab9`: `GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean`, the permanent gate for
-  tex 785–1323 (probe `0913-025304-66495`, BUILT `Audit.Sec3`).
+- `3ae281ab9`: the first version of `GroupApproximation/Manuscript/NonMF/Audit/Sec3.lean`, the
+  permanent gate for tex 785–1323. No green probe built it. The probe that named it,
+  `0913-025304-66495`, failed (rc=1).
+  - The wire queue's 03:13 entry for it wrongly said GREEN and is withdrawn.
+  - `80abe6604` supersedes it.
 - `b9772f360`: probe GREEN (tag `0913-030424-12674`, BUILT both modules), bytes identical to
   main, both wired:
   - `GroupApproximation/Manuscript/NonMF/Audit/Sec4.lean`, the permanent gate for tex 1324–1620.
@@ -127,3 +130,9 @@ The census has 254 rows in range: 202 formalized, 26 definition, 17 structural, 
   merge, so the regenerated gate no longer audits them.
 - Wiring: `RingCompressionCellGeneral`, then `Audit.Sec3`. Until the carrier is wired, the census
   merge grades rows `718cc7b04afd`, `c0383f82a141`, `d1142160bf17` and `83ed5eb3b38c` partial.
+  - Probe `0913-040726-62527` ran at base `840e6a1d8`. Up to origin/main `39dd43b39`, the gate's
+    import closure has 1033 modules, and only the two probed files changed, at the probed bytes.
+    So that probe stands for one at the current base.
+  - The root already imports `Algebra.PreusserSandwichExchange` and
+    `NonMFSentences.AmenableTraceSentencesB`, so neither becomes root-reachable only through a
+    gate. The only module the gates newly make reachable is `RingCompressionCellGeneral`.
