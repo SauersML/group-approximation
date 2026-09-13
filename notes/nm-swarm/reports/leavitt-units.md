@@ -121,3 +121,23 @@ This check did not re-read those statements against the printed sentences word b
 * The map still shows `7916c8696def` as `partial` until the census lane merges the rows file.
 * Residual Props in this lane's scope: none.
 * Report first landed `92e9f4497`.
+
+## 3. W4 help (09-13): `LemmaFourSixDynamicsStatement`
+
+The lead asked this lane to help hl-lemma46 with `LemmaFourSixDynamicsStatement`
+(`QTwoLemmaFourSixStatements`, Hyde–Lodha proof of Lemma 4.6, `\label{FPlem3}`).  I proposed a split:
+
+* f;
+* J inside [c, d];
+* the covering clause;
+* the six s_i.
+
+I claimed the s_i.
+
+hl-lemma46 had already landed the whole statement: `QTwoLemmaFourSixDynamics.lean` at `de535e84c`, which
+proves `lemmaFourSixDynamics`.  That landing is unverified while its probe runs.  It takes s_i = t^{i+1}
+for one push element t (`exists_upsilon_qTwo_push`, `disjoint_pow_image`).
+
+This lane landed nothing for W4.  An alternative for the s_i is in the lane scratchpad only and was
+not landed: six products of two F_6' moves with pairwise disjoint targets.  It is kept in case the
+powers route goes red.  The lane has asked the lead for reassignment.
