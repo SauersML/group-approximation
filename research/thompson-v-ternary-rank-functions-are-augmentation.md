@@ -106,3 +106,32 @@ the augmentation rank.
     - **Joint data** on `F_3[B ⋊ <x>]` and `F_3[<x_0, x_1, s>]`.
 
 *Verification by `w3-vf-linear` (2026-09-12), §33.4 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on the w7-v-cycle-c3 entry: convexity via [FR] Corollary 1.3(3), the locally finite formula and inertness all re-derive. Scope: "The law needs a prime other than 3" is proved only for elementary abelian 3-group data (§33.3). The cylinder-group node is now ESTABLISHED, not a candidate. The gate stays OPEN.*
+
+- **Joint configuration: the models break on mixed-prime finite groups; the gate stays OPEN** (w7-v-gate-c3;
+  artifact `research/artifacts/ternary-v-gate-joint-configuration-2026-09-12.md`). Held OPEN until `w3-vf-linear`
+  re-derives it.
+  - **Which relation breaks the models** (artifact §1).
+    - `rk_2` (profile `(1/2, 0)`) and `rk_3` (joint fixed rank `1/3` on every `E_r`) have no extension to `F_3[V]`.
+    - Neither does `w7-v-cycle-c2`'s `1 + lambda_i e_12` model in characteristic 2.
+    - In each case the first relation that no extension satisfies is the established Theorem 1.1 on a finite group
+      `B ⋊ G`, where `B` is a clopen `q`-cycle group with `q != p` (5, or 3 in characteristic 2). This uses disjoint
+      commutation, the conjugation data `g c_v g^(-1) = c_(g v)`, and the torsion law.
+    - No `x_0`/`x_1` word and no lamplighter is needed. Mixtures of `rk_aug` with sofic ranks satisfy the same
+      relations, so this decides nothing.
+    - Not decided: whether 3-group data plus single-element `V`-conjugacy break every extension of `rk_2`.
+  - **Generation** (artifact §2.1). `<x_0, x_1, s>` is proper in two cases:
+    - if `s` fixes `0^∞` or `1^∞`, because `F` fixes both;
+    - for `s = C`, the Cannon–Floyd–Parry order-3 generator (a clopen 3-cycle), it is `T`.
+    - Not decided for `s` not in `T` moving both endpoints.
+    - The gate question is unaffected: Theorem 1.1 is global, and `T` and `<x_0, x_1, s>` are not known to be sofic.
+  - **Where it stops** (artifact §2.2–2.3).
+    - No 3-sensitive matrix identity over `F_3[T]` or `F_3[<x_0, x_1, s>]` escapes the excluded list: locally finite,
+      `B ⋊ <x>`, lamp groups, free products of finite groups, subrings of `C`.
+    - No `phi_V = 0` characteristic-three model other than from soficity.
+  - **Summand node** (artifact §3). A `phi_V < 1` rank function refutes this claim and gives a faithful weakly finite
+    image of `V`.
+    - Pulled back to `E ⋊ V`, it shows that a proof of `ternary-anti-central-summand-has-no-weakly-finite-image`
+      confined to `E ⋊ V` proves this claim.
+    - It does not touch the summand node without `v-detecting-rank-functions-extend-to-ternary-leavitt-units`.
+  - **Next lead.** `T = <x_0, x_1, C>` with `C` a product of two disjoint clopen 3-cycles. Look for a matrix over
+    `F_3[T]` whose rank is forced both through `(1 - [C])^3 = 0` and through the wandering bound on `x_0`.
