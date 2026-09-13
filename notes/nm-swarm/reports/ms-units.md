@@ -112,3 +112,12 @@ Assigned by main.  Piece proposed to ct-involution in one direct message (17:28)
   - `coreKernelElementaryStatement_of_matricial : TransientIdealLocallyMatricialFTwoStatement → CoreKernelElementaryStatement` (ct-involution's Prop, imported, not restated).
   - `unitKernelLocallyFinite_of_matricial : TransientIdealLocallyMatricialFTwoStatement → UnitKernelLocallyFiniteStatement` (ct-rank-budget's Prop), via `u ↦ u I_1` into rank one (`scalarUnitOne_injective`, `scalarUnit_mem_ker_mapMatrix`).
   - Census row `LINE:1689` (partial until the input has a producer).
+
+## Item 3 (09-13 ~18:00): local matriciality of the transient ideal over F_2
+
+Assigned by main.  Split proposed to ms-core-4 in one direct message: ms-units takes local matriciality, ms-core-4 takes the defect span (`transientIdeal_eq_span_defects`).  In-flight check: chain-matricial's `.files` holds no module-5 draft; theoremc-retire's `.files` holds `Dynamics/PartialShiftClasses.lean` and `Topology/LocallyConstantClosedExtension.lean` (green record 0913-173317-80780, not landed), which are consumed here, never edited.
+
+- CLAIM the producer of `ClopenCrossedProduct.TransientIdealLocallyMatricialFTwoStatement` (lem:transient-matrices, "The ideal I is locally matricial", tex 1476; proof tex 1489–1513), along the printed route, in small new modules under `GroupApproximation/Dynamics/`:
+  - `TransientClassSaturation.lean`: the wandering cover bounds classes (`ExponentBound`); `reachableExponents` saturates by step m−1; bases are unique; the levels partition C;
+  - `TransientTowerCells.lean`: refinement by coefficient values, the tower levels and their hypotheses, and the expansion of the prescribed elements in tower units;
+  - `TransientIdealLocallyMatricialFTwo.lean`: the assembly through `ChainCore.isLocallyMatricialIn_of_forall_exists_family`.
