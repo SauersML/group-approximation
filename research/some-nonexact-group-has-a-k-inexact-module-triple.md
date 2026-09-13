@@ -21,13 +21,13 @@ conjecture with trivial coefficients for `V ⋊ G` or for `(V/W) ⋊ G`.
 
 **Necessary features.**
 - `G` is not exact (Kirchberg--Wassermann; context, not imported).
-- `G` **fails Baum--Connes with coefficients**: by
-  `bcc-groups-have-k-exact-module-triples`, a middle K-defect in degree `j` forces
-  `mu_(G, C(X))` non-surjective or `mu_(G, C(Z))` non-injective in degree `j`. So `G`
-  itself violates the conjecture with the commutative dual-module coefficients `C(V^)` or
-  `C((V/W)^)`. In particular `G` is not a-T-menable (`higson-kasparov-haagerup-satisfies-bcc`),
-  which rules out the non-exact a-T-menable groups of Osajda -- the whole a-T-menable class is
-  eliminated, so non-exactness alone is far from enough.
+- `G` **fails Baum--Connes with coefficients** (`module-defect-needs-non-k-exact-host`). Steps
+  3--4 of `k-inexact-module-triple-refutes-trivial-coefficient-bc-proof` make the failure
+  specific: in the degree `j` of the defect, `mu_(G, C(X))` is not surjective or `mu_(G, C(Z))`
+  is not injective. So `G` violates the conjecture at the commutative dual-module coefficient
+  `C(V^)` or `C((V/W)^)`. In particular `G` is not a-T-menable
+  (`osajda-monster-hosts-for-bc-module-route`, items (3) and (5)). That rules out Osajda's
+  non-exact a-T-menable groups and the whole a-T-menable class: non-exactness alone is not enough.
 - The C*-sequence `0 -> C_0(U) ⋊_r G -> C(X) ⋊_r G -> C(Z) ⋊_r G -> 0` is not exact, since
   K-theory is half exact on exact sequences of C*-algebras.
 - The extension `W -> V ⋊ G -> (V/W) ⋊ G` is not split in any way that forces exactness.
@@ -66,14 +66,22 @@ conjecture with trivial coefficients for `V ⋊ G` or for `(V/W) ⋊ G`.
   embedded large-girth expander. No module instance is known, and a C*-defect does not by
   itself give a K-defect.
 - **The base group must fail BC with coefficients.**
-  `bcc-groups-have-k-exact-module-triples` (established) reads the diagram chase of
+  `module-defect-needs-non-k-exact-host` (established) reads the diagram chase of
   `k-inexact-module-triple-refutes-trivial-coefficient-bc-proof` in the direction that
-  constrains `G`: any group satisfying Baum--Connes with coefficients has every module triple
-  K-exact. So a witness cannot be sought among a-T-menable groups, even the non-exact ones.
-  The remaining hosts are Higson--Lafforgue--Skandalis monsters, whose known coefficient
-  failure is carried by a boundary coefficient on a proper open orbit -- exactly the structure
-  a dual-module action lacks (`module-dual-actions-have-no-wandering-open-sets`). Realizing the
-  monster coefficient failure on an algebraic `C(V^)` instead is the unsolved crux.
+  constrains `G`: a group satisfying Baum--Connes with coefficients is K-exact, so every module
+  triple over it is K-exact. A witness cannot be sought among a-T-menable groups, even the
+  non-exact ones. The remaining hosts are expander monsters. Their only known coefficient failure
+  sits on a proper open orbit (`monster-bc-detector-lives-on-a-proper-orbit-ideal`), exactly the
+  structure a dual-module action lacks (`module-dual-actions-have-no-wandering-open-sets`). The
+  open crux is `monster-bc-failure-at-measured-coefficient-is-the-module-crux`.
+- **C*-inexactness without a K-defect.** Take a non-exact group that satisfies Baum--Connes with
+  coefficients, such as Osajda's a-T-menable groups without property A. Context, not imported:
+  without property A the translation action on `βG` is not amenable (Higson--Roe). So `C*_r(G)`
+  is not exact (Ozawa, arXiv:math/0002185, Theorem 3), and `⋊_r` fails to preserve some exact
+  sequence (Kirchberg--Wassermann Theorem 5.2, as cited there). Every such sequence is still
+  K-exact, because `G` is K-exact. So C*-inexactness without a K-defect does occur for general
+  coefficients, and `window-defect-forces-module-triple-inexactness` cannot give a K-defect on its
+  own. Whether some **module** triple over such a group is C*-inexact is not known.
 - **Where every attempt stops.** A C*-defect needs an element of `C(X) ⋊_r G` that dies on
   `Z` but is not approximable from `C_0(U)`. A K-defect additionally needs an invariant on
   `K_0(C(X) ⋊_r G)` that vanishes on the image of the ideal. Traces from invariant measures

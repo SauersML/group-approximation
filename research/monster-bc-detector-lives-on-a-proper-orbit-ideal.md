@@ -6,7 +6,7 @@ title: The only known monster Baum--Connes coefficient failure is a surjectivity
 distinct_from:
   monster-bc-failure-at-measured-coefficient-is-the-module-crux: that poses the open question whether the failure occurs at a measured module coefficient; this is the established structural reason it is hard -- the known detector is a proper-orbit rank that module duals lack.
   module-dual-actions-have-no-wandering-open-sets: that proves dual-module actions have no proper open orbit; this imports, from Finn-Sell/HLS/Willett--Yu, that the known monster detector is exactly such a proper-orbit invariant, so the two combine into a no-detector statement for the module route.
-  higson-kasparov-haagerup-satisfies-bcc: that prunes a-T-menable base groups; this describes, inside the surviving monster hosts, which coefficients are known to fail and which are known to be fine.
+  module-defect-needs-non-k-exact-host: that prunes a-T-menable base groups; this describes, inside the surviving monster hosts, which coefficients are known to fail and which are known to be fine.
 ---
 
 **ESTABLISHED (citation)** by `monster-bc-detector-lives-on-a-proper-orbit-ideal-citation`. Read
