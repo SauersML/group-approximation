@@ -44,3 +44,5 @@ Hence `S_N` is LEF for every `N >= 3` iff `X` carries an invariant probability m
 quantum models (`matricial-z2-sft-crossed-products-give-quantum-tilings`). Individual actions can still be RF
 (`rf-toeplitz-subshifts-over-residually-finite-groups`). The conjectured exact class is recorded in
 `measure-rf-class-is-exactly-virtually-free-groups`.
+
+**Review (un-verify-3, 2026-09-13): PASS (assembly).** Every required node is established with a PASS line or is an established import. The virtually-free equivalence is used only for measure ⇒ residually finite ⇒ matricial (Step 1), with hypotheses matching the scope. The no-measure branch goes through the groupoid theorem. The finite-Λ central quotient is re-derived. Scope: `F_q`, finitely generated `R`, minimal topologically free, band `3 ≤ N < 2n` open. `research/artifacts/un-review3-2026-09-13-part5.md` §4.
