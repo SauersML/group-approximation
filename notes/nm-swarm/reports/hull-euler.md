@@ -23,6 +23,7 @@ the Euler count `|M| ≤ 3(n + r − 1)` of Osin's `Φ'_M` (arXiv:math/0411039v3
 | `Estimating/OsinAppendixEulerExteriorTwoGon` | `phiO_alpha`, `sideCellO_facePerm_facePerm`, `exterior_of_isTwoGon` (C3) | green 0913-065054-20285 |
 | `Estimating/OsinAppendixEulerSmallFaces` | C6′ `TwoGonHoldsInput`, `faceOf_eq_of_faceClassO`, `phiPrimeCountInput_of_smallFaces` from C4, C5, C6′ | green 0913-093143-91859 |
 | `Estimating/OsinAppendixEulerSection` | `OsinCornerTwoGonSectionStatement`, `OsinTwoGonHoldsSectionStatement`, `osinPhiPrimeCountSection_of_pieces` | green 0913-125857-40608 |
+| `NoncrossingClosedWalkEuler` | `IsNoncrossingClosedWalk.reclosed_euler`, `innerDiscRegion` (R2) | green 0913-150114-7274 |
 
 The lane consumes three peer modules:
 
@@ -66,6 +67,14 @@ queued (wire-queue lines 626–627), and leavitt-units' Count and Section module
   assembly with C4 and C6′ as named binders (lead's item, 09-13). Landed unverified, then probe
   0913-125857-40608 green with `BUILT` (base 711c053f1). All 13 overlay md5s equal origin/main,
   ancestor of main. Queued at wire-queue lines 626–627.
+- 06c57ca01: this report.
+- 7e254eb6600c31972da6291b7467b5ab06c9d6e8: `NoncrossingClosedWalkEuler`, the R2 Euler lemma.
+  Landed unverified. Probe 0913-145807-90519 failed at one application: at the pin
+  `List.next_mem` takes `l` and `x` explicitly.
+- 19866c7d67ab262fb65d70770ab905136dd9fce1: the fix, landed unverified. Probe 0913-150114-7274
+  green with `BUILT` (base 19866c7d6), no errors or warnings, all six `#audit_axioms` inside the
+  classical allowlist. The md5 of the green record equals origin/main, and the commit is an
+  ancestor of main.
 
 ## Residual Props
 
@@ -254,8 +263,27 @@ fff-periodic and nm-endpoints have been told.
 Lead's item (09-13). Under R2 the inner `IsDiscRegion` of a pocket comes from
 `BoundaryCycle.toDiscRegion_of_euler` (`SurgeryReclosedConnected.lean:106`), which needs χ of the
 reclosed map of `sideFaces M w` along a noncrossing closed walk (`IsNoncrossingClosedWalk`,
-26a7858f2) to equal χ of `M`. dgo-analytic claimed the lemma. hull-euler asked it for the handoff
-on 09-13; no answer yet.
+26a7858f2) to equal χ of `M`. dgo-analytic handed the lemma over. Lead ruling: "hull-euler builds
+`NoncrossingClosedWalkEuler`: `IsNoncrossingClosedWalk.reclosed_euler`, with outer following as a
+hypothesis, model-tested on the rose."
+
+Module `GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEuler.lean` (7e254eb66, fix
+19866c7d6, green 0913-150114-7274, unwired). It imports `NoncrossingClosedWalkSides`,
+`SurgeryReclosedConnected`, `PermFirstReturnOrbits` and `CactusTopology`, and no `Estimating/`
+module. dgo-analytic's builder `PocketRegion.ofNoncrossingClosedWalk hw hout hfollows heuler`
+(`Estimating/OsinPocketRegionNoncrossingWalk.lean`) takes `heuler` of exactly this type.
+
+- `innerVertexClass hw hM : KeptDart M (sideFaces M w) → InnerVertexIndex M w` sends a retained
+  dart to the first reversed walk dart met by old rotation, or to its old vertex if there is none.
+  `InnerVertexIndex M w` is the old vertices with no retained outer dart, plus the walk darts.
+- `innerVertexClass_sigma` (uses `hout`), `innerVertexClass_rep`, `innerVertexRep_sameCycle` feed
+  `OrbitClassifier.orbitEquiv`. So `inner_vertexCount`.
+- `vertexCount_add`, `edgeCount_add`, `faceCount_add`: the two reclosings together have `|w|` more
+  vertices, `|w|` more edges and two more faces than `M`.
+- `reclosed_euler` from these and `reclosedMap_euler_preserved` on the outer cycle.
+- `innerDiscRegion hw hM hout : IsDiscRegion M (sideFaces M w)`.
+- `OsinPocketPinchedTwoGonOuterFollows.pinchCycle_outerCycle_followsBoundary` is a landed model
+  where outer following holds and inner following fails, so `hout` is the right strength.
 
 - The existing `reclosedMap_euler_preserved` (`SurgeryReclosedPlanarity.lean:28`) needs
   `boundary.FollowsBoundary`. Under R2 only the outer cycle follows.
@@ -306,4 +334,6 @@ inside the proof of `thm:hull` (tex 1636, through Osin's Lemma 9.7(a)). The sect
    `osinPhiPrimeCountSection := osinPhiPrimeCountSection_of_pieces osinCornerTwoGonSection hT`
    in a module importing both producers, with `#audit_closed_axioms`, probe and land it.
 3. Then the census rows.
-4. The R2 Euler lemma: take it if dgo-analytic hands it over, otherwise tell the lead.
+4. The R2 Euler lemma is green. A consumer fills `heuler` of `PocketRegion.ofNoncrossingClosedWalk`
+   with `hw.reclosed_euler Delta.planar hfollows`. Wiring `NoncrossingClosedWalkEuler` is the
+   lead's call.
