@@ -102,6 +102,47 @@ one distance by the other (HilbertSchmidtAdjointGap).
 unitary HS asymptotic representation of W does not send ε to 1.
 (3) The sofic and hyperlinear conclusions fail (CliffordWitnessHSRemark).
 
+## Stale TheoremC docstrings after 2c3c8cb40 (2026-09-13)
+
+The lead's assignment covers three things:
+- docstrings that still name the 19 TheoremCAssembly declarations retired in 2c3c8cb40;
+- `scripts/TheoremCCompletionAudit.lean`;
+- row c6172bdc109a of MF_RECOGNITION_SENTENCE_MAP.
+
+Every change is to documentation only, and each points to the current carrier:
+- Theorem C: `TheoremC.manuscriptTorsionFreeFullMFRadical_of_leastAreaInputs` and `..Simplified_of_leastAreaInputs`, over
+  `hgreendlinger`, `hbridge` and `hKO`;
+- `TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves`;
+- `TorsionFree.hullInputs_of_leastAreaLeaves` and `TorsionFree.hullTheorem71_of_leastAreaLeaves`;
+- `HullSC.hullOneStepStatement_of_leastAreaLeaves` and `HullSC.hullCommonQuotient_of_leastAreaLeaves`;
+- `GGT.RelHyp.fournierFacioQuotientStatement_of_leastAreaLeaves`.
+
+| file | change | state |
+|---|---|---|
+| GGT/HullSCCommonQuotientCorrected | `hullCommonQuotient` is the `LiteratureInputs` field; names its least-area producer | attic f6985a197; probe running |
+| GGT/HullSCLemma44Canonical | `hullLemma44CanonicalQuotientStatement_zero`: its consumer was retired and nothing uses it | same |
+| GGT/HullSCLemma44JointRelabel | the re-spelling admission path is now described in the past tense | same |
+| GGT/HullSCLemma49PowerDiagramFromComponents | "was the assembly leaf"; names the least-area twin statement | same |
+| NonMF/FournierFacioParagraphFromSimpleFactor | the five literature-input bullets and the axioms note | same |
+| NonMF/HullFillTheoremCCorrected | the printed forms are stated over `hullInputs_of_leastAreaLeaves` | same |
+| NonMF/TorsionFreeSectionCitations | field table, residual paragraph, axioms note | same |
+| NonMF/FFFParagraphFreeWitness | residual section and two theorem docstrings; the module has no importers | attic f6985a197; probed after the seven above |
+| scripts/TheoremCCompletionAudit.lean | "Superseded (2026-09-13)" header; every audit line kept | landed 9ac39c698 |
+| scripts/check_non_mf_unconditional.py | taint-scan docstrings in the past tense | landed 9ac39c698 |
+| metadata/MF_RECOGNITION_SENTENCE_MAP.tsv (row c6172bdc109a) and MF_RECOGNITION_SENTENCE_CENSUS.md:27 | seed-group note: E takes the three hypotheses; census line matches what the generator writes | landed 8f8b5ccab |
+
+Files owned by other lanes were not edited. Their owners were messaged on 2026-09-13:
+- hull-respell: GGT/HullSCOneStepQuasiGeodesicLeaves.lean:25-26, 38;
+- kh-ejz: Kazhdan/GHBLatticeRouteKazhdan.lean:68-69, and the kh-ejz census row ("TheoremC.kotowskiOllivier is still sorry");
+- ko-closed: Kazhdan/KotowskiOllivierClosed.lean:11-12;
+- nm-endpoints: TorsionFreeLeafAssembly.lean:29, 36-37, 123; TorsionFreeLiteratureInputsLeastArea.lean:18-23, 101;
+  TorsionFreeSaturationFromCorrected.lean:21, 74, 264, 435.
+
+Some hits were left unchanged:
+- Accurate history: the TheoremCAssembly header, SeedFromTheoremC.lean:29-32, and theoremc-retire's row and report.
+- Field names or unrelated declarations that share a name: RelHypFournierFacio:9, RelHypFournierFacioProp23:10,
+  FournierFacioInput, TorsionFreeFourLeaves:158, GHBLatticeRouteKazhdan:23, and hull-respell's row.
+
 ## Census
 
 Rows: `metadata/nm-census-rows/sec2-sentences.tsv`.  The four sentences with no declarations
