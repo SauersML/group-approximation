@@ -60,3 +60,32 @@ payoff of this claim is the mechanism, not a first counterexample.
   `N\(T_h × Y)`. In a lifted model the horizontal cycle lifts to a path ending at a lamp translate
   of its start, and the two lifts of `w`, at `p` and at `σp`, differ by exactly `2ℓ`. No
   contradiction.
+* **Host and firewall (landed 2026-09-13).**
+  - `G_2 ↪ Z^2 wr_(Q/C_χ) Q`, with `C_χ = <a, b, cac, cbc>`
+    (`radu-metabelian-quotient-embeds-in-edge-lamp-wreath`).
+  - Radu's finite residual forces a reflection of the square to fix every `C_χ`-fixed point of
+    every finite `Q`-set (`radu-square-lamp-forces-reflections-in-finite-actions`).
+  - With property τ and the congruence subgroup property for `C_χ`, and flexible stability of `Q`,
+    this would make the coset action `Q ↷ Q/C_χ` nonsofic, as in
+    `codense-tau-coset-soficity-forces-permutation-instability`.
+  - That does not descend to `G_2`. Gao–Kunnawalkam Elayavalli–Patchell Theorem 3.6 runs one way
+    only: a sofic action gives a sofic wreath product.
+* **Spectral reduction from models of `G_2` to almost actions of `Q`: dies at the boundary of balls.**
+  - *Idea.* Diagonalize the lamps. In Fourier coordinates the lamps become diagonal and the letters
+    become monomial matrices, so the eigenvalue `F(λ) = λ(ℓ)` of the square is `C_χ`-invariant and
+    inverted by the reflections `x, z, c`. That is exactly the colouring that
+    `radu-square-lamp-forces-reflections-in-finite-actions` forbids in genuine finite actions.
+  - *Where it dies.* `M = H_1(Y)` is infinitely generated, and `Y` is nonamenable. Truncate to the
+    lamps `M_R` over a ball. A letter `g` maps joint eigenspaces of `M_R` onto those of
+    `g M_R g^(−1)`, and the two groups differ on a boundary that carries a fixed fraction of the
+    lamps, however large `R` is. So the joint spectra never form one finite set on which the
+    letters act as permutations.
+  - *In the Loeb limit.* `L(M)`, with Haar trace since the approximation is free, is normalized by
+    `G_2`, but it is not diagonal. So `Q ↷ H^1(Y; T)` does not become a sofic action.
+* **Crux, the Radu analogue of Kun–Thom Theorem C.** No sofic p.m.p. action of `Q` carries a
+  measurable `C_χ`-invariant `f` with `f∘g ≠ f` almost everywhere for every `g ∈ D_4 \ {1}`.
+  - The Loeb limit of an orbit chart for `Q/C_χ` would give such an `f`, so the crux implies
+    nonsoficity of the coset action.
+  - Kun–Thom obtain the analogue from property (T) of the stabilizer. Here only the exact case is
+    known: `radu-square-lamp-forces-reflections-in-finite-actions`, item 3.
+  - A proof for `G_2` itself would need the spectral reduction above to survive the boundary.

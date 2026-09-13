@@ -27,6 +27,12 @@ G_k = Γ_R / γ_k(Λ_v),        1 → Λ_v/γ_k(Λ_v) → G_k → Q → 1.
    which Arzhantseva–Berlai–Finn-Sell–Glebsky (arXiv:1802.04688, §4.4) record as open even for
    finite cyclic kernels, as quoted in `binary-jacobson-weak-sofic-status-proof`, Section 5.
    A nonsoficity proof for Radu's lattice therefore produces such a counterexample.
+   *Status correction (ex2-radu-superstrong-negative, 2026-09-13).* The general permanence
+   statement is already refuted. Kun–Thom Theorems A and E (`kun-thom-nonsofic-wreath`) give the
+   nonsofic group `(Z/2)^(G/Γ) ⋊ G`, whose kernel is abelian and whose quotient `G` is residually
+   finite. What stays open is the case of finite kernels, which `G_k` does not fall under. So the
+   counterexample in this item would be a new mechanism without property (T), not the first
+   counterexample.
 4. **Screens.**
    * *Not residually finite.* For `k >= 2`, `G_k` is not residually finite. Every finite
      quotient of `G_k` is a finite quotient of `Γ_R`, so it kills `(xz)^4`. But `(xz)^2` is a
