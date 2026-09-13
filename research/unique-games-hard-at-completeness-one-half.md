@@ -12,6 +12,11 @@ distinct_from:
 `Gap-UG[F_2^l]((1-eps)/2, eps)` is NP-hard. The constraints are linear,
 `T x_i + T' x_j = b` with `T, T'` invertible.
 
+**Credit.** Khot--Minzer--Safra state this consequence themselves: ECCC
+TR18-006, Appendix B, p. 55, "GapUG(1/2 - eps, eps) is NP-hard". The route here
+only writes out the split. Verified from the PDF on 2026-09-13; review PASS by
+`ex-verify-logic-quantum`. It is not a new result.
+
 This is the best unconditional near-0-soundness unique games hardness recorded
 here. The Unique Games Conjecture asks the same with completeness `1 - eps`. The
 Galois analysis (`elementary-abelian-galois-games-round-with-linear-loss`) and

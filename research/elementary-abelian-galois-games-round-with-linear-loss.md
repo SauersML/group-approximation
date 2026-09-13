@@ -17,10 +17,11 @@ certificate of value `1 - epsilon`. Then some subgroup complement `T` of `K`
 gives
 
 ```text
-val >= 1 - C_p epsilon log_p k,     C_p = 2p/((p-1)(1-cos(2 pi/p))),   C_2 = 3/2,
+val >= 1 - C_p epsilon log_p k,     C_p = 2p/((p-1)(1-cos(2 pi/p))),
 ```
 
-and `T` is found greedily in time polynomial in `|G| |supp mu|`, with no SDP
+For `p = 2`, the formula gives `C_2 = 2` (using `eta = 4 eps`). Choosing
+`eta = 3 eps` instead improves the constant to `3/2`. The labeling `T` is found greedily in time polynomial in `|G| |supp mu|`, with no SDP
 solve.
 
 The mechanism is as follows. The certificate's character weights restrict to

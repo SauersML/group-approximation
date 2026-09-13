@@ -54,3 +54,14 @@ density `1/k`, restricted to transversals.
   lifts, and only when `eps log k` is small. In the SSEH regime,
   `eta log(1/delta)` is large, and the noisy cube shows that no contradiction
   arises there.
+* **Khot--Minzer--Safra's informal counter-signal** (ECCC TR18-006,
+  Appendix B, p. 55; [PDF], checked 2026-09-13).
+  - The Raghavendra--Steurer reduction also maps `GapSSE[beta, 1-eps]` to
+    `GapUG[~1/2, eps']` for an absolute constant `beta` ("say `beta = 3/4`").
+  - The 2-to-2 proof reaches `GapUG[~1/2, eps']` without any reduction to Gap
+    SSE. The graphs in that reduction "always have small non-expanding sets".
+  - The authors present this as supporting the first author's suspicion that
+    UGC may be true while SSEH is false.
+  - This is an informal argument, not a theorem. It is not evidence against
+    `ugc-from-small-set-expansion-hypothesis`, which remains a valid one-way
+    route.

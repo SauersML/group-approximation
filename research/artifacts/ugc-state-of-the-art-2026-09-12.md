@@ -103,6 +103,19 @@ unique games on Cayley graphs with SoS (2024); SoS integrality gaps and the
 coboundary expansion and HDX (Bafna--Minzer 2025); SoS lower bounds via
 Grigoriev--Tulsiani reductions. None surfaced a 2025--2026 proof or refutation of
 UGC or SSEH, beyond the items above. That is a search-limited statement, not
-evidence of absence. I did not locate a paper deriving SoS lower bounds at
-completeness `1/2` from the 2-to-2 reduction. Whether such a transfer is recorded
-in the literature was not settled.
+evidence of absence.
+
+**Update 2026-09-13 [PDF].** The SoS statement is in the 2-to-2 source itself.
+The search missed it, and `ex-verify-logic-quantum` found it.
+
+* Khot--Minzer--Safra, ECCC TR18-006, Appendix B, pp. 54--55, state that
+  integrality gaps for 2-to-2 Games hold "with perfect completeness and
+  soundness eps", up to a polynomial number of Lasserre rounds.
+* Their mechanism is the Grigoriev--Schoenebeck 3Lin gap translated through
+  the reduction. No theorem number or degree exponent is given, so
+  `sos-cannot-refute-unique-games-at-completeness-one-half` stays open until the
+  translation is written.
+* The same appendix states `GapUG(1/2 - eps, eps)` NP-hard, which is item 1.2
+  above.
+* It also records the first author's informal suspicion that UGC may hold while
+  SSEH fails, because the 2-to-2 graphs always have small non-expanding sets.
