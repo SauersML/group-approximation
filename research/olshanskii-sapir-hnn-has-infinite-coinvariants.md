@@ -28,8 +28,8 @@ normal closure, the generators `c_i^-1 phi^m(c_i)` suffice, because
 `𝒢/<<t^m>>` and `H̄_{phi^m}` would be finitely presented infinite torsion
 groups, answering Zaremsky Problem 1.11
 (`fp-torsion-via-olshanskii-sapir-coinvariants`). `H̄_{phi^m}` has exponent `n`,
-so it would also be a finitely presented infinite group of bounded exponent. By
-the restricted Burnside theorem it would not be residually finite.
+so it would also be a finitely presented infinite group of bounded exponent. So
+it would not be residually finite (`fg-rf-bounded-exponent-groups-are-finite`).
 
 ## Attempts
 
@@ -54,6 +54,16 @@ the restricted Burnside theorem it would not be residually finite.
   working rules of steps `𝕊_2, ..., 𝕊_{2n}`. What remains is to push this
   through the transition relations at `z = κ(1)` and the hub, where a collapse
   to a finite group would show.
+- Certificate shape (lane z1-11-torsion-block,
+  `bounded-exponent-fg-group-residual-has-finite-index`, established). An
+  infinite `H̄_{phi^m}` has finite profinite completion, and its finite residual
+  is a finite-index, perfect, finitely presented subgroup with no proper
+  finite-index subgroup, mapping onto an infinite simple group of exponent
+  dividing `n`. So no count of finite quotients can certify infinitude. A proof
+  that `H̄_{phi^m}` is infinite must be geometric (Ol'shanskii graded
+  small-cancellation or van Kampen diagram estimates over the presentation
+  above). A proof that it is finite can instead come from an explicit
+  collapse of the relations.
 - Every torsion quotient of `𝒢` is controlled by these groups (item 1 of
   `ascending-hnn-torsion-quotients-see-only-coinvariants`). So if all of them
   are finite, the Ol'shanskii–Sapir extension is dead for Problem 1.11 in the
