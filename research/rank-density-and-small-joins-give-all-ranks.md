@@ -27,6 +27,10 @@ L'_f = { a' in S : a' << a for some a in S with d(a) << f in LAff(K) }.
 `alpha(f) = sup L'_f` exists and `d(alpha(f)) = f` for every
 `f in LAff(K)_(++)`.
 
+**Pointwise form.** The proof uses directedness of `L'_f` only for the target
+`f` itself. So (RD) plus directedness of `L'_f` for one `f` realizes that `f`.
+Any obstruction to this route therefore has to be exhibited target by target.
+
 **Corollary.** (RD) plus strict comparison of positive elements gives (SJ),
 hence all ranks occur. The argument is direct and does not pass through purity,
 Lin's stable rank theorem or Thiel's theorem.

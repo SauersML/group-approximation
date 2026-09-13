@@ -77,6 +77,29 @@ using `d_n / rank(s_n) = prod_(r < n) alpha_r` and
 `t_m = prod_(r < m) alpha_r`. Since `prod_(r >= m) alpha_r >= delta > 1 - eta`,
 the theorem follows.
 
+**Step 4: the slice-wise form.**
+- *Setup.* By the construction in section `nonsimpleconstruction` and the
+  telescoping of `sec:simple-example`, `X_n` is a product over leaves `l in L`
+  of copies of `X_m`, times projective factors. Each top leaf map `lambda_l` is a
+  coordinate projection. The leaf-`l` summand of `psi_(m,n)(p_m)` is
+  `E_l = lambda_l^* p_m tensor gamma_l` for a line bundle `gamma_l` pulled back
+  from the projective factors, and similarly `F_l = lambda_l^* q_m tensor gamma_l`.
+  So `Hom(E_l, F_l) = lambda_l^* Hom(p_m, q_m)`.
+- *Every slice sees a zero.* Fix a slice `S`. Let `iota: X_m -> X_n` insert `x`
+  into coordinate `l` with the other coordinates fixed, so
+  `lambda_l o iota = id`. Then `iota^* E_l = p_m` and `iota^* F_l = q_m` up to the
+  trivial line `iota^* gamma_l`. For a bundle map `T: E_l -> F_l`, `iota^* T` is a
+  bundle map `p_m -> q_m` over `X_m`, and by (T1) it vanishes at some point. So
+  every bundle map `E_l -> F_l` vanishes at some point of `S`.
+- *Run the proof.* Steps 1 and 2 apply verbatim with `(p_n, q_n)` replaced by
+  `(E_l, F_l)`, which are subprojections of `psi_(m,n)(p_m)` and
+  `psi_(m,n)(q^_m)`. They give a zero `x_0 in S` of `w* v` and
+  `rank b''(x_0) >= 2 rank(E_l) = 2 d_m`. Step 3 gives
+  `d_(sigma_(x_0))(c) >= 2 beta_n d_m / rank(s_n) = 2 beta_n t'`.
+- *Directedness.* If `min f > t'`, the compact classes `[E_l]` and `[F_l]` lie
+  in `L'_f`. If also `f < 2 beta_n t'` along a slice, any `c` with `d(c) <= f`
+  above both would contradict the bound at `x_0 in S`.
+
 **Corollary.** The directedness argument is spelled out in the target. Thiel's
 lemma is the upward-directedness lemma for `L'_f` that immediately precedes
 `dfn:alpha` in section `sec:rankCu` of arXiv:1711.04721. Its standing hypotheses

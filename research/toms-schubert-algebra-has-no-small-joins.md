@@ -29,6 +29,17 @@ bounds `c` equal to `t_m` at each single extreme `lambda`. So the defect is
 purely a failure of uniformity across the simplex. Small upper bounds exist
 trace by trace, but no one element is small at every trace.
 
+**Slice-wise form.** Telescoping makes each deep spectrum a product,
+`X_n = (X_m)^L x (projective factors)`, whose leaf maps `lambda_l` are the
+coordinate projections. For a leaf `l`, let `E_l` and `F_l` be the leaf-`l`
+summands of `psi_(m,n)(p_m)` and `psi_(m,n)(q^_m)`. These are subprojections of
+constant rank `t' = d_m / rank(s_n)`. A *slice* of leaf `l` is a set `S` on
+which every coordinate except the `l`-th is fixed. If `c >= [E_l], [F_l]`, then
+**on every slice `S` some `x in S` has `d_(sigma_x)(c) >= 2 beta_n t'`**. So
+`L'_f` is not upward directed for any `f in LAff(K)_(++)` with `min f > t'`
+and `f(sigma_x) < 2 beta_n t'` for all `x` in some slice. These targets need not
+be constant. The obstruction is available at every scale `t_m / |L_(m,n)|`.
+
 **Corollary (Thiel's Step 4 fails in `B`).** Suppose `eta < 1/4` and put
 `f = (5/4) t_m`, a constant function. Both compact classes lie in Thiel's set
 
