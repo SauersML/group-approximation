@@ -311,6 +311,10 @@ Filled in as each part lands.
   traces counting roots mod p, log-scale delocalisation, the Deligne detecting-cycle floor, Bernoulli subgroup tubes,
   and the Malcev import. §18.4 gives the wave-2 outcome: 33 claims PASS, one GAP at odd p repaired by citation, no
   false establishment.
+- `ex-review2-analysis-2026-09-13-part19.md` (priority): ex3-bk-ideal-equivariant's Theorem A (AF killing forces
+  projection-normalised annihilating traces), Proposition B (stable finiteness supplies them), and Corollary C (the
+  uniqueness hypothesis of relative Lemma B excludes AF killing) all PASS. (3′) is a faithful reading of (3). The pushout
+  gluing in step 5 of the RR0 route passes as Lemma C, with a wording note on where the pushout is formed.
 
 ## 4. Outcome of the census
 
