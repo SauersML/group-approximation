@@ -42,7 +42,8 @@ monoid in which Tarski's paradoxical multiples cannot be rounded down to a
 single copy.  For `D = C(X)` this is
 `topologically-free-minimal-cantor-action-with-finite-clopen-type`, now
 established (unreviewed) with generic topologically free actions of
-`F_infinity`.  Part 4 alone
+`F_infinity` (first by Boldrini--Prasad, arXiv:2607.01896, Corollary 6.12).
+Part 4 alone
 does not certify finiteness in `A`, because the monoid map
 `Sigma -> V(A)` can make finite classes infinite.  A counterexample also needs
 an analytic finiteness certificate in the crossed product.

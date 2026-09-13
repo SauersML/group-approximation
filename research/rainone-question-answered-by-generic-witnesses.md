@@ -2,10 +2,14 @@
 rg: 2
 id: rainone-question-answered-by-generic-witnesses
 kind: route
-title: A finite clopen class in a measure-free minimal topologically free Cantor system violates almost unperforation and Rainone's weaker infinite-element condition
+title: Independent proof that a finite clopen class in a measure-free minimal topologically free Cantor system violates almost unperforation and Rainone's weaker condition
 target: rainone-non-almost-unperforated-minimal-outer-action-exists
 requires: [topologically-free-minimal-cantor-action-with-finite-clopen-type]
 ---
+
+**Credit.**  The existence of such actions is due to Boldrini--Prasad
+(arXiv:2607.01896, Corollary 6.12); see `rainone-question-boldrini-prasad-citation`.
+This route was found later and independently, and claims no novelty.
 
 **Step 1: the action.**  `topologically-free-minimal-cantor-action-with-finite-clopen-type`
 gives a minimal, topologically free action of a countable group `Gamma` on a

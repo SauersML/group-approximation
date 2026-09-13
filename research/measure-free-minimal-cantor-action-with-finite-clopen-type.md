@@ -34,7 +34,9 @@ infinite multiple, and `S(X, Gamma)` fails projection-level QQ.
   `2[1_X]` is properly infinite.
 * The first construction fixes clopen sets pointwise.  Choosing Wehrung's
   witnesses generically gives topologically free actions of `F_infinity`
-  (`refinement-monoids-are-topologically-free-cantor-types`).  So the version
+  (`refinement-monoids-are-topologically-free-cantor-types`).  These were
+  first proved by Boldrini--Prasad, arXiv:2607.01896, Theorem 6.10 and
+  Corollary 6.12.  So the version
   that matters for simple crossed products,
   `topologically-free-minimal-cantor-action-with-finite-clopen-type`, is also
   established, unreviewed.  Free actions stay open.

@@ -47,7 +47,13 @@ Status: proved in the route below from Wehrung (LNM 2188) and
 Ortega--Perera--Rordam, unreviewed.
 
 Novelty is bounded.  The realization theorem is Wehrung's; the Cantor space,
-minimality and measure correspondence are elementary.  The check covered:
+minimality and measure correspondence are elementary.
+* Boldrini--Prasad (arXiv:2607.01896, Theorem 5.5, Remark 5.4, Proposition
+  5.6) already realize pointed cones `(M, 2u_0)` as the type semigroup of
+  `Aut(B, mu)` acting on `St(B)` for a Fraïssé-limit V-measure.  They also get
+  the finite/Cantor dichotomy for simple `M`.
+* The only addition here is that every nonzero `e` in a simple atomless
+  monoid satisfies Wehrung's halving condition.  The check covered:
 * the Discussion chapter of Wehrung's book (Problems 1--10, none about
   topology or minimality);
 * the introduction of Ara--Bonicke--Bosa--Li (arXiv:2001.00376), which cites

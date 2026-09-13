@@ -7,6 +7,12 @@ target: refinement-monoids-are-topologically-free-cantor-types
 requires: [wehrung-countable-refinement-monoids-group-measurable, simple-refinement-monoids-are-minimal-cantor-types]
 ---
 
+**Credit.**  The Baire-category strategy is that of Boldrini--Prasad
+(arXiv:2607.01896, Proposition 6.8, Corollary 6.9 and Theorem 6.10), found
+here independently.  They work with dense subgroups of a Fraïssé-limit
+`Aut(B, mu)` and use 2-divisibility.  This proof uses exhaustive witness
+cosets and one-point steering instead.
+
 **Notation.**  As in Steps 1--4 of
 `simple-refinement-monoids-are-minimal-cantor-types-proof`:
 * `B` is a countable unital atomless Boolean ring;

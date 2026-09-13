@@ -7,6 +7,9 @@ target: topologically-free-minimal-cantor-action-with-finite-clopen-type
 requires: [refinement-monoids-are-topologically-free-cantor-types, opr-mixed-simple-refinement-monoid]
 ---
 
+**Credit.**  This is an independent later proof.  Priority belongs to
+Boldrini--Prasad (`topologically-free-finite-clopen-type-boldrini-prasad-citation`).
+
 **Step 1: a countable mixed monoid.**  Take the countable submonoid
 `M' ⊆ M` of the Ortega--Perera--Rordam monoid built in Step 1 of
 `measure-free-minimal-cantor-action-with-finite-clopen-type-proof`.

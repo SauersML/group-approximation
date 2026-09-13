@@ -124,7 +124,8 @@ subalgebra" the exact pure-infiniteness criterion.
     properly outer form, unreviewed.
     * Generic witnesses for Wehrung's realization give minimal topologically
       free actions of `F_infinity` on the Cantor set with `[1_X]` finite and
-      `2[1_X]` properly infinite
+      `2[1_X]` properly infinite.  Boldrini--Prasad proved this first
+      (arXiv:2607.01896, Theorem 6.10 and Corollary 6.12).
       (`topologically-free-minimal-cantor-action-with-finite-clopen-type`,
       `rainone-non-almost-unperforated-minimal-outer-action-exists`).
     * What remains for this design is analytic: finiteness in the crossed

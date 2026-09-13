@@ -27,7 +27,8 @@ generates a free group acting topologically freely.
   finite and `2[1_X]` properly infinite
   (`topologically-free-minimal-cantor-action-with-finite-clopen-type`).
 * Their type semigroups are not almost unperforated: `3(2u) <= 2u <= 2u`
-  holds while `2u <= u` fails.  This answers Rainone's first page-33 question
+  holds while `2u <= u` fails.  As Boldrini--Prasad's examples already show
+  (they do not cite Rainone), this answers Rainone's first page-33 question
   (arXiv:1502.06153): minimal properly outer actions satisfying the
   hypotheses of his Theorem 4.22 whose type semigroup is not almost
   unperforated (`rainone-non-almost-unperforated-minimal-outer-action-exists`).
@@ -47,7 +48,17 @@ generates a free group acting topologically freely.
   (`cantor-crossed-product-with-finite-type-is-mixed`).  If it is not, then `A`
   is neither stably finite nor purely infinite.
 
-Status: proved in the route below, unreviewed.  The route is a standard
-Baire-category steering argument, adapted to monoid-valued measures.  Novelty
-is not checked against generic-freeness results in `Homeo(2^N)` or
-`Aut(X, mu)`.
+**Priority.**  The method and the main application are due to P. Boldrini
+and A. Prasad (arXiv:2607.01896v1, 2 Jul 2026).
+* Their Theorem 6.10: for a countable 2-divisible simple refinement cone that
+  is not almost unperforated, a generic countable subgroup of `Aut(B, mu)` (a
+  Fraïssé-limit measure) is dense, isomorphic to `F_infinity`, and acts
+  topologically freely.
+* Their Theorem 6.1 gives minimality, and Corollary 6.12 the measure-free
+  case.
+* The statement here drops 2-divisibility and non-almost-unperforation, and
+  allows any nonzero `e`.  Its proof uses exhaustive witness cosets and
+  point steering, instead of density and induction on word length.  It was
+  found independently and later, and claims no novelty of method.
+
+Status: proved in the route below, unreviewed.

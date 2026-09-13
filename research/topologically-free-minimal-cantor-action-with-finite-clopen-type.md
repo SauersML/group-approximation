@@ -15,8 +15,12 @@ There are a countable group `Gamma` and an action of `Gamma` on a Cantor space
 * There is no invariant Borel probability measure.
 * Some nonempty clopen `A` has a finite class `[1_A]` in `S(X, Gamma)`.
 
-**Status (2026-09-13): established, unreviewed**, by the route
-`topologically-free-finite-clopen-type-via-generic-witnesses`.
+**Status (2026-09-13): established, unreviewed**, by two routes.
+* `topologically-free-finite-clopen-type-boldrini-prasad-citation`.  Priority
+  belongs to Boldrini--Prasad, arXiv:2607.01896, Corollary 6.12, read with ABBL
+  Proposition 2.11.
+* `topologically-free-finite-clopen-type-via-generic-witnesses`, a later
+  independent proof.
 * `refinement-monoids-are-topologically-free-cantor-types` realizes every
   countable simple conical refinement monoid by a minimal topologically free
   action of `F_infinity`, generic among Wehrung's witness tuples.

@@ -42,7 +42,8 @@ that the brief of this lane targets, including shapes like Rordam's nuclear
   amenable actions of groups with paradoxical towers are excluded.  So are
   topologically free actions of groups with a normal infinite cyclic subgroup
   acting minimally (`minimal-normal-cyclic-subgroup-cantor-dichotomy`).  The
-  type-semigroup part now exists, unreviewed.  Generic Wehrung witnesses give
+  type-semigroup part now exists, unreviewed.  Boldrini--Prasad proved it first
+  (arXiv:2607.01896, Corollary 6.12).  Generic Wehrung witnesses give
   minimal topologically free actions of `F_infinity` with `[1_X]` finite and
   `2[1_X]` properly infinite
   (`topologically-free-minimal-cantor-action-with-finite-clopen-type`).  Where

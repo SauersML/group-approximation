@@ -19,7 +19,8 @@ generated free group on the Cantor set for which the type semigroup is not
 almost unperforated, these actions are not minimal [1]. Moreover, almost
 unperforation may be too strong a condition to establish (5) ⇒ (1) in Theorem
 4.21. What is required is that every 'infinite element' (in the sense that
-(k+1)x ≤ kx for some k) is properly infinite."
+(k+1)x ≤ kx for some k) is properly infinite. This is a priori a weaker
+condition than almost unperforation."
 
 **Claim.**  Some action as in the first sentence exists: `A = C(X)` for a
 Cantor space `X`, with a minimal, topologically free (equivalently properly
@@ -30,9 +31,16 @@ statements hold for the same examples.
 * `S` has no nontrivial state and is not purely infinite.  So the implication
   (5) => (1) of his Theorem 4.21 fails without almost unperforation.
 
-**Status (2026-09-13): established, unreviewed**, by the route
-`rainone-question-answered-by-generic-witnesses`, for topologically free
-actions of `F_infinity`.  The particular question, a *free* action of `F_2`,
+**Status (2026-09-13): established, unreviewed**, for topologically free
+actions of `F_infinity`.
+* Priority belongs to P. Boldrini and A. Prasad (arXiv:2607.01896v1, 2 Jul
+  2026, Theorem 6.10 and Corollary 6.12): minimal topologically free actions
+  without dynamical comparison, also without invariant measures.  With ABBL
+  Corollary B and Proposition 2.11 these answer the question and break the
+  weaker condition (`rainone-question-boldrini-prasad-citation`).  BP do not
+  cite Rainone.
+* An independent later proof by the same method is
+  `rainone-question-answered-by-generic-witnesses`.  No novelty is claimed.  The particular question, a *free* action of `F_2`,
 is open: `free-minimal-cantor-action-with-finite-clopen-type`.  Whether his
 (5) => (3) fails as well, i.e. whether the crossed product can be traceless
 without being purely infinite, is
