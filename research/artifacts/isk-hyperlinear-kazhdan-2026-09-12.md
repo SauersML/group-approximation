@@ -242,9 +242,11 @@ exactly multiplicative at the ring level.
 
 ## 6. What stays open
 
-- **Root `infinite-simple-kazhdan-hyperlinear-group`.** Answered mathematically by `S`: review PASS
-  at 0efeac410, and this lane's independent derivation. In the graph it stays OPEN until a proof
-  route for `simple-kazhdan-lef-group-from-minimal-subshift` lands (§7).
+- **Root `infinite-simple-kazhdan-hyperlinear-group`.** Answered by `S`. The review passed at
+  0efeac410, and this lane's derivation agrees. Lane `ex-kazhdan-simple-hyperlinear` landed the
+  combining route `simple-kazhdan-lef-group-from-minimal-subshift-proof` at 8b65f0932. That route
+  should establish the claim, and through `simple-kazhdan-hyperlinear-from-subshift-elementary-group`
+  the root (§7).
 - **Fp root `hyperlinear-fp-infinite-simple-group`.** `S` is not finitely presented, since f.p. plus
   LEF gives residual finiteness and infinite simple groups are not residually finite. The same
   argument rules out every route that makes a finitely presented group a marked limit of finite
@@ -252,11 +254,43 @@ exactly multiplicative at the ring level.
   Kac–Moody lattices are the Kazhdan candidates in main, and only the dichotomy node constrains
   them.
 - **`simple-kazhdan-groups-have-full-mf-radical` (SKM1).** `S` is an infinite simple Kazhdan group
-  that is operator MF, by `lef-implies-operator-mf`. Review §1.6 records that the refutation fires
-  once the subshift claim is established.
+  that is operator MF, by `lef-implies-operator-mf`. 8b65f0932 adds
+  `refuted_by: [simple-kazhdan-lef-group-from-minimal-subshift]` to SKM1, so SKM1 becomes REFUTED
+  once the claim is established.
 - **Hyperlinearity of `Q`.** OPEN, and outside every finite-ring mechanism by the Remark in §5.
 
-## 7. Cairn status at main 3c481f496
+## 7. Cairn status
 
-Pending: detached MSI job `/scratch.global/sauer354/iskh/cairn-a` (`check`, and `why` on both roots
-and the subshift ingredients). Its results go in the next commit.
+**At main 3c481f496, before 8b65f0932.** MSI job `cairn-a` ran `check` (rc 0, 0 errors) and `why`.
+
+- Both roots were OPEN.
+- `simple-kazhdan-lef-group-from-minimal-subshift` was OPEN, with no live routes into it. `why`
+  reported: "if established: completes simple-kazhdan-hyperlinear-from-subshift-elementary-group ->
+  infinite-simple-kazhdan-hyperlinear-group".
+- ESTABLISHED: `subshift-elementary-group-is-simple-modulo-centre`,
+  `minimal-subshift-algebra-is-simple-lef-ring`, `elementary-groups-over-fg-rings-have-property-t`
+  (citation route), `sofic-implies-hyperlinear`, `lef-implies-operator-mf` and
+  `weak-qd-kazhdan-quotientless-group-is-trivial`.
+- `simple-kazhdan-groups-have-full-mf-radical` was OPEN. Its only route is invalidated by
+  `mf-to-weak-qd-citation-has-unproved-lifting-step`.
+- The fp root had two OPEN routes:
+  - The Titz–Witzel kernel route waits on `titz-witzel-kernel-sofic`. That claim's
+    elementary-permanence route is invalidated by `titz-witzel-kernel-not-elementary-sofic`.
+  - The other is `hyperlinear-fp-simple-via-amenable-edge-splitting`.
+
+**The combining route.** This lane drafted a route with the same id. 8b65f0932 landed its own route
+first, so the draft was not landed. The landed route requires
+`subshift-elementary-group-is-simple-modulo-centre`, `minimal-subshift-algebra-is-simple-lef-ring`
+and `elementary-groups-over-fg-rings-have-property-t`, all ESTABLISHED at 3c481f496. Checked
+against §3–§4:
+
+- Its item 3 passes to `S` correctly. `Ψ` is injective and `F_q`-linear, and `Λ` is finite, so
+  `Ψ(g) ∈ ΛI` forces `g ∈ Z(G)`.
+- It does not require `lef-implies-operator-mf` or the weak-qd import. The claim body's operator-MF
+  and not-weakly-quasidiagonal sentences are not in the claim's title, so they do not affect the
+  root.
+- The body of `simple-kazhdan-hyperlinear-from-subshift-elementary-group` still says "That claim is
+  OPEN and under independent" review. That text is stale; the route's `requires:` is correct.
+
+**At main f2d0166f7, after 8b65f0932.** Pending: MSI job `cairn-b`. Its results go in the next
+commit.
