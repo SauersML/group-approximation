@@ -3,6 +3,7 @@ rg: 2
 id: toms-diagonal-subalgebra-supports-a-nonconstant-continuous-rank
 kind: claim
 title: The commutative line subalgebra of Toms's non-simple limit contains a positive element with finite, continuous, non-constant rank
+refuted_by: [toms-line-subalgebra-has-no-nonconstant-continuous-rank]
 distinct_from:
   toms-schubert-algebra-has-a-non-constant-continuous-rank: that asks for any realizer in the simple algebra B; this asks for a realizer inside one explicit commutative subalgebra of the non-simple limit A, a problem that does not see Toms's twists at all.
   toms-schubert-algebra-continuous-ranks-are-constant: that conjectures constancy of all continuous ranks; its test case for A implies the negation of this claim, and that negation has to be proved without the twists.
@@ -88,10 +89,13 @@ some `a in D_+` has `tau -> d_tau(a)` continuous and non-constant on `T(A)`.
   So a realizer must use **macroscopic delays**. At some points a few copies
   sit about `r_n rho/2` lines above their inherited rank. The budget allows at
   most a fraction `4 eps_n/rho` of the copies to do this at once.
-- **Open next step.** There are two ways forward.
-  - A Poincare–Miranda bound robust to a small fraction of macroscopically
-    delayed copies would give `eps_M >= c/r_n` for **all** `M > n`, and so kill
-    every realizer in `D`.
-  - An asymmetric design that selects its delayed copies continuously, for
-    instance by soft ranks of copy averages, would realize a non-constant
-    continuous rank in both towers.
+- **Resolved (2026-09-13): refuted.**
+  `toms-line-subalgebra-has-no-nonconstant-continuous-rank` gives the
+  delay-robust bound.
+  - The degree map `min(u_b, t_b)` lets a copy break the Miranda face condition
+    only at its own minimum.
+  - There each violator spends at least `2 r_n eps_n` of the `K r_n eps_n` budget,
+    so at most half the copies violate. The rest jump together.
+  - Hence `eps_M >= 1/(2 r_n)` for every `M > n`, and no element of `D` has a
+    non-constant continuous rank. The asymmetric-design alternative is dead too.
+  - What survives in `A` is realizers that transport support between copies.

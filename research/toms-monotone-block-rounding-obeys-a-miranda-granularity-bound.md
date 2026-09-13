@@ -31,6 +31,13 @@ whose containments are all block-diagonal in this sense, with precisions `eps_m`
 If `eps_m <= C r_m^(-gamma)` for all large `m`, then
 `gamma <= (sqrt 5 - 1)/2`.
 
+**Superseded (2026-09-13).**
+`toms-line-subalgebra-has-no-nonconstant-continuous-rank` removes the
+restriction `K <= rho/eps_n`. A robust Poincare–Miranda point gives
+`eps_M >= 1/(2 r_n)` for every `M > n`. So block-diagonal realizers of non-constant
+continuous ranks do not exist, and the golden-rate corollary is vacuous. The
+theorem stated here remains true.
+
 **Where it applies.** Every realizer inside the line subalgebra `D` of
 `toms-diagonal-subalgebra-supports-a-nonconstant-continuous-rank`. There
 Cuntz comparison is support inclusion line by line, and lines lie inside copies.
