@@ -1392,3 +1392,81 @@ Artifact `mismatched-factor-graph-of-groups-firewall-2026-09-12.md`. Every step 
   - `EL_3(R) = St_3(R)/K_2(3,R)`.
   - Each Steinberg relation holds in a subgroup of order at most 8 over `F_2`.
   - The list of three options restates the firewalls. It is a remark, and not claimed as a theorem.
+
+## 30. w6-mismatch-c3 (74247b5cf, a5226d475)
+
+Artifact `depth-monotone-leavitt-firewall-2026-09-12.md` (blob df157d486a). Every step was re-derived.
+
+### 30.1 `depth-monotone-leavitt-subalgebras-are-stably-finite`: PASS
+
+- **Grading.** Both defining relations are homogeneous for the `Z^2`-degree. So
+  `span{s_mu t_nu : omega(mu) <= omega(nu)} = ⊕_(omega·n <= 0) R_n`, which is a unital subalgebra. `*` with
+  `s_i* = t_i` preserves both relations and sends `s_mu t_nu` to `s_nu t_mu`.
+- **Lemma 1.1.** All `S_i, T_i` formulas were re-checked. In the detection step at `x = mu_0 1 0^M 1 y'`, a proper
+  prefix of `mu_0` puts the leading `1` of `w` at position `L - j + 1 ∈ [2, M+1]`, where `[w]` needs `0`.
+  - An independent second proof: `L_K(1,2)` is simple and `pi(1) = id`.
+- **Stopping partitions.**
+  - Weight strictly increases along prefixes, so the pieces form a finite complete prefix code.
+  - The partitions refine as `r` grows.
+  - `1_[w] ∈ F_r` once `r >= omega(w)`.
+- **Lemma 1.2.**
+  - `omega(mu) <= r` forces `mu` to be a prefix of the stopping prefix `u`, so membership in `[mu]` is a function
+    of `u`.
+  - `u = mu v` with `v = p_(r - omega(mu))(y)`.
+  - `r - omega(nu) <= r - omega(mu)` makes `p_(r - omega(nu))(y)` a prefix of `v`, so `p_r(nu y)` depends only
+    on `u`.
+- **Theorem 1.**
+  - `phi` is eventually multiplicative, and it is injective by Lemma 1.1 and `C = ∪ F_k`.
+  - `M_n(Q)` is again a product modulo a sum of finite-dimensional matrix algebras, so it is stably finite.
+  - The `≥` side follows through `M_n(A^op) = M_n(A)^op`.
+- **Model test.**
+  - `t_0 y = 1` forces `y = s_0 + s_1 t_1 y`, whose degree `+1` part `s_0 + s_1 w_0` is nonzero, since
+    `t_0(s_0 + s_1 w_0) = 1`. So `t_0` has no right inverse in `R^1_≤`.
+  - Dually, `s_0` has no left inverse in `R^1_≥`.
+  - Consistent with the sharpness remark.
+- **Corollary 2.** Inverses lie in the subalgebra, so some `F_k` (`k >= k_0`) is invariant under `Gamma_0`, and
+  `Gamma_0 -> ∏ GL(F_k)` is injective. On the `≥` side, `g -> (g*)^-1` is a group isomorphism.
+
+### 30.2 `depth-monotone-configurations-cannot-force-ternary-minus-one`: PASS
+
+- **Theorem 3.**
+  - Over `F_3`, `eps_- = [z] - 1` is a central idempotent, and `Phi(eps_-) = 2·2 = 1`.
+  - `Q != 0`, since `dim F_k >= 1` for every `k`.
+  - Theorem 1(b) of the ternary artifact kills `J_omega`.
+  - A certificate whose group elements, pair entries, defects and multipliers all lie in `Gamma_0` is a
+    derivation inside the subring `eps_- F_3[Gamma_0]`.
+  - The sofic alternative is sound (`linear-sofic-group-algebra-is-stably-finite` is ESTABLISHED on main).
+- **Placement.**
+  - `T_(σ,κ)(λ)^(-1) = T_(σ,κ)(-λ)` for incomparable `σ, κ`.
+  - `w_0 = s_0 t_1 - s_1 t_0` with `w_0^2 = z`.
+  - `A^2 = B^2 = 0`, `AB = s_0 t_00`, `BA = s_1 t_10`, `ABA = s_0 t_10`, `BAB = s_1 t_000`, and
+    `(AB)^n = s_0 t_(0^(n+1))`. All have degree `<= 0`.
+- **Infinite order over `F_3`.**
+  - `A q_0 = q_1`, `A q_1 = 0`, `A q_n = q_(n-1) + r_(n-2)` for `n >= 2`, and `A r_m = q_(m+1)`. All coefficients
+    are `+1`.
+  - `A W_l ⊆ W_l`, and `A^2 = [[1,1],[0,1]]` from level `l` to level `l - 1`.
+  - The Frobenius identity gives `(ac)^(3^k) = 1 + A^(3^k)`. So the prime-to-3 argument holds.
+- **Remark 3.2.**
+  - `Phi = phi ∘ Ad(u) ∘ ev` kills `D = N_23 N_12`, because `ev(D) = e_23 e_12 = 0`.
+  - With the code `(0,10,11)`, `e_12 = s_0 t_10` has degree −1 and `e_23 = s_10 t_11` has degree 0.
+  - Theorem 2 of the ternary artifact is about all of `Gamma = R^x`, so a nontrivial `Phi` with `Phi(D) = 0` only
+    blocks running it inside `H^1_≤`, as stated.
+- **Calibration.** Two checks against main agree with the firewall:
+  - `leavitt-group-algebra-not-stably-finite` is OPEN.
+  - `one-transvection-ternary-s0-lift-is-left-invertible` independently finds that its support needs
+    depth-raising elements.
+- **Section 4.**
+  - Lemma 4.1: a nonempty `R_n`-component sends `1` to the indicator of a nonempty union of cylinders. Then Kraft
+    gives termwise equality.
+  - The depth-vector table: all six rows re-derived.
+  - The three weight inclusions and the four-set exclusion re-checked.
+  - The conjugation by `u` (`0->00`, `10->01`, `11->1`) gives `T_(01,00)` and `T_(00,01)`.
+
+### 30.3 Precision note (forward, wording only)
+
+- **The issue.** The Attempts entry on `ternary-leavitt-units-have-no-weakly-finite-representation` says a
+  certificate's group elements "must generate a subgroup that no conjugation puts inside any weighted unit group:
+  elements of V that are weight-level for no weight, or sets like {T_(0,1), T_(1,0), T_(1,00), T_(00,1)}".
+- **Why it overstates.** Those are candidates. They escape every `H^omega_±` without conjugation, but no
+  conjugation invariant is proved. The artifact's §4 ("obvious source") and the claim node ("escaping is not yet a
+  criterion") state this correctly.

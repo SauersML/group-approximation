@@ -18,3 +18,5 @@ Artifact Section 3. **OPEN** until `w4-vf-gate` passes it.
    while `1 -> 1`. A certificate confined to `Γ_0` is a derivation inside `ε_- F_3[Γ_0]`.
 3. **Placement.** Degrees of `T_(0,1)`, `T_(1,00)`, level `V`, `E` and the level roots are nonpositive for the
    standard grading. The Kraft lemma and the depth-vector table (Section 4) record what escapes.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 30.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

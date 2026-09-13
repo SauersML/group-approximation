@@ -17,3 +17,5 @@ Artifact Sections 1 and 2. **OPEN** until `w4-vf-gate` passes it.
    `∏_k End(F_k) / ⊕_k End(F_k)`, which is stably finite since each `F_k` is finite-dimensional. The opposite
    side follows by the anti-automorphism `s_i <-> t_i`.
 4. **Units** (Corollary 2). Over a finite field, finitely generated unit subgroups embed in `∏_k GL(F_k)`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 30.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
