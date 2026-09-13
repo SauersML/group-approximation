@@ -39,15 +39,6 @@ theorem mapsTo_shift_stepSubshift (n : ℤ) : MapsTo (shift n) stepSubshift step
   simp only [shift_apply] at hi ⊢
   exact hx' (n + i) (n + j) (by omega) hi
 
-theorem isClosed_stepSubshift : IsClosed stepSubshift := by
-  have h : stepSubshift = ⋂ i : ℤ, ⋂ j : ℤ, {x : ℤ → Bool | i ≤ j → x i = true → x j = true} := by
-    ext x
-    simp only [stepSubshift, mem_iInter, mem_setOf_eq]
-  rw [h]
-  refine isClosed_iInter fun i => isClosed_iInter fun j => ?_
-  exact (isClosed_discrete {p : Bool × Bool | i ≤ j → p.1 = true → p.2 = true}).preimage
-    ((continuous_apply i).prodMk (continuous_apply j))
-
 /-- The configuration switching from `false` to `true` between positions `0` and `1`. -/
 def stepPoint : ℤ → Bool := fun i => decide (1 ≤ i)
 
@@ -110,6 +101,26 @@ theorem stepPoint_not_mem_coreSubshift : stepPoint ∉ coreSubshift stepSubshift
   rw [word_stepPoint] at h1
   exact not_isCyclicEdge_false_true h1
 
+/-- A point of the symbolic core stays `true` one step after a `true` coordinate: its level-1 window is a
+word of the step subshift. -/
+theorem core_step {x : ℤ → Bool} (hx : x ∈ coreSubshift stepSubshift) (i : ℤ) (hi : x i = true) :
+    x (i + 1) = true := by
+  obtain ⟨⟨y, hy, hyw⟩, -⟩ := (mem_coreSubshift_iff.1 hx) 1 i
+  have hy' : ∀ i j : ℤ, i ≤ j → y i = true → y j = true := hy
+  have h0 : y 0 = x i := by simpa using congrFun hyw 0
+  have h1 : y 1 = x (i + 1) := by simpa using congrFun hyw 1
+  rw [← h1]
+  exact hy' 0 1 (by norm_num) (h0.trans hi)
+
+theorem core_mono {x : ℤ → Bool} (hx : x ∈ coreSubshift stepSubshift) {i : ℤ} (hi : x i = true) :
+    ∀ n : ℕ, x (i + n) = true := by
+  intro n
+  induction n with
+  | zero => rw [Nat.cast_zero, add_zero]; exact hi
+  | succ n ih =>
+    rw [Nat.cast_succ, ← add_assoc]
+    exact core_step hx _ ih
+
 /-- Calibration: the symbolic core of the step subshift is the pair of constant configurations, the two
 fixed points of the shift. -/
 theorem coreSubshift_stepSubshift :
@@ -118,8 +129,11 @@ theorem coreSubshift_stepSubshift :
   simp only [mem_insert_iff, mem_singleton_iff]
   constructor
   · intro hx
-    have hX : ∀ i j : ℤ, i ≤ j → x i = true → x j = true :=
-      coreSubshift_subset isClosed_stepSubshift mapsTo_shift_stepSubshift hx
+    have hX : ∀ i j : ℤ, i ≤ j → x i = true → x j = true := by
+      intro i j hij hi
+      have h := core_mono hx hi (j - i).toNat
+      have e : i + ((j - i).toNat : ℤ) = j := by omega
+      rwa [e] at h
     by_cases hall : ∀ z : ℤ, x z = true
     · exact Or.inr (funext hall)
     · obtain ⟨z0, hz0⟩ : ∃ z : ℤ, ¬ x z = true := by
@@ -178,7 +192,7 @@ theorem reachableCylinderUnion_true :
 
 end GroupApproximation.ChainCore.StepSubshiftCoreCalibration
 
-#audit_axioms GroupApproximation.ChainCore.StepSubshiftCoreCalibration.isClosed_stepSubshift
+#audit_axioms GroupApproximation.ChainCore.StepSubshiftCoreCalibration.core_mono
 #audit_axioms GroupApproximation.ChainCore.StepSubshiftCoreCalibration.not_isCyclicEdge_false_true
 #audit_axioms GroupApproximation.ChainCore.StepSubshiftCoreCalibration.not_cycleCondition_stepSubshift
 #audit_axioms GroupApproximation.ChainCore.StepSubshiftCoreCalibration.const_mem_coreSubshift
