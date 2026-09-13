@@ -241,7 +241,6 @@ theorem manuscriptPrintedCentralCoronaCornerExact : PrintedCentralCoronaCornerEx
   · -- "ranks": the corner at the `k`-th retained coordinate has `rank (Q (φ k))` points
     intro k
     rw [← NonMFSentences.card_cornerPredicate_eq_rank (hQherm (phi k)) (hQi (phi k))]
-    all_goals exact Fintype.card_congr (Equiv.refl _)
   · -- "`r_n ≥ 1`"
     exact fun k ↦ Nat.one_le_iff_ne_zero.mpr
       (cornerModel_card_pos _ _ _ (fun k ↦ hQi (phi k)) hne k).ne'
