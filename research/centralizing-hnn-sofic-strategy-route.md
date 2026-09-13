@@ -8,6 +8,7 @@ requires:
   - centralizing-hnn-sofic-via-regular-edge-centralizer
   - centralizing-hnn-perturbed-edge-separation
   - mf-safe-finite-presentation-compiler
+  - twisted-rope-sofic-once-first-rope-sofic
 ---
 
 ## Status
@@ -39,3 +40,30 @@ applies to that edge because its base is then sofic and the edge subgroup
 
 On the `FIN` branch nothing is needed: the output contains the nonsofic
 seed and fails soficity by heredity.
+
+## Correction (2026-09-13, lane ex3-pfg-second-rope)
+
+This route is already invalidated by
+[[final-rope-canonical-tensor-conjugator-is-not-faithful]]. The canonical
+product-form conjugator kills the Britton word `[u,(k,1)]`, `k in K_0`.
+
+Separately, the sentence "the same free-edge argument applies to that edge"
+is unsupported, and the route never named the final edge as a premise. It is
+now a premise: [[twisted-rope-sofic-once-first-rope-sofic]].
+
+1. The free-edge argument picks the stable letter inside the centralizer
+   (CE1) of one free edge action. The final letter must instead conjugate two
+   different restrictions of the base model to `S_e`, so (CE1) does not
+   apply.
+2. The synchronized models kill `K_e^0` in their finite factor
+   (`research/artifacts/mf-fp-pi2-unconditional-assembly-2026-08-26.md`,
+   Section 3.4). The MF proof recovers injectivity only in the universal HNN
+   algebra, and permutation models have no analogue of that step. The
+   invalidator above is the concrete form of this failure.
+3. Exact conjugacy is available at the group level.
+   [[twisted-rope-is-a-central-rope-over-an-rf-envelope]] makes the twist
+   inner in `Gamma_e x R-hat`, with `R-hat` a fixed residually finite group,
+   and embeds `R_e` in a central rope over an isomorphic copy of `S_e`.
+   Britton separation for that edge is a separate problem. It is not
+   [[centralizing-hnn-perturbed-edge-separation]], whose edge is `L_e` in
+   `K_e`.
