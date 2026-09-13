@@ -229,7 +229,14 @@ unselected G-faces on its sides.  hull-unbound had already proved it in Estimati
   `transportDistinguished_dartCount_add_two`.
 
 As the lead's fallback says, sec2 asked hull-unbound for the face-partition piece (`OsinLemma94PolygonPartitionInput`) or
-another unassigned sub-piece, and is waiting for the answer.
+another unassigned sub-piece.  ROSTER gives the partition to ghw-assembly, so sec2 also asked ghw-assembly for an
+unassigned sub-piece.  sec2 is waiting for either answer and has no module in progress.
+
+Construction constraint for the partition, from reading the fields.  Suppose only one section is nonempty and a walk runs
+along the boundary through position 0 of `outerDarts` at a vertex of degree two, so `facePerm (alpha e') = alpha e` for
+e = alpha o_0 and e' = alpha o_(m-1).  `boundary_arc` forbids arcs that wrap around, so the walk must split between e and e',
+and both halves have the same kind.  `Maximal` checks only the pairs with `i + 1 < sideCount`, so `base k` must be placed
+at this split.  The split happens at most once per walk.
 
 ## Census
 
