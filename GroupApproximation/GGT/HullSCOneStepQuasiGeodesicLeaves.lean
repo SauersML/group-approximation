@@ -20,29 +20,29 @@ import GroupApproximation.Meta.AxiomGuard
 
 `non_mf_groups_exist.tex`, `thm:hull` (Hull, *Small cancellation in acylindrically
 hyperbolic groups*, Theorem 7.1 (a), (c), (e)) is reached in
-`Manuscript/NonMF/TheoremCAssembly.lean` through
+`Manuscript/NonMF/TheoremCAssembly.lean` through `TorsionFree.hullTheorem71_of_leastAreaLeaves`
+and `TorsionFree.hullInputs_of_leastAreaLeaves`, which read the one-step theorem off
+`HullSC.hullOneStepStatement_of_leastAreaLeaves`
+(`GGT/HullSCLemma44BoundedLeastAreaCanonical.lean`).  Their two hypotheses are
+`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement` and
+`HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement`.  The older chain, which read
+the selected-family Lemma 4.4 off the *family* form at the empty original family and so carried
+the re-spelling admission `HullSC.HullRelatorRespellingStatement`, was removed from
+`TheoremCAssembly` in 2c3c8cb40.
 
-`hullOneStep ← hullCanonicalQuotient ← hullLemma44Canonical ← hullLemma44FamilyInclusion
-← hullLemma44FamilyInclusionJoint ← hullRelatorRespelling`,
-
-that is, the selected-family Lemma 4.4 is read off the *family* form at the empty original
-family, and the family form carries the re-spelling admission
-`HullSC.HullRelatorRespellingStatement`.  That detour is unnecessary.
+The re-spelling detour is not needed on this route either.
 `HullSC.hullLemma44CanonicalQuotientStatement_of_quasiGeodesic` already produces
 `HullLemma44CanonicalQuotientStatement` from the certificate at quasi-geodesic boundaries and
 Osin's Lemma 5.1 bridge alone: the bridge applies verbatim to the selected family that carries
 the relators, so there is nothing to re-spell.
 
-This module assembles the one-relator theorem and the published ball form along that route.
-Every step is a landed theorem; the three hypotheses are exactly the three admissions of
-`TheoremCAssembly` other than the re-spelling one and `kotowskiOllivier`:
+This module assembles the one-relator theorem and the published ball form along that
+quasi-geodesic-leaves route.  Every step is a landed theorem, and the hypotheses are three:
 
 * `GGT.VanKampen.EstimatingSelectionConstructionStatement` (Osin's Lemma 6.5(a) selection),
 * `GGT.VanKampen.EstimatingUnboundOutputStatement` (Osin's unbound estimate at his scale),
 * `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicStatement` (Osin's Lemma 5.1 with its own case
   split).
-
-So `thm:hull`, `lem:saturation` and the Hull half of `thm:torsion-free` rest on those three.
 
 ## Where the re-spelling leaf is still consumed, and what the source does there
 

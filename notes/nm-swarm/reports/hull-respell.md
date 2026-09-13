@@ -154,8 +154,44 @@ The lead asked this lane for the shelling producer of the pocket cut core, that 
   FAILED in OsinAppendixEulerSubdivided. The diagnosis went to hull-euler, and hull-euler later compiled all
   seven Euler modules (0912-104426-41122).
 
+## W1 (a) item 2: both sides of the collared walk (lead's ruling 09-13 ~06:30)
+The lead dropped A, the weighted planar van Kampen lemma: dgo-analytic's `OsinPocketOuterPart`
+(c0a1c1bee) already gives least area. B is not needed either, because nothing on the ruled route
+consumes a shelling. Item C: kh-torsion owns two W1 (a) lemmas, the geodesic G-face collar along
+short side arcs (item 1, `SurgeryGeodesicCollar`) and `IsDiscRegion` for both sides of the collared
+closed walk `g₁ t₁ g₂ t₂` (item 2). This lane offered kh-torsion to take item 2; kh-torsion decides.
+
+- `GGT/VanKampen/SimpleClosedWalkSides`: landed unverified at 79008d7e5. Probe 0913-070150-30707
+  failed on two missing `classical` and one unused binder. After the fix, probe 0913-072751-55574
+  is GREEN (BUILT), and `#audit_closed_axioms simpleClosedWalkSides` ⊆ {propext, Classical.choice,
+  Quot.sound}. It then got a normal landing.
+  - `IsSimpleClosedWalk M w`: the walk is nonempty, consecutive darts meet, the last dart returns to
+    the first vertex, the vertices are distinct, and no edge is used in both directions.
+  - `SimpleClosedWalkSidesStatement`: for a planar `M` there are complementary face sets, each an
+    `IsDiscRegion`, with boundary cycles `w` and `w.reverse.map M.alpha`, both following their
+    boundary walks. `theorem simpleClosedWalkSides`.
+  - The proof:
+    - The map on the walk's edges (`PredicateRestriction`) is connected.
+    - So by `IsRestriction.faceOf_eq_of_faceClass`, no face class joins a walk dart to a reversed
+      walk dart.
+    - Each side's cycle follows its boundary walk (`followsBoundary_of_chain`), and
+      `toDiscRegion_of_followsBoundary` gives `IsDiscRegion`.
+  - `IsSimpleClosedWalk.reverseAlpha` exchanges the sides, so the exterior face can be put outside.
+- The statement went to hull-select with the `PocketRegion` fit: `invDarts_outer_rotate` holds at
+  `k = 0`, and both `FollowsBoundary` facts are the inputs of `GeodesicCollarStatement`.
+- Not covered: pinched walks (a repeated vertex).
+
+## False-Prop binder sites (no deletions)
+- `Embedded.FaceSetEarStatement` / `FaceSetEarDataStatement`: `VanKampen/FaceSetPeelProducer.lean:182`
+  and `:194`, `Estimating/PieceConstruction.lean:30` and `:56`, `Estimating/PieceCore.lean:228`.
+- `RegionShellingStatement`: `Estimating/PieceConstruction.lean:83`.
+
 ## Next
-- The lead has been asked for the next item (09-13 ~04:00). Proposed: a piece of the weighted planar van
-  Kampen lemma (`PlanarVanKampenWeighted`, kh-torsion, not on main yet).
+- Green probe and normal landing of `SimpleClosedWalkSides`, together with the docstring fix in
+  `GGT/HullSCOneStepQuasiGeodesicLeaves` (sec2-sentences: the stale re-spelling chain is replaced by
+  the least-area carriers of `TheoremCAssembly`, removed chain 2c3c8cb40; that module BUILT in
+  0913-070150-30707).
+- kh-torsion's decision on item 2; if it names another item, take that.
+- hull-select's consumer shape; `PocketRegion.ofSimpleClosedWalk` on request.
 - Flip to `relativeGreendlingerQuasiGeodesicLeastArea_closed` as h94 and the parts land. A watcher on
   landed.log follows the part owners.

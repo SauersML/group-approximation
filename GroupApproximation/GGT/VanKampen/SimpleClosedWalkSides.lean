@@ -183,6 +183,7 @@ noncomputable def sideFaces (M : CombMap.{u}) (w : List M.Dart) : Finset M.Face 
 theorem mem_sideFaces_iff (M : CombMap.{u}) (w : List M.Dart) (x : M.Dart) :
     M.faceOf x ∈ sideFaces M w ↔
       ∃ d ∈ w, Relation.EqvGen (CombMap.FaceClassStep M (walkKeep M w)) d x := by
+  classical
   unfold sideFaces
   rw [Finset.mem_filter]
   constructor
@@ -199,6 +200,7 @@ noncomputable def sideOutside (M : CombMap.{u}) (w : List M.Dart) : Finset M.Fac
 
 theorem mem_sideOutside_iff (M : CombMap.{u}) (w : List M.Dart) (f : M.Face) :
     f ∈ sideOutside M w ↔ f ∉ sideFaces M w := by
+  classical
   unfold sideOutside
   rw [Finset.mem_filter]
   exact ⟨fun h => h.2, fun h => ⟨Finset.mem_univ f, h⟩⟩
@@ -237,9 +239,35 @@ theorem exists_next (hw : IsSimpleClosedWalk M w) {a : M.Dart} (ha : a ∈ w) :
   obtain ⟨i, rfl⟩ := List.mem_iff_get.mp ha
   exact ⟨_, List.get_mem _ _, hw.next i⟩
 
-theorem alpha_keep (hw : IsSimpleClosedWalk M w) {a : M.Dart} (ha : a ∈ w) :
+theorem alpha_keep (_hw : IsSimpleClosedWalk M w) {a : M.Dart} (ha : a ∈ w) :
     walkKeep M w (M.alpha a) :=
   Or.inr (by rw [M.alpha_involutive a]; exact ha)
+
+/-- **The reversed walk is a simple closed walk**: reverse the list and every dart.  This
+exchanges the two sides. -/
+theorem reverseAlpha (hw : IsSimpleClosedWalk M w) :
+    IsSimpleClosedWalk M (w.reverse.map M.alpha) where
+  ne_nil := by simpa using hw.ne_nil
+  chain := by
+    rw [List.isChain_map, List.isChain_reverse]
+    refine hw.chain.imp_of_mem_imp fun a b _ _ h => ?_
+    show M.vertexOf (M.alpha (M.alpha b)) = M.vertexOf (M.alpha a)
+    rw [M.alpha_involutive b]
+    exact h.symm
+  closes := by
+    simp only [List.getLast_map, List.getLast_reverse, List.head_map, List.head_reverse]
+    exact (congrArg M.vertexOf (M.alpha_involutive _)).trans hw.closes.symm
+  vertex_nodup := by
+    rw [List.map_map, List.map_reverse, List.nodup_reverse]
+    exact List.Nodup.map_on (fun a ha b hb h => hw.alpha_vertexOf_inj ha hb h) hw.nodup
+  alpha_not_mem := by
+    intro d hd hmem
+    obtain ⟨a, ha, rfl⟩ := List.mem_map.mp hd
+    obtain ⟨b, hb, hba⟩ := List.mem_map.mp hmem
+    rw [M.alpha_involutive a] at hba
+    have hb' : b = M.alpha a := by rw [← hba, M.alpha_involutive b]
+    exact hw.alpha_not_mem a (List.mem_reverse.mp ha)
+      (by rw [← hb']; exact List.mem_reverse.mp hb)
 
 /-- The retained darts at the vertex where `a` ends and `b` starts are `b` and `alpha a`. -/
 theorem keep_at_vertex (hw : IsSimpleClosedWalk M w) {a b x : M.Dart} (ha : a ∈ w)
