@@ -130,29 +130,38 @@ None for the roster target (the four L1122 rows and c149d33e8f7e), for 3009704fe
 rank-two transport. The transport endpoint becomes root-reachable once JacobsonPresentedKazhdanFinite
 is wired.
 
+None for W1 either. `GloballyDistinguishedSectionFamily.PendantPathRemovalInput` is closed
+by `pendantPathRemovalInput` (OsinLemma94PendantRemoval). The statement is unchanged. The
+hypothesis `path ≠ []` is not used, since an empty path gives the family itself.
+`separatingPathRemovalInput_of_pendant` (OsinLemma94SeparatingRemoval) can now take it as its
+argument.
+
 Other lanes' partial rows keep these unions partial:
 - LINE:1155, cite-ejz. Its row covers the first half only; this lane's row carries the whole
   sentence. ghw-assembly handles that row.
 - b6d1590be7ab, ghw-charp2 (ghw-assembly grades it formalized).
 
-## Next: W1 pendant-edge removal on section families (09-13 ~08:40)
-The lead assigned pendant-edge removal in an unselected G-face, transported to
-`RealizedSectionFamily`. It is one of the respell surgeries under hull-unbound's
-`GloballyDistinguishedSectionFamily.ChainRespellInput`. hull-unbound states that Prop, and this
-lane writes no Lean before the statement arrives. The free-product centralizer plan is dropped:
-cite-hull closed Hull Corollary 7.4 (c6e0b6c33).
-- On main:
-  - `EdgeDeletion.toCombMap` with `faceCount_balance_of_sameFace` and `edgeCount_add_one`
-    (CombMapEdgeDeletion);
-  - the spike case: `value_sigma_of_fixed`, `connected_of_sigma_fixed`, `planar_of_sigma_fixed`
-    (SpikeDeletion);
-  - the face rotation after deleting a spur, `joinedFacePerm_eq_isolate`
-    (CombMapRestrictionFaceClasses), and `EdgeDeletion.next` with `isFaceCycle_iff`
-    (EdgeDeletionFaceCycles);
-  - the inverse surgery, `PendantEdge.diagram` (PendantEdgeDiagram, kh-torsion).
-  - The models are `Surgery.GFaceMerge` (its diagram, its regions and `transportDistinguished` in
-    OsinUnboundMerged) and `PinchSplit.transportDistinguished`.
-- Not on main: a disc diagram with a pendant edge deleted from an inner face. The `GFaceMerge` face
-  API (`MergeCycles`, `keptFace`) needs the two sides of the edge on distinct faces. The two sides
-  of a pendant edge lie on one face, whose traversal loses a cancelling pair; the plan keeps every
-  face, relator cell and boundary word.
+## W1: pendant-path removal in an unselected G-face (09-13)
+The lead assigned pendant-edge removal in an unselected G-face, with transport of the section
+family. It is one of the respell surgeries under hull-unbound's
+`GloballyDistinguishedSectionFamily.ChainRespellInput`. The free-product centralizer plan is
+dropped: cite-hull closed Hull Corollary 7.4 (c6e0b6c33).
+- The statement is hull-unbound's `GloballyDistinguishedSectionFamily.PendantPathRemovalInput`
+  (OsinLemma94ChainRespell, 7a225d1d0). Its consumer is hull-unbound's
+  `separatingPathRemovalInput_of_pendant` (OsinLemma94SeparatingRemoval, 7d4a2515f).
+- `Estimating/OsinLemma94PendantRemoval.lean` (this lane) proves
+  `theorem pendantPathRemovalInput : PendantPathRemovalInput.{u, w, v}`, with `#audit_axioms`. The
+  proof is by induction on the length of the path (`pendantPathRemoval_of_length`):
+  - the head dart is fixed by sigma and has the face on both sides, so it is a
+    `Surgery.SpikeDeletion`;
+  - `Surgery.SpikeDeletion.transportDistinguished` keeps the unbound sum and removes two darts;
+  - the tail, mapped by `R.keep`, satisfies every hypothesis again in the shrunk face. The new
+    head is fixed by sigma (`Surgery.SpikeDeletion.sigma_keep_eq_self`, from joint 0). The joints
+    carry over (`Surgery.SpikeDeletion.facePerm_keep_of_ne`).
+- The diagram, dart, region and family layers of the spike deletion belong to sec5-sentences:
+  SurgerySpikeDeletion, SurgerySpikeDeletionDarts, SurgerySpikeDeletionRegions and
+  OsinLemma94SpikeTransport. This lane keeps no copy.
+- Status (10:25): probe GREEN 0913-102123-19053 (base 615da4f77, BUILT
+  OsinLemma94PendantRemoval). All four `#audit_axioms` pass. The module lands in the same commit as
+  this paragraph, after SpikeTransport landed (ba4233ef8). It is queued for wiring after
+  OsinLemma94SpikeTransport and OsinLemma94ChainRespell.
