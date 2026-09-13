@@ -15,11 +15,18 @@ This is the affirmative answer to Zaremsky Problem 1.13
 ## Attempts
 
 - Perturbation in all degrees at once (2026-09-13). The openness proof for each
-  `Σ^n(G)` (Bieri–Renz) turns a finite witness, a `χ`-positive chain
-  endomorphism of a free resolution in degrees `≤ n`, into a neighbourhood of
-  `χ` whose size depends on the witness. For `Σ^∞` the witnesses in degree `n`
-  give neighbourhoods `U_n` with no uniform lower bound on their size, so the
+  `Σ^n(G)` turns a finite witness in degrees `≤ n` into a neighbourhood of `χ`
+  whose size depends on the witness. For `Σ^∞` the witnesses in degree `n` give
+  neighbourhoods `U_n` with no uniform lower bound on their size, so the
   argument proves only that `Σ^∞(G)` is a countable intersection of open sets.
   It closes whenever the invariants stabilize
-  (`non-open-sigma-infinity-needs-unbounded-sigma-depth`), and fails at
-  exactly the characters where depths accumulate.
+  (`non-open-sigma-infinity-needs-unbounded-sigma-depth`), and fails exactly
+  where depths accumulate.
+- Known classes where the claim holds (2026-09-13): every group of type `F_∞`
+  with finite cohomological dimension
+  (`bnsr-invariants-stabilize-at-cohomological-dimension`), every direct
+  product of groups whose invariants stabilize (homological invariants over a
+  field, by additivity of depth under the Bieri–Geoghegan product formula), and
+  the computed infinite-dimensional examples `F`, `F_{n,∞}`, `F_τ`
+  (artifact `research/artifacts/zp-sigma-infinity-openness-2026-09-13-part1.md`,
+  §2). No general argument for infinite-dimensional groups is known.

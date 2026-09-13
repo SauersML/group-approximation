@@ -14,10 +14,16 @@ This is the negative answer to Zaremsky Problem 1.13
 
 ## Attempts
 
-- Necessary shape (2026-09-13, established in
-  `non-open-sigma-infinity-needs-unbounded-sigma-depth`): a witness needs a
-  character `χ ∈ Σ^∞(G)` approached by characters `ψ_k ∉ Σ^∞(G)` whose depths
-  `min{n : ψ_k ∉ Σ^n(G)}` are finite and tend to infinity. So the invariants
-  `Σ^n(G)` must take infinitely many distinct values, and `G` must be
-  infinite-dimensional in the sense of the stabilization results for groups with
-  finite classifying spaces. No such group is known to this lane yet.
+- Necessary shape (2026-09-13, established): a witness needs a character
+  `χ ∈ Σ^∞(G)` approached by characters `ψ_k ∉ Σ^∞(G)` whose depths
+  `min{n : ψ_k ∉ Σ^n(G)}` are finite and tend to infinity
+  (`non-open-sigma-infinity-needs-unbounded-sigma-depth`), and `G` must have
+  infinite cohomological dimension
+  (`bnsr-invariants-stabilize-at-cohomological-dimension`).
+- Products of known groups: dead, since depth is additive under direct
+  products (artifact §3, M1).
+- Two-ended Thompson-like groups (`F`, `F_{n,∞}`, `F_τ`): dead, their invariants
+  stabilize at `m = 2` (artifact §2 and §3, M2).
+- Open leads (artifact §3): arithmetic depth along rational directions of a
+  rank-2 slope group (M3), tropical jump loci whose slopes accumulate (M4), pure
+  braided Thompson groups containing every pure braid group (M5).

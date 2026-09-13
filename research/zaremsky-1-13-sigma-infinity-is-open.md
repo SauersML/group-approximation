@@ -4,6 +4,8 @@ id: zaremsky-1-13-sigma-infinity-is-open
 kind: claim
 title: "Zaremsky Problem 1.13 resolved: must the BNSR invariant Sigma^infinity(G) be open?"
 root: true
+artifacts:
+  - research/artifacts/zp-sigma-infinity-openness-2026-09-13-part1.md
 ---
 
 M. C. B. Zaremsky, *Some open problems* (version of July 12, 2026,
@@ -27,19 +29,33 @@ asks whether `Σ^∞(G)` is open in `S(G)` for every such `G`. The homological
 variant `Σ^∞(G;Z) = ∩_n Σ^n(G;Z)`, for `G` of type `FP_∞`, is the parallel
 question; each answer claim says which invariant it covers.
 
-**Reduction landed with this root.** `Σ^∞(G)` is a countable intersection of
-open sets. It can fail to be open at a character `χ ∈ Σ^∞(G)` only if characters
-of finite but arbitrarily large "depth" `min{n : ψ ∉ Σ^n(G)}` accumulate at `χ`;
-in particular the sets `Σ^n(G)` must take infinitely many distinct values
-(`non-open-sigma-infinity-needs-unbounded-sigma-depth`). So a "no" answer
-produces a group of type `F_∞` whose BNSR invariants never stabilize, which is
-the territory of Problem 1.18 (`zaremsky-1-18-properly-nested-bnsr-invariants`,
-a different question: 1.18 asks for every inclusion to be proper, 1.13 only
-needs infinitely many distinct invariants with a non-open limit).
+**Reductions landed with this root (both established).**
+
+- `non-open-sigma-infinity-needs-unbounded-sigma-depth`: `Σ^∞(G)` can fail to
+  be open at `χ` only if characters of finite but arbitrarily large depth
+  `min{n : ψ ∉ Σ^n(G)}` accumulate at `χ`. So the `Σ^n(G)` must take infinitely
+  many distinct values.
+- `bnsr-invariants-stabilize-at-cohomological-dimension`: if `cd G = d < ∞` the
+  invariants stabilize from index `max(d,2)`. So a counterexample has infinite
+  cohomological dimension.
+
+**Known computations.** Every group of type `F_∞` whose invariants have been
+computed and which has infinite cohomological dimension (Thompson's `F`, the
+generalized Thompson groups `F_{n,∞}`, the golden-mean group `F_τ`; the
+Lodha–Moore groups and the Stein group `F_{2,3}` still to be rechecked from the
+theorems) has stabilizing invariants; see the artifact, §2. A negative answer
+needs a group whose BNSR invariants never stabilize, the territory of Problem
+1.18 (`zaremsky-1-18-properly-nested-bnsr-invariants`, which asks for every
+inclusion to be proper, while 1.13 needs only infinitely many distinct
+invariants with a non-open limit).
 
 ## Attempts
 
-- 2026-09-13 (lane z1-13-sigma-inf): depth reduction above (established). Next:
-  stabilization for groups with a finite classifying space, a survey of every
-  computed `Σ^m` sequence for infinite-dimensional `F_∞` groups (Thompson-like
-  groups), and candidate constructions with unbounded depth. Status: open.
+- 2026-09-13 (lane z1-13-sigma-inf): the two reductions above and a bounded
+  literature sweep (artifact §2): no known group has non-open `Σ^∞`, and none of
+  type `F_∞` is known to have infinitely many distinct invariants. Mechanisms
+  for a "no" answer and their status are in artifact §3: products never help
+  (depth is additive), two-ended Thompson-like groups saturate at `m = 2`,
+  arithmetic depth and tropical jump loci are consistent with openness of each
+  `Σ^m` but unexplored, and pure braided Thompson groups (Problem 2.13) are a
+  candidate. Status: open.
