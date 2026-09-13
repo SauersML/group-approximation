@@ -126,5 +126,13 @@ Planned model tests:
 - 09-13: plan landed at `614c1634a`.
 - 09-13 16:16: module 1 probe `0913-161620-60280`, `# PROBE GREEN`, `BUILT GroupApproximation.Algebra.LocallyMatricial`.
   Landed at `839935133`; wiring queued in `$NM/wire-queue.txt`.  Names sent to chain-radical.
-- 09-13: modules 2 and 4 reassigned to theoremc-retire; lead ruling 16:20 adopted for module 6.  Module 3 written,
-  probing.
+- 09-13: modules 2 and 4 reassigned to theoremc-retire; lead ruling 16:20 adopted for module 6.  Report landed at
+  `9748f8a81`.
+- 09-13 16:35: module 3 probe `0913-163529-70754`, `# PROBE GREEN`,
+  `BUILT GroupApproximation.Algebra.CrossedProductTowerMatrixUnits`.  Landed at `5b3910136`; wiring queued.
+- 09-13 17:08: module 6 first half (`Dynamics/TransientIdealExact`: `transientIdeal`, `mem_transientIdeal`,
+  `coeff_restrict`, `mem_transientIdeal_iff_forall_coeff`, `restrict_injective_of_eq_univ`,
+  `eq_univ_of_restrict_injective`, `restrict_injective_iff`, `transientIdeal_eq_bot_iff`).  Probe
+  `0913-170754-83745`, `# PROBE GREEN`, `BUILT GroupApproximation.Dynamics.TransientIdealExact`.  Landed at
+  `4af014f74`; wiring queued.  Built on chain-core's `restrict`; no restrict of its own.  `restrict_surjective` waits
+  for theoremc-retire's `LocallyConstant.exists_comap_val_eq_of_isClosed` on origin.
