@@ -25,31 +25,49 @@ Never write a `requires: []` route into this claim.
 
 `F` is Thompson's group of piecewise linear homeomorphisms of `[0,1]` with
 dyadic breakpoints and slopes powers of 2. An action of `F` on a set `Ω` is
-2-transitive if `F` is transitive on ordered pairs of distinct points of `Ω`.
-Since `F` is infinite, a faithful action needs `|Ω| ≥ 3`, and every
-2-transitive action on at least 3 points is automatically faithful
+2-transitive if `F` is transitive on ordered pairs of distinct points. Since
+`F` is infinite, a faithful action needs `|Ω| ≥ 3`, and every 2-transitive
+action on at least 3 points is automatically faithful
 (`thompson-f-two-transitive-actions-are-faithful`). So the question asks
-whether the transitivity degree `td(F)` of Hull and Osin (the supremum of `k`
-such that `F` has a faithful `k`-transitive action) is 2 (yes) or 1 (no).
+whether the transitivity degree `td(F)` of Hull and Osin is 2 (yes) or 1 (no).
+Known: `td(F) ≤ 2` (Le Boudec–Matte Bon, arXiv:1906.05744, Corollary 5.3),
+recorded as `thompson-f-transitivity-degree-at-most-two`. The same paper
+(p. 4, v3): "we do not know whether this could be improved from 2 to 1"; it
+also asks (p. 23) whether stabilizers of partitions of an `F`-orbit give
+2-transitive actions on `F/H`.
 
-Known partial result: `td(F) ≤ 2` (Le Boudec–Matte Bon, arXiv:1906.05744,
-Corollary 5.3), recorded as `thompson-f-transitivity-degree-at-most-two`. The
-same paper says (p. 4, v3) "we do not know whether this could be improved from
-2 to 1", records (p. 23) that Hull and Osin asked for `td(F)`, and asks whether
-stabilizers of partitions of an `F`-orbit in `[0,1]`, such as a maximal
-subgroup of Golan–Sapir, give 2-transitive actions on `F/H`.
+Equivalent group-theoretic form: is there a subgroup `H < F` with exactly two
+`(H,H)`-double cosets and `|F/H| ≥ 3`?
 
-The natural actions of `F` on its orbits in `(0,1)` preserve the order, so
-they are transitive on increasing pairs but not on ordered pairs: none is
-2-transitive.
+## Where the problem stands (2026-09-13, unreviewed results)
+
+Any point stabilizer `H` of a 2-transitive action must satisfy:
+
+1. `H` is maximal of infinite index, and `H ∩ [F,F] ≠ 1`;
+2. `H` contains no rigid-stabilizer group `F_U^c` of compactly supported
+   elements in an interval (`thompson-f-two-transitive-rigid-stabilizers-fix-no-point`).
+   So `H` acts minimally on `(0,1)` and is not confined
+   (`thompson-f-two-transitive-stabilizers-minimal-not-confined`);
+3. `H` is closed in the Golan–Sapir sense
+   (`thompson-f-two-transitive-stabilizers-are-piecewise-closed`).
+
+Condition 3, and with it the grid condition of Le Boudec–Matte Bon
+Proposition 5.1(2) at dyadic points, holds for EVERY maximal subgroup of
+infinite index: Golan (arXiv:2209.03244) proves they are all closed, and
+closedness gives the splitting, which is equivalent to the grid condition at
+that point. So Proposition 5.1 cannot separate `td(F) = 1` from 2. Condition 2
+is a genuine restriction: it kills stabilizers of closed subsets of `(0,1)`
+and every action on orbits in `(0,1)`. What remains is maximal closed
+subgroups containing no `F_U^c`, such as stabilizers of dense sets of dyadic
+fractions (Jones' subgroup is the stabilizer of the dyadic fractions with odd
+digit sum, Golan–Sapir arXiv:1501.00724 Theorem 2) and the non-parabolic
+maximal subgroups of Golan–Sapir (arXiv:1508.00493) and Golan
+(arXiv:2209.03244).
 
 ## Attempts
 
-- 2026-09-13 (lane z2-20-f-2-transitive): status check. Zaremsky's list
-  (July 12, 2026) still records the problem as open, and Le Boudec–Matte Bon
-  v3 (June 2021) leave it open. Automatic faithfulness is proved. By Le
-  Boudec–Matte Bon Proposition 5.1 together with the fact that `[F,F]` is not a
-  single `F`-conjugacy class, every 2-transitive action satisfies the grid
-  condition: for each `x ∈ (0,1)`, orbits of the left and right parts of the
-  stabilizer of `x` meet in at most one point. Attack plans are on the two
-  answer claims.
+- 2026-09-13 (lane z2-20-f-2-transitive): status confirmed open (Zaremsky list
+  July 2026; Le Boudec–Matte Bon v3). Conditions 1–3 are proved. The detailed
+  test protocol for the remaining candidates is on
+  `thompson-f-admits-a-faithful-2-transitive-action`; the case analysis is on
+  `thompson-f-has-no-faithful-2-transitive-action`.
