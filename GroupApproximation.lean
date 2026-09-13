@@ -5044,6 +5044,11 @@ import GroupApproximation.CuTensor.ObstructionFinite
 import GroupApproximation.KTheory.K1Lift
 import GroupApproximation.KirchbergPhillips.ApproximateUnitaryEquivalence
 import GroupApproximation.KirchbergPhillips.IntertwiningLimit
+import GroupApproximation.GGT.VanKampen.Estimating.CyclicArcSub
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PendantRemoval
+import GroupApproximation.GGT.HullLemma35PieceWords
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueDiagram
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeTransport
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
