@@ -15,8 +15,13 @@ Lead: main (ct-* lanes). Printed item: `non_mf_groups_exist.tex`, the paragraph 
 
 - **Finite-field clause CLOSED**: `ClopenCrossedProduct.involutionLocalizationRingClause_closed :
   InvolutionLocalizationRingClause`, `#audit_closed_axioms`, landed 0011a8b3a.
-- F₂ clause: `involutionLocalizationMatrixClause_of_ringClause` (ms-core-3, probing) over
-  `CoreKernelElementaryStatement` (ms-units, over chain-matricial's local matriciality of the transient ideal).
+- **Printed lemma composed** (b30db7cd0): `ClopenCrossedProduct.printedInvolutionLocalization_of_matricial
+  (h : TransientIdealLocallyMatricialFTwoStatement) : PrintedInvolutionLocalization`, and
+  `printedInvolutionLocalization_of_coreKernelElementary (hel : CoreKernelElementaryStatement)`.
+- The one open input is `TransientIdealLocallyMatricialFTwoStatement` (CoreKernelFTwo, ms-units): over F₂, every
+  finite subset of `coreTransientIdeal T (ZMod 2)` is covered by an injective non-unital ring hom from a finite
+  product of full matrix algebras over F₂ with range inside the ideal. Owner chain-matricial (planned
+  `isLocallyMatricialIn_transientIdeal`).
 
 ## Interface (landed 8b453b096; consumers: ct-rank-budget, ms-core-3, ms-units)
 
@@ -30,7 +35,7 @@ Lead: main (ct-* lanes). Printed item: `non_mf_groups_exist.tex`, the paragraph 
 | `InvolutionLocalizationMatrixClause` | `F₂` clause (tex 1667–1669), including `w I_n ∈ EL_n` for `n ≥ 2` |
 | `PrintedInvolutionLocalization` | `RingClause ∧ MatrixClause` |
 | `ChainCoreDefectCoverStatement` | piece: `X ∖ Y` covered by translates of defects `P ∖ T(P)`; CLOSED `chainCoreDefectCoverStatement_holds` (0011a8b3a) |
-| `CoreKernelElementaryStatement` | piece: over `F₂`, `n ≥ 2`, `ker (coreRestrictMatrixUnits T (ZMod 2) n) ≤ EL_n(R_X)` |
+| `CoreKernelElementaryStatement` | piece: over `F₂`, `n ≥ 2`, `ker (coreRestrictMatrixUnits T (ZMod 2) n) ≤ EL_n(R_X)`; `coreKernelElementaryStatement_of_matricial` (ms-units, eaa87e3a1) |
 
 ## Route (as printed, with one construction-order note)
 
@@ -43,10 +48,11 @@ Lead: main (ct-* lanes). Printed item: `non_mf_groups_exist.tex`, the paragraph 
    lem:transient-matrices and matches inside each class. Lean matches piece by piece: K is cut into
    `K ∩ W_j ∖ ⋃_{i<j} W_i`, and a point of the j-th piece goes to the first of its first 2m returns lying in
    `C∖K` and outside the targets of earlier pieces (at most m returns in K, at most j < m in earlier targets).
-   Every printed claim is proved; only the organisation of the cells differs.
+   Every printed claim is proved; only the organisation of the cells differs. Census rows `07ab0fbe6cfc`,
+   `3468c60b2946` and `6baf73489057` are graded partial for this reason.
 4. Swap and unitization (tex 1684–1687): `exists_swapUnit`, with `w⁻¹ = w` and `w 1_A w⁻¹ = 1_{T^h A}` on each
    cell; `w 1_K w⁻¹ = ∑ 1_{T^h A} ≤ p_C`, so `w F w⁻¹ ⊆ J` (`conj_eq_sandwich`, `sandwich_eq_self`).
-5. Kernel matrices (tex 1689–1693): ms-core-3 (see Splits).
+5. Kernel matrices (tex 1689–1693): `involutionLocalizationMatrixClause_of_ringClause` (ms-core-3, e131463f7).
 
 ## Modules
 
@@ -58,21 +64,26 @@ Lead: main (ct-* lanes). Printed item: `non_mf_groups_exist.tex`, the paragraph 
 | `Dynamics/TransientSupport.lean` | steps 1–2: `CoeffVanishOn` (ideal closure), `exists_clopen_support`, `exists_wandering_clopen_cover`, `exists_uniform_return` | LANDED 8b453b096, wire-queued |
 | `Dynamics/InvolutionLocalizationRing.lean` | `involutionLocalizationRingClause_of_cover`; `zpow_mem_chainRecurrentSet`, `mem_coreTransientIdeal_iff`, `charFn_eq_sum_of_partition`, `conj_eq_sandwich`, `sandwich_eq_self` | LANDED cc4d23eff, wire-queued |
 | `Dynamics/InvolutionLocalizationRingClosed.lean` | `chainCoreDefectCoverStatement_holds`, `involutionLocalizationRingClause_closed` (closed endpoints) | LANDED 0011a8b3a, wire-queued |
+| `Dynamics/InvolutionLocalizationClosed.lean` | `printedInvolutionLocalization_of_coreKernelElementary`, `printedInvolutionLocalization_of_matricial` | LANDED b30db7cd0, wire-queued |
 
 ## Splits (agreed directly with the helpers main sent)
 
-- ms-core-3: `involutionLocalizationMatrixClause_of_ringClause (hring : InvolutionLocalizationRingClause)
-  (hel : CoreKernelElementaryStatement) : InvolutionLocalizationMatrixClause`, in `Dynamics/InvolutionLocalizationMatrix.lean`.
-- ms-units: a producer of `CoreKernelElementaryStatement` over `TransientIdealLocallyMatricialFTwoStatement` (with
-  chain-radical's landed `ker_elementaryMatrixUnitMap_le_elementaryGroup`), and ct-rank-budget's
-  `UnitKernelLocallyFiniteStatement` (tex 1693, K_1(I) locally finite), in `Dynamics/CoreKernelFTwo.lean`.
+- ms-core-3: `involutionLocalizationMatrixClause_of_ringClause` in `Dynamics/InvolutionLocalizationMatrix.lean`,
+  LANDED e131463f7; it grades census rows `50c5dd41dff4`, `5c06eec5555b`, `1c114e2c4209`.
+- ms-units: `coreKernelElementaryStatement_of_matricial`, `unitKernelLocallyFinite_of_matricial` (ct-rank-budget's
+  `UnitKernelLocallyFiniteStatement`) and the Prop `TransientIdealLocallyMatricialFTwoStatement`, in
+  `Dynamics/CoreKernelFTwo.lean`, LANDED eaa87e3a1.
 
-## Residual statements
+## Residual statement
 
-- `CoreKernelElementaryStatement` := `∀ X [MetricSpace X] [CompactSpace X] [TotallyDisconnectedSpace X] [Nonempty X]
-  T n, 2 ≤ n → (coreRestrictMatrixUnits T (ZMod 2) n).ker ≤ elementaryGroup (Fin n) (ClopenCrossedProduct T (ZMod 2))`
-  (ms-units, over chain-matricial's local matriciality of the transient ideal).
-- The matrix clause assembly (ms-core-3, probing).
+- `TransientIdealLocallyMatricialFTwoStatement` (owner chain-matricial; lem:transient-matrices, local matriciality over
+  F₂). With a producer, `printedInvolutionLocalization_of_matricial` gives the closed printed lemma.
+
+## Build trap (from ms-core-3)
+
+The chain-core statement modules do not import `Mathlib.Algebra.Field.ZMod`. Specializing a `∀ k [Field k]`
+statement at `ZMod 2` without it makes the unifier unfold `ZMod 2` arithmetic and time out (still at 1M heartbeats).
+Import the module and add `haveI : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩`.
 
 ## Progress log
 
@@ -80,3 +91,5 @@ Lead: main (ct-* lanes). Printed item: `non_mf_groups_exist.tex`, the paragraph 
 - 09-13 16:55: ClopenSwapInvolution landed. 17:10: ReturnPlacement landed.
 - 09-13 17:37: statement (kernel spelling) and TransientSupport landed; splits with ms-core-3 and ms-units agreed.
 - 09-13 17:47: ring clause assembly landed. 17:51: finite-field clause closed (0011a8b3a).
+- 09-13 18:00: census rows (17 keys) landed fdd12f7d7; three F₂ rows handed to ms-core-3 at ad266b720.
+- 09-13 18:17: printed lemma composed over TransientIdealLocallyMatricialFTwoStatement (b30db7cd0).
