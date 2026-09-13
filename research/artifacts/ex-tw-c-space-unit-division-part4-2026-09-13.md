@@ -48,6 +48,8 @@ family of division sets `(O_i, φ_i, N_i, δ_i)` covers `K` with
   `μ_{b_i,λ}((σ,1]) ≤ t h_i(λ)(1 + 2s) + 2η + 2(d_i + 3η)/s`.
 - **Upper, inactive member.** `μ_{b_i,λ}((σ,1]) ≤ η(1 + 2s) + 6η/s ≤ 8η/s`.
 - **Lower, all members.** By Lemma 8.1: `μ_{b_i,λ}((σ,1]) ≥ t h_i(λ) − δ_i − η − 2(d_i + 3η)`.
+  When summing, apply this only to active members and use `μ ≥ 0` for inactive ones, because `Σ_i δ_i` over
+  all members is not bounded by `κ` (review note, `research/artifacts/ex-review2-analysis-2026-09-13-part2.md`).
 
 **Summing at `λ`.** A member is active only if `λ ∈ O_i`, so `Σ_{i active} d_i ≤ κ`. Hence:
 ```text

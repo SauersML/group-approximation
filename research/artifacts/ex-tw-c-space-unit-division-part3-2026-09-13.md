@@ -55,6 +55,9 @@ where `ε' = ε/14` and `ε` is as in Section 3.
   ```
   The inactive terms `8η/s_min` and the cut terms are handled as before, since `η`, `ε'_i` and `ε_i` are
   chosen after the family is fixed.
+- **Lower bounds.** (R-low) is summed over active members only, and inactive members contribute `μ ≥ 0`.
+  The sum of `δ_i` over all members is not controlled by summability; only the sum over members containing
+  `λ` is (review note, `research/artifacts/ex-review2-analysis-2026-09-13-part2.md`).
 - **Margins.** The margin in Step 5 stays at least `1 − t − ε ≥ 1/8`.
 - **Result.** The final rank lies within `ε < γ` of `t` at every trace, and Step 7 applies. ∎
 

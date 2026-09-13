@@ -48,6 +48,9 @@ Put `ε = γ/2`. Then `t ≤ 3/4` and `ε ≤ 1/8`, so `1 − t − ε ≥ 1/8`.
 - **Inductive hypothesis at stage `k − 1`.** `W_{k−1} ∈ A` is a sum of pairwise orthogonal positive
   contractions `w_i^{(k−1)}`, `i < k`, with `d_λ(w_i^{(k−1)}) = μ_{b_i,λ}((σ_i,1])` for some
   `σ_i ∈ [s_i, s_i + ε/(8L)]`. In particular (R-up) bounds each `d_λ(w_i^{(k−1)})`.
+  More precisely, `w_i^{(k−1)} = (c_i* c_i − r_i)_+` with `r_i = Σ_{i<j<k} ε_j`. So every further cut has rank
+  `d_λ((w_i^{(k−1)} − r)_+) = μ_{b_i,λ}((s_i + ε'_i + r_i + r, 1])` for all `r ≥ 0`, which is what the cut step
+  below uses (review note, `research/artifacts/ex-review2-analysis-2026-09-13-part2.md`).
 - **Free space.** Put `F_{k−1} = 1 − min(1, W_{k−1}/ε_k) ∈ A_+`.
   - Its support is where the spectrum of `W_{k−1}` lies below `ε_k`, so
     `d_λ(F_{k−1}) ≥ 1 − d_λ(W_{k−1}) ≥ 1 − Σ_{i<k} (t h_i(λ) + 6 s_i + 8η/s_min)`.
