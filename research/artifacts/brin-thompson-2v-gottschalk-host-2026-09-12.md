@@ -141,8 +141,8 @@ or a state, has to involve elements of infinite order that mix the two coordinat
   Fullness over `V` gives fullness over `2V` (route `brin-thompson-2v-averaging-fullness-ascends-from-v`).
 - **Where it stops.** Proposition 2.5: the baker unit turns halving into an external product, and the torsion
   relations it imposes are consistent with independent product states. The next handle has to use infinite-order
-  elements of `2V` that no product `V_1 × V_2` contains. Section 4 shows that `V_1` together with the baker unit
-  is not enough.
+  elements of `2V` that no product `V_1 × V_2` contains. Section 4 shows that a solution using only `V_1` and the
+  baker unit would already show that `V` is not sofic.
 
 ## 4. The baker subgroup is an ascending HNN extension of V
 
