@@ -7,6 +7,7 @@ distinct_from:
   rokhlin-entropy-is-the-bernoulli-approximation-threshold: that proves the weak* approximation of Bernoulli measures by isomorphic shift models above the supremum; this asks that the approximations close, giving actual isomorphisms.
   bernoulli-entropy-counterexample-constraints: that proves a collapsing pair must lie at or above the supremum; this is the converse, that every pair above it collapses.
   bernoulli-shifts-with-equal-base-entropy-are-isomorphic: that is Seward's theorem that base entropy is sufficient; this asks that Rokhlin entropy, min(base entropy, supremum), be sufficient.
+  zero-rokhlin-supremum-forces-bernoulli-collapse: that asks for one collapse when the supremum is zero; this asks for total collapse above any finite supremum, and implies it (route collapse-above-supremum-gives-zero-supremum-collapse).
 ---
 
 **OPEN.** Let `G` be a countably infinite group with `s = h^Rok_sup(G) < ∞`. For all standard
