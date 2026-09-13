@@ -61,3 +61,8 @@ induction.
 ## Progress log
 - 17:0x: claim landed (c0892aaee).
 - 17:3x: module written, attic copy e854e80fa, probe 1 started.
+- 17:4x: probe 0913-173850-9813 GREEN (BUILT; md5 matches the green record). LANDED 538fe1b33, on origin. Queued for
+  wiring: `GroupApproximation.GGT.VanKampen.SurgeryOuterCellThickening w1-binder-6 538fe1b33`.
+- Next: generic transport lemmas across a region correspondence that keeps target profiles and source indices
+  (exterior membership, `TargetsSectionIndex`, distinctness), so a consumer can move `a ≠ b` to the copy. Then
+  `side_outer`.
