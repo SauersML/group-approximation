@@ -4,8 +4,11 @@ import GroupApproximation.GGT.HullSCLemma49Assemble
 /-!
 # Hull's Lemma 4.9 power-diagram leaf from named inputs
 
-`HullSC.HullLemma49ShortestGeodesicPowerDiagramStatement` is the assembly leaf
-`hullLemma49GeodesicPowerDiagram`.  This module reduces it to five named
+`HullSC.HullLemma49ShortestGeodesicPowerDiagramStatement` was the assembly leaf
+`hullLemma49GeodesicPowerDiagram` of `Manuscript/NonMF/TheoremCAssembly.lean`
+until that module retired its `sorry`s on 2026-09-13; the least-area route uses
+`HullLemma49ShortestGeodesicLeastAreaPowerDiagramStatement`
+(`GGT/HullSCLeastAreaGreendlingerTwins.lean`) instead.  This module reduces it to five named
 propositions and nothing else.
 
 Two of its former inputs have gone.  `HullLemma49SourceFacePastingStatement`

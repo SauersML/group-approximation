@@ -285,8 +285,11 @@ theorem hullLemma44CanonicalQuotientStatement_of_greendlinger_of_prefixIsoperime
       hbridge D q hsurj hmuPos hmuThousand hrhoDehn hsc hker hcert
         hinjectCores
 
-/-- Universe-zero specialization used by the manuscript's
-`hullLemma44Canonical` declaration. -/
+/-- Universe-zero specialization.  Its consumer, `TorsionFree.hullLemma44Canonical`
+of `Manuscript/NonMF/TheoremCAssembly.lean`, was retired on 2026-09-13 (see that
+module's header); the least-area route reaches Lemma 4.4 through
+`GGT/HullSCLemma44BoundedLeastAreaCanonical.lean`, and nothing applies this
+declaration now. -/
 theorem hullLemma44CanonicalQuotientStatement_zero
     (hgeom : RelativeGreendlingerStatement.{0, 0})
     (hbridge : RelativeIsoperimetricBridgeStatement.{0, 0, 0}) :

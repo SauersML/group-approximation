@@ -198,9 +198,11 @@ theorem freeProductStatementCorrected_of_freeProductStatement
 /-- **Hull's Corollary 7.4 from Hull's Theorem 7.1 for one relator**, over the
 corrected free product input.  This is the form that composes with the rest of
 the lane: `HullSC.hullOneStep_of_relator_of_quotient` proves
-`HullOneStepStatement` from Hull's §5 and §6, and
-`Manuscript.NonMF.TheoremC.hullCommonQuotient` is then owed only
-`FreeProductStatementCorrected`. -/
+`HullOneStepStatement` from Hull's §5 and §6, and the `hullCommonQuotient` field
+of `Manuscript.NonMF.TheoremC.LiteratureInputs` is then owed only
+`FreeProductStatementCorrected`.  The producer of that field over the least-area
+leaves, `HullSC.hullCommonQuotient_of_leastAreaLeaves`, goes through
+`hullCommonQuotient_of_oneStep_of_geometry` instead. -/
 theorem hullCommonQuotient_of_oneStep_corrected (h : HullOneStepStatement.{0})
     (hfree : FreeProductStatementCorrected) :
     Manuscript.NonMF.TheoremC.HullCommonQuotientStatement :=

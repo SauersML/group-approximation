@@ -676,12 +676,16 @@ by asking who applies them, not by reading them:
   bridge's hypothesis, and in two docstrings;
 * `OriginalRelatorExpansion` occurs only inside its own file.
 
-The live path does not pass through any of it.  `TheoremCAssembly`'s
-`hullLemma44FamilyInclusionJoint` reaches
+The live path did not pass through any of it.  Until 2026-09-13 `TheoremCAssembly`'s
+`hullLemma44FamilyInclusionJoint` reached
 `HullLemma44CanonicalQuotientFamilyInclusionJointStatement` through
 `hullLemma44CanonicalQuotientFamilyInclusionJointStatement_of_quasiGeodesicControls`,
-whose re-spelling input is the admission `hullRelatorRespelling`, stated at
-`HullRelatorRespellingStatement` directly.
+whose re-spelling input was the admission `hullRelatorRespelling`, stated at
+`HullRelatorRespellingStatement` directly.  Both declarations were retired then,
+with the other `sorry`s of that module.  Theorem C now reaches Hull's Theorem 7.1
+through `HullSC.hullOneStepStatement_of_leastAreaLeaves`
+(`GGT/HullSCLemma44BoundedLeastAreaCanonical.lean`), which takes no re-spelling
+input.
 
 So the four hypotheses `relatorRespellings_of_original` demands are the frontier
 of a route nobody has taken, and aligning them buys nothing until the bridge is

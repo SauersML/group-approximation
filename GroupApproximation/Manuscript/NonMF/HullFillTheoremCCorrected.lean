@@ -15,8 +15,9 @@ Theorem C over to the corrected one, by re-proving it with the single call to
 That substitution has since been made where it belongs:
 `Saturation.saturation`, `TorsionFreeTheoremC.manuscriptTorsionFreeFullMFRadical`
 and `TheoremCPrinted.manuscriptTorsionFreeSimplified` take
-`HullInputsCorrected` themselves, and `Manuscript.NonMF.TheoremCAssembly` closes
-the two printed forms on `TorsionFree.hullInputs : HullInputsCorrected`.  So the
+`HullInputsCorrected` themselves, and `Manuscript.NonMF.TheoremCAssembly` states
+the two printed forms over `TorsionFree.hullInputs_of_leastAreaLeaves`, the
+`HullInputsCorrected` of the least-area leaves.  So the
 two theorems here are now aliases of the printed ones, kept because reports and
 messages of this lane name them, and because deleting a module means deleting a
 line of the root import list, which is how `main` gets broken.  Nothing in the

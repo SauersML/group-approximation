@@ -90,31 +90,31 @@ citation for another, and an earlier version of this header said otherwise.  See
 Section 2 is therefore replaced by
 
 * Chiodo — `TheoremC.chiodo`, from Higman's ω-closure.  **Closed**;
-* Kotowski–Kotowski and Ollivier–Wise, the density model — an admitted proof,
-  `TheoremC.kotowskiOllivier`, one of the five open admissions of
-  `TheoremCAssembly`;
+* Kotowski–Kotowski and Ollivier–Wise, the density model — the hypothesis `hKO`
+  of `TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves`
+  and of `TheoremC.manuscriptTorsionFreeFullMFRadical_of_leastAreaInputs`, which
+  `Kazhdan/KotowskiOllivierClosed.lean` reduces to three systolic leaves.
+  **Not closed**;
 * Fournier-Facio et al., Proposition 2.3 with Osin's Theorem 2.4(5) —
-  `TheoremC.smallCancellationQuotient`, from Hull's one-step small cancellation
-  over the free product.  Reduced, **not closed**: it consumes
-  `TorsionFree.hullLemma44FamilyInclusion`, which routes through
-  `hullLemma44FamilyInclusionJoint`, of which `TheoremCAssembly` says in so many
-  words *"Reports `sorryAx`, inherited from the four admissions it is assembled
-  from"*;
+  `GGT.RelHyp.fournierFacioQuotientStatement_of_leastAreaLeaves`, Osin's Theorem
+  2.4 at Hull's published relator.  Reduced, **not closed**: it rests on Osin's
+  Lemma 4.4 at least-area diagrams (`hgreendlinger`) and his Lemma 5.1 in the
+  embedded form (`hbridge`);
 * Minasyan–Osin at `E` — `TheoremC.minasyanOsin`, down to Osin's Theorem 1.2,
   which is `GGT.Elementary.osinTheorem12_unconditional`.  **Closed**;
-* Hull, Corollary 7.4 — `TheoremC.hullCommonQuotient`, from
-  `TorsionFree.hullOneStep` and a free-product geometry that is unconditional.
-  Reduced to Hull's Theorem 7.1 for one relator, **not closed**: `hullOneStep`
-  rests on the same four §5/§6 admissions;
+* Hull, Corollary 7.4 — `HullSC.hullCommonQuotient_of_leastAreaLeaves`, from
+  `HullSC.hullOneStepStatement_of_leastAreaLeaves` and a free-product geometry
+  that is unconditional.  Reduced to Hull's Theorem 7.1 for one relator, **not
+  closed**: that theorem rests on the same `hgreendlinger` and `hbridge`;
 * a finitely presented torsion-free infinite simple group — stated here as
   `FinitelyPresentedInfiniteSimpleStatement`, and **cited by Section 2 too**,
   so it is new to this development but not to the argument.
 
 So two of the five are closed and three are not, and supplying
-`TheoremC.literatureInputs` for `I` is a reduction rather than a discharge.  The
-four §5/§6 admissions are the leaves of Hull's Theorem 7.1, so what
-`sec:torsion-free` is really waiting on, after this module, is Hull's Theorem 7.1
-and the density model.
+`TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves` for
+`I` is a reduction rather than a discharge.  `hgreendlinger` and `hbridge` are
+the leaves of Hull's Theorem 7.1, so what `sec:torsion-free` is really waiting
+on, after this module, is Hull's Theorem 7.1 and the density model.
 
 What this establishes is that the paragraph is **not** an irreducible input: it
 is the earlier printed construction with a simple third factor, and every step
@@ -471,9 +471,10 @@ theorem fournierFacioParagraph_of_literatureInputs (I : LiteratureInputs)
 
 `fournierFacioParagraph_of_literatureInputs` takes both of its inputs as
 hypotheses, so `#audit_closed_axioms` does not apply; `#audit_axioms` reports
-that nothing else reaches it.  `TheoremC.literatureInputs` itself rests on the
-five open admissions of `Manuscript/NonMF/TheoremCAssembly.lean`, and this module
-does not import that file, so no `sorryAx` enters here. -/
+that nothing else reaches it.  Its `LiteratureInputs` argument is produced by
+`TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves`,
+which takes the three least-area hypotheses `hgreendlinger`, `hbridge` and `hKO`
+as arguments and imports this module rather than the reverse. -/
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.injective_of_isSimpleGroup_of_map_ne_one
 

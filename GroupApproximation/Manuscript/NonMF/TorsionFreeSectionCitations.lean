@@ -27,24 +27,25 @@ one declaration naming **every** literature input it still rests on, with no
 
 ## The inputs that remain, and what each costs
 
-`TheoremC.LiteratureInputs` has five fields, and this repository's own
-`TheoremCAssembly` supplies all five — but only two of the five are closed, and
-the table says which, because "supplied" and "closed" are not the same thing
-here:
+`TheoremC.LiteratureInputs` has five fields, and
+`TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves`
+supplies all five over the three hypotheses of the least-area route — but only
+two of the five are closed, and the table says which, because "supplied" and
+"closed" are not the same thing here:
 
 | field | state on `origin/main` |
 | --- | --- |
 | `chiodo` | **closed** — `TheoremC.chiodo`, from Higman's ω-closure |
-| `kotowskiOllivier` | an admitted proof — the density model at a parameter in `(1/3,1/2)` |
-| `smallCancellationQuotient` | reduced to Hull's Lemma 4.4 in its family form, Lemma 4.9 and the Yi pair; **reports `sorryAx`** through `hullLemma44FamilyInclusionJoint` |
+| `kotowskiOllivier` | the hypothesis `hKO`, Kotowski–Kotowski and Ollivier–Wise; `Kazhdan/KotowskiOllivierClosed.lean` reduces it to three systolic leaves |
+| `smallCancellationQuotient` | reduced to Osin's Lemma 4.4 at least-area diagrams (`hgreendlinger`) and his embedded Lemma 5.1 (`hbridge`), through `GGT.RelHyp.fournierFacioQuotientStatement_of_leastAreaLeaves` |
 | `minasyanOsin` | **closed** — down to Osin's Theorem 1.2, `GGT.Elementary.osinTheorem12_unconditional` |
-| `hullCommonQuotient` | reduced to Hull's Theorem 7.1 for one relator; **reports `sorryAx`**, because `TorsionFree.hullOneStep` rests on the same four §5/§6 admissions |
+| `hullCommonQuotient` | reduced to Hull's Theorem 7.1 for one relator, `HullSC.hullOneStepStatement_of_leastAreaLeaves`, which rests on the same `hgreendlinger` and `hbridge` |
 
-So supplying `TheoremC.literatureInputs` for `I` below is a reduction and not a
-discharge.  Three of the five open obligations are the §5/§6 leaves of Hull's
-Theorem 7.1 — the same theorem `hHull` and `hOne` name — so what
-`sec:torsion-free` is waiting on, after this module, is Hull's Theorem 7.1, the
-density model, Burger–Mozes, and the two C⋆-algebraic citations.
+So supplying `literatureInputs_of_leastAreaLeaves` for `I` below is a reduction
+and not a discharge.  Two of the three open fields rest on the leaves of Hull's
+Theorem 7.1 — the same theorem `hHull` and `hOne` name — and the third is `hKO`,
+so what `sec:torsion-free` is waiting on, after this module, is Hull's Theorem
+7.1, the density model, Burger–Mozes, and the two C⋆-algebraic citations.
 
 `FinitelyPresentedInfiniteSimpleStatement` is Burger–Mozes and is new.
 `HullPrintedInputs` is Hull's Theorem 7.1 and Osin's Lemma 7.1.
@@ -162,9 +163,11 @@ theorem manuscriptRegularNonMFAlgebra_of_citations (I : LiteratureInputs)
 All four take their literature inputs as hypotheses, so `#audit_closed_axioms`
 does not apply.  What `#audit_axioms` establishes is that the composition adds
 nothing: no `sorryAx` reaches any of them, so every open obligation of
-`sec:torsion-free` is one of the named arguments above.  In particular the five
-admissions of `Manuscript/NonMF/TheoremCAssembly.lean` are **not** among them —
-they enter only when `TheoremC.literatureInputs` is supplied for `I`. -/
+`sec:torsion-free` is one of the named arguments above.  In particular the three
+least-area hypotheses `hgreendlinger`, `hbridge` and `hKO` are **not** among
+them — they enter only when
+`TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves` is
+supplied for `I`. -/
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreePrinted.manuscriptTorsionFreeTheorem_of_citations
 
