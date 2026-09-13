@@ -57,3 +57,18 @@ new parts) are forced.
   explicit free group, which van Handel's survey (arXiv:2510.12520, Section
   2.2) records as open.  Conversely, one thin free subgroup with an outlier in
   its congruence Cayley graphs refutes this claim.
+* **Numerical search for outliers.**  None found.  The algebra is
+  `D = (Q(2cos(2pi/7))/Q, sigma, 2)`, with a certified free pair
+  `<a^19, b^19> <= SL_1(Lambda)`.  The runs cover all `p == +-1 mod 7` up to 967,
+  i.e. `N ~ 1e6`, on these sectors of `l^2_0(SL_3(F_p))`:
+  - mean-zero functions on `P^2(F_p)`;
+  - Legendre-twisted sections;
+  - flags (Steinberg), up to `p = 139`.
+
+  The excess over the regular norm stays within about `2e-4`, the same as for
+  Haar-random pairs.  On `P^2` this holds for three weightings of the
+  generators; on flags only equal weights were tested.  The one exception is a
+  transient at `p = 419`, where `a^19` has order 22.  Cuspidal sectors are
+  untested.  Details:
+  `research/artifacts/cubic-division-congruence-numerics-2026-09-13.md`.
+  Evidence only.
