@@ -17,19 +17,24 @@ subgroup of `H` were elementary amenable, `H` would be too, as their directed un
 
 ## Attempts
 
-- **Constraints on a counterexample (2026-09-13, z2-03-brin-sapir).** A finitely
-  generated counterexample `H` has, on every orbital, germ kernels at the two ends
-  that coincide (Brin 1999, Theorem 1, contrapositive), and it carries an infinite
-  compactly nested sequence of finitely generated non-elementary-amenable
-  subgroups, each inside the germ kernel of the previous one on a nested orbital.
-  So a construction must nest non-elementary-amenable complexity inside compactly
-  supported kernels infinitely often, while keeping, on every orbital of every
-  subgroup, slope germs at both ends synchronized.
-- **Self-similar nesting of Bleak–Brin–Moore signatures (idea, untested).** Their
-  groups `G_ξ` (`ξ < ε_0`, arXiv:1711.10998) are all elementary amenable. A
-  counterexample would need a self-referential configuration, realized with
-  finitely many breakpoints per generator, whose kernel tower never terminates.
-  Where it dies so far: an internal self-similarity (an element of the group
-  conjugating the configuration into a proper compact part of itself) tends to
-  create an element approaching one end of an orbital but not the other, which
-  yields a copy of `F` by Brin's criterion. Not yet a proof of anything.
+- **Constraints on a counterexample (z2-03-brin-sapir, 2026-09-13; each piece
+  established, unreviewed).** A finitely generated counterexample `H`:
+  - has synchronized end germs on every orbital of every subgroup
+    (`f-free-plo-i-groups-have-equal-end-germ-kernels`);
+  - carries an infinite compactly nested descent `(D_i, A_i)` of finitely generated
+    non-elementary-amenable subgroups, each inside the germ-trivial kernel of the
+    previous one on a nested orbital
+    (`plo-i-group-is-ea-iff-its-orbital-germ-kernels-are`, part 5);
+  - has no two one-bump elements with different supports that overlap, share
+    exactly one endpoint, or are nested with some translate of the smaller support,
+    under the larger element, meeting it
+    (`two-one-bump-pl-maps-unequal-supports-ea-or-contain-f`).
+- **Self-similar nesting (idea, untested).** Bleak–Brin–Moore's groups `G_ξ`,
+  `ξ < ε_0` (`f-has-ea-subgroups-of-every-class-below-epsilon-zero`), are all
+  elementary amenable. A counterexample needs a configuration whose germ-kernel
+  descent never stops, realized with finitely many breakpoints per generator. Where
+  it dies so far: making a subgroup reappear inside its own compactly supported
+  kernel, by conjugating with an element of the group, tends to produce either an
+  element approaching one end of an orbital but not the other, or two one-bump
+  conjugates in overlapping position; either gives a copy of `F`. Not yet a proof of
+  anything.
