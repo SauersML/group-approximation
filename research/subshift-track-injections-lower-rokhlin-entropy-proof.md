@@ -24,4 +24,11 @@ Complete direct proof, Section 1 of the first artifact.
   join is generating. At markers each track avoids its missing pattern, so the entropy is at most
   `m log 3 + n log b + j' log|D| - Sigma`.
 
-Independent re-derivation requested from w4-vf-positive-b.
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 11.1 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
+- **Re-derived:**
+  - the normalization;
+  - the transfer of freeness;
+  - the marker construction: independence, maximality, `s >= 1/|W W^-1|` and disjoint blocks;
+  - the generating argument, `(w.y)_i(w) = y_i(1)`;
+  - the entropy identity `s|T| log(b^|W| - 1) + (1 - |W| s)|T| log b = |T|(log b - s eta_W)`.

@@ -1187,3 +1187,95 @@ Question 9 stays open for non-normal `H`. Nothing here is decision-level, and no
 - (c) The Status bullets for artifact Sections 3 and 4 now cite Sections 10.3 and 10.4.
 
 The three blobs on main are the ones at `6ce9885b8`. Follow-up PASS.
+
+## 11. w7-quant-residue: markers on subshift tracks (`d58fa0f32`)
+
+This landing has two ESTABLISHED claims, and both proof routes get verdict lines. The source is
+`research/artifacts/quantitative-surjunctivity-rokhlin-markers-2026-09-12.md`.
+
+### 11.1 Theorem R (`subshift-track-injections-lower-rokhlin-entropy`). PASS.
+
+- **Normalization.**
+  - If `Y_i` misses `r` on `W`, the pattern of `g.y` on `w_0^-1 W` at `w_0^-1 w` is `((w_0 g).y)(w)`. So `Y_i` misses
+    the translated pattern.
+  - `|W|` is unchanged, and `W W^-1` is replaced by a conjugate.
+  - If the translation is chosen per set, `m` does not grow.
+- **Amplify and transfer.**
+  - `Phi^(k)` has `nk` tracks, the same windows and deficit `k Sigma`.
+  - `Phi` is a Borel isomorphism of `(X, u)` with `(Phi(X), nu)`.
+  - Freeness transfers, since `g.Phi(x) = Phi(x)` forces `g.x = x`.
+- **Markers.** Step 2 of Section 1 of `gottschalk-rokhlin-entropy-route-2026-09-12.md`, re-checked.
+  - The sets `W_j` cover `Z_0`, and `g.W_j ∩ W_j` is empty for `g in S`.
+  - The greedy `C_n` are independent (cases `m < n`, `m > n`, `m = n`) and maximal. So `(1 + |S|) nu(C) >= 1`, by
+    invariance.
+  - `w^-1.c = w'^-1.c'` gives `c' in (W W^-1).c`, so `w = w'`. The blocks are disjoint, and each `y in B_W` has
+    exactly one `w in W` with `w.y in C_W`.
+- **Generating.**
+  - `y in B_W` iff some `alpha_W(w.y)` with `w in W` carries the tag `o`, and that `w` is unique.
+  - `(w.y)_i(w) = y_i(1)`, so `beta` is measurable for the invariant sigma-algebra of `alpha`.
+- **Entropy.**
+  - On `C_W`, each `y_i|_W != r_i` (take `g = 1`), so there are at most `(b^|W| - 1)^|T_W|` values.
+  - Conditioning on the three sets gives `s|T| log(b^|W| - 1) + (1 - |W| s)|T| log b = |T|(log b - s eta_W)`.
+  - `s >= 1/|W W^-1|`. Summing over the windows and adding `H(zeta)` gives the bound.
+- **Remarks.**
+  - Remark 1.1 is correct. Disjoint pairs `{h, t^-1 h}` make `Fix_N` null, and `Phi(x) in Fix_N` iff `x in Fix_N`, by
+    injectivity.
+  - Remark 1.2 is correct: `|W W^-1| <= |W|^2 - |W| + 1`. I did not re-derive the sofic and periodic constants it
+    compares against.
+- **Node.**
+  - The display matches Theorem R.
+  - The case `n = 1`, `j = j' = 0` is Theorem 1 of the second artifact, with the same bound.
+- **Subsumption.** A scan of the Rokhlin-entropy and quantitative titles finds no node that states Theorem R.
+  - `strict-automaton-lowers-bernoulli-rokhlin-entropy` is the one-track case.
+  - `quantitative-surjunctivity-constants-lift-from-quotients` works through invariant configurations.
+
+PASS.
+
+### 11.2 Corollary U and Proposition U' (`maximal-bernoulli-rokhlin-entropy-makes-groups-uqs`). PASS.
+
+- **Threshold.**
+  - Item 1 of `seward-per-group-rokhlin-entropy-of-bernoulli-shifts` gives `h^Rok = min{log|A|, h^Rok_sup}`. It is
+    ESTABLISHED and imported, not re-derived.
+  - So maximality at every `A` means `h^Rok_sup = infinity`.
+  - Theorem R at the base entropy gives `k(Sigma - mu) <= m log 3` for all `k`, so `mu >= Sigma`. Correct.
+- **Constants.** They match the definitions of UQS in `amenable-extensions-of-uqs-groups-are-surjunctive` (at most `w`
+  sites) and of QS in `surjunctive-groups-are-quantitatively-surjunctive` (`Y^n`).
+  - `1 - b^-|W_i| <= 1 - b^-w` gives `eta_i >= -log(1 - b^-w)`.
+  - `D_i <= w^2`, so `Sigma >= n delta(B, w)`.
+  - For one subshift, `Sigma = n eta_W / |W W^-1|`.
+  - Correct.
+- **Finite groups.**
+  - A maximal `C` with `C C^-1 ∩ S_W` empty has `G = C ∪ S_W C`, since `S_W` is symmetric.
+  - The windows `c^-1 W` are disjoint, since `C C^-1 ∩ W W^-1 = {1}`.
+  - So `|Y_i| <= b^N (1 - b^-|W_i|)^(N / D_i)`, and counting gives `mu >= Sigma`. Correct.
+- **Proposition U'.**
+  - `k_0(Sigma - mu) > m log 3` is exactly the strict inequality.
+  - Below the base entropy, item 1 makes the Rokhlin entropy equal `h^Rok_sup`.
+  - For `n = m = 1`, `k_0` is the least integer above `D log 3 / delta`, as in
+    `strict-automaton-bounds-rokhlin-supremum`.
+  - Correct.
+- **Node item 3.**
+  - A group that is not QS has, for some `Y`, an injection with margin below `n eta_W / |W W^-1| = Sigma`. So its
+    supremum is finite.
+  - The collapse to `0` imports `rokhlin-supremum-dichotomy-with-centralized-self-copies`, which I did not re-derive.
+- **Artifact item 3** (`G x K` surjunctive) is Theorem Q of the product-fibre artifact applied to item 2. It is imported,
+  and the claim node does not assert it.
+
+PASS.
+
+### 11.3 Section 4 (the converse). Correct.
+
+- **Proposition 4.1** is correct.
+  - T gives P through Theorem Q, which is imported.
+  - T gives C with `K = 1`.
+  - C and P together give T.
+- **Proposition 4.2.** Both items follow from `products-with-lef-permanence-closure-factors-are-surjunctive`. Correct.
+- **Proposition 4.3** is correct.
+  - Finite groups meet the margin bound.
+  - Not QS gives `mu < Sigma` for some injection, so U' gives a finite supremum.
+  - The product statement imports item 3 of Seward.
+- **Scope.** The prose on where constructions die is heuristic. The Scope bullets match the titles of the cited nodes,
+  but I did not re-check those nodes.
+
+PASS for Theorem R and Corollary U. T, C and P stay OPEN, and no new group becomes QS. Nothing here is decision-level,
+and nothing is refuted.

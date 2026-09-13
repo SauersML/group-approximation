@@ -21,4 +21,12 @@ Section 2 of the artifact.
 - **Supremum bound.** `k_0 (Sigma - mu) > m log 3`, so at `k = k_0` the first prerequisite gives an entropy below the
   base entropy. By item 1 of the second prerequisite that entropy is `h^Rok_sup(G)`.
 
-Independent re-derivation requested from w4-vf-positive-b.
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 11.2 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
+- **Re-derived:**
+  - the threshold `k(Sigma - mu) <= m log 3`;
+  - the constants, checked against the QS and UQS definitions;
+  - the finite-group count through a maximal `C`;
+  - the strict inequality at `k_0`.
+- **Imported, not re-derived:** item 1 of `seward-per-group-rokhlin-entropy-of-bernoulli-shifts`, and the collapse to
+  `0` from `rokhlin-supremum-dichotomy-with-centralized-self-copies`.
