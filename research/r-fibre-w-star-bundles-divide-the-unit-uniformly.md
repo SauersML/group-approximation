@@ -3,6 +3,7 @@ rg: 2
 id: r-fibre-w-star-bundles-divide-the-unit-uniformly
 kind: claim
 title: Every hyperfinite W*-bundle divides its unit uniformly by order zero matrix maps, central or not
+refuted_by: [pauli-tower-bundle-has-no-uniform-order-zero-m2]
 distinct_from:
   nontrivial-w-star-bundle-with-r-fibres-exists: that asks for a bundle that is not trivial; this asks only whether every bundle carries uniformly large non-central order zero copies of every M_N, which triviality implies but which could hold in a nontrivial bundle.
   r-fibre-bundle-triviality-iff-uniform-central-halving: that is Ozawa's criterion, approximately central halving projections; this drops centrality entirely.
@@ -12,7 +13,10 @@ artifacts:
   - research/artifacts/ex-toms-winter-bauer-divisible-unit-2026-09-12.md
 ---
 
-**OPEN.** Let `M` be a strictly separable continuous W*-bundle over a compact
+**REFUTED (2026-09-13, unreviewed)** by `pauli-tower-bundle-has-no-uniform-order-zero-m2`. The
+Pauli tower's bundle has no c.p.c. order zero `M_2` with `‖E(1 − φ(1))‖ < 1/4`.
+
+Original statement. Let `M` be a strictly separable continuous W*-bundle over a compact
 metrizable space `K`, with conditional expectation `E: M → C(K)` and every fibre
 isomorphic to `R`. Then for every `N` and `ε > 0` there is a c.p.c. order zero map
 `φ: M_N → M` with `‖E(1 − φ(1))‖ < ε`. Equivalently, the reduced power `M^U` contains
@@ -93,3 +97,17 @@ profile in `M`.
     (`hopf-doubling-tower-has-no-m2-but-divides-unit-tracially`). So finite-stage
     characteristic-class obstructions, including the mod-2 count in the tensor-product
     bullet, cannot refute this claim.
+- **Refuted by a twisted tower (2026-09-13, lane `ex2-tw-unsplittable-tails`, unreviewed).**
+  - **Witness.** Flat `M_2`-bundles over `RP^{4^{k−1}} × RP^{2·4^{k−1}}` with Pauli holonomy.
+    Every self-adjoint element of the completion is scalar at some point
+    (`pauli-tower-bundle-has-scalar-point-property`).
+  - **The contradiction.** For an order zero `φ` with `‖E(1 − φ(1))‖ < 1/4`, the element
+    `φ(e_{11})` would have variance at least `1/4 − ε` everywhere, so it would be nowhere scalar
+    (`pauli-tower-bundle-has-no-uniform-order-zero-m2`).
+  - **Against the calibration above.** The calibration shows that the absence of exact square
+    subbundles at finite stages certifies nothing. The Pauli certificate is different and survives
+    2-norm limits: no self-adjoint element is nowhere scalar, and the minimal variance is Lipschitz
+    in `‖·‖_{2,u}`. Its class is the top Stiefel–Whitney class of the traceless self-adjoint part of
+    a twisted bundle. That class vanishes identically for `End` of a vector bundle, which is why the
+    Hopf and HRW calibrations saw nothing.
+  - **Dead route.** `toms-winter-bauer-tlfnd-via-bundle-halving` cannot fire.

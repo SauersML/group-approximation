@@ -104,3 +104,19 @@ single class `[1_A]`.
   - an extreme boundary without property C
     (`bauer-c-space-strict-comparison-divides-unit`), and a nonempty closed division
     locus (`bauer-strict-comparison-unit-division-is-local`).
+- **The comparison-free bundle route is dead (2026-09-13, lane `ex2-tw-unsplittable-tails`,
+  unreviewed).**
+  - `r-fibre-w-star-bundles-divide-the-unit-uniformly` is false. The Pauli tower, a non-simple
+    `C(X̂)`-algebra with twisted `M_2`-bundle factors, has an R-fibre completion in which every
+    self-adjoint element is scalar somewhere (`pauli-tower-bundle-has-no-uniform-order-zero-m2`).
+  - So strict comparison must enter any proof of this claim.
+- **What a Pauli-type counterexample would also need.**
+  - **Rank windows give division.** Under strict comparison, any `x ∈ M_∞(A)_+` with
+    `d_τ(x) ∈ (1/(n+1), 1/n)` at every trace gives `n x ≤ [1] ≤ (n+1) x`, hence tracial division of
+    the unit (`strict-comparison-unit-divisibility-equivalences`).
+  - **The Pauli gap sits at the unit only.** `e_{11} ⊗ 1 ∈ M_2(A)` has constant trace `1/2`. So a
+    simple strict-comparison witness of this type must also exclude constant rank windows in every
+    `M_k(A)`.
+  - **For twisted homogeneous blocks this is a period–index constraint.** Projections of `M_k ⊗ B`
+    have ranks divisible by the index of the Dixmier–Douady class.
+  - Not attempted beyond this observation.

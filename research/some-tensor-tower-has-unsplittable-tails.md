@@ -58,3 +58,20 @@ Bauer simplex and a `C(X̂)`-algebra, and no simple algebra would be needed.
     nor produces a witness here.
   - **Not known here.** Whether hyperfinite W*-bundles over C-space bases are trivial
     without a comparison hypothesis.
+- **Twisted form: proved (2026-09-13, lane `ex2-tw-unsplittable-tails`, unreviewed).**
+  - **The tower.** Replace `End(W_k)` by flat `M_2`-bundles over `RP^{4^{k−1}} × RP^{2·4^{k−1}}`
+    with Pauli holonomy.
+  - **Tails.** Every self-adjoint section of every tail is scalar somewhere, so no tail has a
+    `1/5`-soft half splitting (`pauli-tower-sections-are-somewhere-scalar`).
+  - **Bundle.** The completion is a nontrivial R-fibre bundle
+    (`pauli-tower-bundle-has-scalar-point-property`).
+  - **The obstruction.** It is the top Stiefel–Whitney class of the traceless self-adjoint part,
+    equal to the Moore determinant, over a base of dimension `4^r − 1` for tail rank `2^r`. That is
+    the quadratic regime predicted above.
+  - **No rational class is needed.** Flat bundles with finite holonomy suffice.
+- **Vector bundles, as stated here: still open.**
+  - For genuine `W` the Euler class of `Herm_0(End W)` is pulled back from `BU(w)` and vanishes, so
+    the primary obstruction above never appears.
+  - Irreducible non-abelian holonomy, such as `Q_8 ⊂ SU(2)`, fixes no soft half projection. So
+    Smith-theory obstructions exist over the whole classifying space.
+  - Whether those obstructions survive on finite skeleta at every depth was not examined.

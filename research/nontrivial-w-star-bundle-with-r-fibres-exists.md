@@ -28,6 +28,17 @@ Every unital counterexample with a Bauer simplex yields such a bundle.
 
 ## Attempts
 
+- **Witness proposed: the Pauli tower (2026-09-13, lane `ex2-tw-unsplittable-tails`,
+  UNREVIEWED).** Route `nontrivial-w-star-bundle-via-pauli-tower`; pending `ex-verify-analysis`
+  review.
+  - **The bundle.** Base `Π_k (RP^{4^{k−1}} × RP^{2·4^{k−1}})`. Algebra `lim_m C(Π_{k≤m} Y_k, ⊠_{k≤m} B_k)`,
+    where `B_k` are flat `M_2`-bundles with Pauli holonomy, which are not `End` of vector bundles.
+  - **Certificate.** Every self-adjoint element of the completion is scalar at some point
+    (`pauli-tower-bundle-has-scalar-point-property`), through the top Stiefel–Whitney class of
+    the traceless part, the Moore determinant. A trivial bundle has constant non-scalar sections.
+  - **Consistent with every dead end below.** It is not locally trivial, its base is strongly
+    infinite-dimensional, it has no central halving, and it is certified by an existence gap at the
+    unit rather than a comparison gap.
 - **Twisted gluing along automorphisms: dead.**  Gluing trivial pieces along
   `Aut(R)`-valued transition data gives a locally trivial bundle, hence a trivial
   one (`r-fibre-w-star-bundle-locally-trivial-is-trivial`, by Popa--Takesaki
