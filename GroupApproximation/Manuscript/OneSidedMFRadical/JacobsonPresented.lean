@@ -293,10 +293,10 @@ theorem shiftEval_mem (y : FreeJ) : shiftEval y ∈ jacobsonAlgebra := by
       · exact hT
   | mul a b ha hb =>
       rw [map_mul]
-      exact _root_.mul_mem ha hb
+      exact MulMemClass.mul_mem ha hb
   | add a b ha hb =>
       rw [map_add]
-      exact _root_.add_mem ha hb
+      exact AddMemClass.add_mem ha hb
 
 theorem shiftRep_mem (x : ToeplitzJacobson) : shiftRep x ∈ jacobsonAlgebra := by
   obtain ⟨y, rfl⟩ := RingQuot.mkAlgHom_surjective (ZMod 2) TSRelation x
