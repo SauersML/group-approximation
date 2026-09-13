@@ -97,6 +97,21 @@ theorem pinchCycle_outerCycle_followsBoundary :
   · rw [outerCycle_pinchCycle_getLast, outerCycle_pinchCycle_head, sideOutside_pinchCycle]
     exact outerWalk_one_nine
 
+/-- **The inner cycle of the pinched pocket cycle does not follow its boundary.** As in
+`not_followsBoundary`, after the dart `5` the walk goes to `3` while the face `b` goes on to `6`,
+and no dart of the digons is internal. -/
+theorem pinchCycle_innerCycle_not_followsBoundary :
+    ¬ (isNoncrossingClosedWalk_pinchCycle.innerCycle diagram.planar).FollowsBoundary := by
+  intro h
+  have hw := h ⟨5,
+    ((isNoncrossingClosedWalk_pinchCycle.innerCycle diagram.planar).cycle_mem_iff 5).mp
+      (by decide)⟩
+  rw [Surgery.MapCollapse.BoundaryCycle.boundaryPerm_apply_val] at hw
+  rcases Relation.ReflTransGen.cases_tail hw with heq | ⟨c, -, hc, -⟩
+  · exact innerCycle_next_five_ne _ heq
+  · rw [sideFaces_pinchCycle] at hc
+    exact not_internalDart_pinch c hc
+
 /-- **The prediction on the pinched pocket region:** the inner boundary cycle does not follow the
 boundary, and the pocket cycle is a noncrossing closed walk whose outer cycle follows. -/
 theorem pocket_inner_not_follows_outer_follows :
