@@ -33,20 +33,23 @@ some group is not open, or exhibits infinitely many distinct invariants for one 
 | Thompson's F | F_∞, infinite cd | "[χ] is in Σ^2(F) = Σ^∞(F) unless a ≥ 0 and b ≥ 0" | Bieri–Geoghegan–Kochloukova 2010, as Theorem A of Witzel–Zaremsky arXiv:1501.06682 (PDF p. 1) |
 | F_{n,∞} (n ≥ 2) | F_∞ | "For any n, m ≥ 2, we have Σ^m(F_n) = Σ^2(F_n)." | Zaremsky arXiv:1502.02620, Theorem A (PDF p. 2) |
 | golden-mean F_τ | F_∞ | Σ^∞(F_τ) = Σ^∞(F_τ,Z) = Σ^2(F_τ) (Theorem 1.1) | Molyneux–Nucinkis–Santos Rego arXiv:2309.12213 (HTML, via extraction; recheck wording) |
-| Lodha–Moore groups | F_∞ | complete computation; abstract: every finitely presented normal subgroup is of type F_∞ | Lodha–Zaremsky arXiv:2007.12518 (abstract) |
-| Stein F_{2,3} | F_∞ | abstract: "every discrete character lies in Σ^∞(F_{2,3}), but there exist (non-discrete) characters that do not even lie in Σ^1(F_{2,3})" | Spahn–Zaremsky arXiv:2012.05000 (abstract) |
+| Lodha–Moore groups | F_∞, S(H) = S^2 | Theorem 5.2: "For any Lodha–Moore group H and any n≥2, we have Σⁿ(H)=Σ²(H)." | Lodha–Zaremsky arXiv:2007.12518 (HTML, via extraction) |
+| Stein F_{2,3} | F_∞ | Σ^1 = S ∖ {[λ],[ρ]} (λ, ρ the log-derivative characters at the ends); Theorem 3.9: "Σᵐ(F₂,₃) = Σ²(F₂,₃) for all m ≥ 2"; abstract: "every discrete character lies in Σ^∞(F_{2,3}), but there exist (non-discrete) characters that do not even lie in Σ^1(F_{2,3})" | Spahn–Zaremsky arXiv:2012.05000 (HTML via extraction, and abstract) |
 | pure braid P_n | F, finite-dim | inclusions proper for 3 ≤ m ≤ n but "Σ^∞(P_n)=Σ^{n-2}(P_n)" | Zaremsky arXiv:1507.08597 (abstract) |
 | McCool groups | F, finite-dim | every Σ^m dense or empty | Ershov–Zaremsky arXiv:2505.18826 (abstract) |
 | Houghton H_n | F_{n−1}, not F_n | full computation; Σ^∞ undefined | Zaremsky arXiv:1808.00634 |
 | RAAGs, products of free groups | F, finite-dim | stabilize at the dimension | Bux–Gonzalez; Meier–Meinert–VanWyk |
 
-For Lodha–Moore and F_{2,3} the abstracts do not say in words that `Σ^m = Σ^2` for all `m ≥ 2`;
-read the theorems before citing stabilization for them. The Stein group is the one known case
-where membership depends on arithmetic (discrete versus non-discrete characters); see §3 (M3).
+Lodha and Zaremsky call this "the trend of Thompson-like groups H satisfying Σⁿ(H)=Σ²(H) for all
+n≥2". The Stein group is the one known case where membership depends on arithmetic (discrete
+versus non-discrete characters), and it too stabilizes at m = 2; see §3 (M3).
 
 ## 3. Mechanisms, and where each stands
 
-- **(M1) Products do not help.** Over a field `K` the product formula of Bieri–Geoghegan gives
+- **(M1) Products do not help.** Over a field `K` the product formula of Bieri–Geoghegan
+  (*Sigma invariants of direct products of groups*, arXiv:0808.0013, abstract: "The Product
+  Conjecture for the homological Bieri-Neumann-Strebel-Renz invariants is proved over a field"; it
+  fails over Z in general, by work of Schütz) gives
   `Σ^m(A×B;K)^c = ∪_{p+q=m} Σ^p(A;K)^c * Σ^q(B;K)^c` (join in `S(A×B) = S(A)*S(B)`). Reading it on a
   join point `ψ = cosθ·α + sinθ·β` (0 < θ < π/2) gives additivity of depth,
   `δ_{A×B}(ψ) = δ_A(α) + δ_B(β)`, and `δ_{A×B}(α) = δ_A(α)` on `S(A)`. A finite-depth sequence

@@ -39,11 +39,11 @@ question; each answer claim says which invariant it covers.
   invariants stabilize from index `max(d,2)`. So a counterexample has infinite
   cohomological dimension.
 
-**Known computations.** Every group of type `F_∞` whose invariants have been
-computed and which has infinite cohomological dimension (Thompson's `F`, the
-generalized Thompson groups `F_{n,∞}`, the golden-mean group `F_τ`; the
-Lodha–Moore groups and the Stein group `F_{2,3}` still to be rechecked from the
-theorems) has stabilizing invariants; see the artifact, §2. A negative answer
+**Known computations.** Every group of type `F_∞` of infinite cohomological
+dimension whose invariants have been computed (Thompson's `F`, the generalized
+Thompson groups `F_{n,∞}`, the golden-mean group `F_τ`, the Lodha–Moore groups,
+the Stein group `F_{2,3}`) has `Σ^m = Σ^2` for all `m ≥ 2`; see the artifact,
+§2. A negative answer
 needs a group whose BNSR invariants never stabilize, the territory of Problem
 1.18 (`zaremsky-1-18-properly-nested-bnsr-invariants`, which asks for every
 inclusion to be proper, while 1.13 needs only infinitely many distinct
