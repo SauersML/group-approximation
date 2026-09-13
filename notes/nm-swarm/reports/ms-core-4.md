@@ -139,6 +139,7 @@ wiring. Namespace `GroupApproximation.ClopenCrossedProduct`:
 
 Census rows: `2546c17d9884` formalized, `f0c16e5c8519` partial (the locally matricial clause is ms-units').
 
-In probe: `GroupApproximation.Manuscript.ChainCore.TransientIdealDefectSpanConsumers`, with
-`defectIdeal_eq_transientIdeal_chainRecurrentSet` (BilateralThree's `defectIdeal` = the kernel at `CR(T)`) and
-`chainRecurrentSet_eq_univ_of_isDedekindFiniteMonoid`.
+Module `GroupApproximation.Manuscript.ChainCore.TransientIdealDefectSpanConsumers`, LANDED 706db7e82 (probe GREEN
+0913-181936-83858), queued for wiring:
+- `defectIdeal_eq_transientIdeal_chainRecurrentSet` (BilateralThree's `defectIdeal` = the kernel at `CR(T)`);
+- `chainRecurrentSet_eq_univ_of_isDedekindFiniteMonoid`.
