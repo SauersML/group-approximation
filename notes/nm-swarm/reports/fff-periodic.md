@@ -2,6 +2,64 @@
 
 Non-MF verbatim formalization swarm, 2026-09-12.  Clone nm-c.
 
+## 09-13: four-leaf endpoint flips, LANDED and GREEN
+
+Assignment (lead, after hfold closed): every baseline declaration of `TorsionFreeFourLeaves`,
+`TorsionFreeSectionSentencesFourLeaves` and the other four-wall consumers outside the hull-bridge
+and ghw-assembly sets gets one `_of_greendlinger` form.  Each form uses all three closed
+producers, so only `hgreendlinger` stays a binder.
+
+Module `Manuscript/NonMF/TorsionFreeGreendlingerLeaf`, namespace
+`GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerLeaf`.  LANDED 1edf0f7b4.  Probe
+0913-063820-983 (base efb80f4fd): `PROBE GREEN`, `BUILT` for the module.  The normal landing after
+it reports `NOTHING TO LAND` (bytes = origin/main 4caf6aea2).  It is in `wire-queue.txt` at 1edf0f7b4.
+
+Each theorem is `(hgreendlinger :
+GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) : <conclusion>`.  Its
+body is the matching `_of_fourLeaves` theorem, applied to these producers:
+
+* hbridge: `HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed` (18682110d);
+* hKO: `KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed` (ko-closed, f65f99f17);
+* hW: `HydeLodha.finitelyPresentedInfiniteSimple_closed`.
+
+| `_of_greendlinger` form | conclusion | producers used |
+|---|---|---|
+| `printedHullTheorem` | `TorsionFreeSectionSentences.PrintedHullSmallCancellationCurrent.{0}` | hbridge |
+| `printedHullTheoremOsin` | `TorsionFreeOsinNotion.PrintedHullSmallCancellationOsin` | hbridge |
+| `printedHullTheoremLimitSet` | `TorsionFreeLimitSetNotion.PrintedHullSmallCancellationLimitSet` | hbridge |
+| `hullSmallCancellationTorsionFreePrinted` | `TorsionFreePrinted.HullSmallCancellationTorsionFreePrinted.{0}` | hbridge |
+| `printedSaturation` | `TorsionFreePrinted.PrintedSaturationNoOmega.{0}` | hbridge |
+| `printedSaturationOsin` | `TorsionFreeOsinNotion.PrintedSaturationOsin` | hbridge |
+| `printedSaturationLimitSet` | `TorsionFreeLimitSetNotion.PrintedSaturationLimitSet` | hbridge |
+| `hullCommonQuotient` | `TheoremC.HullCommonQuotientStatement` | hbridge |
+| `fournierFacioQuotient` | `TheoremC.FournierFacioQuotientStatement` | hbridge |
+| `literatureInputs` | `TheoremC.LiteratureInputs` | hbridge, hKO |
+| `configuration` | `Nonempty TheoremC.Configuration` | hbridge, hKO |
+| `fournierFacioParagraph` | `TorsionFreePrinted.FournierFacioParagraph` | hbridge, hKO, hW |
+| `printedTorsionFreeTheorem` | `TorsionFreePrinted.PrintedTorsionFreeTheorem` | hbridge, hKO, hW |
+| `printedTorsionFreeFullMFRadical` | `TheoremC.PrintedTorsionFreeFullMFRadical` | hbridge, hKO, hW |
+| `printedTorsionFreeTheoremOsin` | `TorsionFreeOsinNotion.PrintedTorsionFreeTheoremOsin` | hbridge, hKO, hW |
+| `printedTorsionFreeTheoremLimitSet` | `TorsionFreeLimitSetNotion.PrintedTorsionFreeTheoremLimitSet` | hbridge, hKO, hW |
+| `printedRegularNonMFAlgebra` | `TorsionFreePrinted.PrintedRegularNonMFAlgebra` | hbridge, hKO, hW |
+| `printedRegularNonMFAlgebraOsin` | `TorsionFreeOsinNotion.PrintedRegularNonMFAlgebraOsin` | hbridge, hKO, hW |
+| `printedRegularNonMFAlgebraLimitSet` | `TorsionFreeLimitSetNotion.PrintedRegularNonMFAlgebraLimitSet` | hbridge, hKO, hW |
+| `printedHullProofParagraph` | `TorsionFreeSectionSentencesFourLeaves.PrintedHullProofParagraph` | hbridge |
+| `printedSaturationPairAndHullAgain` | `TorsionFreeSectionSentencesFourLeaves.PrintedSaturationPairAndHullAgain` | hbridge |
+| `printedSaturationApplyHull` | `TorsionFreeSectionSentencesFourLeaves.PrintedSaturationApplyHull` | hbridge |
+| `printedTheoremApplySaturation` | `TorsionFreeSectionSentencesFourLeaves.PrintedTheoremApplySaturation` | hbridge |
+
+`TheoremC.manuscriptTorsionFree*`: theoremc-retire already has the flips,
+`TheoremC.manuscriptTorsionFreeFullMFRadical_of_greendlinger` and
+`TheoremC.manuscriptTorsionFreeSimplified_of_greendlinger`
+(`TheoremCAssemblyGreendlingerLeaf`, c5f953323, green 0913-060950-64731).  Those names are not
+duplicated here.
+
+Residual Prop: `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}` only
+(the Hull 7.1 chain).  Once it has a closed producer, each endpoint above is closed by applying it.
+
+Census: rows at the keys of these endpoints are in `rows/fff-periodic.tsv`.  The census lane has the
+old → new names for each retired baseline line.
+
 ## 09-13: hfold (HC6, the mirror fold), CLOSED
 
 Non-MF every-line swarm, 2026-09-13.  Clone spare1.  Target: the closed hfold,
