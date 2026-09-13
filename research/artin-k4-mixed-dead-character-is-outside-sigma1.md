@@ -29,6 +29,17 @@ the `K(π,1)`-conjecture.
   relations (`x1_{i+1}^2 = x1_i^2`, `(g x1_{i+1})^2 = (x1 g)^2`-type). This suggests that
   `ker χ` is infinitely generated, as for the dihedral group `<x, u | [u, x^2]>`. It is
   not a proof.
+- Locally finite shift quotients `ψ : A_K -> L ⋊ Z` (with `χ` the `Z`-coordinate; an
+  infinite image of `ker χ` inside a locally finite `L` would prove the claim).
+  - `L = ⊕_Z F` fails. `[u1, u2] = 1` with `ψ(u1) = a s`, `ψ(u2) = b s` reads
+    `a_j b_{j-1} = b_j a_{j-1}` componentwise, and induction from the left gives
+    `a = b`. Then `(xv)^2 = (vx)^2` and `(xv)^3 = (vx)^3` force `ψ(u1)`, `ψ(v2)` to
+    commute, so `ψ` factors through the collapsed triangle, whose character is in
+    `Σ^1`, and the image of `ker χ` is finite.
+  - `L = FSym(Z)` with `p_j = (j j+1)` in the Reidemeister–Schreier coordinates of
+    the dead-edge quotient `(u1v1)^2 = (u2v1)^2 = (u2v2)^2 = (u1v2)^3 = 1`, `g^2 = 1`
+    fails. The needed order-3 elements `q_j` must commute with `p_j p_{j+1}` at every
+    level, and the exponents cannot be matched along the chain.
 - Open next: a module witness (artifact §4, Remark ii). It needs a left
   `R((t))`-module `M` and `λ != 0` with `S_2(ρ(u_i v_j)) (t ρ(u_i) - 1) λ = 0` on the three
   label-4 edges and `S_3(ρ(u1 v2)) (t ρ(u1) - 1) λ = 0`. A common eigenvector of `ρ(u1)`
