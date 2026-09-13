@@ -4930,6 +4930,7 @@ import GroupApproximation.TypeA2.IntWreathNotFinitelyPresented
 import GroupApproximation.TypeA2.Statement
 import GroupApproximation.TypeA2.TypeA
 import GroupApproximation.TypeA2.Witness
+import GroupApproximation.PalomarBridges.X1
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
