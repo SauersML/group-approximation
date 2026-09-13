@@ -294,6 +294,37 @@ exactly when some torsion-free quotient of `G_Gamma` is injective on the vertice
   `n16.592716.log`). It reproduces the node counts above for `n <= 14`, and at `n = 16` leaves no
   labelling on any of the 792 graphs. The search takes 262,754,713 nodes, with median 97,533 and
   maximum 6,152,089 per graph, and all exit codes are 0.
-- Running on MSI: `n20.sbatch` (all graphs at `n = 20` in 128 shards, array job 595808). From
-  `n = 14` to `n = 18` the node count per graph roughly doubles per two vertices, which projects
-  about 16 core-hours at `n = 20`.
+- `n = 20` with `zds3.c` and the options above (`n20.sbatch`, array job 595808). The concatenated
+  shard logs are `n20.595808.logs.txt`, the output of `agg.sh` is `n20.595808.agg.txt`, and the
+  GRAPH and TOTAL lines are `r20.lines.txt.gz`. Every shard prints md5
+  `18a83240ff82d0bcdcdcd33c15780d72` for its source, the same as `zds3.c`. geng res/mod gives 128
+  shards and 97546 graphs, as in A--T Table 3, with no duplicates. No labelling survives, no run
+  hits a limit, and every exit code is 0. The search takes 3,995,100,752 nodes, with median 13,212
+  and maximum 1,237,042 per graph, and 57,017 core-seconds. It prunes 2,511,202,904 labellings by
+  coincidence, 131,737,285 as finite, and 30 by sieve 6.
+  - `check20.sh` (output `check20.595808.out`). The sorted input graphs equal the sorted graphs of
+    the GRAPH lines, 97546 of them, all distinct. Every GRAPH line has `surv 0`, all 128 TOTAL
+    lines have `fails 0` and `budget 0` with the same options, and no run writes to stderr.
+  - Second pass (`n20b.sbatch`, array job 603674, aggregated by `agg20b.sh`). The same shards and
+    binary with root vertex 19, so every graph is searched along a different tree. The logs are
+    `n20b.603674.logs.txt`, the aggregate is `n20b.603674.agg.txt`, and the lines are
+    `r20b.lines.txt.gz`. 97546 graphs, no duplicate GRAPH lines, no survivors, no limits hit, and
+    every exit code 0. It takes 2,114,114,462 nodes, with median 10,278 and maximum 779,445 per
+    graph, and 27,276 core-seconds.
+  - So over `F_2`, `|supp alpha| = 3` forces `|supp beta| >= 22`
+    (`f2-support-three-zero-divisors-need-support-at-least-22`). A least support has even size
+    by §5 and at least 20 by A--T Cor 6.2, and its Kaplansky graph is one of the graphs above by
+    A--T Thm 2.9. A--T Thm 6.1 had left 1120 of them open. N--S Thm 1.4 gives `>= 19` over any
+    domain and remarks that it implies the `F_2` bound `>= 20`.
+- `n = 22`, cost sample (`n22s.sbatch`, job 598380, log `n22s.598380.logs.txt`). 2 of 2048 shards,
+  1477 graphs. No labelling survives, and the search takes 92.9M nodes in 1327 core-seconds, about
+  0.9 s per graph.
+- `n = 22`, full run (`n22.sbatch`, array job 603988, 512 shards, at most 16 at once), in
+  progress. At 13:00 CDT on 2026-09-13, 170 shards had finished with exit code 0 and no limit hit,
+  over 468,038 graphs. Shards 17 and 52 leave labellings that survive every sieve
+  (`n22.603988.survivors.txt`): 2 on the graph `` U?????????[?e?`_IGA@_L??KG?T??Co?@g?GS?? `` and
+  4 on the graph `U????A?O@?A?B?o?sO@__Ac?EC?@W?J??X??OQ??`. For each, the coset enumeration of
+  `<x, y | cycle words>` stops at the 64000-coset limit without a contradiction. These are
+  unresolved search survivors, not zero divisors: nothing is known yet about whether the
+  corresponding groups have a torsion-free quotient that is injective on the vertices. A bound
+  `>= 24` needs them excluded, by a stronger enumeration or a structural argument.
