@@ -232,7 +232,7 @@ theorem osinLemma94CaseOneWalk : OsinLemma94CaseOneWalkStatement.{u, w, v} := by
     refine ⟨j, some j', sarc', tarc', X, Y, r, hrot, hs0, h0, hj, ?_, ?_, hX, hY⟩
     · intro j0 h
       cases h
-      first | rfl | exact hkt
+      rfl
     · intro h
       cases h
   | boundary j' =>
@@ -246,7 +246,9 @@ theorem osinLemma94CaseOneWalk : OsinLemma94CaseOneWalkStatement.{u, w, v} := by
       have e := congrArg List.length (dartWord_outerDarts S.diagram)
       rw [S.equiv.boundaryWord_eq, dartWord, List.length_map] at e
       exact e
-    have hlast := cuts.cut_mono (Fin.le_last (⟨j' + 1, by omega⟩ : Fin (cuts.count + 1)))
+    have hlo' : cuts.cut (Fin.castSucc ⟨j', hj'⟩) ≤ barc.start.1 := hlo
+    have hhi' : barc.start.1 + barc.length ≤ cuts.cut (Fin.succ ⟨j', hj'⟩) := hhi
+    have hlast := cuts.cut_mono (Fin.le_last (Fin.succ (⟨j', hj'⟩ : Fin cuts.count)))
     rw [cuts.cut_last] at hlast
     have hst' := htstart (by omega)
     have h0 : 0 < tarc'.length := by
@@ -257,11 +259,9 @@ theorem osinLemma94CaseOneWalk : OsinLemma94CaseOneWalkStatement.{u, w, v} := by
       cases h
     · intro _
       refine ⟨⟨j', hj'⟩, ?_, ?_⟩
-      · have hlo' : cuts.cut (Fin.castSucc ⟨j', hj'⟩) ≤ barc.start.1 := hlo
-        rw [hst']
+      · rw [hst']
         omega
-      · have hhi' : barc.start.1 + barc.length ≤ cuts.cut (Fin.succ ⟨j', hj'⟩) := hhi
-        rw [hst', htlen]
+      · rw [hst', htlen]
         omega
 
 #audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94CaseOneWalk
