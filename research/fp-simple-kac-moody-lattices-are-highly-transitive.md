@@ -166,8 +166,10 @@ part, high transitivity, which this node asks.
      - Le Boudec--Matte Bon Theorem 1.1 and Corollary 1.4, combined with the
        obstructions of their §2.4 (the only ones they know), cannot show that `S_q` is
        not highly transitive.
-     - The natural candidates, such as stabilizers of chambers, of spherical residues
-       and of boundary points, are not confined at all.
+     - The natural candidates are not confined at all: stabilizers of points of the
+       curtain model and of limit points. This covers stabilizers of chambers and of
+       spherical residues, given that the curtain model has the same points as the
+       building (Petyt--Spriano--Zalloum, not re-read).
      - A negative answer needs a new obstruction that some lim-free MIF group
        satisfies.
    - **Gap.** Either a positive globalization mechanism for lim-free weakly hyperbolic
