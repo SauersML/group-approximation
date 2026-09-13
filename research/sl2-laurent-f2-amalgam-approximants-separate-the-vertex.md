@@ -44,6 +44,17 @@ together with the analogous commutation of `u_(t^2)`'s partners at larger
 - **n = 0.**  `B0,0 = Z/2`, so `Delta_(0,m)` is an amalgam of virtually free
   groups over a finite group, hence virtually free and LERF.  The claim
   holds.  The colimit needs every `n`.
+- **n = 1, m = 2: holds.**  `sl2-laurent-f2-degree-one-amalgam-is-virtually-coxeter`
+  proves `Delta_(1,2) = W ⋊ S_3`, with `W` a nine-generator Coxeter group and
+  `C1,2 = W_T ⋊ S_3` for a standard parabolic `W_T`.  Separability follows by a
+  congruence on the integral Tits representation.  The splitting kills
+  `u_t` and `u_(1/t)`, a degenerate specialization.
+- **n >= 2: the Coxeter splitting dies.**  The rotation relator
+  `s u_(t^2) s^(-1) = u_1` forces every homomorphism `a -> (12)`, `b -> (23)`
+  to evaluate the identified root groups at `t = 1`.  The resulting kernel
+  has a six-term relator from `(yf)^3 = 1`.  What would work instead is a
+  faithful integral representation of `Delta_(n,m)` in which `C1,m` is a
+  point stabilizer, or a cubulation.
 - **Compatible normal subgroups.**  It suffices to find, for each finite
   set of letters outside `B0,n`, normal subgroups `N <| C1,m` and
   `N' <| C1',m` of finite index with `N ∩ B0,n = N' ∩ B0,n` that keep those
