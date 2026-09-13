@@ -31,3 +31,12 @@ with `d >= 4`.
   `SL_4(Z/NZ)` and their large stabilizers; an asymptotic homomorphism need not
   have a torsion joint spectrum on `Z^3`, so the argument does not transfer
   directly.
+* **Corona norm four (ex3-sl4z-mf, 2026-09-13, unreviewed).**  Live.
+  - `sl4z-reduced-not-mf-from-corona-block-sl2-norm-four` needs only
+    `sl4z-corona-representations-have-block-sl2-norm-four`: norm four for the block
+    `SL_2(Z)` Laplacian in every corona representation.  Matricial stability implies it.
+  - It holds whenever the column unipotent spectrum is not all of `T^3`
+    (`sl4z-block-sl2-norm-four-unless-unipotent-spectrum-is-full`).
+  - MF embeddings have full spectrum.  There, Magee--de la Salle's averaging at
+    non-torsion characters gives only spectral gap
+    (`mdls-averaging-at-non-torsion-character-gives-spectral-gap`).
