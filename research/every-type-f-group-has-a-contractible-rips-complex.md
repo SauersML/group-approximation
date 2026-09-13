@@ -34,7 +34,7 @@ see `zaremsky-4-07-type-f-groups-have-contractible-rips`.
   (`rips-type-r-closed-under-finite-edge-group-splittings`) enlarges these.
 - **Where it stops.** Each proof uses a model space in which every finite set of diameter `t`
   lies in a ball of radius `< t` whose centre is compatible with all other such centres
-  (Zaremsky's criterion, `small-ball-criterion-gives-contractible-rips-complexes`), or
+  (Zaremsky's criterion, `zaremsky-rips-contractibility-criterion`), or
   Helly ball intersections. A general group of type F has no such model. Next test object:
   the integral Heisenberg group `H_3(Z)` acting on the real Heisenberg group with a
   left-invariant metric. Two things to check: whether sets of diameter `t` lie in balls of

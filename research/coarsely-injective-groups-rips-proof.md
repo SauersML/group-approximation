@@ -5,7 +5,7 @@ kind: route
 title: Coarse ball intersections verify Zaremsky's small-ball criterion on an orbit
 target: coarsely-injective-groups-have-contractible-rips-complexes
 requires:
-  - small-ball-criterion-gives-contractible-rips-complexes
+  - zaremsky-rips-contractibility-criterion
   - group-rips-complexes-are-cayley-graph-flag-complexes
 ---
 
@@ -45,7 +45,8 @@ all `y' ∈ Y_S`. Choose `y ∈ G` with `d(p, y x_0) ≤ D`. Then:
 - for every centre `y' ∈ Y_S`, `ρ(y, y') ≤ D + r_t + δ ≤ t/2 + 2δ + 2D + 1 ≤ t`, since
   `t ≥ 4δ + 4D + 2`; so `ρ'(y, y') ≤ t`.
 
-These are the hypotheses of `small-ball-criterion-gives-contractible-rips-complexes` for
+These are the hypotheses of `zaremsky-rips-contractibility-criterion` (arXiv:2410.11993,
+Theorem 3.1; the centres there range over points of the space, here `G`) for
 every `t > t_0`. Hence `VR_t(G, ρ')` is contractible for all `t > t_0`.
 
 **Step 4: a word metric.** `ρ(g, h) ≤ t` iff `g^{-1} h ∈ T_t ∪ {1}`, so

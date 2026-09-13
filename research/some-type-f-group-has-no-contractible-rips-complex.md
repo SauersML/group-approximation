@@ -33,7 +33,7 @@ see `zaremsky-4-07-type-f-groups-have-contractible-rips`.
   every scale for every generating set. No mechanism for that is known here yet.
 - From z4-06-rips-finf-fcd: a counterexample `G` to Problem 1.21 (type `F_∞`, finite cd, not
   of type F) makes `G × Z` of type F, and none of its Rips complexes for product generating
-  sets is contractible (`wall-counterexample-times-z-has-no-contractible-product-rips`, if
-  landed). Non-product generating sets remain.
+  sets is contractible (`counterexample-times-z-lacks-contractible-product-rips`).
+  Non-product generating sets remain.
 - Test objects: groups of type F with distorted infinite cyclic subgroups, such as the
   integral Heisenberg group and `BS(1,2)`.
