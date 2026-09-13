@@ -15,7 +15,9 @@ countable and discrete.
 `G`-algebras. Suppose the quotient map `q` has a `G`-equivariant completely positive
 contractive `psi : A/I -> A` with `q ∘ psi = id`. Then
 `0 -> I ⋊_r G -> A ⋊_r G -> (A/I) ⋊_r G -> 0` is exact. Ozawa's Lemma A.1 in the
-Buss--Echterhoff--Willett erratum is the unital case `A/I = C`.
+Buss--Echterhoff--Willett erratum is the unital case where `A/I = ℂ`, the one-dimensional
+algebra with trivial action, and `psi(λ) = λ 1`. For an arbitrary quotient algebra no such
+conclusion holds: reduced crossed products by non-exact groups are not exact.
 
 **(B) Co-amenable sections.** Let `M` be an amenable normal subgroup of `Γ`, with
 `q : Γ -> Γ' = Γ/M`. Suppose some subgroup `S <= Γ` maps injectively onto a co-amenable

@@ -16,7 +16,7 @@ assembly map `mu : K^top_*(G; B) -> K_*(B ⋊_r G)`.
    and `B` a `Γ`-algebra. The partial assembly map
    `K^top_*(Γ; B) -> K^top_*(Γ/N; B ⋊_r N)` is bijective. Hence `Γ` satisfies BCI (resp. BCS)
    for `B` iff `Γ/N` satisfies BCI (resp. BCS) for the twisted algebra `B ⋊_r N`.
-2. **Semidirect products with abelian kernel.** For `Γ = N ⋊ G`, `N` abelian and `B = C`, the
+2. **Semidirect products with abelian kernel.** For `Γ = N ⋊ G`, `N` abelian and `B = ℂ` (trivial coefficients), the
    coefficient algebra is `C*_r(N) ≅ C(N^)`. Here `G` acts through its action on `N`, and
    `C*_r(Γ) = C(N^) ⋊_r G`. So reduced assembly for `Γ` is injective (resp. surjective) iff
    assembly for `G` with coefficients `C(N^)` is. Chabert--Echterhoff use exactly this form
