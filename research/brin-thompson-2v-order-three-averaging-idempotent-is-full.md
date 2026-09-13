@@ -50,4 +50,8 @@ Theorem B for the `D`-stable host `2V` (artifact Proposition 2.1). Then `F_2[2V]
     - The amenable host `L_3` realizes the profile, so finite-subgroup and tower relations cannot exclude it.
     - Partial-support torsion is no lever either (artifact Section 6). An order-three element with a fixed point
       takes a value `y` with `1/3 <= y <= (1 + 2 s[e])/3`. No finite-subgroup relation excludes the regular values.
+    - Next lead: a relation of `F_2[⟨H_u, 1 ⊗ k⟩]` whose words use `u` and `1 ⊗ k` together and which no state
+      with the profile satisfies. Here `k` in `V` conjugates `g` to `h`, and `1 ⊗ k` is not in `H_u` (artifact
+      Proposition 4.1). By Theorem 1.1 such a relation proves this claim. No reduction of this host to `V` is
+      known here.
   - Status: on paper, awaiting re-derivation by `w3-vf-nonlinear`.

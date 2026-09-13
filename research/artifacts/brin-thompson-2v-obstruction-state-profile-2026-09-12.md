@@ -251,6 +251,15 @@ become nonnegative after induction to `F_2[2V]` exclude every V-obstruction stat
   because `L_3` satisfies them with the profile values.
 - **Redundancy.** It needs a `D_2`-invariant V-obstruction state extended across `F_2[N] ⋊ Z` and the mixed
   support.
+- **One next lead.** Test the profile against relations of `F_2[⟨H_u, 1 ⊗ k⟩]` whose words use `u` and `1 ⊗ k`
+  together. This host contains `H_mix`, and `1 ⊗ k` is not in `H_u` (Proposition 4.1). No reduction of this host
+  to `V` is known here.
+- **Verification queue, highest yield first.**
+  1. Theorem 1.1 with Corollary 1.3: the gate is one value, with one profile.
+  2. Proposition 3.4: the exact descent criterion.
+  3. Proposition 4.1: the mixed-host conjugations and `1 ⊗ k` not in `H_u`.
+  4. Lemmas 6.1–6.2 with Corollaries 6.3–6.4.
+  5. Propositions 3.1–3.3 and Corollary 1.4.
 
 ## 6. Partial-support torsion (addendum)
 
