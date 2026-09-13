@@ -1,5 +1,36 @@
 # ghw-charp2 lane report
 
+## Item 4 (09-13): Jacobson probe record and the GHW char-0 archimedean split
+
+Lead order:
+1. `JacobsonComplementarySentence` has no probe record or queue line, and jacobson is silent.  Probe it at the
+   current base without editing it, queue it under ghw-charp2, and send the tag to root-wire.
+2. Split the char-0 archimedean half directly with ghw-assembly.  `Kazhdan/GHWCharZero.lean` is ghw-assembly's
+   unlanded work in progress: no edits and no parallel copy.  Take only a piece ghw-assembly names, in my own module.
+
+### Jacobson record: DONE
+
+- Probe 0913-040230-50292 at base 42d443298 named
+  `GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonComplementarySentence`.  Result: PROBE GREEN, EXIT=0.
+- The probe rebuilt 0 modules; lake found the trace up to date and used the cached olean.  The clone's source md5
+  (89f64931) equals origin and the base.  Origin has not changed the module, `FullDefectRingEJZUnconditional` or
+  `JacobsonFiniteMatrices` since the base.
+- The module is on origin, not in the ghw-charp2 overlay, so the green record lists only ghw-charp2 files.
+- Queued `GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonComplementarySentence ghw-charp2 42d443298`, with a
+  comment line above it giving the tag.  root-wire has the tag and the caveat.
+
+### Archimedean split: waiting for ghw-assembly to name a piece
+
+- I asked ghw-assembly for the exact name, signature and module path of a piece.
+- Finding, from reading the statements rather than a probe: ghw-assembly's on-disk `Kazhdan/GHWCharZero.lean` (saved
+  03:52) still expects the old shape at lines 368--372.  `finite_of_minpoly_coeff` takes
+  `(M : L)^(N n) · (minpoly L a).coeff i`, but since 0379bac08 (03:40) `GHW.exists_places_minpoly_coeff` gives
+  `(minpoly L (M^N a)).coeff i`.  ghw-assembly's newest green record is from 02:37.
+- Proposed piece, waiting for ghw-assembly's "go": `GHW.exists_intPoly_eq_pow_mul_minpoly_coeff`, appended to
+  `Kazhdan/GHWCharZeroPlaces.lean`, which turns the new shape back into the old one.  The proof uses
+  `c_i(M^N a) = M^(N(deg − i)) c_i(a)` with `deg − i ≤ n`, the witness `M^(N(n − (deg − i))) • G`, and
+  `totalDegree_smul_le`.  Line 372 then becomes a one-line call.
+
 ## Item 3 (09-13): the additive non-archimedean places for GHWFinitelyGeneratedCharZero
 
 Lead order: take the unstarted piece of the residual `GHWFinitelyGeneratedCharZero`, after settling the file name and
@@ -201,7 +232,7 @@ property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembl
 
 ## Next
 
-- Item 3 is closed and landed (0379bac08).  ghw-assembly has the final name and signature of
-  `IntegerPlacesMinpoly.exists_places_minpoly_coeff`.
-- If ghw-assembly needs a different shape while assembling, I will change the statement (rule 22: grep users and
-  probe them together).  Otherwise I take the next item from the lead.
+- Item 3 is closed and landed (0379bac08).
+- Item 4, Jacobson record: done.  Probe 0913-040230-50292 is queued, and root-wire has the tag.
+- Item 4, archimedean split: waiting for ghw-assembly to name a piece.  I will write it in my own module, probe it,
+  land it and send the SHA.  `Kazhdan/GHWCharZero.lean` stays untouched.
