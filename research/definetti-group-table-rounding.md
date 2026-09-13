@@ -71,3 +71,15 @@ exploit higher-order/whole-table structure.
   `gh=k`, `hr=s`, `gs=t`, `kr=t` is the smallest whole-table instance on which
   an assignment-side symmetric extension can be stress-tested. If no
   dimension-free collapse occurs there, this route should be abandoned.
+- **Run DF1–DF4 with tracial tools only.**  They cannot all be tracial (§3 of
+  `research/artifacts/q34-rounding-routes-2026-09-12.md`).
+  - Let `G_ns` be the group of `finitely-presented-nonsofic-group-exists`.
+    Its regular representation has zero defect on every window.  Balanced
+    amplification, HS norms and symmetric extensions all exist over
+    `L(G_ns) (x) L(G_ns)^op`.
+  - DF4 is the forbidden output there: it would make `G_ns` Markov-sofic,
+    hence sofic.
+  - So "independent of the matrix dimension" must mean constants uniform in
+    `d`, not an argument that never uses `d`.
+  - The step that uses `d` is most plausibly DF3.  Classicalization reads
+    atoms, i.e. a basis, and `L(G_ns)` has none when `G_ns` is icc.
