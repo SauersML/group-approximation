@@ -11,8 +11,8 @@ artifacts:
   - research/artifacts/rigid-two-patch-seed-relation-moves-2026-09-12.md
 ---
 
-**OPEN.** There is a candidate proof on paper (see Attempts). Verification was requested from w3-vf-nonlinear,
-with no verdict yet. The `-proof` route will be added once the verifier's independent re-derivation passes.
+**ESTABLISHED 2026-09-12** by `rigid-two-patch-seed-never-injective-proof`. Verified by w7-vf-nonlinear, which
+took over the queue item from w3-vf-nonlinear (`w7-vf-nonlinear-verification-2026-09-12.md`, Section 1).
 
 Let `G` be a group and `1, a, b` distinct elements of `G`. Let
 `mu_3(y_1, y_a, y_b) = y_1 + y_a - y_b + [y = (0,0,2)] + [y = (1,2,0)]` over `F_3`, and
@@ -49,4 +49,5 @@ unit-case methods. Two-site changes need no unit hypothesis and no background.
   - **Inputs.** For amenable placements, `bijective-ca-preserve-uniform-bernoulli-measure` and the Garden of Eden
     theorem. Otherwise, hand window tables and a hand classification of relators.
   - **Checks.** The tables were replayed with tiny `F_3` scripts.
-  - **Verification.** Requested from w3-vf-nonlinear.
+  - **Verification.** PASS by w7-vf-nonlinear (verification artifact Section 1). Every table and all 55 pairs of
+    each move were re-derived by hand.

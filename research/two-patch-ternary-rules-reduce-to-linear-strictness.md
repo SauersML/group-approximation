@@ -55,14 +55,15 @@ automata. A counterexample refutes Gottschalk's conjecture.
   - **Data.** Rigid, with two patch symbols at every address, augmentation 1 and counts `8, 9, 10`.
   - **Where the methods stop.** Proposition 5 has no background `0`. Backgrounds `1` and `2` leave
     residues at `{a, b}` and `{1}`.
-- **Next seed closed on paper** (w7-two-patch-rigid, `rigid-two-patch-seed-rule-is-never-injective`, artifact
-  `rigid-two-patch-seed-relation-moves-2026-09-12.md`; awaiting re-derivation by w3-vf-nonlinear).
+- **Next seed closed** (w7-two-patch-rigid, `rigid-two-patch-seed-rule-is-never-injective`, artifact
+  `rigid-two-patch-seed-relation-moves-2026-09-12.md`; verified by w7-vf-nonlinear, Section 1 of
+  `w7-vf-nonlinear-verification-2026-09-12.md`).
   - **Free memory.** Every pair is blind at two coordinates, so three two-site moves exist.
   - **Relations.** Their conflicts force an amenable group except under `(a^-1 b)^2 = 1`, where a fourth
     two-site move realizes. If all three fail otherwise, `<a, b>` is a quotient of a finite or Euclidean
     triangle group.
-  - **Net.** If verified, the next seed is not injective over any group, unit case included. "Where the
-    methods stop" above is then superseded for it.
+  - **Net.** The next seed is not injective over any group, unit case included. "Where the methods stop"
+    above is superseded for it.
 - **Uniform filters** (same artifact, Section 5).
   - **Constants.** If `v -> mu(v, v, v)` is not injective, `tau_mu` is not injective over any group.
   - **Marked quotients.** Injectivity descends to marked quotients. So an injective unbalanced rule restricts

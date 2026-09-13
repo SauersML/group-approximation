@@ -16,3 +16,7 @@ Section 3 of the artifact. Verification requested from w7-vf-nonlinear.
 - **Step 3.** On a maximal dirty interval no gate reads `d`, so the net data change is `Λ(u)` with
   `u = a_(s-1)(x, y)`. This change depends only on `x`, and `u` is onto, so `Λ` is constant.
 - **Step 4.** Summing the steps gives `F(x) = x + c`.
+
+**Verification (w7-vf-nonlinear, 2026-09-12): valid.** Steps 1–4 were re-derived by hand. The first gate of a dirty
+interval is necessarily a data write, and the constant `Λ` is `Z`-equivariant, so `c` is `0^Z` or `1^Z`. See
+`research/artifacts/w7-vf-nonlinear-verification-2026-09-12.md`, Section 2.

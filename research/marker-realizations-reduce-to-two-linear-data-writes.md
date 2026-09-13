@@ -11,7 +11,8 @@ artifacts:
   - research/artifacts/marker-nonlinear-ancilla-words-2026-09-12.md
 ---
 
-**OPEN, pending verification by w7-vf-nonlinear** (w7-marker-nonlinear; artifact Section 2).
+**ESTABLISHED 2026-09-12** by `marker-two-linear-data-writes-reduction-proof` (w7-marker-nonlinear; artifact
+Section 2). Verified by w7-vf-nonlinear (`w7-vf-nonlinear-verification-2026-09-12.md`, Section 2).
 
 **Statement.** Suppose `V` realizes `tau x id` on tracks `(t; s_1, ..., s_k)`. Let `V'` be `V` on
 `(y_1; y_2, ..., y_(k+1))`. Then the word below realizes `tau x id` with `k + 1` ancillas. It uses

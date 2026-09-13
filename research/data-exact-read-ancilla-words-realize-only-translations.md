@@ -11,7 +11,8 @@ artifacts:
   - research/artifacts/marker-nonlinear-ancilla-words-2026-09-12.md
 ---
 
-**OPEN, pending verification by w7-vf-nonlinear** (w7-marker-nonlinear; proof in artifact Section 3).
+**ESTABLISHED 2026-09-12** by `data-exact-read-ancilla-words-translation-proof` (w7-marker-nonlinear; proof in
+artifact Section 3). Verified by w7-vf-nonlinear (`w7-vf-nonlinear-verification-2026-09-12.md`, Section 2).
 
 **Setup.** Use Boolean points of `({0,1}^Z)^(1+k)`, with data track `d`, ancilla tracks `a` and initial
 state `(x, y)`. The gates are track shears `s_T <- s_T + G(s_i : i != T)`, which are `Z`-equivariant

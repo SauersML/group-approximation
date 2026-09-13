@@ -43,7 +43,9 @@ free-memory census.
     `pair-distinct-ternary-rules-pre-injective-on-free-memory`, no such collision exists.
   - **Scale of the unit.** A unit `1 + a - b` whose inverse is supported on words of length at most `r` forces a
     relation of length at most `2r + 2`. So collisions must use relations at that scale.
-- **Host filter** (artifact Lemma 5.1 and Corollary 5.3).
+- **Host filter** (artifact Lemma 5.1 and Corollary 5.3). These, the lifting bound, the unit scale bound and the
+  equivalence of class `II` with the hypothesis of `pair-distinct-ternary-rules-pre-injective-on-free-memory`
+  were re-derived by w7-vf-nonlinear (verification artifact Section 1). The census counts were not re-counted.
   - **Descent.** Injectivity descends to marked quotients.
   - **For the seed.** In every amenable quotient of a counterexample host, `a` maps to `1`. Every other
     coincidence pattern restricts `mu'` to an unbalanced rule.
