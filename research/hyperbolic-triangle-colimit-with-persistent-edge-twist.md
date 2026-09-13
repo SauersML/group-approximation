@@ -75,3 +75,16 @@ residually finite.
   For the `p >= 5` examples above, a persistence proof would therefore need exactly
   this: no finite quotient of `N` carries such `p`-local second homology along the
   tower. That is the concrete shape of the open problem for these explicit groups.
+- **Kazhdan colimits with a first level (2026-09-13, lane ex2-triangle-persistence).** The goodness
+  bullet above asks for (T) or another obstruction to cubulation.
+  - *The groups.* `kazhdan-hyperbolic-sl2-root-triangles` supplies hyperbolic Kazhdan triangle colimits
+    with vertex groups `SL_2(q), SL_2(q), SL_2(q^2)` and edge groups `(Z/2)^f`, for `q = 2^f >= 8`. The
+    untwisted member `Λ_0` has the torsion-free first level `N = ker(Λ_0 -> SL_2(q^2))`
+    (`sl2-root-kazhdan-triangle-untwisted-member-maps-onto-sl2`).
+  - *Twists.* Here `p = 2`, and the twist space is `⊕_e Hom(E_e, F_2) = F_2^{3f}`.
+  - *All of H^2 is twists.* The vertex groups are perfect, and for `q >= 8` their Schur multipliers are
+    trivial (standard, not re-read). So the hypothesis of the Remark in
+    `edge-twist-extensions-of-triangle-colimits-moment-test` holds.
+  - *Not yet done.* That node's moment formula is written for cyclic edge groups of order `p`, so the
+    elementary abelian version still has to be written down. The first-level computation for `q = 8`
+    (`|Q| = 262,080`) has not been run.

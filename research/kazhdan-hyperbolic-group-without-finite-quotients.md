@@ -35,3 +35,13 @@ of finite quotients are not enough.
   specific such presentation is known; counting homomorphisms to a fixed finite
   group only excludes quotients of bounded size.  Recorded as the natural test
   class, not as an attack that makes progress.
+- **Hyperbolic Kazhdan triangles of finite simple groups (2026-09-13, lane ex2-triangle-persistence;
+  unreviewed).** `kazhdan-hyperbolic-sl2-root-triangles` gives an explicit test class.
+  - *Parameters:* `q = 2^f >= 8`, `s ∈ F_{q^2} \ F_q`, and the gluing automorphisms of the edge groups
+    `(Z/2)^f`.
+  - *Vertex groups:* `SL_2(q), SL_2(q), SL_2(q^2)`, glued along root subgroups.
+  - *The quotient test.* Torsion comes from three finite simple vertex groups. By
+    `simple-vertex-groups-vtf-iff-some-finite-quotient`, one nontrivial finite quotient already decides
+    virtual torsion-freeness.
+  - *Calibration.* The untwisted member maps onto `SL_2(q^2)`. The open candidates are recorded in
+    `sl2-root-kazhdan-triangle-without-finite-quotients`.

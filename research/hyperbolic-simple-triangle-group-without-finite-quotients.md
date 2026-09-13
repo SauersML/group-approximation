@@ -126,3 +126,15 @@ nontrivial finite quotient, nor some member having none.
   - **The survivors.** `G_0^{14,26,40}`, `G_4^{14,26,40}` and `G_0^{18,26,40}` have compatible
     triples in dimension 3 and are the natural targets for a trace-ideal search.
   - **Artifact:** `research/artifacts/cckw-quotientless-trivalent-cores-2026-09-13.md`.
+- **Kazhdan members exist (2026-09-13, lane ex2-triangle-persistence; unreviewed).**
+  `kazhdan-hyperbolic-sl2-root-triangles` covers every `q = 2^f >= 8` and every gluing.
+  - *The family.* The triangles `(SL_2(q), SL_2(q), SL_2(q^2))` are glued along the root subgroups
+    `u(F_q), v(F_q)` and `u(F_q), v(sF_q)`. They have half-girths `(3, 3, >= 5)` and property (T).
+  - *The proof of (T).* Kassabov's positive definite angle criterion: the two `SL_2(q)` links have
+    angle `q^{-1/2}`, and the subfield link stays below `1 - 2/q`.
+  - *What it gives.* The class has Kazhdan members, and a quotientless member would also give
+    `kazhdan-hyperbolic-group-without-finite-quotients`. Unlike the amalgamated cores above, these
+    members keep (T).
+  - *Calibration.* The untwisted member maps onto `SL_2(q^2)`
+    (`sl2-root-kazhdan-triangle-untwisted-member-maps-onto-sl2`). The candidates are the twisted gluings
+    in the open claim `sl2-root-kazhdan-triangle-without-finite-quotients`.
