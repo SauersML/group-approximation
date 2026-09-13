@@ -17,6 +17,18 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
     - `exists_upsilon_gammaTwo_move`: `exists_move` made periodic through `perHom 4` and `upsilon_gammaTwo_eq_map`.
     - `exists_upsilon_qTwo_push`: one `t ∈ Υ_{Q₂}([e₁, e₂])` with `t d ≤ c`, the commutator of two moves.
     - `disjoint_pow_image`: the intervals `[c, d]·t^j` are pairwise disjoint.
+- W1 for hull-select: the repair of `Estimating/OsinAppendixCutMerge` (e7e55c0f2; in wire-queue).
+  - The file moved from hull-respell's `.files` to this lane.
+  - Probe 0913-090304-65564 built it together with hull-select's `OsinPocketZeroCellMerge`: PROBE GREEN, both BUILT.
+  - The red at line 103: in `false_of_cons_singleton`, `omega` treated `family.card` over `RegionCandidate D eps Xi` and over the unfolded sigma type that `Finset.card_cons` infers as two different atoms. An explicit type on `hconscard` fixes it. No statement changed.
+- W1 for hull-select: `Estimating/OsinPocketTwoCollars` (282e3a821; probe 0913-091355-26476 PROBE GREEN, BUILT; axioms propext, Classical.choice, Quot.sound; in wire-queue).
+  - `PocketRegion.exists_twoCollars`: sub-piece 2 of MultipleEdgeCut, with the statement hull-select specified.
+    - It takes a pocket with inverse complement cycle `s₁ t₁ s₂ t₂`, where `t₁` and `t₂` are nonempty.
+    - It returns an O-equivalent diagram whose pocket reads `c₁ t₁ c₂ t₂`, with `c₁` reading `g₁` and `c₂` reading `g₂`.
+    - Also returned: the dart embedding, the outer boundary, the outside cells, and each relator cell staying on its side.
+    - Proof: kh-torsion's `GeodesicCollarStatement` along `s₁`, a `PocketRegion.withOuter` restart, the collar along the image of `s₂`, and a second restart.
+    - The collar statement is a hypothesis of this lemma, as hull-select specified; kh-torsion owns it.
+  - `Embedded.dartWord_map_embedding`: a label-preserving embedding of darts preserves words.
 
 ## Construction (tex 874, 877–878, 888–889)
 - **f.** `exists_upsilon_qTwo_germs` gives `f ∈ Υ_{Q₂}(I)` with the germ `t ↦ a + 6 (t − a)` at `a⁺` and the germ `t ↦ b + 6 (t − b)` at `b⁻`.
@@ -33,20 +45,16 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
 
 ## Residual
 - None in this lane: `LemmaFourSixDynamicsStatement` is closed.
+  - The two W1 pieces carry no residual Prop of this lane.
+  - `GeodesicCollarStatement`, a hypothesis of `exists_twoCollars`, is kh-torsion's.
 - hW is one line from closed, in simple-group's `FinitelyPresentedInfiniteSimpleClosed`. It needs an import of `QTwoLemmaFourSixDynamics` and `finitelyPresentedInfiniteSimpleStatement_of_dynamics lemmaFourSixDynamics`. This was reported to the lead; the file is not this lane's.
 
 ## Census
 - `metadata/nm-census-rows/hl-lemma46.tsv`: LINE:1679 `partial` (the FFF §2 "finitely presented infinite simple group", witness Q₂), carrying the dynamics.
+- The W1 modules are infrastructure for `thm:hull` (tex 1636). They certify no printed sentence on their own, so they have no rows.
 
 ## Next
 - The Corollary 7.4 piece was superseded: cite-hull closed Hull Cor 7.4 (c6e0b6c33).
-- Current item, from the lead after the 08:30 coordinator restart: help hull-select on W1.
-  - Targets: the MultipleEdgeCut assembly (`multipleEdgeCutInput_of_pieces`) and the IsDiscRegion merge Prop.
-  - Status: waiting for hull-select to name a sub-piece. Nothing is written yet.
-  - Inputs the assembly composes:
-    - kh-ejz's `MultipleEdgePocketRegionInput` (d00f94876);
-    - the collar (`PocketCollarStatement` / kh-torsion's `GeodesicCollarStatement`);
-    - go-lemma42's transport at j = 1, 3;
-    - the zero-cell merge;
-    - `OsinMultipleEdgeCut.ofPocketRegion` (45e7201da).
-  - Observed blocker, passed to hull-select: `Estimating/OsinAppendixCutMerge.lean` (hull-respell) is red at line 103 (omega). Nothing landed on 09-13 touched it or its weight dependencies.
+- Current item: W1, helping hull-select on the MultipleEdgeCut assembly (`multipleEdgeCutInput_of_pieces`) and the IsDiscRegion merge Prop.
+  - Done: the CutMerge repair and the two-collar lemma. SHAs and statement were sent to hull-select and main.
+  - Waiting for hull-select's next sub-piece. Nothing else is being written.
