@@ -50,6 +50,8 @@ proofs: `research/artifacts/bc-bernoulli-cylinder-comparison-2026-09-13.md`.
   `K_1(I_1 ⋊ Z) = 0`. So `T_r` is an isomorphism, as the amenable group `F_2 wr Z` requires.
 
 **Scope.**
-- Items 4 and 5 are written only for torsion-free `G`.
+- Items 4 and 5 are written only for torsion-free `G`. Item 4 extends to finite point stabilizers, with `R(G_s)`
+  summands, and item 6 to every `G`; see Claim W and Corollary R4' of
+  `research/artifacts/bc-bernoulli-rank-functionals-torsion-2026-09-13.md`.
 - The extension to permutational coefficients `C((Z/p)^(G/H))` with `H` infinite amenable, as in the module-triple
   survivors, is not written.

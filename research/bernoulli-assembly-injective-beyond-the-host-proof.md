@@ -6,10 +6,26 @@ title: Orbit representations at finite-support configurations give unitriangular
 target: bernoulli-assembly-injective-beyond-the-host
 requires:
   - bernoulli-bc-splits-into-host-and-cylinder-comparison
-artifacts: [research/artifacts/bc-bernoulli-rank-functionals-2026-09-13.md]
+artifacts: [research/artifacts/bc-bernoulli-rank-functionals-2026-09-13.md, research/artifacts/bc-bernoulli-rank-functionals-torsion-2026-09-13.md]
 ---
 
-Full proofs are in Sections 1--2 of the artifact.
+Full proofs are in Sections 1--2 of the first artifact (torsion-free hosts) and in the second artifact (every host).
+
+- **Every host (second artifact).**
+  - **Claim W.** `delta_s ↦ e_(ss) ⊗ 1_(C_s)` is a weak K-equivalence `c_0(S) -> I_1` for every `G`. At each finite
+    `H`-invariant window `W`, `K_0(- ⋊ H)` is block unitriangular in support size. The fixed point `s` of `C_s`
+    returns `[σ] ∈ R(H_s)`, and every other `H_s`-orbit in `C_s` has larger support.
+  - **R1'.** `π_(x,σ) = Ind_(G_x)^G(ev_x, σ)` is weakly contained in the regular representation and has finite rank
+    on `C_c(X \ {0})`.
+  - **R2'.** At `x = x_(s')`, a same-size generator `[τ ⊗ delta_(s')]` has rank equal to the multiplicity of `τ` in
+    `σ`. Larger patterns give `0`.
+  - **R3'.** Take a minimal-size component `m_([s'])`. Pairing with every irreducible `σ` of `G_(s')` forces
+    `m_([s']) = 0`.
+  - **R4'.** Items 1 and 3 of `bernoulli-bc-splits-into-host-and-cylinder-comparison`, with the transfer of
+    `amenable-kernel-bc-transfer-and-ktop-half-exactness` item 2, give the equivalence of injectivity for `F_p wr_Z G`
+    and for `G`.
+
+The bullets below are the torsion-free proofs and the anatomy.
 
 - **R1 (compacts).** Take `f ∈ C_c(X \ {0})`. It is supported in finitely many `U_z = {y_z ≠ 0}`. Then `f(h^(-1)x) ≠ 0`
   allows at most `m |supp x|` elements `h`, because the action is free. So `π_x(f)` has finite rank, and `π_x` maps
