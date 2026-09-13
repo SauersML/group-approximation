@@ -37,9 +37,14 @@ have `y` exactly equivariant on an honest finite action.
   the product of the labels is close to `1`, hence equal to `1`. So a microstate is an almost-action of
   `SL_3(Z)` on `V × Λ` that commutes with right `Λ`-translation, with an almost-equivariant bi-map to
   `SL_3(R)`: a discretized measure-equivalence coupling. On an honest finite action with no bad
-  vertices, the holonomy is a homomorphism from a finite-index subgroup of `SL_3(Z)` into `Λ`. Dies at:
-  long loops and loops through bad vertices carry unconstrained holonomy (argument sketched; not yet
-  landed as a claim).
+  vertices, the holonomy is a homomorphism from a finite-index subgroup of `SL_3(Z)` into `Λ`. Landed as
+  `sl3z-cocompact-microstates-carry-flat-lambda-labels`. Norm drift
+  (`sl3-norm-drift-excludes-finite-almost-invariant-configs`) makes finite labelled orbits cost a fixed
+  fraction of defects. With Bass--Milnor--Serre this gives
+  `sl3z-cocompact-quotient-uniformly-far-from-finite-actions`: no honest finite action carries
+  defect-free marks below a uniform scale. Dies at: microstates may have a vanishing proportion of
+  defects and relator failures, and holonomy along loops through them is unconstrained. The missing
+  input is a defect-tolerant superrigidity for `Λ`-valued almost-cocycles (part 2 artifact, Section 4).
 * **Spectral separation.** Hope: the Koopman representation separates `Λ` from the commensurability
   class of `SL_3(Z)`. Dies at: weak containment of representations is too coarse. Under Jacquet--Langlands
   transfer, the real components of `L^2(SL_3(R)/Λ)` recur in `L^2(SL_3(R)/Γ(N))` for suitable `N`
