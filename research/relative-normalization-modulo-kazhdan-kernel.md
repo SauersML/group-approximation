@@ -261,3 +261,32 @@ automatically, so only strict compressors matter.
   - **Consequence.** The index shape is a relabeling. It works verbatim for amenable
     hosts, so any (T) input must prove `P' = P` directly. No trace for a
     dimension-ratio reading has been constructed either. **This is where it stops.**
+- **Fibrewise defect on `H_inf`: the sector is empty (lane `rnorm-fibrewise-defect`).**
+  `unbounded-defect-sector-vanishes-in-koopman-models`. The Jones lane asked for a
+  proof of `P' = P` fibre by fibre over `A_rho`, or an obstruction.
+  - **Multiplicity is at most `dim rho`.** For intertwiners `T, S in W_rho`, the Gram
+    density `sum_k (T e_k) conj(S e_k)` is `sigma(N)`-invariant, so it lies in `L^1`
+    of the invariant sigma-algebra and computes `<aT, S>` for `a in A`.
+    - Pointwise it is a Gram matrix in `C^(dim rho)`. So no `dim rho + 1` vectors
+      can have pairwise `A`-orthogonal, equal densities, and `End_A(W_rho)` is
+      finite type I.
+    - This holds for every measure-preserving action, with no (T).
+  - **`Q = 0`.** By block invariance, `W_rho(u)` and `P` lie in `End_A(W_rho)`. The
+    differences `V^(*k) Q V^k` are orthogonal with equal densities, so `Q = 0`.
+  - **Correction to the Kazhdan-projection bullet.** Its surviving shape said the
+    Kazhdan sectors outside `H_b` and `H_wm` have unbounded multiplicity. There are
+    none: `H_inf = 0` and `H_b = H (-) H_wm`, and `W_rho(g)` is scalar on every
+    `W_rho`.
+  - **Lines asked.**
+    - (a) Fibrewise (T) is not needed, since the fibres have dimension at most
+      `dim rho`.
+    - (b) No Koopman model, amenable host or not, has `Q != 0`. The quasi-regular
+      `l^2(R^x / EL_alpha(R)) (x) l^2(Nat)` has `Q != 0` with a uniform gap, but its
+      `A_rho` has infinite multiplicity, so it is not Koopman.
+    - (c) No measurability obstruction arises, since nothing is disintegrated.
+  - **Consequence.** `Q = 0` is free, so it gives no leverage.
+    - The finite trace the Jones remark asked for exists, on `End_A(W_rho)`, and the
+      ratio it gives is `1`.
+    - A size that sees the defect must be read on `H_wm`, where `sigma|_N` has no
+      finite-dimensional subrepresentation, or from realizers directly. None is
+      constructed. **This is where it stops.**
