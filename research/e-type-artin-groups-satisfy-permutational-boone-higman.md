@@ -4,16 +4,18 @@ id: e-type-artin-groups-satisfy-permutational-boone-higman
 kind: claim
 title: The Artin groups of types E_6, E_7, E_8 embed in groups with type (A) actions
 distinct_from:
-  spherical-artin-boone-higman-reduces-to-e6-e7-e8: that is the established conditional statement that this claim implies the permutational property for every spherical type; this is the open hypothesis itself.
+  spherical-artin-boone-higman-reduces-to-e6-e7-e8: that is the established conditional statement that this claim implies the permutational property for every spherical type; this is the hypothesis that statement needs.
   spherical-artin-groups-satisfy-boone-higman: that is Boone--Higman for all spherical types; this is the stronger permutational property for the three E types only.
   aut-free-groups-satisfy-permutational-boone-higman: that imports the Aut(F_n) theorem and the Artin types it reaches; this asks for the permutational property for E_6, E_7, E_8, which that theorem is not known to reach.
 artifacts:
   - research/artifacts/bh-artin-groups-2026-09-12.md
+  - research/artifacts/review-pbh-charzero-spherical-2026-09-13.md
 ---
 
-**OPEN.** Each of `A(E_6)`, `A(E_7)` and `A(E_8)` embeds in a finitely presented
-group admitting an action of type (A). In the language of BFFHZ, each satisfies
-the permutational Boone--Higman property.
+**ESTABLISHED** through `e-type-artin-pbh-via-spherical-permutational-form`
+(independent review PASS, 2026-09-13). Each of `A(E_6)`, `A(E_7)` and `A(E_8)`
+embeds in a finitely presented group admitting an action of type (A). In the
+language of BFFHZ, each satisfies the permutational Boone--Higman property.
 
 By `spherical-artin-boone-higman-reduces-to-e6-e7-e8`, this gives the property
 for every spherical-type Artin group.
@@ -34,6 +36,9 @@ for every spherical-type Artin group.
      whose review is pending (lane `bh-poly-linear-review`)~~. *Reviewed (lane
      `bh-poly-linear-review`, 2026-09-12):* that claim stands, with one corrected
      step.
-   - **Why this claim stays open.** Whether those envelopes come from type (A)
-     actions is not asked there. The E-reduction needs the permutational form,
-     because only that form is known to be closed under direct products.
+   - **Why this route alone was not enough.** Whether those envelopes come from
+     type (A) actions is not asked there, and the E-reduction needs the
+     permutational form, because only that form is known to be closed under
+     direct products. The permutational form came later, from
+     `char-zero-linear-groups-satisfy-permutational-boone-higman` (2026-09-13),
+     through `spherical-artin-groups-satisfy-permutational-boone-higman`.
