@@ -1,7 +1,7 @@
 # theoremc-retire lane report
 
 Lane `theoremc-retire` (clone cs-stages) of the non-MF every-line swarm.
-Updated 2026-09-13 ~14:25.
+Updated 2026-09-13 ~14:45.
 
 ## Status
 
@@ -37,12 +37,16 @@ Updated 2026-09-13 ~14:25.
       - T stays with this lane as its own co-probed landing after (A). The owners get hold
         notices, and each file's origin blob is checked at push. Assembly and Lemma97Pocket, which
         no lane lists, join this lane's files for that landing.
-  - State of (A): not landed at origin 80df00345 (`RespectsSections` unchanged).
-    - ghw-charp2's co-probe `0913-135734-55169` failed (rc=1) at 14:03.
-    - Its staged Face (md5 a0dd5b3f) keeps the binders of `OsinLemma94CaseOneSameCellStatement`,
-      now at l.474-492.
-    - Its staged Run (md5 f598845e) is this lane's OC6 shape: `false_of_walk` takes `hkind`,
-      `_of_walk` takes `hsame`, and `_of_walk_of_sameCell` stays as an alias.
+  - State of (A): not landed at origin afe0638dd (`RespectsSections` unchanged).
+    - ghw-charp2's co-probe `0913-135734-55169` failed (rc=1) at 14:03. The rulings-1410 roster
+      draft calls it GREEN, but the record's status line says FAILED.
+    - Its re-probes `0913-143304-32295` (base b590ad02a) and `0913-144048-88101` (base afe0638dd,
+      14:44) are GREEN on the same bytes: Sections c1b41109, SectionInduction 5c582de9,
+      GreendlingerParts 210b5295, Face a0dd5b3f, Run f598845e.
+    - The staged Face keeps the binders of `OsinLemma94CaseOneSameCellStatement`, now at
+      l.474-492.
+    - The staged Run is this lane's OC6 shape: `false_of_walk` takes `hkind`, `_of_walk` takes
+      `hsame`, and `_of_walk_of_sameCell` stays as an alias.
   - F1 (hull-count94) is landed (9f8779c4e).
   - Hold: no edits to `OsinUnboundCaseOneFace` or `OsinUnboundCaseOneRun` until ghw-charp2
     reports (A) landed.
@@ -57,13 +61,28 @@ Updated 2026-09-13 ~14:25.
     - hull-unbound: OC1-OC5 are withdrawn. T now changes the statement of
       `OsinLemma94CaseOneInput` and the consumer at l.471 and l.485. A hold notice follows at probe
       time.
+  - Sent (14:44): jacobson, the T names for hbelow in its producer.
+    - After T, the binder of `OsinLemma94CaseOneSameCellStatement` matches fff-periodic's
+      `OsinLemma94SameCellPocketInput` (OsinUnboundSameCellPocket:47) token for token, so hbelow
+      passes to fff-periodic's shared kill by `exact`.
+    - The direct refutation is `cut.false_of_below o52LeastArea hcondition hlambda hmu hmuUpper
+      hrho hlarge hlea (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos
+      cut.rCellCount_lt)`, with `hlarge` from `exists_rho_widthBudget`.
   - Residual Props owned by this lane: none new (see Residual Props below).
 
-## The threading T (draft, not probed)
+## The threading T (replayable, dry run clean, not probed)
 
-Draft on disk: `$NM/backup/theoremc-retire/threading-option-i-draft.lean.txt`. None of the T
-files changed between 8bbf0a9c8 and origin 80df00345, so the draft's line numbers still hold on
-main.
+- Draft: `$NM/backup/theoremc-retire/threading-option-i-draft.lean.txt`, blocks T1-T8.
+- Replay script: `$NM/backup/theoremc-retire/apply-T.py OUTDIR [--rev REV] [--overlay DIR]`.
+  - Each edit asserts its occurrence count, and every new line is at most 100 characters.
+  - On any mismatch it writes nothing.
+- Dry run (14:34), on origin e4f96af1e with ghw-charp2's staged (A) bytes as overlay: rc=0.
+  `T-candidates-dry/T.diff` (304 lines) is reviewed.
+- Gate script `T-prep.sh`, run once (A) is on main:
+  - it checks that each tree file equals its origin blob;
+  - it reruns the replay on origin and compares the result with the dry run;
+  - it backs up the tree files and adds the edited paths to this lane's file list.
+- At origin afe0638dd, the tree equals origin in all fifteen T files except the five (A) files.
 
 - T1 Sections: `OsinLemma97bConclusion` moves above l.284, and `OsinLemma94SectionStatement`
   (l.303) gains the inductive assumption after `0 < Delta.rCellCount`.
@@ -85,15 +104,18 @@ term change.
 
 - Co-probe (Rule 22): Sections, SectionInduction, DescentInduction, Assembly, Lemma97Pocket,
   Counting, Pieces, PlanarPieces, SectionResiduals, GreendlingerParts, GreendlingerPocketParts,
-  Face, Run.
+  Face, Run, plus DescentResiduals (dgo-analytic, 5be777f16, passes `h94` through) and CaseTwo
+  (imports Face).
 - Owners of the edited files:
   - ghw-charp2 and hull-select: Sections, SectionInduction;
   - dgo-analytic and hull-select: DescentInduction;
   - hull-count94: Counting, Pieces, PlanarPieces;
-  - hull-unbound: Pieces, PlanarPieces, SectionResiduals;
-  - ghw-charp2 and this lane: Face, Run.
+  - hull-unbound: Pieces, PlanarPieces;
+  - ghw-charp2 and this lane: Face, Run;
+  - no owner, so they join this lane's files: Assembly, Lemma97Pocket.
 
-  hull-respell's GreendlingerParts and GreendlingerPocketParts are probed, not edited.
+  Probed, not edited: GreendlingerParts (ghw-charp2), GreendlingerPocketParts (hull-respell),
+  SectionResiduals (hull-unbound), DescentResiduals (dgo-analytic), CaseTwo (sec5-sentences).
 
 ## Landed
 
@@ -275,11 +297,9 @@ binder `hrespell` at `GGT/HullSCLemma44FamilyAssembly.lean:548, 655, 670`,
 
 ## Next
 
-- When ghw-charp2 reports (A) landed:
-  - rebase T on the landed bytes (T7 and T8 on the landed Face and Run; T1 and T2 if patches 01
-    and 07 shift lines);
-  - add the T files, Assembly and Lemma97Pocket included, to this lane's file list, and back
-    them up;
+- When (A) is on main:
+  - run `T-prep.sh`: origin-blob gate, replay on origin, backup, lane file list (Assembly and
+    Lemma97Pocket included);
   - send hold notices to ghw-charp2, hull-select, dgo-analytic, hull-count94 and hull-unbound, and
     announce the window in wire-queue.txt;
   - run one background probe over the co-probe set, check each file's origin blob at push, land,
