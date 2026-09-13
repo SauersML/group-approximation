@@ -232,9 +232,33 @@ C5:
   `9fdb80035`, probe `0913-032836-75226` green).  It sums over the components with
   `card_le_of_linked` (`OsinAppendixEulerPhiBound`).
 
-hull-euler states C5 as a named proposition and sends this lane its Lean name and file.  This lane
-writes no Lean until then.  After that it proves C5 in a new module of its own: statement landed
-unverified, then proof, probe and landing.
+No C5 proposition was on main.  After the 08:30 coordinator restart the lead told this lane to state
+C5 itself over the current interface, land it unverified and copy hull-euler.  hull-euler keeps the
+assembly.  The module is `GGT/VanKampen/Estimating/OsinAppendixEulerExteriorCellFaces.lean`.
+
+* `RegionCandidate.HoldsCellO family C f`: the face `f` of `phiMapO family C` holds a relator cell
+  that is not an end of `C`.  That is, the face class of one of its darts in the dual of the
+  collapsed map (`CombMap.FaceClassStep`) reaches a dart of that cell.
+* `CellFaceCountInput D eps W`: take `ExtPhiData family E`, no two regions of `E` joining the same
+  two cells, and an exterior region `a₀ ∈ E` (target `none`) with component `C = linkedComponentO E a₀`.
+  Then `|E| + 3 · #{faces of phiMapO family C holding a cell} ≤ |C| + 3 · #{relator cells that are not
+  ends of C}`.
+* Statement LANDED unverified at `bdd687708`.  Probe `0913-090700-76588` GREEN.  The first launch was
+  refused because a non-Lean path sat in the lane file list; the list now holds Lean paths only.
+* Proof `cellFaceCountInput` (same module):
+  * A region `b ∉ C` has a target cell.  Neither side cell is an end of `C`, so its crossing darts
+    are not retained.  Its boundary darts are not retained either.  So the face class of its first
+    crossing dart walks along its boundary to the second one, and one face of `phiMapO family C`
+    holds both end cells (`ExtPhiData.exists_holdsCellAtO_of_not_mem`).  The dual of the collapsed map
+    is connected, so every dart reaches a retained dart (`ExtPhiData.exists_eqvGen_phiMapO`).
+  * All darts of a cell that is not an end lie in one face class, and (J) gives that a cell is
+    held by at most one face (`ExtPhiData.eq_of_holdsCellAtO`).
+  * For one face `f`, the regions outside `C` with source cell held by `f` form a `PhiData` family
+    on the cells `X_f` held by `f`.  `card_le_of_endpoints` (`OsinAppendixEulerHereditary`, not
+    `card_le_of_linked`) gives `|R_f| + 3 ≤ 3|X_f|`.  Summing over the disjoint `X_f` gives the count
+    (`ExtPhiData.card_add_three_mul_le`).
+* Proof LANDED `a6a2cadda` (probe `0913-100213-68371` GREEN).  It discharges the `hcell` hypothesis
+  of hull-euler's `phiPrimeCountInput_of_smallFaces`.
 
 ## Rows (`metadata/nm-census-rows/hs-vanishes.tsv`)
 
@@ -256,8 +280,19 @@ unverified, then proof, probe and landing.
 * Census merge `63f147d7b` (files at `94bb0a9f8`, 02:41): baseline lines 66 and 79 removed as stale.
   The three rows merged as `partial`.  The merge predates the root import, and a formalized row now
   needs its carriers in the root closure; the next merge regrades them.
-* Residual propositions owned by this lane: none.  The target is met by the producer.
 * W1 h94: no piece for this lane.  The metric layer closed through sec5-sentences (`e3da1ba60`).
 * W2 hbridge: no piece for this lane.  hull-bridge has none left.
-* Next: C5 of `PhiPrimeCountInput`, once hull-euler names the proposition and its file.  No Lean in
-  flight.
+* W1 C5 CLOSED.  `CellFaceCountInput` stated at `bdd687708` (probe `0913-090700-76588` GREEN).
+  * The first proof probe, `0913-095557-59168`, FAILED on two `induction ... generalizing` calls;
+    each passed one argument too many to `ih`.  Every other error there was a sorry inherited from
+    those two.
+  * After the fix, probe `0913-100213-68371` GREEN on base `526d8d488`, and `cellFaceCountInput`
+    depends on axioms [propext, Classical.choice, Quot.sound].
+  * LANDED `a6a2cadda`.  Wire queue:
+    `GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorCellFaces` at `a6a2cadda`.
+  * No census rows: the module certifies no printed sentence on its own.
+* Residual propositions owned by this lane: none.  `cellFaceCountInput D eps W` discharges the
+  `hcell` hypothesis of hull-euler's `phiPrimeCountInput_of_smallFaces`
+  (`OsinAppendixEulerSmallFaces.lean:123`).  `CornerTwoGonInput` (C4) and `TwoGonHoldsInput` (C6′)
+  stay with their owners.
+* Next: nothing assigned.  No Lean in flight.
