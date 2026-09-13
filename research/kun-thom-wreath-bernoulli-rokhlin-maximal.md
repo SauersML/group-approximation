@@ -101,3 +101,22 @@ reach the binary Leavitt unit group or the tester host.
     amenable pieces have density tending to `0` at the forced scale. Neither was proved. `π(K)` is only
     known to be nonamenable (`kun-thom-wreath-deficit-witnesses-need-nonclosed-stabilizers`).
   - No lower bound results, and nothing here reaches `R^x`.
+- **Sofic-visible information and actor induction (ex-rokhlin-lower, 2026-09-12).** Two landed obstructions.
+  - **Information fixed by the radical is free.** `Rad_sof(W) = N_0` is infinite. By Alpeev–Seward, Krieger III,
+    Theorem 1.11(ii) (`alpeev-seward-stabilizer-growth-kills-outer-entropy`), every factor of a free ergodic
+    `W`-action on which `N_0` acts trivially has zero outer Rokhlin entropy, and `h^Rok_W(X) = h_W(X | F)`
+    (`factors-fixed-by-large-finite-subgroups-have-zero-outer-entropy`).
+    - The information sofic models see, which is everything factoring through `W/N_0`, contributes nothing.
+    - Joining with actions of the actor or of the sofic quotient never raises Rokhlin entropy.
+    - This upgrades the lamp-invariant-factor bullet from a failed lower bound to a vanishing theorem.
+    - The Bernoulli shift over `W` has no such factor, so it does not decide this claim.
+  - **No induction from subgroups containing the actor.** `kun-thom-wreath-actor-subgroups-are-not-co-amenable`:
+    - `G` is not co-amenable in `W`;
+    - neither is `N_0 ⋊ G`, nor any `M ⋊ G` whose quotient lamps have only infinite `G`-orbits;
+    - every co-amenable subgroup maps onto a finite-index subgroup of `G`.
+
+    So `rokhlin-maximality-ascends-co-amenable-subgroups` cannot supply the lower bound from those subgroups.
+    Subgroups with finite-orbit quotient lamps are not classified.
+  - **Resulting shape.** A lower bound must count along configurations that fold on invisible lamps (the
+    localization above). It must use information the radical moves, and it must not be induced from an
+    actor-containing subgroup (`research/artifacts/kun-thom-wreath-co-amenability-2026-09-12.md`, Section 3).
