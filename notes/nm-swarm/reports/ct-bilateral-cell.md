@@ -87,6 +87,32 @@ To close 1+2 along the class route, a producer `OsinLemma94ClassCountInput → O
 class-word Lemma 9.4 section producer) is still missing; it would consume `classCovers_of_endLoops_sameCellFactor`
 (e3bbcf801) and `osinLemma94SameCellFactorInput_of_scan` (95f0853ba) over `OsinLemma94SameCellScanInput`.
 
+## Item 4: the class route for residual 1+2 (V3 waist)
+
+Check first: `OsinLemma94PolygonCountInput`'s covering half `P.Covers L` (side level, factor one) is produced only
+from `OsinLemma94UnboundSameCellStatement` (`osinLemma94PolygonCoversInput`), false as spelled, and the same-cell
+stretches are not O(n) (w1-binder-2's hazard). So there is no `ClassCountInput → PolygonCountInput` producer here;
+the class route goes to Lemma 9.4 directly.
+
+LANDED 2b2af4479 (probe 0913-185256-49629 GREEN; axioms [propext, Classical.choice, Quot.sound], no sorryAx):
+
+| declaration | module | content |
+|---|---|---|
+| `OsinLemma94ClassCasesInput` | Estimating/OsinLemma94ClassSection | residual: Case 1 and Case 2 on class words (`hcases` of `unbound_lt_of_classes`) |
+| `osinLemma94Section_of_classCount` | same | Lemma 9.4 from the class count and the class-word cases, over the closed metric and realization |
+| `OsinLemma94ClassPolygons.card_cuttingClasses_add_otherClasses`, `classCount_le_six_mul_otherClasses`, `classBudget_of_otherClasses` | same | `k_i ≤ 6 m_i` on budget polygons (closed `card_cuttingClasses_le_of_dartMinimal`), so an other-class budget `K n` gives `ClassBudget (6 K)` |
+| `OsinLemma94ClassEndLoopsInput` | same | residual: other-class budget, `hside`, end loops of length ≤ `B`, `hbubble` |
+| `osinLemma94ClassCountInput_of_endLoops` | same | the class count from the end loops and `OsinLemma94SameCellFactorInput`, `M = ⌈1/λ⌉₊ + 1` |
+| `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV3` | Estimating/OsinGreendlingerResidualsV3 | the waist over seven residuals |
+
+V3 residuals: `OsinLemma94ClassEndLoopsInput`, `OsinLemma94SameCellPocketInput` (through
+`osinLemma94SameCellScanInput_of_pocket`, b6f8cb3a6), `OsinLemma94ClassCasesInput`, `OsinTwoGonHoldsSectionStatement`,
+`OsinMultipleEdgePocketRegionSectionStatement`, `OsinSectionPocketFaceSetSectionStatement`,
+`PocketPinchLabelledPosStatement`. Names agreed with w1-binder-1 and w1-binder-2.
+
+Also: the duplicate top-level `ClopenCrossedProduct.coeff_injective` in `Dynamics/BilateralThreeCellClopen` was
+removed in favour of chain-core's `Dynamics/ClopenCrossedProductComap` (131abe1b5, co-probe with every importer).
+
 ## Residual statements
 
-In this lane's own modules, none. The W1 waist's six residuals are listed above.
+In this lane's own modules, none. The W1 waist residuals are listed above (V2: six; V3: seven).
