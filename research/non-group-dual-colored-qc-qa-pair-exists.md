@@ -54,3 +54,21 @@ pp. 12--17.
 ## Attempts
 
 - Through `non-group-dual-colored-qc-qa-pair-from-coset-system`, waiting only on `tracial-non-ru-coset-system-with-nonabelian-fibre-exists`, which has no route into it. Where the Roberson--Schmidt decoloring stops for plain graphs is recorded in the section "Plain graphs" above.
+- **Pairs whose fibres are not torsors (lane ex2-kac-forbidden-pair).**
+  - By `fibre-commutative-quantum-isomorphisms-are-coset-systems`, a trace on
+    `A(Iso(X,Y))` whose fibre blocks commute factors through a coset system
+    over `K_q = Aut(W_q^X)`, padded by orbit maps.
+  - Pairs whose fibre configurations have no quantum symmetry are therefore
+    coset systems, however far from regular their fibres are.  The syntax
+    reduction above covers them, and so do the torsor firewalls.
+  - Where it dies: nowhere yet, but the gap has to sit in a noncommuting
+    fibre block, i.e. in a fibre with quantum symmetry.
+  - Not excluded: fibres with quantum symmetry.  In general these are ordinary
+    bisynchronous games, so no firewall is expected there without further
+    structure.
+- **Forbidden-pair splits.**  By
+  `forbidden-pair-splits-are-central-rectangle-splittings`, the split forced
+  by the hidden-labels theorem is (RCS) on perfect traces.  The
+  constraint-variable presentation of the Lin/MSSV algebra passes it.  So it
+  does not block the coset-system route; what remains is hidden labels on
+  the variable questions.
