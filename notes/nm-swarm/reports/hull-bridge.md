@@ -65,22 +65,40 @@ induction hypothesis on quotient-ball stretches.
 - The conditional baseline had 74 findings on the bridge binder. Each consumer now has a form
   that applies `relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed` and keeps
   `hgreendlinger` (`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`)
-  as its only binder. The forms are split between three lanes:
+  as its only binder. Each form applies every closed producer at once. The lead split the flips
+  by consumer module; when a declaration fits two sets, the module's owner wins:
   - hull-bridge, GGT/HullSCGreendlingerForms: the general canonical quotient, one step, tower and
-    ball form, plus the torsion-free canonical quotient and one step.
+    ball form, the torsion-free canonical quotient and one step, and the bounded canonical
+    Lemma 4.4.
   - hull-bridge, Manuscript/NonMF/TorsionFreeGreendlingerSentences: both general hull-paragraph
     sentences, the hull theorem at Osin's notion over a torsion-free group, the three
     saturation and theorem sentences, and the Hull citation sentence.
-  - fff-periodic, TorsionFreeGreendlingerLeaf (1edf0f7b4): the printed endpoints of
-    `sec:torsion-free`, the four-leaf sentences, `FournierFacioQuotientStatement`, the literature
-    inputs and the Fournier-Facio paragraph.
-  - theoremc-retire, TheoremCAssemblyGreendlingerLeaf (c5f953323): both forms of Theorem C.
-- An endpoint form of mine duplicated fff-periodic's module, so I dropped it before landing.
-- LANDED 2aa98f8cc, green in probe 0913-071409-41646 (both modules BUILT, `#audit_axioms`), queued
-  for wiring. Census rows are appended for tex lines 1636, 1644, 1662, 1665, 1680 and 1698. The
-  census lane has the old-to-new declaration names for all 74 baseline lines.
+  - hull-bridge, Manuscript/NonMF/TorsionFreeGreendlingerForms (17 forms): the printed
+    `sec:torsion-free` endpoints at the current, Osin and limit-set notions (thm:hull,
+    lem:saturation, thm:torsion-free, cor:regular-nonmf-algebra), the Proposition 2.3 quotient
+    field, Hull Corollary 7.4, the literature inputs and the Fournier-Facio paragraph. They apply
+    `kotowskiOllivier_closed`, `finitelyPresentedInfiniteSimple_closed`, the Osin 1.1 producer
+    and the closed DGO/GO forms.
+  - fff-periodic: TorsionFreeFourLeaves, SectionSentencesFourLeaves, `TheoremC.manuscriptTorsionFree*`
+    and the other KO and MirrorFold binders. ghw-assembly: the Kazhdan, CCKW and Hyde-Lodha
+    consumers. theoremc-retire: TheoremCAssemblyGreendlingerLeaf (c5f953323), both forms of
+    Theorem C.
+- LANDED 2aa98f8cc, green in probe 0913-071409-41646 (both modules BUILT, `#audit_axioms`):
+  HullSCGreendlingerForms and TorsionFreeGreendlingerSentences. Census rows for tex lines 1636,
+  1644, 1662, 1665, 1680 and 1698.
+- LANDED 99db3338a, green in probe 0913-081212-8538 (base 296b0173f, both modules BUILT,
+  `#audit_axioms`): TorsionFreeGreendlingerForms and the bounded Lemma 4.4 form. Census rows for
+  tex lines 1636, 1650, 1675, 284 and 1718. Both modules are queued for wiring and have no importers.
+- The census lane has the old-to-new names for the 54 remaining baseline lines of this set
+  (27 declarations, open-predicate and buried-conditional each).
 - Residual Prop: `RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}` (W1) alone.
   When W1 closes, each final flip is one application.
+
+## Collar steps 2026-09-13
+- Next item from the lead: help kh-torsion with the collar steps of W1 (a). The step is
+  `GeodesicCollarStatement` (GGT/VanKampen/SurgeryGeodesicCollar, 7bb586a06), applied to one
+  side of the pocket and then, after `PocketRegion.withOuter` restarts the complement cycle, to
+  the other side. I have asked kh-torsion to name a sub-piece; nothing is written yet.
 
 ## Risks recorded
 - `BoundedRelativeLinearAreaTransferStatement` may be unprovable: its W-only area predicate cannot see the
