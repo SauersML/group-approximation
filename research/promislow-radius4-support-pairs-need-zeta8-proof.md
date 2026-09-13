@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/promislow-radius4-census.py
   - research/artifacts/promislow-radius4-census-points.py
   - research/artifacts/promislow-radius4-census-verify.py
+  - research/artifacts/promislow-radius4-census-twists.py
 ---
 
 The inputs are the ancillary files `census52.json` (the 52 supports) and
@@ -71,6 +72,17 @@ Let `u` be a nontrivial unit on the pair over `K`. By Step 2, its normalized
 point lies in `I_01` and has coordinates in `K`. By Steps 3 and 4 it is one
 of the 16 points, so `K` contains `Q(zeta_8)`. Over `Qbar` the nontrivial
 units up to scaling are these 16 points. QED
+
+**Structure of the 16 points.** Not needed for the proof.
+`promislow-radius4-census-twists.py` checks that the abelianization map
+`P -> Z/4 + Z/4` is additive on all products of two elements of `S u T`. A
+character `chi: P -> mu_4` then sends a unit `u = sum u_g g` on the pair to
+the unit `sum chi(g) u_g g` on the same pair. For each representative, the 16
+points are the 16 pairwise distinct twists of one point, and that point has
+all its coefficients in `mu_8`. So every nontrivial unit on a census pair is,
+up to scaling, a twist of one unit with coefficients in `mu_8`. The Galois
+automorphism `zeta_8 -> zeta_8^5` acts on the points as the twist by the sign
+character `g -> (-1)^(A(g) + B(g))`.
 
 **Trust surface.** `slimgb` over `Q` is exact. The emptiness of the other 209
 cases per representative rests on Singular finding a constant in the basis,

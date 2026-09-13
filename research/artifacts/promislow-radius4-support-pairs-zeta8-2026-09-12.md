@@ -11,6 +11,7 @@ directory holding the ancillary files of arXiv:2608.00103v1.
 | `promislow-radius4-census.py` (`census.py`) | `a176df8f7ddf4c4f15953a67871d4eb2` | 584612 |
 | `promislow-radius4-census-points.py` (`census_points.py`) | `ca739a6bffc4b9aca63677e04e2057d8` | 588135 |
 | `promislow-radius4-census-verify.py` (`census_verify.py`) | `93e8f3bfc7197a0b82419fa96905334d` | 590737 |
+| `promislow-radius4-census-twists.py` (`twist_orbit.py`) | `a2197b6c8f99f823c3ca0510b82dd53f` | 593144 |
 
 Inputs from the arXiv ancillary files: `census52.json` (md5
 `8f51cffbea19199424772e315aae0a94`) and `box_b4_syllable_intersect.json` (md5
@@ -194,6 +195,48 @@ for `j = 3, 5, 7`.
 An earlier submission of this script (job 589061) computed the powers of `L`
 as polynomials, which does not finish in 42 variables. It was cancelled
 after 13 minutes with no output and is not part of the evidence.
+
+## The 16 points are one orbit of twists (job 593144)
+
+`promislow-radius4-census-twists.py` recomputes the 16 points as the verify
+script does, asserting that each gives `u v = 1`. Write `(A(g), B(g))` for the
+image of `g` in `P^ab = Z/4 + Z/4` on `a, b`. It is computed from
+`g = r_i x^e0 y^e1 z^e2`, with `r_i in {1, a, b, ab}`, `x -> (2,0)`,
+`y -> (0,2)` and `z -> (2,2)`. For `(p, q) in (Z/4)^2`, put
+`chi(g) = i^(p A(g) + q B(g))`, with `i = zeta_8^2`. The script checks that
+`(A, B)` is additive on all products of two elements of `S u T`. So
+`u -> sum chi(g) u_g g` and `v -> sum chi(h) v_h h`, rescaled so that
+`u_0 = 1`, send points of `I_01` to points of `I_01`. The output is below,
+verbatim, with the Singular warnings removed. `(p,q)` for `j` means that
+`zeta_8 -> zeta_8^j` sends the printed point to its twist by `(p, q)`.
+
+```text
+orbit 0: chi multiplicative on (S u T)^2 True, 16 twists distinct and equal to the 16 points True, Galois j -> twists (p,q) {3: [(1, 3)], 5: [(2, 2)], 7: [(3, 1)]}  [4.2s]
+orbit 0: u of one point: ['1', '1', '-zeta8^2', '-1', '-1', 'zeta8^3', '-zeta8', '-zeta8^3', 'zeta8', '-zeta8', 'zeta8', 'zeta8^3', '-zeta8^3', '1', '1', '-zeta8^2', 'zeta8^2', '-zeta8^2', 'zeta8^2', '-1', '-1']  [4.2s]
+orbit 1: chi multiplicative on (S u T)^2 True, 16 twists distinct and equal to the 16 points True, Galois j -> twists (p,q) {3: [(3, 1)], 5: [(2, 2)], 7: [(1, 3)]}  [7.9s]
+orbit 1: u of one point: ['1', '1', 'zeta8^2', '-1', '-1', 'zeta8', '-zeta8^3', '-zeta8', 'zeta8^3', 'zeta8^3', '-zeta8', '-zeta8^3', 'zeta8', '-1', '-1', 'zeta8^2', '-zeta8^2', 'zeta8^2', '-zeta8^2', '1', '1']  [7.9s]
+orbit 2: chi multiplicative on (S u T)^2 True, 16 twists distinct and equal to the 16 points True, Galois j -> twists (p,q) {3: [(1, 3)], 5: [(2, 2)], 7: [(3, 1)]}  [10.9s]
+orbit 2: u of one point: ['1', 'zeta8^2', '-1', '-zeta8^2', 'zeta8^3', '-zeta8^3', 'zeta8', 'zeta8', '-zeta8', '-zeta8', 'zeta8^3', '-zeta8^3', 'zeta8', '-zeta8', 'zeta8^3', 'zeta8', '-zeta8', '1', 'zeta8^2', '-1', '-zeta8^2']  [10.9s]
+orbit 3: chi multiplicative on (S u T)^2 True, 16 twists distinct and equal to the 16 points True, Galois j -> twists (p,q) {3: [(3, 3)], 5: [(2, 2)], 7: [(1, 1)]}  [13.8s]
+orbit 3: u of one point: ['1', '-zeta8^2', '-1', 'zeta8^2', 'zeta8', '-zeta8', 'zeta8^3', 'zeta8^3', '-zeta8^3', '-zeta8^3', 'zeta8', '-zeta8', 'zeta8^3', '-zeta8^3', 'zeta8', 'zeta8^3', '-zeta8^3', '1', '-zeta8^2', '-1', 'zeta8^2']  [13.8s]
+orbit 4: chi multiplicative on (S u T)^2 True, 16 twists distinct and equal to the 16 points True, Galois j -> twists (p,q) {3: [(1, 1)], 5: [(2, 2)], 7: [(3, 3)]}  [16.8s]
+orbit 4: u of one point: ['1', '-zeta8^2', '-1', 'zeta8^2', 'zeta8^3', 'zeta8^3', 'zeta8', '-zeta8', 'zeta8', '-zeta8', '-zeta8^3', '-zeta8^3', '-zeta8^3', '-zeta8^3', 'zeta8', 'zeta8^3', 'zeta8^3', 'zeta8^2', '-1', '-zeta8^2', '1']  [16.8s]
+orbit 5: chi multiplicative on (S u T)^2 True, 16 twists distinct and equal to the 16 points True, Galois j -> twists (p,q) {3: [(3, 3)], 5: [(2, 2)], 7: [(1, 1)]}  [19.8s]
+orbit 5: u of one point: ['1', '-zeta8^2', '-1', 'zeta8^2', '-zeta8', 'zeta8', 'zeta8^3', 'zeta8^3', '-zeta8^3', '-zeta8^3', '-zeta8', 'zeta8', '-zeta8^3', 'zeta8^3', 'zeta8', '-zeta8^3', 'zeta8^3', '-1', 'zeta8^2', '1', '-zeta8^2']  [19.8s]
+orbit 6: chi multiplicative on (S u T)^2 True, 16 twists distinct and equal to the 16 points True, Galois j -> twists (p,q) {3: [(3, 3)], 5: [(2, 2)], 7: [(1, 1)]}  [90.5s]
+orbit 6: u of one point: ['1', '-1', '-zeta8^2', '-zeta8^2', 'zeta8^2', 'zeta8^2', '1', '-1', 'zeta8^3', 'zeta8', '-zeta8^3', '-zeta8', '-zeta8^3', '-zeta8', 'zeta8^3', 'zeta8', 'zeta8^2', '-zeta8^2', '1', 'zeta8^2', '-zeta8^2']  [90.5s]
+```
+
+So, for each representative:
+
+- The 16 nontrivial units on the pair, up to scaling, are the twists of one of
+  them by the 16 characters `P -> mu_4`, and no two twists coincide.
+- Every coefficient of every such unit is an eighth root of unity. The printed
+  point has all 21 coefficients in `mu_8`, and twisting and rescaling multiply
+  coefficients by elements of `mu_4`.
+- `zeta_8 -> zeta_8^5`, the automorphism fixing `i`, acts on the printed point
+  as the twist by `(2,2)`, the sign character `g -> (-1)^(A(g) + B(g))`. The
+  other two automorphisms act as twists by characters of order 4.
 
 ## Box runs (not evidence)
 

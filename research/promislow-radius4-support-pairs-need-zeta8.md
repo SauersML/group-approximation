@@ -24,7 +24,9 @@ contains a primitive eighth root of unity.
 So no nontrivial unit of `Q[P]`, `R[P]`, `Q_2[P]` or `Z[P]` has support in
 `S` and inverse support in `T`. Conversely, every field containing `zeta_8`
 has a nontrivial unit on each of the 52 pairs. Over `Qbar` each pair carries
-exactly 16 nontrivial units up to scaling.
+exactly 16 nontrivial units up to scaling. They are the twists
+`sum chi(g) u_g g` of one of them by the 16 characters `chi: P -> mu_4`, and
+all their coefficients are eighth roots of unity.
 
 This extends `gardam-support-pair-has-no-rational-units` from one pair to all
 52. The inverse support is fixed to `T`. A unit of `K[P]` supported in `S`
