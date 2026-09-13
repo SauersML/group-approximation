@@ -17,6 +17,13 @@ CLAIM SameFaceDartForestStatement (statement and proof) GroupApproximation/GGT/V
   - One edge: 2 darts, 2 vertices, `2 + 2 ≤ 4`, equality.
   - A loop has different faces on its two sides.
   - The empty case is excluded by `Nonempty`.
+- **Statement LANDED 0003dced5** (probe 0913-180626-516 GREEN, BUILT). The SHA went to w1-binder-1 directly.
+  - Elaboration fix: `rw [Finset.mem_filter]` failed to synthesize `DecidablePred` under `open Classical in` (probe
+    0913-180156-83644).
+  - Both defs are now `by classical exact …`, and `mem_sameFaceDarts` starts with `classical` (the
+    `SimpleClosedWalkSides.sideOutside` pattern). w1-binder-1's own copies had the same defect.
+- Proof: `SameFaceForest.exists_isSimpleClosedWalk`, `exists_leaf`, `card_add_two_le`, `sameFaceDartForest`, in the same
+  module. Probing.
 - Route:
   - Leaf induction over alpha-closed `T ⊆ sameFaceDarts f`.
   - A leaf exists. Otherwise a non-backtracking `next` gives a first vertex repeat, hence an `IsSimpleClosedWalk` inside `T`.
