@@ -64,7 +64,10 @@ eighteen relators hold in `L^x` (Section 3). `P` denotes the sixty-relator group
 the same normal closure as (2.3), `<a,b,c | (V)> = V` with `a,b,c` the maps above. So there is
 `nu : V -> Q`. The images satisfy (V), so `rho = phi o nu : V -> L^x` is a homomorphism. It is
 nontrivial, and `V` is simple (`thompson-v-finitely-presented-infinite-simple`), so `rho` is
-injective. Its image is the group `𝒱` of all Thompson units. *Consequently a word identity in
+injective. Its image is the group `𝒱` of all Thompson units. Injectivity alone would not give
+this, because `V` contains proper copies of itself. It holds because `a, b, c` are Bleak--Quick's
+named generators `t_(00,01)`, `t_(01,10) t_(01,11)` and `t_(1,00)` of `V` itself (their Section
+2, right action), and `psi(V) = {U_g^-1 : g in V} = 𝒱`. *Consequently a word identity in
 `a, b, c` that holds in `L^x` holds in `Q`.* For `g in 𝒱` write `ĝ = nu(rho^-1(g))`.
 
 **Step 1 (leaf transvections are well defined).** Let `(alpha, beta)` be disjoint cones, not
@@ -89,11 +92,17 @@ pairwise disjoint cones with nonempty complement:
 ```
 
 **Step 3 (two derived Steinberg laws).** For `d in {0,1}`:
-- `(C1d)` `[T(al,be), T(be d, ga)] = T(al d, ga)`. Write `T(al,be) = T(al0,be0) T(al1,be1) = yz`.
-  Then `[yz, w] = y[z,w]y^-1 [y,w]`. Here `[T(al e, be e), T(be d, ga)]` is `1` for `e != d`
-  (B-dis: four disjoint cones) and `T(al d, ga)` for `e = d` (C11).
-- `(CEd)` `[T(al, be d), T(be,ga)] = T(al, ga d)`. Write `T(be,ga) = yz` as above and use
-  `[w, yz] = [w,y] . y[w,z]y^-1`, with C11 and B-dis.
+- `(C1d)` `[T(al,be), T(be d, ga)] = T(al d, ga)`. Write `T(al,be) = T(al0,be0) T(al1,be1) = yz`
+  and `w = T(be d, ga)`. Then `[yz, w] = y[z,w]y^-1 [y,w]`. Here `[T(al e, be e), w]` is `1` for
+  `e != d` (B-dis: four disjoint cones) and `T(al d, ga)` for `e = d` (C11).
+  - For `d = 0` this gives `y . 1 . y^-1 . T(al0, ga) = T(al0, ga)`.
+  - For `d = 1` it gives `y T(al1, ga) y^-1`. B-dis on the cones `al0, be0, al1, ga` (with `be1`
+    in the complement) says that `y` commutes with `T(al1, ga)`, so the result is `T(al1, ga)`.
+- `(CEd)` `[T(al, be d), T(be,ga)] = T(al, ga d)`. Write `T(be,ga) = T(be0,ga0) T(be1,ga1) = yz`
+  and `w = T(al, be d)`, and use `[w, yz] = [w,y] . y[w,z]y^-1`.
+  - For `d = 0`: `[w,y] = T(al,ga0)` (C11) and `[w,z] = 1` (B-dis).
+  - For `d = 1`: `[w,y] = 1` (B-dis) and `y[w,z]y^-1 = y T(al,ga1) y^-1`. B-dis on `al, ga1, be0,
+    ga0` (with `be1` in the complement) removes the conjugation.
 
 **Step 4 (a homomorphism from P).** Use the chart `d_1..d_5 = 00,01,10,110,111`. Send
 `c -> Theta(P_(12345))^`, `t -> a` (`rho(a) = Theta(P_(12))`), and `y_l -> T(d_1 l_s, d_2 l_t)`,
