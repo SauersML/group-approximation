@@ -55,3 +55,11 @@ local. Whether this defeats DTR is not known.
 * **Fixed-point properties.** `Λ` acts properly on the symmetric space of `SL_3(R)`, and `Γ` acts there with
   no fixed point. So no property (T) or FH-type argument with CAT(0) coefficients can force finite
   holonomy: the obstruction has to be arithmetic (Bass--Milnor--Serre) or dynamical (norm drift).
+* **Abelian flux tubes (ex3-sl3z-flux-tube).** The idea: let the labels wind at unit speed along the
+  `e_13`-orbits, which are exponentially distorted under `SL_2(Z)` and cubically under the Heisenberg subgroup.
+  The flux would be compensated by vortex cells inside the large fillings, heuristically at density → 0.
+  By LP duality, the `ℓ¹` distance to coboundaries is `sup ⟨λ, z⟩` over real 1-cycles with `||z||_∞ <= 1`, so
+  flux through `e_13`-cycles would force a cost of order `|V|`. **Dies at:**
+  `sl3z-abelian-lambda-labellings-round-to-flat-ones`. When all labels lie in a torsion-free abelian subgroup,
+  (T) rounds them to a coboundary within budget, so the vortex count admits no construction. A refutation of
+  DTR has to use non-commuting labels, e.g. a flux tube braiding two non-commuting R-regular elements of `Λ`.
