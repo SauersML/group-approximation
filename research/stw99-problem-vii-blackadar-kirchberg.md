@@ -52,6 +52,11 @@ of its primitive quotients carry faithful traces and satisfy the UCT.  This
 fibrewise trace hypothesis is stronger than stable finiteness of `A`; no
 false quotient permanence for stable finiteness or faithful traces is used.
 
+## Attempts
+
+The problem is OPEN; no route establishes it.  The attack lines so far are the
+positive permanence classes above and the following.
+
 **Extension case and the K_0-Hahn--Banach property (2026-09-11).**  The
 special case `blackadar-kirchberg-for-uct-quotient-extensions` (route
 `bk-uct-extensions-from-problem-vii`) is equivalent, through
