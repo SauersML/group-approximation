@@ -38,7 +38,20 @@ the algebra, and then both graphs are connected.  Put `Z = X ⊔ Y`, let
 
 For isomorphism games the trace-selection problem of `mipstar-equals-re`
 therefore disappears: every tracial state that the gap needs is a corner of a
-Haar state.  A pair as in `(QG1)` is
+Haar state.
+
+**Corollary (planar counts).**  Suppose every finite graph has a
+Connes-embeddable quantum automorphism group.  Then `qa`-isomorphism coincides
+with `qc`-isomorphism.  So two graphs would be quantum approximately
+isomorphic iff they have the same number of homomorphisms from every planar
+graph, by the Mančinska--Roberson characterization of `qc`-isomorphism
+(FOCS 2020, arXiv:1910.06958; known here from the abstracts of
+arXiv:1910.06958 and arXiv:2407.10635, not re-read at source).
+
+Contrapositive: suppose finite-dimensional entanglement fails to see exactly
+planar homomorphism counts, meaning some pair has equal planar counts but no
+perfect `qa`-strategy.  Then some finite graph has a quantum symmetry that no
+finite-dimensional system approximates.  A pair as in `(QG1)` is
 `qc-isomorphic-not-qa-isomorphic-graph-pair-exists`.  No such pair is known.
 A finitely presented nonhyperlinear group would supply one through
 linear-system graphs.  A bounded literature search (artifact §6) found no

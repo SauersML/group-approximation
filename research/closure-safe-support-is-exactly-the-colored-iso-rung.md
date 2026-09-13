@@ -24,8 +24,11 @@ It has not been reviewed by an ex-verify lane.
   `c_X(x,x') != c_Y(a,a')`.
   - `X ≅_qc Y` means that it has a tracial state.
   - `X ≅_qa Y` means that it has a unital *-homomorphism into `R^U`.
-- **Bisynchronous game.**  A synchronous game `H=(I,O,lambda)` with
-  `|I| = |O|` and `lambda(i,i',j,j) = 0` for `i != i'`.
+- **Bisynchronous game.**  A game `H=(I,O,lambda)` that is synchronous in the
+  sense of Paddock--Slofstra, arXiv:2310.07901v2, §3.2
+  (`lambda(i,i,a,b) = 0` for `a != b`; `lambda(i,i,a,a) = 0` is allowed and
+  simply kills `e_(ia)`), with `|I| = |O|` and `lambda(i,i',j,j) = 0` for
+  `i != i'`.  `A(H)` is its synchronous algebra.
 - **Support graph.**  For a tracial state `tau` on `A(H)`, `S_tau` is the
   bipartite graph on `(I x I)` and `(O x O)` joining `(i,i')` to `(j,j')` when
   `tau(e_(ij) e_(i'j')) > 0`.
