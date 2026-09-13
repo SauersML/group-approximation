@@ -1500,3 +1500,91 @@ Claim `linearly-dirty-ancilla-words-realize-only-affine-data-maps` (ESTABLISHED)
 - **Artifact step 6.** `W` is a bijection, so `F(x) = p(σ) x + b` is one too. If `p = σ^j (p_0 + ... + p_d σ^d)` with `p_0 = p_d = 1` and `d >= 1`, then `p v = 0` extends any nonzero block forwards (by `p_d = 1`) and backwards (by `p_0 = 1`). So `p` has a nonzero kernel, and it must be a monomial.
 - **Claim node.** The status line names the PASS, and the Invariant bullet adds that constant translations add a constant to `Q`.
 - **Record.** The verification record in the artifact (Section 7) describes Section 30 accurately.
+
+## 31. The 2V obstruction-state profile (w7-2v-mixed-support, afb6eb112, 77aed2b4f, 9a375e7cd)
+
+Artifact `brin-thompson-2v-obstruction-state-profile-2026-09-12.md` (blob e55570e3 at d48bdd179), for the claims `brin-thompson-2v-order-three-averaging-idempotent-is-full` and `brin-thompson-2v-nonsurjunctive`, both OPEN. Re-derived against [CS] Sections 1–4 and [H] Section 2 and Remark 4.5. **PASS**, with two wording notes. There is no F_2 certificate, so no certcheck. Nothing about the gate is decided.
+
+**Theorem 1.1. Correct.**
+- (a) `s(p) = 1 - x` and `s(d_k) = 3^(-k) x` ([CS] Lemma 1.2(b)). Lemma 1.2(c) gives `s(p_(k+1)) = 1 - x - ((3^k - 1)/2) 3^(-k) x = 1 - x (3^(k+1) - 1)/(2 · 3^k)`. Positivity of `p_(k+1)` as `k -> ∞` gives `x <= 2/3`.
+- (b)
+  - `K_0(ι_T)` sends `[T]` to `[fA] = v`, so `s_T = x^(-1) s ∘ K_0(ι_T)` is a state of `(K_0(T), [T])`.
+  - `ψ'(1) = f`, so `s_T ∘ K_0(ψ')` is a state of `(K_0(A), [A])`. Its value at `v` is `s_T[f_(K_3) + f_(K_4)] = 2/3`, because `f_(K_2)`, `f_(K_3)`, `f_(K_4)` are equivalent in `T` with sum `f`.
+  - This is step 4 => 5 of [CS] Theorem B, restated in the proof of [CS] Proposition C(a). The author flagged it as a weak point; it holds.
+- (c) The augmentation gives `v` the value `0`. States are convex, and (a), (b) and [CS] Theorem B (1 <=> 4) give the rest.
+- (d) Substitution.
+
+**Remark 1.2 and Corollaries 1.3–1.4. Correct.**
+- Without the tower, `e` can act as `0`: in a fixed-point-free representation of `C_3` it acts as `1 + ω + ω² = 0`.
+- [H] Proposition 2.5 gives `c = b`, `d = 2b` and `a = 1 - 4b`, so `s(v) = 3b`. So `b <= 2/9`, and `b = 2/9` gives `(1/9, 2/9, 2/9, 4/9)`.
+- [H] Proposition 2.4(c) identifies the mixed classes as tower classes, which gives `3^(-k)`. Corollary 1.4 is Theorem 1.1(c) for `Γ = 2V`.
+
+**Section 2 (directive correction). Correct.** Positivity of `p_(k+1)` removes the values `b` in `(2/9, 1/4]`, which the finite-subgroup relations alone allow. Section 29 checked consistency of [H] Proposition 2.5, not realizability, so it stands.
+- *Note 1.* "It is the augmentation state" should read "it is attained by the augmentation state". Other states can have `b = 0`, and when the gate holds, every state does.
+
+**Propositions 3.1–3.2. Correct.**
+- 3.1: `u · 1_n` conjugates `ι_1(P)` to `ι_1(D_2(P))`.
+- 3.2
+  - `D_2` is unital (`Σ s_i t_i = 1`) and multiplicative (`t_i s_j = δ_ij`), so `Φ` preserves states, and `s[D_2(e)] = s[e_(K_2)] = s[e]` by a `π_M` conjugation.
+  - `S` is closed and convex in the compact state space. The cited Section 2, step 3 of `halving-invariant-k0-states-2026-09-12.md` is that compactness step.
+
+**Proposition 3.3. Correct.**
+- `w x = D_2(x) w` in `M_n(A_V)`, so `c (x · 1_n) = w^(-1) g D_2(x) w` and `(x · 1_n) c = w^(-1) D_2(x) g w`. These agree because `D_2(x)` commutes with `g`.
+- ICC (flagged by the author; it holds).
+  - The FC-centre is normal, so it is trivial or all of `V`.
+  - If it were `V`, the finitely generated FC-group `V` would have a centre of finite index (B. H. Neumann). A simple nonabelian group with that property is finite.
+  - So `Z(A_V) = F_2`, and `c` lies in `M_n(F_2)`.
+- `ε(w)` is invertible, so `c = ε(c) = 1_n`. Then `g · 1_n = 1_n`, so `g = 1`, a contradiction. A retraction `2V -> V` would give the case `n = 1`.
+
+**Proposition 3.4 and the layers. Correct.**
+- The extension step is the Zorn and Hahn–Banach argument in the proof of census Theorem A ("Hahn–Banach over Q, by the usual Zorn"). The extension `t` has `t[e^(1)] = s[e] = 1/3`.
+- Invariance follows from `K_0(ι_1) ∘ K_0(D_2) = K_0(ι_1)`.
+- `x ⊗ 1 = u^(-1)(D_2(x) ⊗ 1) u`, so the groups `u^(-n) V_1 u^n` increase along `D_2`, and `F_2[N]` is their colimit.
+
+**Proposition 4.1. Correct.**
+- (a) With `s_α t_β : βx -> αx`, `k` sends `0x -> 00x`, `10x -> 01x` and `11x -> 1x`. So `k g k^(-1)` sends `00x -> 01x -> 1x -> 00x`, which is `h`.
+- (b) `u^(-1)(g ⊗ 1) u = 1 ⊗ g`.
+- (c) By induction, `u^(-n)` moves `α_1 ... α_n` from the front of the first coordinate to the front of the second as `w_(α_n) ... w_(α_1)`.
+- (d) [H] Remark 4.5, verified in Section 29.
+- 9a375e7cd adds the next lead (`⟨H_u, 1 ⊗ k⟩ ⊇ H_mix` and `1 ⊗ k ∉ H_u`), the verification queue, and the claim sub-bullet. All three are accurate. A relation that no profile state satisfies proves the claim by Corollary 1.4.
+
+**Lemma 6.1. Correct.**
+- `F_2[C_3^n] ≅ F_2 × F_4^m`: `χ` and `χ²` share a kernel and are Frobenius conjugates, and `1 + 2m = 3^n`.
+- `e_K` is `1` on the factor `F_2` and on each factor with `K <= H`, and `0` on the others.
+- Each `H` contains `(3^(n-1) - 1)/2` subgroups `K`, and `m - (3^(n-1) - 1)/2 = 3^(n-1)`.
+
+**Lemma 6.2. Correct.**
+- (a) (flagged by the author; it holds)
+  - `λ(xz) = L - min_y (δ_(yx)(z) - δ_x(z)) = λ(z) + δ_x(z)`.
+  - `λ >= L`, so `[z|λ(z)]` lies in one cylinder of `Q`, and `λ` is constant there.
+  - Two such cylinders are nested or disjoint. A proper nesting would force equal lengths, so they are equal or disjoint.
+  - `λ` is bounded, so they form a finite partition, which `x` permutes by prefix replacement.
+- (b)
+  - A point in a cylinder of a three-cycle moves, so `x` has a fixed point iff `c_1 >= 1`. Halving keeps prefix replacement.
+  - For intertwining partitions, put `ρ = (α -> α')` on matched cylinders of matched cycles, and on matched fixed cylinders. Then `ρ` lies in `V` and `ρ x ρ^(-1) = x'`.
+- (c) Same, with product prefix replacements.
+
+**Corollaries 6.3–6.4. Correct.**
+- 6.3(b) reproduces 1.1(a) at `k + 1 = n`: `3^(1-n)((3^n - 1)(1 - x)/2 - (3^(n-1) - 1)/2) = 1 - x (3^n - 1)/(2 · 3^(n-1))`.
+- 6.3(c)
+  - The fixed-point-free subgroups come from the `2^n` vectors with every `c_j` nonzero, modulo `±`, so there are `2^(n-1)` of them.
+  - `e_K e_P = e_P`, so `e_K - e_P` is idempotent and `0 <= s[e_(P_n)] <= t`.
+  - Dividing by `3^(n-1)` gives `3y/2 = 1/2 + lim s[e_(P_n)]`, so `1/3 <= y <= (1 + 2t)/3`.
+- 6.4
+  - `g' ⊗ g^(±1)` moves the `g`-coordinate, so all fifteen product cylinders lie in three-cycles.
+  - The four subgroups of order three have values `y, t, t, t`, and Lemma 6.1 at `n = 2` gives `y + 3t = 1 + 3 s[e_P]`.
+
+**Remark 6.5. Correct.**
+- The regular values satisfy Lemma 6.1, since `(3^n - 1)/6 = (3^(n-1) - 1)/2 + 1/3`, and they give `1/9` in 6.4.
+- `g'` has `7` orbits on the nine length-2 cylinders, so `7/9 > 5/9` (flagged by the author; it holds).
+- *Note 2.* The finite subgroups of `V` do not form a directed system: two involutions can generate an infinite dihedral group. So "a state on the colimit" should be read as a family of normalized dimensions on the `K_0(F_2[F])`, compatible with inclusion and conjugation. The argument uses only that.
+
+**Nodes, citations, duplicates.**
+- Both claim nodes list the artifact, their Attempts bullets match it, and both stay OPEN.
+- Every cited path and id exists at d48bdd179: [H], [CS], the halving-invariant, census and v-rank-extension artifacts, `v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`, `binary-jacobson-el3-is-sofic`, `thompson-v-order-three-averaging-idempotent-is-full`, and the route `brin-thompson-2v-averaging-fullness-ascends-from-v`.
+- Duplicate scan at d48bdd179, untruncated. It searched node bodies for `2/3` with `K_0`; `1/3` with state or rank and tower or halving; `3^(-k)` with state; and `2/9`.
+  - The only 2V hits are the two claim nodes.
+  - `binary-cyclic-corner-full-iff-complement-corner-has-no-state` (ESTABLISHED) is [CS] Theorem B, which is used here.
+  - `rank-functions-extending-a-state-are-pinned-on-regular-elements` (ESTABLISHED) is about extending states.
+  - `binary-cyclic-averaging-idempotent-is-full-on-leavitt-units` (OPEN) records the lifted trace `3^(-k)`, not the gap.
+  - No node states the value gap.
