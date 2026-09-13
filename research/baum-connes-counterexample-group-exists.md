@@ -147,3 +147,13 @@ Property (T) closes the Higson--Kasparov route for both.
     - `window-defect-forces-module-triple-inexactness`: a sufficient C*-criterion, a
       local-to-global gluing defect of an algebraic subshift.
   - Open input: `some-nonexact-group-has-a-k-inexact-module-triple`.
+- **Torsion-free trace defect.** Live route
+  `bc-counterexample-via-torsion-free-trace-defect`.
+  - A projection over `C*_r Γ`, for torsion-free `Γ`, with non-integer trace lies outside the
+    assembly image (`assembly-image-traces-are-integral-for-torsion-free-groups`,
+    established).
+  - Open input: `torsion-free-matrix-trace-defect-exists`. The ex-kadison-kaplansky lane shows
+    it is equivalent to `kadison-kaplansky-counterexample-exists`; those links are recorded on
+    main as unreviewed.
+  - Complementary to the module route: it needs a spectral gap with fractional mass, not
+    non-exactness.
