@@ -32,10 +32,12 @@ infinite multiple, and `S(X, Gamma)` fails projection-level QQ.
 * Applied to a countable part of the Ortega--Perera--Rordam monoid, it gives
   an action with no invariant measure in which `[1_X]` itself is finite and
   `2[1_X]` is properly infinite.
-* The actions are not known to be topologically free.  They come from
-  automorphisms of a Boolean ring that fix clopen sets pointwise.  The version
-  that matters for simple crossed products and for Rainone's theorems is the
-  open claim `topologically-free-minimal-cantor-action-with-finite-clopen-type`.
+* The first construction fixes clopen sets pointwise.  Choosing Wehrung's
+  witnesses generically gives topologically free actions of `F_infinity`
+  (`refinement-monoids-are-topologically-free-cantor-types`).  So the version
+  that matters for simple crossed products,
+  `topologically-free-minimal-cantor-action-with-finite-clopen-type`, is also
+  established, unreviewed.  Free actions stay open.
 
 **Why it matters.**
 * This is the type-semigroup core of every commutative-coefficient

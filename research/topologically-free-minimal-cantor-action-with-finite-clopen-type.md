@@ -15,6 +15,19 @@ There are a countable group `Gamma` and an action of `Gamma` on a Cantor space
 * There is no invariant Borel probability measure.
 * Some nonempty clopen `A` has a finite class `[1_A]` in `S(X, Gamma)`.
 
+**Status (2026-09-13): established, unreviewed**, by the route
+`topologically-free-finite-clopen-type-via-generic-witnesses`.
+* `refinement-monoids-are-topologically-free-cantor-types` realizes every
+  countable simple conical refinement monoid by a minimal topologically free
+  action of `F_infinity`, generic among Wehrung's witness tuples.
+* The Ortega--Perera--Rordam monoid then gives `[1_X]` finite and `2[1_X]`
+  properly infinite, with no invariant measure.
+* Open refinements:
+  * free actions, in particular of `F_2`
+    (`free-minimal-cantor-action-with-finite-clopen-type`);
+  * whether the reduced crossed product is then purely infinite
+    (`cantor-crossed-product-with-finite-type-is-mixed`).
+
 **Why it matters.**
 * A negative answer settles commutative coefficients.  For minimal
   topologically free actions on `C(X)`, Rainone's Theorems 4.13 and 4.21 then
@@ -32,6 +45,8 @@ There are a countable group `Gamma` and an action of `Gamma` on a Cantor space
   obstruction lives in the fixed-point structure.
 
 ## Attempts
+
+These attempts predate the resolution by generic witnesses.
 
 * **Wehrung realizations fix clopen sets.**  The group built in
   `simple-refinement-monoids-are-minimal-cantor-types` lies in `Aut(B, mu)`,

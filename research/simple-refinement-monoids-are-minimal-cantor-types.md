@@ -39,8 +39,9 @@ the action topologically free.  The automorphisms in Wehrung's argument
 extend partial isomorphisms by the identity on a complement (proof of his
 Proposition 4.7.6), so they fix clopen sets pointwise.  Topological freeness is
 the hypothesis that makes `C(X) rtimes_r Gamma` simple and brings in Rainone's
-Theorems 4.16 and 4.21.  That case stays open:
-`topologically-free-minimal-cantor-action-with-finite-clopen-type`.
+Theorems 4.16 and 4.21.  Choosing the witnesses generically fixes this:
+`refinement-monoids-are-topologically-free-cantor-types` realizes the same
+pointed monoids by minimal topologically free actions of `F_infinity`.
 
 Status: proved in the route below from Wehrung (LNM 2188) and
 Ortega--Perera--Rordam, unreviewed.
