@@ -13,7 +13,14 @@ artifacts:
   - research/artifacts/atiyah-two-variable-base-change-2026-09-13-part4.md
 ---
 
-**ESTABLISHED (unreviewed)** by [[atiyah-transcendence-degree-two-proof]].
+**ESTABLISHED** by [[atiyah-transcendence-degree-two-proof]].
+- **Items 1-2 (Theorem 5, Parts 1-3): reviewed.** ex-verify2-quantum-l2
+  re-derived them and returned PASS, conditional as stated
+  (`research/artifacts/ex-review2-quantum-l2-2026-09-13-part5.md`). Its one local
+  fix, `k_0 = max(1, D-1)` in Lemma H, is merged into Part 2. That review did not
+  re-read Lueck's (D1)-(D3), Linnell's criterion, or step (R2) of the
+  one-variable artifact.
+- **Item 3 (Theorem 6, Part 4): unreviewed.**
 
 Let `G` be torsion-free and satisfy Strong Atiyah over `Qbar` and Lueck's
 determinant conjecture. Put `D = D_(Qbar[G])`. Let `z_1, z_2 in C` be
