@@ -1,0 +1,40 @@
+== radu-pgl2-representation-check.py (python3.11, exact arithmetic in Q[m,s])
+a^2 scalar 
+b^2 scalar 
+c^2 scalar 
+x^2 scalar 
+y^2 scalar 
+z^2 scalar 
+axax scalar 
+ayay scalar 
+azbz scalar 
+bxbx scalar 
+bycy scalar 
+cxcz scalar 
+(xz)^2 scalar 
+(xyz)^3 scalar 
+m=0.640388-0.768051i s=1.280776+2.735456i |poly|=2.2e-16 tr^2/det(xy)=2.780776-0.000000i |l1/l2|=1.000000
+m=0.640388-0.768051i s=-1.280776-2.735456i |poly|=2.2e-16 tr^2/det(xy)=2.780776-0.000000i |l1/l2|=1.000000
+m=0.640388+0.768051i s=1.280776-2.735456i |poly|=3.1e-16 tr^2/det(xy)=2.780776-0.000000i |l1/l2|=1.000000
+m=0.640388+0.768051i s=-1.280776+2.735456i |poly|=3.1e-16 tr^2/det(xy)=2.780776-0.000000i |l1/l2|=1.000000
+m=-0.390388+0.920650i s=0.780776-0.516994i |poly|=2.5e-16 tr^2/det(xy)=0.719224+0.000000i |l1/l2|=1.000000
+m=-0.390388+0.920650i s=-0.780776+0.516994i |poly|=2.5e-16 tr^2/det(xy)=0.719224+0.000000i |l1/l2|=1.000000
+m=-0.390388-0.920650i s=0.780776+0.516994i |poly|=2.5e-16 tr^2/det(xy)=0.719224-0.000000i |l1/l2|=1.000000
+m=-0.390388-0.920650i s=-0.780776-0.516994i |poly|=2.5e-16 tr^2/det(xy)=0.719224-0.000000i |l1/l2|=1.000000
+DONE
+
+== radu-pgl2-2adic-check.py (python3.11, arithmetic mod 2^60)
+m mod 64 = 34 v_2(m) = 1: True
+-(m^2+m+1) mod 8 = 1
+s/2 mod 16 = 5
+det y/2 odd: True  det x, det z odd: 1 1
+det a has v_2 = 1: True
+neighbours of v_0 via a,b,c: (0, 1) (1, 0) (1, 1)
+det b, det c valuation 1: [True, True]
+level 1 order of <x,y,z> in PGL_2(Z/2^n): 6
+level 2 order of <x,y,z> in PGL_2(Z/2^n): 48
+level 3 order of <x,y,z> in PGL_2(Z/2^n): 192
+level 4 order of <x,y,z> in PGL_2(Z/2^n): 1536
+level 5 order of <x,y,z> in PGL_2(Z/2^n): 12288
+level 6 order of <x,y,z> in PGL_2(Z/2^n): 98304
+DONE
