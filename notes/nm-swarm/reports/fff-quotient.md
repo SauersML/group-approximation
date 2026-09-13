@@ -53,7 +53,19 @@ Asked at ~08:40.  All three candidates would go in new fff-quotient modules:
    cells and the ε bounds, giving `Nonempty (PocketFaceSet …)`;
 3. side bounds on the two region sides of an `exteriorAt` candidate.
 This lane also asked whether dgo-analytic's restatement after the pinch, region, collar reorder
-keeps `PocketFaceSet`.  No Lean is written until kh-ejz answers.
+keeps `PocketFaceSet`.  The lead reassigned this lane before kh-ejz answered, and the offer was
+withdrawn.  This lane wrote no Lean for W1.
+
+Same-corner doubling (lead, ~10:30), for kh-torsion's `GeodesicCollarStatement` strip.  Case: a side
+`s = [d]` that is a loop, `rest = []`, and `faceOf d` a monogon.  `FaceEdgeDoubling` needs a face of
+length > 1, so stage 1 of the strip cannot run there.  kh-torsion was asked for the output shape stage 1
+consumes (family, unboundSum, dart count, pocket faces).  The construction does not depend on that
+shape: `EdgeInsertion.splitMap` at index zero turns the monogon `[d]` into a monogon `[none]` (the new
+dart, labelled like `d`, standing in the place of `d`) and a value-one digon `[some none, d]`.
+- `GGT/VanKampen/SurgeryMonogonDoubling` (new, probe 0913-111910-27612 GREEN, unwired):
+  `MonogonDoubling.diagram`, `boundary_cellFace_darts`, `boundary_digon`, `boundary_digon_value`,
+  `oEquivalent`, `reduced`, `rCellCount_eq`, `label_admissible`, `embedding : DiscEmbeddingAway`.
+- The statement kh-torsion consumes lands after its answer, then its proof.
 
 ## Census
 No row: these modules prove the cited group consumed at tex 1679 and do not carry a sentence (same
