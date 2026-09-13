@@ -1,6 +1,7 @@
 # Rank functions on F[V] are trivial plus regular on finite cylinder groups
 
-Lane `w7-v-cycle-c2`, 2026-09-12. **Candidate proofs, held OPEN** until `w3-vf-linear` re-derives them.
+Lane `w7-v-cycle-c2`, 2026-09-12. **Verified** by `w3-vf-linear` (PASS on ce8be16cd1, Section 32 of
+`research/artifacts/w3-vf-linear-verification-2026-09-12.md`).
 Everything is for ABSTRACT Sylvester matrix rank functions over any field. Nothing here decides a gate.
 
 Cited:
@@ -41,7 +42,7 @@ for every clopen transposition `t`.
 `F[Z/p] = F[y]/(y^p)` with `y = 1 - [s]`, left multiplication by `y^j` has rank `p - j`. Theorem 1.1 gives
 `(1 - phi_V)(p - j)/p`. ∎
 
-This proves `v-rank-order-char-cycles-are-trivial-plus-regular` for every prime (candidate, held open).
+This proves `v-rank-order-char-cycles-are-trivial-plus-regular` for every prime (verified by `w3-vf-linear`, Section 32).
 
 **Other sections.**
 - Section 2 is a character-free cross-check for transpositions in characteristic two, through dihedral groups.
@@ -110,7 +111,7 @@ By (S2),
 | rk'(eA) - phi rank_F eps(A) | <= 2 n (1 - phi) p^(-|Pi|).
 ```
 
-**Step 4: free orbits.** Call `chi` *free* if `g chi != chi` for every `g != 1`. For a free orbit `O` containing
+**Step 4: free nontrivial orbits.** Call `chi` *free* if `chi != 1` and `g chi != chi` for every `g != 1`. For a free orbit `O` containing
 `chi` and `A in M_n(F[G])`,
 
 ```text
@@ -124,22 +125,25 @@ rk'(f_O A) = rk'(e_chi) rank_F Reg(A).
   which equals `(a_(g h^-1))_(ij) e_chi`. So `Â = Reg(A) ⊗ e_chi`, of rank `rank_F Reg(A) rk'(e_chi)` by (S1) and (S3).
 - `f_O A = f_O A f_O = (I_n ⊗ Rr) Â (I_n ⊗ Cc)`, and `Â = (I_n ⊗ Cc)(f_O A)(I_n ⊗ Rr)`. So `rk'(f_O A) = rk'(Â)`.
 
-**Step 5: counting.** A character fixed by some `g != 1` is constant on the `g`-orbits in `Pi`. Since `g` moves
-some cylinder, it has at most `|Pi| - 1` orbits there. So at most `(|G| - 1) p^(|Pi| - 1)` characters are not free.
+**Step 5: counting.** If `G = 1` the claim is (S1), so let `|G| >= 2`. A character fixed by some `g != 1` is
+constant on the `g`-orbits in `Pi`. Since `g` moves some cylinder, it has at most `|Pi| - 1` orbits there. So at most
+`(|G| - 1) p^(|Pi| - 1)` characters are fixed by some `g != 1`. The trivial character is one of them, and every other
+character is free.
 By (S3'),
 
 ```text
 rk(A) = rk'(eA) + sum_(O free) rk'(f_O A) + sum_(O not free, O != {1}) rk'(f_O A).
 ```
 
-- **Free orbits.** They contribute `(N_free/|G|)(1 - phi) p^(-|Pi|) rank_F Reg(A)`, with
-  `N_free >= p^|Pi| - (|G| - 1) p^(|Pi| - 1)`. Since `rank_F Reg(A) <= n|G|`, this is
-  `(1 - phi) rank_F Reg(A)/|G|` up to `n|G|/p`.
+- **Free nontrivial orbits.** They contribute `(N_free/|G|)(1 - phi) p^(-|Pi|) rank_F Reg(A)`, with
+  `p^|Pi| - (|G| - 1) p^(|Pi| - 1) <= N_free <= p^|Pi|`. Since `rank_F Reg(A) <= n|G|`, this is
+  `(1 - phi) rank_F Reg(A)/|G|` up to `n(|G| - 1)/p`.
 - **Non-free nontrivial orbits.** `rk'(f_O A) <= n rk'(f_O)`, and in total this is at most `n(1 - phi)(|G| - 1)/p`.
 - **Trivial orbit.** Step 3.
 
-So `| rk(A) - phi rank_F eps(A) - (1 - phi) rank_F Reg(A)/|G| | <= 4 n |G| / p`. The left side does not depend
-on `p`, and `p` ranges over infinitely many primes. ∎
+Adding the three errors `2n/p`, `n(|G| - 1)/p` and `n(|G| - 1)/p` gives
+`| rk(A) - phi rank_F eps(A) - (1 - phi) rank_F Reg(A)/|G| | <= 2 n |G| / p`. The left side does not depend on `p`,
+and `p` ranges over infinitely many primes. ∎
 
 **Remarks.**
 - **Inputs.** Only [TS] Theorem 1.3 for the elementary abelian group `Q`, [FR] Theorem 1.2, and the Sylvester
@@ -262,5 +266,7 @@ all finite subgroups and free on wandering elements. This is not decided here.
   `thompson-v-ternary-rank-functions-are-augmentation` is equivalent to `phi_V in {0, 1}` for every abstract `rk`,
   with `phi_V = 1 - (3/2) rk(1 - [s])`.
 
-**Status.** Theorem 1.1, Corollary 1.2, and Sections 2 and 3 are candidate proofs held OPEN until `w3-vf-linear`
-re-derives them. Section 4 only reorganizes the gate and decides nothing.
+**Status.** `w3-vf-linear` re-derived Theorem 1.1, Corollary 1.2, and Sections 2 and 3 (PASS, Section 32 of
+`research/artifacts/w3-vf-linear-verification-2026-09-12.md`). Theorem 1.1 is ESTABLISHED through route
+`v-rank-trivial-plus-regular-on-cylinder-groups-proof` and Corollary 1.2 through `v-rank-order-char-cycle-law-proof`.
+Section 4 only reorganizes the gate and decides nothing. Both gates stay OPEN.

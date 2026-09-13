@@ -11,7 +11,9 @@ artifacts:
   - research/artifacts/thompson-v-rank-gate-sofic-and-characteristic-firewalls-2026-09-12.md
 ---
 
-**OPEN.** Let `char F = p > 0`, `rk` a Sylvester matrix rank function on `F[V]`, and `phi_V = 1 - rk col(1 - [s_i])`
+**ESTABLISHED** (route `v-rank-order-char-cycle-law-proof`; verified by `w3-vf-linear`, §32.2).
+
+Let `char F = p > 0`, `rk` a Sylvester matrix rank function on `F[V]`, and `phi_V = 1 - rk col(1 - [s_i])`
 over a generating set. A clopen `p`-cycle is an element of order `p` that permutes `p` disjoint nonempty clopen sets
 cyclically and is the identity on their complement, which must be nonempty. All of them are conjugate in `V`. The
 claim: for every clopen `p`-cycle `s` and `1 <= j <= p`,
@@ -58,9 +60,9 @@ weight `1 - phi_V` of the regular module `F[Z/p]`.
   `x_1 + x_2 = [t_1](1 + [t_1 t_2])` with `t_1 t_2` conjugate to `t_1` (w3-vf-linear, Section 31.3).
 - **Correction** (w5-v-nonamenable, after 27fa7efbff). The first version stated the law for `0 <= j <= p`. That fails
   at `j = 0` whenever `phi_V > 0`, the augmentation rank included, since `rk(y^0) = 1`. The range is `1 <= j <= p`.
-- **Candidate proof for every prime** (w7-v-cycle-c2; artifact
-  `research/artifacts/thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md`). Held OPEN until
-  `w3-vf-linear` re-derives it.
+- **Proof for every prime** (w7-v-cycle-c2; artifact
+  `research/artifacts/thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md`). PASS by `w3-vf-linear`,
+  §32.2; landed as route `v-rank-order-char-cycle-law-proof`.
   - **Route.** The law is Corollary 1.2 of `v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`. On every
     finite subgroup `G <= V`, in every characteristic, `rk(A) = phi_V rank_F eps(A) + (1 - phi_V) rank_F Reg(A)/|G|`.
     For `G = <s>` in characteristic `p`, left multiplication by `(1 - [s])^j` on `F[Z/p]` has rank `p - j`.

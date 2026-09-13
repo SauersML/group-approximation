@@ -11,7 +11,8 @@ artifacts:
   - research/artifacts/thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md
 ---
 
-**OPEN.** The candidate proof is Section 1 of the artifact. It is held open until `w3-vf-linear` re-derives it.
+**ESTABLISHED** (route `v-rank-trivial-plus-regular-on-cylinder-groups-proof`; verified by `w3-vf-linear`, §32.1).
+The proof is Section 1 of the artifact.
 
 **Setting.**
 - `F` is any field, `rk` a Sylvester matrix rank function on `F[V]`, and `phi_V = 1 - rk col(1 - [s] : s in S)` for
@@ -44,7 +45,7 @@ rk(A) = phi_V rank_F eps(A) + (1 - phi_V) rank_F Reg(A) / |G|.
 
 ## Attempts
 
-- **Candidate proof** (w7-v-cycle-c2, artifact Section 1).
+- **Proof** (w7-v-cycle-c2, artifact Section 1; PASS by `w3-vf-linear`, §32.1).
   - **Auxiliary group.** Build `Q = (Z/p)^Pi` from one clopen `p`-cycle inside each cylinder, for an odd prime
     `p != char F`, transported by `G`. `G` normalizes `Q` and permutes its coordinates, and `Q` is a clopen-cycle
     subgroup.
@@ -52,17 +53,19 @@ rk(A) = phi_V rank_F eps(A) + (1 - phi_V) rank_F Reg(A) / |G|.
     `rk(e_chi) = phi_V [chi = 1] + (1 - phi_V) p^(-|Pi|)` after scalar extension.
   - **Trivial character.** `rk col(e_Q(1 - [g])) <= rk(e_Q) - phi_V`, so on that block `G` acts trivially up to
     rank `n(1 - phi_V) p^(-|Pi|)`.
-  - **Free orbits of characters.** The equivalence `f_O ~ I_|G| ⊗ e_chi` turns `f_O A` into `Reg(A) ⊗ e_chi`.
-  - **Counting.** At most `(|G| - 1) p^(|Pi| - 1)` characters are not free. The total error is at most `4n|G|/p`;
+  - **Free nontrivial orbits of characters.** The equivalence `f_O ~ I_|G| ⊗ e_chi` turns `f_O A` into
+    `Reg(A) ⊗ e_chi`.
+  - **Counting.** At most `(|G| - 1) p^(|Pi| - 1)` characters are not free. The total error is at most `2n|G|/p`;
     let `p -> infinity`.
-  - **Where it stops.** The proof is complete on paper and held OPEN pending re-derivation. After a PASS:
+  - **Landed after the PASS.**
     - route `v-rank-trivial-plus-regular-on-cylinder-groups-proof` for this claim, requiring
-      `v-rank-models-are-trivial-plus-free-on-odd-cycle-trees` and `v-rank-torsion-constant-equals-global-fixed-rank`;
+      `v-rank-models-are-trivial-plus-free-on-odd-cycle-trees`, `v-rank-torsion-constant-equals-global-fixed-rank` and
+      `finite-subgroups-of-thompson-v-permute-a-canonical-partition`;
     - route `v-rank-order-char-cycle-law-proof` for the law node, requiring this claim.
 - **Cross-check in characteristic two** (artifact Section 2). This uses dihedral configurations `<c, t>` with
-  `t c t = c^(-1)`, `c` a clopen `p`-cycle, and `e = sum_i [c]^i`. The identity
-  `1 - e = u(1 + [t]) + (1 + [t]) u'`, with `u = sum_(i=1)^((p-1)/2) [c]^i` and `u' = [t] u [t]`, gives
-  `(1 - phi_V)(p - 1)/(2p) <= rk(1 + [t]) <= (1 - phi_V)(p + 1)/(2p)`. No characters are needed.
+  `t c t = c^(-1)`, `c` a clopen `q`-cycle, and `e = sum_i [c]^i`. The identity
+  `1 - e = u(1 + [t]) + (1 + [t]) u'`, with `u = sum_(i=1)^((q-1)/2) [c]^i` and `u' = [t] u [t]`, gives
+  `(1 - phi_V)(q - 1)/(2q) <= rk(1 + [t]) <= (1 - phi_V)(q + 1)/(2q)`. No characters are needed.
 - **The 2-group alone can't do it** (artifact Section 3).
   - **Construction.** Take `K = F_2(lambda_1, lambda_2, ...)` purely transcendental and embed
     `E_infinity -> (K, +) <= GL_2(K)`.

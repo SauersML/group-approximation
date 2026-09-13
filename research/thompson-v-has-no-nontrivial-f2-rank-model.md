@@ -114,9 +114,10 @@ characteristic two. Then every group homomorphism `sigma : V -> M^x` is trivial.
     complement. Then `x_1 + x_2 = [t_1](1 + [t_1 t_2])` with `t_1 t_2` conjugate to `t_1`.
 
 - **Order-char law on all finite subgroups** (w7-v-cycle-c2; artifact
-  `research/artifacts/thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md`). These are candidate
-  proofs, held OPEN until `w3-vf-linear` re-derives them.
-  - **Candidate theorem** (`v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`). On every finite subgroup
+  `research/artifacts/thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md`). PASS by `w3-vf-linear`,
+  §32.4. The theorem and the law are ESTABLISHED through routes `v-rank-trivial-plus-regular-on-cylinder-groups-proof`
+  and `v-rank-order-char-cycle-law-proof`. This gate stays OPEN.
+  - **Theorem** (`v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`). On every finite subgroup
     `G <= V`, in every characteristic, `rk(A) = phi_V rank_F eps(A) + (1 - phi_V) rank_F Reg(A)/|G|`. This proves
     the open item above: `rk(1 + [t]) = (1 - phi_V)/2`.
   - **Torsion is spent, 2-torsion included.**
