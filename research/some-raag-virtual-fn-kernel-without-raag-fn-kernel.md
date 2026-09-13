@@ -16,7 +16,11 @@ This is the negative answer to Zaremsky's Problem 1.19
 
 ## Attempts
 
-- 2026-09-13, lane z1-19-raag-kernel: the homological part of the conjecture is
+- 2026-09-13, lane z1-19-raag-kernel, later the same day: no counterexample exists if
+  `raag-finite-index-sigma-m-forces-connected-flag-complex` survives review. A kernel of type
+  `F_n` on a finite-index subgroup makes `L` `(n−1)`-connected, and then `BB_L` is of type `F_n`.
+  When the affirmative answer claim is established, this claim gets `refuted_by` it.
+- 2026-09-13, lane z1-19-raag-kernel, earlier: the homological part of the conjecture is
   provable (Betti numbers over Malcev--Neumann division rings), so a counterexample
   needs `n ≥ 2` and a flag complex `L` whose homology vanishes through degree `n−1`
   but whose fundamental group is nontrivial and perfect. Two search spaces are
