@@ -42,8 +42,9 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
       `T_(0,1)`, `T_(1,00)` included (w6-mismatch-c2, verifier PASS §29).
 
     It has to use relations beyond those shapes: straddling units as factors in a nonsofic configuration
-    that no graph of locally finite subgroups routes, an element of `K_2(3,R)`, properties that no rank
-    model has, or global inputs such as corner locality.
+    that no graph of locally finite subgroups routes, properties that no rank model has, or global inputs
+    such as corner locality. The remaining option, an element of `K_2(3,R)`, is empty if the candidate
+    `K_2(3,R) = 0` of w7-k2-unstable passes (8afa079662; held OPEN until w4-vf-gate re-derives it; L5).
   * **Cohn coefficients** (L8). This question lies between the V gate and the binary gate, so it adds no
     new decisive input.
   * **One shared input** (L5, L8). The Toeplitz form of the descent line and the Cohn reduction through
@@ -58,8 +59,8 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
     * w7-el3j-sofic decides the shared input. `EL_3(J)` maps onto `EL_3(F_2[z, z^-1])` with a locally
       finite kernel and a residually finite quotient, so the lane first checks whether it contains `V`
       or another group of unknown soficity. Landed 58760b6ad6 (verifier PASS §31 at 216396d9ee): the
-      containment check finds none, and the verdict is open. Section 3 landed at 07d43b6a32: the two
-      one-sided halves are LEF and keep the head, and `EL_3(J)` is a proper quotient of their amalgam, so a
+      containment check finds none, and the verdict is open. Section 3 landed at 07d43b6a32 (verifier
+      PASS §32 at 6bc9bfc1a2): the two one-sided halves are LEF and keep the head, and `EL_3(J)` is a proper quotient of their amalgam, so a
       head-killing relation must mix `S`-roots with `T`-roots (L5). Follow-up lane w7-el3j-presentation
       asks whether `EL_3(J)` is finitely presented and what the amalgam kernel is.
     * w7-sub-multiletter works on L1 SUB from the multi-letter inputs only: V's multiplication table on
@@ -309,7 +310,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
           `n >= 3`. So `EL_3(J)` is LEA iff LEF, and `EL_n(J)` is not LEA for `n >= 4`. A scheme uniform in
           `n` would make `EL_4(J)` LEF. Sofic approximations that are not amenable embeddings stay possible.
         * **One-sided halves** (artifact Section 3; 07d43b6a32; `jacobson-one-sided-symbol-preimages-are-lef`,
-          established, re-derivation requested from w4-vf-gate). Over any finite field,
+          established, verifier PASS §32 at 6bc9bfc1a2 with no corrections). Over any finite field,
           `H_+ = pi^-1 SL_3(F[z]) = L_3 x| EL_3(F[S])` and `H_- = L_3 x| EL_3(F[T])`. The transpose-inverse
           twist of the anti-involution `S <-> T` exchanges them.
           * Every finitely generated subgroup of `H_+` embeds in some `GL_(3N+3)(F[S])`. So both halves are
@@ -375,8 +376,27 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
       * A relation-only proof through the pair must use one of: a cycle of Steinberg relations whose
         elements generate a nonsofic subgroup that no graph of locally finite subgroups routes; an element
         of `K_2(3,R)`; or a global input.
+      * **Unstable `K_2`, candidate** (lane w7-k2-unstable; 8afa079662; artifact
+        `leavitt-unstable-k2-steinberg-reduction-2026-09-12.md`; OPEN claim
+        `leavitt-unit-groups-have-no-unstable-k2-at-rank-three`, held until w4-vf-gate re-derives it).
+        * `K_n(R) = 0` for every `n`, and `K_2(3,R) = 0` for `R = L_(F_p)(1,2)`, `p = 2, 3`. This specializes
+          Khanh's Theorem 5.4 at `r = 3`, with Voronetsky's refinement read from the source. It is a
+          literature import, not a new theorem.
+        * So `R^x` is presented by the rank-three Steinberg relations, each inside a root-generated subgroup
+          of order at most `p^3`, and the `K_2(3,R)` option above is empty. A relation-only proof must use a
+          Steinberg cycle that no graph of locally finite subgroups routes, or a global input.
+        * **Hexagon presentation, not a firewall.** `R^x = pi_1(Y_hex)/<<t>>`, where `Y_hex` is the hexagon
+          of the six unipotent radicals `U_pi(R)` and `t` is its closing letter. The `U_pi` contain no
+          cylinder frames, so the presentation says nothing on the two-root defect. It does localize the
+          representation form of `binary-complement-corner-has-no-weakly-finite-image`: the graph-of-groups
+          model satisfies every relation of `pi_1(Y_hex)`, so a relation-only proof of that claim has to use
+          `t = 1`.
+        * *(lead)* `EL_3(J)` has the same shape (L5 soficity bullet): its approximable models live on the
+          amalgam of the halves, and the load sits on the closing relations, the Toeplitz commutators. In
+          both hosts a decisive relation is a closing relation of a graph of approximable groups. That
+          locates the load but gives no deficit.
     * *(lead)* Every local relation is finite data, so a relation-only `theta < 1` needs a global cycle of
-      one of those two kinds. The inputs of w7-sub-multiletter, V's multiplication table and commutation of
+      Steinberg relations, since the `K_2(3,R)` kind is empty if the candidate passes. The inputs of w7-sub-multiletter, V's multiplication table and commutation of
       disjoint depth-changing letters, are where such a cycle would have to come from.
 
 ### L6. Status
@@ -396,8 +416,8 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | Toeplitz input and sofic firewall | w5-sub-fock (family SUB) | Established, verifier PASS §28: the Toeplitz pair is finite-subgroup data; `sofic-subgroups-carry-independent-cylinder-defects`; `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`. Open input shared with L8: soficity of `EL_3(J)` (L5) |
 | graph-of-groups firewall | w6-mismatch-c2 (family SUB) | Established, verifier PASS §29 (d0f2b3f648; verdict 4373d18c44): `graphs-of-locally-finite-groups-carry-regular-rank-models`; the depth-mismatched pair is inert as a factor; Attempts entries on the SUB target and on `binary-complement-corner-has-no-weakly-finite-image` (L5) |
 | depth-monotone firewall (char 3) | w6-mismatch-c3 (family SUB) | Established, verifier PASS §30 (74247b5cff, a5226d4756; verdict 794ae892b2; established f31c52ae43): `depth-monotone-leavitt-subalgebras-are-stably-finite`; `depth-monotone-configurations-cannot-force-ternary-minus-one`. The pair is inert for the anti-central form; the defect form is not firewalled (L9b) |
-| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established, verifier PASS w4-vf-linear-b §39 at ae0a4005ef; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6, 07d43b6a32; verifier PASS §31 at 216396d9ee on Sections 1--2): no containment reduction; Kazhdan, so LEA iff LEF; both one-sided halves are LEF, and `EL_3(J)` is a proper quotient of their amalgam; verdict open (L5). w7-v-cycle-c2 landed a candidate proof of trivial-plus-regular ranks on finite subgroups of `V` (ce8be16cd1; held OPEN until w3-vf-linear re-derives it; L8). w7-sub-multiletter and w7-v-cycle-c3 have not landed. Follow-up lanes on the same inputs, none landed: w7-el3j-presentation, w7-escape-set, w7-k2-unstable, w7-matrix-state-deficit. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
-| verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §31, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
+| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established, verifier PASS w4-vf-linear-b §39 at ae0a4005ef; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6, 07d43b6a32; verifier PASS §31 at 216396d9ee and §32 at 6bc9bfc1a2): no containment reduction; Kazhdan, so LEA iff LEF; both one-sided halves are LEF, and `EL_3(J)` is a proper quotient of their amalgam; verdict open (L5). w7-v-cycle-c2 landed a candidate proof of trivial-plus-regular ranks on finite subgroups of `V` (ce8be16cd1; held OPEN until w3-vf-linear re-derives it; L8). w7-sub-multiletter and w7-v-cycle-c3 have not landed. w7-k2-unstable landed a candidate `K_2(3,R) = 0` for both hosts (8afa079662; held OPEN until w4-vf-gate re-derives it; L5). Other follow-up lanes on the same inputs, none landed: w7-el3j-presentation, w7-escape-set, w7-matrix-state-deficit. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
+| verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §32, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
 ### L7. The listed mechanism dies
 
