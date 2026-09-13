@@ -135,8 +135,8 @@ Numbers read from the v1 PDF, pp. 5--7.
 
 - **Natarajan--Vidick, arXiv:1801.03821v2** (abstract) claimed a games quantum PCP
   for QMA under randomized reductions.
-- **Natarajan, arXiv:2403.13084v1**, "The status of the quantum PCP conjecture
-  (games version)" (abstract): "(2) we explain an error in the energy amplification
+- **Natarajan--Nirkhe, arXiv:2403.13084v1**, "The status of the quantum PCP
+  conjecture (games version)" (authors from the v1 PDF p. 1; abstract): "(2) we explain an error in the energy amplification
   procedure of Natarajan and Vidick (arXiv:1710.03062) which invalidates their
   claim to have constructed a quantum games PCP for a QMA-complete problem." Also:
   MIP* = RE and refinements "show that any connection between the 'constraint
