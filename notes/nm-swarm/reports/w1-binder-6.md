@@ -106,7 +106,11 @@ Namespace `...VanKampen.OuterSideThickening`:
 `CLAIM binder-6 pocket assembly GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFaceSetOnCopy.lean`. Ownership check: no
 in-flight draft in `kh-ejz.files`, in the shared tree, or among unlanded users of `SectionPocketFaceSetInput`.
 
-Design (under probe):
+LANDED fe02830d0 (probe 0913-183359-68514 GREEN, md5 checked; wire-queued). The two remaining residuals of binder 6 are
+`SectionPocketRegionsCopyStatement` (ms-intro-2's `regions` stage) and `SectionPocketKeptCellStatement` (the kept
+relator cell; no owner yet).
+
+Design:
 - `PocketFaceSetOnCopy.exists_copyClean` composes the four stages:
   1. `outerSideThickening` (acd63f3bb)
   2. `cellSideThickeningPreserving` (ms-cite-2, c3bd2ee44)
