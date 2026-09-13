@@ -34,7 +34,7 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
     * witnesses from rank-modelled subgroups off the cylinder set;
     * relations of any sofic subgroup containing both frames (w5-sub-fock, verifier PASS);
     * Steinberg relations arranged in a graph of locally finite subgroups, the depth-mismatched pair
-      `T_(0,1)`, `T_(1,00)` included (w6-mismatch-c2, verification requested).
+      `T_(0,1)`, `T_(1,00)` included (w6-mismatch-c2, verifier PASS §29).
 
     It has to use relations beyond those shapes: straddling units as factors in a nonsofic configuration
     that no graph of locally finite subgroups routes, an element of `K_2(3,R)`, properties that no rank
@@ -291,8 +291,8 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
         * So weak soficity holds, exact finite images of `EL_28(J)` erase the head, and soficity is the
           approximation notion still open.
   * **Graph-of-groups firewall and the mismatched pair** (lane w6-mismatch-c2, family SUB; d0f2b3f648;
-    artifact `mismatched-factor-graph-of-groups-firewall-2026-09-12.md`; established, verification
-    requested from w4-vf-gate).
+    artifact `mismatched-factor-graph-of-groups-firewall-2026-09-12.md`; established, verifier PASS §29 at
+    4373d18c44, covering Theorem 1.1, the pair and the Steinberg residue remark).
     * `graphs-of-locally-finite-groups-carry-regular-rank-models`. Let `Y` be a countable graph of groups
       whose vertex groups are locally finite subgroups of `R^x`, with edges identifying subgroups through
       units. Then `pi_1(Y)` has a weakly finite characteristic-two rank model. The model is free on every
@@ -335,8 +335,8 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | Heisenberg node | w4-heisenberg | dead; firewall landed (f576dccf26); finished |
 | defect gap and descent | w4-gate-descent | Established, verifier PASS: gap, two-sided descent, near-minimal multiplicativity. Open target: `leavitt-disjoint-cylinder-defects-strictly-submultiplicative`, with route `leavitt-rank-triviality-via-strict-defect-submultiplicativity` into `non-linear-sofic-group`. Lead spot-check of the route passes: `f(2) >= c_* delta >= delta^2/(1+eps)` contradicts `theta delta^2` once `eps < 1/theta - 1`. The verifier also passes it as a conditional route (§8.4): `theta < 1` holds uniformly over models, so the choice of near-minimal model cannot evade it |
 | Toeplitz input and sofic firewall | w5-sub-fock (family SUB) | Established, verifier PASS §28: the Toeplitz pair is finite-subgroup data; `sofic-subgroups-carry-independent-cylinder-defects`; `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`. Open input shared with L8: soficity of `EL_3(J)` (L5) |
-| graph-of-groups firewall | w6-mismatch-c2 (family SUB) | Established, verification requested from w4-vf-gate (d0f2b3f648): `graphs-of-locally-finite-groups-carry-regular-rank-models`; the depth-mismatched pair is inert as a factor; Attempts entries on the SUB target and on `binary-complement-corner-has-no-weakly-finite-image` (L5) |
-| depth-monotone firewall (char 3) | w6-mismatch-c3 (family SUB) | Landed OPEN pending w4-vf-gate (74247b5cff): `depth-monotone-leavitt-subalgebras-are-stably-finite`. Consumer `depth-monotone-configurations-cannot-force-ternary-minus-one` announced, not on main (L9b) |
+| graph-of-groups firewall | w6-mismatch-c2 (family SUB) | Established, verifier PASS §29 (d0f2b3f648; verdict 4373d18c44): `graphs-of-locally-finite-groups-carry-regular-rank-models`; the depth-mismatched pair is inert as a factor; Attempts entries on the SUB target and on `binary-complement-corner-has-no-weakly-finite-image` (L5) |
+| depth-monotone firewall (char 3) | w6-mismatch-c3 (family SUB) | Landed OPEN pending w4-vf-gate (74247b5cff, a5226d4756): `depth-monotone-leavitt-subalgebras-are-stably-finite`; `depth-monotone-configurations-cannot-force-ternary-minus-one`. The pair is inert for the anti-central form; the defect form is not firewalled (L9b) |
 | wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45; nothing landed yet. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the two OPEN Sylvester descent counterparts; the order-char cycle law at `p = 2, 3` (header) |
 | verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §28, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
@@ -544,8 +544,8 @@ statements say. It is not a re-verification.
     characteristic-three counterpart of the L5 firewalls. Anti-central regular ranks give ternary cylinder
     defects of rank `5/9`, and those defects multiply exactly on every sofic subgroup and every locally
     finite HNN datum.
-  * **Depth-monotone firewall** (lane w6-mismatch-c3, family SUB; 74247b5cff; artifact
-    `depth-monotone-leavitt-firewall-2026-09-12.md`, Sections 0--2; landed OPEN pending w4-vf-gate).
+  * **Depth-monotone firewall** (lane w6-mismatch-c3, family SUB; 74247b5cff, a5226d4756; artifact
+    `depth-monotone-leavitt-firewall-2026-09-12.md`; both nodes landed OPEN pending w4-vf-gate).
     * `depth-monotone-leavitt-subalgebras-are-stably-finite`. Fix weights `a, b > 0` and put
       `omega(mu) = a #_0(mu) + b #_1(mu)`.
       * `R^omega_<= = span{ s_mu t_nu : omega(mu) <= omega(nu) }` is a unital stably finite subalgebra of
@@ -559,15 +559,36 @@ statements say. It is not a re-verification.
       * **Scope.** `R` itself is not weakly finite: `t_0 s_0 = 1 != s_0 t_0` needs one factor from each
         side. For `a = b`, `H^1_<=` contains `T_(0,1)`, `T_(1,00)` and their product, every level
         transvection, the sign group `E`, the level part of `V` and every depth-decreasing transvection.
-    * **Announced in the artifact summary, not yet on main.**
-      `depth-monotone-configurations-cannot-force-ternary-minus-one` (Theorem 3). No finite certificate
-      for the ternary target has its group elements in a subgroup conjugate into some `H^omega_<=` or
-      `H^omega_>=`. These models send the two-root defect to `0` when both roots lie in the subalgebra,
-      so they firewall the anti-central form of the target and leave defect form (iv) untouched.
-    * *(lead)* This is the characteristic-three companion of the graph-of-groups firewall in L5: in
-      neither characteristic does the depth-mismatched pair escape. A relation-only proof of the ternary
-      gate through mismatched transvections has to use units that no conjugate of any `H^omega_<=` or
-      `H^omega_>=` contains.
+    * `depth-monotone-configurations-cannot-force-ternary-minus-one` (artifact Sections 3--4).
+      * **Statement.** Let `Gamma_0 <= G = L_(F_3)(1,2)^x` contain `z = -1`. Suppose some conjugate of
+        `Gamma_0` lies in `H^omega_<=` or `H^omega_>=`. Then `eps_- F_3[Gamma_0]` has a nonzero weakly
+        finite image, so no finite certificate for `ternary-anti-central-summand-has-no-weakly-finite-image`
+        has all its group elements in `Gamma_0`. Every such `Gamma_0` is sofic, so the content is the
+        placement.
+      * **Covered** (`a = b`): `z`, `E`, level `V`, all degree-zero units, every `T_(sigma,kappa)(lambda)`
+        with `|sigma| <= |kappa|`, and the mismatched pair with its product of infinite order. So the
+        relations in `W` give neither a one-sided pair nor a contradiction with `z = -1`.
+      * **Not covered.**
+        * The models send the two-root defect to `0` when both roots lie inside. So the defect form
+          `ternary-weakly-finite-representations-kill-two-root-defect` is not firewalled.
+        * By Kraft's inequality, `V ∩ R^omega_<=` is the part of `V` that preserves the Bernoulli measure
+          `mu_omega`. So a non-level element such as `x_0` lies in no weighted unit group, and neither does
+          `{T_(0,1), T_(1,0), T_(1,00), T_(00,1)}`.
+        * Conjugation can still flatten a configuration: `{T_(10,0), T_(0,10)}` escapes every weight but is
+          conjugate by an element of `V` into the degree-zero part. So escaping is not yet a criterion.
+      * **Open** (artifact Section 4).
+        * Is `<E, level V, T_(0,1), T_(1,0), T_(1,00), T_(00,1)>` conjugate into a weighted unit group, or
+          sofic for another reason?
+        * Is there a conjugation invariant of units that detects depth vectors?
+        * Does `H^1_<=` carry a weakly finite representation with `z -> -1` and `D != 0`?
+      * The lane adds an Attempts entry to `ternary-leavitt-units-have-no-weakly-finite-representation`
+        (OPEN).
+    * *(lead)* The two mismatch firewalls complement each other. The graph-of-groups model (L5,
+      characteristic two) keeps `D != 0` but realizes only vertex-group relations. The depth-monotone model
+      realizes every relation of an actual subgroup containing the pair but sends `D` to `0`. So a
+      certificate for the anti-central form must generate a subgroup that no conjugation puts into a
+      weighted unit group. For the defect form it must use relations that no graph of locally finite
+      subgroups routes. The last open question above asks for one model that has both properties.
   * **Superseded** (lead, after later landings). This overrides the characteristic-three column of the table
     above for the gap row. The results come from lane w5-c3-descent and are verified in
     `gk-vf-gate-verification-2026-09-12.md`.
