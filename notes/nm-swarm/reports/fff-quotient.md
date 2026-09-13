@@ -42,7 +42,18 @@ hull-component has not started.  hull-component answered that none is left, and 
   (LetterPullbackCut, 457c543a8), built on `exists_geodesicCut_of_leastAreaCertificates`;
 - hull-bridge's LetterPullbackHolds and EmbeddedBridgeHolds are in flight.
 
-This lane wrote no Lean for W2 and has no open item.  It waits for the lead to assign one.
+This lane wrote no Lean for W2.
+
+W1 (lead, ~08:30, the only open wall): help kh-ejz on `SectionPocketFaceSetInput`
+(dgo-analytic's OsinPocketPieces, 9cb70824c), and ask kh-ejz for a sub-piece before writing anything.
+Asked at ~08:40.  All three candidates would go in new fff-quotient modules:
+1. target positions: the `t₂` arc of `outerDarts` between the ends of `a` and `b`, with `lo_le`/`le_hi`
+   against `cuts.cut j.castSucc` and `cuts.cut j.succ`, from `TargetsSectionIndex`;
+2. carrier bridge: a `PocketRegion` with FollowsBoundary, the `s₁ t₁ s₂ t₂` split, the kept and source
+   cells and the ε bounds, giving `Nonempty (PocketFaceSet …)`;
+3. side bounds on the two region sides of an `exteriorAt` candidate.
+This lane also asked whether dgo-analytic's restatement after the pinch, region, collar reorder
+keeps `PocketFaceSet`.  No Lean is written until kh-ejz answers.
 
 ## Census
 No row: these modules prove the cited group consumed at tex 1679 and do not carry a sentence (same
