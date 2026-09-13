@@ -29,14 +29,17 @@ construction and assembles `SectionPocketCutInput` from them.
   through `PocketRegion.ofSimpleClosedWalk`): a simple pocket face set is a `PocketCarrier`, a
   `PocketRegion` with both cycles following the boundary and the same split of the complement's
   cycle.
-* `PocketCollarStatement` (lane `kh-torsion`): an O-equivalent copy with a collared carrier, whose
-  sides are geodesic words, by a collar of `G`-faces along each side.
+* `PocketCollarStatement` (lane `kh-torsion`): a nondegenerate carrier has an O-equivalent copy
+  with a collared carrier, whose sides are geodesic words, by a collar of `G`-faces along each
+  side.
 * `PocketCellTransportStatement` and `PocketOuterTransportStatement` (lane `go-lemma42`): regions
   of copies of the pocket to an arc of a cell outside, or to an arc of `∂X`, glue back into
   regions of copies of `X`.
 
 ## What is proved here
 
+* `PocketCarrier.nondegenerate_of_leastArea`: a carrier in a least-area diagram is nondegenerate.
+  A pocket reading `s_1 s_2` of value `1` would be filled with no relator, against the kept cell.
 * `PocketCarrier.nonempty_osinSectionPocketCut`: a collared carrier in an O-equivalent copy of a
   least-area `Δ`, in the positions of section `j`, gives an `OsinSectionPocketCut`, given the
   two transports.  The sides are quasi-geodesic as geodesic words, `t_1` as an arc of a relator
@@ -143,6 +146,44 @@ def Collared (K : PocketCarrier D eps X lo hi) : Prop :=
     (dartWord X K.secondSide).length =
       wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X K.secondSide))
 
+/-- **A nondegenerate carrier**: an arc is nonempty, or a side has a nontrivial value.  So a
+collar of geodesic words along the sides leaves a nonempty boundary. -/
+def Nondegenerate (K : PocketCarrier D eps X lo hi) : Prop :=
+  0 < K.sourceArc.length ∨ 0 < K.targetArc.length ∨
+    RelLetter.listVal (dartWord X K.firstSide) ≠ 1 ∨
+    RelLetter.listVal (dartWord X K.secondSide) ≠ 1
+
+/-- **A carrier in a least-area diagram is nondegenerate.**  Otherwise the pocket reads `s_1 s_2`
+of value `1`, which the empty relator product fills, against the relator cell `kept` inside. -/
+theorem nondegenerate_of_leastArea (hlea : X.LeastArea) (K : PocketCarrier D eps X lo hi) :
+    K.Nondegenerate := by
+  by_contra h
+  unfold Nondegenerate at h
+  obtain ⟨hsource, h⟩ := not_or.mp h
+  obtain ⟨htarget, h⟩ := not_or.mp h
+  obtain ⟨hfirst, hsecond⟩ := not_or.mp h
+  have hsourceDarts : K.sourceArc.darts = [] :=
+    List.eq_nil_of_length_eq_zero
+      ((CyclicArc.darts_length _).trans (Nat.eq_zero_of_not_pos hsource))
+  have htargetDarts : K.targetArc.darts = [] :=
+    List.eq_nil_of_length_eq_zero
+      ((CyclicArc.darts_length _).trans (Nat.eq_zero_of_not_pos htarget))
+  have hvalue : K.pocket.diagram.boundaryValue = 1 := by
+    have hfirst' := not_not.mp hfirst
+    have hsecond' := not_not.mp hsecond
+    simp only [dartWord, RelLetter.listVal] at hfirst' hsecond'
+    show RelLetter.listVal K.pocket.diagram.boundaryWord = 1
+    rw [K.pocket.diagram_boundaryWord, K.decomposition, hsourceDarts, htargetDarts]
+    simp only [invDarts, dartWord, RelLetter.listVal, List.reverse_nil, List.map_nil,
+      List.append_nil, List.map_append, List.prod_append, hfirst', hsecond', one_mul]
+  have hzero : RelatorDefectBudget.IsRelatorProduct (RelLetter.listVal '' W) 0
+      K.pocket.diagram.boundaryValue := by
+    rw [hvalue]
+    exact RelatorDefectBudget.IsRelatorProduct.one
+  have hle : K.pocket.diagram.rCellCount ≤ 0 := K.pocket.diagram_leastArea hlea hzero
+  have hpos := K.pocket.diagram_rCellCount_pos (cell_mem X K.kept) K.kept_mem
+  omega
+
 end PocketCarrier
 
 end Carriers
@@ -204,14 +245,14 @@ def PocketRegionOfSimpleStatement : Prop :=
     (K : PocketFaceSet D eps X lo hi), K.Simple →
       Nonempty (PocketCarrier D eps X lo hi)
 
-/-- **The collar** (lane `kh-torsion`, `GGT/VanKampen/SurgeryGeodesicCollar.lean`).  A pocket
-carrier has an O-equivalent copy with a collared pocket carrier in the same positions: along each
-side a collar of `G`-faces labelled by a geodesic word for the side value, of length at most
-`ε`. -/
+/-- **The collar** (lane `kh-torsion`, `GGT/VanKampen/SurgeryGeodesicCollar.lean`).  A
+nondegenerate pocket carrier has an O-equivalent copy with a collared pocket carrier in the same
+positions: along each side a collar of `G`-faces labelled by a geodesic word for the side value,
+of length at most `ε`.  Without nondegeneracy the collared boundary could be empty. -/
 def PocketCollarStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (eps : ℕ)
-    (W : Set (List (RelLetter G Lambda))) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
-    PocketCarrier D eps X lo hi →
+    (W : Set (List (RelLetter G Lambda))) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ)
+    (K : PocketCarrier D eps X lo hi), K.Nondegenerate →
       ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketCarrier D eps X' lo hi),
         Nonempty (OEquivalentDiscDiagram X X') ∧ K'.Collared
 
@@ -403,7 +444,8 @@ theorem PocketCarrier.nonempty_osinSectionPocketCut
 
 /-- **`SectionPocketCutInput` from the pieces.**  The face set between the two regions is made
 simple, turned into a carrier, and collared, in successive O-equivalent copies of the optimal
-diagram, which is O-equivalent to `Δ`. -/
+diagram, which is O-equivalent to `Δ`.  The carrier is nondegenerate, since its copy is least
+area. -/
 theorem sectionPocketCutInput_of_pieces
     (hpinch : PocketPinchStatement.{u, w, v})
     (hregion : PocketRegionOfSimpleStatement.{u, w, v})
@@ -418,7 +460,8 @@ theorem sectionPocketCutInput_of_pieces
   obtain ⟨K⟩ := hfaces Delta cuts hlea S i j a ha b hb hne hja hjb
   obtain ⟨X₁, K₁, ⟨E₁⟩, hsimple⟩ := hpinch D eps W S.diagram _ _ K
   obtain ⟨C⟩ := hregion D eps W X₁ _ _ K₁ hsimple
-  obtain ⟨X₂, C₂, ⟨E₂⟩, hC₂⟩ := hcollar D eps W X₁ _ _ C
+  obtain ⟨X₂, C₂, ⟨E₂⟩, hC₂⟩ :=
+    hcollar D eps W X₁ _ _ C (C.nondegenerate_of_leastArea ((S.equiv.trans E₁).leastArea hlea))
   exact PocketCarrier.nonempty_osinSectionPocketCut hcell houter hcondition hlambda hc hlea
     ((S.equiv.trans E₁).trans E₂) cuts j C₂ hC₂
 
@@ -447,6 +490,8 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.Simple
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.Simple.isSimpleClosedWalk
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketCarrier.Collared
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketCarrier.Nondegenerate
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketCarrier.nondegenerate_of_leastArea
 #audit_axioms GroupApproximation.GGT.VanKampen.SectionPocketFaceSetInput
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinSectionPocketFaceSetSectionStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketPinchStatement

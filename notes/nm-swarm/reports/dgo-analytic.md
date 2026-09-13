@@ -13,6 +13,8 @@ Rulings (lead, 09-13):
   * `LoopCutInput` is on hold.
   * dgo-geometric model-tests each piece Prop.
 * ~08:30: the pieces run in the order pinch, then region, then collar.
+* ~09:15 (this lane, on kh-torsion's degenerate case): the collar takes `PocketCarrier.Nondegenerate`.
+  The assembly proves it at least area (`nondegenerate_of_leastArea`).
 
 Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 (`Estimating/OsinAppendixDescentInduction`).
@@ -24,9 +26,10 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 * `Estimating/OsinPocketPieces.lean`:
   * First statement, collar before pinch: 9cb70824c, probe 0913-073133-62116.
   * Restated in the ruled order: a032ab802, probe 0913-085713-52794, with the census row and the earlier report.
+  * Nondegeneracy as the collar hypothesis, with `nondegenerate_of_leastArea`: landed with this report.
 * `Estimating/OsinPocketRegionOfSimple.lean`:
   * The carrier `PocketFaceSet.toPocketCarrier`: a032ab802.
-  * `pocketRegionOfSimple : PocketRegionOfSimpleStatement`, closed: landed with this report.
+  * `pocketRegionOfSimple : PocketRegionOfSimpleStatement`, closed: c03054996, probe 0913-090829-84396.
 * `Estimating/OsinAppendixAssemblyDescent.lean` (5957159598): the retirement note on `OsinDescentStepInput`.
 
 ### The pieces, in the order of the assembly
@@ -36,11 +39,12 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 | `SectionPocketFaceSetInput`, `OsinSectionPocketFaceSetSectionStatement` | kh-ejz (kept cell through hull-select's zero-cell merge) | two distinct exterior regions to section `j` give a `PocketFaceSet` of the optimal diagram |
 | `PocketPinchStatement` | hull-respell | a `PocketFaceSet` has an O-equivalent copy with a `Simple` one (boundary cycle `IsSimpleClosedWalk`), by simple circuits or a 0-refinement |
 | `PocketRegionOfSimpleStatement` | dgo-analytic | a `Simple` face set gives a `PocketCarrier` (both cycles `FollowsBoundary`, sides of length and norm at most `ε`) |
-| `PocketCollarStatement` | kh-torsion | a `PocketCarrier` has an O-equivalent copy with a `Collared` carrier (sides admissible geodesic words) |
+| `PocketCollarStatement` | kh-torsion | a `Nondegenerate` `PocketCarrier` has an O-equivalent copy with a `Collared` carrier (sides admissible geodesic words) |
 | `PocketCellTransportStatement`, `PocketOuterTransportStatement` | go-lemma42 | regions of copies of the pocket to `t_1` and `t_2` glue back, target `OsinMultipleEdgeCut.ofPocketRegion` |
 
 Assembly, proved:
 
+* `PocketCarrier.nondegenerate_of_leastArea`: a carrier in a least-area diagram is nondegenerate.
 * `PocketCarrier.nonempty_osinSectionPocketCut`: a collared carrier gives the cut.
 * `sectionPocketCutInput_of_pieces hpinch hregion hcollar hcell houter`.
 * `osinSectionPocketCutSection_of_pieces`.
@@ -66,6 +70,24 @@ Closed: `pocketRegionOfSimple : PocketRegionOfSimpleStatement`.
 It goes through `PocketFaceSet.sideFaces_boundary_cycle_eq_faces`, applied at `CombMap.connected_of_planar _ X.planar` and `K.outerFace_not_mem`.
 Probe 0913-090829-84396 GREEN, `#audit_closed_axioms` ⊆ {propext, Classical.choice, Quot.sound}.
 
+hull-component has no further sub-piece here and was told to ask the lead (~09:15).
+
+### The degenerate carrier
+
+kh-torsion's case: both arcs are empty and both sides have value 1.
+
+* `Collared` forces geodesic side words, which are empty here.
+* So the collared boundary cycle would be empty, and the collar cannot be proved for this carrier.
+
+The fix:
+
+* `PocketCarrier.Nondegenerate K`: `0 < K.sourceArc.length ∨ 0 < K.targetArc.length`, or a side value `≠ 1`.
+* `PocketCollarStatement` takes `K.Nondegenerate`.
+* `nondegenerate_of_leastArea (hlea : X.LeastArea) K`: otherwise `diagram_boundaryWord` and the split make the pocket read `s_1 s_2` of value 1.
+  * `IsRelatorProduct.one` fills it, so `diagram_leastArea` gives `rCellCount ≤ 0`.
+  * That contradicts `diagram_rCellCount_pos` at the kept cell.
+* The assembly applies it at `(S.equiv.trans E₁).leastArea hlea`, so no residual Prop is added.
+
 ### Truth caveats sent to dgo-geometric for model tests
 
 The earlier list covers:
@@ -81,16 +103,20 @@ New with the ruled order:
 
 * A 0-refinement that makes the pocket boundary vertex-simple must keep the boundary word of `X` (O-equivalence) and the side lengths.
 * Splitting a vertex across inner corners, with a 0-edge between `G`-faces, does both.
+* The collar under `Nondegenerate`: with empty arcs and only one side of value `≠ 1`, the collared boundary is that side's geodesic word alone.
 
 ### Residual Props of `DescentInput` on this route
 
 * `OsinSectionPocketFaceSetSectionStatement` (kh-ejz).
 * `PocketPinchStatement` (hull-respell).
-* `PocketCollarStatement` (kh-torsion).
+* `PocketCollarStatement` (kh-torsion), with the hypothesis `K.Nondegenerate`.
 * `PocketCellTransportStatement` and `PocketOuterTransportStatement` (go-lemma42).
 * Outside `SectionPocketCutInput`, `descentInput_of_sectionPocketCut` still takes `LoopCutInput` (on hold), `MultipleEdgeCutInput`, `EulerCountInput`, `UnboundInput` and `O52LeastAreaStatement`.
 
-Closed here: `PocketRegionOfSimpleStatement` (`pocketRegionOfSimple`).
+Closed here:
+
+* `PocketRegionOfSimpleStatement` (`pocketRegionOfSimple`).
+* The nondegeneracy of carriers at least area (`nondegenerate_of_leastArea`).
 
 ## Scope 1: Dahmani–Guirardel–Osin Theorem 2.35, analytic half
 
