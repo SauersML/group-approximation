@@ -121,3 +121,30 @@ Assigned by main.  Split proposed to ms-core-4 in one direct message: ms-units t
   - `TransientClassSaturation.lean`: the wandering cover bounds classes (`ExponentBound`); `reachableExponents` saturates by step m−1; bases are unique; the levels partition C;
   - `TransientTowerCells.lean`: refinement by coefficient values, the tower levels and their hypotheses, and the expansion of the prescribed elements in tower units;
   - `TransientIdealLocallyMatricialFTwo.lean`: the assembly through `ChainCore.isLocallyMatricialIn_of_forall_exists_family`.
+
+### Item 3 progress (09-13 ~18:50)
+
+Split as agreed:
+- ms-core-4 has the defect span (`TransientIdealDefectSpan.lean`).
+- ct-involution has the cells (`exists_transientCells` in `Dynamics/TransientCells.lean`, in flight).
+- ms-units has the classes, the tower family, the expansion and the assembly.
+
+- LANDED 80ae3fb5b: `Dynamics/TransientClassSaturation.lean` (probe 0913-181305-25708 GREEN, BUILT).
+  - `exponentBound_of_wanderingCover`: each orbit meets C in at most m points.
+  - `reachableExponents_eq_of_le`: erasing loops.
+  - `add_mem_reachableExponents`, `neg_mem_reachableExponents`: path concatenation and reversal.
+  - `reachableExponents_zpow_eq`: class translation.
+  - `exists_mem_baseCell_level`, `eq_of_zpow_eq_of_mem_baseSet`, `disjoint_level`, `level_subset`.
+  - Queued for wiring.
+- LANDED b8f3ed7c7: `Dynamics/TransientTowerFamily.lean` (probe 0913-182739-39207, module COMPILED).
+  - `transientTowerExp`/`transientTowerLevel`/`transientTowerCoeff` over clopen cells.
+  - `isMatrixUnitFamily_transientTower`, `transientTowerUnit_mem_transientIdeal`, `transientTowerUnit_self_ne_zero`.
+  - Queued for wiring.
+- In probe:
+  - `Dynamics/TransientTowerExpansion.lean`: `exists_matrix_eq_sum_transientTower`, every prescribed element as a k-combination of tower units.
+  - `Dynamics/TransientIdealLocallyMatricial.lean`:
+    - `transientIdealLocallyMatricial_of_cells : TransientCellsStatement → ChainCore.TransientIdealLocallyMatricialStatement` (every finite field, ms-compress-3's Prop);
+    - `transientIdealLocallyMatricialFTwo_of_cells`;
+    - `coreKernelElementaryStatement_of_cells`;
+    - `unitKernelLocallyFinite_of_cells`.
+  - `TransientCellsStatement` is spelled exactly as ct-involution's `exists_transientCells` conclusion, so its discharge is `exact`.
