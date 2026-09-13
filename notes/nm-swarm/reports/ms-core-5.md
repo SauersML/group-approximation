@@ -74,3 +74,27 @@
 ## Claims
 
 - CLAIM the general linear clause of `DynamicRankBudget.CoreMFRadicalKillStatement` (over F_2, K_n ≤ Rad_MF(GL_n(R_X)) for n ≥ 3, via clause (ii) of `PrintedBilateralThree` and a named Prop for K_n ≤ EL_n(R_X, I)), module `GroupApproximation/Manuscript/NonMFSentences/CoreMFRadicalGLKill.lean`.  Assigned by main 09-13 ~17:15.  The EL half (n ≥ 4) and local finiteness stay with chain-radical.
+
+## Module `GroupApproximation/Manuscript/NonMFSentences/CoreMFRadicalGLKill.lean`
+
+- Namespace `GroupApproximation.ChainCore.CoreMFRadicalGLKill`. Imports DynamicRankBudget (a2cb17f58) and
+  BilateralThreeStatement (816a6b699). Unwired. Attic copy 4470664b2.
+- The shape was sent to ct-rank-budget in one message; no reply is needed if it accepts.
+
+| declaration | content |
+|---|---|
+| `CoreMFRadicalKillGLStatement` | conjunct 1 of `DynamicRankBudget.CoreMFRadicalKillStatement`, verbatim: over F_2, `glCoreKernel T (ZMod 2) n ≤ mfHomKernel GL_n(R_X)` for n ≥ 3 |
+| `CoreKernelLeRelativeElementaryStatement` | residual Prop, owner chain-radical: `glCoreKernel T (ZMod 2) n ≤ (relativeElementary (Fin n) (defectIdeal T (ZMod 2))).map subtype` for n ≥ 2 |
+| `coreMFRadicalKillGL_of_pieces (hbil : PrintedBilateralThree) (hid : CoreKernelLeRelativeElementaryStatement)` | the printed step, tex 1643–1644: "Proposition bilateral-three kills EL_n(R_X,I) in every general linear MF image for n≥3" |
+| `CoreMFRadicalKillELStatement`, `CoreKernelLocallyFiniteStatement` | conjuncts 2 and 3, verbatim (owner chain-radical) |
+| `coreMFRadicalKillStatement_of_halves` | glue: the three clauses give `CoreMFRadicalKillStatement` |
+
+- Why the identification stays a named Prop: chain-radical's module 3 (`ker_elementaryMatrixUnitMap_eq`, c5f4ec3d8)
+  takes `[Algebra (ZMod 2) R]` and `IsLocallyMatricialIn (ZMod 2) (ker f)`.
+  - No `Algebra (ZMod 2)` instance on `ClopenCrossedProduct` exists on main.
+  - chain-matricial's `isLocallyMatricialIn_transientIdeal` and `transientIdeal_eq_span_defects` are not landed yet
+    (its module 5).
+  - The discharge is then `ker_elementaryMatrixUnitMap_eq` at `coreRestrict`, followed by `relativeElementary_mono`
+    along `transientIdeal ≤ defectIdeal`. That is chain-radical's module 6 territory.
+- `MFRadicalTransport.mfHomKernel_le_ker` is the opposite inclusion (Rad_MF ≤ ker). The kill direction uses
+  `mem_mfHomKernel_iff`, so this module does not consume it. The budget assembly uses it for radical equality.
