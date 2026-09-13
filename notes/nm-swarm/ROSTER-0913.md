@@ -328,3 +328,65 @@ For EVERY census row in your range with status formalized or definition, and eve
 - **W1 h94.** hull-unbound has two open items: the Case 2 minimality measure (theoremc-retire proposes dart count) and the OsinUnboundSharedEdge red.
 - **census merge 4** (86df293af): 340 formalized, 23 partial (down from 59). Five carrier modules are unwired, and JacobsonComplementarySentence is still blocked.
 - **root-wire** was sent on wave 3 over queue entries since c72bdfd5d, plus the census's unwired carriers that have green records.
+
+## Reassignments 09-13 ~03:55
+- **W1 (a) carrier, update.**
+  - The weighted planar van Kampen item is dropped. dgo-analytic's `Estimating/OsinPocketOuterPart.lean` (c0a1c1bee) already proves the outer-part exchange (`DiscDiagram.exists_isRelatorProduct_of_discRegion`, `LeastArea.length_filter_mem_le`), so least area of the piece is covered.
+  - **Collar ruling.** hull-select found that the quasi-geodesic requirement of SectionCuts cannot hold on short side arcs: a spur `x x⁻¹` has length 2 and distance 0, and c = 0 is allowed. This affects MultipleEdgeCut, LoopCut and SectionPocketCut.
+    - Fix: pass to an O-equivalent Δ' with a G-face collar along each side arc. The collar is a path labelled by a geodesic word g_j with |g_j| ≤ ε, and hquasi follows from `isLambdaCQuasiGeodesicWord_of_geodesic` (CutSections.lean:160).
+    - Main has no surgery that attaches a face along an arc.
+  - hull-select: lands the collar statement first, unverified, then the carrier structure and ports.
+  - kh-torsion: proves the collar insertion, spur sides included, plus IsDiscRegion for both sides of g₁ t₁ g₂ t₂.
+  - kh-ejz: region-side data. The sides only need |s_j| ≤ ε and need not be quasi-geodesic; t₁ and t₂ must be quasi-geodesic; the kept cell is unchanged.
+  - go-lemma42 (LoopCut) and dgo-analytic (SectionPocketCut) consume the same collar lemma.
+  - hull-select lands the `i ≠ j` DescentInduction patch under the approved binder without waiting for dgo-analytic. Disk = main f82dfe0c3f, and the SectionInduction probe 0913-032524-67109 is green.
+- **W1 PhiPrimeCountInput.** hull-euler landed (J), `CombMap.IsRestriction.faceOf_eq_of_faceClass` (9fdb80035, probe 0913-032836-75226 green).
+  - Plan: C1–C6 over Osin Lemma 9.3, consuming kh-ejz's multigraph bounds.
+  - C6 (empty two-gon → False) is stated as a named piece Prop in hull-euler's module, with hypotheses shaped for the ofPlanar carrier. kh-ejz and hull-select discharge it.
+- **W1 h94.** `OsinLemma94AntiparallelMetricStatement` is CLOSED by sec5-sentences: `osinLemma94AntiparallelMetric` (e3da1ba60) on `unboundOrientedWordPolygonMonotone` (779509227), probe 0913-034427-9910 green.
+  - The residual of `osinLemma94Section_of_pieces` is `OsinLemma94PlanarRunInput` alone (hull-unbound; C1 goes to theoremc-retire).
+  - sec5-sentences takes a case from hull-unbound. If hull-unbound is silent, it takes Case 2 with the dart-count measure in a new module.
+- **W3.** Theorem C over hgreendlinger, hbridge and hfold landed (f019265bb, `TheoremCAssemblyFoldLeaf`). Mirror-fold stages on one side of a split map landed (e12190690, `SystolicDiscMirrorFoldRestrict`).
+- **GHW char 0.** ghw-charp2 closed item 3: `IntegerPlacesMinpoly.exists_places_minpoly_coeff` (0379bac08, probe 0913-033545-85262).
+  - The residual `GHWFinitelyGeneratedCharZero` is the archimedean places plus assembly. That belongs to ghw-assembly, whose `Kazhdan/GHWCharZero.lean` is unlanded on disk.
+  - ghw-charp2 takes a piece that ghw-assembly names. First it probes and queues `JacobsonComplementarySentence`, because jacobson has been silent since ~02:50.
+- **census merge 6** (88289a4ee at 5f9c16b7b): 340 formalized, 26 partial; baseline 135, 0 new.
+  - 8 partial rows are waiting only on wiring: IntroConventionSentences, LeavittMFQuotientUnitsGL, FullDefectPairLeavitt, StrongConvergenceMFSubsingleton and JacobsonComplementarySentence.
+  - LINE:1688 is still skipped (dgo-analytic).
+- **root-wire.** Wave 2 is ROOT GREEN at c72bdfd5d (116 modules). Wave 3 (17 modules) is building at cdc493958.
+  - Held: Audit.Sec3 (no probe names it; sent to audit-sec3).
+  - Held: OsinLemma94Pieces and OsinUnboundSharedEdge (red 0913-022343-56095). Pieces is built transitively by the green 0913-034427-9910.
+  - Held: LeavittMFQuotientUnitsGL (no record; sent to leavitt-units) and JacobsonComplementarySentence (no record).
+- **Refuted shelling Props.** Both confirm the ofPlanar ruling, since that route consumes no shelling.
+  - `Embedded.FaceSetEarStatement` is FALSE (hull-respell, `not_faceSetEarStatement`, 9dda53a05, green 0913-025312-66955). The counterexample is a spur inside a G-face with no peelable ear.
+  - `RegionShellingStatement` is refuted by audit-sec5's RegionShellingSpurCounterexample, not landed yet.
+  - The binders on the false Props: FaceSetPeelProducer.lean:182 and :194, PieceConstruction.lean:30, :56 and :83, PieceCore.lean:228. The corrected form must allow alpha-pair erasure.
+- **hull-respell** (pocket shelling redundant): offers kh-torsion the IsDiscRegion-both-sides half (edge-deletion induction on reclosedMap). kh-torsion decides the split.
+- **kh-ejz** landed text fix 46f1c36a2 (stale hKO docstrings). It stays on pocket geometry, and PhiPrimeCountInput (A)/(B) stays with hull-euler.
+  - kh-ejz also owns the loop pocket for LoopCutInput: target = some source; walk s t with s a collared side and t a cell arc; IsDiscRegion, FollowsBoundary, a kept cell, and the `CyclicArc` arc datum on each cell part.
+- **go-lemma42** (c): `DiscDiagram.regionPiece_transport` and `OsinLoopCut.ofRegionPiece`.
+  - Y glues an O-equivalent copy Xi into Δ' along the region cycle, via ofPlanar. Planarity comes from χ(Y) = χ(Xi) + χ(Δ') − χ(piece) = 2 through `reclosed_isRestriction`, with no new hypothesis.
+  - New modules, not landed yet: SurgeryPocketGlue, SurgeryPocketGluePlanar, Estimating/OsinPocketGlueDiagram, Estimating/OsinPocketGlueTransport.
+- **W1 carrier reconciled with dgo-analytic's split (~04:05).** dgo-analytic's `PocketRegion` (Estimating/OsinPocketRegion.lean, in probe) IS the ruled carrier. It has faces and outside with inner and outer IsDiscRegion and cycles matching up to rotation; its diagram is ofPlanar on the collapse, and it provides diagram_boundaryWord and diagram_leastAreaCut.
+  - RegionCutData is unbuildable: its shelling producer went through the refuted FaceSetEarStatement, and cells_infix is circular. So OsinPocketLeastAreaCut and ofRegionCut stay unused.
+  - (a) producer: dgo-analytic integrates and states the piece Props in OsinPocketPieces.lean, collared form included. The discharges:
+    - kh-ejz: region-side data, a ≠ b and loop.
+    - kh-torsion: collar insertion.
+    - hull-respell: pinched pocket (simple circuits, or 0-refinement), so that `FaceSetCircuits.toDiscRegion` (FaceSetBoundaryEnumeration.lean:122) gives both sides.
+    - dgo-analytic: PocketRegion, assembly, DescentInput.
+  - (b) hull-select: rebase boundarySectionCuts, fourSectionCuts and fourSectionCuts_leastAreaCut on PocketRegion.diagram, with no separate structure.
+  - (c) go-lemma42: transport against PocketRegion.diagram, including cellTransport and sectionTransport for SectionPocketCut.
+  - hull-euler: its C6 Prop is shaped on PocketRegion.
+- **root-wire wave 3 ROOT GREEN** at ce699b9b8 (17 modules, closure 6214, 0 dangling). It includes the Olshanskii oriented layer, GHWCharZeroPlaces, UnboundMonotoneMorseIndex, UnboundOrientedWordConnectors, OsinAppendixEulerMultigraph, IntroConventionSentences, Audit.Intro, Audit.Sec2 and Audit.Sec4, AffineDoublingLiteralModel, and three census carriers.
+  - Wave 4 staging:
+    - OsinLemma94Pieces, accepted on a transitive green build;
+    - UnboundOrientedWordPolygon and OsinLemma94AntiparallelMetric;
+    - HullLemma35Printed;
+    - LeavittMFQuotientUnitsGL (green 0913-040613-59510);
+    - JacobsonComplementarySentence (ghw-charp2 green 0913-040230-50292).
+  - Held: Audit.Sec3 and OsinUnboundSharedEdge.
+- **Freed lanes (~04:10).**
+  - sec2-sentences closed the stale TheoremC docstring backlog (2e93f09d1, 12738313c, 9ac39c698, 8f8b5ccab). It now takes a (c) transport module or instance from go-lemma42.
+  - hs-vanishes: own target met (baseline lines retired at 63f147d7b). It now takes a W2 Lemma 5.1 certificate-cut piece from hull-bridge.
+  - hull-count94: its newer AntiparallelMetric variant must NOT land over sec5-sentences' e3da1ba60; extra declarations go in a new module. It now triages the OsinUnboundSharedEdge red: route check first; fix only with hull-unbound's agreement and disk = main.
+- **hull-unbound** has been silent since 02:31. Defaults stand unless it objects: Case 2 goes to sec5-sentences (dart count), C1 to theoremc-retire, and the SharedEdge triage to hull-count94.
