@@ -55,6 +55,14 @@ CLAIM cutting-side count GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94
   - `continuationSides`; `card_cuttingSides_le`; endpoint `osinLemma94CuttingSides_of_forest : SameFaceDartForestStatement → OsinLemma94CuttingSidesStatement`.
   - The route needs no wrap-around adjacency: side `0` is paid by the `+1` twice, and the bound comes out as `4e − 2`.
 
+## CLAIM 2 (main approved 18:1x)
+
+CLAIM cutting-class bridge GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingClasses.lean
+
+- Statement: for every `Q : OsinLemma94ClassPolygons P`, `#cuttingClasses k ≤ 4·#otherClasses k + 1`, under `DartMinimal` and `Maximal`, over the forest Prop.
+- Covered by nothing: `OsinLemma94ClassJoins`/`ClassJunctions` (hull-count94.files) are absent on disk and on origin, audit-intro holds no forest draft, and no `cuttingClasses` declaration exists anywhere.
+- Route: cutting classes inject into cutting sides by their first side. Entries inject into other classes, since the side before an entry ends its class (`mem_getLast?_of_next_kind_ne`, over `CyclicRuns.isChain_rotate_range`).
+
 ## Residual Props
 
 - `SameFaceDartForestStatement`. ms-compress-4 proposed to prove it in `CombMapSameFaceForest.lean`, by leaf induction with `simpleClosedWalkSides`. Once it lands, this lane imports that module and deletes its copies.
