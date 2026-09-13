@@ -90,7 +90,6 @@ theorem eq_or_mem_of_cycle_eq_singleton {M : CombMap.{v}} (hM : M.IsConnected)
   refine forall_face_of_alpha_closed M hM (fun f => f = g ∨ f ∈ faces) ?_ (Or.inl hzg) f
   intro d hd
   change M.faceOf d = g ∨ M.faceOf d ∈ faces at hd
-  change M.faceOf (M.alpha d) = g ∨ M.faceOf (M.alpha d) ∈ faces
   rcases hd with hdg | hdf
   · have hdB : d ∈ B.darts := (B.mem_iff d).mpr hdg
     rw [hz, List.mem_singleton] at hdB
@@ -186,8 +185,7 @@ theorem not_simple_of_monogons (K : PocketFaceSet D 0 X lo hi)
       rfl
     have h : IsSimpleClosedWalk X.toCombMap K.boundary.cycle := hK
     rw [hC] at h
-    have hchain : X.toCombMap.vertexOf (X.toCombMap.alpha (X.toCombMap.alpha x)) =
-        X.toCombMap.vertexOf (X.toCombMap.alpha o) := List.isChain_pair.mp h.chain
+    have hchain := List.isChain_pair.mp h.chain
     rw [X.toCombMap.alpha_involutive x] at hchain
     have hfx : X.toCombMap.sigma (X.toCombMap.alpha x) = x :=
       facePerm_eq_self_of_darts_eq (X.faceBoundary (cell X K.source).face) hx
