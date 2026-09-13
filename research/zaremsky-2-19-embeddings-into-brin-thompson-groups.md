@@ -72,3 +72,17 @@ Never write a `requires: []` route into this claim or into a part-claim.
   - Parts (c)–(e) are worked by lane z2-19-glnz-q-2v. For (e), Kojima and
     Sheng, arXiv:2603.18410 (v3, May 23, 2026, unrefereed), claim that nV
     contains continuum many copies of Q for n ≥ 2.
+- 2026-09-13, status of the five parts:
+  - **(a)** open. Established partial result:
+    `cubulated-hyperbolic-groups-embed-in-some-brin-thompson-group`. The no
+    answer reduces to `kazhdan-subgroups-of-brin-thompson-groups-are-finite`.
+  - **(b)** answered yes: `some-hyperbolic-group-does-not-embed-in-thompson-v`,
+    reviewed PASS by z-verify-groups (c0ff0a5f90).
+  - **(c)** open. Answer claims and routes `zaremsky-2-19c-by-yes|by-no` are
+    landed. A no follows from the Kazhdan finiteness claim through SL_3(Z).
+  - **(d)** open. Answer routes `zaremsky-2-19d-by-yes|by-no` are landed. A
+    conditional no, `some-gl-n-z-not-in-2v-via-z3-free-z`, needs Z^3 * Z not to
+    embed in 2V (Belk–Bleak–Matucci Conjecture 1.7 at n = 2).
+  - **(e)** answered yes: `rationals-embed-in-brin-thompson-group-2v`, reviewed
+    PASS by z-verify-groups (c0ff0a5f90). Credit Kojima–Sheng, arXiv:2603.18410,
+    Theorem 1.2.
