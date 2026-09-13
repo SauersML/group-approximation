@@ -1,38 +1,30 @@
-import GroupApproximation.Leavitt.ElementarySimplicity
-import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingMaximal
-import GroupApproximation.Sofic.LEF
-import Mathlib.GroupTheory.QuotientGroup.Basic
+import GroupApproximation.Pestov91.Centre
+import Mathlib.Algebra.SkewMonoidAlgebra.Basic
 
 /-!
-# The centre of the Pestov 9.1 witness is trivial
+# The centre of the Pestov 9.1 witness ring, and the trivial centre of `EL₃`
 
-The witness of this development is built from `G = EL₃(R)` with
-`R = LC(X, 𝔽₂) ⋊ ℤ` for an infinite minimal subshift `X`.  The printed
-construction
-(`research/artifacts/simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md`)
-passes to `S = G / Z(G)`, and its §4.4 shows `Z(G) ⊆ 𝔽_q^× I₃`.  Over `𝔽₂`
-the only unit is `1`, so the centre is trivial and `S = G`.  This file records
-that collapse and the two small group-theoretic facts that make it usable.
+The witness ring is a skew monoid algebra `R = A ⋊ G`, with `A = LC(X, 𝔽₂)` and `G = ℤ`
+written multiplicatively (blueprint D3).  §1.4 of
+`research/artifacts/simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md` computes
+`Z(R) = 𝔽_q`, and §4.4 turns that into `Z(EL₃(R)) ⊆ 𝔽_q^× I₃`.  Over `𝔽₂` the centre of
+`EL₃(R)` is therefore trivial, and the witness is `EL₃(R)` itself (blueprint D5).
 
-1. **The centre.**  A central element of `EL_ι(R)` commutes with every
-   `e_{ij}(r)`, so it is a scalar `c • 1` with `c` a central unit of `R`.
-   That computation is already on main as
-   `ElementarySimplicity.center_elementaryGroup_eq_bot_of_units`, whose
-   hypothesis is that the central units of `R` are trivial.  Here it is fed
-   from the form in which the coefficient ring computation arrives: every
-   central element of `R` is `0` or `1` (`Z(R) = 𝔽₂`, §1.4 of the artifact).
-2. **Simplicity.**  With `Z(G) = 1`, "every normal subgroup is central or
-   everything" is the definition of a simple group, once `G` is nontrivial.
-   Nontriviality of `EL_ι(R)` is the on-main
-   `FullDefectRing.nontrivial_elementaryGroup`.
-3. **LEF.**  A consumer that keeps the quotient type `G ⧸ Z(G)` gets a group
-   isomorphic to `G`, and LEF passes to it along the inverse isomorphism.
+This module proves the ring half without committing to a realisation of `A`:
 
-The coefficient ring enters only through the explicit hypothesis
-`hR : ∀ c : R, (∀ r : R, c * r = r * c) → c = 0 ∨ c = 1`; nothing here depends
-on the subshift.  The model tests at the end show that `𝔽₂` satisfies that
-hypothesis, that `ZMod 3` (whose unit `2` is central) does not, and that the
-centre theorem applies to `EL₃(𝔽₂)`.
+* `skewMonoidAlgebra_central_zero_or_one`.  Let a commutative group `G` act on a ring `A`, and
+  suppose every `G`-invariant element of `A` is `0` or `1` and every `g ≠ 1` moves some
+  element.  Then every central element of `A ⋊ G` is `0` or `1`.  Commuting with `single g 1`
+  makes each coefficient invariant, hence `0` or `1`.  Commuting with `single 1 a` gives
+  `c_g * (g • a) = a * c_g`, so `c_g = 1` would make `g` act trivially.
+* `skewMonoidAlgebra_centralUnits_trivial`: the only central unit is `1`.
+* `center_elementaryGroup_skewMonoidAlgebra_eq_bot`: `Z(EL_ι(A ⋊ G)) = ⊥`.  It goes through
+  `center_elementaryGroup_eq_bot_of_central_zero_or_one` from
+  `GroupApproximation/Pestov91/Centre.lean`.
+
+For the witness the two hypotheses are minimality (an invariant locally constant function is
+constant) and freeness (a nonzero shift moves some clopen indicator).  Both are needed: for the
+trivial action `A ⋊ G` is the group ring `A[G]`, which is commutative when `A` is.
 -/
 
 namespace GroupApproximation
@@ -42,110 +34,85 @@ section Coefficients
 
 variable {R : Type*} [Ring R]
 
-/-- If every central element of `R` is `0` or `1`, the only central unit of `R`
-is `1`.  The zero case forces `0 = 1`, where every unit is `1` anyway. -/
-theorem central_units_trivial_of_central_zero_or_one
-    (hR : ∀ c : R, (∀ r : R, c * r = r * c) → c = 0 ∨ c = 1) :
-    ∀ u : Rˣ, (∀ y : R, (u : R) * y = y * (u : R)) → u = 1 := by
-  intro u hu
+/-- If every central element of `R` is `0` or `1`, the only central unit of `R` is `1`.
+The zero case forces `0 = 1`, where every unit is `1` anyway. -/
+theorem centralUnits_trivial_of_central_zero_or_one
+    (hR : ∀ c : R, (∀ r : R, r * c = c * r) → c = 0 ∨ c = 1) :
+    ∀ v : Rˣ, (∀ y : R, (v : R) * y = y * (v : R)) → v = 1 := by
+  intro v hv
   apply Units.ext
   rw [Units.val_one]
-  rcases hR u hu with h0 | h1
-  · calc (u : R) = 0 := h0
-      _ = (u : R) * ↑u⁻¹ := by rw [h0, zero_mul]
-      _ = 1 := u.mul_inv
+  rcases hR v fun y ↦ (hv y).symm with h0 | h1
+  · calc (v : R) = 0 := h0
+      _ = (v : R) * ↑v⁻¹ := by rw [h0, zero_mul]
+      _ = 1 := v.mul_inv
   · exact h1
 
 end Coefficients
 
-section Simple
+section SkewMonoidAlgebra
 
-variable {G : Type*} [Group G]
+variable {A G : Type*} [Ring A] [CommGroup G] [MulSemiringAction G A]
 
-/-- **Simplicity from "central or everything".**  In a nontrivial group with
-trivial centre, a normal subgroup contained in the centre is `⊥`. -/
-theorem isSimpleGroup_of_center_eq_bot [hnt : Nontrivial G]
-    (hZ : Subgroup.center G = ⊥)
-    (hN : ∀ N : Subgroup G, N.Normal → N ≤ Subgroup.center G ∨ N = ⊤) :
-    IsSimpleGroup G where
-  exists_pair_ne := hnt.exists_pair_ne
-  eq_bot_or_eq_top_of_normal N hNormal := by
-    rcases hN N hNormal with hle | htop
-    · rw [hZ] at hle
-      exact Or.inl (le_bot_iff.mp hle)
-    · exact Or.inr htop
+/-- **The centre of a crossed product by a free action with trivial invariants** is `{0, 1}`. -/
+theorem skewMonoidAlgebra_central_zero_or_one
+    (hinv : ∀ f : A, (∀ g : G, g • f = f) → f = 0 ∨ f = 1)
+    (hfree : ∀ g : G, g ≠ 1 → ∃ a : A, g • a ≠ a) :
+    ∀ c : SkewMonoidAlgebra A G, (∀ r : SkewMonoidAlgebra A G, r * c = c * r) →
+      c = 0 ∨ c = 1 := by
+  classical
+  intro c hc
+  have hinvariant : ∀ x g : G, g • c.coeff x = c.coeff x := by
+    intro x g
+    have h := congrArg (fun r : SkewMonoidAlgebra A G ↦ r.coeff (g * x))
+      (hc (SkewMonoidAlgebra.single g 1))
+    simp only [SkewMonoidAlgebra.coeff_single_mul, SkewMonoidAlgebra.coeff_mul_single,
+      MulSemiringAction.smul_one, one_mul, mul_one, inv_mul_cancel_left,
+      mul_inv_cancel_comm] at h
+    exact h
+  have hzero : ∀ x : G, x ≠ 1 → c.coeff x = 0 := by
+    intro x hx
+    rcases hinv _ (hinvariant x) with h0 | h1
+    · exact h0
+    · obtain ⟨a, ha⟩ := hfree x hx
+      refine absurd ?_ ha
+      have h := congrArg (fun r : SkewMonoidAlgebra A G ↦ r.coeff x)
+        (hc (SkewMonoidAlgebra.single (1 : G) a))
+      simp only [SkewMonoidAlgebra.coeff_single_mul, SkewMonoidAlgebra.coeff_mul_single,
+        inv_one, one_mul, mul_one, one_smul, h1] at h
+      exact h.symm
+  have hc_eq : c = SkewMonoidAlgebra.single 1 (c.coeff 1) := by
+    refine SkewMonoidAlgebra.ext fun x ↦ ?_
+    rw [SkewMonoidAlgebra.coeff_single_apply]
+    split_ifs with hx
+    · subst hx
+      rfl
+    · exact hzero x (Ne.symm hx)
+  rcases hinv _ (hinvariant 1) with h0 | h1
+  · left
+    rw [hc_eq, h0, SkewMonoidAlgebra.single_zero_right]
+  · right
+    rw [hc_eq, h1, SkewMonoidAlgebra.single_one_one]
 
-/-- The quotient map `G → G ⧸ Z(G)` is an isomorphism when the centre is
-trivial. -/
-noncomputable def quotientCenterEquivOfCenterEqBot (hZ : Subgroup.center G = ⊥) :
-    G ≃* G ⧸ Subgroup.center G :=
-  MulEquiv.ofBijective (QuotientGroup.mk' (Subgroup.center G))
-    ⟨by
-      rw [← MonoidHom.ker_eq_bot_iff, QuotientGroup.ker_mk']
-      exact hZ,
-    QuotientGroup.mk'_surjective _⟩
+/-- The only central unit of `A ⋊ G` is `1`, under the same two hypotheses. -/
+theorem skewMonoidAlgebra_centralUnits_trivial
+    (hinv : ∀ f : A, (∀ g : G, g • f = f) → f = 0 ∨ f = 1)
+    (hfree : ∀ g : G, g ≠ 1 → ∃ a : A, g • a ≠ a) :
+    ∀ v : (SkewMonoidAlgebra A G)ˣ,
+      (∀ y : SkewMonoidAlgebra A G,
+        (v : SkewMonoidAlgebra A G) * y = y * (v : SkewMonoidAlgebra A G)) → v = 1 :=
+  centralUnits_trivial_of_central_zero_or_one (skewMonoidAlgebra_central_zero_or_one hinv hfree)
 
-/-- **LEF passes to `G ⧸ Z(G)`** when the centre is trivial: the quotient map
-is then an isomorphism, and LEF passes back along its inverse. -/
-theorem isLEF_quotient_center_of_center_eq_bot (hZ : Subgroup.center G = ⊥)
-    (hG : IsLEF G) : IsLEF (G ⧸ Subgroup.center G) :=
-  isLEF_of_injective (quotientCenterEquivOfCenterEqBot hZ).symm.toMonoidHom
-    (quotientCenterEquivOfCenterEqBot hZ).symm.injective hG
+/-- **`Z(EL_ι(A ⋊ G)) = 1`** for a free action with trivial invariants and two indices. -/
+theorem center_elementaryGroup_skewMonoidAlgebra_eq_bot {ι : Type*} [Fintype ι]
+    [DecidableEq ι] [Nontrivial ι]
+    (hinv : ∀ f : A, (∀ g : G, g • f = f) → f = 0 ∨ f = 1)
+    (hfree : ∀ g : G, g ≠ 1 → ∃ a : A, g • a ≠ a) :
+    Subgroup.center ↥(elementaryGroup ι (SkewMonoidAlgebra A G)) = ⊥ :=
+  center_elementaryGroup_eq_bot_of_central_zero_or_one
+    (skewMonoidAlgebra_central_zero_or_one hinv hfree)
 
-end Simple
-
-section Elementary
-
-variable {ι R : Type*} [Fintype ι] [DecidableEq ι] [Ring R]
-
-/-- **The centre of `EL_ι(R)` is trivial** when every central element of `R` is
-`0` or `1`.  This is §4.4 of the construction artifact with `q = 2`. -/
-theorem center_elementaryGroup_eq_bot_of_central_zero_or_one [Nontrivial ι]
-    (hR : ∀ c : R, (∀ r : R, c * r = r * c) → c = 0 ∨ c = 1) :
-    Subgroup.center (elementaryGroup ι R) = ⊥ :=
-  ElementarySimplicity.center_elementaryGroup_eq_bot_of_units
-    (central_units_trivial_of_central_zero_or_one hR)
-
-/-- **`EL_ι(R)` is simple** once every central element of `R` is `0` or `1`
-and every normal subgroup of `EL_ι(R)` is central or everything.  The second
-hypothesis is the normal-subgroup theorem of §4.1–4.3 of the artifact. -/
-theorem isSimpleGroup_elementaryGroup_of_normal_le_center [Nontrivial ι]
-    [Nontrivial R]
-    (hR : ∀ c : R, (∀ r : R, c * r = r * c) → c = 0 ∨ c = 1)
-    (hN : ∀ N : Subgroup (elementaryGroup ι R), N.Normal →
-      N ≤ Subgroup.center (elementaryGroup ι R) ∨ N = ⊤) :
-    IsSimpleGroup (elementaryGroup ι R) := by
-  obtain ⟨i, j, hij⟩ := exists_pair_ne ι
-  haveI : Nontrivial (elementaryGroup ι R) :=
-    Manuscript.OneSidedMFRadical.FullDefectRing.nontrivial_elementaryGroup
-      (R := R) hij
-  exact isSimpleGroup_of_center_eq_bot
-    (center_elementaryGroup_eq_bot_of_central_zero_or_one hR) hN
-
-end Elementary
-
-section ModelTests
-
-/-- Model test: `𝔽₂` satisfies the coefficient hypothesis. -/
-theorem central_zero_or_one_zmod_two :
-    ∀ c : ZMod 2, (∀ r : ZMod 2, c * r = r * c) → c = 0 ∨ c = 1 :=
-  fun c _ ↦ (by decide : ∀ c : ZMod 2, c = 0 ∨ c = 1) c
-
-/-- Model test: `ZMod 3` fails the coefficient hypothesis, since `2` is
-central and is neither `0` nor `1`. -/
-theorem not_central_zero_or_one_zmod_three :
-    ¬ ∀ c : ZMod 3, (∀ r : ZMod 3, c * r = r * c) → c = 0 ∨ c = 1 := by
-  intro h
-  rcases h 2 (fun r ↦ mul_comm 2 r) with h0 | h1
-  · exact absurd h0 (by decide)
-  · exact absurd h1 (by decide)
-
-/-- Model test, end to end: the centre theorem applies to `EL₃(𝔽₂)`. -/
-theorem center_elementaryGroup_fin_three_zmod_two :
-    Subgroup.center (elementaryGroup (Fin 3) (ZMod 2)) = ⊥ :=
-  center_elementaryGroup_eq_bot_of_central_zero_or_one central_zero_or_one_zmod_two
-
-end ModelTests
+end SkewMonoidAlgebra
 
 end Pestov91
 end GroupApproximation
