@@ -357,3 +357,16 @@ exactly when some torsion-free quotient of `G_Gamma` is injective on the vertice
       of 512 shards had finished, and only shards 17 and 52 had survivors. Shard 76 hit the
       28000 s timeout (rc 124) after 3106 of its 4046 graphs, so 940 of its graphs are unsearched.
       The harvest needs those graphs rerun and every survivor rechecked with `-pw 4 12` or more.
+  - Shard 76 rerun (`r76.sbatch`, array job 709675, 4 tasks; logs `n22r76.709675.logs.txt`). Lines
+    3107--4046 of `g22.76.g6`, in four chunks of 235, with the `n = 22` binary (source md5
+    `18a83240ff82d0bcdcdcd33c15780d72`, checked in each task) and `-c 1000 -cl 64000 -pw 4 12`.
+    Every task exits 0, none hits a limit, and no labelling survives. The 940 chunk graphs are
+    distinct, equal the GRAPH lines of the output, and together with the first 3106 lines give
+    exactly the 4046 graphs of the shard. The search takes 94,312,800 nodes in 1349 seconds.
+    - No other finished shard needs a rerun. With these options sieve 6 acts only at complete
+      labellings, so raising its exponent bound leaves the search tree unchanged and can only
+      exclude more leaves; a shard with no survivor at `-pw 4 8` has none at `-pw 4 12`.
+      Snapshot at submission of job 709675 (`n22.603988.done-snapshot.txt`): 221 of 512 shards
+      finished, and only shards 17 and 52 had survivors, the six excluded above.
+    - Still to search: the 291 shards not finished in that snapshot, 199, 201, 213-214, 223, 225-228, 230-511.
+      `>= 24` needs all of them complete with no survivor, or every survivor excluded.

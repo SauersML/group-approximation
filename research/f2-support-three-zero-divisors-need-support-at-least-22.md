@@ -95,3 +95,7 @@ is the program, the job scripts and the logs. The next case is not settled
   bound, not the coset limit, was the obstacle. `>= 24` is not claimed: the other shards run with
   the same bound, not all of them have finished, and shard 76 timed out with 940 graphs
   unsearched (artifact §6).
+- **Shard 76 searched (2026-09-13).** Its 940 unsearched graphs were rerun with the exponent bound
+  at 12 (job 709675): no labelling survives. Of the 221 shards finished at that point, only
+  shards 17 and 52 had survivors, and all six are excluded. `>= 24` is still not claimed:
+  291 shards of job 603988 had not finished (artifact §6 lists them).
