@@ -56,11 +56,16 @@ A part proved at fixed parameters under `OsinCCondition` gives its section Prop 
 `ρ₀ = 1`.
 
 ### Residual Props for the closed target
-- `OsinLemma94SectionStatement` (h94). hull-unbound replaced the RunInput route with
-  `osinLemma94Section_of_pieces hmetric hrun` (`OsinLemma94Pieces.lean`, b8441172e):
-  - `hmetric : OsinLemma94AntiparallelMetricStatement`. Main has the theorem
-    `osinLemma94AntiparallelMetric` (`OsinLemma94AntiparallelMetric.lean:61`, hull-count94).
-  - `hrun : OsinLemma94PlanarRunInput` is open (hull-unbound).
+- `OsinLemma94SectionStatement` (h94). hull-unbound's second split
+  `osinLemma94Section_of_planarPieces hmetric hreal hcount hone htwo`
+  (`Estimating/OsinLemma94PlanarPieces.lean`, 80790fad1) supersedes `OsinLemma94PlanarRunInput`.
+  - `hmetric : OsinLemma94AntiparallelMetricStatement` is closed on main
+    (`osinLemma94AntiparallelMetric`, e3da1ba60).
+  - Open, with owners:
+    - `OsinLemma94PolygonRealizationInput` (hull-unbound);
+    - `OsinLemma94PolygonCountInput` (hull-count94);
+    - `OsinLemma94CaseOneInput` (theoremc-retire);
+    - `OsinLemma94CaseTwoInput` (sec5-sentences).
 - One of these two sets:
   - `OsinMultipleEdgeCutSectionStatement`, `OsinLoopCutSectionStatement`,
     `OsinEulerCountSectionStatement`, `OsinDescentSectionStatement`;
@@ -180,6 +185,20 @@ closed walk `g₁ t₁ g₂ t₂` (item 2). This lane offered kh-torsion to take
 - The statement went to hull-select with the `PocketRegion` fit: `invDarts_outer_rotate` holds at
   `k = 0`, and both `FollowsBoundary` facts are the inputs of `GeodesicCollarStatement`.
 - Not covered: pinched walks (a repeated vertex).
+- `GGT/VanKampen/Estimating/OsinPocketRegionSimpleWalk`: landed unverified at a11a8d850; probe
+  0913-074604-81036 is GREEN (BUILT), then a normal landing.
+  - `PocketRegion.ofSimpleClosedWalk hw hout` builds the pocket from a simple closed walk `hw`,
+    given `hout : Delta.outerFace ∉ sideFaces Delta.toCombMap walk`. The pocket's faces are the
+    walk's side, its cycle is the walk, and its complement cycle is `walk.reverse.map alpha`.
+  - `ofSimpleClosedWalk_invDarts_outer`: `invDarts Delta P.outer.cycle = walk`.
+  - `ofSimpleClosedWalk_followsBoundary`: `P.inner.FollowsBoundary ∧ P.outer.FollowsBoundary`.
+  - `faceOf_mem_ofSimpleClosedWalk_faces` and `faceOf_alpha_not_mem_ofSimpleClosedWalk_faces`: the
+    face of each walk dart is inside, and the face across it is outside.
+  - Fit: this supplies the pocket `P` of kh-ejz's `MultipleEdgePocketRegionInput`
+    (`Estimating/OsinPocketRegionSide.lean`) when the split walk `s₁ ++ invDarts A₁.darts ++ s₂ ++
+    invDarts A₂.darts` is simple and the exterior face is off its side. Otherwise apply
+    `reverseAlpha` first. Proving which side holds the exterior face, and placing the cells C, i, j,
+    is left to the consumer.
 
 ## False-Prop binder sites (no deletions)
 - `Embedded.FaceSetEarStatement` / `FaceSetEarDataStatement`: `VanKampen/FaceSetPeelProducer.lean:182`
@@ -187,11 +206,10 @@ closed walk `g₁ t₁ g₂ t₂` (item 2). This lane offered kh-torsion to take
 - `RegionShellingStatement`: `Estimating/PieceConstruction.lean:83`.
 
 ## Next
-- Green probe and normal landing of `SimpleClosedWalkSides`, together with the docstring fix in
-  `GGT/HullSCOneStepQuasiGeodesicLeaves` (sec2-sentences: the stale re-spelling chain is replaced by
-  the least-area carriers of `TheoremCAssembly`, removed chain 2c3c8cb40; that module BUILT in
-  0913-070150-30707).
+- Done: `SimpleClosedWalkSides` and the `HullSCOneStepQuasiGeodesicLeaves` docstring fix landed
+  normally at 4dce22f1e (sec2-sentences informed). `SimpleClosedWalkSides` is on the wire queue.
+  `OsinPocketRegionSimpleWalk` is not queued yet because nothing consumes it so far.
 - kh-torsion's decision on item 2; if it names another item, take that.
-- hull-select's consumer shape; `PocketRegion.ofSimpleClosedWalk` on request.
+- hull-select's consumer shape. Pinched walks only if a consumer needs them.
 - Flip to `relativeGreendlingerQuasiGeodesicLeastArea_closed` as h94 and the parts land. A watcher on
   landed.log follows the part owners.
