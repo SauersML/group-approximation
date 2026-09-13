@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.SystolicDisc
 import GroupApproximation.GGT.SystolicDiscMovesCycle
 import GroupApproximation.GGT.VanKampen.FoldDiagram
 import GroupApproximation.Meta.AxiomGuard
@@ -274,3 +275,8 @@ theorem zip_fold {s t : List D.map.Dart} {p du dv : D.map.Dart}
 end CycleDisc
 
 end GroupApproximation.Systolic
+
+#audit_axioms GroupApproximation.Systolic.faceCycle_three_apply
+#audit_axioms GroupApproximation.Systolic.CycleDisc.isFaceCycle_tri
+#audit_axioms GroupApproximation.Systolic.CycleDisc.joined_lab_sigma
+#audit_axioms GroupApproximation.Systolic.CycleDisc.zip_fold
