@@ -4,6 +4,7 @@ import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellArcs
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionDarts
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixDescentCut
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixGreendlingerPocketParts
+import GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -17,24 +18,26 @@ it is least area with fewer cells and four sections, and regions of copies of `�
 and `t_2` glue back into regions of copies of `Δ`.  This module states the pieces of that
 construction and assembles `SectionPocketCutInput` from them.
 
-## The pieces and their owners
+## The pieces and their owners, in the order of the assembly
 
 * `SectionPocketFaceSetInput` (lane `kh-ejz`; the kept cell through the zero-cell merge of lane
   `hull-select`): the face set between the two regions as a `PocketFaceSet`, with its boundary
   cycle split as `s_1 t_1 s_2 t_2` and a relator cell inside.
-* `PocketCollarStatement` (lane `kh-torsion`): an O-equivalent copy whose sides are geodesic
-  words, by a collar of `G`-faces along each side.
-* `PocketPinchStatement` (lane `hull-respell`): an O-equivalent copy whose face set and its
-  complement have one boundary circuit each.
-* `PocketRegionOfSimpleStatement` (lane `dgo-analytic`): a simple collared face set is a
-  `PocketCarrier`, a `PocketRegion` with the same split of the complement's cycle.
+* `PocketPinchStatement` (lane `hull-respell`): an O-equivalent copy whose pocket face set is
+  simple, its boundary cycle a simple closed walk, by simple circuits or a 0-refinement.
+* `PocketRegionOfSimpleStatement` (lane `dgo-analytic`, `Estimating/OsinPocketRegionOfSimple`
+  through `PocketRegion.ofSimpleClosedWalk`): a simple pocket face set is a `PocketCarrier`, a
+  `PocketRegion` with both cycles following the boundary and the same split of the complement's
+  cycle.
+* `PocketCollarStatement` (lane `kh-torsion`): an O-equivalent copy with a collared carrier, whose
+  sides are geodesic words, by a collar of `G`-faces along each side.
 * `PocketCellTransportStatement` and `PocketOuterTransportStatement` (lane `go-lemma42`): regions
   of copies of the pocket to an arc of a cell outside, or to an arc of `∂X`, glue back into
   regions of copies of `X`.
 
 ## What is proved here
 
-* `PocketCarrier.nonempty_osinSectionPocketCut`: a carrier in an O-equivalent copy of a
+* `PocketCarrier.nonempty_osinSectionPocketCut`: a collared carrier in an O-equivalent copy of a
   least-area `Δ`, in the positions of section `j`, gives an `OsinSectionPocketCut`, given the
   two transports.  The sides are quasi-geodesic as geodesic words, `t_1` as an arc of a relator
   read backwards, and `t_2` as an infix of section `j`.
@@ -53,11 +56,11 @@ section Carriers
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
 
-/-- **The face set between two exterior regions** (Osin's `Γ_1`, before collaring).  A face set
-away from the exterior face, with a relator cell `kept` inside and the cell `source` outside,
-whose boundary cycle is `s_1 t_1 s_2 t_2`: a side `s_1`, an arc `t_1` of `source` read
-backwards, a side `s_2`, and an arc `t_2` of `∂X` between the positions `lo` and `hi`.  The
-sides and their values are no longer than `ε`. -/
+/-- **The face set between two exterior regions** (Osin's `Γ_1`).  A face set away from the
+exterior face, with a relator cell `kept` inside and the cell `source` outside, whose boundary
+cycle is `s_1 t_1 s_2 t_2`: a side `s_1`, an arc `t_1` of `source` read backwards, a side `s_2`,
+and an arc `t_2` of `∂X` between the positions `lo` and `hi`.  The sides and their values are no
+longer than `ε`. -/
 structure PocketFaceSet (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)
     (lo hi : ℕ) where
   faces : Finset X.toCombMap.Face
@@ -86,41 +89,27 @@ namespace PocketFaceSet
 
 variable {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
 
-/-- **Collared sides**: both sides are admissible geodesic words, as after a collar of `G`-faces
-labelled by geodesic words for the side values. -/
-def Collared (K : PocketFaceSet D eps X lo hi) : Prop :=
-  RelWord.IsAdmissible D (dartWord X K.firstSide) ∧
-    RelWord.IsAdmissible D (dartWord X K.secondSide) ∧
-    (dartWord X K.firstSide).length =
-      wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X K.firstSide)) ∧
-    (dartWord X K.secondSide).length =
-      wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X K.secondSide))
-
-/-- **A simple pocket**: the boundary cycle follows the boundary, and the face set and its
-complement have one boundary circuit each, so that `FaceSetCircuits.toDiscRegion` makes both
-of them disc regions. -/
+/-- **A simple pocket**: the boundary cycle is a simple closed walk, with no two darts starting
+at the same vertex, so that `PocketRegion.ofSimpleClosedWalk` makes its side a pocket region. -/
 def Simple (K : PocketFaceSet D eps X lo hi) : Prop :=
-  K.boundary.FollowsBoundary ∧
-    (∃ c : Surgery.MapCollapse.FaceSetCircuits.Component X.toCombMap K.faces,
-      ∀ d : Surgery.MapCollapse.BoundaryDart X.toCombMap K.faces,
-        (Quotient.mk'' d : Surgery.MapCollapse.FaceSetCircuits.Component X.toCombMap K.faces) =
-          c) ∧
-    ∃ outside : Finset X.toCombMap.Face, (∀ f, f ∈ outside ↔ f ∉ K.faces) ∧
-      ∃ c : Surgery.MapCollapse.FaceSetCircuits.Component X.toCombMap outside,
-        ∀ d : Surgery.MapCollapse.BoundaryDart X.toCombMap outside,
-          (Quotient.mk'' d : Surgery.MapCollapse.FaceSetCircuits.Component X.toCombMap outside) =
-            c
+  IsSimpleClosedWalk X.toCombMap K.boundary.cycle
+
+theorem Simple.isSimpleClosedWalk {K : PocketFaceSet D eps X lo hi} (hK : K.Simple) :
+    IsSimpleClosedWalk X.toCombMap K.boundary.cycle :=
+  hK
 
 end PocketFaceSet
 
-/-- **The pocket carrier.**  A `PocketRegion` of `X` whose complement cycle follows the boundary,
-with a relator cell `kept` inside and the cell `source` outside, and the inverse cycle of the
-complement split as `s_1 t_1 s_2 t_2`: geodesic sides no longer than `ε`, an arc `t_1` of
-`source` read backwards, and an arc `t_2` of `∂X` between the positions `lo` and `hi`. -/
+/-- **The pocket carrier.**  A `PocketRegion` of `X` whose cycles follow the boundary, with a
+relator cell `kept` inside and the cell `source` outside, and the inverse cycle of the complement
+split as `s_1 t_1 s_2 t_2`: sides no longer than `ε`, with values no longer than `ε`, an arc
+`t_1` of `source` read backwards, and an arc `t_2` of `∂X` between the positions `lo` and
+`hi`. -/
 structure PocketCarrier (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)
     (lo hi : ℕ) where
   pocket : PocketRegion X
-  follows : pocket.outer.FollowsBoundary
+  inner_follows : pocket.inner.FollowsBoundary
+  outer_follows : pocket.outer.FollowsBoundary
   source : Fin X.rCellCount
   source_not_mem : (cell X source).face ∉ pocket.faces
   kept : Fin X.rCellCount
@@ -133,14 +122,28 @@ structure PocketCarrier (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u
     firstSide ++ invDarts X sourceArc.darts ++ secondSide ++ targetArc.darts
   firstSide_length_le : firstSide.length ≤ eps
   secondSide_length_le : secondSide.length ≤ eps
-  firstSide_admissible : RelWord.IsAdmissible D (dartWord X firstSide)
-  secondSide_admissible : RelWord.IsAdmissible D (dartWord X secondSide)
-  firstSide_geodesic : (dartWord X firstSide).length =
-    wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X firstSide))
-  secondSide_geodesic : (dartWord X secondSide).length =
-    wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X secondSide))
+  firstSide_norm_le :
+    wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X firstSide)) ≤ eps
+  secondSide_norm_le :
+    wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X secondSide)) ≤ eps
   lo_le : lo ≤ targetArc.start.1
   le_hi : targetArc.start.1 + targetArc.length ≤ hi
+
+namespace PocketCarrier
+
+variable {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **Collared sides**: both sides are admissible geodesic words, as after a collar of `G`-faces
+labelled by geodesic words for the side values. -/
+def Collared (K : PocketCarrier D eps X lo hi) : Prop :=
+  RelWord.IsAdmissible D (dartWord X K.firstSide) ∧
+    RelWord.IsAdmissible D (dartWord X K.secondSide) ∧
+    (dartWord X K.firstSide).length =
+      wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X K.firstSide)) ∧
+    (dartWord X K.secondSide).length =
+      wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X K.secondSide))
+
+end PocketCarrier
 
 end Carriers
 
@@ -182,35 +185,35 @@ def OsinSectionPocketFaceSetSectionStatement : Prop :=
             OsinCCondition D W eps mu lambda c rho →
               SectionPocketFaceSetInput.{u, w, v} D lambda c eps W
 
-/-- **The collar** (lane `kh-torsion`, `GGT/VanKampen/SurgeryGeodesicCollar.lean`).  A pocket
-face set has an O-equivalent copy with a collared pocket face set in the same positions: along
-each side a collar of `G`-faces labelled by a geodesic word for the side value, of length at
-most `ε`. -/
-def PocketCollarStatement : Prop :=
+/-- **The pinched pocket** (lane `hull-respell`).  A pocket face set has an O-equivalent copy with
+a simple pocket face set in the same positions, by simple circuits or a 0-refinement. -/
+def PocketPinchStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (eps : ℕ)
     (W : Set (List (RelLetter G Lambda))) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
     PocketFaceSet D eps X lo hi →
       ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
-        Nonempty (OEquivalentDiscDiagram X X') ∧ K'.Collared
+        Nonempty (OEquivalentDiscDiagram X X') ∧ K'.Simple
 
-/-- **The pinched pocket** (lane `hull-respell`).  A collared pocket face set has an O-equivalent
-copy with a simple collared pocket face set in the same positions, by simple circuits or a
-0-refinement. -/
-def PocketPinchStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (eps : ℕ)
-    (W : Set (List (RelLetter G Lambda))) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ)
-    (K : PocketFaceSet D eps X lo hi), K.Collared →
-      ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
-        Nonempty (OEquivalentDiscDiagram X X') ∧ K'.Collared ∧ K'.Simple
-
-/-- **The pocket region of a simple pocket** (lane `dgo-analytic`).  A simple collared pocket
-face set is a pocket carrier: both sides are disc regions by `FaceSetCircuits.toDiscRegion`, and
-the complement's cycle, restarted, reads `s_1 t_1 s_2 t_2` backwards. -/
+/-- **The pocket region of a simple pocket** (lane `dgo-analytic`).  A simple pocket face set is a
+pocket carrier: its boundary cycle is a simple closed walk, whose side is a pocket region by
+`PocketRegion.ofSimpleClosedWalk`, and the complement's cycle reads `s_1 t_1 s_2 t_2`
+backwards. -/
 def PocketRegionOfSimpleStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (eps : ℕ)
     (W : Set (List (RelLetter G Lambda))) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ)
-    (K : PocketFaceSet D eps X lo hi), K.Collared → K.Simple →
+    (K : PocketFaceSet D eps X lo hi), K.Simple →
       Nonempty (PocketCarrier D eps X lo hi)
+
+/-- **The collar** (lane `kh-torsion`, `GGT/VanKampen/SurgeryGeodesicCollar.lean`).  A pocket
+carrier has an O-equivalent copy with a collared pocket carrier in the same positions: along each
+side a collar of `G`-faces labelled by a geodesic word for the side value, of length at most
+`ε`. -/
+def PocketCollarStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    PocketCarrier D eps X lo hi →
+      ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketCarrier D eps X' lo hi),
+        Nonempty (OEquivalentDiscDiagram X X') ∧ K'.Collared
 
 /-- **Transport to a cell** (lane `go-lemma42`).  Let the inverse complement cycle of a pocket
 region of `X` contain, after `pre`, an arc of a cell `t` outside the pocket read backwards.  A
@@ -283,11 +286,12 @@ private theorem partsCut_four_four {α : Type*} (a b c d : List α) :
       a.length + b.length + c.length + d.length := by
   simp [CutSections.partsCut, Nat.add_assoc]
 
-/-- **The section pocket cut from a carrier.**  Let `Δ` be least area, `X` an O-equivalent copy,
-and `K` a pocket carrier of `X` in the positions of section `j`.  Under `C(ε, μ, λ, c, ρ)` with
-`λ ≤ 1` and `0 ≤ c`, the four parts are quasi-geodesic: the sides as geodesic words, `t_1` as an
-arc of a relator read backwards, and `t_2` as an infix of section `j`.  So the pocket is a least
-area cut with four sections, and the two transports glue its regions to `t_1` and `t_2` back. -/
+/-- **The section pocket cut from a collared carrier.**  Let `Δ` be least area, `X` an
+O-equivalent copy, and `K` a collared pocket carrier of `X` in the positions of section `j`.
+Under `C(ε, μ, λ, c, ρ)` with `λ ≤ 1` and `0 ≤ c`, the four parts are quasi-geodesic: the sides
+as geodesic words, `t_1` as an arc of a relator read backwards, and `t_2` as an infix of section
+`j`.  So the pocket is a least area cut with four sections, and the two transports glue its
+regions to `t_1` and `t_2` back. -/
 theorem PocketCarrier.nonempty_osinSectionPocketCut
     (hcell : PocketCellTransportStatement.{u, w, v})
     (houter : PocketOuterTransportStatement.{u, w, v})
@@ -296,7 +300,7 @@ theorem PocketCarrier.nonempty_osinSectionPocketCut
     {Delta X : DiscDiagram.{u, w, v} W} (hlea : Delta.LeastArea)
     (equiv : OEquivalentDiscDiagram Delta X)
     (cuts : SectionCuts D lambda c Delta.boundaryWord) (j : Fin cuts.count)
-    (K : PocketCarrier D eps X (cuts.cut j.castSucc) (cuts.cut j.succ)) :
+    (K : PocketCarrier D eps X (cuts.cut j.castSucc) (cuts.cut j.succ)) (hK : K.Collared) :
     Nonempty (OsinSectionPocketCut D lambda c eps Delta cuts j) := by
   have hlength : (outerDarts X).length = Delta.boundaryWord.length := by
     rw [← equiv.boundaryWord_eq, ← dartWord_outerDarts X]
@@ -337,11 +341,9 @@ theorem PocketCarrier.nonempty_osinSectionPocketCut
     intro part hpart
     simp only [List.mem_cons, List.not_mem_nil, or_false] at hpart
     rcases hpart with rfl | rfl | rfl | rfl
-    · exact CutSections.isLambdaCQuasiGeodesicWord_of_geodesic D K.firstSide_admissible
-        K.firstSide_geodesic hc (hslope _)
+    · exact CutSections.isLambdaCQuasiGeodesicWord_of_geodesic D hK.1 hK.2.2.1 hc (hslope _)
     · exact CyclicArc.isLambdaCQuasiGeodesicWord_invDarts_darts_cellDarts hcondition K.sourceArc
-    · exact CutSections.isLambdaCQuasiGeodesicWord_of_geodesic D K.secondSide_admissible
-        K.secondSide_geodesic hc (hslope _)
+    · exact CutSections.isLambdaCQuasiGeodesicWord_of_geodesic D hK.2.1 hK.2.2.2 hc (hslope _)
     · exact hsection
   have key := K.pocket.fourSectionCuts_leastAreaCut D lambda c eps (equiv.leastArea hlea)
     (cell_mem X K.kept) K.kept_mem (cell_mem X K.source) K.source_not_mem
@@ -366,7 +368,7 @@ theorem PocketCarrier.nonempty_osinSectionPocketCut
     obtain ⟨hnone, hlo, hhi⟩ := ha
     rw [hcut, Fin.val_castSucc, hk, partsCut_four_one] at hlo
     rw [hcut, Fin.val_succ, hk, partsCut_four_two, hinv] at hhi
-    obtain ⟨Y, b, t, ⟨EY⟩, hbt, hne, hdeg⟩ := hcell D eps W X K.pocket K.follows K.source
+    obtain ⟨Y, b, t, ⟨EY⟩, hbt, hne, hdeg⟩ := hcell D eps W X K.pocket K.outer_follows K.source
       K.source_not_mem K.sourceArc K.firstSide (K.secondSide ++ K.targetArc.darts)
       (by simp only [K.decomposition, List.append_assoc]) Xi E a hnone hlo hhi
     exact ⟨Y, b, t, ⟨equiv.trans EY⟩, hbt, hne, hdeg⟩
@@ -381,7 +383,7 @@ theorem PocketCarrier.nonempty_osinSectionPocketCut
     obtain ⟨hnone, hlo, hhi⟩ := ha
     rw [hcut, Fin.val_castSucc, hk, partsCut_four_three] at hlo
     rw [hcut, Fin.val_succ, hk, partsCut_four_four, htarget] at hhi
-    obtain ⟨Y, b, ⟨EY⟩, hbnone, hblo, hbhi, hdeg⟩ := houter D eps W X K.pocket K.follows
+    obtain ⟨Y, b, ⟨EY⟩, hbnone, hblo, hbhi, hdeg⟩ := houter D eps W X K.pocket K.outer_follows
       K.targetArc hend (K.firstSide ++ invDarts X K.sourceArc.darts ++ K.secondSide) []
       (by simp only [K.decomposition, List.append_nil]) Xi E a hnone
       (by simp only [List.length_append]; omega) (by simp only [List.length_append]; omega)
@@ -399,12 +401,13 @@ theorem PocketCarrier.nonempty_osinSectionPocketCut
            cellTransport := hcellT
            sectionTransport := hsecT }⟩
 
-/-- **`SectionPocketCutInput` from the pieces.**  The face set between the two regions is
-collared, made simple, and turned into a carrier in successive O-equivalent copies of the
-optimal diagram, which is O-equivalent to `Δ`. -/
+/-- **`SectionPocketCutInput` from the pieces.**  The face set between the two regions is made
+simple, turned into a carrier, and collared, in successive O-equivalent copies of the optimal
+diagram, which is O-equivalent to `Δ`. -/
 theorem sectionPocketCutInput_of_pieces
-    (hcollar : PocketCollarStatement.{u, w, v}) (hpinch : PocketPinchStatement.{u, w, v})
+    (hpinch : PocketPinchStatement.{u, w, v})
     (hregion : PocketRegionOfSimpleStatement.{u, w, v})
+    (hcollar : PocketCollarStatement.{u, w, v})
     (hcell : PocketCellTransportStatement.{u, w, v})
     (houter : PocketOuterTransportStatement.{u, w, v})
     {D : RelGenSet G Lambda} {eps rho : ℕ} {mu lambda c : ℝ}
@@ -413,11 +416,11 @@ theorem sectionPocketCutInput_of_pieces
     SectionPocketCutInput.{u, w, v} D lambda c eps W := by
   intro Delta cuts hlea S i j a ha b hb hne hja hjb
   obtain ⟨K⟩ := hfaces Delta cuts hlea S i j a ha b hb hne hja hjb
-  obtain ⟨X₁, K₁, ⟨E₁⟩, hK₁⟩ := hcollar D eps W S.diagram _ _ K
-  obtain ⟨X₂, K₂, ⟨E₂⟩, hK₂, hsimple⟩ := hpinch D eps W X₁ _ _ K₁ hK₁
-  obtain ⟨C⟩ := hregion D eps W X₂ _ _ K₂ hK₂ hsimple
+  obtain ⟨X₁, K₁, ⟨E₁⟩, hsimple⟩ := hpinch D eps W S.diagram _ _ K
+  obtain ⟨C⟩ := hregion D eps W X₁ _ _ K₁ hsimple
+  obtain ⟨X₂, C₂, ⟨E₂⟩, hC₂⟩ := hcollar D eps W X₁ _ _ C
   exact PocketCarrier.nonempty_osinSectionPocketCut hcell houter hcondition hlambda hc hlea
-    ((S.equiv.trans E₁).trans E₂) cuts j C
+    ((S.equiv.trans E₁).trans E₂) cuts j C₂ hC₂
 
 end Assembly
 
@@ -425,8 +428,9 @@ end Assembly
 thresholds of the face set producer. -/
 theorem osinSectionPocketCutSection_of_pieces
     (hfaces : OsinSectionPocketFaceSetSectionStatement.{u, w, v})
-    (hcollar : PocketCollarStatement.{u, w, v}) (hpinch : PocketPinchStatement.{u, w, v})
+    (hpinch : PocketPinchStatement.{u, w, v})
     (hregion : PocketRegionOfSimpleStatement.{u, w, v})
+    (hcollar : PocketCollarStatement.{u, w, v})
     (hcell : PocketCellTransportStatement.{u, w, v})
     (houter : PocketOuterTransportStatement.{u, w, v}) :
     OsinSectionPocketCutSectionStatement.{u, w, v} := by
@@ -435,18 +439,19 @@ theorem osinSectionPocketCutSection_of_pieces
   refine ⟨eps0, fun eps heps => ?_⟩
   obtain ⟨rho0, hrho0, hrho⟩ := heps0 eps heps
   exact ⟨rho0, hrho0, fun rho hrho' W hcondition =>
-    sectionPocketCutInput_of_pieces hcollar hpinch hregion hcell houter hcondition hlambda1 hc
+    sectionPocketCutInput_of_pieces hpinch hregion hcollar hcell houter hcondition hlambda1 hc
       (hrho rho hrho' W hcondition)⟩
 
 end GroupApproximation.GGT.VanKampen
 
-#audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.Collared
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.Simple
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.Simple.isSimpleClosedWalk
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketCarrier.Collared
 #audit_axioms GroupApproximation.GGT.VanKampen.SectionPocketFaceSetInput
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinSectionPocketFaceSetSectionStatement
-#audit_axioms GroupApproximation.GGT.VanKampen.PocketCollarStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketPinchStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketRegionOfSimpleStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketCollarStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketCellTransportStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketOuterTransportStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketCarrier.nonempty_osinSectionPocketCut

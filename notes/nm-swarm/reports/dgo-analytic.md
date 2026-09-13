@@ -1,14 +1,99 @@
 # Lane dgo-analytic (and helper H2 hull-assembly) — report
 
-Non-MF verbatim formalization swarm, 2026-09-11.  Clone cs-limit.
+Non-MF verbatim formalization swarm, 2026-09-11; every-line swarm, 2026-09-13.
+
+## 2026-09-13: `SectionPocketCutInput` from pieces
+
+Rulings (lead, 09-13):
+
+* ~04:05: this lane states the piece Props in `Estimating/OsinPocketPieces.lean`.
+* ~05:00:
+  * `SectionPocketCutInput` (`Estimating/OsinAppendixDescentCut.lean:71`) belongs to this lane.
+  * `OsinDescentStepInput` is retired (a docstring note only).
+  * `LoopCutInput` is on hold.
+  * dgo-geometric model-tests each piece Prop.
+* ~08:30: the pieces run in the order pinch, then region, then collar.
+
+Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
+(`Estimating/OsinAppendixDescentInduction`).
+
+### Landed
+
+* `Estimating/OsinPocketOuterPart.lean` (c0a1c1bee): the outer-part exchange for disc regions.
+* `Estimating/OsinPocketRegion.lean` (497542415): `PocketRegion`, least area without shelling.
+* `Estimating/OsinPocketPieces.lean`:
+  * First statement, collar before pinch: 9cb70824c, probe 0913-073133-62116.
+  * Restated in the ruled order, together with the new region module and this report.
+* `Estimating/OsinAppendixAssemblyDescent.lean` (5957159598): the retirement note on `OsinDescentStepInput`.
+
+### The pieces, in the order of the assembly
+
+| Prop | Owner | Shape |
+|---|---|---|
+| `SectionPocketFaceSetInput`, `OsinSectionPocketFaceSetSectionStatement` | kh-ejz (kept cell through hull-select's zero-cell merge) | two distinct exterior regions to section `j` give a `PocketFaceSet` of the optimal diagram |
+| `PocketPinchStatement` | hull-respell | a `PocketFaceSet` has an O-equivalent copy with a `Simple` one (boundary cycle `IsSimpleClosedWalk`), by simple circuits or a 0-refinement |
+| `PocketRegionOfSimpleStatement` | dgo-analytic | a `Simple` face set gives a `PocketCarrier` (both cycles `FollowsBoundary`, sides of length and norm at most `ε`) |
+| `PocketCollarStatement` | kh-torsion | a `PocketCarrier` has an O-equivalent copy with a `Collared` carrier (sides admissible geodesic words) |
+| `PocketCellTransportStatement`, `PocketOuterTransportStatement` | go-lemma42 | regions of copies of the pocket to `t_1` and `t_2` glue back, target `OsinMultipleEdgeCut.ofPocketRegion` |
+
+Assembly, proved:
+
+* `PocketCarrier.nonempty_osinSectionPocketCut`: a collared carrier gives the cut.
+* `sectionPocketCutInput_of_pieces hpinch hregion hcollar hcell houter`.
+* `osinSectionPocketCutSection_of_pieces`.
+
+### The region piece
+
+`Estimating/OsinPocketRegionOfSimple.lean` builds the carrier over `PocketRegion.ofSimpleClosedWalk`:
+
+* `PocketFaceSet.toPocketCarrier K hK hfaces` and `nonempty_pocketCarrier_of_sideFaces_eq`.
+* The side of the walk is the pocket.
+* Both cycles follow the boundary (`ofSimpleClosedWalk_followsBoundary`).
+* The inverse complement cycle is the walk (`ofSimpleClosedWalk_invDarts_outer`), so the split carries over.
+* Given `sideFaces X.toCombMap K.boundary.cycle = K.faces`, the kept cell stays inside and the source cell outside.
+
+The equality is a general map lemma, handed to hull-component:
+`SimpleClosedWalkSides.sideFaces_boundaryCycle_eq (hM : M.IsConnected) (boundary : BoundaryCycle M faces) (hf : f ∉ faces)`.
+It goes in the new module `GGT/VanKampen/SimpleClosedWalkSideFaces.lean`.
+
+* sideFaces ⊆ faces: by EqvGen induction; crossing an edge off the walk keeps membership.
+* faces ⊆ sideFaces: the rest of the face set is closed under `alpha` and `sigma`, so connectivity rules it out.
+
+When that lands, `pocketRegionOfSimple : PocketRegionOfSimpleStatement` is one line, applied at `CombMap.connected_of_planar _ X.planar`.
+
+### Truth caveats sent to dgo-geometric for model tests
+
+The earlier list covers:
+
+* side trimming;
+* the norm bound;
+* the collar;
+* the pinch case;
+* empty sections;
+* the outer base dart.
+
+New with the ruled order:
+
+* A 0-refinement that makes the pocket boundary vertex-simple must keep the boundary word of `X` (O-equivalence) and the side lengths.
+* Splitting a vertex across inner corners, with a 0-edge between `G`-faces, does both.
+
+### Residual Props of `DescentInput` on this route
+
+* `OsinSectionPocketFaceSetSectionStatement` (kh-ejz).
+* `PocketPinchStatement` (hull-respell).
+* `PocketRegionOfSimpleStatement`: this lane; waits for hull-component's lemma.
+* `PocketCollarStatement` (kh-torsion).
+* `PocketCellTransportStatement` and `PocketOuterTransportStatement` (go-lemma42).
 
 ## Scope 1: Dahmani–Guirardel–Osin Theorem 2.35, analytic half
 
-`cor:regular-nonmf-algebra` cites DGO 2.35 for simplicity and uniqueness of the
-trace of `C*_r(Q)`.  The route chosen with the lead (route B): Abbott–Dahmani's
-property `P_naive` gives Powers' averaging estimate, and the estimate gives both
-clauses.  No classical C⋆-algebra theorem is used (not Powers, Akemann–Lee, or
-Breuillard–Kalantar–Kennedy–Ozawa).
+`cor:regular-nonmf-algebra` cites DGO 2.35 for simplicity and uniqueness of the trace of `C*_r(Q)`.
+
+The route chosen with the lead is route B:
+
+* Abbott–Dahmani's property `P_naive` gives Powers' averaging estimate.
+* The estimate gives both clauses.
+* No classical C⋆-algebra theorem is used (not Powers, Akemann–Lee, or Breuillard–Kalantar–Kennedy–Ozawa).
 
 Closed chain, all compiled (classical axioms only):
 
@@ -30,108 +115,96 @@ Endpoints:
   NaiveFreeProductAtAcylindricallyHyperbolic → SimpleUniqueTraceAtHypEmbedded`
   (through dgo-geometric's Osin `(AH₄) ⇒ (AH₁)`)
 
-Residual: exactly one Prop, `NaiveFreeProductAtAcylindricallyHyperbolic`
-(owner dgo-geometric).
+The one open Prop, `NaiveFreeProductAtAcylindricallyHyperbolic`, has dgo-geometric's closed producer.
+So `dgoTheorem235Printed : DGOTheorem235Printed` is closed (`Manuscript/NonMF/DGOTheorem235Proof`, cebe6f695).
 
-Also compiled: the rescued 09-09 reductions (`DGO235UniqueTraceFromAveraging`,
-`DGO235FromPowersProperty`, `DGO235PowersRoute`, `DGO235PrintedFromGeometry`,
-`PowersAveragingFromPartition`, `PowersAveragingFromPowersProperty`,
-`PowersAveragingSingleClass`, `PowersAveragingComposition`,
-`GroupHilbertSubsetProjection`) and the corrected `DGOTheorem235Slice` header.
+Also compiled:
 
-Landings: 100539f34, 460831be0, 04cc4aa44, 2a711b6bd, d748a8d40, 14914dfd2,
-47c5d4b44, 0cdf0b924.  Census row: `metadata/nm-census-rows/dgo-analytic.tsv`
-(`LINE:1688 partial`, pending the P_naive producer).
+* the rescued 09-09 reductions: `DGO235UniqueTraceFromAveraging`, `DGO235FromPowersProperty`, `DGO235PowersRoute`,
+  `DGO235PrintedFromGeometry`, `PowersAveragingFromPartition`, `PowersAveragingFromPowersProperty`,
+  `PowersAveragingSingleClass`, `PowersAveragingComposition`, `GroupHilbertSubsetProjection`;
+* the corrected `DGOTheorem235Slice` header.
+
+Landings: 100539f34, 460831be0, 04cc4aa44, 2a711b6bd, d748a8d40, 14914dfd2, 47c5d4b44, 0cdf0b924.
+
+Census row: `metadata/nm-census-rows/dgo-analytic.tsv`.
+
+* 09-13: `LINE:1728 formalized` on `dgoTheorem235Printed`.
+* It supersedes the 09-11 row `LINE:1688 partial`, which was pending the P_naive producer.
 
 ## Scope 2 (helper H2 hull-assembly): Osin Appendix §9 assembly
 
 * `GGT/VanKampen/Estimating/OsinAppendixAssembly.lean` (ce6930740):
-  `OsinSection97InputsStatement`, `osinLemma97Section_of_inputs`,
-  `relativeGreendlingerQuasiGeodesicLeastArea_of_inputs`, and the two
-  ρ-thresholds `exists_rho_widthBudget`, `exists_rho_muSqrt`.
-* `GGT/VanKampen/Estimating/OsinAppendixAssemblyPocket.lean` (a956f3d3d): the
-  descent of Lemma 9.7(b): `RealizedSectionFamily.ExteriorLarge`,
-  `ExteriorUniqueAt`, `exteriorSectionLength`, the named input
-  `OsinExteriorDoubleCut`, the pocket estimate
-  `OsinExteriorDoubleCut.lastSection_total_gt`, and the induction on `m(Π)`
-  `exists_of_exteriorDescent`.
+  * `OsinSection97InputsStatement`, `osinLemma97Section_of_inputs`, `relativeGreendlingerQuasiGeodesicLeastArea_of_inputs`;
+  * the two ρ-thresholds `exists_rho_widthBudget` and `exists_rho_muSqrt`.
+* `GGT/VanKampen/Estimating/OsinAppendixAssemblyPocket.lean` (a956f3d3d), the descent of Lemma 9.7(b):
+  * `RealizedSectionFamily.ExteriorLarge`, `ExteriorUniqueAt`, `exteriorSectionLength`;
+  * the named input `OsinExteriorDoubleCut`;
+  * the pocket estimate `OsinExteriorDoubleCut.lastSection_total_gt`;
+  * the induction on `m(Π)`, `exists_of_exteriorDescent`.
 
 ### Two findings on Osin's proof of Lemma 9.7(b) (arXiv:math/0411039v3, pp. 34–35)
 
-1. **Threshold slip** (correction approved): `Π` minimises `m(Π)` among cells
-   above `1 − 11μ`, but the new cell `Π′` is only shown above `1 − 13μ`, so it need
-   not lie in the class.  The class is taken at `1 − 13μ` (nonempty from
-   Corollary 9.6's `11μ` cell).
-2. **The step needs clause (a) at the pocket.**  Osin's (40) at `1 − 11μ` is
-   "Corollary 9.6 and the inductive assumption" at the pocket `Γ_1`, i.e. clause
-   (a) `(∗)` plus Lemma 9.4 at a smaller diagram.  `OsinLemma97Below`, the
-   inductive hypothesis `DescentInput` receives, carries only clause (b), whose
-   `1 − 13μ` at the pocket gives only `1 − 15μ` towards `t_2`.  So the step
-   producer must either receive clause (a) of the smaller diagrams (the induction
-   in `OsinAppendixSectionInduction` already proves `(a) ∧ (b)`) or carry the
-   `11μ` cell of the pocket as an input.
+1. **Threshold slip** (correction approved).
+   * `Π` minimises `m(Π)` among cells above `1 − 11μ`.
+   * The new cell `Π′` is only shown above `1 − 13μ`, so it need not lie in the class.
+   * The class is taken at `1 − 13μ`; it is nonempty by Corollary 9.6's `11μ` cell.
+2. **The step needs clause (a) at the pocket.**
+   * Osin's (40) at `1 − 11μ` rests on "Corollary 9.6 and the inductive assumption" at the pocket `Γ_1`: clause (a) `(∗)` plus Lemma 9.4 at a smaller diagram.
+   * `OsinLemma97Below`, the inductive hypothesis that `DescentInput` receives, carries only clause (b).
+   * Clause (b)'s `1 − 13μ` at the pocket gives only `1 − 15μ` towards `t_2`.
+   * So the step producer must either receive clause (a) of the smaller diagrams, or carry the `11μ` cell of the pocket as an input. The induction in `OsinAppendixSectionInduction` already proves `(a) ∧ (b)`.
 
-* `GGT/VanKampen/Estimating/OsinAppendixAssemblyDescent.lean` (57ddccb86, dea18154c,
-  5f5dddd41; compiled in probe 0912-001046-51202): design F2 (approved).
-  `OsinDescentMergeInput` and `OsinDescentStepInput` (named producers quoting
-  Osin; the step carries Corollary 9.6 at the pocket), `exists_exteriorUniqueAt_of_merge_step`,
-  `exists_sectionSelection_of_exteriorUniqueAt`, `osinLemma97bConclusion_of_exteriorUniqueAt`
-  (clause (b) in hull-select's shape, disjointness from compatibility, distinct
-  regions from nondegenerate target arcs), and
-  `descentInput_of_merge_step : OsinDescentMergeInput → OsinDescentStepInput → … → DescentInput`.
-* Repair 948130d79: the wired pocket module after eb4bc56f4 changed the
-  signature of `contiguityDegree_lt_mu_of_o52` (the root was red until then).
-
-Residual of G6 on route F2: the two named producers, `OsinDescentMergeInput`
-(merge through `R`-cell-free pockets) and `OsinDescentStepInput` (pocket,
-Corollary 9.6 at the pocket, uniqueness to `s_1, t_1, s_2`, glue-back with
-smaller measure).
+* `GGT/VanKampen/Estimating/OsinAppendixAssemblyDescent.lean`, design F2 (approved).
+  * Commits 57ddccb86, dea18154c, 5f5dddd41; compiled in probe 0912-001046-51202.
+  * `OsinDescentMergeInput` and `OsinDescentStepInput`: named producers quoting Osin; the step carries Corollary 9.6 at the pocket.
+  * `exists_exteriorUniqueAt_of_merge_step` and `exists_sectionSelection_of_exteriorUniqueAt`.
+  * `osinLemma97bConclusion_of_exteriorUniqueAt`: clause (b) in hull-select's shape, disjointness from compatibility, distinct regions from nondegenerate target arcs.
+  * `descentInput_of_merge_step : OsinDescentMergeInput → OsinDescentStepInput → … → DescentInput`.
+  * 09-13: `OsinDescentStepInput` retired (5957159598), see Finding 3.
+* Repair 948130d79: after eb4bc56f4, the wired pocket module changed the signature of `contiguityDegree_lt_mu_of_o52`, and the root was red until this repair.
 
 ### Finding 3: route F2's step producer is circular; replaced by the pocket cut
 
-`OsinDescentStepInput` carries the `11μ` cell of Corollary 9.6 at the pocket.
-Producing it needs clause (a) of Lemma 9.7 at the smaller diagram, and
-`OsinLemma97Below` does not carry clause (a).  So any producer of the step would
-have to run Lemma 9.7 itself.  The approved replacement (lead, 09-12) keeps
-`OsinAppendixAssemblyDescent` unchanged.  It runs Corollary 9.6 at each pocket
-directly from `OsinLemma97Below` and a fresh globally distinguished section
-system of the pocket, with strong induction on the pocket's `R`-cell count.  No
-extremality transport is needed.  The only leaf is the planar cut.
+* `OsinDescentStepInput` carries the `11μ` cell of Corollary 9.6 at the pocket.
+* Producing it needs clause (a) of Lemma 9.7 at the smaller diagram, and `OsinLemma97Below` does not carry clause (a).
+* So any producer of the step would have to run Lemma 9.7 itself.
+
+The approved replacement (lead, 09-12):
+
+* It keeps `OsinAppendixAssemblyDescent` unchanged.
+* It runs Corollary 9.6 at each pocket directly from `OsinLemma97Below` and a fresh globally distinguished section system of the pocket.
+* It uses strong induction on the pocket's `R`-cell count.
+* No extremality transport is needed, and the only leaf is the planar cut.
 
 * `GGT/VanKampen/Estimating/OsinAppendixDescentCut.lean` (4f3d38859, 08381ed21):
-  the leaf `OsinSectionPocketCut` (extends `OsinExteriorDoubleCut` with
-  `sectionTransport` to section `j` of `Δ` at part 3),
-  `SectionPocketCutInput`, `OsinLemma97Below.mono`,
-  `OsinSectionPocketCut.false_of_inner`, `RealizedSectionFamily.emptyOfLeastArea`,
-  `osinLemma97bConclusion_of_region`.
-* `GGT/VanKampen/Estimating/OsinAppendixDescentInduction.lean` (f82dfe0c3,
-  08381ed21): `exists_elevenCell_of_below` (Corollary 9.6 at a least-area diagram
-  below the induction measure), `OsinSectionPocketCut.exists_large_region` (the
-  pocket induction, conclusion `1 − 13μ` towards section `j`), and
-  `descentInput_of_sectionPocketCut : … → SectionPocketCutInput → DescentInput`.
-  Both modules compiled in probe 0912-100628-69222 (base 08381ed21), classical
-  axioms only.
-* `GGT/VanKampen/Estimating/OsinAppendixLemma97Pocket.lean` (4b9f8144d, 42e5d2843;
-  compiled in probe 0912-105301-92538, base 42e5d2843, classical axioms only):
-  `OsinSection97PocketInputsStatement` (cut producers, hull-euler's
-  `PhiPrimeCountInput` through `eulerCountInput_of_phiPrimeCount`,
-  `SectionPocketCutInput`), `osinSection97Inputs_of_pocketInputs`,
-  `osinLemma97Section_of_pocketInputs` and
-  `relativeGreendlingerQuasiGeodesicLeastArea_of_pocketInputs`, with O52 given by
-  `Embedded.o52LeastArea`.
+  * the leaf `OsinSectionPocketCut`, which extends `OsinExteriorDoubleCut` with `sectionTransport` to section `j` of `Δ` at part 3;
+  * `SectionPocketCutInput`, `OsinLemma97Below.mono`, `OsinSectionPocketCut.false_of_inner`,
+    `RealizedSectionFamily.emptyOfLeastArea`, `osinLemma97bConclusion_of_region`.
+* `GGT/VanKampen/Estimating/OsinAppendixDescentInduction.lean` (f82dfe0c3, 08381ed21):
+  * `exists_elevenCell_of_below`: Corollary 9.6 at a least-area diagram below the induction measure;
+  * `OsinSectionPocketCut.exists_large_region`: the pocket induction, with conclusion `1 − 13μ` towards section `j`;
+  * `descentInput_of_sectionPocketCut : … → SectionPocketCutInput → DescentInput`.
+  * Both modules compiled in probe 0912-100628-69222 (base 08381ed21), classical axioms only.
+* `GGT/VanKampen/Estimating/OsinAppendixLemma97Pocket.lean` (4b9f8144d, 42e5d2843; compiled in probe 0912-105301-92538, base 42e5d2843, classical axioms only):
+  * `OsinSection97PocketInputsStatement`: cut producers, hull-euler's `PhiPrimeCountInput` through `eulerCountInput_of_phiPrimeCount`, and `SectionPocketCutInput`;
+  * `osinSection97Inputs_of_pocketInputs`, `osinLemma97Section_of_pocketInputs`;
+  * `relativeGreendlingerQuasiGeodesicLeastArea_of_pocketInputs`, with O52 given by `Embedded.o52LeastArea`.
 
-Residual of G6 on this route: `SectionPocketCutInput` only.  hull-respell
-produces it (Estimating/OsinAppendixPocketCutProducer; the empty-side pinch
-case goes through PinchSplit).  The transport fields `cellTransport` and
-`sectionTransport` are the two targets of go-lemma42's
-`DiscDiagram.regionPiece_transport` on hull-select's `DiscDiagram.regionPiece`.
+Residual of G6 on this route: `SectionPocketCutInput` only.
 
-Leaves of the Lemma 4.4 waist on this route
-(`relativeGreendlingerQuasiGeodesicLeastArea_of_pocketInputs`):
-`OsinLemma94SectionStatement` (hull-unbound, hull-count94), `MultipleEdgeCutInput`
-and `LoopCutInput` (G2: hull-select, go-lemma42), `PhiPrimeCountInput`
-(hull-euler), `SectionPocketCutInput` (hull-respell).  O52 is
-`Embedded.o52LeastArea`.
+* Since 09-13 it belongs to this lane and is assembled from the pieces above (`sectionPocketCutInput_of_pieces`).
+* Its 09-12 attribution to hull-respell (`OsinAppendixPocketCutProducer`) is superseded. hull-respell now owns the piece `PocketPinchStatement`.
+* The transports are go-lemma42's pieces.
+
+Leaves of the Lemma 4.4 waist on this route (`relativeGreendlingerQuasiGeodesicLeastArea_of_pocketInputs`):
+
+* `OsinLemma94SectionStatement` (hull-unbound, hull-count94);
+* `MultipleEdgeCutInput` and `LoopCutInput` (G2: hull-select, go-lemma42; `LoopCutInput` on hold 09-13);
+* `PhiPrimeCountInput` (hull-euler);
+* `SectionPocketCutInput` (dgo-analytic, from the pieces).
+
+O52 is `Embedded.o52LeastArea`.
 
 ## Fleet traps found here
 
