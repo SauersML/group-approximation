@@ -36,5 +36,9 @@ inequality `beta_1^(2) <= C - 1` (`fpbs-amen2-betti-cost-input`) gives item 2.
 **Scope and credit.** The chain argument is Gaboriau's (his `SL(n,Z)` case), with the Furman variant (3).
 The only content here is that it needs no commutativity, so it covers the Leavitt unit groups. It gives
 nothing about Benjamini--Schramm for these groups: fixed price one does not give `p_c < p_u`
-(`fpbs-fixed-price-one-percolation-kernel` is a separate open claim). It gives no information on higher
-`L^2`-Betti numbers of `U`.
+(`fpbs-fixed-price-one-percolation-kernel` is a separate open claim). The chain argument gives no
+information on higher `L^2`-Betti numbers of `U`. They all vanish by a different argument, the frame
+complex stabilizer count (`binary-leavitt-unit-group-is-l2-acyclic`; over every field,
+`leavitt-unit-groups-over-every-field-are-l2-acyclic`). Being infinite and simple, `U` has no Farber
+chains, so rank gradient is undefined for it. The Kun--Thom double and wreath also have fixed price one
+(`kun-thom-wreath-and-double-have-fixed-price-one`).

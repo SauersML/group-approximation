@@ -5,6 +5,7 @@ kind: claim
 title: Gaboriau's criterion VI.24(3) - an increasing union built by adding elements that commensurate the current stage on an infinite set has fixed price one
 distinct_from:
   fpbs-elementary-matrix-semidirect-fixed-price-one: that applies this criterion to elementary groups over commutative rings extended by ring automorphisms; this is the criterion itself, stated once so that other groups can use it.
+  leavitt-unit-groups-have-fixed-price-one: that applies the criterion (reproving its one-element lemma in its route) to EL_r over noncommutative rings and the Leavitt unit groups, with priority in the swarm; this is only the imported criterion, used by the Kun--Thom wreath and double.
 ---
 
 **ESTABLISHED (literature import).** Let a countable group `Γ` be the increasing union of
