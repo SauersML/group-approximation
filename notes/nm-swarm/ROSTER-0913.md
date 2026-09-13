@@ -1108,3 +1108,146 @@ For EVERY census row in your range with status formalized or definition, and eve
   - Pinched: consume binder 7 PocketPinchLabelledStatement, then O-transport back.
   - hno and havoid on S′ come from hs-vanishes and sec2-sentences. baseline-debt writes whichever piece debt-conditional names.
 - **nm-endpoints:** it doesn't write OsinAppendixGreendlingerLoopClosed, which would duplicate the waist at a less reduced level. It re-grades the ten TorsionFreeGreendlingerLeaf rows over the waist's binder list after (A).
+
+## Rulings 09-13 ~14:50–15:56
+
+- Roster db53ecf8f records the rulings from 14:25 to 14:50.
+
+## Closed and landed
+- **(A) LoopCut LANDED f04929ebb** (ghw-charp2): 27 files in one commit.
+  - Co-probe 0913-144505-9146 was GREEN over 183 modules: every importer of OsinAppendixSections at 514b76e75, plus GFaceQuadrilateralRegion and SurgeryFaceEdgeDoublingRegions. Verdict line checked.
+  - Pre-landing check at origin d8e7335b7: no importer missing, no drift, no Lean changes since the probe base.
+  - Included: leavitt-units' l.497 fix, audit-sec5's LoopCutCap rewrite, and the consumer fixes TwoGonLabels, KeptCell and OuterSpurThickening.
+  - Binder 3 of the waist, OsinLoopCutSectionStatement, is discharged by `osinLoopCutSection`.
+  - Residual Props:
+    - OsinLemma94CaseOneSameCellStatement, the binder on `osinLemma94CaseOneInput_of_walk`;
+    - OsinLemma94UnboundSameCellStatement, the binder on `osinLemma94PolygonCoversInput` and `osinLemma94PolygonCountInput_of_sideBudget`.
+    - Callers carry hloop, hkind and `hi : i₂ ≠ i`.
+
+- **systolic-counts:** GFaceMerge verifier fix LANDED 6d7b3181a.
+  - All three calibration runs passed. Census mode reported 374 findings, 0 new, where the landed script had reported 378. GFaceMerge and SpikeDeletion are now discharged.
+  - Two register lines went stale: `facePerm_keep_of_ne` and `sigma_keep_eq_self`. census re-registers them.
+  - `osinLemma94CaseTwo_false` was already stale on main.
+
+- **nm-endpoints:** the ten TorsionFreeGreendlingerLeaf rows are re-graded over the waist. LANDED 6622fce2b, graded at origin d60f40599.
+  - All ten stay partial and name `relativeGreendlingerQuasiGeodesicLeastArea_of_openResiduals` with its eight binders and their owners.
+  - It re-grades onto ghw-assembly's post-(A) list: SideBudget, UnboundSameCell (fff-periodic, option (a)), CaseOneSameCell (jacobson), then 4–8.
+  - The LoopClosed plan is dropped.
+
+- **Post-(A) W1 waist LANDED 5f031e3a6** (ghw-assembly; probe 0913-145357-69970 GREEN, verdict checked; report 8a229e0f9).
+  - Binder 3 is discharged by osinLoopCutSection.
+  - Binders 1–2 go through `osinLemma94PolygonCountInput_of_sideBudget` and `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk`.
+  - Rule 22: no Lean file or census row cited the old statement.
+  - **The eight residual binders now:**
+    1. OsinLemma94PolygonSideBudgetInput (hull-count94; superseded by ClassCountInput after ghw-charp2's respell)
+    2. OsinLemma94UnboundSameCellStatement (fff-periodic site 5 (T), plus (C) OsinLemma94SameCellPocketInput; systolic-counts audits it)
+    3. OsinLemma94CaseOneSameCellStatement (jacobson; ko-closed (a), hull-unbound pinched window, T hbelow)
+    4. OsinTwoGonHoldsSectionStatement C6′ (debt-conditional; baseline-debt, hs-vanishes, sec2-sentences)
+    5. OsinMultipleEdgePocketRegionSectionStatement (kh-ejz; dgo-analytic offer)
+    6. OsinSectionPocketFaceSetSectionStatement (kh-ejz; cite-hull, hl-lemma46, sec2-sentences, hull-select, hull-euler)
+    7. PocketPinchLabelledStatement (hull-respell; kh-cckw, go-lemma42 (ii), ghw-assembly (i) if open)
+    8. GeodesicCollarStatement (kh-torsion; hull-bridge, simple-group)
+  - The wire queue line replaces 8a07ad7d0. theoremc-retire's T window probes the 5f031e3a6 bytes.
+
+- **hull-euler:** `IsNoncrossingClosedWalk.reclosed_euler` LANDED 7e254eb66, fixed at 19866c7d6.
+  - Probe 0913-150114-7274 is GREEN (verdict checked). The earlier probe 0913-145807-90519 read FAILED, and 7e254eb66 had landed before it.
+  - Also landed: `innerDiscRegion` and the vertex, edge and face count identities of the two reclosings.
+  - The lemma has exactly the `heuler` type of dgo-analytic's `PocketRegion.ofNoncrossingClosedWalk`. Call: `PocketRegion.ofNoncrossingClosedWalk hw hout hfollows (hw.reclosed_euler Delta.planar hfollows)`.
+  - `hout` is a real hypothesis: in the rose model (one vertex, three loops, w=[0,2,4]) χ goes 2 → 0. The module is unwired.
+
+- **chain-core scope LANDED 2b190862a** (notes/nm-swarm/reports/chain-core.md).
+  - 121 section keys plus 5 Introduction keys; 0 census rows. Existing carriers are Pestov91 (CrossedProduct, IsLEFRing, the periodic LEF crossed product), isOperatorMF_of_isLEF, mfHomKernel, relativeElementary, and clause 1 of manuscriptTorsionComplementaryIdempotents.
+  - Nothing exists on chain recurrence, word graphs, itinerary subshifts, locally matricial algebras, the clopen defect pair, or LEF ⇒ stably finite.
+  - Critical path: S1 → S3 → S4 (with S2) → S5 → S6.
+
+## Rulings
+- **ghw-assembly next:** binder 7 piece (i), corners into G-digons, if hull-respell confirms it is open; otherwise a chain-core sub-item.
+- **systolic-counts next:** a truth audit of OsinLemma94UnboundSameCellStatement against audit-sec5's site 5 (same-cell unbound darts), and a vacuity check of OsinLemma94CaseOneSameCellStatement. After that, a chain-core sub-item.
+- **baseline-debt's report confirms** that no census debt outside W1 names a residual Prop. The census funnels into W1, plus sec:chain-core (new at 45483f699, owned by chain-core).
+- **(A) SHA sent to:** root-wire (wave 15 base), ghw-assembly, dgo-analytic (AssemblyDescent hold released), nm-endpoints (re-grade), theoremc-retire, jacobson, ko-closed, hull-count94 and hull-respell (Parts trap gone).
+- **ghw-assembly follow-up:**
+  - discharge binder 3 with osinLoopCutSection;
+  - binder 2 → `osinLemma94CaseOneInput_of_walk` (CaseOneSameCellStatement);
+  - binder 1 → `osinLemma94PolygonCountInput_of_sideBudget` (UnboundSameCellStatement plus side budget);
+  - ClassCountInput is not consumed until the class-word respell.
+- **T (theoremc-retire)** may go now, as its own co-probe on f04929ebb or later, re-diffed against (A). Nothing folds into it, since Dense is cancelled.
+- **ghw-charp2 next:** the class-word respell of the Lemma 9.4 Case 1/2 users (ClassBudget/ClassCovers), which supersedes SideBudgetInput.
+  - It takes the constant from hull-count94 after the gap-free question is settled.
+  - It lands after T, or folds into T if both are green together, as a Rule 22 co-probe with origin-blob checks.
+- **Raw-id resumes:**
+  - baseline-debt: the simple-case glue on S′. hno, havoid and Unpinched give hw via `simple_of_closedWalk_of_unpinched`, then `exists_kept_of_simple`. It sends its binder list to debt-conditional first.
+  - simple-group: ruling (a) delivered; it sends its proofs as text to hull-bridge and takes the Strip sub-module after asking kh-torsion.
+- **Lean files land only after a GREEN verdict line.** NM_UNVERIFIED=1 is for non-Lean files only. hull-euler's 7e254eb66 went in while its probe was red; the module is unwired, so no root build broke.
+- **hull-euler next:** queue the wiring of NoncrossingClosedWalkEuler, then take chain-core S2 (recurrence). Its C6′ closure `osinPhiPrimeCountSection_of_pieces osinCornerTwoGonSection hT` stays parked until debt-conditional lands a producer.
+- **sec:chain-core owners.** Definitions land first; each lane records its declaration names in its own report, and consumers ask the named owner.
+  - S1 basics: chain-core.
+  - S2 recurrence: hull-euler.
+  - S3 symbolic, split in two: chain-words (word graphs, the cycle condition, periodic models ⇒ LEF) and chain-subshift (Z_r, Y_0, language stabilization, Y_0 = CR(T), noncyclic edge ⇒ P).
+  - S4 general X: chain-itinerary.
+  - S5 transient matrices: chain-matricial.
+  - S6 split in two: chain-reflection (thm:core-ring-reflection) and chain-radical (thm:core-mf-radical plus the five Introduction keys).
+- **dgo-analytic 15:00:** the AssemblyDescent hold is released.
+  - Six residuals of `osinDescentSection_of_residuals` are open: Lemma94Section, PhiPrimeCountSection, binders 5–8.
+  - The Euler half of its co-probe gate is now met. The R2 half still waits on kh-torsion, which was active at 15:01, so there is no second nudge on top of dgo-analytic's follow-up.
+  - Under R1, hull-select's four facts serve the kept cell (`exists_kept_of_pocketRegion` takes no FollowsBoundary). They do not serve jacobson's R-cell branch: `nonempty_osinLoopCut_of_pocketRegion` binds `hin : P.inner.FollowsBoundary` (OsinPocketLoopCut.lean:209). A non-simple Case 1 walk then reaches that branch only through a simple walk or the pinch.
+
+## Closed and landed, 15:05–15:15
+- **T LANDED 48c6cc71e** (theoremc-retire; probe 0913-145812-91168 GREEN, verdict checked; 16 modules, including the 5f031e3a6 waist).
+  - Clause (b) of Lemma 9.7 is threaded below the cell count into Lemma 9.4. OsinLemma94SectionStatement, OsinLemma94UnboundInput (which gains mu), OsinLemma94CaseOneInput and OsinLemma94CaseOneSameCellStatement now take `OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount` after `Delta.LeastArea → 0 < Delta.rCellCount →`. This matches fff-periodic's OsinLemma94SameCellPocketInput.
+  - Assembly and Lemma97Pocket joined theoremc-retire's files. The window was held 14:55 and released 15:08; the wire queue line is closed.
+  - The waist compiled inside the probe, so ghw-assembly does not re-land. The binder text went to jacobson and ko-closed.
+- **audit-intro:** `exists_cyclicRuns` LANDED 25aef6af9 (OsinLemma94ClassRuns; probe 0913-145849-94334 GREEN, verdict checked). It imports only Mathlib and AxiomGuard; queued for wiring.
+  - Model tests: ClassBudget and ClassCovers both pass on OsinLemma94PolygonClasses (6db79cea7). The region-arcs-on-cells bound behind the 24 in L is not checked.
+  - Census row 53ef29c55 is keyed LINE:1636, and audit-intro is told to re-key it to the 12-hex key.
+- **nm-endpoints:** re-grade LANDED d994c2fe4 (graded at origin 09b3b57e4). All ten TorsionFreeGreendlingerLeaf rows stay partial, and no binder has a closed producer.
+- **kh-ejz:** ClosedWalkFaceColouring steps (B)/(D) at c5cb8e691. OsinPocketColouringModel LANDED 15504a498 (probe 0913-145837-93078 GREEN, verdict checked) with three models: pinched two-gon, lake complement, and a crossing calibration. Report 9398def35. OsinPocketColourNoncrossing is being probed.
+
+## Rulings, 15:05–15:15
+- **RETRACTED at 15:25; see the 15:25 rulings below.** The site-5 follow-on co-probe goes to theoremc-retire. It puts the same OsinLemma97Below binder into OsinLemma94PolygonCountInput (PlanarPieces:376) and OsinLemma94PolygonCoversInput (PolygonCount:39). Rule 22 co-probe over PlanarPieces, PolygonCount, SectionResiduals, GreendlingerOpenResiduals, GreendlingerPocketParts and all importers. Holds: hull-count94, hull-unbound, ghw-assembly, hull-respell, ghw-charp2. The SHA goes to fff-periodic.
+- **The 0913-135734-55169 correction stands** (roster 14:25 section: RED). Line 965 of the 14:10 section is superseded.
+- **kh-ejz:**
+  - it takes chain and closes of K.walk, for which there was no owner;
+  - it writes the pocket-level assembly: S′, then exists_of_exteriorAt, then pocketWalkColour, then (D).
+  - cite-hull's pocketWalkColour record 0913-145855-94731 reads FAILED, so it is not green; consume landed bytes only.
+  - kh-ejz answers dgo-analytic's binder 5 offer directly.
+
+## Closed and landed, 15:15–16:00 (verdict lines checked)
+- **hull-bridge:** `GeodesicCollar.insertStatement : InsertStatement` LANDED 2750beb3d (SurgeryGeodesicCollarInsert; probe 0913-152308-19611 GREEN). Stage 2 of binder 8 is closed; Stage 3 Join is at ce39bca65.
+- **kh-cckw:** E4 ceeb03ecd (probe 0913-151310-59486 GREEN). It covers only the G-face branch of binder 7.
+- **hull-component:** OsinLemma94ClassCovers 13cf15e1a (probe 0913-150746-83718 GREEN). a25fe2383 later made it red, since `ClassCovers` now takes `M L`; the fix is `Q.ClassCovers 1 (…)` at l.248, and wire-queue l.707 is held.
+- **hull-count94:** PolygonClasses respell LANDED a25fe2383 (probe 0913-152533-28063 GREEN): ClassCovers M L, `dense_of_classCovers`, `unbound_lt_of_classes` with 0 < M, and ClassCountInput ∃ K M L with the Lemma 9.7(b)-below binder. It missed a Rule 22 user (above).
+- **ko-closed:** OsinLemma94OneCellWindow 07cb99953 (probe 0913-150725-78874 GREEN). Sketch (i): the kills read windows only through values, so no un-pinch is needed. Residual Props: none.
+- **sec2-sentences:** OsinPocketKeptCellAbsorbed 3a76a2fb8 (probe 0913-150844-93030 GREEN). havoid is removed by absorption (`PocketMeetsContainedStatement`, proved); the endpoints are `exists_kept_of_{simple,pocketRegion}_of_value`.
+- **fff-quotient:** SurgeryNoncrossingCollarStrip + Models LANDED 92e97b798 (probe 0913-153039-58042 GREEN): noncrossing stripSingleton, kept as infrastructure.
+- **dgo-analytic:** OsinPocketMultipleEdgeLakeModel LANDED 6e4ef1293 (probe 0913-154539-52051 GREEN). With cell i in a lake, no PocketRegion satisfies P.outer.FollowsBoundary, so binder 5's outer clause has no witness on that map.
+- **nm-endpoints:** re-grade after T LANDED 46b49aa84; all ten rows stay partial. Its binder 2 owner cell is stale (see the retraction) and gets fixed at the next re-grade.
+- **theoremc-retire:** S5 cancelled and not landed (its co-probe was green, but the bytes were withdrawn). Holds released; report 1775eeca7.
+- **kh-torsion:** 7bb586a06, a89b55a0d, 5197fa6fc, 0509bcf85 (stripSingleton).
+- **chain-* plans landed:** chain-words 6d1e91e49, chain-itinerary 3145b4488, chain-reflection 566d5384e, chain-matricial 614c1634a, chain-radical 6dcc57aaa, chain-subshift (report on origin).
+- **Probe records reading FAILED:** fff-periodic 0913-150904-97612 and 0913-152931-54308; leavitt-units 0913-152143-12743; cite-hull 0913-150615-66993 (the models module was red, the main module built; re-probing).
+
+## Rulings, 15:25–16:00
+- **Binder 8: R1.** GeodesicCollarStatement keeps `hin`. audit-sec3 found it TRUE as stated, and the R2 un-pinch is not O-equivalent in lobeDiagram; kh-torsion concurs, since Double, Insert and Join all read vertex-simplicity.
+  - Split: kh-torsion writes `stripExtend` and the `stripStatement` induction (SurgeryGeodesicCollarPinch); hull-bridge writes `geodesicCollarStatement_of_strip`.
+  - fff-quotient's R2 Join test and its noncrossing PocketRegion builder are cancelled.
+- **Retraction:** theoremc-retire's site-5 follow-on co-probe is cancelled. No OsinLemma97Below binder goes on PolygonCountInput or PolygonCoversInput.
+- **hull-count94 rulings:**
+  1. sec5-sentences' count takes J (Σ #nonJoins k ≤ K n over polygons with an (A1) side and ≥ 2 non-joins). The bad-junction exclusion is owned by fff-periodic and written by hull-component, with the AvoidEdgeStep tools (OsinUnboundSameCellPocket:33, OsinUnboundSameCellBridge:48).
+  2. The ClassCountInput respell is approved (landed a25fe2383).
+  3. Side route: the side-level Covers respelling is skipped, and option (a) folds into ClassCovers M L. Waist binders 1–2 move to ClassCountInput with ghw-charp2's class-word respell.
+- **Count spelling (audit-intro's budget audit):** the count ends classes after joins across value-one gaps, is cyclic (including (sideCount−1, 0)), and runs over budgetPolygons. Cell and boundary classes ≤ 29n.
+- **Cutting classes: audit-intro owns the forest lemma.** Per polygon, #cutting ≤ 4·#non-cutting + 1, summed into K = 5(29 + 24ε) + 29.
+- **audit-sec3 next:** configuration B, the labelled two-petal rose, as a closed on-main model (PinchSplit.Input fails at both pinch vertices). The route finding for binder 7 piece (i) went to ghw-assembly.
+- **Binder 5:**
+  - hull-select lands its copy forms (RegionSide-copy-r1, MultipleEdgeAssembly-copy-r1) by a Rule 22 co-probe of OsinPocketRegionSide, OsinPocketMultipleEdgeAssembly, OsinDescentResiduals and OsinGreendlingerOpenResiduals, re-grepping users just before landing. The S.diagram form is circular (audit-sec5).
+  - audit-sec5 owns the cell-to-cell pocket face set and pinch Prop.
+  - dgo-analytic decides whether a least-area diagram can carry the lake, either by a proof that the producer excludes it or by a labelled model. kh-ejz rules on the outer clause after that.
+- **Binder 6 (D):** piece (ii) goes to hl-lemma46, with the statement agreed with kh-ejz first.
+- **Binder 4:** debt-conditional checks whether module 3b (havoid) is moot under the `_of_value` endpoints. It names baseline-debt's piece (hnc producer or module 4's pinched branch) and picks the pinched-case producer route.
+- **Blocker 1:** sec2-sentences takes whichever of hout and hfollows hull-select has not started. Otherwise it lands the endpoint with those as named hypotheses.
+- **Binder 3:** ko-closed offers jacobson a split, taking the cell-free branch through the OneCellWindow kill. jacobson keeps the pocket construction and the R-cell loop cut.
+- **Probe clones for sec:chain-core** (shared, serialized by the clone lock): chain-core cs-endpoint, chain-words lix-n, chain-subshift lix-b, chain-itinerary stw-fix, chain-matricial xxii-fix, chain-reflection lix-m, chain-radical quant-collapse.
+- **Duplicate:** `IsLEFRing.of_injective` is owned by chain-itinerary (Algebra/LEFRingDirectedUnion.lean), and chain-reflection imports it. chain-words does not land SubshiftWordGraph unverified.
+- **Parallelizing S3b and S5:** fff-quotient takes chain-subshift's module 5 (NoncyclicEdgeDefect). theoremc-retire takes chain-matricial's modules 2 (LocallyConstantClosedExtension) and 4 (PartialShiftClasses).
+- **Resumes after watchers failed to wake lanes:** cite-hull (FAILED record), census (merge-land-20 EXIT 5, REGISTER not 0), root-wire (wave15 nmwire rc=0 at 15:03).
+- **Census:** the 126 unassigned sentences all sit in the Introduction (5) and sec:chain-core (121, tex 13xx–15xx). The census re-keys them from the chain-* reports. The 15 partial rows (sec:torsion-free, thm:hull, lem:saturation) wait on the W1 waist.
