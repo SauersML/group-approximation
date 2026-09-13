@@ -105,7 +105,7 @@ theorem tendsto_map_sub_one_of_coronaMap_eq_one (M : QuasidiagonalTraceModel τ)
   have hab : coronaMap M a = coronaMap M 1 := by rw [ha, coronaMap_one]
   have hseq : normMatrixCStarCoronaMk (fun n ↦ M.space n)
       (modelSeq M a - modelSeq M 1) = 0 := by
-    rw [map_sub]
+    rw [RingHom.map_sub (normMatrixCStarCoronaMk (fun n ↦ M.space n))]
     exact sub_eq_zero_of_eq hab
   rw [normMatrixCStarCoronaMk_eq_zero_iff, IsNullMatrixSequence,
     Nat.cofinite_eq_atTop] at hseq
@@ -186,8 +186,10 @@ theorem generatorCoronaHom_apply (G : Type*) [Group G]
     [∀ n, Nonempty (M.space n)] (g : G) :
     (generatorCoronaHom G M g : NormMatrixCStarCorona (fun n ↦ M.space n))
       = coronaMap M (maximalGroupCStarGenerator G g) := by
-  show coronaMap M (maximalGroupCStarGenerator G g) + (1 - coronaMap M 1) = _
-  rw [coronaMap_one, sub_self, add_zero]
+  have h : (generatorCoronaHom G M g : NormMatrixCStarCorona (fun n ↦ M.space n))
+      = coronaMap M (maximalGroupCStarGenerator G g) + (1 - coronaMap M 1) := rfl
+  rw [h, coronaMap_one]
+  abel
 
 /-- **Printed sentence 4, first clause.**
 
