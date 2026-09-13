@@ -18,6 +18,11 @@ case `n = 2` of the conjecture, given that a finitely presented kernel on `A_L` 
 Meier--Meinert--VanWyk). The homological theorem already gives `H_1(L; Z) = 0`, so a
 counterexample needs a nontrivial perfect `π_1(L)`.
 
+**Proved (2026-09-13, unreviewed)** through the route
+`raag-virtual-fp-kernel-simply-connected-via-sigma-two`: a finitely presented kernel gives a
+nonempty `Σ^2(H)`, and `raag-finite-index-sigma-m-forces-connected-flag-complex` makes `L` simply
+connected. The first two attempts below recorded the search before that argument was found.
+
 ## Attempts
 
 - 2026-09-13, lane z1-19-raag-kernel, Bestvina--Brady Morse theory on finite covers. Let `f` be
