@@ -48,7 +48,7 @@ equivalent to `H4` having some nontrivial sofic quotient
    - has generators of tower-type distortion
      (`nontrivial-higman-quotients-have-tower-distorted-generators`).
 3. **Commutator-contractive lengths (Thom, arXiv:1005.0823, Theorem `main`
-   l.368–373 and Corollary `corhig` l.395–397 of the TeX).** *Does not reach
+   l.368–372 and Corollary `corhig` l.395–397 of the TeX).** *Does not reach
    soficity.* `H4` and its quotients do not embed in metric ultraproducts of
    finite groups with commutator-contractive invariant length functions. The
    normalized Hamming length on `Sym(n)` is not commutator-contractive.

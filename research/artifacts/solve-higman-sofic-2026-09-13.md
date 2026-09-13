@@ -48,7 +48,7 @@ $\overline \H_4(G, \phi) = H_4$."
 the semi-direct product of $\overline{\H}_k(G,\phi)$ with $C_k$, and
 $\overline\H_k$ is its kernel to $C_k$.
 
-**l.1183–1184.** "If $m \not= \pm 1$, then the image of $a$ in any proper quotient
+**l.1187.** "If $m \not= \pm 1$, then the image of $a$ in any proper quotient
 of $\BS(1,m)$ is finite."
 
 **l.1234–1243, Theorem `th-functions-BS`.** "The group $\H_k(\BS(1,m))$ has a
@@ -71,7 +71,7 @@ $C = O\left(2^{K \ep^{-2}}\right)$."
 
 ### Thom
 
-**l.368–373, Theorem `main`.** Commutator-contractive invariant length functions
+**l.368–372, Theorem `main`.** Commutator-contractive invariant length functions
 on finite groups, $\varepsilon<1/64$, and
 $d(a_i,[a_{i+1},a_i]) \leq \varepsilon$ imply $\ell(a_i) < 4 \varepsilon$.
 

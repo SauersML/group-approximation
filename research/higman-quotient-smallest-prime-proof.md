@@ -65,7 +65,7 @@ this.
 **Credit.**
 - **Step 1.** Kassabov--Kuperberg--Riley (arXiv:1712.07191) state that "If
   $m \not= \pm 1$, then the image of $a$ in any proper quotient of $\BS(1,m)$ is
-  finite" and sketch a proof by normal forms (TeX l.1183–1184). The proof above
+  finite" and sketch a proof by normal forms (TeX l.1187–1188). The proof above
   avoids normal forms.
 - **Step 3.** This is a smallest-prime argument for the absence of finite
   quotients. The same paper credits "A beautiful argument due to Higman" with
