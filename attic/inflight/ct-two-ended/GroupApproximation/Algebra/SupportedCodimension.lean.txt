@@ -2,6 +2,7 @@ import GroupApproximation.Meta.AxiomGuard
 import Mathlib.LinearAlgebra.Dimension.Constructions
 import Mathlib.LinearAlgebra.Dimension.Finrank
 import Mathlib.LinearAlgebra.Finsupp.Supported
+import Mathlib.LinearAlgebra.FreeModule.StrongRankCondition
 import Mathlib.LinearAlgebra.Projection
 import Mathlib.LinearAlgebra.Quotient.Basic
 
@@ -32,6 +33,7 @@ open Finsupp
 
 variable {α : Type*} (k : Type*) [CommRing k] [Nontrivial k]
 
+omit [Nontrivial k] in
 /-- The coordinate subspaces `k^{(Fᶜ)}` and `k^{(F)}` are complementary. -/
 theorem isCompl_supported_compl (F : Set α) : IsCompl (supported k k Fᶜ) (supported k k F) :=
   IsCompl.of_eq (by rw [← supported_inter, Set.compl_inter_self, supported_empty])

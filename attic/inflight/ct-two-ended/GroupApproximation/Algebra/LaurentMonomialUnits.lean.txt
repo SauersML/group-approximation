@@ -84,7 +84,7 @@ theorem coeff_support_nonempty_of_mul_eq_one [Nontrivial k] {p q : AddMonoidAlge
   · rw [AddMonoidAlgebra.coeff_mul, hp0, Finsupp.sum_zero_index] at h1
     exact zero_ne_one h1
   · rw [AddMonoidAlgebra.coeff_mul] at h1
-    simp only [Finsupp.sum, hq0, Finsupp.support_zero, Finset.sum_empty] at h1
+    simp only [hq0, Finsupp.sum_zero_index, Finsupp.sum_zero] at h1
     exact zero_ne_one h1
 
 /-- **Units of `k[z, z⁻¹]` are monomials** over an integral domain: `p q = 1` forces
@@ -125,6 +125,7 @@ theorem exists_single_of_mul_eq_one [IsDomain k] {p q : AddMonoidAlgebra k ℤ} 
 theorem exists_single_one_of_mul_eq_one_zmodTwo {p q : AddMonoidAlgebra (ZMod 2) ℤ}
     (h : p * q = 1) : ∃ a : ℤ, p.coeff = Finsupp.single a 1 := by
   classical
+  haveI : Nontrivial (ZMod 2) := ⟨⟨0, 1, by decide⟩⟩
   obtain ⟨hp, hq⟩ := coeff_support_nonempty_of_mul_eq_one h
   have key : ∀ n, (p * q).coeff n ≠ 0 → n = 0 := fun n hn => by
     rw [h, AddMonoidAlgebra.one_def, AddMonoidAlgebra.coeff_single, Finsupp.single_apply] at hn
