@@ -13,11 +13,11 @@ artifacts:
   - research/artifacts/hexagon-closing-letter-stage-obstruction-2026-09-12.md
 ---
 
-**Proof verified.** `w4-vf-gate` passed artifact Sections 1–6 and this display with no mathematical corrections (§38
-of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`, 427f2bfa50).
-* **Route.** `stage-models-cannot-close-the-leavitt-hexagon-proof`.
-* **Ternary half.** It rests on `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre` and that node's import.
-* **Unchanged.** `binary-complement-corner-has-no-weakly-finite-image` stays OPEN.
+**ESTABLISHED** (artifact Sections 1–5, route `stage-models-cannot-close-the-leavitt-hexagon-proof`).
+* **Verified.** `w4-vf-gate`, Sections 38 and 40 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`
+  (427f2bfa50, 20848c2409). No mathematical corrections.
+* **Conditional.** For `p = 3`, on the import of `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre`.
+* **Still open.** `binary-complement-corner-has-no-weakly-finite-image`.
 
 Let `p ∈ {2,3}`, `R = L_(F_p)(1,2)` and `G = R^x ≅ π_1(Y_hex)/<<t>>`, with `Y_hex` and `t` as in
 `leavitt-unit-groups-have-no-unstable-k2-at-rank-three`, point 4.
@@ -73,3 +73,5 @@ Nothing about the rank-two kernel beyond artifact Section 6.
     - the route requires the ternary inputs;
     - the rank bullet on the corner entry is corrected.
   - The route is created.
+- 2026-09-12 `w4-vf-gate` §40 (20848c2409): PASS on 767ec353f4. The last `Z_n` rename is applied, and the status
+  now reads ESTABLISHED.

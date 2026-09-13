@@ -3,7 +3,7 @@
 Lane `w7-hexagon-closing`, 2026-09-12, on paper.
 
 `w4-vf-gate` passed Sections 1–6 with no mathematical corrections (§38 of
-`research/artifacts/gk-vf-gate-verification-2026-09-12.md`, 427f2bfa50). Its advisories 38.5 are applied here.
+`research/artifacts/gk-vf-gate-verification-2026-09-12.md`, 427f2bfa50). Its advisories 38.5 are applied here, and `w4-vf-gate` §40 (20848c2409) passed this revision.
 Premise: `leavitt-unit-groups-have-no-unstable-k2-at-rank-three` (verified by `w4-vf-gate` §34, b55d89486d), point 4:
 `G = R^x ≅ π_1(Y_hex)/<<t>>`.
 
@@ -16,7 +16,8 @@ Premise: `leavitt-unit-groups-have-no-unstable-k2-at-rank-three` (verified by `w
   `isolated-regular-a2-hexagon-has-free-external-holonomy`.
 * **Section 2 (elementary): no exact closing.** `G` is finitely presented and has no nontrivial finite quotient. So by
   Łoś, every homomorphism of `π_1(Y_hex)` into an algebraic ultraproduct of finite groups that kills `t` is trivial.
-  Per stage: at all large stages the six-piece colimit `C_n` of finite pieces has no finite quotient in which `x_12(1)` survives.
+  Per stage: at all large stages the six-piece colimit `C_n` of finite pieces has no finite quotient in which
+  `x_12(1)` survives.
   So in every Theorem 1.1 model on `Y_hex`, no choice of forest bijections makes the letter permutation the identity.
 * **Section 3: no rank-null closing.** If `rk(σ(t) - 1) = 0`, then `σ` descends to a nontrivial homomorphism of `G`
   into a universal sofic group (`monomial-rank-models-are-hamming-models`), which contradicts nonsoficity. There is a
@@ -116,7 +117,7 @@ and 2.2 give `ρ_n = 1` almost everywhere. The model is nontrivial by Theorem 1.
 colimit of the six `H_(n,π)` along the six edge pieces `K_(n,e)`. There is `n_1` such that for every `n >= n_1`,
 every homomorphism from `C_n` to a finite group kills `x_12(1)`. So for `n >= n_1` there are no actions `λ_π` of the
 `H_(n,π)` on a finite set that agree on all six edges and move a point under `x_12(1)`. In the Theorem 1.1 model,
-where `x_12(1)` acts freely, `id ∉ π_n^0 C_n` for all `n >= n_1`, whatever forest bijections are chosen.
+where `x_12(1)` acts freely, `id ∉ π_n^0 Z_n` for all `n >= n_1`, whatever forest bijections are chosen.
 
 *Proof.*
 * **The limit.** Colimits commute with directed colimits, so `colim_n C_n = colim_π U_π = G` by (SPG2).
@@ -127,7 +128,8 @@ where `x_12(1)` acts freely, `id ∉ π_n^0 C_n` for all `n >= n_1`, whatever fo
   `w -> 1`, and `x_12(1) -> 1`.
 * **The model.** Actions agreeing on all six edges are a homomorphism `C_n -> Sym(Ω)`. ∎
 
-**Remark 2.5.** For `n >= n_1` the six-piece colimit `C_n` of finite pieces is not residually finite. This is the finite-stage
+**Remark 2.5.** For `n >= n_1` the six-piece colimit `C_n` of finite pieces is not residually finite.
+This is the finite-stage
 face of the fact that the radius-`r` hexagon colimit is freer than `St_3(R)`
 (`research/artifacts/leavitt-defect-floor-experiment-2026-08-26.md`). What fails here is the hypothesis of IRH: there
 is no coherent finite realization.
