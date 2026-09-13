@@ -32,6 +32,13 @@ at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-d
 - `87762b46c`, probe 0913-051219-87168 (both modules BUILT): `GGT/HullLemma35FreeFactors.lean`
   (new) proves `printedFreeFactorsHypEmbedded`. The module doc of `HullLemma35Printed` now
   records the proof. Queued for wiring.
+- `72a023f67`: this report, after the free-factor proof.
+- `be6e71f04`: `GGT/HullLemma35Transitive.lean` and `GGT/HullLemma35LocalFinite.lean` (both
+  new), the witness structure of Hull Lemma 3.5 and its local finiteness.
+  - Probe 0913-081320-10853 was `PROBE GREEN` and BUILT `HullLemma35LocalFinite`.
+  - `HullLemma35Transitive` was BUILT in 0913-080412-2056 and replayed with the same source.
+  - `#audit_axioms` shows only `propext`, `Classical.choice` and `Quot.sound`.
+  - Both modules are queued for wiring.
 
 | module | declarations |
 |---|---|
@@ -41,6 +48,8 @@ at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-d
 | `Manuscript/NonMF/TorsionFreePrintedSentences.lean` (edited) | `PrintedTheoremQuotientTrivial`, `manuscriptSentence_theoremQuotientTrivial : PrintedTheoremQuotientTrivial` |
 | `GGT/HullLemma35Printed.lean` (new) | `IsHypEmbeddedFamily`, `PrintedHullLemma35`, `PrintedFreeFactorsHypEmbedded` |
 | `GGT/HullLemma35FreeFactors.lean` (new) | `printedFreeFactorsHypEmbedded : PrintedFreeFactorsHypEmbedded`, `FreeFactorsHypEmbedded.factorsRelGenSet`, `FreeFactorsHypEmbedded.relBall_finite`, `FreeFactorsHypEmbedded.isFourPointHyperbolic_alphabet` |
+| `GGT/HullLemma35Transitive.lean` (new) | `HullLemma35.transitiveRelGenSet`, `isSymmetricGeneratingSet_transitive`, `transitive_alphabet_subset` |
+| `GGT/HullLemma35LocalFinite.lean` (new) | `HullLemma35.relBall_finite_transitive`, `exists_enlargedWord`, `relBall_subset_image` |
 
 ## Findings closed
 
@@ -110,6 +119,9 @@ This lane's own open item is `GGT.PrintedHullLemma35.{u}` (below).
 
 ## Hull Lemma 3.5
 
+Ruling of 09-13 08:30: this lane owns Hull Lemma 3.5, including the printed form. cite-hull
+stands off it.
+
 - Source checked against arXiv:1308.4345v2 (`pdftotext -layout`).
   - Lemma 3.5 is on p. 12 of §3. Hull prints it without a proof, as a "simplification of
     [DGO, Proposition 4.35]".
@@ -130,23 +142,38 @@ This lane's own open item is `GGT.PrintedHullLemma35.{u}` (below).
     `1` or its reduced word begins in the other factor" uses `RelHyp.headIdx_mul_of`.
   - Hyperbolicity: `isFourPointHyperbolic_unionCarrier` at the full factor alphabets
     (`δ = 1`), carried along `coprodIBoolEquiv` in every universe.
-- **`PrintedHullLemma35`: open.**
-  - It is `RelHyp.DGOProposition435PrintedStatement.{u, 0, 0}` at `Λ = Fin n`,
-    `M i = Fin (m i)`. That statement is unproved, is used only as `h435` in its own file,
-    and has no lane owner.
-  - `DGOProposition435.lean` proves only the joint direction (keep the family, add
-    auxiliary members at equal alphabets), and reduces it to local finiteness. It is not
-    the printed direction.
-  - Local finiteness plan: an excursion of a target path between two vertices of `H_i`
-    ends in the finite `D.relBall i n`. Adding those elements as base letters and applying
-    the proved Corollary 4.27 local half, `localFiniteness_of_finite_base_diff`, bounds the
-    ball.
-  - Hyperbolicity of `Γ(G, X ∪ ⋃ (Y_i ∪ K^i))`: guessing geodesics with
-    `dgoProposition414Uniform`. This extends the `Uncone` modules from cyclic members to
-    hyperbolic replacement graphs.
+- **`PrintedHullLemma35`: open. Local finiteness is closed; hyperbolicity remains.**
+  - The witness is `transitiveRelGenSet D E` (`be6e71f04`). Its base is `RelHyp.properBase D`
+    together with the images of the bases of the `E i`, and its members are the `K_{ij}`.
+    The letters of `D.base` that lie in some `H i` are dropped. Keeping them fails, because
+    the inverse of such a letter may be a letter only of `H i`. Hull's base is existential,
+    so dropping them costs nothing.
+  - Local finiteness: `relBall_finite_transitive`. A path of length at most `n` is read
+    through `H i`. Every excursion out of `H i`, and every letter of another member, becomes
+    one letter of the finite set `excursionLetters D i n ⊆ D.relBall i n`. The bound is the
+    Corollary 4.27 local half, `RelHyp.relBall_finite_adjoinBase'`.
+  - Remaining: `Γ(G, transitive alphabet)` is hyperbolic. The plan is Bowditch's criterion
+    (`OsinEnlargement.guessingGeodesics`) along a geodesic word of `D`, with each component
+    letter expanded into a geodesic word of `E i`. This generalizes the `Uncone` chain from
+    cyclic members to hyperbolic replacement graphs.
+    - The step and short-path conditions come from local finiteness.
+    - The thin-triangle condition comes from the triangle connectors (`Uncone.TriangleConnectors`,
+      stated for any `D`), a quadrilateral and hexagon bound in `Γ(H i, Y_i ∪ K^i)`, and the
+      corner walk.
+- **Finding: `RelHyp.DGOProposition435PrintedStatement` is false as formalized.**
+  - Counterexample: `G = Multiplicative (ZMod 5)` with generator `t`, `D.base = {t²}`,
+    `fam = ⊤`, `M = PEmpty`, `E.base = {t, t⁻¹}`.
+  - The statement forces the base `{t², t, t⁴}` with no members. That alphabet is not
+    inversion-closed, so no `RelGenSet` has it.
+  - Its `h435` consumers in `DGOProposition435Printed.lean` are vacuous. The finding was sent
+    to the team lead. This lane's route does not use that statement.
 
 ## Next
 
-- Wiring: `296386753` (three modules), `dd0412114` and `87762b46c` are queued.
+- Wiring: `296386753` (three modules), `dd0412114`, `87762b46c` and `be6e71f04` (two
+  modules) are queued.
 - The team lead accepted (a) through (d) as closed; census registers them at its re-baseline.
-- `PrintedHullLemma35` per the plan above. The local finiteness half comes first.
+- Hyperbolicity for `PrintedHullLemma35`, in new modules. First the expansion (guessed paths,
+  step and short-path bounds), then the piece geometry, the letter and corner lemmas, and
+  the thin-triangle assembly. Last, the endpoint `printedHullLemma35 : PrintedHullLemma35`
+  with `#audit_closed_axioms`.
