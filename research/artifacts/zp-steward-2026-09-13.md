@@ -51,3 +51,39 @@ Roots missing at c028e86895: 1.01, 1.06, 1.07, 1.09, 1.17, 1.20, 1.21, 1.24, 2.0
 2.12, 2.13, 2.16, 2.18, 2.19, 2.20, 3.01, 3.02, 3.03, 3.04, 3.06, 3.08, 3.09, 3.10, 4.01, 4.02, 4.04,
 4.05, 4.07, and 2.15b. By the later tip 315b95e0c2 (local `ls-tree`), 1.01, 1.07, 1.21, 2.13, 2.16, 2.18,
 2.19, 4.02, 4.04 and 4.07 had landed. The next check records the full list.
+
+## Check c2: tip 7839554085, started 16:02 CDT
+
+| item | value |
+|---|---|
+| tip | `7839554085ef2bc1321b4d1efc3b6aa235743aac` |
+| EXIT | 0 |
+| ERRORs (whole graph) | 0 |
+| ERRORs naming zaremsky-region files | 0 |
+| WARNINGs (whole graph) | 38 |
+| compiled | 11248 claims + 11447 routes |
+| numbered roots present | 62 of 62, plus 2.15b; none missing |
+| hub `zaremsky-open-problems-2026-07-12` | OPEN; route `zaremsky-open-problems-2026-07-12-all` is live and waits on the open roots |
+| routes into roots with `requires: []` | none |
+| hub route `requires:` | exactly the 62 numbered roots, no duplicates, 2.15b excluded |
+
+Established roots: the same seven as c1 (1.02, 1.15, 1.23, 2.06, 2.15, 2.17, 4.03), with the same
+derivations. 1.23 now has a PASS verdict (zp-review-topology part 1 §5).
+
+Held correctly open:
+- 1.19: the answer (Theorem 7) passed review in zp-review-topology part 3 §14. Both answer routes require
+  `bestvina-brady-kernel-finiteness-theorem`, which stays open until its citation route lands. The root
+  reads OPEN, as intended.
+- 2.11: the answer passed review in zp-review-groups part 1 §8. The held route `zaremsky-2-11-by-no` had not
+  landed at this tip, so the root reads OPEN.
+
+New WARNINGs naming zaremsky-region files. These are possible duplicates; nothing gates. The owner answers
+them with `distinct_from` when it next edits the files:
+- `zaremsky-3-01-aut-torelli-resolved` vs `zaremsky-3-01-out-torelli-resolved` (0.79), and
+  `zaremsky-3-01-out-torelli-resolved` vs `zaremsky-3-01-surface-torelli-resolved` (0.68). These are the
+  3.01 part claims.
+- `zaremsky-2-19c-every-gl-n-z-in-some-mv-resolved` vs `zaremsky-2-19d-every-gl-n-z-in-2v-resolved` (0.35)
+  and vs `zaremsky-2-19e-rationals-embed-in-2v-resolved` (0.25). These are the 2.19 part claims.
+- `ffz-rp-fpn-embedding-gives-fp-fn-embedding` vs `fournier-facio-zaremsky-rp-fp-n-hosts-give-f-n-hosts`
+  (0.27), in the 1.01 region.
+- The restatement lint on the four single-prerequisite answer routes from c1 is unchanged.
