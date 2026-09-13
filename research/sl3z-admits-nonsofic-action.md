@@ -71,3 +71,16 @@ every finite-index subgroup of `SL_3(Z)` and every group commensurable with it.
   superrigidity plus simplicity) would force `K <= SL_3(Z)`, impossible since `SL_3(Z)` is residually
   finite (`leavitt-unit-bernoulli-relations-have-no-sofic-host`). Still open as seeds: non-s-malleable
   free actions of `K`, and nonsofic groups that are not simple Kazhdan.
+* **Seeds that are not simple Kazhdan groups (solve-sl3z-nonsofic-seed, 2026-09-13).** Two more no-gos.
+  * **Bernoulli seeds.** Take a group with a wq-normal infinite Kazhdan subgroup, and a free factor of one
+    of its Bernoulli shifts, over any base. Its relation inside a host forces a finite-kernel morphism into
+    the host (`rigid-bernoulli-seed-relations-embed-their-group-in-the-host`). So the Kun--Thom wreaths, and
+    every group containing one, give no Bernoulli seed for any sofic host.
+  * **Kun--Thom relations.** The nonsofic generalized Bernoulli relations of Theorem E pairs over `F_q` sit
+    in no free action of a group without infinite elementary abelian `p`-subgroups
+    (`kun-thom-actions-have-no-host-without-p-torsion`), and `SL_3(Z)` is such a group.
+  * **What survives.** Free actions of nonsofic groups that are neither Bernoulli factors nor generalized
+    Bernoulli over `G/Γ ⊔ G`: algebraic, Gaussian, homogeneous or co-induced actions, and products
+    `Bernoulli × τ`, where Popa's Theorem 0.1 untwists only to a cocycle of `τ`. Also nonsofic groups in which
+    no nonsofic subgroup is known to have a wq-normal infinite Kazhdan subgroup. Dies at: no non-malleable
+    free action of a nonsofic group is recorded.

@@ -99,3 +99,12 @@ a Bernoulli shift.
   `howe-moore-lattice-nonsofic-action-transfers-to-mixing`. Bernoulli actions of simple Kazhdan nonsofic groups
   cannot seed a sofic host (`simple-kazhdan-bernoulli-relation-hosts-contain-the-group`,
   `leavitt-unit-bernoulli-relations-have-no-sofic-host`).
+* **Seeds that are not simple Kazhdan groups (solve-sl3z-nonsofic-seed, 2026-09-13).**
+  `rigid-bernoulli-seed-relations-embed-their-group-in-the-host` extends the Bernoulli no-go to every group
+  with a wq-normal infinite Kazhdan subgroup. That includes the Kun--Thom wreaths and every group containing
+  one.
+  `kun-thom-actions-have-no-host-without-p-torsion` shows that the nonsofic Kun--Thom relations of Theorem E
+  pairs sit in no free action of a group without infinite elementary abelian `p`-subgroups. That covers every
+  lattice of `SL_3(R)`, every finitely generated linear group in characteristic `0`, `F_2 × F_2`, and the
+  torsion-free tree-product lattices.
+  So for these hosts, containment seeds must be non-malleable free actions of nonsofic groups.
