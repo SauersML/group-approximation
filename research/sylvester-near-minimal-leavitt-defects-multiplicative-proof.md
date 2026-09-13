@@ -30,3 +30,5 @@ Artifact Section 3. Put `psi = rho_omega`, `P = D_(A_1) ... D_(A_k)`, `B = A_(k+
 3. **Count.** The triangular count for the commuting `P` and `T` gives `f(k+1) <= delta - c_*^Syl (1 - f(k))`.
 4. **Recursion.** Steps 1 and 3 give `|f(k+1) - delta f(k)| <= delta - c_*^Syl <= eps delta`. With `delta <= 1/2`
    this gives `|f(k) - delta^k| <= 2 eps delta`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 39.4 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Exact globality makes both corners fixed-point-free, the triangular count gives the upper recursion, and the error sum is at most `eps delta / (1 - delta) <= 2 eps delta`. Not decision-level: the kill-D route still needs `sylvester-disjoint-cylinder-defects-strictly-submultiplicative`.*

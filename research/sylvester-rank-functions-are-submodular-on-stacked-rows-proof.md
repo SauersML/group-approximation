@@ -22,3 +22,5 @@ artifacts:
   - Invertible left factors and right translation (`(M v) W = M (v W)`) are block computations.
   - Transitivity is part 1 with `(A, B, C) = (M W, M' W, M'' W)`.
   - Stacking is part 1 with `(A, B, C) = (M_1 W, M W, M_2 W)`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 39.1 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. The shear, one row subtraction and one (S4) step give part 1. Transitivity and stacking reduce to part 1 as stated.*

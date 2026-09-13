@@ -33,3 +33,5 @@ Artifact Section 2. Write `M ≼ M'` when `psi([M W; M' W]) = psi(M W)` for ever
      `leavitt-unit-group-carries-nontrivial-rigid-defect` and `leavitt-packet-linear-sofic-kills-kaplansky-target`.
    - `Gamma_0` normally generates `R^x` (`binary-leavitt-unit-group-is-simple`).
    - Every `Gamma_B` is a `V`-conjugate of `Gamma_0`, so it has both properties.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 39.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS, constant `1`. The forward containment comes from an exact identity, the reverse uses the Frobenius step for `h` in `P_Gamma` only, and fixed-point-freeness enters only in the last line. Correction forward to the artifact's calibration remark: without the compression hypothesis, even the `1/m` bound fails for general `Z`.*

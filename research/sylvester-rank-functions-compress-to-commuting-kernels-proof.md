@@ -24,3 +24,5 @@ artifacts:
 * **Part 2 (artifact Lemma 3.2).** `diag(P, T) [[1, 0], [1, 1]]` has the rows `[P, 0]` and `[T, T]`. Adding
   `T·(row 1) - P·(row 2)` to a zero row gives `[0, -PT]`, and (S4) on `[[ [P; T], [0; T] ], [0, -PT]]` gives the
   count.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 39.3 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. The row operation that deletes `B'` uses only `P_n B = B P_p`, both ranks in the left-factor step check, and the count is one (S4) step after `T·(row 1) - P·(row 2)`.*
