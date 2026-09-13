@@ -74,7 +74,29 @@ The consumer is hull-unbound's `Estimating/OsinUnboundCaseTwo.lean`. The avoidan
 
 The predecessor's other 26 TorsionFree/HullSC/limit-set modules belong to nm-endpoints.
 
+## W1 h94 helper: the oriented metric layer, with hull-count94
+
+Assignment (team-lead, 2026-09-13): the monotone Morse index choice and `WordConnectorPair` with
+`target_backward : b' < b`. `OsinLemma94RunInput.no_connector` is provable only in its oriented form.
+hull-count94 keeps oriented Lemma 25, `OrientedSidePair`/`OrientedClassPair` and the oriented three-class lemma.
+
+Both files LANDED at b1bd127ec. Probe 0913-025907-87619 GREEN (base b1bd127ec): both modules BUILT. Queued for wiring.
+- `GGT/VanKampen/Estimating/UnboundMonotoneMorseIndex.lean`:
+  - `vertex_take_prefix` and `isLambdaCQuasiGeodesicWord_take_prefix`;
+  - `IsWordMorseRadius`, the inner statement of `exists_word_replacement_morse`;
+  - `index_lt_of_prefix_near`: geodesic parameters `u + (3κ + 6δ) < u'` near vertices `a`, `a'` give `a < a'`;
+  - `exists_word_replacement_morse_monotone`: one radius on the Cayley realisation at `δ + 6`;
+  - `OsinUnboundScale.morse_gap_lt`: `3κ + 6δ < (λ√ρ/240 - c)/1000`.
+- `GGT/VanKampen/Estimating/UnboundOrientedWordConnectors.lean`:
+  - `OrientedWordConnectorPair` extends `WordConnectorPair` by `target_backward : b' < b`, with `targetWord_eq`;
+  - `OrientedWordSidePair`, `.toWordSidePair` and `.exists_connectors`;
+  - `OsinUnboundScale.orientedWordSidePair_of_parameters`: an antiparallel pair of long replacement segments
+    (`β ≤ u' - u`, `β ≤ t - t'`, matched endpoints within `12(δ+1)`) gives an oriented word pair at `eps`.
+
 ## Next
 
-Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
-re-grade the rows formalized.
+1. When the probe is GREEN, land normally and queue both modules for wiring.
+2. Once hull-count94 fixes the shape of `OrientedClassPair`, add the wrapper from the oriented three-class lemma to
+   `OrientedWordSidePair`.
+3. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
+   re-grade the rows formalized.
