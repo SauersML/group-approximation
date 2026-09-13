@@ -24,6 +24,29 @@ discussion after Question 1.10; source-verified 2026-08-21).
 
 ## Attempts
 
+- **Decision audit (2026-09-13; artifact
+  `research/artifacts/sp4-llp-decide-2026-09-13.md`).**  Neither side is
+  decided, and each reduces to a well-known hard statement.
+  - *Positive side.*  Block-diagonal `SL_2(Z) x SL_2(Z) <= Sp_4(Z)` contains
+    `F_2 x F_2`.  So LLP here would answer the LLP halves of
+    Fournier-Facio--Willett Questions 1.6 ("Does `F_2 x F_2` have the
+    (L)LP?") and 1.9 (an infinite property (T) group with the (L)LP), both
+    on arXiv:2603.18456v2 p. 6.  It would also make a finite Deligne cover
+    nonhyperlinear (`sp4-llp-failure-or-maslov-nonhyperlinear-extension`).
+  - *Refutation side.*  ISW Theorem 4.3 (arXiv:2006.01874, pp. 17-18) at
+    `A = C1` needs exactly `sp4-small-maslov-twisted-group-factors-are-ce`.
+    Theorem G and Corollaries D/E conclude only LP.  FF-W Corollary 3.36
+    and Example 3.37 (pp. 24-25) move LLP upward, and the rank-one `H_2`
+    blocks them.
+  - `sp4-finite-index-scalar-data-iff-hyperlinear-covers` covers two kinds
+    of packet: scalar packets on any finite-index subgroup, and packets over
+    any finite transitive action.  Such packets exist iff some
+    infinite-order integral class has every finite cyclic central cover
+    hyperlinear.  Only finitely many of those covers are residually
+    amenable.
+  - Two refutation mouths remain.  One is hyperlinearity of
+    non-residually-amenable Kazhdan central covers.  The other is a
+    non-atomic action with non-constant cocycles; no candidate is known.
 - **Fences.**  Ioana--Spaas--Wiersma (arXiv:2006.01874): `C^*(SL_n(Z))`
   fails LLP for `n >= 3`, and `C^*(Z^2 rtimes F_2)` (standard action,
   `F_2 <= SL_2(Z)` finite index) fails LLP.  LLP passes to subgroups
