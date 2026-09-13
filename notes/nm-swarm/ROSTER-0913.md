@@ -933,3 +933,52 @@ For EVERY census row in your range with status formalized or definition, and eve
   - (2): jacobson's nonempty_osinLoopCut_of_pocketRegion stays, and audit-sec5 writes no second LoopCut producer.
   - T threading (OsinLemma97Below) stays with theoremc-retire and lands as its own co-probe after (A).
 - hull-unbound next: model test of theoremc-retire's gap finding (can CaseOneWalk produce a gap-containing pair; would gap-free endpoints lose the ClassCovers count). Verdict to ko-closed and theoremc-retire.
+
+## Rulings 09-13 ~14:07–14:23
+
+- Roster 854abfaa8 records the 14:05–14:08 rulings.
+- dgo-geometric 67e5b2f9c OsinPocketLakeModel (probe 0913-140543-86239): the two-petal rose (4 darts, K=[0,2], Pi=[1], O=[3]).
+  - The walk [0,2] is noncrossing but not simple; the inner cycle follows and the outer [3,1] fails.
+  - Endpoint noncrossingPinchSidesPrediction holds both configurations, A (inner fails, outer follows) and B (inner follows, outer fails).
+  - Under R2, A needs no pinch and the lake stays in the pinch Prop.
+- Truth audit split: audit-sec3 takes GeodesicCollarStatement and PocketCellTransportStatement; dgo-geometric takes PocketPinchLabelledStatement on a diagram-level lake PocketFaceSet.
+- jacobson 77697a2fb: OsinPocketLoopCut binds P.inner.FollowsBoundary (:209) and passes it to exists_twoCollars_of_ne_or (:228). That lemma has four users: CollarOfGeodesic, MultipleEdgeAssembly, TwoCollars, LoopCut.
+  - Ruled: the two-line deletion joins dgo-analytic's R2 co-probe together with kh-torsion's collar restatement.
+- dgo-analytic 8bbf0a9c8, PocketRegion.ofNoncrossingClosedWalk: needs a noncrossing walk, the outer face off the side, outer FollowsBoundary and an Euler equality; gives no inner FollowsBoundary.
+- Gap (jacobson): no producer on main gives a PocketRegion from the Case 1 walk X ++ M' (the noncrossing, outer-face, outer-follows and Euler facts).
+  - Ruled part of jacobson's SameCellStatement producer. First check whether pendant-path removal 61c2ade8e makes the walk simple, so ofSimpleClosedWalk suffices. Otherwise state the four facts as one named statement, model-test on a pendant-spur walk, and take the Euler fact from hull-euler.
+- hull-select's copy form of MultipleEdgePocketRegionInput (r1): accepted by jacobson; CellPocketWalk.walk matches.
+- hs-vanishes: OuterSpurThickeningStatement is PROVED. Statement 0a7715b56; proof 36ff632cd, `outerSpurThickening` (probe 0913-140848-97054 GREEN, closed axioms, no residual Props).
+  - It gives an O-equivalent S' with no outer spur, the same weight and e : S.family ≃ S'.family keeping SameTargetProfile and source indices. Proved by FaceEdgeDoubling at the outer face.
+  - Configuration (a) closed. kh-ejz applies it before building the pocket walk on S'.diagram.
+- baseline-debt 348fc1af7: row 3009704fef89 re-graded to formalized.
+  - C6′ findings: (i) TwoGonHoldsInput concludes False, but its premises don't move to the copy; (ii) sec2-sentences' exists_kept_of_simple (492057fb6) is module 4's simple case.
+  - Ruled: the simple case cites exists_kept_of_simple, with no new code. The 14:00 copy ruling is revised: module 4 needs the premises on S', not a transport of the conclusion.
+  - hs-vanishes takes the premise transport as a new theorem beside the endpoint; baseline-debt supplies the premise list. The non-simple remainder goes to debt-conditional's pick.
+- fff-periodic, site 5 plan: (C) binder OsinLemma94SameCellPocketInput (new module OsinUnboundSameCellPocket), and (T) count Σ|U| ≤ ⌈1/λ⌉₊ Σ(unbound non-self-facing) + ⌈c/λ⌉₊(n + 2|M|).
+  - Covers takes L = 24ε⌈1/λ⌉₊ + 25⌈c/λ⌉₊ and density ⌊ρ/(4M²)⌋.
+  - Ruled: T (theoremc-retire's option (i) threading) lands regardless of ko-closed's pick, as its own co-probe after (A). This supersedes "only if (2)".
+  - fff-periodic owns the shared kill "relator-cell pocket plus hbelow gives False", which jacobson's R-cell branch consumes.
+- hull-select free: go-lemma42's unlanded OsinPocketGlueCellTransport proves pocketCellTransport in full, so no split.
+  - Assigned: the four-facts producer for non-simple pocket walks (8bbf0a9c8's inputs), for jacobson's Case 1 walk and fff-periodic's site 5. It consumes hull-respell/cite-hull (A′) and hull-euler's Euler lemma, and model-tests outer FollowsBoundary first.
+  - Its copy-form item 2 is parked until R1/R2.
+- ghw-charp2's (A) co-probe 0913-135734-55169 GREEN: record 14:03, base 67ec49f02, 164 modules. The monitor missed it and the lane sat idle ~15 min.
+  - Resumed by raw id ~14:20 to land, re-probing only the files whose origin blob changed since base.
+  - kh-cckw's OsinPocketPinchSplit fix probe 0913-135730-54647 GREEN (13:58), same miss; resumed by raw id to land over 9beb8f992.
+- dgo-analytic 1b4053286 OsinPocketCutResiduals (probe 0913-141538-35582): osinSectionPocketCutSection_of_residuals over four open Props.
+  - The four: SectionPocketFaceSet (kh-ejz), PocketPinchLabelled (hull-respell), GeodesicCollar (kh-torsion), PocketCellTransport (go-lemma42).
+  - kh-torsion's report route uses inner following (sector lemma; Strip/Walk take IsSimpleClosedWalk), which is R1 by the 11:55 ruling. Confirmation requested.
+- Q2 ruled: no new merge Prop.
+  - Copies (b)/(c) (leavitt-units) take OuterSpurThickeningStatement's output shape, so the kept-cell theorem applies on S'.
+  - Blocker 1 = exists_kept_of_pocketRegion (ofNoncrossingClosedWalk hw hout hfollows heuler) rfl havoid. hout/hfollows: hull-select; heuler: hull-euler; havoid: sec2-sentences, by the absorbed-set route with "meets implies contained" model-tested first.
+- dgo-geometric 80df00345 (probe 0913-141525-34391): all four builder hypotheses hold on the pinched two-gon.
+  - reclosedMap_euler_congr carries innerMap_euler over.
+  - hfollows fails on the lake rose, so lakes stay inside PocketPinchLabelledStatement.
+- go-lemma42 874a332a2: pocketCellTransport landed unverified, probe running. It discharges hcell at four consumers.
+  - Consumer files are not edited; the top-level composition supplies it.
+- ghw-assembly: wrap-pair ruling repeated (no code fix, one class per polygon in L). Assigned the W1 top-level composition over the residual Props only (h94, hmulti, hpocket, hcell, outer transport plugged in); it reports the residual binder list.
+- cite-hull takes parity (C); hl-lemma46 takes parity (D), or a (B) sub-step, from kh-ejz.
+- kh-torsion 0509bcf85: stripSingleton closed.
+  - Corrected: Insert belongs to simple-group (fifth notice) and Join is done (ce39bca65).
+  - kh-torsion agrees with hull-bridge which of Pinch or the induction each takes. R1/R2 decision requested.
+- Wave 14 building: tag 0913-141703-40545, base 80df00345. 12 modules: EulerTwoGonFaceClass, GlueOuterArc, GlueOuterTransport, QuasiGeodesicValueOneGap, ShortSides, FaceSetCircuitNoncrossing, KeptCell, OneCellValue, LoopCut, RegionNoncrossingWalk, OuterSpurThickening, BudgetFilter.
