@@ -91,6 +91,44 @@ baseline-debt, and the lead was asked for a wall piece.  The last census merge (
 `4626c73f2`) predates `2c3c8cb40`, which deleted the TheoremCAssembly sorries.  The conditional-debt
 keys should therefore re-kind at the next rerun; this is a prediction, not a run.
 
+## W1 h94 oriented metric layer (lead assignment, 2026-09-13)
+
+The lead assigned this lane one piece of the metric half of Osin's Lemma 9.4 on wall hgreendlinger:
+`OsinLemma94AntiparallelMetricStatement` (`OsinLemma94Pieces.lean`, `b8441172e`).  Its conclusion
+is `∃ k, ∃ C : WordConnectorPair …, C.b' < C.b`.  The planar half refutes only that antiparallel
+case (`OsinLemma94PlanarPolygons.no_antiparallel`), because Case 1 fills the quadrilateral
+`X ++ target ++ Y ++ source⁻¹`.  hull-count94 owns the layer and is doing oriented Lemma 25 first
+(unlanded drafts `OlshanskiiFirstVisit`, `OlshanskiiOrientedLemma25`, both in its lane file list).
+Its plan (`674b1b428`) names four more pieces:
+
+1. `OrientedSidePair` / `OrientedClassPair`, with the restriction, rotation, inner-cut and outer-cut
+   transports.  These only translate parameters, so they keep orientation.
+2. The oriented three-class polygon lemma.
+3. A monotone Morse index choice: on a `(λ, c)`-quasi-geodesic word, indices near geodesic
+   parameters `t < t'` with `t' - t` above a constant satisfy `k < k'`.
+4. `WordConnectorPair` with `target_backward : b' < b`, and the component-family theorem at that
+   orientation.
+
+sec5-sentences helps with one piece.  This lane takes the second unstarted piece, confirmed through
+sec5-sentences rather than hull-count94.  No Lean is written until the piece is confirmed.
+
+Where the landed chain loses the orientation, which is where each piece plugs in:
+
+* `exists_classPair_of_aggregate_all` returns `ClassPair`, and `SidePair` ends `β ≤ |t' - t|`.
+  `OsinUnboundScale.exists_polygonPair` passes it on unchanged (pieces 1 and 2).
+* `OsinUnboundScale.exists_originalArcPair_of_class_near` picks the Morse indices `a, a', b, b'`
+  existentially from `hnear`, whose source is `exists_word_replacement_morse` (piece 3).
+* `WordSidePair.exists_connectors` swaps `a ↔ a'` and `b ↔ b'` together when `a' < a`, and
+  `unboundComponentWordPolygons` ends in `Nonempty (WordConnectorPair …)`, so `b' < b` is never
+  recorded (piece 4).
+
+Interfaces read at origin/main: `OlshanskiiPolygonClasses`, `OlshanskiiCutClasses`,
+`OlshanskiiClassifiedBisection`, `OlshanskiiSmallClassBound`, `OlshanskiiThreeClasses`,
+`OlshanskiiLemma25`, `OlshanskiiChord`, `UnboundPolygonCut`, `UnboundParameters`,
+`UnboundPolygonGeometry`, `UnboundWordPolygon`, `UnboundWordPolygonMonotone`,
+`UnboundComponentWordPolygons`, `UnboundWordConnectors`, `WordSegmentConnectors`,
+`WordGeodesicReplacement`, `CayleyGeodesicMorse`, `OsinUnboundCaseOne`, `OsinLemma94Pieces`.
+
 ## Rows (`metadata/nm-census-rows/hs-vanishes.tsv`)
 
 | key | line | status | carriers added |
@@ -104,10 +142,11 @@ keys should therefore re-kind at the next rerun; this is a prediction, not a run
 * LANDED `850cd7b7d`: both modules, landed unverified.
 * Probe `0913-014626-72541` GREEN on base `a763cb445` (BUILT and COMPILED both modules).  The bytes
   on origin are identical, so the green landing reported NOTHING TO LAND (`49ad84503`).
-* Rows LANDED `d785326e7`.
+* Rows LANDED `d785326e7`.  Report LANDED `031bcc87b`, updated by the commit that carries this
+  section.
 * Wire queue: `GroupApproximation.Manuscript.OneSidedMFRadical.HSVanishesProducers` at `850cd7b7d`;
-  not yet root-wired at `bb354f078`.
+  not yet root-wired at `09373552f`.
 * Residual propositions owned by this lane: none.  The target is met by the producer.  The retired
   findings await the census rerun.
-* Next: no Lean in flight.  Waiting for the lead to name a wall piece and its integrator; the lane
-  splits with the integrator before authoring.
+* Next: the second unstarted piece of the oriented Lemma 9.4 metric layer, once sec5-sentences
+  confirms it with its Lean name and file.  No Lean in flight.
