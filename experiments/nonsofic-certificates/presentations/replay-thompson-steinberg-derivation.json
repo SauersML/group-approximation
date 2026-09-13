@@ -1,0 +1,228 @@
+{
+ "relators_replayed": 43,
+ "by_family": {
+  "B": 17,
+  "C": 13,
+  "P": 12,
+  "Q": 1
+ },
+ "failures": [],
+ "verdict": "PASS",
+ "table": [
+  {
+   "family": "B",
+   "relator": "[X12(1),X34(1)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(1),X34(e)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(1),X34(f)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(1),X34(E)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(1),X34(F)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(e),X34(e)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(e),X34(f)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(e),X34(E)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(e),X34(F)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(f),X34(f)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(f),X34(E)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(f),X34(F)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(E),X34(E)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(E),X34(F)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(F),X34(F)]",
+   "rule": "B-dis"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(1),X13(1)]",
+   "rule": "B-src"
+  },
+  {
+   "family": "B",
+   "relator": "[X12(1),X32(1)]",
+   "rule": "B-tgt"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(1),X23(1)] = X13(11)",
+   "rule": "C11"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(1),X23(e)] = X13(1e)",
+   "rule": "C1d(d=0)"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(1),X23(f)] = X13(1f)",
+   "rule": "C1d(d=1)"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(1),X23(E)] = X13(1E)",
+   "rule": "C11"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(1),X23(F)] = X13(1F)",
+   "rule": "C11"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(e),X23(1)] = X13(e1)",
+   "rule": "C11"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(e),X23(e)] = [X14(e),X43(e)]",
+   "rule": "C1d(d=0) | C1d(d=0)"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(e),X23(f)] = [X14(e),X43(f)]",
+   "rule": "C1d(d=1) | C1d(d=1)"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(e),X23(E)] = [X14(e),X43(E)]",
+   "rule": "C11 | C11"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(e),X23(F)] = [X14(e),X43(F)]",
+   "rule": "C11 | C11"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(f),X23(1)] = X13(f1)",
+   "rule": "C11"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(f),X23(e)] = [X14(f),X43(e)]",
+   "rule": "C1d(d=0) | C1d(d=0)"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(f),X23(f)] = [X14(f),X43(f)]",
+   "rule": "C1d(d=1) | C1d(d=1)"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(f),X23(E)] = [X14(f),X43(E)]",
+   "rule": "C11 | C11"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(f),X23(F)] = [X14(f),X43(F)]",
+   "rule": "C11 | C11"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(E),X23(1)] = X13(E1)",
+   "rule": "CEd(d=0)"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(E),X23(e)] = X13(Ee)",
+   "rule": "C11"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(E),X23(f)] = X13(0)",
+   "rule": "Z (B-dis)"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(E),X23(E)] = [X14(E),X43(E)]",
+   "rule": "CEd(d=0) | CEd(d=0)"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(E),X23(F)] = [X14(E),X43(F)]",
+   "rule": "CEd(d=0) | CEd(d=0)"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(F),X23(1)] = X13(F1)",
+   "rule": "CEd(d=1)"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(F),X23(e)] = X13(0)",
+   "rule": "Z (B-dis)"
+  },
+  {
+   "family": "C",
+   "relator": "[X12(F),X23(f)] = X13(Ff)",
+   "rule": "C11"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(F),X23(E)] = [X14(F),X43(E)]",
+   "rule": "CEd(d=1) | CEd(d=1)"
+  },
+  {
+   "family": "P",
+   "relator": "[X12(F),X23(F)] = [X14(F),X43(F)]",
+   "rule": "CEd(d=1) | CEd(d=1)"
+  },
+  {
+   "family": "Q",
+   "relator": "[X12(e),X23(E)][X12(f),X23(F)] = X13(1)",
+   "rule": "C11, C11, split True"
+  }
+ ]
+}
