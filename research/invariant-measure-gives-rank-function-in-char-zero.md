@@ -6,6 +6,7 @@ title: In characteristic zero an invariant probability measure on the unit space
 distinct_from:
   cantor-z-crossed-product-embeds-in-continuous-factor: that is Ara-Claramunt for Cantor Z-systems over an arbitrary field, obtained by a Bratteli-diagram rank completion; this covers every minimal effective ample groupoid but only over subfields of the complex numbers, by the groupoid von Neumann algebra.
   invariant-measure-gives-rank-function-any-field: that is the open statement over an arbitrary field, which contains Kaplansky stable finiteness; this is its settled characteristic-zero case.
+  char-zero-steinberg-stably-finite-iff-invariant-measure: that obtains stable finiteness of the Steinberg algebra in characteristic zero through the reduced C*-algebra and the Tarski paradox side; this constructs a faithful Sylvester matrix rank function, strictly stronger than stable finiteness, through the groupoid von Neumann algebra.
 artifacts:
   - research/artifacts/un-algebraic-tarski-2026-09-13.md
 ---

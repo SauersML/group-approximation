@@ -235,21 +235,34 @@ unperforation with `x = 2θ`, `y = θ`, `m = n` gives `2θ ≤ θ`. ∎
 gives `2[V] ≤ [V]`. ∎
 
 **Theorem 6.4.** Let `𝒢` be minimal, effective, Hausdorff, ample, second countable with compact unit
-space, `S(𝒢)` almost unperforated, `k` a countable field, `R = A_k(𝒢)`. Then exactly one of:
+space, `S(𝒢)` almost unperforated, `k` a countable field, `R = A_k(𝒢)`. Consider:
 
-1. `X` carries a `𝒢`-invariant probability measure; or
+1. `X` carries a `𝒢`-invariant probability measure;
 2. `R` is **properly purely infinite** and simple; `R` is not directly finite; and for every `n ≥ 2`
    every homomorphism from `EL_n(R)` to an MF group is trivial.
 
-*Proof.* The two cases are exclusive and exhaustive by Theorem 2.4. In case 2, `θ` is paradoxical, so
+Then (2) holds whenever (1) fails, so at least one holds, over every field. For `k ⊆ ℂ` the two are
+exclusive. In characteristic `p` exclusivity is **not** claimed.
+
+*Correction (un-verify-3, 2026-09-13).* This theorem was first landed as "exactly one of" for every
+field. Theorem 2.4 excludes an invariant measure only against `θ` being paradoxical in `S(𝒢)`, not
+against the ring properties in (2). Excluding those needs *invariant measure ⟹ stably finite*, known
+for `k ⊆ ℂ` by Theorem 3.1 and open in characteristic `p` (§4.1), because `ι` is not known to reflect
+paradox (Open 2.3b).
+
+*Proof.* By Theorem 2.4, if (1) fails then `θ` is paradoxical. For `k ⊆ ℂ`, (1) gives a faithful rank
+function by Theorem 3.1, hence stable finiteness by Lemma 2.2, contradicting (2). Now assume `θ` is
+paradoxical, so
 Lemma 6.3 gives `2[V] ≤ [V]` for every nonempty compact open `V`; applying `ι` (Lemma 1.1), every
 `1_V` is a properly infinite idempotent of `R`. Minimality makes `𝒢` strongly effective (the only
 closed invariant subsets of `X` are `∅` and `X`, and `𝒢` is effective), so Larki Thm 3.4
 (on main, `purely-infinite-steinberg-algebras-characterized`), implication (2) ⟹ (1), gives `R`
-properly purely infinite. Simplicity is BCFS/Steinberg. Taking `V = X`, `2[1] ≤ [1]` gives `s, t ∈ R`
-with `ts = 1 ≠ st`, so `R` is not directly finite, and the non-MF paper's Cor `cor:simple-infinite-ring`
-(tex l.1016: "If `R` is a countable simple unital ring that is not directly finite, then every
-homomorphism from `EL_n(R)` to an MF group is trivial for every `n ≥ 2`") applies. ∎
+properly purely infinite. Simplicity is BCFS/Steinberg. Taking `V = X`, `2[1] ≤ [1]` gives `s_1, s_2, t_1, t_2 ∈ R`
+with `t_i s_j = δ_ij 1`. Then `ts = 1` for `s = s_1, t = t_1`, and `1 − st` is full because
+`t_2 (1 − s_1 t_1) s_2 = 1`; in particular `R` is not directly finite. The established node
+`full-defect-ring-non-mf-at-rank-two` (the full-defect criterion from rank two, underlying the non-MF
+paper's Thm `thm:full-defect-ring`, tex l.918) then gives triviality of every homomorphism from `EL_n(R)`
+to an MF group for every `n ≥ 2`. ∎
 
 Theorem 6.4 improves `un-paradox`'s threshold from `N ≥ 2n` to `N ≥ 2`, at the cost of almost
 unperforation, and adds pure infiniteness of `R`. Both calibrating groupoids have almost unperforated
