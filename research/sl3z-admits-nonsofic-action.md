@@ -39,6 +39,15 @@ every finite-index subgroup of `SL_3(Z)` and every group commensurable with it.
   nonsofic action iff it has a free mixing one, `SL_3(R) ×_(SL_3(Z)) Z'`. So
   restricting to mixing actions loses nothing. But a mixing witness is most
   naturally proved nonsofic by orbit equivalence to a non-mixing one.
+* **The lattice-space action (sofic, dead as a candidate).** The explicit free
+  mixing candidate `SL_3(Z) ↷ SL_3(R)/SL_3(Z)` is sofic
+  (`sl3z-lattice-space-action-is-sofic`). Its Hecke orbits are finite and
+  equidistribute, and `finite-equidistributed-orbits-give-sofic-action` turns them
+  into finite models. So induction through `SL_3(R)` preserves soficity in both
+  directions, and a mixing witness must come from a nonsofic seed. The explicit
+  candidate with no periodic orbits is
+  `sl3z-on-cocompact-lattice-quotient-is-not-sofic`, with route
+  `sl3z-nonsofic-action-from-cocompact-lattice-quotient`.
 * **Other lattices of `SL_3(R)`.** Equivalent to this claim:
   `paunescu-class-is-measure-equivalence-invariant` shows `SL_3(Z)` has a nonsofic
   action iff some lattice of `SL_3(R)` does, e.g. a cocompact torsion-free one from

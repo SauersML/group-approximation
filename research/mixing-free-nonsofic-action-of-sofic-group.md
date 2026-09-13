@@ -72,3 +72,14 @@ a Bernoulli shift.
   square complex group supplies (Burger–Mozes Theorem 6.5). Radu's BMW lattice cannot seed
   an induced mixing action (`radu-lattice-induced-actions-are-never-mixing`). Dies at: no
   nonsofic lattice in a product of trees is known.
+* **Homogeneous actions of arithmetic lattices (sofic, dead as candidates).** The
+  canonical free mixing action `SL_n(Z) ↷ SL_n(R)/SL_n(Z)` is sofic for every
+  `n >= 2` (`sl3z-lattice-space-action-is-sofic`). The points with finite orbit are
+  the images of the commensurator. Mixing of `SL_n(Q_p)` on the S-arithmetic cover
+  makes the Hecke orbits equidistribute, and
+  `finite-equidistributed-orbits-give-sofic-action` gives finite models. So mixing
+  does not obstruct soficity when periodic orbits equidistribute, and route
+  `mixing-nonsofic-action-from-sl3z-lattice-space-action` can never fire. The
+  surviving explicit candidate is `SL_3(Z) ↷ SL_3(R)/Λ` with `Λ` cocompact, which
+  has no finite orbits (`sl3z-on-cocompact-lattice-quotient-is-not-sofic`, route
+  `mixing-nonsofic-action-from-sl3z-cocompact-quotient`).
