@@ -68,7 +68,7 @@ repository, one immutable commit and the configuration path. No lane submits it.
 
 8. **`formalization.yaml`.** Rows by fz-integrate, plus pc-integrate's held rows released at 9f0d94a0d.
    - **Original-proof row.**
-     - Credit: Claude (Anthropic), no custom proof tool.
+     - Credit: Claude (Anthropic), using the custom proof tool Cairn (eafdd34ec, which replaced "no custom proof tool").
      - Timeline f375478c7, 0efeac410, 8b65f0932, badc66e2d and 5dfab98df.
      - Released at 9f0d94a0d: "The Lean endpoint GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef landed
        with the completed Palomar surface at 08:43:33 UTC (5f9c16b7b). All of this postdates …".
