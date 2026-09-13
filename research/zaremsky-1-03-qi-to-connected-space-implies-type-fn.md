@@ -41,11 +41,18 @@ Never write a `requires: []` route into this claim.
 
 ## Attempts
 
-- 2026-09-13 (lane z1-03-qi-fn): the literal reading fails (see above). Under
-  the geodesic reading, the case n = 2 is being written up as a positive
-  theorem. A coarse loop is realized by geodesics and filled by a disc in X.
-  Uniform continuity of the disc gives a fine triangulation, and projecting
-  it to G fills the loop at a bounded Rips scale. Only edges need realizing
-  in X, so no uniformity is used. For n ≥ 3, realizing 2-simplices needs
-  discs in X of bounded diameter for small loops, and plain simple
-  connectivity does not give them. That is the open case.
+- 2026-09-13 (lane z1-03-qi-fn): the literal reading fails (see above).
+- The geodesic case n = 2 is settled positively:
+  `fg-group-qi-to-simply-connected-geodesic-space-is-fp`, reviewed PASS by
+  z-verify-topology (`research/artifacts/zp-review-topology-2026-09-13-part2.md`
+  §12a). Only edges have to be realized in X, and geodesics do that.
+- For n ≥ 3 the open question reduces to a combinatorial one.
+  `short-detour-enumeration-gives-contractible-qi-2-complex` (reviewed PASS,
+  §12b) shows that a group with a short-detour enumeration is
+  quasi-isometric to a contractible proper geodesic 2-complex. So a no answer
+  follows from `some-non-f3-group-has-a-short-detour-enumeration`, and a yes
+  answer would force every group with such an enumeration (every almost
+  convex group, for instance) to be of type F_∞.
+- Test cases under way: the Stallings–Bieri group SB_3 and the double
+  F_2^2 *_{SB_2} F_2^2
+  (`research/artifacts/zp-sb3-short-detour-2026-09-13-part1.md`).
