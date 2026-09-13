@@ -56,8 +56,19 @@ with cosets of a subgroup replaced by orbits of a subrelation.
   `ℓ²(F_2)`. So for the unit vector `Ψ`:
   `||Ψ∘T~_a − Ψ||² + ||Ψ∘T~_b − Ψ||² = 4 − ⟨(V_a + V_a^* + V_b + V_b^*)Ψ, Ψ⟩ >= 4 − 2√3`,
   where `V_s Ψ = Ψ ∘ T~_s`. Dividing by 4 gives the bound.
-- *Right inverses.* For `ζ`, take `f` = the `y`-component of `ζ`. As in the coset case this gives
-  `d(φ ∘ ζ, id) >= (2 − √3)/4`.
+- *Right inverses.* Let `ζ ∈ End_G(X)`, write `ζ(x) = (u', y', w')`, and put `ε = d(φ ∘ ζ, id)`. Take `f = y'`.
+  - Since `φ(ζ(x)) = (u', δ_(u')(y'))`, we have `µ{u'_1 ≠ u_1} <= ε`, and the defects of `f` along `τ^(u')` are at
+    most `ε`.
+  - Fix `s`, a finite `W ⊆ G` and a function `C` of `u|W` with `ρ^G{c_s(u) ≠ C(u|W)} < η`. Both `u` and `u'` have
+    law `ρ^G`, the second because `ζ` preserves measure. And `u'|W = u|W` off a set of measure `|W|·ε`, by
+    invariance. So `µ{c_s(u') ≠ c_s(u)} <= 2η + |W|·ε`.
+  - Put `η_s(ε) = inf over (W, C, η) of (2η + |W|·ε)`; it tends to `0` as `ε → 0`. Then the defects of `f` along
+    `τ^u`, which is the `τ` of the bound above, are at most `ε + η_s(ε)`.
+  - So `2ε + η_a(ε) + η_b(ε) >= 1 − √3/2`. The left side tends to `0` as `ε → 0`, so `ε >= c` for some `c > 0` that
+    depends only on `c_a` and `c_b`.
+
+  In the coset version the subrelation does not depend on the point, and the constant `(2 − √3)/4` survives for
+  every equivariant Borel `ζ`.
 
 **Item 3.** Let `H(κ) > log 4`.
 - Choose a nontrivial finite `ρ` with `H(ρ) = H(κ) − log 4`. Then `X_κ ≅ X` by

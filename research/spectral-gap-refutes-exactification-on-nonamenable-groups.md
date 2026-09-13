@@ -23,8 +23,11 @@ distinct_from:
 
    Then `φ(u, y, w) = (u, δ_u(y))` is a non-invertible endomorphism of `X`.
 2. **Spectral bound.** For every equivariant Borel `f: X → {0,1}^G`,
-   `µ{f_1 + f_(τ_a 1) ≠ y_1} + µ{f_1 + f_(τ_b 1) ≠ w_1} >= 1 − √3/2`. So `d(φ ∘ ζ, id) >= (2 − √3)/4` for every
-   equivariant Borel `ζ: X → X`.
+   `µ{f_1 + f_(τ_a 1) ≠ y_1} + µ{f_1 + f_(τ_b 1) ≠ w_1} >= 1 − √3/2`, where `τ = τ^u` uses the `u`-coordinate of
+   the point. Consequently some `c > 0`, depending only on the cocycles `c_a, c_b`, has `d(φ ∘ ζ, id) >= c` for every
+   `ζ ∈ End_G(X)`. (Correction, 2026-09-13: the first landing claimed the constant `(2 − √3)/4` for every equivariant
+   Borel `ζ`. That holds in the coset version `ornstein-weiss-map-has-no-approximate-right-inverses`. Here `φ ∘ ζ`
+   reads the subrelation from the `u`-coordinate of `ζ(x)`, so the constant degrades as recorded in the proof.)
 3. **Above `log 4`.** If `H(κ) > log 4`, then `X_κ` has no approximate right inverses, and `Aut_G(X_κ)` is not dense
    in `End_G(X_κ)`.
 4. **Never two entropies.** If `H(κ) ≠ H(λ)`, then `X_κ` and `X_λ` do not both have ARI.
