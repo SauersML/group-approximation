@@ -45,3 +45,8 @@ Consequences:
   failure of permutation stability of `V`, in any of Bradford's four senses. Bradford,
   arXiv:2211.15249v2, p. 4, lists `V` among full-group relatives "not known to be sofic", and reads
   his results as evidence that `V` is stable, that is, against this claim.
+- **Necessary: F must be sofic (2026-09-12).** Route `thompson-f-sofic-from-v-sofic`. By
+  `thompson-f-sofic-iff-relator-system-unstable`, any construction for `V` restricts to permutation
+  pairs `(A_n, B_n)` that satisfy the two relators of `F` up to `o(1)` while `d(A_n B_n, B_n A_n)` stays
+  bounded below. Exact solutions all commute, because finite quotients of `F` are abelian. So such a
+  construction must use the error essentially.

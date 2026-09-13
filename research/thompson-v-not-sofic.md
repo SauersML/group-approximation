@@ -64,3 +64,14 @@ second nonsoficity mechanism, the other open lane for which is
     classification, and `V` is not amenable.
   - No stability technique for a nonamenable group without finite quotients is recorded
     (`research/artifacts/thompson-v-soficity-stability-and-full-groups-2026-09-12.md`, Section 2).
+- **Through Thompson's F (2026-09-12, lane `ex-thompson-v-soficity`).** `F <= V`, so
+  `thompson-f-is-not-sofic` gives this claim (route `thompson-v-not-sofic-from-f-not-sofic`). By
+  `thompson-f-sofic-iff-relator-system-unstable`, that premise is equivalent to Arzhantseva--Păunescu's
+  Open problem (arXiv:1410.2626v2, p. 3): permutation pairs that satisfy the two relators of `F` up to
+  `o(1)` in Hamming distance almost commute, uniformly in the size.
+  - This is the weakest finitary target recorded for this claim: two permutations and three words.
+  - Mechanism: fixed-point characters of `F` are `t tau_reg + (1-t) chi_ab`, and `Z^2` is
+    permutation stable.
+- **Action form.** `thompson-v-cantor-pair-bernoulli-action-is-not-sofic` is implied by this claim. It
+  is the Kun--Thom Corollary D statement for the Haagerup infranormal pair `(V, V_[0])`, so it is a
+  possible stepping stone.
