@@ -23,6 +23,12 @@ of `metadata/NON_MF_SENTENCE_MAP.tsv` that the root does not reach.  Root builds
   for every overlay file, built or not, and failed probes write records too, so a bare md5 line proves
   nothing.  Records read: `$NM/lanes` and the fz campaign's `fz/lanes`.
 * A module is held when no GREEN record newer than its last failed probe covers its bytes.
+* Release by closure identity (`rw/rwclosure.py`, from wave 14).  A held module is released when three things hold:
+  every file in its import closure on the sha is byte-identical to the inputs of one GREEN record (the md5
+  line for an overlay file, else the blob at the record's base); `lean-toolchain` and `lake-manifest.json`
+  match that record's base; and the FAILED probe's log shows no error in the module.  A module's build depends
+  only on those inputs, so it builds green on the sha.  GREEN and FAILED are read from each record's `# PROBE`
+  line, since `nmprobe.sh` writes a `.green.<tag>` file even when the probe fails.
 * `rw/rwtool.py <sha> census`: census tokens resolved to declaring files; carriers whose files are not
   root-reachable.
 * The whole queue is swept against the root closure, not only the entries added since the last wave.  The
@@ -499,11 +505,117 @@ GroupApproximation file or root line changed in between.  The wave checks and du
 6433 → 6465, no collision).  The gate's evidence lines are identical, with nothing held, and the lexical scan
 over the 57 gated files finds nothing.
 
+## Wave 14 (launched 09-13 14:17, root build 0913-141703-40545, base 80df00345): GREEN, LANDED ROOT 80007c036
+
+Result: ROOT GREEN at 14:28, 15133 jobs.  15 GroupApproximation modules were rebuilt and the rest restored from the
+lanes' probe artifacts.  At 991380d00, 80007c036 is an ancestor and all 12 lines are present (root 5061
+import lines).
+
+12 modules and 13 newly reachable files.  The wave takes every queue line not in root e0dcf8b99 (lines
+652–669).  `FaceSetCircuitNoncrossing` brings in `OsinPocketRegionUnpinched`, which is not a root line
+(dgo-geometric, GREEN 0913-140543-86239 at base 037386a74).  Module list: `$NM/rw-wave14.mods`.  Pre-flight at
+e48f35d1e, with the queue swept through line 669.  `nmwire.sh` built on origin 80df00345.
+
+Modules in wire order.  The record is the newest GREEN covering the bytes on e48f35d1e.  Records for modules
+marked released are older than ghw-charp2's FAILED co-probe (see Held); every other record is newer than
+every FAILED record for its module.
+
+| module | line | record | owner |
+|---|---|---|---|
+| `Estimating.OsinAppendixEulerTwoGonFaceClass` (released) | 652 | 0913-134440-98829 | debt-conditional |
+| `Estimating.OsinPocketGlueOuterArc`, `…GlueOuterTransport` (`Transport` imports `Arc`; both released) | 654, 655 | 0913-134953-22063 | hull-select |
+| `Estimating.QuasiGeodesicValueOneGap` | 656 | 0913-134955-22334 | hull-component |
+| `Estimating.OsinLemma94ShortSides` (released) | 658 | 0913-135154-29800 | sec5-sentences |
+| `VanKampen.FaceSetCircuitNoncrossing` | 659 | 0913-135519-45680 | cite-hull |
+| `Estimating.OsinPocketKeptCell` | 661 | 0913-140023-67387 | sec2-sentences |
+| `Estimating.OsinLemma94OneCellValue` | 663 | 0913-135819-58619 | ko-closed |
+| `Estimating.OsinPocketLoopCut` | 665 | 0913-135346-38278 | jacobson |
+| `Estimating.OsinPocketRegionNoncrossingWalk` | 666 | 0913-140151-74557 | dgo-analytic |
+| `VanKampen.SurgeryOuterSpurThickening` | 668 | 0913-140848-97054 | hs-vanishes |
+| `Estimating.OsinLemma94BudgetFilter` | 669 | 0913-134955-22334 | hull-component |
+
+The 14:00 rulings say `BudgetFilter` lands only if hull-count94 consumes it.  It was on main at e48f35d1e and
+queued, so it is in the wave.
+
+Order holds, checked from the import closure at e48f35d1e.  Every in-wave import of a module comes before it,
+so `GlueOuterTransport` comes after `GlueOuterArc`.  At 80df00345, every module named in a wire-after comment
+is already a root line, and the candidate imports it directly:
+- `ShortSides`: `OsinLemma94PlanarPieces`, `OsinLemma94RegionSideCount`;
+- `OneCellValue`: `GGT.OsinPenetration`, `VanKampen.FaceShellingValue`, `OsinPocketCellArcs`,
+  `OsinPocketMergeRegion`;
+- `LoopCut`: `OsinPocketMultipleEdgeAssembly`.
+
+Pre-flight at e48f35d1e:
+- no dangling import, no lexical sorry and no cycle;
+- dupcheck predicts no collision (closure 6465 → 6478);
+- the gate needs evidence for 16 files: the 13 newly reachable files, and 3 files changed since build
+  03f8f2c88 (`NonMF.TorsionFree{LeafAssembly, SectionAssemblyClosedGO, SectionSentences}`, nm-endpoints
+  0913-133143-40961).  A GREEN record covers every one;
+- 5 held, all released by closure identity (see Held);
+- the lexical scan over the 16 gated files finds nothing.
+
+Earlier passes at 8bbf0a9c8 and 854abfaa8 took the 10 lines through 666 and gave the same 5 holds.  Lines 668
+and 669 arrived at e48f35d1e.
+
+Recheck at the build base 80df00345 agrees with the pre-flight.  e48f35d1e is an ancestor.  The only
+GroupApproximation change in between adds `OsinPocketPinchedTwoGonNoncrossingRegion`, outside the new closure.
+The wave checks and dupcheck match (closure 6465 → 6478, no collision), and the 5 holds are identical.  The
+gate's evidence lines match except for two newer covers: `OsinPocketRegionNoncrossingWalk` and
+`OsinPocketRegionUnpinched` are now covered by dgo-geometric's GREEN 0913-141525-34391 at base 80df00345.  Each released module's closure is still byte-identical to its GREEN record's inputs,
+and the lexical scan over the 16 gated files finds nothing.
+
+## Staged for wave 15 (launches on a base at or after ghw-charp2's (A) landing)
+
+9 modules and 9 newly reachable files, from queue lines 670–688.  Pre-flight at 991380d00, with the queue swept
+through line 688.  The record is the newest GREEN covering the bytes, and each record's `# PROBE` line reads GREEN.
+
+| module | line | record | owner |
+|---|---|---|---|
+| `Estimating.OsinPocketGlueCarriers`, `…GlueCellTransport` | 673, 674 | 0913-143433-44532 (ghw-assembly) | go-lemma42 |
+| `Estimating.OsinPocketPinchUnpinched`, `…PinchSplit` | 676, 677 | 0913-143304-32295 (ghw-charp2 (A)) | kh-cckw |
+| `Estimating.OsinPocketCutResiduals` (line 682's 5ef75ffa7 supersedes line 670) | 670, 682 | 0913-143433-44532 (ghw-assembly) | dgo-analytic |
+| `Estimating.OsinLemma94OneCellMorse` | 684 | 0913-143304-32295 (ghw-charp2 (A)) | ko-closed |
+| `Estimating.OsinDescentResiduals` | 685 | 0913-143433-44532 (ghw-assembly) | dgo-analytic |
+| `Estimating.OsinLemma94PolygonClasses` | 686 | 0913-143205-28136 | hull-count94 |
+| `Estimating.OsinGreendlingerOpenResiduals` | 688 | 0913-143433-44532 | ghw-assembly |
+
+Skipped: lines 678, 680 and 689, fff-periodic's `OsinUnboundSameCellPocket`, `OsinUnboundSameCell` and
+`OsinUnboundSameCellBridge`.  None is probed yet, and line 689 came in after the pre-flight.
+
+Order holds, from the import closure at 991380d00.  Every in-wave import of a module comes before it:
+- `GlueCellTransport` comes after `GlueCarriers`, and `PinchSplit` after `PinchUnpinched`;
+- `CutResiduals`, `DescentResiduals` and `GreendlingerOpenResiduals` come in that order, after the glue pair;
+- `OneCellMorse` comes after `OneCellValue`, a root line since wave 14.
+
+Pre-flight at 991380d00:
+- no dangling import, no lexical sorry and no cycle;
+- dupcheck predicts no collision (closure 6478 → 6487);
+- the gate needs evidence for the 9 newly reachable files, and a GREEN record covers every one;
+- 0 held;
+- the lexical scan over the 9 gated files finds nothing.
+
+The launch waits on (A).  At afe0638dd, 27 of the 31 overlay files of ghw-charp2's GREEN co-probe
+0913-143304-32295 (base b590ad02a, 179 modules) still differ from main.  The pre-flight runs again at the (A)
+commit, where the gate also needs evidence for the rooted files that (A) changes.
+
 ### Held
 
 | module | reason | owner |
 |---|---|---|
 | `CharClass.*`, `Analysis.LIX*`, `ProblemLIXStrongAssemblyHalves` | LIX campaign files, in flight in the shared tree | LIX lanes |
+
+Released in wave 14 by closure identity: `Estimating.OsinAppendixEulerTwoGonFaceClass`,
+`…OsinPocketGlueOuterArc`, `…OsinPocketGlueOuterTransport`, `…OsinLemma94ShortSides`, and the root line
+`Manuscript.NonMF.TorsionFreeSectionAssemblyClosedGO`.
+- ghw-charp2's LoopCut (A) co-probe 0913-135734-55169 (164 modules, base 67ec49f02) named all five and FAILED
+  rc=1, so the hold rule flagged them.
+- Its log shows errors only in `OsinLemma94OneCellValue`, `OsinAppendixEulerTwoGonLabels`, `OsinPocketPinchSplit`
+  and `OsinPocketKeptCell`.
+- At 80df00345, each released module's full import closure (1163 to 1919 files) is byte-identical to the inputs
+  of a GREEN record: 0913-134440-98829, 0913-134953-22063 (both glue modules), 0913-135154-29800 and
+  0913-133143-40961.  `lean-toolchain` and `lake-manifest.json` equal those at the records' bases.
+- The red probe's inputs differ from main in 1 to 5 overlay files of each closure, `OsinAppendixSections` in every
+  case.
 
 Released in wave 13: `VanKampen.OEquivalentCellFaces`, held in waves 10–12.  Its only probe record had been
 FAILED 0913-101514-99667.  The newer GREEN record 0913-113305-58468 (queue line 630) covers the main bytes.
