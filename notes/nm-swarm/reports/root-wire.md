@@ -397,12 +397,117 @@ The wave 10 build did not compile 9 files of the new closure:
 No file in the closure changed since f5873fc2a.  The lexical `sorry`/`admit`/`axiom` scan over the 9 gated
 files finds nothing.
 
+## Wave 12 (launched 09-13 12:07, root build 0913-120704-62031, base c57399ded): GREEN, LANDED ROOT 141bea9e6
+
+Result: ROOT GREEN, 15069 jobs.  1 GroupApproximation module was rebuilt and the rest restored from the
+lanes' probe artifacts.  At ea02cc1c6, 141bea9e6 is an ancestor and all 5 lines are present.
+
+5 modules and 6 newly reachable files, from queue lines 606–609 and 611.  Module list: `$NM/rw-wave12.mods`.
+Pre-flight at 8f13c3af4, with the queue swept through line 611.  `nmwire.sh` built on origin c57399ded.
+
+| module | evidence (record md5 = bytes on 8f13c3af4) | owner |
+|---|---|---|
+| `VanKampen.SurgeryCornerJoinMap`, `…CornerJoinDiagram` (`Diagram` imports `Map`) | GREEN 0913-111152-20791 builds both.  `Map` also has GREEN 0913-105542-93925, newer than its FAILED record 0913-103751 | hull-bridge |
+| `GGT.HullLemma35PieceSides` | GREEN 0913-104731-79425 | baseline-debt |
+| `Estimating.OsinPocketMultipleEdgeAssembly`, and `Estimating.OsinPocketRegionSide`, which it imports | GREEN 0913-111924-29328.  `RegionSide`'s blob at the record's base 661fd5216 equals main | hull-select |
+| `VanKampen.SurgeryMonogonDoubling` | GREEN 0913-111910-27612, newer than the FAILED record 0913-105724 | fff-quotient |
+
+Pre-flight at 8f13c3af4:
+- no dangling import, no lexical sorry and no cycle;
+- dupcheck predicts no collision (closure 6408 → 6414);
+- the gate needs evidence only for the 6 newly reachable files.  No root line was added by others and no
+  closure file changed since 23348780a;
+- the lexical scan over the 6 gated files finds nothing.
+
+Recheck at the build base c57399ded agrees with the pre-flight: wave checks, dupcheck, gate, holds and lexical
+scan.  5 Lean files landed after 8f13c3af4, none in the new closure:
+- `GGT.HullLemma35Letter`;
+- `Estimating.OsinLemma94{PolygonLists, SeparatedInsertion}`;
+- `RotationAlgebra.{DirectSummand, TorusRetraction}`.
+
+## Wave 13 (launched 09-13 13:36, root build 0913-133632-59092, base 03f8f2c88): GREEN, LANDED ROOT e0dcf8b99
+
+Result: ROOT GREEN at 13:51, 15120 jobs.  6 GroupApproximation modules were rebuilt and the rest restored from the
+lanes' probe artifacts.  At 8bbf0a9c8, e0dcf8b99 is an ancestor and all 30 lines are present (root 5049
+import lines).
+
+30 modules and 32 newly reachable files.  The wave takes every queue line not in root 141bea9e6
+(lines 613–649), plus 8 modules that no queue line starts with.  Each of those 8 goes in just ahead of the
+modules that import it.  Module list: `$NM/rw-wave13.mods`.  Pre-flight at 1b6c528fa, with the queue swept
+through line 649.  `nmwire.sh` built on origin 03f8f2c88.
+
+Root lines added for modules that no queue line starts with.  Each is on main and has a GREEN record that
+covers its bytes.
+
+| module | why | record | owner |
+|---|---|---|---|
+| `Estimating.OsinLemma94{PolygonLists, PolygonKinds, PolygonSides, PolygonMaximal, PolygonPartition}` | The lead named the closed partition chain (746028b24).  Line 649 `SectionResiduals` imports `PolygonPartition` | GREEN 0913-111016-12907, 0913-120932-63752, 0913-125822-38552, 0913-131655-32736, 0913-132334-2532.  The last three are newer than the FAILED records 0913-125058, 0913-130838 and 0913-132143 | ghw-assembly |
+| `VanKampen.SurgeryGeodesicCollarAssembly` | Order hold of line 644.  `MonogonDoublingStrip` and `CollarJoin` both import it | GREEN 0913-115929-47047 | kh-torsion |
+| `Estimating.OsinPocketSectionFaceSet` | Order hold of line 640, before `OsinPocketCellWalk`.  It brings in `OsinPocketGapArcs` and `NoncrossingClosedWalkSides` (jacobson 0913-130857-87977) | GREEN 0913-130217-56077, newer than the FAILED record 0913-093343 | kh-ejz |
+| `Estimating.OsinUnboundCaseOneFace` | Line 642 lists it as a prerequisite of `CaseTwo` | GREEN 0913-133025-35313 | hull-unbound record |
+
+Queued modules.  The record is the newest GREEN covering the bytes on 1b6c528fa, and each is newer than
+every FAILED record for the module:
+
+| module | line | record | owner |
+|---|---|---|---|
+| `GGT.HullLemma35Letter`, `GGT.HullLemma35Closed` (`Closed` imports `Letter`) | 613, 625 | 0913-114118-23523, 0913-123731-5219 | baseline-debt |
+| `Estimating.OsinLemma94SeparatedInsertion` | 615 | 0913-113234-56193 | sec5-sentences |
+| `Estimating.OsinLemma94CellArcs` | 617 | 0913-104724-79090 | ko-closed |
+| `Estimating.OsinLemma94CuttingChains`, `…QuasiGeodesicRespell` | 620, 621 | 0913-111910-27621, 0913-120651-61632 | hull-unbound |
+| `Estimating.OsinLemma94BoundaryArcs` | 622 | 0913-111012-12718 | cite-hull |
+| `Estimating.OsinLemma94CornerInsertion` | 623 | 0913-123745-5546 | simple-group |
+| `Estimating.OsinLemma94WordRespelling` | 624 | 0913-101505-99170 | hull-component |
+| `Estimating.OsinAppendixEulerSection` | 627 | 0913-125857-40608 | hull-euler |
+| `Estimating.OsinAppendixEulerTwoGonLabels` | 629 | 0913-125826-38654 | debt-conditional |
+| `VanKampen.OEquivalentCellFaces` (released, see Held) | 631 | 0913-113305-58468 | sec2-sentences |
+| `Estimating.OsinLemma94SeparatedInsertionProof` | 635 | 0913-131141-4967 | sec2-sentences |
+| `Estimating.OsinPocketGlueEquivalence` (imports `OEquivalentCellFaces`) | 637 | 0913-125816-38320 | go-lemma42 |
+| `Estimating.OsinAppendixEulerCornerTwoGonCount`, `…CornerTwoGonSection` (`Section` imports `Count` and `OsinAppendixEulerSection`) | 638, 639 | 0913-130413-64412, 0913-130704-80770 | leavitt-units |
+| `Estimating.OsinPocketCellWalk` | 641 | 0913-130857-87977 | jacobson |
+| `Estimating.OsinLemma94CaseTwo` | 643 | 0913-131149-5355 | sec5-sentences |
+| `VanKampen.SurgeryMonogonDoublingStrip` | 645 | 0913-131547-23242 | fff-quotient |
+| `GGT.DGOProposition435PrintedCounterexample` | 646 | 0913-132138-96143 | baseline-debt |
+| `VanKampen.SurgeryGeodesicCollarJoin` | 647 | 0913-132438-5905 | hull-bridge |
+| `Estimating.OsinLemma94SectionResiduals` (line 649's 4002b9371 bytes supersede line 633) | 633, 649 | 0913-133025-35313 | hull-unbound |
+
+Order holds, checked from the import closure at 1b6c528fa.  Every in-wave import of a module comes before it:
+- `MonogonDoublingStrip` comes after `SurgeryMonogonDoubling` (a root line since wave 12) and after
+  `SurgeryGeodesicCollarAssembly`;
+- `OsinPocketCellWalk` comes after `OsinPocketSectionFaceSet`;
+- `CaseTwo` comes after `SeparatedInsertion`, `SeparatedInsertionProof`, `CuttingChains` and
+  `OsinUnboundCaseOneFace`.  Its other listed prerequisites are already root lines: `SeparatingRemoval`,
+  `PendantRemoval`, `CaseOneWalkHolds`, `UnboundNonemptyConnectors` and `DGOPolygonGeodesicChain`;
+- `SectionResiduals` is last.  It comes after `CaseTwo`, the partition chain, `CornerInsertion`, `BoundaryArcs`,
+  `CuttingChains`, `QuasiGeodesicRespell` and `CellArcs`.
+
+Pre-flight at 1b6c528fa:
+- no dangling import, no lexical sorry and no cycle;
+- dupcheck predicts no collision (closure 6433 → 6465);
+- the gate needs evidence for 57 files.  51 were not compiled by build c57399ded: the 32 newly reachable files
+  and 19 root lines other campaigns added.  6 have changed since then: `HullLemma35Printed`,
+  `OsinLemma94{AntiparallelMetric, Pieces, PlanarPieces, PolygonCount}` and `OsinPocketPieces`.  A GREEN
+  record covers every one;
+- 0 held;
+- the lexical scan over the 57 gated files finds nothing.
+
+The first pass at ea02cc1c6 took only the 22 queued modules, and it also passed.  Then line 649 changed
+`SectionResiduals` so that it imports `CaseTwo` and `PolygonPartition`, and the pre-flight was run again.
+
+Recheck at the build base 03f8f2c88 agrees with the pre-flight.  1b6c528fa is an ancestor, and no
+GroupApproximation file or root line changed in between.  The wave checks and dupcheck match (closure
+6433 → 6465, no collision).  The gate's evidence lines are identical, with nothing held, and the lexical scan
+over the 57 gated files finds nothing.
+
 ### Held
 
 | module | reason | owner |
 |---|---|---|
 | `CharClass.*`, `Analysis.LIX*`, `ProblemLIXStrongAssemblyHalves` | LIX campaign files, in flight in the shared tree | LIX lanes |
-| `VanKampen.OEquivalentCellFaces` (queue line 596, waves 10 and 11) | The only record that probes it, 0913-101514-99667, says PROBE FAILED rc=1, but queue line 595 calls it GREEN.  The newer GREEN record 0913-102559-44269 builds only `CyclicArcSub` | sec2-sentences |
+
+Released in wave 13: `VanKampen.OEquivalentCellFaces`, held in waves 10–12.  Its only probe record had been
+FAILED 0913-101514-99667.  The newer GREEN record 0913-113305-58468 (queue line 630) covers the main bytes.
+That run replayed this module's olean from 0913-101514-99667, where this file built with no error.
 
 Released from the wave 4 holds, all in wave 5: `NonMF.Audit.Sec3` (audit-sec3's green bytes landed at
 80abe6604), `Estimating.OsinUnboundSharedEdge` (new green probe), `GGT.SystolicDiscMirrorFoldSteps`.
