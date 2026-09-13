@@ -27,6 +27,9 @@ Consequences:
   `zaremsky-4-01-amenable-automatic-contractible-rips`.
 - 2026-09-13: the natural split is (i) identify the amenable automatic groups,
   where the only examples this lane knows are virtually abelian, and (ii) prove
-  contractibility for that class. Step (ii) for virtually abelian groups is not
-  covered by Virk's theorem, which is for `Z^n` with its standard generators
-  only.
+  contractibility for that class. Step (ii) is established
+  (`virtually-abelian-groups-have-contractible-rips-complexes`), so what remains is
+  (i), `amenable-automatic-groups-are-virtually-abelian` (route
+  `amenable-automatic-rips-via-virtually-abelian`).
+- 2026-09-13: alternatively, a contracting combing on each amenable automatic group
+  would do (route `amenable-automatic-rips-via-contracting-combings`).

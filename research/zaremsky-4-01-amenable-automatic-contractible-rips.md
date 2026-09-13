@@ -68,9 +68,16 @@ infinite cohomological dimension, so no Rips complex of `F` is contractible
   `rips-complexes-of-integer-lattices-are-contractible`).
 - Products of finitely generated free abelian groups and finite groups are of
   type R (Li–Sánchez Saldaña, arXiv:2608.24279, from the abstract).
+- Every group acting geometrically on an asymptotically CAT(0) space, torsion
+  allowed (`asymptotically-cat0-groups-have-contractible-rips`, from Zaremsky's orbit
+  theorem and twin collapse). Hence every finitely generated virtually abelian group
+  (`virtually-abelian-groups-have-contractible-rips-complexes`). When the point group
+  consists of signed permutation matrices there is a self-contained proof with
+  explicit `l^∞` generating sets (`linf-preserving-proper-actions-give-contractible-rips`).
 - Nilpotent automatic groups are virtually abelian (Epstein et al., Chapter 8;
   theorem number not re-read here). Whether every amenable, or every solvable,
-  automatic group is virtually abelian was not settled by this lane's search.
+  automatic group is virtually abelian was not settled by this lane's search
+  (`amenable-automatic-groups-are-virtually-abelian`).
 
 Search bounds: the arXiv search for "contractible Rips complex" returns only
 arXiv:2608.24279; the lane's web-search budget was exhausted and MathSciNet was
@@ -87,6 +94,20 @@ not reached. No answer to Problem 4.1 was found.
   combing gives only maps from `P_r` into `P_{Kr}`, a coarse statement that
   does not produce one contractible complex, and the argument never uses
   amenability.
+- 2026-09-13: **the combing gap, precisely.** Alonso's theorem
+  (`contracting-combings-give-contractible-rips-complexes`, read through Zaremsky
+  arXiv:1812.10976v3, Citation 6.7) has two parts. A bounded combing gives
+  `VR_t → VR_s` trivial on all `π_k`; a contracting combing gives a contractible
+  `VR_t`. Automatic structures are bounded combings with linear `φ`. So a yes answer
+  follows from `amenable-automatic-groups-admit-contracting-combings` (route
+  `amenable-automatic-rips-via-contracting-combings`).
+- 2026-09-13: **the structure route.** A yes answer also follows from two claims
+  (route `amenable-automatic-rips-via-virtually-abelian`):
+  `amenable-automatic-groups-are-virtually-abelian`, which on its own already gives
+  the parenthetical about `F`, and
+  `virtually-abelian-groups-have-contractible-rips-complexes`, which is established.
+  So Problem 4.1 has a yes answer if every amenable automatic group is virtually
+  abelian.
 - 2026-09-13: **what a yes answer must contain.** By
   `contractible-rips-complex-gives-finite-classifying-space`, it would show every
   torsion-free amenable automatic group is of type F. For the consequence about

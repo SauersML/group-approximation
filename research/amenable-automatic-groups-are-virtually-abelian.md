@@ -34,3 +34,13 @@ Zaremsky Problems 2.1 and 2.2: together with `thompson-f-is-amenable` it gives
   Not attempted beyond this survey. The literature check this session was
   bounded (direct arXiv fetches only) and found no statement of this claim,
   proved or refuted.
+- 2026-09-13 (lane z4-01-amen-auto-rips): **consequences for Problem 4.1.** Every
+  finitely generated virtually abelian group has a contractible Rips complex
+  (`virtually-abelian-groups-have-contractible-rips-complexes`, established). So this
+  claim gives a yes answer to Zaremsky Problem 4.1 (route
+  `amenable-automatic-rips-via-virtually-abelian`). On its own it also gives
+  `thompson-f-is-not-both-amenable-and-automatic` (route
+  `thompson-f-not-both-via-amenable-automatic-virtually-abelian`). The Dehn
+  function cannot supply the proof: the higher Heisenberg groups `H_(2k+1)`,
+  `k >= 2`, are nilpotent, not virtually abelian, and have quadratic Dehn function
+  (Allcock; Olshanskii–Sapir; from memory), and so does `F` (Guba).

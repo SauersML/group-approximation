@@ -20,9 +20,11 @@ see `zaremsky-4-01-amenable-automatic-contractible-rips`.)
   `F` would be one if it were both amenable and automatic
   (`thompson-f-has-no-contractible-rips-complex`). No such group is known to
   this lane.
-- 2026-09-13: **finite-dimensional candidates.** Virtually abelian groups are
-  automatic and amenable. A counterexample among them would need a group with
-  no finite generating set whose Cayley graph has a contractible clique
-  complex. No virtually abelian group has been excluded; the known positive
-  cases are `Z^n` with standard generators (Virk) and products of free abelian
-  and finite groups (Li–Sánchez Saldaña, arXiv:2608.24279).
+- 2026-09-13: **excluded candidates.** Virtually abelian groups have contractible
+  Rips complexes (`virtually-abelian-groups-have-contractible-rips-complexes`), and
+  so does every group acting geometrically on an asymptotically CAT(0) space
+  (`asymptotically-cat0-groups-have-contractible-rips`). A counterexample must
+  therefore be an amenable automatic group that is not virtually abelian. For CAT(0)
+  spaces the second exclusion follows from the first by the Adams–Ballmann theorem:
+  amenable groups acting geometrically on CAT(0) spaces are virtually abelian (from
+  memory, not re-read).
