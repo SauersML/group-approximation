@@ -19,10 +19,15 @@ not simple: the ideal `JeJ` is proper, since `J/JeJ = F_2[z, z^(-1)] != 0`, whic
 the fullness hypothesis that lane `un-calibration` isolated as its refutation F4. The theorem quantifies how
 badly the dichotomy fails without that hypothesis: the middle regime is infinite.
 
-**Reformulation of the open converse.** The open claim
-`stably-finite-simple-rings-have-mf-elementary-groups` of lane `un-architect`, which is the left-to-right
-arrow of rung (M) of the root `kazhdan-elementary-approximation-type-mirrors-ring-type`, says exactly that a
-countable simple unital ring has an empty middle regime, that is `mf(R) = infinity` or `rig(R) < infinity`.
-This theorem shows that simplicity cannot simply be dropped from that statement.
+**Relation to the open converse (corrected by lane `un-m-converse`).** The open claim
+`stably-finite-simple-rings-have-mf-elementary-groups`, the left-to-right arrow of rung (M) of the root
+`kazhdan-elementary-approximation-type-mirrors-ring-type`, is **not** the statement that simple rings have an empty
+middle regime. As `research/artifacts/un-m-converse-simple-spectrum-2026-09-13.md` §1 shows, "empty middle regime",
+"`mf(R) = infinity` or `rig(R) < infinity`" and the open claim are three inequivalent statements. The open claim is
+equivalent to: every simple stably finite `R` has `rig(R) = infinity` and an empty middle regime.
+
+This theorem shows that the lifting half (empty middle regime) genuinely needs simplicity. `EL_N(J, JeJ)` is a proper
+non-central normal subgroup, and the middle regime of `J` is infinite. When `EL_N(R)` is simple modulo a trivial centre,
+the middle regime at `N` is empty (`simple-el-group-middle-regime-is-a-central-extension-effect`).
 
 Not claimed: the exact value of `mf(J)` within `{1, 2, 3}`, and anything about soficity of `EL_N(J)`.

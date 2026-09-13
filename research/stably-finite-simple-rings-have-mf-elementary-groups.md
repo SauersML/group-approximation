@@ -53,3 +53,26 @@ Either answer sharpens the UN boundary (`research/artifacts/un-converse-stable-f
   some `M_m(R)`. Compressors alone do not kill MF: `k[BS(1,2)]` is exactly matricial, yet `u k[y] u^-1 = k[y^2]`
   gives `u EL_3(k[y]) u^-1 < EL_3(k[y])`. What matters is a *full defect idempotent*, and in a stably finite
   simple ring every one-sided inverse is two-sided at every matrix size.
+- **Correct reformulation, and a split into two halves (lane `un-m-converse`, unreviewed).** Artifact
+  `research/artifacts/un-m-converse-simple-spectrum-2026-09-13.md` §1 corrects the reading "this claim says a simple ring
+  has an empty middle regime, that is `mf(R) = ∞` or `rig(R) < ∞`". "Empty middle regime", "`mf = ∞` or `rig < ∞`" and this
+  claim are three inequivalent statements. The correct form is: this claim ⟺ every simple stably finite `R` has
+  `mf(R) = ∞` ⟺ every simple stably finite `R` has `rig(R) = ∞` (**rigidity half**) and an empty middle regime
+  (**lifting half**).
+- **The lifting half is automatic on F_2 Steinberg algebras (unreviewed).**
+  `simple-el-group-middle-regime-is-a-central-extension-effect` shows that if `EL_N(R)` is simple modulo a trivial centre,
+  "MF" and "not MF-rigid" coincide at `N`. With `steinberg-elementary-groups-are-simple-mod-centre` this gives
+  `f2-steinberg-elementary-groups-have-no-middle-mf-regime`: over `F_2`, for minimal effective `𝒢`, each `EL_N`,
+  `N ≥ 3`, is MF or MF-rigid. On that class this claim reduces to its rigidity half.
+  - The Labbé ring over `F_2` is in the class. If it is not exactly matricial, each `EL_N` over it (`N ≥ 4`) is non-LEF,
+    and is either MF (refuting the strong converse) or MF-rigid (refuting this claim), with no third outcome.
+  - Over `F_q`, `q` odd, a middle rank would force MF to fail to lift through a central subgroup of `F_q^× I_N`.
+- **Firewalls for a proof (artifact §4, unreviewed).**
+  - F1: in characteristic `p`, finite pieces are uniformly stable (Kazhdan ε-representations, recalled), so any
+    obstruction or construction must handle infinite subgroups such as `⟨e_12(a), e_21(b)⟩`.
+  - F2: the (L⇒) root-kernel extraction dies. A corona homomorphism of a simple-mod-centre `EL_N(R)` meets every root
+    subgroup trivially, so no ideal appears.
+  - F3: a compression without a torsion central defect gives nothing, as `k[BS(1,2)]` shows.
+  - F4: the canonical trace is never amenable here, even when `EL_N` is LEF, so tex l.1349 cannot separate the cases.
+  - F5: minimally almost periodic, so MF models must be genuinely asymptotic, and ring-induced models do not converge
+    strongly.
