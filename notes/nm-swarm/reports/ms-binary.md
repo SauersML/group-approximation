@@ -183,3 +183,42 @@ lane's statement will take and return:
 - The `CopyClean` fields then follow from `spur_of_noOuterSpur`, `cell_outer_of_noOuterCellDart`,
   `OuterSideThickening.side_outer_of_noOuterSideDart`, ms-cite-2's cell-side lemma for `side_cell`, and
   `cell_self_of_noCellHair`. `regions` is still unowned, because it needs ms-cite-2's side-dart transport.
+
+## Binder 3, cell-pinch branch, shape (2b): the two-arc loop cut (main's item, ~18:3x)
+
+After an innermost value-one G-lobe is excised from a pinched `∂Π` walk, the remaining pocket walk `x ++ b₁ ++ b₃` meets
+`Π` along two arcs. jacobson's `nonempty_osinLoopCut_of_pocketRegion` (OsinPocketLoopCut:201) and
+`false_of_pocketRegion_of_below` (OsinLemma94OneCellSameCell:367, ca94522e2) take a single `CyclicArc`.
+
+Ownership check (~18:4x):
+- Nothing named two-arc exists on origin, in the shared tree, in `lanes/*.files`, or in `landed.log`.
+- ms-intro-1's `ClosedWalkLobeExcision` excises a lobe from a closed dart walk. ms-inverses-1 claimed
+  `ClosedWalkInnermostLobe` and the (2b) consumer Prop. Neither builds a cut.
+- jacobson's files are consumed and never edited.
+
+Calibration finding: the cut already exists. `nonempty_osinMultipleEdgeCut_of_pocketRegion`
+(OsinPocketMultipleEdgeAssembly:88) and `PocketRegion.fourSectionCuts_cellTransport` take `{i j}` with no `i ≠ j`, and
+only ask that the sides have norm at most ε. A pocket whose inverse complement cycle reads `s ++ invDarts A₁ ++ invDarts A₂`,
+with both arcs on the same cell `i`, is a multiple-edge cut at `j = i` and `s₂ = []`. `OsinMultipleEdgeCut.false_of_below`
+refutes it with the same `3μ < 1 − 13μ` budget. A one-arc `OsinLoopCut` cannot take the pair: its section count is 2,
+and a concatenation of two arcs need not be quasi-geodesic.
+
+CLAIM two-arc pocket cut GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLoopCutTwoArcs.lean
+
+Draft, probing:
+- `nonempty_osinMultipleEdgeCut_of_pocketRegion_twoArcs`: the jacobson hypotheses with `A₁ A₂ : CyclicArc (cellDarts X i)`
+  and `invDarts X P.outer.cycle = s ++ invDarts X A₁.darts ++ invDarts X A₂.darts`.
+- `false_of_pocketRegion_of_below_twoArcs`: the refutation below `Δ`, through `pocketCellTransport` and `o52LeastArea`.
+- The names and premise shape will follow ms-inverses-1's spelling of the (2b) Prop. Nothing lands as a statement before
+  that spelling arrives.
+
+Spelling agreed with ms-inverses-1 (~18:5x):
+- `false_of_pocketRegion_of_below_twoArcs` keeps every binder of `false_of_pocketRegion_of_below` verbatim, with `A`
+  replaced by `A₁ A₂ : CyclicArc (cellDarts X i)` and `hdecomposition : invDarts X P.outer.cycle = s ++ invDarts X A₁.darts
+  ++ invDarts X A₂.darts`. The draft already matches.
+- The producer is renamed to main's name, `nonempty_osinLoopCut_of_pocketRegion_twoArcs`. Its type is
+  `Nonempty (OsinMultipleEdgeCut D lambda c eps Delta)`, the four-section cut with an empty second side, because
+  `OsinLoopCut.count_eq` is fixed at 2.
+- In ms-inverses-1's excision, `A₁` is the `B₃` arc, `A₂` is the `B₁` arc, and `s = invDarts X`. Either arc may be empty,
+  and no `0 < A.length` hypothesis is needed: the multiple-edge producer takes arbitrary arcs, and nondegeneracy comes
+  from `ne_or_of_leastArea` and the relator cell inside.
