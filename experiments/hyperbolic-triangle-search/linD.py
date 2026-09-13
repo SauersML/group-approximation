@@ -37,17 +37,19 @@ def relators(G, pair):
     F = libgap.Range(libgap.IsomorphismFpGroupByGenerators(G, pair))
     return [list(libgap.LetterRepAssocWord(r).sage()) for r in libgap.RelatorsOfFpGroup(F)]
 
-def analyse(tag, mods, pairs, groups, e, K, om, d, norm, words):
+def analyse(tag, mods, pairs, groups, e, K, om, d, norm, words, tw=(0, 0, 0)):
+    # tw = (a,b,c): projective mu_7-twist; the B-lift of q^e1 is w^a alpha(q)^e1, the C-lift of
+    # r^e2 is w^b beta(y_B)^e2 and the C-lift of p^e3 is w^c alpha(p)^e3 (G -> PGL_d).
     (mA, mB, mC), (pA, pB, pC), (GA, GB, GC) = mods, pairs, groups
     e1, e2, e3 = e
     P = mA(pA[0], K); Q = mA(pA[1], K); X0 = mB(pB[0], K); Y0 = mB(pB[1], K)
     Xc = mC(pC[0], K); Yc = mC(pC[1], K)
     for Z, nm in [(P, "A"), (Q, "A"), (X0, "B"), (Y0, "B"), (Xc, "C"), (Yc, "C")]:
         assert Z**7 == 1 and Z != 1
-    t = Q**e1; v = P**e3
+    t = om**tw[0] * Q**e1; v = om**tw[2] * P**e3; Y0e = om**tw[1] * Y0**e2
     if t.charpoly() != X0.charpoly(): return "charpoly(q^e1) != charpoly(x_B)"
     if v.charpoly() != Yc.charpoly(): return "charpoly(p^e3) != charpoly(y_C)"
-    if (Y0**e2).charpoly() != Xc.charpoly(): return "charpoly(r^e2) != charpoly(x_C)"
+    if Y0e.charpoly() != Xc.charpoly(): return "charpoly(r^e2) != charpoly(x_C)"
     roots = [r for r, m in t.charpoly().roots(K)]
     if len(roots) != d or any(m != 1 for r, m in t.charpoly().roots(K)):
         return "eigenvalues of t not distinct in K"
@@ -61,7 +63,7 @@ def analyse(tag, mods, pairs, groups, e, K, om, d, norm, words):
             cols.append(ker.basis()[0])
         return matrix(K, cols).transpose()
     S = eigb(t); S1 = eigb(X0)
-    M = S1.inverse() * Y0**e2 * S1; N = S.inverse() * v * S
+    M = S1.inverse() * Y0e * S1; N = S.inverse() * v * S
     nv = d - norm
     PR = PolynomialRing(K, ['h%d' % i for i in range(nv)] + ['g%d' % i for i in range(nv)],
                         order='degrevlex')
@@ -128,6 +130,19 @@ if __name__ == "__main__":
         print("CAL literal A8 triple ::", analyse("cal8", (mH, mH, mH),
               ([c8[0], c8[1]], [c8[1], c8[2]], [c8[2], c8[0]]), (A8, A8, A8), (1, 1, 1),
               K, om, d, n8, words)); sys.stdout.flush()
+    elif which == "twist":
+        # all 343 projective mu_7-twists (a,b,c) for each candidate: G_i -> PGL_d(K)
+        ns = {}; exec(open("cands.py").read(), ns)
+        for k, c in enumerate(ns["CANDS"], 1):
+            pr = tuple([E(s) for s in c[X]] for X in "ABC")
+            tally = {}
+            for tw in itertools.product(range(7), repeat=3):
+                res = analyse("c", (mA, mB, mC), pr, (A7, A7, A8), tuple(c["e"]), K, om, d,
+                              norm, words, tw)
+                tally[res] = tally.get(res, 0) + 1
+                if "NOT (1)" in res:
+                    print("CAND%d %s twist %s :: %s" % (k, mode, tw, res)); sys.stdout.flush()
+            print("CAND%d %s twist tally :: %s" % (k, mode, tally)); sys.stdout.flush()
     else:
         ns = {}; exec(open("cands.py").read(), ns)
         for k, c in enumerate(ns["CANDS"], 1):

@@ -141,12 +141,27 @@ distinct eigenvalues, so `C_{GL_d}(t)` is the diagonal torus in the eigenbasis o
 - No homomorphism `G_i -> GL_6(K)` with `char K = 2` has all three vertex groups acting
   irreducibly.
 
+**Projective `μ_7`-twists** (`linD.py` mode `twist`: `linD_d7p29_twist.out`, `linD_d7p43_twist.out`).
+- **Setup.** A homomorphism `G_i -> PGL_7(K)` with `char K = 29` or `43` is faithful on the vertex
+  groups.
+- **Faithful 7-dimensional projective representations are linear.**
+  - `A_7`: its covers `2.A_7`, `3.A_7`, `6.A_7` have faithful irreducible degrees `4, 14, …`,
+    `6, 15, …` and `6, 36, …`, and none sums to 7 with a single central character. So the only one is `1 ⊕ 6`.
+  - `A_8`: `2.A_8` starts at degree 8, so the only one is `7`.
+- **Edge discrepancies.** The two lifts of an edge generator are matrices of order 7 with the same projective
+  image, so they differ by a scalar `ζ ∈ μ_7`. With twist exponents `(a,b,c)` the system is
+  `t = ω^a α(q)^{e_1}`, `u = ω^b β(y_B)^{e_2}`, `v = ω^c α(p)^{e_3}`.
+- **Why the linear case misses them.** Characteristic polynomials cannot see these twists, because
+  `ζ·{all 7th roots} = {all 7th roots}`.
+- **Result.** All `343` twists give the trace ideal `(1)` for all four candidates, over `F_29` and over
+  `F_43` (300 s each).
+- **Conclusion (computer-assisted, unreviewed).** `Hom(G_i, PGL_7(K))` is trivial whenever
+  `char K ∈ {29, 43}`. This excludes quotients inside `PSL_7(29^m)` and `PSL_7(43^m)`.
+- **In dimension 4, characteristic 2,** no twist is possible: `λ·{1, ω, ω², ω⁴}` is one of the two
+  eigenvalue types only for `λ = 1`.
+
 **Not covered.**
-- **Projective twists.** `G_i -> PGL_7(K)` where the lifts of an edge generator from its two vertex
-  groups differ by a scalar `ζ ∈ μ_7`. Such twists are invisible to characteristic polynomials,
-  because `ζ·{all 7th roots} = {all 7th roots}`. This is exactly where quotients inside
-  `PSL_7(p^m)` with `7 | p^m − 1` would live. In dimension 4 and characteristic 2 no twist is
-  possible, because `λ·{1, ω, ω², ω⁴}` is one of the two eigenvalue types only for `λ = 1`.
+- **Projective twists** in characteristic 0 and in characteristics 3, 5, 11, 13.
 - **Dimension 7:** characteristic 2 (other modules, for example `1|6` for `A_8`), characteristic 7
   (unipotent edge generators), and all other odd primes. A Gröbner basis over `Z[ζ_7]` would give
   all but finitely many primes; that has not been computed.

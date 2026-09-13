@@ -21,8 +21,10 @@ So no `G_i` has a nontrivial finite quotient with a faithful linear representati
 at most 7 in these characteristics. That covers every such subgroup of `GL_7(p^m)`, for example of
 `SL_7(p^m)` or `Ω_7(p^m)`, for `p ∈ {3, 5, 11, 13, 29, 43}`.
 
-The claim does not cover projective representations `G_i -> PGL_7(K)` in which the lifts of an edge
-generator from its two vertex groups differ by a 7th root of unity. So it does not cover
-quotients inside `PSL_7(p^m)` when `7 | p^m − 1`.
+The claim itself concerns linear representations only. Projective representations
+`G_i -> PGL_7(K)` in which the lifts of an edge generator from its two vertex groups differ by a
+7th root of unity are handled separately:
+- for `char K ∈ {29, 43}`, all 343 twists give trace ideal `(1)` (artifact §5);
+- in characteristic 0 and in characteristics 3, 5, 11, 13 the twists have not been computed.
 
 The result is computer-assisted (Sage 10.7 / Singular) and unreviewed.
