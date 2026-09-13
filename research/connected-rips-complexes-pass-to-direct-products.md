@@ -3,21 +3,25 @@ rg: 2
 id: connected-rips-complexes-pass-to-direct-products
 kind: claim
 title: If G and H have (n-1)-connected Rips complexes then so does G x H
+distinct_from:
+  contractible-rips-groups-closed-under-direct-products: that is the product formula itself (for the l-infinity generating set the Rips complex of G x H is a categorical product, homotopy equivalent to the product of the factors' Rips complexes) with its contractibility consequences; this is only its (n-1)-connectivity consequence, the form Zaremsky Problem 4.4 needs
 ---
 
-Let `G` and `H` be finitely generated groups with finite symmetric sets
-`T_G ⊆ G \ {1}` and `T_H ⊆ H \ {1}`, and put
-`T = ((T_G ∪ {1}) × (T_H ∪ {1})) \ {(1,1)}`. Then
-`Flag(Cay(G × H, T)) ≃ Flag(Cay(G,T_G)) × Flag(Cay(H,T_H))`.
+Let `n >= 1`. If the finitely generated groups `G` and `H` both admit
+(n−1)-connected Rips complexes, so does `G × H`.
 
-Consequently (`group-rips-complexes-are-cayley-graph-flag-complexes`): if `G`
-and `H` both admit (n−1)-connected Rips complexes, so does `G × H`, since a
-product of (n−1)-connected spaces is (n−1)-connected. The class of groups for
-which Zaremsky Problem 4.4 has a positive answer is closed under finite direct
-products.
+Explicitly, let `T_G` and `T_H` be finite symmetric generating sets of `G` and
+`H` not containing `1`, with `Flag(Cay(G,T_G))` and `Flag(Cay(H,T_H))`
+(n−1)-connected. Put `T = T_G ⊠ T_H = ((T_G ∪ {1}) × (T_H ∪ {1})) \ {(1,1)}`.
+Then `R_1(G × H, T) = Flag(Cay(G × H, T))` is (n−1)-connected.
 
-This is the group form of the homotopy equivalence between the clique complex
-of a strong product of graphs and the product of the clique complexes
-(equivalently, between Vietoris–Rips complexes of an `l^∞`-product and the
-product of Vietoris–Rips complexes; prior literature exists for the metric
-form). Proof: `connected-rips-complexes-pass-to-direct-products-proof`.
+So the class of groups for which Zaremsky Problem 4.4 has a positive answer is
+closed under finite direct products.
+
+Credit: the homotopy equivalence
+`R_1(G × H, T) ≃ R_1(G,T_G) × R_1(H,T_H)` is item 3 of
+`contractible-rips-groups-closed-under-direct-products`. The first version of
+this node's proof route (d140b64ad0: strong product plus Quillen's fiber lemma)
+repeated that argument. The route now requires that claim.
+
+Proof: `connected-rips-complexes-pass-to-direct-products-proof`.

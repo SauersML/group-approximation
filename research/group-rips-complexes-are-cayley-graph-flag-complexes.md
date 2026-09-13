@@ -3,6 +3,8 @@ rg: 2
 id: group-rips-complexes-are-cayley-graph-flag-complexes
 kind: claim
 title: Rips complexes of a group are exactly the clique complexes of its finite Cayley graphs
+distinct_from:
+  rips-complex-of-a-group-is-a-flag-cayley-complex: that gives the same identification of Rips complexes with Cayley clique complexes and the equivalence for contractible complexes, plus the type F_* and type F consequences; this gives the equivalence for (n-1)-connected complexes, the form Zaremsky Problem 4.4 needs
 ---
 
 Let `G` be a finitely generated group. For a finite generating set `S` and

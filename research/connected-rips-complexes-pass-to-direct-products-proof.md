@@ -2,40 +2,26 @@
 rg: 2
 id: connected-rips-complexes-pass-to-direct-products-proof
 kind: route
-title: Project cliques of the strong product to both factors and apply Quillen's fiber lemma
+title: Rescale both factors to scale 1, apply the l-infinity product formula, and multiply connectivity
 target: connected-rips-complexes-pass-to-direct-products
-requires: []
+requires:
+  - contractible-rips-groups-closed-under-direct-products
+  - group-rips-complexes-are-cayley-graph-flag-complexes
 ---
 
-Write `A = Cay(G,T_G)` and `B = Cay(H,T_H)`.
+**Scale 1.** Let `R_t(G,S)` and `R_{t'}(H,S')` be (n−1)-connected with `n >= 1`.
+By item 2 of `group-rips-complexes-are-cayley-graph-flag-complexes` ((a) ⇒ (b),
+and the proof of (b) ⇒ (a)), `T_G = B_S(t) \ {1}` and `T_H = B_{S'}(t') \ {1}`
+are finite symmetric generating sets not containing `1` (a connected clique
+complex forces generation), and `R_1(G,T_G) = Flag(Cay(G,T_G)) = R_t(G,S)` and
+`R_1(H,T_H) = R_{t'}(H,S')`. Both are (n−1)-connected.
 
-**The Cayley graph is the strong product.** Distinct `(g,h), (g',h')` are
-adjacent in `Cay(G × H, T)` iff `g^{-1}g' ∈ T_G ∪ {1}` and
-`h^{-1}h' ∈ T_H ∪ {1}`, i.e. iff (`g = g'` or `g ~_A g'`) and (`h = h'` or
-`h ~_B h'`). This is the strong product `A ⊠ B`. `T` is finite and symmetric.
+**Product formula.** Item 3 of
+`contractible-rips-groups-closed-under-direct-products`, applied with
+`r = 1` to `(G,T_G)` and `(H,T_H)`, gives
+`|R_1(G × H, T_G ⊠ T_H)| ≃ |R_1(G,T_G)| × |R_1(H,T_H)|`.
 
-**Quillen fiber lemma.** Let `P` be the face poset of `Flag(A ⊠ B)` (finite
-nonempty cliques) and `Q = P(Flag A) × P(Flag B)`. For a clique `S` of `A ⊠ B`
-the projections `π_A S` and `π_B S` are nonempty cliques, because two points of
-`S` have equal or adjacent coordinates. So `f(S) = (π_A S, π_B S)` is a
-monotone map `P → Q`. For `(σ, τ) ∈ Q`,
-`f^{-1}(Q_{<= (σ,τ)}) = {S ≠ ∅ : π_A S ⊆ σ, π_B S ⊆ τ}` is the set of all
-nonempty subsets of `σ × τ`. Each of these is a clique of `A ⊠ B` (coordinates
-lie in cliques), so the fiber is the face poset of a simplex, which has a
-maximum and is contractible. Quillen's fiber lemma (Quillen, *Homotopy
-properties of the poset of nontrivial p-subgroups*, Prop. 1.6) shows that `f`
-induces a homotopy equivalence of order complexes
-`Δ(P) ≃ Δ(Q)`.
-
-**Identify the order complexes.** `Δ(P)` is the barycentric subdivision of
-`Flag(A ⊠ B)`. `Δ(P(K) × P(L))` is a triangulation of `|K| × |L|` for locally
-finite simplicial complexes `K, L` (the order complex of a product of posets
-is homeomorphic to the product of order complexes). Hence
-`Flag(A ⊠ B) ≃ Flag(A) × Flag(B)`.
-
-**Connectivity.** `π_k(X × Y) ≅ π_k(X) × π_k(Y)`, so the product of two
-(n−1)-connected spaces is (n−1)-connected. If `R_{t}(G,S)` and `R_{t'}(H,S')`
-are (n−1)-connected, apply the above with `T_G = B_S(t) \ {1}` and
-`T_H = B_{S'}(t') \ {1}`, then use item 2 of
-`group-rips-complexes-are-cayley-graph-flag-complexes` to read
-`Flag(Cay(G × H, T))` as a Rips complex of `G × H`. ∎
+**Connectivity.** `π_k(X × Y) ≅ π_k(X) × π_k(Y)` for `k >= 1`, and a product of
+nonempty path-connected spaces is path-connected. So the product of two
+(n−1)-connected spaces is (n−1)-connected, and `R_1(G × H, T_G ⊠ T_H)` is an
+(n−1)-connected Rips complex of `G × H`. ∎
