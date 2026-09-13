@@ -21,7 +21,7 @@ generated census still carries the pre-chain-core line numbers (285, 291, 298, 3
 | `4c82f6049796` | 332–334 thm:headline gives a counterexample among reduced group C*-algebras and answers the group question | formalized | PASS. `manuscriptUnitGroupHeadline : PrintedUnitGroupHeadline` (root-imported, audited) contains ¬IsCDEOperatorMF and separable ∧ stably finite ∧ ¬IsMFAlgebra for C*_r. |
 | `213a6657c8ff` | 336–339 configuration of OAI Prop 2.3 | attribution | Honest. |
 | `de554b7cd342` | 339–342 soficity, Kun, Kun–Thom, V | attribution | Honest: describes OAI's proof, not used here. |
-| `523f02126056` | 343–349 rigidity from the Kazhdan projection in a stably finite corona; commutator killed in HS norm; thm:normal-kazhdan | formalized | IN PROGRESS, see below. |
+| `523f02126056` | 343–349 rigidity from the Kazhdan projection in a stably finite corona; commutator killed in HS norm; thm:normal-kazhdan | formalized | PASS after re-grade. New closed carrier `RelatedWork.manuscriptSentence_relatedWorkKazhdanRigidity` LANDED 4dd8eb24d (probe 0913-165558-33390 GREEN, `#audit_closed_axioms`); queued for wiring. See below. |
 | `b89e90ea6607` | 349–351 H is OAI's group; FFF configuration | attribution | Honest. |
 | `9e2046c330c8` | 351–353 BDL Prop 1.5 | attribution | Honest: not used. |
 | `ea89f566cf20` | 353–354 compression relation replaces stability | structural | Honest. |
@@ -40,7 +40,21 @@ The row names five carriers. Two of them prove adjacent sentences, not this sent
   `manuscriptSentence_commutatorHilbertSchmidtVanishing`.
 - `KazhdanTransportSentences.lean` and `RankTwelveConfiguration.lean` carry no `#audit_axioms` lines.
 
-Plan: land one closed carrier for the sentence (three clauses, composed from the existing theorems, `#audit_closed_axioms`,
-plus `#audit_axioms` on the consumed sentence theorems), then re-grade the row.
-
 CLAIM `523f02126056` closed carrier: GroupApproximation/Manuscript/NonMFSentences/RelatedWorkKazhdanRigidity.lean
+
+## Landed
+
+- 4dd8eb24d `GroupApproximation.Manuscript.NonMFSentences.RelatedWorkKazhdanRigidity` (probe 0913-165558-33390 GREEN).
+  - `def PrintedRelatedWorkKazhdanRigidity : Prop` has four conjuncts in printed order: `commute_sigmaB_projection`;
+    `manuscriptSentence_commutatorHilbertSchmidtVanishing`; `RankTwelveEndpoint.PropositionDefect`; clause one of
+    `manuscriptOneSidedCompressionCriterion`.
+  - `theorem manuscriptSentence_relatedWorkKazhdanRigidity` carries `#audit_closed_axioms`. The module also audits the
+    consumed `commute_sigmaB_projection` and `manuscriptSentence_commutatorHilbertSchmidtVanishing` (`#audit_axioms`) and
+    `manuscriptOneSidedCompressionCriterion` (`#audit_closed_axioms`).
+  - Wire queue line appended. Census row `523f02126056` is in `metadata/nm-census-rows/ms-intro-4.tsv`.
+
+## Range status
+
+Every sentence of tex 295–357 is carried by a closed root-reachable declaration or honestly classified, except the two
+W1-wall rows (`0f22bdbc4184`, `dce7a9ff4e83`). Those wait on hgreendlinger, which the other swarm owns. The new module
+becomes root-reachable when root-wire wires it.
