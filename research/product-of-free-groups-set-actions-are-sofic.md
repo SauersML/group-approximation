@@ -19,6 +19,12 @@ compiler's first rope `Gamma_e` would be sofic on every branch
 ([[compiler-rope-edge-is-not-co-amenable]], (R3)). The route is
 [[rope-separation-from-product-free-group-set-actions]].
 
+**Equivalent form.** By
+[[product-free-set-actions-reduce-to-left-right-actions]], this holds iff
+every countable group is left-right sofic, iff (MLF1) is sofic for every
+finitely presented group. That is
+[[every-countable-group-is-left-right-sofic]]; routes run both ways.
+
 **What is known.**
 
 - A single free factor acts soficly (GKP Theorem 2.19).
@@ -35,6 +41,11 @@ compiler's first rope `Gamma_e` would be sofic on every branch
 - An orbit is sofic whenever its stabilizer meets `F x 1` or `1 x F'` in an
   amenably separable subgroup
   ([[g-x-free-set-actions-sofic-when-kernel-amenably-separable]]).
+- An orbit is sofic whenever every finitely generated subgroup of the Goursat
+  quotient of its stabilizer is left-right sofic
+  ([[product-free-set-actions-reduce-to-left-right-actions]]). The left-right
+  sofic groups include every LEA group, and are closed under co-amenable
+  overgroups ([[left-right-sofic-closed-under-co-amenable-overgroups]]).
 
 ## Attempts
 
@@ -54,6 +65,10 @@ compiler's first rope `Gamma_e` would be sofic on every branch
   finite groups, which for finitely presented `Q` is residual finiteness. Every
   model built so far factors through amenable or finite quotients of `Q`. The
   compiler needs `Q` equal to a Higman host, and that case is not handled.
+  *Completed 2026-09-13 (lane ex3-pfg-positive):* non-full projections reduce
+  to full ones over finitely generated subgroups of `Q`, by a Marshall Hall
+  retraction, finite-index induction and local separation
+  ([[product-free-set-actions-reduce-to-left-right-actions]]).
 - **Free completion (dies as stated).** GKP's proof of Theorem 2.19 extends the
   partial permutations of a finite piece of `X` to permutations, one free
   generator at a time. For `F x F'` the left and right generators must also
@@ -77,3 +92,6 @@ compiler's first rope `Gamma_e` would be sofic on every branch
   stabilizer needs both `N_1` and `N_2` to fail amenable separability. In
   particular both are infinitely generated and both coordinate actions are
   non-free. For full projections, `Q` is neither residually amenable nor LEF.
+  *Sharpened (lane ex3-pfg-positive):* one may take full projections and `Q`
+  finitely presented. `Q` must then not be left-right sofic. In particular it
+  is not LEA and has no co-amenable left-right sofic subgroup.
