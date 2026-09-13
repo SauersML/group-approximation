@@ -73,3 +73,7 @@ below, are almost actions of `Lambda_q` of the required kind.
 - **Measure equivalence.** Open. By `paunescu-class-is-measure-equivalence-invariant`, `S_q` lies
   in Paunescu's class, and so is sofic, iff some lattice of `Aut(X_+) x Aut(X_-)` does. Such a
   lattice is Kazhdan, and no Kazhdan group in that class is recorded.
+- **Character rigidity.** Established (unreviewed, 2026-09-13) by
+  `km-246-lattice-is-character-rigid`. It leaves this permutation gate unchanged, since IRS
+  rigidity already gave it. It adds the parallel unitary gate: `S_q` is hyperlinear iff some
+  asymptotic representation does not collapse (`km-246-lattice-stability-dictionary`).

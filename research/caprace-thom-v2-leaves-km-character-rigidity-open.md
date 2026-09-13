@@ -25,3 +25,15 @@ factor characters.
 Primary source: P.-E. Caprace and A. Thom,
 [*On the Howe--Moore property for automorphism groups of buildings*](https://arxiv.org/html/2606.27993v2),
 Corollary 5.3 and Remark 5.4.
+
+## Update (2026-09-13)
+
+The missing conclusion is now established (unreviewed) at type `(2,4,6)`, `q >= 4`, by
+`km-246-lattice-is-character-rigid`. This is not a direct substitution of IRS rigidity for the
+classification of characters. IRS rigidity enters one step of the Creutz--Peterson argument. In
+their Proposition 4.1(ii), the square-integrable lattice supplies finite stabilizers in the
+non-factor case and an escaping element in the factor case. IRS rigidity of `S_q`, its
+simplicity, and a Weyl element of infinite order do those jobs instead
+(`irs-rigid-simple-dense-subgroups-act-properly-outer`). Caprace--Thom v1 had announced the
+statement as its Theorem D, importing square-integrability from Remy's integrability theorem.
+v2 withdrew it.

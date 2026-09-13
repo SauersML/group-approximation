@@ -30,8 +30,10 @@ groups `SL_2(4)^2`, `Sp_4(4)`, `G_2(4)`.
 `S_q` that is not asymptotically trivial is, after deleting its global fixed points, a
 sofic approximation, so its finite rank-two charts are asymptotically free.
 
-**Not covered.** Character rigidity of `S_q` is open (Caprace--Thom v2, Remark 5.4; see
-`caprace-thom-v2-leaves-km-character-rigidity-open`). So no analogous statement for
-unitary almost representations follows.
+**Not covered here.** Caprace--Thom v2 leave character rigidity of `S_q` open (Remark 5.4; see
+`caprace-thom-v2-leaves-km-character-rigidity-open`). *Update 2026-09-13 (unreviewed):* it is
+established at type `(2,4,6)`, `q >= 4`, by `km-246-lattice-is-character-rigid`, which feeds the
+IRS rigidity above into the Creutz--Peterson argument in place of square-integrability. The
+unitary analogue of the free-or-trivial statement is then `km-246-lattice-stability-dictionary`.
 
 Citation: `km-246-lattice-fp-simple-kazhdan-irs-rigid-for-q-ge-4-citation`.
