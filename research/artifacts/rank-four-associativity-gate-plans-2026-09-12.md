@@ -58,8 +58,10 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
     * w7-el3j-sofic decides the shared input. `EL_3(J)` maps onto `EL_3(F_2[z, z^-1])` with a locally
       finite kernel and a residually finite quotient, so the lane first checks whether it contains `V`
       or another group of unknown soficity. Landed 58760b6ad6 (verifier PASS §31 at 216396d9ee): the
-      containment check finds none, and the verdict is open. Section 3 of its artifact is announced in the
-      summary but not yet on main. It makes the two one-sided halves LEF.
+      containment check finds none, and the verdict is open. Section 3 landed at 07d43b6a32: the two
+      one-sided halves are LEF and keep the head, and `EL_3(J)` is a proper quotient of their amalgam, so a
+      head-killing relation must mix `S`-roots with `T`-roots (L5). Follow-up lane w7-el3j-presentation
+      asks whether `EL_3(J)` is finitely presented and what the amalgam kernel is.
     * w7-sub-multiletter works on L1 SUB from the multi-letter inputs only: V's multiplication table on
       depth-changing letters, commutation of disjointly supported depth-changing letters, and the
       Toeplitz quarter.
@@ -69,7 +71,10 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
       (696ae35bc7, 0a9c95f793; verifier PASS w4-vf-linear-b §39 at ae0a4005ef). The open deficit moved to
       `sylvester-disjoint-cylinder-defects-strictly-submultiplicative` (L9).
     * w7-v-cycle-c2 and w7-v-cycle-c3 (verifier w3-vf-linear) work on the V gate upstream of L8, through the
-      open order-char cycle law at `p = 2` and `p = 3`.
+      open order-char cycle law at `p = 2` and `p = 3`. w7-v-cycle-c2 landed a candidate proof of the law
+      for every `p`, through trivial-plus-regular ranks on every finite subgroup of `V` (ce8be16cd1; held
+      OPEN until w3-vf-linear re-derives it; L8). It turns the gate into `phi_V in {0, 1}` and is not
+      decisive.
 
 Commit hashes below are the ones reported by the landing lanes. Node ids are the stable references.
 
@@ -303,17 +308,39 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
         * **Kazhdan.** `jacobson-elementary-groups-are-lea-only-if-lef`: `EL_n(J)` has property (T) for
           `n >= 3`. So `EL_3(J)` is LEA iff LEF, and `EL_n(J)` is not LEA for `n >= 4`. A scheme uniform in
           `n` would make `EL_4(J)` LEF. Sofic approximations that are not amenable embeddings stay possible.
-        * **Announced, not yet on main** (artifact Section 3). The halves `pi^-1 SL_3(F_2[z])` and
-          `pi^-1 SL_3(F_2[z^-1])` are LEF and contain `L`. They generate `EL_3(J)`, which is a proper quotient
-          of their amalgam. So a nonsoficity proof must use the relations of both halves jointly.
+        * **One-sided halves** (artifact Section 3; 07d43b6a32; `jacobson-one-sided-symbol-preimages-are-lef`,
+          established, re-derivation requested from w4-vf-gate). Over any finite field,
+          `H_+ = pi^-1 SL_3(F[z]) = L_3 x| EL_3(F[S])` and `H_- = L_3 x| EL_3(F[T])`. The transpose-inverse
+          twist of the anti-involution `S <-> T` exchanges them.
+          * Every finitely generated subgroup of `H_+` embeds in some `GL_(3N+3)(F[S])`. So both halves are
+            LEF, and the head `x_13(Q)` survives in their finite models.
+          * `EL_3(J)` is a proper quotient of `H_+ *_(H_0) H_-`. The word `[x_12(S), x_23(T)]` is reduced in
+            the amalgam, but in `EL_3(J)` it equals `x_13(1 - Q)`, which lies in `H_0`.
+          * *(lead spot-check, on paper)* On `W_N ⊕ U_N` both kinds of generator are block lower triangular,
+            `[[A, 0], [B, D]]` with `A` constant, `B in M_(3 x 3N)(F[S])` and `D in GL_3(F[S])`. These
+            multiply as matrices in `GL_(3N+3)(F[S])`, and congruences mod `S^k` separate points. The amalgam
+            step uses only the normal form theorem. No gap found.
+        * **Where an obstruction must live.** A head-killing relation, and so a relation-only deficit at two
+          cylinders, must lie in `ker(H_+ *_(H_0) H_- -> EL_3(J))`. The first such relations are the Toeplitz
+          commutators `[x_12(T), x_23(S)] = x_13(1)` and `[x_12(S), x_23(T)] = x_13(1 - Q)`. Models of the
+          halves glue only to models of the amalgam, so a soficity proof cannot glue them either.
+        * **Next** (artifact Section 6; lane w7-el3j-presentation, verifier w4-vf-gate). If `EL_3(J)` is
+          finitely presented, it is not LEF. It is not residually finite, since every finite quotient kills
+          the monolith, and by property (T) it would then not be LEA either. The lane also asks whether the
+          Toeplitz commutators normally generate the amalgam kernel.
         * *(lead)* `EL_3(J)` lies in `R^x` and contains no copy of `V`. So a nonsoficity proof for `V`
           cannot reach `EL_3(J)` through a subgroup, and the shared input stays separate from the V gate
-          of L8. If Section 3 lands as announced, it repeats the pattern of the depth-monotone firewall and
-          of the Fock lift (L9b): one-sided data are approximable, so a decisive relation must use
-          depth-raising and depth-lowering letters together. Those are the relations w7-sub-multiletter
-          targets.
-        * The literature check owed in L8 still stands for soficity itself. The lane cites
-          Ershov--Jaikin-Zapirain only for property (T).
+          of L8. Section 3 repeats the pattern of the depth-monotone firewall and of the Fock lift (L9b):
+          one-sided data are approximable, so a decisive relation must use depth-raising and depth-lowering
+          letters together. Those are the relations w7-sub-multiletter targets. Finite presentability would
+          rule out LEF and LEA, but it would not decide soficity.
+        * **Characteristic three** (artifact Section 5). Sections 1 and 3 hold over `F_3`, and `EL_3(J_3)` is
+          Kazhdan, so it is LEA iff LEF. Its monolith is `SL_fin(N x {1,2,3}, F_3)`. Whether the symbol kernel
+          is all of `GL_fin` is not settled, and soficity is open.
+        * **Literature.** Artifact Section 4.5 records amenable-by-sofic permanence as open even for finite
+          cyclic kernels. It cites ABFG (arXiv:1802.04688, Section 4.4) through
+          `binary-jacobson-weak-sofic-status-proof` Section 5, and the lane read that node, not the paper. So
+          the check owed in L8 still stands. The lane cites Ershov--Jaikin-Zapirain for property (T).
       * **Archive context** (09-08 Jacobson region; lead summary).
         * `binary-jacobson-core-is-weakly-sofic-with-fd-head-radical`: `EL_28(J)` is weakly sofic by
           Glebsky's extension theorem, and every finite-dimensional unitary representation of it kills the
@@ -369,7 +396,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | Toeplitz input and sofic firewall | w5-sub-fock (family SUB) | Established, verifier PASS §28: the Toeplitz pair is finite-subgroup data; `sofic-subgroups-carry-independent-cylinder-defects`; `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`. Open input shared with L8: soficity of `EL_3(J)` (L5) |
 | graph-of-groups firewall | w6-mismatch-c2 (family SUB) | Established, verifier PASS §29 (d0f2b3f648; verdict 4373d18c44): `graphs-of-locally-finite-groups-carry-regular-rank-models`; the depth-mismatched pair is inert as a factor; Attempts entries on the SUB target and on `binary-complement-corner-has-no-weakly-finite-image` (L5) |
 | depth-monotone firewall (char 3) | w6-mismatch-c3 (family SUB) | Established, verifier PASS §30 (74247b5cff, a5226d4756; verdict 794ae892b2; established f31c52ae43): `depth-monotone-leavitt-subalgebras-are-stably-finite`; `depth-monotone-configurations-cannot-force-ternary-minus-one`. The pair is inert for the anti-central form; the defect form is not firewalled (L9b) |
-| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established, verifier PASS w4-vf-linear-b §39 at ae0a4005ef; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6; verifier PASS §31 at 216396d9ee): no containment reduction; Kazhdan, so LEA iff LEF; verdict open (L5). The other three have not landed. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
+| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established, verifier PASS w4-vf-linear-b §39 at ae0a4005ef; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6, 07d43b6a32; verifier PASS §31 at 216396d9ee on Sections 1--2): no containment reduction; Kazhdan, so LEA iff LEF; both one-sided halves are LEF, and `EL_3(J)` is a proper quotient of their amalgam; verdict open (L5). w7-v-cycle-c2 landed a candidate proof of trivial-plus-regular ranks on finite subgroups of `V` (ce8be16cd1; held OPEN until w3-vf-linear re-derives it; L8). w7-sub-multiletter and w7-v-cycle-c3 have not landed. Follow-up lanes on the same inputs, none landed: w7-el3j-presentation, w7-escape-set, w7-k2-unstable, w7-matrix-state-deficit. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
 | verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §31, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
 ### L7. The listed mechanism dies
@@ -434,9 +461,10 @@ without completeness.
       kernel case is known before relying on this marker in either direction.
     * If soficity is closed under amenable kernels, the Jacobson claim is false. This route would then
       die, but the L8 target would be untouched.
-    * Lane w7-el3j-sofic (58760b6ad6) calls `E` a Kazhdan, monolithic instance of the open
-      amenable-by-sofic permanence problem. Its literature for that is in artifact Section 4, which is not
-      yet on main, so the marker is still unverified (L5).
+    * Lane w7-el3j-sofic (58760b6ad6, 07d43b6a32) calls `E` a Kazhdan, monolithic instance of the open
+      amenable-by-sofic permanence problem. Artifact Section 4.5 says the kernel case is open even for
+      finite cyclic kernels, but it cites ABFG through a repo node rather than the paper. So the marker is
+      still unverified at the source (L5).
 * **Rank four.** Source: w4-cohn-el3, `thompson-v-lifts-into-rank-four-cohn-elementary-group`, established;
   verification requested from w4-vf-gate.
   * **The lift.** Thompson's `V` lifts injectively into `GL_2(C_2)` over the quotient `C_2 -> R`. The lift
@@ -469,7 +497,27 @@ without completeness.
     must use a `p`-sensitive identity, such as `(1 - [s])^p = 0` for a clopen `p`-cycle `s`.
   * **Next step, open.** `v-rank-order-char-cycles-are-trivial-plus-regular`: the Jordan profile
     `rk((1 - [s])^j) = (1 - phi_V)(p - j)/p` for `1 <= j <= p` (range corrected by the lane after the
-    restart). Only upper bounds are proved, and the lane records that the law does not imply the gate.
+    restart). The lane records that the law does not imply the gate.
+    * **Candidate proof for every `p`** (lane w7-v-cycle-c2; ce8be16cd1; artifact
+      `thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md`, Section 1; held OPEN until
+      w3-vf-linear re-derives it). `v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`: on every
+      finite subgroup `G <= V`, in every characteristic,
+      `rk(A) = phi_V rank_F eps(A) + (1 - phi_V) rank_F Reg(A)/|G|`. The proof adjoins a clopen-cycle group
+      `Q = (Z/p)^Pi` normalized by `G`, for primes `p != char F`. It splits `rk` along the `G`-orbits of
+      characters of `Q` and lets `p -> infinity`. The error is at most `4 n |G|/p`.
+    * **What it gives.** Torsion is spent, 2-torsion included: on locally finite subgroups `phi_V` pins the
+      rank function. The gate becomes `phi_V in {0, 1}` for every model, and with reduced models it becomes
+      "no model has `rk(1 + sigma(t)) = 1/2`". Invariance under disjoint-support endomorphisms does not prove
+      the law, since a rank function on `F_2[E_infinity]` has fixed rank `1/2` at every level. The first
+      live configuration is still `<x_0, x_1, t>`.
+    * *(lead spot-check, on paper)* The counting in Steps 3--5 checks.
+      * The trivial character costs `2 n (1 - phi) p^-|Pi|`.
+      * Free orbits give `(1 - phi) rank_F Reg(A)/|G|` up to `n |G|/p`.
+      * Non-free orbits cost at most `n (|G| - 1)(1 - phi)/p`, because `G` acts faithfully on `Pi`: a
+        prefix replacement that fixes a cylinder is the identity on it.
+      * The inputs [TS] Theorem 1.3 and [FR] Theorem 1.2 were not re-read.
+      * If the proof passes, it also covers the target of w7-v-cycle-c3, and the V gate keeps no torsion
+        content. That is a reformulation, not a decisive input.
   * *(lead)* The first firewall is the V-side analogue of the sofic cylinder-defect firewall in L5. So a
     proof of either gate has to work in a configuration not known to be sofic.
 
@@ -607,8 +655,9 @@ statements say. It is not a re-verification.
     case `V` sofic would refute the ternary gate, not just the augmentation route. *(lead)* The earlier line
     "if `V` is sofic, the augmentation route dies, but its target does not" holds only while the extension
     claim is open.
-  * **Extension claim, reduced** (lane w6-v-extend; 0144b771c7; artifact
-    `v-rank-extension-to-ternary-leavitt-units-2026-09-12.md`, Sections 0--2; the claim node stays OPEN).
+  * **Extension claim, reduced** (lane w6-v-extend; 0144b771c7, 60501cc208; artifact
+    `v-rank-extension-to-ternary-leavitt-units-2026-09-12.md`; the claim node stays OPEN, with an Attempts
+    entry at 4ae2882d79).
     * **Reduction.** Link 1, the minus-one gate, says no rank function on `F_3[G_3]` moves `z`. The V gate
       says no rank function on `F_3[V]` is detecting. "V gate ⟹ link 1" is known, and the extension claim
       is "link 1 ⟹ V gate". So the extension claim is equivalent to "link 1 ⟺ V gate". It fails exactly
@@ -622,12 +671,20 @@ statements say. It is not a re-verification.
       * The evaluation lift fails `x^3 = 1` with defect at least `beta/4`.
       * The Fock lift `X_F = 1 + [w] P_00^+ P_01^-` has order three and satisfies the sign, support and
         centralizer relations. It fails the splitting relation `x = x_0 x_1` with defect at least `beta/16`.
-      * Sections 3--5 of the artifact land separately.
+    * **Classes and the intertwiner** (artifact Sections 3--5, 60501cc208).
+      * `T(0,1)`, `x` and the Thompson three-cycle `c_3` are pairwise non-conjugate elements of order three.
+        On the code `{0, 10, 11}`, `T(0,10) T(10,11)` is conjugate to `c_3`, so an extension couples the
+        profile of `x` to `rk_V`. The regular and the natural module both meet these constraints.
+      * `X_F` is the functorial Fock action at depth two, and `X_0 X_1` is that action at depth three.
+      * No obstructing relation is identified and no extension is constructed. For the intertwiner
+        candidate, an obstruction must be a relation among two or more depth-changing letters, placed outside
+        every depth-monotone subalgebra. The weakly finite version is recorded as an implication, not decided.
     * *(lead)* The reduction empties the converse route above. Given link 1, its extension input is the
       implication "link 1 ⟹ V gate" that the route delivers. So the minus-one gate and ternary V
       augmentation become one question only through a direct proof of that implication. The Fock lift fails
       at the depth-changing relation `x = x_0 x_1`, the same kind of relation as the multi-letter SUB inputs
-      in characteristic two (L5, w7-sub-multiletter).
+      in characteristic two (L5, w7-sub-multiletter). Sections 3--5 put the obstruction in the same class,
+      and so does Section 3 of w7-el3j-sofic for `EL_3(J)` (L5).
   * **Established, context.** `leavitt-prime-field-units-generated-by-v-and-one-transvection`: over a prime
     field, `R^x` is generated by `V` and one transvection. So a rank model of `R^x` is determined by its
     restriction to `V` and one transvection.
