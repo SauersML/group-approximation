@@ -69,3 +69,15 @@ should exist in every dimension.
   the natural source. Its statement and its normalization of the algebraic
   distance have not been checked, because the source could not be retrieved in
   this session.
+* **Literature (read from hal-00480924, pp. 2-3).**
+  - The full claim follows from [[philippon-zero-cycle-approximation-conjecture]],
+    through `zero-cycle-approximation-via-philippon-conjecture`.
+  - Philippon says he proved it in dimension `<= 3` in JNT 81 (2000). If that
+    covers the arithmetic zero-cycle statement for `n = 3`, transcendence degree 3
+    follows. The theorem number and statement still have to be read from JNT 81.
+  - He calls it open for `n > 3`, blocked only by an effective lower bound for
+    arithmetic Hilbert functions.
+* **Credit.** For `s = 2`, Part 3 is an elementary, self-contained proof of a
+  weak special case of Philippon's 2000 theorem. The new content of the
+  two-variable artifact is the operator side: (RES2), Proposition C,
+  Corollary 6 and Lemma J, and its link to the Atiyah base change.
