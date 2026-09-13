@@ -22,10 +22,11 @@ one of `Y` over `G`.
 - **Periodic points.** For `H` of finite index `m`, `log(|B|^m / |Y cap Fix_H|) / m` is a constant when positive.
 - **Residually finite groups.** They are quantitatively surjunctive with constant `-log(1 - |B|^(-|W|)) / |W|^2`
   for a pattern on `W` missing from `Y`. The proof uses periodic points and no sofic models.
-- **Residue.** Using the sofic count recorded in `surjunctive-groups-are-quantitatively-surjunctive`, `G` is
-  quantitatively surjunctive iff every proper subshift containing `Fix_N` for every normal `N` with `G/N` sofic has
-  a constant.
-  - For groups with no nontrivial sofic quotient, finitely generated simple nonsofic groups included, these are
-    the proper subshifts containing all constant configurations.
+- **Residue.** A proper subshift has a constant whenever it misses a point of `Fix_N` for some normal `N` with
+  `G/N` quantitatively surjunctive. So `G` is quantitatively surjunctive iff the proper subshifts containing all
+  those `Fix_N` have constants.
+  - By the sofic count recorded in `surjunctive-groups-are-quantitatively-surjunctive`, sofic quotients qualify.
+  - For a simple group, `N = 1` assumes the conclusion and `N = G` gives the constant configurations. So the open
+    case is the proper subshifts containing all constant configurations.
 
 Proof: Section 2 of the artifact.

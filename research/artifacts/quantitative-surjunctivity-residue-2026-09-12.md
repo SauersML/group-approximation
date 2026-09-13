@@ -132,6 +132,9 @@ iff every proper subshift `Y <= B^G` that contains `Fix_N` for every `N in Nsof(
 (Section 3 of the fibre artifact, verified as prose in `w3-vf-positive` Section 16.3) give a constant. The
 converse is the definition. QED.
 
+**Import-free form.** Proposition 2.1 alone gives Corollary 2.5 with `Nsof(G)` replaced by the normal subgroups
+`N` with `G/N` QS. The sofic count enters only to show that sofic quotients qualify.
+
 **What the residue is.**
 - **Sofic `G`.** `1 in Nsof(G)` and `Fix_1 = B^G`, so the residue is empty.
 - **No nontrivial sofic quotient.** `Nsof(G) = {G}`, and the residue is the proper subshifts containing all
