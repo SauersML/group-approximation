@@ -188,3 +188,15 @@ Both modules are new and unwired, and both are queued for wiring. Neither adds a
 
 Next: `Estimating/OsinPocketCellTransport`, cell pockets across the edge doublings outside and inside the face set (probing).
 Then the pinch splits and the trim–double step at the cells.
+
+### LANDED f9433e6ad (probe 0913-185531-60793 GREEN, BUILT and COMPILED)
+
+`Estimating/OsinPocketCellTransport` is new and unwired, and is queued for wiring.
+- `CellPocketFaceSet.first_face_ne` and `second_face_ne`.
+- `CellPocketFaceSet.faceEdgeDoubling K f k hlen hf (hs : f ∉ K.faces) hfirst hsecond` (neither arc holds the doubled dart),
+  with `_boundary_cycle` (rfl, the cycle mapped by the embedding), `_closedWalk` and `_repeatedVisits`.
+- `CellPocketFaceSet.faceEdgeDoublingInside K f k hlen hf (hs : f ∈ K.faces)`, with `_boundary_cycle`, `_closedWalk` and
+  `_repeatedVisits`.
+- First-turn order across both is carried by `EdgeInsertion.firstTurnChain_map_embed` (c2927f84f), through `_boundary_cycle`.
+
+Next: `Estimating/OsinPocketCellPinchSplit`, the cell pockets across both pinch splits and the two step theorems.
