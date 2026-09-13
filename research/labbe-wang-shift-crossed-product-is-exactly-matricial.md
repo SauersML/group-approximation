@@ -45,3 +45,12 @@ ultraproduct `∏_ω M_(d_k)(F_k)` of matrix algebras over fields?
 - **Soficity certificates give nothing here (un-sofic-not-lef, relayed).** `Z^2` is residually finite. Full-group units
   certify non-LEF only if the derived full group is not LEF, which is the open crux (C2). So the quantum tiling route
   is the only way known to decide this claim.
+- **Group-level forms (un-lef-converse, relayed; unreviewed).**
+  - By `lef-elementary-groups-force-lef-rings` (`EL_N(R)` LEF for some `N >= 4` makes `R` a LEF ring) and
+    `simple-lef-rings-are-exactly-matricial`, this claim is equivalent to `EL_4(R)` being LEF, and to `R` being a LEF
+    ring.
+  - With `lef-simple-rings-are-not-finitely-presented`, finite presentation of `R` makes every `EL_N(R)` with
+    `N >= 4` non-LEF.
+- **Rank model is unconditional (un-labbe-ring, unreviewed).** `labbe-wang-shift-has-polynomial-pattern-complexity`
+  with `subexponential-complexity-zd-subshift-rings-have-rank-models` gives `R` a unital rank model over `F_q`. So the
+  "no" polarity would realize the middle rung with no extra input.
