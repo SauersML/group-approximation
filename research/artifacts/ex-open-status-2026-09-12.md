@@ -182,6 +182,18 @@ games is adjacent to the games form of quantum PCP, not to its Hamiltonian form.
   main. No earlier LEF Kazhdan group without finite quotients was found.
 - Details and bounds: `research/artifacts/ex-novelty-pestov91-deep-pass-2026-09-12.md`.
 
+## RF_fp and LEF_fp Π⁰₂-completeness verdict (2026-09-13, 00:45)
+
+- **Novelty.** No earlier completeness result was found. The nearest printed results are partial:
+  - RF_fp is not c.e. (Rauzy arXiv:2111.01190);
+  - a nontrivial finite quotient is undecidable (Bridson–Wilton 1401.2273);
+  - residual finiteness is boldface Π⁰₃-complete on marked groups (Rauzy 2605.30138).
+  KMS prove only "sym-universally halting ⇒ G(M) is RF".
+- **Framing.** The question is not printed as such. KMS §1.1.7 asks the residually finite Higman embedding question
+  instead, and Rauzy arXiv:2002.02540 answered that negatively. So `rf-higman-embedding-for-decidable-groups` is stale
+  on main.
+- Details: `research/artifacts/ex-novelty-rf-fp-pi02-pass-2026-09-13.md`.
+
 ## Priority notes found in passing
 
 - Eckhardt, arXiv:2608.28772 (2026-08-28; P).
