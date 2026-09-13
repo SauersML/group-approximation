@@ -63,3 +63,39 @@ would then all be equivalent. The graph carries this as the route
 
    *Reformulation only*: it settles neither direction, and no type [A_2] action
    with a non-recursive kernel is known here.
+5. **Non-recursive kernels** (lane solve-bh-q59-nonrecursive, 2026-09-13).
+   One type [A_2] action with a non-recursive kernel would answer this claim
+   negatively, by `a2-kernel-removal-forces-recursive-kernel`. The new claim
+   `a2-stabilizer-image-presentation-controls-kernel` answers it positively for
+   every pair with a finitely presented point-stabilizer image. It also fixes
+   the shape of such a counterexample: the image is not recursively presented,
+   every point-stabilizer image is finitely generated but not finitely
+   presented, and no finitely generated sharply embedded subgroup carries the
+   undecidability. Candidates tested:
+   - **Acting through a quotient with solvable word problem**, e.g. `H x Λ`
+     acting through a type (A_2) actor `Λ`, with `H` finitely presented with
+     unsolvable word problem. *Dies.* The kernel is recursive whenever the image
+     has solvable word problem.
+   - **Hard sharply embedded subgroups.** *Dies* by item 4 of the new claim.
+   - **Normalizer covers** (Attempt 1). *Dies for transitive actors* (hand
+     remark, not a node).
+     - The centralizer of a transitive type (A) actor `Γ` in `Sym(S)` is
+       `N_Γ(H)/H`, which is finite because `H` has finite bi-index.
+     - So a normalizing permutation is its automorphism of `Γ`, given by finite
+       data, up to a finite ambiguity.
+     - The image then has solvable word problem, so the kernel is recursive.
+   - **FFWZ Theorem C actors** of an infinite finitely presented simple `Γ`.
+     *Deferred.* The substitution `x_1 -> x_1 w(x_2, ..., x_(k+1))` of the route
+     of `a2-kernel-removal-forces-recursive-kernel` many-one reduces `J_k(Γ)`
+     to the kernel for every `k < n`, not only `J_1(Γ)`. Still no finitely
+     presented simple group with a non-recursive set of mixed identities is
+     known here.
+   - **Affine actors** `A x| W` acting on `A` through `W -> Aut(A)` with finitely
+     many orbits. *Unclear.* The kernel is `ker(W -> Aut(A))`, so a finitely
+     presented `A x| W` whose image has co-r.e. non-recursive word problem would
+     answer the question. Take `A = C(C, F_2)`, with the image containing `V`
+     and extra computable homeomorphisms. The obstruction is finite presentation
+     of `A x| W`: the module relations involve the stabilizer of a clopen set,
+     which contains the kernel.
+
+   *Open:* no type [A_2] action with a non-recursive kernel is known.
