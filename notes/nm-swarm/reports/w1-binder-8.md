@@ -70,3 +70,6 @@ declined because the code was already on disk.
 CLAIM closed dart walks of the Case 1 pocket walks and the simple-shape X-pocket producer, GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSimplePocket.lean
 
 - Split sent to w1-binder-3 (one message, naming ms-intro-1). This lane: `SameCellSimplePocket.isClosedDartWalk_X` and `_Y`, then a proof of `OsinLemma94CaseOneSimplePocketStatement` (ms-intro-1 states it), plus the Y mirror. w1-binder-3: noncrossing, outer FollowsBoundary, Euler and the assembly. ms-intro-1: the shape reduction and shapes 1–3.
+
+- LANDED 1d23a20e8: `Estimating/OsinLemma94SameCellPocketWalk.lean`, probe 0913-182915-47292 GREEN, BUILT. Namespace `SameCellPocketWalk`: `IsWalkFromTo` with `append`, `reverse_map`, `exists_split`, `eq_of_ne_nil`, `isClosedDartWalk`; `exists_isWalkFromTo_faceBoundary_rotate`; `exists_window_walks`; `isClosedDartWalk_X : IsClosedDartWalk (invDarts X ++ invDarts B)` and `isClosedDartWalk_Y`, over htrav, hPi, `0 < sourceArc.length`, `0 < targetArc.length` and nonemptiness. Queued for wiring.
+- In probe: `Estimating/OsinLemma94SameCellSimplePocket.lean` (attic c43b9463b): `SameCellSimplePocket.false_of_simpleWalk_of_below` (walk-level kill, as ms-intro-1 asked), `false_of_simplePocket_X`, and the closed `osinLemma94CaseOneSimplePocket : OsinLemma94CaseOneSimplePocketStatement`.
