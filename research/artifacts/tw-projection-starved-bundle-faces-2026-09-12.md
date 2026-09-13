@@ -157,7 +157,7 @@ Call the tower *block-balanced* if there are stages `m_j < n_j`, with `m_j → �
 - they are pairwise orthogonal and sum to `1`;
 - each commutes with `φ_{m_j,n_j}(A_{m_j})`;
 - `τ(e^{(j)}_b) = 1/L_j` for every `b` and every `τ ∈ T(A_{n_j})`;
-- `L_j ≥ 2`, and `L_j` is even or `L_j → ∞`.
+- `L_j ≥ 2`, and `1/2 − ⌊L_j/2⌋/L_j → 0`; for example every `L_j` is even, or `L_j → ∞`.
 
 **Proposition B.** A block-balanced tower has (CH), with projections `p_j` such that `[p_j, a] → 0` in
 norm and `sup_{τ∈T(A)} |τ(p_j) − 1/2| ≤ 1/(2L_j)`.

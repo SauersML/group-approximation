@@ -15,7 +15,7 @@ stages `m_j < n_j` with `m_j → ∞`, and pairwise orthogonal projections
 `e^{(j)}_1, …, e^{(j)}_{L_j} ∈ A_{n_j}` summing to `1`, such that:
 - each `e^{(j)}_b` commutes with `φ_{m_j,n_j}(A_{m_j})`;
 - `τ(e^{(j)}_b) = 1/L_j` for every `b` and every trace `τ` of `A_{n_j}`;
-- `L_j ≥ 2`, and `L_j` is even or `L_j → ∞`.
+- `L_j ≥ 2`, and `1/2 − ⌊L_j/2⌋/L_j → 0`; for example every `L_j` is even, or `L_j → ∞`.
 
 Then `A` has central halving, witnessed by projections `p_j` with `‖[p_j, a]‖ → 0` in
 norm for every `a ∈ A` and `sup_{τ∈T(A)} |τ(p_j) − 1/2| ≤ 1/(2L_j)`.
