@@ -31,5 +31,32 @@ Definitions checked: `HasKazhdanPropertyT` is the Kazhdan-pair form over real Hi
 the closed star subalgebra of the bounded product over all same-universe unitary representations. Neither assumes an
 external existence theorem.
 
+## Closed
+
+- **Rows 2 and 9 CLOSED at 88180a8b8** (probe 0913-165710-37455 GREEN, BUILT line checked). Module
+  `GroupApproximation/Analysis/MaxInfiniteProperIsometry.lean`:
+  - `MaxInfiniteProperIsometry.PrintedMaxInfiniteProperIsometry` and the closed
+    `manuscriptMaxInfiniteProperIsometry` (`#audit_closed_axioms`). For every G, every (T) subgroup Γ and every t with
+    tΓt⁻¹ ⊊ Γ, there is s ∈ C*max(G) with s*s = 1 and ss* ≠ 1, and for every n, diag(s,1,…,1) ∈ M_{n+1}(C*max(G)) has
+    both properties. s is the printed P u* + (1 − q).
+  - `diagEntries`, `diagAmplification`, `star_diagAmplification_mul_self`, `diagAmplification_mul_star_ne_one`
+    (`#audit_axioms`).
+  - Queued for wiring. Rows are in `metadata/nm-census-rows/ms-inverses-1.tsv`.
+
+## Residual (not built)
+
+- Row 5 (tex 758–759), the clause "where uPu* is the image of the Kazhdan projection of tΓt⁻¹", has no carrier.
+  - Main only has the absorption identities (`conjugate_mul_proj`, `proj_mul_conjugate`), and its conjugation lemmas
+    (`UnitaryAverageFixedVector.conj_spectralProjection_eq`, `KazhdanProjectionAbsorption.conj_spectralProjection_eq_of_normal`)
+    need a normal subgroup.
+  - Proposed statement: for `D : StrictKazhdanCompression Γ E`,
+    `D.shift * D.proj * star D.shift = spectralProjection (unitaryAverage (conjugated rep) D.S) D.rate`, i.e. the Kazhdan
+    projection of tΓt⁻¹ built from the conjugated average.
+  - Route: unitary conjugation is a star-algebra automorphism, so it commutes with the continuous functional calculus
+    and carries the average to the conjugated average.
+  - The strictness proof on main does not use this clause: it goes through the base vector of the quasi-regular
+    representation.
+
 ## Progress log
-- 16:5x: ledger landed; two gaps (rows 2 and 9) claimed.
+- 16:56: ledger landed at 1193c722d; two gaps (rows 2 and 9) claimed.
+- 17:0x: both gaps closed at 88180a8b8.
