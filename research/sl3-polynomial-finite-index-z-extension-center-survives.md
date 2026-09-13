@@ -57,3 +57,15 @@ such that the order of the image of `z` in finite quotients of `Δ~` is unbounde
 - **Failure model.** For `Sp_(2g)(Z)`, the Deligne cover has finite abelianization and (T), but
   the centre has bounded order in finite quotients (`deligne-universal-cover-lattice-is-non-rf-kazhdan`).
   The analogous non-detection is the main risk here.
+- **Harder's theorem and the Laurent host (2026-09-13).**
+  - `harder-function-field-s-arithmetic-cohomology-vanishing` (with `S = {∞}`) confirms the
+    expectation in the second bullet: congruence subgroups of `SL_3(F_q[t])` have real cohomology
+    only in degrees 0 and 2, and `b_2` is the multiplicity of the Steinberg representation at `∞`.
+  - The consequence of this claim stops at `SL_3(F_q[t])` and the Kun--Thom vertex. Flexible
+    stability does not pass from a subgroup of infinite index to the host, so it does not reach
+    `SL_3(F_q[t,1/t])`.
+  - There the analogous route is void. Every congruence subgroup of the Laurent group has no real
+    `H^2`, so a central Kazhdan cover has finite kernel
+    (`laurent-sl3-central-covers-never-witness-instability`). No nonzero real class of `Γ(f)`
+    extends to the Laurent congruence subgroup `A(f)`
+    (`laurent-sl3-real-cohomology-from-chamber-quotient`).

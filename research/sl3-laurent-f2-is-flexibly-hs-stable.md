@@ -66,3 +66,25 @@ Consequences, through the routes below:
     That is the coset-wreath shape of the positive polarity
     (`function-field-hecke-pair-is-relatively-embeddable`). The last two
     bullets are a sketch, not an established node.
+- **What (T), the congruence subgroup property and character rigidity buy
+  (sketch, 2026-09-13).**
+  - Let `α` be the tracial ultraproduct of a model. For each congruence
+    subgroup `A(g)`, the Kazhdan projection of `A(g)` is central in `C*(A)`,
+    so its image `P_g` is central in `α(A)''`. On `P_g`, `α` factors through
+    the finite group `A/A(g)`, and that corner rounds strictly because finite
+    groups are HS-stable.
+  - The complementary corner has no congruence-invariant mass. Suppose every
+    extreme character of `A` is `δ_e` or finite-dimensional (character
+    rigidity; not verified for this group in the graph). Then that corner has
+    limit character `δ_e`. So flexible stability of `A` reduces to models
+    with limit character `δ_e`.
+  - In the `δ_e` regime, co-density with trivial coefficients is automatic:
+    for a Kazhdan subgroup `H` of infinite index, `α(p_H) = 0 = α(p_A)`.
+  - The one rounding obstruction left is adjoint. Item 3 of
+    `function-field-hecke-pair-is-perfect-codense-kazhdan` makes every
+    almost `SL_3(F_2[t])`-central unitary of a roundable model almost commute
+    with the torus element `h`.
+  - A `δ_e` model violating this is a microstate of the centralizer HNN group
+    with `[s,h]` bounded away from 1, which is the positive polarity. So these
+    three tools cannot settle the problem without also settling that
+    microstate question.

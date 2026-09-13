@@ -46,3 +46,8 @@ vertex (`el-r-vertex-instability-via-rank-three-covers`).
   rings onto `F[t]` is recorded in the rank warning of `approximate-collapse-for-kt-compressor`. If
   its witnesses for nontriviality of the truncation kernels are finite or linear groups, they
   settle this claim.
+- **Scope (2026-09-13).** The consequence is instability of the infinitely presented vertex
+  `SL_3(F_q[t])`. It says nothing about the Laurent host `SL_3(F_q[t,1/t])`. The host is finitely
+  presented: by the Bux--Köhl--Witzel rank theorem its local ranks add to `2+2`. So the
+  infinitely-presented corollary of `kazhdan-cover-models-round-iff-kernel-fixed-mass-one` has no
+  input there. See `sl3-laurent-f2-is-flexibly-hs-stable`.
