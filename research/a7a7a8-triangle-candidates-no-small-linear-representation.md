@@ -40,5 +40,5 @@ representation of dimension at most 7 in any characteristic.
 - the effective integer `N` is not computed. The integral twisted Gröbner runs with `a ≠ 0` were stopped
   after 50 minutes and about 11 GB each without finishing.
 
-The claim is computer-assisted (Sage 10.7 / Singular) and unreviewed. The small Brauer characters of
+The claim is computer-assisted (Sage 10.7 / Singular). Reviewed 2026-09-13 by `ex-verify2-groups`: the certificates reproduce exactly on MSI and the case split re-derives (`research/artifacts/ex-review2-groups-2026-09-13-part3.md`, PASS at the checked steps). The small Brauer characters of
 `A_7` and `A_8` for `p = 2, 3, 5, 7` are recalled rather than re-derived, and so is `H^1(L_4(2), F_2^4) = 0`.

@@ -17,4 +17,4 @@ For every field `K` of characteristic 2 and each `i`, every homomorphism
   `σ(G) = τ(x_A)τ(y_A)τ(x_B)τ(y_B)τ(x_C)τ(y_C)χ(e_1e_2e_3) = -1`.
 - For `G_1` and `G_3` it follows from a Gröbner basis certificate: the trace ideal is `(1)`.
 
-The result is computer-assisted (Sage 10.7 / Singular) and unreviewed.
+The result is computer-assisted (Sage 10.7 / Singular). Reviewed 2026-09-13 by `ex-verify2-groups`: certificates reproduced on MSI, sign lemma re-derived (`research/artifacts/ex-review2-groups-2026-09-13-part3.md`, PASS).

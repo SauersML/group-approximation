@@ -23,8 +23,12 @@ artifacts:
   `C`, the equal-size block bijections, the order-preserving `S_k` cocycle,
   `sigma~` implementing `Ad rho` on `C`, and the use of Kun--Thom 4.1 with
   `K_even` as the abelian normal subgroup.
-- *Not re-derived in either review.*  Kadison's theorem, Kun--Thom 4.1, the
-  deep-congruence lemma, and the artifact lemmas line by line.
+- *Wave 2 (2026-09-13).*  `research/artifacts/ex-review2-groups-2026-09-13-part1.md`
+  re-derived line by line the deep-congruence lemmas (part 1 Lemma 2, part 2
+  Lemma 6, via Suslin), the transport lemma (part 2 Theorem M), Theorem 7, and
+  the bounded-block extension (part 3 Lemma 10, Theorem M_k, Theorem 9): PASS,
+  one notation note.  Kun--Thom 4.1, Definition 2.1 and Theorem E were checked
+  against the arXiv PDF (v3).  Kadison's theorem was matched in statement only.
 
 Let `Gamma = EL_r(R_+) < G = EL_r(R) x| SL_d(Z)`
 be the Kun--Thom Theorem E pair (`r, d >= 3`, any `q`), `N = EL_r(R)`,

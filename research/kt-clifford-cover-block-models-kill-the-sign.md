@@ -11,7 +11,7 @@ artifacts:
   - research/artifacts/ex-q34-kt-wreath-soft-kernel-part4-2026-09-13.md
 ---
 
-**ESTABLISHED** (unreviewed).  Let `Gamma < G` be the Kun--Thom Theorem E pair,
+**ESTABLISHED** (reviewed 2026-09-13 by `ex-verify2-groups`: PASS, `research/artifacts/ex-review2-groups-2026-09-13-part1.md` §4).  Let `Gamma < G` be the Kun--Thom Theorem E pair,
 `N = EL_r(R)`, `X = G/Gamma`, and `S` a `G`-invariant graph on `X` containing
 the marked pair `{o, y}` of `invariant-graph-clifford-phase`.  Let
 `Wtilde_S = Vtilde_S x| G` be the Clifford cover: `Vtilde_S` is the central

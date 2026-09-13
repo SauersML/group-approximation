@@ -8,7 +8,7 @@ distinct_from:
   simple-group-support-and-semisimple-rank-models-collapse: that proves the linear rank collapse relator rank >= delta_0 generator rank in GL; this asks for the projective form of that collapse together with a covering lemma, which are exactly what turn collapse into bounded conjugacy width.
 ---
 
-**ESTABLISHED (unreviewed, 2026-09-13).** Let `G = <X | R>` be an infinite finitely presented simple
+**ESTABLISHED (2026-09-13; reviewed by `ex-verify2-groups`: PASS as an assembly, `research/artifacts/ex-review2-groups-2026-09-13-part2.md` §6).** Let `G = <X | R>` be an infinite finitely presented simple
 group and `q` a prime power. Suppose `G` is not linear sofic over `F_q`. Let `Q` be
 a finite quasisimple classical group over `F_q` of any rank: `SL_n(q)`, `SU_n(q)`,
 `Sp_(2n)(q)`, `Omega_n(q)` or their simple quotients. Then there is `K = K(G, q)` such that every

@@ -9,7 +9,7 @@ distinct_from:
   simple-group-relator-width-in-finite-simple-targets: that covers bounded rank, sporadic, symmetric and alternating targets; this covers unbounded rank isometry groups.
 ---
 
-**ESTABLISHED (unreviewed).** Let `G = <X | R>` be an infinite finitely presented simple group that is
+**ESTABLISHED (reviewed: PASS in `research/artifacts/ex-review-backlog-2026-09-13-part7.md` §27.1 and `research/artifacts/ex-review2-groups-2026-09-13-part2.md` §§1--5).** Let `G = <X | R>` be an infinite finitely presented simple group that is
 not linear sofic over finite fields (definition on `simple-group-psl-width-is-finite-field-linear-soficity`).
 Then there is `K = K(G)` with `w_Q(a) <= K` for every `a in Q^X` and every `Q = Q_0/Z_0`, where:
 - `Q_0` is `Sp_n(q)`, `SU_n(q)` or `Omega^+-_n(q)`, for any `n` and `q` such that `Q_0/Z(Q_0)` is a

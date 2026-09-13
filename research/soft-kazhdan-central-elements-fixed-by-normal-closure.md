@@ -12,7 +12,7 @@ artifacts:
   - research/artifacts/ex-q34-kt-wreath-soft-kernel-part3-2026-09-13.md
 ---
 
-**ESTABLISHED** (unreviewed).  Let `H` be a countable group and
+**ESTABLISHED** (reviewed 2026-09-13 by `ex-verify2-groups`: PASS, `research/artifacts/ex-review2-groups-2026-09-13-part1.md` §§2--3, one notation note on the Lemma 10 cocycle display).  Let `H` be a countable group and
 `Lambda <= G <= H`, with `Lambda` and `G` Kazhdan, `Lambda` infranormal in
 `G` (its compression semigroup generates `G`), and `G` sofic.  Let
 `rho : H -> prod_omega (U(k) wr S_n)` be any homomorphism into the tracial
