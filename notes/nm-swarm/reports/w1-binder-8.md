@@ -64,3 +64,9 @@ Declaration names are chosen so that they cannot collide with kh-torsion's modul
 
 Coordination: ms-inverses-1 and ms-core-2 offered to take step 1 and steps 3–4 respectively. Both were
 declined because the code was already on disk.
+
+## Binder 3 (main, ~18:15): OsinLemma94CaseOneRCellStatement, relator-cell branch
+
+CLAIM closed dart walks of the Case 1 pocket walks and the simple-shape X-pocket producer, GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSimplePocket.lean
+
+- Split sent to w1-binder-3 (one message, naming ms-intro-1). This lane: `SameCellSimplePocket.isClosedDartWalk_X` and `_Y`, then a proof of `OsinLemma94CaseOneSimplePocketStatement` (ms-intro-1 states it), plus the Y mirror. w1-binder-3: noncrossing, outer FollowsBoundary, Euler and the assembly. ms-intro-1: the shape reduction and shapes 1–3.
