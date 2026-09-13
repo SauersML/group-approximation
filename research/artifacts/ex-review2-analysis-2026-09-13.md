@@ -235,6 +235,17 @@ Filled in as each part lands.
 | `congruence-sc-fails-along-levels-with-recurring-divisor` | cubic-division-strong-convergence | PASS | 6 §6.14 |
 | `cubic-division-congruence-sc-descends-to-thin-subgroups` | cubic-division-strong-convergence | PASS | 6 §6.15 |
 | `cubic-division-congruence-sc-forces-asymptotic-laplace-gap` | cubic-division-strong-convergence | PASS | 6 §6.16 |
+| `bernoulli-shift-weak-k-equivalence-and-going-down` | bc-measured-coefficient | PASS, CEKN and BD verbatim | 7 §7.1 |
+| `bernoulli-bc-splits-into-host-and-cylinder-comparison` | bc-measured-coefficient | PASS | 7 §7.2 |
+| `bernoulli-assembly-injective-beyond-the-host` | bc-measured-coefficient | PASS, every host re-derived | 7 §7.3 |
+| `module-defect-needs-non-k-exact-host` | bc-module-monster | PASS | 7 §7.4 |
+| `monster-bc-detector-lives-on-a-proper-orbit-ideal` | bc-module-monster | PASS as import, Finn-Sell verbatim | 7 §7.5 |
+| `osajda-monster-hosts-for-bc-module-route` | bc-module-monster | PASS as import, not re-read | 7 §7.6 |
+| `bdl-deligne-type-two-norm-inapproximability` | nh-deligne-hs | PASS, verbatim | 7 §7.7 |
+| `blsw-real-lattice-frobenius-stability` | nh-deligne-hs | PASS, verbatim | 7 §7.7 |
+| `deligne-covers-of-sp2g-z-have-finite-residual-2z` | nh-deligne-hs | PASS, verbatim | 7 §7.7 |
+| `kt-wreath-models-never-round-on-the-vertex` | hs-instability-extension | PASS, five premises unreviewed | 7 §7.8 |
+| `cuntz-sups-with-continuous-rank-converge-uniformly` | rank-toms-b-construct | PASS | 7 §7.9 |
 
 ## 3. Part files
 
@@ -257,3 +268,23 @@ Filled in as each part lands.
   soft tail splittings, Toms's algebra on faces), SL_3(Z) matricial fields (amenable-kernel permanence, the affine
   reformulation, prime-level witnesses and forced Ramanujan consequences), and congruence strong convergence for
   cubic division lattices.
+- `ex-review2-analysis-2026-09-13-part7.md`: Baum--Connes at Bernoulli coefficients (weak K-equivalence, host splitting,
+  injectivity over every host), the module-route host constraints, the Deligne and stability imports, the wreath
+  rounding no-go, and uniform convergence of Cuntz suprema.
+
+## 4. Outcome of the census
+
+- **Verdicts.** All 86 census claims were reviewed: 86 PASS, 0 FAIL, 0 GAP.
+- **Graph fix.** One, landed at `d16d59955a`: requires for `zp-detection-iff-bootstrap-sufficiency-and-kk-g-generation-proof`.
+- **Wording notes.** Three, each sent to its owner: the cut levels and inactive members in tw-rotation-gluing, and the
+  left-sided compression in rank-toms-b-obstruct.
+- **No false establishment.**
+  - The only root that flips is the repository-built class-four root, and its chain passes.
+  - The Rank Problem, Toms--Winter, UCT, LXI, RR0, Blackadar--Kirchberg, MF-Kazhdan, SL_3(Z) PMF,
+    non-hyperlinear-group and Baum--Connes roots stay open.
+- **Unreviewed established prerequisites** met during the review and not re-derived here, recommended for the next
+  verifier:
+  - `r-fibre-bundle-triviality-iff-uniform-central-halving` and `toms-ah-counterexample-to-uniform-gamma`;
+  - `amenable-kernel-bc-transfer-and-ktop-half-exactness` and `lueck-surjective-assembly-traces-lie-in-lambda-g`;
+  - the five vertex-rounding premises of §7.8 in part 7;
+  - `izumi-rokhlin-approximately-representable-duality`.
