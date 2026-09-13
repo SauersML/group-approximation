@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PlanarPieces
+import GroupApproximation.GGT.VanKampen.CombMapSameFaceForest
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -13,11 +14,10 @@ vertex of valence one inside a `G`-face, and the walk turns between two cutting 
 vertex of valence at least three.  So a polygon has few cutting sides compared with the number
 of times its walk enters a cutting side from another side.
 
-* `CombMap.sameFaceDarts`, `CombMap.sameFaceVertices`: the darts with the face `f` on both
-  sides, and the vertices they start at.
-* `SameFaceDartForestStatement`: in a planar map, once there is such a dart, there are at most
-  twice as many of these darts as vertices, less two.  This is the forest property, the only
-  planarity input of the count.
+* `CombMap.sameFaceDarts`, `CombMap.sameFaceVertices` and `SameFaceDartForestStatement` come from
+  `CombMapSameFaceForest`: in a planar map, once some dart has the face `f` on both sides, there
+  are at most twice as many such darts as vertices they start at, less two.  This forest property
+  is the only planarity input of the count.
 * `cuttingSides`, `cuttingEntries`: the cutting sides of polygon `k`, and those whose cyclic
   predecessor is not a cutting side.
 * `OsinLemma94CuttingSidesStatement`: for a dart-minimal family with maximal sides, polygon `k`
@@ -33,35 +33,6 @@ theorem", through Osin's Lemma 9.4 inside the proof of Lemma 4.4).  It pays the 
 namespace GroupApproximation.GGT.VanKampen
 
 universe u w v
-
-namespace CombMap
-
-open Classical in
-/-- The darts with the face `f` on both sides. -/
-noncomputable def sameFaceDarts (M : CombMap.{u}) (f : M.Face) : Finset M.Dart :=
-  Finset.univ.filter fun d => M.faceOf d = f ∧ M.faceOf (M.alpha d) = f
-
-open Classical in
-theorem mem_sameFaceDarts (M : CombMap.{u}) (f : M.Face) (d : M.Dart) :
-    d ∈ M.sameFaceDarts f ↔ M.faceOf d = f ∧ M.faceOf (M.alpha d) = f := by
-  unfold sameFaceDarts
-  rw [Finset.mem_filter]
-  exact ⟨fun h => h.2, fun h => ⟨Finset.mem_univ d, h⟩⟩
-
-open Classical in
-/-- The vertices at which the darts with the face `f` on both sides start. -/
-noncomputable def sameFaceVertices (M : CombMap.{u}) (f : M.Face) : Finset M.Vertex :=
-  (M.sameFaceDarts f).image M.vertexOf
-
-end CombMap
-
-/-- **The edges with one face on both sides form a forest.**  In a planar map, the darts with
-the face `f` on both sides are the darts of the edges with `f` on both sides.  These edges contain
-no cycle, so, once there is one of them, there are fewer of them than vertices they meet:
-`#darts + 2 ≤ 2 · #vertices`. -/
-def SameFaceDartForestStatement : Prop :=
-  ∀ (M : CombMap.{u}), M.IsPlanar → ∀ f : M.Face, (M.sameFaceDarts f).Nonempty →
-    (M.sameFaceDarts f).card + 2 ≤ 2 * (M.sameFaceVertices f).card
 
 namespace OsinLemma94RealizedPolygons
 
@@ -115,6 +86,5 @@ def OsinLemma94CuttingSidesStatement : Prop :=
 
 end GroupApproximation.GGT.VanKampen
 
-#audit_axioms GroupApproximation.GGT.VanKampen.CombMap.mem_sameFaceDarts
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.mem_cuttingSides
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.mem_cuttingEntries
