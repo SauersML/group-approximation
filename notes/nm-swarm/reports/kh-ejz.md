@@ -93,17 +93,30 @@ nm-endpoints.
    - Twisted generators, `H ≅ F₆` (QTwoLemmaFourSixGenerators, 7db72cfc1): `exists_twisted_generators`.
    - Tools: `isFinitelyPresented_of_casingPair` (GroupTheory/CasingPair), `isFinitelyPresented_of_ascending`
      (GroupTheory/AscendingHNNRecognition).
-   Missing:
-   - (i) the Case 1 assembly: `⟨H, f⟩` through `isFinitelyPresented_of_ascending`, then the casing pair
-     `Υ_{Γ₂}(I)' ≤ N ≤ Υ_Γ(I) ≤ Υ_{Γ₂}(I)`;
-   - (ii) Case 2, `|I| = 1`;
-   - (iii) the reduction from a general `[a, b]` to the unit frame.
+   - Piece statements (QTwoLemmaFourSixStatements, simple-group, 232d6b12b): `LemmaFourSixDynamicsStatement`,
+     `LemmaFourSixCaseOneStatement`.
+   Owners (lead, 2026-09-13):
+   - hl-lemma46: dynamics.
+   - simple-group: Case 1 and the final assembly.
+   - fff-quotient: `|I| = 1`, as an ascending HNN extension.
+   - kh-ejz: the casing pair `Υ_{Γ₂}(I)' ≤ N ≤ Υ_Γ(I) ≤ Υ_{Γ₂}(I)` through `isFinitelyPresented_of_commutator_le`,
+     plus conjugation of a general `[a, b]` with `|I| < 1` into the unit frame, consuming
+     `LemmaFourSixCaseOneStatement`.
 4. **Row LINE:1675** is carried by `fournierFacioParagraph_of_leastAreaLeaves (hgreendlinger) (hbridge) (hKO) (hW)`
    (TorsionFreeLiteratureInputsLeastArea). It flips only when all four walls close. nm-endpoints owns the flip.
-5. **Not root-wired:** QTwoFinitePresentationProduct and QTwoFinitePresentationNormal (mine), and
-   fff-quotient's Restrict, StabKSplit and StabK.
-6. **Coordination.** On 2026-09-13 I asked the lead for a Lemma 4.6 split with hl-lemma46: which of (i)–(iii)
-   is mine, and the exact Prop name hl-lemma46 will consume. I write no Lean until the lead confirms.
+5. **Wiring.** QTwoFinitePresentationProduct and QTwoFinitePresentationNormal (mine, ba54a571f) are queued in
+   the lead's wire queue. fff-quotient's Restrict, StabKSplit and StabK were already queued.
+6. **Orphan.** Before the re-split the lead assigned me Case 2 (`|I| = 1`) through `Υ'' = Υ'`.
+   - Its statement `LemmaFourSixCaseTwo` (QTwoLemmaFourSixCaseTwo, statement only, not compiled) landed as an
+     orphan at 9711ad726 so it is not lost.
+   - It is not on the Proposition 4.7 route.
+   - The perfectness lemma for `|I| = 1` was never written.
+7. **Next.** simple-group names the Prop for my piece. I write no Lean until the name arrives.
+   - A draft proof is ready in my lane scratch, not in the tree:
+     `isFinitelyPresented_upsilon_unit_of_caseOne` (casing pair in the unit frame) and
+     `isFinitelyPresented_upsilon_short_of_caseOne` (via `exists_move_into_unit`, `upsilon_add_int` and
+     `upsilonConjEquiv`).
+   - Once the name arrives: rename the draft to match, probe, land after green.
 
 ## Assignment (2026-09-12)
 Hyde–Lodha Proposition 4.7, alongside fff-quotient:
