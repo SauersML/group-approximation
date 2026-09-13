@@ -121,3 +121,40 @@ For `g ∈ G`, the stabilizer of `gΓ` in `Γ` is `Γ ∩ gΓg^-1`. So the orbit
 - The soficity consequence had only a bounded novelty check, and may be folklore. Theorem P is recorded by the lane
   as folklore-level.
 - Remark F (asymptotic freeness of `V_k` for odd `n`) checks and is not consumed.
+
+## 13f. ex-tree-lattice-mixing: Radu's horizontal quotient is an arithmetic lattice (aafc5e8540)
+
+| node | verdict |
+|---|---|
+| `radu-horizontal-quotient-is-arithmetic-lattice` (+ `-proof`), flipped from OPEN to ESTABLISHED | PASS. The 2-adic matrix model, the fixed vertex `p`, the edge action and the inversions are taken from the landed outputs (`radu-second-tree-checks-output-2026-09-13.txt`, `radu-valuations-checks-output-2026-09-13.txt`) |
+| edit to `radu-horizontal-projection-kills-delta-squared` | wiring only |
+
+- **Transitivity on `T'`.** `ρ(x)` inverts edge 0, so the orbit `G·p` contains the neighbour across it.
+  `S_3 = ⟨ρ(xz), ρ(xyx)⟩ <= G_p` permutes the three edges at `p` transitively. So all neighbours of `p` are in
+  `G·p`, by invariance so are all neighbours of every orbit point, and connectedness finishes.
+- **Vertex group.**
+  - With `s = xz` and `u = xyx`: `z = xs`, `y = xux` and `xyz = us`. So
+    `W = ⟨x,y,z | x²,y²,z²,(xz)²,(xyz)³⟩ = ⟨x,s,u | x², s², u², (xs)², (us)³⟩ = D_2 *_(C_2) S_3`, which is
+    `PGL_2(Z)`.
+  - In the Bass–Serre tree the `S_3`-vertices have degree 3 and the `D_2`-vertices degree 2.
+  - The equivariant map to the subdivided `T'` is well defined, because `S_3` fixes `p` and `D_2 = ⟨x, xz⟩` fixes
+    the midpoint of edge 0 (`xz` fixes edge 0, and `x` inverts it). It is locally bijective, since the stabilizer
+    of edge 0 in `S_3` is `⟨xz⟩`, so it is an isomorphism of trees.
+  - The kernel of `W` on its Bass–Serre tree is the core of `⟨xz⟩` in `S_3`, which is trivial. So `W → ρ(V)` is
+    injective, and `Λ_v = ker ρ ⊆ V` is the normal closure of `(xz)²` and `(xyz)³` in `V`.
+- **Lattice.**
+  - `ρ(A)` is simply transitive on `T_h`, because `A ∩ Λ_v ⊆ A ∩ V = 1`. With transitivity of `ρ(V)` on `T'`,
+    `Q` is vertex-transitive on `T_h × T'`, with stabilizer `ρ(V)_p ≅ S_3`, the Bass–Serre vertex group.
+  - A discrete group acting with finite stabilizers and one vertex orbit is a cocompact lattice. `N(O)/F^×` is
+    discrete and contains it, so the index is finite.
+- **Euler characteristic.**
+  - The horizontal graph of groups has one vertex and one inverted edge, so
+    `χ(Q) = χ(W) − χ(V_a)/2 = −χ(W)/2 = 1/24`, with `χ(W) = 1/4 + 1/6 − 1/2 = −1/12` and `[W : V_a] = 3`.
+  - Independent check through the square complex: `(1 − 3/2 − 3/2 + 9/4)/6 = 1/24`.
+- **Item 4.** The translation length of `g` on the Bruhat–Tits tree is `max(0, −v(tr²/det))`. `ab`, `bc` and `ca`
+  have `v_(𝔮')(1 + w/2) = 2`, and the generators are involutions, so all are elliptic. Serre, *Trees* I.6.5, applied
+  on the subdivision, gives a point `p_A` fixed by `ρ(A)`. Then `gA ↦ ρ(g)p_A` is equivariant and Lipschitz, and
+  collapses `Λ_v`.
+- **Scope.** `Γ_R` is (infinitely generated free)-by-(arithmetic lattice). This does not decide
+  `radu-bmw-lattice-nonsofic`: extensions of free groups by residually finite groups need not be sofic. The index
+  `[N(O)/F^× : Q]` stays undecided; the Euler-characteristic numerology is recalled, not proved.
