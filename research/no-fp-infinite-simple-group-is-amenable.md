@@ -32,6 +32,9 @@ Zaremsky Problem 1.10 negatively, through `zaremsky-1-10-by-nonexistence`.
     acting on the circle without a global fixed point. This includes 1-periodic
     simple groups of line homeomorphisms whose circle action has no fixed point, such
     as Hyde–Lodha's `Q_2` (`hyde-lodha-periodic-simple-groups-are-not-amenable`).
+  - `amenable-fg-simple-groups-are-not-left-orderable`: every finitely generated
+    infinite simple group with a nontrivial action on the line or the circle, through
+    Witte Morris's theorem.
 - **Isolation.** A finitely presented infinite simple group is an isolated point
   of the space of marked groups, so it is not a limit of finite groups. Amenability
   supplies Følner sets, not marked approximants, and no contradiction between the

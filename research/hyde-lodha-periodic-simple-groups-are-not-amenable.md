@@ -26,11 +26,25 @@ circle `R/Z`. The 1-periodic copy of `F_6'` inside `Q_2` pushes every compact ar
 `(0, 1)` off itself infinitely often, so an invariant probability measure is the
 atom at `0`. Some element of `Q_2` moves `0`, a contradiction.
 
-**Sources and scope.** The statements used were read as quoted in the repository's
-Lean modules `GroupApproximation/GroupTheory/HydeLodha/` (`GammaTwo`,
-`GammaTwoPeriodic`, `GammaTwoLambda`, `GammaTwoCoreMoves`, `PeriodicCore`,
-`QTwoStatement`); the paper itself was not re-read in this lane, and its arXiv id is
-not recorded here. The argument uses four printed inputs:
+**Stronger: a free subgroup.** Steps 2–5 of the proof use amenability only to produce
+the invariant measure, so they show that the circle action of `Q_2` preserves no
+probability measure. By Margulis' theorem, in the form of A. Navas, *Groups of circle
+diffeomorphisms*, arXiv:math/0607481 (TeX label `margulis`, read from source on MSI):
+"If Γ is a subgroup of Homeo_+(S^1), then either there exists a probability measure on
+S^1 which is invariant by Γ, or Γ contains a free subgroup on two generators." So `Q_2`
+contains a free subgroup on two generators.
+
+**General form.** `amenable-fg-simple-groups-are-not-left-orderable` (through Witte
+Morris's theorem) also shows `Q_2` is not amenable, since `Q_2` is finitely generated,
+infinite, simple and acts faithfully on `R`. This claim keeps the direct argument and
+the free-subgroup strengthening.
+
+**Sources and scope.** The paper is Hyde–Lodha, arXiv:2302.04805 (id as recorded in
+`research/artifacts/zp-left-orderable-simple-type-f-fences-2026-09-13.md`). The
+statements used were read as quoted in the repository's Lean modules
+`GroupApproximation/GroupTheory/HydeLodha/` (`GammaTwo`, `GammaTwoPeriodic`,
+`GammaTwoLambda`, `GammaTwoCoreMoves`, `PeriodicCore`, `QTwoStatement`); the paper
+itself was not re-read in this lane. The argument uses four printed inputs:
 - 1-periodicity (Definition 1.2);
 - the 1-periodic copy of `F_{η}` inside `Γ_n` (Proposition 1.4(2));
 - an element `λ ∈ Γ_n` with `Z·λ != Z` (Proposition 3.4);

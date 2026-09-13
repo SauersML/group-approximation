@@ -101,8 +101,10 @@ presented infinite simple group with no free subgroups.
     of them and is not amenable (`hyde-lodha-periodic-simple-groups-are-not-amenable`;
     dead route `fp-simple-amenable-via-hyde-lodha-group`). It had escaped the earlier
     obstructions, since it contains no `V` and is not a lattice in a product of trees.
-  - Survivors on one-manifolds: groups of homeomorphisms of the line with no periodic
-    structure, for example Hyde–Lodha's finitely generated simple groups built from
-    quasi-periodic labellings and Matte Bon–Triestino's groups of piecewise linear
-    homeomorphisms of flows. Neither source was re-read in this lane, and no finitely
-    presented member of either family is recorded.
+  - **Every one-manifold is dead.** `amenable-fg-simple-groups-are-not-left-orderable`,
+    through Witte Morris's theorem (`amenable-left-orderable-groups-are-locally-indicable`):
+    a finitely generated infinite simple amenable group is not left-orderable, so each
+    of its actions on the line or the circle is trivial. This removes every
+    finitely generated simple group of line homeomorphisms, with or without periodic
+    structure, including Hyde–Lodha's groups from quasi-periodic labellings, and every
+    group acting faithfully and orientation-preservingly on one orbit of a flow.
