@@ -76,6 +76,33 @@ CLAIM noncrossing barrier sides and the no-common-dart variant, GroupApproximati
 
 CLAIM the pocket sides of the Case 1 same-cell walks in every window case, GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketSides.lean
 
+- 18:05: probe 0913-180324-90857 GREEN. `OsinLemma94SameCellPocketSides` built with 0 warnings. All
+  17 `#audit_axioms` are within `[propext, Classical.choice, Quot.sound]`; one of them is
+  `[propext, Quot.sound]`. The module lands in the same commit as this entry.
+  - Generic layer, in namespace `SimpleClosedWalkSides`:
+    - `mem_sideFaces_iff_of_not_walkKeep`;
+    - `not_mem_sideFaces_of_two_faces`: a noncrossing walk with two faces across it and an edge
+      between them off the walk has both faces off its side;
+    - `faceOf_alpha_eq_or_of_alpha_mem` and `not_walkKeep_of_alpha_mem`;
+    - `disjoint_sideFaces_of_two_faces` and `not_mem_sideFaces_or_of_two_faces`.
+  - Case 1 layer, in namespace `SameCellPocketSides`, over the binders of
+    `OsinLemma94CaseOneRCellStatement` (`htrav`, `hPi`, `0 < sourceArc.length`):
+    - `exists_edge`: the first dart of `p`;
+    - `not_mem_walk_of_mem_walk`: the pocket walks share no dart;
+    - `face_not_mem_sideFaces_X` and `_Y`: `f` and `Π` are off the side of each noncrossing pocket
+      walk. `Π` off the side is the input `hi` of `false_of_pocketRegion_of_below`;
+    - `disjoint_sideFaces` and `not_mem_sideFaces_or`: the exterior face is off one side, which is
+      the input `hout` of `PocketRegion.ofNoncrossingClosedWalk`.
+  - No barrier nonemptiness is assumed, so X, Y, A or B empty are covered as they are.
+- Which empty windows occur (read from the definitions; no least-area model built):
+  - `Maximal` allows two consecutive sides of the same cell when the walk across turns away at the
+    common vertex, and it does not constrain the wrap pair. So X = [] and Y = [] can occur.
+  - B = [] and A = [] mean that `q` and `p` are consecutive on the carrier of `Π`.
+  - In the relator-cell branch X ++ B and Y ++ A read values other than 1, so both are nonempty.
+    The value-one kills cover the other cases.
+  - Not settled here: whether a degenerate walk, such as `invDarts B` alone when X = [], is
+    noncrossing. That belongs with jacobson's four facts.
+
 ## For the producer of the relator-cell branch (not built here)
 
 On the pocket walks `w₁ = invDarts X ++ invDarts B` and `w₂ = invDarts Y ++ invDarts A`:
