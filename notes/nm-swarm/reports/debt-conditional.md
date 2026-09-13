@@ -6,11 +6,44 @@ baseline is unchanged since 3f71a3a50.
 
 ## Status
 
-- No Lean landed. None of the 59 findings has an input outside the walls that a closed producer or closed carrier
-  can honestly discharge.
+- W2 hbridge, the M2 setup module (handout from hull-bridge, ROSTER ~02:50):
+  - The module is `GroupApproximation/GGT/HullSCLemma51LetterPullbackCut.lean`, which proves
+    `HullSC.letterStepBound_of_cutLiftOutcome`.
+  - GREEN on main at 457c543a8. Probe 0913-044157-34176 printed PROBE GREEN and BUILT for the module, and its error
+    index was empty.
+  - Axioms: [propext, Classical.choice, Quot.sound].
+  - The bytes on origin match the green record (md5 b36f745f), so the module did not need re-landing.
+  - It is in the wire queue, to be wired after CutLift. The SHA has gone to hull-bridge.
+- Classification of the 59 findings: landed at 7ab9c2f5f and accepted by main. None of the 59 has an input outside
+  the walls that a closed producer or closed carrier can honestly discharge.
 - The 19 findings outside the walls retire by re-routing census rows. The replacement four-leaf declarations are
-  already landed. The rows belong to other lanes, and the re-route asks went to main.
-- Classification sent to main on 2026-09-13.
+  already landed. main sent the re-route asks to census.
+
+## W2 hbridge: the certificate-cut move bound
+
+`letterStepBound_of_cutLiftOutcome` takes these inputs:
+
+- the bounded Lemma 4.4 input with `mu ≤ 1/1000` and `20(eps + 1) ≤ rho`;
+- `q.ker = normalClosure (listVal '' W)`;
+- least-area certificates `hcert`;
+- `CutLiftOutcome W D q hq`, which hull-bridge proves.
+
+It returns `LetterStepBound D W q hq (fun w => ∀ r, IsRelGeodesic D (w.rotate r))`, which is M2. M1,
+`letterStepBound_of_not_isRelGeodesic`, is already landed. `quotientPeripheralLetterPullbackAt_of_letterStepBound`
+combines M1 and M2 into the letter pullback, and from there `relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_letterPullback` gives the bridge.
+
+Proof:
+
+- Radius `2 eps + n + L_W + 2` and count `2 eps + n + L_W + 3`, where `L_W` bounds the relator lengths
+  (`hsc.lengthBounded`).
+- The word `w = p ++ [comp lam h⁻¹]` is admissible, `q`-null and nontrivial.
+- `exists_geodesicCut_of_leastAreaCertificates` gives `w.rotate r = before ++ arc ++ after` and `ext ++ rem ∈ W`.
+  Rotating by `r + |before|` gives `arc ++ (after ++ before)`.
+- `exists_rotatedLift` at the same rotation gives `x ++ comp lam h⁻¹ :: y`, and these assemble into a `CutLift`.
+- Then `hout` closes it, using `|arc| ≤ n + 2`, `|L|, |R| ≤ eps`, `|ext| ≤ L_W` and `|x| + |y| = |p| ≤ n + 1`.
+
+The only hypotheses are the Lemma 4.4 inputs, which the bridge statement also takes, and `CutLiftOutcome`, which
+hull-bridge proves in its own module. There is no sorry and nothing stands for a cited result.
 
 ## Classification
 
@@ -94,10 +127,11 @@ rows. So the owning lanes, or census `overrides.tsv`, must do the re-routing.
 
 ## Residual Props
 
-The four walls above. This lane builds none of them.
+- The four walls above. Of these, this lane contributes only to hbridge, and only through the Cut module.
+- The Cut module's only non-input hypothesis is `CutLiftOutcome W D q hq`, which hull-bridge owns.
 
 ## Next
 
-Waiting on main. If main names a closed producer for an input outside the walls, or other Lean work, I'll add it
-to `lanes/debt-conditional.files`, back it up, land it unverified, probe it, and re-land it after a green probe.
-Each retired line gets a row noted `retires <kind> <decl>`.
+- The Cut module is done: green, on main, SHA sent to hull-bridge, and queued for wiring.
+- Waiting on main or hull-bridge for the next W2 item. The obvious candidates belong to hull-bridge: a
+  `CutLiftOutcome` proof, `Holds` or `EmbeddedBridgeHolds`. I'll take one only if it is handed over.
