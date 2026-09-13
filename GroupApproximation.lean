@@ -4996,6 +4996,10 @@ import GroupApproximation.KirchbergAlgebra.Basic
 import GroupApproximation.KirchbergAlgebra.CuntzCriterion
 import GroupApproximation.KTheory.K1Functorial
 import GroupApproximation.KTheory.K1Scalar
+import GroupApproximation.KTheory.K0Basic
+import GroupApproximation.KTheory.K0Rect
+import GroupApproximation.KTheory.TensorKronecker
+import GroupApproximation.KTheory.TensorProduct
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
