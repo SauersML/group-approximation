@@ -18,3 +18,5 @@ are dense.
 Credit: this is Clark–Edie-Michell, arXiv:1403.4684, Theorem `thm:center`(1), quoted from the TeX source on MSI:
 "Let $G$ be a Hausdorff, ample groupoid, and $R$ a commutative ring with identity. (1) Suppose $G$ is effective and
 minimal, and $G^{(0)}$ is compact. Then $Z(A_R(G)) = R1_{G^{(0)}}$." The proof route here is self-contained.
+
+**Review (un-verify, 2026-09-13): PASS.** Proof re-derived; the Clark–Edie-Michell quote matches arXiv:1403.4684 `main.tex` lines 578–584. Co-credit: Steinberg, arXiv:1408.6014, Proposition 3.7 (p. 10), states the same centre description. See `research/artifacts/un-review-2026-09-13-part1.md` §2.

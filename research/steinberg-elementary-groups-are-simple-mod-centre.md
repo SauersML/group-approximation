@@ -25,3 +25,5 @@ that is effective and minimal. Put `R = A_k(𝒢)` and `n ≥ 3`. Then:
 The non-MF tex proves simplicity of `L_(F_2)(1,2)^×` through Preusser's sandwich theorem for exchange rings; this
 route needs no exchange property. So one simplicity theorem serves both constructions. Their approximation behaviour
 (LEF versus no MF quotient) is decided by other invariants of the groupoid, not by simplicity.
+
+**Review (un-verify, 2026-09-13): PASS.** All five requires are present and established; the Lean criterion has exactly the cited hypotheses; the (T) clause is gated on finite `k` and finitely generated `R`, as EJZ needs. Subsumption scan and display check clean. See `research/artifacts/un-review-2026-09-13-part1.md` §§4–6.

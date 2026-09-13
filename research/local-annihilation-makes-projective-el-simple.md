@@ -20,3 +20,5 @@ stable-range or exchange hypothesis is used.
 This is the common ring criterion behind the simplicity halves of the Pestov 9.1 answer (via
 `localAnnihilation_of_crossedProduct`) and of the Leavitt unit groups: L_k(1,d) is a Steinberg algebra, see
 `steinberg-algebras-have-local-annihilation`.
+
+**Review (un-verify, 2026-09-13): PASS.** Paper steps and the centre clause re-derived; the Lean signature `(hcard : 3 ≤ Fintype.card ι) [IsSimpleRing R] (hloc : LocalAnnihilation R)` is as cited, and the module is root-imported. See `research/artifacts/un-review-2026-09-13-part1.md` §4.

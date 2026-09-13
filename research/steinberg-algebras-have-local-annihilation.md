@@ -22,3 +22,5 @@ This is exactly the Lean predicate `GroupApproximation.Pestov91.LocalAnnihilatio
 
 Why: `F` is supported on finitely many compact open bisections `B_j`. Near each unit `x`, a small clopen `V` has
 `V ∪ ⋃_j α_(B_j)(V)` missing a fixed clopen `W`, and `χ_W f χ_V = 0` then kills `F` on `χ_V R`. Proof in artifact §1.
+
+**Review (un-verify, 2026-09-13): PASS.** Proof re-derived; the displayed `S_F` is the Lean predicate `LocalAnnihilation` verbatim; model tests confirmed (a field fails, `LC(X,k)` passes but is not simple). See `research/artifacts/un-review-2026-09-13-part1.md` §1.
