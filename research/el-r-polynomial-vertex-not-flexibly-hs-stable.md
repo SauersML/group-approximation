@@ -72,3 +72,17 @@ wreaths non-hyperlinear.
   congruence mass only at escaping levels (`theorem-e-congruence-projections-vanish-at-regular-trace`).
   The truncated-cover models are exactly of that kind: exact on larger and larger balls, and
   nontrivial only on relators of growing index.
+- **Actor extension (2026-09-13, lane `ex-hs-instability-extension`).** Retract-based witnesses never reach
+  `hs-stable-vertex-rounding-for-every-model`.
+  - **The torus argument.** Let `σ : G -> U(M)` be any homomorphism with `σ(e_ij(x_2 f)) = 1` for all `f`,
+    as for `α∘r`.
+    - Then `σ(e_12(x_2^2)) = 1`. The torus element `t = diag(x_2, x_2^(-1), 1, ...) ∈ EL_r(L)` conjugates
+      `e_12(1)` to `e_12(x_2^2)`, so `σ(e_12(1)) = 1`.
+    - Then `e_ij(f) = [e_ik(f), e_kj(1)]` makes `σ|Γ` trivial.
+  - **Consequence.** The model `α∘r` equals, in `M`, the vertex restriction of an actor model only when `α` is
+    trivial. The same holds for the congruence-central-extension route, whose final models are again pulled back
+    through `r`.
+  - **Trace-preserving models.** They are never pulled back from a proper quotient of `Γ`.
+  - **What an actor-extendable witness must be instead.** It must be totally non-roundable, at intertwining distance
+    at least the Kazhdan constant from every genuine-coordinate model
+    (`compressor-extension-makes-roundable-vertex-part-invariant`).

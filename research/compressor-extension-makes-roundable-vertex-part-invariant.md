@@ -40,6 +40,12 @@ A projection `p ∈ R` is *roundable* if the corner representation `γ -> pσ(γ
   `Γ`-invariant corner of its vertex rounds. `p_max` commutes with `σ(G)` and with the root lamp, hence with all of
   `σ(W)`. A nonzero corner would be a trace-preserving `W`-model with roundable vertex, which
   `kt-wreath-models-never-round-on-the-vertex` excludes.
+- **Intermediate wreaths.** The same holds for every trace-preserving model of `W_K = (⊕_(G/K) Z/2) ⋊ G`, with
+  `Γ <= K <= G` and `N` not in `K`, when `gcd(r, q-1) = 1`.
+  - The lamp at `K` lies in `R`, so `p_max` commutes with it and with `σ(G)`, hence with all of `θ(W_K)`.
+  - The corner would be a trace-preserving `W_K`-model with roundable vertex.
+  - Steps 2–3 of `kt-hyperlinear-coset-wreath-forces-nonroundable-vertex-proof` exclude such a corner at every
+    single model.
 - **One compressor.** The theorem applies to `V_A = <Γ, A>`. At the exact-vertex wreath models of
   `one-compressor-wreath-has-models-with-exact-origin-vertex`, `p_max = 1`.
 

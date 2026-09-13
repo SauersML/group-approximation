@@ -118,3 +118,23 @@ extend to trace-preserving representations of `G`.
   presented infinite simple group, which every genuine finite-dimensional representation kills. So the
   general form implies that the Fournier--Facio group is not hyperlinear, and a hyperlinearity proof for
   that group refutes the general form. The Theorem E instance is unaffected.
+- **What extension to the actor buys (2026-09-13, lane `ex-hs-instability-extension`).** The Theorem E instance
+  stays OPEN. The map below is unreviewed.
+  - **Before any rounding.** The largest roundable corner of `σ|Γ` commutes with `σ(G)`. So (H1) is zero-one
+    after an actor-invariant split.
+    - With `gcd(r, q-1) = 1`, (H1) holds at every actor model iff each actor model has an almost-intertwiner with a
+      genuine-coordinate model of defect below the Kazhdan constant `κ`. The intertwining defect is either `0` or
+      `>= κ`.
+    - Base and intermediate wreath models are totally non-roundable.
+    - See `compressor-extension-makes-roundable-vertex-part-invariant`.
+  - **Under rounding.** With `d = 3` and `r >= 6`, vertex rounding at an actor model lifts to Laurent-vertex
+    rounding (`actor-extension-lifts-vertex-rounding-to-the-laurent-vertex`).
+  - **Calibration: one compressor forces nothing.** There are trace-preserving models of `<Γ, A>`, even of its
+    wreath, whose vertex is exactly genuine of pure origin type and whose commutant is not normalized
+    (`one-compressor-actor-models-with-exact-origin-vertex`, `one-compressor-wreath-has-models-with-exact-origin-vertex`).
+    Extension to `G` acts only through the torus step and the two attractors, and only on an assumed rounding.
+  - **Known instability mechanisms.**
+    - Retract models (`el-r-polynomial-vertex-not-flexibly-hs-stable`) do not extend: the torus forces any actor
+      model that kills `e_ij(x_2 R_+)` to be trivial on `Γ`.
+    - Scalar cocycles are void wherever the multiplier is finite.
+  - **The gap.** Nothing in extension produces an almost-intertwiner below `κ`.
