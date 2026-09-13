@@ -46,7 +46,9 @@ facts: property (T) makes every ergodic measure-preserving action strongly
 ergodic (Connes--Weiss 1980; K. Schmidt, Ergodic Theory Dynam. Systems 1, 1981),
 while an ergodic diffuse hyperfinite relation is never strongly ergodic, and the
 orbit relation here sits inside the hyperfinite relation of `Lambda`
-(Ornstein--Weiss). Theorem numbers in those sources were not re-read. The route
+(Ornstein--Weiss; Connes--Feldman--Weiss). The same fact appears in Zimmer,
+*Ergodic Theory and Semisimple Groups*, Chapter 9. Theorem numbers in those sources
+were not re-read. The route
 gives a direct Hilbert-space proof that avoids ergodic decomposition and
 hyperfiniteness; the credit was flagged by the ex-novelty lane in
 `research/artifacts/ex-open-status-2026-09-12.md`.

@@ -7,6 +7,12 @@ target: kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf
 requires: []
 ---
 
+**Credit.** The theorem is a corollary of K. Schmidt (Ergodic Theory Dynam. Systems 1,
+1981) and Connes--Weiss (Israel J. Math. 37, 1980): property (T) gives strong
+ergodicity, which ergodic diffuse hyperfinite relations lack. See also Zimmer,
+*Ergodic Theory and Semisimple Groups*, Chapter 9. Theorem numbers were not re-read.
+What follows is a self-contained Hilbert-space proof; no novelty is claimed.
+
 Write `g` for `rho(g)`. Discard a null set so that `X = X_free`.
 
 **Step 0: cocycle identity.** At free points `c_(gh)(y) = c_g(hy) c_h(y)`,
