@@ -52,7 +52,7 @@ simple group contains `Gamma~`.
   infinite center has no type (A) action. Any type (A) actor containing `Gamma~`
   must give the central generator infinitely many conjugates.
 - **Full Cantor hosts with non-amenable orbits (2026-09-13): reduced to the shell
-  premise; the Bernoulli version is outside every known criterion.**
+  premise; Bernoulli germs give no finite germ extension of `V`.**
   - **Shell version.** For any bijection `nu : Gamma~ -> N`, the shell envelope
     `E_nu = <V, hat(Gamma~)>` of `shell-cantor-embeddings-are-finite-germ-extensions`
     is a finite germ extension of `V` containing a faithful copy of `Gamma~`, and
@@ -61,9 +61,10 @@ simple group contains `Gamma~`.
     regular action, so that orbit's Schreier graph is a Cayley graph of `Gamma~`
     and the orbits are non-amenable. So this is exactly the host shape of the
     earlier untested item. Finite presentation of some `E_nu` settles the case
-    through `fp-full-binary-cantor-groups-have-type-a-actions`. It is the instance
-    `P = Gamma~` of the OPEN `decidable-inputs-have-fp-shell-envelopes`, and of the
-    three clauses of `decidable-inputs-have-fp-shell-stabilizers`.
+    through `fp-full-binary-cantor-groups-have-type-a-actions`. That is the instance
+    `P = Gamma~` of the OPEN `decidable-inputs-have-fp-shell-envelopes`. The three
+    clauses of `decidable-inputs-have-fp-shell-stabilizers` at `P = Gamma~` would
+    suffice, through the route `three-shell-stabilizers-present-shell-envelope`.
     Belk–Hyde–Matucci Corollary 2.10 cannot certify it, since `Gamma~` is not
     virtually cyclic (`shell-isotropy-germs-fail-bhm-germ-hypothesis`). Only their
     Theorem 2.1 remains, which needs finite presentation of the `SingFix` groups.
@@ -77,11 +78,22 @@ simple group contains `Gamma~`.
     `hat(z)` would permute the two cones `{n, m}`, so `z^2` would fix `n` under
     left translation, which is impossible. So the cosets `v_n C_E(z)` are pairwise
     distinct.
-  - **Bernoulli version.** By
-    `infinite-support-coordinate-permutations-are-nowhere-v-germs`, every
-    nontrivial element of the Bernoulli action of `Gamma~` on `{0,1}^(Gamma~)` is
-    singular at every point. So `<V, beta(Gamma~)>` is not a finite germ
-    extension of `V`, and no known finite-presentation criterion applies to it.
+  - **Bernoulli version.** Let `beta` be the Bernoulli action of `Gamma~` on
+    `{0,1}^(Gamma~)`, identified with `C` by any homeomorphism.
+    - **Not virtually cyclic.** The quotient of `Gamma~` by the infinite central
+      subgroup `ker p` is the infinite group `Sp_4(Z)`. A virtually cyclic group
+      has only finite quotients by infinite normal subgroups.
+    - **Singular points.** By
+      `conjugate-bernoulli-elements-have-uncountable-v-singular-sets`, every
+      nontrivial element of `beta(Gamma~)` has uncountably many V-singular points.
+      When the identification relabels coordinates,
+      `infinite-support-coordinate-permutations-are-nowhere-v-germs` shows that
+      every point is singular.
+    - **Consequence.** No group containing `V` and `beta(Gamma~)` is a finite germ
+      extension of `V`. So Belk–Hyde–Matucci Theorem 2.1, with base `V`, says
+      nothing about finite presentation of `<V, beta(Gamma~)>`.
+    - **Not covered.** Free actions, such as free subshifts of `Gamma~`, have
+      empty fixed sets.
   - **Specific inputs.** Property (T) and the infinite center of `Gamma~` enter
     none of the shell clauses in any known way. No clause was decided for
     `P = Gamma~`.
