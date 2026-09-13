@@ -53,6 +53,13 @@ It commutes with left shifts `(lambda'.x)(lambda) = x(lambda'^-1 lambda)`.
   Ceccherini-Silberstein--Coornaert, *Cellular Automata and Groups*,
   Section 3.3).
 
+These are classical inputs, not new claims of this proof. Lawton is Wayne M.
+Lawton, *Note on symbolic transformation groups* (1972). For (F1), see
+[Hedlund (1969)](https://doi.org/10.1007/BF01691062) and the arbitrary-group
+formulation in Ceccherini-Silberstein--Coornaert, Chapter 1. See the
+[literature and credit review](surjunctive-nonsofic-literature-review-2026-09-13.md)
+for the problem's history and the boundary with earlier permanence theorems.
+
 A *finite-memory map* on `C^G` is `rho(y)(g) = mu_g( (y(gp))_(p in P) )`, with
 `P` finite containing `1` and independent of `g`, and rules `mu_g` that may
 depend on `g`.
@@ -175,7 +182,8 @@ an injective finite-memory map on `C^G` with memory `P`. Suppose:
 Then `rho` is bijective, and `rho^-1` is a finite-memory map which is the
 identity off `R` and has left-`K`-invariant rules on `R`.
 
-*Proof.* Write `R = K h_1 ⊔ ... ⊔ K h_r`. The set `RP` is a finite union of
+*Proof.* If `C` is empty, `C^G` is empty and the conclusion is immediate.
+Assume `C` is nonempty. Write `R = K h_1 ⊔ ... ⊔ K h_r`. The set `RP` is a finite union of
 right `K`-cosets, so `E = RP \ R = K e_1 ⊔ ... ⊔ K e_q`. Identify `R ⊔ E` with
 `K x {1,...,r+q}` by `k h_i -> (k,i)` and `k e_j -> (k, r+j)`.
 
