@@ -9,16 +9,16 @@ distinct_from:
 artifacts:
   - research/artifacts/rokhlin-window-random-order-transport-2026-09-12.md
 ---
-**ESTABLISHED** (artifact Section 5, route `bernoulli-window-folner-ratio-bound-proof`). Verification has been requested from `w4-vf-positive-b`.
+**ESTABLISHED** (artifact Section 5, route `bernoulli-window-folner-ratio-bound-proof`). Verified by `w4-vf-positive-b` in Section 9.4 of `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`.
 
 Let `G` be a countable group, `(k, E, F, psi)` a configuration, and `x` iid uniform on `(A^k)^G` with `|A| = q`. Then
 
-    k log q <= lambda(F) H(psi(x|_E)) + H( x(1) | y_F ),     lambda(F) = inf_(S finite nonempty) |S F| / |S| ,
+    k log q <= lambda(F) H(psi(x|_E)) + H( x(1) | y_F ),     lambda(F) = inf_(S finite nonempty) |S F| / |S| .
 
-so `Phi >= log q / lambda(F)`. Moreover `lambda(F) = 1` exactly when `<F F^-1>` is amenable, and then `Phi >= log q`.
+If `F` is nonempty, then `Phi >= log q / lambda(F)`, and `lambda(F) = 1` exactly when `<F F^-1>` is amenable, in which case `Phi >= log q`. If `F` is empty, then `lambda(F) = 0` and `Phi >= log q` directly.
 
 **Consequences.**
-* With the read-degree bound, `Phi >= log q / min{m, lambda(F)}`.
+* With the read-degree bound, `Phi >= log q / min{m, lambda(F)}` when `m >= 1`. When `m = 0`, `y_F` is independent of `x(1)` and `Phi >= log q`.
 * A deficit witness needs a nonamenable codeword group.
 * A family with `Phi -> 0` needs `lambda(F) -> infinity`.
 

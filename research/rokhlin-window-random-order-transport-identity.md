@@ -9,7 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/rokhlin-window-random-order-transport-2026-09-12.md
 ---
-**ESTABLISHED** (artifact Section 2, route `rokhlin-window-transport-identity-proof`). Verification has been requested from `w4-vf-positive-b`.
+**ESTABLISHED** (artifact Section 2, route `rokhlin-window-transport-identity-proof`). Verified by `w4-vf-positive-b` in Section 9.1 of `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`.
 
 **Setting.**
 * `G` is a countable group and `x` is iid uniform on `(A^k)^G`.
@@ -20,6 +20,6 @@ Then
 
     I( x(1) ; y_F ) = sum_(f in F) I( x(f^-1) ; y_1 | y_(f^-1 F ∩ past(1)), U ) .
 
-The left side is the chain rule over `F` along the order. Left translation by `f^-1` moves the `f`-term to the output `y_1`. The proof uses no finite model and no amenability.
+Expanding the left side by the chain rule over `F` along the order gives one term per codeword, and left translation by `f^-1` moves the `f`-term to the output `y_1`. The proof uses no finite model and no amenability.
 
-**Calibration** (artifact Section 3). On `Z/5` with `E = {0,1,2}` and `psi` the parity map, one order gives a non-reading codeword the whole decoded bit. So the terms are not supported on the readers of site `1`.
+**Calibration** (artifact Section 3). On `Z/5` with `E = {0,1,2}`, `psi` the parity map and `F = Z/5`, an order that starts `4 < 1 < 2` gives the non-reading codeword `2` the whole decoded bit. So the terms are not supported on the readers of site `1`.

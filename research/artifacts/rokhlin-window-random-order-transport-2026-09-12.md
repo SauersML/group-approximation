@@ -69,7 +69,7 @@ Unlike the CA identity (`injective-ca-random-order-transport-identity`), the lef
 
 (2) Put `H = H(y_1)` and `I = I(x(1); y_F) <= min{k log q, C H}`, so `k Phi = H + k log q - I`.
 * If `C H >= k log q`, then `k Phi >= H >= k log q / C`.
-* Otherwise `k Phi >= k log q - (C - 1) H > k log q - (C - 1) k log q / C = k log q / C`. QED
+* Otherwise `k Phi >= k log q - (C - 1) H >= k log q - (C - 1) k log q / C = k log q / C`. QED
 
 **Self-copy hosts.** On a host with `h_sup in {0, infinity}`, such as the binary Leavitt unit group or Thompson's `V`, part (2) with any `C` gives `h_sup > 0`, so INF holds on that host.
 
@@ -77,10 +77,10 @@ Unlike the CA identity (`injective-ca-random-order-transport-identity`), the lef
 
 **Per-term bounds.** Each term of (D) is at most `H(y_1)`, so the sum is at most `|F| H(y_1)`.
 
-Terms of non-reading codewords need not vanish. On `Z/5` take `E = {0,1,2}` and `psi` the parity of three bits:
-* the circulant `1 + s + s^2` is invertible modulo `s^5 - 1` over `F_2`, with inverse `s + s^2 + s^4`;
-* so `x(0) = y_1 + y_2 + y_4` is the unique representation of `x(0)`, and it uses the non-readers `1` and `2`;
-* in the order `4 < 1 < 2`, the chain-rule term of the non-reader `2` is the whole bit.
+Terms of non-reading codewords need not vanish. On `Z/5` take `E = {0,1,2}`, `psi` the parity of three bits, and `F = Z/5`. The readers of site `0` are `0`, `3` and `4`.
+* The circulant `1 + s + s^2` is invertible modulo `s^5 - 1` over `F_2`, with inverse `s + s^2 + s^4`.
+* So `x(0) = y_1 + y_2 + y_4` is the unique representation of `x(0)`, and it uses the non-readers `1` and `2`.
+* Take an order whose first three codewords are `4 < 1 < 2`. The pair `(y_4, y_1)` is uniform and independent of `x(0)`, because `x(4)` masks `y_4` and `x(2)` masks `y_1`. So the terms of `4` and `1` vanish, and the term of the non-reader `2` is `H(x(0) | y_4, y_1) = 1` bit.
 
 The read-degree bound `Phi >= log q / m` (`bernoulli-witness-information-is-bounded-by-code-reads`) is the chain rule along the order that lists the non-readers of site `1` first. There their terms vanish, because they do not depend on `x(1)`. That order is defined relative to one site, is not translation-invariant, and does not transport.
 
@@ -126,15 +126,15 @@ On abstract patterns the read-degree bound is attained up to a polylogarithmic f
 
 **Proposition 6.** For every configuration, with `lambda(F) = inf |S F| / |S|` over nonempty finite `S ⊂ G`,
 
-    k log q <= lambda(F) H(y_1) + H(x(1) | y_F),     so   Phi >= log q / lambda(F).
+    k log q <= lambda(F) H(y_1) + H(x(1) | y_F).
 
-Moreover `lambda(F) = 1` exactly when `<F F^-1>` is amenable, and then `Phi >= log q`.
+If `F` is nonempty, then `Phi >= log q / lambda(F)`, and `lambda(F) = 1` exactly when `<F F^-1>` is amenable, in which case `Phi >= log q`. If `F` is empty, then `lambda(F) = 0`, `H(x(1) | y_F) = k log q`, and `Phi >= log q` directly.
 
 *Proof.* Fix `S` and put `r = H(x(1) | y_F)`. By subadditivity and translation,
 
     |S| k log q = H(x|_S) <= H(y_(SF)) + sum_(s in S) H(x(s) | y_(sF)) <= |SF| H(y_1) + |S| r.
 
-Divide by `|S|` and take the infimum. Since `lambda >= 1`, `lambda H + r <= lambda (H + r)`, which gives the bound on `Phi`.
+Divide by `|S|` and take the infimum. For nonempty `F` we have `lambda >= 1`, so `lambda H + r <= lambda (H + r)`, which gives the bound on `Phi`.
 
 For the last part fix `f_0 in F` and put `K = F f_0^-1`.
 * If `|SF| <= (1 + eps)|S|`, then `|S f f_0^-1 \ S| <= eps |S|` for each `f in F`.
@@ -142,7 +142,7 @@ For the last part fix `f_0 in F` and put `K = F f_0^-1`.
 * Conversely, a right Følner set `S` of `<K>` has `|SF| = |SK| <= (1 + |K| eps)|S|`.
 * Finally `<K> = <F F^-1>`, since `f f'^-1 = (f f_0^-1)(f' f_0^-1)^-1`. QED
 
-With the read-degree bound, `Phi >= log q / min{m, lambda(F)}`. Proposition 6 is the Rokhlin form of the CA count `|F| log |A| <= |FN| H(y(e))`.
+With the read-degree bound, `Phi >= log q / min{m, lambda(F)}` whenever `m >= 1`. If `m = 0`, no codeword reads site `1`, so `y_F` is independent of `x(1)` and `Phi >= log q`. Proposition 6 is the Rokhlin form of the CA count `|F| log |A| <= |FN| H(y(e))`.
 
 ## 6. Random-past entropy
 
@@ -250,7 +250,7 @@ Seward's theorem is quoted from Alpeev, not from [S16].
 
 ## 11. Status
 
-* **Proved** here, pending review by `w4-vf-positive-b`:
+* **Proved** here and verified by `w4-vf-positive-b` (Section 9 of `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`; that review did not check the Seward quotation behind Proposition 7):
   * Theorem 1 and Corollary 2;
   * Propositions 3, 4 and 6;
   * Proposition 7, given the quoted theorem;
@@ -260,3 +260,7 @@ Seward's theorem is quoted from Alpeev, not from [S16].
   * uses the conditionings in (D) jointly;
   * uses right cancellation (Example 5);
   * survives a nonamenable `<F F^-1>`.
+* **Revised after review:**
+  * the `Z/5` calibration names `F` and the start of the order;
+  * Corollary 2(2) uses `>=`;
+  * Proposition 6 and its read-degree form state the cases `F` empty and `m = 0`.
