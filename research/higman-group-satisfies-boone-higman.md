@@ -35,6 +35,15 @@ artifacts:
   - A point stabilizer with finitely many double cosets can fix no vertex of an unbounded Bass--Serre tree of `H4`, because double cosets of a vertex stabilizer determine the tree distance.
   - It cannot be commensurated either. Finite bi-index plus commensurated gives finite index (approach 1 of `research/artifacts/ideas-2026-09-13/bh/bh-tbt-universality.md`), and `H4` has no proper finite-index subgroup, since the core of one would give a finite quotient.
   - No candidate stabilizer was found. PBH needs a finitely presented overgroup actor anyway.
+- **Piecewise-analytic circle hosts: dead** (2026-09-13,
+  `higman-group-embeds-in-no-piecewise-analytic-circle-group`).
+  - Every homomorphism from `H4` to a group of piecewise real-analytic circle
+    homeomorphisms with finitely many pieces is trivial. This covers PL circle
+    groups and piecewise-`PSL_2(R)` groups, among them Thompson's `T` and Lodha's
+    finitely presented simple group `S`.
+  - It is the piecewise-analytic counterpart of Rivas--Triestino Theorem C, which
+    treats `C^1` actions. By their Theorem A, `H4` does act faithfully on the line
+    by homeomorphisms.
 - **Not yet tested:**
   - rational similarity groups, beyond the germ constraint `rsg-proper-power-conjugate-germs-torsion-at-finite-orbits` (at a rational periodic point of `g_(i+1)` with finite `g_i`-orbit, a power of `g_(i+1)` is the identity nearby); the equicontinuity question is `finite-nucleus-rsg-proper-power-conjugates-are-equicontinuous`;
   - full groups of shifts of finite type with several cone types, or of non-amenable groupoids;

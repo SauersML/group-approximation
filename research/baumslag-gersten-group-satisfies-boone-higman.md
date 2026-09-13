@@ -54,6 +54,19 @@ group contains it.
   The pumping argument runs on any finite graph, so topological full groups of
   one-sided shifts of finite type with several cone types, and any group acting
   piecewise by prefix replacement followed by path isometries, are excluded.
+- **Piecewise-analytic circle hosts (dead, 2026-09-13).** Every homomorphism
+  from `BG` to a group of piecewise real-analytic circle homeomorphisms with
+  finitely many pieces kills `a`, so its image is cyclic
+  (`baumslag-gersten-embeds-in-no-piecewise-analytic-circle-group`).
+  - This excludes PL circle groups and piecewise-`PSL_2(R)` groups, among them
+    Thompson's `T` and Lodha's finitely presented simple group `S`.
+  - These hosts contain `BS(1,2)` with `a` parabolic, so the obstruction is not
+    equicontinuity.
+  - Instead, `b` is conjugate to its own square, so it is tangent to the identity
+    at its fixed points. But some power of `b` fixes a gap end of `a` with
+    derivative `2^(-N/m)`.
+  - Analysis of further non-isometric hosts:
+    `research/artifacts/solve-bh-nonexpansive-hosts-2026-09-13.md`.
 - **Eventually-similar hosts beyond graph path spaces (open).**
   - The obstruction above does not reach local groupoids that are not
     isometric, non-expansive groupoids, or Brin--Thompson `nV`.
