@@ -82,6 +82,12 @@ payoff of this claim is the mechanism, not a first counterexample.
     letters act as permutations.
   - *In the Loeb limit.* `L(M)`, with Haar trace since the approximation is free, is normalized by
     `G_2`, but it is not diagonal. So `Q ↷ H^1(Y; T)` does not become a sofic action.
+* **Necessary condition (ex2-radu-chain-lamp-positive's free-lamp embedding, 2026-09-13).** `Γ_R`
+  embeds in `Z wr^*` over `Q/C ⊔ Q/C_χ` (`free-kernel-tree-actions-embed-in-free-generalized-wreath`).
+  So if the coset action is sofic, then `Γ_R` and `G_2` are both sofic. Any nonsoficity proof for
+  either group therefore has to produce `radu-edge-coset-action-is-not-sofic` along the way. The
+  conditional route `radu-edge-coset-action-not-sofic-via-stability` supplies that part, but it
+  supplies nothing more.
 * **Crux, the Radu analogue of Kun–Thom Theorem C.** No sofic p.m.p. action of `Q` carries a
   measurable `C_χ`-invariant `f` with `f∘g ≠ f` almost everywhere for every `g ∈ D_4 \ {1}`.
   - The Loeb limit of an orbit chart for `Q/C_χ` would give such an `f`, so the crux implies
