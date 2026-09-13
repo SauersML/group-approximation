@@ -109,10 +109,10 @@ theorem c_mul_a : D.c * D.a = 0 := by
   simp only [c, sub_mul, one_mul, D.e_mul_a, D.f_mul_a, sub_zero, sub_self]
 
 theorem a_mul_c : D.a * D.c = 0 := by
-  simp only [c, mul_sub, mul_one, D.a_mul_e, D.a_mul_f, sub_zero, sub_self]
+  simp only [c, mul_sub, mul_one, D.a_mul_e, D.a_mul_f, sub_self]
 
 theorem c_mul_b : D.c * D.b = 0 := by
-  simp only [c, sub_mul, one_mul, D.e_mul_b, D.f_mul_b, sub_zero, sub_self]
+  simp only [c, sub_mul, one_mul, D.e_mul_b, D.f_mul_b, sub_self]
 
 theorem b_mul_c : D.b * D.c = 0 := by
   simp only [c, mul_sub, mul_one, D.b_mul_e, D.b_mul_f, sub_zero, sub_self]
@@ -131,7 +131,7 @@ theorem swap_ne_one (he : D.e ≠ 0) : D.swap ≠ 1 := by
   have h2 : D.e * D.swap * D.e = 0 := by
     have hl : D.e * D.swap = D.b := by
       simp only [swap, c, mul_add, mul_sub, mul_one, D.e_mul_e, D.e_mul_f, D.e_mul_a, D.e_mul_b,
-        sub_self, sub_zero, zero_add, add_zero]
+        sub_self, zero_add, add_zero]
     rw [hl, D.b_mul_e]
   exact he (h1.symm.trans h2)
 
@@ -189,9 +189,7 @@ def ofIsometry (s t : R) (hts : t * s = 1) : SwapData R where
     have hes : (1 - s * t) * s = 0 := by rw [sub_mul, one_mul, mul_assoc, hts, mul_one, sub_self]
     have hee : (1 - s * t) * (1 - s * t) = 1 - s * t := by
       rw [mul_sub, mul_one, ← mul_assoc, hes, zero_mul, sub_zero]
-    have hee' : ∀ x : R, (1 - s * t) * ((1 - s * t) * x) = (1 - s * t) * x := fun x ↦ by
-      rw [← mul_assoc, hee]
-    simp only [mul_assoc, hts', hee', hee]
+    simp only [mul_assoc, hts', hee]
   e_b_f := by
     have hts' : ∀ x : R, t * (s * x) = x := fun x ↦ by rw [← mul_assoc, hts, one_mul]
     have hes : (1 - s * t) * s = 0 := by rw [sub_mul, one_mul, mul_assoc, hts, mul_one, sub_self]
