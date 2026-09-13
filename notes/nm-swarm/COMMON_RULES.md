@@ -1,8 +1,31 @@
-# COMMON RULES — non-MF verbatim unconditional formalization swarm (lead: session nonsofic-existence-41, 2026-09-11)
+# COMMON RULES — non-MF every-line unconditional swarm (third campaign; lead = the coordinator session, 2026-09-13)
 
-NM = /private/tmp/claude-501/-Users-user-nonsofic-existence/77122910-de5a-4e59-a488-7cea550292c5/scratchpad/nm
+NM = /private/tmp/claude-501/-Users-user-nonsofic-existence/0a930a1d-0cf3-4aa0-b91a-b8bfce7d68c7/scratchpad/nm
 Repo = /Users/user/nonsofic_existence (SHARED working tree; other lanes and sessions edit it concurrently)
-Manuscript = `non_mf_groups_exist.tex` at origin/main (2022 lines, last edit 73c867c5b). ONLY this paper.
+Manuscript = `non_mf_groups_exist.tex` at origin/main (2022 lines). ONLY this paper.
+Roster and per-lane targets: `$NM/ROSTER.md` (read your own `## <lane>` section and the whole "Walls" table).
+
+## 0. 09-13 ORDER (adds to everything below)
+- User, verbatim: "get massive agent swarm to formalize unconditionally in Lean every line of the manuscript",
+  "non-MF groups", "no literature inputs", "get swarm".
+- DONE means: every sentence of the tex (rows of `metadata/NON_MF_SENTENCE_MAP.tsv`) is carried by a CLOSED,
+  ROOT-REACHABLE declaration stating the printed sentence at the printed generality along the printed route;
+  `#print axioms` ⊆ {propext, Classical.choice, Quot.sound}; no binder, structure field, class or Prop argument
+  standing for a cited result anywhere in the chain; `scripts/sentence_census.py --verify-unconditional` finds
+  nothing, so `metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt` shrinks to empty.  A cited theorem (Hull, Osin,
+  DGO, GO, Kotowski–Ollivier/GHB, Hyde–Lodha, GHW, Jacobson, ...) is PROVED, never assumed.
+- Snapshot origin/main 31625a5f8 (09-13 00:52): census 498 rows (formalized 338, definition 53, structural 46,
+  partial 19, provenance 19, attribution 18, unassigned 5); conditional baseline 102 findings (buried-conditional
+  32, open-predicate 30, conditional-debt 27, carrier-debt 9, carrier-data 3, inlined-statement 1); the four top
+  endpoints in `Manuscript/NonMF/TorsionFreeLiteratureInputsLeastArea.lean` still take hgreendlinger, hbridge,
+  hKO, hW; the 5 sorries of `Manuscript/NonMF/TheoremCAssembly.lean` were retired at 2c3c8cb40 (09-13 01:46).  The frontier write-up is
+  `notes/nm-swarm/reports/census2.md` (snapshot 09-12 10:06; some items landed since — grep origin/main).
+- You are a LANE, NOT the coordinator.  Never launch agents.  Old lane names are reused where you continue a
+  predecessor: read `notes/nm-swarm/reports/<lane>.md` and `$NM/lanes/<lane>.files` first; the predecessor is dead
+  and its in-flight files (listed in .files, possibly unlanded in the shared tree) are yours to finish and land.
+  Its green records are gone: re-probe before a normal landing.
+- Work until your target is landed and closed, then take the next item your brief names, then ask the lead.
+  Progress = landed closed theorems.  A lane that only writes reports is failing.
 
 ## USER ORDERS (verbatim intent; violations get the lane stopped)
 - "Verbatim unconditionally formalize entire non-MF manuscript in Lean. all steps, statements, etc."
@@ -80,11 +103,12 @@ Manuscript = `non_mf_groups_exist.tex` at origin/main (2022 lines, last edit 73c
 
 ## Reporting
 15. Load the tool once: ToolSearch `select:SendMessage`.  Report with
-    `SendMessage(to: "main", summary: <5–10 words>, message: <full report>)` (if "main" errors, use
-    to: "nonsofic-existence-41").  Report after every landing (SHA, modules, declarations), on any
-    blocker, and at least every ~90 minutes: probe status, the EXACT remaining residual statements, and
-    what you are doing next.  Plain final text is also returned to the lead when your turn ends, so end
-    your turn with a complete report; the lead resumes you with SendMessage.
+    `SendMessage(to: "main", summary: <5–10 words>, message: <full report>)`.  Report when a Prop you
+    own becomes closed (SHA, modules, declarations), on any blocker or cross-lane need, and otherwise at
+    most every ~2 hours: probe status, the EXACT remaining residual statements, and what you are doing
+    next.  Keep messages short; do not message on every small landing.  Plain final text is also returned
+    to the lead when your turn ends, so end your turn with a complete report; the lead resumes you with
+    SendMessage.  Also keep `notes/nm-swarm/reports/<lane>.md` current and landed.
 16. Do not stop at a verdict: progress is landed theorems.  If your scope is finished, say so and ask
     for more.  If a statement you need belongs to another lane, ask the lead (do not build it).
 17. Refuted/over-strong statements: if you find an admitted/cited statement is false as stated,
@@ -112,7 +136,7 @@ Manuscript = `non_mf_groups_exist.tex` at origin/main (2022 lines, last edit 73c
   megabytes long and the regex backtracks. The lead kills such processes on sight.
 - Cheap recipe: `grep -n -o -F '<fixed string>' F | cut -d: -f1 | sort -un > lines`, then
   `awk 'NR==FNR{w[$1];next} FNR in w{i=index($0,"<fixed string>"); print substr($0,i>400?i-400:1,800)}' lines F`.
-- Better: ask the lead (`nonsofic-existence-3a`) for the context instead of sweeping transcripts.
+- Better: ask the lead (SendMessage to "main") for the context instead of sweeping transcripts.
 
 ## 21. USER ORDER 22:45: "we MUST commit and push after LITERALLY EVERY EDIT. an edit NOT PUSHED AND COMMITED TO
 ##     MAIN is UNSAVED. do not clobber other work or overwrite when u push though"
