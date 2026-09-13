@@ -107,7 +107,11 @@ condition (LAS1) of `locally-affine-support-bcs-is-exactly-the-lcs-boundary`.
 - Three escape routes remain, and this claim covers none of them:
   1. non-affine decoders, where source involutions are realized by elements
      of the corner algebra that are not signed group elements (the situation
-     of `non-ru-bcs-is-satisfiable-in-a-group-factor`);
+     of `non-ru-bcs-is-satisfiable-in-a-group-factor`). By
+     `group-corner-decoders-split-into-coset-and-matrix-readouts`, arbitrary
+     decoders on abelian contexts still factor through coset refinements,
+     while decoders through nonabelian finite groups meet no support or
+     pair-algebra firewall;
   2. decoders that are exact or approximate only on Connes-embeddable target
      models, as in the noisy long-code compilers of Taller--Vidick, which
      lose perfect completeness (`notes/FALSE_PERFECT_COMPLETENESS_MASK_NO_GO.md`);

@@ -202,3 +202,22 @@ constraint ideal, and which satisfies the Parseval condition `(PGR3)`.
   - None exists when `G` has a hyperlinear uniform lattice.
   - Products of regular trees contain `W_a x W_b`, so their Hecke algebras
     cannot host `A(B_*)` (route A6 of the 09-13 groupify idea file).
+- **Exact finitely supported decoders split by readout type (2026-09-13).**
+  `group-corner-decoders-split-into-coset-and-matrix-readouts` treats models
+  of `(GFB1)` whose `x_v` lie in `C[Lambda] p_omega` for a central `J` of
+  finite order.
+  - If every context reads from a finite abelian subgroup, with any decoding
+    map, the induced trace factors through a coset refinement of the context
+    game, so (RCS) and (HL) must pass.
+    `group-corner-exact-compilers-force-source-affine-safety` is the affine
+    case, and its firewall is sharp: the magic-square AND conjunct of
+    `matrix-conj-forces-unsafe-support` reads non-affinely through the
+    extraspecial group of order 32, so `B_tilde` has an exact decoder iff its
+    separated part does.
+  - If contexts read through nonabelian finite groups, every perfect matrix
+    model is realized, because a Heisenberg corner is a full matrix algebra.
+    This includes a model that factors through no coset refinement, so no
+    support or pair-algebra condition constrains this sector. The known
+    constraint is on the host: by
+    `no-ce-hecke-host-needs-an-fd-invisible-type` every finite-dimensional
+    representation of `Lambda` kills `p_omega`.
