@@ -29,7 +29,12 @@ Soficity of `Gamma_e` is necessary, because `Gamma_e <= R_e`.
 the twist is inner in `D_e = Gamma_e x R-hat`, where `R-hat` is a fixed
 residually finite group. So `R_e` embeds in the free generalized wreath
 product over `D_e action D_e/C_e`, and the claim follows from
-[[twisted-rope-envelope-coset-action-is-sofic]].
+[[twisted-rope-envelope-coset-action-is-sofic]]. That in turn follows from
+the first rope's action on its edge cosets,
+[[first-rope-edge-coset-action-is-sofic]], by
+[[envelope-coset-action-sofic-once-edge-coset-action-sofic]]. So the twist
+adds nothing: under the same hypotheses GKP Theorem 3.7 makes the untwisted
+rope `< Gamma_e, z | [z, S_e] = 1 >` sofic.
 
 `R_e` has no infinite property (T) subgroup, so the Kun--Thom mechanism is
 absent here too.

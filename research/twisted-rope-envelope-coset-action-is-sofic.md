@@ -33,21 +33,10 @@ With [[twisted-rope-is-a-central-rope-over-an-rf-envelope]] (E6) it gives
   for lack of an induction theorem for sofic set actions. A model of
   `G action G/K` carries no `K`-valued cocycle labels to glue fibre models
   along.
-- **Separation by larger graphs (reduction, unchecked).** Let
-  `phi_n : R-hat -> Phi_n` be separating finite quotients, and set
-  `C_n = {(s, rho) : phi_n(rho) = phi_n(lambda s)}`. Then `C_e` is the
-  intersection of the `C_n`, and `D_e action D_e/C_n` factors through
-  `Gamma_e x Phi_n` acting on the cosets of the graph of the finite-image map
-  `mu_n = phi_n lambda`. By (S1) of
-  [[separating-sofic-quotient-sets-make-an-action-sofic]], it suffices that
-  every such finite-graph action is sofic. Each finite-graph coset space is a
-  quotient of `Gamma_e/ker(mu_n) x Phi_n` by a free action of the finite
-  group `mu_n(S_e)`. No recorded result passes soficity to such a quotient.
-  With one, the claim would reduce to soficity of
-  `Gamma_e action Gamma_e/S''` for the finite-index subgroups
-  `S'' = ker(mu_n)` of `S_e`.
-- **The base action.** No recorded result covers
-  `Gamma_e action Gamma_e/S_e`. `S_e` contains `F`, and by
-  [[compiler-rope-edge-is-not-co-amenable]] (R1) the quotient `F/N_e` is
-  non-amenable. Whether `S_e` is co-amenable in `Gamma_e` has not been
-  checked.
+- **Separation by larger graphs (done, landed).** Let `phi_n` be separating
+  finite quotients of `R-hat`, and take the graphs
+  `C_n = {(s,rho) : phi_n(rho) = phi_n(lambda s)}`. This separation, a
+  commuting finite factor, and an injective map into
+  `Gamma_e/S_e x G-hat/M_n` reduce this claim to
+  [[first-rope-edge-coset-action-is-sofic]]. The reduction is
+  [[envelope-coset-action-sofic-once-edge-coset-action-sofic]].
