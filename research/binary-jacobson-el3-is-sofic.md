@@ -52,8 +52,20 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
   - Residual amenability fails.
   - Artifact Sections 4.4–4.6.
 * **Uniform approximation in the rank (w7-el3j-sofic, 2026-09-12).** Dies: `EL_4(J)` is not LEA (artifact Section 2).
+* **Presentation and amalgam kernel (w7-el3j-presentation, 2026-09-12).** Artifact
+  `research/artifacts/jacobson-el3-presentation-and-amalgam-kernel-2026-09-12.md`.
+  - `H_+ *_(H_0) H_- = L ⋊ U`, with `U` the Laurent cone amalgam. The kernel onto `E` is isomorphic to
+    `ker(U -> SL_3(F_2[z^(±1)]))`, and `E ≅ U / ker q`. The positive coordinate word maps to the head
+    (`jacobson-el3-amalgam-kernel-is-the-laurent-cone-kernel`).
+  - The Toeplitz commutators do not normally generate the kernel; the head relator is needed
+    (`toeplitz-commutators-do-not-normally-generate-amalgam-kernel`).
+  - Dies as a source of nonsofic subgroups, because the kernel is residually finite
+    (`jacobson-el3-amalgam-kernel-is-residually-finite`). An obstruction has to be relational, carried by
+    `ℓ : K_Λ -> L`.
+  - Rank four is settled: `EL_4(J) ≅ St_4(J)` is finitely presented
+    (`jacobson-el4-is-finitely-presented-steinberg-group`). Rank three stays open.
 * **Next.**
-  1. Decide whether `E` is finitely presented. If it is, `E` is neither LEF nor LEA, since every finite quotient kills
-     the head.
-  2. Describe `ker(H_+ *_(H_0) H_- -> E)`. It contains the Toeplitz relator `[x_12(T), x_23(S)] x_13(1)^(-1)`, and any
-     obstruction lives there (artifact Section 3).
+  1. Decide whether `E` is finitely presented (`binary-jacobson-el3-is-finitely-presented`). If it is, `E` is neither
+     LEF nor LEA.
+  2. Decide whether `ker q` is the normal closure in `U` of the Toeplitz commutators.
+  3. Look for an obstruction in the map `ℓ : K_Λ -> L`, not in the kernel as a group.
