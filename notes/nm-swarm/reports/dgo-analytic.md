@@ -235,13 +235,26 @@ R2 with kh-ejz's `IsNoncrossingClosedWalk` (26a7858f2) as `Simple` (~13:20, sent
 
 Consequences (map level only; the model has no labels, cells or sections):
 
-* When cell `i` lies in a lake of the pocket, binder 5 as stated has no witness.
-* hull-select's copy draft (`drafts/hull-select-RegionSide-copy-r1.lean`, l.64 and l.69) keeps `(cell X i').face ∉ P.faces` and `P.outer.FollowsBoundary`, so it has no witness either if the copy `X` carries the lake.
+* The model rules out one choice of `P`. A pocket region with `K` inside, whose complement makes `Π_i` a lake, has no following outer cycle.
+* Correction (~16:05, from audit-sec5): this does not refute binder 5.
+  * `MultipleEdgePocketRegionInput` (`OsinPocketRegionSide.lean:49`) and hull-select's copy draft (`drafts/hull-select-RegionSide-copy-r1.lean`, l.58-69) both let the producer choose `P`, `C`, `s₁`, `s₂`, `A₁` and `A₂`.
+  * My earlier line "binder 5 as stated has no witness" was too strong. It went to the lead, hull-select and kh-ejz, and each has been sent the correction.
+* audit-sec5's reading of the model:
+  * `Π_i` is a lake of `P = a ∪ gap ∪ b` exactly when the arcs of `a` and `b` on `Π_i` meet at a vertex on the far side.
+  * In the model both joins have arcs of length 0 on `Π_i`: the trivial path at `v` and the edge `{2,3}`. `RealizedSectionFamily.nondegenerate` (`OsinAppendixSections.lean:251`, `0 < sourceArc.length ∧ 0 < targetArc.length`) forbids that.
+  * So the model rules out only `a ∪ gap ∪ b` in that configuration.
+* audit-sec5's choice of `P` is the gap alone, with the faces of `a` and `b` outside.
+  * `s₁` is the inverse of the side of `a` facing the gap, `A₁` is the gap arc of `Π_i`, `s₂` is the inverse of the side of `b`, and `A₂` is the gap arc of `Π_j`. Lengths and norms are unchanged.
+  * Its sketch that this `P` has no lake has three steps:
+    * the ring `Π_i ∪ a ∪ Π_j ∪ b` is dual-connected, by the nondegenerate arcs;
+    * the partner of every boundary dart of `P` is a ring face;
+    * `exists_boundaryDart_dualConnected` (`FaceSetDualReach.lean:77`) puts a ring face in every component of the complement.
+  * This lane checked that the cited declarations exist and that `P` is existential in both forms. The sketch itself is audit-sec5's.
+* No lake is necessary for outer following but not sufficient. What still blocks the gap-only `P` is simplicity, that is, the pinch. In audit-sec5's configuration (b'), a spur on `Π_i` between `C1` and `C2`, each longer than `2ε`, defeats every `P`.
 * `hout` is load-bearing:
   * `nonempty_osinMultipleEdgeCut_of_pocketRegion` (`OsinPocketMultipleEdgeAssembly.lean:88`) takes it at l.96 and passes it at l.120 and l.188.
   * `OsinPocketTwoCollars` takes it at l.60 and passes it at l.96.
-* So one of three things is needed: the copy removes the lake, the producer excludes the lake upstream, or the outer clause changes.
-* This lane has not decided whether a least-area diagram with a globally distinguished section family can put cell `i` in a lake of the pocket. The question went to audit-sec5 (truth audit of binder 5), and the finding went to the lead, hull-select and kh-ejz (~15:55).
+* So a producer of binder 5 should take the gap-only pocket, not `a ∪ gap ∪ b`. audit-sec5 sees nothing in a globally distinguished section family that rules out the lake for `a ∪ gap ∪ b`, short of Lemma 9.7(b) itself.
 
 ### Truth caveats sent to dgo-geometric for model tests
 
@@ -285,11 +298,11 @@ Closed here:
 * The nondegeneracy of carriers at least area (`nondegenerate_of_leastArea`).
 * `PocketCollarStatement` from `GeodesicCollarStatement` (`pocketCollarStatement_of_geodesicCollar`, through hl-lemma46's two collars).
 
-Since T (48c6cc71e), `OsinLemma94SectionStatement` assumes clause (b) of Lemma 9.7 below the cell count, and `UnboundInput` takes `mu`. The six open Props are otherwise unchanged. The lake model adds no Prop; it bounds what binder 5 can promise.
+Since T (48c6cc71e), `OsinLemma94SectionStatement` assumes clause (b) of Lemma 9.7 below the cell count, and `UnboundInput` takes `mu`. The six open Props are otherwise unchanged. The lake model adds no Prop. It rules out one choice of pocket for binder 5, and audit-sec5's gap-only pocket avoids it.
 
 ### Next (15:55)
 
-* Binder 5: not written here until kh-ejz or the lead confirms the handover. If this lane gets it, the outer clause is settled against the lake model first.
+* Binder 5: not written here until kh-ejz or the lead confirms the handover. If this lane gets it, the producer takes audit-sec5's gap-only pocket, and configuration (b') stays with the pinch.
 * kh-torsion's R1/R2 answer. Its report was last touched at a67ce2a65, and there has been no answer since the 15:00 follow-up.
   * Under R1: tell hull-select and kh-ejz that the carrier form is fixed.
   * Under R2: send jacobson the final `exists_twoCollars_of_ne_or` signature. Then run one Rule 22 co-probe over `OsinPocketPieces`, `OsinPocketRegionOfSimple`, `OsinPocketCollarOfGeodesic`, kh-torsion's `GeodesicCollarStatement`, hl-lemma46's lemma and its four users, and land everything in one call.
