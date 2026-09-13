@@ -29,7 +29,11 @@ cubic division algebra). There are `ε_0, θ_0 > 0` such that for every finite `
 **Why it matters.** Together with stability of `SL_3(Z)` in finite actions it gives nonsoficity
 (route `sl3z-cocompact-nonsofic-from-stability-and-no-finite-approx`). It would also be a
 dynamical detector of commensurability: soficity by exact finite models holds exactly for lattices in
-the class of `SL_3(Z)`.
+the class of `SL_3(Z)`. Conversely, if this claim fails, the finite actions with sparse bad pairs are
+already microstates: an honest action has no multiplication defect. So `SL_3(Z) ↷ SL_3(R)/Λ` would be
+sofic by part 2 of `uniquely-ergodic-action-sofic-iff-topological-microstates`. The claim is therefore
+two-sided for the problem itself. A disproof settles soficity, and a proof reduces nonsoficity to
+stability of `SL_3(Z)` in finite actions.
 
 ## Attempts
 
