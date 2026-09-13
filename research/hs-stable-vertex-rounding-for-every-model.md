@@ -77,3 +77,17 @@ extend to trace-preserving representations of `G`.
     mixed-level root group `K_i` Kazhdan for `r >= 4`? Unlike flexible stability, relative (T) is
     within reach of Ershov–Jaikin-Zapirain angle methods, so `K_i` Kazhdan is the one point where the
     existence problem becomes a (T)-style question the corpus has tools for. Recommended sub-target.
+- **Congruence-kernel projections (2026-09-12, lane `nh-h1-theorem-e-instance`).** Void at every fixed level
+  (`theorem-e-congruence-projections-vanish-at-regular-trace`). The route was: take almost-invariant vectors of
+  the congruence kernels `Γ(I)`, project onto their fixed subspaces, then correct with a Kazhdan projection.
+  - At the regular trace, fixed subspaces of infinite subgroups have trace 0. Fixed-level almost-invariant
+    subspaces with defect `< κ/√|S|` have vanishing dimension. So the hard step, "almost invariant but not close to
+    invariant", never arises at a fixed level.
+  - The route proves (H1) exactly for purely profinite vertex restrictions, and at the regular trace there are none.
+  - Any rounding has asymptotically regular traces, and its root ideals escape every nonzero ring element. So a
+    correction must work at `n`-dependent levels, with generating sets of unbounded `F`-length and non-uniform
+    Kazhdan constants.
+  - Extendability to `G` shortens the normal generators of the level `(x_1^m..x_d^m)` to `G`-length `O(log m)`.
+    Averaging over the quotient needs `G`-length `>= m^d log q / log(2|F_G|+1)`, so compressor transport does not
+    supply the projection.
+  - No equivalence with a known-hard statement was obtained. Artifact: `nh-h1-theorem-e-instance-2026-09-12.md`.
