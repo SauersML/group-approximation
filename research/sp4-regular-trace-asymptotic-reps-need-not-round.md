@@ -5,7 +5,7 @@ kind: claim
 title: Sp_4(Z) has asymptotic representations with regular limit trace that no genuine representation of the same dimension approximates
 distinct_from:
   infinite-hyperlinear-kazhdan-group-is-not-hs-stable: that gives some non-roundable asymptotic representation of an infinite hyperlinear Kazhdan group, with no control of its trace; this pins the limit trace to the regular character delta_e for Sp_4(Z), so even the single-character strict rounding statement fails.
-  non-hyperlinear-from-sp2g-flexible-hs-stability: that is the conditional route through flexible HS-stability of Sp_2g(Z); the witnesses here are corners of genuine representations, so they say nothing about flexible or corner rounding.
+  sp2g-z-flexibly-hs-stable: that is flexible HS-stability of Sp_2g(Z), the input of the conditional route non-hyperlinear-from-sp2g-flexible-hs-stability; the witnesses here are corners of genuine representations, so they say nothing about flexible or corner rounding.
 artifacts:
   - research/artifacts/ideas-2026-09-13/nh/nh-approx-lifting.md
 ---
