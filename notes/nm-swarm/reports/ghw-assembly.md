@@ -267,6 +267,14 @@ proof.
   - Asked dgo-geometric for the model-test result and hull-respell for the induction interface.
   - If the model test fails the wrap statement, the counterexample shape goes to the lead before
     anything is built.
+  - dgo-geometric has no model result yet.
+    - Landed: `OsinPocketPinchedTwoGonLobe` 4181011af, `OsinPocketPinchedTwoGonOuterFollows` and
+      `OsinPocketLakeModel` 67e5b2f9c, and `OsinPocketPinchedTwoGonNoncrossingRegion` 80df00345.
+    - Candidate instance, a rose:
+      - a κ digon between a monogon relator cell Π and the monogon exterior;
+      - K = {κ}, ε = 0, swap K′ = {Π}.
+    - Open: whether the target arc may be empty. Next it builds the diagram as a Lean fixture and
+      sends any refutation to the lead first.
 - hull-unbound offered to take a sub-piece. Nothing splits cleanly before the wrap statement is
   fixed, so the offer was declined.
 
@@ -329,10 +337,52 @@ The lead's item: the least-area Greendlinger waist
     ghw-assembly 8a07ad7d0`, after `OsinDescentResiduals`.
   - The binder list went to the lead. No census row: the module certifies no printed sentence.
 
+### Post-(A) follow-up (2026-09-13)
+
+- (A) landed as f04929ebb (ghw-charp2, 14:49). On main:
+  - `osinLoopCutSection` (`OsinAppendixGreendlingerParts:74`);
+  - `osinLemma94PolygonCountInput_of_sideBudget hbudget hsame` (`OsinLemma94PolygonCount:126`);
+  - `osinLemma94CaseOneInput_of_walk hwalk hsame` (`OsinUnboundCaseOneRun:85`);
+  - `osinLemma94CaseOneWalk` (`OsinLemma94CaseOneWalkHolds:197`), which closes `hwalk`.
+- Roster l.1079 ruled: drop binder 3 and replace binders 1-2 with their leaf producers.
+  - Rule 22: no Lean file or census row cites `_of_openResiduals`, so the statement changes in
+    place.
+- Residual binders (eight):
+  1. `OsinLemma94PolygonSideBudgetInput` (hull-count94).
+     - `OsinLemma94ClassCountInput` supersedes it once the Case 1 users move to class words.
+  2. `OsinLemma94UnboundSameCellStatement`.
+     - The Prop is in hull-count94's module.
+     - Under option (a) at site 5, fff-periodic's (T) and its (C) binder
+       `OsinLemma94SameCellPocketInput` replace it, in the co-probe that respells Covers.
+  3. `OsinLemma94CaseOneSameCellStatement` (producer: jacobson, roster l.919).
+     - The cell-free branch comes from ko-closed's metric kill.
+     - The R-cell branch goes through fff-periodic's shared kill.
+     - theoremc-retire's threading T respells the binder.
+  4. `OsinTwoGonHoldsSectionStatement`, C6′ (debt-conditional).
+  5. `OsinMultipleEdgePocketRegionSectionStatement` (kh-ejz).
+  6. `OsinSectionPocketFaceSetSectionStatement` (kh-ejz).
+  7. `PocketPinchLabelledStatement` (hull-respell).
+  8. `GeodesicCollarStatement` (kh-torsion).
+- Binders 1-3 have no producer on main or in the working tree.
+- nm-endpoints grades the ten TorsionFreeGreendlingerLeaf census rows on this list. It gets the
+  list when this lands.
+- State: LANDED 5f031e3a6.
+  - Probe 0913-145357-69970 is GREEN on base 6622fce2b, and the md5 b06afa2f matches the landed
+    bytes.
+  - Unwired. The wire queue line `GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerOpenResiduals
+    ghw-assembly 5f031e3a6` replaces 8a07ad7d0. It goes after `OsinDescentResiduals`.
+  - The binder list with owners went to nm-endpoints and the lead.
+  - theoremc-retire's T window (14:55) co-probes this module. It opened before 5f031e3a6. They
+    were told the bytes changed, and that this lane makes any edit T needs here.
+
 ## Next
 
-- W1 composition: once (A) lands, drop binder 3 with `osinLoopCutSection`, and ask the lead about
-  replacing binders 1-2 with their staged producers.
+- W1 composition: nothing open. Swap a binder when its producer lands: hull-count94 for 1,
+  fff-periodic for 2, jacobson for 3.
+- T window: if theoremc-retire's T breaks the `_of_walk` call, apply their new spelling here and
+  re-land right after T.
+- Binders 2-3 get respelled when the site-5 Covers co-probe (fff-periodic with hull-count94) or
+  theoremc-retire's T changes `_of_sideBudget` or `_of_walk`. Rule 22 applies to those lanes.
 - Wrap case (parked): when both replies are in, propose a split with dgo-geometric and hull-respell.
 - Still waiting on the audit:
   - dgo-analytic, baseline-debt and sec5-sentences to re-grade their rows;
