@@ -27,3 +27,8 @@ present paper."
 and the established `bs12-lies-in-fp-simple-rn-envelope-of-quadratic-dehn-host`,
 this would give a finitely presented simple group with polynomial Dehn function
 containing `BS(1,2)`; see `bs12-poly-dehn-simple-host-via-rn-upper-bound`.
+
+## Attempts
+
+- **No explicit presentation to count on (lane solve-bh-rn-dehn, 2026-09-13).** Finite presentation of `V_d(G)` comes from Brown's criterion on the Stein–Farley complex (Zaremsky arXiv:2305.15176, TeX l.227, citing Skipper–Witzel–Zaremsky Theorem 4.15). No explicit finite presentation of `V_10(Gamma_2)` was found, so a direct van Kampen count is not available.
+- **Push-down route, reduced.** Running Zaremsky's l.128 suggestion needs the additive descending-link lemma recorded on `higman-thompson-vd-has-polynomial-dehn-function`, plus polynomial distortion of the stabilizer copies `ι_w(G)` over cones of depth `O(L)`. For rational `G` the pushed-down leaf words have total length `O(L)` per root letter, which suggests linear distortion, but this is not a proof. See `research/artifacts/solve-bh-rn-dehn-2026-09-13.md` §4.

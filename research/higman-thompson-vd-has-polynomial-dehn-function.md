@@ -23,3 +23,9 @@ a polynomially bounded Dehn function.
   (arXiv:2410.23088, abstract TeX l.19). That covers `T_n`, not `V_n`.
 
 No source found here proves a polynomial bound for `V_d` with `d >= 3`.
+
+## Attempts
+
+- **Literature (lane solve-bh-rn-dehn, 2026-09-13).** arXiv listing searches returned only arXiv:2410.23088 (abstract: "all the Higman-Thompson groups $T_n$ have quadratic Dehn function") and arXiv:2608.03813 (`n^6` for V only). No source found covers `d >= 3`. Not exhaustive. Details: `research/artifacts/solve-bh-rn-dehn-2026-09-13.md` §1.
+- **T_d does not transfer.** `T_d <= V_d`, and Dehn functions pass neither to subgroups nor overgroups. Migliorini's bounded non-F normal form is dead for V by `thompson-v-elements-need-unboundedly-many-non-f-letters`; the same break count on `d`-ary cones should kill it for every `V_d` (hand remark, not checked).
+- **Stein–Farley push-down: stops at an additive descending-link lemma.** Loops of length `L` in the truncation fill in the CAT(0) complex with at most `L^2/4` squares at heights `<= k + (d−1)L/2` (standard minimal-diagram facts, sketched). Pushing down through descending links over `O(L)` levels only gives an exponential bound, because per-level costs multiply. The missing input is a quantitative descending-link filling lemma with additive cost. See `research/artifacts/solve-bh-rn-dehn-2026-09-13.md` §3.
