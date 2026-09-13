@@ -94,11 +94,11 @@ theorem listVal_flatMap_eq_listVal_keptLetters
       obtain ⟨v, b⟩ := p
       have ih' := ih fun q hq => hone q (List.mem_cons_of_mem _ hq)
       cases b
-      · have hv : RelLetter.listVal v = 1 := hone _ (by simp) rfl
+      · have hv : RelLetter.listVal v = 1 := hone (v, false) List.mem_cons_self rfl
         rw [List.flatMap_cons, OsinComponents.listVal_append, hv, one_mul, ih']
         simp [keptLetters, List.filter_cons]
       · rw [List.flatMap_cons, OsinComponents.listVal_append, ih']
-        simp [keptLetters, List.filter_cons, List.flatMap_cons, OsinComponents.listVal_append]
+        simp [keptLetters, List.flatMap_cons, OsinComponents.listVal_append]
 
 /-- **A stretch whose value-one blocks are dropped.**  If the stretch `i, …, j` splits into
 blocks and every dropped block has value one, the stretch is not much longer than its kept
