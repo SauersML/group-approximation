@@ -211,4 +211,19 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
   - b2: delete the digon [d1,e2] and transport to a `TriangulatedDisc` with `innerFaceCount + 2 ≤`.
   - b3: assembly.
   - If ko-closed declines, message hull-unbound (W1 hgreendlinger) and take a piece it has not started.
-- When the generic producers land: `theorem systolicInvariantClique : CCKW.SystolicInvariantCliqueStatement`.
+- ko-closed's answer (09-13): no split is needed.
+  - (b) is closed for every X by `Systolic.mirrorFoldDistinct (X) : MirrorFoldDistinctStatement X` (GGT/SystolicDiscMirrorFoldDistinct, 81b06b43e).
+  - (a) is closed as well: `Systolic.zipSpurStatement : ZipSpurStatement X` (GGT/SystolicDiscZip, 8389a0e6c).
+  - The Kotowski–Ollivier route without hT6 is `KotowskiOllivierClosed.kotowskiOllivier_of_pinched hpinch` (cf1675f3b).
+- New module `Kazhdan/CCKWSystolicInvariantCliqueClosed` (PROBE GREEN 0913-053536-24513, base 53e4345fc, BUILT; both theorems pass `#audit_axioms`).
+  The first probe, 0913-052409-2727, was red: `mirrorFoldStatement_of_cases` takes `X` implicitly.
+  - `CCKW.systolicInvariantClique_of_pinched (hpinch : ∀ (V : Type) (X : Systolic.TriangleComplex V), Systolic.MirrorFoldPinchedStatement X)
+    : CCKW.SystolicInvariantCliqueStatement`;
+  - `CCKW.cckwFiniteOrderConjugateIntoVertex_of_pinched (hpinch : Systolic.MirrorFoldPinchedStatement cosetComplex)`.
+- RESIDUAL of hT6, exact: `∀ (V : Type) (X : Systolic.TriangleComplex V), Systolic.MirrorFoldPinchedStatement X`. fff-periodic owns it;
+  it is not landed yet.
+- Once Pinched lands, ko-closed adds `Systolic.mirrorFoldStatement (X)` in GGT/SystolicDiscMirrorFold. I then land
+  `theorem systolicInvariantClique : CCKW.SystolicInvariantCliqueStatement` in CCKWSystolicInvariantCliqueClosed.
+- Fallback in progress: I offered hull-unbound an unstarted `OsinLemma94PlanarRunInput` piece, the component polygons on the
+  face walks of a reduced family (every field except `no_antiparallel`). Waiting for its reply.
+- Trap: `kh-cckw.files` must list only `GroupApproximation/**/*.lean`. nmprobe refuses a report path, and nmland does not read the list.
