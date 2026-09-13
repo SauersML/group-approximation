@@ -50,6 +50,33 @@ kh-torsion wires the endpoint and queues both modules.
   * every other dart is off the old exterior cycle.  There the split map rotates faces as the old map
     does, so its faces are old interior triangles.
 
+### HC6, pinched case: offer withdrawn
+
+hfold is closed: fff-periodic's `Systolic.mirrorFold (X) : MirrorFoldStatement X`
+(`GGT/SystolicDiscMirrorFold`, 426813b24, probe 0913-052528-4751).  The vertex-split step offered to
+fff-periodic (`FoldStage.exists_split_pinch`) is not needed.  This lane wrote no Lean for it.
+
+### Current item: W1, one (c) transport glue module for go-lemma42
+
+The lead assigned this lane one of go-lemma42's (c) transport modules for `OsinMultipleEdgeCut.ofPocketRegion`.
+The candidates are `GGT/VanKampen/SurgeryPocketGlue`, `SurgeryPocketGluePlanar`,
+`Estimating/OsinPocketGlueDiagram` and `Estimating/OsinPocketGlueTransport`.
+
+* Route: glue an O-equivalent copy Ξ into Δ' along the region cycle and build the diagram with
+  `DiscDiagram.ofPlanar`.  Planarity comes from an χ count through `MapCollapse.reclosed_isRestriction`.
+* Proposed module for this lane: `SurgeryPocketGluePlanar`.  This lane asked go-lemma42 for the exact
+  statement and writes no Lean until the answer.
+* Planned count, for `Seam.glueMap` (go-lemma42's unlanded `SurgeryPocketGlue`):
+  * darts: the glued darts are the interior darts of `faces` plus the darts of `X` (`Seam.splitEquiv`);
+  * faces: `faces.card` old faces plus the faces of `X` other than `outer`.  The reclosed map has
+    `faceCount + faces.card = M.faceCount + 1` (`reclosedMap_faceCount`);
+  * vertices: the vertices of `X` (first return, `Seam.glue_isRestriction`) plus the vertices of `M` whose
+    darts are all interior.  The reclosed map keeps the vertices of `M` that meet a kept dart
+    (`reclosedMap_vertexCount`);
+  * so χ(glued) − χ(X) = χ(M) − χ(reclosedMap M faces boundary).  With `M` and `X` planar and
+    `reclosedMap_planar`, χ(glued) = 2;
+  * connectedness: lift paths of `M` to the glued map, as `reclosedMap_connected` does.
+
 ## Brief items
 
 | input | producer on main | state |
@@ -60,14 +87,11 @@ kh-torsion wires the endpoint and queues both modules.
 | `hd : ZipSpurStatement X` | `Systolic.zipSpurStatement` and `CCKW.zipSpur_cosetComplex`, `GGT/SystolicDiscZip.lean:122,131` | closed (kh-torsion, 8389a0e6c, probe 0913-030432-13308), from `Systolic.zipPinchStatement` (this lane) |
 | `hcount` | `CCKW.typedCountStatement_cosetComplex`, `Kazhdan/GHBHyperbolicDiscCounts.lean` | closed (kh-hyperbolic) |
 | `hsum` | `GHBHyperbolicStokes.boundarySumStatement`, `Kazhdan/GHBHyperbolicDiscCounts.lean:56` | closed (kh-hyperbolic) |
+| hfold `MirrorFoldStatement X` | `Systolic.mirrorFold`, `GGT/SystolicDiscMirrorFold` | closed (fff-periodic, 426813b24) |
 
 ## Residual Props
 
 * None from this lane.
-* `Systolic.MirrorFoldStatement CCKW.cosetComplex` (HC6, `GGT/SystolicDisc.lean:432`), owned by
-  fff-periodic (`GGT/SystolicDiscMirrorFold.lean`).
-* ko-closed's `kotowskiOllivier_of_leaves` (c5a8ae8fb, green) consumes it and `ZipSpurStatement` through
-  `isHyperbolicGroup_ghb7_of_zipFold`.
 
 ## Wiring
 
@@ -83,23 +107,7 @@ kh-torsion wires the endpoint and queues both modules.
     because 6a5f25704 renamed the lemma to `embed_injective_faceCycles`;
   * census2 line 52, "red `GGT/SystolicDiscCounts`".
 
-### Current item: HC6, pinched case (`MirrorFoldPinchedStatement X`), one step, offer pending
-
-The lead assigned a piece of `MirrorFoldPinchedStatement X` (`GGT/SystolicDiscMirrorFoldCases.lean:102`).
-fff-periodic owns it: the staging layer `FoldStage` and `deleteDigon` are on main (d6f6ccc19, c88b8c1db).
-This lane offered fff-periodic the vertex-split step and writes no Lean until they answer.
-
-* Proposed file: `GGT/SystolicDiscMirrorFoldSplit.lean`, importing `SystolicDiscMirrorFoldStage`,
-  `VanKampen.PinchLemma` and `VanKampen.CombMapInvariantRestrict`.
-* Proposed interface: `FoldStage.exists_split_pinch`.
-  * Input: a planar stage `S` whose pending darts are exactly a face cycle `[x₁, x₂, x₃, x₄]`, with the
-    ends of `x₁` and `x₃` at one vertex.
-  * Output: a planar stage `T` with a pending digon and nothing else pending, the same boundary, and
-    `T.map.faceCount ≤ S.map.faceCount`.
-* fff-periodic keeps the edge-deletion stage and the assembly.
-* If fff-periodic declines, this lane takes an unstarted `PlanarRunInput` case (W1 Lemma 9.4) from
-  hull-unbound.
-
 ## Next
 
-* Settle the file name and interface with fff-periodic, then write and probe the split module.
+* Get the module and statement from go-lemma42.  Then write the module, land it unverified, probe it,
+  fix it until green, and message go-lemma42 and main.
