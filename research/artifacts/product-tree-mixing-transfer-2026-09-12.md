@@ -123,7 +123,15 @@ lattice `Λ <= L` the action `Λ ↷ W` is essentially free, mixing and not sofi
   nonsofic action.** `K_p × K_q` is residually finite, which answers
   `mixing-free-nonsofic-action-of-sofic-group`.
 * For Radu's lattice `Γ_R <= Aut(T_3) × Aut(T_3)`, the finite-index subgroup
-  `Γ_R^+ = Γ_R ∩ L^+` is a lattice of `L^+`, nonsofic if `Γ_R` is. Density of its
-  projections in `Aut(T_3)^+` is not established here.
+  `Γ_R^+ = Γ_R ∩ L^+` is a lattice of `L^+`, nonsofic if `Γ_R` is. **Its vertical projection
+  is not dense in `Aut(T_3)^+`** (correction, same day). The closure `H` of a projection has
+  vertex stabilizer `H_o = closure(p(Γ_R)_o)`, because `H_o` is open in `H` and `p(Γ_R)` is
+  dense. So the local action of `H` at `o` is the local action of the stabilizer in `Γ_R`.
+  From `axax, ayay, azbz, bxbx, bycy, cxcz` one gets `az = zb`, `bz = za`, `by = yc`,
+  `cy = yb`, `cx = zc`, `cz = xc`, and `A = <a,b,c>` acts on the neighbours `xA, yA, zA` of
+  the root of `T_v = Γ_R/A` by `a ↦ id`, `b ↦ id`, `c ↦ (xA zA)`. That is `C_2`, fixing `yA`,
+  so `H_v` preserves the perfect matching of `y`-edges. On `T_h = Γ_R/V` the local action of
+  `V = <x,y,z>` on `aV, bV, cV` is `x ↦ id`, `y ↦ (bV cV)`, `z ↦ (aV bV)`, i.e. `S_3`.
+  Theorem 2.1 therefore does not apply to `Γ_R` with this envelope.
 * The theorem needs `Γ` nonsofic, not merely outside `𝒮`: with a nontrivial ergodic seed
   `Z`, step 4 would need ergodicity of `Γ ↷ G_2 × Z × B`, which the argument does not give.
