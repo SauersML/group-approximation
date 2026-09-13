@@ -443,3 +443,132 @@ Route `mixed-level-root-group-is-not-kazhdan-in-rank-four-proof`. It requires th
     Kazhdan for `r >= 4`?" and recommends it as the sub-target.
   - It is a question, not an assertion, so nothing false is claimed.
   - A forward note there would help: yes for `r >= 5`; no for `r = 4`, `d >= 2`; `r = 4`, `d = 1` undecided.
+
+## 6. The trace kernel of Ozawa's block corona (lane `quasitrace-k-stable`, 894cc2bb4, e43f7dafa)
+
+Read at 4e7e23aa0, after the lane's commits dbfb32741 (artifact), 894cc2bb4, e8a9c2cfa and e43f7dafa. The local
+copies match the blobs there, and none of these files changed between 4e7e23aa0 and c644a7c66.
+
+**Subsumption scan** at 4e7e23aa0, over `research/*.md` and `research/artifacts/*.md`.
+- Patterns: `property (S)`, `Ortega–Perera`, `0903.2917` (13 files); `unique maximal ideal`, `unique proper maximal`,
+  `Boutonnet`, `1908.07812`, `no (nonzero) unital quotient` (11 files).
+- Outside this lane's files:
+  - `sl3z-ozawa-corona-trace-kernel-is-stable` is OPEN, and it is the stronger target.
+  - The `opr-*` nodes import other Ortega–Perera–Rørdam results: the CFP/RR0 dichotomy, the refinement monoid and
+    properly infinite splits. None states Prop 4.5 or anything about `K`.
+  - The other first-pattern hits are also about other results or algebras:
+    - `ex-open-status-2026-09-12` has a log line on the `ex-rr0-dichotomy` OPR imports;
+    - `stw74-property-sp-cu-stability-audit-2026-08-30` discusses property (S) for `D`;
+    - `rr0-simple-algebras-have-corona-factorization` cites OPR for the CFP.
+  - `stw74-weak-omega-obstruction-proof` and `stw99-lxxvi-residually-stably-projectionless-audit-2026-09-05` say "no
+    nonzero unital quotient" about other algebras (`D`, `Her(a)`).
+  - Four nodes match only the Boutonnet–Houdayer name or arXiv number:
+    - `character-rigidity-equals-hyperfinite-hs-stability`;
+    - `hnn-route-is-relative-commutant-collapse`;
+    - `relative-commutant-collapse-for-sl2-pair`;
+    - `sl3-collapse-via-carrier-character-rigidity`.
+
+    Grepping for the maximal-ideal wording hits only the two `stw` files.
+- So no established node already proves either new statement.
+
+### 6.1 `sl3z-ozawa-corona-trace-kernel-is-unique-maximal-ideal`: PASS
+
+Route `sl3z-ozawa-corona-kernel-unique-maximal-ideal-proof`. Artifact §1: Prop 1.1 and Cor 1.2.
+
+- **Source re-read.** Boutonnet–Houdayer, arXiv:1908.07812v2. The TeX was fetched on MSI; quotes render the markup.
+  - Notation, first item (TeX 230): "Let G be any connected semisimple Lie group with finite center and no nontrivial
+    compact factor, all of whose simple factors have reak rank at least two." "reak" is the source's typo for "real".
+  - Corollary D (`lettercor`, label `main rep`, TeX 294–300): "Let G be as in the notation and assume moreover that G
+    has trivial center. Let Γ < G be any irreducible lattice. Then for any weakly mixing representation π … the left
+    regular representation λ_Γ is weakly contained in π." Item (i) makes `τ_Γ ∘ Θ_{π,λ}` the unique tracial state of
+    `C*_π(Γ)`, and item (ii) makes `ker Θ_{π,λ}` its unique proper maximal ideal.
+  - Proof of (ii): for a proper ideal `I` with quotient map `α`, "the unitary representation ρ … is weakly contained in
+    π and hence weakly mixing by Lemma [lem:(T)]". Then `λ ≺ ρ`, `β : A/I → C*_λ(Γ)` is well defined,
+    `Θ_{π,λ} = β ∘ α`, and `I ⊂ ker Θ_{π,λ}`.
+  - Lemma `lem:(T)` (TeX 1164), for a countable infinite property (T) group: "if π is weakly mixing and if ρ is weakly
+    contained in π, then ρ is also weakly mixing".
+  - Artifact Prop 1.1 does not use that lemma. It gets weak mixing of the representation of `A/J` from the absence of
+    finite-dimensional representations of `A`. Both routes are sound.
+  - Node lines 35–37 and artifact lines 34–36 say "trivial centre and no compact factor, all of whose simple factors
+    have real rank at least 2", with `Γ` an irreducible lattice. They drop only "finite center", which trivial center
+    implies, and the word "nontrivial".
+  - `SL(3,R)` has trivial center: a real `λ` with `λ³ = 1` is `1`. So `SL(3,Z) < SL(3,R)` is covered.
+- **Hypotheses used.**
+  - Let `J` be a proper ideal. A faithful representation of `A/J` has no finite-dimensional subrepresentation, because
+    that would be a finite-dimensional representation of `A`, and `kazhdan-block-algebras-contain-their-block-ideal`
+    (ESTABLISHED) excludes those.
+  - So the representation is weakly mixing, Corollary D makes `q` factor through `A/J`, and `J ⊆ K`.
+  - The input "no finite-dimensional representation" is where the corona differs from `C*(Γ)`.
+- **Tests.**
+  - **Full `C*(Γ)`.** The trivial representation is finite-dimensional, so it is not weakly mixing. `C*(Γ)` has many
+    maximal ideals, from the finite quotients of `Γ`. So the hypothesis is load-bearing.
+  - **`C*_r(Γ)`.** `K = 0`, and item 1 becomes simplicity of `C*_r(SL(3,Z))`. That agrees with Corollary D for
+    `π = λ`.
+- **Cor 1.2.** Re-derived.
+  - (a) If `J ∩ K = 0`, then `J` is proper, so `J ⊆ K` and `J = 0`.
+  - (b) A unital quotient `K/J` gives a central projection. The kernel of the corresponding quotient of `A` is a proper
+    ideal, so it lies in `K`, which forces `A = K`. That contradicts `K ≠ A`. Correct.
+- **Display check.** Items 1–3 match Prop 1.1 and Cor 1.2(a), (b).
+- **Wording note.** The phrasing of Cor 1.2(c), `J + K ∈ {K, A}`, is awkward. The content is "every closed ideal lies
+  in `K` or equals `A`".
+
+### 6.2 `sl3z-ozawa-corona-trace-kernel-has-property-s` (OPEN) and route `sl3z-ozawa-block-qt-via-kernel-property-s`: PASS on the equivalent form and on the route
+
+- **Source re-read.** Ortega–Perera–Rørdam, arXiv:0903.2917v4, `main.tex` on MSI.
+  - Quotes below render the TeX markup; the words are the source's.
+  - **`F(A)`** (TeX 1086–1088): "all positive elements a in A for which a = ae for some positive element e in A (that
+    can be taken to be a contraction)".
+  - **Definition** (`defi`, TeX 1094–1098): "A C*-algebra A is said to have property (S) if for every a∈F(A) there
+    exists b∈A^+ such that a⊥b and a≺_s b."
+    - `≺_s` (`defi`, TeX 300–303): "x is stably dominated by y, written x<_s y, if the equivalent conditions (i)–(iii)
+      in Proposition [stable_comparison] hold". The remark at TeX 309–310 restates (ii) as "there exists k∈N such
+      that (k+1)x≤ky".
+    - This matches the node's statement and the artifact's §2 Definitions.
+  - **Lemma `lema00`:** "Let A be a separable C*-algebra with property (S). Then A has no non-zero unital quotients."
+  - **Prop 4.5** (`prop1`, TeX 1209): "Let A be a separable C*-algebra. Then A has property (S) if and only if A has
+    no non-zero bounded lower semi-continuous 2-quasitrace and no non-zero unital quotient." Its proof says the "if"
+    part is contained in the proof of [HRW, Theorem 3.6].
+  - **Numbering.**
+    - Every environment shares the `lem` counter, numbered within sections.
+    - In section 4 the order is `defi` 1094, `lem` 1108, 1126, 1171, `prop` 1209, `corol` 1245, `prop` 1271, `prop`
+      1318, `corol` 1360.
+    - That gives 4.1–4.9, so `prop1` is 4.5, Cor 4.6 is the `M_n` permanence, and `prop2` is 4.7.
+- **The lsc qualifier.** OPR 4.5 names "bounded lower semi-continuous" 2-quasitraces; the node drops "lsc".
+  - The equivalence still holds. Its only-if proof starts from "a non-zero bounded 2-quasitrace" with no lsc
+    assumption, and the "if" direction needs only the lsc ones.
+  - `K` is separable because `A` is, and it has no unital quotient by 6.1. So the equivalent form is correct.
+- **Route.** Re-derived.
+  - Let `τ` be a bounded 2-quasitrace on `A`. It restricts to one on `K`, and (S) for `K` (with Cor 4.6 for `M_2(K)`)
+    kills it.
+  - So every quasitrace of `A` vanishes on `K`.
+  - `sl3z-ozawa-block-qt-linearity-iff-corona-kernel-invisible` (ESTABLISHED) then gives the target.
+  - "Logically contains `sl3z-ozawa-block-qt-via-stable-kernel`" is right, because OPR §4 (TeX 1104–1105) says "It is
+    easy to see that every stable C*-algebra has property (S)."
+- **Why-it-matters bullets.**
+  - The 4.7 bullet is used as OPR state it: `Cu` has ω-comparison, and the algebra is hereditary in `A ⊗ 𝒦`, applied
+    to `K ⊗ e_11`.
+  - The converse is marked "not settled", which is honest.
+
+### 6.3 Artifact Props 2.1–2.3 and Remark 2.4: PASS
+
+- **Prop 2.1.** (ii)⇒(i) is OPR 4.5 "if" together with Cor 1.2(b). (iii)⇒(ii) is not claimed.
+- **Prop 2.2.** Stable implies (S). With ω-comparison, (S) implies stable, by OPR 4.7 with `D' = K ⊗ e_11`.
+- **Prop 2.3, the one-translate criterion.** Steps 1–5 re-derived.
+  - Parameters (artifact lines 148–157):
+    - `h = 0` on `[0, ε/4]`, `h = 1` on `[ε/2, ∞)`, linear between;
+    - so `h(t) = t·k(t)` with `sup k ≤ 2/ε`, attained at `t = ε/2`;
+    - `δ < ε²/6`, `y = uau*` and `b = (1 − h(a)) y (1 − h(a))`.
+  - Key estimate: `‖y h(a)‖ ≤ ‖ya‖·‖k(a)‖ < 2δ/ε`. Each of the three terms of `b − y` is at most that, so
+    `‖b − y‖ < 6δ/ε < ε`.
+  - It feeds Hjelmborg–Rørdam Prop 2.2, as OPR's proof of 4.7 quotes it: "for every a∈B^+ and every ε>0 there exists
+    b∈B^+ such that (a−ε)_+≾b and (a−ε)_+⊥b". `K` is separable, hence σ-unital.
+  - An earlier nit on (O4) is withdrawn: the quote does have `a ∈ B^+`.
+- **Tests.**
+  - **`𝒦~ ⊃ 𝒦`.** Shift unitaries give the translates, and `𝒦` is stable.
+  - **`M_n`.** The criterion is vacuous there.
+  - **`C[0,1] ⊃ C_0(0,1]`.** Unitaries of a commutative algebra fix `a`, so the criterion fails. That is consistent,
+    since `C_0(0,1]` has a unital quotient and is not stable.
+- **Source not re-read.** Kirchberg–Rørdam Lemma 2.2 and the Hjelmborg–Rørdam paper itself. Only OPR's quotation of HR
+  2.2 was read.
+- **Remark 2.4.** It leaves open whether the rank-one parabolic projections lie in `B`, and the node's Attempts
+  bullet says the same.
