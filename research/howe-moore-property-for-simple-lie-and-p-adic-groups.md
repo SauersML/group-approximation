@@ -1,0 +1,28 @@
+---
+rg: 2
+id: howe-moore-property-for-simple-lie-and-p-adic-groups
+kind: claim
+title: Noncompact connected simple real Lie groups with finite center and isotropic simple algebraic groups over non-Archimedean local fields have the Howe-Moore property
+artifacts:
+  - research/artifacts/nonsofic-action-mixing-transfer-2026-09-12.md
+---
+
+**ESTABLISHED (literature import).** A locally compact group `G` has the *Howe--Moore property* if
+every unitary representation of `G` either has a nonzero `G`-invariant vector or has all matrix
+coefficients `C_0` (for every `ε > 0`, `{g : |⟨π(g)v,w⟩| >= ε}` is compact). The following groups have
+it:
+
+1. connected, noncompact, simple real Lie groups with finite center, for instance `SL_n(R)` (`n >= 2`),
+   `Sp(n,1)`, `F_4^(−20)`;
+2. isotropic simple algebraic groups over non-Archimedean local fields, for instance `SL_n(Q_p)`;
+3. closed, topologically simple subgroups of `Aut(T)` acting 2-transitively on `∂T`, `T` a bi-regular
+   tree of valence `>= 3` at every vertex.
+
+Consequence used here: if such a `G` acts ergodically by measure-preserving transformations on a
+probability space, the action is mixing. This includes the restriction to any discrete infinite
+subgroup, such as a lattice.
+
+Source: C. Ciobotaru, *A unified proof of the Howe--Moore property*, arXiv:1403.0223, Definition 2.6
+and Theorem 1.1 (verbatim in the artifact, Section 1). Case 1 is due to Howe--Moore (1979) and Zimmer.
+
+Consumer: `howe-moore-lattice-nonsofic-action-transfers-to-mixing`.
