@@ -3,6 +3,25 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
+## STATE (09-13 ~10:50): `OsinLemma94CellArcsInput` PROVED (hull-unbound's realization split, 1130c8dbc)
+`theorem GroupApproximation.GGT.VanKampen.osinLemma94CellArcsInput_holds : OsinLemma94CellArcsInput.{u, w, v}` is in
+`GGT/VanKampen/Estimating/OsinLemma94CellArcs.lean` (51 lines), the team-lead's assignment.
+- The statement is unchanged (`Estimating/OsinLemma94PolygonRealization.lean:121`, md5 aca16686).  The Prop is true as
+  spelled, and the hypothesis `0 ≤ c` is not used.
+- The proof:
+  1. An arc of a relator cell read from across spells `revInv` of a prefix of a cyclic shift of the relator.  So the
+     existing `CyclicArc.isLambdaCQuasiGeodesicWord_invDarts_darts_cellDarts` (`OsinPocketCellArcs.lean`) makes it
+     `(λ, c)`-quasi-geodesic over `D`.  `invDarts arc.darts = arc.reverseDarts` holds by `rfl`.
+  2. `isLambdaCQuasiGeodesicWord_symmetricLabelAlphabet` (new) moves the word to the symmetric label alphabet
+     (`symmetricLabelAlphabet.admissible`, `carrier_eq`) and raises `c` to `c + 2` (`linarith`).
+- LANDED 5e5a98049 (unverified, then probed).  Probe 0913-104724-79090 (base 5e5a98049) BUILT it GREEN, with bytes md5
+  cb741b4c equal to origin/main.
+- `#audit_axioms` on both theorems throws outside propext, Classical.choice and Quot.sound, so the green build certifies
+  them.  Wire-queued at 5e5a98049.
+- No census row: no line of the tex cites Lemma 9.4.  The consumer is `osinLemma94PolygonRealizationInput_of_pieces`
+  (hull-unbound).
+- Residual Props owned by ko-closed: NONE.
+
 ## STATE (09-13 ~10:00): `OsinLemma94CaseOneWalkStatement` PROVED (theoremc-retire's walk sub-piece)
 `theorem GroupApproximation.GGT.VanKampen.osinLemma94CaseOneWalk : OsinLemma94CaseOneWalkStatement.{u, w, v}` is in
 `GGT/VanKampen/Estimating/OsinLemma94CaseOneWalkHolds.lean`.  The list and arc facts are in
