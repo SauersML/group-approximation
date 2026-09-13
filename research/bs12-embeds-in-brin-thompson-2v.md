@@ -71,3 +71,14 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
      conjugator was found, and none of the finite-level roots of that
      construction is conjugate to a power of itself by construction.
    - *Verdict.* Unclear, not pursued further.
+3. **Exhaustive small-table search** (2026-09-13,
+   `research/artifacts/bs12-2v-search-2026-09-13.md`).
+   - *Setup.* Take every table of `2V` with at most 5 bricks, sides of length at
+     most 3, and every bijection between domain and range bricks: 4,646,571
+     non-identity tables in all. Test each for `f g f^-1 = g^2` with `f` one of
+     four baker maps, and `g` of infinite order.
+   - *Result.* 0 witnesses (MSI job 705410, 32 shards, all complete).
+   - *Verdict.* Dead in that range. A witness needs a nonempty aperiodic core
+     (item 3 of `bs-kl-images-in-brin-thompson-groups-have-open-periodic-sets`),
+     which small tables are not expected to show. A wider search over general
+     conjugators is recorded in the same artifact.
