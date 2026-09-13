@@ -79,7 +79,9 @@ intermediate `K` suffices.
   Each has a review record among the 2026-09-12 review artifacts. So every
   witness is a trace-preserving model of `G` whose restriction to
   `Gamma = EL_r(F_q[x_1..x_d])` is a `G`-extendable asymptotic representation
-  that is **not** flexibly Hilbert--Schmidt close to genuine representations.
+  that is **not** flexibly Hilbert--Schmidt close to genuine representations. For the base wreath this is
+  `kt-wreath-models-never-round-on-the-vertex` (earlier, other lane); for every intermediate wreath it is
+  `kt-hyperlinear-coset-wreath-forces-nonroundable-vertex`.
   Such representations are not known to exist for any infinite higher-rank
   Kazhdan group (compare Dogon arXiv:2211.10492), so the positive branch of this
   claim contains a flexible-instability theorem for `Gamma` at `G`-extendable
