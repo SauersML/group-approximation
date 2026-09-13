@@ -62,7 +62,22 @@ remains open. They do not cover a counterexample whose residual is infinite.
   also the reason the search is not merely unfinished: for every family where
   the comparison map is understood, it is understood to be surjective enough
   to kill persistence.
-- **Not attempted here:** any construction of a hyperbolic group designed to
-  have such a class.  This graph has no technique for controlling `H^2` of a
-  hyperbolic group along its whole finite-index subgroup lattice, and does not
-  pretend to.
+- **Not attempted here:** any construction of a general hyperbolic group
+  designed to have such a class.  For general hyperbolic groups this graph has
+  no technique for controlling `H^2` along the whole finite-index subgroup
+  lattice.
+- **Triangle colimits (2026-09-13, lane ex-hyperbolic-triangle-theory).**
+  `edge-twist-extensions-of-triangle-colimits-moment-test` supplies such a
+  technique for one explicit family.
+  - Twisting the edge embeddings of a nonpositively curved triangle of finite
+    groups by homs `E_e -> C_p` gives hyperbolic central extensions `Λ_c`.
+  - `Λ_c` splits over a torsion-free normal `N` iff a linear first-moment
+    identity holds on the `F_p` 2-cycles of `N\X`.
+  - The moment spaces decrease along covers and only `p`-covers change them.
+  - When the vertex groups are perfect with Schur multiplier prime to `p`, these
+    twists exhaust `H^2(Λ;F_p)`.
+  First-level data (`hyperbolic-triangle-colimit-with-persistent-edge-twist`):
+  in nine hyperbolic `PSL(2,q)` coset triangles with `C_5` or `C_7` edges, no
+  nonzero twist splits over the first kernel `N`, and `b_1(N;F_p) = 0`. This does
+  not assume residual finiteness of the colimit; route
+  `non-rf-hyperbolic-via-persistent-edge-twist`.
