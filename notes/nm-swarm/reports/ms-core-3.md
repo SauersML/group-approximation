@@ -11,6 +11,31 @@ CLAIM lem:involution-localization, F₂ matrix clause (tex 1689–1693) — modu
   deviations `p_C a p_C` with `a ∈ I`; `w I_n ∈ EL_n` for `n ≥ 2` from `hel`.
 - No Lean is drafted until those names land.
 
+## Progress log
+
+- 09-13 ~17:35: ct-involution landed the split statement at 8b453b096 (Dynamics/InvolutionLocalizationStatement).
+- 09-13 18:10: **LANDED e131463f7**, `GroupApproximation/Dynamics/InvolutionLocalizationMatrix.lean`; probe 0913-181027-16647 is
+  GREEN with a BUILT line, and all six declarations depend on axioms [propext, Classical.choice, Quot.sound]. Queued for wiring.
+  - Endpoint `ClopenCrossedProduct.involutionLocalizationMatrixClause_of_ringClause (hring : InvolutionLocalizationRingClause)
+    (hel : CoreKernelElementaryStatement) : InvolutionLocalizationMatrixClause`.
+  - Pieces: `exists_finset_deviations`, `deviation_mem_coreTransientIdeal`, `map_entry_sub_one_eq_zero`,
+    `exists_involution_zmodTwo`, `scalar_conj_apply`, `scalar_conj_sub_one_apply`, `restrict_eq_one_of_sub_one_mem`,
+    `scalar_mem_ker_of_map_eq_one`.
+  - Inputs, checked on origin (lead correction ~18:15):
+    - `InvolutionLocalizationRingClause` is CLOSED: `ClopenCrossedProduct.involutionLocalizationRingClause_closed`
+      (ct-involution 0011a8b3a, Dynamics/InvolutionLocalizationRingClosed, `#audit_closed_axioms`), through
+      `chainCoreDefectCoverStatement_holds`.
+    - `CoreKernelElementaryStatement` is the only open input. ms-units' `coreKernelElementaryStatement_of_matricial`
+      (eaa87e3a1, Dynamics/CoreKernelFTwo) reduces it to `TransientIdealLocallyMatricialFTwoStatement`, which has no
+      producer on main. Its owner is chain-matricial (module 5), with second starts ms-core-4 and ms-units.
+    - The local finiteness of `K_1(I)` (tex 1693) belongs to chain-radical.
+  - Census rows `50c5dd41dff4`, `5c06eec5555b` and `1c114e2c4209` are graded `partial` over that one open Prop
+    (`metadata/nm-census-rows/ms-core-3.tsv`).
+- Build trap: the chain-core statement modules do not import `Mathlib.Algebra.Field.ZMod`. Without `Field (ZMod 2)` in
+  scope, specializing a `∀ k [Field k]` statement at `ZMod 2` makes the unifier unfold `ZMod 2` arithmetic
+  (`Nat.rec` ~29k, `Fin.add` ~5.6k in the diagnostics), and it times out even at 1M heartbeats. Fix: import the module and use
+  `haveI : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩`.
+
 Wave-2 range lane of session `nonsofic-existence-49` (brief C; `notes/nm-swarm/reports/ct-lead.md`).  Snapshot:
 origin/main 19d96c2c5 (tex unchanged since 73a84cd9c).  Keys and paragraph lines come from the census merge
 0913-160921 (`sentence_census.py` over the current tex); owners from the census `CHAIN_OWNERS` map and the lane
