@@ -61,6 +61,20 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
   cycle is unchanged, so walk order and repeated visits are unchanged, and the data stop being wrap data.
 - Agreed with ms-intro-4, which takes "first-turn order survives the edge doublings" in
   `Estimating/OsinPocketEdgeDoublingFirstTurns.lean`.
+- Agreed with ms-inverses-2:
+  - (A) first-turn model tests on the rose, `Estimating/OsinPocketWrapRoseFirstTurn.lean`;
+  - T2, first-turn order across the exterior spur thickening (`OsinPocketOuterSpur`). T1 and T1′ belong to ms-intro-4.
+- Agreed with ms-cite-1: it runs the counterexample search for `PocketPinchLabelledPosStatement` at `ε ≥ 1`
+  (`Estimating/OsinPocketPinchPosModels.lean`). This lane keeps the positive route.
+- In flight: `Estimating/OsinPocketFullArc` (attic 33e4d51f6) and `Estimating/OsinPocketArcTrim` (attic 06cb6c7cd).
+  - The first probe of FullArc (0913-175113-42314) was red: deprecated option lemmas, and two simp goals on reversed
+    arcs and `getLast?`. Fixed and re-probing together with ArcTrim.
+  - ArcTrim: `trimSourceLast` (first side shorter than `ε`) and `trimTargetHead` (second side shorter than `ε`, arc
+    not at the wrapped start). Face set and cycle are unchanged, so walk order, repeated visits and simplicity are
+    unchanged, and the trimmed arc is not full.
+- Where the step route sticks: a full arc with a nonempty remainder and both sides at length exactly `ε`. No trim has
+  room, and transport surgery keeps arcs and sides. This does not refute the Prop, since the conclusion may change the
+  source, the kept cell, the arcs and the sides.
 
 ## For the waist owner (ghw-assembly), through the lead
 
