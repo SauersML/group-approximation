@@ -94,6 +94,90 @@ the nearest literature within the stated bound. Tags as before:
   - One search found only Blanchard's own papers, no earlier answer.
   - It does not decide LXI. Credit adequate; novelty bounded.
 
+## Entries 22:26–22:42
+
+- **ex-unitary-class-three, 4edaed478a, 003ca49dfc, a7e18e225c.** CLAIMED SOLUTION of its root
+  (row 21 of the table), unreviewed.
+  - Route: `class-three-via-spin-bordism-trapping-tower` requires
+    `simple-ah-algebra-with-class-three-component-group`, which has a proof route: a simple unital
+    nuclear AH algebra with three unitaries whose triple commutator is an order-two class outside U0.
+  - It credits Toms's trapping (arXiv:2609.09535). That paper's text has no nilpotency or commutator
+    statement (P), so there is no priority threat.
+  - Recommend an ex-verify-analysis pass before anyone calls it solved.
+- **ex-lueck-approximation, fdf9d8f7f3 and ffe5863325.**
+  - `decidable-groups-have-right-computable-l2-betti-numbers` is Löh–Uschold arXiv:2202.03159,
+    Theorems 1.1–1.2 (HTML P). The node credited only a Grabowski remark. Lane messaged at 23:10.
+  - `binary-leavitt-unit-group-has-irrational-l2-betti-numbers` is immediate from the lamplighter cube
+    inside V and Grabowski's values for (Z/2 wr Z)^3 (arXiv:1004.2030, P). Credit is wired through
+    `lamplighter-groups-have-irrational-l2-betti-numbers`.
+  - `binary-leavitt-unit-group-has-fixed-price-one`, `elementary-groups-over-infinite-rings-have-fixed-price-one`
+    and `gaboriau-commensurated-chain-fixed-price-criterion` duplicate ex-free-bridges'
+    `leavitt-unit-groups-have-fixed-price-one` (b850838e74, 22:13). Priority inside the swarm is ex-free-bridges.
+    Lane messaged at 23:15.
+  - The Kun–Thom wreath and double fixed-price-one claims and the wreath L²-acyclicity look new within
+    the graph.
+- **ex-nh-mipstar, c9e84ceb8c and 89de1ecb58.**
+  - `lcs-tracial-nonru-gap-gives-qc-qa-cfi-graph-gap` credits only Paddock–Slofstra.
+    Atserias–Mančinska–Roberson–Šámal–Severini–Varvitsiotis arXiv:1611.09837 (abstract P) reduce binary
+    linear constraint games to isomorphism games through a CFI-type construction, and separate qc from
+    tensor-product isomorphism. Lane messaged at 23:10.
+  - The planar-count corollary credits Mančinska–Roberson arXiv:1910.06958.
+- **ex-determinant-monster.**
+  - ff83a99a96, `integer-root-limits-are-galois-balanced-serre-measures` (unreviewed), builds on
+    Smith's inequalities.
+    - The commit subject says it answers Thom's 2007 question: "It would be very interesting to
+      characterize the continuous parts of the spectral distribution function intrinsically"
+      (math/0701294v3, after Theorem 5.4).
+    - The lane's own artifact (Section 5) records that realization for Thom's class, which needs normal
+      integer approximants, is unsettled. So it is a partial answer. The node title is accurate.
+  - 11382c9376, `integral-operator-norm-below-two-is-quantized` (unreviewed), credits Thom and Lück
+    arXiv:1901.00827. What is new is removing the approximation, over every group.
+  - e3d3bfa673 records an absence claim with a bounded check.
+- **ex-kazhdan-simple-hyperlinear, 56bdeb8d3e and a73f7f76cf.**
+  - `operator-mf-group-not-weakly-quasidiagonal-exists`: the witness is EL_3(LC(X,F_q) ⋊ Z) for a minimal
+    subshift X.
+  - The node says an introductory arrow in Dadarlat arXiv:2007.12655v2 is false for groups. The reading
+    of Dadarlat's definitions deserves an ex-verify check before that is stated anywhere public.
+  - The Turing-degree realization has low credit risk.
+- **ex-kadison-kaplansky, dab3891556 and d9acb657b1.** The free-product projection traces cite K_0
+  generation by factor images. Scalar commutators forcing nθ ∈ τK_0 credit de la Harpe–Skandalis.
+  Adequate.
+- **ex-complexity-sofic, 076f1bec8c.** `residual-finiteness-of-finite-presentations-is-pi2-complete` is
+  OPEN and cites Kharlampovich–Myasnikov–Sapir arXiv:1204.6506. One search found only Bridson–Wilton
+  (triviality of profinite completions is undecidable) and Sapir's Minsky survey arXiv:1504.07736
+  (abstract P). No completeness statement found.
+- **ex-nonsofic-action-entropy, 3ecde705af; ex-nonsofic-action-relative, 23b018d16c.** Păunescu's class is
+  invariant under measure equivalence; the node credits Alpeev arXiv:1706.01864 after four queries. One
+  lattice outside the class gives every Howe–Moore lattice a mixing nonsofic action. Adequate.
+- **ex-bernoulli-negative, d2a8ad5ce4 and 2c4a31bcd4.** Co-induced finite-subgroup shifts add H(Y)/|F|
+  (bounded novelty note present); induced absorption never collapses entropy. The root stays OPEN.
+- **ex-rank-problem-lix, 16cd5f1cc8 and 464531f0c9; ex-rank-problem-villadsen, a57ae731c8 and 5eb6bccb86.**
+  - Toms's no-Γ algebra fails Thiel's (O6+) and has no small joins.
+  - Rank density plus small joins gives all ranks.
+  - The root stays OPEN.
+- **ex-rr0-dichotomy, c94145c599.** The dichotomy fails iff a finite simple real rank zero algebra has an
+  infinite M_2, and such an algebra is a non-separative exchange ring. The literature frame is the
+  separativity problem of Ara–Goodearl–O'Meara–Pardo (1998).
+- **ex-blackadar-kirchberg, a9803215dd and d502e4d3be.** Quasidiagonality of extensions by ideals with no
+  compact open primitive subset, citing Brown–Dadarlat. Not checked further.
+- **Low risk, no check beyond the subject line:**
+  - 66938b864e ex-toms-winter: attribution fix;
+  - b2033f6b04, 7e05aa7711, 03294b62a7 ex-ugc: 2-to-2 and SSEH imports, Galois rounding;
+  - afeb2d0090 ex-lueck-approximation: tracial rank functions;
+  - 043a53d47b ex-k1-properly-infinite: LXI length reformulation;
+  - 4656ff0c3d ex-weak-soficity;
+  - 2a70eebc6c ex-fp-simple-sofic: Penrose full group, soficity folklore;
+  - df0475921f ex-thompson-v-soficity: open target posed;
+  - a5564e38b5 ex-baum-connes: trace defect ⇒ surjectivity failure;
+  - aa6b4d74d4 ex-toms-winter;
+  - 14a3ca5645 ex-free-objects: presentation, not compared with Khanh or OpenAI;
+  - a564fb2cfc ex-rokhlin-lower;
+  - eb7e149f1a ex-left-orderable-nonsofic;
+  - d48bdd179a ex-q34-collapse;
+  - dc2f7ed4d4 ex-free-unused-power;
+  - 54faf1cd64 ex-hyperbolic-vtf;
+  - a1e1bf7e3c ex-bernoulli-positive.
+
 ## Boggi note
 
 Boggi–Zalesskii, arXiv:2406.08639 (Bull. LMS 2025), abstract (P): "Let G be a residually finite, good

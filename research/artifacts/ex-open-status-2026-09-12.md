@@ -61,7 +61,7 @@ games is adjacent to the games form of quantum PCP, not to its Hamiltonian form.
 | 18 | MF reduced C*-algebra of an infinite (T) group | ex-mf-kazhdan-cstar | `infinite-kazhdan-group-with-mf-reduced-cstar` | OPEN; genuine-rep strong convergence dead for SL_d(Z), d ≥ 4 | 2 W, 1 P |
 | 19 | Blackadar–Kirchberg | ex-blackadar-kirchberg | `stw99-problem-vii-blackadar-kirchberg` | OPEN | 1 W |
 | 20 | Rørdam's real rank zero dichotomy | ex-rr0-dichotomy | `stw99-problem-xxix-rr0-dichotomy` | OPEN | 1 W |
-| 21 | simple C*-algebra, unitary component group of class ≥ 3 | ex-unitary-class-three | `simple-cstar-unitary-components-class-three` | no example found; repo-generated question | 2 P |
+| 21 | simple C*-algebra, unitary component group of class ≥ 3 | ex-unitary-class-three | `simple-cstar-unitary-components-class-three` | no literature example; lane claims one at 22:28 (4edaed478a), unreviewed | 2 P |
 | 22 | hyperbolic groups virtually torsion-free | ex-hyperbolic-vtf | `hyperbolic-groups-virtually-torsion-free` | OPEN | 1 W |
 | 23 | Baum–Connes, trivial coefficients | ex-baum-connes | `baum-connes-counterexample-group-exists` | OPEN | 1 W |
 | 24 | Kadison–Kaplansky, torsion-free | ex-kadison-kaplansky | `kadison-kaplansky-torsion-free` | OPEN | 1 W |
