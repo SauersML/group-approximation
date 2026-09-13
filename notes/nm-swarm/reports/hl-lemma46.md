@@ -39,4 +39,14 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
 - `metadata/nm-census-rows/hl-lemma46.tsv`: LINE:1679 `partial` (the FFF §2 "finitely presented infinite simple group", witness Q₂), carrying the dynamics.
 
 ## Next
-- Waiting for the lead to assign the next item.
+- The Corollary 7.4 piece was superseded: cite-hull closed Hull Cor 7.4 (c6e0b6c33).
+- Current item, from the lead after the 08:30 coordinator restart: help hull-select on W1.
+  - Targets: the MultipleEdgeCut assembly (`multipleEdgeCutInput_of_pieces`) and the IsDiscRegion merge Prop.
+  - Status: waiting for hull-select to name a sub-piece. Nothing is written yet.
+  - Inputs the assembly composes:
+    - kh-ejz's `MultipleEdgePocketRegionInput` (d00f94876);
+    - the collar (`PocketCollarStatement` / kh-torsion's `GeodesicCollarStatement`);
+    - go-lemma42's transport at j = 1, 3;
+    - the zero-cell merge;
+    - `OsinMultipleEdgeCut.ofPocketRegion` (45e7201da).
+  - Observed blocker, passed to hull-select: `Estimating/OsinAppendixCutMerge.lean` (hull-respell) is red at line 103 (omega). Nothing landed on 09-13 touched it or its weight dependencies.
