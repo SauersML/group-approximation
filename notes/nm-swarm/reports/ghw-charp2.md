@@ -1,6 +1,73 @@
 # ghw-charp2 lane report
 
-## Scope (roster, 09-13)
+## Item 2 (09-13): places over ℚ(t_1..t_d) for GHW characteristic 0
+
+Lead order: characteristic 0 belongs to ghw-assembly, which owns the grid/Nullstellensatz finiteness, the archimedean
+places and the assembly.  ghw-charp2 builds the non-archimedean places over ℚ (the degree place, the places over
+p | M, `exists_places_over`) on the char-p template.  Printed sentence: tex 1146--1147, the GHW Theorem 4 clause.
+
+### Status: CLOSED (lemmas; this item has no endpoint Prop)
+
+- `GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean` (new):
+  - `GHW.exists_places_minpoly_coeff_le`.  Setup: a place `w` of `L` with uniformizer `π`, and `K/L` finite
+    separable.  Claim: there are finitely many places `u j` of `K`, each with a uniformizer.  If `u j a ≤ exp N` for
+    every `j`, then `w` of every coefficient of `minpoly L a` is at most `exp (N · [K:L])`.
+  - `GHW.exists_places_minpoly_coeff_le_family`: the same claim for a finite family of places of `L` at once.
+  - `GHW.exists_places_minpoly_coeff d M hM K`.  Setup: `B = ℤ[t_1..t_d]`, `L = Frac B`, `K/L` finite, `M > 0`.
+    Claim: there are finitely many places `u j` of `K`, each with a uniformizer.  Suppose `M^e a` is integral over
+    `B` and `u j a ≤ exp N` for every `j`.  Then each coefficient `c_i` of `minpoly L a` satisfies
+    `M^(N·[K:L]) c_i = G` for some `G ∈ ℤ[t]` of total degree at most `N·[K:L]`.  The places lie over the degree
+    place (when `d > 0`) and the `p`-adic places for `p | M`.  Separability is automatic in characteristic 0.
+- `GroupApproximation/Algebra/IntegerGaussValuations.lean` (claimed; an orphan from de485d673, in no lane's file
+  list): the `p`-adic and total-degree valuations on `ℚ(t_1..t_d)` and clearing denominators
+  (`exists_algebraMap_eq`).
+  - It had never compiled: `FiniteMultiplicity.of_prime_left` needs `WfDvdMonoid (MvPolynomial (Fin d) ℤ)`.
+  - Fixed by importing `Mathlib.Algebra.EuclideanDomain.Int` and `Mathlib.RingTheory.PrincipalIdealDomain`.
+- Compiled evidence: probe 0913-024239-39237 (base 3e34da4ea) is PROBE GREEN, with both modules BUILT.
+  `exists_places_minpoly_coeff` depends on `[propext, Classical.choice, Quot.sound]`.  The earlier probe
+  0913-022359-56894 failed only in IntegerGaussValuations, on the missing instance.
+
+### Route
+
+1. Single place.  `ValuationExtension.exists_places_over` gives the places `u j` over `w`: `u j π < 1`, and an
+   element integral at every `u j` has `w`-integral minpoly coefficients.  `π^N a` has `u j ≤ 1`, and
+   `IsIntegrallyClosed.minpoly_smul` with `coeff_scaleRoots` gives `w(c_i)·exp(−N(deg−i)) ≤ 1`.
+2. Family: `choose`, then `Fintype.equivFin (Σ t, Fin (r t))`.
+3. Over ℚ(t):
+   - The base places are indexed by `{p // p ∈ M.primeFactors} ⊕ Fin (min d 1)`.
+   - `minpoly B (M^e a)` has coefficients in `B` (`minpoly.isIntegrallyClosed_eq_field_fractions'`), equal to
+     `M^(e(deg−i)) c_i`.
+   - Clearing the `p | M` denominators (`exists_algebraMap_eq`) gives `G`.
+   - The degree bound is `degValuation_algebraMap_le_iff`; when `d = 0`, `G` is constant.
+
+### Consumer interface (ghw-assembly)
+
+- `GHWCountablePlaces` takes `AddValuation K (WithTop ℤ)`.  Use:
+  - `ValuationWithTopInt.addVal (u j)`;
+  - `addVal_eq_one` for the uniformizers;
+  - `neg_le_addVal_iff` for the bounds, as in `GHWCharP.hasHaagerupProperty_of_isIntegral`.
+- ghw-assembly owns the finiteness of the grid of `G` (Combinatorial Nullstellensatz) and the archimedean places.
+
+### Landed
+
+- d2cf04137: `Kazhdan/GHWCharZeroPlaces.lean`.  Landed unverified; it is green now with the same bytes.
+- 321615044: the `Algebra/IntegerGaussValuations.lean` import fix.
+
+### Census and wiring
+
+- Row b6d1590be7ab now also cites the three places lemmas.  It stays `partial`: the char-0 half is open.
+- Queued `GroupApproximation.Kazhdan.GHWCharZeroPlaces ghw-charp2 321615044`.  `IntegerGaussValuations` is unwired;
+  `BoundedIntegralFinite` and `ValuationExtensionPlaces` are in the `GHWCharPClosed` chain.
+
+### Residual (exact)
+
+- None for this item.
+- Still open, owned by ghw-assembly (grid finiteness, archimedean places, assembly):
+  `GHWFinitelyGeneratedCharZero : ∀ (F : Type) [Field F] [CharZero F] (s : Set (GL (Fin 2) F)), s.Finite → HasHaagerupProperty.{0, 0} (Subgroup.closure s)`.
+
+## Item 1 (closed): GHWFinitelyGeneratedCharP
+
+### Scope (roster, 09-13)
 
 Closed GHWCharP, the positive-characteristic places of GHW Theorem 4, at the Prop the 857f7e44a
 reduction consumes: `GroupApproximation.GHW.GHWFinitelyGeneratedCharP`
@@ -9,7 +76,7 @@ reduction consumes: `GroupApproximation.GHW.GHWFinitelyGeneratedCharP`
 Printed sentence: tex 1146--1147, "Every countable subgroup of $\mathrm{GL}_2$ over a field has the Haagerup
 property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembly.
 
-## Status: CLOSED
+### Status: CLOSED
 
 - `theorem ghwFinitelyGeneratedCharP : GHWFinitelyGeneratedCharP` (`Kazhdan/GHWCharPClosed.lean`), with
   `#audit_closed_axioms`.  ghw-assembly reports the audit as `[propext, Classical.choice, Quot.sound]`.
@@ -22,7 +89,7 @@ property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembl
   Of these, only `GHWFiniteReduction` changed between 79102e615 and origin b490bf08d, so the origin bytes are the
   green bytes.
 
-## Files
+### Files
 
 - `GroupApproximation/Kazhdan/GHWCharP.lean`. This is the jacobson draft of 09-12 10:49, byte-identical to
   `attic/sweep-2026-09-12/GroupApproximation/Kazhdan/GHWCharP.lean.txt`; no lane file list claimed it.
@@ -31,9 +98,9 @@ property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembl
 - `GroupApproximation/Kazhdan/GHWCharPClosed.lean`, new: `ghwFinitelyGeneratedCharP`.  It is separate so that
   `GHWCharP` does not import `GHWTheoremFour`.
 - `GroupApproximation/Kazhdan/GHWEntries.lean`: an older unowned draft in the shared tree and the attic.
-  `GHWCharP` does not use it.
+  `GHWCharP` does not use it; the lead landed it as an orphan and ghw-assembly owns its dedupe.
 
-## Route (printed GHW route, no literature input)
+### Route (printed GHW route, no literature input)
 
 1. The entries of `s` and of their inverses generate a finitely generated `𝔽_p`-algebra `A`, and every element
    of `⟨s⟩` has its entries in `A`.
@@ -45,13 +112,13 @@ property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembl
    uses `ValuationExtensionPlaces` and `TotalDegreeValuation` (green 22f1987d0).
 5. `hasHaagerupProperty_of_places` (`GHWPlaces`, root-wired) with no archimedean places.
 
-## Landed
+### Landed
 
 - 7155865b2: `Kazhdan/GHWCharP.lean`, `Kazhdan/GHWCharPClosed.lean`.  Landed unverified; they now compile green
   (above), with no Lean bytes changed since.
 - 4626c73f2: this report (first version).
 
-## History
+### History
 
 - My own probe of `GHWCharP` and `GHWCharPClosed` failed only in `GHWFiniteReduction`.  Two lines were wrong:
   `Subgroup.map_closure` does not exist at the pin (it is `MonoidHom.map_closure`), and there was a
@@ -59,24 +126,24 @@ property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembl
 - I also wrote a local rewrite of `GHWCharP`, which was not needed: the origin bytes compile.  I discarded it
   (lane backup only) and landed no Lean change.
 
-## Census
+### Census
 
 - Row b6d1590be7ab (L1145, graded by ghw-assembly): a `partial` row citing `ghwFinitelyGeneratedCharP`,
   `printedGHWTheoremFourCharP` and `hasHaagerupProperty_closure_of_charP`
   (`metadata/nm-census-rows/ghw-charp2.tsv`).
 
-## Wiring
+### Wiring
 
 - Queued `GroupApproximation.Kazhdan.GHWCharPClosed ghw-charp2 7155865b2`.  Its unwired chain is `GHWCharP`,
   `GHWTheoremFour`, `GHWFiniteReduction`, `BoundedIntegralFinite`, `GHWFrobeniusSeparable`, `TotalDegreeValuation`
   and `ValuationExtensionPlaces`.
 
-## Residual (exact)
+### Residual (exact)
 
-- None for this lane.
-- The printed sentence over every field still needs `GHWFinitelyGeneratedCharZero : ∀ (F : Type) [Field F] [CharZero F] (s : Set (GL (Fin 2) F)), s.Finite → HasHaagerupProperty.{0, 0} (Subgroup.closure s)`.
-  This is dgo-geometric's GHWCharZeroFiniteness, assembled by ghw-assembly.
+- None for this item.
 
 ## Next
 
-- Scope finished; waiting for the next item from the lead.
+- Item 2 is closed.  Waiting for ghw-assembly's feedback on the places interface; I will adapt the statement if
+  they need a different shape (rule 22: grep users and probe them together).  Otherwise I wait for the next item
+  from the lead.
