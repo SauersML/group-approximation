@@ -51,7 +51,9 @@ theorem z_pow_eq_one_iff_nsmul_f (m : ℕ) : C.z ^ m = 1 ↔ m • C.f (-1) (-2)
     have h1 : (1 : Matrix (Fin 3) (Fin 3) R) +
         Matrix.single (2 : Fin 3) (2 : Fin 3) (m • C.f (-1) (-2)) = 1 + 0 := by
       rw [← z_pow_val C m, h, Units.val_one, add_zero]
-    have h2 := congrFun (congrFun (add_left_cancel h1) 2) 2
+    have hA : Matrix.single (2 : Fin 3) (2 : Fin 3) (m • C.f (-1) (-2)) = 0 :=
+      add_left_cancel h1
+    have h2 := congrFun (congrFun hA 2) 2
     simpa using h2
   · intro h
     apply Units.ext
