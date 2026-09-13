@@ -181,6 +181,17 @@ Filled in as each part lands.
 | `bauer-unit-division-metric-order-criterion` (Lemma 8.1 of part 4) | tw-rotation-gluing | PASS, wording note | 2 §2.7 |
 | `toms-diagonal-quotient-has-nonconstant-continuous-ranks` | rank-toms-b-obstruct | PASS | 2 §2.8 |
 | `toms-twisted-swap-pairs-are-totally-degeneracy-forcing` | rank-toms-b-obstruct | PASS, wording note | 2 §2.9 |
+| `gabe-szabo-unital-uniqueness-theorem` | uct-detection-phantom | PASS, quotes verbatim | 3 §3.2 |
+| `kohler-uct-for-zp-equivariant-bootstrap` | uct-detection-phantom | PASS as import | 3 §3.2 |
+| `meyer-little-invariant-detects-zero-in-zp-bootstrap` | uct-detection-phantom | PASS, quote verbatim | 3 §3.2 |
+| `mn-cyclic-restrictions-detect-equivariant-bootstrap` | uct-detection-phantom | PASS | 3 §3.2 |
+| `zp-detection-equals-meyer-nadareishvili-sufficiency` | uct-detection-phantom | PASS | 3 §3.3 |
+| `zp-restriction-trivial-splits-cellular-plus-phantom` | uct-detection-phantom | PASS | 3 §3.4 |
+| `zp-o2-action-kkg-trivial-iff-invariant-asymptotic-inner` | uct-detection-phantom | PASS | 3 §3.5 |
+| `outer-actions-on-o2-kk-g-contractible-iff-rokhlin` | uct-detection-prove | PASS | 3 §3.6 |
+| `o2-rokhlin-iff-unit-vanishes-in-fixed-central-sequences` | uct-detection-prove | PASS | 3 §3.7 |
+| `o2-contractible-crossed-product-inner-half-flip-mcduff` | uct-detection-prove | PASS | 3 §3.8 |
+| `zp-detection-iff-bootstrap-sufficiency-and-kk-g-generation` | uct-detection-prove | PASS after graph fix `d16d59955a` | 3 §3.1, §3.9 |
 
 ## 3. Part files
 
@@ -190,3 +201,6 @@ Filled in as each part lands.
 - `ex-review2-analysis-2026-09-13-part2.md`: strict comparison divides the unit over C-space Bauer boundaries
   (staircases, orthogonalizing moves, summable and metric criteria), and the Toms-algebra diagonal quotient and
   twisted-halves rigidity, checked against arXiv:2606.12188v2.
+- `ex-review2-analysis-2026-09-13-part3.md`: detection for Z/p-actions (Meyer--Nadareishvili sufficiency, the
+  cellular-plus-phantom splitting, the (D)/(L)/(S)/(K) equivalences), and the O_2 dynamics (Rokhlin iff
+  contractible, fixed central sequences, half-flip and McDuff), with Gabe--Szabó quotes checked verbatim.
