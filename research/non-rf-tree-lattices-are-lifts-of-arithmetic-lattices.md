@@ -36,6 +36,24 @@ arithmetic lattice along the Cayley graph of its vertex group.
     `S_3 = PGL_2(F_2)`) and of `Γ_(4,4)` (`D_8` against `Alt(4)`).
 * **Unconstrained numeric search (2026-09-13).** Gauss–Newton over `PSL_2(C)^4` from 400 random
   starts, requiring all four relators to be `±I`, found only a degenerate component: every
-  generator of trace 0 and `tr(ab) = ±2`. The next attempt is a constrained search, with `x` of
-  infinite order and `tr^2 x/det x ≡ 1 mod 3` so that `x` acts as a 3-cycle, followed by the
-  exact and `3`-adic checks used for Radu's lattice.
+  generator of trace 0 and `tr(ab) = ±2`.
+* **Constrained numeric search (2026-09-13): a candidate representation.** Imposing that
+  `x` and `y` have order 3 in `PSL_2`, 600 random starts converge to a single solution up to
+  conjugacy.
+  * *Invariants.* `tr^2 a = 8/3`, `tr^2 b = 2/3`, `tr ab = 2/3`, `tr xy = 3/2`,
+    `tr^2(ax) = 3/2`, `tr^2(bx) = 1/6`.
+  * *Rationality.* Over 3000 random words of length at most 8, `tr^2` is within `6·10^(−14)` of a
+    rational number whose denominator involves only the primes 2 and 3. So numerically the
+    adjoint trace field is `Q`, and the representation is integral away from `{2, 3}`.
+  * *Tree at 3.* `a` and `b` have `v_3(tr^2) = −1`, so they are hyperbolic of translation
+    length 1 on the tree of `PGL_2(Q_3)`, moving the base vertex to a neighbour, as horizontal
+    letters must. `x` and `y` are elliptic of order 3, matching the 3-cycles of the local action.
+  * *Where it stands.* This is the Radu pattern, with `(Q, S = {2,3})` in place of
+    `(Q(√17), S = {primes above 2})`. It is numerics only. What remains:
+    * exact matrices, whose entries appear to lie in `Q(√2, √3, i)`;
+    * exact relators;
+    * the 3-adic tree identification;
+    * the quaternion algebra over `Q` and its ramification;
+    * the second tree, at 2.
+  * *Seed.* The scripts are `jw_rep_search_constrained.py` and `jw_invariants.py` in lane
+    `ex-tree-lattice-mixing`; seed 11.
