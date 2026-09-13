@@ -33,3 +33,5 @@ free minimal `Z^d` crossed product gives an infinite `k`-linear sofic group `S`,
 finitely presented infinite simple Kazhdan linear sofic group.
 
 Route: `rank-modelled-simple-rings-give-linear-sofic-projective-el-proof`.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: `rk(Ad A − Ad B) ≤ 2N rk(A − B)` from `A⊗A^(−T) − B⊗B^(−T) = (A−B)⊗A^(−T) + B⊗(A^(−T) − B^(−T))`; `dim C(A) ≤ Σ_λ k_λ d_λ ≤ N max_λ k_λ` via conjugate Jordan partitions; the Galois bound `k_λ ≤ N/2` for `λ ∉ k`; and invertible representatives in rank ultraproducts. Consistent with `leavitt-algebra-has-no-unital-rank-model`. `research/artifacts/un-review3-2026-09-13-part1.md` §10.

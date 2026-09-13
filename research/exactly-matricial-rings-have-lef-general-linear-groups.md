@@ -26,3 +26,5 @@ Instances:
 
 Malcev is what removes the restriction to finite fields: the coordinate groups `GL_(N d_k)(F_k)` may be infinite,
 and residual finiteness of the finitely generated subgroup they generate supplies finite images.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: units of the ultraproduct are coordinatewise units, Łoś on a finite window, Malcev for the finitely generated linear image, and LEF ⟹ MF through regular permutation unitaries with `‖V_n(g) − 1‖ ≥ √2`. No conflicting node (e.g. `cohn-elementary-group-is-not-lef` concerns a ring that is not directly finite). `research/artifacts/un-review3-2026-09-13-part1.md` §6.

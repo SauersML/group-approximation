@@ -43,3 +43,5 @@ With `m = 1` this is `full-defect-ring-non-mf-at-rank-two`.
 `stably-infinite-ring-elementary-groups-have-no-mf-quotient` (un-paradox). This node is the explicit-defect form:
 it contains that theorem at `m = n`, and it can give a smaller rank bound when the defect needs several terms.
 Credit `un-paradox`, `un-middle` and `un-converse`.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived Lemma 1 (`EL_2(M_m(R)) = EL_(2m)(R)`, with same-block generators as commutators of cross-block ones) and Lemma 2 (Weyl elements conjugate root subgroups). The required node `full-defect-ring-non-mf-at-rank-two` is established on main. Subsumption: at `m = n` this has the same content as `stably-infinite-ring-elementary-groups-have-no-mf-quotient` (un-paradox) and `paradoxical-ring-el-n-full-mf-radical-from-twice-level` (un-middle). `distinct_from` records it, and choosing a canonical node is with un-architect. `research/artifacts/un-review3-2026-09-13-part1.md` §4.

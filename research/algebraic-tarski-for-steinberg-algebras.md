@@ -49,3 +49,5 @@ statement. Whether the ring-level paradox conversely descends to `S(𝒢)` is th
 - Minimal subshift over `Z`: an invariant measure exists, `LC(X,F_q)⋊Z` is stably finite, and a
   faithful rank function exists by `cantor-z-crossed-product-embeds-in-continuous-factor`. All four
   conditions hold, as they must for the Pestov 9.1 group to be LEF.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: Lemma 2.1 (the rank-zero set is a two-sided ideal of each `M_n(R)`), Lemma 2.2 (`rk(e)+rk(1−e)=n`, since `diag(e,1−e)` is equivalent to `I_n ⊕ 0` by invertible matrices), Theorem 2.3 (padding to `M_(n+1)(R)`), Theorem 2.4 (minimality gives `θ ≤ m[U]`; ABBL extension), and that `ι : S(𝒢) → V(R)` respects the ABBL relations. Rainone–Sims Thm 6.2 (TeX label `Tarski`) and ABBL Lemma 2.3 (label `lem:RS-forgroupoids`) match the arXiv TeX sources verbatim. No established node conflicts. Details: `research/artifacts/un-review3-2026-09-13-part1.md` §1.

@@ -35,3 +35,5 @@ node `stably-infinite-ring-elementary-groups-have-no-mf-quotient` (un-paradox). 
 directly finite iff `(m+1)[R] <= m[R]`: both conditions are upward closed in `m`, with the same least value
 (`simple-ring-stably-finite-iff-unit-not-paradoxical`). Items 2 and 3 are this node's own contribution, and the UN
 root consumes them for (M⇒). Credit `un-paradox`, `un-middle` and `un-converse`.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Items 1–3 re-derived (`e = 1−st` is a nonzero idempotent and full by simplicity of `M_m(R)`; contrapositive; infinitely many `N` give every `m`). Consistent with `simple-ring-stably-finite-iff-unit-not-paradoxical`. `research/artifacts/un-review3-2026-09-13-part1.md` §5.

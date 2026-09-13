@@ -19,3 +19,5 @@ finite-dimensional module that is nevertheless exactly matricial, and every `GL_
 
 Role: a calibration for `stably-mf-elementary-groups-force-matricial-rings`. Matricial models can live only in
 characteristic `p` while the ring has characteristic 0.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Checked `[D_p, T_p] = 1` on `F_p[t]/(t^p)`, including `t^(p−1)`. The ultraproduct of the `F_p` over the primes has characteristic 0, so the map is a `Q`-algebra homomorphism, and simplicity gives injectivity. Duplicates `weyl-algebra-over-q-is-lef-ring-not-matricial-over-q` in substance; `distinct_from` records it. `research/artifacts/un-review3-2026-09-13-part1.md` §7.

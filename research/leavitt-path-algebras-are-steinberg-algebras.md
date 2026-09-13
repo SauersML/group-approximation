@@ -21,3 +21,5 @@ path algebra `L_R(E)` is isomorphic to the Steinberg algebra `A_R(G_E)` of the g
 
 **Role.** This is the paradox end of the dictionary in `research/artifacts/un-blueprint-2026-09-13-part1.md`
 §2. The measure end is `crossed-products-are-transformation-steinberg-algebras`.
+
+**Review (un-verify-3, 2026-09-13): PASS.** The quoted Example 3.2 matches arXiv:1311.3701 TeX lines 285–299 (label `ex:lpa`) verbatim. The rose specialization is checked: (CK1) `t_i s_j = δ_ij` and (CK2) `Σ s_i t_i = 1` at the single vertex give `L_k(1,2) = L_k(R_2)`. `research/artifacts/un-review3-2026-09-13-part1.md` §9.

@@ -28,3 +28,7 @@ is a `k`-algebra isomorphism.
 **Instance.** `Γ = Z` acting by the shift `T` on a minimal subshift `X`, with `u f u^(-1) = f o T^(-1)`.
 This is the Pestov ring `R = LC(X, F_q) ⋊_T Z`. `X ⋊ Z` is effective and minimal when `X` is infinite and
 minimal.
+
+**Credit (prior art).** Beuter–Gonçalves, *The interplay between Steinberg algebras and partial skew rings*, J. Algebra 497 (2018) 337–362, arXiv:1706.00127, Theorem `theorisomortransfgrou` (TeX l.442–444): partial skew group rings `L_c(X) ⋊_α G` over locally compact totally disconnected Hausdorff `X` are isomorphic to `A_R(G ⋉_θ X)`. The source itself attributes the result to folklore (l.394). This node is its global-action, compact case. Citation route: `crossed-products-are-transformation-steinberg-algebras-citation`. The lane's proof stays as a second route. Flagged PRIOR by un-novelty (514b76e752).
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: sheetwise bijectivity (`f ↦ f∘γ`), compact support equals finiteness of the sum, the convolution identity `(F*G)(γδ,x) = f(γδx)g(δx) = Ψ(f·(g∘γ^(-1))u_(γδ))(γδ,x)`, the unit, and effectiveness from topological freeness. The Beuter–Gonçalves statement matches the arXiv TeX verbatim. `research/artifacts/un-review3-2026-09-13-part1.md` §11.

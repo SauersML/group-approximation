@@ -18,3 +18,7 @@ injectively in a finite unital ring.
 **Consequence.** Combine this with `lef-simple-rings-are-not-finitely-presented`. A finitely presented
 infinite simple unital ring has no unital embedding in any ultraproduct of matrix algebras over fields, of
 any characteristics.
+
+**Credit.** Folklore: a Malcev-type local embedding argument, recorded as FOLKLORE by un-novelty. The proof is written out only because the UN ladder needs it verbatim.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: Łoś on finitely many atomic facts, then residual finiteness of the entry ring `A ⊆ F_k`. `A` is a finitely generated Jacobson domain, so some maximal ideal avoids each `c_(ab)`, and residue fields of finitely generated rings are finite. Model tests hold (`F_q[t]`, `A_1(Q)`, `L_k(1,2)`). `research/artifacts/un-review3-2026-09-13-part1.md` §8.
