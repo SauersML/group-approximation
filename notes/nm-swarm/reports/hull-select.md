@@ -16,6 +16,12 @@ Lane `hull-select` of the non-MF every-line swarm (09-13).
      collar (kh-torsion), the transport (go-lemma42) and the merge. Lifted over
      `OsinMultipleEdgePocketRegionSectionStatement` (ROSTER, "Pocket pieces"). Done at
      2db85602c.
+- Items from the lead after the assembly:
+  1. `PocketOuterTransportStatement` (`Estimating/OsinPocketPieces.lean`), a PocketCut leaf of
+     dgo-analytic. Taken over from go-lemma42 (ROSTER line 737). Done at 71d59592c.
+  2. After dgo-analytic fixes the carrier form (R2 or R1), restate
+     `MultipleEdgePocketRegionInput` on the O-equivalent copy in one co-probe with the assembly
+     (kh-ejz owns the Prop), then send jacobson the final form.
 
 ## Landed
 
@@ -61,6 +67,19 @@ Lane `hull-select` of the non-MF every-line swarm (09-13).
     `OsinMultipleEdgeCutSectionStatement`, concluding `MultipleEdgePocketRegionInput`) and
     `osinMultipleEdgeCutSection_of_pieces`: `OsinMultipleEdgeCutSectionStatement` from it and the
     two statements.
+- 4a4f1a6b6, `Estimating/OsinPocketGlueOuterArc.lean` (green 0913-134755-12194), and
+  71d59592c, `Estimating/OsinPocketGlueOuterTransport.lean` (green 0913-134953-22063; axioms
+  propext, Classical.choice, Quot.sound):
+  - `PocketRegion.exists_glue_outerArc(_within)`: an outer arc of the copy `Ξ` in the positions
+    `pre.length ≤ k < pre.length + arc.length` of the reversed complement cycle goes to an outer
+    arc of `glueDiagram` inside `arc`, and its darts are the image darts.
+  - `DiscEmbeddingAway.outerGeometry`: a region to the boundary moves along an embedding away from
+    a face outside it, given an image source cell and an image target arc.
+    (`contiguityGeometry` needs `f ≠ outerFace`, so it doesn't apply here.)
+  - `PocketRegion.exists_glue_cell`: a relator cell of `Ξ` is a relator cell of `glueDiagram`
+    with the image carrier.
+  - `pocketOuterTransport : PocketOuterTransportStatement`, closed. It consumes go-lemma42's
+    `glueEmbeddingAway`, `glueRight_mem`, `glueXFace_of_ne` and `glueOEquivalent`.
 
 ## Residual Props for `OsinMultipleEdgeCutSectionStatement`
 
@@ -83,7 +102,13 @@ Notes for the producers:
 - Hold: no edits to `OsinPocketZeroCellMerge.lean` or `OsinPocketZeroCellMergeFalse.lean` until
   ghw-charp2's LoopCut census patches 01-09 land (ruling A). The loop-ruling version of the False
   module is at `$NM/backup/hull-select/loopcensus-OsinPocketZeroCellMergeFalse.lean.patched`.
-- Next: whatever the lead assigns. Candidates are the O-equivalent-copy restatement of the
-  Input, if kh-ejz needs it, and census rows once an endpoint certifies a printed sentence.
+- `pocketOuterTransport` closes the `houter` binder of the section pocket cut assembly
+  (`OsinPocketPieces`). The cell transport `hcell` is still go-lemma42's.
+- Next: item 2, the O-equivalent-copy restatement of `MultipleEdgePocketRegionInput`. It waits
+  for dgo-analytic's R2/R1 carrier fix (ROSTER line 743). The draft is at
+  `$NM/drafts/hull-select-copy-input.lean`. Under R2 the inner `FollowsBoundary` leaves the
+  Input, but `nonempty_osinMultipleEdgeCut_of_pocketRegion` still passes `hin` to
+  `exists_twoCollars_of_ne_or` and `GeodesicCollarStatement`. So R2 also needs kh-torsion's
+  collar restated without it.
 - The assembly modules are infrastructure for `thm:hull` (tex 1636, through Osin's Lemma 9.7)
   and certify no printed sentence on their own, so there are no census rows.
