@@ -435,6 +435,82 @@ queued for wiring and adds no census row.
   `GroupApproximation/**/*.lean` path. The report line was removed from `lanes/audit-sec3.files`
   (backup `backup/audit-sec3/audit-sec3.files.pre-rose`), and the report is landed without a probe.
 
+## Turn-condition survey (lead item, 2026-09-13 16:25)
+
+The lead asked me to classify the pocket walk of each user of `PocketPinchStepStatement` /
+`PocketPinchLabelledStatement`, and its producer, into one of four classes:
+- (a) `K.boundary.FollowsBoundary`;
+- (b) a `FirstTurn` chain on `c = K.boundary.cycle.reverse.map alpha` (hull-select `a29b02280`);
+- both;
+- neither.
+
+The table went to hull-respell, with a copy to the lead. Base origin/main `840b774bd`. No Lean was
+edited.
+
+- (b) is outer-follows.
+  - (b) implies that the reversed walk is noncrossing and that the outer cycle follows the
+    boundary. Formal: `OsinPocketFirstTurnWalk` l.207 and l.247. The inner cycle
+    `c.reverse.map alpha` is at l.334-340 and the outer cycle `c` at l.344-350.
+  - Outer-follows implies (b) via `FirstTurn.of_boundaryWalk` l.153. On paper, not composed.
+  - (a) is inner-follows.
+- Users.
+  - Neither:
+    - `OsinPocketPieces`: l.497-515, with K at l.508 and `hpinch` at l.509; also l.521-535;
+    - `OsinPocketCutResiduals` (l.45-64);
+    - `OsinDescentResiduals` (l.40-66);
+    - `OsinGreendlingerOpenResiduals` (l.52-68).
+
+    Each gets K from `hfaces : SectionPocketFaceSetInput` (Pieces l.228-242), which gives only
+    `K.ClosedWalk`.
+  - `OsinPocketLakeLabelledModel` `pinchedK` (cycle `[0,2]` on `OsinPocketLakeModel.M`): (a) yes,
+    (b) no.
+    - (a): formal at map level, `lakeCycle_innerCycle_followsBoundary` (LakeModel l.158). At
+      faces `{K}` it is a hand check.
+    - (b) no: formal, `lake_not_firstTurn` (`OsinPocketFirstTurnWalkModel` l.105, `b8c0033c0`) on
+      the same map, since `[3,1] = [0,2].reverse.map alpha` (l.98).
+    - Its witness `petalK` (cycle `[1]`) is both, by hand: `FirstTurn [0] 0 0` holds with k = 3.
+- Producers.
+  - The planned producer is Blocker 1's first-turn route (rulings 16:00, sec2-sentences).
+    - `firstTurnWalkPocketInputs` (FirstTurnWalk l.300) feeds `hw` and the outer-follows
+      `hfollows` to `exists_kept_of_noncrossing_of_value` (KeptCellNoncrossing l.84-85).
+    - `toPocketFaceSetOfNoncrossing_cycle` (SectionFaceSet l.330-333) sets
+      `boundary.cycle = K.walk`.
+    - So this route certifies (b) for the walk it produces. It is not composed on main.
+    - `SectionPocketFaceSetInput` drops the condition, so carrying (b) to `hpinch` needs a
+      respell of the Input, which is kh-ejz's statement.
+  - No producer on main certifies (a) for a pocket walk.
+    - The parity pieces (WalkChain, WalkColour, ColourNoncrossing) carry no turn condition.
+    - `OsinPocketRegionNoncrossingWalk` l.53-130 takes outer-follows.
+    - `exists_pinchStep_of_inside` (PinchCarry l.259-279) takes `StretchAvoids` turn conditions
+      (l.262, l.264).
+- Extra rows.
+  - Configuration A `pinchedK` `[5,3,4,6]` (Lobe l.179).
+    - (b) yes, formal: `pinch_isChain` l.51, `pinch_close` l.61, `pinch_reverse_map_alpha` l.71.
+    - (a) no, formal: `pinchedK_not_followsBoundary` l.200.
+  - dgo-geometric's `wrapK` (`OsinPocketWrapRose` l.333, cycle `[0,2]`).
+    - (a) yes, formal: `wrapK_followsBoundary` l.377.
+    - (b) no, by hand. With `c = [3,1]`: alpha 3 = 2 and sigma 2 = 3 ∈ c, so the first turn from
+      3 is 3, not 1. The rotation fails the same way.
+    - Probe `0913-163031-39703` reads `# PROBE GREEN`. Its record holds main's bytes of
+      WrapMonogon (md5 `62af8739`) and WrapRose (`c3daeeca`), which landed as unverified at
+      `6dfa779fe` / `87358b0ad`. Both are unwired.
+- Consequence (hand composition of green pieces).
+  - `PocketPinchWrapModel` (WrapRose l.403-416) bundles:
+    - letters and `K.ClosedWalk`;
+    - `K.boundary.FollowsBoundary` and `¬ Unpinched`;
+    - no simple `K'` in any O-equivalent copy.
+  - So `PocketPinchLabelledStatement` restricted to (a), or to (a) ∨ (b), is false at universes
+    `0,0,0` if the conclusion is unchanged.
+  - A Step Prop restricted the same way is false whenever its conclusion returns the condition,
+    because it then iterates as in `pocketPinchLabelledStatement_of_step` (PinchStep l.72-89).
+  - (b) excludes `wrapK` (by hand) and the rose `pinchedK` (formal), and admits configuration A
+    (formal). No model on main refutes the (b)-restricted Prop.
+  - The 16:00 ruling falls back to the disjunction when some consumer's walk does not come from a
+    FirstTurn chain, and `wrapK` refutes that fallback. The recommendation sent is (b), with the
+    Input respelled.
+  - Under (b), the rose calibrates nothing about the step, because its `pinchedK` is outside the
+    hypothesis. Configuration A is the calibration case.
+
 ## Open (owned by other lanes)
 
 - `b6d1590be7ab` (L1145, partial, ghw-charp2): the GHW wall, reported to the lead.
