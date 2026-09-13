@@ -35,3 +35,5 @@ homomorphism into an ultraproduct, so all Steinberg relators hold exactly in `U`
 algebraic (artifact §2).
 
 Route: `linear-sofic-projective-el-lifts-to-gl-rank-models-proof`.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: `Ad(λA) = Ad(A)` and `rk(Ad A − Ad(λB)) ≤ 2n rk(A − λB)` via `A^(-1) − (λB)^(-1) = A^(-1)(λB − A)(λB)^(-1)`, so `Ad` descends to `P → U`; `rk(Ad A − 1) = n² − dim C(A)`, with `dim C(A) = Σ_μ Σ_j (p'_j)² ≤ Σ_μ k_μd_μ ≤ n max k_μ`; for `μ ∉ k`, perfectness gives a Galois conjugate with an equal-dimensional independent eigenspace, so `rk(A − μ) ≥ n/2`, and `μ = 0` gives rank `n`. So a rank-null `Ad`-image forces `min_(λ ∈ k^×) rk(A_i − λ)/n_i → 0`, and `ker σ = Z_N`. This is the reverse packaging of the reviewed `rank-modelled-simple-rings-give-linear-sofic-projective-el` computation. `research/artifacts/un-review3-2026-09-13-part6.md` §4.

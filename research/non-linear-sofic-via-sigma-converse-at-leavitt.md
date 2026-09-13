@@ -33,3 +33,5 @@ of rank models of EL_N over a ring with no rank model. That is exactly what
 `non-linear-sofic-via-el3-ring-rank-rigidity` routes it to the same root. Conversely, a refutation of
 (Σ⇒) would need a simple rankless k-algebra all of whose projective elementary groups are k-linear sofic.
 At `L_(F_2)(1,2)` that is `binary-leavitt-unit-group-is-f2-linear-sofic`, still open.
+
+**Review (un-verify-3, 2026-09-13): PASS (wiring).** The derivation is a correct contrapositive: `L_(F_2)(1,2)` is simple with centre `F_2` and has no unital rank model, and `F_2^× = 1` gives `S_N = EL_N`; the root asks only for failure over some field. The route requires the OPEN `linear-sofic-el-groups-force-rank-model`, which has no incoming route, so this route cannot fire while (Σ⇒) is open. `research/artifacts/un-review3-2026-09-13-part6.md` §5.

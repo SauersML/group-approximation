@@ -33,3 +33,10 @@ So the free-subgroup hypothesis is load-bearing.
 **Instances** (recalled, not imported): non-elementary hyperbolic groups, not virtually solvable finitely generated
 linear groups. By Tarski's theorem the same construction should work for every finitely generated non-amenable group;
 that is not claimed here.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived:
+- Lemma 1: `aW(a^(-1)) = F \ W(a)`; the translates `W(a^(±1)), W(b^(±1))` are disjoint and extend along right cosets, since left `F`-translation preserves each `Ft`.
+- Lemma 2: `γ·{x(e)_k = 1} = {y(γ^(-1))_k = 1}`; partition and disjointness are closed conditions on finitely many coordinates, verified on the orbit (`y(g_i^(-1))_i = χ_(g_iA_i)(δ)`) and so on `X`.
+- Proposition 3: freeness from `W`; minimal subset by Zorn; perfectness (an isolated point makes a minimal flow a finite orbit); (H-gen) from coordinate-at-`e` cylinders of both factors; (H-par) pulled back along the equivariant projection.
+Recalled: Brouwer; the GJS import.
+The hyperbolic-group, linear-group and Tarski consequences appear only as recalled instances, not as nodes; `hyperbolic-group-cantor-model-simple-kazhdan-not-mf` stays OPEN with no route. `research/artifacts/un-review3-2026-09-13-part6.md` §2.

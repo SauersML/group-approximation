@@ -18,7 +18,8 @@ artifacts:
   nonzero, since `Y \ Z` is open and nonempty in a zero-dimensional space, so contains a nonempty clopen `U` of `Y` with
   `chi_U in I_Z`. It is proper, since `1` is not in `I_Z`.
 - **A normal subgroup.** For `n >= 3`, `EL_n(R_Y, I_Z)` is normal.
-  - Noncentral: `[e_12(a), e_23(1)] = e_13(a) != 1` for `a in I_Z` nonzero.
+  - Nontrivial: `[e_12(a), e_23(1)] = e_13(a) != 1` for `a in I_Z` nonzero.
+  - Noncentral: `[e_13(a), e_32(1)] = e_12(a) != 1`, so `e_13(a)` is not central.
   - Proper modulo the centre: `EL_n(R_Y)` maps onto `EL_n(R_Y/I_Z) != 1`, which is perfect for `n >= 3`. If
     `EL_n(R_Y, I_Z) Z` were all of `EL_n(R_Y)`, that image would be a quotient of the abelian `Z`.
 - **Conclusion.** Its image is a proper nontrivial normal subgroup of `EL_n(R_Y)/Z`.

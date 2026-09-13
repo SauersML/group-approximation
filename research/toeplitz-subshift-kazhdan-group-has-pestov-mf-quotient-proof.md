@@ -11,6 +11,8 @@ requires:
   - subshift-ring-lef-iff-word-edges-lie-on-cycles
   - crossed-products-are-transformation-steinberg-algebras
   - hilbert-hotel-radical-is-smallest-directly-finite-quotient
+  - elementary-group-fg-from-fg-coefficient-ring
+  - lef-implies-operator-mf
 artifacts:
   - research/artifacts/un-hh-extension-toeplitz-subshift-2026-09-13.md
 ---

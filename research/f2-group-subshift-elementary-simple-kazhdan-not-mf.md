@@ -31,3 +31,5 @@ So at a fixed acting group the approximation type is decided by the action (towe
 
 **Model test.** An amenable acting group can't satisfy the paradox, and the Pestov ring (a minimal `ℤ`-subshift)
 carries an invariant measure and gives an LEF group, consistent with the dichotomy.
+
+**Review (un-verify-3, 2026-09-13): PASS.** The route supplies exactly the hypotheses of the reviewed `paradoxical-cantor-actions-give-simple-kazhdan-not-mf`: finitely generated `Γ`, minimal, free hence topologically free, (H-gen), (H-par). "Instances" are recalled and correctly marked not separately established. `research/artifacts/un-review3-2026-09-13-part6.md` §3.
