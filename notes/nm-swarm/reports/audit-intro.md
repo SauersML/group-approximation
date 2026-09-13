@@ -87,6 +87,48 @@ on `cb0ec2d30`.
   - They are also dart-minimal. So after (A), an `hloop` spelled "no unbound edge with the cell on
     both sides" is false in models.
 
+### Model test of the patched side budget (sent to hull-count94)
+
+main ruled three things:
+- `SideBudget` skips value-one excursions on (A1) sides as well as (A2).
+- One-sided bubbles that read a value-one subword of a relator are dropped.
+- The patched Prop is model-tested on the pinched-cell model before it lands.
+
+No draft Prop was on main (`594fe2988`), so the test uses the spelling in the ruling.
+
+- **Model.**
+  - One cell (`n = 1`), `λ = 1/8`, `c = 3`.
+  - The relator is `g_1·abc·g_2·abc·…·g_{t+1}`, with `abc = 1` and generic geodesic `g_i`.
+  - The pinch is applied at each `abc` on an (A1) arc of a maximal polygon `P`. It keeps every
+    hypothesis of the count Prop.
+  - `t` is unbounded, since `W` has no upper length bound.
+  - A pendant spur inside the cell splits the side the same way, with no bubble.
+- **Budget: passes, given two spelling points.** Today `∑ sideCount` rises by `2t`.
+  - A class is a maximal run of consecutive sides on one cell whose gaps in the cell walk have
+    value one. The gap is automatically a closed subwalk. Counting runs needs no `Maximal` skip
+    clause.
+  - A one-sided bubble is a polygon with exactly one class, of kind (A1). The (A1) filter alone
+    keeps every bubble.
+- **Covers: fails under one spelling and passes under another.**
+  - First spelling: the class word concatenates the polygon's side words.
+    - Then nothing covers the `3t` bubble darts.
+    - With `t = L` and `ρ ≥ (8L)²`, Lemma 9.4 is not contradicted, yet `Covers` fails for every
+      `L` fixed before `ρ`.
+    - Keeping the bubbles in `Covers` but not in the budget does not help, since
+      `dense_of_covers` and the metric Prop run over one family.
+  - Second spelling: the class word is the reversed cell arc, gaps included. This passes.
+    - The corners agree.
+    - The arc is quasi-geodesic, as a subword of a rotation of the relator.
+    - The gap darts are covered.
+    - Only a gap where a class arc or a region arc ends stays uncovered. Each such gap is a
+      closed value-one subword, of length at most `(c + 2)/λ`.
+    - There are at most `2(K + 24) n` of them, so `L = 24ε + 2(K + 24)⌈(c + 2)/λ⌉` works.
+- **Open for hull-count94.**
+  - Under the second spelling, a connector endpoint can lie on a gap dart, off the polygon walk.
+  - The Case 1 users must accept that position: either a region that contains the bubbles, or
+    the un-pinch first.
+  - Neither half needs the (darts, faces) minimality.
+
 ## The rows in range
 
 There are 191 census rows.
@@ -170,6 +212,10 @@ Defect 4 stays `formalized`, with the new carrier.
   `osinLemma94PolygonCoversInput` with `sum_card_regionFacingUnbound_le` (hull-count94,
   `2b2e16cc6`). Wiring `PolygonCount` pulls it in.
 - The remaining count residual is `OsinLemma94PolygonSideBudgetInput`. K now comes after ε
-  (`9f8779c4e`). After ruling (A), the pinch check shows that (A1) sides need the same
-  value-one excursion skip as (A2). main has to rule on that respelling. The un-pinch surgery is
-  not on main. This lane waits for hull-count94's next sub-piece.
+  (`9f8779c4e`).
+  - main ruled the (A1) excursion skip and the bubble drop.
+  - The model test above went to hull-count94, together with the class-word spelling that
+    `Covers` needs.
+  - The un-pinch surgery is not on main.
+  - This lane waits for hull-count94's draft patched Prop, and re-runs both tests on it before it
+    lands.
