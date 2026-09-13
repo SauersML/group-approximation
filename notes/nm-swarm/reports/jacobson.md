@@ -124,12 +124,20 @@ for the presented `ToeplitzJacobson = F_2⟨s,t⟩/(ts = 1)`. It was the operato
 - Root-imported (root 830b05464): JacobsonThreePlusOnePresented (2104ff622).
 - Root-imported (checked on origin/main at 13:12): JacobsonPresentedKazhdanFinite (29632bb14) and
   OsinLemma94PendantRemoval (61c2ade8e).
-- Queued in `wire-queue.txt`: OsinPocketCellWalk (65e5e758c), after OsinPocketSectionFaceSet.
+- Root-imported (checked on origin/main at 13:57): OsinPocketCellWalk (65e5e758c).
+- Queued in `wire-queue.txt` with this landing: OsinPocketLoopCut. Its imports are root-imported.
 
 ## Residual Props
+None owned by this lane.
+
 None for the roster target (the four L1122 rows and c149d33e8f7e), for 3009704fef89 or for the
 rank-two transport. The transport endpoint is root-reachable, since JacobsonPresentedKazhdanFinite
 is root-imported.
+
+The collar step `nonempty_osinLoopCut_of_pocketRegion` keeps two binders owned by other lanes, as
+`nonempty_osinMultipleEdgeCut_of_pocketRegion` does:
+- `GeodesicCollarStatement` (kh-torsion, SurgeryGeodesicCollar:67), which has no producer on main;
+- `PocketCellTransportStatement` (go-lemma42, OsinPocketPieces:312), which is open.
 
 None for W1 either. `GloballyDistinguishedSectionFamily.PendantPathRemovalInput` is closed
 by `pendantPathRemovalInput` (OsinLemma94PendantRemoval). The statement is unchanged. The
@@ -187,10 +195,65 @@ The lead assigned the producer side of kh-ejz's `MultipleEdgePocketRegionInput`
     `CyclicArc.exists_spanArc`.
 - Not stated yet: the walk is noncrossing, which of the two orders `(a, b)`, `(b, a)` bounds the
   pocket that avoids the exterior face, the face set, and the pocket region. The lead ordered these
-  to wait for dgo-analytic's restatement dropping `P.inner.FollowsBoundary`. At 13:07
+  to wait for dgo-analytic's restatement dropping `P.inner.FollowsBoundary`. At 13:57
   OsinPocketRegionSide:67 still has it.
 - Status (13:10): probe GREEN 0913-130857-87977 (base 3b5232827, BUILT OsinPocketCellWalk). All
   four `#audit_axioms` pass. Landed 65e5e758c (bytes verified against origin/main). It is a new
   file importing only modules on main (OsinPocketSectionFaceSet, OsinAppendixSectionInduction),
-  with no consumer yet. It is queued for wiring after OsinPocketSectionFaceSet, which is not
-  root-imported.
+  with no consumer yet. At 13:57 it is root-imported.
+
+## Lemma 9.4 Case 1, one-cell pairs: the collar step of case (b) (09-13)
+The lead assigned `OsinLemma94CaseOneSameCellStatement` (OsinUnboundCaseOneFace:466). The 13:33
+roster ruling replaced it:
+- As spelled, it is as hard as Lemma 9.7 on smaller diagrams, so no lane proves that spelling.
+- Option (2): the metric Prop delivers one-cell pairs at `λ⁻¹(ε + c)`.
+  - Case (a), a pocket with no relator cell: ko-closed proves it by the value argument
+    (OsinLemma94OneCellValue, ea9016135).
+  - Case (b), a pocket with a relator cell, needs the X-pocket as a PocketRegion plus a collar.
+    This lane takes the collar step, and ko-closed agreed (ko-closed report, STATE ~14:00).
+- The spur gap: a spur of the cell boundary at the junction of two consecutive sides survives
+  NoLoops, GFacesApart, DartMinimal and Maximal. This lane found it independently of ko-closed's
+  Shape 1. So no same-cell argument may exclude pendant spurs (audit-intro's finding). The value
+  argument does not need to.
+
+`Estimating/OsinPocketLoopCut.lean` (this lane) proves:
+- `PocketRegion.twoSectionCuts`, `twoSectionCuts_count` and `twoSectionCuts_side_short`: the
+  partition `s t` of the inverse complement cycle as two sections. Section `0` is no longer than
+  `ε` when `s` is.
+- `OsinLoopCut.ofPocketRegion`: the loop twin of `OsinMultipleEdgeCut.ofPocketRegion`.
+- `PocketRegion.twoSectionCuts_cellTransport`: the transport of section `1`, from
+  `PocketCellTransportStatement` at `pre = s`, `post = []`.
+- `nonempty_osinLoopCut_of_pocketRegion`, with these hypotheses:
+  - `C(ε, μ, λ, c, ρ)` with `λ ≤ 1` and `0 ≤ c`;
+  - `Δ` least area, and `X` an O-equivalent copy with legal labels;
+  - `P` a pocket region of `X`, with both cycles following the boundary, a relator cell inside
+    and a cell `i` outside;
+  - `invDarts X P.outer.cycle = s ++ invDarts X A.darts`, where `A` is an arc of `i`;
+  - the value of `s` has word norm at most `ε`.
+
+  It concludes `Nonempty (OsinLoopCut D lambda c eps Delta)`. The collar is
+  `exists_twoCollars_of_ne_or` with an empty second side and arc. Its nondegeneracy comes from
+  `ne_or_of_leastArea` and the relator cell inside.
+
+How a consumer gets the pocket region:
+- The equation is side first. For a simple X-pocket walk, rotate the walk to start at the side
+  (`IsSimpleClosedWalk.rotate`) and take `PocketRegion.ofSimpleClosedWalk`.
+  `ofSimpleClosedWalk_invDarts_outer` gives the equation, and `ofSimpleClosedWalk_followsBoundary`
+  gives both FollowsBoundary hypotheses.
+- In ko-closed's notation, where the complement cycle rotates to `M' ++ X` with `M'` an arc of `Π`:
+  - take `s = invDarts X` and `A.darts = M'`, so the walk is `invDarts (M' ++ X)`;
+  - the side norm is the norm of the value of `X`, by `listVal_dartWord_invDarts` and
+    `wordNorm_inv`.
+- When spurs make the walk non-simple, the region has to come from dgo-analytic's R2
+  noncrossing-walk builder.
+
+Status (13:55): probe GREEN 0913-135346-38278 (base 4b6dd3cd8, BUILT OsinPocketLoopCut), with an
+empty error index. All six `#audit_axioms` pass. The module lands in the same commit as this
+section. It imports OsinPocketMultipleEdgeAssembly and Meta.AxiomGuard. It has no consumer yet,
+because theoremc-retire's `OsinLemma94CaseOneOneCellInput` is not on main.
+
+Not done here:
+- the X-pocket region for the Case 1 walk (see above);
+- case (a) (ko-closed);
+- the one-cell statement itself (theoremc-retire). This lane's 13:16 question about its post-09(d)
+  spelling is still unanswered.
