@@ -199,6 +199,12 @@ Theorem 14 and Proposition 15) applies, and the Item 1 argument runs verbatim.
     the consequence list of `k1-injectivity-extends-over-properly-infinite-quotients`.
   - §1.7, ex-kadison-kaplansky selfless trace image, free products and real rank zero (five claims):
     PASS.
+- `ex-review-analysis-2026-09-12-part4.md`:
+  - §1.9, the Rank Problem over Toms's no-Gamma algebra (six claims): PASS.
+  - §1.10, the Toms--Winter unit-divisibility equivalences on Bauer simplices (four claims): PASS.
+- `ex-review-analysis-2026-09-12-part5.md`:
+  - §1.11, the ex-rr0-dichotomy counterexample fingerprint, separativity and crossed-product
+    dichotomies (five claims): PASS.
 
 ## 2. Sweep of in-scope landings to 23:35 CDT
 
