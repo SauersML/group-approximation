@@ -41,3 +41,11 @@ finitely presented nonhyperlinear group.
    By §§2–3 of the proof route, (b) is at least as strong as nonhyperlinearity of
    \(\mathrm{Sol}_R\) itself. The tiling framework adds translation invariance and
    finite tori, not a new mechanism.
+4. **Equivalent to the root (2026-09-13, lane `solve-nh-torus-gap`).**
+   `translation-invariant-torus-gap-iff-finite-lcs-ru-gap` stacks any finite
+   linear system at every site. The stacked rule has \(J\ne1\) iff the finite system
+   does, and its torus systems have \(\varepsilon\)-models in \(U(d)\) iff the finite
+   system does. With the periodization claim and the Paddock--Slofstra import, this
+   node holds iff a finitely presented nonhyperlinear group exists. Any analytic
+   torus-uniform rigidity argument is therefore a finite linear-system gap; stacked
+   hyperlinear systems give no gap by `amenable-edge-cycles-cannot-create-an-lcs-gap`.
