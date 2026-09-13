@@ -17,8 +17,10 @@ artifacts:
 
 ## Why sufficient
 
-`e |-> G(P(M_e))` is a computable map to finite presentation codes: the
-switch machine, the pumping construction, then the KMS relations G1--G8.
+`e |-> G_0(P(M_e))` is a computable map to finite presentation codes.  It is
+built from the switch machine, then the pumping construction, then the KMS
+relations G1--G8, then the stop relations `x_(q_0 w) = 1` of
+[[kms-group-with-stop-relations-simulates-all-words]].
 
 - On `INF`, `M_e` is universally halting
   ([[clocked-search-machine-halts-universally-exactly-on-inf]]), so the group
@@ -32,3 +34,8 @@ Hence `INF <=_m RF_fp` and `FIN <=_m NONRF_fp`.  `INF` is `Pi^0_2`-complete.
 `RF_fp in Pi^0_2` is the finite-presentation clause of
 [[residual-finiteness-of-enumerated-presentations-is-pi3-complete]].  Hardness
 and membership give completeness, and the complement is `Sigma^0_2`-complete.
+
+(Corrected 2026-09-13 after review by `ex-verify-logic-quantum`.  The map
+first used `G(P(M_e))` without the stop relations, under which neither lemma's
+written proof goes through.  See
+`research/artifacts/ex-review-logic-quantum-2026-09-12-part1.md` §1.4--1.5.)

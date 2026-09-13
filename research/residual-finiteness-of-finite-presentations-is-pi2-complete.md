@@ -13,7 +13,9 @@ artifacts:
   - research/artifacts/rf-fp-pumped-minsky-part3-2026-09-12.md
 ---
 
-ESTABLISHED (proof written, unreviewed).  For the recursive coding of finite
+ESTABLISHED.  Reviewed by `ex-verify-groups` (part 3 §3.2) and by
+`ex-verify-logic-quantum` (part 1), and corrected after both reviews.  The
+novelty check is still bounded.  For the recursive coding of finite
 group presentations,
 
 ```text
@@ -33,19 +35,22 @@ This closes cell 3 of [[open-cells-arithmetical-complexity-of-group-properties]]
 [[arithmetical-complexity-table-of-group-properties]]), and with it the LEF
 cell ([[lef-of-finite-presentations-is-pi2-complete]]).
 
-**The reduction.**  `e |-> G(P(M_e))`, where:
+**The reduction.**  `e |-> G_0(P(M_e))`, where:
 
 - `M_e` is a clocked Minsky search machine that is universally halting iff
   `e in INF`;
 - `P(M_e)` adds a pump and a drain;
-- `G(-)` is the Kharlampovich--Myasnikov--Sapir group of a machine
-  ([[kms-minsky-machine-groups-simulate-their-machines]]).
+- `G_0(-)` is the Kharlampovich--Myasnikov--Sapir group of a machine
+  ([[kms-minsky-machine-groups-simulate-their-machines]]) with the stop
+  relations `x_(q_0 w) = 1` added
+  ([[kms-group-with-stop-relations-simulates-all-words]]).
 
 Universal halting gives residual finiteness through one periodic Rees quotient
 of the machine semigroup.  A divergent configuration gives a nontrivial word
-that every finite quotient identifies with the stop word: an idempotent power
-of the pumping operator on the finite image of the abelian normal subgroup
-lets the pumped input be drained.  See [[rf-fp-completeness-via-pumped-minsky-groups]].
+that every finite quotient kills: an idempotent power of the pumping operator
+on the finite image of the abelian normal subgroup lets the pumped input be
+drained to the stop word, which is `1`.  See
+[[rf-fp-completeness-via-pumped-minsky-groups]].
 
 **Structural reading.**  Deciding whether an infinite finitely presented
 symmetry is residually finite requires exactly the `forall exists` quantifier
@@ -56,6 +61,14 @@ lives in the dynamics of a machine, not in any Higman embedding.
 **Also obtained** (part 3 of the artifact): residual finiteness of finitely
 presented semigroups is `Pi^0_2`-complete; and the set of finite presentations
 on which McKinsey's algorithm decides the word problem is `Pi^0_2`-complete.
+
+**Review corrections.**
+- The divergent input must carry `pi = 1 + e_tau(c)`.  This was found by `ex-verify-groups`.
+- The group must carry the stop relations.  This was found by `ex-verify-logic-quantum`.
+  Under KMS's displayed relations G1--G8, the words of distinct stop configurations are
+  distinct, and the basis map `T -> T_1` is not injective.
+- In the artifact parts, read `G_0` for `G`.
+- Details: `research/artifacts/ex-review-logic-quantum-2026-09-12-part1.md`.
 
 ## Attempts (history)
 

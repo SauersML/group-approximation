@@ -6,12 +6,15 @@ title: Finite classes, the iota classification, one periodic Rees quotient, and 
 target: pumped-halting-clocked-minsky-group-is-residually-finite
 requires:
   - kms-minsky-machine-groups-simulate-their-machines
+  - kms-group-with-stop-relations-simulates-all-words
 artifacts:
   - research/artifacts/rf-fp-pumped-minsky-part2-2026-09-12.md
 ---
 
 The full proof is Lemma B (Sections B1--B4) of
-`research/artifacts/rf-fp-pumped-minsky-part2-2026-09-12.md`.
+`research/artifacts/rf-fp-pumped-minsky-part2-2026-09-12.md`, with the group
+`G_0(P(M))` of [[kms-group-with-stop-relations-simulates-all-words]] in place
+of `G(P(M))`.
 
 - **B1.**  Simplicity makes command domains disjoint on partial
   configurations, so Lemma 2.1 gives forward-then-backward normal forms.
@@ -34,11 +37,17 @@ The full proof is Lemma B (Sections B1--B4) of
     basis vectors with equal images.  It is invariant because letters act by
     right multiplication, with cases determined by `A`-letters.  The move from
     `W` to `W_0` under `A_0` is compatible with the quotients.
-  - `T_1/F` is finite, and the image of `w` is nonzero.
+  - `T_1/F` is finite, and the image of `w` is nonzero.  Here `w in T_0` is
+    written in the basis of `T_1` through the isomorphism `T_0 ≅ T_1` (clause 3
+    of the stop-relation claim).
   - `Ḡ/F = (T_1/F) x| A` with `A` finitely generated metabelian is residually
     finite.
-  - Outside `T`, P. Hall's theorem applies.
+  - Outside `T_0`, P. Hall's theorem applies.
 
 The proof does not quote KMS's own semigroup argument (proof of Theorem 3.9).
 Its `S̃` quotient with idempotent pumping letters kills every word carrying
 `A_(K+1) A_(K+2)` (Section 5 of the artifact).
+
+(Corrected after review by `ex-verify-logic-quantum`.  Under KMS's displayed
+relations G1--G8, `T -> T_1` is not injective, since `x_(q_0 A_0)` is
+nontrivial but maps to `1`.  So B4 needs the stop relations.)
