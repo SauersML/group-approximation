@@ -9,22 +9,25 @@ import Mathlib.Data.Fin.VecNotation
 import Mathlib.Data.Set.Finite.Basic
 import Mathlib.GroupTheory.PresentedGroup
 import GroupApproximation.ThompsonOre.X1Answer
+import GroupApproximation.ThompsonOre.X1AnswerThompson
 
 /-!
-# Proof of the Guba Question 3.20 theorems, from the hypotheses still owed
+# Proof of the Guba Question 3.20 theorems
 
 This file repeats the challenge's shared block byte for byte and proves the two theorems
-`Palomar/comparator-guba-thompson.json` selects, in their `_of` forms.  Each `_of` theorem carries,
-as hypotheses, the facts about `F` that the development has not yet proved on `F`.
+`Palomar/comparator-guba-thompson.json` selects.
 
-* `question_3_20_of` and `question_3_20_common_multiple_of` are the two halves of
-  `GroupApproximation.ThompsonOre.one_sub_solution_of_nested` at the challenge's `F`, `x₀` and
-  `x₁`.  The hypotheses are: `K[F]` has no zero divisors; V. Guba's Theorem 3.18, that every
-  non-zero `b` has a non-zero right multiple in `(1 - x₀) K[F]`; and a subgroup `H ∋ x₁` with
-  `e : H ≃* F` and `e x₁ = x₀`, whose conjugates are nested.
-* `exists_solution_of_mulEquiv` and `exists_common_multiple_of_mulEquiv` carry solutions back
-  along a group isomorphism, through `MonoidAlgebra.domCongr`.  The unconditional theorems will
-  use them to move the answer from the development's model of `F` to the challenge's `F`.
+* `question_3_20` and `question_3_20_common_multiple` are the two halves of
+  `GroupApproximation.ThompsonOre.one_sub_x1_solution`, carried to the challenge's `F`.  On its own
+  copy of presentation (1.2) the development proves that `K[F]` has no zero divisors, V. Guba's
+  Theorem 3.18 for `x₀`, and that `x₁` lies in a subgroup `H` with `e : H ≃* F` and `e x₁ = x₀`,
+  whose conjugates are nested.
+* `toOre` is the identity from the challenge's `F` to `GroupApproximation.ThompsonOre.ThompsonF`,
+  which has the same generators and relators.  `exists_solution_of_mulEquiv` and
+  `exists_common_multiple_of_mulEquiv` carry solutions back along a group isomorphism, through
+  `MonoidAlgebra.domCongr`.
+* `question_3_20_of` and `question_3_20_common_multiple_of` prove the same statements with those
+  three facts as hypotheses, from `GroupApproximation.ThompsonOre.one_sub_solution_of_nested`.
 * The model tests check that the statements are neither vacuous nor trivially true.  The abelian
   images of `F` in `ℤ` separate `x₀`, `x₁` and `1`.  Since `x₁` has infinite order, `1 - x₁` is not
   a left zero divisor, so every solution of the printed form has `v ≠ 0`.  With `1` in place of
@@ -107,9 +110,9 @@ theorem exists_common_multiple_of_mulEquiv {K G G' : Type*} [CommRing K] [Group 
     rw [map_mul, map_mul, AlgEquiv.apply_symm_apply, AlgEquiv.apply_symm_apply,
       domCongr_one_sub_of, heq]
 
-/-! ## The two theorems, from the hypotheses still owed -/
+/-! ## The two theorems from three facts about `F` taken as hypotheses -/
 
-/-- **Question 3.20, from the hypotheses still owed**: if `K[F]` has no zero divisors, Theorem 3.18
+/-- **Question 3.20 from three facts about `F`**: if `K[F]` has no zero divisors, Theorem 3.18
 holds for `x₀`, and `x₁` lies in a subgroup `H` with `e : H ≃* F`, `e x₁ = x₀`, whose conjugates
 are nested, then for every `b ∈ K[F]` the equation `(1 - x₁) u = b v` has a solution
 `(u, v) ≠ (0, 0)`. -/
@@ -123,9 +126,9 @@ theorem question_3_20_of (K : Type*) [Field K] [NoZeroDivisors (MonoidAlgebra K 
       (u ≠ 0 ∨ v ≠ 0) ∧ (1 - MonoidAlgebra.of K ThompsonF x1) * u = b * v :=
   (GroupApproximation.ThompsonOre.one_sub_solution_of_nested x0 x1 H hx1 e he h318 hchain b).1
 
-/-- **The Ore form, from the hypotheses still owed**: under the hypotheses of
-`question_3_20_of`, for every non-zero `b ∈ K[F]` the right ideals `(1 - x₁) K[F]` and `b K[F]`
-meet in a non-zero element. -/
+/-- **The Ore form from three facts about `F`**: under the hypotheses of `question_3_20_of`, for
+every non-zero `b ∈ K[F]` the right ideals `(1 - x₁) K[F]` and `b K[F]` meet in a non-zero
+element. -/
 theorem question_3_20_common_multiple_of (K : Type*) [Field K]
     [NoZeroDivisors (MonoidAlgebra K ThompsonF)]
     (h318 : ∀ b : MonoidAlgebra K ThompsonF, b ≠ 0 →
@@ -136,6 +139,40 @@ theorem question_3_20_common_multiple_of (K : Type*) [Field K]
     ∃ u v : MonoidAlgebra K ThompsonF,
       b * v ≠ 0 ∧ (1 - MonoidAlgebra.of K ThompsonF x1) * u = b * v :=
   (GroupApproximation.ThompsonOre.one_sub_solution_of_nested x0 x1 H hx1 e he h318 hchain b).2 hb
+
+/-! ## The two theorems -/
+
+/-- The challenge's `F` is `GroupApproximation.ThompsonOre.ThompsonF`: both are presentation (1.2)
+with the same generators and relators, so the identity is an isomorphism between them. -/
+def toOre : ThompsonF ≃* GroupApproximation.ThompsonOre.ThompsonF :=
+  MulEquiv.refl _
+
+theorem toOre_x1 : toOre x1 = GroupApproximation.ThompsonOre.x1 :=
+  rfl
+
+/-- **Question 3.20 has a positive answer**: for every field `K` and every `b ∈ K[F]`, the
+equation `(1 - x₁) u = b v` has a solution `(u, v) ≠ (0, 0)`. -/
+theorem question_3_20 (K : Type*) [Field K] (b : MonoidAlgebra K ThompsonF) :
+    ∃ u v : MonoidAlgebra K ThompsonF,
+      (u ≠ 0 ∨ v ≠ 0) ∧ (1 - MonoidAlgebra.of K ThompsonF x1) * u = b * v := by
+  refine exists_solution_of_mulEquiv toOre x1 b ?_
+  rw [toOre_x1]
+  exact (GroupApproximation.ThompsonOre.one_sub_x1_solution
+    (MonoidAlgebra.domCongr K K toOre b)).1
+
+/-- **The Ore form**: for every non-zero `b ∈ K[F]` the right ideals `(1 - x₁) K[F]` and
+`b K[F]` meet in a non-zero element. -/
+theorem question_3_20_common_multiple (K : Type*) [Field K]
+    (b : MonoidAlgebra K ThompsonF) (hb : b ≠ 0) :
+    ∃ u v : MonoidAlgebra K ThompsonF,
+      b * v ≠ 0 ∧ (1 - MonoidAlgebra.of K ThompsonF x1) * u = b * v := by
+  refine exists_common_multiple_of_mulEquiv toOre x1 b ?_
+  rw [toOre_x1]
+  have hb' : MonoidAlgebra.domCongr K K toOre b ≠ 0 := fun h0 =>
+    hb ((MonoidAlgebra.domCongr K K toOre).injective
+      (h0.trans (map_zero (MonoidAlgebra.domCongr K K toOre)).symm))
+  exact (GroupApproximation.ThompsonOre.one_sub_x1_solution
+    (MonoidAlgebra.domCongr K K toOre b)).2 hb'
 
 /-! ## Model tests of the statements -/
 
