@@ -121,6 +121,8 @@ Some rows cover two to five claims; the rows total 26.
 | 4 | `port-generated-square-completions-force-coset-support`, `galois-games-round-linearly-for-bounded-fibre-size`, `abelian-normal-closure-fibres-round-linearly` | **PASS** (the first at artifact level; logic-quantum had all three at node level only) |
 | 5 | wave-2 census: `forbidden-pair-splits-are-central-rectangle-splittings`, `fibre-commutative-quantum-isomorphisms-are-coset-systems` | **PASS** (MSSV Def. 2.7, Thm 3.1 and Lin Def. 3.15 checked at source) |
 | 5 | `atiyah-base-change-in-transcendence-degree-two-under-det`, `atiyah-algebraic-jumps-lie-in-a-proper-zariski-closed-set`, `determinant-conjecture-bounds-determinants-over-galois-orbits` | **PASS**, conditional as stated. Lemma H had a local GAP for rational points (`D = 1`); corrected forward in artifact part 2 |
+| 6 | `kms-group-with-stop-relations-simulates-all-words`, logic-quantum's repair, checked independently | **PASS at the checked steps** (KMS v5 relations and Lemmas 4.9–4.14 read at source) |
+| 7 | T2–T4 of `coset-systems-are-torsor-isomorphism-games` and EL2–EL3 of `exact-label-coset-refinements-are-affine` (node level only in logic-quantum) | **PASS** |
 
 ## 4. Census tally (32 established, unpassed claims at the start)
 
@@ -167,3 +169,5 @@ Some rows cover two to five claims; the rows total 26.
   and fixed-price imports at source, and the BGW notation fix.
 - `research/artifacts/ex-review2-quantum-l2-2026-09-13-part4.md`: §4. The quantum-PCP and unique-games imports at source; port-generated completions and two Galois-game rounding claims.
 - `research/artifacts/ex-review2-quantum-l2-2026-09-13-part5.md`: §5. The wave-2 lanes ex2-kac-forbidden-pair and ex2-atiyah-base-change-td2, and the retraction note.
+- `research/artifacts/ex-review2-quantum-l2-2026-09-13-part6.md`: §6. The KMS group with stop relations.
+- `research/artifacts/ex-review2-quantum-l2-2026-09-13-part7.md`: §7. Coset-system quantum symmetry, exact-label affinity, and the Lück edit.
