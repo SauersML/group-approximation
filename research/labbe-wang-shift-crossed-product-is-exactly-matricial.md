@@ -35,3 +35,13 @@ ultraproduct `∏_ω M_(d_k)(F_k)` of matrix algebras over fields?
   rational invariant measures on bounded patterns do. Counting alone cannot refute an exact model.
 - **Through finite presentation: reduces to gate (a).** By `matricial-aperiodic-sft-rings-are-not-quantum-rigid`, a
   positive answer to `labbe-wang-shift-crossed-product-is-finitely-presented` gives a negative answer here.
+- **Exact form (un-labbe-ring, unreviewed).** Over `F_q` this claim is equivalent to: for every `D` some finite torus
+  `Z^2/Λ` carries a nonzero finite-dimensional module of the translation-free torus tiling algebra
+  `𝒯_(D,Λ)(Ω_U, F_q)` (`torus-quantum-tilings-decide-matriciality-of-sft-rings`). Translations are recovered by
+  induction.
+- **Growth (un-labbe-ring, unreviewed).** Any witnesses need period tori of sup-diameter `> 2D`, and covariant
+  dimensions `-> ∞` along the scales (`sft-tiling-module-dimensions-and-periods-must-diverge`). In the limit, ranks
+  are forced toward the Haar-coded measure, which is not a contradiction.
+- **Soficity certificates give nothing here (un-sofic-not-lef, relayed).** `Z^2` is residually finite. Full-group units
+  certify non-LEF only if the derived full group is not LEF, which is the open crux (C2). So the quantum tiling route
+  is the only way known to decide this claim.

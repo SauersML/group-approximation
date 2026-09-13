@@ -43,3 +43,22 @@ tiling.
   behaviour exists for local constraint systems; none has been built for Wang tiles here.
 - **Scale.** Open. A search at `D = 1` or `2` over `F_2` or `F_3` with small `W` and `Λ` has not been
   run. It could only give evidence, since the route needs every large `D`.
+- **Growth (un-labbe-ring, unreviewed).** By `sft-tiling-module-dimensions-and-periods-must-diverge`:
+  - every scale-`D` family has a period torus of sup-diameter `> 2D`;
+  - covariant witnesses at scales `D -> ∞` have dimensions `-> ∞`.
+
+  So no fixed dimension, algebra or torus works at all large scales. A bounded-dimension search can only
+  give evidence at bounded scale, and below the wall-rigidity scale a hit may be a two-dimensional wall
+  certificate.
+- **Field precision (un-labbe-ring).** The payoff above holds over any field. Exact matriciality of
+  `LC(Omega_U, F_q) ⋊ Z^2`, row 7 of the UN calibration table, needs witnesses in characteristic `p`. It
+  is equivalent to nonzero finite-dimensional modules of the torus tiling algebras over `F_q` at every
+  scale (`torus-quantum-tilings-decide-matriciality-of-sft-rings`). Families in characteristic `0` would
+  not decide row 7.
+- **Quantum-torus smearing.** Not viable as stated. Clock–shift approximations of the rotation
+  `x + φ^(-2) n` have noncommuting position observables, so the atoms of the Markov partition with sides
+  in directions `(1,-1)` or `(1,-φ)` have only approximate spectral idempotents. (Q1)–(Q3) need exact
+  identities; this gives rank-metric models, not tilings.
+- **Topology.** The context complex on a finite torus is not simply connected, so the tree-cover
+  commutation of `research/artifacts/quantum-rigidity-group-shifts-and-gluing-2026-09-13.md`
+  (Proposition P2) does not apply. A witness must change frames around both cycles of the torus.
