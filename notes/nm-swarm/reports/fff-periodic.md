@@ -2,6 +2,64 @@
 
 Non-MF verbatim formalization swarm, 2026-09-12.  Clone nm-c.
 
+## 09-13: hfold (HC6, the mirror fold), CLOSED
+
+Non-MF every-line swarm, 2026-09-13.  Clone spare1.  Target: the closed hfold,
+`Systolic.MirrorFoldStatement CCKW.cosetComplex`, stated for every triangle complex.
+
+Closed endpoints, namespace `GroupApproximation.Systolic`, module `GGT/SystolicDiscMirrorFold`:
+
+* `theorem mirrorFoldPinched {V : Type u} (X : TriangleComplex V) : MirrorFoldPinchedStatement X`
+* `theorem mirrorFold {V : Type u} (X : TriangleComplex V) : MirrorFoldStatement X :=
+  mirrorFoldStatement_of_cases (mirrorFoldDistinct X) (mirrorFoldPinched X)`
+
+The distinct case `mirrorFoldDistinct` is ko-closed's (`GGT/SystolicDiscMirrorFoldDistinct`, 81b06b43e).
+`#audit_axioms` on `mirrorFold`, `mirrorFoldPinched`, `FoldStage.exists_disc_of_pinch` and
+`FoldStage.exists_disc_of_sides`: `[propext, Classical.choice, Quot.sound]`.
+
+| module | last landing | evidence |
+|---|---|---|
+| `GGT/SystolicDiscMirrorFoldStage` | c88b8c1db | COMPILED in 0913-052528-4751 |
+| `GGT/SystolicDiscMirrorFoldRestrict` | e12190690 | probe 0913-034739-16916, BUILT |
+| `GGT/SystolicDiscMirrorFoldPinchedStage` | 08ae1c587 | probe 0913-051405-91655, BUILT |
+| `GGT/SystolicDiscMirrorFold` | 426813b24 | probe 0913-052528-4751, BUILT |
+
+All four are in `wire-queue.txt` at these SHAs; Restrict went in wiring wave 4.
+
+Route of the pinched case.  `FoldStage` is a map with vertex labels, an exterior face cycle and a
+set of pending darts; off the cycle and the pending darts every face is a triangle of `X`.
+`toStage` reads a triangulated disc as a stage with nothing pending.  `IsPinch S δ`: planar,
+nothing pending, `δ` and `alpha δ` off the exterior cycle on distinct faces, and the darts two
+steps after them at one vertex.  Delete the edge of `δ`: the two triangles merge into the square
+`e1 e2 f1 f2`, and `alpha e1`, `alpha f1` sit at one vertex.  Split that vertex between `e1` and
+`f1` (`FoldMap.joined`).  The Euler characteristic becomes 4 (`PinchLemma.split_euler`), the face
+count is back to that of `S`, and every dart is reached from `e2` or from `e1` but not both
+(`reach_or_reach`, `not_reach_p`).  `pinchStage` keeps the boundary, with the square pending.
+On the side of the exterior cycle, `e2 f1` or `e1 f2` is a digon.  `exists_disc_of_sides`
+restricts to that side (planar), deletes the digon, and reads the result as a triangulated disc
+with at least three faces fewer.  So `innerFaceCount + 2 ≤`.
+
+Consumers this discharges (owners told 09-13):
+
+* ko-closed: `KotowskiOllivierClosed.kotowskiOllivier_of_pinched (hpinch)` at `CCKW.cosetComplex`.
+* kh-cckw: `CCKW.systolicInvariantClique_of_pinched`, hypothesis `∀ V X, MirrorFoldPinchedStatement X`.
+* theoremc-retire: `TheoremCAssemblyFoldLeaf`, hypothesis `∀ V X, MirrorFoldStatement X`.
+* `hfold` binders at generic `X`: `SystolicProjection:110/146/187`, `SystolicDiscFilling:149`,
+  `SystolicTriangleCondition:66`, `SystolicInvariantClique:100`, `SystolicProjectionClique:138`,
+  `GHBHyperbolicFilling:77/104/118`, `GHBHyperbolicDiscCounts:85`, `CCKWSystolicInvariantClique`,
+  `TheoremCAssemblyKOLeaves`.
+
+Residual Props owned by this lane: none.  No census row: the manuscript sentence is tex line 1675,
+carried by ko-closed's row `LINE:1675`.
+
+Lean traps at this pin:
+
+* `le_of_le_of_eq` is not the general order lemma; use `LE.le.trans_eq`.
+* Annotate lambda binders as `(S.delMap δ).Dart`, not `EdgeDeletion.Dart S.map δ`, so the
+  classical `DecidableEq` instance agrees inside `Equiv.apply_swap_eq_self`.
+* `EdgeDeletion.alpha_val` is stated through `EdgeDeletion.alpha`; bring it to
+  `(toCombMap M a).alpha` with a `have … := alpha_val …` by defeq, not `rw`.
+
 ## Scope: surgery 3 of Osin's Lemma 9.4, Case 2
 
 Osin (arXiv:math/0411039v3, §9), Lemma 9.4, Case 2 splits a vertex of a disc diagram at a pinch
