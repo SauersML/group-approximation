@@ -110,7 +110,13 @@ The model test found no false printed identity and no degenerate case.
 Composition order agreed with w1-binder-6 (18:1x): outer thickening, then cell-side thickening, then `cell_self`.
 - The cell-side stage must keep the outer conditions. `exists_cellSideFree_of_invariant` carries any invariant preserved
   by one doubling step.
-- The module `GGT/VanKampen/SurgeryCellSideThickeningPreserves.lean` is drafted: `faceOf_eq_outer_iff`, the step
-  lemmas `noOuterSpur_of_step`, `noOuterCellDart_of_step`, `noOuterSideDart_of_step` and `relatorValues_of_step`, and
-  `CellSideThickeningPreservingStatement`.
-- It lands once w1-binder-6's `OuterSideThickening` is on main.
+- LANDED c3bd2ee44, probe 0913-182304-12631 GREEN, queued for wiring:
+  `GGT/VanKampen/SurgeryCellSideThickeningPreserves.lean`, over w1-binder-6's `OuterSideThickening` (acd63f3bb).
+  - `CellSideThickening.cellSideThickeningPreserving : CellSideThickeningPreservingStatement` (`#audit_closed_axioms`).
+  - It takes `1 < Delta.boundaryWord.length`, relator words other than one, no outer spur, no outer cell dart and no
+    outer side dart.
+  - It returns all of these together with no cell-side dart, the weight, the target profiles and the source indices.
+  - Step lemmas: `faceOf_eq_outer_iff`, `relatorValues_of_step`, `noOuterSpur_of_step`, `noOuterCellDart_of_step`,
+    `noOuterSideDart_of_step`, and the invariant `OuterClean` with `outerClean_of_step`.
+- Nothing from this lane remains open on binder 6. The remaining copies are `cell_self` and `regions` (see the owners
+  table above), and the copy assembly belongs to the binder 6 owners.
