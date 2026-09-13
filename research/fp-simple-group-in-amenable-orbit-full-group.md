@@ -81,9 +81,12 @@ presentation, which is open.
   - It covers every simple non-amenable group with a Dudko--Medynets compressible action.
   - It covers Thompson's `T`, given its classical simplicity, through Dudko--Medynets
     Theorem 2.10 with `R = F'`.
-- **Lodha's finitely presented simple circle groups.** Not checked. Compressibility in
-  the Dudko--Medynets sense is plausible for their piecewise projective actions, but it
-  was not verified.
+- **Lodha's finitely presented simple circle group `S`.** Dead, given simplicity of `T`.
+  `S` contains `T`: the simplicity proof in arXiv:1710.06220 (TeX lines 1501--1504) runs
+  inside `S` and concludes "`T∩N≠∅`. Since `T` is simple, it follows that `T<N`" for a
+  normal subgroup `N` of `S`. A nontrivial realization of the simple group `S` restricts
+  to a nontrivial realization of `T`, which item 5 of
+  `no-proper-character-groups-avoid-amenable-orbit-full-groups` excludes.
 - **Interval and polygon exchange groups.** Every countable group of them with
   translations in an essentially free countable abelian group lies in some
   `W(Lambda ~ X)`, so it is sofic. No finitely presented infinite simple subgroup

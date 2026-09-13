@@ -48,6 +48,19 @@ Not excluded: lattices in products of trees (Haagerup, no recorded IRS
 classification), Thompson's `T`, and Lodha's circle groups (no character classification
 recorded).
 
+**Census of the finitely presented infinite simple groups recorded here.**
+
+| Group | Soficity | Amenable orbit certificate |
+|---|---|---|
+| `V`, Higman--Thompson, Brin--Thompson, Röver--Nekrashevych, Matui's SFT `A(G)` | open | excluded: contains `V`, or has no proper characters |
+| Khanh's Leavitt unit group `L_(F_2)(1,2)^x` | **nonsofic** (`fp-simple-nonsofic-via-leavitt-unit-group`) | excluded: contains `V`, consistent with nonsoficity |
+| Thompson's `T` | open | excluded, given its classical simplicity |
+| Lodha's circle group | open | excluded: contains `T` |
+| Kazhdan Kac--Moody lattices, Titz Mite--Witzel kernels | open | excluded: property (T) |
+| Caprace--Thom IRS-rigid Kac--Moody lattices | open | excluded: IRS rigidity |
+| Burger--Mozes and Rattaggi lattices | open | undecided |
+| `D([[Omega_U]])`, `D(𝒫)` (Labbé, Penrose) | **sofic** | realized; finite presentation open |
+
 **Structural necessary condition.** A non-amenable witness has a nontrivial ergodic IRS
 with amenable orbital Schreier graphs, and polynomial growth when `Lambda = Z^d`. In the
 graph and in the sources read by this lane, we found no finitely presented infinite simple

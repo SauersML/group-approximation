@@ -38,6 +38,10 @@ the regular one.
    `[[Lambda ~ X]]` of an amenable group with an essentially free invariant measure of
    full support.
 
+5. **Groups containing `T`.** Under the same assumption on `T`, no simple group
+   containing `T` has a nontrivial realization. For instance, Lodha's finitely presented
+   simple circle group (arXiv:1710.06220) contains `T`.
+
 **Where this leaves the certificate.** Every Thompson-like finitely presented simple
 group recorded in the graph is excluded from
 `fp-simple-group-in-amenable-orbit-full-group`, whether through characters (this node

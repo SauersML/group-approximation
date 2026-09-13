@@ -83,6 +83,18 @@ conclusion. ∎
   which do not preserve Lebesgue measure. A compact `T`-space without an invariant
   probability measure makes `T` non-amenable. Item 1 then applies. ∎
 
+**Item 5.** Let `S ⊇ T` be simple with a realization `rho` that is nontrivial on a set of
+positive measure. The kernel of `S -> Aut(X, mu)` is normal, so it is trivial, and
+`mu(Fix rho(g)) < 1` for every `g != 1`, in particular for `g ∈ T \ {1}`. That contradicts
+item 4.
+- *Lodha's group contains `T`* (Lodha, arXiv:1710.06220, `FPSimple.tex`, read on MSI).
+- In the proof that `S` is simple, lines 1501--1504 read: "Recall from Theorem
+  \ref{simplegroup} that `G_0'` is simple. This means that `F'<G_0'<N` and `T∩N≠∅`. Since
+  `T` is simple, it follows that `T<N`."
+- There `N` is the normal closure in `S` of an element of `S` (line 1485), so `T ≤ N ≤ S`.
+- Lemma `ginF` (lines 829--839) writes elements of `S` in standard form `g w^(l_1) ...`
+  with `g ∈ T`. ∎
+
 **Hypothesis checks.**
 - *Simplicity cannot be dropped in item 1:* the argument passes through finite orbits
   being fixed points.
