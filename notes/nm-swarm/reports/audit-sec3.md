@@ -302,6 +302,13 @@ and the lead at about 13:35.
      can be split at the base of each polygon without a turn: at most one extra side per polygon.
      Osin's sides are maximal around the whole boundary. Case 2 is proved with the linear form. The
      lead holds the routing to the count and Case 1 owners.
+   - Owners of a fix, per ghw-assembly: (a) `baseOf` (ghw-assembly) and (b) `Maximal`
+     (hull-unbound); (b) needs (a).
+   - A model test for (b): a diagram with no relator cell whose one inner face is a cycle graph,
+     with one section. The face has no turn, so its only side is the whole walk. If `Maximal` also
+     checks the wrap pair, at one side that pair is `(0, 0)` with no turn, and `Maximal` fails.
+     So (b) needs `2 ≤ sideCount k`, and (a) should rotate to any allowed split, meaning a turn or
+     a change of kind. Sent to ghw-assembly.
 2. **`OsinLemma94CaseTwoInput`: true, proved.** `osinLemma94CaseTwoInput` (`OsinLemma94CaseTwo`,
    `e0e94015d`), probe GREEN `0913-131149-5355`, on the wire queue. The Prop ends in `→ False`, so
    an unmet hypothesis is its content.
