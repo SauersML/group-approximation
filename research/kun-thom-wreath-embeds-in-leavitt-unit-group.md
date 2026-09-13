@@ -9,6 +9,8 @@ distinct_from:
   leavitt-pair-vertex-rounding-is-nonhyperlinearity: that shows the internal Leavitt pair cannot carry the arithmetic rounding of the Kun--Thom chain; this is the other way to bring that chain to bear on the unit group.
 artifacts:
   - research/artifacts/hyperlinear-nonsofic-l-times-2026-09-12.md
+refuted_by:
+  - kun-thom-wreath-does-not-embed-in-leavitt-unit-group
 ---
 
 **OPEN.** Let `Gamma = EL_r(F_q[x_1..x_d]) < G = EL_r(F_q[x_1^(+-1)..x_d^(+-1)]) semidirect SL_d(Z)`
@@ -57,3 +59,20 @@ The claim is that `W` embeds as a subgroup of `Q = L_(F_2)(1,2)^x` for some admi
 * **The sharpest first test.** An embedding needs `Q` to contain a copy of `H_3(Z)` whose central
   commutator has infinite order. The previous items show that such a copy cannot come from matrices
   over commutative subrings, or from disjointly supported elements of `V`.
+* **The test is now its own node, with two firewalls** (lane `ex-q34-leavitt-hs`, 2026-09-12). The
+  Heisenberg question is `leavitt-unit-group-has-no-integer-heisenberg-subgroup`. A positive answer
+  refutes this claim for every parameter, through `kun-thom-wreath-does-not-embed-in-leavitt-unit-group`.
+  - `thompson-v-has-no-heisenberg-subgroup` (established): a Heisenberg subgroup of `Q` is not
+    contained in any conjugate of `V`, because cyclic subgroups of `V_n` are undistorted.
+  - `leavitt-north-south-thompson-unit-has-cyclic-centralizer` (established): the north--south
+    unit `c = s_00 t_0 + s_01 t_10 + s_1 t_11` has `C_Q(c^a) = <c>`. So no Heisenberg center is
+    conjugate to a power of `c`.
+  - Two exact screens (`research/artifacts/leavitt-unit-depth-growth-experiment-2026-09-12.md`)
+    followed about 1200 short random units for at least 8 powers without detecting a finite order.
+    Apart from bounded-depth units of large finite order, none met the screens' criteria for
+    sublinear depth growth.
+    Heisenberg centers have sublinear depth growth, so this is evidence against them. It is not a
+    proof.
+  - A center that is a genuinely linear unit remains unexcluded.
+  - `leavitt-unit-groups-over-finite-fields-mutually-embed` makes the question the same for every
+    `L_(F_q)(1,n)^x` with `q` a power of `2`.

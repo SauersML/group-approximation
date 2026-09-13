@@ -74,6 +74,31 @@ translation lengths. This is evidence, not a proof. Words with at most 8 letters
 explore short units only, and the monomial cap hides the long-run behaviour of the
 most linear units.
 
+## 3b. Second screen: degrees as well as depth
+
+Script `depth_growth2.py` (same directory on MSI) reuses the generators above. For
+`u^m` and `u^-m`, `m = 1..40`, it records the depth, the top degree and the bottom
+degree, where the degree of `S[alpha]T[beta]` is `|alpha| - |beta|`. Words have
+2 to 14 letters; seeds are `11..14`, with 1500 draws each and a cap of 3000 monomials.
+The runs took about 25 seconds each.
+
+- **Finite order detected (`m <= 40`):** 489 units.
+- **At least 16 powers, no identity:** 872 units.
+  - The flag `SUBLIN`, meaning `D(40) - D(20) <= 1`, fired 4 times. Every flagged unit
+    had constant depth, so it has finite order above 40.
+  - The flag `BDEG`, meaning the degree range stayed within the first power's range while
+    depth grew, fired 0 times. In every sampled unit with growing depth, the degree range
+    grew too.
+- **Cap reached before 16 powers:** 3799 units. These are not assessed.
+
+**Reading.** Taken with the first screen, about 1200 units were followed for at least 8
+powers without a detected finite order. None with growing depth met either screen's
+criterion for sublinear growth. The first screen measured slopes of at least `1/4`; the
+second checked only the `SUBLIN` pattern. In every unit with growing depth, the degree
+range grew as well. This suggests that an infinite-order unit always has a power with a
+nonnilpotent top or bottom degree component. No proof is known. The monomial cap blinds
+both screens to most long linear units.
+
 ## 4. Script
 
 ```python
