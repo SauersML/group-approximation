@@ -117,6 +117,43 @@ Some rows cover two to five claims; the rows total 26.
 | 2 | `purely-infinite-leavitt-path-v-monoid-cancellation`, `determinant-conjecture-excludes-liouville-atiyah-exceptions` | **PASS** (the second as a statement) |
 | 3 | `amenable-kernel-bc-transfer-and-ktop-half-exactness`, `lueck-surjective-assembly-traces-lie-in-lambda-g`, `zariski-dense-psl-subgroups-are-completely-selfless`, `gaboriau-commensurated-chain-fixed-price-criterion` | **PASS at source** |
 | 3 | `bgw-trivial-coefficient-agreement-is-open` (+ `-citation`) | **PASS at source after a notation FAIL.** Lemma A.1 of the erratum is about quotients onto `ℂ`; with an arbitrary quotient it would be false. Corrected forward in both nodes; no consumer misused it |
+| 4 | five quantum-PCP imports (Aharonov–Eldar, Natarajan–Nirkhe, Anshu–Breuckmann–Nirkhe, Brandão–Harrow ×2) and three unique-games imports (RST, Bafna–Minzer, BBKSS) | **PASS at source** (SSEH ⇒ UGC through RST Cor. 3.3) |
+| 4 | `port-generated-square-completions-force-coset-support`, `galois-games-round-linearly-for-bounded-fibre-size`, `abelian-normal-closure-fibres-round-linearly` | **PASS** (the first at artifact level; logic-quantum had all three at node level only) |
+
+## 4. Census tally (32 established, unpassed claims at the start)
+
+- **PASS here: 26.**
+  - Derived (3): the Kun–Thom obstruction, the Liouville exceptions, AGP cancellation.
+  - Citation imports (23).
+- **PASS by an earlier source quote: 2.** `lueck-dimension-additivity-cofinality-and-induction` and
+  `l2-betti-numbers-vanish-with-infinite-normal-amenable-subgroup`. Backlog part 1 §1.1 quotes Lück's
+  survey text at l. 334, 461 and 1880.
+- **Reviewed elsewhere, GAP repaired: 1.** `kms-minsky-machine-groups-simulate-their-machines`
+  (logic-quantum part 1 §1).
+- **Not re-derived here: 3.** `residual-finiteness-of-enumerated-presentations-is-pi3-complete` and
+  `residual-finiteness-two-generator-recursive-is-pi3-complete` are pre-EX, Lean-backed nodes that the
+  lane only touched. `arithmetical-complexity-table-of-group-properties` is a ledger. Both were checked
+  only for graph hygiene (4.1).
+- **FAIL on a famous-problem claim: none. False establishment: none.**
+- **4.1 Graph hygiene of the three unreviewed claims.**
+  - **The two Pi_3 completeness nodes.** ex-complexity-sofic's only edit (`1343d6b78`) adds credit and
+    framing. It cites Rauzy arXiv:2111.01190v2 and arXiv:2605.30138, and the KMS §1.1.7 question. It points
+    to the Pi_2 proof of `residual-finiteness-of-finite-presentations-is-pi2-complete`, which logic-quantum
+    part 1 passed after its repair. The statements are unchanged.
+  - **The ledger.** It cites 30 claims: 26 compute established, and the other 4 are open.
+    - `sofic-safe-finite-presentation-compiler` [S] is printed OPEN.
+    - `amenability-of-finite-presentations-is-pi2-complete` [A] is printed OPEN.
+    - `metabelianity-of-finite-presentations-is-recursively-enumerable` [MB] is printed "exact level OPEN".
+    - `binary-leavitt-unit-group-hyperlinear` enters only the conditional cell [H] ("trivial or ...-hard")
+      and a remark (l. 177).
+    - No cell prints an open claim as settled.
+- **Source items not re-read.**
+  - Raghavendra–Steurer STOC 2010 Thm 1.4;
+  - Bafna–Minzer Thms 1.6–1.8;
+  - Panteleev–Kalachev and Leverrier–Zémor;
+  - Natarajan–Nirkhe eq. (9);
+  - the sentence in Ozawa §6 defining "completely C*-selfless";
+  - the proof of BGW Lemma A.1.
 
 ## Part files
 
