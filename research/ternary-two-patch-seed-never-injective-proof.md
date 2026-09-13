@@ -9,6 +9,7 @@ requires:
   - bijective-ca-preserve-uniform-bernoulli-measure
 artifacts:
   - research/artifacts/two-patch-seed-relation-moves-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 Artifact Sections 1–3.
@@ -28,3 +29,8 @@ Artifact Sections 1–3.
      by two involutions.
    - In each case the table shows equal outputs at every touched window, and the untouched windows read
      identical configurations.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): valid.** Every coincidence table of Lemmas 1–3 was re-derived
+independently, and the case split over `H = <a, b>` is exhaustive. The amenable case uses only the Garden of Eden
+theorem and measure preservation, with counts `10, 8, 9`. The Lemma 2 pair list and the wording note are applied at
+efd28946a (`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 28).
