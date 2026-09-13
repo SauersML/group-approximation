@@ -36,3 +36,10 @@ exactly when GL_3(R_X) is MF".  Added to the manuscript by 73a84cd9c, after the 
 ## Status
 
 - 09-13 ~16:40: both modules written; group-kill probe submitted; statement module next.
+- 09-13 16:38: BilateralThreeGroupKill LANDED dfc4d5221 (probe 0913-163123-43571 GREEN), wiring queued.
+- 09-13 16:47: BilateralThreeStatement LANDED 816a6b699 (probe 0913-164241-92660 GREEN), wiring queued.
+  Endpoint for chain-radical: `PrintedBilateralThree`; assembly `printedBilateralThree_of_pieces`.
+- 09-13 16:48: BilateralThreeCorollaries in probe: `PrintedIntroDirectlyFiniteIffGLThreeMF` (tex 253-255) from the
+  endpoint at n = 3, and `hasKazhdanPropertyT_range_of_injective` (the (T) clause of the cell, via `ejz`).
+- Next: discharge the (T) clause of `BilateralThreeCellStatement` once ct-bilateral-cell lands S and the corner
+  embedding; add the `transientIdeal` wrapper once chain-matricial lands `transientIdeal_eq_span_defects`.
