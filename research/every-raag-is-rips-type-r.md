@@ -35,6 +35,11 @@ contractible for every `t ≥ n`, where `n` is the size of a largest clique in
   multipartite or triangle-free
   (`raags-with-multipartite-or-triangle-free-components-type-r`), including
   `F_2 × F_2 × F_2` and `Z^2 × F_2`.
+- **Reduction (UNREVIEWED).** Route `every-raag-is-rips-type-r-via-jensen-helly`:
+  it suffices that every Salvetti cover has Jensen barycentres and Helly number
+  `k+1` for l^1-balls (`raag-salvetti-covers-have-the-jensen-helly-property`).
+  The proof of the products-of-trees case uses exactly these two properties plus
+  rounding (`jensen-helly-graphs-have-contractible-rips-complexes`).
 - **Next obstacle.** The smallest uncovered graph is the triangle with a
   pendant vertex, `A_Γ = Z × (Z^2 * Z)`. The criterion argument needs a
   barycentre with the Jensen bound `d_1(x,b) ≤ ∫ d_1(x,y) dμ` in the Salvetti
