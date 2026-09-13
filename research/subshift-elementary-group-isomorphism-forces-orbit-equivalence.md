@@ -31,3 +31,26 @@ ambiguity, but not which `X`.
   approximation invariant distinguishes these groups. Any separation must come from isomorphism-theoretic or
   computability invariants (see `subshift-elementary-group-word-problem-equals-language`, lane un-open-5, in
   progress).
+- **Step 1 read from the source (lane un-orbit-equivalence, artifact `un-orbit-equivalence-2026-09-13-part1.md`).**
+  - Zel'manov 1985 (`zelmanov-standard-isomorphisms-linear-groups-with-half`, verbatim import) assumes `1/2` in both
+    rings and a group `G` with `E_n(R) ⊆ G ⊆ GL_n(R)` mapped monomorphically into the units of a ring.
+  - For `q` odd this proves the `GL_3` version: `GL_3(R_X) ≅ GL_3(R_Y)` gives `M_3(R_X) ≅ M_3(R_Y)` or its opposite
+    (`subshift-gl3-iso-gives-matrix-ring-iso-odd-q`, established, unreviewed).
+  - It does NOT reach `S_X`, for two reasons (firewalls F-PE1 and F-PE2 in artifact §3).
+    - An isomorphism of the projective groups lifts only to a common central quotient `E_3/Z_0`. The centres can
+      differ: `λI_3 ∈ E_3(R_X)` depends on whether `X` has a cyclic factor of order `ord(λ)`.
+    - Corollary 1 at `G = E_3` needs the closure condition `φ(Σ_1)_S ⊆ E_3(R_Y)`, which can fail.
+  - What closes step 1 for `S_X`: an isomorphism theorem for `PE_3(R)` over simple rings with `1/2`, or a
+    group-theoretic recognition of root subgroups in `S_X`. For `q` even nothing is known here.
+- **Step 3 corrected.** After step 1 the invariant is `(K_0(R_X), K_0^+, 3[1])`. Giordano–Putnam–Skau then give strong
+  orbit equivalence of the height-3 Kakutani towers over `X` and `Y`, not of `X` and `Y` themselves. For `(G, 3u)`
+  vs `(G, u)` no cancellation is known in general. The anti-isomorphism case uses `R_X^op ≅ R_(X,T^{-1})`, with the
+  same coinvariant group and cone.
+- **Step 2 status.**
+  - ABC arXiv:0903.0056 Theorem 3.6 (Step 1 of its proof: unital automorphism, `A = Z`) and Lemma 7.2 give
+    `K(R⋊Z) = hocofiber(1−σ)`, because `NK` vanishes for regular supercoherent rings. `LC(X,F_q)` is regular
+    supercoherent: it is a directed union of finite products of `F_q` with flat maps.
+  - So `K_0(R_X) ≅ coker(1−T_*)` on `C(X,Z)`.
+  - The cone still owes the Herman–Putnam–Skau fact that a strictly positive class has a nonnegative representative.
+    Ara–Claramunt's faithful `rk_μ` (`cantor-z-crossed-product-embeds-in-continuous-factor`) gives only the inclusion
+    of idempotent classes into the strictly positive classes.
