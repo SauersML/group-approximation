@@ -1251,3 +1251,66 @@ For EVERY census row in your range with status formalized or definition, and eve
 - **Parallelizing S3b and S5:** fff-quotient takes chain-subshift's module 5 (NoncyclicEdgeDefect). theoremc-retire takes chain-matricial's modules 2 (LocallyConstantClosedExtension) and 4 (PartialShiftClasses).
 - **Resumes after watchers failed to wake lanes:** cite-hull (FAILED record), census (merge-land-20 EXIT 5, REGISTER not 0), root-wire (wave15 nmwire rc=0 at 15:03).
 - **Census:** the 126 unassigned sentences all sit in the Introduction (5) and sec:chain-core (121, tex 13xx–15xx). The census re-keys them from the chain-* reports. The 15 partial rows (sec:torsion-free, thm:hull, lem:saturation) wait on the W1 waist.
+
+## Rulings 09-13 ~16:00–16:17
+
+- Roster 867bdbe15 records the 14:50–16:00 rulings. The first attempt's ORIGIN_MISMATCH was push contention; the re-run landed with 0 lines removed.
+- **Restriction R_X → R_Y: one definition, chain-core's.**
+  - `ClopenCrossedProduct.restrict` in Dynamics/ClopenCrossedProductComap.lean. chain-core probes and lands it next.
+  - chain-matricial builds `restrict_surjective` and `ker_restrict_eq_transientIdeal` against it. It declares no `restrict` or `restrictRingHom` of its own.
+  - chain-itinerary and chain-reflection consume it.
+- **hull-bridge takes chain-core S1 items 3, 4 and 7.**
+  - Item 3: LEF ⇒ directly finite and stably finite. This includes `LEFStablyFiniteInterface`, chain-reflection's residual.
+  - Item 4: `GL_n` of an LEF ring is LEF, and countable ⇒ MF.
+  - Item 7: `R_X` is countable.
+  - chain-core keeps the printed LEF definition, Comap and Restriction.
+- **Strip induction: option (i).**
+  - simple-group's SurgeryGeodesicCollarInduction (cec4605ee) stays.
+  - kh-torsion imports it and proves only `StripStepStatement` in SurgeryGeodesicCollarPinch.
+  - kh-torsion declares none of `StripStepStatement`, `stripAppend` and `stripStatement_of_step`.
+- **Pinched window: both members stand.**
+  - (a) `OsinLemma94PinchedQuadrilateralStatement` (hull-unbound d463383fa) serves Case 1 when the target is a different cell or the boundary. ko-closed consumes it.
+  - (b) is needed by sec5-sentences' `OsinLemma94LongTransitionInput`. Its model (2767e402d) is a bubble pinched around a G-face or a hair. The l.850 gate is met.
+  - Producer of (a): simple-group, over fff-periodic's PinchSplit layer. It builds the multi-face gap collapse and consumes hair opening as a Prop.
+  - (b): sec5-sentences takes the proof of `OsinLemma94LongTransitionInput`. It states the two Props it consumes, hair opening and bubble un-pinch, model-tested, in its own module.
+  - Owners: hair opening goes to kh-cckw, over its OuterSpurThickening. This changes l.850, because hs-vanishes stays on binder 4 and kh-cckw is free. Bubble un-pinch goes to leavitt-units after its current item, per l.850. simple-group's producer consumes the same hair-opening Prop.
+- **hull-euler S2.**
+  - (1) Covering of X \ CR(T) (0ae6fc9e199c): hull-euler builds it directly as a second module, for compact zero-dimensional X, by the atom-graph argument.
+  - (2) Nonemptiness of CR(T): no new owner. It follows from chain-subshift's `coreSubshift_nonempty` and fff-quotient's `coreSubshift_eq_chainRecurrentSet` (M4).
+- **Blocker 1 (sec2-sentences 3e7ce7227).**
+  - hout is proved and heuler is discharged.
+  - hw and hfollows come from hull-select's `firstTurnWalkPocketInputs` (a29b02280).
+  - sec2-sentences takes the FirstTurn producer for K.walk (from `exists_of_exteriorAt`) in a new module. It consumes `FirstTurn.of_boundaryWalk` and `FirstTurn.of_facePerm`, and confirms the walk shape to hull-select.
+- **T1' (a relator face inside K)** goes to ghw-assembly (Estimating/OsinPocketEdgeDoublingInside). hull-respell consumes it.
+  - kh-cckw's T2 landed at de79601b1. hull-respell queues OsinPocketEdgeDoubling (6a0ab4e33) for wiring.
+- **Turn condition for the pinch step (hull-respell).**
+  - With only K.ClosedWalk, the split route misses pinches: three petals visited in rotation order have pairwise-crossing turn chords. This is no refutation, since K' is free.
+  - The two candidate conditions: (a) K.boundary.FollowsBoundary, with a split outside K and corner fixes T1, T2 and the doubled dart on the source arc; (b) a FirstTurn chain on the complement side, with a split inside K (go-lemma42's (ii)), where the condition survives the split and T1' is the corner fix.
+  - hull-respell keeps writing the step under (b) as an unwired module and changes no statement yet.
+  - audit-sec3 classifies the pocket walk of each of the five users (OsinDescentResiduals, OsinGreendlingerOpenResiduals, OsinPocketCutResiduals, OsinPocketLakeLabelledModel, OsinPocketPieces) and its producer as (a), (b), both or neither, and sends hull-respell the table with evidence.
+  - Ruling after the table: (b) if every consumer's walk comes from a FirstTurn chain, otherwise the disjunction. The Rule 22 co-probe runs in hull-respell's lane.
+  - The doubled dart on the source arc stays parked with hull-respell. It matters only under (a).
+- **kh-cckw next:** hair opening at a pinch, the Prop that sec5-sentences states.
+- **Census register (merge 0913-150043).**
+  - Entries 1–3 (unbound_lt_of_classes, dense_of_classCovers, ClassCountInput) are accepted as registered. ClassCountInput's owner is hull-count94.
+  - Entry 4: CaseOneInput's text names the premise hsame : OsinLemma94CaseOneSameCellStatement, open, owner jacobson (binder 3).
+  - Entry 5: osinLemma94PolygonCoversInput is an open residual, hsame : OsinLemma94UnboundSameCellStatement, owner hull-count94 (class route, with ghw-charp2's respell). The side-budget text is revised to name the premise.
+  - census lands when REGISTER is 0.
+- **Worklist owners.** The seven S2 keys go to hull-euler (reports/hull-euler.md l.336): 49f76a64907a, d5af28721656, 3ebdab1c418b, 0ae6fc9e199c, 73bd8ac910aa, 3ef2a7cdb9bd and c99bf0bdb029. The preamble keys d59fc0887768 and 753b90beed12 go to chain-core.
+- **dgo-analytic retracts** "binder 5 has no witness in a lake". The lake model kills one choice of P only. audit-sec5's spur (b') is still the only obstruction for which no P works.
+- **Probe refusal of non-GroupApproximation lines in lanes/<lane>.files** (reported by audit-sec3): no other lane has such a line (checked 16:12). Reports land through nmland with NM_UNVERIFIED=1 and are not listed in .files.
+
+## Green and landed, 16:00–16:20 (verdict lines checked by the lead)
+
+- chain-words 7c770d047 SubshiftWordGraph (0913-154730-59139). An unverified landing, confirmed green bytes by md5.
+- chain-core 0c76b1c47 ClopenCrossedProduct and 32275d037 ClopenDefectPair (0913-154019-19595).
+- audit-sec3 494dc3249 OsinPocketLakeLabelledModel (0913-155026-81505).
+- simple-group cec4605ee SurgeryGeodesicCollarInduction (0913-155533-35125).
+- hull-bridge 43f028873 SurgeryGeodesicCollarReduction (0913-155611-43423).
+- hull-select a29b02280 OsinPocketFirstTurnWalk (0913-153749-2116).
+- sec2-sentences 3e7ce7227 OsinPocketKeptCellNoncrossing (0913-155924-73125).
+- chain-reflection 578ecd818 DirectlyFiniteReflection (0913-160055-80827).
+- hull-unbound d463383fa OsinLemma94PinchedQuadrilateral (0913-160048-79943) and 9a56cc663 OsinLemma94GapFreeWords.
+- hull-euler 20911e5b2 ChainRecurrence (0913-160538-94022).
+- kh-cckw de79601b1 OsinPocketOuterSpur (0913-160514-92421).
+- sec5-sentences 2767e402d OsinLemma94ClassTransitions (0913-160635-97844).
