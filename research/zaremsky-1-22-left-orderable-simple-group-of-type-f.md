@@ -52,13 +52,20 @@ exists answers the question the other way.
 
 ## Attempts
 
-- (z1-22-lo-simple-bm, 2026-09-13) Lattices in products of trees:
+- (z1-22-lo-simple-bm, 2026-09-13) **Lattices in products of trees.**
   `some-left-orderable-simple-group-has-type-f-via-burger-mozes` requires
   `some-simple-lattice-in-a-product-of-trees-is-left-orderable`. The expected truth for
-  the explicit Burger–Mozes lattices is the opposite, through a Deroin–Hurtado type
-  rigidity theorem (`irreducible-tree-product-lattices-are-not-left-orderable`, open).
-- (z1-22-lo-simple-bm, 2026-09-13) Groups of finite cohomological dimension have no
-  micro-supported action on the line (`finite-cd-groups-have-no-micro-supported-line-action`).
-  So no group whose faithful actions on `R` are all micro-supported can be a witness;
-  in particular a witness cannot come from the natural action of a micro-supported
-  Thompson-like group. Peer lane z1-22-lo-simple-thompson works that family.
+  the explicit Burger–Mozes lattices is the opposite, through a Deroin–Hurtado type rigidity
+  theorem (`irreducible-tree-product-lattices-are-not-left-orderable`, open). The transcription
+  of that proof is recorded in `research/artifacts/zp-tree-lattice-left-orderability-2026-09-13.md`.
+  Its circle-rigidity input is settled (`tree-product-lattice-circle-actions-have-fixed-points`).
+- (z1-22-lo-simple-bm, 2026-09-13; corrected after z1-22-lo-simple-thompson) **Dimension levers
+  on the line.**
+  - A group of finite cohomological dimension has at most `cd G` nontrivial elements with
+    pairwise disjoint supports (`finite-cd-line-groups-bound-disjointly-supported-families`), so a
+    witness contains no `F'` and no `Z ≀ Z`.
+  - In every faithful action of a finitely generated simple group, rigid stabilizers of proper
+    subintervals are trivial (`fg-simple-line-groups-have-no-one-sided-supports`). So micro-support
+    (`finite-cd-groups-have-no-micro-supported-line-action`) gives no information about simple
+    candidates.
+  - Peer lane z1-22-lo-simple-thompson works the Thompson-like family.
