@@ -191,7 +191,7 @@ equal to origin.
    - This row is the only partial feeder of merged row a9dd4b90e479.
    - Proposal sent to sec5-sentences.
 
-## PolygonRealization (2026-09-13, current item)
+## PolygonRealization (2026-09-13, closed)
 
 The lead's item: help hull-unbound close `OsinLemma94PolygonRealizationInput`. It is the h94 piece
 of `osinLemma94Section_of_planarPieces` (`GGT/VanKampen/Estimating/OsinLemma94PlanarPieces.lean`,
@@ -230,9 +230,48 @@ hull-unbound).
   hypotheses, `OsinLemma94PolygonCountInput` and `OsinLemma94CaseOneInput` (hull-unbound).
 - Told hull-unbound and the lead.
 
+## Pinched pocket: the wrap case (2026-09-13, current item)
+
+The lead's item: the wrap case of the pinched pocket. It is the pinch residual that has no planned
+proof.
+
+- The statement on main is `PocketPinchPinchedStatement`
+  (`GGT/VanKampen/Estimating/OsinPocketPinchUnpinched.lean:61`, kh-cckw with hull-respell).
+  - It is `PocketPinchStatement` (`OsinPocketPieces.lean:260`) for the pocket face sets whose cycle
+    does not follow the boundary or is pinched.
+  - `pocketPinchStatement_of_pinched` reduces the whole pinch to it.
+  - This lane does not edit that module. It writes new modules of its own.
+- How the lead split the pinch:
+  - a vertex explosion replaces lake absorption;
+  - kh-cckw has the PinchSplit transport;
+  - hull-respell has the doubling transport, the gap analysis and the induction;
+  - dgo-geometric model-tests the wrap case.
+- Under R2 (roster, 09-13 ~13:05), `Simple` is `IsNoncrossingClosedWalk` (kh-ejz, 26a7858f2) with
+  an outer cycle that follows the boundary.
+  - At a touching vertex the notch (configuration A) breaks the inner cycle, so it needs no pinch.
+  - The lead calls what is left the wrap case. Its exact statement comes with dgo-geometric's
+    model test.
+  - R1 against R2 stays open until the strip-port answer. If R1 wins, configuration A comes back.
+- Surgery on main that a proof can use:
+  - `PinchSplit.Input` (fff-periodic, `SurgeryPinchSplitDiagram`): two darts at one vertex whose
+    corner faces are distinct and are neither the exterior nor relator cells. The split adds a
+    vertex and merges the two faces. `PinchSplit.transportDistinguished`
+    (`SurgeryPinchSplitExtremal`) keeps a distinguished family whose regions avoid both faces.
+  - `SurgeryFaceEdgeDoubling`: an O-equivalent G-cell digon across an edge of an inner face of
+    length > 1. `SurgeryMonogonDoubling` (fff-quotient) handles the monogon case.
+  - `bothFollowUnpinched` (kh-cckw, `OsinPocketUnpinchedEuler`, 74d4ebd34): a face set whose cycle
+    and complement cycle both follow the boundary is unpinched.
+  - `pinchedPocketLobe_conclusion` (dgo-geometric, `OsinPocketPinchedTwoGonLobe`, 4181011af): on
+    the pinched two-gon model, a lobe of `X` itself witnesses the conclusion.
+- State: no Lean yet.
+  - Asked dgo-geometric for the model-test result and hull-respell for the induction interface.
+  - If the model test fails the wrap statement, the counterexample shape goes to the lead before
+    anything is built.
+
 ## Next
 
-- Take the next item from the lead.
+- Wrap case: when both replies are in, propose a split with dgo-geometric and hull-respell, then
+  write this lane's modules under `GGT/VanKampen/Estimating/`.
 - Still waiting on the audit:
   - dgo-analytic, baseline-debt and sec5-sentences to re-grade their rows;
   - census to re-grade or retire cite-ejz's LINE:1155, retire baseline lines 369/370 and re-merge.
