@@ -143,8 +143,9 @@ end GloballyDistinguishedSectionFamily
 /-- **The cutting chains are quasi-geodesic.**  "This contradicts our assumption that `∑ l(t_i)`
 is minimal."  A subword of a cutting chain with a strictly shorter legal spelling starts a
 rotation of the face walk, and respelling it gives fewer darts. -/
-theorem osinLemma94CuttingChainsInput_of_pieces (hrespell : ChainRespellInput.{u, w, v})
-    (hpendant : PendantPathRemovalInput.{u, w, v})
+theorem osinLemma94CuttingChainsInput_of_pieces
+    (hrespell : GloballyDistinguishedSectionFamily.ChainRespellInput.{u, w, v})
+    (hpendant : GloballyDistinguishedSectionFamily.PendantPathRemovalInput.{u, w, v})
     (hword : QuasiGeodesicRespellInput.{u, w}) :
     OsinLemma94CuttingChainsInput.{u, w, v} := by
   intro G _ Lambda W D lambda c eps Delta cuts S hlambda hc hS f r chain rest hf hwalk hacross
@@ -169,11 +170,12 @@ theorem osinLemma94CuttingChainsInput_of_pieces (hrespell : ChainRespellInput.{u
       rw [List.length_append]
       omega
     rw [← List.rotate_rotate, hwalk, List.rotate_eq_drop_append_take hi',
-      List.drop_append_of_le_length hi, List.take_append_of_le_length hi,
-      ← List.append_assoc (List.take n _), List.take_append_drop, List.append_assoc]
+      List.drop_append_of_le_length hi, List.take_append_of_le_length hi]
+    simp only [← List.append_assoc, List.take_append_drop]
   have hjoints' : S.RunsBackAcross ((chain.drop i).take n) := by
     intro j e e' he he'
     obtain ⟨hj, -⟩ := List.getElem?_eq_some_iff.mp he'
+    rw [hsub] at hj
     rw [List.getElem?_take_of_lt (show j < n by omega), List.getElem?_drop] at he
     rw [List.getElem?_take_of_lt (show j + 1 < n by omega), List.getElem?_drop,
       ← Nat.add_assoc] at he'
