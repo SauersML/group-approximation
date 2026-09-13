@@ -250,3 +250,166 @@ Route: `theorem-e-congruence-projections-vanish-at-regular-trace-proof`. Artifac
   - Hence the fixed-level route is void for every model (H1) concerns, and keeping (H1) OPEN is right.
   - The `distinct_from` entry and the (H1) Attempts bullet agree with this.
   - No forward correction is needed.
+
+## 5. The mixed-level root group `K_i` (lane `nh-ki-kazhdan`, 44267adad)
+
+Read at 44267adad. None of these files changed by fdf10525a.
+
+**Subsumption scan** at fdf10525a, over `research/*.md`.
+- Patterns searched: strong grading, root-graded, Kazhdan subset, Nagao, mixed-level, `SL_2(F_q[`, `E_2(F_q[`,
+  `GL_2(k[`, and Bruhat–Tits tree.
+- No node outside this commit asserts property (T), or its failure, for `K_i` or any mixed-level subgroup.
+- Earlier mentions:
+  - the open question in the Attempts of `laurent-vertex-rounds-for-every-model`;
+  - the same question in `hs-stable-vertex-rounding-for-every-model` (see §5.4);
+  - inline uses of Nagao's theorem, with no node of its own, in `support-thirteen-from-no-inverse`,
+    `dykema-heister-juschenko-bounded-rank-direct-finiteness`, `leavitt-rank-three-support-group-is-virtually-free`
+    (and its proof), and the artifact `leavitt-rank-three-no-inverse-2026-08-18`. These use Nagao's decomposition;
+    none states it as a claim, so the new import duplicates nothing.
+  - the Baum–Connes nodes on `E_2(F_q[x^(±1)])` acting on products of Bruhat–Tits trees. That is a different group.
+- The other "strong grading" or "strongly graded" hits are about graded rings, for example `1 = Σ s_i s_i*` lying in
+  `O_1 O_(-1)`:
+  - `bh-steinberg-hosts-2026-09-12`;
+  - `nekrashevych-completions-contain-their-coefficients-proof`;
+  - `leavitt-tensor-powers-are-not-left-coherent` and its proof;
+  - `simple-inputs-have-fp-elementary-leavitt-tensor-hosts`;
+  - two headings in `review-swarm4-2026-09-12.md`.
+- No `review-*.md` file mentions the new ids.
+
+### 5.1 `strongly-root-graded-groups-have-kazhdan-root-unions` (import): PASS
+
+Source re-read: Ershov–Jaikin-Zapirain–Kassabov, arXiv:1102.0031. The TeX `2014gradedT0310.tex` was fetched with
+curl on MSI and the passages were read.
+
+- **Part (a)** is `thm:main2` (TeX 689–694), verbatim.
+- **Grading** (TeX 2240–2253): "a collection of subgroups `{X_α}` of `G`, called root subgroups", with (i) generation
+  and (ii) the commutator condition for `α ∉ R_(<0) β`, with `a, b >= 1`. This matches the node.
+- **Strong** (TeX 2316–2335): the grading is strong at `(γ, Φ_f)`, for `γ ∈ C_f`, if
+  `X_γ ⊆ < X_β : β ∈ Φ_f, β ∉ Rγ >`. It is strong if it is strong at every such pair. This matches the node.
+- **The A_2 core.** The core of `{α, β, α+β}` is `{α+β}` (TeX 2055–2056). This matches the node.
+- **Part (b)** follows from Observation `Kazhrat` (TeX 951–961).
+  - The source gives (ii) `√2 κ_r <= κ(G,B;S) <= 2 κ_r` for normal `B`, and (iii) `κ(G,S) >= κ(G,B) κ_r(G,B;S)`.
+  - `κ_r` is read as in the citation route; the passage defining it was not printed here.
+  - (b)(i) is (iii), with `κ_r >= 1/C`.
+  - (b)(ii) is (ii), with `κ_r >= μ/2`. The set of admissible ratios is closed, so the bound is attained. The node's
+    "S finite" is not needed.
+- **Ideal root subgroups are allowed.**
+  - The definition takes arbitrary subgroups. It asks for no ring, no parametrization and no isomorphism type.
+  - The source's introduction (TeX 699–705) makes the same move the route makes: an `A_(n−1)`-graded group is also
+    strongly `A_2`-graded, reading matrices as "3×3 block-matrices with blocks of uneven size".
+
+### 5.2 `mixed-level-root-group-is-kazhdan-in-rank-at-least-five`: PASS
+
+Route `mixed-level-root-group-is-kazhdan-in-rank-at-least-five-proof`. Re-derived line by line.
+
+- **(★).** `eps_xy + eps_yz = [x=3] + [y=2] + [y=3] + [z=2] = eps_xz + [y=2] + [y=3]`. Correct.
+- **Step 1.** Expanding the four factors gives `[e_xy(a), e_yz(b)] = e_xz(ab)` for distinct `x, y, z`. Correct.
+- **Step 2 (grading).**
+  - The blocks exist because `|J| = r − 2 >= 3`.
+  - `X_XY` is abelian and lies in `K`.
+  - `[e(M), e(N)] = e(MN)` uses `M^2 = N^2 = NM = 0`, where `NM = 0` because `Z ≠ X`. The entries lie in `I_xz`
+    by (★).
+  - Roots sharing a block give commuting groups, and opposite roots impose no condition. So condition (ii) holds for
+    every ordered pair, including `(X,Y), (Z,X)` by inversion.
+  - Generation: correct.
+- **Step 2 (strongness).**
+  - The six Borel sets are `{(X,Y), (Y,Z), (X,Z)}` over ordered triples of distinct blocks, each with core `(X,Z)`.
+  - With `y ∈ Y ∩ J`, Step 1 writes each `e_xz(I_xz)` as a commutator in `< X_XY, X_YZ >`. This works for every
+    triple, because each block meets `J`.
+  - This is strong in EJZK's sense (§5.1).
+- **Step 3 (fine root groups).**
+  - **Column type.** The map is a homomorphism because `z ∉ {x, p}` and `w ↦ t^([z=2]) w` is `R`-linear, with `t`
+    central. The images `e_xp(R)` and `e_px(R)` are full, since `x, p ∈ J`. Also `t^([z=2]) R = I_xz = I_pz`.
+  - **Row type.**
+    - The row model composes as `(v,g)(u,h) = (u + vh, gh)`.
+    - `g ↦ (g^T)^(-1)` preserves `EL_2(R)`, because `e_12(a)^T = e_21(a)`, and it carries `R^2` to `R^2`. So the
+      relative constant transfers.
+    - The images `e_zp(R)`, `e_pz(R)`, `e_xz(I_xz)` and `e_xp(I_xp)` lie in `K`.
+  - **The roots (2,3) and (3,2).**
+    - The commutators have levels `I_2p = I_p3 = R` and `I_3p = I_p2 = (t)`.
+    - `e_p3(±1)` and `e_p2(±t)` lie in `S`.
+    - The unitary bound `||[a,b]v − v|| <= 2||av − v|| + 2||bv − v||` holds.
+  - `C = r^2 (4/μ + 2)`. Correct.
+- **Step 4.** `κ(K, S) >= κ_0 / C > 0` by (b)(i). A finite Kazhdan set is the source's definition of (T). Correct.
+- **Tests.**
+  - `t` a unit: `K = EL_r(R)`, which has (T) for `r >= 3`. Consistent.
+  - `t = 0`: `K = < e_cd(R) : c ≠ 3, d ≠ 2 >`.
+    - The proof still runs, with `X_32` trivial.
+    - `K` maps onto `EL_J(R)`, which has (T) since `|J| >= 3`.
+    - Consistent.
+  - `r = 4`: there are no three blocks meeting `J`, and §5.3 shows the conclusion fails for `d >= 2`.
+- **Hypotheses used.**
+  - Commutativity of `R` is used for the central `t` in Step 3.
+  - Finite generation of `R` enters through `elementary-linear-semidir-pair-relative-t`, which supplies the finite
+    `S_0`, and so through the finiteness of `S`. That import passed as a known result in
+    `review-backlog-2-2026-09-12.md` §26, where its source was not re-read.
+- **Display check.**
+  - The node's levels match `eps_cd`: row 3 and column 2 at `(t)`, the corner `(3,2)` at `(t^2)`, and `(2,3)` full.
+  - They match the definition of `K_i` in the laurent node's Attempts (node lines 57–60 at 44267adad).
+- **Wording notes.**
+  - The node says the EJZK criterion "does apply when some root subgroups are proper ideals, provided each level ideal
+    is the product of two levels through a full index". The criterion needs no such condition. The condition is what
+    makes this particular grading strong.
+  - Step 3 says "By part (b) of the grading claim, `R^2` is normal in `P`". Normality is elementary. Part (b) gives
+    only the consequence drawn from it.
+  - The Use paragraph says the laurent reduction "then gives the converse Laurent direction on `St_r(L)` for every
+    `r >= 5`". That reduction is an Attempts bullet of the OPEN node `laurent-vertex-rounds-for-every-model`. It is not
+    reviewed here, and this verdict covers property (T) of `K(R, t)` only.
+- **Novelty.** The claim is a direct instance of `thm:main2` with the coarsening from EJZK's introduction. The node
+  claims no novelty.
+
+### 5.3 `mixed-level-root-group-is-not-kazhdan-in-rank-four`: PASS; Nagao not re-read
+
+Route `mixed-level-root-group-is-not-kazhdan-in-rank-four-proof`. It requires the new import
+`polynomial-gl2-over-a-field-is-a-nontrivial-amalgam` and `property-t-implies-property-fa` (Watatani, not re-read).
+
+- **Item 1 (onto E_2).**
+  - `φ` kills every generator with `eps >= 1` and sends the rest onto `e_cd(F_q[y])`.
+  - `P` is a subgroup, because the conditions `g e_2 = e_2` and `e_3^T g = e_3^T` are preserved by products and
+    inverses. It contains the generators.
+  - For `a, b ∈ {1, 4}`, `(gh)_ab = g_a1 h_1b + g_a4 h_4b`, since `g_a2 = 0` and `h_3b = 0`. So `ρ` is a homomorphism.
+  - `eps_14 = eps_41 = 0`, so `ρ` hits `e_12(F_q[y])` and `e_21(F_q[y])`.
+  - Correct.
+- **Item 2 (no (T)).**
+  - `E` is infinite and `GL_2(F_q)` is finite.
+  - `e_12(1)` and `e_21(1)` are unipotent with different eigenlines, so `E` lies in no conjugate of `B(F_q[y])`.
+  - `E` therefore fixes no vertex. The action has no inversions, so `E` fixes no point.
+  - Watatani's theorem and passage of (T) to quotients finish the argument. Correct.
+  - **Independent of Nagao.**
+    - `F_q[y]` is discrete in `F_q((1/y))`, so `E` is discrete in `SL_2(F_q((1/y)))`.
+    - Vertex stabilizers of the Bruhat–Tits tree are compact open. So each meets `E` in a finite group, and the
+      infinite group `E` fixes no vertex.
+    - `SL_2` acts on the tree without inversions, so `E` fixes no point.
+    - This uses only the Bruhat–Tits tree (Serre, *Trees*, II.1), not the amalgam.
+- **Item 3 (q = 2).**
+  - `F_2[y]^× = {1}`, so `E_2 = SL_2 = GL_2` over `F_2[y]`.
+  - Abelianization preserves pushouts.
+  - `B(F_2) = < e_12(1) >` maps to the sign in `GL_2(F_2)^ab ≅ Z/2`, and to `1 ∈ F_2[y]`. The quotient is
+    `≅ (F_2[y], +)`, which is infinite.
+  - Correct.
+  - Test at `r = 4`, where `J = {1,4}`. The only commutator routes to `(1,4)` pass through index 3 or index 2, and
+    both give only level `(x_i)`: `[e_13(a), e_34(x_i b)] = e_14(x_i ab)` and `[e_12(x_i a), e_24(b)] = e_14(x_i ab)`.
+    So the full root group `e_14(R_+)` is not killed in `K_i^ab`, which is consistent with item 3. Under the corner
+    map it becomes `e_12(F_q[y])`.
+  - Unlike item 2, item 3 needs Nagao's decomposition itself.
+- **Source status.**
+  - From MSI, Springer returned an HTML page for *Trees* (magic bytes `<!DOC`).
+  - The citation route records that a Crossref query from MSI did not locate a copy of Nagao's paper.
+  - So Nagao's theorem is "source not re-read". The recorded form is the textbook one (Serre, *Trees*, II.1.6).
+- **Display check.** The title and items 1–3 match the route. The Consequences bullets match the laurent correction.
+
+### 5.4 The correcting bullet on `laurent-vertex-rounds-for-every-model`: PASS
+
+- **What it changes.** The appended bullet (13 lines):
+  - retracts the Attempts claim "`K_i` has FINITE abelianization for `r ≥ 4`" at `r = 4`, `q = 2`;
+  - narrows "follows from property (T) of `K_i` (`r ≥ 4`)" to `r >= 5`.
+- **Correct by §5.2 and §5.3.**
+  - The false sentence in the original bullet is "the full-ring part is elementary of rank `≥ 2`". At `r = 4` the full
+    part is the `{1,4}` corner.
+  - The original's commutator identities for the confined directions are fine.
+- **What stays open.** The bullet keeps the `St_r(L) → Δ` descent OPEN.
+- **Stale question elsewhere (recommendation only, not edited).**
+  - `hs-stable-vertex-rounding-for-every-model` (line 77 at fdf10525a) still asks "is the mixed-level root group `K_i`
+    Kazhdan for `r >= 4`?" and recommends it as the sub-target.
+  - It is a question, not an assertion, so nothing false is claimed.
+  - A forward note there would help: yes for `r >= 5`; no for `r = 4`, `d >= 2`; `r = 4`, `d = 1` undecided.
