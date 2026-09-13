@@ -39,3 +39,13 @@ finite operator alphabet.
   `X_{a,b}X_{b,c}=X_{a,c}`, but enforcing that flatness around triangles is
   itself the missing contextual/ternary compatibility. It is a coordinate
   system, not a solution.
+- **Build the contextual object from joint trace moments, by an argument valid
+  for every tracial model.**  Cannot work (§3 of
+  `research/artifacts/q34-rounding-routes-2026-09-12.md`).
+  - The regular representation of the group of
+    `finitely-presented-nonsofic-group-exists` is an exact regular-trace table
+    on every window, with cubic traces `tau(U_h^* U_g^* U_k) = 1[gh = k]`.
+  - Such a construction would produce the object there.  Decoding it would
+    make that group sofic (`markov-sofic-equals-sofic`).
+  - So the construction must read the finite-dimensional microstate, at a step
+    with no analogue in a tracial algebra.
