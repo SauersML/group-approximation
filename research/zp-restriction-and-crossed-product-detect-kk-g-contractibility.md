@@ -44,6 +44,20 @@ K-theory isomorphism between UCT algebras, hence a KK-equivalence, and
   Dies at the absence of isotropy strata.
 * **Duality.**  The hypotheses are self-dual under Baaj--Skandalis:
   `(D ⋊ G, dual)` satisfies them again.  No asymmetry to exploit.
+* **Rokhlin special case (sketch, unverified).**  Suppose `D` is realized as a
+  pointwise outer action `δ` on a stable Kirchberg algebra.  `Res D ≃ 0` makes
+  the algebra `O_2 ⊗ K`, and `D ⋊ G ≃ 0` makes the crossed product `O_2 ⊗ K`
+  too.  If `δ` or `δ̂` has the Rokhlin property, uniqueness of Rokhlin
+  `Z/p`-actions on `O_2`-type algebras (Izumi, *Rohlin I*) identifies it with
+  the model `γ ⊗ id_(O_2)`.  That model is KK-contractible equivariantly, and
+  Baaj--Skandalis transfers this to `D`.  None of these inputs was re-read from
+  source: the realization of non-bootstrap classes by outer actions on Kirchberg
+  algebras, the stable form of Izumi's uniqueness, and the absorption of `id_K`.
+  So the remaining cases are outer actions on `O_2 ⊗ K` with contractible
+  crossed product such that neither the action nor its dual is Rokhlin.  Even
+  on unital `O_2` it is open whether every outer `Z_2`-action is strongly
+  approximately inner (Barlak--Li II, Remark 4.14(2)).  That leaves no known
+  handle.
 
 A positive answer is a noncommutative isotropy-separation principle.  A negative
 answer needs an equivariant phantom, which by the fence node no K-theoretic
