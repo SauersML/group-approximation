@@ -453,6 +453,196 @@ a negative solution."
   Product-set growth estimates in hyperbolic groups (Delzant--Steenbock) are
   the natural tool, and they were not read.
 
+### 6.3 The bounded-cost statement in this light
+
+* Under its hypothesis `C_*(N) <= K`, so notes 2.56 already give
+  `C_*(Gamma) = 1`. So `fpbs-normal-subgroup-bounded-cost-fixed-price-one` is
+  exactly the fixed price question for this class of extensions. By
+  Abert--Nikolov Theorem 1, its conclusion gives vanishing rank gradient along
+  Farber chains of `Gamma`.
+* Test cases.
+  - `(Z/2) wr Z` with `N` the base group: amenable, so fixed price one
+    (Gaboriau 2000, abstract: "The cost of every infinite amenable group
+    equals 1").
+  - `N = [F_2, F_2]` in `F_2`: `N` is free of infinite rank, so its free
+    actions have unbounded cost and the hypothesis fails, while `F_2` has
+    fixed price 2. So the cost hypothesis cannot be dropped.
+  - A closed surface group: its infinite normal subgroups of infinite index
+    are free of infinite rank (standard), so the hypothesis fails, which is
+    consistent with fixed price `2g - 1`.
+  - Direct products `G x G'`: Khezeli, with no cost hypothesis.
+  - Finitely generated `N`: the hypothesis holds with `K = d(N)`.
+* **Theorem 8.1 read backwards for surface groups.** Closed surface groups are
+  exact and have fixed price above one. So none of their amenable imp actions
+  whose ergodic components are infinite, non-atomic and essentially free is
+  PDR, including their actions on horocycles and on geodesics of `H^2`. Any
+  PDR action of `pi_1(M)` has to use structure that surface groups lack. For
+  `H^2`, Proposition F is forced; for `H^3` it has to be proved.
+
+### 6.4 The natural amenable actions are not PDR, and ONP fails
+
+**Lemma E (no conservative part).** Let `Gamma` act on a standard Borel space
+`Y`, preserving a σ-finite measure `nu`. Let `Y_0` be an invariant Borel set
+and `Phi : Y_0 -> P` a Borel `Gamma`-equivariant map to a Borel `Gamma`-space
+`P = union_j K_j`, where each `K_j` is Borel and
+`{gamma : gamma K_j intersect K_j nonempty}` is finite. Then
+`Con(Y) intersect Y_0` is null. If `Y = X^2` and `nu = mu x mu` for an imp
+action `Gamma ↷ (X, mu)`, and `Y_0` is conull, then the action on `X` is not
+DR. If moreover the action on `X` is ergodic and the off-diagonal part of
+`X^2` has positive measure, then it is not PDR.
+
+*Proof.* If `Con(Y) intersect Y_0` had positive measure, so would
+`Z = Con(Y) intersect Phi^(-1)(K_j)` for some `j`. By Theorem A.1, almost
+every `z` in `Z` has infinitely many `gamma` with `gamma z` in `Z`. Each such
+`gamma` has `Phi(z)` and `gamma Phi(z) = Phi(gamma z)` in `K_j`, so it lies in
+a finite set, a contradiction. When `Y_0` is conull, `Dis(X^2)` is conull. By
+the second part of Theorem A.1, a subset of finite positive measure then has
+finitely many returns at almost every point, so the diagonal action is not
+infinitely conservative. For PDR, take the representative
+`Con(X^2) = empty`. Then a chain as in Definition 40 joins `x` only to itself,
+and the diagonal is not conull. QED
+
+**How Definition 40 is read.** The definition is written pointwise, but
+`Con(X^2)` comes from the ergodic decomposition and is defined only up to
+null sets. Lemma E reads PDR as unchanged by null modifications of
+`Con(X^2)`, and the pointwise reading with an arbitrary representative cannot
+be what is meant. Take a closed surface group acting on the oriented geodesics
+of `H^2`. This action is ergodic, amenable, essentially free and non-atomic.
+The invariant null set of pairs of geodesics sharing an endpoint joins any
+`(a,b)` to `(c,d)` through `(a,d)`. Adding that set to `Con(X^2)` would make
+the action PDR, and Theorem 8.1 would give fixed price one instead of
+`2g - 1`.
+
+**Proposition F.** Let `Gamma = pi_1(M)` and `G = PSL(2,C)`.
+
+(a) The action of `Gamma` on the space `G/MN` of horospheres of `H^3`, with
+its `G`-invariant measure, is ergodic, amenable, free and non-atomic, and it
+is neither DR nor PDR.
+
+(b) The same holds for the space `G/MA` of oriented geodesics of `H^3`,
+except that the action is essentially free rather than free.
+
+(c) Let `Gamma` be a torsion-free non-elementary hyperbolic group with a word
+metric `d`, and `mu` a `Gamma`-invariant σ-finite measure on `H(Gamma)`. Then
+`Con(H(Gamma)^2)` is `mu x mu`-null, and `(H(Gamma), mu)` is neither DR nor
+PDR.
+
+Ergodicity (Moore's theorem, since `MN` and `MA` are non-compact),
+amenability (Zimmer, since `MN` and `MA` are amenable) and freeness (`Gamma`
+has no parabolic or elliptic elements, and has countably many axes) are
+standard and were not re-read.
+
+*Proof of (a).* For a fixed centre the horospheres form a null set, so pairs
+with distinct centres `xi_1 != xi_2` are conull. For such a pair let
+`Phi(h_1, h_2)` be the midpoint of the segment of the geodesic `(xi_1 xi_2)`
+between the points where it crosses `h_1` and `h_2`. This is continuous and
+`G`-equivariant. `Gamma` acts properly discontinuously on `P = H^3`, the union
+of the closed balls about a base point, so Lemma E applies. QED
+
+*Proof of (b).* Pairs of geodesics with four distinct endpoints are conull.
+Such a pair either meets in one point, which is `Phi`, or has a unique common
+perpendicular, whose midpoint is `Phi`. Lemma E applies as in (a). QED
+
+*Proof of (c).* Write `|g| = d(e,g)` and `(x.y)_w = (d(w,x) + d(w,y) -
+d(x,y))/2`, and fix `delta` with
+`(x.y)_w >= min((x.z)_w, (z.y)_w) - delta` for all `x, y, z, w`. Every `h` in
+`H(Gamma)` has the form `h = r + lim_n (d(x_n, .) - |x_n|)`, with `r = h(e)`.
+
+*Step 1.* Suppose `h_1 = r_1 + lim (d(x_n, .) - |x_n|)`,
+`h_2 = r_2 + lim (d(y_n, .) - |y_n|)`, and `(x_n . y_n)_e <= K` for all `n`.
+Then `max(h_1, h_2)(g) >= |g| - 2K - 2 delta + min(r_1, r_2)`. Indeed, put
+`a_n = d(g, x_n) - |x_n|` and `b_n = d(g, y_n) - |y_n|`. Then
+`(x_n . e)_g = (a_n + |g|)/2` and `(e . y_n)_g = (b_n + |g|)/2`, and
+`d(x_n, y_n) >= |x_n| + |y_n| - 2K` gives `(x_n . y_n)_g <= (a_n + b_n + 2K)/2`.
+The four-point condition at `g` gives
+`a_n + b_n + 2K >= min(a_n, b_n) + |g| - 2 delta`, so
+`max(a_n, b_n) >= |g| - 2K - 2 delta`. Now let `n -> infinity`.
+
+*Step 2 (centres).* If `x_n` leaves every finite set, pick `g_t` at distance
+`t` from `e` on a geodesic `[e, x_n]` and pass to a diagonal subsequence. This
+gives `h(g_t) = r - t`, so `h` is unbounded below. Otherwise `h` is
+`r + d(x, .) - |x|` for some `x`. If two sequences representing one unbounded
+`h` converged to distinct points of `∂Gamma`, Step 1 with `h_1 = h_2 = h`
+would give `h(g) >= |g| - const`. So each boundary `h` has a centre `c(h)` in
+`∂Gamma`, every representing sequence converges to it, and
+`c(gamma h) = gamma c(h)`.
+
+*Step 3.* Let `Y_0` be the invariant set of pairs in which some coordinate
+has the form `r + d(x, .) - |x|`, or both are boundary points with distinct
+centres. Step 1 applies to these pairs, possibly after dropping finitely many
+terms, so `max(h_1, h_2)` is integer-valued and tends to infinity. So
+`Phi = argmin max(h_1, h_2)` is a finite nonempty subset of `Gamma`, and it is
+equivariant because `(gamma h)(x) = h(gamma^(-1) x)`. Take `P` the finite
+subsets of `Gamma` and `K_j` those inside `B(j)`. Then `gamma K_j` meets `K_j`
+only if `gamma` is in `B(2j)`, and Lemma E gives `Con intersect Y_0` null.
+
+*Step 4 (equal centres).* The rest of `H(Gamma)^2` is the set `D` of boundary
+pairs with `c(h_1) = c(h_2)`. By Fubini and σ-finiteness, `D` is covered up to
+a null set by the countably many `c^(-1)(xi)^2` with `mu(c^(-1)(xi)) > 0`.
+Suppose `Con` meets one of them, `c^(-1)(xi_0)^2`, in positive measure. Then
+for some `k` the set `Z` of those pairs with `|h_1(e)| <= k` also has positive
+measure. A return `gamma` of `(h_1, h_2)` to `Z` fixes `xi_0` and has
+`|h_1(gamma^(-1))| <= k`, since `(gamma h_1)(e) = h_1(gamma^(-1))`. The
+stabilizer of `xi_0` is trivial or generated by a loxodromic `u` with fixed
+points `xi_0` and `xi'` (standard). Say `u^n -> xi_0` as `n -> +infinity`.
+Write `h_1(g) = r + |g| - 2 lim_m (x_m . g)_e` with `x_m -> xi_0`.
+
+- As `n -> -infinity`, `u^n -> xi' != xi_0`, so the products `(x_m . u^n)_e`
+  stay bounded for large `m`. So `h_1(u^n) -> +infinity`.
+- As `n -> +infinity`: by the Morse lemma `u^0, ..., u^N` lie within `D_u` of
+  a geodesic `[e, u^N]`, so `(u^N . u^n)_e >= |u^n| - D_u` for
+  `0 <= n <= N`. For `N` and then `m` large, `(x_m . u^N)_e >= |u^n|`, and
+  the four-point condition gives `(x_m . u^n)_e >= |u^n| - D_u - delta`. So
+  `h_1(u^n) <= r - |u^n| + 2 D_u + 2 delta -> -infinity`.
+
+So only finitely many `gamma` return, against Theorem A.1. So `Con` is null.
+Not DR and not PDR then follow as in Lemma E, applied to each ergodic
+component, through Lemma A.3. Ergodic components are infinite, because
+`Gamma` fixes no point of `H(Gamma)`. QED
+
+**Proposition G (ONP fails).** Let `Gamma` be a non-elementary hyperbolic
+group with a word metric `d`. Then `(Gamma, d)` does not have the overlapping
+neighbourhoods property of Bevilacqua--Bowen Definition 30.
+
+*Proof.* By Coornaert, through Remark 21, there are `alpha > 0` and
+`C_0 >= 1` with `C_0^(-1) e^(alpha n) <= |B(n)| <= C_0 e^(alpha n)`. A
+polynomial factor would change nothing below. Fix `C > 0`, and call `(x, y)`
+in `B(n)^2` good if `|x|, |y| >= n - L` and `(x.y)_e <= K`.
+
+Let `(x, y)` be good and `z` in `B(x, n+C) intersect B(y, n+C)`. Then
+`(x.z)_e >= (|z| - L - C)/2`, and likewise for `y`, so
+`K >= (x.y)_e >= (|z| - L - C)/2 - delta`. That is,
+`|z| <= R_0 = C + L + 2K + 2 delta`. So good pairs have
+`|B(r) intersect B(x, n+C) intersect B(y, n+C)| <= |B(R_0)|` for all `r` and
+`n`.
+
+Bad pairs are rare.
+
+- The fraction of `x` in `B(n)` with `|x| < n - L` is at most
+  `C_0^2 e^(-alpha L)`.
+- Fix `x`. If `(x.y)_e >= K`, then `|x| >= K`. Let `x_K` and `y_K` be the
+  points at distance `K` from `e` on geodesics `[e, x]` and `[e, y]`; they are
+  `4 delta`-close (thin triangles, standard). So `y` lies in
+  `x_K B(4 delta) B(n - K)`, which is at most a fraction
+  `C_0^2 |B(4 delta)| e^(-alpha K)` of `B(n)`.
+
+Choose `L` and `K` so that
+`2 C_0^2 e^(-alpha L) + C_0^2 |B(4 delta)| e^(-alpha K) <= 1/2`. Then at least
+half of `B(n)^2` is good for every `n`. With `m = |B(R_0)| + 1`, the quantity
+in Definition 30 is at least `1/2` for every `r`. Since `C` was arbitrary, ONP
+fails. QED
+
+**Remark H (ball growth).** A ball of radius `R` in `H^3` has volume
+`pi (sinh(2R) - 2R)`, comparable to `e^(2R)`. Take a left-invariant Riemannian
+metric on `G = PSL(2,C)` making `G -> H^3 = G/K` a Riemannian submersion, and
+let `c` be the diameter of `K`. Then the preimage of `B_(H^3)(R - c)` lies in
+`B_G(R)`, which lies in the preimage of `B_(H^3)(R)`. So Haar measure of
+`B_G(R)` is comparable to `e^(2R)` too. Word balls in `Gamma` are comparable
+to `e^(alpha R)` (Coornaert). In each case `lambda(B(2R+D)) / lambda(B(R))^2`
+is bounded below by a positive constant, so Slutsky's Corollary 1.4 does not
+apply with these metrics. Other proper left-invariant metrics were not
+examined.
+
 ## 7. Sources read for this note
 
 * Hutchcroft--Pete, arXiv:1810.11015v2, pages 1--6 from the PDF: the abstract
