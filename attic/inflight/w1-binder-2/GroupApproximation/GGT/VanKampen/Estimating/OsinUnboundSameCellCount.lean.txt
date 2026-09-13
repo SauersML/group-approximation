@@ -98,8 +98,7 @@ theorem exists_arc_of_not_mem_unboundDarts {X : DiscDiagram.{u, w, v} W}
 theorem positionCount_le_card {β : Type*} {p : ℕ → Prop} {n : ℕ} (g : ℕ → β) (T : Finset β)
     (hinj : ∀ a b, a < n → b < n → p a → p b → g a = g b → a = b)
     (hT : ∀ j, j < n → p j → g j ∈ T) : positionCount p 0 n ≤ T.card := by
-  unfold positionCount
-  rw [Finset.sum_boole]
+  simp only [positionCount, Finset.sum_boole]
   have hmaps : Set.MapsTo g (((Finset.Ico 0 n).filter p : Finset ℕ) : Set ℕ) (T : Set β) := by
     intro j hj
     simp only [Finset.coe_filter, Finset.mem_Ico, Set.mem_setOf_eq] at hj
@@ -145,7 +144,7 @@ theorem positionCount_starts_le {X : DiscDiagram.{u, w, v} W}
       · have hz : (X.toCombMap.facePerm ^ (j - 1)) B.darts[k₀] ∉ a.2.sourceArc.darts :=
           fun hin => hpredArc (Or.inl (by rw [if_pos hsrc]; exact List.mem_toFinset.mpr hin))
         have hhead := OsinUnboundSameCellCycle.head?_eq_of_pred_not_mem B
-          (show cellDarts X a.2.source = B.darts by rw [hsrc]; rfl) a.2.sourceArc
+          (congrArg (cellDarts X) hsrc : cellDarts X a.2.source = B.darts) a.2.sourceArc
           (List.mem_toFinset.mp h) hstep hz
         exact Finset.mem_union_left _
           (Finset.mem_image.mpr ⟨a, Finset.mem_filter.mpr ⟨haK, hsrc⟩, hhead⟩)
@@ -154,7 +153,7 @@ theorem positionCount_starts_le {X : DiscDiagram.{u, w, v} W}
       · have hz : (X.toCombMap.facePerm ^ (j - 1)) B.darts[k₀] ∉ a.2.targetArc.darts :=
           fun hin => hpredArc (Or.inr (by rw [if_pos htgt]; exact List.mem_toFinset.mpr hin))
         have hhead := OsinUnboundSameCellCycle.head?_eq_of_pred_not_mem B
-          (show targetDarts X a.2.target = B.darts by rw [htgt]; rfl) a.2.targetArc
+          (congrArg (targetDarts X) htgt : targetDarts X a.2.target = B.darts) a.2.targetArc
           (List.mem_toFinset.mp h) hstep hz
         exact Finset.mem_union_right _
           (Finset.mem_image.mpr ⟨a, Finset.mem_filter.mpr ⟨haK, htgt⟩, hhead⟩)

@@ -212,14 +212,22 @@ theorem exists_base_scan {X : DiscDiagram.{u, w, v} W} {mu lambda c : ℝ} {epsC
       hα₀.symm hmaxpos hq hs hor hqs
   have hword : IsLambdaCQuasiGeodesicWord D lambda c ((List.range B.darts.length).map
       fun j => X.label ((X.toCombMap.facePerm ^ j) B.darts[k₀])) := by
-    have harc := CyclicArc.isLambdaCQuasiGeodesicWord_darts_cellDarts hW
-      (⟨⟨k₀, Nat.lt_succ_of_lt hk₀⟩, B.darts.length, le_rfl⟩ : CyclicArc (cellDarts X i))
+    have hk₀' : k₀ < (cellDarts X i).length := hk₀
+    obtain ⟨A, hAstart, hAlen⟩ : ∃ A : CyclicArc (cellDarts X i),
+        A.start.1 = k₀ ∧ A.length = (cellDarts X i).length :=
+      ⟨⟨⟨k₀, Nat.lt_succ_of_lt hk₀'⟩, (cellDarts X i).length, le_rfl⟩, rfl, rfl⟩
+    have harc := CyclicArc.isLambdaCQuasiGeodesicWord_darts_cellDarts hW A
     convert harc using 1
+    have hlen : A.darts.length = B.darts.length := (CyclicArc.darts_length A).trans hAlen
     refine List.ext_getElem ?_ fun j hj1 hj2 => ?_
-    · simp only [List.length_map, List.length_range, dartWord, CyclicArc.darts_length]
-    · simp only [List.getElem_map, List.getElem_range, dartWord]
-      rw [OsinUnboundSameCellCycle.getElem_darts B rfl _ (by simpa [dartWord] using hj2)]
-      simp only [Nat.mod_eq_of_lt hk₀]
+    · simp only [List.length_map, List.length_range, dartWord, hlen]
+    · have hjA : j < A.darts.length := by
+        simp only [dartWord, List.length_map] at hj2
+        exact hj2
+      have h := OsinUnboundSameCellCycle.getElem_darts B rfl A hjA
+      simp only [hAstart, Nat.mod_eq_of_lt hk₀] at h
+      simp only [List.getElem_map, List.getElem_range, dartWord]
+      exact congrArg X.label h.symm
   have hone : ∀ k s, (k < s ∧ s < B.darts.length ∧
       AvoidEdgeStep.Oriented X.toCombMap X.outerFace ((X.toCombMap.facePerm ^ k) B.darts[k₀]) ∧
       X.toCombMap.alpha ((X.toCombMap.facePerm ^ k) B.darts[k₀]) =
@@ -335,6 +343,9 @@ theorem exists_base_scan {X : DiscDiagram.{u, w, v} W} {mu lambda c : ℝ} {epsC
       X.toCombMap.alpha ((X.toCombMap.facePerm ^ k) B.darts[k₀]) =
         (X.toCombMap.facePerm ^ s) B.darts[k₀])
     (fun _ _ h => ⟨h.1, h.2.1⟩) hnest hone hcover hend (fun _ h hb => hb h.1)
+  have hmemF : ∀ (p : X.toCombMap.Dart → Prop) (inst : DecidablePred p)
+      (s : Finset X.toCombMap.Dart) (a : X.toCombMap.Dart),
+      a ∈ @Finset.filter _ p inst s ↔ a ∈ s ∧ p a := fun _ _ _ _ => Finset.mem_filter
   have hsameEq : positionCount (fun j => (X.toCombMap.facePerm ^ j) B.darts[k₀] ∈ U ∧
       (cell X i).face = X.toCombMap.faceOf
         (X.toCombMap.alpha ((X.toCombMap.facePerm ^ j) B.darts[k₀]))) 0 B.darts.length =
@@ -344,7 +355,7 @@ theorem exists_base_scan {X : DiscDiagram.{u, w, v} W} {mu lambda c : ℝ} {epsC
       (fun d => d ∈ U ∧ (cell X i).face = X.toCombMap.faceOf (X.toCombMap.alpha d))]
     congr 2
     ext d
-    rw [Finset.mem_filter, Finset.mem_filter, List.mem_toFinset]
+    rw [hmemF, hmemF, List.mem_toFinset]
     exact ⟨fun h => h.2, fun h => ⟨hUsub d h.1, h⟩⟩
   have hotherEq : positionCount (fun j => ¬ ((X.toCombMap.facePerm ^ j) B.darts[k₀] ∈ U ∧
       (cell X i).face = X.toCombMap.faceOf
@@ -357,7 +368,7 @@ theorem exists_base_scan {X : DiscDiagram.{u, w, v} W} {mu lambda c : ℝ} {epsC
         ¬ d ∉ U)]
     congr 2
     ext d
-    rw [Finset.mem_filter, Finset.mem_filter, List.mem_toFinset]
+    rw [hmemF, hmemF, List.mem_toFinset]
     constructor
     · rintro ⟨-, h1, h2⟩
       exact ⟨not_not.mp h2, fun hq => h1 ⟨not_not.mp h2, hq⟩⟩
