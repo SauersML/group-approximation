@@ -1,0 +1,101 @@
+---
+rg: 2
+id: thompson-v-cantor-pair-bernoulli-action-is-not-sofic
+kind: claim
+title: The generalized Bernoulli action of Thompson's V over V/V_[0] is not sofic
+distinct_from:
+  thompson-v-not-sofic: that is nonsoficity of the group V, which implies this claim; this is nonsoficity of one free action of V, which a sofic V could still have.
+  kun-thom-free-nonsofic-action: that is the free nonsofic action of a Kazhdan ambient group over a Kazhdan infranormal pair; this is the same kind of action for the infranormal pair (V, V_[0]), where neither group has property (T).
+  groups-containing-kun-thom-pair-have-nonsofic-actions: that transfers nonsoficity to overgroups of a Kazhdan pair; V contains no infinite Kazhdan subgroup, so no instance of that claim reaches V.
+  mixing-free-nonsofic-action-of-sofic-group: that asks for a mixing free nonsofic action; this action is not mixing, since V_[0] fixes the lamp at the base coset.
+---
+
+**OPEN.** Let `V = G_(2,1)` act on `X = {0,1}^N`, and let `Gamma = V_[0]` be the
+rigid stabilizer of the cylinder `[0]`: the elements supported in `[0]`. Then the
+generalized Bernoulli action
+
+```text
+V ↷ ({0,1}, fair)^(V/Gamma)        (V permuting coordinates)
+```
+
+is not sofic in Păunescu's sense (Definition 1.4 of arXiv:1002.0605, as recorded
+in `paunescu-sofic-action-class-permanence`).
+
+## The pair (V, V_[0])
+
+- **Compression semigroup.** `g V_[0] g^-1 = V_(g[0])`, so
+  `P_Gamma = {g : g[0] ⊆ [0]}`. It contains `V_[0]`, `V_[1]` and the prefix
+  replacement `t = {0,10,11} -> {00,01,1}`. Then `t V_[1] t^-1 = V_([01] ∪ [1])`. The
+  clopens `[0]` and `[01] ∪ [1]` cover `X` and overlap in `[01]`, so their rigid
+  stabilizers generate `V` (fragmentation of clopen transpositions through a small
+  cylinder inside the overlap). So `Gamma` is **infranormal** in `V`, and it is not
+  normal, because `V` is simple.
+- **No property (T).** `V` has the Haagerup property (`thompson-v-has-haagerup-property`),
+  so this is the Kun--Thom configuration with both Kazhdan hypotheses removed.
+- **Cosets.** `g Gamma = g' Gamma` exactly when `g` and `g'` agree on `[1]`.
+
+## The action is free and its fixed algebra is not invariant
+
+- **Essentially free.** `g` fixes the coset `h Gamma` iff `supp(g) ⊆ h[0]`. For
+  `g != 1` infinitely many cosets fail this, so `g` moves infinitely many
+  coordinates, and the set of configurations constant on the `g`-orbits of
+  coordinates is null.
+- **Kun--Thom shape.** The lamp at the base coset `Gamma` is `Gamma`-invariant. For
+  `g` with `g^-1[0]` not contained in `[0]`, the coset `g Gamma` is moved by `Gamma`
+  with an infinite orbit, and the centered lamp there is orthogonal to the
+  `Gamma`-fixed algebra (its conditional expectation equals that of the average over
+  finitely many orbit translates, which tends to `0` by the law of large numbers). So `L^∞^Gamma` is not
+  `V`-invariant. Kun--Thom Theorem C (`kun-thom-nonsofic-wreath`) turns exactly
+  this into nonsoficity when `Gamma` and the ambient group are Kazhdan. Unlike in
+  `kazhdan-fixed-algebra-blind-to-subgroup-ergodic-actions`, `Gamma` does not act
+  ergodically here, so the fixed algebra is not blind.
+
+## Payoff, either way
+
+- If `V` is not sofic, the claim holds, since a sofic action makes its group
+  sofic (route `thompson-v-pair-bernoulli-not-sofic-from-v-not-sofic`).
+- If `V` is sofic, the claim is the first free nonsofic p.m.p. action of an
+  a-T-menable sofic group. Every nonsofic action recorded in this graph comes from
+  a Kazhdan pair.
+- Either way `V` is not in Păunescu's class `𝒮`. `𝒮` is closed under subgroups
+  (Alpeev, as recorded in `paunescu-class-is-measure-equivalence-invariant`), so
+  every group containing `V` would then lie outside `𝒮`: the Leavitt unit groups,
+  Brin--Thompson groups and SFT full groups.
+- A proof would be the second nonsoficity mechanism in action form: a
+  compression-semigroup argument with no spectral gap.
+
+## Model tests
+
+- **Amenable infranormal pairs fail it.** `Z <= BS(1,2) = Z[1/2] ⋊ Z` is infranormal
+  and not normal, and every action of an amenable group is sofic (Păunescu
+  Proposition 3.4). So a proof must use that `Gamma` is not amenable.
+- **Kazhdan pairs satisfy it.** Kun--Thom Corollary D.
+
+## Attempts
+
+- **Kun--Thom Proposition 3.1 / Theorem C, verbatim transfer.** For the ultraproduct
+  fixed diagonal algebra `D^(sigma(Gamma))` of a sofic representation `sigma`, conjugation
+  by a compressor `t` gives `sigma(t) D^(sigma(Gamma)) sigma(t)^* = D^(sigma(t Gamma t^-1))`,
+  which contains `D^(sigma(Gamma))`. In finite models a genuine action of `Gamma`
+  has as many orbits as its `t`-conjugate, so the inclusion of orbit partitions is an
+  equality. This dies at the passage from ultraproduct fixed algebras to exact
+  finite fixed algebras. That passage is Kazhdan's spectral gap, and `V_[0] ≅ V` has
+  proper affine actions.
+- **Finite-subgroup generation.** `V_[0]` is generated by finitely many finite
+  subgroups `P_i`. Each can be perturbed to a genuine free action, so each fixed
+  algebra `D^(sigma(P_i))` is exact and robust. Their intersection is not: without
+  spectral gap, alternating projections between the `D^(sigma(P_i))` do not
+  converge uniformly, and the conjugates `t P_i t^-1` lie in `Gamma` only as words,
+  so the orbit count is not exact.
+- **Names and color classes.** A sofic set-action approximation of `V ↷ V/Gamma`
+  (the finitary notion of `coordinate-action-not-sofic`, which the generalized
+  Bernoulli action supplies after discretizing lamp values) gives colorings
+  `c : A × E -> B`, invariant under the diagonal action and injective on each slice.
+  The color classes over one coset have equal size `m_b`, are pairwise disjoint over
+  distinct cosets and are permuted by `V`. This gives only `|E| m_b <= |A|`, with no
+  contradiction for any finite `E`.
+- **Local statistics.** Finite almost-actions whose rooted Schreier graphs mimic
+  the stabilizers of this action converge to an invariant random subgroup. By
+  `thompson-v-character-simplex` those are trivial, so such models do not exist.
+  This is a different notion from Păunescu soficity, whose models only need
+  approximately equivariant lamp functions, and it decides nothing here.
