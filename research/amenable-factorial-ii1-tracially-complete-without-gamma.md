@@ -8,7 +8,8 @@ distinct_from:
   amenable-bauer-factorial-tracially-complete-without-gamma: that is the stronger explicit form, with a Bauer designated trace set and no halving projection at all; this is the bare existence statement.
 ---
 
-**Statement (unreviewed).** There is a tracially complete C*-algebra `(M, X)` with the following
+**Statement (review PASS on both routes, part 9 §9.7 of
+`research/artifacts/ex-review2-analysis-2026-09-13-part9.md`).** There is a tracially complete C*-algebra `(M, X)` with the following
 properties, in the terms of CCEGSTW Definitions 3.4, 3.8, 3.13 and 4.1:
 - amenable;
 - type II_1;

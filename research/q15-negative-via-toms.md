@@ -10,7 +10,9 @@ requires:
   - nuclear-tracial-completions-are-amenable
 ---
 
-Unreviewed, as an assembly of established nodes. The credit for the counterexample is Toms's
+Review PASS (part 9 §9.7 of `research/artifacts/ex-review2-analysis-2026-09-13-part9.md`), as an assembly
+of established nodes. The review asks that this be described as "Toms's example answers Question 1.5
+negatively through Proposition 5.20". Experts may already know it. The credit for the counterexample is Toms's
 (arXiv:2606.12188v2, Theorem 5).
 
 1. **The algebra.** Let `A` be Toms's algebra. It is unital, simple, separable, nuclear,

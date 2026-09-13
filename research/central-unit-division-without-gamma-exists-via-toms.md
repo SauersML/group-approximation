@@ -11,7 +11,8 @@ requires:
   - nuclear-tracial-completions-are-amenable
 ---
 
-Unreviewed, as an assembly of established nodes. Credit: Toms (arXiv:2606.12188v2, Theorem 5) for the
+Review PASS (part 9 §9.8 of `research/artifacts/ex-review2-analysis-2026-09-13-part9.md`), as an assembly
+of established nodes. Credit: Toms (arXiv:2606.12188v2, Theorem 5) for the
 algebra; CETW Proposition 5.10 and lane `ex-tw-projection-starved-bundle` for the block mechanism.
 
 1. **The algebra.** Let `B` be Toms's simple unital separable nuclear AH algebra without uniform Γ,

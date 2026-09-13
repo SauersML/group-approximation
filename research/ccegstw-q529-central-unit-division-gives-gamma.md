@@ -29,7 +29,7 @@ each τ ∈ T_ω(A). Must A have uniform property Γ?"
 - Toms's algebra has central halving (`n = 2`), has no finite-dimensional representation, and lacks
   uniform Γ. So it answers CETW Question 3.5 negatively as well.
 
-**REFUTED (2026-09-13, unreviewed)** by `central-unit-division-without-gamma-exists`.
+**REFUTED (2026-09-13; review PASS, part 9 §9.8)** by `central-unit-division-without-gamma-exists`.
 - **The witness.** The completion of Toms's simple no-Γ AH algebra over its Poulsen trace simplex.
 - **Why it works.**
   - Its equal-rank block splittings, with growing block counts, divide the unit centrally for every
@@ -42,6 +42,6 @@ each τ ∈ T_ω(A). Must A have uniform property Γ?"
 ## Attempts
 
 - **Refuted, so no proof attempt remains.** The negation is established through route
-  `central-unit-division-without-gamma-exists-via-toms` (unreviewed).
+  `central-unit-division-without-gamma-exists-via-toms` (review PASS, part 9 §9.8).
 - **Where it holds.** For Bauer `X` it is Proposition 5.27, and CETW Corollary 3.2 for C*-algebras.
   There the argument needs extremality of limit traces, which fails on Poulsen simplices.

@@ -9,8 +9,12 @@ artifacts:
   - research/artifacts/tw-pauli-tower-scalar-point-bundle-2026-09-13.md
 ---
 
-**UNREVIEWED** (lane `ex2-tw-unsplittable-tails`, 2026-09-13). An `ex-verify-analysis` review is
-requested before this is described as settling BBSTWW Question 3.14.
+**Review PASS** (lane `ex-verify2-analysis`, `research/artifacts/ex-review2-analysis-2026-09-13-part9.md`
+§9.2–9.5). The review confirms fidelity to BBSTWW Definition 3.1, the morphism definition (3.2) and
+Question 3.14.
+
+**Novelty pass.** `research/artifacts/ex-novelty-r-fibre-w-bundle-pass-2026-09-13.md`, lane `ex-novelty`,
+bounded: no earlier nontrivial R-fibre W*-bundle was found.
 
 **Statement fidelity.**
 - **Source.** Read from arXiv:1506.03974 (MSI copy, text extracted locally): "Question 3.14. Does there

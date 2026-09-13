@@ -11,7 +11,7 @@ artifacts:
   - research/artifacts/tw-pauli-tower-scalar-point-bundle-part2-2026-09-13.md
 ---
 
-**Statement (unreviewed).** Let `M` be the W*-bundle of `pauli-tower-bundle-has-scalar-point-property`,
+**Statement (review PASS, part 9 §9.6 of `research/artifacts/ex-review2-analysis-2026-09-13-part9.md`).** Let `M` be the W*-bundle of `pauli-tower-bundle-has-scalar-point-property`,
 over `X̂` with conditional expectation `E`.
 - **Orthogonal pairs.** For positive `a, b ∈ M` with `ab = 0`, some `λ ∈ X̂` has `π_λ(a) = 0` or
   `π_λ(b) = 0`.

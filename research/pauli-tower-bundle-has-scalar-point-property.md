@@ -11,7 +11,8 @@ artifacts:
   - research/artifacts/tw-pauli-tower-scalar-point-bundle-2026-09-13.md
 ---
 
-**Statement (unreviewed).** With `B_k → Y_k` as in `pauli-tower-sections-are-somewhere-scalar`,
+**Statement (review PASS, part 9 §9.3–9.5 of
+`research/artifacts/ex-review2-analysis-2026-09-13-part9.md`).** With `B_k → Y_k` as in `pauli-tower-sections-are-somewhere-scalar`,
 let `A = lim_m C(Π_{k≤m} Y_k, ⊠_{k≤m} B_k)` with maps `a ↦ a ⊗ 1`, and `X̂ = Π_k Y_k`. Let `M` be
 the uniform tracial completion of `A`.
 1. `A` is a unital separable nuclear `C(X̂)`-algebra, all fibres `M_{2^∞}`, `T(A) = Prob(X̂)`. So `M`
@@ -31,7 +32,7 @@ the uniform tracial completion of `A`.
 - **Nontriviality.** In `C_σ(X̂, R)` a constant projection of trace `1/2` has variance `1/4`
   everywhere, and W*-bundle isomorphisms preserve `E`.
 
-**Consequences (unreviewed).**
+**Consequences** (the first two bullets PASS in part 9; the McDuff bullet was not reviewed).
 - **Question 3.14.** Route `nontrivial-w-star-bundle-via-pauli-tower` into
   `nontrivial-w-star-bundle-with-r-fibres-exists`.
 - **No uniform `M_2`.** `pauli-tower-bundle-has-no-uniform-order-zero-m2` refutes

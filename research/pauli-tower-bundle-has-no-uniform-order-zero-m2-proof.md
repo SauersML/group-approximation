@@ -11,7 +11,7 @@ artifacts:
 ---
 
 Part 2, Section 1 (Theorem C, Corollaries C1–C2); the first-proved `1/4` bound is part 1, C2.
-Unreviewed.
+Review PASS (part 9 §9.6 of `research/artifacts/ex-review2-analysis-2026-09-13-part9.md`).
 
 **Theorem C.** Let `a, b ≥ 0` with `ab = 0`, and take `λ` with `π_λ(a − b) = μ1` (prerequisite).
 - `μ > 0`: `π_λ(a) ≥ μ1` is invertible, so `π_λ(b) = 0`.

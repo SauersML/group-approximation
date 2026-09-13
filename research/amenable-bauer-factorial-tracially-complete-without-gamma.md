@@ -8,7 +8,7 @@ distinct_from:
   toms-ah-counterexample-to-uniform-gamma: that is a simple AH algebra without uniform Gamma whose trace simplex is Poulsen and whose closed face bundles are trivial; this is a non-simple algebra with a Bauer designated trace set and an existence gap at the unit.
 ---
 
-**Statement (unreviewed).** Let `A` be the Pauli tower algebra of
+**Statement (review PASS, part 9 §9.7 of `research/artifacts/ex-review2-analysis-2026-09-13-part9.md`).** Let `A` be the Pauli tower algebra of
 `pauli-tower-bundle-has-scalar-point-property`, and `(M, X)` its uniform tracial completion, with
 `X = T(A) = Prob(X̂)`.
 1. `(M, X)` is a tracially complete C*-algebra that is factorial, of type II_1 and amenable, and `X`

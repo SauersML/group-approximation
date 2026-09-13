@@ -7,7 +7,7 @@ target: amenable-factorial-ii1-tracially-complete-without-gamma
 requires: [amenable-bauer-factorial-tracially-complete-without-gamma]
 ---
 
-Unreviewed.
+Review PASS (part 9 §9.7 of `research/artifacts/ex-review2-analysis-2026-09-13-part9.md`).
 
 The prerequisite supplies `(M, X)`, the uniform tracial completion of the Pauli tower algebra. It is
 amenable, type II_1 and factorial, and it fails property Γ with `S = {1}` and `k = 2`. That is exactly

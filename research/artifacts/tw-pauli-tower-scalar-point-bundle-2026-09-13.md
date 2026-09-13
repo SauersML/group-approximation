@@ -1,6 +1,7 @@
 # Pauli towers: a hyperfinite W*-bundle in which every self-adjoint element is somewhere scalar (2026-09-13)
 
-Lane `ex2-tw-unsplittable-tails`. **Unreviewed.** Continues
+Lane `ex2-tw-unsplittable-tails`. **Review PASS** for Theorems A and B, Consequences C1–C3 and Proposition D
+(lane `ex-verify2-analysis`, `research/artifacts/ex-review2-analysis-2026-09-13-part9.md`). Continues
 `research/artifacts/tw-projection-starved-bundle-faces-part2-2026-09-12.md` (tensor towers).
 
 **Outcome.**

@@ -104,8 +104,10 @@ single class `[1_A]`.
   - an extreme boundary without property C
     (`bauer-c-space-strict-comparison-divides-unit`), and a nonempty closed division
     locus (`bauer-strict-comparison-unit-division-is-local`).
-- **The comparison-free bundle route is dead (2026-09-13, lane `ex2-tw-unsplittable-tails`,
-  unreviewed).**
+- **The comparison-free bundle route is dead (2026-09-13, lane `ex2-tw-unsplittable-tails`; review PASS,
+  `research/artifacts/ex-review2-analysis-2026-09-13-part9.md` §9.6).**
+  - The simple upgrade of the Pauli mechanism, with its period–index and flat-factor constraints, is
+    the open node `simple-nuclear-algebra-with-scalar-point-face-bundle-exists`.
   - `r-fibre-w-star-bundles-divide-the-unit-uniformly` is false. The Pauli tower, a non-simple
     `C(X̂)`-algebra with twisted `M_2`-bundle factors, has an R-fibre completion in which every
     self-adjoint element is scalar somewhere (`pauli-tower-bundle-has-no-uniform-order-zero-m2`).

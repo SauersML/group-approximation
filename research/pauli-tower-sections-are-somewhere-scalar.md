@@ -11,7 +11,8 @@ artifacts:
   - research/artifacts/tw-pauli-tower-scalar-point-bundle-part2-2026-09-13.md
 ---
 
-**Statement (unreviewed).** Put `d_j = 2^{j−1}` and `Y_k = RP^{d_{2k−1}} × RP^{d_{2k}}`. Let
+**Statement (review PASS: lane `ex-verify2-analysis`,
+`research/artifacts/ex-review2-analysis-2026-09-13-part9.md` §9.2).** Put `d_j = 2^{j−1}` and `Y_k = RP^{d_{2k−1}} × RP^{d_{2k}}`. Let
 `B_k = (S^{d_{2k−1}} × S^{d_{2k}}) ×_{(Z/2)²} M_2` be the flat `M_2`-bundle whose two antipodal
 generators act on `M_2` by `Ad X` and `Ad Z` (Pauli matrices). For `0 ≤ n < m` put
 `B_{n,m} = ⊠_{n<k≤m} B_k` over `Z_{n,m} = Π_{n<k≤m} Y_k`. Then every self-adjoint continuous
@@ -36,7 +37,8 @@ section `h` of `B_{n,m}` has a point `z` with `h(z) ∈ R·1`.
   `pauli-tower-bundle-has-scalar-point-property`.
 - **Quadratic regime.** `dim Z_{0,m} = 4^m − 1` equals the rank of the traceless part, so the tail
   base dimension is about the square of the tail rank `2^m`.
-- **Every prime (part 2, Theorem D; sketch, unreviewed).** For each prime `p`, flat `M_p`-bundles with
+- **Every prime (part 2, Theorem D; a sketch, not reviewed, and not part of the established
+  statement).** For each prime `p`, flat `M_p`-bundles with
   clock–shift holonomy over products of lens spaces `L^{2d_j+1}` have the same property, where
   `d_j = (p − 1)p^{j−1}/2`. The mod-`p` Euler class is a unit times the `(p−1)/2`-th power of the
   Moore determinant, whose leading monomial survives.

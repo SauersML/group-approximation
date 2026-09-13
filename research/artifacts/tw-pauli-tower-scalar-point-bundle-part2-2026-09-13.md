@@ -1,6 +1,8 @@
 # Pauli towers, part 2: orthogonal pairs, every prime, and what strict comparison would demand (2026-09-13)
 
-Lane `ex2-tw-unsplittable-tails`. **Unreviewed.** Continues
+Lane `ex2-tw-unsplittable-tails`. Theorem C and Corollaries C1–C2 **review PASS** (part 9 §9.6 of
+`research/artifacts/ex-review2-analysis-2026-09-13-part9.md`). Theorem D and Sections 3–4 were **not
+reviewed**. Continues
 `research/artifacts/tw-pauli-tower-scalar-point-bundle-2026-09-13.md` (part 1), whose notation is used:
 `A = lim A_m`, `X̂ = Π_k Y_k`, `M` its uniform tracial completion, `π_λ` the fibre maps.
 

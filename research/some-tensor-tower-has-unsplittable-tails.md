@@ -58,7 +58,8 @@ Bauer simplex and a `C(X̂)`-algebra, and no simple algebra would be needed.
     nor produces a witness here.
   - **Not known here.** Whether hyperfinite W*-bundles over C-space bases are trivial
     without a comparison hypothesis.
-- **Twisted form: proved (2026-09-13, lane `ex2-tw-unsplittable-tails`, unreviewed).**
+- **Twisted form: proved (2026-09-13, lane `ex2-tw-unsplittable-tails`; review PASS,
+  `research/artifacts/ex-review2-analysis-2026-09-13-part9.md` §9.2).**
   - **The tower.** Replace `End(W_k)` by flat `M_2`-bundles over `RP^{4^{k−1}} × RP^{2·4^{k−1}}`
     with Pauli holonomy.
   - **Tails.** Every self-adjoint section of every tail is scalar somewhere, so no tail has a

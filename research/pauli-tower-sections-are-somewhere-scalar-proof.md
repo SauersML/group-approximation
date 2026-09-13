@@ -9,7 +9,8 @@ artifacts:
   - research/artifacts/tw-pauli-tower-scalar-point-bundle-2026-09-13.md
 ---
 
-Complete direct proof, Sections 1–3 of the artifact. Unreviewed.
+Complete direct proof, Sections 1–3 of the artifact. Review PASS (part 9 §9.2 of
+`research/artifacts/ex-review2-analysis-2026-09-13-part9.md`), which re-derives Proposition D as well.
 
 1. **Characters (Lemma 1).** `Ad X` negates `Y, Z`; `Ad Z` negates `X, Y`. So `X, Y, Z` carry the
    characters `(0,1), (1,1), (1,0)` of `(Z/2)²`. For `r` tensor factors the Pauli strings form an

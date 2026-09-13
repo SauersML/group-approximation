@@ -12,7 +12,8 @@ artifacts:
   - research/artifacts/tw-bundle-hunter-bundle-localization-2026-09-12.md
 ---
 
-**OPEN.** There is a strictly separable continuous W*-bundle over a compact
+**ANSWERED (2026-09-13; review PASS)** by route `nontrivial-w-star-bundle-via-pauli-tower`: the Pauli tower's
+uniform tracial completion. Statement: there is a strictly separable continuous W*-bundle over a compact
 metrizable space all of whose fibres are isomorphic to `R`, and which is not
 isomorphic to `C_σ(K,R)`.
 
@@ -28,9 +29,10 @@ Every unital counterexample with a Bauer simplex yields such a bundle.
 
 ## Attempts
 
-- **Witness proposed: the Pauli tower (2026-09-13, lane `ex2-tw-unsplittable-tails`,
-  UNREVIEWED).** Route `nontrivial-w-star-bundle-via-pauli-tower`; pending `ex-verify-analysis`
-  review.
+- **Witness: the Pauli tower (2026-09-13, lane `ex2-tw-unsplittable-tails`; review PASS, lane
+  `ex-verify2-analysis`, `research/artifacts/ex-review2-analysis-2026-09-13-part9.md`).** Route
+  `nontrivial-w-star-bundle-via-pauli-tower`. Novelty pass (bounded, no earlier example found):
+  `research/artifacts/ex-novelty-r-fibre-w-bundle-pass-2026-09-13.md`.
   - **The bundle.** Base `Π_k (RP^{4^{k−1}} × RP^{2·4^{k−1}})`. Algebra `lim_m C(Π_{k≤m} Y_k, ⊠_{k≤m} B_k)`,
     where `B_k` are flat `M_2`-bundles with Pauli holonomy, which are not `End` of vector bundles.
   - **Certificate.** Every self-adjoint element of the completion is scalar at some point

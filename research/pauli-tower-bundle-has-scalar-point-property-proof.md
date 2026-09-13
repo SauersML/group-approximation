@@ -11,7 +11,8 @@ artifacts:
   - research/artifacts/tw-pauli-tower-scalar-point-bundle-2026-09-13.md
 ---
 
-Section 4 of the artifact (Theorem B). Unreviewed.
+Section 4 of the artifact (Theorem B). Review PASS (part 9 §9.3 of
+`research/artifacts/ex-review2-analysis-2026-09-13-part9.md`).
 
 1. **Traces.**
    - On `A_m = C(Z_m, B_{0,m})`, a trace restricts to a measure `μ` on `Z_m`.

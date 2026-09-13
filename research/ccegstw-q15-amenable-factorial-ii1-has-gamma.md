@@ -18,7 +18,7 @@ amenable type II1 factorial tracially complete C∗-algebra satisfy property Γ?
 - Known positive cases: `∂_e X` compact and zero-dimensional (their Proposition 5.28), and, as
   announced there, compact and finite-dimensional.
 
-**REFUTED (2026-09-13, unreviewed)** by `amenable-factorial-ii1-tracially-complete-without-gamma`.
+**REFUTED (2026-09-13; review PASS, part 9 §9.7)** by `amenable-factorial-ii1-tracially-complete-without-gamma`.
 - **Poulsen designated traces.** Toms's simple nuclear AH algebra without uniform Γ
   (`toms-ah-counterexample-to-uniform-gamma`, arXiv:2606.12188v2, Theorem 5) already gives a negative
   answer through CCEGSTW Proposition 5.20. CCEGSTW v6 does not cite Toms's paper.
@@ -29,7 +29,8 @@ amenable type II1 factorial tracially complete C∗-algebra satisfy property Γ?
 ## Attempts
 
 - **Refuted, so no proof attempt remains.** The negation is established through two independent routes,
-  `q15-negative-via-toms` and `q15-negative-via-bauer-pauli`, both unreviewed.
+  `q15-negative-via-toms` and `q15-negative-via-bauer-pauli`, both PASS in review
+  (`research/artifacts/ex-review2-analysis-2026-09-13-part9.md`).
 - **Where a positive answer does hold.** `∂_e X` compact and totally disconnected (CCEGSTW
   Proposition 5.28). Finite-dimensional `∂_e X` is announced there as forthcoming work.
 - **What survives.**

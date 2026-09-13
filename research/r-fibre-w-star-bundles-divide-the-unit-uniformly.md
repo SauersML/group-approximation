@@ -13,7 +13,8 @@ artifacts:
   - research/artifacts/ex-toms-winter-bauer-divisible-unit-2026-09-12.md
 ---
 
-**REFUTED (2026-09-13, unreviewed)** by `pauli-tower-bundle-has-no-uniform-order-zero-m2`. The
+**REFUTED (2026-09-13; review PASS, `research/artifacts/ex-review2-analysis-2026-09-13-part9.md` §9.6)** by
+`pauli-tower-bundle-has-no-uniform-order-zero-m2`. The
 Pauli tower's bundle has no c.p.c. order zero `M_2` with `‖E(1 − φ(1))‖ < 1/4`.
 
 Original statement. Let `M` be a strictly separable continuous W*-bundle over a compact
@@ -97,7 +98,7 @@ profile in `M`.
     (`hopf-doubling-tower-has-no-m2-but-divides-unit-tracially`). So finite-stage
     characteristic-class obstructions, including the mod-2 count in the tensor-product
     bullet, cannot refute this claim.
-- **Refuted by a twisted tower (2026-09-13, lane `ex2-tw-unsplittable-tails`, unreviewed).**
+- **Refuted by a twisted tower (2026-09-13, lane `ex2-tw-unsplittable-tails`; review PASS, part 9 §9.6).**
   - **Witness.** Flat `M_2`-bundles over `RP^{4^{k−1}} × RP^{2·4^{k−1}}` with Pauli holonomy.
     Every self-adjoint element of the completion is scalar at some point
     (`pauli-tower-bundle-has-scalar-point-property`).

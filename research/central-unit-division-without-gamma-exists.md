@@ -9,7 +9,7 @@ distinct_from:
   amenable-factorial-ii1-tracially-complete-without-gamma: that separates amenability from property Gamma; this separates central division of the unit from property Gamma, which the Pauli completion cannot do because it has no division at all.
 ---
 
-**Statement (unreviewed).** There is a factorial tracially complete C*-algebra `(M, X)`, amenable and
+**Statement (review PASS, part 9 §9.8 of `research/artifacts/ex-review2-analysis-2026-09-13-part9.md`).** There is a factorial tracially complete C*-algebra `(M, X)`, amenable and
 of type II_1, with the following properties:
 - **Central division.** For every `‖·‖_{2,X}`-separable `S ⊆ M` and every `k`, there are pairwise
   orthogonal projections `p_1, …, p_k ∈ M^ω ∩ S'` with `τ(p_i) = 1/k` for all `τ ∈ X^ω`.

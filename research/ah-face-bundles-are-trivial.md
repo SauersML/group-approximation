@@ -60,7 +60,9 @@ simplex, carries a projection-starved bundle.
   - By `bauer-gamma-failure-localizes-to-infinite-dim-point`, a strongly
     infinite-dimensional part of `K`.
 - **Twisted homogeneous blocks do give witnesses; untwisted blocks resist the same argument
-  (2026-09-13, lane `ex2-tw-unsplittable-tails`, unreviewed).**
+  (2026-09-13, lane `ex2-tw-unsplittable-tails`).** Review PASS (part 9 of
+  `research/artifacts/ex-review2-analysis-2026-09-13-part9.md`) covers the witness and Proposition D. The
+  Quillen-stratification remark was not reviewed.
   - **The witness.** Flat `M_2`-bundles with Pauli holonomy over
     `RP^{4^{k−1}} × RP^{2·4^{k−1}}`, tensored along the tower.
     - They give a nontrivial face bundle, in fact the whole bundle: every self-adjoint element is
