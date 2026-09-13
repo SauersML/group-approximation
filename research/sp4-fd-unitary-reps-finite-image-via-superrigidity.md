@@ -2,6 +2,7 @@
 rg: 2
 id: sp4-fd-unitary-reps-finite-image-via-superrigidity
 kind: route
+title: Margulis superrigidity with compact target forces finite image
 target: sp4-fd-unitary-reps-have-finite-image
 requires: []
 ---

@@ -2,6 +2,7 @@
 rg: 2
 id: sp4-flexible-correctors-finite-quotient-proof
 kind: route
+title: Flexible correctors are finite-image representations, so they factor through congruence quotients
 target: sp4-flexible-correctors-factor-through-finite-quotients
 requires:
   - sp4-fd-unitary-reps-have-finite-image
