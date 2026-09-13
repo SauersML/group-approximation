@@ -6,6 +6,7 @@ title: An outer finite group action on O_2 with contractible crossed product has
 distinct_from:
   o2-rokhlin-iff-unit-vanishes-in-fixed-central-sequences: that phrases the Rokhlin property as a K_0-class in the fixed central sequence algebra; this proves that all non-central cohomology and embedding obstructions vanish, and that the central unit class is the only one left.
   o2-contractible-crossed-product-inner-half-flip-mcduff: that asks for a central copy of the action itself; this relaxes it to any outer subsystem whose unit class is killed by one nontrivial character.
+  z2-o2-actions-anti-inner-and-o3-rokhlin-criterion: that proves at p = 2, by transfer in K_0 of the fixed central sequences, that an anti-invariant central unitary is equivalent to the Rokhlin property; this proves the central eigen-unitary criterion for every prime from Izumi's theorem on the dual action, and adds the non-central coboundary, universality and submodel statements from Gabe--Szabó 5.6 and 5.14.
 ---
 
 **ESTABLISHED (derivation from Gabe--Szabó Theorems 5.6 and 5.14 and Izumi's

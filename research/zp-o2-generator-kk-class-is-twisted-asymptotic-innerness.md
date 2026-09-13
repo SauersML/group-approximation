@@ -6,6 +6,8 @@ title: For outer Z/p-actions on O_2 the generator's KK^G-class is a character if
 distinct_from:
   zp-o2-action-kkg-trivial-iff-invariant-asymptotic-inner: that is the case of the trivial character, invariant unitary paths; this treats every character and shows that contractible crossed product means exactly that only nontrivial characters occur.
   zp-restriction-trivial-splits-cellular-plus-phantom: that splits off the trivial-action part by the norm idempotent of the action element; this splits the phantom part further by the Galois components where the action element equals a character, and gives each component its dynamics.
+  z2-o2-actions-anti-inner-and-o3-rokhlin-criterion: that derives anti-invariant implementing sequences at p = 2 from K-theoretic transfer in the fixed central sequence algebra; this derives the continuous-path version as an equivalence for every p and every character from Gabe--Szabó uniqueness in KK^G(E, E), and realizes each Galois component by an action.
+  o2-central-sequence-k-theory-bi-cyclotomic-transfer: that finds the anisotropic lines of Ĝ × G in K_* of the fixed central sequence algebra and leaves open which twisted forms occur; this shows in KK^G(E, E) that every action with contractible crossed product is a sum of components each carrying exactly one twisted form.
 ---
 
 **ESTABLISHED (derivation from Gabe--Szabó Theorem 5.8 and the cyclotomic and
