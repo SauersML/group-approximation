@@ -115,6 +115,83 @@ The census has 254 rows in range: 202 formalized, 26 definition, 17 structural, 
    `18fd64bafd97` (L1039). Each correction adds the `…AllCharacteristics` theorem of
    `FullDefectRingEJZUnconditional` whose type is that Prop.
 
+## W1 model tests (lead item, 2026-09-13 after the 08:30 restart)
+
+The item: model-test and truth-audit the piece Props of W1 `hgreendlinger`, meaning the h94
+pieces and the Euler-count chain. dgo-geometric covers the pocket Props and C3–C5.
+
+1. **Landed `594d1e97a`: `GGT/VanKampen/Estimating/OsinCConditionLineModel.lean`.** Probe GREEN
+   `0913-093823-13550` (BUILT); it is on the wire queue.
+   - `D` is `ℤ` with alphabet `{±1}` and no subgroups, and it is 0-hyperbolic (`hyperbolic`).
+   - `condition`: `{a^m, a^-m}` satisfies `OsinCCondition` whenever `λ ≤ 1`, `0 ≤ c`, `ρ ≤ m`
+     and `2ε < μ m`. Since `ℤ` is abelian, the exclusion clause forces two different connectors,
+     so every piece is shorter than `2ε`.
+   - The closed endpoint `osinCConditionLineModel : OsinCConditionLineModelStatement` holds for
+     every `0 < λ ≤ 1`, `0 ≤ c`, `0 < μ`, `ε` and `ρ`. So the C-condition layer of every piece
+     assumption can hold at every threshold.
+   - The earlier models on main, `UnboundSmallMuCounterexample.condition` and
+     `UnboundConjugateCounterexample.condition`, fix `ε = 0` and one `ρ`.
+2. **Case 1 (theoremc-retire): closes; the composition is not landed.**
+   - `OsinLemma94CaseOneWalkStatement` is true as landed at `fd6ce3c09`.
+     - `a < a'` is `source_forward`; `b' < b` is a hypothesis.
+     - `walk` and `closed` give the two value equations.
+     - `boundary_arc` puts the target inside one section.
+     - Allowing any connector alphabet is harmless, because the conclusion names no connector
+       word.
+   - ko-closed proved it: `osinLemma94CaseOneWalk`, GREEN `0913-095509-55850`, bytes = main
+     `8f0f73966`.
+   - `osinLemma94CaseOneInput_of_walk` is GREEN `0913-093623-11190` at the bytes of `3292f7a20`.
+     Composing the two proves `OsinLemma94CaseOneInput`, but no landed declaration composes them.
+   - `OsinLemma94CaseOneSameCellStatement` is redundant.
+     `RealizedSectionFamily.false_of_quadrilateral_face` has no hypothesis that the source and
+     target cells differ, so `osinLemma94CaseOne_false_of_walk` already covers pairs whose sides
+     have the same kind.
+3. **Case 2 surgery (hull-unbound, sec5-sentences): no counterexample.**
+   - `PendantPathRemovalInput`: `DegreeTwoJoints` makes the path a spur from a leaf. A spur that
+     was a whole component would make the face the exterior.
+   - `CornerInsertionInput`: a chain with the face on both sides cannot close up, so the inserted
+     word splits the face into two unselected `G`-faces.
+   - `SeparatingPathRemovalInput` is proved from the pendant form (`7d4a2515f`).
+4. **Count piece (hull-count94).**
+   - `OsinLemma94PolygonCoversInput` is closed, with `L = 24ε` (GREEN `0913-093648-12289`).
+   - `OsinLemma94PolygonSideBudgetInput` is plausibly false, through the outward-spur mechanism
+     hull-count94 reported. The candidate instance is below. It was sent to main, which holds
+     the ruling.
+5. **The Euler-count chain.** C1 `phiSubdividedMultigraphO` (`4e27d4965`), C2
+   `card_add_six_le_of_linkedO` (`050822843`) and ghw-charp2's `hlinked` and `hV` producers are
+   unconditional, and `DartMinimal` is sound.
+6. **Not audited.** `TwoGonHoldsInput` (C6′, `4beca2743`): its route goes through the pocket Prop
+   `EmptyTwoGonInput`, which is dgo-geometric's.
+
+### Candidate counterexample to `OsinLemma94PolygonSideBudgetInput`
+
+- **Setup.** `G = ℤ` with base alphabet `{±1, ±2}` and no subgroups; `λ = 1/2`, `c = 3`;
+  `W = {1^m, (−1)^m}`.
+- **Boundary word.** `u · (−1)^m · (−1)^{6t}` with `u = (2 2 2 1 −1)^t`. Its three sections are
+  `(1/2, 3)`-quasi-geodesic.
+- **Diagram.**
+  - a `G`-face `f` with walk `2^{3t} (−1)^{6t}`, of value 0;
+  - `t` outward spurs `1 −1`, rooted on the `2`-side of `f`;
+  - one relator cell `(−1)^m`, at the far corner.
+- **Why the hypotheses hold.**
+  - With one cell, `Reduced` holds vacuously.
+  - The boundary value is `−m ≠ 0`, so `LeastArea` holds.
+  - No cell dart is on the walk of `f`, so `f` lies in no region. `f` cannot fold, since its
+    labels are `2` against `−1`.
+- **The polygons.** One polygon, and every side is an arc of `outerDarts`. Each spur root is a
+  vertex of degree 3, where `facePerm (alpha e') ≠ alpha e`, so `Maximal` allows a split there.
+  `short_region` cannot absorb these sides. So `∑ sideCount ≥ t + 1`, against `K n = K`.
+- **Unverified.**
+  1. Some optimal family on this diagram has card at most 9.
+  2. The dart-minimal optimum keeps the spur roots on polygon walks. Every O-equivalent diagram
+     reads the same word, and its `t` letters `1` allow at most `t` bridges.
+- **Consequence.** The count grows with the section length `t` at every `ε`, `ρ` and `n`, so
+  moving `∃ K` after `∀ ε` does not repair the Prop. Letting (A2) sides skip value-one excursions
+  does.
+- **Offered, not started.** A formal fixture for this instance. A one-cell `LeastArea` diagram
+  over the line model, which would show that the hypotheses of `OsinLemma94SectionStatement`
+  hold together.
+
 ## Open (owned by other lanes)
 
 - `b6d1590be7ab` (L1145, partial, ghw-charp2): the GHW wall, reported to the lead.
