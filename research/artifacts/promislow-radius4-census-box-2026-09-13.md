@@ -306,3 +306,31 @@ pending. `sbox2_2_hard.out`, `sbox2_3_hard.out`, `sbox2_4_hard.out`,
 | 4 | all rows except the timeouts; `(0,1)` checked (599042) | `(1,2), (1,5), (2,5)` running (task 2) |
 | 5 | all rows except the timeouts; `(0,1)` checked (599042) | `(1,2), (1,5), (1,7), (2,5)` running (task 3) |
 | 6 | nothing | `(0,1), (0,2), (0,3)` running (task 5); `(0,4)` to `(0,20)` pending (task 8); rows 1 to 20 pending (task 7); `(0,1)` check running (689436 task 6) |
+
+### Cancellation (2026-09-13 17:44:22)
+
+Every remaining task was cancelled in the same second by uid 81060, which is
+`sauer354`, the account the jobs run under. Nothing in the job directory
+gives a reason. `sacct -j 689435,689436 -X -o JobID,State,Elapsed,End -P`,
+verbatim:
+
+```text
+JobID|State|Elapsed|End
+689435_0|COMPLETED|03:15:09|2026-09-13T16:22:31
+689435_1|CANCELLED by 81060|04:37:00|2026-09-13T17:44:22
+689435_2|CANCELLED by 81060|04:37:00|2026-09-13T17:44:22
+689435_3|CANCELLED by 81060|04:37:00|2026-09-13T17:44:22
+689435_4|CANCELLED by 81060|04:37:00|2026-09-13T17:44:22
+689435_5|CANCELLED by 81060|04:37:00|2026-09-13T17:44:22
+689435_6|CANCELLED by 81060|01:20:31|2026-09-13T17:44:22
+689435_8|CANCELLED by 81060|00:00:00|2026-09-13T17:44:22
+689436_6|CANCELLED by 81060|04:37:00|2026-09-13T17:44:22
+```
+
+Task 7 has no line of its own in `sacct`, and `squeue` lists no job for these
+cases. `sbox2.done` still reads only `JOBDONE 0 0 hard`. The only new output
+line is `orbit 2 box case (1,2): TIMEOUT 3600s  [3600.0s]` in
+`sbox2_2_sweep.out`, and it decides nothing. No task finished a row past
+`i = 0`. So the table above stands, except that every case listed as running
+or pending is now unrun: representatives 2 to 6 remain undecided on the box,
+and representative 6 has no `(0,1)` check.
