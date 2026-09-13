@@ -540,7 +540,10 @@ def _exhibited_heads(conclusion: str) -> set[str]:
 
 
 LINE_COMMENT = re.compile(r"--[^\n]*")
-IN_PLACE_HAVE = re.compile(rf"(?<![\w'.])(?:have|haveI|let|letI)\s+(?:{IDENT}\s*)?:(?!=)")
+IN_PLACE_HAVE = re.compile(
+    rf"(?<![\w'.])(?:have|haveI|let|letI|obtain)\s+(?:{IDENT}\s*)?:(?!=)")
+IN_PLACE_OBTAIN = re.compile(r"(?<![\w'.])obtain\s+(?=⟨)")
+IN_PLACE_PATTERN_TYPE = re.compile(r"\s*:(?!=)")
 IN_PLACE_ASCRIPTION = re.compile(r"\(\s*(?=[⟨{])")
 
 
@@ -556,6 +559,11 @@ def in_place_heads(declaration: Declaration) -> set[str]:
     builds a `T` under the premises the declaration itself needs, so it is
     indexed as a producer carrying the declaration's requirements and taint.
 
+    An `obtain` whose pattern carries a type is the same construction.
+    `obtain ⟨R, hR⟩ : ∃ R : Surgery.GFaceMerge S.diagram, … := ⟨⟨d, …⟩, h⟩`
+    in `OsinLemma94DartMinimal` builds a `GFaceMerge`, and a pass that read
+    only `have` and `let` saw that structure as never produced.
+
     A value that is not a constructor (a hypothesis restated, a tactic block)
     exhibits nothing this lexical pass can see.  Neither does a construction
     inside a refutation, which builds only from the absurd hypothesis, nor one
@@ -566,18 +574,28 @@ def in_place_heads(declaration: Declaration) -> set[str]:
         return set()
     value = LINE_COMMENT.sub("", declaration.value or "")
     heads: set[str] = set()
-    for match in IN_PLACE_HAVE.finditer(value):
-        cut = value.find(":=", match.end())
+    # Where each typed `have` or `obtain` starts, and where its type starts.
+    typed = [(match.start(), match.end())
+             for match in IN_PLACE_HAVE.finditer(value)]
+    for match in IN_PLACE_OBTAIN.finditer(value):
+        pattern = _matching(value, match.end())
+        if pattern == -1:
+            continue
+        colon = IN_PLACE_PATTERN_TYPE.match(value, pattern + 1)
+        if colon:
+            typed.append((match.start(), colon.end()))
+    for keyword, start in typed:
+        cut = value.find(":=", start)
         if cut == -1 or value[cut + 2:].lstrip()[:1] not in ("⟨", "{"):
             continue
         # The type runs to that `:=` only if it stays inside the `have`: its
         # brackets balance, and every line it continues onto is indented
         # deeper than the line the `have` sits on.
-        written = value[match.end():cut]
+        written = value[start:cut]
         depths = _depths(written + " ")
         if min(depths) < 0 or depths[-1] != 0:
             continue
-        line = value[value.rfind("\n", 0, match.start()) + 1:match.start()]
+        line = value[value.rfind("\n", 0, keyword) + 1:keyword]
         indent = len(line) - len(line.lstrip())
         if any(len(continued) - len(continued.lstrip()) <= indent
                for continued in written.split("\n")[1:] if continued.strip()):
@@ -1662,6 +1680,23 @@ theorem via_never_lift : ∀ (_x : NeverLift), True := fun _ => trivial
 theorem via_debt_lift : ∀ (_x : DebtLift), True := fun _ => trivial
 theorem via_needy_lift : ∀ (_x : NeedyLift), True := fun _ => trivial
 theorem via_sort_lift : ∀ (_x : SortLift), True := fun _ => trivial
+structure InPlaceWitness where
+  seed : Nat
+structure NeverWitness where
+  seed : Nat
+theorem builds_witness (n : Nat) : n = n := by
+  obtain ⟨w, hw⟩ : ∃ w : InPlaceWitness,
+      w.seed = n :=
+    ⟨⟨n⟩, rfl⟩
+  rfl
+theorem restates_witness (h : ∃ w : NeverWitness, w.seed = 0) : True := by
+  obtain ⟨w, hw⟩ : ∃ w : NeverWitness, w.seed = 0 := h
+  obtain ⟨v, hv⟩ : ∃ v : NeverWitness, v.seed = 0
+  · exact h
+  have hz : True := ⟨⟩
+  trivial
+theorem via_in_place_witness : ∀ (_x : InPlaceWitness), True := fun _ => trivial
+theorem via_never_witness : ∀ (_x : NeverWitness), True := fun _ => trivial
 end GroupApproximation
 namespace Outside
 theorem hides_partial : GroupApproximation.Producers.PaperHidden := fun _ => trivial
@@ -1674,11 +1709,13 @@ PRODUCER_FIXTURE_EXPECTED: dict[str, str | None] = {
     "via_in_place": None,
     "via_in_place_anonymous": None,
     "via_in_place_term": None,
+    "via_in_place_witness": None,
     "via_partial_never": "open-predicate",
     "hides_partial": "open-predicate",
     "via_never_lift": "conditional-data",
     "via_needy_lift": "conditional-data",
     "via_sort_lift": "conditional-data",
+    "via_never_witness": "conditional-data",
     "via_partial_debt": "conditional-debt",
     "via_debt_lift": "conditional-debt",
 }

@@ -104,7 +104,7 @@ gave this item to this lane.  Landed with `NM_UNVERIFIED=1`; the script is not i
 * Sent to census and main: the SHA, the 3 stale lines and the grouped findings.  CI "Sentence-level census"
   (`build-non-mf-pdf.yml`) stays red until census re-registers.
 
-### Current item: flip list for the declarations blocked off the ruled route
+### Done: flip list for the declarations blocked off the ruled route, landed at 20d0ec06d
 
 The ruled route proves only `RelativeGreendlingerQuasiGeodesicLeastAreaStatement` (LA).  The lead asked for a
 flip list for the declarations that need one of the four Props off that route.  Read-only work:
@@ -161,21 +161,24 @@ The list went to nm-endpoints, which owns the wall-only wrappers, with copies to
       `GFaceMerge`.
   * No counted row of the merged `NON_MF_SENTENCE_MAP.tsv` names any of the 86 in `decls`.  Rows 721da4c14d11,
     2d1cd22e5f49 and 2f997e5af4e6 mention the `TorsionFreeSectionSentences` `_of_leaves` forms only in the note.
-  * Two lane files still name historical forms in `decls`:
+  * Two lane files still name historical forms in `decls`.  The line keys are numbered as before 45483f699:
     * `metadata/nm-census-rows/hull-respell.tsv`: LINE:1636 names `hullOneStepStatement_of_quasiGeodesicLeaves`,
       `hullBallFormNG_of_quasiGeodesicLeaves` and `hullInputsCorrected_of_quasiGeodesicLeaves`.  LINE:1644 names
       the first two.  Neither row is in the merged map.  Flip targets: BLC:140, `hullBallFormNG_of_oneStep` over
       BLC:140, and `TorsionFree.hullInputs_of_leastAreaLeaves`.
     * `metadata/nm-census-rows/sec5-sentences.tsv`: LINE:1662, 1665 and 1698 name each `_of_leaves` form
       beside its least-area twin.
+    * census reports that this is already settled.  Under the lead ruling of 09-13, the census merge has dropped
+      these declarations from their rows at merge time since 94bb0a9f8, with the rules in lines 11-18 of the
+      merge tool's `overrides.tsv`.  Merge 19 skipped hull-respell LINE:1636 and 1644 because no declaration was
+      left, and no lane edits a row.
   * 11 names are discharged only when the off-route Props are assumed.  None has a census row.
 * **Verdicts for the 86.**  Key: `T` = `GGT/HullSCLeastAreaGreendlingerTwins.lean`, `BLC` =
   `GGT/HullSCLemma44BoundedLeastAreaCanonical.lean`, `LAA` = `Manuscript/NonMF/TorsionFreeLeastAreaAssembly.lean`.
   `sc_fcheck.py` on 0183c4b57 checked all 49 pairs, since :173 has two targets.  Each target is root-reachable
   and not `sorry`-tainted, and each requirement it names is discharged under LA, where the embedded bridge counts
-  as discharged, with the caveat above.  None adds a requirement the consumer lacks.  The two nearest forms named
-  under Superseded, BLC:44 and BLC:123, pass the same check.  `HullLemma44CanonicalQuotientStatement` has 22
-  producers, but it is not discharged under LA.
+  as discharged, with the caveat above.  The two nearest forms named under Superseded, BLC:44 and BLC:123, pass
+  the same check.  `HullLemma44CanonicalQuotientStatement` has 22 producers, but it is not discharged under LA.
   * **Flip, 48: a least-area form exists.**
     * `HullSCLemma44CertificateInjectivity` :143 → T:311 `exists_relativeBallInjectivityParameters_of_geodesicLengthLeastAreaGreendlinger`.
     * `HullSCLemma49Assemble` :65, :160, :172, :193 → T:883 `hullLemma49ShortestGeodesicLeastAreaPowerDiagram_of_leastAreaGreendlinger`
@@ -237,6 +240,37 @@ The list went to nm-endpoints, which owns the wall-only wrappers, with copies to
     `HullSCLemma49Assemble` :172, :193; `HullSCLemma49PowerDiagramFromComponents` :87, :104, :126, :139;
     `HullSCOneStepQuasiGeodesicLeaves` :71, :85, :98, :115, :126.
 
+### Done: obtain-∃ witness blind spot in the verifier, landed with this report
+
+census found that the verifier did not count a structure built as the witness of an `obtain` over an existential as
+produced.  In `Estimating/OsinLemma94DartMinimal.lean:81`, `obtain ⟨R, hR⟩ : ∃ R : Surgery.GFaceMerge S.diagram, … :=
+⟨⟨d, …⟩, h⟩` builds a `GFaceMerge`, but `in_place_heads` read only `have`, `haveI`, `let` and `letI`.  census held
+the landing until merge 19 (6457b79e5) had re-registered the baseline.  Landed with `NM_UNVERIFIED=1`.
+
+* Fix.  `in_place_heads` also reads `obtain [name] : T := …` and `obtain ⟨…⟩ : T := …`, with the type after the
+  pattern's closing bracket.  The value checks are the ones the `have` pass applies, so an `obtain` that restates a
+  hypothesis (`:= h`, or a `·` block) still produces nothing.
+* `PRODUCER_FIXTURE`, part of `--self-test`, gains `via_in_place_witness`, over a witness built in place, and
+  `via_never_witness`, over one that is only restated.  The landed script gets `via_in_place_witness` wrong
+  (conditional-data).  The candidate gets all 13 consumers right.
+* Calibration on MSI, on an export of b8231e36d:
+  * `--self-test` passes.  The CI mode (`--tex non_mf_groups_exist.tex --baseline
+    metadata/NON_MF_UNCONDITIONAL_BASELINE.txt`) reports 47 cited declarations unconditional, with identical output
+    before and after.
+  * The discharged set gains exactly `Surgery.GFaceMerge` and `Surgery.SpikeDeletion`, and loses nothing.
+    * `GFaceMerge` is built at `OsinLemma94DartMinimal.lean:81`, :126, `OsinLemma94PolygonRealization.lean:84`,
+      `OsinLemma94SeparatingRemoval.lean:89`, `OsinUnboundMerged.lean:143` and `OsinUnboundReduced.lean:107`.
+    * `SpikeDeletion` is built at `OsinLemma94PendantRemoval.lean:113`, as `⟨⟨d, htip d (by simp), hf.1, hf.2.1⟩, rfl⟩`.
+  * 376 declarations gain in-place heads, mostly `ℕ`, bound variables, `Finset` and `Fin`.  Apart from the two names
+    above, none of them changes the discharged set.
+* Register effect.  `sentence_census.py --verify-unconditional` reports 374 conditional or literature-fed
+  assignments, 0 new, where the landed script reports 378.
+  * The four that clear are the `conditional-data` findings on `Surgery.GFaceMerge.facePerm_keep_of_ne` and
+    `sigma_keep_eq_self`, each under rows 8aead549f1fe and 4895f03fdf5f.  Their two lines in
+    `NON_MF_CENSUS_CONDITIONAL_BASELINE.txt` are now stale.
+  * The landed script already reports `osinLemma94CaseTwo_false` stale on b8231e36d.  This fix did not cause that.
+* Sent to census and main: the SHA and the two stale lines.
+
 ## Brief items
 
 | input | producer on main | state |
@@ -273,8 +307,8 @@ The list went to nm-endpoints, which owns the wall-only wrappers, with copies to
   no Lean edit for this item.
 * The "Still open" docstring on `EstimatingUnboundOutputStatement` (`Estimating/Assembly.lean:818`) should name
   the `{0, 0, 0}` refutation.  The owner of that file makes the edit.
-* census decides on the historical forms in `hull-respell.tsv` LINE:1636/1644 and `sec5-sentences.tsv`
-  LINE:1662/1665/1698.
-* If census's re-registered baseline against 736f7ea44 has a finding that points at the verifier, not at the
-  corpus, this lane fixes the script and re-runs the calibration on MSI.
+* census deletes the two stale `GFaceMerge` register lines when it re-registers against the obtain fix.
+  `osinLemma94CaseTwo_false` was already stale on b8231e36d.
+* If a re-registered baseline has a finding that points at the verifier, not at the corpus, this lane fixes the
+  script and re-runs the calibration on MSI.
 * Otherwise idle until the lead assigns a new item.
