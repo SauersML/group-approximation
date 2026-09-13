@@ -109,4 +109,5 @@ characteristic two. Then every group homomorphism `sigma : V -> M^x` is trivial.
   - **Open:** `v-rank-order-char-cycles-are-trivial-plus-regular`, the characteristic-`2` law
     `rk(1 + [t]) = (1 - phi_V)/2` for a clopen transposition `t`, where `(1 + [t])^2 = 0`. The first version wrote
     `rk((1 + [t])^j) = (1 - phi_V)(2 - j)/2` for all `j`, which fails at `j = 0`. In characteristic `2` the relevant
-    identity is `rk(x_1 + x_2) = rk(x_1)` for disjoint transpositions.
+    identity is `rk(x_1 + x_2) = rk(x_1)` for disjoint clopen transpositions whose supports leave a nonempty clopen
+    complement. Then `x_1 + x_2 = [t_1](1 + [t_1 t_2])` with `t_1 t_2` conjugate to `t_1`.

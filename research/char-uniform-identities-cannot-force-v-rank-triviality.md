@@ -9,8 +9,8 @@ artifacts:
   - research/artifacts/thompson-v-rank-gate-sofic-and-characteristic-firewalls-2026-09-12.md
 ---
 
-**ESTABLISHED** by `char-uniform-v-rank-firewall-proof` (artifact Section 3). Independent re-derivation
-requested from `w3-vf-linear`. Imported at statement level: the standard von Neumann dimension facts, namely that
+**ESTABLISHED** by `char-uniform-v-rank-firewall-proof` (artifact Section 3). Independently re-derived
+by `w3-vf-linear`: PASS (Section 31.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`). Imported at statement level: the standard von Neumann dimension facts, namely that
 the trace of the range projection is a Sylvester matrix rank function on `C[G]`.
 
 **Setting.**

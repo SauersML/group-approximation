@@ -12,7 +12,9 @@ artifacts:
 ---
 
 **OPEN.** Let `char F = p > 0`, `rk` a Sylvester matrix rank function on `F[V]`, and `phi_V = 1 - rk col(1 - [s_i])`
-over a generating set. The claim: for every clopen `p`-cycle `s` and `1 <= j <= p`,
+over a generating set. A clopen `p`-cycle is an element of order `p` that permutes `p` disjoint nonempty clopen sets
+cyclically and is the identity on their complement, which must be nonempty. All of them are conjugate in `V`. The
+claim: for every clopen `p`-cycle `s` and `1 <= j <= p`,
 
 ```text
 rk((1 - [s])^j) = (1 - phi_V)(p - j)/p.
@@ -50,8 +52,10 @@ weight `1 - phi_V` of the regular module `F[Z/p]`.
   compatibility across levels or depth-changing elements.
 - **Next test.** Decide whether a rank function on `F_p[E_infinity]` can be invariant under every disjoint-support
   endomorphism (each basis cycle mapped to a product of cycles with disjoint index sets) without being trivial plus
-  regular. Every clopen `p`-cycle tuple of this shape is jointly conjugate in `V`. In characteristic `2` the relevant
-  identity is `rk(x_1 + x_2) = rk(x_1)` for `x_i = 1 + [t_i]` with disjoint transpositions `t_i`.
+  regular. Every clopen `p`-cycle tuple of this shape whose supports leave a nonempty complement is jointly conjugate
+  in `V`. In characteristic `2` the relevant identity is `rk(x_1 + x_2) = rk(x_1)` for `x_i = 1 + [t_i]` with
+  disjoint clopen transpositions `t_i` whose supports leave a nonempty clopen complement. Then
+  `x_1 + x_2 = [t_1](1 + [t_1 t_2])` with `t_1 t_2` conjugate to `t_1` (w3-vf-linear, Section 31.3).
 - **Correction** (w5-v-nonamenable, after 27fa7efbff). The first version stated the law for `0 <= j <= p`. That fails
   at `j = 0` whenever `phi_V > 0`, the augmentation rank included, since `rk(y^0) = 1`. The range is `1 <= j <= p`.
 

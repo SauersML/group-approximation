@@ -11,8 +11,10 @@ artifacts:
   - research/artifacts/thompson-v-rank-gate-sofic-and-characteristic-firewalls-2026-09-12.md
 ---
 
-**ESTABLISHED** by `sofic-configuration-v-rank-firewall-proof` (artifact Sections 0–2). Independent re-derivation
-requested from `w3-vf-linear`.
+**ESTABLISHED** by `sofic-configuration-v-rank-firewall-proof` (artifact Sections 0–2). Independently re-derived by
+`w3-vf-linear`: PASS (Section 31.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`). Its three
+precision notes are applied in the artifact: Lemma 1.1 step 4, `K != 1` in Theorem 1.2, and "complements" for the
+comparison with Proposition 3.2.
 
 **Setting.**
 - `F` is any field, `S ⊆ V` is finite, and `K = <S>`.
@@ -29,7 +31,7 @@ requested from `w3-vf-linear`.
    - `rk_K(q([g])) = 1 - deg gcd(q, t^n - 1)/n` for `g` of order `n`, and `1` for infinite order;
    - in particular `rk_K(1 - [g]) = 1 - 1/ord(g)`.
 2. **Inertness** (Theorem 1.2). If `K` is sofic, no argument confined to `S` concludes `rk(1 - [g]) < 1 - 1/ord(g)`,
-   or that the rank function is the augmentation rank on `F[K]`.
+   or, when `K != 1`, that the rank function is the augmentation rank on `F[K]`.
 3. **Instances inside `V`** (Section 2):
    - lamp configurations `<x, L> ≅ L wr Z`, for `x` with a wandering clopen `W` and finite or amenable
      `L <= Rist_V(W)`; the sofic case imports Hayes–Sale at statement level;
