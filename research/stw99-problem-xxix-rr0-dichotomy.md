@@ -59,3 +59,30 @@ subalgebra" the exact pure-infiniteness criterion.
   XXIX.  Every counterexample must contain a finite `q` and `n` with `nq`
   properly infinite, hence the explicit compact-order almost-perforation
   witness `(n+1)(2q)<=nq` but `2q not <=q`.
+* Literature state, verified from the sources on 2026-09-12.
+  `opr-cfp-rr0-dichotomy` (OPR Corollary 5.16) is the CFP theorem, routed
+  here as `stw29-via-rr0-corona-factorization` from the open claim
+  `rr0-simple-algebras-have-corona-factorization`.
+  `rordam-mixed-examples-not-real-rank-zero` gives the mechanism of Rordam
+  2005: the Euler certificate survives Villadsen transversality on generic zero
+  sets, and his examples have property (SP).
+  `opr-mixed-simple-refinement-monoid` shows that refinement, simplicity and
+  weak divisibility of `V(A)` cannot force `(QQ)`, so a proof needs analytic
+  input.
+* Level-two normal form (`stw29-counterexample-level-two-fingerprint`).
+  XXIX fails iff some unital simple real-rank-zero `C` is finite while `M_2(C)`
+  is infinite.  Such a `C` has an orthogonal sequence `e_i` with
+  `1 direct_sum 1 <~ e_i direct_sum e_i`, no quasitrace, and infinite stable
+  rank.  Its monoid carries the separativity failure `x = [1]`, `y = [1] + r`.
+  So a counterexample is a simple non-separative exchange ring with wild `V`,
+  and it would answer the Ara--Goodearl--O'Meara--Pardo separativity problem
+  negatively.
+* Positive classes (`stw29-separative-projection-monoid-dichotomy`).
+  The dichotomy holds for every simple algebra with (SP) and separative
+  `V(A)`: tame `V(A)`, or inductive limits of separative building blocks with
+  arbitrary connecting maps.
+* Weaker premises routed here.  `stw29-via-finite-simple-rr0-weak-cancellation`
+  needs weak cancellation only for finite simple real-rank-zero algebras
+  (implied by LX(1)), and stable rank one of those algebras suffices
+  (`finite-simple-rr0-algebras-have-stable-rank-one`, Rordam's 2005 open
+  question).
