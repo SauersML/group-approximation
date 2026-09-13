@@ -25,20 +25,16 @@ group that is not virtually torsion-free (`simple-vertex-groups-vtf-iff-some-fin
     where `P^2 = 1/s`, gives a vertex-injective map onto `SL_2(q^2)`.
   - A scalar twist `x ↦ λx` on `E_23` is absorbed by changing `P`.
   - So candidates must use gluings that are not absorbed by such configurations.
-- **Two-dimensional representations force semilinear gluings** (sketch, not written as a proof).
-  - Let `ρ: Λ -> SL_2(K)` be vertex-injective, with `char K = 2`. Each `ρ|_{A_i}` should be conjugate to a
-    Frobenius twist of the natural representation (Steinberg's tensor product theorem, not re-read).
-  - A conjugation carrying one root subgroup `u(k)`-type onto another rescales parameters by a scalar.
-  - So every relative gluing on an edge would lie in `ΓL_1(F_q) = F_q^* ⋊ Gal(F_q/F_2)`, of order
-    `f(q-1)`.
-  - This is small inside `GL_f(F_2)`: 21 versus 168 for `q = 8`, and 60 versus 20160 for `q = 16`. A twist
-    outside `ΓL_1` on some edge would admit no vertex-injective 2-dimensional representation in
-    characteristic 2.
-  - In characteristic `≠ 2`, the torus argument of Step 1 of
-    `sl2-subfield-root-links-codistance-large-q-proof` shows every nontrivial representation of `SL_2(q)`
-    has dimension `>= q - 1`.
-  - Calibration still needed: confirm by computation that a non-semilinear twist for `q = 8` has no map
-    into `SL_2(64)`.
+- **Two-dimensional representations force semilinear gluings** (established:
+  `sl2-root-triangle-2dim-reps-force-semilinear-gluing`).
+  - A member with a nontrivial `ρ: Λ -> GL_2(K)` has `char K = 2`, `ρ` vertex-injective, and every relative
+    gluing twist in `ΓL_1(F_q) = F_q^* ⋊ Gal(F_q/F_2)`.
+  - The proof is elementary: fixed lines of root groups, then Hua's identity makes the root
+    parametrization a field embedding.
+  - `ΓL_1` is small in `GL_f(F_2)`: 21 of 168 for `q = 8`, and 60 of 20160 for `q = 16`. So the members
+    with a non-semilinear twist, the generic ones, have no linear representation of dimension 2.
+  - In characteristic `≠ 2` the minimal degree of `SL_2(q)` is at least `q - 1`. In characteristic 2 the
+    next targets are the twisted tensor products of dimension `2^j`.
 - **Counting heuristic (not a proof).** Here `χ_orb = 2/|SL_2(q)| + 1/|SL_2(q^2)| - 3/q + 1`, which is
   `≈ 0.63` for `q = 8` and `≈ 0.81` for `q = 16`. That predicts few epimorphisms onto large simple groups.
   - The natural member shows that structure beats the count.
