@@ -80,3 +80,22 @@ theorem cited here covers it.
    quasi-convex with hyperbolic top group exactly when it is Z-stable and the
    group contains no Baumslag--Solitar subgroup. So hyperbolicity reaches no
    group with a Baumslag--Solitar subgroup. *Dies* there.
+4. **Virtual specialness outside primitivity rank two (2026-09-13).** *Adds no
+   class.* Linton--Nyberg-Brodda, Theorem 2.6.16 and Corollary 2.6.17, say that
+   `π(w) ≠ 2` makes every Magnus hierarchy quasi-convex, and `G` virtually compact
+   special and linear. But `π(w) ≠ 2` covers only proper powers (torsion), 2-free
+   relators and free groups. All of these are hyperbolic or free, so
+   `hyperbolic-groups-satisfy-boone-higman` already covers them. What linearity
+   still contributes is `char-zero-linear-groups-satisfy-boone-higman` for linear
+   inputs with `π(w) = 2`. The residual must therefore be non-linear.
+5. **A residually finite residual case (2026-09-13).**
+   `drutu-sapir-group-satisfies-boone-higman`:
+   - `DS = <a, b | a^2 b^2 a^-2 b^-1>` is torsion-free, residually finite and not
+     linear [DS05, via Linton--Nyberg-Brodda p. 27].
+   - It contains `BS(1,2)`, so it is neither hyperbolic nor virtually free-by-cyclic
+     (`virtually-free-by-cyclic-groups-contain-no-bs-one-n`).
+   - It is an ascending HNN extension of `F_2`, isomorphic to
+     `(Z[1/2] * Z[1/2]) ⋊ Z`
+     (`drutu-sapir-group-index-two-squaring-mapping-torus`).
+   - So the residual is not only non-residually-finite groups such as
+     Baumslag--Gersten. No imported theorem reaches `DS`.
