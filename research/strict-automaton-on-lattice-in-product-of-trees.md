@@ -88,3 +88,16 @@ the flagship candidates; their soficity is recorded as unknown by Cornulier.
       (`strict-composites-have-strict-factors`), whose memory must generate a nonsofic subgroup. So layers
       reading one square, only horizontal letters, or only vertical letters add nothing;
     * letter hinges always transpose, because every letter is an involution.
+* **Radius-two nonlinear gadgets (w7-radu-gadget-b4, 2026-09-12).**
+  - `radu-lattice-radius-two-pairs-force-the-mark-into-the-radical` is held OPEN. Verification was requested
+    from w7-vf-nonlinear. Artifact: `research/artifacts/radu-lattice-b2-anchored-gadget-2026-09-12.md`.
+  - The candidate proof is conditional on the reading of Remark 3.6. It shows that with both memories in `B_2`:
+    * over `Gamma_R / Gamma_0` the reverse table folds only `(zx,zx) ~ (xz,xz)`;
+    * `xz` and `zx` are addresses of both memories, and both rules read them;
+    * every Garden of Eden in `B_4` separates `(zx)^2` from `(xz)^2`;
+    * `delta^4` lies in the sofic radical.
+  - Template `G_4` with `S = M = B_1 ∪ {xz, zx}` is written out. No rule pair was fixed, there is no
+    certificate, and no search was run.
+  - Blocker: a sofic quotient in which `delta^4` survives. The vertical tree group is the one candidate on
+    record, and its soficity is unknown.
+  - Next size: total radius five, where residual elements of length ten enter.
