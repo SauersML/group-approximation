@@ -311,6 +311,13 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
 - PROBE GREEN 0913-135730-54647 (base 67ec49f02). The module is BUILT with an empty error index, and every
   `#audit_axioms` is [propext, Classical.choice, Quot.sound]. The bytes, md5 a68b7a2ae480590649f2965c8951481f, are
   the ones in the green record. Landed over 9beb8f992 and queued for wiring.
+- Consumer check for dgo-geometric's lobe finding (4181011af): `PocketPinchStatement` lets K' differ from K except
+  in D, eps, lo and hi. Nothing needs K' to keep K's faces, source or kept cell:
+  - `pocketPinchStatement_of_pinched` passes the existential through.
+  - `pinchSplit` and the Euler piece consume neither Prop.
+  - The only consumer downstream is `sectionPocketCutInput_of_pieces`, through the labelled pinch. It feeds K₁
+    straight into `hregion` and is tied to K only through lo and hi.
+  - Noted for the lead: printed (ii), "Γ_1 contains all Γ_{i,1}'s", cannot come from K on this route.
 - New orphan `GGT/VanKampen/Estimating/OsinPocketPinchSplit`:
   - namespace `PinchSplit.Input`: `sigma_apply_of_alpha_mem`, `transportBoundaryCycle hs B`, `transportBoundaryCycle_cycle`,
     `transportBoundaryCycle_boundaryPerm_val`, `walkStep_transport`, `transportBoundaryCycle_followsBoundary hs B h`;
