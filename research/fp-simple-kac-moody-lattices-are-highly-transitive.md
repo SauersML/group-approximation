@@ -106,3 +106,44 @@ part, high transitivity, which this node asks.
    - Missing input: a hyperbolic-space analogue of the FLMMS criterion, i.e. that a
      faithful general-type action on a hyperbolic space that is topologically free on
      the limit set yields a highly transitive action.
+
+4. **Extending the FLMMS criterion to hyperbolic spaces: the method does not
+   transfer, and no known tool decides the case (2026-09-13, lane
+   solve-bh-ht-hyperbolic).**
+   - **Where FLMMS use the tree.** In arXiv:2003.11116 (TeX
+     `HTacttrees-DAJ-final.tex`, on MSI at `/scratch.global/sauer354/km-ht/2003.11116.d/`)
+     high transitivity is built from the Bass--Serre decomposition of `Γ`. A partial
+     bijection is extended by a "free globalization" of a *pre-action* of an HNN extension
+     or amalgam through its Bass--Serre graph (l.739--745; sections on free globalizations
+     for HNN extensions, l.1462ff, and for amalgams, l.2456ff), followed by the Baire
+     category theorem in the Polish space of actions (l.702; Theorem
+     `ThmGroupsHTHNNBaire`, l.2345). The tree enters only through that splitting.
+   - **So the method has no input for the Kazhdan members.** A group with property (T)
+     has property FA, hence no nontrivial amalgam or HNN splitting (standard, not
+     re-read). What is missing is not a hyperbolic version of the statement but a new
+     globalization mechanism for actions that do not come from splittings; north--south
+     boundary dynamics do not supply pre-actions.
+   - **The other positive tools miss these groups.** Hull--Osin needs acylindrical
+     hyperbolicity (Attempt 1). Gelander--Glasner--Soifer treat unbounded subgroups of
+     `SL_2(k)` over local fields (as cited in FLMMS l.405--407 and Le Boudec--Matte Bon,
+     Ann. H. Lebesgue 5 (2022), p. 493). A Kazhdan group has bounded image in every such
+     `SL_2(k)`, since isometric actions of (T) groups on trees and real hyperbolic spaces
+     have bounded orbits (standard, not re-read).
+   - **No known obstruction bites either.** Le Boudec--Matte Bon §2.4 (p. 498, read from
+     the PDF): a highly transitive group that is not partially finitary is MIF, has
+     trivial centralizers of nontrivial normal subgroups, and has every finite group as a
+     subquotient. `S_q` is simple, finitely generated and infinite, so not partially
+     finitary; it is MIF by `fp-simple-kac-moody-lattices-are-mif`; and it contains free
+     subgroups from two loxodromics with disjoint fixed points in Rybak's general-type
+     action, so every finite group is a subquotient. Rybak's rigidity of 3-transitive
+     actions (arXiv:2605.14159v3, TeX l.263--273) is only for faithful weakly hyperbolic
+     groups that are *not* lim-free, while `S_q` is lim-free (her Proposition A), so it
+     gives no bound on the transitivity degree.
+   - **The only obstruction template.** Le Boudec--Matte Bon Corollary 1.4 (p. 493): if
+     some confined subgroup of `S_q` had no faithful highly transitive action, neither
+     would `S_q`. No confined subgroup of `S_q` is known here; stabilizers for the
+     building actions are the natural candidates to test.
+   - **Gap.** Either a globalization mechanism turning a faithful general-type hyperbolic
+     action, topologically free on the limit set, into a highly transitive action without
+     using a splitting, or a confined subgroup of `S_q` with no faithful highly transitive
+     action.
