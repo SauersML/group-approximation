@@ -366,6 +366,28 @@ and `rho0 = 1`.
     theorem after it. So the simple-case glue is only `exists_twoGonLabels`, then
     `exists_of_exteriorAt`, then `exists_kept_of_simple`.
   - Sent to debt-conditional with an offer: the simple-case glue, in a new module of this lane.
+- The premise list for the thickened copy `S'`, sent to hs-vanishes (rulings-1425 asks for it;
+  hs-vanishes transports the C6′ premises):
+  - `S'` from `OuterSpurThickeningStatement` (`SurgeryOuterSpurThickening.lean:51`) lies over
+    the same `Delta` and `cuts`, so `Delta.LeastArea` needs no transport.
+  - All 13 binders of `TwoGonHoldsInput` are the full list. Two of them fail to transport with
+    the landed statement:
+    - `S'.NoLoops` and `S'.NoMultipleEdges` read `target = some k`;
+    - `SameTargetProfile` (`GFaceQuadrilateralRegion.lean:44`) keeps `target = none ↔`, the
+      target start and length and the source length, and the statement adds `source.val`, so
+      the target cell index is not kept;
+    - the two-gon, corner and cell premises are faces of `phiMapO`, which is built from darts.
+  - The narrower list, recommended. Module 1's labels transport along `e` with the landed
+    statement: `exteriorAt` reads `target = none` and the source index, and
+    `TargetsSectionIndex` reads `target = none`, start and length. On `S'` there remain `hno`
+    (no relator cell on `sideFaces S'.diagram.toCombMap K'.walk`), `havoid` and `hw` for the walk
+    of `exists_of_exteriorAt`, and `exists_kept_of_simple` gives False. None of the three follows
+    from the landed statement. For a pinched walk, `emptyTwoGonInput_holds` takes a
+    `PocketRegion` instead of `hw`.
+  - No face map is needed in the statement: the conclusion is False and names neither `f` nor
+    `S`.
+  - Hand model, not tested in Lean: no outer spur does not make `K'.walk` simple. A vertex of
+    cell `i` on `∂Δ` inside the gap pinches the walk without a spur.
 - No C6′ Lean from this lane yet.
 
 ## Next
