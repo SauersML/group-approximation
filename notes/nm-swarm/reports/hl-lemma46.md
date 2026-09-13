@@ -62,7 +62,9 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
 ## Next
 - The Corollary 7.4 piece was superseded: cite-hull closed Hull Cor 7.4 (c6e0b6c33).
 - Done for W1: the CutMerge repair and the two-collar lemma. SHAs and statement were sent to hull-select and main.
-- Held: no edits to `OsinAppendixCutMerge` until ghw-charp2 reports its patch 05 landed.
+- Hold lifted on `OsinAppendixCutMerge`: ghw-charp2's patch 05 landed at f04929ebb, and co-probe 0913-144505-9146 is GREEN with CutMerge built.
+  - The patch passes `R.regionFamily_noLoop` as the new `hloop` argument of `respectsSections_of_sameTargetProfile` (l.147), and rewords the docstrings of `false_of_cons_singleton` and `false_of_collapse_singleton` ("from a cell to a different cell or to a section").
+  - No statement changed. The loop conjunct sits inside `RespectsSections`, so at site 1 it is the caller's hypothesis. No edit of this lane is pending there.
 - Current item (lead, 09-13 ~09:45): census the open W1 leaf Props, then prove the first unowned leaf.
   - Census sent to the lead: `$NM/drafts/w1-leaves-0913.md`, pinned at origin dc23e61b1.
   - Every leaf on the ruled `_of_pocketParts` route has a named owner.
