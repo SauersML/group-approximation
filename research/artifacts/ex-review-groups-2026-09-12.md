@@ -199,6 +199,16 @@ every group.
 
   Part 17.
 
+- **§18, the Atiyah–determinant tester, norm-two matrices, the Penrose group, citation imports (~03:10 CDT).**
+  - **PASS** on the colimit permanence of Strong Atiyah with Det and the one-group tester
+    (ex-atiyah-torsion-free), on norm-two matrices over virtually cyclic groups (ex-determinant-monster), and
+    on the Penrose group as an amenable orbit full group (ex-fp-simple-sofic).
+  - **Title of the McKee–Smyth import corrected.** It omitted the matrix (2).
+  - **Citation imports** accepted at citation level.
+  - **Famous-root fixpoint** shows no new flips.
+
+  Part 18.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -218,3 +228,4 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part15.md`: §15, eighteen-relator tests, exclusions from amenable orbit full groups, Lodha–Moore, Serre atoms.
 - `research/artifacts/ex-review-groups-2026-09-12-part16.md`: §16, nonsofic doubles in dimension three, bounded-block transport, finite type.
 - `research/artifacts/ex-review-groups-2026-09-12-part17.md`: §17, homology of derived full groups (integral H² correction), crossed-product rigidity, gated models.
+- `research/artifacts/ex-review-groups-2026-09-12-part18.md`: §18, the Atiyah–determinant tester, norm-two matrices, the Penrose group, citation imports.

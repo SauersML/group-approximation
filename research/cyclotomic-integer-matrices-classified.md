@@ -2,7 +2,7 @@
 rg: 2
 id: cyclotomic-integer-matrices-classified
 kind: claim
-title: Every connected integer symmetric matrix with spectrum in [-2,2] sits inside a toral or cylindrical tessellation, a sporadic graph on at most 16 vertices, or a 2 by 2 block
+title: Every connected integer symmetric matrix with spectrum in [-2,2] sits inside a toral or cylindrical tessellation, a sporadic graph on at most 16 vertices, the 1 by 1 matrix (2), or the 2 by 2 matrix with off-diagonal entries 2
 distinct_from:
   integral-operator-norm-below-two-is-quantized: that is the group-ring norm quantization below two, proved through Pólya's theorem; this is the literature classification of finite integer symmetric matrices of norm at most two, with no group in it
   atomic-serre-measures-are-equal-weight-real-orbits: that characterizes atomic Serre-class measures; this classifies finite integer matrices whose eigenvalues all have the form 2cos(2 pi r)
