@@ -69,6 +69,16 @@ have four torsion generators. This connects the Pestov construction to
 the manuscript's non-MF obstruction; the negative rank-three case remains
 outside the theorem. The new proof is not yet Lean-formalized.
 
+For the monotone binary subshift forbidding `10`, the
+[exact radical computation](../research/artifacts/pestov91-monotone-exact-mf-quotient-2026-09-13.md)
+identifies the MF radical with the infinite simple locally finite group
+of matrices supported on the transition orbit. Deleting that orbit and
+restricting to the two fixed points gives the maximal MF quotient
+`SL_n(F_2[z,z^{-1}]) x SL_n(F_2[z,z^{-1}])` for `n>=4`.
+It is residually finite, and the MF radical also equals the finite
+residual. This computes the entire kernel beyond the earlier single
+invisible root; the proof remains to be formalized in Lean.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
