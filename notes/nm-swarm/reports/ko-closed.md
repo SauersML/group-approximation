@@ -5,7 +5,10 @@ closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
 ## STATE (09-13 ~16:20): cell-free branch of binder 3 LANDED 29c1eeae3 (GREEN, queued)
 - hull-unbound landed option (a) as `OsinLemma94PinchedQuadrilateralStatement`, d463383fa (probe 0913-160048-79943
-  GREEN, queued).  It is the pick (i) below, so ko-closed confirmed it as final.
+  GREEN, queued).  It is the pick (i) below.  Lead ruling 16:20: the pick is not exclusive.  (a) covers Case 1
+  with a different target cell or a boundary target, and simple-group produces it.  sec5-sentences' LongTransitionInput
+  needs (b), which it states separately.  No ko-closed Case 1 user needs (a): the same-cell pairs go through the
+  OneCellFace kills.
   - Scope: a different target cell or a boundary target (`target ≠ some source`).
   - The same-cell pairs stay with binder 3.
   - Its `(side, gap)` pieces carry the gap-reads-1 identities that the OneCellWindow kills take.
