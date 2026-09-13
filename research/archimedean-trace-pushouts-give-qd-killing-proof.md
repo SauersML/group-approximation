@@ -16,7 +16,9 @@ Proposition R2 and Theorem D, §§2–3 of the artifact.
    contains `∂(K_1(A/I_P))`.
 2. The unital corner with faithful trace `t` embeds unitally in a `Q`-stable AF
    algebra realising `x ↦ t^(x)` (Moutzouris Theorem 4.1).  Stabilising gives
-   `θ : I_P/N -> D_0` injective with `θ_*(S) = 0`.
+   `θ : I_P/N -> D_0` injective with `θ_*(S) = 0` in `K_0(D_0)`.  `D_0` is full
+   hereditary in an ideal of the separable AF algebra `B ⊗ K`, and that ideal's
+   `K_0` injects into `K_0(B ⊗ K)`.
 3. `A/N` embeds in the separable extension `A''` of `A/I_P` by `D_0` generated
    by `(θ̃μ(a), π(a))` and `D_0`.  It has zero boundary, so it is
    quasidiagonal (Brown–Dadarlat Theorem 3.4).  It kills `G_0`.

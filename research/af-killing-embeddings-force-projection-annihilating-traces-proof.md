@@ -11,6 +11,9 @@ artifacts:
 
 Theorem A in §1 of the artifact.
 
+0. Replace `B` by a separable AF subalgebra containing `φ(A)` and the partial
+   isometries witnessing `φ_*(G) = 0`.  `G` is countable because `A` is
+   separable.
 1. `Q = φ_n(P) ≠ 0`, and `J_Q` is the ideal it generates.  The unital AF corner
    `Q M_n(B) Q` has a tracial state `t`.
 2. Extend `t` to a densely finite trace `ρ` on `M_n(J_Q)` (Brown's stable
