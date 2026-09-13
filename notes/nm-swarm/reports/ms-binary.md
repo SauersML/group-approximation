@@ -63,4 +63,15 @@ The module will state and prove:
 
 ## Progress log
 
-- 2026-09-13: ledger landed; printed-route module claimed.
+- 2026-09-13: ledger landed at 3afadab54; printed-route module claimed.
+- 2026-09-13: `BinaryExamplePrintedRoute` LANDED at eb25dd606. Probe 0913-171216-1123 was GREEN with a BUILT line, and the
+  in-flight copy was preserved in the attic at be7dc5724. It adds four closed endpoints, each with `#audit_closed_axioms`:
+  - `binaryExampleFullDefectHypothesis`
+  - `binaryExampleTrivialMFHomomorphisms`
+  - `binaryExampleNotMF`
+  - `binaryExampleCStarClauses`
+
+  The three gaps above now have printed-route carriers. Rows for a71f65809e0b, 8ed259b70c4a and ecb74cabf11a are in
+  `metadata/nm-census-rows/ms-binary.tsv`. The module is queued for wiring.
+- Range status: every sentence of tex 1175–1231 is carried by a closed declaration along the printed route or honestly
+  classified. Nothing is open in this range.
