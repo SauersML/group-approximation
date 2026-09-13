@@ -22,11 +22,13 @@ Notation as in the target. Write `t_b` for the translation `v -> v + b`.
 2. **`N` is a finitely generated faithful module over a commutative ring.**
    - *The action.* `(A,b) t_c (A,b)^-1 = t_(Ac)`, so `L` preserves `N`. Since `N`
      is abelian, conjugation by `G` on `N` factors through `G/N = L`.
-   - *Finite generation.* `L` is a finitely generated abelian group, hence
+   - *Finite generation.* `L` is finitely generated and virtually abelian, hence
      finitely presented, and `G` is finitely generated. So `N` is the normal
      closure of finitely many elements, that is, a finitely generated
-     `Z[L]`-module.
-   - *The ring.* Let `Λ` be the image of `Z[L]` in `End_Z(N)`. It is a finitely
+     `Z[L]`-module. Let `L_0 <= L` be an abelian subgroup of finite index. Then
+     `Z[L]` is a finitely generated `Z[L_0]`-module, so `N` is a finitely
+     generated `Z[L_0]`-module.
+   - *The ring.* Let `Λ` be the image of `Z[L_0]` in `End_Z(N)`. It is a finitely
      generated commutative ring, hence Noetherian, and `N` is a faithful finitely
      generated `Λ`-module.
 
@@ -72,13 +74,19 @@ Notation as in the target. Write `t_b` for the translation `v -> v + b`.
      normalization.
    - `N ⊗ Q` is a finitely generated `Λ_Q`-module, so `dim_Q (N ⊗ Q) < ∞`.
 
-6. **Commutators and the corollary.**
-   - `G/N ≅ L` is abelian, so `[G,G] <= N`, and every `[H,H]` with `H <= G` has
-     finite rank.
-   - For Baumslag's `B = R x| <s,t>`: `[s,r] = (1+x)r - r = xr` with `x` a unit,
-     so `R <= [B,B]`. Also `B/R` is abelian, so `[B,B] = R`. The ring `R`
-     contains the independent elements `x^k`, `k in Z`, so it has infinite rank,
-     and `B` embeds in no such `G`.
+6. **Subgroups and the corollary.**
+   - *Subgroups.* For `H <= G`, `H ∩ N` has finite rank and `H/(H ∩ N)` embeds
+     in `L`.
+   - *Normal subgroups of `B = R x| <s,t>`.* Let `K` be normal in `B` with `B/K`
+     virtually abelian. Suppose `K ∩ R = 0`. Then `[K,R] <= K ∩ R = 0`, so `K`
+     centralizes `R`. An element `r s^i t^j` acts on `R` by `(1+x)^i x^j`, which
+     is `1` only for `i = j = 0`. So `K <= R`, hence `K = 0`. Then `B` would be
+     virtually abelian, but it contains `Z wr Z = <a,t>`. So `K ∩ R` is a nonzero
+     ideal `I`. It contains `fR ≅ R` for some `f != 0`, and `R` contains the
+     independent elements `x^k`, `k in Z`, so `I` has infinite rank.
+   - *The corollary.* If `B <= G`, put `K = B ∩ N`. Then `B/K` embeds in the
+     virtually abelian group `L`, and `K` has finite rank. This contradicts the
+     previous item.
 
 **Checks.**
 - *Rank one.* `BS(1,m) = Z[1/m] x| Z` acting affinely on `Z_p` with `p ∤ m`

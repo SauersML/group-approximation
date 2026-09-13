@@ -43,12 +43,13 @@ groups.
    - *Dies for commutative coordinate rings* of positive transcendence degree
      (`affine-self-similar-coordinate-rings-are-one-dimensional`), and `R` has
      transcendence degree one.
-   - *Dies for commuting linear parts, whatever the translations.* Take a
+   - *Dies for virtually abelian linear parts, whatever the translations.* Take a
      finitely generated digit-affine self-similar group over `O`, for a
-     uniformizer with `pi^e = p`. If its linear parts commute, its translation
-     subgroup has finite rank. That subgroup would contain `[B,B] = R`, which has
-     infinite rank (`digit-affine-hosts-with-abelian-linear-parts-have-finite-rank`).
-   - *Not excluded:* overgroups whose linear parts do not commute, such as
+     uniformizer with `pi^e = p`. If its linear parts form a virtually abelian
+     group, its translation subgroup has finite rank. That subgroup would contain
+     a nonzero ideal of `R`, which has infinite rank
+     (`digit-affine-hosts-with-abelian-linear-parts-have-finite-rank`).
+   - *Not excluded:* overgroups whose linear parts are not virtually abelian, such as
      `R'^n x| GL_n(R')` with `n >= 2`; other uniformizers and non-scalar
      contractions; self-similar hosts that are not affine.
 3. **Algebra unit-group hosts through matrices.**
