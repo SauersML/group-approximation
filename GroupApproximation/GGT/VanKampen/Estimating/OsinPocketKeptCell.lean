@@ -181,7 +181,7 @@ theorem exists_kept_of_simple
     exact List.mem_append_right _ hd
   have hout := PocketFaceSet.outerFace_not_mem_sideFaces_of_mem_outerDarts hw hdw
     (K.targetArc.mem_cycle_of_mem_darts hd)
-  exact S.exists_kept_of_pocketRegion hx hy hxy hjx hjy hle K ⟨Gap, hGap⟩ hstart hend
+  exact S.exists_kept_of_pocketRegion hx hy hxy hjx hjy hle K hgap hstart hend
     (PocketRegion.ofSimpleClosedWalk hw hout) (PocketRegion.ofSimpleClosedWalk_inner_cycle hw hout)
     havoid
 
