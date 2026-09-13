@@ -7,9 +7,20 @@ distinct_from:
   kun-thom-double-of-hyperbolic-pair-has-finite-cd: that shows infranormal non-normal Kazhdan pairs, and hence nonsofic Kun--Thom doubles, occur in some finite cohomological dimension; this asks whether dimension two excludes them.
   arithmetic-integral-subgroup-is-incompressible: that excludes strict compression of SL_n(Z) inside GL_n(Q) through covolume; this asks for exclusion of strict compression of every Kazhdan subgroup in dimension two, where no covolume is available.
   vcd-two-groups-contain-no-kazhdan-commuting-pairs: that excludes commuting partners of infinite Kazhdan subgroups in dimension two; this is the remaining compression configuration, with no commuting partner.
+refuted_by: [cd-two-group-with-infranormal-kazhdan-pair]
 ---
 
-**OPEN.** Let `K` be torsion-free with `cd K <= 2`, let `Gamma <= K` be a nontrivial Kazhdan subgroup, and let
+**REFUTED (2026-09-13, same lane, same day).** `cd-two-group-with-infranormal-kazhdan-pair`
+pulls the nine-leaf Leavitt pair back through the Ollivier--Wise graphical Rips cover of
+`L_(F_2)(1,2)^x`. That cover is torsion-free with `cd <= 2` and has a Kazhdan kernel. The pulled-back
+pair is infranormal, not normal, Kazhdan, and has a strict compressor. The proved Attempts below
+remain valid as necessary conditions satisfied by that example. The question that matters for the
+Titz--Witzel kernels is narrower and still open: whether a Kun--Thom double, rather than a pair,
+can have cohomological dimension two.
+
+The original statement follows.
+
+**Formerly OPEN.** Let `K` be torsion-free with `cd K <= 2`, let `Gamma <= K` be a nontrivial Kazhdan subgroup, and let
 `t in K` satisfy `t Gamma t^-1 <= Gamma`. The claim is that then `t Gamma t^-1 = Gamma`.
 
 **Consequence.** No subgroup of `K` is an infranormal non-normal Kazhdan pair. By

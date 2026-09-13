@@ -47,7 +47,12 @@ group known today.
   `G *_Gamma G` is not excluded by that count.
   - Such doubles are nonsofic in some finite cohomological dimension
     (`kun-thom-double-of-hyperbolic-pair-has-finite-cd`).
-  - Whether dimension two admits them is `cd-two-groups-have-no-infranormal-kazhdan-pairs`.
-  - A proof of this claim through a double would need a strictly compressed Kazhdan subgroup
-    `Gamma` inside `K`. When `H_2(Gamma;Q)` is finite-dimensional, all its rational 2-classes
-    would have to die in `K`. See that node's cohomological necessary condition.
+  - Dimension two does admit infranormal non-normal Kazhdan pairs
+    (`cd-two-group-with-infranormal-kazhdan-pair`, refuting
+    `cd-two-groups-have-no-infranormal-kazhdan-pairs`). Their double has dimension at most three
+    (`fp-torsion-free-nonsofic-group-of-cd-at-most-three`).
+  - A proof of this claim through a double needs two things: a strictly compressed Kazhdan subgroup
+    `Gamma <= K`, and a double of dimension two that embeds in `K`. The obstruction is the
+    cokernel of `H^2(G;M) -> H^2(Gamma;M)` recorded in that proof. When `H_2(Gamma;Q)` is
+    finite-dimensional, the pair alone already forces every rational 2-class of `Gamma` to die in
+    `K`, by the proved Attempts on the refuted node.

@@ -29,9 +29,12 @@ So there is a nonsofic group of finite cohomological dimension. Its subgroups co
 - The commuting-factor criterion and lamp wreath products never fire in finite virtual
   cohomological dimension (`kazhdan-compression-instances-have-infinite-vcd`). Theorem A doubles
   do.
-- For a group of cohomological dimension two, the only recorded certificate not yet excluded is
-  an infranormal non-normal Kazhdan pair. For the Titz--Witzel kernels that is the open question.
-  The dimension of this `D` is not two: `G` is built over a lattice in `Sp(2,1)`.
+- For a group of cohomological dimension two, the only recorded certificate not yet excluded is a
+  Kun--Thom double of dimension two. The dimension of this `D` is not controlled, since `G` is built
+  over a lattice in `Sp(2,1)`. `fp-torsion-free-nonsofic-group-of-cd-at-most-three` uses the
+  Ollivier--Wise cover instead, which gives finite presentation and dimension at most three.
+- `G_hat` is in fact all of `G`: the nine-leaf group is the whole unit group (see the proof of that
+  node). So this `D` is finitely presented as well.
 
 **Credit and status.** The pair, the cover and Theorem A are all in the graph. The only new step
 is the dimension count. It has not been reviewed, and no literature check was possible in this
