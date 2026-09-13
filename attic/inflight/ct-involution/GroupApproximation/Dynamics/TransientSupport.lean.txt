@@ -76,7 +76,6 @@ theorem CoeffVanishOn.mul_left (hY : ∀ j : ℤ, ∀ y ∈ Y, (T ^ j) y ∈ Y)
   refine Finset.sum_induction _ (fun c : ClopenCoeff T k => (ClopenCoeff.of T k).symm c y = 0)
     (fun a b ha hb => by rw [map_add, LocallyConstant.add_apply, ha, hb, add_zero])
     (by rw [map_zero, LocallyConstant.zero_apply]) fun a _ => ?_
-  dsimp only
   rw [map_mul, LocallyConstant.mul_apply, of_symm_smul_apply,
     hx _ _ (hY (-toAdd a) y hy), mul_zero]
 
@@ -87,7 +86,6 @@ theorem CoeffVanishOn.mul_right {x : ClopenCrossedProduct T k} (hx : CoeffVanish
   refine Finset.sum_induction _ (fun c : ClopenCoeff T k => (ClopenCoeff.of T k).symm c y = 0)
     (fun a b ha hb => by rw [map_add, LocallyConstant.add_apply, ha, hb, add_zero])
     (by rw [map_zero, LocallyConstant.zero_apply]) fun a _ => ?_
-  dsimp only
   rw [map_mul, LocallyConstant.mul_apply, hx _ y hy, zero_mul]
 
 /-- The partial shift `f u^j` lies in `I` when `f` vanishes on `Y`. -/
@@ -108,7 +106,7 @@ theorem charFn_apply_eq_zero {A : Set X} (hA : IsClopen A) {y : X} (hy : y ∉ A
 theorem coeffVanishOn_charFn {A : Set X} (hA : IsClopen A) (hAY : Disjoint A Y) :
     CoeffVanishOn T k Y (coeff T k (LocallyConstant.charFn k hA)) := by
   have h := coeffVanishOn_coeff_mul_unit_zpow (T := T) (Y := Y)
-    (fun y hy => charFn_apply_eq_zero k hA (Set.disjoint_right.1 hAY hy)) 0
+    (fun y hy => charFn_apply_eq_zero (k := k) hA (Set.disjoint_right.1 hAY hy)) 0
   rwa [zpow_zero, Units.val_one, mul_one] at h
 
 variable (T k)
