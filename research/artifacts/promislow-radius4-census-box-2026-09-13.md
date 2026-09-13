@@ -1,7 +1,9 @@
 # Units on the radius-four census supports with any inverse support (2026-09-13)
 
-Claim: `research/promislow-radius4-orbit1-units-need-zeta8-any-inverse.md`.
-Route: `research/promislow-radius4-orbit1-units-need-zeta8-any-inverse-proof.md`.
+Claims: `research/promislow-radius4-orbit1-units-need-zeta8-any-inverse.md` and
+`research/promislow-radius4-orbit0-units-need-zeta8-any-inverse.md`.
+Routes: `research/promislow-radius4-orbit1-units-need-zeta8-any-inverse-proof.md` and
+`research/promislow-radius4-orbit0-units-need-zeta8-any-inverse-proof.md`.
 
 All runs used Sage 10.7 (`sage -python`) on MSI, partition `agsmall`, in
 `/scratch.global/sauer354/uc0/t00103/anc`. That is the directory of
