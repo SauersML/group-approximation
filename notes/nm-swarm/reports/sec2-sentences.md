@@ -132,7 +132,7 @@ Every change is to documentation only, and each points to the current carrier:
 | metadata/MF_RECOGNITION_SENTENCE_MAP.tsv (row c6172bdc109a) and MF_RECOGNITION_SENTENCE_CENSUS.md:27 | seed-group note: E takes the three hypotheses; census line matches what the generator writes | landed 8f8b5ccab |
 
 Files owned by other lanes were not edited. Their owners were messaged on 2026-09-13:
-- hull-respell: GGT/HullSCOneStepQuasiGeodesicLeaves.lean:25-26, 38;
+- hull-respell: GGT/HullSCOneStepQuasiGeodesicLeaves.lean:25-26, 38. hull-respell fixed it at 4dce22f1e, after probe 0913-070150-30707 BUILT;
 - kh-ejz: Kazhdan/GHBLatticeRouteKazhdan.lean:68-69, and the kh-ejz census row ("TheoremC.kotowskiOllivier is still sorry").
   kh-ejz fixed both at 46f1c36a2, after probe 0913-034435-10433 GREEN;
 - ko-closed: Kazhdan/KotowskiOllivierClosed.lean:11-12. ko-closed fixed it at 4be3a3a5c, after probe 0913-052526-4611 GREEN;
