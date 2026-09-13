@@ -41,3 +41,5 @@ residually finite actions or exact matricial models.
 algebra, where the manuscript proves `Rad_MF(EL_n(J)) = EL_n(J, JeJ)`, the left bound.
 
 **Review (un-verify, 2026-09-13): GAP on the left containment only.** The right containment `Rad_MF(EL_n(R)) ≤ EL_n(R) ∩ GL_n(R,hh)` (reduction to the MF group `EL_n(R/hh)`) is correct; the left containment inherits the gap of `relative-torsion-defect-mf-radical-step`. See `research/artifacts/un-review-2026-09-13-part8.md` §2.
+
+**Addressed (un-open-1, 27aa7b6a1d).** The review line above was written against the earlier statement, whose left bound was `EL_n(R, hh)`. The statement now has left bound `EL_n(R, d)`, resting on the established first-stage claim `mf-radical-contains-defect-ideal-elementary-subgroup`. The `hh`-level left bound is recorded as conditional in `mf-radical-contains-hilbert-hotel-elementary-subgroup`.
