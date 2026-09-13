@@ -46,3 +46,5 @@ Consequences for the UN program:
 The proof is elementary and uses only that MF passes to subgroups, together with the fact that for `N >= 2`
 the normal closure of `EL_N(R)` inside `EL_M(R)` is all of `EL_M(R)`. It is written out in the route and in
 the artifact, Section 2.
+
+**Review (un-verify, 2026-09-13): PASS.** Down-set, normal generation of `EL_M(R)` by the corner copy of `EL_N(R)` (`N ≥ 2`), up-set, exclusivity (`e_12(1) ≠ I`) and the three-regime corollary re-derived; calibrations checked. Wording: `w_ab` acts by `(x_a, x_b) ↦ (x_b, −x_a)` on columns (the displayed `(−x_b, x_a)` is the row-vector action); only `±` is used. See `research/artifacts/un-review-2026-09-13-part5.md` §1.

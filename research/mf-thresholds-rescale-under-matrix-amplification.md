@@ -32,3 +32,5 @@ simple `R` it is implied by the Morita-invariant condition that `V(R)` carries n
 at `[R]` because every nonzero element of `V(R)` is full when `R` is simple. The value of `rig` is not of
 that kind: it moves under `R |-> M_m(R)`, so no argument about the ordered monoid `V(-)` alone can compute
 it. Lane `un-low-rank-band`'s target `EL_3(L_k(3,4))` is the computation of such a value.
+
+**Review (un-verify, 2026-09-13): PASS.** The block identity `EL_N(M_m(R)) = EL_{Nm}(R)` (as in part 3 §1), both rescaling formulas via the monotone thresholds, the finiteness corollary and the state-space remark (`[e] ≤ j[1]` gives `ν([1]) > 0`) re-derived. See `research/artifacts/un-review-2026-09-13-part5.md` §2.
