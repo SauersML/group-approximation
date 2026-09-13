@@ -55,3 +55,16 @@ is nonnegativity, and only on classes in the span of signed-Thompson finite-subg
   lifted trace. Neither semidihedral block is full (`semidihedral-anti-central-blocks-are-not-full`), but that does not
   survive stabilization. Where it stops: `alpha` fixes the self-dual anti-central simple modules of `GL_3(F_3)`, so
   averaging forces nothing there.
+- *Spectral weights and `GL_3(F_3)`* (lane w7-gl3-f3-states, artifact
+  `gl3-f3-anti-central-spectral-states-2026-09-12.md`; all OPEN pending `w4-vf-linear-b`).
+  - Three-regular units of `G` are conjugate iff they have the same minimal polynomial, and they are conjugate into
+    `H` iff it is binomial (`three-prime-leavitt-units-classified-by-minimal-polynomial`).
+  - So a state is one weight `W_s` on minimal polynomials, forced to the lifted trace exactly at binomial ones
+    (`anti-central-states-are-forced-exactly-on-binomial-spectra`).
+  - `GL_3(F_3)` has six non-binomial anti-central directions, and three real weights survive `alpha` averaging. The
+    lifted trace extends positively over `H` and `GL_3(F_3)` iff some state has those weights zero
+    (`gl3-f3-alpha-invariant-states-keep-three-free-spectral-weights`).
+  - No `GL_3(F_3)` projective lowers the lifted trace. The GL_2 averaging argument cannot reach `GL_n` for `n >= 3`,
+    since the finite data admit other states there.
+  - Where it stops: forcing a non-binomial weight needs `K_0` relations, or positivity, through elements of infinite
+    order.
