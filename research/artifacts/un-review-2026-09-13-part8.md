@@ -131,3 +131,24 @@ group elements of `EL_4(S) ≤ EL_n(R)`.
   - no `requires: []` route targets either open node;
   - `mf-radical-contains-hilbert-hotel-elementary-proof` requires the open step;
   - `mf-radical-sandwiched-by-hilbert-hotel-proof` requires only the established first-stage node.
+
+## 5. Subsumption correction for (2a) and (2b)
+
+My §3 PASS lines stand for correctness, but my subsumption scan missed three older nodes. Credit and `distinct_from`
+entries are now on both nodes.
+
+- **(2a) `compression-defects-die-in-rigid-targets` is subsumed as a theorem.**
+  - `compression-defect-dies-in-finite-dimensions` (established and Lean-certified,
+    `compressionCentralizerDefect_le_ker`) states that every homomorphism into `GL_k(V)` over every field, with
+    `dim V < ∞`, kills the intrinsic defect.
+    - Its defect is at least as large as this node's: compressors are generated as a group.
+    - It contains the linear case directly.
+    - It contains the finite case through the regular representation.
+  - `locally-residually-finite-targets-kill-compression-defects` contains the finite case, by the same counting, for
+    finitely generated `L`.
+  - `zariski-envelope-compression-rigidity` is the Zariski rigidity over `C`.
+  - Genuinely new: Lemma C, a target-agnostic support lemma, and the Zariski-closure proof over arbitrary fields.
+- **(2b) `one-sided-defect-ideal-dies-in-linear-images-of-el`: new as a composition.** It combines the printed cell
+  with the older finite-dimensional theorem. No older node states this for arbitrary unital rings.
+  - Specific instances were recorded before, for the binary Jacobson ring.
+  - `finitary-linear-extension-kazhdan-defect-kills-kernel` is a different statement: MF-level, through (T), over `F_2`.
