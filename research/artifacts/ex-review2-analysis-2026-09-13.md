@@ -300,6 +300,10 @@ Filled in as each part lands.
   1/2 commutator threshold, only-coboundaries under a contractible crossed product, twisted asymptotic innerness with
   Galois components, the bi-cyclotomic transfer, the anti-inner and O_3 criterion at p = 2, and four imports (Izumi via
   Barlak--Li, BEMSW, GHS, Gabe--Szabó), all checked verbatim.
+- `ex-review2-analysis-2026-09-13-part16.md` (census C): class five of unitary component groups. PASS on the string
+  factorization of lambda-mod-m trapping, the string-bordism range splitting (m_4 = 24), the 2-primary reduction of the
+  rank-three fivefold commutator to SU(3) (one wording note on stem-0 letters), and the top-cell adjoint-J product
+  formula.
 
 ## 4. Outcome of the census
 
