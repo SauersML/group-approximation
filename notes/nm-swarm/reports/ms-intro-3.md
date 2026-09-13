@@ -100,6 +100,19 @@ Definition audit (the symmetry is real, no Y-only premise):
   `p A q B`. The value equations `hsource`/`htarget` and `hX`/`hY` trade places.
 - So the Y-pocket for `C` is the X-pocket for the swapped pair with `X := Y`, `B := A`, for every shape.
 
+LANDED 76ff88ab4 (probe 0913-183319-65637 GREEN, BUILT), queued for wiring. Module
+`Estimating/OsinLemma94SameCellYPocket`:
+- `UnboundEstimate.WordConnectorPair.swapBackward (C) (hback : C.b' < C.b) (hA : C.target ∈ A) (hB : C.source ∈ B)`: the
+  swapped pair.
+- `OsinLemma94CaseOneYPocketStatementOf shape`: the X binder block with `Y A` reading ≠ 1, the exterior face off
+  `sideFaces (invDarts Y ++ invDarts A)`, and `shape` on `(invDarts Y, invDarts A)`. Also
+  `OsinLemma94CaseOneYPocketStatement` (no shape).
+- `osinLemma94CaseOneYPocketOf_of_xPocketOf shape : OsinLemma94CaseOneXPocketStatementOf shape →
+  OsinLemma94CaseOneYPocketStatementOf shape`, so any producer of an X shape statement gives the Y twin of that shape.
+- `osinLemma94CaseOneYPocket_of_shapes` and `osinLemma94CaseOnePockets_of_shapes` (X ∧ Y), from the same five statements
+  (`SimplePocket`, `FaceBubble`, `CellPinch`, `TouchVertex`, `Spur`).
+- No Y-only premise, so no message went to the shape owners.
+
 ## Progress log
 
 - 16:5x ledger v1.
