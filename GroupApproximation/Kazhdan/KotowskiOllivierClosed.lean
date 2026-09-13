@@ -11,9 +11,12 @@ import GroupApproximation.Meta.AxiomGuard
 
 `TheoremC.KotowskiOllivierStatement` is `Hyperbolic.SharpExistence`: an infinite, finitely
 presented, torsion-free hyperbolic group with property (T).  It is the binder `hKO` of every
-endpoint of `Manuscript/NonMF/TorsionFreeLiteratureInputsLeastArea.lean`, and the open `sorry`
-`TheoremC.kotowskiOllivier` of `Manuscript/NonMF/TheoremCAssembly.lean`.  It carries the start of
-the paragraph at tex line 1675 (`\S\ref{sec:torsion-free}`):
+endpoint of `Manuscript/NonMF/TorsionFreeLiteratureInputsLeastArea.lean`, and of
+`TheoremC.manuscriptTorsionFreeFullMFRadical_of_leastAreaInputs` and
+`TheoremC.manuscriptTorsionFreeSimplified_of_leastAreaInputs` in
+`Manuscript/NonMF/TheoremCAssembly.lean`.  Their `_of_leastAreaKOLeaves` variants in
+`Manuscript/NonMF/TheoremCAssemblyKOLeaves.lean` supply it by `kotowskiOllivier_of_leaves`.  It
+carries the start of the paragraph at tex line 1675 (`\S\ref{sec:torsion-free}`):
 
 > Fournier-Facio constructs a finitely presented torsion-free group $G_0$ with
 > property~\textup{(T)}, a subgroup $\Gamma\le G_0$ with property~\textup{(T)}, an element
