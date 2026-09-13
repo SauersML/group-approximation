@@ -4957,6 +4957,9 @@ import GroupApproximation.Algebra.IntegerPlacesMinpoly
 import GroupApproximation.GGT.HullLemma35FreeFactors
 import GroupApproximation.GGT.SystolicDiscMirrorFoldPinchedStage
 import GroupApproximation.GroupTheory.HydeLodha.QTwoLemmaFourSixCaseTwo
+import GroupApproximation.Manuscript.NonMF.HullCorollary73
+import GroupApproximation.Manuscript.NonMF.TheoremCAssemblyFoldLeaf
+import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonThreePlusOnePresented
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
