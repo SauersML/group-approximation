@@ -276,10 +276,9 @@ theorem returnEmbeddingStatement_of_pieces (hring : ReturnRingCrossedProductStat
         (finCongr (Nat.one_mul r).symm)).symm
           (((returnTowerUnits (ZMod 2) hC hr).blockTransport θ 1).symm
             (placementUnit (returnTowerUnits (ZMod 2) hC hr) hr0 ha hb _ hgc)), ?_, ?_⟩⟩
-    · refine MonoidHom.mem_ker.2 ?_
-      change Units.map (RingHom.mapMatrix (coreRestrict (firstReturnHomeomorph hC) (ZMod 2))).toMonoidHom
-        _ = 1
-      rw [units_map_mapMatrix_reindex_symm, hy1, map_one]
+    · exact MonoidHom.mem_ker.2
+        ((units_map_mapMatrix_reindex_symm (coreRestrict (firstReturnHomeomorph hC) (ZMod 2))
+          (finCongr (Nat.one_mul r).symm) _).trans (by rw [hy1, map_one]))
     · rw [unitEmbedding_apply, MulEquiv.apply_symm_apply,
         glEmbedding_returnPlacement (returnTowerUnits (ZMod 2) hC hr) θ 1 hr0 ha hb _ hgc,
         map_mul, map_mul, map_inv, units_map_matrixFinOneEntry_scalar,
