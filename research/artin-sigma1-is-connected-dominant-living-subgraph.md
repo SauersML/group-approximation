@@ -49,7 +49,18 @@ discrete characters `χ : A_Γ -> Z`.
   nontrivial `l(e)/2`-th roots of unity across a cut proves non-membership. This
   gives the prime-`p` and balanced families. It cannot work in general: odd
   edges force equal values, and cycles of dead edges with coprime halves conflict.
-- **Open next.** Replace abelian twists by arbitrary coefficient rings, or find
-  a graph where `Liv^χ` is disconnected and `[χ] ∈ Σ^1` (a counterexample). The
-  test cases are the graphs outside the known families: circuit rank `>= 3`,
-  labels with coprime halves across a cut, not balanced.
+- **Dead-edge rings (2026-09-13, unreviewed):**
+  `artin-sigma1-dead-edge-ring-obstruction`. Any nonzero ring `R` and
+  `ρ : A_Γ -> R^×` that kill the cross dead-edge sums `1 + ρ(uv) + ... + ρ(uv)^{k-1}` of a
+  vertex cut prove `[χ] ∉ Σ^1`; the tool is twisted Laurent homology over `R((t))`. This
+  strictly extends finite abelian twists. The triangle `A(3,4,6)` is detected by a
+  2x2 representation (`artin-346-dead-character-outside-sigma1-by-rank-two-rep`) and
+  by no commutative ring (`artin-346-commutative-rings-miss-the-dead-cut`). Both
+  "universal witness" routes are dead:
+  `artin-sigma1-conjecture-via-commutative-ring-witnesses` and
+  `artin-sigma1-conjecture-via-dead-edge-rings`.
+- **Test case.** The four-vertex graph `K` (label-2 edges `u1u2`, `v1v2`; cross labels
+  `4, 4, 4, 6`) has no ring witness
+  (`artin-k4-dead-cut-admits-no-nonzero-dead-edge-ring`). Deciding
+  `artin-k4-mixed-dead-character-is-outside-sigma1` either finds the next obstruction
+  (module witnesses, artifact §4 Remark ii) or refutes the conjecture.
