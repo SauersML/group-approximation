@@ -178,6 +178,75 @@ the nearest literature within the stated bound. Tags as before:
   - 54faf1cd64 ex-hyperbolic-vtf;
   - a1e1bf7e3c ex-bernoulli-positive.
 
+## Pestov 9.1 claim: novelty pass (23:20)
+
+**Claim.** Lane ex-kazhdan-simple-hyperlinear: f375478c72, 56bdeb8d3e, 41e82567c8, ef09781d5f, da907cdf0f.
+- Let X be an infinite minimal subshift, G = EL_3(LC(X,F_q) ⋊ Z) and S = G/Z(G).
+- Then S is infinite, simple, Kazhdan and LEF, hence sofic and hyperlinear. That is a positive answer to
+  Pestov Open Question 9.1, which comes from Ozawa math/0306067.
+
+**Review.** ex-verify-groups passed the mathematics at 0efeac4106, with wording notes. The claim node was still
+held at 23:20 (no proof route on main), so the root has not fired.
+
+**Bounded prior-art check.** No earlier infinite simple Kazhdan group that is LEF, sofic or hyperlinear was
+found. Sources:
+- Thom arXiv:0810.2180, pp. 1–4 read from the PDF (P).
+  - p. 3 lists Kac–Moody lattices and Tarski-monster quotients as the sources of simple Kazhdan groups.
+  - Theorem 1.4 gives a finitely generated LEF Kazhdan group without the factorization property, not
+    residually finite. The lane records it as G_0(F_p[t,t^-1])/C, non-simple.
+- Alekseev–Thom arXiv:2608.05362, introduction (P, HTML summary). Only Thom's non-simple LEF Kazhdan example is
+  cited. They list as open whether a finitely presented sofic Kazhdan group can fail residual finiteness; S is
+  not finitely presented, so this is consistent.
+- Ershov–Jaikin-Zapirain arXiv:0809.4095, abstract (P). No simple-group application.
+- arXiv listings "Kazhdan LEF", "hyperlinear" and "sofic" (W).
+- The lane's three web searches and two of mine (W).
+
+**Credits recommended (messaged at 23:20).**
+- Thom 0810.2180 Theorem 1.4, as the nearest prior art.
+- Ershov–Jaikin-Zapirain for property (T), already imported.
+- Brown–Clark–Farthing–Sims arXiv:1204.3127 (abstract P) for simplicity of the Steinberg algebra: minimal plus
+  effective ⇒ simple. `minimal-subshift-algebra-is-simple-lef-ring` has no credit line.
+- Ozawa math/0306067, as the origin of the question.
+
+**Not checked.** Capraro–Lupini arXiv:1309.2034; Thom's ICM survey arXiv:1712.01052 (for a later answer); the
+Ershov–Jaikin-Zapirain–Kassabov memoir.
+
+main was messaged at 23:20.
+
+## Entries 22:43–22:56
+
+- **ex-complexity-sofic, 0f7c32377c.** `lef-of-finite-presentations-is-pi2-complete`, together with its residual
+  finiteness companion (established, unreviewed).
+  - Mechanism: imported Kharlampovich–Myasnikov–Sapir Minsky-machine groups plus a clocked search machine.
+  - The KMS abstract, arXiv:1204.6506 (P), states no arithmetical completeness result. An earlier search found
+    only Bridson–Wilton and Sapir's survey.
+  - Novelty unverified beyond this. Worth an ex-verify pass.
+- **ex-q34-leavitt-hs, 002c44b8c8.** `leavitt-unit-groups-over-finite-fields-mutually-embed` credits only
+  Abrams–Aranda Pino. Brownlowe–Sørensen, "Leavitt R-algebras over countable graphs embed into L_{2,R}" (W),
+  likely gives the L(1,n) → L(1,2) direction. Lane messaged at 23:20.
+- **ex-kadison-kaplansky, 8da6fa48e8.** `selfless-real-rank-zero-iff-dense-k0-traces` credits Dykema–Rørdam II
+  (Math. Z. 234 (2000)). Adequate.
+- **ex-rr0-dichotomy, cd50958abc.** `simple-af-integer-crossed-products-dichotomy` credits N. Brown's
+  characterization of AF-embeddability. One search found no prior statement of the dichotomy. Novelty
+  unverified.
+- **ex-determinant-monster, cb7c47a89e.** Norm-at-most-two integral self-adjoint matrices live on finite or
+  virtually cyclic groups. A strengthening of the norm-quantization node; not checked.
+- **ex-bernoulli-negative, c52c701fd7.** Classification fails iff some Bernoulli shift is its own square.
+  Elementary from the collapse subgroup.
+- **ex-quantum-pcp, c06c96f721.** Stabilizer rounding of Pauli sums, within (1+√2)F. Nearest literature to
+  check: product-state and stabilizer approximation algorithms for Pauli Hamiltonians. Not searched.
+- **ex-free-bridges, cfec2971af.** A percolation soficity threshold between p_c and p_u for nonsofic groups. A new
+  notion; no credit risk found.
+- **ex-free-unused-power, 3ca27ba509.** Doubles of free groups over arbitrary subgroups are sofic. Not compared
+  with halo-product permanence (arXiv:2601.18742).
+- **ex-rokhlin-lower, 142d6e141e.** Credits Alpeev–Seward Theorem 1.11. Adequate.
+- **Low risk, subject line only:**
+  - a005a66833, 2033555606, 577c3a94cd, 8e8c53cea1, c2c211d999, 081b0e3017, 620c45997e, 8c2f470b70;
+  - e641978298, 4ca24765ad, 3c481f496d, 25684228b2, fb83410e4f, fcc11fcc0d, 2b5e6d8ce8, 022f911f8e;
+  - 0ae866b209, ef903527e2, ee004845a5;
+  - 8f81b394fc (the AMRSSV credit was already requested);
+  - 5a34c7f6f4 (credits the Caprace–Conder–Kaluba–Witzel data).
+
 ## Boggi note
 
 Boggi–Zalesskii, arXiv:2406.08639 (Bull. LMS 2025), abstract (P): "Let G be a residually finite, good

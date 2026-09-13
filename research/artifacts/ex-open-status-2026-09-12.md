@@ -44,7 +44,7 @@ games is adjacent to the games form of quantum PCP, not to its Hamiltonian form.
 | 1 | Pestov Q3.4: hyperlinear ⇒ sofic? | ex-q34-leavitt-hs, ex-q34-kt-double, ex-q34-collapse | `hyperlinear-nonsofic-group`, `hyperlinear-implies-sofic` | OPEN | 3 W, 3 P |
 | 2 | a non-hyperlinear group | ex-nh-mipstar, ex-nh-fresh | `non-hyperlinear-group` | OPEN | 2 W |
 | 3 | f.p. infinite simple sofic or hyperlinear group | ex-fp-simple-sofic | `hyperlinear-fp-infinite-simple-group` | OPEN, source of question unrecorded | 2 W, 1 P |
-| 4 | Pestov 9.1: simple Kazhdan hyperlinear group | ex-kazhdan-simple-hyperlinear | `infinite-simple-kazhdan-hyperlinear-group` | OPEN | 2 W |
+| 4 | Pestov 9.1: simple Kazhdan hyperlinear group | ex-kazhdan-simple-hyperlinear | `infinite-simple-kazhdan-hyperlinear-group` | claimed answered by EL_3(LC(X,F_q) ⋊ Z)/Z; ex-verify-groups PASS 0efeac4106; proof route held at 23:20 | 2 W + novelty pass (log part 2) |
 | 5 | left-orderable nonsofic group | ex-left-orderable-nonsofic | `left-orderable-non-sofic-group` | OPEN, source of question unrecorded | 1 W, 2 P |
 | 6 | soficity of Thompson's V | ex-thompson-v-soficity | `thompson-v-is-sofic`, `thompson-v-not-sofic` | OPEN | 1 W, 1 P |
 | 7 | a non-weakly-sofic group (Glebsky–Rivera) | ex-weak-soficity | no claim root; artifact `non-weakly-sofic-group.md` | OPEN | 1 W |
