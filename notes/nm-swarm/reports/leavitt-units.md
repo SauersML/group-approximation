@@ -167,3 +167,39 @@ on origin references it.  The unlanded file was removed from the tree and kept i
 folder.  hull-bridge was told.
 
 Nothing landed for W2 by this lane.  The lane has asked the lead for its next item.
+
+## 5. C4 of Lemma 9.3 (09-13): `CornerTwoGonInput`
+
+The lead assigned this lane C4 of PhiPrimeCount (Osin, Appendix, proof of Lemma 9.3).  hull-euler
+keeps the assembly.
+
+* Statement: `CornerTwoGonInput` (`Estimating/OsinAppendixEulerCornerTwoGon.lean`, `d0a41c1da`,
+  landed unverified).  At most `r = cuts.count` two-gons of `phiMapO S.family E` have a corner in
+  their gap at the outer vertex `O`.  hull-euler's `phiPrimeCountInput_of_smallFaces`
+  (`OsinAppendixEulerSmallFaces.lean`, `4beca2743`) consumes it unchanged, at
+  `E := linkedComponentO S.family a₀`.  `CornerFacesInput` was removed at `4beca2743`, and the lead
+  withdrew the bridge to it.
+* LANDED `90245333d`: `cornerTwoGonInput` in `Estimating/OsinAppendixEulerCornerTwoGonCount.lean`,
+  unconditional, statement unchanged.  Probe `0913-130413-64412` PROBE GREEN with the module BUILT;
+  `#audit_axioms` gives `[propext, Classical.choice, Quot.sound]`.  Queued for wiring.
+  * An exterior region whose target arc starts at `s` crosses `O` at `B[L - 1 - s]`, where `B` is
+    the outer face boundary (`crossO_false_true_of_eq_none`).
+  * The outer face lies in no region, so the collapsed face rotation walks along `B`
+    (`outer_collapsed_facePerm_pow`).  The rotation of `Φ'_M` is its first return
+    (`phiMapO_isRestriction`), so no exterior target arc starts strictly between the two regions
+    of a two-gon at `O` (`exists_outer_return`).
+  * Target arcs of different regions are disjoint (`eq_of_targetArc_overlap`), so a corner in the
+    gap determines the dart at `O` (`exists_gap_offset`, `eq_of_gapHoldsCorner`).
+  * The count is double counting over the `r` corners
+    (`Finset.card_le_card_of_forall_subsingleton`).
+* LANDED `0c42391c2`: `osinCornerTwoGonSection` in
+  `Estimating/OsinAppendixEulerCornerTwoGonSection.lean` proves hull-euler's section-level
+  `OsinCornerTwoGonSectionStatement` (`6401c70a6`) with `ε₀ = 0` and `ρ₀ = 1`.  Probe
+  `0913-130704-80770` PROBE GREEN with the module BUILT, audit
+  `[propext, Classical.choice, Quot.sound]`.  Queued for wiring.  The module imports
+  `OsinAppendixEulerSection` and the count module, so SmallFaces has no import cycle.
+* No literature input, and no hypothesis standing for a cited result.  audit-sec3 independently
+  found the statement true.
+* `ROSTER-0913.md:559` still names `CornerFacesInput` for C4.  Line 582 records the switch to
+  `CornerTwoGonInput`.
+* Residual Props in this lane's C4 scope: none.
