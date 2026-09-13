@@ -39,6 +39,15 @@ Claim: at least one `G_i` has no nontrivial finite quotient.
   - characteristic 7;
   - reducible modules in characteristic 2.
   See `research/artifacts/hyperbolic-triangle-linear-search-2026-09-13.md` §5.
+- **The small-degree permutation zeros are family-wide.** A configuration search covers every
+  twist and every choice of vertex pairs at once. It shows that no hyperbolic
+  `(A_7, A_7, A_8)` `Z/7`-triangle with link girths `(6,6,8)` acts nontrivially on at most
+  19 points, and none maps into `L_5(2)`, `O_8^±(2)` or `Sp_8(2)`. Among 150 random members,
+  none has a representation in dimension 4 (characteristic 2), 6 (characteristic 2,
+  irreducible) or 7 (over `F_29`). See
+  `research/artifacts/hyperbolic-triangle-family-calibration-2026-09-13.md`. So in those
+  ranges the candidates' zeros say nothing about the candidates. Evidence specific to a
+  candidate needs quotients that some member of the family has.
 - **Where it dies.** Every search above is finite. A decision would need to exclude every
   finite simple group. The same large-quotient barrier stops
   `hyperbolic-simple-triangle-group-without-finite-quotients`.

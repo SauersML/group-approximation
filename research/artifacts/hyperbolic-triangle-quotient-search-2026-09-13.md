@@ -83,6 +83,12 @@ The search visits every double coset in `U \ C_t / V`, listed by GAP `DoubleCose
 | `S_23` to `S_27` | 0 | 29,911 per degree | 1 to 5 s |
 | `S_28`, `S_29`, `S_30` | 0 | 92,547; 272,279; 1,494,241 | 8 s; 11 s; 40 s |
 | `Sp_6(2)`, `L_5(2)`, `O_8^+(2)`, `O_8^-(2)`, `L_4(4)` | 0 | 7; 84; 63; 7; 126 | up to 16 s |
+| `Sp_8(2)` (degree 255), `L_6(2)` (63), `U_6(2)` (1365) | 0 | 63; 147; 567 | up to 150 s; 50 s; minutes |
+| `S_31` to `S_35`, candidate 1 | 0 | 2,646,721; 2,877,609; 2,877,609; 2,877,609; 7,475,986 | 56 s; 186 s; 401 s; 642 s; 940 s |
+| `S_31`, `S_32`, candidate 2 | 0 | 2,646,721; 2,877,609 | 58 s; 189 s |
+
+The literal `(A_8, A_8, A_8)` calibration triple gives 5, 3 and 3 passing double cosets into
+`Sp_8(2)`, `L_6(2)` and `U_6(2)` (`job_amb_Sp8_2.out`, `job_amb_L6_2.out`, `job_amb_U6_2.out`).
 
 No double coset for a candidate passed even the order filter. The double coset counts are the
 same for all four candidates, as they should be: they depend only on the orbit types.
@@ -117,8 +123,20 @@ same for all four candidates, as they should be: they depend only on the orbit t
   - This needs checking for each target and is recorded here only as a heuristic reading
     of the `Sp_6(2)` zero.
 
-## 6. In progress
+## 6. Further runs and their status
 
-- **Exact linear representations in characteristic 2, dimension 4** (`lin4.py`). This is a Gröbner
-  basis decision over the algebraic closure of `F_2`, covering every `L_4(2^m)` at once.
-- **More Lie-type targets:** `Sp_8(2)`, `O_7(3)`, `U_6(2)`, `L_6(2)`, `L_4(8)`.
+- **Linear representations.** Done in `hyperbolic-triangle-linear-search-2026-09-13.md`:
+  - no nontrivial 4-dimensional representation in characteristic 2, which covers every `L_4(2^m)`;
+  - none of dimension at most 7 in characteristic 0 or in characteristics 3, 5, 11, 13, 29, 43;
+  - no projective 7-dimensional representation in characteristics 29 and 43.
+- **`L_4(8)`.** `AllHomomorphismClasses` needed a permutation action of degree above 300,000, so the
+  run was stopped. `L_4(8) ≤ GL_4(8)` is covered by
+  `a7a7a8-triangle-candidates-no-4dim-char2-representation`.
+- **`O_7(3)`.** The calibration triple gives 170 passing double cosets. The candidate runs had not
+  finished at this version.
+- **Low-index cross-check** (`lowindex.g`). GAP `LowIndexSubgroupsFpGroup` did not finish index 15 on
+  the calibration presentation within 16 minutes, so it was abandoned.
+- **The zeros are family-wide at small degree.** No hyperbolic `(A_7, A_7, A_8)` triangle with link
+  girths `(6,6,8)` acts nontrivially on at most 19 points, and none maps into `L_5(2)`, `O_8^±(2)` or
+  `Sp_8(2)`; see `hyperbolic-triangle-family-calibration-2026-09-13.md`. So in those ranges the zeros
+  carry no information specific to the candidates.
