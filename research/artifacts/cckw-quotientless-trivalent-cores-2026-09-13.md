@@ -77,8 +77,36 @@ Suppose `φ: G -> GL_d(C)` is faithful and irreducible on each vertex group.
 - Characteristics dividing the vertex orders (2, 3, 5, 7, 13).
 - Dimensions `d >= 7`.
 
-**The three survivors.** In all three the `ca` vertex is the order-60 group
-with its two 3-dimensional irreducibles. Compatible triples exist in `d = 3`, so the next test is the
-trace ideal of the torus parametrisation, as in `lin4.py` and `linD.py`, over `F_p` with
-`p ≡ 1 mod 5460`. A point with faithful vertex modules gives a vertex-injective finite quotient of a
-CCKW group for which CCKW found no simple quotient.
+**The three survivors.** In all three the `ca` vertex is the order-60 group with its two
+3-dimensional irreducibles, and compatible triples exist in `d = 3`.
+
+## 4. The survivors in dimension 3: trace ideals (`cckw_d3.py`)
+
+- **Method.**
+  - Vertex modules are the faithful, absolutely irreducible 3-dimensional modules over `F_p`, from GAP
+    `IrreducibleModules`. Faithfulness is checked on conjugacy class representatives.
+  - The primes satisfy `p ≡ 1 mod 5460`, so every module splits.
+  - In the eigenbasis of `b` the torus parametrisation has `H = diag(h_1, h_2, 1)`.
+  - The trace equations are the 84 alternating words of length at most 6 in `(c, a)`, equated with the `ca` module.
+  - Points of 0-dimensional ideals are checked on all relators of the `ca` vertex group.
+- **Calibration** (`cckw_d3_cal.out`).
+  - **Setup.** A literal triple of 3-elements of the Frobenius group `7:3`, pairwise generating it,
+    defines a triangle with the `7:3` module as a vertex-faithful representation.
+  - **Result.** All 8 module triples give 0-dimensional ideals, with 10 `F_p`-points in total, and every point satisfies the relators.
+  - **Why not `A_5`.** No `A_5` version of this calibration exists. The 3-elements of `A_5` are 3-cycles; two generate
+    `A_5` only if their supports meet in exactly one point; and no three 3-subsets of a 5-set pairwise
+    meet in exactly one point.
+- **Result** (`cckw_d3_surv.out`, `cckw_d3_surv_21841.out`, `cckw_d3_surv_54601.out`).
+  - For `G_0^{14,26,40}`, `G_4^{14,26,40}` and `G_0^{18,26,40}` each has 16 module triples with matching edge
+    eigenvalues. All 48 systems give trace ideal `(1)` over `F_p` for each of `p = 16381, 21841, 54601`.
+  - So in these three characteristics none of the three groups has a 3-dimensional representation that is
+    faithful and absolutely irreducible on every vertex group.
+
+**Combined status of the 19 groups (unreviewed).**
+- **The 16 groups.** No representation of dimension `<= 6` that is faithful and irreducible on every
+  vertex group, in characteristic 0 or in any characteristic coprime to the vertex orders (§3).
+- **The 3 survivors.** None in dimensions 2, 4, 5, 6 (§3). In dimension 3 none over `F_p` for the three primes above. The
+  characteristic-0 case in dimension 3 is not decided: the modules live over a compositum of degree
+  up to 32, and an integral certificate is still to be computed.
+- **Not covered for any of the 19.** Vertex modules that are faithful but reducible, and quotients with no
+  small faithful linear representation (large alternating and classical groups).
