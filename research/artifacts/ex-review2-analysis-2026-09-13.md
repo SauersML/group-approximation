@@ -219,6 +219,22 @@ Filled in as each part lands.
 | `o2-ideal-finite-nucdim-counterexample-unital-quotients` | k1-halving-homotopy | PASS, Robert verbatim | 5 §5.7 |
 | `o2-ideal-projection-unit-witness-fails-cancellation` | k1-halving-homotopy | PASS | 5 §5.8 |
 | `self-similar-hilbert-cx-module-has-unit-section` | k1-halving-homotopy | PASS | 5 §5.9 |
+| `block-balanced-towers-have-central-halving` | tw-projection-starved-bundle | PASS | 6 §6.1 |
+| `closed-extreme-trace-sets-give-r-fibre-w-star-bundles` | tw-projection-starved-bundle | PASS | 6 §6.2 |
+| `central-halving-trivializes-every-closed-bauer-face-bundle` | tw-projection-starved-bundle | PASS, Ozawa import unreviewed | 6 §6.3 |
+| `hopf-doubling-tower-has-no-m2-but-divides-unit-tracially` | tw-projection-starved-bundle | PASS | 6 §6.4 |
+| `tensor-tower-bundle-trivial-iff-tails-softly-split` | tw-projection-starved-bundle | PASS | 6 §6.5 |
+| `toms-no-gamma-algebra-is-trivial-on-closed-bauer-faces` | tw-projection-starved-bundle | PASS, Toms import unreviewed | 6 §6.6 |
+| `pmf-permanence-amenable-kernel-without-exactness` | sl3z-purely-matricial | PASS | 6 §6.7 |
+| `affine-sl2z-purely-matricial-field` | sl3z-purely-matricial | PASS | 6 §6.8 |
+| `sl3z-pmf-iff-affine-kazhdan-group-pmf` | sl3z-purely-matricial | PASS | 6 §6.9 |
+| `mdls-obstruction-is-affine-mechanism-plus-level-matching` | sl3z-purely-matricial | PASS, MdlS not re-read | 6 §6.10 |
+| `sl3z-prime-level-invariant-witnesses-are-complete` | sl3z-purely-matricial | PASS | 6 §6.11 |
+| `sl3z-prime-level-sc-forces-congruence-sc-for-sl2z` | sl3z-purely-matricial | PASS | 6 §6.12 |
+| `sl3z-prime-level-sc-needs-cubic-chebotarev-primes` | sl3z-purely-matricial | PASS | 6 §6.13 |
+| `congruence-sc-fails-along-levels-with-recurring-divisor` | cubic-division-strong-convergence | PASS | 6 §6.14 |
+| `cubic-division-congruence-sc-descends-to-thin-subgroups` | cubic-division-strong-convergence | PASS | 6 §6.15 |
+| `cubic-division-congruence-sc-forces-asymptotic-laplace-gap` | cubic-division-strong-convergence | PASS | 6 §6.16 |
 
 ## 3. Part files
 
@@ -237,3 +253,7 @@ Filled in as each part lands.
 - `ex-review2-analysis-2026-09-13-part5.md`: the Blackadar--Kirchberg radical trace steps (Theorems 1, 5, 7, 8, 9 and
   corollaries), and the K1 halving lanes (projection form of the halving homotopy, O_2-multiplier ideals of finite
   nuclear dimension, cancellation, unit sections), with Moutzouris, Brown--Dadarlat, Gabe, BRR and Robert checked.
+- `ex-review2-analysis-2026-09-13-part6.md`: W*-bundles over closed faces (central halving, the Hopf doubling tower,
+  soft tail splittings, Toms's algebra on faces), SL_3(Z) matricial fields (amenable-kernel permanence, the affine
+  reformulation, prime-level witnesses and forced Ramanujan consequences), and congruence strong convergence for
+  cubic division lattices.
