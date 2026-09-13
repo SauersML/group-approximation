@@ -37,7 +37,13 @@ unreviewed). Class five is open (simple-cstar-unitary-components-class-five).
   torsion free. For k = 2 every homology-theory detector already stops at
   depth three (rank-two-trapping-blind-to-depth-four-brackets). A seed-based
   example needs protected ranks k_c -> ∞, for instance one summand of the
-  inductive system per depth.
+  inductive system per depth. Prime by prime this is sharper. So,
+  arXiv:1707.00739v2, p. 1, records that p-regular Lie groups have homotopy
+  nilpotence class at most 3 (Kaji–Kishimoto), and that quasi-p-regular SU(n)
+  with p >= 7 do too (Kishimoto). So at an odd prime p only protected ranks
+  k > p, and beyond the quasi-regular range once p >= 7, can carry p-primary
+  depth three or more. Depth must come from p = 2 or from ranks large
+  compared with p.
 - *Trapping detectors see only the stable commutator.* Every trapped
   invariant of a seed witness is a homology class of the seed, so it depends
   only on Sigma^∞ of the nested commutator map (proof as in

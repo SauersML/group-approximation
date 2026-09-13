@@ -62,6 +62,17 @@ algebra with a nonzero fivefold commutator.
   Quaternionic partial flag manifolds with tautological Q never give one,
   whatever the protected rank
   (quaternionic-flag-trapping-steps-are-never-string).
+- *Odd primes are exhausted in small rank.* The witness has finite order, so
+  its class splits into p-primary parts. So, arXiv:1707.00739v2, p. 1:
+  "Kaji and Kishimoto [3] showed that p-regular Lie groups have homotopy
+  nilpotence class at most 3. When G is quasi-p-regular and p ≥ 7, Kishimoto
+  [4] showed that SU(n) has homotopy nilpotence class at most 3". There class
+  n means that the n-fold iterated commutator c_n (on n + 1 inputs) is null.
+  SU(k) is p-regular for p >= k. So for SU(k)-valued seeds every depth-three
+  bracket (c_3), and hence every depth-four bracket (c_4), is trivial at all
+  primes p >= k. For k = 3 a class-five seed must be 2-primary. For k = 4 it
+  must be 2- or 3-primary. For U(k)-valued seeds this holds at primes not
+  dividing k; the primes dividing k were not checked.
 - *Witnesses that mix the protected block with Q.* Unexplored. The trapped
   invariant is only constant on components, not a homomorphism. A commutator
   with a unitary that is not block diagonal is not computed by the seed
