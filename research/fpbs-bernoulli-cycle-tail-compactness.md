@@ -73,8 +73,13 @@ infinite H-orbits. The Mayer--Vietoris computation quoted in the proof of
 Theorem 2.47 gives beta_1^(2)(G)=beta_1^(2)(G_1)+beta_1^(2)(G_2), and the
 homological bound closes the sandwich. This is the per-action form of
 Theorem 2.47, which treats only infimum costs. It produced no new fixed
-price group. In a free product A*B such as (F_2 x F_2)*F_k, a non-amenable
-subgroup with beta_1^(2)=0 is freely indecomposable. By Kurosh it lies in a
-conjugate of a factor, say A, and the amalgam is (G_1 *_H A)*B up to
-conjugation. We found no member of P with beta_1^(2)>0 in which such a
-subgroup escapes the fixed price one pieces.
+price group. Suppose G_2=A*B, for instance (F_2 x F_2)*F_k. A non-amenable
+subgroup of G_2 with beta_1^(2)=0 has no nontrivial free splitting, because
+every nontrivial free product other than Z/2*Z/2 has beta_1^(2)>0. By
+Kurosh it lies in a conjugate of a factor, say A, and G_1 *_H G_2 is
+isomorphic to (G_1 *_H A)*B. In each group with beta_1^(2)>0 listed above,
+such a subgroup either does not exist or lies in a conjugate of a fixed
+price one free factor. Amalgams of fixed price one groups over infinite
+subgroups have fixed price one by Corollary 2.40(a), free products are
+covered by Theorem 2.27, and amenable H falls under Corollaries 2.28 and
+2.32.
