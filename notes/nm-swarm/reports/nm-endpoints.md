@@ -67,7 +67,7 @@ This lane owns the value.
   sets `value_one` from the above, with no `ofShelling`. `ofPocketRegion_faces` and
   `ofPocketRegion_boundary_cycle` hold by `rfl`.
 - Interface, agreed with hull-select on 2026-09-13. hull-select's draft
-  `Estimating/OsinPocketZeroCellMerge.lean` (unlanded at 07:41) builds
+  `Estimating/OsinPocketZeroCellMerge.lean` (landed at a73ab6f78, 08:42) builds
   `PocketRegion.innerBoundary P hcells hwalk` from `hwalk : P.inner.FollowsBoundary`. Its cycle
   is `P.inner.cycle`. `PocketRegion.toInnerGRegion` passes that boundary to `ofPocketRegion`
   with `hrot := List.IsRotated.refl _`, so `OsinPocketMergeRegion` stays as it is. The converse
@@ -78,6 +78,14 @@ This lane owns the value.
   `MultipleEdgePocketRegionInput` (d00f94876) already concludes that both cycles follow the
   boundary, and hull-respell's `PocketRegion.ofSimpleClosedWalk` (a11a8d850, unverified) builds
   such pockets.
+- fff-periodic owns route A of `EmptyTwoGonInput` (lead). A pinched pocket has no
+  `Embedded.FaceSetBoundary` on `P.faces`, so `ofPocketRegion` does not apply to it.
+  - fff-periodic is building `Surgery.InnerDiscRegion`, keyed by `IsDiscRegion`, in new modules
+    `SurgeryInnerDiscCollapse*`, and `InnerDiscRegion.ofPocketRegion` in
+    `Estimating/OsinPocketDiscMerge`.
+  - Its `value_one` is `P.listVal_inner_eq_one hcells` from this lane's module.
+  - This lane had no such variant in flight, and it told fff-periodic that hull-select's
+    merged-geometry lemmas may overlap.
 - This lane offered two lemmas, to be built only if hull-select asks:
   - `P.inner.FollowsBoundary` from an embedded boundary whose cycle rotates the pocket cycle;
   - given `hwalk`, every embedded boundary rotates the pocket cycle
