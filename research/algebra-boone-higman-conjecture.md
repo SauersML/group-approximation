@@ -58,11 +58,22 @@ route.*
 4. **Fixed Leavitt-type hosts.** *Dies* by
    `no-fp-simple-algebra-hosts-every-decidable-algebra`: a fixed host family has
    one complexity bound.
-5. **Leavitt--Nekrashevych completions (untried construction).**
+5. **Leavitt--Nekrashevych completions: construction settled, universality open** (2026-09-13).
    - *Setting:* a finitely presented `B` with a matrix recursion
      `psi : B -> M_d(B)`, and `O_psi = < B, L_d | b = sum_(ij) s_i psi(b)_(ij) t_j >`.
-   - *Open:* injectivity of `B -> O_psi`, and simplicity of `O_psi` under a
-     minimality condition on `psi`.
+   - *Settled:* `O_psi` is finitely presented and `B -> O_psi` is injective iff `psi`
+     is injective (`leavitt-nekrashevych-completion-embeds-and-is-fp`). Graded ideals
+     correspond to psi-saturated ideals, and `O_psi` is simple when `B` is psi-minimal
+     and the core has no off-degree centralizer
+     (`leavitt-nekrashevych-completion-simplicity-criterion`).
+   - *Open:* the universal premise `decidable-algebras-embed-in-simple-ln-completions`,
+     wired to this root by `algebra-bh-via-simple-leavitt-nekrashevych-completions`.
+     Minimality must carry the input's decision procedure.
    - *Why it matters:* this is the algebra analogue of Zaremsky's theorem that
      finitely presented self-similar groups satisfy Boone--Higman, through
      Röver--Nekrashevych groups.
+6. **Tensor powers of `L_2`** (2026-09-13). *New class, low complexity.* Every subalgebra of
+   `M_n(K<x_1..x_m> ⊗ K[t_1..t_k])` embeds in the finitely presented simple algebra
+   `M_n(L_2^{⊗(k+1)})` (`polynomially-representable-algebras-have-fp-simple-envelopes`).
+   All covered inputs share one exponential time bound, so the monomial complexity
+   benchmark stays untouched.
