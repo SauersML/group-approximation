@@ -17,3 +17,5 @@ Artifact Section 2 (Lemmas 2.1 and 2.2, Proposition 2.3, Corollary 2.4). Held OP
      homomorphisms.
    * Defects in distinct slots multiply.
    * The fixed space lies inside `ker(col_S)` tensored with the other slots.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 35.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

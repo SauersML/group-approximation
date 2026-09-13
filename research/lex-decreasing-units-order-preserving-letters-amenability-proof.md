@@ -26,3 +26,5 @@ re-derives it.
    * Locally finite by amenable is amenable.
    * `iota_A(D_8) <= U_<`, and a nontrivial `P` has elements of infinite order.
    * Apply `sofic-subgroups-carry-independent-cylinder-defects`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 35.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
