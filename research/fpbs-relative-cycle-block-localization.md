@@ -53,3 +53,21 @@ even in this known fixed-price family.
 Section 6 explains its equivalence to factor-cost preservation in
 the finitely generated setting. That equivalence is a reformulation,
 not evidence that the premise is established.
+
+Test the claim where fixed price is known (checked 2026-09-12 against
+Gaboriau's lecture notes,
+<https://perso.ens-lyon.fr/gaboriau/Travaux-Publi/ME-Cost-L2-Lectures/ME-Cost-L2-lectures.pdf>,
+version of 3 October 2025). Section 6 of the artifact shows that once
+factor cost is preserved, a lifted near-optimal finite-label base graphing
+gives K_n=0 with singleton blocks. So the claim holds for every finitely
+generated group with fixed price. That includes amenable groups (Theorem
+2.20 of the notes), free and surface groups (Corollaries 2.25 and 2.30),
+SL_n(Z) for n>=3 (Corollary 2.44) and products with Z (Corollary 2.52). No
+known case kills it, and the (r-1)/4 bound above for the fixed certificate
+on F_r x C_M is not a counterexample. For a single group the claim is
+equivalent to fixed price, so a new case needs a new fixed price theorem.
+Two natural classes add none. For finite graphs of groups with amenable
+edge groups, Corollaries 2.28 and 2.32 already give fixed price whenever
+the vertex groups have it. For a free product A*B, Theorem 2.27 gives
+C(a)=C(a|A)+C(a|B) for every free action, so the question reduces to A
+and B.
