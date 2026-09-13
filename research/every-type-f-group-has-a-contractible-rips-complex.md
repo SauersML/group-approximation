@@ -6,12 +6,15 @@ title: Every group of type F has a contractible Rips complex for some finite gen
 distinct_from:
   rips-complexes-of-integer-lattices-are-contractible: that is Virk's theorem for the single group Z^n with its standard generators; this quantifies over all groups of type F and allows any generating set
   hyperbolic-rips-complex-models-proper-actions: that is the Meintrup–Schick model for proper actions of hyperbolic groups; this is a universal statement over groups of type F
+  f-infinity-finite-cd-groups-have-contractible-rips: that is the affirmative answer to Problem 4.6 over groups of type F_infinity with finite cd, which implies this one; this is the affirmative answer to Problem 4.7 over groups of type F
+  amenable-automatic-groups-have-contractible-rips-complexes: that is the affirmative answer to Problem 4.1 for amenable automatic groups; this is the affirmative answer to Problem 4.7 for groups of type F
+  type-fn-groups-have-n-minus-1-connected-rips-complexes: that asks for (n-1)-connected Rips complexes of groups of type F_n; this asks for contractible Rips complexes of groups of type F
 ---
 
 For every group `G` of type F there are a finite generating set `S` and a scale
 `r ≥ 0` such that the Rips complex `VR_r(G, d_S)` is contractible.
 
-Equivalently (`rips-complex-of-a-group-is-a-flag-cayley-complex`): every group of
+Equivalently (`group-rips-complexes-are-cayley-graph-flag-complexes`): every group of
 type F acts freely, cocompactly and transitively on the vertices of a contractible
 locally finite flag simplicial complex.
 
@@ -20,13 +23,20 @@ see `zaremsky-4-07-type-f-groups-have-contractible-rips`.
 
 ## Attempts
 
-- Classes known or reported: hyperbolic groups, `Z^n`, two-dimensional RAAGs,
-  graphs of groups with finite edge groups over type-R vertex groups, all RAAGs
-  with the commuting-products generating set, groups satisfying Zaremsky's Link
-  Criterion (see the root for sources).
-- Planned (z4-07-type-f-rips): groups acting properly and coboundedly on injective
-  metric spaces, by pushing a farthest vertex inward with the binary ball
-  intersection property. Where it stops: groups with no coarsely injective
-  geometry, since coarsely injective groups are semihyperbolic and so have
-  quadratic Dehn function (Haettel–Hoda–Petyt, Geom. Topol. 27 (2023), abstract),
-  which excludes `BS(1,2)` and the Heisenberg group from that method.
+- **Established classes** (z4-07-type-f-rips, 2026-09-13; the last three unreviewed):
+  torsion-free asymptotically CAT(0) groups
+  (`torsion-free-asymptotically-cat0-groups-have-contractible-rips`); torsion-free coarsely
+  injective groups (`coarsely-injective-groups-have-contractible-rips-complexes`); torsion-free
+  finite-index subgroups of hierarchically hyperbolic groups
+  (`torsion-free-hhg-subgroups-have-contractible-rips-complexes`); Helly groups
+  (`helly-groups-have-contractible-rips-complexes`). Closure under direct products
+  (`contractible-rips-groups-closed-under-direct-products`) and finite-edge-group splittings
+  (`rips-type-r-closed-under-finite-edge-group-splittings`) enlarges these.
+- **Where it stops.** Each proof uses a model space in which every finite set of diameter `t`
+  lies in a ball of radius `< t` whose centre is compatible with all other such centres
+  (Zaremsky's criterion, `small-ball-criterion-gives-contractible-rips-complexes`), or
+  Helly ball intersections. A general group of type F has no such model. Next test object:
+  the integral Heisenberg group `H_3(Z)` acting on the real Heisenberg group with a
+  left-invariant metric. Two things to check: whether sets of diameter `t` lie in balls of
+  radius `J t + O(1)` with `J < 1`, and whether the centre-compatibility clause holds with
+  distorted centres.
