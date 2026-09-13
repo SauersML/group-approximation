@@ -1,4 +1,29 @@
-# Lane ms-compress-4: tex 658–739 (thm:normal-kazhdan, thm:compression-criterion)
+# Lane ms-compress-4
+
+## Item 2 (from 17:3x): W1 binder 1, the forest Prop under `OsinLemma94ClassCountInput`
+
+CLAIM SameFaceDartForestStatement (statement and proof) GroupApproximation/GGT/VanKampen/CombMapSameFaceForest.lean
+
+- Split agreed with w1-binder-1 in one direct message (~17:40). w1-binder-1 keeps the cutting-side count
+  (`OsinLemma94CuttingSides`). This lane owns the forest Prop.
+- The module carries w1-binder-1's spelling from its 17:3x draft: `CombMap.sameFaceDarts`, `CombMap.sameFaceVertices`,
+  `CombMap.mem_sameFaceDarts`, `SameFaceDartForestStatement`, then `sameFaceDartForest`. Once it lands, w1-binder-1 drops those
+  four declarations from its draft and imports this module.
+- Not this lane: the non-cutting class half. It is owned by sec5-sentences (`OsinLemma94LongTransitionInput`),
+  hull-count94 (`OsinLemma94ClassJoins`) and hull-component (bubble accounting).
+- Model test by hand:
+  - `IsPlanar := IsConnected ∧ χ = 2` (CombMap.lean:276), so a torus component plus a sphere component (χ = 0 + 2), where
+    same-face edges can form a cycle, is excluded.
+  - One edge: 2 darts, 2 vertices, `2 + 2 ≤ 4`, equality.
+  - A loop has different faces on its two sides.
+  - The empty case is excluded by `Nonempty`.
+- Route:
+  - Leaf induction over alpha-closed `T ⊆ sameFaceDarts f`.
+  - A leaf exists. Otherwise a non-backtracking `next` gives a first vertex repeat, hence an `IsSimpleClosedWalk` inside `T`.
+  - `IsSimpleClosedWalk.not_faceClass_alpha` and `SimpleClosedWalkSides.eqvGen_faceClass_of_sameCycle` then contradict
+    `faceOf d = faceOf (alpha d)`.
+
+# Range tex 658–739 (thm:normal-kazhdan, thm:compression-criterion)
 
 Lead: session nonsofic-existence-49 (wave 2). Manuscript at origin/main 313212d8a (2507 lines). The sentence census on main
 (`metadata/NON_MF_SENTENCE_CENSUS.tsv`, manuscript hash e66db325…) keys these rows at pre-chain-core line numbers
