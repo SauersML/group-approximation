@@ -136,7 +136,32 @@ relator face and for a relator–relator edge.
 - `exists_of_isCellEdgeDart` holds for the doubling along any dart of any inner face, so later doublings (T2, T3)
   keep the absence of cell-edge darts.
 
-### T3 side–side thickening (claimed)
+### Overlaps and assembly (18:3x)
+
+- **T3 claim WITHDRAWN.** ms-intro-2 claimed the same piece at 18:30 for binder 6: `SurgeryRegionPairThickening`, plus
+  `SurgeryFaceEdgeDoublingHoldingRegion`, the transport of a region holding the doubled face. main asked for one
+  transport.
+  - Agreed by direct message: ms-intro-2 writes both. This lane consumes `regionPairThickening` and
+    `regions_of_noRegionPairDart` for `CellPocketWalk.CopyClean.regions`.
+  - Asked of that statement: quantify over every pair of distinct regions, and keep "no cell-edge dart" and
+    "no cell-side dart" when given.
+  - This lane's green `SurgerySideSideThickeningModel` (probe 0913-181848-77014) is dropped from `.files` and not
+    landed; its attic copy is 4c48e7af8.
+- **Overlap with ms-binary.** `SurgeryCellHairThickening` (6ef3e9bd9, landed before T1) proves the `cell_self` half of
+  T1 for cell hairs and keeps the outer invariants. T1 adds `cell_cell`, the edges between two relator faces.
+  ms-binary's `CellHairThickeningSides.noCellSideDart` is exactly what T1 needs to keep the absence of cell-side darts.
+- **T2 landed** (ms-cite-2, dc394dd8e): `CellSideThickening.cellSideThickening`.
+- **Target Prop** (ms-cite-1): `MultipleEdgePocketRegionCopyInput` and `OsinMultipleEdgePocketRegionCopySectionStatement`.
+  This lane asked for the copy to be taken of `Delta`, witness `S'.equiv`.
+- **Assembly order:**
+  1. T2;
+  2. T1, keeping no cell-side dart;
+  3. region-pair thickening, keeping both;
+  4. `exists_clean_of_copy`;
+  5. step 4 (ms-intro-2), step 5 (ms-intro-2, 15e21098e), step 6 (ms-intro-4);
+  6. `MultipleEdgePocketRegionCopyInput`.
+
+### T3 side–side thickening (claimed, then withdrawn; see above)
 
 CLAIM T3 side–side thickening:
 - `GroupApproximation/GGT/VanKampen/SurgerySideSideThickeningModel.lean` (model test first);
