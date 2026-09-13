@@ -72,3 +72,24 @@ negative direction.
   A, to cost preservation along `alpha x sigma -> alpha` for free actions
   `alpha` of `Gamma` and free finite-cost actions `sigma` of `Gamma/N`. This
   is a restatement, not a reduction, so it is not recorded as a route.
+* **Derive it from a known fixed-price-one criterion.** Section 6 of the
+  linked note checks each verified criterion against its source. Gaboriau's
+  normal and commensurated criteria bound the cost of `Gamma` by the cost of
+  `N`, so they need cost one on `N`, while the hypothesis gives only `K`. The
+  chain criteria and Slutsky's Corollary 1.2 need an amenable or
+  fixed-price-one starting subgroup. The others need products, commuting
+  subgroups or higher rank, apart from two direct criteria: Slutsky's
+  Theorem 1.1, and Bevilacqua--Bowen Theorem 8.1 (a limit-amenable, partially
+  doubly recurrent action of normalized cost one). Under the hypothesis,
+  Gaboriau's Theorem 2.56 already gives infimal cost one, so the claim is
+  exactly the fixed price question for these extensions. **Where it waits:**
+  for `pi_1(M)`, the case this claim is meant for, only the two direct
+  criteria remain.
+  - Balls fail Slutsky's test (Remark H), and so do sets inside cyclic
+    subgroups.
+  - The horosphere, geodesic and horofunction actions are not partially
+    doubly recurrent (Proposition F).
+  - The overlapping neighbourhoods property behind Corollary 9.4 fails for
+    word metrics (Proposition G).
+  Other sets for Slutsky's criterion and other amenable actions for Theorem
+  8.1 are untested.
