@@ -19,17 +19,33 @@ Lead order:
 - Queued `GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonComplementarySentence ghw-charp2 42d443298`, with a
   comment line above it giving the tag.  root-wire has the tag and the caveat.
 
-### Archimedean split: waiting for ghw-assembly to name a piece
+### Archimedean split: bridge landed; ghw-assembly's call site needs no change
 
-- I asked ghw-assembly for the exact name, signature and module path of a piece.
-- Finding, from reading the statements rather than a probe: ghw-assembly's on-disk `Kazhdan/GHWCharZero.lean` (saved
-  03:52) still expects the old shape at lines 368--372.  `finite_of_minpoly_coeff` takes
-  `(M : L)^(N n) · (minpoly L a).coeff i`, but since 0379bac08 (03:40) `GHW.exists_places_minpoly_coeff` gives
-  `(minpoly L (M^N a)).coeff i`.  ghw-assembly's newest green record is from 02:37.
-- Proposed piece, waiting for ghw-assembly's "go": `GHW.exists_intPoly_eq_pow_mul_minpoly_coeff`, appended to
-  `Kazhdan/GHWCharZeroPlaces.lean`, which turns the new shape back into the old one.  The proof uses
-  `c_i(M^N a) = M^(N(deg − i)) c_i(a)` with `deg − i ≤ n`, the witness `M^(N(n − (deg − i))) • G`, and
-  `totalDegree_smul_le`.  Line 372 then becomes a one-line call.
+- Background: ghw-assembly's on-disk `Kazhdan/GHWCharZero.lean` (saved 03:52) expected the old shape at lines
+  368--372.  I proposed the bridge below to fix that with a one-line call.  The lead then ordered: land the bridge
+  now in my own module without waiting for ghw-assembly, land exactly the probed bytes, and send ghw-assembly the
+  name.
+- Landed 86635025c: `GHW.exists_intPoly_eq_pow_mul_minpoly_coeff d M N hM hn a h i`, appended to
+  `Kazhdan/GHWCharZeroPlaces.lean`, which has been root-wired since ce699b9b8.  The change is additive: no existing
+  statement changed, and the name is new on origin and on disk.
+  - Setup: `B = ℤ[t_1..t_d]`, `L = Frac B`, `K/L` finite with `finrank L K = n`, and `M > 0`.
+  - Claim: suppose every coefficient of `minpoly L (M^N a)` is `algebraMap G` for some `G ∈ ℤ[t]` of total degree at
+    most `N·n`.  Then so is `M^(N·n)` times every coefficient of `minpoly L a`.
+  - Proof:
+    - `c_i(M^N a) = M^(N(deg − i)) c_i(a)`, by `IsIntegrallyClosed.minpoly_smul` and `coeff_scaleRoots`;
+    - `deg − i ≤ n`;
+    - the witness is `M^(N(n − (deg − i))) · G`;
+    - the degree bound is `totalDegree_mul` with `totalDegree_C`.
+- Compiled evidence: probe 0913-044256-36897 (base 27f56e14b) is PROBE GREEN.
+  - `GHWCharZeroPlaces` and `IntegerPlacesMinpoly` are BUILT, with 0 warnings.
+  - The bridge depends on `[propext, Classical.choice, Quot.sound]`.
+  - The landed bytes are the green bytes (md5 cd60c1fc).
+- Premise change: ghw-assembly landed `Kazhdan/GHWCharZero.lean` at add35a53a (04:20; unverified, unwired).
+  - Its call site (lines 371--378) now passes the scaled elements `M^N x` to `finite_of_minpoly_coeff` through
+    `Set.Finite.of_finite_image`.
+  - `finite_of_minpoly_coeff` no longer carries the `M^(N n)` factor.
+  - So the line-372 break is gone and the one-line replacement is obsolete.  I sent ghw-assembly the name, the SHA
+    and the signature, and said that no change is needed.
 
 ## Item 3 (09-13): the additive non-archimedean places for GHWFinitelyGeneratedCharZero
 
@@ -234,5 +250,8 @@ property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembl
 
 - Item 3 is closed and landed (0379bac08).
 - Item 4, Jacobson record: done.  Probe 0913-040230-50292 is queued, and root-wire has the tag.
-- Item 4, archimedean split: waiting for ghw-assembly to name a piece.  I will write it in my own module, probe it,
-  land it and send the SHA.  `Kazhdan/GHWCharZero.lean` stays untouched.
+- Item 4, archimedean split: the bridge `GHW.exists_intPoly_eq_pow_mul_minpoly_coeff` is landed (86635025c) and
+  green.  ghw-assembly has the name and needs no piece from me; `Kazhdan/GHWCharZero.lean` stays untouched.
+- Residual, owned by ghw-assembly: `GHWFinitelyGeneratedCharZero : ∀ (F : Type) [Field F] [CharZero F] (s : Set (GL (Fin 2) F)), s.Finite → HasHaagerupProperty.{0, 0} (Subgroup.closure s)`.
+  Its producer `ghwFinitelyGeneratedCharZero` is on main at add35a53a but has no probe record yet.
+- Waiting for the lead's next item.
