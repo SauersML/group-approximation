@@ -5,6 +5,42 @@ section keys plus 5 Introduction keys (`684721560ced`, `d1c3c7f0f3a9`, `aac4a95b
 `c6f8fb6abe29`, `350e53c0b888`), all `unassigned`.  Claims metadata: lem:chain-core-models,
 lem:transient-matrices, thm:core-ring-reflection, thm:core-mf-radical, all `paper-proof`, `lean: []`.
 
+This file is written by chain-core only; other lanes read it.
+
+## S1 interfaces (landed; consume these names)
+
+All in namespace `GroupApproximation`; `T : X ≃ₜ X`, `k` a ring, `hP : IsClopen P`.
+
+Module `GroupApproximation.Dynamics.ClopenCrossedProduct` (0c76b1c47):
+
+| manuscript object | declaration |
+|---|---|
+| coefficient synonym for `LC(X,k)` | `ClopenCoeff T k` (a `def`, `Ring` via `ClopenCoeff.instRing`); `ClopenCoeff.of T k : LocallyConstant X k ≃+* ClopenCoeff T k` |
+| `ℤ`-action `ofAdd j • f = f ∘ T^{-j}` | `ClopenCoeff.instMulSemiringAction : MulSemiringAction (Multiplicative ℤ) (ClopenCoeff T k)`; `ClopenCoeff.smul_of`, `ClopenCoeff.ofAdd_one_smul_of` |
+| `R_X = LC(X,k) ⋊_T ℤ` | `ClopenCrossedProduct T k` (abbrev for `SkewMonoidAlgebra (ClopenCoeff T k) (Multiplicative ℤ)`) |
+| `f ↦ f` inside `R_X` | `ClopenCrossedProduct.coeff T k : LocallyConstant X k →+* ClopenCrossedProduct T k`; `coeff_apply` (= `Pestov91.CrossedProduct.C ∘ of`) |
+| `u` | `ClopenCrossedProduct.unit T k : (ClopenCrossedProduct T k)ˣ` (= `Pestov91.CrossedProduct.unit`) |
+| `u f u⁻¹ = f ∘ T⁻¹` | `unit_mul_coeff`, `unit_mul_coeff_mul_inv`; `f ∘ T⁻¹` is `LocallyConstant.comap ⟨⇑T.symm, T.symm.continuous⟩ f` |
+| unique Laurent expansions (existence) | `exists_sum_coeff_mul_unit_zpow` |
+| clopen indicator algebra | `isClopen_image`, `charFn_mul_charFn_of_subset`, `charFn_mul_charFn_of_superset`, `charFn_sub_charFn_of_subset`, `comap_symm_charFn` (`1_P ∘ T⁻¹ = 1_{T(P)}`) |
+
+Module `GroupApproximation.Dynamics.ClopenDefectPair` (32275d037), eq:clopen-defect-pair:
+
+| manuscript object | declaration |
+|---|---|
+| `p = 1_P`, `s = up+1-p`, `t = pu⁻¹+1-p`, `d = 1_{P∖T(P)}` | `ClopenCrossedProduct.defectP T k hP`, `defectS`, `defectT`, `defectD` |
+| `u p u⁻¹ = 1_{T(P)}`, `p² = p`, `d = p - 1_{T(P)}` | `unit_mul_defectP_mul_inv`, `defectP_mul_defectP`, `defectD_eq_sub (hTP : T '' P ⊆ P)` |
+| `ts = 1`, `st = 1 - d` | `defectT_mul_defectS hP hTP`, `defectS_mul_defectT hP hTP`; closed endpoint `printedClopenDefectPair` |
+| generic ring calculation | `mul_eq_one_of_conj`, `mul_eq_one_sub_of_conj` |
+| "restriction to the directly finite ring `R_Y` forces `d|_Y = 0`" | `map_defectD_eq_zero [IsDedekindFiniteMonoid A] (φ : ClopenCrossedProduct T k →+* A) hP hTP : φ (defectD T k hP) = 0` |
+| "each defect has additive order at most two" | `two_nsmul_defectD (h2 : (2 : k) = 0) hP : 2 • defectD T k hP = 0` |
+
+Status: both modules are probe GREEN (0913-154019-19595, md5 = origin/main) and queued for wiring.
+Names are stable; any signature change will be recorded here.
+
+Still to come in S1: the printed LEF definition and `≃ IsLEFRing`; LEF ⇒ directly and stably
+finite; `GL_n` of an LEF ring is LEF, and countable ⇒ MF; `R_X` countable.
+
 ## Existing carriers (origin/main, grepped for uses)
 
 | manuscript object | carrier | module |
@@ -23,50 +59,42 @@ lem:transient-matrices, thm:core-ring-reflection, thm:core-mf-radical, all `pape
 | directly / stably finite | Mathlib `IsDedekindFiniteMonoid`, `IsStablyFiniteRing` | Mathlib pin 81a5d257 |
 | `f ∘ T⁻¹` on locally constant functions | Mathlib `LocallyConstant.congrLeftRingEquiv`, `comapRingHom` | Mathlib pin |
 
-Nothing on origin or in any `lanes/*.files` on chain recurrence, word graphs, itinerary subshifts,
-locally matricial algebras, the clopen defect pair, or LEF ⇒ stably finite.  Mathlib at the pin
-has symbolic dynamics basics (`Subshift`, cylinders) and nothing on chain recurrence.
+## Sub-items and owners (09-13 15:07 assignment)
 
-## Sub-items (≤ 6, lane-sized)
-
-### S1 `basics` — TAKEN by chain-core
-Setup and the elementary ring facts consumed by every later item.
+### S1 `basics` — chain-core
 Keys: `275bedb28f9f` `752564275a33` `a1bda19b475a` `8a557cb954fb` `6011dc411b20` `2d1ca8689ac6`
 `b1a4887c5412` `1d0bcc92a75f` `1a88ddc187c0` `549aa93e832f` `bba38420cf8b` `6e533530564d`
 `aa429ec8d623`.
-Missing leaves:
-1. coefficient synonym for `LC(X,k)` carrying the `ℤ`-action `j • f = f ∘ T^{-j}` of a homeomorphism
-   `T`, and `R_X` as `SkewMonoidAlgebra` over it; `u C(f) u⁻¹ = C(f ∘ T⁻¹)`.
+Leaves:
+1. coefficient synonym, `ℤ`-action, `R_X`, `u f u⁻¹ = f ∘ T⁻¹`: landed (table above).
 2. the printed LEF definition (partial tables, `0`/`1` when present) and its equivalence with
    `IsLEFRing`.
 3. LEF rings are directly finite and stably finite (`IsStablyFiniteRing`), via `IsLEFRing.matrix`.
 4. `GL_n` of an LEF ring is LEF (compose 3 with `isLEF_units`); countable ⇒ MF by
    `isOperatorMF_of_isLEF`.
-5. eq:clopen-defect-pair: for clopen `P` with `T(P) ⊆ P`, `s = up + 1 − p`, `t = pu⁻¹ + 1 − p`,
-   `ts = 1`, `st = 1 − d`, `d = 1_{P∖T(P)}`; a generic ring lemma (unit `u`, idempotents `q ≤ p`,
-   `u p u⁻¹ = q`) plus the crossed-product instance.
-6. a unital hom to a directly finite ring kills `d`; `2 • d = 0` over `F_2`.
+5. eq:clopen-defect-pair: landed (table above).
+6. unital hom into a directly finite ring kills `d`; `2 • d = 0` over `F_2`: landed (table above).
 7. `R_X` is countable (countable clopen basis).
 
-### S2 `recurrence` — open
-Chain recurrence and compressed clopen sets on a general space.
+### S2 `recurrence` — hull-euler
 Keys: `49f76a64907a` `d5af28721656` `3ebdab1c418b` `0ae6fc9e199c` `73bd8ac910aa` `3ef2a7cdb9bd`
 `c99bf0bdb029`, and part of `d8e1a694d87c` (closed, invariant).
 Missing: `CR(T)` for a compatible metric, independent of the metric on compact `X`; closed and
 invariant; `P∖T(P)` wandering for `T(P) ⊆ P`; chain recurrence passes to factors.
 
-### S3 `symbolic` — open (critical path; needs S1.1)
+### S3 `symbolic` — chain-words, chain-subshift (critical path)
 Subshift case of lem:chain-core-models.
 Keys: `53fd5ea7d3d0` `9bc3873fb872` `078684fc2a60` `dfc6d4510272` `8bf7f40918d5` `56b6a80cc911`
 `2ed7f807a3a6` `57cd1b63930c` `0941296cf395` `4aede6d48b4d` `b94a006ee638` `533771f4f22d`
 `9ea50b0ff631` `cbf45b0e1c51` `1d52a79f1fef` `f7c8d8aab016` `b39310f67614` `ded9e9646e4b`
 `758517bf8d56` `647f44a95b8a` `ffa61d258258` `048953d87f92` `ae9c3d8b9922` `4fc54b29a740`
 `a08f25fce44c` `d8f8d764406c` `9c49a2efb0ca` `854ec7cb0423`.
-Missing: word graphs, cyclic edges, cycle condition; cycle condition ⇒ periodic models feeding
-`isLEFRing_skewMonoidAlgebra_of_periodic`; retained-graph subshifts `Z_r`, `Y_0 = ⋂ Z_r`, language
-stabilization; `Y_0 = CR(T)`; noncyclic edge ⇒ forward-closed cylinder union `P`, `Tx ∈ P∖T(P)`.
+chain-words: word graphs, cyclic edges, cycle condition; cycle condition ⇒ periodic models feeding
+`isLEFRing_skewMonoidAlgebra_of_periodic`, so periodic models ⇒ LEF.
+chain-subshift: retained-graph subshifts `Z_r`, `Y_0 = ⋂ Z_r`, language stabilization;
+`Y_0 = CR(T)`; noncyclic edge ⇒ forward-closed cylinder union `P`, `Tx ∈ P∖T(P)`.
 
-### S4 `general-X` — open (critical path; needs S2, S3)
+### S4 `general-X` — chain-itinerary (critical path; needs S2, S3)
 Keys: `3d8a2204752a` `fe2bd83087c0` `4bb19e581840` `ed348643e2ad` `807793f12a5e` `b180421b55ab`
 `2df08eeac3cb` `c825bc73828a` `e6626f95fede` `2583cbd0c0f2` `3b218f92cd81` `fb195144e5c2`
 `8921296d639a` `042966c81c7e`, and the rest of `d8e1a694d87c` (nonempty; `R_Y` LEF).
@@ -74,7 +102,7 @@ Missing: refining clopen partitions and itinerary subshifts `π_m`, one-block fa
 `Y_* = ⋂ π_m⁻¹(Y_m)`; coefficient pullback injective unital; increasing union of LEF rings is LEF;
 `Y_* = Y`; pullback of symbolic defects covers `X∖Y`.
 
-### S5 `transient-matrices` — open (needs S4)
+### S5 `transient-matrices` — chain-matricial (needs S4)
 Keys: `eda117e756e6` `7ff20576d4cf` `f0c16e5c8519` `910136e6e66d` `c05b0ec8b821` `97e43ae93d14`
 `2546c17d9884` `e60c16639f70` `f5264e48f943` `4244fb3c658b` `34e1eeff13be` `cd20a742dd3c`
 `1687471008a1` `ff376e50f433` `a3598c08b42c` `741b64286b55` `1d0f9a56866c` `fd026a61f84f`
@@ -84,23 +112,29 @@ compactly supported in `X∖Y`; exactness of `0 → I → R_X → R_Y → 0`; `I
 indicators; compact clopen partial shift graphs, class size ≤ `m`, loop erasing, freeness on `U`,
 clopen representative set, levels ⇒ `M_h(k)`; local matriciality.
 
-### S6 `theorems` — open (needs S1, S4, S5)
-thm:core-ring-reflection keys: `42c043ef7ab5` `8981cd70915a` `43afa4ee3f10` `cfbacaa0fffa`
-`9dae685e37b9` `400dde0dbd9d` `5a62e295ac1a` `d74779471003` `715cbd0f3410` `30a44485e5e8`
-`f2baa4a46f78` `b23e0f5197b5`.
-thm:core-mf-radical keys: `71da342a2cec` `ffcebac26044` `1dcedf0a7a5c` `87cd8b50757e` `380bfb5990c5`
-`5ab74e7c4576` `3a5ab131efde` `3b9dae111508` `be106727feb1` `4c62dd1963db` `fd54e2645afe`
-`2416b0e3e06b` `8ffeafc81808` `c13ca7c28028` `a47d16c7fbe5` `0b84b12a0927` `aef6776a7348`
-`5bdc96184b03` `d6d4c3f1cdb5` `d2d559dae75f` `8ada929ece30`.
-Introduction keys: `684721560ced` `d1c3c7f0f3a9` `aac4a95b387b` `c6f8fb6abe29` `350e53c0b888`.
+### S6 `theorems` — chain-reflection, chain-radical (needs S1, S4, S5)
+thm:core-ring-reflection (chain-reflection) keys: `42c043ef7ab5` `8981cd70915a` `43afa4ee3f10`
+`cfbacaa0fffa` `9dae685e37b9` `400dde0dbd9d` `5a62e295ac1a` `d74779471003` `715cbd0f3410`
+`30a44485e5e8` `f2baa4a46f78` `b23e0f5197b5`.
+thm:core-mf-radical (chain-radical) keys: `71da342a2cec` `ffcebac26044` `1dcedf0a7a5c`
+`87cd8b50757e` `380bfb5990c5` `5ab74e7c4576` `3a5ab131efde` `3b9dae111508` `be106727feb1`
+`4c62dd1963db` `fd54e2645afe` `2416b0e3e06b` `8ffeafc81808` `c13ca7c28028` `a47d16c7fbe5`
+`0b84b12a0927` `aef6776a7348` `5bdc96184b03` `d6d4c3f1cdb5` `d2d559dae75f` `8ada929ece30`.
+Introduction keys (chain-radical): `684721560ced` `d1c3c7f0f3a9` `aac4a95b387b` `c6f8fb6abe29`
+`350e53c0b888`.
 Missing: corner `eAe` directly finite; amplification to `M_m`; `R_X` DF ⇔ SF ⇔ LEF ⇔ `X = Y`;
 `GL_n(∏ M_{h_a}(F_2)) = EL_n` (determinant one over `F_2`, block flattening, commutators);
 kernel of `GL_n(R_X) → GL_n(R_Y)` equals `EL_n(R_X, I)` and is locally finite; the radical equality
 consuming `manuscriptTorsionComplementaryIdempotents` clause 1 and `isOperatorMF_of_isLEF`.
-The torsion-defect consumer is available now; the kernel computation is blocked on S5.
 
 ## Critical path
 S1 → S3 → S4 (with S2) → S5 → S6.  Only S1 and S2 have no upstream dependency in this section.
 
 ## Progress log
-- 09-13: scope landed (this file).  S1 in progress.
+- 09-13: scope landed (2b190862a).  S1 in progress.
+- 09-13: S1 interfaces landed unverified: ClopenCrossedProduct 0c76b1c47, ClopenDefectPair
+  32275d037 (closed endpoint `printedClopenDefectPair`).  Probe 0913-154019-19595 GREEN for both
+  (md5 = origin/main), queued for wiring.  Sub-items S2–S6 were reassigned by main (owners above).
+- 09-13: next S1 interface: `ClopenCrossedProduct.comap` (pullback along a semiconjugacy
+  `π ∘ T = S ∘ π`), restriction `R_X → R_Y` to an invariant `Y`, and `d|_Y = 0` (keys
+  `549aa93e832f`, `bba38420cf8b`).  After that: LEF ⇒ DF/SF, `GL_n` LEF, `R_X` countable.
