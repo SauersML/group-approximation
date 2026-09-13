@@ -25,7 +25,7 @@ same locus; it is not recorded as a separate claim.
 **What a witness must satisfy** (each item names its source on main).
 - **Confinement.** `ℓ_A(ω) ≤ 2^{−c/ω}` for some `c > 0` and all small `ω`: local
   divisions of matrix size `N` live on sets of `ρ`-diameter about `2^{−cN}`
-  (`bauer-unit-division-metric-order-criterion`, unreviewed). At a fixed defect `κ_0` the
+  (`bauer-unit-division-metric-order-criterion`, review PASS). At a fixed defect `κ_0` the
   confinement is exponential in `N` alone: `ℓ_A(N, κ_0) ≤ 16 · 2^{−κ_0 N}`
   (`bauer-unit-division-defect-uniform-criterion`, unreviewed).
 - **Nontrivial bundle.** Its strict closure is a nontrivial R-fibre W*-bundle over

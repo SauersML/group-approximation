@@ -46,5 +46,8 @@ metric form above divides the unit there: take `δ = κ` and `N ≥ c/κ²`.
 **Model tests.** `C(K)` fails the covering condition, since every point carries weight `1`.
 A `Z`-stable algebra satisfies it with the single set `K`.
 
-Unreviewed. It is a bookkeeping refinement of Proposition 8.2 of lane
-`ex-tw-rotation-gluing`, which is itself unreviewed.
+Unreviewed. It refines the bookkeeping of Proposition 8.2 of lane `ex-tw-rotation-gluing`,
+which has review PASS (`research/artifacts/ex-review2-analysis-2026-09-13-part2.md`, Section 2.7).
+The proof follows both wording notes of that review:
+- inactive members use the trivial lower bound `μ ≥ 0`;
+- the moves use the strong inductive form `w_i = (c_i*c_i − r_i)_+`.

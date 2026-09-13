@@ -62,7 +62,10 @@ in the statement for this `κ`.
   `D_i(λ) = 1/(4N_i) + δ_i/N_i + t h_i(λ)δ_i`.
 - **Approximants.** Choose `η > 0` with `16mη/s ≤ ε_0/8` and `7mη ≤ ε_0/16`, and (F5) approximants
   `b_i ∈ A` with `‖b_i − B_i‖_{2,u} ≤ η`. Cut at `x_i = (b_i − s)_+`, and run the moves of
-  Section 3, Step 5 in the order `i = 1, …, m`. The cut levels satisfy `σ_i ∈ [s, 1/2]`.
+  Section 3, Step 5 in the order `i = 1, …, m`. The cut levels satisfy `σ_i ∈ [s, 1/2]`. As in review note §2.3 of
+  `research/artifacts/ex-review2-analysis-2026-09-13-part2.md`, the inductive hypothesis is taken in the strong
+  form `w_i^{(k−1)} = (c_i*c_i − r_i)_+`, with `r_i` the sum of the later cuts. (F3) then controls every cut
+  level.
 - **Per-member bounds** for `σ ∈ [s, 1/2]`. Call member `i` active at `λ` if `h_i(λ) > 0`, which
   forces `λ ∈ O_i`.
   - Upper, active, by (F2) at `s` and monotonicity:

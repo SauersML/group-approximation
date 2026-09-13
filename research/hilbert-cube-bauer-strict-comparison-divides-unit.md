@@ -49,9 +49,10 @@ matrix size, at a fixed defect.
 
 **Base status.** Theorem E, Proposition 8.2 and Corollary F on main
 (`research/artifacts/ex-tw-c-space-unit-division-part4-2026-09-13.md` and parts 1–3)
-have no ex-verify review yet (`ex-verify2-analysis` unreviewed list). Lane
-`ex2-tw-hilbert-cube-boundary` rechecked by hand Lemma 3, Steps 4–6 of Section 3,
-Lemma 8.1 and the bounds of Proposition 8.2, and found no error.
+have review PASS from `ex-verify2-analysis`
+(`research/artifacts/ex-review2-analysis-2026-09-13-part2.md`, Sections 2.2–2.7, two wording
+notes, no verdict change). Lane `ex2-tw-hilbert-cube-boundary` had also rechecked Lemma 3, Steps 4–6
+of Section 3, Lemma 8.1 and Proposition 8.2 by hand.
 
 ## Attempts
 
