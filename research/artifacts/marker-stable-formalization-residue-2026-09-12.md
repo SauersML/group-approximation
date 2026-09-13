@@ -84,5 +84,7 @@ reads only the other classes.
   `marker-flip-control-disjointness-proof` PASS with two notes, both applied: the reverse inclusion,
   and the `d = 1` and `d = 3` case texts.
 - The residue node's support and degree statement FAILED. Section 2.2 is the corrected version, and the
-  degree-3 part is w3-vf-nonlinear's computation. Sections 2.3 and 2.4 are lane additions and have not
-  been verified.
+  degree-3 part is w3-vf-nonlinear's computation.
+- w3-vf-nonlinear, on 9cb380bf47 (verdict at 73bc73756f, Section 27 follow-up of its verification
+  artifact): the corrections PASS, and so do Sections 2.3 and 2.4. Section 2.4 is a necessary condition
+  for its gate class (data-ancilla track shears plus ancilla automorphisms), not a decision.
