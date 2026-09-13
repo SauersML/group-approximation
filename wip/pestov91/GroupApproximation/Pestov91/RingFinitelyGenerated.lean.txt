@@ -300,6 +300,18 @@ theorem closure_range_union_eq_top_of_forall_mem_span (ι : A →+* R) (u : Rˣ)
       (val_zpow_mem_closure u _ k)
   exact hle (hspan r)
 
+/-- **Normal form as explicit finite sums gives the generation hypothesis.**
+This is the `hspan` shape of `Pestov91.RingSimple`. -/
+theorem closure_range_union_eq_top_of_forall_eq_sum (ι : A →+* R) (u : Rˣ)
+    (hspan : ∀ r : R, ∃ (s : Finset ℤ) (f : ℤ → A),
+      r = ∑ j ∈ s, ι (f j) * ((u ^ j : Rˣ) : R)) :
+    Subring.closure (Set.range ι ∪ {(u : R), ↑u⁻¹}) = ⊤ := by
+  refine (Subring.eq_top_iff' _).mpr fun r => ?_
+  obtain ⟨s, f, rfl⟩ := hspan r
+  exact Subring.sum_mem _ fun j _ => Subring.mul_mem _
+    (Subring.subset_closure (Set.mem_union_left _ ⟨f j, rfl⟩))
+    (val_zpow_mem_closure u _ j)
+
 end Shift
 
 /-! ### The crossed-product ring is finitely generated -/
@@ -337,6 +349,49 @@ theorem isFinitelyGeneratedRing_of_normalForm (ι : LocallyConstant X (ZMod 2) �
     IsFinitelyGeneratedRing R :=
   isFinitelyGeneratedRing_of_shift X ι u ↑u⁻¹ u.mul_inv u.inv_mul hshift
     (closure_range_union_eq_top_of_forall_mem_span ι u hspan)
+
+/-- **The crossed-product ring is finitely generated**, in the covariance and
+normal-form shapes of `Pestov91.RingSimple`: `u ^ n * ι f = ι (f ∘ τ n) * u ^ n`
+and every element a finite sum `∑ ι (f j) * u ^ j`, for a shift `τ 1` that
+reads the next coordinate. -/
+theorem isFinitelyGeneratedRing_of_covariant (τ : ℤ → C(X, X))
+    (hτ : ∀ (x : X) (i : ℤ), (τ 1 x).1 i = x.1 (i + 1))
+    (ι : LocallyConstant X (ZMod 2) →+* R) (u : Rˣ)
+    (hcov : ∀ (n : ℤ) (f : LocallyConstant X (ZMod 2)),
+      ((u ^ n : Rˣ) : R) * ι f = ι (LocallyConstant.comap (τ n) f) * ((u ^ n : Rˣ) : R))
+    (hspan : ∀ r : R, ∃ (s : Finset ℤ) (f : ℤ → LocallyConstant X (ZMod 2)),
+      r = ∑ j ∈ s, ι (f j) * ((u ^ j : Rˣ) : R)) :
+    IsFinitelyGeneratedRing R := by
+  refine isFinitelyGeneratedRing_of_shift X ι ↑u ↑u⁻¹ u.mul_inv u.inv_mul
+    (fun i b => ?_) (closure_range_union_eq_top_of_forall_eq_sum ι u hspan)
+  have h1 := hcov 1 (coordinateIndicator X i b)
+  rw [zpow_one, comap_coordinateIndicator X (τ 1) 1 hτ] at h1
+  calc ι (coordinateIndicator X (i + 1) b)
+      = ι (coordinateIndicator X (i + 1) b) * ↑u * ↑u⁻¹ := by
+        rw [mul_assoc, u.mul_inv, mul_one]
+    _ = ↑u * ι (coordinateIndicator X i b) * ↑u⁻¹ := by rw [h1]
+
+/-- The same when the shift `τ 1` reads the previous coordinate; the roles of
+`u` and `u⁻¹` exchange. -/
+theorem isFinitelyGeneratedRing_of_covariant_neg (τ : ℤ → C(X, X))
+    (hτ : ∀ (x : X) (i : ℤ), (τ 1 x).1 i = x.1 (i - 1))
+    (ι : LocallyConstant X (ZMod 2) →+* R) (u : Rˣ)
+    (hcov : ∀ (n : ℤ) (f : LocallyConstant X (ZMod 2)),
+      ((u ^ n : Rˣ) : R) * ι f = ι (LocallyConstant.comap (τ n) f) * ((u ^ n : Rˣ) : R))
+    (hspan : ∀ r : R, ∃ (s : Finset ℤ) (f : ℤ → LocallyConstant X (ZMod 2)),
+      r = ∑ j ∈ s, ι (f j) * ((u ^ j : Rˣ) : R)) :
+    IsFinitelyGeneratedRing R := by
+  refine isFinitelyGeneratedRing_of_shift X ι ↑u⁻¹ ↑u u.inv_mul u.mul_inv
+    (fun i b => ?_) ?_
+  · have h1 := hcov 1 (coordinateIndicator X (i + 1) b)
+    rw [zpow_one, comap_coordinateIndicator X (τ 1) (-1)
+      (fun x n => (hτ x n).trans (by rw [sub_eq_add_neg])), add_neg_cancel_right] at h1
+    calc ι (coordinateIndicator X (i + 1) b)
+        = ↑u⁻¹ * (↑u * ι (coordinateIndicator X (i + 1) b)) := by
+          rw [← mul_assoc, u.inv_mul, one_mul]
+      _ = ↑u⁻¹ * ι (coordinateIndicator X i b) * ↑u := by rw [h1, mul_assoc]
+  · have h := closure_range_union_eq_top_of_forall_eq_sum ι u hspan
+    rwa [Set.pair_comm] at h
 
 end CrossedProduct
 
