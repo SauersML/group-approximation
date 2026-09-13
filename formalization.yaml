@@ -112,33 +112,35 @@ sources:
     contributors:
       - name: Claude (Anthropic)
         role: >-
-          found the construction and its proof, and reviewed it
-          independently twice
+          solved the problem, reviewed the proof independently twice, and
+          wrote all the prose for this result
     note: >-
-      The positive answer to Open Question 9.1 of Pestov's "Hyperlinear and
-      sofic groups: a brief guide" (arXiv:0804.3968; numbered 8.1 in v1 of
-      2008-04-24 and 9.1 in v8 of 2008-08-04), "Let G be an infinite simple
-      group with Kazhdan's property (T). Can it be hyperlinear (sofic)?", is
-      first presented in this project. Pestov credits the question to Ozawa,
-      who asks it in arXiv:math/0306067 v1 of 2003-06-03 (Internat. J. Math.
-      15 (2004)): "It is unknown whether there exists a simple property (T)
-      group Γ which is hyperlinear." The witness is EL_3(LC(X, F_q) ⋊ Z)
-      modulo its centre, for an infinite minimal subshift X. It was committed
-      to this public repository on 2026-09-13 at 03:18:24 UTC (f375478c7),
-      passed independent review at 03:48:55 UTC (0efeac410), was established
-      in the research graph at 04:09:24 UTC (8b65f0932), and passed a second
-      independent review at 05:56:33 UTC (badc66e2d). That postdates the
-      latest versions of both sources, Ozawa's v2 of 2004-05-10 and Pestov's
-      v8 of 2008-08-04. No earlier or independent answer was found in print;
-      Arzhantseva (2014) still lists the sofic form as unknown, and the latest
-      expert list of known examples, Alekseev and Thom (arXiv:2608.05362,
-      2026), names no simple one. The search was bounded: LaTeX sources of
-      twelve papers and surveys were searched, the titles and abstracts of the
-      works citing Ozawa, Pestov, Thom, Ershov and Jaikin-Zapirain, and
-      Grigorchuk and Medynets were read on OpenAlex, and Arzhantseva's survey
-      and a chapter of Pisier's book were read in full. The arXiv API and web
-      search were rate-limited, so a preprint too recent for OpenAlex to index
-      would not have been seen.
+      The positive answer to Open question 9.1 of Pestov's "Hyperlinear and
+      sofic groups: a brief guide", the question checked by
+      Palomar/comparator-pestov91.json, is first presented in this project.
+      Ozawa asks it in print in 2003: "It is unknown whether there exists a
+      simple property (T) group Γ which is hyperlinear" (arXiv:math/0306067
+      v1, 2003-06-03, unchanged in v2 of 2004-05-10). Pestov prints it as Open
+      question 8.1 of arXiv:0804.3968 v1 (2008-04-24), numbered 9.1 in v8
+      (2008-08-04): "Let G be an infinite simple group with Kazhdan's property
+      (T). Can it be hyperlinear (sofic)?" Arzhantseva still lists the sofic
+      form as unknown in 2014 (Trends in Mathematics 1, p. 11). The witness is
+      EL_3(LC(X, F_q) ⋊ Z) modulo its centre, for an infinite minimal subshift
+      X. The argument was committed to this public repository on 2026-09-13
+      at 03:18:24 UTC (f375478c7). It passed independent review at 03:48:55
+      UTC (0efeac410), was recorded in the research graph as answering the
+      question at 04:09:24 UTC (8b65f0932), and passed a second independent
+      review at 05:56:33 UTC (badc66e2d). An agent in a second session found
+      the same group independently three minutes after the first and
+      published it at 04:06:49 UTC (5dfab98df). This postdates the latest
+      version of every source checked for an earlier answer. The newest is
+      Alekseev and Thom's list of known examples (arXiv:2608.05362 v1,
+      2026-08-05), which names no simple one. No earlier or independent answer
+      was found in print. The check was bounded: the LaTeX sources of more
+      than twenty papers; the PDFs of Kirchberg (1994), Arzhantseva (2014) and
+      Pisier (2020, Chapter 17); and the OpenAlex titles and abstracts of works
+      citing Ozawa, Pestov and seven further sources. The arXiv API was
+      rate-limited, and journal versions were not opened.
 
   # Background for the LIX result: the problem and its history, the positive
   # results the counterexample had to avoid, the construction's ancestry and
