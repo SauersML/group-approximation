@@ -88,7 +88,34 @@ pieces in modules owned by this lane.
   suffix side. The inner joints keep valence two, because the walk across `chain` inside `rest ++ chain` never
   reaches the last dart of `rest`: no dart of `chain` lies across `chain`.
 
+- Shared core with `SeparatedCornerInsertionInput` (sec5-sentences' `OsinLemma94SeparatedInsertion`, b52230097): not
+  landed, by the lead's ruling.
+  - sec2-sentences had already landed `separatedCornerInsertionInput` in `OsinLemma94SeparatedInsertionProof` (619b70139).
+    It is built on this module's helpers, and the two proofs repeat only about 40 lines of set-up.
+  - The lead said to skip the core refactor and to leave this module's helpers untouched while that module is probed and
+    wired.
+  - The draft core `exists_corner_split_insertion` compiled green in probe 0913-130752-84082, with both Props derived from
+    it. A second probe, 0913-131141-4967, was also green: it ran the core with only `cornerInsertionInput` derived, and
+    also built `OsinLemma94SeparatedInsertionProof` and `OsinLemma94SectionResiduals` against it. The draft is kept at
+    `$NM/backup/simple-group/OsinLemma94CornerInsertion.lean.0913-core-refactor`.
+
 ### Residual for `CornerInsertionInput`
-None. `cornerInsertionInput : CornerInsertionInput` is closed (propext, Classical.choice, Quot.sound). The module
-is not wired; it enters the root through hull-unbound's `ChainRespellInput` producer.
-`SeparatingPathRemovalInput` belongs to another lane.
+None. `cornerInsertionInput : CornerInsertionInput` is closed (propext, Classical.choice, Quot.sound). The module is not
+wired. Two modules import it: hull-unbound's `OsinLemma94SectionResiduals` (0087a5095) and sec2-sentences'
+`OsinLemma94SeparatedInsertionProof` (619b70139). `SeparatingPathRemovalInput` belongs to another lane.
+
+## W2: `GeodesicCollar.InsertStatement` (kh-torsion's `SurgeryGeodesicCollarAssembly`, a89b55a0d)
+Assigned by the lead. kh-torsion was told before any Lean was written.
+- The design splits the strip face along `g` with `GFaceWordInsertion.exists_split_corner_output`, between the corner at the
+  head of `p` and the corner at the head of `q`:
+  - The new face set is the suffix side together with the kept faces.
+  - The transport comes from `CornerOutput.originalReplacement` and `ContiguityTransport`.
+  - The collar is the inserted path.
+- Path collision at 14:34: hull-bridge wrote `VanKampen/SurgeryGeodesicCollarInsert.lean` (registered in `hull-bridge.files`)
+  over this lane's draft at the same path. That file is hull-bridge's, and this lane has not edited it since. The lead has been
+  asked to decide who keeps the Prop.
+- The draft's Strip half (face membership, boundary iff, walk plan, statement plan) is kept at
+  `$NM/backup/simple-group/SurgeryGeodesicCollarInsert.strip-and-statement.draft.lean`. It has never been compiled.
+
+### Residual for `InsertStatement`
+Open, pending the lead's ruling. Nothing from W2 has landed.
