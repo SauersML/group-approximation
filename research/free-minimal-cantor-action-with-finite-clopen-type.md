@@ -45,6 +45,13 @@ topologically free, but freeness is not controlled.
   * Where it dies: density needs words whose action on small pieces realizes
     prescribed measure-preserving partial isomorphisms while respecting finite
     data on the two generators.
+  * Density is false in the full pair space.  Take a nonempty proper clopen
+    `p`.  The pairs preserving `p` form a nonempty open set, and no pair in it
+    is exhaustive: halving and the V-condition give `c <= p` and `d <= not p`
+    with `mu(c) = mu(d)`, and no word moves a piece of `c` out of `p`.
+  * So a Baire argument for `F_2` must run in a smaller closed subspace with
+    infinitely many prescribed values.  Two generators cannot carry those
+    values coordinate by coordinate, as the `F_infinity` proof does.
 * **Freeing by profinite extensions (idea, unreviewed; moved from the
   topologically free claim).**  Take `X x lim F/N_k` with the diagonal action
   of a free group `F`.
