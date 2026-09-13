@@ -80,6 +80,7 @@ theorem secondCorner_eq_facePerm :
   change (rebased Delta f j).darts[1] = Delta.toCombMap.facePerm ((rebased Delta f j).darts[0])
   exact h.symm
 
+include hlen in
 /-- The doubled dart is not its own face successor. -/
 theorem facePerm_dart_ne : Delta.toCombMap.facePerm (dart Delta f j) ≠ dart Delta f j := by
   rw [← secondCorner_eq_facePerm Delta f j hlen]
@@ -106,10 +107,9 @@ theorem facePerm_dartImage (d : Delta.toCombMap.Dart) :
         (some (some (Delta.toCombMap.alpha d))) = dartImage Delta f j hlen (Delta.toCombMap.facePerm d)
     have e1 : Delta.toCombMap.sigma (Delta.toCombMap.alpha d) = Delta.toCombMap.facePerm d := rfl
     rw [hb, PermOrbitInsert.insertBefore_some, PermOrbitInsert.insertBefore_some, e1, dartImage]
-    split_ifs with h1 h2 h3 h4
-    · cases h2
+    split_ifs with h1 h2
     · rfl
-    · exact absurd (Delta.toCombMap.facePerm.injective (Option.some.inj h3)) hd
+    · exact absurd (Delta.toCombMap.facePerm.injective (Option.some.inj h2)) hd
     · rfl
 
 /-! ## Faces and edges -/
@@ -120,7 +120,6 @@ theorem faceOf_dartImage (d : Delta.toCombMap.Dart) :
       faceImage Delta f j hlen (Delta.toCombMap.faceOf d) := by
   by_cases hd : d = dart Delta f j
   · rw [hd, dartImage_dart, dart_face, faceImage_self]
-    exact faceOf_some_none_cellFace Delta f j hlen
   · rw [dartImage_of_ne Delta f j hlen hd]
     by_cases hg : Delta.toCombMap.faceOf d = f
     · rw [hg, faceImage_self]
@@ -139,42 +138,54 @@ theorem alpha_dartImage_of_ne {d : Delta.toCombMap.Dart} (hd : d ≠ dart Delta 
 
 /-- The images of the faces of `s`, without the digon. -/
 noncomputable def holdingFaceSet (s : Finset Delta.toCombMap.Face) :
-    Finset (map Delta f j hlen).Face :=
+    Finset (diagram Delta f j hlen hf).toCombMap.Face :=
   s.map ⟨faceImage Delta f j hlen, faceImage_injective Delta f j hlen⟩
 
 theorem mem_holdingFaceSet_faceImage (s : Finset Delta.toCombMap.Face) (g : Delta.toCombMap.Face) :
-    faceImage Delta f j hlen g ∈ holdingFaceSet Delta f j hlen s ↔ g ∈ s :=
+    faceImage Delta f j hlen g ∈ holdingFaceSet Delta f j hlen hf s ↔ g ∈ s :=
   Finset.mem_map' ⟨faceImage Delta f j hlen, faceImage_injective Delta f j hlen⟩
 
 theorem digon_not_mem_holdingFaceSet (s : Finset Delta.toCombMap.Face) :
-    digon Delta f j hlen ∉ holdingFaceSet Delta f j hlen s := by
+    digon Delta f j hlen ∉ holdingFaceSet Delta f j hlen hf s := by
   intro h
   obtain ⟨g, _, hg⟩ := Finset.mem_map.mp h
   exact faceImage_ne_digon Delta f j hlen g hg
 
+theorem faceOf_none_not_mem (s : Finset Delta.toCombMap.Face) :
+    (diagram Delta f j hlen hf).toCombMap.faceOf none ∉ holdingFaceSet Delta f j hlen hf s := by
+  intro h
+  obtain ⟨g, _, hg⟩ := Finset.mem_map.mp h
+  exact faceImage_ne_digon Delta f j hlen g (hg.trans (faceOf_none_digon Delta f j hlen))
+
+theorem faceOf_embed_dart_not_mem (s : Finset Delta.toCombMap.Face) :
+    (diagram Delta f j hlen hf).toCombMap.faceOf (embed Delta.toCombMap (dart Delta f j)) ∉
+      holdingFaceSet Delta f j hlen hf s := by
+  intro h
+  obtain ⟨g, _, hg⟩ := Finset.mem_map.mp h
+  exact faceImage_ne_digon Delta f j hlen g (hg.trans (faceOf_embed_dart_digon Delta f j hlen))
+
 theorem faceOf_dartImage_mem_iff (s : Finset Delta.toCombMap.Face) (d : Delta.toCombMap.Dart) :
     (diagram Delta f j hlen hf).toCombMap.faceOf (dartImage Delta f j hlen d) ∈
-        holdingFaceSet Delta f j hlen s ↔ Delta.toCombMap.faceOf d ∈ s :=
-  (congrArg (· ∈ holdingFaceSet Delta f j hlen s) (faceOf_dartImage Delta f j hlen d)).to_iff.trans
-    (mem_holdingFaceSet_faceImage Delta f j hlen s _)
+        holdingFaceSet Delta f j hlen hf s ↔ Delta.toCombMap.faceOf d ∈ s :=
+  (congrArg (· ∈ holdingFaceSet Delta f j hlen hf s)
+      (faceOf_dartImage Delta f j hlen d)).to_iff.trans
+    (mem_holdingFaceSet_faceImage Delta f j hlen hf s _)
 
 /-- **The boundary darts of the holding face set are the images of the old ones**, when `w_j` lies
 on the old boundary. -/
 theorem isBoundaryDart_dartImage_iff (s : Finset Delta.toCombMap.Face)
     (hw : Delta.toCombMap.faceOf (Delta.toCombMap.alpha (dart Delta f j)) ∉ s)
     (d : Delta.toCombMap.Dart) :
-    IsBoundaryDart (diagram Delta f j hlen hf) (holdingFaceSet Delta f j hlen s)
+    IsBoundaryDart (diagram Delta f j hlen hf) (holdingFaceSet Delta f j hlen hf s)
         (dartImage Delta f j hlen d) ↔ IsBoundaryDart Delta s d := by
   unfold IsBoundaryDart
   rw [faceOf_dartImage_mem_iff Delta f j hlen hf s d]
   by_cases hd : d = dart Delta f j
   · have hnew : (diagram Delta f j hlen hf).toCombMap.faceOf
         ((diagram Delta f j hlen hf).toCombMap.alpha (dartImage Delta f j hlen d)) ∉
-          holdingFaceSet Delta f j hlen s := by
+          holdingFaceSet Delta f j hlen hf s := by
       rw [hd, dartImage_dart]
-      change (map Delta f j hlen).faceOf none ∉ holdingFaceSet Delta f j hlen s
-      rw [faceOf_none_digon]
-      exact digon_not_mem_holdingFaceSet Delta f j hlen s
+      exact faceOf_none_not_mem Delta f j hlen hf s
     have hold : Delta.toCombMap.faceOf (Delta.toCombMap.alpha d) ∉ s := by
       rw [hd]
       exact hw
@@ -194,15 +205,12 @@ theorem isBoundaryDart_dartImage_iff (s : Finset Delta.toCombMap.Face)
 theorem boundary_dart_holding_iff (s : Finset Delta.toCombMap.Face)
     (hw : Delta.toCombMap.faceOf (Delta.toCombMap.alpha (dart Delta f j)) ∉ s)
     (x : (diagram Delta f j hlen hf).toCombMap.Dart) :
-    IsBoundaryDart (diagram Delta f j hlen hf) (holdingFaceSet Delta f j hlen s) x ↔
+    IsBoundaryDart (diagram Delta f j hlen hf) (holdingFaceSet Delta f j hlen hf s) x ↔
       ∃ d, dartImage Delta f j hlen d = x ∧ IsBoundaryDart Delta s d := by
   constructor
   · intro hx
     rcases x with _ | (_ | e)
-    · refine absurd hx.1 ?_
-      change (map Delta f j hlen).faceOf none ∉ holdingFaceSet Delta f j hlen s
-      rw [faceOf_none_digon]
-      exact digon_not_mem_holdingFaceSet Delta f j hlen s
+    · exact absurd hx.1 (faceOf_none_not_mem Delta f j hlen hf s)
     · refine ⟨dart Delta f j, dartImage_dart Delta f j hlen, ?_⟩
       refine (isBoundaryDart_dartImage_iff Delta f j hlen hf s hw (dart Delta f j)).mp ?_
       rw [dartImage_dart]
@@ -210,10 +218,7 @@ theorem boundary_dart_holding_iff (s : Finset Delta.toCombMap.Face)
     · by_cases he : e = dart Delta f j
       · refine absurd hx.1 ?_
         rw [he]
-        change (map Delta f j hlen).faceOf (embed Delta.toCombMap (dart Delta f j)) ∉
-          holdingFaceSet Delta f j hlen s
-        rw [faceOf_embed_dart_digon]
-        exact digon_not_mem_holdingFaceSet Delta f j hlen s
+        exact faceOf_embed_dart_not_mem Delta f j hlen hf s
       · refine ⟨e, dartImage_of_ne Delta f j hlen he, ?_⟩
         refine (isBoundaryDart_dartImage_iff Delta f j hlen hf s hw e).mp ?_
         rw [dartImage_of_ne Delta f j hlen he]
@@ -226,7 +231,7 @@ theorem boundary_dart_holding_iff (s : Finset Delta.toCombMap.Face)
 theorem internalMove_dartImage (s : Finset Delta.toCombMap.Face)
     (hw : Delta.toCombMap.faceOf (Delta.toCombMap.alpha (dart Delta f j)) ∉ s)
     {d e : Delta.toCombMap.Dart} (h : InternalBoundaryMove Delta s d e) :
-    InternalBoundaryMove (diagram Delta f j hlen hf) (holdingFaceSet Delta f j hlen s)
+    InternalBoundaryMove (diagram Delta f j hlen hf) (holdingFaceSet Delta f j hlen hf s)
       (dartImage Delta f j hlen d) (dartImage Delta f j hlen e) := by
   obtain ⟨hd, had, rfl⟩ := h
   have hne : d ≠ dart Delta f j := by
@@ -251,7 +256,7 @@ theorem internalMove_dartImage (s : Finset Delta.toCombMap.Face)
 theorem boundaryStep_dartImage (s : Finset Delta.toCombMap.Face)
     (hw : Delta.toCombMap.faceOf (Delta.toCombMap.alpha (dart Delta f j)) ∉ s)
     {d e : Delta.toCombMap.Dart} (h : BoundaryStep Delta s d e) :
-    BoundaryStep (diagram Delta f j hlen hf) (holdingFaceSet Delta f j hlen s)
+    BoundaryStep (diagram Delta f j hlen hf) (holdingFaceSet Delta f j hlen hf s)
       (dartImage Delta f j hlen d) (dartImage Delta f j hlen e) := by
   refine ⟨(isBoundaryDart_dartImage_iff Delta f j hlen hf s hw d).mpr h.1,
     (isBoundaryDart_dartImage_iff Delta f j hlen hf s hw e).mpr h.2.1, ?_⟩
@@ -267,10 +272,10 @@ theorem boundaryStep_dartImage (s : Finset Delta.toCombMap.Face)
 noncomputable def holdingBoundary (s : Finset Delta.toCombMap.Face)
     (hw : Delta.toCombMap.faceOf (Delta.toCombMap.alpha (dart Delta f j)) ∉ s)
     (B : FaceSetBoundary Delta s) :
-    FaceSetBoundary (diagram Delta f j hlen hf) (holdingFaceSet Delta f j hlen s) where
+    FaceSetBoundary (diagram Delta f j hlen hf) (holdingFaceSet Delta f j hlen hf s) where
   faces_nonempty := by
     obtain ⟨g, hg⟩ := B.faces_nonempty
-    exact ⟨faceImage Delta f j hlen g, (mem_holdingFaceSet_faceImage Delta f j hlen s g).mpr hg⟩
+    exact ⟨faceImage Delta f j hlen g, (mem_holdingFaceSet_faceImage Delta f j hlen hf s g).mpr hg⟩
   all_gCells := by
     intro F hF
     obtain ⟨g, hg, rfl⟩ := Finset.mem_map.mp hF
