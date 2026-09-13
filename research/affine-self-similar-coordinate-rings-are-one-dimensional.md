@@ -55,7 +55,9 @@ ring is a finitely generated domain of characteristic zero has
 ## Scope
 
 **What it excludes.** Every commutative version of the affine route of
-`rational-linear-groups-satisfy-boone-higman` at positive transcendence degree:
+`rational-linear-groups-satisfy-boone-higman` at positive transcendence degree
+in which the tree is the digit tree of `O^n` and the affine maps have constant
+coefficients:
 - **Zaremsky's Example 4.7 criterion:** part (b) shows it never holds for a
   finitely generated commutative coordinate domain of positive transcendence
   degree. For example `Z[t]/(f)` is infinite for every nonzero nonunit `f`.
@@ -65,3 +67,11 @@ ring is a finitely generated domain of characteristic zero has
 **What it does not exclude.**
 - Noncommutative coordinate rings with a finite-index principal left ideal.
 - Self-similar hosts that are not affine.
+- **Affine groups acting on a tree with extra parameter coordinates.**
+  - `polynomial-parameter-affine-groups-are-self-similar` lets
+    `R = Z[1/m][t_1..t_k]` act on `Z_p^n x Z_p^k` by evaluating at the parameter.
+    The states are given by the substitutions `t_j -> a_j + p t_j`.
+  - There the state of the translation by `b` at `(0,a)` is the translation by
+    `(σ_a(b) - c)/p`, not by `b/p`, so (SC) is not forced.
+  - This escape gives `polynomial-linear-groups-satisfy-boone-higman`, which
+    covers `SL_3(Z[t])`.
