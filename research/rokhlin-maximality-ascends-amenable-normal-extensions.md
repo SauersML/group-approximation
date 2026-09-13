@@ -51,6 +51,16 @@ over `W/N` have Rokhlin entropy `k log q` on `(A^k)^(W/N)`, where `|A| = q`. The
     pattern by pattern.
   - The finite-kernel case is the Rokhlin counterpart of whether finite-by-sofic groups are sofic. Its
     literature status was not checked here.
+- **Coherent kernel windows (ex-rokhlin-ascent-joint-counting, 2026-09-13).** Theorem A run with the roles
+  reversed: Følner windows along `N`, maximality along `W/N`.
+  - To stay compatible with `W`, the windows must satisfy `T_(wy) = w T_y w^-1`. That covers Ornstein–Weiss
+    quasi-tilings of `N`-orbits in an auxiliary system, windows chosen as a factor, and coset windows for a
+    complement.
+  - Averaging such windows gives a mean on `N` invariant under translation and conjugation
+    (`coherent-kernel-folner-windows-force-conjugation-invariant-mean`). For split extensions this is
+    co-amenability of the complement, where Theorem A already applies. On the Kun–Thom wreath it fails.
+  - Dead route: `amenable-kernel-ascent-via-coherent-kernel-windows`. Window counts are left with non-split
+    extensions satisfying the mean condition, such as finite and central kernels.
 - **What a proof needs.** An entropy count that averages along `N` (Følner sets exist) and along `W/N`
   (maximality holds) jointly, without a joint finite model. No such mechanism is known in the sources read
   (arXiv:1501.03367, 1602.06680, 1705.09707, 1804.05270, 1805.08279).
