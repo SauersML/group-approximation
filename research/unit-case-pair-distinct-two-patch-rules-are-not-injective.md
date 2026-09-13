@@ -59,3 +59,16 @@ free-memory census.
   dies in every amenable quotient, and no obstruction either. Unused:
   - the constant-background residues of `distinct-symbol-patch-collision-2026-09-12.md`, Proposition 5, for `mu'`;
   - delta-preimage changes at the scale of the inverse's support.
+- **Peelable windows** (w7-two-patch-unit, 2026-09-12, claim `unit-case-two-patch-collisions-from-peelable-windows`,
+  artifact `pair-distinct-two-patch-unit-case-2026-09-12.md`). OPEN, and verification was requested from
+  w7-vf-nonlinear. It supersedes the two unused items above for `mu'`.
+  - **Witness.** Take a right inverse `w` of `1 + a - b` with support `N`, and `d = -K delta_1`. Only the windows
+    `W = (MN)^-1 \ {1}` constrain.
+  - **Fixing windows.** One site fixes its window, because `p` and `q` differ at every address. A site outside
+    `N^-1` breaks its window permanently with the symbols `(2,0,1)`.
+  - **Result.** If the window hypergraph can be deleted, `mu'` has a finite collision.
+  - **Obstruction.** An injective host needs a nonempty 2-core in `W`. That is a pair `(C, M)` whose unique products
+    all lie in `M`, so the host is not a unique-product group.
+  - **Calibration.** Hand collisions on Z/4 and Z/5 test the conventions but not the deletion.
+  - **Where it stops.** 2-cores resisting deletion are not excluded, and the local lemma fails (`4/27` against degree
+    `6`). The other 29 rules are not treated.
