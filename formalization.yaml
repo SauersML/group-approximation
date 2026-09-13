@@ -1296,6 +1296,11 @@ status:
       axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator-bowen-chapman.json
 
+    # The Palomar comparator workflow, Lean kernel and NanoDa, accepted
+    # Palomar/comparator-pestov91.json at be41521bf (run 34762709305), after
+    # e32bac3f3 (34751904895) and 7bbaa02ac (34761506719); palomar-check
+    # 34762687202 at be41521bf built PalomarPestov91ModelTests, matched both
+    # statements and printed both closures.
     - declaration: Pestov91.exists_infinite_simple_propertyT_hyperlinear
       file: Palomar/Pestov91Solution.lean
       sorry_count: 0
