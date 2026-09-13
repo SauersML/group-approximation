@@ -53,5 +53,15 @@ entropy over `G` would be isomorphic. That is the finite-entropy part of the str
   partition has generating partitions arbitrarily close to it, with the same window statistics up to any
   error, using two extra labels on a small set. The non-exact half of this claim is free, and the claim is
   purely an exactification statement.
+- **Splitting (lane ex2-bernoulli-exactification, 2026-09-13).** For each pair of bases this claim is
+  equivalent to `X_κ ≅ X_λ` together with DENSE(`X_λ`), density of automorphisms among endomorphisms
+  (`iid-density-iff-collapse-and-endomorphism-density`). So the claim contains the finite total collapse.
+  - DENSE fails for every finite base on nonamenable groups with positive supremum. At zero supremum it is posed
+    as `zero-supremum-bernoulli-automorphisms-dense-in-endomorphisms`.
+  - Route `iid-density-from-collapse-and-endomorphism-density` wires the two halves into this claim.
+- **The payoff needs less (same lane).** The collapse does not need this claim. It is enough that each of two
+  shifts has approximate right inverses by endomorphisms, `d(φ ∘ ζ, id) < ε`. The isomorphism then comes from
+  category in the space of joinings (`bernoulli-isomorphism-from-approximate-right-inverses`, route
+  `zero-supremum-collapse-via-approximate-right-inverses`). This claim implies that property.
 - **Where it dies.** Exactness: no construction changes an exactly i.i.d. partition on a small set, keeps it
   exactly i.i.d., and increases the information it carries.

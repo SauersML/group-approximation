@@ -140,3 +140,19 @@ isomorphic, i.e. `X_h ≅ X_∞` for every `h > 0`.
   algebra supplies absorption but not Bernoullicity of the absorbed factor. Such a failure
   would also bound the supremum through `strict-automaton-bounds-rokhlin-supremum`, and on
   dichotomy hosts force it to `0`, which is the hypothesis here.
+- **Category in joining space (lane ex2-bernoulli-exactification, 2026-09-13).** Let `A` and `B` be the factor
+  joinings between `X_λ` and `X_κ` in the two directions. Suppose every endomorphism of each shift has approximate
+  right inverses by endomorphisms. Then `A ⊆ cl(B)` and `B ⊆ cl(A)`, both sets are dense `G_δ` in `cl(A) ∩ cl(B)`,
+  and some joining is an isomorphism (`bernoulli-isomorphism-from-approximate-right-inverses`).
+  - So this claim follows from `zero-supremum-endomorphisms-have-approximate-right-inverses`, by route
+    `zero-supremum-collapse-via-approximate-right-inverses`.
+  - The input is weaker than the partition-space exactification above, which already contains total finite
+    collapse (`iid-density-iff-collapse-and-endomorphism-density`).
+  - The argument cannot run in the space of all ergodic joinings on groups with a proper finite-index subgroup.
+    Averaging coset-dependent right translations over the cosets gives ergodic self-joinings with a finite factor,
+    and these are not weakly contained in the Bernoulli shift. This is a sketch, recorded on the node.
+  - The property fails for every finite base at positive supremum, through Bowen's Proposition 9.4 mechanism. Over
+    `Z` it holds, by the Burton–Keane–Serafin residual factor theorem.
+
+  Dies at: approximate right inverses, with exact i.i.d. law, for non-invertible endomorphisms whose fibres spread
+  along a nonamenable structure. An example is the Ornstein–Weiss map on a group containing `F_2`.
