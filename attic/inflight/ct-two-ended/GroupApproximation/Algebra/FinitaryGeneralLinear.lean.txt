@@ -224,8 +224,8 @@ has finite matrix support. -/
 def GLfin : Subgroup (LinearMap.GeneralLinearGroup k (ℤ →₀ k)) where
   carrier := {g | HasFiniteMatrixSupport k ((g : Module.End k (ℤ →₀ k)) - 1)}
   one_mem' := by
-    have h : ((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1 = 0 :=
-      sub_self _
+    have h : ((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1 = 0 := by
+      rw [Units.val_one, sub_self]
     show HasFiniteMatrixSupport k
       (((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1)
     rw [h]
@@ -303,8 +303,8 @@ theorem conj_mem_GLfin (n : ℤ) {g : LinearMap.GeneralLinearGroup k (ℤ →₀
         ((g : Module.End k (ℤ →₀ k)) - 1) *
           ((shiftGL k ^ (-n) : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) :
             Module.End k (ℤ →₀ k)) := by
-    rw [zpow_neg]
-    exact ring_conj_sub_one (Units.mul_inv (shiftGL k ^ n)) _
+    rw [zpow_neg, Units.val_mul, Units.val_mul]
+    exact ring_conj_sub_one (R := Module.End k (ℤ →₀ k)) (Units.mul_inv (shiftGL k ^ n)) _
   show HasFiniteMatrixSupport k (((shiftGL k ^ n * g * (shiftGL k ^ n)⁻¹ :
     LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1)
   rw [e]

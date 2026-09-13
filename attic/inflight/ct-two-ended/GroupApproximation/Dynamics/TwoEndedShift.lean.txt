@@ -5,6 +5,7 @@ import Mathlib.Data.Int.LeastGreatest
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Topology.Connected.TotallyDisconnected
 import Mathlib.Topology.Metrizable.Basic
+import Mathlib.Topology.Metrizable.Urysohn
 import Mathlib.Topology.UniformSpace.Compact
 
 /-!
@@ -180,10 +181,8 @@ theorem isClosed_setOf_monotone : IsClosed {f : ℤ → Bool | Monotone f} := by
 instance : CompactSpace TwoEnded := by
   exact isCompact_iff_compactSpace.1 isClosed_setOf_monotone.isCompact
 
-instance : TopologicalSpace.MetrizableSpace TwoEnded := by
-  haveI : TopologicalSpace.SecondCountableTopology TwoEnded := by
-    exact TopologicalSpace.Subtype.secondCountableTopology {f : ℤ → Bool | Monotone f}
-  exact TopologicalSpace.metrizableSpace_of_t3_secondCountable TwoEnded
+instance : TopologicalSpace.MetrizableSpace TwoEnded :=
+  TopologicalSpace.metrizableSpace_of_t3_secondCountable TwoEnded
 
 theorem tendsto_pt_atTop : Tendsto pt atTop (𝓝 posInf) := by
   rw [tendsto_subtype_rng, tendsto_pi_nhds]
