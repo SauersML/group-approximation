@@ -228,8 +228,8 @@ theorem returnV_mul_coeff_extend (f : LocallyConstant C k) :
             (firstReturnHomeomorph hC).symm.continuous⟩ f)) * returnV k hC := by
   rw [returnV, Finset.sum_mul, Finset.mul_sum]
   refine Finset.sum_congr rfl fun h _ => ?_
-  rw [mul_assoc, cellCoeff, ← map_mul, unitPow_mul_coeff, unitPow_mul_cellCoeff k hC h, ← mul_assoc,
-    backCellCoeff, ← map_mul]
+  rw [unitPow_mul_cellCoeff k hC h, mul_assoc, unitPow_mul_coeff, ← mul_assoc, ← mul_assoc,
+    backCellCoeff, ← map_mul, ← map_mul]
   refine congrArg (fun F => ClopenCrossedProduct.coeff T k F * unitPow T k (h : ℤ)) ?_
   ext x
   simp only [LocallyConstant.coe_comap_apply, LocallyConstant.mul_apply, ContinuousMap.coe_mk,
@@ -237,16 +237,14 @@ theorem returnV_mul_coeff_extend (f : LocallyConstant C k) :
   by_cases hx : x ∈ returnCell T⁻¹ C h
   · have hy : (T ^ (-(h : ℤ))) x ∈ returnCell T C h :=
       (mem_zpow_image_iff (h : ℤ)).1 (by rw [image_returnCell hC]; exact hx)
-    rw [Set.indicator_of_mem hy, Set.indicator_of_mem hx, Pi.one_apply, Pi.one_apply, one_mul,
-      mul_one, clopenExtendByZero_apply_of_mem k hC.isClopen f hy.1,
+    rw [Set.indicator_of_mem hx, Pi.one_apply, one_mul, mul_one,
+      clopenExtendByZero_apply_of_mem k hC.isClopen f hy.1,
       clopenExtendByZero_apply_of_mem k hC.isClopen _ hx.1, LocallyConstant.coe_comap_apply,
       ContinuousMap.coe_mk]
     refine congrArg f (Subtype.ext ?_)
     show (T ^ (-(h : ℤ))) x = (T⁻¹ ^ (returnTime T⁻¹ C x : ℤ)) x
     rw [hx.2, inv_zpow']
-  · have hy : (T ^ (-(h : ℤ))) x ∉ returnCell T C h := fun hy =>
-      hx (by rw [← image_returnCell hC]; exact (mem_zpow_image_iff (h : ℤ)).2 hy)
-    rw [Set.indicator_of_notMem hy, Set.indicator_of_notMem hx, zero_mul, mul_zero]
+  · rw [Set.indicator_of_notMem hx, zero_mul, mul_zero]
 
 end Unit
 
