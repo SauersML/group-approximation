@@ -47,6 +47,24 @@ stated.
 The clause "⟨z⟩ is a nontrivial finite central subgroup of B, of order char(k)" (tex 1585–1587,
 `z ≠ 1`, `orderOf z = char k`) is owned by ms-inverses-4 (module BilateralThreeCellZOrder).
 
+## Item 2: step 3 of the two-ended remark (tex 1774–1785), with ct-two-ended
+
+Agreed with ct-two-ended: I own step 3, "every finitary block and every u^a is a unit". Steps 1, 2 and 4
+(Laurent symbols, codimension count, `R_X^× ≃* FinitaryGL.FinitaryShift`) stay with ct-two-ended, as do
+the census rows for tex 1774–1792.
+
+LANDED 0f53d2260 (probe 0913-180807-8399 GREEN; axioms [propext, Classical.choice, Quot.sound]),
+module `GroupApproximation.Dynamics.TwoEndedMatrixUnits`, namespace `GroupApproximation.TwoEndedShift`,
+over ct-two-ended's `FinitaryGeneralLinear` (f4678fca8) and `TwoEndedRepresentation` (c6fccaa40):
+
+| printed step | declaration |
+|---|---|
+| integer points are clopen, `1_{\{r\}}` | `isClopen_singleton_pt`, `ptIndicator`, `ptIndicator_pt` |
+| matrix units `a E_{rc} = (a·1_{\{r\}}) u^{r−c}` | `matrixUnit`, `rho_matrixUnit_single` |
+| finitary operators are actions of finite sums of matrix units | `rho_sum_matrixUnit_eq`, `exists_rho_eq_of_hasFiniteMatrixSupport`, `exists_rho_eq_of_mem_GLfin` |
+| "a finite invertible block extended by identity" is a unit | `exists_unit_rho_eq_of_mem_GLfin` |
+| `g σ^a` is a unit, closed | `exists_unit_rho_eq_mul_shiftGL_zpow`, `printedTwoEndedFinitaryShiftUnits : PrintedTwoEndedFinitaryShiftUnits` |
+
 ## Residual statements
 
 None in this scope.
