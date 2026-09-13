@@ -114,9 +114,13 @@ Third, `toeplitz-defect-ideal-connected-iff-extension-k1-injective`
 shows that `U(J~)` is connected iff `J + iota_1(T_2)` is K1-injective.
 So LXI forces `U(J~)` to be connected, and LXI is equivalent to the
 halving homotopy together with connectivity of `U(J~)`. A non-null
-unitary in `J~` therefore refutes LXI. Under halving, the remaining
-problem is a unit axiom: `u ~_h SuS^* + (1 - SS^*)` in `U(1+J)` for
-`S = iota_1(s_2)`.
+unitary in `J~` therefore refutes LXI. The remaining problem is a unit
+axiom: `u ~_h SuS^* + (1 - SS^*)` in `U(1+J)` for `S = iota_1(s_2)`.
+No halving hypothesis is needed for this form
+(`defect-ideal-connected-iff-one-isometry-unit-axiom`). Absorbing
+projections are ruled out by the O_3 quotient
+(`toeplitz-defect-ideal-absorbers-have-nonfull-complement`). The
+commutator form is `toeplitz-defect-ideal-almost-commuting-projection-axiom`.
 
 Fourth, `nonzero-fibre-projection-full-under-weak-omega-comparison`
 covers commutative witnesses. Over a base where `Cu(C(X))` has weak

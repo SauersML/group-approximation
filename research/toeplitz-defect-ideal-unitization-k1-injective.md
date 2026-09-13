@@ -48,6 +48,17 @@ equivalent to halving together with this claim, and a non-null unitary in `J~` r
     `u = 1 + x ∈ U(1+J)`, is `u ~_h 1 + S x S^*` in `U(1+J)`, where `S = iota_1(s_2)`?
   - Strict isometry paths from 1 to S in `M(J)` would give this, but they pass to the O_3 quotient,
     where no norm path of isometries from 1 to `r_2` exists.
+  - Update (lane ex3-k1-unit-axiom): halving is not needed for the unit-axiom form.
+    - `defect-ideal-connected-iff-one-isometry-unit-axiom`: `1 + SxS^*` is always null in `U(J~)`,
+      because `1 − SS^*` is properly infinite and full in `B_J` and `K_1(B_J) = 0`
+      (`isometry-compression-of-k1-trivial-unitary-is-null`). So this claim holds iff `u ~_h 1 + SxS^*`
+      for every `u ∈ U(1+J)`.
+- Absorbing projections (lane ex3-k1-unit-axiom): dead. The O_3 quotient pushes every projection of
+  `B_J` with full complement that absorbs `u_0 − 1` to 1, where `π(u_0) = −1`.
+  - See `toeplitz-defect-ideal-absorbers-have-nonfull-complement`, which invalidates
+    `toeplitz-defect-ideal-connected-via-absorbing-projections`.
+  - The norm-one commutator form is the open claim `toeplitz-defect-ideal-almost-commuting-projection-axiom`,
+    with route `toeplitz-defect-ideal-connected-via-almost-commuting-projection` into this claim.
 - Commutative detectors (lane ex2-k1-defect-ideal, `nonzero-fibre-projection-full-under-weak-omega-comparison`).
   - Consider a representation over C(X) with compact defect, nondegenerate on J and with nonzero fibres.
     It makes `P_E` properly infinite, so `K(E)` is stable, and every unitary of `J~` maps to a null
