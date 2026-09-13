@@ -66,6 +66,29 @@ literal step missing.
 - CLAIM census re-grade of rows b2365e8ebb86, bdceff578c1b, e425c4fecaee: `metadata/nm-census-rows/ms-compress-2.tsv`
   (appended after the module lands)
 
+## Audit coverage (requested by the lead after ms-intro-4's note)
+
+- `Manuscript/OneSidedMFRadical/KazhdanTransportSentences.lean` (11 `manuscriptSentence_*` theorems) has no audit line in its
+  source. On origin, 8 are audited in `Manuscript/NonMF/Audit/Intro.lean` or `Audit/Sec2.lean`. None audits
+  `manuscriptSentence_residuallyFiniteKazhdanGroupsAreMF`, `manuscriptSentence_conjugationActionsMultiplicativeModC0` or
+  `manuscriptSentence_restrictionExtendsToMaximalCStar`.
+- `Manuscript/OneSidedMFRadical/RankTwelveConfiguration.lean` (29 theorems) has no audit line in its source. On origin, 8
+  are audited elsewhere and 21 are not.
+- CLAIM `GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean`: `#audit_axioms` for all 40
+  theorems, plus `#audit_closed_axioms` for `printedDefectConfiguration` and `manuscriptPropositionDefect` (no binders).
+
 ## Progress log
 
 - 2026-09-13 ~17:05: ledger and claims.
+- 2026-09-13 ~17:15: probe 0913-171415-11333 FAILED on `WithLp.ext_iff.mpr`, which is not usable at the pin since `p` is
+  explicit. `manuscriptPrintedConjugatedProjectionOrder` elaborated with no error. Repaired through
+  `(WithLp.equiv 2 (Fin 0 → ℂ)).injective.subsingleton`.
+- 2026-09-13 ~17:30: resumed after the lead restart. Attic copies bef3710aa.
+- 2026-09-13 ~17:35: probe 0913-173041-70991 GREEN (BUILT both modules). LANDED bb32c57f9:
+  - `KazhdanProjectionOrderSentences`: `manuscriptPrintedFaithfulNondegenerateRepresentationEveryUnital` (F2) and
+    `manuscriptPrintedConjugatedProjectionOrder` (F3), both `#audit_closed_axioms`.
+  - `TransportSentencesAxiomAudit`: all 40 theorems of `KazhdanTransportSentences` and `RankTwelveConfiguration` pass
+    `#audit_axioms`; `printedDefectConfiguration` and `manuscriptPropositionDefect` pass `#audit_closed_axioms`.
+  - Both queued for wiring. Census rows bdceff578c1b and e425c4fecaee re-graded in `metadata/nm-census-rows/ms-compress-2.tsv`.
+- Range status: all 28 rows of tex 468–582 are carried at printed generality along the printed route. F1–F3 are fixed.
+  F2 and F3 become root-reachable once root-wire wires `KazhdanProjectionOrderSentences`.
