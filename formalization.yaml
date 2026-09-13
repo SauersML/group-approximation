@@ -143,12 +143,12 @@ sources:
     type: original-proof
     relationship: other
     contributors:
-      - name: Astra
-        role: solved the problem, using a custom proof tool
       - name: Claude (Anthropic)
         role: >-
-          wrote all the prose: the narrative fields of this file for this
-          result and the docstrings of the Palomar Pestov91 modules
+          solved the problem, with no custom proof tool; reviewed it in two
+          separate agent sessions; and wrote all the prose: the narrative
+          fields of this file for this result and the docstrings of the
+          Palomar Pestov91 modules
     note: >-
       The positive answer to Ozawa's question, the question checked by
       Palomar/comparator-pestov91.json, is first presented in this project.
@@ -165,12 +165,14 @@ sources:
       X; the Lean witness is the case q = 2 with X the Toeplitz subshift,
       where the centre is trivial and no quotient is taken. The argument was
       committed to this public repository on 2026-09-13
-      at 03:18:24 UTC (f375478c7). It passed independent review at 03:48:55
-      UTC (0efeac410), was recorded in the research graph as answering the
-      question at 04:09:24 UTC (8b65f0932), and passed a second independent
-      review at 05:56:33 UTC (badc66e2d). An agent in a second session found
-      the same group independently three minutes after the first and
-      published it at 04:06:49 UTC (5dfab98df). This postdates the latest
+      at 03:18:24 UTC (f375478c7). It passed a review by a separate Claude
+      Code agent at 03:48:55 UTC (0efeac410), was recorded in the research
+      graph as answering the question at 04:09:24 UTC (8b65f0932), and
+      passed a second such review, written before its author read the
+      first, at 05:56:33 UTC (badc66e2d). A Claude Code agent in a second
+      session found the same group independently, three minutes after the
+      first, and committed it at 04:06:49 UTC (5dfab98df). This postdates
+      the latest
       version of every source checked for an earlier answer. The newest is
       Alekseev and Thom's list of known examples (arXiv:2608.05362 v1,
       2026-08-05), which names no simple one. No earlier or independent answer
@@ -966,9 +968,12 @@ sources:
     note: >-
       Invent. Math. 176(1):169-221; arXiv:math/0607664v2. Simple twin building
       lattices, of which "many of them are finitely presented and enjoy
-      property (T)": the first known source of infinite simple Kazhdan groups.
-      A finitely presented LEF group is residually finite, so none of the
-      finitely presented ones is LEF. Context only.
+      property (T)": "the first infinite finitely presented discrete groups
+      to be both simple and Kazhdan" (p. 2, a remark they credit to Shalom).
+      The earlier infinite simple Kazhdan groups are Gromov's quotients of
+      hyperbolic Kazhdan groups, the entry below, which Ozawa and Pestov
+      cite. A finitely presented LEF group is residually finite, so none of
+      the finitely presented lattices is LEF. Context only.
 
   - title: Hyperbolic groups
     authors: [Misha Gromov]
@@ -994,6 +999,47 @@ sources:
       approximation. The witness is made LEF by the same mechanism, applied to
       the crossed-product ring; this theorem itself is not used.
 
+  - title: Groups that are locally embeddable in the class of finite groups
+    authors: [Anatoly M. Vershik, Evgenii I. Gordon]
+    year: 1997
+    type: paper
+    id: https://www.mathnet.ru/eng/aa751
+    relationship: background
+    note: >-
+      Algebra i Analiz 9(1):71-97; English translation St. Petersburg Math.
+      J. 9(1):49-67 (1998). The origin of the LEF property, which the
+      development proves for the witness and then turns into soficity and
+      hyperlinearity. Context only.
+
+  - title: From telescopes to frames and simple groups
+    authors: [Steffen Kionke, Eduard Schesler]
+    year: 2023
+    type: paper
+    id: https://arxiv.org/abs/2304.09307
+    location: Theorem 1.2 (Theorem 9.14)
+    relationship: background
+    note: >-
+      v1, 2023-04-18. Every finitely generated residually finite group embeds
+      into a finitely generated residually finite group that projects onto
+      an infinite simple LEF group, injectively on the embedded group. So
+      finitely generated infinite simple LEF groups are abundant. Nothing
+      there gives property (T), and the witness is not built that way; the
+      point of the answer is the conjunction of infiniteness, simplicity,
+      property (T) and the LEF property. Context only.
+
+  - title: 0-1-sequences of Toeplitz type
+    authors: [Konrad Jacobs, Michael Keane]
+    year: 1969
+    type: paper
+    id: https://doi.org/10.1007/BF00537017
+    relationship: background
+    note: >-
+      Z. Wahrscheinlichkeitstheorie verw. Gebiete 13(2):123-131. The origin
+      of Toeplitz sequences and their subshifts. The witness subshift is
+      generated by the sequence n ↦ parity of the 2-adic valuation of 3n - 1
+      (GroupApproximation/Pestov91/Toeplitz.lean), whose regularity and
+      aperiodicity the development proves directly. Context only.
+
   - title: Simplicity of algebras associated to étale groupoids
     authors: [Jonathan H. Brown, Lisa Orloff Clark, Cynthia Farthing, Aidan Sims]
     year: 2014
@@ -1012,14 +1058,16 @@ sources:
     year: 2015
     type: paper
     id: https://doi.org/10.1007/s10468-015-9522-2
-    location: Corollary 4.6
+    location: Corollary 4.6 and Theorem 5.2(1)
     relationship: other
     note: >-
       Algebr. Represent. Theory 18(4):907-916; arXiv:1403.4684v1, p. 7. A_R(G)
-      is simple if and only if G is effective and minimal and R is a field.
-      The witness ring LC(X, F_2) ⋊ Z is the case of the shift groupoid of a
-      free minimal system, which the development proves directly
-      (GroupApproximation/Pestov91/RingSimple.lean).
+      is simple if and only if G is effective and minimal and R is a field
+      (Corollary 4.6), and for G effective and minimal with compact unit
+      space the centre of A_R(G) is R times the unit (Theorem 5.2(1)). The
+      witness ring LC(X, F_2) ⋊ Z is the case of the shift groupoid of a
+      free minimal system; the development proves both cases directly
+      (GroupApproximation/Pestov91/RingSimple.lean and WitnessCentre.lean).
 
   - title: >-
       Simplicity, primitivity and semiprimitivity of étale groupoid algebras
@@ -1078,6 +1126,14 @@ automation:
       tool_setup: >-
         Astra, a custom proof tool, for the mathematics; a fleet of Claude Code
         agents for the Lean development, with remote batch compilation.
+
+    - method: agent
+      models: [Claude (Anthropic)]
+      framework: Claude Code
+      tool_setup: >-
+        A fleet of Claude Code agents for the mathematics, its two reviews and
+        the Lean development, with remote batch compilation; no custom proof
+        tool.
   notes: >-
     The LIX problem was solved by Astra, using a custom proof tool. All prose
     of that submission was written by Claude Fable 5.1: the registry abstract,
@@ -1101,12 +1157,14 @@ automation:
     entry above.
 
     Ozawa's question, printed by Pestov as Open question 9.1, was solved by
-    Astra, using a custom proof tool. All prose for that result, the
-    narrative fields of this file and the docstrings of the Palomar Pestov91
-    modules, was written by Claude (Anthropic), which also produced the Lean
-    formalisation under the author's direction. No Codex or GPT agent worked
-    on that result. That formalisation belongs to the second methods entry
-    above.
+    Claude (Anthropic) under the author's direction, with no custom proof
+    tool: the construction first appears in the reasoning of a Claude Code
+    agent, and two further Claude Code agents reviewed it in separate
+    sessions. All prose for that result, the narrative fields of this file
+    and the docstrings of the Palomar Pestov91 modules, was written by Claude
+    (Anthropic), which also produced the Lean formalisation under the
+    author's direction. No Codex or GPT agent worked on that result. That
+    result belongs to the third methods entry above.
 
     Problems X(1) and XXII of Schafhauser, Tikuisis and White were solved by
     Astra, using a custom proof tool. All prose for those two results, the
@@ -1124,6 +1182,13 @@ review:
     imported as an assumption: the axiom closure of every result below is
     exactly propext, Classical.choice and Quot.sound, and the Kun-Thom,
     Kun and Ershov-Jaikin-Zapirain inputs are proved in this development.
+    The argument behind the Pestov 9.1 pair was reviewed twice by separate
+    Claude Code agents, at
+    research/artifacts/ex-review-groups-2026-09-12-part1.md (0efeac410) and
+    research/artifacts/ex-pestov91-second-review-2026-09-13.md (badc66e2d);
+    both review the prose argument, and the Lean development proves the
+    case it needs of every theorem those reviews cite. No human expert
+    review has taken place.
 
 repository:
   role: substantive-development
@@ -1409,6 +1474,29 @@ fidelity:
     review research/artifacts/fz-blanchard-q54-review-2026-09-13.md checks the
     answer and the definitions it uses against arXiv:1507.02535v1 and
     arXiv:1312.7722v7.
+
+    For Ozawa's question, printed by Pestov as Open question 9.1, Kazhdan's
+    property (T) is the Kazhdan pair of Bekka-de la Harpe-Valette,
+    Definition 1.1.3, over complex Hilbert spaces in Type 0 with no
+    separability assumption, with a finite Kazhdan set, which is the compact
+    case for a discrete group; the development's real-Hilbert-space form is
+    bridged by realification and complexification
+    (hasKazhdanPropertyT_iff_complex). Soficity is the same finite-set
+    normalized-Hamming form as for Bowen-Chapman, and hyperlinearity is its
+    unitary-matrix analogue with the squared normalized Hilbert-Schmidt
+    distance, with separation 2 - eps because permutation matrices at
+    Hamming distance 1 are at squared Hilbert-Schmidt distance 2; Pestov's
+    Theorems 3.5 and 3.6 are the local criteria these forms imply. The
+    compared theorems are existence statements through one witness,
+    EL3(LC(X, F2) ⋊ Z) for the binary Toeplitz subshift X, whose centre is
+    trivial; they do not register the general theorem of the prose write-up
+    over every finite field and every infinite minimal subshift. The
+    formalized route is finite generation of the ring, its simplicity and
+    trivial centre for a free minimal action, simplicity of EL3 by split
+    annihilators and root extraction, property (T) by the
+    Ershov-Jaikin-Zapirain theorem proved in the development, and the LEF
+    property by periodic models of the Toeplitz sequence, then LEF to sofic
+    to hyperlinear.
 
 
 alignment:

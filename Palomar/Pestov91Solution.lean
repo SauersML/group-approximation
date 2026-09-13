@@ -53,7 +53,17 @@ The development endpoint is
 `GroupApproximation/Pestov91/WitnessAssembly.lean`.  Its group is `EL₃(A)` for
 the finitely generated ring `A = LC(X, 𝔽₂) ⋊ ℤ` over the Toeplitz subshift `X`,
 through `GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef_of_elementary`
-in `GroupApproximation/Pestov91/Assembly.lean`.
+in `GroupApproximation/Pestov91/Assembly.lean`.  The route, all under
+`GroupApproximation/Pestov91/`: finite generation of `A` (`WitnessRing.lean`);
+simplicity of `A` and triviality of its centre for a free minimal action
+(`RingSimple.lean`, `WitnessCentre.lean`); simplicity of `EL₃(A)` from those by
+split annihilators and root extraction (`SplitSimplicity.lean`,
+`WitnessSimple.lean`); property `(T)` by the Ershov–Jaikin-Zapirain theorem
+proved in this repository (`Kazhdan.lean`); the LEF property of `A` from
+periodic models of the Toeplitz sequence (`ToeplitzModel.lean`,
+`LEFCrossedProduct.lean`, `LEFWitness.lean`).  The theorems are existence
+statements through this one witness and register nothing about other fields
+or other subshifts.
 
 The prose of this module was written by Claude (Anthropic).
 -/

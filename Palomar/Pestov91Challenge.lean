@@ -68,7 +68,10 @@ respectively of unitary groups.  His Theorems 3.5 (page 8) and 3.6 (page 9)
 characterize these by local conditions that the block's forms imply, so a group
 satisfying the block's definitions answers Question 9.1.
 
-All groups are quantified over `Type`, where the witness lives.
+All groups are quantified over `Type`, where the witness lives.  The solution's
+witness is `EL₃(LC(X, 𝔽₂) ⋊ ℤ)` for the binary Toeplitz subshift `X`; the two
+theorems are existence statements and register nothing about other fields or
+other subshifts.
 
 The prose of this module was written by Claude (Anthropic).
 -/
