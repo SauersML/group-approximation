@@ -92,11 +92,16 @@ Both files LANDED at b1bd127ec. Probe 0913-025907-87619 GREEN (base b1bd127ec): 
   - `OrientedWordSidePair`, `.toWordSidePair` and `.exists_connectors`;
   - `OsinUnboundScale.orientedWordSidePair_of_parameters`: an antiparallel pair of long replacement segments
     (`β ≤ u' - u`, `β ≤ t - t'`, matched endpoints within `12(δ+1)`) gives an oriented word pair at `eps`.
+  - `OsinUnboundScale.orientedWordSidePair_of_orientedClassPair` (LANDED 73caa3848; probe 0913-031106-30663 GREEN,
+    bytes = origin/main; queued for wiring at 73caa3848): hull-count94's `OrientedClassPair` of the replacement
+    polygon, at `(λ√ρ/240 - c)/1000` and `12(δ+1)`, gives `OrientedWordSidePair` at `eps`.
 
 ## Next
 
-1. When the probe is GREEN, land normally and queue both modules for wiring.
-2. Once hull-count94 fixes the shape of `OrientedClassPair`, add the wrapper from the oriented three-class lemma to
-   `OrientedWordSidePair`.
-3. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
+1. New file `GGT/VanKampen/Estimating/UnboundOrientedWordPolygon.lean`, the oriented form of
+   `UnboundWordPolygonMonotone`:
+   - `OsinUnboundScale.exists_orientedPolygonPair` from `exists_orientedClassPair_of_aggregate_all`;
+   - `unboundOrientedWordPolygonMonotone`, which concludes `OrientedWordSidePair`;
+   - `unboundOrientedComponentWordPolygonsMonotone`, which concludes `Nonempty (OrientedWordConnectorPair ..)`.
+2. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
    re-grade the rows formalized.
