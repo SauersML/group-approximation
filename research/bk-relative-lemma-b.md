@@ -72,7 +72,38 @@ non-archimedean `K_0`) and the type I Toeplitz points of
 - **The missing input is an ideal-equivariant realisation.**  Realise a
   positive, ideal-compatible `K_0`-map `A → B` into an AF algebra `B` with a
   distinguished ideal `B_I` carrying the faithful trace of `I`, killing `G`.
-  This is the non-simple / relative form of Schafhauser Cor 5.4 — a
-  classification-of-embeddings question.  Whether it holds, or fails and lets a
-  non-split infinitesimal obstruction survive as a genuine Problem VII
+  This is the non-simple / relative form of Schafhauser Cor 5.4, deferred by
+  Schafhauser (p. 4) to forthcoming Carrión--Gabe--Schafhauser--Tikuisis--White
+  work — a classification-of-embeddings question.  Whether it holds, or fails and
+  lets a non-split infinitesimal obstruction survive as a genuine Problem VII
   counterexample, is the crux.
+
+## Resolution so far (2026-09-13)
+
+`bk-relative-boundary-descends-or-is-positively-detected` establishes that this
+tool cannot be an *unconditional* boundary-killer.  The surviving property (no
+densely finite annihilating trace, Theorem 7) descends down every quotient, and
+at the finiteness ideal `I` of `τ` the boundary splits:
+
+- **Ideal-captured (`π_*(G) = 0`):** `G` lives in `im(K_0(I) → K_0(A))` and
+  `τ|_I` is a genuine faithful densely finite trace annihilating the lift.  The
+  problem reduces to Lemma B on `I` plus one Brown--Dadarlat gluing step.  Two
+  residual conditions remain even here: (i) `τ|_I` must also annihilate the
+  *inner* extension boundary `∂(K_1(A/I)) ⊆ K_0(I)`, which a trace need not do
+  (Toeplitz: `Tr(∂[z]) = 1`), and (ii) the combined subgroup
+  `G̃ + ∂(K_1(A/I))` must stay singular in `K_0(I)` (a sum of two singular
+  subgroups need not be).
+
+- **Escaping with positive detection (`π_*(G) ∩ K_0^+(A/I) ≠ 0`):** the quotient
+  detects a singular boundary class positively, `E/K` is forced infinite
+  (Theorem 9), and no faithful embedding into a *stably finite* QD algebra kills
+  `G`.  Corollary 10 shows a type I counterexample is forced into this shape at
+  its elementary points.  This is the shape the tool must avoid.
+
+So the two crisp open questions are: **(A)** in the ideal-captured case, do the
+two residual conditions (i),(ii) hold for the radical's finiteness ideal? and
+**(B)** can the escaping-with-positive-detection shape be realised by a *stably
+finite* nuclear UCT `E`?  A yes to (B) is a Problem VII counterexample; a
+provable no closes the glued UCT case.  Question (B) is internally consistent
+(no trace obstruction survives the descent) and coincides with Problem VII for
+the glued UCT radical itself.
