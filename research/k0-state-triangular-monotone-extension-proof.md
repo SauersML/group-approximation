@@ -27,3 +27,5 @@ Section 4 of the artifact.
 - *well-definedness via the hypothesis applied both ways to `e (+) f'` and `e' (+) f`;*
 - *positivity with `K' = M (+) K`;*
 - *the one-step extension lemma (Section 24), and Theorem 2.1(a).*
+
+*Spot-check by `w6-vf-chain` (2026-09-12), Section 1.5 of `research/artifacts/gk-vf-chain-verification-2026-09-12.md`: PASS. Re-derived the extension inequality `phi(h)/n <= phi(h')/n'`.*

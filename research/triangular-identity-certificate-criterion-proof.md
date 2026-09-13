@@ -25,3 +25,5 @@ Section 2 of the artifact (Theorems 2.1 and 2.2).
 - *the order unit `X <~ I_c <~ I_c (+) Y`;*
 - *the state criterion via `-ku ∈ P ⟹ -u ∈ P` and the one-step extension lemma;*
 - *absorption `N (+) I_1 (+) K ~ M (+) K`, the chain relation, and the rank-condition case.*
+
+*Spot-check by `w6-vf-chain` (2026-09-12), Section 1.5 of `research/artifacts/gk-vf-chain-verification-2026-09-12.md`: PASS, agreeing with Section 28.1 of `w4-vf-linear-b`. Re-derived the absorption chain `I_(q+1) <=_T X <~ I_q`.*

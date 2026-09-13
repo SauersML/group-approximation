@@ -38,3 +38,5 @@ artifact.
 - *weak finiteness through the class-zero idempotent `I_n - BA`, and the padded converse.*
 
 *The literature check (Malcolmson 1980) was not done.*
+
+*Spot-check by `w6-vf-chain` (2026-09-12), Section 1.1 of `research/artifacts/gk-vf-chain-verification-2026-09-12.md`: PASS, agreeing with `w4-vf-linear-b`. Re-derived the retract `Y'X' = I_(n+1)`, maximality applied inside `W = A/J`, properness from the zero ring at `n = 0`, and weak finiteness through the class-zero idempotent `I_n - BA`.*

@@ -25,3 +25,5 @@ Section 2 of the artifact. Induction on `j`, starting from `f <~ u`.
 - *the Frobenius conjugation `[[0, I], [-UV, 0]]`;*
 - *Lemma S applied with `A = u^j`, `Z_1 = I_((j-1)n)`, `B = u`, `C = I_n`, where `f^((+)j)` is idempotent;*
 - *the end at `u^k = 0`, the `K_0` retract, and `I_9 <~ f^((+)3) <~ I_8`.*
+
+*Spot-check by `w6-vf-chain` (2026-09-12), Section 1.5 of `research/artifacts/gk-vf-chain-verification-2026-09-12.md`: PASS. Re-derived the Frobenius conjugation `[[I,0],[-U,I]] T [[I,0],[-V,I]] = [[0,I],[-UV,0]]`, which gives the corner `u^(j+1)` at `V = u^j` and `U = u`.*

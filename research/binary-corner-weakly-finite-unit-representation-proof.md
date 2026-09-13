@@ -34,3 +34,5 @@ simplicity.
 - *`φ(f) = u + u^2 ≠ 0` for `u ≠ 1` in characteristic two.*
 
 *Simplicity of `G` was not re-derived.*
+
+*Spot-check by `w6-vf-chain` (2026-09-12), Sections 1.3, 2 and 4 of `research/artifacts/gk-vf-chain-verification-2026-09-12.md`: PASS. In the letters of artifact Theorem W, (a) ⇒ (c) needs only size-one direct finiteness, and (c) ⇒ (d) is the only use of simplicity. End to end, fullness holds iff (d). (d) gives non-surjunctivity elementarily: if `F_2[G]` were stably finite, the inclusion `G -> F_2[G]^x` would be a nontrivial weakly finite representation. A Gottschalk counterexample on `G` is not known to give (d) (Section 4).*

@@ -23,3 +23,5 @@ Artifact Corollary C.2.
 - *a state is the rank condition for `S_-`;*
 - *Theorem C gives a nonzero weakly finite `W`;*
 - *`1 - z` maps to `2·1_W != 0`, then the normal subgroup argument.*
+
+*Spot-check by `w6-vf-chain` (2026-09-12), Sections 1.1 and 3 of `research/artifacts/gk-vf-chain-verification-2026-09-12.md`: PASS. The kernel of `G_3 -> W^x` misses `z` because `1 - z -> 2`. End to end, the swap corner is full iff `G_3` has no nontrivial weakly finite representation, conditional on simplicity of `PG` as recorded.*

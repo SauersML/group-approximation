@@ -25,3 +25,5 @@ Artifact Section 1, Theorem 1.
 - *finitely many entries lie in one stage, and universality by induction;*
 - *`Φ(0) = 0` makes every stage zero;*
 - *Corollary 1.2: stage 1 is an exact one-sided pair over `S_-`, padded by `eps_+`, and `1 ∈ J_ω` with `S_- ≠ 0` forces `J_1 ≠ 0`.*
+
+*Spot-check by `w6-vf-chain` (2026-09-12), Sections 1.4 and 4 of `research/artifacts/gk-vf-chain-verification-2026-09-12.md`: PASS. Consequence for a group algebra: every weakly finite characteristic-p representation of `G` is trivial iff `J_omega(F_p[G])` is the augmentation ideal, while `F_p[G]` fails stable finiteness iff `J_1 != 0`.*

@@ -20,3 +20,5 @@ Artifact Theorem W, (b) => (a).
 no states and no rank functions.
 
 *Verification by `w4-vf-linear-b` (2026-09-12), Section 35 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. Chain checked: Theorem C (Section 29.4), then Theorem B 6 ⇒ 1 (Section 32.3). The converse (a) ⇒ (c) ⇒ (b) is elementary and was also checked.*
+
+*Spot-check by `w6-vf-chain` (2026-09-12), Section 2 of `research/artifacts/gk-vf-chain-verification-2026-09-12.md`: PASS as an implication. Re-checked the chain Theorem C, then Theorem B 6 ⇒ 1. The first requirement also makes `F_2[R^x]` not stably finite directly: `T` is nonzero and then not weakly finite, and a one-sided pair over `T` pads with `1 - f`.*

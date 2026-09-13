@@ -31,3 +31,5 @@ Artifact Section 3, Theorem 3.
 - *the normal-subgroup trichotomy via perfection;*
 - *injectivity of `ρ∘ι`;*
 - *`f^2 = 8(1 - u) = f`, the commutation with `ρ(ι(G))`, and `[z] -> fu = 2(u - 1) = -f`, so `eps_+` dies.*
+
+*Spot-check by `w6-vf-chain` (2026-09-12), Sections 1.4 and 3 of `research/artifacts/gk-vf-chain-verification-2026-09-12.md`: PASS, conditional on simplicity of `PG` as recorded. Re-derived `f^2 = f`, `fu = -f` and `eps_+ -> 0` over `F_3`.*

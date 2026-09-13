@@ -35,3 +35,5 @@ Section 2 of `research/artifacts/ternary-anti-central-invariant-census-2026-09-1
 - *Lemma 1.3;*
 - *4 ⇒ 5 via `x = f_(MK) π_M f_K` and `y = f_K π_M^-1 f_(MK)` in `T`;*
 - *6 ⇒ 2 in `V(A)`.*
+
+*Spot-check by `w6-vf-chain` (2026-09-12), Section 1.2 of `research/artifacts/gk-vf-chain-verification-2026-09-12.md`: PASS, agreeing with `w4-vf-linear-b`. Re-derived `D(h)[g] = [g]D(h)`, `ψ'(f) = f_(K_3) + f_(K_4)`, `v = 3^k d_k`, the count `(3^k - 1)/2` and 6 ⇒ 2. Statement 6 is the stable form, equivalent to failure of the matrix rank condition.*

@@ -32,3 +32,5 @@ Artifact Proposition C.
 - *Corollary 4.2 through Section 16.3.*
 
 *The input `binary-leavitt-unit-group-is-simple` was not re-derived.*
+
+*Spot-check by `w6-vf-chain` (2026-09-12), Sections 1.2 and 2 of `research/artifacts/gk-vf-chain-verification-2026-09-12.md`: PASS. The pullback along the unital `ψ'` is normalized at `[A]`. Step 3 uses simplicity of `G`, which passed in `research/artifacts/review-backlog-2-2026-09-12.md` §8.*
