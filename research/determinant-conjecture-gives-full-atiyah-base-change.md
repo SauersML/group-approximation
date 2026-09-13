@@ -7,10 +7,11 @@ distinct_from:
   strong-atiyah-base-change-algebraic-to-complex: that asks whether Strong Atiyah over Qbar for all torsion-free groups gives it over C, with no determinant hypothesis; this asks it group by group under the determinant conjecture, where transcendence degree one is already proved.
   atiyah-base-change-in-transcendence-degree-one-under-det: that is the established case of coefficient fields of transcendence degree at most one; this is the full statement, open from transcendence degree two.
   strong-atiyah-base-change-from-galois-invariance: that derives the conclusion from full Galois invariance; this asks for it from the determinant conjecture, which gives invariance only in transcendence degree one so far.
-  atiyah-base-change-in-transcendence-degree-two-under-det: that is the established purely transcendental case Qbar(z_1, z_2); this is the full statement, still open for finite extensions of such fields and from transcendence degree three.
+  atiyah-base-change-in-transcendence-degree-two-under-det: that is the established case of coefficient fields of transcendence degree at most two; this is the full statement, open from transcendence degree three.
 artifacts:
   - research/artifacts/atiyah-transcendence-degree-one-base-change-2026-09-13.md
   - research/artifacts/atiyah-two-variable-base-change-2026-09-13-part3.md
+  - research/artifacts/atiyah-two-variable-base-change-2026-09-13-part4.md
 ---
 
 **OPEN.** Let `G` be torsion-free and satisfy Strong Atiyah over `Qbar` and
@@ -21,23 +22,26 @@ Neumann kernel dimension.
 - **Transcendence degree at most one.**
   [[atiyah-base-change-in-transcendence-degree-one-under-det]] covers every such
   coefficient field.
-- **Purely transcendental, degree two.**
-  [[atiyah-base-change-in-transcendence-degree-two-under-det]] covers
-  `Qbar(z_1, z_2)`. It is unreviewed.
+- **Transcendence degree two.**
+  [[atiyah-base-change-in-transcendence-degree-two-under-det]] covers every such
+  field (unreviewed).
+  - `Qbar(z_1, z_2)` goes through integral models of zero-dimensional cycles
+    and a small Chow form (Parts 1-3 of the artifact).
+  - Finite extensions go through continuity on surfaces (Part 4).
 - **Several variables.** By `atiyah-base-change-holds-off-a-countable-set`, the
   exceptional parameter set is a Borel, null, meagre set, so what remains is
   showing it is empty.
 
-**What remains.**
-1. **Finite extensions of `Qbar(z_1, z_2)`.** The transcendence-degree-one
-   argument should carry over, with fibre sums constant off the jump locus,
-   continuity and connectedness, but it is not written out.
-2. **Transcendence degree at least three.** The cycle inequality of
-   [[determinant-conjecture-bounds-determinants-over-galois-orbits]] and Lemma J
-   extend verbatim to `A^s`. The missing input is Diophantine: an integral
-   product `F` of linear forms at affine points with
-   `a(F) + (B-1) b(F) + C deg F < 0` at a point with algebraically independent
-   coordinates.
+**What remains: transcendence degree at least three.**
+- **Reduction.** By the fibre argument of Part 4, by induction on dimension, it
+  suffices to treat `Qbar(z_1, ..., z_s)`.
+- **What carries over.** Lemma J, the cycle inequality of
+  [[determinant-conjecture-bounds-determinants-over-galois-orbits]], and
+  Corollary 6 all extend to `A^s`.
+- **What is missing.** The input is Diophantine: an integral product `F` of
+  linear forms at affine points of `A^s` with
+  `a(F) + (B-1) b(F) + C deg F < 0`, at a point with algebraically independent
+  coordinates.
 
 **Why it matters.** Through `algebraic-atiyah-and-determinant-one-group-tester`,
 this claim together with `SA(E)` and `Det(E)` for the master host proves the root

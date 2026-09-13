@@ -12,10 +12,15 @@ artifacts:
   - research/artifacts/atiyah-two-variable-base-change-2026-09-13-part1.md
   - research/artifacts/atiyah-two-variable-base-change-2026-09-13-part2.md
   - research/artifacts/atiyah-two-variable-base-change-2026-09-13-part3.md
+  - research/artifacts/atiyah-two-variable-base-change-2026-09-13-part4.md
 ---
 
-The complete argument is Parts 1-3 of
-`research/artifacts/atiyah-two-variable-base-change-2026-09-13-part*.md`.
+The complete argument is Parts 1-4 of
+`research/artifacts/atiyah-two-variable-base-change-2026-09-13-part*.md`. Parts
+1-3 prove items 1-2 (Theorem 5). Part 4 proves item 3 (Theorem 6), by Noether
+normalization of a surface. Fibre sums are constant off the jump locus, by
+Lemma J, Theorem 4 and Theorem 5. Continuity follows from upper semicontinuity,
+and density of algebraic points plus connectedness then give constancy.
 
 * **Reduction (Part 1, Section 2).**
   - Suppose `A` has excess `kappa > 0` at `z`. The excess is never negative, by
