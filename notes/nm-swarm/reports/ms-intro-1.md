@@ -63,4 +63,19 @@ statement matches the printed sentence at the printed generality.
 ## Progress log
 
 - 17:05 ledger landed with census row corrections for e82d3011b6cb, b1b04e376fe7, 8d0b87a46a51
-  (`metadata/nm-census-rows/ms-intro-1.tsv`).
+  (`metadata/nm-census-rows/ms-intro-1.tsv`), db35aee00.
+- 17:15 LANDED c28a60924 (probe 0913-170314-63885 GREEN, both modules BUILT):
+  - `Manuscript/NonMFSentences/KorchaginLiteralSentence.lean`: `PrintedKorchaginLiteral`,
+    `manuscriptSentence_korchaginLiteral`. This is tex 99–102 between the printed model conditions: limsup separation ⟺
+    one constant along the full sequence, with V_n(1)=1 kept on both sides. Row b1b04e376fe7 now names it.
+  - `Manuscript/NonMFSentences/IntroCompressorCentralizerSentence.lean`: `PrintedCentralizerConjugateCommutes`
+    (general), `PrintedConjugateNeedNotCommute` (rank-twelve witness, defect ≠ 1),
+    `manuscriptSentence_compressorCentralizer`. Row b671ae1aab2b now names them.
+  - Both modules are queued for wiring in `wire-queue.txt`.
+
+## State
+
+Every sentence of tex 1–165 is carried by a closed declaration or honestly classified. The two exceptions:
+- a16637da7249 (abstract, torsion-free clause) stays partial on W1;
+- the two new modules await root wiring.
+Residual statements owned by this lane: none.
