@@ -5,7 +5,7 @@ Integrator of h94: the closed `theorem osinLemma94Section_closed : OsinLemma94Se
 (Osin, arXiv:math/0411039v3, §9, Lemma 9.4, in `Estimating/OsinAppendixSections.lean`). Roster W1:
 this lane keeps realization and the assembly. The count piece (side budget and covers) goes to
 hull-count94, Case 1 to theoremc-retire and Case 2 to sec5-sentences. Roster l.1098: this lane also
-owns the pinched-window item, and ko-closed picks between (a) and (b).
+owns the pinched-window item. ko-closed picked (a), `OsinLemma94PinchedQuadrilateralStatement`.
 
 ## First split (landed)
 `Estimating/OsinLemma94Pieces.lean` (b8441172e, compiled in probe 0913-042440-98733):
@@ -135,10 +135,11 @@ assembly adds `osinLemma94AntiparallelMetric` and `osinLemma94CaseTwoInput`, the
 - LoopCut gate: none of the three producers of competitor regions excludes `target = some source`.
   - Case 1 with both connector sides on arcs of one cell forces a loop competitor.
   - So does SharedEdge on an edge with one cell on both sides.
-  Ruling (A) adds `target ≠ some source` to `RespectsSections`. ghw-charp2's census marks
-  `false_of_quadrilateral_region` (`Estimating/OsinUnboundCaseOne.lean`) and
+  Ruling (A) adds `target ≠ some source` to `RespectsSections` (LANDED f04929ebb, ghw-charp2).
+  Its census marks `false_of_quadrilateral_region` (`Estimating/OsinUnboundCaseOne.lean`) and
   `false_of_digon_toward_cell` at `i₂ = i` (`Estimating/OsinUnboundSharedEdge.lean`) as same-cell
-  forceable.
+  forceable. `respectsSections_of_sameTargetProfile` and `false_of_quadrilateral_region` now take
+  `hloop`, and `false_of_digon_toward_cell` takes `i₂ ≠ i`.
 
 ## Gap model test (roster l.935; verdict sent to theoremc-retire, ko-closed, main 09-13 ~14:35)
 Question: can Case 1 on class words face a gap-containing pair, and would gap-free endpoints lose
@@ -189,7 +190,7 @@ wiring), the word-level lemmas behind Q2, for hull-count94:
 - `classWordLength_le_mul` and `dense_of_mul_covers`: `S ≤ M F + L n`, `4 L² ≤ ρ` and `n √ρ ≤ S`
   give `n √⌊ρ / (4 M²)⌋ ≤ F`.
 
-## Pinched window (roster l.1098; ko-closed picks)
+## Pinched window (roster l.1098; ko-closed picked (a))
 Check first: hull-respell's `PocketPinchStepStatement` is not (b). It acts on `PocketFaceSet`
 pockets, with no transport of the section family and no kept face walk or cell arcs. (b) under
 other names is main's `PinchSplit` layer (fff-periodic): `PinchSplit.Input`,
@@ -224,17 +225,20 @@ Model test (in the module docstring):
 - Least area is used: the disc bounded by a gap holds no relator cell. `S.diagram` has least area
   through `S.equiv`, which keeps the boundary word and gives a bijection of relator cells.
 
-Recommendation for the pick: (a).
+The pick is (a). This lane recommended it and ko-closed confirmed it.
 - It has the consumer's shape: one piece per arc is `false_of_quadrilateral_face`, and the class
   pieces fit it directly.
 - Its proof runs through (b) anyway. A separate (b) Prop would also have to state the split diagram
   with the transported family, arcs and walk, which no consumer needs.
+- ko-closed: the `(side, gap)` pieces give the gap-reads-1 identities that the `OneCellWindow` kills
+  take, so the class-word same-cell branch can take its pieces from `pinchedPieces` too.
 
 ## Risks
 - Budget: `K` independent of `ε` needs the number of unselected `G`-faces and their sides bounded by
   an Euler count in `n` alone (hull-count94).
-- Case 1 over classes: `OsinLemma94PinchedQuadrilateralStatement` has no producer yet. Its proof
-  needs collapsing a multi-face gap and a hair opening at a pinch, and neither is on main.
+- Case 1 over classes: `OsinLemma94PinchedQuadrilateralStatement` has no producer and no ruled
+  owner yet. Its proof needs collapsing a multi-face gap and a hair opening at a pinch, and neither
+  is on main.
 
 ## One-cell connector pair (option (1), ruled 09-13 ~14:07)
 - Option (1) wins: ko-closed's metric kill at the printed threshold, in a new module over
@@ -244,7 +248,11 @@ Recommendation for the pick: (a).
   never landed. It is deleted, with backup
   `$NM/backup/hull-unbound/OsinLemma94DenseOneCellDraft.green-0913-141313-25235.lean.txt`.
 - jacobson owns the producer of `OsinLemma94CaseOneSameCellStatement`, after (A).
-- theoremc-retire threads `OsinLemma97Below` (T) as its own co-probe after (A).
+- T LANDED 48c6cc71e (theoremc-retire, probe 0913-145812-91168). `OsinLemma94SectionStatement`,
+  `OsinLemma94UnboundInput`, `OsinLemma94CaseOneInput` and `OsinLemma94CaseOneSameCellStatement`
+  take `OsinLemma97Below D lambda c mu eps W Delta.rCellCount` after
+  `Delta.LeastArea → 0 < Delta.rCellCount →`. Its follow-on on the count Props is retracted, and
+  S5 was cancelled without landing.
 
 Rule 22 users of a PlanarPieces statement patch, on origin at 1b6c528fa:
 - `OsinLemma94CaseOneInput` (PlanarPieces:395): `OsinUnboundCaseOneFace`,
@@ -266,14 +274,23 @@ Rule 22 users of a PlanarPieces statement patch, on origin at 1b6c528fa:
   the exterior contradicts maximality.
 
 ## Residual Props of `osinLemma94Section_of_residuals`
-- `OsinLemma94PolygonCountInput` (hull-count94 with sec5-sentences). hull-count94 respells it over
-  classes (`OsinLemma94ClassCountInput`).
-- `OsinLemma94CaseOneInput` (theoremc-retire). On main `osinLemma94CaseOneInput_of_walk
-  osinLemma94CaseOneWalk` proves it, but no declaration composes them. `_of_walk` stays, but once
-  ghw-charp2's co-probe lands ruling (A) it takes an `OsinLemma94CaseOneSameCellStatement` binder,
-  so a closure composed on today's main would become conditional. The one-cell pairs go by option
-  (1) above. Over classes, the different-cell and boundary branches need the pinched-window Prop
-  (a) above, or (b), whichever ko-closed picks.
+The post-(A) waist `Estimating/OsinGreendlingerOpenResiduals.lean` (ghw-assembly, 5f031e3a6)
+composes
+```lean
+osinLemma94Section_of_residuals
+  (osinLemma94PolygonCountInput_of_sideBudget hbudget hsame)
+  (osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk hsameOne)
+```
+So `osinLemma94Section_closed` waits on three named Props, waist binders 1 to 3:
+1. `OsinLemma94PolygonSideBudgetInput` (hull-count94). ghw-charp2's class-word respell replaces it
+   with `OsinLemma94ClassCountInput` (a25fe2383: `∃ K M L`, `ClassBudget K ∧ ClassCovers M L`).
+2. `OsinLemma94UnboundSameCellStatement` (fff-periodic, site 5; systolic-counts audits it).
+3. `OsinLemma94CaseOneSameCellStatement` (jacobson; ko-closed offers the cell-free branch through
+   `OneCellWindow`).
+
+After the class-word respell, Case 1 pairs with a different target cell or a boundary target may
+read windows that cross junctions. Those take `OsinLemma94PinchedQuadrilateralStatement` (above).
+All three binders are open, so there is nothing to compose yet.
 
 Closed pieces plugged in:
 - `OsinLemma94CaseTwoInput`: sec5-sentences, `osinLemma94CaseTwoInput` in
@@ -283,9 +300,8 @@ Closed pieces plugged in:
   `OsinLemma94PolygonLists`, `PolygonKinds`, `PolygonSides` and `PolygonMaximal`.
 
 ## Next
-- ko-closed's pick between (a) and (b). Then the producer of the picked Prop, with its owner ruled
-  by the lead: collapsing a multi-face gap and a hair opening at a pinch, over main's `PinchSplit`
-  layer.
-- Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once `CountInput` and `CaseOneInput`
-  close: after (A), jacobson's same-cell producer, ko-closed's option (1) module, T by
-  theoremc-retire, and the class respelling with the pinched-window Prop.
+- The lead's ruling on who writes the producer of `OsinLemma94PinchedQuadrilateralStatement`. The
+  proof collapses a multi-face gap and opens a hair at a pinch, over main's `PinchSplit` layer
+  (`SurgeryPinchSplitDiagram`, `SurgeryPinchSplitExtremal`).
+- Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once waist binders 1 to 3 close and
+  the class-word respell lands with the pinched-window producer.
