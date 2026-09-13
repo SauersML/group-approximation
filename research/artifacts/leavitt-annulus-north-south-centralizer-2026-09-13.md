@@ -138,3 +138,19 @@ near the second attractor.
 - The compressions `t_(νγ^k) (·) s_(νγ^k)` are then not multiplicative. The middle region, where N4 is used,
   has no analogue.
 - No argument covering these units is known.
+
+## 7. Exact check (MSI, `annulus_test.py` in `/projects/standard/hsiehph/sauer354/ex/ex2-q34-commuting-units/`)
+
+For `u = c`, `c (1 + S[100]T[101])` and `c (1 + S[100]T[1011])`, the script verifies the four identities
+`u s_0 = S[00]`, `T[00] u = t_0`, `u^(-1) s_1 = S[11]` and `T[11] u^(-1) = t_1`. So N1 and N2 hold with
+`ζ = γ = 0` and `ξ = δ = 1`.
+
+It also computes `dim(C_R(u) ∩ R_N)` and the dimension of the span of the powers of `u` in `R_N`:
+
+| unit | depth | `N = 1, 2, 3, 4`: `dim C ∩ R_N` | span of powers |
+| --- | --- | --- | --- |
+| `c` | 2 | 1, 3, 5, 7 | 1, 3, 5, 7 |
+| `c(1 + S[100]T[101])` | 3 | 1, 1, 3, 5 | 1, 1, 3, 5 |
+| `c(1 + S[100]T[1011])` | 4 | 1, 1, 1, 3 | 1, 1, 1, 3 |
+
+In every case the centralizer at bounded depth is exactly the span of the powers, as the theorem predicts.

@@ -79,3 +79,13 @@ above. No such obstruction is proved.
 
 A positive answer needs a unit whose relative commutant is infinite-dimensional. Random short words do not
 produce one.
+
+**What is proved about a hypothetical unital map (lane `ex2-q34-commuting-units`).**
+- *Triangular units.* The first-factor unit `u` has no twisted conjugate `w u phi(w)^(-1)` in `H_<=` or
+  `H_>=`, over any field (`leavitt-triangular-endomorphism-commutants-are-finite`).
+- *Annulus units.* No `f(g ⊗ 1)` or `f(1 ⊗ g)` is conjugate to a north--south annulus unit
+  (`leavitt-annulus-north-south-units-have-cyclic-centralizers`).
+- *Diagonal copies.* Every `z ∈ f(1 ⊗ L)` satisfies `z = u phi(z) u^(-1)`, so it is conjugate to its own
+  diagonal copy and has trace zero in `HH_0(L)`.
+- *Open premises.* Three open claims would each give a negative answer: `leavitt-endomorphism-relative-commutants-are-finite`,
+  `leavitt-units-are-not-conjugate-to-diagonal-copies`, and `leavitt-commuting-units-are-algebraically-dependent`.
