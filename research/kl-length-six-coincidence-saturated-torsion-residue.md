@@ -130,3 +130,32 @@ of the one-coincidence or four-sign-change exceptions. A violation over
     involutions, six labels) for the thirteen involution-open shapes give no
     pairing of area at most four with at most one nontrivial face. A larger pass
     is recorded in the artifact.
+- **One-sided loop weights (2026-09-12, lane `kl-remaining-shapes`; see
+  `kl-three-equal-residue-shapes-inject-for-every-loop-order`).**
+  - **Method.** Put weight `1` on the heavy triple and on one loop, and `0` on the
+    light corner and on the other loop.
+    - The power regions of the zero-weight loop are then the only positive
+      regions.
+    - Each hands `2 pi / d` across each of its `d` arcs to a region that reads the
+      weighted loop next to a heavy end corner: `a_1` when the weight is on `y`,
+      `a_4` when it is on `x`.
+    - The receiver gains weight two per transfer.
+  - **Result.** The four three-equal `+++++-` shapes inject for every loop order,
+    outside three short relations between `g` and the loops. For involution loops
+    these relations are (I1)-(I3), so the exception `g^2 x g^(-1) y = 1` is gone.
+  - **Still open with involution loops.**
+    - `(1,1,1,g)` and `(1,g,1,1)`: `g = y`, `g = y x`, or `g x g^(-1) = y`.
+    - `(g,1,1,1)` and `(1,1,g,1)`: `g = x`, `g = y x`, or `g x g^(-1) = y`.
+    - The three two-pair `+++++-` shapes. All four P-corners lie in heavy pairs,
+      so both loops get weight zero, and a transfer brings only weight one.
+    - All six `++++--` shapes.
+      - With the weight on `y`, the receiver `(n, a_1)` sits across a zero power
+        of `x`. In `(1,1,g)` the trivial region `n a_1 x^(k_x)` has weight two
+        and can take `pi`.
+      - With the weight on `x`, the receiver `(a_3, n)` contains the light corner
+        of `(1,1,g)`.
+      - `(g,1,1)` is the mirror of `(1,1,g)`. In `(g,g,g)` the N-corner is light,
+        so each receiver gains only weight one.
+  - **Other small orders.** The node lists the open set of each shape.
+  - **Not tried.** Relative asphericity with a Freiheitssatz for the two-pair
+    shapes. Edjvet--Juhász and Bogley--Pride were not read at source.

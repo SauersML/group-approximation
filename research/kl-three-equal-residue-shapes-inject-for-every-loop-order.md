@@ -88,7 +88,7 @@ The excepted values are the substitution sub-cases.
   weight one per transfer.
 - **The `++++--` shapes.**
   - With weight on `y` only, the receiver of an `x`-region pairs the N-corner with
-    `a_1` across a zero power of `y`. In `(1,1,g)` the region reading
+    `a_1`, with no loop corner between them. In `(1,1,g)` the region reading
     `n a_1 x^(k_x)` is trivial for every `g`, has weight two, and receives `pi`.
   - With weight on `x` only, the receiver pairs `a_3` with the N-corner, and in
     `(1,1,g)` `a_3` is light.

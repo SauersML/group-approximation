@@ -21,6 +21,7 @@ least one has finite order. The node lists eight `+++++-` shapes, not seven.
 | 78565c273 | residue node Attempts | the composition count, and which shapes stay open with involution loops |
 | 2cf7bde45 | `kl-three-coincidence-residue-words-inject-with-room-for-loops` | weight test for the seven three-coincidence shapes, whenever `2/k_y + 2/k_x <= 1` and `g` avoids short loop words |
 | a63352293 | `kl-involution-loop-residue-with-interior-light-label-injects` | curvature redistribution for `(1,1,g,1)` and `(1,g,1,1)` with involution loops, under four generic relations |
+| ee349909c | `kl-three-equal-residue-shapes-inject-for-every-loop-order` | one-sided loop weights settle the four three-equal `+++++-` shapes for every loop order, under (X1)-(X3) or (Y1)-(Y3); lane `kl-remaining-shapes` |
 
 Cairn on MSI, in a `--shared` clone at the tip with the nodes overlaid:
 - `check --changed` exits 0;
@@ -35,20 +36,27 @@ Cairn on MSI, in a `--shared` clone at the tip with the nodes overlaid:
 - one loop of infinite order and `g` outside its cyclic subgroup; or
 - both orders finite with `2/k_y + 2/k_x <= 1`, under (C1)-(C2).
 
+"One-sided" means `kl-three-equal-residue-shapes-inject-for-every-loop-order`:
+every loop order, under (X1)-(X3) when `a_1 = 1`, or (Y1)-(Y3) when `a_4 = 1`.
+
+"Small finite orders" means both orders finite with `2/k_y + 2/k_x > 1`: one loop
+of order two, or orders `3` and `3`, `4` or `5`.
+
 | Shape | Settled | Open |
 |---|---|---|
 | `(1,1,1,1)` | `<x,y>` hyperlinear, including involution loops | other torsion with `<x,y>` not known hyperlinear |
-| `(1,1,g,1)`, `(1,g,1,1)` | weight regimes; involution loops under (I1)-(I4); `g` equal to the adjacent loop by substitution | involution loops with `g x g^-1 = y`, `g = y x` or `g^2 x g^-1 y = 1`; orders `(2, finite > 2)`, `(3,3)`, `(3,4)`, `(3,5)` |
-| `(1,1,1,g)`, `(g,1,1,1)` | weight regimes; `g = x^-1`, resp. `g = y^-1`, by substitution | involution loops; the small finite orders above |
-| two-pair `+++++-` | nothing new | every torsion order |
-| `(1,1,g)`, `(g,1,1)`, `(g,g,g)` | weight regimes | involution loops; small finite orders |
+| `(1,1,g,1)`, `(1,g,1,1)` | weight regimes; one-sided, under (X1)-(X3) or (Y1)-(Y3); `g = y`, resp. `g = x`, by substitution | involution loops with `g = x`, resp. `g = y`, or `g = y x`, or `g x g^-1 = y`; small finite orders where one of (X1)-(X3) and one of (Y1)-(Y3) fail |
+| `(1,1,1,g)`, `(g,1,1,1)` | weight regimes; one-sided, under (X1)-(X3), resp. (Y1)-(Y3); `g = x^-1`, resp. `g = y^-1`, by substitution | involution loops with `g = y`, resp. `g = x`, or `g = y x`, or `g x g^-1 = y`; small finite orders where (X1)-(X3), resp. (Y1)-(Y3), fail |
+| two-pair `+++++-` | nothing new; one-sided weights leave both loops at weight zero | every torsion order |
+| `(1,1,g)`, `(g,1,1)`, `(g,g,g)` | weight regimes | involution loops; small finite orders; one-sided weights fail at the N-corner |
 | two-pair `++++--` | nothing new | every torsion order |
 
 With involution loops, the Leavitt case, the open shapes are:
-- `(1,1,1,g)` and `(g,1,1,1)`;
+- the four three-equal `+++++-` shapes, each only on three relations:
+  - `(1,1,1,g)` and `(1,g,1,1)`: `g = y`, `g = y x`, `g x g^-1 = y`;
+  - `(g,1,1,1)` and `(1,1,g,1)`: `g = x`, `g = y x`, `g x g^-1 = y`;
 - the three `+++++-` two-pair shapes;
-- all six `++++--` shapes;
-- `(1,1,g,1)` and `(1,g,1,1)` only on the three special relations.
+- all six `++++--` shapes.
 
 ## 3. Curvature map
 
@@ -87,9 +95,20 @@ neighbours contain `(y, c_0)`.
 - In `(1,1,1,g)` and `(g,1,1,1)` one family of transfers lands next to the light
   corner. A region such as `g x^2 g^-1 y^2` can receive two transfers with
   weight two.
+- **One-sided weights avoid this** (lane `kl-remaining-shapes`).
+  - With all the loop weight on `y`, only `x`-regions give, and their receivers
+    contain `(y, c_0)` at weight two.
+  - With all the loop weight on `x`, only `y`-regions give, and their receivers
+    contain `(c_3, x)` at weight two.
+  - So the light corner never lies in a receiving pair when `a_1 = 1`, resp.
+    `a_4 = 1`.
 - In `++++--` the receivers are pairs of same-sign corners `(a_3, n)` and
   `(n, a_1)`. The N-corner can sit in two transfer pairs, so the heavy-corner
-  count does not bound the transfers.
+  count does not bound the transfers. One-sided weights fail there too:
+  - with the weight on `y`, the trivial region `n a_1 x^(k_x)` of `(1,1,g)` has
+    weight two and can take `pi`;
+  - with the weight on `x`, the receiver `(a_3, n)` of `(1,1,g)` has only weight
+    one.
 
 **Degree-two corners per disc** (census column `maxdeg2`: the largest compatible
 set of corners of one disc in degree-two faces). With involution loops it is `4`
