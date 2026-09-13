@@ -100,7 +100,7 @@ OsinLemma94PolygonRealizationInput`, with `ε₀ = ρ₀ = 1`.
 
 ## Assembly over the open pieces (landed)
 `Estimating/OsinLemma94SectionResiduals.lean` (4da8d3ef8, 0087a5095, 409bbbf72, then 4002b9371,
-green in probe 0913-133025-35313; queued for wiring):
+green in probe 0913-133025-35313; wired in wave 13, root e0dcf8b99):
 ```lean
 theorem osinLemma94PolygonRealizationInput : OsinLemma94PolygonRealizationInput.{u, w, v}
 
@@ -139,24 +139,62 @@ assembly adds `osinLemma94AntiparallelMetric` and `osinLemma94CaseTwoInput`, the
   `false_of_digon_toward_cell` at `i₂ = i` (`Estimating/OsinUnboundSharedEdge.lean`) as same-cell
   forceable.
 
+## Gap model test (roster l.935; verdict sent to theoremc-retire, ko-closed, main 09-13 ~14:35)
+Question: can Case 1 on class words face a gap-containing pair, and would gap-free endpoints lose
+the `ClassCovers` count (hull-count94's draft `Estimating/OsinLemma94PolygonClasses.lean`)?
+
+Model: audit-intro's pinched cell (report l.99-131): `λ = 1/8`, `c = 3`, relator
+`g_1·abc·g_2·abc·…·g_{t+1}` with `abc = 1` and generic geodesic `g_i`, and every `|g_i| ≤ ε`. At
+each pinch vertex `v`, `Π` surrounds a one-face bubble `B`. The walk of `f` runs `g_1`, then `g_2`,
+and skips `abc`, whose reversed darts lie on `B`. A spur `l·inv l` inside `Π` gives the same gap
+with `Π`'s own darts.
+
+Q1, YES.
+- The metric half (`exists_of_budget_on`, BudgetFilter:42) sees only words, so it may return any
+  backwards pair.
+- On the pinched class no side has more than `ε` letters. So every segment with `source_long`
+  has an endpoint strictly inside a gap, which is off the walk of `f`, or contains a junction.
+- At a junction of sides `s`, `s + 1` (last dart `e`, first dart `e'`), `P.Maximal`
+  (PlanarPieces:205) gives `facePerm (alpha e') ≠ alpha e`. So the window is never a
+  `CyclicArc.reverseDarts`, and both `htrav` of `false_of_quadrilateral_face` and
+  `ContiguityGeometry.boundary_decomposition` refuse it.
+- The same holds for (A2) classes, against `targetBoundaryDarts`.
+
+Q2, NO, at a factor `M²` in `ρ₀`, with `M = 1 + ⌈(c + 2) / λ⌉₊`.
+- A gap is a value-one subword of a `(λ, c + 2)`-quasi-geodesic class word, so it has at most
+  `⌈(c + 2) / λ⌉₊` letters (`le_ceil_of_listVal_eq_one`, a3169d05f). A class of `m` sides has
+  `m − 1` gaps and at least `m` letters. So the class word is at most `M` times its gap-free word.
+- `ClassCovers` as spelled then gives `S ≤ M ∑ S_i^free + L n`, and with `4 L² ≤ ρ` the gap-free
+  words are dense at `⌊ρ / (4 M²)⌋`.
+- Corners, `ClassBudget` and short classes are unchanged. Gap-free words stay
+  `(λ, c + 2)`-quasi-geodesic: every subword has a with-gap superword with the same end vertices.
+- audit-intro's "first spelling fails Covers" is the additive form. The multiplicative form passes
+  on the same model.
+- Gain: endpoints lie on the walk of `f`, and `X`, `Y` carry the junction values.
+
+What stays: every long gap-free window on the pinched class contains a junction. Case 1 still needs
+a member that accepts a pinched window (Osin's `Γ` contains the bubbles; no `FaceSetBoundary`
+region does), or the l.850 un-pinch. Neither is on main. A split at `v` needs a connector from `v`
+to `T` of length at most `ε`, and Morse gives only `ε` plus a constant.
+
+Recommendation: `CaseOneInput` and `CaseOneWalk` over gap-free class words (in
+`unbound_lt_of_classes`, `4 M² ρ_metric ≤ ρ` and `hcases` change), plus one named item for pinched
+windows, owner to be ruled.
+
 ## Risks
 - Budget: `K` independent of `ε` needs the number of unselected `G`-faces and their sides bounded by
-  an Euler count in `n` alone (hull-count94, `OsinLemma94PolygonSideBudgetInput`).
-- The Case 1 one-cell connector pair (below).
+  an Euler count in `n` alone (hull-count94).
+- Case 1 over classes: the pinched-window item above has no owner and no statement yet.
 
-## One-cell connector pair (option (2), gated)
-Ruling (lead, 09-13): option (2). The metric Prop delivers the one-cell pairs at `λ⁻¹(ε + c)`,
-and ko-closed proves case (a) by the value argument. The gate is that the metric owners confirm
-F1's quantifier order. The fallback, option (1), counts one-cell pairs separately and needs a new
-ruling with hull-count94. `OsinLemma94CaseOneSameCellStatement` has no `OsinLemma97Below` binder,
-so as spelled it is as hard as Lemma 9.7 on smaller diagrams, and no lane proves that spelling.
-- The metric Prop `OsinLemma94AntiparallelMetricStatement` (Pieces:97) and its conclusion
-  `OsinLemma94DensePolygonsAntiparallel` (Pieces:71) are in this lane's
-  `Estimating/OsinLemma94Pieces.lean`. After F1 the order is `∃ ε₀, ∀ ε ≥ ε₀, ∀ K, ∃ ρ₀ > 0,
-  ∀ ρ ≥ ρ₀`. So `λ`, `c` and `ε` are fixed before `K` and `ρ₀`, and a conjunct at length
-  `λ⁻¹(ε + c)` needs no reordering. Users: `OsinLemma94AntiparallelMetric` (sec5-sentences) and
-  `OsinLemma94PlanarPieces`.
-- `osinLemma94Section_closed` is built over the option (2) spelling once it lands.
+## One-cell connector pair (option (1), ruled 09-13 ~14:07)
+- Option (1) wins: ko-closed's metric kill at the printed threshold, in a new module over
+  `OsinLemma94OneCellValue` (36524dbf0). No statement changes.
+- The `λ⁻¹(ε + c)` respelling (option (2)) is cancelled. This lane's draft
+  `Estimating/OsinLemma94DenseOneCellDraft.lean` was green in probe 0913-141313-25235 and was
+  never landed. It is deleted, with backup
+  `$NM/backup/hull-unbound/OsinLemma94DenseOneCellDraft.green-0913-141313-25235.lean.txt`.
+- jacobson owns the producer of `OsinLemma94CaseOneSameCellStatement`, after (A).
+- theoremc-retire threads `OsinLemma97Below` (T) as its own co-probe after (A).
 
 Rule 22 users of a PlanarPieces statement patch, on origin at 1b6c528fa:
 - `OsinLemma94CaseOneInput` (PlanarPieces:395): `OsinUnboundCaseOneFace`,
@@ -165,9 +203,6 @@ Rule 22 users of a PlanarPieces statement patch, on origin at 1b6c528fa:
 - `osinLemma94Section_of_planarPieces`: only `OsinLemma94SectionResiduals`.
 - Other direct importers of PlanarPieces: `OsinLemma94DartMinimal`, `OsinLemma94ChainRespell`,
   `OsinLemma94InsertionTransport`, `OsinLemma94PolygonCovers` and `DiscEmbeddingAwayUnbound`.
-- Co-probe list: `OsinLemma94SectionResiduals`, `OsinUnboundCaseOneRun`,
-  `OsinLemma94CaseOneWalkHolds`, `OsinLemma94DartMinimal`, `OsinLemma94PolygonCount` (it reaches
-  `PolygonCovers`) and `DiscEmbeddingAwayUnbound`.
 
 ## On main (surgery layer)
 - `Estimating/SingletonFaceRegion.lean` (bd53291cd): `ContiguityGeometry.ofSingletonFace`,
@@ -181,13 +216,13 @@ Rule 22 users of a PlanarPieces statement patch, on origin at 1b6c528fa:
   the exterior contradicts maximality.
 
 ## Residual Props of `osinLemma94Section_of_residuals`
-- `OsinLemma94PolygonCountInput` (hull-count94 with sec5-sentences).
-  `osinLemma94PolygonCountInput_of_sideBudget` reduces it to `OsinLemma94PolygonSideBudgetInput`.
+- `OsinLemma94PolygonCountInput` (hull-count94 with sec5-sentences). hull-count94 respells it over
+  classes (`OsinLemma94ClassCountInput`, draft).
 - `OsinLemma94CaseOneInput` (theoremc-retire). On main `osinLemma94CaseOneInput_of_walk
-  osinLemma94CaseOneWalk` proves it, but no declaration composes them. Patch 10(f) is overruled,
-  so `_of_walk` stays, but once ghw-charp2's co-probe lands ruling (A) it takes an
-  `OsinLemma94CaseOneSameCellStatement` binder, and a closure composed on today's main would
-  become conditional. The one-cell pairs go by option (2) below.
+  osinLemma94CaseOneWalk` proves it, but no declaration composes them. `_of_walk` stays, but once
+  ghw-charp2's co-probe lands ruling (A) it takes an `OsinLemma94CaseOneSameCellStatement` binder,
+  so a closure composed on today's main would become conditional. The one-cell pairs go by option
+  (1) above. The class respelling brings the pinched-window item above.
 
 Closed pieces plugged in:
 - `OsinLemma94CaseTwoInput`: sec5-sentences, `osinLemma94CaseTwoInput` in
@@ -197,12 +232,9 @@ Closed pieces plugged in:
   `OsinLemma94PolygonLists`, `PolygonKinds`, `PolygonSides` and `PolygonMaximal`.
 
 ## Next
-- Land the option (2) respelling of `OsinLemma94DensePolygonsAntiparallel` in
-  `OsinLemma94Pieces.lean`, co-probed with `OsinLemma94AntiparallelMetric`, PlanarPieces and
-  `OsinLemma94SectionResiduals`, once the lead names who drafts it (asked 09-13).
-- Then `osinLemma94Section_closed` with `#audit_closed_axioms`, over the option (2) spelling, once
-  the count and Case 1 are proved and ghw-charp2's co-probe of ruling (A) has landed.
-- Pocket pinch help (approved): ghw-assembly has the wrap case with dgo-geometric and hull-respell.
-  No piece splits off yet. The wrap case has no fixed statement until dgo-geometric's model test
-  and hull-respell's induction interface are in, and hull-respell has not answered. So this lane
-  has asked the lead for an item.
+- The two word-level lemmas behind Q2 (the length bound `M` and the quasi-geodesic transfer to
+  gap-free words), in a new unwired module of this lane over main only, for hull-count94 to
+  consume.
+- Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once `CountInput` and `CaseOneInput`
+  close: after (A), jacobson's same-cell producer, ko-closed's option (1) module, T by
+  theoremc-retire, and the class respelling with its pinched-window item.
