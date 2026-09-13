@@ -160,7 +160,8 @@ and D.2 finishes.
 `A_mat` be the set of matrix states `d` on `F_3[G]` with `d(eps_-) = 1`. With `N` replaced by `d` and `A_S` by
 `A_mat`, the following statements of [C3] hold.
 1. Lemmas 1.1.1, 1.1.3, 1.1.5 and Fact 1.5.
-2. Lemma 1.2: if `P` commutes with `phi(A')` and `d(P) > 0`, then `d(phi(X) P)/d(P)` is a matrix state on `A'`.
+2. Lemma 1.2: if `phi : A' -> F_3[G]` is a unital ring map, `P` commutes with `phi(A')` and `d(P) > 0`, then
+   `d(phi(X) P)/d(P)` is a matrix state on `A'`.
 3. Lemma 1.3: `K_d = {h : d(1 - [h]) = 0}` is a normal subgroup, and `K_d = G` forces `d = rk o eps`.
 4. Lemma 1.4: if `d(D_A) = 0` for one prefix `A`, then `d(eps_-) = 0`.
 5. Theorem 2.1.1–2.1.3 without the upper bound. `A_mat` is compact. When it is nonempty,
@@ -170,7 +171,8 @@ and D.2 finishes.
 6. Theorems 3.1.2–3.1.4: `f(k+1) >= d(D_B Q_B P_k) >= c_3^mat h_k`, `h_k >= d(R_+ P_k)/2`, and `h_k = 0`
    forces `f(k+1) = 0`.
 
-Also, `A_mat` is nonempty iff `S_-` has the rank condition, iff the swap corner is not full. And `c_3^mat <= c_3`.
+Also, `A_mat` is nonempty iff `S_-` has the rank condition, iff the swap corner is not full. When `A_S` is nonempty,
+`c_3^mat <= c_3`.
 
 *Proof.* Each item reruns the [C3] proof, which uses nothing beyond (M1)–(M5) outside the excluded bounds.
 1. The proofs are `[1 1]` factorizations, the involution `U = [[e, 1-e],[1-e, e]]` with column operations,

@@ -26,7 +26,8 @@ A *matrix state* `d` on a unital ring `A` assigns `d(M) >= 0` to every rectangul
    - `A_mat` is nonempty iff `S_-` has the rank condition.
    - `A_mat` is compact, and `c_3^mat = min {d(D) : d in A_mat}` is attained and positive. It is at most `c_3`
      when anti-central Sylvester rank functions exist.
-   - Compressing `X -> d(phi(X) P)/d(P)` along any `P` that commutes with `phi(A')` gives a matrix state.
+   - For a unital ring map `phi : A' -> F_3[G]` and `P` with `d(P) > 0` commuting with `phi(A')`, compressing
+     `X -> d(phi(X) P)/d(P)` gives a matrix state on `A'`.
    - Every `d` in `A_mat` has `d(Q_A) = 1/2` and `d(D_A Q_A) >= c_3^mat/2` for nonempty proper prefixes `A`.
      Theorems 3.1.2–3.1.4 of `research/artifacts/char-three-defect-gap-and-descent-2026-09-12.md` hold with
      `c_3^mat` in place of `c_3`.
