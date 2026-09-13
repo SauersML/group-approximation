@@ -42,6 +42,9 @@ than this.
   covers of bounded derived length). Every point stabilizer contains a conjugate of `M` under
   `C_0`, so the stabilizer law never converges to the trivial subgroup. Dead by asymptotic
   freeness.
+- **Expander ansätze (any coincidence pattern).** Dead: `twin-models-have-macroscopic-noncoincident-stabilizers`.
+  At least a `λ_A^2/4` fraction of points have different vertex stabilizers. By Lemma G, a family
+  whose diagonal `Δ_R`-orbits have uniform Cheeger constant `h` needs `ε >= λ_A^2 h/(4(2h + |S_Δ|))`.
 - **Independent uniform induced models.** Take `Y_0`, `Y_1` independent uniform `N_0`-, `N_1`-sets
   with fibre size `y`, and induce. A union bound over bijections of `W` does NOT kill this ansatz.
   `N_0` is free of rank `1 + [C_0:N_0]/6`, so one side carries entropy about
