@@ -24,8 +24,10 @@ infinite.  Let `Sigma = S(D, Gamma, alpha)` be Rainone's type semigroup.
 5. `Sigma` is not separative: there are `x != y` with `2x = x + y = 2y`.
 6. `D = C(X)` with a free, minimal, amenable action of a group with paradoxical
    towers is impossible (`stw99-xxxii-holds-for-paradoxical-tower-groups`).
-   So is `D = C(X)` with a group that has a normal infinite cyclic subgroup
-   acting minimally on `X` (`minimal-normal-cyclic-subgroup-cantor-dichotomy`).
+   So is `D = C(X)` with a group that has a normal infinite cyclic or locally
+   finite subgroup acting minimally on `X`
+   (`minimal-normal-cyclic-subgroup-cantor-dichotomy`,
+   `smoothing-normal-subgroup-cantor-dichotomy`).
    So a commutative-coefficient design needs a group with no such normal
    subgroup, and either no known paradoxical towers or an action that is not
    free or not amenable.

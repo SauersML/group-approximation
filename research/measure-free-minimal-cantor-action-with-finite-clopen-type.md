@@ -63,13 +63,38 @@ infinite multiple, and `S(X, Gamma)` fails projection-level QQ.
     `stw99-xxxii-paradoxical-towers-citation`).  With no invariant measure it
     gives `A <~ A_1` and `A <~ A_2` for a clopen split `A = A_1 sqcup A_2`, hence
     `2[1_A] <= [1_A]`.
-  * Groups with a normal infinite cyclic subgroup acting minimally.  Its
-    coinvariants turn `C(X, Z)` into a divisible simple dimension group, and
-    the coinvariant lemma then gives QQ
-    (`minimal-normal-cyclic-subgroup-cantor-dichotomy`).
+  * Groups with a normal infinite cyclic or locally finite subgroup acting
+    minimally.  Its coinvariants turn `C(X, Z)` into a divisible simple
+    dimension group, and the coinvariant lemma then gives QQ
+    (`minimal-normal-cyclic-subgroup-cantor-dichotomy`,
+    `smoothing-normal-subgroup-cantor-dichotomy`).
   * Candidates must use non-amenable groups without known paradoxical towers
-    and with no normal infinite cyclic subgroup acting minimally, or actions
-    that are not free or not amenable.
+    and with no smoothing normal subgroup, or actions that are not free or not
+    amenable.
+* **Orientation formulation (idea, unreviewed).**
+  * `[1_A]` is infinite iff some continuous piecewise translation
+    `psi : A -> X` (finitely many clopen pieces) covers every point of `A` and
+    has nonzero excess.
+  * Suppose `2[1_A] + [e] = 2[1_A]`, and refine into two columns (two clopen
+    partitions of `A`).  Every `a in A` then has two arrows, and every point of
+    `A` receives at least two.  Replacing `e` by a large sum of translates
+    raises every in-degree on `A` to at least three.
+  * View each `a` as an edge joining its two arrow targets.  A single-copy
+    compression built from these arrows is exactly a continuous orientation of
+    this multigraph in which every vertex of `A` has in-degree `>= 1` (a
+    sourceless orientation), with some excess.
+  * In descriptive combinatorics, sinkless and sourceless orientation of
+    graphs of minimum degree 3 is the standard problem that can be solved with
+    Borel pieces but not with clopen pieces on suitable free zero-dimensional
+    systems of free products of `Z/2`.  This is recalled from the Marks
+    determinacy literature and is unverified here.
+  * That fits the Nadkarni contrast above.  So the natural certificate of
+    finiteness is a determinacy-type obstruction to continuous orientations,
+    the zero-dimensional analogue of Rordam's Euler classes.
+  * Where it dies: a proof of finiteness must exclude all compressions, not
+    only those built from one two-column structure.  Such an obstruction also
+    needs a measure-free minimal subsystem, while Marks-type arguments use the
+    full shift, which carries Bernoulli measures.
 * **Where it dies.**  No invariant of clopen sets other than measures is known
   to obstruct compression.  A subshift built to forbid local compression rules
   must be rigid, while freeness from invariant measures needs paradoxical local
