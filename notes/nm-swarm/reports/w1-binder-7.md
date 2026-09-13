@@ -25,3 +25,34 @@ go-lemma42, ghw-assembly and audit-sec3. This lane never edits their files.
 - CLAIM evidence that the refutation does not transfer: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseRescue.lean`
   (new module). On dgo-geometric's `wrapDiagram`, for every `ε ≥ 1` the face set `{R}` with `s_1 = [5]` and empty arcs is a
   simple pocket face set in positions `0..1`.
+
+## LANDED 1b4736bcb (probe 0913-170902-87292 GREEN, BUILT and COMPILED for both modules)
+
+Both modules are new and unwired, and are queued for wiring. They certify no printed sentence, so they add no census row.
+
+- `Estimating/OsinPocketPinchPositive`:
+  - `PocketPinchLabelledPosStatement` and `PocketPinchStepPosStatement`: the binder and the step with `0 < eps`.
+  - `pocketPinchLabelledPosStatement_of_labelled` and `pocketPinchStepPosStatement_of_step`: the old Props give the repaired ones.
+  - `pocketPinchLabelledPosStatement_of_stepPos`: hull-respell's induction at `0 < eps`.
+  - `sectionPocketCutInput_of_residualsPos` (takes `heps : 0 < eps`).
+  - `osinSectionPocketCutSection_of_residualsPos hfaces hpinch hgeodesic : OsinSectionPocketCutSectionStatement`, at
+    threshold `max eps0 1`.
+- `Estimating/OsinPocketWrapRoseRescue`:
+  - `rescueK eps heps` and `rescueK_simple`;
+  - `wrapRoseRescue : WrapRoseRescue`, which passes `#audit_closed_axioms`.
+
+## In flight
+
+- `Estimating/OsinDescentResidualsPos` (attic b1a24dad6, probing): `osinDescentSection_of_residualsPos` and
+  `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsPos`, the two assemblies of `OsinDescentResiduals` with the repaired
+  pinch.
+
+## For the waist owner (ghw-assembly), through the lead
+
+The one-line swap in `relativeGreendlingerQuasiGeodesicLeastArea_of_openResiduals` (`OsinGreendlingerOpenResiduals`):
+- replace binder 7 `hpinch : PocketPinchLabelledStatement` with `hpinch : PocketPinchLabelledPosStatement`;
+- call `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsPos` instead of `_of_residuals`.
+
+That removes the false binder from the waist. hull-respell's step route then targets `PocketPinchStepPosStatement` through
+`pocketPinchLabelledPosStatement_of_stepPos`. The `ε ≥ 1` truth of the repaired pinch is not settled in general. The rose is
+only the known counterexample shape, and it is rescued.
