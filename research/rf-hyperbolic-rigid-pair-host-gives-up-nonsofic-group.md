@@ -20,8 +20,10 @@ in `G` such that, with `Gamma_k = Gamma cap G_k` and `E_k = E cap G_k`:
    sofic.
 
 **Consequences for Kaplansky's conjectures.**  For every field `K`, the group
-ring `K[W]` has no zero divisors and only trivial units, by the unique product
-property.  So it is directly finite.  If the hypothesis holds, then some
+ring `K[W]` has no zero divisors, by a leading-term argument.  It has only
+trivial units, because unique products imply two unique products (Strojnowski,
+1980; details in `non-rf-hyperbolic-group-or-unique-product-nonsofic-group-proof`).
+So it is directly finite.  If the hypothesis holds, then some
 torsion-free nonsofic group satisfies the unit and zero-divisor conjectures.
 Direct finiteness alone is already known for some nonsofic groups: the
 Kun--Thom binary wreaths are stably finite over every field

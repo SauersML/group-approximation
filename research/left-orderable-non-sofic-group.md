@@ -55,7 +55,8 @@ first, and it is deferred here rather than attempted.
 *Attempted 2026-09-12.*  The weaker cell is now the claim
 `unique-product-non-sofic-group`, and property (T) is no obstacle there.
 Kionke--Raimbault give virtually diffuse lattices in `Sp(n,1)`.
-`non-rf-hyperbolic-group-or-unique-product-nonsofic-group` (unreviewed) proves
+`non-rf-hyperbolic-group-or-unique-product-nonsofic-group` (reviewed PASS by
+ex-verify2-groups) proves
 a disjunction: either the hyperbolic Kazhdan Leavitt cover is not residually
 finite, or some nonsofic group has unique products.  For the second branch, a
 deep normal subgroup of the cover has unique products by Delzant's

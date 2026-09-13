@@ -23,4 +23,15 @@ and restrict the Leavitt rigid pair to it.  `W` is the integer-lamp wreath over
 the restricted pair.
 
 Derivation: `non-rf-hyperbolic-group-or-unique-product-nonsofic-group-proof`.
-Status: unreviewed.  Neither branch is claimed to hold on its own.
+Neither branch is claimed to hold on its own.
+
+**Review.**
+
+- PASS by `ex-verify2-groups`, together with
+  `rf-hyperbolic-rigid-pair-host-gives-up-nonsofic-group`
+  (`research/artifacts/ex-review2-groups-2026-09-13-part4.md`, §3).
+- The two consumed inputs have their own PASS verdicts in
+  `research/artifacts/review-hyperbolic-leavitt-cover-2026-09-12.md`:
+  `hyperbolic-kazhdan-cover-of-leavitt-unit-group` and
+  `hyperbolic-kazhdan-group-has-infranormal-kazhdan-subgroup`.
+- Part (d) of the second input is not consumed here.

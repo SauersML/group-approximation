@@ -31,9 +31,22 @@ that is not residually finite.
   group `G_hat`, and `E_k` permutes the lamps transitively, so one lamp
   generates `L` as an `E_k`-module.
 - `W` is torsion-free, since it has unique products.
-- For a field `K`, unique products give a leading-term argument: a product
-  `xy` of nonzero elements of `K[W]` has a uniquely expressed support element,
-  so `xy != 0`.  The same argument shows that units are trivial.
+- For a field `K`, unique products give a leading-term argument.  If `x, y`
+  are nonzero in `K[W]`, some element of `supp(x) supp(y)` has a unique
+  expression, its coefficient in `xy` is a product of two nonzero scalars, and
+  so `xy != 0`.
+- Units are trivial.
+  - A group with unique products has the *two* unique products property:
+    whenever `|A| + |B| > 2`, at least two elements of `AB` have a unique
+    expression.  This is Strojnowski, *A note on u.p. groups*, Comm. Algebra 8
+    (1980), cited here from the reviewer's note and not re-read.
+  - Now suppose `xy = 1` with `|supp(x)| + |supp(y)| > 2`.  Two elements of
+    `supp(x) supp(y)` then keep nonzero coefficients in `xy`, but `1` has a
+    single support element.  So both supports are singletons, and `x = c w`
+    with `c` in `K^x` and `w` in `W`.
+  - Kionke--Raimbault, arXiv:1411.6449v2, p. 1, state the conclusion:
+    "if a group Γ has unique products, then it satisfies Kaplansky's unit
+    conjecture."
 - A domain is directly finite.  If `xy = 1`, then `yx` is an idempotent.  It is
   nonzero because `x (yx) y = 1`, so `yx (1 - yx) = 0` forces `yx = 1`.
 
