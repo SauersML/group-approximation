@@ -45,15 +45,22 @@ finite-index subgroup of `G` has finite cohomological dimension:
     already excluded Kazhdan subgroups;
   - every virtually torsion-free candidate for `nonsofic-hyperbolic-group`.
 - **Not covered: the Kun--Thom double.** `G *_Gamma G` (`kt-pair-group-double-is-nonsofic`) is
-  certified by infranormality alone, with no commuting factor. Its recorded instances, including
-  the Bowen--Chapman Lean witness (`bowen-chapman-witness-is-kt-double-at-q2-r3-d3`), have
-  infinite virtual dimension for a different reason: they contain the root subgroups
-  `e_12(F_q[x^(±1)])`, infinite elementary abelian `p`-groups. Whether an infranormal but not
-  normal Kazhdan pair can exist in finite virtual cohomological dimension is not settled here.
+  certified by infranormality alone, with no commuting factor.
+  - Its Theorem E instances, including the Bowen--Chapman Lean witness
+    (`bowen-chapman-witness-is-kt-double-at-q2-r3-d3`), contain the root subgroups
+    `e_12(F_q[x^(±1)])`. These are infinite elementary abelian `p`-groups, so those doubles have
+    infinite virtual dimension.
+  - **Correction (same day).** An earlier version of this node said that every recorded double
+    has infinite virtual dimension and that finite dimension needs a different certificate. That
+    is false. The infranormal non-normal Kazhdan pair of
+    `hyperbolic-kazhdan-group-has-infranormal-kazhdan-subgroup` sits inside a torsion-free
+    hyperbolic group. Its double is a torsion-free nonsofic group of finite cohomological
+    dimension (`kun-thom-double-of-hyperbolic-pair-has-finite-cd`).
 
-So every nonsofic group this graph obtains from the compression criterion, from lamps, or from
-the recorded Kun--Thom doubles has infinite virtual cohomological dimension. A nonsofic group of
-finite virtual cohomological dimension, if one exists, needs a different certificate.
+So the compression criterion and lamp wreath products never certify nonsoficity in finite virtual
+cohomological dimension, but Kun--Thom doubles do. For a group of cohomological dimension two,
+such as a Titz--Witzel kernel, the question left is whether it can contain an infranormal non-normal
+Kazhdan pair.
 
 Credit: the nesting is the argument of `fournier-facio-group-contains-simple-wreath-shift` (W7),
 stated for arbitrary criterion data. Proof: `kazhdan-compression-instances-have-infinite-vcd-proof`.

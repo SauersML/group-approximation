@@ -56,7 +56,9 @@ finitely generated commuting partner `B` of an infinite subgroup is LEF.
 
 **Not excluded.**
 - The Kun--Thom double `G *_Gamma G` (`kt-pair-group-double-is-nonsofic`): this dimension count
-  says nothing about amalgams.
+  says nothing about amalgams. Such doubles do occur in finite cohomological dimension
+  (`kun-thom-double-of-hyperbolic-pair-has-finite-cd`), so what remains for these groups is
+  whether a group of dimension two can contain an infranormal, non-normal Kazhdan pair.
 - Certificates of a different shape: a strict cellular automaton
   (`radu-bmw-lattice-nonsurjunctive`), a one-sided inverse over the group algebra
   (`radu-bmw-lattice-group-algebra-not-stably-finite`), or the sparse-defect repair inequality of
