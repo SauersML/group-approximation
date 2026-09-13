@@ -115,3 +115,17 @@ Property (T) closes the Higson--Kasparov route for both.
 - **Extension permanence is no shortcut.** Meyer, arXiv:2508.05726 (abstract
   read, not imported), shows that the Chabert--Echterhoff hypotheses cannot be
   weakened to Baum--Connes for the normal subgroup alone.
+- **Ghost projections (Higson--Lafforgue--Skandalis).** Dead.
+  - Route `bc-counterexample-via-ghost-projection`, invalidated by
+    `reduced-group-algebras-contain-no-nonzero-ghosts`.
+  - The entries of an element of `M_n(C*_r G)` are constant along right
+    translates, so it contains no nonzero ghost. The HLS witness needs
+    coefficients.
+- **Exact-crossed-product reformulation.** See
+  `bgw-trivial-coefficient-agreement-is-open`.
+  - After the Buss--Echterhoff--Willett erratum it is open whether
+    `C ⋊_(E_M) G = C*_r G`.
+  - So the confirming examples of the reformulated conjecture say nothing
+    about this root.
+  - A K-theory defect of the quotient `C*_(E_M) G -> C*_r G` would refute one
+    of the two conjectures at trivial coefficients. No mechanism controls it.
