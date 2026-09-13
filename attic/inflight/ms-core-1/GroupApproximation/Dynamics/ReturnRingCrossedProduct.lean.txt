@@ -64,8 +64,9 @@ theorem returnRingCrossedProductStatement_holds : ReturnRingCrossedProductStatem
   refine ⟨firstReturnHomeomorph hC, isIdempotentElem_returnP k hC, returnRingEquiv k hC,
     firstReturnHomeomorph_apply hC, ?_, ?_⟩
   · intro f g hin hout
-    rw [returnRingEquiv_apply, coe_returnRingHom_coeff,
-      clopenExtendByZero_eq_of k hC.isClopen f g hin hout]
+    exact (coe_returnRingHom_coeff k hC f).trans
+      (congrArg (ClopenCrossedProduct.coeff T k)
+        (clopenExtendByZero_eq_of k hC.isClopen f g hin hout))
   · refine ⟨fun h => LocallyConstant.charFn k (isClopen_returnCell hC h), fun h x => ?_, ?_⟩
     · show (LocallyConstant.charFn k (isClopen_returnCell hC h) : X → k) x =
         Set.indicator (returnCell T C h) 1 x
