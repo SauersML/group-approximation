@@ -54,19 +54,19 @@ theorem eqvGen_boundaryPerm_of_followsBoundary (boundary : BoundaryCycle M faces
     intro y hy
     induction hy with
     | refl => exact .rel _ _ (Or.inl rfl)
-    | tail _ huv ih =>
+    | @tail b c _ huv ih =>
         obtain ⟨hint, rfl⟩ := huv
         obtain ⟨hin, halpha⟩ := hint
-        have hnot : ¬ walkKeep M boundary.cycle _ := by
+        have hnot : ¬ walkKeep M boundary.cycle b := by
           rintro (hmem | hmem)
-          · obtain ⟨-, hout⟩ := (boundary.cycle_mem_iff _).mp hmem
+          · obtain ⟨-, hout⟩ := (boundary.cycle_mem_iff b).mp hmem
             exact hout halpha
-          · obtain ⟨-, hout⟩ := (boundary.cycle_mem_iff _).mp hmem
-            rw [M.alpha_involutive] at hout
+          · obtain ⟨-, hout⟩ := (boundary.cycle_mem_iff (M.alpha b)).mp hmem
+            rw [M.alpha_involutive b] at hout
             exact hout hin
         refine .trans _ _ _ ih (.trans _ _ _ (.rel _ _ (Or.inr ⟨hnot, rfl⟩)) (.rel _ _ (Or.inl ?_)))
-        change M.sigma _ = M.sigma (M.alpha (M.alpha _))
-        rw [M.alpha_involutive]
+        change M.sigma b = M.sigma (M.alpha (M.alpha b))
+        rw [M.alpha_involutive b]
   exact hstep _ (hwalk x)
 
 /-- **Every two darts of a following boundary cycle lie in one face class of the walk.**  The
