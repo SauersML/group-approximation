@@ -178,7 +178,176 @@ theorem CutFace.arc_val_mem {W : Set (List (GGT.RelLetter G Lambda))}
   · simp only [List.length_append, List.length_take, List.length_drop, length_respellInv]
     omega
 
--- DESIGNATED
+/-- **A letter of `L` sharing its coset with an arc letter** has inverse value
+`X · arc[k].val · Y` for bounded products `X`, `Y`. -/
+theorem CutFace.left_designated {W : Set (List (GGT.RelLetter G Lambda))}
+    {D : GGT.RelGenSet G Lambda} {L arc R ext : List (GGT.RelLetter G Lambda)}
+    (hcf : CutFace W D L arc R ext) (lam : Lambda) {r N : ℕ} (hr1 : 1 ≤ r)
+    (hr : L.length + arc.length + R.length + ext.length ≤ r) (hN : r + 1 ≤ N) {j k : ℕ}
+    (hj : j < L.length) (hjc : GGT.RelLetter.IsCompOf lam L[j]) (hk : k < arc.length)
+    (hkc : GGT.RelLetter.IsCompOf lam arc[k])
+    (hcos : (GGT.RelLetter.listVal (L.take j))⁻¹ *
+      (GGT.RelLetter.listVal L * GGT.RelLetter.listVal (arc.take k)) ∈ D.fam lam) :
+    ∃ X Y : G, X ∈ boundedProducts (pullbackAtoms W D lam r) N ∧
+      Y ∈ boundedProducts (pullbackAtoms W D lam r) N ∧ L[j].val⁻¹ = X * arc[k].val * Y := by
+  have hLj := listVal_take_mul_getElem_mul_drop L hj
+  have harck := listVal_take_mul_getElem_mul_drop arc hk
+  have hja : L[j].val ∈ D.fam lam :=
+    val_mem_fam_of_isCompOf (hcf.left_adm _ (List.getElem_mem hj)) hjc
+  have hu₁val : GGT.RelLetter.listVal (L.drop (j + 1) ++ arc.take k) =
+      L[j].val⁻¹ * ((GGT.RelLetter.listVal (L.take j))⁻¹ *
+        (GGT.RelLetter.listVal L * GGT.RelLetter.listVal (arc.take k))) := by
+    rw [GGT.OsinComponents.listVal_append, ← hLj]
+    group
+  refine exists_designated_of_face W D lam (GGT.RelLetter.listVal (L.take j))
+    (u₁ := L.drop (j + 1) ++ arc.take k)
+    (u₂ := arc.drop (k + 1) ++ (R ++ (respellInv D ext ++ L.take j))) ?_ ?_
+    (hcf.arc_adm _ (List.getElem_mem hk)) ?_ hja hkc ?_ ?_ ?_ ?_ hN
+  · intro b hb
+    rcases List.mem_append.mp hb with hb | hb
+    · exact hcf.left_adm b (List.mem_of_mem_drop hb)
+    · exact hcf.arc_adm b (List.mem_of_mem_take hb)
+  · intro b hb
+    simp only [List.mem_append] at hb
+    rcases hb with hb | hb | hb | hb
+    · exact hcf.arc_adm b (List.mem_of_mem_drop hb)
+    · exact hcf.right_adm b hb
+    · exact hcf.ext_letters b hb
+    · exact hcf.left_adm b (List.mem_of_mem_take hb)
+  · rw [hu₁val, GGT.OsinComponents.listVal_append, GGT.OsinComponents.listVal_append,
+      GGT.OsinComponents.listVal_append, listVal_respellInv, hcf.value, ← harck]
+    group
+  · rw [hu₁val]
+    exact mul_mem (inv_mem hja) hcos
+  · have hdrop := cosetLettersAt_drop_of_isRelGeodesic D lam (pullbackAtoms W D lam r)
+      hcf.left_adm hcf.left_geo hj hjc 1 (k := j + 1) (by omega)
+    rw [one_mul, one_mul, listVal_take_succ L hj] at hdrop
+    refine hdrop.append ?_
+    rw [hLj]
+    exact (cosetLettersAt_take_of_isRelGeodesic D lam _ hcf.arc_adm hcf.arc_geo hk hkc
+      (GGT.RelLetter.listVal L) le_rfl).of_rep hcos
+  · have e : GGT.RelLetter.listVal (L.take j) *
+        (L[j].val * GGT.RelLetter.listVal (L.drop (j + 1) ++ arc.take k) * arc[k].val) =
+        GGT.RelLetter.listVal L * GGT.RelLetter.listVal (arc.take (k + 1)) := by
+      rw [hu₁val, listVal_take_succ arc hk]
+      group
+    rw [e]
+    have hdrop := cosetLettersAt_drop_of_isRelGeodesic D lam (pullbackAtoms W D lam r)
+      hcf.arc_adm hcf.arc_geo hk hkc (GGT.RelLetter.listVal L) (k := k + 1) (by omega)
+    refine (hdrop.of_rep hcos).append ?_
+    have e₂ : GGT.RelLetter.listVal L * GGT.RelLetter.listVal (arc.take (k + 1)) *
+        GGT.RelLetter.listVal (arc.drop (k + 1)) =
+        GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc := by
+      rw [listVal_take_succ arc hk, ← harck]
+      simp only [mul_assoc]
+    rw [e₂]
+    have hR : CosetLettersAt D lam (pullbackAtoms W D lam r) (GGT.RelLetter.listVal (L.take j))
+        (GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc) R := by
+      intro t ht _ hv
+      exact (false_of_crossCoset D hcf.arc_geo hcf.short hcf.left_adm hcf.right_adm hj ht hjc
+        hv).elim
+    refine hR.append ((hcf.ext_block lam hr1 _).append ?_)
+    rw [listVal_respellInv, hcf.value, mul_inv_cancel]
+    have h := cosetLettersAt_take_of_isRelGeodesic D lam (pullbackAtoms W D lam r) hcf.left_adm
+      hcf.left_geo hj hjc 1 le_rfl
+    rwa [one_mul] at h
+  · simp only [List.length_append, List.length_take, List.length_drop, length_respellInv]
+    omega
+
+/-- **A letter of `R` sharing its coset with an arc letter** has inverse value
+`X · arc[k].val · Y` for bounded products `X`, `Y`. -/
+theorem CutFace.right_designated {W : Set (List (GGT.RelLetter G Lambda))}
+    {D : GGT.RelGenSet G Lambda} {L arc R ext : List (GGT.RelLetter G Lambda)}
+    (hcf : CutFace W D L arc R ext) (lam : Lambda) {r N : ℕ} (hr1 : 1 ≤ r)
+    (hr : L.length + arc.length + R.length + ext.length ≤ r) (hN : r + 1 ≤ N) {j k : ℕ}
+    (hj : j < R.length) (hjc : GGT.RelLetter.IsCompOf lam R[j]) (hk : k < arc.length)
+    (hkc : GGT.RelLetter.IsCompOf lam arc[k])
+    (hcos : (GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc *
+      GGT.RelLetter.listVal (R.take j))⁻¹ *
+      (GGT.RelLetter.listVal L * GGT.RelLetter.listVal (arc.take k)) ∈ D.fam lam) :
+    ∃ X Y : G, X ∈ boundedProducts (pullbackAtoms W D lam r) N ∧
+      Y ∈ boundedProducts (pullbackAtoms W D lam r) N ∧ R[j].val⁻¹ = X * arc[k].val * Y := by
+  have hRj := listVal_take_mul_getElem_mul_drop R hj
+  have harck := listVal_take_mul_getElem_mul_drop arc hk
+  have hja : R[j].val ∈ D.fam lam :=
+    val_mem_fam_of_isCompOf (hcf.right_adm _ (List.getElem_mem hj)) hjc
+  have hu₁val : GGT.RelLetter.listVal (R.drop (j + 1) ++ (respellInv D ext ++ (L ++ arc.take k))) =
+      R[j].val⁻¹ * ((GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc *
+        GGT.RelLetter.listVal (R.take j))⁻¹ *
+        (GGT.RelLetter.listVal L * GGT.RelLetter.listVal (arc.take k))) := by
+    rw [GGT.OsinComponents.listVal_append, GGT.OsinComponents.listVal_append,
+      GGT.OsinComponents.listVal_append, listVal_respellInv, hcf.value, ← hRj]
+    group
+  refine exists_designated_of_face W D lam
+    (GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc * GGT.RelLetter.listVal (R.take j))
+    (u₁ := R.drop (j + 1) ++ (respellInv D ext ++ (L ++ arc.take k)))
+    (u₂ := arc.drop (k + 1) ++ R.take j) ?_ ?_
+    (hcf.arc_adm _ (List.getElem_mem hk)) ?_ hja hkc ?_ ?_ ?_ ?_ hN
+  · intro b hb
+    simp only [List.mem_append] at hb
+    rcases hb with hb | hb | hb | hb
+    · exact hcf.right_adm b (List.mem_of_mem_drop hb)
+    · exact hcf.ext_letters b hb
+    · exact hcf.left_adm b hb
+    · exact hcf.arc_adm b (List.mem_of_mem_take hb)
+  · intro b hb
+    rcases List.mem_append.mp hb with hb | hb
+    · exact hcf.arc_adm b (List.mem_of_mem_drop hb)
+    · exact hcf.right_adm b (List.mem_of_mem_take hb)
+  · rw [hu₁val, GGT.OsinComponents.listVal_append, ← harck]
+    group
+  · rw [hu₁val]
+    exact mul_mem (inv_mem hja) hcos
+  · have hdrop := cosetLettersAt_drop_of_isRelGeodesic D lam (pullbackAtoms W D lam r)
+      hcf.right_adm hcf.right_geo hj hjc (GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc)
+      (k := j + 1) (by omega)
+    rw [listVal_take_succ R hj, ← mul_assoc] at hdrop
+    refine hdrop.append ?_
+    have e : GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc *
+        GGT.RelLetter.listVal (R.take j) * R[j].val * GGT.RelLetter.listVal (R.drop (j + 1)) =
+        GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc * GGT.RelLetter.listVal R := by
+      rw [← hRj]
+      simp only [mul_assoc]
+    rw [e]
+    refine (hcf.ext_block lam hr1 _).append ?_
+    rw [listVal_respellInv, hcf.value, mul_inv_cancel]
+    have hL : CosetLettersAt D lam (pullbackAtoms W D lam r)
+        (GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc * GGT.RelLetter.listVal (R.take j))
+        1 L := by
+      intro t ht htc hv
+      refine (false_of_crossCoset D hcf.arc_geo hcf.short hcf.left_adm hcf.right_adm ht hj htc
+        ?_).elim
+      have e' : (GGT.RelLetter.listVal (L.take t))⁻¹ * (GGT.RelLetter.listVal L *
+          GGT.RelLetter.listVal arc * GGT.RelLetter.listVal (R.take j)) =
+          ((GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc *
+            GGT.RelLetter.listVal (R.take j))⁻¹ * (1 * GGT.RelLetter.listVal (L.take t)))⁻¹ := by
+        group
+      rw [e']
+      exact inv_mem hv
+    refine hL.append ?_
+    rw [one_mul]
+    exact (cosetLettersAt_take_of_isRelGeodesic D lam _ hcf.arc_adm hcf.arc_geo hk hkc
+      (GGT.RelLetter.listVal L) le_rfl).of_rep hcos
+  · have e : GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc *
+        GGT.RelLetter.listVal (R.take j) * (R[j].val *
+          GGT.RelLetter.listVal (R.drop (j + 1) ++ (respellInv D ext ++ (L ++ arc.take k))) *
+          arc[k].val) =
+        GGT.RelLetter.listVal L * GGT.RelLetter.listVal (arc.take (k + 1)) := by
+      rw [hu₁val, listVal_take_succ arc hk]
+      group
+    rw [e]
+    have hdrop := cosetLettersAt_drop_of_isRelGeodesic D lam (pullbackAtoms W D lam r)
+      hcf.arc_adm hcf.arc_geo hk hkc (GGT.RelLetter.listVal L) (k := k + 1) (by omega)
+    refine (hdrop.of_rep hcos).append ?_
+    have e₂ : GGT.RelLetter.listVal L * GGT.RelLetter.listVal (arc.take (k + 1)) *
+        GGT.RelLetter.listVal (arc.drop (k + 1)) =
+        GGT.RelLetter.listVal L * GGT.RelLetter.listVal arc := by
+      rw [listVal_take_succ arc hk, ← harck]
+      simp only [mul_assoc]
+    rw [e₂]
+    exact cosetLettersAt_take_of_isRelGeodesic D lam _ hcf.right_adm hcf.right_geo hj hjc _ le_rfl
+  · simp only [List.length_append, List.length_take, List.length_drop, length_respellInv]
+    omega
 
 end HullSC
 end GroupApproximation
@@ -186,3 +355,5 @@ end GroupApproximation
 #audit_axioms GroupApproximation.HullSC.CutFace.left_val_mem
 #audit_axioms GroupApproximation.HullSC.CutFace.right_val_mem
 #audit_axioms GroupApproximation.HullSC.CutFace.arc_val_mem
+#audit_axioms GroupApproximation.HullSC.CutFace.left_designated
+#audit_axioms GroupApproximation.HullSC.CutFace.right_designated
