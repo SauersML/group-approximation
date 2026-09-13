@@ -16,7 +16,8 @@ hull-count94, Case 1 to theoremc-retire and Case 2 to sec5-sentences.
 ## Second split (landed)
 `Estimating/OsinLemma94PlanarPieces.lean`: 80790fad1, then f2cc2be97. The revision measures over
 `symmetricLabelAlphabet D` at `c + 2`. It is green in probe 0913-090448-70090, together with
-`OsinLemma94DartMinimal`, `OsinLemma94CaseOneWalk` and `OsinLemma94ChainRespell`.
+`OsinLemma94DartMinimal`, `OsinLemma94CaseOneWalk` and `OsinLemma94ChainRespell`. hull-count94
+moved `K` after `ε` in the metric and count Props (9f8779c4e).
 ```lean
 theorem osinLemma94Section_of_planarPieces
     (hmetric : OsinLemma94AntiparallelMetricStatement.{u, w})
@@ -41,8 +42,7 @@ theorem osinLemma94Section_of_planarPieces
   `S.family.card ≤ 3 * (...)`, followed by `S.DartMinimal →`.
   - `OsinLemma94PolygonRealizationInput` (hull-unbound): `∃ P : OsinLemma94RealizedPolygons S,
     P.Maximal`.
-  - `OsinLemma94PolygonCountInput` (hull-count94): `∃ K, ∃ eps0, ∀ eps ≥ eps0, ∃ L, ∃ rho0, ...`,
-    `∀ P, P.Maximal → P.SideBudget K ∧ P.Covers L`. `K` is chosen before `ε` and `L` after.
+  - `OsinLemma94PolygonCountInput` (hull-count94): `P.SideBudget K ∧ P.Covers L` for maximal `P`.
   - `OsinLemma94CaseOneInput` (theoremc-retire): `∀ P, P.Maximal → ∀ k (C : WordConnectorPair ..),
     C.b' < C.b → P.kind k C.target ≠ .cutting → False`. The pair is over `symmetricLabelAlphabet D`.
   - `OsinLemma94CaseTwoInput` (sec5-sentences): the same with `P.kind k C.target = .cutting`.
@@ -54,9 +54,8 @@ theorem osinLemma94Section_of_planarPieces
 are in `GloballyDistinguishedSectionFamily`.
 - Definitions: `UnselectedGFace`, `RunsBackAcross` (the `cutting_interior` form) and
   `DegreeTwoJoints`.
-- `CornerInsertionInput` (simple-group, OPEN): insert a legal word across an unselected `G`-face,
-  from the corner before a chain to the corner after it. The result has `2 |word|` more darts and
-  the same unbound sum, and the chain runs between two distinct unselected `G`-faces.
+- `CornerInsertionInput`: PROVED by simple-group, `cornerInsertionInput` in
+  `Estimating/OsinLemma94CornerInsertion.lean` (f7538e223, green in probe 0913-123745-5546).
 - `PendantPathRemovalInput`: PROVED by jacobson, `pendantPathRemovalInput` in
   `Estimating/OsinLemma94PendantRemoval.lean` (61c2ade8e, green in probe 0913-102123-19053).
 - `SeparatingPathRemovalInput`: PROVED by `separatingPathRemovalInput_of_pendant` in
@@ -65,7 +64,7 @@ are in `GloballyDistinguishedSectionFamily`.
   (`GFaceMerge.facePerm_keep_of_ne`, `GFaceMerge.sigma_keep_eq_self`).
 - `ChainRespellInput`: a strictly shorter nonempty legal word with the value of the chain gives
   fewer darts and the same unbound sum. `chainRespellInput_of_pieces` derives it from the insertion
-  and the separating removal. So it needs only `CornerInsertionInput`.
+  and the separating removal, so both of its inputs are closed.
 
 ## Realization split (landed)
 `Estimating/OsinLemma94PolygonRealization.lean` (1130c8dbc, green in probe 0913-095511-56070).
@@ -82,29 +81,35 @@ OsinLemma94PolygonRealizationInput`, with `ε₀ = ρ₀ = 1`.
   - A violating subchain is rotated to the front of the face walk and respelled.
 - `QuasiGeodesicRespellInput`: PROVED by `quasiGeodesicRespellInput` in
   `Estimating/OsinLemma94QuasiGeodesicRespell.lean` (bbb8585ab, green in probe 0913-120651-61632).
+  hull-component's `exists_shorter_respelling_of_not_isLambdaCQuasiGeodesicWord`
+  (`Estimating/OsinLemma94WordRespelling.lean`, 6b5a1f7d1) proves the same binders. The names
+  differ, so both modules can be wired.
 - `OsinLemma94CellArcsInput`: PROVED by ko-closed, `osinLemma94CellArcsInput_holds` in
   `Estimating/OsinLemma94CellArcs.lean` (5e5a98049, green in probe 0913-104724-79090).
-- `OsinLemma94BoundaryArcsInput` (OPEN): arcs of `∂Δ` inside one section. The module
-  `Estimating/OsinLemma94BoundaryArcs.lean` is claimed by cite-hull. Route:
-  `SectionCuts.quasiGeodesic`, `isLambdaCQuasiGeodesicWord_drop_take`, `dartWord_outerDarts` and
-  `OEquivalentDiscDiagram.boundaryWord_eq`, then `isLambdaCQuasiGeodesicWord_symmetricLabelAlphabet`.
-- `OsinLemma94PolygonPartitionInput` (ghw-assembly, OPEN): the combinatorial partition of the face
-  walks into maximal sides, given `GFacesApart` and the three arc properties.
+- `OsinLemma94BoundaryArcsInput`: PROVED by cite-hull, `osinLemma94BoundaryArcsInput` in
+  `Estimating/OsinLemma94BoundaryArcs.lean` (1b453429f, green in probe 0913-111012-12718).
+- `OsinLemma94PolygonPartitionInput` (ghw-assembly with cite-hull, OPEN): the combinatorial
+  partition of the face walks into maximal sides, given `GFacesApart` and the three arc properties.
 
-## Assembly over the open pieces
-`Estimating/OsinLemma94SectionResiduals.lean` (probe pending):
+## Assembly over the open pieces (landed)
+`Estimating/OsinLemma94SectionResiduals.lean` (4da8d3ef8, then 0087a5095, green in probe
+0913-125920-42109; queued for wiring):
 ```lean
+theorem osinLemma94PolygonRealizationInput_of_partition
+    (hpartition : OsinLemma94PolygonPartitionInput.{u, w, v}) :
+    OsinLemma94PolygonRealizationInput.{u, w, v}
+
 theorem osinLemma94Section_of_residuals
-    (hinsert : GloballyDistinguishedSectionFamily.CornerInsertionInput.{u, w, v})
-    (hboundary : OsinLemma94BoundaryArcsInput.{u, w, v})
     (hpartition : OsinLemma94PolygonPartitionInput.{u, w, v})
     (hcount : OsinLemma94PolygonCountInput.{u, w, v})
     (hone : OsinLemma94CaseOneInput.{u, w, v})
     (htwo : OsinLemma94CaseTwoInput.{u, w, v}) :
     OsinLemma94SectionStatement.{u, w, v}
 ```
-It plugs `osinLemma94AntiparallelMetric`, `pendantPathRemovalInput`, `quasiGeodesicRespellInput`
-and `osinLemma94CellArcsInput_holds` into `osinLemma94Section_of_planarPieces`.
+It plugs `osinLemma94AntiparallelMetric`, `cornerInsertionInput`, `pendantPathRemovalInput`,
+`separatingPathRemovalInput_of_pendant`, `quasiGeodesicRespellInput`,
+`osinLemma94CellArcsInput_holds` and `osinLemma94BoundaryArcsInput` into
+`osinLemma94Section_of_planarPieces`.
 
 ## Findings
 - Connector orientation: `WordConnectorPair` fixes `a < a'` and leaves `b`, `b'` in either order.
@@ -113,9 +118,7 @@ and `osinLemma94CellArcsInput_holds` into `osinLemma94Section_of_planarPieces`.
 - One constant `K` replaces `53` and `4`, since Steiner corners may push `k_i` above `4 n_i`.
 - Labels: `label_admissible` of a distinguished family is `LabelLegal (symmetricLabelAlphabet D)`,
   so cutting and short sides need not be `IsAdmissible D`. So the sides are measured over the
-  symmetric alphabet, which has the same Cayley graph. theoremc-retire's
-  `OsinLemma94CaseOneWalkStatement` still uses `WordConnectorPair D`. It compiles, but it must be
-  restated over `symmetricLabelAlphabet D` before it can feed `OsinLemma94CaseOneInput`.
+  symmetric alphabet, which has the same Cayley graph.
 - The constant `c + 2`: suppose a subpath of length `L` of a cutting path violates `(λ, c + 2)`.
   - If its endpoints differ, a geodesic word of length at most `L − 3` respells it.
   - Otherwise `L ≥ 3`, and the subpath without its last letter is respelled by one letter.
@@ -126,11 +129,26 @@ and `osinLemma94CellArcsInput_holds` into `osinLemma94Section_of_planarPieces`.
 - LoopCut gate: none of the three producers of competitor regions excludes `target = some source`.
   - Case 1 with both connector sides on arcs of one cell forces a loop competitor.
   - So does SharedEdge on an edge with one cell on both sides.
+  Ruling (A) adds `target ≠ some source` to `RespectsSections`. ghw-charp2's census marks
+  `false_of_quadrilateral_region` (`Estimating/OsinUnboundCaseOne.lean`) and
+  `false_of_digon_toward_cell` at `i₂ = i` (`Estimating/OsinUnboundSharedEdge.lean`) as same-cell
+  forceable.
 
 ## Risks
 - Budget: `K` independent of `ε` needs the number of unselected `G`-faces and their sides bounded by
-  an Euler count in `n` alone.
-- Case 1 on one cell needs a loop competitor (LoopCut gate above).
+  an Euler count in `n` alone (hull-count94, `OsinLemma94PolygonSideBudgetInput`).
+- The Case 1 one-cell connector pair (below).
+
+## One-cell connector pair (option (i), gated)
+A1 is ruled and A2 is false. `OsinLemma94SectionStatement` and `UnboundInput` gain
+`OsinLemma97Below … Delta.rCellCount`. PlanarPieces gains `OsinLemma94CaseOneOneCellInput`,
+concluding `Nonempty (OsinLoopCut …)`, and the consumer closes the branch with `false_of_below`.
+theoremc-retire lands the threading after (A) and F1; ko-closed writes case (a) and the
+`OsinLoopCut` construction. theoremc-retire drafts the PlanarPieces statement patch (the A1
+premise, the one-cell Prop, the consumer split), rebased after F1, and this lane lands it. It waits
+for ghw-charp2's co-probe of census patches 01-10. Rule 22 users of
+PlanarPieces include `OsinLemma94SectionResiduals`, `OsinLemma94DartMinimal` and
+`OsinLemma94CaseOneWalk`.
 
 ## On main (surgery layer)
 - `Estimating/SingletonFaceRegion.lean` (bd53291cd): `ContiguityGeometry.ofSingletonFace`,
@@ -144,15 +162,13 @@ and `osinLemma94CellArcsInput_holds` into `osinLemma94Section_of_planarPieces`.
   the exterior contradicts maximality.
 
 ## Residual Props of `osinLemma94Section_of_residuals`
-- `GloballyDistinguishedSectionFamily.CornerInsertionInput` (simple-group).
-- `OsinLemma94BoundaryArcsInput` (roster: hull-unbound; module claimed by cite-hull).
-- `OsinLemma94PolygonPartitionInput` (ghw-assembly).
-- `OsinLemma94PolygonCountInput` (hull-count94).
+- `OsinLemma94PolygonPartitionInput` (ghw-assembly with cite-hull).
+- `OsinLemma94PolygonCountInput` (hull-count94; open part `OsinLemma94PolygonSideBudgetInput`).
 - `OsinLemma94CaseOneInput` (theoremc-retire).
-- `OsinLemma94CaseTwoInput` (sec5-sentences).
+- `OsinLemma94CaseTwoInput` (sec5-sentences, `osinLemma94CaseTwo_of_insertion`).
 
 ## Next
-- Land `OsinLemma94SectionResiduals` once green.
-- `OsinLemma94BoundaryArcsInput`: cite-hull holds the module; build it here only if main releases it.
-- Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once the other pieces close.
-- Then help hull-respell with hgreendlinger.
+- Land theoremc-retire's PlanarPieces statement patch for the one-cell pair, co-probed with its
+  Rule 22 users, once ghw-charp2's co-probe lands.
+- Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once the four residuals close.
+- Meanwhile help hull-respell with hgreendlinger.
