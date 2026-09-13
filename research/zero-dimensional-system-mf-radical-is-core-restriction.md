@@ -24,7 +24,10 @@ are covered for every aperiodic compact metrizable zero-dimensional
 system. No finite generation or property (T) of these general ambient
 groups is asserted.
 
-The rank-at-least-four statement and its full kernel proof are printed
-as `thm:core-mf-radical` in the manuscript section `sec:chain-core`.
-The low-rank return-section extension remains in the linked research
-artifact. The manuscript claim has paper-proof status, not Lean status.
+The manuscript section `sec:chain-core` now prints the full kernel
+proof as `thm:core-mf-radical`, with the improved general linear
+threshold three from `three-coordinate-linear-groups-detect-chain-recurrence`.
+Its return-section corollary also prints rank two without fixed points
+and units without periods one or two. Those stronger GL bounds are
+recorded separately in `three-return-levels-give-exact-mf-unit-reflection`.
+The manuscript claims have paper-proof status, not Lean status.

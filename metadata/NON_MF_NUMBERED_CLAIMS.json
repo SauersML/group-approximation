@@ -563,16 +563,72 @@
       "lean": []
     },
     {
+      "id": "prop:bilateral-three",
+      "environment": "proposition",
+      "title": "three-coordinate bilateral compression",
+      "statement_sha256": "fb36e11414ce2070069ba3693614ef490fdf6d2551d54457c4ffe952b9ec04f6",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "thm:compression-criterion",
+        "lem:chain-core-models",
+        "lem:transient-matrices",
+        "thm:core-ring-reflection"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Ershov--Jaikin-Zapirain, Theorem 1.1"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
       "id": "thm:core-mf-radical",
       "environment": "theorem",
       "title": "the exact MF radical",
-      "statement_sha256": "9961e6cffce4469e3af907ee33dac13182b998e2afa885f16dc90440dc72c1bf",
+      "statement_sha256": "2799620c3ada28eb9500463694563675efe7db6934ec558d65cd91672f208082",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript.",
       "dependencies": [
         "prop:torsion-defect-ring",
         "lem:chain-core-models",
-        "lem:transient-matrices"
+        "lem:transient-matrices",
+        "prop:bilateral-three"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:involution-localization",
+      "environment": "lemma",
+      "title": "localization by one involution",
+      "statement_sha256": "3822d4055bd190f09e395641cb6d0bbc94794e281183824cb4d15b35174f00dd",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:transient-matrices",
+        "thm:core-mf-radical"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "cor:dynamic-rank-budget",
+      "environment": "corollary",
+      "title": "unit groups and rank two",
+      "statement_sha256": "f7802094ca0930344b3d69df9e5da3d956d802f455e824849a0e8c8be38a5621",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "prop:bilateral-three",
+        "thm:core-mf-radical",
+        "lem:involution-localization",
+        "thm:core-ring-reflection",
+        "prop:torsion-defect-ring"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
