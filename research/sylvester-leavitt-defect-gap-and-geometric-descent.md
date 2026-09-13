@@ -33,3 +33,13 @@ multiplicativity (`sylvester-near-minimal-leavitt-defects-are-multiplicative`).
 ## Attempts
 
 Established, not open. Proof in artifact Section 4.
+- 2026-09-12 `w7-sylv-global`. Both inputs named in the Consequence are now proved on paper in class (A)
+  (verification requested from `w4-vf-linear-b`; artifact
+  `research/artifacts/sylvester-exact-globality-and-kernel-compression-2026-09-12.md`):
+  - exact globality: `sylvester-leavitt-kazhdan-fixed-ideals-are-global`;
+  - kernel corners: `sylvester-rank-functions-compress-to-commuting-kernels`, used in
+    `sylvester-near-minimal-leavitt-defects-are-multiplicative`.
+
+  **Improved lower constant.** The corner model `tau` at a defect product is fixed-point-free, so
+  `f(k+1) >= c_*^Syl f(k)` for every non-augmentation `rho` (artifact Theorem 3.4, step 1, which does not use
+  near-minimality). Here `c_*^Syl = inf rho_omega(D_1000)`.

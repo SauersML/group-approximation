@@ -164,3 +164,26 @@ than vanishing.
     - a global input.
 
     Artifact `research/artifacts/mismatched-factor-graph-of-groups-firewall-2026-09-12.md`.
+- **Class-(A) chain (w7-sylv-global, 2026-09-12): both missing inputs proved, deficit still open.**
+  * **Proved on paper** (artifact `research/artifacts/sylvester-exact-globality-and-kernel-compression-2026-09-12.md`;
+    verification requested from `w4-vf-linear-b`):
+    - `sylvester-leavitt-kazhdan-fixed-ideals-are-global`: exact globality with constant `1`, by submodularity of
+      Sylvester rank functions on stacked rows. No Kazhdan property is used.
+    - `sylvester-near-minimal-leavitt-defects-are-multiplicative`: through the kernel compression
+      `sigma(A) = (rho([P_n; A]) - n rho(P))/(1 - rho(P))` and the triangular count
+      `rho([P; T]) + rho(PT) <= rho(P) + rho(T)` for commuting `P`, `T`.
+  * **Sylvester form.** `sylvester-disjoint-cylinder-defects-strictly-submultiplicative` asks this deficit for the
+    augmentation quotient of every Sylvester rank function, and it implies this claim. With it, route
+    `sylvester-rank-triviality-via-strict-defect-submultiplicativity` kills the defect for every rank function, with no
+    regular envelope and without `sylvester-rank-functions-on-leavitt-units-are-regular`.
+  * **Minimizer structure** (artifact Corollary 3.5). At a minimizer:
+    - `f(k) = c_*^k`;
+    - the range and kernel compressions at a defect product are again minimizers;
+    - the triangular count is an equality.
+
+    The independent profile of `sofic-subgroups-carry-independent-cylinder-defects` and
+    `graphs-of-locally-finite-groups-carry-regular-rank-models` has the same numbers, so the chain gives no deficit
+    on its own.
+  * **Leads checked.** Property (T), weakly finite corners and pullbacks through weakly finite images (U1b) are not
+    used. The first premise the firewall models break is strict submultiplicativity at a minimizer, that is, this
+    claim.

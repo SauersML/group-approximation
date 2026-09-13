@@ -33,5 +33,11 @@ to the factor `1/m`.
 
 ## Attempts
 
-Established, not open. Proof in artifact Sections 2–3. Exact globality (constant `1`) is the open claim
-`sylvester-leavitt-kazhdan-fixed-ideals-are-global`.
+Established, not open. Proof in artifact Sections 2–3.
+- 2026-09-12 `w7-sylv-global`. Exact globality (constant `1`) is now established on paper in
+  `sylvester-leavitt-kazhdan-fixed-ideals-are-global` (verification requested from `w4-vf-linear-b`; artifact
+  `research/artifacts/sylvester-exact-globality-and-kernel-compression-2026-09-12.md` Section 2).
+  - **Proof.** Part 3's invariance under the compression semigroup plus submodularity on stacked rows.
+  - **Calibration.** The generation hypothesis on `P_Gamma` is needed for constant `1`. Over `F_2`, `A_4` normally
+    generates `A_5`, but it is self-normalizing, and the rank through the 4-dimensional sum-zero module has
+    `psi(X_S) = 3/4`.

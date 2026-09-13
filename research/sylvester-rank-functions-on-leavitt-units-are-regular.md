@@ -52,3 +52,16 @@ example strict submultiplicativity of disjoint-cylinder defects, artifact Conseq
     metric is discrete and the completion is not regular, although that rank function is regular. Regularity is
     equivalent to extending the rank function along the universal regularization (iterated free adjunctions of
     quasi-inverses); whether one such adjunction always admits an extension is where it stops.
+- 2026-09-12 `w7-sylv-global` (artifact `research/artifacts/sylvester-exact-globality-and-kernel-compression-2026-09-12.md`).
+  Not decided, but **no longer needed for the submultiplicativity route.**
+  - **Both remaining inputs are class (A)**, proved on paper (verification requested from `w4-vf-linear-b`):
+    - `sylvester-leavitt-kazhdan-fixed-ideals-are-global`, by submodularity on stacked rows
+      (`sylvester-rank-functions-are-submodular-on-stacked-rows`), the Sylvester form of the modular law;
+    - `sylvester-near-minimal-leavitt-defects-are-multiplicative`, by kernel compressions
+      (`sylvester-rank-functions-compress-to-commuting-kernels`), which replace annihilator idempotents.
+  - **New route.** `sylvester-rank-triviality-via-strict-defect-submultiplicativity` reaches
+    `sylvester-rank-functions-on-leavitt-units-kill-two-root-defect` from
+    `sylvester-disjoint-cylinder-defects-strictly-submultiplicative`, with no envelope. This claim is still what
+    would transfer regular-ring arguments outside class (A).
+  - **Not evidence for an envelope.** Submodularity and kernel compression are two regular-ring identities that
+    hold for every Sylvester rank function. They build no regular ring.
