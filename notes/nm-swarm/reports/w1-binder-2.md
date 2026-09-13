@@ -100,3 +100,28 @@ the blocks. That instantiation stays with fff-periodic.
 CLAIM osinLemma94SameCellScanInput_of_pocket GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellCount.lean (helpers OsinUnboundSameCellCycle, OsinUnboundSameCellBlocks)
 
 Lead item 17:5x: prove the scan residual over the named premise OsinLemma94SameCellPocketInput. Ownership re-checked 18:0x: no count module on origin, in the shared tree or in lanes/*.files.
+
+## Scan residual closed over the pocket value clause (2026-09-13 ~18:40)
+
+- **`osinLemma94SameCellScanInput_of_pocket : OsinLemma94SameCellPocketInput → OsinLemma94SameCellScanInput` LANDED
+  b6f8cb3a6** (modules `Estimating/OsinUnboundSameCellBlocks`, `Estimating/OsinUnboundSameCellCount`; probe
+  0913-183240-62859 GREEN, BUILT lines checked; MSI build log: `[propext, Classical.choice, Quot.sound]` on all ten audited
+  declarations, no `sorryAx`). Helper module `Estimating/OsinUnboundSameCellCycle` LANDED f99f9c6c7 (probe
+  0913-181302-25319 GREEN). All three queued for wiring.
+- Route, on each relator cell `i` of `S.diagram`:
+  - `OsinUnboundSameCellCycle`: face-boundary positions `f^j x₀`, injective and covering; `positionCount` equals the dart
+    count; a dart of a cyclic arc whose predecessor is off the arc is the arc's head.
+  - `OsinUnboundSameCellBlocks.exists_base_scan`: base = an oriented same-cell dart with the longest pocket
+    (`pocketLen`). Blocks join an oriented same-cell dart to its reverse: `lt_of_oriented` orders them, `false_of_cross`
+    and `not_oriented_both` nest them, and `PocketValue` (the tail of `OsinLemma94SameCellPocketInput`) gives value one.
+    A same-cell dart is never bound, since region faces are `G`-faces and relator words do not have value one. The closed
+    `osinUnboundSameCellScanBound_holds` then gives `λ · #same ≤ (1 − λ) · #other + c · (1 + run starts)`.
+  - `OsinUnboundSameCellCount`: every run start is the head of a region arc on the cell, so run starts ≤ `arcCount`
+    (one per region with source `i`, one per region with target `i`), and `∑ᵢ arcCount ≤ 2 |M|`. The pocket clause applies
+    to `S.diagram` through `OEquivalentDiscDiagram.leastArea` and `rCellCount_eq`; `hvalue` from
+    `cell_listVal_ne_one` at `ρ ≥ ⌈c/λ⌉₊ + 2`.
+- With 95f0853ba and e3bbcf801, binder 2's replacement (ii) now rests only on the named premise
+  `OsinLemma94SameCellPocketInput`, which fff-periodic owns.
+- 18:06 incident, recorded: my free-name check ran in parallel with the Write of `OsinUnboundSameCellCycle` and reported
+  the file as taken. Checked: not on origin, in no `lanes/*.files`, not in landed.log, the attic or any backup, and the
+  local mtime equals my Write. It was a race against my own file, and no peer bytes were overwritten.
