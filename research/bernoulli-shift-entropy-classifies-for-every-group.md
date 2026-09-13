@@ -55,3 +55,53 @@ Necessary conditions on a counterexample group are recorded in
   contains a nonabelian free subgroup, and over such groups every pair of
   nontrivial Bernoulli shifts is weakly isomorphic (Bowen, arXiv:0812.2718). A
   counterexample needs an actual isomorphism that changes base entropy.
+- **Structure of failure and the approximate form (2026-09-12, lane
+  ex-bernoulli-positive).**
+  - All failures over one group form an additive subgroup `D(G)` of base-entropy
+    differences with upward-closed witness sets. Classification over `G` is
+    `D(G) = {0}`, failure is absorption `X_h ≅ X_h × X_d`, and collapse onto `X_∞`
+    is total (`bernoulli-isomorphism-collapse-set-is-a-subgroup`).
+  - The approximate form AINV(G), that `λ^G` is not a weak* limit of shift models of
+    `K^G` when `H(λ) < H(κ)`, is equivalent to INF(G) and implies this claim for `G`
+    (`rokhlin-entropy-is-the-bernoulli-approximation-threshold`). Over a group with
+    finite supremum `s`, Bernoulli shifts above `s` approximate each other's measures
+    by isomorphic models in both directions. There this claim says exactly that the
+    approximations never close.
+  - Every semicontinuous isomorphism invariant is constant above `s`
+    (`semicontinuous-invariants-blind-above-rokhlin-supremum`). So a positive proof is
+    a proof of INF(G) or uses an invariant that is not semicontinuous in the shift
+    measure.
+- **Seward's equal-entropy isomorphisms cannot collapse.** The isomorphism of
+  arXiv:1805.08279, Theorem 3.2, fixes a common factor and recodes the remaining
+  i.i.d. labels along each orbit of an aperiodic `T` in the pseudogroup by an
+  isomorphism `ζ: (A^Z, α^Z) → (B^Z, β^Z)` from Ornstein's theorem for `Z`. Section 5:
+  "it is necessary that (L^G,λ^G) and (K^G,κ^G) admit a non-trivial common factor and
+  that they each have strong independence properties over this common factor". Such
+  a `ζ` exists only when `H(α) = H(β)`. The proof's formula for `H(A, α)` equates it
+  with `H(B, β)` exactly when `H(L) = H(K)`. So the construction preserves base
+  entropy.
+- **Amenable skew products are base-blind (argument, not landed as a claim).** Let `G`
+  be finitely generated and nonamenable, and `m` symmetric, finitely supported and
+  generating, with spectral radius `ρ < 1` (Kesten). The random-walk skew product
+  `T(ω, x) = (σω, ω_0^(-1)·x)` on `(S^Z × L^G, m^Z × λ^G)` is a `Z`-action whose
+  Kolmogorov–Sinai entropy is an isomorphism invariant of `G ↷ L^G`.
+  - Read `ω_0` and `x` on the ball `B_r`. The entropy rate is
+    `H(m) + H(λ)·lim_n E|∪_(k<n) w_k B_r|/n`, where `w_k` is the walk.
+  - `P(|w_t| ≤ 2r) ≤ |B_(2r)| ρ^t`. Take the times `jt` with
+    `|B_(2r)| ρ^t/(1 − ρ^t) ≤ 1/2`, so `t = O(r)`. Inclusion–exclusion over their
+    balls gives `E|∪_(k<n) w_k B_r| ≥ n|B_r|/(2t)`.
+  - So the rate is at least `H(m) + H(λ)|B_r|/O(r)`. This is unbounded in `r`,
+    because nonamenable groups have exponential growth.
+  - So the entropy is `∞` for every nontrivial base. Entropy of amenable functorial
+    constructions sees only whether the base is trivial.
+- **Coset Bernoulli actions separate bases trivially.** Suppose `H ≤ G` has only
+  finitely many finite orbits on `G/H`, with union `F`. The `H`-invariant σ-algebra
+  of `A^(G/H)` is then `(A^F)^H`, because `H` acts mixingly on the coordinates in
+  infinite orbits (Neumann's lemma). It is atomic, with a number of atoms that
+  increases with `|A|`. So rigidity or superrigidity theorems about non-free coset
+  Bernoulli actions distinguish bases for a reason that is absent for free shifts,
+  and they give nothing here.
+- **Gaussian and Poisson structure.** The Gaussian action of `λ_R` and the Poisson
+  suspension of `G ↷ G × [0,1]` are Bernoulli shifts with infinite base entropy. An
+  isomorphism of actions need not respect a Gaussian or Poisson presentation, and the
+  functorial input, the Koopman representation, is `λ^⊕N` for every nontrivial base.
