@@ -27,6 +27,17 @@ inclusion `ΔΓ ≤ Γ^p` gives a `G`-equivariant \*-homomorphism
 - For torsion-free a-T-menable `Γ` the analogue holds: everything lies in
   `B^G`, and the cone is contractible.
 
+**Exact reformulation (lane ex3-uct-tate-diagonal, unreviewed;
+`tate-diagonal-cone-is-weakly-contractible-wreath-object`).**
+- **Setup.** Put `W = Γ ≀ G`, `H = ΔΓ × <σ>`, `ε = [ℓ²(W/H)] ∈ KK^W(C_0(W/H), C)`
+  and `Y = cone(ε) ⊗ q^*1_T`.
+- **Where `Y` vanishes.** `Y` is weakly contractible, and even contractible on `Γ^p`.
+- **The crossed product.** `W ⋉_r Y ≅ Z_Γ ⋊ G`, with the dual `Ĝ`-actions.
+- **The equivalence.** This claim holds iff `W ⋉_r Y ≃ 0` in `KK^Ĝ`.
+- **K-invisibility.** It now follows rigorously from the Meyer–Nest obstruction functor, with no
+  cellular localization, and it covers every coefficient algebra `B`. This supersedes the sketch
+  bullet above.
+
 **Why it matters.**
 - **Positive answer.** The permutation actions on `C*_r(Γ^p)` give no
   separable counterexample to the Meyer–Nadareishvili converse at `Z/p`.
@@ -53,3 +64,7 @@ inclusion `ΔΓ ≤ Γ^p` gives a `G`-equivariant \*-homomorphism
   `γ` for `ΔΓ × G` and `Γ ≀ G`, the question splits into the `γ`-parts, where
   the diagonal is an equivalence, and a map between the `(1 − γ)`-parts.  No
   invariant is known that sees KK-morphisms between these K-invisible parts.
+  - **Update (ex3-uct-tate-diagonal).** The `(1 − γ)`-map is the crossed
+    product of the single weakly contractible `W`-object `Y` above.
+  - The `γ`-parts need no γ-element at all: `γ_W · Y = 0` already follows from
+    weak contractibility (Meyer–Nest Thm. 8.3).
