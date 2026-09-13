@@ -27,7 +27,8 @@ kotowskiOllivier_of_pinched (Systolic.mirrorFoldPinched CCKW.cosetComplex)`, and
    ko-closed found and sent nm-endpoints and census the following (the mapping is in this report at 62e77b1cf):
    - fff-periodic's `TorsionFreeGreendlingerLeaf` (1edf0f7b4) already has forms that take `hgreendlinger` alone;
    - the 18 old declarations are named only in sec5-sentences' rows LINE:284, 291, 1636, 1650 and 1718;
-   - `TorsionFreeGreendlingerLeaf` is imported by nothing and is not in the wire queue.
+   - `TorsionFreeGreendlingerLeaf` is imported by nothing.  I reported it as missing from the wire queue, but that was
+     wrong: my grep was cut off at five matches.  It is queued at line 501 (fff-periodic, 06:45).
 3. Row 8097c371f35d is nm-endpoints' file (`metadata/nm-census-rows/nm-endpoints.tsv`); do not land it.  Its carriers are
    the `TorsionFreeFourLeaves` forms.  Baseline lines 369-370 (`kotowskiOllivier_of_leaves`, open-predicate and
    buried-conditional, census merge 63f147d7b) came from ko-closed's old LINE:1675 row, which dropped that carrier at
@@ -87,6 +88,8 @@ imports it.
 - kh-cckw: the every-X HC6 is `Systolic.mirrorFold`.  This corrects my earlier name `mirrorFoldStatement`.
 - sec2-sentences: docstring fixed (4be3a3a5c).
 
-## NEXT
-No Prop is owned and no action is pending.  nm-endpoints swaps the carrier on its row 8097c371f35d, and census
-retires baseline lines 369-370 at its next merge.  The lane is free for reassignment.
+## NEXT (lead, 09-13 ~07:25): help theoremc-retire with `OsinLemma94CaseOneInput`
+The Prop is in hull-unbound's `GGT/VanKampen/Estimating/OsinLemma94PlanarPieces.lean` (80790fad1).  theoremc-retire
+sends ko-closed one sub-piece as a stated Prop.  Meanwhile ko-closed reads that module and
+`RealizedSectionFamily.false_of_quadrilateral_region` (`Estimating/OsinUnboundCaseOne.lean`).  No Prop is owned yet.
+nm-endpoints swaps the carrier on its row 8097c371f35d, and census retires baseline lines 369-370 at its next merge.
