@@ -372,15 +372,22 @@ The lead's item: the least-area Greendlinger waist
   - Unwired. The wire queue line `GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerOpenResiduals
     ghw-assembly 5f031e3a6` replaces 8a07ad7d0. It goes after `OsinDescentResiduals`.
   - The binder list with owners went to nm-endpoints and the lead.
-  - theoremc-retire's T window (14:55) co-probes this module. It opened before 5f031e3a6. They
-    were told the bytes changed, and that this lane makes any edit T needs here.
+  - theoremc-retire's T landed as 48c6cc71e.
+    - Its probe 0913-145812-91168 was GREEN (verdict line checked). It built this module at md5
+      b06afa2f, and the bytes on main are unchanged.
+    - T keeps the argument lists of `_of_walk` and `osinLemma94Section_of_residuals`.
+    - It adds an `OsinLemma97Below … Delta.rCellCount` hypothesis to the bodies of
+      `OsinLemma94CaseOneInput` and `OsinLemma94CaseOneSameCellStatement`, so binder 3 keeps its
+      name and assumes more.
 
 ## Next
 
 - W1 composition: nothing open. Swap a binder when its producer lands: hull-count94 for 1,
   fff-periodic for 2, jacobson for 3.
-- T window: if theoremc-retire's T breaks the `_of_walk` call, apply their new spelling here and
-  re-land right after T.
+- Binder 7 piece (i), corners into G-digons: named in the lead's 14:50 rulings draft, if
+  hull-respell confirms it is open. It is not assigned yet. The starting surgery on main is
+  `SurgeryFaceEdgeDoubling`, `SurgeryFaceEdgeDoublingRegions` and `SurgeryOuterSpurThickening`.
+  No lane stages a corner-digon module.
 - Binders 2-3 get respelled when the site-5 Covers co-probe (fff-periodic with hull-count94) or
   theoremc-retire's T changes `_of_sideBudget` or `_of_walk`. Rule 22 applies to those lanes.
 - Wrap case (parked): when both replies are in, propose a split with dgo-geometric and hull-respell.
