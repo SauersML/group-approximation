@@ -71,3 +71,25 @@ homomorphism. That is `kt-centralizer-normalization-hs`.
   analogue must work at finite matrix levels, with multiplicity coordinates
   rather than in the von Neumann limit. Nothing currently supplies those
   coordinates.
+- **Jones basic construction and index (un-tracial-support, 2026-09-13).**
+  Dies. `Tr(e_A) = 1` in `<M^ω, e_A>` would force `A = σ(u)Aσ(u)*` only if
+  the conjugation were implemented inside `<M^ω, e_A>`. It is
+  `σ(u)·Jσ(u)J`, and `Jσ(u)J ∈ (JAJ)'` is exactly the conclusion sought.
+  `finite-index-unitary-compression-in-r-omega` gives a strict unitary
+  compression in `R^ω` of Jones index 4, so no index read off the position of
+  `A` is a size. Artifact `research/artifacts/un-tracial-support-2026-09-13.md`,
+  §2 TS2.
+- **Spectral gap of `G` alone (un-tracial-support).** Dies. Take any strict
+  compressor, with `Γ` and `G` Kazhdan. In `ℓ²(G/Γ)`, `λ(u)δ_Γ` is not fixed
+  by `Γ`. So normalization does not follow from unitary representation theory,
+  and a proof must use the tracial bimodule structure. Artifact §2 TS1.
+- **Calibration against the sofic group `W` (un-tracial-support).**
+  - `W` uses `Z^3 ⋊ SL_3(Z)` with `α = Ad diag(2,2,2,1)`: index 8, residually
+    finite. Its defect survives in Hilbert–Schmidt norm only because its
+    compressor group maps onto `Z`.
+  - The Leavitt pair has infinite index, and both `Γ` and `G` are minimally
+    almost periodic (`binary-leavitt-unit-group-is-minimally-almost-periodic`).
+    So flexible actor exactification cannot reach it.
+  - A support for it must use (T) of `G`, both sides of the conjugation
+    bimodule, and finite matrix stages, with no genuine representations.
+  - Artifact §1, §2 TS4, §3.
