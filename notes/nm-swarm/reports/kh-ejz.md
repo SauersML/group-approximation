@@ -65,6 +65,50 @@ Census: metadata/nm-census-rows/kh-ejz.tsv, LINE:1675 `partial` (does not carry 
     `restrict_planar_of_euler_four`, with the `[u]` branch at outer degree 2.
   - `hfold`: `Systolic.mirrorFold X : Systolic.MirrorFoldStatement X`, fff-periodic.
 
+## W1 assignment (2026-09-13 ~03:00)
+The lead's order: work on W1 hgreendlinger. hull-euler owns `PhiPrimeCountInput` alone, so take one separable part
+that hull-euler has not started. Land the statement first, then the proof.
+
+1. **Piece taken.** The pure CombMap half of the Euler count in Osin's Lemma 9.3, allowing multiple edges.
+   - Φ'_M can join one cell to one section by several edges, so `SubdividedGraph.noMultiple` fails for it.
+   - Proposed to hull-euler in msg 5f03541a. There was no reply before landing.
+2. **Landed.**
+   - The statement landed unverified at 69c4c69da.
+   - The proof landed at 04240bd43 after green probe 0913-032002-45119, with no warnings.
+   - The module is `GGT/VanKampen/Estimating/OsinAppendixEulerMultigraph`. It is queued for wiring; its only import,
+     OsinAppendixEulerSubdivided, is already on main.
+   ```lean
+   structure SubdividedMultigraph (ρ : Type w) (C : Type z)   -- SubdividedGraph without noMultiple
+   def SubdividedGraph.toSubdividedMultigraph (S : SubdividedGraph M ρ C) : SubdividedMultigraph M ρ C
+   def SubdividedMultigraph.IsTwoGon (f : M.Face) : Prop :=
+     ∃ d : M.Dart, S.IsCellDart d ∧ M.faceOf d = f ∧
+       M.facePerm (M.facePerm (M.facePerm (M.facePerm d))) = d ∧
+         S.region (M.facePerm (M.facePerm d)) ≠ S.region d
+   theorem subdividedMultigraphFace : SubdividedMultigraphFaceStatement             -- #audit_closed_axioms
+   theorem midpointCountTwoGon : MidpointCountTwoGonStatement                       -- #audit_closed_axioms
+   theorem edgeBoundSubdividedMultigraph : EdgeBoundSubdividedMultigraphStatement   -- #audit_closed_axioms
+   theorem edgeBound_of_subdividedMultigraph (S : SubdividedMultigraph M ρ C) (hplanar : M.IsPlanar)
+       {c m : ℕ} (hdarts : M.dartCount = 4 * m) (hvertices : M.vertexCount ≤ c + m) :
+       m + 6 ≤ 3 * c + (Finset.univ.filter fun f : M.Face => M.faceDegree f < 6).card
+   ```
+3. **Route.**
+   - Every face has degree at least four. Odd iterates change the kind of a dart, and a two-step face would join a
+     cell to itself.
+   - Take a face of degree less than six through a cell dart `d`. By `six_le_faceDegree`, `facePerm⁴ d = d`.
+   - If the two regions of that face coincide, the region runs out and back, and both end cells hold only that
+     region. The map then has at most four darts (`dartCount_le_four_of_facePerm_four`).
+   - Euler's formula with `6F ≤ 4m + 2t` and `V ≤ c + m` gives `m + 6 ≤ 3c + t`.
+4. **Residual in `PhiPrimeCountInput`** (hull-euler's).
+   - Build Φ'_M as a `SubdividedMultigraph`.
+   - Bound `t`, the number of two-gons, through (∗).
+   - Nesting caveat, sent to hull-euler: the restricted map drops untouched cells, so a degree-4 face can enclose
+     cells and components.
+   - Proposed charge (not proved):
+     - two-gons that straddle a cut number at most r;
+     - every other pocket has a nonempty, region-closed, disjoint cell set C_P holding at most 3(|C_P| − 1) regions;
+     - with one outer-face vertex, the total is at most 3n + r − 3.
+5. **Next.** Waiting for hull-euler to say which part of the assembly, if any, I should take.
+
 ## Current assignment (2026-09-13)
 Roster: target PiFinitePresentation (the finite-presentation transfer `hW` needs), then row LINE:1675 with
 nm-endpoints.
