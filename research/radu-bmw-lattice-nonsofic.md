@@ -14,7 +14,11 @@ artifacts:
 **OPEN.**  This is the negation of `radu-bmw-lattice-sofic`.  If established,
 it makes the smallest Titz--Witzel kernel nonsofic
 (`titz-witzel-kernel-nonsofic-from-radu-lattice`).  It would also give a nonsofic lattice in a product of trees, hence a
-nonsofic group with the Haagerup property.
+nonsofic group with the Haagerup property. It gives `F_2 × F_2` a free nonsofic action
+(`f2xf2-nonsofic-action-from-radu-lattice-nonsofic`), but never a mixing one through an
+induced action: the vertical closure is locally `C_2`, and the horizontal kernel is an
+infinite normal subgroup of the envelope (`radu-lattice-induced-actions-are-never-mixing`).
+A mixing witness would also need `radu-bmw-lattice-embeds-in-infinitely-transitive-tree-lattice`.
 
 ## Attempts
 

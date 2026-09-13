@@ -35,11 +35,20 @@ induce the full symmetric group on the sphere of radius one). This is a finite c
   dense in `Aut(T_3)^+`, nor boundary-2-transitive. On the horizontal tree `T_h = Γ_R/V`, `V`
   acts on `aV, bV, cV` by `x ↦ id`, `y ↦ (bV cV)`, `z ↦ (aV bV)`, which is `S_3`. So even a
   proof of `radu-bmw-lattice-nonsofic` would not feed the transfer theorem with this envelope.
+  *No envelope works (ex-tree-lattice-mixing, 2026-09-13).* `radu-lattice-induced-actions-are-never-mixing`:
+  the kernel of the horizontal projection is infinite and normal in `H_h × H_v`. So for every
+  product envelope, every seed and every cocompact lattice, the induced action is not mixing.
 * **Lattices with large local actions.** Burger--Mozes lattices with local actions containing
   `Alt(d)` on both factors pass the local condition; for `d >= 6` Radu (arXiv:1712.01091)
   computes the closures of their projections, which can be proper boundary-2-transitive
   subgroups. The transfer theorem accepts any boundary-2-transitive simple `G_i`, but then a
   sofic lattice of `G_1 × G_2` must be exhibited, since `K_p × K_q` need not lie there. No
   nonsofic lattice of this kind is known.
+  *The envelope gap is closed for cocompact lattices (ex-tree-lattice-mixing).*
+  `nonsofic-infinitely-transitive-tree-lattice-gives-mixing` puts `G_i = H_i^(∞)`
+  (topologically simple by Burger–Mozes Proposition 3.1.2) and uses a free finite-index
+  subgroup of the projection of a vertex stabilizer, inside `G_i`, as the sofic lattice.
+  The remaining target is `nonsofic-infinitely-transitive-tree-lattice`. By Burger–Mozes
+  Theorem 6.5 it contains every one-vertex square complex group.
 * **Kun--Thom mechanism.** Unavailable: `Aut(T_p) × Aut(T_q)` has the Haagerup property, and
   so do its lattices, so they contain no infinite Kazhdan subgroup.

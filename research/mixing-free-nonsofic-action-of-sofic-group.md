@@ -63,3 +63,12 @@ a Bernoulli shift.
   `mixing-nonsofic-action-from-sl3z-nonsofic-action`. Dies at: no lattice of a
   Howe--Moore group is known to have a nonsofic action
   (`simple-group-lattice-admits-nonsofic-action`).
+* **Products of two trees (live, conditional; ex-tree-lattice-mixing, 2026-09-13).**
+  `nonsofic-infinitely-transitive-tree-lattice-gives-mixing` gives `F_2 × F_2` a free mixing
+  nonsofic action from any nonsofic cocompact lattice whose projection closures are locally
+  `∞`-transitive with finite `H^(∞)`-index. Routes: `mixing-nonsofic-action-from-f2xf2-mixing-action`
+  through `f2xf2-admits-mixing-nonsofic-action`, and `mixing-nonsofic-action-from-tree-product-lattice`.
+  The seed is `nonsofic-infinitely-transitive-tree-lattice`, which every nonsofic one-vertex
+  square complex group supplies (Burger–Mozes Theorem 6.5). Radu's BMW lattice cannot seed
+  an induced mixing action (`radu-lattice-induced-actions-are-never-mixing`). Dies at: no
+  nonsofic lattice in a product of trees is known.

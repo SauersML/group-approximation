@@ -26,3 +26,7 @@ nonsofic action of a sofic group with the Haagerup property.
 * **From any group measure equivalent to `F_2 × F_2` outside `𝒮`.** By
   `paunescu-class-is-measure-equivalence-invariant` one such group suffices, sofic
   or not, with the explicit transfer recorded there.
+* **Mixing version (ex-tree-lattice-mixing, 2026-09-13).** `f2xf2-admits-mixing-nonsofic-action`
+  implies this claim (`f2xf2-nonsofic-action-from-mixing-nonsofic-action`). It follows from
+  `nonsofic-infinitely-transitive-tree-lattice`, but not from Radu's lattice as an induced
+  action (`radu-lattice-induced-actions-are-never-mixing`).
