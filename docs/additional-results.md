@@ -156,6 +156,16 @@ occurrences. Short finite decoder certificates improve the general
 binary cylinder bound from `2^17 n^2` to `2^8 n^2`; an executable
 compiler and exact cyclic-matrix checks accompany the written proof.
 
+The [finite normal-control theorem](../research/artifacts/pestov91-finite-normal-control-2026-09-13.md)
+puts a normal generator for every nontrivial normal subgroup inside
+one finite elementary abelian subgroup. Every quotient and its MF
+reflection consequently has a single-involution-relator description
+relative to the source. This gives a short proof that no nontrivial
+quotient of any graph group is finitely presented. With fixed quadratic
+Sturmian endpoints, linear language complexity yields polynomial-time
+algorithms for arbitrary word, normal-closure and MF-consequence
+queries, measured in expanded word length. These are written proofs.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
