@@ -24,3 +24,11 @@ This is the negative answer to Zaremsky Problem 1.22
 - No mechanism is known that sees finite cohomological dimension of a simple group
   from its dynamics on the line beyond the rigid-stabilizer count. Deferred until the
   lattice case is settled.
+- (z1-22-lo-simple-thompson, 2026-09-13) **Dimension lever.** For finitely generated simple groups the
+  rigid-stabilizer count is vacuous (`fg-simple-line-groups-have-no-one-sided-supports`). The working lever
+  counts disjointly supported elements (`finite-cd-line-groups-bound-disjointly-supported-families`).
+  - A nonexistence proof along these lines needs a theorem that every faithful action of a finitely
+    generated simple group on the line has unboundedly many disjointly supported nontrivial elements.
+  - That theorem must use simplicity: `BS(1,2)` acting by `x ↦ 2x`, `x ↦ x + 1` is of type F with `cd 2`
+    and acts minimally, yet no two nontrivial elements have disjoint supports.
+  - No such theorem is known to this lane.
