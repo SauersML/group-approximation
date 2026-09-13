@@ -332,3 +332,4 @@
 34768013018	2026-09-13T16:15:58Z	GroupApproximation/Algebra/DiscreteStokes.lean	abs_endpoint_sub_le
 34775745254	2026-09-13T18:49:02Z	GroupApproximation/Sofic/ExactInvolutionCut.lean	exactInvolutionNegativeCut_isOrthogonalProjection
 34783781516	2026-09-13T21:26:22Z	GroupApproximation/Sofic/ExactInvolutionLifts.lean	norm_unitary_conj
+34789930204	2026-09-13T23:32:26Z	GroupApproximation/Sofic/CliffordWitnessHSRemarkGeneral.lean	manuscriptCliffordWitnessSoficModelsHS
