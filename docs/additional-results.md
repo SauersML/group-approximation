@@ -194,6 +194,16 @@ whole transient kernel. Thus the earlier low-rank invisible witness
 is strengthened to a complete radical and LEF quotient description,
 including for every aperiodic subshift.
 
+The [zero-dimensional reflection theorem](../research/artifacts/pestov91-zero-dimensional-universal-core-reflection-2026-09-13.md)
+removes expansiveness: the exact radical and LEF quotient statements
+hold for all compact metrizable zero-dimensional homeomorphisms,
+with the same rank and period conditions over `F_2`. At the ring level,
+over every finite field, restriction to the chain-recurrent core is
+the universal quotient for maps to directly finite, stably finite or
+LEF rings. This universal property also holds after every finite
+matrix amplification. No finite generation of the general groups is
+asserted.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
