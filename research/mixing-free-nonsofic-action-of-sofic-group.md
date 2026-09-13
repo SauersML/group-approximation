@@ -22,8 +22,16 @@ subgroups, so the obstruction cannot be imported through either.
 `kazhdan-fixed-algebra-blind-to-subgroup-ergodic-actions` makes this precise:
 for any sofic embedding of such an action, the embedded algebra is orthogonal to
 the normalized fixed algebra `D_𝒰^(σ(Γ))` beyond the constants.
+`permutation-centralizer-blind-to-weakly-mixing-actions` does the same for
+Theorem 4.1.
 
-A mixing counterexample would therefore need a genuinely different mechanism.
+It can be imported through orbit equivalence. By
+`howe-moore-lattice-nonsofic-action-transfers-to-mixing`, any ergodic nonsofic
+action of a lattice in a Howe--Moore group yields a free mixing nonsofic action of
+the same lattice.
+
+So a mixing counterexample needs either a mechanism that works on mixing actions
+themselves, or a nonsofic seed for a group with such an orbit-equivalence transfer.
 Bernoulli shifts of sofic groups are sofic (Păunescu Section 2), so it cannot be
 a Bernoulli shift.
 
@@ -38,9 +46,20 @@ a Bernoulli shift.
   transfers nonsoficity from a subgroup action to the ambient group, but it needs
   a nonsofic seed and supplies no mixing: a mixing nonsofic seed is exactly what
   is missing.
-* **Permutation centralizers (Kun--Thom Theorem 4.1).** The centralizer of
-  `σ(Γ)` in the universal sofic group is normalized by `σ(G)`. For a mixing
-  action no nonconstant function commutes with `u_Γ`, but elements `a u_c` of the
-  crossed product with `c ∈ C_G(Γ)` can. Whether Theorem 4.1 forces a condition on
-  how those elements are embedded is unexplored; this is the one piece of the
-  Kun--Thom machinery the blindness theorem does not cover.
+* **Permutation centralizers (Kun--Thom Theorem 4.1).** Dead for everything the
+  action forces into the embedding:
+  `permutation-centralizer-blind-to-weakly-mixing-actions` proves that on a free
+  action where `Γ` acts weakly mixingly, the permutations of the embedded crossed
+  product commuting with `σ(Γ)` are exactly `σ(C_G(Γ))`. So Theorem 4.1 yields only
+  Theorem B. Route `mixing-nonsofic-action-via-permutation-centralizers` is
+  invalidated. Centralizing permutations outside the embedded crossed product are
+  not forced by the action.
+* **Orbit-equivalence transfer through a Howe--Moore envelope (live).**
+  `howe-moore-lattice-nonsofic-action-transfers-to-mixing`: if `Γ <= H` is a lattice
+  and `H` has the Howe--Moore property, an ergodic nonsofic seed `Z` gives the free
+  mixing nonsofic action `Γ ↷ H ×_Γ (Z × {0,1}^Γ)`. It is orbit equivalent to
+  `Γ ↷ Γ\H × Z'`, which has `Z` as a factor. Routes
+  `mixing-nonsofic-action-from-simple-lattice-nonsofic-action` and
+  `mixing-nonsofic-action-from-sl3z-nonsofic-action`. Dies at: no lattice of a
+  Howe--Moore group is known to have a nonsofic action
+  (`simple-group-lattice-admits-nonsofic-action`).

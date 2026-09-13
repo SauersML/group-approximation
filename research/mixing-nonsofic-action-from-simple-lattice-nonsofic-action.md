@@ -1,0 +1,22 @@
+---
+rg: 2
+id: mixing-nonsofic-action-from-simple-lattice-nonsofic-action
+kind: route
+title: A nonsofic action of a lattice in a simple Lie or local-field group becomes a free mixing nonsofic action through its Howe-Moore envelope
+target: mixing-free-nonsofic-action-of-sofic-group
+requires:
+  - simple-group-lattice-admits-nonsofic-action
+  - howe-moore-lattice-nonsofic-action-transfers-to-mixing
+  - howe-moore-property-for-simple-lie-and-p-adic-groups
+---
+
+Conditional route; it fires when `simple-group-lattice-admits-nonsofic-action` is established.
+
+1. The envelope `H` has the Howe--Moore property (`howe-moore-property-for-simple-lie-and-p-adic-groups`).
+2. `Λ ∉ 𝒮`, so the dichotomy in `howe-moore-lattice-nonsofic-action-transfers-to-mixing` gives an
+   essentially free, mixing, nonsofic p.m.p. action of `Λ`.
+3. `Λ <= GL_n(k)` is linear. By Malcev every finitely generated subgroup is residually finite, hence
+   sofic, and a countable group all of whose finitely generated subgroups are sofic is sofic. So `Λ` is
+   a sofic group.
+
+This generalizes `mixing-nonsofic-action-from-sl3z-nonsofic-action`.

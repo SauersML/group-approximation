@@ -33,4 +33,14 @@ every finite-index subgroup of `SL_3(Z)` and every group commensurable with it.
 * **Mixing actions.** Blind to the fixed-algebra mechanism for every Kazhdan
   subgroup (`kazhdan-fixed-algebra-blind-to-subgroup-ergodic-actions`), so a
   mixing candidate such as a Gaussian or algebraic action needs a different
-  obstruction.
+  obstruction. Theorem 4.1 is blind to them too
+  (`permutation-centralizer-blind-to-weakly-mixing-actions`). Conversely,
+  `howe-moore-lattice-nonsofic-action-transfers-to-mixing` shows `SL_3(Z)` has a
+  nonsofic action iff it has a free mixing one, `SL_3(R) ×_(SL_3(Z)) Z'`. So
+  restricting to mixing actions loses nothing. But a mixing witness is most
+  naturally proved nonsofic by orbit equivalence to a non-mixing one.
+* **Other lattices of `SL_3(R)`.** A nonsofic action of any lattice of `SL_3(R)`,
+  or of any Howe--Moore lattice, answers the mixing root
+  (`simple-group-lattice-admits-nonsofic-action`). It answers this claim only if
+  soficity of relations passes to restrictions and amplifications, which would
+  make one lattice of `SL_3(R)` outside Păunescu's class put all of them outside.
