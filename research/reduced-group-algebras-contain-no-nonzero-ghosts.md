@@ -25,7 +25,10 @@ Then `T` is a ghost only if `T = 0`.
 **Why it matters for `baum-connes-counterexample-group-exists`.**
 - The Higson--Lafforgue--Skandalis counterexamples (GAFA 12 (2002); context,
   not imported) use a non-compact ghost projection. It is built from an
-  expander coarsely embedded in a Gromov monster.
+  expander weakly embedded in a Gromov monster, or isometrically embedded in
+  one of Osajda's groups. Corrected 2026-09-13: an earlier version said
+  "coarsely embedded in a Gromov monster", but Osajda (arXiv:1406.5015)
+  writes that there "expanders are not even coarsely embedded".
 - That projection lives in a crossed product with commutative coefficients,
   such as the uniform Roe algebra `l^inf(G) ⋊_r G`. Its K-class is detected
   because it dies in the boundary quotient but is not a compact operator.
