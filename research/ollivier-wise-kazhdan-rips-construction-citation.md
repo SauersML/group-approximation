@@ -27,5 +27,12 @@ arXiv:math/0409203v1 (13 Sep 2004). Read from the PDF on 2026-09-13.
 - "Of dimension 2" is read as: the graphical presentation complex is aspherical and
   two-dimensional, as for `C'(1/6)` presentations. Hence `cd G <= 2`.
 - Word-hyperbolicity is used only for finite presentations, and none of the consumers needs it.
-- The reference [Oll03b] was not re-read here, so the asphericity reading is the one point that
-  rests on the paper's own summary sentence.
+- The asphericity reading has independent support. D. Gruber, arXiv:1210.0178:
+  - Theorem 2.18: the presentation complex of a graphical `C(6)` presentation is aspherical.
+  - Corollary 2.19: "`G(Γ)` has an at most 2-dimensional `K(G(Γ),1)` space and hence
+    cohomological dimension at most 2".
+  - A `Gr'(1/6)` graph is graphical `C(7)`: every piece is shorter than a sixth of each cycle
+    containing it. So `cd G <= 2`.
+- Gruber's statements were read by `ex-verify2-groups`, not by this lane. That lane also checked
+  Theorem 1.1 (1)–(4) verbatim, with PASS. Review: e106d0ae75,
+  `research/artifacts/ex-review2-groups-2026-09-13-part4.md` §1. [Oll03b] itself was not re-read.
