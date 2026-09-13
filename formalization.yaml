@@ -3,47 +3,61 @@ version: "v0.4"
 
 project:
   name: >-
-    A Surjunctive Group That Is Not Sofic, and a Simple C*-Algebra That Is Not
-    K1-Injective
+    Answers to Seven Open Questions on Groups and C*-Algebras
   description: >-
-    This project formalizes, in Lean 4 over Mathlib, negative answers to two
-    open questions, one on finite approximation of groups and one on nonstable
-    K-theory.
+    This project formalizes, in Lean 4 over Mathlib, answers to seven open
+    questions on groups, group actions, group rings and C*-algebras. Each
+    answer has its own Comparator configuration in Palomar/, and all of them
+    share one Lean development.
 
-    Gromov and Weiss proved that every sofic group is surjunctive. The converse
-    is asked in print by Ceccherini-Silberstein and Coornaert in 2010, as open
-    problem (OP-11) of Cellular Automata and Groups, is recorded as open by
-    Arzhantseva and Gal in 2013, and is printed as Problem 1.1 by Bowen and
-    Chapman in 2025 (arXiv:2511.06586): are all surjunctive groups sofic? The
-    answer is no, already for a finitely generated group. The witness is the
-    symmetric double of the pair
-    Γ = EL₃(𝔽₂[x₁, x₂, x₃]) ≤ G = EL₃(𝔽₂[x₁^±¹, x₂^±¹, x₃^±¹]) ⋊ EL₃(ℤ), the
-    q = 2, r = d = 3 member of the family in Kun and Thom's Theorem E, with
-    EL₃(ℤ) = SL₃(ℤ) acting by monomial substitution.
-    Reducing exponents modulo n makes G residually finite, so G is surjunctive,
-    and the development proves that the double G *_Γ G of a surjunctive group
-    is surjunctive over every subgroup (isSurjunctive_symmetricDouble in
-    GroupApproximation/Dynamics/DoubleFinitarySite.lean). With Γ trivial this
-    is the free product G * G
-    (GroupApproximation.Surjunctivity.isSurjunctive_coprodI_double, for
-    Monoid.CoprodI of two copies of G), a case of the product question that
-    Arzhantseva and Gal record as open, citing Weiss (2000); Doucha and
-    Gismatullin still
-    state the free-product case ℤ * G as a conjecture (Groups Geom. Dyn. 16
-    (2022), Conjecture 3.12), and we have found no later resolution. Both G and
-    Γ have property (T), and Γ is infranormal in G without being normal; for
-    such a pair Kun and Thom's Theorem A makes the double nonsofic, and their
-    centralizer normalization theorem (arXiv:2608.06222, Theorem 4.1) is proved
-    here in a general sequential form rather than assumed.
+    Gromov and Weiss proved that every sofic group is surjunctive.
+    Ceccherini-Silberstein and Coornaert ask for the converse in 2010, as open
+    problem (OP-11) of Cellular Automata and Groups, and Bowen and Chapman
+    print it as Problem 1.1 of arXiv:2511.06586. The answer is no, already
+    for a finitely generated group: the symmetric double of the pair
+    Γ = EL₃(𝔽₂[x₁, x₂, x₃]) ≤ G = EL₃(𝔽₂[x₁^±¹, x₂^±¹, x₃^±¹]) ⋊ EL₃(ℤ) is
+    surjunctive, and by Kun and Thom's Theorem A, whose inputs are proved
+    here rather than assumed, it is not sofic
+    (Palomar/comparator-bowen-chapman.json).
 
     Blackadar's K-Theory for Operator Algebras (1998) records as open whether
     every unital simple C*-algebra is K1-injective, and Schafhauser, Tikuisis
     and White pose the question as Problem LIX of "Nuclear C*-algebras: 99
-    problems" (arXiv:2506.10902). The counterexample is a separable simple
-    unital C*-algebra A, an inductive limit of corner algebras of matrices over
-    C(X), with a unitary u that is not in the connected component of 1 in U(A)
-    although diag(u, 1) is in the connected component of 1 in U(M2(A)). So the
-    class of u vanishes already at the first stabilisation.
+    problems" (arXiv:2506.10902). The answer is no: a separable simple unital
+    C*-algebra A has a unitary u outside the connected component of 1 in U(A)
+    with diag(u, 1) in the connected component of 1 in U(M2(A))
+    (Palomar/comparator-lix.json).
+
+    Pestov asks, as Open question 9.1 of arXiv:0804.3968 and following Ozawa,
+    whether an infinite simple group with property (T) can be hyperlinear or
+    sofic. The answer is yes, in both forms: EL₃(A), for the ring
+    A = LC(X, 𝔽₂) ⋊ ℤ of a Toeplitz subshift X, is infinite, simple, has
+    property (T) and is LEF, so it is sofic and hyperlinear
+    (Palomar/comparator-pestov91.json).
+
+    Fournier-Facio, Wu and Zaremsky ask, as Question 5.8 of arXiv:2603.24687,
+    whether some action G ↷ S of type [A₂] has a quotient G/ker(G ↷ S) that
+    is not finitely presented. The answer is yes, for a cover of Thompson's
+    group F acting on the positive dyadic rationals
+    (Palomar/comparator-type-a2.json).
+
+    Guba asks, as Question 3.20 of arXiv:2305.07113, whether for a field K
+    and every b in K[F], with F Thompson's group, the equation
+    (1 − x₁) u = b v has a non-zero solution in K[F]. The answer is yes
+    (Palomar/comparator-guba-thompson.json).
+
+    Gao, Kunnawalkam Elayavalli and Patchell ask, as Question 4.2 of
+    arXiv:2401.04945, whether commuting actions of countable groups on a
+    countable set combine to a sofic action exactly when each of them is
+    sofic. The answer is no: for a Kun-Thom pair Γ ≤ G, the two commuting
+    actions of G on (G × G)/ΔΓ are sofic and the action of G × G they give is
+    not (Palomar/comparator-gkp-commuting-actions.json).
+
+    Schafhauser, Tikuisis and White ask, as Problem X(1) of the same list and
+    after N. P. Brown, whether amenable traces on C*-algebras are necessarily
+    quasidiagonal. The answer is no: the canonical trace of the maximal group
+    C*-algebra of a group built in the development is amenable and not
+    quasidiagonal (Palomar/comparator-stw-x1.json).
   authors: [Sauers]
   responsible_maintainers: [SauersML]
   license: Apache-2.0
@@ -141,6 +155,111 @@ sources:
       Pisier (2020, Chapter 17); and the OpenAlex titles and abstracts of works
       citing Ozawa, Pestov and seven further sources. The arXiv API was
       rate-limited, and journal versions were not opened.
+
+  - title: A type [A₂] action with a non-finitely-presented image
+    type: original-proof
+    relationship: other
+    contributors:
+      - name: Astra
+        role: solved the problem, using a custom proof tool
+      - name: Claude (Anthropic)
+        role: >-
+          wrote all the prose: the narrative fields of this file for this
+          result and the docstrings of its Palomar modules
+    note: >-
+      The positive answer to Question 5.8 of Fournier-Facio, Wu and Zaremsky,
+      "Abstract twisted Brin-Thompson groups" (arXiv:2603.24687 v2, p. 27),
+      the question checked by Palomar/comparator-type-a2.json, is first
+      presented in this project. They ask for an action G ↷ S of type [A_2]
+      "such that G/ker(G ↷ S) is not finitely presented?", and write on p. 25
+      that they know no explicit example. The argument was committed to this
+      public repository on 2026-09-12 at 21:26:19 UTC (ec590bbea) and
+      recorded in the research graph at 21:54:57 UTC (12bd1722d): the
+      twisted Brin-Thompson group SV_V acting on clopen sets, extended by a
+      free group acting through its normalizer. The Lean development extends
+      Thompson's group F, acting on the positive dyadic rationals, in the
+      same way. On 2026-09-13 the Palomar challenge was committed at 06:49:35
+      UTC (398373fe3) and the witness at 08:36:52 UTC (2dc6529ed), and the
+      Lean endpoint GroupApproximation.TypeA2.question58 landed with the
+      completed Palomar surface at 08:59:23 UTC (e8abf9a00). That postdates
+      the latest version of the source, v2 of 2026-04-02.
+      research/artifacts/review-swarm5-2026-09-12.md checks the question
+      against the v2 PDF and screens the later arXiv listings of
+      Fournier-Facio and Zaremsky; none addresses Question 5.8, and no earlier
+      or independent answer was found. The search was bounded, since the
+      arXiv API search failed, and
+      research/artifacts/bh-type-a-actions-2026-09-12.md notes that the
+      construction is elementary and may be folklore.
+
+  - title: The equation (1 − x₁) u = b v in the group ring of Thompson's group F
+    type: original-proof
+    relationship: other
+    contributors:
+      - name: Astra
+        role: solved the problem, using a custom proof tool
+      - name: Claude (Anthropic)
+        role: >-
+          wrote all the prose: the narrative fields of this file for this
+          result and the docstrings of its Palomar modules
+    note: >-
+      The positive answer to Question 3.20 of Guba's "Amenability problem for
+      Thompson's group F: state of the art" (Groups Complexity Cryptology 15
+      (2023), p. 3:18; arXiv:2305.07113 v4), which is also Question 1 of
+      arXiv:2201.02308, the question checked by
+      Palomar/comparator-guba-thompson.json, is first presented in this
+      project. Guba asks whether, for every b in R = K[F], "the equation
+      (1−x1)u = bv has a non-zero solution in R?" The argument was committed
+      to this public repository on 2026-09-12 at 21:55:41 UTC (4f3e5243a). On
+      2026-09-13 the Palomar challenge was committed at 06:59:10 UTC
+      (24ed18bcf), the Lean endpoint
+      GroupApproximation.ThompsonOre.one_sub_x1_solution landed at 09:07:49
+      UTC (6d9e32987), and the Palomar solution became unconditional at
+      09:20:00 UTC (6b308147b). That postdates the latest versions of both
+      sources, v4 of the survey of 2023-10-19 and v1 of arXiv:2201.02308 of
+      2022-01-07. research/artifacts/guba-q1-novelty-2026-09-12.md reads the
+      citing record an earlier review could not open, Nishinaka's 2022 RIMS
+      Kôkyûroku note, and screens Guba's later papers, the records citing his
+      2021-2023 papers, the RIMS Kôkyûroku volumes to 2354, and arXiv and
+      Crossref searches. No earlier or independent answer was found. The check
+      was bounded: zbMATH, Google Scholar and the arXiv API were unreachable,
+      and a paper answering the question without citing Guba would be missed.
+
+  - title: Commuting sofic actions that do not combine to a sofic action
+    type: original-proof
+    relationship: other
+    contributors:
+      - name: Astra
+        role: solved the problem, using a custom proof tool
+      - name: Claude (Anthropic)
+        role: >-
+          wrote all the prose: the narrative fields of this file for this
+          result and the docstrings of its Palomar modules
+    note: >-
+      The negative answer to Question 4.2 of Gao, Kunnawalkam Elayavalli and
+      Patchell, "Soficity for group actions on sets and applications"
+      (arXiv:2401.04945 v3, p. 14; Res. Math. Sci. 12 (2025), article 48), the
+      question checked by Palomar/comparator-gkp-commuting-actions.json, is
+      first presented in this project. For commuting actions α_i of groups G_i
+      on one set, combining to an action α of their direct sum, they ask: "α
+      is sofic iff all α_i are sofic?" The forward direction is their
+      Proposition 2.15(3); the converse fails. The witness is G × G acting on
+      (G × G)/ΔΓ for a Kun-Thom pair Γ ≤ G. The nonsoficity of the coset
+      action of G on G/Γ is Kun and Thom's (arXiv:2608.06222); the new step is
+      that both coordinate actions are sofic while the diagonal orbit of the
+      base coset is that coset action. The argument was committed to this
+      public repository on 2026-08-18 at 02:48:35 UTC (393a096b6). On
+      2026-09-13 the Lean endpoint
+      GroupApproximation.CommutingSoficActions.exists_commuting_sofic_actions_not_sofic
+      landed at 08:06:59 UTC (29e593abf) and the Palomar surface at 08:48:32
+      UTC (3f1af7161). The argument postdates the latest version of the
+      question's source, v3 of 2025-08-27, and v1 of Kun and Thom of
+      2026-08-06; the Lean endpoint also postdates their v3 of 2026-08-20,
+      which, like v1, never mentions commuting actions or Question 4.2.
+      research/artifacts/fz-gkp-q42-review-2026-09-13.md screens the seven
+      works that Semantic Scholar lists as citing the source, arXiv searches
+      and web searches. No earlier or independent answer was found as of
+      2026-09-13. The search was bounded: journal-side citing records could
+      not be opened.
 
   # Background for the LIX result: the problem and its history, the positive
   # results the counterexample had to avoid, the construction's ancestry and
@@ -840,6 +959,14 @@ automation:
     (Anthropic), which also produced the Lean formalisation under the author's
     direction. No Codex or GPT agent worked on that result. The two methods
     entries above are the two runs, in that order.
+
+    The Fournier-Facio-Wu-Zaremsky, Guba and Gao-Kunnawalkam
+    Elayavalli-Patchell problems were solved by Astra, using a custom proof
+    tool. All prose for those three results, the narrative fields of this file
+    and the docstrings of their Palomar modules, was written by Claude
+    (Anthropic), which also produced their Lean formalisations under the
+    author's direction. Those formalisations belong to the second methods
+    entry above.
 
 review:
   status: self-assessed
