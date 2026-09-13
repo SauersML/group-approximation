@@ -228,9 +228,38 @@ enumeration or the `walk` and `cutting_interior` fields.
   `exists_polygonFace` there. It stays in scratch and was never landed or probed.
 - sec5-sentences stood down and told ghw-assembly, cite-hull and main (~13:25).
 
+The partition LANDED at 746028b24 (ghw-assembly).
+
+## The count piece of Lemma 9.4, with hull-count94 (team-lead, 2026-09-13 ~13:30)
+
+Assignment: `OsinLemma94PolygonCountInput`, one of the two open hypotheses of `osinLemma94Section_of_residuals`, split
+with hull-count94. `OsinLemma94CaseOneInput` stays with theoremc-retire, ko-closed and jacobson.
+- hull-count94's plan has two steps.
+  1. The rest of the ruling: skip-arc (A2) sides, the `Maximal` skip clause, the A1-filtered budget and a pinch
+     exclusion. These land with the Case 1 users.
+  2. The respelled side budget, proved from the Lemma 9.3 counts on main (`PhiPrimeCountInput`, `CellFaceCountInput`).
+- I offered hull-count94 step 2 (~13:31) and asked for the target Prop, its file and the spelling.
+- audit-intro is model-testing the patched budget. Until that test is back nothing is built on the budget spelling, and
+  this lane does read-only groundwork.
+
+Groundwork, read-only:
+- The covering half is closed (`osinLemma94PolygonCoversInput`, 2b2e16cc6). The residual is
+  `OsinLemma94PolygonSideBudgetInput` (`Estimating/OsinLemma94PolygonCount.lean:81`), with
+  `SideBudget P K := ∑ k, P.sideCount k ≤ K n` (PlanarPieces:217).
+- The binders give `|M| ≤ 3(n + r − 1)` and `DartMinimal`, and `cuts.count_le` gives `r ≤ 4`.
+- Short sides. The dart across every dart of a short side lies on a side of a selected region, so the short sides number
+  at most `2 ε |M|`. This is the argument of audit-intro's `sum_card_regionFacingUnbound_le` (RegionSideCount:151).
+- (A1) and (A2) sides. I found no diagram-level producer of Lemma 9.3's `#A1 + #A2 ≤ 2|M| + n + r`:
+  `ComplementaryComponents.typeA12_le` is a structure field with only a zero model, and `lemma61_arcCount_le` is only
+  its arithmetic. So step 2 has to count the maximal unbound runs on cells and sections itself. My reading is that
+  each side end is charged to a region end, a whole cell, a whole section or a touching vertex. The touching vertices
+  (pinches, cells meeting at a vertex) are what the pinch exclusion and the skip clause have to remove.
+- Cutting sides have the polygon face on both sides of every dart (`cutting_internal`).
+- `GFacesApart`: two unselected G-faces across one edge are the same face.
+
 ## Next
 
-1. Waiting on main for the next item. Once the partition lands, `osinLemma94Section_of_residuals` still needs
-   `OsinLemma94PolygonCountInput` (hull-count94) and `OsinLemma94CaseOneInput` (theoremc-retire).
+1. Wait for hull-count94's answer on the split and for audit-intro's model test. Then write step 2 in a new module of
+   this lane, over the patched spelling.
 2. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
    re-grade the rows formalized.
