@@ -169,6 +169,49 @@ Interfaces read at origin/main: `OlshanskiiPolygonClasses`, `OlshanskiiCutClasse
 `UnboundComponentWordPolygons`, `UnboundWordConnectors`, `WordSegmentConnectors`,
 `WordGeodesicReplacement`, `CayleyGeodesicMorse`, `OsinUnboundCaseOne`, `OsinLemma94Pieces`.
 
+## W2 hbridge certificate cut (lead assignment, 2026-09-13)
+
+The lead assigned this lane one piece of the Lemma 5.1 certificate cut on wall hbridge
+(`HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement`).  hull-bridge, the integrator,
+names the piece.  The route to the wall:
+
+* `relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_letterPullback`
+  (`GGT/HullSCLemma51EmbeddedProducer`) reduces the wall to `QuotientPeripheralLetterPullbackStatement`.
+* `quotientPeripheralLetterPullbackAt_of_letterStepBound` (hull-component,
+  `GGT/HullSCLemma51LetterPullbackInduction`) reduces that to two `LetterStepBound` moves:
+  * M1, a non-geodesic rotation: `letterStepBound_of_not_isRelGeodesic`, on main;
+  * M2, the certificate cut.
+
+State of M2 at origin (04:18):
+
+* CutFaces and CutSides `14850636f` (hull-component): `CutFace`, the side and arc value lemmas,
+  `CutFace.left_designated`, `CutFace.right_designated`.
+* CutBlocks `4d91f2870`: the quotient blocks, `RotatedLift.arc_left`, `arc_mid`, `tail_left`,
+  `tail_mid`.
+* CutLift `dfa2dfb11` (hull-bridge): `CutLift`, the proposition `CutLiftOutcome W D q hq`,
+  `CutLift.null_word`, `CutLift.length_lt`, `pullbackOutcome_of_blocks`.
+* CutOutcome `a1f2e52da` (hull-component): `CutMove`, with
+  * `CutMove.outcome_before`: the arc lies before the unknown letter;
+  * `CutMove.mem_image_of_inner`: the arc runs through the unknown letter, and no side letter reads
+    at its coset.
+
+Open, as read from origin:
+
+1. The designated case.  The arc runs through the unknown letter `comp λ h⁻¹`, and a letter of `L`
+   or `R` reads at its coset.  Its respelled inverse has value `X · h⁻¹ · Y` (`left_designated`,
+   `right_designated`) and becomes the designated letter.
+2. The proof of `CutLiftOutcome`, or its `CutMove` form.
+3. Cut: `LetterStepBound D W q hq (fun w => ∀ r, IsRelGeodesic D (w.rotate r))` under `hsc`, `hmu`,
+   `hrho`, `hker`, `hcert`.  It comes from `exists_geodesicCut_of_leastAreaCertificates`,
+   `exists_rotatedLift` and item 2.
+4. Holds: `QuotientPeripheralLetterPullbackStatement`, from `(M1).or (M2)` and
+   `quotientPeripheralLetterPullbackAt_of_letterStepBound`.
+
+The lead reports that debt-conditional and leavitt-units each hold one of CutOutcome, Cut and Holds.
+`CutMove` (hull-component) and `CutLift` (hull-bridge) carry nearly the same data.  hs-vanishes asked
+hull-bridge once for one unstarted piece: its statement, its consumer and a module name.  This lane
+writes no Lean until hull-bridge names the piece.
+
 ## Rows (`metadata/nm-census-rows/hs-vanishes.tsv`)
 
 | key | line | status | carriers added |
@@ -182,14 +225,14 @@ Interfaces read at origin/main: `OlshanskiiPolygonClasses`, `OlshanskiiCutClasse
 * LANDED `850cd7b7d`: both modules, landed unverified.
 * Probe `0913-014626-72541` GREEN on base `a763cb445` (BUILT and COMPILED both modules).  The bytes
   on origin are identical, so the green landing reported NOTHING TO LAND (`49ad84503`).
-* Rows LANDED `d785326e7`.  Report LANDED `031bcc87b`, updated in `3e34da4ea`, `a4c5b47db` and by the
-  commit that carries this section.
+* Rows LANDED `d785326e7`.  Report LANDED `031bcc87b`, updated in `3e34da4ea`, `a4c5b47db`,
+  `840e6a1d8` and by the commit that carries this section.
 * Wire queue: `GroupApproximation.Manuscript.OneSidedMFRadical.HSVanishesProducers` at `850cd7b7d`;
   root-imported by root-wire's wave 2, `c72bdfd5d` (02:45).
 * Census merge `63f147d7b` (files at `94bb0a9f8`, 02:41): baseline lines 66 and 79 removed as stale.
   The three rows merged as `partial`.  The merge predates the root import, and a formalized row now
   needs its carriers in the root closure; the next merge regrades them.
 * Residual propositions owned by this lane: none.  The target is met by the producer.
-* Next: no piece.  The W1 h94 metric layer closed through sec5-sentences (`e3da1ba60`).  The
-  planar cases of `OsinLemma94PlanarRunInput` are split among hull-unbound, theoremc-retire (C1) and
-  sec5-sentences (roster, ~03:55).  The lead is asked for the next assignment.  No Lean in flight.
+* W1 h94: no piece for this lane.  The metric layer closed through sec5-sentences (`e3da1ba60`).
+* Next: one W2 certificate cut piece, named by hull-bridge (asked at 04:25, origin `57071835a`).
+  If nothing is left to split, the lead reassigns this lane.  No Lean in flight.
