@@ -3,6 +3,34 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
+## STATE (09-13 ~10:00): `OsinLemma94CaseOneWalkStatement` PROVED (theoremc-retire's walk sub-piece)
+`theorem GroupApproximation.GGT.VanKampen.osinLemma94CaseOneWalk : OsinLemma94CaseOneWalkStatement.{u, w, v}` is in
+`GGT/VanKampen/Estimating/OsinLemma94CaseOneWalkHolds.lean`.  The list and arc facts are in
+`OsinLemma94CaseOneWalkLists.lean`.
+- The statement is unchanged: theoremc-retire's fd6ce3c09, md5 6038689296f15b2d6c53c5ea0fe70625.  Every conjunct is true
+  as stated, so no counter-shape was sent.
+- No binder, sorry or axiom, with `#audit_axioms` in both modules.
+- LANDED:
+  - eb9010962: both modules, unverified;
+  - 8f0f73966: the linter fix.
+- Probe 0913-094857-38535 built Lists green and stopped Holds at one linter error, `exact hkt` after `rfl`.
+- Probe 0913-095509-55850 (base c99e3bec1) built Holds GREEN.
+  - `osinLemma94CaseOneWalk` depends on propext, Classical.choice and Quot.sound.
+  - Wire-queued: Lists at eb9010962, Holds at 8f0f73966.
+- A grep for `9\.4` in the tex finds nothing, so this piece has no census row of its own.  Its consumer is theoremc-retire's
+  `OsinLemma94CaseOneInput`.
+- The proof:
+  1. The walk of polygon `k`, rotated to `base k`, is the concatenation of the sides.  So `[a, a']` and `[b', b]` are windows
+     at the block starts (`rangeFlatMap_split`, `rangeFlatMap_drop_take`).
+  2. Rotating to `a'` reads `X ++ T ++ Y ++ P` (`rotate_four_inside` or `rotate_four_wrap`, depending on which side comes
+     first).
+  3. Corners are prefix values and the whole walk has value 1 (`polygon_vertex_eq`, `walk_four_windows`), which gives the
+     values of `X` and `Y`.
+  4. `P` and `T` are sub-arcs of the arcs from `cell_arc` and `boundary_arc` (`cyclicArc_exists_sub`,
+     `cyclicArc_exists_sub_reverse`).  An `∂Δ` arc inside section `j` ends by `cut (j+1) ≤ |∂Δ|`, so its sub-arc does
+     not wrap and stays inside the section.
+- Residual Props owned by ko-closed: NONE.
+
 ## STATE (09-13 ~07:20): hKO and SharpExistence CLOSED; flip item withdrawn (hull-bridge)
 `theorem GroupApproximation.KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed :
 Manuscript.NonMF.TheoremC.KotowskiOllivierStatement :=
@@ -91,8 +119,8 @@ imports it.
 ## NEXT (lead, 09-13 ~07:25; restated after the ~08:30 restart): help theoremc-retire with `OsinLemma94CaseOneInput`
 The Prop is in hull-unbound's `GGT/VanKampen/Estimating/OsinLemma94PlanarPieces.lean` (80790fad1).  theoremc-retire
 landed the face-walk piece `OsinLemma94CaseOneWalkStatement` (`Estimating/OsinLemma94CaseOneWalk.lean`, 8a36ad06c).
-ko-closed asked theoremc-retire which sub-piece is its own and writes nothing until the answer arrives.  No Prop is owned
-yet, and no probe or landing was in flight at the restart.
+theoremc-retire assigned ko-closed the walk piece.  It is proved, as recorded in STATE above.  theoremc-retire owns pieces
+(a)-(d) below.
 
 Findings sent to theoremc-retire and main.  Two gaps separate CaseOneWalk from
 `RealizedSectionFamily.false_of_quadrilateral_region`:
