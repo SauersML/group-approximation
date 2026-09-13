@@ -8,6 +8,7 @@ distinct_from:
   integral-unit-conjecture-torsion-free: that asserts trivial units over Z; this bounds how many units a support pair carries and proves no triviality.
   gardam-support-pair-has-no-rational-units: that classifies the units on one support pair by a Groebner basis; this is a finiteness theorem for every support pair, with a length inequality usable as a certificate.
   promislow-radius4-one-sided-and-integral-separation: that is a radius-four census with a lifting obstruction; this bounds coefficient height at every radius and decides no instance.
+  thompson-f-amenable-iff-group-ring-is-ore: that turns amenability of F into the Ore condition using the absence of zero divisors; this uses the absence of zero divisors to make the units on one support pair a scheme finite over Z.
 ---
 
 **ESTABLISHED.** Let `G` be a group such that `k[G]` has no zero divisors
