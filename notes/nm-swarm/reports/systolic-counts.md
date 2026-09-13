@@ -4,7 +4,9 @@ Lane `systolic-counts` (clone `stw-fix`).  Roster target: make the red `GGT/Syst
 close it.  Also: the filling inputs `ha hb hc hd` of `fillingStatement_of_simplyConnected`
 (`GGT/SystolicDiscFilling.lean:126`), and `hcount hsum` of the alternative Kotowski–Ollivier route.
 
-## 09-13 status: target closed on main, no edit needed
+## 09-13 status
+
+### Roster target: closed on main, no edit needed
 
 * `GGT/SystolicDiscCounts` is no longer red.  go-sr1's 4c12845a1 (09-12 10:34) fixed it together with
   `GGT/SystolicDiscFilling`: probe 0912-103604-11425 (base 3221a02ea) was green, md5 Counts 3330bc17,
@@ -13,14 +15,37 @@ close it.  Also: the filling inputs `ha hb hc hd` of `fillingStatement_of_simply
   `lanes/ko-closed.green.0913-011617-71747`) built `Kazhdan.KotowskiOllivierClosed` GREEN.  That module
   imports `Kazhdan.GHBHyperbolicDiscCounts`, which imports Counts, Filling, `SystolicDiscMovesChord` and
   `SystolicDiscMovesAdapter`.  Every `#audit_axioms` line in them passed.
-* No module in the 911-module import closure of `Kazhdan.GHBHyperbolicDiscCounts` has changed between
-  df2f3b1a8 and main be2d727a9.  The `lakefile.toml` change in that range only adds the Bowen–Chapman Palomar
-  libraries to `defaultTargets`.  So this lane ran no probe (rule 20).
 * Closed endpoints, each followed by `#audit_axioms`:
   * `TriangulatedDisc.exists_typedCounts` (HC11) and `TriangulatedDisc.abs_boundarySum_le` (HC12),
     `GGT/SystolicDiscCounts.lean:417-418`;
   * `TriangulatedDisc.oneEdge` (HC2), `fillingStatement_of_simplyConnected` (HC4) and
     `exists_leastDisc_typedLinks_of_simplyConnected`, `GGT/SystolicDiscFilling.lean:162-164`.
+
+### Current item: HC3(d), pinch case, for every triangle complex
+
+kh-torsion handed this lane the pinch case of `ZipSpurStatement`.  kh-torsion keeps `CycleDisc.zip_fold`
+and the assembly `zipSpurStatement_of_zipPinch` (`GGT/SystolicDiscZip.lean`, on main at 9445c7860).
+kh-torsion wires the endpoint and queues both modules once this lane's module is green.
+
+* Prop (kh-torsion's, `GGT/SystolicDiscZipFold.lean:281`, on main):
+  `ZipPinchStatement X`.  It covers the case where the corners before `du` and after `dv` lie at one
+  vertex, `SameCycle σ (α p) (α dv)`.
+* Producer: `Systolic.zipPinchStatement (X : TriangleComplex V) : ZipPinchStatement X` in the new module
+  `GGT/SystolicDiscZipPinch.lean` (this lane), landed unverified at d74b84054.
+  * Probe `GroupApproximation.GGT.SystolicDiscZipPinch` is running.
+  * Every dependency it builds against is byte-identical to origin/main: `SystolicDiscZipFold`,
+    `SystolicDiscZip`, `VanKampen/PinchLemma`, `VanKampen/CombMapInvariantRestrict`.
+* Proof:
+  * split the vertex (`FoldMap.joined D.map p dv`), which has Euler characteristic 4
+    (`PinchLemma.split_euler`);
+  * `du` does not reach `p` (`PinchLemma.not_reach_p`), and every dart is reached from `du` or from `p`
+    (`PinchLemma.reach_or_reach`);
+  * so the part reached from `p` (`CycleDisc.pinchMap`) is planar
+    (`CombMap.restrict_planar_of_euler_four`);
+  * its exterior cycle is `t ++ s` (`PinchLemma.split_isFaceCycle_rest`), lifted to the subtype and
+    rotated to read `s ++ t`;
+  * every other dart is off the old exterior cycle.  There the split map rotates faces as the old map
+    does, so its faces are old interior triangles.
 
 ## Brief items
 
@@ -29,22 +54,15 @@ close it.  Also: the filling inputs `ha hb hc hd` of `fillingStatement_of_simply
 | `ha : AttachTriangleStatement X` | `Systolic.attachTriangleStatement`, `GGT/SystolicDiscMovesChord.lean:298` | closed (kh-torsion) |
 | `hb : InsertChordStatement X` | `Systolic.insertChordStatement`, `GGT/SystolicDiscMovesChord.lean:254` | closed (kh-torsion) |
 | `hc : AttachPendantStatement X` | `Systolic.attachPendantStatement`, `GGT/SystolicDiscMovesAdapter.lean:136` | closed (kh-torsion) |
-| `hd : ZipSpurStatement X` | none | OPEN (kh-torsion) |
+| `hd : ZipSpurStatement X` | `Systolic.zipSpurStatement_of_zipPinch`, `GGT/SystolicDiscZip.lean` | reduced to `ZipPinchStatement X` (this lane, probe pending) |
 | `hcount` | `CCKW.typedCountStatement_cosetComplex`, `Kazhdan/GHBHyperbolicDiscCounts.lean` | closed (kh-hyperbolic) |
 | `hsum` | `GHBHyperbolicStokes.boundarySumStatement`, `Kazhdan/GHBHyperbolicDiscCounts.lean:56` | closed (kh-hyperbolic) |
 
-`GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold` (`Kazhdan/GHBHyperbolicDiscCounts.lean:84`) already supplies
-`ha hb hc`, `CCKWTits.cckwCosetComplex_simplyConnected`, `hcount` and `hsum`, so this route has exactly two
-open inputs.
+## Residual Props
 
-## Residual Props (owned by other lanes)
-
-* `Systolic.ZipSpurStatement CCKW.cosetComplex` (HC3(d), `GGT/SystolicDisc.lean:421`), owned by kh-torsion
-  (roster target `zipSpur_cosetComplex`, `GGT/SystolicDiscZip.lean`, not on main).  The fold case
-  `CycleDisc.zip_fold` is on main unprobed (3e86a1d89, `GGT/SystolicDiscZipFold.lean`).  kh-torsion's
-  probe 0913-011705-84703 of it failed.
+* `Systolic.ZipPinchStatement X`: this lane, `GGT/SystolicDiscZipPinch.lean` (d74b84054, probe pending).
 * `Systolic.MirrorFoldStatement CCKW.cosetComplex` (HC6, `GGT/SystolicDisc.lean:432`), owned by
-  fff-periodic (`GGT/SystolicDiscMirrorFold.lean`, not on main).
+  fff-periodic (`GGT/SystolicDiscMirrorFold.lean`).
 * ko-closed's `kotowskiOllivier_of_leaves` (c5a8ae8fb, green) consumes both through
   `isHyperbolicGroup_ghb7_of_zipFold`.
 
@@ -52,8 +70,8 @@ open inputs.
 
 * `GGT.SystolicDiscCounts`, `GGT.SystolicDiscFilling`, `GGT.SystolicDiscMovesChord` and
   `Kazhdan.GHBHyperbolicDiscCounts` are not yet reachable from the root.  This lane queued
-  `GroupApproximation.GGT.SystolicDiscCounts systolic-counts 4c12845a1`; root-wire's initial queue had
-  "SystolicDiscCounts once green".
+  `GroupApproximation.GGT.SystolicDiscCounts systolic-counts 4c12845a1`.
+* kh-torsion queues `GGT.SystolicDiscZipPinch` with `GGT.SystolicDiscZip` once the probe is green.
 * Stale notes:
   * wire-queue line 318, "GHBHyperbolicDiscCounts waits on red Filling/Counts";
   * the `EdgeInsertion.embed_injective` hold on `EdgeInsertionFaceCycles` and `SystolicDiscMovesChord`,
@@ -62,17 +80,5 @@ open inputs.
 
 ## Next
 
-The lead's next item (09-13): take one case of hzip, stated for an arbitrary `X : TriangleComplex V`.
-ko-closed found that the hT6 route needs hfill, and hence hd, at every X.
-
-* systolic-counts has offered kh-torsion the spike case or the pinch case: a named Prop plus a closed
-  theorem, in a new module owned by this lane.  kh-torsion names the exact Prop and keeps the other cases and
-  the assembly in `GGT/SystolicDiscZip.lean`.
-* This lane writes no Lean until kh-torsion answers.
-* Tools already on main:
-  * `VanKampen/SpikeDeletion` (removing a spike, i.e. a degree-one vertex);
-  * `VanKampen/FoldMap` and `FoldDiagram` (folding);
-  * `VanKampen/PinchLemma` (`split_euler`, `split_isFaceCycle_rest`);
-  * `VanKampen/CombMapInvariantRestrict` (`restrict_planar_of_euler_four`);
-  * the adapter pattern `CycleDisc.exists_of_triangulatedDisc`, `split_boundary` and
-    `toTriangulatedDisc` (`GGT/SystolicDiscMovesAdapter.lean:66-136`).
+* Fix any errors from the probe, landing each edit unverified and re-probing.
+* After a green probe, do a normal landing, then message kh-torsion the SHA.
