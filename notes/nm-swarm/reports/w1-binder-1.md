@@ -76,3 +76,8 @@ CLAIM cutting-class bridge GroupApproximation/GGT/VanKampen/Estimating/OsinLemma
 - 17:51 probe: 3 missing `DecidablePred` instances (`open Classical in` on the `mem_` lemmas), fixed.
 - 17:56 probe: statements COMPILED and landed c22052062. The count failed on one name (`Embedded.isChain_rotate_of_isChain_closes`); fixed.
 - 18:00 probe GREEN: count landed ca497ee7a. Both modules appended to the wire queue.
+- 18:07: ms-compress-4 landed `CombMapSameFaceForest` (0003dced5), which carries the same four declarations (spelling v2).
+- 18:12 co-probe 0913-181230-23379 GREEN: CuttingSides, CuttingSidesCount and CuttingClasses all BUILT. Landed at 3d2744463:
+  - `OsinLemma94CuttingSides` now imports `CombMapSameFaceForest` and no longer restates `sameFaceDarts`, `mem_sameFaceDarts`, `sameFaceVertices` or `SameFaceDartForestStatement`. Origin has one definition of each.
+  - `OsinLemma94CuttingClasses` (new): `cuttingClasses`, `otherClasses`, `exists_class_of_side`, `classSides_disjoint`, `mem_getLast?_of_next_kind_ne`, `card_cuttingClasses_le`, `card_cuttingEntries_le`, `card_cuttingClasses_le_otherClasses`, `OsinLemma94CuttingClassesStatement`, `osinLemma94CuttingClasses_of_forest`.
+  - Both are on the wire queue, and wiring pulls in `CombMapSameFaceForest`.
