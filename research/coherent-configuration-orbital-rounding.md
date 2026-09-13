@@ -72,3 +72,14 @@ operator problem; the route consuming this claim inherits that gap and says so.
   multiplication coefficients can be driven to nonnegative integers.  If
   near-normal characters do not force integerization even numerically, this
   claim is dead and the intermediate category is the wrong one.
+- **Tracial analogue, as a model test.**  Ill-posed rather than false (§3 of
+  `research/artifacts/q34-rounding-routes-2026-09-12.md`).
+  - Let `lambda` be the regular representation of the group `G_ns` of
+    `finitely-presented-nonsofic-group-exists`.  Its commutant contains the
+    right translations `A_c = rho_c`, `c in G_ns`.  These are the orbitals of
+    `G_ns` acting on itself, a thin scheme with exactly integral structure
+    constants `A_c A_{c'} = A_{cc'}`.
+  - The scheme is infinite, and nothing near it is finite.
+  - So integrality is not where a nonsofic group escapes this route.  The rank
+    or multiplicity input of the second bullet is, and that is where finite
+    dimension has to enter.
