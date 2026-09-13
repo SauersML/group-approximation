@@ -3,6 +3,8 @@ rg: 2
 id: loop-braid-descending-links-are-increasingly-connected
 kind: claim
 title: "The descending links L_n(LB_*) of the loop braid cloning system become arbitrarily highly connected"
+artifacts:
+  - research/artifacts/zp-loop-braid-descending-links-model-2026-09-13.md
 ---
 
 For the cloning system on `LB_n = ΣAut_n` (Witzel–Zaremsky, arXiv:1405.5491v3,
@@ -18,28 +20,25 @@ Observation 5.8 this is the descending link in the Stein–Farley complex.
 
 ## Attempts
 
-- 2026-09-13 (lane z2-12-loop-bv), complete join over the combinatorial
-  matching complex: DEAD for the pure system.
-  - Take `e: PΣAut_n → Z^{n(n−1)}`, where `e_{ij}(φ)` is the exponent sum of
-    `x_j` in a conjugator `w_i` with `φ(x_i) = w_i x_i w_i^{-1}`.
-    - It is well defined because the centralizer of `x_i` is `⟨x_i⟩`.
-    - It is a homomorphism because pure symmetric automorphisms preserve
-      exponent sums.
-  - Let `H_k = im κ_k`. Every element of `H_1` has `e_{13} = e_{23}` and
-    `e_{14} = e_{24}`; every element of `H_3` has `e_{13} = e_{14}` and
-    `e_{23} = e_{24}`.
-  - So `f = e_{13} − e_{23} − e_{14} + e_{24}` vanishes on `H_1 H_3`, but
-    `f(α_{13}) = 1` for `α_{13}: x_1 ↦ x_3 x_1 x_3^{-1}`. Hence
-    `PΣAut_n ≠ H_1 H_3`.
-  - So two merge vertices over the disjoint edges `e_1, e_3` do not always
-    span a simplex, and `L_n(PLB_*) → M(L_n)` is not a complete join.
-  - Geometric reason: the two cabling tubes can link.
-- 2026-09-13, repair idea (open): take as base the complex of disjoint
-  2-spheres in the complement of the n unlinked loops, each bounding a ball
-  that contains exactly two loops.
-  - A split sphere guarantees that a merge inside its ball is independent of
-    merges in the other balls.
-  - The expected structure is a complete join over this sphere complex.
-    Connectivity of the sphere complex would then come from Hatcher–Wahl-type
-    surgery on sphere systems (compare Aramayona–Bux–Flechsig–Petrosyan–Wu,
-    arXiv:2110.05318, Section 8).
+- 2026-09-13 (lane z2-12-loop-bv), m = 0: `L_n(LB_*)` is connected for `n ≥ 5`.
+  This is the proof of WZ Lemma 5.10 together with generation of `LB_n` by
+  cloning images (artifact of `loop-braid-cloning-system-is-properly-graded`,
+  §4).
+- m = 1: split off as
+  `loop-braid-descending-links-are-eventually-simply-connected`. The plan there
+  uses a strict fundamental domain `OM(K_n)` for the `PΣAut_n` action and a
+  colimit presentation of `PΣAut_n` by cabling subgroups.
+- Complete join over the combinatorial matching complex: DEAD.
+  - Take `e: PΣAut_n → Z^{n(n−1)}`, the exponent sums of conjugators (a
+    homomorphism).
+  - `f = e_13 − e_23 − e_14 + e_24` vanishes on the cabling subgroups at
+    `{1,2}` and `{3,4}`, but `f(α_13) = 1`.
+  - So two fusion bands can clasp: vertices over an edge of the base need not
+    span a simplex. Details are in artifact §3.
+- Candidate routes for all m (artifact §5):
+  - (R1) complexes of framed fusion bands in `B³ \ unlink`, with a Hatcher-flow
+    and defect argument as in BFMWZ §3;
+  - (R2) Hatcher–Wahl Theorem 3.6 labeled joins over tori or spheres.
+    Warning: spheres around two loops are not preserved by cabling;
+  - (R3) Abels–Holz higher generation by cabling subgroups;
+  - (R4) comparison with Collins' marked cactus graphs.

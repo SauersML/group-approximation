@@ -33,9 +33,9 @@ properties*, arXiv:1405.5491v3, Groups Geom. Dyn. 12 (2018) 289–358, Section
   version (`x_i` to a conjugate of `x_i`).
 - Generators (Fenn–Rimányi–Rourke 1997): `β_i: x_i ↦ x_{i+1},
   x_{i+1} ↦ x_{i+1}^{-1} x_i x_{i+1}` and `σ_i: x_i ↔ x_{i+1}`.
-- `ρ_n: LB_n → S_n` sends `β_i` and `σ_i` to `(i i+1)`. The cloning maps
-  are formulas (10.1)–(10.2). Lemma 10.1: these define cloning systems on
-  `LB_*` and `PLB_*`.
+- `ρ_n: LB_n → S_n` sends `β_i` and `σ_i` to `(i i+1)`. The cloning maps are
+  formulas (10.1)–(10.2). Lemma 10.1: these define cloning systems on `LB_*`
+  and `PLB_*`.
 - Theorem 10.2: `V_loop := T(LB_*)` and `F_loop := T(PLB_*)` exist, contain all
   (pure) loop braid groups, and surject onto `V` and `F` respectively.
 - Conjecture 10.3, verbatim: "V_loop and F_loop are of type F∞."
@@ -47,9 +47,8 @@ same method, and is not part of this root.
 - Witzel–Zaremsky Proposition 5.9: for a properly graded cloning system, if the
   `G_k` are eventually of type F_n and the descending-link complexes
   `L_k(G_*)` are eventually (n−1)-connected, then `T(G_*)` is of type F_n.
-- The same paper (p. 55) says `LB_n` is of type F∞ because it acts properly
-  and cocompactly on the contractible space of marked cactus graphs (Collins,
-  Comment. Math. Helv. 64 (1989)).
+- `LB_n` is of type F∞ (`loop-braid-groups-are-type-f-infinity`, secondary
+  citation to Collins 1989).
 - The route `v-loop-f-infinity-via-stein-farley-descending-links` records the
   reduction.
 
@@ -61,6 +60,16 @@ check is bounded).
 
 - 2026-09-13 (lane z2-12-loop-bv): the Stein–Farley reduction splits the
   problem into three claims:
-  - `loop-braid-groups-are-type-f-infinity` (citation to verify);
-  - `loop-braid-cloning-system-is-properly-graded` (hand proof in progress);
-  - `loop-braid-descending-links-are-increasingly-connected` (the crux).
+  - type F∞ of `LB_n` (established by citation);
+  - proper grading (established by hand proof, unreviewed);
+  - asymptotic connectivity of `L_n(LB_*)` (open; the crux).
+- 2026-09-13, partial results (unreviewed):
+  - `loop-braided-thompson-group-v-loop-is-finitely-generated` (type F_1);
+  - `L_n(LB_*)` is connected for `n ≥ 5`;
+  - finite presentability is reduced to
+    `loop-braid-descending-links-are-eventually-simply-connected`, whose plan
+    is a colimit presentation of `PΣAut_n` by cabling subgroups over a strict
+    fundamental domain `OM(K_n)`.
+- Obstruction to the naive approach: fusion bands can clasp. The abelian
+  invariant `f` in `loop-braid-descending-links-are-increasingly-connected`
+  rules out a complete join over the matching complex.
