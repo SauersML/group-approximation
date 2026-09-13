@@ -65,3 +65,19 @@ small defect `τ(b − b²)` and `τ(b) ≥ τ(a) − ε` for all traces.
     `{a}'`.
   - Failure should sit where non-triviality localizes
     (`bauer-gamma-failure-localizes-to-infinite-dim-point`).
+- **With strict comparison in place of PC: settled** (lane `tw-support-gap-crux`,
+  2026-09-12). `strict-comparison-with-rank-density-gives-support-projections`
+  proves `γ_A ≡ 0` from strict comparison and RD_b alone, with no dimension or
+  nuclearity hypothesis.
+  - **How.** RD_b gives a near projection `q` of profile `(1−ε)τ(a)`. The rank of
+    its cut-down lies strictly below `d_τ(a)`. Strict comparison and Rørdam's
+    lemma give `c_0` with `c_0c_0* = (q−2δ)_+` and `c_0*c_0` under `a`. Then
+    `ψ(c_0*c_0)` inherits the trace and defect of `φ(q)`, since
+    `τ(h(c*c)) = τ(h(cc*))` whenever `h(0) = 0`.
+  - **Consequence.** `toms-winter-holds-on-tlfnd-rank-density-locus`: on this
+    locus strict comparison gives Z-stability, so no unital Toms–Winter
+    counterexample lives here.
+  - **What stays open.** This claim as stated, with PC only. The proof compares a
+    near projection with the non-projection `a`, which PC cannot do. A witness
+    to its failure would need PC without strict comparison of the algebra.
+  - Artifact: `research/artifacts/tw-support-gap-crux-2026-09-12.md`.
