@@ -184,6 +184,32 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
   - `OsinLemma94CaseOneSpurStatement` (pendant removal, 61c2ade8e, is the candidate producer).
   The Y-pocket twin is not stated; it is the same statement with `Y A`.
 
+### Assignment (main ~18:30): Spur and FaceBubble; BLOCKER finding
+
+- Assigned: `OsinLemma94CaseOneSpurStatement` via pendant removal and `OsinLemma94CaseOneFaceBubbleStatement` via front
+  excision. The other shapes went to w1-binder-8 (Simple), ms-inverses-1 (CellPinch), ms-inverses-4 (TouchVertex) and
+  ms-intro-3 (Y-pocket twin).
+- Sent w1-binder-8 the Simple interface, with a request to export the kill at walk level: a simple walk
+  `s ++ invDarts T.darts` with ‖val s‖ ≤ ε.
+- Finding (from `OsinLemma94RealizedPolygons`, OsinLemma94PlanarPieces:62):
+  - `face k` is an unselected G-face.
+  - A `.cutting` side has `faceOf (alpha d) = face k` for all its darts (`cutting_internal`), i.e. a bridge of f.
+  - Each cutting path appears twice on the polygon walk, and X can hold both copies: `X = X₁ t X₂ t⁻¹ X₃`, around an
+    island that f surrounds. That configuration is both the Spur shape (d and alpha d in x) and the FaceBubble shape
+    (the attachment vertex repeats).
+  - Pendant removal only kills pendant paths, which DartMinimal already excludes. So "Spur via pendant removal" covers
+    almost nothing.
+- Reachable: a lobe `t X₂ t⁻¹` reading 1 can be excised with the value and the norm of the side kept. That needs the
+  walk-level kill.
+- Not reachable on origin: an island with a relator cell.
+  - The lobe's boundary lies on f, has uncontrolled norm, and has no cell arc.
+  - The pocket side is disconnected, so it is not a PocketRegion.
+  - The loop cut (R1) takes PocketRegions only. Osin's Γ contains the islands.
+- Reported to main as a blocker. Options put to main: (a) a loop cut from the enclosed singular subdiagram of a walk;
+  (b) a named island statement; (c) restate the branch at component level.
+- CLAIM (route-independent, while the ruling is pending) spur lobes and their conjugate values —
+  `GroupApproximation/GGT/VanKampen/ClosedWalkSpurLobe.lean`.
+
 ## State
 
 Every sentence of tex 1–165 is carried by a closed declaration or honestly classified. The exceptions:
