@@ -1,5 +1,35 @@
 # ghw-charp2 lane report
 
+## Item 6 (09-13): the `hlinked` and `hV` producers for the exterior Euler count
+
+Lead order: take the producers of the hypotheses `hlinked` and `hV` of `card_add_six_le_of_linkedO`,
+in a new module of my own, after confirming with hull-euler.
+
+Module `Estimating/OsinAppendixEulerExteriorLinked.lean` (probe 0913-061116-68489 green; the seven
+`#audit_axioms` lines list only propext, Classical.choice and Quot.sound):
+- `linkedComponentO E a₀` is the set of regions of `E` linked to `a₀` through shared ends.
+  `linked_linkedComponentO E a₀` is `hlinked` for it.
+- `endCellsO E` is the set of ends of the regions of `E`.  `sideCellO_mem_endCellsO` is `hV` for it.
+- `sideCellO_ne_of_not_mem_linkedComponentO`: a region outside the component shares no end with it.
+- `mem_linkedComponentO_of_sideCellO_eq_none`: all regions with an end at the outer vertex lie in one
+  component.
+- `ExtPhiData.mono`, and `card_add_six_le_linkedComponentO`: `|C| + 6 ≤ 3|endCellsO C| + t` on every
+  component `C`.
+
+### Status: LANDED (infrastructure for `thm:hull`; no endpoint Prop, no census row)
+
+- cbca8029b: a normal landing on green record 0913-061116-68489 (md5 9d523724).  Queued
+  `GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerExteriorLinked ghw-charp2 cbca8029b`.
+- Overlap check before landing: on origin, only `OsinAppendixEulerExterior` and `OsinAppendixEulerExteriorCount` use
+  `SharesEndO`.  In the working tree, hull-euler's unlanded `OsinAppendixEulerExteriorTwoGon` has local two-gon lemmas and
+  none of these names.  hull-euler has the SHA and the names.
+
+### Residual (exact)
+
+- Summing the count over the components and producing `ExtPhiData` from a section family stay in
+  hull-euler's assembly.
+- `PhiPrimeCountInput` (Osin Lemma 9.3) stays open behind C3-C6 and the assembly.
+
 ## Item 5 (09-13): C2 of `PhiPrimeCountInput` (Osin Lemma 9.3)
 
 Lead order: take C2, the count `m + 6 ≤ 3c + t` on the exterior map Φ'', in a new module of my own.  Ask
@@ -277,4 +307,14 @@ property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembl
   Its producer `ghwFinitelyGeneratedCharZero` is on main at add35a53a but has no probe record yet.
 - Item 5: C2 is already hull-euler's `card_add_six_le_of_linkedO` (050822843, green).  I wrote no
   duplicate and asked the lead for a replacement piece.
+- Census: ghw-assembly closed GHW Theorem 4 (`printedGHWTheoremFour`, 66417a372, green 0913-044200-34335, in the root).
+  Row b6d1590be7ab is now `formalized` (58ad1d6e0).
+  - It names `printedGHWTheoremFour` and this lane's declarations on its route: `ghwFinitelyGeneratedCharP`,
+    `hasHaagerupProperty_closure_of_charP` and `GHW.exists_places_minpoly_coeff`.
+  - Three declarations the route does not use are dropped: `printedGHWTheoremFourCharP`,
+    `IntegerPlacesMinpoly.exists_places_minpoly_coeff` and `exists_intPoly_eq_pow_mul_minpoly_coeff`.
+  - The `partial` census notes under Items 1-3 predate this.
+- Item 6: `Estimating/OsinAppendixEulerExteriorLinked.lean` is landed (cbca8029b, green 0913-061116-68489) and queued
+  for wiring.  hull-euler has the names.  The summation over components and `ExtPhiData` from a section family stay in
+  its assembly.
 - Waiting for the lead's next item.
