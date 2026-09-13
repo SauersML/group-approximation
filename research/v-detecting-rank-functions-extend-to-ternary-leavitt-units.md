@@ -65,3 +65,24 @@ so that it also assigns consistent ranks to matrices involving `[x]`.
   - **Weakly finite version.** An extension injective on `V` gives either a nonzero weakly finite quotient of `S_−` or
     a weakly finite representation of `F_3[PG_3]` injective on `PG_3` (Proposition 5.2). Not decided.
   - **Where it stops.** No construction, and no obstructing relation identified.
+- 2026-09-12 `w7-hnn-cocycle` (`research/artifacts/hnn-intertwiner-cocycle-on-thompson-v-2026-09-12.md`). Held
+  OPEN, with re-derivation requested from `w3-vf-linear`.
+  - **Cocycle.** Take the regular model with single-letter intertwiners `X_v`.
+    - `B_v` is the group of level units block diagonal for the length-change partition of `v`.
+    - `c(u,v) = X_(uv)^(−1) X_u X_v` commutes with `σ_reg(B_(u,v))` and satisfies
+      `c(u,vw) c(v,w) = c(uv,w) Ad(X_w^(−1))(c(u,v))`.
+    - It is determined over double cosets of the level permutations.
+  - **Barrier.** A trivialization is an injective homomorphism `V -> M^x`, so it refutes the V gate and makes `V`
+    `F_3`-linear sofic. Conversely, the V gate forces a nontrivial class, so relator checks by hand cannot settle it
+    (`regular-hnn-intertwiner-coboundary-on-v-refutes-the-v-gate`). If a trivialization also descends to `G_3`, then:
+    - link 1 fails and the target holds;
+    - `S_−` has a nonzero stably finite image, the first alternative of Proposition 5.2.
+  - **Relators.** Trivial: level permutations, involutions, the invariant-domain three-cycle `C`, and one
+    square-root case. First undecided:
+    - an order-3 element with non-invariant domain, whose group `⟨B_g, g⟩` is not locally finite (its span contains
+      `s_11 s_0 t_11`);
+    - commutation of disjointly supported depth-changing involutions.
+  - **Toeplitz commutator.** `[x_12(t0), x_23(s0)] = x_13(1)` is the conjugate by `w = (00->0, 01->101, 10->100, 11->11)`
+    of a Steinberg relation in `GL_4`, inside a finite group with `z`. It is not an obstruction
+    (`leavitt-toeplitz-commutator-is-a-v-conjugate-level-relation`).
+  - **Where it stops.** The order-3 non-invariant relator (artifact 4.5).
