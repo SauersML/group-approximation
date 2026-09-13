@@ -27,3 +27,5 @@ Sections 1 and 2 of the artifact.
   and on `H_fin(GL)`, and it is nonnegative on `K_0^+`.
 - **Proposition 2.2:** with `n = 1 + s0 t1`, `tau = 1 + s_00 t_00` and the swap `v` of the cylinders `01` and `10`,
   `v n (tau n tau)^(-1) v^(-1) = 1 - s_00 t_01`, and `G = <V, 1 + s_00 t_01>`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 40 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Lemma 1.1, Theorem 1.2, Remark 1.3, Theorem 2.1 and Proposition 2.2 re-derived on paper, and the displays match. Not decision-level: no trace-lowering relation is constructed, and `anti-central-lifted-trace-is-relatively-positive` stays OPEN.*

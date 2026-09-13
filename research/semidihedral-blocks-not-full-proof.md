@@ -15,3 +15,5 @@ Section 3 of the artifact, Proposition 3.1.
 - `pi` is onto because `R ~= M_2(R)` and every `2 x 2` matrix over a ring is a sum of four invertible matrices. Then
   `(pi, pi')(c_1 a + c_2 b) = (pi(a), pi'(b))`.
 - If `eps_- = sum_k a_k c_1 b_k`, applying `pi'` gives `1 = 0`. Symmetrically for `c_2` with `pi`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 40 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Proposition 3.1 re-derived on paper: the values of `pi` and `pi'` on both blocks, the four-invertible-matrix decomposition with its inverses, and the `1 = 0` contradiction. Not decision-level.*

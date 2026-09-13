@@ -1624,3 +1624,122 @@ Section 4.1 still needs the OPEN `sylvester-disjoint-cylinder-defects-strictly-s
     `binary-leavitt-unit-group-is-simple`).
   - Perfection of `R^x`.
   - [DG] Fact 1.2: `V`-transitivity on tuples with proper union, and commutation on disjoint cylinders.
+
+## 40. Semidihedral and GL_2(F_3) blocks (w6-wf-stage1-b; fb787cf5fe): PASS
+
+Scope:
+- the artifact `research/artifacts/semidihedral-and-gl2-f3-blocks-forced-states-2026-09-12.md`;
+- the claims `gl2-f3-anti-central-states-are-forced-by-semidihedral-blocks` and
+  `semidihedral-anti-central-blocks-are-not-full`;
+- the routes `gl2-f3-anti-central-states-forced-proof` and `semidihedral-blocks-not-full-proof`.
+
+I re-derived Lemma 1.1, Theorem 1.2, Remark 1.3, Theorem 2.1, Proposition 2.2, Proposition 3.1 and Remark 4.1 on
+paper. Neither claim is decision-level. No trace-lowering relation and no one-sided pair is constructed, and
+`anti-central-lifted-trace-is-relatively-positive` stays OPEN.
+
+### 40.1 Lemma 1.1, Theorem 1.2 and Remark 1.3
+
+- **Matrices.** `h = w + d = [[1,1],[1,-1]]` and `wd = -dw`, so `h^2 = 2I = -I` and `h^(-1) = zh`.
+  - `hw = [[1,1],[-1,1]]` has trace `2 = -1` and determinant `2 = -1`, so its characteristic polynomial is `p_+`.
+  - `(hw)^2 = [[0,-1],[1,0]] = wd`, so `(hw)^4 = (wd)^2 = z`.
+  - `wh = [[1,-1],[1,1]]` and `dh = [[1,1],[-1,1]]`, so `I + wh + dh = 3I = 0` and `rho_1(c_2) = 0`.
+  - `chi(h) = -1` and `chi(w) = chi(d) = 1`, so `rho_2(c_2) = -(I - wh - dh) = I`. So `c_1` and `c_2` are the unit
+    elements of `B_1` and `B_2`.
+- **Lemma 1.1.**
+  - `p_+ p_- = (x^2 - 1)^2 - x^2 = x^4 + 1`. Since `p_+ - p_- = 2x` and `p_+(0) = -1`, they are coprime.
+  - `(hw)^(-1) = w h^(-1) = z wh`, so `w (hw) w = wh = (hw)^3`.
+  - Modulo `p_+`, `x^3 = -x - 1` and `x^6 = x - 1`, so `p_+(x^3) = -3 = 0` and `sigma` fixes `k_+`.
+  - `rho_2(hw) = -rho_1(hw)` has characteristic polynomial `p_+(-x) = p_-`, which is irreducible over `F_3`. So
+    `k_+(rho_1(hw)) = I` and `k_+(rho_2(hw)) = 0`, and `k_+([hw]) eps_- = c_1`.
+- **Theorem 1.2.**
+  - *Part 1.* `det h = -2 = 1` and `det w = -1`, so `hw` acts on `V'` by `-rho_1(hw)`, which `k_+` kills. `z` acts by
+    `det(-I)(-I) = -I`. So `V'|_SD` is the two-dimensional simple module `Q_2` of `B_2 ≅ M_2(F_3)`.
+  - *Part 2.*
+    - `[GL : SD] = 48/16 = 3`, so `dim Ind Q_1 = 6`, and Frobenius reciprocity gives a nonzero map `Ind Q_1 -> V`.
+    - The Sylow 3-subgroup has order three, so `3 | dim P(V)` and `2 <= dim P(V) <= 6`.
+    - A three-dimensional cover would leave a one-dimensional kernel with `z -> -1`, but every character has
+      `lambda(z) = lambda(wd)^2 = 1`.
+    - `V` and `V'` restrict to the non-isomorphic absolutely simple modules `Q_1` and `Q_2`. So
+      `2 . 6 + 2 . 6 = 24 = dim eps_- F_3[GL]`, and there is no third simple module.
+  - *Part 3.* `trl(P(V)) = 2 . 6/48 = 1/4 = 2 . 2/16 = trl(q_1)`.
+  - *Part 4.* `[c_i] = 2[q_i]`, because `B_i ≅ M_2(F_3)`. So `s([q_1]) = t/2` and `s([q_2]) = (1 - t)/2`.
+  - *Part 5.* `h`, `w` and `d` are symmetric, with `h^2 = z` and `w^2 = d^2 = 1`, so `alpha(h) = zh`, `alpha(w) = w`
+    and `alpha(d) = d`.
+    - Hence `alpha_*(c_2) = -eps_-(1 - [wh] - [dh])`, which `rho_1` sends to `I` and `rho_2` to `0`.
+    - So `alpha_*` exchanges `c_1` and `c_2`, and an invariant state gives `1/4` to both `[q_i]`.
+- **Remark 1.3.**
+  - `chi` is trivial on `<w, d>`, and `Q_8 = <wd, h>` has a unique faithful two-dimensional module, so both blocks
+    restrict to the natural module there. Inducing it to `SD` gives `Q_1 (+) Q_2`.
+  - The correction forward to Remark 3.3 of the forced-states artifact is right. "Its modular blocks carry further
+    unforced splits" should read "carry the same split `t`".
+
+### 40.2 Theorem 2.1 and Proposition 2.2
+
+- **Theorem 2.1.**
+  - *Forward.* `H_fin(H) <= L_1`.
+  - *Reverse.* Positivity on `H_fin(H) ∩ K_0^+` gives a state
+    (`anti-central-state-exists-iff-lifted-trace-relatively-positive`), and averaging gives an `alpha_*`-invariant
+    state `s` (`anti-central-k0-states-can-be-chosen-transpose-invariant`).
+    - `s = trl` on `H_fin(H)`, by part 2 of `anti-central-k0-states-equal-lifted-trace-on-signed-thompson`, and on
+      `H_fin(GL)`, by Theorem 1.2(5).
+    - Both are additive, so they agree on `L_1`, and `trl = s >= 0` on `L_1 ∩ K_0^+`.
+  - *Equivalent form.* A class `x = [P] - [Q] = [X]` with `trl(x) < 0` is a stable isomorphism
+    `P (+) S_-^r ≅ Q (+) X (+) S_-^r` with `trl(P) < trl(Q)`. Conjugate subgroups give conjugate idempotents, so
+    conjugates of `GL` add nothing.
+- **Proposition 2.2.** I recomputed each product.
+  - `tau^2 = 1 + 3 s_00 t_00 = 1`, `tau s0 = s0 + s_00 t0` and `t1 tau = t1`. So `tau n tau = 1 + N` with
+    `N = s0 t1 + s_00 t_10`.
+  - All four products of two terms of `N` contain `t1 s0 = 0`, so `N^2 = 0`. Also `s0 t1 N = 0`, so
+    `n (1 - N) = 1 - s_00 t_10`.
+  - `v^2 = 1` term by term. `t_10 s_00 = t_01 s_00 = t_11 s_00 = 0`, so `v s_00 = s_00`, and `t_10 v = t_01`.
+  - So `v (1 - s_00 t_10) v = 1 - s_00 t_01 = x^(-1)`, and
+    `G = <V, x> <= <H, GL>` (`leavitt-prime-field-units-generated-by-v-and-one-transvection`).
+- **Remark 2.3.** Positivity on all of `H_fin(G)` implies the OPEN relative-positivity claim and is not a case of it.
+
+### 40.3 Proposition 3.1 and Remark 4.1
+
+- **Part 1.** `w + d = h` in `R`, so `1 + wh + dh = 1 + h^2 = 0`. The values of `pi'` follow from part 5 in 40.1.
+- **Part 2.**
+  - The four matrices sum to `[[a,b],[c,d]]`. I checked `[[a,1],[-1,0]] [[0,-1],[1,a]] = I` and
+    `[[0,1],[-1,d]] [[d,-1],[1,0]] = I` in both orders.
+  - So `G` spans `R` through the chart. `alpha` fixes `z`, so `alpha_*` is an automorphism of `S_-`, and
+    `(pi, pi')(c_1 a + c_2 b) = (pi(a), pi'(b))`.
+- **Part 3.** `pi(eps_-) = 1`, so `ker pi` and `ker pi'` are proper. A split surjection `(c_1 S_-)^m -> eps_- S_-` gives
+  `eps_- = sum_k a_k c_1 b_k`, and `pi'` gives `1 = 0`.
+- **Part 4.** `alpha` fixes `H` pointwise (part 1 of the transpose-invariant node).
+- **Remark 3.2.** `R ≅ R^2`, so `K_0(R) = 0`.
+- **Remark 4.1.**
+  - `BA = rho iota = I`. `AB = I` would force `iota rho = 1` on `S_-^n (+) (S_- (+) Y)`, which is false.
+  - `eps_+` is central and kills the entries, so `(B + eps_+ I)(A + eps_+ I) = eps_- I + eps_+ I = I`.
+  - The step from no state to item 3 is cited, as the artifact says.
+
+### 40.4 Displays, scan and inputs
+
+- **Displays.** The formulas in both claim nodes and both routes match the artifact and my recomputation. These
+  include `c_2`, `k_+`, the six-dimensional covers, the lifted traces `1/4`, the values of `pi` and `pi'`, and
+  `v n (tau n tau)^(-1) v^(-1) = 1 - s_00 t_01`.
+- **Inputs.** The four requirements of the forced route, and the one of the not-full route, are ESTABLISHED on
+  main. `anti-central-lifted-trace-is-relatively-positive` and `ternary-anti-invariant-swap-corner-is-full` are OPEN,
+  and the new nodes claim neither.
+- **Subsumption scan.** I checked every node mentioning `GL_2(F_3)`, `SD16`, the semidihedral blocks, `pi'` or `k_+`,
+  with no truncation.
+  - `anti-central-k0-states-can-be-chosen-transpose-invariant` gives `t = 1/2` for invariant states. The new content
+    is `H_fin(GL) = H_fin(SD)`, so that normalization forces `trl` on all of `GL_2(F_3)`. Neither implies the other.
+  - `leavitt-semisimple-torsion-units-conjugate-iff-same-support`, Corollary 3, shows that the level-one Singer
+    element, hence `SD16`, is not conjugate into `E ⋊ V`. This is consistent, because Theorem 2.1 works through
+    states, not conjugation.
+  - `leavitt-invisible-half-universal-over-every-finite-field` says no scalar-free subgroup of `GL_2(F_3)` carries a
+    nonzero idempotent killed by the natural representation. This is consistent: `pi` kills `c_2`, but `SD` contains
+    the scalar `h^2 = z`.
+  - `ternary-anti-central-pairs-visible-or-invisible` normalizes through `pi` alone; Proposition 3.1 adds `pi'`.
+  - Nothing is subsumed or refuted.
+- **Next constants.** `-I` acts trivially on the adjoint module of `GL_3(F_3)`, so the `det` twist lies in the
+  anti-central block, and the twist is self-dual since `det^2 = 1`. I did not check the forcing question, which
+  belongs to `w7-gl3-f3-states`.
+- **Cited, not re-derived.**
+  - Corollary 3.2 of the forced-states artifact: invariant states exist.
+  - Theorem 2.2(1)–(4) of the extension artifact.
+  - `anti-central-k0-states-equal-lifted-trace-on-signed-thompson`, part 2.
+  - `leavitt-prime-field-units-generated-by-v-and-one-transvection`.
+  - `twisted-leavitt-corner-fullness-equals-absence-of-k0-states`, items 3 and 5, and Theorem E behind them.
+  - Krull–Schmidt, Frobenius reciprocity, and freeness of projectives over a Sylow subgroup.
