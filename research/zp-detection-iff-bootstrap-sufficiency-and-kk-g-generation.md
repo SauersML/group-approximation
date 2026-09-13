@@ -6,6 +6,7 @@ title: Detection at p is equivalent to generation of KK^G by trivial and induced
 distinct_from:
   zp-restriction-and-crossed-product-detect-kk-g-contractibility: that is the open detection question; this proves four equivalent forms of it and records that Meyer--Nadareishvili state its bootstrap form as unknown.
   bootstrap-zp-actions-realize-every-cyclotomic-k-module: that proves no K-theoretic invariant detects membership in B^G; this shows detection is equivalent to restriction and crossed product together detecting that membership.
+  zp-detection-equals-meyer-nadareishvili-sufficiency: that lane landed the bootstrap form (S) independently, 15 minutes earlier, together with the splitting of the equivariant UCT; this node adds the generation form (L) and the dynamical form (K), and its (S) overlaps that node.
 ---
 
 **ESTABLISHED (derivation from cited theorems; a few standard triangulated
