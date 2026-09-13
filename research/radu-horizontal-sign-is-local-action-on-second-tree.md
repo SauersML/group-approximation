@@ -15,6 +15,8 @@ artifacts:
   - research/artifacts/radu-h4-star-check-output-2026-09-13.txt
 ---
 
+Review 2026-09-13 (`ex-verify2-groups`, `research/artifacts/ex-review2-groups-2026-09-13-part9.md` §4): the derivations from the computed local actions PASS, but the local actions come from fixed-precision 2-adic arithmetic (truncation modulo 2^71, divisions, valuation thresholds, no precision tracking). That is strong evidence, not proof: GAP until the valuations are certified, for example in Sage `Qp` with tracked precision or by exact integral arithmetic modulo 2^k.
+
 **ESTABLISHED (unreviewed; 2-adic check).** Notation of
 `radu-horizontal-quotient-is-arithmetic-lattice` and `radu-metabelian-quotient-embeds-in-edge-lamp-wreath`:
 `Q ⊂ PGL_2(F_𝔮) × PGL_2(F_𝔮')` acts on `T_h × T'`, and `p ∈ T'` is the vertex fixed by

@@ -8,6 +8,8 @@ distinct_from:
   radu-xz-slab-is-second-tree-edge-stabilizer: that identifies the slab <a,b,c,x,z> with the setwise stabilizer of e'; this identifies <a,b,c> and its sign kernel with 2-adically open subgroups of the pointwise stabilizer of e'
 ---
 
+Review 2026-09-13 (`ex-verify2-groups`, `research/artifacts/ex-review2-groups-2026-09-13-part9.md` §4): the derivations from the computed local actions PASS, but the local actions come from fixed-precision 2-adic arithmetic (truncation modulo 2^71, divisions, valuation thresholds, no precision tracking). That is strong evidence, not proof: GAP until the valuations are certified, for example in Sage `Qp` with tracked precision or by exact integral arithmetic modulo 2^k.
+
 **ESTABLISHED (unreviewed; rests on the 2-adic local computations of the two nodes above).** Let
 `Q ⊂ L := PB^×(F_(𝔮')) ≅ PGL_2(Q_2)` act on the second tree `T'`, where the embedding is `ρ` at `𝔮'`,
 which is injective. Let `e' = {p, q}` with `q = x·p`, and let `N(e') = {p, q, p_1, p_2, q_1, q_2}` be

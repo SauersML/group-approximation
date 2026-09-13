@@ -9,7 +9,7 @@ distinct_from:
   fg-simple-weakly-sofic-groups-are-sofic: that is the open rigidity claim; this reduces its finitely presented case to linear soficity over finite fields.
 ---
 
-**ESTABLISHED (unreviewed)** by `fp-simple-weak-soficity-is-finite-field-linear-soficity-proof`.
+**ESTABLISHED** (reviewed 2026-09-13 by `ex-verify2-groups`: PASS on both routes, `research/artifacts/ex-review2-groups-2026-09-13-part8.md` §3) by `fp-simple-weak-soficity-is-finite-field-linear-soficity-proof`.
 
 Let `G = <X | R>` be an infinite finitely presented simple group. "Linear sofic over finite fields" is as defined on
 `simple-group-psl-width-is-finite-field-linear-soficity`: `G` embeds in a rank-metric ultraproduct of groups

@@ -11,7 +11,7 @@ artifacts:
   - research/artifacts/labbe-group-fp-forces-quantum-rigidity-2026-09-13.md
 ---
 
-**ESTABLISHED (unreviewed).**
+**ESTABLISHED** (reviewed 2026-09-13 by `ex-verify2-groups`: PASS at the checked steps; the 17-term certificate and the mod-p runs were reproduced on MSI, `research/artifacts/ex-review2-groups-2026-09-13-part9.md` §1).
 
 **Statement.** Let `X ⊆ A^(Z^2)` be a free minimal subshift of finite type, and let `k` be a field with
 `char k ∉ {3, 5}`. If `D([[Z^2 ~ X]])` is finitely presented, then `X` is `D`-quantum rigid over

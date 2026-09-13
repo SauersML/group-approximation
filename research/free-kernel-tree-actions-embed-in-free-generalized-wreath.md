@@ -9,7 +9,7 @@ distinct_from:
   radu-lattice-is-limit-of-nilpotent-by-arithmetic-groups: that embeds the metabelian quotient of Radu's lattice in chains modulo square boundaries; this projects to the vertical tree, where no boundaries have to be divided out
 ---
 
-**ESTABLISHED (unreviewed).** Let a group `Γ` act on a tree `T`, and let `Λ ◁ Γ` act freely, fixing
+**ESTABLISHED** (reviewed 2026-09-13 by `ex-verify2-groups`: PASS, `research/artifacts/ex-review2-groups-2026-09-13-part9.md` §4). Let a group `Γ` act on a tree `T`, and let `Λ ◁ Γ` act freely, fixing
 no vertex and inverting no edge. Put `Q = Γ/Λ` and `Y = Λ\T` with its induced `Q`-action, and let
 `E^±(Y)` be the `Q`-set of oriented edges of `Y`. Then:
 

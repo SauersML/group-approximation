@@ -8,6 +8,8 @@ distinct_from:
   radu-horizontal-quotient-is-arithmetic-lattice: that proves Q is vertex-transitive on the second tree with vertex stabilizer S_3; this computes the stabilizer of one edge and how the slab letters act near it
 ---
 
+Review 2026-09-13 (`ex-verify2-groups`, `research/artifacts/ex-review2-groups-2026-09-13-part9.md` §4): the derivations from the computed local actions PASS, but the local actions come from fixed-precision 2-adic arithmetic (truncation modulo 2^71, divisions, valuation thresholds, no precision tracking). That is strong evidence, not proof: GAP until the valuations are certified, for example in Sage `Qp` with tracked precision or by exact integral arithmetic modulo 2^k.
+
 **ESTABLISHED (unreviewed; items 1–2 are computed 2-adically).** Notation of
 `radu-delta-squared-orbit-is-signed-permutation-module` and
 `radu-horizontal-quotient-is-arithmetic-lattice`: `Q` acts on `T_h × T'`, `p ∈ T'` is the unique

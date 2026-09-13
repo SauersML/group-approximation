@@ -10,7 +10,7 @@ artifacts:
   - research/artifacts/labbe-lef-crux-small-growth-models-2026-09-13.md
 ---
 
-**ESTABLISHED (unreviewed).**
+**ESTABLISHED** (reviewed 2026-09-13 by `ex-verify2-groups`: PASS, `research/artifacts/ex-review2-groups-2026-09-13-part9.md` §2).
 
 **Setting.** `Gamma = D([[Z^2 ~ Omega_U]])` for Labbé's shift, with a finite symmetric generating set `S`.
 Let `Y` be a `Gamma`-set, not necessarily transitive, with `sup_y |B_k(y)| <= f(k)` for all `k`, where
