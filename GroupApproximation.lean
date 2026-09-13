@@ -4931,6 +4931,16 @@ import GroupApproximation.TypeA2.Statement
 import GroupApproximation.TypeA2.TypeA
 import GroupApproximation.TypeA2.Witness
 import GroupApproximation.PalomarBridges.X1
+import GroupApproximation.GGT.SystolicDiscMirrorFoldSteps
+import GroupApproximation.GGT.SystolicDiscMirrorFoldQuad
+import GroupApproximation.GGT.SystolicDiscMirrorFoldEmbed
+import GroupApproximation.GGT.SystolicDiscMirrorFoldModel
+import GroupApproximation.Manuscript.NonMFSentences.IntroWitnessSignSentence
+import GroupApproximation.GGT.VanKampen.FaceSetEarSpurCounterexample
+import GroupApproximation.GGT.VanKampen.RegionShellingSpurCounterexample
+import GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral
+import GroupApproximation.Manuscript.NonMF.Audit.Sec3
+import GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSharedEdge
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
