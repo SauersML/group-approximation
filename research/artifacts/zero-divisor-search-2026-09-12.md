@@ -290,6 +290,10 @@ exactly when some torsion-free quotient of `G_Gamma` is injective on the vertice
     finite, and 4 by sieve 6.
   - So the search reproduces A--T's bound `|supp beta| >= 20` for `|supp alpha| = 3` over `F_2`.
     It uses their reduction to simple triangle-free graphs, but no forbidden subgraphs.
-- Running on MSI: `n20.sbatch` (all graphs at `n = 20` in 128 shards, array job 595808), and
-  `zds.c` at `n = 16` (job 592716). From `n = 14` to `n = 18` the node count per graph roughly
-  doubles per two vertices, which projects about 16 core-hours at `n = 20`.
+- Cross-check at `n = 16` with `zds.c` in BFS order (`n16.sbatch`, job 592716, log
+  `n16.592716.log`). It reproduces the node counts above for `n <= 14`, and at `n = 16` leaves no
+  labelling on any of the 792 graphs. The search takes 262,754,713 nodes, with median 97,533 and
+  maximum 6,152,089 per graph, and all exit codes are 0.
+- Running on MSI: `n20.sbatch` (all graphs at `n = 20` in 128 shards, array job 595808). From
+  `n = 14` to `n = 18` the node count per graph roughly doubles per two vertices, which projects
+  about 16 core-hours at `n = 20`.

@@ -1,0 +1,35 @@
+380fa4a27fecf56f29abae8d2117b724  zds.c
+009c58912c0b81bd4360d73a6096e776  n16.sbatch
+== n=6 graphs 1 md5 9dcdfdceb7cbe674541e612c8de13e39
+>Z 1 graphs generated in 0.00 sec
+== n=8 graphs 2 md5 e9ec34ddc80a89b76ea2891069724da0
+>Z 2 graphs generated in 0.00 sec
+== n=10 graphs 6 md5 7e0db7ec781d9dfade72b7349beaf18d
+>Z 6 graphs generated in 0.00 sec
+== n=12 graphs 22 md5 8425106f87820a705ae1e8480e94a527
+>Z 22 graphs generated in 0.00 sec
+== n=14 graphs 110 md5 db238c873aa586bc24c3522ec9f324c1
+>Z 110 graphs generated in 0.03 sec
+== n=16 graphs 792 md5 87bc3472cb740f66c763003fc01640ce
+>Z 792 graphs generated in 0.46 sec
+== r6 rc=0 seconds=0 surv=0
+TOTAL items 1 nodes 201 surv 0 prunes coinc 102 ab 0 finite 14 power 0 (relators 0) fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0
+== r8 rc=0 seconds=0 surv=0
+TOTAL items 2 nodes 2577 surv 0 prunes coinc 1472 ab 0 finite 47 power 0 (relators 0) fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0
+== r10 rc=0 seconds=1 surv=0
+TOTAL items 6 nodes 32075 surv 0 prunes coinc 18981 ab 0 finite 1100 power 0 (relators 0) fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0
+== r12 rc=0 seconds=15 surv=0
+TOTAL items 22 nodes 504920 surv 0 prunes coinc 295458 ab 0 finite 5633 power 0 (relators 0) fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0
+== r14 rc=0 seconds=210 surv=0
+TOTAL items 110 nodes 8428940 surv 0 prunes coinc 5117706 ab 0 finite 157135 power 16 (relators 320) fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0
+== r16.0 graphs 198 rc=0 done=198 surv=0
+TOTAL items 198 nodes 43273387 surv 0 prunes coinc 27155068 ab 0 finite 654805 power 0 (relators 0) fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0
+== r16.1 graphs 198 rc=0 done=198 surv=0
+TOTAL items 198 nodes 77086951 surv 0 prunes coinc 47804695 ab 0 finite 889299 power 0 (relators 0) fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0
+== r16.2 graphs 198 rc=0 done=198 surv=0
+TOTAL items 198 nodes 78128765 surv 0 prunes coinc 49526893 ab 0 finite 961851 power 20 (relators 424) fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0
+== r16.3 graphs 198 rc=0 done=198 surv=0
+TOTAL items 198 nodes 64265610 surv 0 prunes coinc 40150875 ab 0 finite 738920 power 0 (relators 0) fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0
+== n=16 seconds=2194
+graphs 792 nodes 262754713 median 97533 p90 639777 max 6152089
+ALLDONE
