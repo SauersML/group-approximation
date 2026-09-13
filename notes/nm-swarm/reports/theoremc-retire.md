@@ -19,11 +19,13 @@ with no errors:
 Every `#audit_axioms` and `#audit_closed_axioms` line in them throws on any axiom
 outside `propext`, `Classical.choice` and `Quot.sound`, so all of them passed.
 
-Current item: W3 hT6 (`CCKW.SystolicInvariantCliqueStatement`), with kh-cckw.
+Second item closed: W3 hT6, with kh-cckw.
 - kh-cckw has reduced hT6 to hzip and hfold.
 - This lane has landed the matching flip of Theorem C (e1b326ec3).
 
-See the section below.
+Current item: W1, one second-level piece of `OsinLemma94PlanarRunInput`, with
+hull-unbound. This lane proposed Case 2 (bridge exchange). hull-unbound assigns the
+piece and its interface. See the W1 section below.
 
 ## Landed
 
@@ -34,6 +36,8 @@ See the section below.
 | 2c3c8cb40 | normal landing after the green probe: `TheoremCAssembly`, `SeedFromTheoremC`, `SeedRemarkTheoremC`. `TheoremCAssemblyKOLeaves` is recorded as compiled; its bytes are unchanged since 4874b8162 |
 | b1dc27674 | attic copy of the zip-and-fold flip of `TheoremCAssemblyKOLeaves` (before the probe) |
 | e1b326ec3 | normal landing of that flip after green probe `0913-021752-29195` (base b1dc27674) |
+| 84241b175, 3e9636d74 | this report and the census row (after 2c3c8cb40 and after e1b326ec3) |
+| aa7391c47 | report correction: `SystolicDiscZipPinch` landed unverified in d74b84054 |
 
 ## What changed
 
@@ -131,6 +135,34 @@ but all three are in progress:
 My earlier proposal to take `MirrorFoldPinchedStatement` is withdrawn, because
 fff-periodic has started it.
 
+## W1 h94 planar half (with hull-unbound)
+
+hull-unbound split h94 in b8441172e (`Estimating/OsinLemma94Pieces.lean`) into
+`OsinLemma94AntiparallelMetricStatement` (hull-count94) and
+`OsinLemma94PlanarRunInput` (hull-unbound). The second-level pieces of the planar half:
+- (P) the component polygons, after
+  `GloballyDistinguishedSectionFamily.exists_unselectedGFacesReduced`
+  (`Estimating/OsinUnboundReduced.lean`, sec5-sentences);
+- (C1) Case 1: a backwards pair whose target is an (A1) or (A2) side contradicts
+  `weight_maximal`, through `RealizedSectionFamily.false_of_quadrilateral_region`
+  (`Estimating/OsinUnboundCaseOne.lean`, on main);
+- (C2) Case 2: a backwards pair whose target lies on a cutting path contradicts the
+  minimality of `∑ l(t_j)`, by exchanging the path segment for a connector.
+
+This lane proposed C2 to hull-unbound and asked for the interface before building.
+
+Finding for C2. Osin's second minimality has no carrier yet.
+`GloballyDistinguishedSectionFamily` (`Estimating/OsinAppendixSections.lean:265`) has
+`label_admissible`, `weight_maximal` and `card_minimal`, and `SectionCuts` has no path
+data. A path-limited git grep of `GGT/VanKampen` on origin/main finds "cutting path"
+only in docstrings. So C2 comes with the measure that (P) minimizes, and the two pieces
+share that interface. After both reductions an unselected component is one G-face,
+and its cutting paths are the edges with that face on both sides. One candidate measure
+is the dart count of the diagram among reduced globally distinguished families. The
+reductions keep `family.card` and the unbound sum, and an exchange removes a segment
+longer than `ε` and inserts a connector shorter than `ε`. This is a proposal to
+hull-unbound, not a decision.
+
 ## Residual Props (exact)
 
 - `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`
@@ -198,8 +230,11 @@ Other stale references:
 
 ## Next
 
-- Waiting for the lead's next piece. All three disc cases under hT6, hzip and hfold
-  are already started, so this lane has not claimed one.
+- W1: build the piece hull-unbound assigns, most likely C2 in a new
+  `Estimating/OsinUnboundCaseTwo.lean`. Send the statement to hull-unbound first, then
+  land it unverified, probe, and land it normally.
+- All three disc cases under hzip and hfold are started by other lanes, so this lane
+  has claimed none.
 - One-application flips, owned by this lane:
   - once hzip and hfold land closed at `CCKW.cosetComplex`, the
     `_of_leastAreaZipFold` forms lose both binders;
