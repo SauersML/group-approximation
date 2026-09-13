@@ -3,6 +3,65 @@
 Lane of the non-MF verbatim swarm. It owns the geometric DGO/Osin carriers and the GHW archimedean
 modules `Kazhdan/GHWArchimedeanMinkowski` and `Kazhdan/GHWArchimedeanWalls`.
 
+## 2026-09-13: the collar under `K.Nondegenerate`, re-test on empty arcs
+
+dgo-analytic's item, after b34e788e8: re-test `PocketCollarStatement` with `K.Nondegenerate` when
+both arcs are empty and only one side has value `≠ 1`.
+
+### Verdict: no refutation, and the case is not vacuous (paper model, no Lean)
+
+- The route `pocketCollarStatement_of_geodesicCollar` (`OsinPocketCollarOfGeodesic.lean:94`)
+  through `exists_twoCollars_of_ne_or` (`OsinPocketTwoCollars.lean:57`) goes through. Both `hne₁`
+  and `hne₂` hold, and the collared carrier reads `g_1` alone, which is nonempty. An empty `c_2`
+  costs nothing downstream: the side bounds come from `hlen`, the arcs travel by `mapTo`, and
+  the cells by `E.cellIndex` and `hfaces`.
+- The one Prop carrying weight is `GeodesicCollarStatement` (`SurgeryGeodesicCollar.lean:67`)
+  in its removal sub-case: `s` nonempty of value `1`, `g = []`, `rest ≠ []`. If `s_1` has value
+  `1`, the first call removes it with `rest = s_2`. Otherwise the second call removes `s_2`, and
+  `rest` contains `c_1`.
+- In that sub-case the new cycle `rest.map ι` is closed, so `Δ''` must identify the endpoints of
+  `s`. The output allows this. `ι` commutes with `alpha` and keeps labels, `outerDarts`, the
+  darts of outside relator cells and the side of every cell, but not the rotation.
+
+### The model
+
+`G = Multiplicative ℤ`, `a = comp λ 1` of value `1`, and `b`, `x` base letters with `val b ≠ 1`.
+
+- `Δ` has darts `d1, e1, c` and their reverses. The faces are kept `[d1, e1]` reading `a b`,
+  source `[αd1, c]` reading `a⁻¹ x`, and the exterior `[αe1, αc]`. The rotation is
+  `(αd1 e1 αc)(d1 c αe1)`, so `V - E + F = 2 - 3 + 3 = 2`.
+- `P = {kept}`, with `invDarts P.outer.cycle = [d1, e1]`. So `s_1 = [d1]` has value `1` and
+  distinct endpoints, `t_1 = t_2 = []`, and `s_2 = [e1]` has value `val b ≠ 1`. Both cycles
+  follow the boundary.
+- `Δ''`, after removing `s_1`, has one vertex and darts `d, e, c, f` and their reverses. The
+  faces are kept `[d, e]` reading `a b`, a G-face `[αd]`, source `[f, c]` reading `a⁻¹ x`, a
+  G-face `[αf]`, and the exterior `[αe, αc]`. The rotation is `(αe d αd e αc f αf c)`, so
+  `V - E + F = 1 - 4 + 5 = 2`.
+- `ι` sends `d1 ↦ αf`, `αd1 ↦ f`, `e1 ↦ e` and `c ↦ c`. The exterior darts and the source cell's
+  darts are images, every cell keeps its side, and the boundary word and cell words are
+  unchanged.
+- `P'' = {kept, [αd]}`, with cycles `[e]` and `[αe]`. Both follow the boundary: inside, `d` and
+  `αd` are internal; outside, `αc, f, αf, c` are. So `invDarts P''.outer.cycle = [] ++ [ι e1]`.
+
+### The removal sub-case in general (paper)
+
+Slit and pinch. Cut `Δ` along `s` into an inside copy and an outside copy, identify the two
+endpoints, then fill each copy, now a closed walk of value `1`, with a G-face. With `k` darts along
+a side without repeated vertices, `V` gains `k - 1` and loses `1`, `E` gains `k` and `F` gains `2`,
+so `χ` is unchanged. The outside copy keeps the darts `ι (α d)`, so the outside cells and
+`outerDarts` keep their darts. Not checked: a side that repeats a vertex.
+
+For kh-torsion: the docstring route ("a path labelled `g_j` runs from the start of `s_j` to its
+end") has no such path when `g_j = []` and the endpoints differ, so this sub-case needs the
+identification.
+
+### Lean and next
+
+- No module and no census row: the model confirms and refutes nothing. For a Lean calibration,
+  `IsDiscRegion` can come from `toDiscRegion_of_followsBoundary`, as in `GCellCutModel.lean:69`.
+- Still waiting on hull-respell's exact wrap shape and on the lead's wrap repair (`0 < ε` or long
+  relators). Configuration A comes only if R1 wins.
+
 ## 2026-09-13: the wrap case of the pinch, model test
 
 The lead's item: model the wrap case of the pinch, the one pinch residual with no planned proof.
