@@ -1,0 +1,208 @@
+{
+ "v_relator_check": {
+  "b = inverse of U_(01 10 11)": {
+   "(2.3)": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "(2.4)": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "b = U_(01 10 11)": {
+   "(2.3)": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "(2.4)": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "b_reading": "b = inverse of U_(01 10 11)",
+ "bfs_explored": 1217,
+ "conjugators": {
+  "T(00,10)": "b^-1",
+  "T(01,10)": "a b^-1",
+  "T(10,01)": "a b^-1 a",
+  "T(10,110)": "b a b c a b^-1",
+  "iota1(c)": "b^-1 a b^-1 c a b^-1",
+  "iota1(a)": "b^-1 a c b^-1 a b^-1",
+  "T(001,011)": "c a b c a b",
+  "T(000,010)": "c a b^-1 c a b^-1",
+  "iota1(b)": "b^-1 a b^-1 c a b c"
+ },
+ "conjugators_missing": [],
+ "conjugator_predicates_rechecked": true,
+ "iota_images_exact": {
+  "iota1(a) = (100 101)": true,
+  "iota1(c) = (11 100)": true,
+  "iota1(b) = (101 110 111)": true
+ },
+ "relator_count": 18,
+ "generator_count": 4,
+ "relators_failing_in_G": [],
+ "total_length": 322,
+ "max_length": 37,
+ "x_relator_total_length": 186,
+ "relators": [
+  {
+   "family": "V",
+   "name": "Bleak-Quick (2.4) r1",
+   "word": "a a",
+   "length": 2
+  },
+  {
+   "family": "V",
+   "name": "Bleak-Quick (2.4) r2",
+   "word": "b b b",
+   "length": 3
+  },
+  {
+   "family": "V",
+   "name": "Bleak-Quick (2.4) r3",
+   "word": "a b a b a b a b",
+   "length": 8
+  },
+  {
+   "family": "V",
+   "name": "Bleak-Quick (2.4) r4",
+   "word": "c^-1 a c a c a",
+   "length": 6
+  },
+  {
+   "family": "V",
+   "name": "Bleak-Quick (2.4) r5",
+   "word": "c a b^-1 a b a c a b^-1 a b a c b c a b a b^-1 a c a b a b^-1 a",
+   "length": 26
+  },
+  {
+   "family": "V",
+   "name": "Bleak-Quick (2.4) r6",
+   "word": "a c b c b a b^-1 c b^-1 c b c a b c b^-1 c a b^-1 a c b^-1 c b c b a b^-1",
+   "length": 28
+  },
+  {
+   "family": "V",
+   "name": "Bleak-Quick (2.4) r7",
+   "word": "a b^-1 c b c a b^-1 a b^-1 c b c b^-1 a b^-1 c b^-1 c b a b c b^-1 c a b^-1",
+   "length": 26
+  },
+  {
+   "family": "V",
+   "name": "Bleak-Quick (2.4) r8",
+   "word": "c a b^-1 c b^-1 c b a c a b a c b c b^-1 c a b^-1 c a b c b^-1 c b^-1 a c b a c b c b^-1 c a b^-1",
+   "length": 37
+  },
+  {
+   "family": "X",
+   "name": "x^2",
+   "word": "x x",
+   "length": 2
+  },
+  {
+   "family": "X",
+   "name": "(a x)^3",
+   "word": "a x a x a x",
+   "length": 6
+  },
+  {
+   "family": "H",
+   "name": "[x, iota1(a)]",
+   "word": "x b^-1 a c b^-1 a b^-1 a b a^-1 b c^-1 a^-1 b x^-1 b^-1 a c b^-1 a b^-1 a^-1 b a^-1 b c^-1 a^-1 b",
+   "length": 28
+  },
+  {
+   "family": "H",
+   "name": "[x, iota1(b)]",
+   "word": "x b^-1 a b^-1 c a b c b c^-1 b^-1 a^-1 c^-1 b a^-1 b x^-1 b^-1 a b^-1 c a b c b^-1 c^-1 b^-1 a^-1 c^-1 b a^-1 b",
+   "length": 32
+  },
+  {
+   "family": "H",
+   "name": "[x, iota1(c)]",
+   "word": "x b^-1 a b^-1 c a b^-1 a b a^-1 c^-1 b a^-1 b x^-1 b^-1 a b^-1 c a b^-1 a^-1 b a^-1 c^-1 b a^-1 b",
+   "length": 28
+  },
+  {
+   "family": "B",
+   "name": "[T(00,01), T(10,110)]  disjoint",
+   "word": "x b a b c a b^-1 x b a^-1 c^-1 b^-1 a^-1 b^-1 x^-1 b a b c a b^-1 x^-1 b a^-1 c^-1 b^-1 a^-1 b^-1",
+   "length": 28
+  },
+  {
+   "family": "B",
+   "name": "[T(00,01), T(00,10)]  same source",
+   "word": "x b^-1 x b x^-1 b^-1 x^-1 b",
+   "length": 8
+  },
+  {
+   "family": "B",
+   "name": "[T(00,01), T(10,01)]  same target",
+   "word": "x a b^-1 a x a^-1 b a^-1 x^-1 a b^-1 a x^-1 a^-1 b a^-1",
+   "length": 16
+  },
+  {
+   "family": "C",
+   "name": "[T(00,01), T(01,10)] = T(00,10)",
+   "word": "x a b^-1 x b a^-1 x^-1 a b^-1 x^-1 b a^-1 b^-1 x^-1 b",
+   "length": 15
+  },
+  {
+   "family": "Q",
+   "name": "T(000,010) T(001,011) = T(00,01)",
+   "word": "c a b^-1 c a b^-1 x b a^-1 c^-1 b b c a b x b^-1 a^-1 c^-1 b^-1 a^-1 c^-1 x^-1",
+   "length": 23
+  }
+ ],
+ "relator_sha256": "fc6c7c10f21dd626ca07ba05a9cadedba354f490c295815fcbe54f0f2062b28b",
+ "transvection_images_exact": {
+  "T(10,110)": true,
+  "T(00,10)": true,
+  "T(10,01)": true,
+  "T(01,10)": true,
+  "T(000,010)": true,
+  "T(001,011)": true
+ },
+ "negative_controls_nonidentity": {
+  "(b x)^3 = 1": true,
+  "T(000,010) = T(00,01)  (half a split)": true,
+  "[T(00,01), T(01,10)] = T(10,110)": true,
+  "[x, a] = 1": true,
+  "[x, T(01,10)] = 1": true
+ },
+ "dual": {
+  "dual_mode": true,
+  "products_cross_checked": 1388,
+  "elements_registered": 0,
+  "parses_cross_checked": 0
+ },
+ "seconds": 0.2,
+ "verdict": "PASS"
+}

@@ -2,36 +2,52 @@
 rg: 2
 id: thompson-steinberg-presentation-of-leavitt-unit-group
 kind: claim
-title: The binary Leavitt unit group is Thompson's V plus one leaf transvection and one relator per cone configuration
+title: Thompson's group V together with one transvection and ten relators presents the binary Leavitt unit group
 distinct_from:
-  leavitt-unit-group-steinberg-weyl-presentation: that is a seven-generator presentation built on S_5 acting on a five-leaf chart; this targets three generators, with Thompson's V replacing S_5 and letters absorbed into cone refinements.
-  leavitt-unit-group-finitely-presented: that is bare finite presentability; this is a specific presentation shape whose relators are indexed by V-orbits of cone configurations.
+  leavitt-unit-group-steinberg-weyl-presentation: that is a seven-generator, sixty-relator presentation built on S_5 acting on a five-leaf chart; this has four generators and eighteen relators, with Thompson's V replacing S_5 and the letters absorbed into cone refinements.
+  leavitt-unit-group-finitely-presented: that is bare finite presentability; this is a specific presentation whose ten non-V relators are indexed by cone configurations.
+  bleak-quick-finite-presentations-of-thompson-v: that presents V alone; this adds one generator and ten relators to it and obtains a nonsofic group.
+artifacts:
+  - research/artifacts/thompson-steinberg-presentation-2026-09-12.md
+  - experiments/nonsofic-certificates/presentations/verify_thompson_steinberg_presentation.py
+  - experiments/nonsofic-certificates/presentations/thompson-steinberg-presentation.json
 ---
 
-**OPEN.** Let `V <= L^x` be Thompson's group (units `sum_i S[r_i]T[d_i]` for complete prefix
-codes `(d_i)`, `(r_i)`) and `u = 1 + S[00]T[01]`. For disjoint cones `alpha, beta` whose union
-is not everything, put `T(alpha,beta) = g u g^-1`, where `g in V` maps `00w -> alpha w` and
-`01w -> beta w`.
+**ESTABLISHED (2026-09-12, unreviewed)** through
+`thompson-steinberg-presentation-of-leavitt-unit-group-proof`.
 
-**Claim.** `L^x` is presented by: generators of `V` together with `u`; a finite presentation
-of `V`; `u^2`; `[u,h]` for `h` in a generating set of the subgroup of `V` fixing the cones `00`
-and `01` pointwise (a copy of `V` acting on the cone `1`, so two relators); and one relator for
-each `V`-orbit of cone configurations occurring in the families (L), (B), (C), (P), (Q) of
-`leavitt-unit-group-steinberg-weyl-presentation`.
+Let `a, b, c` be Bleak--Quick's generators of `V` subject to their eight relators (2.4), and
+adjoin one generator `x`. Write `{}^g x = g x g^-1`. The presented group
 
-Target size: three generators (two for `V`, Bleak--Quick), and far fewer relators than sixty.
-The letters `e, f, E, F` become refinements of cones, so the 25 coefficient pairs collapse to a
-few configuration types.
+```text
+Q = < a, b, c, x |  (2.4),
+      x^2,   (a x)^3,
+      [x, {}^(b^-1 a c b^-1 a b^-1) a],  [x, {}^(b^-1 a b^-1 c a b c) b],  [x, {}^(b^-1 a b^-1 c a b^-1) a],
+      [x, {}^(b a b c a b^-1) x],   [x, {}^(b^-1) x],   [x, {}^(a b^-1 a) x],
+      [x, {}^(a b^-1) x] = {}^(b^-1) x,
+      {}^(c a b^-1 c a b^-1) x . {}^(c a b c a b) x = x  >
+```
+
+is isomorphic to `L_(F_2)(1,2)^x`. The isomorphism sends `a -> U_(00 01)`,
+`b -> U_(01 10 11)^-1`, `c -> U_(1 00)` (maps on the right, `U_g e_w = e_(w.g)`) and
+`x -> 1 + S[00]T[01]`. There are eighteen relators, of total length 322 and maximal length 37.
+
+In words: **the first nonsofic group is Thompson's V with one involution glued in by ten
+relations.**
+- The three (H) relators say that `x` commutes with the copy of `V` on the cone `1`.
+- (B) gives three commutations: disjoint cones, same source, same target.
+- (C) is one Steinberg law, `[1+S[00]T[01], 1+S[01]T[10]] = 1+S[00]T[10]`.
+- (Q) is one splitting, `1+S[00]T[01] = (1+S[000]T[010])(1+S[001]T[011])`.
+- `(ax)^3` is the Weyl link.
+
+Every other Steinberg relation, and every letter of the Leavitt algebra, comes from transporting
+these by `V` and refining cones. The proof is a Tietze comparison with
+`leavitt-unit-group-steinberg-weyl-presentation`. Surjectivity comes from the simplicity of `V`.
+Every relator was checked exactly in `L^x`.
 
 ## Attempts
 
-1. **Design (2026-09-12, ex-free-objects).** The commutator relators give well-defined
-   `T(alpha,beta)`: two choices of `g` differ by an element fixing `00` and `01` pointwise. Any
-   `V`-identity used holds automatically, since `V`'s generators satisfy a complete
-   presentation of `V`, and such identities can be checked exactly in `L^x`. Completeness would
-   follow by Tietze from the sixty-relator presentation. Map `c, t` to `V`-words and `y_a` to
-   `T(00 a, 01)` or `T(00, 01 a)`. Each of the sixty relators must then be derived from the
-   configuration relators, transported by `V`. The (B) disjoint family, for example, is one
-   configuration: four pairwise disjoint cones with nonempty complement.
-   *Stops at:* the configuration census and the exact Bleak--Quick relators (not yet read from
-   the source). Nothing is computed yet.
+1. **Design (2026-09-12).** First landed as an open claim with three generators planned. Carried
+   out with four generators: `V` enters through Bleak--Quick (2.4). A three-generator variant
+   through their Theorem 1.3 has the same proof, with conjugators written in `u, v`; its word
+   search was run separately.
