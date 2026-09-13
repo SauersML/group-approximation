@@ -97,3 +97,19 @@ microstate into an exact representation nor selects a Cartan inside that
 cocycle.  Hence active-corner Cartan classicalization and actor
 exactification are two alternative hard bridges, not consecutive routine
 rounding steps.
+
+## Attempts
+
+- **Upgrade abelian containment to invariance by abelian diagonalization.**
+  Dies on multiplicity: the Fourier-block unitary shows that growing multiplicity
+  fibres can hide every exotic normalizer from the lamp algebra and from the
+  trace.
+- **Property (T) rounding.**  Dies before a carrier exists.  Property (T)
+  estimates vectors after a permutation or representation carrier is fixed,
+  and selects no Cartan (above; `strong-aperiodic-z2-addresses-have-vanishing-hs-seams`).
+- **Actor exactification.**  An alternative bridge, not a step toward this
+  claim (`kt-wreath-relative-canonical-actor-exactification`).
+- **Shrink the target to the fibre-even lamps.**  Valid reduction (section
+  above), but it does not construct the diagonal ultraproduct.  It lowers what
+  a construction must place: `L(K_even)` only, and every bounded-block
+  normalizer then kills it (`kt-wreath-monomial-models-kill-fibre-even-lamps`).
