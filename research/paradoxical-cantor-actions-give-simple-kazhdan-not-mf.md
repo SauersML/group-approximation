@@ -38,3 +38,5 @@ satisfy two conditions:
 
 **Model test.** A minimal `Z`-subshift (the Pestov 9.1 ring) carries an invariant probability measure `μ`, and
 (H-par) would force `μ(X) >= 2 μ(X)`. So the theorem says nothing there, consistent with that group being LEF.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: Lemma F (the clopens `U` with `χ_U ∈ R_0` form a Boolean algebra containing the separating translates `gP`, so by compactness it is the whole clopen algebra); effectiveness from topological freeness; `ts = Σ u_(g_i^(-1)) χ_(g_iA_i) χ_(g_(i)A_(i)) u_(g_(i)) = 1`; `st = χ_E`; fullness `Σ_j χ_(B_j) u_(h_j)^(-1) χ_(X\E) u_(h_j) χ_(B_j) = 1` since `h_jB_j ⊆ X \ E`; then the rank-two full-defect theorem and the reviewed simplicity theorem. `research/artifacts/un-review3-2026-09-13-part4.md` §1.

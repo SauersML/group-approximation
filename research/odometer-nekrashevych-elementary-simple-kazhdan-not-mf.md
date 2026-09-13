@@ -20,3 +20,5 @@ graph with two loops. `q` is a prime power and `N >= 3`.
 homomorphism from it to an MF group is trivial.
 
 The same proof covers every pseudo-free one-vertex self-similar action of a finitely generated group with `|X| >= 2`.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Checked pseudo freeness: `φ(a^(2k), x) = a^k`, so `a^n x = x` with trivial restriction forces `n = 0`. Hausdorff via Exel–Pardo Prop `EssFreePath` and Thm `MainHausdorff`; minimal via Thm `CharacMinimal` (one vertex means weakly transitive); effective as a groupoid of germs; full defect `t_1(1 − s_0t_0)s_1 = 1` from the Leavitt generators; finite generation from `paradoxical-steinberg-families-kazhdan-no-mf-quotient` (un-verify PASS). The Exel–Pardo statements match arXiv:1409.1107 plain-TeX source verbatim (l.1342, 1351, 3347, 3557; standing hypothesis l.700). `research/artifacts/un-review3-2026-09-13-part4.md` §7.

@@ -26,3 +26,5 @@ homomorphism from `S`, or from `EL_n(R)` for `n >= 2`, to an MF group is trivial
 `EL_3(LC(Ω, F_2) ⋊ PSL_2(Z))/Z`.
 
 **Excluded case.** `|A| = |B| = 2` gives `D_∞`, whose boundary has two points and is not Cantor.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Checked: Ω is Cantor (branching after each `A`-letter since `|B| ≥ 3`); one-letter cylinders generate via `C(x_1…x_m) = (x_1…x_(m-1))·C(x_m)`; minimality by inserting letters; topological freeness through a non-eventually-periodic tail (a length change would make it periodic); `ab` is north–south. `research/artifacts/un-review3-2026-09-13-part4.md` §4.

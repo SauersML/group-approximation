@@ -25,3 +25,5 @@ homomorphism from `S`, or from `EL_n(R)` for `n >= 2`, to an MF group is trivial
 This gives a family indexed by the prime `p`, the prime power `q` and `N >= 3`. It is the arithmetic mirror of the
 Pestov 9.1 group: the minimal `Z`-subshift, which carries an invariant measure, is replaced by `PSL_2(Z[1/p])` on the
 boundary of the Bruhat–Tits tree, where `diag(p, p^(-1))` acts with north–south dynamics.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Checked: `d_p^k e_12(1) d_p^(-k) = e_12(p^(2k))`, so `e_12(Z[1/p]) ⊆ Γ_p`; density in `SL_2(Q_p)` and transitivity give minimality; a Möbius map fixing three points is trivial; balls `a + p^mZ_p = e_12(b) d_p^k (p^εZ_p)` give (H-gen); `z ↦ p²z` is north–south with poles `0, ∞`. `research/artifacts/un-review3-2026-09-13-part4.md` §5.

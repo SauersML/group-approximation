@@ -40,3 +40,5 @@ such that `EL_N(R)` is Kazhdan and not LEF.
 - Free minimal `Z^2` SFTs without covariant quantum tilings at every scale. They carry invariant measures and
   rank models, but they are not matricial (`matricial-z2-sft-crossed-products-give-quantum-tilings`,
   `free-minimal-z2-sft-is-quantum-rigid`). Labbé's `LC(Ω_U, F_q) ⋊ Z^2` is the concrete test case (un-calibration).
+
+**Review (un-verify-3, 2026-09-13): PASS.** The complete route `rank-modelled-non-lef-el-via-amenable-non-rf-subflow` requires only established nodes that passed review (part 3 §§5–8) or are established imports; the Følner rank model plus the Whitehead embedding of the non-RF finitely presented `Γ_p` realize the middle rung. The second route requires the open `fp-simple-algebra-over-finite-field-with-rank-model` and cannot fire. The UN root is unaffected. `research/artifacts/un-review3-2026-09-13-part4.md` §8.

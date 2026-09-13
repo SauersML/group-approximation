@@ -28,3 +28,5 @@ Every homomorphism from it, or from `EL_n(A)` for `n >= 2`, to an MF group is tr
 
 **Firewall.** `grigorchuk-steinberg-algebra-not-simple-over-f2`: the Grigorchuk groupoid is not Hausdorff and its
 algebra over `F_2` is not simple, so this theorem does not apply there.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Interface theorem: the reviewed simplicity theorem plus `full-defect-ring-non-mf-at-rank-two`; the Leavitt copy gives `t_2(1 − s_1t_1)s_2 = 1`. `research/artifacts/un-review3-2026-09-13-part4.md` §3.

@@ -28,3 +28,5 @@ clopen partitions `X = A_1 ⊔ A_2 = B_1 ⊔ B_2` and elements `g_1, g_2, h_1, h
 
 **Model test.** An invariant probability measure `μ` excludes north–south elements on a minimal infinite space: it
 would push `μ` onto an atom at `ξ^+`. A minimal `Z`-subshift has no north–south element.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: `Fix(g) = {ξ^+, ξ^-}`; minimality makes point stabilizers infinite index, and Neumann's lemma gives `c` off four cosets, so `h = cgc^(-1)` is north–south with four distinct poles; compression with `A_1 = X\C`, `A_2 = C`, `B_1 = X\D`, `B_2 = D` into disjoint neighbourhoods via `g^n, h^n, g^(-n), h^(-n)`. `research/artifacts/un-review3-2026-09-13-part4.md` §2.

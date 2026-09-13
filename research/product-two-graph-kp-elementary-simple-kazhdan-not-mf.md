@@ -21,3 +21,5 @@ an MF group is trivial.
 
 Recalled, not imported: `R_(m,n)` is the Kumjian–Pask algebra of the one-vertex product 2-graph `Λ_m × Λ_n`, which is
 cofinal and aperiodic.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Checked: `Λ_m × Λ_n` groupoid minimal and effective (Cuntz groupoids effective since `αz = βz` with `|α| ≠ |β|` has one solution); `A(𝒢_m) ⊗ A(𝒢_n) ≅ A(𝒢_m × 𝒢_n)` (multiplicative, surjective on products of compact opens, injective by pointwise linear independence); `(t_2⊗1)(1 − s_1t_1⊗1)(s_2⊗1) = 1`; then the interface theorem. `research/artifacts/un-review3-2026-09-13-part4.md` §6.
