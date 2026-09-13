@@ -42,3 +42,22 @@ ultraproduct of partition algebras of expander components.
   masa is given (`hs-block-gap-iff-liftable-masa-of-actor-commutant`, Section 1 of its artifact),
   but supplies no masa. Section 4 of `research/artifacts/hs-coarse-gap-aspect-scales-2026-09-12.md`
   records why: the cascade observables are already invariant in the ultraproduct.
+- **Counterexample side: amenable type cycles (2026-09-13, lane `ex-hs-masa-lift-counter`).**
+  `amenable-type-cycle-kills-liftable-masas` (established). A compressor that normalizes
+  `prod_U A_n` and cyclically permutes central type projections of `A_n` with period `L_n -> infinity`
+  leaves `{V}' cap prod_U A_n` with no liftable masa. The witness is a Fourier character of the type
+  cycle at a frequency above the summed boundary, which is central in the fixed algebra. Genuine
+  representations of `Gamma x| Z` with `Gamma` Kazhdan realize it, with normalization exact.
+  - So (LM) is strictly stronger than normalization in general. It is not a consequence of countable
+    saturation or of vertex coordinates, and the chain obstruction of the Zorn bullet occurs.
+  - Where it dies at the Theorem E pair: property (T) of `G` should exclude long type cycles on most
+    of the mass, since `Gamma` acts trivially on types. A counterexample there must be a model of `G`
+    that is not flexibly roundable on `G`, and its obstruction must sit in an aspect cascade or
+    inside the multiplicity algebras, not in a type cycle.
+- **Scope: vacuous at the Leavitt and Fournier--Facio pairs (2026-09-13, lane `ex-hs-masa-lift-counter`).**
+  Read over every infranormal Kazhdan pair, the hypothesis (H1) has no trace-preserving model at
+  the nine-leaf Leavitt pair. Its vertex has no nontrivial finite-dimensional unitary representation, so
+  (H1) forces `sigma(Gamma) = 1`, against `tau(sigma(gamma)) = 0` for `gamma != 1`. At the
+  Fournier--Facio pair (H1) fails at every faithful model
+  (`fournier-facio-vertex-rounding-fails-at-every-model`). So this claim is vacuously true at both
+  pairs. It says nothing about (H1) there, and no counterexample to it can live there.
