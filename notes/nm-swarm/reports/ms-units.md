@@ -153,3 +153,7 @@ Split as agreed:
   - Also `transientIdealLocallyMatricialFTwo_of_cells`, `coreKernelElementaryStatement_of_cells`, `unitKernelLocallyFinite_of_cells`.
   - Residual: `TransientCellsStatement`, spelled as ct-involution's `exists_transientCells` conclusion (which also takes `hcover : ChainCoreDefectCoverStatement`, owner chain-itinerary).
   - Census row f0c16e5c8519 (partial until the cells land).
+- Closure (09-13 ~18:40): main asked for closed corollaries once the cells land.  ct-involution's `Dynamics/TransientCellsClosed.lean` (attic dd110ebae, landing after its `TransientCells` re-probe) already has all of them, over `chainCoreDefectCoverStatement_holds`:
+  - `transientCellsStatement_holds`, `transientIdealLocallyMatricialStatement_holds`, `transientIdealLocallyMatricialFTwoStatement_holds`, `coreKernelElementaryStatement_holds`, `unitKernelLocallyFiniteStatement_holds`, and `printedInvolutionLocalization_closed`.
+  - ms-units drafted the same endpoints and dropped them unlanded (backup only): a duplicate that would also clash with the name `transientCellsStatement_holds`.
+  - Row f0c16e5c8519 gets regraded to formalized, naming `transientIdealLocallyMatricialStatement_holds`, after that module lands on main.
