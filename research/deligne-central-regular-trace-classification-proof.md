@@ -38,3 +38,15 @@ almost everywhere (apply the components to the positive element
 makes almost every component induced from a character of `Z(E_3)`.  Such an
 induced trace is exactly `(CR1)`, and only the two extensions of
 `z |-> omega` can occur.  Integrating the decomposition proves the claim.
+
+**Source check (2026-09-13, lane ex-nh-deligne-hs).** ArXiv:2507.21862v1 (29 Jul 2025) was read
+from the PDF on MSI, pp. 1--3.
+- Definition 1.1: "A discrete group Γ is character rigid if every character of Γ is either
+  finite-dimensional ... or vanishes outside the center Z(Γ)."
+- Theorem 1.5: "Let H be a connected semisimple Lie group with rank_R(H) ≥ 2, no compact factors and
+  arbitrary center. Let Γ an irreducible lattice in H. Assume either that Γ is non-uniform or that H
+  has a factor with Kazhdan's property (T). Then the lattice Γ is character rigid, and satisfies the
+  conclusion of Corollary 1.4."
+- The connected triple cover of `Sp_4(R)` and its lattice `E_3` meet every hypothesis. The same
+  statement applies verbatim to the connected covers of `Sp_(2g)(R)` for every `g >= 2`.
+- Vanishing outside the center is the "induced from the center" form used above.

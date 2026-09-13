@@ -50,3 +50,21 @@ claim.
   of `E_3` would also imply non-hyperlinearity by
   `infinite-hyperlinear-kazhdan-group-is-not-hs-stable`, but it is a strictly
   stronger target than `(DCM1)`.
+- **Genus two is the strongest instance (2026-09-13, ex-nh-deligne-hs).**
+  - `E_3` embeds in the triple cover of `Sp_(2g)(Z)` for every `g >= 2`, with `z -> z`
+    (`deligne-cover-hyperlinearity-is-monotone-in-genus`). So `(DCM1)` propagates upward in genus,
+    and nothing established at higher genus comes back down.
+  - The weakest triple-cover target is `deligne-stable-triple-cover-is-not-hyperlinear`, which also
+    gives `non-hyperlinear-group`.
+- **Unnormalized collapse holds at genus at least 3, not here.**
+  - `deligne-symplectic-covers-are-not-schatten-approximated`: for `g >= 3` the mark dies in every
+    Schatten-p asymptotic homomorphism, `p <= 2`. Every nontrivial sector tuple in `U(d)` has
+    normalized relator defect `>= delta d^(-1/2)`.
+  - `(DCM1)` asks for exponent `0` instead of `1/2`.
+  - The proof uses Frobenius stability (`blsw-real-lattice-frobenius-stability`, rank at least 3),
+    which is unknown for `Sp_4(Z)`.
+  - The two-norm argument (`bdl-deligne-type-two-norm-inapproximability`) cannot reach the
+    normalized norm: one eigenvalue costs `d^(-1/2)` there.
+  - What `(DCM1)` needs in the language of `kazhdan-commutant-compression-stability-is-finitary`
+    is rounding to genuine representations inside the nontrivial sector. Malcev replaces
+    localization. See `research/artifacts/deligne-hs-metric-ladder-2026-09-13.md`, Section 3.
