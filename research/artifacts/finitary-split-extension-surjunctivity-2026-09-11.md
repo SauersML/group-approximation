@@ -5,6 +5,12 @@ Lane `gottschalk-positive`, 2026-09-11. This extends
 [W]) from permutational wreath products to an abstract finitary setting. The
 new instance is the group double `G *_Gamma G`.
 
+For the historical problem, classical inputs, and the distinction from
+Arzhantseva--Gal's finitely generated kernel theorem, see the
+[literature and credit review](surjunctive-nonsofic-literature-review-2026-09-13.md).
+The new claim is the surjunctivity permanence theorem; the application uses
+Kun--Thom's previously constructed nonsofic double.
+
 ## Theorem 0 (finitary split extensions)
 
 Let `W = N semidirect_alpha G` with product
@@ -103,10 +109,15 @@ The only-if direction is subgroup heredity ((F2) of [W]). Assume `G` is
 surjunctive and `tau = (M, mu)` is an injective cellular automaton over `W`,
 with `m = (f_m, g_m)`.
 
+The empty alphabet gives an empty full shift and is immediate, so assume the
+alphabet is nonempty throughout the configuration-extension arguments.
+
 **Coset spaces.**
 1. Given finite `S` and a finite quotient `q: N_S -> Q`, put
    `H_(S,q) = ker(q o p_S)`. This is a normal subgroup of `N`, hence a
    subgroup of `W`.
+   It need not be normal in `W`: the construction below uses a coset set
+   with its right `W`-action, not a quotient group.
 2. Because `(h,1)(f,g) = (hf, g)`, the coset space is
    `Omega = H_(S,q)\W ~= Q x G`.
 3. For `U` contained in `S` put `Q_U = q(iota_(U,S)(N_U))` and
