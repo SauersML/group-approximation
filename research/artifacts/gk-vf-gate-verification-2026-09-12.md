@@ -2296,3 +2296,242 @@ Sources:
   - the Scope of the lex claim;
   - the w7-sub-multiletter bullet on the SUB target.
 - **Status.** No claim statement changed, so the PASS of Section 35 carries over to the new blobs.
+
+## 38. w7-hexagon-closing (32f4345ad1, 91f646046f)
+
+Sources:
+- Artifact `hexagon-closing-letter-stage-obstruction-2026-09-12.md` (blob `6f8d62ac`), Sections 0–8.
+- The OPEN claim `stage-models-cannot-close-the-leavitt-hexagon` (blob `96a06a51`).
+- The lane's Attempts entry on `binary-complement-corner-has-no-weakly-finite-image` (blob `79ab0157`).
+- Inputs verified here earlier: Theorem 1.1 of `mismatched-factor-graph-of-groups-firewall-2026-09-12.md` (Section
+  29), and (SPG2) with point 4 of `leavitt-unit-groups-have-no-unstable-k2-at-rank-three` (Section 34).
+
+**Verdict: PASS on Sections 1–6 and the claim display.** No mathematical corrections. There are five advisories
+(38.5), one of them about the requirements of the future route. Section 5's ternary transfer, which the artifact
+leaves unverified, is re-derived in 38.4.
+
+It is decision-level for the refutation side of `binary-complement-corner-has-no-weakly-finite-image`:
+- no stage model closes the hexagon, exactly (Theorem 2.3, Corollary 2.4) or in rank (Proposition 3.1, with the
+  uniform gap of Corollary 3.2);
+- so a refutation needs a weakly finite target that is neither an algebraic ultraproduct of finite or
+  commutative-linear matrix groups nor a monomial rank model.
+
+Calibration holds: the argument uses finite presentation, the absence of finite quotients and nonsoficity of `G`, and
+Section 4 exhibits closing models over `F_p`, `R_0` and `F_2[x]`. Nothing makes a rank model trivial. The binary
+corner claim, the gate and Plan 1 stay OPEN.
+
+### 38.1 The letter (Section 1). PASS
+
+- **Edge groups, recomputed.** The roots positive at both ends of each edge are:
+
+  | Edge | Orders | Common roots |
+  |---|---|---|
+  | `e_1` | `123 – 213` | `(1,3)`, `(2,3)` |
+  | `e_2` | `213 – 231` | `(2,1)`, `(2,3)` |
+  | `e_3` | `231 – 321` | `(2,1)`, `(3,1)` |
+  | `e_4` | `321 – 312` | `(3,1)`, `(3,2)` |
+  | `e_5` | `312 – 132` | `(1,2)`, `(3,2)` |
+  | `e_6` | `132 – 123` | `(1,2)`, `(1,3)` |
+
+  Each pair shares a source or a target, so `[x_ij(a), x_kl(b)] = 1` (`j != k`, `i != l`), and every edge group is
+  `R ⊕ R`.
+- **(1).** With the path as maximal tree and one off-tree edge carrying inclusions, `π_1(Y_hex)` is
+  `<P, t | t x^132 t^-1 = x^123 (x ∈ K)>`. Killing `t` imposes `x^132 = x^123`. The `x` satisfying this form a
+  subgroup, so `x_12(r)` and `x_13(r)` for `r ∈ B` suffice. With point 4 of the unstable-`K_2` claim this gives
+  `G ≅ P/<<W_12(r), W_13(r)>>`.
+- **(2).** `(1,2)` is positive exactly on `312, 132, 123`, and `(1,3)` exactly on `132, 123, 213`. The path cuts each
+  arc only at `e_6`, and `e_5`, `e_1` carry the stated identifications.
+- **(3).** Collapsing the vertex groups gives `π_1(Y_hex) -> Z`. It kills every conjugate of every `U_π` and sends `t`
+  to a generator. So no `t^m` with `m != 0` is conjugate into a vertex group, and `t` is hyperbolic on the Bass–Serre
+  tree.
+- **(4).** In the firewall's Theorem 1.1 the letter permutations are the `π` with `π λ_132(k) π^-1 = λ_123(k)` for
+  `k ∈ K_n`. Two of them differ by right multiplication by the centralizer of `λ_132(K_n)`. For `K` abelian acting
+  freely on `K × [r]`, an equivariant bijection permutes the orbits and translates inside each, which gives
+  `K wr Sym(r)`.
+
+### 38.2 No exact closing (Section 2). PASS
+
+- **Lemma 2.1.** Each relator holds at the chosen representatives on a `U`-large set. The finite intersection is
+  `U`-large, and there `s -> g_(s,n)` defines `ρ_n` with `ρ(γ) = [ρ_n(γ)]` for every word `γ`.
+- **Lemma 2.2, recomputed.**
+  - **Binary.** `G` is infinite and simple.
+  - **Ternary.** `St_3(R)` is perfect, since `x_ij(a) = [x_ik(a), x_kj(1)]`.
+    - If `NZ = Z`, then `N ⊆ Z` is finite of finite index, and `G` would be finite.
+    - If `NZ = G`, then `G/N ≅ Z/(N ∩ Z)` is abelian and perfect, so `N = G`.
+  - **The host hypothesis.** The host theorem needs `K_1` and `K_2` to vanish. For `L_(F_3)(1,2)` the localization
+    sequence multiplies `K_i(F_3)` by `1 − 2 = −1`, which is invertible. So `K_1 = K_2 = 0`.
+  - **Linear targets.** A finitely generated subgroup of `GL_m(A)` with `A` commutative is residually finite
+    (Malcev). An image of `G` has no nontrivial finite quotient, so it is trivial.
+- **Theorem 2.3.** If `ρ(t) = 1`, then `ρ` factors through `G`.
+  - `G` is finitely presented: `leavitt-unit-group-finitely-presented` (ESTABLISHED, literature import); ternary, the
+    host theorem.
+  - Lemma 2.1 gives `ρ_n : G -> H_n`, and Lemma 2.2 makes each trivial.
+  - A Theorem 1.1 model takes values in `(prod_U M_(m_n)(F_p))^x = prod_U GL_(m_n)(F_p)`. It is nontrivial by (1) of
+    that theorem, so `σ(t) != 1`.
+- **Corollary 2.4, recomputed.**
+  - **Edge pieces.** The firewall defines `K_(n,e) = {k ∈ K_e ∩ H_(n,v) : φ_e(k) ∈ H_(n,w)}` and notes that every
+    finite subset of `K_e` lies in `K_(n,e)` for large `n` (its lines 64–66). So the stage diagrams increase and
+    exhaust the hexagon diagram. Colimits commute, and `colim_n C_n = colim_π U_π = G` by (SPG2) (Section 34).
+  - **Words.** Directed colimits of groups are computed on underlying sets. So an element of `C_n` that is trivial in
+    the colimit is trivial at some later stage, and at every stage after that. The finitely many relators and
+    `x_12(1)^-1 w` give `n_1`, which depends neither on the model nor on the finite target.
+  - **The stage.** A homomorphism `f : C_n -> F` with `n >= n_1` sends each relator to `1`, so `s -> f(word)` defines
+    `G -> F`. That map is trivial, so `f(x_12(1)) = f(w) = 1`.
+  - **The model.** Suppose `id` were a letter permutation. Then the `λ_(n,π)` agree on all six `K_(n,e)`, which gives
+    `C_n -> Sym(Ω_n)` with `x_12(1)` acting freely. That contradicts the stage step. So `id` is not in the coset
+    `π_n^0 C_n` of Proposition 1.1(4) (advisory 1).
+- **Remark 2.5.** `x_12(1) != 1` in `C_n`, since it maps to `x_12(1) != 1` in `G`. Every finite quotient kills it, so
+  `C_n` is infinite and not residually finite.
+
+### 38.3 No rank-null closing (Section 3). PASS
+
+- **Proposition 3.1, recomputed.**
+  - **Hamming.** `j` sends `prod_U Mon_(m_n)(F_q)` to `prod_U Sym(X_(m_n))`, where rank-null is Hamming-null
+    (`monomial-rank-models-are-hamming-models`, ESTABLISHED, factor two). The null subgroup is normal, so the
+    composite `π_1(Y_hex) -> prod_U Sym / null` kills `<<t>>`. It factors through `G`, nontrivially on `x_12(1)`.
+  - **Binary.** The kernel is a proper normal subgroup of the simple `G`, so it is trivial. `G` embeds in a universal
+    sofic group and is sofic (Elek–Szabó), which contradicts `openai-leavitt-unit-nonsofic`.
+  - **Ternary.** The kernel `N` misses `x_12(1)`, so `NZ != G` by the argument of Lemma 2.2. Hence `N ⊆ Z`, and the
+    image is `G` or `G/Z`.
+    - `G` is nonsofic by `d-ary-leavitt-groups-nonsofic-over-finite-fields`.
+    - `G/Z` is nonsofic by `projective-leavitt-unit-groups-mod-scalars-are-nonsofic`. Alternatively, a sofic `G/Z`
+      with `Z` finite would make `G` sofic (amenable extension).
+  - **Coverage.** A Theorem 1.1 model is monomial (permutation matrices). `x_12(1)` has order `p` and acts freely, so
+    `rk(σ(x_12(1)) − 1) = (p − 1)/p > 0`.
+- **Corollary 3.2, recomputed.**
+  - **The letter.** A permutation `π` has `rank(π − I) = |supp π| − (number of nontrivial cycles) >= |supp π|/2`.
+    So `rank(π − I)/m < 1/k` gives `|supp π|/m < 2/k`, and `d_H(π a π^-1, a) <= 2|supp π|/m < 4/k`.
+  - **Relators.** At the stage, vertex relations and forest identifications hold exactly. Each use of `e_6` costs at
+    most `4/k`, since `d_H` is bi-invariant. So every relator holds up to `4L/k`, and `w` is within `4L/k` of the
+    free permutation `λ(x_12(1))`.
+  - **The limit.** Over `k`, the ultraproduct satisfies the relators exactly, which gives `G -> prod_U Sym / null`
+    with `x_12(1)` at Hamming distance `1` from the identity. Proposition 3.1 excludes it.
+  - **Uniformity.** `S`, `Q`, `w`, `D` and `L` are fixed before any model is chosen, so `ε_p` is uniform. For `p = 3`
+    the models are those of 38.4.
+
+### 38.4 Calibrations, ternary transfer and the rank-two kernel (Sections 4–6). PASS
+
+- **Calibrations, recomputed.**
+  - `|SL_3(F_2)| = 168 = 8 · 21` and `|SL_3(F_3)| = 26 · 24 · 18/2 = 5616 = 27 · 208`. The regular representation
+    restricts to free actions of the `U_π(F_p)` that agree literally on every edge. So `σ(t) = 1` and `σ` is
+    nontrivial.
+  - `R_0`: each stage piece lies in the finite `GL_(3·2^k)(F_2)`, whose regular representation closes the stage.
+    `EL_3(R_0)` is the union of the simple groups `SL_(3·2^k)(F_2)`, so it is infinite and simple but not finitely
+    generated.
+  - `F_2[x]`: `SL_3(F_2[x]/(f))` are finite quotients.
+  - UT₄: a perfect group has no nontrivial nilpotent image.
+
+  Each calibration closes the hexagon. None makes a rank model trivial.
+- **Ternary transfer (Section 5), re-derived here.** Every step of the firewall's Theorem 1.1 (lines 53–95 there) is
+  independent of the field:
+  - `|H_(n,w)|` divides `N_n`, and free actions of one finite group on equal sets are isomorphic;
+  - the orbit matching for letters;
+  - `F_p[Ω_n] ≅ F_p[Q]^(N_n/|Q|)`, and the fixed-vector bound `1/|H_(m,v)|`;
+  - `rank(I − AB) = rank(I − BA)` over a field.
+
+  `U_π(L_(F_3)(1,2))` is countable and locally finite by the span argument of Section 34 with `F_3`-spans. So the
+  `F_3` model exists with `M = prod_U M_(m_n)(F_3)`.
+
+  The root-pair pieces: `[x_ij(ua), x_jk(vb)] = x_ik(uv ab)` is central, so the order is at most `27`. Since
+  `(a, b, c)^3 = (3a, 3b, 3c + 3ab) = 1`, the exponent is `3`. Sections 2–3 for `p = 3` are conditional as the host
+  theorem is.
+- **Rank-two kernel.**
+  - `(i,j)` and `(j,i)` are positive on complementary arcs, so no `U_π` contains opposite roots.
+  - Over `F_2`, `[[1,1],[0,1]] [[1,0],[1,1]] = [[0,1],[1,1]]`, whose cube is `I`. So `ω -> 1` in `E_3(R)`, and in `G`
+    by Section 34.
+  - `x_12(1)` and `x_21(1)` lie outside `E_1 = <x_13(R), x_23(R)>`. So `ω` is a reduced alternating word of length
+    `6` in `U_123 *_(E_1) U_213`, which embeds in the tree amalgam `P`. Hence `ω != 1` in `P`.
+  - The `F_2` calibration kills `ω` at every stage.
+
+### 38.5 Claim display, entry, subsumption and advisories. PASS
+
+- **Claim display.**
+  - Point 1 is Proposition 1.1(1)–(3). Point 2 is Theorem 2.3 and Corollary 2.4. Point 3 is Proposition 3.1 and
+    Corollary 3.2. Point 4 is Section 4. All are as recomputed in 38.1–38.4.
+  - Point 2 cites Theorem 1.1 through `graphs-of-locally-finite-groups-carry-regular-rank-models`, which is
+    ESTABLISHED (Section 29).
+  - The "Payoff" and "Not claimed" paragraphs match Section 7.
+- **Inputs on main.**
+  - `leavitt-unit-group-finitely-presented` is ESTABLISHED (literature import).
+  - `monomial-rank-models-are-hamming-models`, `leavitt-unit-groups-have-no-unstable-k2-at-rank-three` and
+    `graphs-of-locally-finite-groups-carry-regular-rank-models` are ESTABLISHED.
+  - `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre` is ESTABLISHED conditional on its import.
+  - `binary-leavitt-unit-group-is-simple`, `openai-leavitt-unit-nonsofic`,
+    `d-ary-leavitt-groups-nonsofic-over-finite-fields` and `projective-leavitt-unit-groups-mod-scalars-are-nonsofic`
+    each have a proof route. I did not re-check those routes.
+- **Entry** on `binary-complement-corner-has-no-weakly-finite-image` (its lines 74–90). It summarizes Sections 1–4 and
+  7 accurately, except for the rank bullet (advisory 4).
+- **Subsumption scan at `4e7e23aa0d`.** Six phrases hit 133 research files: "closing letter", "close the hexagon",
+  "closes the hexagon", "hexagon closing", "no nontrivial finite quotient" and "kills the closing". I read the claim
+  and route nodes among them by title and hit line.
+  - **Same tool, different complex.** `leavitt-regular-atlas-asymptotic-permutation-cover` (its lines 93–100)
+    excludes exact finite covers of the A8 atlas by the same no-finite-quotient argument, applied to `U_Q`. It is
+    about atlas covers, not the hexagon letter. It may be listed in `distinct_from`.
+  - **Same tool, other statements.** These nodes use the absence of finite quotients for other conclusions:
+    - `binary-leavitt-unit-group-is-weakly-sofic` (weak soficity);
+    - `simple-group-relator-width-in-finite-simple-targets` (relator width);
+    - `large-window-table-groups-present-the-ambient-group` (window screens);
+    - `atlas-rankwise-gap-is-ultraproduct-obstruction` (atlas gaps);
+    - `finite-orbit-indices-miss-twists-without-finite-quotients` (orbit indices);
+    - `thompson-v-not-lef` (LEF).
+  - **Recorded.**
+    - `leavitt-disjoint-cylinder-defects-strictly-submultiplicative` mentions the letter in an entry.
+    - `leavitt-unit-groups-have-no-unstable-k2-at-rank-three` is already in `distinct_from`.
+  - **Everything else.** The remaining hits are hyperbolic, Kazhdan, Rips, Higman, random-complex and Titz–Witzel
+    nodes, plus artifacts. None concerns stage models of the hexagon.
+
+  No duplicate.
+- **Advisories.**
+  1. `C_n` names two groups.
+     - The centralizer `K_n wr Sym(r_n)`: Summary, Proposition 1.1(4), and the coset in Corollary 2.4's last sentence.
+     - The six-piece colimit: Corollary 2.4, Remark 2.5, and claim point 2.
+
+     Rename one, for example `Z_n` for the centralizer.
+  2. The Summary and Remark 2.5 speak of "the finite six-piece colimit `C_n`". `C_n` is a colimit of finite pieces
+     and is itself infinite. Suggested wording: "the six-piece colimit of finite pieces".
+  3. **Route requirements (Section 8).** The claim covers `p = 3`, but the list names only binary inputs.
+     - A route should also require `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre` and
+       `d-ary-leavitt-groups-nonsofic-over-finite-fields`.
+     - It should also require `projective-leavitt-unit-groups-mod-scalars-are-nonsofic`, as long as Proposition 3.1
+       cites it. The claim's point 3 Inputs omit that node too.
+     - Alternatively, the display keeps the ternary half conditional.
+  4. **The entry's rank bullet.** It says "`rk(σ(t) - 1) >= ε > 0` in every monomial rank model", which fails for
+     the trivial model. What is proved:
+     - `rk(σ(t) − 1) > 0` in every monomial rank model with `rk(σ(x_12(1)) − 1) > 0` (Proposition 3.1);
+     - the uniform `ε_p` in Theorem 1.1 models (Corollary 3.2).
+
+     A diagonal ultraproduct gives a gap that is uniform over monomial rank models with
+     `rk(σ(x_12(1)) − 1) >= δ`, for each `δ > 0`. Suppose `σ_k` violate `1/k`. Their ultraproduct over `k` is a
+     monomial rank model with `rk(σ(t) − 1) = 0` and `rk(σ(x_12(1)) − 1) >= δ`, and the proof of Proposition 3.1
+     works over any ultrafilter. The claim display (point 3) is already correct.
+  5. Section 7 attributes to Arzhantseva–Păunescu the question whether linear sofic groups are sofic, from memory.
+     That matches my recollection, but I did not check the source.
+- **Scope.** Sections 2–3 obstruct stage models from closing the letter. They make no rank model trivial, and Section
+  4 exhibits closing models wherever a hypothesis fails. Still OPEN: `binary-complement-corner-has-no-weakly-finite-image`,
+  `binary-leavitt-unit-group-is-f2-linear-sofic`, the gate and Plan 1. The lane may create the route, with advisory 3.
+
+## 39. w7-escape-set follow-up (6b94153534)
+
+Sources:
+- Artifact `four-transvection-escape-set-2026-09-12.md` (blob `bd8af4a3`).
+- The claims `four-transvection-set-escapes-depth-monotone-units` (blob `01226942`),
+  `four-transvection-units-have-a-weakly-finite-symbol-image` (blob `e957dd5f`) and
+  `depth-monotone-units-carry-weakly-finite-nonzero-defect` (blob `2666d2b3`).
+- The entry on `ternary-leavitt-units-have-no-weakly-finite-representation` (blob `275475a0`).
+- The diff against `45282c2142`, read in full: 24 insertions, 15 deletions.
+
+**Verdict: PASS. The advisories of 36.5 are applied, and no statement changed.**
+- **Advisory 1.**
+  - The escape claim's Scope, the symbol claim's `distinct_from` and the first ternary entry now say `S4 ∪ {T}`.
+  - The Scope adds that other five-transvection sets are not covered.
+- **Advisory 2.** The symbol claim's consequence now uses the suggested obstruction wording.
+- **Advisory 3.**
+  - Remark 4.4 now cites Lemma 3.1 and the non-additive models of Theorems 4.1 and 4.3, and says that other
+    non-additive models are undecided.
+  - The defect claim's consequence cites item 4 for the algebra-level case.
+- **Optional note.** The `distinct_from` entry for `unitriangular-data-cannot-assemble-corner-leavitt-families` is
+  added, and it describes that node as 36.5 does.
+- **Status lines.**
+  - The three claims now read ESTABLISHED. They cite their routes and Sections 36.1, 36.2–36.3 and 36.3–36.4, which
+    matches the route verdict lines landed at `89d646844c`.
+  - The artifact header cites Section 36.
