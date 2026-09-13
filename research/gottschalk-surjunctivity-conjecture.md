@@ -6,6 +6,7 @@ title: Every group is surjunctive on every finite-alphabet full shift
 root: true
 goal: true
 refuted_by:
+  - brin-thompson-2v-nonsurjunctive
   - higman-group-nonsurjunctive
   - kun-thom-wreath-lamp-quotient-nonsurjunctive
   - deligne-triple-cover-nonsurjunctive
