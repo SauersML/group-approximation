@@ -285,9 +285,50 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
        - (c) `x.right` sharing an edge with `y.left` behind the cell.
        The manuscript's `Γ_1`, with sides `inv y.right` and `inv x.left`, avoids (c) only. No model test was run.
        Ruling (B): the face set is produced on an O-equivalent copy with legal labels. hs-vanishes builds the spur
-       thickening (the copy), and dgo-analytic added label legality and `PocketPinchLabelledStatement`. No statement
-       of the thickening is on main or in the hs-vanishes report yet, so this lane asked main for its name and shape.
-       The copy must carry `K.walk` to a walk that holds no edge in both directions, in cases (a) to (c).
+       thickening (the copy), and dgo-analytic added label legality and `PocketPinchLabelledStatement`.
+       Q1 answered by main: hs-vanishes' `OuterSpurThickeningStatement` (stated 0a7715b56, closed 36ff632cd) gives a
+       family `S'` over the same `Δ` and cuts, with `e : S.family ≃ S'.family`, O-equivalent, no outer spur, same
+       weight, same target profile and source. Consumption: apply it first, move `a ≠ b` through `e`, and build the
+       walk on `S'.diagram`. That settles (a). (b) and (c) go to leavitt-units.
+       Q2 answered by main: dgo-analytic states the zero-cell merge on the copy (`SectionPocketCutInput`), and
+       sec2-sentences' `Estimating/OsinPocketKeptCell` (492057fb6) works on `S'`.
+   - **Pocket circuit identification: refuted by this lane.** The candidate was to read the pocket face set off a
+     circuit of `boundaryPerm`. A pinch of `x` makes that circuit mix `C_P` and `C_Q`, and a lake makes the gap circuit
+     bound only `P1`. `K.walk` itself is still noncrossing.
+   - **Parity route (main's ruling).**
+     - (A') A duplicate-free closed walk equal to `∂U` is noncrossing, with no planarity. Not rebuilt: it is
+       hull-respell's `BoundaryCycle.isNoncrossingClosedWalk` (Estimating/OsinPocketClosedWalkNoncrossing:106), the
+       same claim as cite-hull's `FaceSetCircuitNoncrossing` (i).
+     - (B) A Z/2 face colouring on a planar map with `col (face (alpha d)) ≠ col (face d) ↔ walkKeep`, by strong
+       induction splitting at a repeated vertex.
+     - (C) `col` is constant on `x` and on `y`, so the walk darts carry one colour `c0`.
+     - (D) `U = {col = c0}` has `∂U = K.walk`, then `toPocketFaceSetOfNoncrossing`.
+   - **(B) and (D) landed with this report** (green probe 0913-142740-85270, base b8231e36d): new module
+     `GGT/VanKampen/ClosedWalkFaceColouring`, unwired. Per the ruling it is a new module, so the five importers of
+     NoncrossingClosedWalkSides are untouched. All declarations are under `#audit_axioms`:
+     ```lean
+     theorem exists_faceColouring (hM : M.IsPlanar) (hne : w ≠ []) (hnodup : w.Nodup)
+         (halpha : ∀ d ∈ w, M.alpha d ∉ w) (hchain) (hcloses) :
+         ∃ col : M.Face → Prop, ∀ d, ¬ (col (M.faceOf (M.alpha d)) ↔ col (M.faceOf d)) ↔ walkKeep M w d
+     theorem exists_faceSet_colouring (…same…) :
+         ∃ faces : Finset M.Face, ∀ d, ¬ (M.faceOf (M.alpha d) ∈ faces ↔ M.faceOf d ∈ faces) ↔ walkKeep M w d
+     theorem colouring_compl (hcol) : ∀ d, ¬ (M.faceOf (M.alpha d) ∈ facesᶜ ↔ M.faceOf d ∈ facesᶜ) ↔ walkKeep M w d
+     def boundaryCycleOfColouring (hne) (hnodup) (hcol) (horient : ∀ d ∈ w, M.faceOf d ∈ faces) : BoundaryCycle M faces
+     theorem exists_boundaryCycle_of_orient (hM) (hne) (hnodup) (halpha) (hchain) (hcloses)
+         (horient : ∀ faces, (hcol for faces) → ∀ d ∈ w, ∀ e ∈ w, (M.faceOf d ∈ faces ↔ M.faceOf e ∈ faces)) :
+         ∃ faces (B : BoundaryCycle M faces), B.cycle = w
+     theorem mem_iff_of_eqvGen (hcol) (hr : ∀ f g, r f g → ∃ d, faceOf d = f ∧ faceOf (alpha d) = g ∧ ¬ walkKeep M w d)
+         (h : Relation.EqvGen r f g) : f ∈ faces ↔ g ∈ faces          -- the generic step of (C)
+     ```
+     Induction step: splitting the walk at a repeated vertex gives two shorter closed walks. Their colourings XOR
+     to a colouring for the whole walk, because no dart lies in both parts (`colour_xor_of_exclusive`).
+   - **Residual** for `SectionPocketFaceSetInput`:
+     - (iii') `nodup`, `alpha_not_mem`, `chain` and `closes` of `K.walk` on the copy. Copy (a) is closed by
+       hs-vanishes; copies (b) and (c) are with leavitt-units.
+     - (C) for the pocket: `col` is constant on the faces of `x` and of `y`, via `Embedded.selectedFaces_connected` and
+       `mem_iff_of_eqvGen` (internal edges of a region are not walk edges). Model tests on the pinched two-gon
+       `[5,3,4,6]` and on the lake complement `[3,1]` are next.
+     - (ii) the kept cell lies in `U`.
    - When hull-euler's C6 Prop arrives, check it against this output.
 
 ## W1 assignment (2026-09-13 ~03:00)
