@@ -53,27 +53,27 @@ open GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides
 section Shapes
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
-  (Delta : DiscDiagram.{u, w, v} W) (x b : List Delta.toCombMap.Dart)
+  (Delta : DiscDiagram.{u, w, v} W)
 
 /-- The pocket walk repeats no vertex and meets no dart together with its reverse. -/
-abbrev PocketWalkSimpleShape : Prop :=
+abbrev PocketWalkSimpleShape (x b : List Delta.toCombMap.Dart) : Prop :=
   ((x ++ b).map Delta.toCombMap.vertexOf).Nodup ∧
     ∀ d ∈ x ++ b, Delta.toCombMap.alpha d ∉ x ++ b
 
 /-- A vertex repeats on the face part of the pocket walk. -/
-abbrev PocketWalkFaceBubbleShape : Prop :=
+abbrev PocketWalkFaceBubbleShape (x _b : List Delta.toCombMap.Dart) : Prop :=
   ¬ (x.map Delta.toCombMap.vertexOf).Nodup
 
 /-- A vertex repeats on the cell part of the pocket walk. -/
-abbrev PocketWalkCellPinchShape : Prop :=
+abbrev PocketWalkCellPinchShape (_x b : List Delta.toCombMap.Dart) : Prop :=
   ¬ (b.map Delta.toCombMap.vertexOf).Nodup
 
 /-- A vertex of the face part of the pocket walk is a vertex of its cell part. -/
-abbrev PocketWalkTouchVertexShape : Prop :=
+abbrev PocketWalkTouchVertexShape (x b : List Delta.toCombMap.Dart) : Prop :=
   ∃ d ∈ x, ∃ e ∈ b, Delta.toCombMap.vertexOf d = Delta.toCombMap.vertexOf e
 
 /-- Some dart of the pocket walk has its reverse on the walk. -/
-abbrev PocketWalkSpurShape : Prop :=
+abbrev PocketWalkSpurShape (x b : List Delta.toCombMap.Dart) : Prop :=
   ∃ d ∈ x ++ b, Delta.toCombMap.alpha d ∈ x ++ b
 
 end Shapes
