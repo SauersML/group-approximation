@@ -9,11 +9,14 @@ requires:
 ---
 
 Put `L = PSL_2(Q_2)`, `A = PSL_2(Z[1/2])`, `K = Stab_L(v_0)`, `K_1 = Stab_L(v_1) = gKg^(-1)`,
-`K_B = K ∩ K_1`. `K(2^j)` is the pointwise fixer in `K` of the ball `B_j(v_0)`, and
-`K_1(2^j) = gK(2^j)g^(-1)`. Then `C_0 = A ∩ K`, `C_1 = A ∩ K_1`, `B = A ∩ K_B`,
-`Γ(2^j) = A ∩ K(2^j)`, `Γ_1(2^j) = A ∩ K_1(2^j)`.
+`K_B = K ∩ K_1`. `K(2^j) = ker(K → PSL_2(Z/2^j))` is the principal congruence subgroup of `K`.
+It is normal in `K` and fixes `B_j(v_0)` pointwise. Put `K_1(2^j) = gK(2^j)g^(-1)`. Then
+`C_0 = A ∩ K`, `C_1 = A ∩ K_1`, `B = A ∩ K_B`, `Γ(2^j) = A ∩ K(2^j)` (principal congruence), and
+`Γ_1(2^j) = A ∩ K_1(2^j)`.
 
-**(TD0).** `B_(R−1)(v_1) ⊆ B_R(v_0)` gives `K(2^R) ⊆ K_1(2^(R−1))`, and symmetrically, so
+**(TD0).** Entrywise,
+`K_1(2^j) = {a ≡ d ≡ 1 mod 2^j, b ∈ 2^(j−1)Z_2, c ∈ 2^(j+1)Z_2}`, so `K(2^R) ⊆ K_1(2^(R−1))`,
+`K_1(2^R) ⊆ K(2^(R−1))` and `K_1(2^(R−1)) ⊆ K(2^(R−2))`. So
 `N_0, N_1 ⊆ Δ_R`. `Γ(2^(R−1))` is normal in `C_0 ⊇ B`, and `Γ_1(2^(R−1))` is normal in
 `C_1 ⊇ B`, so `Δ_R ◁ B`. The Atkin--Lehner element `w = [[0,1],[2,0]]` normalizes `A`, `B` and
 `K_B`, swaps `K ↔ K_1`, `K(2^j) ↔ K_1(2^j)`, and therefore swaps `N_0 ↔ N_1` and fixes `Δ_R`. So
