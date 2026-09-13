@@ -49,6 +49,23 @@ any commutative C\*-algebra.  If established, this refutes
   (`bootstrap-zp-actions-realize-every-cyclotomic-k-module`).  So the witness is
   an equivariant phantom: the cone of that class, which has contractible
   restriction and zero invariant.  No K-theoretic test can detect it.
+* **Refinement of that cone (lane ex-uct-detection-phantom, 2026-09-13,
+  unreviewed).** Let `D` be the cone. It splits as `D = eD ⊕ (1 − e)D`, with
+  `e = N([α_ω])/p` (`zp-restriction-trivial-splits-cellular-plus-phantom`).
+  - `eD` is a retract of the trivial-action algebra `τ(D ⋊ Z_r)`. Here
+    `D ⋊ Z_r` is the cone of the K-isomorphism from a bootstrap model to
+    `O_2 ⋊_α Z_r`. So `eD ≠ 0` exactly when `O_2 ⋊_α Z_r` fails the UCT. A
+    witness of this node lives in the cellular summand.
+  - `(1 − e)D` is a strict equivariant phantom, KK-contractible after both
+    restriction and crossed product. It is the obstruction measured by
+    `zp-restriction-and-crossed-product-detect-kk-g-contractibility`.
+  - `(O_2, α) ∈ B^(Z_r)` iff `O_2 ⋊_α Z_r` satisfies the UCT and `[α_ω] = 1`
+    in `KK^(Z_r)`. For outer `α`, `[α_ω] = 1` iff `α_ω` is asymptotically inner
+    by asymptotically invariant unitary paths
+    (`zp-o2-action-kkg-trivial-iff-invariant-asymptotic-inner`).
+  - So an outer action that is not strongly approximately inner certifies a
+    strict phantom. It does not by itself certify a UCT failure
+    (`outer-zp-actions-on-o2-are-strongly-approximately-inner`).
 * It does not decompose over nuclear UCT algebras (`willett-yu-decomposability-forces-uct`).
   As a trivial-K Kirchberg algebra it has weak complexity rank one but not
   complexity rank one.
