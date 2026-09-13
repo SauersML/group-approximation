@@ -56,6 +56,12 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
   at origin 3c6b4b505. Each carrier takes `hgreendlinger` alone, so every row stays partial. Row
   8097c371f35d keeps ko-closed's two `_closed` carriers.
 
+- `cf3c78b35` (attic 88587566e): docstring marks on `TorsionFreeLeafAssembly`,
+  `TorsionFreeSectionSentences` and `TorsionFreeSectionAssemblyClosedGO`, from systolic-counts'
+  flip list (section "Superseded wrappers"). No statement changed. Probe 0913-133143-40961 is
+  green and all three modules are BUILT. They were already root-reachable, so there is no
+  wire-queue line.
+
 ## Zero-cell pocket merge: the value half (lead ruling ~05:00)
 
 This is the shared producer for the R-cell-free pocket of MultipleEdgeCut and of
@@ -100,7 +106,7 @@ This lane owns the value.
   - given `hwalk`, every embedded boundary rotates the pocket cycle
     (`FaceSetBoundary.exists_cycle_eq_rotate`).
 
-## Residual statements (exact, at origin 8d2201b29)
+## Residual statements (exact, at origin bf7d5994b)
 
 1. OPEN: `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`. It has
    no closed producer on main.
@@ -117,23 +123,28 @@ This lane owns the value.
      slots.
    - Below, "no producer" means that no theorem on origin concludes the Prop. The binder-free
      producers named below carry `#audit_axioms`, not `#audit_closed_axioms`, unless marked closed.
-   - `OsinLemma94SectionStatement` comes from `osinLemma94Section_of_planarPieces`
-     (OsinLemma94PlanarPieces.lean:441, root-imported):
+   - `OsinLemma94SectionStatement` comes from `osinLemma94Section_of_residuals`
+     (OsinLemma94SectionResiduals.lean, hull-unbound, 4002b9371, not root-imported). It passes the
+     closed pieces to `osinLemma94Section_of_planarPieces` (OsinLemma94PlanarPieces.lean:441,
+     root-imported). Only the polygon count and Case 1 stay hypotheses:
      - `OsinLemma94AntiparallelMetricStatement` is closed (`osinLemma94AntiparallelMetric`).
-     - `OsinLemma94PolygonRealizationInput` comes from `osinLemma94PolygonRealizationInput_of_pieces`
-       (OsinLemma94PolygonRealization.lean:151). Its open leaf is `OsinLemma94PolygonPartitionInput`
-       (no producer; ghw-assembly).
-       - CellArcs has the binder-free `osinLemma94CellArcsInput_holds`.
-       - BoundaryArcs is closed (`osinLemma94BoundaryArcsInput`).
-       - CuttingChains goes through `chainRespellInput_of_pieces` and
-         `separatingPathRemovalInput_of_pendant` to the binder-free `cornerInsertionInput`,
-         `pendantPathRemovalInput` and `quasiGeodesicRespellInput`.
-     - `OsinLemma94PolygonCountInput` comes from `osinLemma94PolygonCountInput_of_sideBudget`, over
-       `OsinLemma94PolygonSideBudgetInput` (no producer; hull-count94).
-     - `OsinLemma94CaseOneInput` is `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk` on
-       origin. Patch 10 (f) is overruled, so `_of_walk` is not deleted. It gains an
-       `OsinLemma94CaseOneSameCellStatement` binder (theoremc-retire). That Prop is not redundant
-       after patch 09 (d).
+     - `OsinLemma94PolygonRealizationInput` is closed (`osinLemma94PolygonRealizationInput`,
+       `#audit_closed_axioms`, 4002b9371). It applies `osinLemma94PolygonRealizationInput_of_pieces`
+       to the binder-free respelling surgery, the arcs and ghw-assembly's
+       `osinLemma94PolygonPartitionInput`:
+       - OsinLemma94PolygonPartition.lean:145, 746028b24;
+       - probe 0913-132334-2532 green, `#audit_closed_axioms`, not root-imported.
+     - `OsinLemma94PolygonCountInput` comes from `osinLemma94PolygonCountInput_of_sideBudget`
+       (OsinLemma94PolygonCount.lean:98), over `OsinLemma94PolygonSideBudgetInput` (no producer;
+       hull-count94).
+     - `OsinLemma94CaseOneInput`:
+       - On origin, `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk`
+         (OsinUnboundCaseOneRun.lean:78) takes no open binder.
+       - theoremc-retire's `osinLemma94CaseOneInput_of_walk_of_sameCell` (:89, 3292f7a20) also
+         takes `OsinLemma94CaseOneSameCellStatement` (OsinUnboundCaseOneFace.lean:466, no
+         producer).
+       - Patch 10 (f) is overruled, so `_of_walk` is not deleted. After patches 01-10 it gains the
+         same-cell binder, and that Prop is not redundant after patch 09 (d).
      - `OsinLemma94CaseTwoInput` is closed by `osinLemma94CaseTwoInput`:
        - OsinLemma94CaseTwo.lean, sec5-sentences, e0e94015d;
        - probe 0913-131149-5355 green, `#audit_closed_axioms`, not root-imported yet.
@@ -162,7 +173,7 @@ This lane owns the value.
        - It uses `cornerTwoGonInput` (90245333d).
      - The one leaf with no producer is C6′ `OsinTwoGonHoldsSectionStatement` (debt-conditional).
    - `OsinSectionPocketCutSectionStatement` comes from `osinSectionPocketCutSection_of_pieces`
-     (OsinPocketPieces.lean:502, root-imported).
+     (OsinPocketPieces.lean:521, root-imported).
      - `PocketRegionOfSimpleStatement` is closed (`pocketRegionOfSimple`).
      - The collar goes through `pocketCollarStatement_of_geodesicCollar` to `GeodesicCollarStatement`.
      - The pinch goes through `pocketPinchLabelledStatement_of_pocketPinchStatement` and
@@ -199,6 +210,38 @@ This lane owns the value.
 
 Every other input is already closed: DGO 2.35, GO 1.1, Chiodo, Minasyan–Osin, the
 free-product union geometry, and the hard direction of Osin 1.1.
+
+## Superseded wrappers (systolic-counts' flip list, routed by the lead)
+
+systolic-counts listed 86 declarations blocked only by off-route Props, and no counted census row
+among them. The Props are `EstimatingUnboundOutputStatement` (refuted at `.{0, 0, 0}`),
+`EstimatingSelectionConstructionStatement`,
+`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement` and
+`HullSC.RelativeGreendlingerStatement`. Sixteen of the declarations are in this lane's modules,
+and each gets a docstring mark only, with no statement change and no deletion:
+- `TorsionFreeLeafAssembly`, nine declarations:
+  - seven name a least-area form with the same conclusion:
+    `HullSC.hullLemma49KernelPowerStatement_of_leastAreaGreendlinger`,
+    `HullSC.hullOneStepStatement_of_leastAreaLeaves` and five forms in
+    `TorsionFreeLeastAreaAssembly`;
+  - `relativeGreendlingerQuasiGeodesicSpelling_of_greendlinger` names its least-area counterpart,
+    whose conclusion differs;
+  - `hullLemma44Canonical_of_leaves` has no least-area form, so its docstring names the nearest,
+    `HullSC.torsionFreeHullCanonicalQuotientStatement_of_leastAreaLeaves`.
+- `TorsionFreeSectionSentences`, six declarations:
+  - three name stronger forms in `TorsionFreeHullPrintedLeastArea`, with no torsion hypothesis;
+  - three name the same-conclusion forms in `TorsionFreeSectionSentencesLeastArea`.
+- `TorsionFreeSectionAssemblyClosedGO`: `manuscriptRegularNonMFAlgebra_of_leaves_closedCitations`
+  names `manuscriptRegularNonMFAlgebra_of_leastAreaLeaves_closedCitations`.
+- Both module docstrings now say that `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicStatement` has
+  no producer on main, while the embedded bridge is closed.
+
+The other items on the list are in modules this lane does not own:
+- `HullSCLemma49PowerDiagramFromComponents` and `HullSCLemma44Canonical` belong to sec2-sentences.
+- `HullSCOneStepQuasiGeodesicLeaves` belongs to hull-respell.
+- The rest have no owner in the roster.
+- systolic-counts also flags the stale docstring at `Estimating/Assembly.lean:818` ("Still open, and
+  not addressed here"). That module is not this lane's either.
 
 ## Flips (ownership final, roster ~06:36)
 
