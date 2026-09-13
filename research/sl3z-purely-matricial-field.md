@@ -24,20 +24,33 @@ norms.  A positive answer makes `C*_r(SL_3(Z))` MF and so answers
 * **Refute by one invariant-vector witness, as for `SL_4(Z)`.**  Dead for every
   finite family of witnesses: `sl3z-has-no-invariant-vector-witnesses`.  The
   block `SL_2` fails on Deligne's representations (MdlS Example 2.2); the
-  principal `SL_2` fails on `Ind_P(mu (x) sigma_theta)` at `p == 1 mod 4`;
-  Zariski-dense subgroups fail at almost every prime.  At `p = 7` four
-  representations of `SL_3(F_7)` miss both the block and the principal `SL_2`
-  (exact census in the artifact of that claim).  A refutation must detect norm
-  excess without an eigenvalue at the top of the spectrum.
+  principal `SL_2` fails at every prime `p >= 5` on the degenerate principal
+  series `Ind_P(eta)` with `eta` odd, `eta != sgn`; Zariski-dense subgroups fail
+  at almost every prime.  Single levels already escape both main witnesses:
+  four representations of `SL_3(F_7)` and four of `SL_3(Z/9)` have no fixed
+  vector for the block or the principal `SL_2` (exact census in the artifact of
+  that claim).  A refutation must detect norm excess without an eigenvalue at
+  the top of the spectrum.
 * **Deligne's representations as the strongly convergent sequence.**  Dead:
   `deligne-sl3-representations-have-principal-sl2-invariants` gives them a
   2-dimensional principal-`SL_2` fixed space and norm `4` on a group-ring
-  element whose regular norm is `< 4`.
+  element whose regular norm is `< 4`.  The next candidates are the components
+  of cubic-twist-invariant cuspidals at `p == 1 mod 3` that miss both witnesses.
 * **Nontrivial parts of congruence regular representations.**  Dead in the
   plain form: `l^2(SL_3(Z/N))` contains every irreducible representation of
   the quotient, including those with block-`SL_2` fixed vectors.  A selection
   of irreducible constituents is necessary; which selection could work is
   unknown.
+* **Wassermann's Kazhdan-projection argument as an obstruction.**  Does not
+  refute.  For a strongly convergent `rho = (+)_i rho_i` put
+  `B = C*_rho(SL_3(Z))` and `I = B cap (+)_i M_(N_i)`, so `B/I = C*_r(SL_3(Z))`.
+  The spectral projection `p` of `|S|^(-1) sum_s rho(s) (x) conj rho(s)` at `1`
+  lies in `B (x)_min conj B`, is not in `I (x)_min conj B` (its diagonal blocks
+  have norm 1), and maps to `0` in `C*_r(SL_3(Z)) (x)_min conj B` by Fell
+  absorption and Kesten.  This only says that the extension
+  `0 -> I -> B -> C*_r(SL_3(Z)) -> 0` is not locally split, as in
+  `kazhdan-fd-block-representation-algebras-are-not-exact`; it contradicts PMF
+  only if `C*_r(SL_3(Z))` had the local lifting property.
 * **Random models.**  No natural random model: by superrigidity and the
   congruence subgroup property every finite-dimensional unitary representation
   has finite congruence image, so the polynomial method's random permutation

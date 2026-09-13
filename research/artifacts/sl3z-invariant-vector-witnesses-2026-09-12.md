@@ -122,6 +122,34 @@ So `pi^(Omega_q) = 0`, and every constituent of `pi|_(SL_3)` lacks
 `Omega_q`-fixed vectors.  The degree is `(q-1)(q^2+q+1)` up to the splitting
 of the restriction.
 
+## 2b. Lemma 2': odd degenerate principal series (every prime `q >= 5`)
+
+Let `q >= 5` be prime and `eta` a character of `F_q^x` with `eta(-1) = -1` and
+`eta != sgn` (there are `(q-1)/2` odd characters and at most one is quadratic).
+Let `P_1 = P cap SL_3(F_q)` stabilize the line `L` and put
+
+```text
+pi_eta = Ind_(P_1)^(SL_3(F_q)) (p -> eta(p|_L)),          degree q^2 + q + 1.
+```
+
+**Claim.** `pi_eta^(Omega_q) = 0`.
+
+By Mackey over the three `Omega_q`-orbits of `P^2(F_q)`, the orbit of `x`
+contributes `1` if `h -> eta(h|_(L_x))` is trivial on `Omega_x`, else `0`.
+
+* Conic `[x^2]`: the Borel `(a, b; 0, a^(-1))` acts on `x^2` by `a^2`, so the
+  condition is `eta = 1` on squares, i.e. `eta in {1, sgn}`.  Fails.
+* Exterior `[xy]`: `(0, c; -c^(-1), 0)` sends `xy` to `-xy`, so the condition
+  needs `eta(-1) = 1`.  Fails.
+* Interior `[N]`, `N` the norm form of `F_(q^2)`: `g(v) = c v^q` with
+  `N(c) = -1` lies in `SL_2(F_q)`, normalizes the anisotropic torus, and
+  `N(gv) = -N(v)`; the condition needs `eta(-1) = 1`.  Fails.
+
+So `pi_eta` has no principal-`SL_2` fixed vector.  (For even `eta` the count is
+`[eta in {1, sgn}] + 2`.)  Irreducibility is not needed: every constituent
+inherits the vanishing.  The line `[e_3]` is fixed by the block `SL_2`, so
+`pi_eta` does have block fixed vectors.
+
 ## 3. Proof of Theorem A
 
 Let `H <= SL_3(Z)` be nonamenable and finitely generated (see the last step)
@@ -148,14 +176,15 @@ and `Z` its Zariski closure over `Q`.
    `Q`, indefinite because `H` is infinite.  For almost all `p`, `Q` is
    nondegenerate mod `p`, all such forms are similar, `H mod p` contains
    `Omega_Q(F_p)` (strong approximation for `Spin_Q`), and after conjugation
-   Lemma 2 gives, for `p == 1 mod 4`, representations with no `H`-fixed vector.
+   Lemma 2' gives, for every such `p >= 5`, representations with no `H`-fixed
+   vector (Lemma 2 gives a second family when `p == 1 mod 4`).
 
 Now let `H_1, ..., H_k` be given.  By the Tits alternative each contains a
 nonabelian free subgroup `F_j`; a vector fixed by `H_j` is fixed by `F_j`, so it
 suffices to treat the finitely generated `F_j`, each of one of the three types.
 Choose distinct primes `p_1, ..., p_k`, larger than 5 and than every exceptional
-prime of the strong approximation statements for all `F_i`, with
-`p_j == 1 mod 4` when `F_j` is of type 3, and an irreducible `pi_j` of
+prime of the strong approximation statements for all `F_i`, and an irreducible
+`pi_j` of
 `SL_3(F_(p_j))` with `pi_j^(F_j) = 0` as above.  Put
 `pi = pi_1 (x) ... (x) pi_k`, irreducible for
 `SL_3(Z/p_1...p_k) = prod_j SL_3(F_(p_j))`.
@@ -213,6 +242,7 @@ the missing ones.
 | 5 | 372000 | 30 | 4, `32674 = 2*124^2 + 2*31^2` | 10, `92160 = 10*96^2` | 0 |
 | 7 | 5630688 | 64 | 6, `43362 = 4*96^2 + 2*57^2` | 24, `1548288` | 4, `36864 = 4*96^2` |
 | 4 | 43008 | 30 | 9, `4050` | 13, `8803` | 9 |
+| 9 | 36846576 | 127 | 8, `196850` | 58, `9221976` | 4, `82944 = 4*144^2` |
 
 Readings (the decompositions of `sum d^2` are the natural ones in the degree
 list of `SL_3(F_q)`, not separately certified):
@@ -223,10 +253,17 @@ list of `SL_3(F_q)`, not separately certified):
   representations are not missed, matching Lemma 1.
 * `n = 5`: the two degree-124 misses are the Lemma 2 family
   (`(q-1)(q^2+q+1) = 124`; two classes of such `theta` up to twist).  Two
-  degree-31 representations (`q^2+q+1`) are also missed.
+  degree-31 representations (`q^2+q+1`) are also missed: the Lemma 2' family
+  for the two odd characters of order 4.
 * `n = 7` (`3 | q-1`): four degree-96 components of the split cuspidal
   representations (`(q-1)(q^2-1)/3`) have no fixed vector for either subgroup.
-  So even one prime level has representations escaping both witnesses.
+  So even one prime level has representations escaping both witnesses.  Lemma 1
+  explains it: a cuspidal of `GL_3(F_7)` invariant under the cubic twist
+  restricts to three components that share a 2-dimensional principal-`SL_2`
+  fixed space, so at least one component has none, and no component has a
+  block fixed vector.  The two degree-57 misses are the Lemma 2' family (odd
+  characters of order 6).
+* `n = 9`: four degree-144 representations of `SL_3(Z/9)` miss both subgroups.
 * Rank mod a prime is a lower bound for the rank over `Q`; two unrelated primes
   agree in every run.
 
