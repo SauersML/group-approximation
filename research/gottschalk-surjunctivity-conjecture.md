@@ -803,3 +803,13 @@ force zero Rokhlin supremum there (route
 `bernoulli-rokhlin-entropy-maximal-for-every-group`. Artifacts:
 `research/artifacts/amenable-extension-surjunctivity-transfer-2026-09-12.md`,
 `research/artifacts/quantitative-surjunctivity-rokhlin-markers-2026-09-12.md`.
+
+**Final synthesis of the team region (2026-09-12, wrap-up, w3-strategist-gate).**
+`research/artifacts/gottschalk-final-synthesis-2026-09-12.md` records where the team
+stopped, root by root for all ten refuted_by roots: what a verifier section passed (with
+commits), what is complete on paper and held open, what is dead, the firewalls and what
+each rules out, the rank-four gate family (route
+`leavitt-el3-triviality-via-rank-four-cuntz-family`), and the verification queue at
+wrap-up. It changes no node's status, so the goal and every root stay OPEN. The one
+ranked next lead is `four-transvections-and-x23-force-defect-vanishing` (open). It
+extends `research/artifacts/gottschalk-region-synthesis-2026-09-12.md`.
