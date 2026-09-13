@@ -11,8 +11,10 @@ artifacts:
 ---
 
 **ESTABLISHED (2026-09-12)** through
-`polynomial-parameter-affine-groups-are-self-similar-proof`. Not independently
-reviewed.
+`polynomial-parameter-affine-groups-are-self-similar-proof`. ~~Not independently
+reviewed.~~ *Reviewed (lane `bh-poly-linear-review`, 2026-09-12):* the state formula,
+the divisibility by `p` in `R^n`, faithfulness and Zaremsky's definition were
+checked, and no correction was needed.
 
 **Setting.**
 - Let `m >= 1`, `k >= 0`, `R = Z[1/m][t_1,...,t_k]` and `n >= 1`.
