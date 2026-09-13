@@ -47,7 +47,7 @@ registry submission certify something other than what it appears to:
    than review, and nothing else here looks at them.
 
 6. **`formalization.yaml` drifts out of the registry's mechanical minimum** --
-   at most two arXiv classes, a nonempty `project.description` (which is the
+   at most eight arXiv classes, a nonempty `project.description` (which is the
    published abstract), and a source list declaring exactly one result origin.
    It must also publish, in `status.main_results`, every theorem every
    configuration submits, against that configuration: a submission surface the
@@ -688,10 +688,10 @@ def check_metadata(root: Path, pairs: list[Pair], f: Findings) -> None:
 
     classification = data.get("classification") or {}
     arxiv = classification.get("arxiv")
-    if not (isinstance(arxiv, list) and 1 <= len(arxiv) <= 2
+    if not (isinstance(arxiv, list) and 1 <= len(arxiv) <= 8
             and len(set(arxiv)) == len(arxiv)):
         f.add(f"formalization.yaml: classification.arxiv is {arxiv!r}; the "
-              "registry accepts one or two distinct official arXiv classes")
+              "registry accepts one to eight distinct official arXiv classes")
     msc = classification.get("msc2020")
     if not (isinstance(msc, list) and 1 <= len(msc) <= 8
             and len(set(msc)) == len(msc)):
@@ -824,7 +824,7 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
     ("bowen-chapman comparator permitting a fourth axiom",
      "Palomar/comparator-bowen-chapman.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
-    ("three arXiv classes", "one or two distinct official arXiv"),
+    ("nine arXiv classes", "one to eight distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
     ("LIX result dropped from the metadata", "is not listed in status.main_results"),
     ("bowen-chapman result dropped from the metadata",
@@ -832,7 +832,7 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
 )
 
 YAML_CALIBRATIONS = {
-    "three arXiv classes",
+    "nine arXiv classes",
     "original result with a substantive source",
     "LIX result dropped from the metadata",
     "bowen-chapman result dropped from the metadata",
@@ -933,9 +933,10 @@ def plant(name: str, root: Path) -> None:
         (root / "Palomar" / "LIXChallenge.olean").write_bytes(b"\0")
         subprocess.run(["git", "add", "Palomar/LIXChallenge.olean"], cwd=root,
                        capture_output=True, check=False)
-    elif name == "three arXiv classes":
-        _edit_metadata(root, "  arxiv: [math.OA, math.KT]",
-                       "  arxiv: [math.OA, math.KT, math.LO]")
+    elif name == "nine arXiv classes":
+        _edit_metadata_line(root, "  arxiv: [",
+                            "  arxiv: [math.OA, math.KT, math.LO, math.GR, "
+                            "math.DS, math.AT, math.CT, math.RA, math.NT]")
     elif name == "original result with a substantive source":
         _edit_metadata(root, "    relationship: background",
                        "    relationship: formalizes", count=1)
@@ -965,6 +966,22 @@ def _edit_metadata(root: Path, old: str, new: str, count: int = 1) -> None:
     text = path.read_text()
     assert old in text, old
     path.write_text(text.replace(old, new, count))
+
+
+def _edit_metadata_line(root: Path, prefix: str, new: str) -> None:
+    """Replace the one `formalization.yaml` line starting with `prefix`.
+
+    A planter pinned to a line's exact current text turns any edit to the
+    metadata into a self-test crash, which is a calibration failing for a reason
+    that has nothing to do with the check it calibrates.  The classification is
+    edited whenever a second result is added, so that line is found by its key.
+    """
+    path = root / "formalization.yaml"
+    lines = path.read_text().splitlines(keepends=True)
+    hits = [i for i, line in enumerate(lines) if line.startswith(prefix)]
+    assert len(hits) == 1, (prefix, len(hits))
+    lines[hits[0]] = new + "\n"
+    path.write_text("".join(lines))
 
 
 def copy_surface(destination: Path) -> None:

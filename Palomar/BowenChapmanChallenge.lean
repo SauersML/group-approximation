@@ -11,15 +11,18 @@ import Mathlib.GroupTheory.Perm.Basic
 # Bowen–Chapman Problem 1.1: a surjunctive group that is not sofic
 
 L. Bowen and M. Chapman, *Surjunctivity does not characterize cosoficity of
-invariant random subgroups* (arXiv:2511.06586), print as Problem 1.1, verbatim:
+invariant random subgroups* (arXiv:2511.06586), print as Problem 1.1, with the
+references [Gro99, Wei00] to Gromov and Weiss, verbatim:
 
 > Are all surjunctive groups sofic? Namely, does surjunctivity characterize
 > soficity?
 
 A group is surjunctive when every injective cellular automaton over it, with a
 finite palette, is surjective.  Gromov and Weiss proved that every sofic group
-is surjunctive; Problem 1.1 asks for the converse.  Bowen and Chapman pose it for
-a finitely generated group and a finite set of colours.
+is surjunctive, and Bowen and Chapman present Problem 1.1 as arising from their
+work.  Arzhantseva and Gal (arXiv:1312.7682) had recorded as open whether a
+non-sofic surjunctive group exists.  Bowen and Chapman work with finitely
+generated groups and finite sets of colours.
 
 The two theorems below answer **no**:
 

@@ -2,24 +2,51 @@
 version: "v0.4"
 
 project:
-  name: "A Simple C*-Algebra That Is Not K1-Injective"
+  name: >-
+    A Surjunctive Group That Is Not Sofic, and a Simple C*-Algebra That Is Not
+    K1-Injective
   description: >-
-    This project formalizes, in Lean 4 over Mathlib, a negative answer to the
-    question whether every unital simple C*-algebra is K1-injective, which Blackadar's K-Theory for Operator Algebras (1998)
-    records as open and which Schafhauser, Tikuisis and White pose as Problem
-    LIX of "Nuclear C*-algebras: 99 problems" (arXiv:2506.10902). The
-    counterexample is a separable simple unital C*-algebra A, an inductive
-    limit of corner algebras of matrices over C(X), with a unitary u that is
-    not in the connected component of 1 in U(A) although diag(u, 1) is in the
-    connected component of 1 in U(M2(A)). So the class of u vanishes already
-    at the first stabilisation.
+    This project formalizes, in Lean 4 over Mathlib, negative answers to two
+    open questions, one on finite approximation of groups and one on nonstable
+    K-theory.
+
+    Gromov and Weiss proved that every sofic group is surjunctive. The converse
+    is recorded as open by Arzhantseva and Gal in 2013 and printed as Problem
+    1.1 by Bowen and Chapman in 2025 (arXiv:2511.06586): are all surjunctive
+    groups sofic? The answer is no, already for a finitely generated group. The
+    witness is the symmetric double of the pair
+    Γ = EL₃(𝔽₂[x₁, x₂, x₃]) ≤ G = EL₃(𝔽₂[x₁^±¹, x₂^±¹, x₃^±¹]) ⋊ EL₃(ℤ), the
+    q = 2, r = d = 3 member of the family in Kun and Thom's Theorem E, with the
+    elementary group EL₃(ℤ) in place of SL₃(ℤ) acting by monomial substitution.
+    Reducing exponents modulo n makes G residually finite, so G is surjunctive,
+    and the development proves that the double G *_Γ G of a surjunctive group
+    is surjunctive over every subgroup (isSurjunctive_symmetricDouble in
+    GroupApproximation/Dynamics/DoubleFinitarySite.lean). With Γ trivial this
+    is the free product G * G, a case of the product question that Arzhantseva
+    and Gal record as open, citing Weiss (2000); Doucha and Gismatullin still
+    state the free-product case ℤ * G as a conjecture (Groups Geom. Dyn. 16
+    (2022), Conjecture 3.12), and we have found no later resolution. Both G and
+    Γ have property (T), and Γ is infranormal in G without being normal; for
+    such a pair Kun and Thom's Theorem A makes the double nonsofic, and their
+    centralizer normalization theorem (arXiv:2608.06222, Theorem 4.1) is proved
+    here in a general sequential form rather than assumed.
+
+    Blackadar's K-Theory for Operator Algebras (1998) records as open whether
+    every unital simple C*-algebra is K1-injective, and Schafhauser, Tikuisis
+    and White pose the question as Problem LIX of "Nuclear C*-algebras: 99
+    problems" (arXiv:2506.10902). The counterexample is a separable simple
+    unital C*-algebra A, an inductive limit of corner algebras of matrices over
+    C(X), with a unitary u that is not in the connected component of 1 in U(A)
+    although diag(u, 1) is in the connected component of 1 in U(M2(A)). So the
+    class of u vanishes already at the first stabilisation.
   authors: [Sauers]
   responsible_maintainers: [SauersML]
   license: Apache-2.0
 
 classification:
-  arxiv: [math.OA, math.KT]
-  msc2020: ["46L05", "46L80", "55R40"]
+  arxiv: [math.GR, math.DS, math.OA, math.KT]
+  msc2020: ["20E06", "20E22", "20F65", "22D55", "37B15",
+            "46L05", "46L80", "55R40"]
 
 sources:
   - title: A simple C*-algebra that is not K1-injective
@@ -38,6 +65,38 @@ sources:
       public repository on 2026-09-05 04:40 UTC (fb38f13ad), posted publicly
       on 2026-09-07 (https://x.com/Sauers_/status/2096961149770043897), and
       its Lean endpoint not_problemLIX landed on 2026-09-07 (aa9ba0148).
+
+  - title: A finitely generated surjunctive group that is not sofic
+    type: original-proof
+    relationship: other
+    contributors:
+      - name: Astra
+        role: solved the problem, using a custom proof tool
+      - name: Claude (Anthropic)
+        role: >-
+          wrote all the prose: the narrative fields of this file for this
+          result and the docstrings of the Palomar Bowen-Chapman modules
+    note: >-
+      The negative answer to Problem 1.1, the question checked by
+      Palomar/comparator-bowen-chapman.json, is first presented in this project.
+      Arzhantseva and Gal record the question as open in 2013, twelve years
+      before Bowen and Chapman print it as Problem 1.1: "It is still unknown
+      whether every group is surjunctive and whether there exists a non-sofic
+      surjunctive group" (Ann. Math. Blaise Pascal 27 (2020), p. 127;
+      arXiv:1312.7682 v1, 2013-12-30). Kun and Thom supply the nonsoficity
+      mechanism, which is reproved here down to their centralizer normalization
+      theorem rather than assumed; the new ingredient is the surjunctivity
+      half, Dynamics.DoubleFinitarySite.isSurjunctive_symmetricDouble, that the
+      symmetric double of a surjunctive group is surjunctive over every
+      subgroup, whose trivial-subgroup case gives that G * G is surjunctive
+      whenever G is. The argument was first recorded in this public repository
+      on 2026-09-12 03:24:37 UTC (05a8aff7a), through the permutational wreath
+      product (Z/2) wr_{G/Γ} G, with the group double recorded as a second
+      witness the same day at 04:43 UTC (dd87a6b2b); the Lean endpoint
+      GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic landed
+      at 22:43:16 UTC (92ad0059d) and the Palomar surface at 22:48:48 UTC
+      (c1e3df1ef). That postdates Kun and Thom's v2 and Bowen and Chapman's v1
+      of 2025-11-10, and no earlier or independent answer was found.
 
   # Background for the LIX result: the problem and its history, the positive
   # results the counterexample had to avoid, the construction's ancestry and
@@ -252,25 +311,98 @@ sources:
       Independent solution of Problem LIX, posted 2026-09-08, by a different
       method; not used here.
 
+  # Background for the Bowen-Chapman result: where the question was first
+  # recorded and where it is printed as Problem 1.1, the two definitions the
+  # challenge renders, the nonsofic mechanism and the explicit pair it is run
+  # at, and the other nonsofic constructions.  The rows marked "other" are
+  # inputs this development reproves in Lean rather than assumes; nothing is
+  # imported from any of them.
+
   - title: Surjunctivity does not characterize cosoficity of invariant random subgroups
     authors: [Lewis Bowen, Michael Chapman]
     year: 2025
     type: paper
     id: https://arxiv.org/abs/2511.06586
+    location: Problem 1.1
     relationship: background
     note: >-
-      Poses Problem 1.1, whether all surjunctive groups are sofic, and answers
-      the analogous question for invariant random subgroups of free groups.
+      Prints the question answered here as Problem 1.1 ([Gro99, Wei00]), "Are
+      all surjunctive groups sofic? Namely, does surjunctivity characterize
+      soficity?", presenting it as a problem arising from the work of Gromov
+      and Weiss, for finitely generated groups and finite sets of colours
+      (section 1, footnote 1), which is the setting of
+      BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic. The paper's
+      own Theorem 1.2 answers the analogous question for invariant random
+      subgroups of a finitely generated free group, which leaves the question
+      for groups untouched.
+
+  - title: On approximation properties of semidirect products of groups
+    authors: [Goulnara Arzhantseva, Światosław R. Gal]
+    year: 2020
+    type: paper
+    id: https://doi.org/10.5802/ambp.386
+    location: p. 127
+    relationship: background
+    note: >-
+      Ann. Math. Blaise Pascal 27(1):125-130; arXiv:1312.7682, v1 2013-12-30.
+      Page 127 carries the earliest statement found of the question answered
+      here, twelve years before Bowen and Chapman print it as Problem 1.1: "It
+      is still unknown whether every group is surjunctive and whether there
+      exists a non-sofic surjunctive group." The paper proves that a split
+      extension with a finitely generated residually finite kernel and a
+      surjunctive quotient is surjunctive, which settles the direct product of
+      a surjunctive group with the integers, and records on page 128,
+      attributing the question to Weiss 2000, that the product of two arbitrary
+      surjunctive groups remains open for direct and free products alike, the
+      free product with the integers included. The free-product case was still
+      stated as a conjecture by Doucha and Gismatullin in Groups Geom. Dyn. 16
+      (2022), Conjecture 3.12, and we have found no later resolution. Their
+      split-extension theorem is an alternative route to surjunctivity of the
+      ambient group and is not the route taken here: this development proves
+      the ambient group residually finite outright.
+
+  - title: On dual surjunctivity and applications
+    authors: [Michal Doucha, Jakub Gismatullin]
+    year: 2022
+    type: paper
+    id: https://doi.org/10.4171/GGD/681
+    location: Conjecture 3.12
+    relationship: background
+    note: >-
+      Groups Geom. Dyn. 16 (2022), 943-961; arXiv:2008.10565, where the
+      conjecture is numbered 3.10. Conjectures that the free product of the
+      integers with a surjunctive group is surjunctive, and likewise for dual
+      surjunctivity, which is the free-product case Arzhantseva and Gal record
+      as open, in print and unresolved twelve years later.
 
   - title: Some general dynamical notions
     authors: [Walter Gottschalk]
     year: 1973
     type: paper
     id: https://doi.org/10.1007/BFb0061728
+    location: pages 120-125
     relationship: background
     note: >-
-      Recent Advances in Topological Dynamics, Lecture Notes in Mathematics,
-      120-125. Introduces surjunctivity.
+      Recent Advances in Topological Dynamics, Lecture Notes in Mathematics
+      318, 120-125. Introduces surjunctivity and the surjunctivity conjecture,
+      and is the published record of Lawton's theorem that residually finite
+      groups are surjunctive.
+
+  - title: Note on symbolic transformation groups
+    authors: [Wayne Lawton]
+    year: 1972
+    type: other
+    id: Notices of the American Mathematical Society 19 (1972), A-375
+    relationship: background
+    note: >-
+      The abstract to which Gottschalk and, after him, Ceccherini-Silberstein
+      and Coornaert credit the theorem that residually finite groups are
+      surjunctive. That theorem is what makes the witness surjunctive, and it
+      is proved in this development as
+      Surjunctivity.isSurjunctive_of_residuallyFinite: the ambient group is
+      residually finite, hence surjunctive, and surjunctivity passes to the
+      symmetric double. The 1972 abstract is not available online, and the
+      attribution here is taken from those two sources.
 
   - title: Endomorphisms of symbolic algebraic varieties
     authors: [Misha Gromov]
@@ -279,7 +411,9 @@ sources:
     id: https://doi.org/10.1007/PL00011162
     relationship: background
     note: >-
-      J. Eur. Math. Soc. 1(2):109-197. Sofic groups are surjunctive.
+      J. Eur. Math. Soc. 1(2):109-197. Sofic groups are surjunctive, the
+      implication whose converse Problem 1.1 asks about. Bowen and Chapman
+      credit Problem 1.1 to this paper and to Weiss's.
 
   - title: Sofic groups and dynamical systems
     authors: [Benjamin Weiss]
@@ -287,69 +421,151 @@ sources:
     type: paper
     relationship: background
     note: >-
-      Sankhya Ser. A 62(3):350-359. Names sofic groups and proves that they
-      are surjunctive.
+      Sankhya Ser. A 62(3):350-359. Names sofic groups and proves that they are
+      surjunctive. Bowen and Chapman credit Problem 1.1 to this paper and to
+      Gromov's, and Arzhantseva and Gal credit the free-product surjunctivity
+      question to it.
 
-  - title: Nonsofic wreath products of residually finite groups
-    authors: [Gabor Kun, Andreas Thom]
-    year: 2026
+  - title: Sofic groups and direct finiteness
+    authors: [Gabor Elek, Endre Szabo]
+    year: 2004
     type: paper
-    id: https://arxiv.org/abs/2608.06222
+    id: https://doi.org/10.1016/j.jalgebra.2004.06.023
     relationship: background
     note: >-
-      Theorem A (v3, 2026-08-20): for an infranormal, non-normal pair of
-      Kazhdan groups, the generalized wreath product and the group double are
-      nonsofic. The centralizer normalization theorem it rests on (Theorem 4.1)
-      is proved in this development at the explicit pair used here.
+      J. Algebra 280(2):426-434. The permutation form of soficity, with the
+      normalized Hamming distance on a finite set, that the challenge renders
+      as IsSoficGroup.
 
-  - title: Inapproximability of actions and Kazhdan's property (T)
-    authors: [Gabor Kun, Andreas Thom]
-    year: 2019
+  - title: "Hyperlinear and sofic groups: a brief guide"
+    authors: [Vladimir G. Pestov]
+    year: 2008
     type: paper
-    id: https://arxiv.org/abs/1901.03963
+    id: https://doi.org/10.2178/bsl/1231081461
     relationship: background
     note: >-
-      The expander-centralizer theorem, proved in this development.
-
-  - title: Property (T) for noncommutative universal lattices
-    authors: [Mikhail Ershov, Andrei Jaikin-Zapirain]
-    year: 2010
-    type: paper
-    id: https://doi.org/10.1007/s00222-009-0218-2
-    relationship: background
-    note: >-
-      Invent. Math. 179(2):303-347. Property (T) for elementary groups of rank
-      at least three over finitely generated rings, proved in this development.
-
-  - title: On approximation properties of semidirect products of groups
-    authors: [Goulnara Arzhantseva, Światosław R. Gal]
-    year: 2020
-    type: paper
-    id: https://doi.org/10.5802/ambp.386
-    relationship: background
-    note: >-
-      Ann. Math. Blaise Pascal 27(1):125-130. A split extension with a finitely
-      generated residually finite kernel and a surjunctive quotient is
-      surjunctive.
+      Bull. Symbolic Logic 14(4):449-480; arXiv:0804.3968. Theorem 3.5 is the
+      textbook permutation definition of soficity, and section 6 surveys
+      Gottschalk's surjunctivity conjecture and Gromov's theorem. The survey
+      records only the forward implication and does not pose the converse.
 
   - title: Cellular Automata and Groups
     authors: [Tullio Ceccherini-Silberstein, Michel Coornaert]
     year: 2010
     type: book
     id: https://doi.org/10.1007/978-3-642-14034-1
-    relationship: background
+    relationship: other
     note: >-
-      Springer Monographs in Mathematics. The Curtis-Hedlund-Lyndon theorem
-      and the textbook facts on surjunctivity used here.
+      Springer Monographs in Mathematics. Its chapter on surjunctive groups is
+      the reference for the attributions to Lawton, Gromov and Weiss. The
+      Curtis-Hedlund-Lyndon theorem and the textbook facts on surjunctivity
+      used here are proved in this development rather than imported, the
+      bridge between the two descriptions of a cellular automaton as
+      Surjunctivity.isFiniteMemory_of_continuous_equivariant.
 
-  - title: Nonsofic groups exist
-    authors: [OpenAI]
+  - title: On sofic approximations of Property (T) groups
+    authors: [Gabor Kun]
+    year: 2019
+    type: paper
+    id: https://arxiv.org/abs/1606.04471
+    location: Theorem 1
+    relationship: other
+    note: >-
+      Bowen's conjecture: every sofic approximation of a countable property (T)
+      group is, after a negligible modification, a disjoint union of expanders.
+      Kun and Thom cite it as their [13, Theorem 1] and the OpenAI chapter
+      builds on it. It is the expander decomposition the whole mechanism rests
+      on, and it is proved in this development, in GroupApproximation/Kun.
+
+  - title: Inapproximability of actions and Kazhdan's property (T)
+    authors: [Gabor Kun, Andreas Thom]
+    year: 2019
+    type: paper
+    id: https://arxiv.org/abs/1901.03963
+    relationship: other
+    note: >-
+      Rigidity of almost automorphisms of expander sofic approximations of
+      property (T) groups: soficity forces the centralizing subgroup to be
+      locally embeddable into finite groups. Proved in this development.
+
+  - title: Nonsofic wreath products of residually finite groups
+    authors: [Gabor Kun, Andreas Thom]
     year: 2026
     type: paper
-    id: https://cdn.openai.com/pdf/ten-proofs-oai.pdf
+    id: https://arxiv.org/abs/2608.06222
+    location: Theorem A, Theorem E, Theorem 4.1
+    relationship: other
+    note: >-
+      Defines infranormality, that the compression semigroup of the subgroup
+      generates the ambient group. Theorem A (v3, 2026-08-20) gives that for an
+      infranormal, non-normal subgroup with both groups Kazhdan the generalized
+      wreath product and the group double are nonsofic; the double first
+      appears in v2 (2026-08-19), as Theorem B. Theorem E supplies the explicit
+      residually finite Kazhdan pairs Γ = EL_r(F_q[x_1, ..., x_d]) inside
+      G = EL_r(F_q[x_1^±1, ..., x_d^±1]) ⋊ SL_d(Z), for q a prime power and
+      r, d at least 3, and the witness used here is the q = 2, r = d = 3
+      member, with the elementary group EL_3 of the integers in place of SL_3.
+      Theorem 4.1, the permutation centralizer normalization theorem behind
+      Theorem A, is proved in this development in a general sequential form,
+      for an arbitrary countable Kazhdan group with a Kazhdan infranormal
+      subgroup, and the nonsoficity of the double is derived from it here. Kun
+      and Thom mention surjunctivity once, in their introduction's history of
+      Gromov's theorem; they cite neither Gottschalk nor Bowen and Chapman, and
+      they do not observe that these doubles are surjunctive.
+
+  - title: Property (T) for noncommutative universal lattices
+    authors: [Mikhail Ershov, Andrei Jaikin-Zapirain]
+    year: 2010
+    type: paper
+    id: https://doi.org/10.1007/s00222-009-0218-2
+    location: Theorem 1.1
+    relationship: other
+    note: >-
+      Invent. Math. 179(2):303-347. Property (T) for elementary groups of rank
+      at least three over finitely generated rings, which is what gives both
+      groups of the pair property (T). Proved in this development.
+
+  - title: "Kazhdan's Property (T)"
+    authors: [Bachir Bekka, Pierre de la Harpe, Alain Valette]
+    year: 2008
+    type: book
+    id: https://doi.org/10.1017/CBO9780511542749
+    location: Example 1.7.4 and Proposition 1.7.6
     relationship: background
     note: >-
-      The first nonsofic group, whose mechanism Kun and Thom analyze.
+      New Mathematical Monographs 11, Cambridge University Press. Property (T)
+      for SL_d of the integers and its stability under extensions, which is
+      what Kun and Thom use to make the semidirect product Kazhdan. This
+      development proves its own semidirect-product theorem instead.
+
+  - title: Ten Advances in Mathematics and Theoretical Computer Science
+    authors: [OpenAI]
+    year: 2026
+    type: other
+    id: https://cdn.openai.com/pdf/ten-proofs-oai.pdf
+    location: Chapter 3, "Nonsofic groups exist"
+    relationship: background
+    note: >-
+      Pages 78-95, updated 6 August 2026 at a stable URL. Chapter 3 gives the
+      first nonsofic group, the unit group R× of the binary Leavitt algebra,
+      built from Kun's expander decomposition and the Kun-Thom centralizer
+      obstruction, and its mechanism is what Kun and Thom analyze. The same
+      chapter, page 79, records the question answered here as open as of that
+      date: "We do not know whether R× is surjunctive. A positive answer would
+      produce a surjunctive nonsofic group", and it observes that the
+      Bowen-Chapman example for invariant random subgroups "does not produce a
+      surjunctive nonsofic group".
+
+  - title: A torsion-free non-sofic group
+    authors: [Francesco Fournier-Facio]
+    year: 2026
+    type: paper
+    id: https://arxiv.org/abs/2608.02025
+    relationship: background
+    note: >-
+      A second source of nonsofic groups from the same technical criterion,
+      including torsion-free ones. It is not an input to the witness here, and
+      it makes no surjunctivity claim.
 
 automation:
   methods:
@@ -359,15 +575,36 @@ automation:
       tool_setup: >-
         Astra, a custom proof tool, for the mathematics; Claude Code and Codex
         agents for the Lean development.
+
+    - method: agent
+      models: [Claude (Anthropic)]
+      framework: Claude Code
+      tool_setup: >-
+        Astra, a custom proof tool, for the mathematics; a fleet of Claude Code
+        agents for the Lean development, with remote batch compilation.
   notes: >-
     The LIX problem was solved by Astra, using a custom proof tool. All prose
-    of the submission was written by Claude Fable 5.1: the registry abstract,
-    the narrative fields of this file and the docstrings of the Palomar
+    of that submission was written by Claude Fable 5.1: the registry abstract,
+    the narrative fields of this file and the docstrings of the Palomar LIX
     modules. The Lean formalisation was produced by Claude Opus 5, Claude
     Sonnet 5 and GPT-5.6 Sol agents under the author's direction.
 
+    The Bowen-Chapman problem was solved by Astra, using a custom proof tool.
+    All prose for that result, the narrative fields of this file and the
+    docstrings of the Palomar Bowen-Chapman modules, was written by Claude
+    (Anthropic), which also produced the Lean formalisation under the author's
+    direction. No Codex or GPT agent worked on that result. The two methods
+    entries above are the two runs, in that order.
+
 review:
   status: self-assessed
+  notes: >-
+    An adversarial re-reading of the Bowen-Chapman Lean chain, statement by
+    statement against the cited sources, is recorded at
+    research/artifacts/bowen-chapman-lean-review-2026-09-12.md. No source is
+    imported as an assumption: the axiom closure of every result below is
+    exactly propext, Classical.choice and Quot.sound, and the Kun-Thom,
+    Kun and Ershov-Jaikin-Zapirain inputs are proved in this development.
 
 repository:
   role: substantive-development
@@ -393,6 +630,10 @@ status:
     C*-algebra is K1-injective, that the counterexample can be taken separable,
     and that it can be taken to fail K1-injectivity at the first
     stabilisation; Palomar/LIXSolution.lean proves these.
+    Palomar/BowenChapmanChallenge.lean states that not every surjunctive group
+    is sofic, and that some finitely generated group is surjunctive and not
+    sofic; Palomar/BowenChapmanSolution.lean proves both from
+    GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic.
   main_results:
     - declaration: ProblemLIX.not_all_simple_unital_k1Injective
       file: Palomar/LIXSolution.lean
@@ -442,12 +683,38 @@ fidelity:
     Type 0, and the counterexample is in Type 0.
 
     For Bowen-Chapman Problem 1.1, a cellular automaton is Bowen and Chapman's
-    local rule, Phi(c)(x) = phi(c(x gamma_1), ..., c(x gamma_n)), and a group is
-    surjunctive when every injective automaton over every finite palette in
-    Type 0 is surjective. Soficity is stated in the finite-set
-    normalized-Hamming form. Finite generation is the existence of a finite
-    subset generating the whole group. All groups range over Type 0, and the
-    counterexample is in Type 0.
+    own local rule, Phi(c)(x) = phi(c(x gamma_1), ..., c(x gamma_n)), with a
+    finite memory tuple and a colour palette ranging over the finite types in
+    Type 0; a group is surjunctive when every injective such automaton is
+    surjective. That is the paper's primary definition in section 1. Its
+    equivalent description of a cellular automaton as a continuous equivariant
+    recoloring map is Curtis-Hedlund-Lyndon, and the development proves that
+    bridge (Surjunctivity.isFiniteMemory_of_continuous_equivariant). Soficity
+    is stated in the finite-set normalized-Hamming form: for every finite F and
+    every eps > 0 a map from the group to the permutations of a nonempty finite
+    set that is eps-multiplicative on F and separates distinct elements of F by
+    at least 1 - eps. This is equivalent to the textbook form, in which
+    multiplicativity is required only when the tested product stays in F and
+    the separation is a fixed constant such as 1/4: the development proves both
+    reductions for an arbitrary group with no countability hypothesis
+    (isSofic_iff_productRestricted, isSofic_iff_weak_quarter), and the textbook
+    condition d(sigma(1), Id) <= eps follows from multiplicativity at
+    g = h = 1 by left invariance of the Hamming distance. So the negation is
+    nonsoficity in the sense of Gromov and Weiss. Bowen and Chapman's own
+    Definition 1.4 instead calls a finitely generated group sofic when the
+    Dirac IRS 1_N of a presentation is cosofic, and states without proof that
+    the two agree. Finite generation is the existence of a finite subset
+    generating the whole group, which is Mathlib's Group.FG with its two class
+    layers unfolded. The nonsoficity of the witness follows Kun and Thom's
+    argument, reproved here rather than assumed; its surjunctivity is proved
+    here. The statement extends Arzhantseva and Gal's split-extension theorem,
+    which needs a finitely generated residually finite kernel, to a kernel
+    carrying a finitary site: the kernel of a symmetric double is free of
+    infinite rank, so their hypothesis fails and a stratified peeling argument
+    replaces it. The Lean theorem is about SymmetricDouble G Γ; at the trivial
+    subgroup that group is the free product G * G, an identification standard
+    in group theory that the formalisation does not carry out. All groups range
+    over Type 0, and the counterexample is in Type 0.
 
 
 alignment:
