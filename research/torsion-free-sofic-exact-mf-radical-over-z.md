@@ -115,3 +115,13 @@ unconditionally every clause of `(TFZ1)` and `(TFZ2)` except soficity and the
 consequent hyperlinearity assertion: taking `G=K x Z` already gives finite
 presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
 `Z`, non-MF, finite presentation of `K`, and one-element normal generation.
+
+**Correction (2026-09-13, lane ex-fp-kazhdan-titz-witzel).** The two paragraphs above rest on
+`simple-kazhdan-groups-have-full-mf-radical`, which is refuted
+(`simple-kazhdan-lef-group-from-minimal-subshift`).
+- For a Titz Mite--Witzel kernel `K`, whether `K` is MF is open (`titz-witzel-residual-is-mf`).
+- `Rad_MF(K x Z)` is `K` if `K` is not MF, and trivial if `K` is MF.
+- So the Titz--Witzel route to this root needs two things: some kernel is sofic, and that kernel
+  is not MF.
+- `titz-witzel-exact-kazhdan-mf-radical-over-z` is open, not established. Its correction records
+  the two cases. An MF kernel would instead be hyperlinear (`kazhdan-mf-hyperlinear-fragment`).

@@ -36,6 +36,16 @@ Thus a positive solution to this one finite CSP, together with
 `K x Z` the requested finitely presented torsion-free sofic group with exact
 Kazhdan MF radical `K` and quotient `Z`.
 
+**Correction (2026-09-13, lane ex-fp-kazhdan-titz-witzel).**
+- `simple-kazhdan-groups-have-full-mf-radical` is refuted. A positive solution of this CSP makes
+  `K x Z` finitely presented, torsion-free and sofic, with `Rad_MF(K x Z)` equal to `K` if `K`
+  is not MF and trivial if `K` is MF (`titz-witzel-exact-kazhdan-mf-radical-over-z`,
+  correction).
+- In both cases `K` is a finitely presented infinite simple sofic Kazhdan group, which answers
+  `hyperlinear-fp-infinite-simple-kazhdan-group` in its sofic form.
+- No compression or lamp certificate can refute the CSP
+  (`vcd-two-groups-contain-no-kazhdan-commuting-pairs`).
+
 The presentation reduces much further before a computation.  Put
 `x=g3`, `y=g7`, `z=g12`, and abbreviate the following words in `x,y,z`:
 

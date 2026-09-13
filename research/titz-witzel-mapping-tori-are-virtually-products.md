@@ -12,6 +12,17 @@ artifacts:
   - research/artifacts/titz-witzel-sofic-structure-audit-2026-08-26.md
 ---
 
+**Correction (2026-09-13, lane ex-fp-kazhdan-titz-witzel).**
+- The proof route requires `simple-kazhdan-groups-have-full-mf-radical`, which is refuted
+  (`simple-kazhdan-lef-group-from-minimal-subshift`). So the route cannot fire.
+- Of the statements below:
+  - `(TWO2)` and `(TWO3)` do not use that claim.
+  - `(TWO4)` and the sentence "non-MF is settled" are **unproved**. `(TWO4)` holds exactly when
+    `K` is not MF, which is the open negation of `titz-witzel-residual-is-mf`.
+  - If `K` is MF, it is hyperlinear by `kazhdan-mf-hyperlinear-fragment`.
+
+The original text follows.
+
 Let `K` be one of the five simple finite-index subgroups of the Titz
 Mite--Witzel `C2`-tilde lattices, acting on its exotic Euclidean building `X`.
 Then `Out(K)` is finite.  More precisely, its order divides the corresponding
@@ -47,3 +58,7 @@ the five kernels is sofic.  In that event `phi=id` already
 works, and the preferred strengthening holds because `K` is finitely
 presented and every nonidentity element normally generates the simple group.
 Soficity is currently not established for these lattices; non-MF is settled.
+
+**2026-09-13.** The last two paragraphs predate the correction above. "Unconditionally non-MF"
+and "non-MF is settled" should read "non-MF if `titz-witzel-residual-is-mf` fails". The family
+solves the target exactly when some kernel is sofic and not MF.
