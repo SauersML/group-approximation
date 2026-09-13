@@ -6,6 +6,7 @@ title: Some minimal action on a Cantor space has no invariant probability measur
 distinct_from:
   stw99-problem-xxxiii-dynamical-comparison: that asks for dynamical comparison of free minimal amenable actions; this asks for the failure, at a single clopen set, of the weakest consequence of comparison in the measure-free case, for any minimal action.
   opr-mixed-simple-refinement-monoid: that realizes a mixed simple refinement monoid abstractly; this asks to realize the mixed phenomenon as the clopen type semigroup of a minimal Cantor system.
+  topologically-free-minimal-cantor-action-with-finite-clopen-type: that demands a topologically free action, which is what simple crossed products and Rainone's theorems need; this allows any minimal action and is settled.
 ---
 
 There is a countable discrete group `Gamma` acting minimally on a Cantor space
@@ -22,19 +23,41 @@ The proof of `coinvariant-tarski-lemma-minimal-nowhere-scattered` shows that
 By Tarski, `(k+1)[1_A] <= k[1_A]` for some `k`.  So a finite `[1_A]` has an
 infinite multiple, and `S(X, Gamma)` fails projection-level QQ.
 
+**Status (2026-09-13): established, unreviewed**, by the route
+`measure-free-minimal-cantor-action-with-finite-clopen-type-proof`.
+* `simple-refinement-monoids-are-minimal-cantor-types` realizes every countable
+  simple conical refinement monoid, pointed at any nonzero element, as
+  `(S(X, Gamma), [1_X])` for a minimal Cantor action.  The input is Wehrung's
+  group-induced realization theorem.
+* Applied to a countable part of the Ortega--Perera--Rordam monoid, it gives
+  an action with no invariant measure in which `[1_X]` itself is finite and
+  `2[1_X]` is properly infinite.
+* The actions are not known to be topologically free.  They come from
+  automorphisms of a Boolean ring that fix clopen sets pointwise.  The version
+  that matters for simple crossed products and for Rainone's theorems is the
+  open claim `topologically-free-minimal-cantor-action-with-finite-clopen-type`.
+
 **Why it matters.**
 * This is the type-semigroup core of every commutative-coefficient
   counterexample of crossed-product form
-  (`af-crossed-product-counterexample-normal-form`, parts 3--5).
-* It is a sharpened form of Rainone's question (arXiv:1502.06153, page 33)
-  whether a free minimal action of `F_2` on the Cantor set can have a type
-  semigroup that is not almost unperforated.  He notes that the Ara--Exel
-  examples of non-almost-unperforated type semigroups are not minimal.
-* A negative answer (no such action) would give the dichotomy for all
-  properly outer minimal actions on `C(X)`, through Rainone's Theorems 4.13 and
-  4.21, as in `nowhere-scattered-af-crossed-products-dichotomy-proof`.
+  (`af-crossed-product-counterexample-normal-form`, parts 3--5).  Only its
+  topologically free form fits that normal form, because the action there is
+  properly outer.
+* It is a sharpened form of Rainone's question (arXiv:1502.06153, page 33):
+  can a free minimal action of `F_2` on the Cantor set have a type semigroup
+  that is not almost unperforated?  He notes that the Ara--Exel examples of
+  non-almost-unperforated type semigroups are not minimal.  The settled
+  answer here drops freeness.
+* A negative answer to the topologically free version would still give the
+  dichotomy for all properly outer minimal actions on `C(X)`, through
+  Rainone's Theorems 4.13 and 4.21, as in
+  `nowhere-scattered-af-crossed-products-dichotomy-proof`.  Minimality alone
+  cannot give that dichotomy.
 
 ## Attempts
+
+The attempts below predate the resolution.  Every obstruction they record
+still applies to the topologically free claim.
 
 * **The division mechanism does not apply.**  `K_0(C(X)) = C(X, Z)` fails the
   order divisibility of `coinvariant-tarski-lemma-minimal-nowhere-scattered`
@@ -70,7 +93,7 @@ infinite multiple, and `S(X, Gamma)` fails projection-level QQ.
     `smoothing-normal-subgroup-cantor-dichotomy`).
   * Candidates must use non-amenable groups without known paradoxical towers
     and with no smoothing normal subgroup, or actions that are not free or not
-    amenable.
+    amenable.  The resolution uses non-free actions.
 * **Orientation formulation (idea, unreviewed).**
   * `[1_A]` is infinite iff some continuous piecewise translation
     `psi : A -> X` (finitely many clopen pieces) covers every point of `A` and
@@ -95,8 +118,8 @@ infinite multiple, and `S(X, Gamma)` fails projection-level QQ.
     only those built from one two-column structure.  Such an obstruction also
     needs a measure-free minimal subsystem, while Marks-type arguments use the
     full shift, which carries Bernoulli measures.
-* **Where it dies.**  No invariant of clopen sets other than measures is known
-  to obstruct compression.  A subshift built to forbid local compression rules
-  must be rigid, while freeness from invariant measures needs paradoxical local
-  structure, which tends to supply compression rules.  No mechanism is known
-  that provides the second without destroying the first.
+* **Where it died before the resolution.**  No invariant of clopen sets other
+  than measures was known to obstruct compression.  The resolution uses
+  Wehrung's realization instead of constructing an invariant: finiteness is
+  inherited abstractly from a unitary embedding of `{0, u, infinity}`.  No
+  explicit finiteness certificate for a *free* action is known.
