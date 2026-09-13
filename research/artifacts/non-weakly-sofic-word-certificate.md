@@ -67,6 +67,16 @@ rank `2` has been on the table since 1984.  The frontier is a finite-group
 theorem: a uniform bounded-width statement covering alternating groups,
 groups of Lie type and arbitrary extensions.
 
+**CORRECTION 2026-09-12 (lane ex-weak-soficity).** The two paragraphs above are
+wrong about Howie's tuple. `F/N(g_1,g_2) = <x,y | x^2 = y^-3 = (xy)^5>` is
+perfect (the exponent matrix has determinant `-1`) and centrally extends the
+von Dyck group `D(2,3,5) = A_5` by a cyclic group of order at most 2. So it is
+finite. Under `x -> (1 2)(3 4)`, `y -> (1 3 5)` both `g_i` die in `A_5` and `a`
+does not. So condition (2) fails at a finite quotient of order 60, and the tuple
+is not a near-miss. A certificate needs a presented group that is not residually
+finite, with `x` in its finite residual. See
+`howie-pro-p-tuple-fails-the-profinite-certificate-at-a5`.
+
 ## Search discipline
 
 A search that verifies, for each tested finite `Q`, that `q(x)` lies in the
