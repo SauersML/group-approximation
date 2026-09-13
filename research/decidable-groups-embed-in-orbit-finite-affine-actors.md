@@ -45,7 +45,10 @@ of type (A), so this implies `permutational-boone-higman-conjecture` (route
      implies that also centralisers of finite subgroups are of type F_∞"; centralisers
      are extensions `K ↣ C(Q) ↠ V_(r_1) × … × V_(r_t)` with `K` locally finite. The
      theorem number and the exact restrictions were not pinned, so finite presentation
-     of `C(C,F_2) ⋊ V` is recorded as expected, not established. If it holds, this
+     of `C(C,F_2) ⋊ V` was recorded here as expected, not established. *Superseded (2026-09-13):* it is
+     established as `cantor-module-thompson-v-product-is-finitely-presented` (Corollary 4.11
+     pinned there), and for every arity and finite abelian coefficient group as
+     `higman-thompson-cantor-module-products-are-fp`. So this
      is a finitely presented affine type (A) actor that is not of Mikhailova form.
    - **Why it gives no new inputs.** The inputs are subgroups of `W`. When `W` is a
      finitely presented subgroup of `Homeo(C)` containing `V`, its own action on
