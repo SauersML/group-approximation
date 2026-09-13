@@ -113,8 +113,16 @@ Some rows cover two to five claims; the rows total 26.
 |---|---|---|
 | 1 | Theorems 12, 14, 15 and 16, Proposition 13, Corollary 17 and Remark 18 of the ugc-rounding normal-fibre artifacts, read line by line | **PASS** |
 | 1 | `kun-thom-wreath-is-not-rational-character-approximable` | **PASS at the checked steps**, conditional on the pre-EX `hilbert-embeddable-witness-impossible`. Step 3's length convention was misstated; corrected forward in the route |
+| 2 | eleven L², determinant and Strong Atiyah imports: Khanh, Thom, AGP, Abrams–Aranda Pino, Grabowski ×2, McKee–Smyth, Smith, Jaikin-Zapirain–López-Álvarez ×2, plus the Lück survey rows quoted in backlog part 1 | **PASS at source** |
+| 2 | `purely-infinite-leavitt-path-v-monoid-cancellation`, `determinant-conjecture-excludes-liouville-atiyah-exceptions` | **PASS** (the second as a statement) |
+| 3 | `amenable-kernel-bc-transfer-and-ktop-half-exactness`, `lueck-surjective-assembly-traces-lie-in-lambda-g`, `zariski-dense-psl-subgroups-are-completely-selfless`, `gaboriau-commensurated-chain-fixed-price-criterion` | **PASS at source** |
+| 3 | `bgw-trivial-coefficient-agreement-is-open` (+ `-citation`) | **PASS at source after a notation FAIL.** Lemma A.1 of the erratum is about quotients onto `ℂ`; with an arbitrary quotient it would be false. Corrected forward in both nodes; no consumer misused it |
 
 ## Part files
 
 - `research/artifacts/ex-review2-quantum-l2-2026-09-13-part1.md`: §1. Galois-game rounding at artifact
   level, and the Kun–Thom rational-character obstruction.
+- `research/artifacts/ex-review2-quantum-l2-2026-09-13-part2.md`: §2. The L², determinant and Strong
+  Atiyah imports at source, and two derived claims.
+- `research/artifacts/ex-review2-quantum-l2-2026-09-13-part3.md`: §3. The Baum–Connes, Kadison–Kaplansky
+  and fixed-price imports at source, and the BGW notation fix.

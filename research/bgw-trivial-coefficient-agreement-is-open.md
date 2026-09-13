@@ -34,9 +34,13 @@ authors' erratum withdraws Proposition 4.4 and Corollaries 4.5--4.8.
   known that decides either `q = id` or `q_*` for a non-exact group.
 - **Surviving positive fact** (erratum, Lemma A.1, due to Ozawa). If a
   crossed-product functor has the ideal property, which the reduced one has,
-  then every short exact sequence `0 -> I -> A -> C -> 0` of `G`-algebras gives
-  an exact sequence of crossed products. So a quotient onto trivial
-  coefficients never witnesses non-exactness.
+  then every short exact sequence `0 -> I -> A -> ℂ -> 0` of `G`-algebras, with
+  quotient the trivial algebra `ℂ`, gives an exact sequence of crossed products.
+  So a quotient onto trivial coefficients never witnesses non-exactness.
+  *(Notation fixed by ex-verify2-quantum-l2, 2026-09-13.)* The lemma's printed
+  proof starts from `ℂ -> M(A)`, `λ -> λ 1`. For an arbitrary quotient `C` the
+  statement would be false: the reduced crossed product has the ideal property
+  and is not exact over non-exact groups.
 
 **Bounded literature check.** One web search (2026-09-12) for a later
 resolution found only the erratum.

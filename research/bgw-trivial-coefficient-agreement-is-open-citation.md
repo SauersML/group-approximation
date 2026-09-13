@@ -40,5 +40,11 @@ exact sequence 0 → I ⋊_µ G → A ⋊_µ G → C ⋊_µ G → 0." The erratu
 to Narutaka Ozawa, communicated by Yosuke Kubota. It observes that the reduced
 crossed product satisfies the ideal property.
 
+**Notation (ex-verify2-quantum-l2, 2026-09-13, from the arXiv v3 text on MSI, l. 1770--1790).**
+In the lemma, `C` is the trivial algebra `ℂ`. Text extraction loses the blackboard bold, and the
+printed proof begins "Consider the generalized homomorphism ℂ → M(A), λ ↦ λ1_{M(A)}". Read with an
+arbitrary quotient, the statement would say that reduced crossed products are always exact, which fails
+for non-exact groups.
+
 **Not read.** The published Documenta erratum as a separate file. Its EMS
 landing page, fetched on 2026-09-12, summarizes the same gap.
