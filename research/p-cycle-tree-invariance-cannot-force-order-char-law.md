@@ -2,17 +2,18 @@
 rg: 2
 id: p-cycle-tree-invariance-cannot-force-order-char-law
 kind: claim
-title: Endomorphism-invariant rank functions on elementary abelian p-groups realize every Frobenius-allowed cycle profile, so data inside p-groups cannot force the order-char law of Thompson's V
+title: Endomorphism-invariant rank functions on elementary abelian p-groups realize every Frobenius-allowed cycle profile, so data inside elementary abelian p-subgroups cannot force the order-char law of Thompson's V
 distinct_from:
-  v-rank-functions-are-trivial-plus-regular-on-cylinder-groups: that proves the law on every finite subgroup of V using odd cycles of order prime to the characteristic; this shows that data inside a p-group, coherent across all levels, cannot give it.
+  v-rank-functions-are-trivial-plus-regular-on-cylinder-groups: that proves the law on every finite subgroup of V using odd cycles of order prime to the characteristic; this shows that data inside an elementary abelian p-group, coherent across all levels, cannot give it.
   sofic-configurations-cannot-force-v-rank-triviality: that firewall's models are sofic ranks, which satisfy the order-char law; these models violate it and break single-element V-conjugacy once induced to a wreath configuration.
-  v-rank-order-char-cycles-are-trivial-plus-regular: that is the profile every rank function on F[V] must give a clopen p-cycle; this describes the profiles endomorphism-invariant rank functions on p-groups can give.
+  v-rank-order-char-cycles-are-trivial-plus-regular: that is the profile every rank function on F[V] must give a clopen p-cycle; this describes the profiles endomorphism-invariant rank functions on elementary abelian p-groups can give.
 artifacts:
   - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md
 ---
 
-**OPEN.** The candidate proof is Section 2 of the artifact. It is held open until `w3-vf-linear` re-derives it.
+**OPEN.** The proof is Section 2 of the artifact. `w3-vf-linear` §33.3 PASSed claims 1–6, subject to the scope
+correction applied in this version.
 
 **Setting.**
 - Let `char F = p > 0`, and let `E` be an elementary abelian `p`-group with basis `(tau_i)`. For instance `E_infinity`
@@ -45,17 +46,20 @@ rho_m([g]) = exp_m(lambda(g) u) in L[u]/(u^m),      rk_m(M) = rank_L rho_m(M) / 
   whose proof uses a `q`-group with `q != p`.
 
 **Why it matters.**
-- **The law needs another prime.** No argument confined to `p`-groups of `V` and their injective endomorphisms
-  forces `v-rank-order-char-cycles-are-trivial-plus-regular` for `p >= 3`, or trivial-plus-regular restrictions for
-  any `p`. The route of `v-rank-functions-are-trivial-plus-regular-on-cylinder-groups` goes through an odd cycle
-  group of order prime to `p`.
+- **Elementary abelian `p`-subgroups don't give the law.** No argument confined to elementary abelian `p`-subgroups
+  of `V`, such as `E_infinity` and the trees `E_n`, and injective homomorphisms between them forces
+  `v-rank-order-char-cycles-are-trivial-plus-regular` for `p >= 3`, or trivial-plus-regular restrictions for any
+  `p`. The route of `v-rank-functions-are-trivial-plus-regular-on-cylinder-groups` goes through an odd cycle group
+  of order prime to `p`.
+- **Not covered.** Data at non-abelian `p`-configurations such as `W = E_p ⋊ <s>`, together with the `V`-conjugacy
+  `s ~ tau_1`. That is exactly where these models break, and nothing here says whether that data forces the law.
 - **Scope.** For `p = 2` the family is `rk_1, rk_2`, and `rk_2` is w7-v-cycle-c2's calibration (artifact
   `research/artifacts/thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md`, Section 3). For `p >= 3`,
   and in particular for the ternary gate, the models violate even the single-element profile.
 
 ## Attempts
 
-- **Candidate proof** (w7-v-cycle-c3, artifact Section 2).
+- **Proof** (w7-v-cycle-c3, artifact Section 2; PASS by `w3-vf-linear`, §33.3).
   - **Homomorphism.** `exp_m(a u) exp_m(b u) = exp_m((a + b) u)` modulo `u^m`, since `j!` is invertible for
     `j < m <= p`.
   - **Coherence.** An injective homomorphism substitutes independent linear forms for the `t_i`. Completed to an

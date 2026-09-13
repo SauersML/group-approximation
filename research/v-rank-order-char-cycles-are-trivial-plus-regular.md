@@ -82,8 +82,9 @@ weight `1 - phi_V` of the regular module `F[Z/p]`.
     - **Consequence.** Invariance inside the 2-group can't prove the law. The proof has to use odd cycles normalized
       by it.
 - **Next test for `p >= 3`: invariant models violate even the single-element law** (w7-v-cycle-c3; artifact
-  `research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md`, Section 2; candidate
-  `p-cycle-tree-invariance-cannot-force-order-char-law`). Held OPEN until `w3-vf-linear` re-derives it.
+  `research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md`, Section 2;
+  `p-cycle-tree-invariance-cannot-force-order-char-law`). PASS by `w3-vf-linear`, §33.3. The models live on
+  elementary abelian `p`-groups only.
   - **The models.** `rho_m([g]) = exp_m(lambda(g) u)` in `L[u]/(u^m)` for `1 <= m <= p`, with `L = F(t_i)` and
     `lambda(tau_i) = t_i`. `rk_m` is the normalized `L`-rank. For `p = 2` and `m = 2` this is the model of
     w7-v-cycle-c2's Section 3.
@@ -91,9 +92,11 @@ weight `1 - phi_V` of the regular module `F[Z/p]`.
     endomorphisms included. For `m = 2` over `F_p` it is an ultralimit of generic dimension-2 quotients of the
     `A/m^2` models above.
   - **Not the law.** For `2 <= m < p`, `rk_m((1 - [g])^j) = max(m - j, 0)/m`, which is not `(1 - phi)(p - j)/p` for
-    any `phi`. So for `p >= 3` invariance fails to force the profile of a single cycle, not only the joint fixed rank.
+    any `phi`. So for `p >= 3`, invariance on elementary abelian `p`-groups fails to force the profile of a single
+    cycle, not only the joint fixed rank.
   - **Every allowed profile occurs.** Mixtures of `rk_1, ..., rk_p` realize every drop sequence that Proposition
-    4.2(b) above allows. So (b) together with coherence inside the `p`-group gives nothing sharper.
+    4.2(b) above allows. So (b) together with coherence inside an elementary abelian `p`-group gives nothing
+    sharper. Data at `E_p ⋊ <s>` together with `s ~ tau_1` is not covered.
   - **First premise broken.** For `2 <= m < p`, induce to the wreath configuration `E_p ⋊ <s>`, with `s` a clopen
     `p`-cycle permuting the supports. `s` gets the regular profile and `tau_1` the profile of `u`, which breaks
     single-element `V`-conjugacy. For `m = p` single elements agree, and only the joint fixed rank rules it out.

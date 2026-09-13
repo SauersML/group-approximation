@@ -82,19 +82,21 @@ the augmentation rank.
     generator of `T` (not re-read).
   - **Open `p`-sensitive structure question:** `v-rank-order-char-cycles-are-trivial-plus-regular`.
 - **Torsion is spent in characteristic 3; the gate stays OPEN at `<x_0, x_1, s>`** (w7-v-cycle-c3; artifact
-  `research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md`). Held OPEN until `w3-vf-linear`
-  re-derives it.
-  - **Finite subgroups.** By the candidate `v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`
+  `research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md`). Section 3 PASSed `w3-vf-linear`
+  §33.4. The gate stays OPEN.
+  - **Finite subgroups.** By the ESTABLISHED `v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`
     (w7-v-cycle-c2), every rank function on `F_3[V]` is `phi_V rk_aug + (1 - phi_V) rk_reg` on every locally finite
     subgroup. Clopen 3-cycles get `rk((1 - [s])^j) = (1 - phi_V)(3 - j)/3`. Artifact Section 1 is a second derivation
     with different parameters.
   - **No intermediate target.** By convexity (w7-v-cycle-c2's artifact, Section 4.4), this claim is equivalent to
     `phi_V in {0, 1}` for every abstract rank function. Whether the law plus `x_0`, `x_1` conjugation forces
     `phi_V in {0, 1}` is the gate itself.
-  - **The law needs a prime other than 3** (`p-cycle-tree-invariance-cannot-force-order-char-law`).
+  - **Elementary abelian 3-subgroup data can't force the law** (`p-cycle-tree-invariance-cannot-force-order-char-law`,
+    scoped by `w3-vf-linear` §33.3).
     - **The counter-model.** `rk_2` on `F_3[E_infinity]`, `[g] -> 1 + lambda(g) u` modulo `u^2`, is invariant under
       every injective endomorphism. It has `rk(1 - [g]) = 1/2` and `rk((1 - [g])^2) = 0`, which the law rules out.
-    - **First premise broken.** Its induced extension to `E_3 ⋊ <s>` breaks single-element `V`-conjugacy.
+    - **First premise broken.** Its induced extension to `E_3 ⋊ <s>` breaks single-element `V`-conjugacy. Data at
+      `E_3 ⋊ <s>` together with `s ~ tau_1` is not covered.
   - **Inert.** The finite-subgroup formula holds for the augmentation rank and, on each sofic configuration, for the
     sofic ranks with `phi_V = 0`. So by `sofic-configurations-cannot-force-v-rank-triviality` it can't decide the
     gate.

@@ -1,10 +1,11 @@
 # Endomorphism-invariant rank models on p-cycle trees, and the ternary gate at <x_0, x_1, s>
 
-Lane `w7-v-cycle-c3`, 2026-09-12. These are candidate proofs, held OPEN until `w3-vf-linear` re-derives them.
+Lane `w7-v-cycle-c3`, 2026-09-12. `w3-vf-linear` re-derived Sections 0–3 (verification artifact §33, PASS). This
+version applies its §33.3 scope correction and its Step 1 precision note.
 
 **Supports:**
-- `p-cycle-tree-invariance-cannot-force-order-char-law` (Section 2). This decides the brief's first step: a
-  level-coherent counter-model exists.
+- `p-cycle-tree-invariance-cannot-force-order-char-law` (Section 2). This decides the brief's first step on
+  elementary abelian `p`-groups: a level-coherent counter-model exists.
 - Attempts entries on `v-rank-order-char-cycles-are-trivial-plus-regular` (Section 2) and
   `thompson-v-ternary-rank-functions-are-augmentation` (Section 3).
 - A second derivation of [CG] Theorem 1.1 (Section 1), for
@@ -70,11 +71,12 @@ Everything is for abstract Sylvester matrix rank functions. Nothing here decides
   - `G` normalizes `B` and permutes its factors the way it permutes `P`.
 - **Step 1: characters.** For `psi` in `B^`, put `e_psi = |B|^(-1) sum_b psi(b)^(-1) [b]`.
   - By (T), `rk'(e_psi) = a [psi = 1] + (1 - a)/|B|`, and `[g] e_psi [g]^(-1) = e_(g psi)`.
-  - Let `Omega_fix` be the characters with nontrivial stabilizer in `G`. For a `G`-orbit `O` outside it, put
-    `E_O = sum_(psi in O) e_psi`, and let `D = sum_(psi in Omega_fix, psi != 1) e_psi`.
+  - Let `Omega_fix` be the characters with nontrivial stabilizer in `G`. For a `G`-orbit `O` of nontrivial characters
+    outside it, put `E_O = sum_(psi in O) e_psi`, and let `D = sum_(psi in Omega_fix, psi != 1) e_psi`.
   - These and `e_1` are orthogonal idempotents with sum `1`, commuting with `F'[B]` and `F'[G]`. By (S7),
     `rk'(M) = sum_O rk'(M E_O) + rk'(M D) + rk'(M e_1)`.
-- **Step 2: free orbits.** Fix `psi` in `O` and put `E_(g,h) = [g h^(-1)] e_(h psi) = e_(g psi) [g h^(-1)]`.
+- **Step 2: free orbits of nontrivial characters.** Fix `psi` in `O` and put
+  `E_(g,h) = [g h^(-1)] e_(h psi) = e_(g psi) [g h^(-1)]`.
   - Since `e_(h psi) [k l^(-1)] = [k l^(-1)] e_(l k^(-1) h psi)` and `O` is free,
     `E_(g,h) E_(k,l) = delta_(h,k) E_(g,l)`. Also `sum_g E_(g,g) = E_O`.
   - `[x] E_O = sum_h E_(xh,h)`, which is `lambda(x)(E)`. So `M E_O = lambda(M)(E)`, and (S9) gives
@@ -150,10 +152,11 @@ to `(u w_i)` with units `w_i`, whose image has dimension `m - 1`. ∎
      the law node's `A/m^2`, cut down to dimension `2` by a generic hyperplane. Unlike `A/m^2`, its normalization
      does not change with `r`.
 4. **No extension to V.** By Theorem 1.1, a rank function on `F[V]` has `phi_(E_r) = phi_V + (1 - phi_V) p^(-r)`. A
-   mixture `sum_m w_m rk_m` has `phi_(E_r) = sum_m w_m/m` for every `r`. So it extends only if `w_1 = 1`.
+   mixture `sum_m w_m rk_m` has `phi_(E_r) = sum_m w_m/m` for every `r`. So, when `|I| >= 2`, it extends only if
+   `w_1 = 1`.
 
 **Premise audit.** On `F[E]`, `rk_m` satisfies the Sylvester axioms, every identity of `F[E]`, and every
-`V`-conjugacy among single elements or basis-shaped tuples of `E` (Lemmas 2.1 and 2.2).
+`V`-conjugacy between subgroups of `E` (Lemma 2.1).
 - **For `2 <= m < p`,** its induced extension to the wreath configuration `W = E_p ⋊ <s>` breaks single-element
   `V`-conjugacy, the first premise to fail. Here `s` is a clopen `p`-cycle with `s tau_i s^(-1) = tau_(i+1)`, indices
   mod `p`.
@@ -163,8 +166,10 @@ to `(u w_i)` with units `w_i`, whose image has dimension `m - 1`. ∎
     is conjugate to `s` in `V` ([TS] Lemma 1.1), gets `max(m - j, 0)/m`.
 - **For `m = p`,** single elements match. Item 4 excludes it, and every `m >= 2`, using a clopen `q`-cycle subgroup
   with `q != p`, which no `p`-group such as `E` or `W` contains.
-- **Consequence.** No argument confined to `p`-groups of `V` and their injective endomorphisms forces the law for
-  `p >= 3`, or trivial-plus-regular restrictions for any `p`. The law needs another prime.
+- **Consequence** (scope as corrected in `w3-vf-linear` §33.3). No argument confined to elementary abelian
+  `p`-subgroups of `V`, such as `E_infinity` and the trees `E_n`, and their injective homomorphisms forces the law for
+  `p >= 3`, or trivial-plus-regular restrictions for any `p`. That leaves out data at non-abelian `p`-configurations
+  such as `W` together with `V`-conjugacy such as `s ~ tau_1`, which is exactly where these models break.
 
 ## 3. The ternary gate at `<x_0, x_1, s>`
 
@@ -180,8 +185,9 @@ to `(u w_i)` with units `w_i`, whose image has dimension `m - 1`. ∎
   subgroup (Theorem 1.1). In particular `rk((1 - [s])^j) = (1 - phi_V)(3 - j)/3`.
 - **Wandering elements.** For `x` as in [FR] Setup 2.2 and nonzero `q` in `F_3[t]`, `rk(q([x])) >= 1 - phi_V`
   ([FR] Theorem 2.3).
-- **3-groups alone don't give the law.** By Section 2 with `p = 3` and `m = 2`, the brief's level-coherent
-  counter-model exists. Its first broken premise is single-element `V`-conjugacy at `E_3 ⋊ <s>`.
+- **Elementary abelian 3-subgroups alone don't give the law.** By Section 2 with `p = 3` and `m = 2`, the brief's
+  level-coherent counter-model exists on them. Its first broken premise is single-element `V`-conjugacy at
+  `E_3 ⋊ <s>`, so data there is not covered.
 - **Inert.** The first two items hold for the augmentation rank and, on each sofic configuration, for the sofic ranks
   of [FW] Lemma 1.1 (`phi_V = 0`). So by [FW] Theorem 1.2 neither can decide the gate.
 
@@ -191,13 +197,10 @@ non-augmentation rank function on `F_3[V]`. A proof must use matrices that mix i
 
 ## 4. Where it stops
 
-- **Candidate, pending verification:** Lemmas 2.1–2.2, Proposition 2.3, the premise audit, and the second derivation
-  in Section 1.
-- **Verifier checklist:**
-  - the substitution argument of Lemma 2.1;
-  - the Mackey restriction in the premise audit;
-  - the Schwartz–Zippel degree bound in Proposition 2.3(3);
-  - (S9) and Steps 2–4 of Section 1.
+- **Verified.** `w3-vf-linear` §33 PASSes (S7)–(S9), Section 1 Steps 0–5, Lemmas 2.1–2.2, Proposition 2.3, both
+  Mackey restrictions of the premise audit, and Section 3. Section 1 uses the same inputs as [CG], so it is a
+  cross-check, not an independent verification.
+- **Scope.** Section 2 concerns elementary abelian `p`-subgroups only (§33.3).
 - **Dependencies.** Item 4 and Section 3 use Theorem 1.1, which rests on (T) for abstract rank functions ([FR] Section
   3.1) together with (Phi) and (CP).
 - **Open.**
