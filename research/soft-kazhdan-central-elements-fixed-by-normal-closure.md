@@ -12,7 +12,16 @@ artifacts:
   - research/artifacts/ex-q34-kt-wreath-soft-kernel-part3-2026-09-13.md
 ---
 
-**ESTABLISHED** (reviewed 2026-09-13 by `ex-verify2-groups`: PASS, `research/artifacts/ex-review2-groups-2026-09-13-part1.md` §§2--3, one notation note on the Lemma 10 cocycle display).  Let `H` be a countable group and
+**ESTABLISHED.**  Reviewed 2026-09-13:
+- `ex-verify2-groups`: PASS, `research/artifacts/ex-review2-groups-2026-09-13-part1.md`
+  §§2--3.  Its one notation note, on the Lemma 10 cocycle display, is fixed in
+  74c1de27c3.
+- Item 2 also passed in `research/artifacts/ex-review-groups-2026-09-12-part16.md`
+  §16.5.
+
+Kun--Thom 4.1 and Kadison's diagonalization theorem remain imports.
+
+Let `H` be a countable group and
 `Lambda <= G <= H`, with `Lambda` and `G` Kazhdan, `Lambda` infranormal in
 `G` (its compression semigroup generates `G`), and `G` sofic.  Let
 `rho : H -> prod_omega (U(k) wr S_n)` be any homomorphism into the tracial

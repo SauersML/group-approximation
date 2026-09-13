@@ -27,7 +27,7 @@ artifacts:
   re-derived line by line the deep-congruence lemmas (part 1 Lemma 2, part 2
   Lemma 6, via Suslin), the transport lemma (part 2 Theorem M), Theorem 7, and
   the bounded-block extension (part 3 Lemma 10, Theorem M_k, Theorem 9): PASS,
-  one notation note.  Kun--Thom 4.1, Definition 2.1 and Theorem E were checked
+  one notation note, on the cocycle display, now fixed in 74c1de27c3.  Kun--Thom 4.1, Definition 2.1 and Theorem E were checked
   against the arXiv PDF (v3).  Kadison's theorem was matched in statement only.
 
 Let `Gamma = EL_r(R_+) < G = EL_r(R) x| SL_d(Z)`
