@@ -276,8 +276,9 @@ theorem ExtPhiData.twoGonPocketFace_of_faceClassO (P : ExtPhiData family E)
       · exact hcell (hu.symm.trans h)
       · exact hF b hb (by rw [← hu]; exact h)
     exact Or.inr (Or.inr ⟨hF, fun v' hv' => faceClassO_of_face_not_mem hF hkF rfl hxv hv'⟩)
-  · push_neg at hF
-    obtain ⟨r, hr, hfr⟩ := hF
+  · obtain ⟨r, hr, hfr⟩ : ∃ r ∈ family, Delta.toCombMap.faceOf v.1 ∈ r.1 := by
+      by_contra h
+      exact hF fun r hr hfr => h ⟨r, hr, hfr⟩
     by_cases hra : r = a
     · exact Or.inl (by subst hra; exact hfr)
     by_cases hrb : r = b
