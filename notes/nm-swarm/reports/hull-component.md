@@ -3,42 +3,53 @@
 ## Scope
 Wall hbridge: `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0,0,0}` from
 `QuotientPeripheralLetterPullbackStatement` (GGT/HullSCLemma51EmbeddedProducer). hull-bridge integrates.
-This lane owns (D), the letter pullback induction of Osin's Lemma 5.1, and its producer.
+This lane owns (D), the letter pullback induction of Osin's Lemma 5.1, and the cut move outcome.
 
 ## Compiled on main (no hypotheses beyond the stated binders; `#audit_axioms` in each file)
 - GGT/HullSCLemma51LetterPullbackAtoms: atoms, lifts of quotient relative balls, bounded products of images.
 - GGT/HullSCLemma51LetterPullbackClose: `PullbackOutcome`, `mem_image_of_pullbackOutcome`.
-- GGT/HullSCLemma51LetterPullbackRotate: `RotatedLift`, `exists_rotatedLift`. The predecessor's red fix
-  d80e0d009 compiled green.
+- GGT/HullSCLemma51LetterPullbackRotate: `RotatedLift`, `exists_rotatedLift`.
 - GGT/HullSCLemma51LetterPullbackInduction: `LetterStepBound`, `.or`,
   `quotientPeripheralLetterPullbackAt_of_letterStepBound`.
 - GGT/HullSCLemma51LetterPullbackShortcutArcs, GGT/HullSCLemma51LetterPullbackShortcut: the M1 move
   `letterStepBound_of_not_isRelGeodesic : LetterStepBound D W q hq (fun w => ¬ ∀ r, IsRelGeodesic D (w.rotate r))`.
-  The predecessor left it untracked; it landed unverified at 0ad5acab1 and a fix landed at 22b893181.
-- Probes: 0913-010957-99348 (Atoms, Close, Rotate, Induction, RelativeCosetPieces),
-  0913-012328-36694 (ShortcutArcs, Shortcut, plus all of the above). All GREEN.
-- Wire candidates queued.
+- GGT/HullSCLemma51LetterPullbackCutFaces (74c6b03ff), CutSides (14850636f), CutBlocks (4d91f2870): the face,
+  side and block lemmas of the certificate cut.
+- GGT/HullSCLemma51LetterPullbackCutOutcome (a1f2e52da): `CutMove`, its quotient facts,
+  `CutMove.outcome_before` (the unknown letter after the arc) and `CutMove.mem_image_of_inner` (a bounded value).
+- GGT/HullSCLemma51LetterPullbackCutOutcomeSides (27f56e14b): `CutMove.outcome_left`, a left side letter at the
+  coset of the unknown letter becomes designated.
+- GGT/HullSCLemma51LetterPullbackCutOutcomeRight (47b7225af): `CutMove.outcome_right`, and
+  `CutMove.outcome : PullbackOutcome D q hq lam (pullbackAtoms W D lam r) N h n` for every cut move with
+  `1 ≤ r`, `|L| + |arc| + |R| + |ext| ≤ r`, `r + 1 ≤ N`, `|arc| + |tail| ≤ n + 2`.
+- Probes, all GREEN:
+  - 0913-010957-99348 (Atoms, Close, Rotate, Induction, RelativeCosetPieces);
+  - 0913-012328-36694 (ShortcutArcs, Shortcut);
+  - 0913-034626-13821 (CutBlocks, with CutSides and CutFaces);
+  - 0913-041859-87013 (CutOutcome);
+  - 0913-044512-41174 (CutOutcomeSides);
+  - 0913-045018-55444 (CutOutcomeRight).
+- All of these are in the wire queue.
 
 ## Residual Props
-1. M2, the certificate cut: `LetterStepBound D W q hq (fun w => ∀ r, IsRelGeodesic D (w.rotate r))`, under
-   hsc (`IsBoundedLemma44Input`), hmu, hrho, hker, hcert.
-2. The producer `quotientPeripheralLetterPullbackStatement_holds : QuotientPeripheralLetterPullbackStatement`,
-   from `(M1).or (M2)` and `quotientPeripheralLetterPullbackAt_of_letterStepBound`.
+None owned by this lane. The remaining assembly belongs to peers:
+- M2, `letterStepBound_of_cutLiftOutcome`, is landed by debt-conditional (GGT/HullSCLemma51LetterPullbackCut,
+  457c543a8, GREEN 0913-044157-34176). Its only non-input hypothesis is `CutLiftOutcome W D q hq`
+  (GGT/HullSCLemma51LetterPullbackCutLift, hull-bridge).
+- hull-bridge's GGT/HullSCLemma51LetterPullbackHolds was on disk and unlanded as of 09-13 05:05. It proves
+  `CutLift.toCutMove`, `cutLiftOutcome` through `CutMove.outcome`, and
+  `quotientPeripheralLetterPullbackStatement_holds : QuotientPeripheralLetterPullbackStatement.{u, v, w}`.
+  The producer closes when that module lands and probes green.
 
-## Route for M2
-Rotate the cut so that the arc comes first: `w.rotate r₀ = arc ++ tail`, with a face `ext = L · arc · R`,
-`ext ++ rem ∈ W`, geodesic L, R, arc, and `|L| + |rem| + |R| < |arc|`. Rotated lift: `arc ++ tail = x ++ comp λ h⁻¹ :: y`.
-The new quotient-null word is `respellInv L ++ respellInv rem ++ respellInv R ++ tail`.
-- Letters of `respellInv rem` and `respellInv ext` are atoms.
-- A side letter at the base coset: its face `L · arc · R · ext⁻¹` holds no other non-atom letter at its source
-  coset. L and R are geodesic, and `false_of_crossCoset` separates L from R. Arc letters over the base coset
-  are the designated letter or nothing.
-- Case A (designated letter outside the arc): it stays designated.
-- Case B (designated letter inside the arc):
-  - no side letter shares its source coset: its face bounds `h`;
-  - otherwise the unique side letter there becomes designated, with value `P₁ h⁻¹ P₂` over bounded `P₁`, `P₂`.
+## Case split of `CutMove.outcome` (as built)
+The rotated lift `arc ++ tail = x ++ comp λ h⁻¹ :: y` either has the unknown letter after the arc, or
+`arc = x ++ comp λ h⁻¹ :: y₁`.
+- After the arc: `outcome_before`. The letter stays designated, and the new word is
+  `respellInv L ++ respellInv rem ++ respellInv R ++ tail`.
+- Inside the arc, with a left side letter `L[j]` at the coset of the unknown letter: `outcome_left`.
+- Inside the arc, with a right side letter `R[j]` at that coset: `outcome_right`.
+- Inside the arc, with no side letter at that coset: `mem_image_of_inner`. The face bounds `h`, which gives
+  `q h ∈ q '' boundedProducts`.
 
 ## Next
-Modules GGT/HullSCLemma51LetterPullbackCutFaces (source faces),
-GGT/HullSCLemma51LetterPullbackCutOutcome (quotient outcomes), GGT/HullSCLemma51LetterPullbackCut (M2),
-GGT/HullSCLemma51LetterPullbackHolds (producer).
+Asking the lead for the next item.
