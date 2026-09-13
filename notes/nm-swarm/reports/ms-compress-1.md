@@ -39,6 +39,25 @@ Every carrier module is reachable from `GroupApproximation.lean` (import closure
 - CLAIM G1 printed operator norm asymptotic representation (`V_n(1) = 1`) and its normalization GroupApproximation/Manuscript/NonMFSentences/CompressionRadicalPrintedObjects.lean
 - CLAIM G2 `Ad(V(g))` is a bijection of the Hilbert–Schmidt bounded sequences GroupApproximation/Manuscript/NonMFSentences/CompressionRadicalPrintedObjects.lean
 - CLAIM G3 M_k(A) is finite through the amplification isomorphism GroupApproximation/Manuscript/NonMFSentences/CompressionRadicalPrintedObjects.lean
+- CLAIM G5 named closed-endpoint Props for four range endpoints GroupApproximation/Manuscript/NonMFSentences/CompressionRadicalClosedEndpoints.lean
+
+## Landed
+
+- **G1, G2, G3 CLOSED: aae8a52a1** (`Manuscript/NonMFSentences/CompressionRadicalPrintedObjects`; probe 0913-171434-13022 GREEN, BUILT, md5 of the landed bytes matches the record). Queued for wiring.
+  - `PrintedOpAsymptoticRepresentation`: extends `OpAlmostRepresentation` with `map_one : ∀ n, map n 1 = 1`. `normalizeOne` resets any `OpAlmostRepresentation` at `1`. Closed endpoint `printedAsymptoticRepresentationNormalization`: the reset satisfies `V_n(1) = 1` and differs from the original by an operator norm null sequence.
+  - `printedAdBijectionOfHSBoundedSequences : PrintedAdBijectionOfHSBoundedSequences` is `Set.BijOn (adSequence B g)` on `{x | IsHSBounded B x}`, via `hsNorm_adSequence` (unitary conjugation preserves the normalized Hilbert–Schmidt norm).
+  - `printedMatrixCoronaFinite_viaAmplification` transfers isometry ⇒ unitary through `matrixCoronaAmplificationEquiv` and `sentence_993df6a79c44`. `printedCoronaStablyFiniteViaAmplification` gives `IsCStarFinite A ∧ IsCStarStablyFinite A` along that route.
+- Census rows for 629f562df6bc, 630db09c6f46 and daecb970c06a: `metadata/nm-census-rows/ms-compress-1.tsv`.
+
+## Audit coverage (origin/main, checked 17:25)
+
+- Every range endpoint passes an axiom audit. Plain `#audit_axioms` also enforces the classical allowlist: a probe of this lane's first draft failed with "depends on axioms outside the classical allowlist" on a plain audit.
+- **G5:** four endpoints have only a plain audit (Audit/Sec2.lean:97, 101, 127, 135) and no named-Prop spelling that `#audit_closed_axioms` accepts (COMMON_RULES rule 10). Their types start with binders, so the closed audit rejects them as stated:
+  - `isCDEOperatorMF_of_faithful_corona_map`
+  - `OneSidedMFRadical.allMFTargetsKill_iff_allCoronasKill`
+  - `CompressionCriterionSentences.manuscriptSentence_kazhdanProjectionAndStableFinitenessReplaceTheCount`
+  - `CompressionCriterionSentences.manuscriptSentence_exactRepresentationCommutantDimensionCount`
+- The fix is additive: a new module with `def Printed… : Prop` and theorems proved by the existing declarations, each carrying `#audit_closed_axioms`. No existing file is edited.
 
 ## For the census lane
 
