@@ -76,7 +76,7 @@ theorem manuscriptSentence_hullGeneratingSetLimitSet
     Nonempty (HullGeneratingSet G) :=
   GGT.exists_hullGeneratingSet_of_osin G (hhard G hG)
 
-/-- **`thm:hull`, as printed, at the limit-set notion** (tex lines 1624–1628). -/
+/-- **`thm:hull`, as printed, at the limit-set notion** (tex lines 1636–1642). -/
 def PrintedHullSmallCancellationLimitSet : Prop :=
   ∀ (G : Type) [Group G], GGT.SequentialBoundary.IsAcylindricallyHyperbolicLimitSet G →
     ∀ (A : HullGeneratingSet G) {N : Subgroup G}, Suitable A.alphabet N →
@@ -172,7 +172,7 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.Manuscript.NonMF.TorsionFreePrinted
 open GroupApproximation.Manuscript.NonMF.TorsionFreeLimitSetNotion
 
-/-- **`thm:hull` at the limit-set notion** (tex lines 1624–1628), from the two Hull
+/-- **`thm:hull` at the limit-set notion** (tex lines 1636–1642), from the two Hull
 leaves. -/
 theorem manuscriptHullTheoremLimitSet_of_leastAreaLeaves
     (hgreendlinger :
