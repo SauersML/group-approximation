@@ -55,7 +55,11 @@ non-elementary Cu-semigroups satisfying (O5), (O6+) and Edwards' condition.
 Every property in that list except weak cancellation and (O6+) holds for
 `Cu(A)` of every separable unital simple non-elementary stably finite `A`
 (Thiel, proof of `prp:realizeChiselCa`, and `prp:EdwardsCa`). Hence **`Cu(B)`
-fails (O6+) or fails weak cancellation**, and the maximal soft element
+fails (O6+) or fails weak cancellation**. The disjunction is resolved on the
+(O6+) side by the dual meet statement `toms-schubert-algebra-fails-o6-plus`:
+common Cuntz lower bounds of the same pair keep a support gap, and functional
+infima need only (O6+). Whether weak cancellation holds in `Cu(B)` is not
+decided here. Either way the maximal soft element
 `alpha(f) = sup L'_f` of Thiel's proof does not exist as a supremum of `L'_f`.
 
 **Corollary (no maximal soft realizer below `f`).** The soft classes `x` with
