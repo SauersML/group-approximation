@@ -40,7 +40,9 @@ in part 1, §1.
    by `psi(g)` on `Z`, and preserves the center-valued trace.  So it induces
    rank-preserving bijections of atoms, on finitely many projections of `Z`.
 3. Canonical ordering inside atoms gives `tau_g in Z ⊗ C[S_k]` with
-   `tau_(gg') = (psi(g') . tau_g) tau_(g')`.  Internal lifts give a
+   `tau_(gg')(y) = tau_g(psi(g') y) o tau_(g')(y)`, i.e.
+   `tau_(gg') = (psi(g')^(-1) . tau_g) tau_(g')` under `sigma . f = f o sigma^(-1)`.
+   Internal lifts give a
    homomorphism `sigma~(g)(y, j) = (psi(g) y, tau_g(y)(j))` into
    `prod_omega Sym(Y × [k])`, with `sigma~(g) c sigma~(g)^* = Ad rho(g)(c)`
    for `c in C`.

@@ -90,7 +90,8 @@ sigma~(g) theta(c) sigma~(g)^* = theta( V rho(g) V^* c V rho(g)^* V^* )     (g i
   `alpha_(gg') = alpha_g alpha_(g')`.  So
 
   ```text
-  tau_(g g') = (psi(g') . tau_g) · tau_(g')        in Z ⊗ C[S_k],
+  tau_(g g') = (psi(g')^(-1) . tau_g) · tau_(g')   in Z ⊗ C[S_k],
+  that is,  tau_(g g')(y) = tau_g(psi(g') y) o tau_(g')(y),
   ```
 
   as an identity between finitely many projections of `Z`.
