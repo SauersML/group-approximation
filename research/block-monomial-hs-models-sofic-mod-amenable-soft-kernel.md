@@ -8,6 +8,7 @@ distinct_from:
   uniformly-discrete-block-monomial-images-are-sofic: that needs finite label groups with a uniform character gap so that HS and Hamming kernels coincide; this assumes no gap and instead identifies what the gap-free soft part can be.
   nonsofic-block-monomial-images-force-soft-kernel-labels: that says a nonsofic finite-label image must carry HS-null but literally active labels; this says, for bounded continuous blocks and regular trace, that the whole soft part is an amenable normal subgroup, so it is invisible to groups with trivial amenable radical.
   diagonal-normalizer-rigidity: that rounds an approximate normalizer of a full masa to a monomial and transfers multiplicativity to the permutation part; this handles the phases and the trace, which that transfer leaves unresolved.
+  block-monomial-coordinate-collapse: that uses the same Hamming comparison to send block-monomial models of the Kun--Thom wreath with coordinate lamps to sofic actions; this identifies the kernel of the permutation skeleton for an arbitrary group and bounds it group-theoretically.
 artifacts:
   - research/artifacts/ex-q34-frame-extraction-2026-09-12.md
 ---
@@ -23,7 +24,8 @@ psi : G -> prod_omega (S_(n_m), d_H),    A := ker psi   (soft kernel),
 ```
 
 because `d_H(sigma, sigma') <= ||M - M'||_2^2 / 2` for block-monomials with
-permutation parts `sigma, sigma'`.  Then:
+permutation parts `sigma, sigma'`.  That comparison is already used in
+`block-monomial-coordinate-collapse`.  Then:
 
 1. `G/A` is sofic, for arbitrary block sizes and arbitrary phases or
    rotations inside blocks.
@@ -45,6 +47,11 @@ group is regular with `A = G` abelian; `n` Haar-random homomorphisms
 `F_2 -> U(2)` give soft kernel `F_2` but are not regular, as (2) predicts; and
 a sofic approximation has `A = 1`.  Bounded `k` is sharp: with unbounded blocks
 every hyperlinear group has block-diagonal models, so `A = G` is possible.
+
+Finitary, dimension-free form with explicit constants and rounding rate:
+`standard-identity-witnesses-force-block-displacement`.  Frame-level input
+(approximate normalizers of an equal-rank decomposition):
+`coarse-frame-normalizers-are-near-block-monomial`.
 
 ## Attempts
 
