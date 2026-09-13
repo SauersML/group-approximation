@@ -19,9 +19,9 @@ Keys are from `metadata/NON_MF_SENTENCE_CENSUS.tsv`, matched by text; its line n
 | 1836–1837 | G not MF ⇒ τ_G not quasidiagonal | 01d34ed18b0a | formalized | `NinetyNineProblems.manuscriptCanonicalMaximalTraceNotIsQuasidiagonalTraceOfNotIsOperatorMF` | PASS |
 | 1837–1839 | amenable ⇒ amenable and not quasidiagonal | 01d34ed18b0a | formalized | `canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF` | PASS |
 | 1845–1846 | suppose τ_G quasidiagonal, with u.c.p. maps | fa19477760b9 | formalized | `FactorizationTraceSentences.manuscriptSentence_quasidiagonalModel` | PASS in content; its docstring quotes superseded wording (F1) |
-| 1847–1849 | Φ = [(φ_n)] is a unital *-homomorphism into Q_d | 0fbd72617dcb | formalized | `ShulmanTrace.MFTraceModel.coronaHom` | GAP: the carrier is the non-unital *-hom of an MF trace model; the printed "unital" clause is not stated |
-| 1849–1851 | Φ(u_g)=1 ⇒ ‖φ_n(u_g)−1‖→0 ⇒ tr→1, while tr→τ_G(u_g); so g=1 | 1c2804634e53 | formalized | `ShulmanTrace.exists_injective_coronaUnitaryHom` | GAP: the step is buried in that proof, which compares Φ(u_g) with Φ(1) through `eq_of_coronaHom_eq` after a unitary correction |
-| 1851–1853 | g ↦ Φ(u_g) injective corona homomorphism ⇒ G MF, contradiction | 53f02dc594db | formalized | `exists_injective_coronaUnitaryHom`, `FactorizationTraceSentences.manuscriptSentence_quasidiagonalGivesMF` | PARTIAL ROUTE: MF is reached through the MF-trace wrapper |
+| 1847–1849 | Φ = [(φ_n)] is a unital *-homomorphism into Q_d | 0fbd72617dcb | formalized | `FactorizationTraceCoronaProof.manuscriptSentence_unitalStarHom`, `coronaMap`, `coronaMap_one` (360f72771); earlier `ShulmanTrace.MFTraceModel.coronaHom` | PASS; the unital clause is now stated |
+| 1849–1851 | Φ(u_g)=1 ⇒ ‖φ_n(u_g)−1‖→0 ⇒ tr→1, while tr→τ_G(u_g); so g=1 | 1c2804634e53 | formalized | `FactorizationTraceCoronaProof.manuscriptSentence_generatorKernel` (360f72771); earlier `ShulmanTrace.exists_injective_coronaUnitaryHom` | PASS along the printed limit chain |
+| 1851–1853 | g ↦ Φ(u_g) injective corona homomorphism ⇒ G MF, contradiction | 53f02dc594db | formalized | `FactorizationTraceCoronaProof.manuscriptSentence_injectiveCoronaHom`, `generatorCoronaHom_apply`, `manuscriptSentence_isOperatorMF`, `printedFactorizationTraceCoronaProof` (360f72771) | PASS; endpoint closed at countable G |
 | 1856–1857 | locally residually finite | a817c6ae86c9 | definition | `LocallyRFByIntAmenableTrace.IsLocallyResiduallyFinite` | PASS |
 
 ## Checks behind the PASS rows
@@ -44,13 +44,28 @@ Keys are from `metadata/NON_MF_SENTENCE_CENSUS.tsv`, matched by text; its line n
 - F1: `Manuscript/OneSidedMFRadical/FactorizationTraceSentences.lean` (last touched at the restore commit 3f71a3a50)
   quotes a six-sentence polar-decomposition proof that is no longer printed. `manuscriptSentence_nearIsometry`,
   `_unitalAtIdentity`, `_traceTendsToZero` and `_lastAssertion` carry sentences that are gone. The printed proof at
-  tex 1845–1853 is the corona route. This is stale prose, not a soundness defect.
+  tex 1845–1853 is the corona route. The census rows already record this (note of 0fbd72617dcb, corrected per the lead
+  on 09-08), and no census row names the four stale carriers. This is stale prose, not a soundness defect. The module
+  is root-imported and unowned, so a docstring fix needs its own probe; not done here.
 
-## Building
+## Landed
 
-- Claimed module: carriers for tex 1847–1853 along the printed corona route. Φ is built from the quasidiagonal models
-  and is unital. Φ(u_g) = 1 gives operator-norm-null deviations, the normalized traces tend to 1, and g = 1. The
-  resulting homomorphism into the corona unitaries is injective, so G is operator MF. The closed endpoint
-  `PrintedFactorizationTraceCoronaProof` holds at the printed countable generality.
-- After landing, rows 0fbd72617dcb, 1c2804634e53 and 53f02dc594db are re-pointed in
-  `metadata/nm-census-rows/ms-traces-1.tsv`.
+- `GroupApproximation/Manuscript/NonMFSentences/FactorizationTraceCoronaProof.lean`, LANDED 360f72771 (probe
+  0913-172959-67907 GREEN, BUILT; build log shows [propext, Classical.choice, Quot.sound] for all five audited
+  declarations and no `sorryAx`, error or warning line). Queued in `wire-queue.txt`.
+  - `coronaMap M` is Φ, built from the quasidiagonal models through the theorem `ucpContractive`; `coronaMap_one`.
+  - `manuscriptSentence_unitalStarHom`: value at a, multiplicativity, adjoints, unitality (tex 1847–1849).
+  - `manuscriptSentence_generatorKernel`: Φ(u_g) = 1 ⇒ ‖φ_n(u_g) − 1‖ → 0 ⇒ tr → 1, the trace clause, g = 1
+    (tex 1849–1851).
+  - `generatorCoronaHom`, `generatorCoronaHom_apply`, `manuscriptSentence_injectiveCoronaHom`,
+    `manuscriptSentence_isOperatorMF` (tex 1851–1853).
+  - Closed endpoint `PrintedFactorizationTraceCoronaProof`, at countable G, the printed generality.
+  - Also `exists_models_card_pos`: it discards the finitely many empty models, which is the printed `d_n ≥ 1`.
+- Census rows 0fbd72617dcb, 1c2804634e53 and 53f02dc594db are re-pointed in `metadata/nm-census-rows/ms-traces-1.tsv`.
+  The earlier root-reachable carriers stay listed until the module is wired.
+
+## Range status
+
+Every sentence of tex 1808–1858 is carried by a closed declaration or classified honestly: two attribution rows, five
+definition rows, and six formalized rows (the theorem row covers two sentences). The only item outstanding is the root
+wiring of 360f72771.
