@@ -45,21 +45,33 @@ claim being open.
   (`higman-rope-trick-group-is-never-fp3`): for infinite `G = F/R` with
   `R ≠ 1`, `H_3(Hig_ι(G); Q)` is infinite-dimensional for every finitely
   generated host `P` of the double.
-- **Rope trick with two different embeddings, and one-step graph-of-groups
-  containers: dead over hosts with finite rational `H_2`.** Lane
-  z1-01-ffz-fp3 proves two things. Any finite graph of groups whose vertex
-  groups have finite-dimensional `H_2(-; Q)`, and some edge group has
-  infinite-dimensional `H_2(-; Q)`, has infinite-dimensional `H_3(-; Q)`. And
-  conjugating `ι × 1` to `ι' × π` for two different embeddings `ι, ι'` of the
-  double does not help when `H_2(P; Q)` is finite-dimensional. Proof nodes
-  land next.
-- **Live: an acyclic-host twisted container.** Take the vertex group
-  `P_0 × L × G`, with `P_0` finitely presented and acyclic and containing the
-  double `L`. Conjugate `y ↦ (ι_0(y), 1, 1)` to `y ↦ (1, y, π(y))`. The result
-  is finitely presented, contains `G`, and has the rational homology of a
-  circle when `G` is acyclic, so every trivial-coefficient Mayer–Vietoris
-  obstruction vanishes. Whether it is of type `FP_3` is open (Bieri–Eckmann
-  test with product coefficients). Node lands next.
+- **Graph-of-groups containers over a double, and the rope trick with two
+  different embeddings: dead over hosts with finite rational `H_2`.**
+  Established, unreviewed:
+  - `fp2-vertex-graph-of-groups-infinite-h2-edge-kills-fp3`: a finite graph
+    of groups with finite rational `H_2` at every vertex and infinite
+    rational `H_2` at some edge has infinite rational `H_3`;
+  - `twisted-rope-trick-container-is-not-fp3-over-fp2-hosts`: conjugating
+    `ι × 1` to `ι' × π` gives infinite rational `H_3` whenever
+    `ker(H_2 ι − H_2 ι') ∩ ker H_2 π` is infinite-dimensional, for instance
+    when `ι' = ι` or `H_2(P; Q)` is finite-dimensional.
+- **Acyclic-host twisted container: dead.** Take the vertex group
+  `P_0 × L × G` and conjugate `(ι_0(y), 1, 1)` to `(1, y, π(y))`. It is
+  finitely presented, contains `G` and is an integral homology circle, so it
+  passes every trivial-coefficient test. It still fails `FP_3` on product
+  coefficients: `acyclic-host-twisted-rope-container-is-never-fp3`, an
+  instance of `split-edge-hnn-with-non-fp2-edge-is-not-fp3` (unreviewed;
+  found independently by lanes z1-01-ffz-fpinf and z1-01-ffz-fp3). The second
+  edge map is split by a retraction with finitely presented kernel, so the
+  product defect `H_1(L; Π ZL) ≠ 0` of the double survives into `H_2`.
+- **What is left for a one-edge rope container `HNN(A; L; f_1, f_2)` over
+  the double.** Trivial coefficients: `H_2 f_1 − H_2 f_2` must be essentially
+  injective on `ker H_2 π`. Product coefficients: the degree-one map on
+  `H_1(L; Π ZK)` must be injective, so neither edge map may be split by a
+  retraction with `FP_2` kernel while the other passes through an `FP_2`
+  subgroup. A surviving shape must couple the double to vertex data that is
+  not `FP_2` on both sides. Finite presentability of such a container then
+  needs a new argument.
 - **Untried here: S-machine Higman embeddings** (Sapir–Birget–Rips). The
   source names them as the non-rope alternative giving more control over the
   embedding.

@@ -2,7 +2,21 @@
 
 Lane z1-01-ffz-fp3, 2026-09-13. Part 1 quotes the source. This part records one candidate `F_3` host
 for a universal finitely presented group. It escapes every trivial-coefficient obstruction proved so
-far, and whether it is of type `FP_3` is open. Everything below is unreviewed.
+far. Everything below is unreviewed.
+
+**Update, same day: the candidate is refuted.** `K_ac(G)` is not `FP_3`, by
+`split-edge-hnn-with-non-fp2-edge-is-not-fp3` (lane z1-01-ffz-fpinf, a9735c0298). See
+`acyclic-host-twisted-rope-container-is-never-fp3`. In section (F4) below, the degree-one injectivity
+fails.
+- `H_1(N; W) = 0` because `N = P_0 × G` is finitely presented. So `H_1(A; W)` injects into
+  `H_1(L; W_N)`.
+- The `N`-cosets `Nk` have trivial `L`-stabilizer, since `Nak = Nk` forces `a ∈ N`. So `W_N` is free
+  over `L`.
+- The collapse `ZK → Z[N\K]` is a split sum map with free kernel. That kernel carries
+  `H_1(L; Π_I ZL) ≠ 0`.
+
+The paragraph in (F4) that speculates about "collapsing along p" is superseded by this computation.
+Facts (F1)–(F3) still hold.
 
 ## Construction
 

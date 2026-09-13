@@ -19,3 +19,7 @@ finitely presented, acyclic and contains a universal finitely presented group.
   (Fournier-Facio–Zaremsky arXiv:2607.21727v1, Lemma 2.1).
 - `K_ac(G)` contains `G`, hence a universal finitely presented group, hence
   every finitely presented group.
+
+**Dead end.** The required claim is refuted by
+`acyclic-host-twisted-rope-container-is-never-fp3`, so this route never fires.
+It is kept because the implication is true and records the attempt.
