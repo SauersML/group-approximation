@@ -46,3 +46,6 @@ covering step. Solvable groups of bounded derived length are expected to reduce 
 no literature search was run.
 
 Derivation: `perfect-group-relator-width-over-nilpotent-groups-proof`.
+
+**Verified 2026-09-13** by ex-verify-backlog: PASS (main `b7c64e31e5`,
+`research/artifacts/ex-review-backlog-2026-09-13-part2.md` §2).

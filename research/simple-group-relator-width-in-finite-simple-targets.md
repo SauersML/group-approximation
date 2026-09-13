@@ -48,4 +48,9 @@ symmetric groups. The remaining classes are:
 - non-simple finite groups with thin conjugacy classes, such as wreath products with small
   coordinate-permuting groups. This is where Glebsky's permanence room lives.
 
-Derivation: `simple-group-relator-width-in-finite-simple-targets-proof`. Unreviewed.
+Derivation: `simple-group-relator-width-in-finite-simple-targets-proof`.
+
+**Verified 2026-09-13** by ex-verify-backlog: (A), (B) and (C) PASS, with one correction to the
+proof's Section 1 applied on main. The bound `|S| - 1 >= c q^(rk Q) >= c q` is used there instead
+of `c q^rho`, since the rank of `Q` may be below `rho` (main `b7c64e31e5`,
+`research/artifacts/ex-review-backlog-2026-09-13-part2.md` §2.2).

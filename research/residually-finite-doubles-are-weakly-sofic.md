@@ -41,3 +41,7 @@ stays open.
 theory. No source states it; the search was bounded to this graph.
 
 Derivation: `residually-finite-doubles-are-weakly-sofic-proof`.
+
+**Verified 2026-09-13** by ex-verify-backlog: PASS (main `b7c64e31e5`,
+`research/artifacts/ex-review-backlog-2026-09-13-part2.md` §2). The novelty check in
+`research/artifacts/ex-open-status-2026-09-12.md` found the Glebsky credit adequate.

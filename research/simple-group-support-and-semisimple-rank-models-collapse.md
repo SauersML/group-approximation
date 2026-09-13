@@ -85,3 +85,9 @@ Let `f : {0,1,2,...} -> [0, infinity)` be nondecreasing and subadditive with
   a kernel.
 
 Derivation: `simple-group-support-and-semisimple-rank-models-collapse-proof`.
+
+**Verified 2026-09-13** by ex-verify-backlog: PASS, with one correction to item 4 of the proof
+applied on main. Over imperfect fields an eigenvalue outside `F` may be purely inseparable, so the
+multiplicity cap `n/2` is now derived from the rational canonical form: each cyclic summand
+`F[x]/(m^k)` with `deg m >= 2` has dimension at least 2. The bound is unchanged (main `b7c64e31e5`,
+`research/artifacts/ex-review-backlog-2026-09-13-part2.md` §2.1).
