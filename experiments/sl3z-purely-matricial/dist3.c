@@ -11,7 +11,7 @@
      Q[i][j] = sum_{x in C_j} P(g_i x^{-1}).
    The rank of Q mod two large primes is printed (a lower bound for the rank
    over Q, equal to it unless the primes divide special minors).
-   Usage: ./dist n d   (n <= 9 for memory; d | n) */
+   Usage: ./dist3 n d [t2 t3]  (t2, t3 invertible mod n; default 2 3).  Original usage: ./dist n d   (n <= 9 for memory; d | n) */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -103,7 +103,7 @@ int main(int argc,char**argv){
   printf("classes K=%d\n",K); fflush(stdout);
   invcls=malloc(K*sizeof(int)); for(int k=0;k<K;k++){ int x[9],y[9]; dec(crep[k],x); inv3(x,y); invcls[k]=cls[enc(y)]; }
   { int id9[9]={1,0,0,0,1,0,0,0,1}; for(int i=0;i<9;i++) id9[i]%=n; eidx=cls[enc(id9)]; }
-  int64_t *P[6]; uint64_t hs[4]; int TY[4]={0,0,0,1}, TT[4]={1,2,3,1};
+  int64_t *P[6]; uint64_t hs[4]; int TY[4]={0,0,0,1}, TT[4]={1,2,3,1}; if(argc>4){ TT[1]=atoi(argv[3]); TT[2]=atoi(argv[4]); } printf("cube-class representatives t = 1, %d, %d\n",TT[1],TT[2]);
   for(int t=0;t<4;t++){ uint32_t *h=build_H(TY[t],d,TT[t],&hs[t]); uint64_t *hc=calloc(K,sizeof(uint64_t)); for(uint64_t i=0;i<hs[t];i++) hc[cls[h[i]]]++;
     P[t]=malloc(K*sizeof(int64_t)); for(int k=0;k<K;k++){ __int128 num=(__int128)(G/csize[k])*hc[k]; if(G%csize[k]||num%hs[t]){ fprintf(stderr,"divisibility fail\n"); exit(1);} P[t][k]=(int64_t)(num/hs[t]); }
     int id9[9]={1,0,0,0,1,0,0,0,1}; for(int i=0;i<9;i++) id9[i]%=n;

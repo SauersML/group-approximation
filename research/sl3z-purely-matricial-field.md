@@ -61,7 +61,15 @@ norms.  A positive answer makes `C*_r(SL_3(Z))` MF and so answers
   (`sl3z-prime-level-sc-needs-cubic-chebotarev-primes`).  Its
   principal fixed vectors move to integral witnesses `H_m` with `m` at least
   the least non-cube mod `p_i`.  A prime-level refutation needs a norm excess
-  uniform along that migration.  Mixed levels escape all these witnesses.
+  uniform along that migration.  There is also no selection freedom on the
+  block `SL_2`: every cuspidal constituent restricts to it with all nontrivial
+  irreducibles of `SL_2(F_p)`.  So prime-level strong convergence for `SL_3(Z)`
+  forces `l^2_0(SL_2(F_(p_i))) -> lambda_(SL_2(Z))` strongly, i.e. asymptotically
+  Ramanujan Sanov Cayley graphs of `SL_2(F_p)`
+  (`sl3z-prime-level-sc-forces-congruence-sc-for-sl2z`).  One persistent outlier
+  there refutes the prime-level case.  The census at level `9` also catches all
+  127 irreducibles with the three cube classes, including the four of degree
+  144 listed in the first bullet.  Mixed levels escape all these witnesses.
 * **Maximal parabolics and relative property (T).**  Cannot refute.  The
   integral maximal parabolics `Z^2 x| GL_2(Z)` are PFF
   (`affine-sl2z-purely-matricial-field`, from Gao--Kunnawalkam Elayavalli--Mj

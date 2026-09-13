@@ -128,6 +128,63 @@ Let `E_i` be the set of classes `c` with `rho_i^(Omega^(c)) = 0`.  By Theorem E.
 `p_i > 2M^2`).  If some `m <= M` were a non-cube mod `p_i`, the classes of `1`,
 `m` and `m^2` would be `0`, `c` and `2c`, which is all of `C_(p_i)`.  QED
 
+## Corollary G: no selection freedom on the block `SL_2`
+
+**Lemma G.**  Let `pi` be a cuspidal representation of `GL_3(F_p)`, and let
+`rho` be any irreducible constituent of `pi|_(SL_3(F_p))`.  Then `rho|_(B_2)`
+contains every nontrivial irreducible representation of `SL_2(F_p)`, and does
+not contain the trivial one.
+
+*Proof.*  By the character values above,
+`pi|_(B_2) = Reg_(SL_2(F_p)) - Ind_U^(SL_2(F_p)) 1`.
+
+- Both sides take the value `(p-1)(p^2-1)` at `1`.
+- Both take `1-p` at transvections.
+- Both vanish elsewhere: a non-unipotent element of `SL_2(F_p)` fixes no
+  nonzero vector.
+
+So the multiplicity of `sigma` is `dim sigma - dim sigma^U`:
+
+| `sigma` | multiplicity |
+|---|---|
+| trivial | `0` |
+| principal series | `p-1` |
+| Steinberg | `p-1` |
+| halves of `Ind_B(sgn)` | `(p-1)/2` |
+| cuspidal, of degree `p-1` | `p-1` |
+| cuspidal, of degree `(p-1)/2` | `(p-1)/2` |
+
+This settles the case where the restriction to `SL_3` is irreducible.
+
+If `pi|_(SL_3) = rho_1 (+) rho_2 (+) rho_3`, take `t = g^2` with `g` a generator of
+`F_p^x`.  Since `3 | p-1`, `t` is a non-cube, so `Ad(d_t)` permutes the `rho_j`
+transitively.  It acts on `B_2` as conjugation by `diag(t,1)` with `t` a square,
+which fixes every irreducible representation of `SL_2(F_p)`.  So the
+multiplicity of `sigma` in `rho_j` does not depend on `j`.  It is one third of
+the value in the table, which is positive.  QED
+
+**Corollary G.**  If irreducible representations `rho_i` of `SL_3(F_(p_i))`
+converge strongly to `lambda_(SL_3(Z))`, then the mean-zero regular
+representations `l^2_0(SL_2(F_(p_i)))`, pulled back to `SL_2(Z)`, converge
+strongly to `lambda_(SL_2(Z))`.  In particular, the Cayley graphs of
+`SL_2(F_(p_i))` for the Sanov generators `[[1,2],[0,1]]`, `[[1,0],[2,1]]` have
+largest nontrivial eigenvalue tending to `2 sqrt 3`, and every element of
+`C[F_2]` has asymptotically regular norm.
+
+*Proof.*  By Corollary F, `rho_i` is a cuspidal constituent for large `i`.  By
+Lemma G, `||rho_i(z)|| = ||l^2_0(SL_2(F_(p_i)))(z)||` for `z in C[B_2(Z)]`, since
+the norm of a direct sum is the maximum over the constituents present.  The
+left side tends to `||lambda_(SL_3(Z))(z)|| = ||lambda_(SL_2(Z))(z)||`.  QED
+
+**Squarefree levels.**  Write an irreducible representation of `SL_3(Z/N)`
+(`N` squarefree) as `(x)_p rho_p`.  By Theorem E.1 every factor is cuspidal
+(the set `C` of primes) or has `B_2`-fixed vectors.  Then `rho|_(B_2(Z))`
+contains `(x)_(p in C) l^2_0(SL_2(F_p))`, tensored with trivial factors.  So
+strong convergence forces
+`limsup ||((x)_(p in C_i) l^2_0(SL_2(F_p)))(z)|| <= ||lambda_(SL_2(Z))(z)||`.
+This is an upper bound for the new-at-`C_i` congruence regular representations
+of `SL_2(Z)`, again with no choice of constituents.
+
 ## Census check at `p = 7` (exact computation, MSI, 2026-09-13)
 
 Program `experiments/sl3z-purely-matricial/dist3.c` extends the earlier
@@ -147,6 +204,24 @@ irreducibles.
 | block `SL_2` (order 336) | 40 | `1548288` |
 | block and `Omega^(1)` | 60 | `36864 = 4*96^2` |
 | block and `Omega^(1)`, `Omega^(2)`, `Omega^(3)` | **64** | **`0`** |
+
+**Level `9 = 3^2`** (`./dist3 9 1 2 4`: the cube classes of `(Z/9)^x` are
+`{1,8}`, `{2,7}`, `{4,5}`; `SL_3(Z/9)` has `K = 127` irreducibles).
+
+| subgroup (mod 9) | irreducibles with fixed vectors | `sum chi(1)^2` over missing |
+|---|---|---|
+| `Omega^(1)` (order 324) | 119 | `196850` |
+| `Omega^(2)` | 119 | `196850` |
+| `Omega^(4)` | 119 | `196850` |
+| block `SL_2` (order 648) | 69 | `9221976` |
+| block and `Omega^(1)` | 123 | `82944 = 4*144^2` |
+| block and all three `Omega^(t)` | **127** | **`0`** |
+
+So the four degree-144 representations of `SL_3(Z/9)` that escape the block and
+the principal `SL_2` are also caught by the other cube classes.  Theorem E is
+proved here only at prime levels, but the census suggests it extends to prime
+powers.  That extension is open; it would carry Corollary F to prime-power
+levels.
 
 The `57`s are odd degenerate principal series.  They are non-cuspidal, so they
 have block fixed vectors (Theorem E.1).  The four `96`s missing from the block
