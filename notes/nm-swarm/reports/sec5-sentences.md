@@ -216,8 +216,21 @@ None. sec2-sentences proved `GloballyDistinguishedSectionFamily.SeparatedCornerI
 
 Census: a new L1636 row (partial) records the closed Case 2 piece.
 
+## The polygon partition: covered by ghw-assembly
+
+Assignment (team-lead, 2026-09-13 ~13:15): take one open piece of `OsinLemma94PolygonPartitionInput`, either the face
+enumeration or the `walk` and `cutting_interior` fields.
+- I asked ghw-assembly and cite-hull at ~13:17 which piece was free.
+- By 13:21 ghw-assembly had written the whole Prop in its lane file `Estimating/OsinLemma94PolygonPartition.lean`
+  (unlanded). It defines `realizedPolygons` with every field and proves `realizedPolygons_maximal` and
+  `osinLemma94PolygonPartitionInput`. `OsinLemma94PolygonMaximal` LANDED 9f03bfcd3.
+- My draft (`UnselectedFaces`, `polygonCount`, `polygonFace_complete`) duplicated `polygonFace` and
+  `exists_polygonFace` there. It stays in scratch and was never landed or probed.
+- sec5-sentences stood down and told ghw-assembly, cite-hull and main (~13:25).
+
 ## Next
 
-1. Case 2 is closed. Ask main for the next item; one of the remaining pieces above is the natural candidate.
+1. Waiting on main for the next item. Once the partition lands, `osinLemma94Section_of_residuals` still needs
+   `OsinLemma94PolygonCountInput` (hull-count94) and `OsinLemma94CaseOneInput` (theoremc-retire).
 2. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
    re-grade the rows formalized.
