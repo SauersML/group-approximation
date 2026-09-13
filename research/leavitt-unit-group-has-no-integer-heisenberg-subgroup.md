@@ -27,9 +27,12 @@ not a supergroup of `G`. A negative answer would instead produce
 ## Attempts
 
 **Thompson elements.** If `a` and `b` lie in one conjugate of the embedded `V`,
-then `thompson-v-has-no-heisenberg-subgroup` excludes the configuration. That
-theorem rests on undistortion of cyclic subgroups of `V`, and says nothing about
-linear units.
+then `thompson-v-has-no-heisenberg-subgroup` excludes the configuration. The
+stronger `thompson-elements-are-undistorted-in-leavitt-unit-group` (established)
+excludes every Heisenberg subgroup of `Q` whose central commutator is conjugate
+into `V`, with `a` and `b` arbitrary units. Its proof combines subadditive depth
+with the linear slope growth of Thompson powers. A remaining counterexample must
+therefore have a center that is a genuinely linear unit, not conjugate into `V`.
 
 **Matrices over commutative subrings.** These are excluded by the
 positive-characteristic determinant lemma of
