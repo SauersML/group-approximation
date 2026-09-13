@@ -41,15 +41,23 @@ as commentary, not as separate nodes.
   - The DGLT correction scheme behind the stability theorem cannot follow it there. The correction
     solving the linearized cocycle equation is small in normalized HS but has no operator-norm bound,
     and the quadratic error term needs one.
+  - **Intermediate exponent (2026-09-13, ex2-nh-deligne-sector-floor).** Any exponent `b < 1/2` is
+    open as `deligne-cover-sector-floor-below-exponent-one-half`, and bounded-rank defects are an
+    even weaker open rung there. Monomial models over exact finite quotients have the floor `4 nu / A_0`
+    at every genus (`deligne-monomial-cover-models-have-a-detecting-cycle-floor`), where `A_0` is the
+    least mass of a detecting 2-cycle.
 - **Two-norm arguments die at the normalized norm.** Bachner--Dogon--Lubotzky
   (`bdl-deligne-type-two-norm-inapproximability`) round the mark to an exact root of unity. A
   nontrivial root then costs a whole eigenvalue. In normalized HS one eigenvalue costs only
   `d^(-1/2)`, so the argument needs a positive fraction of the spectrum forced away from `1`. That
   forcing is this claim.
-- **Operator norm, conditional, g >= 3.** `Gamma~_g` has `[T_2]` (BLSW Theorem 2.10). If BDL
-  Conjecture 1.8 holds for it, operator-HS stability descends to `E_3^(g)`, and the order-three form
-  of BDL Proposition 1.5 makes `E_3^(g)` not MF. That is weaker than this claim. Derivation sketch in
-  the artifact, Section 5 (unreviewed).
+- **Operator norm, conditional, g >= 3.** `Gamma~_g` has `[T_2]` (BLSW Theorem 2.10), so BDL
+  Conjecture 1.8 for it is the open `sp2g-universal-cover-lattice-is-operator-hs-stable`.
+  - The route `deligne-sp2g-covers-not-mf-from-operator-hs-stability` derives that every `E_n^(g)`,
+    `n >= 3`, has MF radical `<z^2>` and is not MF. It uses one application of the hypothesis to the
+    compressed model, and it replaces the three-step sketch in Section 5 of the artifact.
+  - That is weaker than this claim.
+  - The covers themselves fail `[T_2]`, so the conjecture cannot be applied to them directly.
 - **Flexible stability of the base (Dogon).** Flexible HS stability of `Sp_(2g)(Z)` would make
   `Gamma~_g` non-hyperlinear. `rf-kazhdan-group-not-flexibly-hs-stable` refutes flexible stability for
   `Z^(2g) x| Sp_(2g)(Z)` using exact projective twists tending to `1`.
