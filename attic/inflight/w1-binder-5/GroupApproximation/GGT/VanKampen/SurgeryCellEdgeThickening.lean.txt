@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.SurgeryOuterSpurThickening
+import GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarDouble
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -16,16 +17,16 @@ A **cell-edge dart** is a dart of a relator face with at least two darts whose r
 relator face.  The doubling of `FaceEdgeDoubling` along a cell-edge dart `w_j`, inside its relator
 face `f`, inserts a G-cell digon `none, w_j` on the `f` side of the edge: `f` reads the old
 traversal with the new dart in the place of `w_j`, whose reverse lies on the digon, and `w_j` now
-lies on the digon.  Every other old dart keeps its face and its reverse, and a relator face keeps
-its number of darts, so a cell-edge dart of the doubled diagram is an old one other than `w_j`
-(`exists_of_isCellEdgeDart`) and the number of cell-edge darts drops (`cellEdgeCount_lt`).  When no
-relator word has value one, no region contains a relator face, so every region avoids `f` and the
-face across `w_j` and transports with its face set, weight, target profile and source index
-(`sectionFamily`, through `FaceEdgeDoubling.regionFamily`).  The model test is
-`SurgeryCellEdgeThickeningModel.lean`.
+lies on the digon (`FaceEdgeDoubling.faceOf_none_digon`, `faceOf_embed_dart_digon`).  Every other
+old dart keeps its face and its reverse, and a relator face keeps its number of darts, so a
+cell-edge dart of any doubled diagram is an old one other than `w_j` (`exists_of_isCellEdgeDart`),
+and doubling a cell-edge dart lowers their number (`cellEdgeCount_lt`).  When no relator word has
+value one, no region contains a relator face, so every region avoids `f` and the face across `w_j`
+and transports with its face set, weight, target profile and source index (`sectionFamily`,
+through `FaceEdgeDoubling.regionFamily`).  The model test is `SurgeryCellEdgeThickeningModel.lean`.
 
 * `IsCellEdgeDart`, `cellEdgeCount`.
-* `faceOf_none`, `faceOf_embed_dart`, `faceOf_embed`: faces of the doubled diagram.
+* `faceOf_embed_eq_faceImage`, `boundary_faceImage_length`: faces of the doubled map.
 * `exists_of_isCellEdgeDart`, `cellEdgeCount_lt`, `relatorValue_ne_one`, `cell_avoid`.
 * `regionFamilyEquiv`, `sectionFamily`, `exists_cellEdgeFree`.
 * `CellEdgeThickeningStatement`, `cellEdgeThickening`: the closed statement.
@@ -94,41 +95,16 @@ variable (Delta : DiscDiagram.{u, w, v} W) (f : Delta.toCombMap.Face)
   (j : Fin (Delta.faceBoundary f).darts.length)
   (hlen : 1 < (Delta.faceBoundary f).darts.length) (hf : f ≠ Delta.outerFace)
 
-/-- The first new dart lies on the digon. -/
-theorem faceOf_none :
-    (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.faceOf none =
-      FaceEdgeDoubling.digon Delta f j hlen := by
-  apply ((FaceEdgeDoubling.boundary Delta f j hlen
-    (FaceEdgeDoubling.digon Delta f j hlen)).mem_iff _).mp
-  rw [FaceEdgeDoubling.boundary_digon]
-  exact List.mem_cons.mpr (Or.inl rfl)
-
-/-- The doubled dart lies on the digon. -/
-theorem faceOf_embed_dart :
-    (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.faceOf
-        (embed Delta.toCombMap (FaceEdgeDoubling.dart Delta f j)) =
-      FaceEdgeDoubling.digon Delta f j hlen := by
-  apply ((FaceEdgeDoubling.boundary Delta f j hlen
-    (FaceEdgeDoubling.digon Delta f j hlen)).mem_iff _).mp
-  rw [FaceEdgeDoubling.boundary_digon]
-  exact List.mem_cons.mpr (Or.inr (List.mem_singleton.mpr rfl))
-
-/-- Every old dart other than the doubled one keeps its face. -/
-theorem faceOf_embed {y : Delta.toCombMap.Dart} (hy : y ≠ FaceEdgeDoubling.dart Delta f j) :
-    (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.faceOf (embed Delta.toCombMap y) =
+/-- Every old dart other than the doubled one lies on the image of its face, by
+`FaceEdgeDoubling.faceOf_embed_of_face_of_ne` and `faceOf_embed_of_face_ne`. -/
+theorem faceOf_embed_eq_faceImage {y : Delta.toCombMap.Dart}
+    (hy : y ≠ FaceEdgeDoubling.dart Delta f j) :
+    (FaceEdgeDoubling.map Delta f j hlen).faceOf (embed Delta.toCombMap y) =
       FaceEdgeDoubling.faceImage Delta f j hlen (Delta.toCombMap.faceOf y) := by
   by_cases hg : Delta.toCombMap.faceOf y = f
-  · rw [hg, FaceEdgeDoubling.faceImage_self]
-    apply ((FaceEdgeDoubling.boundary Delta f j hlen
-      (FaceEdgeDoubling.cellFace Delta f j hlen)).mem_iff _).mp
-    rw [FaceEdgeDoubling.boundary_cellFace_darts]
-    refine List.mem_map.mpr ⟨y, ((Delta.faceBoundary f).mem_iff y).mpr hg, ?_⟩
-    rw [FaceEdgeDoubling.dartImage, if_neg hy]
-  · rw [FaceEdgeDoubling.faceImage_of_ne Delta f j hlen hg]
-    apply ((FaceEdgeDoubling.boundary Delta f j hlen
-      (FaceEdgeDoubling.keep Delta f j hlen (Delta.toCombMap.faceOf y))).mem_iff _).mp
-    rw [FaceEdgeDoubling.boundary_kept Delta f j hlen hg]
-    exact List.mem_map.mpr ⟨y, ((Delta.faceBoundary _).mem_iff y).mpr rfl, rfl⟩
+  · rw [FaceEdgeDoubling.faceOf_embed_of_face_of_ne Delta f j hlen hg hy, hg,
+      FaceEdgeDoubling.faceImage_self]
+  · exact FaceEdgeDoubling.faceOf_embed_of_face_ne Delta f j hlen hg
 
 /-- The traversal of the image of a face has as many darts as the old traversal. -/
 theorem boundary_faceImage_length (g : Delta.toCombMap.Face) :
@@ -140,7 +116,7 @@ theorem boundary_faceImage_length (g : Delta.toCombMap.Face) :
 
 /-- **A cell-edge dart of the doubled diagram is an old cell-edge dart other than `w_j`.**  The new
 dart of `f` has its reverse on the digon, the doubled dart lies on the digon, and the digon is no
-relator cell. -/
+relator cell.  This holds for the doubling along any dart of any inner face. -/
 theorem exists_of_isCellEdgeDart
     {x : (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.Dart}
     (hx : IsCellEdgeDart (FaceEdgeDoubling.diagram Delta f j hlen hf) x) :
@@ -152,10 +128,10 @@ theorem exists_of_isCellEdgeDart
   have hC'm : C' ∈ Delta.relatorCells.map (FaceEdgeDoubling.cell Delta f j hlen hf) := hC'
   obtain ⟨C₁, hC₁, rfl⟩ := List.mem_map.mp hC'm
   change FaceEdgeDoubling.faceImage Delta f j hlen C₀.face =
-    (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.faceOf x at hCf
+    (FaceEdgeDoubling.map Delta f j hlen).faceOf x at hCf
   change FaceEdgeDoubling.faceImage Delta f j hlen C₁.face =
-    (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.faceOf
-      ((FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.alpha x) at hC'f
+    (FaceEdgeDoubling.map Delta f j hlen).faceOf
+      ((FaceEdgeDoubling.map Delta f j hlen).alpha x) at hC'f
   -- `x` is the image of an old dart of the face of `C₀` other than `w_j`.
   obtain ⟨d, hdx, hdface, hdne⟩ : ∃ d, embed Delta.toCombMap d = x ∧
       Delta.toCombMap.faceOf d = C₀.face ∧ d ≠ FaceEdgeDoubling.dart Delta f j := by
@@ -169,8 +145,8 @@ theorem exists_of_isCellEdgeDart
       · rw [FaceEdgeDoubling.dartImage, if_pos hdd] at hdx
         subst hdx
         change FaceEdgeDoubling.faceImage Delta f j hlen C₁.face =
-          (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.faceOf none at hC'f
-        rw [faceOf_none] at hC'f
+          (FaceEdgeDoubling.map Delta f j hlen).faceOf none at hC'f
+        rw [FaceEdgeDoubling.faceOf_none_digon] at hC'f
         exact (FaceEdgeDoubling.faceImage_ne_digon Delta f j hlen C₁.face hC'f).elim
       · rw [FaceEdgeDoubling.dartImage, if_neg hdd] at hdx
         exact ⟨d, hdx, (((Delta.faceBoundary f).mem_iff d).mp hd).trans hg.symm, hdd⟩
@@ -182,16 +158,16 @@ theorem exists_of_isCellEdgeDart
       rw [← hdface, hdd, FaceEdgeDoubling.dart_face]
   subst hdx
   change FaceEdgeDoubling.faceImage Delta f j hlen C₁.face =
-    (FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.faceOf
+    (FaceEdgeDoubling.map Delta f j hlen).faceOf
       (embed Delta.toCombMap (Delta.toCombMap.alpha d)) at hC'f
   by_cases had : Delta.toCombMap.alpha d = FaceEdgeDoubling.dart Delta f j
-  · rw [had, faceOf_embed_dart Delta f j hlen hf] at hC'f
+  · rw [had, FaceEdgeDoubling.faceOf_embed_dart_digon] at hC'f
     exact (FaceEdgeDoubling.faceImage_ne_digon Delta f j hlen C₁.face hC'f).elim
-  · rw [faceOf_embed Delta f j hlen hf had] at hC'f
+  · rw [faceOf_embed_eq_faceImage Delta f j hlen had] at hC'f
     have h2 : 1 < (FaceEdgeDoubling.boundary Delta f j hlen
-        ((FaceEdgeDoubling.diagram Delta f j hlen hf).toCombMap.faceOf
-          (embed Delta.toCombMap d))).darts.length := hxlen
-    rw [faceOf_embed Delta f j hlen hf hdne, boundary_faceImage_length] at h2
+        ((FaceEdgeDoubling.map Delta f j hlen).faceOf (embed Delta.toCombMap d))).darts.length :=
+      hxlen
+    rw [faceOf_embed_eq_faceImage Delta f j hlen hdne, boundary_faceImage_length] at h2
     exact ⟨d, rfl, ⟨h2, ⟨C₀, hC₀, hdface.symm⟩,
       ⟨C₁, hC₁, FaceEdgeDoubling.faceImage_injective Delta f j hlen hC'f⟩⟩, hdne⟩
 
@@ -411,9 +387,7 @@ end GroupApproximation.GGT.VanKampen.CellEdgeThickening
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.cellEdgeThickening
 #audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_self_of_noCellEdgeDart
 #audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.cell_cell_of_noCellEdgeDart
-#audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.faceOf_none
-#audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.faceOf_embed_dart
-#audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.faceOf_embed
+#audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.faceOf_embed_eq_faceImage
 #audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.boundary_faceImage_length
 #audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.exists_of_isCellEdgeDart
 #audit_axioms GroupApproximation.GGT.VanKampen.CellEdgeThickening.cellEdgeCount_lt
