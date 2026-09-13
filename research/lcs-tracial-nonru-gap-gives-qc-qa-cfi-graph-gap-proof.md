@@ -23,6 +23,17 @@ arXiv:1812.11474v2, read at source.
 - **(H3)** Proposition 5.3.  Hereditarily *-equivalent synchronous games have
   perfect `t`-strategies simultaneously, for `t in {loc, q, qa, qc, C^*}`.
 
+AMRSSV = Atserias, Mančinska, Roberson, Šámal, Severini, Varvitsiotis,
+*Quantum and non-signalling graph isomorphisms*, arXiv:1611.09837, read at
+source through text extraction.
+
+- **(A1)** §6.1: the graphs `G_F`, `G_(F_0)` of a linear system and its
+  homogenization.  Theorem 6.3: `F` is quantum satisfiable iff
+  `G_F ≅_q G_(F_0)`.
+- **(A2)** Theorem 6.5: the BCS game for `F` has a perfect quantum commuting
+  strategy iff `G_F ≅_qc G_(F_0)`.  This is the `qc` transfer below, and it is
+  due to AMRSSV.  BCEHPSW (H2)--(H3) give it again and add the `qa` case.
+
 Paddock--Slofstra, arXiv:2310.07901v2, read at source.
 
 - **(P1)** p. 2.  The synchronous algebra of the synchronous BCS game is

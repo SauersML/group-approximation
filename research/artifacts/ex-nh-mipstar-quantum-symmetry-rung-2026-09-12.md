@@ -70,6 +70,17 @@ quantum symmetry is not a group.
 Node: `qc-qa-graph-gap-gives-non-ce-quantum-automorphism-group`, with the
 complete proof in `qc-qa-graph-gap-gives-non-ce-quantum-automorphism-group-proof`.
 
+**Credit.**  The corner construction below is from the proof of
+Lupini--Mančinska--Roberson, arXiv:1712.01820v2, Theorem 4.4, which uses it to
+prove `≅_q` iff `≅_qc`; their Theorem 4.5 is the disjoint-union orbit criterion.
+What is added here:
+- the non-embeddability conclusion;
+- `h(P) = 1/2` from invariance;
+- the planar-count corollary.
+
+A text search of LMR, BCEHPSW, AMRSSV and Paddock--Slofstra found no statement
+about Connes embeddability of quantum automorphism groups (bounded check).
+
 Mechanism, in one paragraph.  Put the two graphs side by side, `Z = X ⊔ Y`,
 after replacing both by complements if `X` is disconnected.  The magic
 unitary of `Qut(Z)` intertwines the same-component matrix `J_X (+) J_Y`,
@@ -94,7 +105,15 @@ Two features worth recording.
 
 ## 3. The goal implies the rung
 
-For a binary linear system `Ax=b`, BCEHPSW Theorem 5.6 proves that
+The linear-system-to-isomorphism reduction is due to
+Atserias--Mančinska--Roberson--Šámal--Severini--Varvitsiotis (AMRSSV),
+arXiv:1611.09837, §6.
+- Theorem 6.3: quantum satisfiability iff `G_F ≅_q G_(F_0)`.
+- Theorem 6.5: a perfect commuting strategy iff `G_F ≅_qc G_(F_0)`.
+- Corollaries 6.8--6.9: the `qc`/`q` separation and undecidability.
+
+The `qa` case comes from BCEHPSW's hereditary equivalence.  For a binary linear
+system `Ax=b`, BCEHPSW Theorem 5.6 proves that
 `syncBCS(A,b)`, `Iso(G_(A,b),G_(A,0))` and `Hom(K_m, complement(G_(A,b)))` are
 hereditarily *-equivalent.  Their Proposition 5.3 then transfers perfect
 `t`-strategies for `t in {loc, q, qa, qc, C^*}`.  Hence:
@@ -207,11 +226,17 @@ non-Connes-embeddable Kac quantum group by the coloured corner argument of §2.
 
 - **Read at source.**
   - BCEHPSW arXiv:1812.11474v2: pp. 1--7 and 17--33.
-  - Paddock--Slofstra arXiv:2310.07901v2: pp. 1--12.
+  - Paddock--Slofstra arXiv:2310.07901v2: pp. 1--12, plus a full-text
+    search.
+  - Lupini--Mančinska--Roberson arXiv:1712.01820v2: pp. 5--10 and §4.1--4.2
+    (Corollary 4.3, Theorems 4.4 and 4.5, Corollary 4.7), plus a full-text
+    search.
+  - AMRSSV arXiv:1611.09837: §6 (Theorems 6.2, 6.3, 6.5, Corollaries 6.8 and
+    6.9), plus a full-text search.
+  - Roberson--Schmidt arXiv:2111.12362v1: pp. 1--14 and 19--26.
   - A. Freslon, *Matricial approximation of quantum automorphism groups of
     graphs* (survey notes, 8 pp.).
 - **Abstracts only.**
-  - Lupini--Mančinska--Roberson arXiv:1712.01820.
   - Kar--Roberson--Seppelt--Zeman arXiv:2407.10635.
   - Voigt arXiv:2603.25141.
 - **Web searches on 2026-09-12:**
@@ -224,6 +249,13 @@ non-Connes-embeddable Kac quantum group by the coloured corner argument of §2.
   `qc`-but-not-`qa` isomorphic graph pair, or the rung theorem.  The check is
   bounded to these searches and is not a survey of the quantum-group
   literature.
+- **Full-text search** of LMR, BCEHPSW, AMRSSV and Paddock--Slofstra for
+  "Connes", "hyperlinear", "sofic", "ultrapower" and "hyperfinite":
+  - Connes' problem appears only as background in BCEHPSW §2.2;
+  - hyperlinearity appears only in Paddock--Slofstra, who never mention
+    isomorphism games;
+  - nothing on Connes embeddability of quantum automorphism groups.
+  (Credit notes from `ex-novelty` prompted this check.)
 
 ## 7. Sharpest next targets
 

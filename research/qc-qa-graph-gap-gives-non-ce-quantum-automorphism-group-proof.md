@@ -27,6 +27,20 @@ arXiv:1812.11474v2, Comm. Math. Phys. 375 (2020).
   of `O(G_Z)` is the unique bi-invariant state.  It is tracial for a classical
   graph `Z` (Kac type).
 
+**Credit.**  Lupini--Mančinska--Roberson, arXiv:1712.01820v2, read at source.
+Steps 2--6 re-derive the corner construction from the proof of their
+Theorem 4.4:
+- connectivity through complements and their Corollary 4.7;
+- the projection `p = sum_(y in Y) u_(xy)` in `C(Qut(X ⊔ Y))`;
+- `p != 0` through a representation;
+- the normalized Haar state on the corner, with `h(p) > 0` from their
+  Corollary 4.3.
+
+They obtain the vanishing `u_(xy) u_(x'x'') = 0` from the quantum orbital
+configuration; Steps 1 and 3 here obtain it from Schur closure of intertwining
+pairs.  Step 5 (`h(P) = 1/2` by invariance) and Step 7 (non-embeddability) are
+the additions.
+
 Assume `(QG1)`: `A(Iso(X,Y)) != 0`, and there is no unital *-homomorphism
 `A(Iso(X,Y)) -> R^U`.
 

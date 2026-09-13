@@ -56,3 +56,29 @@ finite-dimensional system approximates.  A pair as in `(QG1)` is
 A finitely presented nonhyperlinear group would supply one through
 linear-system graphs.  A bounded literature search (artifact §6) found no
 non-Connes-embeddable Kac quantum group.
+
+**Credit and novelty.**  The corner construction is Lupini--Mančinska--Roberson's,
+arXiv:1712.01820v2, read at source.  The proof of their Theorem 4.4
+(`≅_q` iff `≅_qc` for graphs) has all of these steps:
+
+- it reduces to connected graphs through complements and Corollary 4.7;
+- it forms `Z = X ⊔ Y` and the projection `p = sum_(y in Y) u_(xy)`;
+- it shows `p != 0` through a representation;
+- it normalizes the tracial Haar state of `Qut(Z)` on the corner, using
+  `h(p) > 0` from Corollary 4.3.
+
+Their Theorem 4.5 is the disjoint-union orbit criterion.  BCEHPSW Theorems 4.7
+and 4.9 give the bigalois form.
+
+What this node adds:
+- the observation that the same corner turns a Connes embedding of
+  `L^infinity(Qut Z)` into a perfect `qa`-strategy, which gives the
+  non-embeddability conclusion;
+- the value `h(P) = 1/2`, read off invariance alone;
+- the planar-count corollary.
+
+A text search of the full LMR v2, BCEHPSW v2, AMRSSV arXiv:1611.09837 and
+Paddock--Slofstra v2 found no statement about Connes embeddability of quantum
+automorphism groups.  BCEHPSW mention Connes' problem only as background
+(§2.2).  So the non-embeddability step is new packaging of LMR's construction,
+on a bounded check; it is not a new technique.
