@@ -140,4 +140,26 @@ characteristic two. Then every group homomorphism `sigma : V -> M^x` is trivial.
   - **Where it dies.** A proof needs infinite-order elements in a configuration not known to be sofic, together with
     2-torsion. The first live configuration is still `<x_0, x_1, t>`.
 
+- **Splitting** (w7-v-rank-split; artifact
+  `research/artifacts/thompson-v-rank-functions-split-off-augmentation-2026-09-12.md`, node
+  `v-rank-functions-split-as-augmentation-plus-reduced`). These are candidate proofs, held OPEN until `w3-vf-linear`
+  re-derives them.
+  - **Candidate theorem.** Over every field, if `phi_V < 1` then `rk_0 = (rk - phi_V rk_aug)/(1 - phi_V)` is a
+    Sylvester matrix rank function with `phi_V(rk_0) = 0`. The input is that averaging idempotents of large
+    clopen-cycle groups are almost invariant on both sides. Columns follow from (S5), rows from the transposed rank
+    function `rk*(A) = rk((A*)^T)`.
+  - **Models.** A model with `0 < phi_V < 1` is exactly the trivial model plus a model with `phi_V = 0`. This removes
+    the [matricial] caveat on "Reduced models": the gate is equivalent to having no characteristic-two model with
+    `phi_V = 0`, that is, no `F_2`-linear sofic approximation of `V`.
+  - **Not formal.** For `Z` through a Jordan block, `rk_0` fails the triangular axiom on `[[y, 1], [0, y]]`.
+  - **`<x_0, x_1, t>` is no smaller than `V`.**
+    - For an interior cylinder transposition `t`, it is `V_(0,1) = F V_c`.
+    - For `t = [0] <-> [10]`, it lies between `V_c` and `Stab_V(1^inf)`.
+    - Both contain `V_O ≅ V`, so the configuration is sofic iff `V` is.
+  - **Where it dies.**
+    - **No forcing identity.** Nothing at `<x_0, x_1, t>` forces `rk(1 + [t]) != 1/2`. Self-similarity
+      `t = t_0 t_1` stays inside the finite-subgroup law, and lamp dilations stay inside amenable groups.
+    - **No `phi_V = 0` model.** No source is known: `L_(F_2)(1, 2)` has no rank function, `V` preserves no measure
+      on `X`, and `V` is neither LEF nor linear.
+
 *Verification by `w3-vf-linear` (2026-09-12), §32.4 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on the w7-v-cycle-c2 entries. `rk(1 + [t]) = (1 - phi_V)/2`, the local formula, convexity, and the reduced-model equivalence through [FR] Corollary 1.3(5) (matricial) all re-derive. The gate stays OPEN.*
