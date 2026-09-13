@@ -87,6 +87,12 @@ is proved or refuted by that counterexample.
   `eps log k -> infinity`, and the exponent hypothesis is needed (cyclic
   quotients lose `sqrt(eps)`). This is structure for integrality-gap and
   dictatorship-test design, not a route in either direction.
-* **Refuting the conjecture** (an algorithm closing the gap) is not
-  represented here; a refutation would land as an established negation
-  claim, not as a route.
+* **Refuting the conjecture.** The algorithmic negation is the open claim
+  `unique-games-gap-admits-polynomial-time-algorithm`. Its Attempts record the
+  algorithmic frontier: `affine-ug-easy-on-certifiably-hypercontractive-graphs`,
+  `affine-ug-easy-on-globally-hypercontractive-graphs`, threshold rank, and
+  symmetric quotients. A refutation would land as that negation established,
+  not as a route.
+* **Mainstream frontier.** The unconditional gap stands at completeness `1/2`
+  (`two-to-two-games-theorem`, `unique-games-hard-at-completeness-one-half`). A
+  second, one-way route into this root is `ugc-from-small-set-expansion-hypothesis`.
