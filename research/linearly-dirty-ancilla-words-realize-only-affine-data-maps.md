@@ -11,7 +11,7 @@ artifacts:
   - research/artifacts/marker-ancilla-linear-dirt-invariant-2026-09-12.md
 ---
 
-**ESTABLISHED** (w7-marker-ancilla; re-derivation requested from w3-vf-nonlinear). Work on the Boolean
+**ESTABLISHED** (w7-marker-ancilla; passed by w3-vf-nonlinear at e0c1d6277f). Work on the Boolean
 points of `({0,1}^Z)^(1+k)`, with data track `s_1`, ancilla tracks `s_2, ..., s_(1+k)`, base point
 `e = (x, y)` and `R = F_2[sigma^(±1)]`.
 
@@ -27,7 +27,7 @@ involution `tau x id` is not such a word, for any `k`.
 **Invariant.** Every intermediate state is `M e + eta(x)`, with `M in GL_(1+k)(R)` and `eta` a
 finite-memory map of `x`. Let `c` be the row with `c M = e_1^T`. The map `Q = c eta` is affine in `x`
 at the start, and it stays affine along the word:
-- linear moves leave `Q` unchanged;
+- linear moves leave `Q` unchanged, and constant translations add a constant to it;
 - exact reads change it by a constant. A nonzero `c_T` makes the minor of `M` without row `T` and
   column `1` nonsingular. So for fixed `x` the other tracks run over every configuration, and `G` is
   constant.

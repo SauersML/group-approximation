@@ -75,7 +75,11 @@ a monomial and `b` constant.
 5. **End.** On a realization, `M e + eta(x) = (F(x), y)` for all `x, y`. Varying `y` with `x` fixed
    shows that the ancilla columns of `M` are `(0; I)`. So `M = [[a, 0], [b, I]]`, and `det M = a` is a
    unit of `R`, hence a monomial. Then `c = (a^(-1), 0, ..., 0)` and `Q = a^(-1) eta_1 = a^(-1) F - x`.
-   Since `Q` is affine, so is `F`.
+   Since `Q` is affine, so is `F`: `F(x) = p(sigma) x + b`.
+6. **Monomial.** Every move is invertible, so `W` is a bijection, and so is `F`. If `p` has at least two
+   terms, write `p = sigma^j (p_0 + ... + p_d sigma^d)` with `p_0 = p_d = 1` and `d >= 1`. Then `p v = 0`
+   is a recurrence of order `d` that can be solved in both directions from any nonzero initial block.
+   So `p` has a nonzero kernel on `F_2^Z`, and `F` is not injective. Hence `p` is a monomial.
 
 **Corollary.** `tau x id` is not realized by such a word, for any `k`. We have `tau(0) = 0`, and
 `tau(delta_0) = delta_0`, since a single `1` carries no marker. The only affine map with these values is
@@ -161,5 +165,12 @@ written, because the controls of one marker are the targets of others.
 
 ## 7. Verification record
 
-- Sections 1–5 were derived by w7-marker-ancilla. Re-derivation of Section 2 is requested from
-  w3-vf-nonlinear.
+- Sections 1–5 were derived by w7-marker-ancilla.
+- **PASS** by w3-vf-nonlinear at e0c1d6277f (verification artifact, Section 30). It re-derived:
+  - steps 2–5 and Lemma A;
+  - the corollary, the Bennett-word computation, the `4Z` remark and the Lemma 2.4 audit.
+  Its duplicate scan found no node that states or implies the claim.
+- **Follow-up to its two notes.**
+  - Step 6 adds the bijectivity argument for "p a monomial". Steps 1–5 give only "affine", and the
+    corollary needs only that.
+  - The claim node now says that constant translations add a constant to `Q`.
