@@ -30,3 +30,7 @@ So for Hausdorff or `T_1` spectra, Problem VII carries no gluing difficulty
 beyond the simple case.  By `stw07-qd-radical-criterion-compact-open` any
 non-simple difficulty needs primitive ideals that are not maximal, i.e. prime
 non-simple quotients carrying traces.
+
+## Attempts
+
+- Reduction to the simple case through `bk-t1-spectrum-from-simple-case`, which waits only on `stw99-vii-restricted-to-simple-algebras`. The trace facts, Theorem 2, its corollaries and the boundary tests are in `research/artifacts/bk-t1-spectrum-simple-reduction-2026-09-12.md`, sections 1 to 4.

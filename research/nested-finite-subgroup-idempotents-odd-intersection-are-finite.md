@@ -21,3 +21,7 @@ and `f` come from two finite subgroups meeting in a `p`-regular group. Over `F_2
 kills:
 - every such candidate from odd-order constants at different prefix levels;
 - every cand
+
+## Attempts
+
+- `research/artifacts/binary-kernel-nested-idempotents-2026-09-12.md` holds the attack: section 2 (the theorem) and section 4 (where the semisimple proof stops). No route into this claim is on main.

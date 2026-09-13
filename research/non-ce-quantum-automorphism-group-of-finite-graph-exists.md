@@ -32,3 +32,7 @@ embeddable: their Hopf algebras are residually finite-dimensional
 Connes embedding property (Bhattacharya--Brannan--Chirvasitu--Wang).  Both
 results are as stated in Freslon's notes, Theorems 1.6 and 1.7.  A witness
 `Z` therefore needs a quantum automorphism group outside those families.
+
+## Attempts
+
+- Through a qc-isomorphic but not qa-isomorphic graph pair (`non-ce-quantum-automorphism-group-from-qc-qa-graph-gap`, waiting only on `qc-isomorphic-not-qa-isomorphic-graph-pair-exists`). Where the attempts at a graph pair die: `research/artifacts/ex-nh-mipstar-quantum-symmetry-rung-2026-09-12.md`, section 5.

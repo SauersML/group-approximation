@@ -23,3 +23,7 @@ Kun--Thom chain would then bear on `Q` only through a group with the same
 hyperlinearity status that does not contain `G`.
 
 Route: `kun-thom-wreath-nonembedding-from-no-heisenberg`.
+
+## Attempts
+
+- Through `kun-thom-wreath-nonembedding-from-no-heisenberg`, waiting only on `leavitt-unit-group-has-no-integer-heisenberg-subgroup`. No separate attempts artifact has landed for this claim.

@@ -21,3 +21,7 @@ distinct_from:
 **Consequences.** This claim makes `V` nonsofic (`thompson-v-not-sofic-from-f-not-sofic`) and `F`
 nonamenable. It would give a nonsofic group with the Haagerup property, so no Kazhdan compression
 mechanism can prove it (`a-t-menable-groups-have-no-rigid-compression-defect`).
+
+## Attempts
+
+- Through `thompson-f-not-sofic-from-not-hyperlinear` (waits on `thompson-f-is-not-hyperlinear`) and `thompson-f-not-sofic-from-relator-stability` (waits on `thompson-f-relator-system-stable-in-permutations`). The relator-stability form is proved equivalent in `research/artifacts/thompson-f-soficity-as-relator-stability-2026-09-12.md`, section 3.

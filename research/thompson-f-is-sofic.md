@@ -19,3 +19,7 @@ distinct_from:
 
 Exact solutions commute, since finite quotients of `F` are abelian. So the second form must exploit the
 error.
+
+## Attempts
+
+- Through `thompson-f-sofic-from-amenability` (waits on `thompson-f-is-amenable`) and `thompson-f-sofic-from-v-sofic` (waits on `thompson-v-is-sofic`). The equivalent almost-commuting form is in `research/artifacts/thompson-f-soficity-as-relator-stability-2026-09-12.md`, section 3.

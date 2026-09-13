@@ -41,3 +41,7 @@ arXiv:2604.24682v2), so among known examples this is Toms–Winter on Bauer simp
 
 **Route.** `toms-winter-bauer-tlfnd-via-divisible-unit` reduces this claim to
 `strict-comparison-forces-tracially-divisible-unit`.
+
+## Attempts
+
+- Recorded in `research/artifacts/ex-toms-winter-bauer-divisible-unit-part2-2026-09-12.md`, section 4: attempts on `strict-comparison-forces-tracially-divisible-unit`, the one open input of `toms-winter-bauer-tlfnd-via-divisible-unit`.

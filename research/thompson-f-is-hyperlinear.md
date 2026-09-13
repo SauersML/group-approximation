@@ -15,3 +15,7 @@ distinct_from:
 **Equivalent form** (`thompson-f-hyperlinear-iff-relator-system-hs-unstable`): there are `epsilon > 0`
 and unitaries `(U_n, W_n)` satisfying both relators of `F` up to `delta_n -> 0` in normalized
 Hilbert--Schmidt norm with `||U_n W_n - W_n U_n||_2 >= epsilon`.
+
+## Attempts
+
+- Through `thompson-f-hyperlinear-from-soficity` (waits on `thompson-f-is-sofic`) and `thompson-f-hyperlinear-from-v-hyperlinear` (waits on `thompson-v-hyperlinear`). The Hilbert--Schmidt form an attack would have to exploit is in `research/artifacts/thompson-f-soficity-as-relator-stability-2026-09-12.md`, section 5.
