@@ -45,9 +45,12 @@ established negation.
   must blow instances up by a factor whose exponent grows with `1/eps`;
   otherwise ABS plus the reduction would give 3SAT in time `exp(n^(o(1)))`,
   against ETH. The exact ABS exponent was not re-read here.
-* **Degree-8 SoS on known gap instances**
-  (Barak--Brandao--Harrow--Kelner--Steurer--Zhou, arXiv:1205.4484, abstract).
-  It refutes the noisy-cube and short-code instances. It dies because it is
+* **Constant-degree SoS on known gap instances**
+  (Barak--Brandao--Harrow--Kelner--Steurer--Zhou, arXiv:1205.4484v3, abstract
+  item 2, verified 2026-09-12). "Constant rounds" of SoS certify the
+  unsatisfiability of the noisy-cube and short-code instances. Item 1 of the
+  same abstract: a graph is a small-set expander iff the projector onto its top
+  eigenvectors has bounded `2 -> q` norm. It dies because it is
   instance-specific; no general SoS rounding at constant degree is known.
 * **Symmetric (Galois) instances.**
   `galois-games-round-through-free-subgroups` rounds every Cayley-lift instance

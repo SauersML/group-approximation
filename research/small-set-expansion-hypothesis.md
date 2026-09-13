@@ -40,12 +40,13 @@ density `1/k`, restricted to transversals.
   hypercube with `poly(log n)` such eigenvalues. So large threshold rank below
   that scale does not force a non-expanding small set. The ABS algorithm's
   running time was not re-read from the paper here (source not retrieved).
-* **SoS-certified hypercontractivity.** Degree-8 SoS certifies the
-  small-set expansion of the noisy cube and of the short-code instances
-  (Barak--Brandao--Harrow--Kelner--Steurer--Zhou, arXiv:1205.4484). Where it
-  stops: it needs a low-degree hypercontractive certificate, which is not
-  available for general graphs, and certifying `2 -> 4` norms is itself
-  SSE-hard in general.
+* **SoS-certified hypercontractivity.** By
+  Barak--Brandao--Harrow--Kelner--Steurer--Zhou (arXiv:1205.4484v3, abstract,
+  verified 2026-09-12), a graph is a small-set expander iff the projector onto
+  its top eigenvectors has bounded `2 -> q` norm, and constant rounds of SoS
+  certify this for the noisy cube and the short-code instances. Where it stops:
+  a general graph has no low-degree hypercontractive certificate, and by item 1
+  of that abstract, approximating the `2 -> q` norm well refutes SSEH.
 * **Elementary abelian Cayley lifts.** For Cayley graphs of `F_p^N`, the linear
   rounding of `elementary-abelian-galois-games-round-with-linear-loss` turns an
   SDP certificate into a subgroup set of density `1/k` with expansion
