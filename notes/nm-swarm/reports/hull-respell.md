@@ -362,6 +362,44 @@ walk) and debt-conditional.
 - **Sub-piece E4 handed to kh-cckw** (msgs 2d966898 and 7dcc7072): `pinchSplit` keeps `ClosedWalk`
   when no turn at the split vertex passes `x` or `y`, and `repeatedVisits` drops when two cycle darts
   land on the new vertices of `x` and `y`.
+- **Ruling (roster, after 14:30): the route by steps is approved.** `PocketPinchStepStatement`
+  replaces the named A and B. Until the step is proved, `pocketPinchLabelledStatement_of_step` is a
+  reshape, not a discharge. Assignments:
+  - kh-cckw: E4 (a)–(c);
+  - go-lemma42: (ii), carrying `K` across a split that merges corners inside `K`;
+  - (i), turning corners into G-digons: hull-respell checks `SurgeryFaceEdgeDoublingRegions` and
+    outer spur thickening, and main assigns what is missing.
+- **Landed since.**
+  - kh-cckw's E4 (5b6b2b338, `Estimating/OsinPocketPinchSplitWalk`, probe 0913-151310-59486):
+    `pinchSplit_closedWalk`, `pinchSplit_repeatedVisits_lt` and `_of_stretch`.
+  - go-lemma42's (ii) (9acc804f2, `Estimating/OsinPocketPinchCarry`, unverified):
+    `PocketFaceSet.pinchSplitInside` for `I.Inside K.faces`, and `exists_pinchStep_of_inside`, the
+    conclusion of the step at such a split.
+- **New module `Estimating/OsinPocketEdgeDoubling`** (probe 0913-154334-39978 green, landed with
+  this report, unwired). This is item (i) for a relator-face corner outside `K`.
+  - `PocketFaceSet.faceEdgeDoubling K f j hlen hf hs hsrc` takes `f ≠ X.outerFace`,
+    `f ∉ K.faces` and `FaceEdgeDoubling.dart X f j ∉ K.sourceArc.darts`. It gives a pocket face set on
+    `FaceEdgeDoubling.diagram X f j hlen hf` with the image faces and cells, and with the cycle, arcs
+    and sides mapped by the dart embedding.
+  - `faceEdgeDoubling_closedWalk hK` keeps walk order, and `faceEdgeDoubling_repeatedVisits` is an
+    equality.
+  - `FaceEdgeDoubling.label_letter`: letter labels survive (`label_admissible` at the symmetrized
+    alphabet).
+  - Helpers: `card_toFinset_map_eq_of_iff` and `DiscEmbeddingAway.boundaryCycle`.
+  - Not covered: a doubled dart on the source arc, and a relator face inside `K` (the digon would
+    join the face set).
+- **Sub-piece T2 handed to kh-cckw** (msg 690b7740): `PocketFaceSet.outerSpurThickening` across
+  `SurgeryOuterSpurThickening`, keeping walk order and repeated visits. `outerDarts_eq` does not
+  apply there, so the target arc's start and `lo`, `hi` need a rebuilt position.
+- **Open: S, the choice of split darts.** At a repeated vertex, choose `x` and `y` with these
+  properties:
+  - their corners are both outside `K` (E4) or both inside `K` ((ii));
+  - they lie on distinct G-faces off the exterior;
+  - every turn `alpha d ↦ e` at the vertex is a stretch that avoids `x` and `y`;
+  - two cycle darts land on the new vertices.
+
+  Obstacles: both corners in one face (double first), crossing pairings at a vertex passed three or
+  more times, and a doubled dart on the source arc.
 
 ## Next
 - Done: `SimpleClosedWalkSides` and the `HullSCOneStepQuasiGeodesicLeaves` docstring fix landed
@@ -370,19 +408,17 @@ walk) and debt-conditional.
 - Done: `OsinPocketClosedWalkNoncrossing` (probe 0913-133554-56930), landed at 24ff94312.
   dgo-analytic is informed.
 - Done: `OsinPocketLakeAbsorption` (probe 0913-141726-41707), landed at 49feec035.
-- Done: `OsinPocketPinchStep` (probe 0913-143717-61429), landed with this report. It is a new file,
-  so Rule 22 has no users to probe.
+- Done: `OsinPocketPinchStep` (probe 0913-143717-61429), landed at 8a7d46d90. It is a new file, so
+  Rule 22 has no users to probe.
+- Done: `OsinPocketEdgeDoubling` (probe 0913-154334-39978), landed with this report. It is a new
+  file, so Rule 22 has no users to probe.
 - Probe trap, now fixed. This lane's overlay listed `OsinAppendixGreendlingerParts.lean`, and the
   shared tree holds ghw-charp2's unlanded edit of that file (`loopCutInput`). Probe
   0913-140949-521 failed there. The file is off this lane's overlay list, and the rerun is green.
-- Waiting on kh-torsion's confirmation of R1 or R2.
-- Part 3 of lake absorption (open): list the boundary darts of the absorbed face set in walk order
-  as `s₁' ++ invDarts sourceArc ++ s₂' ++ targetArc`, with `s₁' ⊆ firstSide` and
-  `s₂' ⊆ secondSide`.
-- Then land the pinch statement in the ruled form, with a Rule 22 probe of `OsinPocketPieces` and
-  `OsinPocketPinchUnpinched`. Prove it modulo the named B, and under R1 also modulo the named A:
-  - under R2, by lake absorption;
-  - under R1, by the explosion route (E2 is on main).
+- Waiting on kh-torsion's confirmation of R1 or R2, and on kh-cckw's T2.
+- Next: S, the split-dart choice at a repeated vertex, consuming E4, (ii) and (i), toward a proof of
+  `PocketPinchStepStatement`.
+- Parked: part 3 of lake absorption. The approved step route does not use it.
 - Hold edits on `OsinAppendixGreendlingerParts` until ghw-charp2 lands 07b.
 - Flip to `relativeGreendlingerQuasiGeodesicLeastArea_closed` as h94 and the parts land. A watcher on
   landed.log follows the part owners.
