@@ -29,9 +29,17 @@ would invalidate the three Labbé routes named above.
 - **Additive invariant-measure relation invariants.** Dead:
   `labbe-not-fp-via-mean-area-relation-invariant`. They factor through `N/[F,N]`, which is
   finitely generated.
+- **Finite presentation forces finite type** (`zd-derived-full-group-fp-forces-finite-type`,
+  unreviewed). Vacuous here, because `Omega_U` is a nearest-neighbour SFT.
+  - It does sharpen the picture: among free minimal `Z^2`-subshifts, only SFTs can have finitely
+    presented derived full groups, and `Omega_U` is one.
 - **Matui's SFT-neighbourhood argument, spatial models, periodic approximations.** Dead as they
   stand. See `labbe-shift-derived-full-group-is-finitely-presented`, Attempts, and
-  `minimal-free-sft-full-group-pattern-models-are-exact`. Any refuting approximant must carry
-  defects.
+  `minimal-free-sft-full-group-pattern-models-are-exact`.
+- **What any refutation must look like.** Combine the vacuous finite-type theorem with
+  `self-similar-tiling-full-groups-abelian-obstructions-vanish`. A refutation must be
+  *nonabelian*, since no homology or additive relation invariant helps. It must also be *not
+  spatial-legal*: it has to use colourings with illegal small windows, or non-spatial marked
+  groups. LEF (`labbe-not-fp-via-lef`) is the recorded candidate of that shape.
 - **Homology with nontrivial coefficients** (Bieri–Eckmann criterion for `FP_2`). Not attempted.
   Li's theorem reaches only coefficients pulled back from abelian covers.

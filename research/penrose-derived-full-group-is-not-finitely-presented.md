@@ -30,10 +30,23 @@ Labbé's shift as the only recorded tiling instance of the orbit certificate for
   conjugation-invariant homomorphism on the relation subgroup). Dead:
   `penrose-not-fp-via-mean-area-relation-invariant`. They factor through `N/[F,N]`, which is
   finitely generated.
-- **Matui's SFT-neighbourhood argument** (math/0404117). Not adapted.
-  - Penrose tilings obey local matching rules, so, as for Labbé's shift, the hull should be its
-    own finite-type neighbourhood. That would leave the argument no room.
-  - We did not check from a source that the ChJN coding is of finite type.
+- **Finite presentation forces finite type** (`zd-derived-full-group-fp-forces-finite-type`,
+  landed by ex-fp-simple-relation-climbing, unreviewed). Expected dead for Penrose.
+  - Mechanism: relators hold on configurations whose bounded windows are legal. So a
+    configuration with legal small windows but an illegal large pattern violates a relation.
+  - Why it should not fire: ChJN (arXiv:1602.04255, TeX lines 311–316, read on MSI) *define* a
+    Penrose tiling as "a tiling of the whole plane by such rhombi, where markings of the edges
+    match". Edge matching is a radius-1 rule. In the ambient of edge-marked rhombus tilings,
+    legal radius-1 windows make the tiling a Penrose tiling, all of whose patterns are legal.
+    The mechanism has nothing to act on, exactly as for Labbé's Wang shift.
+  - Not verified:
+    - the peer theorem is stated for `Z^d`-subshifts, and its adaptation to
+      `Lambda = Z^2 ⊕ Z/5` was not checked;
+    - whether ChJN's cut-torus action `Lambda ~ X` is conjugate to a `Lambda`-SFT. If it were
+      not, and the theorem adapted, `D(𝒫)` would not be finitely presented. Local matching
+      rules make that unlikely.
+- **Matui's SFT-neighbourhood argument** (math/0404117). Superseded by the entry above: for a
+  finite-type hull the neighbourhood is the hull itself.
 - **LEF through periodic approximants.** Not attempted for Penrose.
   - The Labbé criterion `zd-subshift-full-group-lef-via-periodic-relator-shifts` is stated for
     `Z^d`-subshifts.
