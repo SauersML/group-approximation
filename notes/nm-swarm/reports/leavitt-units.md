@@ -110,8 +110,11 @@ This check did not re-read those statements against the printed sentences word b
 ## Status
 
 * LANDED `4f629158e` (row 7916c8696def, orphan).  Probe `0912-102543-53051` GREEN on base
-  `552014bcf`, and the bytes on origin are unchanged since.  Queued for wiring in
-  `wire-queue.txt` (09-13).
+  `552014bcf`, and the bytes on origin are unchanged since.  root-wire held it out of wave 3
+  because no probe record named it.  Re-probed 09-13: probe `0913-040613-59510` PROBE GREEN on
+  base `be9ca5170`, target named.  No module was rebuilt: the olean was replayed with a matching
+  input hash, and the source md5 equals origin.  Re-queued in `wire-queue.txt` with the green
+  record tag.
 * LANDED `b3083ac22` (rows f6962254d259 and 4321530b3fec, unverified landing).  Probe
   `0913-014841-85842` GREEN on base `b360f7a94`: BUILT and COMPILED both modules, audits
   passed.  The green landing reported NOTHING TO LAND at `674b1b428`, because the bytes
@@ -141,3 +144,12 @@ for one push element t (`exists_upsilon_qTwo_push`, `disjoint_pow_image`).
 This lane landed nothing for W4.  An alternative for the s_i is in the lane scratchpad only and was
 not landed: six products of two F_6' moves with pairwise disjoint targets.  It is kept in case the
 powers route goes red.  The lane has asked the lead for reassignment.
+
+## 4. W2 hbridge (09-13)
+
+The lead reassigned this lane to W2, `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement`.
+hull-bridge's split of clause (b) planned CutOutcome, Cut (M2) and Holds (the producer of
+`QuotientPeripheralLetterPullbackStatement`), and debt-conditional takes one of them.  This lane takes
+the next unstarted one, and asked hull-bridge for its path.  On origin now: CutFaces, CutSides and
+CutBlocks (quotient blocks, `4d91f2870`).  CutOutcome, Cut and Holds are not on origin yet.
+Nothing landed for W2 yet.
