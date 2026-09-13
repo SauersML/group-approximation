@@ -4,6 +4,8 @@ id: bernoulli-shift-entropy-classifies-for-every-group
 kind: claim
 title: Bernoulli shifts with different base entropy are non-isomorphic over every countably infinite group
 root: true
+refuted_by:
+  - some-group-has-isomorphic-bernoulli-shifts-of-different-entropy
 distinct_from:
   coset-bernoulli-action-is-essentially-free: that is freeness of one generalized Bernoulli action over a coset space; this is the isomorphism classification of ordinary Bernoulli shifts by base entropy, over all groups.
 ---
@@ -105,3 +107,19 @@ Necessary conditions on a counterexample group are recorded in
   suspension of `G ↷ G × [0,1]` are Bernoulli shifts with infinite base entropy. An
   isomorphism of actions need not respect a Gaussian or Poisson presentation, and the
   functorial input, the Koopman representation, is `λ^⊕N` for every nontrivial base.
+- **Algebraic absorption and co-induced Ornstein (2026-09-12, lane ex-bernoulli-negative).**
+  - Stable finiteness failure of `F_p[G]` is exactly algebraic self-absorption
+    `(F_p^n)^G ≅ (F_p^n)^G × X_P` of a Bernoulli shift
+    (`stable-finiteness-failure-is-algebraic-bernoulli-absorption`). A collapse is the same kind of
+    absorption, with a Bernoulli factor in place of `X_P`.
+  - The Leavitt relation `L ≅ L ⊕ L` gives a free ergodic self-square `X_L ≅ X_L²` over the unit group.
+    No Leavitt-module dual action is a Bernoulli factor
+    (`leavitt-module-dual-actions-are-self-squares-off-bernoulli`).
+  - Seward's construction extends to shifts co-induced from finite subgroups, which add `H(Y)/|F|` to a
+    Bernoulli shift (`coinduced-finite-subgroup-shifts-add-entropy-to-bernoulli`). On induced modules this
+    is `log p` times the lifted p-adic trace, and module isomorphisms conserve that trace
+    (`finite-subgroup-induced-absorption-conserves-entropy`). So algebra plus co-induced Ornstein never
+    collapses.
+  - The negation is `some-group-has-isomorphic-bernoulli-shifts-of-different-entropy`. The live
+    constructive target is exact collapse above the Rokhlin supremum
+    (`bernoulli-shifts-above-rokhlin-supremum-are-isomorphic`).
