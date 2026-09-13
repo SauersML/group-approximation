@@ -74,3 +74,27 @@ local. Whether this defeats DTR is not known.
   `p` is an almost-invariant vector of `ℓ²(W × V)`, so it is close to an invariant correspondence, which is the graph of an
   honest 2-to-1 equivariant map. A finite-coefficient counterexample must come from almost-actions on `V × Λ`
   that are far from every honest `Γ`-set. That is the `Z/2`-cosystolic question, and it stays open.
+* **Calibration against the target (sketch, not established; ex3-sl3z-cosystolic-expansion).** For torsion-free
+  cocompact `Λ`, DTR for `Λ` should be *equivalent* to the marks statement of
+  `sl3z-cocompact-quotient-not-weakly-contained-in-finite-actions` for both `Λ` and `ι(Λ)`, where
+  `ι(g) = (g^T)^(−1)`. DTR is symmetric under `ι`, since `||ι(g)|| = ||g^(−1)||`, so "⇒" is route
+  `sl3z-cocompact-exclusion-from-almost-cocycle-rounding`. For "⇐", a counterexample sequence gives a Loeb
+  cocycle `w : Γ × Z → Λ`, bounded on generators, on an ergodic Loeb space.
+  - (a) If `w = μ(γz)μ(z)^(−1)` for a measurable `μ : Z → Λ`, then `h = log||μ||` has bounded gradient. (T)
+    makes `dh = dψ` with `ψ ∈ L²`, and ergodicity gives `h ∈ L²`. Clamping and internal pull-back, as in
+    `sl3z-abelian-lambda-labellings-round-to-flat-ones-proof`, then round the labellings. So `w` is not a
+    coboundary.
+  - (b) Cocycle superrigidity (Zimmer, integrable form for lattices; recalled, not yet read verbatim, e.g.
+    Fisher arXiv:0809.4849 §5) gives `w ~ π·c` in `SL_3(R)`, with `π` continuous and `c` compact-valued,
+    centralizing `π`.
+  - (c) If `π` is trivial, `z ↦ Kφ(z)` is `Λ`-equivariant into `K\SL_3(R)`. There `Λ` acts freely and properly,
+    so a Borel fundamental domain makes `w` a coboundary, contradicting (a).
+  - (d) If `π` is an automorphism, its centralizer is trivial, so `c = 1`. Then `z ↦ φ(z)Λ` is an
+    equivariant map onto `SL_3(R)/Λ'` with `Λ' ∈ {Λ, ι(Λ)}`, and its internal approximations are marks with
+    few bad pairs.
+  **Consequence:** DTR gives no leverage beyond the target. A cosystolic-expansion proof of DTR proves the
+  exclusion, and a refutation of DTR is weak containment. **Missing before establishing it:** the verbatim
+  superrigidity statement with its hypotheses (standard ergodic factor, integrability) and the passage to
+  finite-index subgroups or finite ergodic components. Two side notes. The abelian proof uses only (T) and a
+  finite presentation, so it holds for every finitely presented Kazhdan group. Flatness needs inverse letters
+  to carry inverse labels (or `s s^(−1)` in `R`); otherwise flat labellings need not define `Γ`-actions.
