@@ -40,8 +40,9 @@ theorem osinLemma94Section_of_pieces
   `RegionCandidate.respectsSections_of_sameTargetProfile`.
 - `SurgeryFaceEdgeDoubling.lean` (ceb7135c3, compiled) and `SurgeryFaceEdgeDoublingRegions.lean`
   (b67574c33, compiled): `FaceEdgeDoubling.diagram`, `regionFamily` and its transports.
-- `Estimating/OsinUnboundSharedEdge.lean` (b52365364 was red: a list-append elaboration failure
-  and a heartbeat timeout in one long proof; now split into small lemmas and re-probed):
+- `Estimating/OsinUnboundSharedEdge.lean` (8009a06ff, probe 0913-042440-98733 green, queued for
+  wiring). b52365364 was red, with a list-append elaboration failure and a heartbeat timeout in
+  one long proof. The fix splits that proof into small lemmas:
   `SectionCuts.exists_section_of_lt`, `FaceEdgeDoubling.digon_decomposition`,
   `RealizedSectionFamily.false_of_digon_region`, `false_of_unbound_shared_edge`.
 
