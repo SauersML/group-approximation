@@ -27,3 +27,13 @@ error.
   quotient is abelian, so a local embedding of a ball containing both relators and `[a,b]` into an amenable group
   is an injective homomorphism. So `F` is LEA only if amenable (`thompson-f-is-lea-only-if-amenable`), and LEA is
   not an independent soficity route.
+- **Spatial permutation models almost commute (2026-09-13).**
+  - **Bound.** Suppose a pair follows `F` acting on points, intervals, finite configurations or the Cantor set on all
+    but a `δ` fraction of points. Then `d(AB,BA) ≤ 4δ + k sqrt(6δ)` (`thompson-f-spatial-permutation-models-almost-commute`).
+  - **Consequence.** Truncated dyadic-tree models, reservoir or depth-shuffle repairs, and the Følner windows of
+    `thompson-f-end-rigid-schreier-graphs-are-amenable` cannot witness this claim.
+  - **Exact profiles** (`research/artifacts/thompson-f-spatial-permutation-models-2026-09-13.md`):
+    - truncations keep `δ ≈ 1/4` and relator defect `≥ 0.53`;
+    - `x_0`-rays drive defect and separation to 0 together;
+    - perturbed commuting pairs pay about twice their separation in defect.
+  - **Gap.** A witness with separation `ε` must be `min(ε/8, ε²/(24k²))`-far from following every such action.

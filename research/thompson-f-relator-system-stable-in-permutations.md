@@ -32,6 +32,15 @@ not sofic. It then makes `V` nonsofic too.
   is not sofic", and they treat it as out of their scope.
 - **Naive permutation search (2026-09-13): uninformative.** Simulated annealing with single transpositions, for
   `n` from 64 to 1024, never beat random-level relator defect while keeping `d(AB,BA) >= eps`
-  (`research/artifacts/thompson-f-sofic-anneal-2026-09-13.md`). The landscape is flat for length-12 to 16 relators, so this is
+  (`research/artifacts/thompson-f-sofic-anneal-2026-09-13.md`). The landscape is flat for relators of length 10 and 14, so this is
   no evidence for stability. A meaningful search must start from structure (near-commuting pairs, or truncated
   dyadic-tree actions).
+- **Structured starts (2026-09-13): spatial models excluded.**
+  - **Method.** Exact counts replace annealing (`research/artifacts/thompson-f-spatial-permutation-models-2026-09-13.md`).
+  - **Truncations.** Truncated dyadic-tree actions put their generators off the true action on a quarter of the
+    points, and their relator defect stays above 0.53.
+  - **Bound.** Once the generators follow an action of `F` over the interval on all but `δ` of the points,
+    `d(AB,BA) ≤ 4δ + k sqrt(6δ)` (`thompson-f-spatial-permutation-models-almost-commute`).
+  - **Perturbations.** Perturbing a commuting pair costs about twice its separation in defect.
+  - **Reading.** Every spatial almost-solution is near-commuting. This agrees with the claim but says nothing
+    beyond that class.
