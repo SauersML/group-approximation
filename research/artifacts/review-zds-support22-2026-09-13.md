@@ -140,7 +140,25 @@ never invent one. It can only weaken pruning.
   - a rerun of 47 sampled n = 20 graphs (45 random, plus the two heaviest) with roots 0 and 19, compared
     per graph (nodes, surv) against `r20.lines.txt.gz` and `r20b.lines.txt.gz`.
 
-## 5. Novelty statement: PENDING
+## 5. Novelty statement and the prior bounds: PASS
 
-The claim text states no novelty: it cites A–T Cor 6.2 and Thm 6.1, and N–S Thm 1.4. The literature
-spot-check is pending, because the arXiv API refused the first query ("Rate exceeded").
+- **Nielsen–Soelberg, read in the preprint.** `mathdept.byu.edu/~pace/KaplanskyConjecture_web.pdf`,
+  6 pages, run through `pdftotext -layout`.
+  - Theorem 1.4 (pp. 2–3): "Let A and B be subsets of a torsion-free group. Assuming AB has no unique
+    product, then |A| + |B| ≥ 16. More specifically, … If |A| = 3, then |B| ≥ 19."
+  - The remark after it: "(The bound |supp(β)| ≥ 20 in the case R = F2, given in [1], is also a
+    consequence of our bound.)" [1] is A–T.
+  - The claim's sentence about N–S is accurate: ≥ 19 over any domain, which recovers the F_2 bound 20
+    through evenness and does not improve it.
+- **Wording.** The claim asserts no priority or novelty. It states the result and places it against A–T
+  Cor 6.2 and Thm 6.1 and N–S Thm 1.4. The lane's report says "new relative to every source checked, not
+  a proven exhaustive novelty check", which is honest.
+- **Spot-check for a later bound of 21 or more (not exhaustive).**
+  - The arXiv search "Kaplansky zero divisor support" returns 2501.07646 (CAT(0) groups), 1709.08204
+    (support 4), 1612.00934 (A–T) and 1110.3692 (convolution algebras). None of their abstracts states a
+    bound above 20 for support 3.
+  - Semantic Scholar lists two papers citing A–T. One is Tabei, 2607.18346, which works inside the
+    Promislow group only. The other is the journal version of A–T itself, with the same abstract and
+    bound 20.
+  - The arXiv API refused queries ("Rate exceeded"), so the search is not exhaustive.
+  - No bound of 21 or more over F_2 for |supp α| = 3 was found.
