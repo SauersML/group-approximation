@@ -136,3 +136,14 @@ were not recomputed here.
   - ct-rank-budget fbd3fae3c `Manuscript/OneSidedMFRadical/MFRadicalTransport`: MF-radical transport along embeddings
     and conjugation, and direct finiteness through tower corners (general lemmas, `#audit_axioms`).
   - The owning lanes append their own rows (COMMON_RULES rule 14); this ledger records the carriers once endpoints close.
+- 09-13 ~17:00, lead's item "take one builder leaf": at the survey all four candidates had started, and the largest
+  unstarted piece was tex 1774–1792 of the two-ended example (9 keys: fbee156f2d6d 5c75b0bf2db4 9c225384feb2 a7eb8076fde4
+  9ac1eedef5a7 02525ddc3aa4 c8c11f6bb25a dba179ef6f13 fb84c069f1fe).
+  - ~16:57: one message to ct-two-ended proposing a split. (A) ct-sentences: GL_fin(ℤ,F₂) ⋊ ℤ is LEF, and the tail symbols
+    agree by the codimension count. (B) ct-two-ended: R_X^× ≅ GL_fin ⋊ ℤ and the closing sentence.
+  - OVERLAP found after sending: ct-two-ended's `Algebra/FinitaryGeneralLinear.lean` (attic a51d90dda, 17:01) already
+    builds `FinitaryGL.GLfin k`, `shiftGL k`, `shiftAction k` and `FinitaryShift k`. Whatever the reply, ct-sentences
+    does NOT restate those objects. If (A) is agreed, it consumes these names once that module lands green:
+    `PrintedFinitaryShiftLEF : Prop := Sofic.IsLEF (FinitaryGL.FinitaryShift (ZMod 2))`, and the tail-symbol Prop over
+    `FinitaryGL.GLfin (ZMod 2)` and `FinitaryGL.shiftGL`.
+  - Waiting on ct-two-ended's reply; nothing authored for this piece.
