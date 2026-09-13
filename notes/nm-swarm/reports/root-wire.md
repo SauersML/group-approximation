@@ -26,17 +26,17 @@ of `metadata/NON_MF_SENTENCE_MAP.tsv` that the root does not reach.  Root builds
 * `rw/rwtool.py <sha> census`: census tokens resolved to declaring files; carriers whose files are not
   root-reachable.
 
-## 09-13 root state (origin/main 1a033dfb3, 04:20)
+## 09-13 root state (origin/main f495cf119, 04:44)
 
-* Root at ce699b9b8 (wave 3): 4816 GroupApproximation import lines, all before the module docstring (OK);
-  no missing module, no duplicate line; closure 6214 modules; 0 dangling imports inside it.  352 modules on
-  main are not reachable from the root (356 at cdc493958, 449 at 6292a1395).
+* Root at f495cf119 (wave 4): 4828 GroupApproximation import lines, all before the module docstring (OK);
+  no missing module, no duplicate line; closure 6228 modules; 0 dangling imports inside it.  360 modules on
+  main are not reachable from the root (352 at 1a033dfb3, 449 at 6292a1395).
 * 8e61df1ae (another campaign, 04:03, "root the GKP 4.2 endpoint") added four root lines by hand,
   `CommutingSoficActions.{DiagonalRestriction, Endpoint, FreeActionSofic, KunThomCosetAction}`, and changed
   the docstring of `Algebra.DiagonalCosetAction`.  The fz record fz-integrate 0913-034654-15072 (GREEN, base
-  e12190690, `# mods` naming `Endpoint` and `DiagonalCosetAction`) carries all five files with the bytes now
-  on main.
-* Census merge 4 (86df293af) listed five unwired carrier modules: three landed in wave 3, two are in wave 4.
+  e12190690, `# mods` naming `Endpoint` and `DiagonalCosetAction`) carries all five files with the bytes that
+  wave 4's root build compiled.  No root line was added by others between fa40bb30c and b3a3818b5.
+* Census merge 4 (86df293af) listed five unwired carrier modules: three landed in wave 3, two in wave 4.
   One census token resolves to no declaration: row 8fdc908a49c7 (definition)
   `GroupApproximation.StableWhitehead.elementaryColim_normal`.
 
@@ -87,9 +87,11 @@ GREEN record (including `Algebra.IntegerGaussValuations`, reached through `GHWCh
 Queue entries already root-reachable, not rewired: `FinitelyPresentedInfiniteSimpleClosed`,
 `SystolicDiscZip`, `SystolicDiscZipPinch`.
 
-## Wave 4 (launched 09-13 04:22, pre-flight at 1a033dfb3)
+## Wave 4 (launched 09-13 04:22, root build 0913-042257-93245, base fa40bb30c): GREEN, LANDED ROOT f495cf119
 
-8 modules, 10 newly reachable files.  Module list: `$NM/rw-wave4.mods`.
+8 modules, 10 newly reachable files.  Module list: `$NM/rw-wave4.mods`.  Pre-flight at 1a033dfb3;
+`nmwire.sh` built on origin fa40bb30c: 140 GroupApproximation modules rebuilt, `GroupApproximation` in 52 s,
+exit 0.  At f495cf119 all 8 lines are present (lines 4882–4889), before the docstring.
 
 | module | evidence (bytes on 1a033dfb3 = record) | owner |
 |---|---|---|
@@ -112,19 +114,38 @@ The wave 3 build did not compile 23 files of the new closure; each has a GREEN r
 * the five files of 8e61df1ae (root state, above), from fz-integrate 0913-034654-15072.
 
 hull-count94's newer GREEN 0913-035614-34211 carries other `OsinLemma94AntiparallelMetric` bytes, not
-landed.  Once wave 4 lands, landing them changes a root-reachable module.
+landed.  That module is root-reachable since f495cf119, so landing those bytes changes the root closure.
+
+## Wave 5 (launched 09-13 04:47, pre-flight at b3a3818b5)
+
+10 modules, 11 newly reachable files.  Module list: `$NM/rw-wave5.mods`.
+
+| module | evidence (bytes on b3a3818b5 = record) | owner |
+|---|---|---|
+| `GGT.SystolicDiscMirrorFoldSteps`, `GGT.SystolicDiscMirrorFoldQuad`, `GGT.SystolicDiscMirrorFoldEmbed` | GREEN 0913-042826-7309 builds `Embed`, which imports `Quad`, which imports `Steps`; also GREEN 0913-040558-58001 and 0913-041349-71786 | ko-closed |
+| `GGT.SystolicDiscMirrorFoldModel`, with `GGT.SystolicDiscMirrorFoldCases` | GREEN 0913-042330-95256; the `Cases` blob at its base bb5b595bb equals main.  A nonvacuity fixture: it closes no manuscript Prop | dgo-geometric |
+| `NonMFSentences.IntroWitnessSignSentence` (census carrier) | GREEN 0913-041408-72676 | audit-intro |
+| `VanKampen.FaceSetEarSpurCounterexample`, `VanKampen.RegionShellingSpurCounterexample` | GREEN 0913-035624-34720; the `FaceSetEar` blob at its base 4d91f2870 equals main | hull-respell, audit-sec5 |
+| `NonMF.RingCompressionCellGeneral` (census carrier), `NonMF.Audit.Sec3` | GREEN 0913-040726-62527 | audit-sec3 |
+| `Estimating.OsinUnboundSharedEdge` | GREEN 0913-042440-98733 (base bb5b595bb), newer than the FAILED record 0913-022343-56095 | hull-unbound |
+
+Pre-flight at b3a3818b5: no dangling import, no lexical sorry, no cycle; dupcheck predicts no collision.
+The wave 4 build did not compile 17 files of the new closure; each has a GREEN record:
+
+* the 11 newly reachable files above;
+* 6 files changed since fa40bb30c: `Estimating.OsinAppendixDescentInduction` and
+  `Estimating.OsinAppendixSectionInduction` from hull-select 0913-042552-816;
+  `TorsionFreeLeafAssembly`, `TorsionFreeLiteratureInputsLeastArea` and `TorsionFreeSaturationFromCorrected`
+  from nm-endpoints 0913-030945-26927; and `Kazhdan.GHWCharZeroPlaces` from ghw-charp2 0913-044256-36897.
 
 ### Held
 
 | module | reason | owner |
 |---|---|---|
-| `NonMF.Audit.Sec3` | its bytes on main (unchanged since 03:13) lie in no GREEN record's import closure; audit-sec3's GREEN 0913-040726-62527 names it with other bytes, not landed | audit-sec3 |
-| `Estimating.OsinUnboundSharedEdge` | red in root build 0913-015433-16599; its only record, 0913-022343-56095, FAILED | hull-unbound |
-| `GGT.SystolicDiscMirrorFoldSteps` | queued after the wave 4 pre-flight; GREEN 0913-040558-58001 names it, bytes = main; wave 5 | ko-closed |
 | `CharClass.*`, `Analysis.LIX*`, `ProblemLIXStrongAssemblyHalves` | LIX campaign files, in flight in the shared tree | LIX lanes |
 
-Released from the wave 3 holds, all in wave 4: `OsinLemma94Pieces` (transitive build),
-`LeavittMFQuotientUnitsGL` and `JacobsonComplementarySentence` (green probes since).
+Released from the wave 4 holds, all in wave 5: `NonMF.Audit.Sec3` (audit-sec3's green bytes landed at
+80abe6604), `Estimating.OsinUnboundSharedEdge` (new green probe), `GGT.SystolicDiscMirrorFoldSteps`.
 
 ## Stale notes superseded
 
