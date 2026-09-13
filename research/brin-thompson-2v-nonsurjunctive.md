@@ -65,4 +65,7 @@ injective and not surjective.
     - An obstruction must use a relation that is not a conjugation and does not live in `L_3`.
     - A relation living in `V_1 × V_2`, `H_u` or `⟨V_2, u⟩` would already show that `V` is not sofic.
     - A firewall needs one state with `s[e] = 1/3`.
+    - Partial-support torsion does not exclude the profile (artifact Section 6). Order-three elements of `V` form
+      two conjugacy classes. At the profile, the class with a fixed point takes a value `y` in `[1/3, 5/9]`. The
+      regular values (`1/|F|` on each finite subgroup `F`) satisfy every finite-subgroup identity.
   - Status: on paper, awaiting `w3-vf-nonlinear`.

@@ -234,13 +234,13 @@ become nonnegative after induction to `F_2[2V]` exclude every V-obstruction stat
 - So relations that only identify averaging idempotents of these conjugates cannot exclude the profile. An exclusion
   over `H_mix` needs a relation that is not a conjugation, for example one using elements of infinite order whose
   supports mix the coordinates.
-- Nothing here computes the classes of partial-support torsion, such as `g` acting inside the cylinder `[w_1]` and
-  trivially elsewhere. These are the first untested relations.
+- Section 6 computes the classes of partial-support torsion, such as `g` acting inside the cylinder `[w_1]` and
+  trivially elsewhere. The regular values satisfy every identity found there.
 
 ## 5. Where it stops
 
-- **Proved on paper, awaiting `w3-vf-nonlinear`.** Theorem 1.1, Corollaries 1.3–1.4, and Propositions 3.1–3.4
-  and 4.1.
+- **Proved on paper, awaiting `w3-vf-nonlinear`.** Theorem 1.1, Corollaries 1.3–1.4, Propositions 3.1–3.4 and 4.1,
+  Lemmas 6.1–6.2 and Corollaries 6.3–6.4.
 - **Decided.** Nothing about the gate or the root; both stay OPEN.
 - **Firewall.** It needs one state of `K_0(F_2[2V])` with `s[e^(1)] = 1/3`.
   - By Proposition 3.1 such a state restricts to a V-obstruction state, so a 2V firewall is at least as hard as the
@@ -251,3 +251,112 @@ become nonnegative after induction to `F_2[2V]` exclude every V-obstruction stat
   because `L_3` satisfies them with the profile values.
 - **Redundancy.** It needs a `D_2`-invariant V-obstruction state extended across `F_2[N] ⋊ Z` and the mixed
   support.
+
+## 6. Partial-support torsion (addendum)
+
+**Setting.**
+- `Γ` is a group and `A = F_2[Γ]`. For an idempotent `x` in a matrix ring over `A`, `[x]` is its class in `K_0(A)`.
+- For a finite subgroup `F` of odd order, `e_F = Σ_(z in F) z` is an idempotent, because `e_F² = |F| e_F`.
+- `g' = s_1 g t_1 + s_2 t_2 + s_3 t_3` acts as `g` inside `[w_1]` and fixes `[w_2] ∪ [w_3]`. Put `e' = e_(⟨g'⟩)`.
+
+**Lemma 6.1 (line count).** Let `P ≅ C_3^n` with `n >= 1` be a subgroup of `Γ`, and let `K` run over its
+`(3^n - 1)/2` subgroups of order three. Then in `K_0(A)`:
+`Σ_K [e_K] = ((3^(n-1) - 1)/2) [1] + 3^(n-1) [e_P]`.
+
+*Proof.*
+- `F_2[P]` is commutative and semisimple, and `F_2[P] ≅ F_2 × F_4^m` with `m = (3^n - 1)/2`.
+  - The factor `F_2` is cut out by `e_P`.
+  - Each factor `F_4` is cut out by an idempotent `ε_H`, where `H` is the kernel of the characters `P -> F_4^×`
+    realizing it.
+  - Factors correspond bijectively to subgroups `H` of index three. A character with kernel `H` factors through
+    `P/H ≅ C_3`, which has one Galois orbit of nontrivial characters.
+- `e_K` acts on the factor of `H` as `3 = 1` if `K <= H`, and as `1 + ω + ω² = 0` otherwise. So
+  `e_K = e_P + Σ_(H ⊇ K) ε_H` is an orthogonal sum.
+- Each `H` contains `(3^(n-1) - 1)/2` subgroups of order three, and `Σ_H [ε_H] = [1] - [e_P]`.
+- Summing over `K` gives `m [e_P] + ((3^(n-1) - 1)/2)([1] - [e_P])`, and `m - (3^(n-1) - 1)/2 = 3^(n-1)`. QED
+
+**Lemma 6.2 (two torsion classes).**
+- (a) A finite subgroup `F <= V` permutes the cylinders of some finite partition of `C`, and each element acts on
+  each cylinder by prefix replacement.
+- (b) An element of order three in `V` is conjugate in `V` to `g` if it has no fixed point in `C`, and to `g'`
+  otherwise.
+- (c) Suppose two elements of order three in `2V` each permute the product cylinders of a finite partition of `C × C`
+  by prefix replacement in both coordinates, in three-cycles only. Then they are conjugate in `2V`, and so conjugate
+  to `g ⊗ 1`.
+
+*Proof.*
+- (a) **An invariant partition.**
+  - Choose a finite cylinder partition `Q` on which every `x` in `F` acts by prefix replacements `αz -> βz`. Put
+    `δ_x(z) = |β| - |α|` for `z` in `[α]`.
+    - Refining `Q` does not change it, so it is well defined and locally constant.
+    - `δ_(xy)(z) = δ_x(yz) + δ_y(z)`.
+  - Put `λ(z) = L - min_(x in F) δ_x(z)`, where `L` is the length of the longest word of `Q`.
+    - `λ(z) >= L`, because `δ_1 = 0`.
+    - The cocycle identity gives `λ(xz) = λ(z) + δ_x(z)`.
+  - `λ` is constant on the cylinder `[z|λ(z)]` of the first `λ(z)` letters, so these cylinders form a finite
+    partition.
+  - `x` maps `[z|λ(z)]` onto a cylinder of length `λ(z) + δ_x(z)` that contains `xz`, by prefix replacement. That
+    cylinder is `[xz|λ(xz)]`.
+- (b) **Conjugacy.**
+  - By (a) for `⟨x⟩`, an element `x` of order three permutes a partition by prefix replacements. It does so in
+    `c_3 >= 1` three-cycles and `c_1` fixed cylinders, and it has a fixed point iff `c_1 >= 1`.
+  - Halving the three cylinders of one three-cycle raises `c_3` by one. Halving one fixed cylinder raises `c_1` by
+    one. Both keep the action by prefix replacement.
+  - So if `x` and `x'` have `c_1 = 0` for both, or `c_1 >= 1` for both, they permute partitions with equal cycle
+    counts.
+  - Choose a bijection of the two partitions that intertwines the permutations, and apply it by prefix replacement
+    on each cylinder. The result is some `ρ` in `V` with `ρ x ρ^(-1) = x'`.
+  - `g` permutes `{[w_1], [w_2], [w_3]}` with `(c_3, c_1) = (1, 0)`.
+  - `g'` permutes `{[w_1 w_1], [w_1 w_2], [w_1 w_3], [w_2], [w_3]}` with `(c_3, c_1) = (1, 2)`.
+- (c) Use the argument of (b) with product cylinders halved in either coordinate. `g ⊗ 1` permutes
+  `{[w_i] × C}` in one three-cycle. QED
+
+**Corollary 6.3 (values in V).** Let `s` be a state of `(K_0(F_2[V]), [1])`, `t = s[e]` and `y = s[e']`.
+- (a) `s[e_K] = t` for every subgroup `K` of order three without fixed points, and `s[e_K] = y` for the others.
+- (b) **Tower.**
+  - Every subgroup of order three of `C_3^n` ([CS] Section 1) is fixed-point-free.
+  - So Lemma 6.1 gives `3^(n-1) s(p_n) = ((3^n - 1)/2) t - (3^(n-1) - 1)/2`.
+  - This is Theorem 1.1(a) with `x = 1 - t`, derived from Lemmas 6.1–6.2 without [CS] Lemma 1.2.
+- (c) **Partial class.** `1/3 <= y <= (1 + 2t)/3`. At an obstruction state (`t = 1/3`), `y` lies in `[1/3, 5/9]`.
+
+*Proof.*
+- (a) Conjugate idempotents have equal classes. Apply Lemma 6.2(b).
+- (b) `C_3^n` translates the length-`n` cylinders freely, so no nontrivial element has a fixed point.
+- (c)
+  - Fix `n >= 2` and the complete prefix code `α_j = 0^(j-1) 1` for `j < n`, `α_n = 0^(n-1)`.
+  - Let `a_j` act as `g` inside `[α_j]` and trivially elsewhere. The `a_j` commute and generate `P_n ≅ C_3^n`.
+  - `a_1^(c_1) ... a_n^(c_n)` has a fixed point iff some `c_j = 0`. So `2^(n-1)` subgroups of order three are
+    fixed-point-free and `(3^n - 1)/2 - 2^(n-1)` are not.
+  - By Lemma 6.1 and (a),
+    `((3^n - 1)/2 - 2^(n-1)) y + 2^(n-1) t = (3^(n-1) - 1)/2 + 3^(n-1) s[e_(P_n)]`.
+  - `e_(P_n) e_K = e_(P_n)` for `K <= P_n`, so `e_K - e_(P_n)` is an idempotent. Take `K` fixed-point-free to get
+    `0 <= s[e_(P_n)] <= t`.
+  - Divide by `3^(n-1)` and let `n -> ∞`. Then `s[e_(P_n)] -> (3y - 1)/2`, so `0 <= (3y - 1)/2 <= t`. QED
+
+**Corollary 6.4 (a mixed product in 2V).** Let `s` be a state of `(K_0(F_2[2V]), [1])`, `t = s[e^(1)]` and
+`y = s[e' ⊗ 1]`. Then `s[(e' ⊗ 1)(1 ⊗ e)] = (y + 3t - 1)/3`. At the profile of Corollary 1.3 (`t = 1/3`), this is
+`y/3 = s[e' ⊗ 1] · s[1 ⊗ e]`.
+
+*Proof.*
+- `P = ⟨g' ⊗ 1, 1 ⊗ g⟩ ≅ C_3²`, and `e_P = (e' ⊗ 1)(1 ⊗ e)`.
+- `⟨1 ⊗ g⟩ = u^(-1) ⟨g ⊗ 1⟩ u` ([H] Lemma 2.3(d)), so its value is `t`.
+- `g' ⊗ g` and `g' ⊗ g²` permute the fifteen product cylinders `[β] × [w_i]` in three-cycles only. Here `β` runs over
+  the partition of `g'` in Lemma 6.2(b). By Lemma 6.2(c), both elements are conjugate to `g ⊗ 1`, so their values
+  are `t`.
+- `⟨g' ⊗ 1⟩` has the value `y`. Lemma 6.1 with `n = 2` gives `y + 3t = 1 + 3 s[e_P]`. QED
+
+**Remark 6.5 (what partial support can and cannot do).**
+- **No exclusion.**
+  - Put `s[e_F] = 1/|F|` on every finite subgroup `F`, via normalized dimension in the regular representation.
+    Normalized dimension is compatible with induction and conjugation, so this is a state on the colimit of the
+    `K_0(F_2[F])` over the finite subgroups of `V` (or `2V`).
+  - It gives `t = y = 1/3` and satisfies Lemma 6.1 and Corollaries 6.3–6.4 (`1/9 = 3^(-2)`).
+  - So no identity that already holds in that colimit excludes the profile, partial support included.
+- **Calibration sharpened.**
+  - The counting rank of `L_3` on the length-2 cylinders gives `e'` the value `7/9`, which violates 6.3(c) at
+    `t = 1/3`. So it does not extend to a state of `K_0(F_2[V])`.
+  - The regular rank of Remark 1.2 is the one compatible with conjugacy in `V`.
+- **For a firewall.** A state with `s[e] = 1/3` must give the partial class a value in `[1/3, 5/9]`, and
+  `(e' ⊗ 1)(1 ⊗ e)` one third of it.
+- **For an obstruction.** Nothing new. An exclusion needs a relation outside the finite-subgroup colimit, as in
+  Section 4.

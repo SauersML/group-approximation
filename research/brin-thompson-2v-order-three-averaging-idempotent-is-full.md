@@ -48,4 +48,6 @@ Theorem B for the `D`-stable host `2V` (artifact Proposition 2.1). Then `F_2[2V]
     - Extension is open across `F_2[N] ⋊ Z` (where `N` is the union of the `u^(-n) V_1 u^n`), across
       `V_1 × V_2`, and across mixed support.
     - The amenable host `L_3` realizes the profile, so finite-subgroup and tower relations cannot exclude it.
+    - Partial-support torsion is no lever either (artifact Section 6). An order-three element with a fixed point
+      takes a value `y` with `1/3 <= y <= (1 + 2 s[e])/3`. No finite-subgroup relation excludes the regular values.
   - Status: on paper, awaiting re-derivation by `w3-vf-nonlinear`.
