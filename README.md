@@ -4,7 +4,29 @@ The remote `verified` branch is automatically fast-forwarded after every complet
 
 ## A non-MF group
 
-[`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every group is MF.
+[`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) answers the
+[MF-group problem](https://arxiv.org/html/2508.17392v1#S1) negatively:
+not every group admits faithful asymptotic matrix representations in operator
+norm. The proof uses one-sided compression of Kazhdan subgroups and a
+projection-corner argument to force nontrivial elements to vanish in every
+norm matrix corona. It also constructs sofic groups that are not MF.
+
+## Named problems solved here
+
+The following are original written solutions to named questions, selected
+using the dated proofs and literature checks in [Cairn](research/).
+Each entry identifies the question, the new argument, and its precise scope.
+
+| Problem | Result and argument | Our proof |
+| --- | --- | --- |
+| **The trace problem — STW XXII.** [Schafhauser–Tikuisis–White, §7](https://arxiv.org/html/2506.10902v2#S7). | **Negative.** A separable unital nuclear type I algebra has a uniform tracial completion with an additional trace that is not continuous in the uniform 2-norm. A growing projective-bundle construction produces a character detecting elements whose uniform 2-norm tends to zero. | [Counterexample and proof](research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md). |
+| **Explicit automorphism loops — STW L, Kirchberg alternative.** [Schafhauser–Tikuisis–White, §14](https://arxiv.org/html/2506.10902v2#S14). | **Six generators constructed.** Circle actions on two finite graph models give an integral basis of the automorphism fundamental group of the Kirchberg counterpart of the irrational rotation algebra. The construction uses fixed classification isomorphisms; explicit generators in the stably finite rotation algebra remain open. | [Six-loop construction](research/artifacts/stw50-six-kirchberg-loops-2026-09-05.md). |
+| **K₁-injectivity of simple C*-algebras — STW LIX.** [Schafhauser–Tikuisis–White, §17](https://arxiv.org/html/2506.10902v2#S17). | **Negative.** A separable simple unital algebra has a unitary outside its identity component whose first matrix stabilization is null-homotopic. A twisted bundle obstruction survives the connecting maps that make the inductive limit simple. | [Manuscript](k1_injectivity_counterexample.tex); [AH construction](research/artifacts/stw59-simple-ah-k1-counterexample-manuscript-2026-09-05.md). |
+| **Vaidyanathan's rational K-stability question for AH algebras.** Informal question in [Sarkar's compendium, §20, p. 48](https://www.isibang.ac.in/~jay/papers/oaotINSA.pdf). | **Negative for AH algebras built from compact homogeneous blocks.** A simple unital monotracial AH algebra is rationally K-stable but not integrally K-stable. A real-projective Euler tower preserves an integral torsion obstruction while establishing rational stability in every positive homotopy degree. | [Torsion Euler tower](research/artifacts/stw59-rational-k-stability-torsion-euler-tower-2026-09-05.md); [exact scope](research/artifacts/rational-k-stability-ah-literature-boundary-2026-09-05.md). |
+| **Berlai's mixed-conjugator one-relator question.** [Berlai, introduction](https://arxiv.org/html/2502.05064v1). | **Positive.** With `x^y = y⁻¹xy`, the group `⟨a,b ∣ a^(a^(b⁻¹ab²)) = a²⟩` is sofic. A triangular cyclic-amalgam construction proves this and the broader family with conjugator `b^p a^s b^q`. | [One-sided and single-block conjugator proof](research/artifacts/mixed-conjugator-one-relator-proof-2026-09-07.md). |
+| **Does surjunctivity characterize soficity? — Bowen–Chapman Problem 1.1.** [Problem statement](https://arxiv.org/html/2511.06586v1). | **Negative, even for finitely presented groups.** A new surjunctivity permanence argument for group doubles, using finite-support quotients and stabilizer intersections, applies to a Kun–Thom nonsofic double. | [Finitely presented witness](research/artifacts/fp-surjunctive-nonsofic-double-2026-09-11.md); [surjunctivity theorem](research/artifacts/finitary-split-extension-surjunctivity-2026-09-11.md). |
+| **Guba's Ore equation — Question 1 / survey Question 3.20.** [Original question](https://arxiv.org/abs/2201.02308); [survey](https://gcc.episciences.org/11315/pdf). | **Positive.** For every field `K` and nonzero `b ∈ K[F]`, `(1 − x₁)u = bv` has a nonzero solution. An induction through the nested supports of conjugates of `x₁` extends Guba's `x₀` theorem. This settles the specified equation, not amenability of Thompson's group `F`. | [Complete proof](research/thompson-f-one-minus-x1-is-ore-with-every-element-proof.md); [source and priority check](research/artifacts/guba-q1-novelty-2026-09-12.md). |
+| **A type [A₂] action with non-finitely-presented image — Fournier-Facio–Wu–Zaremsky Question 5.8.** [Problem statement](https://arxiv.org/html/2603.24687v2#S5). | **Positive.** A diagonal Thompson-group normalizer produces a type `[A₂]` action of a finitely presented group whose faithful image is not finitely presented. The construction verifies the stabilizer conditions and computes the action kernel; it answers this question without resolving Boone–Higman. | [Construction and proof](research/a2-non-fp-image-via-diagonal-normalizer-proof.md); [question and scope](research/a2-action-with-non-finitely-presented-image.md). |
 
 ## A simple C*-algebra that is not K1-injective
 
@@ -113,3 +135,4 @@ The repository holds one Comparator configuration per submission, and `formaliza
 | Analysis | `Analysis/`, `KOne/`, `Leavitt/`, `Steinberg/` | Matrix estimates, projections, traces, C*-algebras, K-theory, and noncommutative rings |
 | Other group constructions | `Kun/`, `KunThom/`, `Quantum/`, `Monsters/` | Graph, permutation, quantum, and embedding constructions |
 | Public and checked interfaces | `Endpoint/`, `Meta/`, `Computability/`, `Manuscript/` | Stable exports, certificate replay, computability wrappers, statement matching, and axiom audits |
+
