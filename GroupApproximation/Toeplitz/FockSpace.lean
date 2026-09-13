@@ -17,7 +17,7 @@ The main facts are `⟪a ⊗ ω, b ⊗ ω'⟫ = ⟪a, b⟫ ⟪ω, ω'⟫` (`inne
 `annihilation a`, `annihilation a (b ⊗ ω) = ⟪a, b⟫ ω` (`annihilation_creation`).
 
 These operators are the fibres of the creation operators of Blanchard, arXiv:1507.02535v1,
-Definition 5.1 (p. 9); see `Palomar/BlanchardToeplitzChallenge.lean`.
+Definition 5.1 (p. 7); see `Palomar/BlanchardToeplitzChallenge.lean`.
 -/
 
 namespace GroupApproximation.Toeplitz

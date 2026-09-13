@@ -11,7 +11,7 @@ import Mathlib.Topology.ContinuousMap.Defs
 
 For a set `E` of bounded sections `X → ℓ²(ι)`, `fockModule E` is the closed linear span of the
 sections `ζ₁ ⊗ ⋯ ⊗ ζ_m ⊗ f` with `ζ_i ∈ E` and `f ∈ C(X)`, realised fibrewise in the Fock space
-`ℓ²(List ι)`.  This is the module `F(E)` of Blanchard, arXiv:1507.02535v1, Definition 5.1 (p. 9),
+`ℓ²(List ι)`.  This is the module `F(E)` of Blanchard, arXiv:1507.02535v1, Definition 5.1 (p. 7),
 in the form used by `Palomar/BlanchardToeplitzChallenge.lean`.
 
 The creation operator `creationSec ζ` preserves `fockModule E` when `ζ ∈ E`
@@ -47,7 +47,7 @@ theorem mem_fockGenerators_succ [TopologicalSpace X] [DecidableEq ι] {E : Set (
       (ω x : List ι → ℂ) w = tensorCoord (ζ x : ι → ℂ) (ω' x : List ι → ℂ) w :=
   Iff.rfl
 
-/-- The Fock module `F(E) = ⊕_m E^{⊗m}` (Blanchard, Definition 5.1, p. 9). -/
+/-- The Fock module `F(E) = ⊕_m E^{⊗m}` (Blanchard, Definition 5.1, p. 7). -/
 def fockModule [TopologicalSpace X] [DecidableEq ι] (E : Set (Sections X (Fib ι))) :
     Submodule ℂ (Sections X (Fock ι)) :=
   (Submodule.span ℂ (⋃ m, fockGenerators E m)).topologicalClosure
