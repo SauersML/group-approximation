@@ -6,6 +6,12 @@ title: An infinite LEF Kazhdan group with no nontrivial finite quotient exists
 distinct_from:
   weak-qd-kazhdan-quotientless-group-is-trivial: that proves triviality under completely positive approximations of the full group C-star algebra; this group has exact local finite models but no such approximations, so the completely positive hypothesis cannot be weakened to LEF or operator MF.
   exact-kazhdan-radical-kernel-cannot-be-lef: that node's mapping-torus statement EKL1 is not addressed here; this refutes only its printed general statement EKL2.
+invalidates:
+  - mf-kazhdan-without-finite-quotients-citation
+  - exact-kazhdan-radical-kernel-cannot-be-lef-proof
+  - non-mf-hyperbolic-from-kazhdan-quotientless
+  - hyperbolic-rf-question-equals-non-mf-question-proof
+  - torsion-free-kazhdan-alternating-mother-limit-gate-proof
 artifacts:
   - research/artifacts/simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md
   - research/artifacts/simple-kazhdan-lef-consequences-and-sources-2026-09-12.md

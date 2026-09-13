@@ -7,6 +7,11 @@ distinct_from:
   infinite-simple-kazhdan-hyperlinear-group: that is Pestov's existential question; this is one explicit group, which answers it in the stronger sofic form.
   binary-leavitt-elementary-group-is-simple: that group lives over a purely infinite ring and is nonsofic; this one lives over a stably finite ring that embeds in ultraproducts of matrix algebras, and is LEF.
   simple-kazhdan-kac-moody-lattices-exist: those groups are finitely presented and therefore never LEF; this group is infinitely presented and LEF.
+invalidates:
+  - simple-kazhdan-full-mf-radical-proof
+  - fp-simple-full-mf-radical-via-titz-witzel
+  - titz-witzel-exact-kazhdan-mf-radical-over-z-proof
+  - titz-witzel-mapping-tori-are-virtually-products-proof
 artifacts:
   - research/artifacts/simple-kazhdan-lef-subshift-elementary-group-2026-09-12.md
   - research/artifacts/simple-kazhdan-lef-consequences-and-sources-2026-09-12.md
@@ -43,7 +48,9 @@ by Ozawa--Thom, not weakly quasidiagonal.
   algebras (Brown--Clark--Farthing--Sims, arXiv:1204.3127). It is proved directly in the artifact.
 - **Periodic models:** the return-word approximation of minimal subshifts behind Grigorchuk--Medynets'
   LEF theorem for topological full groups (arXiv:1105.0719), here in ring form.
-- **Nearest prior art:** Thom, arXiv:0810.2180, Theorem 1.4, a LEF, non-residually-finite Kazhdan
-  group, which is not simple.
+- **Nearest prior art:** Thom, arXiv:0810.2180, Theorem 1.4, a finitely generated LEF Kazhdan group
+  that is not residually finite and is not simple. `S` strengthens this to a simple group.
+- **Kills recorded as graph structure.** The four routes listed under `invalidates:` all rested on
+  "every infinite simple Kazhdan group has full MF radical". `S` refutes that statement.
 - **New here:** passing to `EL_3` over the crossed-product ring, root detection through tower
   subrings, and the resulting simple Kazhdan LEF group.

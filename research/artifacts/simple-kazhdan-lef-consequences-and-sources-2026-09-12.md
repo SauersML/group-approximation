@@ -52,6 +52,28 @@ Status: review PASS by `ex-verify-groups` (0efeac410); credit notes applied in ย
   (Fournier-Facio arXiv:2608.02025; Alekseev--Thom 2608.05362) use `EL_n` over the binary Leavitt
   algebra, or LEF criteria, and exhibit no simple Kazhdan LEF group.
 - **arXiv API** returned 14-byte empty responses. A full-text arXiv search was not possible.
+- **LaTeX-source greps on MSI, 2026-09-12.** Lines containing "simple" together with Kazhdan, (T),
+  sofic, hyperlinear, LEF or MF were searched in:
+  - Capraro--Lupini, arXiv:1309.2034;
+  - Thom's survey *Finitary approximations of groups*, arXiv:1712.01052;
+  - Nikolov--Schneider--Thom, arXiv:1703.06092;
+  - Becker--Lubotzky, arXiv:1809.00632;
+  - Fournier-Facio--Gerasimova--Spaas, arXiv:2307.13155;
+  - Ershov's survey, arXiv:1206.0490;
+  - Kassabov--Nikolov, arXiv:math/0502112;
+  - Ioana--Spaas--Wiersma, arXiv:2006.01874.
+
+  None states an infinite simple Kazhdan group that is LEF, sofic or hyperlinear. None lists 9.1 as
+  answered. Nikolov--Schneider--Thom state "every simple Fin-approximable group is PSL-approximable",
+  which is consistent with ยง8.1. These were keyword greps, not full readings.
+- **ex-novelty pass (2026-09-12).** Beyond the sources above, it read Thom 0810.2180 pp. 1--4,
+  Alekseev--Thom's introduction, and arXiv listings. It found nothing earlier answering 9.1. Credits
+  it recommended, now in the nodes:
+  - Thom 0810.2180 Theorem 1.4 as the nearest prior art, which `S` strengthens to a simple group;
+  - Brown--Clark--Farthing--Sims arXiv:1204.3127 for simplicity of Steinberg algebras;
+  - Ozawa math/0306067 as the origin of the question.
+
+  Unchecked: the Ershov--Jaikin-Zapirain--Kassabov memoir on groups graded by root systems.
 - **Repository.** Every node on LEF or MF simple Kazhdan groups is an exclusion claim resting on
   "MF implies weakly quasidiagonal":
   - `simple-kazhdan-groups-have-full-mf-radical`;
