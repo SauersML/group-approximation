@@ -45,6 +45,30 @@ re-checked by the census verifier `verify.py`. Script `vfib_targeted.py`, job fi
 `row29-targeted.sbatch` (MSI job 707787). Results are recorded in §4 when the job
 finishes.
 
-## 4. Search results
+## 4. Search results, version 1 (job 707787, cancelled)
 
-Pending MSI job 707787.
+**Calibration failed, so version 1 negatives say nothing about collapse.** On row 23
+(`AAttAATTAtAtaTT`, census certificate at index 10) version 1 found no certificate.
+Its index-10 cover `Z/5 r=2 x chi mod 2` has 49 characters and 29 monic ones, but the
+potentials were sampled (`pot = 0` plus 60 random vectors) instead of enumerated over
+all `3^9`. The census certificate uses one specific potential vector, so the miss is
+expected. Output: `one-relator-magnus-row29-scripts/cal23-v1.out`.
+
+**What version 1 does show for row 29.** The job was cancelled after 46 of 70
+candidate covers (degrees 3–61). All 46 have `b_1(H) = 1`, a single character up to
+sign, and an Alexander polynomial with a non-unit end coefficient under `vfib.py`'s
+`alexander()`. A free kernel along that character would force unit end coefficients,
+so under that filter none of these 46 subgroups is free-by-cyclic in any direction.
+This depends on the `alexander()` implementation, which was not re-derived here, so it
+is recorded as a computed filter result, not as a claim. Output:
+`one-relator-magnus-row29-scripts/row29-v1-partial.out`.
+
+## 5. Version 2 and calibration (job 709467)
+
+`vfib_targeted2.py` enumerates all potentials in `{-R..R}^(k-1)` when there are at most
+60000 of them, exactly as `vfib.py` does. Above that it runs greedy local search on the
+cell height spans from random starts. Calibration mode (`calcert`, job file
+`cal2.sbatch`) takes the census cover of row 23 directly. It reports whether that cover
+is among the affine candidates, then reruns the character loop with the normal
+potential rule and with the heuristic forced. Row 29 is to be rerun with version 2 only
+after this calibration recovers the known certificate.
