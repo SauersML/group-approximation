@@ -61,7 +61,7 @@ fff-periodic (`FoldStage.exists_split_pinch`) is not needed.  This lane wrote no
 The lead cancelled the handout.  go-lemma42 wrote `SurgeryPocketGlueVertices`, `SurgeryPocketGlueCount`
 and `SurgeryPocketGluePlanar` itself.  This lane wrote no Lean for W1.
 
-### Current item: two defects in the non-MF verifier, landed at 736f7ea44
+### Done: two defects in the non-MF verifier, landed at 736f7ea44
 
 census found both defects in `scripts/check_non_mf_unconditional.py`.  The script has no owner, so the lead
 gave this item to this lane.  Landed with `NM_UNVERIFIED=1`; the script is not in
@@ -104,6 +104,139 @@ gave this item to this lane.  Landed with `NM_UNVERIFIED=1`; the script is not i
 * Sent to census and main: the SHA, the 3 stale lines and the grouped findings.  CI "Sentence-level census"
   (`build-non-mf-pdf.yml`) stays red until census re-registers.
 
+### Current item: flip list for the declarations blocked off the ruled route
+
+The ruled route proves only `RelativeGreendlingerQuasiGeodesicLeastAreaStatement` (LA).  The lead asked for a
+flip list for the declarations that need one of the four Props off that route.  Read-only work:
+* three runs on MSI with the landed verifier (md5 69b5e9b4): `sc_flip.py` on 92c643520, `sc_twins.py` on
+  004b690d0, and `sc_fcheck.py` on 0183c4b57, which checks each flip pair;
+* no Lean file named below, and not the verifier, changed between 004b690d0 and 1b6c528fa.
+
+The list went to nm-endpoints, which owns the wall-only wrappers, with copies to census and main.
+
+* **Status on main.**  No blocker is discharged with LA assumed.
+  * `EstimatingUnboundOutputStatement` (`GGT/VanKampen/Estimating/Assembly.lean:826`) is refuted.
+    * The refutation is `Estimating.UnboundScaledCounterexample.not_estimatingUnboundOutputStatement :
+      ¬ EstimatingUnboundOutputStatement.{0, 0, 0}` (`UnboundScaledCounterexample.lean:192`): no binders,
+      root-imported.
+    * Its one producer, `estimatingUnboundOutputStatement_of_scaledDecomposition`
+      (`UnboundScaledDecomposition.lean:113`), needs `Lemma62ScaledDecompositionStatement`.
+    * The def's docstring (`Assembly.lean:818`) still says "Still open, and not addressed here", which is stale.
+    * Nothing on main refutes the `{u, w, 0}` or `{u, w, v}` spellings.
+  * `EstimatingSelectionConstructionStatement` is open, with no refutation.  Its producers need
+    `Lemma65aDichotomyStatement` (`SelectionDichotomy.lean:151`) or `Lemma65aOrderedDichotomyStatement`
+    (`SelectionOrderedDichotomy.lean:90`).
+  * `RelativeGreendlingerQuasiGeodesicStatement` (RGQG) is open, with no refutation.  Each of its four producers
+    needs one of:
+    * `EstimatingDataConstructionStatement` (`Assembly.lean:1031`);
+    * Selection with Unbound (`:1039`);
+    * `EstimatingJointConstructionStatement` (`EndpointClosedAssembly.lean:199`);
+    * `EmbeddedEstimatingSystemConstructionStatement` (`RelativeGreendlinger.lean:392`).
+  * `HullSC.RelativeGreendlingerStatement` (RGS) is open, with no refutation.
+    * The `GGT.VanKampen` name is an alias (`RelativeGreendlinger.lean:459`).
+    * Producers: `HullSCRelativeGreendlingerFromComponents.lean:144` and `:421`.
+    * The only second-level refutation, `not_relativeExteriorArcConversionAtWordStatement`
+      (`ExteriorArcCounterexample.lean:359`), refutes the AtWord variant.  Neither producer of RGS names it.
+* **Bridges.**
+  * The one bridge on main, `relativeGreendlingerQuasiGeodesicLeastArea_of_reduced`
+    (`Estimating/OsinAppendixSectionBridge.lean:69`), runs from RGQG to LA.  It cannot feed a consumer from
+    LA, and main has no bridge from LA to an off-route Prop.
+  * The least-area forms below take LA, plus the embedded bridge where they need it.  That bridge is proved at
+    `{0, 0, 0}`, with no premises, by `HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed`
+    (`GGT/HullSCLemma51EmbeddedBridgeHolds.lean:20`).
+    * The verifier flags that theorem as buried-conditional (row 4895f03fdf5f).
+    * The statement it proves, `RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedAt`
+      (`HullSCLemma51EmbeddedBridge.lean:92`), is an implication.  Its antecedent asks for a
+      `RelativeDiagramCertificate` for every least-area diagram with a quasi-geodesic spelling.
+    * So the theorem is closed, but it gives embeddedness only to a caller who supplies those certificates.
+  * It replaces `RelativeIsoperimetricBridgeQuasiGeodesicStatement` (`HullSCLemma44QuasiGeodesicBridge.lean:177`),
+    which has no producer.  Every `_of_leaves` form needs it, and so does every `_of_quasiGeodesicLeaves` form
+    except `hullLemma49KernelPowerStatement_of_quasiGeodesicLeaves` (:85).
+* **Census.**
+  * Of the 366 official findings, 307 clear under LA alone, and none is blocked only by an off-route Prop.
+    * Assuming all four off-route Props as well clears none of the other 59.
+    * By kind, the 59 are 28 carrier-data, 12 buried-conditional, 12 open-predicate, 4 conditional-data and
+      3 inlined-statement.
+    * Most are on the `GloballyDistinguishedSectionFamily` predicates, the `OsinLemma94*Input` carriers and
+      `GFaceMerge`.
+  * No counted row of the merged `NON_MF_SENTENCE_MAP.tsv` names any of the 86 in `decls`.  Rows 721da4c14d11,
+    2d1cd22e5f49 and 2f997e5af4e6 mention the `TorsionFreeSectionSentences` `_of_leaves` forms only in the note.
+  * Two lane files still name historical forms in `decls`:
+    * `metadata/nm-census-rows/hull-respell.tsv`: LINE:1636 names `hullOneStepStatement_of_quasiGeodesicLeaves`,
+      `hullBallFormNG_of_quasiGeodesicLeaves` and `hullInputsCorrected_of_quasiGeodesicLeaves`.  LINE:1644 names
+      the first two.  Neither row is in the merged map.  Flip targets: BLC:140, `hullBallFormNG_of_oneStep` over
+      BLC:140, and `TorsionFree.hullInputs_of_leastAreaLeaves`.
+    * `metadata/nm-census-rows/sec5-sentences.tsv`: LINE:1662, 1665 and 1698 name each `_of_leaves` form
+      beside its least-area twin.
+  * 11 names are discharged only when the off-route Props are assumed.  None has a census row.
+* **Verdicts for the 86.**  Key: `T` = `GGT/HullSCLeastAreaGreendlingerTwins.lean`, `BLC` =
+  `GGT/HullSCLemma44BoundedLeastAreaCanonical.lean`, `LAA` = `Manuscript/NonMF/TorsionFreeLeastAreaAssembly.lean`.
+  `sc_fcheck.py` on 0183c4b57 checked all 49 pairs, since :173 has two targets.  Each target is root-reachable
+  and not `sorry`-tainted, and each requirement it names is discharged under LA, where the embedded bridge counts
+  as discharged, with the caveat above.  None adds a requirement the consumer lacks.  The two nearest forms named
+  under Superseded, BLC:44 and BLC:123, pass the same check.  `HullLemma44CanonicalQuotientStatement` has 22
+  producers, but it is not discharged under LA.
+  * **Flip, 48: a least-area form exists.**
+    * `HullSCLemma44CertificateInjectivity` :143 → T:311 `exists_relativeBallInjectivityParameters_of_geodesicLengthLeastAreaGreendlinger`.
+    * `HullSCLemma49Assemble` :65, :160, :172, :193 → T:883 `hullLemma49ShortestGeodesicLeastAreaPowerDiagram_of_leastAreaGreendlinger`
+      (:193 also drops `PrefixKernelConeTransferStatement`).
+    * `HullSCLemma49PowerDiagramFromComponents`:
+      * :69, :87, :126 → T:883;
+      * :104, :139 → T:896 `hullLemma49KernelPowerStatement_of_leastAreaGreendlinger`;
+      * :152 → T:311.
+    * `HullSCLemma49SourceAssembly` :90 → T:772 `hullLemma49ShortestGeodesicLeastAreaPowerDiagram_of_sourceBranches`.
+    * Long period → T:447 `exists_parameters_false_of_longPeriod_leastAreaPowerDiagram_source`:
+      `HullSCLemma49FixedDelta` :24, `HullSCLemma49LongPeriod` :94, :151, `HullSCLemma49SourceBranches` :53.
+    * Short loxodromic → T:547 `exists_parameters_false_of_shortLoxodromic_leastAreaPowerDiagram_source`:
+      `HullSCLemma49FixedDelta` :81, `HullSCLemma49ShortLoxodromic` :145, :293, `HullSCLemma49SourceBranches` :168.
+    * `HullSCLemma49InjectivityBridge` :46 → T:354 `hullLemma49InjectivityCallback_of_geodesicLengthLeastAreaGreendlinger`.
+    * `VanKampen/RelativeDiscRealizationPowerCertificate` :100 → T:47 `lemma49Certificate_of_relativeGreendlingerLeastArea`.
+    * `HullSCRelativeGreendlingerQuasiGeodesicSpelling` :117, :188, :219 and `TorsionFreeLeafAssembly` :93 →
+      T:126 `relativeGreendlingerQuasiGeodesicSpellingLeastAreaStatement_of_leastAreaGreendlinger`.
+    * `HullSCRelativeGreendlingerSpelling` :335, :407 and `HullSCRelativeGreendlingerGeodesicConsumers` :154 →
+      T:211 `relativeGreendlingerGeodesicLengthLeastAreaStatement_of_leastAreaGreendlinger`.  `GeodesicConsumers` :127 → T:311.
+    * `HullSCOneStepQuasiGeodesicLeaves`:
+      * :85 → T:896;
+      * :98 → BLC:140 `hullOneStepStatement_of_leastAreaLeaves`;
+      * :115 → `hullBallFormNG_of_oneStep` (`GGT/HullSC.lean:625`) over BLC:140; no single named form exists;
+      * :126 (a def) → `TorsionFree.hullInputs_of_leastAreaLeaves` (`Manuscript/NonMF/TheoremCAssembly.lean:259`).
+    * `TorsionFreeLeafAssembly`:
+      * :113 → T:896;
+      * :126 → BLC:140;
+      * :142, :152, :164, :173, :262 → LAA:38, :47, :57, :66, :78.  :173 also has
+        `TheoremC.manuscriptTorsionFreeFullMFRadical_of_leastAreaInputs` (`TheoremCAssembly.lean:333`).
+    * `TorsionFreeSectionAssemblyClosedGO` :61 → :74 `manuscriptRegularNonMFAlgebra_of_leastAreaLeaves_closedCitations`.
+    * `TorsionFreeSectionSentences`:
+      * :71 → `TorsionFreeHullPrintedLeastArea.lean:32` `manuscriptSentence_hullTheorem_of_leastAreaLeaves`,
+        which states the theorem at every group;
+      * :93, :126 → the same file :58, :72, the `TorsionFreeHullParagraphGeneral` `...General_of_leastAreaLeaves`
+        forms;
+      * :165, :188, :210 → `TorsionFreeSectionSentencesLeastArea.lean:37`, :57, :75.
+  * **Superseded, 37: docstring mark only, no deletion.**  No least-area form has the same conclusion.
+    * `HullSCLemma44BoundedFilling` :58.
+    * `HullSCLemma44Canonical` :131, :203, :218, :293, :301, :309, :317, :341, :349, :358, :371, :443, :454, :528.
+      * Each needs RGS and a transfer Prop, and `HullLemma44CanonicalQuotientStatement` is not discharged under LA.
+      * The nearest least-area form, BLC:44 `boundedHullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeastArea`,
+        has the bounded conclusion.
+      * :341 and :349 already carry VACUOUS: `RelativeLinearAreaTransferStatement` is refuted.
+    * `HullSCLemma44CertificateInjectivity` :191; `HullSCLemma44FamilyAssembly` :545, :652, :667;
+      `HullSCLemma44KernelAssembly` :274, :326, :380.
+    * `HullSCLemma44RelativeGreendlingerAdapter` :63, :110, :150, :189, :238.  Every user of these witnesses is
+      off route itself.
+    * `HullSCLemma49InjectivityBridge` :84.
+    * `HullSCLemma49RebasedCertificate` :80.  Its four users flip to T:447 and T:547, which go through T:47.
+    * `HullSCOneStepQuasiGeodesicLeaves` :71, nearest BLC:44.
+    * `TorsionFreeLeafAssembly` :103, nearest BLC:123 `torsionFreeHullCanonicalQuotientStatement_of_leastAreaLeaves`
+      (torsion-free conclusion).
+    * `HullSCRelativeGreendlingerFromComponents` :104, :359, :421.
+    * `HullSCRelativeGreendlingerPowerBoundary` :87: no least-area `SpellingAt` statement exists.
+    * `VanKampen/Estimating/Assembly` :849, :1039.  These produce off-route Props.  The ruled route is
+      `relativeGreendlingerQuasiGeodesicLeastArea_of_pocketParts` (`OsinAppendixGreendlingerPocketParts.lean:131`).
+  * **Keep, 1:** the bridge `OsinAppendixSectionBridge` :69.
+  * **Vacuous, 11.**  These state the Unbound premise at `{0, 0, 0}`, where it is refuted:
+    `HullSCLemma49Assemble` :172, :193; `HullSCLemma49PowerDiagramFromComponents` :87, :104, :126, :139;
+    `HullSCOneStepQuasiGeodesicLeaves` :71, :85, :98, :115, :126.
+
 ## Brief items
 
 | input | producer on main | state |
@@ -136,6 +269,12 @@ gave this item to this lane.  Landed with `NM_UNVERIFIED=1`; the script is not i
 
 ## Next
 
-* census re-registers the baseline against 736f7ea44.  If a finding there points at the verifier and not at
-  the corpus, this lane fixes the script and re-runs the calibration on MSI.
+* nm-endpoints and the flip owners apply the flips and superseded marks above, docstrings only.  This lane lands
+  no Lean edit for this item.
+* The "Still open" docstring on `EstimatingUnboundOutputStatement` (`Estimating/Assembly.lean:818`) should name
+  the `{0, 0, 0}` refutation.  The owner of that file makes the edit.
+* census decides on the historical forms in `hull-respell.tsv` LINE:1636/1644 and `sec5-sentences.tsv`
+  LINE:1662/1665/1698.
+* If census's re-registered baseline against 736f7ea44 has a finding that points at the verifier, not at the
+  corpus, this lane fixes the script and re-runs the calibration on MSI.
 * Otherwise idle until the lead assigns a new item.
