@@ -55,6 +55,9 @@ The sweep criteria are those of the sibling reviews:
 | 3 | `pauli-sums-near-their-one-norm-round-to-stabilizer-states`, `pauli-projector-hamiltonians-are-stabilizer-approximable`, `qudit-stabilizer-rounding-for-code-constraint-hamiltonians`, `pauli-norm-games-qpcp-needs-imperfect-completeness` | quantum-pcp | **PASS.**  Citation routes not re-read; novelty pass advised |
 | 3 | structural sweep of all landings of the twelve lanes | all | **PASS.**  Every direct `requires: []` route into a famous root is killed by an established invalidator |
 
+| 4 | `primitive-projective-representations-have-a-trace-gap`, `normal-fibre-galois-games-round-linearly-over-m-groups`, `-over-all-groups`, `galois-games-round-linearly-for-bounded-fibre-size`, `abelian-normal-closure-fibres-round-linearly`, `free-rounding-pays-the-number-of-fibre-conjugates` | ugc-rounding-pgroups | **PASS.**  Uniformity in `m` uses CFSG, as stated |
+| 4 | `torsor-cfi-isomorphism-algebra-is-coset-constraint-algebra` | kac-quantum-compiler | **PASS** |
+
 ## Part files
 
 - `research/artifacts/ex-review-logic-quantum-2026-09-12-part1.md`: §1, residual finiteness and
