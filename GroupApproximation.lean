@@ -4993,6 +4993,7 @@ import GroupApproximation.CuTensor.ObstructionGrothendieck
 import GroupApproximation.CStarLimits.TowerLift
 import GroupApproximation.KTheory.Suspension
 import GroupApproximation.KirchbergAlgebra.Basic
+import GroupApproximation.KirchbergAlgebra.CuntzCriterion
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
