@@ -155,7 +155,7 @@ written in a module sec2 owns.  go-lemma42 named two generic pieces that do not 
 | module | carries | landed |
 |---|---|---|
 | GGT/VanKampen/OEquivalentCellFaces | `cellFaceEquiv`, `cellFaceEquiv_val`, `cellFaceEquiv_faceWord`, `OEquivalentDiscDiagram.faceEquiv`, `OEquivalentDiscDiagram.faceWord_faceEquiv`, `OEquivalentDiscDiagram.ofCellFaceEquiv`, `OEquivalentDiscDiagram.ofCellFaceEquiv_face` | a845f70a0, GREEN 0913-101514-99667 (BUILT, bytes = main) |
-| GGT/VanKampen/Estimating/CyclicArcSub | `Embedded.CyclicArc.sub`, `sub_start`, `sub_length`, `sub_rotated`, `sub_darts` | a845f70a0, probe pending |
+| GGT/VanKampen/Estimating/CyclicArcSub | `Embedded.CyclicArc.sub`, `sub_start`, `sub_length`, `sub_rotated`, `sub_darts` | a845f70a0, fix dc64bcdbb, GREEN 0913-102559-44269 (BUILT, bytes = main) |
 
 `cellFaceEquiv` matches the positions of the cell list with the relator faces.  So an O-equivalence is the same as a
 word-preserving bijection of relator faces with the same boundary word.  `CyclicArc.sub arc i l h` is the arc of
@@ -215,6 +215,21 @@ Helper lemmas in the same module:
   side or the suffix side.  These are F + 1 distinct faces, and the insertion has F + 1 faces.
 - `mem_range_or_path` and `dartCount_le_add_two_mul`: so every dart is a retained dart, a dart of the path or the reverse of one.
 - `RealizedSectionFamily.insertionSection` with `_weight`, `_card` and `_labelLegal`.
+
+## Lemma 9.4 polygon realization: no two adjacent unselected G-faces (2026-09-13)
+
+Status 2026-09-13: **already on main, no module written**.  The lead assigned sec2 the first piece of hull-unbound's
+PolygonRealization split.  The claim is that in a globally distinguished, dart-minimal family no edge has two different
+unselected G-faces on its sides.  hull-unbound had already proved it in Estimating/OsinLemma94PolygonRealization
+(1130c8dbc, queued for wiring):
+- `GloballyDistinguishedSectionFamily.GFacesApart S`: for every dart d, if the faces of d and of `alpha d` are both
+  `UnselectedGFace`, then they are equal;
+- `gFacesApart_of_dartMinimal (hS : S.DartMinimal) : S.GFacesApart`.  Its proof merges across the edge with
+  `Surgery.GFaceMerge.transportDistinguished` and then uses `transportDistinguished_sum_unboundDarts_card` and
+  `transportDistinguished_dartCount_add_two`.
+
+As the lead's fallback says, sec2 asked hull-unbound for the face-partition piece (`OsinLemma94PolygonPartitionInput`) or
+another unassigned sub-piece, and is waiting for the answer.
 
 ## Census
 
