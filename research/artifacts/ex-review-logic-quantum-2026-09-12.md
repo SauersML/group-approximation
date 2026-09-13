@@ -67,6 +67,9 @@ The sweep criteria are those of the sibling reviews:
 | 6 | `mikhailova-coset-action-is-two-sided-q-action`, `amenable-base-makes-mikhailova-edge-co-amenable`, `machine-center-amplifier-does-not-bypass-the-sofic-compiler` | complexity-sofic | **PASS** |
 | 6 | `one-compressor-liftable-masa-iff-type-orbits-tight`, `liftable-abelian-subalgebras-are-amplification-invariant`, `theorem-e-liftable-masa-crux-contains-sl-d-z-dec`, `theorem-e-vertex-types-equidistribute-on-finite-sl-d-orbits` | hs-masa-lift-counter, hs-masa-lift-positive | **PASS** |
 
+| 7 | `sos-cannot-refute-unique-games-at-completeness-one-half` | ugc | **OPEN, correctly.**  Credit finding: KMS ECCC TR18-006 App. B (p. 54) records the polynomial-round Lasserre 2-to-2 gap with perfect completeness via the 3Lin translation.  With the split this is the claim, pending a written translation.  Literature bullet corrected forward |
+| 7 | `hidden-labels-import-cross-context-commutation` | kac-quantum-bijection | **PASS** |
+
 ## Part files
 
 - `research/artifacts/ex-review-logic-quantum-2026-09-12-part1.md`: §1, residual finiteness and

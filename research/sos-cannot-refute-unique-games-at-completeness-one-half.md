@@ -35,5 +35,24 @@ conditionally on `P != NP`.
   PCP-produced ones; (iii) the size is `n^(O(t))` with `t = poly(1/eps)`, so the
   exponent `c` degrades with `eps`. No step of KMS's completeness proof was read
   here.
-* **Literature.** A bounded web search on 2026-09-12 did not locate this
-  statement. It may be folklore; this is not a novelty claim.
+* **Literature** (corrected 2026-09-13 by `ex-verify-logic-quantum`).
+  - **The statement is in the source.**  Khot--Minzer--Safra, ECCC TR18-006,
+    Appendix B, p. 54: "Integrality gap (say up to a polynomial number of rounds
+    of the Lasserre relaxation) for the 2-to-2 Games problem holds with perfect
+    completeness and soundness ε."
+  - **The mechanism, p. 55.**  "These results are a consequence of the
+    integrality gap known for the 3Lin problem with perfect completeness [6, 15]
+    and the fact that the proof of the 2-to-2 Games Theorem is a reduction from
+    3Lin. The integrality gap instance for 3Lin can be 'translated' via the
+    reduction."  Here [6] is Grigoriev and [15] is Schoenebeck.
+  - **Crux (i).**  It is the translation KMS assert, and the pseudo-completeness
+    is *perfect*.
+  - **The split.**  Pseudo-expectations are linear, and the two branch
+    indicators are disjoint when `b != b'`.  So the split of
+    `unique-games-hard-at-completeness-one-half-proof` exactly halves the
+    pseudo-value, which gives pseudo-value `>= 1/2` against soundness `eps`.
+  - **Why it stays OPEN.**  The remark has no theorem number and no degree
+    exponent, so the claim stays OPEN until the translation is written.
+  - **Credit.**  A write-up would record a consequence stated by KMS, not a new
+    result.  Review: `research/artifacts/ex-review-logic-quantum-2026-09-12-part7.md`
+    §7.1.
