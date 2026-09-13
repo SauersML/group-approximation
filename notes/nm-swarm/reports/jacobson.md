@@ -165,3 +165,30 @@ dropped: cite-hull closed Hull Corollary 7.4 (c6e0b6c33).
   OsinLemma94PendantRemoval). All four `#audit_axioms` pass. The module lands in the same commit as
   this paragraph, after SpikeTransport landed (ba4233ef8). It is queued for wiring after
   OsinLemma94SpikeTransport and OsinLemma94ChainRespell.
+
+## W1: the pocket walk of two regions joining the same two cells (09-13)
+The lead assigned the producer side of kh-ejz's `MultipleEdgePocketRegionInput`
+(OsinPocketRegionSide:49, Osin Lemma 9.7(b)). hull-select's `multipleEdgeCutInput_of_pieces`
+(OsinPocketMultipleEdgeAssembly) consumes it. The exterior analog is kh-ejz's
+`PocketWalk.exists_of_exteriorAt` (OsinPocketSectionFaceSet).
+- `Estimating/OsinPocketCellWalk.lean` (this lane) proves:
+  - `RegionCandidate.cellArcList` and `RegionCandidate.sideFrom`: a region's arc on the cell `k`
+    and its side leaving `k`, with length and word-norm bounds `≤ ε`;
+  - `RegionCandidate.boundary_cycle_rotate_of_joinsCells`: for `i ≠ j`, the boundary cycle of a
+    region joining `i` and `j` rotates to `invDarts (arc on i) ++ sideFrom i ++ invDarts (arc on
+    j) ++ sideFrom j`. The rotation is `0` when the source is `i`. When the source is `j`, it is
+    the length of the first two pieces.
+  - `CellPocketWalk` and `CellPocketWalk.walk = s₁ ++ invDarts t₁ ++ s₂ ++ invDarts t₂`, the
+    split of `MultipleEdgePocketRegionInput`;
+  - `CellPocketWalk.exists_of_joinsCells`: take distinct selected regions `a`, `b` joining `i`
+    and `j`. The walk has `s₁ = b.sideFrom j` and `s₂ = a.sideFrom i`. `t₁` on `Π_i` spans the arc
+    of `a`, a gap and the arc of `b`. `t₂` on `Π_j` spans the arc of `b`, a gap and the arc of `a`.
+    The arcs are disjoint by `S.pairwise`, nonempty by `S.nondegenerate`, and spanned by
+    `CyclicArc.exists_spanArc`.
+- Not stated yet: the walk is noncrossing, which of the two orders `(a, b)`, `(b, a)` bounds the
+  pocket that avoids the exterior face, the face set, and the pocket region. The lead ordered these
+  to wait for dgo-analytic's restatement dropping `P.inner.FollowsBoundary`. At 13:07
+  OsinPocketRegionSide:67 still has it.
+- Status (13:10): probe GREEN 0913-130857-87977 (base 3b5232827, BUILT OsinPocketCellWalk). All
+  four `#audit_axioms` pass. The module lands with this paragraph. It is a new file importing only
+  modules on main (OsinPocketSectionFaceSet, OsinAppendixSectionInduction), with no consumer yet.
