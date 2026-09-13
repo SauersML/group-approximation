@@ -86,6 +86,23 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
   - `closedWalk_`, `repeatedVisits_` and `simple_..._iff` for both trims: the cycle is unchanged.
   - `trimSourceLast_sourceArc_lt` and `trimTargetHead_targetArc_lt`: the trimmed arc is not full.
   - The first co-probe (0913-180300-88794) was red on one decomposition goal, since fixed.
+- **Re-decomposing inside `X` is not a proof route (paper, 2026-09-13 ~18:20).**
+  - Instance: the long rose over `F(a,b)` at `ε = 1`, `N = 3`.
+    - `Π = aᴺ` and `R = bᴺ`, each with `N` darts. The exterior is a single dart labelled `c = aᴺbᴺ`.
+    - `κ` is a G-face whose walk is `inv(∂Π)`, the `c`-loop, `inv(∂R)`, all at one vertex `v`.
+    - `K = {κ, R}`: source `Π`, `t₁ = ∂Π`, `t₂ = [c]`, empty sides.
+  - No face set of `X` is a simple pocket face set:
+    - `{Π}` or `{R}`: both arcs empty, and the sides would need `N > 2ε` darts;
+    - `{κ, R}` or `{κ, Π}`: the boundary is a closed cycle through `v` plus the `c`-loop at `v`, so every walk order visits
+      `v` twice;
+    - `{κ, Π, R}` has no source, and `{κ}` has no kept cell.
+  - Both lobes of `K` fail:
+    - the pocket side of `inv(∂Π)` contains the exterior;
+    - the pocket side of the `c`-loop holds every relator cell.
+  - A rebuilt O-equivalent copy does rescue it: `F′ ∋ R`, bounded by `[c]`, `N − 1` darts of `Π`, and `[a]`, with the sides
+    exactly those produced by `trimSourceLast` and `trimTargetHead`.
+  - So the innermost-circuit rescue of ms-cite-1's record 5f21c733e does not prove the Pos binder, and the step has to build
+    copies: trim, double the trimmed side dart, split.
 - Where the step route sticks: a full arc with a nonempty remainder and both sides at length exactly `ε`. No trim has
   room, and transport surgery keeps arcs and sides. This does not refute the Prop, since the conclusion may change the
   source, the kept cell, the arcs and the sides.
