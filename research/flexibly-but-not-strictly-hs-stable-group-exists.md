@@ -65,6 +65,16 @@ would each be an instance of this claim.
      ucp-stability (`kazhdan-weak-ucp-stability-is-flexible-stability`);
    - `PSL_2(Z[1/2])`.
 
+   **Update (2026-09-13, lane `ex-hs-instability-kazhdan`).** Some residually finite
+   hyperlinear Kazhdan groups are not flexibly stable at all: `Z^(2g) ⋊ Sp_(2g)(Z)`,
+   `g >= 2` (`rf-kazhdan-group-not-flexibly-hs-stable`).
+   - **What a separating example must avoid.** A flexibly stable Kazhdan group has no
+     hyperlinear central extension by `Z` with finite abelianization. This combines Dogon's
+     Theorem 1.3 with `bdhv-central-extension-property-t`, which supplies property (T) of the
+     extension.
+   - **Groups that avoid it automatically.** Groups with finite `H_1` and `H_2` have no such
+     scalar source of instability (`finite-multiplier-projective-models-round-strictly`).
+
    For `Sp_2g(Z)` and `SL_2(Z[1/2])`, flexible stability already yields a
    non-hyperlinear group, so an example there is at least as hard as that
    goal (`sp2g-flexible-stability-forces-twisted-non-ce`). For `SL_n(Z)`,

@@ -38,6 +38,17 @@ if the double `G *_Gamma G` is hyperlinear, since that is equivalent to hyperlin
   - The residually finite unstable examples listed there, `SL_2(Z) rtimes Z^2` and
     `F_m x F_k`, are not Kazhdan.
   - Flexible stability of infinite Kazhdan groups is recorded there as undecided.
+    **Correction (2026-09-13, lane `ex-hs-instability-kazhdan`).**
+    - **What Dogon actually says.** For many property (T) groups, establishing flexible
+      HS-stability "would in fact give the existence of a non-hyperlinear group. Thus, deciding
+      flexible HS-stability in this scenario is extremely interesting."
+    - **Kazhdan counterexamples exist.** Residually finite Kazhdan groups that are not flexibly
+      stable do exist: `Z^(2g) ⋊ Sp_(2g)(Z)`, `g >= 2` (`rf-kazhdan-group-not-flexibly-hs-stable`).
+      It is an explicit instance of the mechanisms of Ioana--Spaas--Wiersma Theorem A and Dogon
+      Theorem 1.3.
+    - **What remains specific to this vertex.** Those mechanisms need a non-torsion `H^2` class.
+      They are void wherever `H_1` and `H_2` of the vertex are finite
+      (`finite-multiplier-projective-models-round-strictly`).
 - Contrapositively, flexible stability of `Gamma` at `G`-extendable models makes every
   intermediate coset wreath `W_K` non-hyperlinear, not only `W_Gamma`.
 - The implication is conditional on nothing beyond its four established premises. It does

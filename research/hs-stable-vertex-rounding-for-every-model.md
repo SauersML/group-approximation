@@ -67,6 +67,20 @@ extend to trace-preserving representations of `G`.
     Dogon). By `amenable-flexible-hs-stability-is-strict-hs-stability` any proof must use models with
     non-injective limit trace, exactly the "far from genuine on the actor" case the theorem-e
     attempts already isolate.
+  - **Correction (2026-09-13, lane `ex-hs-instability-kazhdan`).**
+    - **Too broad.** "Unknown for every infinite higher-rank Kazhdan group" overstates what is
+      open.
+    - **A residually finite Kazhdan group that is not flexibly stable.** `Z^(2g) ⋊ Sp_(2g)(Z)`,
+      `g >= 2`, a lattice in `R^(2g) ⋊ Sp_(2g)(R)`, is residually finite and Kazhdan, and it is
+      not flexibly HS-stable (`rf-kazhdan-group-not-flexibly-hs-stable`). Its non-roundable
+      models have regular limit trace.
+    - **What is still unknown.** Flexible stability of lattices in higher-rank simple groups
+      (`SL_n(Z)`, `Sp_(2g)(Z)`), and of `Gamma` itself.
+    - **Consequence.** (H1) cannot follow from property (T), residual finiteness and the
+      regular trace alone.
+    - **Caveat on the scalar mechanism.** It is void wherever `H_1` and `H_2` of the vertex are
+      finite (`finite-multiplier-projective-models-round-strictly`). An instability witness at
+      such a vertex needs non-scalar defects.
   - **No known reduction makes (H1) easier, but equivalence to the target is not proved.** (H1) ⟹
     non-hyperlinear is established (modulo review); the converse — that hyperlinearity of the wreath
     yields a `G`-model whose vertex restriction does not round — is not on main. So (H1) is

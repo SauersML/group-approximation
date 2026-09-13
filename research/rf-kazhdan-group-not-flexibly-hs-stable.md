@@ -60,5 +60,12 @@ Derivation: `rf-kazhdan-group-not-flexibly-hs-stable-proof`.
     `Sp_2n(R)`, and `Z[1/p]^4 ⋊ Sp_4(Z[1/p])` as an infinitely presented Kazhdan group.
   - Dogon arXiv:2211.10492v3 p. 3 lists `SL_2(Z) ⋉ Z^2` and `F_m × F_k` as the residually
     finite non-flexibly-stable groups, and names no Kazhdan example.
+- **Also a corollary of Dogon's Theorem 1.3** (arXiv:2211.10492v3; "if Γ is flexibly
+  HS-stable, then G is not hyperlinear", for a non-split central extension `1 -> A -> G -> Γ -> 1`
+  with `A = Z` and `G` Kazhdan).
+  - `Γ~_g` is a non-split central extension of `Γ_g` by `Z`.
+  - It has (T) by proof §3.
+  - It is residually finite, since reduction mod `k` separates points, and hence hyperlinear.
+  - Dogon does not state this instance either. (Added 2026-09-13.)
 - **What is claimed.** The proof here does not use ISW's lifting machinery. It is not claimed
   as a new technique, only as the explicit Kazhdan instance, which the graph did not record.
