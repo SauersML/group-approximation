@@ -30,4 +30,6 @@ is an infinitely generated free group). No genus `g >= 3` is known to fail.
   `E^3_{0,2}` of the spectral sequence for the action of `I_3` on the complex of
   cycles is infinitely generated. The abstract frames this as partial evidence
   toward `I_3` not being finitely presented. A single genus does not answer this
-  claim, but a proof for `I_3` would land as its own partial claim.
+  claim. The genus-3 case is tracked as `genus-three-torelli-group-not-finitely-presented`,
+  reduced to `genus-three-torelli-second-homology-infinitely-generated`, whose
+  Attempts isolate the one remaining differential `d^3: E^3_{3,0} -> E^3_{0,2}`.
