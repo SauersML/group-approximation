@@ -8,6 +8,7 @@ distinct_from:
   ternary-twisted-algebra-has-swap-separated-one-sided-pair: that seeks a pair separated by the swap idempotent in the twisted algebra; this fixes the involution d1 = 1 + s1t1 and one explicit element, and needs no fullness of a swap corner
 artifacts:
   - research/artifacts/ternary-one-transvection-two-piece-lift-2026-09-12.md
+  - research/artifacts/one-transvection-lift-support-reduction-2026-09-12.md
 ---
 
 **OPEN.** Let `G = L_(F_3)(1,2)^x`, `z = -1`, `S_- = eps_- F_3[G]`, `d1 = 1 + s1 t1` and `P_(d1) = 2(1 - [d1])`. Put
@@ -62,3 +63,15 @@ not directly finite, so it is a non-sofic subgroup of `G` (artifact Section 6).
   - **What survives.** The chart entries of the support must generate an algebra with no nonzero
     finite-dimensional representation, for example one containing `s0, t0, s1, t1`, as the Thompson unit
     `[[s0, s1 t0],[0, t1]]` does. The support must also generate a non-sofic subgroup.
+- 2026-09-12 `w7-yh-rank-firewall`: refutation proposed, held OPEN pending verification by `w4-vf-linear-b`
+  (`one-transvection-s0-lift-has-no-left-inverse`, artifact
+  `research/artifacts/one-transvection-lift-support-reduction-2026-09-12.md`).
+  - **Support reduction.** `v Y_h = P_(d1)` is equivalent to `P_(d1) = P_(d1) x P_c P_(d1)`, with
+    `c = h^(-1) d1 h = [[-1,-s0],[0,1]]`. Projecting coefficients onto `W = <d1, c>`, which is dihedral of order 12
+    (`d1 c = z u` with `u = [[1,s0],[0,1]]` of order 3) and contains `z`, keeps the equation.
+  - **Dead on W.** A dimension count in a finite quotient of `W` makes any left inverse two-sided, and by Theorem A
+    `a` would then be a unit, but `pi(a) = s0` is not. Directly, `s0 -> 0` on `<z, d1, h> <= GL_2(F_3[s0])` gives
+    `psi0(Y_h) = 0` and `psi0(P_(d1)) = diag(0,1)`, and projection onto that subgroup contradicts `v Y_h = P_(d1)`.
+  - **Scope.** Every two-piece lift over the involution partition of `d1` dies the same way, whatever `h` is. If
+    this is verified, the "Cost" paragraph and the "What survives" item above are superseded, since no left inverse
+    exists and no support need be non-sofic.
