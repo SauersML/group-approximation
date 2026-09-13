@@ -1,5 +1,96 @@
 # ghw-charp2 lane report
 
+## Item 8 (09-13): LoopCut (A), patches 01-10 in one landing
+
+Lead ruling, final: `RespectsSections cuts a := a.2.target ≠ some a.2.source ∧ (a.2.target = none → ∃ j,
+TargetsSectionIndex cuts j a)`, with the loop conjunct first.  All 10 patches land together after one co-probe, with the
+site 4, 5 and 6 rulings; no deletions; LoopCut keeps the least-breakage form of patch 07.
+
+### Status: LANDED f04929ebb, co-probe 0913-144505-9146 GREEN
+
+The probe built 183 modules on origin 514b76e75.  They are the reverse import closure of `OsinAppendixSections`, 181
+modules including `LoopCutCapCounterexample`, computed with `git grep`, plus `GFaceQuadrilateralRegion` and
+`SurgeryFaceEdgeDoublingRegions`, which do not import it.
+
+Two earlier co-probes were green but went stale as closure modules landed.  0913-143304-32295 (179 modules, base
+b590ad02a) missed `OsinLemma94PolygonClasses` (6db79cea7) and `OsinGreendlingerOpenResiduals` (8a07ad7d0).
+0913-144048-88101 (181 modules, base afe0638dd) missed `OsinPocketPinchStep` (8a7d46d90) and `OsinUnboundSameCellBridge`
+(a3713d831).  None of the four uses a patched name.
+
+The first co-probe, 0913-135734-55169 (164 modules, base 67ec49f02), compiled all 23 staged modules and was red on
+four others:
+- two foreign reds, fixed on origin since: `OsinLemma94OneCellValue` (36524dbf0) and `OsinPocketPinchSplit` (kh-cckw);
+- two (A) consumers, `OsinAppendixEulerTwoGonLabels` and `OsinPocketKeptCell`, patched below.
+
+`SurgeryOuterSpurThickening` (36ff632cd) landed after that closure; it is the third consumer.
+
+audit-sec5's draft (5197fa6fc) has the same `RespectsSections`, but its transfer lemma takes `hloop : SameLoopProfile a b`,
+an iff between the loop statements of `a` and `b`.  As the lead asked, the two are reconciled and one version is kept.
+`respectsSections_of_sameTargetProfile` takes `hloop : a.2.target ≠ some a.2.source`, the new region's own loop
+conjunct, placed before `hb`.  This form is weaker: a caller holding `SameLoopProfile a b` passes `fun h => hb.1
+(hloop.mp h)`.  Every transport supplies it through `regionFamily_noLoop`, so no `SameLoopProfile` is added.
+
+### Patched files (27)
+
+| File | Owner | Change |
+|---|---|---|
+| `Estimating/OsinAppendixSections` | hull-select | `RespectsSections` under (A); docstrings |
+| `Estimating/OsinUnboundCaseOne` | hull-unbound | `respectsSections_of_sameTargetProfile` takes `hloop`; `Surgery.InnerGRegion.regionFamily_noLoop`; `false_of_quadrilateral_region` takes `hloop` |
+| `GFaceQuadrilateralRegion` | hull-unbound | `DiscEmbeddingAway.regionFamily_noLoop`; loop iff and family-noLoop conjuncts |
+| `SurgeryFaceEdgeDoublingRegions` | hull-unbound | `regionFamily_noLoop` |
+| `Estimating/OsinUnboundSharedEdge` | hull-unbound | `false_of_digon_toward_cell` takes `(hi : i₂ ≠ i)`; the adjacency disjunct asks `i₂ ≠ i` |
+| `SurgeryGFaceMergeRegions` | ghw-charp2 (taken over) | `regionFamily_noLoop`; `transportSection` respects |
+| `SurgeryPinchSplitSections` | fff-periodic | `regionFamily_noLoop`; `transportSection` respects |
+| `Estimating/OsinAppendixCutMerge` | hl-lemma46 | the transported family's loop conjunct |
+| `Estimating/OsinAppendixAssemblyDescent` | dgo-analytic | `.2` at l.199 |
+| `Estimating/OsinAppendixAssemblyPocket` | ghw-charp2 (taken over) | `.2` at l.212 |
+| `Estimating/OsinAppendixSectionInduction` | hull-select | `GloballyDistinguishedSectionFamily.noLoops`, `loopCutInput` (closed) |
+| `Estimating/OsinAppendixGreendlingerParts` | hull-respell | `osinLoopCutSection : OsinLoopCutSectionStatement` (closed) |
+| `Estimating/OsinPocketDiscMerge` | fff-periodic | `Surgery.InnerDiscRegion.regionFamily_noLoop` |
+| `Estimating/OsinPocketDiscEmptyTwoGon` | fff-periodic | loop conjunct (target none) |
+| `Estimating/OsinUnboundCaseOneFace` | theoremc-retire | `exists_quadrilateral_region_rotate` family-noLoop conjunct; `false_of_quadrilateral_face` takes `hloop` |
+| `Estimating/OsinUnboundCaseOneRun` | theoremc-retire | `osinLemma94CaseOne_false_of_walk` takes `hkind`; `osinLemma94CaseOneInput_of_walk` takes `hsame` (site 4) |
+| `Estimating/OsinLemma94InsertionTransport` | sec2-sentences | loop conjunct through `DiscEmbeddingAway.regionFamily_noLoop` |
+| `SurgerySpikeDeletionRegions` | sec5-sentences | `Surgery.SpikeDeletion.regionFamily_noLoop`; `transportSection` respects |
+| `Estimating/OsinLemma94PolygonCovers` | hull-count94 | `alpha_faceOf_not_cell_of_unbound`, `sum_card_unboundOffRegions_le`, `covers_of_regionFacing_le` take `hsame` (site 5) |
+| `Estimating/OsinLemma94PolygonCount` | hull-count94 | new Prop `OsinLemma94UnboundSameCellStatement`; `osinLemma94PolygonCoversInput`, `_of_sideBudget` take it |
+| `Estimating/OsinPocketZeroCellMergeFalse` | hull-select | its patch: `hloop` on `false_of_disc_pair_singleton`, `false_of_zeroCellPocket`, `ZeroCellPocketMergeStatement` (site 6) |
+| `Estimating/DiscEmbeddingAwayUnbound` | simple-group | the f7538e223 rewrite, loop conjunct |
+| `Estimating/OsinAppendixEulerCornerTwoGonCount` | leavitt-units | `.2` at l.497 |
+| `Estimating/OsinAppendixEulerTwoGonLabels` | debt-conditional | `.2` at l.201 |
+| `Estimating/OsinPocketKeptCell` | sec2-sentences | `hloop` goal of `false_of_disc_pair_singleton`, from `target := none` |
+| `SurgeryOuterSpurThickening` | hs-vanishes | `regionFamily_noLoop`; `sectionFamily` respects |
+| `LoopCutCapCounterexample` | audit-sec5 | its post-(A) rewrite, unwired: `capCandidate_not_respectsSections`, `family_eq_empty`, `emptyFamily`, `loopCutCap : LoopCutCapStatement` |
+
+### Residual (exact)
+
+These are named hypotheses, not cited results.
+- `osinLemma94CaseOneInput_of_walk (hwalk : OsinLemma94CaseOneWalkStatement) (hsame :
+  OsinLemma94CaseOneSameCellStatement)` is theoremc-retire's Prop, already on origin.
+- `osinLemma94PolygonCoversInput (hsame : OsinLemma94UnboundSameCellStatement)` and
+  `osinLemma94PolygonCountInput_of_sideBudget (hbudget) (hsame)` rest on a new Prop, owned by hull-count94.
+  - It says that at Lemma 9.4 parameters, for `ρ` large, no unbound dart of cell `i` has its reverse on cell `i`.
+  - Sketch: a cell self-adjacent along an edge reads `a x a⁻¹ y` with `x`, `y` of value one.  Quasi-geodesicity gives
+    `|x|, |y| ≤ c/λ`, so its length is at most `2c/λ + 2 < ρ` once `ρ ≥ ⌈2c/λ⌉ + 3`.
+  - audit-sec5 model-tests whether such darts exist at the C-parameters.
+- Hypotheses supplied by callers, not Props:
+  - `hloop` on `false_of_quadrilateral_region`, `false_of_quadrilateral_face`, `false_of_disc_pair_singleton` and
+    `false_of_zeroCellPocket`;
+  - `hkind` on `osinLemma94CaseOne_false_of_walk`;
+  - `hi : i₂ ≠ i` on `false_of_digon_toward_cell`.
+- `LoopCutInput` binders (`OsinAppendixAssembly`, `OsinAppendixDescentInduction`, `OsinAppendixGreendlingerPocketParts`,
+  `OsinAppendixLemma97Pocket`) are kept.  Every one is now discharged by `loopCutInput`, and `OsinLoopCutSectionStatement`
+  by `osinLoopCutSection`.
+- `LoopCutCapCounterexample.lean` (audit-sec5's rewrite, in this landing) no longer refutes `LoopCutInput`.  Over `S₃`
+  with `ε = 0`, `λ ≤ 1`, `0 ≤ c`, `loopCutCap : LoopCutCapStatement` says the cap is nondegenerate and fails
+  `RespectsSections` through the loop conjunct, and every realized section family on the cap diagram is empty.
+
+### Census and wiring
+
+No new census row: this landing proves no printed sentence.  Every patched module was already on origin, so no wiring
+changed.  Owners keep their census rows.  hull-count94's row for `osinLemma94PolygonCoversInput` now carries the
+`hsame` binder.
+
 ## Item 7 (09-13): the LoopCut site census (read-only; gates ruling (A))
 
 Lead order: list every site that builds a `RealizedSectionFamily` or uses `weight_maximal`, `card_minimal` or
@@ -456,5 +547,10 @@ property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembl
 - Item 6: `Estimating/OsinAppendixEulerExteriorLinked.lean` is landed (cbca8029b, green 0913-061116-68489) and queued
   for wiring.  hull-euler has the names.  The summation over components and `ExtPhiData` from a section family stay in
   its assembly.
-- Item 7: the LoopCut census and its ccd23ffee addendum have gone to the lead and audit-sec5.  No Lean probe or landing
-  until the lead rules on (A).
+- Item 7: the LoopCut census and its ccd23ffee addendum went to the lead and audit-sec5.  The lead ruled (A).
+- Item 8: LoopCut (A) landed at f04929ebb (co-probe 0913-144505-9146).  The owners and the lead have the SHA and tag.
+  - hull-count94 has `OsinLemma94UnboundSameCellStatement` and the proof sketch.
+  - audit-sec5 has the probe result for its `LoopCutCapCounterexample` rewrite.
+  - debt-conditional, sec2-sentences and hs-vanishes have the consumer fixes.
+  - The lane `.files` is back to this lane's modules plus `SurgeryGFaceMergeRegions` and
+    `OsinAppendixAssemblyPocket`.  Next is the item the roster names after LoopCut.
