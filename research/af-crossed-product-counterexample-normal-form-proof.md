@@ -4,7 +4,7 @@ id: af-crossed-product-counterexample-normal-form-proof
 kind: route
 title: Traces give stable finiteness, Theorem 4.16 locates a finite projection in D, Proposition 4.17 keeps its class finite, and doubling a finite class with an infinite double breaks separativity
 target: af-crossed-product-counterexample-normal-form
-requires: [nowhere-scattered-af-crossed-products-dichotomy, rainone-type-semigroup-crossed-product-dichotomy, stw99-xxxii-holds-for-paradoxical-tower-groups]
+requires: [nowhere-scattered-af-crossed-products-dichotomy, rainone-type-semigroup-crossed-product-dichotomy, stw99-xxxii-holds-for-paradoxical-tower-groups, minimal-normal-cyclic-subgroup-cantor-dichotomy]
 ---
 
 The hypotheses of Rainone's Theorems 3.7, 4.13, 4.16 and 4.21 hold, as
@@ -59,7 +59,10 @@ would make `A` purely infinite.
 **6.**  For `D = C(X)` the action is an action on `X`.  If it is free, minimal
 and amenable and `Gamma` has paradoxical towers, then `A` is a Kirchberg
 algebra (`stw99-xxxii-holds-for-paradoxical-tower-groups`).  In particular `A`
-is purely infinite.
+is purely infinite.  If `Gamma` has a normal infinite cyclic subgroup acting
+minimally on `X`, then `A` is stably finite or purely infinite by
+`minimal-normal-cyclic-subgroup-cantor-dichotomy`.  For commutative
+coefficients, properly outer means topologically free.
 
 **7.**  `A` is not stably finite, so some `M_n(A)` has an infinite projection.
 `A` is not purely infinite, and `p` from 4 is a nonzero finite projection of

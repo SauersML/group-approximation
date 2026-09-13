@@ -39,7 +39,9 @@ that the brief of this lane targets, including shapes like Rordam's nuclear
     in the crossed product and has a properly infinite multiple.
 * **Commutative coefficients.**  The type-semigroup part is exactly
   `measure-free-minimal-cantor-action-with-finite-clopen-type`.  Free minimal
-  amenable actions of groups with paradoxical towers are excluded.  Where this
+  amenable actions of groups with paradoxical towers are excluded.  So are
+  topologically free actions of groups with a normal infinite cyclic subgroup
+  acting minimally (`minimal-normal-cyclic-subgroup-cantor-dichotomy`).  Where this
   dies: no construction of a measure-free minimal Cantor system with a finite
   clopen class is known.  Even with one, finiteness of `1_A` in
   `C(X) rtimes_lambda Gamma` is not implied.  Rainone's Proposition 4.17 only
