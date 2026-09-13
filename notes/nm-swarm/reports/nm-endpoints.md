@@ -134,7 +134,11 @@ This lane owns the value.
        origin. Patch 10 (f) is overruled, so `_of_walk` is not deleted. It gains an
        `OsinLemma94CaseOneSameCellStatement` binder (theoremc-retire). That Prop is not redundant
        after patch 09 (d).
-     - `OsinLemma94CaseTwoInput` has no producer (sec5-sentences).
+     - `OsinLemma94CaseTwoInput` is closed by `osinLemma94CaseTwoInput`:
+       - OsinLemma94CaseTwo.lean, sec5-sentences, e0e94015d;
+       - probe 0913-131149-5355 green, `#audit_closed_axioms`, not root-imported yet.
+       - It applies `osinLemma94CaseTwoInput_of_insertion` to sec2-sentences'
+         `separatedCornerInsertionInput` (619b70139).
      - Site 5 (patch 10 (d), `alpha_faceOf_not_cell_of_unbound` at j = i): under (A), an unbound
        dart of cell i whose reverse also lies on cell i lies on no polygon walk. The ruling is
        option (a), owned by fff-periodic:
@@ -151,9 +155,12 @@ This lane owns the value.
      (kh-torsion) and `PocketCellTransportStatement` (go-lemma42).
    - `OsinPhiPrimeCountSectionStatement` comes from `osinPhiPrimeCountSection_of_pieces`
      (OsinAppendixEulerSection.lean:62, hull-euler, 6401c70a6, landed unverified, not root-imported).
-     C5 is applied inside by `cellFaceCountInput`. Its leaves have no producer: C4
-     `OsinCornerTwoGonSectionStatement` (leavitt-units) and C6′ `OsinTwoGonHoldsSectionStatement`
-     (debt-conditional).
+     - C5 is applied inside by `cellFaceCountInput`.
+     - C4 `OsinCornerTwoGonSectionStatement` comes from the binder-free `osinCornerTwoGonSection`:
+       - OsinAppendixEulerCornerTwoGonSection.lean, leavitt-units, 0c42391c2;
+       - probe 0913-130704-80770 green, not root-imported.
+       - It uses `cornerTwoGonInput` (90245333d).
+     - The one leaf with no producer is C6′ `OsinTwoGonHoldsSectionStatement` (debt-conditional).
    - `OsinSectionPocketCutSectionStatement` comes from `osinSectionPocketCutSection_of_pieces`
      (OsinPocketPieces.lean:502, root-imported).
      - `PocketRegionOfSimpleStatement` is closed (`pocketRegionOfSimple`).
