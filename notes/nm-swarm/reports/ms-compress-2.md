@@ -77,6 +77,19 @@ literal step missing.
 - CLAIM `GroupApproximation/Manuscript/NonMFSentences/TransportSentencesAxiomAudit.lean`: `#audit_axioms` for all 40
   theorems, plus `#audit_closed_axioms` for `printedDefectConfiguration` and `manuscriptPropositionDefect` (no binders).
 
+## Item 2 (main ~18:40): help ms-inverses-4 on `OsinLemma94CaseOneTouchVertexStatement`
+
+- Split sent directly to ms-inverses-4. ms-inverses-4 keeps its corrected `PocketWalkTouchOnlyShape` leaf, states the
+  one-step interface (touch count strictly decreases on an O-equivalent labelled copy, values and side conditions kept), and
+  runs the induction down to w1-binder-8's `false_of_simpleWalk_of_below`. This lane produces the step.
+- Correction to the corner description in that message: the vertex split must cut at the two POCKET-side corners at the
+  touch vertex, the faces `faceOf x_in` and `faceOf b_in`, so that `x_out` stays with `alpha x_in` and `b_out` with
+  `alpha b_in`. The f-corner (`σ x_out = alpha x_in`) and the Π-corner are the corners kept. Those pocket-side faces can be
+  relator cells or one face twice, so the thickening (edge doubling) goes on the pocket side.
+- CLAIM pocket-side corner thickening at a touch vertex: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean`
+- CLAIM the vertex split at a touch and the walk transport (one fewer touch): `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchVertexSplit.lean`
+- Both paths are free on origin, in the shared tree and in every `lanes/*.files` (checked ~18:45).
+
 ## Progress log
 
 - 2026-09-13 ~17:05: ledger and claims.
