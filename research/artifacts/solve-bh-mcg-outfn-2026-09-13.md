@@ -148,6 +148,32 @@ basepoint-free form Lemma `Ghom` needs.
 - Chen--Salter's handle-pushing proof faces the same point and treats it
   implicitly.
 
+**Sharper form of the gap (sketched, not landed).**
+- **Free-conjugacy form.** (LT) gives the dichotomy's input only up to
+  conjugacy, and robustly.
+  - Let `α` be simple and `c` essential in `Σ` and disjoint from `α`.
+    `(forget x)σ(T_c^M)` is a multitwist about lifts of `c`, and it commutes with
+    the push `s(α^k)`.
+  - By the argument of Chen--Salter Lemma `BPint` (l.294--307), the support of
+    `s(α^k)` misses those lifts.
+  - The curves disjoint from `α` fill `Σ ∖ α`. So `s(α^k)` is conjugate in
+    `π1(Σ)` to `α^{m(α,k)}`.
+  - Hence `ρ(α) := m(α,k)/k` is well defined, and invariant under conjugation and
+    under `Γ̄`.
+- **Where `Ghom` breaks.** `Ghom` needs *based* equalities, and the conjugators
+  `β_α` from the path ambiguity break its commutation step.
+- **The homology alternative is blocked.**
+  - The alternative would be to show that `s_* − t·i_*` kills a spanning set of
+    `H_1(Λ; Q)`.
+  - That needs the classes of powers of lifts of simple closed curves to span. For
+    covers of *punctured* surfaces they need not: Malestein--Putman,
+    arXiv:1708.06486, abstract, "We construct examples of finite covers of
+    punctured surfaces where the first rational homology is not spanned by lifts of
+    simple closed curves".
+  - Here the cover is of the *closed* `Σ_g`, which that abstract does not address,
+    so the obstruction is not known to apply. Either way this route needs its own
+    spanning argument.
+
 Until this is written out, the node stays OPEN.
 
 ### 3.3 A cohomological partial
