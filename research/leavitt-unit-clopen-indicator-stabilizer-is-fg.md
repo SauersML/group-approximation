@@ -15,10 +15,13 @@ generated.
 
 ## Why it matters
 
-- By `leavitt-cantor-module-fp-via-indicator-stabilizer` it gives finite presentation
-  of `M ⋊ U`.
-- By `leavitt-pbh-via-clopen-orbit-action` it gives permutational Boone--Higman for `U`
-  directly, through the action of `U` on the orbit of `χ`, with no module needed.
+- Finite presentation of `M ⋊ U`, and with it permutational Boone--Higman for `U`, are
+  already ESTABLISHED through `leavitt-cantor-module-fp-via-thompson-amalgam`, so the
+  routes `leavitt-cantor-module-fp-via-indicator-stabilizer` and
+  `leavitt-pbh-via-clopen-orbit-action` are second routes.
+- What this claim adds is a module-free type (A) action of `U` on the orbit of `χ`, and a
+  test of whether the Leavitt affine actor comes from the permutation-module criterion
+  `orbit-finite-quotient-module-extensions-are-fp`.
 
 ## Attempts
 
