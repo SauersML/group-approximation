@@ -5,6 +5,10 @@ Wave-2 range lane of session nonsofic-existence-49. Manuscript at origin/main 5b
 ## CLAIM
 - CLAIM general-W HS remark carriers (rows 86d7bbda9474, 42ae3f886537) GroupApproximation/Sofic/CliffordWitnessHSRemarkGeneral.lean (LANDED 0dca11111)
 - CLAIM LEF of FinitaryGL.FinitaryShift (ZMod 2), tex 1786–1791 (main's split; ct-two-ended confirmed it unstarted and keeps the rest of the remark) GroupApproximation/Algebra/FinitaryShiftLEF.lean: `PrintedFinitaryShiftLEF`, `printedFinitaryShiftLEF`
+  - LANDED 1d55d0846, probe 0913-181141-20510 GREEN. Every audited declaration depends only on propext, Classical.choice and Quot.sound.
+  - `Algebra/FinitaryShiftWindow`: copies window-supported operators into ℤ/N as `windowCopy`. Includes `windowLift_cyclePush`, `one_add_windowCopy_mul`, `cycleShift_zpow_mul_windowCopy`, `SupportedIn.conj` and `intCast_injOn_Icc`.
+  - `Algebra/FinitaryShiftLEF`: `cycleModel_mul` (products agree), `cycleModel_eq_imp` (separation), `isLEF_finitaryShift k` (every finite nontrivial commutative ring), and the closed endpoint `printedFinitaryShiftLEF`.
+  - Census rows c8c11f6bb25a and dba179ef6f13. Key fb84c069f1fe ("R_X^× is LEF although GL_3(R_X) is not MF") stays with ct-two-ended, which consumes the endpoint.
 
 ## Method
 - Rows come from `metadata/NON_MF_SENTENCE_CENSUS.tsv`, matched by text. The census lines are at the pre-chain-core hash; current tex line = census line + 485.
