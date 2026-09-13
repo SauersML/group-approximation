@@ -42,7 +42,12 @@ coordinate: it stores the fractional counter at bounded depth there, while in
 - It answers Zaremsky Problem 2.19(e) yes, through `zaremsky-2-19e-by-yes`.
 - It removes the "no infinitely divisible elements" obstruction, which holds
   for `V`, as a way to exclude subgroups of `nV` for `n >= 2`.
-- By the translation-length argument Kojima–Sheng give (their Corollary 4.3),
-  `nV` for `n >= 2` has no proper isometric action on a CAT(0) cube complex.
-  Farley's cube-complex proof of the Haagerup property for `V` therefore does
-  not extend verbatim (Problem 2.7).
+- Kojima–Sheng state, as their Corollary 4.3 (quoted, not re-derived here),
+  that `nV` for `n >= 2` has no proper isometric action on a CAT(0) cube
+  complex; their argument is a translation-length bound on roots. Callard–Salo
+  state the same conclusion (arXiv:2208.00685v2, Corollary 1.2, imported in
+  `brin-thompson-mv-contains-a-distortion-element`). Farley's cube-complex proof
+  of the Haagerup property for `V` therefore does not extend verbatim (Problem
+  2.7).
+- Review: z-verify-groups PASS, 2026-09-13
+  (`research/artifacts/zp-review-groups-2026-09-13-part1.md` §7, c0ff0a5f90).

@@ -23,10 +23,9 @@ through `some-gl-n-z-not-in-2v-from-no-nv`.
   - Belk–Bleak–Matucci (arXiv:1602.08635, Conjecture 1.7) predict that
     `Z^3 * Z` does not embed in `2V`; for `V` the analogue `Z^2 * Z` is a theorem
     of Bleak–Salazar-Díaz.
-  - If some `GL_N(Z)` contains `Z^3 * Z`, the conjecture for `2V` gives this
-    claim. Right-angled Artin groups embed in `GL_N(Z)` for large `N`
-    (Davis–Januszkiewicz plus the integral Tits representation; not re-read).
-  - So the next targets are the non-embedding of `Z^3 * Z` in `2V`, and a small
-    explicit `N` with `Z^3 * Z <= GL_N(Z)`.
+  - `Z^3 * Z <= GL_8(Z)` (`z3-free-z-embeds-in-gl8z`). So the conjecture for
+    `2V`, recorded as the open claim `z3-free-z-does-not-embed-in-2v`, gives this
+    claim through `some-gl-n-z-not-in-2v-via-z3-free-z`.
+  - Next target: `z3-free-z-does-not-embed-in-2v`.
 - The Haagerup property of `2V`, or finiteness of its Kazhdan subgroups, would
   also give this claim through `SL_3(Z)` (Problem 2.7).
