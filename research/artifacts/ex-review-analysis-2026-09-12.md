@@ -221,6 +221,12 @@ Theorem 14 and Proposition 15) applies, and the Item 1 argument runs verbatim.
     DD Toeplitz algebra, Euler protection in O_2-self-similar modules): PASS.
   - §2.1, spot check of ten citation imports used by reviewed proofs. One thin pre-EX import
     (Vigdorovich) is noted.
+- `ex-review-analysis-2026-09-12-part9.md`:
+  - §1.17, the LXI uniform-length equivalence: PASS.
+  - `module-defect-needs-non-k-exact-host`: PASS, with one sentence corrected forward (weakly vs
+    coarsely embedded expanders).
+  - §2.2, famous-root sweep at 4e628b389: no flips. Refill-lane establishments are reviewed by
+    ex-verify2-analysis.
 
 ## 2. Sweep of in-scope landings to 23:35 CDT
 

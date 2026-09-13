@@ -34,7 +34,9 @@ distinct_from:
 
 So the entry ticket for the module route is not non-exactness but the failure of Baum--Connes
 with coefficients, which non-exactness does not imply (item 3). Among known finitely generated
-groups this failure is produced only by a **coarsely embedded expander**: Gromov monsters,
+groups this failure is produced only by an **embedded expander** (weakly embedded for Gromov
+monsters, isometrically for Osajda's groups; corrected 2026-09-13 after
+`ex-review-analysis-2026-09-12-part9`): Gromov monsters,
 Osajda's isometric-expander groups,
 and the residually finite non-exact groups built over an expanding family
 (`osajda-monster-hosts-for-bc-module-route`, items (1),(2),(4)). The remaining a-T-menable
