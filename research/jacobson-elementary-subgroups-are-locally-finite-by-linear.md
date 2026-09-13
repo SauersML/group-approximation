@@ -11,8 +11,8 @@ artifacts:
   - research/artifacts/jacobson-el3-soficity-firewalls-2026-09-12.md
 ---
 
-**ESTABLISHED** (route `jacobson-locally-finite-by-linear-proof`; artifact Section 1). Independent re-derivation
-requested from `w4-vf-gate`.
+**ESTABLISHED** (route `jacobson-locally-finite-by-linear-proof`; artifact Section 1). Independently re-derived by
+`w4-vf-gate`: PASS, Section 31.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`.
 
 **Statement.** Let `F` be a finite field, `J_F = F<S,T | TS=1>` and `n >= 1`. Let
 `π : EL_n(J_F) -> EL_n(F[z,z^(-1)])` be the symbol map and `L_n = ker π`.

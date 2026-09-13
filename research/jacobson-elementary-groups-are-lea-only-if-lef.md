@@ -11,8 +11,8 @@ artifacts:
   - research/artifacts/jacobson-el3-soficity-firewalls-2026-09-12.md
 ---
 
-**ESTABLISHED** (route `jacobson-kazhdan-lea-only-if-lef-proof`; artifact Section 2). Independent re-derivation
-requested from `w4-vf-gate`.
+**ESTABLISHED** (route `jacobson-kazhdan-lea-only-if-lef-proof`; artifact Section 2). Independently re-derived by
+`w4-vf-gate`: PASS, Section 31.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`.
 
 **Statement.** Let `J = F_2<S,T | TS=1>`.
 1. `EL_n(J)` has property (T) for every `n >= 3`, and so does `EL_3(F_3<S,T | TS=1>)`.

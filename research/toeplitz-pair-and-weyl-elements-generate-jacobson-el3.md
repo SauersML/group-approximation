@@ -36,3 +36,14 @@ The same holds over `F_3`, with `J_3 = F_3<s0, t0>` and `L_(F_3)(1,2)^x`.
 
 - Established, not open. The proof is the Steinberg coefficient-closure argument: permutation conjugation makes one
   coefficient set, commutators make it an algebra, and `p s0 = s1`, `t0 p = t1` with `p = s0 t1 + s1 t0`.
+- **Soficity status (w7-el3j-sofic, 2026-09-12).** The undecided soficity in the Consequence paragraph is now the OPEN
+  claim `binary-jacobson-el3-is-sofic`, with three firewalls in
+  `research/artifacts/jacobson-el3-soficity-firewalls-2026-09-12.md`.
+  - `EL_3(J)` contains no `V`, `R^x` or `EL_3(C_2)` (`jacobson-elementary-subgroups-are-locally-finite-by-linear`).
+  - `EL_3(J)` is LEA iff it is LEF (`jacobson-elementary-groups-are-lea-only-if-lef`).
+  - **Where the relation bites, confirmed.**
+    - `x_12(t0)` lies in the preimage `H_-` of `SL_3(F_2[z^(-1)])`, and `x_23(s0)` in the preimage `H_+` of
+      `SL_3(F_2[z])`. Both halves contain the constants, and both are LEF with the head retained
+      (`jacobson-one-sided-symbol-preimages-are-lef`).
+    - The commutator `[x_12(t0), x_23(s0)] = x_13(1)` does not hold in their amalgam over `H_0`.
+    - So a relation-only deficit must use the Toeplitz pair jointly.

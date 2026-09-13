@@ -165,3 +165,21 @@ intersection of the kernels of all rank models) is `L`.
     group, for example the constants together with one Toeplitz root element. Its symbols generate
     `EL_3(F_2[z^(−1)])`. Averages with an unbounded number of terms are not rank-contractive, so this
     input cannot enter through an averaged projection.
+* **Soficity firewalls: containment, Kazhdan, one-sided halves (w7-el3j-sofic, 2026-09-12).** Source:
+  `research/artifacts/jacobson-el3-soficity-firewalls-2026-09-12.md`. The soficity question behind the
+  necessary condition above is now the OPEN claim `binary-jacobson-el3-is-sofic`.
+  * **No reduction.** `E` contains no `V`, `R^x`, `EL_3(C_2)`, `F`, `BS(2,3)`, and no finitely generated
+    locally finite extension of an infinite simple group
+    (`jacobson-elementary-subgroups-are-locally-finite-by-linear`).
+  * **Amenable approximations are finite.** `E` is Kazhdan, so it is LEA iff it is LEF, and `EL_n(J)` is
+    not LEA for `n >= 4` (`jacobson-elementary-groups-are-lea-only-if-lef`).
+  * **Relations inside one half never kill the head.** `H_+ = π^(-1) SL_3(F_2[z])` and
+    `H_- = π^(-1) SL_3(F_2[z^(-1)])` contain `L`. Every finitely generated subgroup of either is residually
+    finite (`jacobson-one-sided-symbol-preimages-are-lef`), so both halves have head-retaining finite models,
+    hence head-retaining rank models.
+    * **This extends the symbol firewall beyond amenable symbols.** The constants, `x_12(T)` and the head
+      generate a subgroup of `H_-` whose symbols generate the nonamenable `SL_3(F_2[z^(-1)])`. It still has
+      finite quotients in which the head survives.
+    * **A proof must use `S`-roots and `T`-roots jointly.** `E` is a proper quotient of `H_+ *_(H_0) H_-`. The
+      Toeplitz commutator `[x_12(T), x_23(S)] = x_13(1)` is a reduced word of the amalgam that collapses into
+      `H_0`.
