@@ -5,6 +5,7 @@ kind: claim
 title: No bordism trapping detector with protected rank two sees a fivefold commutator of sphere-coordinate unitaries
 distinct_from:
   rank-two-spin-trapping-blind-to-depth-three-brackets: That shows spin trapping is blind to fourfold commutators on every seed manifold, via KO; this shows every tangential structure is blind to fivefold commutators for sphere-product seeds, via products in the stable stems.
+  rank-two-trapping-blind-to-depth-four-brackets: That proves the stable fivefold commutator map of U(2) is null, which covers every seed manifold; this is the sphere-product special case, proved independently by listing the products eta^a·y^b with a + b = 4.
 artifacts:
   - research/artifacts/class-four-lambda-mod-eight-trapping-part3-2026-09-13.md
 ---
