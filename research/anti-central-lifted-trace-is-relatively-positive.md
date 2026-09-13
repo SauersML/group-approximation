@@ -47,3 +47,11 @@ is nonnegativity, and only on classes in the span of signed-Thompson finite-subg
   - *Power formula.* `s_3` modulo `3^(k+1)` is the identity coefficient of `x^(3^k)` for any lift `x` (artifact
     Remark 3.2). That is arithmetic, and it carries no order.
   - *Rank functions.* A rank function would give positivity, and none is known on `S_-`.
+- *Semidihedral and `GL_2(F_3)` blocks* (lane w6-wf-stage1-b, artifact
+  `semidihedral-and-gl2-f3-blocks-forced-states-2026-09-12.md`). The anti-central projectives of `GL_2(F_3)` are induced
+  from the two semidihedral blocks, which transpose averaging balances. So relative positivity over `H`, `SD` and
+  `GL_2(F_3)` is equivalent to positivity over `H` (`gl2-f3-anti-central-states-are-forced-by-semidihedral-blocks`).
+  `H` and `GL_2(F_3)` generate `G`, so positivity over the group they generate is the stronger extension of the whole
+  lifted trace. Neither semidihedral block is full (`semidihedral-anti-central-blocks-are-not-full`), but that does not
+  survive stabilization. Where it stops: `alpha` fixes the self-dual anti-central simple modules of `GL_3(F_3)`, so
+  averaging forces nothing there.
