@@ -36,3 +36,5 @@ every countable `k`.
 Simplicity of `EL_N(R)` modulo its centre is not claimed here.
 
 Unreviewed proof in the artifact, Section 4.
+
+**Review (un-verify, 2026-09-13): PASS after scope repair.** The bisection calculus, both paradoxes and the (PI) construction re-derived; finite generation and (T) now correctly hold for finite `k` only (owner repair c66fcabd05). See `research/artifacts/un-review-2026-09-13-part3.md` §4.

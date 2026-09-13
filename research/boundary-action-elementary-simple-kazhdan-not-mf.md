@@ -41,4 +41,6 @@ The single difference is the dynamics:
 - The boundary action is paradoxical, `2[∂F_d] <= [∂F_d]` in the type semigroup, so `S_∂` has no
   nontrivial MF quotient.
 
-Unreviewed. The simplicity inputs are un-simplicity's established but unreviewed nodes.
+The simplicity inputs were reviewed PASS in `research/artifacts/un-review-2026-09-13-part1.md`.
+
+**Review (un-verify, 2026-09-13): PASS after scope repair.** The first landing asserted finite generation and (T) for every countable field (FAIL as stated); the owner repair c66fcabd05 restricts clauses 4–5 to finite `k`, and its correction argument is right. Minimality, effectiveness, the paradox `[X] = 2[X]` and the simplicity inputs (part 1) re-derived. See `research/artifacts/un-review-2026-09-13-part3.md` §4.

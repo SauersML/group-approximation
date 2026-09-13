@@ -21,3 +21,5 @@ So in characteristic 0 the ring hypothesis of the one-sided transport mechanism 
 coincides with Tarski's paradox side. Nothing is claimed about MF-ness in the presence of a measure.
 
 Unreviewed proof in the artifact.
+
+**Review (un-verify, 2026-09-13): PASS.** Both directions re-derived: full support by minimality, integration kills (k,l)-paradoxes, Rainone–Sims Theorem 6.5 (minimal case), C*-stable finiteness gives ring direct finiteness via polar decomposition, and the Sims injection makes `A_k(𝒢)` a unital subring of `C*_r(𝒢)`; the converse is the paradox side. See `research/artifacts/un-review-2026-09-13-part3.md` §6.

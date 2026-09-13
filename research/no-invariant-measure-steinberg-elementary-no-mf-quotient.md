@@ -34,3 +34,5 @@ Unreviewed proof in the artifact (Sections 1–3). It uses a monoid homomorphism
 `measure-free-ample-groupoid-el-n-full-mf-radical`: a normalized state on `V(A_k(𝒢))` restricts to an invariant
 measure. Credit both lanes. The UN flagship `free-group-cantor-elementary-group-lef-iff-invariant-measure` cites this
 node.
+
+**Review (un-verify, 2026-09-13): PASS.** The monoid map `S(𝒢) → V(A_k(𝒢))`, the ABBL Lemma 2.3 and Rainone–Sims Theorem 6.2 chain (both imports verbatim) and the model tests re-derived. See `research/artifacts/un-review-2026-09-13-part3.md` §§2–3.

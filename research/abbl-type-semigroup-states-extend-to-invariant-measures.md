@@ -12,3 +12,5 @@ compact open sets `K` with `f([1_K]) < ∞` is unique and regular.
 
 Consequence used in `un-paradox`: if `G^(0)` is compact and carries no invariant probability measure,
 no state on `S(G)` normalizes `[1_(G^(0))]`.
+
+**Review (un-verify, 2026-09-13): PASS (import).** Lemma 2.3, the definition of F(S) and the presentation relations checked verbatim against arXiv:2001.00376v3. See `research/artifacts/un-review-2026-09-13-part3.md` §3.

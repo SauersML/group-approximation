@@ -48,3 +48,5 @@ Lane `un-converse` found the same stabilisation at the same time:
 Credit `un-paradox`, `un-middle` and `un-converse`, with `un-prior-art` for the simple-ring derivation. The UN root
 `kazhdan-elementary-approximation-type-mirrors-ring-type` cites this node, and `un-verify` should review it as the
 canonical one.
+
+**Review (un-verify, 2026-09-13): PASS.** Lemmas 1–2, Theorem P and Corollary P1 re-derived; inputs established; the canonical-node ruling matches the hypothesis equivalence checked in review. See `research/artifacts/un-review-2026-09-13-part3.md` §1.
