@@ -32,6 +32,11 @@ in `Sigma^infinity(bF_{n,r})`. For `n = 2` the claim is vacuous (`W_0 = 0`).
 - Explicit test case (`n = 3`, artifact §4): `PPP(alpha,gamma) = (-1)^gamma`,
   `PEP ≡ 1/2`, derived `EEP = PEE = -1/2`, and `EPE = 1` for odd `r`, `1/2` for
   even `r`. The full-twist value is zero at every number of leaves.
-- Also untested: whether some `phi` in `W_0` is not even in `Sigma^1` (look for a
-  quotient onto a group where it fails); commuting-survivor arguments like
-  arXiv:1403.8132 Lemma 3.6 should give `Sigma^1`.
+- `Sigma^1` is settled (unreviewed): `bf-n-r-braid-nonzero-characters-lie-in-sigma-one`,
+  via Koban–McCammond–Meier's `Sigma^1(PB_k)`. The open part starts at `Sigma^2`.
+- A caution. The boundary-supported elements of `W_0` factor through a
+  non-split quotient `Z wr_Omega F_{n,r}`, the permutational wreath product over
+  the `n`-adic points, split by residue. There a lamp-counting character is in
+  `Sigma^1` but, like base characters of `Z wr Z`, is a candidate to miss
+  `Sigma^2`. Split-quotient transfer does not apply, so this is only a warning
+  that the formula could fail at `m >= 2` for `n >= 3`.

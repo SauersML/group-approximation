@@ -33,11 +33,15 @@ computation for `F_{n,infinity}` (arXiv:1502.02620, Theorem A).
   - proved (unreviewed): the character splitting and rank `n^2`;
   - proved (unreviewed): characters whose braid part is nonzero on large full
     twists lie in `Sigma^infinity`;
-  - proved (unreviewed): holes of `F_{n,r}` pull back, and the endpoint hull is
-    a hole for `r ≡ 1 mod (n-1)`;
-  - open: braid parts in the `(n(n-1) - 2)`-dimensional full-twist-invisible
-    subspace (`n >= 3` only), reduced to BNSR invariants of pure braid groups;
-  - open: pulled-back characters outside the hull lift to `Sigma^m`, and the
-    formula for `F_{n,r}` when `r ≢ 1 mod (n-1)`.
+  - proved (unreviewed): holes of `F_{n,r}` pull back, and for `m >= 2` the
+    endpoint hull is a hole for every `r` (`F_{n,r} ≅ F_{n,1}` preserving
+    endpoint characters);
+  - proved (unreviewed), `Sigma^1`: every braid-nonzero character, and every
+    pulled-back character off `span(chi_0, chi_1)`, lies in `Sigma^1`;
+  - open: `Sigma^m` for `m >= 2` of braid parts in the
+    `(n(n-1) - 2)`-dimensional full-twist-invisible subspace (`n >= 3` only),
+    reduced to BNSR invariants of pure braid groups;
+  - open: pulled-back characters outside the hull lift to `Sigma^m` (`m >= 2`),
+    and for `Sigma^1` the circle `span(chi_0, chi_1)` apart from the endpoints.
 - For `n = 2`, `r = 1` the formula is Zaremsky's theorem, so the open content is
   `n >= 3` or `r >= 2`.
