@@ -30,4 +30,9 @@ Artifact Section 5.
      `X -> N(X eps_-)/N(eps_-)` would be anti-central.
    * So `N(1 - [z]) = 0` for every `N`. QED
 
+**Equivalence** (added by `w7-matrix-state-deficit`, 2026-09-12). If no anti-central function exists, the deficit
+claim holds vacuously (route `rank-kill-makes-ternary-strict-deficit-vacuous`). So, given the other three
+requirements, the first requirement restates the target and does not weaken it. See Theorem 2.2 of
+`research/artifacts/matrix-state-deficit-item-two-2026-09-12.md`.
+
 *Verified independently by `w4-vf-gate` (2026-09-12), Section 23.3 (valid as a route conditional on the open deficit claim) of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

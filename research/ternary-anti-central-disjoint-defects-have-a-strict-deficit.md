@@ -69,3 +69,15 @@ Item 1 makes the denominator positive, by the positivity item of
     (artifact Example 3.3). So item 2 over `A_mat` is stronger than over `A_S`, and may fail. A proof of item 2
     that uses the triangular axiom on non-idempotent values is where a mixing step would first appear.
     Artifact `research/artifacts/two-root-certificates-separate-2026-09-12.md`, Section 4.2.
+- **2026-09-12, `w7-matrix-state-deficit`: this claim restates the kill claim.**
+  * **Converse of the payoff.** If `A_S = ∅`, the claim holds vacuously (route
+    `rank-kill-makes-ternary-strict-deficit-vacuous`). With `ternary-rank-kill-via-anti-central-defect-deficit`,
+    the claim is equivalent to `sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one`. The Payoff's
+    "item 2 fails at `N_0`" holds whenever `A_S` is nonempty.
+  * **Matrix states.** The same inequality over `A_mat` is `ternary-anti-central-matrix-state-defects-have-a-strict-deficit`.
+    It is equivalent to failure of the rank condition on `S_-`, which is the counterexample. When `S_-` has the
+    rank condition, the `A_mat` minimizer violates it on the largest weakly finite image, through a lower bound
+    and not a Jordan bound. So the warning in the previous entry is true exactly under the rank condition.
+  * **Where it dies.** Any proof of item 2 at every `N` implies emptiness. In scope `A_S` that means a triangular
+    certificate for `S_-` exists. In scope `A_mat` it means a minor certificate exists. Artifact
+    `research/artifacts/matrix-state-deficit-item-two-2026-09-12.md`, Sections 2–4 and 7.

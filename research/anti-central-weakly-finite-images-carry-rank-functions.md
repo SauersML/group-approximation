@@ -66,3 +66,21 @@ artifacts:
   - **Next test.** Does `D` have a nonzero idempotent minor over `W`? If not, no state bounds the rank of `D`
     from below.
   - **Rank condition without rank functions.** No such ring is recorded locally. The literature was not read.
+- 2026-09-12 `w7-matrix-state-deficit` (artifact `research/artifacts/matrix-state-deficit-item-two-2026-09-12.md`,
+  Sections 5–6).
+  - **Next test (idempotent minors of `D`): not decided.**
+    - `D` has a nonzero idempotent minor over a ring iff `WD` contains a nonzero idempotent (Lemma 5.1).
+    - For any quotient `W` of `S_-`, either `WDW = W`, giving `I_1 <~ D^((+)k)` for some `k`, or `W/WDW` is nonzero
+      and fails the rank condition (Lemma 5.2). The second case uses Theorem 2.3.4 of the `w6-upg-separate`
+      artifact, with the empty prefix.
+    - Over `S_-` the second case holds: the evaluation into `L_(F_3)(1,2)` kills `D` and sends `eps_-` to `1`. For
+      the largest weakly finite image neither case is decided.
+  - **Rank condition without rank functions: posed as open in the literature.**
+    - Hung–Li (arXiv:2201.01432) ask whether the rank condition implies a Sylvester rank function (Question 3.4),
+      and whether stable finiteness does (Question 3.5).
+    - They note a positive answer for von Neumann regular rings.
+    - A positive answer to Question 3.5 would give (U1b).
+    - No counterexample ring was found. Schofield's Chapter 7 and the Jaikin-Zapirain survey were not read.
+  - **Deficit side.** The matrix-state deficit target is equivalent to the counterexample
+    (`ternary-anti-central-matrix-state-defects-have-a-strict-deficit`). So no proof of it can serve as a source of a
+    mixing step for (U1b) without first proving the counterexample.

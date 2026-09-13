@@ -33,3 +33,14 @@ counterexample is the calibration ring that kills (U1) in general. It would not 
     diagonal blocks.
   - **Not checked.** Whether the literature settles this: Malcolmson; Schofield, *Representations of Rings
     over Skew Fields*, Chapter 7; Jaikin-Zapirain's survey. No local copies.
+- 2026-09-12 `w7-matrix-state-deficit` (artifact `research/artifacts/matrix-state-deficit-item-two-2026-09-12.md`,
+  Section 6): **this is an open question in the literature.**
+  - **The question.** Hung–Li, *Malcolmson semigroups* (arXiv:2201.01432), Question 3.4: "If R satisfies the rank
+    condition, then must R have a Sylvester rank function?"
+    - They note "an affirmative answer for von Neumann regular rings".
+    - Question 3.5 asks the same for stably finite rings.
+  - **The local nodes.** Their Proposition 3.2 is item 1 of `sylvester-rank-functions-iff-no-triangular-certificate`,
+    via states on the matrix Malcolmson semigroup. Their Proposition 3.3 is the easy converse.
+  - **Also read, no counterexample:** Lorensen–Öinert (arXiv:2505.21030), Jaikin-Zapirain–López-Álvarez
+    (arXiv:2012.15844) and Ara–Claramunt (arXiv:1902.06476).
+  - **Still not read:** Schofield's Chapter 7, the Jaikin-Zapirain survey, and Malcolmson's papers.

@@ -27,7 +27,15 @@ value `0` under a state) preserves the rank condition.
 - Then `[[X],[ẼV]]` and `[Y, -UẼ]` exhibit `A^(n+1)` as a retract of `A^n ⊕ ẼA^R`.
 - That contradicts the rank condition, since `[Ẽ] = 0`.
 
-This may be known (P. Malcolmson's work on weakly finite images; not read locally, unverified).
+**Literature** (`w7-matrix-state-deficit`, 2026-09-12). Two papers credit the equivalence of 1 and 2 to Malcolmson.
+- Lorensen–Öinert (arXiv:2505.21030): "P. Malcolmson proves in [16] that a ring fulfills the rank condition if and
+  only if it possesses a nonzero quotient that is stably finite." Their [16] is P. Malcolmson, *On making rings
+  weakly finite*, Proc. Amer. Math. Soc. 80 (1980), 215–218.
+- Hung–Li (arXiv:2201.01432): "It is a result of Malcolmson that R satisfies the rank condition if and only if R has
+  a stably finite quotient ring."
+
+Malcolmson's paper itself was not read. The local proof stands on its own, and the extra properties of `W` listed
+above were not checked against the paper.
 
 **Consequence.** By `anti-central-state-obstruction-equals-stable-finiteness` and
 `twisted-leavitt-corner-fullness-equals-absence-of-k0-states`, the ternary swap corner is full iff
