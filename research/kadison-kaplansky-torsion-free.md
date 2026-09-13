@@ -64,6 +64,16 @@ group `G * Z`.
   `torsion-free-matrix-trace-defect-exists`.
 - *One group at a time:* for a torsion-free acylindrically hyperbolic group, whose
   reduced algebra is itself selfless, the two statements coincide on the group.
+- *Two flavors of counterexample:* `torsion-free-trace-defects-are-discrete-or-real-rank-zero`.
+  A torsion-free trace image is `Z`, `(1/m)Z` with `m >= 2`, or dense. The dense case holds
+  iff some torsion-free group has a reduced algebra of real rank zero
+  (`torsion-free-real-rank-zero-reduced-cstar-exists`).
+- *Witness shapes on main:*
+  - gapped self-adjoint matrices;
+  - higher Kazhdan projections with non-integer `l²`-Betti number, which also refute Strong
+    Atiyah and Baum--Connes (`reduced-higher-kazhdan-projection-kk-witness`);
+  - scalar unitary commutators `exp(2πiθ)` with `nθ ∉ Z`
+    (`scalar-unitary-commutators-force-k0-trace-values`).
 - *Exact per-group form:* `free-product-kk-iff-trace-conjecture-for-factors`. The
   projection traces of `C*_r(G * H)` are `(τ_*K_0(C*_r G) + τ_*K_0(C*_r H)) ∩ [0,1]`
   (Fima--Germain K-theory and strict comparison). So this root holds for `G * Z` iff
