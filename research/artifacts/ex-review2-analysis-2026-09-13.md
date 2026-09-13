@@ -278,6 +278,10 @@ Filled in as each part lands.
   R-fibre W*-bundle (BBSTWW Question 3.14), with PASS on Theorems A, B and C and on fidelity to Definition 3.1; and
   negative answers to CCEGSTW Questions 1.5 (routes via Toms and via the Pauli tower) and 5.29 (via Toms), with PASS and
   every definition read verbatim.
+- `ex-review2-analysis-2026-09-13-part10.md` (wave-2 priority review): Rainone's page-33 question, answered in
+  substance by Boldrini--Prasad arXiv:2607.01896. PASS on the minimal Cantor realization, the generic-witness Baire
+  argument, fidelity to Rainone's Theorem 4.22 hypotheses, and the failure of almost unperforation. Credit to
+  Boldrini--Prasad is present on every node; BP 6.10, 6.12 and Wehrung 4.7.10, 4.7.14 were checked verbatim.
 
 ## 4. Outcome of the census
 
