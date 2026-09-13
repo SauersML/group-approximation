@@ -71,6 +71,11 @@ isomorphic, i.e. `X_h ≅ X_∞` for every `h > 0`.
   limit factor is `X_∞`, and it is independent of `∩ C_n`. The two need not generate
   together: for i.i.d. signs `y_i`, the products `y_i y_(i+1)` and the tail miss the
   global sign. So the strong form does not follow from the weak form this way.
+  - **Exact criterion** (`bernoulli-infinite-power-iff-approximate-half-absorption`). A self-square
+    `X_h ≅ X_h × X_h` reaches `X_∞` exactly when, for every finite partition `R` and `ε > 0`, some exact
+    splitting `X_h = A × C` with `A ≅ C ≅ X_h` has `R` within `ε` of `A`. Equivalently, automorphisms move
+    any finite partition approximately into one fixed half. Choosing each splitting after the partition
+    to be captured is known repairs the sign example.
 - **Krieger generators near split factors.** Let `α_0` be the `λ`-coordinate partition
   of `λ^G × μ^G`, and `α` a generating partition with `ε = µ(α ≠ α_0)`. Record `α` on
   `{α ≠ α_0}` by a partition `η`, so `H(η) ≤ H(ε) + ε log(|L| + 1)` and
@@ -91,8 +96,20 @@ isomorphic, i.e. `X_h ≅ X_∞` for every `h > 0`.
     each class is meager or comeager in `Y`. So two non-meager Bernoulli classes
     coincide.
 
-  Dies at: no argument is known that any Bernoulli class is non-meager in `Y` when the
-  supremum is zero.
+  Dies on product hosts. When `G` has an infinite central locally finite residually finite subgroup
+  of infinite index, as Seward's `P × G` does, zero entropy along that subgroup is a dense `G_δ` in `Y`,
+  so every Bernoulli class is meager (`bernoulli-classes-meager-on-central-locally-finite-hosts`).
+  - **What survives: category among i.i.d. partitions.** Let `𝒫_λ` be the set of measurable
+    `α: X_∞ → L` whose `G`-translates are i.i.d. with law `λ`, with the metric `µ(α ≠ β)`. Joint laws of
+    finitely many translates are Lipschitz in `α`, so `𝒫_λ` is closed in `L^0(X_∞, L)` and Polish. The
+    generating ones form a `G_δ` `𝒢_λ`: for a dense sequence `B_j` and `k ≥ 1`, "`B_j` is within `1/k`
+    of a union of atoms of some finite window of translates" is open. `𝒢_λ ≠ ∅` iff `X_∞ ≅ X_λ`. So
+    density of every such open set in `𝒫_λ` gives the strong form by Baire.
+  - The meagerness argument does not transfer: every `α ∈ 𝒫_λ` spans a Bernoulli factor, whose entropy
+    along the central subgroup is full.
+  Dies at: density is a perturbation lemma. Perturb an exactly i.i.d. partition by a small amount,
+  keeping exact independence, so that it captures a given set. That is an Ornstein-type copying step
+  with no finitely determined property available.
 - **Algebraic absorption (lane ex-bernoulli-negative).** A stable finiteness failure over
   `F_p[G]` makes a Bernoulli shift absorb a nontrivial algebraic factor,
   `b ≅ b × X_P` (`stable-finiteness-failure-is-algebraic-bernoulli-absorption`). That is
