@@ -34,16 +34,15 @@ unverified, probe pending).  Once that probe is green, hW is
 The `|I| = 1` item was already landed by simple-group; this lane wrote no draft for it.
 
 W2 hbridge, the M2 certificate cut (lead, 2026-09-13): take one separable CutFaces piece that
-hull-component, the owner, has not started.  On main: CutFaces (d62ea043a, 74c6b03ff) and CutSides
-(74c6b03ff: `CutFace.left_val_mem`, `right_val_mem`, `arc_val_mem`; `left_designated` and
-`right_designated` are marked in flight).  Proposed to hull-component, each in a new module of this lane:
-- (a) `CutFace.right_designated`, a letter of `R` sharing its coset with an arc letter `b` has inverse
-  value `X · b.val · Y` over bounded products (via `exists_designated_of_face`, `false_of_crossCoset`);
-- (b) a `CutFace` with the arc rotated first, from `exists_geodesicCut_of_leastAreaCertificates`
-  (LetterMoves), `IsSmallCancellation.admissible` and `List.rotate_append_length_eq`.
+hull-component has not started.  hull-component answered that none is left, and main confirms it:
+- the side-designated cases are `CutMove.outcome_left` (CutOutcomeSides, 27f56e14b) and
+  `CutMove.outcome_right` (CutOutcomeRight, 47b7225af), which also has `CutMove.outcome`
+  (probe 0913-045018-55444 GREEN);
+- the source of a cut face is debt-conditional's `letterStepBound_of_cutLiftOutcome`
+  (LetterPullbackCut, 457c543a8), built on `exists_geodesicCut_of_leastAreaCertificates`;
+- hull-bridge's LetterPullbackHolds and EmbeddedBridgeHolds are in flight.
 
-No Lean is written until hull-component names the piece.  Then the statement lands first, the proof
-second, and only the new module is probed.
+This lane wrote no Lean for W2 and has no open item.  It waits for the lead to assign one.
 
 ## Census
 No row: these modules prove the cited group consumed at tex 1679 and do not carry a sentence (same
