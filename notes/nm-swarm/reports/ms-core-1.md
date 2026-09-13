@@ -66,6 +66,18 @@ None in this range.
     `surjective_of_generators`). The ms-core-1 surjectivity draft was withdrawn unlanded, and a copy is kept in the lane
     backup.
 
+- CLAIM (09-13 ~18:35, assigned by main): the induced-core remainder of cor:dynamic-rank-budget (tex 1743–1750), agreed with
+  ct-rank-budget in one message. ct-rank-budget's landed `DynamicRankBudgetInducedCore` has `CR(S_C) ⊆ C ∩ Y` by a direct
+  chain argument and marks the rest "remain to be formalized". ms-core-1 takes:
+  1. `C ∩ CR(T) ⊆ CR(S_C)` along the printed route: the return ring of `C ∩ Y` is a corner of the LEF ring `R_Y`, hence LEF,
+     then thm:core-ring-reflection. Stated over `CoreRingReflectionStatement` and `CoreModelsLEFStatement`.
+  2. A direct unconditional proof of the same inclusion.
+  3. The printed saturation route for `CR(S_C) ⊆ C ∩ Y`.
+  4. The closed equality.
+  - Modules: `Algebra/CornerLEF` (a corner of an LEF ring is LEF), plus new
+    `Manuscript/NonMFSentences/DynamicRankBudgetInducedCore*` and `Dynamics/ReturnSection*` helpers.
+  - ct-rank-budget keeps `ReturnTransientIdealStatement`, placement, ReturnKernel, the bridge and packaging.
+
 ## ReturnRing modules (ms-core-1)
 
 | module | contents | status |
