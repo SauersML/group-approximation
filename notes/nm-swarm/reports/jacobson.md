@@ -135,13 +135,24 @@ Other lanes' partial rows keep these unions partial:
   sentence. ghw-assembly handles that row.
 - b6d1590be7ab, ghw-charp2 (ghw-assembly grades it formalized).
 
-## Next
-The free-product centralizer lemma for Hull Corollary 7.4, used for factor suitability in
-`Γ = G1' ∗ G2'`. It goes in a new module of this lane once cite-hull sends the Lean name and file.
-Planned proof, for `a ≠ 1` in a factor `G_i`:
-- Write an element commuting with `of a` as `w · of b`, where the normal form of `w` is empty or
-  ends outside `i`.
-- If `w ≠ 1`, then `w · of(bab⁻¹) · w⁻¹` is reduced with at least three syllables, so it is not
-  `of a`. Hence `w = 1`.
-- For finite subgroups, conjugate into a factor, then use `exists_pow_commute_of_finite`
-  (`HullFiniteRadical`).
+## Next: W1 pendant-edge removal on section families (09-13 ~08:40)
+The lead assigned pendant-edge removal in an unselected G-face, transported to
+`RealizedSectionFamily`. It is one of the respell surgeries under hull-unbound's
+`GloballyDistinguishedSectionFamily.ChainRespellInput`. hull-unbound states that Prop, and this
+lane writes no Lean before the statement arrives. The free-product centralizer plan is dropped:
+cite-hull closed Hull Corollary 7.4 (c6e0b6c33).
+- On main:
+  - `EdgeDeletion.toCombMap` with `faceCount_balance_of_sameFace` and `edgeCount_add_one`
+    (CombMapEdgeDeletion);
+  - the spike case: `value_sigma_of_fixed`, `connected_of_sigma_fixed`, `planar_of_sigma_fixed`
+    (SpikeDeletion);
+  - the face rotation after deleting a spur, `joinedFacePerm_eq_isolate`
+    (CombMapRestrictionFaceClasses), and `EdgeDeletion.next` with `isFaceCycle_iff`
+    (EdgeDeletionFaceCycles);
+  - the inverse surgery, `PendantEdge.diagram` (PendantEdgeDiagram, kh-torsion).
+  - The models are `Surgery.GFaceMerge` (its diagram, its regions and `transportDistinguished` in
+    OsinUnboundMerged) and `PinchSplit.transportDistinguished`.
+- Not on main: a disc diagram with a pendant edge deleted from an inner face. The `GFaceMerge` face
+  API (`MergeCycles`, `keptFace`) needs the two sides of the edge on distinct faces. The two sides
+  of a pendant edge lie on one face, whose traversal loses a cancelling pair; the plan keeps every
+  face, relator cell and boundary word.
