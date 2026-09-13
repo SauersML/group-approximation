@@ -46,12 +46,32 @@ and `metadata/NON_MF_SENTENCE_MAP.tsv`.
   `¬ NinetyNineProblems.ProblemX1Statement.{1}` through that W. Queued for wiring.
 - Census rows 773d78e20: 664f4f34b841 and a96c09324a87.
 
-## In flight
+- P3 LANDED 68559b320 (probe 0913-174325-21575 GREEN, both BUILT).
+  - `Algebra/IdempotentSwapInvolution`: `IdempotentSwap.SwapData` (the swap `1 - e - f + a + b` squares to 1 and is
+    not 1 when `e ≠ 0`), with producers `ofIsometry` and `ofOrthogonalIsometries`, and
+    `exists_isOfFinOrder_ne_one_of_isometry` / `_of_orthogonalIsometries`.
+  - `Manuscript/NonMFSentences/IntroExamplesTorsion`: `manuscriptIntroExamplesTorsion : PrintedIntroExamplesTorsion`
+    (closed, audited). Torsion in L_F2(1,2)^×, GL_n(R) for PIS R, L_k(1,d)^×, EL_n over nontrivial rings with p·1 = 0
+    (the R_X examples), and W; the Clifford sign of every lamp witness is a nontrivial central involution killed by
+    every hom to an operator-MF group.
+  - Queued for wiring. Census rows d9800fe3b: 80279f06992b formalized, abb56744db26 regraded to partial.
 
-- P3: `Algebra/IdempotentSwapInvolution` (the swap involution of orthogonal equivalent idempotents; producers from a
-  one-sided inverse pair and from two orthogonal isometries) and `Manuscript/NonMFSentences/IntroExamplesTorsion`
-  (`PrintedIntroExamplesTorsion`). The first probe reddened the swap module on four unused simp arguments, which are
-  now fixed; re-probing.
+## Verification notes
+
+- The headline's MF clause quantifies over countable targets `M`. That matches the printed definition: tex 87–88,
+  "A countable group G is MF".
+- Root reachability: UnitGroupHeadline, AmenableTraceTheorem, MFQuotientCanonicalKOne, LeavittKOneFormulaSentences and
+  MaximalCStarWNotNuclearUnconditional are directly imported by GroupApproximation.lean.
+- No literature binder in the chains: the Khanh–Thanh identification is proved (`BinaryLeavitt.elementaryGroup_eq_top`);
+  the K_1 endpoint has no AGP or Morita input; the amenable-trace chain discharges
+  `PrintedLocallyRFCanonicalTraceQuasidiagonal` by `AmenableExtensionTrace.manuscriptPrintedLocallyRFCanonicalTraceQuasidiagonal`;
+  Korchagin's input is `isOperatorMF_of_isLEF ∘ isLEF_of_locallyResiduallyFinite`; Elek–Szabó's permanence is proved in
+  `SoficByAmenablePermanence`.
+
+## Range status
+
+Every sentence of tex 233–294 (except 249–259) is carried by a closed, root-reachable declaration or honestly
+classified. The one remaining partial row (abb56744db26) waits on hgreendlinger, owned by the other swarm.
 
 ## Notes for the census lane (no landing of mine needed)
 
