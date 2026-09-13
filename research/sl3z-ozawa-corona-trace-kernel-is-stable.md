@@ -8,6 +8,7 @@ distinct_from:
 artifacts:
   - research/artifacts/quasitrace-corona-kernel-stability-2026-09-12.md
   - research/artifacts/quasitrace-kazhdan-block-corona-2026-09-12.md
+  - research/artifacts/quasitrace-kernel-maximal-ideal-property-s-2026-09-12.md
 ---
 
 **Statement (OPEN).** With `B`, `I`, `A = B/I`, the unique trace `τ_0`, and
@@ -44,3 +45,19 @@ standard Hjelmborg–Rørdam stability question.
   contained in `λ_Γ`. Whether the ghost ideal of an expander-box uniform Roe corona
   is stable is a plausibly known or approachable question in coarse geometry;
   not resolved here.
+- **Unital-quotient obstruction: ruled out (2026-09-12, lane quasitrace-k-stable).**
+  - If some proper ideal `J ⊄ K` existed, then `K/(K ∩ J) ≅ A/J` would be a nonzero
+    unital quotient of `K`, and `K` could not be stable.
+  - `sl3z-ozawa-corona-trace-kernel-is-unique-maximal-ideal` shows that no such `J`
+    exists. Its input is Boutonnet–Houdayer Corollary D: every proper ideal lies in
+    `K`, and `K` has no nonzero unital quotient.
+  - So this obstruction does not fire. The route is not settled either way.
+- **Reduction to property (S), and a one-translate criterion (same lane).**
+  - Stability implies the weaker property (S), which is equivalent to `K` carrying no
+    bounded 2-quasitrace (`sl3z-ozawa-corona-trace-kernel-has-property-s`). Property
+    (S) already suffices for the root.
+  - Stability itself would follow if every `a ∈ K_+` had, for each `δ > 0`, one
+    unitary `u ∈ A` with `‖a · uau*‖ < δ` (artifact
+    `quasitrace-kernel-maximal-ideal-property-s-2026-09-12.md`, Prop 2.3).
+  - This dies on the non-local spectral elements `f(h) ∈ K`: no localization
+    information is available on the Schreier-graph eigenspaces of `σ_k`.
