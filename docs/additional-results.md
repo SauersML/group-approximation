@@ -99,6 +99,16 @@ the endpoint product, its two simple factors, and the trivial group
 (allowing repeated isomorphism types). The ambient group is centerless
 and directly indecomposable. This is also a written proof.
 
+The [fixed-quotient complexity theorem](../research/artifacts/pestov91-fixed-quotient-arbitrary-complexity-2026-09-13.md)
+keeps both endpoint systems equal to one computable Sturmian system.
+Varying only the joining intercept realizes every Turing degree of the
+word problem while preserving the abstract finitary kernel, maximal MF
+quotient, and five-element normal lattice. This gives continuum many
+nonisomorphic three-torsion-generator just non-MF Kazhdan groups with
+the same kernel and quotient. Every member is Hopfian and infinitely
+presented, including those with decidable word problem. The proof is
+written mathematics and has not been formalized in Lean.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
