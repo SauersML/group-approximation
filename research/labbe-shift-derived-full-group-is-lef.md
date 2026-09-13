@@ -18,6 +18,8 @@ artifacts:
   - That refutes `labbe-shift-derived-full-group-is-finitely-presented`, and it kills `fp-simple-amenable-via-labbe-shift-full-group`.
 - **If no.** Some word nontrivial in `Gamma` lies in the finite residual of a truncated presentation `<S | trivial words of length <= n>` (artifact, Section 0).
 
+**On no live path to a root, by design.** This claim is an obstruction. It acts through `invalidates:`, and Cairn counts reachability only through `requires:`. No live route needs LEF of `Gamma` as a premise, and the question tests the fp route rather than being a program question, so it is not root-marked.
+
 ## Attempts
 
 - **Kakutani--Rokhlin towers (Grigorchuk--Medynets, arXiv:1105.0719, Theorem `TheoremLEF`, read from source).**
