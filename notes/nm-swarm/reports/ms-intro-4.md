@@ -151,3 +151,20 @@ Next: the ε = 0 model (`OsinPocketCellPinchModel`, probing).
   cell pocket face set in walk order on monogon cells is built. No false-as-stated Prop was found.
 
 Next in this item: ready for the next leaf. The open residuals are 1–4 above.
+
+## Item 4: residual (1), `CellPocketPinchPosStatement` (main's 18:3x assignment)
+
+Ownership check, 18:3x: no shared-tree or origin draft of a cell pocket pinch exists. The `.files` hit in ms-intro-1 is
+`OsinLemma94SameCellPocketPinch`, a Lemma 9.4 object. Reuse was proposed to w1-binder-7 in one message: this lane imports
+its `CyclicArc.dropLastArc`/`tailArc`, `invDarts_eq_getLast_cons` and the generic `PocketFullArc` helpers, and waits on its
+decision about a generic rebuilt-copy layer before building the crux (a full arc with both sides at ε).
+
+CLAIM, new modules:
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchStep.lean`: `CellPocketFaceSet.repeatedVisits`,
+  `simple_of_closedWalk_of_unpinched`, `CellPocketPinchStepPosStatement`, and the induction
+  `cellPocketPinchPosStatement_of_stepPos`.
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellArcTrim.lean`: `CellPocketFaceSet.trimFirstLast`,
+  `trimSecondLast` (cycle unchanged; walk order, repeated visits and simplicity preserved) and
+  `not_simple_of_full_firstArc` / `_secondArc`.
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellTransport.lean`: `CellPocketFaceSet` across the edge
+  doublings (outside and inside) and the pinch splits (avoiding and inside), over the map-level layer.
