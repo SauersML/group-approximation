@@ -118,3 +118,30 @@ non-residually-finite lattice, is not hyperlinear.  Route
     - A counterexample from that criterion needs a finitely presented Kazhdan
       cover whose kernel is elementwise almost trivial but has common fixed
       mass bounded away from 1. None is known.
+- **Correctors factor through finite quotients (2026-09-13, lane
+  `solve-nh-flexible-nonscalar`).**  New claim
+  `sp4-flexible-correctors-factor-through-finite-quotients` (route
+  `sp4-flexible-correctors-finite-quotient-proof`), resting on the new
+  `sp4-fd-unitary-reps-have-finite-image` (Margulis superrigidity, compact
+  target: every finite-dimensional unitary representation of `Sp_(2g)(Z)`,
+  `g >= 2`, has finite image).
+  - Any flexible correction of an asymptotic homomorphism uses genuine
+    finite-dimensional unitary `pi_n`, so each `pi_n` factors through a
+    finite quotient, and by Bass--Milnor--Serre through a congruence
+    quotient `Sp_(2g)(Z/N_n)`.
+  - So flexible HS-stability of `Gamma` is EQUIVALENT to flexible
+    congruence-quotient approximability of asymptotic homomorphisms.
+  - A scalar twisted-sector refutation must use `[c_n]` pulled back from a
+    finite Schur multiplier `H^2(Sp_(2g)(Z/N),T)`; the infinite-order
+    Deligne class does not descend to any finite quotient
+    (`deligne-universal-cover-lattice-is-non-rf-kazhdan`), so it is
+    invisible to the correctors.  This re-explains the finiteness of
+    `sp4-fd-projective-multiplier-is-finite` (finite quotients have finite
+    Schur multipliers).
+  - **Sharpened open core.**  With
+    `character-rigidity-equals-hyperfinite-hs-stability` giving the limit
+    trace as a finite-quotient character limit, the residual obstruction is
+    not the trace but matching `phi_n` to a congruence-quotient
+    representation at dimension ratio `-> 1`: a lim^1 / Ext-type
+    dimension-ratio obstruction concentrated on the Deligne `Z`-direction.
+    No refutation found; the claim stays OPEN.
