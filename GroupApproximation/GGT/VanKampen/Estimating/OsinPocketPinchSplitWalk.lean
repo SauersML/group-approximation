@@ -9,8 +9,7 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): the subdiagram `Γ_1` wi
 `∂Γ_1 = s_1 t_1 s_2 t_2`.  A pocket face set in walk order that passes twice through a vertex is
 split there (`PocketFaceSet.pinchSplit`).  The boundary cycle stays in walk order when each step of
 vertex rotation between consecutive darts meets neither split dart before its end, and the
-repeated visits drop when two darts of the cycle land on the two new vertices.  A pocket in walk
-order with no repeated vertex is simple.
+repeated visits drop when two darts of the cycle land on the two new vertices.
 
 * `PinchSplit.Input.StretchAvoids` and `vertexOf_eq_of_stretchAvoids`: a stretch of vertex
   rotation that meets neither split dart before its end stays in one vertex after the split.
@@ -20,9 +19,6 @@ order with no repeated vertex is simple.
 * `PocketFaceSet.pinchSplit_repeatedVisits_le`, `pinchSplit_repeatedVisits_lt` and
   `pinchSplit_repeatedVisits_lt_of_stretch`: the repeated visits do not increase, and they drop when
   two darts of the cycle land on the new vertices of `x` and `y`.
-* `PocketFaceSet.repeatedVisits_eq_zero_iff`, `simple_of_closedWalk_of_vertex_nodup` and
-  `simple_of_closedWalk_of_repeatedVisits_eq_zero`: a pocket in walk order with no repeated vertex
-  is simple.
 
 ## Manuscript status
 
@@ -90,22 +86,6 @@ theorem length_sub_card_toFinset_map_lt {α β γ : Type*} {_ : DecidableEq β}
     (List.toFinset_card_le _).trans_eq (List.length_map f)
   omega
 
-/-- **No repeats means no duplicate values.** -/
-theorem length_sub_card_toFinset_map_eq_zero_iff {α β : Type*} {_ : DecidableEq β} (f : α → β)
-    (l : List α) : l.length - (l.map f).toFinset.card = 0 ↔ (l.map f).Nodup := by
-  have hle : (l.map f).toFinset.card ≤ l.length :=
-    (List.toFinset_card_le _).trans_eq (List.length_map f)
-  constructor
-  · intro h
-    have hcard : ((l.map f : List β) : Multiset β).toFinset.card =
-        Multiset.card ((l.map f : List β) : Multiset β) := by
-      change (l.map f).toFinset.card = (l.map f).length
-      rw [List.length_map]
-      omega
-    exact Multiset.coe_nodup.mp (Multiset.toFinset_card_eq_card_iff_nodup.mp hcard)
-  · intro h
-    rw [List.toFinset_card_of_nodup h, List.length_map, Nat.sub_self]
-
 namespace PinchSplit.Input
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
@@ -134,6 +114,7 @@ theorem vertexOf_eq_of_stretchAvoids {d e : Delta.toCombMap.Dart} (h : I.Stretch
     I.diagram.toCombMap.vertexOf d = I.diagram.toCombMap.vertexOf e :=
   (I.diagram.toCombMap.vertexOf_eq_iff d e).mpr (I.sameCycle_of_stretchAvoids h)
 
+omit [DecidableEq Delta.toCombMap.Dart] in
 /-- **Away from the split vertex every stretch avoids the split darts.** -/
 theorem stretchAvoids_of_vertexOf_ne {d e : Delta.toCombMap.Dart}
     (h : Delta.toCombMap.vertexOf d = Delta.toCombMap.vertexOf e)
@@ -147,7 +128,7 @@ theorem stretchAvoids_of_vertexOf_ne {d e : Delta.toCombMap.Dart}
 /-! ## Vertices before and after -/
 
 /-- The old vertex containing a new vertex. -/
-def vertexProj : I.diagram.toCombMap.Vertex → Delta.toCombMap.Vertex :=
+noncomputable def vertexProj : I.diagram.toCombMap.Vertex → Delta.toCombMap.Vertex :=
   Quotient.lift Delta.toCombMap.vertexOf fun a b hab =>
     I.vertexOf_eq_of_diagram ((I.diagram.toCombMap.vertexOf_eq_iff a b).mpr hab)
 
@@ -160,31 +141,8 @@ end PinchSplit.Input
 namespace PocketFaceSet
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
-  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
-
-/-! ## No repeated vertex -/
-
-/-- **The repeated visits vanish exactly when no vertex repeats.** -/
-theorem repeatedVisits_eq_zero_iff (K : PocketFaceSet D eps X lo hi) :
-    K.repeatedVisits = 0 ↔ (K.boundary.cycle.map X.toCombMap.vertexOf).Nodup := by
-  unfold PocketFaceSet.repeatedVisits
-  exact length_sub_card_toFinset_map_eq_zero_iff X.toCombMap.vertexOf K.boundary.cycle
-
-/-- **A pocket in walk order with no repeated vertex is simple.**  A boundary cycle never holds
-both darts of an edge. -/
-theorem simple_of_closedWalk_of_vertex_nodup (K : PocketFaceSet D eps X lo hi)
-    (hK : K.ClosedWalk) (hnodup : (K.boundary.cycle.map X.toCombMap.vertexOf).Nodup) :
-    K.Simple :=
-  (⟨K.boundary.cycle_nonempty, hK.1, hK.2, hnodup, fun _ hd had =>
-    ((K.boundary.cycle_mem_iff _).mp hd).2 ((K.boundary.cycle_mem_iff _).mp had).1⟩ :
-    IsSimpleClosedWalk X.toCombMap K.boundary.cycle)
-
-/-- **A pocket in walk order with no repeated visits is simple.** -/
-theorem simple_of_closedWalk_of_repeatedVisits_eq_zero (K : PocketFaceSet D eps X lo hi)
-    (hK : K.ClosedWalk) (h : K.repeatedVisits = 0) : K.Simple :=
-  K.simple_of_closedWalk_of_vertex_nodup hK (K.repeatedVisits_eq_zero_iff.mp h)
-
-variable [DecidableEq X.toCombMap.Dart]
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W}
+  [DecidableEq X.toCombMap.Dart] {lo hi : ℕ}
 
 /-! ## Across the split -/
 
@@ -247,16 +205,12 @@ end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.length_sub_card_toFinset_map_le
 #audit_axioms GroupApproximation.GGT.VanKampen.length_sub_card_toFinset_map_lt
-#audit_axioms GroupApproximation.GGT.VanKampen.length_sub_card_toFinset_map_eq_zero_iff
 #audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.StretchAvoids
 #audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.sameCycle_of_stretchAvoids
 #audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.vertexOf_eq_of_stretchAvoids
 #audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.stretchAvoids_of_vertexOf_ne
 #audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.vertexProj
 #audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.vertexProj_vertexOf
-#audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.repeatedVisits_eq_zero_iff
-#audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.simple_of_closedWalk_of_vertex_nodup
-#audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.simple_of_closedWalk_of_repeatedVisits_eq_zero
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_closedWalk
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_repeatedVisits_le
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_repeatedVisits_lt

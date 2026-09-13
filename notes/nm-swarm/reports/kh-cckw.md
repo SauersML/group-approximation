@@ -327,3 +327,46 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
     `_source`, `_kept`, `_boundary_cycle`, `_firstSide`, `_secondSide`, plus `_sourceArc_darts`, `_targetArc_darts`,
     `_targetArc_start`, and `pinchSplit_followsBoundary`.
 - RESIDUAL of the pinch (unchanged, hull-respell's induction): `PocketPinchPinchedStatement`.
+
+## W1 PINCHSPLIT WALK (09-13, sub-piece E4 for hull-respell, on top of E2)
+- Request: split each repeated vertex along the walk's own pairing. E4 is (a), walk order across the split, and (b),
+  the drop in hull-respell's `repeatedVisits`. hull-respell withdrew (c), simple with no repeated vertex, to do it
+  themselves. So this module drops `repeatedVisits_eq_zero_iff`, `simple_of_closedWalk_of_vertex_nodup`,
+  `simple_of_closedWalk_of_repeatedVisits_eq_zero` and the helper `length_sub_card_toFinset_map_eq_zero_iff`. They
+  were proved in the first probe, and I will hand them over if asked.
+- LANDED UNVERIFIED 5b6b2b338 (orphan, md5 82fbe1dd7b49eefc29d2a862f99d16f5 verified via `git show`).
+- First probe 0913-150258-27579 red with two errors. Every other declaration elaborated, and all 16 `#audit_axioms`
+  print [propext, Classical.choice, Quot.sound].
+  - `stretchAvoids_of_vertexOf_ne` never uses the section `[DecidableEq Delta.toCombMap.Dart]` (unusedSectionVars).
+    Fixed with `omit [DecidableEq Delta.toCombMap.Dart] in`.
+  - `vertexProj` depends on the noncomputable `diagram`. Fixed by marking it `noncomputable`.
+- Re-probe 0913-150620-67947 GREEN (base 0c45d7d27): BUILT, no errors. It built the bytes that still held (c)
+  (md5 fb1e2602fbf18185af616ff81a633727), so those bytes are not landed.
+- PROBE GREEN 0913-151310-59486 on the bytes without (c) (md5 32820d5a2247d5da920cb2f970ee75fa, the md5 in that record).
+  Landed over 5b6b2b338 and queued for wiring.
+- Applicability, from audit-sec3's truth audit of `PocketPinchLabelledStatement`: `PinchSplit.Input`
+  (SurgeryPinchSplitDiagram.lean:61) requires `left_ne_outer`, `right_ne_outer`, `left_not_cell` and `right_not_cell`.
+  So E4 applies only at a pinch whose corners after `x` and `y` are both G-faces.
+  - Neither on-main pinch model has such a pinch. The lobe model's corners are b | ext | a | Π, and the rose's are
+    Π | K | O | K.
+  - At those shapes the step needs K' to be a sub-pocket (the lobe) or a pocket at another cell, not a split of K.
+  - The Prop itself holds at both models: X' = X, with K' the lobe, or the pocket at Π.
+- New orphan `GGT/VanKampen/Estimating/OsinPocketPinchSplitWalk`. It imports `OsinPocketPinchSplit` and hull-respell's
+  `OsinPocketPinchStep`, so it works directly with `PocketFaceSet.repeatedVisits`.
+  - Root namespace: `length_sub_card_toFinset_map_le`, `_lt` and `_eq_zero_iff` compare `l.length - (l.map f).toFinset.card`
+    under a factorization `φ (f a) = g a`. Their `DecidableEq` binders are implicit, so unification picks up the classical
+    instance fixed inside `repeatedVisits`.
+  - namespace `PinchSplit.Input`:
+    - `StretchAvoids d e`: `∃ n, σⁿ d = e ∧ ∀ i < n, σⁱ d ≠ x ∧ σⁱ d ≠ y`;
+    - `sameCycle_of_stretchAvoids` and `vertexOf_eq_of_stretchAvoids`;
+    - `stretchAvoids_of_vertexOf_ne`: away from the split vertex the step condition holds automatically;
+    - `vertexProj` (new vertex ↦ old vertex), with the rfl lemma `vertexProj_vertexOf`.
+  - namespace `PocketFaceSet`:
+    - `repeatedVisits_eq_zero_iff`;
+    - `simple_of_closedWalk_of_vertex_nodup hK hnodup` and `simple_of_closedWalk_of_repeatedVisits_eq_zero hK h`;
+    - `pinchSplit_closedWalk K I hs hchain hcloses`;
+    - `pinchSplit_repeatedVisits_le K I hs`;
+    - `pinchSplit_repeatedVisits_lt K I hs he₁ he₂ hx hy` and `pinchSplit_repeatedVisits_lt_of_stretch K I hs he₁ he₂ hn₁ hy₁ hn₂ hx₂`.
+- Deviation from the request: (a) omits `hK : K.ClosedWalk`. The proof never uses it, an unused binder warns, and
+  warnings are errors.
+- RESIDUAL (hull-respell's step Prop and induction): `PocketPinchStepStatement`, which feeds `PocketPinchPinchedStatement`.
