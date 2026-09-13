@@ -14,11 +14,17 @@ artifacts:
   - research/artifacts/ex-q34-kt-wreath-soft-kernel-part3-2026-09-13.md
 ---
 
-**ESTABLISHED.**  Review status: the block-size-1 combining step (soft lamps,
-homomorphism, perfectness) passed in
-`research/artifacts/ex-review-groups-2026-09-12-part14.md` §14.3.  Not
-re-derived there: the deep-congruence lemma, the transport lemma, and the
-bounded-block extension of part 3.
+**ESTABLISHED.**  Review status:
+- *Block size 1.*  The combining step (soft lamps, homomorphism, perfectness)
+  passed in `research/artifacts/ex-review-groups-2026-09-12-part14.md` §14.3.
+- *Bounded blocks.*  The part 3 extension passed at step level in
+  `research/artifacts/ex-review-groups-2026-09-12-part16.md` §16.5.  That
+  covers Kadison diagonalization into `Z ⊗ D_k`, the partition structure of
+  `C`, the equal-size block bijections, the order-preserving `S_k` cocycle,
+  `sigma~` implementing `Ad rho` on `C`, and the use of Kun--Thom 4.1 with
+  `K_even` as the abelian normal subgroup.
+- *Not re-derived in either review.*  Kadison's theorem, Kun--Thom 4.1, the
+  deep-congruence lemma, and the artifact lemmas line by line.
 
 Let `Gamma = EL_r(R_+) < G = EL_r(R) x| SL_d(Z)`
 be the Kun--Thom Theorem E pair (`r, d >= 3`, any `q`), `N = EL_r(R)`,
