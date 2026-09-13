@@ -36,7 +36,8 @@ For one model, the existence of such a masa is equivalent to:
   `sigma(G)' cap D = Z(D)`.
 
 The per-block one-level decomposition `hs-one-level-expander-block-decomposition` for `G` implies
-item 1. If `G` has solvable word problem, `DEC_kappa` is a `Pi^0_3` sentence (Tarski--Seidenberg
+item 1. That claim does not define its "almost representation", so the implication is read with
+defects at most `delta` on a fixed finite window of `G`, which lifts of a model satisfy along `U`. If `G` has solvable word problem, `DEC_kappa` is a `Pi^0_3` sentence (Tarski--Seidenberg
 for the inner statement), so item 1 is absolute: it does not depend on the ultrafilter or on set
 theory.
 

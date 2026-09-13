@@ -94,8 +94,10 @@ implies (i).
   Extend `u^(k)` by `1` outside `B_k`. Then `sigma(g) = [(u^(k)_g)_k]` is a homomorphism into
   `U(prod_U M_(n_k))` for any free `U`. By (i) and Theorem 1 (a) => (c), `U`-most `k` admit such a
   partition. Contradiction.
-- (iv) => (i). Let `sigma` be a model. For `U`-most `k`, the lift `sigma_k` is a `delta`-almost
-  representation, so it has blocks `p_1, ..., p_m` with `q_0 = 1 - p` of trace at most `eps(delta)`.
+- (iv) => (i). Here "`delta`-almost representation" is read as: multiplicative defect at most `delta`
+  on a fixed finite window of `G`. That claim does not define the term, and a whole-group reading
+  is not covered. Let `sigma` be a model. For `U`-most `k`, the lift `sigma_k` is a `delta`-almost
+  representation in this sense, so it has blocks `p_1, ..., p_m` with `q_0 = 1 - p` of trace at most `eps(delta)`.
   - Adjoin `q_0` as a block. Its boundary is at most `2 tau(q_0)`, so `b_k <= 3 eps(delta)`.
   - For block-diagonal `x`, weight the per-block inequality on each `p_i` by `tau(p_i)` and sum. The
     block `q_0` adds at most `kappa'^2 tau(q_0)` to the right side, so `gamma_k(P, kappa') <= kappa'^2 eps(delta)`.

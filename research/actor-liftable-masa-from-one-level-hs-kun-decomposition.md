@@ -17,6 +17,13 @@ artifacts:
    block, at boundary cost `2 tau(q_0)` and slack cost `kappa'^2 tau(q_0)`.
 3. In particular this holds for every model satisfying (H1), which is the target.
 
+**Reading of the premise.** A "`delta`-almost representation" in
+`hs-one-level-expander-block-decomposition` is read here as a map whose multiplicative defects, in
+normalized HS norm, are at most `delta` on a fixed finite window of the group. This is the form
+consistent with its `eps(delta) -> 0` quantifier. Lifts of a model satisfy it on `U`-most
+coordinates, because a model is only pointwise asymptotically multiplicative. Under a reading with
+defects bounded uniformly over the whole group, lifts need not qualify, and this route is not claimed.
+
 The route fires only if the universal one-level decomposition is proved. That statement is strictly
 stronger than what the target needs: it asks for the per-block gap, which spiky vectors violate,
 while the target needs only the bounded summed form `DEC_kappa`.
