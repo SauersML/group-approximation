@@ -46,3 +46,15 @@ distinct_from:
     `zp-restriction-trivial-splits-cellular-plus-phantom`.
   - `Γ × Γ` satisfies Baum–Connes with coefficients with finite wreath products
     (Nishikawa–Petrosyan Thm. 4.3(5)).
+- **Square-zero forms and the open descent (derived, unreviewed; lane ex3-uct-square-zero-phantom).**
+  - By `z2-o2-phantom-tensor-square-is-sai-and-self-dual`, `Φ ⊗ Φ ≃ 0` iff
+    `(Φ ⊗ Φ) ⋊ Z/2 ≃_KK 0`, iff the Takai dual `Φ̂` is square-zero.
+  - For nuclear realizations on `O_2`, square-zero holds iff `α ⊗ α` is Rokhlin, and `α ⊗ α` is
+    always strongly approximately inner.
+  - The open `z2-o2-phantoms-are-not-square-zero` would exclude the shape "(P1) true, this claim
+    false". Its dynamical form is descent of a unital `O_3` from `F^(α⊗α)` to `F^α`.
+  - **Caveats.** `Φ` comes from the non-nuclear `C*_r(Γ)`, so only the categorical form of that claim
+    applies, and the `O_2` realization in the bullet above needs nuclearity. The reduction also needs
+    (P1) for `Γ × Γ`, which is not hyperbolic, so it lies outside
+    `kazhdan-tate-crossed-product-inclusion-is-kk-equivalence` as stated.
+  - Artifact: `research/artifacts/uct-z2-square-zero-phantoms-2026-09-13.md`.
