@@ -120,3 +120,19 @@ point.  The audit artifact traces each.
    (`universal-torsion-free-hosts-not-sofic-or-locally-indicable`).  Strong
    Atiyah for `E` alone already gives division-ring embeddings for every
    torsion-free group algebra (`division-ring-embedding-torsion-free-one-group-tester`).
+8. **Locally indicable permanence at compression hosts (2026-09-12).**  Live,
+   conditional.  The approximation-free permanence of Jaikin-Zapirain--Lopez-Alvarez
+   (`strong-atiyah-passes-to-locally-indicable-extensions`) survives at hosts
+   that are not locally indicable, because only the quotient must be.
+   - For multiple ascending HNN extensions over a Kazhdan base it reduces Strong
+     Atiyah to amalgams over compressed copies of the base
+     (`double-ascending-hnn-strong-atiyah-reduces-to-kernel-tree`), the crux
+     `strong-atiyah-kazhdan-edge-amalgam-permanence`.
+   - It proves Strong Atiyah for the torsion-free two-variable Kun--Thom-type
+     actor, which carries the two-compressor Kazhdan pattern
+     (`two-variable-kun-thom-actor-satisfies-strong-atiyah`).
+   - No nonsofic group is yet known to satisfy Strong Atiyah
+     (`nonsofic-group-satisfying-strong-atiyah`). The two mechanisms that could
+     produce one are this permanence and nonsofic locally indicable groups, for
+     instance a nonsofic one-relator group
+     (`one-relator-groups-satisfy-strong-atiyah`).

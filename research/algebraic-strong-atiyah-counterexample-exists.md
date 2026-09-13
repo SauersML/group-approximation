@@ -54,6 +54,21 @@ distinct_from:
     `Gamma` along compressed Kazhdan edge groups.  Strong Atiyah permanence is
     known there only for finite edge groups (Sanchez-Peralta,
     arXiv:2409.12268v2).
+* **Supports built from free compressors (2026-09-12, lane `ex-atiyah-torsion-free`).**
+  *The free quotient is harmless; the non-Ore shape is not sufficient.*
+  - `strong-atiyah-passes-to-locally-indicable-extensions` (Jaikin-Zapirain--Lopez-Alvarez,
+    Proposition 6.5) absorbs any locally indicable quotient.
+  - For the free multiple ascending HNN extension over `Gamma`,
+    `double-ascending-hnn-strong-atiyah-reduces-to-kernel-tree` then reduces Strong
+    Atiyah to the kernel tree of copies of `Gamma`. The only missing input is
+    amalgamation over compressed copies of `Gamma`, that is
+    `strong-atiyah-kazhdan-edge-amalgam-permanence` iterated.
+  - `two-variable-kun-thom-actor-satisfies-strong-atiyah` exhibits an infinite
+    Kazhdan group with two strict compressors that have no common left multiple,
+    inside a torsion-free group satisfying Strong Atiyah over `C`. So a
+    counterexample needs the genuine amalgams, not merely the two-letter pattern.
+    That group is residually finite, and its compressions satisfy extra
+    Steinberg relations.
 * **Finite spectrum.**  *Dead* as a source of torsion-free counterexamples
   independent of the Kadison--Kaplansky problem.
   - If `A^* A` has finite spectrum, its kernel projection is a polynomial in
