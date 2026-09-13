@@ -63,7 +63,7 @@ The node was landed at e33e92083e and deleted at 698dc9a6f0, and its content was
 `module-defect-needs-non-k-exact-host`. The deleted `higson-kasparov-haagerup-satisfies-bcc-citation` is
 likewise replaced by item (5) of the Osajda import.
 
-## 2.2 Famous-root sweep at 4e628b389 (01:40 CDT)
+## 2.2 Famous-root sweep at 4e628b389 (tip landed 08:51 CDT; it covers every in-scope landing through 02:36 CDT, the last before 09:06)
 
 No famous root flipped. Every root below reads OPEN, and each live route requires at least one claim
 with no route or an OPEN marker:
