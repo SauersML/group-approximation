@@ -142,6 +142,35 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
   reduction — `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketPinch.lean`. It consumes only origin
   names: the binder block of `OsinLemma94CaseOneSameCellStatement`, `osinLemma94CaseOneWalk_sameCell`, `sideFaces`.
 
+### Subsumption note (found ~18:15, after 8b0c76b7d landed)
+
+- `ClosedWalkFaceColouring` (kh-ejz, on main) already has `ClosedChain`, `closedChain_iff`, `closedChain_append_comm`
+  (rotation) and `closedChain_split`, a pinch split at the chain level. So the combinatorial half of
+  `IsClosedDartWalk.take` and `.drop` is subsumed there; my grep for split lemmas missed it because it used different
+  names (`closedChain`, not `split_at_vertex` or `pinch`).
+- New in ClosedWalkPinchSplit: the values (`listVal_dartWord_eq_mul_lobes`, `exists_lobe_listVal_ne_one`,
+  `listVal_dartWord_drop_eq_of_take_eq_one`) and the take/drop form.
+- In flight: `isClosedDartWalk_iff_closedChain` credits and bridges to the chain-level lemmas. To excise a lobe that
+  reads 1 in the middle of a walk, rotate it to the front with `closedChain_append_comm`, then apply the front
+  excision.
+
+### X-pocket shape statements (in flight, `Estimating/OsinLemma94SameCellPocketPinch.lean`)
+
+- `OsinLemma94CaseOneXPocketStatementOf shape` takes:
+  - the binder block of `OsinLemma94CaseOneSameCellStatement`, the output of `osinLemma94CaseOneWalk_sameCell` and the
+    carrier rotation `q B p A`;
+  - `X B` reading ≠ 1 and the exterior face off `sideFaces (invDarts X ++ invDarts B)`;
+  - the condition `shape` on `(invDarts X, invDarts B)`.
+  It concludes False.
+- Shapes: `PocketWalkSimpleShape` (the loop-cut case, jacobson), `PocketWalkFaceBubbleShape` (shape 1),
+  `PocketWalkCellPinchShape` (shape 2), `PocketWalkTouchVertexShape` (shape 3), `PocketWalkSpurShape`.
+- Named statements: `OsinLemma94CaseOneSimplePocketStatement`, `...FaceBubbleStatement`, `...CellPinchStatement`,
+  `...TouchVertexStatement`, `...SpurStatement`, and `OsinLemma94CaseOneXPocketStatement` (no shape).
+- `osinLemma94CaseOneXPocket_of_shapes` proves the X-pocket statement from the five. When there is no spur, no touch and
+  no repeated vertex on either part, the whole walk repeats no vertex (`List.nodup_append`).
+- First probe 0913-181127-19691 FAILED: the FaceBubble and CellPinch predicates picked up only one of the section
+  variables `x b`. Fixed with explicit binders, and the co-probe is running.
+
 ## State
 
 Every sentence of tex 1–165 is carried by a closed declaration or honestly classified. The exceptions:
