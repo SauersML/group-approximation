@@ -95,5 +95,9 @@ monoid, with homogeneous `u, v` of degree `D` and letters `<= L`. Outputs are in
      `w ≠ 0` has `b w` in `(1 + lambda g) R`.
    - *Obstacle.* The one-bump proof builds `S` from the shift `phi`. For multi-bump `g`, no
      such `S` is known against `b` whose support moves an interior fixed point of `g`.
+   - *Partial.* `thompson-f-multibump-binomials-meet-stabilizer-ideals` proves property O
+     against `b` in `K[H_i × Z_i]`, where `H_i` fixes the closed supports of the other
+     bumps pointwise and `Z_i` is the group they generate. It applies the one-bump theorem
+     over the field `K(z_j : j ≠ i)`, with the other bumps as central variables.
 3. **Evacuation with capacity 2** on the triple-of-trees fragments `Γ_n` (survey Thm 4.1),
    checked on finite fragments by König.
