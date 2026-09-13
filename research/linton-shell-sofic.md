@@ -84,6 +84,18 @@ group".
    class closed under directed unions.  No such theorem is known, and the
    obvious candidate classes (free, residually finite) are not obviously
    available for a rationally perfect infinitely generated radical.
+6. **Import a soficity theorem for the remaining class.**  *None exists.*
+   - Torsion and `pi(w) >= 3` are already closed in
+     [[nonsofic-one-relator-relator-has-primitivity-rank-two]].
+   - Residually rationally solvable groups have a free shell.
+   - Linton (arXiv:2407.09272v2) asserts no residual property of `R`.
+   - Jaikin-Zapirain--Linton coherence says nothing about soficity.
+
+   So the open class is torsion-free with `pi(w) = 2` and `R != 1`.  Within it,
+   radicals that split as a free product of sofic factors permuted by `F0` with
+   cyclic stabilizers are closed by
+   [[permuted-free-product-linton-radical-gives-sofic-shell]].  The source
+   audit is `research/artifacts/or-linton-halo-2026-09-12.md`.
 
 The new quotient does not license an extension shortcut.  Even if `R'` were
 shown sofic abstractly, `E/R'` is residually finite rather than amenable, and

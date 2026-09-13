@@ -64,3 +64,36 @@ that it implies both open prerequisites of
    that graph with the relevant induced-subgraph embeddings.  No such graph
    presentation of the perfect core is currently available, so this remains a
    separate possible refinement rather than part of the stated route.
+4. **Test the canonical assignments of Attempt 1.**  *Both break the
+   intersection law already for Baumslag--Gersten.*  In `G(1,2)`, with
+   Linton's convention, the relator reads `a^t a (a^t)^-1 = a^2`, and
+   `r = a^-1`.
+   - Sites are the conjugates of `r`, with `L(Y) = <Y>`.  The disjoint sites
+     `a^-1` and `a^-2` give `<a^-1> cap <a^-2> = <a^2> != 1`.
+   - Sites are `H = <t>`, with `R`-normal closures of `a_i = t^-i a t^i`.
+     Here `a_0 = a_1 (a_0 a_1^-1 a_0^-1)` lies in `<<a_1>>_R`, so
+     `L({0}) cap L({1}) = L({0}) != 1`.
+
+   More generally, normal subgroups that meet trivially commute.  So
+   normal-closure pieces can satisfy the intersection law only if pieces over
+   disjoint sites commute.  These results refute the assignments, not this
+   claim: `G(1,2)` satisfies the claim with a one-point site set (Attempt 5).
+5. **Split radicals.**  *Proved on a tame class only.*
+   [[permuted-free-product-linton-radical-gives-sofic-shell]] covers the case
+   where `R` is a free product of isomorphic sofic factors that `F0` permutes
+   freely.  There the free-product functor `Y |-> *_Y K` is a sofic set halo
+   intertwining `alpha`.  When `F0 = 1` this claim is equivalent to
+   [[linton-radical-sofic]].  The examples `G(1,2)` and `G(1,2) * Z` were
+   already known to be sofic.
+
+   The general case stays open for two reasons.
+   - Linton's Theorem 3.2 applied with free factors would make `R` free, and a
+     nontrivial rationally perfect group is not free.  So that theorem cannot
+     split a nontrivial radical.
+   - A radical that meets a Magnus edge group need not split at all.
+6. **Automorphic enrichments.**  *Not a bypass.*  Alekseev--Bradford
+   `SoficAutEnrThm` (arXiv:2601.18742v1) assumes a set-theoretic halo with
+   their conditions (a) and (b).  Its residual-finiteness shortcut needs every
+   finite piece to be residually finite.  It consumes a halo instead of
+   producing one, and no known result makes pieces of `R` residually finite.
+   Source audit: `research/artifacts/or-linton-halo-2026-09-12.md`.

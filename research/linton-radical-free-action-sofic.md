@@ -76,3 +76,15 @@ an accident of statement: it is the same gap that makes
    failure of semidirect closure with a **free** acting group, which nothing in
    the literature currently exhibits.  Both outcomes are worth having, which is
    the argument for spending effort here rather than on the radical alone.
+5. **Point sets from free splittings.**  *Closed on split radicals only.*
+   Attempt 3 has a hypothesis to check once `R` splits as a free product whose
+   factors `F0` permutes.
+   - [[permuted-free-product-linton-radical-gives-sofic-shell]] proves the shell
+     sofic when the factors are sofic and every point stabilizer is cyclic.  It
+     does this through a star of groups amalgamated over those stabilizers.
+   - With trivial stabilizers and isomorphic factors, the splitting gives a set
+     halo, and Alekseev--Bradford Proposition 4.26 makes `alpha` sofic.
+
+   Linton's Theorem 3.2 applied with free factors cannot supply such a
+   splitting, because a nontrivial rationally perfect `R` has no free free
+   factor.  No splitting is known for radicals that meet a Magnus edge group.
