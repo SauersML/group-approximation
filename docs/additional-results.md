@@ -39,6 +39,16 @@ isomorphic universal Kazhdan hosts with their permutation symmetries.
 The proof uses cyclic corners and matrix multiplicity spaces; it is not
 yet Lean-formalized.
 
+The [marked encoding theorem](../research/artifacts/pestov91-marked-subshift-encoding-2026-09-13.md)
+recovers the entire binary subshift from the three named generators.
+It embeds the compact space of nonempty binary subshifts into quotients
+of one fixed three-generated Kazhdan group, with subshift inclusion
+equivalent to a marked epimorphism in the reverse direction. A block of
+length `n` has a detecting group word of length at most `2^17 n^2`.
+Within this family, simplicity is equivalent to infinite minimality.
+This strengthens the earlier word-problem degree result and remains a
+written proof awaiting Lean formalization.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
