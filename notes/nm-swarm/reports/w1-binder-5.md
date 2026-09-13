@@ -123,6 +123,37 @@ CLAIM T1 cell-edge thickening: `GroupApproximation/GGT/VanKampen/SurgeryCellEdge
 ms-cite-2's `SurgeryCellSideThickeningModel`: `decide` on dart permutations before and after doubling, for a spur on a
 relator face and for a relator–relator edge.
 
+### T1 LANDED 70c183593 (probe 0913-181626-55683 GREEN: BUILT both modules, empty error index, no `sorryAx`; wire-queued)
+
+### T1 status (18:2x)
+
+- `SurgeryCellEdgeThickening` (closed endpoint `cellEdgeThickening : CellEdgeThickeningStatement`) compiled in probe
+  0913-180952-14318. The model test failed there only on `norm_num` in `Fin.castLE` bounds, fixed with `decide`.
+- The re-probe covers the fixed model and T1. T1 now consumes the collar-double face lemmas
+  (`FaceEdgeDoubling.faceOf_none_digon`, `faceOf_embed_dart_digon`, `faceOf_embed_of_face_of_ne`,
+  `faceOf_embed_of_face_ne`) in place of three duplicate map-level lemmas.
+- Attic copies: e4f23d8a6, d366721fb, 3d263dca3.
+- `exists_of_isCellEdgeDart` holds for the doubling along any dart of any inner face, so later doublings (T2, T3)
+  keep the absence of cell-edge darts.
+
+### T3 side–side thickening (claimed)
+
+CLAIM T3 side–side thickening:
+- `GroupApproximation/GGT/VanKampen/SurgerySideSideThickeningModel.lean` (model test first);
+- `GroupApproximation/GGT/VanKampen/SurgerySideSideThickening.lean` (statement, count, induction);
+- `GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingContaining.lean` (region transport).
+
+Design:
+- A **side–side dart** is a dart on a face of a region `a` of the family whose reverse lies on a face of a different
+  region `b`.
+- Double inside the face of `a` (a G-face). The region containing the doubled face keeps its face set through
+  `faceImage`, without the digon.
+- Its boundary cycle and every shelling stage map by `dartImage` (`w ↦ some none`). In a shelling step `w` lies in the
+  exposed part, never in the attaching arc, because the face across `w` lies in `b`.
+- `facePerm` and `alpha` commute with `dartImage` on every internal boundary move.
+- `w` and `α w` lie on no contiguity arc: arcs lie on relator cells or the exterior.
+- `b` transports through `DiscEmbeddingAway`.
+
 ## Residual for the binder-5 producer (cell-to-cell pocket)
 
 - Step 3: an O-equivalent copy with legal labels satisfying cell edge conditions, then `walk.Nodup` and
