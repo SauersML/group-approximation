@@ -304,6 +304,13 @@ Filled in as each part lands.
   factorization of lambda-mod-m trapping, the string-bordism range splitting (m_4 = 24), the 2-primary reduction of the
   rank-three fivefold commutator to SU(3) (one wording note on stem-0 letters), and the top-cell adjoint-J product
   formula.
+- `ex-review2-analysis-2026-09-13-part17.md` (census D): PASS on division of the unit by an atomless element, the
+  zero-dimensional diagonal, the defect-uniform criterion, Dirac pushforwards on the square, fuzz persistence, the
+  Miranda granularity bound, rank bookkeeping, and the BK boundary descent (one stale-wording note).
+- `ex-review2-analysis-2026-09-13-part18.md` (census E, final): PASS on the Ihara--Bass trace criterion, prime-level
+  traces counting roots mod p, log-scale delocalisation, the Deligne detecting-cycle floor, Bernoulli subgroup tubes,
+  and the Malcev import. §18.4 gives the wave-2 outcome: 33 claims PASS, one GAP at odd p repaired by citation, no
+  false establishment.
 
 ## 4. Outcome of the census
 
