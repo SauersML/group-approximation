@@ -73,6 +73,15 @@ satisfies (RCS) of `coset-refinement-forces-rectangular-central-splitting`.
      label-exact refinements to affine allowed sets.  A gap beyond the goal
      needs *hidden labels* on the variable questions: blocks of the refined
      `p_v` finer than the two fibres of `x_v`.
+   - **Scope (lane ex3-kac-readout-cosets).**  Passing the splits of
+     `G_cv(B_I)` itself does not let a lift avoid the split on the source.
+     - By `cv-coset-refinements-equal-context-coset-refinements`, a trace lifts
+       through a refinement of `G_cv(B)` iff it lifts through a refinement of
+       the context game.
+     - For one-hot/NAND sources, such a lift forces (RCS) on every question
+       pair of the source game.
+     - So the hidden labels above are context-syntax hidden labels under
+       another name.
 
 **Status of Lin's sources (read at source, arXiv:2510.07162v1).**
 - **Compression steps.**  The completeness clauses of Theorem 6.5 and of the
@@ -83,8 +92,10 @@ satisfies (RCS) of `coset-refinement-forces-rectangular-central-splitting`.
   closed, this gives a perfect commuting strategy, but the text does not say
   that the strategy is oracularizable.
 - **So for Lin's original games.**  Corollary 2 applies only where an
-  oracularizable perfect strategy is known.  Corollary 3 settles the question
-  for a gap source with the same algebra.
+  oracularizable perfect strategy is known.  Corollary 3 settles the split
+  question for the game `G_cv(B_I)`, a gap source with the same algebra.
+  Lifting its traces to coset refinements still needs (RCS) on the source
+  game (Corollary 4, Scope).
 
 **Model tests.**
 - **A classical solution passes.**  `N = C`.

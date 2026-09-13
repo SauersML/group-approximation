@@ -69,6 +69,11 @@ pp. 12--17.
 - **Forbidden-pair splits.**  By
   `forbidden-pair-splits-are-central-rectangle-splittings`, the split forced
   by the hidden-labels theorem is (RCS) on perfect traces.  The
-  constraint-variable presentation of the Lin/MSSV algebra passes it.  So it
-  does not block the coset-system route; what remains is hidden labels on
-  the variable questions.
+  constraint-variable presentation of the Lin/MSSV algebra passes it at the
+  level of that game.  So it does not block the coset-system route.
+  - **Hidden labels on the variable questions are no escape.**  By
+    `cv-coset-refinements-equal-context-coset-refinements`, they lift exactly
+    what context-syntax refinements lift.  So any lift of a `B_I` trace still
+    forces (RCS) on every question pair of the source game.
+  - What remains: context-syntax hidden labels on perfect traces that pass
+    (RCS).

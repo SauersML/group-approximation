@@ -83,11 +83,24 @@ non-relabelable system with nonzero algebra is known.
     algebra, and all splits together are (RCS).
     - Commuting pairs, including Lin's oracularizable strategies, pass.
     - The constraint-variable game of `B_I` has the same algebra as the
-      Lin/MSSV source, and every perfect trace of it passes every split.
-  - What survives: hidden labels on the variable questions of a
-    constraint-variable presentation, meaning blocks of the refined `p_v`
-    finer than the two fibres of `x_v`, and multi-variable edges with
-    nonabelian exact label groups.
+      Lin/MSSV source, and every perfect trace of it passes every split of
+      that game.
+  - Constraint-variable hidden labels are not a new region (lane
+    ex3-kac-readout-cosets).
+    - By `cv-coset-refinements-are-edge-label-coset-systems`, a refinement of
+      `G_cv(B)` is an edge-label system with arbitrary Boolean readouts.
+    - By `cv-coset-refinements-equal-context-coset-refinements`, it lifts
+      exactly the traces that refinements of the context game lift.  The
+      Goursat classes at a variable question are transit labels between its
+      contexts.
+    - So a lift of a `B_I` trace in either presentation forces (RCS) on every
+      question pair of the independent-set game.  That `G_cv(B_I)` passes its
+      own splits does not evade this.
+  - What survives:
+    - context-syntax hidden labels (blocks finer than the two fibres of the
+      shared bit) on perfect traces of `B_I` that satisfy (RCS) on every
+      question pair of `I`;
+    - multi-variable edges with nonabelian exact label groups.
 - **Gadgets and completions inside the port algebra (lane
   ex-kac-quantum-compiler).**
   - By `torsor-cfi-port-profiles-are-cosets`, scalar port profiles of torsor
