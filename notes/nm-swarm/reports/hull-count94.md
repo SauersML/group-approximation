@@ -3,11 +3,13 @@
 ## Scope
 - Item (lead, after the 08:30 restart): the PolygonCount piece of
   `osinLemma94Section_of_planarPieces`. That is `OsinLemma94PolygonCountInput` in
-  `Estimating/OsinLemma94PlanarPieces.lean` (hull-unbound, 80790fad1 and f2cc2be97). This lane adopts
-  that Prop and states no duplicate.
+  `Estimating/OsinLemma94PlanarPieces.lean` (hull-unbound). This lane adopts that Prop and states
+  no duplicate.
 - The Prop is `P.SideBudget K ∧ P.Covers L` for maximal realized polygons of a dart-minimal optimal
-  family, with `K` chosen before `ε` and `L` after `ε`.
-- Helper: audit-intro, which took the region-facing count.
+  family.
+- Ruling (ROSTER-0913, SideBudget spelling F1): `∃ K` moves after `∀ ε` in the count Prop and the
+  metric Prop, and (A2) sides skip value-one excursions. This lane writes the rule 22 change.
+- Helper: audit-intro. It proved the region-facing count and now checks pinched relator cells.
 
 ## Covers half: CLOSED
 - `Estimating/OsinLemma94PolygonCovers.lean` (this lane), probe 0913-093648-12289 GREEN.
@@ -31,17 +33,41 @@
   - `osinLemma94PolygonCountInput_of_sideBudget : OsinLemma94PolygonSideBudgetInput →
     OsinLemma94PolygonCountInput`.
 
+## F1 quantifier order (the first half of the ruling)
+- `OsinLemma94AntiparallelMetricStatement` (`OsinLemma94Pieces`) is now
+  `∃ ε₀, ∀ ε ≥ ε₀, ∀ K, ∃ ρ₀ > 0, ∀ ρ ≥ ρ₀, …`. Only the binder order of the proof in
+  `OsinLemma94AntiparallelMetric` changes. `ε₀` comes from `unboundOrientedWordPolygonMonotone`
+  before `K` is used, and `K` enters only `ρ₀ = (K + 1)² ρ₁`.
+- `OsinLemma94PolygonCountInput` (`OsinLemma94PlanarPieces`) and
+  `OsinLemma94PolygonSideBudgetInput` (`OsinLemma94PolygonCount`) are now
+  `∃ ε₀, ∀ ε ≥ ε₀, ∃ K, …`.
+- `osinLemma94Section_of_pieces`, `osinLemma94Section_of_planarPieces` and
+  `osinLemma94PolygonCountInput_of_sideBudget` are adapted.
+- Probe 0913-115846-46341 GREEN, all four modules BUILT.
+
 ## Residual
 - `OsinLemma94PolygonSideBudgetInput` (in `OsinLemma94PolygonCount.lean`):
-  `∃ K, ∃ ε₀, ∀ ε ≥ ε₀, ∃ ρ₀ > 0, ∀ ρ ≥ ρ₀, …, P.Maximal → ∑ k, P.sideCount k ≤ K n`.
-- Risk, reported to main and awaiting a ruling. `DiscDiagram.inner_face` makes every polygon face a
-  value-one face. Two things break a constant `K` chosen before `ε`.
-  - A boundary side may follow any arc of `∂Δ` between cuts, and maximality splits sides. So an
-    outer spur can add sides with no relator cell to charge them to.
-  - Pockets between selected regions add short sides in proportion to `ε |M|`, not `|M|`.
-- Proposed repair: (A2) sides skip value-one excursions, and `∃ K` moves after `∀ ε` in both the
-  count Prop and the metric Prop. Rule 22 users on main: `OsinLemma94PlanarPieces` (hull-unbound)
-  and `OsinLemma94CaseOneWalk` (theoremc-retire).
+  `∃ ε₀, ∀ ε ≥ ε₀, ∃ K, ∃ ρ₀ > 0, ∀ ρ ≥ ρ₀, …, P.Maximal → ∑ k, P.sideCount k ≤ K n`.
+- As stated it is over-strong. Model tests (reported to main):
+  - Pockets. A region side of length at most `ε` touching a cell `s` times leaves `s` unselected
+    `G`-faces, so `K` must come after `ε`. F1 fixes this.
+  - Spurs. A spur on a section splits a boundary side. The ruled skip lets the side span it, but
+    `Maximal`'s clause `facePerm (alpha e') ≠ alpha e` already allows the split at a spur base.
+    So `Maximal` also needs a clause saying the two sides do not join into one skip-arc.
+  - Boundary bubbles. `face_complete` makes every unselected `G`-face a polygon.
+    - Model: `λ = 1/8`, `c = 3`, sections `r | (g·abc)^m | g^{-m}` with `abc = 1` in `G`.
+    - The dart-minimal diagram carries `m` value-one bubbles on a spur tree, with no (A1) side and
+      in no region, while `n = 1`.
+    - Proposed: budget only the polygons with an (A1) side. Polygons without one have `S_i = 0`.
+  - Pinched relator cells.
+    - A relator with a value-one subword can pinch around an unselected `G`-face. That face is a
+      polygon with one (A1) side, and the (A1) side across the stretch splits at the pinch.
+    - `DartMinimal` does not see the pinch, since the dart count is unchanged.
+    - Proposed exclusion: minimize faces after darts. audit-intro is checking the cases.
+  - `cuts.count ≤ 4 ≤ 4 n`, so the sections are bounded by `n`.
+- The skip also affects Case 1. `OsinLemma94CaseOneWalk`, `OsinLemma94CaseOneWalkHolds`,
+  `OsinUnboundCaseOneRun` and `exists_quadrilateral_region` all consume contiguous target arcs.
+  With a spur inside the window the contiguous walk statement is false.
 
 ## On main from earlier items
 - `GGT/OlshanskiiFirstVisit.lean`, `GGT/OlshanskiiOrientedLemma25.lean` (1c5f36398),
@@ -55,16 +81,19 @@
 
 ## Census
 - The LINE:1636 row (thm:hull, Osin Lemma 9.4 inside Hull's proof) stays partial. Its count
-  residual is now `OsinLemma94PolygonSideBudgetInput`.
+  residual is `OsinLemma94PolygonSideBudgetInput` (census row landed 4e7a84555).
 
 ## Next
-- Land the census row and the wire-queue line for the two modules.
-- On the ruling: either prove `OsinLemma94PolygonSideBudgetInput` as stated, or land a refutation
-  of the over-strong form and adapt with hull-unbound under rule 22.
+- The second half of the ruling, after main rules on the new mechanisms: skip-arc (A2) sides, the
+  `Maximal` skip clause, the A1-filtered budget and a pinch exclusion. These land together with
+  the Case 1 users.
+- Then prove the respelled side budget from the Lemma 9.3 counts on main (`PhiPrimeCountInput`,
+  `CellFaceCountInput`).
 
 ## Coordination
 - hull-unbound owns `OsinLemma94PlanarPieces`, `OsinLemma94Pieces`, `OsinUnboundSharedEdge` and
   `UnboundWordPolygonMonotone`.
 - sec5-sentences owns `OsinLemma94DartMinimal` and `OsinLemma94AntiparallelMetric`.
-- theoremc-retire owns `OsinLemma94CaseOneWalk`.
+- theoremc-retire owns `OsinLemma94CaseOneWalk` and `OsinUnboundCaseOneRun`; ko-closed owns
+  `OsinLemma94CaseOneWalkHolds`.
 - audit-intro owns `OsinLemma94RegionSideCount`.

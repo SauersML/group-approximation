@@ -47,8 +47,9 @@ supplies the orientation `C.b' < C.b`, and the diagram half refutes only that ca
 
 Osin counts "`∑ n_i ≤ 53 n`" arcs (Lemma 9.3) and "`k_i ≤ 4 n_i`" sides (38).  The
 metric half uses only the total number of sides.  So one constant `K` with
-`∑ k_i ≤ K n` replaces both.  The diagram half chooses `K` before `ε`, and the metric
-half holds for every `K`, with thresholds depending on `K`.
+`∑ k_i ≤ K n` replaces both.  The metric half has one threshold for `ε` that serves every
+`K`, and only its threshold for `ρ` depends on `K`.  So a diagram half may choose `K` after
+`ε`, as the short sides along selected regions need: their number can grow with `ε |M|`.
 -/
 
 namespace GroupApproximation.GGT.VanKampen
@@ -85,8 +86,8 @@ def OsinLemma94DensePolygonsAntiparallel {G : Type u} [Group G] {Lambda : Type w
         C.b' < C.b
 
 /-- **The metric half of Lemma 9.4, oriented.**  For a four-point hyperbolic
-`Γ(G, A)` and every side constant `K`, dense word polygons carry a backwards connector
-pair, at every `ε` above one threshold and every `ρ` above a threshold chosen after `ε`.
+`Γ(G, A)`, dense word polygons carry a backwards connector pair at every `ε` above one
+threshold, every side constant `K`, and every `ρ` above a threshold chosen after `ε` and `K`.
 
 This is the oriented form of `UnboundEstimate.unboundComponentWordPolygonsMonotone`,
 which proves the same conclusion with `b`, `b'` in either order and the constants
@@ -97,7 +98,7 @@ def OsinLemma94AntiparallelMetricStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
     (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
     ∀ lambda c : ℝ, 0 < lambda → 0 ≤ c →
-      ∀ K : ℕ, ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps → ∀ K : ℕ,
         ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
           OsinLemma94DensePolygonsAntiparallel D lambda c eps rho K
 
@@ -220,17 +221,17 @@ theorem unbound_lt (P : OsinLemma94PlanarPolygons D lambda c eps K S) {rho : ℕ
 end OsinLemma94PlanarPolygons
 
 /-- **Osin's Lemma 9.4 from its two pieces.**  The diagram half fixes the side constant
-`K`.  The thresholds are the maxima of the metric half's at `K` and the diagram half's,
-and the metric threshold for `ρ` is positive. -/
+`K`.  The thresholds are the maxima of the two halves', the metric threshold for `ρ` is
+taken at `K`, and it is positive. -/
 theorem osinLemma94Section_of_pieces
     (hmetric : OsinLemma94AntiparallelMetricStatement.{u, w})
     (hrun : OsinLemma94PlanarRunInput.{u, w, v}) :
     OsinLemma94SectionStatement.{u, w, v} := by
   intro G _ Lambda D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
   obtain ⟨K, eps2, hproducer⟩ := hrun D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
-  obtain ⟨eps1, hmetricK⟩ := hmetric D hhyper lambda c hlambda hc K
+  obtain ⟨eps1, hmetricE⟩ := hmetric D hhyper lambda c hlambda hc
   refine ⟨max eps1 eps2, fun eps heps => ?_⟩
-  obtain ⟨rho1, hrho1, hmetricEps⟩ := hmetricK eps (le_trans (le_max_left _ _) heps)
+  obtain ⟨rho1, hrho1, hmetricEps⟩ := hmetricE eps (le_trans (le_max_left _ _) heps) K
   obtain ⟨rho2, _, hproducerEps⟩ := hproducer eps (le_trans (le_max_right _ _) heps)
   refine ⟨max rho1 rho2, lt_of_lt_of_le hrho1 (le_max_left _ _), fun rho hrho => ?_⟩
   intro W hW Delta cuts hleast hcells S hcard

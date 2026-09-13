@@ -24,8 +24,8 @@ the diagram half again, over the faces of the optimal diagram itself.
 The pieces:
 
 * `OsinLemma94PolygonRealizationInput`: a dart-minimal optimum has maximal polygons.
-* `OsinLemma94PolygonCountInput`: `∑ k_i ≤ K n` with `K` chosen before `ε`, and `S ≤ ∑ S_i`
-  up to a slack `L n` with `L` chosen after `ε`.
+* `OsinLemma94PolygonCountInput`: `∑ k_i ≤ K n`, and `S ≤ ∑ S_i` up to a slack `L n`, with `K`
+  and `L` chosen after `ε`.
 * `OsinLemma94CaseOneInput`: a backwards connector pair whose target is not a cutting side.
 * `OsinLemma94CaseTwoInput`: a backwards connector pair whose target is a cutting side.
 
@@ -369,15 +369,16 @@ def OsinLemma94PolygonRealizationInput : Prop :=
                   ∃ P : OsinLemma94RealizedPolygons S, P.Maximal
 
 /-- **Count piece of Lemma 9.4.**  Lemma 9.3, "`∑ n_i ≤ 53 n`", and (38), "`k_i ≤ 4 n_i`",
-as one side constant `K` chosen before `ε`.  With it, `S ≤ ∑ S_i` up to a slack `L n`, where
-`L` is chosen after `ε`.  The slack leaves room for unbound darts on no (A1) side, such as
-those along the sides of selected regions, which are at most `ε` long. -/
+as one side constant `K` chosen after `ε`: the short sides along selected regions can number
+about `ε |M|`.  With it, `S ≤ ∑ S_i` up to a slack `L n`, where `L` is also chosen after `ε`.
+The slack leaves room for unbound darts on no (A1) side, such as those along the sides of
+selected regions, which are at most `ε` long. -/
 def OsinLemma94PolygonCountInput : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
     (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
     ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
-      ∃ K : ℕ, ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
-        ∃ L : ℕ, ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ K : ℕ, ∃ L : ℕ, ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
           ∀ (W : Set (List (RelLetter G Lambda))),
             OsinCCondition D W eps mu lambda c rho →
             ∀ (Delta : DiscDiagram.{u, w, v} W)
@@ -433,7 +434,8 @@ def OsinLemma94CaseTwoInput : Prop :=
                       C.b' < C.b → P.kind k C.target = .cutting → False
 
 /-- **Osin's Lemma 9.4 from the metric half and four planar pieces.**  The count piece fixes
-`K`.  The thresholds are the maxima of the pieces', with `ρ₀ ≥ 4 L²` and `ρ₀ ≥ 4 ρ_metric`.
+`K` after `ε`, and the metric threshold for `ε` serves every `K`.  The thresholds are the
+maxima of the pieces', with `ρ₀ ≥ 4 L²` and `ρ₀ ≥ 4 ρ_metric`.
 The given family is replaced by a dart-minimal one with the same number of regions and the
 same unbound sum. -/
 theorem osinLemma94Section_of_planarPieces
@@ -444,21 +446,21 @@ theorem osinLemma94Section_of_planarPieces
     (htwo : OsinLemma94CaseTwoInput.{u, w, v}) :
     OsinLemma94SectionStatement.{u, w, v} := by
   intro G _ Lambda D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
-  obtain ⟨K, eps1, hcountK⟩ := hcount D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
+  obtain ⟨eps1, hcountE⟩ := hcount D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
   have hhyperE : ∃ delta : ℕ,
       Hyperbolic.IsFourPointHyperbolic (symmetricLabelAlphabet D).alphabet.carrier delta := by
     rw [symmetricLabelAlphabet.carrier_eq]
     exact hhyper
-  obtain ⟨eps2, hmetricK⟩ :=
-    hmetric (symmetricLabelAlphabet D) hhyperE lambda (c + 2) hlambda (by linarith) K
+  obtain ⟨eps2, hmetricE⟩ :=
+    hmetric (symmetricLabelAlphabet D) hhyperE lambda (c + 2) hlambda (by linarith)
   obtain ⟨eps3, hrealEps⟩ := hreal D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
   obtain ⟨eps4, honeEps⟩ := hone D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
   obtain ⟨eps5, htwoEps⟩ := htwo D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
   refine ⟨max eps1 (max eps2 (max eps3 (max eps4 eps5))), fun eps heps => ?_⟩
   simp only [max_le_iff] at heps
   obtain ⟨he1, he2, he3, he4, he5⟩ := heps
-  obtain ⟨L, rho1, hrho1, hcountEps⟩ := hcountK eps he1
-  obtain ⟨rho2, _, hmetricEps⟩ := hmetricK eps he2
+  obtain ⟨K, L, rho1, hrho1, hcountEps⟩ := hcountE eps he1
+  obtain ⟨rho2, _, hmetricEps⟩ := hmetricE eps he2 K
   obtain ⟨rho3, _, hrealRho⟩ := hrealEps eps he3
   obtain ⟨rho4, _, honeRho⟩ := honeEps eps he4
   obtain ⟨rho5, _, htwoRho⟩ := htwoEps eps he5

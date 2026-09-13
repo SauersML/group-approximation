@@ -19,7 +19,7 @@ the metric half.
   - The four-point hyperbolic Cayley graph is a hyperbolic space
     (`isHyperbolicSpace_cayley_of_fourPoint`).
   - `unboundOrientedWordPolygonMonotone` at `μ = 1` gives `ε0` and, for each `ε ≥ ε0`,
-    a threshold `ρ1`.
+    a threshold `ρ1`.  Neither depends on `K`.
   - For `ρ ≥ (K + 1)² ρ1` the theorem is applied at `ρ' = ρ / (K + 1)²`.  Then
     `K √ρ' / 240 < √ρ`, so the side budget selects a component with
     `k_i √ρ' / 240 < S_i`.
@@ -55,17 +55,18 @@ theorem exists_component_dense_of_sideBudget {d : ℕ} (n K : ℕ) (hn : 0 < n) 
   linarith
 
 /-- **The metric half of Lemma 9.4, oriented.**  For a four-point hyperbolic `Γ(G, A)`,
-`0 < λ`, `0 ≤ c` and every side constant `K`, there are monotone thresholds such that
-dense closed quasi-geodesic word polygons with at most `K n` sides carry a connector pair
-whose target indices run backwards. -/
+`0 < λ` and `0 ≤ c`, there is one monotone threshold for `ε` and, for each `ε` above it and
+each side constant `K`, a monotone threshold for `ρ` such that dense closed quasi-geodesic
+word polygons with at most `K n` sides carry a connector pair whose target indices run
+backwards. -/
 theorem osinLemma94AntiparallelMetric : OsinLemma94AntiparallelMetricStatement.{u, w} := by
-  intro G _ Lambda D hhyper lambda c hlambda hc K
+  intro G _ Lambda D hhyper lambda c hlambda hc
   obtain ⟨delta, hdelta⟩ := hhyper
   obtain ⟨_, _, eps0, hpolygon⟩ :=
     unboundOrientedWordPolygonMonotone G Lambda D (delta : ℝ) lambda c 1
       (isHyperbolicSpace_cayley_of_fourPoint D.alphabet hdelta) (by positivity)
       hlambda hc one_pos
-  refine ⟨eps0, fun eps heps => ?_⟩
+  refine ⟨eps0, fun eps heps K => ?_⟩
   obtain ⟨rho1, hrho1, hpolygonEps⟩ := hpolygon eps heps
   refine ⟨(K + 1) ^ 2 * rho1, mul_pos (by positivity) hrho1, fun rho hrho => ?_⟩
   intro n d hn sideCount v word A B hbudget hclose hends hquasi hshort htotal

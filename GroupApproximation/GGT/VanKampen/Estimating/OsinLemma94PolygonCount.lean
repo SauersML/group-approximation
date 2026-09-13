@@ -72,14 +72,18 @@ theorem osinLemma94PolygonCoversInput : OsinLemma94PolygonCoversInput.{u, w, v} 
     _ = 24 * eps * Delta.rCellCount := by ring
 
 /-- **Side budget half of the count piece of Lemma 9.4.**  Lemma 9.3, "`∑ n_i ≤ 53 n`", and
-(38), "`k_i ≤ 4 n_i`": the polygons have at most `K n` sides in total, with `K` chosen before
-`ε`. -/
+(38), "`k_i ≤ 4 n_i`": the polygons have at most `K n` sides in total, with `K` chosen after
+`ε`.
+
+Model test: summed over every polygon, as here, this is over-strong.  A `G`-face whose walk
+reads a value-one subword of `∂Δ`, such as a bubble on a spur of a section, is a polygon with
+no (A1) side, and there can be arbitrarily many of them with `n = 1`. -/
 def OsinLemma94PolygonSideBudgetInput : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
     (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
     ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
-      ∃ K : ℕ, ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
-        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ K : ℕ, ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
           ∀ (W : Set (List (RelLetter G Lambda))),
             OsinCCondition D W eps mu lambda c rho →
             ∀ (Delta : DiscDiagram.{u, w, v} W)
@@ -95,12 +99,12 @@ theorem osinLemma94PolygonCountInput_of_sideBudget
     (hbudget : OsinLemma94PolygonSideBudgetInput.{u, w, v}) :
     OsinLemma94PolygonCountInput.{u, w, v} := by
   intro G _ Lambda D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
-  obtain ⟨K, eps0, hK⟩ := hbudget D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
-  refine ⟨K, eps0, fun eps heps => ?_⟩
-  obtain ⟨rho1, hrho1, hKeps⟩ := hK eps heps
+  obtain ⟨eps0, hK⟩ := hbudget D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
+  refine ⟨eps0, fun eps heps => ?_⟩
+  obtain ⟨K, rho1, hrho1, hKeps⟩ := hK eps heps
   obtain ⟨L, rho2, _, hL⟩ := osinLemma94PolygonCoversInput.{u, w, v} D hhyper lambda c mu
     hlambda hlambda1 hc hmu hmu16 eps
-  refine ⟨L, max rho1 rho2, lt_of_lt_of_le hrho1 (le_max_left _ _),
+  refine ⟨K, L, max rho1 rho2, lt_of_lt_of_le hrho1 (le_max_left _ _),
     fun rho hrho W hW Delta cuts hleast hcells S hcard hmin P hmax => ⟨?_, ?_⟩⟩
   · exact hKeps rho (max_le_iff.mp hrho).1 W hW Delta cuts hleast hcells S hcard hmin P hmax
   · exact hL rho (max_le_iff.mp hrho).2 W hW Delta cuts hleast hcells S hcard hmin P hmax
