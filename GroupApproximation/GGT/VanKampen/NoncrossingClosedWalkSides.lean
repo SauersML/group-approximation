@@ -23,6 +23,8 @@ and its faces advance along walk darts.  The Jordan-type separation
 crossing edges off the walk never reaches a reversed walk dart from a walk dart.
 
 * `IsNoncrossingClosedWalk`: the walk carrier.
+* `NoncrossingClosedWalkSides.turn_mem_of_first`: the turning condition at one walk dart, from the
+  first walk edge met when rotating from its reversal.
 * `IsSimpleClosedWalk.isNoncrossingClosedWalk`: a simple closed walk is noncrossing.
 * `IsNoncrossingClosedWalk.innerCycle`, `IsNoncrossingClosedWalk.outerCycle`: the walk is a
   boundary cycle of the faces on its side, and the reversed walk one of the other faces.
@@ -74,6 +76,21 @@ theorem eqvGen_adjacent_of_sameCycle (N : CombMap.{u}) {x y : N.Dart}
         exact Relation.EqvGen.trans _ _ _ (Relation.EqvGen.rel _ _ (Or.inr rfl))
           (ih (N.sigma z))
   simpa only [hn] using hpow n x
+
+/-- **The turning condition at one dart.**  If rotating `m₀` steps from `alpha d` reaches a walk
+dart, and no earlier step reaches an edge of the walk, then every first return from `alpha d` to
+an edge of the walk is a walk dart. -/
+theorem turn_mem_of_first {M : CombMap.{u}} {w : List M.Dart} {d : M.Dart} {m₀ : ℕ}
+    (hm₀ : 0 < m₀) (hmem₀ : (M.sigma ^ m₀) (M.alpha d) ∈ w)
+    (havoid₀ : ∀ k, 0 < k → k < m₀ → ¬ walkKeep M w ((M.sigma ^ k) (M.alpha d))) :
+    ∀ m : ℕ, 0 < m → walkKeep M w ((M.sigma ^ m) (M.alpha d)) →
+      (∀ k, 0 < k → k < m → ¬ walkKeep M w ((M.sigma ^ k) (M.alpha d))) →
+      (M.sigma ^ m) (M.alpha d) ∈ w := by
+  intro m hm hkeep havoid
+  rcases lt_trichotomy m m₀ with hlt | rfl | hgt
+  · exact (havoid₀ m hm hlt hkeep).elim
+  · exact hmem₀
+  · exact (havoid m₀ hm₀ hgt (Or.inl hmem₀)).elim
 
 end NoncrossingClosedWalkSides
 
@@ -245,6 +262,7 @@ theorem noncrossingClosedWalkSides : NoncrossingClosedWalkSidesStatement.{u} := 
 end GroupApproximation.GGT.VanKampen
 
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.noncrossingClosedWalkSides
+#audit_axioms GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkSides.turn_mem_of_first
 #audit_axioms GroupApproximation.GGT.VanKampen.IsSimpleClosedWalk.isNoncrossingClosedWalk
 #audit_axioms GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.not_faceClass_alpha
 #audit_axioms GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.isBoundaryDart_sideFaces_iff

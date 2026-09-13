@@ -257,6 +257,13 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
        `toPocketFaceSetOfNoncrossing_cycle` (the boundary cycle is `K.walk`).
        Open: the turning condition for `K.walk`. P2' does not touch (iii): a walk holding both darts of an edge
        violates `alpha_not_mem`.
+       **Model test landed with this report** (green probe 0913-125753-37346): new module
+       `Estimating/OsinPocketPinchedTwoGonNoncrossing`, unwired. The cycle `[5,3,4,6]` of the pinched pocket of
+       OsinPocketPinchedTwoGonRegion is noncrossing and not simple (`pocket_noncrossing_not_simple`): one rotation step
+       from the reversal of each walk dart reaches a walk dart (`1 ↦ 6`, `0 ↦ 4`, `8 ↦ 3`, `9 ↦ 5`). Its side face set
+       is the pocket face set (`sideFaces_pocket`). So the carrier covers the pinch that `IsSimpleClosedWalk` excludes.
+       Additive in NoncrossingClosedWalkSides: `turn_mem_of_first`, the turning condition at one dart from the first
+       walk edge met when rotating from its reversal.
      - (ii) the kept cell on the side of the walk. Without it, the pocket holds no relator cell, and hull-select's
        zero-cell merge should contradict weight maximality. `OsinPocketZeroCellMerge` (`innerBoundary`,
        `toInnerGRegion`, `mergedGeometry`) is on main. The contradiction module `OsinPocketZeroCellMergeFalse`, which
