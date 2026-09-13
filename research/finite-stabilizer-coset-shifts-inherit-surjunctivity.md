@@ -66,12 +66,16 @@ host's own at a fixed alphabet size.
   to the new base `tau(rho(z))`. Artifact Section 2.
 - **Alphabet changes.** Products of alphabets keep the shared prime. Enlarging `A` to `B` with `|B|` coprime
   to `|H|` needs an injective extension of `tau` to `B^(G/H)`, a marker problem. Not attempted.
-- **Linear shadow** (artifact Section 4, to land). By duality, linear surjunctivity of `K^(G/H)` means that
+- **Linear shadow** (artifact Section 4; unverified). By duality, linear surjunctivity of `K^(G/H)` means that
   surjective `K[G]`-endomorphisms of `K[G/H]^n` are injective.
   - If `char K` does not divide `|H|`, then `K[G/H] ≅ K[G]e` is projective, surjections split, and stable
     finiteness of `K[G]` finishes.
   - If `char K = p` divides `|H|`, the module is not projective. Its endomorphism ring is the mod-`p` Hecke
-    algebra of `(G, H)`.
+    algebra of `(G, H)`. Whether stable finiteness of `K[G]` still suffices is artifact Question 9.
+  - Question 9 reduces to Sylow subgroups. It is positive when the Sylow `p`-subgroup of `H` is normal in
+    `G`, by `finite-normal-p-subgroups-preserve-modular-stable-finiteness`.
+  - It stops for non-normal `H`: a surjective endomorphism lifts to `K[G]` only up to the left ideal
+    `K[G] I_H`, which need not be nilpotent.
 - **Amenable hosts.** The claim holds at every `m`. `Y` is a strongly irreducible subshift of finite type
   (gap `H`), so a proper subshift has smaller entropy. This is standard and is not landed as a claim.
   Artifact Section 2.
