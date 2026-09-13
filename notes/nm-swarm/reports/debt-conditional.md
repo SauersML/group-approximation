@@ -6,6 +6,21 @@ baseline is unchanged since 3f71a3a50.
 
 ## Status
 
+- W1 `PhiPrimeCountInput`, item C3 of hull-euler's Lemma 9.3 plan (assigned by main after the Cut module):
+  - C3 says: a face of `Φ'_M` of degree less than six is a two-gon `Π–a–O–b`, where `a ≠ b` are exterior regions
+    of one cell. `NoMultipleEdges` excludes two-gons between two cells.
+  - hull-euler states C3 as a named Prop. I write no Lean until it sends the name and file; I have sent it the
+    shape I can discharge.
+  - I have read C1 (`Estimating/OsinAppendixEulerExterior`, 4e27d4965), which gives `phiSubdividedMultigraphO`.
+  - Route:
+    - kh-ejz's `isTwoGon_of_faceDegree_lt_six` gives a cell dart `d` with `facePerm⁴ d = d`, whose region `a` and
+      the region `b` of `facePerm² d` differ.
+    - By `facePerm_of_cell` and `facePerm_of_midpoint`, the two midpoint darts of `a` have ends `u ≠ v`, and those
+      of `b` have ends `v` and `u`.
+    - The end of a midpoint dart is `sideCellO region side`, so `{u, v} = {some a.source, a.target}` and
+      `{u, v} = {some b.source, b.target}`.
+    - Checking the four side cases: either both ends are cells, which contradicts `NoMultipleEdges`, or
+      `a.target = b.target = none` and `a.source = b.source`.
 - W2 hbridge, the M2 setup module (handout from hull-bridge, ROSTER ~02:50):
   - The module is `GroupApproximation/GGT/HullSCLemma51LetterPullbackCut.lean`, which proves
     `HullSC.letterStepBound_of_cutLiftOutcome`.
@@ -133,5 +148,5 @@ rows. So the owning lanes, or census `overrides.tsv`, must do the re-routing.
 ## Next
 
 - The Cut module is done: green, on main, SHA sent to hull-bridge, and queued for wiring.
-- Waiting on main or hull-bridge for the next W2 item. The obvious candidates belong to hull-bridge: a
-  `CutLiftOutcome` proof, `Holds` or `EmbeddedBridgeHolds`. I'll take one only if it is handed over.
+- C3: when hull-euler's Prop arrives, write the proof in a new module of my own. Then register it, back it up, land
+  it unverified, probe it and re-land it green.
