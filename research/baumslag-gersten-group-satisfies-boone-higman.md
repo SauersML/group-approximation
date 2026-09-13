@@ -61,10 +61,20 @@ group contains it.
     it does not apply either.
   - In every Cantor-space host, the image of `a` must fail to be
     equicontinuous.
-- **Rational similarity groups (open).** BBMZ embed every hyperbolic group in a
-  full, contracting RSG, through its action on the horofunction boundary.
-  `BG` contains `BS(1,2)`, so it is not hyperbolic, and no compact model for it
-  is known.
+- **Rational similarity groups (open; constrained 2026-09-13).** BBMZ embed
+  every hyperbolic group in a full, contracting RSG, through its action on the
+  horofunction boundary. `BG` contains `BS(1,2)`, so it is not hyperbolic.
+  - The pumping obstruction does not transfer. Local actions of RSG elements can
+    change lengths non-uniformly and need not be surjective, so there is no
+    locally constant exponent cocycle, and conjugation can rescale periodic
+    exponents (§1 of `research/artifacts/bh-bg-rsg-nonisometric-hosts-2026-09-13.md`).
+  - Germ groups at rational points are virtually infinite cyclic. So at a
+    rational periodic point of `a` with finite `b`-orbit, a power of `a` is the
+    identity nearby (`rsg-proper-power-conjugate-germs-torsion-at-finite-orbits`).
+    The dyadic affine model of `BS(1,2)`, with `a ∈ F` not equicontinuous, dies
+    this way (`dyadic-affine-bs12-model-lies-in-no-finite-nucleus-rsg`).
+  - Open: `finite-nucleus-rsg-proper-power-conjugates-are-equicontinuous` would
+    exclude every finite-nucleus RSG host, including the BBMZ hosts.
 - **Type (A) and twisted Brin--Thompson hosts (open).** By Zaremsky's Theorem A
   (arXiv:2405.18354), `SV_G` is finitely presented exactly when `G` is finitely
   presented and acts faithfully on `S`, with finitely generated point

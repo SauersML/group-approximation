@@ -36,7 +36,7 @@ artifacts:
   - It cannot be commensurated either. Finite bi-index plus commensurated gives finite index (approach 1 of `research/artifacts/ideas-2026-09-13/bh/bh-tbt-universality.md`), and `H4` has no proper finite-index subgroup, since the core of one would give a finite quotient.
   - No candidate stabilizer was found. PBH needs a finitely presented overgroup actor anyway.
 - **Not yet tested:**
-  - rational similarity groups;
+  - rational similarity groups, beyond the germ constraint `rsg-proper-power-conjugate-germs-torsion-at-finite-orbits` (at a rational periodic point of `g_(i+1)` with finite `g_i`-orbit, a power of `g_(i+1)` is the identity nearby); the equicontinuity question is `finite-nucleus-rsg-proper-power-conjugates-are-equicontinuous`;
   - full groups of shifts of finite type with several cone types, or of non-amenable groupoids;
   - twisted Brin--Thompson envelopes over a finitely presented type (A) actor containing `H4`.
 
