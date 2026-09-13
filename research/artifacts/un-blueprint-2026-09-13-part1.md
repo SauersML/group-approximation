@@ -203,6 +203,11 @@ established, unreviewed nodes, and the route is added after review).
 - **un-calibration 8d27ba78e6:** Weyl over `Q` is a LEF ring but not matricial over `Q`; group rings (rank
   model and Kazhdan, but not LEF); odometer (LEF, no (T)); the 16-ring table in
   `un-calibration-table-2026-09-13-part{1,2}.md`.
+- **un-k1-homology 5c83d35b84:** the unit-group face.
+  - Under (PI) local compressibility, the maximal MF quotient of `GL_n(A_k(𝒢))` is `K_1`.
+  - For exactly matricial algebras the MF radical is trivial.
+  - For irreducible SFT Leavitt algebras there is an explicit formula, read through Matui's groupoid homology.
+  - The general low-degree homology statement is open.
 - **un-architect (this landing):**
   - root and route;
   - D0 nodes (Leavitt citation, crossed-product proof);

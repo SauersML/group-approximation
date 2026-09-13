@@ -82,6 +82,16 @@ Blueprint: `research/artifacts/un-blueprint-2026-09-13-part1.md`.
   - **Towers without expansiveness give LEF groups but no (T):** `odometer-crossed-product-elementary-groups-not-kazhdan`.
   - **Rank four, any ring** (reported by un-calibration, not re-read here): tex Prop l.1072 says that for every
     countable ring of characteristic `p`, `EL_4(R)` MF ⇒ `R` directly finite.
+- **F8. Unit-group face** (un-k1-homology, 5c83d35b84, unreviewed). The same dichotomy appears one level up, at
+  the maximal MF quotient of `GL_n(A_k(𝒢))`:
+  - with (PI) local compressibility it is `K_1` and the radical is the commutator subgroup
+    (`purely-infinite-steinberg-gl-max-mf-quotient-is-k1`);
+  - when the algebra is exactly matricial the radical is trivial (`steinberg-gl-mf-radical-is-commutator-or-trivial`),
+    and the two cases are mutually exclusive but not exhaustive;
+  - for irreducible SFT Leavitt algebras there is an explicit formula
+    (`irreducible-sft-leavitt-gl-max-mf-quotient-formula`), read homologically through Matui
+    (`matui-sft-groupoid-homology-is-k-theory`);
+  - the general low-degree homology form is open (`steinberg-gl-max-mf-quotient-is-low-degree-homology`).
 - **Flagship instance.** `free-group-cantor-elementary-group-lef-iff-invariant-measure`: for minimal
   topologically free free-group Cantor systems with finitely generated crossed product, (L) and (M) collapse
   to one dynamical dichotomy, invariant measure versus none. The band `3 <= N < 2n` is open.
