@@ -22,8 +22,6 @@ For `w ∈ compactF m 1`, which fixes `(-∞, 0]` and `[1, ∞)`, the **replica*
   translation by an integer and a replica commutes with integer translations.
 * `eq_one_of_replica_fixes`: if `replica w` fixes `posGrid m` pointwise, then `w = 1`.
   The grid points are dense and `w` is piecewise linear.
-
-The prose of this module was written by Claude (Anthropic).
 -/
 
 namespace GroupApproximation.TypeA2

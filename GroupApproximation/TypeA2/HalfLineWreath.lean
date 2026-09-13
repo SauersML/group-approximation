@@ -17,8 +17,6 @@ the conjugates `wreathConj i = t^i a t^{-i}` are supported on the intervals
 * `wreathShift_zpow_out`: for `n ≠ 0`, `t^n` maps `[1, 4]` into `(-∞, 1] ∪ [4, ∞)`.
 * `conj_zpow_wreathLamp_fix`: for `i ≠ j`, `t^i a^e t^{-i}` fixes `t^j [1, 4]` pointwise.
 * `zpow_wreathLamp_two_ne`: for `e ≠ 0`, `a^e` moves `2`.
-
-The prose of this module was written by Claude (Anthropic).
 -/
 
 namespace GroupApproximation.TypeA2

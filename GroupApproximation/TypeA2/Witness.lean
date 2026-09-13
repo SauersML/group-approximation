@@ -19,8 +19,6 @@ every interval `[n, n + 1]` as the copy in `compactF 0 1` of the lamp or of the 
 * `WitnessGroup` is `geoF 0 ⋊[coverConj (geoF 0) witnessPhi _] FreeGroup (Fin 2)`;
 * `WitnessSet` is the set of positive dyadics, with the cover action
   `(γ, h) · x = γ (witnessPhi h x)`.
-
-The prose of this module was written by Claude (Anthropic).
 -/
 
 namespace GroupApproximation.TypeA2
