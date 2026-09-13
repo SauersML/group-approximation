@@ -65,11 +65,23 @@ holds for `E_2`. This is part 2.
 **Step 5: part 4 in `B`.** Run Step 4 with Toms's Proposition 4 data, as in
 Toms's Theorem 5 and in Step 3 of the artifact of
 `toms-schubert-algebra-fails-o6-plus`.
-- Compress `x` by the top-branch projection `E_(n,m)`. By Proposition 4(5), this
-  costs at most `sqrt(eta_m)` in uniform 2-norm.
-- The compressed map vanishes at some `x_0 in X_n`, by Step 2 on the old
-  topological branch.
-- The trace `tau_(x_0)` has `mu({x_0}) >= delta`. The fibre fraction is at least
-  `delta w/(2 k d_r)`, since `rank q_n / rank s_n >= delta`.
-- So `tau((E_1^(n) - c*c)^2) >= delta^2 w/(2 k d_r)`, and the triangle
-  inequality gives the bound. Square.
+- Put `F_i = psi_(m,n)(E_i)` and `G_i = E_(n,m) F_i E_(n,m)`, the top-branch
+  pushforwards, and `y_n = F_2 x F_1`.
+- Compress **on the left** by the top-branch projection `E_(n,m)`:
+  `c = E_(n,m) y_n = G_2 x F_1`, as in Step 3 of the o6-plus artifact.
+- Then `y_n* y_n - c* c = F_1 x* (F_2 - G_2) x F_1`. Its uniform 2-norm is at
+  most `sqrt(eta_m)`, because `F_2 - G_2` is a projection of trace at most
+  `eta_m` (Proposition 4(5)).
+- A two-sided compression `G_2 x G_1` would cost up to `5 sqrt(eta_m)`, which
+  only changes the constant.
+- `G_2 x G_1` is a bundle map between the old topological pushforwards. By Step 2
+  it vanishes at some `x_0 in X_n`. There the compression of `F_1 - c*c` to
+  `G_1(x_0)` is the identity, so `Tr(A^2) >= Tr((P A P)^2)` gives
+  `tr((F_1 - c*c)(x_0)^2) >= tr(G_1(x_0))`.
+- The trace `tau_(x_0)` has `mu({x_0}) >= delta`, and the fibre fraction of
+  `G_1` is at least `delta w/(2 k d_r)`, since `rank q_n / rank s_n >= delta`.
+- So `tau((F_1 - c*c)^2) >= delta^2 w/(2 k d_r)`, and the triangle inequality
+  gives the bound. Square.
+- Reviewed by ex-verify2-analysis (PASS;
+  `research/artifacts/ex-review2-analysis-2026-09-13-part2.md` §2.9), with this
+  left-compression wording fix.
