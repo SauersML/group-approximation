@@ -32,6 +32,7 @@ A finitely presented infinite simple group `S` with a nontrivial realization
 | Class | Mechanism | Node |
 |---|---|---|
 | contain Thompson's `V` | the fixed-point character is trivial plus regular (Dudko--Medynets), so `rho` is free off its fixed set, so `V` is amenable | `stabilizer-rigid-groups-avoid-amenable-orbit-full-groups` |
+| have no proper characters (purely infinite `A(G)`, Dudko--Medynets compressible groups, `T` given simplicity) | as in the first row, using Gardella--Tanner and Dudko--Medynets 2.9 and 2.10 | `no-proper-character-groups-avoid-amenable-orbit-full-groups` |
 | have property (T) | Følner indicators are almost invariant, so orbits are finite a.e. | `kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf` |
 | be non-amenable with only trivial ergodic IRS | free off its fixed points, then amenable | `irs-rigid-nonamenable-groups-avoid-amenable-orbit-full-groups` |
 | live in the full group of a subshift with periodic approximations | generators fix finite orbits of the SFT neighbourhood | `periodic-approximable-subshifts-host-no-fp-simple-group` |

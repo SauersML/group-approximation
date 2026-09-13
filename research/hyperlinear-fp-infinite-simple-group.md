@@ -59,11 +59,17 @@ Preferred strengthenings, in order: `S` torsion-free; `S` sofic.
   simple group realized there is sofic
   (`hyperlinear-fp-simple-via-amenable-orbit-full-group`).  No amenability of
   the group is needed.
-  - Dead inside this certificate: every group containing `V`
-    (`stabilizer-rigid-groups-avoid-amenable-orbit-full-groups`) and every
-    infinite simple Kazhdan group
-    (`kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf`).  A non-amenable
-    realization must have non-free stabilizers off its fixed points.
+  - Dead inside this certificate:
+    - every group containing `V`
+      (`stabilizer-rigid-groups-avoid-amenable-orbit-full-groups`);
+    - every purely infinite alternating full group and Thompson's `T`
+      (`no-proper-character-groups-avoid-amenable-orbit-full-groups`);
+    - every infinite simple Kazhdan group
+      (`kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf`);
+    - every IRS-rigid non-amenable group
+      (`irs-rigid-nonamenable-groups-avoid-amenable-orbit-full-groups`).
+
+    A non-amenable witness must have a nontrivial ergodic invariant random subgroup.
   - Two live instances, each waiting on one open finite-presentation claim:
     Labbé's Wang shift (`fp-simple-amenable-orbit-via-labbe-shift`, gated by
     `labbe-shift-derived-full-group-is-finitely-presented`) and the Penrose

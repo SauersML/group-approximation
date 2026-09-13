@@ -73,9 +73,17 @@ presentation, which is open.
   character or IRS classification for them is recorded here. A realization would
   give a character `g -> mu(Fix g)` below `1` off the identity, so a character
   rigidity theorem of type (CR) would kill them as it kills V.
-- **Thompson's T and Lodha's finitely presented simple circle groups.** Not
-  checked. They contain F, so the non-amenability step is available, but no
-  character classification for them is recorded here.
+- **Thompson-like groups that need not contain V.** Dead:
+  `no-proper-character-groups-avoid-amenable-orbit-full-groups`.
+  - It covers every alternating full group of a minimal, purely infinite, essentially
+    principal Cantor groupoid, through Gardella--Tanner's corollary that such groups have
+    no proper characters.
+  - It covers every simple non-amenable group with a Dudko--Medynets compressible action.
+  - It covers Thompson's `T`, given its classical simplicity, through Dudko--Medynets
+    Theorem 2.10 with `R = F'`.
+- **Lodha's finitely presented simple circle groups.** Not checked. Compressibility in
+  the Dudko--Medynets sense is plausible for their piecewise projective actions, but it
+  was not verified.
 - **Interval and polygon exchange groups.** Every countable group of them with
   translations in an essentially free countable abelian group lies in some
   `W(Lambda ~ X)`, so it is sofic. No finitely presented infinite simple subgroup
