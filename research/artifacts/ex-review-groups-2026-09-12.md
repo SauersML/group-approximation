@@ -143,6 +143,12 @@ every group.
   vertex-rounding obstructions for Kun–Thom wreaths and the Fournier–Facio vertex (ex-q34-kt-double). These
   are reformulations only. Part 9.
 
+- **§10, Atiyah base change under the determinant conjecture (~01:45 CDT).** Lanes after the 01:14 reassignment:
+  ex-fp-simple-sofic, ex-kazhdan-simple-hyperlinear, ex-left-orderable-nonsofic, ex-thompson-v-soficity,
+  ex-determinant-monster, ex-atiyah-torsion-free, ex-free-objects (not presentations), and the fp-kazhdan,
+  fp-simple, q34-kt-wreath-soft-kernel and atiyah-base-change-td2 refills. PASS on the one-variable
+  resultant–Minkowski theorem and its transcendence-degree-one extension. Part 10.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -154,3 +160,4 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part7.md`: §7, L²-acyclicity, amenable-orbit full groups, weak models, Atiyah base change.
 - `research/artifacts/ex-review-groups-2026-09-12-part8.md`: §8, KMS stop-relation repair, mixing transfer, doubles, Brin–Thompson, killers, PSL limits.
 - `research/artifacts/ex-review-groups-2026-09-12-part9.md`: §9, compression stability and vertex rounding.
+- `research/artifacts/ex-review-groups-2026-09-12-part10.md`: §10, Atiyah base change under the determinant conjecture.
