@@ -115,6 +115,22 @@ are dropped: `explicit-eighteen-relator-nonsofic-group`, `explicit-sixty-relator
 owner lanes: kt-wreath-soft-kernel, fp-simple-full-group-obstruct, fp-kazhdan-titz-witzel, left-orderable-nonsofic
 and weak-sofic-classical-covering.
 
+**Wave 2 (added by the coordinator; parts 5--7).**
+
+| item | verdict | part |
+|---|---|---|
+| `strict-one-sided-compression-forces-infinite-bi-index` (unrouted old node; route landed by ex-complexity-sofic-amplifier) | PASS on (SCI1)--(SCI6); review line landed (bcdb57e42b); cairn why on MSI: target and both amplifier claims ESTABLISHED | 5 §§1--2 |
+| ex2-free-wreath-amenable-sofic (5) | PASS | 5 §3 |
+| ex2-labbe-quantum-rigidity (2), ex2-labbe-relation-climbing (1) | PASS | 6 §1 |
+| ex2-radu-chain-lamp-positive (1), ex2-radu-superstrong-negative (2) | PASS, one reading note | 6 §2 |
+| ex2-sl3z-cocompact-weak-containment (3) | PASS; Ioana and Popa checked against the PDFs | 6 §3 |
+| ex2-dyadic-vertex-action (3) | PASS | 6 §4 |
+| ex2-weak-sofic-affine-targets (3), ex2-weak-sofic-bounded-factors (1) | PASS | 7 §1 |
+| ex2-triangle-persistence (6) | PASS; spectral-gap certificates rerun on MSI | 7 §2 |
+
+**Wave-1 correction.** Six part-4 items already had PASS verdicts in ex-verify-groups parts whose headings do not name
+the id (part 5 §0). Part 4 is a second pass on each.
+
 **Still unreviewed, found on the way.** `hyperbolic-kazhdan-cover-of-leavitt-unit-group` and
 `hyperbolic-kazhdan-group-has-infranormal-kazhdan-subgroup` (consumed by the dichotomy), and
 `chordal-abelian-graph-products-hs-stable` (consumed by the Thompson F HS equivalence): I found no PASS for them in the
