@@ -8,7 +8,11 @@ distinct_from:
   baumslag-char-zero-metabelian-group-is-not-self-similar: that obstructs every state-closed action of one metabelian group; this constructs a faithful transitive state-closed action of the three-strand braid group.
 ---
 
-**ESTABLISHED (unreviewed).** Call a group `G` *self-similar* when it has a
+**ESTABLISHED.** Review PASS by z-verify-groups at 822b3ac5f2
+(`research/artifacts/zp-review-groups-2026-09-13-part2.md` §10, landed d228d90964).
+A novelty check is pending.
+
+Call a group `G` *self-similar* when it has a
 faithful action on the rooted `d`-regular tree `T_d`, for some `d >= 2`, whose
 image is state-closed: every section of every element lies in the image
 (Zaremsky's definition, arXiv:2405.09722; Nekrashevych, *Self-similar groups*,

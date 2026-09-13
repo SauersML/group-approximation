@@ -8,7 +8,11 @@ distinct_from:
   braid-groups-on-at-most-three-strands-are-self-similar: that constructs self-similar actions for n <= 3, where B_3 / Z(B_3) = PSL_2(Z) has a dense commensurator; this shows the construction cannot exist once n >= 4.
 ---
 
-**ESTABLISHED (unreviewed), through a cited rigidity theorem.**
+**ESTABLISHED, through a cited rigidity theorem.** Review PASS by
+z-verify-groups at 822b3ac5f2 (`research/artifacts/zp-review-groups-2026-09-13-part2.md`
+§10, landed d228d90964). Its wording fix, restating step 2 of the joint-core
+argument with subgroups, is applied in the route. A novelty check is pending.
+The finite-index-subgroup scope remark below was added after the review.
 
 For every `n >= 4` and every `d >= 2`, every homomorphism `B_n -> Aut(T_d)`
 with state-closed image has nontrivial kernel. So `B_n` is not self-similar in

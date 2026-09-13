@@ -38,9 +38,13 @@ finite family of virtual endomorphisms with trivial joint core.
 the `n` for which `B_n` is self-similar. The answer claim is
 `braid-group-self-similar-iff-at-most-three-strands`:
 - `B_1`, `B_2`, `B_3` are self-similar, established in
-  `braid-groups-on-at-most-three-strands-are-self-similar` (unreviewed);
+  `braid-groups-on-at-most-three-strands-are-self-similar`;
 - `B_n` with `n >= 4` is not, in
   `braid-groups-on-four-or-more-strands-are-not-self-similar`.
+
+Both halves passed review (z-verify-groups, landed d228d90964,
+`research/artifacts/zp-review-groups-2026-09-13-part2.md` §10). A novelty
+check is pending, so no first-answer wording yet.
 
 **Part 2.** "Say, finitely presented" appears twice. The root takes the
 strongest reading: a finitely presented residually finite group embedding in no

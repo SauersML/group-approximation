@@ -67,13 +67,18 @@ Let `H <= G` have finite index, let `f : H -> G` be a homomorphism, and put
 
 *Proof.* `f(L)` is central, so `[L,L] <= ker f`. Put `H_0 = core_G(H)` and
 `X = [L,L] ∩ H_0`, which is normal in `H`. Its `G`-conjugates are finitely
-many and each is normal in `H_0`. Let `M_f` be their intersection. Applying
-Lemma A inside `pi(H_0)`:
-- `[pi L, pi L] != 1`;
-- `[[pi L, pi L], pi H_0] != 1`, so `pi(X) != 1`;
-- the iterated commutator of the conjugates of `pi(X)` is nontrivial.
+many and each is normal in `H_0`. Let `M_f` be their intersection. It is normal in
+`G`, and `f(M_f) = 1` because `M_f <= X <= [L,L]`. To see `pi(M_f) != 1`, argue
+with subgroups:
+- `pi(L)` and `pi(H_0)` are nontrivial normal subgroups of `pi(H)`, so
+  `pi([[L,L],H_0]) = [[pi L, pi L], pi H_0] != 1` by Lemma A. Also
+  `[[L,L],H_0] <= X`, so `pi(X) != 1`.
+- Write the conjugates as `X_1, ..., X_m`. Each is normal in `H_0` with
+  `pi(X_j) != 1`. The iterated commutator subgroup
+  `C = [...[X_1,X_2],...,X_m]` lies in `M_f`, and
+  `pi(C) = [...[pi X_1, pi X_2],...,pi X_m] != 1` by Lemma A inside `pi(H_0)`.
 
-Its preimage commutator lies in `M_f`. `∎`
+So `pi(M_f) != 1`. `∎`
 
 **(b)** If `pi(L) = 1`, put `W = H ∩ ker e`. Then:
 - `pi` is injective on `W`;
@@ -109,10 +114,18 @@ This is the Dantas–Santos–Sidki correspondence (arXiv:2004.08941).
 and (b).
 1. Put `H* = core_G(∩ H_i)`, and let `N_a` be the intersection of the `M_(f_i)`
    over `i` of kind (a), or `G` if there are none.
-2. Put `M = [H*,H*] ∩ N_a`. It is normal in `G`, and `pi(M) != 1`: by Lemma A
-   the iterated commutator of `pi(H*)`, `pi(H*)` and the `pi(M_(f_i))` is
-   nontrivial, and its lift lies in `M`. Since `M <= [G,G]`, `pi` is injective
-   on `M`.
+2. Put `M = [H*,H*] ∩ N_a`, a normal subgroup of `G`. To see `pi(M) != 1`,
+   argue with subgroups. Put `X = [H*,H*]` and `Y = N_a ∩ H*`, both normal in
+   `G`.
+   - `pi(X) = [pi H*, pi H*] != 1` by Lemma A, since `pi(H*)` is a nontrivial
+     normal subgroup of `Q`.
+   - `pi(Y) != 1`. The iterated commutator subgroup
+     `C = [...[H*, M_(f_1)],...,M_(f_r)]` over the kind-(a) indices lies in `Y`
+     (or put `C = H*` if there are none), and
+     `pi(C) = [...[pi H*, pi M_(f_1)],...,pi M_(f_r)] != 1` by Lemma A.
+   - `[X,Y] <= X ∩ Y <= M`, and `pi([X,Y]) = [pi X, pi Y] != 1` by Lemma A.
+
+   So `pi(M) != 1`. Since `M <= [G,G]`, `pi` is injective on `M`.
 3. `A = pi(M)` is normal in `Q`. Put `Q_0 = core_Gamma(Q)`. The distinct
    `Gamma`-conjugates `gamma A gamma^-1` are finitely many. Each meets `Q_0` in
    a subgroup normal in `Q_0`, which is nontrivial by Lemma A, as it contains
