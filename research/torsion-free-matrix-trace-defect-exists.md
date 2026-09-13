@@ -46,6 +46,14 @@ support of `a` generates a finitely generated subgroup carrying the same witness
   `selfless-projection-traces-equal-k0-trace-image`. The Fournier--Facio group is in none of these
   classes as far as main records. It is minimally almost periodic and finitely generated, hence not
   linear, and whether it is acylindrically hyperbolic is not recorded.
+- **Higher Kazhdan projections, the reduced analogue of Kazhdan projections.**
+  `reduced-higher-kazhdan-projection-kk-witness`: a torsion-free group of type `F_(n+1)` whose degree-`n`
+  Laplacian has a reduced spectral gap and a non-integer `β^n_(2)` is a witness, and it also refutes
+  Strong Atiyah and Baum--Connes. Over groups with surjective assembly every gapped trace lies in
+  `Λ^G` (`lueck-surjective-assembly-traces-lie-in-lambda-g`). So the irrational lamplighter values,
+  over a-T-menable groups, are never spectrally isolated.
+- **Scalar commutators.** `scalar-unitary-commutators-force-k0-trace-values`: unitaries in
+  `M_n(C*_r Γ)` with commutator `exp(2πiθ)` and `nθ ∉ Z` are a witness with no spectral gap in it.
 - **Gapped Atiyah failures and lattice transfer.** Corollary C of
   `fractional-matrix-trace-gives-projection-in-g-star-z` supplies two shapes: an algebraic
   matrix with non-integer kernel dimension and spectrally isolated kernel, or a complex as in
