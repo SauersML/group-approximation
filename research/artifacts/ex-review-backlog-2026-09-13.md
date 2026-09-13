@@ -112,7 +112,7 @@ parts 1--2.
 | `sl3-polynomial-congruence-subgroups-have-large-b2` | hs-instability-kazhdan | PASS as a conditional (Soulé's fundamental domain named, not imported); computation not re-run | 7 §33 |
 | `relator-width-over-towers-of-bounded-commutator-width`, and hence `simple-nonsofic-relator-width-over-iterated-wreath-products` | weak-sofic-deep-wreath | PASS | 7 §34 |
 | `simple-nonsofic-width-over-towers-with-symmetric-levels` | weak-sofic-deep-wreath | PASS | 8 §35 |
-| dependency: `binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` computes established (the equivalence itself not re-derived) | — | graph check | 8 §36 |
+| dependency: `binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` computes established (the equivalence itself not re-derived) | — | graph check; the same chain trace is in `review-swarm4-2026-09-12.md` §44.6. ex-nh-dyadic-pair restored item 4 as a `requires` edge (788e40557) | 8 §36 |
 
 No FAIL on a claim that decides a famous problem. No false establishment found.
 
