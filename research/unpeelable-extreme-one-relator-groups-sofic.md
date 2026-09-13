@@ -105,6 +105,8 @@ remainder is [[no-magnus-envelope-one-relator-groups-sofic]], routed by
    (`research/artifacts/or-length15-residue-2026-09-13.md`).
 
    The remaining class is `AAttATaTAttaaTT`, with level exponent sums
-   `[-3,1,1]`. It has no certificate at index `<= 12`, and none of its 7 images of
-   length `<= 17` has one at index `<= 10`. A finite census cannot establish the
-   claim, so it stays OPEN.
+   `[-3,1,1]`. It has no certificate at index `<= 12`. None of its 7 images of
+   length `<= 17` has one at index `<= 12`, and none of its 6 images of length
+   18–19 has one at index `<= 11`. Row 16 has the same exponent sums and is
+   certified at index 12, so the sums are not an obstruction. A finite census
+   cannot establish the claim, so it stays OPEN.

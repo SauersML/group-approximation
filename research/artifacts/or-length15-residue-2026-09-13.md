@@ -10,9 +10,10 @@ with free kernel of finite rank, so `H ≅ F_n ⋊ Z`. For 28 classes the
 certificate lives on the original relator. For row 18 it lives on a Nielsen
 image of the relator, which presents the same group. Every certificate was
 re-checked from scratch by an independent verifier. The last class, row 29,
-has no certificate in covers of index `≤ 12`, and its Nielsen images of length
-`≤ 17` have none in covers of index `≤ 10`. No root is marked ESTABLISHED on
-the strength of a finite census.
+has no certificate in covers of index `≤ 12`. Its Nielsen images of length
+`≤ 17` have none in covers of index `≤ 12`, and those of length 18–19 have
+none in covers of index `≤ 11`. No root is marked ESTABLISHED on the strength
+of a finite census.
 
 ## 1. The residue
 
@@ -216,10 +217,13 @@ Open: row 29.
   - At index 12, 28 of 116 characters pass it, but none has a collapsing
     representative with `RPOT = 1`.
   - None of its 7 Nielsen images of length `≤ 17` has a certificate at
-    index `≤ 10`. One of them, `AATTaaTAtATaatt`, also has none at index
-    `≤ 12`: 12 characters pass the monic filter and none collapses.
+    index `≤ 12`. At index 12, 8–26 characters per image pass the monic
+    filter, and none collapses with `RPOT = 1`.
   - `images.py 19` finds 6 more images, of length 18–19 (`images29_19.out`,
-    `words29img19.txt`). None has a certificate at index `≤ 8`.
+    `words29img19.txt`). None has a certificate at index `≤ 11`. One of them,
+    `AAATATaatatAATataT`, also has none at index `≤ 12`. The index-12 runs of
+    the other five, and the index-13 run on the original relator, were stopped
+    before they finished. Their results are not claimed.
   - Row 16 has the same `δ` and is certified at index 12 (`S = 17`, `F_74`),
     so this `δ` is not an obstruction.
 - **No obstruction isolating row 29 has been identified.** A certificate is
@@ -245,6 +249,9 @@ directory on `PYTHONPATH`. All runs used Python 3.11 on MSI.
     ./sweep.sh words1829img.txt vimg12 12 1 2 14 9   # images at index 9..12 -> certsimg12.txt
     python3.11 verify.py certsimg12.txt > verifyimg12.out  # 2 VERIFIED (row 18 images)
     python3.11 imgpath.py 17 AAtatATTattaaTT AATATaTAAtaTatat ATATTatatAtaTTAt > imgpath18.out  # PATH_OK x2
+    python3.11 images.py 19 AAttATaTAttaaTT > images29_19.out  # row 29: 13 images; the 6 new ones -> words29img19.txt
+    ./sweep.sh words29img19.txt vimg19 8 1 2 10                # index <= 8: no CERT
+    ./sweep.sh words29img19.txt vimg19b 12 1 2 6 9             # index 9..11: no CERT; index 12 finished on 1 word, no CERT
     python3.11 verify.py negcert.txt                 # 2 FAIL
     python3.11 vfib.py atataTAAT 1 1 2               # positive control
     python3.11 vfib.py taTAA 6 1 2                   # no CERT
