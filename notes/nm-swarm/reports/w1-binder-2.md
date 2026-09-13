@@ -125,3 +125,17 @@ Lead item 17:5x: prove the scan residual over the named premise OsinLemma94SameC
 - 18:06 incident, recorded: my free-name check ran in parallel with the Write of `OsinUnboundSameCellCycle` and reported
   the file as taken. Checked: not on origin, in no `lanes/*.files`, not in landed.log, the attic or any backup, and the
   local mtime equals my Write. It was a race against my own file, and no peer bytes were overwritten.
+
+CLAIM osinLemma94SameCellPocketInput GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketProof.lean
+
+Lead item 18:4x: prove the (C) pocket binder `OsinLemma94SameCellPocketInput`. Its owner fff-periodic has been down since
+17:56. Checked 18:4x: every file in `lanes/fff-periodic.files` equals origin, and its drafts directory holds only land
+messages, probe logs and a 14:22 fragment, so there is no green unlanded draft to land under its evidence.
+
+Hand model test of the clause:
+- Spur `x x⁻¹` inside the cell: the pocket is empty (`m = 0`), so the value is 1.
+- Bubble around a `G`-face `g`: the pocket reads `g`, so the value is 1.
+- Relator cell in the pocket: least area plus clause (b) of Lemma 9.7 on the pocket, with fewer relator cells, gives a
+  cell with contiguity degree above `1 − 13μ` to the pocket word. That word is a subword of the cell's relator, which
+  contradicts the small-piece clause, or a cancelling pair against least area.
+- Orientation is load-bearing. With the reverse dart oriented instead, the pocket from `d` would contain the exterior.
