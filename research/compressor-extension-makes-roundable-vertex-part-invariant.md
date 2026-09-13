@@ -43,6 +43,16 @@ A projection `p ∈ R` is *roundable* if the corner representation `γ -> pσ(γ
 - **One compressor.** The theorem applies to `V_A = <Γ, A>`. At the exact-vertex wreath models of
   `one-compressor-wreath-has-models-with-exact-origin-vertex`, `p_max = 1`.
 
+**Threshold criterion** (artifact §6). Define `d(σ)` as the infimum of
+`max_s ||σ(s)x - xσ'(s)||_2/||x||_2` over genuine-coordinate models `σ'` and nonzero `x`.
+- **Kazhdan dichotomy.** Either `d(σ) = 0`, and `σ|Γ` has a roundable corner, or `d(σ) >= κ`. The proof takes an
+  invariant vector of `y -> σ(γ)yσ'(γ)^*` and its polar part.
+- **At the actor.** With `gcd(r, q-1) = 1`, (H1) holds at every trace-preserving `G`-model iff `d(σ) < κ` at every
+  one: the totally non-roundable summand is again a model.
+- **Wreath models.** Every trace-preserving wreath model has `d(σ) >= κ`.
+- **Both branches are now threshold statements.** A proof needs one almost-intertwiner below `κ` in each model. A
+  counterexample needs a model `κ`-far from every genuine-coordinate model.
+
 **What extension buys here, and what not.** Extension by compressors makes roundability an actor-invariant
 property. Nothing here produces a rounding or decides whether totally non-roundable `G`-models exist.
 

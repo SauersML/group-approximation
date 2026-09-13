@@ -99,3 +99,37 @@ Suppose `σ` is trace-preserving, and every non-central conjugacy class of `H` i
    `one-compressor-wreath-has-models-with-exact-origin-vertex`, `p_max = 1`.
 4. **What it does not do.** It produces no rounding, and it does not decide whether totally non-roundable
    `G`-models exist.
+
+## 6. A threshold criterion: rounding needs one almost-intertwiner below the Kazhdan constant
+
+Let `σ : Γ -> U(M)` be any homomorphism. Call `σ'` a *genuine-coordinate* model if `σ' = (π_n)_U`, with each `π_n`
+a genuine representation on `C^(n'_n)`, and `n'_n/n -> 1`. Put `M' = prod_U M_(n'_n)`, and use rectangular
+matrices `x = (x_n)_U`, with `x_n ∈ M_(n, n'_n)` and `sup ||x_n|| < ∞`. Define the *intertwining defect*
+
+```text
+d(σ)  =  inf over genuine-coordinate σ' and x ≠ 0 of   max_(s ∈ F_Γ) ||σ(s) x - x σ'(s)||_2 / ||x||_2 .
+```
+
+**Lemma C (Kazhdan dichotomy).** Either `d(σ) = 0` and `σ|Γ` has a nonzero roundable corner, or `d(σ) >= κ`.
+- Suppose `d(σ) < κ`. Pick `σ'` and `x` with defect `< κ||x||_2`. The unitary representation
+  `ρ(γ)y = σ(γ) y σ'(γ)^*` on `L²(M, M')` then almost has invariant vectors below the Kazhdan threshold. So it has a
+  nonzero invariant vector `ξ`.
+- Let `ξ = v|ξ|` be the polar decomposition. The spectral projections of `|ξ|` lie in `σ'(Γ)' ∩ M'`, and `v`
+  intertwines `σ'` with `σ` on a nonzero projection. So `vv^* ∈ σ(Γ)' ∩ M` is a corner conjugate to a corner of the
+  genuine-coordinate `σ'`, and it is roundable by Lemma A items 1 and 2.
+- Conversely, a roundable corner gives an intertwiner, hence `d(σ) = 0`.
+
+**Corollary D.** Assume `gcd(r, q-1) = 1`. Then (H1) holds at every trace-preserving `G`-model iff `d(σ) < κ` for
+every trace-preserving `G`-model `σ`.
+- The forward direction is immediate.
+- For the converse, apply the hypothesis to the summand `σ_nr` of §3. It is a trace-preserving `G`-model (§4), and
+  if it is nonzero it has a roundable corner, contradicting total non-roundability. So `p_max = 1`.
+
+**Reading.**
+- **Both outcomes become threshold statements.** A proof of (H1) at actor models needs, in each model, a single
+  almost-intertwiner with a genuine-coordinate model, of defect below `κ` rather than tending to `0`. A
+  counterexample needs a model at intertwining distance `>= κ` from every genuine-coordinate model.
+- **Wreath models are at distance `>= κ`.** By §5.2, `d(σ) >= κ` at every trace-preserving wreath model of `G`.
+- **The obvious candidate does not work.** Regular representations of fixed congruence quotients carry intertwiners
+  only on vectors fixed by fixed-level congruence kernels, which have zero trace at regular models
+  (`theorem-e-congruence-projections-vanish-at-regular-trace`). A candidate `σ'` must use escaping levels.
