@@ -39,7 +39,9 @@ so it is nonsofic. Păunescu Theorem 1.5 moves nonsoficity to `W`, and Howe--Moo
 No fixed-point algebra of a Kazhdan subgroup is used, so the blindness theorem does not apply.
 
 **What it does not give.** No lattice of a Howe--Moore group outside `𝒮` is recorded, so no
-unconditional mixing example follows. Transfer between two different lattices of `H` needs soficity of
-relations to pass to restrictions and amplifications, which is not done here.
+unconditional mixing example follows. For a *different* lattice of `H`:
+`paunescu-class-is-measure-equivalence-invariant` puts all lattices of one lcsc group inside or
+outside `𝒮` together, and the dichotomy above then gives each of them a free mixing nonsofic action.
+So in a Howe--Moore group, one lattice outside `𝒮` gives every lattice a mixing witness.
 
 Proof in `howe-moore-lattice-nonsofic-action-transfers-to-mixing-proof`.

@@ -31,6 +31,7 @@ nonsofic action, answering `mixing-free-nonsofic-action-of-sofic-group`.
   crossed product (`permutation-centralizer-blind-to-weakly-mixing-actions`). Not needed anyway: any seed,
   mixing or not, suffices.
 * **Through `SL_3(Z)`.** An instance: `simple-lattice-nonsofic-action-from-sl3z`.
-* **Transfer between lattices of one `H`.** The coupling `H × Z'` has index `covol(Λ)/covol(Γ)`. If
-  soficity of relations passes to restrictions and amplifications, one lattice outside Păunescu's class
-  puts every lattice of `H` outside it. Not done.
+* **Transfer between lattices of one `H`.** Done: `paunescu-class-is-measure-equivalence-invariant`
+  shows the lattices of a Howe--Moore group are all in Păunescu's class or all outside it. So the
+  claim is equivalent to "for some such `H`, every lattice of `H` has a free mixing nonsofic action".
+  The choice of lattice is free, e.g. a cocompact torsion-free one, but the choice of `H` is not.

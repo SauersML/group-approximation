@@ -39,8 +39,10 @@ every finite-index subgroup of `SL_3(Z)` and every group commensurable with it.
   nonsofic action iff it has a free mixing one, `SL_3(R) ×_(SL_3(Z)) Z'`. So
   restricting to mixing actions loses nothing. But a mixing witness is most
   naturally proved nonsofic by orbit equivalence to a non-mixing one.
-* **Other lattices of `SL_3(R)`.** A nonsofic action of any lattice of `SL_3(R)`,
-  or of any Howe--Moore lattice, answers the mixing root
-  (`simple-group-lattice-admits-nonsofic-action`). It answers this claim only if
-  soficity of relations passes to restrictions and amplifications, which would
-  make one lattice of `SL_3(R)` outside Păunescu's class put all of them outside.
+* **Other lattices of `SL_3(R)`.** Equivalent to this claim:
+  `paunescu-class-is-measure-equivalence-invariant` shows `SL_3(Z)` has a nonsofic
+  action iff some lattice of `SL_3(R)` does, e.g. a cocompact torsion-free one from
+  a division algebra of degree `3`, iff some group measure equivalent to `SL_3(Z)`
+  lies outside Păunescu's class. A nonsofic action of a lattice of any other
+  Howe--Moore group answers only the mixing root
+  (`simple-group-lattice-admits-nonsofic-action`).
