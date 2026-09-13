@@ -41,6 +41,7 @@ open Classical in
 noncomputable def sameFaceDarts (M : CombMap.{u}) (f : M.Face) : Finset M.Dart :=
   Finset.univ.filter fun d => M.faceOf d = f ∧ M.faceOf (M.alpha d) = f
 
+open Classical in
 theorem mem_sameFaceDarts (M : CombMap.{u}) (f : M.Face) (d : M.Dart) :
     d ∈ M.sameFaceDarts f ↔ M.faceOf d = f ∧ M.faceOf (M.alpha d) = f := by
   unfold sameFaceDarts
@@ -85,11 +86,13 @@ noncomputable def cuttingEntries (P : OsinLemma94RealizedPolygons S) (k : Fin P.
   (P.cuttingSides k).filter fun i =>
     P.kind k ((i + P.sideCount k - 1) % P.sideCount k) ≠ .cutting
 
+open Classical in
 theorem mem_cuttingSides (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) (i : ℕ) :
     i ∈ P.cuttingSides k ↔ i < P.sideCount k ∧ P.kind k i = .cutting := by
   unfold cuttingSides
   rw [Finset.mem_filter, Finset.mem_range]
 
+open Classical in
 theorem mem_cuttingEntries (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) (i : ℕ) :
     i ∈ P.cuttingEntries k ↔ (i < P.sideCount k ∧ P.kind k i = .cutting) ∧
       P.kind k ((i + P.sideCount k - 1) % P.sideCount k) ≠ .cutting := by

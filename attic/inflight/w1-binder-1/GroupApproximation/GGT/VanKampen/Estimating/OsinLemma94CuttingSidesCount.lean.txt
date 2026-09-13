@@ -54,11 +54,13 @@ noncomputable def sameFaceTurns (f : M.Face) : Finset M.Dart :=
   (M.sameFaceDarts f).filter fun y =>
     M.sigma.symm y ∈ M.sameFaceDarts f ∧ M.sigma y ≠ M.sigma.symm y
 
+open Classical in
 theorem mem_sameFaceStarts {f : M.Face} {y : M.Dart} :
     y ∈ M.sameFaceStarts f ↔ y ∈ M.sameFaceDarts f ∧ M.sigma.symm y ∉ M.sameFaceDarts f := by
   unfold sameFaceStarts
   rw [Finset.mem_filter]
 
+open Classical in
 theorem mem_sameFaceTurns {f : M.Face} {y : M.Dart} :
     y ∈ M.sameFaceTurns f ↔ y ∈ M.sameFaceDarts f ∧
       (M.sigma.symm y ∈ M.sameFaceDarts f ∧ M.sigma y ≠ M.sigma.symm y) := by
@@ -269,6 +271,7 @@ noncomputable def continuationSides (P : OsinLemma94RealizedPolygons S) (k : Fin
   (P.cuttingSides k).filter fun i =>
     P.kind k ((i + P.sideCount k - 1) % P.sideCount k) = .cutting
 
+open Classical in
 theorem mem_continuationSides (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) (i : ℕ) :
     i ∈ P.continuationSides k ↔ (i < P.sideCount k ∧ P.kind k i = .cutting) ∧
       P.kind k ((i + P.sideCount k - 1) % P.sideCount k) = .cutting := by
