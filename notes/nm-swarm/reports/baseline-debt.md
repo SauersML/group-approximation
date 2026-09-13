@@ -218,6 +218,56 @@ stands off it.
   - Per the 09-13 ruling, `GGT/DGOProposition435Printed.lean` stays unedited. No census row
     names it, so nothing needs re-grading.
 
+## Census debt outside W1 (merge 17)
+
+Assigned by the team lead at about 13:10 on 09-13. The source is
+`metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt` at census merge 17 (`d0aba6104`), which is
+still the origin copy. The 146 active findings are grouped below by the residual each note
+names. Only text scans were run.
+
+- `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement` (W1): 108 findings.
+  - 85 say "the residual is hgreendlinger".
+  - 23 say "over the least-area leaves". Their other leaf, hbridge, is closed (`18682110d`).
+  - 14 of them also carry the hKO classifier false red, which systolic-counts' verifier fix
+    handles.
+- Lemma 9.4 pieces on nm-endpoints' leaf list (`e3e3dda23`, W1): 30 findings.
+  - Planar pieces and `OsinLemma94PlanarRunInput`: 9.
+  - Polygon realization: 11.
+  - Chain respelling: 8.
+  - Side budget: 2.
+  - 19 of these notes still list five pieces as open that have closed since: CornerInsertionInput,
+    PendantPathRemovalInput, CellArcsInput, BoundaryArcsInput and QuasiGeodesicRespellInput.
+- No residual Prop: 8 findings, all accepted lines.
+  - Not a conditional, 6.
+    - Closed: `HullSC.quotientPeripheralLetterPullbackStatement_holds` and
+      `HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed`.
+    - Lemmas about any cut lift or G-face merge: `HullSC.cutLiftOutcome`,
+      `HullSC.CutLift.toCutMove`, `Surgery.GFaceMerge.facePerm_keep_of_ne` and
+      `Surgery.GFaceMerge.sigma_keep_eq_self`.
+  - Definition premise, 1: `HullTheorem312Lemma58.normalizesNoNontrivialFinite_of_isHyperbolicallyEmbedded`.
+    The premise is DGO Definition 4.25, inside Hull Lemma 5.8's printed hypothesis.
+  - Inlined premise proved in a sibling carrier, 1:
+    `LeavittMFQuotientBothInclusions.elementary_le_commutator_of_trivial` (`thm:full-defect-ring`).
+
+No active finding outside W1 names a residual Prop. Of the 17 partial union rows on origin, 14
+are over hgreendlinger. Each of the other three is partial through one stale lane row:
+
+- LINE:1725 `92115dd7edef`: this lane's old row, moved to LINE:1728 at `a719c860b`. It should
+  clear at the next merge.
+- LINE:1629 `a9dd4b90e479` (Hull Theorem 3.12).
+  - sec5-sentences' row 5 still calls the hard direction of Osin Theorem 1.1 open.
+  - That direction is on origin as `OsinClassification.isAcylindricallyHyperbolicOsin_of_limitSet`
+    (`GGT/OsinLimitSetSpelling.lean:47`), a ∀-statement with no binders, with `#audit_axioms`.
+  - cite-hull's two rows grade the sentence formalized over `printedHullGeneratingSetLimitSet`
+    and `printedHullTheorem312LimitSet` (`#audit_closed_axioms`, root-imported).
+- LINE:1145 `3009704fef89` (EJZ Theorem 1.1).
+  - cite-ejz's row 2 (key LINE:1155) is partial: "First half only; the jacobson row carries
+    the whole sentence".
+  - jacobson's row 26 grades the sentence formalized over
+    `manuscriptSentence_threePlusOneGeneral` (`#audit_closed_axioms`, root-imported), which
+    packages both halves.
+  - No lane of this swarm owns `cite-ejz.tsv`.
+
 ## Next
 
 - Wiring: the root on origin/main imports every module of `296386753`, `dd0412114`,
@@ -229,4 +279,8 @@ stands off it.
   describes, and is graded formalized (request relayed by dgo-geometric). Its `partial` grade
   at 1725 had pulled union row `92115dd7edef` partial.
 - Census row LINE:1682 (partial) records `printedHullLemma35`. Hull Corollary 7.4 and Lemma 5.9
-  use Lemma 3.5. They belong to other lanes. This lane awaits its next assignment.
+  use Lemma 3.5. They belong to other lanes.
+- Census debt outside W1: no Prop group is left to formalize. The pick sent to the team lead
+  is the two stale re-grades: sec5-sentences' LINE:1629 row, and the ownerless cite-ejz
+  LINE:1155 row. This lane edits the cite-ejz row only on the lead's word, and otherwise waits
+  for a W1 leaf.
