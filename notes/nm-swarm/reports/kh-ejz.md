@@ -322,13 +322,30 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
      ```
      Induction step: splitting the walk at a repeated vertex gives two shorter closed walks. Their colourings XOR
      to a colouring for the whole walk, because no dart lies in both parts (`colour_xor_of_exclusive`).
+   - **Model test of (C) and (D) landed** at 15504a498 (green probe 0913-145837-93078): new module
+     `Estimating/OsinPocketColouringModel`, unwired. All declarations are under `#audit_axioms`, and the five named
+     theorems below under `#audit_closed_axioms`.
+     - Pinched two-gon `[5,3,4,6]`: every colouring gives the walk darts one colour (`pinchCycle_orient`), the class is
+       `pinchFaces` (`pinchCycle_colourClass`), and the route gives the pocket boundary cycle
+       (`exists_boundaryCycle_pinchCycle`).
+     - Lake complement `[3,1]` on the two-petal rose: noncrossing (`isNoncrossingClosedWalk_outerCycle`), oriented,
+       and the class is `{Π, O}`, the faces other than `K` (`exists_boundaryCycle_outerCycle`). No edge joins `Π` and
+       `O` (`faceOf_alpha_of_ne`), so the class is not connected in the dual.
+     - Calibration `[0,3]` on the rose: not noncrossing (`crossCycle_not_isNoncrossingClosedWalk`), and some colouring
+       separates its darts (`crossCycle_not_orient`).
+   - **(C) for the pocket is cite-hull's**: `Estimating/OsinPocketWalkColour` (`PocketWalkColourStatement`,
+     `pocketWalkColour`), with its model test `OsinPocketWalkColourModels`. It has a green record at 0913-145855 and is
+     not on main at 09b3b57e4. This lane does not rebuild it.
    - **Residual** for `SectionPocketFaceSetInput`:
+     - (D) assembly (this lane, next). Planarity, the four walk facts and the orientation of every colouring give
+       `IsNoncrossingClosedWalk K.walk`, through `exists_boundaryCycle_of_orient` and hull-respell's
+       `BoundaryCycle.isNoncrossingClosedWalk` (24ff94312). Then `toPocketFaceSetOfNoncrossing` and `_closedWalk`.
      - (iii') `nodup`, `alpha_not_mem`, `chain` and `closes` of `K.walk` on the copy. Copy (a) is closed by
-       hs-vanishes; copies (b) and (c) are with leavitt-units.
-     - (C) for the pocket: `col` is constant on the faces of `x` and of `y`, via `Embedded.selectedFaces_connected` and
-       `mem_iff_of_eqvGen` (internal edges of a region are not walk edges). Model tests on the pinched two-gon
-       `[5,3,4,6]` and on the lake complement `[3,1]` are next.
-     - (ii) the kept cell lies in `U`.
+       hs-vanishes; copies (b) and (c) are with leavitt-units. A search for `walk.IsChain` finds no lemma giving
+       `chain` or `closes` of `K.walk`.
+     - (ii) the kept cell in the side faces. Under the ~14:20 split, `hout` and `hfollows` are hull-select's, `heuler`
+       is hull-euler's and `havoid` is sec2-sentences'. sec2-sentences' `OsinPocketKeptCellAbsorbed` replaces
+       `havoid` by the value condition.
    - When hull-euler's C6 Prop arrives, check it against this output.
 
 ## W1 assignment (2026-09-13 ~03:00)
