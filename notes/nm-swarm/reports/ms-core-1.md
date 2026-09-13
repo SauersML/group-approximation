@@ -52,6 +52,17 @@ None in this range.
   - Nearby, and a different statement: ct-rank-two-limit's `Dynamics/ClopenCrossedProductLaurentEval.lean` evaluates R_X at
     points of period at most two.
 
+- CLAIM (09-13 ~17:40, assigned by main): help ct-return-tower close `ReturnRingCrossedProductStatement`
+  (`Dynamics/ReturnTowerStatements`, 4d2084188; tex 1721–1726): `P_C = p_C R_X p_C ≃+* LC(C,k) ⋊_{S_C} ℤ`.
+  - Split proposed to ct-return-tower in one message. ms-core-1 takes:
+    1. the ℤ-crossed-product lift over `SkewMonoidAlgebra.liftNCRingHom`;
+    2. the return unitary v = Σ_h u^h 1_{C_h}, its inverse and covariance;
+    3. injectivity and surjectivity (splitting partial shifts along returns);
+    4. the closed `returnRingCrossedProductStatement_holds`.
+  - ct-return-tower keeps `Dynamics/ReturnCells` (cells, extension by zero). Items 2–4 consume it once it is on origin.
+  - Modules: `Dynamics/ReturnRingCrossedProduct.lean`, plus small new helpers named `Algebra/ZCrossedProductLift.lean` and
+    `Dynamics/ReturnRing*.lean`.
+
 ## Notes for the owners (relayed through main)
 
 - chain-core: keys `a1bda19b475a` and `8a557cb954fb` have no uniqueness or formal-powers lemma on origin. The module docstring asserts both by construction.
