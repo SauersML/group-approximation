@@ -59,7 +59,10 @@ commuting triples, and these are solutions.
 `d(phi_n(g), id) -> 1` for a fixed `e != g in G_0'`.
 - The triples `(phi_n(a), phi_n(b), phi_n(c))` are `o(1)`-solutions.  By (2) they
   are `o(1)`-close to commuting triples.
-- `g` is a fixed product of commutators of the generators.  Evaluating words is
-  Lipschitz in each letter, so `phi_n(g)` is `o(1)`-close to its value on a
-  commuting triple, which is `id`.
+- Fix a word `w` in `a, b, c` representing `g`.  Its exponent sum in each letter
+  is zero, because `pi(g) = 0` and `pi` is computed by exponent sums on the basis
+  `pi(a), pi(b), pi(c)`.  So `w` evaluates to `id` on every commuting triple.
+- By the area bound, `phi_n(g)` is `o(1)`-close to `w(phi_n(a), phi_n(b), phi_n(c))`.
+  Evaluating `w` is Lipschitz in each letter, so this is `o(1)`-close to the value
+  of `w` on a nearby commuting triple, which is `id`.
 - That contradicts `d(phi_n(g), id) -> 1`. ∎
