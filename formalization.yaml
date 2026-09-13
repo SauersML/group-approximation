@@ -235,7 +235,7 @@ sources:
       sources, v4 of the survey of 2023-10-19 and v1 of arXiv:2201.02308 of
       2022-01-07. research/artifacts/guba-q1-novelty-2026-09-12.md reads the
       citing record an earlier review could not open, Nishinaka's 2022 RIMS
-      Kôkyûroku note, and screens Guba's later papers, the records citing his
+      Kôkyûroku note, and screens Guba's later papers, the records citing Guba's
       2021-2023 papers, the RIMS Kôkyûroku volumes to 2354, and arXiv and
       Crossref searches. No earlier or independent answer was found. The check
       was bounded: zbMATH, Google Scholar and the arXiv API were unreachable,
@@ -295,10 +295,10 @@ sources:
       in this project. Ozawa's preprint arXiv:2609.08892 v1 (2026-09-08
       15:31:26 UTC) independently implies the same answer later: it answers
       Problem X(2), and the trace of the hyperfinite II1 factor is amenable
-      and, by his theorem, not quasidiagonal, although he states no result on
-      X(1). The question, which is N. P. Brown's (Mem. Amer. Math. Soc. 184
-      (2006), no. 865), reads: "Are amenable traces on C*-algebras necessarily
-      quasidiagonal?" The problem was stated in Lean on 2026-08-27
+      and, by Ozawa's theorem, not quasidiagonal, although the preprint states
+      no result on X(1). The question, which is N. P. Brown's (Mem. Amer. Math.
+      Soc. 184 (2006), no. 865), reads: "Are amenable traces on C*-algebras
+      necessarily quasidiagonal?" The problem was stated in Lean on 2026-08-27
       between 06:49:06 and 07:07:05 UTC (2dbea8f73,
       f2e177871, 8a4268878), and the counterexample was proved in this public
       repository on 2026-08-31 at 06:19:37 UTC (4830b808c). On 2026-09-13 the
@@ -1343,7 +1343,7 @@ fidelity:
     into matrix algebras with ||phi_n(ab) - phi_n(a) phi_n(b)||_2 -> 0 in the
     normalized Hilbert-Schmidt norm and tr(phi_n(a)) -> tau(a) for the
     normalized trace; this is condition (2) of Brown's Theorem 3.1.6, an
-    equivalent form of his definition, taken as the definition. A trace is
+    equivalent form of Brown's definition, taken as the definition. A trace is
     quasidiagonal when there are such maps asymptotically multiplicative in
     operator norm, which is Brown's Definition 3.3.1. Complete positivity is
     stated as nonnegativity of every form sum_ij <xi_i, phi(a_i* a_j) xi_j>,
