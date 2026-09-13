@@ -157,3 +157,8 @@ Split as agreed:
   - `transientCellsStatement_holds`, `transientIdealLocallyMatricialStatement_holds`, `transientIdealLocallyMatricialFTwoStatement_holds`, `coreKernelElementaryStatement_holds`, `unitKernelLocallyFiniteStatement_holds`, and `printedInvolutionLocalization_closed`.
   - ms-units drafted the same endpoints and dropped them unlanded (backup only): a duplicate that would also clash with the name `transientCellsStatement_holds`.
   - Row f0c16e5c8519 gets regraded to formalized, naming `transientIdealLocallyMatricialStatement_holds`, after that module lands on main.
+- CLOSED (09-13 ~18:50): ct-involution landed `TransientCells` (0ec08fc2c) and `TransientCellsClosed` (49663bacb); the endpoints carry `#audit_closed_axioms` on origin.
+  - `transientIdealLocallyMatricialStatement_holds` closes lem:transient-matrices' locally matricial clause at every finite field.
+  - `coreKernelElementaryStatement_holds` and `unitKernelLocallyFiniteStatement_holds` close the F_2 kernel clauses of lem:involution-localization.
+  - Rows f0c16e5c8519 and LINE:1689 regraded to formalized.
+  - Residual in ms-units' scope: none.
