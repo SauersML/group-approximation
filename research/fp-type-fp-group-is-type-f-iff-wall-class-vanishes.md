@@ -3,6 +3,8 @@ rg: 2
 id: fp-type-fp-group-is-type-f-iff-wall-class-vanishes
 kind: claim
 title: "A finitely presented group of type FP is of type F iff its Wall class in reduced K_0(ZG) vanishes"
+distinct_from:
+  g-times-z-type-f-iff-finitely-dominated-classifying-space: that packages this criterion together with the G x Z and finite-domination equivalences; this isolates the criterion for finitely presented groups of type FP (F iff FL iff sigma(G) = 0), with no product factor, so it can be consumed by the reduced-K_0 firewall and the product criterion
 ---
 
 Let `G` be finitely presented and of type FP, and let `P_* → Z` be a finite

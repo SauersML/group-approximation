@@ -3,6 +3,8 @@ rg: 2
 id: g-times-z-type-f-iff-g-f-infinity-with-finite-cd
 kind: claim
 title: "G x Z is of type F iff G is of type F_infinity with finite cd iff G is finitely presented of type FP"
+distinct_from:
+  g-times-z-type-f-iff-finitely-dominated-classifying-space: that is the full dictionary, adding the finitely dominated K(G,1) condition and the Wall-obstruction criterion, proved through Wall's and Mather's theorems; this is only the algebraic three-way equivalence, proved by a retract argument and a product resolution, and it is the form the product criterion g-times-h-of-type-f-iff-euler-char-of-h-kills-wall-class generalizes
 ---
 
 For every group `G` the following are equivalent:

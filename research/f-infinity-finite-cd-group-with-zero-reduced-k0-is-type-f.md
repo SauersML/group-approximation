@@ -15,7 +15,14 @@ H. Reich, *The Baum–Connes and the Farrell–Jones conjectures in K- and
 L-theory* (arXiv:math/0402405), read verbatim on 2026-09-13: "For every torsion
 free group G we have K_n(ZG) = 0 for n ≤ −1, K̃_0(ZG) = 0 and Wh(G) = 0." Their
 text says the K-theoretic Farrell–Jones conjecture implies Conjecture 1.1, which
-for `R = Z` is equivalent to Conjecture 1.3.
+for `R = Z` is equivalent to Conjecture 1.3. The same vanishing is Hsiang's
+conjecture. S. Ferry and A. Ranicki, *A survey of Wall's finiteness obstruction*
+(arXiv:math/0008070), p. 5, read verbatim on 2026-09-13: "At present, no example is
+known of a torsion-free infinite group π with K̃_0(Z[π]) ≠ 0. Indeed, Hsiang has
+conjectured that K̃_0(Z[π]) = 0 for any torsion-free group π." Their Theorem 3.1(iii)
+is Wall's criterion: a CW complex is finitely dominated iff its fundamental group is
+finitely presented and the cellular chain complex of its universal cover is chain
+equivalent to a finite complex of finitely generated projectives.
 
 Classes where the K-theoretic Farrell–Jones conjecture is proved, so where
 Problem 1.21 has answer yes for every member of type `F_∞` with finite `cd`

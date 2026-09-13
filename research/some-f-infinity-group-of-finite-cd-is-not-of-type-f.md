@@ -23,6 +23,13 @@ so it answers Problem 1.21 negatively (`zaremsky-1-21-by-no`).
    would give a finite free resolution (type FL). Because `G` is torsion-free,
    proper means free, so `G` has no contractible Rips complex, and `G` also answers
    Problem 4.6 (`zaremsky-4-06-f-infinity-finite-cd-contractible-rips`) negatively.
+5. Through the routes landed by lane z1-21-type-f-proof between
+   `hsiang-reduced-k0-of-torsion-free-group-rings-vanishes` and
+   `reduced-k0-of-universal-fp-torsion-free-tester-vanishes` (unreviewed as of
+   2026-09-13), `K̃_0(ZU) ≠ 0` for the one fixed finitely presented torsion-free group
+   `U` of `higher-whitehead-universal-finitely-presented-torsion-free-group`.
+   No torsion-free group with `K̃_0(Zπ) ≠ 0` is known (Ferry–Ranicki,
+   arXiv:math/0008070, p. 5, read verbatim).
 
 ## Attempts
 
