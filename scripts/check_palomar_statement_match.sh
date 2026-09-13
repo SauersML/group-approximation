@@ -21,20 +21,21 @@
 # fact Comparator checks.
 #
 # WHY SEVERAL PAIRS.  A submission is exactly one Comparator configuration, and
-# this repository offers three -- `Palomar/comparator.json`,
-# `Palomar/comparator-lix.json` and `Palomar/comparator-lix-strong.json` -- so
-# it is submitted once per configuration and each pair has to match on its own.
-# The loops below are over the driver prefixes, empty for the non-MF pair,
-# `LIX` for the LIX pair and `LIXStrong` for the strengthened one, matching the
-# names in `PALOMAR_CONFIGS` and `PALOMAR_PENDING_CONFIGS` in
-# `scripts/check_palomar_submission.py`.  Every pair is run even after one
+# this repository offers several -- the entries of `PALOMAR_CONFIGS` and
+# `PALOMAR_PENDING_CONFIGS` in `scripts/check_palomar_submission.py`, and the
+# original `Palomar/comparator.json` -- so it is submitted once per
+# configuration and each pair has to match on its own.  The loops below are
+# over the driver prefixes: empty for the non-MF pair, `LIX` and `BowenChapman`
+# for the submittable pairs, and `LIXStrong`, `Pestov91` and `TypeA2` for the
+# pending ones.  Every pair is run even after one
 # fails: knowing that both differ is different information from knowing that
 # one does, and a script that stopped at the first would need a second
 # invocation to find out.
 #
-# WHY THE THIRD PAIR IS DIFFERENT.  `Palomar/LIXStrongSolution.lean` proves each
-# selected statement from one proposition the construction still owes, so its
-# theorems carry a hypothesis the challenge's do not and are named `<theorem>_of`.
+# WHY THE PENDING PAIRS ARE DIFFERENT.  A pending solution, and
+# `Palomar/LIXStrongSolution.lean` was the first, proves each selected statement
+# from a proposition the development still owes, so its theorems carry a
+# hypothesis the challenge's do not and are named `<theorem>_of`.
 # Their statements therefore CANNOT match yet, and diffing them would report,
 # every run, a difference that is the honest state of the work.
 #
@@ -43,14 +44,14 @@
 # byte-identically in both files and elaborating to different terms because the
 # solution's environment reaches a Mathlib instance the challenge's does not.
 # `cornerDiag` is in the compared closure of all three theorems, so a difference
-# there is a real Comparator failure.  The strengthened drivers therefore print
+# there is a real Comparator failure.  The pending drivers therefore print
 # the shared block first, then a line reading `pending-boundary:`, then the
 # statements; this script diffs everything up to the boundary and GATES on it,
 # and prints the rest for inspection without gating.
 #
 # The distinction is between a diff that cannot hold yet and a driver that did
 # not run.  A driver that is missing, fails, or produces no report is an ERROR
-# for the pending pair exactly as for the other two: a check that could not read
+# for a pending pair exactly as for the others: a check that could not read
 # its input must not read like a check that passed.
 #
 # It needs a built environment, so it runs after `lake build`, not in the
@@ -120,7 +121,7 @@ done
 # gated -- and the part of the report before `pending-boundary:` must match.
 # The part after it is printed and not gated, because the solution's theorems
 # still carry the outstanding hypothesis.
-for prefix in LIXStrong; do
+for prefix in LIXStrong Pestov91 TypeA2; do
   label="$prefix"
   pair_ok=1
 

@@ -4,7 +4,7 @@
 A Palomar submission is exactly ONE Comparator configuration path, so a
 repository offering two results is submitted twice, once per configuration
 (PalomarRegistry's CONTRIBUTING rules; the kim-em/PalomarSubmission README).
-This repository submits one, listed in `PALOMAR_CONFIGS`, and every check below
+This repository submits every entry of `PALOMAR_CONFIGS`, and every check below
 that is about a submission surface runs once per configuration with the
 configuration path on its finding.  The challenge and solution paths are not
 written down here: they are read out of each configuration's
@@ -159,18 +159,24 @@ PALOMAR_CONFIGS = (
     "Palomar/comparator-bowen-chapman.json",  # the two Bowen-Chapman Problem 1.1 theorems
 )
 
-# Configurations whose SOLUTION is still a skeleton.
+# Configurations whose SOLUTION is still a skeleton: it proves each theorem its
+# configuration selects from a proposition the development still owes, so its
+# theorems carry a hypothesis the challenge's do not, under names ending `_of`.
 #
-# `Palomar/LIXStrongSolution.lean` proves each of the three theorems its
-# configuration selects from `GroupApproximation.NinetyNineProblems.ClimbedPowersOutside`,
-# which follows from the one proposition the construction still owes,
-# `NinetyNineProblems.LemmaTwoHoldsAtPowers` (`climbedPowersOutside_of_lemmaTwoHoldsAtPowers`),
-# so its theorems carry a hypothesis the challenge's do not, under names ending `_of`.
-# That is the honest state of the work and not a defect, so the pair is checked
-# for everything that is meaningful now -- the configuration's shape, the
-# challenge importing Mathlib alone, the size caps, the files existing, the
-# shared block matching between its own two files -- and is excluded from
-# exactly two rules:
+#   * `Palomar/LIXStrongSolution.lean` proves each of its three theorems from
+#     `GroupApproximation.NinetyNineProblems.ClimbedPowersOutside`, which follows
+#     from the one proposition the construction still owes,
+#     `NinetyNineProblems.LemmaTwoHoldsAtPowers` (`climbedPowersOutside_of_lemmaTwoHoldsAtPowers`);
+#   * `Palomar/Pestov91Solution.lean` proves both of its theorems from the
+#     existence of an infinite simple LEF group with property (T);
+#   * `Palomar/TypeA2Solution.lean` proves its theorem from
+#     `GroupApproximation.TypeA2.Question58`.
+#
+# That is the honest state of the work and not a defect, so each such pair is
+# checked for everything that is meaningful now -- the configuration's shape,
+# the challenge importing Mathlib alone, the size caps, the files existing, the
+# `_of` forms being present, the shared block matching between its own two
+# files -- and is excluded from exactly two rules:
 #
 #   * the challenge-versus-solution SIGNATURE comparison, which cannot hold
 #     until the hypothesis is gone;
@@ -186,6 +192,8 @@ PALOMAR_CONFIGS = (
 # summary line says so.
 PALOMAR_PENDING_CONFIGS = (
     "Palomar/comparator-lix-strong.json",  # the three ProblemLIXStrong theorems
+    "Palomar/comparator-pestov91.json",  # the two Pestov Open Question 9.1 theorems
+    "Palomar/comparator-type-a2.json",  # the FFWZ Question 5.8 theorem
 )
 
 # The files `copy_surface` copies and `--self-test` plants defects into.  The
@@ -199,6 +207,11 @@ SURFACE_FILES = (
     "Palomar/comparator-lix-strong.json",
     "Palomar/BowenChapmanChallenge.lean", "Palomar/BowenChapmanSolution.lean",
     "Palomar/comparator-bowen-chapman.json",
+    "Palomar/Pestov91Challenge.lean", "Palomar/Pestov91Solution.lean",
+    "Palomar/comparator-pestov91.json",
+    "Palomar/TypeA2Challenge.lean", "Palomar/TypeA2Solution.lean",
+    "Palomar/comparator-type-a2.json",
+    "Palomar/GubaThompsonChallenge.lean", "Palomar/comparator-guba-thompson.json",
     "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
     "formalization.yaml",
 )
@@ -823,6 +836,25 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "`exists_finitelyGenerated_surjunctive_not_sofic`: the compared signature diverges"),
     ("bowen-chapman comparator permitting a fourth axiom",
      "Palomar/comparator-bowen-chapman.json: permitted_axioms"),
+    # The Pestov 9.1 surface, pending: the same four rules as the strengthened
+    # LIX surface.
+    ("pestov91 challenge with a project-local import",
+     "Palomar/Pestov91Challenge.lean:1:"),
+    ("pestov91 shared block edited on one side",
+     "Palomar/comparator-pestov91.json: shared block diverges"),
+    ("pestov91 solution missing an `_of` form",
+     "does not declare `exists_infinite_simple_propertyT_sofic_of`"),
+    ("pestov91 comparator permitting a fourth axiom",
+     "Palomar/comparator-pestov91.json: permitted_axioms"),
+    # The FFWZ Question 5.8 surface, pending.
+    ("type-a2 challenge with a project-local import",
+     "Palomar/TypeA2Challenge.lean:1:"),
+    ("type-a2 shared block edited on one side",
+     "Palomar/comparator-type-a2.json: shared block diverges"),
+    ("type-a2 solution missing an `_of` form",
+     "does not declare `exists_isTypeA2_quotient_not_isFinitelyPresented_of`"),
+    ("type-a2 comparator permitting a fourth axiom",
+     "Palomar/comparator-type-a2.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("nine arXiv classes", "one to eight distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
@@ -909,6 +941,42 @@ def plant(name: str, root: Path) -> None:
             "theorem exists_finitelyGenerated_surjunctive_not_sofic : True →", 1))
     elif name == "bowen-chapman comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-bowen-chapman.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
+    elif name == "pestov91 challenge with a project-local import":
+        path = root / "Palomar" / "Pestov91Challenge.lean"
+        path.write_text(
+            "import GroupApproximation.Pestov91.Assembly\n"
+            + path.read_text())
+    elif name == "pestov91 shared block edited on one side":
+        path = root / "Palomar" / "Pestov91Solution.lean"
+        path.write_text(path.read_text().replace(
+            "def hsDistSq (Y : FiniteCarrier) (A B : Matrix Y Y ℂ) : ℝ :=",
+            "def hsDistSq' (Y : FiniteCarrier) (A B : Matrix Y Y ℂ) : ℝ :=", 1))
+    elif name == "pestov91 solution missing an `_of` form":
+        path = root / "Palomar" / "Pestov91Solution.lean"
+        path.write_text(path.read_text().replace(
+            "theorem exists_infinite_simple_propertyT_sofic_of",
+            "theorem exists_infinite_simple_propertyT_sofic_renamed", 1))
+    elif name == "pestov91 comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-pestov91.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
+    elif name == "type-a2 challenge with a project-local import":
+        path = root / "Palomar" / "TypeA2Challenge.lean"
+        path.write_text(
+            "import GroupApproximation.TypeA2.Statement\n"
+            + path.read_text())
+    elif name == "type-a2 shared block edited on one side":
+        path = root / "Palomar" / "TypeA2Solution.lean"
+        path.write_text(path.read_text().replace(
+            "def IsTypeA2 (G S : Type) [Group G] [MulAction G S] : Prop :=",
+            "def IsTypeA2' (G S : Type) [Group G] [MulAction G S] : Prop :=", 1))
+    elif name == "type-a2 solution missing an `_of` form":
+        path = root / "Palomar" / "TypeA2Solution.lean"
+        path.write_text(path.read_text().replace(
+            "theorem exists_isTypeA2_quotient_not_isFinitelyPresented_of",
+            "theorem exists_isTypeA2_quotient_not_isFinitelyPresented_renamed", 1))
+    elif name == "type-a2 comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-type-a2.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
     elif name == "LIX result dropped from the metadata":
         _edit_metadata(root,

@@ -19,28 +19,33 @@ name: Palomar Comparator
 # A GitHub runner has both a current kernel and a current glibc.
 #
 # WHICH CONFIGURATION.  A submission is exactly one Comparator configuration,
-# and this repository offers three, so this workflow is dispatched once per
+# and this repository offers several, so this workflow is dispatched once per
 # submission.  The `config` input takes one of:
 #
 #   Palomar/comparator.json              the sofic-not-MF group (the default)
 #   Palomar/comparator-lix.json          the three STW Problem LIX theorems
 #   Palomar/comparator-lix-strong.json   the three strengthened LIX theorems
 #   Palomar/comparator-bowen-chapman.json  the two Bowen-Chapman Problem 1.1 theorems
+#   Palomar/comparator-pestov91.json     the two Pestov Open Question 9.1 theorems
+#   Palomar/comparator-type-a2.json      the FFWZ Question 5.8 theorem
 #
-# The three values are the entries of `PALOMAR_CONFIGS` and
+# The values after the first are the entries of `PALOMAR_CONFIGS` and
 # `PALOMAR_PENDING_CONFIGS` in `scripts/check_palomar_submission.py`, which is
 # what keeps this list from going stale silently.  Nothing else here is
-# per-configuration: the build step below builds all six Palomar libraries
+# per-configuration: the build step below builds every Palomar library
 # whichever value is dispatched, so a LIX run does not depend on remembering to
 # change a second field.
 #
-# The third value WILL FAIL until the proposition
-# `GroupApproximation.NinetyNineProblems.LemmaTwoHoldsAtPowers` is discharged:
+# The pending values WILL FAIL until the propositions their solutions assume are
+# proved, because the theorems those configurations name do not exist yet:
 # `Palomar/LIXStrongSolution.lean` proves each selected statement from
-# `NinetyNineProblems.ClimbedPowersOutside`, which follows from that one
-# proposition (`climbedPowersOutside_of_lemmaTwoHoldsAtPowers`), so the
-# theorems the configuration names do not exist yet.  It is
-# listed here so that the day they do exist the dispatch takes no editing, and
+# `NinetyNineProblems.ClimbedPowersOutside`, which follows from
+# `GroupApproximation.NinetyNineProblems.LemmaTwoHoldsAtPowers`
+# (`climbedPowersOutside_of_lemmaTwoHoldsAtPowers`);
+# `Palomar/Pestov91Solution.lean` assumes an infinite simple LEF group with
+# property (T); and `Palomar/TypeA2Solution.lean` assumes
+# `GroupApproximation.TypeA2.Question58`.  They are listed here so that the day
+# the theorems exist the dispatch takes no editing, and
 # `scripts/check_palomar_submission.py` is where that state is recorded.
 #
 # WHY MANUAL ONLY.  It builds two extra toolchains and a Rust kernel checker,
@@ -140,19 +145,21 @@ jobs:
         run: lake exe cache get
 
       # Only the Palomar libraries and whatever of the development they pull
-      # in.  With a warm cache this is minutes.  All six are built rather than
-      # the pair the dispatched `config` names: Comparator loads the modules the
-      # configuration selects out of the environment, so a LIX dispatch against
-      # a tree where only the non-MF pair was built fails on a missing module
-      # rather than on anything about the submission.  Building all six keeps
-      # the step independent of the input, at the cost of minutes on a warm
-      # cache.
+      # in.  With a warm cache this is minutes.  All of them are built rather
+      # than the pair the dispatched `config` names: Comparator loads the modules
+      # the configuration selects out of the environment, so a LIX dispatch
+      # against a tree where only the non-MF pair was built fails on a missing
+      # module rather than on anything about the submission.  Building all of
+      # them keeps the step independent of the input, at the cost of minutes on
+      # a warm cache.
       - name: Build the Palomar modules
         run: |
           lake build PalomarChallenge PalomarSolution \
                      PalomarLIXChallenge PalomarLIXSolution \
                      PalomarLIXStrongChallenge PalomarLIXStrongSolution \
-                     PalomarBowenChapmanChallenge PalomarBowenChapmanSolution
+                     PalomarBowenChapmanChallenge PalomarBowenChapmanSolution \
+                     PalomarPestov91Challenge PalomarPestov91Solution \
+                     PalomarTypeA2Challenge PalomarTypeA2Solution
 
       # Comparator's sandbox.  Landrun is Go; the runner ships a toolchain.
       # Two things about the path, both learned the hard way: the module is
