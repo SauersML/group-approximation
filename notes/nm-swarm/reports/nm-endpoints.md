@@ -71,11 +71,13 @@ None of them retires a baseline finding: a four-leaf form reshapes a conditional
 not discharge one. No row was added for the proof-step rows bcc99703f838, 2d1cd22e5f49,
 2f997e5af4e6 and 721da4c14d11, because no four-leaf theorem proves those sentences exactly.
 
-## Wall status on main (checked 2026-09-13 01:40)
+## Wall status on main (checked 2026-09-13 at origin 4062bc4b8)
 
 - No closed producer of any of the four walls, or of their feeders
   (`OsinLemma97SectionStatement`, `QuotientPeripheralLetterPullbackStatement`,
   `UpsilonFinitelyPresented`, `StabKFinitelyPresented`).
+- `KotowskiOllivierClosed.kotowskiOllivier_closed` has not landed. ko-closed will message
+  this lane when it does.
 - `TheoremC.kotowskiOllivier` (TheoremCAssembly.lean:653) is still `sorry`.
 - The fff-quotient lane has Proposition 4.7 green over exactly Lemma 4.6
   (`UpsilonFinitelyPresented`).
@@ -98,14 +100,41 @@ Finer routes on main since 12e1d1af8 are still conditional and do not collide wi
 `TorsionFreeFourLeaves` names:
 - 232d6b12b adds `HydeLodha.finitelyPresentedInfiniteSimpleStatement_of_upsilon
   (hU : UpsilonFinitelyPresented)`, so the Hyde–Lodha wall now waits only on Lemma 4.6.
-- 3cf9bd845 lands two orphan modules unverified. `Kazhdan/KotowskiOllivierLeaves` has
-  `kotowskiOllivierStatement_of_leaves` and the `*_of_leastAreaKOLeaves` forms.
-  `Manuscript/NonMF/TorsionFreeKOLeaves` has the `*_of_hullFixedCliqueHyp` forms. Both
-  state the endpoints over the zip, fold and fixed-clique leaves instead of the
-  Kotowski-Ollivier wall.
+- 3cf9bd845 lands two orphan modules unverified:
+  - `Kazhdan/KotowskiOllivierLeaves` (now ko-closed's) has `kotowskiOllivierStatement_of_leaves`
+    and the `*_of_leastAreaKOLeaves` forms, over the zip, fold and fixed-clique leaves.
+  - `Manuscript/NonMF/TorsionFreeKOLeaves` (now this lane's; decision below) has the
+    `*_of_leastAreaFixedCliqueHyp` and `*_of_hullFixedCliqueHyp` forms, over the fixed-clique
+    leaf and the hyperbolicity of `GHB(7)`.
+  - Neither module closes a wall.
 
 `#audit_axioms` throws on any axiom outside the classical allowlist
 (Meta/AxiomGuard.lean), so the green probe shows that no four-leaf chain uses `sorryAx`.
+
+## TorsionFreeKOLeaves (assigned to this lane 2026-09-13): retire, do not wire
+
+Decision:
+- Leave `Manuscript/NonMF/TorsionFreeKOLeaves.lean` unchanged on main (blob 4c6a119ae).
+- Do not probe it and do not queue it for wiring.
+- Recommend that the lead retire it. Lanes may not delete modules (COMMON_RULES line 70), so this
+  lane lands no deletion.
+
+Reasons:
+- Each of its seven forms is the matching `TorsionFreeFourLeaves.*_of_fourLeaves` form with
+  `hKO := KMSGroup.sharpExistence_ghb7_of_fixedCliqueHyp hT6 hhyp`
+  (Kazhdan/GHBSharpExistenceSystolic.lean:47).
+- Its leaf `hhyp : Hyperbolic.IsHyperbolicGroup (GHB 7)` already has a producer,
+  `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold` (Kazhdan/GHBHyperbolicDiscCounts.lean:84).
+  - So the module sits between the Kotowski-Ollivier wall and ko-closed's three leaves.
+  - The flip goes through `KotowskiOllivierClosed.kotowskiOllivier_of_leaves`, then
+    `kotowskiOllivier_closed`, and never needs this module.
+- Its two `cor:regular-nonmf-algebra` forms still take `hDGO` and `hGO`, but both citations are
+  already proved: `TorsionFreeSectionAssembly.simpleUniqueTraceAtHypEmbedded_closed` and
+  `TorsionFreePrinted.gerasimovaOsinTheorem11Printed`.
+- Wiring it would add seven open-predicate findings to the baseline and retire none.
+- Nothing on main imports it, no lane's files list names it, and no census row names it.
+- Its bodies match the signatures of `TorsionFreeLiteratureInputsLeastArea` at origin, but it
+  has never been probed.
 
 ## Open-predicate findings over the least-area leaves (classification)
 
@@ -145,3 +174,9 @@ the closed endpoint and says "retires open-predicate <decl>".
   namespace, because `TheoremC.literatureInputs` in TheoremCAssembly.lean is the sorry form.
 - The Greendlinger and bridge walls unlock thm:hull, lem:saturation, the quotient field and
   common quotient, and their 12 findings above.
+- `TorsionFreeFourLeaves` is queued for wiring (wire-queue line 349). At 4062bc4b8 the root
+  does not import it yet.
+- Row f2bf6328169e (tex 1725, the DGO and GO sentence) belongs to cite-osin, which grades it
+  formalized. census2 U3 lists it as a stale re-grade. It is not this lane's row.
+- This lane has no closed theorem to land until a wall closes. It can take a case of a wall
+  leaf if the lead assigns one.
