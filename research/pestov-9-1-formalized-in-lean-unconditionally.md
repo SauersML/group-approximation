@@ -16,15 +16,15 @@ The development proves, in `GroupApproximation/Pestov91/WitnessAssembly.lean`, t
 with no hypotheses. `Palomar/Pestov91Solution.lean` derives from it the two theorems compared by
 `Palomar/comparator-pestov91.json`, `Pestov91.exists_infinite_simple_propertyT_hyperlinear` and
 `Pestov91.exists_infinite_simple_propertyT_sofic`, whose statements use Mathlib and the challenge's own
-definitions only. The axiom closure of all three is exactly `[propext, Classical.choice, Quot.sound]`
-(`scripts/PalomarPestov91Axioms.lean`, run by `.github/workflows/palomar-check.yml`): no `sorry`, no added
-axiom, no literature input stated as a hypothesis.
+definitions only. The `Palomar check` workflow runs `scripts/PalomarPestov91Axioms.lean`, which prints the
+axiom closure of both compared theorems and fails unless it lies inside `[propext, Classical.choice, Quot.sound]`.
+Runs 34762687202 (be41521bf) and 34765520365 (174e3006d) print exactly those three axioms for each, so neither
+uses `sorry` or an added axiom, and neither takes a literature input as a hypothesis.
 
 The predicates:
 - `HasKazhdanPropertyT.{0, 0}` asks for a Kazhdan pair over real Hilbert spaces in `Type`
-  (`GroupApproximation/Kazhdan/Kazhdan.lean`). The same pairs work in the complex-unitary form of Bekka--de la
-  Harpe--Valette, Definition 1.1.3 (`hasKazhdanPropertyT_iff_complex`), which is the form of the question and
-  of the challenge's `HasPropertyT`.
+  (`GroupApproximation/Kazhdan/Kazhdan.lean`). It is equivalent to the complex-unitary form
+  (`hasKazhdanPropertyT_iff_complex`), which is the challenge's `HasPropertyT`.
 - `IsLEF` is local embeddability into finite groups; `isSofic_of_isLEF` and `isHyperlinear_of_isSofic` give the
   finite-set models by permutations under the normalized Hamming distance and by unitary matrices under the
   normalized Hilbert--Schmidt distance (`GroupApproximation/Sofic/Sofic.lean`,
@@ -36,7 +36,7 @@ is trivial, so no quotient is taken.
 
 **Status: established (2026-09-13).** The Palomar theorems landed at 5f9c16b7b on the witness modules below.
 The `Palomar comparator` workflow with NanoDa passed on `Palomar/comparator-pestov91.json` at e32bac3f3
-(run 34751904895).
+(run 34751904895), and again at 174e3006d (run 34765532993).
 
 ## Proof architecture, as formalized
 
