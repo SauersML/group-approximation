@@ -73,9 +73,10 @@ This lane owns the value.
   with `hrot := List.IsRotated.refl _`, so `OsinPocketMergeRegion` stays as it is. The converse
   bridge (`Embedded.boundaryStep_of_walk`) is hull-select's. This lane drafted the same bridge
   and did not land it.
-- Still open on that interface: `EmptyTwoGonInput` (16d923f27) has no `FollowsBoundary`
-  hypothesis on `P`. Either its consumer supplies `hwalk`, or hull-euler adds the hypothesis. The
-  lead has sent that question to hull-euler.
+- Settled by hull-euler (2026-09-13): `EmptyTwoGonInput` (16d923f27) keeps no `FollowsBoundary`
+  hypothesis, since route A needs none. A caller of `ofPocketRegion` or `toInnerGRegion` that
+  needs `hwalk` builds `P` as `PocketRegion.ofSimpleClosedWalk` and takes `hwalk` from
+  `ofSimpleClosedWalk_followsBoundary` (OsinPocketRegionSimpleWalk.lean:87).
   `MultipleEdgePocketRegionInput` (d00f94876) already concludes that both cycles follow the
   boundary, and hull-respell's `PocketRegion.ofSimpleClosedWalk` (a11a8d850, unverified) builds
   such pockets.
@@ -87,6 +88,8 @@ This lane owns the value.
   - Its `value_one` is `P.listVal_inner_eq_one hcells` from this lane's module.
   - This lane had no such variant in flight, and it told fff-periodic that hull-select's
     merged-geometry lemmas may overlap.
+  - fff-periodic landed route A at 2aa17abb0 (`Estimating/OsinPocketDiscMerge` and
+    `Estimating/OsinPocketDiscEmptyTwoGon`).
 - This lane offered two lemmas, to be built only if hull-select asks:
   - `P.inner.FollowsBoundary` from an embedded boundary whose cycle rotates the pocket cycle;
   - given `hwalk`, every embedded boundary rotates the pocket cycle
