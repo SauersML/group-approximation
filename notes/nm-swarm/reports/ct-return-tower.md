@@ -56,7 +56,7 @@ More consumable names:
 
 ## Residual Prop: `ReturnRingCrossedProductStatement` (tex 1723–1726), split with ms-core-1
 
-- Mine, probing: `Dynamics/ReturnCells` (`image_returnCell`: `T^h C_h = returnCell T⁻¹ C h`; `returnCell_eq_empty_of_le`;
+- Mine, LANDED: `Dynamics/ReturnCells` cc54707b9 and `Dynamics/ReturnRingUnit` 71084d8c5 (both probe GREEN).  Contents: `Dynamics/ReturnCells` (`image_returnCell`: `T^h C_h = returnCell T⁻¹ C h`; `returnCell_eq_empty_of_le`;
   `disjoint_returnCell`; `sum_indicator_returnCell`; `clopenExtendByZero` with `_mul/_add/_zero/_one/_injective/_eq_of/
   _restrict`; `exists_separated_clopen_cover_abs`, the printed `0 < |j| < r` spelling) and `Dynamics/ReturnRingUnit`
   (`returnP`, `cellCoeff`, `backCellCoeff`, `returnV` = printed `v`, `returnW`, `returnUnit k hC : (ReturnCorner k hC)ˣ`,
