@@ -25,3 +25,10 @@ Theorem 3.1 of the artifact.
    alphabet.
 4. The read-degree bound gives `Phi >= log q'/|F ∩ E^-1|` and `Phi >= H(psi)/k`, so a configuration
    with `Phi < log q'/m` has `|E| >= |F ∩ E^-1| > m` and `H(psi)/k < log q'/m`.
+
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 7.3 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
+- **Re-derived:** steps 1–4, against Seward's item 1, the finitary infimum and the dichotomy
+  corollary as stated on main.
+- **Note:** here `m` in step 4 is a free integer, which is how the read-bound claim's Consequence
+  should also be stated.

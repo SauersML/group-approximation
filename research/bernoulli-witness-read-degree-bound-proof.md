@@ -20,3 +20,9 @@ Theorem 2.1 of the artifact.
 - `I(x(1); y_F) <= H(x(1)) = k log q`.
 - Substituting into `Phi = (1/k)[H(psi) + k log q - I]`, together with `Phi >= H(psi)/k`, gives
   `Phi >= max{H(psi)/k, log q - (m-1)H(psi)/k} >= log q/m`.
+
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 7.2 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
+- **Re-derived:** the chain rule step, the subadditivity step and the minimization over `H(psi)/k`.
+- **Wording point:** the claim's Consequence uses `m`, bound to `|F ∩ E^-1|`, as if it were a free integer.
+  As written, its hypothesis never holds.

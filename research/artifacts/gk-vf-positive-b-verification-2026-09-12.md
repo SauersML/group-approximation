@@ -642,3 +642,121 @@ This concerns `amenable-extensions-of-uqs-groups-are-surjunctive`.
 - The lamplighter route keeps its `requires` wiring.
 
 PASS.
+
+## 7. w5-inf-c: deficit-window localization, read bound, self-copy collapse
+
+Lane `w5-inf-c`, landed at `03819c251` and `ea92a4bd1`; artifact
+`research/artifacts/rokhlin-window-localization-and-read-bound-2026-09-12.md`. The lane came to this verifier in wave 5
+(about 18:25). These are its first verdicts.
+
+**Conventions.** These follow `bernoulli-rokhlin-deficit-has-a-finitary-witness`:
+- `x` is iid uniform on `A^k` over `G` and `y_f = psi((x(fe))_(e in E))`.
+- `Phi = (1/k)[H(psi(x|_E)) + H(x(1) | y_F)]`, and `rho_q(G) = lim_k h^Rok_G((A^k)^G)/k = inf Phi`.
+- "Rokhlin-maximal at `q`" means `h^Rok((A^k)^G) = k log q` for every `k`
+  (`bernoulli-rokhlin-maximality-passes-to-subgroups`). Equivalently, `Phi >= log q` for every configuration, which is
+  the finitary-witness claim's first consequence.
+- `F_1 = F ∩ E^-1` and `H = <E E^-1>`.
+
+### 7.1 `bernoulli-deficit-windows-need-a-non-maximal-difference-subgroup` (Theorem 1.1, Corollaries 1.2–1.3)
+
+Re-derived on paper.
+
+**Dropping codewords.**
+- Join `f ~ f'` when `fE ∩ f'E` is nonempty, and let `C` be the union of the components that meet `F_1`.
+- For `f` outside `C`, `fE` misses every `f'E` with `f' ∈ C` (otherwise `f` would join that component). It also misses `1`,
+  because `f ∉ F_1`.
+- So `y_(F \ C)` reads sites disjoint from `CE ∪ {1}` and is independent of `(x(1), y_C)`. Hence `H(x(1) | y_F) = H(x(1) | y_C)`,
+  and `Phi` is unchanged. If `F_1` is empty, `I(x(1); y_F) = 0` and `Phi >= log q`.
+
+**One coset.**
+- `f e = f' e'` gives `f' = f (e e'^-1) ∈ fH`, so each component lies in one left coset of `H`.
+- Each `e^-1 ∈ F_1` equals `e_0^-1 (e_0 e^-1)` with `e_0 e^-1 ∈ E E^-1`. So every component of `C` lies in `e_0^-1 H`.
+
+**Transport.** Put `sigma(s) = e_0 s e_0^-1` and `x'(s) = x(sigma^-1(s))`, again iid uniform.
+- Take `E' = E e_0^-1` and let `psi'` be `psi` relabelled.
+- For `f ∈ C`, `y'_(e_0 f) = psi'((x'(e_0 f e'))_(e' in E')) = psi((x(fe))_e) = y_f`, and `x'(1) = x(1)`. Under this coupling the
+  transported pair equals the original pointwise, not only in law.
+- Every read `(e_0 f)(e e_0^-1)` lies in `H`, so `(k, E', e_0 C, psi')` is a configuration over `H` with the same `Phi`.
+
+**Maximal `H`.** The finitary-witness claim over `H` gives `Phi >= log q`.
+
+**Finite `H`.**
+- With `C'' = e_0 C`, `|H| k log q = H(x_H) <= H(y_H) + sum_h H(x(h) | y_H) <= |H| H(psi) + sum_h H(x(h) | y_(hC''))`.
+- Each `y_h` has the law of `psi'(x|_(E'))`, because `hE'` consists of distinct sites. Also `hC'' ⊂ H`.
+- Left translation by `h` inside `H` carries `(x(1), y_(C''))` to `(x(h), y_(hC''))` and preserves the iid law, so each summand is
+  `H(x(1) | y_(C''))`. Dividing by `|H| k` gives `Phi >= log q`.
+
+**"So nonsofic".** This is item 4 of `seward-per-group-rokhlin-entropy-of-bernoulli-shifts`: countably infinite sofic groups are
+Rokhlin-maximal at every `q`.
+
+**Corollary 1.2.** `E E^-1 = {1, e_1 e_2^-1, e_2 e_1^-1}` generates a cyclic group, and `Z` is sofic. PASS.
+
+**Corollary 1.3.**
+- `E ⊂ Kg` gives `e e'^-1 = k k'^-1 ∈ K`.
+- `E ⊂ gK` gives `e e'^-1 ∈ g K g^-1`, which is isomorphic to `K` and so Rokhlin-maximal.
+- Part 1 of `bernoulli-rokhlin-maximality-passes-to-subgroups` covers infinite `H`; the count covers finite `H`. PASS.
+
+**Third corollary.** For `|E| = 3`, `e_2 e_3^-1 = (e_1 e_2^-1)^-1 (e_1 e_3^-1)`, so `H` is two-generated. PASS.
+
+**Subsumption.** `sofic-radical-localizes-bernoulli-deficit-witnesses` finds an invisible difference inside `<E ∪ F>`. Applied
+after the transport, it recovers only the sofic case of Theorem 1.1. The Rokhlin-maximal case and the transport itself are new.
+
+**Wording points.**
+- "The smallest possible witness windows have `|E| = 3`" is a lower bound. Every witness has `|E| >= 3`, but nothing shows that a
+  window of size 3 witnesses. Suggested: "every witness has `|E| >= 3`, and when `|E| = 3` its difference subgroup is two-generated".
+- In the title, "lives in" means after dropping disconnected codewords and conjugating by `e_0`. The original reads lie in
+  `e_0^-1 H E`, not in `H`. The body says so; the title could say "can be moved into".
+
+PASS.
+
+### 7.2 `bernoulli-witness-information-is-bounded-by-code-reads` (Theorem 2.1, Corollary 2.2)
+
+Re-derived on paper.
+- `f e = 1` iff `f = e^-1`, so exactly `m = |F_1| <= |E|` codewords read `1`.
+- `y_(F \ F_1)` reads sites other than `1`, so `I(x(1); y_(F \ F_1)) = 0`. The chain rule then gives
+  `I(x(1); y_F) = I(x(1); y_(F_1) | y_(F \ F_1)) <= H(y_(F_1)) <= sum_(f in F_1) H(y_f) = m H(psi)`.
+- `H(x(1) | y_F) = k log q - I`. With `t = H(psi)/k`, this gives `Phi >= log q - (m-1)t` and `Phi >= t`.
+- For `m >= 1`, `max{t, log q - (m-1)t}` is smallest at `t = log q/m`, so `Phi >= log q/m`. For `m = 0`, `Phi >= log q`.
+
+**Corollary 2.2.** Let `n >= 1` be an integer with `Phi < log q/n`.
+- `m = 0` is impossible.
+- `log q/m <= Phi < log q/n` gives `m > n`, so `|E| >= m > n`.
+- `t <= Phi` gives `H(psi) < k log q/n`. PASS.
+
+**Subsumption.** A grep of main's `research/` for the bound finds nothing else except the Attempts on
+`bernoulli-rokhlin-entropy-maximal-for-every-group`, which summarize this lane's results. The claim says plainly that it is
+Shannon subadditivity only.
+
+**Wording point.**
+- The claim's **Consequence** says "a configuration with `Phi < log q / m` has `|E| > m`". But `m` was bound just above to
+  `|F ∩ E^-1|` of that same configuration.
+- With that binding the hypothesis never holds, because the theorem gives `Phi >= log q/m`.
+- The intended statement uses a free integer, as Corollary 2.2 and step 4 of `self-copy-deficit-unbounded-window-proof` do
+  implicitly. Please rename it (for example `n`) in the claim and in Corollary 2.2.
+
+PASS.
+
+### 7.3 `self-copy-host-rokhlin-deficits-need-unbounded-windows` (Theorem 3.1)
+
+Re-derived on paper against the imports as stated on main.
+- **Item 1.**
+  - `Phi < log q` gives `rho_q(G) < log q`. Since `rho_q` is the limit of `h^Rok((A^k)^G)/k`, some `k` has
+    `h^Rok((A^k)^G) < k log q`.
+  - Seward's item 1 (finite base, `G` countably infinite) makes that value `min{k log q, h_sup(G)}`. So `h_sup(G)` is finite, hence
+    `0` by hypothesis, and `min{H(L), 0} = 0` for every finite base.
+- **Item 2.** `rho_(q')(G) = 0 = inf Phi` at `q'`, so configurations with `Phi < ε` exist for every `ε > 0`.
+- **Item 3.** This is Corollary 2.2 with a free integer, as in 7.2.
+- **Unbounded windows.** For each `n`, item 2 supplies a configuration with `Phi < log q'/n`, and item 3 gives it `|E| > n`.
+- **Hypothesis.** The corollary of `rokhlin-supremum-dichotomy-with-centralized-self-copies` gives `h_sup ∈ {0, ∞}` for groups that
+  contain their own square and finite subgroups of unbounded order, with the binary Leavitt units and `V` as examples. The
+  claim's example sentence matches.
+
+**Corollary 3.2 (artifact only).** `leavitt-zero-rokhlin-supremum-from-strict-automaton` turns a strict automaton over `U` into
+`h_sup(U) = 0` directly, which gives conclusions 1–3 without first producing a configuration. It is correct as an implication.
+Its prerequisite `leavitt-unit-group-nonsurjunctive` is open, as that route says.
+
+**Section 4 (audit).** It is heuristic and makes no graph claims, and its literature items are flagged as not re-read. The normal
+form in 4.4 follows from Seward's item 1 and the dichotomy: on self-copy hosts INF is positivity of `h^Rok(2^U)`, and any
+uniform `c > 0` upgrades to `log 2`.
+
+PASS. Nothing in Section 7 is decision-level, and nothing is refuted.

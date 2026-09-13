@@ -30,3 +30,9 @@ Theorem 1.1 and Corollaries 1.2–1.3 of the artifact.
    of Seward's import; finite ones fall under step 4. For a window inside a coset of a
    Rokhlin-maximal `K`, `E E^-1` lies in a conjugate of `K`, and subgroups of maximal groups are
    maximal.
+
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 7.1 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
+- **Re-derived:** the component step, the coset step, and the transport by conjugation, which is
+  pointwise under the pushed-forward coupling. Also the count over finite `H` and Corollaries 1.2–1.3.
+- **Wording point:** every witness has `|E| >= 3`, but nothing shows that a window of size 3 witnesses.
