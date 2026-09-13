@@ -35,7 +35,7 @@ hyperlinear half is open. The trivial group is not infinite.
 | Group | fp, simple, (T) | Approximation status |
 |---|---|---|
 | Caprace--Remy lattices `Lambda_A(F_q)/Z` | `simple-kazhdan-kac-moody-lattices-exist` | open both ways |
-| Titz Mite--Witzel kernels | `titz-witzel-simple-kazhdan-cat0-lattices-exist`; torsion-free, `cd = 2` | open both ways; no compression or lamp certificate can refute (`vcd-two-groups-contain-no-kazhdan-commuting-pairs`) |
+| Titz Mite--Witzel kernels | `titz-witzel-simple-kazhdan-cat0-lattices-exist`; torsion-free, `cd = 2` | open both ways; no recorded nonsoficity certificate can refute: criterion and lamps (`vcd-two-groups-contain-no-kazhdan-commuting-pairs`), Kun--Thom doubles (`compressed-doubles-raise-cohomological-dimension`) |
 | binary Leavitt unit group | `leavitt-unit-group-finitely-presented`, `binary-leavitt-unit-group-is-simple`, `rank-twelve-leavitt-simple-non-mf` | nonsofic; hyperlinear open (`binary-leavitt-unit-group-hyperlinear`) |
 
 ## Attempts
@@ -99,7 +99,12 @@ hyperlinear half is open. The trivial group is not infinite.
     subgroups `U_w` of unbounded order, so theirs is infinite too. The Titz Mite--Witzel residuals
     have `cd = 2`. There, by `vcd-two-groups-contain-no-kazhdan-commuting-pairs`, a commuting
     partner of an infinite Kazhdan subgroup is finite, and no infinite lamp group embeds. So they
-    are the recorded candidates on which the compression and lamp certificates are vacuous. The
-    Kun--Thom double is not covered.
+    are the recorded candidates on which the compression and lamp certificates are vacuous.
+    Kun--Thom doubles are excluded too: a double over a compressed Kazhdan subgroup has
+    cohomological dimension at least three (`compressed-doubles-raise-cohomological-dimension`).
+    The pairs themselves do occur in dimension two (`cd-two-group-with-infranormal-kazhdan-pair`),
+    and their double is a finitely presented torsion-free nonsofic group of dimension exactly three
+    (`fp-torsion-free-nonsofic-group-of-cd-at-most-three`). A nonsoficity proof for these kernels
+    therefore needs a mechanism not yet recorded.
 - **Leavitt unit group, hyperlinear half.** Live: `binary-leavitt-unit-group-hyperlinear`, via
   `hyperlinear-fp-kazhdan-via-leavitt-unit-group`.
