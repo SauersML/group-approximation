@@ -140,3 +140,7 @@ No false claim found. Each item gives the check.
   b34b97bfe (Y_0 = CR(T)) and dd08aab94 (one-block cycle condition, intersection cycle condition). Still planned by owners:
   the cycle-condition LEF theorem (chain-words), nonemptiness and the cycle condition of Z_r and Y_0 (chain-subshift),
   `R_{Y_*}` LEF, `Y_* = Y`, the defect cover and `R_Y` LEF (chain-itinerary).
+- 09-13 ~17:55: main assigned help on W1 binder 8 (`GeodesicCollarStatement`, reduced to `StripStepStatement`). No leaf was
+  taken: w1-binder-8 already holds the whole step, pinch merge, doubling half and endpoints `stripStepStatement_holds` /
+  `geodesicCollarStatement_holds`, in `GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean`. This lane created no module there.
+  Leaf for binder 8: none.
