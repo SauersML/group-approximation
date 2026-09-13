@@ -118,11 +118,32 @@ Verdict for Configuration B: the prediction holds on this model. Under R2 the la
 pinch Prop. The model is a bare map: it has no labels, relator cells or arcs, so it is not a
 `PocketFaceSet`.
 
+### Model test of dgo-analytic's noncrossing region builder
+
+dgo-analytic's `PocketRegion.ofNoncrossingClosedWalk hw hout hfollows heuler`
+(`Estimating/OsinPocketRegionNoncrossingWalk`, 8bbf0a9c8, green record 0913-140151-74557) builds
+the pocket region on the walk's side. `Estimating/OsinPocketPinchedTwoGonNoncrossingRegion`
+(80df00345, probe 0913-141525-34391 GREEN, byte-equal to origin) tests it on the pinched pocket
+cycle `[5,3,4,6]`:
+- `hw` is kh-ejz's `isNoncrossingClosedWalk_pinchCycle`, and `hfollows` is
+  `pinchCycle_outerCycle_followsBoundary`;
+- `hout` is `outerFace_not_mem_sideFaces_pinchCycle`;
+- `heuler` is `pinchCycle_reclosed_euler`. It is `innerMap_euler` carried along
+  `sideFaces_pinchCycle` by `reclosedMap_euler_congr`, which says the Euler characteristic of a
+  reclosed map depends only on the face set and the listed cycle.
+
+`pinchedPocketNoncrossingRegionModel`: the four hypotheses hold together, and the region built has
+an inner cycle that neither follows its boundary nor is a simple closed walk.
+
+Verdict: the builder is nonvacuous on a Configuration A pocket, whose cycle is not simple, so
+`PocketRegion.ofSimpleClosedWalk` cannot apply. On the rose `hfollows` fails
+(`lakeCycle_outerCycle_not_followsBoundary`), so the builder does not reach a lake.
+
 ### Residual and next
 
-No Prop owned by this lane is open. `OsinPocketPinchedTwoGonLobe` (4181011af), OuterFollows and
-`OsinPocketLakeModel` (67e5b2f9c) are green as landed, so none needs a second landing. Next, in
-order:
+No Prop owned by this lane is open. These are green as landed, so none needs a second landing:
+`OsinPocketPinchedTwoGonLobe` (4181011af), OuterFollows and `OsinPocketLakeModel` (67e5b2f9c),
+and `OsinPocketPinchedTwoGonNoncrossingRegion` (80df00345). Next, in order:
 1. hull-respell's smallest A and B, as dgo-analytic asks, once their dart lists are available;
 2. if the lead asks, a diagram-level lake fixture: a `PocketFaceSet` with the source cell in the
    lake.
