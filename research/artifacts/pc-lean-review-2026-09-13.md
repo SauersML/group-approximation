@@ -65,6 +65,17 @@ There are two vocabularies on main, with bridges between them.
   `∀ x` with `‖x‖ = 1`, `(∀ q ∈ Q, ‖ρ q x − x‖ < ε) → ∃ y ≠ 0, ∀ g, ρ g y = y`.
 - **Literature.** This is Bekka–de la Harpe–Valette Definition 1.1.3 for a discrete group (a compact set is a finite
   set). Mathlib's group structure on `E ≃ₗᵢ[ℂ] E` composes as functions, so `ρ` is a genuine representation.
+- **Checked at the source,** in the book PDF hosted on Bekka's homepage (`KazhdanTotal.pdf`), pp. 31–34. I did not
+  compare with the printed Cambridge edition.
+  - §1.1 fixes "Hilbert spaces are always complex".
+  - Definition 1.1.1(i): ξ is (Q, ε)-invariant when `sup_{x∈Q} ‖π(x)ξ − ξ‖ < ε‖ξ‖`.
+  - Definition 1.1.3: (Q, ε) is a Kazhdan pair when every unitary representation with a (Q, ε)-invariant vector has a
+    nonzero invariant vector, and G has (T) when it "has a *compact* Kazhdan set".
+  - Why the block's form agrees:
+    - for finite `Q` the supremum is a maximum;
+    - by homogeneity every nonzero ξ rescales to a unit vector;
+    - the strict inequality excludes ξ = 0;
+    - for discrete groups strong continuity is automatic.
 - **Positive control, finite groups.** `hasKazhdanPropertyT_of_finite : ∀ (G : Type u) [Group G] [Finite G],
   HasKazhdanPropertyT.{u, v} G` (`Sofic/NormalKazhdanMFRadical.lean:30`), with `Q = univ` and `ε = 1`.
   - The orbit sum of an almost invariant unit vector is nonzero and invariant.

@@ -84,7 +84,16 @@ says so.
     json are unchanged.
   - The citations match the pages I read: Pestov Example 2.3 (p. 5), Example 2.7 and Definitions 3.1–3.2 (p. 6),
     Theorem 3.5 (p. 8), Theorem 3.6 and Remark 3.7 (p. 9).
-  - I did not re-open Bekka–de la Harpe–Valette for Definitions 1.1.1 and 1.1.3.
+  - Bekka–de la Harpe–Valette Definitions 1.1.1 and 1.1.3 are now verified at the source (part 1 §2.1): book
+    pp. 32–33 of Bekka's hosted PDF, where §1.1 fixes complex Hilbert spaces and (T) asks for a compact Kazhdan set.
+- **Advisory (raised by pc-palomar): statement strength.**
+  - The Challenge states two separate existentials, one hyperlinear and one sofic. No compared theorem says that a
+    single group is infinite, simple, (T), sofic and hyperlinear at once.
+  - This is not a fidelity defect. The sofic existential answers both readings of 9.1, because sofic ⇒ hyperlinear is
+    a theorem: the Solution's `isHyperlinearGroup_of_isSoficGroup`, and in Pestov, Theorem 3.3.
+  - But that implication lives in the Solution's development, not in the Challenge environment. A conjunction
+    `∃ G, Infinite G ∧ IsSimpleGroup G ∧ HasPropertyT G ∧ IsSoficGroup G ∧ IsHyperlinearGroup G` would make the
+    surface self-contained.
 
 ## 14. Gates and CI (verified)
 
