@@ -80,7 +80,7 @@ hull-unbound had started it; hull-unbound proved it at 7d4a2515f.
 
 ## Gap-length lemma (09-13): helper to hull-count94 on Stage B of the Lemma 9.4 side budget
 The lead assigned one sub-piece of Stage B, and hull-count94 picked the gap-length lemma (roster l.740).
-- GGT/VanKampen/Estimating/QuasiGeodesicValueOneGap (GREEN 0913-134955-22334; unwired):
+- GGT/VanKampen/Estimating/QuasiGeodesicValueOneGap (a3169d05f; GREEN 0913-134955-22334; in the wire queue):
   `IsLambdaCQuasiGeodesicWord.length_le_of_listVal_eq_one (h : IsLambdaCQuasiGeodesicWord D lambda c w)
   (him : i + m ≤ w.length) (hval : listVal ((w.drop i).take m) = 1) : lambda * m ≤ c`, and
   `IsLambdaCQuasiGeodesicWord.le_ceil_of_listVal_eq_one (h) (hlambda : 0 < lambda) (him) (hval) : m ≤ ⌈c / lambda⌉₊`.
@@ -88,11 +88,34 @@ The lead assigned one sub-piece of Stage B, and hull-count94 picked the gap-leng
 - Consumer: hull-count94's Estimating/OsinLemma94PolygonClasses. It counts the gaps at class ends against
   L = 24ε + 2(K+24)⌈(c+2)/λ⌉. fff-periodic's unlanded `stretch_le_length` covers this as its `alt = []` case,
   but this module does not import it.
-- GGT/VanKampen/Estimating/OsinLemma94BudgetFilter (GREEN 0913-134955-22334; unwired; candidate (a), the
+- GGT/VanKampen/Estimating/OsinLemma94BudgetFilter (e48f35d1e; GREEN 0913-134955-22334; in the wire queue; candidate (a), the
   reindexing lemma): `classWordLength_eq_zero_of_forall_not_mem` and
   `OsinLemma94DensePolygonsAntiparallel.exists_of_budget_on`. The metric half applies with the side budget summed
   over any set of polygons that contains every polygon with an (A1) side.
 - Consumer: hull-count94's Estimating/OsinLemma94PolygonClasses imports it and uses `exists_of_budget_on`.
 
+## Class cover (09-13): helper to hull-count94 on `ClassCovers`
+hull-count94 asked for the bubble accounting behind `Q.ClassCovers (24ε + 2(K+24)⌈(c+2)/λ⌉₊)` as a lemma over any
+Q, with the Q-level facts as hypotheses. The hypothesis list went to hull-count94 before the probe.
+- GGT/VanKampen/Estimating/OsinLemma94ClassCovers (GREEN 0913-150746-83718; landed with this report; in the wire
+  queue):
+  `OsinLemma94ClassPolygons.classCovers_of_endLoops : Q.ClassCovers (24 * eps + 2 * (K + 24) * B + T)`.
+  Its hypotheses:
+  - `hvalue`, `hcells`, `hcard`, and the class budget `Q.ClassBudget K`;
+  - `hsameCell`: at most `T n` unbound darts have their own cell across;
+  - `hside`: every other unbound dart facing no selected region lies across an (A1) side;
+  - `hbubble`: on a one-class polygon the reverse dart lies in an (A1) class of a polygon with at least two
+    classes, or in an end loop (`classEnd k i b` for budget classes, `regionEnd a t` for selected regions);
+  - `hclassEnd`, `hregionEnd`: end loops have at most `B` darts.
+- The count: region-facing darts `2ε|M| ≤ 24εn`; own-cell darts `T n`; the rest inject by reversal into the
+  (A1) class darts, `2Kn` class-end loops and `4|M| ≤ 48n` region-end loops.
+- `hsameCell` and `hside` are hypotheses because of ghw-charp2's (A) patch: same-cell unbound darts exist, so the
+  module calls neither `alpha_faceOf_not_cell_of_unbound` nor `sum_card_unboundOffRegions_le`.
+- `exists_class_of_relatorSide` is proved here from `sides_eq` and `kind_eq`, so the producer does not supply it.
+- hull-count94 found that T is not independent of ε. Pendant same-cell trees at interior vertices of region sides
+  are unbound, so T is about 24(ε+1)⌈(c+2)/λ⌉₊. They proposed respelling `OsinLemma94ClassCountInput` as `∃ K L`.
+  The lemma takes any T, so it is unaffected.
+- Consumer: hull-count94's producer of Q (Estimating/OsinLemma94ClassJoins, unlanded).
+
 ## Next
-Bubble accounting for `ClassCovers`, after hull-count94's PolygonClasses draft probes.
+Ask hull-count94 for the next unstarted piece.
