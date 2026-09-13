@@ -26,6 +26,12 @@ Rulings (lead, 09-13):
   * The label binder is accepted as a labelled Prop plus a weakening lemma.
   * Under R2, one Rule 22 co-probe restates `PocketRegionOfSimpleStatement`, `PocketCarrier`, the collar glue of 6cb3014e6, `GeodesicCollarStatement` (with kh-torsion) and `exists_twoCollars_of_ne_or` (with hl-lemma46). kh-ejz's `MultipleEdgePocketRegionInput` drops inner `FollowsBoundary` the same way; hull-select and kh-ejz hear when the form is fixed.
   * go-lemma42's `OsinPocketGlueDiagram` (f914f8728) takes only outer `FollowsBoundary` and is unaffected.
+* ~12:10 (this lane, sent to the lead, landed with this report after probe 0913-125838-39384): walk order.
+  * `BoundaryCycle` lists each boundary dart once, in any order, so `s_1 t_1 s_2 t_2` need not be consecutive along a walk. hull-respell's refill has no proof in that case.
+  * `SectionPocketFaceSetInput` gives `∃ K, K.ClosedWalk` (chain and closes, without vertex injectivity), and `PocketPinchLabelledStatement` takes `K.ClosedWalk`.
+  * `PocketFaceSet.Simple.closedWalk` shows that the simple output is in walk order.
+  * dgo-geometric is asked to model-test the pinch without walk order.
+  * kh-ejz's unlanded `PocketWalk.toPocketFaceSetOfNoncrossing` (`OsinPocketSectionFaceSet`) has the walk as its boundary cycle (`toPocketFaceSetOfNoncrossing_cycle`, `rfl`), so the `chain` and `closes` fields of `IsNoncrossingClosedWalk` supply `ClosedWalk`.
 
 Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 (`Estimating/OsinAppendixDescentInduction`).
@@ -48,8 +54,8 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 
 | Prop | Owner | Shape |
 |---|---|---|
-| `SectionPocketFaceSetInput`, `OsinSectionPocketFaceSetSectionStatement` | kh-ejz (kept cell through hull-select's zero-cell merge, copy through hs-vanishes' spur thickening) | two distinct exterior regions to section `j` give a `PocketFaceSet` of an O-equivalent copy of the optimal diagram whose labels are letters of `symmetricLabelAlphabet D` |
-| `PocketPinchLabelledStatement`, implied by `PocketPinchStatement` | hull-respell | a `PocketFaceSet` of a diagram with legal labels has an O-equivalent copy with a `Simple` one (boundary cycle `IsSimpleClosedWalk`), by simple circuits or a 0-refinement |
+| `SectionPocketFaceSetInput`, `OsinSectionPocketFaceSetSectionStatement` | kh-ejz (kept cell through hull-select's zero-cell merge, copy through hs-vanishes' spur thickening) | two distinct exterior regions to section `j` give a `PocketFaceSet` in walk order (`ClosedWalk`) of an O-equivalent copy of the optimal diagram whose labels are letters of `symmetricLabelAlphabet D` |
+| `PocketPinchLabelledStatement`, implied by `PocketPinchStatement` | hull-respell | a `PocketFaceSet` in walk order (`ClosedWalk`) of a diagram with legal labels has an O-equivalent copy with a `Simple` one (boundary cycle `IsSimpleClosedWalk`), by simple circuits or a 0-refinement |
 | `PocketRegionOfSimpleStatement` | dgo-analytic | a `Simple` face set gives a `PocketCarrier` (both cycles `FollowsBoundary`, sides of length and norm at most `ε`) |
 | `PocketCollarStatement` | dgo-analytic from kh-torsion's `GeodesicCollarStatement` | a `Nondegenerate` `PocketCarrier` has an O-equivalent copy with a `Collared` carrier (sides admissible geodesic words) |
 | `PocketCellTransportStatement`, `PocketOuterTransportStatement` | go-lemma42 | regions of copies of the pocket to `t_1` and `t_2` glue back, target `OsinMultipleEdgeCut.ofPocketRegion` |
