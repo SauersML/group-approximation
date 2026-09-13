@@ -105,7 +105,7 @@ theorem exists_walk_iterate_stepToward {w : V} {i : ℕ} (hi : i ≤ G.dist o w)
   | zero => exact ⟨SimpleGraph.Walk.nil, rfl⟩
   | succ i ih =>
     obtain ⟨p, hp⟩ := ih (by omega)
-    have h := dist_iterate_stepToward hconn (w := w) (i := i) (by omega)
+    have h := dist_iterate_stepToward hconn (o := o) (w := w) (i := i) (by omega)
     have hpos : 0 < G.dist o ((stepToward hconn o)^[i] w) := by omega
     rw [Function.iterate_succ_apply']
     exact ⟨p.concat (adj_stepToward hconn hpos), by rw [SimpleGraph.Walk.length_concat, hp]⟩
