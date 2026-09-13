@@ -458,3 +458,216 @@ are from `bh-outfn-mcg/2503.21882v2.txt`, also re-read.
   - The OPEN premise reports "if established: completes bh-product-closure-via-relatively-simple-kernel-removal ->
     boone-higman-closed-under-finite-direct-products". If it is refuted, the closure claim "keeps 3 other live route(s)".
   - So the route does not fire, and the node's "None fires while its premises are open" is right.
+
+## 12. bh-number-field-linear (86a739ec2, cd4a37676): PASS, five checks hold, one check example corrected; B was OPEN here, since marked ESTABLISHED by 01e86d638
+
+Sources re-read on MSI for this section, in `/scratch.global/sauer354/rv6g-src/`: the Stacks pages for tags 00NM and
+02JU, and the arXiv abstract page of 2609.01868. Zaremsky is `bh-reviewer/2405.09722.txt` (v2, 21 January 2025), also
+re-read. Matsumura was not re-read.
+
+### 12.1 `digit-affine-hosts-with-abelian-linear-parts-have-finite-rank` (ESTABLISHED): PASS
+
+- **Route read line by line** (`digit-affine-hosts-with-abelian-linear-parts-proof`).
+  - Step 1. For `b ∈ N ∩ πO^n`, `t_b(d + πw) = d + π(w + b/π)`, so `b/π ∈ N`. Applying this `e` times gives
+    `N ∩ pO^n = pN`. So `N/pN` is finite and `∩ p^k N = 0`.
+  - Step 3. At a maximal `m` of `D` the residue field is finite, and the dimension formula gives `ht m = 1 + trdeg ≥ 2`.
+    Krull's principal ideal theorem gives a height-one `q ⊇ pD`, which is then not maximal. `D/q` is Jacobson and not a
+    field. If it had finitely many maximal ideals, their product would be nonzero and inside their intersection `0`.
+  - Step 4. `P ∩ Z = 0` because `N` is torsion-free. `p` is a nonunit mod `P` because `∩ p^k N = 0`.
+    `Supp(N/pN) = V(pΛ)` is finite because `Λ/Ann(N/pN)` embeds in the finite ring `End_Z(N/pN)`.
+  - Step 5. The minimal primes of `Λ_Q` have fields as quotients. So `Λ_Q` is zero-dimensional and finite over `Q`.
+- **(a) The virtually abelian extension (cd4a37676).** Step 2, lines 22–33.
+  - `G` is finitely generated and `L = G/N` is finitely presented, so `N` is the normal closure of finitely many
+    elements. `N` is abelian, so conjugation factors through `L`, and `N` is a finitely generated `Z[L]`-module.
+  - `L_0` has finite index, so it is finitely generated. `Z[L]` is a finitely generated `Z[L_0]`-module on coset
+    representatives. So `Λ` is a finitely generated commutative ring, and `N` is a finitely generated faithful
+    `Λ`-module. Steps 3–5 use nothing more about `L`.
+  - In the corollary, `B/(B ∩ N)` embeds in `L`, and subgroups of virtually abelian groups are virtually abelian.
+- **(b) Every embedding is covered.** Step 6 is a statement about `B` alone.
+  - Let `K` be normal in `B` with `B/K` virtually abelian. If `K ∩ R = 0`, then `[K,R] = 1`. An element `r s^i t^j`
+    acts on `R` by `(1+x)^i x^j`, so `K ≤ R` and `K = 0`. That contradicts `Z wr Z ≤ B`.
+  - `K ∩ R` is stable under multiplication by `x^±1` and `(1+x)^±1`, so it is an ideal of `R`. A nonzero ideal contains
+    `fR ≅ R`, of infinite rank.
+  - Any embedding `B ≤ G`, standard or not, gives such a `K = B ∩ N` inside the finite-rank `N`. So none exists.
+- **(c) Citations.**
+  - **Stacks 00NM, re-read.** "Lemma 10.105.9. A Noetherian Cohen-Macaulay ring is universally catenary." Line 41
+    applies it to `Z`.
+  - **Stacks 02JU, re-read.** Lemma 29.53.1 assumes S locally Noetherian, f locally of finite type, X and S integral,
+    and f dominant. It gives `dim(O_{X,x}) ≤ dim(O_{S,s}) + trdeg_{R(S)} R(X) − trdeg_{κ(s)} κ(x)`, and "Moreover,
+    equality holds if S is universally catenary."
+    - Line 43 takes `S = Spec Z`, `X = Spec D`, `x = m` and `s = lZ`. `Z ⊆ D` makes `f` dominant, and `D/m` is finite,
+      so the last term is `0`. That is the displayed `ht m = 1 + trdeg`.
+  - **Matsumura, Theorem 6.5: source not re-read.** Line 55 uses the standard fact that minimal primes of the support of
+    a finitely generated module over a Noetherian ring are associated primes. The use is correct.
+- **Corrected forward: the non-finitely-generated check.**
+  - The route took `N = Z[1/p][t] ∩ Z_p`, with `t` a transcendental unit, and called `N x| <t>` section-closed. But
+    `t^-1 ∉ Z[1/p][t]`, so `v ↦ t^-1 v` conjugates `t_1` out of `N`. The group generated has a larger translation
+    subgroup.
+  - With `N = Z[1/p][t^±1] ∩ Z_p` the check holds. `N ∩ pZ_p = pN`, and `N` has infinite rank. The section of
+    `v ↦ t^k v + b` at a digit `d` is `w ↦ t^k w + c` with `c = (t^k d + b − d')/p ∈ N`. The route now uses the
+    Laurent ring.
+- **Subsumption scan** (untruncated, at the tip). No ESTABLISHED node states the module-level bound.
+  - `affine-self-similar-coordinate-rings-are-one-dimensional` is about rings, and needs a section-closed coordinate
+    ring.
+  - `el3-of-infinite-rank-rings-not-linear-over-number-fields` is a different statement.
+  - `baumslag-char-zero-bh-via-char-zero-linear-groups` is a route through the OPEN
+    `char-zero-linear-groups-satisfy-boone-higman`.
+  - Not a duplicate.
+
+### 12.2 Attempt 7 of `baumslag-char-zero-metabelian-group-satisfies-boone-higman` (86a739ec2): accurate
+
+- **(d) Source re-read.** The abstract page gives the title "On the Self-Similarity of Permutational Wreath Products and
+  Their Embedding into Finitely Presented Simple Groups". The authors are Mailton Rego Almeida, Alex Carrazedo Dantas and
+  Altair Santos de Oliveira-Tosti, and the date is 2026/09/01. The node's attribution and date match. The version
+  suffix was not extracted.
+  - The abstract says: "In the case where G is a non-torsion contracting group, we prove that, under certain conditions,
+    the Scott--Röver--Nekrashevych group V_m(Z^d ≀_X G) is finitely presented and virtually simple. Moreover, we prove
+    that Z^d ≀_X G embeds into a finitely presented simple group." TeX markup is removed.
+  - The node's paraphrase is accurate, and its quote is verbatim.
+- **The reduction to `G`, recomputed.**
+  - If `B → G` is not injective, its kernel meets `R` in a nonzero ideal `I`, by the argument in (b).
+  - Write `A = Z^d ⊕ T` with `T` finite. `I` is torsion-free, so it meets `⊕_X T` trivially and projects injectively to
+    `Z[X]^d`.
+  - `s` and `t` commute in `B`, so their `G`-coordinates commute and `Z^2` acts on `X`. Conjugation on the abelian base
+    goes through the `G`-coordinate, so the projection is `Z[s^±1,t^±1]`-linear.
+  - `R ≅ Z[s^±1,t^±1]/(s − 1 − t)` is a domain, so every nonzero element of `I` has annihilator `P`.
+  - A nonzero image `v` has finitely many orbit components `v_j`. Then `∏ Ann(v_j) ⊆ ∩ Ann(v_j) = P`, and `P` is prime,
+    so `P = Ann(v_j)` for some `j`. So `P` is associated to `Z[Z^2/H]^d` and contains `h − 1` for every `h ∈ H`.
+  - `s^a t^b − 1 ∈ P` means `(1+x)^a x^b = 1`, so `a = b = 0` and `H = 1`. In the domain `Z[Z^2]`, no nonzero element
+    has annihilator `P ≠ 0`.
+- **Implicit convention.** Finite support of `v` needs the restricted wreath product, with base `⊕_X A`. The node does
+  not say so. For infinite `X` the unrestricted base `A^X` is uncountable. That group embeds in no finitely presented
+  group, so the restricted product is the only relevant reading.
+- The Consequence is right: this host class needs `B ≤ G`.
+
+### 12.3 (e) The covered number-field case: correct
+
+- **The statement.** The Covered-cases line of the B node (line 25 at cd4a37676): "Metabelian groups linear over number fields or over one-variable function
+  fields in characteristic `p` are reached through finitely presented self-similar affine hosts." Neither commit
+  changed it (both diffs read).
+- **Zaremsky re-read.** Lines 51–53 of `2405.09722.txt`: "Theorem 1.2. Every finitely generated subgroup of GL_n(Q)
+  satisfies the Boone–Higman conjecture."
+  - The proof, lines 428–435, puts the subgroup in `GL_n(Z[1/m])`. By Theorem 1.1 it then suffices that
+    `Z[1/m]^n x| GL_n(Z[1/m])` is finitely presented and self-similar, and Example 4.7 gives self-similarity. So
+    "through finitely presented self-similar affine hosts" matches the source.
+  - `rational-linear-groups-satisfy-boone-higman` quotes Theorem 1.2 verbatim.
+- **Restriction of scalars.** A `Q`-basis of a number field `F` of degree `d` gives `GL_n(F) ≤ GL_{nd}(Q)`. The
+  ESTABLISHED `algebraic-linear-groups-satisfy-boone-higman` records this, and its route was read for this section.
+- The function-field half is pre-existing and was not checked.
+
+### 12.4 Status of B: OPEN through these commits, since marked ESTABLISHED through the char-zero root
+
+- cairn why at e08d6277a: `baumslag-char-zero-metabelian-group-satisfies-boone-higman [OPEN]`. Its one route,
+  `baumslag-char-zero-bh-via-char-zero-linear-groups`, was OPEN and waited on the OPEN
+  `char-zero-linear-groups-satisfy-boone-higman`.
+- Neither commit under review gives `B` an envelope. The finite-rank theorem closes one host class, and Attempt 7 sends
+  the lamplighter hosts back to `G`.
+- **B does not stay OPEN at the tip.** At 9186478f9 the B node reads ESTABLISHED, through that same route.
+  - 9919c520c marked `char-zero-linear-groups-satisfy-boone-higman` ESTABLISHED through
+    `char-zero-linear-bh-via-polynomial-s-integer-hosts`. 01e86d638 then marked `B` ESTABLISHED.
+  - Both nodes say they rest on `polynomial-linear-groups-satisfy-boone-higman`, whose independent review is pending
+    (lane `bh-poly-linear-review`).
+  - Those two commits, the polynomial theorem and the new Nagata-coordinate chain in the B node were not reviewed here.
+  - The chain's host is `Z[s']^28 x| E_28(Z[s'])`. Its linear parts are not virtually abelian, so the finite-rank
+    corollary does not touch it.
+  - 01e86d638 adds the ESTABLISHED header, Statement and chain. The Covered-cases line and Attempt 7, reviewed above,
+    are unchanged, only moved down.
+
+## 13. bh-bg-similarity-hosts (72601a4ae, 86ca8a9ff): three PASS, one route sentence corrected, BG stays OPEN
+
+Source re-read on MSI for this section: the arXiv abstract page of 1107.0672, in `rv6g-src/`. No node and not the
+artifact cites Burillo: source not re-read.
+
+### 13.1 `almost-automorphism-conjugate-to-proper-power-is-equicontinuous` (T1): PASS
+
+- **Route read line by line** (`almost-automorphism-exponent-pumping-proof`).
+  - Item 2. `R(f g f^-1) = R(g)`, since the `δ_f` terms cancel along a periodic orbit. `R(g^m) = m R(g)`, from
+    `δ_{g^D}(x) = (D/p) δ_{g^p}(x)` at a point of least period `p | D`. With `|k| < |l|` and `s = sup |R(g)| > 0`, a `ρ`
+    with `|ρ| > s|k|/|l|` gives `ρ' = lρ/k ∈ R(g)` with `|ρ'| > s`.
+  - Item 3. `g` is a similarity on every cone with at least `L` digits. That gives
+    `ℓ_{m+1}(x) ≤ max(ℓ_m(x), L − S_m(x))`.
+  - Item 4. The route never states `τ_{i'} ≥ τ_i`, but it holds, since `S_{τ_i}(x) ≤ h_i ≤ h_{i'}` and `τ_{i'}` is the
+    last such time.
+    - `S_{τ_{i'}}(x) > h_{i'} − L` uses `|δ_g| ≤ L` and `S_M(x) > h_{i'}`.
+    - `D ≤ M − τ_i` because `τ_{i'} ≤ M`. So the sums from `y` up to `D` are `≥ 0`. Item 3 gives `ℓ_D(y) ≤ L`, and
+      `|p| = L + Δ`.
+    - The fixed point `z` has least period `p' | D` and `ρ(z) = Δ/D > 0`, against Item 2.
+  - Item 5. Bounded sums for `g^{±1}` give `ℓ_m ≤ L + K ≤ N` for all `m`, and images with `N ± K` digits. The metric
+    is `2^-(common digits)` for every `d`, so `2^K` is the right constant on level-`N` cones, as the target states.
+    Across cones it can be larger: the involution of `V_{2,1}` swapping `C(01)` and `C(10)` has `K = 0` but doubles
+    `dist(01…, 00…)`. Equicontinuity is unaffected.
+  - Item 3 of the target. For `g ∈ V_{d,r}`, `g^j` acts on each level-`N` cone through the finite group of automorphisms
+    with trivial sections at depth `L(g^j)`.
+- **Corrected forward.** Route Item 5 said "`g` permutes the finitely many cones with between `N - K` and `N + K`
+  digits". That set need not be `g`-invariant, since `g` can take a cone with `N + K` digits to one with `N + 2K`.
+  Artifact §4(b) has it right. The route now uses the finite set of cones `g^m C(q)` with `|q| = N`, which `g` permutes.
+- **(a) What `g`, `f`, `k` and `l` must be.**
+  - `A_{d,r}` is the group of all almost automorphisms of the forest. So every almost automorphism `g` is covered,
+    whatever its local tree automorphisms.
+  - The conjugator must be an almost automorphism too. Item 2 cancels `δ_f`, which exists only for `f ∈ A_{d,r}`.
+  - A homeomorphism conjugator is not enough. Take `g ∈ V_{2,1}` with `0w ↦ 00w`, `10w ↦ 01w` and `11w ↦ 1w`. It has
+    north–south dynamics with fundamental domain `C(10)`, and `g^2` has fundamental domain `C(10) ⊔ C(01)`. A
+    homeomorphism between these extends equivariantly to `f ∈ Homeo(X_{2,1})` with `f g f^-1 = g^2`. But `g` has
+    infinite order, and `ρ(0^∞) = 1`.
+  - Items 1–2 hold for every `g ∈ A_{d,r}`. Only Item 3 needs `g ∈ V_{d,r}`. In `V_3(G)`, with
+    `G = <x ↦ x+1, x ↦ 2x>` on `Z_3`, the maps `g = x ↦ x+1` and `f = x ↦ 2x` satisfy `f g f^-1 = g^2`. `g` is an
+    isometry and `g^(3^N)` fixes every level-`N` cone, but `g` has infinite order.
+  - `k, l ≠ 0` with `|k| ≠ |l|` is exactly what Item 2 uses. With `|k| = |l|` there is no constraint: take `f = 1` and
+    `k = l`.
+- **(d) C1 against 1107.0672, source re-read.** The abstract (Bleak, Bowman, Gordon, Graham, Hughes, Matucci, Sapir,
+  "Centralizers in R. Thompson's group V_n") contains "we give a short argument using revealing tree pairs which shows
+  that cyclic groups are undistorted in V_n."
+  - Recomputed. If `u s^k u^-1 = s^l` with `|l| > |k|`, then `s^(l^j) = u^j s^(k^j) u^-j`. So
+    `|φ(s)^(l^j)| ≤ 2j |φ(u)| + |k|^j |φ(s)|`, which is `o(|l|^j)`, and an undistorted `φ(s)` has finite order. For
+    `|k| > |l|`, use `u^-1`. C1 for `V_n` agrees with the source.
+  - `V_{d,r}` embeds in `V_{d,1}`, acting on `r` disjoint cones and fixing the rest. So the source covers every
+    `V_{d,r}`.
+  - **F. Burillo: source not re-read.** Undistortedness passes to finitely generated subgroups, since word length in
+    `F` dominates a multiple of word length in `V`. So 1107.0672 already makes cyclic subgroups of `F` undistorted, and
+    C1 for `F` agrees. `F` is torsion-free, so every homomorphism `BS(k,l) → F` kills `s`.
+- **Subsumption scan** (untruncated, at the tip). No other node states `BS(k,l) ∉ V_{d,r}`, or equicontinuity of an
+  element conjugate to a proper power. The claim's Scope already credits 1107.0672 for the Consequence.
+
+### 13.2 `baumslag-gersten-equicontinuous-generator-acts-trivially` (T2): PASS
+
+- **(b) The closure of `<a>` is profinite.** Route Item 1.
+  - `X` is compact, zero-dimensional and metrizable. So the stabilizers of finite clopen partitions are open subgroups of
+    `Homeo(X)` forming a neighbourhood basis at `1`. Every compact subgroup then has a basis of open subgroups at `1`,
+    and is profinite.
+  - By Arzelà–Ascoli the closure `K` of `<a>` is compact. The limits are homeomorphisms, since the inverses form the
+    same family.
+  - So `K` is procyclic and profinite, and no non-profinite monothetic closure can occur. A circle rotation, with closure
+    `T`, needs a connected space. The route's Scope leaves that setting to
+    `baumslag-gersten-odometer-pieces-force-fixed-points`, which was not re-read here.
+- **Items 2–4 recomputed.**
+  - Item 2. In the compact group `K_b`, some `b^j` with `j ≥ 1` lies in any neighbourhood of `1`. Then
+    `b^j a b^-j a^-1 = a^(2^j − 1)` lands in `U_2`, which fails for an odd exponent.
+  - Item 3. `U_{2m} = U_m`, and normalizers of closed subgroups are closed.
+  - Item 4. `U_p` is open in `K` and conjugation is continuous, so `ψ` has open kernel. `ψ(K_b) = <2 mod p>` has order
+    `ord_p(2) ≥ 2`, since `p` is odd. Each prime `q | ord_p(2)` divides `p − 1`, so `q < p`. `q = 2` can occur, for
+    example at `p = 5`, and it also contradicts Item 2. With `P` empty, the procyclic `K` is trivial.
+- **Known case.** For `BS(1,2)` on `Z_3`, `K = Z_3` has `P = {3}`, and `K_b = Z_3^×` has `P = {2,3}`, because `2` is
+  a primitive root mod `9`. At `p = 3`, Item 4 yields `q = 2 ∉ P(K)`. Nothing is contradicted, because without `t`
+  nothing forces `K ≅ K_b`. That matches the Sharpness bullet.
+
+### 13.3 `baumslag-gersten-embeds-in-no-rover-nekrashevych-group` (C2): PASS
+
+- **(c) The whole class `V_{d,r}(G)`.** Route Item 3.
+  - An element of `V_{d,r}(G)` acts as `u_i w ↦ v_i g_i(w)` with `g_i ∈ G ≤ Aut(T_d)`, so it lies in `A_{d,r}`.
+  - T1 and T2 ask nothing of the `g_i`. The pumping argument uses only that they are isometries (route Item 4, Fixed
+    point). No finite-state, contracting or finite-order hypothesis on the states enters, so states of infinite order
+    are covered.
+  - C2 uses T1 Item 1 (equicontinuity) and T2. It never uses T1 Items 2–3.
+- **Display check.** `b a b^-1 = a^2` gives `f g f^-1 = g^2` with `f = φ(b)`, `k = 1` and `l = 2`. `<a,b> ≅ BS(1,2)`
+  embeds in the HNN extension `BG`, so `a` has infinite order.
+- **Status.** cairn why at e08d6277a: T1, T2 and C2 are ESTABLISHED. C2 goes via
+  `baumslag-gersten-rn-obstruction-via-equicontinuity`, with both premises ✓.
+
+### 13.4 `baumslag-gersten-group-satisfies-boone-higman` stays OPEN
+
+- cairn why at e08d6277a: `[OPEN]`. Its one route, `baumslag-gersten-bh-via-one-relator-bh`, needs
+  `one-relator-groups-satisfy-boone-higman [OPEN]`, which waits on `boone-higman-conjecture [OPEN]` or
+  `bh-embeddability-survives-magnus-subgroup-hnn [OPEN]`.
+- The 86ca8a9ff diff marks the Röver–Nekrashevych and Higman–Thompson host bullet dead. It lists eventually-similar
+  hosts beyond the full shift as open, and adds the `nV` sentence. These agree with C2's Not-covered list. The
+  rational-similarity bullet is unchanged.

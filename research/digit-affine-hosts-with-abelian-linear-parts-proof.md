@@ -91,7 +91,7 @@ Notation as in the target. Write `t_b` for the translation `v -> v + b`.
 **Checks.**
 - *Rank one.* `BS(1,m) = Z[1/m] x| Z` acting affinely on `Z_p` with `p ∤ m`
   has a translation subgroup of rank one.
-- *The finite-generation hypothesis is needed.* `N = Z[1/p][t] ∩ Z_p`, with `t`
-  a transcendental unit, satisfies `N ∩ pZ_p = pN` and has infinite rank.
+- *The finite-generation hypothesis is needed.* `N = Z[1/p][t^±1] ∩ Z_p`, with
+  `t` a transcendental unit, satisfies `N ∩ pZ_p = pN` and has infinite rank.
   `N x| <t>` is closed under sections but is not finitely generated. Step 2 is
   where finite generation enters.

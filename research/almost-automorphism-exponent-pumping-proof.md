@@ -67,8 +67,9 @@ is the largest word length in a table for `g`, and
 - **Item 1 of the target.** By Item 3, every `g^m` acts as a similarity on
   each level-`N` cone, with `N = max(L(g), L(g^-1)) + K`. The image words have
   `N ± K` digits, which gives the uniform `2^K`-Lipschitz bound.
-- **Item 2 of the target.** `g` permutes the finitely many cones with between
-  `N - K` and `N + K` digits. So some `g^j` fixes every level-`N` cone.
+- **Item 2 of the target.** By Item 1 the cones `g^m C(q)`, for `m ∈ Z` and
+  `|q| = N`, have between `N - K` and `N + K` digits. So they form a finite set,
+  which `g` permutes, and some `g^j` fixes every level-`N` cone.
 - **Item 3 of the target.**
   - If `g ∈ V_{d,r}`, then `g^j` acts on each level-`N` cone as
     `q w ↦ q h_q(w)`.
