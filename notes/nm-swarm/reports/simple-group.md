@@ -141,6 +141,12 @@ Assigned by the lead: the Strip sub-module that hull-bridge had held, either the
 - Probe 0913-155533-35125 green (base cda0020eb, errors section empty, compiled md5 `210ab6ce…` = disk). Landed unwired: nothing
   consumes the module until a theorem for the step exists.
 
+- Landed at cec4605ee. kh-torsion then replied that no Strip sub-module is open. It is writing the pinch step and the induction
+  `stripStatement` in `SurgeryGeodesicCollarPinch.lean`, and hull-bridge takes the final `GeodesicCollarStatement` reduction.
+  kh-torsion has the names of this module and can import it, proving only `stripStep : StripStepStatement`. Otherwise the module
+  stays unused, and the lead decides whether to retire it. If both modules define `GeodesicCollar.StripStepStatement`, importing
+  both breaks the build.
+
 ### Residual for `StripStatement`
-`StripStepStatement`, the pinch step (to be settled with kh-torsion). Once a theorem `stripStep : StripStepStatement` exists,
-`stripStatement_of_step stripStep : StripStatement` closes Stage 1.
+None for this lane: the step and the Prop are kh-torsion's. `stripStatement_of_step stripStep : StripStatement` closes Stage 1
+once some theorem `stripStep : StripStepStatement` exists. This lane has asked the lead for another item.
