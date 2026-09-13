@@ -112,6 +112,22 @@ proved it for linear systems, per Paddock--Slofstra p. 2.  For CFI-type pairs
 `(G_(A,b), G_(A,0))` the `qc`/`qa` gap is therefore equivalent to the linear
 system gap, hence to the goal.  For general graph pairs no converse is known.
 
+**Colored CFI pairs are the group case exactly.**  Roberson--Schmidt,
+arXiv:2111.12362v1, read at source, prove two identifications.
+
+- Theorem 3.8: `C(Qut(G(M,b))) ≅ C^*(Gamma_0(M))` as compact quantum groups.
+- Theorem 6.7: `Iso(G(M,b), G(M,b')) ≅ A(M, b+b') = p C^*(Gamma(M,b+b'))`,
+  with `p = (1-gamma)/2`.
+
+So on colored CFI pairs the rung is literally the solution-group endpoint.
+The linking algebra is the linear-system algebra, and the quantum symmetries
+are group duals (`colored-cfi-rung-is-the-solution-group-case`).  The rung can
+go strictly beyond groups only on colored digraphs whose quantum automorphism
+groups are not group duals.  Examples of such quantum symmetry:
+- `S_N^+` and `H_N^(s+)` themselves, which are Connes embeddable;
+- quantum Latin squares and Hadamard or association-scheme constructions,
+  whose quantum isomorphisms are finite-dimensional.
+
 ## 4. Consequences
 
 **Computability.**  `A(Iso(X,Y))=0` is recursively enumerable: search for a
