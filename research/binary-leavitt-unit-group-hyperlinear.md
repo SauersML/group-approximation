@@ -708,3 +708,31 @@ Any hyperlinear model of `Q` therefore has no genuine skeleton: on every
 minimally almost periodic subgroup it stays at distance `sqrt 2` from all
 genuine representations. See
 `research/artifacts/hyperlinear-nonsofic-l-times-2026-09-12.md`.
+
+**Coverage audit before new attacks (2026-09-13, lane `solve-nh-leavitt-direct`).**
+No new mechanism. This records where the natural angles already sit, so that
+later lanes do not re-derive them.
+
+- **Collapse arguments are stability theorems.** Non-hyperlinearity of `Q` is
+  exactly strict, equivalently flexible, normalized-HS stability of `Q`
+  (`leavitt-unit-hs-stable-iff-nonhyperlinear`, established).
+- **Compressions of genuine representations give nothing.** Corners `W^* Pi W`
+  of genuine representations, for example `l^2` of Cantor-space orbits,
+  crossed-product or boundary representations, only produce asymptotically
+  trivial models. By `kazhdan-unitary-corners-require-finite-dimensional-mass`
+  almost all corner mass lies on finite-dimensional subrepresentations, and those
+  are trivial by `binary-leavitt-unit-group-is-minimally-almost-periodic`. This
+  uses a finite Kazhdan set for `Q`. Property (T) of `Q` is already used by
+  `binary-leavitt-unit-group-fails-factorization-property`; it was not
+  re-verified in this lane.
+- **Dimension counting gives only pressure.** The prefix Heisenberg packets give
+  double-exponential profile checkpoints through Gowers--Hatami
+  (`affine-leavitt-profile-computable-checkpoints`), not collapse. The same-model
+  form that would collapse `Q` is `same-model-supercritical-clifford-trigger`
+  (OPEN).
+- **Rank-metric arguments over `F_2` do not help.** They do not transfer to
+  unitary approximations, and their own target
+  `binary-leavitt-unit-group-is-f2-linear-sofic` is OPEN.
+- **The explicit construction frontier** is
+  `atlas-half-block-root-face-full-packet-model-exists` (OPEN): an ultra-deep
+  coherent prefix tower on the half-block face.
