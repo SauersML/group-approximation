@@ -7,6 +7,7 @@ distinct_from:
   v-rank-models-are-trivial-plus-free-on-odd-cycle-trees: that is the torsion law for odd primes different from the characteristic, where group algebras of cycle trees are semisimple; this is the characteristic prime itself, where 1 - [s] is nilpotent and the profile is p-sensitive.
   char-uniform-identities-cannot-force-v-rank-triviality: that proves a gate proof must use a p-sensitive identity; this proposes the first p-sensitive structure theorem such a proof could build on.
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/thompson-v-rank-gate-sofic-and-characteristic-firewalls-2026-09-12.md
 ---
 
@@ -53,3 +54,5 @@ weight `1 - phi_V` of the regular module `F[Z/p]`.
   identity is `rk(x_1 + x_2) = rk(x_1)` for `x_i = 1 + [t_i]` with disjoint transpositions `t_i`.
 - **Correction** (w5-v-nonamenable, after 27fa7efbff). The first version stated the law for `0 <= j <= p`. That fails
   at `j = 0` whenever `phi_V > 0`, the augmentation rank included, since `rk(y^0) = 1`. The range is `1 <= j <= p`.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 31.3 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: Proposition 4.2 (a)-(c), the single-level calibration and the 77400e393 correction PASS. Re-derived: the Frobenius drops and their telescoping sum; the corrected range `1 <= j <= p` with drops `d_0 = phi_V + (1 - phi_V)/p`, `d_i = (1 - phi_V)/p`; and the tail-average bound `rk(y^j) <= min((p - j)/p, (1 - phi_V)(p - j)/(p - 1))` for `j >= 1`. The law itself stays OPEN.*

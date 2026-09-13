@@ -1243,3 +1243,109 @@ These are Attempts entries on the OPEN `binary-jacobson-el3-rank-radical-is-the-
   inertness conclusions hold given it.
 * **Section 3.3.** Correct: a proof of either gate would show `V` is not sofic, via
   `sofic-implies-linear-sofic-over-every-field`.
+
+## 31. V rank-gate firewalls: sofic configurations and characteristic-uniform arguments (w5-v-nonamenable; artifact `thompson-v-rank-gate-sofic-and-characteristic-firewalls-2026-09-12.md`, read at 83204067f1)
+
+### 31.1 `sofic-configurations-cannot-force-v-rank-triviality` (Lemma 1.1, Theorem 1.2, Section 2): PASS
+
+* **Lemma 1.1, axioms.**
+  * (S0) holds at every stage whatever `σ_k(1)` is, since a permutation matrix has full rank. (S2) and (S3) hold
+    stagewise over `F`.
+  * (S1): block `(i,k)` of `σ_k(MN) − σ_k(M)σ_k(N)` is `Σ_j Σ_(g,h) m_ij(g) n_jk(h) (P_σ(gh) − P_σ(g) P_σ(h))`.
+    `P_a − P_(bc)` vanishes on every column `x` with `a(x) = bc(x)`, so its rank is at most `n_k d_H(a, bc)`. A block
+    matrix has rank at most the sum of its block ranks, so the normalized defect tends to `0`.
+* **Lemma 1.1, cycles.** `d_H` is bi-invariant, so `d_H(σ(g)^j, σ(g^j)) <= d_H(σ(g)^(j−1), σ(g^(j−1))) +
+  d_H(σ(g^(j−1))σ(g), σ(g^j))`, which tends to `0` by induction. A point on an `l`-cycle is fixed by `σ(g)^l`, and
+  `g^l != 1` for `l < ord(g)`, so those points have density `0`.
+* **Lemma 1.1, values.**
+  * Kernel recomputed. Put `d = gcd(q, t^n − 1)`, `q = d q'`, `t^n − 1 = d m`, `gcd(q', m) = 1`. Then
+    `q f ≡ 0 mod dm` iff `m | f`, so the kernel is `(m)`, of dimension `deg d`.
+  * `gcd(1 − t, t^n − 1) = t − 1` in every characteristic, `p | n` included, since `1 − t` is squarefree.
+  * Infinite order: cycles of length `<= L` have density `0`, and an `l`-cycle with `l > L` has normalized rank
+    `>= 1 − deg q/L`.
+  * Precision: step 4 computes `q(σ_k(g))`, while `σ_k(q([g])) = Σ_j q_j σ_k(g^j)`. The difference has normalized
+    rank at most `Σ_(q_j != 0) d_H(σ_k(g^j), σ_k(g)^j)`, which tends to `0` by the cycle estimate. Values unchanged.
+* **Theorem 1.2.** `rk_K` is a function on matrices over `F[K]` satisfying (P1) and (P2), and (P3) because its
+  values on `q([g])` depend only on `q` and `ord(g)`, which conjugation in `V` preserves. Lemma 1.1 violates each
+  conclusion. Precision: the augmentation conclusion needs `K != 1`, since on `F[1] = F` it is true.
+* **Proposition 2.1, recomputed.** `L_j` is supported in `x^j W`. Disjoint supports give an internal direct sum,
+  and `x L_j x^-1 = L_(j+1)`. Each element of the sum maps `W` onto itself, while `x^k W ∩ W = ∅` for `k != 0`.
+  So the group is `(⊕_j L_j) ⋊ <x>` with the shift, which is `L wr Z`, and `x` has infinite order.
+* **Sections 2.2–2.3.** Residually finite ⟹ LEF ⟹ sofic, and Gruenberg's theorem: statement-level imports, as
+  marked. Hayes–Sale for sofic `L` is correctly marked. Elek–Szabó's amenable-extension theorem applied to
+  `⊕_Z L` would serve too; it was not re-read here either. The `F` consequence is the contrapositive of Theorem
+  1.2, conditional on `thompson-f-is-amenable`, as stated.
+* **Remark 1.4.** Accurate, and so is the claim node's comparison. The artifact intro's "sharpens" overstates:
+  Theorem 1.2 widens the group class but drops the tuple-level premises that Proposition 3.2 allows. The two
+  results are incomparable, which Remark 1.4 itself says.
+* **Remark 1.5.** The torsion law is for `p != char F`. `rk_K` extends to `F'[K]` along the same approximation,
+  and an almost free `P`-action gives `rk_K(e_χ) = 1/|P|`: the law with `a = 0`.
+
+### 31.2 `char-uniform-identities-cannot-force-v-rank-triviality` (Theorem 3.1, Corollaries 3.2–3.4): PASS
+
+* **Values.** `τ(e_ζ) = (1/n) Σ_j ζ^-j τ(u_(g^j)) = 1/n` for all `n` roots. `q(u_g) = Σ q(ζ) e_ζ` is normal, so its
+  range projection is `1 − Σ_(q(ζ)=0) e_ζ`. For infinite order, the moments `τ(u_g^j) = δ_(j,0)` make the spectral
+  measure Haar, and finite sets are null.
+* **Lifts always exist.** Constants `a_1, ..., a_m` of `F` lift through `Z[X_1, ..., X_m] ⊆ C` with algebraically
+  independent `X_i`. The cyclotomic lifts are the economical choice. `Z[ζ_(q−1)]` modulo a prime over `p` is
+  `F_(p^f)` with `f` the order of `p` mod `q − 1`, which is `m` for `q = p^m`.
+* **Corollary 3.2.** `ρ(E) = rk_vN(E~)` satisfies (U1) because evaluation respects sums, products and blocks, (U2)
+  by definition, and (U3) by the values. Inverses are equality premises, so `2^-1` in `F_3` needs `1/2 ∈ R`.
+  `ρ(1 − [g]) = 1 − 1/ord(g)` violates the conclusion.
+* **Corollary 3.3.** `(1 − [s])^p = 1 − [s]^p = 0` in characteristic `p`. Over `C`, `e_ζ != 0` and `(1 − ζ)^p != 0`
+  for `ζ != 1`. For `p = 2`, both lifts `(1 ∓ u_t)^2 = 2(1 ∓ u_t)` are nonzero.
+* **Corollary 3.4, checked for liftability.** A quoted conclusion is a uniform premise only when its `F`-side value
+  equals the `C`-side value of the lift. That holds for every listed tool:
+  * the torsion law is stated on exact isotypic idempotents of `F'[P]` with `p != char F`, which lift over
+    `Z[1/p, ζ_p]` to the complex `e_χ` with `τ = 1/|P|`;
+  * `col(1 − [s_i])` lifts, and `rk_vN = 1` since `l^2(V)` has no invariant vectors, so `φ_V = 0 = a`;
+  * `rk_vN(u_z − 1) = 1 − 1/ord(z) >= 1/2 >= d_3/4`;
+  * a nonzero `q` lifts to a nonzero `q~`, of rank `1` on infinite-order elements.
+
+  Ranks of other `F`-matrices obtained from these through steps like `M e_χ = 0` pass through (U2), where
+  `p`-sensitivity is policed.
+
+### 31.3 Proposition 4.2 and `v-rank-order-char-cycles-are-trivial-plus-regular`: (a)–(c) PASS; display slip at `j = 0`
+
+* **(a).** The definition requires a nonempty clopen complement. So `h = s'^i h_0 s^-i` on `U_i`, together with a
+  `V`-map between the complements, conjugates `s` to `s'`. Without complements this would fail, since conjugation
+  preserves support.
+* **(b).** `[[1, −A],[0, 1]] [[AB, 0],[B, BC]] [[1, −C],[0, 1]] = [[0, −ABC],[B, 0]]`, recomputed with block sizes.
+  The lower-triangular (S3) is the upper one after swapping rows and columns. `A = C = y`, `B = y^i` gives
+  `d_i >= d_(i+1)`, and the sum telescopes to `rk(1) − rk(y^p) = 1`.
+* **(c).** `rk(y^j) = Σ_(i>=j) d_i <= (p − j)/p`. The left combination `1 − [s] = Σ c_i (1 − [s_i])` and (S1) give
+  `rk(y) <= 1 − φ_V`.
+* **Single-level data.** `1 − g` spans a line in `m/m^2` and kills `m/m^2`. So on `A/m^2`, of dimension `r + 1`,
+  the profile is `d = (r/(r+1), 1/(r+1), 0, ...)`, which is not trivial plus regular for `p >= 3`. For `p = 2` every
+  profile is locally trivial plus regular, so the restriction to `p >= 3` is right.
+* **SLIP (display; not decision-level), now corrected upstream.** As first landed, for `0 <= j <= p`, the law was
+  false at `j = 0` whenever `φ_V > 0`: the left side is `rk(1) = 1` and the right side is `1 − φ_V`. The augmentation
+  rank (`φ_V = 1`) violated it, contrary to (d).
+  * w5-v-nonamenable corrected it in 77400e393, re-read here at e122985617. The node title, its display and (d), the
+    artifact's (d) and Open paragraph, and the Attempts line of `thompson-v-has-no-nontrivial-f2-rank-model` now
+    carry `1 <= j <= p`. For `p = 2` the law reads `rk(1 + [t]) = (1 − φ_V)/2`.
+  * The corrected drops `d_0 = φ_V + (1 − φ_V)/p` and `d_i = (1 − φ_V)/p` for `1 <= i < p` are non-negative and sum
+    to `1`, and `Σ_(i>=j) d_i = (1 − φ_V)(p − j)/p` for `j >= 1`. So the correction is the trivial-plus-regular profile.
+  * **Averaging bound added by the correction: PASS.** `rk(y^j) = d_j + ... + d_(p−1)` is the last `p − j` of the
+    `p − 1` drops `d_1, ..., d_(p−1)`, whose sum is `rk(y) <= 1 − φ_V`. The tail average of a non-increasing sequence
+    is at most its full average, so `rk(y^j) <= (1 − φ_V)(p − j)/(p − 1)`. The node's bound
+    `min((p − j)/p, (1 − φ_V)(p − j)/(p − 1))` for `j >= 1` is right.
+  * The sofic (`φ = 0`) and von Neumann calibrations are correct.
+* **The characteristic-2 identity in Next test.** `x_1 + x_2 = [t_1] + [t_2] = [t_1](1 + [t_1 t_2])`. When the
+  supports leave a nonempty complement, `t_1 t_2` is a clopen transposition conjugate to `t_1`, so
+  `rk(x_1 + x_2) = rk(x_1)` for every rank function. The identity is `2`-sensitive: over `Z` the left side is
+  `2 + [t_1] + [t_2]`.
+
+### 31.4 Scan and verdict
+
+* **Scan** (no truncation) of claims titled on Thompson groups, clopen cycles or V rank functions, and of every
+  node naming sofic configurations, von Neumann rank, `p`-sensitivity or the order-char law. Nothing subsumes or
+  refutes the two firewalls.
+  * `thompson-v-rank-models-through-displacing-sym-reps-are-trivial` and
+    `thompson-v-cantor-system-has-no-covariant-rank-model` add structural hypotheses (a symmetric-group
+    factorization, a covariant `LC(X,F)`), not (P1)–(P3) or (U1)–(U3) premises. They are consistent.
+  * `thompson-v-carries-ternary-nonaugmentation-rank-function` is OPEN.
+  * The torsion law and the fixed-rank theorem are for `p != char F`, so the order-char law is not already
+    established. The open node's `distinct_from` is right.
+* **Verdict.** Both firewalls PASS. Neither decides a gate. No rank model of `V`, `R^x` or `G_3` is constructed or
+  excluded. The open node's range correction (77400e393) passes, and the law stays OPEN.

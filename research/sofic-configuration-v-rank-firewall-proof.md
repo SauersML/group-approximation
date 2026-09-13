@@ -6,6 +6,7 @@ title: Ultraproduct permutation-module ranks along a sofic approximation satisfy
 target: sofic-configurations-cannot-force-v-rank-triviality
 requires: []
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/thompson-v-rank-gate-sofic-and-characteristic-firewalls-2026-09-12.md
 ---
 
@@ -32,3 +33,5 @@ Artifact Sections 1 and 2.
 
 Imports at statement level: Hayes–Sale, only for sofic non-amenable lamps `L`; Gruenberg's residual finiteness of
 free products of finite groups.
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 31.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Re-derived: stagewise (S0), (S2), (S3) and the Hamming bound for (S1); the cycle densities; the kernel dimension `deg gcd(q, t^n - 1)` on an `n`-cycle; Theorem 1.2 through (P1)-(P3); Proposition 2.1. Precision: step 4 computes `q(sigma_k(g))` in place of `sum q_j sigma_k(g^j)`, and the difference has normalized rank tending to `0`. The augmentation conclusion needs `K != 1`. The artifact intro's "sharpens" should read "complements", since Theorem 1.2 drops tuple-level premises; Remark 1.4 is right.*

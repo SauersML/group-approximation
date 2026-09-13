@@ -6,6 +6,7 @@ title: Evaluate every expression of a uniform argument over C and apply the von 
 target: char-uniform-identities-cannot-force-v-rank-triviality
 requires: []
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/thompson-v-rank-gate-sofic-and-characteristic-firewalls-2026-09-12.md
 ---
 
@@ -28,3 +29,5 @@ Artifact Section 3.
 
 Import at statement level: the trace of the range projection is a Sylvester matrix rank function on `C[G]`
 (standard von Neumann dimension theory).
+
+*Verification by `w3-vf-linear` (2026-09-12), Section 31.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS. Re-derived: `tau(e_zeta) = 1/n` and the Haar spectral measure; (U1)-(U3) for `rho(E) = rk_vN(E~)`; `(1 - u_s)^p != 0`. Every Corollary 3.4 instance lifts: exact isotypic idempotents over `Z[1/p, zeta_p]` with `p != char F`, and `rk_vN col(1 - u_(s_i)) = 1`.*
