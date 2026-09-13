@@ -3,6 +3,8 @@ rg: 2
 id: every-type-fn-group-embeds-in-a-type-fn-plus-1-group
 kind: claim
 title: "Every group of type F_n (n >= 2) embeds in a group of type F_{n+1}"
+artifacts:
+  - research/artifacts/zp-z1-01-higher-rope-defects-2026-09-13.md
 distinct_from:
   some-type-fn-group-embeds-in-no-type-fn-plus-1-group: that is the negation of this claim
 ---

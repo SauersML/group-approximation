@@ -3,6 +3,8 @@ rg: 2
 id: every-fg-rp-group-embeds-in-an-rp-fp-infinity-group
 kind: claim
 title: "Every finitely generated recursively presented group embeds in a recursively presented group of type FP_infinity"
+artifacts:
+  - research/artifacts/zp-z1-01-higher-rope-defects-2026-09-13.md
 distinct_from:
   every-finitely-presented-group-embeds-in-an-f-infinity-group: that asks for homotopical F_infinity hosts of finitely presented groups; this asks for homological hosts, which may be infinitely presented, of recursively presented groups (the two are equivalent through Fournier-Facio--Zaremsky Theorem A and Higman's theorem)
 ---
