@@ -83,13 +83,15 @@ OsinLemma94PolygonRealizationInput`, with `ε₀ = ρ₀ = 1`.
   `Estimating/OsinLemma94QuasiGeodesicRespell.lean` (bbb8585ab, green in probe 0913-120651-61632).
   hull-component's `exists_shorter_respelling_of_not_isLambdaCQuasiGeodesicWord`
   (`Estimating/OsinLemma94WordRespelling.lean`, 6b5a1f7d1) proves the same binders. The names
-  differ, so both modules can be wired.
+  differ, so both modules can be wired, and the lead keeps both.
 - `OsinLemma94CellArcsInput`: PROVED by ko-closed, `osinLemma94CellArcsInput_holds` in
   `Estimating/OsinLemma94CellArcs.lean` (5e5a98049, green in probe 0913-104724-79090).
 - `OsinLemma94BoundaryArcsInput`: PROVED by cite-hull, `osinLemma94BoundaryArcsInput` in
   `Estimating/OsinLemma94BoundaryArcs.lean` (1b453429f, green in probe 0913-111012-12718).
 - `OsinLemma94PolygonPartitionInput` (ghw-assembly with cite-hull, OPEN): the combinatorial
   partition of the face walks into maximal sides, given `GFacesApart` and the three arc properties.
+  ghw-assembly's modules on main: `OsinLemma94PolygonLists` (269a91ab3), `OsinLemma94PolygonKinds`
+  (5c69ca42d) and `OsinLemma94PolygonSides` (a76186267).
 
 ## Assembly over the open pieces (landed)
 `Estimating/OsinLemma94SectionResiduals.lean` (4da8d3ef8, then 0087a5095, green in probe
@@ -143,8 +145,8 @@ It plugs `osinLemma94AntiparallelMetric`, `cornerInsertionInput`, `pendantPathRe
 A1 is ruled and A2 is false. `OsinLemma94SectionStatement` and `UnboundInput` gain
 `OsinLemma97Below … Delta.rCellCount`. PlanarPieces gains `OsinLemma94CaseOneOneCellInput`,
 concluding `Nonempty (OsinLoopCut …)`, and the consumer closes the branch with `false_of_below`.
-theoremc-retire lands the threading after (A) and F1; ko-closed writes case (a) and the
-`OsinLoopCut` construction. theoremc-retire drafts the PlanarPieces statement patch (the A1
+theoremc-retire lands the threading through `OsinAppendixSections` after (A) and F1 (lead,
+09-13), and ko-closed writes case (a) and the `OsinLoopCut` construction. theoremc-retire drafts the PlanarPieces statement patch (the A1
 premise, the one-cell Prop, the consumer split), rebased after F1, and this lane lands it. It waits
 for ghw-charp2's co-probe of census patches 01-10. Rule 22 users of
 PlanarPieces include `OsinLemma94SectionResiduals`, `OsinLemma94DartMinimal` and
@@ -171,4 +173,6 @@ PlanarPieces include `OsinLemma94SectionResiduals`, `OsinLemma94DartMinimal` and
 - Land theoremc-retire's PlanarPieces statement patch for the one-cell pair, co-probed with its
   Rule 22 users, once ghw-charp2's co-probe lands.
 - Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once the four residuals close.
-- Meanwhile help hull-respell with hgreendlinger.
+- Meanwhile help hull-respell with the pocket pinch, as the lead approved. hull-respell is moving
+  the proof to a local vertex explosion. kh-cckw has the PinchSplit transport, and hull-respell
+  names this lane's piece among the doubling transport, the gap analysis and the induction.
