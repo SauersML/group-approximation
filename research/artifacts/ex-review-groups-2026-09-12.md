@@ -125,6 +125,12 @@ every group.
   characterization through Smith's theorem, and rational-character approximability implying the determinant
   conjecture (ex-determinant-monster). Both determinant roots stay open. Part 6.
 
+- **§7, L²-acyclicity, amenable-orbit full groups, weak models, Atiyah base change (~01:10 CDT).** PASS on
+  the frame L²-acyclicity chain (ex-lueck-approximation; trust surface Khanh v1), amenable-orbit soficity and
+  Kazhdan rigidity (ex-fp-simple-sofic), support and rank weak-model collapse for simple groups
+  (ex-weak-soficity), and one-variable Atiyah base change off a countable set (ex-atiyah-torsion-free).
+  Part 7.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -133,3 +139,4 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part4.md`: §4, permutation stability, Păunescu's class, fixed price, frame chain.
 - `research/artifacts/ex-review-groups-2026-09-12-part5.md`: §5, sweep at f79305e9c, Bernoulli absorption, torsion-free wreath.
 - `research/artifacts/ex-review-groups-2026-09-12-part6.md`: §6, the determinant spectral chain.
+- `research/artifacts/ex-review-groups-2026-09-12-part7.md`: §7, L²-acyclicity, amenable-orbit full groups, weak models, Atiyah base change.
