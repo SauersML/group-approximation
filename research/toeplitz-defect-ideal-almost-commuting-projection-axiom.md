@@ -42,6 +42,15 @@ Constraints any witness must meet:
     properly infinite and full.
   - So connectivity is equivalent to "every `u` is homotopic in `U(J~)` to a unitary that commutes with
     such a projection". This claim asks for `u` itself, up to a commutator of norm < 1.
+- **Formal structure on `G = U(J~)/U_0(J~)` collapses.**
+  - `C_S` is a homomorphism `G -> G`, since `S^*S = 1`. By
+    `isometry-compression-of-k1-trivial-unitary-is-null` it is the zero map for every isometry `S` with
+    properly infinite full defect.
+  - The block sum `u ⊞ v = C_{S_1}(u)C_{S_2}(v)`, with `S_k = iota_1(s_k)`, is exactly commutative and
+    null on all pairs. So the Eckmann--Hilton interchange that framed the halving problem
+    (`o2-free-circle-halving-homotopy`, Attempts) carries no information here.
+  - The claim, and connectivity, need a non-formal input: a homotopy from `u` to `C_S(u)` that is not
+    assembled from compressions.
 - **Blocked, per lane ex2-k1-defect-ideal:** commutator criteria in explicit families, strict isometry
   paths (blocked by the O_3 quotient, where no norm path of isometries joins 1 to `r_2`), and
   stable-ideal shortcuts (`J` is not stable).
