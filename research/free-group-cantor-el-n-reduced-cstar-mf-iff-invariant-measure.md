@@ -41,3 +41,5 @@ sufficiently large `N` ⟺ `X` carries an `F_r`-invariant probability measure?
     bounds for trace decay. Heuristic only.
   - The missing step is a deterministic no-outlier theorem. Random-permutation methods (Bordenave–Collins) apply only
     to free groups.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): Display checked (OPEN node). The route kazhdan-mf-reduced-from-measure-side-el-n requires this claim and does not fire.**

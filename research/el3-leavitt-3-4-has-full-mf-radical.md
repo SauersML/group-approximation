@@ -34,3 +34,5 @@ For every countable field `K`, every homomorphism from `EL_3(L_K(3,4))` to an MF
 - **Construction side: no candidate.** `[R]` is paradoxical, so `R` has no state, no Sylvester rank function, and no
   unital map into a matrix ultraproduct. An MF quotient would need operator-norm asymptotic representations that do
   not come from ring approximations.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): Display checked (OPEN node): p(L(3,4)) = 3 and the band reduces to N = 3; the route requires the open normal-generation claim and does not fire.**

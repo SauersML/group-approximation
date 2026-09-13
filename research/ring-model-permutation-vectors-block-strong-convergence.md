@@ -33,3 +33,5 @@ genuine representations to ring-induced asymptotic ones. It strengthens the cons
 `directly-finite-subshift-el-n-reduced-cstar-is-mf`.
 
 Proof route: `ring-model-permutation-vectors-block-strong-convergence-proof` (artifact §2.3).
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): PASS. Kesten bound for λ_Γ restricted to P_0, the exactly invariant column c_i for matrices with first column e_1, ξ_i in ℓ²_0 with orbit size at least |σ_i(window)|, and the stabilizers (EL_(n−1) Kazhdan for n ≥ 4; SL_2(F_q[u]) ⊇ F_2 at n = 3) re-derived.**

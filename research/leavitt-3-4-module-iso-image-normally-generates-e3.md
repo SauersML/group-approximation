@@ -44,3 +44,5 @@ spectrum notation of `mf-rigidity-is-monotone-in-matrix-rank`. The known bound i
   `Φ^{-1}(EL_3) ⊆ EL_4` is equally out of reach of the standard tools.
 
 Details: `research/artifacts/un-low-rank-band-noncompletable-columns-2026-09-13.md` §3.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): Display checked (OPEN node); the dead-route computation g(1 + e_1 w)g^(−1) = 1 + x_i r y_j with w e_1 = 0 is correct.**

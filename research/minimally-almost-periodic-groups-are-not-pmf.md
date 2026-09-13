@@ -27,3 +27,5 @@ not close to genuine ones: for Pestov's group, the LEF models. So the open quest
 `directly-finite-subshift-el-n-reduced-cstar-is-mf` is about non-exact models only.
 
 Proof route: `minimally-almost-periodic-groups-are-not-pmf-proof` (artifact §2.1).
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): PASS, folklore-level (trivial representations against the reduced norm of 1−g; Malcev; reviewed simplicity with finite centre).**

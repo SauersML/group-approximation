@@ -46,3 +46,5 @@ quantum models.
   - Their full groups can still be LEF only through towers that do not intertwine the clopen algebra, which Ma's
     residual-finiteness framework forbids.
   - No example known.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): Display checked (OPEN node); the restriction argument in Attempts is correct.**

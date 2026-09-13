@@ -39,3 +39,5 @@ Full proof in the artifact, §2. Outline:
 - `Γ = Z` recovers Grigorchuk–Medynets and the Pestov ring.
 - The Cuntz groupoid admits no matricial model at all.
 - A non-simple ring breaks Lemma S, as it must.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): PASS with the domain reading: the window formula is used on supports in F_n = S_n^3, not only S_n.**

@@ -33,3 +33,5 @@ as in `no-invariant-measure-steinberg-elementary-no-mf-quotient`.
   measure side.
 
 Proof route: `measure-free-steinberg-el-n-reduced-cstar-not-mf-proof` (artifact §1).
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): PASS. Steps 1–3 re-derived against tex Lemma prop:mf-residual-calculus (l.363, verbatim) and the reviewed no-MF node. Unique trace of C*_r(S_∂) holds for every countable k: S_∂ is simple and SL_2(k[u]) in the lower block contains F_2, so the amenable radical is trivial without using (T), which needs finite k.**

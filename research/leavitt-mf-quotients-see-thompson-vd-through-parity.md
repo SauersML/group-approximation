@@ -32,3 +32,5 @@ extend to `H` beyond the parity character.
 amenable-or-LEF-flavoured piece of the groupoid, is invisible to every MF quotient except through `K_1`. On the measure
 side the same full group is LEF together with the Kazhdan elementary groups
 (`lrf-cantor-actions-give-lef-full-and-elementary-groups`).
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): PASS. Lemma 2.1 (λ ↦ λI_d) and Lemma 2.2 (block form, the two 2×2 identities, [1 − 2·1_A] = [−1]^m) recomputed. Item 3 rests on the flagged identification K_1(L_k(1,d)) ≅ k^×/(k^×)^(d−1) with [λ] ↦ λ, consistent with tex Cor l.1297.**

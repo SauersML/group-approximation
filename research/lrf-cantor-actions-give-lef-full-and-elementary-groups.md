@@ -44,3 +44,5 @@ No novelty is claimed for the ingredients. The equivalence (i) ⟺ (ii) and the 
 **Where it stops.** For `Γ = Z^d`, LRF means genuine finite `Z^d`-actions following `α` on balls (artifact Prop 3.1).
 So aperiodic `Z^2`-SFTs have only non-combinatorial ("quantum") models, if any, and the bridge is silent there:
 `quantum-matricial-models-separate-full-groups-from-elementary`.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): PASS. Both directions, (a) and (b), and Prop 3.1 re-derived. The formula ψ_n(Σ f_g u_g) = Σ D_n(f_g)P_n(g) must be applied on supports in F_n = S_n^3, where P_n is defined, so products of window elements are computed by the same formula; the placement bound in (ii)⇒(i) is 2ε.**

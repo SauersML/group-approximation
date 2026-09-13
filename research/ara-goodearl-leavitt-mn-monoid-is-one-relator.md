@@ -14,3 +14,5 @@ Here `L_K(m,n)` is the algebra with a universal isomorphism between the free mod
 
 Credit: Ara–Goodearl give this as a proposition, and the Leavitt module-type and Bergman universal-construction
 results are its earlier forms.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): PASS. Proposition keyexample(2) and the introduction sentence match the arXiv:1004.4979 PDF verbatim; (IBN-m) follows.**

@@ -22,3 +22,5 @@ for some `1 ≤ m < n`. Every Leavitt algebra `R = L_K(m, n)` does, by
 elementary matrices to transvections `1 + x_i r y_j` whose column `x_i` cannot be moved to `e_1` by any invertible
 matrix. So neither Suslin's conjugation argument nor the free-coordinate argument of
 `non-ibn-ring-el-n-full-mf-radical-above-module-rank` can place the image of `EL_M(R)` inside `EL_m(R)`.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part2.md`): PASS. Complements of x_i R of rank M−1 and, after completion, N−1 contradict (IBN-m) at minimum m−1; model tests re-checked.**
