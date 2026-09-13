@@ -20,7 +20,12 @@ reviewed).**
    full in `J`, then `E` is quasidiagonal.  Two special cases:
    - finitely many ideals, each containing a full projection, with UCT simple
      subquotients;
-   - real rank zero with finitely many ideals and UCT simple subquotients.
+   - real rank zero with finitely many ideals and UCT simple subquotients;
+   - **type I with finitely many ideals.**  Simple separable type I algebras
+     are elementary (`K` or `M_n`), so along a composition series all `K_1`
+     groups vanish.  Brown--Pedersen's lifting criterion (the boundary
+     `K_0(A/I) -> K_1(I)` vanishes) makes the algebra real rank zero, and type
+     I algebras satisfy the UCT.
 2. **QD extension property.**  Let `A` be separable, nuclear and quasidiagonal,
    with all quotients UCT and all nonzero ideals projection-generated.  Then an
    extension `0 -> K⊗A -> E -> B -> 0` with `B` separable, nuclear,
