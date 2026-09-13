@@ -38,6 +38,13 @@ nonsofic action, answering `mixing-free-nonsofic-action-of-sofic-group`.
   crossed product (`permutation-centralizer-blind-to-weakly-mixing-actions`). Not needed anyway: any seed,
   mixing or not, suffices.
 * **Through `SL_3(Z)`.** An instance: `simple-lattice-nonsofic-action-from-sl3z`.
+* **Homogeneous quotient actions (ex-sl3z-cocompact-quotient, 2026-09-13).** For real Lie `H`, a lattice
+  `Λ` acting on `H/Λ` is sofic whenever `[Comm_H(Λ) : Λ] = ∞`, since Benoist--Quint equidistributes its
+  Hecke orbits (`hecke-orbits-make-lattice-quotient-actions-sofic`). So arithmetic lattices acting on
+  their own quotients are dead as seeds, including property (T) lattices in `Sp(n,1)`. The cases left
+  are cross-class actions `Λ_1 ↷ H/Λ_2`, e.g. `sl3z-on-cocompact-lattice-quotient-is-not-sofic`, and
+  non-arithmetic `Λ ↷ H/Λ` in `SO(n,1)` and `SU(n,1)`, which have only finitely many finite orbits. For
+  hyperbolic 3-manifold groups those are sofic anyway (`hyperbolic-3-manifold-groups-in-paunescu-class`).
 * **Transfer between lattices of one `H`.** Done: `paunescu-class-is-measure-equivalence-invariant`
   shows the lattices of a Howe--Moore group are all in Păunescu's class or all outside it. So the
   claim is equivalent to "for some such `H`, every lattice of `H` has a free mixing nonsofic action".

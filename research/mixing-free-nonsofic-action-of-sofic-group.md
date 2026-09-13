@@ -83,3 +83,13 @@ a Bernoulli shift.
   surviving explicit candidate is `SL_3(Z) ↷ SL_3(R)/Λ` with `Λ` cocompact, which
   has no finite orbits (`sl3z-on-cocompact-lattice-quotient-is-not-sofic`, route
   `mixing-nonsofic-action-from-sl3z-cocompact-quotient`).
+  *Update (ex-sl3z-cocompact-quotient, 2026-09-13).* Benoist--Quint equidistribution makes the Hecke
+  mechanism universal. In any simple real Lie group, a Zariski-dense sofic subgroup with infinitely many
+  finite orbits on a lattice quotient acts soficly (`hecke-orbits-make-lattice-quotient-actions-sofic`). So
+  every commensurability class of arithmetic lattices is dead as a source of candidates. What survives
+  is cross-class pairs and non-arithmetic lattices acting on their own quotients. For the cross-class
+  candidate, soficity is equivalent to the existence of topological microstates
+  (`uniquely-ergodic-action-sofic-iff-topological-microstates`). Honest finite actions are uniformly
+  excluded (`sl3z-cocompact-quotient-uniformly-far-from-finite-actions`). Nonsoficity would follow from
+  `sl3z-is-stable-in-finite-actions` together with
+  `sl3z-cocompact-quotient-not-weakly-contained-in-finite-actions`.
