@@ -36,7 +36,11 @@ realized by permutation matrices in `M = prod_U M_n`. Then `sigma(G)` normalizes
   Kun--Thom 4.1, together with a doubling of the model for invariant diagonal
   projections, normalizes `N_sigma = (C_(S_U)(sigma(Gamma)) union (D cap R))''`. A
   witness can be taken in `R`, orthogonal to `N_sigma`. What remains is exactly the
-  non-monomial part of the commutant.
+  non-monomial part of the commutant. Model-level counterpart (lane `ex-q34-collapse`):
+  `kt-double-admits-no-bounded-block-monomial-hs-model` excludes regular bounded-block monomial
+  models of the double itself, so a hyperlinear double model is frame-incoherent. The two results
+  agree: monomial structure, in the model or in the commutant element, is exactly where
+  soficity rigidity still applies.
 - **Schur structure is where permutation structure enters.** Conjugation by a
   permutation commutes with entrywise operations on matrices, and a general unitary
   does not. For a unitary `z in R`, the entrywise square `|z|^(o2)` is doubly
