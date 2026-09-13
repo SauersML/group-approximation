@@ -446,3 +446,26 @@ For EVERY census row in your range with status formalized or definition, and eve
   - Wave 6 staging: the Cut chain with LetterPullbackCut, the GHWTheoremFourClosed chain, JacobsonPresented, its Sentences and ComplementaryPresented, OsinPocketCellArcs, GHWJacobsonKazhdanFinite.
   - 44 root import lines were added by hand by the open-problem campaign; wave 6 is the first root build over them.
 - **census worklist** 0913-044759: 335 formalized, 27 partial. The partial rows are the walls (nm-endpoints 8, cite-hull 4 + 2, 1697, 1719, 1725) plus rows waiting on wiring (Jacobson 1122, ring-compression 872–904, GHW 1145).
+
+## Reassignments 09-13 ~06:30
+
+- **hKO CLOSED.** ko-closed: `KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`, no binder (f65f99f17, probe 0913-055250-45566). It is `kotowskiOllivier_of_pinched (Systolic.mirrorFoldPinched CCKW.cosetComplex)`.
+- **hT6 CLOSED.** kh-cckw: `CCKW.systolicInvariantClique` and `CCKW.cckwFiniteOrderConjugateIntoVertex` (hconj), in Kazhdan/CCKWSystolicInvariantCliqueClosed (61eddb4a9, probe 0913-061054-67459). `Hyperbolic.SharpExistence` closes the same way and goes to ko-closed.
+- **Theorem C over hgreendlinger alone.** theoremc-retire: TheoremCAssemblyGreendlingerLeaf (c5f953323, probe 0913-060950-64731) and FoldLeaf (f019265bb).
+- **Flip ownership, final.**
+  - theoremc-retire: every TheoremC* module, the _of_leastAreaInputs forms and SeedFromTheoremC.E.
+  - fff-periodic: TorsionFreeFourLeaves (38) and SectionSentencesFourLeaves (12). No Theorem C names.
+  - ko-closed: nm-endpoints' five endpoint modules (LeastAreaAssembly, OsinNotion, HullPrintedLeastArea, LimitSetEndpoints, SectionAssembly: 27 findings), each in a new module; plus the row 8097c371f35d carrier swap to `_closed`.
+  - hull-bridge: unchanged. ghw-assembly's set was only `kotowskiOllivier_of_leaves`, already superseded.
+- **Hull Corollary 7.3 LANDED** by cite-hull (a2299c82c, HullCorollary73).
+  - Correction: the ~05:00 handout of K(G), AH0 and 5.10 was stale. `finiteRadical`, `IsAH0`, `finiteRadical_eq_bot_of_suitable` (HullFiniteRadical) and `printedHullLemma510` (HullLemma510) were already on main. hull-component's Cor 7.3 draft is not landed.
+  - cite-hull splits the Cor 7.4 route: free-product centralizer (jacobson), factor suitability with torsion (simple-group), first tower along inr(G2) (hull-component), f.g. second tower giving AH0 (hl-lemma46), countable case via 7.3 (fff-quotient). It adds `_of_greendlinger` forms of 7.3 and 7.4.
+- **W1 zero-cell merge.** nm-endpoints' value half is OsinPocketMergeRegion (93cb4e04f, probe 0913-062000-78681): `Surgery.InnerGRegion.ofPocketRegion`, no shelling. The hrot interface is between it and hull-select.
+- **W1 PhiPrimeCount.** hull-euler states C6's interface as `EmptyTwoGonInput` on PocketRegion (16d923f27). The shared merge produces it. C3–C5 statements go to debt-conditional, leavitt-units and hs-vanishes now; all three were idle.
+- **W1 h94.** sec5-sentences: OsinLemma94DartMinimal (88db0df7b, probe 0913-062132-82302) proves `osinLemma94Section_of_planarRunInputReduced`, so the residual is `OsinLemma94PlanarRunInputReduced` (merged, pinch-split, dart-minimal families).
+  - hull-unbound has not landed since 04:41, so the defaults stand: theoremc-retire states Case 1 and hull-count94 states side_budget/covers, each over the reduced hypotheses.
+  - sec5-sentences takes the Case 2 exchange modules.
+- **Other W1 landings:** go-lemma42 SurgeryPocketGlue (1e3497e4b); kh-ejz FollowsBoundary (d2b2ef55b).
+- **root-wire wave 7 ROOT GREEN** 4a6cb4e55: 9 modules, closure 6301, every census carrier root-reachable. Wave 8 launched: HullCorollary73, TheoremCAssemblyFoldLeaf, JacobsonThreePlusOnePresented.
+- **Stale partial rows** go to ghw-assembly to audit and re-grade: b6d1590be7ab, LINE:1688, LINE:1725, LINE:1155 (cite-ejz, no live lane) and LINE:1629.
+- **jacobson.** All 26 rows are formalized. Next: transport PrintedJacobsonRankTwoKazhdanFiniteField to the presented J, then the Cor 7.4 centralizer.
