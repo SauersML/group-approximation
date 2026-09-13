@@ -27,8 +27,7 @@ def sub {Dart : Type v} {cycle : List Dart} (arc : CyclicArc cycle) (i l : ℕ)
     rcases Nat.eq_zero_or_pos cycle.length with h0 | hpos
     · have hs := arc.start.2
       have hl := arc.length_le
-      rw [h0, Nat.mod_zero]
-      omega
+      exact Nat.lt_of_le_of_lt (Nat.mod_le _ _) (by omega)
     · exact Nat.lt_succ_of_lt (Nat.mod_lt _ hpos)⟩
   length := l
   length_le := by
