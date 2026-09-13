@@ -211,13 +211,44 @@ The piece order is pinch, then region, then collar (dgo-analytic, `Estimating/Os
 b34e788e8). The consumers are kh-ejz (`PocketWalk.toPocketFaceSet`, 517cec238, which needs a simple
 walk) and debt-conditional.
 
-- **State on main.**
-  - `PocketPinchStatement : ∀ … (K : PocketFaceSet D eps X lo hi), ∃ X' K', Nonempty
-    (OEquivalentDiscDiagram X X') ∧ K'.Simple`, where `Simple` means `IsSimpleClosedWalk` of
+- **State on main (origin 13:27).**
+  - `PocketPinchLabelledStatement` (dgo-analytic, bdc7337fd and cb0ec2d30) is the Prop the assembly
+    uses. It takes the label binder `∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)` and
+    `K.ClosedWalk` (walk order: chain and closes, vertices may repeat), and returns `∃ X' K', Nonempty
+    (OEquivalentDiscDiagram X X') ∧ K'.Simple`. `Simple` is still `IsSimpleClosedWalk` of
     `K.boundary.cycle`.
-  - kh-cckw (`Estimating/OsinPocketPinchUnpinched`, 33951a5b6, probe 0913-091746-34826) reduces it
-    to `PocketPinchPinchedStatement`, the case `¬(K.boundary.FollowsBoundary ∧ Unpinched X.toCombMap
-    K.faces)`.
+  - kh-cckw (`Estimating/OsinPocketPinchUnpinched`, 33951a5b6, probe 0913-091746-34826) reduces
+    `PocketPinchStatement` to `PocketPinchPinchedStatement`, the case `¬(K.boundary.FollowsBoundary ∧
+    Unpinched X.toCombMap K.faces)`.
+  - kh-cckw (`Estimating/OsinPocketUnpinchedEuler`, 74d4ebd34): if the boundary cycles of a face set
+    and of its complement both follow the boundary, the face set is `Unpinched`.
+  - dgo-geometric (`Estimating/OsinPocketPinchedTwoGonLobe`, 4181011af, unverified): the conclusion
+    ties `K'` only to `D`, `eps`, `lo` and `hi`, so a lobe with fewer faces can serve a pinched pocket.
+- **Rulings since 615da4f77.**
+  - R2 if kh-torsion confirms that no collar stage needs inner `FollowsBoundary`, else R1. B stays a
+    residual under both. dgo-geometric model-tests A and B before either lands as a named Prop. The
+    label binder is accepted.
+  - Under R2 (lead ~13:40, pending kh-torsion), `Simple` becomes `∃ hw : IsNoncrossingClosedWalk
+    X.toCombMap K.boundary.cycle, (hw.outerCycle X.planar).FollowsBoundary`. A needs no pinch, and B
+    stays in the pinch Prop.
+- **New module `Estimating/OsinPocketClosedWalkNoncrossing`** (probe 0913-133554-56930 green,
+  landed with this report, unwired).
+  - `BoundaryCycle.isNoncrossingClosedWalk`: every boundary cycle in walk order is an
+    `IsNoncrossingClosedWalk`. Rotate from `alpha d` of a listed dart. The corner after `alpha d` lies
+    in the face of `d`, and a dart off the edges of the listing keeps the next corner selected. So the
+    first dart on an edge of the listing is a listed dart (`turn_mem_cycle`).
+  - `PocketFaceSet.ClosedWalk.isNoncrossingClosedWalk` is the pocket form.
+  - Consequence under R2: `K.Simple` is `K.ClosedWalk` plus outer `FollowsBoundary`. The turning
+    condition does not choose how the walk pairs its darts at a repeated vertex.
+- **Pairings at a repeated vertex.**
+  - Around `v` the rotation reads `alpha d_1, [K], e_1, [gap], alpha d_2, [K], e_2, [gap], …`.
+  - Inner following pairs `d_i → e_i`; outer following pairs `d_{i+1} → e_i`.
+  - With two passages a walk pairs one way or the other. The inner pairing is B-like (outer fails),
+    and the outer pairing is A-like (inner fails).
+  - With three or more passages, `ClosedWalk` also allows pairings that follow neither side.
+  - Consecutive darts of `t_1` meet through one corner of `Π`, and consecutive darts of `t_2` through
+    one corner of `O`. So both arcs are outer-paired, and re-pairing to the outer order never splits
+    them. Only side darts can move between `s_1` and `s_2`.
 - **Obstructions** to splitting at a repeated vertex and keeping a simple lobe that holds a relator
   cell, at the landed generality. Neither is a proof or a refutation.
   - Side norms. A lobe whose side has a loop cut out keeps `length ≤ eps`, but not
@@ -237,7 +268,8 @@ walk) and debt-conditional.
     - `K.faces` is an annulus pinched at `v`, and Π lies in the inner complement component.
     - The only simple lobe `s₂[v..] t₂ s₁[..v]` has no cell arc, and its disc contains Π, so
       `rCellCount_lt` of the pocket cut can fail.
-- **Proposal sent to dgo-analytic** (msg cdfe394e), awaiting a ruling.
+- **Proposal sent to dgo-analytic** (msg cdfe394e). The lead's ruling is under "Rulings since
+  615da4f77".
   - (R1) Keep `PocketCarrier` and add the label binder. hull-respell proves the pinch outside A and
     B, and lands A and B as named Props.
   - (R2) Drop `PocketCarrier.inner_follows`.
@@ -245,18 +277,42 @@ walk) and debt-conditional.
       gives the enclosed diagram with the pinched walk as its boundary.
     - The transports use only `outer_follows`, but `GeodesicCollarStatement` uses both.
     - The pinch then handles lakes only.
-- **Sub-piece handed to kh-cckw** (msg dc23c3a7): for a planar map, if the boundary cycle of
-  `faces` and that of `facesᶜ` both follow the boundary, the face set is `Unpinched`.
+- **Sub-piece handed to kh-cckw** (msg dc23c3a7), landed at 74d4ebd34: for a planar map, if the
+  boundary cycle of `faces` and that of `facesᶜ` both follow the boundary, the face set is
+  `Unpinched`.
   - Route: collapse both sides with `FaceSetCircuits.toDiscRegion`. The doubly collapsed map has 2
     faces, so `V = E_B`, and every boundary vertex is visited once.
   - This is the no-lake base case under either form.
+- **Sub-piece E2 handed to kh-cckw** (msg 95934ab2, `Estimating/OsinPocketPinchSplit`, not landed
+  yet): split a vertex at gap corners, the splitting step of the explosion route.
+- **Routes to the pinch.**
+  - Lake absorption, in the case outside B (Π and the outer face lie in one complement component).
+    Take `K' = K ∪ lakes`.
+    - A lake meets no source dart, since Π is not in it, and no target dart, since the outer face
+      is not in it. So its border consists of side darts only.
+    - The new sides are the old ones with loops cut out, and the label binder bounds their norms by
+      their lengths.
+    - Then re-pair to the outer order at repeated vertices.
+  - Explosion (R1).
+    - Thicken with `FaceEdgeDoubling`, `MonogonDoubling` and outer spur thickening.
+    - Split at gap corners (E2), induct to `Unpinched`, then apply `simple_of_followsBoundary`.
+    - It needs inner `FollowsBoundary`, so the wrap case is left.
+  - B stays a named residual under both.
 
 ## Next
 - Done: `SimpleClosedWalkSides` and the `HullSCOneStepQuasiGeodesicLeaves` docstring fix landed
   normally at 4dce22f1e (sec2-sentences informed). `SimpleClosedWalkSides` is on the wire queue.
   `OsinPocketRegionSimpleWalk` is consumed by dgo-analytic's `OsinPocketRegionOfSimple`.
-- dgo-analytic's ruling on R1/R2. Then land the corrected pinch statement, with a Rule 22 probe of
-  `OsinPocketPieces` and `OsinPocketPinchUnpinched`, and prove it by lobe selection and lake absorption.
-- kh-cckw's Euler sub-piece.
+- Done: `OsinPocketClosedWalkNoncrossing` (probe 0913-133554-56930), landed with this report.
+  dgo-analytic is informed.
+- Waiting on:
+  - kh-torsion's confirmation of R2;
+  - dgo-geometric's model tests of A and B;
+  - dgo-analytic's answer on the pinch hypothesis (`K.ClosedWalk` or inner `FollowsBoundary`);
+  - kh-cckw's E2.
+- Then land the pinch statement in the ruled form, with a Rule 22 probe of `OsinPocketPieces` and
+  `OsinPocketPinchUnpinched`. Prove it modulo the named B: by lake absorption under R2, and by the
+  explosion route with the `FaceEdgeDoubling` transport (E1) under R1.
+- Hold edits on `OsinAppendixGreendlingerParts` until ghw-charp2 lands 07b.
 - Flip to `relativeGreendlingerQuasiGeodesicLeastArea_closed` as h94 and the parts land. A watcher on
   landed.log follows the part owners.
