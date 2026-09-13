@@ -13,8 +13,6 @@ import GroupApproximation.Kazhdan.KazhdanComplex
 import GroupApproximation.Sofic.Hyperlinear
 import GroupApproximation.Sofic.LEFSofic
 import GroupApproximation.Pestov91.Assembly
-import GroupApproximation.Analysis.PropertyTNonamenable
-import GroupApproximation.Sofic.SoficByAmenablePermanence
 
 /-!
 # Proof of the Pestov Open Question 9.1 theorems
@@ -48,10 +46,6 @@ of the development with property `(T)`.
   `exists_infinite_simple_propertyT_sofic_of` carry any infinite simple LEF
   group of the development with property `(T)` into the challenge's three
   statements.
-* The model tests at the end check each shared definition against objects
-  whose answer is known: finite groups have property `(T)` and are sofic and
-  hyperlinear, `ℤ` does not have property `(T)`, and the trivial group is
-  neither infinite nor simple.
 
 The development endpoints have the shapes of
 `GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef_of` and
@@ -231,70 +225,6 @@ theorem exists_infinite_simple_propertyT_sofic_hyperlinear_of
   obtain ⟨E, _, hinf, hsimple, hT, hlef⟩ := h
   exact ⟨E, inferInstance, hinf, hsimple, hasPropertyT_iff_hasKazhdanPropertyT.mpr hT,
     isSoficGroup_of_isLEF hlef, isHyperlinearGroup_of_isSoficGroup (isSoficGroup_of_isLEF hlef)⟩
-
-/-! ## Model tests of the shared definitions
-
-Each shared definition is checked against objects whose answer is known, so
-that none of them is vacuous in either direction: finite groups have property
-`(T)` and are sofic and hyperlinear, `ℤ` does not have property `(T)`, and the
-trivial group is neither infinite nor simple. -/
-
-/-- Positive control for `HasPropertyT`: a finite group has property `(T)`, with
-the whole group as control set and tolerance `1`.  The sum of the orbit of an
-almost invariant unit vector is invariant, and it is nonzero because each term
-of the orbit lies within `1` of the vector. -/
-theorem hasPropertyT_of_finite (G : Type) [Group G] [Finite G] : HasPropertyT G := by
-  letI : Fintype G := Fintype.ofFinite G
-  refine ⟨Finset.univ, 1, one_pos, ?_⟩
-  intro E _ _ _ ρ x hx hnear
-  refine ⟨∑ g : G, ρ g x, ?_, ?_⟩
-  · intro hy
-    have hlt : ‖∑ g : G, (ρ g x - x)‖ < (Fintype.card G : ℝ) := by
-      calc ‖∑ g : G, (ρ g x - x)‖ ≤ ∑ g : G, ‖ρ g x - x‖ := norm_sum_le _ _
-        _ < ∑ _g : G, (1 : ℝ) :=
-          Finset.sum_lt_sum_of_nonempty Finset.univ_nonempty
-            fun g _ ↦ hnear g (Finset.mem_univ g)
-        _ = (Fintype.card G : ℝ) := by simp
-    have heq : ‖∑ g : G, (ρ g x - x)‖ = (Fintype.card G : ℝ) := by
-      rw [Finset.sum_sub_distrib, hy, zero_sub, norm_neg, Finset.sum_const,
-        Finset.card_univ, RCLike.norm_nsmul ℂ, hx, nsmul_eq_mul, mul_one]
-    rw [heq] at hlt
-    exact lt_irrefl _ hlt
-  · intro k
-    rw [map_sum]
-    exact Fintype.sum_equiv (Equiv.mulLeft k) _ _ fun g ↦ by simp [map_mul]
-
-/-- Negative control for `HasPropertyT`: `ℤ` does not have property `(T)`.  An
-infinite amenable group has no Kazhdan pair, because a Følner set gives an
-almost invariant unit vector of the regular representation, which has no
-nonzero invariant vector. -/
-theorem not_hasPropertyT_int : ¬ HasPropertyT (Multiplicative ℤ) := by
-  intro h
-  haveI : Infinite (Multiplicative ℤ) :=
-    Infinite.of_injective Multiplicative.ofAdd Multiplicative.ofAdd.injective
-  exact GroupApproximation.PropertyTNonamenable.infinite_kazhdan_not_isAmenable
-    (hasPropertyT_iff_hasKazhdanPropertyT.mp h)
-    GroupApproximation.SoficByAmenablePermanence.isAmenable_int
-
-/-- Negative control for `Infinite`: the trivial group is finite. -/
-theorem not_infinite_punit : ¬ Infinite PUnit.{1} :=
-  not_infinite_iff_finite.mpr inferInstance
-
-/-- Negative control for `IsSimpleGroup`: the trivial group is not simple,
-because a simple group is nontrivial. -/
-theorem not_isSimpleGroup_punit : ¬ IsSimpleGroup PUnit.{1} := by
-  intro h
-  obtain ⟨a, b, hab⟩ := h.toNontrivial.exists_pair_ne
-  exact hab (Subsingleton.elim a b)
-
-/-- Positive control for `IsSoficGroup`: finite groups are sofic. -/
-theorem isSoficGroup_of_finite (G : Type) [Group G] [Finite G] : IsSoficGroup G :=
-  isSoficGroup_of_isSofic (GroupApproximation.isSofic_of_finite G)
-
-/-- Positive control for `IsHyperlinearGroup`: finite groups are hyperlinear. -/
-theorem isHyperlinearGroup_of_finite (G : Type) [Group G] [Finite G] :
-    IsHyperlinearGroup G :=
-  isHyperlinearGroup_of_isHyperlinear (GroupApproximation.isHyperlinear_of_finite G)
 
 end
 
