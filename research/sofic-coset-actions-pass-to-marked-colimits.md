@@ -44,6 +44,21 @@ countable.
    finitely generated stabilizer admits no colimit presentation by separable
    pairs.  Its sofic models, if any, are genuinely approximate.
 
+6. **Closure in the space of marked pairs.**  Fix a free group `F` on a
+   countable set.  A marked pair is `(N,M)` with `N <| F` and `N <= M <= F`;
+   it defines `F/N action F/M`.  Give marked pairs the topology of pointwise
+   convergence of the indicator functions of `N` and `M` on `F`.  The set of
+   marked pairs whose coset action is sofic is closed.  Items 2 and 3 are
+   special cases.
+
+7. **LEF pairs.**  Call `(G,H)` an LEF pair if its marked pair is a limit of
+   marked pairs `(N_k,M_k)` with `F/N_k` finite.  An LEF pair has a sofic
+   coset action whose window models are genuine actions of finite groups
+   with error zero.  If `G` is finitely presented and `H` finitely
+   generated, then `(G,H)` is an LEF pair if and only if `G` is residually
+   finite and `H` is separable in `G`.  So item 5 is the finitely presented
+   case of this dichotomy, and for such pairs co-density excludes LEF.
+
 ## Consequences for the Hecke pairs
 
 - `C=SL_3(F_2[t])` is Kazhdan, hence finitely generated, and co-dense in

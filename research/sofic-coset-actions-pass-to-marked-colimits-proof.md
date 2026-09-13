@@ -126,3 +126,36 @@ A preimage of a closed subgroup under a homomorphism is closed: with
 containing the finite-index normal subgroup `s^(-1)(N)`.  Hence `H` is
 separable in `G`.  A co-dense stabilizer is not separable, which gives the
 stated consequence.
+
+## Item 6 (closure in the space of marked pairs)
+
+Let `(N_k,M_k) -> (N,M)`, put `G=F/N`, `H=M/N`, `G_k=F/N_k`, `H_k=M_k/N_k`, and
+assume every `G_k action G_k/H_k` is sofic.  Fix `F_G`, `E`, `eps` and form
+`W` by (WC).  Choose words in `F` representing the elements of
+`F_G ∪ F_G F_G ∪ {r_x} ∪ W`, with the empty word for `1`.  Only finitely many
+words are then relevant: the relators `l(g)l(h)l(gh)^(-1)` and
+`l(g)^(-1)l(r_x)l(w)^(-1)l(r_(g^(-1)x))^(-1)`, which lie in `N`; the words
+`l(w)`, which lie in `M`; and the words `l(r_x)^(-1)l(r_y)` for `x != y`,
+which do not lie in `M`.  For large `k`, `N_k` and `M_k` agree with `N` and
+`M` on this finite set.  Map `l` into `G_k` and repeat the transport step of
+item 3 verbatim: (LIFT) holds in `G_k` with `l(w) in H_k`, and the chart map
+`x -> l(r_x)H_k` is injective because `l(r_x)^(-1)l(r_y) notin M_k`.  For a
+directed colimit, the pulled-back pairs `(ker(F->G_n), preimage of H_n)`
+converge to `(N,M)`, which recovers item 3.
+
+## Item 7 (LEF pairs)
+
+A finite pair is sofic by item 1 (every subgroup of a finite group is
+closed).  Item 6 gives soficity of limits, with window models the regular
+actions of the finite groups `F/N_k`.  Suppose now `G=<Sigma|R>` is finitely
+presented and `H=<T>` is finitely generated, and `(N_k,M_k) -> (N,M)` with
+`F/N_k` finite.  For large `k` the finitely many relators `R` lie in `N_k`,
+so `N <= N_k`.  The finitely many words for `T` lie in `M_k`, so `M <= M_k`.
+Then `M_k/N` is a finite-index subgroup of `G` containing `H`, and it avoids
+any prescribed finite set of elements outside `H` once `k` is large.  So `H`
+is separable.  The groups `F/N_k` are finite quotients of `G` that
+eventually separate any prescribed finite set of elements, so `G` is
+residually finite.  Conversely, if
+`G` is residually finite and `H` is separable, the pairs `(N_k, H N_k)`
+built from a descending sequence of finite-index normal subgroups `N_k`
+with trivial intersection and `HN_k` shrinking to `H` converge to `(N,M)`.
