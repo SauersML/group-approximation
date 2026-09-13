@@ -44,3 +44,12 @@ Equivalently, `1 + x` is not null-homotopic in `Ĩ`, while `1 + S_1^k x S_1^{*k}
   example with `π_{2r}(S^{2r-1}) = Z/2` coefficients. None has been constructed.
 - Strict isometry path criterion: a strictly continuous isometry path from `1` to `S_1` in `M(I)` makes `Ĩ`
   K1-injective. Any unital quotient of `I` blocks it.
+- Self-similar commutative modules (established `self-similar-hilbert-cx-module-has-unit-section`). If
+  `E ≅ E ⊕ E` over `C(X)` with nonzero fibres, the finite intersection property of zero sets forces a unit
+  section. So `E` contains `θ^{2^k}` for all `k`, and its projection `P_E in M(C(X)⊗K)` is properly infinite.
+  A `K(E)` witness therefore needs `P_E` non-full, which is a converse-CFP phenomenon over an
+  infinite-dimensional `X`. The attempted proof that `P_E` is always full chooses unit sections almost
+  orthogonal to finitely many generators. It needs a continuous selection with highly connected fibres,
+  but the dimension of the finite complex that approximates the data grows with the number of words used.
+  It stops there.
+- Projection-rich witnesses must fail order cancellation (`o2-ideal-projection-unit-witness-fails-cancellation`).
