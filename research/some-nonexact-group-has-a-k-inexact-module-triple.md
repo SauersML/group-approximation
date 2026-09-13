@@ -21,6 +21,13 @@ conjecture with trivial coefficients for `V ⋊ G` or for `(V/W) ⋊ G`.
 
 **Necessary features.**
 - `G` is not exact (Kirchberg--Wassermann; context, not imported).
+- `G` **fails Baum--Connes with coefficients**: by
+  `bcc-groups-have-k-exact-module-triples`, a middle K-defect in degree `j` forces
+  `mu_(G, C(X))` non-surjective or `mu_(G, C(Z))` non-injective in degree `j`. So `G`
+  itself violates the conjecture with the commutative dual-module coefficients `C(V^)` or
+  `C((V/W)^)`. In particular `G` is not a-T-menable (`higson-kasparov-haagerup-satisfies-bcc`),
+  which rules out the non-exact a-T-menable groups of Osajda -- the whole a-T-menable class is
+  eliminated, so non-exactness alone is far from enough.
 - The C*-sequence `0 -> C_0(U) ⋊_r G -> C(X) ⋊_r G -> C(Z) ⋊_r G -> 0` is not exact, since
   K-theory is half exact on exact sequences of C*-algebras.
 - The extension `W -> V ⋊ G -> (V/W) ⋊ G` is not split in any way that forces exactness.
@@ -58,6 +65,15 @@ conjecture with trivial coefficients for `V ⋊ G` or for `(V/W) ⋊ G`.
   has approximate kernel. The criterion holds for the non-module triple `(βG, ∂βG)` of an
   embedded large-girth expander. No module instance is known, and a C*-defect does not by
   itself give a K-defect.
+- **The base group must fail BC with coefficients.**
+  `bcc-groups-have-k-exact-module-triples` (established) reads the diagram chase of
+  `k-inexact-module-triple-refutes-trivial-coefficient-bc-proof` in the direction that
+  constrains `G`: any group satisfying Baum--Connes with coefficients has every module triple
+  K-exact. So a witness cannot be sought among a-T-menable groups, even the non-exact ones.
+  The remaining hosts are Higson--Lafforgue--Skandalis monsters, whose known coefficient
+  failure is carried by a boundary coefficient on a proper open orbit -- exactly the structure
+  a dual-module action lacks (`module-dual-actions-have-no-wandering-open-sets`). Realizing the
+  monster coefficient failure on an algebraic `C(V^)` instead is the unsolved crux.
 - **Where every attempt stops.** A C*-defect needs an element of `C(X) ⋊_r G` that dies on
   `Z` but is not approximable from `C_0(U)`. A K-defect additionally needs an invariant on
   `K_0(C(X) ⋊_r G)` that vanishes on the image of the ideal. Traces from invariant measures
