@@ -28,6 +28,16 @@ CLAIM carriers for 9bab404c96c5, 6b5d4b5c3081, 29d7a8ccf93a, 270c3118af88 in mod
 
 `\cite{Leavitt}` at tex 226 names the algebra; it is not used as a proof step.
 
+## Item 2 (main, 17:15): help W1 binder 5
+
+CLAIM binder 5 step 4, orientation of the cell pocket walk colouring:
+`GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkColour.lean`.
+This is the cell analogue of cite-hull's `PocketWalkColour.walk_orient`. Planned declarations:
+- `CellPocketWalkColour.walk_orient`
+- `CellPocketWalkColourStatement` / `cellPocketWalkColour`
+The module consumes jacobson's `OsinPocketCellWalk` and cite-hull's `OsinPocketWalkColour`. The split was proposed to
+w1-binder-5 at 17:24: it keeps step 3; step 5 goes to ms-intro-2 after step 4; step 6 waits on audit-sec5.
+
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.
 - 17:06 probe 0913-170556-76424 GREEN, BUILT IntroCompressorSentences.
