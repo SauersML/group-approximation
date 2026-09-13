@@ -84,7 +84,7 @@ theorem killsKernelOfDirectlyFinite_restrict :
     rw [TwoSidedIdeal.span_le]
     rintro _ ⟨P, hP, hTP, rfl⟩
     exact (TwoSidedIdeal.mem_ker ψ).2 (ClopenCrossedProduct.map_defectD_eq_zero T k ψ hP hTP)
-  exact (TwoSidedIdeal.mem_ker ψ).2 (hle hmem)
+  exact (TwoSidedIdeal.mem_ker ψ).1 (hle hmem)
 
 end Restriction
 
@@ -148,10 +148,12 @@ section Assembly
 variable (h : CoreModelsLEFStatement) {X : Type} [MetricSpace X] [CompactSpace X]
   [TotallyDisconnectedSpace X] [Nonempty X] (T : X ≃ₜ X) (k : Type) [Field k] [Finite k]
 
+omit [Nonempty X] [Finite k] in
 theorem coreRestrict_surjective : Function.Surjective (coreRestrict T k) :=
   restrict_surjective_of_isClosed T k (image_core T)
     (Dynamics.isClosed_chainRecurrentSet T.continuous)
 
+omit [Nonempty X] [Finite k] in
 theorem killsKernelOfDirectlyFinite_coreRestrict :
     KillsKernelOfDirectlyFinite.{w} (coreRestrict T k) :=
   killsKernelOfDirectlyFinite_restrict T k
