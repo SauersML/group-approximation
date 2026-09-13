@@ -58,7 +58,10 @@ new parts) are forced.
   2.2) records as open.  Conversely, one thin free subgroup with an outlier in
   its congruence Cayley graphs refutes this claim.
 * **Archimedean consequence.**  A positive answer forces
-  `liminf lambda_1^new(Gamma_D(p) \ X) >= lambda_0(X)` along primes
+  `limsup ||R_p(f)|| <= ||lambda_G(f)||` for every `f in C_c(SL_3(R))` on the new
+  part of `L^2(Gamma_D(p) \ SL_3(R))`.  So along primes the new archimedean
+  components become tempered in the Fell topology, and
+  `liminf lambda_1^new(Gamma_D(p) \ X) >= lambda_0(X)`
   (`cubic-division-congruence-sc-forces-asymptotic-laplace-gap`).  That is an
   asymptotic Ramanujan-at-infinity statement for cuspidal `GL_3` forms
   attached to `D`, not known as far as I am aware.  So the positive

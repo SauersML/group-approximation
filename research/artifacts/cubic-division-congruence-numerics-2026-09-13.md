@@ -132,6 +132,26 @@ so `n >= log p / (3 log 1.802) - O(1)`, and `a^m` has order at least
 convergence.  What it records is that convergence is slow along primes where
 a fixed high power has small order.
 
+## Flags at larger primes (Steinberg sector, `k = 400`)
+
+| p | N | arithmetic `m=19` | random |
+|---|---|---|---|
+| 167 | 4713576 | -0.00009 | +0.00015 |
+| 181 | 5995626 | -0.00006 | -0.00010 |
+| 197 | 7723386 | -0.00007 | +0.00145 |
+| 211 | 9483396 | -0.00012 | +0.00050 |
+| 223 | 11189472 | -0.00005 | -0.00004 |
+| 239 | 13766640 | +0.00132 | +0.00042 |
+
+At `p = 239` the arithmetic excess `+0.001323` equals, to six digits, the `P^2`
+value at the same prime (batch 1).  So it lives in the
+`(p^2+p)`-dimensional degenerate constituent (`N = 57361`), not in Steinberg.
+Fluctuations of that size appear in random pairs too (`p = 197`: `+0.00145`),
+and `a^19` has no small order at 239 (`gcd(19, 238) = 1`).  In the Steinberg
+sector (dimension `p^3`, about `1.4e7` at 239) nothing above `1.5e-4` was
+detected for the arithmetic pair at any of these primes.
+Raw output: `res4-flags-large.txt`.
+
 ## The conic space at `p = 29` (a sector that should contain cuspidals)
 
 **Space.**  `SL_3(F_p)` acts on nondegenerate conics, i.e. symmetric `3 x 3`
