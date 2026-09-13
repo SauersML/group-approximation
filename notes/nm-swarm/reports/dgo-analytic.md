@@ -20,6 +20,12 @@ Rulings (lead, 09-13):
   * ghw-charp2's patch 06a edits `OsinAppendixAssemblyDescent` lines 199-200 (`T.respects a …` becomes `(T.respects a …).2`); this lane holds edits on that file until ghw-charp2 reports landed.
   * hl-lemma46's `PocketRegion.exists_twoCollars_of_ne_or` (7eb17a3e9) covers the collar, modulo kh-torsion's `GeodesicCollarStatement`.
 * ~10:15 (this lane, escalated to the lead): hull-respell's pinch obstructions, configurations A and B, with options R1 and R2 (see "The pinch obstructions" below). Awaiting the ruling and kh-torsion's answer on inner `FollowsBoundary`.
+* ~10:30: kh-ejz's option (B) for `SectionPocketFaceSetInput`. The face set is produced on an O-equivalent copy of the optimal diagram, since on the optimal diagram the pocket walk can use both darts of one edge (a section backtrack between the two targets, or a gap-arc edge with the cell on both sides). hs-vanishes builds the spur thickening. This lane adds the label legality of the copy, because the pinch's label binder now applies to the copy.
+* ~11:55: pinch ruling. R2 if kh-torsion confirms that its collar insertion does not need inner `FollowsBoundary`, otherwise R1.
+  * B stays a residual under either option. Neither A nor B lands as a named Prop until dgo-geometric has model-tested it.
+  * The label binder is accepted as a labelled Prop plus a weakening lemma.
+  * Under R2, one Rule 22 co-probe restates `PocketRegionOfSimpleStatement`, `PocketCarrier`, the collar glue of 6cb3014e6, `GeodesicCollarStatement` (with kh-torsion) and `exists_twoCollars_of_ne_or` (with hl-lemma46). kh-ejz's `MultipleEdgePocketRegionInput` drops inner `FollowsBoundary` the same way; hull-select and kh-ejz hear when the form is fixed.
+  * go-lemma42's `OsinPocketGlueDiagram` (f914f8728) takes only outer `FollowsBoundary` and is unaffected.
 
 Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 (`Estimating/OsinAppendixDescentInduction`).
@@ -42,8 +48,8 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 
 | Prop | Owner | Shape |
 |---|---|---|
-| `SectionPocketFaceSetInput`, `OsinSectionPocketFaceSetSectionStatement` | kh-ejz (kept cell through hull-select's zero-cell merge) | two distinct exterior regions to section `j` give a `PocketFaceSet` of the optimal diagram |
-| `PocketPinchStatement` | hull-respell | a `PocketFaceSet` has an O-equivalent copy with a `Simple` one (boundary cycle `IsSimpleClosedWalk`), by simple circuits or a 0-refinement |
+| `SectionPocketFaceSetInput`, `OsinSectionPocketFaceSetSectionStatement` | kh-ejz (kept cell through hull-select's zero-cell merge, copy through hs-vanishes' spur thickening) | two distinct exterior regions to section `j` give a `PocketFaceSet` of an O-equivalent copy of the optimal diagram whose labels are letters of `symmetricLabelAlphabet D` |
+| `PocketPinchLabelledStatement`, implied by `PocketPinchStatement` | hull-respell | a `PocketFaceSet` of a diagram with legal labels has an O-equivalent copy with a `Simple` one (boundary cycle `IsSimpleClosedWalk`), by simple circuits or a 0-refinement |
 | `PocketRegionOfSimpleStatement` | dgo-analytic | a `Simple` face set gives a `PocketCarrier` (both cycles `FollowsBoundary`, sides of length and norm at most `ε`) |
 | `PocketCollarStatement` | dgo-analytic from kh-torsion's `GeodesicCollarStatement` | a `Nondegenerate` `PocketCarrier` has an O-equivalent copy with a `Collared` carrier (sides admissible geodesic words) |
 | `PocketCellTransportStatement`, `PocketOuterTransportStatement` | go-lemma42 | regions of copies of the pocket to `t_1` and `t_2` glue back, target `OsinMultipleEdgeCut.ofPocketRegion` |
@@ -115,7 +121,7 @@ hull-respell's analysis is in `notes/nm-swarm/reports/hull-respell.md`, section 
 
 * Side norms. A lobe that cuts a loop out of a side keeps `length ≤ ε` but not `wordNorm ≤ ε`. The fix is the binder `hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)`, after which `wordNorm_le_length` and `symmetricLabelAlphabet.carrier_eq` give norm ≤ length.
   * Accepted by this lane. The consumer supplies it as `S.label_admissible` (`OsinAppendixSections.lean:272`, `RealizedRegionFamily.LabelLegal`).
-  * Plan: add a labelled Prop to `OsinPocketPieces` with a weakening lemma from `PocketPinchStatement`, and switch `sectionPocketCutInput_of_pieces` to it. No peer file breaks, and each lane lands only its own files. This waits for the ruling, so the statement changes once.
+  * Done together with ruling (B), and landed with this report: `PocketPinchLabelledStatement` and `pocketPinchLabelledStatement_of_pocketPinchStatement` in `OsinPocketPieces`, with the assembly switched to them. No peer file breaks, and `OsinPocketPinchUnpinched` still builds against `PocketPinchStatement`.
 * Configuration A, a notch. `∂Π` touches itself at a vertex `v` inside the source arc `t_1`, or `∂X` does at a cut vertex inside `t_2`, and the notch holds no relator cell.
   * In the lobe that holds the relator cells, `t_1` with the loop removed is not a `CyclicArc`.
   * A vertex split at `v` adds a letter to `Π`, which `OEquivalentDiscDiagram` forbids.
@@ -135,6 +141,12 @@ Options put to the lead:
   * It works only if kh-torsion's insertion does not need inner `FollowsBoundary`; kh-torsion has been asked.
 * B stays a residual under either option.
 * Recommendation: R2 if kh-torsion confirms, otherwise R1.
+
+hull-respell's smallest diagrams (~11:50):
+
+* A (notch, `eps = 0`) and B (lake, `eps = 2`) each have an O-equivalent rebuild with a simple face set, and neither rebuild needs a 0-edge.
+* Neither rebuild is a local vertex split. Each realizes the pocket walk as a simple polygon and refills the rest with `G`-faces that read duplicated edge letters back and forth, so their values are 1.
+* The general refill is open when the boundary listing is not a closed walk.
 
 ### Truth caveats sent to dgo-geometric for model tests
 
@@ -156,7 +168,7 @@ New with the ruled order:
 ### Residual Props of `DescentInput` on this route
 
 * `OsinSectionPocketFaceSetSectionStatement` (kh-ejz).
-* `PocketPinchStatement` (hull-respell). kh-cckw reduced it to `PocketPinchPinchedStatement` (33951a5b6). Configurations A and B are escalated, and the label binder is pending.
+* `PocketPinchLabelledStatement` (hull-respell), or `PocketPinchStatement` through the weakening lemma. kh-cckw reduced the unlabelled one to `PocketPinchPinchedStatement` (33951a5b6). Configurations A and B are escalated.
 * `GeodesicCollarStatement` (kh-torsion, `SurgeryGeodesicCollar.lean:67`), in place of `PocketCollarStatement`.
 * `PocketCellTransportStatement` and `PocketOuterTransportStatement` (go-lemma42).
 * Outside `SectionPocketCutInput`, `descentInput_of_sectionPocketCut` still takes `LoopCutInput` (ruling (A) final), `MultipleEdgeCutInput`, `EulerCountInput`, `UnboundInput` and `O52LeastAreaStatement`.

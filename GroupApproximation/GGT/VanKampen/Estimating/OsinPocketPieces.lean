@@ -21,10 +21,13 @@ construction and assembles `SectionPocketCutInput` from them.
 ## The pieces and their owners, in the order of the assembly
 
 * `SectionPocketFaceSetInput` (lane `kh-ejz`; the kept cell through the zero-cell merge of lane
-  `hull-select`): the face set between the two regions as a `PocketFaceSet`, with its boundary
-  cycle split as `s_1 t_1 s_2 t_2` and a relator cell inside.
-* `PocketPinchStatement` (lane `hull-respell`): an O-equivalent copy whose pocket face set is
-  simple, its boundary cycle a simple closed walk, by simple circuits or a 0-refinement.
+  `hull-select`, the copy through the spur thickening of lane `hs-vanishes`): the face set
+  between the two regions as a `PocketFaceSet` of an O-equivalent copy of the optimal diagram
+  with legal labels, with its boundary cycle split as `s_1 t_1 s_2 t_2` and a relator cell
+  inside.
+* `PocketPinchLabelledStatement` (lane `hull-respell`): for a diagram with legal labels, an
+  O-equivalent copy whose pocket face set is simple, its boundary cycle a simple closed walk, by
+  simple circuits or a 0-refinement.  `PocketPinchStatement`, without the labels, gives it.
 * `PocketRegionOfSimpleStatement` (lane `dgo-analytic`, `Estimating/OsinPocketRegionOfSimple`
   through `PocketRegion.ofSimpleClosedWalk`): a simple pocket face set is a `PocketCarrier`, a
   `PocketRegion` with both cycles following the boundary and the same split of the complement's
@@ -44,6 +47,8 @@ construction and assembles `SectionPocketCutInput` from them.
   least-area `Δ`, in the positions of section `j`, gives an `OsinSectionPocketCut`, given the
   two transports.  The sides are quasi-geodesic as geodesic words, `t_1` as an arc of a relator
   read backwards, and `t_2` as an infix of section `j`.
+* `pocketPinchLabelledStatement_of_pocketPinchStatement`: the pinch without the labels gives the
+  pinch with them.
 * `sectionPocketCutInput_of_pieces` and `osinSectionPocketCutSection_of_pieces`:
   `SectionPocketCutInput`, and its uniform statement, from the pieces.
 -/
@@ -195,9 +200,13 @@ section FaceSetInput
 variable {G : Type u} [Group G] {Lambda : Type w}
 
 /-- **The face set between two exterior regions** (lane `kh-ejz`; the kept cell through the
-zero-cell merge of lane `hull-select`).  Two distinct exterior regions of one cell of a globally
-distinguished family to section `j` enclose a `PocketFaceSet` of the optimal diagram in the
-positions of section `j`.  A pocket without a relator cell merges the two regions, against the
+zero-cell merge of lane `hull-select`, the copy through the spur thickening of lane
+`hs-vanishes`).  Two distinct exterior regions of one cell of a globally distinguished family to
+section `j` enclose a `PocketFaceSet` in the positions of section `j`, in an O-equivalent copy of
+the optimal diagram whose labels are letters of the symmetrized alphabet.  On the optimal diagram
+itself the pocket walk can use both darts of one edge, at a backtrack of the section between the
+two targets or at an edge of the gap arc with the cell on both sides, and then no face set has
+the walk as its boundary.  A pocket without a relator cell merges the two regions, against the
 choice of the family. -/
 def SectionPocketFaceSetInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
     (W : Set (List (RelLetter G Lambda))) : Prop :=
@@ -209,8 +218,10 @@ def SectionPocketFaceSetInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : �
             ∀ b ∈ RegionCandidate.exteriorAt S.family i, a ≠ b →
               RegionCandidate.TargetsSectionIndex cuts j a →
                 RegionCandidate.TargetsSectionIndex cuts j b →
-                  Nonempty (PocketFaceSet D eps S.diagram (cuts.cut j.castSucc)
-                    (cuts.cut j.succ))
+                  ∃ X' : DiscDiagram.{u, w, v} W,
+                    Nonempty (OEquivalentDiscDiagram S.diagram X') ∧
+                      (∀ d, (symmetricLabelAlphabet D).IsLetter (X'.label d)) ∧
+                      Nonempty (PocketFaceSet D eps X' (cuts.cut j.castSucc) (cuts.cut j.succ))
 
 end FaceSetInput
 
@@ -234,6 +245,24 @@ def PocketPinchStatement : Prop :=
     PocketFaceSet D eps X lo hi →
       ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
         Nonempty (OEquivalentDiscDiagram X X') ∧ K'.Simple
+
+/-- **The pinched pocket, with legal labels** (lane `hull-respell`).  A pocket face set of a
+diagram whose labels are letters of the symmetrized alphabet has an O-equivalent copy with a
+simple pocket face set in the same positions.  The labels bound the word norm of a side by its
+length, so a side with a loop cut out keeps its norm bound. -/
+def PocketPinchLabelledStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    PocketFaceSet D eps X lo hi →
+      ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
+        Nonempty (OEquivalentDiscDiagram X X') ∧ K'.Simple
+
+/-- The pinch without the label hypothesis gives the pinch with it. -/
+theorem pocketPinchLabelledStatement_of_pocketPinchStatement
+    (h : PocketPinchStatement.{u, w, v}) : PocketPinchLabelledStatement.{u, w, v} := by
+  intro G _ Lambda D eps W X lo hi _ K
+  exact h D eps W X lo hi K
 
 /-- **The pocket region of a simple pocket** (lane `dgo-analytic`).  A simple pocket face set is a
 pocket carrier: its boundary cycle is a simple closed walk, whose side is a pocket region by
@@ -442,12 +471,12 @@ theorem PocketCarrier.nonempty_osinSectionPocketCut
            cellTransport := hcellT
            sectionTransport := hsecT }⟩
 
-/-- **`SectionPocketCutInput` from the pieces.**  The face set between the two regions is made
-simple, turned into a carrier, and collared, in successive O-equivalent copies of the optimal
-diagram, which is O-equivalent to `Δ`.  The carrier is nondegenerate, since its copy is least
-area. -/
+/-- **`SectionPocketCutInput` from the pieces.**  The face set between the two regions, in a copy
+of the optimal diagram with legal labels, is made simple, turned into a carrier, and collared, in
+successive O-equivalent copies of the optimal diagram, which is O-equivalent to `Δ`.  The carrier
+is nondegenerate, since its copy is least area. -/
 theorem sectionPocketCutInput_of_pieces
-    (hpinch : PocketPinchStatement.{u, w, v})
+    (hpinch : PocketPinchLabelledStatement.{u, w, v})
     (hregion : PocketRegionOfSimpleStatement.{u, w, v})
     (hcollar : PocketCollarStatement.{u, w, v})
     (hcell : PocketCellTransportStatement.{u, w, v})
@@ -457,13 +486,14 @@ theorem sectionPocketCutInput_of_pieces
     (hfaces : SectionPocketFaceSetInput.{u, w, v} D lambda c eps W) :
     SectionPocketCutInput.{u, w, v} D lambda c eps W := by
   intro Delta cuts hlea S i j a ha b hb hne hja hjb
-  obtain ⟨K⟩ := hfaces Delta cuts hlea S i j a ha b hb hne hja hjb
-  obtain ⟨X₁, K₁, ⟨E₁⟩, hsimple⟩ := hpinch D eps W S.diagram _ _ K
+  obtain ⟨X₀, ⟨E₀⟩, hlabel, ⟨K⟩⟩ := hfaces Delta cuts hlea S i j a ha b hb hne hja hjb
+  obtain ⟨X₁, K₁, ⟨E₁⟩, hsimple⟩ := hpinch D eps W X₀ _ _ hlabel K
   obtain ⟨C⟩ := hregion D eps W X₁ _ _ K₁ hsimple
+  have E : OEquivalentDiscDiagram Delta X₁ := (S.equiv.trans E₀).trans E₁
   obtain ⟨X₂, C₂, ⟨E₂⟩, hC₂⟩ :=
-    hcollar D eps W X₁ _ _ C (C.nondegenerate_of_leastArea ((S.equiv.trans E₁).leastArea hlea))
+    hcollar D eps W X₁ _ _ C (C.nondegenerate_of_leastArea (E.leastArea hlea))
   exact PocketCarrier.nonempty_osinSectionPocketCut hcell houter hcondition hlambda hc hlea
-    ((S.equiv.trans E₁).trans E₂) cuts j C₂ hC₂
+    (E.trans E₂) cuts j C₂ hC₂
 
 end Assembly
 
@@ -471,7 +501,7 @@ end Assembly
 thresholds of the face set producer. -/
 theorem osinSectionPocketCutSection_of_pieces
     (hfaces : OsinSectionPocketFaceSetSectionStatement.{u, w, v})
-    (hpinch : PocketPinchStatement.{u, w, v})
+    (hpinch : PocketPinchLabelledStatement.{u, w, v})
     (hregion : PocketRegionOfSimpleStatement.{u, w, v})
     (hcollar : PocketCollarStatement.{u, w, v})
     (hcell : PocketCellTransportStatement.{u, w, v})
@@ -495,6 +525,8 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.SectionPocketFaceSetInput
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinSectionPocketFaceSetSectionStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketPinchStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketPinchLabelledStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.pocketPinchLabelledStatement_of_pocketPinchStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketRegionOfSimpleStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketCollarStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketCellTransportStatement
