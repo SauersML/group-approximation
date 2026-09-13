@@ -36,7 +36,10 @@ nothing yet about the vertex action, because the converse of the covering-label 
   `K(2^m)\L/Λ` exactly, and the adjacent vertex group permutes its own cells exactly. Gluing along
   an exact level is excluded by `homogeneous-k-orbit-factor-has-no-finite-a-refinement`, and for
   spheres by `dyadic-radial-shell-couplings-have-one-third-boundary`. Microstates tolerate a scale
-  `m` much coarser than the cell level `M`, so this only kills `M = m`.
+  `m` much coarser than the cell level `M`, and any bijection between the two cell systems is
+  allowed. That freedom is also dead: `expanding-matchings-need-a-shared-stabilizer` shows that
+  every such bijection, at any depths and multiplicities, has edge defect at least `h_S` (Selberg).
+  Microstates therefore need non-congruence vertex orbits whose diagonal `B`-orbits do not expand.
 - **Treeing.** Elek--Lippner soficity of treeable relations is dead:
   `sl2-homogeneous-action-is-not-treeable` (`β_2^(2)(A) > 0`).
 - **Weak containment in a known sofic action of `A`.** Soficity passes down weak containment, so a
