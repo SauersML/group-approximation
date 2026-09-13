@@ -25,3 +25,12 @@ and Applied Algebra 141 (1999), 175--183. Its theorem is verified here
 through the explicit statement in the authors' universal-lattice paper;
 the original 1999 full text has not been independently read in this turn.
 This is a literature import, not a Lean proof.
+
+**Verbatim (review 2026-09-13, un-verify-measure).** arXiv:0809.4095v2 e-print, fetched on MSI, `EL_n0909.tex` lines 2496–2501:
+
+> "By a theorem of Krstić and McCool [Theorem 3]{KrM}, the Steinberg group $St_n(R)$ is finitely presented for any
+> $n\geq 4$ and any finitely presented ring $R$, in particular for $R=\mathbb Z\langle x_1,\ldots, x_d\rangle$. […] By
+> [Corollary 2]{KrM}, the group $St_3(R)$ is not finitely presented whenever $R$ surjects onto $F[t]$ for some field $F$."
+
+[KrM] is J. Pure Appl. Algebra 141 (1999) 175–183, DOI 10.1016/S0022-4049(98)00022-X. The primary text is still
+unread: ScienceDirect served a bot page and the Elsevier API needs a key.

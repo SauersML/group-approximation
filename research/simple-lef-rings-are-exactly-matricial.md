@@ -13,7 +13,7 @@ artifacts:
 
 **ESTABLISHED (unreviewed; proof route `simple-lef-rings-are-exactly-matricial-proof`, artifact §2).**
 
-Let `R` be a simple unital ring that is LEF in the sense of `lef-simple-rings-are-not-finitely-presented`. Then
+Let `R` be a countable simple unital ring that is LEF in the sense of `lef-simple-rings-are-not-finitely-presented`. Then
 for every non-principal ultrafilter `omega` there is an injective unital ring homomorphism
 `R -> prod_omega M_(d_n)(F_(q_n))` over finite fields.
 
@@ -24,3 +24,7 @@ it is exactly matricial over finite fields.
 so simplicity is needed.
 
 **Review (un-verify-3, 2026-09-13): PASS.** Re-derived: the semisimple quotient of a finite ring is a product of `M_d(F_q)`, unital projection onto one factor, the ultraproduct homomorphism, and injectivity by simplicity. `research/artifacts/un-review3-2026-09-13-part3.md` §4.
+
+**Hypothesis note (review).** Countability is used for the exhausting windows `W_n` and the ultrafilter on N. For uncountable `R` the same argument works with an ultrafilter on the directed set of finite windows.
+
+**Review (un-verify-measure, 2026-09-13): PASS, with a hypothesis fix.** Artin–Wedderburn projection and injectivity by simplicity re-derived; "countable" added to match the proof. See `research/artifacts/un-review-measure-2026-09-13-part4.md` §F2.

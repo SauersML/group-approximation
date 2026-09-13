@@ -20,3 +20,5 @@ That is the target's conclusion, and stronger: one rank `N >= 4` suffices, and t
 `exactly-matricial-rings-have-lef-general-linear-groups`, rung (L) of
 `kazhdan-elementary-approximation-type-mirrors-ring-type` is an equivalence for simple rings:
 LEF `EL_N` for one `N >= 4` ⟺ LEF ring ⟺ exactly matricial ⟺ LEF `GL_M` and `EL_M` for all `M`. Rank 3 alone is not covered.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Requires and display checked. See `research/artifacts/un-review-measure-2026-09-13-part4.md` §F3.

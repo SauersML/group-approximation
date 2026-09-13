@@ -33,3 +33,5 @@ injectively in a finite unital ring. No simplicity or finite generation is assum
 has no LEF elementary group of rank at least four.
 
 **Review (un-verify-3, 2026-09-13): PASS.** Re-derived: the import gives `St_n(A)` finitely presented for a finitely presented ring and `n ≥ 4`; relators evaluate to `ψ(1) = 1` through partially multiplicative prefixes; the level subgroups `K_ij` coincide and form a two-sided ideal of finite index; and `c ∈ K` iff `π(c) = 0` on `D = L − L`. `research/artifacts/un-review3-2026-09-13-part3.md` §3.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Cover, prefix induction, level ideal (cycle checked link by link) and the window embedding re-derived. Steps 3–5 need only N >= 3; N >= 4 enters only through the finite presentation of St_N(A), and the method cannot give N = 3 (St_3(A) is not finitely presented since A surjects onto F_p[t], KM Cor 2 as quoted by EJZ). Import confirmed verbatim in the EJZ e-print; the Krstić–McCool primary was not obtained. See `research/artifacts/un-review-measure-2026-09-13-part4.md` §F1.

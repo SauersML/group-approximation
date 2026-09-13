@@ -2,7 +2,7 @@
 rg: 2
 id: lef-el-groups-force-exactly-matricial-simple-ring
 kind: claim
-title: If every elementary group over a countable simple ring is LEF, is the ring exactly matricial?
+title: A countable simple ring whose elementary groups are LEF embeds unitally in a matrix ultraproduct, and one LEF rank at least four already gives finite fields
 distinct_from:
   stably-mf-elementary-groups-force-matricial-rings: that asks for exact matriciality from MF of every EL_N, a weaker hypothesis and so a stronger claim, which a stably finite non-matricial simple ring with MF elementary groups would refute; this is the LEF rung (L⇒) of the UN root, which survives such a ring.
   exactly-matricial-rings-have-lef-general-linear-groups: that is the forward direction, exact matriciality giving LEF general linear groups; this is its converse over simple rings.
@@ -49,3 +49,5 @@ ring ⟺ exactly matricial ⟺ LEF `GL_M` and `EL_M` for all `M`. Rank 3 alone i
   pattern, using the return corner of `clopen-return-towers-transfer-direct-finiteness-and-matrix-rank`.
 
 **Review (un-verify-3, 2026-09-13): PASS.** The route `lef-el-groups-matricial-via-lef-ring` is re-derived (rank four gives a LEF ring; simple LEF rings are exactly matricial over finite fields). The UN root stays open, since (Σ⇒) and (M⇐) are open. Display note: the title is still phrased as a question; restate it as the theorem. `research/artifacts/un-review3-2026-09-13-part3.md` §2.
+
+**Review (un-verify-measure, 2026-09-13): PASS, with a display fix.** The route requires both reviewed claims; over finite fields (c) ⇒ (d) is elementary and needs no Malcev input. Title replaced by a declarative one matching the established body; id unchanged. See `research/artifacts/un-review-measure-2026-09-13-part4.md` §F3.
