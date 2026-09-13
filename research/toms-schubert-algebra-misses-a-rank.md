@@ -107,3 +107,18 @@ of continuous ranks on `T(B)`.
     leaf summands are where Toms's Thom--Porteous classes live.
   - A refutation needs a degeneracy class that forces rank above `f`
     somewhere and survives the supremum. None has been found.
+  - **Heuristic constraint: local swaps dilute.**
+    - Moving `M` directions between the two twisted halves at level `r` over
+      `CP^(j_r)`, `j_r = 2 d_r^2`, is a map
+      `theta^M tensor gamma_(r,1) -> theta^M tensor gamma_(r,2)`.
+    - Its Hom bundle `O(1)^(M^2)` is globally generated, so a generic map has
+      empty degeneracy locus `D_(s+1)` once `(s+1)^2 > j_r`. Such a swap is forced
+      to degenerate only in kernel dimension up to about `sqrt(2) d_r`.
+    - At stage `N >= r` the normalized cost is at most `sqrt(2) d_r / d_N`, which
+      tends to `0`. A realizer can defer local swaps to deep stages.
+    - So a refutation should extract a full-scale forced pair, such as
+      `(p_N, q_N)`, from a realizer's approximants. This is how
+      `toms-schubert-algebra-has-no-small-joins` and
+      `toms-schubert-algebra-fails-o6-plus` handle joins and meets.
+    - Not proved: range bundles of approximants may carry further Chern classes
+      that this count ignores.
