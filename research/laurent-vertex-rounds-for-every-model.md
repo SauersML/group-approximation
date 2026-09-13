@@ -76,3 +76,16 @@ max_(s ∈ F_Δ) ||σ_n(s) - ρ_n(s)||_2  ->  0     along U.
     relative (T)) but are commutator-generated from the full-ring root groups, which is the input their spectral criterion
     uses. Not settled here; if `K_i` is (T) the converse holds, and the `St_r(L) → Δ` / `K_2` descent above is the only
     remaining gap to the full Laurent claim.
+- **Is `K_i` Kazhdan? Settled by rank (lane `nh-ki-kazhdan`).** The answer depends on `r`.
+  - **Yes for `r >= 5`.** See `mixed-level-root-group-is-kazhdan-in-rank-at-least-five`.
+    - Blocks `A ∋ 3`, `B ∋ 2`, `C`, each meeting `J = {1..r} \ {2,3}`, give a strong `A_2`-grading of `K_i`. Every
+      level ideal is a product of two levels through an index of `J`, so the EJZK criterion applies even though some
+      root subgroups are proper ideals.
+    - The fine root groups get linear relative (T) from `(EL_2(R_+) ⋉ R_+^2, R_+^2)` through `x_i`-scaled
+      embeddings. `(2,3)` and `(3,2)` are handled as commutators.
+    - So the reduction above gives the converse on `St_r(L)` for `r >= 5`, including Kun–Thom's `r = 6`.
+  - **No for `r = 4`, `d >= 2`.** See `mixed-level-root-group-is-not-kazhdan-in-rank-four`.
+    - After killing `x_i`, the `{1,4}` corner is a homomorphism, so `K_i` maps onto `E_2(F_q[y])`.
+    - `E_2(F_q[y])` acts on Nagao's tree without a fixed point, so it has no property FA and hence no property (T).
+    - The "finite abelianization for `r >= 4`" bullet above fails at `r = 4`: for `q = 2`, `K_i^ab` is infinite.
+  - **Open.** The `St_r(L) → Δ` descent through the `K_2` symbols `{x_i, x_j}` is untouched and remains the gap.
