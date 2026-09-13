@@ -146,6 +146,16 @@ every proper subproduct has LEF quotient, while the full product has
 a just non-MF quotient. The source still has three torsion generators
 and property (T). These are written proofs, not Lean formalizations.
 
+The [short-word compiler](../research/artifacts/pestov91-short-involution-mf-implications-2026-09-13.md)
+makes each Boolean input a single independent commuting involution
+relation in the three generators. It outputs an explicit involution
+word whose vanishing in every MF image follows exactly the prescribed
+rule, while that word remains nontrivial in every ordinary input
+quotient. The total length is `O(s log^2(s+2))` for `s` variable
+occurrences. Short finite decoder certificates improve the general
+binary cylinder bound from `2^17 n^2` to `2^8 n^2`; an executable
+compiler and exact cyclic-matrix checks accompany the written proof.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
