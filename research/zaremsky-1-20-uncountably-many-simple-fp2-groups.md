@@ -55,6 +55,15 @@ FP_2 that are not finitely presented.
   inputs are countable, so the family is countable, and the groups contain
   finite subgroups, so none is of type FP. Their Question 1.12 is Zaremsky's
   Problem 1.25.
+- Fournier-Facio–Wu–Zaremsky, arXiv:2603.24687v2 (April 2026), Remark 4.16,
+  prints the first question again: "Do there exist uncountably many type FP_2
+  simple groups?" Their Corollary 4.14 gives type FP_2 for the simple twisted
+  Brin–Thompson group `SV_G` of any faithful action of type `[HA_2]`
+  (`ha2-actions-give-fp2-twisted-brin-thompson-groups`). The list added
+  Problem 1.20 on 6/12/25, before that preprint, so credit both.
+- A yes to Problem 1.25 gives a yes to the first part here
+  (`universal-fp2-simple-envelopes-force-uncountably-many`, landed by the 1.25
+  lane).
 - No simple group of type FP that is not finitely presented was found in the
   sources checked.
 - Search bound: web search, arXiv listing searches for "simple groups of type
