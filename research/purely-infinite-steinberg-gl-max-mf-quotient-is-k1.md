@@ -36,3 +36,5 @@ of `GL_n(R)` is the countable abelian group `K_1(A_k(𝒢))`. The same holds for
 **Where it sits in the dichotomy.** On the paradox side the MF radical of `GL_n` is as large as it can be,
 because every MF quotient is abelian; on the matricial side it is trivial. So an MF approximation of `GL_n` sees
 only `K_1`, which is pure homological data, or sees everything. See `research/artifacts/un-k1-homology-2026-09-13-part1.md`.
+
+**Review (un-verify, 2026-09-13): PASS.** (PI) gives `a = χ_U`, `b = χ_V` with `a^*a = b^*b = 1_A`, `a^*b = 0`, so `x 1_A y = diag(1_A, 1_A)`; Larki Theorem 3.4 checked against the arXiv:1901.07094v2 PDF text; pure infiniteness in the Ara–Goodearl–Pardo sense; the canonical `K_1` classification applies. Calibrations (Cuntz groupoid, the minimal Z-subshift failing (PI) by measure) recomputed. See `research/artifacts/un-review-2026-09-13-part9.md` §3.

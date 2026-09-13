@@ -38,3 +38,5 @@ finitely generated linear groups over a field are residually finite, item 3 give
 every finite-dimensional linear representation of `S` over every field is trivial, and
 `S` is not linear. Malcev and the FH/FA implications are cited from standard knowledge
 and were not re-read from sources in this lane.
+
+**Review (un-verify, 2026-09-13): PASS.** Perfectness from `e_ij(r) = [e_il(r), e_lj(1)]`; no finite quotient by the two cases `K ≤ Z` (then `S` finite) and `KZ = G` (then `G/K` abelian, trivial by perfectness); no residually finite target by simplicity. The linear corollary needs finite generation of `S`, supplied by the stated property (T). See `research/artifacts/un-review-2026-09-13-part9.md` §2.

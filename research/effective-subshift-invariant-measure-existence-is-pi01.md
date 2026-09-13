@@ -32,3 +32,5 @@ probability measure iff `LP(e,n)` holds for every `n`.
 folklore in effective symbolic dynamics (compare Hochman, Invent. Math. 176 (2009), on recursive properties of
 multidimensional subshifts). No novelty is claimed for this node; it is the input for
 `effective-free-group-kazhdan-lef-type-is-pi01`.
+
+**Review (un-verify, 2026-09-13): PASS.** `LP(e,n)` is a finite rational feasibility problem, computable from `(e,n)`; measure ⇒ programs by cylinder masses; programs ⇒ measure by diagonal limits of consistent marginals, Kolmogorov extension, the summed level-`n` equations giving `μ(s·C) = μ(C)` for `C` at `B_m`, `m ≤ n−1`, and zero mass on every enumerated forbidden translate. Folklore credit (Hochman) appropriate. See `research/artifacts/un-review-2026-09-13-part9.md` §1.

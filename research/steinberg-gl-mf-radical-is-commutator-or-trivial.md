@@ -34,3 +34,5 @@ properly infinite.
 the free minimal ℤ²-SFT of Labbé, whose crossed product is simple, finitely generated and stably finite, but
 whose exact matricial embeddability is open (`labbe-wang-shift-crossed-product-is-exactly-matricial`). There
 the MF radical of `GL_n` is not determined by these results.
+
+**Review (un-verify, 2026-09-13): PASS.** Paradox extreme from `purely-infinite-steinberg-gl-max-mf-quotient-is-k1`; measure extreme from the reviewed `exactly-matricial-rings-have-lef-general-linear-groups`; mutual exclusion since matricial rings are stably finite while (PI) gives `a^*a = 1 ≠ aa^*`. See `research/artifacts/un-review-2026-09-13-part9.md` §3.

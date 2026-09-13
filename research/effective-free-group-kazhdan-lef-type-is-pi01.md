@@ -36,3 +36,5 @@ complement. Equivalently, by Tarski, `[X_e]` is paradoxical in the type semigrou
 - Model tests: `F_r ↷ ∂F_r` (paradoxical; `e ∉ P`; no MF quotient, the headline
   `boundary-action-elementary-simple-kazhdan-not-mf`); uniquely ergodic Toeplitz `F_r`-subshifts (`e ∈ P`; LEF,
   `toeplitz-free-group-elementary-groups-are-lef-kazhdan`).
+
+**Review (un-verify, 2026-09-13): PASS.** `χ_{x(g)=a} = u_g χ_{x(1)=a} u_g⁻¹` gives finite generation over `F_q` and (T); the measure side uses the reviewed `free-group-crossed-product-matricial-iff-invariant-measure` and `residually-finite-actions-give-matricial-crossed-products` (PASS by un-verify-measure); the paradox side uses the reviewed canonical no-invariant-measure node; both biconditionals follow on the promise class. See `research/artifacts/un-review-2026-09-13-part9.md` §1.

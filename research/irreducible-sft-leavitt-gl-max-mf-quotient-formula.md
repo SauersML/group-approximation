@@ -42,3 +42,5 @@ with `H_0` weighted by `k^×`.
   `k`.
 - **`N = [[2,1],[1,2]]`.** `1 − N^t = [[−1,−1],[−1,−1]]`, with `Coker ≅ ℤ` and `Ker ≅ ℤ`. The quotient is
   `k^× ⊕ ℤ`, so these unit groups have infinite MF quotients.
+
+**Review (un-verify, 2026-09-13): PASS.** Abrams–Aranda Pino criterion for finite cofinal sink-free (L) graphs, the canonical `K_1` classification, Ara–Brustenga–Cortiñas Corollary 7.7, and the tensor form; calibrations recomputed: rose `ℤ/(d−1) ⊗ k^×`, `[[1,1],[1,0]]` with `det(1−N^t) = −1`, `[[2,1],[1,2]]` with Smith form `diag(1,0)` giving `k^× ⊕ ℤ`. The homological remark is correctly marked not established. See `research/artifacts/un-review-2026-09-13-part9.md` §3.

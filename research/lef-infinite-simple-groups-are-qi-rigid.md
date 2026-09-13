@@ -38,3 +38,5 @@ group from the non-MF paper, not with a finitely presented rung of the form
 presented rung is open: see `paradox-side-elementary-group-is-finitely-presented`.
 Quasi-isometry invariance of type `F_2` is classical (Alonso) and is cited from standard
 knowledge; it was not re-read from the source in this lane.
+
+**Review (un-verify, 2026-09-13): PASS.** Vershik–Gordon (finitely presented LEF ⇒ residually finite), infinite simple ⇒ not residually finite, and quasi-isometry invariance of finite presentability give items 1–3. Scope note on the consequence paragraph: `S = EL_n(R)/Z` is LEF when the central scalars map to central scalars of the finite models, as in the Pestov construction (§3.3) and for Steinberg rings with centre `k^×`; finite generation needs `k` finite. See `research/artifacts/un-review-2026-09-13-part9.md` §2.

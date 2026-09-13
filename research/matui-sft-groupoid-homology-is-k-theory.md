@@ -26,3 +26,5 @@ It gives `H_0(G) ≅ Coker(id − π)` and `H_1(G) ≅ ker(id − π)` directly.
 downstream only as a recalled input, flagged where it is used.
 
 Route: `matui-sft-groupoid-homology-is-k-theory-citation`.
+
+**Review (un-verify, 2026-09-13): PASS (import).** The setting (one-sided surjective SFT, the groupoid `G`), `K_0 ≅ Coker(id−π)`, `K_1 ≅ Ker(id−π)` and Theorem 4.14 (TeX label `CKHomology`) checked verbatim against the arXiv:0909.1624v3 PDF text. See `research/artifacts/un-review-2026-09-13-part9.md` §3.
