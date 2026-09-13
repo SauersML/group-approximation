@@ -54,6 +54,12 @@ body is the matching `_of_fourLeaves` theorem, applied to these producers:
 (`TheoremCAssemblyGreendlingerLeaf`, c5f953323, green 0913-060950-64731).  Those names are not
 duplicated here.
 
+Final flip ownership (roster, ~06:30): this lane has `TorsionFreeFourLeaves` (38 findings) and
+`TorsionFreeSectionSentencesFourLeaves` (12 findings).  The TheoremC names go to theoremc-retire.
+`TorsionFreeSectionAssembly` (the closedGO forms and `manuscriptRegularNonMFAlgebra_closedCitations`)
+goes to hull-bridge, whose unlanded `TorsionFreeGreendlingerForms` covers it.  So the census rows
+retire only the `_of_fourLeaves` findings of these two modules.
+
 Residual Prop: `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}` only
 (the Hull 7.1 chain).  Once it has a closed producer, each endpoint above is closed by applying it.
 
