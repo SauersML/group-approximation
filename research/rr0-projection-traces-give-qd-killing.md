@@ -56,4 +56,25 @@ Role: the route `bk-rr0-uct-case-from-projection-trace-killing` derives
   map by an embedding into a non-simple AF algebra, with prescribed traces along a
   chain of ideals, is the non-simple codomain form of Schafhauser Theorem D.
   Schafhauser (arXiv:1807.07381v2, p. 4, read) defers it to Carrión–Gabe–
-  Schafhauser–Tikuisis–White.  Whether their later work covers it was not checked.
+  Schafhauser–Tikuisis–White.  Their part II is "in preparation" (bounded check,
+  see below).
+- **Strength.**  With `G = 0` and `A = E` a real rank zero stably finite algebra
+  with UCT quotients, the trace condition is Proposition B (part 1, `K = E`).
+  So this claim already contains `bk-rr0-uct-stably-finite-algebras-are-qd`,
+  with no radical needed.
+- **Literature (bounded, 2026-09-13).**  Carrión–Gabe–Schafhauser–Tikuisis–White
+  part I (arXiv:2307.06480) has simple codomains, and part II is "in
+  preparation".  Schafhauser's arXiv listing (22 titles, fetched on MSI) has no
+  classification of maps into non-simple targets.
+- **Gluing dissolved.**  `separating-killing-quotients-give-faithful-qd-killing`:
+  non-faithful killing maps with separating kernels give one faithful killing
+  embedding.  Models are summed stage by stage, so no cancellation is needed.
+- **Pushouts work under two hypotheses.**  `archimedean-trace-pushouts-give-qd-killing`
+  kills `G` when every projection `Q` is seen by a normalised annihilating trace
+  at a larger projection `P` (`σ(Q) > 0`, `G_0` supported in `I_P`) and `A/I_P`
+  is quasidiagonal.  Where it dies:
+  - (H1) fails at projections infinitesimal modulo `G` relative to every larger
+    projection (non-archimedean exhaustions; the lexicographic AF case shows
+    killing can still hold there, by a different mechanism);
+  - (H2) `A/I_P` quasidiagonal is not known for the radical, where `R/I_P` is the
+    radical of `E/I_P`.
