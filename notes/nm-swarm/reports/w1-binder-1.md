@@ -37,6 +37,28 @@ CLAIM cutting-side count GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94
   - So #turn corners `≤ 3·#attachment − 6`.
   - So `#cutting ≤ #entries + #turns + 1 ≤ 4·#entries + 1`.
 
+## Modules (unlanded; probing)
+
+- `Estimating/OsinLemma94CuttingSides.lean` (statements):
+  - `CombMap.sameFaceDarts f`: the darts with `f` on both sides. `CombMap.sameFaceVertices f`: the vertices they start at.
+  - `SameFaceDartForestStatement`: planar `M`, a nonempty `sameFaceDarts f` ⇒ `#sameFaceDarts f + 2 ≤ 2·#sameFaceVertices f`.
+  - `OsinLemma94RealizedPolygons.cuttingSides`, `cuttingEntries` (with `mem_` lemmas).
+  - `OsinLemma94CuttingSidesStatement`: `#cuttingSides k ≤ 4·#cuttingEntries k + 1` under `DartMinimal` and `Maximal`.
+- `Estimating/OsinLemma94CuttingSidesCount.lean` (proof over the forest Prop):
+  - `CombMap.sameFaceStarts`, `sameFaceTurns`: darts of `F` whose vertex predecessor is off `F`, or in `F` and different from the successor.
+  - `card_filter_turns_add_six_le`: per vertex, `turns + 6 ≤ 3·F + 3·starts`, when no `F` dart is fixed by `sigma`.
+  - `card_sameFaceTurns_add_six_le`: summed, with the forest Prop, `turns + 6 ≤ 3·starts`.
+  - `range_flatMap_eq_split`, `walk_isChain`, `exists_facePerm_eq_of_not_head`, `facePerm_getLast_eq_head`: walk adjacency.
+  - `continuationSides`; `card_cuttingSides_le`; endpoint `osinLemma94CuttingSides_of_forest : SameFaceDartForestStatement → OsinLemma94CuttingSidesStatement`.
+  - The route needs no wrap-around adjacency: side `0` is paid by the `+1` twice, and the bound comes out as `4e − 2`.
+
+## Residual Props
+
+- `SameFaceDartForestStatement`. ms-compress-4 proposed to prove it in `CombMapSameFaceForest.lean`, by leaf induction with `simpleClosedWalkSides`. Once it lands, this lane imports that module and deletes its copies.
+
 ## Progress log
 
-- 16:5x: claim landed; statement module next.
+- 16:5x: claim landed.
+- 17:19: the lead restarted. Resumed at 17:21; nothing was lost.
+- 17:2x: the first attic landing was refused (`NM_ATTIC` flag missing), and the first probe failed on fetch contention (infra).
+- 17:3x: statement module v2 and the counting module written; attic landing and probe of both launched.
