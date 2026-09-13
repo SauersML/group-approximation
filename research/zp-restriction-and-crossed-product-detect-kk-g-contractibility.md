@@ -128,22 +128,32 @@ K-theory isomorphism between UCT algebras, hence a KK-equivalence, and
   - **Unit maps vanish.** If `D` is a unital phantom and `F` any unital
     `G`-algebra, then `f ↦ f ⊗ 1_D` is `0` in `KK^G(F, F ⊗ D)`. Indeed
     `(1 ⊗ θ_D) ∘ ι = ι`, and `1 − 1 ⊗ θ_D` is invertible.
-  - **Norms (idea, functoriality unverified).** Take `N(A) = A^(⊗p)` with the
-    cyclic shift. If graded-flip-symmetrized exterior powers of Kasparov cycles
-    make `N` a functor `KK → KK^G`, then:
-    - `N` of a bootstrap algebra lies in `B^G`;
-    - `N(O_2) ≃ 0`, so the flip on `O_2 ⊗ O_2` is Rokhlin;
-    - for a non-UCT `A`, `1_T ⊗ N(A)` is a candidate, because `KK` has no
-      Tate diagonal and `Φ(1_T ⊗ N(A))` need not be `Z[ζ_p, 1/p] ⊗ A`.
+  - **Norms (functoriality now proved; lane ex2-uct-norm-functor,
+    2026-09-13, unreviewed).** `N(A) = A^(⊗p)` with the cyclic shift is a
+    non-additive functor `KK → KK^G` (`kk-tensor-power-norm-functor-to-kk-zp`).
+    The proof averages Kasparov partitions of unity over the shift, not the
+    operators. A KK-null-homotopy of `id_A` norms to an equivariant one, so
+    `A ≃_KK 0` gives `N(A) ≃_(KK^G) 0`. The cylinder filtration then carries
+    KK-equivalences to `KK^G`-equivalences, and localization gives the functor.
+    - `N(B) ⊆ B^G`.
+    - `N(O_2) ≃ 0`, so the shift on `O_2^(⊗p)`, in particular the flip on
+      `O_2 ⊗ O_2`, is Rokhlin (`o2-tensor-power-shift-is-rokhlin`).
+    - Norms of KK-contractible algebras are never phantoms. The only phantom
+      candidate from norms is the Tate part `1_T ⊗ N(A)` of a non-bootstrap
+      `A` (`tate-norm-shift-is-kkg-trivial`, open).
 
-    A direct Cuntz-trick proof of `N(O_2) ≃ 0` was attempted and fails. The
+    The direct Cuntz-trick proof of `N(O_2) ≃ 0` still fails as recorded: the
     orthogonal sum `Σ_w Ad(S_w)` is an endomorphism of `N(O_2)`, not the
-    identity, so it gives no relation for `[id]`.
-  - **Non-nuclear direction (open).** `C*_r(Γ^p)` with the permutation action,
-    together with the equivariant diagonal `C*_r(Γ) → C*_r(Γ^p)`, for a
-    Kazhdan hyperbolic `Γ`. A nonzero `θ − 1` after tensoring with `1_T`
-    would answer Meyer–Nadareishvili negatively for separable algebras.
-    Not computed.
+    identity.
+  - **Non-nuclear direction (reduced, open).** Take `C*_r(Γ^p)` with the
+    permutation action for a torsion-free Kazhdan hyperbolic `Γ`. The
+    equivariant diagonal has a source with `θ = 1`, so the phantom part of
+    `1_T ⊗ N(C*_r Γ)` is that of the diagonal's cone. Its crossed product is
+    the subgroup inclusion `ΔΓ × G ≤ Γ ≀ G`. Baum–Connes with coefficients for
+    `Γ ≀ G` makes that crossed product K-invisible (sketch). What remains is a
+    KK-question on the `(1 − γ)`-parts
+    (`kazhdan-group-algebra-tate-diagonal-is-kkg-equivalence`, open; artifact
+    `research/artifacts/uct-kk-norm-functor-2026-09-13-part3.md`).
 * **Dual-action transfer (lane ex2-uct-dual-action-transfer, 2026-09-13,
   unreviewed).**
   - *Two commuting actions.*  By
