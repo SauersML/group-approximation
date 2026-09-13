@@ -57,7 +57,10 @@ theorem manuscriptRegularNonMFAlgebra_of_saturationNoOmega_closedCitations
     simpleUniqueTraceAtHypEmbedded_closed gerasimovaOsinTheorem11Printed
 
 /-- **`cor:regular-nonmf-algebra` over the historical Hull leaves**, with both
-C⋆-algebraic citations discharged. -/
+C⋆-algebraic citations discharged.
+
+Superseded by `manuscriptRegularNonMFAlgebra_of_leastAreaLeaves_closedCitations`
+below, with the same conclusion over the least-area leaves. -/
 theorem manuscriptRegularNonMFAlgebra_of_leaves_closedCitations
     (hFFF : FournierFacioParagraph)
     (hgreendlinger :

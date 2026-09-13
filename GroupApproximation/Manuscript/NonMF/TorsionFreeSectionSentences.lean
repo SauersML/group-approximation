@@ -19,7 +19,10 @@ Hull leaves of `TorsionFreeLeafAssembly` —
 `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement` and
 `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicStatement` — as hypotheses of
 the carrier, never a literature package.  Sentences that do not rest on it are
-closed.
+closed.  The carriers over the two leaves are superseded by least-area forms over
+`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement` and the
+embedded bridge, which is closed.  They are in `TorsionFreeHullPrintedLeastArea`
+and `TorsionFreeSectionSentencesLeastArea`, and each docstring names its form.
 
 `thm:hull` itself is printed for every acylindrically hyperbolic `G`; the proved
 chain reaches it at a torsion-free `G`, the only case `lem:saturation` uses.
@@ -67,7 +70,12 @@ theorem printedHullSmallCancellationCurrent_of_printed
   exact ⟨H.quotient⟩
 
 /-- **`thm:hull` at a torsion-free acylindrically hyperbolic group**, the case
-`lem:saturation` applies it in, from the two Hull leaves. -/
+`lem:saturation` applies it in, from the two Hull leaves.
+
+Superseded by
+`TorsionFreeHullPrintedLeastArea.manuscriptSentence_hullTheorem_of_leastAreaLeaves`,
+which states `thm:hull` at every acylindrically hyperbolic group over the least-area
+leaves. -/
 theorem manuscriptSentence_hullTheoremTorsionFree_of_leaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
@@ -89,7 +97,11 @@ theorem manuscriptSentence_hullTheoremTorsionFree_of_leaves
 At one target the quotient of Hull's construction has kernel the normal
 closure of a single element `r`, and the quotient *is* `G/⟨⟨r⟩⟩_G`.  The kernel
 datum of the one-step construction is a finset of at most one element; the empty
-case is `r = 1`. -/
+case is `r = 1`.
+
+Superseded by `manuscriptSentence_hullOneTargetOneRelatorGeneral_of_leastAreaLeaves`
+(namespace `TorsionFreeHullParagraphGeneral`, module `TorsionFreeHullPrintedLeastArea`),
+with the same conclusion at every group, over the least-area leaves. -/
 theorem manuscriptSentence_hullOneTargetOneRelator_of_leaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
@@ -122,7 +134,11 @@ theorem manuscriptSentence_hullOneTargetOneRelator_of_leaves
 
 The induction is `HullSC.hullTower_of_oneStep`; clause (d) is the
 `suitable_map` field of each step, which is what lets the next step be applied
-to the image of `N`, and it survives the composite. -/
+to the image of `N`, and it survives the composite.
+
+Superseded by `manuscriptSentence_hullInductionOnTargetsGeneral_of_leastAreaLeaves`
+(namespace `TorsionFreeHullParagraphGeneral`, module `TorsionFreeHullPrintedLeastArea`),
+with the same conclusion at every group, over the least-area leaves. -/
 theorem manuscriptSentence_hullInductionOnTargets_of_leaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
@@ -161,7 +177,10 @@ theorem manuscriptSentence_hullKernelRemark {G : Type} [Group G]
 
 Over a torsion-free ambient group the pair is a theorem with `A' = A`
 (`hullSuitablePair_of_torsionFree`); the last clause is `thm:hull` at `A'`, from
-the two Hull leaves. -/
+the two Hull leaves.
+
+Superseded by `manuscriptSentence_saturationPairAndHullAgain_of_leastAreaLeaves` in
+`TorsionFreeSectionSentencesLeastArea`, with the same conclusion over the least-area leaves. -/
 theorem manuscriptSentence_saturationPairAndHullAgain_of_leaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
@@ -184,7 +203,10 @@ theorem manuscriptSentence_saturationPairAndHullAgain_of_leaves
 
 The finite generating family comes from finite presentation; the application is
 `thm:hull` at a torsion-free group, from the two Hull leaves, with its kernel
-datum. -/
+datum.
+
+Superseded by `manuscriptSentence_saturationApplyHullNoOmega_of_leastAreaLeaves` in
+`TorsionFreeSectionSentencesLeastArea`, with the same conclusion over the least-area leaves. -/
 theorem manuscriptSentence_saturationApplyHullNoOmega_of_leaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
@@ -206,7 +228,10 @@ homomorphism `φ : G₀ → Q` with `Q` two-generated, finitely presented,
 torsion-free, and acylindrically hyperbolic, and `φ(N) = Q`."**
 
 Every printed clause is a field of `SaturationQuotient`; the lemma is applied as
-printed, with no finite set. -/
+printed, with no finite set.
+
+Superseded by `manuscriptSentence_theoremApplySaturationNoOmega_of_leastAreaLeaves` in
+`TorsionFreeSectionSentencesLeastArea`, with the same conclusion over the least-area leaves. -/
 theorem manuscriptSentence_theoremApplySaturationNoOmega_of_leaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})

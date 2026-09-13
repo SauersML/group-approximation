@@ -42,9 +42,10 @@ hypotheses instead.
 * `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicStatement` — Osin's Lemma 5.1
   at its own boundary hypothesis.  This spelling is the one the landed Lemma 4.4
   chain consumes.  Its conclusion `RelativeIsoperimetricControl` asks for more
-  than any consumer reads (only `control.embedded` is used), and the refinement
-  to a bounded Lemma 4.4 input with an embedded-family conclusion is in
-  progress; the leaf is re-spelled here once that chain lands.
+  than any consumer reads (only `control.embedded` is used).  This spelling has
+  no producer on main.  The embedded spelling
+  `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement` is closed
+  (`HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed`).
 * `TorsionFreePrinted.FournierFacioParagraph` — the paragraph of tex lines
   1675–1685: `G₀`, `Γ`, `t`, `J` with the printed relations, `G₀`
   acylindrically hyperbolic.
@@ -61,8 +62,12 @@ first two: the canonical Lemma 4.4 comes from the certificate and the bridge
 re-spelling, which survives only on the Fournier-Facio side.
 
 Everything between these and the printed conclusions is proved here or already
-on main.  When producers of the leaves land, the endpoints below become closed
-one-line corollaries.
+on main.
+
+Every declaration below that takes the first two leaves is superseded.  The ruled
+route goes through the least-area leaves,
+`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement` and the
+embedded bridge, and each docstring names the least-area declaration to use.
 -/
 
 namespace GroupApproximation
@@ -89,7 +94,11 @@ theorem hullYiSuitableFiniteFamily_closed : HullSC.YiSuitableFiniteFamily.{0} :=
 
 /-- **Osin's Lemma 4.4 in certificate form at quasi-geodesic spellings**, from
 the Greendlinger leaf; the realization at a supplied spelling and the one-cell
-exterior-arc conversion are theorems. -/
+exterior-arc conversion are theorems.
+
+Superseded by its least-area counterpart
+`HullSC.relativeGreendlingerQuasiGeodesicSpellingLeastAreaStatement_of_leastAreaGreendlinger`,
+whose conclusion is the least-area spelling statement. -/
 theorem relativeGreendlingerQuasiGeodesicSpelling_of_greendlinger
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0}) :
@@ -99,7 +108,11 @@ theorem relativeGreendlingerQuasiGeodesicSpelling_of_greendlinger
     HullSC.relativeExteriorArcConversionAtWordRotatedStatement
 
 /-- **Hull's Lemma 4.4 for the selected family**, from the certificate and
-Osin's Lemma 5.1, with no §6 re-spelling. -/
+Osin's Lemma 5.1, with no §6 re-spelling.
+
+Superseded, with no least-area form of this conclusion.  The nearest is
+`HullSC.torsionFreeHullCanonicalQuotientStatement_of_leastAreaLeaves`, whose conclusion
+is the torsion-free canonical quotient. -/
 theorem hullLemma44Canonical_of_leaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
@@ -109,7 +122,10 @@ theorem hullLemma44Canonical_of_leaves
     (relativeGreendlingerQuasiGeodesicSpelling_of_greendlinger hgreendlinger) hbridge
 
 /-- **Hull's Lemma 4.9, kernel-power correction**, from the Greendlinger leaf
-alone. -/
+alone.
+
+Superseded by `HullSC.hullLemma49KernelPowerStatement_of_leastAreaGreendlinger`,
+with the same conclusion over the least-area statement. -/
 theorem hullLemma49KernelPower_of_greendlinger
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0}) :
@@ -122,7 +138,8 @@ theorem hullLemma49KernelPower_of_greendlinger
 /-- **Hull's Theorem 7.1 for one target element**, over a torsion-free group,
 from the two Hull leaves: the canonical quotient `G ⧸ ⟨⟨W⟩⟩` of Lemmas 4.4 and
 4.9, with Hull's §6 relator transported into the selected auxiliary family.
-Its least-area counterpart is `HullSC.hullOneStepStatement_of_leastAreaLeaves`. -/
+Superseded by `HullSC.hullOneStepStatement_of_leastAreaLeaves`, with the same
+conclusion over the least-area leaves. -/
 theorem hullOneStep_of_leaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
@@ -138,7 +155,10 @@ theorem hullOneStep_of_leaves
 /-! ## `thm:hull` and `lem:saturation`, over the leaves -/
 
 /-- **`thm:hull` as printed, at a torsion-free ambient group**, from the two
-Hull leaves, through the induction on `m` (`HullSC.hullBallFormNG_of_oneStep`). -/
+Hull leaves, through the induction on `m` (`HullSC.hullBallFormNG_of_oneStep`).
+
+Superseded by `hullSmallCancellationTorsionFreePrinted_of_leastAreaLeaves` in
+`TorsionFreeLeastAreaAssembly`, with the same conclusion over the least-area leaves. -/
 theorem hullSmallCancellationTorsionFreePrinted_of_leaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
@@ -148,7 +168,10 @@ theorem hullSmallCancellationTorsionFreePrinted_of_leaves
     (hullOneStep_of_leaves hgreendlinger hbridge)
 
 /-- **`lem:saturation` as printed** (tex line 1650), from the two Hull leaves;
-Osin's Lemma 7.1 and Hull's Corollary 5.7 with Lemma 5.8 are theorems. -/
+Osin's Lemma 7.1 and Hull's Corollary 5.7 with Lemma 5.8 are theorems.
+
+Superseded by `printedSaturationNoOmega_of_leastAreaLeaves` in
+`TorsionFreeLeastAreaAssembly`, with the same conclusion over the least-area leaves. -/
 theorem printedSaturationNoOmega_of_leaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
@@ -160,7 +183,10 @@ theorem printedSaturationNoOmega_of_leaves
 /-! ## `thm:torsion-free`, over the leaves -/
 
 /-- **`thm:torsion-free`, exactly as printed** (tex line 284), along the printed
-proof, from the Fournier-Facio paragraph and the two Hull leaves. -/
+proof, from the Fournier-Facio paragraph and the two Hull leaves.
+
+Superseded by `manuscriptTorsionFreeTheorem_of_leastAreaLeaves` in
+`TorsionFreeLeastAreaAssembly`, with the same conclusion over the least-area leaves. -/
 theorem manuscriptTorsionFreeTheorem_of_leaves (hFFF : FournierFacioParagraph)
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
@@ -169,7 +195,10 @@ theorem manuscriptTorsionFreeTheorem_of_leaves (hFFF : FournierFacioParagraph)
   manuscriptTorsionFreeTheorem_of_torsionFreePrinted hFFF
     (hullSmallCancellationTorsionFreePrinted_of_leaves hgreendlinger hbridge)
 
-/-- **`thm:torsion-free` in the radical form**, from the same three. -/
+/-- **`thm:torsion-free` in the radical form**, from the same three.
+
+Superseded by `manuscriptTorsionFreeFullMFRadical_of_leastAreaLeaves` in
+`TorsionFreeLeastAreaAssembly`, with the same conclusion over the least-area leaves. -/
 theorem manuscriptTorsionFreeFullMFRadical_of_leaves (hFFF : FournierFacioParagraph)
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
@@ -258,7 +287,10 @@ theorem manuscriptRegularNonMFAlgebra_of_saturationNoOmega
 
 /-- **`cor:regular-nonmf-algebra`, along the printed proof**, from the
 Fournier-Facio paragraph, the two Hull leaves, Dahmani–Guirardel–Osin's Theorem
-2.35 at its source hypothesis, and Gerasimova–Osin's Theorem 1.1. -/
+2.35 at its source hypothesis, and Gerasimova–Osin's Theorem 1.1.
+
+Superseded by `manuscriptRegularNonMFAlgebra_of_leastAreaLeaves` in
+`TorsionFreeLeastAreaAssembly`, with the same conclusion over the least-area leaves. -/
 theorem manuscriptRegularNonMFAlgebra_of_leaves (hFFF : FournierFacioParagraph)
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})
