@@ -59,3 +59,18 @@ finite residual.
   number of `c`'s forces `2[(xz)^2] = 0` in homology. Sparse defects do not break these strips on
   expander-like horizontal slices. See the Attempts of
   `radu-nilpotent-by-arithmetic-quotients-are-sofic`.
+* **One set action, then one compact system (live; ex2-radu-chain-lamp-positive, 2026-09-13; unreviewed).**
+  - *Magnus embedding.* `Γ_R ↪ Z ≀^*_(Q/C_χ ⊔ Q/C) Q`, from the projected geodesic edge word in `T_v`
+    (`free-kernel-tree-actions-embed-in-free-generalized-wreath`). By GKP Theorem 3.7 and
+    `sofic-set-actions-pass-to-finite-fibred-quotients`, the lattice is sofic once
+    `radu-edge-coset-action-is-sofic` holds (`radu-bmw-lattice-sofic-via-slab-coset-actions`). No
+    marked limit is needed.
+  - *Congruence stabilizer.* `C_χ = <a,b,cac,cbc>` is the fixator in `Q` of the six-vertex neighbourhood
+    of an edge of the second tree (`radu-edge-stabilizer-is-second-prime-congruence-subgroup`). So the
+    covering-label principle `homogeneous-quotient-soficity-gives-vertex-soficity` applies.
+  - *Sharpest target.* Topological microstates for `Q ↷ PGL_2(Q_2)/Λ` through the second place
+    (`radu-second-prime-frame-dynamics-admit-microstates`, route
+    `radu-edge-coset-action-sofic-from-frame-dynamics-microstates`).
+  - *Status.* Genuine finite models are excluded (`radu-square-lamp-forces-reflections-in-finite-actions`),
+    and treeing is excluded by `β_2^(2)(Q) = 1/24`. Models must be non-congruence, as in the dyadic
+    fork.
