@@ -29,3 +29,5 @@ Proposition 3.1 is Britton's lemma.
   stage, so a one-sided inverse is two-sided.
 - **Defects.** Disjoint unit root configurations in one vertex group span `D_8 x ... x D_8`. The `F_2[D_8]` counts
   `4/8` and `3/8` from `locally-finite-hnn-data-allow-independent-cylinder-defects` give `3/8` and `(3/8)^k`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 29 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

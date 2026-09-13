@@ -1336,3 +1336,59 @@ row-plus-column bound is attained: `3/4 + 3/4 = 3 · (1/2)`.
 - **(b)** `p = s0 t1 + s1 t0` lies in `R_0`, with `p s0 = s1` and `t0 p = t1`. So `C = R`, and
   `G' = EL_3(R) = R^x`.
 - **`F_3`.** The same argument works, because `EL_3(F_3)` contains the signed permutations.
+
+## 29. w6-mismatch-c2 (d0f2b3f648)
+
+Artifact `mismatched-factor-graph-of-groups-firewall-2026-09-12.md`. Every step was re-derived.
+
+### 29.1 `graphs-of-locally-finite-groups-carry-regular-rank-models`: PASS
+
+- **Stages.** `K_(n,e)` is a subgroup, and each finite subset of `K_e` lies in it eventually. `|H_(n,v)|` divides
+  `N_n`, so free actions exist.
+- **Forest.** Both `K_(n,e)`-sets are free with `N_n/|K_(n,e)|` orbits, so `beta` exists. Transporting by
+  `beta^-1` gives `lambda_w(phi_e(k)) = beta^-1 phi_e(k) beta = lambda_v(k)`. `F cap Y_n` is a forest, so the
+  induction closes.
+- **Letters and limit.** Orbit matching gives the intertwiners. Each relation of `pi_1(Y)` holds exactly at almost
+  every stage, so `sigma` is a homomorphism.
+- **(1)–(3).**
+  - The free profile comes from `F_2[Omega_n] = F_2[Q]^(N_n/|Q|)`.
+  - Nontriviality needs some `L_v != 1`. The artifact says so and the node leaves it implicit.
+  - The fixed vectors of a free `H`-set have normalized rank `1/|H|`.
+  - `M_k` of the ultraproduct is the ultraproduct of `M_(k m_n)`, and `rk(I - AB) = rk(I - BA)` at each stage.
+- **Corollary 1.2.** Disjoint frames give `D_8^k <= L_v`. An involution has rank `4/8`, `D` has rank `3/8`, and
+  tensor ranks multiply.
+- **Scope.** Corollary 1.3 quantifies over the relations of one `pi_1(Y)` of the main case and over rank calculus.
+  Global inputs are outside it, as the node states.
+
+### 29.2 Artifact Section 2, the mismatched pair: PASS
+
+- **Involutions and `[h,c] = 1`.** `t_1 s_0 = t_00 s_1 = t_00 s_01 = 0`, and both cross products of `s_1 t_00`
+  and `s_01 t_00` vanish.
+- **Infinite order.** `A = s_0 t_1 + s_1 t_00 + s_0 t_00`. All four action formulas re-checked on the Cantor-point
+  module. `A^2 W_l ⊆ W_(l-1)`. Modulo `W_(l-2)`, `A^2` sends `(q_l, r_(l-1))` to `(q_(l-1), q_(l-1) + r_(l-2))`,
+  which is invertible (onto `span(q_0, q_1)` at `l = 2`). So `A^(2(l-1)) != 0` on `W_l`.
+- **Conjugates.** `g s_1 = s_10`, `g s_01 = s_0` and `t_00 g^-1 = t_11` give `T_(10,11)` (degree 0) and `T_(0,11)`
+  (degree −1).
+- **`K`.**
+  - The blocks go to degrees `d_P - d_Q`, with `d = (1, 0, -1)` distinct.
+  - Blocks are recovered as `t_(P') x s_(Q')`, so they cannot cancel.
+  - `K` is the block-diagonal part.
+- **`H`.**
+  - `U` is parametrized by `(x, y)`, is elementary abelian, is normalized by `K`, and `U cap K = 1`.
+  - A finitely generated subgroup has finite image in `K` and a finite-index elementary abelian part, so it is
+    finite.
+- **Corollary 2.2.** `h ∈ L_1 cap H`, `c ∈ H cap L_2` and `K <= H`, so `[h,c] = 1` and the identifications of `K`
+  hold in `pi_1(Y)`.
+- **Note on the `binary-complement-corner-has-no-weakly-finite-image` Attempts entry.** The entry omits `L_0` and
+  is still correct for `A = [0]`, whose frame lies in `L_2`:
+  - `g iota_[0](x_12(1)) g^-1 = 1 + s_11 t_00` and `g iota_[0](x_23(1)) g^-1 = 1 + s_00 t_01` have degree 0.
+  - Two disjoint cylinders need the vertex `L_0`, as in the artifact and the other entry.
+
+### 29.3 Section 3: PASS
+
+- **Proposition 3.1.** A pinch would need `c ∈ R_0^x` or `T_(0,11) ∈ R_0^x`, and both have degree −1 parts. So
+  Britton's lemma gives `[h, ĉ] != 1`. The statement is limited to the natural lift, as written.
+- **Remark 3.2.**
+  - `EL_3(R) = St_3(R)/K_2(3,R)`.
+  - Each Steinberg relation holds in a subgroup of order at most 8 over `F_2`.
+  - The list of three options restates the firewalls. It is a remark, and not claimed as a theorem.
