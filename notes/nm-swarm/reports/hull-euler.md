@@ -28,7 +28,9 @@ The lane consumes three peer modules:
 
 - ghw-charp2's `Estimating/OsinAppendixEulerExteriorLinked` (cbca8029b): `linkedComponentO`,
   `endCellsO`, `ExtPhiData.mono`, `linked_linkedComponentO`, `card_add_six_le_linkedComponentO`.
-- leavitt-units' `Estimating/OsinAppendixEulerCornerTwoGon` (d0a41c1da): C4.
+- leavitt-units' `Estimating/OsinAppendixEulerCornerTwoGon` (d0a41c1da): C4. It is proved by
+  `cornerTwoGonInput` (`Estimating/OsinAppendixEulerCornerTwoGonCount`, 90245333d) and at section
+  level by `osinCornerTwoGonSection` (`Estimating/OsinAppendixEulerCornerTwoGonSection`, 0c42391c2).
 - hs-vanishes' `Estimating/OsinAppendixEulerExteriorCellFaces` (a6a2cadda): C5 and its proof
   `cellFaceCountInput`.
 
@@ -37,7 +39,7 @@ Hereditary, EmptyTwoGon, ExteriorTwoGon and SmallFaces. It also imports the peer
 ExteriorLinked, CornerTwoGon and ExteriorCellFaces, and kh-ejz's
 `Estimating/OsinAppendixEulerMultigraph`. Count, Exterior, ExteriorCount and
 `CombMapRestrictionFaceClasses` are reachable through SmallFaces. `OsinAppendixEulerSection` is
-queued (wire-queue lines 626–627).
+queued (wire-queue lines 626–627), and leavitt-units' Count and Section modules at lines 638–639.
 
 ## Landings
 
@@ -59,7 +61,7 @@ queued (wire-queue lines 626–627).
   and C5, with C6′ as `TwoGonHoldsInput`. Probe 0913-093143-91859 green with `BUILT` (base
   800254639), md5 of the green record equal to the landed file, ancestor of main. Backup
   `backup/hull-euler/OsinAppendixEulerSmallFaces.lean.0913b` holds the first form.
-- d1f3ebca1, 592caafdc, e84468da9: this report.
+- d1f3ebca1, 592caafdc, e84468da9, 960fd8d0c, e7df42eea: this report.
 - 6401c70a6f64c4ecde540afcb41da9f1242c6ef6: `OsinAppendixEulerSection`, the section-level
   assembly with C4 and C6′ as named binders (lead's item, 09-13). Landed unverified, then probe
   0913-125857-40608 green with `BUILT` (base 711c053f1). All 13 overlay md5s equal origin/main,
@@ -78,8 +80,22 @@ theorem osinPhiPrimeCountSection_of_pieces
 
 | Prop | Lane | State |
 |---|---|---|
-| `OsinCornerTwoGonSectionStatement` (C4 uniformly) | leavitt-units | stated, told the exact form 09-13 |
+| `OsinCornerTwoGonSectionStatement` (C4 uniformly) | leavitt-units | proved: `osinCornerTwoGonSection` (0c42391c2), checked 09-13 |
 | `OsinTwoGonHoldsSectionStatement` (C6′ uniformly) | debt-conditional | stated, told the exact form 09-13 |
+
+`osinCornerTwoGonSection` (`Estimating/OsinAppendixEulerCornerTwoGonSection.lean`) takes `ε₀ = 0`
+and `ρ₀ = 1` over `cornerTwoGonInput D lambda c eps W`
+(`Estimating/OsinAppendixEulerCornerTwoGonCount.lean`). Checked 09-13 against origin/main
+50b6cbb9d:
+
+- 90245333d and 0c42391c2 are ancestors of main;
+- records `leavitt-units.green.0913-130413-64412` and `.0913-130704-80770` read `PROBE GREEN` and
+  name the module under `# mods`, and their md5s equal the files on main;
+- `OsinAppendixEulerCornerTwoGon.lean` is unchanged since d0a41c1da, and `OsinAppendixEulerSection`
+  since 6401c70a6;
+- neither file has `sorry`, `axiom` or `native_decide`, and both theorems carry `#audit_axioms`.
+
+So the closure waits only on `OsinTwoGonHoldsSectionStatement`.
 
 Both binders use the quantifier prefix of `OsinPhiPrimeCountSectionStatement`
 (`Estimating/OsinAppendixGreendlingerPocketParts.lean:43`). They conclude
@@ -101,7 +117,7 @@ theorem phiPrimeCountInput_of_smallFaces
 
 | Prop | Module, SHA | Lane | State |
 |---|---|---|---|
-| `CornerTwoGonInput` (C4) | `OsinAppendixEulerCornerTwoGon`, d0a41c1da | leavitt-units | stated, compiles as an import in 0913-093143-91859 |
+| `CornerTwoGonInput` (C4) | `OsinAppendixEulerCornerTwoGon`, d0a41c1da | leavitt-units | proved: `cornerTwoGonInput` (90245333d), green record 0913-130413-64412 |
 | `CellFaceCountInput` (C5) | `OsinAppendixEulerExteriorCellFaces`, a6a2cadda | hs-vanishes | proved: `cellFaceCountInput`, green record 0913-100213-68371 |
 | `TwoGonHoldsInput` (C6′) | `OsinAppendixEulerSmallFaces`, 4beca2743 | debt-conditional | stated, green record 0913-093143-91859 |
 | `EmptyTwoGonInput` (C6) | `OsinAppendixEulerEmptyTwoGon`, 16d923f27 | fff-periodic | proved: `emptyTwoGonInput_holds` (2aa17abb0) |
@@ -222,7 +238,8 @@ fff-periodic and nm-endpoints have been told.
 
 - **C1, C2, C3.** Done: `phiMapO` is a `SubdividedMultigraph`, linked regions give
   `|C| + 6 ≤ 3|V| + t`, and the two-gons are exterior pairs of one cell.
-- **C4.** Stated by leavitt-units. The assembly consumes it as stated.
+- **C4.** Proved by leavitt-units: `cornerTwoGonInput` (90245333d) and `osinCornerTwoGonSection`
+  (0c42391c2), with the statement of d0a41c1da unchanged.
 - **C5.** Proved by hs-vanishes: `cellFaceCountInput` (a6a2cadda), with the statement of
   bdd687708 unchanged.
 - **C6′.** `TwoGonHoldsInput`, stated here in the vocabulary of C4 and C5. debt-conditional
@@ -232,20 +249,61 @@ fff-periodic and nm-endpoints have been told.
   `osinPhiPrimeCountSection_of_pieces` (6401c70a6) proves `OsinPhiPrimeCountSectionStatement` from
   `OsinCornerTwoGonSectionStatement` and `OsinTwoGonHoldsSectionStatement`.
 
+## R2: the inner region of a noncrossing pocket walk
+
+Lead's item (09-13). Under R2 the inner `IsDiscRegion` of a pocket comes from
+`BoundaryCycle.toDiscRegion_of_euler` (`SurgeryReclosedConnected.lean:106`), which needs χ of the
+reclosed map of `sideFaces M w` along a noncrossing closed walk (`IsNoncrossingClosedWalk`,
+26a7858f2) to equal χ of `M`. dgo-analytic claimed the lemma. hull-euler asked it for the handoff
+on 09-13; no answer yet.
+
+- The existing `reclosedMap_euler_preserved` (`SurgeryReclosedPlanarity.lean:28`) needs
+  `boundary.FollowsBoundary`. Under R2 only the outer cycle follows.
+- The unconditional form is false. Hand model test: one vertex and three loops, darts 0..5,
+  `alpha = (0 1)(2 3)(4 5)`, `sigma` 1→0→3→2→5→4→1, so `χ = 1 − 3 + 4 = 2`.
+  `w = [0,2,4]` satisfies every field of `IsNoncrossingClosedWalk`, since `sigma (alpha d) = d`
+  for `d ∈ w`, and `sideFaces` is the three monogons. The reclosed rotation is the 6-cycle
+  0→3→4→1→2→5→0, so the reclosed map has 1 vertex, 3 edges, 2 faces and `χ = 0`.
+- The walk is a three-petal rose, and every pair of passages crosses. `turn_mem` forces only the
+  alternation of reversed and forward walk darts, which excludes a crossing only at a vertex
+  passed twice. kh-ejz has the docstring caveat.
+- With `(hw.outerCycle hM).FollowsBoundary` it holds. At a walk vertex, outer follows means that
+  the first walk dart after each departure `f_i` is the arrival `r_i` of the same passage.
+  - The inner reclosed rotation sends `r_i` to `f_i` and agrees with `sigma` on outside sectors,
+    so each passage is one vertex: `V(N_in) = V_outsideOnly + w.length`.
+  - `reclosedMap_vertexCount` on the outer cycle gives `V(N_out) = V_insideOnly + V_walk`.
+  - The kept darts of the two sides overlap exactly in the walk-edge darts, so
+    `E(N_in) + E(N_out) = E + w.length`.
+  - `reclosedMap_faceCount` on both sides gives `F(N_in) + F(N_out) = F + 2`.
+  - So `χ(N_in) + χ(N_out) = χ(M) + 2`, and `reclosedMap_euler_preserved` gives
+    `χ(N_out) = χ(M)`.
+- Candidate form, sent to dgo-analytic:
+
+```lean
+theorem IsNoncrossingClosedWalk.reclosed_euler (hw : IsNoncrossingClosedWalk M w)
+    (hM : M.IsPlanar) (hout : (hw.outerCycle hM).FollowsBoundary) :
+    (reclosedMap M (sideFaces M w) (hw.innerCycle hM)).eulerCharacteristic =
+      M.eulerCharacteristic
+```
+
+The lemma is needed only under R2. R2 against R1 waits on kh-torsion.
+
 ## Census
 
 No rows yet. The rows wait for the closure of `PhiPrimeCountInput`, which carries the Euler count
 inside the proof of `thm:hull` (tex 1636, through Osin's Lemma 9.7(a)). The section assembly
-6401c70a6 is conditional on two named binders and adds no row.
+6401c70a6 is conditional and adds no row. With C4 proved, one binder remains.
 
 ## Next
 
-1. When leavitt-units lands a producer of `OsinCornerTwoGonSectionStatement` and debt-conditional
-   lands one of `OsinTwoGonHoldsSectionStatement`, verify each landing:
+1. When debt-conditional lands a producer of `OsinTwoGonHoldsSectionStatement` (or of
+   `TwoGonHoldsInput`), verify the landing:
    - ancestor of origin/main;
    - md5 of the green record equal to the landed file;
    - statement unchanged;
    - no `sorry`, `axiom` or `native_decide`.
-2. Then write the closure `osinPhiPrimeCountSection := osinPhiPrimeCountSection_of_pieces hK hT`
+2. Then write the closure
+   `osinPhiPrimeCountSection := osinPhiPrimeCountSection_of_pieces osinCornerTwoGonSection hT`
    in a module importing both producers, with `#audit_closed_axioms`, probe and land it.
 3. Then the census rows.
+4. The R2 Euler lemma: take it if dgo-analytic hands it over, otherwise tell the lead.
