@@ -118,6 +118,19 @@ isomorphic, i.e. `X_h ≅ X_∞` for every `h > 0`.
       generators). So the perturbation lemma above is purely an exactness statement.
     - On nonamenable groups with positive supremum the density fails for every distribution, near i.i.d.
       partitions carried by small Bernoulli factors (`iid-generators-not-dense-at-positive-rokhlin-supremum`).
+- **Finitely determined properties (lane ex-bernoulli-zero-supremum, 2026-09-13).** Over `Z`, Ornstein copies
+  processes through finite determination. Over every group, Seward derives it from RBS
+  (`seward-bernoulli-measures-finitely-determined-under-rbs`, arXiv:1804.05269v3, Corollary 1.6).
+  - Shift models of a rigid action stay at d-bar distance `≥ (1 − Σ_l λ(l)^2)/2` from `λ^G`
+    (`rigid-actions-have-no-dbar-close-bernoulli-models`). At zero supremum they converge weak* to `λ^G`
+    with the same Rokhlin entropy `0`. So on a group with a rigid free ergodic action, no nontrivial Bernoulli
+    measure is finitely determined (`bernoulli-measures-not-finitely-determined-at-zero-supremum`).
+  - Rigid free ergodic actions exist on maximally almost periodic groups (so on `P × G` with `G` residually
+    finite, and on the Kun–Thom groups) and on Thompson's `V` (`thompson-v-has-a-rigid-free-ergodic-action`).
+    On `V`, finite determination of one Bernoulli measure is equivalent to POS(V)
+    (`thompson-v-bernoulli-finitely-determined-iff-pos`).
+  Dies at: a copying argument at zero supremum must restrict to a class of measures that excludes models of
+  rigid actions, such as models of Bernoulli shifts. No d-bar estimate on such a class is known.
 - **Algebraic absorption (lane ex-bernoulli-negative).** A stable finiteness failure over
   `F_p[G]` makes a Bernoulli shift absorb a nontrivial algebraic factor,
   `b ≅ b × X_P` (`stable-finiteness-failure-is-algebraic-bernoulli-absorption`). That is
