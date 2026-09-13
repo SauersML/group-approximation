@@ -120,5 +120,5 @@ CLAIM transient-ideal-generation GroupApproximation/Dynamics/TransientIdealDefec
   the ideal-generation claim".
 - An additive producer under names different from chain-matricial's planned `transientIdeal_eq_span_defects`.
 
-CLAIM transient-ideal-locally-matricial (second start)
-- Waits until theoremc-retire lands modules 2 and 4, which it consumes.
+Local matriciality is NOT claimed here. ms-units proposed a split (17:5x): it takes the tower and classes step, in
+`Dynamics/TransientIdealLocallyMatricialFTwo.lean`, and ms-core-4 takes only the defect span.
