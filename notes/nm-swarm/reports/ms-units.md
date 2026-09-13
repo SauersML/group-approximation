@@ -54,3 +54,38 @@ Prior audits of this range: leavitt-units (corollary rows re-read word by word; 
 
 - CLAIM row 2d6574150d4d at printed generality: module `GroupApproximation/Manuscript/NonMFSentences/MFQuotientUnitsDisplaysGeneral.lean`, endpoint `PrintedSteinbergDisplaysAtItemA`.  The closed carrier on main (`MFQuotientUnitsSteinberg.PrintedSteinbergDisplaysInRadical`) assumes that every block off `last` is equivalent to `1`.  Item (a) as printed gives only pairwise equivalence off `last`, and `e_m` equivalent to some `f <= e_1`.  The new endpoint discharges `OffLastRootsIn` through `manuscriptSentence_offLastCorner` (printed generality) and records the element of `EL_{m-1}(T)` explicitly.
 - CLAIM row c34115be7c92, appositive clause: same module, endpoint `PrintedKOneCountableAbelianMF`, stating "K_1(R), a countable abelian group, is MF" explicitly, together with the unique factorization.
+
+## Verification (09-13 ~17:25, statements read against the printed sentences)
+
+Mechanical checks over all 78 declarations the 31 rows name: every one exists on origin/main.  Every module is reachable from `GroupApproximation.lean` (BFS over the import graph at the tip).  Every closed endpoint has an audit line; some are multi-line `#audit_closed_axioms` blocks.
+
+Statement checks, theorem rows:
+
+| key | verdict | note |
+|---|---|---|
+| `cc5594fdb5ef` | adequate (structural) | hypothesis sentence; `[Ring R] [Countable R]`, `IsPurelyInfiniteSimpleRing` = simple ∧ every `aR`, `a ≠ 0`, holds an infinite idempotent (the right-ideal clause of AGP 1.2 in element form) |
+| `c34115be7c92` | GAP (appositive), fix claimed | `PrintedCanonicalKOne` carries the unique factorization through `matrixKappa R n` and `IsOperatorMF (K_1 R)`; "a countable abelian group" existed only as instances → `PrintedKOneCountableAbelianMF` |
+| `6b4a21de3f07` | adequate | `PrintedMFQuotientUnitsKOneAtBaseRing`: every `n ≥ 1`, `Rad_MF = [GL_n,GL_n]`, quotient `≃* K_1(R)` |
+| `5c5eeda68a8a` | adequate | `PrintedReductionToRankOne`; the implication `n = 1 ⇒ every n` is proved along the printed route (`agpMatrixReduction` at `M_n(R)`, then `moritaKOne`) and uses its antecedent |
+| `72f07338d806` | adequate (structural) | notation |
+| `6c03d472e975` | adequate | `agpUnitKappa` proved (no AGP binder) |
+| `55adb8bf7a88` | adequate | printed route: `C*_max(A)` commutative, separable, RFD, MF algebra, then `prop:mf-residual-calculus` (`isCDEOperatorMF_of_faithful_corona_map`) |
+| `23b488384d1b` | adequate | lemma with ordinary hypotheses, used by the closed endpoint |
+| `ded89cfcd0e4`, `eefa8a852d05` | adequate (structural) | roadmap sentences; the mathematics is carried by the later rows |
+| `df9b558e0cb8` | adequate | `PrintedCornerRing`: e infinite, `ts = e ≠ st`, `e − st` generates `eRe`, `eRe` simple, `EL_m(eRe)` (m ≥ 2) has no nontrivial MF image |
+| `9fcd02a03747` | adequate | `PrintedCornerUnits`: eq:corner-units as a homomorphism with range in `N` |
+| `afe1782dc7bc` | adequate (attribution) | the two facts it attributes are proved (`manuscriptAGPInputs`, items (a), (b)) |
+| `64da88cf12a3`, `49ff6f7e8ad6` | adequate (stronger) | item (a) for every `m ≥ 4`; twisted matrix ring with last column in `Tf`, last row in `fT`; `u = gvh` through Peirce elementary units, `v = e_1 + (1−e_1)v(1−e_1)` |
+| `1fd773c6c314` | adequate | item (b) clause by clause |
+| `488237f2dec0` | adequate | |
+| `8c6a65ba3286` | adequate (inclusion reading) | `PrintedOffLastCorner` gives each off-last Peirce root as `1 − P + θ(A)`, `A ∈ EL_{m-1}(T)`, and in `N`; "form EL_{m-1}(T)" is carried as inclusion, the direction the proof uses |
+| `2d6574150d4d` | GAP (generality), fix claimed | closed `PrintedSteinbergDisplaysInRadical` assumes every off-last block `≃ 1`; printed item (a) gives pairwise equivalence only.  `lastColumnDisplay`/`lastRowDisplay` are at printed generality but conditional on `OffLastRootsIn` → `PrintedSteinbergDisplaysAtItemA` |
+| `f2f92d2bbb71` | adequate (stronger) | any `κ` into a countable abelian group |
+| `ce26fc21c942` | adequate (structural) | |
+| `16df92a11bc9` | adequate | `PrintedDiagInElementary` |
+| `c8680722d041` | adequate | `PrintedStepOneParagraph` |
+| `95141daa8321` | adequate | `mfHomKernel Rˣ = commutator Rˣ` from the closed rank-one endpoint |
+
+Corollary rows (`dcf6fa4be4de`, `6aef426dfc7a`, `7916c8696def`, `3c68c15758e8`, `4321530b3fec`, `f6962254d259`, `6d3ca647302e`) were re-read word by word by leavitt-units (report on main).  Their carriers are closed and root-reachable.  No new defect was found.
+
+No literature input remains in the range: AGP 1.5 / 1.7 / 2.4, the Menal–Moncasi reduction, Blackadar–Kirchberg (via the RFD route), Morita invariance and Khanh–Thanh are all proved in the tree.
