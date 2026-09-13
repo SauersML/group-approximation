@@ -79,7 +79,7 @@ theorem exists_isClopen_coeff_charFn_zpow_image_mem
     refine ⟨by rw [e]; exact isClopen_image T h, ?_⟩
     rw [charFn_congr_set k _ (isClopen_image T h) e, ← comap_symm_charFn k T h,
       ← unit_mul_coeff_mul_inv T k]
-    exact TwoSidedIdeal.mul_mem_right _ _ (TwoSidedIdeal.mul_mem_left _ _ hmem)
+    exact TwoSidedIdeal.mul_mem_right _ _ _ (TwoSidedIdeal.mul_mem_left _ _ _ hmem)
   | pred i ih =>
     obtain ⟨h, hmem⟩ := ih
     have e := zpow_add_one_image T D (-(i : ℤ) - 1)
@@ -96,7 +96,7 @@ theorem exists_isClopen_coeff_charFn_zpow_image_mem
       have h1 : (↑(unit T k)⁻¹ : ClopenCrossedProduct T k) * ↑(unit T k) = 1 := Units.inv_mul _
       rw [← key, mul_assoc, mul_assoc, h1, mul_one, Units.inv_mul_cancel_left]
     rw [hc]
-    exact TwoSidedIdeal.mul_mem_right _ _ (TwoSidedIdeal.mul_mem_left _ _ hmem)
+    exact TwoSidedIdeal.mul_mem_right _ _ _ (TwoSidedIdeal.mul_mem_left _ _ _ hmem)
 
 /-- **The finite clopen subdivision** (tex 1486–1487): a coefficient supported in a finite union
 of clopen sets whose indicators lie in `J` lies in `J`. -/
@@ -120,7 +120,7 @@ theorem coeff_mem_of_support_subset_biUnion {J : TwoSidedIdeal (ClopenCrossedPro
       rw [mul_sub, mul_one]
       abel
     rw [hsplit, map_add, map_mul]
-    refine add_mem (TwoSidedIdeal.mul_mem_left _ _ (hJ i)) (ih _ fun x hx ↦ ?_)
+    refine add_mem (TwoSidedIdeal.mul_mem_left _ _ _ (hJ i)) (ih _ fun x hx ↦ ?_)
     have hxi : x ∉ W i := fun hxW ↦ hx (by
       rw [LocallyConstant.mul_apply, LocallyConstant.sub_apply, LocallyConstant.one_apply,
         LocallyConstant.coe_charFn, Set.indicator_of_mem hxW, Pi.one_apply, sub_self, mul_zero])
@@ -165,15 +165,17 @@ theorem transientIdeal_le_span_compressedDefectSet [CompactSpace X] {Y : Set X} 
     transientIdeal T k hY ≤ TwoSidedIdeal.span (compressedDefectSet T k) := by
   intro x hx
   have hcoeff := (mem_transientIdeal_iff_forall_coeff T k hY).1 hx
-  have hx_eq : x = ∑ g ∈ x.support, SkewMonoidAlgebra.single g (x.coeff g) :=
+  have hx_eq : x = ∑ g ∈ SkewMonoidAlgebra.support x,
+      SkewMonoidAlgebra.single g (SkewMonoidAlgebra.coeff x g) :=
     (SkewMonoidAlgebra.sum_single x).symm.trans (SkewMonoidAlgebra.sum_def' _ _)
-  have hsum : ∑ g ∈ x.support, SkewMonoidAlgebra.single g (x.coeff g) ∈
-      TwoSidedIdeal.span (compressedDefectSet T k) := by
-    refine TwoSidedIdeal.finsetSum_mem _ _ fun g _ ↦ ?_
+  have hsum : ∑ g ∈ SkewMonoidAlgebra.support x,
+      SkewMonoidAlgebra.single g (SkewMonoidAlgebra.coeff x g) ∈
+        TwoSidedIdeal.span (compressedDefectSet T k) := by
+    refine TwoSidedIdeal.finsetSum_mem _ _ _ fun g _ ↦ ?_
     rw [Pestov91.CrossedProduct.single_eq_C_mul]
-    refine TwoSidedIdeal.mul_mem_right _ _ ?_
-    have hc : Pestov91.CrossedProduct.C (x.coeff g) =
-        coeff T k ((ClopenCoeff.of T k).symm (x.coeff g)) := by
+    refine TwoSidedIdeal.mul_mem_right _ _ _ ?_
+    have hc : Pestov91.CrossedProduct.C (SkewMonoidAlgebra.coeff x g) =
+        coeff T k ((ClopenCoeff.of T k).symm (SkewMonoidAlgebra.coeff x g)) := by
       rw [coeff_apply, RingEquiv.apply_symm_apply]
     rw [hc]
     exact coeff_mem_span_compressedDefectSet T k hcover _ fun y hy ↦ hcoeff g y hy
