@@ -32,11 +32,24 @@ By `bounded-removal-finite-quotient-caps-cocycle-cheeger` this refutes
   perimeter do not factor through `π_1(Y)`. When `T` is one uniformly random
   triangle of the sample, `Y \ T` is close to `Y(n,p)` in total variation, so
   `meshulam-random-complex-no-polynomial-quotients` applies to `π_1(Y \ T)`: for
-  every fixed `c`, a.a.s. every detecting quotient has order larger than `n^c`. Whether
-  the exclusion holds for all `n^(O(t))` choices of `T` at once is not checked.
+  every fixed `c`, a.a.s. every detecting quotient has order larger than `n^c`. The
+  exclusion holds for all choices of `T` at once, at the larger order `exp(n^η/8)`, by
+  `random-complex-bounded-removals-have-no-quotients-below-exp-pn` (2026-09-13).
 * **Conditions 1–2.** In that route they come from
   `random-complex-mid-range-pair-properties` and a first-moment purity count. For
-  adversarially chosen `T` no perturbation lemma is landed.
+  every `T` with `|T| <= t` they now hold a.a.s. at once, by
+  `random-complex-bounded-removals-stay-local-expanders` (2026-09-13). So route
+  `bounded-removal-detection-from-detection-alone` reduces this claim to detection
+  alone, `random-complex-removed-perimeter-survives-in-finite-quotient`.
 * **Kazhdan caution.** As in `random-complex-missing-triangle-detected-by-quotient`,
   `π_1(Y)` has property (T) and is not cubulated, so virtual specialness is
   unavailable.
+
+## Attempts
+
+1. **Uniform constraints, 2026-09-13.** Conditions 1–2 hold for every bounded
+   removal. Every detecting quotient, for every admissible `T`, has order above
+   `exp(n^η/8)`. What remains open is detection alone. It is recorded, with its
+   constraints and three mechanisms that give nothing (linear representations,
+   covers assembled from cells, one-relator structure), on
+   `random-complex-removed-perimeter-survives-in-finite-quotient`.
