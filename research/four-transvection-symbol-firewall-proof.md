@@ -22,3 +22,5 @@ re-derives it.
 4. **Frames and six transvections** (Propositions 3.2 and 3.3(d)). The six roots of either code have `Φ`-entries
    `t_0`, `s_0`, `t_1`, `s_1`, `s_0 t_1` and `s_1 t_0`, and only the first two lie in `T`. `S6` adds `s_1` and `t_1`,
    and `R` is simple and not directly finite.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Sections 36.2–36.3 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

@@ -19,3 +19,5 @@ Artifact Section 4 (Theorems 4.1 and 4.3, Corollary 4.2) and Lemma 3.1. Held OPE
    many `k` vanish in the quotient. In `Σ m^T n^S`, the `12` ordered pairs of nonempty disjoint subsets of `{1,2,3}`
    give distinct elementary tensors in `1`, `n`, `m`. These three are independent, as `1_[10]` and `1_[11]` show.
 4. **Algebra level** (Lemma 3.1). `t_11 s_0 = 0`, so every unital algebra homomorphism kills `D`.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Sections 36.3–36.4 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*

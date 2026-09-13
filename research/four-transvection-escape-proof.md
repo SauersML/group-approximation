@@ -19,3 +19,5 @@ re-derives it.
 4. **Local finiteness** (Proposition 1.3, Corollary 1.4). Elements of the `≤` span preserve the finite-dimensional
    `F_r` for large `r`, and the cylinder functions are the union of the `F_r`. The involution `*` exchanges the two
    sides. An invertible locally finite operator has a locally finite inverse.
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 36.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
