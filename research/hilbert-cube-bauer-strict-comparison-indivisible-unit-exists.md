@@ -84,6 +84,13 @@ same locus; it is not recorded as a separate claim.
     summands to the traceless bundle, which kills the top class. What would have to survive is an
     `ε_0`-heavy eigenvalue. Its forcing class is a Porteous-type class of the multiplicity-`ε_0 n`
     stratum in a twisted bundle, in degree about `ε_0² n²`. Not computed.
+  - **Multiplicity must be twisted.** Any flat trivial factor kills rigidity. A unital `M_t` in `A`, or a
+    block `B ⊗ M_t` with trivial `M_t`, contains `1 ⊗ diag(1, …, t)`, whose atoms have mass `≤ 1/t`.
+    - **Point evaluations.** By period–index, a constant block `a(x)` embeds only after tensoring with
+      a full twisted factor of the same Dixmier–Douady class. To keep the point-evaluation weight
+      summable, the main block must be repeated, and every repetition factor must itself be twisted,
+      all under one projective cocycle.
+    - **Open.** Whether such towers can be simple, Bauer and rigid is not known.
   - **Strict comparison.** At base dimension about `ε_0² n²`, general position gives a comparison radius
     of order `d/n`, which is useless. A witness needs a comparison mechanism specific to twisted blocks.
     One hope: index restrictions remove the small projections that Villadsen-type certificates use.
