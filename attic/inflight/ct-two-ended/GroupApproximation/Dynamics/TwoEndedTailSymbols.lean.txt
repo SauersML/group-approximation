@@ -1,6 +1,7 @@
 import GroupApproximation.Dynamics.TwoEndedRepresentation
 import GroupApproximation.Algebra.LaurentMonomialUnits
 import GroupApproximation.Meta.AxiomGuard
+import Mathlib.Algebra.Algebra.Basic
 import Mathlib.Algebra.MonoidAlgebra.Basic
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
 import Mathlib.Order.Filter.Finite
@@ -14,18 +15,19 @@ import Mathlib.Tactic.Linarith
 > A unit has Laurent symbols $z^{a_-},z^{a_+}$ at the two ends and acts by these translations on
 > the two sufficiently distant tails.
 
-Both endpoints `±∞` of `X = ℤ ∪ {−∞, +∞}` are fixed by `T`, so evaluating the Laurent coefficients
-at an endpoint is a ring homomorphism `R_X → k[z, z⁻¹]`: the Laurent symbol at that end.  A
-coefficient is locally constant, hence constant near each endpoint, so far out on either tail the
-faithful action `ρ` acts by convolution with the symbol.  For a unit the symbol is a unit, hence
-`z^a` over `𝔽₂` (`LaurentMonomialUnits`), and `ρ` translates the far tail by `a`.
+Both endpoints `±∞` of `X = ℤ ∪ {−∞, +∞}` are fixed by `T`.  Freezing the coefficients of
+`x = Σ_j x_j u^j` at an endpoint `e` gives the Laurent symbol `Σ_j x_j(e) z^j ∈ k[z, z⁻¹]`.  It is
+realized here through the operator `symbolOp e x` on `k^{(ℤ)}`, in which a coefficient acts by the
+scalar `x_j(e)` and `u` by the bilateral shift; `symbol e x` is its column at `e_0`.  The symbol is
+multiplicative (`symbol_mul`), so a unit has a unit symbol, which over `𝔽₂` is a monomial `z^a`
+(`LaurentMonomialUnits`).  A coefficient is locally constant, hence constant near each endpoint, so
+far out on either tail the faithful action `ρ` agrees with `symbolOp` (`exists_tail_pos`,
+`exists_tail_neg`), and `ρ(u)` translates the far tail by `a`.
 
-* `symbolHom k e he : ClopenCrossedProduct shift k →+* AddMonoidAlgebra k ℤ` for a fixed point `e`,
-  with `symbolHom_coeff`: the coefficient at `z^j` is the Laurent coefficient `x_j` evaluated at `e`;
-* `exists_tail_pos`, `exists_tail_neg`: far out on each tail, `(ρ(x) (c e_i))_l = σ_{l−i} c`, with
-  `σ` the symbol at `+∞`, resp. `−∞`;
+* `symbolOp k e he`, `symbolOp_apply_single_apply`, `symbol k e he x`, `symbol_mul`, `symbol_one`;
+* `exists_tail_pos`, `exists_tail_neg`;
 * `exists_tail_translation_pos`, `exists_tail_translation_neg`: over `𝔽₂` a unit translates each far
-  tail, `ρ(x) e_i = e_{i + a_±}`.
+  tail, `ρ(u) e_i = e_{i + a_±}`.
 -/
 
 namespace GroupApproximation
@@ -59,53 +61,108 @@ theorem evalCoeff_apply (e : TwoEnded) (a : ClopenCoeff shift k) :
     evalCoeff k e a = (ClopenCoeff.of shift k).symm a e :=
   rfl
 
-/-- **The Laurent symbol at a fixed point** `e` of `T`: `R_X → k[z, z⁻¹]`, `f u^j ↦ f(e) z^j`. -/
-noncomputable def symbolHom (e : TwoEnded) (he : shift e = e) :
-    ClopenCrossedProduct shift k →+* AddMonoidAlgebra k ℤ :=
-  SkewMonoidAlgebra.liftNCRingHom ((AddMonoidAlgebra.singleZeroRingHom).comp (evalCoeff k e))
-    (AddMonoidAlgebra.of k ℤ) fun {x y} => by
-      have hx : evalCoeff k e (y • x) = evalCoeff k e x := by
-        show (ClopenCoeff.of shift k).symm x ((shift ^ (-toAdd y)) e) =
-          (ClopenCoeff.of shift k).symm x e
-        rw [shift_zpow_apply_of_fixed he]
-      rw [RingHom.comp_apply, RingHom.comp_apply, hx]
-      exact mul_comm _ _
+/-- The coefficients of `R_X` acting on `k^{(ℤ)}` by the scalars `a(e)`. -/
+noncomputable def scalarHom (e : TwoEnded) : ClopenCoeff shift k →+* Module.End k (ℤ →₀ k) :=
+  (algebraMap k (Module.End k (ℤ →₀ k))).comp (evalCoeff k e)
 
-set_option maxHeartbeats 1000000 in
-/-- The symbol of a monomial `a u^g` is `a(e) z^g`.  The only unfolding of `symbolHom` in this
-module happens here: it matches the semiring structure inside `liftNCRingHom` against the one
-synthesized for `AddMonoidAlgebra k ℤ`, which exceeds the default heartbeat budget. -/
-theorem symbolHom_single (e : TwoEnded) (he : shift e = e) (g : Multiplicative ℤ)
+theorem scalarHom_apply (e : TwoEnded) (a : ClopenCoeff shift k) (w : ℤ →₀ k) :
+    scalarHom k e a w = evalCoeff k e a • w := by
+  rw [scalarHom, RingHom.comp_apply, Module.algebraMap_end_apply]
+
+/-- **The symbol operator at a fixed point** `e` of `T`: a coefficient acts by its value at `e` and
+`u` by the bilateral shift. -/
+noncomputable def symbolOp (e : TwoEnded) (he : shift e = e) :
+    ClopenCrossedProduct shift k →+* Module.End k (ℤ →₀ k) :=
+  SkewMonoidAlgebra.liftNCRingHom (scalarHom k e) (shiftHom k) fun {x y} => by
+    have hx : evalCoeff k e (y • x) = evalCoeff k e x := by
+      show (ClopenCoeff.of shift k).symm x ((shift ^ (-toAdd y)) e) =
+        (ClopenCoeff.of shift k).symm x e
+      rw [shift_zpow_apply_of_fixed he]
+    rw [scalarHom, RingHom.comp_apply, RingHom.comp_apply, hx]
+    exact Algebra.commutes _ _
+
+theorem symbolOp_single (e : TwoEnded) (he : shift e = e) (g : Multiplicative ℤ)
     (a : ClopenCoeff shift k) :
-    symbolHom k e he (SkewMonoidAlgebra.single g a) =
-      AddMonoidAlgebra.single 0 (evalCoeff k e a) * AddMonoidAlgebra.of k ℤ g := by
-  show SkewMonoidAlgebra.liftNC
-    ((AddMonoidAlgebra.singleZeroRingHom).comp (evalCoeff k e) :
-      ClopenCoeff shift k →+ AddMonoidAlgebra k ℤ)
-    (AddMonoidAlgebra.of k ℤ) (SkewMonoidAlgebra.single g a) = _
+    symbolOp k e he (SkewMonoidAlgebra.single g a) = scalarHom k e a * shiftHom k g := by
+  show SkewMonoidAlgebra.liftNC (scalarHom k e : ClopenCoeff shift k →+ Module.End k (ℤ →₀ k))
+    (shiftHom k) (SkewMonoidAlgebra.single g a) = scalarHom k e a * shiftHom k g
   exact SkewMonoidAlgebra.liftNC_single _ _ _ _
 
-/-- The coefficient of the symbol at `z^j` is the Laurent coefficient `x_j` evaluated at `e`. -/
-theorem symbolHom_coeff (e : TwoEnded) (he : shift e = e) (x : ClopenCrossedProduct shift k)
-    (j : ℤ) :
-    (symbolHom k e he x).coeff j =
-      (ClopenCoeff.of shift k).symm (SkewMonoidAlgebra.coeff x (ofAdd j)) e := by
-  classical
+/-- `(symbolOp e x (c e_i))_l = x_{l−i}(e) · c`. -/
+theorem symbolOp_apply_single_apply (e : TwoEnded) (he : shift e = e)
+    (x : ClopenCrossedProduct shift k) (i l : ℤ) (c : k) :
+    symbolOp k e he x (single i c) l =
+      (ClopenCoeff.of shift k).symm (SkewMonoidAlgebra.coeff x (ofAdd (l - i))) e * c := by
   induction x using SkewMonoidAlgebra.induction_on with
   | zero => simp
   | single g a =>
-      rw [symbolHom_single, AddMonoidAlgebra.of_apply, AddMonoidAlgebra.single_mul_single,
-        zero_add, mul_one, AddMonoidAlgebra.coeff_single, Finsupp.single_apply,
+      rw [symbolOp_single, Module.End.mul_apply, shiftHom_apply, FinitaryGL.shiftGL_zpow_single,
+        scalarHom_apply, Finsupp.smul_apply, smul_eq_mul, Finsupp.single_apply,
         SkewMonoidAlgebra.coeff_single_apply, evalCoeff_apply]
-      by_cases h : g = ofAdd j
-      · rw [if_pos (by rw [h, toAdd_ofAdd]), if_pos h]
-      · have h' : ¬ toAdd g = j := fun h'' => h (by rw [← h'', ofAdd_toAdd])
+      by_cases h : g = ofAdd (l - i)
+      · have h' : i + toAdd g = l := by
+          rw [h, toAdd_ofAdd]
+          omega
+        rw [if_pos h', if_pos h]
+      · have h' : ¬ i + toAdd g = l := fun h'' => by
+          have ht : toAdd g = l - i := by omega
+          exact h (by rw [← ht, ofAdd_toAdd])
         rw [if_neg h', if_neg h]
         simp
   | add x y hx hy =>
-      rw [map_add, AddMonoidAlgebra.coeff_add, Finsupp.add_apply, hx, hy,
-        SkewMonoidAlgebra.coeff_add, Finsupp.add_apply, map_add]
-      rfl
+      rw [map_add, LinearMap.add_apply, Finsupp.add_apply, hx, hy, SkewMonoidAlgebra.coeff_add,
+        Finsupp.add_apply, map_add]
+      exact (add_mul _ _ _).symm
+
+theorem symbolOp_apply_single_one (e : TwoEnded) (he : shift e = e)
+    (x : ClopenCrossedProduct shift k) (i l : ℤ) :
+    symbolOp k e he x (single i 1) l = symbolOp k e he x (single 0 1) (l - i) := by
+  rw [symbolOp_apply_single_apply, symbolOp_apply_single_apply, sub_zero]
+
+/-- **The Laurent symbol** `Σ_j x_j(e) z^j` of `x` at a fixed point `e`. -/
+noncomputable def symbol (e : TwoEnded) (he : shift e = e) (x : ClopenCrossedProduct shift k) :
+    AddMonoidAlgebra k ℤ :=
+  AddMonoidAlgebra.ofCoeff (symbolOp k e he x (single 0 1))
+
+theorem symbol_coeff (e : TwoEnded) (he : shift e = e) (x : ClopenCrossedProduct shift k) (j : ℤ) :
+    (symbol k e he x).coeff j = symbolOp k e he x (single 0 1) j :=
+  rfl
+
+theorem symbolOp_apply_eq_sum (e : TwoEnded) (he : shift e = e) (x : ClopenCrossedProduct shift k)
+    (v : ℤ →₀ k) (m : ℤ) :
+    symbolOp k e he x v m = v.sum fun j r => r * symbolOp k e he x (single 0 1) (m - j) := by
+  conv_lhs => rw [← Finsupp.sum_single v]
+  rw [map_finsupp_sum, Finsupp.sum_apply]
+  refine Finset.sum_congr rfl fun j _ => ?_
+  rw [← Finsupp.smul_single_one j (v j), map_smul, Finsupp.smul_apply, smul_eq_mul,
+    symbolOp_apply_single_one]
+
+/-- **The symbol is multiplicative**: `symbol(x y) = symbol(y) symbol(x)` in `k[z, z⁻¹]`. -/
+theorem symbol_mul (e : TwoEnded) (he : shift e = e) (x y : ClopenCrossedProduct shift k) :
+    symbol k e he (x * y) = symbol k e he y * symbol k e he x := by
+  classical
+  have hinner : ∀ (m j : ℤ) (r : k),
+      ((symbol k e he x).coeff.sum fun l s => if j + l = m then r * s else 0) =
+        r * (symbol k e he x).coeff (m - j) := by
+    intro m j r
+    simp only [Finsupp.sum]
+    rw [Finset.sum_eq_single (m - j)]
+    · rw [if_pos (by omega)]
+    · intro l _ hl
+      rw [if_neg (by omega)]
+    · intro hmj
+      rw [if_pos (by omega), Finsupp.notMem_support_iff.1 hmj, mul_zero]
+  refine AddMonoidAlgebra.coeff_injective (Finsupp.ext fun m => ?_)
+  rw [AddMonoidAlgebra.coeff_mul, symbol_coeff, map_mul, Module.End.mul_apply,
+    symbolOp_apply_eq_sum]
+  simp only [hinner]
+  rfl
+
+theorem symbol_one (e : TwoEnded) (he : shift e = e) :
+    symbol k e he (1 : ClopenCrossedProduct shift k) = 1 := by
+  refine AddMonoidAlgebra.coeff_injective (Finsupp.ext fun m => ?_)
+  rw [symbol_coeff, map_one, Module.End.one_apply, AddMonoidAlgebra.one_def,
+    AddMonoidAlgebra.coeff_single]
 
 omit [CommRing k] in
 theorem eventually_pt_atTop_eq (f : LocallyConstant TwoEnded k) :
@@ -119,17 +176,18 @@ theorem eventually_pt_atBot_eq (f : LocallyConstant TwoEnded k) :
   have hU : IsOpen {y : TwoEnded | f y = f negInf} := f.isLocallyConstant.isOpen_fiber (f negInf)
   exact tendsto_pt_atBot (hU.mem_nhds rfl)
 
-/-- **The far positive tail** (tex 1781–1782): there is `N` such that for `i ≥ N`,
-`(ρ(x) (c e_i))_l = σ₊(x)_{l−i} · c`, where `σ₊` is the symbol at `+∞`. -/
+/-- **The far positive tail** (tex 1781–1782): for all large `i`, `ρ(x)` agrees with the symbol
+operator at `+∞` on `c e_i`. -/
 theorem exists_tail_pos (x : ClopenCrossedProduct shift k) :
-    ∃ N : ℤ, ∀ i l : ℤ, N ≤ i → ∀ c : k,
-      rho k x (single i c) l = (symbolHom k posInf shift_posInf x).coeff (l - i) * c := by
+    ∃ N : ℤ, ∀ i, N ≤ i → ∀ c : k,
+      rho k x (single i c) = symbolOp k posInf shift_posInf x (single i c) := by
   classical
   obtain ⟨N₀, hN₀⟩ := Filter.eventually_atTop.1
     ((Filter.eventually_all_finset (SkewMonoidAlgebra.support x)).2 fun g _ =>
       eventually_pt_atTop_eq k ((ClopenCoeff.of shift k).symm (SkewMonoidAlgebra.coeff x g)))
-  refine ⟨N₀ + ∑ g ∈ SkewMonoidAlgebra.support x, |toAdd g|, fun i l hi c => ?_⟩
-  rw [rho_apply_single_apply, symbolHom_coeff]
+  refine ⟨N₀ + ∑ g ∈ SkewMonoidAlgebra.support x, |toAdd g|, fun i hi c =>
+    Finsupp.ext fun l => ?_⟩
+  rw [rho_apply_single_apply, symbolOp_apply_single_apply]
   by_cases hg : ofAdd (l - i) ∈ SkewMonoidAlgebra.support x
   · have hB : |toAdd (ofAdd (l - i))| ≤ ∑ g ∈ SkewMonoidAlgebra.support x, |toAdd g| :=
       Finset.single_le_sum (fun g _ => abs_nonneg (toAdd g)) hg
@@ -140,17 +198,18 @@ theorem exists_tail_pos (x : ClopenCrossedProduct shift k) :
   · rw [SkewMonoidAlgebra.notMem_support_iff.1 hg, map_zero]
     rfl
 
-/-- **The far negative tail**: there is `N` such that for `i ≤ N`,
-`(ρ(x) (c e_i))_l = σ₋(x)_{l−i} · c`, where `σ₋` is the symbol at `−∞`. -/
+/-- **The far negative tail**: for all small `i`, `ρ(x)` agrees with the symbol operator at `−∞` on
+`c e_i`. -/
 theorem exists_tail_neg (x : ClopenCrossedProduct shift k) :
-    ∃ N : ℤ, ∀ i l : ℤ, i ≤ N → ∀ c : k,
-      rho k x (single i c) l = (symbolHom k negInf shift_negInf x).coeff (l - i) * c := by
+    ∃ N : ℤ, ∀ i, i ≤ N → ∀ c : k,
+      rho k x (single i c) = symbolOp k negInf shift_negInf x (single i c) := by
   classical
   obtain ⟨N₀, hN₀⟩ := Filter.eventually_atBot.1
     ((Filter.eventually_all_finset (SkewMonoidAlgebra.support x)).2 fun g _ =>
       eventually_pt_atBot_eq k ((ClopenCoeff.of shift k).symm (SkewMonoidAlgebra.coeff x g)))
-  refine ⟨N₀ - ∑ g ∈ SkewMonoidAlgebra.support x, |toAdd g|, fun i l hi c => ?_⟩
-  rw [rho_apply_single_apply, symbolHom_coeff]
+  refine ⟨N₀ - ∑ g ∈ SkewMonoidAlgebra.support x, |toAdd g|, fun i hi c =>
+    Finsupp.ext fun l => ?_⟩
+  rw [rho_apply_single_apply, symbolOp_apply_single_apply]
   by_cases hg : ofAdd (l - i) ∈ SkewMonoidAlgebra.support x
   · have hB : |toAdd (ofAdd (l - i))| ≤ ∑ g ∈ SkewMonoidAlgebra.support x, |toAdd g| :=
       Finset.single_le_sum (fun g _ => abs_nonneg (toAdd g)) hg
@@ -161,40 +220,44 @@ theorem exists_tail_neg (x : ClopenCrossedProduct shift k) :
   · rw [SkewMonoidAlgebra.notMem_support_iff.1 hg, map_zero]
     rfl
 
-theorem symbolHom_units_mul_inv (e : TwoEnded) (he : shift e = e)
+theorem symbol_units_mul_inv (e : TwoEnded) (he : shift e = e)
     (u : (ClopenCrossedProduct shift k)ˣ) :
-    symbolHom k e he (u : ClopenCrossedProduct shift k) *
-      symbolHom k e he ((u⁻¹ : (ClopenCrossedProduct shift k)ˣ) : ClopenCrossedProduct shift k) =
+    symbol k e he (u : ClopenCrossedProduct shift k) *
+      symbol k e he ((u⁻¹ : (ClopenCrossedProduct shift k)ˣ) : ClopenCrossedProduct shift k) =
       1 := by
-  rw [← map_mul, Units.mul_inv, map_one]
+  rw [← symbol_mul, Units.inv_mul, symbol_one]
+
+theorem symbolOp_translation (e : TwoEnded) (he : shift e = e)
+    (u : (ClopenCrossedProduct shift (ZMod 2))ˣ) {a : ℤ}
+    (ha : (symbol (ZMod 2) e he (u : ClopenCrossedProduct shift (ZMod 2))).coeff =
+      Finsupp.single a 1) (i : ℤ) :
+    symbolOp (ZMod 2) e he (u : ClopenCrossedProduct shift (ZMod 2)) (single i 1) =
+      single (i + a) 1 := by
+  refine Finsupp.ext fun l => ?_
+  rw [symbolOp_apply_single_one, ← symbol_coeff, ha, Finsupp.single_apply, Finsupp.single_apply]
+  by_cases h : i + a = l
+  · rw [if_pos h, if_pos (by omega)]
+  · rw [if_neg h, if_neg (by omega)]
 
 /-- **A unit translates the far positive tail** (tex 1780–1782): over `𝔽₂` its symbol at `+∞` is
-`z^{a₊}`, and `ρ(x) e_i = e_{i + a₊}` for all large `i`. -/
+`z^{a₊}`, and `ρ(u) e_i = e_{i + a₊}` for all large `i`. -/
 theorem exists_tail_translation_pos (u : (ClopenCrossedProduct shift (ZMod 2))ˣ) :
     ∃ a N : ℤ, ∀ i, N ≤ i →
       rho (ZMod 2) (u : ClopenCrossedProduct shift (ZMod 2)) (single i 1) = single (i + a) 1 := by
   obtain ⟨a, ha⟩ := LaurentMonomialUnits.exists_single_one_of_mul_eq_one_zmodTwo
-    (symbolHom_units_mul_inv (ZMod 2) posInf shift_posInf u)
+    (symbol_units_mul_inv (ZMod 2) posInf shift_posInf u)
   obtain ⟨N, hN⟩ := exists_tail_pos (ZMod 2) (u : ClopenCrossedProduct shift (ZMod 2))
-  refine ⟨a, N, fun i hi => Finsupp.ext fun l => ?_⟩
-  rw [hN i l hi, ha, Finsupp.single_apply, Finsupp.single_apply, mul_one]
-  by_cases h : i + a = l
-  · rw [if_pos h, if_pos (by omega)]
-  · rw [if_neg h, if_neg (by omega)]
+  exact ⟨a, N, fun i hi => (hN i hi 1).trans (symbolOp_translation posInf shift_posInf u ha i)⟩
 
 /-- **A unit translates the far negative tail**: over `𝔽₂` its symbol at `−∞` is `z^{a₋}`, and
-`ρ(x) e_i = e_{i + a₋}` for all small `i`. -/
+`ρ(u) e_i = e_{i + a₋}` for all small `i`. -/
 theorem exists_tail_translation_neg (u : (ClopenCrossedProduct shift (ZMod 2))ˣ) :
     ∃ a N : ℤ, ∀ i, i ≤ N →
       rho (ZMod 2) (u : ClopenCrossedProduct shift (ZMod 2)) (single i 1) = single (i + a) 1 := by
   obtain ⟨a, ha⟩ := LaurentMonomialUnits.exists_single_one_of_mul_eq_one_zmodTwo
-    (symbolHom_units_mul_inv (ZMod 2) negInf shift_negInf u)
+    (symbol_units_mul_inv (ZMod 2) negInf shift_negInf u)
   obtain ⟨N, hN⟩ := exists_tail_neg (ZMod 2) (u : ClopenCrossedProduct shift (ZMod 2))
-  refine ⟨a, N, fun i hi => Finsupp.ext fun l => ?_⟩
-  rw [hN i l hi, ha, Finsupp.single_apply, Finsupp.single_apply, mul_one]
-  by_cases h : i + a = l
-  · rw [if_pos h, if_pos (by omega)]
-  · rw [if_neg h, if_neg (by omega)]
+  exact ⟨a, N, fun i hi => (hN i hi 1).trans (symbolOp_translation negInf shift_negInf u ha i)⟩
 
 end TwoEndedShift
 
@@ -202,7 +265,8 @@ end GroupApproximation
 
 open GroupApproximation
 
-#audit_axioms GroupApproximation.TwoEndedShift.symbolHom_coeff
+#audit_axioms GroupApproximation.TwoEndedShift.symbolOp_apply_single_apply
+#audit_axioms GroupApproximation.TwoEndedShift.symbol_mul
 #audit_axioms GroupApproximation.TwoEndedShift.exists_tail_pos
 #audit_axioms GroupApproximation.TwoEndedShift.exists_tail_translation_pos
 #audit_axioms GroupApproximation.TwoEndedShift.exists_tail_translation_neg
