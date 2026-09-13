@@ -5073,6 +5073,11 @@ import GroupApproximation.KirchbergLoops.InvariantMatrix
 import GroupApproximation.NielsenThurston.ReductionSystem
 import GroupApproximation.NielsenThurston.VirtuallyCyclic
 import GroupApproximation.SurfaceCurves.SimpleClosedCurve
+import GroupApproximation.GGT.VanKampen.SurgeryCornerJoinMap
+import GroupApproximation.GGT.VanKampen.SurgeryCornerJoinDiagram
+import GroupApproximation.GGT.HullLemma35PieceSides
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeAssembly
+import GroupApproximation.GGT.VanKampen.SurgeryMonogonDoubling
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
