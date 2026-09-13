@@ -84,3 +84,16 @@ every finite-index subgroup of `SL_3(Z)` and every group commensurable with it.
     `Bernoulli × τ`, where Popa's Theorem 0.1 untwists only to a cocycle of `τ`. Also nonsofic groups in which
     no nonsofic subgroup is known to have a wq-normal infinite Kazhdan subgroup. Dies at: no non-malleable
     free action of a nonsofic group is recorded.
+* **Product seeds and hosts with p-torsion (solve-sl3z-nonbernoulli-seed, 2026-09-13).** Two more no-gos.
+  * **Products `Bernoulli × τ`.** For a Kazhdan seed group, containment gives finite-kernel morphisms from almost
+    every stabilizer of `τ` into the host (`kazhdan-bernoulli-product-seed-stabilizers-embed-in-host`). So product
+    seeds need `τ` with stabilizers that embed into `SL_3(Z)` modulo finite subgroups, and for essentially free `τ` the
+    theorem says nothing.
+  * **Kun--Thom relations, every linear host.** A host of a Kun--Thom relation receives a morphism from the Kun--Thom
+    group that is injective on `SL_d(Z)` and on the root subgroups
+    (`kun-thom-relation-hosts-contain-sl-d-z-and-root-groups`). So no group linear over any field is a host,
+    including `SL_3(F_p[t])` and every `S`-arithmetic group over a function field.
+  * **What survives.** Essentially free, non-malleable actions of nonsofic groups (algebraic, homogeneous or
+    co-induced ones), and `Bernoulli × τ` with `τ` essentially free. No cocycle superrigidity theorem for these is
+    imported, and no containment construction is recorded. Dies at: the same point, with product seeds narrowed to
+    essentially free `τ`.

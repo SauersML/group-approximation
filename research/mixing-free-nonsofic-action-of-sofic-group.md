@@ -108,3 +108,10 @@ a Bernoulli shift.
   lattice of `SL_3(R)`, every finitely generated linear group in characteristic `0`, `F_2 × F_2`, and the
   torsion-free tree-product lattices.
   So for these hosts, containment seeds must be non-malleable free actions of nonsofic groups.
+* **Product seeds and hosts with p-torsion (solve-sl3z-nonbernoulli-seed, 2026-09-13).**
+  `kun-thom-relation-hosts-contain-sl-d-z-and-root-groups` extends the Kun--Thom no-go to every linear host, in any
+  characteristic. So lattices of characteristic-`p` Howe--Moore groups such as `SL_3(F_p[t])` get no containment seed
+  from Kun--Thom relations, although they have infinite elementary abelian `p`-subgroups.
+  `kazhdan-bernoulli-product-seed-stabilizers-embed-in-host` narrows product seeds `Bernoulli × τ` of Kazhdan groups to
+  `τ` whose stabilizers embed into the host modulo finite subgroups. Dies at: no containment construction is known
+  for essentially free non-malleable seeds.
