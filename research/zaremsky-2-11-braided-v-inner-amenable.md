@@ -29,6 +29,11 @@ is invariant under conjugation.
 - F is inner amenable (Jolissaint). T and V are not (Haagerup–Olesen, arXiv:1609.05086v1,
   Theorem 3.4). The Higman–Thompson groups T_n and V_n are not (Bashwinger–Zaremsky,
   arXiv:2203.13798).
+- Before this answer, the question was recorded as open. Bashwinger–Zaremsky, arXiv:2203.13798,
+  Introduction, verbatim from the arXiv HTML of v2 (checked 2026-09-13): "Other related groups
+  for which inner amenability is open in general include braided Thompson groups and
+  Röver–Nekrashevych groups, and it would be interesting to try and use similar tools to prove
+  for example that none of these are inner amenable."
 - `L(bV)` and `L(bF)` are II_1 factors, and the pure braided Thompson group bF is inner amenable
   (Bashwinger–Zaremsky, arXiv:2104.04826, abstract).
 - The result for V does not pass to bV by itself. The kernel of `bV → V` is a directed union of
@@ -44,8 +49,15 @@ is invariant under conjugation.
     which centralizing elements of Λ must permute.
   - Review: PASS by z-verify-groups, §8 of `research/artifacts/zp-review-groups-2026-09-13-part1.md`
     (c0ff0a5f90). The answer route `zaremsky-2-11-by-no` has landed.
-  - Novelty check: pending with z-status-b. Until it reports, do not describe this as a first
-    answer.
+  - Novelty: z-status-b, dfbf7114a0,
+    `research/artifacts/zp-novelty-2-11-braided-v-inner-amenable-2026-09-13.md`. This answers
+    Problem 2.11 negatively, as the list predicted, and is the first proof within the sources
+    checked. The check was bounded: MathSciNet and zbMATH were not searched.
+- Firewall, a cheaper route that does not apply: Dahmani–Guirardel–Osin show that ICC
+  acylindrically hyperbolic groups are not inner amenable ([DGO17, Theorem 8.14], as cited in
+  arXiv:2104.04826). That would prove the answer if bV were acylindrically hyperbolic, but no
+  source found says it is. The quasimorphisms of arXiv:2204.05272 do not imply acylindrical
+  hyperbolicity.
   - A bounded arXiv search on 2026-09-13 found no earlier answer. Bashwinger–Zaremsky
     (2104.04826, 2203.13798) and Bashwinger–DeBonis (2507.18821) do not treat inner amenability
     of bV.

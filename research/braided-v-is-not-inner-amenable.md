@@ -19,7 +19,17 @@ Consequences:
 This answers Zaremsky's Problem 2.11 negatively (root `zaremsky-2-11-braided-v-inner-amenable`).
 
 Reviewed: PASS by z-verify-groups on 2026-09-13, §8 of
-`research/artifacts/zp-review-groups-2026-09-13-part1.md` (c0ff0a5f90). The novelty check is
-pending.
+`research/artifacts/zp-review-groups-2026-09-13-part1.md` (c0ff0a5f90).
+
+Novelty (z-status-b, 2026-09-13, `research/artifacts/zp-novelty-2-11-braided-v-inner-amenable-2026-09-13.md`,
+dfbf7114a0): this answers Problem 2.11 negatively, as the list predicted, and is the first proof
+within the sources checked. The check was bounded: MathSciNet and zbMATH were not searched.
+
+Credit:
+- Haagerup–Olesen: the copy of PSL(2,Z) in T and the centralizer technique.
+- Rosenblatt: the stabilizer criterion.
+- Effros: property Γ.
+- Brin and Dehornoy: braided V.
+- Bashwinger–Zaremsky: `L(bV)` is a II_1 factor.
 
 Route: `braided-v-is-not-inner-amenable-proof`.

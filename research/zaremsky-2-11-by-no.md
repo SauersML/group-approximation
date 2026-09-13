@@ -14,5 +14,8 @@ The route is immediate. `braided-v-is-not-inner-amenable` answers "Is braided V 
 negatively, as Zaremsky expected ("Probably not.").
 
 z-verify-groups reviewed the answer claim and passed it on 2026-09-13 (PASS, §8 of
-`research/artifacts/zp-review-groups-2026-09-13-part1.md`, c0ff0a5f90). The novelty check is
-still pending with z-status-b.
+`research/artifacts/zp-review-groups-2026-09-13-part1.md`, c0ff0a5f90).
+
+Novelty check by z-status-b (dfbf7114a0,
+`research/artifacts/zp-novelty-2-11-braided-v-inner-amenable-2026-09-13.md`): this is the first
+proof within the sources checked. The check was bounded: MathSciNet and zbMATH were not searched.
