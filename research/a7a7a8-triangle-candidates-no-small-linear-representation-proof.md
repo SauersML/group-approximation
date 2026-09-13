@@ -2,10 +2,10 @@
 rg: 2
 id: a7a7a8-triangle-candidates-no-small-linear-representation-proof
 kind: route
-title: Module classification plus torus parametrisation and trace-ideal Gröbner bases in dimension 7
+title: Module classification plus an integral trace-ideal Gröbner basis [1] in dimension 7
 target: a7a7a8-triangle-candidates-no-small-linear-representation
 requires: []
-artifacts: [research/artifacts/hyperbolic-triangle-linear-search-2026-09-13.md, experiments/hyperbolic-triangle-search/linD.py, experiments/hyperbolic-triangle-search/linD_d7c0_cands.out, experiments/hyperbolic-triangle-search/linD_d7p3_cands.out, experiments/hyperbolic-triangle-search/linD_d7p29_cands.out]
+artifacts: [research/artifacts/hyperbolic-triangle-linear-search-2026-09-13.md, experiments/hyperbolic-triangle-search/linZ.py, experiments/hyperbolic-triangle-search/linZ_c1.out, experiments/hyperbolic-triangle-search/linZ_c234.out, experiments/hyperbolic-triangle-search/linZ_cal.out, experiments/hyperbolic-triangle-search/linD.py, experiments/hyperbolic-triangle-search/linD_d7c0_cands.out]
 ---
 
 The full argument is in `research/artifacts/hyperbolic-triangle-linear-search-2026-09-13.md`,
@@ -13,29 +13,30 @@ The full argument is in `research/artifacts/hyperbolic-triangle-linear-search-20
 
 1. **Reduction.** Replace `K` by its algebraic closure. A nontrivial `φ` is injective on the
    simple vertex groups.
-2. **Dimension at most 6.** `A_8` has no faithful representation of dimension at most 6 in
-   characteristic 0 or 3, 5, 11, 13, 29, 43 (ordinary and Brauer character tables of `A_8`,
-   recalled). So `φ` is trivial.
+2. **Dimension at most 6.** `A_8` has no faithful representation of dimension at most 6 when
+   `char K ≠ 2`. This is ordinary character theory, and for `p = 3, 5` the recalled Brauer tables. So `φ` is
+   trivial.
 3. **Dimension 7, modules.**
-   - For `A_7` the faithful modules are `1 ⊕ 6`. Semisimplicity comes from
-     `H^1(A_7, F_p^7) = H^1(A_6, F_p) = 0`, by Shapiro's lemma.
-   - For `A_8` the faithful module is the 7-dimensional heart of the permutation module.
-   - Each is unique up to isomorphism, including twists by automorphisms, since the
-     permutation modules are `S_7`- and `S_8`-invariant.
-4. **Torus parametrisation.** An element of order 7 has 7 distinct eigenvalues on these modules.
-   Every `β` on `B` with `β(x_B) = t = φ(q)^{e_1}` is conjugate to `β_1` by an element of the
-   diagonal torus in the eigenbasis of `t`. The diagonal matrices that are scalar on the summands `6` and `1`
-   centralise both `β_1(B)` and `v = φ(p)^{e_3}`, because `t` lies in both `φ(A)` and `φ(B)` and
-   so its eigenvectors lie in the summands. So the eigenvalue-1 and eigenvalue-`ω` coordinates are normalised to 1.
-5. **Necessary equations.** They are the traces of 117 words in `u = φ(r)^{e_2}` and `v`, equated with those of the
-   `A_8`-module `7`.
-6. **Certificate.** For all four candidates Singular returns the Gröbner basis `[1]`. It does so over
-   `Q(ζ_7)` and over `F_{p^k}` for `p = 3, 5, 11, 13, 29, 43`. So the equations have no common
-   zero.
-7. **Calibration.** On a twisted literal `(A_7, A_7, A_7)` triple and a literal `(A_8, A_8, A_8)`
-   triple, which do have representations, the same code returns 0-dimensional ideals. Over
-   `F_{3^6}` and `F_29` the points are verified on every relator of `C`.
+   - For `char K ∉ {2, 3, 5, 7}` the representation theory is ordinary. The faithful 7-dimensional modules
+     are `F^7 = 1 ⊕ 6` for `A_7` and the heart of `F^8` for `A_8`.
+   - For `p = 3, 5` the same holds: the composition factors are forced, and semisimplicity follows from
+     `H^1(A_7, F_p^7) = H^1(A_6, F_p) = 0`.
+   - These modules are invariant under all automorphisms.
+4. **Integral parametrisation.**
+   - Fix `α = φ|_A`, the permutation module, and `t_0 = φ(q)^{e_1}`, a 7-cycle matrix.
+   - Every `β = φ|_B` with `β(x_B) = t_0` equals `h β_1 h^{-1}` with `β_1 = π β_0 π^{-1}`, where `π` is an
+     integral permutation matrix, and `h ∈ C(t_0)`.
+   - Since `t_0` is regular over every field, `C(t_0)` is the ring of circulants `Σ c_i t_0^i`. Put `k = h^{-1} = Σ d_i t_0^i`.
+   - Scalars and `J = Σ t_0^i` centralise `β_1(B)`, which justifies the normalisation `Σ c_i = 1`.
+5. **Necessary equations.** `(φ(r)^{e_2}, φ(p)^{e_3})` is conjugate to the `A_8`-heart, so the traces of
+   117 words equal the integer traces of the heart.
+6. **Certificate.**
+   - For all four candidates Singular returns the strong Gröbner basis `[1]` over `Z` (`linZ_c1.out`, `linZ_c234.out`).
+     So `1` is a `Z[c, d]`-combination of the equations, and the system has no zero over any field.
+   - This agrees with the independent eigenbasis computation over `Q(ζ_7)` (`linD_d7c0_cands.out`).
+7. **Calibration** (`linZ_cal.out`). On a twisted literal `(A_7,A_7,A_7)` triple, which has a
+   7-dimensional representation, the same code returns a rational basis other than `[1]` and an integral basis without integers.
 
 **Trusted inputs.**
-- Singular's Gröbner bases.
-- The small-degree modular irreducibles of `A_8` for `p = 3, 5`.
+- Singular's strong Gröbner bases over `Z` and `Q`.
+- The recalled small Brauer characters of `A_7` and `A_8` for `p = 3, 5`.

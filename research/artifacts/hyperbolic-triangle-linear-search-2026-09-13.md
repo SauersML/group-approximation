@@ -141,6 +141,31 @@ distinct eigenvalues, so `C_{GL_d}(t)` is the diagonal torus in the eigenbasis o
 - No homomorphism `G_i -> GL_6(K)` with `char K = 2` has all three vertex groups acting
   irreducibly.
 
+**Integral certificate: `N = 1` in dimension 7** (`linZ.py`, `linZ_cal.out`, `linZ_c1.out`,
+`linZ_c234.out`). This is the effective form (L2) of `linear-quotient-exclusion-lifts-from-char-zero`,
+with no eigenbases.
+- **Model.**
+  - `P`, `Q`, `X_0`, `Y_0` are the integral permutation matrices of the `A`- and `B`-pairs on 7 points.
+  - `t_0 = Q^{e_1}`, and `π` is a permutation matrix with `π X_0 π^{-1} = t_0` (from GAP `RepresentativeAction`).
+  - The centraliser `C(t_0)` consists of the circulants `h = Σ c_i t_0^i`, over every field, because `t_0` is regular.
+    Take `k = Σ d_i t_0^i` with `hk = 1`, and put `Σ c_i = 1`.
+  - `u = h (π Y_0 π^{-1})^{e_2} k` and `v = P^{e_3}`.
+  - The same 117 trace equations are equated with the integer traces of the `A_8`-heart.
+- **Result.** For each of `G_1..G_4` the strong Gröbner basis over `Z`, in 14 variables, is `[1]`, computed in 2–3 s. So
+  `1` lies in the ideal over `Z`, and no such representation exists over any field.
+- **Calibration.** On the twisted literal `(A_7,A_7,A_7)` triple, where the `C` pair is taken in `A_7 ⊂ A_8`, a representation exists.
+  The rational basis is not `[1]` (16 elements), and the integral basis contains no integer.
+- **Scope, by characteristic.** The trace equations are necessary for every `C`-module with the composition factors
+  of the heart. The parametrisation covers `A` and `B` acting by the permutation module.
+  - **`p ∤ 2·3·5·7`, and characteristic 0.** These are the only faithful 7-dimensional modules, so
+    `Hom(G_i, GL_7(K))` is trivial.
+  - **`p = 3, 5`.** The same holds, given the recalled Brauer tables and the Shapiro semisimplicity argument.
+  - **`p = 2`.** Excludes the type `A, B = 6 ⊕ 1` (semisimple, since `H^1(A_7, 6) = 0`), with `C` of factors `{6, 1}`. The types with a
+    factor `4` are not covered here.
+  - **`p = 7`.** Excludes `A`, `B` acting by the permutation module `1|5|1`; other isotypes are not covered.
+- **Upgrade.** The six primes of the table above become every characteristic other than 2 and 7 for linear
+  representations, with the stated partial coverage in characteristics 2 and 7.
+
 **Projective `μ_7`-twists** (`linD.py` mode `twist`: `linD_d7p29_twist.out`, `linD_d7p43_twist.out`).
 - **Setup.** A homomorphism `G_i -> PGL_7(K)` with `char K = 29` or `43` is faithful on the vertex
   groups.
