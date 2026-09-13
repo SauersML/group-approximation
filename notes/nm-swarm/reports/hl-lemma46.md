@@ -75,6 +75,20 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
   - Proof: `PocketCellTransportStatement` (go-lemma42) at `pre = s₁` and at `pre = s₁ t₁ s₂`, as in `hcellT` and `hsecT` of `PocketCarrier.nonempty_osinSectionPocketCut`. The four `partsCut` evaluations are re-proved locally, because the originals are private.
   - Residual: `PocketCellTransportStatement`, a binder standing for go-lemma42's Prop.
 - Consumed: hull-select's `Estimating/OsinPocketMultipleEdgeAssembly` (2db85602c, `multipleEdgeCutInput_of_pieces`) uses `exists_twoCollars_of_ne_or` and `fourSectionCuts_cellTransport`. hull-select has no further sub-piece.
-- Current item (lead, 09-13): a transport piece on the pocket route (`OsinPocketPieces:312` `PocketCellTransportStatement`, go-lemma42; `:332` `PocketOuterTransportStatement`, hull-select). Both owners are asked for an unstarted piece; this lane takes the first one named. If neither names one, the lead sends this lane to the face partition.
-  - hull-select: nothing to hand off. `pocketOuterTransport` is closed on main (71d59592c, `Estimating/OsinPocketGlueOuterTransport`, with the arc module 4a4f1a6b6). Waiting on go-lemma42.
-  - Likely shape of the cell transport, from the outer template: a `target := some t'` variant of `DiscEmbeddingAway.outerGeometry`, a cell-arc analogue of `PocketRegion.exists_glue_outerArc_within`, `exists_glue_cell` for the source, and `source ≠ t'` from a copy cell against a kept cell. Nothing is built until go-lemma42 names a piece.
+- Closed without a split: both pocket transports. `PocketOuterTransportStatement` is hull-select's `pocketOuterTransport` (71d59592c). `PocketCellTransportStatement` was proved in full by go-lemma42 (874a332a2).
+- Current item (lead, 09-13 ~14:20): parity route (D). `U = {col = c0}` has `∂U = K.walk`, which feeds `toPocketFaceSetOfNoncrossing` (`OsinPocketSectionFaceSet:321`). cite-hull takes (C).
+  - Asked kh-ejz for (B)'s signature and whether (D) is unstarted. If kh-ejz is already writing (D), this lane takes the sub-step kh-ejz names.
+  - kh-ejz's `GGT/VanKampen/ClosedWalkFaceColouring` (probe 0913-142740-85270, PROBE GREEN) already holds (B) and the map-level (D):
+    - (B): `exists_faceColouring` and `exists_faceSet_colouring`.
+    - (D): `boundaryCycleOfColouring`. A face set that meets its complement exactly across the walk edges, and holds the faces of all walk darts, has the walk as a boundary cycle.
+  - Nothing is built before kh-ejz's reply.
+  - Candidate remainder, the pocket-level assembly: `PocketFaceSet.ofBoundaryCycle` on `boundaryCycleOfColouring` for `K.walk`.
+    - (ii) `(cell X kept).face ∈ faces` is its only extra hypothesis.
+    - `ClosedWalk` comes from chain and closes. Noncrossing comes from hull-respell's `BoundaryCycle.isNoncrossingClosedWalk` (`Estimating/OsinPocketClosedWalkNoncrossing:106`).
+    - `toPocketFaceSetOfNoncrossing` would instead need `kept ∈ sideFaces`. Getting that from `kept ∈ U` needs `U ⊆ sideFaces`, which uses connectivity.
+  - Hand model test of the map-level (D):
+    - Pinched two-gon (`OsinPocketPinchedTwoGonModel`). `[5,3,4,6]` is a pocket walk: source cell 0 with arc `[0,1]` (invDarts `[5,3]`), and target arc `[4,6]` of outerDarts `[4,6,2]`.
+      - The walk edges are `{5,1}`, `{3,0}`, `{4,8}`, `{6,9}`, and `{2,7}` is the only edge off the walk.
+      - `U = pinchFaces` meets its complement exactly across the walk edges and holds the walk darts. So `∂U = {3,4,5,6}` (`isBoundaryDart_iff`), and the outer face 3 and the source face 0 lie outside.
+      - (ii) fails: `U` holds no relator cell, so this model has no pocket face set.
+    - Lake rose (`OsinPocketLakeModel`). Every edge is a walk edge, `U = {K}` and `∂U = {0,2}` is the walk; the lake and the outside lie outside.
