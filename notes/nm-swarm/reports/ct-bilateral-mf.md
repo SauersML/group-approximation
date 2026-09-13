@@ -43,3 +43,4 @@ exactly when GL_3(R_X) is MF".  Added to the manuscript by 73a84cd9c, after the 
   endpoint at n = 3, and `hasKazhdanPropertyT_range_of_injective` (the (T) clause of the cell, via `ejz`).
 - Next: discharge the (T) clause of `BilateralThreeCellStatement` once ct-bilateral-cell lands S and the corner
   embedding; add the `transientIdeal` wrapper once chain-matricial lands `transientIdeal_eq_span_defects`.
+- 09-13 16:55: BilateralThreeCorollaries LANDED d2f3e22b5 (probe 0913-165128-18372 GREEN), wiring queued.
