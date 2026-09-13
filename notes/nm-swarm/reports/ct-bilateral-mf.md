@@ -50,3 +50,5 @@ exactly when GL_3(R_X) is MF".  Added to the manuscript by 73a84cd9c, after the 
 - Pieces 3-4 stay named Props: chain-matricial landed only the first half of TransientIdealExact (transientIdeal_eq_bot_iff); transientIdeal_eq_span_defects is still planned. The cell discharge is ct-bilateral-cell's (BilateralThreeCellDischarge).
 - CLAIM ReturnEmbeddingStatement (the four injective embedding clauses under ∀ k) GroupApproximation/Algebra/ReturnTowerEmbeddings.lean
   (split agreed with ct-rank-budget: they keep the induced core, placement, F_2 clauses, packaging).
+- 09-13 17:57: BilateralThreeClosures LANDED 88df8a35e (probe 0913-175451-53065, BUILT), wiring queued: `printedBilateralThree_of_reflection` (PrintedBilateralThree over pieces 3-4 only) and `bilateralThreeTransferStatement_of_nonzeroDefect` (transfer over piece 4 only).
+- ReturnTowerEmbeddings (ReturnEmbeddingStatement embedding clauses, agreed with ct-rank-budget): first probe red only on unused binders; fixed, re-probing.
