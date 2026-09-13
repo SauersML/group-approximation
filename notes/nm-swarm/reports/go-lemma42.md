@@ -1,3 +1,48 @@
+# go-lemma42 (lane report, 2026-09-13)
+
+Item (team-lead, after the 08:30 restart): Estimating/OsinPocketGlueDiagram, then the `htransport` of
+`OsinMultipleEdgeCut.ofPocketRegion` at j = 1, 3, with FollowsBoundary as a hypothesis. That is
+`PocketCellTransportStatement` (OsinPocketPieces:312). `PocketOuterTransportStatement` is hull-select's
+(`pocketOuterTransport`, 71d59592c).
+
+## LANDED, green
+- 0358f4537 SurgeryPocketGlue (probe 0913-062050-80403): `Seam.glueMap`, `Seam.glue_isRestriction`.
+- 3af801bac SurgeryPocketGlueCount (0913-070238-32448), 0cdb0dc87 SurgeryPocketGlueVertices (0913-072208-51095),
+  291ae2c87 SurgeryPocketGluePlanar, 32116a8bc SurgeryPocketGlueFaces (0913-094529-34532). All rooted.
+- f914f8728 Estimating/OsinPocketGlueDiagram, b10fac78a Estimating/OsinPocketGlueEquivalence (0913-125816-38320).
+  Both rooted.
+- 874a332a2 Estimating/OsinPocketGlueCarriers and Estimating/OsinPocketGlueCellTransport (probe 0913-141750-43433
+  GREEN, base 874a332a2, bytes = origin). `pocketCellTransport : PocketCellTransportStatement`,
+  `#audit_closed_axioms` [propext, Classical.choice, Quot.sound]. Wire-queued 09-13 14:21, Carriers first.
+
+## The proof
+- `DiscEmbeddingAway.retargetGeometry`: moves a contiguity geometry of a face set that avoids the embedded face
+  along the embedding. The target is retargeted to any carrier arc that reads the images of the target darts.
+- `PocketRegion.glueCellArc`: the window of the carrier arc of a complement cell `t` (not in the pocket) in the
+  glued diagram. `glueCellArc_boundaryDarts` reads it as the embedded window of the outer darts of `Xi`.
+- The source becomes `glueRightCell` (a relator cell of the copy) and the target `glueLeftCell t`. They differ
+  because the seam faces differ (`leftFace_ne_rightFace`). The contiguity degree is kept (`mapTo_length`, and
+  word lengths through `dartWord_map`).
+
+## Consumers still carrying `hcell` (other lanes' files)
+- `osinSectionPocketCutSection_of_residuals` (OsinPocketCutResiduals, dgo-analytic). With
+  `hcell := pocketCellTransport`, the residuals are `OsinSectionPocketFaceSetSectionStatement` (kh-ejz),
+  `PocketPinchLabelledStatement` (hull-respell) and `GeodesicCollarStatement` (kh-torsion).
+- `osinMultipleEdgeCutSection_of_pieces` (OsinPocketMultipleEdgeAssembly). The residuals are
+  `OsinMultipleEdgePocketRegionSectionStatement` (kh-ejz) and `GeodesicCollarStatement` (kh-torsion).
+- The `htransport` of `OsinMultipleEdgeCut.ofPocketRegion` (OsinPocketMultipleEdgeCut:49) is passed as
+  `fourSectionCuts_cellTransport hcell` (OsinPocketMultipleEdgeTransport:64, Assembly:172). The `htransport` of
+  `OsinLoopCut.ofPocketRegion` (OsinPocketLoopCut:115) is passed as `twoSectionCuts_cellTransport hcell`
+  (LoopCut:161). Both close with `pocketCellTransport`.
+
+## TRAPS (09-13)
+- Local `git grep` misses plumbing-landed files. Grep `origin/main -- paths` instead, and compare bytes with
+  `git show origin/main:F | cmp - F`.
+- `$NM` is not set in a lane shell. Use the full scratchpad path.
+- `subst hc` with `hc : c' = outerDarts Xi` did not elaborate as intended; `subst c'` names the variable.
+- A probe notification's exit code is the exit of `| tail`. Read `PROBE GREEN` in the output file.
+- nmland's git gc warnings (too many unreachable loose objects) are harmless; check ancestry anyway.
+
 # go-lemma42 (lane report, 2026-09-11)
 
 Scope (lead correction ~21:15): take over `Manuscript/NonMF/GerasimovaOsinLemma42Proof.lean` from
