@@ -394,7 +394,10 @@ inside the proof of `thm:hull` (tex 1636, through Osin's Lemma 9.7(a)). The sect
 3. Then the census rows.
 4. The R2 Euler lemma is green. A consumer fills `heuler` of `PocketRegion.ofNoncrossingClosedWalk`
    with `hw.reclosed_euler Delta.planar hfollows`. Wiring `NoncrossingClosedWalkEuler` is the
-   lead's call.
+   lead's call. First consumer: hull-select's `Estimating/OsinPocketFirstTurnWalk.lean`
+   (a29b02280, ancestor of main), lines 305 and 323, inside `firstTurnWalkPocketInputs`. The
+   statement is final. A restatement would need a joint probe with `OsinPocketFirstTurnWalk` and
+   `OsinPocketFirstTurnWalkModel` (rule 22).
 5. S2. `Dynamics/ChainRecurrence` is landed (20911e5b2) and queued for wiring. chain-subshift
    (`Y_0 = CR(T)`) and chain-itinerary consume it. Waiting on the lead's ruling for the covering
    of `X \ CR(T)` (0ae6fc9e199c), direct or through the subshift route, and for nonemptiness.
