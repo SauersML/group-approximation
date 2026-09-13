@@ -564,39 +564,59 @@ gate's evidence lines match except for two newer covers: `OsinPocketRegionNoncro
 `OsinPocketRegionUnpinched` are now covered by dgo-geometric's GREEN 0913-141525-34391 at base 80df00345.  Each released module's closure is still byte-identical to its GREEN record's inputs,
 and the lexical scan over the 16 gated files finds nothing.
 
-## Staged for wave 15 (launches on a base at or after ghw-charp2's (A) landing)
+## Wave 15 (launched 09-13 14:54, root build 0913-145410-71222, base ed724988b): GREEN, LANDED ROOT 074e7a200
 
-9 modules and 9 newly reachable files, from queue lines 670–688.  Pre-flight at 991380d00, with the queue swept
-through line 688.  The record is the newest GREEN covering the bytes, and each record's `# PROBE` line reads GREEN.
+Result: ROOT GREEN at 15:03, 15143 jobs.  One GroupApproximation module was rebuilt and the rest restored from the
+lanes' probe artifacts.  The 10 import lines went in after root line 5122.  At a29b02280, 074e7a200 is an ancestor
+and all 10 lines are present at lines 5123–5132 (root 5071 import lines).
 
-| module | line | record | owner |
+10 modules and 10 newly reachable files, from queue lines 670–688 and 692.  Launched after ghw-charp2's (A)
+landing f04929ebb.  The record is the newest GREEN covering the landed bytes at the build base, and each record's
+`# PROBE` line reads GREEN.
+
+| module | line | record at ed724988b | owner |
 |---|---|---|---|
-| `Estimating.OsinPocketGlueCarriers`, `…GlueCellTransport` | 673, 674 | 0913-143433-44532 (ghw-assembly) | go-lemma42 |
-| `Estimating.OsinPocketPinchUnpinched`, `…PinchSplit` | 676, 677 | 0913-143304-32295 (ghw-charp2 (A)) | kh-cckw |
-| `Estimating.OsinPocketCutResiduals` (line 682's 5ef75ffa7 supersedes line 670) | 670, 682 | 0913-143433-44532 (ghw-assembly) | dgo-analytic |
-| `Estimating.OsinLemma94OneCellMorse` | 684 | 0913-143304-32295 (ghw-charp2 (A)) | ko-closed |
-| `Estimating.OsinDescentResiduals` | 685 | 0913-143433-44532 (ghw-assembly) | dgo-analytic |
-| `Estimating.OsinLemma94PolygonClasses` | 686 | 0913-143205-28136 | hull-count94 |
-| `Estimating.OsinGreendlingerOpenResiduals` | 688 | 0913-143433-44532 | ghw-assembly |
+| `Estimating.OsinPocketGlueCarriers`, `…GlueCellTransport` | 673, 674 | 0913-144505-9146 (ghw-charp2 (A)) | go-lemma42 |
+| `Estimating.OsinPocketPinchUnpinched`, `…PinchSplit` | 676, 677 | 0913-144505-9146 (ghw-charp2 (A)) | kh-cckw |
+| `Estimating.OsinPocketCutResiduals` (line 682's 5ef75ffa7 supersedes line 670) | 670, 682 | 0913-144505-9146 (ghw-charp2 (A)) | dgo-analytic |
+| `Estimating.OsinLemma94OneCellMorse` | 684 | 0913-145215-56485 (ko-closed) | ko-closed |
+| `Estimating.OsinDescentResiduals` | 685 | 0913-145357-69970 (ghw-assembly) | dgo-analytic |
+| `Estimating.OsinLemma94PolygonClasses` | 686 | 0913-144505-9146 (ghw-charp2 (A)) | hull-count94 |
+| `Estimating.OsinGreendlingerOpenResiduals` | 688 | 0913-144505-9146 (ghw-charp2 (A)) | ghw-assembly |
+| `SurgeryNoncrossingCollarWalk` | 692 | 0913-144452-8341 (fff-quotient) | fff-quotient |
 
 Skipped: lines 678, 680 and 689, fff-periodic's `OsinUnboundSameCellPocket`, `OsinUnboundSameCell` and
-`OsinUnboundSameCellBridge`.  None is probed yet, and line 689 came in after the pre-flight.
+`OsinUnboundSameCellBridge`.  None of them is probed yet.
 
-Order holds, from the import closure at 991380d00.  Every in-wave import of a module comes before it:
+Two covers need a word:
+- ghw-assembly's newer GREEN 0913-145357-69970 probed different bytes of `OsinGreendlingerOpenResiduals`.  The wave
+  wires the landed 8a07ad7d0 bytes, and the older ghw-charp2 record covers those.
+- fff-quotient's GREEN is newer than its FAILED probe 0913-144235 of `SurgeryNoncrossingCollarWalk`, so the module is
+  not held.
+
+Order holds, from the import closure at bec8c0538 and again at ed724988b.  Every in-wave import of a module comes
+before it:
 - `GlueCellTransport` comes after `GlueCarriers`, and `PinchSplit` after `PinchUnpinched`;
 - `CutResiduals`, `DescentResiduals` and `GreendlingerOpenResiduals` come in that order, after the glue pair;
-- `OneCellMorse` comes after `OneCellValue`, a root line since wave 14.
+- `OneCellMorse` comes after `OneCellValue`, a root line since wave 14;
+- `SurgeryNoncrossingCollarWalk` imports no wave module.
 
-Pre-flight at 991380d00:
+Pre-flight at bec8c0538, after (A), and recheck at the build base ed724988b:
+- (A) is on main: all 31 overlay files of ghw-charp2's GREEN co-probe 0913-143304-32295 match;
 - no dangling import, no lexical sorry and no cycle;
-- dupcheck predicts no collision (closure 6478 → 6487);
-- the gate needs evidence for the 9 newly reachable files, and a GREEN record covers every one;
+- dupcheck predicts no collision (closure 6478 → 6488);
+- the gate needs evidence for 34 files, and a GREEN record covers every one:
+  - the 10 newly reachable files;
+  - 24 rooted files changed since wave 14's build base 80df00345, which are the 24 of (A)'s 27 files inside the
+    closure;
+  - at bec8c0538, ghw-charp2 0913-144505-9146 (base 514b76e75, 183 modules) covers all 34;
+  - at ed724988b, ghw-assembly 0913-145357-69970 (base 6622fce2b) is the newer cover of 8 files (7 (A) files and
+    `OsinDescentResiduals`), and ko-closed 0913-145215-56485 is the newer cover of `OneCellMorse`;
 - 0 held;
-- the lexical scan over the 9 gated files finds nothing.
+- the lexical scan over the 34 gated files finds nothing.
 
-The launch waits on (A).  At afe0638dd, 27 of the 31 overlay files of ghw-charp2's GREEN co-probe
-0913-143304-32295 (base b590ad02a, 179 modules) still differ from main.  The pre-flight runs again at the (A)
-commit, where the gate also needs evidence for the rooted files that (A) changes.
+The earlier pre-flight at 991380d00, before (A), had 9 modules and 9 gated files, with the same result.  Queue line
+692 came in after (A) and joined on its own clean pre-flight at bec8c0538.
 
 ### Held
 
