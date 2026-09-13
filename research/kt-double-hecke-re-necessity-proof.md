@@ -8,6 +8,7 @@ requires:
   - opposite-slice-contains-function-field-hecke-pair
   - opposite-transvections-are-first-nonore-relative-gate
   - kt-wreath-hyperlinear-iff-double-hyperlinear
+  - kt-free-action-hyperlinear-iff-wreath-hyperlinear
   - binary-free-and-ordinary-coset-wreaths-share-hyperlinearity
   - bowen-chapman-witness-is-kt-double-at-q2-r3-d3
 ---
@@ -57,10 +58,14 @@ Euclidean, so `Lambda_1=SL_r(F_q[t,1/t])` and `Gamma_1=SL_r(F_q[t])` with
 
 ## Item 3
 
-A Kun--Thom route to a hyperlinear nonsofic group proves `D_G` or `W_G`
-hyperlinear, and item 2 applies.  Step 3 of
-`hyperlinear-nonsofic-from-kt-ce-stabilizer` concludes exactly that `D_G` is
-hyperlinear.  `bowen-chapman-witness-is-kt-double-at-q2-r3-d3` identifies the
+A route whose witness is `D_G`, `W_G`, or the free action proves one of three
+equivalent hyperlinearity statements.  The free action is equivalent to `W_G`
+by `kt-free-action-hyperlinear-iff-wreath-hyperlinear`.  So the route proves
+`RE/C(Gamma,G)`, and item 2 applies.  For example, step 3 of
+`hyperlinear-nonsofic-from-kt-ce-stabilizer` concludes that `D_G` is
+hyperlinear.  The intermediate wreaths `W_K` and the Clifford covers have
+different hyperlinearity statements, and this route makes no claim about
+them.  `bowen-chapman-witness-is-kt-double-at-q2-r3-d3` identifies the
 Lean witness with `D_G` at `(q,r,d)=(2,3,3)`, and there the Hecke pair is
 `SL_3(F_2[t]) < SL_3(F_2[t,1/t])`.
 

@@ -33,14 +33,31 @@ wreath.
    - `L(Gamma_1) subset L(Lambda_1)` is `RE/C`; equivalently
      `SL_r(F_q[t,1/t]) *_(SL_r(F_q[t])) SL_r(F_q[t,1/t])` is hyperlinear.
 
-3. **Q3.4 witnesses.**  Every Kun--Thom route to a hyperlinear nonsofic group
-   takes `D_G` or `W_G` as the witness and needs its hyperlinearity.  This
-   includes `hyperlinear-nonsofic-from-kt-ce-stabilizer` and the Bowen--Chapman
-   Lean witness `D_G` at `(q,r,d)=(2,3,3)`.  Each such route therefore also
-   proves `RE/C` for `SL_r(F_q[t]) < SL_r(F_q[t,1/t])`, which is
-   `SL_3(F_2[t]) < SL_3(F_2[t,1/t])` for the Lean witness.  Kun--Thom
-   Theorem A gives the nonsofic half, and it has no analogue here.  The Hecke
-   pair has a Kazhdan vertex group and a co-dense, incompressible base.
+3. **Q3.4 witnesses.**  Suppose a Q3.4 route takes as its witness `D_G`,
+   `W_G`, or the Kun--Thom free action, and needs that witness to be
+   hyperlinear.  By `kt-wreath-hyperlinear-iff-double-hyperlinear` and
+   `kt-free-action-hyperlinear-iff-wreath-hyperlinear`, these three
+   hyperlinearity statements are all equivalent to `RE/C(Gamma,G)`.  So the
+   route also proves `RE/C` for `SL_r(F_q[t]) < SL_r(F_q[t,1/t])`.  This
+   covers:
+   - `hyperlinear-nonsofic-from-kt-ce-stabilizer`;
+   - `hyperlinear-nonsofic-from-kt-reduced-cstar-mf`;
+   - `hyperlinear-nonsofic-from-mf-amalgam-trace`;
+   - `kt-double-mixed-word-selection-yields-hyperlinear-nonsofic`;
+   - `hyperlinear-nonsofic-free-action-from-kt-wreath`;
+   - the Bowen--Chapman Lean witness at `(q,r,d)=(2,3,3)`, where the Hecke
+     pair is `SL_3(F_2[t]) < SL_3(F_2[t,1/t])`.
+
+   It does **not** cover two kinds of witness:
+   - the intermediate wreaths `W_K` with `Gamma<K<=G`
+     (`kt-intermediate-coset-wreaths-are-nonsofic`), whose hyperlinearity is
+     `RE/C(K,G)`;
+   - the Clifford covers `E_S` (`kun-thom-clifford-cover-weakly-sofic`).
+
+   Whether those witnesses force a Hecke condition was not checked.  For the
+   covered routes, Kun--Thom Theorem A supplies the nonsofic half.  The Hecke
+   pair has no analogue of it, since its vertex group is Kazhdan and its base
+   is co-dense and incompressible.
 
 4. **Non-hyperlinear side.**  If `L(SL_r(F_q[t])) subset L(SL_r(F_q[t,1/t]))`
    is not `RE/C` for some `q` and `r>=3`, then the Hecke double is
