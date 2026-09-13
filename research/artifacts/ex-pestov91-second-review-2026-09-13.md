@@ -161,3 +161,44 @@ generated, infinite, simple, Kazhdan and LEF, so it answers both forms positivel
   The artifact proves the `F_q` case directly, so nothing depends on the citation. The credit should read
   "the complex case is BCFS; the case of an arbitrary field is the same argument". The literature pass of this
   lane checks whether a field-general source exists.
+
+## C. Comparison with the first review (read only after this file landed at badc66e2d7)
+
+First review: `research/artifacts/ex-review-groups-2026-09-12-part1.md`, lane `ex-verify-groups`, 0efeac4106.
+
+- **Agreement on every verdict.** Its table items (1)–(4) are:
+  - seam windows, the model map and injectivity;
+  - the quotient by `ΛI`;
+  - towers, absorption, the level ideal and cases (a)–(d);
+  - the EJZ quotation at `EL_n0909.tex` lines 405–410.
+
+  Every one matches R2–R5 above, as does its statement-fidelity check (R7).
+- **Same notes.** Its §1.3 and §1.4 wording notes, `F_q`-scalars in the ring generators and in `Σ_L`, are
+  the ones this review knew beforehand from the nodes. They are already applied on main.
+- **N1 against its §1.3(c).** It justifies `[k, ι_W(ε)] = ι_W([κ_0, ε])` "pointwise under
+  `M_3(B_(m')(U)) ≅ LC(U, M_d)`, and both factors are 1 off the tower". This is the same fact as N1: `k` and
+  `ι_W(ε)` both lie in the ring `(1-e)I_3 + M_3(B_(m')(U))`, whose multiplication is pointwise in `x ∈ U`.
+  No disagreement. The Part 1 artifact itself still lacks the line.
+- **Added here, not in the first review:**
+  - N3, the marking of the PSL-limit node for `q` not prime;
+  - N4, the stale route text;
+  - N5, a check of Part 2 §8.1, which the first review left out of scope;
+  - N6, BCFS `thm:alg_simple` is complex-only.
+- **Covered only by the first review, not re-checked here:** its §1.5–1.6 graph consequences, namely the
+  EKL2 refutation, `operator-mf-group-not-weakly-quasidiagonal-exists`, and the list of dead routes.
+- **Dadarlat, sharpened.** The first review concludes "the printed arrow and Proposition 3.19 cannot both
+  hold". This review re-read the proof of Proposition 3.19 in the e-print source `2007.12655v2`, lines
+  531–555, and finds it correct:
+  - if the finite-dimensional irreducibles are infinite in number, Malcev gives an infinite residually
+    finite quotient;
+  - otherwise let `f` be the sum of the central Kazhdan projections. `[π(f), p_n] → 0`, because `f` is a
+    norm limit of group-ring elements. `p_n ≈ r_n + q_n`, and the `q_n` are nonzero along a subsequence.
+    Lemma 3.18 gives `ι ≺ ρ⊗ρ̄`; (T) upgrades this to `ι ⊂ ρ⊗ρ̄`, so `ρ` has a finite-dimensional
+    subrepresentation `σ`. But `σ(f) = 0` contradicts `||σ(f)|| = 1`.
+
+  So the sentence that fails is the first clause of the Introduction's sentence (PDF p. 2): "It is clear from
+  definitions that MF ⇒ weak quasidiagonality and matricial stability ⇒ weak matricial stability". The
+  second clause is correct. The definitional arrow runs the other way (weak QD ⇒ MF, by polar decomposition).
+  This sharpens the first review; it does not contradict it.
+
+**Disagreements with the first review: none.**
