@@ -163,6 +163,7 @@ PALOMAR_CONFIGS = (
     "Palomar/comparator-gkp-commuting-actions.json",  # the two GKP Question 4.2 theorems
     "Palomar/comparator-stw-x1.json",  # the two STW Problem X(1) theorems
     "Palomar/comparator-stw-xxii.json",  # the two STW Problem XXII theorems
+    "Palomar/comparator-blanchard-toeplitz.json",  # the Blanchard Question 5.4 theorem
 )
 
 # Configurations whose SOLUTION is still a skeleton: it proves each theorem its
@@ -219,6 +220,8 @@ SURFACE_FILES = (
     "Palomar/comparator-stw-x1.json",
     "Palomar/STWProblemXXIIChallenge.lean", "Palomar/STWProblemXXIISolution.lean",
     "Palomar/comparator-stw-xxii.json",
+    "Palomar/BlanchardToeplitzChallenge.lean", "Palomar/BlanchardToeplitzSolution.lean",
+    "Palomar/comparator-blanchard-toeplitz.json",
     "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
     "formalization.yaml",
 )
@@ -897,6 +900,15 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "`exists_factorial_traciallyComplete_with_discontinuous_trace`: the compared signature diverges"),
     ("stw-xxii comparator permitting a fourth axiom",
      "Palomar/comparator-stw-xxii.json: permitted_axioms"),
+    # The Blanchard Question 5.4 surface.
+    ("blanchard challenge with a project-local import",
+     "Palomar/BlanchardToeplitzChallenge.lean:1:"),
+    ("blanchard shared block edited on one side",
+     "Palomar/comparator-blanchard-toeplitz.json: shared block diverges"),
+    ("blanchard signature edited on one side",
+     "`blanchard_question_5_4`: the compared signature diverges"),
+    ("blanchard comparator permitting a fourth axiom",
+     "Palomar/comparator-blanchard-toeplitz.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("nine arXiv classes", "one to eight distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
@@ -907,6 +919,8 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "STWProblemX1.exists_separable_amenable_not_quasidiagonal is not listed in status.main_results"),
     ("stw-xxii result dropped from the metadata",
      "STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace is not listed in status.main_results"),
+    ("blanchard result dropped from the metadata",
+     "BlanchardToeplitz.blanchard_question_5_4 is not listed in status.main_results"),
 )
 
 YAML_CALIBRATIONS = {
@@ -916,6 +930,7 @@ YAML_CALIBRATIONS = {
     "bowen-chapman result dropped from the metadata",
     "stw-x1 result dropped from the metadata",
     "stw-xxii result dropped from the metadata",
+    "blanchard result dropped from the metadata",
 }
 
 
@@ -1114,6 +1129,28 @@ def plant(name: str, root: Path) -> None:
         _edit_metadata(root,
                        "    - declaration: STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace",
                        "    - declaration: STWProblemXXII.renamed_and_not_republished")
+    elif name == "blanchard challenge with a project-local import":
+        path = root / "Palomar" / "BlanchardToeplitzChallenge.lean"
+        path.write_text(
+            "import GroupApproximation.Toeplitz.Wick\n"
+            + path.read_text())
+    elif name == "blanchard shared block edited on one side":
+        path = root / "Palomar" / "BlanchardToeplitzSolution.lean"
+        path.write_text(path.read_text().replace(
+            "def cubeDist (x y : HilbertCube) : ℝ :=",
+            "def cubeDist' (x y : HilbertCube) : ℝ :=", 1))
+    elif name == "blanchard signature edited on one side":
+        path = root / "Palomar" / "BlanchardToeplitzSolution.lean"
+        path.write_text(path.read_text().replace(
+            "theorem blanchard_question_5_4 :",
+            "theorem blanchard_question_5_4 : True →", 1))
+    elif name == "blanchard comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-blanchard-toeplitz.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
+    elif name == "blanchard result dropped from the metadata":
+        _edit_metadata(root,
+                       "    - declaration: BlanchardToeplitz.blanchard_question_5_4",
+                       "    - declaration: BlanchardToeplitz.renamed_and_not_republished")
     elif name == "second licence file at the root":
         (root / "COPYING").write_text("copy\n")
     elif name == "toolchain below the minimum":

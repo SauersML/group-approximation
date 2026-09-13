@@ -1,6 +1,6 @@
 name = "GroupApproximation"
 version = "0.1.0"
-defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution", "PalomarBowenChapmanChallenge", "PalomarBowenChapmanSolution", "PalomarPestov91Challenge", "PalomarPestov91Solution", "PalomarTypeA2Challenge", "PalomarTypeA2Solution", "PalomarGubaThompsonChallenge", "PalomarGubaThompsonSolution", "PalomarGKPCommutingActionsChallenge", "PalomarGKPCommutingActionsSolution", "PalomarSTWProblemX1Challenge", "PalomarSTWProblemX1Solution", "PalomarSTWProblemXXIIChallenge", "PalomarSTWProblemXXIISolution"]
+defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution", "PalomarBowenChapmanChallenge", "PalomarBowenChapmanSolution", "PalomarPestov91Challenge", "PalomarPestov91Solution", "PalomarTypeA2Challenge", "PalomarTypeA2Solution", "PalomarGubaThompsonChallenge", "PalomarGubaThompsonSolution", "PalomarGKPCommutingActionsChallenge", "PalomarGKPCommutingActionsSolution", "PalomarSTWProblemX1Challenge", "PalomarSTWProblemX1Solution", "PalomarSTWProblemXXIIChallenge", "PalomarSTWProblemXXIISolution", "PalomarBlanchardToeplitzChallenge", "PalomarBlanchardToeplitzSolution"]
 
 [[require]]
 name = "mathlib"
@@ -221,3 +221,25 @@ roots = ["Palomar.STWProblemXXIISolution"]
 [[lean_lib]]
 name = "PalomarSTWProblemXXIIModelTests"
 roots = ["Palomar.STWProblemXXIIModelTests"]
+
+# The eleventh Comparator configuration, `Palomar/comparator-blanchard-toeplitz.json`:
+# Question 5.4 of Blanchard, arXiv:1507.02535 (is the Toeplitz algebra of the
+# Dixmier-Douady Hilbert module E_DD properly infinite?).  Same protocol:
+# `Palomar/BlanchardToeplitzChallenge.lean` imports Mathlib only and carries its
+# own copies of the Hilbert cube, the module E_DD, its Fock module and the
+# Toeplitz algebra; `Palomar/BlanchardToeplitzSolution.lean` proves the statement
+# from `GroupApproximation.Toeplitz.exists_properlyInfinite_of_coeff`.  Both
+# libraries are in `defaultTargets`.  `PalomarBlanchardToeplitzModelTests` tests
+# the definitions of the challenge and is not a submission library.
+
+[[lean_lib]]
+name = "PalomarBlanchardToeplitzChallenge"
+roots = ["Palomar.BlanchardToeplitzChallenge"]
+
+[[lean_lib]]
+name = "PalomarBlanchardToeplitzSolution"
+roots = ["Palomar.BlanchardToeplitzSolution"]
+
+[[lean_lib]]
+name = "PalomarBlanchardToeplitzModelTests"
+roots = ["Palomar.BlanchardToeplitzModelTests"]

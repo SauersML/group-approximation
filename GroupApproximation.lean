@@ -4961,6 +4961,11 @@ import GroupApproximation.Manuscript.NonMF.HullCorollary73
 import GroupApproximation.Manuscript.NonMF.TheoremCAssemblyFoldLeaf
 import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonThreePlusOnePresented
 import GroupApproximation.PalomarBridges.XXII
+import GroupApproximation.Toeplitz.FockModule
+import GroupApproximation.Toeplitz.FockSpace
+import GroupApproximation.Toeplitz.GramScalars
+import GroupApproximation.Toeplitz.Sections
+import GroupApproximation.Toeplitz.Wick
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

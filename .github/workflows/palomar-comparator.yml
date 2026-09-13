@@ -32,6 +32,7 @@ name: Palomar Comparator
 #   Palomar/comparator-gkp-commuting-actions.json  the two GKP Question 4.2 theorems
 #   Palomar/comparator-stw-x1.json       the two STW Problem X(1) theorems
 #   Palomar/comparator-stw-xxii.json     the two STW Problem XXII theorems
+#   Palomar/comparator-blanchard-toeplitz.json  the Blanchard Question 5.4 theorem
 #
 # The values after the first are the entries of `PALOMAR_CONFIGS` and
 # `PALOMAR_PENDING_CONFIGS` in `scripts/check_palomar_submission.py`, which is
@@ -164,7 +165,8 @@ jobs:
                      PalomarGubaThompsonChallenge PalomarGubaThompsonSolution \
                      PalomarGKPCommutingActionsChallenge PalomarGKPCommutingActionsSolution \
                      PalomarSTWProblemX1Challenge PalomarSTWProblemX1Solution \
-                     PalomarSTWProblemXXIIChallenge PalomarSTWProblemXXIISolution
+                     PalomarSTWProblemXXIIChallenge PalomarSTWProblemXXIISolution \
+                     PalomarBlanchardToeplitzChallenge PalomarBlanchardToeplitzSolution
 
       # Comparator's sandbox.  Landrun is Go; the runner ships a toolchain.
       # Two things about the path, both learned the hard way: the module is

@@ -24,7 +24,9 @@ name: Palomar check
 # survey on Thompson's group F, `Palomar/comparator-gkp-commuting-actions.json`
 # for Question 4.2 of Gao, Kunnawalkam Elayavalli and Patchell,
 # `Palomar/comparator-stw-x1.json` for Problem X(1) of Schafhauser, Tikuisis and
-# White, and `Palomar/comparator-stw-xxii.json` for their Problem XXII.  So there are two
+# White, `Palomar/comparator-stw-xxii.json` for their Problem XXII, and
+# `Palomar/comparator-blanchard-toeplitz.json` for Question 5.4 of Blanchard's
+# preprint on continuous families of properly infinite C*-algebras.  So there are two
 # libraries, one axiom driver and one statement-match pair per configuration,
 # and every check below runs for all of them.  A step that covered only some would leave a surface
 # ungated while looking exactly like a green gate.
@@ -83,6 +85,9 @@ on:
       - 'scripts/PalomarSTWProblemXXIIChallengeType.lean'
       - 'scripts/PalomarSTWProblemXXIISolutionType.lean'
       - 'scripts/PalomarSTWProblemXXIIAxioms.lean'
+      - 'scripts/PalomarBlanchardToeplitzChallengeType.lean'
+      - 'scripts/PalomarBlanchardToeplitzSolutionType.lean'
+      - 'scripts/PalomarBlanchardToeplitzAxioms.lean'
       - 'formalization.yaml'
       - 'lakefile.toml'
       - 'lean-toolchain'
@@ -183,7 +188,9 @@ jobs:
                      PalomarSTWProblemX1Challenge PalomarSTWProblemX1Solution \
                      PalomarSTWProblemX1ModelTests \
                      PalomarSTWProblemXXIIChallenge PalomarSTWProblemXXIISolution \
-                     PalomarSTWProblemXXIIModelTests
+                     PalomarSTWProblemXXIIModelTests \
+                     PalomarBlanchardToeplitzChallenge PalomarBlanchardToeplitzSolution \
+                     PalomarBlanchardToeplitzModelTests
 
       # The check that reproduces Comparator's comparison, for every pair;
       # the script loops over the configurations and fails if a
@@ -271,6 +278,14 @@ jobs:
         if: always()
         run: lake env lean scripts/PalomarSTWProblemXXIIAxioms.lean
 
+      # The Blanchard Question 5.4 surface: the compared theorem, from
+      # GroupApproximation.Toeplitz.exists_properlyInfinite_of_coeff.
+      - name: Palomar axiom closure (Blanchard 5.4)
+        id: axioms-blanchard-toeplitz
+        continue-on-error: true
+        if: always()
+        run: lake env lean scripts/PalomarBlanchardToeplitzAxioms.lean
+
       - name: Reject a run whose axiom closures were not all clean
         if: always()
         run: |
@@ -284,6 +299,7 @@ jobs:
           gkp='${{ steps.axioms-gkp-commuting-actions.outcome }}'
           x1='${{ steps.axioms-stw-x1.outcome }}'
           x22='${{ steps.axioms-stw-xxii.outcome }}'
+          bq='${{ steps.axioms-blanchard-toeplitz.outcome }}'
           echo "non-MF closure: $nonmf"
           echo "LIX closure: $lix"
           echo "LIX strengthened closure: $strong"
@@ -294,13 +310,15 @@ jobs:
           echo "GKP 4.2 closure: $gkp"
           echo "STW X(1) closure: $x1"
           echo "STW XXII closure: $x22"
+          echo "Blanchard 5.4 closure: $bq"
           # `skipped` counts as a failure: the closure was not computed, and a
           # check that did not run must not read like one that passed.
           if [ "$nonmf" != success ] || [ "$lix" != success ] \
              || [ "$strong" != success ] || [ "$bc" != success ] \
              || [ "$p91" != success ] || [ "$a2" != success ] \
              || [ "$gq" != success ] || [ "$gkp" != success ] \
-             || [ "$x1" != success ] || [ "$x22" != success ]; then
+             || [ "$x1" != success ] || [ "$x22" != success ] \
+             || [ "$bq" != success ]; then
             echo "::error::an axiom-closure driver did not report success"
             exit 1
           fi
