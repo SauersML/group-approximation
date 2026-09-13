@@ -193,6 +193,12 @@ Theorem 14 and Proposition 15) applies, and the Item 1 argument runs verbatim.
   - §1.4, the Blackadar--Kirchberg spectral structure (separating quotients, compact-free ideals,
     the traced/traceless dichotomy, the radical criterion, the trichotomy, the simple-case cycle):
     PASS.
+- `ex-review-analysis-2026-09-12-part3.md`:
+  - §1.5, ex-uct cyclotomic KK structure of Z_p-actions on O_2 (five claims): PASS.
+  - §1.6, ex-k1-properly-infinite LXI reformulations: three theorems PASS, with one GAP (citation) in
+    the consequence list of `k1-injectivity-extends-over-properly-infinite-quotients`.
+  - §1.7, ex-kadison-kaplansky selfless trace image, free products and real rank zero (five claims):
+    PASS.
 
 ## 2. Sweep of in-scope landings to 23:35 CDT
 
