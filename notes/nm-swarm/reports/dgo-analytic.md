@@ -152,7 +152,18 @@ hull-respell's smallest diagrams (~11:50):
 
 * A (notch, `eps = 0`) and B (lake, `eps = 2`) each have an O-equivalent rebuild with a simple face set, and neither rebuild needs a 0-edge.
 * Neither rebuild is a local vertex split. Each realizes the pocket walk as a simple polygon and refills the rest with `G`-faces that read duplicated edge letters back and forth, so their values are 1.
-* The general refill is open when the boundary listing is not a closed walk.
+* The general refill was open when the boundary listing is not a closed walk. cb0ec2d30 requires walk order, so that case no longer reaches the pinch.
+
+R2 with kh-ejz's `IsNoncrossingClosedWalk` (26a7858f2) as `Simple` (~13:20, sent to the lead):
+
+* At a vertex `v` the walk passes twice, the walk darts around `v` read `d_1, e_1, d_2, e_2` (passage `i` is `d_i` then `e_i`).
+  * The side whose sectors lie inside the passages follows its boundary at `v`: rotating from `d_i` through its own sector meets `e_i`.
+  * The other side crosses a sector and meets a dart of the other passage, so it does not follow.
+* Configuration A has the pocket sectors between the passages, so inner fails and outer follows. This matches `OsinPocketPinchedTwoGonRegion.not_followsBoundary`.
+* Configuration B has the pocket sectors inside the passages, so outer fails.
+* The transports and `nonempty_osinSectionPocketCut` need `outer_follows`. Under R2, `Simple` is therefore `∃ hw : IsNoncrossingClosedWalk X.toCombMap K.boundary.cycle, (hw.outerCycle X.planar).FollowsBoundary`. A needs no pinch, and B stays in the pinch Prop.
+* New lemma, for this lane: the inner `IsDiscRegion` has to come from `toDiscRegion_of_euler`, that is, χ of the reclosed map of `sideFaces` along a noncrossing walk equals χ of the ambient map. Only the pinched model has it (`innerMap_euler`, by `decide`).
+* dgo-geometric is asked to check the prediction on the pinched two-gon model and on hull-respell's smallest A and B.
 
 ### Truth caveats sent to dgo-geometric for model tests
 
