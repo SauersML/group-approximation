@@ -388,7 +388,30 @@ and `rho0 = 1`.
     `S`.
   - Hand model, not tested in Lean: no outer spur does not make `K'.walk` simple. A vertex of
     cell `i` on `∂Δ` inside the gap pinches the walk without a spur.
-- No C6′ Lean from this lane yet.
+- This lane's C6′ Lean: the simple-case glue on `S'` (the team lead's item):
+  `Estimating/OsinPocketKeptCellUnpinched.lean`, new and unwired. The binder list went to
+  debt-conditional before writing.
+  - `IsNoncrossingClosedWalk.isSimpleClosedWalk_of_unpinched`: a noncrossing closed walk whose
+    side is unpinched is simple. It runs the proof of
+    `PocketFaceSet.simple_of_closedWalk_of_unpinched` (hull-respell, `8a7d46d90`) on the walk's
+    own boundary cycle `innerCycle`.
+  - `GloballyDistinguishedSectionFamily.false_of_unpinched` concludes False. It takes the binders
+    of `exists_kept_of_simple` without `hw`, plus `hnc`, `hpinch`, `hno` and `havoid`, all on
+    `sideFaces S.diagram.toCombMap K.walk`.
+  - The literal lemma does not apply. A `PocketFaceSet` carries `kept_mem`, and a pocket face set
+    whose cycle is `K.walk` has `faces = sideFaces K.walk` (`sideFaces_boundary_cycle_eq_faces`,
+    `OsinPocketRegionOfSimple.lean:97`), so under `hno` none exists.
+  - origin has no producer of `IsNoncrossingClosedWalk` for a `PocketWalk.walk`, so `hnc` is a
+    new input for module 4.
+  - The same fact bears on the pinched case. `PocketPinchLabelledStatement`
+    (`OsinPocketPieces.lean:272`) consumes a `PocketFaceSet`, so under `hno` it cannot start from
+    `K'.walk`: the pinched case needs a relator cell on the side of a non-simple walk first. The
+    one producer found, `exists_kept_of_pocketRegion` with `PocketRegion.ofNoncrossingClosedWalk`,
+    needs `hfollows` and `heuler`, and the lake model refutes `hfollows`. Sent to the team lead
+    with a question.
+  - Probe 0913-150326-35154 (base `09b3b57e4`): the record reads `# PROBE GREEN`, the module
+    shows BUILT, and the error index is empty. Landed unwired in the same commit as this report
+    line, and queued for wiring.
 
 ## Next
 
@@ -411,6 +434,12 @@ and `rho0 = 1`.
   - Checked on origin: the carrier has `#audit_closed_axioms`
     (`JacobsonThreePlusOnePresented.lean:98`), the root imports the module
     (`GroupApproximation.lean:4962`), and tex 1155-1157 is the sentence of jacobson's row 26.
-- C6′: waiting on debt-conditional's pick, either the simple-case glue offered above or another
-  piece, and then writing it in a new module of this lane. Also waiting on the lead's answer on
-  the copy zero-cell merge for the two-gon pocket.
+- C6′:
+  - Next: land `OsinPocketKeptCellUnpinched` after a green probe, queue it for wiring, and send
+    the name and SHA to debt-conditional and the team lead.
+  - The lead has answered Q2. The route is the O-equivalent copy, with the conclusion transported
+    back, and `OuterSpurThickeningStatement` is not strengthened.
+  - Inputs on `S'` that remain: `hno` (hs-vanishes), `havoid` (sec2-sentences) and `hnc` (no
+    producer on origin). `hpinch` is module 4's case split.
+  - Waiting on the lead's answer for the pinched case: which producer gives a relator cell on the
+    side of a non-simple pocket walk under `hno`.
