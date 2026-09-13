@@ -52,9 +52,15 @@ maps `c : T × X -> W` with `π(c(t, x)) = t` and the cocycle identity outside s
   - **Sp_4(Z).** `deligne-triple-cover-no-weakly-bernoulli-liftable-action` is open. It follows from
     `deligne-class-congruence-cosystole-bounded-below`, and also from nonsoficity of `E_3` by
     `weakly-bernoulli-liftable-action-makes-extension-sofic`.
-  - **Where it dies in general.** Popa plus compactness excludes exact trivializations of every bounded block
-    complexity, but not sequences of growing complexity. A uniform dimension-2 expansion input is needed, and property
-    (T) supplies only dimension 1.
+  - **Exact case sharpened.** `central-bernoulli-lifts-force-splitting`: over w-rigid bases, an exact Bernoulli lift
+    across a central kernel forces actual splitting. The proof flips the lifting cochain across independent copies.
+  - **Reduction to degree one.** `degree-one-bernoulli-expansion-excludes-weak-lifts`: if the Bernoulli shift has
+    degree-one cocycle expansion with finite abelian coefficients (any rate), the central case of this claim holds
+    over that base. By `bernoulli-expansion-iff-ultrapower-cocycle-superrigidity`, that input is exactly Popa
+    superrigidity into finite abelian groups for the Bernoulli ultrapower.
+  - **Where it dies in general.** Popa's proof does not transfer to the ultrapower, because the malleable deformation
+    is not continuous there. Popa plus compactness excludes exact trivializations of every bounded block complexity,
+    but not sequences of growing complexity.
 - **Positive polarity without rigidity (ex2-rokhlin-liftable-positive, 2026-09-13).** Settled over non-rigid bases
   by `weakly-bernoulli-lifts-over-amenable-free-product-bases`.
   - Over an infinite amenable `Q`, every quotient `X/N` of a free `W`-action is liftable and weakly equivalent to
