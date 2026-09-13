@@ -99,6 +99,6 @@ is not properly infinite in `A`.  It would follow if `1_X` were finite in `A`.
   `⊕_N F_infinity` acts trivially, `alpha(g_0, g_1, ...)x = alpha'(g_0)x`.
   Z-stabilizing by a topologically free product instead, with any minimal
   Cantor `Z`-action or any divisible factor, makes `[1]` properly infinite
-  (`product-with-divisible-cantor-action-kills-finite-clopen-type`).  So these
+  (`product-with-divisible-cantor-action-kills-finite-type`).  So these
   constructions cannot show that topologically free finite-type actions ever
   have purely infinite crossed products.
