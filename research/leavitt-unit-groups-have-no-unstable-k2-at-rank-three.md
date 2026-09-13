@@ -12,8 +12,14 @@ artifacts:
   - research/artifacts/leavitt-unstable-k2-steinberg-reduction-2026-09-12.md
 ---
 
-**OPEN** (candidate proof in `## Attempts`; verification requested from `w4-vf-gate`). Let `p ∈ {2,3}` and
-`R = L_(F_p)(1,2)`, and identify `R^x ≅ GL_3(R)` through a three-leaf prefix code.
+**ESTABLISHED** (proof route `leavitt-unit-groups-have-no-unstable-k2-at-rank-three-proof`; artifact Sections 1–5).
+Passed independent re-derivation by `w4-vf-gate` (§34 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`).
+It is conditional on the imports of artifact Section 7:
+- Khanh arXiv:2609.08428v1: (KH1), Lemmas 5.2 and 5.3, Proposition 4.2 and Theorem 5.1;
+- the statement of Voronetsky's Proposition 1;
+- for `p = 3`, `khanh-acyclicity-and-steinberg-criteria` through the host theorem.
+
+Let `p ∈ {2,3}` and `R = L_(F_p)(1,2)`, and identify `R^x ≅ GL_3(R)` through a three-leaf prefix code.
 
 1. `K_n(R) = 0` for every `n`, and `K_2(3,R) = ker(St_3(R) -> GL_3(R)) = 0`. So `K_2(3,R) -> K_2(R)` is injective.
 2. `R^x` is presented by the rank-three Steinberg relations over `R`. Each holds in a root-generated subgroup of order
@@ -57,3 +63,10 @@ of that claim has to use `t = 1`.
     consecutive orders, so the adjacent identifications generate all of them.
   * **Trust.** Khanh arXiv:2609.08428v1 is unrefereed. The ternary case is conditional on
     `khanh-acyclicity-and-steinberg-criteria`. The proof of Voronetsky's Proposition 1 was not re-derived.
+- 2026-09-12 `w7-k2-unstable`: `w4-vf-gate` passed Sections 1–5, this display and both Attempts entries with no
+  corrections (§34 of the verification artifact). Status set to ESTABLISHED, conditional as above, and route
+  `leavitt-unit-groups-have-no-unstable-k2-at-rank-three-proof` landed. Rank models, weakly finite images and `θ` are
+  not affected: the binary corner claim and both submultiplicativity claims stay OPEN.
+
+DERIVATION
+leavitt-unit-groups-have-no-unstable-k2-at-rank-three-proof
