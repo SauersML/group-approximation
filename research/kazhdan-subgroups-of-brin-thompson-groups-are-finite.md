@@ -61,8 +61,24 @@ For every `n ≥ 1` and every subgroup `K ≤ nV` with property (T), `K` is fini
     finite.
   - So that subgroup of 2V contains no infinite Kazhdan group. The argument uses
     amenable orbits and does not extend to nV.
-- Next target: find an nV-set with a commensurated subset whose transfixing
-  forces finiteness, or build an infinite Kazhdan subgroup of 2V. Abstract
-  twisted Brin–Thompson groups have property FW_∞ (Fournier-Facio–Wu–Zaremsky,
-  arXiv:2603.24687). So a commensurated subset for nV, if one exists, must come
-  from an infinite-dimensional cube complex, as Farley's does for V.
+- 2026-09-13, same lane: **proper cubical actions are excluded for n ≥ 2.**
+  - Callard–Salo (arXiv:2208.00685, Corollary 1.2) and Kojima–Sheng
+    (arXiv:2603.18410, Corollary 4.3) state that mV has no proper action on a
+    CAT(0) cube complex for m ≥ 2. Both are imported in
+    `brin-thompson-mv-contains-a-distortion-element`.
+  - So Farley's route for V (a proper cubical action, then the Haagerup
+    property, then finite Kazhdan subgroups) cannot work verbatim.
+  - Two routes remain (unreviewed):
+    - A commensurated subset of an nV-set gives an action on a CAT(0) cube
+      complex (Sageev), and every subgroup with property (T) fixes a vertex of
+      it. Finiteness then needs only that every Kazhdan subgroup of every vertex
+      stabilizer is finite, not properness. The V case has this shape
+      (`fw-subgroups-of-eventually-similar-groups-virtually-embed`).
+    - A proper affine isometric action on Hilbert space that is not cubical.
+      Distortion does not forbid one: BS(1,2) is amenable, so a-T-menable, and
+      contains a distortion element.
+- Next target: find an nV-set with a commensurated subset whose vertex
+  stabilizers have only finite Kazhdan subgroups, or build an infinite Kazhdan
+  subgroup of 2V. Abstract twisted Brin–Thompson groups have property FW_∞
+  (Fournier-Facio–Wu–Zaremsky, arXiv:2603.24687). This lane has not checked what
+  that property excludes for classical nV.
