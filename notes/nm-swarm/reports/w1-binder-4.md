@@ -30,7 +30,9 @@ All three declarations depend only on the axioms [propext, Classical.choice, Quo
 - `twoGonHoldsInput_of_eitherFollows : TwoGonHoldsInput`. The outer branch uses `PocketRegion.ofNoncrossingClosedWalk`
   and `reclosed_euler`; the inner branch uses the named Prop. Both then go through `emptyTwoGonInput_holds`.
 
-## In flight: `Estimating/OsinAppendixEulerTwoGonEitherFollowsCopy` (probing)
+## Landed: `Estimating/OsinAppendixEulerTwoGonEitherFollowsCopy` (704b70f2c, probe 0913-181302-25404 GREEN, unwired)
+
+All four declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
 
 - `GloballyDistinguishedSectionFamily.false_of_eitherFollowsPocket`: the contradiction with generic labels on any
   globally distinguished family.
