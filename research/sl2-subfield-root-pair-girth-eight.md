@@ -2,7 +2,7 @@
 rg: 2
 id: sl2-subfield-root-pair-girth-eight
 kind: claim
-title: In SL_2(q^2), q even, the root subgroups u(F_q) and v(sF_q) with s outside F_q meet trivially and have coset graph of girth at least 8
+title: In SL_2(q^2), q even, the root subgroups u(F_q) and v(sF_q) with s outside F_q meet trivially and have coset graph of girth at least 10
 ---
 
 Let `q = 2^f` and `k = F_q ⊂ F = F_{q^2}`, and let `s ∈ F \ k`. Put `u(a) = [[1,a],[0,1]]` and
@@ -14,19 +14,17 @@ E = u(k) = { u(a) : a ∈ k },    E' = v(sk) = { v(sb) : b ∈ k },    both ≅ 
 
 **ESTABLISHED.**
 - (a) `E ∩ E' = 1`.
-- (b) The coset graph `Γ_A(E, E')` has girth at least `8`, for `A = <E, E'>` or any finite group
-  containing it.
+- (b) The coset graph `Γ_A(E, E')` has girth at least `10`, for `A = <E, E'>` or any finite group
+  containing it. (The id predates the girth-10 argument; girth at least 8 was the first version.)
 - (c) More generally, for any additive subgroups `L, L'` of any field of characteristic 2, `u(L)` and
   `v(L')` have girth at least `6`.
 
-**Computed, not needed for (b).** The girth is exactly `10` for `q = 4` (`s` primitive), and for
-`q = 8, 16` with `s` in either Frobenius class
-(`experiments/sl2-root-triangle-kazhdan/run1.out`, `run2.out`).
+**Computed: the bound is sharp.** The girth is exactly `10` for `q = 4` (`s` primitive), and for `q = 8, 16`
+with `s` in either Frobenius class (`experiments/sl2-root-triangle-kazhdan/run1.out`, `run2.out`). The
+closed-walk counts `W_8 = 2092, 44248, 807856` for `q = 4, 8, 16` equal the tree counts
+`14q^4 - 28q^3 + 20q^2 - 5q`, as girth at least 10 requires.
 
-**Generation.** For `q >= 4` one expects `<E, E'> = SL_2(F)`: by Dickson's classification the only
-candidates would be conjugates of `SL_2(q)`, and those are excluded because the subline through `0` and
-`∞` stable under `u(k)` is `P^1(k)`, which `v(sk)` does not preserve. Dickson's theorem was not re-read,
-so general generation is **not** established here. For `q = 8, 16` it follows from the certified gap
-`σ_2 < 1` in `sl2-subfield-root-links-codistance-q8-q16`.
+**Generation** for `q >= 32` follows from `sl2-subfield-root-links-codistance-large-q`. For `q = 8, 16` it
+follows from `sl2-subfield-root-links-codistance-q8-q16`.
 
 Proof of (a)–(c): `sl2-subfield-root-pair-girth-eight-proof`.
