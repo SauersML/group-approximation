@@ -124,6 +124,19 @@ induction hypothesis on quotient-ball stretches.
     more and one vertex fewer. The input carries the value of the left half, and `right_value`
     derives the other half.
   - Both are queued for wiring. They are infrastructure, so they have no census rows.
+- kh-torsion's third sub-piece, GGT/VanKampen/SurgeryGeodesicCollarJoin: LANDED ce39bca65, green
+  in probe 0913-132438-5905 (base 746028b24, BUILT, `#audit_closed_axioms` on
+  `GeodesicCollar.joinStatement`, `#audit_axioms` on nine lemmas). It proves kh-torsion's
+  `JoinStatement`, the join stage of the collar insertion.
+  - A strip `p ++ q` along a side `p` of value one, with a nonempty rest `r`, is joined across by
+    the corner join of `alpha` of the last dart of `q` and `alpha` of the last dart of `p`
+    (`Strip.joinInput`). The strip face splits into a face enumerated by `q` and a face
+    enumerated by `p`.
+  - The join makes the head vertices of `p` and `r` one vertex, so `r` is a simple closed walk of
+    the join (`Strip.join_walk`). The face of `q` replaces the strip face in the face set, which
+    cuts `p` off, so the boundary darts are the darts of `r` (`Strip.join_boundary`).
+  - The transport is the identity on darts (`Strip.joinTransport`).
+  - Queued for wiring. It is infrastructure, so it has no census row.
 
 ## Risks recorded
 - `BoundedRelativeLinearAreaTransferStatement` may be unprovable: its W-only area predicate cannot see the
