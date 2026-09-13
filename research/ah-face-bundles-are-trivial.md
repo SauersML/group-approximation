@@ -59,3 +59,23 @@ simplex, carries a projection-starved bundle.
     measure.
   - By `bauer-gamma-failure-localizes-to-infinite-dim-point`, a strongly
     infinite-dimensional part of `K`.
+- **Twisted homogeneous blocks do give witnesses; untwisted blocks resist the same argument
+  (2026-09-13, lane `ex2-tw-unsplittable-tails`, unreviewed).**
+  - **The witness.** Flat `M_2`-bundles with Pauli holonomy over
+    `RP^{4^{k−1}} × RP^{2·4^{k−1}}`, tensored along the tower.
+    - They give a nontrivial face bundle, in fact the whole bundle: every self-adjoint element is
+      somewhere scalar (`pauli-tower-bundle-has-scalar-point-property`).
+    - The building blocks are homogeneous but have nonzero Dixmier–Douady class, so they are not
+      corners `q C(X, M_n) q`, and this is not an AH presentation.
+  - **Why it does not transfer to AH.**
+    - The certificate is the top Stiefel–Whitney class of the traceless self-adjoint bundle.
+    - For `End(W)` of a genuine vector bundle that class is pulled back from `BU(w)`, and it vanishes
+      identically.
+    - Mod-`p` Borel cohomology gives nothing either. Elementary abelian subgroups of `U(n)` are
+      toral, so they fix soft half projections. By Quillen stratification,
+      `H*(BU; F_p) → H*_G(X_ε; F_p)` then has nilpotent kernel, and the source has no nilpotents.
+  - **What remains for AH.** Any AH witness of this kind needs an unstable (non-Borel) obstruction,
+    or relative commutants that are twisted although the blocks are not. Diagonal maps with
+    multiplicity create block projections in the commutant, hence central halving
+    (`block-balanced-towers-have-central-halving`). Braided (monodromy-permuted) blocks are the
+    untested case.

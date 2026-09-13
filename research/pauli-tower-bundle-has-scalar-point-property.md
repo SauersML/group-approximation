@@ -45,3 +45,9 @@ the uniform tracial completion of `A`.
   `r-fibre-w-star-bundle-sigma-finite-dim-base-is-trivial`, and with
   `bauer-gamma-failure-localizes-to-infinite-dim-point`. The bundle is not locally trivial.
 - **The gap sits at the unit only.** `e_{11} ⊗ 1 ∈ M_2(M)` has constant trace `1/2`.
+- **Not McDuff, but McDuff after one tensor factor.**
+  - By Ozawa's Theorem 15 (`r-fibre-bundle-triviality-iff-uniform-central-halving`), trivial
+    strictly separable R-fibre bundles are exactly the McDuff ones, so `M` is not McDuff.
+  - `M ⊗̄ R` over `X̂` is trivial: `1 ⊗ e_j`, with `e_j ∈ R` asymptotically central projections of
+    trace `1/2`, is a uniformly central halving sequence on the dense algebraic tensor product.
+  - So Question 3.14 is witnessed by a non-McDuff bundle whose McDuffication is trivial.
