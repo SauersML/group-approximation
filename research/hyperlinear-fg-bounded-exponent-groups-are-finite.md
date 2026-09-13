@@ -16,6 +16,9 @@ non-hyperlinear group. The large odd exponent free Burnside groups are
 infinite (`free-burnside-large-odd-exponent-is-nonamenable`), so they would be
 non-hyperlinear, a negative answer to Weiss's Open question 9.4 in Pestov's
 guide. Route: `non-hyperlinear-group-via-hyperlinear-burnside-finiteness`.
+Through the Delzant--Gromov stages of `B(m,N)` it would also give a
+non-hyperlinear, hence nonsofic, hyperbolic group
+(`nonsofic-hyperbolic-group-via-hyperlinear-burnside-finiteness`).
 
 By `hyperlinear-bounded-exponent-trace-rigidity-iff-finiteness`, this
 statement for `m`-generated groups of exponent dividing `N` is equivalent to
@@ -85,3 +88,72 @@ factors through a finite quotient of `F_m`.
      hyperlinear group of bounded exponent, and no finiteness theorem. The
      session's web search budget was exhausted, so MathOverflow, zbMATH and
      MathSciNet were not checked. Not exhaustive.
+5. **Numerics, exact-law models, and the collapse gap** (lane
+   solve-burnside-sofic, 2026-09-13). Not solved; no counterexample.
+   - **An obstruction window is at least as long as the gap between `B(m,N)`
+     and `R(m,N)`.**
+     - Let `l_0` be the word length of a shortest nontrivial element of
+       `ker(B(m,N) -> R(m,N))`. It is finite exactly when `B(m,N)` is
+       infinite.
+     - If `2R < l_0`, words of length `<= R` satisfy the same equalities in
+       `R(m,N)` as in `B(m,N)`.
+     - `R(m,N)` is finite (`restricted-burnside-finiteness`), so it is sofic
+       and hyperlinear.
+     - So for a nonsofic or non-hyperlinear `B(m,N)`, the radius `R` given by
+       clause 3 of `local-approximation-properties-are-marked-closed`
+       satisfies `2R >= l_0`.
+     - Numerics on approximate permutation or unitary models with windows
+       shorter than `l_0/2` are passed with zero defect by the regular
+       representation of `R(m,N)`. They cannot suggest either verdict.
+     - This lane has no estimate of `l_0`, so no MSI runs were made.
+   - **Exact-law models see only `R(m,N)`.**
+     - Suppose permutations `σ_1, ..., σ_m` generate a group of exponent
+       dividing `N`. That finite `m`-generated group is a quotient of
+       `R(m,N)`, so every element of `ker(B(m,N) -> R(m,N))` acts as the
+       identity.
+     - So models built from finite groups of exponent `N`, including their
+       products, never separate that kernel.
+     - A sofic approximation of an infinite `B(m,N)` must therefore break the
+       law `w^N = 1` somewhere in all but finitely many of its models. This is
+       the model-level form of the residually finite kill in Attempt 2.
+   - **Iterated small cancellation stages carry a negative answer into
+     hyperbolic groups.**
+     - For odd `N >= n_1(F_m)`, `B(m,N)` is the direct limit of the
+       non-elementary hyperbolic stages `G_k` of
+       `free-burnside-is-a-limit-of-hyperbolic-groups`.
+     - By `nonsofic-free-burnside-gives-nonsofic-hyperbolic-group`, a nonsofic
+       or non-hyperlinear `B(m,N)` makes `G_k` nonsofic or non-hyperlinear for
+       all large `k`.
+     - So this claim now also routes into `nonsofic-hyperbolic-group`, through
+       `nonsofic-hyperbolic-group-via-hyperlinear-burnside-finiteness`.
+     - Conversely, soficity of every hyperbolic group would make these
+       `B(m,N)` sofic.
+     - Only Coulon's account of the Delzant--Gromov construction was pinned.
+       Ol'shanskii's graded diagrams were not read.
+   - **The collapse gap, exactly.**
+     - For odd `N >= n_1(F_m)`, a non-hyperlinearity proof for `B(m,N)` is
+       equivalent to finding a radius `R >= l_0/2` and an `ε > 0` such that
+       no unitary matrices, in any dimension, match the equalities and
+       inequalities of the `R`-ball of `B(m,N)` within `ε`.
+     - On that ball the stages `G_k` with `k >= k(R)` look exactly like
+       `B(m,N)`, although they have elements of infinite order.
+     - So whatever the method (the global exponent law, Zelmanov's theorem,
+       Schur's theorem), its conclusion reaches a hyperbolic group through
+       finitely many relations `w^N = 1`.
+     - No mechanism working at radius `l_0/2` was found.
+   - **Calibration: a local restricted Burnside principle.**
+     - Let `LRB(m,N)` be the statement: there are `R_0` and `C` such that
+       every finite `m`-generated group with `h^N = 1` for all `h` of word
+       length `<= R_0` has order `<= C`.
+     - For odd `N >= n_1(F_m)`, `LRB(m,N)` makes some stage `G_k` not
+       residually finite. Proof:
+       - Pick `R` so that the `R`-ball of `B(m,N)` has more than `C` elements.
+       - Pick `k` with `S_L ∩ N_k = S_L ∩ F_m^N` for `L = max(2R, N·R_0)`,
+         as in step 2 of `nonsofic-free-burnside-gives-nonsofic-hyperbolic-group-proof`.
+       - Then `h^N = 1` in `G_k` whenever `|h| <= R_0`.
+       - A finite quotient of `G_k` injective on the `R`-ball would contradict
+         `LRB(m,N)`.
+     - So `LRB(m,N)` implies `non-residually-finite-hyperbolic-group`.
+     - A Hilbert--Schmidt analogue with approximate laws is the natural
+       collapse input. Its exact form was not settled, and neither form was
+       proved or refuted.
