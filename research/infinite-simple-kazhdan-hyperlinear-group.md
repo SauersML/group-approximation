@@ -2,7 +2,7 @@
 rg: 2
 id: infinite-simple-kazhdan-hyperlinear-group
 kind: claim
-title: Some infinite simple group with Kazhdan's property (T) is hyperlinear (Pestov Open Question 9.1, after Ozawa)
+title: Some infinite simple group with Kazhdan's property (T) is hyperlinear (Ozawa's question of 2003, printed as Pestov Open Question 9.1)
 root: true
 distinct_from:
   binary-leavitt-unit-group-hyperlinear: that is the yes/no question for one explicit group; this is the existential question from the literature, which that group would answer positively but whose negation it cannot supply.
@@ -34,9 +34,16 @@ It stays in the repository: publishing it outside needs the user's approval.
 
 ## Source
 
+The question was first asked by N. Ozawa, *About the QWEP conjecture*, Internat. J. Math. 15
+(2004) 501–530, arXiv:math/0306067 (v1 2003-06-03; v2 2004-05-10 identical), Section 7, page 26
+of the arXiv PDF, read from the PDF on 2026-09-13, without attribution to anyone:
+
+> It is unknown whether there exists a simple property (T) group Γ which is hyperlinear.
+
 V. G. Pestov, *Hyperlinear and sofic groups: a brief guide*, Bull. Symbolic
 Logic 14 (2008), arXiv:0804.3968, Section 9, page 21 of the arXiv PDF, read
-from the PDF on 2026-09-11:
+from the PDF on 2026-09-11, prints it with the sofic form added (Open question 8.1 in v1 of
+2008-04-24, numbered 9.1 from v8):
 
 > **Open question 9.1** (Cf. Ozawa [64]). Let G be an infinite simple group
 > with Kazhdan's property (T). Can it be hyperlinear (sofic)?
