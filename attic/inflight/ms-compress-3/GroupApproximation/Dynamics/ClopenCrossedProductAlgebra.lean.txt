@@ -90,7 +90,11 @@ variable {Y : Set X}
 theorem restrict_algebraMap (hY : T '' Y = Y) (c : k) :
     restrict T k hY (algebraMap k (ClopenCrossedProduct T k) c) =
       algebraMap k (ClopenCrossedProduct (restrictHomeo T hY) k) c :=
-  (Pestov91.CrossedProduct.coeffMap_single _ _ (1 : Multiplicative ℤ) _).trans
+  (Pestov91.CrossedProduct.coeffMap_single
+      (coeffComap (restrictHomeo T hY) T k ⟨Subtype.val, continuous_subtype_val⟩)
+      (coeffComap_smul (T := restrictHomeo T hY) (S := T) k ⟨Subtype.val, continuous_subtype_val⟩
+        fun _ => rfl)
+      (1 : Multiplicative ℤ) (algebraMap k (ClopenCoeff T k) c)).trans
     (congrArg (SkewMonoidAlgebra.single (1 : Multiplicative ℤ)) (LocallyConstant.ext fun _ ↦ rfl))
 
 /-- Restriction `R_X → R_Y` is `k`-linear. -/
