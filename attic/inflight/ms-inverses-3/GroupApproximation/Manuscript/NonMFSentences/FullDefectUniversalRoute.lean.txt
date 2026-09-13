@@ -118,6 +118,7 @@ theorem manuscriptSentence_rhoTrivialByUniversalGroup (M : Type) [Group M]
 
 /-! ## All ranks -/
 
+include Q in
 /-- **Printed (tex 1000–1001), first clause.**  "A homomorphism from `EL_n(R)` to an MF group is
 trivial on that copy, hence trivial."  The copy is `FullDefectRankTwo.blockEmbed`, and its normal
 closure is everything by the signed-permutation sentence
@@ -142,6 +143,7 @@ theorem manuscriptSentence_homFromELnTrivialByUniversalGroup (M : Type) [Group M
       at hle
     exact MonoidHom.mem_ker.mp (hle (Subgroup.mem_top x))
 
+include Q in
 /-- **Printed (tex 1001–1002), second clause.**  "… and the image of `EL₄(𝒞)` in that copy
 normally generates `EL_n(R)`."  The normal closure of the image pulls back to a normal subgroup of
 `EL₂(R)` containing the image of `EL₄(𝒞)`, hence everything; so it contains the copy, whose normal
