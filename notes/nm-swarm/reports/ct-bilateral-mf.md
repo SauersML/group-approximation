@@ -48,3 +48,5 @@ exactly when GL_3(R_X) is MF".  Added to the manuscript by 73a84cd9c, after the 
   (ct-rank-budget's piece, owner ct-bilateral-mf; producer over the cell, countability and nonzero-defect pieces).
 - 09-13 17:2x: BilateralThreeTransfer LANDED f087d9a4d (probe 0913-172128-43655 GREEN, cache restore of the build in 0913-171731-26541: BUILT, EXIT=0, axioms propext/Classical.choice/Quot.sound, same md5). `bilateralThreeTransferStatement_of_pieces : DynamicRankBudget.BilateralThreeTransferStatement` over the cell, countability and nonzero-defect pieces; wiring queued.
 - Pieces 3-4 stay named Props: chain-matricial landed only the first half of TransientIdealExact (transientIdeal_eq_bot_iff); transientIdeal_eq_span_defects is still planned. The cell discharge is ct-bilateral-cell's (BilateralThreeCellDischarge).
+- CLAIM ReturnEmbeddingStatement (the four injective embedding clauses under ∀ k) GroupApproximation/Algebra/ReturnTowerEmbeddings.lean
+  (split agreed with ct-rank-budget: they keep the induced core, placement, F_2 clauses, packaging).
