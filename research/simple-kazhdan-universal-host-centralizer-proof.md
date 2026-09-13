@@ -13,6 +13,8 @@ artifacts:
 ---
 
 Choose the fixed host and core of the universal-host construction. A
+three-element torsion marking for this same host is supplied by the
+required universal-host claim and its binary generator proof. A
 finite subgroup `F` of their increasing core is contained in some
 `SL_(3N)(F_2)`, `N=j!`. Refine to level `3rN`. The corner claim supplies
 the infinite simple Kazhdan LEF universal group `H=EL_3(A)`, and the
