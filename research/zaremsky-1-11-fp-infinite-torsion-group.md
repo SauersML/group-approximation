@@ -60,12 +60,18 @@ its own node):
 ## Attempts
 
 - 2026-09-13, construction side (lane z1-11-torsion-build): the torsion-by-cyclic
-  route. A torsion quotient of an ascending HNN extension `B*_phi` sees only
-  the coinvariant groups `B / <<b^-1 phi^m(b)>>`. When `B` is just-infinite they
-  are finite, and this covers every finitely generated torsion branch group,
-  the first Grigorchuk group among them. Nodes land in the next landing.
-- 2026-09-13, limits of hyperbolic groups: a finitely presented direct limit of
-  a sequence of quotients equals one of its finite stages. So a torsion limit
-  of infinite hyperbolic groups is never finitely presented. Node lands in the
-  next landing.
+  route. `ascending-hnn-torsion-quotients-see-only-coinvariants` (established):
+  a torsion quotient of an ascending HNN extension `B*_phi` is a finite
+  extension of a quotient of a coinvariant group `B / <<b^-1 phi^m(b)>>`.
+  - `just-infinite-base-hnn-has-only-finite-torsion-quotients` (established):
+    for just-infinite bases, all finite unless the base is already finitely
+    presented. This covers finitely generated torsion weakly branch bases.
+  - `grigorchuk-hnn-extension-has-only-finite-torsion-quotients` (established):
+    Grigorchuk's finitely presented extension is dead.
+  - Live test: `olshanskii-sapir-hnn-has-infinite-coinvariants` (open), wired by
+    `fp-torsion-via-olshanskii-sapir-coinvariants`.
+- 2026-09-13, limits of hyperbolic groups: dead.
+  `fp-direct-limit-of-quotients-equals-a-finite-stage` and
+  `hyperbolic-limit-torsion-groups-are-not-finitely-presented` (established):
+  a torsion limit of infinite hyperbolic groups is never finitely presented.
 - Obstruction side: lane z1-11-torsion-block.

@@ -30,14 +30,32 @@ the standard constraints. The construction side adds two firewalls:
   Grigorchuk group, and the finitely presented extensions of groups of
   exponent `n` by a cyclic group of Ol'shanskii–Sapir (arXiv:math/0208237).
   A torsion quotient `Q` of `B*_phi` has `t` of finite order `m`. That makes
-  the image of `B` a normal subgroup of index at most `m`, and forces
+  the image of `B` a normal subgroup of index dividing `m`, and forces
   `b = phi^m(b)` there. So `Q` is infinite only if the coinvariant group
-  `B / <<b^-1 phi^m(b)>>` is infinite. For a just-infinite base this never
-  happens, so the Grigorchuk extension is dead. The Ol'shanskii–Sapir base is
-  not just-infinite, and its coinvariants are the live test.
-- Limits of hyperbolic groups (Ol'shanskii, Ivanov–Ol'shanskii, Coulon, Osin):
-  dead. Every stage is an infinite hyperbolic group and so has an element of
-  infinite order, while a finitely presented limit equals a stage.
+  `B / <<b^-1 phi^m(b)>>` is infinite
+  (`ascending-hnn-torsion-quotients-see-only-coinvariants`, established).
+  - For a just-infinite base this never happens unless the base is already
+    finitely presented (`just-infinite-base-hnn-has-only-finite-torsion-quotients`,
+    established).
+  - So the Grigorchuk extension is dead
+    (`grigorchuk-hnn-extension-has-only-finite-torsion-quotients`, established).
+  - The Ol'shanskii–Sapir base is not just-infinite, and its coinvariants are the
+    live test: `olshanskii-sapir-hnn-has-infinite-coinvariants` (open), wired
+    here by `fp-torsion-via-olshanskii-sapir-coinvariants`. For `m = 1` it is
+    Rips' construction as reported by Ol'shanskii–Sapir.
+- Limits of hyperbolic groups (Ol'shanskii, Ivanov–Ol'shanskii): dead. Every
+  stage is an infinite hyperbolic group and so has an element of infinite
+  order, while a finitely presented limit equals a stage
+  (`hyperbolic-limit-torsion-groups-are-not-finitely-presented`, established).
+- Self-similar torsion groups themselves: finitely generated contracting regular
+  branch groups are not finitely presented (Bartholdi–Grigorchuk–Šunić,
+  arXiv:math/0510294, Theorem 4.7), and neither are torsion spinal groups
+  (Corollary 4.5). The remaining self-similar candidates are torsion groups
+  outside those classes, and none is recorded.
+- No dead `requires: []` route is written into this claim on purpose. The dead
+  approaches are recorded as established obstruction claims and cited here, so
+  an unestablished invalidator can never make this famous open claim read as
+  proved.
 - Golod–Shafarevich presentations: finitely many relators give an infinite
   pro-`p` completion. Making the discrete group torsion needs infinitely many
   relators in every known construction. By the direct-limit firewall, a
