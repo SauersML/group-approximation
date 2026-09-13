@@ -23,6 +23,11 @@ an explicit polynomial-size list. Then
 min_(phi stabilizer) <phi|H|phi>  <=  (2+sqrt2) lambda_min(H).               (PP)
 ```
 
+More generally, (PP) holds for `H = sum_a w_a (I - Pi_a)` where each `Pi_a` is the
+projector onto a stabilizer code space (`Pi_a = prod_(i<=r_a) (I+g_(a,i))/2` for
+independent commuting signed Paulis generating a group without `-I`). Each term
+penalizes leaving a code space; single Pauli projectors are the case `r_a = 1`.
+
 Consequently, deciding `lambda_min(H) <= a` versus `lambda_min(H) >= b` for such
 instances is in NP whenever `b > (2+sqrt2)a`. The witness is a stabilizer
 tableau, and its energy is an exact rational computed by `F_2` linear algebra.

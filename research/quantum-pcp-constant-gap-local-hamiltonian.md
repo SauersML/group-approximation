@@ -13,6 +13,8 @@ artifacts:
   - research/artifacts/qpcp-kernel-resolution-2026-09-07.md
   - research/artifacts/qpcp-fixed-term-chain-2026-09-07.md
   - research/artifacts/qpcp-positive-shift-audit-2026-09-11.md
+  - research/artifacts/qpcp-landscape-sources-2026-09-12.md
+  - research/artifacts/pauli-frustration-stabilizer-rounding-2026-09-12.md
 distinct_from:
   classical-pcp-gap-is-not-tracial-pvm-gap: that is a no-go about transporting classical PCP soundness onto contextual tracial PVM assignments inside this repository's microstate program; this is the external complexity-theoretic conjecture about tensor-site local Hamiltonians, with a fixed finite-dimensional Hilbert space and a state-weighted energy.
   binary-pcp-coordinate-atlas-in-hs-microstates: that compiles a classical constant-query PCP into group words with normalized-HS energy; this is a statement about quantum local Hamiltonians and makes no reference to group approximation.
@@ -116,6 +118,26 @@ equivalent to this root by any known instance transformation. The natural
 reducer, splitting clauses into factors, is dead
 (`unfolding-tensor-clauses-returns-the-original-gap`).
 
+**2026-09-12 regimes a hard family must escape.** Sources are verified in
+`research/artifacts/qpcp-landscape-sources-2026-09-12.md`. Unless QMA is in NP,
+a hard family cannot be any of the following:
+
+- 2-local on `D`-regular graphs with `D > 1728 d^2 ln(d)/gap^3`
+  (`product-states-approximate-high-degree-2-local`);
+- commuting on `eps`-small-set expanders with `2kd eps < gap`
+  (`commuting-hamiltonians-on-small-set-expanders-in-np`);
+- built from Pauli projectors or stabilizer code-space constraints with YES energy
+  below `b/(2+sqrt2)` (`pauli-projector-hamiltonians-are-stabilizer-approximable`,
+  an elementary theorem of 2026-09-12, unreviewed).
+
+An energy-monotone map that amplifies degree at locality two would put
+constant-gap estimation in NP (`two-local-degree-amplification-gives-np-witnesses`);
+tensor-product amplifiers avoid this by growing locality. Hard families must be
+NLTS (`nlts-hamiltonians-from-good-qldpc-codes`). On the Dinur iteration route the
+iterates have negligible YES energy, so they cannot consist of Pauli projectors or
+code-space constraints. The games form is the separate open claim
+`quantum-games-pcp-for-qma`.
+
 ## Attempts
 
 - **Ordinary energy gap amplification.**  Killed for this target by
@@ -145,3 +167,9 @@ reducer, splitting clauses into factors, is dead
   is inverse polynomial (`anchored-criterion-components-are-shift-satisfiable`).
   (LPC1) as written is now established by `lpc1-from-shifted-kitaev-reduction`.
   That records the vacuity; it is not progress toward this claim.
+- **Stabilizer-type terms with near-frustration-free YES outputs.** Excluded
+  unless QMA is in NP, by `pauli-projector-hamiltonians-are-stabilizer-approximable`.
+  If every term is a Pauli projector or penalizes leaving a stabilizer code space,
+  some stabilizer state is within a factor `2+sqrt2` of the ground energy, so the
+  YES energy must be at least `b/(2+sqrt2)`. Code-based amplifiers need
+  non-stabilizer terms in their hard outputs.

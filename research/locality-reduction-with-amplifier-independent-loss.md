@@ -62,3 +62,10 @@ constant relative distance (Bafna--Vyas, ECCC TR26-150).
   clock Hamiltonians, which grows with `t`.
 - **Change local dimension instead of locality.** Not applicable: the
   amplifier already works on qubits and grows locality, not dimension.
+- **Reducers whose outputs are Pauli projectors or stabilizer code-space
+  constraints** (for example, check Hamiltonians of qLDPC or qLTC encodings of the
+  clauses). Excluded unless QMA is in NP. Through `qpcp-by-dinur-iteration`, the
+  last iterate would be a QMA-hard family of such terms with negligible YES energy
+  and NO energy at least `gamma_t`. `pauli-projector-hamiltonians-are-stabilizer-approximable`
+  puts that promise problem in NP. A reducer needs non-stabilizer terms, at least
+  on YES-hard outputs.

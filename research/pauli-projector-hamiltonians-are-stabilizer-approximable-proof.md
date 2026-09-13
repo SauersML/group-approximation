@@ -19,6 +19,17 @@ has `<phi|K|phi> >= lambda_max(K) - (1+sqrt2)(W - lambda_max(K))`, hence
 <phi|H|phi> <= (W - lambda_max(K))(2+sqrt2)/2 = (2+sqrt2) lambda_min(H).
 ```
 
+**Code-space constraints.** For `Pi_a = prod_(i<=r_a)(I+g_(a,i))/2`, expanding the
+product gives `2^(-r_a) sum_(S subseteq [r_a]) g_(a,S)`, where the `g_(a,S)` are
+distinct signed Paulis because the generators are independent. So `Pi_a` has a
+Pauli decomposition of weight exactly one, and `K = sum_a w_a Pi_a`, listing all
+these terms, has weight `W = sum_a w_a`. Also `H = sum_a w_a(I-Pi_a) = W I - K`, so
+`lambda_min(H) = W - lambda_max(K)` and `<phi|H|phi> = W - <phi|K|phi>`. By (SR), some
+stabilizer `phi` has `<phi|H|phi> <= (W-lambda_max(K))(1+(1+sqrt2)) = (2+sqrt2)lambda_min(H)`.
+The term list has `2^(r_a)` entries per constraint. That is polynomial for `r_a = O(log n)`.
+For larger `r_a` the verifier instead computes `<phi|Pi_a|phi>`, which is `2^(-t)` or `0`,
+by stabilizer-group intersection in polynomial time.
+
 **NP.** A stabilizer state is described by `n` commuting independent signed
 Pauli generators. Validity is checked by symplectic linear algebra over `F_2`.
 For each term, `<phi|P_a|phi>` is `0` if `P_a` anticommutes with some generator,

@@ -59,3 +59,9 @@ independently of `t` is unnecessary.
   noncommuting output terms do not avoid this bound. The requested
   instance-level map only controls ground energy, so it is not refuted;
   a successful construction may use that weaker obligation.
+- A reducer whose outputs are sums of Pauli projectors, or of terms `I-Pi` with
+  `Pi` a stabilizer code-space projector, is excluded unless QMA is in NP. Through
+  `qpcp-from-global-walk-reduction`, the iterates would be a QMA-hard family of
+  such terms with negligible YES energy and NO energy at least `1/(2L)`.
+  `pauli-projector-hamiltonians-are-stabilizer-approximable` puts that promise
+  problem in NP.
