@@ -3,6 +3,81 @@
 Lane of the non-MF verbatim swarm. It owns the geometric DGO/Osin carriers and the GHW archimedean
 modules `Kazhdan/GHWArchimedeanMinkowski` and `Kazhdan/GHWArchimedeanWalls`.
 
+## 2026-09-13: W1 PocketRegion piece Props, model and truth audit
+
+The lead's item: audit the W1 PocketRegion piece Props as they land. For each Prop, find a
+nonvacuous instance or refute it formally, as `RegionShellingSpurCounterexample` does. Put the
+fixtures in new modules of this lane. audit-sec5 tests the LoopCut cap, so this lane skips it.
+
+### Fixtures (all in `GGT/VanKampen/Estimating/`, unwired)
+
+These are model tests. None of them certifies a printed sentence.
+
+- `OsinPocketPinchedTwoGonModel` (4b78f0090, green) is a ten-dart map:
+  - a relator cell `Π = [0,1,2]`;
+  - two digons `a = [3,4]` and `b = [5,6]` that meet only at the vertex `{1,3,6,8}`;
+  - the exterior face `[7,9,8]`.
+
+  By `no_faceSetBoundary` and `no_contiguity`, the face set `{a, b}` has no
+  `Embedded.FaceSetBoundary`, so it carries no `Embedded.Contiguity`.
+- `OsinPocketPinchedTwoGonRegion` (26f3e086e, probe 0913-102131-19819 GREEN) builds
+  `pocket : PocketRegion diagram` on `{a, b}`. Its cycle `[5,3,4,6]` does not follow the boundary
+  (`not_followsBoundary`), and it is not a simple closed walk (`not_isSimpleClosedWalk`). So
+  `PocketRegion` admits pinched pockets.
+- `OsinPocketPinchedTwoGonDiscCollapse` (4894cfceb, probe 0913-111918-28699 GREEN) runs route A
+  (`Surgery.InnerDiscRegion.ofPocketRegion` and `mergedGeometry`) on that pinched pocket:
+  - it gets the disc region `R`;
+  - it gets the decomposition hypothesis of `EmptyTwoGonInput`, with empty sides;
+  - it gets a contiguity geometry `H` from `Π` to the exterior, with arcs of lengths 2 and 2.
+
+  The endpoint is `PinchedPocketDiscCollapseModel`.
+- `OsinPocketPinchedTwoGonLobe` (4181011af, probe 0913-132420-4350 GREEN) makes the digon `a`
+  (reading `x⁻¹ x`) a second relator cell and builds two pocket face sets of that diagram, both
+  between positions 0 and 2:
+  - `pinchedK`, on `{a, b}`: source `Π`, kept `a`, empty sides, arcs `[0,1]` and `[4,6]`. It
+    satisfies the hypothesis of `PocketPinchPinchedStatement` (`pinchedK_not_followsBoundary`,
+    `pinchedK_not_unpinched`, `pinchedK_not_simple`).
+  - `lobeK`, on `{a}`: the same source and kept cells, arcs `[0]` and `[4]`. It is simple
+    (`lobeK_simple`).
+
+  The endpoints are `pinchedPocketLobeModel` and `pinchedPocketLobe_conclusion`.
+
+### Verdicts
+
+1. hull-select, the zero-cell merge producer (the inputs of `false_of_collapse_singleton`): a
+   producer that goes through the face-set boundary of the merged face set fails at a pinch
+   (`no_faceSetBoundary`). The route A collapse does not fail there: `R`, `H` and the
+   `EmptyTwoGonInput` decomposition exist on a pinched pocket. The model carries no section
+   family, so it tests only these geometric inputs.
+2. kh-torsion, `GeodesicCollarStatement`: I audited it and found no refutation. The strip
+   construction goes through. fff-quotient's `SurgeryMonogonDoubling` handles the monogon side,
+   where `FaceEdgeDoubling` needs a face of length > 1. There is no fixture.
+3. dgo-analytic, `PocketPinchStatement` and `PocketPinchPinchedStatement`: the Props are nonvacuous
+   and hold on the pinched model, for a cheap reason. The conclusion ties the simple pocket face
+   set `K'` to `K` only through `D`, `ε`, `lo` and `hi`.
+   - On a pinched pocket, a lobe in `X` itself witnesses the conclusion with the identity
+     O-equivalence (`pinchedPocketLobe_conclusion`).
+   - kh-cckw's "X itself cannot serve" holds for `K` itself, not for every `K'`. This matches
+     hull-respell's lobe selection.
+   - A consumer that needs `K'` to keep the faces, the arcs or the sides of `K` cannot get that
+     from the Prop.
+   - The hard pinch cases are Configuration A (notch) and Configuration B (lake). They are not
+     modelled.
+4. hull-euler, C3 to C5 of `PhiPrimeCountInput`:
+   - C4 (`CornerTwoGonInput`) and C6′ (`TwoGonHoldsInput`) need a least-area diagram with a
+     globally distinguished section family, so they are not modelled yet.
+   - C3 and C5 are not audited yet.
+
+The baseline-debt LINE:1725 finding went to baseline-debt. The dgo-analytic stale-lines finding
+is moot and was not sent.
+
+### Residual and next
+
+No Prop owned by this lane is open. `OsinPocketPinchedTwoGonLobe` is green as landed (4181011af),
+so it needs no second landing. Next, in order:
+1. model Configuration A or B of the pinch;
+2. audit C3 and C5, and model C4 and C6′.
+
 ## 2026-09-13: P_naive wiring check
 
 The lead's item: the census lists `NonMF.NaiveFreeProductPropertyOfAcylindricallyHyperbolic` as an
