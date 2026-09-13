@@ -1,67 +1,64 @@
 # hull-count94
 
 ## Scope
-Roster target: `OsinLemma94RunInput` and its counting reduction, closed, at the Prop hull-unbound's
-assembly consumes. That Prop is `OsinLemma94SectionStatement` (`Estimating/OsinAppendixSections.lean`),
-passed as `h94` to `OsinAppendixAssembly.osinLemma97Section_of_inputs`.
+- Roster, Reassignments 09-13 (W1 h94): `OsinLemma94AntiparallelMetricStatement`
+  (`Estimating/OsinLemma94Pieces.lean`, hull-unbound's file). It is the `hmetric` input of
+  `osinLemma94Section_of_pieces`, which gives `OsinLemma94SectionStatement` (h94 of the assembly).
+- CLOSED by sec5-sentences (roster ~03:55): `osinLemma94AntiparallelMetric` (e3da1ba60) on
+  `unboundOrientedWordPolygonMonotone` (779509227), probe 0913-034427-9910 GREEN, both queued for
+  wiring. That proof consumes this lane's oriented layer below.
+- `OsinLemma94RunInput` and `OsinLemma94Counting` are superseded. Their files stay on main
+  untouched (82ba54dfb, GREEN 0913-010901-92003) and have no users.
 
-## On main
-- `Estimating/OsinLemma94RunInput.lean` and `Estimating/OsinLemma94Counting.lean` (82ba54dfb,
-  unmodified). PROBE GREEN 0913-010901-92003 at base e8702f1b1, both COMPILED. Axioms are within
-  {propext, Classical.choice, Quot.sound}.
-- `osinLemma94Section_of_runInput : OsinLemma94RunInput → OsinLemma94SectionStatement` is proved
-  from the closed `unboundComponentWordPolygonsMonotone` and `isHyperbolicSpace_cayley_of_fourPoint`.
+## On main (this lane)
+- `GGT/OlshanskiiFirstVisit.lean` and `GGT/OlshanskiiOrientedLemma25.lean`: 1c5f36398, GREEN
+  0913-023524-13449. These hold the first-visit witnesses and `exists_long_antiparallel_pair`, the
+  antiparallel Lemma 25 for polygons with at most `2^c` sides.
+- `GGT/OlshanskiiOrientedClasses.lean`: 0963dc2b4, GREEN 0913-025244-65395. `OrientedSidePair`,
+  `OrientedClassPair`, and their restriction, rotation and cut transports.
+- `GGT/OlshanskiiOrientedBisection.lean` and `GGT/OlshanskiiOrientedThreeClasses.lean`: 0ff430236,
+  GREEN 0913-025900-86792. They hold `exists_orientedClassifiedBisection`,
+  `exists_orientedClassPair_of_aggregate_all`, and the closed
+  `orientedThreeClassPolygon : OrientedThreeClassPolygonStatement`. That is Lemma 3.7 with an
+  antiparallel pair and the same constants.
+- All five modules are in root-wire wave 3 (cdc493958).
 
-## Residual Prop
-`OsinLemma94RunInput`: under the Lemma 9.4 hypotheses, every globally distinguished section family
-`S` gives `Nonempty (OsinLemma94ComponentPolygons D lambda c eps S)`. Its fields are `arc_budget`,
-`side_le`, `closed`, `step`, `quasiGeodesic`, `short`, `covers` and `no_connector`.
+## Duplicate draft, not landed
+- I wrote a second proof of the same endpoint at the same path,
+  `Estimating/OsinLemma94AntiparallelMetric.lean`. It picks a dense polygon from the side budget with
+  `ρ' = ⌊ρ / (K + 1)²⌋`, runs an oriented `exists_polygonPair` on the geodesic replacement, then uses
+  sec5-sentences' connectors. sec5-sentences landed e3da1ba60 at that path at 03:44:52, after my path
+  check and before my landing.
+- nmland refused the landing (clobber guard). From 03:47:39 my Write had replaced sec5-sentences'
+  bytes in the shared tree. I restored origin's bytes (md5 f44ea282, equal to their `.0913-v1`
+  backup) and dropped the path from `hull-count94.files`. My variant exists only in the lane backup.
+- My variant built GREEN at probe 0913-035614-34211. That record lists the path with the variant's
+  bytes (md5 d1e8e389), so it is not evidence for the landed file. The landed file's evidence is
+  sec5-sentences' 0913-034427-9910.
 
-## Finding: `no_connector` has an orientation gap
-- `no_connector : ∀ k, WordConnectorPair .. → False` forbids unoriented pairs. `WordConnectorPair`
-  fixes `a < a'` but allows `b, b'` in either order ("The second side can be read in either
-  direction"). The orientation is lost in two places:
-  - `threeClassPolygon` returns `SidePair` ("Orientation on either side is immaterial"); in the base
-    case, `exists_long_close_pair` ends with `β ≤ |s' - s|`.
-  - `exists_originalArcPair_of_class_near` chooses Morse indices existentially.
-- The planar Case 1 contradiction is `RealizedSectionFamily.false_of_quadrilateral_region`. It needs
-  the face walk `X ++ targetBoundaryDarts .. ++ Y ++ sourceArc.reverseDarts` with `s1 = X` and
-  `s2 = Y`. So the connectors join end(P) to start(T) and end(T) to start(P). With polygon sides
-  read in face-walk order, this is the antiparallel case `b' < b`.
-- A parallel pair (`b < b'`) in a disc face needs two crossing chords, so no such subdiagram exists:
-  a positively oriented subdiagram reads both arcs in the direction of the walk. `no_connector` as
-  drafted therefore excludes pairs that no surgery contradicts. It is not refuted, but Osin's route
-  gives no proof of it.
-- Osin's printed Lemma 3.7 bounds `max{dist((q1)−,(q2)−), dist((q1)+,(q2)+)}` without fixing the
-  orientation of the subsegments, so it is the unoriented statement. His Case 1 boundary
-  `q1 s1 q2⁻¹ s2` silently uses the antiparallel one.
+## Finding behind the reassignment: the orientation gap
+- `WordConnectorPair` fixes `a < a'` and leaves `b, b'` in either order. The planar Case 1
+  (`false_of_quadrilateral_region`) contradicts only the antiparallel case `b' < b`. A parallel pair
+  needs two crossing chords in a disc face.
+- The unoriented metric chain loses the orientation in two places:
+  - `SidePair` ("Orientation on either side is immaterial"), with `β ≤ |s' - s|` in Lemma 25;
+  - the existential Morse index choice.
+- Osin's printed Lemma 3.7 is unoriented. His Case 1 boundary `q1 s1 q2⁻¹ s2` uses the antiparallel
+  form.
 
-## Proposed correction
-1. Build an oriented metric layer in new modules, with no edits to existing metric modules.
-   - Oriented Lemma 25 for small polygons: take first-visit witnesses (lexicographic minimum over
-     side index and parameter, at the chord threshold). They are monotone along the chord, by the
-     chord lemma applied to the prefix broken line plus one connector. The existing pigeonhole then
-     gives `s < s'` together with `r < r'`, which is the antiparallel case.
-   - `OrientedSidePair` and `OrientedClassPair`. The restriction, rotation and inner-cut transports
-     only translate parameters, so they keep orientation. The bisection recursion keeps chords out
-     of the classes.
-   - The oriented three-class polygon lemma.
-   - A monotone Morse index choice: on a (λ,c)-quasi-geodesic word, indices near geodesic parameters
-     `t < t'` with `t' - t` above a constant satisfy `k < k'`. The proof uses the Morse lemma on the
-     prefix subword and thin triangles.
-   - `WordConnectorPair` with `target_backward : b' < b`, and the component-family theorem at that
-     orientation.
-2. Restate `OsinLemma94RunInput` and `OsinLemma94Counting` on the oriented connector. Neither has
-   users outside these two files on origin/main.
+## Census
+- The LINE:1636 row (thm:hull, Osin Lemma 9.4 inside Hull's proof) now follows the pieces route.
+  It stays partial, and its residual is `OsinLemma94PlanarRunInput`.
+
+## Residual
+- This lane owns no open Prop.
+- `OsinLemma94PlanarRunInput` is the only other input of `osinLemma94Section_of_pieces`. hull-unbound
+  owns it; sec5-sentences takes a case and theoremc-retire takes C1.
 
 ## Next
-- The oriented Lemma 25 module first, in new files, unless the lead reassigns the metric layer.
-- Producer:
-  - Reduce with `exists_unselectedGFacesReduced`, which keeps the card and the unbound sum.
-  - Take polygons from the closed loops of each unselected G-face walk.
-  - Case 1 goes through `false_of_quadrilateral_region`; Case 2 through the cutting paths.
+- The next item the lead names.
 
 ## Coordination
-- hull-unbound integrates h94 and owns `Estimating/UnboundWordPolygonMonotone.lean`.
-- The other metric modules are in no lane's file list: `Olshanskii*`, `Estimating/UnboundPolygonGeometry`,
-  `UnboundWordPolygon`, `UnboundComponentWordPolygons` and `UnboundWordConnectors`.
+- hull-unbound owns `OsinLemma94Pieces` and `UnboundWordPolygonMonotone`.
+- sec5-sentences owns `UnboundMonotoneMorseIndex`, `UnboundOrientedWordConnectors`,
+  `UnboundOrientedWordPolygon` and `OsinLemma94AntiparallelMetric`.
