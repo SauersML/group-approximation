@@ -47,8 +47,16 @@ has no regular monomial HS model.
   handles directions with a 2-dimensional spectral gap.  Complexes combining
   low-frequency curvature modes with large 2-cycles are not handled.  This is
   the open core.
-- **Model test on the Kun--Thom wreath.**  Models with every lamp in the soft
-  kernel are excluded by `block-monomial-coordinate-collapse`.  Models whose
-  soft kernel is a proper submodule of the lamp module are not covered.
-  Their exclusion would need a Kun--Thom argument for quotient modules, and
-  their existence would refute this claim.
+- **Model test on the Kun--Thom wreath: passed.**  Models with every lamp in the
+  soft kernel are excluded by `block-monomial-coordinate-collapse`.  Models
+  whose soft kernel is a proper submodule are excluded as well
+  (`kt-wreath-monomial-models-kill-fibre-even-lamps`).
+  - The soft kernel always contains the sofic radical `K_even`.
+  - Every monomial HS model, with no trace condition, kills `K_even`.
+  - The ingredients are `soft-kazhdan-central-elements-fixed-by-normal-closure`,
+    applied along deep congruence conjugates of `Gamma`, and perfectness of
+    `EL_r(R)`.
+  So the wreath is not a counterexample.  The mechanism is specific to lamp
+  groups over infranormal Kazhdan pairs: it transports soft elements by
+  Kun--Thom 4.1.  It does not flatten curvature, so the open core above is
+  untouched.

@@ -37,7 +37,12 @@ interference.  What remains is only an approximately invariant frame.
 **Model test.**  By `leavitt-units-admit-no-bounded-block-monomial-hs-model`,
 the Leavitt unit group has no such microstates.  So a proof of this claim for
 any class containing `EL_9(L_(F_2)(1,2))` would prove that group
-non-hyperlinear.  Every known sofic group satisfies it, trivially.
+non-hyperlinear.  The Kun--Thom wreath has no such microstates either: every
+monomial HS model of it kills the fibre-even lamps
+(`kt-wreath-monomial-models-kill-fibre-even-lamps`).  So does the `q = 2` double
+(`kt-double-admits-no-bounded-block-monomial-hs-model`).  A proof of this claim
+for a class containing either group would prove that group non-hyperlinear.
+Every known sofic group satisfies it, trivially.
 
 ## Attempts
 
