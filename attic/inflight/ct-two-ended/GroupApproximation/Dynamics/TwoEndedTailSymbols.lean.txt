@@ -132,7 +132,7 @@ theorem symbolOp_apply_eq_sum (e : TwoEnded) (he : shift e = e) (x : ClopenCross
     (v : ℤ →₀ k) (m : ℤ) :
     symbolOp k e he x v m = v.sum fun j r => r * symbolOp k e he x (single 0 1) (m - j) := by
   conv_lhs => rw [← Finsupp.sum_single v]
-  rw [map_finsupp_sum, Finsupp.sum_apply]
+  rw [map_finsuppSum, Finsupp.sum_apply]
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [← Finsupp.smul_single_one j (v j), map_smul, Finsupp.smul_apply, smul_eq_mul,
     symbolOp_apply_single_one]
