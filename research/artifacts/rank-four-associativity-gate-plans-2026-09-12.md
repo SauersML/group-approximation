@@ -41,8 +41,9 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
   * **One shared input** (L5, L8). The Toeplitz form of the descent line and the Cohn reduction through
     `binary-jacobson-el3-rank-radical-is-the-finitary-kernel` both need `EL_3(J)`, `J = F_2<s0, t0>`, to be
     nonsofic. Its soficity is undecided on main. Nonsoficity is necessary for either route and proves
-    neither: the Jacobson claim is strictly stronger, and a nonsofic `EL_3(J)` only removes the firewall
-    without giving a deficit.
+    neither. The Jacobson claim implies nonsoficity, since a sofic group has a faithful permutation model,
+    and no converse is known. A nonsofic `EL_3(J)` only removes the firewall without giving a deficit
+    (w4-vf-gate check).
   * **Wave 7 lanes on these inputs** (started about 20:45; verifier w4-vf-gate unless noted).
     * w7-el3j-sofic decides the shared input. `EL_3(J)` maps onto `EL_3(F_2[z, z^-1])` with a locally
       finite kernel and a residually finite quotient, so the lane first checks whether it contains `V`
