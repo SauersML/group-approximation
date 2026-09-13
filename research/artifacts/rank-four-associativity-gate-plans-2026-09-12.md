@@ -23,8 +23,8 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
     * **What is established.** The defect gap and two-sided descent hold for abstract Sylvester rank
       functions: in characteristic two for all of them, and in characteristic three for the anti-central
       ones (L9b). In characteristic two, exact globality and near-minimal multiplicativity now hold for
-      every Sylvester rank function as well, with no regularity (w7-sylv-global, on paper; verification
-      pending w4-vf-linear-b; L9).
+      every Sylvester rank function as well, with no regularity (w7-sylv-global; verifier PASS
+      w4-vf-linear-b §39 at ae0a4005ef; L9).
     * **What would close the gate.** A strict deficit `theta < 1`. In characteristic two this is
       `leavitt-disjoint-cylinder-defects-strictly-submultiplicative` (L5); in characteristic three it is
       `ternary-anti-central-disjoint-defects-have-a-strict-deficit` (L9b). In characteristic two the weaker
@@ -65,8 +65,8 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
       Toeplitz quarter.
     * w7-sylv-global (verifier w4-vf-linear-b) works on the Sylvester counterparts of the descent line on
       `F_2[R^x]`: `sylvester-leavitt-kazhdan-fixed-ideals-are-global` and
-      `sylvester-near-minimal-leavitt-defects-are-multiplicative`. Both landed established on paper
-      (696ae35bc7, 0a9c95f793; verification pending). The open deficit moved to
+      `sylvester-near-minimal-leavitt-defects-are-multiplicative`. Both landed established
+      (696ae35bc7, 0a9c95f793; verifier PASS w4-vf-linear-b §39 at ae0a4005ef). The open deficit moved to
       `sylvester-disjoint-cylinder-defects-strictly-submultiplicative` (L9).
     * w7-v-cycle-c2 and w7-v-cycle-c3 (verifier w3-vf-linear) work on the V gate upstream of L8, through the
       open order-char cycle law at `p = 2` and `p = 3`.
@@ -369,7 +369,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | Toeplitz input and sofic firewall | w5-sub-fock (family SUB) | Established, verifier PASS §28: the Toeplitz pair is finite-subgroup data; `sofic-subgroups-carry-independent-cylinder-defects`; `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`. Open input shared with L8: soficity of `EL_3(J)` (L5) |
 | graph-of-groups firewall | w6-mismatch-c2 (family SUB) | Established, verifier PASS §29 (d0f2b3f648; verdict 4373d18c44): `graphs-of-locally-finite-groups-carry-regular-rank-models`; the depth-mismatched pair is inert as a factor; Attempts entries on the SUB target and on `binary-complement-corner-has-no-weakly-finite-image` (L5) |
 | depth-monotone firewall (char 3) | w6-mismatch-c3 (family SUB) | Established, verifier PASS §30 (74247b5cff, a5226d4756; verdict 794ae892b2; established f31c52ae43): `depth-monotone-leavitt-subalgebras-are-stably-finite`; `depth-monotone-configurations-cannot-force-ternary-minus-one`. The pair is inert for the anti-central form; the defect form is not firewalled (L9b) |
-| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established on paper, verification pending w4-vf-linear-b; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6; verifier PASS §31 at 216396d9ee): no containment reduction; Kazhdan, so LEA iff LEF; verdict open (L5). The other three have not landed. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
+| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established, verifier PASS w4-vf-linear-b §39 at ae0a4005ef; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6; verifier PASS §31 at 216396d9ee): no containment reduction; Kazhdan, so LEA iff LEF; verdict open (L5). The other three have not landed. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
 | verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §31, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
 ### L7. The listed mechanism dies
@@ -551,14 +551,18 @@ statements say. It is not a re-verification.
     deficits are still open in both characteristics.
 
   **Later still** (lane w7-sylv-global; artifact
-  `sylvester-exact-globality-and-kernel-compression-2026-09-12.md`; 696ae35bc7, 0a9c95f793; on paper,
-  verification pending w4-vf-linear-b).
+  `sylvester-exact-globality-and-kernel-compression-2026-09-12.md`; 696ae35bc7, 0a9c95f793; verifier PASS
+  on all four claims, w4-vf-linear-b §39 at ae0a4005ef, recorded on the nodes at 98d80a42cc).
   * **Submodularity.** `sylvester-rank-functions-are-submodular-on-stacked-rows`:
     `rho([A; B; C]) + rho(B) <= rho([A; B]) + rho([B; C])`, by one (S4) step. It makes "adding these rows
     does not raise the rank" transitive and closed under stacking.
   * **Exact globality, constant `1`.** `sylvester-leavitt-kazhdan-fixed-ideals-are-global`. The loss `1/m`
     of `perfect-group-augmentation-quotient-ranks-are-fixed-point-free` disappears, and no Kazhdan property
     is used.
+    * *Correction* (w4-vf-linear-b §39, artifact Remarks 2.4). Normal generation alone gives the `1/m`
+      bound only at `Z = 1`. Over `F_2`, some `Z` acts on the `A_5` sum-zero module as a projection onto
+      `Fix(A_4)`, so `psi(Z) = 1/4` and `psi(X_S Z) = 0`. So the `1/m` bound for general `Z` also needs the
+      compression hypothesis, which `R^x` has. No node stated the wrong sentence.
   * **Kernel compression.** `sylvester-rank-functions-compress-to-commuting-kernels`. If `P` commutes with a
     subring `C` and `rho(P) < 1`, then `sigma(A) = (rho([P_n; A]) - n rho(P)) / (1 - rho(P))` is a Sylvester
     rank function on `C`. Commuting `P`, `T` satisfy `rho([P; T]) + rho(PT) <= rho(P) + rho(T)`. This is the
@@ -570,7 +574,10 @@ statements say. It is not a re-verification.
   * **Route.** `sylvester-rank-triviality-via-strict-defect-submultiplicativity` targets
     `sylvester-rank-functions-on-leavitt-units-kill-two-root-defect`. Its one open input is
     `sylvester-disjoint-cylinder-defects-strictly-submultiplicative`, so
-    `sylvester-rank-functions-on-leavitt-units-are-regular` is off this route.
+    `sylvester-rank-functions-on-leavitt-units-are-regular` is off this route. The route is not in the
+    verifier's queue. §39.5 checks its arithmetic, `(1 - theta) delta^2 <= 2 eps delta` with `delta >= c_0`,
+    and adds no verdict line. The lead spot-check agrees: the contradiction holds once
+    `eps < (1 - theta) c_0 / 2`. The subsumption scan of §39.5 finds nothing subsumed or refuted.
   * **Scope.** The deficit implies the model form for tuples with proper union. Given the gap it is
     equivalent to the Sylvester target, so it is the local form a proof aims at. The minimizer numbers
     (multiplicative defects, equality in the triangular count, unchanged corners) are those of the
