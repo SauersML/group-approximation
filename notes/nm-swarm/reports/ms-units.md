@@ -49,3 +49,8 @@ Line numbers are those of the census at manuscript hash e66db325… (older than 
 3. Build every missing carrier in a new module; if a printed claim is false, land a refutation.
 
 Prior audits of this range: leavitt-units (corollary rows re-read word by word; theorem rows checked for closedness only), agp-units and o-agp-k1 rows, audit-sec3 (structural rows).
+
+## CLAIMS
+
+- CLAIM row 2d6574150d4d at printed generality: module `GroupApproximation/Manuscript/NonMFSentences/MFQuotientUnitsDisplaysGeneral.lean`, endpoint `PrintedSteinbergDisplaysAtItemA`.  The closed carrier on main (`MFQuotientUnitsSteinberg.PrintedSteinbergDisplaysInRadical`) assumes that every block off `last` is equivalent to `1`.  Item (a) as printed gives only pairwise equivalence off `last`, and `e_m` equivalent to some `f <= e_1`.  The new endpoint discharges `OffLastRootsIn` through `manuscriptSentence_offLastCorner` (printed generality) and records the element of `EL_{m-1}(T)` explicitly.
+- CLAIM row c34115be7c92, appositive clause: same module, endpoint `PrintedKOneCountableAbelianMF`, stating "K_1(R), a countable abelian group, is MF" explicitly, together with the unique factorization.
