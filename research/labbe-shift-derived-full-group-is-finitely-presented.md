@@ -11,6 +11,15 @@ artifacts:
 
 **OPEN.** Let `Omega_U` be Labbé's 19-tile Wang shift (`minimal-aperiodic-wang-shift-exists`). The group `D([[Z^2 ~ Omega_U]])` is finitely presented.
 
+**Why it matters (2026-09-12, ex-fp-simple-sofic).** This one claim now carries
+`hyperlinear-fp-infinite-simple-group` by itself, through
+`fp-simple-amenable-orbit-via-labbe-shift` and
+`hyperlinear-fp-simple-via-amenable-orbit-full-group`. The group is sofic
+unconditionally (`amenable-orbit-full-group-subgroups-are-sofic`), so a proof of
+finite presentation gives a finitely presented infinite simple sofic group with no
+amenability input. It would also serve `fp-infinite-simple-amenable-group`, but
+only together with `labbe-shift-derived-full-group-is-amenable`.
+
 ## Attempts
 
 - **Refutation through SFT neighbourhoods (the suggested mechanism "finite presentation forces periodic points").** Dead as it stands.
@@ -45,6 +54,7 @@ artifacts:
 - **Presentations for minimal subshifts (arXiv:1508.04454, Theorem `IntroMain`, lines 70--96, read from source).**
   - It gives an infinite presentation, with generators indexed by words of the language, and a solvable word problem iff the language is recursive.
   - It gives no finite presentation and no finiteness criterion.
+- **Li, products of one-sided SFTs (arXiv:2110.04505, abstract only).** Proves type `F_∞` for topological full groups from products of shifts of finite type, through Garside categories of bisections. Those groupoids are compressible, so the method does not reach an invariant-measure groupoid such as `Z^2 ~ Omega_U`.
 - **Not verified from source:**
   - Brin's `2V` method;
   - the Bieri--Geoghegan--Kochloffel `Σ`-invariants;

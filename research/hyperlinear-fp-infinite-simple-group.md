@@ -52,3 +52,18 @@ Preferred strengthenings, in order: `S` torsion-free; `S` sofic.
   `fg-simple-hyperlinear-tree-group-not-finitely-presented`.  The remaining
   demand is a finitely presented example, which forces finitely generated
   amenable edge groups and finitely presented vertex groups.
+- **Amenable orbit full groups (ex-fp-simple-sofic, 2026-09-12).**  Live, and
+  the sharpest positive gate recorded.  Bounded piecewise translations of an
+  essentially free measure-preserving amenable action form sofic groups
+  (`amenable-orbit-full-group-subgroups-are-sofic`), so a finitely presented
+  simple group realized there is sofic
+  (`hyperlinear-fp-simple-via-amenable-orbit-full-group`).  No amenability of
+  the group is needed.
+  - Dead inside this certificate: every group containing `V`
+    (`stabilizer-rigid-groups-avoid-amenable-orbit-full-groups`) and every
+    infinite simple Kazhdan group
+    (`kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf`).  A non-amenable
+    realization must have non-free stabilizers off its fixed points.
+  - The one live instance: `fp-simple-amenable-orbit-via-labbe-shift`.  The root
+    waits there on the single open claim
+    `labbe-shift-derived-full-group-is-finitely-presented`.
