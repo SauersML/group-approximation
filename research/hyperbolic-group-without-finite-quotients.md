@@ -28,3 +28,12 @@ elementary groups are virtually cyclic, hence residually finite).
 - **Strengthened shape.**  `kazhdan-quotientless-hyperbolic-via-common-quotient`
   shows that property (T) can always be added, and with it the group becomes
   non-MF; any direct construction may aim for that stronger shape.
+- **Random density quotients (2026-09-13, lane solve-hyperbolic-rf; unreviewed).**
+  `density-random-groups-no-finite-quotients-below-exp-k`: at density `d` and odd
+  length `L`, a random group has no nontrivial finite quotient of order up to
+  `exp(c_m (2m-1)^(dL))`, and for `d ∈ (1/3, 1/2)` it is also hyperbolic and
+  Kazhdan with probability tending to 1. Counting stops there:
+  `density-random-simple-quotient-first-moment-diverges` shows the expected number
+  of simple quotients is infinite at every large length. After conditioning on
+  hyperbolicity, a finite expectation would already settle this claim through
+  `convergent-quotient-count-decides-gromov-question`.
