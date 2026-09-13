@@ -100,3 +100,21 @@ ultraproduct of partition algebras of expander components.
   - What remains open is only the multiplicity fibres: relative commutants of the holonomy
     almost-representations of the type stabilizers, which are Kazhdan congruence-type subgroups of
     `SL_d(Z)`, on multiplicity spaces.
+- **The fibres contain `SL_d(Z)` itself (2026-09-13, lane `ex-hs-masa-lift-counter`).**
+  `theorem-e-liftable-masa-crux-contains-sl-d-z-dec` (established; `r >= 3`, `d >= 3` odd,
+  `gcd(r, q-1) = 1`). The tensor product of the projective permutation modules over the points of
+  `L/(x^l - 1)` is a genuine representation of `G`, irreducible on the vertex, with vanishing
+  normalized characters. Tensoring it with any model `h` of `SL_d(Z)` gives a trace-preserving model
+  with exact (H1) whose actor commutant is `1 (x) h(SL_d(Z))'`.
+  - By `liftable-abelian-subalgebras-are-amplification-invariant`, its masas lift iff those of `h'` do.
+  - So this claim at the pair implies `DEC_kappa(SL_d(Z))`. One model of `SL_d(Z)` with a non-liftable
+    commutant refutes it.
+  - A counterexample therefore needs a model of `SL_d(Z)` that is not flexibly roundable to genuine
+    representations. Flexible HS stability of `SL_d(Z)` is open, and this is where the counterexample
+    side now sits.
+- **One compressor: the exact criterion (same lane).** `one-compressor-liftable-masa-iff-type-orbits-tight`
+  (established). If a single compressor exactly normalizes the vertex commutant, its fixed algebra
+  has a liftable masa iff the trace-weighted periods of the vertex types are tight.
+  - For one compressor the fibre holonomy is a single unitary and never obstructs.
+  - So property (T) of the actor quotient is what the full actor spends at the type level, and the
+    remaining difficulty is the non-amenable fibre holonomy recorded above.
