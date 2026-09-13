@@ -90,7 +90,11 @@ A cell of the class of positive measure has a pocket (`OsinExteriorDoubleCut`), 
 realized section family on the pocket with a cell `k` above `1 − 11μ` (Corollary 9.6
 at the pocket), at most one exterior region of `k` to each of `s_1, t_1, s_2`, and a
 glue-back: a realized section family on `Δ` whose cell `i′` has the perimeter of `k`,
-exterior regions at least as long as those of `k` to `t_2`, and smaller measure. -/
+exterior regions at least as long as those of `k` to `t_2`, and smaller measure.
+
+Retired (off route, roster of 2026-09-13): the descent goes through
+`SectionPocketCutInput` (`Estimating/OsinAppendixDescentCut`), assembled from the pieces
+in `Estimating/OsinPocketPieces`.  This input is kept, not deleted. -/
 def OsinDescentStepInput (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps : ℕ)
     (W : Set (List (RelLetter G Lambda)))
     (measure : ∀ (Delta : DiscDiagram.{u, w, v} W)
