@@ -88,3 +88,21 @@ so it adds no census row.
 - Arcs map through the dart embedding, so no arc length changes. Nothing to report to w1-binder-7's full-arc claim.
 
 Next in this item: none. Ready for the next leaf.
+
+## Item 3: W1 binder 5 step 6 (main's 18:1x assignment; boundary proposed to w1-binder-5 and ms-intro-2)
+
+Ownership check, 18:1x: audit-sec5's `.files` hold only counterexamples and Audit/Sec5, and its last landing was 10:43.
+The shared tree has no cell-to-cell face-set or pinch draft, and the module paths below are free.
+
+CLAIM binder 5 step 6, the cell-to-cell pocket:
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFaceSet.lean`: the cell pocket face set over
+  `CellPocketWalk` (arcs on Π_i and Π_j), walk order and simplicity, and existence from the oriented walk (steps 2–4).
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinchModel.lean`: the model test of the pinch at
+  ε = 0 and at ε ≥ 1, first.
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellPinch.lean`: the cell pinch Prop at `0 < eps`.
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellRegion.lean`: a simple cell pocket face set gives a
+  `PocketRegion` with inner and outer FollowsBoundary, together with the conjuncts of hull-select's copy form of
+  `MultipleEdgePocketRegionInput`.
+
+Not claimed: the CopyClean producers (w1-binder-5, ms-cite-2), step 5's kept cell (ms-intro-2), and the final assembly
+(w1-binder-5).
