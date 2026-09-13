@@ -85,3 +85,20 @@ is not properly infinite in `A`.  It would follow if `1_X` were finite in `A`.
   * So `A` is not an inductive limit of algebras with separative `V`, and no
     finite-stage groupoid approximation whose monoids are tame can certify
     finiteness.
+* **Exact monoid shape of any example.**  By Kwasniewski--Meyer--Prasad
+  (arXiv:2502.17190v3, Theorem 6.5 and Corollary 6.8;
+  `kmp-plain-paradox-groupoid-dichotomy`), a mixed simple Cantor crossed
+  product by a topologically free minimal action has a type semigroup with no
+  state that fails plain paradoxes.  The candidates above have exactly that
+  shape, and KMP give no converse without almost unperforation.  The missing
+  converse is `finite-clopen-type-stays-finite-in-cantor-crossed-product`, and
+  `cantor-crossed-product-mixed-via-finite-type-persistence` derives this claim
+  from it.
+* **The Z-stable variants are not topologically free, and products cannot fix
+  that.**  In Boldrini--Prasad's proof (p. 27) the second factor of
+  `⊕_N F_infinity` acts trivially, `alpha(g_0, g_1, ...)x = alpha'(g_0)x`.
+  Z-stabilizing by a topologically free product instead, with any minimal
+  Cantor `Z`-action or any divisible factor, makes `[1]` properly infinite
+  (`product-with-divisible-cantor-action-kills-finite-clopen-type`).  So these
+  constructions cannot show that topologically free finite-type actions ever
+  have purely infinite crossed products.
