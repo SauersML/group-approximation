@@ -52,3 +52,19 @@ enumeration must impose an additional mixed near relation. Such free
 near actions can be constructed computably for every decidable input,
 and their envelopes have decidable word problem, so these effective
 properties alone do not address the finite-presentation requirement.
+
+Local presentation tests (2026-09-13,
+`research/artifacts/shell-envelope-local-tests-2026-09-13.md`) add no
+weaker sufficient condition. Zaremsky's bad-edge Proposition 3.1
+(arXiv:2405.18354v2) is vacuous on the Belk--Hyde--Matucci germ complex:
+its cell stabilizers are conjugates of S(M,M'), finitely generated for
+every nu, so the criterion reduces to finite presentation of the vertex
+stabilizers S(M,M') with |M'|<=2, the clauses of
+`decidable-inputs-have-fp-shell-stabilizers`. The cheaper germ
+hypothesis of their Corollary 2.10 fails for every input that is not
+virtually cyclic, by `shell-isotropy-germs-fail-bhm-germ-hypothesis`.
+The free-near-shift obstruction is computably avoidable for route
+inputs P_0 x Z without bounding the complexity of the other generators,
+by `route-form-shell-inputs-have-computable-mixed-near-relations`. No
+finite presentation of any S(M,M') for an input that is not virtually
+cyclic has been found.
