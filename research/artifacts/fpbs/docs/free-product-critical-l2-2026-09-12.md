@@ -10,8 +10,9 @@ Lane `bs-l2-operator-route`, 2026-09-12. This note does three things:
    posed (Section 1.1). No counterexample candidate was found.
 3. It proves the condition for every Cayley graph of a free product on the
    union generating set (Section 2). Section 3 treats novelty: the verified
-   sources do not list this class, and some of its graphs lie outside every
-   listed class.
+   sources do not list this class. Some of its graphs are not hyperbolic, have no
+   nonunimodular automorphism subgroup, are not products with trees, and have
+   spectral radius above `1/2`.
 
 Notation. `G=(V,E)` is connected and locally finite.
 
@@ -422,3 +423,129 @@ up path, and its weight decays like `alpha^j`. The mass that makes `chi_{p_c}`
 infinite lies on down paths, and `theta^l` damps it. The weight `phi` is
 unbounded, which the Schur test allows. Section 4 records where each item fails
 beyond free products.
+
+## 3. Novelty
+
+**What the sources already give.**
+
+- *Groups.* EJP deduces from Pak and Smirnova-Nagnibeda that every finitely
+  generated nonamenable group has *some* Cayley graph with `p_c<p_{2->2}`
+  (Section 1.3). So the Theorem gives no group its first such Cayley graph. What
+  is new concerns specific graphs: every union generating set works, and the gap
+  is explicit.
+- *Some graphs of the class.* `Cay(Z * Z/2, {t, t^{-1}, a})` is the 3-regular tree.
+  Its blocks are lines and single edges, and by Proposition 3.1 below every cycle
+  lies in one block. The tree is hyperbolic, and its automorphism group has a
+  quasi-transitive nonunimodular subgroup. More generally, if every `H_i` is
+  hyperbolic then `Gamma` is hyperbolic, and GAFA already covers `X`. I did not
+  determine which other graphs of the class fall under GAFA Theorem 2.9.
+
+**The example.** Let `H = H_3(Z)` be the integer Heisenberg group, and let
+`K = Z/2 = {e,a}`.
+
+- **A generating set with no extra symmetry.** Leemann–de la Salle, *Cayley graphs
+  with few automorphisms: the case of infinite groups* (arXiv:2010.06020),
+  Theorem `thm:main`: "Every finitely generated group `G` that is not virtually
+  abelian admits a finite degree Cayley graph whose automorphism group is not
+  larger than `G` acting by left-translation."
+  - Their Cayley graphs are simple and unoriented, on a symmetric generating set
+    `S ⊆ G\{1}`.
+  - `H` is not virtually abelian. So `H` has a finite symmetric generating set
+    `S_H`, with `e` not in `S_H`, such that `Aut(Cay(H,S_H)) = H`.
+  - The earlier paper arXiv:1812.02199, Theorem `thm:mainUndirected`, also gives
+    this. It needs `G` to be non-abelian, not generalized dicyclic, and to have an
+    element of large order. A generalized dicyclic group contains an element of
+    order 4, and `H` is torsion free.
+- Put `Gamma = H * K`, `S = S_H ⊔ {a}` and `X = Cay(Gamma,S)`. The Theorem gives
+  `p_c(X) < p_{2->2}(X)`.
+
+**Proposition 3.1.** Every simple cycle of `X` uses edges of only one block, and
+`Aut(X) = Gamma` acting by left multiplication.
+
+*Proof.*
+
+1. *Cycles.* Suppose a simple cycle uses edges of two blocks. Then at some vertex
+   `x` it passes from an edge `yx` of a block `B` to an edge `xy'` of a block
+   `B' != B`.
+   - In `Tr`, removing `x` separates `B` from `B'`. Then `y` lies in the component
+     of `B`, and `y'` lies in the component of `B'`.
+   - The rest of the cycle is a path from `y'` to `y` that avoids `x`. Its walk in
+     `Tr` avoids `x`, which is a contradiction.
+
+   This holds for every free product in Section 2.
+2. *No cut vertex inside a block.* `H` is one-ended. It is amenable, so it does not
+   have infinitely many ends, and it is not virtually `Z`. A one-ended
+   vertex-transitive graph `Y` has no cut vertex:
+   - Suppose it has one. For a cut vertex `v`, the graph `Y - v` has at least two
+     components, and only one of them is infinite.
+   - Choose a cut vertex `v` and a finite component `C` of `Y - v` with `|C|`
+     minimal, and let `w in C`. By transitivity `w` is a cut vertex.
+   - Let `C'` be a finite component of `Y - w`. It contains a neighbour of `w`, so
+     `C' ∪ {w}` is connected. It also avoids `v`: the infinite component of
+     `Y - v`, together with `v`, is connected and avoids `w`, so it lies in the
+     infinite component of `Y - w`.
+   - So `C' ∪ {w} ⊆ C`, and `|C'| < |C|`. This contradicts minimality.
+
+   `Cay(H,S_H)` is connected, has at least 3 vertices and no cut vertex, so it has
+   no bridge. A bridge would have an endpoint of degree at least 2, and that
+   endpoint would be a cut vertex.
+3. *Automorphisms.* By steps 1 and 2, the edges of `X` that lie on no cycle are
+   exactly the `a`-edges.
+   - So every automorphism `phi` maps `a`-edges to `a`-edges. Removing the
+     `a`-edges leaves the cosets `gH` as the components, so `phi` permutes the
+     cosets.
+   - The edges of `X` inside `gH` are the `S_H`-edges, since `a` is not in `H`. If
+     `phi(gH) = g'H`, then `x -> g'^{-1} phi(g x)` is an automorphism of
+     `Cay(H,S_H)`.
+   - So it is left multiplication by some `h_0 in H`, and `phi(y) = g' h_0 g^{-1} y`
+     for `y in gH`. Hence `phi(ys) = phi(y)s` for `s in S_H`.
+   - Also `phi(ya) = phi(y)a`, because every vertex has exactly one `a`-edge.
+   - By induction on word length, `phi(y) = phi(e) y` for every `y`. ∎
+
+**Proposition 3.2.** `X` has none of the non-perturbative properties of Section
+1.3, and its spectral radius is at least `4/5`.
+
+- *Not hyperbolic.* `H` contains `Z^2`, generated by a non-central generator and
+  the centre. A hyperbolic group has no subgroup isomorphic to `Z^2`. So `Gamma`
+  is not hyperbolic, and neither is any of its Cayley graphs.
+- *No nonunimodular subgroup.* By Proposition 3.1, every subgroup of `Aut(X)` acts
+  freely on the vertices. Its stabilizers are trivial, so it is unimodular, and
+  GAFA Theorem 2.9 does not apply.
+- *Not a product with a tree.* A Cartesian product of two connected graphs, each
+  with at least two vertices, has no cut vertex. Every vertex `g` of `X` is a cut
+  vertex, because in `Tr` the node `g` separates `ga` from `gH\{g}`.
+- *Spectral radius.* Let `d = |S_H| + 1` be the degree.
+  - Simple random walk on `X` returns to `e` at time `2k` with probability at
+    least `((d-1)/d)^{2k} p^H_{2k}(e,e)`. That is the probability of taking only
+    `S_H`-steps and returning, where `p^H` is simple random walk on `Cay(H,S_H)`.
+  - `H` is amenable, so `p^H_{2k}(e,e)^{1/2k} -> 1` by Kesten's theorem. So
+    `rho(X) >= (d-1)/d`.
+  - `H` is torsion free and not cyclic, so `|S_H| >= 4`, and `rho(X) >= 4/5`.
+
+  The abstract of arXiv:2002.02916 names the class `rho<1/2`.
+- *Cheeger constant and girth.* Let `F ⊆ H` be finite. Every vertex of `F` has its
+  `a`-edge leaving `F`.
+  - Since `H` is amenable, the edge Cheeger constant satisfies `h(X) <= 1`, against
+    degree `d >= 5`.
+  - Take non-commuting `s,t in S_H`. The word `s t s^{-1} t^{-1} s^{-1} t s t^{-1}`
+    is a conjugate of `[s,[s,t]]`, which is trivial because `[s,t]` is central.
+  - Its letters are four distinct elements, and no two consecutive letters are
+    inverse, even cyclically. So it traces a closed non-backtracking walk of
+    length 8, and `X` has girth at most 8.
+
+  The perturbative papers ([MR1833805] on large Cheeger constant, [MR3005730] on
+  high girth) were not re-read. Their thresholds are not quoted here, and this
+  note does not claim that `X` lies outside those two classes.
+
+**What is new, relative to the verified sources.** The Theorem covers graphs such
+as `X`:
+
+- not hyperbolic;
+- with no quasi-transitive nonunimodular automorphism subgroup;
+- not products with trees;
+- with spectral radius above `1/2`.
+
+No source read for this note gives `p_c<p_{2->2}` for such graphs. The EJP remark
+proposes infinitely-ended transitive graphs as "a modest first step". The Theorem
+settles the special case of free-product Cayley graphs on union generating sets,
+not that question.
