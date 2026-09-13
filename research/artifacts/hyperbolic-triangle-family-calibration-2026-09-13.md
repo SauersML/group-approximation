@@ -89,21 +89,23 @@ the configuration test.
 | `S_17` | 432 | 216 | 10,287,648 | 0 | 528 s |
 | `S_18` | 432 | 216 | 10,287,648 | 0 | 860 s |
 | `S_19` | 432 | 216 | 10,287,648 | 0 | 1434 s |
+| `S_20` | 432 | 216 | 10,287,648 | 0 | 1545 s |
+| `S_21` (types `21`, `7+7+7` added) | 648 | 324 | 38,292,912 | 0 | 2571 s |
 | `L_5(2)` (2 classes of `A_7`; `|C(t)| = 42`) | 216 | 216 | 979,776 | 0 | 34 min |
 | `O_8^-(2)` (1 class; `|C(t)| = 21`) | 108 | 108 | 81,648 | 0 | 114 s |
 | `Sp_8(2)` (2 classes; `|C(t)| = 42`) | 216 | 216 | 734,832 | 0 | 14 min |
 | `O_8^+(2)` (3 classes; `|C(t)| = 7`) | 324 | 324 | 734,832 | 0 | 16 min |
 
 An earlier `S_15` run that took only non-natural `α` examined 4,572,288 double cosets and also found 0
-(`job_cfg_sn_nonnatural_only.out`). At this version the runs for `n = 20, 21` and for `L_6(2)` had not
-finished. The `n = 22` run was stopped, because the estimate was about `2·10^8` double cosets.
+(`job_cfg_sn_nonnatural_only.out`). At this version the `L_6(2)` run had not finished. The `n = 22` run was stopped, because the
+estimate was about `2·10^8` double cosets.
 
 ## 5. Consequence
 
 **Computational conclusion (complete enumeration, unreviewed).** No member of `F` has a nontrivial
 homomorphism into any of the following:
-- `S_n` for `n <= 19`, so no finite group with a faithful permutation representation of degree at
-  most 19;
+- `S_n` for `n <= 21`, so no finite group with a faithful permutation representation of degree at
+  most 21;
 - `L_5(2)`, which contains `A_8 = L_4(2)`;
 - `O_8^+(2)`, which contains `A_9` and `Sp_6(2)`, and `O_8^-(2)`;
 - `Sp_8(2)`, which contains `Sp_6(2)`.
@@ -155,7 +157,7 @@ positions of the edge groups behave randomly. The exponents in the main families
 **Consequence.**
 - **The sum converges.** In every family the exponent is negative, and `A_8` must embed in `S`. So the
   sum over finite simple `S` converges and is dominated by the smallest groups containing `A_8`.
-- **The dominant targets are empty.** For `A_n` with `n <= 19`, and for `L_5(2)`, `O_8^±(2)` and
+- **The dominant targets are empty.** For `A_n` with `n <= 21`, and for `L_5(2)`, `O_8^±(2)` and
   `Sp_8(2) ⊇ Sp_6(2)`, the configuration searches of §4 cover the whole family and find nothing.
 - **Prediction.** A typical member of `F` has no finite quotient at all, and no structured source of
   small quotients has turned up that would override that prediction.

@@ -137,6 +137,6 @@ same for all four candidates, as they should be: they depend only on the orbit t
 - **Low-index cross-check** (`lowindex.g`). GAP `LowIndexSubgroupsFpGroup` did not finish index 15 on
   the calibration presentation within 16 minutes, so it was abandoned.
 - **The zeros are family-wide at small degree.** No hyperbolic `(A_7, A_7, A_8)` triangle with link
-  girths `(6,6,8)` acts nontrivially on at most 19 points, and none maps into `L_5(2)`, `O_8^±(2)` or
+  girths `(6,6,8)` acts nontrivially on at most 21 points, and none maps into `L_5(2)`, `O_8^±(2)` or
   `Sp_8(2)`; see `hyperbolic-triangle-family-calibration-2026-09-13.md`. So in those ranges the zeros
   carry no information specific to the candidates.

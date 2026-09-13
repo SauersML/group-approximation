@@ -105,7 +105,7 @@ nontrivial finite quotient, nor some member having none.
     None into `PGL_7` in characteristics 29 and 43.
   - **Family-wide calibration.** A twist-free configuration search covers all hyperbolic
     `(A_7,A_7,A_8)` `Z/7`-triangles with link girths `(6,6,8)` at once. No member acts on at
-    most 19 points, and none maps into `L_5(2)`, `O_8^±(2)` or `Sp_8(2)`. 150 random members
+    most 21 points, and none maps into `L_5(2)`, `O_8^±(2)` or `Sp_8(2)`. 150 random members
     show no small linear representation. So in these ranges the candidates' zeros carry no
     information specific to them.
   - **The counting heuristic, applied to every target family,** predicts that typical members
