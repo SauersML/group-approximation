@@ -1,5 +1,6 @@
 import GroupApproximation.GroupTheory.HydeLodha.QTwoFinitelyPresented
 import GroupApproximation.GroupTheory.HydeLodha.QTwoFinitePresentationStabK
+import GroupApproximation.GroupTheory.HydeLodha.QTwoLemmaFourSixAssembly
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -10,14 +11,17 @@ Theorem 4.8."  At `n = 2`, in the finite-presentation form the Fournier-Facio pa
 
 The chain, with its one open leaf:
 
-* Lemma 4.6: `UpsilonFinitelyPresented` (`QTwoFinitePresentationStabK`), with the pieces of its proof
-  in `QTwoLemmaFourSixStatements`;
+* the dynamics in the proof of Lemma 4.6: `LemmaFourSixDynamicsStatement` (`QTwoLemmaFourSixStatements`),
+  the open leaf;
+* Lemma 4.6: `UpsilonFinitelyPresented` (`QTwoFinitePresentationStabK`), from the dynamics by
+  `upsilonFinitelyPresented_of_dynamics` (`QTwoLemmaFourSixAssembly`);
 * Proposition 4.7: `isFinitelyPresented_stabK_of_upsilon`, packaged here as
   `stabKFinitelyPresented_of_upsilon`;
 * Theorem 4.8 and simplicity: `finitelyPresentedInfiniteSimpleStatement_of_stabK`
   (`QTwoFinitelyPresented`).
 
-When Lemma 4.6 closes, the closed `finitelyPresentedInfiniteSimple_closed` is added here.
+When `LemmaFourSixDynamicsStatement` closes, the closed `finitelyPresentedInfiniteSimple_closed` is added
+here.
 -/
 
 namespace GroupApproximation
@@ -36,8 +40,15 @@ theorem finitelyPresentedInfiniteSimpleStatement_of_upsilon (hU : UpsilonFinitel
   finitelyPresentedInfiniteSimpleStatement_of_stabK
     (stabKFinitelyPresented_of_upsilon hU le_rfl qTwo_le_gammaTwo)
 
+/-- **hW over the dynamics of Lemma 4.6**: a finitely presented, power-torsion-free, infinite simple
+group. -/
+theorem finitelyPresentedInfiniteSimpleStatement_of_dynamics (hdyn : LemmaFourSixDynamicsStatement) :
+    FinitelyPresentedInfiniteSimpleStatement :=
+  finitelyPresentedInfiniteSimpleStatement_of_upsilon (upsilonFinitelyPresented_of_dynamics hdyn)
+
 #audit_axioms GroupApproximation.HydeLodha.stabKFinitelyPresented_of_upsilon
 #audit_axioms GroupApproximation.HydeLodha.finitelyPresentedInfiniteSimpleStatement_of_upsilon
+#audit_axioms GroupApproximation.HydeLodha.finitelyPresentedInfiniteSimpleStatement_of_dynamics
 
 end HydeLodha
 end GroupApproximation

@@ -1,9 +1,10 @@
-# simple-group (lane report, 2026-09-12)
+# simple-group (lane report, 2026-09-13)
 
 Scope: the finitely presented, torsion-free, infinite simple group of the Fournier-Facio paragraph
 (tex 1675–1685), with no literature inputs: Hyde–Lodha's `Q₂ = [Γ₂, Γ₂]`. The simplicity half is
 fff-quotient's (`isSimpleGroup_qTwo_closed`, `qTwo_torsionFree`, `infinite_qTwo`). This lane owns the
-Higman–Thompson layer, the finite-presentation tools, Lemma 4.4 and Theorem 4.8.
+Higman–Thompson layer, the finite-presentation tools, Lemma 4.4, Theorem 4.8 and the Lemma 4.6 /
+Proposition 4.7 assembly (roster: integrator of hW).
 
 ## Compiled and landed (all green in probes)
 - Presentations: `DoubleCosetFinitePresentation.isFinitelyPresented_of_doubleCosets` (2-dimensional
@@ -19,30 +20,34 @@ Higman–Thompson layer, the finite-presentation tools, Lemma 4.4 and Theorem 4.
 - `HydeLodha/`: `StrictMonoTorsionFree`, `HigmanEpstein`, `CommutatorGeneration`, `QTwoBrownStab`
   (vertex and edge stabilizers, `isFinitelyPresented_of_hom_int`), `QTwoBrownCover` (finitely many
   double cosets), `QTwoBrown` (`isFinitelyPresented_of_stabK_triangle`).
-
 - `HydeLodha/QTwoFinitelyPresented` (47c4e98a0, probe 0912-092138-12304): Theorem 4.8 and
-  `FinitelyPresentedInfiniteSimpleStatement` over the named hypotheses `StabKFinitelyPresented` (HL
-  Proposition 4.7, fff-quotient) and `VertexHTriangle`.  The triangle count is discharged by
-  `vertexHTriangle hQ hΓ` (go-lemma42's `vertexH_triangle`, `QTwoBrownTriangle`), giving
-  `isFinitelyPresented_of_qTwo_le_of_stabK`, `isFinitelyPresented_qTwo_of_stabK` and
   `finitelyPresentedInfiniteSimpleStatement_of_stabK` over Proposition 4.7 alone.
+- `HydeLodha/QTwoLemmaFourSixCaseOne` (44d75dddd, probe 0912-100944-94062): `upsilonc`,
+  `commutator_upsilon_le_upsilonc`, `upsilon_commutator_inter_upsilonc`, `pow_conj_mem_commutator_upsilon`.
+- `HydeLodha/QTwoLemmaFourSixGenerators` (56aca9630, probe 0913-015349-13908): repaired at the pin;
+  `exists_twisted_generators` (`⟨s_i u_i⁻¹ s_i⁻¹ u_i⟩ ≅ F_6` with commutator subgroup `Υ_{Γ₂}(J₀)'`).
+- `HydeLodha/QTwoLemmaFourSixStatements` (232d6b12b, compiled): the piece Props
+  `LemmaFourSixDynamicsStatement` (hl-lemma46) and `LemmaFourSixCaseOneStatement`.
+
+## Landed with this report (probe 0913-021204-99418, propext, Classical.choice, Quot.sound)
+- `HydeLodha/QTwoLemmaFourSixAssembly` (new): `lemmaFourSixCaseOne_of_dynamics` (`N = ⟨f, H⟩` is an
+  ascending HNN extension of `H ≅ F_6`, and the Claim puts `Υ_{Γ₂}(I)'` in `N`),
+  `isFinitelyPresented_upsilon_long_unit_of_caseOne`, `isFinitelyPresented_upsilon_long_of_caseOne`
+  (`|I| = 1` by an ascending HNN extension over `Υ_Γ([a + λ, a + 1])`), `upsilonFinitelyPresented_of_caseOne`
+  and `upsilonFinitelyPresented_of_dynamics` (Lemma 4.6). `|I| < 1` is consumed from kh-ejz's
+  `QTwoLemmaFourSixTransfer` (58cfe133e). The `|I| = 1` lemmas fill the roster's fff-quotient slot, so no
+  separate `|I| = 1` Prop is needed.
+- `HydeLodha/FinitelyPresentedInfiniteSimpleClosed` (232d6b12b + edit):
+  `stabKFinitelyPresented_of_upsilon`, `finitelyPresentedInfiniteSimpleStatement_of_upsilon`,
+  `finitelyPresentedInfiniteSimpleStatement_of_dynamics`.
 
 ## Residual
-Only `StabKFinitelyPresented Γ := ∀ K : Set ℚ, K.Finite → K.Nonempty → (∀ k ∈ K, Dyadic6 k) →
-Group.IsFinitelyPresented ↥(stabK Γ K)` (fff-quotient's `isFinitelyPresented_stabK`).  When it lands,
-`isFinitelyPresented_qTwo` and the closed `finitelyPresentedInfiniteSimpleStatement` are one-line terms
-in `QTwoFinitelyPresented`.
-
-## In progress
-Two Lemma 4.6 pieces for fff-quotient's Proposition 4.7, with the exact statements fff-quotient sent:
-- (a) `HydeLodha/QTwoLemmaFourSixCaseOne` (44d75dddd, green in probe 0912-100944-94062): `upsilonc`
-  (`Υ^c`), `commutator_upsilon_le_upsilonc`, `upsilon_commutator_inter_upsilonc`
-  (`Υ_{Γ₂}(I)' ∩ Υ^c_{Γ₂}(J₀) = Υ_{Γ₂}(J₀)'`, Lemma 4.4 through `perHom`) and
-  `pow_conj_mem_commutator_upsilon` (tex 904–905).
-- (c) `HydeLodha/QTwoLemmaFourSixGenerators` (landed unverified 7db72cfc1, probe running):
-  `brownRels_le_commutator`, `exists_mulEquiv_closure_mul`
-  and `exists_twisted_generators` (`⟨s_i u_i⁻¹ s_i⁻¹ u_i⟩ ≅ F_6` with commutator subgroup `Υ_{Γ₂}(J₀)'`,
-  tex 889–892).
+Only hl-lemma46's `LemmaFourSixDynamicsStatement`: for grid `0 < a < b < 1`, an `f ∈ Υ_{Q₂}([a, b])` with
+slope `6` at `a⁺`, grid `c < d` and `a < e₁ < c < d < e₂ < b` with `c ≤ f e₁`, `f e₂ ≤ d`, every
+`k ∈ Υ^c_{Γ₂}([a, b])` conjugated by some `f^n` into `Υ^c_{Γ₂}([c, d])`, and six `s_i ∈ Υ_{Q₂}([e₁, e₂])`
+moving `perIoo c d` off itself and off each other. When it lands, `theorem finitelyPresentedInfiniteSimple_closed :
+FinitelyPresentedInfiniteSimpleStatement := finitelyPresentedInfiniteSimpleStatement_of_dynamics ...` goes
+in `FinitelyPresentedInfiniteSimpleClosed` with `#audit_closed_axioms`, and the module is queued for wiring.
 
 ## Census
 No row yet: the printed sentence is graded through `FournierFacioParagraph`, which also needs the
