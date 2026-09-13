@@ -1,0 +1,10 @@
+links: X1 [ 6, 3, 3 ]  X0 [ 8, 3, 3 ]
+pattern [ 1, 1, 1 ]: #isos [ 8, 8 ] #consistent triples 0
+pattern [ 1, 1, 2 ]: #isos [ 8, 8 ] #consistent triples 0
+pattern [ 1, 2, 1 ]: #isos [ 8, 8 ] #consistent triples 0
+pattern [ 1, 2, 2 ]: #isos [ 8, 8 ] #consistent triples 0
+pattern [ 2, 1, 1 ]: #isos [ 8, 8 ] #consistent triples 0
+pattern [ 2, 1, 2 ]: #isos [ 8, 8 ] #consistent triples 0
+pattern [ 2, 2, 1 ]: #isos [ 8, 8 ] #consistent triples 0
+pattern [ 2, 2, 2 ]: #isos [ 8, 8 ] #consistent triples 0
+DONE

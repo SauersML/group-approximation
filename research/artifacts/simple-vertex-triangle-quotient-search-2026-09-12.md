@@ -100,6 +100,36 @@ this family starts at degree 15, where `A_7` and `A_8 = L_4(2)` act on 15 points
 needs the embedding-based enumeration, whose cost is `|C_S(t)|` per class, not a scan
 of the conjugacy class.
 
+## 5. The canonical chamber-transitive choice does not exist (parity of type changes)
+
+A natural simple-vertex hyperbolic triangle over `F_2` would be chamber-transitive of
+half-girth type `(4,3,3)`. It would take:
+- vertex groups `A_6`, acting on GQ(2,2) through duads and synthemes, and two copies of
+  `L_3(2)`, acting on PG(2,2) through points and lines;
+- edge groups `S_4`;
+- face group `D_8`.
+
+The links check out: girth 8 and girth 6, all degrees 3 (`tri334_run.out`). But no such
+triangle of groups exists.
+- In each vertex group the two edge subgroups meet in `B = D_8`, and their normal
+  Klein four-groups `O_2` are the two different Klein four-subgroups of `B`: elations
+  with centre `p` versus axis `ℓ`, and `<(34)(56),(35)(46)>` versus `<(12)(34),(34)(56)>`.
+- So an isomorphism between edge subgroups of different types restricts to an outer
+  automorphism of `D_8`. One of the same type restricts to an inner one, because
+  `N_{S_4}(D_8) = D_8`.
+- Around the triangle the number of type-changing edges is
+  `[a≠b] + [1-a≠c] + [b≠c] ≡ 1 (mod 2)` for every choice of types `a, b, c`.
+- So the face holonomy is outer, and no consistent face embedding exists.
+
+Exhaustive enumeration agrees: for all 8 type patterns and all `8·8·8` edge
+isomorphisms mapping face to face, the number of consistent triples is 0
+(`tri334_run.g`, `tri334_run.out`). The same code and argument give 0 for
+`(L_3(2), L_3(2), L_3(2))` with face `D_8` (`tri333_cal.g`). That is consistent with the
+known chamber-transitive `Ã_2` groups over `F_2` having vertex groups `7:3` and trivial
+chamber stabilizers, but it means the run is not an independent calibration of the
+code. The random-twist candidates of §2 have trivial face groups, so this holonomy
+issue does not arise for them.
+
 **Heuristic, not a proof.** The expected dimension of `Hom(G, GL_7)` modulo conjugation
 is `47 + 47 + 48 - 3·42 - 48 = -32`. This takes `A_7` via `6+1`, `A_8` via `7`, and
 `Z/7` with 7 distinct eigenvalues. Larger `d` are worse in every splitting into trivial
