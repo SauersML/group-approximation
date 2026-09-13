@@ -28,9 +28,14 @@ Three firewalls now bound the torsor route:
   `torsor-cfi-port-profiles-are-cosets` (peer): completions inside the port
   algebra, and gadgets, land in cosets.
 
+A fourth firewall covers hidden shared labels:
+`hidden-labels-import-cross-context-commutation`.  Any refinement makes each
+non-rectangular context split into pieces on which its variables commute with
+the far neighbours, so factor models with nonzero commutators admit none.
+
 What survives:
 
-- hidden shared labels between adjacent contexts;
+- perfect traces with enough centre in their three-context algebras;
 - multi-variable edges with nonabelian exact label groups;
 - square completions whose fibres are not torsors.
 
@@ -163,18 +168,25 @@ tracial non-R^U coset system with nonabelian fibre image
 - So hidden labels import commutation of `x_w` with a context that does not
   contain `w`, on the sector `x_u = 0`.
 
-**General shape (heuristic, not a theorem).**
+**General shape (now a theorem).**
 
-- The label tuple of a context lies in a subgroup of the product of its label
-  groups.
-- If that subgroup is a product, the used values form a rectangle in the
-  shared bits.
-- Otherwise Goursat couples the labels of different edges through a common
-  quotient.  That coupled information lies in the algebras of three contexts
-  `c, c', c''` at once, even when `c'` and `c''` share no variable.
-- A no-go for sources whose non-adjacent contexts have trivial mutual algebra
-  looks plausible but is not proved.  Padding in an extension enlarges these
-  algebras.
+- The label pair of two edges of a context lies in a coset of a subgroup of
+  `L_(e') x L_(e'')`.
+- Goursat splits that coset into class rectangles, and the class projections
+  lie in `W*(p_c) ∩ W*(p_(c')) ∩ W*(p_(c''))`.
+- If the allowed restriction to `(u,w)` misses a pattern, each class has
+  constant `u` or constant `w`.
+- This is `hidden-labels-import-cross-context-commutation`.  There is a
+  projection `m` with `[X_u, P_(c'')] m = 0` and `[X_w, P_(c')] (1-m) = 0`.
+  - Factor models with both commutators nonzero admit no coset refinement.
+    An `M_3` example is recorded on the node.
+  - For synchronous sources with NAND pair contexts, every forbidden pair
+    `(q,a; q',a')` splits into local commutation of `P_q^a` with `P_(q')` and
+    of `P_(q')^(a')` with `P_q`.
+- What survives in torsor syntax:
+  - perfect traces whose three-context algebras have enough centre to
+    support these splittings;
+  - multi-variable edges with nonabelian exact label groups.
 
 ## 6. Plain graphs
 
@@ -204,9 +216,11 @@ Roberson--Schmidt, arXiv:2111.12362v1, pp. 12--17:
 
 ## 8. Sharpest next targets
 
-1. **Hidden labels.**  Prove that shared labels finer than the shared bits
-   force commutation across non-adjacent contexts for any perfect model in
-   generic position, or construct a perfect-commuting source that has them.
+1. **Centre in three-context algebras.**  Hidden labels now force the
+   commutation splits of `hidden-labels-import-cross-context-commutation`.
+   Decide whether some perfect commuting strategy of a Lin/MSSV source has
+   those splits on every forbidden pair.  If none does, the torsor route for
+   Boolean sources is closed, except on multi-variable edges.
 2. **Multi-variable edges.**  Is there an `MIP*=RE`-type source with an exact
    nonabelian label group, for example `Q_8` or `D_4` on three-variable
    edges?
