@@ -21,6 +21,11 @@ e-prints on MSI (`~/famstruct/`) and read from the TeX, except where a PDF is na
 - *l.716:* "Donnelly shows in~\cite{Don14} that $F$ is non-amenable if and only if there exists $\varepsilon > 0$ such that for any finite set $Y\subset F$, one has $|AY|\ge(1+\varepsilon)|Y|$, where $A=\{x_0,x_1,x_2\}$". Donnelly's paper itself was not read.
 - *Juschenko:* the survey TeX has no hit for "Juschenko". No separate combinatorial criterion by Juschenko was found; the Bleak–Juschenko criterion below is the one located.
 
+**Guba, arXiv:2101.01848 (`grringf.tex`), the source of Theorem `s24`.**
+- *l.392:* "... has a nonzero solution with the property $\deg u,v\le41$."
+- *l.395:* "Notice that we do not know what is the minimum degree of $u$, $v$ for solutions of this equation. A rough computer search can show that $n > 10$, but we do not even know whether the minimum value of $n$ is close to $10$ or $40$." Here `Y ⊆ S_(4,n)` consists of monomials of degree `n - 4`.
+- *l.370:* the construction is Donnelly's, and "What is called {\em ruinous} in Donnelly's paper, is called {\em doubling} in our terminilogy."
+
 **Moore, arXiv:1106.4735, `Hind_Ellis_F.tex`.**
 - *l.308:* "Define $\Tbb_n$ to be all elements of $\Tbb$ of cardinality $n$. These correspond to the ways to associate a sum of $n$ ones." Also: "Let $\Abb_n$ denote the collection of all probability measures on $\Tbb_n$."
 - *l.862–866:* "An embedding of $\Tbb_m$ into $\Abb_n$ is a convex combination of embeddings of $\Tbb_m$ into $\Tbb_n$. The range of such an embedding is a \emph{copy of $\Tbb_m$ in $\Abb_n$}."
@@ -86,12 +91,41 @@ So `S_(2,4) = X_1 X_2` and `S_(3,5) = X_2 X_3`.
 | 6 | 8/7 | 704/435 = 1.6184 | 973/435 = 2.2368 | 4178/1307 = 3.1966 | 5005 |
 | 7 | — | 2150/1359 = 1.5821 | 2941/1359 = 2.1641 | 7501/2447 = 3.0654 | 19448 |
 
-Degrees 8–12 for these sets, plus `X_3` and `S_(4,7)` (`P_(3,1)`), are running on MSI (array job 713721). Their values will be appended here.
+**Degrees 6–12** (array job 713721, `U = M_(D, R_S(D))`, one core each; seconds = wall time of the
+whole Dinkelbach loop). `S_(4,7)` is the fourteen-monomial set of `P_(3,1)`.
+
+| set | D | L = R_S(D) | `|U|` | `Λ_S(D)` exact | decimal | seconds |
+|---|---|---|---|---|---|---|
+| `S_(2,4)` | 8 | 10 | 43758 | 4737/2245 | 2.110022 | 2.4 |
+| `S_(2,4)` | 9 | 11 | 167960 | 7929/3850 | 2.059481 | 9.4 |
+| `S_(2,4)` | 10 | 12 | 646646 | 74419/36845 | 2.019786 | 40.5 |
+| `S_(2,4)` | 11 | 13 | 2496144 | 159074/80215 | **1.983095** | 175.3 |
+| `S_(2,4)` | 12 | 14 | 9657700 | 1081546/555319 | 1.947612 | 753.6 |
+| `S_(3,5)` | 8 | 11 | 75582 | 22469/7610 | 2.952562 | 3.1 |
+| `S_(3,5)` | 9 | 12 | 293930 | 17279/6039 | 2.861235 | 15.7 |
+| `S_(3,5)` | 10 | 13 | 1144066 | 481721/172855 | 2.786850 | 117.4 |
+| `S_(3,5)` | 11 | 14 | 4457400 | 3305029/1213918 | 2.722613 | 494.1 |
+| `X_2` | 8 | 10 | 43758 | 3491/2245 | 1.555011 | 0.7 |
+| `X_2` | 9 | 11 | 167960 | 11779/7700 | 1.529740 | 6.9 |
+| `X_2` | 10 | 12 | 646646 | 55632/36845 | 1.509893 | 25.5 |
+| `X_2` | 11 | 13 | 2496144 | 12224/8187 | **1.493099** | 103.9 |
+| `X_2` | 12 | 14 | 9657700 | 459707/310984 | 1.478234 | 702.0 |
+| `X_3` | 6 | 9 | 5005 | 2641/1370 | 1.927737 | 0.1 |
+| `X_3` | 8 | 11 | 75582 | 7791/4253 | 1.831883 | 1.7 |
+| `X_3` | 10 | 13 | 1144066 | 364308/205867 | 1.769628 | 57.3 |
+| `X_3` | 11 | 14 | 4457400 | 2185067/1251854 | 1.745465 | 308.2 |
+| `S_(4,7)` | 6 | 9 | 5005 | 5822/1307 | 4.454476 | 0.2 |
+| `S_(4,7)` | 8 | 11 | 75582 | 2749/676 | 4.066568 | 6.5 |
+| `S_(4,7)` | 10 | 13 | 1144066 | 572848/150847 | 3.797543 | 189.3 |
+| `S_(4,7)` | 11 | 14 | 4457400 | 4173963/1130002 | 3.693766 | 694.1 |
+
+**Firsts:**
+- `S_(2,4)` first drops below `2` at `D = 11`, and `X_2` below `3/2` at `D = 11`. Both certificates are recorded in `thompson-f-p21-cardinality-certificate-in-degree-eleven`. For the cardinality method, this answers Guba's "close to $10$ or $40$" remark (l.395 above): `11`.
+- `S_(3,5)` (`P_(2,2)`) has no certificate for `D <= 11`. `S_(3,5)` at `D = 12` (`|U| = 17383860`) is still running.
 
 **Consistency with the survey.** `X_2` first drops below `2` at `D = 3 = m(m+1)/2`, as Theorem
-`xmy`(b) predicts for `m = 2`. `S_(2,4)` stays above `2` through the degrees listed here.
-Theorem `s24` places a solution at degree `<= 41`, which does not by itself say at which degree
-a cardinality certificate first appears.
+`xmy`(b) predicts for `m = 2`. `S_(2,4)` first has a cardinality
+certificate at degree `11`. Theorem `s24` records `deg u, v <= 41`.
 
 **Shape of optimal sets** (analysis script on the `CERT_ALL` output, `D <= 7`):
 - For `D >= 3`, neither the optimal set nor its complement is closed under raising or lowering
@@ -103,8 +137,10 @@ a cardinality certificate first appears.
 - `x_0 Y_(D-1) ⊆ Y_D` fails partially (for `D = 7`: 2363 of 2614).
 
 **Heuristic trend (not a claim).** For all three sets, `log(Λ_S(D) - 1)` is close to linear
-in `log D` with slope about `-0.41` over `3 <= D <= 7`. If that persisted, `S_(2,4)` would
-cross `2` near `D ≈ 10` and `S_(3,5)` near `D ≈ 38`. `|M_(38,41)| = C(79,38)` is far beyond
+in `log D` with slope about `-0.41` over `3 <= D <= 7`.
+- For `S_(2,4)` that extrapolation predicted a crossing near `D ≈ 10`; the exact crossing is `D = 11`.
+- For `S_(3,5)` the local slope drifts from `-0.42` (`D = 7..8`) to `-0.385` (`D = 10..11`).
+  At the last slope the naive crossing is near `D ≈ 45`, and a drifting slope pushes it later. `|M_(38,41)| = C(79,38)` is far beyond
 exact enumeration, so a `P_(2,2)` certificate of this shape would need a structured family,
 not a search. Moore's Følner lower bound bears on how long such a trend can last, but no
 quantitative consequence for `Λ` is derived here.
@@ -112,7 +148,7 @@ quantitative consequence for `Λ` is derived here.
 ## 4. Exact gap
 
 - **Solving `P_(2,2)` by cardinality:** exhibit a finite `Y ⊆ M_D` with `|S_(3,5) Y| < 2|Y|`.
-  None exists for `D <= 7`, which is exact. Candidates for larger `D` need an explicit
+  None exists for `D <= 11`, which is exact. Candidates for larger `D` need an explicit
   structured family whose `|S Y|` can be counted without enumeration, e.g. a regular language
   in the letter-gap encoding.
 - **Proving non-amenability through this row:** show `S_(3,5)`, or any `S_(m+1,m+d+1)`, doubling
