@@ -24,6 +24,9 @@ Consequences.
   nonsofic action of `Γ`. For a Howe--Moore envelope it is also mixing.
 * **`SL_3(Z)`.** For `H = SL_3(R)`, `Γ = SL_3(Z)`, the action on `SL_3(R)/SL_3(Z)` is essentially free.
   The fixed set of `γ != 1` is a countable union of translates of proper centralizers, a Haar null set.
-  So `sl3z-lattice-space-action-is-not-sofic` is exactly the failure of 1 for this pair.
+  `sl3z-lattice-space-action-is-not-sofic` was exactly the failure of 1 for this pair, and it is refuted.
+  Condition 1 holds (`sl3z-lattice-space-action-is-sofic`, through equidistributed Hecke orbits). So for
+  `SL_3(Z) <= SL_3(R)`, sofic seeds give sofic induced actions, and by
+  `howe-moore-lattice-nonsofic-action-transfers-to-mixing` nonsofic ergodic seeds give nonsofic ones.
 
 Proof in `induced-actions-sofic-iff-homogeneous-action-sofic-proof`.

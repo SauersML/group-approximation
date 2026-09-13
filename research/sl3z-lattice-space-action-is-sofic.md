@@ -38,6 +38,8 @@ approximated by its own periodic orbits. The mechanism is arithmetic.
    cocompact one, the Hecke mechanism is structurally blind. Every `SL_3(Z)`-orbit on `SL_3(R)/Λ` is
    infinite, and an extension has finite orbits only above finite orbits (part 2 artifact, Section 8).
    Next candidate: `sl3z-on-cocompact-lattice-quotient-is-not-sofic`.
+4. Every pair of lattices commensurable with conjugates of `SL_3(Z)` gives a sofic quotient action, by
+   duality, restriction and factors alone: `sl3-split-class-lattice-quotient-actions-are-sofic`.
 
 **Model test.** `n = 2` agrees with Păunescu's class: `SL_2(Z) = Z/4 *_(Z/2) Z/6` lies in it by
 Theorem 3.9 (`paunescu-sofic-action-class-permanence`).

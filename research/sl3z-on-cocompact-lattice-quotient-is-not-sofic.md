@@ -31,6 +31,17 @@ A proof would answer `sl3z-admits-nonsofic-action` and `mixing-free-nonsofic-act
 one explicit action. A disproof would be a soficity theorem for a higher-rank mixing lattice action
 with no periodic orbits at all.
 
+**What the strongest form would say.** Combine `sl3-split-class-lattice-quotient-actions-are-sofic` with
+nonsoficity for every lattice outside the class. Then soficity of `SL_3(Z) ↷ SL_3(R)/Λ` would detect
+exactly whether `Λ` is commensurable with a conjugate of `SL_3(Z)`, a soficity analogue of Furman's
+measure-equivalence rigidity.
+*Heuristic for that direction (not an argument).* Finite quotients of a Kazhdan group are uniform
+expanders. So on an expanding piece of a sofic model, a labelling that is locally consistent with
+points of `SL_3(R)/Λ` can switch between points only along seams of proportional size. It should
+therefore follow one point that is approximately fixed by a finite-index subgroup, and superrigidity
+forbids exact fixing exactly outside the class. The gap is approximate versus exact (Attempts,
+"Superrigidity of finite couplings").
+
 Standard examples of `Λ` are the norm-one groups `SL_1(O_D)` of maximal orders in cubic division
 algebras over `Q`. The existence of cocompact lattices in `SL_3(R)` is not imported here.
 
