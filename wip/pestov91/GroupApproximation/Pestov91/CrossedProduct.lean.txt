@@ -42,7 +42,7 @@ variable {X : Type*} [TopologicalSpace X]
 
 /-- Locally constant functions on a nonempty space, with values in a nontrivial type, form a
 nontrivial type. -/
-instance locallyConstant_nontrivial {Y : Type*} [Nontrivial Y] [Nonempty X] :
+instance instNontrivialLocallyConstant {Y : Type*} [Nontrivial Y] [Nonempty X] :
     Nontrivial (LocallyConstant X Y) := by
   obtain ⟨y₁, y₂, h⟩ := exists_pair_ne Y
   exact ⟨⟨LocallyConstant.const X y₁, LocallyConstant.const X y₂,
@@ -64,6 +64,8 @@ def ofInt : ℤ ≃ ShiftIndex σ := Multiplicative.ofAdd
 theorem ofInt_add (m n : ℤ) : ofInt σ (m + n) = ofInt σ m * ofInt σ n := rfl
 
 theorem ofInt_zero : ofInt σ 0 = 1 := rfl
+
+instance : Infinite (ShiftIndex σ) := Infinite.of_injective (ofInt σ) (ofInt σ).injective
 
 end ShiftIndex
 
@@ -127,7 +129,7 @@ section Basic
 
 variable (σ) in
 /-- `single σ n f` is the monomial `f uⁿ`. -/
-def single (n : ℤ) (f : LocallyConstant X (ZMod 2)) : CrossedProduct σ :=
+noncomputable def single (n : ℤ) (f : LocallyConstant X (ZMod 2)) : CrossedProduct σ :=
   SkewMonoidAlgebra.single (ShiftIndex.ofInt σ n) f
 
 /-- The coefficient of `uⁿ` in `r`. -/
@@ -197,6 +199,32 @@ theorem induction_on {p : CrossedProduct σ → Prop} (r : CrossedProduct σ) (z
 
 end Basic
 
+section Lift
+
+variable {S : Type*} [NonUnitalNonAssocSemiring S]
+
+variable (σ) in
+/-- The additive map `∑ₙ fₙ uⁿ ↦ ∑ₙ D fₙ · P n` for an additive `D` and any `P : ℤ → S`: the
+shape of the local matrix models `ψ_k(∑ fⱼ uʲ) = ∑ D_k(fⱼ) P_kʲ`. -/
+noncomputable def liftAdd (D : LocallyConstant X (ZMod 2) →+ S) (P : ℤ → S) :
+    CrossedProduct σ →+ S :=
+  SkewMonoidAlgebra.liftNC D fun a => P ((ShiftIndex.ofInt σ).symm a)
+
+variable (σ) in
+theorem liftAdd_single (D : LocallyConstant X (ZMod 2) →+ S) (P : ℤ → S) (n : ℤ)
+    (f : LocallyConstant X (ZMod 2)) : liftAdd σ D P (single σ n f) = D f * P n :=
+  SkewMonoidAlgebra.liftNC_single _ _ _ _
+
+theorem liftAdd_apply (D : LocallyConstant X (ZMod 2) →+ S) (P : ℤ → S) (r : CrossedProduct σ) :
+    liftAdd σ D P r = ∑ n ∈ support r, D (coeff r n) * P n :=
+  calc liftAdd σ D P r = liftAdd σ D P (∑ n ∈ support r, single σ n (coeff r n)) := by
+        rw [sum_single]
+    _ = ∑ n ∈ support r, D (coeff r n) * P n := by
+        rw [map_sum]
+        exact Finset.sum_congr rfl fun n _ => liftAdd_single σ D P n (coeff r n)
+
+end Lift
+
 section Mul
 
 theorem one_def : (1 : CrossedProduct σ) = single σ 0 1 := rfl
@@ -219,7 +247,7 @@ theorem coeff_mul_single (r : CrossedProduct σ) (j : ℤ) (g : LocallyConstant 
 
 variable (σ) in
 /-- The coefficient embedding `f ↦ f u⁰`. -/
-def C : LocallyConstant X (ZMod 2) →+* CrossedProduct σ :=
+noncomputable def C : LocallyConstant X (ZMod 2) →+* CrossedProduct σ :=
   SkewMonoidAlgebra.singleOneRingHom
 
 theorem C_apply (f : LocallyConstant X (ZMod 2)) : C σ f = single σ 0 f := rfl
@@ -229,7 +257,7 @@ theorem C_injective : Function.Injective (C σ) := fun _ _ h =>
 
 variable (σ) in
 /-- The unit `u = 1 u¹`, with `u f u⁻¹ = f ∘ σ⁻¹`. -/
-def u : (CrossedProduct σ)ˣ where
+noncomputable def u : (CrossedProduct σ)ˣ where
   val := single σ 1 1
   inv := single σ (-1) 1
   val_inv := by rw [single_mul_single, map_one, mul_one, add_neg_cancel, ← one_def]
@@ -252,8 +280,11 @@ theorem single_eq_C_mul_u_zpow (n : ℤ) (f : LocallyConstant X (ZMod 2)) :
     single σ n f = C σ f * ↑(u σ ^ n) := by
   rw [val_u_zpow, C_apply, single_mul_single, map_one, mul_one, zero_add]
 
-theorem u_zpow_mul_C (n : ℤ) (f : LocallyConstant X (ZMod 2)) :
-    ↑(u σ ^ n) * C σ f = C σ (shift σ n f) * ↑(u σ ^ n) := by
+variable (σ) in
+/-- `uʲ · C a = C (shift σ j a) · uʲ`, the shape `hconj` of `RingSimple` and `SplitSimplicity`. -/
+theorem u_zpow_mul_C (j : ℤ) (a : LocallyConstant X (ZMod 2)) :
+    ((u σ ^ j : (CrossedProduct σ)ˣ) : CrossedProduct σ) * C σ a =
+      C σ (shift σ j a) * ((u σ ^ j : (CrossedProduct σ)ˣ) : CrossedProduct σ) := by
   rw [val_u_zpow, C_apply, C_apply, single_mul_single, single_mul_single, map_one, one_mul,
     mul_one, add_zero, zero_add]
 
@@ -261,6 +292,21 @@ theorem u_zpow_mul_C (n : ℤ) (f : LocallyConstant X (ZMod 2)) :
 theorem u_zpow_mul_C_mul_inv (n : ℤ) (f : LocallyConstant X (ZMod 2)) :
     ↑(u σ ^ n) * C σ f * ↑(u σ ^ n)⁻¹ = C σ (shift σ n f) := by
   rw [u_zpow_mul_C, Units.mul_inv_cancel_right]
+
+/-- **Normal form** in terms of the coefficient embedding and the powers of `u`. -/
+theorem sum_C_mul_u_zpow (r : CrossedProduct σ) :
+    ∑ n ∈ support r, C σ (coeff r n) * ↑(u σ ^ n) = r :=
+  calc ∑ n ∈ support r, C σ (coeff r n) * ↑(u σ ^ n)
+      = ∑ n ∈ support r, single σ n (coeff r n) :=
+        Finset.sum_congr rfl fun n _ => (single_eq_C_mul_u_zpow n (coeff r n)).symm
+    _ = r := sum_single r
+
+variable (σ) in
+/-- The normal form in the shape `hspan` of `RingSimple` and `SplitSimplicity`. -/
+theorem exists_eq_sum_C_mul_u_zpow (x : CrossedProduct σ) :
+    ∃ (S : Finset ℤ) (c : ℤ → LocallyConstant X (ZMod 2)),
+      x = ∑ j ∈ S, C σ (c j) * ((u σ ^ j : (CrossedProduct σ)ˣ) : CrossedProduct σ) :=
+  ⟨support x, coeff x, (sum_C_mul_u_zpow x).symm⟩
 
 end Mul
 
@@ -275,6 +321,17 @@ theorem val_u_ne_one [Nonempty X] : (u σ : CrossedProduct σ) ≠ 1 := by
   have h0 : coeff (u σ : CrossedProduct σ) 0 = coeff (1 : CrossedProduct σ) 0 := by rw [h]
   rw [val_u, one_def, coeff_single_same, coeff_single_of_ne one_ne_zero] at h0
   exact zero_ne_one h0
+
+/-- Over the identity homeomorphism every `shift` is the identity. -/
+theorem shift_one (n : ℤ) (f : LocallyConstant X (ZMod 2)) : shift (1 : X ≃ₜ X) n f = f :=
+  LocallyConstant.ext fun x => by rw [shift_apply, one_zpow, Homeomorph.one_apply]
+
+/-- Model test, degenerate case: over the identity homeomorphism `u` commutes with the
+coefficients. -/
+theorem val_u_mul_C_one (f : LocallyConstant X (ZMod 2)) :
+    ↑(u (1 : X ≃ₜ X)) * C (1 : X ≃ₜ X) f = C (1 : X ≃ₜ X) f * ↑(u (1 : X ≃ₜ X)) := by
+  have h := u_zpow_mul_C (σ := (1 : X ≃ₜ X)) 1 f
+  rwa [zpow_one, shift_one] at h
 
 end ModelTests
 
