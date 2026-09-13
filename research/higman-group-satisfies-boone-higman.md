@@ -28,8 +28,14 @@ artifacts:
   - Finitely generated linear groups are residually finite (Malcev), so no linear group contains `H4`.
   - A group acting faithfully on a locally finite rooted tree is residually finite: level stabilizers have finite index and intersect trivially. So no self-similar group contains `H4`.
 - **Almost-automorphism hosts: dead.** By `higman-group-embeds-in-no-almost-automorphism-group`, every homomorphism from `H4` into any `A_(d,r)` is trivial. This rules out Higman--Thompson groups, Röver--Nekrashevych groups, and every finitely presented simple subgroup of them.
+- **Brin--Thompson hosts `nV`, `n ≥ 2`: reduced, not decided** (2026-09-13, `higman-group-images-in-nv-force-zero-entropy-bs12-cycles`).
+  - Any nontrivial homomorphism into `nV` sends every generator to an infinite-order element. Each consecutive pair generates `BS(1,2)`, and every generator has an open periodic set, a nonempty aperiodic core invariant under its conjugator, logarithmic exponent growth and zero topological entropy.
+  - So `H4 ≤ nV` needs `bs12-embeds-in-brin-thompson-2v` for that `n`, with four zero-entropy witnesses in a cycle. The recorded odometer realization dies here as a source of generators: its baker-map conjugator has entropy at least `log 2`.
+- **Type (A) actions of `H4` itself: constrained (hand remarks, not nodes).**
+  - A point stabilizer with finitely many double cosets can fix no vertex of an unbounded Bass--Serre tree of `H4`, because double cosets of a vertex stabilizer determine the tree distance.
+  - It cannot be commensurated either. Finite bi-index plus commensurated gives finite index (approach 1 of `research/artifacts/ideas-2026-09-13/bh/bh-tbt-universality.md`), and `H4` has no proper finite-index subgroup, since the core of one would give a finite quotient.
+  - No candidate stabilizer was found. PBH needs a finitely presented overgroup actor anyway.
 - **Not yet tested:**
-  - Brin--Thompson groups `nV` with `n ≥ 2`;
   - rational similarity groups;
   - full groups of shifts of finite type with several cone types, or of non-amenable groupoids;
   - twisted Brin--Thompson envelopes over a finitely presented type (A) actor containing `H4`.
