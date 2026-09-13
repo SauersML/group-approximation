@@ -70,3 +70,7 @@
 - 10 sentences of the range were rekeyed by 73a84cd9c (marked "rekeyed" above). chain-radical's old statement keys
   `71da342a2cec`, `ffcebac26044`, `1dcedf0a7a5c`, `87cd8b50757e`, `380bfb5990c5`, `5ab74e7c4576`, `3a5ab131efde`,
   `d6d4c3f1cdb5`, `d2d559dae75f`, `8ada929ece30` do not appear in the worklist entries for tex 1604–1662.
+
+## Claims
+
+- CLAIM the general linear clause of `DynamicRankBudget.CoreMFRadicalKillStatement` (over F_2, K_n ≤ Rad_MF(GL_n(R_X)) for n ≥ 3, via clause (ii) of `PrintedBilateralThree` and a named Prop for K_n ≤ EL_n(R_X, I)), module `GroupApproximation/Manuscript/NonMFSentences/CoreMFRadicalGLKill.lean`.  Assigned by main 09-13 ~17:15.  The EL half (n ≥ 4) and local finiteness stay with chain-radical.
