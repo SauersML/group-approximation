@@ -5,7 +5,7 @@ Updated 2026-09-13.
 
 ## Status
 
-Target closed. Root-imported `Manuscript/NonMF/TheoremCAssembly.lean` has no
+First target closed. Root-imported `Manuscript/NonMF/TheoremCAssembly.lean` has no
 `sorry`. The six `sorry` tokens left in the four modules below are docstring
 prose.
 
@@ -19,6 +19,12 @@ with no errors:
 Every `#audit_axioms` and `#audit_closed_axioms` line in them throws on any axiom
 outside `propext`, `Classical.choice` and `Quot.sound`, so all of them passed.
 
+Current item: W3 hT6 (`CCKW.SystolicInvariantCliqueStatement`), with kh-cckw.
+- kh-cckw has reduced hT6 to hzip and hfold.
+- This lane has landed the matching flip of Theorem C (e1b326ec3).
+
+See the section below.
+
 ## Landed
 
 | SHA | what |
@@ -26,6 +32,8 @@ outside `propext`, `Classical.choice` and `Quot.sound`, so all of them passed.
 | 252c56547 | attic copies of the three edited existing modules (before the probe) |
 | 4874b8162 | new `Manuscript/NonMF/TheoremCAssemblyKOLeaves.lean`, unwired (before the probe) |
 | 2c3c8cb40 | normal landing after the green probe: `TheoremCAssembly`, `SeedFromTheoremC`, `SeedRemarkTheoremC`. `TheoremCAssemblyKOLeaves` is recorded as compiled; its bytes are unchanged since 4874b8162 |
+| b1dc27674 | attic copy of the zip-and-fold flip of `TheoremCAssemblyKOLeaves` (before the probe) |
+| e1b326ec3 | normal landing of that flip after green probe `0913-021752-29195` (base b1dc27674) |
 
 ## What changed
 
@@ -81,26 +89,75 @@ Rule 22. The importers of `TheoremCAssembly` are:
 Every Lean module on that list went into the probe; the script is not a
 module.
 
+## W3 hT6 (with kh-cckw)
+
+kh-cckw landed the whole fixed-clique assembly in 7d64d1118:
+- `GGT/SystolicInvariantClique.lean`: `dist_iso`,
+  `exists_invariantClique_of_graphConditions` and
+  `exists_invariantClique_of_linksSixLarge`.
+- `Kazhdan/CCKWSystolicInvariantClique.lean`:
+  - `CCKW.systolicInvariantClique_of_zipFold (hzip : ∀ V X, ZipSpurStatement X)
+    (hfold : ∀ V X, MirrorFoldStatement X) : SystolicInvariantCliqueStatement`;
+  - `KMSGroup.sharpExistence_ghb7_of_zipFoldHyp`, which takes `hzip` and `hfold`
+    at `CCKW.cosetComplex`, plus `IsHyperbolicGroup (GHB 7)`.
+
+So hT6 is no longer an independent leaf. With
+`GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold`, `hKO` follows from `hzip` and
+`hfold` at the coset complex alone.
+
+Flip (this lane, e1b326ec3): `TheoremCAssemblyKOLeaves` adds
+`manuscriptTorsionFreeFullMFRadical_of_leastAreaZipFold` and
+`manuscriptTorsionFreeSimplified_of_leastAreaZipFold`. They take four hypotheses:
+`hgreendlinger`, `hbridge`, `hzip` and `hfold`. Probe `0913-021752-29195` built
+the module, and all four `#audit_axioms` lines passed.
+
+Below `hzip` and `hfold`, main already reduces each one to disc cases:
+- `Systolic.zipSpurStatement_of_zipPinch` (`GGT/SystolicDiscZip.lean:61`);
+- `Systolic.mirrorFoldStatement_of_cases` (`GGT/SystolicDiscMirrorFoldCases.lean:113`).
+
+On origin (checked at e1b326ec3), none of the three case Props has a producer,
+but all three are in progress:
+- `Systolic.ZipPinchStatement X` (`GGT/SystolicDiscZipFold.lean:281`):
+  systolic-counts.
+  - Its `GGT/SystolicDiscZipPinch.lean` sits unlanded in the shared tree.
+  - It already states `theorem zipPinchStatement (X) : ZipPinchStatement X`.
+  - No lane's `.files` lists it.
+- `Systolic.MirrorFoldPinchedStatement X` (`GGT/SystolicDiscMirrorFoldCases.lean:102`):
+  fff-periodic. Its staging layer `GGT/SystolicDiscMirrorFoldStage.lean` landed in
+  d6f6ccc19.
+- `Systolic.MirrorFoldDistinctStatement X` (`GGT/SystolicDiscMirrorFoldCases.lean:93`):
+  ko-closed, under Offer B in its report. ko-closed's `SystolicDiscMirrorFoldCases`
+  probe is green, and there is no Distinct module yet.
+
+My earlier proposal to take `MirrorFoldPinchedStatement` is withdrawn, because
+fff-periodic has started it.
+
 ## Residual Props (exact)
 
 - `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`
   (hgreendlinger; hull-respell)
 - `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}`
   (hbridge; hull-bridge)
-- `TheoremC.KotowskiOllivierStatement` (hKO; ko-closed). In
-  `TheoremCAssemblyKOLeaves` it is replaced by:
-  - `Systolic.ZipSpurStatement KMSGroup.CCKW.cosetComplex` (hzip; kh-torsion)
-  - `Systolic.MirrorFoldStatement KMSGroup.CCKW.cosetComplex` (hfold; fff-periodic)
-  - `KMSGroup.CCKW.SystolicInvariantCliqueStatement` (hT6; census2 U1)
+- `TheoremC.KotowskiOllivierStatement` (hKO; ko-closed). In the
+  `_of_leastAreaZipFold` forms of `TheoremCAssemblyKOLeaves` it is replaced by:
+  - `Systolic.ZipSpurStatement KMSGroup.CCKW.cosetComplex` (hzip; kh-torsion),
+    which reduces to `Systolic.ZipPinchStatement`;
+  - `Systolic.MirrorFoldStatement KMSGroup.CCKW.cosetComplex` (hfold;
+    fff-periodic and ko-closed), which reduces to
+    `Systolic.MirrorFoldDistinctStatement` and
+    `Systolic.MirrorFoldPinchedStatement`.
+- hT6 (`KMSGroup.CCKW.SystolicInvariantCliqueStatement`) follows from `hzip`
+  and `hfold` for every X (`systolicInvariantClique_of_zipFold`).
 
 ## Census
 
 `metadata/nm-census-rows/theoremc-retire.tsv` has one row: LINE:284, `partial`.
-Its carriers are the four endpoints above. Its note retires the baseline finding
+Its carriers are the `_of_leastAreaInputs`, `_of_leastAreaKOLeaves` and
+`_of_leastAreaZipFold` endpoints. Its note retires the baseline finding
 "root-imported TheoremCAssembly has 5 sorries" (census2 U2). The LINE:284 row in
 `sec5-sentences` names the printed-theorem carriers; this row only adds to it.
 
-## Stale references outside this lane's files (for the lead)
+## Stale references outside this lane's files (for the lead; sweep on hold)
 
 These Lean docstrings name deleted `TheoremCAssembly` declarations or its "five
 admissions" (whole-word check on origin/main). The code hits for
@@ -142,8 +199,12 @@ Other stale references:
 
 ## Next
 
-- When ko-closed lands `kotowskiOllivier_closed` and the lead wires
-  `Kazhdan.KotowskiOllivierClosed`, drop `hKO` from the `_of_leastAreaInputs`
-  forms and from `SeedFromTheoremC` with one application. Do the same for
-  hgreendlinger and hbridge as they close.
-- The roster scope is finished; waiting for the next item from the lead.
+- Waiting for the lead's next piece. All three disc cases under hT6, hzip and hfold
+  are already started, so this lane has not claimed one.
+- One-application flips, owned by this lane:
+  - once hzip and hfold land closed at `CCKW.cosetComplex`, the
+    `_of_leastAreaZipFold` forms lose both binders;
+  - once ko-closed lands `kotowskiOllivier_closed` and the lead wires
+    `Kazhdan.KotowskiOllivierClosed`, `hKO` goes from the `_of_leastAreaInputs`
+    forms and from `SeedFromTheoremC`;
+  - hgreendlinger and hbridge go the same way as they close.
