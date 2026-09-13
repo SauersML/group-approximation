@@ -60,3 +60,38 @@ microstates could improve.
 - **Operator-norm sector emptiness would not suffice.** Even the open
   `deligne-nontrivial-maslov-opnorm-sectors-are-empty` (at this genus) gives one singular value of
   size `tau_0`, which is consistent with bounded Frobenius defect.
+- **Block count: a trivial but exact refinement.** Every irreducible summand of a sector tuple is a
+  sector tuple, so `(SG1)` applies to each. With `N` summands,
+  `max_r ||rho(r) - I||_2^2 >= (1/|R|) sum_i max_r ||rho_i(r) - I||_2^2 >= N delta_n^2 / |R|`, i.e.
+  `max_r ||rho(r) - I||_HS >= delta_n (N / (|R| d))^(1/2)`. A counterexample to `(SF1)` has at most
+  `O(d^(1 - 2b))` irreducible summands. Approximate decompositions work up to the Frobenius size of
+  the commutators with the block projections. Where it dies: irreducible tuples.
+- **Monomial models: floor `4 nu / A_0(N)` at every genus.** See
+  `deligne-monomial-cover-models-have-a-detecting-cycle-floor`: over an exact quotient `Gamma/N` the
+  phase curvature is quantized on the `d` deck translates of one detecting 2-cycle. On normal
+  quotients this beats exponent `1/2` exactly when the least detecting mass `A_0(N)` is `o(d^(1/2))`.
+  - **Heuristic, not checked.** Arithmetic surface subgroups at level `m` would have mass about `m^3`
+    against index about `m^(dim Sp_(2g))`, which suggests an exponent near `3/dim` for these models.
+    The Toledo evaluation modulo 3 and the level compatibility are unverified.
+  - **Where it dies.** The mechanism is abelian. General tuples have no per-vertex holonomy, and a
+    single cycle only sees the determinant.
+- **First rung, also open: bounded-rank defects.** `(SF1)` implies that sector tuples whose relator
+  defects have uniformly bounded rank `k` exist only in bounded dimension, since their Frobenius
+  defect is at most `2 k^(1/2)`. Even this weaker statement is open.
+  - **Easy reductions.**
+    - The block count bounds the number of irreducible summands by `4 k |R| / delta_n^2`, so it
+      suffices to bound irreducible tuples.
+    - Multiplicities are at most `k`. On an isotypic block of multiplicity above `k` every `X_r`
+      vanishes, since rank is multiplied by the multiplicity. That block would be an exact sector
+      representation, which Deligne and Malcev forbid.
+  - **Where it dies.**
+    - The exact subspace `ker X_r` has codimension at most `k`, but it is not invariant, so nothing
+      restricts to it.
+    - Frobenius stability needs operator size below `delta_n` on the bad subspace, and here it is
+      `O(1)`.
+    - In the corona modulo asymptotically bounded-rank sequences the tuple is a genuine
+      `zeta`-representation with central-regular limit trace, which is not contradictory.
+- **Operator-norm side.** The alternative target is a separate node:
+  `sp2g-universal-cover-lattice-is-operator-hs-stable` (BDL Conjecture 1.8 for `Gamma~_g`). It makes
+  every cover not MF by `deligne-sp2g-covers-not-mf-from-operator-hs-stability`, but it does not give
+  `(SF1)`: operator-norm rounding applies only to operator-small defects.
