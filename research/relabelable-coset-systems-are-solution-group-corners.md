@@ -42,9 +42,16 @@ themselves do not put a gap beyond `non-hyperlinear-group`.
 - An unconstrained nonabelian fibre adjoined to a linear system.
 - Nonabelian fibres whose relations are agreement of abelian quotients with
   affine identifications.
-- Every single Goursat relation is relabelable.  An obstruction can only come
-  from several quotient partitions of one fibre interlocking around cycles of
-  the constraint graph.
+- Every single Goursat relation is relabelable.  An obstruction needs several
+  relations sharing a fibre.
+
+**Relabelability depends on the presentation.**  Take the star of `Q_8` with
+three fibre products over its cyclic subgroups, each carrying a diamond of
+normal subgroups.  Its constraint graph is a tree, and it admits no affine
+relabeling.  Yet its algebra is an abelian coset-system algebra
+(`research/artifacts/ex-kac-quantum-compiler-q8-relabeling-counterexample-2026-09-13.md`).
+So the theorem gives a sufficient condition on a presentation, not a
+criterion on the algebra.
 
 **Not decided.**
 - No coset system with nonzero algebra is shown to be non-relabelable.

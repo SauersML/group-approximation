@@ -101,8 +101,11 @@ order dividing `n`.
     Then the system is relabelable.
 - **Single relations are always relabelable.**  A Goursat coset is a union of
   matched blocks of equal sizes.  Choosing cyclic labels on each block system
-  makes it an abelian coset.  The obstruction can only come from several
-  partitions of one `K_q` together with identifications around cycles.
+  makes it an abelian coset.  An obstruction needs several relations sharing
+  a fibre.  Cycles are not needed: part 6
+  (`ex-kac-quantum-compiler-q8-relabeling-counterexample-2026-09-13.md`) gives
+  a tree-shaped `Q_8` system with no affine relabeling whose algebra is
+  nonetheless abelian.
 
 **What is not decided here.**
 - It is not shown that any coset system with `A(S) != 0` fails to be
