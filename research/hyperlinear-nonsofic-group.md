@@ -37,3 +37,24 @@ property (T) plus a commuting non-LEF subgroup. Two qualifications:
   Q3.4 with a different approximation class, and it isolates what the
   hyperlinear side is missing — a permanence theorem with no hypothesis on
   the coset action.
+
+## Attempts
+
+- **Trace statistics, stable witnesses and diagonal lamps: dead as separation
+  mechanisms** (lane `solve-hyperlinear-not-sofic`, 2026-09-13).
+  - *Character signs.* Both approximation classes converge to `delta_e`, and
+    `phi ⊗ conj phi` makes every finite-stage character real and nonnegative
+    with at most twice the defect. So no functional of characters at finitely
+    many elements separates; compare `character-domination-collapse-equivalences`
+    (`C_perm <= C_fd`).
+  - *Stable witnesses.* A finitely generated hyperlinear flexibly HS-stable
+    group is residually finite, hence sofic
+    (`hyperlinear-flexibly-hs-stable-group-is-residually-finite`). For infinite
+    simple groups with no finite-dimensional unitary representations,
+    `infinite-simple-group-hs-stable-iff-nonhyperlinear` makes hyperlinearity
+    exactly HS instability. So a simple witness is exactly a permutation-stable,
+    HS-unstable group.
+  - *Diagonal lamps on the Kun--Thom wreath.* These are monomial HS models, which
+    the EX soft-kernel theorems (parts 2--4) kill for every bounded block size.
+    What remains is unbounded multiplicity rotation.
+  - Artifact: `research/artifacts/solve-hyperlinear-not-sofic-2026-09-13.md`.
