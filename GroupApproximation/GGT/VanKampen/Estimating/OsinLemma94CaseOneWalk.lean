@@ -35,7 +35,9 @@ whose target side is not a cutting path, some rotation of the face walk reads
 `X ++ T ++ Y ++ P`, where `P` reverses a nonempty relator-cell arc (the source segment
 `[a, a']`), `T` is the nonempty target segment `[b', b]` as a region boundary reads it (inside
 one section when it lies on `∂Δ`), and `X`, `Y` join the corners of the two segments with the
-values of the corners they join. -/
+values of the corners they join.  The source cell is the cell across side `C.source`, and a
+target cell is the cell across side `C.target`, so a region from a cell to itself arises only
+when both sides are arcs of one cell. -/
 def OsinLemma94CaseOneWalkStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
@@ -53,6 +55,8 @@ def OsinLemma94CaseOneWalkStatement : Prop :=
             X ++ targetBoundaryDarts S.diagram target targetArc ++ Y ++
               sourceArc.reverseDarts ∧
           0 < sourceArc.length ∧ 0 < targetArc.length ∧
+          P.kind k C.source = .cell source ∧
+          (∀ j, target = some j → P.kind k C.target = .cell j) ∧
           (target = none → ∃ j : Fin cuts.count,
             cuts.cut j.castSucc ≤ targetArc.start.val ∧
               targetArc.start.val + targetArc.length ≤ cuts.cut j.succ) ∧
