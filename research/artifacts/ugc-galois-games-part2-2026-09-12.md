@@ -193,3 +193,26 @@ by `K`, so `KL` is a subgroup. Theorem 10(b) gives `val >= mu(L) = 1 - O(epsilon
 realized by the transversal `{ sigma : sigma(1) < sigma(2) }`. By contrast,
 `L' = Stab(1)` meets `K` trivially, but `KL'` is not a subgroup, and (b) does
 not apply to it.
+
+## 6. Exhaustive replay on small groups (2026-09-12)
+
+Script: `scripts/check_galois_unique_games.py`, run on MSI with
+`/usr/bin/python3.11 check_galois_unique_games.py 7`. It checks the groups
+`S_3`, `S_4`, `D_8`, `Z_2^3` (regular representation) and `Z_6`; every
+nontrivial proper subgroup `K` (subgroups enumerated as closures of all
+generator tuples of size up to 2, or 3 for `Z_2^3`); and six random symmetric
+conjugation-invariant measures `mu` per `K`, with random class supports.
+
+For each case it computes `val` by brute force over all left transversals, and
+checks:
+
+* Theorem 2: `val = 1` iff `<supp mu>` acts freely on `G/K`;
+* Theorem 8: `max { mu(H) : H free on G/K } <= val`;
+* Theorem 10(b): `max { mu(L) : L cap K = {e}, |<L,K>| = |L| |K| } <= val`.
+
+It also records every case with `max { mu(L) : L cap K = {e} } > val`, where a
+subgroup-indicator certificate beats the true value.
+
+Output: `failures 0`; `certificate > val cases 0`. So on these groups no
+non-permutable subgroup certificate exceeds the value. That is weak evidence
+only, because the groups are tiny.

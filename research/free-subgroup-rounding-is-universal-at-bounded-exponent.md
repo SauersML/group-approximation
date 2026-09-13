@@ -35,6 +35,11 @@ the same value?
   irreducibles: a representation can have `lambda = 1 - O(eps)` while
   `rho(s) != I` for `mu`-almost every `s`.
 * **Abelian groups.** Yes, with `C(m) = 3/(1 - cos(2 pi/m))`: all `d = 1`.
+* **Exhaustive small-group replay** (`scripts/check_galois_unique_games.py`;
+  artifact part 2, Section 6). On `S_3`, `S_4`, `D_8`, `Z_2^3` and `Z_6`,
+  for every `K` and random class-function `mu`, it found no case with
+  `max { mu(L) : L cap K = {e} } > val`, and no failure of the free-action or
+  permutable-rounding bounds. This is weak evidence, since the groups are tiny.
 * **Extraspecial 2-groups, `K` the centre.** Admissibility puts weight `1/2`
   on the `2^n`-dimensional irreducible, whose `lambda` is `mu(e) - mu(z)`. So
   `SDP >= 1 - eps` forces `mu(e) >= 1 - 2 eps`, and `H = {e}` works. No
