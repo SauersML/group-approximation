@@ -98,7 +98,19 @@ induction hypothesis on quotient-ball stretches.
 - Next item from the lead: help kh-torsion with the collar steps of W1 (a). The step is
   `GeodesicCollarStatement` (GGT/VanKampen/SurgeryGeodesicCollar, 7bb586a06), applied to one
   side of the pocket and then, after `PocketRegion.withOuter` restarts the complement cycle, to
-  the other side. I have asked kh-torsion to name a sub-piece; nothing is written yet.
+  the other side.
+- kh-torsion's sub-piece, GGT/VanKampen/Estimating/OsinPocketRegionVertexSimple: LANDED 87715ad6e,
+  green in probe 0913-091940-39141 (base 0793191e3, BUILT, `#audit_axioms` on all ten
+  declarations). Suppose both cycles of a pocket region follow their boundary walks. Then
+  `PocketRegion.isSimpleClosedWalk_inner_cycle` shows the pocket's cycle is a simple closed walk,
+  and `PocketRegion.isSimpleClosedWalk_invDarts_outer` shows the same for the inverse of the
+  complement's cycle.
+  - The general step is `BoundaryCycle.eq_of_vertexOf_eq_of_complement`: around a vertex, the
+    two boundary walks together cover its whole rotation orbit.
+  - The module also adds `IsSimpleClosedWalk.of_next`, `vertexOf_alpha_eq_next` and `rotate`.
+  - Queued for wiring. It has no importers, and it is infrastructure, so it has no census row.
+- The collar insertion uses it as follows: the collared side is a sub-path of this walk, and its
+  endpoints differ exactly when the rest of the walk is nonempty.
 
 ## Risks recorded
 - `BoundedRelativeLinearAreaTransferStatement` may be unprovable: its W-only area predicate cannot see the
