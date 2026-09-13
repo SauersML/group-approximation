@@ -61,14 +61,33 @@ hull-* and kh-* leaves.
 cite-hull landed Corollary 7.3 (`Manuscript/NonMF/HullCorollary73`, a2299c82c, wired 830b05464) and
 Corollary 7.4 (c6e0b6c33). The simple-group draft of 7.3 was never landed, so nothing needs retiring.
 
-## Next: W1 corner-to-corner insertion on section families (09-13 ~08:40)
+## W1: corner-to-corner insertion on section families (09-13)
 The lead assigned the corner-to-corner insertion transported to `RealizedSectionFamily`. It is one of the
-respell surgeries under hull-unbound's `GloballyDistinguishedSectionFamily.ChainRespellInput`. hull-unbound
-states that Prop, and this lane writes no Lean before the statement arrives.
-- On main: `GFaceWordInsertion.CornerOutput` with `originalEmbedding` and `originalCellMap`
-  (GFaceCornerInsertion), `CornerOutput.retainedRegionRealization` (GFaceCornerRegionSelection),
-  `DiscEmbeddingAway.regionFamily_profile` (GFaceQuadrilateralRegion) and
-  `RegionCandidate.respectsSections_of_sameTargetProfile` (OsinUnboundCaseOne). The models are
-  `Surgery.GFaceMerge.transportSection` and `PinchSplit.transportDistinguished`.
-- Not on main: the unbound darts of a relator cell through a `DiscEmbeddingAway`, so `unboundSum` across a
-  corner insertion, and the dart count of a corner output.
+respell surgeries under hull-unbound's `GloballyDistinguishedSectionFamily.ChainRespellInput`
+(`OsinLemma94ChainRespell`; target Prop `CornerInsertionInput`). The lead then asked for the two missing
+pieces in modules owned by this lane.
+- `VanKampen/Estimating/DiscEmbeddingAwayUnbound` (first landed ff8e8fce9, probe 0913-094539-34824). A corner
+  output carries a section family (`CornerOutput.retainedSection`) and a globally distinguished section family
+  (`CornerOutput.retainedDistinguished`) to the inserted diagram, with the same weight and card, and
+  `retainedDistinguished_unboundSum : (retainedDistinguished S R havoid).unboundSum = S.unboundSum`. The first
+  landing duplicated five `DiscEmbeddingAway.regionCandidate_*` declarations of sec2-sentences' c652fa749
+  (`OsinLemma94InsertionTransport`). The rewrite imports that module, keeps only the corner output section, and
+  takes the unbound sum from `DiscEmbeddingAway.sum_unboundDarts_regionFamily_card`.
+- `VanKampen/GFaceCornerDartCount` (997275cc0, probe 0913-095451-54209): `GEdgeWordSubdivision.Output.dartCount_add_two` (from
+  `DiscExpansion.exists_old_dart`, `nodup`, `reverse`, `other_word`), `GFaceEdgeInsertion.dartCount_eq`
+  (`+2`), `GFaceWordInsertion.exists_cell_output_dartCount` and `exists_corner_output_dartCount`
+  (`∃ R : CornerOutput …, R.diagram.toCombMap.dartCount = Delta.toCombMap.dartCount + 2 * word.length`).
+
+- `VanKampen/Estimating/OsinLemma94CornerInsertion` (probe 0913-123745-5546, landed with the rewrite above): `GFaceWordInsertion.SplitOutput.dartCount_eq`
+  (a split insertion adds exactly `2 * word.length` darts: the old darts, the path and the reversed path are
+  disjoint), `SplitOutput.side_ne_outerFace`, `side_ne_cellFace`, and
+  `GloballyDistinguishedSectionFamily.cornerInsertionInput : CornerInsertionInput`. The word goes in between the
+  corners before and after `chain` (`GFaceWordInsertion.exists_split_corner_output`), and the family follows
+  (`insertionTransport`). The transported chain runs along the prefix side and the walk across it runs along the
+  suffix side. The inner joints keep valence two, because the walk across `chain` inside `rest ++ chain` never
+  reaches the last dart of `rest`: no dart of `chain` lies across `chain`.
+
+### Residual for `CornerInsertionInput`
+None. `cornerInsertionInput : CornerInsertionInput` is closed (propext, Classical.choice, Quot.sound). The module
+is not wired; it enters the root through hull-unbound's `ChainRespellInput` producer.
+`SeparatingPathRemovalInput` belongs to another lane.
