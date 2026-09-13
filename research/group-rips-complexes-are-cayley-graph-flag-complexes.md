@@ -26,4 +26,8 @@ So Zaremsky Problem 4.4 for a given `n` asks whether every group of type `F_n`
 has a Cayley graph, for some finite generating set, whose clique complex is
 (n−1)-connected.
 
+Credit: item 1 is observed in Zaremsky, arXiv:1812.10976, Remark 6.6, for
+contractibility ("VR_1(G) is the flagification of the Cayley graph"). Items
+2(b)⇔(c) are the elementary translation used here.
+
 Proof: `group-rips-complexes-are-cayley-graph-flag-complexes-proof`.

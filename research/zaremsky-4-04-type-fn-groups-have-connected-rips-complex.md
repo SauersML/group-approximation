@@ -46,27 +46,44 @@ Never write a `requires: []` route into this claim.
   `t >= max(1, L/2)` with `L` the longest relator: established in
   `fp-groups-have-simply-connected-rips-complexes`.
 
-## What is known
+## What is known (sources read 2026-09-13 unless marked)
 
-- Essential connectivity: for `G` of type `F_n` and any `S`, every `t` has
-  `t' >= t` with `π_k(R_t) → π_k(R_{t'})` zero for `k <= n−1` (Brown's criterion
-  for filtrations; Alonso). The open gap is actual versus essential
+- Essential connectivity. Zaremsky, arXiv:1812.10976, Lemma 6.3: for any word
+  metric, `G` is of type `F_n` iff the filtration `{VR_t(G)}` is essentially
+  (n−1)-connected (Brown's criterion). The open gap is actual versus essential
   connectivity.
-- Contractible at large scale, all `n`: hyperbolic groups
-  (`hyperbolic-rips-complex-models-proper-actions`) and `Z^n` (Virk,
+- arXiv:1812.10976, Remark 6.6: after enlarging the generating set, `VR_1` is
+  the flagification of a Cayley graph (the reformulation above). Theorem 6.5
+  there: a word metric satisfying the Asymptotic Link Criterion gives
+  contractible `VR_t(G)`. The paper remarks it does not know whether every
+  group of type `F_*` has a contractible proper Rips complex.
+- Contractible at large scale: hyperbolic groups (Rips;
+  `hyperbolic-rips-complex-models-proper-actions`), groups with contracting
+  combings (Alonso, as cited in arXiv:1812.10976), `Z^n` (Virk,
   arXiv:2405.09134; root 4.3).
-- Per the open-status table `research/artifacts/zp-open-status-sections-2-4-2026-09-13-part2.md`
-  (not yet read in the source by this lane): 2-dimensional RAAGs with standard
-  generators (Li–Sánchez Saldaña, arXiv:2608.24279), scale 2 for triangle-free
-  RAAGs (Hulbert–Zaremsky, arXiv:2608.25614), tools in Zaremsky,
-  arXiv:1812.10976. Open for general `n > 2` as of 2026-09-13.
+- Hulbert–Zaremsky, arXiv:2608.25614. Theorem A: a local Morse criterion
+  (`D_t(S)` (n−|S|−1)-connected for every word-length-constant `S`) implies
+  `VR_t(G)` is (n−1)-connected. Theorem B: `VR_2(A_Γ)` is contractible for
+  triangle-free `Γ`. Theorem C: a finite-presentability criterion. Question 1.1
+  is the contractible version of this problem.
+- Li–Sánchez Saldaña, arXiv:2608.24279: type R (contractible Rips complexes at
+  all large scales) is closed under graphs of groups with finite edge groups
+  (Theorems 1.3, 1.4) and holds for 2-dimensional RAAGs with standard
+  generators (Theorem 1.5) and for `Z^n × F` (Theorem 1.6).
+- Every RAAG has contractible Rips complexes for the clique-product
+  generating set: Chalopin–Chepoi–Genevois–Hirai–Osajda, *Helly groups*,
+  Theorem 4.1 and Lemma 5.20, as cited in both papers above; not re-read.
+- This lane: closure under direct products
+  (`connected-rips-complexes-pass-to-direct-products`), and level sets of
+  CAT(0) cube complexes (`cube-level-set-clique-complexes-model-the-level-set`).
+  The latter covers Bestvina–Brady groups once one citation check is done.
+- In these sources the problem is open for `n > 2` as of 2026-09-13.
 
 ## Attempts
 
-- 2026-09-13 (lane z4-04-fn-rips): reformulation and the `n = 2` case landed.
-  In progress: level sets of CAT(0) cube complexes. When a group acts freely
-  and transitively on the vertices of a level set, the Helly property of cubes
-  makes the clique complex of "lie in a common cube" equal to the complex of
-  cube vertex sets, which the nerve theorem identifies with the level set.
-  This would cover Bestvina–Brady kernels, i.e. groups of type `F_n` not of
-  type `F_{n+1}`.
+- 2026-09-13 (lane z4-04-fn-rips): landed the reformulation, the `n = 2` case
+  and product closure. Level sets: when a group acts freely and transitively on
+  the vertices of a level set of a CAT(0) cube complex, the Helly property of
+  cubes and the nerve theorem show the Cayley clique complex is homotopy
+  equivalent to the level set. This reaches Bestvina–Brady kernels, which are
+  of type `F_n` but not `F_{n+1}`, but never infinite Kazhdan groups.
