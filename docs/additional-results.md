@@ -90,6 +90,15 @@ interleaving supplies the ambient three-generator marking. The MF radical stays
 infinite simple locally finite, while the finite residual becomes the
 whole ambient group. This is a written proof awaiting Lean formalization.
 
+The [complete normal-lattice calculation](../research/artifacts/pestov91-seam-normal-lattice-2026-09-13.md)
+sharpens this to a just non-MF group: every proper quotient is LEF.
+The faithful finitary action makes the kernel's centralizer trivial,
+so every nontrivial normal subgroup contains the kernel. There are
+exactly five normal subgroups, and the proper quotients are precisely
+the endpoint product, its two simple factors, and the trivial group
+(allowing repeated isomorphism types). The ambient group is centerless
+and directly indecomposable. This is also a written proof.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
