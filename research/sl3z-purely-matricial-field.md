@@ -51,6 +51,17 @@ norms.  A positive answer makes `C*_r(SL_3(Z))` MF and so answers
   `0 -> I -> B -> C*_r(SL_3(Z)) -> 0` is not locally split, as in
   `kazhdan-fd-block-representation-algebras-are-not-exact`; it contradicts PMF
   only if `C*_r(SL_3(Z))` had the local lifting property.
+* **Prime levels.**  The invariant-vector mechanism is complete there.  Every
+  nontrivial irreducible of `SL_3(F_p)` fixes a vector of the block `SL_2` or
+  of a cube-class conjugate `diag(t,1,1) Sym^2(SL_2) diag(t,1,1)^(-1)`
+  (`sl3z-prime-level-invariant-witnesses-are-complete`, census-checked at
+  `p = 7`: 64 of 64).  So a strongly convergent prime-level sequence must
+  consist of cubic-twist cuspidal constituents at primes `p_i` splitting
+  completely in `Q(zeta_3, 2^(1/3), ..., M^(1/3))` for every `M`
+  (`sl3z-prime-level-sc-needs-cubic-chebotarev-primes`).  Its
+  principal fixed vectors move to integral witnesses `H_m` with `m` at least
+  the least non-cube mod `p_i`.  A prime-level refutation needs a norm excess
+  uniform along that migration.  Mixed levels escape all these witnesses.
 * **Maximal parabolics and relative property (T).**  Cannot refute.  The
   integral maximal parabolics `Z^2 x| GL_2(Z)` are PFF
   (`affine-sl2z-purely-matricial-field`, from Gao--Kunnawalkam Elayavalli--Mj
