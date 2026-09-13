@@ -42,7 +42,7 @@ torsion-free       Pi^0_2-complete [TF]        Pi^0_2-complete               Pi^
 sofic              Pi^0_2 \ Pi^0_1, complete   Pi^0_2-complete               Pi^0_2-complete
                    OPEN [S]
 operator-MF        Pi^0_2-complete [MF]        Pi^0_2-complete               Pi^0_2-complete
-LEF                = RF_fp                     Pi^0_2-complete               Pi^0_2-complete
+LEF                Pi^0_2-complete [RF]        Pi^0_2-complete               Pi^0_2-complete
 hyperlinear        trivial or Sigma^0_1-hard   trivial or Pi^0_2-complete    same
                    in Pi^0_2 \ Pi^0_1 [H]      [H]
 weakly sofic,      as hyperlinear              as hyperlinear                same
@@ -53,8 +53,7 @@ amenable           Pi^0_2 \ Pi^0_1, complete   Pi^0_2-complete               Pi^
                    OPEN [A]
 metabelian         Pi^0_2 (complete OPEN)      Pi^0_2-complete               Pi^0_2-complete
 contains F_2       Sigma^0_2 (lower: Pi^0_1-h) Sigma^0_2-complete            Sigma^0_2-complete
-residually finite  Pi^0_2 \ Pi^0_1, complete   Pi^0_3-complete               Pi^0_3-complete
-                   OPEN [RF-Higman]
+residually finite  Pi^0_2-complete [RF]        Pi^0_3-complete               Pi^0_3-complete
 residually p       Pi^0_2 \ Pi^0_1 (as RF)     Pi^0_3-complete               Pi^0_3-complete
 residually p for   --                          Sigma^0_4-complete            Sigma^0_4-complete
 some prime p
@@ -77,8 +76,10 @@ conjecture fails, with membership from
 `[FP]` = [[finite-presentability-two-generator-recursive-is-sigma2-hard]];
 `[TF]` = [[torsion-freeness-of-finite-presentations-is-pi2-complete]], via
 [[finite-presentation-rice-criterion-via-the-fixed-positive-rope]];
-`[RF-Higman]` = `Pi^0_2`-completeness of `RF_fp`, the residually finite
-Higman problem.  Rows: sofic
+`[RF]` = [[residual-finiteness-of-finite-presentations-is-pi2-complete]]
+and [[lef-of-finite-presentations-is-pi2-complete]] (2026-09-12, unreviewed).
+They use pumped Minsky-machine groups rather than a Higman embedding, and all
+outputs are solvable.  Rows: sofic
 [[sofic-recognition-two-generator-recursive-is-pi2-complete]],
 [[sofic-recognition-finite-presentations-arithmetical-position]]; MF and LEF
 [[mf-recognition-two-generator-recursive-is-pi2-complete]]; amenable,
@@ -97,9 +98,13 @@ trivially; the residual properties are one level higher on recursive
 presentations, and collapse to level two only on finite presentations,
 where the extra quantifier ("one finite quotient kills all relators") is
 bounded.  (2) On finite presentations the exact level is known for (T)
-(one, semidecidable) and unknown for every level-two candidate except MF,
-each open cell being a form of a Higman-embedding question for that
-property.
+(one, semidecidable).  At level two it is known for MF, torsion-freeness,
+residual finiteness and LEF.  Each remaining open cell is a form of a
+Higman-embedding question for that property.  Residual finiteness escaped that
+form: machine groups need no embedding, because exact finite approximation can
+be switched by the dynamics of a clocked machine inside an abelian normal
+subgroup.  That mechanism cannot reach metric approximation properties, since
+its groups are amenable.
 
 **Machine-checked cells.**  On enumerated presentation codes the sofic and LEF rows are kernel-checked as `Pi02Complete` (`SoficEnumeratedPi02.sofic_enum_pi02Complete`, `LEFEnumeratedPi02.lef_enum_pi02Complete`), the computability core of the residual-finiteness row as `ProfinitelyClosedIndexSet.pi03Complete_closedIndex`, and the hyperlinear finite-presentation equivalence as `HyperlinearUndecidabilityRoute.not_computablePred_iff_exists_nonhyperlinear_code`.
 

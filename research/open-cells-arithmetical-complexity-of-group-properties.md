@@ -19,7 +19,8 @@ them fills one cell.
    positive rope have the property". The rope is MF and torsion-free
    ([[mf-compiler-positive-branch-is-torsion-free]], which closes the
    torsion-free cell), is not amenable and is not residually finite, so for
-   cells 3 and 4 this route is provably unavailable.
+   cells 3 and 4 this route is provably unavailable.  Cell 3 has since been
+   closed by a route that avoids the gate altogether (item 3).
 
 1. **`SOFIC_fp` `Pi^0_2`-complete?** Known: `Pi^0_2 \ Pi^0_1`. Needs
    [[sofic-safe-finite-presentation-compiler]]; blocked by soficity of
@@ -28,9 +29,15 @@ them fills one cell.
 2. **`HYP_fp` `Pi^0_2`-complete iff a non-hyperlinear group exists?**
    Needs [[mf-compiler-positive-branch-is-hyperlinear]]: is the regular trace
    of the MF compiler's positive branch quasidiagonal?
-3. **`RF_fp` `Pi^0_2`-complete?** Known: `Pi^0_2 \ Pi^0_1`. This is
-   the residually finite Higman problem; every finitely presented ambient of
-   an r.e. relator set encodes the enumeration through non-closed subgroups.
+3. **`RF_fp` `Pi^0_2`-complete?** CLOSED 2026-09-12 (unreviewed):
+   [[residual-finiteness-of-finite-presentations-is-pi2-complete]], and with
+   it `LEF_fp` ([[lef-of-finite-presentations-is-pi2-complete]]).  No Higman
+   compiler is used.  The reduction goes through Kharlampovich--Myasnikov--Sapir
+   groups of pumped, clocked Minsky machines, which are solvable of derived
+   length at most three.  So residual finiteness is complete even among
+   amenable finite presentations, where every metric approximation property
+   holds automatically.  The same family cannot touch cells 1, 2, 4 or 6: all
+   its members are amenable.
 4. **`AMENABLE_fp` `Pi^0_2`-complete?** Known:
    `Pi^0_2 \ Pi^0_1`
    ([[amenability-of-finite-presentations-is-pi2-complete]]). Higman-type
@@ -81,7 +88,12 @@ them fills one cell.
 The obvious attack on every finite-presentation cell is a property-safe
 Higman compiler: cells 1--4 record where it dies (non-amenable non-closed
 edges; an abstract trace; the residually finite Higman problem; free
-subgroups in every HNN tower). For cell 5 the obvious attack, an r.e. edge
+subgroups in every HNN tower).  Cell 3 shows the compiler is not the only
+attack.  A finitely presented machine group can switch a property directly
+when the property is decided by exact finite quotients and all members are
+amenable.  For cells 1, 2 and 6 the same idea would need a machine group whose
+failure branch is non-amenable and fails the metric property, and no such
+amplifier is known. For cell 5 the obvious attack, an r.e. edge
 set complemented to force cofiniteness, dies because complements of r.e.
 edge sets give non-recursively-presented groups and shift-invariant relator
 families collapse under the shift. Cell 6 is no longer an unconstrained
