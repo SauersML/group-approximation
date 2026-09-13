@@ -2,26 +2,38 @@
 rg: 2
 id: deligne-sl2-z-1-p-weakly-bernoulli-lift
 kind: claim
-title: Does a non-residually-finite finite central extension of SL_2(Z[1/p]) lift some free action weakly equivalent to Bernoulli
+title: Every finite universal-cover quotient of SL_2(Z[1/p]) lifts some free action weakly equivalent to Bernoulli
 distinct_from:
   weakly-bernoulli-liftable-actions-force-virtual-splitting: that is the open claim over w-rigid bases; this is the same existence question over a non-Kazhdan, non-amenable base with a persistent class, where neither Popa's theorem nor treeability decides it.
   sl2-half-central-extension-not-residually-amenable: that records non-residual-finiteness of the extension; this asks whether the extension admits a weakly Bernoulli liftable action.
   weakly-bernoulli-lifts-over-amenable-free-product-bases: that settles the positive polarity when the persistent class is carried by an amenable free factor; this is the first test base where it is not.
 ---
 
-**OPEN.** Let `p` be prime, `Q = SL_2(Z[1/p])`, and `1 -> N -> W -> Q -> 1` a finite central extension that is not
-residually finite, pulled back from the universal cover of `SL_2(R)`
-(`sl2-half-central-extension-not-residually-amenable`, after Deligne and Raghunathan). Is some free p.m.p. `Q`-action
-that lifts to a free `W`-action weakly contained in `[0,1]^Q`? By `weakly-bernoulli-lift-iff-bernoulli-almost-lifts`,
-this is the same as asking for almost-lifts of the index cocycle on the Bernoulli shift.
+**OPEN.** Let `p` be prime and `Q = SL_2(Z[1/p])`, a lattice in `SL_2(R) × SL_2(Q_p)`. Let `Γ~` be its preimage in
+`SL_2(R)~ × SL_2(Q_p)`, a central extension of `Q` by `Z`, and put `W_m = Γ~/mZ`. The claim: for every `m >= 1`, some free
+p.m.p. `Q`-action that is the `Z/m`-quotient of a free `W_m`-action is weakly contained in `[0,1]^Q`. By
+`weakly-bernoulli-lift-iff-bernoulli-almost-lifts`, this is the same as almost-lifts of the index cocycle on the
+Bernoulli shift.
+
+- **Divisors.** If the claim holds for `m'`, it holds for every divisor `m` of `m'`. Quotient a lift `X` by the central
+  subgroup `mZ/m'Z`; the result is a free `W_m`-action with the same `Z/m`-quotient.
+- **Where the content is.** Some `W_m` are not residually finite (`sl2-half-central-extension-not-residually-amenable`,
+  after Deligne and Raghunathan). Those are the cases with content.
 
 **Why it matters.**
-- `Q` is non-amenable and has no property (T). It is a lattice in `SL_2(R) × SL_2(Q_p)`, and its class is persistent.
-- A **positive** answer would show that a persistent class over a non-rigid base need not obstruct weakly Bernoulli
-  lifts, even when the class is not carried by an amenable factor. So rigidity of the base, not persistence of the
-  class, would be what the claim needs.
-- A **negative** answer would be the first obstruction to weakly Bernoulli lifts over a non-Kazhdan base. It would
-  show that the open claim should be stated for persistent classes rather than for w-rigid bases.
+- `Q` is non-amenable, has no property (T), and carries a persistent class.
+- **Positive answer.**
+  - A persistent class over a non-rigid base would not obstruct weakly Bernoulli lifts, even when no amenable factor
+    carries the class.
+  - `sl2-z-1-p-cover-quotients-sofic-from-weak-lifts` would make every `W_m` sofic
+    (`sl2-z-1-p-universal-cover-quotients-are-sofic`). Then `SL_2(Z[1/p])` would not be Hilbert--Schmidt stable, and
+    the Dogon--Vigdorovich route through `iwahori-local-global-defect-question` would close.
+  - So a positive answer is at least as hard as soficity of these extensions.
+- **Negative answer.**
+  - It would be the first obstruction to weakly Bernoulli lifts over a non-Kazhdan base. The virtual-splitting claim
+    would then be about persistent classes, not about w-rigid bases.
+  - A non-hyperlinear `W_m` gives a negative answer. One would follow from Hilbert--Schmidt stability of `Q`, by
+    Dogon--Vigdorovich.
 
 ## Attempts
 
