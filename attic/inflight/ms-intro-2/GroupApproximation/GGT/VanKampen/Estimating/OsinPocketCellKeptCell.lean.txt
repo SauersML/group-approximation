@@ -268,8 +268,9 @@ theorem exists_kept_of_cellPocketRegion_of_value
         (some j) ≠ some ((Surgery.InnerDiscRegion.ofPocketRegion P hcells).cellMap.indexEquiv i)
     intro h
     exact hij (by simpa using h.symm)
-  · rw [Surgery.InnerDiscRegion.mergedGeometry_target]
-    simp
+  · intro h
+    rw [Surgery.InnerDiscRegion.mergedGeometry_target] at h
+    simp at h
   · rw [Surgery.InnerDiscRegion.mergedGeometry_sourceArc_length]
     exact K.firstArc_pos
   · rw [Surgery.InnerDiscRegion.mergedGeometry_targetArc_length]
