@@ -8,7 +8,7 @@ distinct_from:
   binary-leavitt-unit-group-hyperlinear: that is the yes/no question for one explicit group; this is the existential question from the literature, which that group would answer positively but whose negation it cannot supply.
   kac-moody-lattice-is-non-hyperlinear-or-llp-failure: that is a proved dichotomy for the Caprace--Remy lattices; this is the open existence question the dichotomy constrains without deciding.
   simple-kazhdan-kac-moody-lattices-exist: that asserts existence of infinite finitely presented simple Kazhdan groups; this asks for one that is in addition hyperlinear.
-  kazhdan-mf-hyperlinear-fragment: that proves simple Kazhdan groups that are weakly MF are hyperlinear; the hypothesis is never met, since every infinite simple Kazhdan group has full MF radical, so that fragment does not touch this question.
+  kazhdan-mf-hyperlinear-fragment: that proves simple Kazhdan groups that are weakly MF are hyperlinear; this is the existential question, which that fragment answers for any infinite simple Kazhdan MF group, such as the LEF candidate simple-kazhdan-lef-group-from-minimal-subshift once it is reviewed.
 ---
 
 **OPEN.** There exists an infinite simple group with Kazhdan's property (T)
@@ -43,6 +43,14 @@ and hyperlinearity of Thompson's `V`.
 
 ## Attempts
 
+- **Elementary matrices over a minimal subshift algebra (2026-09-12, UNREVIEWED).**
+  `simple-kazhdan-lef-group-from-minimal-subshift`: `EL_3(LC(X,F_q) ⋊ Z)` modulo its finite centre
+  is infinite, simple, Kazhdan and LEF, hence sofic. Its established ingredients are:
+  - `minimal-subshift-algebra-is-simple-lef-ring`;
+  - `subshift-elementary-group-is-simple-modulo-centre`;
+  - `elementary-groups-over-fg-rings-have-property-t`.
+
+  The combining route, and a route into this root, wait for an independent ex-verify review.
 - **Leavitt unit group.** The route above. It needs
   `binary-leavitt-unit-group-hyperlinear`, which is open; the finite forms of
   that obligation are `binary-leavitt-hyperlinear-iff-24k-feasible` and the
@@ -50,10 +58,13 @@ and hyperlinearity of Thompson's `V`.
 - **Caprace--Remy Kac--Moody lattices.** `kac-moody-lattice-is-non-hyperlinear-or-llp-failure`
   proves only a dichotomy with failure of the local lifting property; no
   hyperlinearity is produced.
-- **Operator-norm microstates.** Dead for every candidate:
-  `simple-kazhdan-groups-have-full-mf-radical` makes every infinite simple
+- **Operator-norm microstates.** Recorded earlier as dead for every candidate:
+  `simple-kazhdan-groups-have-full-mf-radical` made every infinite simple
   Kazhdan group non-MF, so the weakly MF fragment `kazhdan-mf-hyperlinear-fragment`
-  never applies.
+  never applied. **Correction 2026-09-12.** That claim's proof route is invalidated by
+  `mf-to-weak-qd-citation-has-unproved-lifting-step`. The underlying implication fails already
+  without simplicity (`lef-kazhdan-group-without-finite-quotients-exists`). The subshift candidate
+  above is LEF, hence MF, so the fragment applies to it.
 - **Stability shortcuts.** Dead by hypothesis. Becker--Lubotzky
   (arXiv:1809.00632, Theorem 1.3) and Fournier-Facio--Gerasimova--Spaas
   (arXiv:2307.13155, Theorem 6.1) show that an infinite hyperlinear Kazhdan
