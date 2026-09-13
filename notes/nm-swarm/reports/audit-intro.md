@@ -183,9 +183,73 @@ above (`t` pinches on one (A1) arc of a maximal polygon `P`, and pendant spurs).
   - There are at most as many runs as covered arcs. So `L`, fixed before `ρ`, covers them for
     every `t`.
   - Not checked here: the bound on region arcs along cells behind the `24` in `L`.
-- **Wrap pair: answered.** `Maximal` constrains only `i + 1 < sideCount`, but `classBase` lets a
-  class run through `(sideCount − 1, 0)`. `exists_cyclicRuns` starts after a class end, so no
-  class splits at the base, and `L` needs no extra class per polygon.
+- **Wrap pair: answered for (A1) and (A2) classes only.** `Maximal` constrains only
+  `i + 1 < sideCount`, but `classBase` lets a class run through `(sideCount − 1, 0)`.
+  `exists_cyclicRuns` starts after a class end, so no (A1) or (A2) class splits at the base. The
+  budget check below corrects this for cutting and short classes.
+
+### Budget check on the landed classes (sent to hull-count94 and main)
+
+main asked two things:
+- whether `OsinLemma94PolygonClasses` charges the extra side at the base as one class per polygon
+  in `L` (ruling 14:05);
+- whether the class count closes against the side budget.
+
+The check covers `6db79cea7` and hull-count94's respelling `a25fe2383`: `ClassCovers M L`, `K M L`
+after `ε`, and the Lemma 9.7(b) binder below the relator cell count. No Lean was written.
+
+- **Wrap charge.** No class is charged in `L`. The extra class sits in `classCount`, so `K` pays
+  it through `ClassBudget`.
+  - Cell and boundary classes: no extra class, as above.
+  - Cutting and short classes: `single` makes each class one side. `baseOf` does not rotate to a
+    turn, so a side split at `P.base` is two classes.
+  - Short classes are already paid: `sum_card_shortSides_le_mul` (`4b6dd3cd8`) counts sides.
+  - Cutting classes: at most one extra class per budget polygon. Each budget polygon has an (A1)
+    class, so the extra is at most the number of (A1) classes.
+- **Closure.** `kind_eq` splits `∑ k ∈ budgetPolygons, classCount k` by kind.
+  - Short classes: at most `24 ε n` (landed).
+  - Cell and boundary classes: at most `#A1 + #A2 ≤ 2|M| + n + r ≤ 29 n`. This is sec5-sentences'
+    count, which is not written yet.
+  - `BudgetFilter` (`e48f35d1e`) only reindexes. `unbound_lt_of_classes` passes `budgetPolygons`,
+    `mem_budgetPolygons` and `ClassBudget K` to `exists_of_budget_on` as they stand, with the same
+    `K` as the metric Prop.
+  - The gap lemma `QuasiGeodesicValueOneGap` (`a3169d05f`) bounds gap lengths for `L`. The class
+    count does not use it.
+  - **The line that does not close: cutting classes.** Nothing on main bounds the number of cutting
+    sides, and Lemma 9.3's `#A1 + #A2` does not count them.
+- **Smallest fix: a per-polygon lemma.** `#(cutting classes of k) ≤ 4 · #(non-cutting classes of k) + 1`.
+  - The cutting darts of face `f` have `f` on both sides (`cutting_internal`). They are cut edges,
+    so they form a forest `F`.
+  - Interior vertices of a cutting side have degree two (`cutting_interior`), and consecutive
+    cutting sides turn away (`Maximal`). So the cutting sides traverse the edges of the contracted
+    forest, each edge twice, with at most one more split at `P.base`.
+  - No vertex inside an unselected G-face has degree one (`DartMinimal`, `pendantPathRemovalInput`).
+    A degree-two vertex with one edge in `F` has both edges in `F`. So every leaf of `F` also meets
+    an edge outside `F`: it is an attachment vertex.
+  - A tree with `ℓ` attachment vertices has at most `2ℓ − 3` contracted edges.
+  - Each attachment vertex has a corner of `f` from a non-cutting side into a cutting side. The side
+    before that corner is the last side of its class, by `kind_eq` and `sides_eq`.
+  - Summed over the budget polygons, `K = 5(29 + 24 ε) + 29` works, chosen after `ε`.
+  - The alternative is for sec5-sentences' count to cover all four kinds. No lane owns either.
+- **Spelling of the transition count.** `OsinLemma94ClassCountInput` is a Prop, so
+  `PolygonClasses` assumes no spelling. No transition count is on main or in the tree.
+  sec5-sentences' report plans to charge side ends to a region end, a whole cell, a whole section
+  or a touching vertex. To feed `ClassBudget`, the count has to:
+  - count class ends after joins across value-one gaps. On the pinched-cell model a charge per
+    touching vertex grows with `t` while `n = 1`;
+  - be cyclic, including `(sideCount − 1, 0)`, or add `#budgetPolygons`;
+  - run over at least `budgetPolygons`.
+- **Relator cells inside a pinch.** `gap_value` needs value one in `G`, so a pinch loop around
+  relator cells splits a class. The Lemma 9.7(b) binder in `a25fe2383` rules that out.
+- **Rule 22 break on main.** `a25fe2383` (15:34) respelled `ClassCovers` to `(M L : ℕ)`, and its
+  message says it had no users on origin.
+  - But `Estimating/OsinLemma94ClassCovers.lean` (hull-component, `13cf15e1a`, 15:16) still states
+    `Q.ClassCovers (24 * eps + 2 * (K + 24) * B + T)` at l.248, with one argument. That type is
+    `ℕ → Prop`, so the module is red on main. This follows from the types; it was not probed.
+  - The module is not rooted but is on the wire queue, so wiring it would redden the root.
+  - Smallest fix, in hull-component's file: `Q.ClassCovers 1 (…)`, with `one_mul` after
+    `unfold ClassCovers`, and the docstrings at l.13 and l.16. Its `T n` same-cell hypothesis is the
+    term `a25fe2383` says needs `M`.
 
 ## The rows in range
 
@@ -283,7 +347,14 @@ Defect 4 stays `formalized`, with the new carrier.
     main: sec5-sentences landed `OsinLemma94RealizedPolygons.sum_card_shortSides_le` at
     `4b6dd3cd8`. This lane wrote no duplicate.
   - The next sub-piece, the cyclic run decomposition, landed at `25aef6af9`.
-  - Both tests passed on the landed classes, and the wrap pair is answered (see above).
+  - Both tests passed on the landed classes. The wrap pair is answered for (A1) and (A2) classes.
+    A cutting class split at the base costs one class per budget polygon, paid in `K` (see the
+    budget check).
+  - hull-count94 respelled the Prop at `a25fe2383`. The class count closes except for the cutting
+    classes, which need their own count: the forest lemma above, or sec5-sentences' count over all
+    kinds. No lane owns it.
+  - `OsinLemma94ClassCovers` (`13cf15e1a`) is red on main after `a25fe2383` and is on the wire
+    queue. This went to hull-count94 and main.
 - Wiring: `OsinLemma94ClassRuns` (`25aef6af9`) is on the wire queue. It imports only Mathlib and
   `AxiomGuard`.
 - Lane tooling: `nmprobe.sh` refuses a lane-files entry that is not a `GroupApproximation/**/*.lean`
