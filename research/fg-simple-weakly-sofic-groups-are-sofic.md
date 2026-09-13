@@ -3,6 +3,8 @@ rg: 2
 id: fg-simple-weakly-sofic-groups-are-sofic
 kind: claim
 title: Every finitely generated simple weakly sofic group is sofic
+refuted_by:
+  - fg-simple-weakly-sofic-nonsofic-group-exists
 distinct_from:
   simple-group-relator-width-in-finite-simple-targets: that proves the width bound of a finitely presented simple nonsofic group over symmetric, alternating, sporadic and bounded-rank targets; this asks for the conclusion over all finite groups at once, for finitely generated simple groups.
   weakly-sofic-not-sofic: that separates the two classes with a non-simple group; this asks whether simple groups can separate them.
@@ -42,6 +44,14 @@ nonsofic group refutes it.
 
   An earlier version of this bullet listed classical groups of unbounded rank as possible room. That
   room is exactly (a): classical targets contribute linear soficity over finite fields and nothing more.
+  Direct products of finite simple groups add nothing either
+  (`simple-group-relator-templates-over-finite-simple-groups`).
+- **Calibration against the Gottschalk gate.** This claim implies that `R^x` is linear sofic over no
+  field. So it would settle `non-linear-sofic-group` with the witness `R^x` and refute
+  `binary-leavitt-unit-group-is-f2-linear-sofic`. Conversely, that gate would refute this claim
+  (`rigidity-counterexample-from-leavitt-f2-linear-soficity`, into the negation
+  `fg-simple-weakly-sofic-nonsofic-group-exists`). Proving this claim is at least as hard as exhibiting a
+  non-linear-sofic group.
 - **Permanence cannot build a counterexample.** Extensions put a simple subgroup inside the kernel
   (`binary-leavitt-unit-group-is-weakly-sofic`, first attempt), and directed unions reach a finitely
   generated simple group at a finite stage. Glebsky's theorem produces no simple groups.
