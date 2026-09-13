@@ -205,6 +205,11 @@ Theorem 14 and Proposition 15) applies, and the Item 1 argument runs verbatim.
 - `ex-review-analysis-2026-09-12-part5.md`:
   - §1.11, the ex-rr0-dichotomy counterexample fingerprint, separativity and crossed-product
     dichotomies (five claims): PASS.
+- `ex-review-analysis-2026-09-12-part6.md`:
+  - §1.12, ex-nh-mipstar quantum symmetry rung: the qc/qa corner in Qut(X ⊔ Y), the CFI transfer, the
+    closure-safe colored rung, and the Roberson--Schmidt import. PASS.
+  - §1.13, ex-ugc Galois games: transversal value, linear rounding over F_p^N, free-subgroup rounding,
+    and hardness at completeness 1/2. PASS, with one wording note on C_2.
 
 ## 2. Sweep of in-scope landings to 23:35 CDT
 
