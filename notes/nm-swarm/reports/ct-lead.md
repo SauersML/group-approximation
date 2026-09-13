@@ -164,6 +164,25 @@ clobbers.
   - `NON_MF_DISPLAY_CENSUS.tsv` (regenerated 14:17) still lists four displays of the old limsup-combination proof that are no longer in the tex: `ba198b2b9795`, `099d5bf78229`, `c3da18932be7`, `63be4079d36b`.
   - Rows `69843250783b` and `5870021d2e03` carry the unnumbered z and v/w displays.
   - Statement key `0ae6fc9e199c` is carried by hull-euler's direct atom-graph covering. The printed proof route is the pullback of symbolic defects (`042966c81c7e`, chain-itinerary), so grade the proof sentences against that route.
+- **W1 waist truth audit (ms-cite-1, ledger b391b435e):**
+  - Binder 7 `PocketPinchLabelledStatement` is FALSE as spelled (dgo-geometric's `pocketPinchWrapRefutation`, 87358b0ad; the def is byte-identical since). The corrected `PocketPinchLabelledPosStatement` (0 < eps) is on origin at 1b4736bcb, and the waist form is `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsPos` (4db9c6729). ghw-assembly's one-line swap of `hpinch` in `_of_openResiduals` is owed. Truth at eps ≥ 1 is unsettled; ms-cite-1 is testing it.
+  - Binder 5 `OsinMultipleEdgePocketRegionSectionStatement` is CIRCULAR as spelled on `S.diagram` (configuration (b′) needs Lemma 9.7(b)). hull-select's r1 copy form (draft in nm/drafts) is the live spelling. Its cell-to-cell pinch Prop should carry 0 < eps or eps ≥ eps0, since the eps = 0 rose has the same shape.
+  - Binders 1, 3, 4, 6 and 8: plausibly true. Binder 1's same-cell slack fits `T n` because `SectionCuts.count_le` bounds the family by 12n.
+- **Binder 4 lake finding (w1-binder-4, landed f3be2844b and 13776be09):**
+  - When the outer sides of U = a ∪ gap ∪ b touch at a vertex, U's complement has a lake holding cell i, so no `PocketRegion` has faces U and `EmptyTwoGonInput` cannot fire.
+  - The collapse needs only `Surgery.InnerDiscRegion`. Request for debt-conditional: module 4 should conclude through `GloballyDistinguishedSectionFamily.false_of_mergeDisc`, or produce `TwoGonMergeDiscInput`. For sec2-sentences: its lake obstruction is covered on the C6′ side when the inner cycle follows.
+  - w1-binder-4 takes leaf L3 (identity value along an open-disc region of G-cells).
+- **Binder 3 shape 3 (ms-intro-1):** the Case 1 X-pocket walk can touch Π at a vertex, and then neither lobe of the pinch split has a short side, so hnorm fails. That blocks `nonempty_osinLoopCut_of_pocketRegion` (OsinPocketLoopCut:201) along jacobson's relator-cell branch. ms-intro-1 is model-testing whether least area, DartMinimal or Maximal excludes it, and states it as a named Prop in its own module. The route ruling belongs to jacobson and the lead.
+- **Binder 2 replacement landed (w1-binder-2):**
+  - (i) `otherFacingCover_of_endLoops` (e3bbcf801), closed over the original premises minus `hsameCell`.
+  - (ii) `osinLemma94SameCellFactorInput_of_scan` (95f0853ba) over `OsinLemma94SameCellScanInput`, which w1-binder-2 now proves from fff-periodic's `OsinUnboundSameCellScanBound`.
+- **Critical path for the ct endpoints:** chain-matricial's module 5 (`isLocallyMatricialIn_transientIdeal`, `transientIdeal_eq_span_defects`) feeds all of these:
+  - `CoreKernelElementaryStatement` and `UnitKernelLocallyFiniteStatement` (ms-units, eaa87e3a1);
+  - `CoreKernelLeRelativeElementaryStatement` (ms-core-5, bec8b25e6);
+  - `CoreRestrictionLocallyFiniteKernelStatement` (ct-rank-two-limit, a34f74c76);
+  - `ClopenCrossedProductNonzeroDefectStatement` (ct-bilateral-mf).
+  ms-core-4 and ms-units are second-starting module 5 in new modules after an ownership check.
+- **Closed since 17:30:** `BilateralThreeCellStatement` (41d8c3b03), the z-order clause (1982b6aa4), chain-core S1 items 3, 4 and 7 including `lefStablyFiniteInterface` for chain-reflection (5932d213f, 7dceca26d), the finite-field ring clause of lem:involution-localization (0011a8b3a), `ReturnSectionStatement`, `FirstReturnStatement` and `ReturnTowerUnitsStatement` (e4a681074, 7b0a3343c), the two Haagerup image steps of the rank-two remark (a34f74c76), and the two-ended core and defect (049c6689a).
 - **Literature inputs:** the only cited result still assumed in any formalized or partial chain is Hull's small cancellation theorem, through hgreendlinger. See the ms-cite-1 and ms-cite-2 reports.
 - **Tex issue for the manuscript owner** (tex 663–664): the second badge of thm:normal-kazhdan names
   `NormalKazhdanPrintedRoute.manuscriptNormalKazhdanRadical_printedRoute`, which carries the old limsup-combination proof.
