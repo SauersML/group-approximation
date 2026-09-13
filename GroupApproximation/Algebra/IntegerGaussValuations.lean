@@ -7,6 +7,8 @@ import Mathlib.RingTheory.Valuation.ExtendToLocalization
 import Mathlib.RingTheory.Localization.FractionRing
 import Mathlib.Data.Nat.Factorization.Induction
 import Mathlib.Data.Nat.Prime.Int
+import Mathlib.Algebra.EuclideanDomain.Int
+import Mathlib.RingTheory.PrincipalIdealDomain
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
