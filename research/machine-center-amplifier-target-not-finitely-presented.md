@@ -42,6 +42,6 @@ no such pair exists.
   because `G` acts transitively on `G/Gamma`) and recursively presented
   uniformly in `e`, a finitely presented container exists abstractly by Higman
   embedding.  What is open is soficity of such a container on INF, which is the
-  content of [[machine-center-amplifier-is-a-sofic-safe-compiler-instance]].
+  content of [[machine-center-amplifier-does-not-bypass-the-sofic-compiler]].
 
 DERIVATION [[machine-center-amplifier-target-not-fp-proof]].
