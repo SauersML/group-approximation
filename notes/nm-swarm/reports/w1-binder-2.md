@@ -77,6 +77,21 @@ the blocks. That instantiation stays with fff-periodic.
   - Residual premises (as in the original): `hside`, `hbubble`, the end-loop bounds `hclassEnd`/`hregionEnd` and
     `ClassBudget K`. hull-component's end-loop producers supply them.
 
+- **Hypothesis (ii) over a named scan LANDED 95f0853ba** (module `Estimating/OsinLemma94SameCellFactorInput`, probe
+  0913-173911-11662 GREEN, BUILT line checked; MSI build log: `[propext, Classical.choice, Quot.sound]` on the three
+  audited declarations, no `sorryAx`). Queued for wiring.
+  - `OsinLemma94SameCellFactorInput`: hypothesis (ii) of `classCovers_of_sameCellFactor` at the parameters of Lemma 9.4,
+    with the Lemma 9.7(b)-below hypothesis in scope, `M₀ = ⌈1/λ⌉₊`, `T = 25 ⌈c/λ⌉₊`.
+  - `OsinLemma94SameCellScanInput` (RESIDUAL): on each relator cell,
+    `λ · #same_i ≤ (1 − λ) · #other_i + c · (1 + runs_i)`, with `∑ runs_i ≤ 2 |M|`. The runs bound holds because a selected
+    region has one source arc and at most one cell target arc, and unbound darts are the cell's darts minus those arcs
+    (`RegionPartition.unboundDarts`).
+  - `osinLemma94SameCellFactorInput_of_scan`: the counting step (`le_ceil_mul_add`, `sum_le_ceil_mul_add`), with
+    `S.diagram.rCellCount = Delta.rCellCount` from `S.equiv.cellIndex` and `|M| ≤ 12 n`. This reshapes (ii); it does not
+    discharge the scan.
+  - The scan's producer is the dart instantiation of `OsinUnboundSameCellScanBound` over `OsinLemma94SameCellPocketInput`
+    (blocks from `OsinUnboundSameCellSides`), which is fff-periodic's planned `OsinUnboundSameCellCount`.
+
 ## Progress log
 
 - 17:0x: verdict and ownership map; claim landed (7564433ff).
