@@ -91,6 +91,18 @@ same locus; it is not recorded as a separate claim.
       summable, the main block must be repeated, and every repetition factor must itself be twisted,
       all under one projective cocycle.
     - **Open.** Whether such towers can be simple, Bauer and rigid is not known.
+  - **No global block decompositions (proved, elementary).** Suppose infinitely many connecting maps are
+    diagonal, `φ(a)(z) = diag(a(π_1 z) ⊗ 1, …, a(π_r z) ⊗ 1)` with globally defined eigenvalue maps.
+    - The block identities are projections of constant trace. They commute with the images of earlier
+      block projections, so products give constant traces `ρ_k → 0`. A separate point-evaluation block
+      has trace `ρ_m → 0` by itself.
+    - Under strict comparison, ultrapower comparison
+      (`strict-comparison-compares-ultrapower-projections`) gives `⌊1/ρ⌋` orthogonal equivalent copies
+      of a projection of constant trace `ρ`. That is an order zero `M_{⌊1/ρ⌋}` with defect at most `ρ`.
+      Items 2 ⟹ 1 of `strict-comparison-unit-divisibility-equivalences` then divide the unit.
+    - So a simple witness cannot get simplicity from point-evaluation blocks or other global block
+      splittings. Its eigenvalue blocks must be permuted by monodromy (covering-type connecting maps),
+      with no global block projection. The Pauli tower has no nontrivial projections at all.
   - **Strict comparison.** At base dimension about `ε_0² n²`, general position gives a comparison radius
     of order `d/n`, which is useless. A witness needs a comparison mechanism specific to twisted blocks.
     One hope: index restrictions remove the small projections that Villadsen-type certificates use.
