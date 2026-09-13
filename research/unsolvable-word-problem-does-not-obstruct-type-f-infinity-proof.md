@@ -2,28 +2,20 @@
 rg: 2
 id: unsolvable-word-problem-does-not-obstruct-type-f-infinity-proof
 kind: route
-title: "A type-F group with unsolvable word problem (Collins-Miller) plus Higman embedding kill the word-problem obstruction"
+title: "A type-F group with unsolvable word problem is its own F_infinity host"
 target: unsolvable-word-problem-does-not-obstruct-type-f-infinity
 requires: []
 ---
 
-Direct proof, by citation of two classical facts.
+Direct proof by citation.
 
-1. (Collins--Miller.) There exists a group of type `F` -- a group with a
-   finite `K(pi,1)`, hence of type `F_infinity` -- whose word problem is
-   unsolvable. This is the result Xiaolei Wu pointed to in refuting Zaremsky's
-   Problem 1.2 ("Does every group of type `F_3` have solvable word problem?"),
-   recorded there as answered negatively. It shows directly that type
-   `F_infinity` does not imply solvable word problem, so no word-problem
-   quantity of `G` can be bounded merely by the existence of a type-`F_{n+1}`
-   overgroup.
+Collins and Miller give a group `C` of type `F` with unsolvable word problem,
+as recorded in the note to Problem 1.2 of Zaremsky's list (version of July 12,
+2026). A group of type `F` is of type `F_∞`. The identity embeds `C` in itself,
+so `C` has unsolvable word problem and a host of type `F_∞`. The implication
+"unsolvable word problem implies no `F_∞` host" therefore fails, and so does
+the version with `F_{n+1}` hosts.
 
-2. (Higman embedding theorem, Higman 1961.) Every finitely generated
-   recursively presented group embeds in a finitely presented group. So a
-   recursively enumerable (even undecidable) word problem is not an
-   obstruction to embedding into a type-`F_2` group.
-
-The claim asserts exactly that word-problem complexity cannot obstruct such an
-embedding; (1) supplies the F_infinity witness and (2) supplies the embedding
-theorem. This route imports both statements from their sources and does not
-reprove them.
+This route imports the existence of `C` from the list's note. It does not
+reprove Collins--Miller and says nothing about the degree of the word problem
+of `C`.

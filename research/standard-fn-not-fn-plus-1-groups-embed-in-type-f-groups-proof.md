@@ -2,31 +2,28 @@
 rg: 2
 id: standard-fn-not-fn-plus-1-groups-embed-in-type-f-groups-proof
 kind: route
-title: "Standard F_n-not-F_{n+1} groups embed in type-F groups: definitional containment plus cited finiteness of the overgroups"
+title: "Classical F_n-not-F_{n+1} groups have F_infinity hosts: containment by construction plus cited finiteness of the hosts"
 target: standard-fn-not-fn-plus-1-groups-embed-in-type-f-groups
 requires: []
 ---
 
-Direct proof. Each named containment is definitional and each overgroup's
-finiteness type is a cited theorem:
+Direct proof. Each containment holds by definition, and each host's finiteness
+type is a cited theorem.
 
-1. `SB_n <= F^{(1)} x ... x F^{(n)}` by definition (`SB_n` is a kernel inside
-   that product). A direct product of finitely many finitely generated free
-   groups has a finite `K(pi,1)` (a product of finite wedges of circles), so
-   it is of type `F`. Finiteness type of `SB_n`: Bieri 1976, Stallings 1963.
+1. `SB_n <= F^{(1)} x ... x F^{(n)}`, since `SB_n` is a kernel inside that
+   product. A finite product of finitely generated free groups has a finite
+   `K(π,1)`, so it is of type `F`, hence of type `F_∞`.
 
-2. `BB_L <= A_L` by definition (`BB_L = ker(A_L -> Z)`). The RAAG `A_L` has
-   the finite Salvetti complex as a `K(pi,1)`, so it is of type `F`
-   (Charney--Davis; Bestvina--Brady 1997). Finiteness type of `BB_L`:
-   Bestvina--Brady 1997, Main Theorem.
+2. `BB_L <= A_L`, since `BB_L = ker(A_L -> Z)`. The Salvetti complex of `A_L`
+   is a finite `K(π,1)` (Charney--Davis), so `A_L` is of type `F`, hence of type
+   `F_∞`.
 
-3. `A_n(Z[1/p]) <= GL_n(Z[1/p])` by definition (Abels' group is a matrix
-   group). `GL_n(Z[1/p])` is S-arithmetic in characteristic zero, hence of
-   type `F_infinity`. Finiteness type of `A_n(Z[1/p])`: Abels 1987,
-   Abels--Brown 1987.
+3. `A_n(Z[1/p]) <= GL_n(Z[1/p])`, since Abels' group is a matrix group.
+   `GL_n(Z[1/p])` is S-arithmetic in characteristic zero, so it is of type
+   `F_∞` (Borel--Serre 1976). It has torsion, so this host is of type `F_∞` and
+   not of type `F`.
 
-In every case the finiteness type of the small group and the type-`F`
-(or type-`F_infinity`) property of the overgroup are recorded facts, and the
-embedding is by construction; the conjunction is the claim. This route asserts
-the containments and cites the finiteness statements from the sources; it does
-not reprove them.
+The finiteness types of the small groups (Bieri 1976, Stallings 1963,
+Bestvina--Brady 1997, Abels--Brown 1987) only show that the families realise
+the gap. The conclusion that they have `F_∞` hosts does not depend on them.
+This route imports the host finiteness statements; it does not reprove them.
