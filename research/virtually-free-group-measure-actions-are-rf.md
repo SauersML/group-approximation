@@ -18,3 +18,5 @@ is RF.
 Every group containing `Z^2` fails this (`z2-containing-groups-have-non-rf-measure-actions`).
 
 Route: `virtually-free-group-measure-actions-are-rf-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS. Restrict to a finite-index free subgroup, then induce.** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R4.

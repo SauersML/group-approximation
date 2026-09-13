@@ -17,3 +17,5 @@ Proof of 1: co-induce the `H`-action to `Y^(Γ/H)` with product measure, restric
 and pass to the coordinate factor `f ↦ f(e)`. Proof of 2: `rf-actions-induce-from-finite-index-subgroups`.
 
 Route: `measure-rf-property-passes-to-subgroups-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS. Co-induction, product measure, restriction and the coordinate factor re-derived.** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R3.

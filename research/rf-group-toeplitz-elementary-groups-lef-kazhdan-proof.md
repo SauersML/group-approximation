@@ -30,3 +30,7 @@ Artifact part 2, §7, Corollary T.
    If `g ∈ EL_N(R_Γ)` maps into the scalars, the scalar is `ω`-almost constant because `F_q^x` is finite, and
    injectivity gives `g ∈ F_q^x I`. So `S_(Γ,N)` embeds in `∏_ω GL_(N N_n)(F_q)/F_q^x`, an ultraproduct of finite
    groups; being finitely generated, it is LEF.
+
+**Wording (review 2026-09-13).** When `q` is not prime, the ring generators must also include a primitive element of `F_q`. Over a finite field the LEF step is elementary and needs no Malcev input.
+
+**Review (un-verify-measure, 2026-09-13): PASS, with a wording fix (primitive element).** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R6.

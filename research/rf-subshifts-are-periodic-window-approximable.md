@@ -25,3 +25,7 @@ with `{c|_W : c ∈ O} = L_W(X)`.
 - Used to prove `rf-toeplitz-subshifts-over-residually-finite-groups`.
 
 Route: `rf-subshifts-are-periodic-window-approximable-proof`.
+
+**Correction (review 2026-09-13).** Ma's commented-out proposition is specifically for binary subshifts: "Let $\Gamma$ be a residually finite group and $\Sigma \subset 2^\Gamma$ a subshift of $\Gamma\curvearrowright 2^\Gamma$. Then $\Sigma$ is residually finite." (arXiv:2209.00580 `main.tex` l.1293–1297, commented, proof unfinished). Labbé's shift has 19 letters, so it does not refute that literal statement. It is still false: the binary Z-subshift consisting of the orbit of `0^∞.1^∞` together with `0^∞` and `1^∞` is not residually finite under Kerr–Nowak's general definition, since finite models cannot move the clipped transition position back into the window. A perfect binary witness would need an equivariant embedding of an aperiodic Z^2-subshift into `2^(Z^2)` (Lightwood, recalled).
+
+**Review (un-verify-measure, 2026-09-13): PASS on Proposition S; GAP on the Ma quote, corrected with a binary witness.** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R7.

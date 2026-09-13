@@ -26,3 +26,5 @@ them all in `0`-cosets of level `M+1`. Proposition S (`rf-subshifts-are-periodic
 Applications: `residually-finite-group-toeplitz-elementary-groups-lef-kazhdan`.
 
 Route: `rf-toeplitz-subshifts-over-residually-finite-groups-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS. Class count (unique non-constant coset per level) and covering choice of M (bijection with Γ_M/Γ_(M+1), union bound 2|B_M| < d_(M+1)) re-derived; not covered by Kerr–Nowak's examples.** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R1.

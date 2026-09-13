@@ -15,3 +15,5 @@ transversal `T`. Together with restriction this makes residual finiteness of an 
 restriction to any finite-index subgroup.
 
 Route: `rf-actions-induce-from-finite-index-subgroups-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS. Induced finite action and closeness re-derived; not in Kerr–Nowak.** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R2.

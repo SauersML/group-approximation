@@ -21,3 +21,5 @@ Examples of acting groups: `SL_3(Z)`, `Sp_4(Z)` and other residually finite Kazh
 `Γ`; what the family adds is one explicit LEF Kazhdan simple group per residually finite acting group.
 
 Route: `rf-group-toeplitz-elementary-groups-lef-kazhdan-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS. Generation, embedding, (T), simplicity mod scalars and LEF of the quotient re-derived.** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R6.

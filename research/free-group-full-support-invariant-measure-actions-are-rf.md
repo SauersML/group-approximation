@@ -17,3 +17,7 @@ dependence on the unread primary source for every use in the UN program, and it 
 `virtually-free-group-measure-actions-are-rf`.
 
 Route: `free-group-full-support-invariant-measure-actions-are-rf-proof`.
+
+**Credit (review 2026-09-13).** This is verbatim Kerr–Nowak Lemma 5.1 (Ergod. Th. Dynam. Sys. 32 (2012), p. 1603, proof credited to Hanfeng Li): "Let X be a compact metrizable space and F_r ↷ X a continuous action. Suppose there exists an F_r-invariant Borel probability measure µ on X with full support. Then the action is residually finite." The primary paper was read at review.
+
+**Review (un-verify-measure, 2026-09-13): PASS, with a credit fix. Transport-cone proof re-derived; it is Kerr–Nowak Lemma 5.1.** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R4.

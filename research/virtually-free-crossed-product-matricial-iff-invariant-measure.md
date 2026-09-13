@@ -22,3 +22,5 @@ topologically for every group containing `Z^2` (`z2-containing-groups-have-non-r
 ring may still have non-combinatorial models.
 
 Route: `virtually-free-crossed-product-matricial-iff-measure-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS. All four implications check.** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R4.

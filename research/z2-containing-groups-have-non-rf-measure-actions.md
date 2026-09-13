@@ -23,3 +23,5 @@ The witness of item 2 for groups like `SL_3(Z)` (co-induction) is not minimal; w
 witness exists there is recorded in `measure-rf-class-is-exactly-virtually-free-groups`.
 
 Route: `z2-containing-groups-have-non-rf-measure-actions-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS. Labbé witness, co-induction and the Z^2 × Λ product witness re-derived.** See `research/artifacts/un-review-measure-2026-09-13-part5.md` §R5.
