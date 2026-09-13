@@ -84,7 +84,7 @@ theorem objectImage_subset_parent (hT : T.Nonempty) (enum : ℕ → K) (n : ℕ)
   exact objectEmbedding_mem D hT enum n i y
 
 /-- The points of a parent block outside its object are pruned points. -/
-theorem card_block_sdiff_objectImage_le (hT : T.Nonempty) (enum : ℕ → K) (n : ℕ)
+theorem card_objectParent_block_sdiff_objectImage_le (hT : T.Nonempty) (enum : ℕ → K) (n : ℕ)
     (i : objectIndex D enum n) :
     ((objectParent D enum n i).block \ (objectBlocks D hT enum n).objectImage i).card ≤
       (prunedSet D hT n i.1).card := by
@@ -112,7 +112,7 @@ theorem removedMass_negligible (hT : T.Nonempty) (enum : ℕ → K) :
     (prunedMass_negligible D hT enum)
   · exact Finset.sum_nonneg fun _ _ ↦ Nat.cast_nonneg _
   · refine le_trans (Finset.sum_le_sum fun i _ ↦ ?_) (sum_objectIndex_prunedSet_le D hT enum n)
-    exact_mod_cast card_block_sdiff_objectImage_le D hT enum n i
+    exact_mod_cast card_objectParent_block_sdiff_objectImage_le D hT enum n i
 
 theorem noObjectMass_negligible [Infinite K] (hsymm : ∀ t ∈ T, t⁻¹ ∈ T)
     (hgen : Subgroup.closure (T : Set K) = ⊤) (enum : ℕ → K) :
