@@ -51,6 +51,19 @@ Hygiene only: `CentralCoronaCornerPrintedRoute.lean`'s module docstring quotes a
   (the earlier endpoint as a corollary). Row b0058fab44d8 re-graded onto it in `metadata/nm-census-rows/ms-compress-3.tsv`.
   Wire queue line appended. The gap for b0058fab44d8 is closed.
 
+## Item 2 (main, 17:19): help ct-rank-two-limit, tex 1794–1807
+
+- The suggested finite-group compression-defect step is already closed on main
+  (`JacobsonRankTwo.manuscriptSentence_finiteSubgroupAdmitsNoProperCompression`, `printedDefect_eq_bot_of_finite`), and the
+  lane's assembly consumes it.
+- The lane's Haagerup image steps are in flight (RankTwoCoreImageHaagerup). Its only residual,
+  `CoreRestrictionLocallyFiniteKernelStatement`, waits on chain-matricial's `isLocallyMatricialIn_transientIdeal`, and
+  that cannot be stated yet: `ClopenCrossedProduct T k` carries no `Module k` instance (`ClopenCoeff` is a `def` with only
+  `Ring` and the ℤ-action).
+- CLAIM k-algebra structure on R_X, k-linearity of restriction, and the kernel glue:
+  `GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean` (`TransientIdealLocallyMatricialStatement`,
+  `coreRestrictionLocallyFiniteKernel_of_transientLocallyMatricial`). Proposed to ct-rank-two-limit directly (17:3x).
+
 ## Range status
 Every sentence of tex 583–657 is carried by a closed, root-reachable declaration or is honestly structural (hypothesis,
 notation, commentary). The new module still needs wiring into the root (queued). Remaining note: the word "only" in
