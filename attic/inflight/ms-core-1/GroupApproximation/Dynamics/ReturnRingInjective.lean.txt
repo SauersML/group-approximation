@@ -21,6 +21,9 @@ The injectivity half of the printed identification.
   the degree-zero coefficient of `z`;
 * `returnRingHom_injective`: `θ : LC(C, k) ⋊_{S_C} ℤ →+* P_C` is injective, by reading every
   coefficient of `z` as the degree-zero coefficient of `z · u_S^{-n}`.
+
+Laurent coefficients are written `SkewMonoidAlgebra.coeff x g`: on `ClopenCrossedProduct T k` the
+field notation `x.coeff` resolves to the coefficient embedding `ClopenCrossedProduct.coeff`.
 -/
 
 namespace GroupApproximation.ChainCore
@@ -77,14 +80,15 @@ theorem degreesLE_neg_one_returnW : DegreesLE (-1) (returnW k hC) := by
 
 /-- **Degree zero of `f · v^n`**: `f` when `n = 0`, and `0` otherwise. -/
 theorem coeff_one_coeff_mul_coe_returnUnit_zpow (f : LocallyConstant C k) (n : ℤ) :
-    (ClopenCrossedProduct.coeff T k (clopenExtendByZero k hC.isClopen f) *
-        (((returnUnit k hC ^ n : (ReturnCorner k hC)ˣ) : ReturnCorner k hC) :
-          ClopenCrossedProduct T k)).coeff 1 =
+    SkewMonoidAlgebra.coeff
+        (ClopenCrossedProduct.coeff T k (clopenExtendByZero k hC.isClopen f) *
+          (((returnUnit k hC ^ n : (ReturnCorner k hC)ˣ) : ReturnCorner k hC) :
+            ClopenCrossedProduct T k)) 1 =
       if n = 0 then ClopenCoeff.of T k (clopenExtendByZero k hC.isClopen f) else 0 := by
   rcases lt_trichotomy n 0 with hn | rfl | hn
   · obtain ⟨m, rfl⟩ : ∃ m : ℕ, n = -((m + 1 : ℕ) : ℤ) := ⟨(-n).toNat - 1, by omega⟩
-    rw [if_neg (by omega), zpow_neg, zpow_natCast, ← inv_pow, Units.val_pow_eq_pow_val,
-      coe_corner_pow_succ, coe_returnUnit_inv]
+    rw [if_neg (show -((m + 1 : ℕ) : ℤ) ≠ 0 by omega), zpow_neg, zpow_natCast, ← inv_pow,
+      Units.val_pow_eq_pow_val, coe_corner_pow_succ, coe_returnUnit_inv]
     have h1 := (Pestov91.CrossedProduct.degreesLE_C
       (ClopenCoeff.of T k (clopenExtendByZero k hC.isClopen f))).mul
         ((degreesLE_neg_one_returnW k hC).pow_of_neg_one (m + 1))
@@ -93,8 +97,8 @@ theorem coeff_one_coeff_mul_coe_returnUnit_zpow (f : LocallyConstant C k) (n : �
       clopenExtendByZero_mul_charFn, ClopenCrossedProduct.coeff_apply,
       Pestov91.CrossedProduct.coeff_one_C]
   · obtain ⟨m, rfl⟩ : ∃ m : ℕ, n = ((m + 1 : ℕ) : ℤ) := ⟨n.toNat - 1, by omega⟩
-    rw [if_neg (by omega), zpow_natCast, Units.val_pow_eq_pow_val, coe_corner_pow_succ,
-      coe_returnUnit]
+    rw [if_neg (show ((m + 1 : ℕ) : ℤ) ≠ 0 by omega), zpow_natCast, Units.val_pow_eq_pow_val,
+      coe_corner_pow_succ, coe_returnUnit]
     have h1 := (Pestov91.CrossedProduct.degreesGE_C
       (ClopenCoeff.of T k (clopenExtendByZero k hC.isClopen f))).mul
         ((degreesGE_one_returnV k hC).pow_of_one (m + 1))
@@ -102,9 +106,10 @@ theorem coeff_one_coeff_mul_coe_returnUnit_zpow (f : LocallyConstant C k) (n : �
 
 /-- **Degree zero of `θ z`** is the extension by zero of the degree-zero coefficient of `z`. -/
 theorem coeff_one_coe_returnRingHom (z : ClopenCrossedProduct (firstReturnHomeomorph hC) k) :
-    ((returnRingHom k hC z : ReturnCorner k hC) : ClopenCrossedProduct T k).coeff 1 =
+    SkewMonoidAlgebra.coeff
+        ((returnRingHom k hC z : ReturnCorner k hC) : ClopenCrossedProduct T k) 1 =
       ClopenCoeff.of T k (clopenExtendByZero k hC.isClopen
-        ((ClopenCoeff.of (firstReturnHomeomorph hC) k).symm (z.coeff 1))) := by
+        ((ClopenCoeff.of (firstReturnHomeomorph hC) k).symm (SkewMonoidAlgebra.coeff z 1))) := by
   classical
   induction z using SkewMonoidAlgebra.induction_on with
   | zero =>
@@ -139,8 +144,9 @@ theorem returnRingHom_injective : Function.Injective (returnRingHom k hC) := by
     (z * single g⁻¹ (1 : ClopenCoeff (firstReturnHomeomorph hC) k))
   rw [map_mul, hz, zero_mul, coe_corner_zero, SkewMonoidAlgebra.coeff_zero, Finsupp.coe_zero,
     Pi.zero_apply] at h
-  have hc : (z * single g⁻¹ (1 : ClopenCoeff (firstReturnHomeomorph hC) k)).coeff 1 =
-      z.coeff g := by
+  have hc : SkewMonoidAlgebra.coeff
+      (z * single g⁻¹ (1 : ClopenCoeff (firstReturnHomeomorph hC) k)) 1 =
+        SkewMonoidAlgebra.coeff z g := by
     have h2 := SkewMonoidAlgebra.coeff_mul_single z
       (1 : ClopenCoeff (firstReturnHomeomorph hC) k) g⁻¹ 1
     rwa [one_mul, inv_inv, smul_one, mul_one] at h2

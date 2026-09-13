@@ -70,8 +70,7 @@ theorem returnRingCrossedProductStatement_holds : ReturnRingCrossedProductStatem
     · show (LocallyConstant.charFn k (isClopen_returnCell hC h) : X → k) x =
         Set.indicator (returnCell T C h) 1 x
       rw [LocallyConstant.coe_charFn]
-    · rw [returnRingEquiv_apply, coe_returnRingHom_unit]
-      rfl
+    · exact coe_returnRingHom_unit k hC
 
 end GroupApproximation.ChainCore
 
