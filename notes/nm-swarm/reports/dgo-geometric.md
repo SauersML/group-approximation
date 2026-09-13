@@ -61,22 +61,48 @@ These are model tests. None of them certifies a printed sentence.
      hull-respell's lobe selection.
    - A consumer that needs `K'` to keep the faces, the arcs or the sides of `K` cannot get that
      from the Prop.
-   - The hard pinch cases are Configuration A (notch) and Configuration B (lake). They are not
-     modelled.
-4. hull-euler, C3 to C5 of `PhiPrimeCountInput`:
-   - C4 (`CornerTwoGonInput`) and C6′ (`TwoGonHoldsInput`) need a least-area diagram with a
-     globally distinguished section family, so they are not modelled yet.
-   - C3 and C5 are not audited yet.
+   - The hard pinch cases are Configuration A (notch) and Configuration B (lake). Configuration A
+     is modelled below. Configuration B is not modelled yet.
+4. hull-euler, C3 to C5 of `PhiPrimeCountInput`: no truth question is left.
+   - Proved: C3 (`exterior_of_isTwoGon`, hull-euler), C4 (`cornerTwoGonInput`, leavitt-units,
+     90245333d), C5 (`cellFaceCountInput`, hs-vanishes, a6a2cadda) and C6
+     (`emptyTwoGonInput_holds`, fff-periodic, 2aa17abb0).
+   - C6′ (`TwoGonHoldsInput`) is the only stated input left. It needs a least-area diagram with a
+     globally distinguished section family, so it is not modelled.
 
 The baseline-debt LINE:1725 finding went to baseline-debt. The dgo-analytic stale-lines finding
 is moot and was not sent.
+
+### The noncrossing `Simple` prediction (R2)
+
+dgo-analytic's R2 would make `PocketFaceSet.Simple` a noncrossing closed walk whose outer cycle
+follows the boundary. dgo-analytic predicts two outcomes:
+- Configuration A: the pocket sectors lie between the passages, so the inner cycle fails and the
+  outer cycle follows.
+- Configuration B (lake): the outer cycle fails.
+
+`Estimating/OsinPocketPinchedTwoGonOuterFollows` tests Configuration A on the pinched two-gon model.
+It landed at e533e5581. Probe 0913-134649-6539 is GREEN with `BUILT`, no warnings, and the file is
+byte-equal to main. It uses kh-ejz's `isNoncrossingClosedWalk_pinchCycle`.
+- `sideOutside_pinchCycle`: the outer side of `[5,3,4,6]` is the relator cell together with the
+  exterior face.
+- `pinchCycle_outerCycle_followsBoundary`: the outer cycle `[9,8,0,1]` follows the boundary.
+  `9 ↦ 8` and `0 ↦ 1` are face steps, and `8 ↦ 7 ↦ 0` and `1 ↦ 2 ↦ 9` cross the internal edge
+  `{2,7}`.
+- `pocket_inner_not_follows_outer_follows`: the prediction holds on `pocket`.
+- `pinchedPocketNoncrossingOuterFollowsModel`: `pinchedK` meets the pinch hypothesis and fails
+  today's `Simple`, but it meets the proposed `Simple`. So under R2 this pocket needs no pinch.
+
+Verdict for Configuration A: the prediction holds on this model. Configuration B is not modelled
+yet.
 
 ### Residual and next
 
 No Prop owned by this lane is open. `OsinPocketPinchedTwoGonLobe` is green as landed (4181011af),
 so it needs no second landing. Next, in order:
-1. model Configuration A or B of the pinch;
-2. audit C3 and C5, and model C4 and C6′.
+1. the probe of `OsinPocketPinchedTwoGonOuterFollows`;
+2. a smallest Configuration B (lake) model on which the outer cycle does not follow;
+3. hull-respell's smallest A and B, as dgo-analytic asks.
 
 ## 2026-09-13: P_naive wiring check
 
