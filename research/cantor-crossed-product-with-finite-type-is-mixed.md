@@ -60,6 +60,15 @@ is not properly infinite in `A`.  It would follow if `1_X` were finite in `A`.
     isometry, which is excluded.  Approximating by the algebraic crossed
     product loses the isometry property exactly where rounding is hard, the
     Borel/clopen gap of the Nadkarni contrast.
+* **Nuclear candidates are excluded.**  Take a group containing a nonabelian
+  free group.
+  * By Gardella--Geffen--Kranz--Naryshkin (arXiv:2201.03409v3), Theorems B and
+    C(1), amenable minimal actions of such groups on compact metrizable spaces
+    have comparison.  With no invariant measure, every clopen class is then
+    properly infinite (Ara--Bönicke--Bosa--Li, Proposition 2.11).
+  * So a candidate action is non-amenable and `A` is not nuclear.  GGKN also
+    prove that simple nuclear crossed products by groups containing `F_2` are
+    properly infinite (their Theorem 3.9, as stated on page 4).
 * **Z-stable variants are dichotomous.**  Boldrini--Prasad (arXiv:2607.01896,
   Theorem 7.4, p. 26) tensor these crossed products with the Z-stable algebra
   `C*_r(⊕_N F_infinity)`.  That tensor product is itself the crossed product

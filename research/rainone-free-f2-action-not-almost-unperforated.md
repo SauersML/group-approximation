@@ -33,8 +33,15 @@ the Cantor set would have almost unperforated types.
   satisfied by free groups, acylindrically hyperbolic groups and many natural
   classes of non-amenable groups --- on compact metrizable spaces", citing
   Gardella--Geffen--Kranz--Naryshkin (J. Reine Angew. Math. 797 (2023)).
-  * So any example is a non-amenable action.  The GGKN statement itself has
-    not been read here.
+  * Verified from arXiv:2201.03409v3, page 4.  Theorem B: "Let H be a
+    countable group with paradoxical towers, let K be an arbitrary countable
+    group, and set G = H × K. Then every amenable, minimal action G ↷ X on a
+    compact metrizable space has dynamical comparison."  Theorem C(1):
+    acylindrically hyperbolic groups admit paradoxical towers, "in particular,
+    all nonamenable hyperbolic groups and thus all nonabelian free groups".
+  * So any example, for `F_2` or `F_infinity`, is a non-amenable action, and
+    its crossed product is not nuclear.  Boldrini--Prasad's actions are
+    non-amenable for the same reason.
 * **Rank 2 by Baire category on pairs: dense-generating pairs are not dense.**
   * In `Aut(B, mu)^2`, the pairs that both map a proper clopen `p` onto
     itself form a nonempty open set.  No pair in it generates a dense or
