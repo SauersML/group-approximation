@@ -77,6 +77,42 @@ dart, labelled like `d`, standing in the place of `d`) and a value-one digon `[s
   is the image of `S` with the digon (`faceSet`), and `collarTransport` keeps the outer darts, the
   cell darts outside `S` and the side of every cell.
 
+Noncrossing strip (lead, ~14:00): does kh-torsion's `GeodesicCollar.StripStatement` run on R2's `Simple`,
+a noncrossing closed walk whose outer cycle follows its boundary, in place of `IsSimpleClosedWalk`?
+- The sector lemma that needs inner and outer FollowsBoundary is used only to get simplicity out of a
+  pocket region (`PocketRegion.ofSimpleClosedWalk_invDarts_outer`, in `geodesicCollarOutput_of_walkOutput`).
+  No strip step uses it.  Stage 1 reads simplicity in two places.  The doubling transports the walk
+  (`FaceEdgeDoubling.isSimpleClosedWalk_embed`).  `stripSingleton` excludes a monogon side with a
+  nonempty rest (`vertexOf_alpha_ne_of_mem`, from `vertex_nodup`).
+- Outer FollowsBoundary is a rotation condition (`outerTurn_iff_followsBoundary`): from each walk dart,
+  the rotation reaches the reversal of the previous dart before any dart kept by the walk.  Every
+  restriction of maps keeps it (`followsBoundary_outerCycle_map`), so both doublings do.  So does the vertex
+  join at `x, y` with `α x` and `σ y` on the walk (`followsBoundary_outerCycle_vertexJoin`).
+- `GGT/VanKampen/SurgeryNoncrossingCollarWalk` (28cdb8b0e, probe 0913-144452-8341 GREEN, queued for
+  wiring): `TurnsBack`, `OuterTurn` and their transport through `VertexJoin`, restrictions and
+  `EdgeInsertion`.
+- `GGT/VanKampen/SurgeryNoncrossingCollarWalkSides` (dd787eba4, probe 0913-145500-75709 GREEN, queued
+  for wiring): the three theorems above.
+- `GGT/VanKampen/SurgeryNoncrossingCollarStrip` (landed with this report, probe 0913-153039-58042 GREEN, queued for wiring):
+  `NoncrossingStrip`, `NoncrossingStripStatement`, and `noncrossingStripSingleton`, which proves the side
+  `s = [d]` for any rest.  A monogon side with a nonempty rest goes through `MonogonDoubling`
+  (`monogonStrip`, with the general boundary lemma `isBoundaryDart_monogonFaceSet_iff`).
+- `GGT/VanKampen/SurgeryNoncrossingCollarStripModels` (landed with this report, probe 0913-153039-58042 GREEN, queued for wiring):
+  - the pinched two-gon turns back (`outerTurn_pinchCycle`);
+  - the lake does not (`not_outerTurn_lakeCycle`);
+  - the two-petal walk `[1,3]` is noncrossing, follows outside and is not simple, and its first dart bounds
+    a monogon (`monogonSideWithRestModel`);
+  - the three-petal rose `[0,2,4]` passes the noncrossing fields, but its outer cycle fails
+    (`roseCycle_outerCycle_not_followsBoundary`).
+
+Residual:
+- `NoncrossingStripStatement` for sides of two or more darts.  `StripStatement` has no proof either;
+  only `stripSingleton` exists.
+- Stages 2 and 3 read `vertex_nodup` of the strip walk (`Strip.insert_walk`, Insert:224; Join:128, 286 and
+  `not_same_vertex`).  Join is the risk: under R2 the side can close a sub-walk at a repeated vertex.
+- `WalkOutput` and `geodesicCollarOutput_of_walkOutput` build the pocket region with
+  `ofSimpleClosedWalk`, and need a noncrossing version.
+
 ## Census
 No row: these modules prove the cited group consumed at tex 1679 and do not carry a sentence (same
 grading as simple-group).
