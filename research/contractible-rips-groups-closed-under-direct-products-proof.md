@@ -36,6 +36,6 @@ these countable, locally finite complexes that is the usual product. So
 
 **4. Consequences.** A product of contractible spaces is contractible. For
 type `ℝ`, take `r_0` as the larger of the two thresholds. For the weak reading,
-part 1 of `rips-contractibility-reduces-to-cayley-flag-complexes` rewrites
-`R_r(G,S)` and `R_{r'}(H,T)` as scale-1 Rips complexes, and then apply part 2 at
-`r = 1`.
+item 1 of `rips-complex-of-a-group-is-a-flag-cayley-complex` rewrites
+`R_r(G,S)` and `R_{r'}(H,T)` as scale-1 Rips complexes
+(`R_r(G,S) = R_1(G, B_S(r) ∖ {1})`), and then apply part 2 at `r = 1`.

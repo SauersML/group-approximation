@@ -5,7 +5,7 @@ kind: claim
 title: Rips complexes of a direct product for the l-infinity generating set are products up to homotopy, so contractibility passes to products
 distinct_from:
   rips-complexes-of-integer-lattices-are-contractible: that is Virk's theorem for Z^n with the standard (l^1) generators; this is a product formula for Rips complexes of arbitrary direct products with the l^infinity generating set
-  rips-contractibility-reduces-to-cayley-flag-complexes: that rescales a single group's Rips complexes to scale one; this computes Rips complexes of a direct product from those of its factors
+  rips-complex-of-a-group-is-a-flag-cayley-complex: that identifies one group's Rips complexes with flag complexes of Cayley graphs; this computes Rips complexes of a direct product from those of its factors
 ---
 
 Let `(G,S)` and `(H,T)` be finitely generated groups with finite symmetric
@@ -25,8 +25,9 @@ Consequences:
 - if `(G,S)` and `(H,T)` are of type `ℝ` in the sense of Li–Sánchez Saldaña
   (arXiv:2608.24279: contractible for all `r ≥ r_0`), so is `(G×H, S⊠T)`;
 - if `G` and `H` each have some contractible Rips complex, at possibly different
-  generating sets and scales, so does `G × H` (rescale both to scale 1 by
-  `rips-contractibility-reduces-to-cayley-flag-complexes`).
+  generating sets and scales, so does `G × H`. Rescale both to scale 1 by item 1
+  of `rips-complex-of-a-group-is-a-flag-cayley-complex`:
+  `R_r(G,S) = R_1(G, B_S(r) ∖ {1})`.
 
 Model test: `G = H = Z`, `S = T = {±1}`, `r = 1`. `S ⊠ T` is the king-move
 generating set of `Z^2`, `R_1` is the flag complex of the king graph, and it is

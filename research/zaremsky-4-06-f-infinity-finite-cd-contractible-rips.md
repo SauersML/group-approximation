@@ -46,6 +46,25 @@ complex gives type F, a yes to 4.6 is exactly a yes to both (1.21) and (4.7).
 A no comes either from a counterexample to (1.21) or from a type F group with no
 contractible Rips complex.
 
+**Wiring.** (1.21) is `f-infinity-groups-of-finite-cd-are-of-type-f` and (4.7) is
+`every-type-f-group-has-a-contractible-rips-complex`.
+
+- `f-infinity-fcd-contractible-rips-from-1-21-and-4-07` gives the yes claim from
+  both of them.
+- `f-infinity-fcd-type-f-from-contractible-rips` and
+  `type-f-contractible-rips-from-f-infinity-fcd-rips` derive each of them from the
+  yes claim.
+- On the no side, `no-contractible-rips-from-f-infinity-group-not-of-type-f` starts
+  from `some-f-infinity-group-of-finite-cd-is-not-of-type-f`, and
+  `no-contractible-rips-from-type-f-group-without-one` from
+  `some-type-f-group-has-no-contractible-rips-complex`.
+
+By `f-infinity-finite-cd-group-with-zero-reduced-k0-is-type-f`, a counterexample
+through (1.21) must have `K̃_0(ZG) ≠ 0` for a torsion-free group. So a realistic
+search for a no answer is Problem 4.7's search: a type F group none of whose
+Cayley flag complexes is contractible
+(`rips-complex-of-a-group-is-a-flag-cayley-complex`).
+
 **Status (bounded check, 2026-09-13).** Open. z-status-b's table
 (`research/artifacts/zp-open-status-sections-2-4-2026-09-13-part*.md`)
 records Li–Sánchez Saldaña arXiv:2608.24279 (type `ℝ` is closed under graphs

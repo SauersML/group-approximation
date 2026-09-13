@@ -5,6 +5,7 @@ kind: claim
 title: A contractible Rips complex of a torsion-free group is the universal cover of a finite classifying space
 distinct_from:
   hyperbolic-rips-complex-models-proper-actions: that is the Meintrup–Schick theorem that Rips complexes of hyperbolic groups model proper actions; this is the elementary fact that ANY contractible Rips complex of a torsion-free group gives a finite K(G,1)
+  rips-complex-of-a-group-is-a-flag-cayley-complex: that reformulates contractible Rips complexes as vertex-transitive flag complexes and records type F as its item 2; this is the stand-alone consequence, with the dimension bound |B_S(r)| - 1, that the Problem 1.21 and 4.6 routes require
 ---
 
 Let `G` be a torsion-free group (for instance `cd G < ∞`) with a finite
