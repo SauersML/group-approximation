@@ -7,11 +7,14 @@ root: true
 distinct_from:
   thompson-f-is-automatic: that is the affirmative answer; this is the question, established by either answer
   thompson-f-is-not-automatic: that is the negative answer; this is the question, established by either answer
+artifacts:
+  - research/artifacts/zp-thompson-f-automatic-2026-09-13.md
 ---
 
 M. C. B. Zaremsky, *Some open problems* (version of July 12, 2026,
 https://zaremsky.github.io/open_problems.pdf), Section 2 (Thompson groups),
-Problem 2, verbatim: "Is F automatic?"
+Problem 2, verbatim: "Is F automatic?" The question is due to Guba and Sapir,
+per Hauze's dissertation, Chapter 1.
 
 This claim is the question. It is established only through an answer route:
 
@@ -29,23 +32,22 @@ rationals, and slopes powers of 2. It has the finite presentation
 (Cannon–Floyd–Parry).
 
 "Automatic" is in the sense of Epstein, Cannon, Holt, Levy, Paterson and
-Thurston, *Word Processing in Groups* (1992): a finite generating set `A` and a
-regular language `L` over `A ∪ A^-1` that maps onto the group, such that for
-every `a ∈ A ∪ {1}` the set of pairs `(u, v) ∈ L × L` with `ū a = v̄` is accepted
-by a synchronous two-tape finite automaton. Equivalently, `L` is regular, maps
-onto the group, and has the synchronous fellow traveller property.
+Thurston, *Word Processing in Groups* (1992): a regular language over a finite
+symmetric generating set that maps onto the group and has the synchronous
+fellow traveller property for accepted words whose endpoints are at distance 0
+or 1 (their Theorem 2.3.5, as cited by Hauze).
 
-Standard facts from that book, used here without re-reading theorem numbers:
+Standard facts used:
 
-1. automaticity does not depend on the finite generating set;
-2. an automatic group has an automatic structure with uniqueness (one accepted
-   word per element);
+1. automaticity does not depend on the finite generating set (Theorem 2.4.1);
+2. an automatic group has an automatic structure with uniqueness (Theorem 2.5.1,
+   ShortLex-minimal representatives);
 3. in an automatic structure with uniqueness there is `N` with
-   `|w| <= N |w̄| + N` for every accepted `w`. The pumping argument: if the
-   unique representative of `g a` ran for more than `N` steps past the length of
-   the representative of `g`, two of those steps would share an automaton state
-   and a position in the `K`-ball around `g`, and cutting the loop between them
-   would give a second accepted word for `g a`.
+   `|w| <= N |w̄| + N` for every accepted `w`. The pumping argument: if the unique
+   representative of `g a` ran more than `N` steps past the length of the
+   representative of `g`, two of those steps would share an automaton state and a
+   position in the `K`-ball around `g`, and cutting the loop between them would
+   give a second accepted word for `g a`.
 
 So a positive answer is a regular language over `{x0^±1, x1^±1}` with
 uniqueness and the fellow traveller property. A negative answer must exclude
@@ -55,33 +57,39 @@ quasigeodesics.
 Not asked: biautomaticity, asynchronous automaticity, or graph automaticity in
 the sense of Kharlampovich–Khoussainov–Miasnikov.
 
-## What is known (arXiv abstracts read 2026-09-13)
+## What is known
 
-- V. Guba, arXiv:math/0211395: the Dehn function of `F` is quadratic. Automatic
-  groups have quadratic Dehn functions, so this obstruction is absent.
-- S. Cleary, M. Elder, J. Taback, arXiv:math/0410616 (J. Algebra 303 (2006)
-  476–500): over the standard generating set `F` has infinitely many cone types
-  and no regular language of geodesics.
-- M. Elder, J. Taback, arXiv:1501.04313: `F` is 1-counter graph automatic. The
-  abstract opens "It is not known whether Thompson's group F is automatic."
-- J. Taback, S. Younes, arXiv:1501.04315: a 3-counter graph automatic structure
-  built from caret types.
-- J. Hauze, arXiv:1801.01965: over `{x0^±1, x1^±1}`, a language that accepts,
-  for every element, at least one word within a fixed additive constant of a
-  geodesic cannot be part of an automatic structure for `F`.
-- `F` is of type `F_∞` (Brown–Geoghegan 1984), so the finiteness obstruction
-  is absent too.
+Sources read 2026-09-13; see the artifact for the full table.
+
+- The Dehn function of `F` is quadratic (Guba, arXiv:math/0211395;
+  `thompson-f-has-quadratic-dehn-function`). `F` is finitely presented and of
+  type `F_∞` (Brown–Geoghegan 1984). So the classical obstructions (finite
+  presentation, quadratic isoperimetric inequality, `F_∞`) are absent.
+- Over the standard generators: there is no regular geodesic language and there
+  are infinitely many cone types (Cleary–Elder–Taback, arXiv:math/0410616); `F`
+  is not weakly geodesically automatic (Belk, as cited by Hauze); and near-geodesic
+  languages are excluded, `thompson-f-has-no-near-geodesic-automatic-structure`
+  (Hauze, arXiv:1801.01965, Theorem 1.1).
+- `F` is 1-counter graph automatic (Elder–Taback, arXiv:1501.04313) and 3-counter
+  graph automatic (Taback–Younes, arXiv:1501.04315). Neither bears on
+  automaticity.
 
 By fact 3, Hauze's theorem is the additive case over one generating set. The
 multiplicative case, over all generating sets, is the whole problem.
 
 ## Attempts
 
-- 2026-09-13 (lane z2-02-f-automatic): the classical consequences of
-  automaticity (finite presentation, quadratic Dehn function, type `F_∞`) all
-  hold for `F`, and geodesic and near-geodesic structures over the standard
-  generators are already excluded. The open ground is (a) structures whose
-  words have unbounded additive excess over geodesic length, and (b)
-  generating-set-free invariants of automatic groups that `F` might violate.
-  The first such candidate is infinite cohomological dimension; see
-  `thompson-f-is-not-automatic`.
+- 2026-09-13 (lane z2-02-f-automatic): open ground on the "yes" side is
+  structures whose words have unbounded additive excess over geodesic length. On
+  the "no" side it is generating-set-free invariants that automatic groups might
+  force. Landed:
+  - `thompson-f-has-infinite-cohomological-dimension` (proved);
+  - routes into `thompson-f-is-not-automatic` from
+    `torsion-free-automatic-groups-have-finite-cd`, from
+    `automatic-groups-have-contractible-rips-complexes` (through the finite-cd
+    claim), and from `thompson-f-is-amenable` +
+    `amenable-automatic-groups-are-virtually-abelian`. All of these prerequisites
+    are open.
+- 2026-09-13 (lane z4-01-amen-auto-rips, Problem 4.1):
+  `thompson-f-has-no-contractible-rips-complex` (proved) and the route
+  `thompson-f-not-automatic-if-amenable-via-rips`.
