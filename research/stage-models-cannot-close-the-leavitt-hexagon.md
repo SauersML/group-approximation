@@ -50,3 +50,11 @@ every weakly finite ring.
 
 **Not claimed.** Nothing about non-monomial linear models, or about weakly finite rings with no metric structure.
 Nothing about the rank-two kernel beyond artifact Section 6.
+
+## Attempts
+
+- 2026-09-12 `w7-hexagon-closing`: opened, with a candidate proof on paper in artifact Sections 1–5.
+  - Point 2 uses Łoś, finite presentation and the absence of finite quotients.
+  - Point 3 uses nonsoficity through the Hamming comparison.
+  - No route yet. It gets one only after `w4-vf-gate` re-derives Sections 1–5.
+  - The per-stage Corollary 2.4 is elementary and is the first thing to check. Corollary 3.2 depends on it.
