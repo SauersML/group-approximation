@@ -163,7 +163,8 @@ famous problem, so nothing was escalated to main.
 - Part 5: SOE invariance and factorwise Howe–Moore.
 
 **Second passes on already-passed claims (all PASS).** `rf-kazhdan-group-not-flexibly-hs-stable`,
-`finite-multiplier-projective-models-round-strictly` and `generators-dense-iff-zero-rokhlin-entropy`.
+`finite-multiplier-projective-models-round-strictly`, `generators-dense-iff-zero-rokhlin-entropy`, and the finite-kernel
+Rokhlin package (part 6): the quotient formula, descent of maximality, and the ascent equivalence.
 
 **Not re-derived in this wave.** The remaining first-wave PASSes of the Rokhlin-ascent, Rokhlin-lower,
 Bernoulli-positive, Bernoulli-zero-supremum and Păunescu-class lanes.
