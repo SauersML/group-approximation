@@ -60,6 +60,11 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
 
 ## Next
 - The Corollary 7.4 piece was superseded: cite-hull closed Hull Cor 7.4 (c6e0b6c33).
-- Current item: W1, helping hull-select on the MultipleEdgeCut assembly (`multipleEdgeCutInput_of_pieces`) and the IsDiscRegion merge Prop.
-  - Done: the CutMerge repair and the two-collar lemma. SHAs and statement were sent to hull-select and main.
-  - Waiting for hull-select's next sub-piece. Nothing else is being written.
+- Done for W1: the CutMerge repair and the two-collar lemma. SHAs and statement were sent to hull-select and main.
+- Held: no edits to `OsinAppendixCutMerge` until ghw-charp2 reports its patch 05 landed.
+- Current item (lead, 09-13 ~09:45): census the open W1 leaf Props, then prove the first unowned leaf.
+  - Census sent to the lead: `$NM/drafts/w1-leaves-0913.md`, pinned at origin dc23e61b1.
+  - Every leaf on the ruled `_of_pocketParts` route has a named owner.
+  - The only leaves no lane owns are `EstimatingJointConstructionStatement` and `PrefixKernelConeCutInductionStatement`, on the dead `_of_reduced` route. Taking either would duplicate W1.
+  - Stale owner: C6′ `TwoGonHoldsInput` (`Estimating/OsinAppendixEulerSmallFaces:94`). The roster names debt-conditional, but that lane has no module and no report entry for it.
+  - Proposed pick: C6′ in a new module `Estimating/OsinAppendixEulerTwoGonHolds`, if the lead reassigns it. Nothing is probed until the lead rules.
