@@ -115,3 +115,15 @@ finiteness conjecture over finite fields.
   fraction over nonamenable groups, and the order has no infinite form. A counterexample family needs `m` and
   `lambda(F)` unbounded, a nonlinear `psi`, non-reading codewords or overlapping windows, and a non-maximal difference
   subgroup; none is known. Artifact `research/artifacts/rokhlin-window-random-order-transport-2026-09-12.md`.
+* **Zero-or-full per copy, and the host order (w7-rokhlin-dichotomy, 2026-09-12).** Proved on the lane's derivation
+  and held open (artifact `research/artifacts/rokhlin-supremum-dichotomy-on-leavitt-units-and-v-2026-09-12.md`):
+  - `bernoulli-per-copy-rokhlin-entropy-is-zero-or-full`: `h^Rok((A^k)^G) = min{k log q, h_sup(G)}`, so `rho_q(G)` and
+    `inf Phi` are `0` or `log q` on every group. A floor with any `c > 0`, domination with any constant `C`, or
+    reverse restriction with any constant loss from an INF subgroup is already INF(G). So the self-copy hypothesis in
+    Corollary 2 of the random-order artifact is unnecessary, and no quantitative relaxation is a weaker target;
+  - the Corollary A1 hypotheses decide nothing, since every group embeds in an A1 host (Proposition 3.1);
+  - `V <= U` makes the positive side cheapest on `V`. The missing inequality is recorded OPEN as
+    `thompson-v-bernoulli-window-values-have-a-positive-floor`, implied by soficity of `V`;
+  - local sources give no lower bound for any nonsofic group (Seward, arXiv:1805.08279, as recorded on
+    `every-group-has-positive-rokhlin-entropy-action`). Each positive mechanism tried points upward or is
+    base-independent (artifact Section 4).

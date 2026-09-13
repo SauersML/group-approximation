@@ -29,3 +29,15 @@ is, `U` is not quantitatively surjunctive in the sense of `surjunctive-groups-ar
   of the dichotomy over `U`. The image may miss patterns on every track and the margin may be positive, so it asks
   less than a strict automaton. No candidate has been built. Section 3 of
   `research/artifacts/quantitative-surjunctivity-rokhlin-markers-2026-09-12.md`.
+- **Shape constraints on a candidate (w7-rokhlin-dichotomy, 2026-09-12).** No construction. Proved on the lane's
+  derivation and held open (Section 5 of
+  `research/artifacts/rokhlin-supremum-dichotomy-on-leavitt-units-and-v-2026-09-12.md`):
+  - **Localization.** The same local rule restricts to `H = <memory ∪ windows>` with the same `mu` and `Sigma`, and
+    induces up from any subgroup. So `H` is infinite with `h_sup(H) < infinity`, hence nonsofic and in no sofic
+    subgroup. A candidate over `V` induces one over `U` and would prove `V` nonsofic.
+  - **Track count.** If every track contains all constants, each forbidden pattern is nonconstant with `|W_i| >= 2`,
+    so `Sigma <= (n/2) log(4/3)`. `U` would be surjunctive in this case, so `mu >= log 2`, and a margin below `Sigma`
+    needs `n >= 5` tracks.
+
+  Where it stops: a nonlinear injection on at least 5 tracks whose windows generate a nonsofic subgroup with finite
+  `h_sup`. None is known.
