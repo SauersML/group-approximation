@@ -3,6 +3,86 @@
 Lane of the non-MF verbatim swarm. It owns the geometric DGO/Osin carriers and the GHW archimedean
 modules `Kazhdan/GHWArchimedeanMinkowski` and `Kazhdan/GHWArchimedeanWalls`.
 
+## 2026-09-13: the wrap case of the pinch, model test
+
+The lead's item: model the wrap case of the pinch, the one pinch residual with no planned proof.
+In that case `K` follows the boundary and is pinched, and `t_1 = ∂Π` or `t_2` holds every dart of
+`K` on `∂X`. Send the result to ghw-assembly, especially a refutation.
+
+### Verdict: the four pinch Props fail at `ε = 0`
+
+The four Props are false at the universes `0, 0, 0`. There is no ULift transport to other
+universes.
+
+- `PocketPinchStatement`, `OsinPocketPieces.lean:260`.
+- `PocketPinchLabelledStatement`, `OsinPocketPieces.lean:272`.
+- `PocketPinchPinchedStatement`, `OsinPocketPinchUnpinched.lean:61`, through
+  `pocketPinchStatement_of_pinched`.
+- `PocketPinchStepStatement`, `OsinPocketPinchStep.lean:60`, through
+  `pocketPinchLabelledStatement_of_step`.
+
+### The shape (`OsinPocketWrapRose`)
+
+The counterexample is a three-petal rose with one vertex. Its darts are `0..5`, with
+`alpha = (0 1)(2 3)(4 5)` and `sigma = (0 1 2 3 4 5)`. It has four faces:
+
+- `κ = [0,2,4]`, an ordinary face reading `x⁻¹ · xy · y⁻¹`;
+- `Π = [1]`, a relator cell reading `x`;
+- the exterior face `[3]`;
+- `R = [5]`, a relator cell reading `y`.
+
+The pocket face set `wrapK` on `{κ, R}` has `ε = 0` and positions 0 and 1:
+
+- source `Π` and kept cell `R`;
+- empty sides, `t_1` = all of `∂Π`, `t_2` = all of `∂X`;
+- boundary cycle `[0,2]`.
+
+It is a closed walk, it follows the boundary, and it is pinched at the one vertex. So it is the
+wrap residual with `t_1 = ∂Π` and `t_2 = ∂X` at the same time.
+
+### Why no copy is simple (`OsinPocketWrapMonogon`)
+
+`not_simple_of_monogons`: at `ε = 0`, if the source cell and the exterior face each have one
+dart, no pocket face set is simple. The sides are empty and each arc has at most one dart.
+
+- Both arcs empty: the cycle is empty, which is impossible.
+- Exactly one arc empty: the cycle is the reversed dart of one monogon. By connectivity, every
+  face is that monogon or lies in the face set, so the other monogon lies in the face set.
+- Both arcs of one dart: the dart of `t_1` is a loop, so `t_2` starts at the vertex where `t_1`
+  starts, and `vertex_nodup` fails.
+
+An O-equivalence keeps the lengths of the relator words and the boundary word
+(`no_simple_of_oEquivalent_monogons`).
+
+### `ε ≥ 1` and the consumer
+
+- At `ε ≥ 1` the rose is rescued on paper: `K' = {R}` with `s_1 = [5]` and empty arcs is simple
+  on the rose itself. So the rose does not refute `ε ≥ 1`. `ε ≥ 1` is untested in general.
+- `hpinch : PocketPinchLabelledStatement` of `sectionPocketCutInput_of_residuals`
+  (`OsinPocketCutResiduals.lean:45`) is false as stated. There are two candidate repairs, both
+  untested, and the lead decides:
+  - a `0 < ε` binder. `OsinCCondition` does not supply it, since
+    `osinCCondition_emptyFamilyModel` holds at every `ε`;
+  - long relators, `IsSmallCancellation.long` with `2 ≤ ρ`. This kills the monogon family but
+    does not decide `ε = 0`.
+
+### Lean
+
+- `OsinPocketWrapMonogon` and `OsinPocketWrapRose` are new and unwired, landed unverified at
+  6dfa779fe. The endpoints are `PocketPinchWrapModel` and `PocketPinchWrapRefutation`.
+- Probe 0913-161551-58985 was red on two tactic lines of Monogon. The fix landed at 87358b0ad.
+- Probe 0913-163031-39703 is GREEN, with BUILT for both modules. Every `#audit_axioms` and
+  `#audit_closed_axioms` line passes within `propext`, `Classical.choice` and `Quot.sound`.
+- Sent: the full result to ghw-assembly, the shape to main, and notices to hull-respell, kh-cckw
+  and dgo-analytic.
+
+### Residual and next
+
+- Get hull-respell's exact wrap shape and compare it with the rose.
+- No wrap Lean until dgo-geometric, hull-respell and ghw-assembly agree on the split.
+- Lower priority: dgo-analytic's collar re-test under `K.Nondegenerate`. Configuration A only if
+  R1 wins. C3 and C5 are skipped.
+
 ## 2026-09-13: W1 PocketRegion piece Props, model and truth audit
 
 The lead's item: audit the W1 PocketRegion piece Props as they land. For each Prop, find a
