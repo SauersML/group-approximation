@@ -58,10 +58,22 @@ This lane owns the value.
 - `Surgery.InnerGRegion.ofPocketRegion P hcells boundary (hrot : boundary.cycle ~r P.inner.cycle)`
   sets `value_one` from the above, with no `ofShelling`. `ofPocketRegion_faces` and
   `ofPocketRegion_boundary_cycle` hold by `rfl`.
-- Interface link. If hull-select builds the pocket with `inner := B.toDiscRegion`, then
-  `P.inner.cycle` is `B.cycle` definitionally and `hrot := List.IsRotated.refl _`. Otherwise
-  the link is a uniqueness lemma (two boundary walks of one face set are rotations of each
-  other), which this lane has offered to take.
+- Interface, agreed with hull-select on 2026-09-13. hull-select's draft
+  `Estimating/OsinPocketZeroCellMerge.lean` (unlanded at 07:41) builds
+  `PocketRegion.innerBoundary P hcells hwalk` from `hwalk : P.inner.FollowsBoundary`. Its cycle
+  is `P.inner.cycle`. `PocketRegion.toInnerGRegion` passes that boundary to `ofPocketRegion`
+  with `hrot := List.IsRotated.refl _`, so `OsinPocketMergeRegion` stays as it is. The converse
+  bridge (`Embedded.boundaryStep_of_walk`) is hull-select's. This lane drafted the same bridge
+  and did not land it.
+- Still open on that interface: `EmptyTwoGonInput` (16d923f27) has no `FollowsBoundary`
+  hypothesis on `P`. Either its consumer supplies `hwalk`, or hull-euler adds the hypothesis.
+  `MultipleEdgePocketRegionInput` (d00f94876) already concludes that both cycles follow the
+  boundary, and hull-respell's `PocketRegion.ofSimpleClosedWalk` (a11a8d850, unverified) builds
+  such pockets.
+- This lane offered two lemmas, to be built only if hull-select asks:
+  - `P.inner.FollowsBoundary` from an embedded boundary whose cycle rotates the pocket cycle;
+  - given `hwalk`, every embedded boundary rotates the pocket cycle
+    (`FaceSetBoundary.exists_cycle_eq_rotate`).
 
 ## Residual statements (exact, at origin 0358f4537)
 
@@ -97,10 +109,19 @@ This lane owns the value.
 Every other input is already closed: DGO 2.35, GO 1.1, Chiodo, Minasyan–Osin, the
 free-product union geometry, and the hard direction of Osin 1.1.
 
-## Flips (owned by theoremc-retire)
+## Flips (ownership final, roster ~06:36)
 
-theoremc-retire owns the one-application flips. This lane re-grades the rows as walls close.
-Each flip is
+This lane re-grades the rows as walls close and lands no flip. The final roster splits the flips:
+- theoremc-retire: every `TheoremC*` module and the `_of_leastAreaInputs` forms;
+- fff-periodic: `TorsionFreeFourLeaves` and `SectionSentencesFourLeaves`;
+- ko-closed: the carrier swap of row 8097c371f35d;
+- hull-bridge: this lane's five endpoint modules, with 27 findings. They are
+  `TorsionFreeLeastAreaAssembly`, `TorsionFreeOsinNotion`, `TorsionFreeHullPrintedLeastArea`,
+  `TorsionFreeLimitSetEndpoints` and `TorsionFreeSectionAssembly`.
+
+fff-periodic's `TorsionFreeGreendlingerLeaf` (1edf0f7b4, probe 0913-063820-983 green) states 23
+forms `*_of_greendlinger` over hgreendlinger alone. It is queued for wiring but not yet
+root-imported, so the rows keep the root-imported four-leaf carriers. Each four-leaf flip is
 `theorem printedFoo : PrintedFoo := TorsionFreeFourLeaves.printedFoo_of_fourLeaves <walls>`,
 followed by `#audit_closed_axioms`, where `<walls>` are the closed producers above.
 - Walls 2 to 4 are closed, so every flip now waits on wall 1 alone:
@@ -196,8 +217,10 @@ row names the closed endpoint and says "retires open-predicate <decl>".
 
 ## Next
 
-- The value half of the zero-cell merge is on main and green. Next is to agree `hrot` with
-  hull-select, and to build the boundary-walk uniqueness lemma if that half is handed over.
+- The value half of the zero-cell merge is on main and green, and `hrot` is agreed with
+  hull-select (section above). The two offered lemmas get built only if hull-select asks.
+- When `TorsionFreeGreendlingerLeaf` is root-imported, re-note the ten rows on its one-binder
+  carriers.
 - `OsinDescentStepInput` is RETIRED as off route (lead, 2026-09-13; audit-sec5 and
   dgo-analytic agree). This lane built nothing on it and deleted nothing. dgo-analytic adds the
   docstring note.
