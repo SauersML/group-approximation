@@ -6,6 +6,8 @@ title: The Bernoulli shift of a fibered hyperbolic 3-manifold group has transpor
 distinct_from:
   fpbs-twisted-level-percolation-connected: that is connectivity of independent twisted level percolation, now refuted; this asks for some Borel set of small measure, necessarily correlating open levels across fibre lines, whose transport graphing generates.
   fpbs-normal-subgroup-bounded-cost-fixed-price-one: that is fixed price for every extension by a bounded-cost normal subgroup; this is one explicit graphing family on one action of the fibered cyclic extensions.
+  fpbs-line-independent-twisted-levels-disconnected: that proves disconnection at small density when open levels are independent across fibre lines, whatever the dependence along each line; this asks for a set whose open levels are correlated across fibre lines, which that theorem does not cover.
+  fpbs-twisted-level-percolation-disconnected-at-low-density: that proves disconnection at small density for independent open levels; this asks for connectivity for one small set whose open levels are correlated across fibre lines.
 artifacts:
   - research/artifacts/fpbs/docs/twisted-levels-line-independent-disconnection.md
 ---

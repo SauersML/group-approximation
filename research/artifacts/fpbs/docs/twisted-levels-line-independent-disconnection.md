@@ -184,9 +184,23 @@ fibered-cover transfer, this gives fixed price one. The route is
 5. *Pseudo-Anosov Markov partitions.* The natural boundary actions of `Gamma` are not p.m.p., so
    they don't give Borel sets of the Bernoulli shift directly. No construction.
 
-**Literature status**, as recorded on main and not re-read here:
-- infimal cost one: Gaboriau, Theorem 2.56, cited on the root;
-- Abert–Nikolov Theorem 2 (fixed price versus rank vs Heegaard genus): quoted on the root;
-- Bernoulli maximal cost: `fpbs-bernoulli-maximal-cost`.
+**Literature status**, read from the PDFs on 2026-09-12:
+- Abert–Nikolov, arXiv:math/0701361v3, Theorem 2, verbatim: "Either the Rank vs Heegaard genus
+  conjecture is false or the Fixed price problem has a negative solution." The abstract says the
+  conjecture "on hyperbolic 3-manifolds is incompatible with the 'Fixed Price problem' in
+  topological dynamics". Both match the root.
+- Infimal cost one: Gaboriau, *Around the orbit equivalence theory, measure equivalence, cost and
+  ℓ² Betti numbers*, lecture notes, version of October 3, 2025, p. 21, Theorem 2.56 (Finite cost
+  normal subgroup [Gab02b, Th. 3.4]): "If 1 → Λ → Γ → Q → 1 is an exact sequence of infinite
+  groups, and C_*(Λ) < ∞, then C_*(Γ) = 1." This matches the root's citation.
+- The amenable normal subgroup case. Abert–Nikolov, p. 2, credit Gaboriau with fixed price one for
+  "groups containing an infinite amenable normal subgroup". Gaboriau, *Coût des relations
+  d'équivalence et des groupes*, Invent. Math. 139 (2000), Critères VI.24 (2): "si Λ est un
+  sous-groupe distingué infini à prix fixe de Γ, alors C(Γ) ≤ C(Λ)". An infinite amenable `Λ` has
+  fixed price one, which gives that case. It does not apply here:
+  - in a non-elementary hyperbolic group the infinite amenable subgroups are virtually cyclic, and
+    none of them is normal;
+  - with `Λ` the fibre surface group, of fixed price `2g-1`, it gives only `C(Gamma) <= 2g-1`.
+- Bernoulli maximal cost: `fpbs-bernoulli-maximal-cost`, as recorded on main and not re-read here.
 
 No novelty or priority is claimed. The theorem is a direct extension of main's proof.
