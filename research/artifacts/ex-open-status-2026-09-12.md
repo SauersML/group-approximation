@@ -10,8 +10,9 @@ Then I ran a bounded freshness check:
 - a WebFetch of the arXiv abstract or full text of every 2026 paper that surfaced as a possible
   threat.
 
-The planned arXiv API batch on MSI (37 phrase queries, newest 25 each) got empty responses from the
-node and contributes nothing yet (last section).
+The arXiv export API was rate limited (HTTP 429), so the planned 37-query batch on MSI returned nothing.
+The arxiv.org search UI stood in for it; see "arXiv listing check" below. No listing contradicts any OPEN
+row.
 
 Evidence tags:
 - **P**: primary text fetched in this session (abstract or full text).
@@ -213,6 +214,87 @@ Entries come from `state/landed.log`. A check is bounded as stated in each entry
   - The lane's `sfts-without-finite-orbits-are-not-residually-finite-actions` shows that Z^2 acting on
     Labbé's shift is not such an action. So Ma gives no LEF refutation of the open
     `labbe-shift-derived-full-group-is-finitely-presented`.
+
+- **22:04, ex-baum-connes, 996c78f231.**
+  - The dead route `bc-counterexample-via-ghost-projection` has `requires: []`. It is killed by the
+    established `reduced-group-algebras-contain-no-nonzero-ghosts`, which carries `invalidates:` and a
+    proof route. Checked: it does not fire.
+  - Context: Tian–Yu arXiv:2605.12930 (rev. 2026-08-20; abstract P) show that the Kun–Thom nonsofic
+    groups have Property A. So any trivial-coefficient failure on those groups has to be a failure of
+    surjectivity. The injectivity step (coarse embeddability) was not re-read.
+- **22:04, ex-rr0-dichotomy, b82fcb23ef.** Three citation imports (Ara–Goodearl; Ortega–Perera–Rørdam,
+  two nodes). No new theorem. I did not check them against the sources.
+- **22:05, ex-nh-mipstar, 9eb255abc3.**
+  - `qc-qa-graph-gap-gives-non-ce-quantum-automorphism-group` credits BCEHPSW Remark 4.3.
+  - The correspondence it rests on is Lupini–Mančinska–Roberson arXiv:1712.01820 (abstract P): two
+    connected graphs are quantum isomorphic iff Qut(X ⊔ Y) has an orbit meeting both. It is not cited.
+    The lane was messaged at 22:35.
+  - The open claims (a qc- but not qa-isomorphic pair, a non-CE Qut of a finite graph) match the bounded
+    listings: none found.
+- **22:06, ex-free-objects, 0f2758222e.** A computational presentation artifact for St_5. No
+  novelty claim.
+- **22:06, ex-rank-problem-villadsen, 814a8a6eb5.** `all-ranks-occur-iff-continuous-ranks-are-dense`
+  has no credit line.
+  - (1)⇔(2) is the standard passage from lower semicontinuous affine functions to increasing suprema of
+    continuous ones (not source-checked).
+  - One web search found no statement of (2)⇔(3).
+  - Novelty unverified; low priority risk.
+- **22:07, ex-weak-soficity, 13562b357e.** `residually-finite-doubles-are-weakly-sofic` credits Glebsky
+  (Rev. Mat. Iberoam. 39 (2023)) plus Bass–Serre and calls the deduction immediate. Glebsky
+  arXiv:1910.08631 (abstract P), "residually finite by residually finite extensions are weakly sofic",
+  already suffices because the fold kernel is free. Credit is adequate.
+- **22:07, ex-nonsofic-action-relative, db83b00ca5.** `howe-moore-lattice-nonsofic-action-transfers-to-mixing`
+  (established, unreviewed).
+  - Mechanism: induce to a Howe–Moore envelope, restrict to the lattice, then Păunescu Theorem 1.5.
+  - The `sofic` listing contains no prior statement.
+  - Worth an ex-verify pass: for such lattices it turns the mixing question into membership in
+    Păunescu's class.
+
+## arXiv listing check (arxiv.org search UI, newest first, 22:15–22:35)
+
+The export API stayed rate limited: HTTP 429 from MSI and from WebFetch. The arxiv.org search UI answered.
+The listings below are small-model summaries of the result pages (W), except where a paper's abstract
+was fetched (P).
+
+- `hyperlinear` (25):
+  - No hyperlinear nonsofic group, no non-hyperlinear group, no hyperlinear simple Kazhdan or f.p. simple
+    group.
+  - Conditional items: Dogon–Vigdorovich arXiv:2506.20843 (rev. 2026-06-23; P) prove that flexible HS
+    stability of SL_2(Z[1/p]) gives a non-hyperlinear finite central extension (credit context for
+    ex-nh-*); 2604.01408 and 2507.22444 assume a non-hyperlinear group.
+- `sofic` (50 newest, back to Dec 2024):
+  - Nothing on V, a left-orderable nonsofic group, an f.p. simple sofic group, SL3(Z) actions, Bernoulli
+    classification or Π⁰₂-completeness.
+  - Context: Alekseev–Thom arXiv:2608.05362 (P) prove that a Kazhdan group with a sofic embedding whose
+    centralizer acts ergodically is LEF, and residually finite if finitely presented. So an infinite f.p.
+    simple sofic Kazhdan group (rows 3, 4) has no such embedding.
+  - Tian–Yu arXiv:2605.12930 (row 23).
+  - Aldous–Lyons II arXiv:2501.00173 (nonsofic unimodular networks).
+  - Halo products arXiv:2601.18742 (rows 7, 10).
+- `"weakly sofic"` (13): no non-weakly-sofic group; Glebsky–Rivera 0709.0026 is still the source.
+- `"Rokhlin entropy"` (16): no universal positive-entropy or Bernoulli classification result; Seward
+  1501.03367 is still conditional.
+- `K_1-injective` (25): Toms 2609.09535 is the only relevant new paper. Nothing on LXI, class ≥ 3 or
+  ranks.
+- `"strict comparison"` (25): nothing settles XVIII, XXIII, XXIX, VII or II. Context: arXiv:2605.21655,
+  "Divisibility and real rank zero" (row 20).
+- `Toms-Winter` (2025–26): partial classes only.
+  - arXiv:2604.24682: stable rank one plus tracial locally finite nuclear dimension ⇒ uniform Γ and
+    Toms–Winter.
+  - arXiv:2607.23817: subquadratic-growth ASH algebras.
+  - arXiv:2511.02760: graph algebras.
+  - These constrain where ex-toms-winter can look for a counterexample.
+- `"universal coefficient theorem" nuclear` (2025–26): nothing on UCT or Blackadar–Kirchberg.
+- `"virtually torsion-free"` (25): no non-virtually-torsion-free hyperbolic group; arXiv:2603.04612 is
+  withdrawn.
+- `"unique games conjecture"` (25 newest): all conditional or partial; see arXiv:2609.06775 (multilayered
+  PCPs).
+- `"quantum PCP"` (2025–26): arXiv:2608.16860 and 2608.16857 (adversarial fault tolerance toward
+  circuit-to-Hamiltonian qPCP) and 2510.01333 (gap amplification). No resolution.
+- `Baum-Connes counterexample` (2024–26): only coarse-variant and permanence results.
+- `"Atiyah conjecture"` (2025–26): positive classes only (Out(G), arXiv:2606.19606; Coxeter groups,
+  appendix of arXiv:2505.08701).
+- `left-orderable sofic`: no results bearing on the question.
 
 ## arXiv API batch
 
