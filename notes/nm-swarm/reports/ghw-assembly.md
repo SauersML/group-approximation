@@ -195,24 +195,44 @@ equal to origin.
 
 The lead's item: help hull-unbound close `OsinLemma94PolygonRealizationInput`. It is the h94 piece
 of `osinLemma94Section_of_planarPieces` (`GGT/VanKampen/Estimating/OsinLemma94PlanarPieces.lean`,
-hull-unbound, 80790fad1).
+hull-unbound).
 
-- Per the lead, this lane writes no Lean until hull-unbound names a sub-piece. hull-unbound has been
-  asked.
-- Candidate sub-pieces proposed:
-  - (a) classify the darts of an unselected G-face walk by the face across;
-  - (b) cut the walk into maximal runs of one kind, giving `P.Maximal`;
-  - (c) the quasi-geodesic and short side fields;
-  - (d) the `closed` field;
-  - (e) the face enumeration (`count`, `face`, `face_injective`, `face_complete`).
-- Available input: sec5-sentences' `OsinLemma94DartMinimal` (b6bda9923). Its
-  `exists_reduced_dartMinimal` gives a family that is merged, split at pinches and dart-minimal,
-  with the same card and unbound sum.
-- Residual Props: `OsinLemma94PolygonRealizationInput`. No sub-piece has been assigned yet.
+- hull-unbound reduced the piece to one Prop, `OsinLemma94PolygonPartitionInput`
+  (`OsinLemma94PolygonRealization.lean:142`), and assigned that Prop to this lane.
+  - The reduction is `osinLemma94PolygonRealizationInput_of_partition`
+    (`OsinLemma94SectionResiduals.lean`).
+  - The Prop: for a section family with `1 ≤ ε`, apart G-faces and quasi-geodesic cell arcs,
+    boundary arcs and cutting chains, there are `P : OsinLemma94RealizedPolygons S` with
+    `P.Maximal`.
+- This lane proves it in five modules under `GGT/VanKampen/Estimating/`. All of them are unwired.
+  1. `OsinLemma94PolygonLists` (269a91ab3): list lemmas. Chunks of bounded length, head and last
+     of a flatten, chains along a closed cycle are cyclic arcs, section index of a position.
+  2. `OsinLemma94PolygonKinds` (5c69ca42d): the sides of a face walk.
+     - `dartKind` is what lies across a dart: the exterior with its section, a relator cell, a
+       selected region, or an unselected face.
+     - `SameSide` is the relation between consecutive darts of one side.
+     - `baseOf` is the base of the walk, at a break.
+     - `groupsOf` cuts the walk into maximal runs.
+     - `splitSide` cuts a short run into chunks of length at most `ε`.
+     - `sidesOf` is the list of sides.
+  3. `OsinLemma94PolygonSides` (a76186267): the fields of one side. They are: the walk, nonempty,
+     cell arc, boundary arc, cutting internal and interior, short region, closed, quasi-geodesic,
+     and short.
+  4. `OsinLemma94PolygonMaximal` (9f03bfcd3, probe 0913-131655-32736 GREEN): `sidesOf_maximal`,
+     the condition `Maximal`.
+  5. `OsinLemma94PolygonPartition` (746028b24, probe 0913-132334-2532 GREEN).
+     - It enumerates the unselected G-faces (`polygonFace`) and assembles `realizedPolygons`.
+     - Endpoint: `osinLemma94PolygonPartitionInput : OsinLemma94PolygonPartitionInput`, under
+       `#audit_closed_axioms`.
+- State: CLOSED. `OsinLemma94PolygonPartitionInput` has no binder and no new Prop was split off.
+- Wire order: Lists, Kinds, Sides, Maximal, Partition. Wiring Partition reaches the whole chain.
+- Downstream: `osinLemma94Section_of_residuals osinLemma94PolygonPartitionInput` has two open
+  hypotheses, `OsinLemma94PolygonCountInput` and `OsinLemma94CaseOneInput` (hull-unbound).
+- Told hull-unbound and the lead.
 
 ## Next
 
-- Take the sub-piece hull-unbound names, then write, probe and land it.
+- Take the next item from the lead.
 - Still waiting on the audit:
   - dgo-analytic, baseline-debt and sec5-sentences to re-grade their rows;
   - census to re-grade or retire cite-ejz's LINE:1155, retire baseline lines 369/370 and re-merge.
