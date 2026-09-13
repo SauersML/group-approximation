@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundCaseOne
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PlanarPieces
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -20,6 +21,9 @@ to itself exactly when the target cell is the source cell.
 
 `RealizedSectionFamily.false_of_quadrilateral_face` is the weight contradiction on the diagram
 of the family itself, with no collapse of a `G`-region first.
+
+`OsinLemma94CaseOneSameCellStatement` is Case 1 for the connector pairs whose two sides have the
+same kind, where the new region can run from a relator cell to itself.  It is a named hypothesis.
 -/
 
 namespace GroupApproximation.GGT.VanKampen.GFaceWordInsertion
@@ -453,6 +457,32 @@ theorem false_of_quadrilateral_face {D : RelGenSet G Lambda} {lambda c : ℝ} {e
   omega
 
 end RealizedSectionFamily
+
+open GroupApproximation.GGT.VanKampen.UnboundEstimate in
+/-- **Case 1 of Lemma 9.4 for a pair with sides of one kind.**  `OsinLemma94CaseOneInput`
+restricted to the backwards connector pairs whose source and target sides have the same kind.
+When both sides lie across one relator cell, the quadrilateral of Case 1 is a region from that
+cell to itself, and this statement is kept as a named hypothesis for those pairs. -/
+def OsinLemma94CaseOneSameCellStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
+                    ∀ (k : Fin P.count) (C : WordConnectorPair (symmetricLabelAlphabet D)
+                      (P.corner k) (P.word k) (P.sideCount k) (P.relatorSides k)
+                      (P.longSides k) eps),
+                      C.b' < C.b → P.kind k C.target ≠ .cutting →
+                        P.kind k C.source = P.kind k C.target → False
+
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GFaceWordInsertion.forwardOffset_of_val_eq_mod
