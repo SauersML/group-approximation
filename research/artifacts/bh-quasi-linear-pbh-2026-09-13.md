@@ -3,7 +3,7 @@
 Lane `bh-metabelian`, 2026-09-13. Target: item (7) of Problem 5.3 in
 Belk–Bleak–Matucci–Zaremsky (BBMZ), arXiv:2306.16356v3.
 
-**Outcome: candidate solution, landed, not independently reviewed.**
+**Outcome: solution, landed; independent review PASS (`research/artifacts/review-metabelian-bh-2026-09-13.md`, 2026-09-13).**
 - Every finitely generated group of matrices over a finite product of fields, in
   any characteristics, lies in the permutational class `B_A`.
 - In particular every finitely generated metabelian group does, so every finitely
@@ -30,7 +30,7 @@ Reused, established and reviewed:
 - `fp-self-similar-subgroups-satisfy-permutational-boone-higman` (Zaremsky's
   envelope and BFFHZ Theorem C);
 - `boone-higman-type-a-class-closed-under-finite-extensions` (Zaremsky,
-  arXiv:2405.18354, Proposition 5.6).
+  arXiv:2405.18354, Proposition 5.6; the product statement there is Proposition 5.5).
 
 ## 2. The one new idea: the uniformizer is a variable
 
@@ -74,7 +74,7 @@ escape. Here the linear part varies with the parameter point.
   cited in the reviewed `elementary-groups-over-polynomial-s-integers-are-fp-proof`.
 - Krstić–McCool: `St_n` of a finitely presented ring is finitely presented for
   `n >= 4` (`steinberg-finite-presentation-and-kazhdan-theorem`).
-- BFFHZ Theorem C, Zaremsky Theorem 1.1 and Proposition 5.6, Wehrfritz Corollary 1.2.
+- BFFHZ Theorem C, Zaremsky Theorem 1.1 and Proposition 5.5 (products; cited by BFFHZ as 5.6), Wehrfritz Corollary 1.2.
 
 ## 4. Adversarial checks
 

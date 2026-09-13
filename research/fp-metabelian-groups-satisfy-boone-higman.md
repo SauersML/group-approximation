@@ -17,7 +17,7 @@ artifacts:
 ---
 
 **ESTABLISHED (2026-09-13)** through `fp-metabelian-bh-via-quasi-linear-pbh`
-(lane `bh-metabelian`). **Not independently reviewed.** Every finitely presented
+(lane `bh-metabelian`). **Independently reviewed: PASS** (`research/artifacts/review-metabelian-bh-2026-09-13.md`, 2026-09-13). Every finitely presented
 metabelian group embeds in a finitely presented simple group. In fact every
 finitely generated metabelian group lies in the permutational class `B_A`.
 

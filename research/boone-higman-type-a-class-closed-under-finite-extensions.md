@@ -17,7 +17,7 @@ In the language of Belk--Fournier-Facio--Hyde--Zaremsky, arXiv:2503.21882v2,
 these are the groups satisfying the permutational Boone--Higman property.
 
 **Credit: known.** BFFHZ state that the property "is stable under commensurability
-and direct products", citing Zaremsky, arXiv:2405.18354, Proposition 5.6. Their
+and direct products", citing Zaremsky, arXiv:2405.18354, Proposition 5.6. (In arXiv:2405.18354 itself the product statement is Proposition 5.5; Proposition 5.6 is commensurability.) Their
 Corollary F adds closure under free products, imported in
 `aut-free-groups-satisfy-permutational-boone-higman`. The derivation attached
 here is an elementary verification, and no priority is claimed.

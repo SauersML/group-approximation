@@ -13,7 +13,7 @@ artifacts:
 ---
 
 **ESTABLISHED (2026-09-13)** through `quasi-linear-pbh-via-coordinate-projections`.
-Not independently reviewed.
+Independently reviewed: PASS (`research/artifacts/review-metabelian-bh-2026-09-13.md`, 2026-09-13).
 
 **Statement.** Let `G` be a finitely generated group that embeds in
 `GL_(n_1)(K_1) x ... x GL_(n_r)(K_r)`, where the `K_i` are fields of arbitrary
@@ -37,5 +37,5 @@ makes the degrees equal.
 **Credit.** Membership of each factor in `B_A` is
 `char-zero-linear-groups-satisfy-permutational-boone-higman` and
 `char-p-linear-groups-satisfy-permutational-boone-higman`. Closure of `B_A` under
-products is Zaremsky's (arXiv:2405.18354, Proposition 5.6, as cited by BFFHZ). The
+products is Zaremsky's (arXiv:2405.18354, Proposition 5.6, as cited by BFFHZ; in arXiv:2405.18354 itself the product statement is Proposition 5.5). The
 bounded novelty search is in the artifact.

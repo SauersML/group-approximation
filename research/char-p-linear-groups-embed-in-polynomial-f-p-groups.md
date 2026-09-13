@@ -10,7 +10,7 @@ distinct_from:
 
 **ESTABLISHED (2026-09-13)** through
 `char-p-polynomial-embedding-via-noether-normalization`. The proof is standard
-commutative algebra, and no novelty is claimed. Not independently reviewed.
+commutative algebra, and no novelty is claimed. Independently reviewed: PASS (`research/artifacts/review-metabelian-bh-2026-09-13.md`, 2026-09-13).
 
 **Statement.** Let `K` be a field of characteristic `p > 0` and let
 `Γ <= GL_N(K)` be finitely generated. Then there are integers `k >= 0`, `M >= 1`

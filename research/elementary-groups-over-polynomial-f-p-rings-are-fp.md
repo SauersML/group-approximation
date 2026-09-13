@@ -10,7 +10,7 @@ distinct_from:
 
 **ESTABLISHED (2026-09-13)** through
 `elementary-groups-over-polynomial-f-p-rings-are-fp-proof`. It imports K-theory
-from textbooks, as listed in the route. Not independently reviewed. No novelty is
+from textbooks, as listed in the route. Independently reviewed: PASS (`research/artifacts/review-metabelian-bh-2026-09-13.md`, 2026-09-13). No novelty is
 claimed: it is very likely known to experts, and it follows from the same imports
 as `elementary-groups-over-polynomial-s-integers-are-fp`.
 
