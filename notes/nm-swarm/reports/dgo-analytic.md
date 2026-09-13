@@ -256,6 +256,26 @@ Consequences (map level only; the model has no labels, cells or sections):
   * `OsinPocketTwoCollars` takes it at l.60 and passes it at l.96.
 * So a producer of binder 5 should take the gap-only pocket, not `a ∪ gap ∪ b`. audit-sec5 sees nothing in a globally distinguished section family that rules out the lake for `a ∪ gap ∪ b`, short of Lemma 9.7(b) itself.
 
+### The wrap refutation of the pinch at ε = 0 (dgo-geometric, 6dfa779fe and 87358b0ad)
+
+`Estimating/OsinPocketWrapRose` proves `pocketPinchWrapRefutation : ¬ PocketPinchStatement.{0,0,0} ∧ ¬ PocketPinchPinchedStatement.{0,0,0} ∧ ¬ PocketPinchLabelledStatement.{0,0,0} ∧ ¬ PocketPinchStepStatement.{0,0,0}`, under `#audit_closed_axioms`. Probe 0913-163031-39703 (base bbf968910) has the verdict line `PROBE GREEN` and lists both modules, and its md5s equal main.
+
+* The model is a three-petal rose: darts 0..5, one vertex. Its faces are the `G`-cell `κ = [0,2,4]`, the relator cells `Π = [1]` (reading `x`) and `R = [5]` (reading `y`), and the exterior `[3]`. Every label is a letter.
+* `wrapK : PocketFaceSet D 0 wrapDiagram 0 1` has faces `{κ, R}`, source `Π`, kept `R`, empty sides, `t_1 = ∂Π` and `t_2 = ∂X`. Its cycle `[0,2]` is in walk order and follows the boundary.
+* `PocketWrap.no_simple_of_oEquivalent_monogons`: when the relator words and the boundary word have one letter each, no O-equivalent copy has a simple pocket face set at `ε = 0`, in any positions.
+* Checked here against the statements (`OsinPocketPieces.lean:260`, `:272`): the pinch Props range over every `eps : ℕ` and every `W`, with no small-cancellation binder. So `ε = 0` and one-letter relators are admissible.
+* Consequence: `hpinch` in `sectionPocketCutInput_of_pieces`, `sectionPocketCutInput_of_residuals`, `osinSectionPocketCutSection_of_residuals` and `osinDescentSection_of_residuals` is false at `0, 0, 0`. The residual has to be restated, and the lead rules the form (sent ~16:40).
+* Both candidate repairs cost nothing at the consumer:
+  * `0 < eps`: `osinSectionPocketCutSection_of_pieces` takes `eps0` from the face set producer and can take `max eps0 1`.
+  * Long relators, for instance `∀ v ∈ W, 2 * eps < v.length`: `hcondition.long` gives `rho ≤ v.length`, and `rho0` is chosen after `eps`, so `max rho0 (2 * eps + 1)` supplies it.
+  * dgo-geometric's rescue at `ε ≥ 1` is `K' = {R}`, whose boundary `[5]` is one side. It needs a relator no longer than `2ε`, so long relators exclude the model at every `ε`.
+  * Whether either form is true is not known. The chosen form needs a model test before it lands.
+* Users of the four pinch Props, for the Rule 22 co-probe:
+  * this lane: `OsinPocketPieces`, `OsinPocketCutResiduals`, `OsinDescentResiduals`;
+  * `OsinGreendlingerOpenResiduals` (ghw-assembly, hull-select);
+  * `OsinPocketPinchStep` (hull-respell), `OsinPocketPinchUnpinched` (kh-cckw), `OsinPocketPinchCarry` (go-lemma42), `OsinPocketLakeLabelledModel` (audit-sec3);
+  * dgo-geometric's `OsinPocketPinchedTwoGonLobe`, `OsinPocketPinchedTwoGonOuterFollows`, `OsinPocketWrapMonogon` and `OsinPocketWrapRose`.
+
 ### Truth caveats sent to dgo-geometric for model tests
 
 The earlier list covers:
@@ -277,6 +297,7 @@ New with the ruled order:
 
 * `OsinSectionPocketFaceSetSectionStatement` (kh-ejz).
 * `PocketPinchLabelledStatement` (hull-respell), or `PocketPinchStatement` through the weakening lemma. kh-cckw reduced the unlabelled one to `PocketPinchPinchedStatement` (33951a5b6). Configurations A and B are escalated.
+  * False as stated at universes `0, 0, 0` (dgo-geometric's wrap model, 6dfa779fe). See "The wrap refutation of the pinch" above; the restated form is awaiting the lead's ruling.
   * hull-respell's `pocketPinchLabelledStatement_of_step` (`Estimating/OsinPocketPinchStep`, 8a7d46d90, unwired) reduces the labelled one to `PocketPinchStepStatement`, by strong induction on repeated visits. The step: a pinched pocket in walk order, in a diagram whose labels are letters, has an O-equivalent copy whose labels are letters, with a pocket in walk order and fewer repeated visits.
 * `GeodesicCollarStatement` (kh-torsion, `SurgeryGeodesicCollar.lean:67`), in place of `PocketCollarStatement`.
 * `PocketCellTransportStatement` and `PocketOuterTransportStatement` are closed, both under `#audit_closed_axioms`:
@@ -300,7 +321,12 @@ Closed here:
 
 Since T (48c6cc71e), `OsinLemma94SectionStatement` assumes clause (b) of Lemma 9.7 below the cell count, and `UnboundInput` takes `mu`. The six open Props are otherwise unchanged. The lake model adds no Prop. It rules out one choice of pocket for binder 5, and audit-sec5's gap-only pocket avoids it.
 
-### Next (15:55)
+### Next (16:40)
+
+* The pinch restatement, once the lead rules between `0 < eps`, long relators, or both:
+  * restate `PocketPinchStatement` and `PocketPinchLabelledStatement` in `OsinPocketPieces`;
+  * pass the binder through `sectionPocketCutInput_of_pieces` and `sectionPocketCutInput_of_residuals`, and raise the thresholds in the two section theorems;
+  * run one Rule 22 co-probe with the users listed in "The wrap refutation of the pinch". Nothing is staged before the ruling.
 
 * Binder 5: not written here until kh-ejz or the lead confirms the handover. If this lane gets it, the producer takes audit-sec5's gap-only pocket, and configuration (b') stays with the pinch.
 * kh-torsion's R1/R2 answer. Its report was last touched at a67ce2a65, and there has been no answer since the 15:00 follow-up.
