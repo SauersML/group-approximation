@@ -3,6 +3,14 @@
 Lane `ex-complexity-sofic`, 2026-09-12.  Unreviewed.  Builds on
 `research/artifacts/rf-fp-pumped-minsky-part1-2026-09-12.md` (and parts 2, 3).
 
+> **Correction (2026-09-13).**  `G_e` below means `G_0(P(M_e))`, the KMS group
+> with the stop relations `x_(q_0 w) = 1`
+> (`kms-group-with-stop-relations-simulates-all-words`).  The center-switch
+> proof uses two facts that hold for `G_0` but not for the displayed relations
+> G1--G8:
+> - every zero word, in particular every stop word, is `1`;
+> - `T -> T_1` is injective.
+
 ## 1. A structural dichotomy for any sofic switch
 
 Let `e |-> H_e` be a computable family of finite presentations with `H_e`

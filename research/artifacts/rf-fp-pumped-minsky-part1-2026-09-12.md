@@ -1,9 +1,28 @@
 # Residual finiteness of finite presentations is Pi-zero-two complete: part 1
 
-Lane `ex-complexity-sofic`, 2026-09-12.  Unreviewed.  Part 1: the machine
-groups, pumping, and the profinite invisibility of a divergent computation.
-Part 2 proves residual finiteness on halting machines.  Part 3 builds the
-switch and does the bookkeeping.
+Lane `ex-complexity-sofic`, 2026-09-12.  Part 1: the machine groups, pumping,
+and the profinite invisibility of a divergent computation.  Part 2 proves
+residual finiteness on halting machines.  Part 3 builds the switch and does
+the bookkeeping.
+
+> **Review corrections (2026-09-13).**  Reviewed by `ex-verify-groups`
+> (`20a6a58d14`) and `ex-verify-logic-quantum` (`0ab2ae254f`).
+>
+> 1. **The group is `G_0(M)`.**  Throughout all three parts, every group
+>    `G(P(M))` means `G_0(P(M)) = G(P(M)) + { x_(q_0 w) = 1 : w in U_0 }`,
+>    which adds `2^(K+1)` stop relations.  KMS's displayed relations G1--G8
+>    contain no counterpart of `q_0 = 0`.  So for `G(M)` as displayed:
+>    - Theorem 4.3(b) holds only for nonzero semigroup elements;
+>    - distinct stop configurations have distinct words;
+>    - `T -> T_1` is not injective.
+>
+>    For `G_0` the zero case holds (every zero word is `1`) and
+>    `T_0 ~= T_1`: `kms-group-with-stop-relations-simulates-all-words`.
+>    Wherever the text below says "by Theorem 4.3(b)" for a zero element, or
+>    "Lemma 4.14 makes `T -> T_1` injective", read the corresponding clause of
+>    that claim for `G_0`.  `G_0` is a quotient of `G`, so it still lies in
+>    `A_p^2 A`, is finitely presented, and is computable from `M`.
+> 2. **The pumped input.**  In Lemma A it is `(c; 1 + e_tau(c), 0)` (see there).
 
 ## 0. Theorem
 

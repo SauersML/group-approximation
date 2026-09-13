@@ -1,7 +1,18 @@
 # Residual finiteness of finite presentations is Pi-zero-two complete: part 3
 
-Lane `ex-complexity-sofic`, 2026-09-12.  Unreviewed.  Notation from parts 1
-and 2.
+Lane `ex-complexity-sofic`, 2026-09-12.  Notation from parts 1 and 2.
+
+> **Review corrections (2026-09-13).**  The reduction map is
+> `e |-> G_0(P(M_e))`: the KMS relations G1--G8 plus the `2^(K+1)` stop
+> relations `x_(q_0 w) = 1` (`kms-group-with-stop-relations-simulates-all-words`).
+> This replaces "the relations G1--G8 of KMS Section 4.1" in Section 7.  The
+> corollaries hold for `G_0`: it is a quotient of `G`, hence in `A_p^2 A`.
+> Reviews:
+> - `ex-verify-groups` (`20a6a58d14`): PASS after the Lemma A input correction;
+> - `ex-verify-logic-quantum` (`0ab2ae254f`): stop-relation gap, corrected
+>   forward.
+>
+> Novelty was not rechecked by either review.
 
 ## 6. The switch machine
 

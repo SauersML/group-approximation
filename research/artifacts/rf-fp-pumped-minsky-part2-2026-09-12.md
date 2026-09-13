@@ -1,7 +1,15 @@
 # Residual finiteness of finite presentations is Pi-zero-two complete: part 2
 
-Lane `ex-complexity-sofic`, 2026-09-12.  Unreviewed.  Notation from part 1
+Lane `ex-complexity-sofic`, 2026-09-12.  Notation from part 1
 (`research/artifacts/rf-fp-pumped-minsky-part1-2026-09-12.md`).
+
+> **Review correction (2026-09-13, `ex-verify-logic-quantum`, `0ab2ae254f`).**
+> `G = G(P(M))` below means `G_0(P(M))`, the KMS group with the stop relations
+> `x_(q_0 w) = 1`.  B4 writes `w in T` in the basis of `T_1`, which needs
+> `T -> T_1` to be injective.  That holds for `G_0`
+> (`kms-group-with-stop-relations-simulates-all-words`, clause 3) and fails for
+> the displayed `G(M)`.  B1--B3 and the invariance of `F` are unaffected and
+> were re-derived by the reviewer (PASS).
 
 ## 4. Lemma B (halting machines give residually finite groups)
 
