@@ -62,9 +62,10 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
   green and all three modules are BUILT. They were already root-reachable, so there is no
   wire-queue line.
 - The ten rows are graded over ghw-assembly's W1 waist (lead ruling ~14:45). 6622fce2b graded
-  them at origin d60f40599 over the eight binders of 8a07ad7d0. They are re-graded at origin
-  09b3b57e4 over the post-(A) list of 5f031e3a6 (residual item 1), and all stay partial. The tsv
-  lands together with this version of the report.
+  them at origin d60f40599 over the eight binders of 8a07ad7d0. d994c2fe4 re-graded them at origin
+  09b3b57e4 over the post-(A) list of 5f031e3a6. They are re-graded at origin 572b501d7 after
+  theoremc-retire's T (48c6cc71e), which gives binder 3 clause (b) of Lemma 9.7 as a hypothesis
+  (residual item 1). All stay partial. The tsv lands together with this version of the report.
 
 ## Zero-cell pocket merge: the value half (lead ruling ~05:00)
 
@@ -110,7 +111,7 @@ This lane owns the value.
   - given `hwalk`, every embedded boundary rotates the pocket cycle
     (`FaceSetBoundary.exists_cycle_eq_rotate`).
 
-## Residual statements (exact, at origin 09b3b57e4)
+## Residual statements (exact, at origin 572b501d7)
 
 1. OPEN: `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`. It has
    no closed producer on main. The ten rows grade it over the W1 waist (lead ruling ~14:45), in
@@ -119,7 +120,9 @@ This lane owns the value.
      (Estimating/OsinGreendlingerOpenResiduals.lean:52, ghw-assembly, 5f031e3a6). Probe
      0913-145357-69970 is GREEN on base 6622fce2b (verdict line checked), and the record's md5
      b06afa2f matches the bytes on origin. It carries `#audit_axioms`, is wire-queued (line 697,
-     replacing 8a07ad7d0) and is not root-imported. No Lean file applies it.
+     replacing 8a07ad7d0) and is not root-imported. No Lean file applies it. theoremc-retire's T
+     co-probe 0913-145812-91168 (GREEN) built these same bytes after T changed binder 3, and the
+     blob on origin is still adf0ab38e.
    - It applies dgo-analytic's `relativeGreendlingerQuasiGeodesicLeastArea_of_residuals`
      (OsinDescentResiduals.lean:55, 5be777f16) to:
      - `osinLemma94Section_of_residuals` (OsinLemma94SectionResiduals.lean:55, hull-unbound,
@@ -146,8 +149,8 @@ This lane owns the value.
        `osinMultipleEdgeCutSection_of_pieces` (OsinPocketMultipleEdgeAssembly.lean:207) and
        `osinSectionPocketCutSection_of_residuals` (OsinPocketCutResiduals.lean:58, 5ef75ffa7).
    - The eight binders, with owners from the lead's ~14:50 rulings and ghw-assembly's report. At
-     origin 09b3b57e4 none has a closed producer: a producer grep over the eight names finds only
-     the two reshapes of binder 7.
+     origin 572b501d7 none has a closed producer: a producer grep over the eight names finds only
+     the two reshapes of binder 7, and every other hit takes a binder as a hypothesis.
      1. `OsinLemma94PolygonSideBudgetInput` (OsinLemma94PolygonCount.lean:109; hull-count94). Its
         docstring model test calls it over-strong as stated: value-one bubbles give polygons with
         no (A1) side while `n = 1`. hull-count94's `OsinLemma94ClassCountInput`
@@ -157,12 +160,25 @@ This lane owns the value.
      2. `OsinLemma94UnboundSameCellStatement` (OsinLemma94PolygonCount.lean:58), site 5
         (fff-periodic under option (a)). fff-periodic's (T) count and its (C) binder
         `OsinLemma94SameCellPocketInput` (OsinUnboundSameCellPocket.lean:47) replace it in the
-        Covers co-probe with hull-count94. systolic-counts audits its truth.
-     3. `OsinLemma94CaseOneSameCellStatement` (OsinUnboundCaseOneFace.lean:474; jacobson owns the
-        producer; ko-closed case (a), hull-unbound the pinched window). As spelled it has no
-        `OsinLemma97Below` binder, and roster l.777 grades that spelling as hard as Lemma 9.7 on
-        smaller diagrams. theoremc-retire's T threads `hbelow` into it (T window open, pending
-        probe 0913-145812-91168). systolic-counts checks it for vacuity.
+        Covers co-probe with hull-count94. First, theoremc-retire's site-5 follow-on co-probe
+        (lead rulings 15:05–15:15) puts the same `OsinLemma97Below` hypothesis into
+        `OsinLemma94PolygonCountInput` and `OsinLemma94PolygonCoversInput`; the waist is in that
+        co-probe. fff-periodic's probe 0913-150904-97612 on SameCellPocket, SameCell and
+        SameCellBridge reads FAILED, and nothing of it has landed since a3713d831. systolic-counts
+        audits its truth.
+     3. `OsinLemma94CaseOneSameCellStatement` (OsinUnboundCaseOneFace.lean:476; jacobson owns the
+        producer). jacobson composes ko-closed's metric kill for the pocket with no relator cell
+        (case (a)) with fff-periodic's shared kill for the pocket with one. hull-unbound has the
+        pinched window. ko-closed's window kills `false_of_cellFree_pocket_windows_X_morse` and
+        `_Y_morse` (OsinLemma94OneCellWindow, 07cb99953, probe 0913-150725-78874 GREEN) are pieces
+        under `#audit_axioms`, not a producer.
+        - theoremc-retire's T landed at 48c6cc71e (probe 0913-145812-91168 GREEN on base 88fc580eb,
+          verdict line checked). T7 adds clause (b) of Lemma 9.7 below `Delta.rCellCount` as a
+          hypothesis: every least-area `Xi` with `0 < Xi.rCellCount < Delta.rCellCount` has a
+          realized family `T` with `OsinLemma97bConclusion mu T`.
+        - So binder 3 keeps its name and assumes more. Roster l.777's grade (as hard as Lemma 9.7
+          on smaller diagrams) was for the spelling without that hypothesis and no longer applies.
+        - systolic-counts checks it for vacuity.
      4. `OsinTwoGonHoldsSectionStatement`, C6′ (OsinAppendixEulerSection.lean:49; debt-conditional;
         baseline-debt, hs-vanishes, sec2-sentences).
      5. `OsinMultipleEdgePocketRegionSectionStatement` (OsinPocketMultipleEdgeAssembly.lean:195;
@@ -289,8 +305,8 @@ followed by `#audit_closed_axioms`, where `<W1>` is a closed producer of wall 1.
   - 8097c371f35d: the Fournier-Facio sentence;
   - dab2f2bfe084: the G_0 sentence.
 - None of them retires a baseline finding: each carrier still takes `hgreendlinger`.
-- At origin 09b3b57e4 each row also names the post-(A) W1 waist (5f031e3a6) and its eight
-  binders with owners (residual item 1).
+- At origin 572b501d7 each row also names the post-(A) W1 waist (5f031e3a6) and its eight
+  binders with owners, with binder 3 in its form after T (residual item 1).
 - The rows are keyed by the 12-hex sentence hash, so the tex move at 45483f699 (sec:chain-core,
   +255 lines at 1336) changes no key. Tex line numbers elsewhere in this report are pre-move:
   `thm:hull` is now at tex 1903, `lem:saturation` at 1917 and `cor:regular-nonmf-algebra` at 1985.
@@ -383,9 +399,10 @@ row names the closed endpoint and says "retires open-predicate <decl>".
   dgo-analytic agree). This lane built nothing on it and deleted nothing. dgo-analytic adds the
   docstring note.
 - The ten rows are graded over the post-(A) waist 5f031e3a6. Re-grade them when a binder gets a
-  producer or a new spelling: hull-count94 or ghw-charp2's class-word respell for 1, fff-periodic
-  for 2, jacobson or theoremc-retire's T for 3, and the owners of 4-8. Once a carrier applies a
-  closed producer of wall 1, re-grade onto the flips.
+  producer or a new spelling: hull-count94 or ghw-charp2's class-word respell for 1,
+  theoremc-retire's site-5 follow-on co-probe and then fff-periodic's Covers co-probe for 2,
+  jacobson for 3 (T is landed and already graded), and the owners of 4-8.
+  Once a carrier applies a closed producer of wall 1, re-grade onto the flips.
 - LoopCut ruling (A) is on origin (f04929ebb, 27 files), and the waist applies it. This lane
   writes no `OsinAppendixGreendlingerLoopClosed`, and it has no `LoopCutInput` edit to make.
 - `TorsionFreeLimitSetNotion` and `TorsionFreeHullPrintedLeastArea` quote `thm:hull` at the
