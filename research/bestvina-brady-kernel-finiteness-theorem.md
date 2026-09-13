@@ -12,14 +12,23 @@ generator to `1`. For `n ≥ 1`:
 2. for a commutative ring `R`, `BB_L` is of type `FP_n(R)` iff `L` is `(n−1)`-acyclic over `R`.
 
 Source: M. Bestvina and N. Brady, *Morse theory and finiteness properties of groups*, Invent.
-Math. 129 (1997), 445--470, doi:10.1007/s002220050168 (bibliographic data checked through
-Crossref on 2026-09-13). The statement above is recalled from the paper; its exact form and
-theorem number have not yet been re-read from the source.
+Math. 129 (1997), 445--470, doi:10.1007/s002220050168. The printed Main Theorem is imported
+verbatim as `bestvina-brady-main-theorem`; it states `FP_{n+1}(R)` ⟺ homologically `n`-connected,
+`FP(R)` ⟺ acyclic, and finitely presented ⟺ simply connected. Statement (2) here is its item (1)
+with the index shifted.
+
+Derivation of (1) from the Main Theorem (route `bestvina-brady-kernel-finiteness-theorem-proof`).
+- `n = 1`: type `F_1` is finite generation, which is `FP_1(Z)`; by Main Theorem (1) with index `0`
+  this holds iff `L` is homologically `0`-connected, i.e. connected.
+- `n ≥ 2`: a group is of type `F_n` iff it is finitely presented and of type `FP_n(Z)` (C. T. C. Wall).
+  By Main Theorem (3) and (1), this holds iff `L` is simply connected and `H̃_i(L; Z) = 0` for
+  `i ≤ n − 1`. By the Hurewicz theorem that is equivalent to `L` being `(n−1)`-connected.
 
 ## Attempts
 
-- 2026-09-13, lane z1-19-raag-kernel: citation import pending. The publisher page was reached
-  from MSI, but the PDF text was not yet extracted. The `-citation` route lands only after the
-  Main Theorem is read verbatim. Until then this claim is open, so routes that use it do not
-  fire. Only the "if" directions are needed for Zaremsky's Problem 1.19; the case `n = 1` of
-  (1) is proved directly in `raag-virtual-fg-kernel-implies-fg-kernel-proof`.
+- 2026-09-13, lane z1-19-raag-kernel: the Main Theorem is imported with a verified citation
+  (`bestvina-brady-main-theorem-citation`). The derivation route was held back until
+  z-verify-topology had reviewed `raag-finite-index-sigma-m-forces-connected-flag-complex`, so
+  that Zaremsky's Problem 1.19 root would not compile as established before review. That review
+  passed (`research/artifacts/zp-review-topology-2026-09-13-part3.md`, §14), and the route has
+  landed.

@@ -29,5 +29,6 @@ missing `1`, which forces them to be null in `L`.
 Consequence: Zaremsky's Problem 1.19 has the answer yes (with the Bestvina--Brady theorem);
 see `raag-virtual-fn-kernel-conjecture-via-sigma-invariants`.
 
-Proof: artifact part 2, Theorem 7. UNREVIEWED as of 2026-09-13 (review requested from
-z-verify-topology); novelty unchecked.
+Proof: artifact part 2, Theorem 7. Reviewed 2026-09-13: PASS by z-verify-topology
+(`research/artifacts/zp-review-topology-2026-09-13-part3.md` §14, independent re-derivation).
+Novelty unreviewed (with z-status-a).

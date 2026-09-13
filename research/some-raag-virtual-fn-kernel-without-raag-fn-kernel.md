@@ -3,6 +3,7 @@ rg: 2
 id: some-raag-virtual-fn-kernel-without-raag-fn-kernel
 kind: claim
 title: Some right-angled Artin group has a finite-index subgroup mapping onto Z with kernel of type F_n, while no map of the group itself onto Z has such a kernel
+refuted_by: raag-virtual-fn-kernel-implies-raag-fn-kernel
 distinct_from:
   raag-virtual-fn-kernel-implies-raag-fn-kernel: that is the conjecture of Zaremsky's Problem 1.19; this is its negation, and an established copy of this claim would be stamped as its refuter.
 ---

@@ -44,17 +44,19 @@ finite cover of the Salvetti complex that realize them need not come from
 characters of `A_L`. The conjecture says none of these extra characters can have
 better kernels than the best character of `A_L`.
 
-**Status (2026-09-13, UNREVIEWED): answer yes, pending one citation import.**
+**Status (2026-09-13): answered YES. Mathematical review PASS; novelty unreviewed.**
 
 - `raag-finite-index-sigma-m-forces-connected-flag-complex`: if a finite-index subgroup `H` has
   `Σ^m(H) ≠ ∅`, then `L` is `(m−1)`-connected (over a ring `R`: `(m−1)`-acyclic). A kernel of type
-  `F_n` puts the character in `Σ^n(H)`, so `L` is `(n−1)`-connected, and Bestvina--Brady gives a kernel
-  of type `F_n` for `A_L` (route `raag-virtual-fn-kernel-conjecture-via-sigma-invariants`).
-- The route waits on `bestvina-brady-kernel-finiteness-theorem`, which is open until its
-  statement is read from the source, so this root does not yet compile as established.
-- Independent partial results: the homological form through division-ring Betti numbers
-  (`raag-virtual-fp-n-kernel-forces-acyclic-flag-complex`) and the case `n = 1` with an elementary
-  proof (`raag-virtual-fg-kernel-implies-fg-kernel`).
+  `F_n` puts the character in `Σ^n(H)`, so `L` is `(n−1)`-connected. The Bestvina--Brady Main Theorem
+  (`bestvina-brady-main-theorem`, read from the source) then gives a kernel of type `F_n` for `A_L`.
+  Route: `raag-virtual-fn-kernel-conjecture-via-sigma-invariants`.
+- Review: z-verify-topology, `research/artifacts/zp-review-topology-2026-09-13-part3.md` §14,
+  Theorem 7 PASS and Corollary 8 PASS. The novelty check is with z-status-a; until its verdict,
+  do not describe this as a first answer.
+- Independent partial results (review queued): the homological form through division-ring Betti
+  numbers (`raag-virtual-fp-n-kernel-forces-acyclic-flag-complex`), and the case `n = 1` with an
+  elementary proof (`raag-virtual-fg-kernel-implies-fg-kernel`).
 
 ## Attempts
 
