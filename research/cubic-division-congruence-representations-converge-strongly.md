@@ -57,6 +57,14 @@ new parts) are forced.
   explicit free group, which van Handel's survey (arXiv:2510.12520, Section
   2.2) records as open.  Conversely, one thin free subgroup with an outlier in
   its congruence Cayley graphs refutes this claim.
+* **Archimedean consequence.**  A positive answer forces
+  `liminf lambda_1^new(Gamma_D(p) \ X) >= lambda_0(X)` along primes
+  (`cubic-division-congruence-sc-forces-asymptotic-laplace-gap`).  That is an
+  asymptotic Ramanujan-at-infinity statement for cuspidal `GL_3` forms
+  attached to `D`, not known as far as I am aware.  So the positive
+  direction contains two hard problems from different fields, and by the
+  equivalence in the descent node, property (T) plays no role in the
+  difficulty.
 * **Numerical search for outliers.**  None found.  The algebra is
   `D = (Q(2cos(2pi/7))/Q, sigma, 2)`, with a certified free pair
   `<a^19, b^19> <= SL_1(Lambda)`.  The runs cover all `p == +-1 mod 7` up to 967,

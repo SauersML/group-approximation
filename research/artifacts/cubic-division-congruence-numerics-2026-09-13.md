@@ -60,9 +60,9 @@ against 2, `2 sqrt 3`, `2 sqrt 5`), `5.269364` for `(1,2)`, and the analogous va
 | Legendre-twisted sections over `P^2(F_p)` | `Ind_P^G(chi o det)`, `chi` quadratic (odd degenerate series) | `p^2+p+1` |
 | flags `G/B`, mean zero | `2 (p^2+p)` plus Steinberg | `(p^2+p+1)(p+1) - 1` |
 
-Not computed: cuspidal and other generic series.  They live only in permutation
-spaces of size about `p^5` (Gelfand--Graev, conics), so only primes below
-about 40 are within reach.
+Cuspidal and other generic series appear only in permutation spaces of size
+about `p^5`.  One such space was computed at `p = 29`: nondegenerate conics,
+restricted to one `SL_3`-orbit.  See the section on the conic space below.
 
 ## Method
 
@@ -131,6 +131,36 @@ so `n >= log p / (3 log 1.802) - O(1)`, and `a^m` has order at least
 `ord(theta)/m`.  The transient is therefore consistent with strong
 convergence.  What it records is that convergence is slow along primes where
 a fixed high power has small order.
+
+## The conic space at `p = 29` (a sector that should contain cuspidals)
+
+**Space.**  `SL_3(F_p)` acts on nondegenerate conics, i.e. symmetric `3 x 3`
+matrices up to scalars with `S -> g S g^T`.  The invariant `det S` modulo
+cubes separates orbits.  At `p == 1 mod 3` there are three orbits, and the
+first run at `p = 13` showed the extra invariant vectors as the eigenvalue
+`4.000000`.  The code keeps the orbit with `det S` a cube.  At `p = 29`
+(`29 == 2 mod 3`) that is all nondegenerate conics, `N = 20510308`.
+
+**Does it contain cuspidals?**  The permutation module of `GL_3(F_q)` on all
+nondegenerate symmetric matrices contains every irreducible representation
+(Gow; Kawanaka--Matsuyama; import, not re-read).  Which cuspidal
+representations survive restriction to scale-invariant functions on one orbit
+was not verified.
+
+**Twist.**  The Legendre-twisted sector is unitarily equivalent to the
+untwisted one, via multiplication by the invariant section `chi(det S)`, and
+the runs agree.
+
+| pair | norm | excess |
+|---|---|---|
+| arithmetic `m = 19` | 3.474110 | +0.010009 |
+| random | 3.465651 | +0.001549 |
+
+The arithmetic value `lmin = -3.474110` equals, to six digits, the Legendre
+`P^2` sector at `p = 29` from batch 1.  So the largest eigenvalue here lies in
+a degenerate-series constituent of dimension `p^2+p+1 = 871`.  That excess is
+the small-`p` fluctuation, which disappears at larger `p` in the `P^2` table.
+No larger eigenvalue from any other constituent was detected (`k = 300`).
 
 ## Interpretation
 
