@@ -52,6 +52,41 @@ an unbound dart whose reverse lies directly on another relator cell faces no reg
 darts are excluded only through the O-equivalent edge doubling (`false_of_unbound_shared_edge`
 in `OsinUnboundSharedEdge`), so the realization piece has to keep them out.
 
+### Pinched relator cells (read-only check, sent to hull-count94 and main)
+
+hull-count94 asked whether pinched relator cells can occur under `GloballyDistinguishedSectionFamily`
+and `DartMinimal`. A pinch means a relator walk `[.., e1, x, e2, ..]` where the value-one subword
+`x` closes up at a vertex `v` and encloses a `G`-face `B`. No Lean was written. Line numbers are
+on `cb0ec2d30`.
+
+- Two surgeries relate the pinched and unpinched diagrams. Neither is on main.
+  - The un-pinch splits `v` at a corner of `B` and a corner of the face `P` across `e2`.
+  - The inverse identifies two corners of one polygon.
+  - Both keep the boundary word, the cells and their words, and the regions. So they keep weight,
+    card, `unboundSum` and `dartCount`.
+- **(a) Across the corner is an unselected `G`-face.**
+  - Today this is excluded, but only through the loop region `{B}`: its source and target arcs
+    lie on the same cell and its sides are empty. `RespectsSections` constrains only
+    `target = none`, and the route is the one `false_of_digon_toward_cell` takes with `i₂ = i`.
+  - After LoopCut ruling (A) lands, (a) is not excluded. `S` is optimal and dart-minimal iff its
+    pinched copy is.
+  - Model: `t` disjoint value-one subwords on one (A1) arc raise `SideBudget` by `2t` with `n`
+    fixed. The bubbles are the cell analogue of the boundary bubble in the `SideBudget` model
+    test.
+  - The respelling this needs: (A1) sides skip value-one excursions, as F1 rules for (A2).
+- **(b) `P` lies in a selected region.**
+  - (b1) The arc ends at the pinch. Un-pinching and extending the arc through `x` raises the
+    weight, so this is excluded, but the Lean proof needs the un-pinch.
+  - (b2) The pinch lies inside a short side. This is not excluded after (A). There are at most
+    `24 ε n` such vertices, which is harmless now that K comes after ε.
+- **(c) Across the corner is the exterior or another cell.** This is excluded without the pinch,
+  by `false_of_unbound_shared_edge`. With the same cell on both sides it is excluded today through
+  `i₂ = i`, and after (A) it becomes the same-cell `hloop` site.
+  - Pendant spurs `l · inv l` are allowed: `IsSmallCancellation` and `OsinCCondition` have no
+    reduction field.
+  - They are also dart-minimal. So after (A), an `hloop` spelled "no unbound edge with the cell on
+    both sides" is false in models.
+
 ## The rows in range
 
 There are 191 census rows.
@@ -134,6 +169,7 @@ Defect 4 stays `formalized`, with the new carrier.
 - `OsinLemma94RegionSideCount` is consumed: `OsinLemma94PolygonCount` imports it and closes
   `osinLemma94PolygonCoversInput` with `sum_card_regionFacingUnbound_le` (hull-count94,
   `2b2e16cc6`). Wiring `PolygonCount` pulls it in.
-- The remaining count residual is `OsinLemma94PolygonSideBudgetInput`. main has to rule on
-  whether putting K before eps makes it too strong. hull-count94 will assign the next sub-piece
-  after that ruling. Until then this lane has no item.
+- The remaining count residual is `OsinLemma94PolygonSideBudgetInput`. K now comes after ε
+  (`9f8779c4e`). After ruling (A), the pinch check shows that (A1) sides need the same
+  value-one excursion skip as (A2). main has to rule on that respelling. The un-pinch surgery is
+  not on main. This lane waits for hull-count94's next sub-piece.
