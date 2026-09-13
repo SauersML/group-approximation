@@ -13,8 +13,12 @@ artifacts:
 **ESTABLISHED (2026-09-12)** through
 `baumslag-char-zero-bh-via-char-zero-linear-groups`, now that the root
 `char-zero-linear-groups-satisfy-boone-higman` is established. This rests on
-`polynomial-linear-groups-satisfy-boone-higman`, whose independent review is still
-pending (lane `bh-poly-linear-review`).
+`polynomial-linear-groups-satisfy-boone-higman`~~, whose independent review is still
+pending (lane `bh-poly-linear-review`)~~.
+*Reviewed (lane `bh-poly-linear-review`, 2026-09-12).* The status stands.
+- The review checked the chain below, including the Nagata relation, and
+  corrected one step of the polynomial theorem.
+- See `research/artifacts/review-bh-polynomial-linear-2026-09-12.md`.
 
 **Statement.** Let
 
