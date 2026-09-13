@@ -114,9 +114,18 @@ Why C6′ holds, the route for debt-conditional:
 - A cell inside the pocket that is an end of `C` would be a vertex inside the face `f`. So with
   `¬HoldsCellO`, the pocket holds no relator cell. A region outside `C` has no end on the pocket,
   so it avoids it. `EmptyTwoGonInput` then gives `False`.
-- Truth check: `GapAtOHoldsCorner` reads the gap after `phiRegionO y` and before the region two
-  steps on around the face. That must be the gap inside `f`, or C6′ fails. C4 counts the same
-  predicate, so the assembly does not see the orientation.
+- Orientation, checked 0913: `GapAtOHoldsCorner` reads the gap inside `f`.
+  - `CombMap.facePerm = sigma * alpha`, `dual.sigma = facePerm`, and `phiMapO` rotates by first
+    return. So at `O` its rotation follows `Delta`'s face permutation around the outer face.
+  - For a two-gon through `y` at `O`, the dart of `a = phiRegionO y` at `O` is `sigma` of the dart
+    of `b = phiRegionO (facePerm (facePerm y))`. So the corner of `f` at `O` runs from the crossing
+    of `b` to the crossing of `a` in face-permutation order.
+  - `FaceBoundary.chain` lists the outer face in face-permutation order. `outerDarts` reverses it,
+    and `boundaryWord`, the arc starts and `cuts.cut` all index `outerDarts`. So the corner reads
+    forwards from the end of the arc of `a` to the start of the arc of `b`, as `GapHoldsCorner a b`
+    does.
+  - `RespectsSections` rules out a cut strictly inside a target arc. So the parts of the corner
+    covered by the two arcs hold no extra corner.
 
 ## C6: the empty two-gon
 
