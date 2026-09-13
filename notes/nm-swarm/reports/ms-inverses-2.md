@@ -94,6 +94,22 @@ new carriers (after a74a166ae).
 Every sentence of tex 809–929 has a carrier at printed generality along the printed route, and no carrier has a literature
 binder. The three new rows are `formalized` once the module is wired into the root.
 
+## Item 2 (main, 09-13 ~17:40): help W1 binder 7, `PocketPinchLabelledStatement`
+
+Agreed with w1-binder-7 (17:45). Its holdings: the `0 < ε` repair, the ResidualsPos assemblies, the ε ≥ 1 truth audit,
+`OsinPocketFullArc` and a trims module. ms-intro-4 holds "first-turn order survives the edge doublings" (T1, T1'). hull-respell
+holds the (b) step (`OsinPocketPinchFirstTurn`, unlanded: `FirstTurns`, `GoodCorners`, `pocketPinchGoodCornerStep`).
+
+Ownership check 09-13 ~17:50: no declaration or file on origin or in the shared tree for either leaf, no in-flight owner in
+`lanes/*.files`.
+
+- CLAIM (A) GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWrapRoseFirstTurn.lean: formal model tests of turn condition
+  (b) on the wrap rose. `wrapK`'s complement spelling `[3,1]` has neither first turn (audit-sec3's by-hand row), and for every
+  ε ≥ 1 the simple rescue `rescueK` (complement spelling `[4]`) is in first-turn order.
+- CLAIM (T2) GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterSpurFirstTurns.lean: first-turn order survives the
+  outer spur thickening (`PocketFaceSet.outerSpurThickening`, kh-cckw de79601b1), stated over the landed `FirstTurn` chain in
+  the shape of hull-respell's `FirstTurns`.
+
 ## Progress log
 
 - 09-13 ~17:01: ledger landed (d5d320909).
