@@ -71,6 +71,10 @@ noncomputable def symbolHom (e : TwoEnded) (he : shift e = e) :
       rw [RingHom.comp_apply, RingHom.comp_apply, hx]
       exact mul_comm _ _
 
+set_option maxHeartbeats 1000000 in
+/-- The symbol of a monomial `a u^g` is `a(e) z^g`.  The only unfolding of `symbolHom` in this
+module happens here: it matches the semiring structure inside `liftNCRingHom` against the one
+synthesized for `AddMonoidAlgebra k ℤ`, which exceeds the default heartbeat budget. -/
 theorem symbolHom_single (e : TwoEnded) (he : shift e = e) (g : Multiplicative ℤ)
     (a : ClopenCoeff shift k) :
     symbolHom k e he (SkewMonoidAlgebra.single g a) =
@@ -103,11 +107,13 @@ theorem symbolHom_coeff (e : TwoEnded) (he : shift e = e) (x : ClopenCrossedProd
         SkewMonoidAlgebra.coeff_add, Finsupp.add_apply, map_add]
       rfl
 
+omit [CommRing k] in
 theorem eventually_pt_atTop_eq (f : LocallyConstant TwoEnded k) :
     ∀ᶠ l in atTop, f (pt l) = f posInf := by
   have hU : IsOpen {y : TwoEnded | f y = f posInf} := f.isLocallyConstant.isOpen_fiber (f posInf)
   exact tendsto_pt_atTop (hU.mem_nhds rfl)
 
+omit [CommRing k] in
 theorem eventually_pt_atBot_eq (f : LocallyConstant TwoEnded k) :
     ∀ᶠ l in atBot, f (pt l) = f negInf := by
   have hU : IsOpen {y : TwoEnded | f y = f negInf} := f.isLocallyConstant.isOpen_fiber (f negInf)
