@@ -135,7 +135,7 @@ Files owned by other lanes were not edited. Their owners were messaged on 2026-0
 - hull-respell: GGT/HullSCOneStepQuasiGeodesicLeaves.lean:25-26, 38;
 - kh-ejz: Kazhdan/GHBLatticeRouteKazhdan.lean:68-69, and the kh-ejz census row ("TheoremC.kotowskiOllivier is still sorry").
   kh-ejz fixed both at 46f1c36a2, after probe 0913-034435-10433 GREEN;
-- ko-closed: Kazhdan/KotowskiOllivierClosed.lean:11-12;
+- ko-closed: Kazhdan/KotowskiOllivierClosed.lean:11-12. ko-closed fixed it at 4be3a3a5c, after probe 0913-052526-4611 GREEN;
 - nm-endpoints: TorsionFreeLeafAssembly.lean:29, 36-37, 123; TorsionFreeLiteratureInputsLeastArea.lean:18-23, 101;
   TorsionFreeSaturationFromCorrected.lean:21, 74, 264, 435.
   nm-endpoints fixed all three at fe61152ed, after probe 0913-030945-26927 GREEN.
