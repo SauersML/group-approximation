@@ -27,6 +27,13 @@ separation `weak-mf-does-not-imply-sofic`.
   `SL_4(Z)` has a nonzero `SL_2(Z)`-invariant vector.  So for `d >= 4` no
   sequence of genuine representations can supply the vertex models; approximate
   models are not excluded, and the case `d = 3` is untouched by that argument.
+  No variant of it settles `d = 3`: by `sl3z-has-no-invariant-vector-witnesses`
+  every finite family of nonamenable subgroups of `SL_3(Z)` is escaped by some
+  irreducible congruence representation, and the Deligne representations that
+  escape the block `SL_2` have principal-`SL_2` fixed vectors
+  (`deligne-sl3-representations-have-principal-sl2-invariants`), so they are
+  not strongly convergent.  Whether `SL_3(Z)` is purely matricial field is
+  `sl3z-purely-matricial-field`.
 * **Kazhdan gate, all criteria.**  By `reduced-mf-kazhdan-subgroup-gate`, any
   group produced by Kun--Thom Theorem A or the expander-matching criterion
   first needs an infinite Kazhdan group with MF reduced algebra
