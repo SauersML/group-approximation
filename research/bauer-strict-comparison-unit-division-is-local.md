@@ -29,7 +29,7 @@ nonempty closed set.
    `L(6(1/(4N) + δ)^{1/2} + δ) ≤ ε/2` serves every level.
 4. Staircases, orthogonalizing moves and the final rank estimate apply verbatim. ∎
 
-Not reviewed.
+Review PASS (ex-verify2-analysis, `research/artifacts/ex-review2-analysis-2026-09-13-part2.md`, §§2.2–2.7).
 
 **Refinement (settled, 2026-09-13).** `bauer-unit-division-iff-summable-local-division`
 replaces single-precision neighbourhoods by summable families of local divisions of

@@ -56,4 +56,4 @@ comparison. `T(A)` is a nonempty Bauer simplex with extreme boundary `K`.
   `ω ≥ 1`, and `K` is not summably divisible; `C(K)` is not simple.
 - A `Z`-stable algebra has `K` itself as a division set at every precision.
 
-Not reviewed.
+Review PASS (ex-verify2-analysis, `research/artifacts/ex-review2-analysis-2026-09-13-part2.md`, §§2.2–2.7).

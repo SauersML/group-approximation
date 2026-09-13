@@ -52,5 +52,6 @@ exact algebras.
 - Every `Z`-stable algebra with Bauer simplex satisfies the conclusion.
 - Over the Hilbert cube, property C fails and the theorem says nothing.
 
-Not reviewed. Novelty check bounded: repository literature notes only, web search
+Review PASS (ex-verify2-analysis, `research/artifacts/ex-review2-analysis-2026-09-13-part2.md`,
+§§2.2–2.7; its two wording notes are recorded in the artifacts). Novelty check bounded: repository literature notes only, web search
 unavailable this session.

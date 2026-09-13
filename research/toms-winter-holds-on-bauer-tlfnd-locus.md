@@ -27,7 +27,7 @@ arXiv:2604.24682v2), so among known examples this is Toms–Winter on Bauer simp
   `Z_{n,n+1}` for large `n`: `toms-winter-bauer-tlfnd-iff-tracially-divisible-unit`.
 - Extreme boundary with Haver's property C:
   `bauer-c-space-strict-comparison-pure-and-z-stable` (2026-09-13, lane
-  `ex-tw-rotation-gluing`, unreviewed).
+  `ex-tw-rotation-gluing`; review PASS by ex-verify2-analysis).
 - Any boundary whose local unit divisions admit summable covers
   (`bauer-unit-division-iff-summable-local-division`). In particular, any boundary
   where `liminf_ω ω · ord_K(ℓ_A(ω)) = 0` for some compatible metric

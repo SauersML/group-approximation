@@ -38,4 +38,4 @@ with tlfnd, which includes every algebra with locally finite nuclear dimension.
   they are not pure.
 - Every `Z`-stable algebra with a finite-dimensional Bauer boundary satisfies (a) and (b).
 
-Not reviewed.
+Review PASS (ex-verify2-analysis, `research/artifacts/ex-review2-analysis-2026-09-13-part2.md`, §§2.2–2.7).

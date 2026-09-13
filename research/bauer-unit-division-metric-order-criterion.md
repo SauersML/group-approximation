@@ -50,4 +50,4 @@ the part 4 artifact).
   which is where Lemma 1 fails.
 - A `Z`-stable algebra has `ℓ_A(ω) ≥ diam K` for all `ω`, so the criterion holds.
 
-Not reviewed.
+Review PASS (ex-verify2-analysis, `research/artifacts/ex-review2-analysis-2026-09-13-part2.md`, §§2.2–2.7).

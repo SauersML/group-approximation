@@ -65,7 +65,7 @@ Everything any such `A` must satisfy:
     rank density of every continuous profile. So rank density fails exactly at the
     constant profiles.
 - **Bauer simplices: the boundary must be strongly infinite-dimensional in a
-  quantitative sense (2026-09-13, lane `ex-tw-rotation-gluing`, unreviewed).**
+  quantitative sense (2026-09-13, lane `ex-tw-rotation-gluing`; review PASS by ex-verify2-analysis).**
   - Its extreme boundary fails Haver's property C
     (`bauer-c-space-strict-comparison-divides-unit`; purity then follows by
     `bauer-c-space-strict-comparison-pure-and-z-stable`).
