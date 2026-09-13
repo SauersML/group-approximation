@@ -131,4 +131,39 @@ their premises are open.
   imports (Cordeiro, Păunescu, Popa, Burger–Mozes items 4–5).
 - **Part 4.** Bernoulli bridge nodes (`generators-dense-iff-zero-rokhlin-entropy` and its bridges).
 
-Verdicts are recorded in the parts and summarized here as they land.
+- **Part 5.** Remaining imports (Popa 0.3–0.4, Alpeev–Seward 1.11, Seward's Koopman theorem), plus SOE invariance
+  and factorwise Howe–Moore, the two claims the first wave passed with caveats.
+
+## 3. Verdict summary
+
+**No FAIL** on any mathematical content. **No false establishment.** No established claim of these lanes decides a
+famous problem, so nothing was escalated to main.
+
+**Corrections forward (2).**
+- **Wording FAIL, title.** `sl3-polynomial-congruence-subgroups-have-large-b2`: the title asserted every level of
+  degree at least 2 and did not name (S). Corrected at b54cde5dd9, and the owner was messaged.
+- **Wording GAP, step 2.** `sl3z-cocompact-quotient-uniformly-far-from-finite-actions-proof` and part 2 of its
+  artifact said "`e_ij^N` generate `E_3(Z,N)`". Repaired through BMS (i) and `E_q`. Corrected at 91bf538198, and
+  the owner was messaged.
+
+**Of the 16 established claims with no PASS row (§1.1), all 16 now PASS.**
+- **Derivations (8)**, each re-derived independently: `sl3z-cocompact-quotient-uniquely-ergodic-minimal`,
+  `uniquely-ergodic-action-sofic-iff-topological-microstates`, `sl3-norm-drift-excludes-finite-almost-invariant-configs`,
+  `sl3z-cocompact-microstates-carry-flat-lambda-labels`, `sl3z-cocompact-quotient-uniformly-far-from-finite-actions`
+  (after the correction), `hecke-orbits-make-lattice-quotient-actions-sofic` and
+  `radu-lattice-is-limit-of-nilpotent-by-arithmetic-groups` (parts 2–3), and the BdHV import (part 1).
+- **Imports (8)**, checked verbatim against the PDFs:
+  - Benoist–Quint Corollaire 1.2 and BMS 16.2 / (16.1) / 4.3 / (i) (part 2);
+  - Cordeiro, Păunescu, Popa 0.1 and Burger–Mozes items 4–5 (part 3);
+  - Popa 0.3–0.4 and Alpeev–Seward 1.11 (part 5).
+
+**Partial first-wave PASSes (§1.2), now complete.**
+- Parts 1 and 3: descent §5, the Kazhdan-cover corollary, the b_2 table (`D = 2` rows by hand) and
+  `radu-horizontal-projection-kills-delta-squared`.
+- Part 5: SOE invariance and factorwise Howe–Moore.
+
+**Second passes on already-passed claims (all PASS).** `rf-kazhdan-group-not-flexibly-hs-stable`,
+`finite-multiplier-projective-models-round-strictly` and `generators-dense-iff-zero-rokhlin-entropy`.
+
+**Not re-derived in this wave.** The remaining first-wave PASSes of the Rokhlin-ascent, Rokhlin-lower,
+Bernoulli-positive, Bernoulli-zero-supremum and Păunescu-class lanes.
