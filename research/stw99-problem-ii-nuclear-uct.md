@@ -75,6 +75,25 @@ Dead ends on the negative side (uct-problem lane, 2026-09-12; details in
   witness needs, at all primes but at most one, an action outside the equivariant
   bootstrap class, which Köhler, Meyer--Nadareishvili and Gabe--Szabó cannot
   name.  Dies there.
+* **K-theoretic certificates at a prime** (ex-uct lane, 2026-09-12; details in
+  `research/artifacts/uct-cyclotomic-kk-2026-09-12-part1.md` and `-part2.md`).
+  - Every `C = O_2 ⋊_α Z_p`, for any action, has `1 − [α̂]` and `p` invertible,
+    so `KK(C, C)` is a `Z[ζ_p, 1/p]`-algebra
+    (`o2-zp-crossed-products-invert-p-in-kk`).
+  - `C ~_KK C ⊗ M_(p^∞)` for every action, which verifies the absorption step
+    of Barlak--Li II Theorem 4.16 (i) ⟹ (ii)
+    (`o2-zp-crossed-products-absorb-uhf-p-without-uct`).
+  - Köhler's complete equivariant invariant over contractible algebras is one
+    arbitrary cyclotomic module, and every countable such module is realized in
+    the equivariant bootstrap class
+    (`bootstrap-zp-actions-realize-every-cyclotomic-k-module`).  So no
+    K-theoretic signature, equivariant or not, can certify a witness.  A witness
+    is an equivariant phantom.  Dies at the fence.
+  - Positive side: if restriction and crossed product jointly detect
+    `KK^(Z/p)`-contractibility
+    (`zp-restriction-and-crossed-product-detect-kk-g-contractibility`, open),
+    then Problem II at `p` says that every outer strongly approximately inner
+    `Z/p`-action on `O_2` is in the equivariant bootstrap class.
 * **Property (T) compression rigidity.**  The mechanisms behind this
   repository's non-MF and nonsofic theorems live on non-amenable groups, whose
   group C\*-algebras are not nuclear.  Dies at nuclearity.
