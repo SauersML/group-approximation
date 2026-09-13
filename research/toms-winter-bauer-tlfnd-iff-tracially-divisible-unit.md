@@ -11,6 +11,7 @@ distinct_from:
 artifacts:
   - research/artifacts/ex-toms-winter-bauer-divisible-unit-2026-09-12.md
   - research/artifacts/ex-toms-winter-bauer-divisible-unit-part2-2026-09-12.md
+  - research/artifacts/ex-toms-winter-unit-divisibility-equivalences-2026-09-12.md
 ---
 
 **Theorem.** Let `A` be a unital, simple, separable, nuclear, non-elementary
@@ -23,13 +24,20 @@ Definition 1.5) and strict comparison of positive elements. These are equivalent
 - (d) for every `N`, a unital `*`-homomorphism `M_N → A^U`;
 - (e) the unit of `A` is tracially `N`-divisible for arbitrarily large `N`: for
   every `ε > 0` some c.p.c. order zero `φ: M_N → A` has `τ(φ(1)) > 1 − ε` at every
-  trace.
+  trace;
+- (f) for every `n` some `x ∈ W(A)` has `n x ≤ [1_A] ≤ (n+1) x`, the divisibility
+  property of Rørdam–Winter's Proposition 5.1(i);
+- (g) unital `*`-homomorphisms `Z_{n,n+1} → A` exist for arbitrarily large `n`.
+
+So on this locus Toms–Winter is part (1) of STW XXVII asked only at the unit:
+strict comparison should make `[1_A]` almost divisible.
 
 **Shape of a counterexample.** A unital Toms–Winter counterexample on this locus
 has a tracially indivisible unit.
 - For all large `N` there is `ε_N > 0` such that every c.p.c. order zero
   `φ: M_N → A` has `τ(φ(1)) ≤ 1 − ε_N` at some trace.
 - Its tracial ultrapower has no projection of constant trace `1/N` for large `N`.
+- For some `n`, no `x ∈ W(A)` satisfies `n x ≤ [1] ≤ (n+1) x`.
 - `A` contains no unital simple infinite-dimensional C*-subalgebra with a unique
   trace, such as `Z`, a UHF algebra or an irrational rotation algebra.
 - `A` admits no unital `*`-homomorphism from `Z_{n,n+1}` for large `n`.
@@ -39,7 +47,7 @@ version, and Vaccaro records that no nuclear algebra without locally finite nucl
 dimension is known. So among known nuclear algebras this is the Bauer-simplex case
 of Toms–Winter.
 
-**Proof** (Section 2 of the first artifact, Section 3 of part 2).
+**Proof** (first artifact, Section 2; part 2, Section 3; equivalences artifact).
 - (e) ⟹ (c): `bauer-tracially-divisible-unit-gives-bounded-rank-density`.
 - (c) ⟹ (b), in four steps:
   1. strict comparison gives projection comparison in the ultrapower;
@@ -49,6 +57,8 @@ of Toms–Winter.
 - (b) ⟹ (a): CETW Theorem A.
 - (a) ⟹ (d): tracially large order zero maps `M_N → Z`, transported through
   `A ⊗ Z ≅ A`.
-- Unique-trace subalgebras, and `Z_{n,n+1}` with `n` large, give (e) directly.
+- (d) ⟹ (e): trivial.
+- (e) ⟺ (f) ⟺ (g): `strict-comparison-unit-divisibility-equivalences`.
+- Unique-trace subalgebras give (e) directly (Lemma 3.1 of part 2).
 
 Not reviewed.

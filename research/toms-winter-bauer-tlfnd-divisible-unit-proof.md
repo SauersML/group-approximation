@@ -11,9 +11,11 @@ requires:
   - strict-comparison-with-rank-density-gives-support-projections
   - uniform-gamma-iff-tracial-support-projections-and-division
   - uniform-gamma-algebras-satisfy-toms-winter
+  - strict-comparison-unit-divisibility-equivalences
 artifacts:
   - research/artifacts/ex-toms-winter-bauer-divisible-unit-2026-09-12.md
   - research/artifacts/ex-toms-winter-bauer-divisible-unit-part2-2026-09-12.md
+  - research/artifacts/ex-toms-winter-unit-divisibility-equivalences-2026-09-12.md
 ---
 
 Let `A` be unital, simple, separable, nuclear and non-elementary, with Bauer
@@ -36,8 +38,10 @@ Let `A` be unital, simple, separable, nuclear and non-elementary, with Bauer
      tracially large. Transport it through `A ⊗ Z ≅ A`.
    - Lift and push forward through `ℓ^∞(A) → A^U` (Definition 1.1 of the artifact).
 5. **(d) ⟹ (e).** Trivial.
-6. **Counterexample clauses.**
-   - Negating (d) and (e) gives the indivisible unit.
+6. **(e) ⟺ (f) ⟺ (g).** `strict-comparison-unit-divisibility-equivalences`
+   (nuclear implies exact).
+7. **Counterexample clauses.**
+   - Negating (d), (e) and (f) gives the indivisible unit.
    - The projection clause uses the PC-only Steps 3–6 of Theorem 2 in
      `research/artifacts/tw-invisible-gamma-support-gap-2026-09-12.md`.
    - Lemma 3.1 of part 2: a unital simple infinite-dimensional unique-trace
