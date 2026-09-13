@@ -48,16 +48,16 @@ the infinite-rank free fold kernel here does not satisfy that hypothesis.
 The nonsoficity machinery credits Kun-Thom and Alekseev-Thom, and the
 property-(T) input credits Ershov and Jaikin-Zapirain. Detailed sources,
 their roles, and the exact statement comparison are retained in
-metadata/palomar-bowen-chapman.yaml.
+metadata/palomar-surjunctive-nonsofic.yaml.
 
 FORMAL SCOPE AND VERIFICATION
 
-Configuration: Palomar/comparator-bowen-chapman.json
-Statements: Palomar/BowenChapmanChallenge.lean
-Proof: Palomar/BowenChapmanSolution.lean
+Configuration: Palomar/comparator-surjunctive-nonsofic.json
+Statements: Palomar/SurjunctiveNonsoficChallenge.lean
+Proof: Palomar/SurjunctiveNonsoficSolution.lean
 Selected declarations:
-BowenChapman.not_all_surjunctive_groups_sofic
-BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic
+SurjunctiveNonsofic.not_all_surjunctive_groups_sofic
+SurjunctiveNonsofic.exists_finitelyGenerated_surjunctive_not_sofic
 
 Both declarations are unconditional and use only propext,
 Classical.choice, and Quot.sound. Finite presentation is outside this
@@ -68,8 +68,10 @@ Comparator, Lean, NanoDa, and statement/axiom checks passed for commit
 6738ce3d092e23a5976f6d45042f4d92c12bf5b0:
 https://github.com/SauersML/group-approximation/actions/runs/34785942633
 https://github.com/SauersML/group-approximation/actions/runs/34785945798
-The present revision changes documentation only. These verification runs
-are not a claim of Palomar acceptance or human expert review.
+The present revision renames the modules and declarations and updates their
+exposition. The renamed declarations have not been rechecked by Lean or
+NanoDa during this pass. These recorded verification runs do not constitute
+Palomar acceptance or human expert review.
 
 Astra developed the original argument using a custom proof tool under
 the author's direction. Claude (Anthropic) produced the Lean development

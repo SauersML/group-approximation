@@ -25,7 +25,7 @@ substitution on single monomials, the entrywise action on elementary matrices,
 and injectivity of the peripheral embedding.
 -/
 
-namespace GroupApproximation.BowenChapman
+namespace GroupApproximation.SurjunctiveNonsofic
 
 open scoped Matrix
 
@@ -230,4 +230,4 @@ theorem peripheralHom_injective : Function.Injective peripheralHom := by
       ((z : (Matrix (Fin 3) (Fin 3) Laurent)ˣ) : Matrix (Fin 3) (Fin 3) Laurent) i j) h'
   exact polyToLaurent_injective hij
 
-end GroupApproximation.BowenChapman
+end GroupApproximation.SurjunctiveNonsofic

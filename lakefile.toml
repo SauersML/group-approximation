@@ -1,6 +1,6 @@
 name = "GroupApproximation"
 version = "0.1.0"
-defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution", "PalomarBowenChapmanChallenge", "PalomarBowenChapmanSolution", "PalomarPestov91Challenge", "PalomarPestov91Solution", "PalomarTypeA2Challenge", "PalomarTypeA2Solution", "PalomarGubaThompsonChallenge", "PalomarGubaThompsonSolution", "PalomarGKPCommutingActionsChallenge", "PalomarGKPCommutingActionsSolution", "PalomarSTWProblemX1Challenge", "PalomarSTWProblemX1Solution", "PalomarSTWProblemXXIIChallenge", "PalomarSTWProblemXXIISolution", "PalomarBlanchardToeplitzChallenge", "PalomarBlanchardToeplitzSolution"]
+defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution", "PalomarSurjunctiveNonsoficChallenge", "PalomarSurjunctiveNonsoficSolution", "PalomarSurjunctiveNonsoficModelTests", "PalomarPestov91Challenge", "PalomarPestov91Solution", "PalomarTypeA2Challenge", "PalomarTypeA2Solution", "PalomarGubaThompsonChallenge", "PalomarGubaThompsonSolution", "PalomarGKPCommutingActionsChallenge", "PalomarGKPCommutingActionsSolution", "PalomarSTWProblemX1Challenge", "PalomarSTWProblemX1Solution", "PalomarSTWProblemXXIIChallenge", "PalomarSTWProblemXXIISolution", "PalomarBlanchardToeplitzChallenge", "PalomarBlanchardToeplitzSolution"]
 
 [[require]]
 name = "mathlib"
@@ -87,21 +87,27 @@ roots = ["Palomar.LIXStrongChallenge"]
 name = "PalomarLIXStrongSolution"
 roots = ["Palomar.LIXStrongSolution"]
 
-# The fourth Comparator configuration, `Palomar/comparator-bowen-chapman.json`:
-# Bowen-Chapman Problem 1.1 (is every surjunctive group sofic?).  Same protocol
-# as the pairs above: `Palomar/BowenChapmanChallenge.lean` imports Mathlib only
-# and states the two theorems with deliberate holes; `Palomar/BowenChapmanSolution.lean`
+# The fourth Comparator configuration, `Palomar/comparator-surjunctive-nonsofic.json`:
+# the surjunctivity-soficity question (is every surjunctive group sofic?).  Same protocol
+# as the pairs above: `Palomar/SurjunctiveNonsoficChallenge.lean` imports Mathlib only
+# and states the two theorems with deliberate holes; `Palomar/SurjunctiveNonsoficSolution.lean`
 # proves them from the development endpoint
-# `GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic`.  Both
+# `GroupApproximation.SurjunctiveNonsofic.exists_fg_surjunctive_not_isSofic`.  Both
 # libraries are in `defaultTargets`.
 
 [[lean_lib]]
-name = "PalomarBowenChapmanChallenge"
-roots = ["Palomar.BowenChapmanChallenge"]
+name = "PalomarSurjunctiveNonsoficChallenge"
+roots = ["Palomar.SurjunctiveNonsoficChallenge"]
 
 [[lean_lib]]
-name = "PalomarBowenChapmanSolution"
-roots = ["Palomar.BowenChapmanSolution"]
+name = "PalomarSurjunctiveNonsoficSolution"
+roots = ["Palomar.SurjunctiveNonsoficSolution"]
+
+# Definition checks and equivalences for the surjunctive nonsofic result.
+[[lean_lib]]
+name = "PalomarSurjunctiveNonsoficModelTests"
+roots = ["Palomar.SurjunctiveNonsoficModelTests", "Palomar.SurjunctiveNonsoficSoficityEquivalence", "Palomar.SurjunctiveNonsoficSurjunctivityEquivalence"]
+
 
 # The fifth Comparator configuration, `Palomar/comparator-pestov91.json`:
 # Pestov's Open Question 9.1 (can an infinite simple group with property (T) be

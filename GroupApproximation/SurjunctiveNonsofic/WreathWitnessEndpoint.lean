@@ -1,17 +1,17 @@
-import GroupApproximation.BowenChapman.LaurentPairKazhdan
-import GroupApproximation.BowenChapman.WreathWitness
-import GroupApproximation.KunThom.NormalizationFromCriterion
+import GroupApproximation.SurjunctiveNonsofic.LaurentPairKazhdan
+import GroupApproximation.SurjunctiveNonsofic.WreathWitness
+import GroupApproximation.KunThom.CompressorNormalizationCore
 
 /-!
-# The coset wreath witness answers Bowen–Chapman Problem 1.1
+# The coset wreath witness answers the surjunctivity–soficity question
 
 Property (T) for `Ambient` and `Peripheral`, together with infranormality of
 `Peripheral`, gives sequential centralizer normalization (Kun–Thom Theorem 4.1).
-With `BowenChapman/WreathWitness` this makes the coset wreath product
+With `SurjunctiveNonsofic/WreathWitness` this makes the coset wreath product
 `(ℤ/2ℤ) ≀_{G/Γ} G` a finitely generated surjunctive group that is not sofic.
 -/
 
-namespace GroupApproximation.BowenChapman
+namespace GroupApproximation.SurjunctiveNonsofic
 
 open GroupApproximation
 
@@ -22,7 +22,7 @@ theorem cosetWreath_not_isSofic : ¬ IsSofic CosetWreath :=
       ambient_hasKazhdanPropertyT peripheral_hasKazhdanPropertyT
       peripheral_isInfranormal)
 
-/-- **The coset wreath witness answers Bowen–Chapman Problem 1.1.** -/
+/-- **The coset wreath witness answers the surjunctivity–soficity question.** -/
 theorem cosetWreath_fg_surjunctive_not_isSofic :
     Group.FG CosetWreath ∧ Surjunctivity.IsSurjunctive CosetWreath ∧
       ¬ IsSofic CosetWreath :=
@@ -34,4 +34,4 @@ theorem exists_fg_surjunctive_not_isSofic_of_cosetWreath :
       ¬ IsSofic E :=
   ⟨CosetWreath, inferInstance, cosetWreath_fg_surjunctive_not_isSofic⟩
 
-end GroupApproximation.BowenChapman
+end GroupApproximation.SurjunctiveNonsofic

@@ -1,6 +1,6 @@
-import GroupApproximation.BowenChapman.LaurentPairGeneration
-import GroupApproximation.BowenChapman.LaurentPairInfranormal
-import GroupApproximation.BowenChapman.LaurentPairResiduallyFinite
+import GroupApproximation.SurjunctiveNonsofic.LaurentPairGeneration
+import GroupApproximation.SurjunctiveNonsofic.LaurentPairInfranormal
+import GroupApproximation.SurjunctiveNonsofic.LaurentPairResiduallyFinite
 import GroupApproximation.Dynamics.SurjunctivityTransfer
 import GroupApproximation.Dynamics.WreathFinitarySite
 import GroupApproximation.Sofic.InfranormalCompressionPair
@@ -8,7 +8,7 @@ import GroupApproximation.Sofic.TargetEquivalence
 import GroupApproximation.Sofic.WreathCentralizerNormalizationSequential
 
 /-!
-# The coset wreath witness for Bowen–Chapman Problem 1.1
+# The coset wreath witness for the surjunctivity–soficity question
 
 The coset wreath product `CosetWreath = (ℤ/2ℤ) ≀_{G/Γ} G` over the explicit pair
 `Γ = Peripheral ≤ G = Ambient`.
@@ -27,7 +27,7 @@ asserts for this pair, since `Peripheral` is infranormal and both groups have
 property (T). It is taken here as a hypothesis, not proved.
 -/
 
-namespace GroupApproximation.BowenChapman
+namespace GroupApproximation.SurjunctiveNonsofic
 
 open GroupApproximation
 
@@ -54,4 +54,4 @@ theorem cosetWreath_not_isSofic_of_sequentialNormalization
   obtain ⟨t, γ, hγ, hesc⟩ := exists_escape_of_not_normal peripheral_not_normal
   exact not_isSofic_wreath_of_sequentialNormalization Peripheral hcentralizer hγ hesc
 
-end GroupApproximation.BowenChapman
+end GroupApproximation.SurjunctiveNonsofic

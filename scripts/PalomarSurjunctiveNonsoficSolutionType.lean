@@ -1,10 +1,10 @@
-import Palomar.BowenChapmanSolution
+import Palomar.SurjunctiveNonsoficSolution
 
 /-!
-# Dump the Bowen–Chapman statements and their declaration closures
+# Dump the surjunctive nonsofic statements and their declaration closures
 
-The solution-side driver for `Palomar/comparator-bowen-chapman.json`, twin of
-`scripts/PalomarBowenChapmanChallengeType.lean`.
+The solution-side driver for `Palomar/comparator-surjunctive-nonsofic.json`, twin of
+`scripts/PalomarSurjunctiveNonsoficChallengeType.lean`.
 
 `leanprover/comparator` compares the exported challenge and solution
 `ConstantVal`s structurally and then walks the constants each compared type
@@ -18,18 +18,18 @@ The solution imports the development, whose instances the challenge never sees,
 so this is where an instance resolved differently inside a shared definition
 shows up.
 
-Run with `lake env lean scripts/PalomarBowenChapmanSolutionType.lean`.
+Run with `lake env lean scripts/PalomarSurjunctiveNonsoficSolutionType.lean`.
 -/
 
 open Lean Meta in
 #eval show MetaM Unit from do
   let targets : List (Bool × Name) :=
-    [(true,  `BowenChapman.cellularAutomaton),
-     (true,  `BowenChapman.IsSurjunctive),
-     (true,  `BowenChapman.hammingDist),
-     (true,  `BowenChapman.IsSoficGroup),
-     (false, `BowenChapman.not_all_surjunctive_groups_sofic),
-     (false, `BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic)]
+    [(true,  `SurjunctiveNonsofic.cellularAutomaton),
+     (true,  `SurjunctiveNonsofic.IsSurjunctive),
+     (true,  `SurjunctiveNonsofic.hammingDist),
+     (true,  `SurjunctiveNonsofic.IsSoficGroup),
+     (false, `SurjunctiveNonsofic.not_all_surjunctive_groups_sofic),
+     (false, `SurjunctiveNonsofic.exists_finitelyGenerated_surjunctive_not_sofic)]
   let env ← getEnv
   for (isShared, target) in targets do
     let some info := env.find? target

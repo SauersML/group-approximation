@@ -1,10 +1,10 @@
-import Palomar.BowenChapmanChallenge
+import Palomar.SurjunctiveNonsoficChallenge
 
 /-!
-# Dump the Bowen–Chapman statements and their declaration closures
+# Dump the surjunctive nonsofic statements and their declaration closures
 
-The challenge-side driver for `Palomar/comparator-bowen-chapman.json`, twin of
-`scripts/PalomarBowenChapmanSolutionType.lean`.
+The challenge-side driver for `Palomar/comparator-surjunctive-nonsofic.json`, twin of
+`scripts/PalomarSurjunctiveNonsoficSolutionType.lean`.
 
 `leanprover/comparator` compares the exported challenge and solution
 `ConstantVal`s structurally and then walks the constants each compared type
@@ -18,18 +18,18 @@ The values of the four definitions are walked as well, because Comparator
 compares them; the proofs of the two theorems are not, because the challenge
 states them with holes.
 
-Run with `lake env lean scripts/PalomarBowenChapmanChallengeType.lean`.
+Run with `lake env lean scripts/PalomarSurjunctiveNonsoficChallengeType.lean`.
 -/
 
 open Lean Meta in
 #eval show MetaM Unit from do
   let targets : List (Bool × Name) :=
-    [(true,  `BowenChapman.cellularAutomaton),
-     (true,  `BowenChapman.IsSurjunctive),
-     (true,  `BowenChapman.hammingDist),
-     (true,  `BowenChapman.IsSoficGroup),
-     (false, `BowenChapman.not_all_surjunctive_groups_sofic),
-     (false, `BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic)]
+    [(true,  `SurjunctiveNonsofic.cellularAutomaton),
+     (true,  `SurjunctiveNonsofic.IsSurjunctive),
+     (true,  `SurjunctiveNonsofic.hammingDist),
+     (true,  `SurjunctiveNonsofic.IsSoficGroup),
+     (false, `SurjunctiveNonsofic.not_all_surjunctive_groups_sofic),
+     (false, `SurjunctiveNonsofic.exists_finitelyGenerated_surjunctive_not_sofic)]
   let env ← getEnv
   for (isShared, target) in targets do
     let some info := env.find? target

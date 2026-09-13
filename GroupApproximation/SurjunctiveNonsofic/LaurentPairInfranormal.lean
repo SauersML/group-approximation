@@ -1,4 +1,4 @@
-import GroupApproximation.BowenChapman.LaurentPair
+import GroupApproximation.SurjunctiveNonsofic.LaurentPair
 import GroupApproximation.Sofic.InfranormalCompressionPair
 import Mathlib.GroupTheory.Commutator.Basic
 
@@ -6,7 +6,7 @@ import Mathlib.GroupTheory.Commutator.Basic
 # The peripheral subgroup is infranormal and not normal
 
 For the pair `Peripheral = EL₃(𝔽₂[ℕ³]) ≤ Ambient = EL₃(𝔽₂[ℤ³]) ⋊ EL₃(ℤ)` of
-`BowenChapman.LaurentPair`:
+`SurjunctiveNonsofic.LaurentPair`:
 
 * `peripheral_isInfranormal`: the compressors of `Peripheral` generate `Ambient`;
 * `peripheral_not_normal`: `Peripheral` is not normal.
@@ -30,7 +30,7 @@ For the pair `Peripheral = EL₃(𝔽₂[ℕ³]) ≤ Ambient = EL₃(𝔽₂[ℤ
 `x_{01}(x₁⁻¹x₂)`, whose `(0,1)` entry is not a polynomial.
 -/
 
-namespace GroupApproximation.BowenChapman
+namespace GroupApproximation.SurjunctiveNonsofic
 
 open scoped Matrix commutatorElement
 
@@ -373,4 +373,4 @@ theorem peripheral_not_normal : ¬ Peripheral.Normal := by
     exact h'.trans (elemL_coe_apply_same 0 1 h01 _)
   exact polyToLaurent_ne_single _ (i := 0) (by simp) hentry
 
-end GroupApproximation.BowenChapman
+end GroupApproximation.SurjunctiveNonsofic

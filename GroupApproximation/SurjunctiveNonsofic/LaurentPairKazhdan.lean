@@ -1,4 +1,4 @@
-import GroupApproximation.BowenChapman.LaurentPair
+import GroupApproximation.SurjunctiveNonsofic.LaurentPair
 import GroupApproximation.Kazhdan.SemidirectProductKazhdan
 import GroupApproximation.PropertyT.IntegralColumnPlaneClosure
 import Mathlib.RingTheory.FiniteType
@@ -18,7 +18,7 @@ group is a semidirect product of two of these groups, so
 isomorphic to `EL₃(𝔽₂[ℕ³])` because the peripheral embedding is injective.
 -/
 
-namespace GroupApproximation.BowenChapman
+namespace GroupApproximation.SurjunctiveNonsofic
 
 /-- `𝔽₂[ℤ³]` is a finitely generated ring. -/
 theorem isFinitelyGeneratedRing_laurent : IsFinitelyGeneratedRing Laurent :=
@@ -65,4 +65,4 @@ theorem peripheral_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, 0} ↥Periphera
     (MonoidHom.ofInjective peripheralHom_injective).symm
     polyElementary_hasKazhdanPropertyT
 
-end GroupApproximation.BowenChapman
+end GroupApproximation.SurjunctiveNonsofic

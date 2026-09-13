@@ -2,17 +2,17 @@
 Copyright (c) 2026 The group-approximation authors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
-import GroupApproximation.BowenChapman.LaurentPairInfranormal
-import GroupApproximation.BowenChapman.LaurentPairKazhdan
-import GroupApproximation.BowenChapman.LaurentPairGeneration
-import GroupApproximation.BowenChapman.LaurentPairResiduallyFinite
+import GroupApproximation.SurjunctiveNonsofic.LaurentPairInfranormal
+import GroupApproximation.SurjunctiveNonsofic.LaurentPairKazhdan
+import GroupApproximation.SurjunctiveNonsofic.LaurentPairGeneration
+import GroupApproximation.SurjunctiveNonsofic.LaurentPairResiduallyFinite
 import GroupApproximation.KunThom.NormalizationFromCriterionConsumer
 import GroupApproximation.Dynamics.DoubleFinitarySite
 import GroupApproximation.Dynamics.DoubleConsequences
 import GroupApproximation.Dynamics.SurjunctivityTransfer
 
 /-!
-# The Bowen–Chapman witness, given sequential normalization at the pair
+# The Kun–Thom double, given sequential normalization at the pair
 
 The symmetric double `SymmetricDouble Ambient Peripheral` is finitely generated,
 surjunctive and not sofic, provided sequential centralizer normalization holds
@@ -24,9 +24,9 @@ The remaining hypothesis is Kun–Thom's Theorem 4.1 (arXiv:2608.06222) in
 sequential form at this pair.  This module does not prove it.
 -/
 
-namespace GroupApproximation.BowenChapman
+namespace GroupApproximation.SurjunctiveNonsofic
 
-/-- **The Bowen–Chapman witness, given normalization.**  The symmetric double of
+/-- **The Kun–Thom double, given normalization.**  The symmetric double of
 the explicit pair is finitely generated, surjunctive, and not sofic, once
 sequential centralizer normalization holds for `Peripheral`. -/
 theorem symmetricDouble_fg_surjunctive_not_isSofic_of_normalization
@@ -43,4 +43,4 @@ theorem symmetricDouble_fg_surjunctive_not_isSofic_of_normalization
     exact not_isSofic_symmetricDouble_of_sequentialNormalization Peripheral
       hnormalization (t := t) hγ hesc
 
-end GroupApproximation.BowenChapman
+end GroupApproximation.SurjunctiveNonsofic

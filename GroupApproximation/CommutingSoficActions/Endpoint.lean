@@ -22,7 +22,7 @@ both the group and the set are countable.
 
 namespace GroupApproximation.CommutingSoficActions
 
-open DiagonalCosetAction GroupApproximation.BowenChapman
+open DiagonalCosetAction GroupApproximation.SurjunctiveNonsofic
 
 /-- The set of the counterexample: `(G × G) ⧸ ΔΓ` for the Kun–Thom pair. -/
 abbrev KunThomDiagonalCosets : Type := (Ambient × Ambient) ⧸ diagSubgroup Peripheral

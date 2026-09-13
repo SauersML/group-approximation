@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 version: "v0.4"
 
-# This submission selects Palomar/comparator-bowen-chapman.json only.
+# This submission selects Palomar/comparator-surjunctive-nonsofic.json only.
 project:
   name: A Surjunctive Group That Is Not Sofic
   description: >-
@@ -48,7 +48,7 @@ sources:
       subset order. The remaining map acts on finitely many cosets of a
       stabilizer intersection, whose surjunctivity supplies an inverse.
       The unconditional formal endpoint is
-      GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic.
+      GroupApproximation.SurjunctiveNonsofic.exists_fg_surjunctive_not_isSofic.
       The group's construction and its nonsoficity are credited to Kun
       and Thom below. A September 13 literature review found no earlier
       separation proof or applicable permanence theorem
@@ -247,27 +247,28 @@ review:
     and the prior literature. No human expert review or Palomar editorial
     acceptance is claimed. Comparator with NanoDa and the statement/axiom
     checks passed for commit 6738ce3d092e23a5976f6d45042f4d92c12bf5b0 in
-    GitHub Actions runs 34785942633 and 34785945798. This revision changes
-    documentation only and has not been submitted. The previous Palomar
+    GitHub Actions runs 34785942633 and 34785945798. This revision renames the modules and declarations to SurjunctiveNonsofic
+    and revises their documentation. The renamed declarations have not been
+    rechecked by Lean or NanoDa during this pass and have not been submitted. The previous Palomar
     submission was withdrawn.
 
 status:
   scope: >-
-    The two declarations selected by Palomar/comparator-bowen-chapman.json
+    The two declarations selected by Palomar/comparator-surjunctive-nonsofic.json
     assert a finitely generated surjunctive nonsofic group and the
     negation of the universal implication from surjunctivity to soficity.
   main_results:
-    - declaration: BowenChapman.not_all_surjunctive_groups_sofic
-      file: Palomar/BowenChapmanSolution.lean
+    - declaration: SurjunctiveNonsofic.not_all_surjunctive_groups_sofic
+      file: Palomar/SurjunctiveNonsoficSolution.lean
       sorry_count: 0
       axioms: [propext, Classical.choice, Quot.sound]
-      comparator_config: Palomar/comparator-bowen-chapman.json
+      comparator_config: Palomar/comparator-surjunctive-nonsofic.json
 
-    - declaration: BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic
-      file: Palomar/BowenChapmanSolution.lean
+    - declaration: SurjunctiveNonsofic.exists_finitelyGenerated_surjunctive_not_sofic
+      file: Palomar/SurjunctiveNonsoficSolution.lean
       sorry_count: 0
       axioms: [propext, Classical.choice, Quot.sound]
-      comparator_config: Palomar/comparator-bowen-chapman.json
+      comparator_config: Palomar/comparator-surjunctive-nonsofic.json
 
 fidelity:
   divergences: >-
@@ -288,13 +289,13 @@ fidelity:
 
 alignment:
   statements:
-    - source: Not every surjunctive group is sofic, answering Bowen-Chapman Problem 1.1 negatively.
-      lean: BowenChapman.not_all_surjunctive_groups_sofic
-      module: Palomar.BowenChapmanChallenge
+    - source: Not every surjunctive group is sofic; the converse to the Gromov-Weiss theorem fails.
+      lean: SurjunctiveNonsofic.not_all_surjunctive_groups_sofic
+      module: Palomar.SurjunctiveNonsoficChallenge
       status: proved
     - source: There exists a finitely generated surjunctive group that is not sofic.
-      lean: BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic
-      module: Palomar.BowenChapmanChallenge
+      lean: SurjunctiveNonsofic.exists_finitelyGenerated_surjunctive_not_sofic
+      module: Palomar.SurjunctiveNonsoficChallenge
       status: proved
 
 acknowledgements: Built on Lean 4 and Mathlib; the mathematical ingredients are credited in sources.

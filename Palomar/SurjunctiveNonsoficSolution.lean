@@ -9,14 +9,14 @@ import Mathlib.GroupTheory.Finiteness
 import Mathlib.GroupTheory.Perm.Basic
 import GroupApproximation.Sofic.Sofic
 import GroupApproximation.Dynamics.Surjunctivity
-import GroupApproximation.BowenChapman.Endpoint
+import GroupApproximation.SurjunctiveNonsofic.Endpoint
 
 /-!
-# Proof of the Bowen–Chapman Problem 1.1 theorems
+# Proof of the surjunctive nonsofic group theorems
 
 This file repeats the challenge's shared block byte for byte, translates the
 development's vocabulary into it, and proves the two theorems
-`Palomar/comparator-bowen-chapman.json` selects.
+`Palomar/comparator-surjunctive-nonsofic.json` selects.
 
 * `isSoficGroup_of_isSofic` and `isSofic_of_isSoficGroup`: the challenge's
   `IsSoficGroup` is the development's `GroupApproximation.IsSofic`, with the
@@ -24,7 +24,7 @@ development's vocabulary into it, and proves the two theorems
 * `isSurjunctive_of_surjunctive`: the development's
   `GroupApproximation.Surjunctivity.IsSurjunctive` (every injective continuous
   shift-equivariant map of a finite full shift is surjective) gives the
-  challenge's `IsSurjunctive`, because Bowen–Chapman's automaton with memory
+  challenge's `IsSurjunctive`, because the finite-list automaton with memory
   `γ` is the development's `localMap` whose memory set is the image of `γ`.
 * `closure_eq_top_of_fg`: `Group.FG` gives a finite generating set.
 * `not_all_surjunctive_groups_sofic_of` and
@@ -32,20 +32,20 @@ development's vocabulary into it, and proves the two theorems
   generated, surjunctive, nonsofic group of the development into the
   challenge's two statements.
 
-The group is supplied by `GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic`
-in `GroupApproximation/BowenChapman/Endpoint.lean`: the symmetric double
+The group is supplied by `GroupApproximation.SurjunctiveNonsofic.exists_fg_surjunctive_not_isSofic`
+in `GroupApproximation/SurjunctiveNonsofic/Endpoint.lean`: the symmetric double
 `G *_Γ G` of `Γ = EL₃(𝔽₂[x₁, x₂, x₃]) ≤ G = EL₃(𝔽₂[x₁^±¹, x₂^±¹, x₃^±¹]) ⋊ EL₃(ℤ)`.
 
 The prose of this module was written by Claude (Anthropic).
 -/
 
-namespace BowenChapman
+namespace SurjunctiveNonsofic
 
 noncomputable section
 
--- BEGIN SHARED BLOCK (kept byte-identical in `Palomar/BowenChapmanChallenge.lean` and `Palomar/BowenChapmanSolution.lean`)
+-- BEGIN SHARED BLOCK (kept byte-identical in `Palomar/SurjunctiveNonsoficChallenge.lean` and `Palomar/SurjunctiveNonsoficSolution.lean`)
 
-/-- A cellular automaton on `G` with palette `A`, in Bowen–Chapman's form
+/-- A cellular automaton on `G` with palette `A`, in finite-list form
 `Φ(c)(x) = φ(c(x γ₁), …, c(x γₙ))`. -/
 def cellularAutomaton {G : Type} [Group G] {A : Type} {n : ℕ}
     (γ : Fin n → G) (φ : (Fin n → A) → A) : (G → A) → (G → A) :=
@@ -114,7 +114,7 @@ theorem isSoficGroup_iff_isSofic {G : Type} [Group G] :
     IsSoficGroup G ↔ IsSofic G :=
   ⟨isSofic_of_isSoficGroup, isSoficGroup_of_isSofic⟩
 
-/-- The development's surjunctivity gives the challenge's: Bowen–Chapman's
+/-- The development's surjunctivity gives the challenge's: the finite-list
 automaton with memory `γ` and rule `φ` is the development's `localMap` whose
 memory set is the image of `γ`, read through `φ`.  The palette is given its
 discrete topology and the `Fintype` structure of a finite type. -/
@@ -167,7 +167,7 @@ sofic. -/
 theorem not_all_surjunctive_groups_sofic :
     ¬ ∀ (G : Type) [Group G], IsSurjunctive G → IsSoficGroup G :=
   not_all_surjunctive_groups_sofic_of
-    GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic
+    GroupApproximation.SurjunctiveNonsofic.exists_fg_surjunctive_not_isSofic
 
 /-- **A finitely generated counterexample**: some finitely generated group is
 surjunctive and not sofic. -/
@@ -175,8 +175,8 @@ theorem exists_finitelyGenerated_surjunctive_not_sofic :
     ∃ (G : Type) (_ : Group G), (∃ S : Finset G, Subgroup.closure (S : Set G) = ⊤) ∧
       IsSurjunctive G ∧ ¬ IsSoficGroup G :=
   exists_finitelyGenerated_surjunctive_not_sofic_of
-    GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic
+    GroupApproximation.SurjunctiveNonsofic.exists_fg_surjunctive_not_isSofic
 
 end
 
-end BowenChapman
+end SurjunctiveNonsofic

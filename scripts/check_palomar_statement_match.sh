@@ -25,7 +25,7 @@
 # `PALOMAR_PENDING_CONFIGS` in `scripts/check_palomar_submission.py`, and the
 # original `Palomar/comparator.json` -- so it is submitted once per
 # configuration and each pair has to match on its own.  The loops below are
-# over the driver prefixes: empty for the non-MF pair, `LIX`, `BowenChapman`,
+# over the driver prefixes: empty for the non-MF pair, `LIX`, `SurjunctiveNonsofic`,
 # `Pestov91`, `TypeA2`, `GubaThompson`, `GKPCommutingActions`, `STWProblemX1`,
 # `STWProblemXXII` and `BlanchardToeplitz` for the submittable pairs, and
 # `LIXStrong` for the pending one.  Every pair is run
@@ -66,7 +66,7 @@ trap 'rm -rf "$work"' EXIT
 
 status=0
 
-for prefix in "" LIX BowenChapman Pestov91 TypeA2 GubaThompson GKPCommutingActions STWProblemX1 STWProblemXXII BlanchardToeplitz; do
+for prefix in "" LIX SurjunctiveNonsofic Pestov91 TypeA2 GubaThompson GKPCommutingActions STWProblemX1 STWProblemXXII BlanchardToeplitz; do
   # A label for the messages: the empty prefix is the original non-MF pair.
   label="${prefix:-non-MF}"
   pair_ok=1

@@ -1,17 +1,17 @@
-import GroupApproximation.BowenChapman.LaurentPair
-import GroupApproximation.BowenChapman.ResiduallyFiniteSubstitution
+import GroupApproximation.SurjunctiveNonsofic.LaurentPair
+import GroupApproximation.SurjunctiveNonsofic.ResiduallyFiniteSubstitution
 
 /-!
 # The ambient group is residually finite
 
 `ambient_residuallyFinite` shows that `Ambient = EL₃(𝔽₂[ℤ³]) ⋊ EL₃(ℤ)` from
-`GroupApproximation.BowenChapman.LaurentPair` is residually finite.  The actor substitutes
+`GroupApproximation.SurjunctiveNonsofic.LaurentPair` is residually finite.  The actor substitutes
 exponents entrywise, so this is the case `k = 𝔽₂`, `ι = Fin 3` of
 `CongruenceQuotient.residuallyFinite_semidirectProduct_of_expSubst`, whose finite quotients
 reduce exponents modulo `n`.
 -/
 
-namespace GroupApproximation.BowenChapman
+namespace GroupApproximation.SurjunctiveNonsofic
 
 open CongruenceQuotient
 
@@ -29,4 +29,4 @@ theorem ambient_residuallyFinite : Group.ResiduallyFinite Ambient :=
   residuallyFinite_semidirectProduct_of_expSubst actorAction fun M B i j => by
     rw [actorAction_coe_apply, substitution_apply_eq_expSubst]
 
-end GroupApproximation.BowenChapman
+end GroupApproximation.SurjunctiveNonsofic

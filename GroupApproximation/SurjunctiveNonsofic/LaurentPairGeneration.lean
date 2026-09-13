@@ -1,4 +1,4 @@
-import GroupApproximation.BowenChapman.LaurentPairKazhdan
+import GroupApproximation.SurjunctiveNonsofic.LaurentPairKazhdan
 import GroupApproximation.Leavitt.ElementaryFinitelyGeneratedRing
 
 /-!
@@ -75,7 +75,7 @@ theorem countable_elementaryGroup_fin (R : Type*) [Ring R] [Countable R] (n : �
   haveI : Countable (Matrix (Fin n) (Fin n) R)ˣ := Units.val_injective.countable
   infer_instance
 
-namespace BowenChapman
+namespace SurjunctiveNonsofic
 
 /-- **The ambient group is finitely generated.** -/
 theorem ambient_fg : Group.FG Ambient :=
@@ -96,6 +96,6 @@ instance ambient_countable : Countable Ambient := by
   haveI := countable_elementaryGroup_fin ℤ 3
   exact countable_semidirectProduct actorAction
 
-end BowenChapman
+end SurjunctiveNonsofic
 
 end GroupApproximation

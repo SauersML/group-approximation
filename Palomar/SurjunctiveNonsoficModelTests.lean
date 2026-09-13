@@ -1,26 +1,22 @@
 /-
-Model tests for the definitions in the Bowen–Chapman Palomar shared block.
-Fidelity driver, unwired: no lake target builds files under wip/.  Compiled
-green on MSI on 2026-09-12, 21:28-21:31 CDT, against the origin/main bytes of
-d71ae9349.
-
-Build:
-  lake build PalomarBowenChapmanSolution
-  lake env lean <path>/BcxModelTests.lean
+Model tests for the definitions in the surjunctive nonsofic Palomar shared block.
+Built by the PalomarSurjunctiveNonsoficModelTests target and Palomar CI.
+The original versions were checked on MSI on September 12, 2026; this
+renamed integration has not been recompiled during the present pass.
 
 Every statement below is phrased in the CHALLENGE vocabulary
-(`BowenChapman.IsSoficGroup`, `BowenChapman.IsSurjunctive`,
-`BowenChapman.cellularAutomaton`), which is what the Comparator compares.
+(`SurjunctiveNonsofic.IsSoficGroup`, `SurjunctiveNonsofic.IsSurjunctive`,
+`SurjunctiveNonsofic.cellularAutomaton`), which is what the Comparator compares.
 The development's own positive controls live in the `GroupApproximation`
 vocabulary and therefore do not, by themselves, calibrate the challenge.
 -/
-import Palomar.BowenChapmanSolution
+import Palomar.SurjunctiveNonsoficSolution
 import GroupApproximation.Sofic.SoficPositiveControl
 import GroupApproximation.Sofic.FreeGroupResiduallyFinite
 import GroupApproximation.Sofic.HyperlinearReduction
 import GroupApproximation.Dynamics.SurjunctivityTransfer
 
-namespace BowenChapman
+namespace SurjunctiveNonsofic
 
 open GroupApproximation
 
@@ -125,7 +121,7 @@ theorem test_cellularAutomaton_id {G : Type} [Group G] {A : Type} :
   funext c x
   simp [cellularAutomaton]
 
-end BowenChapman
+end SurjunctiveNonsofic
 
-#print axioms BowenChapman.not_all_surjunctive_groups_sofic
-#print axioms BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic
+#print axioms SurjunctiveNonsofic.not_all_surjunctive_groups_sofic
+#print axioms SurjunctiveNonsofic.exists_finitelyGenerated_surjunctive_not_sofic

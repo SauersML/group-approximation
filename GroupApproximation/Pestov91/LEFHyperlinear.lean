@@ -30,7 +30,7 @@ Both conclusions are the local finite-set definitions `IsSofic` and
 `IsSoficGroup` and `IsHyperlinearGroup`, with the model carrier bundled as a
 `FiniteModel` rather than the Challenge's `FiniteCarrier`.  A Solution file
 therefore bridges into the Challenge by repackaging the carrier and nothing
-else, as `Palomar/BowenChapmanSolution.lean` does for `IsSoficGroup`.
+else, as `Palomar/SurjunctiveNonsoficSolution.lean` does for `IsSoficGroup`.
 -/
 
 namespace GroupApproximation

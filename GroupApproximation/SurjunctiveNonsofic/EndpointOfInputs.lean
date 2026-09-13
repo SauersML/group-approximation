@@ -2,17 +2,17 @@
 Copyright (c) 2026 The group-approximation authors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
-import GroupApproximation.BowenChapman.LaurentPair
+import GroupApproximation.SurjunctiveNonsofic.LaurentPair
 import GroupApproximation.Kazhdan.Kazhdan
 import GroupApproximation.Sofic.InfranormalCompressionPair
 import GroupApproximation.KunThom.NormalizationFromCriterionConsumer
 
 /-!
-# The nonsoficity of the Bowen–Chapman witness from its leaves
+# The nonsoficity of the Kun–Thom double from its leaves
 
-The witness for Bowen–Chapman, arXiv:2511.06586, Problem 1.1, is the symmetric
+The surjunctive nonsofic witness is the symmetric
 double `SymmetricDouble Ambient Peripheral` of the explicit pair
-`Peripheral ≤ Ambient` from `GroupApproximation.BowenChapman.LaurentPair`.
+`Peripheral ≤ Ambient` from `GroupApproximation.SurjunctiveNonsofic.LaurentPair`.
 
 This module derives the nonsoficity of that double from five facts about the
 pair and one general normalization theorem, each taken as an explicit
@@ -27,13 +27,13 @@ hypothesis:
   of `G` (Kun–Thom, arXiv:2608.06222, Theorem 4.1, in sequential form).
 
 Each of the first five hypotheses has the type of a declaration in
-`GroupApproximation.BowenChapman` that proves it.
-`GroupApproximation.BowenChapman.EndpointOfNormalization` proves this conclusion,
+`GroupApproximation.SurjunctiveNonsofic` that proves it.
+`GroupApproximation.SurjunctiveNonsofic.EndpointOfNormalization` proves this conclusion,
 together with finite generation and surjunctivity, with normalization at this
 pair as its only hypothesis.
 -/
 
-namespace GroupApproximation.BowenChapman
+namespace GroupApproximation.SurjunctiveNonsofic
 
 /-- **Nonsoficity of the witness, from its leaves.**  Non-normality supplies a
 compressor `t` and a mark `γ ∈ Peripheral` with `t⁻¹ γ t ∉ Peripheral`; the
@@ -54,4 +54,4 @@ theorem symmetricDouble_not_isSofic_of_leaves
   exact not_isSofic_symmetricDouble_of_sequentialNormalization Peripheral
     (hnormalization hTambient hTperipheral hinf) (t := t) hγ hesc
 
-end GroupApproximation.BowenChapman
+end GroupApproximation.SurjunctiveNonsofic
