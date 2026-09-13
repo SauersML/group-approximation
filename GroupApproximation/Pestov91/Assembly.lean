@@ -7,7 +7,7 @@ import Mathlib.GroupTheory.Subgroup.Simple
 /-!
 # Pestov Open Question 9.1: assembling the witness
 
-Pestov's Open Question 9.1 (arXiv:0804.3968, Section 9, p. 21) asks whether an
+Pestov's Open Question 9.1 (arXiv:0804.3968v8, Section 9, p. 21) asks whether an
 infinite simple group with Kazhdan's property `(T)` can be hyperlinear
 (sofic).  The witness is `S = EL₃(A)/Z(EL₃(A))` for the crossed product
 `A = LC(X, 𝔽_q) ⋊ ℤ` of an infinite minimal subshift `X`.  This module puts
