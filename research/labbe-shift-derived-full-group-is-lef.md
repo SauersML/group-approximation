@@ -55,3 +55,15 @@ artifacts:
   Section 6). Tower-type approximations, as for minimal `Z`-subshifts, are excluded. A witness must, at every
   nontrivial action, have Schreier balls larger than `C k^2` somewhere below scale `n`.
 - **fp methods.** The artifact, Section 7, checks Brin's `2V`, the `Sigma`-invariants and Matte Bon. The first rests on compression, which a full-support invariant probability forbids. The `Sigma`-invariants are vacuous for a perfect group. Matte Bon's two papers have no finite presentation criterion.
+- **(C2) is exactly non-LEF, and non-LEF forces finite-dimensional quantum rigidity (2026-09-13,
+  ex3-labbe-c2, unreviewed).**
+  - With Corollary B and Theorem C established, "every LEF approximation carries a nontrivial action of
+    quadratic growth" is equivalent to "not LEF". By `simple-group-truncated-quotients-are-trivial-or-exact`,
+    the approximations in question are just the nontrivial finite quotients of the truncated presentations
+    `P_n`, each automatically exact on a ball. Theorems A and C restrict them (no nontrivial action of
+    quadratic growth up to scale `n`) but give no mechanism that produces such an action.
+  - **Linear criterion.** `z2-sft-derived-full-group-lef-from-tiling-modules`: nonzero finite-dimensional
+    `A_D`-modules at every scale make `Gamma` LEF (route `labbe-lef-via-periodic-quantum-tilings`).
+    Contrapositive: any refutation of LEF, including (C2), proves that `A_D(Omega_U, k)` has no nonzero
+    finite-dimensional module for large `D` and every field `k`. That is stronger than what
+    `zd-derived-full-group-fp-excludes-periodic-quantum-tilings` gets from finite presentation alone.
