@@ -80,3 +80,11 @@ Payoff:
   stable range.  This is consistent with Winter's theorem (Invent. Math.
   2012, abstract) that slow dimension growth and Z-stability are equivalent
   for simple unital ASH algebras whose projections separate traces.
+- **Bauer simplices: the unit suffices, no comparison needed (2026-09-12, lane
+  `ex-toms-winter`).** Suppose `T(A)` is a Bauer simplex and the unit of `A` is
+  tracially `N`-divisible for arbitrarily large `N`: some c.p.c. order zero
+  `M_N → A` has trace above `1 − ε` at every trace.
+  - Then rank density holds, by `bauer-tracially-divisible-unit-gives-bounded-rank-density`
+    and the spectral estimate `|d_τ((q − 1/2)_+) − τ(q)| ≤ 2τ(q − q²)`.
+  - So on this locus the extension problem at the attaching locus only has to be
+    solved for order zero halvings of the unit.

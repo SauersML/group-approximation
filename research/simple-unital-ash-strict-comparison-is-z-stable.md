@@ -36,3 +36,11 @@ homeomorphisms, list it as a prerequisite.
   - The AH case (`simple-ah-strict-comparison-is-z-stable`).
 - **Where it can fail.**  Twisted attaching maps without slow dimension growth
   (`ash-strict-comparison-rank-gap-algebra-exists`).
+- **Bauer simplices reduce to the unit (2026-09-12, lane `ex-toms-winter`).**
+  Suppose `T(A)` is a Bauer simplex. Then `A` is Z-stable iff `[1_A]` is almost
+  divisible: for every `n` some `x ∈ W(A)` has `n x ≤ [1] ≤ (n+1) x`.
+  Equivalently, unital `Z_{n,n+1} → A` exist for every `n`.
+  - This is `bauer-strict-comparison-pure-iff-divisible-unit`. ASH algebras have
+    locally finite nuclear dimension, so purity gives Z-stability by Winter.
+  - So on this locus the attaching-map obstruction only has to be defeated for
+    halving the unit.
