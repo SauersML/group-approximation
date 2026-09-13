@@ -18,13 +18,19 @@ finitely generated. Then `H` embeds in a finitely presented simple group.
 `H` are residually finite and have solvable word problem, so this is a case of
 the Boone--Higman conjecture.
 
-**Established part.** Transcendence degree zero is
-`algebraic-linear-groups-satisfy-boone-higman`, which follows from Zaremsky's
-`GL_n(Q)` theorem by restriction of scalars.
+**Established part.**
+- **Transcendence degree zero:** `algebraic-linear-groups-satisfy-boone-higman`,
+  which follows from Zaremsky's `GL_n(Q)` theorem by restriction of scalars.
+- **Polynomial coordinates** (2026-09-12, attempt 7):
+  `polynomial-linear-groups-satisfy-boone-higman`. Every subgroup of
+  `GL_N(Z[1/m][t_1..t_k])` embeds in a finitely presented simple group. That
+  includes every finitely generated subgroup of `GL_N(Q[t_1..t_k])`, and in
+  particular `SL_3(Z[t])`.
 
-**Open part.** Exactly the finitely generated linear groups whose matrix entries
-generate a field of positive transcendence degree over `Q`. The first cases are
-`SL_3(Z[t])` and the finitely generated subgroups of `GL_n(Q(t))`.
+**Open part.** The finitely generated linear groups over fields of positive
+transcendence degree that are not known to embed in any `GL_M(Z[1/m][t_1..t_k])`.
+The first cases are `SL_3(Z[t^(+-1)])` and the finitely generated subgroups of
+`GL_n(Q(t))` whose entries need non-constant denominators.
 
 ## Attempts
 
@@ -49,12 +55,13 @@ generate a field of positive transcendence degree over `Q`. The first cases are
 2. **Affine self-similar groups, extending Zaremsky's rational route.** His
    Example 4.7 needs a coordinate ring `R` with a finite-index principal ideal
    `xR` and `∩ x^k R = 0`.
-   *Dies for commutative coordinates:* no finitely generated commutative domain
-   of positive transcendence degree has such an `x`, and the `p`-adic digit
-   version (`t` sent to a transcendental `p`-adic integer) is not section-closed
-   (`affine-self-similar-coordinate-rings-are-one-dimensional`).
-   *Not excluded:* noncommutative coordinate rings, and self-similar hosts that
-   are not affine.
+   *Dies for commutative coordinates on the digit tree of `O^n`:* no finitely
+   generated commutative domain of positive transcendence degree has such an `x`,
+   and the `p`-adic digit version (`t` sent to a transcendental `p`-adic integer)
+   is not section-closed (`affine-self-similar-coordinate-rings-are-one-dimensional`).
+   *Not excluded:* noncommutative coordinate rings, self-similar hosts that are
+   not affine, and affine groups acting on a tree with parameter coordinates.
+   The last of these works; see attempt 7.
 3. **Twisted Brin--Thompson hosts.** Zaremsky's action criterion needs a finitely
    presented overgroup whose action has finitely generated point stabilizers and
    finitely many orbits of pairs.
