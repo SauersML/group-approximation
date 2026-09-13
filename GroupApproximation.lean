@@ -5039,6 +5039,11 @@ import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CaseOneWalkHolds
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketZeroCellMergeFalse
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SpikeTransport
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCollarOfGeodesic
+import GroupApproximation.CuTensor.ObstructionCuntzProjection
+import GroupApproximation.CuTensor.ObstructionFinite
+import GroupApproximation.KTheory.K1Lift
+import GroupApproximation.KirchbergPhillips.ApproximateUnitaryEquivalence
+import GroupApproximation.KirchbergPhillips.IntertwiningLimit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
