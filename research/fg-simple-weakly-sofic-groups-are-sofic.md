@@ -72,6 +72,20 @@ nonsofic group refutes it.
     congruence towers over a bounded residue group (`relator-width-over-nilpotent-by-locally-finite-groups`).
   - **Symmetric tops (simple nonsofic `G`).** The width is bounded over `H wr Sym(n)` and `H wr Alt(n)`
     with `|H|` bounded (`simple-nonsofic-width-over-bounded-base-symmetric-wreath`).
+- **Affine and congruence targets over special linear tops: settled (2026-09-13, lane
+  `ex2-weak-sofic-affine-targets`, unreviewed).** For finitely presented `G`, kind (b) gains nothing from:
+  - *Transitive abelian layers.* Over `F_q^n x| SL_n(q)`, and over any extension by an abelian normal
+    subgroup on which the group is transitive, the width exceeds the quotient's width by at most a fixed
+    amount (`relator-width-over-transitive-abelian-extensions`).
+  - *Congruence groups.* Over `SL_n(R)` for finite chain rings `R`, such as `SL_n(Z/p^k)` and
+    `SL_n(F_q[t]/t^k)` with `n`, `q` and `k` all unbounded, and over `R^n x| SL_n(R)`, the width is bounded
+    iff `G` is not linear sofic over finite fields. For bounded `n` it is bounded with no hypothesis
+    (`simple-group-width-over-congruence-targets`).
+
+  So `p`-group kernels of unbounded class under large special linear tops give no room when their layers
+  are natural or adjoint modules. Two devices do the work: two Singer tori cover the whole congruence
+  kernel by successive approximation, and for near-scalar tuples the nilpotent template matches the big
+  kernel block.
 - **What a refutation would look like now.** A simple nonsofic group with relator width tending to
   infinity, carried by one of:
   - finite groups of unbounded chief length that are not full wreath products, such as the subgroup
@@ -81,5 +95,8 @@ nonsofic group refutes it.
   - towers of unbounded degree under non-symmetric tops, where relator tops with short cycles defeat
     bounded dipole placement;
   - bases under symmetric tops that are not towers mixing bounded levels with symmetric levels
-    (`simple-nonsofic-width-over-towers-with-symmetric-levels` excludes those).
+    (`simple-nonsofic-width-over-towers-with-symmetric-levels` excludes those);
+  - `p`-groups under large classical tops whose layers are neither natural nor adjoint modules (many copies
+    of the natural module, `Lambda^2`, mixed layers), isometry tops over chain rings, and tops with a large
+    abelian quotient. These are the "Not covered" list of `simple-group-width-over-congruence-targets`.
   No such construction is known.
