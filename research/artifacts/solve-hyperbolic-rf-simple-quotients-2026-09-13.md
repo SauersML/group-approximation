@@ -56,12 +56,12 @@ theorem in prose, but main has no claim node for it.
 
 ## 2. What the directive asked, and what happened
 
-**Step 1: split the first moment by family.** Both families diverge at every
-`l ≡ 3 (mod 6)` with `l >= 15`, in Kozma–Lubotzky's reduced-word model, through the relator
-sets `T_0 ⊆ <<a_1^3>>` of `density-random-first-moment-divergence-proof`.
+**Step 1: split the first moment by family.** Both families diverge at every odd `l >= 3`,
+in Kozma–Lubotzky's reduced-word model, through the single reduced word
+`w_0 = a_2^r a_1^3 a_2^(−r)` with `l = 2r + 3` (proof of (Q4)).
 - **(a) Alternating.** The markings `a_1 -> (1 2 3)`, `a_2 -> (1 ⋯ n)` send `a_1^3` to 1.
-  With repetitions, `P[R ⊆ T_0] = (|T_0|/|S_l|)^k > 0` for any density, and this does not
-  depend on n.
+  With repetitions, `P[R = (w_0, …, w_0)] = |S_l|^(−k) > 0` for any density, and this does
+  not depend on n.
 - **(b) Bounded rank.** The marking `a_1 -> x = [[0,-1],[1,-1]]`, `a_2 -> T = [[1,1],[0,1]]`
   onto `PSL_2(F_p)` also sends `a_1^3` to 1, so the PSL_2 part of the moment is infinite too.
 - **Contrast.** `thm:d` says that a.a.s. there is no PSL_2(F_p) quotient at all (degree

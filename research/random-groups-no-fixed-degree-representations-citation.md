@@ -33,6 +33,6 @@ arXiv:1810.01529 (Bull. Math. Sci. 2019). The arXiv e-print was fetched on MSI o
 The full passages are in the artifact.
 
 **Match.** Items 1–3 of the target restate these, in the source's notation. The source's
-proof was read (l.489–731) but not re-derived. It uses its own Bézout theorem
+proof (the section from l.489) was read but not re-derived. It uses its own Bézout theorem
 (l.257–262) and an effective Nullstellensatz citing Brownawell (l.424–437); neither was
 re-checked.

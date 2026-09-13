@@ -76,19 +76,22 @@ of distinct kernels has `pdeg(S_n) -> ∞`. Extract a convergent subsequence as 
 
 ## (M5)
 
-**Forward.** Let `Λ` be non-elementary hyperbolic, and suppose no marking of `Λ` maps onto
-an infinite marked limit of finite simple groups. By (M1), `X(Λ) < ∞`. So `Λ` has only
-finitely many isomorphism types of finite simple quotients, and
+**Forward.** Let `Λ = F_m/N_Λ` be non-elementary hyperbolic with no infinite-index normal
+subgroup `N_∞ ⊇ N_Λ` that is a limit of kernels of epimorphisms onto finite simple groups.
+If `X(Λ) = ∞`, (M1) produces such an `N_∞`, so `X(Λ) < ∞`. So `Λ` has only finitely many
+isomorphism types of finite simple quotients, and
 `finite-simple-spectrum-gives-quotientless-hyperbolic-group` gives an infinite hyperbolic
 group with no nontrivial finite quotient.
 
-**Converse.** Let `Λ_0` be infinite hyperbolic with no nontrivial finite quotient.
+**Converse.** Let `Λ_0` be infinite hyperbolic with no nontrivial finite quotient. Mark it as
+`F_m/<<R>>` with `R` finite, since hyperbolic groups are finitely presented (standard).
 - `Λ_0` is non-elementary. An infinite virtually cyclic group has a finite-index subgroup
   `Z`, is residually finite, and so has nontrivial finite quotients.
-- Hyperbolic groups are finitely presented (standard). So (M2) applies to every marking:
-  if `Λ_0` mapped onto a marked limit of finite simple groups of unbounded order, those
-  groups would be finite quotients of `Λ_0`.
-- Sequences of bounded order give no infinite limit. Only finitely many kernels have a
-  quotient of order `<= M`. A convergent sequence taking finitely many values is eventually
-  constant, since two values occurring infinitely often would differ at some word. So its
-  limit is a kernel of finite index.
+- Let `N_∞ ⊇ <<R>>` be a limit of kernels `ker φ_n` of epimorphisms onto finite simple
+  groups `S_n`. Suppose `|S_n|` is unbounded, and pass to a subsequence with
+  `|S_n| -> ∞`, which has the same limit. Then (M2) makes `S_n` a nontrivial finite quotient
+  of `Λ_0` for large `n`, a contradiction.
+- So `|S_n|` is bounded, and only finitely many kernels have a quotient of order `<= M`. A
+  convergent sequence taking finitely many values is eventually constant, since two values
+  occurring infinitely often would differ at some word. So `N_∞` is one of these kernels,
+  of finite index, and no infinite-index limit exists.

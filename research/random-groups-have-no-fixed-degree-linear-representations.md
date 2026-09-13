@@ -26,7 +26,8 @@ artifacts:
    uniform reduced words of length `l`, the probability that some field `F` and some `ρ`
    have `|ρ(Γ)| > 2` tends to 0 as `l → ∞`.
 3. For a single algebraically closed field `F` and `l > l_0(k, m)`, `u >= 15 m^3 k^4 log l`
-   relators give probability at most `exp(−c u/(m k^2))`, with `c` an absolute constant.
+   relators give probability at most the source's `exp(−cu/mk^2)`, with `c` an absolute
+   constant. The grouping of `mk^2` in that expression is not fixed here.
 
 **Remarks from the source.**
 - For odd `l`, a.a.s. `ρ(Γ) = {1}`. For even `l`, `Z/2` is always a quotient.

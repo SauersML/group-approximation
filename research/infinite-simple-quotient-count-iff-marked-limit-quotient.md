@@ -37,9 +37,9 @@ artifacts:
 (M4) If X(Λ) = ∞ and no infinite quotient of Λ embeds in any GL_N(K), then for every D
      only finitely many simple quotients of Λ have pdeg <= D, and (M1) holds with
      pdeg(S_n) -> ∞.
-(M5) Some non-elementary hyperbolic group maps onto no infinite marked limit of finite
-     simple groups (for some marking) iff some infinite hyperbolic group has no
-     nontrivial finite quotient.
+(M5) Some non-elementary hyperbolic Λ = F_m/N_Λ has no infinite-index normal subgroup
+     N_∞ ⊇ N_Λ that is a limit of kernels of epimorphisms from F_m onto finite simple
+     groups iff some infinite hyperbolic group has no nontrivial finite quotient.
 ```
 
 **Reading.**

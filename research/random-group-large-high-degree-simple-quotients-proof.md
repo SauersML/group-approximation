@@ -49,9 +49,9 @@ infinite image, excluded by the same item.
 ## (Q3)
 
 Intersect the events of (Q1) at `M = M_l` and of (Q2). Both have probability tending to 1.
-Every `S_n` in (M1) is a finite simple quotient of `Γ`, and `|S_n| -> ∞`. Pass to the terms
-with `|S_n| >= 3`, which is all but finitely many, without changing the limit. Each such
-term has `|S_n| > M_l` by (Q1) and `pdeg(S_n) > D` by (Q2).
+Every `S_n` in (M1) is a finite simple quotient of `Γ`, and `|S_n| -> ∞`, so only finitely
+many terms have `|S_n| <= 2`. Each term with `|S_n| >= 3` has `|S_n| > M_l` by (Q1) and
+`pdeg(S_n) > D` by (Q2).
 
 ## (Q4)
 
@@ -79,8 +79,8 @@ Hence `E[#{N ⊴ Γ : Γ/N ≅ PSL_2(F_p), p >= 5}] >= Σ_p P[R = (w_0,…,w_0)]
 `Alt(n)`. This is Step 2 of `density-random-first-moment-divergence-proof`, whose generation
 argument is repeated there. It kills `a_1^3`, and the same sum diverges.
 
-**A.a.s. absence.** `pdeg(PSL_2(F_p)) <= 2`, so (Q2) with `D = 2` excludes these quotients
-a.a.s.
+**A.a.s. absence (d > 0).** `pdeg(PSL_2(F_p)) <= 2`, so (Q2) with `D = 2` excludes these
+quotients a.a.s.
 
 ## (Q5)
 

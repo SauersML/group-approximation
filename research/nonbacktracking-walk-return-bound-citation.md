@@ -32,5 +32,5 @@ source's application and checks the letter-to-edge correspondence by hand:
 - the reverse of the edge just traversed carries the inverse label;
 - so "no immediate inverse letter" is the nonbacktracking rule.
 
-The source's proof (l.513–560) was read, not re-derived. It covers infinite multigraphs in
-the same way; the application in `lem:one F` uses infinite Cayley graphs.
+The source's proof (from l.513) was read, not re-derived. The application on main uses only
+finite multigraphs, the Cayley multigraphs of finite quotients.
