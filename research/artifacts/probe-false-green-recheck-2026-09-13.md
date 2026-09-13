@@ -104,3 +104,17 @@ configuration, so section 3 is their only check.
   template with the placeholders filled in.
 - **Roster change.** Lane `ex-palomar-hygiene` was added to the rosters of `pcprobe.sh` and `pcland.sh`, by an atomic
   rename, for this recheck and the Pestov 9.1 docstring landing.
+
+## 7. After the inventory
+
+- **Newer records.** Six green records appeared in the pc and fz lane directories after the inventory data was written.
+  All six have probe tags from 09:11 CDT onward, after the 08:54 install, so the fixed template wrote them.
+- **`Palomar/Pestov91ModelTests.lean`.** It landed at be41521bf (14:26:48 UTC), and no probe record lists its md5.
+  Its evidence is CI: palomar-check run 34762687202 on be41521bf.
+  - The run builds `PalomarPestov91ModelTests` from source, after `lake exe cache get`, which fetches Mathlib's cache
+    only.
+  - The log shows `Built Palomar.Pestov91ModelTests` and all 22 of its `#print axioms` closures.
+  - Every incomplete-proof warning in that run comes from a `*Challenge.lean` file.
+  - The log's ten `sorryAx` mentions all come from the submission gate's calibration step, which checks
+    `permitted_axioms`. None is in a closure.
+  - Main's file contains no hole token.
