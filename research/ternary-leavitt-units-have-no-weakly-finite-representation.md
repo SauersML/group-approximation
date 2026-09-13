@@ -52,3 +52,16 @@ artifacts:
     inside any weighted unit group. Candidates: elements of `V` that are weight-level for no weight, and sets like
     `{T_(0,1), T_(1,0), T_(1,00), T_(00,1)}`. These escape without conjugation only, and no conjugation invariant
     is proved. The models kill `D`, so the defect form is not firewalled.
+- 2026-09-12 `w7-escape-set`: the conjugation invariant, and the four-transvection set tested
+  (`research/artifacts/four-transvection-escape-set-2026-09-12.md`).
+  - **Invariant.** The span of `S4 = {T_(0,1), T_(1,0), T_(1,00), T_(00,1)}` contains `x`, `y` with
+    `yx = 1 != xy`. So no conjugate of `<S4>` lies in any weighted unit group, and every three of the four lie in
+    one. Local finiteness on cylinder functions excludes `x_0` and every group containing it
+    (`four-transvection-set-escapes-depth-monotone-units`).
+  - **Not the candidate.** Code `(0,1)` puts `<S4>` inside `EL_2(J_(F_3))` with `z in <S4>`. The symbol onto
+    `SL_2(F_3[ζ, ζ^(-1)])` is a weakly finite model with `z -> -1`. Every five-transvection set has a character model
+    into `GL_2(F_3)`. Six transvections span `R`, and from there on no algebra-level firewall applies
+    (`four-transvection-units-have-a-weakly-finite-symbol-image`).
+  - **Defect form.** Algebra-level models kill `D`. Sofic subgroups containing `z` and the frame have weakly finite
+    models with `D != 0`, and so has `H^ω_≤` for `ω(0) <= ω(1)` (`depth-monotone-units-carry-weakly-finite-nonzero-defect`).
+    The smallest open input is `Γ_5 = <S4, x_23(1)>` (`four-transvections-and-x23-force-defect-vanishing`).

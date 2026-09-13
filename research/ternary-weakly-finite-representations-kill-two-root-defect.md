@@ -29,3 +29,15 @@ hold, and `rho(z)` may be taken to be `-1` (artifact Theorem 3). Rank inequaliti
   - **Firewalls.** The landed rank-model firewalls apply verbatim, since their models live in weakly finite
     algebras.
   - **No proof found.**
+- 2026-09-12 `w7-escape-set`: the defect form tested on depth-monotone units and on the four-transvection set
+  (`research/artifacts/four-transvection-escape-set-2026-09-12.md`, Sections 3 to 5).
+  - **Algebra-level models kill `D`.** A model that restricts a unital algebra homomorphism has
+    `D = ψ(s_10 t_11 s_0 t_10) = 0`. That is why the depth-monotone and symbol models kill it.
+  - **Firewall.** Every sofic subgroup containing `z`, `x_12(1)` and `x_23(1)` has a weakly finite model with
+    `z -> -1` and `D != 0`. So has `H^ω_≤` for `ω(0) <= ω(1)`, explicitly by the tensor cube of the stably finite
+    embedding (`depth-monotone-units-carry-weakly-finite-nonzero-defect`).
+  - **Open input.** `Γ_5 = <S4, x_23(1)>` contains `z` and the standard frame, and escapes every algebra-level model
+    and each of its tensor powers. The analogue for representations of `Γ_5` with `z -> -1` is
+    `four-transvections-and-x23-force-defect-vanishing`. It implies `ternary-anti-central-summand-has-no-weakly-finite-image`,
+    and soficity of `Γ_5` refutes it.
+  - **No proof found.**
