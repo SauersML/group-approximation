@@ -4848,6 +4848,16 @@ import GroupApproximation.Manuscript.NonMFSentences.LimitingTraceTrivialCharacte
 import GroupApproximation.Manuscript.NonMFSentences.SoficCitationSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.HSVanishesProducers
 import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwoCarrier
+import GroupApproximation.Pestov91.Assembly
+import GroupApproximation.Pestov91.CrossedProductFG
+import GroupApproximation.Pestov91.KazhdanUnitary
+import GroupApproximation.Pestov91.LEFHyperlinear
+import GroupApproximation.Pestov91.RingSimple
+import GroupApproximation.Pestov91.SplitSimplicity
+import GroupApproximation.ThompsonOre.X1Answer
+import GroupApproximation.TypeA2.GeoFStabilizer
+import GroupApproximation.TypeA2.SemidirectFinitePresentation
+import GroupApproximation.TypeA2.StatementModels
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
