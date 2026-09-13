@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPieces
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionSimpleWalk
+import GroupApproximation.GGT.VanKampen.SimpleClosedWalkSideFaces
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -11,12 +12,16 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): "Let us consider the sub
 The boundary cycle of a simple pocket face set is a simple closed walk.  The walk's side is a
 pocket region (`PocketRegion.ofSimpleClosedWalk`), both of whose cycles follow the boundary, and
 the inverse of its complement cycle is the walk itself.  So the split `s_1 t_1 s_2 t_2` of the
-boundary cycle is the split of the carrier.  When the walk's side is the face set, the kept cell
-stays inside and the source cell outside.
+boundary cycle is the split of the carrier.  The map of a disc diagram is connected and the
+exterior face is off the face set, so the walk's side is the face set
+(`SimpleClosedWalkSides.sideFaces_boundaryCycle_eq`): the kept cell stays inside and the source
+cell outside.
 
 * `PocketFaceSet.toPocketCarrier`: the carrier of a simple pocket face set whose faces are the
   walk's side.
 * `PocketFaceSet.nonempty_pocketCarrier_of_sideFaces_eq`: the carrier exists.
+* `pocketRegionOfSimple`: every simple pocket face set has a pocket carrier
+  (`PocketRegionOfSimpleStatement`).
 
 ## Manuscript status
 
@@ -87,7 +92,19 @@ theorem nonempty_pocketCarrier_of_sideFaces_eq (K : PocketFaceSet D eps X lo hi)
     Nonempty (PocketCarrier D eps X lo hi) :=
   ⟨K.toPocketCarrier hK hfaces⟩
 
+/-- The walk's side of the boundary cycle is the face set: the map is connected and the exterior
+face is off the face set. -/
+theorem sideFaces_boundary_cycle_eq_faces (K : PocketFaceSet D eps X lo hi) :
+    sideFaces X.toCombMap K.boundary.cycle = K.faces :=
+  sideFaces_boundaryCycle_eq (CombMap.connected_of_planar _ X.planar) K.boundary
+    K.outerFace_not_mem
+
 end PocketFaceSet
+
+/-- **The region piece.**  Every simple pocket face set has a pocket carrier, on the side of its
+boundary cycle. -/
+theorem pocketRegionOfSimple : PocketRegionOfSimpleStatement.{u, w, v} :=
+  fun _D _eps _W _X _lo _hi K hK => ⟨K.toPocketCarrier hK K.sideFaces_boundary_cycle_eq_faces⟩
 
 end GroupApproximation.GGT.VanKampen
 
@@ -95,3 +112,5 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.toPocketCarrier
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.toPocketCarrier_faces
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.nonempty_pocketCarrier_of_sideFaces_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.sideFaces_boundary_cycle_eq_faces
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.pocketRegionOfSimple

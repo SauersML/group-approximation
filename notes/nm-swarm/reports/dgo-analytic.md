@@ -23,7 +23,10 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 * `Estimating/OsinPocketRegion.lean` (497542415): `PocketRegion`, least area without shelling.
 * `Estimating/OsinPocketPieces.lean`:
   * First statement, collar before pinch: 9cb70824c, probe 0913-073133-62116.
-  * Restated in the ruled order, together with the new region module and this report.
+  * Restated in the ruled order: a032ab802, probe 0913-085713-52794, with the census row and the earlier report.
+* `Estimating/OsinPocketRegionOfSimple.lean`:
+  * The carrier `PocketFaceSet.toPocketCarrier`: a032ab802.
+  * `pocketRegionOfSimple : PocketRegionOfSimpleStatement`, closed: landed with this report.
 * `Estimating/OsinAppendixAssemblyDescent.lean` (5957159598): the retirement note on `OsinDescentStepInput`.
 
 ### The pieces, in the order of the assembly
@@ -52,14 +55,16 @@ Assembly, proved:
 * The inverse complement cycle is the walk (`ofSimpleClosedWalk_invDarts_outer`), so the split carries over.
 * Given `sideFaces X.toCombMap K.boundary.cycle = K.faces`, the kept cell stays inside and the source cell outside.
 
-The equality is a general map lemma, handed to hull-component:
-`SimpleClosedWalkSides.sideFaces_boundaryCycle_eq (hM : M.IsConnected) (boundary : BoundaryCycle M faces) (hf : f ∉ faces)`.
-It goes in the new module `GGT/VanKampen/SimpleClosedWalkSideFaces.lean`.
+The equality is a general map lemma, handed to hull-component, and landed by it (d20913c51, unverified, wire-queued):
+`SimpleClosedWalkSides.sideFaces_boundaryCycle_eq (hM : M.IsConnected) (boundary : BoundaryCycle M faces) (hf : f ∉ faces)`,
+in the new module `GGT/VanKampen/SimpleClosedWalkSideFaces.lean`.
 
 * sideFaces ⊆ faces: by EqvGen induction; crossing an edge off the walk keeps membership.
 * faces ⊆ sideFaces: the rest of the face set is closed under `alpha` and `sigma`, so connectivity rules it out.
 
-When that lands, `pocketRegionOfSimple : PocketRegionOfSimpleStatement` is one line, applied at `CombMap.connected_of_planar _ X.planar`.
+Closed: `pocketRegionOfSimple : PocketRegionOfSimpleStatement`.
+It goes through `PocketFaceSet.sideFaces_boundary_cycle_eq_faces`, applied at `CombMap.connected_of_planar _ X.planar` and `K.outerFace_not_mem`.
+Probe 0913-090829-84396 GREEN, `#audit_closed_axioms` ⊆ {propext, Classical.choice, Quot.sound}.
 
 ### Truth caveats sent to dgo-geometric for model tests
 
@@ -81,9 +86,11 @@ New with the ruled order:
 
 * `OsinSectionPocketFaceSetSectionStatement` (kh-ejz).
 * `PocketPinchStatement` (hull-respell).
-* `PocketRegionOfSimpleStatement`: this lane; waits for hull-component's lemma.
 * `PocketCollarStatement` (kh-torsion).
 * `PocketCellTransportStatement` and `PocketOuterTransportStatement` (go-lemma42).
+* Outside `SectionPocketCutInput`, `descentInput_of_sectionPocketCut` still takes `LoopCutInput` (on hold), `MultipleEdgeCutInput`, `EulerCountInput`, `UnboundInput` and `O52LeastAreaStatement`.
+
+Closed here: `PocketRegionOfSimpleStatement` (`pocketRegionOfSimple`).
 
 ## Scope 1: Dahmani–Guirardel–Osin Theorem 2.35, analytic half
 
