@@ -46,7 +46,8 @@ def fold(nv, edges):
             inn.setdefault(key, u)
         edges = E
     E = {(find(u), l, find(v)) for (u, l, v) in edges}
-    verts = sorted({find(u) for u in range(nv)})
+    root = find(0)
+    verts = sorted({find(u) for u in range(nv)}, key=lambda v: (v != root, v))
     ren = {v: i for i, v in enumerate(verts)}
     return len(verts), frozenset((ren[u], l, ren[v]) for (u, l, v) in E)
 

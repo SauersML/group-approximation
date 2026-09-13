@@ -84,3 +84,39 @@ after this calibration recovers the known certificate.
   Alexander module, so a metabelian-cover search is a weak test for row 29. Row 29 is
   rerun over all transitive actions (`vfib_allreps.py`), with the calibrated potential
   rule.
+
+## 6. Row 29 by Linton's Z-stable criterion (landed)
+
+Theory route for row 29 (claim `row29-one-relator-group-is-hyperbolic-and-virtually-special`, route
+`row29-virtually-special-via-linton-z-stable-graph`). Imports, both read at source:
+`linton-z-stable-one-relator-hierarchy-theorem` (Linton, arXiv:2202.11324v3, Remark 6.2,
+Lemma 6.13, Theorems 6.14 and 7.1) and `rank-two-free-subgroups-are-strongly-inert` (Friedman,
+arXiv:1105.0129v2, (2.4) and Theorem 2.2).
+- `G = F(x,y) *_psi`, with `A = <x,u>`, `B = <u,y>` and `u = y x^2 y^-2 x`.
+- Pullbacks (`lintonstab.py`, `pb_*.out`): `A cap B = <u>` is the only intersection of positive
+  rank, and `A`, `B` are malnormal. So `sZ(psi) = 2`.
+- Folded graphs (`monocycles.py`, `monocycles.out`): the only monochromatic cycles are the base
+  loops `x` in `Gamma_A` and `y` in `Gamma_B`.
+- Graph of cyclic stabilisers: the path `[<x>]_A -t- [<u>]_B -H- [<u>]_A -t- [<y>]_B`. It is a
+  tree, so there is no cyclically alternating word.
+- Theorem 6.14 gives no Baumslag–Solitar subgroups, and Theorem 7.1 gives hyperbolic and
+  virtually special.
+- Residual finiteness, hence soficity, follows by Haglund–Wise, quoted in
+  `hyperbolic-cubulated-rf-citation` and not re-checked.
+
+**Same test on the whole residue** (`lintontree.py`, `lintontree.v2.out`): 27 of the 30 REST
+classes, row 29 included, pass tests T1–T4, so the same path argument applies to them. The other
+3 each have one extra rank-1 component in `A x B`. They need a larger graph and already have
+fibring certificates.
+
+**Bug found and fixed.** `algext.stallings` could relabel the base vertex away from 0 during
+folding, which made the first `lintontree` run report 19 spurious failures (`x notin A`).
+`fold` now keeps the root at 0.
+- The landed overgroup claim is basepoint-independent: it enumerates all partitions and compares
+  graphs with fewer vertices.
+- Rerunning the fixed script reproduces its output line for line (`algext.v2.out`).
+- The row-29 pullbacks and monochromatic cycles are unchanged.
+
+**All-actions search (job 710304, cancelled as superseded).** Its calibration used heuristic
+potentials only and recovered row 23's index-10 certificate (`VERIFIED k=10 S=5 fibre=F_21`). The
+row-29 index-13 stage was cancelled once the theory route landed (`allreps29.710304.log`).
