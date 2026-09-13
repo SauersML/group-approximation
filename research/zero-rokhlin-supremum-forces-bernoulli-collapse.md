@@ -110,6 +110,14 @@ isomorphic, i.e. `X_h ≅ X_∞` for every `h > 0`.
   Dies at: density is a perturbation lemma. Perturb an exactly i.i.d. partition by a small amount,
   keeping exact independence, so that it captures a given set. That is an Ornstein-type copying step
   with no finitely determined property available.
+  - **Finite bases (lane ex-bernoulli-rokhlin-complete, 2026-09-13).**
+    - The same density for a finite-base shift `X_κ` is posed as `iid-generators-dense-at-zero-rokhlin-supremum`.
+      Its Baire route into this claim is `zero-supremum-collapse-via-dense-iid-generators`.
+    - Its non-exact half holds at zero supremum. Generating partitions are `d^Rok`-dense exactly when the
+      Rokhlin entropy is `0` (`generators-dense-iff-zero-rokhlin-entropy`, from Seward's small-support
+      generators). So the perturbation lemma above is purely an exactness statement.
+    - On nonamenable groups with positive supremum the density fails for every distribution, near i.i.d.
+      partitions carried by small Bernoulli factors (`iid-generators-not-dense-at-positive-rokhlin-supremum`).
 - **Algebraic absorption (lane ex-bernoulli-negative).** A stable finiteness failure over
   `F_p[G]` makes a Bernoulli shift absorb a nontrivial algebraic factor,
   `b ≅ b × X_P` (`stable-finiteness-failure-is-algebraic-bernoulli-absorption`). That is

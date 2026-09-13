@@ -72,3 +72,17 @@ of them can be taken with independent translates.
     translates, relative to which `K^G` has Rokhlin entropy below `ε`. So every Bernoulli shift above `s` is an
     `ε`-extension of the Bernoulli shift with base entropy exactly `s`, and this claim asks that the extension
     be absorbed exactly.
+- **Exactification loop (lane ex-bernoulli-rokhlin-complete, 2026-09-13).** The known tools for exact
+  independence reduce a collapse to a collapse.
+  - Seward's factor theorem builds its partitions along an expressible transformation, over the external past
+    of a nontrivial free factor `F`. It returns partitions `G`-Bernoulli over `F`, hence independent of `F`. A
+    generating output would present `K^G` as `F × M^G`, and absorbing `F` is again a collapse.
+  - The null Bernoulli factors of Seward's Corollary 10.2 (independent translates, base entropy at most
+    `s + ε`, relative Rokhlin entropy `0`) never have an independent Bernoulli complement when `s > 0`.
+    - Suppose `K^G = F ∨ σ-alg_G(ζ)`, with `F` Bernoulli of base entropy `a` and `ζ` `G`-Bernoulli over `F`
+      with `H(ζ) = b > 0`.
+    - Then `(K^G, F)` is isomorphic to a product of two Bernoulli shifts with finite bases of entropies `a`
+      and `b`, with `F` the first coordinate.
+    - Proposition 6.5 of arXiv:1501.03367 gives relative Rokhlin entropy `min(b, s) > 0`, so `F` is not null.
+  - Predictable recodings along an invariant random order stay independent of the process they read
+    (Attempts on `iid-generators-dense-at-zero-rokhlin-supremum`).
