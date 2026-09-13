@@ -7,6 +7,7 @@ import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingChains
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94QuasiGeodesicRespell
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CellArcs
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CaseTwo
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -18,8 +19,9 @@ pieces into `osinLemma94Section_of_planarPieces`:
 * the metric half `osinLemma94AntiparallelMetric`;
 * the respelling surgery: `cornerInsertionInput`, `pendantPathRemovalInput`, the separating
   removal derived from it, and `quasiGeodesicRespellInput`;
-* the arcs: `osinLemma94CellArcsInput_holds` and `osinLemma94BoundaryArcsInput`.
-The remaining hypotheses are the partition, the polygon count and the two cases.
+* the arcs: `osinLemma94CellArcsInput_holds` and `osinLemma94BoundaryArcsInput`;
+* Case 2: `osinLemma94CaseTwoInput`.
+The remaining hypotheses are the partition, the polygon count and Case 1.
 -/
 
 namespace GroupApproximation.GGT.VanKampen
@@ -43,15 +45,15 @@ theorem osinLemma94PolygonRealizationInput_of_partition
 
 /-- **Lemma 9.4 over its open pieces.**  "Let `S` denote the sum of lengths of all unbound arcs
 of type (A1) in `Δ`.  Then `S < n √ρ`."  The hypotheses are the partition, the polygon count and
-the two cases. -/
+Case 1. -/
 theorem osinLemma94Section_of_residuals
     (hpartition : OsinLemma94PolygonPartitionInput.{u, w, v})
     (hcount : OsinLemma94PolygonCountInput.{u, w, v})
-    (hone : OsinLemma94CaseOneInput.{u, w, v})
-    (htwo : OsinLemma94CaseTwoInput.{u, w, v}) :
+    (hone : OsinLemma94CaseOneInput.{u, w, v}) :
     OsinLemma94SectionStatement.{u, w, v} :=
   osinLemma94Section_of_planarPieces osinLemma94AntiparallelMetric
-    (osinLemma94PolygonRealizationInput_of_partition hpartition) hcount hone htwo
+    (osinLemma94PolygonRealizationInput_of_partition hpartition) hcount hone
+    osinLemma94CaseTwoInput
 
 #audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94PolygonRealizationInput_of_partition
 #audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94Section_of_residuals
