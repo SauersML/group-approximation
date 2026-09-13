@@ -54,6 +54,19 @@ realized by permutation matrices in `M = prod_U M_n`. Then `sigma(G)` normalizes
   loses phases: every diagonal unitary has `|d|^(o2) = 1`. Neither half is
   settled. Birkhoff decompositions of `|z|^(o2)` do not respect `Gamma`-invariance, so
   (i) does not reduce to 4.1 term by term.
+- **Reduction to rounding sofic approximations (Theorem E pair).** An injective sofic
+  representation with canonical trace is a trace-preserving model. So the per-model unit-type
+  chain applies to it: `nonunit-projection-bounded-by-root-spectral-mass`,
+  `shallow-nonunit-root-mass-vanishes-under-vertex-rounding`,
+  `vertex-rounding-deep-nonunit-root-mass-vanishes` and
+  `unit-type-vertex-rounding-forces-compressor-commutant-rigidity`, as assembled in
+  `kt-hyperlinear-coset-wreath-forces-nonroundable-vertex-proof`, Step 3. So this claim holds
+  for the Theorem E pair as soon as every sofic model of `G` satisfies (H1) on the vertex: its
+  permutation asymptotic action of `Gamma` must flexibly round to genuine unitary
+  representations. That is weaker than rounding to genuine permutation actions, and nothing in
+  the graph excludes it. For the Fournier--Facio pair the claim is vacuous: the
+  group is nonsofic, and rounding fails at every faithful model
+  (`fournier-facio-vertex-rounding-fails-at-every-model`).
 - **Exact coordinates.** Coordinatewise genuine permutation actions normalize, as
   genuine finite-dimensional coordinate models
   (`ccr-holds-for-all-genuine-fd-coordinate-models`). A witness needs
