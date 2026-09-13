@@ -228,6 +228,14 @@ homomorphism `G_i -> GL_d(K)` is trivial. The case analysis is in the route of
   - **Type `{6,1}` in dimension 7.** Twists are possible and not yet decided.
   - **Covers.** Vertex groups acting through `3.A_7` in dimension 6 are not covered.
 - **Other odd characteristics.** `μ_7`-twists pending the integral twisted certificate.
+  - **All but finitely many characteristics.** `H_7(C) = ∅` holds for the vertex-injective projective
+    representations, which are all nontrivial ones, so case (b) of `linear-quotient-exclusion-lifts-from-char-zero`
+    applies. So there is an integer `N` with `Hom(G_i, PGL_7(K))` trivial whenever `char K ∤ N`. That is,
+    projective 7-dimensional quotients are excluded in all but finitely many characteristics.
+  - **Status of the effective `N`.** A twisted integral system with `a = 0` gives `N = 1` in about 4 s (`timetw.py`, twist
+    `(0,0,1)`). With `a ≠ 0` the diagonal conjugator `D` introduces `z`-monomials everywhere, and the
+    integral basis had not finished after about 2 minutes. The runs `linZ.py twist` over all 58 orbit
+    representatives had not finished at this version.
 
 **Not covered.**
 - **Projective twists** in odd characteristics other than 29, 43 and 7. The integral twisted certificate over
