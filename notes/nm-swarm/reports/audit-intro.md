@@ -15,6 +15,11 @@ Introduction, and `sec:compression-radical` (One-sided compression).
     346–784 (166 audit commands).
 - The census row corrections `metadata/nm-census-rows/audit-intro.tsv` land in the same commit
   as this report.
+- `654163349`: probe GREEN (tag `0913-041408-72676`, BUILT). The module is on the wire queue:
+  - `GroupApproximation/Manuscript/NonMFSentences/IntroWitnessSignSentence.lean`, the carrier
+    for tex line 134 at the literal `W` (defect 4 below).
+  - The module carries its own `#audit_closed_axioms` gate.
+  - It needs the 09-09 orphan `Sofic/AffineHNNBaseRealization` wired first.
 
 ## The rows in range
 
@@ -61,8 +66,24 @@ There are 191 census rows.
 3. **Fixed: `ec81a8c16b64`, L156.** The sentence "We use the group commutator convention
    $[g,h]=ghg^{-1}h^{-1}$" had no carrier. The carrier is `PrintedCommutatorConvention`, with
    closed proof `manuscriptSentence_commutatorConvention`.
+4. **Fixed: `9930600167a4`, L134.** The sentence "Every homomorphism from $W$ to an MF group
+   kills $\varepsilon$" was carried only by the general theorem
+   `CliffordWitnessDirectDefect.manuscriptMapSignEqOneOfIsOperatorMFTarget`. Main had no
+   specialization to the literal `W`, and no property (T) for `AffineSL3Doubling.Gamma`.
+   - `PrintedWitnessMFHomKillsSign` is stated at `PrintedW` and `ε = inl (sign X)`. It covers
+     every operator-MF target, and every countable target that is MF in the printed sense of
+     tex lines 86–99 (`IsCDEOperatorMF`).
+   - Property (T) for `ℤ³ ⋊ SL₃(ℤ)` needs no new theorem.
+     - The new `gammaEquiv : AffineSL3Doubling.Gamma ≃* ExplicitLinearModel.gammaBar` sends
+       `(v, A)` to `[[A, v], [0, 1]]`.
+     - Surjectivity is the affine normal form `AffineHNNBase.gammaBar_affUnit_form`.
+     - (T) then transfers from `CommutingLampCollapse.gammaBar_hasKazhdanPropertyT` by
+       `HasKazhdanPropertyT.of_mulEquiv`.
+     - The EJZ route was not needed.
+   - Closed proof: `manuscriptSentence_witnessMFHomKillsSign`.
 
-The three rows are corrected to `definition` in `metadata/nm-census-rows/audit-intro.tsv`.
+Defects 1–3 are corrected to `definition` in `metadata/nm-census-rows/audit-intro.tsv`.
+Defect 4 stays `formalized`, with the new carrier.
 
 ## Walls (reported to the lead)
 
@@ -77,9 +98,5 @@ The three rows are corrected to `definition` in `metadata/nm-census-rows/audit-i
 
 ## Open
 
-- `9930600167a4` (L134) is carried by the general theorem
-  `CliffordWitnessDirectDefect.manuscriptMapSignEqOneOfIsOperatorMFTarget`.
-  - Main has no specialization of it to `W` over `AffineSL3Doubling.Gamma`.
-  - Main has no `HasKazhdanPropertyT AffineSL3Doubling.Gamma`. The only Kazhdan fact is
-    `gammaBar_hasKazhdanPropertyT` in `Sofic/CommutingLampCollapse`.
-  - I have asked the lead whether this lane should write the specialization.
+- Wiring (root-wire): `IntroWitnessSignSentence` after `Sofic/AffineHNNBaseRealization`.
+- Once both are rooted, `Audit/Intro` can gate the new endpoint under L134 as well.
