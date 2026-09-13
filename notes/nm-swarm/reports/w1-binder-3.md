@@ -37,3 +37,32 @@ CLAIM separation of the sides of two closed walks with barrier faces, GroupAppro
 ## Log
 
 - 17:05: claim landed. The module is written and probed next.
+- 17:18: probe 0913-171645-22733 GREEN. It built the module with no warnings, and all five
+  `#audit_axioms` report only `[propext, Classical.choice, Quot.sound]`.
+- 17:24: LANDED d58c49132, with the bytes checked against the green record (md5 fe11b103). It is
+  queued for wiring.
+  - `disjoint_sideFaces_of_across`: the sides are disjoint when the faces across each walk are
+    off the side of the other and no edge of `w₂` is an edge of `w₁`.
+  - `not_mem_sideFaces_or_of_across`: any face, the exterior face included, is off one side.
+  - `disjoint_sideFaces_of_barrier`: the same for simple closed walks with the same barrier faces.
+  - `mem_sideFaces_iff_of_eqvGen` and `eqvGen_walkKeep_of_mem_sideFaces`: the face-class steps.
+
+CLAIM noncrossing barrier sides and the no-common-dart variant, GroupApproximation/GGT/VanKampen/SimpleClosedWalkSidesDisjoint.lean (additive, same module)
+
+- 17:35: the extension is written.
+  - `not_walkKeep_of_across` and `disjoint_sideFaces_of_across_of_not_mem`: a dart of `w₂`
+    reversed on `w₁` contradicts the first barrier condition, so no common dart is enough.
+  - `disjoint_sideFaces_of_barrier_noncrossing` and `not_mem_sideFaces_or_of_barrier_noncrossing`:
+    the barrier version for noncrossing closed walks. The dichotomy gives the input `hout` of
+    `PocketRegion.ofNoncrossingClosedWalk` for one of the two walks.
+
+## For the producer of the relator-cell branch (not built here)
+
+On the pocket walks `w₁ = invDarts X ++ invDarts B` and `w₂ = invDarts Y ++ invDarts A`:
+- No common dart: the face walk of `f` and the carrier of `Π` have no repeated dart, and `f ≠ Π`
+  (`face_not_cell`).
+- The faces across `w₁` are `f` (from `X`) and `Π` (from `B`); across `w₂` they are `f` (from `Y`)
+  and `Π` (from `A`). So both barrier conditions hold when `X`, `Y`, `A` and `B` are all nonempty.
+  The cases with an empty window need separate handling.
+- Noncrossing of the two walks is not produced here. It is one of the four facts of the ruling at
+  roster l.949 (jacobson).
