@@ -14,46 +14,50 @@ There is a group `G` of type `F_∞` whose homotopical BNSR invariants satisfy
 
 ## Attempts
 
-- **Necessary condition, infinite cohomological dimension (argument written,
-  imports not yet verified from sources).** Let `G` be of type `F_∞` with
-  `cd G = d < ∞`, so `G` is of type FP. Import (a), the Novikov-homology
-  criterion (Sikorav for `m = 1`, Bieri for general `m`; exact reference to
-  verify): for `G` of type `FP_m`, `[χ] ∈ Σ^m(G;Z)` iff
-  `Tor_i^{ZG}(\widehat{ZG}_{−χ}, Z) = 0` for `0 ≤ i ≤ m`. Because
-  `pd_{ZG} Z = d`, every such Tor vanishes for `i > d`. So
-  `Σ^m(G;Z) = Σ^d(G;Z)` for all `m ≥ d`. Import (b) (Bieri–Renz; reference to
-  verify): `Σ^m(G) = Σ^2(G) ∩ Σ^m(G;Z)` for `m ≥ 2`. Hence
-  `Σ^m(G) = Σ^{max(2,d)}(G)` for every `m ≥ max(2,d)`, and the chain is
-  constant from there on. A group answering Problem 1.18 therefore has
-  infinite cohomological dimension, like Thompson's group `F`.
-- **A sufficient condition through coabelian subgroups.** Import (c) (Renz;
-  Bieri–Renz; reference to verify): if `N ◁ G`, `G/N` is abelian and `G` is of
-  type `F_m`, then `N` is of type `F_m` iff `S(G,N) ⊆ Σ^m(G)`, where `S(G,N)`
-  is the subsphere of characters vanishing on `N`. So it suffices to find `G`
-  of type `F_∞` such that, for each `k ≥ 1`, some `N_k ◁ G` with abelian
-  quotient is of type `F_k` but not `F_{k+1}`. Then `S(G,N_k) ⊆ Σ^k(G)` and
-  `S(G,N_k) ⊄ Σ^{k+1}(G)`, so `Σ^k(G) ≠ Σ^{k+1}(G)`. Since `G^{ab}` has
-  finite rank, this asks for coabelian subgroups of every finiteness level
-  inside one lattice of sublattices of `Z^r`.
-- **Known infinite-dimensional computations stop early (to verify against the
-  sources).** Bieri–Geoghegan–Kochloukova computed `Σ^m(F)` and found
-  `Σ^2(F) = Σ^∞(F)`. Zaremsky (arXiv:1502.02620) computed `Σ^m(F_{n,∞})` for
-  all `m, n` by Morse theory on Stein–Farley cube complexes. Still to check:
-  Spahn–Zaremsky on the Stein groups, Lodha–Moore groups, pure braided
-  Thompson groups.
-- **Why product and germ mechanisms stall.** In products the complements
-  `S \ Σ^m` grow by spherical joins (the product formula; Bieri–Geoghegan over
-  fields). In Thompson-like groups characters are logarithms of germs at global
-  fixed points, and self-embeddings act on germ characters by projections or
-  permutations, which have finite orbits. Both give finitely many levels in a
-  fixed group. A positive answer needs a mechanism where a fixed finite-rank
-  character space sees supports of unbounded size.
-- **Calibration: proper-chain length is not bounded by `rank G^{ab}`.** For
-  `B_n = F_2^n ⋊ Z` with `Z` permuting the factors cyclically,
-  `Hom(B_n,R) = R^3` (diagonal characters plus the `Z` coordinate). By the
-  finite-index transfer to the right-angled Artin group `F_2^n × Z` and the
-  Meier–Meinert–VanWyk criterion, a diagonal character with zero `Z`
-  coordinate lies in `Σ^{n−1} \ Σ^n`, and a character with nonzero `Z`
-  coordinate lies in `Σ^∞`. Products `B_1 × B_2 × B_4 × ⋯ × B_{2^{k−1}}` then
-  realize every level `1, …, 2^k − 1` (subset sums) at rank `3k`. The finite
-  cohomological dimension bounds all such examples.
+- **Necessary conditions so far.**
+  - `G` is not of type F (`type-f-bnsr-invariants-stabilize-at-dimension`,
+    established).
+  - `G` fails the Bieri Σ-property (`bieri-sigma-property-forces-bnsr-constant-from-rank`,
+    established).
+  - `G` should have infinite cohomological dimension: Proposition 1 of the
+    artifact, via the Novikov criterion and the Bieri–Renz comparison, both
+    still to verify from sources.
+- **A sufficient condition through coabelian subgroups (verified import).**
+  Zaremsky, arXiv:1502.02620, Citation 1.2 (from Bieri–Geoghegan–Kochloukova):
+  for `G` of type `F_m` and `N ◁ G` containing `[G,G]`, `N` is of type `F_m`
+  iff `[χ] ∈ Σ^m(G)` for every `χ` vanishing on `N`. So it suffices that, for
+  each `k`, some `N_k ⊇ [G,G]` is of type `F_k` but not `F_{k+1}`.
+- **Computed infinite-dimensional examples stop at level 2 (verified from the
+  sources).**
+  - Thompson's `F`: `Σ^2(F) = Σ^∞(F)` (arXiv:1501.06682, Theorem A).
+  - `F_{n,∞}`: `Σ^m(F_{n,∞}) = Σ^2(F_{n,∞})` for `n, m ≥ 2` (arXiv:1502.02620,
+    Theorem A).
+  - The Stein group `F_{2,3}`: `Σ^m = Σ^2` for `m ≥ 2` (arXiv:2012.05000,
+    Theorem 3.9). Spahn–Zaremsky conjecture the same three-level shape for all
+    Stein groups `F_S^r` (§4.1) and remark "it is notable how often Σ²=Σ^∞
+    holds for globally defined Thompson-like groups".
+  - The Lodha–Moore groups: all higher invariants equal `Σ^2`
+    (arXiv:2007.12518, abstract).
+  - Finite-dimensional examples realize long finite chains: Houghton groups `H_n`
+    give levels `1, …, n−1` (arXiv:1808.00634, Theorems 2.2 and 2.3), and the
+    pure symmetric automorphism groups `PΣAut_n` have characters in
+    `Σ^{n−2} \ Σ^{n−1}` (arXiv:1607.03043).
+- **Why product and germ mechanisms stall (artifact §5).**
+  - Joins and convex hulls: conic Carathéodory bounds the number of levels.
+  - Germ characters of Thompson-like groups: self-embeddings act on germ
+    characters with finite orbits.
+  - Permutational wreath products `A ≀_X F` of type `F_∞`: heuristically, few
+    lamps control the level.
+- **Calibration (artifact §4).** Chain length is not bounded by the rank of
+  `G^{ab}`. Products of cyclically permuted powers of `F_2` give proper chains
+  of length `2^k − 1` at rank `3k`, using the Meier–Meinert–VanWyk criterion
+  (statement to verify). They violate the Bieri Σ-property through weighted
+  levels and killer elements, and are finite dimensional.
+- **Architecture that would answer yes (artifact §6).** Infinitely many
+  blocks sharing a fixed finite-rank character space, block `n` activating at
+  level `n` and killed exactly off a line `ker c_n`, with pairwise
+  non-proportional killer directions. The complements `S \ Σ^m` would be
+  growing finite sets. Their accumulation would also make `Σ^∞` non-open
+  (Problem 1.13). Missing: a finitely generated `F_∞` host, cocompact by
+  self-similarity or an oligomorphic action, and an exact local-to-global
+  computation of `Σ^m` in both directions.

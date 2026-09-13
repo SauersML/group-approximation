@@ -35,9 +35,13 @@ infinitely many distinct compact sets `S(G) \ Σ^m(G)` inside a sphere of fixed
 finite dimension `rank(G^{ab}) − 1`. Finite products give long finite chains:
 for `G = F_2^n` a character nonzero on exactly `j` factors lies in
 `Σ^{j−1} \ Σ^j`, so `S ⊋ Σ^1 ⊋ ⋯ ⊋ Σ^n = ∅`, and then the chain is constant.
-The expected necessary condition, infinite cohomological dimension, is recorded
-in `f-infinity-group-with-properly-nested-bnsr-invariants` (Attempts) with its
-proof and the two imports it uses.
+An affirmative answer cannot be of type F
+(`type-f-bnsr-invariants-stabilize-at-dimension`) and cannot have the Bieri
+Σ-property (`bieri-sigma-property-forces-bnsr-constant-from-rank`). Both are
+established. Every computed infinite-dimensional `F_∞` example stops at level
+2: Thompson's `F`, `F_{n,∞}`, the Stein group `F_{2,3}`, the Lodha–Moore
+groups. The negative answer reduces, by an exhaustive split, to
+`non-type-f-f-infinity-groups-have-a-non-proper-bnsr-inclusion`.
 
 ## Attempts
 

@@ -13,20 +13,20 @@ artifacts:
 For every group `G` of type `F_∞` there is `m ≥ 1` with
 `Σ^m(G) = Σ^{m+1}(G)`.
 
-This is weaker than "the chain is eventually constant": a chain may be equal at
-one degree and drop again later.
+This is weaker than eventual constancy, since a chain may pause and then drop
+again. Route `every-f-infinity-group-non-proper-bnsr-by-type-f-dichotomy`
+splits it into the established type-F case and the open case of `F_∞` groups
+with no finite classifying space.
 
 ## Attempts
 
-- **Finite cohomological dimension (argument written, imports to verify).** If
-  `cd G = d < ∞`, then `Σ^m(G) = Σ^{max(2,d)}(G)` for all `m ≥ max(2,d)`; see
-  the first Attempts item of
-  `f-infinity-group-with-properly-nested-bnsr-invariants`. So the claim holds
-  for every `F_∞` group of finite cohomological dimension. The open case is
-  infinite cohomological dimension.
-- **No uniform mechanism found.** The obvious candidate bound, chain length at
-  most `rank G^{ab}`, is false: products of cyclically permuted powers of `F_2`
-  give chain length `2^k − 1` at rank `3k` (same node, calibration item). A
-  proof of the negative answer would need an invariant, controlled by the
-  `F_∞` property alone, that bounds the number of distinct complements
-  `S(G) \ Σ^m(G)`. None is known to this lane.
+- **Type F.** Established (`type-f-bnsr-invariants-stabilize-at-dimension`).
+- **Bieri Σ-property.** Established: the chain is constant from `rank G^{ab}`
+  (`bieri-sigma-property-forces-bnsr-constant-from-rank`). Houghton groups, `F`
+  and `F_{2,3}` are covered.
+- **No uniform mechanism.** The bound "chain length at most `rank G^{ab}`" is
+  false in general, although it holds under the Σ-property: products of
+  cyclically permuted powers of `F_2` give length `2^k − 1` at rank `3k`
+  (artifact §4). A proof would need an invariant, controlled by `F_∞` alone,
+  that bounds the number of distinct complements `S(G) \ Σ^m(G)` for groups of
+  infinite cohomological dimension. None is known to this lane.
