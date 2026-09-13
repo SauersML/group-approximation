@@ -8,6 +8,12 @@ unchanged since the census extraction, so census line numbers match here.
 - CLAIM carrier of tex 162–164 (general clause "c ∈ C_G(L) ⇒ ucu⁻¹ commutes with uLu⁻¹", plus "need not commute with
   the rest of L") — `GroupApproximation/Manuscript/NonMFSentences/IntroCompressorCentralizerSentence.lean`
 - CLAIM Korchagin sentence (tex 99–102) at the literal printed definition — `GroupApproximation/Manuscript/NonMFSentences/KorchaginLiteralSentence.lean`
+- CLAIM (17:20, raised by ms-core-1 through main) closed bridge between the corona form `IsOperatorMF`, which
+  `isOperatorMF_of_isLEF` and others produce, and the printed MF definition of tex 87–98 —
+  `GroupApproximation/Manuscript/NonMFSentences/IntroMFDefinitionCoronaBridge.lean`. On main before this lane:
+  `PrintedMFDefinitionLiteral` (IsCDEOperatorMF ⟺ printed models), `PrintedMFUnitaryModels` (IsCDEOperatorMF ⟺
+  pairwise-uniform models, no V_n(1)=1) and the lemma `isCDEOperatorMF_iff_isOperatorMF` (`#audit_axioms` only). No closed
+  Prop states IsOperatorMF ⟺ the printed definition.
 
 Both paths are free on disk, on origin and in every `lanes/*.files`; the planned names have no hit on origin or in the
 shared tree (checked 2026-09-13 ~17:05).
