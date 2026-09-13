@@ -199,8 +199,14 @@ stands off it.
     `fam = ⊤`, `M = PEmpty`, `E.base = {t, t⁻¹}`.
   - The statement forces the base `{t², t, t⁴}` with no members. That alphabet is not
     inversion-closed, so no `RelGenSet` has it.
-  - Its `h435` consumers in `DGOProposition435Printed.lean` are vacuous. The finding was sent
-    to the team lead. This lane's route does not use that statement.
+  - Its `h435` consumers in `GGT/DGOProposition435Printed.lean` are vacuous, so none of them
+    is a carrier: `isRelativelyHyperbolic_original_of_jointPreservation` (line 315),
+    `isRelativelyHyperbolic_original_of_jointPreservation_of_cyclic` (line 404) and
+    `canonicalQuotientFamilyPreservation_of_jointPreservation` (line 561). This lane's route
+    does not use that statement.
+  - Ruling of 09-13: `not_dgoProposition435PrintedStatement` refutes the Lean spelling, not
+    DGO's printed Proposition 4.35, in a new module of this lane (in progress).
+    `GGT/DGOProposition435Printed.lean` stays unedited.
 
 ## Next
 
@@ -209,5 +215,8 @@ stands off it.
   and `520f03021`. `HullLemma35Letter` (`0efcdd55c`) and `HullLemma35Closed` (`b5f91627e`)
   are queued.
 - The team lead accepted (a) through (d) as closed; census registers them at its re-baseline.
+- The census row for the DGO 2.35 half moved from LINE:1725 to LINE:1728, the sentence it
+  describes, and is graded formalized (request relayed by dgo-geometric). Its `partial` grade
+  at 1725 had pulled union row `92115dd7edef` partial.
 - Census row LINE:1682 (partial) records `printedHullLemma35`. Hull Corollary 7.4 and Lemma 5.9
   use Lemma 3.5. They belong to other lanes. This lane awaits its next assignment.
