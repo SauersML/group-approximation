@@ -16,3 +16,8 @@ Artifact Section 2, Theorem 1.
 4. Integrate over `U`.
 
 The check on `Z` with the copy code (artifact Section 2) gives `1/2 + 1/2 = 1` bit.
+
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 9.1 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
+- **Re-derived:** the chain rule for fixed labels, invariance of the law of `(x, U)` under `T_(f^-1)`, the translated
+  conditioning set `f^-1 F ∩ past(1)`, and the checks on `Z` and `Z/5`.

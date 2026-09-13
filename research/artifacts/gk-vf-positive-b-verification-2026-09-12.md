@@ -869,3 +869,124 @@ PASS. Nothing in Section 8 is decision-level, and nothing is refuted.
 The old sub-bullet covered every group with no nontrivial sofic quotient. The new one covers only simple groups,
 which is narrower. The other groups still get the same reduction from the main bullet with `N = G`. I updated the
 note on `quotient-restriction-deficit-proof` to match. Follow-up PASS.
+
+## 9. w7-inf-uniform: random-order window transport and the codeword Følner count (`d71ae9349`)
+
+The artifact is `research/artifacts/rokhlin-window-random-order-transport-2026-09-12.md`. I re-derived everything
+against main.
+
+**Conventions.**
+- The translation rules `y_h(T_g x) = y_(gh)(x)` and `past_(T_g U)(h) = g^-1 past_U(gh)` are correct.
+- The finitary witness node gives `rho_q(G) = lim_k h^Rok((A^k)^G)/k = inf Phi`. Its configurations allow `F` to be empty.
+
+### 9.1 `rokhlin-window-random-order-transport-identity` (Theorem 1). PASS.
+
+- **Chain rule.** Fix distinct labels `u` and take the chain rule over `F` in increasing order. `F ∩ past(f)` is exactly
+  the set of earlier codewords. `U` is independent of `x`, so integrating gives the `U`-conditioned sum.
+- **Translation.** The `f`-term is a functional of the law of `(x, U)`. Under `T_(f^-1)`:
+  - `x(1)` goes to `x(f^-1)`, and `y_f` goes to `y_1`;
+  - a codeword `y_h` with `U_h < U_f` goes to `y_(f^-1 h)` with `U_(f^-1 h) < U_1`;
+  - conditioning on the translated labels is conditioning on `U`.
+  
+  The law is invariant, so the term is `I(x(f^-1); y_1 | y_(f^-1 F ∩ past(1)), U)`.
+- **Check on `Z`.** In the chain-rule frame each reader's term is `1` exactly when the other reader comes later. That has
+  probability `1/2`, so the total is `1` bit.
+- **`Z/5` calibration.**
+  - `(1 + s + s^2)(s + s^2 + s^4) = s + s^5 + s^6 = 1` modulo `s^5 - 1`, and directly `y_1 + y_2 + y_4 = x(0)`.
+  - The readers of `0` are `0`, `3` and `4`.
+  - Take an order whose first three codewords are `4 < 1 < 2`. The pair `(y_4, y_1)` is uniform and independent of
+    `x(0)`, since `x(4)` masks `y_4` and `x(2)` masks `y_1`. So the terms of `4` and `1` vanish, and the term of the
+    non-reader `2` is `H(x(0) | y_4, y_1) = 1` bit. Correct.
+  - **Wording (optional).** The example should name `F` (for instance `F = Z/5`) and say that `4, 1, 2` come first.
+- **Subsumption.** I scanned all 236 Bernoulli and Rokhlin titles on main without truncation, then the 41 about
+  transport, orders, decoding, Følner sets or linear codes. The closest is `injective-ca-random-order-transport-identity`,
+  which splits the constant `log |A|` over a decoder memory, as the node's `distinct_from` says. Nothing subsumes either
+  claim.
+
+### 9.2 Corollary 2 and the two equivalence routes. PASS.
+
+- **Part (1).** `k Phi = H(y_1) + k log q - I(x(1); y_F)`, so `Phi >= log q` is `I <= H(y_1)`. By the finitary witness
+  node, maximality is `Phi >= log q` for every configuration. With Theorem 1 this is (D).
+- **Part (2).** Here `I <= min{k log q, C H}`.
+  - If `C H >= k log q`, then `k Phi >= H >= k log q/C`.
+  - Otherwise `k Phi >= k log q - (C-1) H >= k log q/C`.
+  - The artifact's strict `>` in the second case is an equality when `C = 1`, which is trivial.
+- **Overshoot.** `Phi <= log q/C` gives `H <= H + r <= k log q/C`. So `I = k log q - r >= k log q (1 - 1/C) + H >= C H`.
+  Correct.
+- **Self-copy hosts.** The target node records `h^Rok(L^G) = min{H(L), h_sup(G)}`. So `rho_q >= log q/C > 0` forces
+  `h_sup > 0`, and on a host with `h_sup ∈ {0, ∞}` that is INF. Correct.
+- **Routes.** Both pass.
+  - `bernoulli-maximality-via-rokhlin-window-domination` combines domination, the identity and the finitary witness node.
+  - `rokhlin-window-domination-from-bernoulli-maximality` combines `rho_q <= Phi` with the identity.
+  - The cycle between the two OPEN nodes is a normal form and supports neither.
+- **Non-reader order.** The non-reader codewords are jointly independent of `x(1)`, so their terms vanish when they come
+  first. That order depends on the site and is not translation-invariant. Correct.
+
+### 9.3 Propositions 3 and 4 and Example 5 (Attempts on the OPEN node). Correct.
+
+- **Proposition 3.**
+  - Given `x(1)`, the codewords read disjoint coordinates. So `I(X; Y_F) = H(Y_F) - sum H(Y_f | X) <= sum I(X; Y_f)`.
+  - By translation each term is `I(x(f^-1); y_1)`, and the `f^-1` are distinct elements of `E`.
+  - For independent inputs `I(X_e; Y | X_(<e)) = I(X_e; Y, X_(<e)) >= I(X_e; Y)`. So the sum is at most
+    `I(x|_E; y_1) = H(y_1)`.
+  - The dichotomy for witnesses is correct, and removing codewords only raises `H(x(1) | y_F)`.
+- **Proposition 4.**
+  - Given `y_F`, the input is uniform on a coset of `ker L`. So `I = (k - dim pr_1 ker L) log q = (dim V) log q`.
+  - A functional vanishing on `ker L` factors through `L`.
+  - On a constant input `c` every codeword outputs `Psi c`. So `phi = (Lambda ∘ diag_F) ∘ Psi`, and
+    `dim V <= rank Psi <= rank psi`, while `H(y_1) = (rank psi) log q`.
+  - Correct, using no group structure. It contains Remark 3.2 of the route artifact, the case `k = 1` with `q` prime.
+- **Example 5.**
+  - `H(psi) = t + 1`. Given the pointers, the unrevealed center coordinates are uniform and independent, so
+    `H(x(s) | y_F) = k (1 - 1/k)^M <= k e^(-M/k) <= 1/k` once `M >= 2 k ln k`.
+  - In a group only `f = s e_0^-1` reads `s` at position `e_0`, so the star occurs in no group.
+  - With `m = M`, the read-degree bound `1/m` is within a factor `O((log m)^2)` of `Phi`. Correct.
+
+### 9.4 `bernoulli-window-codeword-folner-ratio-bound` (Proposition 6). PASS.
+
+- **Count.**
+  - `H(x|_S) <= H(y_(SF)) + sum_s H(x(s) | y_(sF))`.
+  - `T_s` carries `(x(1), y_F)` to `(x(s), y_(sF))`, so each term is `r`.
+  - With `H(y_(SF)) <= |SF| H(y_1)`, dividing and taking the infimum gives `k log q <= lambda H + r <= lambda k Phi`.
+- **Amenability.**
+  - Put `K = F f_0^-1`, which contains `1`. Then `|SF| = |SK|` and `S ⊆ SK`. So `|SK| <= (1+eps)|S|` gives
+    `|Sk \ S| <= eps |S|` for each `k in K`.
+  - Right multiplication by `K` preserves the left cosets `g<K>`. Averaging over them gives a piece `S_g` with
+    `sum_k |S_g k \ S_g| <= |K| eps |S_g|`, so `g^-1 S_g` is a right Følner set of `<K>`.
+  - Conversely, a right Følner set gives `|SK| <= (1 + |K| eps)|S|`.
+  - `<K> = <F F^-1>`, because `f f'^-1 = (f f_0^-1)(f' f_0^-1)^-1` and `K ⊆ F F^-1`. Correct.
+- **Wording (optional).**
+  - Configurations allow `F = ∅`, where `lambda = 0`. The display still holds, but `Phi >= log q/lambda(F)` needs `F`
+    nonempty. When `F` is empty, `Phi >= log q` holds directly.
+  - Likewise `Phi >= log q/min{m, lambda(F)}` needs `m >= 1`.
+- **Subsumption.** No node bounds `Phi` through `<F F^-1>`.
+  - The difference-subgroup filter constrains `<E E^-1>`.
+  - `rokhlin-maximality-ascends-co-amenable-subgroups` concerns a subgroup of `G`.
+  - The `distinct_from` entries are accurate, and the node's displays match.
+
+### 9.5 Sections 6–8 (prose). Correct, apart from one quotation I did not check.
+
+- **Proposition 7.**
+  - Bernoulli shifts over infinite groups are ergodic, so `h^Rok = inf H(alpha)` over generating partitions.
+  - For generating `alpha`, `h^Rok <= h^ro(alpha) <= H(alpha)`.
+  - With `rho_q = lim_k h^Rok((A^k)^G)/k` and `h^Rok((A^k)^G) <= k log q`, the equivalence is correct given the quoted
+    theorem. Inverting `L_xi` preserves its law.
+  - I did not check the quotation against Alpeev's paper. No ESTABLISHED node relies on it.
+- **Example 8.**
+  - `h ∈ gE \ past(g)E` iff `g` is `U`-least in `h E^-1`.
+  - The transport `m(g,h)` is diagonally invariant, and the mass transport principle gives
+    `E |E \ past(1)E| = E sum_g m(g,1) = 1`.
+  - `gamma` of the route artifact's Proposition 4 is the copy code on `S`. Correct.
+- **(6.3).**
+  - The chain rule along the order, translation on `T°`, and `H(y_1)` on the boundary. `delta_W` decreases to
+    `h^ro(y_1)` by martingale convergence, and the amenable conclusion is correct.
+  - The label order on a countably infinite set is almost surely dense without endpoints. Correct.
+- **Section 8.**
+  - Items 1, 2, 4 and 5 follow from the read-degree bound, Proposition 6, Proposition 4, and Corollary 2 with
+    Proposition 3.
+  - Items 3 and 6 are nodes checked in Section 7.
+- **Attempts.** The entries on `bernoulli-rokhlin-entropy-maximal-for-every-group` and
+  `injective-ca-random-order-transport-is-dominated` match the artifact.
+
+PASS. The target and `rokhlin-window-transport-is-dominated` stay OPEN. The domination node is a normal form, so nothing
+here is decision-level, and nothing is refuted.

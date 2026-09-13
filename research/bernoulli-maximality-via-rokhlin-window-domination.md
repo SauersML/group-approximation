@@ -16,3 +16,7 @@ Artifact Corollary 2(1).
 2. The finitary witness theorem turns this into `rho_q(G) = log q`.
 
 This is a normal form. The route adds no mathematics beyond its two established inputs.
+
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 9.2 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`). Domination and the identity give `Phi >= log q`
+for every configuration, and the finitary witness node turns that into maximality.

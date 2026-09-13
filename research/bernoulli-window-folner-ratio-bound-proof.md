@@ -14,3 +14,9 @@ Artifact Section 5, Proposition 6.
 2. Take the infimum over `S`. Since `lambda >= 1`, this gives the bound on `Phi`.
 3. If `|SF| <= (1 + eps)|S|`, then `S` is almost invariant under right multiplication by `F f_0^-1`, so some left coset of `<F F^-1>` carries a right Følner set.
 4. Conversely, right Følner sets of `<F F^-1>` give ratio near `1`.
+
+Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 9.4 of
+`research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
+- **Re-derived:** the decoding count over `S` and `SF`, the coset averaging that gives a right Følner set of
+  `<F F^-1>`, and the converse.
+- **Note:** `Phi >= log q / lambda(F)` needs `F` nonempty. When `F` is empty, `Phi >= log q` holds directly.
