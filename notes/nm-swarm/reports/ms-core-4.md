@@ -79,3 +79,27 @@ CLAIM item-7 GroupApproximation/Dynamics/ClopenCrossedProductCountable.lean
   finite union of basis sets."
 - Producer of ct-bilateral-mf's `ClopenCrossedProductCountableStatement` (BilateralThreeStatement, 816a6b699) and of
   ct-rank-budget's `CountableCrossedProductStatement`.
+
+## Landed (items 3, 4, 7 closed)
+
+Module `GroupApproximation.Algebra.LEFRingStablyFinite`, LANDED 5932d213f (probe GREEN 0913-172320-48885), queued for wiring:
+- `Pestov91.IsLEFRing.isDedekindFiniteMonoid`, `Pestov91.IsLEFRing.isStablyFiniteRing`;
+- `lefStablyFiniteInterface : LEFStablyFiniteInterface` (chain-reflection's residual);
+- `Pestov91.IsLEFRing.isLEF_generalLinear n : IsLEF (Matrix n n A)ˣ`;
+- `Pestov91.IsLEFRing.isOperatorMF_generalLinear [Countable A] n : IsOperatorMF (Matrix n n A)ˣ`;
+- closed endpoints `printedLEFRingsStablyFinite`, `printedGeneralLinearGroupsOfLEFRingsLEF`, `printedCountableLEFGroupsMF`.
+
+Module `GroupApproximation.Dynamics.ClopenCrossedProductCountable`, LANDED 7dceca26d (probe GREEN 0913-173055-72684), queued:
+- `exists_finite_subset_sUnion_eq_of_isClopen` (any basis of a compact space), `exists_countable_clopen_basis`,
+  `countable_setOf_isClopen`, `countable_locallyConstant [Countable k]`;
+- `ClopenCrossedProduct.countable T k` for compact second countable `X` and countable ring `k`;
+- closed endpoints `printedCountableClopenBasis`, `printedClopenCrossedProductCountable`.
+
+Module `GroupApproximation.Manuscript.ChainCore.ClopenCrossedProductCountableConsumers`, LANDED 7dceca26d, queued:
+- `clopenCrossedProductCountableStatement : BilateralThree.ClopenCrossedProductCountableStatement`;
+- `countableCrossedProductStatement : DynamicRankBudget.CountableCrossedProductStatement`.
+- The wrappers sit in their own module because it imports both consumer modules. Consumers import the light producer
+  module directly, so no import cycle arises.
+
+Census rows `metadata/nm-census-rows/ms-core-4.tsv`: `b1a4887c5412`, `1d0bcc92a75f`, `1a88ddc187c0`, `7e27335fac44`
+(the countability sentence's current key; `6e533530564d` hashed the wording before 73a84cd9c).
