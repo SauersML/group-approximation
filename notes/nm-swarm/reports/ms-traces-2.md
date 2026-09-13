@@ -12,7 +12,7 @@ for a cited result.
 
 | key | tex | status | carrier | verdict |
 |---|---|---|---|---|
-| a817c6ae86c9 | 1856–1857 | definition | `LocallyRFByIntAmenableTrace.IsLocallyResiduallyFinite` | PASS |
+| a817c6ae86c9 | 1856–1857 | definition | `LocallyRFByIntAmenableTrace.IsLocallyResiduallyFinite` | PASS; the row is ms-traces-1's (range 1808–1858), which also graded it PASS |
 | fd8372f71c2d | 1861–1862 | formalized | `AmenableExtensionTrace.manuscriptPrintedAmenableExtensionTrace` | PASS: closed endpoint. A normal `N ≤ G`, `G` countable, `G ⧸ N` amenable (`Nonempty InvariantMean`) is the printed extension up to isomorphism |
 | 0bd25ebcbeac | 1862–1864 | formalized | same | PASS: `IsQuasidiagonalTrace τ_N ∧ IsAmenableTrace τ_G` |
 | d47b613bb096 | 1869–1872 | structural | overview | PASS |
@@ -35,7 +35,7 @@ for a cited result.
 | dc43ec6b23ed | 1945–1948 | formalized | `manuscriptSentence_signedModelGroupLaw` | PASS; the row should also name `CliffordLamp.crossing_add_left/_right` (the printed "since B is bilinear") |
 | 4704b74b6c8e | 1949–1952 | formalized | same | PASS |
 | 1fab0dcc8e88 | 1953–1954 | formalized | `manuscriptSentence_toModelHomomorphism` | PASS |
-| b9ca7188b1f5 | 1954–1959 | formalized | `manuscriptSentence_cliffordLampNormalForm` | pending: `section'` is the printed ordered word |
+| b9ca7188b1f5 | 1954–1959 | formalized | `manuscriptSentence_cliffordLampNormalForm` | PASS: `section' ⟨a, f⟩ = signPow a * wordOfSupport f.support`, and `wordOfSupport s = wordOfList (s.sort (· ≤ ·))` (CliffordLampNormalFormSplice:126) is the printed `ε^a c_{x₁}⋯c_{x_r}` with `x₁ < ⋯ < x_r` |
 | 407925e64c6c | 1960–1961 | formalized | same | PASS |
 | 51284d178433 | 1962–1964 | formalized | `manuscriptSentence_cliffordLampCountableLocallyFinite` | PASS |
 | c41bad22d29b | 1964–1968 | formalized | `manuscriptSentence_cliffordLampKillSignCentralExtension`, `..._wCentralExtensionOfWreath` | PASS |
@@ -58,4 +58,25 @@ disk and on origin; the adjacent lanes are ms-traces-1 (tex 1808–1858) and ms-
 
 ## Progress log
 
-- 17:0x: ledger landed.
+- 17:16: ledger landed (677b7cf09).
+- 17:17: probe 0913-171711-24588 GREEN. All three modules BUILT and COMPILED, with `#audit_closed_axioms` and `#audit_axioms`
+  in each module. The lead restart killed the local waiter, so no record was written. The re-probe 0913-172928-65828 was
+  GREEN, restoring the same md5s from the cache, and wrote the record. Attic copies f9af58705.
+- 17:3x: **G1–G5 CLOSED, LANDED b593627ca** (wire queued: AmenableExtensionPrintedSteps, CliffordDefectCommutatorSentence,
+  VerticalAscendingHNN).
+  - G1 `VerticalAscendingHNN.verticalEquivHNN : Vertical α hα ≃* HNNExtension Γ ⊤ α.range (ascendingIso α hα)`, sending
+    `t ↦ t` and `ι γ ↦ of γ`; closed endpoint `manuscriptPrintedVerticalIsAscendingHNN`; plus
+    `manuscriptSentence_telescopeIsUnionOfConjugates`: `range inl = ⋃ₙ {t⁻ⁿ ι(γ) tⁿ}`.
+  - G2 `AmenableExtensionPrintedSteps.manuscriptSentence_traceIsFixedPointRatio`, `..._traceCaseMovesFolnerCoordinate`
+    (ḡ ≠ 1) and `..._traceCaseFibre` (ḡ = 1: `b(g,x) = σ(x)⁻¹gσ(x) ≠ 1` and `θ(b(g,x))q ≠ q`).
+  - G3 `..._defectIsBoundaryCompression` (the entrywise identity) and `..._printedHSDisplay`
+    (`‖·‖₂² ≤ |boundary F h̄| / |F|`).
+  - G4 `CliffordDefectCommutatorSentence.manuscriptSentence_defectContainsCommutatorSquaringToCentralInvolution` and
+    `..._finiteCentralSubgroupInDefect`.
+  - G5 `AmenableExtensionPrintedSteps.manuscriptSentence_translationFormula`.
+  - Census rows landed with this report: `metadata/nm-census-rows/ms-traces-2.tsv` (8e53d32e3fb8 regraded from structural
+    to formalized; d5c52ca23af0, da2fd300384a, 89bc31ec5034 and 1ea7f92c66a1 gain the new carriers; dc43ec6b23ed and
+    5306701b688c name existing carriers they omitted).
+- Range state: every sentence of tex 1859–1976 is carried by a closed declaration along the printed route, or is honestly
+  `structural` (d47b613bb096, 4cbf47e489a6) or a `definition`. The new carriers become root-reachable once root-wire
+  wires b593627ca.
