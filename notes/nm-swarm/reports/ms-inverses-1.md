@@ -43,20 +43,27 @@ external existence theorem.
     (`#audit_axioms`).
   - Queued for wiring. Rows are in `metadata/nm-census-rows/ms-inverses-1.tsv`.
 
-## Residual (not built)
+- **Row 5 CLOSED at 696c4f2ac** (probe 0913-174153-16447 GREEN, BUILT line checked). Module
+  `GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean`:
+  - `MaxInfiniteConjugateKazhdanProjection.PrintedConjugateKazhdanProjection` and the closed
+    `manuscriptConjugateKazhdanProjection` (`#audit_closed_axioms`). For strict Kazhdan compression data:
+    - conjugation by u sends the canonical unitary of ι(γ) to that of tι(γ)t⁻¹, which lies in tΓt⁻¹;
+    - the average of the canonical unitaries of tΓt⁻¹ over the conjugated Kazhdan set has the Kazhdan gap;
+    - its spectral projection is a star projection fixed by every canonical unitary of tΓt⁻¹;
+    - uPu* equals that projection.
+  - `unitary_conj_spectralProjection`: spectral projections are natural under unitary conjugation for gapped
+    self-adjoint elements, proved algebraically (complements factor through 1 − u m u*), with no functional-calculus
+    naturality. Main's existing conjugation lemmas need a normal subgroup.
+  - Queued for wiring; row 9b21786b2a7b in `metadata/nm-census-rows/ms-inverses-1.tsv`.
+- Every sentence of tex 740–808 is now carried or honestly classified.
 
-- Row 5 (tex 758–759), the clause "where uPu* is the image of the Kazhdan projection of tΓt⁻¹", has no carrier.
-  - Main only has the absorption identities (`conjugate_mul_proj`, `proj_mul_conjugate`), and its conjugation lemmas
-    (`UnitaryAverageFixedVector.conj_spectralProjection_eq`, `KazhdanProjectionAbsorption.conj_spectralProjection_eq_of_normal`)
-    need a normal subgroup.
-  - Proposed statement: for `D : StrictKazhdanCompression Γ E`,
-    `D.shift * D.proj * star D.shift = spectralProjection (unitaryAverage (conjugated rep) D.S) D.rate`, i.e. the Kazhdan
-    projection of tΓt⁻¹ built from the conjugated average.
-  - Route: unitary conjugation is a star-algebra automorphism, so it commutes with the continuous functional calculus
-    and carries the average to the conjugated average.
-  - The strictness proof on main does not use this clause: it goes through the base vector of the quasi-regular
-    representation.
+## Binder 8
+
+- main asked for one leaf of W1 binder 8, agreed with w1-binder-8. w1-binder-8 answered that steps 1–3 of StripStep,
+  including the head-dart facts and the merged-face identification, are already drafted in its
+  `SurgeryGeodesicCollarStripStep.lean`, and that nothing independent is left to split off. No leaf taken.
 
 ## Progress log
 - 16:56: ledger landed at 1193c722d; two gaps (rows 2 and 9) claimed.
 - 17:0x: both gaps closed at 88180a8b8.
+- 17:4x: row 5 closed at 696c4f2ac. Binder 8: no independent leaf (w1-binder-8 owns steps 1–3).
