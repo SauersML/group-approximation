@@ -21,14 +21,20 @@ compactly supported elements form `F^0 = [F,F] ≠ 1`. So Proposition 5.1 of
    `F_ω` transitive on `N \ {1}` by conjugation. Every nontrivial element of
    `N` would then be conjugate in `F`. But the number of connected components
    of the open support `{t : f(t) ≠ t}` is a conjugacy invariant in
-   `Homeo^+(0,1)`, and `N` contains elements with one component and with two
-   (take two elements of `N` with disjoint supports and one component each).
+   `Homeo^+(0,1)`, and `N` contains elements with one component and with two.
    Contradiction.
 2. By Proposition 5.1, case (2) holds: `|O^- ∩ O^+| ≤ 1` for all orbits `O^-`
    of `F_x^-` and `O^+` of `F_x^+`.
-3. `F_x^-` and `F_x^+` commute, so `abω = baω`, and the map is well defined
-   and onto the `F_x`-orbit of `ω`. For injectivity, suppose `abω = a'b'ω`.
-   The point lies in the `F_x^-`-orbits `bO^-` and `b'O^-`, where `O^-` is the
-   orbit of `ω`. Distinct orbits are disjoint, so `bO^- = b'O^-`. This orbit
-   contains both `bω` and `b'ω`, and both lie in the `F_x^+`-orbit of `ω`, so
-   `bω = b'ω` by step 2. Symmetrically, `aω = a'ω`.
+3. `F_x^-` and `F_x^+` have disjoint supports up to the point `x`, so they
+   commute, and the map `(aω, bω) ↦ abω` is well defined and onto the
+   `(F_x^- × F_x^+)`-orbit of `ω`. For injectivity, suppose `abω = a'b'ω`. The
+   point lies in the `F_x^-`-orbits `bO^-` and `b'O^-`, where `O^-` is the orbit
+   of `ω`. Distinct orbits are disjoint, so `bO^- = b'O^-`. This orbit contains
+   both `bω` and `b'ω`, and both lie in the `F_x^+`-orbit of `ω`, so `bω = b'ω`
+   by step 2. Symmetrically, `aω = a'ω`.
+4. If `a ∈ F_x^-`, `b ∈ F_x^+` and `abω = ω`, then `bω = a^{-1}ω` lies in the
+   `F_x^+`-orbit and in the `F_x^-`-orbit of `ω`, which meet only in `ω` by
+   step 2. So `bω = ω` and `aω = ω`. For `x` dyadic or irrational,
+   `F_x = F_x^- × F_x^+`: at irrational `x` every element of `F_x` is the
+   identity near `x`, and at dyadic `x` the cut pieces keep dyadic breakpoints.
+   This gives item 4 of the claim.
