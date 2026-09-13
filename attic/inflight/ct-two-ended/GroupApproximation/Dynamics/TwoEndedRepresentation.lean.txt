@@ -148,7 +148,7 @@ theorem rho_single (g : Multiplicative ℤ) (a : ClopenCoeff shift k) :
 /-- **Matrix entries of the action**: `(ρ(x) (c e_i))_l = x_{l−i}(l) · c`. -/
 theorem rho_apply_single_apply (x : ClopenCrossedProduct shift k) (i l : ℤ) (c : k) :
     rho k x (single i c) l =
-      (ClopenCoeff.of shift k).symm (x.coeff (ofAdd (l - i))) (pt l) * c := by
+      (ClopenCoeff.of shift k).symm (SkewMonoidAlgebra.coeff x (ofAdd (l - i))) (pt l) * c := by
   induction x using SkewMonoidAlgebra.induction_on with
   | zero => simp
   | single g a =>
@@ -173,7 +173,7 @@ theorem rho_apply_single_apply (x : ClopenCrossedProduct shift k) (i l : ℤ) (c
 theorem rho_injective : Function.Injective (rho k) := by
   refine (injective_iff_map_eq_zero (rho k)).2 fun x hx => ?_
   refine SkewMonoidAlgebra.ext fun m => ?_
-  have hcoeff : (ClopenCoeff.of shift k).symm (x.coeff m) = 0 := by
+  have hcoeff : (ClopenCoeff.of shift k).symm (SkewMonoidAlgebra.coeff x m) = 0 := by
     refine eq_zero_of_forall_pt k fun l => ?_
     have h := rho_apply_single_apply k x (l - toAdd m) l 1
     rw [hx, LinearMap.zero_apply, Finsupp.coe_zero, Pi.zero_apply, mul_one, sub_sub_cancel,
