@@ -43,6 +43,13 @@ question (`dyadic-vertex-soficity-equals-frame-dynamics-soficity`).
   Microstates therefore need non-congruence vertex orbits whose diagonal `B`-orbits do not expand.
 - **Treeing.** Elek--Lippner soficity of treeable relations is dead:
   `sl2-homogeneous-action-is-not-treeable` (`β_2^(2)(A) > 0`).
+- **Colimits of separable pairs.** Dead. `PSL_2(Z[1/2])` is finitely presented, and `PSL_2(Z)` is
+  finitely generated and co-dense. Item 5 of `sofic-coset-actions-pass-to-marked-colimits` (the
+  finite-presentation stop) excludes any presentation as a limit of pairs with separable
+  stabilizers. Part (b) of `twin-deep-vertex-models-give-homogeneous-microstates` excludes exact deep
+  models by the normal subgroup theorem. So every positive model is a genuine almost-action with
+  defective edge identifications. The rank-one function-field pair escapes the stop
+  (`function-field-rank-one-vertex-action-is-sofic`), because its host is not finitely presented.
 - **Weak containment in a known sofic action of `A`.** Soficity passes down weak containment, so a
   sofic action weakly containing `A ↷ L/Λ` would suffice. Two natural candidates are dead.
   *Odd-level profinite actions*: the `K`-orbit indicator `1_P` (measure `1/r`) is `C`-invariant
