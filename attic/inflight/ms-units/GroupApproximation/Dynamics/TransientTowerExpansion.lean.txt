@@ -184,27 +184,27 @@ theorem exists_matrix_eq_sum_transientTower (hm : ExponentBound T C m)
     (hdisj : ∀ a b, a ≠ b → Disjoint (cell a) (cell b))
     (hcover : ∀ y ∈ baseSet T C E m, ∃ a, y ∈ cell a) (rep : Fin M → X)
     (hrep : ∀ a, rep a ∈ cell a) (x : ClopenCrossedProduct T k)
-    (hx : ∀ g ∈ x.support, toAdd g ∈ E ∧
-      ∀ z, (ClopenCoeff.of T k).symm (x.coeff g) z ≠ 0 → z ∈ C ∧ (T ^ (-toAdd g)) z ∈ C)
-    (hconst : ∀ g ∈ x.support, ∀ a, ∀ d ∈ S a, ∀ y ∈ cell a, ∀ y' ∈ cell a,
-      (ClopenCoeff.of T k).symm (x.coeff g) ((T ^ d) y) =
-        (ClopenCoeff.of T k).symm (x.coeff g) ((T ^ d) y')) :
+    (hx : ∀ g ∈ SkewMonoidAlgebra.support x, toAdd g ∈ E ∧
+      ∀ z, (ClopenCoeff.of T k).symm (SkewMonoidAlgebra.coeff x g) z ≠ 0 → z ∈ C ∧ (T ^ (-toAdd g)) z ∈ C)
+    (hconst : ∀ g ∈ SkewMonoidAlgebra.support x, ∀ a, ∀ d ∈ S a, ∀ y ∈ cell a, ∀ y' ∈ cell a,
+      (ClopenCoeff.of T k).symm (SkewMonoidAlgebra.coeff x g) ((T ^ d) y) =
+        (ClopenCoeff.of T k).symm (SkewMonoidAlgebra.coeff x g) ((T ^ d) y')) :
     ∃ c : ∀ a : Fin M, Matrix (Fin (S a).card) (Fin (S a).card) k,
       x = ∑ a, ∑ i, ∑ i', c a i i' •
         Pestov91.CrossedProduct.towerUnit (transientTowerCoeff T k cell S hcell)
           (transientTowerExp S) a i i' := by
-  refine ⟨fun a i i' => ∑ g ∈ x.support, transientTowerCoeffMatrix T k S rep (toAdd g)
-    ((ClopenCoeff.of T k).symm (x.coeff g)) a i i', ?_⟩
-  calc x = ∑ g ∈ x.support, SkewMonoidAlgebra.single g (x.coeff g) :=
+  refine ⟨fun a i i' => ∑ g ∈ SkewMonoidAlgebra.support x, transientTowerCoeffMatrix T k S rep (toAdd g)
+    ((ClopenCoeff.of T k).symm (SkewMonoidAlgebra.coeff x g)) a i i', ?_⟩
+  calc x = ∑ g ∈ SkewMonoidAlgebra.support x, SkewMonoidAlgebra.single g (SkewMonoidAlgebra.coeff x g) :=
         ((SkewMonoidAlgebra.sum_def' x SkewMonoidAlgebra.single).symm.trans
           (SkewMonoidAlgebra.sum_single x)).symm
-    _ = ∑ g ∈ x.support, ∑ a, ∑ i, ∑ i', transientTowerCoeffMatrix T k S rep (toAdd g)
-          ((ClopenCoeff.of T k).symm (x.coeff g)) a i i' •
+    _ = ∑ g ∈ SkewMonoidAlgebra.support x, ∑ a, ∑ i, ∑ i', transientTowerCoeffMatrix T k S rep (toAdd g)
+          ((ClopenCoeff.of T k).symm (SkewMonoidAlgebra.coeff x g)) a i i' •
           Pestov91.CrossedProduct.towerUnit (transientTowerCoeff T k cell S hcell)
             (transientTowerExp S) a i i' := by
         refine Finset.sum_congr rfl fun g hg => ?_
         have h := single_eq_sum_transientTower k hcell hm hsub hdisj hcover rep hrep (hx g hg).1
-          ((ClopenCoeff.of T k).symm (x.coeff g)) (hx g hg).2 (hconst g hg)
+          ((ClopenCoeff.of T k).symm (SkewMonoidAlgebra.coeff x g)) (hx g hg).2 (hconst g hg)
         rw [RingEquiv.apply_symm_apply] at h
         exact h
     _ = _ := by
