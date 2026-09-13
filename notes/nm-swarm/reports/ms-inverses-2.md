@@ -188,6 +188,21 @@ Ownership check 09-13 ~18:45: no walk-level cell kept cell on origin, in the sha
   the exterior face off its side and its outer or its inner cycle following, a relator cell on its side. Pocket region from
   `PocketRegion.ofNoncrossingClosedWalk` (outer, with `reclosed_euler`) or ms-torsionfree's `ofNoncrossingClosedWalkInner` (inner),
   then step 5. Model: dgo-analytic's lake map, where only the inner branch fires.
+- LANDED 96c1448c3 (probe 0913-183452-73027 GREEN, BUILT, first try), unwired, queued for wiring:
+  - `PocketRegion.exists_of_noncrossing_of_eitherFollows`;
+  - `GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingCellWalk_of_value` and `_of_leastArea`;
+  - the closed `cellPocketKeptCellNoncrossing : CellPocketKeptCellNoncrossingStatement`;
+  - the model `OsinPocketCellKeptCellNoncrossing.multipleEdgeLakeInnerBranch`.
+- Main 18:40: the exact target is ms-cite-1's `CellPocketWalkSideRelatorCellStatement` (eb678c70a, `OsinPocketMultipleEdgeCopy`),
+  consumed by `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2Copy`.
+  - Its data gives a noncrossing walk (`CellPocketWalkColour.walk_orient`, `isNoncrossingClosedWalk_of_orient`).
+  - The exterior face off the side is `CellPocketWalkOuterOffSideStatement` (w1-binder-3, per main).
+  - No following clause is in the data, and no producer exists on main; the lake model shows the disjunction is needed.
+- CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCell.lean:
+  - `CellPocketWalkEitherFollowsStatement` (new named residual, same data: the outer or the inner cycle of the noncrossing walk
+    follows);
+  - `cellPocketWalkSideRelatorCell_of_eitherFollows : CellPocketWalkOuterOffSideStatement → CellPocketWalkEitherFollowsStatement →
+    CellPocketWalkSideRelatorCellStatement`.
 
 ## Progress log
 
