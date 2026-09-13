@@ -2,6 +2,53 @@
 
 Non-MF verbatim formalization swarm, 2026-09-12.  Clone nm-c.
 
+## 09-13: SharedEdge same-cell case (`false_of_digon_toward_cell` at i₂ = i), BLOCKED on a ruling
+
+Assignment (lead): patch 03 of ghw-charp2's LoopCut landing adds `hi : i₂ ≠ i` to
+`false_of_digon_toward_cell` (`Estimating/OsinUnboundSharedEdge.lean:377`, hull-unbound).  Close the
+case it leaves open in a new module: an unbound dart `d` of cell `i` with `α d` on cell `i`.  Either
+contradict optimality or least area, or count such darts by something already bounded.
+
+Status: no code, nothing landed, no probe (patches 01-09 are not landed).
+
+1. No competitor under (A).  Same-cell darts lie on no region: `boundary_decomposition` puts both
+   arcs on the region's boundary cycle, which runs along its G-faces.  So these darts are always
+   unbound.  The doubled digon touches only cell `i`, so its region is a loop.  `nondegenerate`
+   forbids empty arcs, and `FaceSetBoundary` has one cycle, so the digon cannot join another region
+   at a vertex.
+2. `DartMinimal` does not exclude them.  Fold an unbound spur `x x⁻¹` of cell `i` that faces an
+   unselected G-face into a pendant edge inside the cell.  The result is O-equivalent, since
+   `OEquivalentDiscDiagram` asks only for the boundary word and the cell words.  Weight, card and
+   `unboundSum` stay the same, and two darts go away.  This is the cell-side mirror of jacobson's
+   `PendantPathRemovalInput`.  So option (v2) of ghw-charp2's patch 10(d) cannot come from
+   `DartMinimal`.
+3. After the fold these darts are on no polygon walk (`cell_arc`: `sideDarts = arc.reverseDarts`,
+   which are walk darts).  `Covers` has to absorb them in `L n`.
+
+A same-cell edge is a bridge.  The component `C2` behind it sits inside cell `i`, whose word reads
+`u x p x⁻¹`.
+
+* (T) `C2` has no relator cell, so `x p x⁻¹` has value 1.  Take a maximal unbound stretch with `X`
+  same-cell darts and `N` others.  Quasi-geodesicity gives `λ X ≤ (1 − λ) N + c`, and summing gives
+  `Σ X ≤ (1/λ − 1)(Σ sides + 24 ε n) + (c/λ)(n + 2|M|)`.  This needs a factor on the sides in
+  `Covers`; a larger `L` alone does not suffice.
+* (C) `C2` contains relator cells.  The bridge path gives `2|x|` unbound darts with no length bound.
+  The value of `x p x⁻¹` need not be 1, and pieces give only `|x| < μ |r|`.  Excluding (C) takes
+  Greendlinger on `C2` plus small pieces (Lyndon–Schupp's simple-contour argument), so it needs
+  induction on area.
+
+Options sent to the lead:
+- (a) Respell `Covers` with a factor `⌈1/λ⌉` on the sides and `L` depending on `λ, c`.  This lane
+  proves (T) in a new module, and (C) stays a named binder.
+- (b) Change PlanarPieces so a cell side may carry value-one same-cell excursions (Osin's 0-refinement).
+- (c) Use a `DartMinimal` measure that keeps spurs unfolded.  The cost is digon polygons, which raise
+  `SideBudget`.
+
+audit-sec5 has both configurations for its model test.  A single relator `b^m` inside `r_i` fails
+`pieces_small`, as Greendlinger on `C2` predicts.
+
+Residual Props owned: none yet.  Next: the lead's ruling, then the new module after ghw-charp2 lands.
+
 ## 09-13: `EmptyTwoGonInput` closed (route A), LANDED and GREEN
 
 Assignment (lead): a closed producer of hull-euler's `EmptyTwoGonInput`
