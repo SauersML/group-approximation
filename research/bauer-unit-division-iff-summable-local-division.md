@@ -34,6 +34,11 @@ comparison. `T(A)` is a nonempty Bauer simplex with extreme boundary `K`.
 **Consequences.**
 - `bauer-c-space-strict-comparison-divides-unit` is the case `Y = K` of (c) and (a).
 - `bauer-strict-comparison-unit-division-is-local` is the single-precision case of (b).
+- **Remark, nuclear `A`.** `Z_sum(A)` lies inside the non-local-triviality locus
+  `Z(M)` of the strict closure (`bauer-gamma-failure-localizes-to-infinite-dim-point`).
+  A trivial restriction over a closed neighbourhood lifts constant matrix units, so
+  that neighbourhood divides at every precision. The proof is Section 10 of the part 4
+  artifact and uses the Evington–Pennig restriction.
 - A strict-comparison algebra on a Bauer simplex with an indivisible unit has:
   - a nonempty closed locus in which no point has a C-neighbourhood;
   - some `ε > 0` such that every finite cover of `K` by division sets has a point where

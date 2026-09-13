@@ -106,6 +106,34 @@ cell dimension".
   divisions. A logarithmic one cannot do.
 - Neither statement constructs a witness.
 
+## 10. The division locus sits inside the bundle locus
+
+**Proposition 10.1.** Let `A` be as above and nuclear, with strict closure `M`, a hyperfinite W*-bundle over
+`K`. Let `Z(M)` be the set of points with no closed neighbourhood `Y` with `M_Y ≅ C_σ(Y, R)`. Then
+`Z_sum(A) ⊆ Z(M)`.
+
+*Proof.* Let `Y` be a closed neighbourhood of `λ_0` with `M_Y` trivial. Fix `N`.
+1. Constant matrix units of `M_N ⊂ R` define a unital `*`-homomorphism `M_N → M_Y`.
+2. The restriction quotient `q_Y: M → M_Y` is onto, and `π_λ = π_λ^Y ∘ q_Y` for `λ ∈ Y`. This is the
+   Evington–Pennig restriction recorded on `bauer-gamma-failure-localizes-proof`, step 4.
+3. Lift the matrix units to contractions of `M`, and approximate them in `‖·‖_{2,u}` by elements of `A`.
+   Their relation defects tend to `0` in `sup_{λ∈Y} ‖·‖_{2,λ}`.
+4. So they define a unital `*`-homomorphism into `ℓ^∞(A)/c_Y`, where `c_Y` is the ideal of sequences
+   `(x_n)` with `lim_ω sup_{λ∈Y} ‖x_n‖_{2,λ} = 0`.
+5. Order zero lifting gives `φ_n: M_N → A` with `sup_{λ∈Y} λ(1 − φ_n(1)) → 0`.
+6. Hence `Y` carries division sets at every precision, so `Y` is summably divisible, so `λ_0 ∉ Z_sum`. ∎
+
+**Combined picture** (nuclear `A`, strict comparison, Bauer simplex).
+- `Z_sum(A) ⊆ Z(M) ∩ K^{(C,∞)}`.
+- `Z(M) ⊆ K^{(∞)}` (`r-fibre-w-star-bundle-sigma-finite-dim-base-is-trivial`).
+- The unit divides iff `Z_sum(A) = ∅`.
+- Uniform Gamma holds iff `Z(M) = ∅`.
+- Nonempty `Z_sum(A)` means the unit does not divide, so `A` has strict comparison without being
+  `Z`-stable: a Toms–Winter counterexample.
+- Under tracially locally finite nuclear dimension, `Z(M) ≠ ∅` together with `Z_sum(A) = ∅` is impossible,
+  because a divisible unit gives uniform Gamma (`toms-winter-bauer-tlfnd-iff-tracially-divisible-unit`).
+  So on that locus `Z_sum(A) = ∅` iff `Z(M) = ∅`.
+
 **Metric dependence.** The criterion holds for every compatible metric, and a witness must defeat all of
 them. If the unit does not divide, then `liminf_{ω→0} ω · ord_{K,ρ}(ℓ_{A,ρ}(ω)) > 0` for every compatible
 metric `ρ`. Only this direction is asserted.
