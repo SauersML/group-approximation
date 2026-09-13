@@ -28,8 +28,9 @@ elements of `𝒥_(<= m_1)`.
 
 **Model test.** For a minimal `Z`-subshift the analogous statement fails, because periodic points of
 the Markov approximations satisfy every local relation of bounded scale (artifact, Remark 2.1).
-For an aperiodic `Z^2`-SFT those models do not exist. `labbe-ball-legality-is-pairwise-at-radii-two-to-seven`
-is the first layer where the two cases visibly differ at the radii computed.
+For an aperiodic `Z^2`-SFT those models do not exist (`minimal-free-sft-full-group-pattern-models-are-exact`).
+The combinatorial layers computed so far (`labbe-ball-legality-is-pairwise-at-radii-two-to-seven`,
+and test (T1) in part 2 of the artifact) do not separate the two cases.
 
 ## Attempts
 
@@ -48,13 +49,28 @@ is the first layer where the two cases visibly differ at the radii computed.
     (`labbe-ball-legality-is-pairwise-at-radii-two-to-seven`).
   - So its triviality follows from relations among at most three radius-`r` generators (artifact,
     Lemma 3.1).
-- **Where one dimension dies, untested here.**
-  - A relation between two radius-`(r+1)` generators at offset `<= 2` involves ten sub-balls, at
-    offsets up to 4.
-  - In one dimension the illegality that escapes all bounded relations pairs the first subword of
-    one word with the last subword of the other, at the largest offset.
-  - The analogous count for `B(r+1) ∪ (B(r+1)+delta)`, `|delta|_1 <= 2`, is test (T1) of the
-    artifact. The colimit test for the ten-generator groups is (T2).
+- **Climbing through interacting coarse pairs.** Dead at every computed radius (artifact part 2,
+  `research/artifacts/fp-simple-relation-climbing-part2-2026-09-13.md`, Section 4).
+  - Take two legal radius-`(r+1)` ball patterns that agree at offset `delta`, `|delta|_1 <= 2`,
+    with illegal union. Some pair of radius-`r` sub-balls always has an illegal union: no exceptions
+    at radii 2–6.
+  - But the witnessing pair is often at offset 3 or 4, where coarse 3-cycles never meet. At
+    diagonal offsets this is the usual case: for example 31/31, 8/8 and 35/35 illegal unions at
+    radii 3, 4, 5.
+  - So finer commutation relations are not consequences of interacting pair data. One dimension
+    shows the same escape, so this layer does not separate the two cases either.
+  - The colimit test for the ten-generator groups is (T2), not run. GAP is now available on MSI.
+- **Illegality relations** (artifact part 2, Section 3).
+  - `W(q, e)` reduces to the empty word whenever some radius-`R` sub-ball of `q` is illegal
+    (proved).
+  - For locally legal but illegal `q` (for a nearest-neighbour SFT, locally admissible and
+    non-extendable), `W(q, e) = 1` is a genuine relation.
+  - Deriving all of these from finitely many is part of this claim.
+- **Rule actions on legal colourings.** Exact, so no refutation lives there. Lemma B of
+  `zd-derived-full-group-fp-forces-finite-type-proof` shows that on every colouring with legal small
+  windows the climbed words are occurrence 3-cycles. For non-SFTs this gives the approximants that
+  make finite presentation fail (`zd-derived-full-group-fp-forces-finite-type`). For `Omega_U` any
+  approximant must contain illegal small windows or be non-spatial.
 - **Neighbouring mechanisms.**
   - The algebra analogue, `sft-crossed-product-fp-iff-quantum-rigid`, converts finite
     presentation of the crossed product into a local-to-global property of commuting idempotent
