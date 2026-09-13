@@ -157,6 +157,25 @@ Ownership check 09-13 ~18:25: no rotation lemma for `IsNoncrossingClosedWalk` an
   model, unlanded at 18:21; agreed with w1-binder-5 and listed in w1-binder-6's clause table). This lane builds nothing there and
   consumes `regionPairThickening` when it lands.
 
+### L1a LANDED 2562633bc (probe 0913-182519-25130 GREEN, BUILT, first try)
+
+`Estimating/OsinAppendixEulerTwoGonCopyCleanWalk`, unwired, queued for wiring; no census row (certifies no printed sentence).
+- `IsNoncrossingClosedWalk.vertexOf_alpha_eq_next`, `of_next`, `walkKeep_rotate_iff`, `rotate` and `append_comm`: a cyclic
+  permutation of a noncrossing closed walk is a noncrossing closed walk.
+- `PocketWalk.CopyCleanAt X i x y`: the edge conditions with the source cell given by its index, so a producer need not name the
+  pocket walk. `copyClean_of_copyCleanAt` gives `K.CopyClean x y` for every pocket walk `K` from `i`.
+- `PocketWalk.exists_noncrossing_decomposition_of_copyCleanAt`: for exterior regions `a ≠ b` of the cell `i` to section `j`,
+  target arc of `a` first, least area and `CopyCleanAt S.diagram i a b`, there are a source arc and a target arc with
+  `source.reverseDarts ++ a.rightSide ++ target.darts ++ b.leftSide` noncrossing and the four arc bounds of
+  `TwoGonEitherFollowsPocketInput`.
+- Route: `PocketWalk.exists_of_le`, baseline-debt's `isNoncrossingClosedWalk_of_copyClean`, then `append_comm`.
+- Residual of L1: `CopyCleanAt` on the copy, whose six clauses are produced by w1-binder-6, ms-binary, ms-cite-2 and ms-intro-2.
+  The following clause (L2) and the subset and avoidance clauses (L4/L5) are other lanes' leaves.
+
+### Item 3 status
+
+L1a landed; L1b withdrawn. Nothing open in this lane's binder-4 share.
+
 ## Progress log
 
 - 09-13 ~17:01: ledger landed (d5d320909).
