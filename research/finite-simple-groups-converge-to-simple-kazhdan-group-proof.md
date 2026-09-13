@@ -18,9 +18,15 @@ Artifact Part 2, §8.1.
    subshift. So `N_k = |z_k| >= 2k+2 -> infinity`.
 2. **Full matrix algebras.** Products of shifted letter indicators `P^i D(chi_[a]) P^(-i)` give the
    diagonal indicator of every cyclic window. The word `z_k` is primitive, so two positions with the
-   same cyclic windows of length `N_k` are equal. Thus these diagonals generate all diagonal matrices,
-   and together with `P` they generate `M_(N_k)(F_q)`. The images of the elementary generators
-   therefore generate `EL_3(M_(N_k)(F_q)) = SL_(3N_k)(F_q)`.
+   same cyclic windows of length `N_k` are equal. Thus these diagonals generate all diagonal `0/1`
+   matrices. Together with `P` and the scalar `c_0 I`, they generate `M_(N_k)(F_q)` as a ring. Since
+   `e_ij(st) = [e_ik(s), e_kj(t)]` and root groups are additive, the images of the elementary generators
+   generate `EL_3(M_(N_k)(F_q)) = SL_(3N_k)(F_q)`.
+
+   *Review correction (2026-09-13, ex-verify-groups).* Without `e_ij(c_0)`, the listed generators
+   generate only the ring `M_(N_k)(F_p)`, and in the limit only `EL_3(LC(X,F_p) ⋊ Z)` modulo its
+   centre. That is the same theorem at `q = p`. For `q = p^e` with `e > 1`, the marking must contain a
+   generator of `F_q^x`.
 3. **Convergence to `G`.** The maps `psi_k` are injective and multiplicative on the ball of radius
    `r` once `k` is large. So a word of length `<= r` is trivial in `G` iff it is trivial in
    `SL_(3N_k)(F_q)` for large `k`. That is marked convergence.

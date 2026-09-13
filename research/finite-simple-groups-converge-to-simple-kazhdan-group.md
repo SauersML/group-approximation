@@ -11,8 +11,9 @@ artifacts:
 ---
 
 Let `q` be a prime power and `X` an infinite minimal subshift over an alphabet `A`. Put
-`R = LC(X,F_q) ⋊ Z` and `S = EL_3(R)/Z`, marked by the images of `e_ij(1)`, `e_ij(u^(±1))` and
-`e_ij(chi_[x_0=a])`. There are integers `N_k -> infinity` and markings of the finite simple groups
+`R = LC(X,F_q) ⋊ Z` and `S = EL_3(R)/Z`, marked by the images of `e_ij(1)`, `e_ij(c_0)` for a fixed
+generator `c_0` of `F_q^x`, `e_ij(u^(±1))` and `e_ij(chi_[x_0=a])`. The scalar generator is needed only
+when `q` is not prime. There are integers `N_k -> infinity` and markings of the finite simple groups
 `PSL_(3N_k)(F_q)` such that
 
 ```text

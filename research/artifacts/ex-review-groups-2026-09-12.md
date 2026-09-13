@@ -131,6 +131,13 @@ every group.
   (ex-weak-soficity), and one-variable Atiyah base change off a countable set (ex-atiyah-torsion-free).
   Part 7.
 
+- **§8, stop relations, mixing transfer, doubles, Brin–Thompson, killers, PSL limits (~01:30 CDT).** This
+  adds a forward correction to §3.2: its PASS rested on KMS zero-word imports that fail as displayed, now
+  repaired to `G_0` by ex-verify-logic-quantum, and the repair was checked. PASS on the Howe–Moore mixing
+  transfer, weakly sofic doubles, twisted Brin–Thompson orbit problems, and the killers of the relative-(T)
+  and lattice-forced-torsion routes. GAP on the PSL-limit marking for non-prime `q`, corrected forward on
+  both nodes. Part 8.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -140,3 +147,4 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part5.md`: §5, sweep at f79305e9c, Bernoulli absorption, torsion-free wreath.
 - `research/artifacts/ex-review-groups-2026-09-12-part6.md`: §6, the determinant spectral chain.
 - `research/artifacts/ex-review-groups-2026-09-12-part7.md`: §7, L²-acyclicity, amenable-orbit full groups, weak models, Atiyah base change.
+- `research/artifacts/ex-review-groups-2026-09-12-part8.md`: §8, KMS stop-relation repair, mixing transfer, doubles, Brin–Thompson, killers, PSL limits.

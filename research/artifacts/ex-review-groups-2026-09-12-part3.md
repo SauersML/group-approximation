@@ -63,6 +63,11 @@ converse is natural once Dudko–Medynets is in hand. Keep both lines unreviewed
 
 ## 3.2 ex-complexity-sofic: `RF_fp` is Pi^0_2-complete (076f1bec8c, 0f7c32377c). PASS after correction
 
+> **Forward correction (2026-09-13, see part 8 §8.1).** This section relied on KMS Theorem 4.3(b) and
+> Lemma 4.14 as imported. `ex-verify-logic-quantum` (0ab2ae254f) showed that both fail for zero words in
+> `G(M)` as displayed. The lemmas now hold for `G_0(M)`, which adds the stop relations `x_(q_0 w) = 1`.
+> The verdict below stands for the corrected family `e ↦ G_0(P(M_e))`.
+
 Artifacts `rf-fp-pumped-minsky-part1..3-2026-09-12.md`. Imports were checked against KMS arXiv:1204.6506v5,
 pp. 22–24, read from the PDF fetched on MSI. That covers formula (13), the automorphisms `a_j`, `ã_j`, `A_j`,
 the definition of `Ḡ` as `T_1 x| <automorphisms>`, Lemma 4.9, and Lemmas 4.10–4.11, the surjection
