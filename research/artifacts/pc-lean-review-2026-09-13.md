@@ -2,6 +2,8 @@
 
 Part 1: statement fidelity and model tests of the endpoint vocabulary.
 Part 2 (`pc-lean-review-2026-09-13-part2.md`): the landed modules, hidden hypotheses and axiom closures.
+Part 3 (`pc-lean-review-2026-09-13-part3.md`): the fz surface under the coordinator's scope change. It covers the
+bridges, the discharge tracker for the binder-free endpoint, new landings, drafts in flight, gates and CI.
 
 Reviewed against origin/main at 2f124d801 (02:06 CDT). Every file on main under `GroupApproximation/Pestov91/`
 and every `Palomar/Pestov91*` file was landed by the parallel **fz** campaign (session 6dbfc571, lanes `p91-*`), not by
