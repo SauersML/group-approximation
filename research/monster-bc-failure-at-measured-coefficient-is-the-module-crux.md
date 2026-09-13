@@ -75,3 +75,22 @@ satisfy Baum--Connes would kill the route.
   analogous congruence approximation computes the **max-vs-reduced** comparison for the module
   coefficient `C((Z/p)^G)`, rather than a trace, is unexplored and is the most concrete next
   probe.
+- **The kill through measured coefficients contains trivial-coefficient Baum--Connes.**
+  - Consider a theorem that Baum--Connes holds at every coefficient `C(X)` whose compact `G`-space
+    carries an invariant probability measure of full support. The one-point space with its Dirac
+    measure qualifies, so the theorem includes trivial coefficients for the host `G`. For an
+    expander monster that case is open. Willett--Yu I (arXiv:1012.4150, p. 5, read from the text
+    extraction) write "here little is known about the usual (reduced) assembly map".
+  - Restricting to dual-module coefficients is no easier. By item 2 of
+    `amenable-kernel-bc-transfer-and-ktop-half-exactness`, injectivity (resp. surjectivity) of
+    `mu_(G, C(V^))` is equivalent to injectivity (resp. surjectivity) of trivial-coefficient
+    assembly for `V ⋊ G`.
+  - So (Q) failing for every `V` is trivial-coefficient Baum--Connes for all groups `V ⋊ G`, and
+    `V = 0` gives `G` itself. (Q) holding for some `V` is a counterexample for that `V ⋊ G`. The
+    dual-module crux is the root restricted to these groups.
+  - Hence no kill of the route can pass through assembly without settling trivial-coefficient
+    Baum--Connes for the host. A kill must prove K-exactness of module triples directly, by an
+    exactness mechanism that never identifies the K-theory.
+  - The mechanisms recorded so far all need an equivariant splitting, a finite quotient or a
+    co-amenable section (`split-quotients-give-exact-reduced-crossed-products`), and the
+    Bernoulli survivors above have none of them.
