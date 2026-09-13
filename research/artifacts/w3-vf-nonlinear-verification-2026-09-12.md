@@ -1457,6 +1457,7 @@ Artifact `research/artifacts/brin-thompson-2v-gottschalk-host-2026-09-12.md`, Se
   - The display `(π ⊗ 1) D(h) (π ⊗ 1)^(-1) = Σ_i (s_(τ(i)) ⊗ 1) h (t_(τ(i)) ⊗ 1) = D(h)` checks, and so does the direct-finiteness step.
   - The route body keeps "whichever orientation". Its verdict paragraph records the caveat, which is enough.
 - **Wording (Section 3, optional).** "Section 4 shows that `V_1` together with the baker unit is not enough" reads as an impossibility. Corollary 4.4 shows only that a solution supported in `H_u` would settle `thompson-v-not-sofic`. Suggested wording: "Section 4 shows that a solution using only `V_1` and the baker unit would already show that `V` is not sofic."
+- **Wording applied (bc759d7cc).** Section 3 of the host artifact now reads "Section 4 shows that a solution using only `V_1` and the baker unit would already show that `V` is not sofic", which matches Corollary 4.4.
 
 ## 30. Linearly dirty ancilla words (w7-marker-ancilla, 87f699a25a)
 
@@ -1494,3 +1495,8 @@ Claim `linearly-dirty-ancilla-words-realize-only-affine-data-maps` (ESTABLISHED)
   - Searched node bodies for "exact read", "linearly dirty", "linear-dirt" and "dirt part", and node titles for stable formalization, track shears, ancillas, dirt and "affine".
   - Nearest: `structurally-reversible-automata-are-formalizable` and `marker-involution-is-formalizable-after-regrouping` (positive constructions), and `formalizable-left-inverse-iff-clean-shear-dilation`, `invertible-ancilla-outputs-collapse-stable-formalization` and `formalizable-binary-pairs-over-biorderable-groups-are-affine` (formal pairs).
   - None states or implies this claim, which concerns functional words on Boolean points rather than formal pairs.
+
+**Follow-up (2b51a6b3ca). Both notes applied, and the new text is correct.**
+- **Artifact step 6.** `W` is a bijection, so `F(x) = p(σ) x + b` is one too. If `p = σ^j (p_0 + ... + p_d σ^d)` with `p_0 = p_d = 1` and `d >= 1`, then `p v = 0` extends any nonzero block forwards (by `p_d = 1`) and backwards (by `p_0 = 1`). So `p` has a nonzero kernel, and it must be a monomial.
+- **Claim node.** The status line names the PASS, and the Invariant bullet adds that constant translations add a constant to `Q`.
+- **Record.** The verification record in the artifact (Section 7) describes Section 30 accurately.
