@@ -119,6 +119,22 @@ two; rank three prescribes the original simple endpoint factors with
 four torsion generators. The proof is written, not Lean-verified; the
 general rank-three case with fixed points is not settled here.
 
+The [directed-seam theorem](../research/artifacts/pestov91-directed-seams-and-normal-lattices-2026-09-13.md)
+replaces one transition by any finite directed graph. Exactly the
+edges between strongly connected components contribute to the MF
+radical; deleting them leaves a LEF image. The complete normal lattice
+is the vertex-edge incidence lattice and does not depend on direction.
+Two orientations of one triangle consequently give three-generator
+Kazhdan groups with the same abstract kernel, endpoint quotient and
+18 normal subgroups, one LEF and the other non-MF. These are written
+proofs, not Lean formalizations.
+
+Deleting one edge of a two-cycle gives a further quotient counterexample:
+a three-generator LEF Kazhdan group maps onto a just non-MF group with
+infinite simple locally finite kernel. Thus neither MF nor LEF survives
+all quotients by locally finite normal subgroups, even in this Kazhdan
+family. Section 6 of the directed-seam proof gives the exact sequence.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
