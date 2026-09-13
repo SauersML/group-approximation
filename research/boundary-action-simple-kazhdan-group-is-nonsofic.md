@@ -19,3 +19,9 @@ The mirror is sharp. The Pestov group `EL_3(LC(X,F_q) ⋊ Z)/Z` is LEF, hence so
 paradoxical boundary action lands on the other side of both lines.
 
 ESTABLISHED by `boundary-action-simple-kazhdan-group-is-nonsofic-proof` (unreviewed).
+
+**Review (un-verify-3, 2026-09-13): PASS.** The explicit family is re-derived in `boundary-crossed-product-carries-leavitt-family`. The corner copy `ψ = Φ∘EL_N(θ)` is re-derived: `θ(x) = s_1 x t_1` is a unital ring isomorphism `R_∂ → eR_∂e`; `Φ(X) = X + (1−e)I_N`; `ψ(X) = λI` forces `λ = 1`. It meets the central scalars trivially, so every `EL_N(R_∂)/C` is nonsofic, and so is `S_∂` for `N ≥ 3` by the reviewed scalar-centre theorem.
+- **Lean backing.** The d-ary theorem is `GroupApproximation.CompleteMatrixFamily.elementary_not_isSofic` (`Leavitt/AryEndpoints.lean`, root-imported at `GroupApproximation.lean:702`; no placeholder tokens). Its `CompleteMatrixFamily` fields `right i * left j = δ_ij`, `Σ left i * right i = 1` match `t_i s_j = δ_ij`, `Σ s_i t_i = 1`. `IsSofic` is the standard Hamming definition. `#print axioms` on MSI gives `[propext, Classical.choice, Quot.sound]` for it and for the binary `FamilyRankFour.elementary_not_isSofic`.
+- **Display slip.** The route names `LeavittFamily.elementary_not_isSofic`; the d-ary declaration is `CompleteMatrixFamily.elementary_not_isSofic`.
+- **Subsumption.** This is a special case of `halvable-corner-makes-projective-elementary-groups-nonsofic` (established): `R_∂` has a halvable idempotent. It is also a case of `purely-infinite-simple-projective-el-groups-stable-nonsofic` once `R_∂` is known purely infinite simple. What is new here is only the explicit boundary family.
+`research/artifacts/un-review3-2026-09-13-part2.md` §6.

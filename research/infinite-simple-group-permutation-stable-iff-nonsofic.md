@@ -43,3 +43,5 @@ The correcting homomorphisms in 3 and 4 are always trivial. Proof: `infinite-sim
 Bradford's senses used by `binary-leavitt-unit-group-is-permutation-stable`. For a finitely
 presented `S`, the Arzhantseva–Păunescu definition via almost solutions of the relators is the
 standard alternative. Its equivalence with the version here is recalled, not imported.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived all four implications. The limit kernel `N = {g : lim_ω d(φ_n(g),1) = 0}` is a normal subgroup; the inverse and conjugation estimates use only bi-invariance and finitely many defects. Simplicity gives `N = 1`, and coordinatewise amplification gives `1 − d(φ^(m)(g),1) = (1 − d(φ(g),1))^m` with defects at most `m` times larger, hence soficity. Separation on pairs follows by enlarging `F` by `FF^(-1)`. The node states its definitions (almost homomorphisms, Bradford senses) and only recalls the Arzhantseva–Păunescu relator form, so nothing more is claimed. Novelty: a routine limit-kernel argument, very likely folklore; no source located. `research/artifacts/un-review3-2026-09-13-part2.md` §3.

@@ -20,3 +20,5 @@ Then `t_i s_j = delta_ij` and `sum_i s_i t_i = 1`. So `R_∂ ≅ R_∂^d` as rig
 homomorphism `L_k(1,d) -> R_∂`, which is injective by `leavitt-algebras-l-k-1-n-are-simple`.
 
 ESTABLISHED by `boundary-crossed-product-carries-leavitt-family-proof` (unreviewed).
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived the cylinder identities (I1) `c·C(c^(-1)) = ∂F_d \ C(c)`, (I2) `c·C(c') = C(cc') ⊆ C(c)` for `c' ≠ c^(-1)` and (I3), and all products: `t_i s_i = P^+ + (1 − P^+) = 1`, `s_i t_i = P^+ + P^-`, `t_i s_j = 0` for `i ≠ j` (four vanishing terms, by (I2) and disjointness), and `Σ_i s_i t_i = 1`, using `P_U u_g = u_g P_(g^(-1)U)`. `research/artifacts/un-review3-2026-09-13-part2.md` §2.

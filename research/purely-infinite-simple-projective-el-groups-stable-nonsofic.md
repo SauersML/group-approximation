@@ -33,3 +33,5 @@ by `infinite-simple-group-permutation-stable-iff-nonsofic`:
 - **measure with towers** (matricial algebras, e.g. Pestov's `LC(X,F_q) ⋊ Z`): `S` is LEF, sofic and unstable;
 - **purely infinite** (halvable corner): `S` is nonsofic and stable;
 - **middle** (neither): stability of `S` is the same open question as its soficity.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: the neutral element of the group `V(R)*` (AGP import, established) is halvable; `halvable-corner-makes-projective-elementary-groups-nonsofic` with `d = 1` gives nonsoficity of `S_N` when `Z ⊆ k^x·1`; `S_N` is infinite; and for simple `S_N`, `infinite-simple-group-permutation-stable-iff-nonsofic` gives stability with trivial correcting homomorphisms. "Permutation stable" here is in that node's almost-homomorphism sense; the Arzhantseva–Păunescu relator form is only recalled there. `research/artifacts/un-review3-2026-09-13-part2.md` §5.

@@ -25,3 +25,5 @@ subgroup of `EL_(nd)(R)`. Nonsoficity of `G` does not obviously pass to `G/C` fo
 has to meet the scalars trivially. The corner at `e` may be the whole algebra (for `L_k(1,2)`,
 `e = 1`), and then its image contains scalars. The fix is to pass to the proper halvable corner
 `e' = s_0 t_0`. Proof: `halvable-corner-projective-elementary-groups-nonsofic-proof`.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: `e' = s_0t_0` is idempotent (`s_0 e = s_0`), nonzero (`t_0 e' s_0 = e`) and proper (`e' s_1 = 0 ≠ s_1`), with `e'A ≅ eA` halvable. The corner map `κ_n(g) = g + (1−e')1_n` is an injective homomorphism into `EL_n(A) ≤ EL_(nd)(R)`. `κ_n(g) = λ1` gives `(λ−1)(1−e') = 0`, so `λ = 1`, and the copy of the nonsofic `EL_n(e'Ae')` meets every group of central scalars trivially. The requires `d-ary-leavitt-groups-nonsofic-over-finite-fields` and `sofic-passes-to-subgroups` are established. `research/artifacts/un-review3-2026-09-13-part2.md` §4.

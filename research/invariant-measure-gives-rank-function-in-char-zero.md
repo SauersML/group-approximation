@@ -33,3 +33,5 @@ Kazhdan groups; characteristic `p` has the Kazhdan groups and an open arrow. The
 of this program therefore live precisely where the equivalence is unavailable, so each measure-branch
 example must be witnessed by hand. That is what the Pestov 9.1 answer does with its return-word tower
 embedding, and what Ara-Claramunt do for all Cantor `Z`-systems.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Trace identity, positivity, boundedness of the left action, faithfulness of the extended trace, and the Murray–von Neumann rank function (standard Sylvester axioms, recalled) were all re-derived. The `distinct_from` entry for `char-zero-steinberg-stably-finite-iff-invariant-measure` is now present. `research/artifacts/un-review3-2026-09-13-part1.md` §2 and part2 §1.

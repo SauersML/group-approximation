@@ -56,3 +56,5 @@ not needed for fullness.
   `boundary-action-elementary-simple-kazhdan-not-mf`.
 - Boldrini–Prasad minimal `F_∞` actions: `S(𝒢)` is **not** almost unperforated, so the hypothesis
   fails and neither branch is forced. That is exactly the middle region of the UN program.
+
+**Review (un-verify-3, 2026-09-13): PASS after repair.** Part 1 found a GAP: "exactly one" was asserted in characteristic p, and the route required only the rank-four node. un-tarski's repair (0156bb3f0a) re-checked: exhaustive over every field; exclusive for `k ⊆ ℂ` via `invariant-measure-gives-rank-function-in-char-zero`; no exclusivity claimed in characteristic `p`. The route now requires `full-defect-ring-non-mf-at-rank-two`. From `2[1] ≤ [1]` there are `s_1, s_2, t_1, t_2` with `t_i s_j = δ_ij`, so `t_2(1 − s_1t_1)s_2 = 1` and the defect is full. `research/artifacts/un-review3-2026-09-13-part2.md` §1.
