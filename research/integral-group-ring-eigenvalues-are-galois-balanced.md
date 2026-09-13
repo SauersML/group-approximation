@@ -41,6 +41,13 @@ as cited by Thom).
   Serre inequalities of single measures. Amplifying through `G x G` or
   Kronecker sums multiplies atom ratios, but the continuous part grows and keeps
   compensating. No contradiction found.
+- **Integral kernel dimensions cannot see balance.** For `Q in Z[x]`,
+  `dim ker r_(Q(A))` is the sum of `dim ker(r_A - beta)` over the roots `beta`
+  of `Q`, a sum over whole Galois orbits. The same holds for Kronecker
+  combinations `A (x) I - I (x) M` with integer `M`, and for restriction of
+  scalars from `O_K[G]`. So no Atiyah-type integrality statement over `Z`
+  about the algebra of `A` detects imbalance. Only compensation failures in
+  determinants, or kernels over `Qbar[G]`, can.
 - **From invariance of kernel dimensions.** `galois-invariance-forces-totally-real-atoms`
   gives total reality and balance, but not integrality, from
   `Gal(Qbar/Q)`-invariance over `Qbar[G]`. That invariance is itself open for

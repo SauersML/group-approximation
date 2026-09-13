@@ -46,3 +46,14 @@ dim_(N(G)) ker(r_A - lambda) <= n / deg(lambda).
   measure (artifact Section 4, `serre-class-atoms-obey-degree-bound`).
 - Literature check, bounded to Thom 2007 and Lück arXiv:1901.00827v2
   Remark 4.2: this implication was not found there.
+
+**Normal matrices and complex eigenvalues.** The same holds for normal
+`A in M_n(Z[G])` (`A^* A = A A^*`), with complex spectral measure `mu_A` on `C`.
+- If `lambda` is not real and `dim ker(r_A - lambda) > 2n / deg(lambda)`, some
+  integral polynomial image has determinant below one.
+- For transcendental `lambda` the condition is just a nonzero kernel.
+
+So under the conjecture every eigenvalue of a normal integral matrix is algebraic,
+with multiplicity at most `n/deg` (real) or `2n/deg` (non-real). The non-normal
+case is not covered: there the kernel of `Q(A)` can absorb the small spectrum of
+`Q(A)`, and the argument of the proof route does not go through.

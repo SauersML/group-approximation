@@ -29,4 +29,18 @@ Artifact Section 3.
 
 4. **Contrapositive.** If `G` satisfies the conjecture, every `mu_A` is in
    the Serre class (`determinant-conjecture-iff-serre-class-spectra`), and
-   `serre-class-atoms-obey-degree-bound` gives `m <= n / deg(lambda)`. QED
+   `serre-class-atoms-obey-degree-bound` gives `m <= n / deg(lambda)`.
+5. **Normal `A`, non-real `lambda`.** `Q(A)` is normal, and (FC) holds with the
+   complex spectral measure.
+   - **Box principle in `C`.** The `(H+1)^(N+1)` values
+     `sum_(i<=N) a_i lambda^i` lie in a square of side `H s`. Cutting it into
+     fewer than `(H+1)^(N+1)` equal squares gives a nonzero `Q in Z[x]` with
+     `deg Q <= N < deg(lambda)`, height at most `H`, and
+     `|Q(lambda)| <= sqrt 2 s H^(-(N-1)/2)` (up to a constant). So
+     `Q(lambda) != 0`.
+   - **Estimate.** As in step 4 of the degree-bound proof,
+     `integral_(Q != 0) log|Q| d mu_A <= -(w(N+1)/2 - 1) log H + O(1)`,
+     with `w = m/n` and the constant independent of `H`.
+   - **Conclusion.** This is negative for large `H` when `w > 2/(N+1)`. Taking
+     `N = deg(lambda) - 1` gives the `2n / deg(lambda)` bound, and every `N`
+     is allowed for transcendental `lambda`. QED

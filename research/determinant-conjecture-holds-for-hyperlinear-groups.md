@@ -18,8 +18,9 @@ non-hyperlinear?** As far as the sources read go, no.
   quotients, directed colimits, inverse limits, subgroups and quotients by
   finite kernels, and membership of sofic groups. No hyperlinear case appears.
 - **The sofic theorem.** Elek--Szabó (Math. Ann. 332, 2005) proves the sofic
-  case (`determinant-conjecture-holds-for-sofic-groups`); the title's
-  "hyperlinearity" refers to other results of that paper.
+  case (`determinant-conjecture-holds-for-sofic-groups`). That paper was not
+  re-read in this session. Its title also mentions hyperlinearity, but Lück's
+  status list, written fifteen years later, records only the sofic case.
 - **Thom 2007** (arXiv:math/0701294v3) works with sofic groups throughout.
 
 So a determinant violation certifies nonsoficity of the support subgroup
