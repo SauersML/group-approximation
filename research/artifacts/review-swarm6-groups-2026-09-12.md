@@ -281,3 +281,90 @@ These landed shortly before 17:00, and no review file has a verdict on them. Two
   `fp-subshift-full-group-subgroups-extend-to-sft`, and its item 2 says nothing.
 - **Item 4** is 8.3 with `X = Y = Ω_U`.
 - **Open parts.** Amenability and finite presentation are correctly OPEN and were not reviewed here.
+
+## 9. `minimal-free-sft-full-group-pattern-models-are-exact` (6a387929b): PASS
+
+- **Hypotheses.** A validly coloured `Z^d`-set is nonempty by definition (claim line 21). `X` is free, minimal and
+  exactly the SFT on `K`. So every `x_ω` lies in `X`, and `f_s(x_ω)` is defined.
+- **Display check, route Steps 1–7.**
+  - `x_{λ·ω}(μ) = c(μ·λ·ω) = (λ·x_ω)(μ)`.
+  - Freeness: `λ·ω = ω` gives `λ·x_ω = x_ω`, so `λ = 0`.
+  - Cocycle: `gh(x) = f_g(hx)·f_h(x)·x`. Freeness of `X` makes `f_{gh}(x) = f_g(hx) + f_h(x)` the only solution.
+  - Homomorphism: `g_Ω(h_Ω ω) = f_g(f_h(πω)·πω)·f_h(πω)·ω = f_{gh}(πω)·ω`.
+  - Injectivity: if `g_Ω = id`, freeness of `Ω` gives `f_g = 0` on `π(Ω)`. That set is nonempty and invariant, hence
+    dense, and `f_g^{-1}(0)` is clopen. So `f_g ≡ 0` and `g = 1`.
+- **Every model gives the same marked group.** Nothing above uses `(Ω, c)` beyond validity and nonemptiness. So every
+  validly coloured `Z^d`-set gives `(Γ, S)`.
+- **Isolation lemma** (claim line 32, route lines 45–51).
+  - Isolated ⇒ f.p.: the kernels of `Γ_n` increase to the kernel of `Γ`, so `Γ_n → Γ`. This needs only finite
+    generation.
+  - F.p. ⇒ isolated: "all of `R` vanish and `s_0 ≠ 1`" is a finite intersection of clopen conditions. A marked group
+    in it is a quotient of `Γ` whose kernel misses `s_0`. Simplicity makes that kernel trivial. This needs simplicity
+    and `s_0 ≠ 1`, nothing more.
+  - "Infinite" is never used. Finite simple groups are also f.p. and isolated. So the extra hypothesis is harmless, and
+    none is missing.
+  - The node proves the lemma itself and cites no source. Cornulier–Guyot–Pitsch: source not re-read.
+- **Consequence** (route lines 55–59). `Z ≠ Ω_U` gives `Z ⊄ Ω_U`, because a nonempty closed invariant subset of the
+  minimal `Ω_U` is all of it. Minimality of `Z` then makes the defects syndetic. Nothing is claimed about finite
+  presentation.
+- **OPEN node.** `labbe-shift-derived-full-group-is-finitely-presented` is still OPEN at 8b4ce1d3f.
+- **Subsumption scan** (no truncation; "isolated", "marked group", and "colouring" together with "full group").
+  - Item 1 of `fp-simple-groups-escape-soft-hyperlinear-permanence` (ESTABLISHED) already records f.p. ⇒ isolated for
+    infinite simple groups. That is one direction of a lemma this node uses only in its consequence section.
+  - `leavitt-unit-group-surjunctive` (OPEN) uses the same direction in prose and cites Cornulier–Guyot–Pitsch.
+  - No older node states the pattern-model theorem.
+- **Nits.**
+  - The title says "the marked full group", but the theorem holds for every finitely generated `Γ ≤ [[Z^d ~ X]]`.
+  - `d ≥ 1` is implicit in "free orbits are infinite".
+
+## 10. Baumslag–Gersten claims (c6d492eb1): two PASS, one title narrowed
+
+### 10.1 `baumslag-gersten-group-is-neither-linear-nor-self-similar`: PASS, title corrected forward
+
+- **Item 1, recomputed** (route lines 12–25).
+  - `ord(πb) = n`, and `(πb)^k πa (πb)^{-k} = (πa)^{2^k}`. At `k = n` this gives `n | 2^n − 1`.
+  - For the least prime `p | n`, `ord_p(2)` divides `gcd(n, p − 1) = 1`. So `2 ≡ 1 (mod p)`, which is impossible,
+    and `n = 1`.
+  - `BG/⟨⟨a⟩⟩ = ⟨t⟩ ≅ Z`.
+  - Known case: `BS(1,2)` maps onto `S_3` with `a` a 3-cycle and `b` a transposition, so `a` survives there. That image
+    has `ord(πb) = 2 ≠ 3 = ord(πa)`, so it does not factor through `BG`. The route uses exactly this conjugacy.
+- **Items 2–4.**
+  - Magnus: `BG` is an HNN extension of `BS(1,2)` along the infinite cyclic `⟨a_0⟩ → ⟨a_1⟩`, so `a ≠ 1`.
+  - Malcev gives item 3.
+  - Level stabilizers of a locally finite rooted tree are normal of finite index with trivial intersection. That gives
+    item 4.
+- **Title overclaim.** "embeds in no rooted-tree automorphism group" is false without local finiteness. The rooted tree
+  of depth 1 with countably many leaves has `Aut(T) = Sym(N)`, which contains every countable group. Body item 4 and
+  the route both say locally finite.
+  - **Corrected forward.** The title now ends "embeds in the automorphism group of no locally finite rooted tree".
+- **Source re-read.** arXiv:2405.09722 Theorem 1.1 (MSI text `bh-reviewer/2405.09722.txt`, lines 29–30) concerns
+  finitely presented self-similar groups, as cited.
+- **Subsumption scan** ("gersten", no truncation, 38 hits).
+  - Two OPEN nodes mention non-residual finiteness in prose: `baumslag-gersten-group-satisfies-boone-higman` and
+    `one-relator-groups-satisfy-boone-higman`. So does the route `alekseev-thom-rips-flexible-p-instability-proof`.
+  - No ESTABLISHED claim states it.
+  - Item 4 is an instance of `self-similar-hosts-contain-only-residually-finite-groups`, as `distinct_from` says.
+
+### 10.2 `baumslag-gersten-odometer-pieces-force-fixed-points`: PASS
+
+- **Item 1** (route lines 12–28).
+  - The structure theorem makes `a|Y` a rotation by `θ` with `Zθ` dense. Auslander, Chapter 3: source not re-read.
+    The theorem is standard.
+  - Then `b(x + nθ) = b(x) + 2nθ`. By continuity `b(k) = c + 2k`, and `b(−c) = −c`.
+  - `a(t^{-1}y) = t^{-1} b(y) = t^{-1}y`. Only `b(Y) ⊆ Y` is used.
+- **Item 2.** With `Y = X`, a minimal `a` on at least two points has no fixed point.
+- **Item 3, recomputed.**
+  - Ternary model: `2(x/2 + 1) = x + 2`, and `2 ∈ Z_3^×`. Sections on `d + 3Z_3` stay affine over `Z[1/2]`, because
+    `m/2^j ∈ 3Z_3` iff `3 | m`.
+  - Projective model: `Fix(a) = {∞}` and `Fix(b) = {0, ∞}`, while every `BG`-action has `Fix(b) = t·Fix(a)`. This
+    obstruction does not use item 1.
+- **Scope.** The node (line 34) and the route claim only `n = 2`. The route's `n = 4` example is right:
+  `b(x) = 1 + 4x` on `Z_3` satisfies `b(x + 1) = b(x) + 4`, and it has no fixed point because `3x = −1` has no solution
+  in `Z_3`. No drift toward general `n`.
+- **Nit, title.** "odometer models of `BS(1,2)` never extend to the Baumslag–Gersten group" holds for extension on the
+  same space, which is what item 3 says. On a larger space the induced action `BG ×_{BS(1,2)} Y` does extend the model.
+  The route's proper-piece remark (lines 44–46) already allows this.
+- **Subsumption scan** ("odometer", "adding machine", "equicontinuous", no truncation).
+  - The ESTABLISHED hits are unrelated: `fpbs-line-independent-twisted-levels-disconnected` and
+    `kazhdan-groups-without-fd-reps-violate-two-root-identity`.
+  - No older node states the obstruction.

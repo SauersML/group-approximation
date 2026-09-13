@@ -2,7 +2,7 @@
 rg: 2
 id: baumslag-gersten-group-is-neither-linear-nor-self-similar
 kind: claim
-title: Every finite image of the Baumslag--Gersten group kills a, so the group is linear over no field and embeds in no rooted-tree automorphism group
+title: Every finite image of the Baumslag--Gersten group kills a, so the group is linear over no field and embeds in the automorphism group of no locally finite rooted tree
 distinct_from:
   self-similar-hosts-contain-only-residually-finite-groups: that proves every subgroup of a self-similar group is residually finite; this proves the Baumslag--Gersten group is not residually finite, so that obstruction applies to it, and adds that it is linear over no field.
   baumslag-gersten-base-is-elliptic-in-every-tree-action: that rules out tree hosts through ellipticity of the BS(1,2) base in actions on trees; this rules out linear and rooted-tree hosts through the finite quotients of the group.
