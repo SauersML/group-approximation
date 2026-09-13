@@ -8,9 +8,12 @@ distinct_from:
   minimal-aperiodic-wang-shift-exists: that is Labbé's minimal aperiodic Z^2 SFT, a coding of a rotation of the 2-torus; this is about codings of rotations of the circle, which are never of finite type
 artifacts:
   - research/artifacts/zp-fp-simple-amenable-obstructions-2026-09-13-part3.md
+  - research/artifacts/zp-review-groups-2026-09-13-part3.md
 ---
 
-**ESTABLISHED (unreviewed).**
+**ESTABLISHED. Review PASS** (z-verify-groups, `research/artifacts/zp-review-groups-2026-09-13-part3.md`,
+§13.2, 1c5f56e974). The review checked that the rational perturbation keeps every coincidence in the
+breakpoint set.
 
 **Setting.**
 - `1, θ_1, ..., θ_d` are linearly independent over `Q`, and `Z^d` acts on `R/Z` by

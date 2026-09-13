@@ -7,9 +7,11 @@ distinct_from:
   periodic-approximable-subshifts-host-no-fp-simple-group: that kills every finitely generated subgroup for subshifts with periodic approximations; this kills the derived and alternating full groups of circle rotation codings over Z^d through finite type, without checking the stabilizer clause of periodic approximations
 artifacts:
   - research/artifacts/zp-fp-simple-amenable-obstructions-2026-09-13-part3.md
+  - research/artifacts/zp-review-groups-2026-09-13-part3.md
 ---
 
-**ESTABLISHED (unreviewed).** Let `X` be the closure of a coding of a free `Z^d`-action
+**ESTABLISHED. Review PASS** for both inputs and the composing route (z-verify-groups,
+`research/artifacts/zp-review-groups-2026-09-13-part3.md`, §13.2, 1c5f56e974). Let `X` be the closure of a coding of a free `Z^d`-action
 on the circle by rotations, by finitely many half-open arcs
 (`circle-rotation-zd-codings-are-not-of-finite-type`).
 - `D([[Z^d ~ X]])` and `A([[Z^d ~ X]])` are not finitely presented.

@@ -31,14 +31,16 @@ Zaremsky Problem 1.10 negatively, through `zaremsky-1-10-by-nonexistence`.
     topologically free residually finite actions.
   - `zd-derived-full-group-fp-forces-finite-type`: derived full groups of free
     minimal `Z^d`-subshifts that are not of finite type.
-  - `fp-alternating-full-groups-of-free-subshifts-force-sft` (unreviewed): the same
-    over every infinite finitely generated group, without minimality, for the derived
+  - `fp-alternating-full-groups-of-free-subshifts-force-sft` (review PASS,
+    `research/artifacts/zp-review-groups-2026-09-13-part3.md` §13.1): the same over
+    every infinite finitely generated group, without minimality, for the derived
     and alternating full groups and every finitely presented subgroup containing the
     rule 3-cycles. So a full-group example over a free subshift needs a nonempty
     strongly aperiodic SFT.
-  - `circle-rotation-zd-derived-full-groups-are-not-fp` (unreviewed): free
-    `Z^d`-actions on the circle by rotations, coded by interval partitions, are never
-    of finite type. This covers the free rank-2 interval exchange realizations.
+  - `circle-rotation-zd-derived-full-groups-are-not-fp` (review PASS, same artifact,
+    §13.2): free `Z^d`-actions on the circle by rotations, coded by interval
+    partitions, are never of finite type. This covers the free rank-2 interval
+    exchange realizations.
   - `amenable-infinite-simple-circle-groups-fix-a-point`: infinite simple groups
     acting on the circle without a global fixed point. This includes 1-periodic
     simple groups of line homeomorphisms whose circle action has no fixed point, such
