@@ -11,8 +11,9 @@ relator cell can lie on an edge whose other side is another relator cell (possib
 same one) or the exterior.  If that dart is unbound for a section family of maximal
 weight, the family is not maximal: doubling the edge (`FaceEdgeDoubling.diagram`) creates
 a G-cell digon between the two sides, which is a contiguity region of arc lengths one and
-one with empty sides, and adjoining it to the retained family raises the weight by two
-(`RealizedSectionFamily.false_of_unbound_shared_edge`).
+one with empty sides (`FaceEdgeDoubling.digon_decomposition`), and adjoining it to the
+retained family raises the weight by two (`RealizedSectionFamily.false_of_digon_region`,
+`RealizedSectionFamily.false_of_unbound_shared_edge`).
 
 Toward the exterior the digon's target arc is one position of the boundary word, which
 lies in some section (`SectionCuts.exists_section_of_lt`), so the enlarged family still
@@ -140,9 +141,329 @@ theorem invDarts_embedding_alpha (x : Delta.toCombMap.Dart) :
 
 end FaceEdgeDoubling
 
+namespace Embedded
+
+/-- An empty side reads the identity, of word norm zero. -/
+theorem wordNorm_dartWord_nil_le (D : RelGenSet G Lambda) (eps : ℕ)
+    (Xi : DiscDiagram.{u, w, v} W) :
+    WordMetric.wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord Xi [])) ≤ eps := by
+  rw [dartWord, List.map_nil, RelLetter.listVal_nil, WordMetric.wordNorm_one]
+  exact Nat.zero_le _
+
+end Embedded
+
+namespace FaceEdgeDoubling
+
+/-! ## The digon at an edge of relator cell `i` as a contiguity region -/
+
+variable (Delta : DiscDiagram.{u, w, v} W) (i : Fin Delta.rCellCount)
+  (j : Fin (cellDarts Delta i).length) (hlen : 1 < (cellDarts Delta i).length)
+  (hf : (Embedded.cell Delta i).face ≠ Delta.outerFace)
+
+/-- The source arc of the digon: the new dart in the place of `w_j`, at position `j` of the
+carrier of cell `i`. -/
+noncomputable def sourceUnitArc :
+    CyclicArc (cellDarts (diagram Delta (Embedded.cell Delta i).face j hlen hf)
+      ((cellMap Delta (Embedded.cell Delta i).face j hlen hf).indexEquiv i)) :=
+  (unitArc (cellDarts Delta i) j.val j.isLt).mapTo
+    (carrierImage Delta (Embedded.cell Delta i).face j hlen hf (Embedded.cell Delta i).face)
+    (cellDarts_eq Delta (Embedded.cell Delta i).face j hlen hf i)
+
+theorem sourceUnitArc_length : (sourceUnitArc Delta i j hlen hf).length = 1 :=
+  CyclicArc.mapTo_length (unitArc (cellDarts Delta i) j.val j.isLt)
+    (carrierImage Delta (Embedded.cell Delta i).face j hlen hf (Embedded.cell Delta i).face)
+    (cellDarts_eq Delta (Embedded.cell Delta i).face j hlen hf i)
+
+/-- The source arc, read backwards, is the other new dart. -/
+theorem sourceUnitArc_reverseDarts :
+    (sourceUnitArc Delta i j hlen hf).reverseDarts = [none] := by
+  have h1 : (cellDarts Delta i)[j.val]'j.isLt = dart Delta (Embedded.cell Delta i).face j :=
+    (dart_eq_get Delta (Embedded.cell Delta i).face j).symm
+  have h2 : (sourceUnitArc Delta i j hlen hf).darts =
+      [carrierImage Delta (Embedded.cell Delta i).face j hlen hf (Embedded.cell Delta i).face
+        (dart Delta (Embedded.cell Delta i).face j)] := by
+    rw [sourceUnitArc, CyclicArc.mapTo_darts, unitArc_darts, h1, List.map_singleton]
+  exact (congrArg (invDarts (diagram Delta (Embedded.cell Delta i).face j hlen hf)) h2).trans
+    (invDarts_carrierImage_self_dart Delta (Embedded.cell Delta i).face j hlen hf)
+
+/-- A unit arc of the carrier of cell `i₂`, carried to the doubled diagram. -/
+noncomputable def cellUnitArc (i₂ : Fin Delta.rCellCount) (q : ℕ)
+    (hq : q < (cellDarts Delta i₂).length) :
+    CyclicArc (cellDarts (diagram Delta (Embedded.cell Delta i).face j hlen hf)
+      ((cellMap Delta (Embedded.cell Delta i).face j hlen hf).indexEquiv i₂)) :=
+  (unitArc (cellDarts Delta i₂) q hq).mapTo
+    (carrierImage Delta (Embedded.cell Delta i).face j hlen hf (Embedded.cell Delta i₂).face)
+    (cellDarts_eq Delta (Embedded.cell Delta i).face j hlen hf i₂)
+
+theorem cellUnitArc_length (i₂ : Fin Delta.rCellCount) (q : ℕ)
+    (hq : q < (cellDarts Delta i₂).length) :
+    (cellUnitArc Delta i j hlen hf i₂ q hq).length = 1 :=
+  CyclicArc.mapTo_length (unitArc (cellDarts Delta i₂) q hq)
+    (carrierImage Delta (Embedded.cell Delta i).face j hlen hf (Embedded.cell Delta i₂).face)
+    (cellDarts_eq Delta (Embedded.cell Delta i).face j hlen hf i₂)
+
+/-- At the position of `α w_j` on cell `i₂`, the unit arc as it occurs on a region boundary
+is the retained dart `w_j`. -/
+theorem cellUnitArc_boundaryDarts (i₂ : Fin Delta.rCellCount) (q : ℕ)
+    (hq : q < (cellDarts Delta i₂).length)
+    (hget : (cellDarts Delta i₂)[q]'hq =
+      Delta.toCombMap.alpha (dart Delta (Embedded.cell Delta i).face j)) :
+    targetBoundaryDarts (diagram Delta (Embedded.cell Delta i).face j hlen hf)
+        (some ((cellMap Delta (Embedded.cell Delta i).face j hlen hf).indexEquiv i₂))
+        (cellUnitArc Delta i j hlen hf i₂ q hq) =
+      [EdgeInsertion.embed Delta.toCombMap (dart Delta (Embedded.cell Delta i).face j)] := by
+  have hne : Delta.toCombMap.alpha (dart Delta (Embedded.cell Delta i).face j) ≠
+      dart Delta (Embedded.cell Delta i).face j :=
+    Delta.toCombMap.alpha_fixedPointFree _
+  have h3 : (cellUnitArc Delta i j hlen hf i₂ q hq).darts =
+      [(embedding Delta (Embedded.cell Delta i).face j hlen hf).darts
+        (Delta.toCombMap.alpha (dart Delta (Embedded.cell Delta i).face j))] := by
+    rw [cellUnitArc, CyclicArc.mapTo_darts, unitArc_darts, hget, List.map_singleton,
+      carrierImage_of_ne_dart Delta (Embedded.cell Delta i).face j hlen hf
+        (Embedded.cell Delta i₂).face hne]
+  exact (congrArg (invDarts (diagram Delta (Embedded.cell Delta i).face j hlen hf)) h3).trans
+    (invDarts_embedding_alpha Delta (Embedded.cell Delta i).face j hlen hf _)
+
+/-- A unit arc of the outer boundary, carried to the doubled diagram. -/
+noncomputable def outerUnitArc (p : ℕ) (hp : p < (outerDarts Delta).length) :
+    CyclicArc (targetDarts (diagram Delta (Embedded.cell Delta i).face j hlen hf) none) :=
+  (unitArc (outerDarts Delta) p hp).mapTo
+    (targetImage Delta (Embedded.cell Delta i).face j hlen hf none)
+    (targetDarts_eq Delta (Embedded.cell Delta i).face j hlen hf none)
+
+theorem outerUnitArc_length (p : ℕ) (hp : p < (outerDarts Delta).length) :
+    (outerUnitArc Delta i j hlen hf p hp).length = 1 :=
+  CyclicArc.mapTo_length (unitArc (outerDarts Delta) p hp)
+    (targetImage Delta (Embedded.cell Delta i).face j hlen hf none)
+    (targetDarts_eq Delta (Embedded.cell Delta i).face j hlen hf none)
+
+theorem outerUnitArc_start (p : ℕ) (hp : p < (outerDarts Delta).length) :
+    (outerUnitArc Delta i j hlen hf p hp).start.val = p :=
+  CyclicArc.mapTo_start (unitArc (outerDarts Delta) p hp)
+    (targetImage Delta (Embedded.cell Delta i).face j hlen hf none)
+    (targetDarts_eq Delta (Embedded.cell Delta i).face j hlen hf none)
+
+/-- At the position of `w_j` on the outer boundary, the unit arc is the retained dart `w_j`. -/
+theorem outerUnitArc_boundaryDarts (p : ℕ) (hp : p < (outerDarts Delta).length)
+    (hget : (outerDarts Delta)[p]'hp = dart Delta (Embedded.cell Delta i).face j) :
+    targetBoundaryDarts (diagram Delta (Embedded.cell Delta i).face j hlen hf) none
+        (outerUnitArc Delta i j hlen hf p hp) =
+      [EdgeInsertion.embed Delta.toCombMap (dart Delta (Embedded.cell Delta i).face j)] := by
+  have h3 : (outerUnitArc Delta i j hlen hf p hp).darts =
+      [targetImage Delta (Embedded.cell Delta i).face j hlen hf none
+        (dart Delta (Embedded.cell Delta i).face j)] := by
+    rw [outerUnitArc, CyclicArc.mapTo_darts, unitArc_darts, hget, List.map_singleton]
+  exact h3
+
+/-- **The digon as a contiguity region.**  From base zero its boundary is the reversed source
+arc, an empty side, a target arc reading the retained dart `w_j`, and an empty side. -/
+theorem digon_decomposition
+    (t : Option (Fin (diagram Delta (Embedded.cell Delta i).face j hlen hf).rCellCount))
+    (targetArc : CyclicArc (targetDarts (diagram Delta (Embedded.cell Delta i).face j hlen hf) t))
+    (htarget : targetBoundaryDarts (diagram Delta (Embedded.cell Delta i).face j hlen hf) t
+      targetArc =
+        [EdgeInsertion.embed Delta.toCombMap (dart Delta (Embedded.cell Delta i).face j)]) :
+    ((diagram Delta (Embedded.cell Delta i).face j hlen hf).faceBoundary
+        (digon Delta (Embedded.cell Delta i).face j hlen)).darts.rotate 0 =
+      (sourceUnitArc Delta i j hlen hf).reverseDarts ++ [] ++
+        targetBoundaryDarts (diagram Delta (Embedded.cell Delta i).face j hlen hf) t targetArc ++
+          [] := by
+  have hdigon : ((diagram Delta (Embedded.cell Delta i).face j hlen hf).faceBoundary
+      (digon Delta (Embedded.cell Delta i).face j hlen)).darts =
+        [none, EdgeInsertion.embed Delta.toCombMap (dart Delta (Embedded.cell Delta i).face j)] :=
+    boundary_digon Delta (Embedded.cell Delta i).face j hlen
+  rewrite [List.rotate_zero, hdigon, sourceUnitArc_reverseDarts Delta i j hlen hf, htarget]
+  rfl
+
+end FaceEdgeDoubling
+
 namespace RealizedSectionFamily
 
-open FaceEdgeDoubling
+/-- No selected region contains a relator face whose word does not have value one. -/
+theorem faces_not_mem_of_value {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (S : RealizedSectionFamily D lambda c eps Delta cuts)
+    (hvalue : ∀ C ∈ S.diagram.relatorCells, RelLetter.listVal C.word ≠ 1) :
+    ∀ a ∈ S.family, ∀ C ∈ S.diagram.relatorCells, C.face ∉ a.1 := by
+  intro a _ C hC hmem
+  have h := (a.2.boundary.all_gCells C.face hmem).2
+  rw [DiscDiagram.faceWord, ← S.diagram.relatorCell_word C hC] at h
+  exact hvalue C hC h
+
+/-- **Adjoining a digon region contradicts maximality.**  Double the edge at position `j` of a
+face `f` of the diagram of a maximal legal section family, where neither side of the edge lies
+in a selected region.  A contiguity region on the digon with nonempty arcs, respecting the
+sections, adjoined to the transported family, gives a legal section family of larger weight. -/
+theorem false_of_digon_region {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (S : RealizedSectionFamily D lambda c eps Delta cuts)
+    (hlegal : S.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D))
+    (hmax : ∀ other : RealizedSectionFamily D lambda c eps Delta cuts,
+      other.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D) →
+        other.weight ≤ S.weight)
+    (f : S.diagram.toCombMap.Face) (j : Fin (S.diagram.faceBoundary f).darts.length)
+    (hlen : 1 < (S.diagram.faceBoundary f).darts.length) (hf : f ≠ S.diagram.outerFace)
+    (havoid : ∀ a ∈ S.family, f ∉ a.1 ∧
+      S.diagram.toCombMap.faceOf
+        (S.diagram.toCombMap.alpha (FaceEdgeDoubling.dart S.diagram f j)) ∉ a.1)
+    (H : ContiguityGeometry D eps (FaceEdgeDoubling.diagram S.diagram f j hlen hf)
+      ({FaceEdgeDoubling.digon S.diagram f j hlen} :
+        Finset (FaceEdgeDoubling.diagram S.diagram f j hlen hf).toCombMap.Face))
+    (hsource : 0 < H.sourceArc.length) (htarget : 0 < H.targetArc.length)
+    (hsection : H.target = none → ∃ jc : Fin cuts.count,
+      cuts.cut jc.castSucc ≤ H.targetArc.start.val ∧
+        H.targetArc.start.val + H.targetArc.length ≤ cuts.cut jc.succ) :
+    False := by
+  have havoid1 : ∀ a ∈ FaceEdgeDoubling.regionFamily S.diagram f j hlen hf S.family havoid,
+      FaceEdgeDoubling.digon S.diagram f j hlen ∉ a.1 := by
+    intro a ha hmem
+    obtain ⟨b, hb, hab⟩ :=
+      FaceEdgeDoubling.regionFamily_faces S.diagram f j hlen hf S.family havoid ha
+    rw [hab] at hmem
+    obtain ⟨g, hg, hgeq⟩ := Finset.mem_map.mp hmem
+    refine FaceEdgeDoubling.keep_ne_digon S.diagram f j hlen (g := g) ?_ hgeq
+    intro h
+    rw [h] at hg
+    exact (havoid b hb).1 hg
+  have hlt := RegionCandidate.familyWeight_lt_cons_singleton H havoid1 hsource
+  have hrespects : ∀ a ∈ Finset.cons
+      (⟨{FaceEdgeDoubling.digon S.diagram f j hlen}, H⟩ :
+        RegionCandidate D eps (FaceEdgeDoubling.diagram S.diagram f j hlen hf))
+      (FaceEdgeDoubling.regionFamily S.diagram f j hlen hf S.family havoid)
+      (RegionCandidate.singleton_not_mem_of_avoid H havoid1),
+      RegionCandidate.RespectsSections cuts a := by
+    intro a ha
+    rcases Finset.mem_cons.mp ha with rfl | ha1
+    · intro hnone
+      obtain ⟨jc, h1, h2⟩ := hsection hnone
+      exact ⟨jc, hnone, h1, h2⟩
+    · obtain ⟨b, hb, hab⟩ :=
+        FaceEdgeDoubling.regionFamily_profile S.diagram f j hlen hf S.family havoid ha1
+      exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab (S.respects b hb)
+  have hnondegenerate : ∀ a ∈ Finset.cons
+      (⟨{FaceEdgeDoubling.digon S.diagram f j hlen}, H⟩ :
+        RegionCandidate D eps (FaceEdgeDoubling.diagram S.diagram f j hlen hf))
+      (FaceEdgeDoubling.regionFamily S.diagram f j hlen hf S.family havoid)
+      (RegionCandidate.singleton_not_mem_of_avoid H havoid1),
+      0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length := by
+    intro a ha
+    rcases Finset.mem_cons.mp ha with rfl | ha1
+    · exact ⟨hsource, htarget⟩
+    · obtain ⟨b, hb, hab⟩ :=
+        FaceEdgeDoubling.regionFamily_profile S.diagram f j hlen hf S.family havoid ha1
+      obtain ⟨hs, ht⟩ := S.nondegenerate b hb
+      exact ⟨lt_of_lt_of_eq hs hab.2.2.2.symm, lt_of_lt_of_eq ht hab.2.2.1.symm⟩
+  have hle := hmax
+    { diagram := FaceEdgeDoubling.diagram S.diagram f j hlen hf
+      equiv := S.equiv.trans (FaceEdgeDoubling.oEquivalent S.diagram f j hlen hf)
+      reduced := FaceEdgeDoubling.reduced S.diagram f j hlen hf S.reduced
+      family := Finset.cons
+        (⟨{FaceEdgeDoubling.digon S.diagram f j hlen}, H⟩ :
+          RegionCandidate D eps (FaceEdgeDoubling.diagram S.diagram f j hlen hf))
+        (FaceEdgeDoubling.regionFamily S.diagram f j hlen hf S.family havoid)
+        (RegionCandidate.singleton_not_mem_of_avoid H havoid1)
+      pairwise := RegionCandidate.cons_singleton_pairwise H havoid1
+        (FaceEdgeDoubling.regionFamily_pairwise S.diagram f j hlen hf S.family havoid
+          S.pairwise)
+      respects := hrespects
+      nondegenerate := hnondegenerate }
+    (FaceEdgeDoubling.label_admissible S.diagram f j hlen hf (symmetricLabelAlphabet D)
+      (symmetricLabelAlphabet.symmetric D) hlegal)
+  have heq := FaceEdgeDoubling.regionFamily_weight S.diagram f j hlen hf S.family havoid
+  exact absurd hle (not_le.mpr (lt_of_eq_of_lt heq.symm hlt))
+
+/-- **Toward a relator cell.**  An edge of cell `i` at position `j` whose other side is
+position `q` of cell `i₂`, with both sides off every selected region, contradicts maximality. -/
+theorem false_of_digon_toward_cell {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (S : RealizedSectionFamily D lambda c eps Delta cuts)
+    (hlegal : S.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D))
+    (hmax : ∀ other : RealizedSectionFamily D lambda c eps Delta cuts,
+      other.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D) →
+        other.weight ≤ S.weight)
+    (i : Fin S.diagram.rCellCount) (j : Fin (cellDarts S.diagram i).length)
+    (hlen : 1 < (cellDarts S.diagram i).length)
+    (havoid : ∀ a ∈ S.family, (cell S.diagram i).face ∉ a.1 ∧
+      S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha
+        (FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j)) ∉ a.1)
+    (i₂ : Fin S.diagram.rCellCount) (q : ℕ) (hq : q < (cellDarts S.diagram i₂).length)
+    (hget : (cellDarts S.diagram i₂)[q]'hq =
+      S.diagram.toCombMap.alpha (FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j)) :
+    False := by
+  have hf : (cell S.diagram i).face ≠ S.diagram.outerFace := (cell S.diagram i).face_ne_outer
+  refine false_of_digon_region S hlegal hmax (cell S.diagram i).face j hlen hf havoid
+    (ContiguityGeometry.ofSingletonFace
+      (Delta := FaceEdgeDoubling.diagram S.diagram (cell S.diagram i).face j hlen hf)
+      (FaceEdgeDoubling.digon S.diagram (cell S.diagram i).face j hlen)
+      (FaceEdgeDoubling.digon_ne_outer S.diagram (cell S.diagram i).face j hlen hf)
+      (FaceEdgeDoubling.digon_value S.diagram (cell S.diagram i).face j hlen hf)
+      (FaceEdgeDoubling.digon_noInternalFaceDart S.diagram (cell S.diagram i).face j hlen hf) 0
+      ((FaceEdgeDoubling.cellMap S.diagram (cell S.diagram i).face j hlen hf).indexEquiv i)
+      (some ((FaceEdgeDoubling.cellMap S.diagram (cell S.diagram i).face j hlen hf).indexEquiv
+        i₂))
+      (FaceEdgeDoubling.sourceUnitArc S.diagram i j hlen hf)
+      (FaceEdgeDoubling.cellUnitArc S.diagram i j hlen hf i₂ q hq) [] []
+      (FaceEdgeDoubling.digon_decomposition S.diagram i j hlen hf _ _
+        (FaceEdgeDoubling.cellUnitArc_boundaryDarts S.diagram i j hlen hf i₂ q hq hget))
+      (Nat.zero_le _) (Nat.zero_le _)
+      (Embedded.wordNorm_dartWord_nil_le D eps _) (Embedded.wordNorm_dartWord_nil_le D eps _))
+    ?_ ?_ ?_
+  · exact lt_of_lt_of_eq Nat.one_pos
+      (FaceEdgeDoubling.sourceUnitArc_length S.diagram i j hlen hf).symm
+  · exact lt_of_lt_of_eq Nat.one_pos
+      (FaceEdgeDoubling.cellUnitArc_length S.diagram i j hlen hf i₂ q hq).symm
+  · intro h
+    exact absurd h (Option.some_ne_none _)
+
+/-- **Toward the exterior.**  An edge of cell `i` at position `j` whose other side is the
+exterior, at position `p` of the oriented outer boundary, with the cell off every selected
+region, contradicts maximality. -/
+theorem false_of_digon_toward_outer {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (S : RealizedSectionFamily D lambda c eps Delta cuts)
+    (hlegal : S.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D))
+    (hmax : ∀ other : RealizedSectionFamily D lambda c eps Delta cuts,
+      other.toRealizedRegionFamily.LabelLegal (symmetricLabelAlphabet D) →
+        other.weight ≤ S.weight)
+    (i : Fin S.diagram.rCellCount) (j : Fin (cellDarts S.diagram i).length)
+    (hlen : 1 < (cellDarts S.diagram i).length)
+    (havoid : ∀ a ∈ S.family, (cell S.diagram i).face ∉ a.1 ∧
+      S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha
+        (FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j)) ∉ a.1)
+    (p : ℕ) (hp : p < (outerDarts S.diagram).length)
+    (hget : (outerDarts S.diagram)[p]'hp =
+      FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j) :
+    False := by
+  have hf : (cell S.diagram i).face ≠ S.diagram.outerFace := (cell S.diagram i).face_ne_outer
+  have hword : p < Delta.boundaryWord.length := by
+    rw [← S.equiv.boundaryWord_eq, ← dartWord_outerDarts S.diagram, dartWord, List.length_map]
+    exact hp
+  obtain ⟨jc, h1, h2⟩ := cuts.exists_section_of_lt hword
+  refine false_of_digon_region S hlegal hmax (cell S.diagram i).face j hlen hf havoid
+    (ContiguityGeometry.ofSingletonFace
+      (Delta := FaceEdgeDoubling.diagram S.diagram (cell S.diagram i).face j hlen hf)
+      (FaceEdgeDoubling.digon S.diagram (cell S.diagram i).face j hlen)
+      (FaceEdgeDoubling.digon_ne_outer S.diagram (cell S.diagram i).face j hlen hf)
+      (FaceEdgeDoubling.digon_value S.diagram (cell S.diagram i).face j hlen hf)
+      (FaceEdgeDoubling.digon_noInternalFaceDart S.diagram (cell S.diagram i).face j hlen hf) 0
+      ((FaceEdgeDoubling.cellMap S.diagram (cell S.diagram i).face j hlen hf).indexEquiv i) none
+      (FaceEdgeDoubling.sourceUnitArc S.diagram i j hlen hf)
+      (FaceEdgeDoubling.outerUnitArc S.diagram i j hlen hf p hp) [] []
+      (FaceEdgeDoubling.digon_decomposition S.diagram i j hlen hf _ _
+        (FaceEdgeDoubling.outerUnitArc_boundaryDarts S.diagram i j hlen hf p hp hget))
+      (Nat.zero_le _) (Nat.zero_le _)
+      (Embedded.wordNorm_dartWord_nil_le D eps _) (Embedded.wordNorm_dartWord_nil_le D eps _))
+    ?_ ?_ ?_
+  · exact lt_of_lt_of_eq Nat.one_pos
+      (FaceEdgeDoubling.sourceUnitArc_length S.diagram i j hlen hf).symm
+  · exact lt_of_lt_of_eq Nat.one_pos
+      (FaceEdgeDoubling.outerUnitArc_length S.diagram i j hlen hf p hp).symm
+  · intro _
+    have h3 := FaceEdgeDoubling.outerUnitArc_start S.diagram i j hlen hf p hp
+    have h4 : (FaceEdgeDoubling.outerUnitArc S.diagram i j hlen hf p hp).start.val +
+        (FaceEdgeDoubling.outerUnitArc S.diagram i j hlen hf p hp).length = p + 1 := by
+      rw [h3, FaceEdgeDoubling.outerUnitArc_length S.diagram i j hlen hf p hp]
+    exact ⟨jc, le_of_le_of_eq h1 h3.symm, le_of_eq_of_le h4 h2⟩
 
 /-- **An unbound dart on an edge shared with a relator cell or the exterior contradicts
 maximality.** -/
@@ -161,187 +482,50 @@ theorem false_of_unbound_shared_edge {D : RelGenSet G Lambda} {lambda c : ℝ} {
         S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) = (cell S.diagram i₂).face) ∨
       S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) = S.diagram.outerFace) :
     False := by
-  have hf : (cell S.diagram i).face ≠ S.diagram.outerFace := (cell S.diagram i).face_ne_outer
   have hdmem : d ∈ cellDarts S.diagram i := List.mem_toFinset.mp (Finset.mem_sdiff.mp hd).1
   obtain ⟨j, hj⟩ := List.get_of_mem hdmem
-  have hdart : dart S.diagram (cell S.diagram i).face j = d := by
-    rw [dart_eq_get]
+  have hdart : FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j = d := by
+    rw [FaceEdgeDoubling.dart_eq_get]
     exact hj
-  /- The regions avoid every relator face and the exterior. -/
-  have hnotRelator : ∀ a ∈ S.family, ∀ C ∈ S.diagram.relatorCells, C.face ∉ a.1 := by
-    intro a _ C hC hmem
-    have h := (a.2.boundary.all_gCells C.face hmem).2
-    rw [DiscDiagram.faceWord, ← S.diagram.relatorCell_word C hC] at h
-    exact hvalue C hC h
+  subst hdart
+  have hnotRelator := faces_not_mem_of_value S hvalue
   have havoid : ∀ a ∈ S.family, (cell S.diagram i).face ∉ a.1 ∧
-      S.diagram.toCombMap.faceOf
-        (S.diagram.toCombMap.alpha (dart S.diagram (cell S.diagram i).face j)) ∉ a.1 := by
+      S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha
+        (FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j)) ∉ a.1 := by
     intro a ha
     refine ⟨hnotRelator a ha _ (cell_mem S.diagram i), ?_⟩
-    rw [hdart]
     rcases hadj with ⟨i₂, hi₂⟩ | hout
     · rw [hi₂]
       exact hnotRelator a ha _ (cell_mem S.diagram i₂)
     · rw [hout]
       intro hmem
       exact (a.2.boundary.all_gCells _ hmem).1 rfl
-  let Xi := diagram S.diagram (cell S.diagram i).face j hlen hf
-  let C := cellMap S.diagram (cell S.diagram i).face j hlen hf
-  let family1 := regionFamily S.diagram (cell S.diagram i).face j hlen hf S.family havoid
-  /- The source arc: the new dart, at position `j` of the carrier of cell `i`. -/
-  let sourceArc : CyclicArc (cellDarts Xi (C.indexEquiv i)) :=
-    (unitArc (cellDarts S.diagram i) j.val j.isLt).mapTo
-      (carrierImage S.diagram (cell S.diagram i).face j hlen hf (cell S.diagram i).face)
-      (cellDarts_eq S.diagram (cell S.diagram i).face j hlen hf i)
-  have hsourceRev : sourceArc.reverseDarts = [none] := by
-    change invDarts Xi ((unitArc (cellDarts S.diagram i) j.val j.isLt).mapTo
-      (carrierImage S.diagram (cell S.diagram i).face j hlen hf (cell S.diagram i).face)
-      (cellDarts_eq S.diagram (cell S.diagram i).face j hlen hf i)).darts = _
-    have h1 : (cellDarts S.diagram i)[j.val]'j.isLt = dart S.diagram (cell S.diagram i).face j :=
-      (dart_eq_get S.diagram (cell S.diagram i).face j).symm
-    rewrite [CyclicArc.mapTo_darts, unitArc_darts, h1, List.map_singleton]
-    exact invDarts_carrierImage_self_dart S.diagram (cell S.diagram i).face j hlen hf
-  /- The target side and the digon region. -/
-  have hdigonWord : (Xi.faceBoundary (digon S.diagram (cell S.diagram i).face j hlen)).darts =
-      [none, EdgeInsertion.embed S.diagram.toCombMap d] := by
-    rewrite [← hdart]
-    exact boundary_digon S.diagram (cell S.diagram i).face j hlen
-  obtain ⟨t, targetArc, hdecomp, htlen, hrespectsDigon⟩ :
-      ∃ (t : Option (Fin Xi.rCellCount)) (targetArc : CyclicArc (targetDarts Xi t)),
-        (Xi.faceBoundary (digon S.diagram (cell S.diagram i).face j hlen)).darts.rotate 0 =
-          sourceArc.reverseDarts ++ [] ++ targetBoundaryDarts Xi t targetArc ++ [] ∧
-        targetArc.length = 1 ∧
-        (t = none → ∃ jc : Fin cuts.count, cuts.cut jc.castSucc ≤ targetArc.start.val ∧
-          targetArc.start.val + targetArc.length ≤ cuts.cut jc.succ) := by
-    rcases hadj with ⟨i₂, hi₂⟩ | hout
-    · have hmem2 : S.diagram.toCombMap.alpha d ∈ cellDarts S.diagram i₂ :=
-        ((S.diagram.faceBoundary (cell S.diagram i₂).face).mem_iff _).mpr hi₂
-      obtain ⟨q, hq⟩ := List.get_of_mem hmem2
-      refine ⟨some (C.indexEquiv i₂),
-        (unitArc (cellDarts S.diagram i₂) q.val q.isLt).mapTo
-          (carrierImage S.diagram (cell S.diagram i).face j hlen hf (cell S.diagram i₂).face)
-          (cellDarts_eq S.diagram (cell S.diagram i).face j hlen hf i₂),
-        ?_, CyclicArc.mapTo_length _ _ _, fun h => by cases h⟩
-      rewrite [List.rotate_zero, hdigonWord, hsourceRev]
-      change [none, EdgeInsertion.embed S.diagram.toCombMap d] =
-        [none] ++ [] ++ invDarts (diagram S.diagram (cell S.diagram i).face j hlen hf)
-          ((unitArc (cellDarts S.diagram i₂) q.val q.isLt).mapTo
-          (carrierImage S.diagram (cell S.diagram i).face j hlen hf (cell S.diagram i₂).face)
-          (cellDarts_eq S.diagram (cell S.diagram i).face j hlen hf i₂)).darts ++ []
-      have h2 : (cellDarts S.diagram i₂)[q.val]'q.isLt = S.diagram.toCombMap.alpha d := hq
-      have hne : S.diagram.toCombMap.alpha d ≠ dart S.diagram (cell S.diagram i).face j := by
-        rw [hdart]
-        exact S.diagram.toCombMap.alpha_fixedPointFree d
-      rewrite [CyclicArc.mapTo_darts, unitArc_darts, h2, List.map_singleton,
-        carrierImage_of_ne_dart S.diagram (cell S.diagram i).face j hlen hf
-          (cell S.diagram i₂).face hne,
-        invDarts_embedding_alpha S.diagram (cell S.diagram i).face j hlen hf d]
-      rfl
-    · have hmem2 : d ∈ outerDarts S.diagram := by
-        refine List.mem_map.mpr ⟨S.diagram.toCombMap.alpha d, List.mem_reverse.mpr ?_, ?_⟩
-        · exact ((S.diagram.faceBoundary S.diagram.outerFace).mem_iff _).mpr hout
-        · exact S.diagram.toCombMap.alpha_involutive d
-      obtain ⟨p, hp⟩ := List.get_of_mem hmem2
-      refine ⟨none, (unitArc (outerDarts S.diagram) p.val p.isLt).mapTo
-          (targetImage S.diagram (cell S.diagram i).face j hlen hf none)
-          (targetDarts_eq S.diagram (cell S.diagram i).face j hlen hf none),
-        ?_, CyclicArc.mapTo_length _ _ _, ?_⟩
-      · rewrite [List.rotate_zero, hdigonWord, hsourceRev]
-        change [none, EdgeInsertion.embed S.diagram.toCombMap d] =
-          [none] ++ [] ++ ((unitArc (outerDarts S.diagram) p.val p.isLt).mapTo
-            (targetImage S.diagram (cell S.diagram i).face j hlen hf none)
-            (targetDarts_eq S.diagram (cell S.diagram i).face j hlen hf none)).darts ++ []
-        have h2 : (outerDarts S.diagram)[p.val]'p.isLt = d := hp
-        rewrite [CyclicArc.mapTo_darts, unitArc_darts, h2, List.map_singleton]
-        rfl
-      · intro _
-        have hlenOuter : p.val < Delta.boundaryWord.length := by
-          have h1 := p.isLt
-          have h2 : (outerDarts S.diagram).length = S.diagram.boundaryWord.length := by
-            simp only [outerDarts, DiscDiagram.boundaryWord, HullSC.RelWord.revInv,
-              DiscDiagram.faceWord, List.length_map, List.length_reverse]
-          rw [S.equiv.boundaryWord_eq] at h2
-          omega
-        obtain ⟨jc, h1, h2⟩ := cuts.exists_section_of_lt hlenOuter
-        refine ⟨jc, ?_, ?_⟩
-        · rw [CyclicArc.mapTo_start]
-          exact h1
-        · rw [CyclicArc.mapTo_start, CyclicArc.mapTo_length]
-          exact h2
-  let H : ContiguityGeometry D eps Xi {digon S.diagram (cell S.diagram i).face j hlen} :=
-    ContiguityGeometry.ofSingletonFace (digon S.diagram (cell S.diagram i).face j hlen)
-      (digon_ne_outer S.diagram (cell S.diagram i).face j hlen hf)
-      (digon_value S.diagram (cell S.diagram i).face j hlen hf)
-      (digon_noInternalFaceDart S.diagram (cell S.diagram i).face j hlen hf) 0
-      (C.indexEquiv i) t sourceArc targetArc [] [] hdecomp (Nat.zero_le _) (Nat.zero_le _)
-      (by simp only [dartWord, List.map_nil, RelLetter.listVal_nil, WordMetric.wordNorm_one,
-        Nat.zero_le])
-      (by simp only [dartWord, List.map_nil, RelLetter.listVal_nil, WordMetric.wordNorm_one,
-        Nat.zero_le])
-  have havoid1 : ∀ a ∈ family1, digon S.diagram (cell S.diagram i).face j hlen ∉ a.1 := by
-    intro a ha hmem
-    obtain ⟨b, hb, hab⟩ :=
-      regionFamily_faces S.diagram (cell S.diagram i).face j hlen hf S.family havoid ha
-    rw [hab] at hmem
-    obtain ⟨g, hg, hgeq⟩ := Finset.mem_map.mp hmem
-    exact keep_ne_digon S.diagram (cell S.diagram i).face j hlen
-      (fun h => (havoid b hb).1 (h ▸ hg)) hgeq
-  have hsourceLen : H.sourceArc.length = 1 := CyclicArc.mapTo_length _ _ _
-  have hlt := RegionCandidate.familyWeight_lt_cons_singleton H havoid1
-    (by rw [hsourceLen]; exact Nat.one_pos)
-  have hrespects : ∀ a ∈ Finset.cons
-      (⟨{digon S.diagram (cell S.diagram i).face j hlen}, H⟩ : RegionCandidate D eps Xi)
-      family1 (RegionCandidate.singleton_not_mem_of_avoid H havoid1),
-      RegionCandidate.RespectsSections cuts a := by
-    intro a ha
-    rcases Finset.mem_cons.mp ha with rfl | ha1
-    · intro hnone
-      obtain ⟨jc, h1, h2⟩ := hrespectsDigon hnone
-      exact ⟨jc, hnone, h1, h2⟩
-    · obtain ⟨b, hb, hab⟩ :=
-        regionFamily_profile S.diagram (cell S.diagram i).face j hlen hf S.family havoid ha1
-      exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab (S.respects b hb)
-  have hnondegenerate : ∀ a ∈ Finset.cons
-      (⟨{digon S.diagram (cell S.diagram i).face j hlen}, H⟩ : RegionCandidate D eps Xi)
-      family1 (RegionCandidate.singleton_not_mem_of_avoid H havoid1),
-      0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length := by
-    intro a ha
-    rcases Finset.mem_cons.mp ha with rfl | ha1
-    · refine ⟨by rw [hsourceLen]; exact Nat.one_pos, ?_⟩
-      change 0 < targetArc.length
-      rw [htlen]
-      exact Nat.one_pos
-    · obtain ⟨b, hb, hab⟩ :=
-        regionFamily_profile S.diagram (cell S.diagram i).face j hlen hf S.family havoid ha1
-      obtain ⟨hs, ht⟩ := S.nondegenerate b hb
-      exact ⟨lt_of_lt_of_eq hs hab.2.2.2.symm, lt_of_lt_of_eq ht hab.2.2.1.symm⟩
-  have hle : EstimatingSelection.familyWeight RegionCandidate.weight
-      (Finset.cons
-        (⟨{digon S.diagram (cell S.diagram i).face j hlen}, H⟩ : RegionCandidate D eps Xi)
-        family1 (RegionCandidate.singleton_not_mem_of_avoid H havoid1)) ≤
-      EstimatingSelection.familyWeight RegionCandidate.weight S.family :=
-    hmax
-      { diagram := Xi
-        equiv := S.equiv.trans (oEquivalent S.diagram (cell S.diagram i).face j hlen hf)
-        reduced := reduced S.diagram (cell S.diagram i).face j hlen hf S.reduced
-        family := Finset.cons
-          (⟨{digon S.diagram (cell S.diagram i).face j hlen}, H⟩ : RegionCandidate D eps Xi)
-          family1 (RegionCandidate.singleton_not_mem_of_avoid H havoid1)
-        pairwise := RegionCandidate.cons_singleton_pairwise H havoid1
-          (regionFamily_pairwise S.diagram (cell S.diagram i).face j hlen hf S.family havoid
-            S.pairwise)
-        respects := hrespects
-        nondegenerate := hnondegenerate }
-      (label_admissible S.diagram (cell S.diagram i).face j hlen hf (symmetricLabelAlphabet D)
-        (symmetricLabelAlphabet.symmetric D) hlegal)
-  have heq : EstimatingSelection.familyWeight RegionCandidate.weight family1 =
-      EstimatingSelection.familyWeight RegionCandidate.weight S.family :=
-    regionFamily_weight S.diagram (cell S.diagram i).face j hlen hf S.family havoid
-  exact absurd hle (not_le.mpr (lt_of_eq_of_lt heq.symm hlt))
+  rcases hadj with ⟨i₂, hi₂⟩ | hout
+  · have hmem2 : S.diagram.toCombMap.alpha
+        (FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j) ∈ cellDarts S.diagram i₂ :=
+      ((S.diagram.faceBoundary (cell S.diagram i₂).face).mem_iff _).mpr hi₂
+    obtain ⟨q, hq, hget⟩ := List.getElem_of_mem hmem2
+    exact false_of_digon_toward_cell S hlegal hmax i j hlen havoid i₂ q hq hget
+  · have hmem2 : FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j ∈
+        outerDarts S.diagram :=
+      List.mem_map.mpr ⟨S.diagram.toCombMap.alpha
+          (FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j),
+        List.mem_reverse.mpr (((S.diagram.faceBoundary S.diagram.outerFace).mem_iff _).mpr hout),
+        S.diagram.toCombMap.alpha_involutive _⟩
+    obtain ⟨p, hp, hget⟩ := List.getElem_of_mem hmem2
+    exact false_of_digon_toward_outer S hlegal hmax i j hlen havoid p hp hget
 
 end RealizedSectionFamily
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.SectionCuts.exists_section_of_lt
 #audit_axioms GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.digon_noInternalFaceDart
+#audit_axioms GroupApproximation.GGT.VanKampen.Embedded.wordNorm_dartWord_nil_le
+#audit_axioms GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.sourceUnitArc_reverseDarts
+#audit_axioms GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.cellUnitArc_boundaryDarts
+#audit_axioms GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.outerUnitArc_boundaryDarts
+#audit_axioms GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.digon_decomposition
+#audit_axioms GroupApproximation.GGT.VanKampen.RealizedSectionFamily.false_of_digon_region
+#audit_axioms GroupApproximation.GGT.VanKampen.RealizedSectionFamily.false_of_digon_toward_cell
+#audit_axioms GroupApproximation.GGT.VanKampen.RealizedSectionFamily.false_of_digon_toward_outer
 #audit_axioms GroupApproximation.GGT.VanKampen.RealizedSectionFamily.false_of_unbound_shared_edge
