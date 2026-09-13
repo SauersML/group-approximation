@@ -24,4 +24,5 @@ Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 8.2 of
 `research/artifacts/gk-vf-positive-b-verification-2026-09-12.md`).
 - **Re-derived:** the restriction to `Fix_N`, the constant and periodic counts, and the greedy bound of at least
   `m / |W|^2` disjoint windows.
-- **Note:** the residue corollary on the claim uses the sofic count. This route rightly does not cover it.
+- **Note:** since `82a4dbf6c`, the residue bullet on the claim follows from the restriction step and the definition.
+  Only its sub-bullet on sofic quotients uses the sofic count, which this route rightly does not cover.

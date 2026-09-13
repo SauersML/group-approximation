@@ -851,3 +851,21 @@ I checked these on paper. They make no graph claims.
 - The Attempts added to `surjunctive-groups-are-quantitatively-surjunctive` match these sections.
 
 PASS. Nothing in Section 8 is decision-level, and nothing is refuted.
+
+**Follow-up (`82a4dbf6c`).** w5-quant-surj applied the dependency point to the node and the artifact. I checked the full diff.
+- **Residue bullet.** Take a proper subshift that misses a point of `Fix_N`, for a normal `N` with `G/N`
+  quantitatively surjunctive. It has a constant by Proposition 2.1. Every proper subshift either misses such a point
+  or contains all those `Fix_N`, which gives the iff. Nothing is imported.
+- **Sofic quotients.** Only the sub-bullet saying that sofic quotients qualify uses the sofic count, and it names
+  where the count is recorded.
+- **Simple groups.** The normal subgroups are `1` and `G`.
+  - Using `N = 1` needs `G` itself to be quantitatively surjunctive, so it assumes the conclusion.
+  - `N = G` needs only the trivial quotient, whose constant `log(|B|/c_Y)` is Corollary 2.2.
+  - So `G` is quantitatively surjunctive iff every proper subshift containing all constant configurations has a
+    constant. For nonsofic simple groups this matches the old statement.
+- **Artifact.** The new paragraph "Import-free form" is Corollary 2.5 with `Nsof(G)` replaced by the normal subgroups
+  with quantitatively surjunctive quotient. Correct.
+
+The old sub-bullet covered every group with no nontrivial sofic quotient. The new one covers only simple groups,
+which is narrower. The other groups still get the same reduction from the main bullet with `N = G`. I updated the
+note on `quotient-restriction-deficit-proof` to match. Follow-up PASS.
