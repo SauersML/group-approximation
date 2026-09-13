@@ -38,6 +38,11 @@ criterion and proves both directions for all `Γ` and `n`.
     `graph-braid-characters-are-hyperplane-affine`,
     `graph-braid-ascending-matching-complex-criterion-is-exact`,
     `graph-braid-matching-complex-connectivity-explicit`.
+- 2026-09-13 (z1-08-graph-braid), ac3acde9d0: complete answer for trees
+  with `n ≤ 3` and for radial trees
+  (`tree-braid-sigma-for-at-most-three-strands-and-radial-trees`,
+  unreviewed). `Σ^m = S⁰` exactly for two points on a subdivided triod;
+  otherwise `Σ^m` is empty. `rank B_2T = Σ_v C(deg v − 1, 2)`.
   Next: the tree braid groups that are RAAGs (Farley–Sabalka,
   arXiv:math/0602444: `B_nT` is a RAAG iff `T` is linear or `n < 4`), where
   Meier–Meinert–VanWyk give the complete answer once the defining graph is

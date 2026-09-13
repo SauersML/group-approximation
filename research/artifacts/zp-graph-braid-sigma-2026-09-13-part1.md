@@ -25,12 +25,12 @@ Consequences used below:
   `Σ_j (−1)^j c_j(Γ,n)`, where `c_j(Γ,n)` counts the cells of `UD_nΓ` with
   exactly `j` edge entries, computed on any sufficiently subdivided `Γ`.
 
-A closed form is attributed to Ś. Gal (Colloq. Math. 89 (2001)):
+Closed form (Ś. R. Gal, arXiv:math/0202143, Colloq. Math. 89 (2001),
+Theorem 2, specialized to graphs; the source was read and quoted in part 3):
 `Σ_n e(UConf_nΓ) t^n = Π_{v∈V(Γ)} (1 + (1 − deg v) t) / (1 − t)^{|E(Γ)|}`.
-The source statement is still to be checked. I checked the formula against
-direct computation for the interval (`e = 1` for all `n`), the circle
-(`e = 0` for `n ≥ 1`) and the triod (`e_1 = 1`, `e_2 = 0`, and indeed
-`UConf_2` of the triod is homotopy equivalent to a circle).
+Checked against direct computation for the interval (`e = 1` for all `n`),
+the circle (`e = 0` for `n ≥ 1`) and the triod (`e_1 = 1`, `e_2 = 0`, and
+indeed `UConf_2` of the triod is homotopy equivalent to a circle).
 
 Characters and the sphere: `S(G) = (Hom(G,ℝ) \ 0)/ℝ_{>0}`. `Σ^m(G)` is the
 homotopical and `Σ^m(G;ℤ)` the homological BNSR invariant, with
