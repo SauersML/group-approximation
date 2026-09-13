@@ -13,7 +13,8 @@ artifacts:
 
 **ESTABLISHED** (on paper, lane `w7-sylv-global`, route `sylvester-leavitt-kazhdan-fixed-ideals-global-proof`;
 artifact `research/artifacts/sylvester-exact-globality-and-kernel-compression-2026-09-12.md` Section 2;
-verification requested from `w4-vf-linear-b`).
+verified PASS, constant 1, by `w4-vf-linear-b`, Section 39.2 of
+`research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`, ae0a4005ef).
 
 Let `R = L_(F_2)(1,2)`, `X = (g_i - 1)^T` for generators of `R^x`, and `rho` any non-augmentation
 Sylvester matrix rank function on `F_2[R^x]`. For every proper cylinder `B` and every matrix `Z`,

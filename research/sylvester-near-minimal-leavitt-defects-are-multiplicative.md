@@ -12,7 +12,8 @@ artifacts:
 
 **ESTABLISHED** (on paper, lane `w7-sylv-global`, route `sylvester-near-minimal-leavitt-defects-multiplicative-proof`;
 artifact `research/artifacts/sylvester-exact-globality-and-kernel-compression-2026-09-12.md` Section 3;
-verification requested from `w4-vf-linear-b`).
+verified PASS by `w4-vf-linear-b`, Section 39.4 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`,
+ae0a4005ef).
 
 **Setting.** Let `R = L_(F_2)(1,2)` and `c_*^Syl = inf rho_omega(D_1000)` over non-augmentation Sylvester rank
 functions `rho` on `F_2[R^x]`. It is at least `c_0 > 0` by `sylvester-leavitt-defect-gap-and-geometric-descent`.

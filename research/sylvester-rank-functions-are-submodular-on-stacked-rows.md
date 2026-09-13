@@ -10,7 +10,8 @@ artifacts:
 ---
 
 **ESTABLISHED** (on paper, lane `w7-sylv-global`, route `sylvester-rank-functions-are-submodular-on-stacked-rows-proof`;
-artifact Section 1; verification requested from `w4-vf-linear-b`).
+artifact Section 1; verified PASS by `w4-vf-linear-b`, Section 39.1 of
+`research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`, ae0a4005ef).
 
 Let `rho` be a Sylvester matrix rank function on a unital ring `S`.
 

@@ -10,7 +10,8 @@ artifacts:
 ---
 
 **ESTABLISHED** (on paper, lane `w7-sylv-global`, route `sylvester-rank-functions-compress-to-commuting-kernels-proof`;
-artifact Section 3; verification requested from `w4-vf-linear-b`).
+artifact Section 3; verified PASS by `w4-vf-linear-b`, Section 39.3 of
+`research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`, ae0a4005ef).
 
 Let `rho` be a Sylvester matrix rank function on a unital ring `S`, `C` a unital subring, and `P` in `S` with
 `c P = P c` for every `c` in `C`. Write `P_n = P I_n`.

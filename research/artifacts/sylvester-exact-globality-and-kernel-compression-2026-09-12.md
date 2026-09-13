@@ -11,8 +11,9 @@ Sources on main:
 
 ## 0. Summary
 
-**Both lemmas are proved on paper from the Sylvester axioms alone** (class (A); verification requested from
-`w4-vf-linear-b`).
+**Both lemmas are proved on paper from the Sylvester axioms alone** (class (A); verified PASS by `w4-vf-linear-b`,
+Section 39 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`, ae0a4005ef, with one sentence of
+Remarks 2.4 corrected forward).
 1. **Submodularity** (Lemma 1.1): `rho([A; B; C]) + rho(B) <= rho([A; B]) + rho([B; C])`, by one (S4) step.
 2. **Exact globality** (Theorem 2.3), with constant `1`. The loss `1/m` in [CA] Proposition 3.1(3) disappears
    because, by submodularity, "adding the rows of `M'` does not raise the rank of `M W` for any `W`" is transitive and
@@ -111,8 +112,11 @@ give `X_S ≼ Sigma`, and Lemma 1.3(1),(4) give `X_S ≼ X`. So
   rank on the 4-dimensional sum-zero submodule `V` of the 5-point permutation module.
   - `V` is irreducible and nontrivial, so `X` acts injectively and `psi(X Z) = psi(Z)`.
   - `Gamma = A_4` normally generates `A_5`, but it is self-normalizing, so `P_Gamma = A_4`.
-  - `Fix(A_4)` on `V` is spanned by `(1,1,1,1,0)`, so `psi(X_S) = 3/4 < 1`. Normal generation alone still gives the
-    `1/m` bound, but exact globality fails.
+  - `Fix(A_4)` on `V` is spanned by `(1,1,1,1,0)`, so `psi(X_S) = 3/4 < 1`, and exact globality fails.
+  - Normal generation alone gives a `1/m` bound only at `Z = 1`. `F_2[A_5]` maps onto `End(V) = M_4(F_2)`, so some
+    `Z` acts on `V` as a projection onto `Fix(A_4)`. Then `psi(Z) = 1/4` but `psi(X_S Z) = 0`, so the `1/m` bound for
+    general `Z` ([CA] Proposition 3.1(3)) also needs the compression hypothesis. (Correction from `w4-vf-linear-b`,
+    Section 39 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`.)
 - **Consequence for [CA] Theorem 4.1.** Its corner model `tau` has `tau(X) = 1` (step 1 of Theorem 3.4). So the
   lower descent constant `c_0/m_0` improves to `c_*^Syl`.
 
