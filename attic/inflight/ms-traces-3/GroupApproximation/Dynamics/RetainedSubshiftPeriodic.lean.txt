@@ -1,6 +1,7 @@
 import GroupApproximation.Dynamics.RetainedSubshift
 import GroupApproximation.Dynamics.SubshiftCyclePeriodic
 import GroupApproximation.Meta.AxiomGuard
+import Mathlib.Data.Fintype.Pigeonhole
 
 /-!
 # Periodic points of the retained subshifts
@@ -60,7 +61,7 @@ theorem isCyclicEdge_window_of_periodic {X : Set (ℤ → A)} {r k : ℕ} [NeZer
   have htail : Fin.tail (fun j : Fin (r + 1) => p (n + (j : ℕ))) = vtx 1 :=
     funext fun j => congrArg p (by simp only [Fin.val_succ]; push_cast; ring)
   have hinit : Fin.init (fun j : Fin (r + 1) => p (n + (j : ℕ))) = vtx k :=
-    funext fun j => congrArg p (by rw [ZMod.natCast_self, add_zero, Fin.coe_castSucc])
+    funext fun j => congrArg p (by rw [ZMod.natCast_self, add_zero, Fin.val_castSucc])
   have hk : 1 + (k - 1) = k := by have := NeZero.pos k; omega
   have h := hwalk (k - 1)
   rw [hk] at h
