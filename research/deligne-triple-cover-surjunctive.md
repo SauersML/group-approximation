@@ -40,3 +40,14 @@ on `A^(E_3)`, for every finite alphabet `A`, is surjective.
   (`surjectivity-descends-to-centralized-coset-quotients`).
 - **Products.** Once this claim holds, `E_3 x K` is surjunctive for every `K` in the LEF permanence closure
   (lane w3-products, df56c017aa).
+- **Rokhlin entropy route (ex-rokhlin-ascent-finite-kernel, 2026-09-13).** The open claim
+  `rokhlin-maximality-ascends-finite-normal-extensions` would make `E_3` Rokhlin-maximal, because `Sp_4(Z)` is sofic.
+  Seward's Corollary 4.1 (`seward-per-group-rokhlin-entropy-of-bernoulli-shifts`, item 5) would then give this
+  claim, and Kaplansky's direct finiteness conjecture for `E_3`.
+  - **Equivalent form.** For this pair, ascent holds exactly when `Ω/C_3 × ((A^k)^3)^(Sp_4(Z))` has unbounded
+    Rokhlin entropy over `Sp_4(Z)` as `k` grows. Here `Ω/C_3` is the twisted section action
+    (`rokhlin-finite-kernel-ascent-iff-liftable-entropy-unbounded`).
+  - **Bernoulli lifting is impossible.** By Popa superrigidity and property (T), no Bernoulli shift of `Sp_4(Z)` is the
+    `C_3`-quotient of a free `E_3`-action (`bernoulli-lifts-across-finite-kernels-force-virtual-splitting`).
+  - **What remains.** Two sufficient conditions are still live: weak containment of `Ω/C_3` in all free
+    `Sp_4(Z)`-actions, and `seward-direct-product-relative-rokhlin-entropy-conjecture` over `Sp_4(Z)`.

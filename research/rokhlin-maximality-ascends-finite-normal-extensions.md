@@ -48,6 +48,10 @@ artifacts:
     relation.
   - Products `Y_0 × L^Q` of a liftable `Y_0` with Bernoulli shifts always lift. They have entropy at least `H(L)`
     when `Y_0` is weakly contained in all free actions (`finite-kernel-rokhlin-ascent-from-weakly-minimal-lift`).
+- **Bernoulli lifting is dead over w-rigid quotients.** `bernoulli-lifts-across-finite-kernels-force-virtual-splitting`:
+  by Popa's cocycle superrigidity, a Bernoulli shift of a w-rigid `Q` lifts only when the extension virtually
+  splits. There ascent is already a finite-index statement. In particular no Bernoulli shift of `Sp_4(Z)` lifts to
+  Deligne's `E_3`.
 - **Where it dies (mechanism analysis, artifact Section 5).**
   - The canonical liftable action is the twisted section action `Ω/N`. Weak containment of `Ω/N` in Bernoulli shifts
     asks for an approximate trivialization of the extension class on Bernoulli orbit relations of `Q`.
