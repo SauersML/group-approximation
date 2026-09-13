@@ -97,3 +97,5 @@ weight `1 - phi_V` of the regular module `F[Z/p]`.
     single-element `V`-conjugacy. For `m = p` single elements agree, and only the joint fixed rank rules it out.
 
 *Verification by `w3-vf-linear` (2026-09-12), Section 31.3 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: Proposition 4.2 (a)-(c), the single-level calibration and the 77400e393 correction PASS. Re-derived: the Frobenius drops and their telescoping sum; the corrected range `1 <= j <= p` with drops `d_0 = phi_V + (1 - phi_V)/p`, `d_i = (1 - phi_V)/p`; and the tail-average bound `rk(y^j) <= min((p - j)/p, (1 - phi_V)(p - j)/(p - 1))` for `j >= 1`. The law itself stays OPEN.*
+
+*Verification by `w3-vf-linear` (2026-09-12), §32.2 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on w7-v-cycle-c2 ce8be16cd1. Corollary 1.2 of the cylinder-group artifact proves the law for every prime, `p = 2` and `p = 3` included. The Section 2 dihedral bounds give `p = 2` independently. The planned route may land this node ESTABLISHED.*

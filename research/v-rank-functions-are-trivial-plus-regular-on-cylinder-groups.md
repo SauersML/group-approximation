@@ -7,6 +7,7 @@ distinct_from:
   v-rank-models-are-trivial-plus-free-on-odd-cycle-trees: that is the torsion law on elementary abelian odd-cycle groups whose order is prime to the characteristic; this covers every finite cylinder group in every characteristic, and uses that law only on an auxiliary odd-cycle group.
   v-rank-order-char-cycles-are-trivial-plus-regular: that is the Jordan profile of one clopen p-cycle in characteristic p; this is the whole rank function on every finite cylinder group, and gives that profile as a corollary.
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md
 ---
 
@@ -81,3 +82,5 @@ rk(A) = phi_V rank_F eps(A) + (1 - phi_V) rank_F Reg(A) / |G|.
   - **Counting.** A nonidentity `h` moves a piece, so it fixes at most a `q^(-k)` fraction of the characters. The
     error is at most `3n(|G| + 1)(1 - phi_V) q^(-k)`.
   - **Inputs.** The same as Section 1 of this node's artifact.
+
+*Verification by `w3-vf-linear` (2026-09-12), §32.1 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on w7-v-cycle-c2 ce8be16cd1. Theorem 1.1 re-derived: Steps 1–5, including the left-ideal exchange, the block trick, `f_O ~ I_|G| ⊗ e_chi` and the non-free count; the total error is at most `2n|G|/p`. The scope via the canonical partition is correct. The planned route may land this claim ESTABLISHED. The w7-v-cycle-c3 entries are checked separately.*

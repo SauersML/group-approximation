@@ -9,6 +9,7 @@ distinct_from:
   leavitt-el3-rank-models-over-finite-fields-are-trivial: that is rank triviality for EL_3 over the Leavitt algebras in every characteristic; this is rank triviality for the subgroup V in characteristic two. By simplicity of the Leavitt units it implies the binary characteristic-two case of that claim, so it is at least as strong; the converse is not known, since no nontrivial rank model of V is known that fails to extend to the Leavitt units.
   thompson-v-cantor-system-has-no-covariant-rank-model: that excludes rank models carrying a covariant cylinder algebra; this excludes every rank model, covariant or not.
 artifacts:
+  - research/artifacts/w3-vf-linear-verification-2026-09-12.md
   - research/artifacts/thompson-v-rank-models-cantor-covariance-2026-09-12.md
 ---
 
@@ -137,3 +138,5 @@ characteristic two. Then every group homomorphism `sigma : V -> M^x` is trivial.
     - **First premise it breaks.** Odd cycles normalized by the 2-group.
   - **Where it dies.** A proof needs infinite-order elements in a configuration not known to be sofic, together with
     2-torsion. The first live configuration is still `<x_0, x_1, t>`.
+
+*Verification by `w3-vf-linear` (2026-09-12), §32.4 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on the w7-v-cycle-c2 entries. `rk(1 + [t]) = (1 - phi_V)/2`, the local formula, convexity, and the reduced-model equivalence through [FR] Corollary 1.3(5) (matricial) all re-derive. The gate stays OPEN.*
