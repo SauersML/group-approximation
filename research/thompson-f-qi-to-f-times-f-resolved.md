@@ -16,8 +16,9 @@ requiring the corresponding established answer claim; never by a
 
 - **Coarse-embedding-monotone invariants.** F × F is the stabilizer of `1/2` in F
   (elements supported in `[0,1/2]` times elements supported in `[1/2,1]`), so F
-  and F × F embed in one another as subgroups. Every invariant monotone under
-  coarse embeddings or under regular maps takes the same value on both. Dies.
+  and F × F embed in one another as subgroups (established:
+  `thompson-f-f-times-z-f-times-f-are-mutual-subgroups`). Every invariant monotone
+  under coarse embeddings or under regular maps takes the same value on both. Dies.
 - **Cohomology with group-ring coefficients.** If `H^*(F; ZF) = 0` in every degree
   (Brown–Geoghegan 1984, to be re-read), then `H^*(F × F; Z[F × F]) = 0` by the
   Künneth formula. Dies if confirmed.

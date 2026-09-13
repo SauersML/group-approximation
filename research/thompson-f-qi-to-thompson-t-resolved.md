@@ -15,11 +15,13 @@ requiring the corresponding established answer claim; never by a
 
 ## Attempts
 
-- **Amenability.** T is not amenable and amenability is a quasi-isometry
-  invariant, so an amenable F is not quasi-isometric to T, and a yes-answer here
-  makes F non-amenable. Where it stands: this reduces the no-answer to
-  `thompson-f-is-amenable`, which is open; the reduction is being recorded as a
-  route.
+- **Amenability.** T is not amenable (`thompson-t-is-not-amenable`) and
+  amenability is a quasi-isometry invariant
+  (`amenability-is-a-quasi-isometry-invariant`), both established with complete
+  proofs. So an amenable F is not quasi-isometric to T
+  (`thompson-f-not-qi-to-t-if-f-is-amenable`), and a yes-answer here makes F
+  non-amenable (`thompson-f-nonamenable-if-qi-to-thompson-t`). Where it stands: the
+  no-answer is reduced to the open root `thompson-f-is-amenable`.
 - **Torsion, free subgroups, simplicity.** T has torsion, contains free groups and
   is simple, while F is torsion-free, has no free subgroups and has abelianization
   `Z^2`. Dies: none of these is a quasi-isometry invariant.

@@ -19,7 +19,8 @@ this part no.
 
 - **Coarse-embedding-monotone invariants.** F × Z embeds in F as a subgroup
   (elements supported in `[0,1/2]` times a cyclic group supported in `[1/2,1]`)
-  and F embeds in F × Z, so the two groups coarsely embed in each other. Every
+  and F embeds in F × Z, so the two groups coarsely embed in each other
+  (established: `thompson-f-f-times-z-f-times-f-are-mutual-subgroups`). Every
   invariant that is monotone under coarse embeddings (asymptotic dimension,
   property A, coarse embeddability in Hilbert space) takes the same value on
   both; the same holds for invariants monotone under regular maps, such as the
