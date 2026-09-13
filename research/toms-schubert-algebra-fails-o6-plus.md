@@ -7,6 +7,7 @@ distinct_from:
   toms-ah-counterexample-to-uniform-gamma: that imports B and its failure of uniform Gamma through non-equivalence of two projections of the tracial completion; this proves the Cuntz-level support gap for common lower bounds of the finite-stage pair and deduces failure of (O6+).
   toms-schubert-algebra-misses-a-rank: that asks whether some continuous rank is unrealized in B; this closes Thiel's stable-rank-one method on B and decides nothing about which ranks occur.
   uniform-gamma-iff-tracial-support-projections-and-division: that measures near projections under one positive element; this measures near projections Cuntz-below two equal-rank projections at once.
+  toms-schubert-algebra-has-no-small-joins: that bounds common Cuntz upper bounds of the same pair from below and gives failure of (O6+) or of weak cancellation; this bounds common lower bounds away from full trace and gives failure of (O6+) with no disjunction.
 artifacts:
   - research/artifacts/toms-schubert-o6-plus-failure-2026-09-12.md
 ---

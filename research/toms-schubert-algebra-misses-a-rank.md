@@ -63,6 +63,17 @@ of continuous ranks on `T(B)`.
   two compact classes of constant rank `t` in `B` have no common Cuntz upper bound
   of rank below `2(1 - eta) t` everywhere. So `L'_f` is not upward directed for
   `f = (5/4) t`, and `Cu(B)` fails (O6+) or weak cancellation.
+  - The second step fails too, and the disjunction resolves.
+    `toms-schubert-algebra-fails-o6-plus` is the dual statement for meets. For
+    large `m`, every common Cuntz lower bound `c` of `p_m` and `q̂_m` has
+    `sup_tau (d_tau(p_m) - tau(h_(2 eps)(c))) >= delta^2/8`.
+  - So no common lower bound has a continuous rank near `d(p_m)`, and the
+    conclusion of Thiel's Theorem 7.5 fails for this pair.
+  - Hence `Cu(B)` fails (O6+) outright, and `B tensor K` is not of almost stable
+    rank one.
+  - Both constant targets are ranks, so neither result decides this claim. What
+    they give is a two-sided rigidity of Cuntz meets and joins of Toms's twisted
+    equal-rank pair.
 - **The exact cell `B` escapes.** `rank-density-and-small-joins-give-all-ranks`:
   rank density plus upward directedness of every `L'_f` gives all ranks, with no
   (O6+), weak cancellation or comparison. `B` has rank density and fails
