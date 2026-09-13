@@ -31,13 +31,26 @@ only from the literature in §3.
 * **The Fibonacci groups `H_n = F(n-1,n)`.** For even `n >= 4` these are torsion-free 3-manifold
   groups whose group rings over any domain have no zero divisors (DLNV §4.1). `H_4` is a torsion-free
   polycyclic group (DLNV Prop 5.1).
-* **The Nielsen--Soelberg group `G_1`.** Its subgroup `H` of index 32 is normal, with presentation
-  (N--S (3.2)) `<h_1,...,h_4 | h_1, h_2 central, h_4 h_3 = h_2^8 h_3 h_4>`. So `H` is `Z` times a
-  torsion-free class-2 nilpotent group. `G_1` is virtually nilpotent, hence EA, and `K[G_1]` is a
-  domain for every field `K`. N--S end §4 with: "We leave it as an open question whether or not
-  any of the three group rings `R[G_i]`, for `i in {1,2,3}`, is a domain." For `i = 1`, and `R`
-  a field or a commutative domain (through its fraction field), KLM answers this.
-* **`G_2` and `G_3`** (N--S (3.5) and §4) are checked in §6.
+* **The Nielsen--Soelberg groups `G_1`, `G_2`, `G_3`** (N--S (3.1), (3.5), (4.2)). All three are
+  torsion-free (N--S) and virtually polycyclic. So `K[G_i]` is a domain for every field `K`, by
+  Farkas--Snider in characteristic 0, Cliff in characteristic `p`, or KLM. Through the fraction
+  field, `R[G_i]` is a domain for every commutative domain `R`. N--S end §4 with: "We leave it as
+  an open question whether or not any of the three group rings `R[G_i]`, for `i in {1,2,3}`, is a
+  domain", where `R` is a domain. Nothing here decides a noncommutative `R`.
+  - `G_1`: N--S (3.2) already shows that the index-32 normal subgroup `H` is `Z` times a
+    torsion-free class-2 nilpotent group. GAP reproduces this (§6).
+  - `G_2`: `H = <a_1^2, a_3^2, a_6^2, a_1 a_3 a_6^-1>` has index 4 and is normal (GAP, §6). Its
+    Reidemeister--Schreier presentation on these generators `h_1, ..., h_4` says: `h_1` and `h_2`
+    are central, and `h_3^-1 h_4^-1 h_3 h_4 = h_2^2 h_1^-2`. With `u = h_1 h_2^-1`,
+    `H = <h_2> x <u, h_3, h_4 | u central, [h_3, h_4] = u^-2>`. This is `Z` times a torsion-free
+    class-2 nilpotent group.
+  - `G_3 = <x,y | (yx)^2 (xy)^2, (xy^-1)^2 (xy)^2>`, by hand. Put `t = (xy)^2`. The first relator
+    says `(yx)^2 = t^-1`, and `(yx)^2 = x^-1 t x = y t y^-1`, so `x` and `y` invert `t` and `<t>` is
+    normal. In `Q = G_3/<t> = <x,y | (xy)^2, (xy^-1)^2>` we have `yxy = x^-1` and
+    `y^-1 x y^-1 = x^-1`, so `y x^2 y^-1 = (yxy)(y^-1 x y^-1) = x^-2` and `<x^2>` is normal in `Q`.
+    Then `Q/<x^2> = <x,y | x^2, xyx = y^-1>`, the infinite dihedral group. So `G_3` has a normal
+    series with cyclic factors: it is polycyclic, of Hirsch length at most 3. GAP gives
+    `[G_3 : H] = 8` with `H` normal and `H^ab = Z^2 x Z/8` (§6).
 
 ## 3. Published frontier (read from the PDFs)
 
@@ -188,8 +201,18 @@ exactly when some torsion-free quotient of `G_Gamma` is injective on the vertice
 
 ## 6. Status
 
-- Landed now: §§1--5.
-- Pending, on MSI: GAP structure of `G_2` and `G_3`, through the finite-index subgroups `H` named
-  by N--S. After that, the folded-graph search over `F_2`: check that every graph with `n <= 16`
-  is excluded, measure growth, then try the 1120 graphs at `n = 20`. Results, encodings and logs
-  will be added here.
+- Landed: §§1--5, and the virtual polycyclicity of `G_1`, `G_2`, `G_3` in §2.
+- GAP evidence: `zero-divisor-search-2026-09-12-gap/ns-structure.g`, with output `ns-structure.out`
+  and log `ns-structure.587004.log`. It ran as MSI slurm job 587004, on GAP 4.11.1 in the SageMath
+  10.7 container. For each group the output gives the index of the N--S subgroup `H`, whether `H`
+  is normal, the Reidemeister--Schreier presentation on the given generators, `H^ab`, and a
+  Tietze-simplified presentation.
+  - `G_1`: index 32, normal. `h_1` and `h_2` are central, and
+    `h_3 h_2^-2 h_4^-1 h_2^-1 h_3^-1 h_2^-2 h_4 h_2^-3` is a relator, which with `h_2` central is
+    N--S (3.2). `H^ab = Z^3 x Z/8`.
+  - `G_2`: index 4, normal, with the presentation in §2. `H^ab = Z^3 x Z/2`.
+  - `G_3`: index 8, normal, `H^ab = Z^2 x Z/8`. The structure in §2 is by hand and does not use
+    this output.
+- Pending, on MSI: the folded-graph search over `F_2`. The first program uses bounded Todd--Coxeter
+  coincidence pruning and sieves 1, 2, 3 and 5. It is being tested on labelled structures from
+  finite groups. Then: check every graph with `n <= 16`, measure growth, and try `n = 20`.
