@@ -277,25 +277,58 @@ Stage B (ROSTER l.844-845): hull-count94's module `OsinLemma94PolygonClasses` ha
 - The short-side count had already landed here. I told audit-intro (~14:00) so it is not written twice.
 - audit-sec3's wrap-pair note (l.825): a run can split at the base of the face walk, at most one extra class per polygon.
 
-## Option (2): the one-cell conjunct of the metric Prop (gate confirmed ~14:05)
+## Option (2): cancelled
 
-ROSTER l.779 and l.812-815: the Dense respelling adds a one-cell conjunct at `λ⁻¹(ε + c)`. It is gated on this lane
-confirming that the metric proof delivers it. Confirmed to main and hull-unbound:
-- F1's order is on main (Pieces:97, 9f8779c4e), and `osinLemma94AntiparallelMetric` proves it.
-- The pair's vertices are within the Morse radius `κ` of segment points at distance `≥ β = (λ√ρ'/240 − c)/1000`, so
-  `d(a,a') ≥ β − 2κ` and `d(b,b') ≥ β − 2κ` (`nearby_endpoints_keep_shortening_margin` is only the triangle inequality).
-- One more `exists_nat_sqrt_threshold λ c (1000(L + 2κ))` in the ρ₀ of `unboundOrientedWordPolygonMonotone` gives
-  `L < d(a,a')` and `L < d(b',b)` for any `L` fixed before ρ₀. The metric proof uses the scale at `ρ' = ρ/(K+1)² ≥ ρ₁`.
-- Proof side, this lane's files: `UnboundOrientedWordConnectors`, `UnboundOrientedWordPolygon`,
-  `OsinLemma94AntiparallelMetric`. The spelling is hull-unbound's (Pieces). I asked hull-unbound for it.
-- Users of `OsinLemma94DensePolygonsAntiparallel` to co-probe: Pieces, PlanarPieces, `OsinLemma94AntiparallelMetric`,
-  `OsinLemma94SectionResiduals` (importer) and hull-component's unlanded `OsinLemma94BudgetFilter`
-  (`exists_of_budget_on`), which is not in hull-unbound's Rule 22 list.
+ROSTER l.930 cancels the `λ⁻¹(ε + c)` one-cell respelling of the metric Prop, so this lane writes nothing for it. The
+confirmation sketch (F1's order, `d(a,a') ≥ β − 2κ`, one more square-root threshold in ρ₀) stays in 9ae726df1.
+
+Spike deletion: `SurgerySpikeDeletionRegions` carries ghw-charp2's in-flight edit and is off `sec5-sentences.files`.
+Its red in probe 0913-141442-31689 comes from that edit; this lane's modules BUILT there.
+
+## The kind-level transition count (ROSTER l.897, l.1085)
+
+Split (ROSTER l.1085), which supersedes msg 7ca57652:
+- audit-intro wrote `exists_cyclicRuns` (25aef6af9);
+- hull-component does the bubble accounting and `ClassCovers L`;
+- hull-count94 writes the producer of `Q` (planned `OsinLemma94ClassJoins`) and assembles `OsinLemma94ClassCountInput`;
+- this lane writes the kind-level transition count `≤ K n`.
+
+`GGT/VanKampen/Estimating/OsinLemma94ClassTransitions.lean`: LANDED 2767e402d; probe 0913-160635-97844 GREEN (base
+778e23fbd), BUILT; queued for wiring after `OsinLemma94ShortSides`.
+- `OsinLemma94RealizedPolygons.KindJoins P k s`: sides `s` and `(s + 1) % k_i` both have kind `.cell j`, for one `j`;
+- `kindNonJoins`, `relatorPolygons` (the polygons with an (A1) side), `shortAdjacent`, and `longTransitions` (the kind
+  non-joins where neither side is short);
+- `card_shortAdjacent_le`: `≤ 2 #shortSides`. `card_kindNonJoins_le`: `≤ 2 #shortSides + #longTransitions`;
+- `sum_card_kindNonJoins_le_mul`: `∑_{relatorPolygons} #kindNonJoins ≤ 48 ε n + ∑_{relatorPolygons} #longTransitions`;
+- `card_filter_not_le_kindNonJoins_add`: for any join predicate `J`, `#¬J ≤ #kindNonJoins + #(KindJoins ∧ ¬J)`;
+- `OsinLemma94KindTransitionInput`: `∑_{relatorPolygons} #kindNonJoins ≤ K n`, under the binders of `ClassCountInput`;
+- `OsinLemma94LongTransitionInput`: the same bound for `#longTransitions`, the residual;
+- `osinLemma94KindTransitionInput_of_longTransitions`: the first Prop from the second, with `48 ε + K`.
+
+For hull-count94:
+- `exists_cyclicRuns` gives `classCount ≤ max 1 #¬J`.
+- With `card_filter_not_le_kindNonJoins_add`, the non-joins of the ClassJoins predicate are the kind non-joins plus the
+  same-cell junctions whose gap is not value one.
+- A polygon with an (A1) side never has exactly one kind non-join.
+
+Model tests of the residual:
+- Unpinched bubbles.
+  - Two cells meeting at `m` points bound `m − 1` bubbles, each with a long transition.
+  - Unpinched bubbles are contiguities, so `|M| ≤ 3(n + r − 1)` bounds them.
+- Pinched bubbles.
+  - A bubble pinched around a G-face or a hair is not a contiguity, and with the G-face it is not a
+    `FaceSetBoundary`. So no binder bounds such bubbles at `n = 2`.
+  - Split the pinch vertex and add a value-one edge (opening a hair into a two-gon first). The bubble and the
+    G-face then form a contiguity along the first cell's arc.
+  - So the residual holds on this model only through `weight_maximal`. Its proof needs the un-pinch surgery, option
+    (b) of the pinched-window item (ROSTER l.850: hair opening hs-vanishes, bubble un-pinch leavitt-units). The
+    quadrilateral member (a) does not supply it.
+- Cutting sides and the other long transitions need the Euler tooling (hull-euler).
 
 ## Next
 
-1. On hull-unbound's spelling: write the proof side of option (2) and co-probe it with the users above.
-2. `ClassBudget` from the 9.3 run counts, on hull-count94's `OsinLemma94PolygonClasses` spelling, with
-   `sum_card_shortSides_le_mul` for the short sides. Waiting for its reply on the split (msg 7ca57652).
-2. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
+1. `OsinLemma94ClassTransitions` is landed, queued for wiring and has its census row. I asked main (~16:10) whether this
+   lane proves `OsinLemma94LongTransitionInput`, and against which interface of the un-pinch (b).
+2. On a ruling: prove `OsinLemma94LongTransitionInput` over the un-pinch (b) and hull-euler's Euler lemma.
+3. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
    re-grade the rows formalized.
