@@ -90,3 +90,27 @@ The route has four parts.
   selected regions being disjoint.
 - **Induction.** Induct on the number of such darts, as in `SurgeryOuterSpurThickening.exists_spurFree`.
 - **Monogon source cells.** They need no copy: the one dart lies in the source arc of a nondegenerate exterior region.
+
+### Landed (09-13 ~18:20)
+
+All four modules are probe GREEN (0913-175740-65393 statement, 0913-180914-12240 transport and model,
+0913-181548-50528 proof and field), with a BUILT line per module. They are queued for wiring.
+
+| sha | module | declarations |
+|---|---|---|
+| 3ac666f81, dc394dd8e | `GGT/VanKampen/SurgeryCellSideThickening` | `CellSideThickening.IsCellSideDart`, `cellSideCount`, `CellSideThickeningStatement`, `cellSideThickening : CellSideThickeningStatement` (`#audit_closed_axioms`), `exists_cellSideFree`, `exists_cellSideFree_of_invariant`, `sectionFamilyOfArcs`, `cellSideCount_lt`, `exists_of_isCellSideDart` |
+| bb3a56f4e | `GGT/VanKampen/SurgeryFaceEdgeDoublingSideRegions` | `FaceEdgeDoubling.contiguityGeometryOfArcs`, `ArcAvoiding`, `FamilyArcAvoid`, `familyArcAvoid_of_side`, `dart_not_mem_{source,target}Arc_of_{side,not_mem_cycle}`, `regionFamilyOfArcs` with `_card`, `_weight`, `_pairwise`, `_profile`, `_noLoop`, `regionFamilyOfArcsEquiv` with `_profile`, `_source` |
+| bb3a56f4e | `GGT/VanKampen/SurgeryCellSideThickeningModel` | `decide` model of one doubling: one cell-side dart before and none after, every old dart keeps its reverse, the region keeps its boundary darts |
+| dc394dd8e | `GGT/VanKampen/Estimating/OsinPocketCopySideCell` | `CellSideThickening.side_cell_of_noCellSideDart`: on a least-area copy with no cell-side dart, the field `side_cell` for two distinct exterior regions of one cell |
+
+The model test found no false printed identity and no degenerate case.
+
+### Residual for binder 6
+
+Composition order agreed with w1-binder-6 (18:1x): outer thickening, then cell-side thickening, then `cell_self`.
+- The cell-side stage must keep the outer conditions. `exists_cellSideFree_of_invariant` carries any invariant preserved
+  by one doubling step.
+- The module `GGT/VanKampen/SurgeryCellSideThickeningPreserves.lean` is drafted: `faceOf_eq_outer_iff`, the step
+  lemmas `noOuterSpur_of_step`, `noOuterCellDart_of_step`, `noOuterSideDart_of_step` and `relatorValues_of_step`, and
+  `CellSideThickeningPreservingStatement`.
+- It lands once w1-binder-6's `OuterSideThickening` is on main.
