@@ -39,3 +39,15 @@ artifacts:
   - **E⋊V.** An obstruction using only `E⋊V` would show that `V` has no nontrivial weakly finite
     representation over `F_3`, hence that `V` is not sofic.
   - **No mechanism found.**
+- 2026-09-12 `w6-mismatch-c3`: the mismatched pair is not an escaping configuration
+  (`research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md`).
+  - **Stably finite side algebras.** For every letter weight, the span of the `s_μ t_ν` with
+    `ω(μ) <= ω(ν)` is stably finite, and its units over `F_3` are locally residually finite
+    (`depth-monotone-leavitt-subalgebras-are-stably-finite`).
+  - **Firewall.** `T_(0,1)`, `T_(1,00)`, their product (of infinite order), all level roots at every depth, `E`,
+    level `V` and the depth-decreasing transvections lie in one such unit group. With all its relations, that
+    group has a weakly finite model with `z -> -1` (`depth-monotone-configurations-cannot-force-ternary-minus-one`).
+    So the relations in `W` give neither a one-sided pair nor a contradiction.
+  - **Where it must go.** The group elements of a certificate must generate a subgroup that no conjugation puts
+    inside any weighted unit group: elements of `V` that are weight-level for no weight, or sets like
+    `{T_(0,1), T_(1,0), T_(1,00), T_(00,1)}`. The models kill `D`, so the defect form is not firewalled.
