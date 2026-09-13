@@ -334,6 +334,56 @@ and the lead at about 13:35.
      hypothesis, with boundary `a^m` and `cuts` the whole word. `LeastArea` holds since
      `a^m ≠ 1`. The lead declined a formal fixture for this instance at ~13:10.
 
+Lead ruling on the wrap pair (~15:00): `Maximal` and `baseOf` stay unchanged. The single-side
+model shows that fix (b) would falsify `PartitionInput`. The extra side goes into the budget as
+one class per polygon in L, and audit-intro checks it.
+
+## W1 residual truth audit (lead item, 2026-09-13 ~15:00)
+
+The item: give the truth of three W1 residual Props, as stated, on the models on main.
+- Configuration A is the pinched two-gon (`OsinPocketPinchedTwoGonModel`, `…Lobe` `4181011af`,
+  `…OuterFollows` `e533e5581`): the inner cycle fails and the outer cycle follows.
+- Configuration B is the two-petal rose (`OsinPocketLakeModel` `67e5b2f9c`, map only): the inner
+  cycle follows and the outer cycle fails. A labelled rose is not on main.
+
+The verdicts went to kh-torsion, go-lemma42, hull-respell, kh-cckw and the lead at about 15:15.
+They are findings only; nothing was built.
+
+1. **`PocketCellTransportStatement` (`OsinPocketPieces:312`): true, proved.**
+   - Proof: `pocketCellTransport` (`OsinPocketGlueCellTransport`, `874a332a2`), with
+     `#audit_closed_axioms`.
+   - Consumers: `OsinPocketCutResiduals:53,64` and `OsinDescentResiduals:50`.
+   - It uses only outer following, so A is an instance and B makes it vacuous. It needs no change
+     under R2.
+2. **`GeodesicCollarStatement` (`SurgeryGeodesicCollar:71`): true as stated (paper sketch).**
+   - Vacuous at both models: at A `hin` fails, and at B `hout` fails.
+   - Sketch:
+     - `bothFollowUnpinched` (`OsinPocketUnpinchedEuler`, no consumer yet) and
+       `isSimpleClosedWalk_of_followsBoundary` (`OsinPocketRegionUnpinched:219`) make `s ++ rest`
+       a simple closed walk.
+     - `s = []` is `geodesicCollarOutput_nil`.
+     - When `g ≠ []`, Strip and Insert give the G-faces `s·g⁻¹` outside and `g·q` inside.
+     - When `g = []` and `rest ≠ []`, Strip and Join identify the distinct ends of `s` inside the
+       strip.
+   - Smallest revision if R2: delete the `P.inner.FollowsBoundary →` binder. The Prop still looks
+     true, but every case, `s = []` included, then needs an un-pinch.
+   - At A, splitting `{1,3,6,8}` into `{1,3}` and `{6,8}` merges `a` and `b` into `[3,4,6,5]`, and
+     the walk `[5,3,4,6]` becomes simple. This is O-equivalent only when `a` and `b` are G-faces; in
+     `lobeDiagram`, `a` is a relator cell.
+3. **`PocketPinchLabelledStatement` (`OsinPocketPieces:272`): true at both models; general truth
+   not settled (no counterexample, no complete sketch).**
+   - A: `K' = lobeK` (`pinchedPocketLobeModel`).
+   - B, labelled by hand with `Π = [1]` and `K = [0,2]` relator cells and `eps = 0`: the witness is
+     `K'.faces = {Π}`, with kept `Π`, source `K`, sourceArc `[0]`, empty sides and an empty
+     targetArc. Its boundary `[1]` is a single loop.
+   - Both pass because the conclusion ties `K'` to `K` only through `(eps, lo, hi)`. That is harmless
+     to `sectionPocketCutInput_of_pieces`, which reads only positions and `eps`.
+   - Route finding: `PinchSplit.Input` (`SurgeryPinchSplitDiagram:61`) needs both merged corners to
+     be G-faces. At both pinch vertices the complement corners are the exterior face and a relator
+     cell (A: `b | ext | a | Π`; B: `Π | K | O | K`), so no Input exists there.
+     `OsinPocketLakeAbsorption` (`49feec035`) needs `Π` in the exterior piece, so a lake containing
+     `Π` is the open case of `PocketPinchStepStatement`.
+
 ## Open (owned by other lanes)
 
 - `b6d1590be7ab` (L1145, partial, ghw-charp2): the GHW wall, reported to the lead.
