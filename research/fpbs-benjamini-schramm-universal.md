@@ -6,6 +6,7 @@ title: Every nonamenable locally finite Cayley graph has a Bernoulli bond nonuni
 root: true
 goal: true
 artifacts:
+  - research/artifacts/fpbs/docs/global-pivotal-tails-and-volume-defect.md
   - research/artifacts/fpbs/docs/direct-bs-new-results.md
   - research/artifacts/fpbs/navigation.md
   - research/artifacts/fpbs/docs/cluster-contact-mergers.md
@@ -140,6 +141,18 @@ cross-links recorded on `fpbs-fixed-price-universal`. There is no percolation
 content in that region.
 
 ## Attempts
+
+* **Quantify global pivotals before passing to finite balls (2026-09-12).**
+  `fpbs-global-pivotal-tail-at-uniqueness` proves exponential global
+  connection-pivotal tails, uniform in both endpoints at each fixed
+  uniqueness parameter, by exact bridge-closing surgery. The new
+  `fpbs-pivotal-volume-defect-criterion` proves that finite-ball counts
+  eventually agree almost surely with the global count and identifies
+  convergence of conditional means with uniform integrability of the
+  nonnegative boundary-bypass excess. These strengthen the dangling-bridge
+  input. The live growth route still needs both near-critical control of
+  the constants and uniform finite-volume excess bounds; almost-sure
+  stabilization supplies neither estimate.
 
 * **Final thinning, free-energy, and subgroup checks (2026-09-10).**
   Sections 7--9 of `docs/direct-bs-new-results.md` record the remaining

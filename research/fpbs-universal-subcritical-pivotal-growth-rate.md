@@ -3,11 +3,25 @@ rg: 2
 id: fpbs-universal-subcritical-pivotal-growth-rate
 kind: claim
 title: Every nonamenable Cayley graph admits a near-critical pivotal growth rate below half its spectral gap exponent
+artifacts:
+  - research/artifacts/fpbs/docs/global-pivotal-tails-and-volume-defect.md
 ---
 
 OPEN. For every fixed nonamenable Cayley graph, does some p0 in (pc,1) satisfy limsup_n log(1+L_n(p0))/n < (-log rho)/2, where L_n(p0)=sup_(R>=n,pc<=p<=p0) E_p[N_(n,R)|E_(n,R)]/n? The supremum may be infinite. No such universal upper bound is established. This is a sufficient target, not an asserted equivalent formulation.
 
 ## Attempts
+
+* **Quantify the global dangling-bridge bound.** The established
+  `fpbs-global-pivotal-tail-at-uniqueness` gives exponential tails for global
+  connection pivotals, uniformly in endpoints at each fixed uniqueness
+  parameter. The established `fpbs-pivotal-volume-defect-criterion` then
+  isolates finite-ball pivotals as the global count on the finite connection
+  event plus a nonnegative bypass excess. This excess eventually vanishes
+  almost surely, but its expectation tends to zero exactly when it is
+  uniformly integrable. No such bound is proved. Even that fixed-parameter
+  limit would leave the supremum over all radii and near-critical parameters
+  here unresolved; the global tail constants also retain their dependence
+  on the parameter.
 
 * **Contradict the necessary spike.** `fpbs-collapse-exponential-pivotal-spikes`
   proves that `p_c=p_u=c` forces, for every `alpha<lambda_0/2` and all large
