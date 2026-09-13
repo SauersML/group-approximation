@@ -68,4 +68,5 @@ injective and not surjective.
     - Partial-support torsion does not exclude the profile (artifact Section 6). Order-three elements of `V` form
       two conjugacy classes. At the profile, the class with a fixed point takes a value `y` in `[1/3, 5/9]`. The
       regular values (`1/|F|` on each finite subgroup `F`) satisfy every finite-subgroup identity.
-  - Status: on paper, awaiting `w3-vf-nonlinear`.
+  - Status: `w3-vf-nonlinear` re-derived the artifact and PASSED it (verification artifact Section 31,
+    83970f5256). Nothing about the gate is decided, and this claim stays OPEN.

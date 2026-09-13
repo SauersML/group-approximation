@@ -37,8 +37,8 @@ Theorem B for the `D`-stable host `2V` (artifact Proposition 2.1). Then `F_2[2V]
   - A state with `b > 0` restricts to `T` and pulls back along `ψ'` to a state with `b = 2/9`. So the values of `b`
     fill `{0}` if this claim holds and `[0, 2/9]` if it fails. The claim holds iff no state gives `e` the value
     `1/3`.
-  - Such a state takes the values `(1/9, 2/9, 2/9, 4/9)`, and `3^(-k)` on every tower class. `b = 0` is the
-    augmentation, so it cannot be killed and needs no killing.
+  - Such a state takes the values `(1/9, 2/9, 2/9, 4/9)`, and `3^(-k)` on every tower class. The augmentation
+    attains `b = 0`, so that value cannot be killed and needs no killing.
   - Proposition 3.4 turns the descent (this claim implying `thompson-v-order-three-averaging-idempotent-is-full`)
     into an extension problem. Some V state with `s[e] = 1/3` must be nonnegative on every class that becomes
     nonnegative over `2V`.
@@ -54,4 +54,5 @@ Theorem B for the `D`-stable host `2V` (artifact Proposition 2.1). Then `F_2[2V]
       with the profile satisfies. Here `k` in `V` conjugates `g` to `h`, and `1 ⊗ k` is not in `H_u` (artifact
       Proposition 4.1). By Theorem 1.1 such a relation proves this claim. No reduction of this host to `V` is
       known here.
-  - Status: on paper, awaiting re-derivation by `w3-vf-nonlinear`.
+  - Status: `w3-vf-nonlinear` re-derived the artifact and PASSED it (verification artifact Section 31,
+    83970f5256). Nothing about the gate is decided, and this claim stays OPEN.

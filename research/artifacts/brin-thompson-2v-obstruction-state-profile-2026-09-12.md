@@ -111,7 +111,8 @@ profile.
 ## 2. Precision on the directive
 
 - **`b = 0` cannot be killed.**
-  - It is the augmentation state (Theorem 1.1(c)), which exists on every group algebra.
+  - The augmentation state attains it (Theorem 1.1(c)), and exists on every group algebra. Other states can also
+    have `b = 0`, and when the gate holds every state does.
   - It does not need killing either. A state with `b = 0` gives `v` the value `0`, so it induces no state on `T`.
 - **`b` in `(2/9, 1/4]` never occurs.**
   - [H] Section 2 says that the finite-subgroup relations allow every `b` in `[0, 1/4]`. That is correct for those
@@ -239,8 +240,9 @@ become nonnegative after induction to `F_2[2V]` exclude every V-obstruction stat
 
 ## 5. Where it stops
 
-- **Proved on paper, awaiting `w3-vf-nonlinear`.** Theorem 1.1, Corollaries 1.3–1.4, Propositions 3.1–3.4 and 4.1,
-  Lemmas 6.1–6.2 and Corollaries 6.3–6.4.
+- **Verified.** `w3-vf-nonlinear` re-derived Theorem 1.1, Corollaries 1.3–1.4, Propositions 3.1–3.4 and 4.1,
+  Lemmas 6.1–6.2, Corollaries 6.3–6.4 and Remark 6.5, and PASSED them (verification artifact Section 31,
+  83970f5256). Its two wording notes are applied in Section 2 and Remark 6.5.
 - **Decided.** Nothing about the gate or the root; both stay OPEN.
 - **Firewall.** It needs one state of `K_0(F_2[2V])` with `s[e^(1)] = 1/3`.
   - By Proposition 3.1 such a state restricts to a V-obstruction state, so a 2V firewall is at least as hard as the
@@ -254,12 +256,6 @@ become nonnegative after induction to `F_2[2V]` exclude every V-obstruction stat
 - **One next lead.** Test the profile against relations of `F_2[⟨H_u, 1 ⊗ k⟩]` whose words use `u` and `1 ⊗ k`
   together. This host contains `H_mix`, and `1 ⊗ k` is not in `H_u` (Proposition 4.1). No reduction of this host
   to `V` is known here.
-- **Verification queue, highest yield first.**
-  1. Theorem 1.1 with Corollary 1.3: the gate is one value, with one profile.
-  2. Proposition 3.4: the exact descent criterion.
-  3. Proposition 4.1: the mixed-host conjugations and `1 ⊗ k` not in `H_u`.
-  4. Lemmas 6.1–6.2 with Corollaries 6.3–6.4.
-  5. Propositions 3.1–3.3 and Corollary 1.4.
 
 ## 6. Partial-support torsion (addendum)
 
@@ -357,15 +353,17 @@ become nonnegative after induction to `F_2[2V]` exclude every V-obstruction stat
 **Remark 6.5 (what partial support can and cannot do).**
 - **No exclusion.**
   - Put `s[e_F] = 1/|F|` on every finite subgroup `F`, via normalized dimension in the regular representation.
-    Normalized dimension is compatible with induction and conjugation, so this is a state on the colimit of the
-    `K_0(F_2[F])` over the finite subgroups of `V` (or `2V`).
+    Normalized dimension is compatible with induction and conjugation, so these values form a family of
+    normalized dimensions on the `K_0(F_2[F])`, over the finite subgroups `F` of `V` (or `2V`), compatible with
+    inclusion and conjugation. The finite subgroups do not form a directed system (two involutions can generate an
+    infinite dihedral group), and the argument uses only this compatibility.
   - It gives `t = y = 1/3` and satisfies Lemma 6.1 and Corollaries 6.3–6.4 (`1/9 = 3^(-2)`).
-  - So no identity that already holds in that colimit excludes the profile, partial support included.
+  - So no identity that every such compatible family satisfies excludes the profile, partial support included.
 - **Calibration sharpened.**
   - The counting rank of `L_3` on the length-2 cylinders gives `e'` the value `7/9`, which violates 6.3(c) at
     `t = 1/3`. So it does not extend to a state of `K_0(F_2[V])`.
   - The regular rank of Remark 1.2 is the one compatible with conjugacy in `V`.
 - **For a firewall.** A state with `s[e] = 1/3` must give the partial class a value in `[1/3, 5/9]`, and
   `(e' ⊗ 1)(1 ⊗ e)` one third of it.
-- **For an obstruction.** Nothing new. An exclusion needs a relation outside the finite-subgroup colimit, as in
+- **For an obstruction.** Nothing new. An exclusion needs a relation that does not come from finite subgroups, as in
   Section 4.
