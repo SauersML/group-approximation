@@ -224,14 +224,11 @@ has finite matrix support. -/
 def GLfin : Subgroup (LinearMap.GeneralLinearGroup k (ℤ →₀ k)) where
   carrier := {g | HasFiniteMatrixSupport k ((g : Module.End k (ℤ →₀ k)) - 1)}
   one_mem' := by
-    have hu : ((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) =
-        (1 : Module.End k (ℤ →₀ k)) := Units.val_one
-    have h : ((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1 = 0 := by
-      rw [hu, sub_self]
-    show HasFiniteMatrixSupport k
-      (((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1)
-    rw [h]
-    exact hasFiniteMatrixSupport_zero
+    have h : ((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1 = 0 :=
+      LinearMap.ext fun v => by
+        show v - v = 0
+        exact sub_self v
+    exact (congrArg (HasFiniteMatrixSupport k) h).mpr hasFiniteMatrixSupport_zero
   mul_mem' := by
     intro a b ha hb
     obtain ⟨S, hS⟩ := (hasFiniteMatrixSupport_iff _).1 ha
