@@ -1,21 +1,32 @@
 # baseline-debt lane report
 
 Lane `baseline-debt`, roster section `## baseline-debt`. The census findings are in
-`metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt`, and line numbers below point into that
-file at origin/main 0af6e2373. Census rows: `metadata/nm-census-rows/baseline-debt.tsv`.
+`metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt`. Line numbers below point into that file
+at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-debt.tsv`.
 
 ## Landed
 
-- `95e6d09ca`: three new modules, landed unverified. They are unchanged since then except
-  for a one-name fix in `StrongConvergenceMFSubsingleton`.
-- `296386753`: the four modules below, from probe 0913-021321-7359. The probe reported
-  `PROBE GREEN` and COMPILED all four overlay files:
-  - `StrongConvergenceMFSubsingleton` was rebuilt;
-  - the other three were replayed with the same input hash, after they were BUILT in probe
-    0913-020324-57087.
+- `95e6d09ca`: three new modules, landed unverified. The only change since is a one-name
+  fix in `StrongConvergenceMFSubsingleton`.
+- `296386753`: the four modules in the table, from probe 0913-021321-7359.
+  - The probe reported `PROBE GREEN` and COMPILED all four overlay files.
+  - `StrongConvergenceMFSubsingleton` was rebuilt. The other three were replayed with the
+    same input hash, after being BUILT in probe 0913-020324-57087.
   - The `#audit_axioms` and `#audit_closed_axioms` lines show only `propext`,
     `Classical.choice` and `Quot.sound`.
   - The three new modules are queued for wiring.
+- `bf625daf4`: this report and the census rows.
+- Docstring landing, probe 0913-025420-71482: the stale docstrings that audit-sec5 found
+  in `RegularNonMFAlgebra` and `TorsionFreePrintedSentences`. No statement changed.
+  - The printed corollary and proof are quoted as they now read (tex 1718-1736). The
+    not-MF clause cites `prop:mf-residual-calculus`, not an embedding into the corona's
+    unitary group.
+  - "No vocabulary for hyperbolically embedded" is replaced, in four places, by the closed
+    `exists_isNonDegenerate_isHypEmbedded` (`OsinTheorem12NonDegenerate`, Osin 1.2,
+    `(AH₁) ⇒ (AH₄)`).
+  - `DGOTheorem235Printed` and `GerasimovaOsinTheorem11Printed` are recorded as proved:
+    `dgoTheorem235Printed` and `gerasimovaOsinTheorem11Printed`. Both carry
+    `#audit_closed_axioms` and are imported by the root.
 
 | module | declarations |
 |---|---|
@@ -26,67 +37,57 @@ file at origin/main 0af6e2373. Census rows: `metadata/nm-census-rows/baseline-de
 
 ## Findings closed
 
+The census merge at 63f147d7b removed all five findings as stale ("matches no finding").
+Baseline lines 78, 97, 171, 238 and 298 are now `# REMOVED` comments.
+
 - **(a) open-predicate `FullDefectCornerRemark.manuscriptSentence_cornerPassesUp`**
   (baseline 238, tex 1008).
   - The premise `FullDefectPair (Corner R p hp)` is the printed hypothesis of the sentence:
     "the ring pRp, with unit p, satisfies the hypothesis".
-  - `FullDefectPair` now has an honest producer. At `L_k(1,d)` with `d ≥ 2`, take
-    `s = s₀`, `t = t₀`; then `t₁(1 - s₀t₀)s₁ = 1`. It is closed at `L_{𝔽₂}(1,2)`.
-  - So the finding retires as an honest discharge, and no reclassification is needed.
+  - `FullDefectPair` has an honest producer. At `L_k(1,d)` with `d ≥ 2`, take `s = s₀` and
+    `t = t₀`; then `t₁(1 - s₀t₀)s₁ = 1`. It is closed at `L_{𝔽₂}(1,2)`.
 - **(b) inlined-statement `TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientTrivial`**
   (baseline 171, tex 1711-1716).
   - The theorem is now the closed endpoint `PrintedTheoremQuotientTrivial`, with no
-    binders.
-  - The endpoint quantifies over `Q` and `L` with property (T) and full defect, and over
-    a surjection `r` onto an MF group `Q̄`. It concludes `r` is trivial and `Q̄ = 1`.
-  - It is proved from `manuscriptSentence_theoremHomsTrivial`.
-  - On main, no proof uses the old statement. The only Lean reference is
-    `#audit_axioms` in `Manuscript/NonMF/Audit/Sec5.lean`, and the new name
-    `PrintedTheoremQuotientTrivial` has no duplicate.
+    binders, proved from `manuscriptSentence_theoremHomsTrivial`.
 - **(c) open-predicate `ReducedGroupCStarTrace.powersAveragingEstimate_of_naiveFreeProductProperty`**
   (baseline 298, tex 1725).
-  - `NaiveFreeProductProperty G` is now produced at countable acylindrically hyperbolic `G`
+  - `NaiveFreeProductProperty G` is produced at countable acylindrically hyperbolic `G`
     with `HasTrivialFiniteRadical G`, from the closed `naiveFreeProductAtAcylindricallyHyperbolic`.
-  - The premises of that producer have closed producers:
-    - `instIsAcylindricallyHyperbolicFreeGroupFinTwo`;
-    - `hasTrivialFiniteRadical_of_torsionFree` together with `isPowerTorsionFree_multiplicative_int`.
+  - The classifier's least fixpoint admits this producer: its corpus premises have closed
+    producers, `instIsAcylindricallyHyperbolicFreeGroupFinTwo` and
+    `hasTrivialFiniteRadical_of_torsionFree` from `isPowerTorsionFree_multiplicative_int`.
+    The census merge confirms it.
 - **(d) carrier-data `IsStronglyOperatorMF` (baseline 78) and open-predicate
   `IsStronglyOperatorMF.isOperatorMF` (baseline 97)**, tex 99 (printed 102-105).
-  - Verified: `not_isStronglyOperatorMF_of_not_isOperatorMF` is the printed contrapositive
-    ("a group that is not MF as defined here is not MF in that convention either").
-  - The carrier now has an honest producer: a trivial group is strongly MF.
-    - The models are one-point, and every element maps to `1`.
-    - Both norms equal `|∑ c_g|`.
-  - It is closed at `Unit`.
+  - Verified: `not_isStronglyOperatorMF_of_not_isOperatorMF` is the printed contrapositive.
+  - The carrier has an honest producer: a trivial group is strongly MF, closed at `Unit`.
 
-## (e) carrier lines and (f) remaining open-predicate findings: classification
+## (e) carrier lines and (f) remaining findings: classification
 
-Only the four walls below produce each carrier. The residue is exact; nothing else in
-these findings is a citation.
+Every active finding names its owner in its baseline note. None is an unowned non-wall
+citation.
 
-- Owned by `hs-vanishes`: 66 `manuscriptPrintedNormalKazhdan` and 79 `HSVanishes`.
-- Owned by `nm-endpoints`: 203 `TheoremC.Configuration`, and every `_of_leastAreaLeaves`
-  finding (214, 218, 227, 230, 247, 250, 253, 257, 259, 263, 265, 268, 272, 276, 278, 286,
-  289, 294).
-- Four walls exactly:
-  - carrier lines:
-    - 212 `PrintedTorsionFreeTheorem`, 216 `PrintedTorsionFreeTheoremOsin`;
-    - 283 `FournierFacioParagraph`;
-    - 296 `PrintedRegularNonMFAlgebra`, 297 `PrintedRegularNonMFAlgebraOsin`;
-  - 220/223 `manuscriptTorsionFreeTheorem(Osin)_of_hullLeaves`;
-  - 232/235 `manuscriptRegularNonMFAlgebra(Osin)_of_hullLeaves`. Their extra premises `hDGO`
-    and `hGO` have closed producers, `simpleUniqueTraceAtHypEmbedded_closed` and
-    `gerasimovaOsinTheorem11Printed`;
-  - 301/304/307 `manuscriptRegularNonMFAlgebra{,Osin,LimitSet}_of_hullLeaves_closedGO`.
-- Greendlinger and bridge walls only:
-  - 245, 249, 252 `PrintedHullSmallCancellation{Current,Osin,LimitSet}`;
-  - 267 `PrintedSaturationLimitSet`;
-  - 281 `GGT.RelHyp.osin24HullStep_of_boundedLeaves`. Its three premises
-    `HullSC.BoundedHullLemma44CanonicalQuotientStatement.{0}`,
-    `HullSC.BoundedImageEmbeddingStatement.{0,0}` and `HullSC.HullLemma49KernelPowerStatement.{0,0}`
-    are produced over the least-area spelling. That spelling needs the Greendlinger wall
-    plus the closed `relativeDiscRealizationSpellingStatement` and
-    `relativeExteriorArcConversionAtWordRotatedStatement`, and the bridge wall.
+- Not walls, already owned:
+  - 341, inlined-statement `LeavittMFQuotientBothInclusions.elementary_le_commutator_of_trivial`:
+    owner leavitt-units. The premise is `thm:full-defect-ring` at `L_k(1,d)`, proved inside
+    the sibling carrier.
+  - 362, buried-conditional `HullTheorem312Lemma58.normalizesNoNontrivialFinite_of_isHyperbolicallyEmbedded`:
+    owner cite-hull. The premise is Hull Lemma 5.8's printed hypothesis, not a citation.
+- Walls only:
+  - 381 `HullSC.hullCommonQuotientPrinted_of_oneStep`, from the Theorem 7.1 leaves: owners
+    hull-respell, hull-bridge, sec5-sentences.
+  - 393 `TorsionFreeSectionAssembly.manuscriptRegularNonMFAlgebra_closedCitations`, from
+    FFF S2 through `KotowskiOllivierStatement` and `FinitelyPresentedInfiniteSimpleStatement`:
+    owners simple-group, kh-hyperbolic, kh-torsion.
+  - Every other active line is one of three kinds:
+    - an `_of_leastAreaLeaves`, `_of_hullLeaves(_closedGO)`, `_of_fourLeaves`,
+      `_of_leastAreaInputs`, `_of_leastAreaKOLeaves`, `_of_leastAreaZipFold` or
+      `kotowskiOllivier_of_leaves` wrapper, with its buried-conditional twin;
+    - a carrier-data `Printed*` line produced only through those wrappers: 267, 321, 322,
+      350-353, 363, 366, 377, 388, 391, 392;
+    - the conditional-data 378 `fournierFacioParagraph_of_literatureInputs`.
+    nm-endpoints owns the wrappers.
 
 ## Residual statements (exact)
 
@@ -95,13 +96,15 @@ these findings is a citation.
 3. `TheoremC.KotowskiOllivierStatement`
 4. `TorsionFreePrinted.FinitelyPresentedInfiniteSimpleStatement`
 
-These are walls owned by other lanes: hull-*, kh-* / ko-closed, and simple-group.
+These walls are owned by other lanes: hull-*, kh-* / ko-closed, and simple-group. Wall 4 is
+closed by `finitelyPresentedInfiniteSimple_closed` (47b31bef8, simple-group).
 
 ## Next
 
-- Census: the retirements need a census merge.
-  - Five findings are retired by honest producers: baseline 78, 97, 238, 298, and the
-    signature change at 171.
-  - The merge must see the landed producers; the gate reads all of `GroupApproximation/**`,
-    so wiring is not needed for it.
-- Wiring: three modules are queued.
+- Wiring: three modules are queued (`296386753`).
+- The team lead accepted (a) through (d) as closed; census registers them at its re-baseline.
+- New item (team lead, roster "Hull Corollary 7.4 at printed generality"): general Hull
+  Lemma 3.5, `{G₁, G₂} ↪h G₁ ∗ G₂` together with transitivity of hyperbolic embedding.
+  `HullSCFreeProductFactor` covers only the finitely presented torsion-free case. The
+  statement lands first, then the proof. cite-hull owns the other pieces (K(G), AH0,
+  Lemma 5.10, Corollary 7.3).

@@ -35,12 +35,14 @@ print writes them as such, and their carriers take no hypothesis:
   acylindrically hyperbolic group has no nontrivial finite normal subgroup"*,
   where normality is not even used.
 
-One printed clause has no carrier and cannot have one here: *"it contains a
-non-degenerate hyperbolically embedded subgroup [Osin, Theorem 1.2]"*.  This
-development has no vocabulary for *hyperbolically embedded*, and the printed
-proof uses that clause only to reach the hypothesis of Dahmani--Guirardel--Osin,
-which `DGOTheorem235Printed` states directly.  The docstring of
-`manuscriptSentence_algebraTrivialFiniteRadical` records the omission.
+One printed clause is carried in another module: *"it contains a non-degenerate
+hyperbolically embedded subgroup [Osin, Theorem 1.2]"* is
+`exists_isNonDegenerate_isHypEmbedded` in `OsinTheorem12NonDegenerate`, the
+implication `(AH₁) ⇒ (AH₄)`, proved there with no hypothesis beyond the class.
+That module sits above `RegularNonMFAlgebra`, so the clause is referred to here
+rather than restated.  The printed proof uses it only to reach the hypothesis of
+Dahmani--Guirardel--Osin, which `DGOTheorem235Printed` states at the hypotheses
+named in the sentence.
 -/
 
 namespace GroupApproximation
@@ -450,12 +452,12 @@ theorem manuscriptSentence_relativeQuotientHomsTrivial {P : Type} [Group P]
 > contains a non-degenerate hyperbolically embedded subgroup [Osin, Theorem 1.2]
 > and has no nontrivial finite normal subgroup.
 
-**Only the last clause is carried.**  This development has no vocabulary for
-*hyperbolically embedded*, and the printed proof uses that clause only to reach
-the hypothesis of Dahmani--Guirardel--Osin, which `DGOTheorem235Printed` states
-at the hypotheses named in this sentence.  So Osin's Theorem 1.2 is folded into
-that citation rather than carried on its own; nothing else in the corollary uses
-it. -/
+**The last clause is carried here.**  The middle clause, Osin's Theorem 1.2, is
+proved as `exists_isNonDegenerate_isHypEmbedded` in `OsinTheorem12NonDegenerate`,
+with no hypothesis beyond acylindrical hyperbolicity.  The printed proof uses
+that clause only to reach the hypothesis of Dahmani--Guirardel--Osin, which
+`DGOTheorem235Printed` states at the hypotheses named in this sentence; nothing
+else in the corollary uses it. -/
 theorem manuscriptSentence_algebraTrivialFiniteRadical {Q : Type} [Group Q]
     (hQ : IsPowerTorsionFree Q) : HasTrivialFiniteRadical Q :=
   hasTrivialFiniteRadical_of_torsionFree hQ
@@ -514,10 +516,12 @@ theorem manuscriptSentence_algebraStablyFinite (Q : Type) [Group Q]
 
 /-- **`cor:regular-nonmf-algebra`, printed sentence, third clause.**
 
-> … and an embedding into a norm matrix corona would embed `Q` into the corona's
-> unitary group, against Theorem `thm:torsion-free`.
+> … and it is not MF by Lemma `prop:mf-residual-calculus`, since `Q` is not MF
+> (Theorem `thm:torsion-free`).
 
-The group input is exactly the failure of MF-ness for `Q`, which
+The lemma is used at its last assertion, for the canonical unitaries of
+`C*_r(Q)`: an embedding of the algebra into a norm matrix corona would make `Q`
+MF.  The group input is exactly the failure of MF-ness for `Q`, which
 `thm:torsion-free` supplies through the full MF radical together with
 nontriviality. -/
 theorem manuscriptSentence_algebraNotMF (Q : Type) [Group Q] [Countable Q]
@@ -526,7 +530,7 @@ theorem manuscriptSentence_algebraNotMF (Q : Type) [Group Q] [Countable Q]
 
 /-- **`cor:regular-nonmf-algebra`, the group input of its last clause.**
 
-> … against Theorem `thm:torsion-free`.
+> … since `Q` is not MF (Theorem `thm:torsion-free`).
 
 A nontrivial group whose MF radical is everything is not MF: the identity is a
 homomorphism to an MF group and would have to be trivial. -/
