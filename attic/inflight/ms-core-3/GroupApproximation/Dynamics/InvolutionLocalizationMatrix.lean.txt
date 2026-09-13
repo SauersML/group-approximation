@@ -1,5 +1,6 @@
 import GroupApproximation.Dynamics.InvolutionLocalizationStatement
 import GroupApproximation.Meta.AxiomGuard
+import Mathlib.Algebra.Field.ZMod
 
 /-!
 # `lem:involution-localization`: the `F₂` matrix clause from the ring clause
@@ -28,6 +29,11 @@ finite-field clause `InvolutionLocalizationRingClause` and the finite matrix arg
 
 The local finiteness of `K_1(I)` in the last printed sentence belongs to the finite matrix argument
 of `thm:core-mf-radical` (chain-radical) and is not part of this clause.
+
+Build note: `Mathlib.Algebra.Field.ZMod` must be imported.  Without the instance `Field (ZMod 2)` in
+scope, specializing the finite-field clause at `ZMod 2` makes the unifier search for the field
+structure by unfolding the arithmetic of `ZMod 2`, which does not terminate within the heartbeat
+limit.
 -/
 
 namespace GroupApproximation
@@ -166,8 +172,9 @@ theorem exists_involution_zmodTwo (hring : InvolutionLocalizationRingClause) {X 
       ∀ x ∈ E, ∃ a ∈ coreTransientIdeal T (ZMod 2),
         (w : ClopenCrossedProduct T (ZMod 2)) * x * ↑w⁻¹ =
           coeff T (ZMod 2) (LocallyConstant.charFn (ZMod 2) hC) * a *
-            coeff T (ZMod 2) (LocallyConstant.charFn (ZMod 2) hC) :=
-  hring X T C hC hfull hret (ZMod 2) E hE
+            coeff T (ZMod 2) (LocallyConstant.charFn (ZMod 2) hC) := by
+  haveI : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
+  exact hring X T C hC hfull hret (ZMod 2) E hE
 
 /-- **lem:involution-localization, `F₂` clause, from the finite-field clause** (tex 1689–1693):
 "For kernel matrices, include all entries of their deviations and inverse deviations in $F$.
