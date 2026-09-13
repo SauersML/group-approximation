@@ -43,7 +43,14 @@ solution. This extends survey Corollary 3.21, which is the case `g_i = x_(i-1)`.
   - The abstract of arXiv:2201.02308 (Guba 2022) says the `1 - x_1` case "remains open",
     and that paper states it as Question 1.
   - arXiv title/abstract searches for Thompson + Ore found no later answer.
-  - Journals and other authors' post-2023 work were not searched beyond that.
+  - Citing work, 2026-09-12 (`research/artifacts/guba-q1-novelty-2026-09-12.md`): the
+    unread record flagged in review §33 is T. Nishinaka, *R. Thompson's group F and its
+    group algebras*, RIMS Kôkyûroku 2229 (2022), 103–110. It proposes a graph method for
+    non-Ore pairs and reaches no answer. Every citing record of Guba's 2021–2023 Ore papers
+    and survey, Kôkyûroku volumes 2193–2354, and arXiv and Crossref queries showed no answer
+    to this question or to `thompson-f-rescaled-x0-binomials-have-common-multiples`.
+  - Not searched: MathSciNet, zbMATH and Google Scholar (unreachable), and work that answers
+    the question without citing Guba.
 - Not covered: `h` whose support has several components or does not reach an endpoint
   (for example `x_1 x_2^-1`), and mixed families from `C_+` and its mirror, whose supports
   `(p, 1)` and `(0, q)` are not nested.
