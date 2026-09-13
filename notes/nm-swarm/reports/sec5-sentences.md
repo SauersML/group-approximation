@@ -165,36 +165,59 @@ hull-unbound landed `Estimating/OsinLemma94PlanarPieces.lean` at 80790fad1.
 
 Residual of this lane in W1 h94: `OsinLemma94CaseTwoInput.{u, w, v}`.
 
-### Case 2 exchange (design, not yet in Lean)
+### Spike deletion (landed, used by the removal pieces)
 
-Setup: `S` dart-minimal, `P : OsinLemma94RealizedPolygons S` maximal, and a backwards connector pair `C` (`C.b' < C.b`)
-whose target side `t` on face `k` is a cutting side.
-- Face `k` lies on both sides of every edge of `t`, and the inner vertices of `t` have degree two (`cutting_interior`).
-- `target_long` gives `eps < b - b'`, and both connectors have length `< eps`.
+The first design inserted a connector, merged one edge and deleted the rest of `t` as spikes. The spike deletion landed
+and is queued for wiring:
+- `SurgerySpikeDeletionMap` 3c672277a, `SurgerySpikeDeletion` 14daf9b00, `SurgerySpikeDeletionDarts` 31982031d,
+  `SurgerySpikeDeletionRegions` 0838416d4, `Estimating/OsinLemma94SpikeTransport` ba4233ef8.
+- jacobson's `OsinLemma94PendantRemoval` (61c2ade8e) builds on it, and hull-unbound's
+  `separatingPathRemovalInput_of_pendant` (7d4a2515f) builds on that.
 
-1. Insert a connector `s` across face `k` (`GFaceSplitCorners.exists_split_corner_output`): +2|s| darts.
-   - Use the start connector at `b` when `t⁻¹` lies in `walk[b, a]`, and the end connector at `b'` otherwise.
-2. Merge across the edge of `t` next to the connector, whose sides are now the two new faces (`Surgery.GFaceMerge`):
-   −2 darts.
-3. Delete the rest of `t` toward its nearer end as spikes, tip first: −2 darts each.
-   - That stretch together with the merged edge has at least `b - b'` edges.
+### Case 2 in Lean: windows, insertion, removal
 
-Net change: `2(|s| - ℓ) < 0` darts with `ℓ ≥ b - b' > eps > |s|`. Cells, the exterior and the selected regions are
-untouched, so the family transports with the same unbound sum, against `DartMinimal`. The insertion needs `s ≠ []`, so
-an empty connector is a separate case.
+`GGT/VanKampen/Estimating/OsinLemma94CaseTwo.lean`: LANDED 52b77f408; probe 0913-130606-76787 GREEN, BUILT.
+- `CaseOneWalk.polygon_four_windows`: from some corner the face walk reads `X ++ q ++ Y ++ p`, with `q` the target
+  segment from `b'` to `b` and `p` the source segment from `a` to `a'`.
+- No reverse dart of `q` lies in `q` (hull-unbound's `alpha_not_mem_of_dartMinimal`, 26b30e5df). None lies in `p`,
+  since the reverse darts of an (A1) arc lie on a relator cell.
+- The walk across `q` runs back along it (`cutting_interior`), and the walk does not jump over `q` or `p`
+  (`CaseTwoWalk.facePerm_mem_front_of_not_mem_back`). So the reverse darts of `q` all lie in `X` or all lie in `Y`.
+- Insert the end connector (reverse darts in `X`) or the start connector (in `Y`) across the face with
+  `SeparatedCornerInsertionInput`. This adds at most `2 |s|` darts, and `q` then runs between two different unselected
+  G-faces.
+- Remove `q` (`separatingPathRemovalInput_of_pendant`), which takes away `2 (b - b')` darts.
+- `|s| < ε < b - b'` (`target_long` with `wordDist_vertex_le'`), against `DartMinimal`.
 
-Still missing in Lean:
-- transport of distinguished families across the insertion: respects, nondegenerate, labelLegal, reduced, `S`, darts;
-- `SurgerySpikeDeletion*`: a diagram-level spike deletion (a dart fixed by `sigma`, on an unselected G-face) with region
-  transport and dart count −2;
-- the walk and corner combinatorics of steps 1-3.
+Declarations:
+- `CaseTwoWalk.rotate_add_length_of_eq`, `getElem_of_last_of_step`, `facePerm_mem_front_of_not_mem_back`,
+  `runsBackAcross_window`;
+- `osinLemma94CaseTwo_false (hinsert) (heps : 3 ≤ eps) (hS : S.DartMinimal) P k C hback hcut : False`;
+- `osinLemma94CaseTwoInput_of_insertion (hinsert) : OsinLemma94CaseTwoInput`, with `ε₀ = 3` and `ρ₀ = 1`;
+- `osinLemma94CaseTwoInput : OsinLemma94CaseTwoInput` (closed, `#audit_closed_axioms`). It applies the previous theorem
+  to sec2-sentences' `GloballyDistinguishedSectionFamily.separatedCornerInsertionInput`
+  (`Estimating/OsinLemma94SeparatedInsertionProof`, 619b70139). LANDED e0e94015d; probe 0913-131149-5355 GREEN, BUILT;
+  queued for wiring.
+
+`GGT/VanKampen/Estimating/OsinLemma94SeparatedInsertion.lean` states
+`GloballyDistinguishedSectionFamily.SeparatedCornerInsertionInput`.
+- LANDED b52230097; probe 0913-113234-56193 GREEN, BUILT.
+- Queued for wiring after `OsinLemma94ChainRespell`.
+
+Case 2 needs no same-cell competitor (no loop candidate, LoopCut ruling A) and no `ChainRespellInput`.
+
+## Residual Props of Case 2
+
+None. sec2-sentences proved `GloballyDistinguishedSectionFamily.SeparatedCornerInsertionInput.{u, w, v}` (619b70139), so
+`OsinLemma94CaseTwoInput` is closed. The other pieces of `osinLemma94Section_of_planarPieces` are still conditional:
+- `OsinLemma94PolygonRealizationInput` on `OsinLemma94PolygonPartitionInput` (`osinLemma94PolygonRealizationInput_of_partition`);
+- `OsinLemma94PolygonCountInput` on `OsinLemma94PolygonSideBudgetInput` (`osinLemma94PolygonCountInput_of_sideBudget`);
+- `OsinLemma94CaseOneInput` on `OsinLemma94CaseOneWalkStatement` and `OsinLemma94CaseOneSameCellStatement`.
+
+Census: a new L1636 row (partial) records the closed Case 2 piece.
 
 ## Next
 
-1. `GGT/VanKampen/SurgerySpikeDeletion*.lean`:
-   - the map layer: kept faces off the spike face, and a shrunk face that reads the old walk without the two spike darts;
-   - the diagram surgery and the region transport, modelled on `SurgeryGFaceMerge*`.
-2. Transport across `GFaceSplitCorners`, then `Estimating/OsinLemma94CaseTwo.lean` with
-   `osinLemma94CaseTwo : OsinLemma94CaseTwoInput`.
-3. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
+1. Case 2 is closed. Ask main for the next item; one of the remaining pieces above is the natural candidate.
+2. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
    re-grade the rows formalized.
