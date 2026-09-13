@@ -66,4 +66,10 @@ finitely generated (`elementary-groups-over-fg-rings-have-property-t`).
   - Open: whether it is finitely presented. Peer Theorem A
     (`research/artifacts/fp-simple-amenable-z2-sft-2026-09-12.md`) removes the periodic-model
     obstruction.
+  - Gate (a) for this ring is exactly quantum rigidity of `Ω_U`
+    (`sft-crossed-product-fp-iff-quantum-rigid`, open instance
+    `labbe-wang-shift-crossed-product-is-finitely-presented`).
+  - Positive-entropy SFTs are excluded (`positive-entropy-sft-crossed-products-are-not-fp`).
+  - Zero entropy does not exclude finite presentation: Ledrappier's shift is rigid
+    (`ledrappier-crossed-product-is-finitely-presented`), though with a fixed point.
   - Also open: the Steinberg kernel gate (b) and soficity (c).
