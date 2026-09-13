@@ -101,7 +101,13 @@ no mathematical content. The author directed the campaign.
 
 ## 5. Rows for `formalization.yaml`
 
-These follow the format of the Bowen–Chapman entry. pc-integrate owns the file and aligns the wording with the landed
+**Superseded by Part 3 §7** and `research/artifacts/pestov91-priority-credit-2026-09-13-rows.yaml`. Those add:
+- the formalization trail, including the one Claude Opus 5 module;
+- placeholders for the Lean endpoint and the Palomar surface;
+- the bound of the literature check;
+- a README credit paragraph.
+
+The rows below are the first draft. They follow the format of the Bowen–Chapman entry. pc-integrate owns the file and aligns the wording with the landed
 Lean statement.
 
 A `sources:` entry:
