@@ -61,6 +61,48 @@ Both consume kh-ejz's `OsinPocketWalkChain` (ecb23058f) and jacobson's `OsinPock
   boundary cycle (`boundary_cycle_rotate_of_joinsCells`).
 - No census rows: the module certifies no printed sentence on its own.
 
+## Step 3: cell edge conditions, LANDED e9d8d2faf
+
+Probe 0913-173309-80479 GREEN at base bb32c57f9: BUILT `OsinPocketCellCopyWalk`, empty error index, no `sorryAx`. The
+module is unwired and wire-queued.
+
+Split agreed with ms-intro-2 (17:2x):
+- ms-intro-2 takes step 4, the orientation (`OsinPocketCellWalkColour`), then step 5, the kept cell.
+- This lane keeps step 3.
+- Step 6 waits for audit-sec5's cell-to-cell face set and pinch statement.
+
+Module `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellCopyWalk.lean`, new. Attic copy 617304ab9.
+
+```lean
+structure CellPocketWalk.CopyClean (a b : RegionCandidate D eps X) (i j : Fin X.rCellCount) : Prop where
+  cell_self_first  : ∀ d, faceOf d = (cell X i).face → faceOf (alpha d) ≠ (cell X i).face
+  cell_self_second : ∀ d, faceOf d = (cell X j).face → faceOf (alpha d) ≠ (cell X j).face
+  cell_cell        : ∀ d, faceOf d = (cell X j).face → faceOf (alpha d) ≠ (cell X i).face
+  regions          : ∀ d, faceOf d ∈ a.1 → faceOf (alpha d) ∉ b.1
+  side_first       : ∀ d ∈ b.sideFrom j ++ a.sideFrom i, faceOf (alpha d) ≠ (cell X i).face
+  side_second      : ∀ d ∈ b.sideFrom j ++ a.sideFrom i, faceOf (alpha d) ≠ (cell X j).face
+theorem CellPocketWalk.walk_nodup_and_alpha_not_mem (hlea : X.LeastArea) (K : CellPocketWalk D eps X i j)
+    (hij : i ≠ j) (hfirst : K.firstSide = b.sideFrom j) (hsecond : K.secondSide = a.sideFrom i)
+    (hab : Disjoint a.1 b.1) (hclean : CopyClean a b i j) :
+    K.walk.Nodup ∧ ∀ d ∈ K.walk, X.toCombMap.alpha d ∉ K.walk
+theorem CellPocketWalk.exists_of_joinsCells_clean (S : RealizedSectionFamily …) (ha hb hab hij hai hbi) :
+    ∃ K, (the data of exists_of_joinsCells) ∧ ∃ hne, chain ∧ closes ∧
+      (S.diagram.LeastArea → CopyClean a b i j → K.walk.Nodup ∧ alpha_not_mem)
+def CellPocketCopyCleanStatement : Prop   -- stated, not proved: a globally distinguished family over
+  -- a least-area Δ with a ≠ b joining i ≠ j has a globally distinguished family S' over the same Δ and
+  -- cuts with a' ≠ b' in S'.family joining i' ≠ j' and CopyClean a' b' i' j'
+theorem CellPocketWalk.exists_clean_of_copy (hcopy : CellPocketCopyCleanStatement) (hlea) (S) (ha hb hab hij hai hbi) :
+    ∃ S' a' b' i' j' K, membership ∧ joins ∧ CopyClean ∧ walk data ∧ chain ∧ closes ∧ Nodup ∧ alpha_not_mem
+```
+
+- Clause usage, from the 16 dart-pair cases:
+  - The six clauses are exactly what `alpha_not_mem` needs.
+  - Nodup across the two arcs uses `Embedded.cell_face_ne hij`, not a clause.
+  - No outer-face clause is needed.
+- `CellPocketCopyCleanStatement` is not model-tested:
+  - It does not tie `S'` to `S`, which is enough because the multiple-edge cut concludes on `Δ` itself.
+  - Expected producer: edge doubling along the offending edges (cell self-edges, Π_i–Π_j edges, a–b edges, sides along a cell), with weight and card unchanged, as in `OuterSpurThickeningStatement`.
+
 ## Residual for the binder-5 producer (cell-to-cell pocket)
 
 - Step 3: an O-equivalent copy with legal labels satisfying cell edge conditions, then `walk.Nodup` and
