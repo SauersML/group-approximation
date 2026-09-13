@@ -1,66 +1,58 @@
 # hull-euler: the Euler count input of Osin's Lemma 9.7
 
-Lane scope: H1, the producer of `EulerCountInput`
-(`GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixSectionInduction.lean`), used at the
-least-area Greendlinger waist.
+Lane scope: `PhiPrimeCountInput` (`GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerCount.lean`),
+the Euler count `|M| ≤ 3(n + r − 1)` of Osin's `Φ'_M` (arXiv:math/0411039v3, Appendix, Lemma 9.3).
+`eulerCountInput_of_phiPrimeCount` (cdd4b82df) turns it into the `EulerCountInput` used by
+`OsinSection97InputsStatement`. The section form is `OsinPhiPrimeCountSectionStatement`.
 
 ## Modules
 
-All seven compiled in probe 0912-104426-41122 (green, `#audit_axioms` within the classical
-allowlist), and all seven are on origin/main. None is wired to the root.
+| Module | Content | State |
+|---|---|---|
+| `Estimating/OsinAppendixEulerSubdivided` | `edgeBound_of_subdividedGraph` | green 0912-104426-41122 |
+| `Estimating/OsinAppendixEulerRegionFaces` | faces of the region graph, `collapsedMap` | green 0912-104426-41122 |
+| `Estimating/OsinAppendixEulerPhi` | `sideCell`, `cross`, `PhiData`, `phiMap` | green 0912-104426-41122 |
+| `Estimating/OsinAppendixEulerPhiCount` | dart and vertex counts of `phiMap` | green 0912-104426-41122 |
+| `Estimating/OsinAppendixEulerPhiBound` | `card_le_of_linked` | green 0912-104426-41122 |
+| `Estimating/OsinAppendixEulerHereditary` | `card_le_of_endpoints`, `hasEndpointClosedPlanarEdgeBound_of_phiData` | green 0912-104426-41122 |
+| `Estimating/OsinAppendixEulerCount` | `PhiPrimeCountInput`, `eulerCountInput_of_phiPrimeCount` | green 0912-104426-41122 |
+| `CombMapRestrictionFaceClasses` | `CombMap.IsRestriction.faceOf_eq_of_faceClass` | green 0913-032836-75226 |
 
-| Module | Content |
-|---|---|
-| `OsinAppendixEulerSubdivided` | `edgeBound_of_subdividedGraph` |
-| `OsinAppendixEulerRegionFaces` | the faces of the region graph |
-| `OsinAppendixEulerPhi` | `sideCell`, `cross`, `PhiData` |
-| `OsinAppendixEulerPhiCount` | the count of the subdivided graph |
-| `OsinAppendixEulerPhiBound` | `card_le_of_linked` |
-| `OsinAppendixEulerHereditary` | `card_le_of_endpoints`, `hasEndpointClosedPlanarEdgeBound_of_phiData` |
-| `OsinAppendixEulerCount` | `GloballyDistinguishedSectionFamily.hasEndpointClosedPlanarEdgeBound`, `PhiPrimeCountInput`, `eulerCountInput_of_phiPrimeCount` |
+None of these modules is wired to the root. kh-ejz's `Estimating/OsinAppendixEulerMultigraph`
+(69c4c69da, 04240bd43) provides the Euler count with two-gons, and this lane consumes it.
 
 ## Landings
 
-- 44c6bab14, e4cb2d641, 864fdf3d2: Subdivided and RegionFaces fixes.
-- f7a0fc32e: Phi fixes from probe 3.
-- 1777a684a: `card_le_of_linked` uses `Finset.card_pair_eq_two_iff`.
-- cdd4b82df: `OsinAppendixEulerCount`.
-- 2cfa0c398: Hereditary line 180 calls `InteriorEdge.exists_target (selected := family) e`; the
-  edge from `Finset.mem_map` has the unfolded subtype type, so field notation failed.
-- 14d85b1d0: this report.
+- 44c6bab14, e4cb2d641, 864fdf3d2, f7a0fc32e, 1777a684a, cdd4b82df, 2cfa0c398: the seven Euler modules.
+- 14d85b1d0, 30545e88a: this report.
+- 9fdb800358088b2ba0b14717a16f16fd041f69f8: `CombMapRestrictionFaceClasses`.
+  - Landed unverified.
+  - Probe 0913-032836-75226 was green, and the md5 of the green record equals the md5 on origin/main.
+  - The commit is an ancestor of origin/main.
 
-After the green probe, the normal landing of the seven modules found them identical to
-origin/main.
-
-## Statements
+## The face-class lemma (J)
 
 ```lean
-theorem PhiData.card_le_of_linked (P : PhiData family E) (V : Finset (Fin Delta.rCellCount))
-    (hV : ∀ a ∈ E, ∀ s, sideCell a s ∈ V) (hne : E.Nonempty) (hlinked : ...) :
-    E.card ≤ 3 * (V.card - 1)
+def CombMap.FaceClassStep (M : CombMap) (keep : M.Dart → Prop) (x y : M.Dart) : Prop :=
+  y = M.facePerm x ∨ (¬ keep x ∧ y = M.alpha x)
 
-theorem RegionCandidate.hasEndpointClosedPlanarEdgeBound_of_phiData
-    (hpairwise : EstimatingSelection.PairwiseCompatible Compatible family)
-    (hcell : ∀ a ∈ family, ∀ i : Fin Delta.rCellCount, (cell Delta i).face ∉ a.1)
-    (hnondeg : ∀ a ∈ family, 0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length)
-    (hloop : ∀ a ∈ family, a.2.target ≠ some a.2.source)
-    (hmulti : ∀ a ∈ family, ∀ b ∈ family, a ≠ b → ∀ i j : Fin Delta.rCellCount,
-      ((a.2.source = i ∧ a.2.target = some j) ∨ (a.2.source = j ∧ a.2.target = some i)) →
-      ((b.2.source = i ∧ b.2.target = some j) ∨ (b.2.source = j ∧ b.2.target = some i)) → False)
-    [DecidableEq (Fin Delta.rCellCount)] [DecidableEq (InteriorEdge family)]
-    [DecidableRel (InteriorEdge.Incident (selected := family))] :
-    HasEndpointClosedPlanarEdgeBound (InteriorEdge.Incident (selected := family))
+theorem CombMap.IsRestriction.faceOf_eq_of_faceClass (h : M.IsRestriction N e)
+    (hM : M.IsPlanar) (hN : N.IsConnected) {d d' : N.Dart}
+    (hp : Relation.EqvGen (FaceClassStep M (· ∈ Set.range e)) (e d) (e d')) :
+    N.faceOf d = N.faceOf d'
+```
 
-theorem GloballyDistinguishedSectionFamily.hasEndpointClosedPlanarEdgeBound
-    {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
-    {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
-    (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) (hlea : Delta.LeastArea)
-    (hloops : S.NoLoops) (hmulti : S.NoMultipleEdges)
-    [DecidableEq (RegionCandidate.InteriorEdge S.family)]
-    [DecidableRel (RegionCandidate.InteriorEdge.Incident (selected := S.family))] :
-    HasEndpointClosedPlanarEdgeBound
-      (RegionCandidate.InteriorEdge.Incident (selected := S.family))
+Take a connected restriction of a planar map. Advancing around ambient faces and crossing ambient
+edges that are not retained never passes between two different faces of the restriction. The proof
+grows the restriction one actual edge at a time:
 
+- an added edge between different faces joins them;
+- an added edge on one face is a spur, since otherwise deleting it would raise the Euler
+  characteristic above two.
+
+## Residual
+
+```lean
 def PhiPrimeCountInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
     (W : Set (List (RelLetter G Lambda))) : Prop :=
   ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
@@ -68,29 +60,44 @@ def PhiPrimeCountInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
       ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
         S.NoLoops → S.NoMultipleEdges →
           S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)
-
-theorem eulerCountInput_of_phiPrimeCount {W : Set (List (RelLetter G Lambda))}
-    {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
-    (hcount : PhiPrimeCountInput.{u, w, v} D lambda c eps W) :
-    EulerCountInput.{u, w, v} D lambda c eps W
 ```
 
-The planar edge bound of `Φ_M` needs no input: no relator cell lies on a selected region, because
-`ContiguityGeometry.innerGRegion`'s `cells_avoid` applies on `S.diagram` with least area carried
-by `S.equiv.leastArea`.
+## Plan: Lemma 9.3 with one merged outer vertex
 
-## Residual
+`O` is the dual vertex of the outer face of `Δ`. All sections meet there.
 
-`PhiPrimeCountInput`, the Euler count `|M| ≤ 3(n + r − 1)` of `Φ'_M` (vertices are the cells and
-the sections, edges are the selected regions). A producer needs the two-gon half of Osin's `(∗)`:
-two regions from one cell to one section merge when no relator cell lies between them, against
-`card_minimal`. main has no producer: the searches for `Φ'_M`, `PhiPrime` and the count
-`3 * (Delta.rCellCount + cuts.count - 1)` find only consumers and docstrings.
-`ExteriorMergeAvailable` (`Incidence.lean`) is stated on the historical `Candidate` type and is
-stronger than needed. `OsinAppendixCutMerge.lean` applies `S.card_minimal` to a merged family,
-which is the pattern the two-gon merge needs.
+- **C1.** The exterior map `Φ''`. Generalize `cross` to `target = none`: for an exterior region the
+  retained dart at `O` is `alpha` of the head of the target arc, since `targetBoundaryDarts none`
+  is the arc itself. Restrict the dual of `collapsedMap` to the regions linked to `O`, and give the
+  result a `SubdividedMultigraph` instance.
+- **C2.** Take `m + 6 ≤ 3c + t` from kh-ejz's `edgeBound_of_subdividedMultigraph`.
+- **C3.** A face of degree less than six is a two-gon `Π–a–O–b` with `a ≠ b` exterior regions of
+  one cell. `NoMultipleEdges` excludes two-gons between two cells.
+- **C4.** Inject into the `r` corners every two-gon whose gap at `O` contains a corner. This uses
+  `RespectsSections` and nondegenerate arcs.
+- **C5.** Inject every other two-gon whose face class holds a cell into the components not linked
+  to `O` and the isolated cells, using (J). The darts of a component that is not retained are all
+  connected by `FaceClassStep`, because `sigma = facePerm ∘ alpha`. Sum over the components with
+  `card_le_of_linked`.
+- **C6.** An empty two-gon gives `False`. Such a two-gon has two exterior regions `a ≠ b` of one
+  cell, consecutive at `O` in one section, with no relator cell in its face class. The proof merges
+  `a` and `b` against `card_minimal` through `false_of_collapse_singleton`
+  (`OsinAppendixCutMerge.lean:120`).
+- **Assembly.** With `k4 ≤ r + (components) + (isolated cells)`, the per-component bounds sum to
+  `|M| ≤ 3(n + r − 1)`.
+
+C1 to C5 need nothing from other lanes. C6 needs the pocket between `a` and `b` as a disc region
+carrying a `ContiguityGeometry` for the merged region: the W1 (a) carrier (`IsDiscRegion` plus
+`DiscDiagram.ofPlanar`) and kh-ejz's pocket geometry from `a ≠ b`. By the roster, hull-euler
+consumes that carrier and does not build it. I have asked the lead whether hull-euler may state a
+named piece Prop for the empty-pocket merge.
+
+## Census
+
+No rows yet. (J) carries no printed sentence. The rows wait for the closure of
+`PhiPrimeCountInput`, which carries the Euler count inside the proof of `thm:hull` (tex 1636,
+through Osin's Lemma 9.7(a)).
 
 ## Next
 
-The directive's scope is finished. Whether hull-euler takes on `PhiPrimeCountInput` is the lead's
-call.
+C1, the exterior crossings and the `O`-linked restriction.
