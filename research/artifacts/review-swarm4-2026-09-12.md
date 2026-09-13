@@ -2497,3 +2497,328 @@ Each was compared line by line with the LaTeX source the node names, fetched on 
     amenable wq-normal subgroup.
   - The splitting claim sends every such group that splits over an amenable subgroup to `fpbs-sc-choi-seo`.
   - What remains is the non-AH, fixed-price-one residual class, which these nodes locate but do not reach.
+
+## 47. `fpbs-free-product-cayley-graphs-have-critical-l2-gap` (5bfb8889): PASS, with a locator nit
+
+Read at `f606d06f0`, unchanged at `4ab7088ff`:
+- the claim and its route `fpbs-free-product-block-tree-spectral-proof` (`requires: []`);
+- the artifact `research/artifacts/fpbs/docs/free-product-critical-l2-2026-09-12.md`, §§1–4;
+- the Attempts bullet added to `fpbs-nonamenability-bounds-critical-connectivity-operator`.
+
+The GAFA locators (arXiv:1804.10191) were checked earlier against the TeX source on MSI.
+
+### 47.1 Product formula and type matrix: PASS
+
+- **Tree.** `Tr` is connected because `S` generates `Gamma`. A cycle would give a product `h_1 ... h_k = e` of
+  nontrivial letters with consecutive factors different, which contradicts the normal form theorem.
+- **Lemma 2.1.**
+  - Every path from `u` to `v` visits `g_1, ..., g_(m-1)` in order.
+  - Suppose a self-avoiding open path leaves `B_k` at `x`. Removing `x` from `Tr` separates the new block from
+    `g_k`, so the path would have to revisit `x`. So `{u <-> v}` is the intersection of the block events `E_k`.
+  - The `E_k` are independent because blocks share no edges, and left translation gives
+    `P(E_k) = a_(i_k,p)(h_k)`.
+- **(2.1).** Since `Q_ij = m_i [i != j]`, `1^T Q^(l-1) m` is exactly the sum of `m_(i_1) ... m_(i_l)` over index
+  sequences whose consecutive indices differ. For `n = 2` this gives the formula the artifact credits to Kozáková's
+  Theorem 2 (line 279).
+
+### 47.2 The spectral-radius bound at `p_c`: PASS
+
+- **Below `p_c`.**
+  - From `m >= p 1`, `1^T Q^l m >= p 1^T Q^l 1 >= p ||Q^l||_(inf)`.
+  - The left side is a term of the convergent series (2.1), so it tends to `0` and `rho(Q(p)) < 1`.
+  - Also `(Q^2)_ii = m_i sum_(j != i) m_j >= p m_i`, and `(Q^2)_ii^k <= ||Q^(2k)||`. Gelfand's formula then gives
+    `p m_i(p) <= rho(Q(p))^2 < 1`.
+- **At `p_c`.**
+  - Each `m_i` is a supremum of polynomials in `p`, over radii and finite sets of `h`. So it is lower semicontinuous
+    and nondecreasing, hence left continuous.
+  - So `m_i(p_c) <= 1/p_c`, and `Q(p) -> Q(p_c)` entrywise with finite limits.
+  - By continuity of `rho`, `rho(Q(p_c)) <= 1`.
+- **`p_c < 1`.** As `p -> 1`, `liminf m_i >= |H_i| - 1`.
+  - For `n >= 3`, `Q >= c(J - I)`, so `rho >= 2c`.
+  - For `n = 2`, `rho = (m_1 m_2)^(1/2)`, and `(|H_1|-1)(|H_2|-1) >= 2` unless both factors have order 2.
+  - Either way some `p < 1` has `rho > 1` or an infinite `m_i`. Since `1^T Q^l m >= p rho^l`, `chi_p = infinity`,
+    so `p >= p_c` by (S). The excluded case is exactly the line.
+- **Equality not needed.** The proof needs only `rho(Q(p_c)) <= 1`, not the equality `m_1 m_2 = 1` at `p_c`, as
+  artifact line 322 says.
+
+### 47.3 Busemann weight and the Schur bound: PASS
+
+- **Patterns.**
+  - A Busemann function on a tree gives every node exactly one parent, and its increments along a geodesic are a run
+    of `-1`s followed by a run of `+1`s.
+  - On element nodes the steps therefore read `up^j across^eps down^l`, and `phi(v)/phi(u) = theta^(l-j)` for
+    `phi = theta^(b/2)`.
+- **Factors.**
+  - Up steps are forced, and each costs at most `alpha`. Here `alpha <= 1 - (1-p_c)^(max |S_i|) < 1`, because a
+    connection to `h != e` needs an open edge at `e`.
+  - An across step costs at most `M`.
+  - `l` down steps cost at most `1^T Q^(l-1) m <= nM ||Q^(l-1)||`. This is uniform in the entry vertex, because every
+    block of type `i` is a copy of the transitive `Cay(H_i,S_i)`.
+- **Sum.**
+  - With `C_theta = sum_(l>=0) theta^l ||Q^l||` (line 385), `sum_j (alpha/theta)^j (1+M) (1 + nM theta C_theta)`
+    is (2.3).
+  - `C_theta` is finite because `theta rho < 1`, and `theta > alpha` makes the up series converge.
+  - Non-geodesic choices are overcounted, which only enlarges the bound.
+- **Schur test.** Lemma 2.3 is the standard weighted Schur test for a symmetric nonnegative kernel. The test allows
+  the unbounded weight.
+
+### 47.4 The imports and the equivalence: PASS, one locator nit
+
+- **(C), GAFA Corollary 2.6 (`cor:l2AizBar`).**
+  - The artifact's quote (lines 62–64) matches TeX lines 448–453.
+  - "In particular, `||T_(p_(q->q))||_(q->q) = infinity`" excludes `p_c = p_(2->2)`.
+  - At `p = p_c` it reads `lambda >= (1-p_c) / (||A|| (p_(2->2) - p_c))`, and `||A||_(2->2) <= |S|` on an
+    `|S|`-regular graph. So the gap bound is correct.
+- **The equivalence.** `||T_(p_c)||_(2->2) < infinity` iff `p_c < p_(2->2)`.
+  - (⇒) `p_c` lies in the set whose supremum is `p_(2->2)`, and Corollary 2.6 rules out equality.
+  - (⇐) Some `p' > p_c` has `||T_(p')|| < infinity`, and the norm of a nonnegative kernel is monotone in the kernel.
+  - So, as artifact lines 68–70 say, the universal operator node is exactly EJP Conjecture 1.3 (`conj:pcp22`).
+- **(S).** "`||T_p||_(1->1) < infinity` iff `p < p_c`" combines sharpness with `chi_(p_c) = infinity`. Its content is
+  correct.
+- **Nit (locator).**
+  - The claim (lines 48–49), the route (line 15) and artifact line 213 place (S) at "the display before
+    Proposition 2.3".
+  - In the TeX source that display is at lines 285–286, before Theorem 2.1 (`thm:pell2`, label line 304).
+    Proposition 2.3 is at lines 396–398.
+  - The pointer should say "before Theorem 2.1".
+
+### 47.5 The example `H_3(Z) * Z/2`: PASS
+
+- **Generating set.**
+  - Artifact lines 446–458 quote Leemann--de la Salle `thm:main` (arXiv:2010.06020), for groups that are "not
+    virtually abelian", and the older `thm:mainUndirected` (arXiv:1812.02199).
+  - The 1812.02199 abstract, fetched on MSI, gives an undirected Cayley graph with automorphism group `G` whenever
+    `G` "is neither generalized dicyclic nor abelian and has an element of order at least `(2rank(G))^{36}`".
+  - `H_3(Z)` is non-abelian. It is torsion free, so it is not generalized dicyclic, since those groups contain an
+    element of order 4. Its nontrivial elements have infinite order. So the older theorem already gives `S_H`,
+    reading its generating set as finite, as the artifact does.
+  - The 2010.06020 abstract does not state the hypothesis, and the `thm:main` wording was not checked against the TeX
+    source.
+- **Proposition 3.1.**
+  - A simple cycle through two blocks would give a walk in `Tr` from `y'` to `y` that avoids `x`.
+  - No cut vertex. A one-ended transitive graph has none, by taking a minimal finite component. The infinite
+    component of `Y - v`, together with `v`, lies in the infinite component of `Y - w`, so `C' ∪ {w} ⊆ C`.
+  - Automorphisms.
+    - The edges on no cycle are exactly the `a`-edges.
+    - So an automorphism permutes the cosets `gH` and acts on each by a left translation of `H`.
+    - Induction on word length gives `phi(y) = phi(e) y`.
+- **Proposition 3.2.**
+  - `Z^2 <= H_3(Z)` rules out hyperbolicity.
+  - The free action rules out nonunimodular subgroups.
+  - Every vertex is a cut vertex, which rules out a Cartesian product.
+  - Spectral radius (artifact lines 521–523):
+    - by Kesten, the return probabilities of the amenable `H` have exponential rate `1`;
+    - so `rho(X) >= (d-1)/d`;
+    - a torsion-free noncyclic `H` has `|S_H| >= 4`, which gives `rho(X) >= 4/5`.
+- **Reviewer check: path counting cannot give the gap on `X`.**
+  - The artifact places `X` outside the class `rho < 1/2` named in the abstract of arXiv:2002.02916 (lines 15, 525
+    and 546).
+  - Separately, `T_p <= sum_n p^n A^n` gives `p_(2->2) >= 1/||A||`. That would give the gap if
+    `p_c ||A|| < 1`.
+  - But `X` is `d`-regular, so `p_c >= 1/(d-1)`, and `||A||_(2->2) = d rho(X) >= d - 1`. So `p_c ||A|| >= 1`, and
+    this route fails on `X`.
+
+### 47.6 Novelty, subsumption and display
+
+- **Kozáková (math/0611668).**
+  - Artifact §1.4 (lines 171–180) credits Theorems 1–2, Corollaries 3–4, Proposition 6 and Corollary 7.
+  - Line 193 says that nothing in the paper concerns `T_p` as an operator or `p_(2->2)`.
+  - The claim reproves the product formula in matrix form, because the proof needs `rho(Q(p_c)) <= 1` and the
+    down-path bound.
+  - This numbering, and the statement on line 193, come from the artifact. Neither was re-checked against the source
+    here.
+- **Pak--Smirnova-Nagnibeda.**
+  - Through EJP they give *some* Cayley graph with `p_c < p_(2->2)` for every nonamenable group.
+  - The claim covers every union generating set, including graphs such as `X` where path counting fails (47.5).
+  - As artifact §3 says (lines 431–435), no group gets its first such graph.
+- **What is not new.**
+  - Every graph in the class has infinitely many ends, so `p_u = 1` and `p_c < p_u` was already known. The claim
+    does not mention `p_u`, and artifact §4.1 (lines 576–577) records this.
+  - The new content is:
+    - the operator bound and the explicit gap;
+    - the triangle condition `nabla_(p_c) <= lambda^3`;
+    - the EJP consequences listed in artifact §4.1.
+  - GAFA says Schonmann's mean-field exponents were proved without verifying the triangle condition. The artifact
+    credits this (lines 161 and 578–579).
+- **Other l2-gap nodes.** These ESTABLISHED `fpbs` nodes do not cover free products:
+  - `fpbs-tree-projected-sphere-bubble-l2-equivalence` needs an infinite cyclic normal subgroup with free quotient;
+  - `fpbs-hyperbolic-quotient-fibre-estimates-l2-gap` and `fpbs-rd-quotient-weighted-bubble-gives-critical-l2` are
+    implications from fibre estimates;
+  - `fpbs-amenable-kernel-l2-gap-forces-fibre-bubble` is a necessary condition;
+  - `fpbs-expanding-factor-product-strict-thresholds` is already in `distinct_from`.
+- **Nit (optional).**
+  - `distinct_from` could also name `fpbs-hyperbolic-nonunimodular-critical-l2-gap`, which landed later in cbb0b65cb.
+  - That node covers the members of this class in which every `H_i` is hyperbolic, for instance finite.
+  - Artifact §3 (lines 439–441) already concedes those.
+- **Display and wiring.**
+  - The claim reads "**ESTABLISHED.**". Its route has `requires: []`, and no `invalidates:` list names it.
+  - The Attempts bullet on the conjecture node records accurately where the method dies.
+  - The conjecture node stays OPEN, and no route should get `invalidates:`.
+
+## 48. bs-pivotal-routes (cbb0b65cb): PASS, with a title nit
+
+Read at `f606d06f0`, unchanged at `4ab7088ff`:
+- the artifact `research/artifacts/fpbs/docs/pivotal-kernel-ordering-2026-09-12.md`, §§1–9;
+- the four new claims and their routes;
+- the four kernel nodes and their routes;
+- the cbb0b65cb diffs on the kernel nodes.
+
+### 48.1 Setup and the walk reading: PASS
+
+- **(1.1).** Russo's formula on the finite ball `B_R` gives `d/dp a = sum_f P(f pivotal)`. Also
+  `P(f open and pivotal) = p P(f pivotal)`, so `d/dp log a_(n,R) = E_p[N_(n,R) | E_(n,R)] / p`.
+- **PB simple ⟹ PB lazy.**
+  - `X^L_n = X^S_(K_n)` with `K_n ~ Bin(n,1/2)`, and the event and the count depend only on the endpoint.
+  - The simple-walk budget at step `k` needs `R >= k`, which holds because `R >= n >= k`. At `k = 0`, `N = 0`.
+  - So reading the unnamed walk of the PB node as lazy is the weaker hypothesis. The positive results are proved
+    for both walks.
+
+### 48.2 Lemmas 2.1–2.4 and the ordering: PASS
+
+- **Lemma 2.1.**
+  - Harris--FKG applied to `{e<->x}` and `{x<->xy}` gives `tau_p(xy) >= tau_p(x) tau_p(y)`.
+  - Independent increments then give `a_(n+m) >= a_n a_m`, and Fekete's lemma applies because `a_n >= p^n > 0`.
+  - `a_n >= mu^n(e)` gives `lambda >= rho`, along even `n` for the simple walk.
+- **Lemma 2.2.**
+  - The upper bound is `E lambda_S^(K_n) = ((1+lambda_S)/2)^n`.
+  - For the lower bound, `a^S_k >= c_eta (lambda_S - eta)^k` holds for all `k`: for large `k` from the limit, and
+    for small `k` from positivity.
+- **Lemma 2.3.**
+  - GAFA Proposition 6.4 (TeX 1721/1722) gives `a^S_n(p) <= rho_S^n` for `p <= p_(2->2)`, and `c <= p_(2->2)`.
+  - The quote in §5.1 matches.
+- **Lemma 2.4.** Integrate (1.1), let `R -> infinity` (both probabilities increase to positive limits), then let
+  `n -> infinity` using Lemmas 2.1 and 2.3.
+- **Propositions 3.1–3.3.**
+  - *PB ⟹ IS.* PB (lazy) and Lemma 2.4 give `lambda_L(c+eps) <= rho_L (1+eps/c)^C`. Lemma 2.2 turns this into
+    `lambda_S(c+eps) -> rho_S`, which is IS by Lemma 2.4.
+  - *IS ⟹ NC.* IS gives `lambda_L(c+eps) -> rho_L`, so `B(eps) -> 0 < -log rho_L`.
+  - *PB ⟹ RATE.* PB gives `L_n(p0) <= C`, and `n^(-1) log(1+C) -> 0 < lambda_0/2`.
+- **What is not proved.**
+  - The artifact proves no strictness, and no implication in either direction between IS/NC and RATE.
+  - cbb0b65cb rewrote the NC node's `distinct_from` entry on PB to end "It is implied by that claim, and no graph
+    separating the two is known". That is right.
+
+### 48.3 Theorem 4.1: PASS
+
+- **(a) BK bubble.**
+  - An open pivotal `f` lies on a simple open path from `e` to `x` in `B_R` and is crossed once, from `u` to `v`.
+  - The two pieces witness `{e<->u}` and `{v<->x}` disjointly from each other and from `f`.
+  - BK on the finitely many edges of `B_R` bounds each orientation by `tau_p(u) p tau_p(v^(-1) x)`.
+  - Expanding `(tau*A*tau)(x) = sum_z sum_s tau(z s^(-1)) tau(z^(-1) x)` and putting `u = z s^(-1)` gives the oriented
+    sum over pairs `(u, us)`.
+- **(b) Cauchy--Schwarz.**
+  - `sum_x F G = (F*G^v)(e)`, and `(F*G)(e) = (G*F)(e)`.
+  - With `mu^j`, `tau_p` and `A` symmetric, this gives `W_n = <mu^(m') * tau, mu^m * tau * A>`.
+  - `mu^(m') * tau = T_p mu^(m')`. Right convolution by `A` is a sum of `d` right translations, and
+    `||mu^j||_2^2 = mu^(2j)(e)`.
+- **(c) Return probabilities.**
+  - *Lazy.* The spectrum of `mu_L` lies in `[0,1]`, so `mu_L^j(e)` is nonincreasing. Also
+    `mu_L^j(e) >= mu_L^(j-1)(e)/2`. Odd `n` costs `sqrt(2)`.
+  - *Simple, odd `n`.* `a_(n,R) >= p sum_s mu_S^n(s) = p d mu_S^(n+1)(e)`, because the event holds when `X_n` lies in
+    `S` and the edge `{e, X_n}` is open. Since `mu_S^2(e) = 1/d`, `mu_S^(n-1)(e) <= d mu_S^(n+1)(e)`, which gives
+    `sqrt(d)`.
+  - The artifact ends with `sqrt(2) p d <= 2d` and `max(pd, sqrt d) <= d`. Correct.
+- **Node statement.**
+  - The bounded-counts node states Theorem 4.1 with the ball-restricted event, both walks and the constant `2d`.
+  - It says the bound "is empty when `||T_p||` is infinite", which "happens in particular at every parameter with a
+    unique infinite cluster, where `tau_p >= theta(p)^2 > 0`". This is correct, because `T_p delta_e` is then not
+    square summable.
+
+### 48.4 Corollary 4.2, Proposition 6.1 and the Attempts bullets: PASS
+
+- **Corollary 4.2.**
+  - `C_0` is finite because some `p1 > p0` has `||T_(p1)|| < infinity`, and norms are monotone in the kernel.
+  - (4.1) holds for all `p <= p0`.
+  - The four items follow: (i) directly, (ii) from `L_n(p0) <= C_0/n`, (iii) from Propositions 3.1–3.2, and (iv)
+    from `M_(n,R)(c+eps) <= C_0 n^(-1) log(1+eps/c)`.
+- **Honest limits.** The kernels node says the corollary gives no new graph with `p_c<p_u`, because
+  `p_(2->2) <= p_u` (TeX 301).
+- **Proposition 6.1.**
+  - Under uniqueness at `p`, positive association gives `tau_p(y,z) >= theta(p)^2`. So `W_n(p)` has infinitely many
+    terms of size at least `mu^n(x) theta(p)^4`.
+  - Any estimate that makes `W_n(p0)` finite for some `p0 > c` therefore already certifies nonuniqueness at `p0`.
+  - The artifact draws the right conclusion: the method cannot prove the universal kernels without first proving the
+    target.
+- **Attempts bullets.** cbb0b65cb added an "Assume the critical l2 gap" bullet to each kernel node.
+  - PB: the Theorem 4.1 bound, which gives the budget on every Cayley graph with `p_c<p_(2->2)`.
+  - IS: the integral is at most `C_0 log((p_c+epsilon)/p_c)`.
+  - NC: `M_(n,R)(c+epsilon) <= C_0 n^(-1) log(1+epsilon/c)`, so `B(epsilon)=0` for `epsilon <= p0-c`.
+  - RATE: `L_n(p0) <= C_0/n`, so the rate is `0`.
+
+  Each bullet names the obstruction as the full-space bubble, which is infinite at every uniqueness parameter. The
+  PB and RATE bullets add that the finite-ball bubbles increase to it, so a proof must hold uniformly over `R>=n`
+  (§6.3). All four agree with Corollary 4.2 and §6.
+
+### 48.5 The test graphs and the l2-gap import: PASS, one title nit
+
+- **Quotes.** §5.1 matches the TeX: `thm:pell2` (304/305) and `thm:nonunimodular` (551/552) at `q = 2`, and lines
+  298 and 301. The citation route notes that §1.3 of the free-product artifact numbers the second as Theorem 2.9.
+- **(a) `T_k`, `k >= 3`.**
+  - The tree is 0-hyperbolic and nonamenable.
+  - It is a cactus. As the artifact notes, `fpbs-cactus-finite-ball-pivotal-budget` already covered PB there.
+- **(b) Nonelementary hyperbolic `Gamma`.**
+  - `Cay(Gamma,S)` is transitive, hyperbolic, and nonamenable through `F_2 <= Gamma`.
+  - The surface-group graph is the 1-skeleton of the `{4g,4g}` tiling. Every edge borders two tiles, so it is not a
+    cactus.
+- **(c) `T_k □ Z^m`.** This is the Cayley graph of `(Z/2)^(*k) × Z^m` with the product generators.
+  - `H = Aut_xi(T_k) × Z^m` is transitive and closed.
+  - It is nonunimodular. The stabilizer of `(x,z)` fixes the ray to `xi`, so `|Stab_(x,z)(y,z)| = 1`, against
+    `|Stab_(y,z)(x,z)| = k-1`.
+  - The square grid (a tree geodesic times the `e_1` axis) rules out hyperbolicity.
+  - Each `e_1`-edge at `(x,z)` lies on the `k` squares through the tree neighbours of `x`, which rules out a cactus.
+- **Scope.** Cayley only. The transitive analogue in the §5.3 remark gives only `exp(o(n))` counts, and it is
+  correctly left out of Cairn.
+- **Nit (title).**
+  - The title of `fpbs-hyperbolic-nonunimodular-critical-l2-gap` reads "Hyperbolic graphs and graphs with nonunimodular
+    automorphism subgroups have p_c below p_(2->2)".
+  - The body requires `G` to be "quasi-transitive, nonamenable and Gromov hyperbolic" in the first case, and a
+    quasi-transitive nonunimodular subgroup in the second.
+  - Read literally, the title fails on `Z`, which is hyperbolic with `p_c = p_(2->2) = 1`. The title should carry
+    the hypotheses.
+
+### 48.6 Wiring, subsumption and display
+
+- **New claims.** The four new claims compute ESTABLISHED:
+  - `fpbs-l2-gap-gives-bounded-pivotal-counts`, whose `-proof` route has `requires: []`;
+  - `fpbs-l2-gap-cayley-graphs-satisfy-pivotal-kernels`, whose `-proof` route requires the bounded-counts claim;
+  - `fpbs-hyperbolic-nonunimodular-critical-l2-gap`, whose `-citation` route has `requires: []`;
+  - `fpbs-pivotal-kernels-hold-on-known-gap-test-graphs`, whose `-proof` route requires the kernels claim and the
+    import.
+
+  No `invalidates:` list names these routes, and no `refuted_by:` names the claims. None of these routes requires a
+  kernel node, so there is no cycle.
+- **The kernel nodes have no live route.**
+  - PB (`fpbs-pivotal-budget-universal`) has two routes with `requires: []`, and both are invalidated:
+    - `fpbs-dead-bridge-count-at-criticality` by `fpbs-bridgeless-collective-fragility` and
+      `fpbs-long-detours-with-no-bridges`;
+    - `fpbs-dead-local-pivotal-charging` by `fpbs-hierarchical-pivotal-amplification` and
+      `fpbs-pivotal-triangle-fails`.
+  - IS (`fpbs-integrated-sensitivity-universal`) and RATE (`fpbs-universal-subcritical-pivotal-growth-rate`) each
+    have one route, and it requires PB.
+  - NC (`fpbs-pivotal-nonconcentration-universal`) has a route requiring IS, plus
+    `fpbs-dead-total-budget-nonconcentration`, which is invalidated by `fpbs-integrated-pivotal-total-budget`.
+  - All five invalidators compute ESTABLISHED:
+    - their routes have `requires: []`, or require `fpbs-long-detours-with-no-bridges` or
+      `fpbs-critical-walk-correlation`, whose reference route has `requires: []`;
+    - none of these routes is invalidated, and none of these claims has `refuted_by:`.
+- **`fpbs-benjamini-schramm-universal`.**
+  - It has twelve routes. cbb0b65cb touches none of them, and none requires a new claim.
+  - Four routes pair a kernel with an implication:
+    - `fpbs-universal-pivotal-route`: PB with `fpbs-pivotal-budget-implies-nonuniqueness`;
+    - `fpbs-universal-integrated-sensitivity-route`: IS with `fpbs-integrated-sensitivity-implies-nonuniqueness`;
+    - `fpbs-universal-integrated-pivotal-route`: NC with `fpbs-pivotal-nonconcentration-implies-nonuniqueness`;
+    - `fpbs-universal-pivotal-rate-contradiction-route`: RATE with `fpbs-collapse-exponential-pivotal-spikes`.
+  - Each kernel premise is OPEN, so none of these four is live. The other eight routes were not re-audited.
+- **Subsumption.**
+  - `fpbs-critical-l2-implies-nonuniqueness` concludes `p_c < p_u`, not the kernel estimates.
+  - `fpbs-hyperbolic-and-nonunimodular-nonuniqueness` imports `p_c < p_u`. The new import is the stronger
+    `p_c < p_(2->2)`.
+  - The cactus node covers only (a), and only PB.
+  - The test-graph node says that `p_c<p_u` "is already known on each of these graphs".
+- **Novelty.** There is no progress on Benjamini--Schramm, as the artifact header says. The new content is:
+  - the operator-to-pivotal inequality (Theorem 4.1);
+  - the orderings PB ⟹ IS ⟹ NC and PB ⟹ RATE;
+  - the check that no kernel fails on a graph where the conjecture is known.
+- **Display.** These nodes, like the kernel nodes and `fpbs-benjamini-schramm-universal`, carry no bold status line,
+  so there is no display to recompute.
+- **Verdict.** No route should get `invalidates:`.
