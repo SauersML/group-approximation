@@ -93,8 +93,8 @@ sources:
       Thom supply the nonsoficity
       mechanism, which is reproved here down to their centralizer normalization
       theorem rather than assumed; the new ingredient is the surjunctivity
-      half, Dynamics.DoubleFinitarySite.isSurjunctive_symmetricDouble, that the
-      symmetric double of a surjunctive group is surjunctive over every
+      half, GroupApproximation.Surjunctivity.isSurjunctive_symmetricDouble,
+      that the symmetric double of a surjunctive group is surjunctive over every
       subgroup, whose trivial-subgroup case gives that G * G is surjunctive
       whenever G is. The argument was committed to this public repository on
       2026-09-12 03:24:37 UTC (05a8aff7a), through the permutational wreath
