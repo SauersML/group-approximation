@@ -2,7 +2,7 @@ import GroupApproximation.Kazhdan.GHBHyperbolicDiscCounts
 import GroupApproximation.Kazhdan.GHBSharpExistenceSystolic
 import GroupApproximation.Kazhdan.CCKWSystolicInvariantClique
 import GroupApproximation.GGT.SystolicDiscZip
-import GroupApproximation.GGT.SystolicDiscMirrorFoldDistinct
+import GroupApproximation.GGT.SystolicDiscMirrorFold
 import GroupApproximation.Manuscript.NonMF.FournierFacioInput
 import GroupApproximation.Meta.AxiomGuard
 
@@ -33,14 +33,17 @@ sums are `CCKW.typedCountStatement_cosetComplex` and `GHBHyperbolicStokes.bounda
   the fixed-clique theorem `hT6`.
 * `kotowskiOllivier_of_pinched` closes the zip move (`CCKW.zipSpur_cosetComplex`) and the
   distinct case of the mirror fold (`Systolic.mirrorFoldDistinct`), and uses
-  `sharpExistence_ghb7_of_zipFoldHyp`, which needs no `hT6`.  One leaf stays open:
-  `hpinch : Systolic.MirrorFoldPinchedStatement CCKW.cosetComplex`, HC6 at a common third vertex
-  (lane fff-periodic).
+  `sharpExistence_ghb7_of_zipFoldHyp`, which needs no `hT6`.  It keeps one leaf,
+  `hpinch : Systolic.MirrorFoldPinchedStatement CCKW.cosetComplex`, HC6 at a common third vertex.
+* `kotowskiOllivier_closed` discharges that leaf by `Systolic.mirrorFoldPinched`
+  (`GGT/SystolicDiscMirrorFold.lean`).  It has no binder.
 
 ## Manuscript status
 
-Scaffold over the pinched mirror fold.  The closed `kotowskiOllivier_closed` is one application of
-`kotowskiOllivier_of_pinched` once it lands.
+`kotowskiOllivier_closed` proves `TheoremC.KotowskiOllivierStatement` with no binder, and
+`#audit_closed_axioms` checks that its axioms are among `propext`, `Classical.choice` and
+`Quot.sound`.  This closes the `hKO` input of the paragraph at tex line 1675.  The rest of that
+paragraph is not proved here.
 -/
 
 namespace GroupApproximation
@@ -67,9 +70,15 @@ theorem kotowskiOllivier_of_pinched
   sharpExistence_ghb7_of_zipFoldHyp CCKW.zipSpur_cosetComplex hfold
     (GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold CCKW.zipSpur_cosetComplex hfold)
 
+/-- **The hyperbolic property (T) input of [FFF §2], from `GHB(7)`** (tex line 1675): an
+infinite, finitely presented, torsion-free hyperbolic group with property (T). -/
+theorem kotowskiOllivier_closed : Manuscript.NonMF.TheoremC.KotowskiOllivierStatement :=
+  kotowskiOllivier_of_pinched (Systolic.mirrorFoldPinched CCKW.cosetComplex)
+
 end KotowskiOllivierClosed
 end KMSGroup
 end GroupApproximation
 
 #audit_axioms GroupApproximation.KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_of_leaves
 #audit_axioms GroupApproximation.KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_of_pinched
+#audit_closed_axioms GroupApproximation.KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed
