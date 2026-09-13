@@ -131,3 +131,9 @@ Defect 4 stays `formalized`, with the new carrier.
 
 - Wiring (root-wire): `IntroWitnessSignSentence` after `Sofic/AffineHNNBaseRealization`.
 - Once both are rooted, `Audit/Intro` can gate the new endpoint under L134 as well.
+- `OsinLemma94RegionSideCount` is consumed: `OsinLemma94PolygonCount` imports it and closes
+  `osinLemma94PolygonCoversInput` with `sum_card_regionFacingUnbound_le` (hull-count94,
+  `2b2e16cc6`). Wiring `PolygonCount` pulls it in.
+- The remaining count residual is `OsinLemma94PolygonSideBudgetInput`. main has to rule on
+  whether putting K before eps makes it too strong. hull-count94 will assign the next sub-piece
+  after that ruling. Until then this lane has no item.
