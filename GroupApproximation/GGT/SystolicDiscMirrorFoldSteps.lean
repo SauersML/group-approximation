@@ -30,20 +30,12 @@ open Equiv
 
 universe u
 
-variable {M : CombMap.{u}} {a : M.Dart}
+variable {M : CombMap.{u}} [DecidableEq M.Dart] {a : M.Dart}
 
 /-- The value of a reversed dart of the deleted map. -/
 theorem value_alpha (x : Dart M a) :
     value M a ((toCombMap M a).alpha x) = M.alpha (value M a x) :=
   alpha_val M a x
-
-variable [DecidableEq M.Dart]
-
-/-- Face rotation of the deleted map away from the deleted edge. -/
-theorem value_facePerm_of_ne (x : Dart M a) (h1 : M.facePerm (value M a x) ≠ a)
-    (h2 : M.facePerm (value M a x) ≠ M.alpha a) :
-    value M a ((toCombMap M a).facePerm x) = M.facePerm (value M a x) :=
-  (value_facePerm_eq_next M a x).trans (next_of_ne_of_ne M a h1 h2)
 
 /-- After deleting the edge of `a` from a digon `[a, b]`, send `b` back to `alpha a`. -/
 def digonBack (b : M.Dart) (x : Dart M a) : M.Dart :=
@@ -191,8 +183,16 @@ theorem CycleDisc.exists_of_embed (D : CycleDisc X) {N : CombMap.{0}} (hN : N.Is
   have hm : D.cyc.map D.lab = l.map (fun x => D.lab (τ x)) := by
     rw [← hmap]
     exact List.map_map
-  refine ⟨{ map := N, planar := hN, lab := fun x => D.lab (τ x), lab_sigma := hsig,
-    adj := hadj, cyc := l, isFaceCycle := hl, tri := htri }, ?_, rfl⟩
+  let E : CycleDisc X :=
+    { map := N
+      planar := hN
+      lab := fun x => D.lab (τ x)
+      lab_sigma := hsig
+      adj := hadj
+      cyc := l
+      isFaceCycle := hl
+      tri := htri }
+  refine ⟨E, ?_, rfl⟩
   show l.map (fun x => D.lab (τ x)) ++ [D.lab (τ (l.head hl.ne_nil))] =
     D.cyc.map D.lab ++ [D.lab (D.cyc.head D.isFaceCycle.ne_nil)]
   rw [hm, hhead]
