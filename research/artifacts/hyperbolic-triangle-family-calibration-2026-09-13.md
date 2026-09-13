@@ -95,10 +95,10 @@ the configuration test.
 | `O_8^-(2)` (1 class; `|C(t)| = 21`) | 108 | 108 | 81,648 | 0 | 114 s |
 | `Sp_8(2)` (2 classes; `|C(t)| = 42`) | 216 | 216 | 734,832 | 0 | 14 min |
 | `O_8^+(2)` (3 classes; `|C(t)| = 7`) | 324 | 324 | 734,832 | 0 | 16 min |
+| `L_6(2)` (3 classes; 5 classes of 7-elements) | 324 | 324 | 1,714,608 | 0 | 42 min |
 
 An earlier `S_15` run that took only non-natural `α` examined 4,572,288 double cosets and also found 0
-(`job_cfg_sn_nonnatural_only.out`). At this version the `L_6(2)` run had not finished. The `n = 22` run was stopped, because the
-estimate was about `2·10^8` double cosets.
+(`job_cfg_sn_nonnatural_only.out`). The `n = 22` run was stopped, because the estimate was about `2·10^8` double cosets.
 
 ## 5. Consequence
 
@@ -108,6 +108,7 @@ homomorphism into any of the following:
   most 21;
 - `L_5(2)`, which contains `A_8 = L_4(2)`;
 - `O_8^+(2)`, which contains `A_9` and `Sp_6(2)`, and `O_8^-(2)`;
+- `L_6(2)`, which contains `L_5(2)`;
 - `Sp_8(2)`, which contains `Sp_6(2)`.
 
 **How each range is settled.**
