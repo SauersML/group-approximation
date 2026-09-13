@@ -155,6 +155,7 @@ theorem clopenExtendByZero_injective : Function.Injective (clopenExtendByZero k 
 def clopenRestrict (g : LocallyConstant X k) : LocallyConstant C k :=
   LocallyConstant.comap ⟨Subtype.val, continuous_subtype_val⟩ g
 
+omit [Ring k] in
 theorem clopenRestrict_apply (g : LocallyConstant X k) (x : C) : clopenRestrict k g x = g x :=
   rfl
 
@@ -178,9 +179,36 @@ theorem clopenExtendByZero_charFn_mul (f : LocallyConstant C k) :
 
 theorem clopenExtendByZero_mul_charFn (f : LocallyConstant C k) :
     clopenExtendByZero k hC f * LocallyConstant.charFn k hC = clopenExtendByZero k hC f := by
-  rw [mul_comm, clopenExtendByZero_charFn_mul]
+  ext x
+  rw [LocallyConstant.mul_apply, LocallyConstant.coe_charFn]
+  by_cases hx : x ∈ C
+  · rw [Set.indicator_of_mem hx, Pi.one_apply, mul_one]
+  · rw [clopenExtendByZero_apply_of_notMem k hC _ hx, zero_mul]
 
 end Extend
+
+/-! ### The printed cover condition -/
+
+/-- **A finite clopen cover `U_1, …, U_m` with `U_i ∩ T^j U_i = ∅` for `0 < |j| < r`**
+(tex 1709–1710), in the printed spelling with both signs of `j`. -/
+theorem exists_separated_clopen_cover_abs [CompactSpace X] [T2Space X]
+    [TotallyDisconnectedSpace X] (hT : NoShortPeriods T r) :
+    ∃ (m : ℕ) (U : Fin m → Set X), (∀ i, IsClopen (U i)) ∧ (∀ x, ∃ i, x ∈ U i) ∧
+      ∀ i (j : ℤ), 0 < |j| → |j| < r → Disjoint (U i) ((T ^ j) '' U i) := by
+  obtain ⟨m, U, hUc, hUcov, hUd⟩ := exists_separated_clopen_cover T hT
+  refine ⟨m, U, hUc, hUcov, fun i j h₁ h₂ => ?_⟩
+  rcases lt_or_gt_of_ne (abs_pos.1 h₁) with hneg | hpos
+  · obtain ⟨n, hn⟩ : ∃ n : ℕ, (n : ℤ) = -j := ⟨(-j).toNat, Int.toNat_of_nonneg (by omega)⟩
+    have h₂' : -j < r := by rwa [abs_of_neg hneg] at h₂
+    have hd := hUd i n (by omega) (by omega)
+    rw [hn] at hd
+    refine disjoint_left.2 fun y hy hyimg => ?_
+    obtain ⟨z, hz, rfl⟩ := hyimg
+    exact disjoint_left.1 hd hz ⟨(T ^ j) z, hy, zpow_neg_apply_zpow_apply_homeomorph T j z⟩
+  · obtain ⟨n, hn⟩ : ∃ n : ℕ, (n : ℤ) = j := ⟨j.toNat, Int.toNat_of_nonneg hpos.le⟩
+    have h₂' : j < r := by rwa [abs_of_pos hpos] at h₂
+    have hd := hUd i n (by omega) (by omega)
+    rwa [hn] at hd
 
 end GroupApproximation.ChainCore
 
