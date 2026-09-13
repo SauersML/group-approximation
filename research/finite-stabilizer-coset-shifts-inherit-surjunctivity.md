@@ -46,10 +46,10 @@ host's own at a fixed alphabet size.
   automaton `X -> Y` commutes with adding constants, whatever its memory. Take `h in H` of order `p`,
   enlarge the memory to be `h`-invariant, and give the input `z(khf) = z(kf) + m/p` along `h`-orbits. The
   rule must then return `mu = mu + m/p`. So every extension of the form `tau(Pz) + (z - Pz)` with a
-  gauge-shift `P` fails. Artifact Section 2 (to land).
+  gauge-shift `P` fails. Artifact Section 2.
 - **Min retraction.** `rho(z)(k) = min_h z(kh)` is an automaton retraction onto `Y` for every ordered
   alphabet. Its fibres have sizes that depend on the base symbol, so the fibre coordinate cannot be moved
-  to the new base `tau(rho(z))`. Artifact Section 2 (to land).
+  to the new base `tau(rho(z))`. Artifact Section 2.
 - **Alphabet changes.** Products of alphabets keep the shared prime. Enlarging `A` to `B` with `|B|` coprime
   to `|H|` needs an injective extension of `tau` to `B^(G/H)`, a marker problem. Not attempted.
 - **Linear shadow** (artifact Section 3, to land). By duality, linear surjunctivity of `K^(G/H)` means that
