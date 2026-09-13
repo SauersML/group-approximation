@@ -269,6 +269,63 @@ e = alpha o_0 and e' = alpha o_(m-1).  `boundary_arc` forbids arcs that wrap aro
 and both halves have the same kind.  `Maximal` checks only the pairs with `i + 1 < sideCount`, so `base k` must be placed
 at this split.  The split happens at most once per walk.
 
+## Pocket kept cell on the O-equivalent copy (2026-09-13)
+
+Status 2026-09-13 14:10: **partial** (simple walks, with an avoidance binder).  The lead's item is kh-ejz's residual
+(ii): the premise `hkept : (cell X' kept).face ∈ sideFaces X'.toCombMap K.walk` of `PocketWalk.toPocketFaceSet`, on the
+copy `X'`.
+
+Transport.  `OEquivalentDiscDiagram` keeps `boundaryWord`, `cellIndex` and `cellWord` but no darts.  So it cannot carry
+the side of a walk, and hull-select's `zeroCellPocketMerge` cannot be transported along it.  A transport is not needed
+either.  hs-vanishes' `OuterSpurThickeningStatement` gives a globally distinguished family `S'` whose diagram is
+O-equivalent to `S.diagram`.  The equivalence of the two families keeps the weight, the target profile and the source
+index.  So `X' = S'.diagram`, and the kept cell is a theorem on a family's own diagram.  hull-select's files are
+untouched; the new module only imports OsinPocketZeroCellMergeFalse.
+
+| module | carries | state |
+|---|---|---|
+| Estimating/OsinPocketKeptCell | `RealizedSectionFamily.targetArc_end_le_start`; `GloballyDistinguishedSectionFamily.exists_kept_of_pocketRegion` and `exists_kept_of_simple`; `#audit_axioms` on all three | compiled: probe 0913-140023-67387 GREEN (BUILT) at base 492057fb6, the landing commit (md5 4d34649d91379d23a7b79a4b2966eff3 = main); unwired, queued for wiring |
+
+`exists_kept_of_simple` takes the output of `PocketWalk.exists_of_exteriorAt` on `S` (regions `x ≠ y` exterior to cell
+`i` and targeting section `j`, the walk `K`, the gap equation, the two target-arc endpoints), and then:
+```lean
+    (hw : IsSimpleClosedWalk S.diagram.toCombMap K.walk)
+    (havoid : ∀ z ∈ S.family, z ≠ x → z ≠ y → Disjoint z.1 (sideFaces S.diagram.toCombMap K.walk)) :
+    ∃ kept : Fin S.diagram.rCellCount, (cell S.diagram kept).face ∈ sideFaces S.diagram.toCombMap K.walk
+```
+
+Proof.
+- Suppose no relator cell lies on the side.
+  - Then the side is a relator-free pocket region (`PocketRegion.ofSimpleClosedWalk`).
+  - A target-arc dart is a walk dart on the outer cycle, so the exterior face is outside
+    (`outerFace_not_mem_sideFaces_of_mem_outerDarts`).
+- Rotating `K.walk` by the length of the first side gives the decomposition of `mergedGeometry`, with no target cell.
+- Weight.
+  - The gap equation splits the source arc.
+  - The target arc of `x` ends before that of `y` starts (`targetArc_end_le_start`), since a dart in both would lie in
+    two disjoint face sets.
+  - So `x.weight + y.weight ≤ |K.src| + |K.tgt|`, and `false_of_disc_pair_singleton` gives False.
+- The order of the two target arcs is derived, not assumed.  If the target arc of `y` started first, it would end before
+  that of `x` starts, and `hend` would make `K.targetArc` empty.
+
+Open.
+1. **Noncrossing walks.**
+   - `toPocketFaceSetOfNoncrossing` needs `hkept` for a noncrossing walk, which is the case that covers a pinch.
+   - `PocketRegion` asks for `IsDiscRegion` on both sides.
+   - The one producer from a walk, `toDiscRegion_of_followsBoundary`, needs `FollowsBoundary`, and a pinched cycle
+     fails it (`OsinPocketPinchedTwoGonModel.not_followsBoundary`).
+   - So `exists_kept_of_pocketRegion` reaches a pinched pocket only through another `PocketRegion` producer.
+2. **`havoid`.**
+   - A third member of the family can lie inside the pocket, so the binder is a real premise.
+   - The route is to absorb the members that meet the pocket (`false_of_disc_collapse_singleton`).
+   - Suppose each such member lies inside the pocket.  Then its source and target darts lie in `K.src ∪ K.tgt`,
+     because no relator cell is in the pocket, every face is a G-cell (`all_gCells`), and the faces are disjoint.
+     Counting darts then gives the weight bound.
+   - "Meets implies contained" has two obstacles:
+     - (a) `FaceShelling` allows an empty arc, so two lobes can touch at a walk vertex;
+     - (b) across the inverse source arc, the face of cell `i` must lie outside the member.  `all_gCells` does not give
+       this without `listVal C.word ≠ 1` (`faces_not_mem_of_value`).
+
 ## Census
 
 Rows: `metadata/nm-census-rows/sec2-sentences.tsv`.  The four sentences with no declarations
