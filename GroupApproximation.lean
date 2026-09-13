@@ -4989,6 +4989,7 @@ import GroupApproximation.Kazhdan.CCKWSystolicInvariantCliqueClosed
 import GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerForms
 import GroupApproximation.GGT.HullLemma35Transitive
 import GroupApproximation.GGT.HullLemma35LocalFinite
+import GroupApproximation.CuTensor.ObstructionGrothendieck
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
