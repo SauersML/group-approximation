@@ -91,8 +91,8 @@ The lead asked this lane for the shelling producer of the pocket cut core, that 
   `Estimating/PieceConstruction.lean:30,56` and `Estimating/PieceCore.lean:228`.
 - The same map refutes `RegionShellingStatement` (`FaceShelling.lean:194`), because a `FaceShelling`
   step never erases a spur.
-  - audit-sec5 holds that module (`VanKampen/RegionShellingSpurCounterexample.lean`, not yet on main),
-    and this lane does not duplicate it.
+  - audit-sec5 landed that refutation at 3f6eaff76 (`VanKampen/RegionShellingSpurCounterexample.lean`)
+    and queued it for wiring together with `FaceSetEarSpurCounterexample`; this lane has no objection.
   - Consumer with a binder: `Estimating/PieceConstruction.lean:83`.
 - Correct form: face-set pasting must allow alpha-pair erasure (`FaceSetWordHomotopy.eraseAlphaPair`).
   `CellShellingWithGCells` carries it through `gMove`.
@@ -164,7 +164,8 @@ The lead dropped A, the weighted planar van Kampen lemma: dgo-analytic's `OsinPo
 (c0a1c1bee) already gives least area. B is not needed either, because nothing on the ruled route
 consumes a shelling. Item C: kh-torsion owns two W1 (a) lemmas, the geodesic G-face collar along
 short side arcs (item 1, `SurgeryGeodesicCollar`) and `IsDiscRegion` for both sides of the collared
-closed walk `g₁ t₁ g₂ t₂` (item 2). This lane offered kh-torsion to take item 2; kh-torsion decides.
+closed walk `g₁ t₁ g₂ t₂` (item 2). This lane offered kh-torsion to take item 2, and kh-torsion took
+it through `GeodesicCollarOutput` (`SurgeryGeodesicCollar`, e6d609771).
 
 - `GGT/VanKampen/SimpleClosedWalkSides`: landed unverified at 79008d7e5. Probe 0913-070150-30707
   failed on two missing `classical` and one unused binder. After the fix, probe 0913-072751-55574
@@ -205,11 +206,57 @@ closed walk `g₁ t₁ g₂ t₂` (item 2). This lane offered kh-torsion to take
   and `:194`, `Estimating/PieceConstruction.lean:30` and `:56`, `Estimating/PieceCore.lean:228`.
 - `RegionShellingStatement`: `Estimating/PieceConstruction.lean:83`.
 
+## Pocket pinch: `PocketPinchStatement` without `Collared` (lead's item, 09-13 ~09:40)
+The piece order is pinch, then region, then collar (dgo-analytic, `Estimating/OsinPocketPieces.lean`,
+b34e788e8). The consumers are kh-ejz (`PocketWalk.toPocketFaceSet`, 517cec238, which needs a simple
+walk) and debt-conditional.
+
+- **State on main.**
+  - `PocketPinchStatement : ∀ … (K : PocketFaceSet D eps X lo hi), ∃ X' K', Nonempty
+    (OEquivalentDiscDiagram X X') ∧ K'.Simple`, where `Simple` means `IsSimpleClosedWalk` of
+    `K.boundary.cycle`.
+  - kh-cckw (`Estimating/OsinPocketPinchUnpinched`, 33951a5b6, probe 0913-091746-34826) reduces it
+    to `PocketPinchPinchedStatement`, the case `¬(K.boundary.FollowsBoundary ∧ Unpinched X.toCombMap
+    K.faces)`.
+- **Obstructions** to splitting at a repeated vertex and keeping a simple lobe that holds a relator
+  cell, at the landed generality. Neither is a proof or a refutation.
+  - Side norms. A lobe whose side has a loop cut out keeps `length ≤ eps`, but not
+    `wordNorm ≤ eps`: the loop's value is not 1 when it encloses relator cells. Fix: add the binder
+    `∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)`, the consumer's `S.label_admissible`; then
+    `wordNorm_le_length` gives norm ≤ length.
+  - Configuration A, a notch. `∂Π` touches itself at `v` inside `t₁`, and the notch holds no
+    relator cell.
+    - The lobe with the relator cells has `t₁` with the loop removed, which is not a `CyclicArc`.
+    - Every vertex split at `v` that separates Π's two corners adds a letter to the pocket face
+      at `v`. `OEquivalentDiscDiagram` fixes relator-cell words, so this fails when that face is a
+      relator cell.
+    - The same happens inside `t₂` at a cut vertex of `X`.
+    - A notch that holds a relator cell is harmless: it is a lobe with empty sides and an empty
+      target arc.
+  - Configuration B, the source in a lake. `x.rightSide` and `y.leftSide` touch behind Π.
+    - `K.faces` is an annulus pinched at `v`, and Π lies in the inner complement component.
+    - The only simple lobe `s₂[v..] t₂ s₁[..v]` has no cell arc, and its disc contains Π, so
+      `rCellCount_lt` of the pocket cut can fail.
+- **Proposal sent to dgo-analytic** (msg cdfe394e), awaiting a ruling.
+  - (R1) Keep `PocketCarrier` and add the label binder. hull-respell proves the pinch outside A and
+    B, and lands A and B as named Props.
+  - (R2) Drop `PocketCarrier.inner_follows`.
+    - A type-A pinch leaves the complement one circuit, so collapsing the complement alone already
+      gives the enclosed diagram with the pinched walk as its boundary.
+    - The transports use only `outer_follows`, but `GeodesicCollarStatement` uses both.
+    - The pinch then handles lakes only.
+- **Sub-piece handed to kh-cckw** (msg dc23c3a7): for a planar map, if the boundary cycle of
+  `faces` and that of `facesᶜ` both follow the boundary, the face set is `Unpinched`.
+  - Route: collapse both sides with `FaceSetCircuits.toDiscRegion`. The doubly collapsed map has 2
+    faces, so `V = E_B`, and every boundary vertex is visited once.
+  - This is the no-lake base case under either form.
+
 ## Next
 - Done: `SimpleClosedWalkSides` and the `HullSCOneStepQuasiGeodesicLeaves` docstring fix landed
   normally at 4dce22f1e (sec2-sentences informed). `SimpleClosedWalkSides` is on the wire queue.
-  `OsinPocketRegionSimpleWalk` is not queued yet because nothing consumes it so far.
-- kh-torsion's decision on item 2; if it names another item, take that.
-- hull-select's consumer shape. Pinched walks only if a consumer needs them.
+  `OsinPocketRegionSimpleWalk` is consumed by dgo-analytic's `OsinPocketRegionOfSimple`.
+- dgo-analytic's ruling on R1/R2. Then land the corrected pinch statement, with a Rule 22 probe of
+  `OsinPocketPieces` and `OsinPocketPinchUnpinched`, and prove it by lobe selection and lake absorption.
+- kh-cckw's Euler sub-piece.
 - Flip to `relativeGreendlingerQuasiGeodesicLeastArea_closed` as h94 and the parts land. A watcher on
   landed.log follows the part owners.
