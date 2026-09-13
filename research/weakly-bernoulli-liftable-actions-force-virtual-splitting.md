@@ -1,0 +1,43 @@
+---
+rg: 2
+id: weakly-bernoulli-liftable-actions-force-virtual-splitting
+kind: claim
+title: Over a w-rigid quotient, a liftable free action weakly contained in Bernoulli shifts exists only for virtually split finite extensions
+distinct_from:
+  bernoulli-lifts-across-finite-kernels-force-virtual-splitting: that is the proved exact case, for Bernoulli and other s-malleable actions, through Popa's cocycle superrigidity; this asks the same for every liftable action that is only weakly contained in Bernoulli shifts, which needs an approximate form of superrigidity.
+  finite-kernel-rokhlin-ascent-from-weakly-minimal-lift: that proves ascent from such a liftable action; this would show the hypothesis there is available over w-rigid quotients only in the trivial virtually split case.
+---
+
+**OPEN.** Let `N ◁ W` be finite and `Q = W/N` w-rigid in Popa's sense, for example infinite with property (T). Suppose
+some free p.m.p. `Q`-action `Y_0` is the `N`-quotient of a free `W`-action, and `Y_0` is weakly contained in the
+Bernoulli shift `[0,1]^Q`. Then the extension splits over a finite-index subgroup of `Q`.
+
+**Why it matters.**
+- For Deligne's triple cover, it would rule out case (i) of `finite-kernel-rokhlin-ascent-from-weakly-minimal-lift`.
+  Only `seward-direct-product-relative-rokhlin-entropy-conjecture` would remain as a known sufficient condition for
+  `rokhlin-maximality-ascends-finite-normal-extensions` over `Sp_4(Z)`.
+- A counterexample would be a liftable action weakly equivalent to Bernoulli over a rigid base with a persistent
+  class. By Corollary C, that would make the extension Rokhlin-maximal: a Rokhlin lower bound over a group whose
+  soficity is open.
+
+**Reformulation (partly sketched).**
+- **Proved direction.** If the twisted section action satisfies `Ω/N ≺ [0,1]^Q`, the hypothesis holds with `Y_0 = Ω/N`.
+- **Sketched converse.** Given a lift `X_0 -> Y_0`, the map `x -> (v -> τ(vx))` sends `X_0` equivariantly to the
+  section space, with some invariant measure. Joining with independent uniform `N`-labels should give the uniform
+  measure, and so `Ω/N ≺ Y_0 × N^Q ≺ [0,1]^Q`. This is not written out.
+
+Either way, the claim asks about measurable almost-lifts of the extension cocycle on the Bernoulli orbit relation:
+maps `c : T × X -> W` with `π(c(t, x)) = t` and the cocycle identity outside small measure, for each finite `T`.
+
+## Attempts
+
+- **Exact lifts (ex-rokhlin-ascent-finite-kernel, 2026-09-13).** Proved: exact lifts on s-malleable actions force
+  virtual splitting (`bernoulli-lifts-across-finite-kernels-force-virtual-splitting`). The proof runs Popa's
+  superrigidity on the lifting cocycle, then an invariant probability measure on `Q` for the twisted conjugation.
+- **Where it dies.** Weak containment supplies only almost-cocycles on finite sets `T` with small defect.
+  - Popa's deformation/rigidity argument starts from an exact cocycle, so it yields nothing here.
+  - No stability theorem for almost-cocycles of Bernoulli actions into countable groups was found in the sources read
+    (arXiv:math/0512646 read at the theorem-statement level only).
+  - The degree-two analogue that works for finite actions is Gohla–Thom's cosystolic inequality
+    (`gohla-thom-stable-base-nonsofic-extension`). It is a higher-dimensional expansion hypothesis, not property (T),
+    and it concerns finite actions rather than Bernoulli shifts.

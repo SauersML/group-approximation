@@ -197,8 +197,13 @@ Read 2026-09-13 from PDF texts extracted on MSI (`review-lit/entropy/`, and `ex/
 **Not found.** A quotient formula for finite normal subgroups, descent or ascent of INF along finite kernels, or the
 section action.
 
-**Not checked.** Seward's Sinai factor paper (arXiv:1804.05269), Hayes's relative sofic entropy papers, surveys. The
-web search budget was exhausted. Novelty is therefore unreviewed.
+**Also searched (added later the same day).** Keyword searches of Seward arXiv:1804.05269 (Sinai factor theorem),
+Alpeev arXiv:1705.08559 (random ordering formula) and Hayes arXiv:1605.01747 (relative sofic entropy), fetched on MSI
+and extracted with ghostscript. There is no statement about finite normal subgroups or quotients. Hayes's hits concern
+closed normal subgroups of compact groups in algebraic actions.
+
+**Not checked.** Surveys, and Hayes's other papers. The web search budget was exhausted. Novelty is therefore
+unreviewed.
 
 ## 7. Addendum (same day): the checkable sufficient conditions, tested
 
