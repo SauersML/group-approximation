@@ -131,13 +131,20 @@ This lane owns the value.
      - `OsinLemma94PolygonCountInput` comes from `osinLemma94PolygonCountInput_of_sideBudget`, over
        `OsinLemma94PolygonSideBudgetInput` (no producer; hull-count94).
      - `OsinLemma94CaseOneInput` is `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk` on
-       origin. Patch 10 (f) deletes that form. The route then is
-       `osinLemma94CaseOneInput_of_walk_of_sameCell`, over `OsinLemma94CaseOneSameCellStatement`
-       (theoremc-retire).
+       origin. Patch 10 (f) is overruled, so `_of_walk` is not deleted. It gains an
+       `OsinLemma94CaseOneSameCellStatement` binder (theoremc-retire). That Prop is not redundant
+       after patch 09 (d).
      - `OsinLemma94CaseTwoInput` has no producer (sec5-sentences).
-     - Patch 10 (d): under (A), `alpha_faceOf_not_cell_of_unbound` loses the dart of cell i whose
-       reverse also lies on cell i. So `osinLemma94PolygonCoversInput`, closed on origin, reopens
-       unless that case gets its own count or exclusion (ghw-charp2 site 5).
+     - Site 5 (patch 10 (d), `alpha_faceOf_not_cell_of_unbound` at j = i): under (A), an unbound
+       dart of cell i whose reverse also lies on cell i lies on no polygon walk. The ruling is
+       option (a), owned by fff-periodic:
+       - `Covers` takes a factor ⌈1/λ⌉ on the sides, and L depends on λ and c. `dense_of_covers`
+         absorbs the factor. This is co-probed with hull-count94.
+       - fff-periodic proves case (T), where C2 has no relator cell.
+       - Case (C) is a named binder of the Covers input, owned by fff-periodic. It can be
+         discharged from the threaded `OsinLemma97Below`.
+       - So `osinLemma94PolygonCoversInput`, closed on origin, becomes a producer over the case (C)
+         binder once the respelling lands.
    - `OsinMultipleEdgeCutSectionStatement` comes from `osinMultipleEdgeCutSection_of_pieces`
      (OsinPocketMultipleEdgeAssembly.lean:207, hull-select, 2db85602c, root-imported). Its leaves have
      no producer: `OsinMultipleEdgePocketRegionSectionStatement` (kh-ejz), `GeodesicCollarStatement`
