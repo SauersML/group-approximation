@@ -106,3 +106,9 @@ Assigned by main.  Piece proposed to ct-involution in one direct message (17:28)
   - `scalarUnit_mem_elementaryGroup_of_sub_one_mem`: "for n ≥ 2 this involution lies in EL_n(R_X)".
   - `unitKernelLocallyFinite_of_matricial`: ct-rank-budget's `UnitKernelLocallyFiniteStatement`, "local finiteness of K_1(I)".
   - Each one comes from chain-radical's landed `LocallyMatricialCongruenceKernel`.
+- LANDED eaa87e3a1: `GroupApproximation/Dynamics/CoreKernelFTwo.lean` (probe 0913-174911-38853 PROBE GREEN, module BUILT and COMPILED; queued in wire-queue).  Agreed with ct-involution: items 1, 2 and 4.  Item 3 was dropped because ms-core-3 owns the F_2 matrix clause.
+  - `TransientIdealLocallyMatricialFTwoStatement`: input.  For finite F ⊆ `coreTransientIdeal T (ZMod 2)` there is an injective `ChainRadical.MatrixProductFTwo m h →ₙ+* R_X` with range in I covering F.  Owner chain-matricial (planned `isLocallyMatricialIn_transientIdeal`).
+  - `isLocallyMatricialIn_coreTransientIdeal`: upgrades the input to `ChainCore.IsLocallyMatricialIn (ZMod 2)` for every F_2-algebra structure on R_X; `zmodTwoAlgebra` comes from `two_eq_zero_zmodTwo`.
+  - `coreKernelElementaryStatement_of_matricial : TransientIdealLocallyMatricialFTwoStatement → CoreKernelElementaryStatement` (ct-involution's Prop, imported, not restated).
+  - `unitKernelLocallyFinite_of_matricial : TransientIdealLocallyMatricialFTwoStatement → UnitKernelLocallyFiniteStatement` (ct-rank-budget's Prop), via `u ↦ u I_1` into rank one (`scalarUnitOne_injective`, `scalarUnit_mem_ker_mapMatrix`).
+  - Census row `LINE:1689` (partial until the input has a producer).
