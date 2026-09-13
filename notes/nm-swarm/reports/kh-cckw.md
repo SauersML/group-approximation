@@ -220,10 +220,25 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
   - `CCKW.systolicInvariantClique_of_pinched (hpinch : ∀ (V : Type) (X : Systolic.TriangleComplex V), Systolic.MirrorFoldPinchedStatement X)
     : CCKW.SystolicInvariantCliqueStatement`;
   - `CCKW.cckwFiniteOrderConjugateIntoVertex_of_pinched (hpinch : Systolic.MirrorFoldPinchedStatement cosetComplex)`.
-- RESIDUAL of hT6, exact: `∀ (V : Type) (X : Systolic.TriangleComplex V), Systolic.MirrorFoldPinchedStatement X`. fff-periodic owns it;
-  it is not landed yet.
-- Once Pinched lands, ko-closed adds `Systolic.mirrorFoldStatement (X)` in GGT/SystolicDiscMirrorFold. I then land
-  `theorem systolicInvariantClique : CCKW.SystolicInvariantCliqueStatement` in CCKWSystolicInvariantCliqueClosed.
-- Fallback in progress: I offered hull-unbound an unstarted `OsinLemma94PlanarRunInput` piece, the component polygons on the
-  face walks of a reduced family (every field except `no_antiparallel`). Waiting for its reply.
+- 84e93eebd landed the module and this report. At that commit the RESIDUAL of hT6 was
+  `∀ (V : Type) (X : Systolic.TriangleComplex V), Systolic.MirrorFoldPinchedStatement X`.
+- Fallback: I offered hull-unbound an unstarted `OsinLemma94PlanarRunInput` piece, the component polygons on the
+  face walks of a reduced family (every field except `no_antiparallel`). No reply yet.
 - Trap: `kh-cckw.files` must list only `GroupApproximation/**/*.lean`. nmprobe refuses a report path, and nmland does not read the list.
+
+## hT6 CLOSED (09-13)
+- 426813b24 landed `GGT/SystolicDiscMirrorFold`, which proves both halves of HC6 for every triangle complex:
+  - `Systolic.mirrorFoldPinched (X) : MirrorFoldPinchedStatement X`;
+  - `Systolic.mirrorFold (X) : MirrorFoldStatement X`.
+- `Kazhdan/CCKWSystolicInvariantCliqueClosed` now adds two theorems (PROBE GREEN 0913-061054-67459, base 5f789a7ba, BUILT; every theorem passes `#audit_axioms`):
+  - `CCKW.systolicInvariantClique : CCKW.SystolicInvariantCliqueStatement`;
+  - `CCKW.cckwFiniteOrderConjugateIntoVertex : CCKWFiniteOrderConjugateIntoVertex`, the cyclic case of CCKW Theorem 3.1(ii) for GHB(7).
+  - The module imports `GGT/SystolicDiscMirrorFold` in place of `GGT/SystolicDiscMirrorFoldDistinct`.
+- RESIDUAL of hT6: none. `hconj` is closed.
+- These files on main take an `hT6` binder that `CCKW.systolicInvariantClique` now discharges. They belong to other lanes, and I edit none of them.
+  - Kazhdan/KotowskiOllivierLeaves and Kazhdan/KotowskiOllivierClosed (ko-closed);
+  - Manuscript/NonMF/TheoremCAssemblyKOLeaves and Manuscript/NonMF/TorsionFreeKOLeaves.
+  - My own GHBSharpExistence and GHBSharpExistenceSystolic sit upstream of the closed module, so they keep the binder.
+- Hyperbolicity closes the same way. `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold` takes only `hzip hfold` at `CCKW.cosetComplex`, and
+  both are now proved (`CCKW.zipSpur_cosetComplex`, `Systolic.mirrorFold CCKW.cosetComplex`). So `sharpExistence_ghb7_of_zipFoldHyp`
+  yields `Hyperbolic.SharpExistence` with no open leaf. That endpoint is ko-closed's (KotowskiOllivierClosed), so it is not in my module.
