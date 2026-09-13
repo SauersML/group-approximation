@@ -149,10 +149,7 @@ theorem cornerUnitMap_injective (S : Subring C.Corner) : Function.Injective (C.c
   have h2 := add_left_cancel hv
   ext r s
   have h3 := congrArg (fun M : Matrix (Fin 3) (Fin 3) R => M r s) h2
-  first
-    | exact Subtype.val_injective h3
-    | exact Subtype.val_injective (Subtype.val_injective h3)
-    | exact h3
+  exact Subtype.val_injective h3
 
 theorem cornerEmbed_injective (S : Subring C.Corner) : Function.Injective (C.cornerEmbed S) :=
   (C.cornerUnitMap_injective S).comp Subtype.val_injective
