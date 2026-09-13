@@ -17,3 +17,5 @@ Let `R ≠ 0` be a countable simple unital ring. The following are equivalent:
 Moreover, the paradoxical level `p(R) = min{n : (n+1)[R] ≤ n[R]}` equals `min{n : M_n(R) not directly finite}`.
 Together with `paradoxical-ring-el-n-full-mf-radical-from-twice-level`: if `R` is not stably finite, then `EL_N(R)` has
 full MF radical for `N ≥ 2p(R)`.
+
+**Review (un-verify, 2026-09-13): PASS.** Both contrapositives re-derived at fixed `n` (so the level identity holds); (b)⟺(c) is KMP Corollary 2.16 at `y = [R]`; model tests (L_k(1,2), the Pestov ring, a field) consistent. No older established node states this equivalence. See `research/artifacts/un-review-2026-09-13-part2.md`.

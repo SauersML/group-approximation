@@ -17,3 +17,5 @@ In a preordered abelian monoid `S`:
 **Corollary 2.16 (Tarski's Theorem).** A nonzero `y ∈ S` is not paradoxical iff there is a state `ν` with `ν(y) = 1`.
 
 This applies in particular to the Murray–von Neumann monoid `V(R)` of a unital ring with the algebraic preorder.
+
+**Review (un-verify, 2026-09-13): PASS (import).** Definitions 2.6 and 2.9, Remark 2.10 and Corollary 2.16 checked verbatim against the text of arXiv:2502.17190v3 (28 Jul 2026). See `research/artifacts/un-review-2026-09-13-part2.md` §1.
