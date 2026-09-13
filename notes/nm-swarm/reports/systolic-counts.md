@@ -56,26 +56,53 @@ hfold is closed: fff-periodic's `Systolic.mirrorFold (X) : MirrorFoldStatement X
 (`GGT/SystolicDiscMirrorFold`, 426813b24, probe 0913-052528-4751).  The vertex-split step offered to
 fff-periodic (`FoldStage.exists_split_pinch`) is not needed.  This lane wrote no Lean for it.
 
-### Current item: W1, one (c) transport glue module for go-lemma42
+### W1 pocket glue: cancelled
 
-The lead assigned this lane one of go-lemma42's (c) transport modules for `OsinMultipleEdgeCut.ofPocketRegion`.
-The candidates are `GGT/VanKampen/SurgeryPocketGlue`, `SurgeryPocketGluePlanar`,
-`Estimating/OsinPocketGlueDiagram` and `Estimating/OsinPocketGlueTransport`.
+The lead cancelled the handout.  go-lemma42 wrote `SurgeryPocketGlueVertices`, `SurgeryPocketGlueCount`
+and `SurgeryPocketGluePlanar` itself.  This lane wrote no Lean for W1.
 
-* Route: glue an O-equivalent copy Ξ into Δ' along the region cycle and build the diagram with
-  `DiscDiagram.ofPlanar`.  Planarity comes from an χ count through `MapCollapse.reclosed_isRestriction`.
-* Proposed module for this lane: `SurgeryPocketGluePlanar`.  This lane asked go-lemma42 for the exact
-  statement and writes no Lean until the answer.
-* Planned count, for `Seam.glueMap` (go-lemma42's unlanded `SurgeryPocketGlue`):
-  * darts: the glued darts are the interior darts of `faces` plus the darts of `X` (`Seam.splitEquiv`);
-  * faces: `faces.card` old faces plus the faces of `X` other than `outer`.  The reclosed map has
-    `faceCount + faces.card = M.faceCount + 1` (`reclosedMap_faceCount`);
-  * vertices: the vertices of `X` (first return, `Seam.glue_isRestriction`) plus the vertices of `M` whose
-    darts are all interior.  The reclosed map keeps the vertices of `M` that meet a kept dart
-    (`reclosedMap_vertexCount`);
-  * so χ(glued) − χ(X) = χ(M) − χ(reclosedMap M faces boundary).  With `M` and `X` planar and
-    `reclosedMap_planar`, χ(glued) = 2;
-  * connectedness: lift paths of `M` to the glued map, as `reclosedMap_connected` does.
+### Current item: two defects in the non-MF verifier, landed at 736f7ea44
+
+census found both defects in `scripts/check_non_mf_unconditional.py`.  The script has no owner, so the lead
+gave this item to this lane.  Landed with `NM_UNVERIFIED=1`; the script is not in
+`lanes/systolic-counts.files`.
+
+* False red on hKO.  `resolve` matched a dotted name only against a bare namespace token or a whole
+  namespace stack.  `KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed` (inside
+  `GroupApproximation.KMSGroup`) concludes `Manuscript.NonMF.TheoremC.KotowskiOllivierStatement`, a partial
+  path, so the producer was filed under a name outside the corpus.  Fix: `resolve_written_name` tries each
+  prefix of the declaration's namespace followed by the name against the corpus full names, as Lean does.
+  `_unfold` and `classify` resolve with the namespace.  Nothing matches on a shared tail.
+* Blind spot on in-place constructions.  `HullSC.CutLift` is built by `have hcl : CutLift … := { … }` in
+  `letterStepBound_of_cutLiftOutcome`, and rows 8aead549f1fe and 4895f03fdf5f reported no producer.  Fix:
+  `in_place_heads` reads `have`/`haveI`/`let`/`letI [name] : T := ⟨…⟩ | { … }` and `(⟨…⟩ : T)`,
+  `({ … } : T)`; each produces `T` under the declaration's requirements and taint.  Refutations and
+  sort-valued defs produce nothing this way.
+* Calibration on MSI, through a copy of census's `census_run.sh`, on an export of 9b413742b:
+  * `PRODUCER_FIXTURE`, now part of `--self-test`: the old script got 7 of its 11 consumers wrong, the
+    candidate gets 11 of 11 right.  A Prop with no producer still reports red, a producer resting on
+    `sorry` still reports conditional-debt, and the partial-path and in-place shapes come out clean.
+  * `--self-test`, the importers' self-tests and `check_ledger_unconditional` pass.  The gate reports 47
+    cited declarations unconditional before and after.
+* Register effect.  `sentence_census --verify-unconditional` exits 1 until census re-registers
+  `metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt`.  This is the ratchet working, not a candidate bug.
+  * 3 stale lines: `HullTheorem312Lemma58.normalizesNoNontrivialFinite_of_isHyperbolicallyEmbedded`,
+    `HullSC.CutLift.toCutMove` and `HullSC.cutLiftOutcome` now report header binders only.
+  * 169 new findings (145 open-predicate, 19 carrier-data, 2 inlined-statement, 2 buried-conditional,
+    1 conditional-data).  The old resolver dropped the partial path
+    `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement`, so the `TheoremC.LiteratureInputs`
+    producers over it, `FournierFacioParagraph`, `HullOneStepStatement`, `HullTowerStatementGeneral` and the
+    Printed* carriers counted as discharged.
+* Trace on MSI, both discharge fixed points compared declaration by declaration:
+  * no declaration loses a conclusion or a requirement (0 violations);
+  * 35 names gained (producers: 22 in-place, 15 completed conclusions, 24 cascades); spot-checked
+    `CutLift`, `KotowskiOllivierStatement`, `Heis`, `IsSpelling`, `LinkCertificateChecks`, all genuine;
+  * 51 names lost, each blocked by a Prop undischarged under both scripts:
+    `RelativeGreendlingerQuasiGeodesicLeastAreaStatement` (143 blocked producers),
+    `RelativeGreendlingerQuasiGeodesicStatement` (17), `EstimatingUnboundOutputStatement` (11),
+    `EstimatingSelectionConstructionStatement` (11), `RelativeGreendlingerStatement` (1).
+* Sent to census and main: the SHA, the 3 stale lines and the grouped findings.  CI "Sentence-level census"
+  (`build-non-mf-pdf.yml`) stays red until census re-registers.
 
 ## Brief items
 
@@ -109,5 +136,6 @@ The candidates are `GGT/VanKampen/SurgeryPocketGlue`, `SurgeryPocketGluePlanar`,
 
 ## Next
 
-* Get the module and statement from go-lemma42.  Then write the module, land it unverified, probe it,
-  fix it until green, and message go-lemma42 and main.
+* census re-registers the baseline against 736f7ea44.  If a finding there points at the verifier and not at
+  the corpus, this lane fixes the script and re-runs the calibration on MSI.
+* Otherwise idle until the lead assigns a new item.
