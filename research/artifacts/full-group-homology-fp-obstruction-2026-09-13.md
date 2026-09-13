@@ -27,35 +27,41 @@ Part 2 (`full-group-homology-fp-obstruction-labbe-2026-09-13.md`) treats Labbé'
 ## 1. Source: Xin Li, arXiv:2209.08087
 
 We read the TeX source `main.tex`, whose e-print name is `Homology_TFG.tex` (modified 2024-11-25), on MSI at
-`/scratch.global/sauer354/ex/ex-fp-simple-full-group-obstruct/src/2209.08087/`. Line numbers
-refer to that file.
+`/scratch.global/sauer354/ex/ex-fp-simple-full-group-obstruct/src/2209.08087/`.
+- **Numbering.** Theorem and section numbers are those printed in the current arXiv version, as
+  reported from the PDF by ex-verify2-groups (`research/artifacts/ex-review2-groups-2026-09-13-part4.md`, §1).
+  This lane checked them against the shared `[section]` theorem counter of the TeX source. TeX
+  labels are in parentheses.
 
-- **(L1)** Theorem `thm:HKB=HG`, lines 2086–2088: "Let `G` be an ample groupoid with locally
-  compact Hausdorff unit space `G^(0)` and `C` an abelian group. We have
-  `H~_*(K(B_G), C) ≅ H_*(G, C)`."
-- **(L2)** Corollary `cor:HDG=HtiOKB`, lines 2681–2686: "Let `G` be an ample groupoid, with
-  locally compact Hausdorff unit space `G^(0)` without isolated points. Assume that `G` is
-  minimal and has comparison. Then `H_*(D(G), C) ≅ H_*(D(R × G), C) ≅ H_*(Ω~^∞_0 K(B_G), C)`
-  for all abelian groups `C` and all `* >= 0`."
-  - Line 2652 defines `Ω~^∞_0 K(B_G)` as the universal cover of `Ω^∞_0 K(B_G)`.
-  - Line 2650 defines `D(G)` as the commutator subgroup of the topological full group `F(G)`.
-- **(L3)** The proof of Theorem `thm:H2H0H1H1`, line 3066: "The Atiyah-Hirzebruch spectral
-  sequence ... has `E^2_{p,q} = H~_p(K(B_G), π_q(S))` and converges to `π_{p+q}(K(B_G))`". It is a
+- **(L1)** **Theorem 4.18**, stated in the introduction as Theorem A (`thm:HKB=HG`): "Let `G` be an
+  ample groupoid with locally compact Hausdorff unit space `G^(0)` and `C` an abelian group. We
+  have `H~_*(K(B_G), C) ≅ H_*(G, C)`."
+- **(L2)** **Corollary 5.20** (`cor:HDG=HtiOKB`), resting on Theorem 5.19 (`thm:HDG=HtiOKB`): "Let
+  `G` be an ample groupoid, with locally compact Hausdorff unit space `G^(0)` without isolated
+  points. Assume that `G` is minimal and has comparison. Then
+  `H_*(D(G), C) ≅ H_*(D(R × G), C) ≅ H_*(Ω~^∞_0 K(B_G), C)` for all abelian groups `C` and all
+  `* >= 0`."
+  - The text of §5.4, just before Theorem 5.19, defines `Ω~^∞_0 K(B_G)` as the universal cover of
+    `Ω^∞_0 K(B_G)`, and `D(G)` as the commutator subgroup of the topological full group `F(G)`.
+- **(L3)** **The proof of Theorem 6.12** (`thm:H2H0H1H1`): "The Atiyah-Hirzebruch spectral sequence
+  ... has `E^2_{p,q} = H~_p(K(B_G), π_q(S))` and converges to `π_{p+q}(K(B_G))`". It is a
   first-quadrant spectral sequence.
-- **(L4)** Line 996: for a transformation groupoid, `H_*(Γ ⋉ X, C) ≅ H_*(Γ, C_c(X, C))`.
-- **(L5)** Line 825: a free action of a countably infinite `Γ` on a compact metrizable totally
-  disconnected `X` has comparison if the finitely generated subgroups of `Γ` have
-  subexponential growth [Downarowicz–Zhang].
-  - Line 839: tiling groupoids of aperiodic repetitive FLC tilings are étale and minimal, with
-    Cantor unit space, and almost finite [IWZ], hence have comparison.
-- **(L6)** Lines 3282–3292: "let `G` be the groupoid attached to the classical Penrose tiling.
+- **(L4)** **§2.3.2**, "Groupoid homology for examples": for a transformation groupoid,
+  `H_*(Γ ⋉ X, C) ≅ H_*(Γ, C_c(X, C))`.
+- **(L5)** **§2.2.2**, "Transformation groupoids": a free action of a countably infinite `Γ` on a
+  compact metrizable totally disconnected `X` has comparison if the finitely generated subgroups
+  of `Γ` have subexponential growth [Downarowicz–Zhang].
+  - **§2.2.3**, "Tiling groupoids": tiling groupoids of aperiodic repetitive FLC tilings are étale
+    and minimal, with Cantor unit space, and almost finite [IWZ], hence have comparison.
+- **(L6)** **§6.4**, "Examples": "let `G` be the groupoid attached to the classical Penrose tiling.
   Then `H_*(G) ≅ Z^8` for `*=0`, `Z^5` for `*=1`, `Z` for `*=2`, `{0}` otherwise."
-- **(L7)** Line 3043: groupoid homology is Morita invariant [Mat12, §3], [Mil, §4].
-- **(L8)** Line 1162: `A(G) = D(G)` for almost finite or purely infinite minimal effective
-  Hausdorff groupoids with Cantor unit space.
+- **(L7)** **Remark 6.13**: groupoid homology is Morita invariant [Mat12, §3], [Mil, §4]. An earlier
+  version of this artifact cited "line 3043".
+- **(L8)** **§2.4**, "Topological full groups": `A(G) = D(G)` for almost finite or purely infinite
+  minimal effective Hausdorff groupoids with Cantor unit space.
 
-**Scope of the source check.** The only mention of finiteness properties in the source is
-line 1199, background on type `F_n`. Li draws no finite-presentation consequence. Web search
+**Scope of the source check.** The only mention of finiteness properties in the source is in
+§2.5, "Examples of topological full groups", background on type `F_n`. Li draws no finite-presentation consequence. Web search
 was unavailable, so novelty of Corollary 2 and Theorem 3 is **not claimed**.
 
 **Universal coefficients.** Groupoid homology is the homology of the complex `C_c(G^(n), Z)`.
