@@ -116,14 +116,20 @@ There are at most `n` of them. So `m_K(A_k) → m_K(∩ A_k) = 0`. ∎
 3. **Scope.** Established here: `SL_n(Z)`, all `n >= 2`. The same proof runs for other arithmetic
    lattices given strong approximation at one isotropic prime, but that import is not made, so nothing
    more is claimed.
-4. **Where Hecke orbits die.** Let `Λ <= SL_3(R)` be a lattice not commensurable with `SL_3(Z)`, for
-   instance a cocompact `SL_1(O_D)` for a cubic division algebra `D` over `Q`. Every `SL_3(Z)`-orbit in
-   `SL_3(R)/Λ` is infinite. A finite orbit of `gΛ` would make `SL_3(Z) ∩ gΛg^(−1)` a lattice of finite
-   index in both `SL_3(Z)` and `gΛg^(−1)`, and commensurable lattices are both uniform or both not.
-   Theorem P is blind there structurally, since an extension has finite orbits only above finite
-   orbits. So `SL_3(Z) ↷ SL_3(R)/Λ` is the next explicit free mixing candidate. By the coupling
-   `SL_3(R)` it has the same status as `Λ ↷ SL_3(R)/SL_3(Z)`, a cocompact lattice acting on the space of
-   unimodular lattices.
+4. **Where Hecke orbits die.** Let `Λ <= SL_3(R)` be a lattice not commensurable with any conjugate of
+   `SL_3(Z)`. Any cocompact lattice qualifies, for instance `SL_1(O_D)` for a cubic division algebra `D`
+   over `Q`, because commensurable lattices are both uniform or both not. Every `SL_3(Z)`-orbit in
+   `SL_3(R)/Λ` is infinite. A finite orbit of `gΛ` would make `SL_3(Z) ∩ gΛg^(−1)` of finite index in
+   `SL_3(Z)`, hence a lattice, hence of finite index in `gΛg^(−1)`. So `SL_3(Z)` would be commensurable
+   with `gΛg^(−1)`. Conjugates must be excluded, not only commensurable lattices: for
+   `Λ = gSL_3(Z)g^(−1)`, the map `xΛ ↦ xgSL_3(Z)` is an isomorphism with the action of Theorem H.
+   Theorem P is structurally blind there, since an extension has finite orbits only above finite orbits.
+   So `SL_3(Z) ↷ SL_3(R)/Λ` is the next explicit free mixing candidate. By the coupling `SL_3(R)` it has
+   the same status as `Λ ↷ SL_3(R)/SL_3(Z)`: a lattice outside the conjugate-commensurability class of
+   `SL_3(Z)`, acting on the space of unimodular lattices.
+
+   *Correction (2026-09-13).* The first landing (05d4563791) wrote "not commensurable with `SL_3(Z)`".
+   Conjugates of `SL_3(Z)` by non-commensurating elements are counterexamples to that wording.
 5. **Literature bound (weak).** The downloaded texts of Păunescu (arXiv:1002.0605v5), Alpeev
    (arXiv:1706.01864), Kun--Thom (arXiv:2608.06222v3) and Furman's survey (arXiv:0901.0678) contain no
    Hecke-point or homogeneous-space soficity statement (grep for `hecke`, `periodic`,

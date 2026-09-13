@@ -22,8 +22,8 @@ point `a_k^(−1)SL_n(Z)` lies in the image of the commensurator. So its orbit
 `finite-equidistributed-orbits-give-sofic-action` applies. For odd `n` the orbits `V_k` are themselves
 asymptotically free, so they alone are sofic models (part 2 artifact, Section 6).
 
-**Why it holds.** The commensurator `SL_n(Q)` of `SL_n(Z)` is dense in `SL_n(R)`, and the points with
-finite orbit are exactly its images in `X_n`. Mixing of `SL_n(Q_p)` on the S-arithmetic cover
+**Why it holds.** A point `g·SL_n(Z)` has finite orbit iff `g` commensurates `SL_n(Z)`, and the
+commensurator, which contains `SL_n(Q)`, is dense in `SL_n(R)`. Mixing of `SL_n(Q_p)` on the S-arithmetic cover
 `(SL_n(R) × SL_n(Q_p))/SL_n(Z[1/p])` makes those orbits equidistribute. The action is mixing, yet it is
 approximated by its own periodic orbits. The mechanism is arithmetic.
 
@@ -34,9 +34,10 @@ approximated by its own periodic orbits. The mechanism is arithmetic.
    `SL_3(Z) <= SL_3(R)`. Combined with `howe-moore-lattice-nonsofic-action-transfers-to-mixing`: for an
    ergodic seed `Z`, the free mixing action `SL_3(R) ×_(SL_3(Z)) (Z × {0,1}^(SL_3(Z)))` is sofic iff
    `Z` is. So a nonsofic mixing witness for `SL_3(Z)` must come from a nonsofic seed.
-3. For a lattice `Λ` of `SL_3(R)` not commensurable with `SL_3(Z)`, the Hecke mechanism is
-   structurally blind. Every `SL_3(Z)`-orbit on `SL_3(R)/Λ` is infinite, and an extension has finite
-   orbits only above finite orbits (part 2 artifact, Section 8).
+3. For a lattice `Λ` of `SL_3(R)` not commensurable with any conjugate of `SL_3(Z)`, for instance a
+   cocompact one, the Hecke mechanism is structurally blind. Every `SL_3(Z)`-orbit on `SL_3(R)/Λ` is
+   infinite, and an extension has finite orbits only above finite orbits (part 2 artifact, Section 8).
+   Next candidate: `sl3z-on-cocompact-lattice-quotient-is-not-sofic`.
 
 **Model test.** `n = 2` agrees with Păunescu's class: `SL_2(Z) = Z/4 *_(Z/2) Z/6` lies in it by
 Theorem 3.9 (`paunescu-sofic-action-class-permanence`).

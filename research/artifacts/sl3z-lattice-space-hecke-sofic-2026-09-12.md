@@ -18,8 +18,8 @@ converge to `μ` against `C_c(X_n)`. Hence `SL_n(Z) ↷ SL_n(R)/SL_n(Z)` is sofi
 
 For `n = 3` this refutes `sl3z-lattice-space-action-is-not-sofic`. With
 `induced-actions-sofic-iff-homogeneous-action-sofic`, induction through `SL_3(R)` then carries every
-sofic seed of `SL_3(Z)` to a sofic action. The mechanism is arithmetic: the commensurator `SL_n(Q)` of
-`Γ` is dense, and its elements are exactly the points of `X_n` with finite `Γ`-orbit.
+sofic seed of `SL_3(Z)` to a sofic action. The mechanism is arithmetic. A point `gΓ` has finite `Γ`-orbit iff `g`
+commensurates `Γ`, and the commensurator of `Γ` in `G`, which contains `SL_n(Q)`, is dense.
 
 **Proof map.** Theorem P follows from Lemma LC, the Portmanteau theorem, and a product with a sofic
 approximation of `Γ` (Section 2). Theorem H uses the one-prime S-arithmetic cover

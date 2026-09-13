@@ -55,9 +55,11 @@ claim must use higher rank.
   `Λ ↷ SL_3(Z)\SL_3(R)`, by the coupling `SL_3(R)` and `sofic-free-actions-are-soe-invariant`.
   Cocompact `Λ` from a division algebra of degree `3` give compact homogeneous spaces; whether they are
   easier is unexplored.
-* **Hecke orbits (the refutation).** The commensurator `SL_3(Q)` is dense, and its points are exactly
-  the points of `X_3` with finite orbit. The p-adic mixing of the previous bullet, pushed through the
-  cover `(SL_3(R) × SL_3(Q_p))/SL_3(Z[1/p])` and thickened in the real factor, equidistributes these
-  orbits in `X_3`. For `Λ` not commensurable with `SL_3(Z)`, no orbit on `SL_3(R)/Λ` is finite, so the
-  previous bullet is where Hecke orbits cannot reach (part 2 artifact of
+* **Hecke orbits (the refutation).** A point `g·SL_3(Z)` has finite orbit iff `g` commensurates
+  `SL_3(Z)`, and the commensurator, which contains `SL_3(Q)`, is dense. Mixing of `SL_3(Q_p)` on the
+  cover `(SL_3(R) × SL_3(Q_p))/SL_3(Z[1/p])`, thickened in the real factor, equidistributes the orbits
+  `SL_3(Z)·a^(−1)SL_3(Z)`, `a ∈ SL_3(Z[1/p])`, in `X_3`. So the p-adic place, which is profinite in the
+  "p-adic analogs" bullet, drives the real place. For `Λ` not commensurable with any conjugate of
+  `SL_3(Z)`, for instance cocompact `Λ`, no orbit on `SL_3(R)/Λ` is finite. So the "Other lattices"
+  bullet is exactly where Hecke orbits cannot reach (part 2 artifact of
   `sl3z-lattice-space-action-is-sofic`, Section 8).
