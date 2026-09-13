@@ -132,6 +132,35 @@ CLAIM lake pocket region from inner following `GroupApproximation/GGT/VanKampen/
     supplies.
   - So `emptyTwoGonInput_holds`, `InnerDiscRegion.ofPocketRegion` and `P.listVal_inner_eq_one` fire in the lake.
 - Model test: the labelled lake rose (`OsinPocketLakeLabelledModel.roseDiagram`, walk `[0,2]`).
+- w1-binder-4 agreed (17:59) and takes a different leaf.
+
+### LANDED 2d0b61555 (probe 0913-181235-23552 GREEN, BUILT and COMPILED both modules; unwired, queued for wiring)
+
+Module `GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionInnerFollows`:
+- `Surgery.MapCollapse.BoundaryCycle.followsBoundary_of_faces_eq`, `reclosedMap_euler_of_faces_eq`: transport along a
+  face-set equality with equal cycles.
+- `IsNoncrossingClosedWalk.WalkClass`, `exists_walkClass`: every dart is in the face class of a dart of the walk or of the
+  reversed walk. The union is closed under α and σ, and the map is connected.
+- `IsNoncrossingClosedWalk.sideFaces_reverseMapAlpha : sideFaces M (w.reverse.map α) = sideOutside M w` and
+  `sideOutside_reverseMapAlpha`. One inclusion is `FirstTurnWalk.not_mem_sideFaces`.
+- `IsNoncrossingClosedWalk.reclosed_euler_outer_of_innerFollows`: χ of the reclosed other side equals χ(M) when the inner
+  cycle follows. This is `reclosed_euler` on `hw.reverseMapAlpha`.
+- `IsNoncrossingClosedWalk.outerDiscRegion_of_innerFollows`, whose cycle is `w.reverse.map α` (rfl).
+- `PocketRegion.ofNoncrossingClosedWalkInner hw hout hin`, with `_faces`, `_inner_cycle`, `_outer_cycle` and
+  `_invDarts_outer`.
+- `Surgery.InnerDiscRegion.ofNoncrossingClosedWalkInner hw hout hin hcells`, with `_faces` and `_region_cycle` (= walk,
+  rfl). This is the disc region for w1-binder-4's `TwoGonMergeDiscInput`.
+
+Module `GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionInnerFollowsModel`:
+- `lakeInnerFollowsPocketModel : LakeInnerFollowsPocketModel` (`#audit_closed_axioms`). The builder fires on the
+  labelled lake rose `[0,2]`: complement cycle `[3,1]`, while that outer cycle does not follow its boundary.
+
+Axioms, from the build log: every audited declaration depends on [propext, Classical.choice, Quot.sound]. The log has
+0 warnings or errors in either file and 0 `sorryAx`.
+
+Residual for C6′ outside this leaf: the producer of `hw` and `hin`, or of outer following, for the two-gon pocket walk
+(L1 and L2 of w1-binder-4's report), and `hno`/`havoid` (debt-conditional's `TwoGonWalkHyp`). No census rows: the
+modules certify no printed sentence on their own.
 
 ## Progress
 
