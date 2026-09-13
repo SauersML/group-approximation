@@ -26,3 +26,5 @@ Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 7.2 of
 - **Re-derived:** the chain rule step, the subadditivity step and the minimization over `H(psi)/k`.
 - **Wording point:** the claim's Consequence uses `m`, bound to `|F ∩ E^-1|`, as if it were a free integer.
   As written, its hypothesis never holds.
+- **Follow-up:** `31fe1a4e7` restates the Consequence with a free integer `n >= 1` and handles `m = 0`.
+  I checked the diff: PASS.

@@ -36,3 +36,5 @@ Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 7.1 of
 - **Re-derived:** the component step, the coset step, and the transport by conjugation, which is
   pointwise under the pushed-forward coupling. Also the count over finite `H` and Corollaries 1.2–1.3.
 - **Wording point:** every witness has `|E| >= 3`, but nothing shows that a window of size 3 witnesses.
+- **Follow-up:** `31fe1a4e7` restates the corollary as "every witness has `|E| >= 3`". When `|E| = 3`, the difference
+  subgroup is two-generated and not maximal. I checked the diff: PASS.

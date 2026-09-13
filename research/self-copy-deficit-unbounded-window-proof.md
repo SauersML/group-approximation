@@ -32,3 +32,5 @@ Independently re-derived 2026-09-12 by w4-vf-positive-b: PASS (Section 7.3 of
   corollary as stated on main.
 - **Note:** here `m` in step 4 is a free integer, which is how the read-bound claim's Consequence
   should also be stated.
+- **Follow-up:** `31fe1a4e7` rebinds item 3 of the claim to a free integer `n >= 1` and has its proof cite Corollary 2.2.
+  I checked the diff: PASS.

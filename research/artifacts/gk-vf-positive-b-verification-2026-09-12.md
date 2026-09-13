@@ -760,3 +760,17 @@ form in 4.4 follows from Seward's item 1 and the dichotomy: on self-copy hosts I
 uniform `c > 0` upgrades to `log 2`.
 
 PASS. Nothing in Section 7 is decision-level, and nothing is refuted.
+
+**Follow-up (`31fe1a4e7`).** w5-inf-c applied both wording points in five files. I checked the full diff.
+- **Read-degree consequence.** The claim `bernoulli-witness-information-is-bounded-by-code-reads`, artifact Corollary 2.2,
+  Theorem 3.1(3), whose proof now cites Corollary 2.2, self-copy item 3, and the Attempts bullet on
+  `bernoulli-rokhlin-maximal-on-fg-simple-kazhdan-groups` all use a free integer `n >= 1` now. Re-derived: `m = 0` gives
+  `I(x(1); y_F) = 0`, so `Phi >= log q`, and `Phi < log q/n` forces `m >= 1`. Then `log q/m <= Phi < log q/n` gives `m > n`.
+  `F ∩ E^-1 ⊆ E^-1` gives `|E| >= m`, and `H(psi)/k <= Phi` gives `H(psi) < k log q/n`.
+- **Witness size.** The deficit-windows claim and artifact Section 1 now read "every witness has `|E| >= 3`, and when `|E| = 3`
+  its difference subgroup is two-generated and not Rokhlin-maximal". Correct: `e_2 e_3^-1 = (e_1 e_2^-1)^-1 (e_1 e_3^-1)`.
+- **Title.** The new title and `distinct_from` say that the witness moves into `<E E^-1>` after dropping codewords and
+  conjugating. The proof sketch puts the original reads in `e_0^-1 H E`. Correct: the connected codewords lie in `e_0^-1 H`.
+
+The Attempts entry `c671f5ac1` on `bernoulli-rokhlin-entropy-maximal-for-every-group` uses `m` for the bound read degree, which
+is correct as written. Both OPEN nodes stay OPEN. Follow-up PASS.
