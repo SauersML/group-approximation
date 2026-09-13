@@ -26,6 +26,12 @@ ESTABLISHED (unreviewed).  Let `D`, `Gamma_D = SL_1(O_D)` and
    as open.  A uniform spectral gap for these graphs is already known
    (Salehi Golsefidy--Varju, expansion in perfect groups, GAFA 22 (2012);
    import, not re-read here).  The sharp constant is the new content.
+4. **Equivalence.**  Conversely, suppose that for every finitely generated
+   nonamenable `H <= Gamma_D`, `l^2_0(H/H(p)) -> lambda_H` strongly.  Then
+   `pi_p -> lambda_(Gamma_D)` strongly.  So congruence strong convergence for
+   `Gamma_D` is exactly congruence strong convergence for all of its finitely
+   generated subgroups, thin ones included.  Property (T) of `Gamma_D` plays
+   no role in the question, only in the payoff.
 
 **Contrapositive (the negative attack).**  If some finitely generated
 nonamenable `H <= Gamma_D` and some `z in C[H]` satisfy
