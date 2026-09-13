@@ -54,7 +54,11 @@ More consumable names:
   `unitPow T k j` (`u^j`), `unitPow_mul`, `unitPow_mul_coeff`, `comap_zpow_neg_charFn`, `towerA`, `towerB`,
   `returnTowerUnits k hC hr : ReturnTowerUnits R_X (2r-1) r` with rfl lemmas `returnTowerUnits_p/_a/_b`.
 
-## Residual Prop: `ReturnRingCrossedProductStatement` (tex 1723–1726), split with ms-core-1
+| `ReturnRingCrossedProductStatement` (tex 1723–1726) | `returnRingCrossedProductStatement_holds` (ms-core-1; surjectivity from this lane's `surjective_of_generators`) | `Dynamics/ReturnRingCrossedProduct` | 69cfc53ff |
+
+All four tower Props of cor:dynamic-rank-budget are closed.
+
+## `ReturnRingCrossedProductStatement` (tex 1723–1726), split with ms-core-1 — CLOSED 69cfc53ff
 
 - Mine, LANDED: `Dynamics/ReturnCells` cc54707b9 and `Dynamics/ReturnRingUnit` 71084d8c5 (both probe GREEN).  Contents: `Dynamics/ReturnCells` (`image_returnCell`: `T^h C_h = returnCell T⁻¹ C h`; `returnCell_eq_empty_of_le`;
   `disjoint_returnCell`; `sum_indicator_returnCell`; `clopenExtendByZero` with `_mul/_add/_zero/_one/_injective/_eq_of/
