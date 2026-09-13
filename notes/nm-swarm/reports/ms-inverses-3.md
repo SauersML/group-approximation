@@ -67,3 +67,25 @@ and the second case of the corollary proof; its cut drops the display `t₂(1-s�
   ranks through the block copy. On top of that, the printed endpoints `PrintedFullComplementaryIdempotentsRankTwo`,
   `PrintedSimpleInfiniteRingRankTwo` and `PrintedLeavittAlgebraFullDefectRankTwo` are re-proved with no rank-four input
   at R.
+
+## Landed (72c47f30a, probe 0913-172821-62100 GREEN, verdict and BUILT lines checked)
+
+- `GroupApproximation/Manuscript/NonMFSentences/FullDefectUniversalRoute.lean` carries the printed route:
+  - `manuscriptSentence_homFromBTrivialByCriterion`: the compression criterion at `G = EL₄(𝒞)`, `L` = core, `K = G`.
+  - `manuscriptSentence_rhoKillsImageOfB`, `manuscriptSentence_rhoTrivialByUniversalGroup`: rank two through
+    `EL₄(𝒞) → EL₄(R) → EL₂(R)` and lem:rank-two.
+  - `manuscriptSentence_homFromELnTrivialByUniversalGroup`, `manuscriptSentence_imageOfBInCopyNormallyGenerates`: all
+    ranks through the copy of `EL₂(R)`.
+  - Printed endpoints over that chain, with no rank-four input at `R`:
+    `printedFullComplementaryIdempotentsRankTwo_byUniversalGroup`, `printedUniversalGroupClauses_byUniversalGroup`,
+    `printedFullDefectRingTheorem_byUniversalGroup`, `printedSimpleInfiniteRingRankTwo_byUniversalGroup`,
+    `printedLeavittAlgebraFullDefectRankTwo_byUniversalGroup`, `printedSimpleInfiniteRingCorollary_byUniversalGroup`.
+- `GroupApproximation/Manuscript/NonMFSentences/FullDefectIdealGloss.lean` carries
+  `manuscriptSentence_fullIdempotentGloss`: `1-st` is idempotent, and `TwoSidedIdeal.span {1-st} = ⊤` iff the printed
+  finite sandwich sum exists.
+- Census rows: `metadata/nm-census-rows/ms-inverses-3.tsv` (12 rows; the ROUTE GAP rows re-graded onto the new carriers).
+- Wire queue: both modules appended to `$NM/wire-queue.txt`.
+
+## Status of the range
+
+Every sentence of tex 930–1049 now has a closed carrier along the printed route, or is structural.
