@@ -191,3 +191,5 @@ carries two patch symbols, no single-coordinate breaker survives on `supp d`.
   - Vary the background, a Hall-type assignment near `supp d`.
 - **Status.** Open. It is a candidate design seed: an injective realization over a group where
   `1 - a + b` is a unit would refute Gottschalk.
+  - **Later (w5-two-patch).** Theorem 2 of `two-patch-seed-relation-moves-2026-09-12.md` settles it
+    negatively: `mu_2` is not injective over any group (claim `ternary-two-patch-seed-rule-is-never-injective`).
