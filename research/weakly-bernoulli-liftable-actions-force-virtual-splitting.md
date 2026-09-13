@@ -41,3 +41,17 @@ maps `c : T × X -> W` with `π(c(t, x)) = t` and the cocycle identity outside s
   - The degree-two analogue that works for finite actions is Gohla–Thom's cosystolic inequality
     (`gohla-thom-stable-base-nonsofic-extension`). It is a higher-dimensional expansion hypothesis, not property (T),
     and it concerns finite actions rather than Bernoulli shifts.
+- **Normed reformulation, a (T) base where it holds, and the Sp_4(Z) instance (ex2-rokhlin-almost-cocycle,
+  2026-09-13).** All for central finite kernels over type-F bases; the noncentral case is untouched.
+  - **Reformulation.** `bernoulli-maximizes-extension-class-norm`: a liftable weakly Bernoulli action exists iff the
+    Gohla--Thom norm of the extension class on `[0,1]^Q` is 0, and Bernoulli has the largest norm among free actions.
+    So this claim says the class is nonzero in reduced cohomology of the Bernoulli shift. Popa gives only unreduced.
+  - **Holds over p-adic lattices.** `gohla-thom-lattices-no-weakly-bernoulli-liftable-action`: the claim holds over
+    torsionfree lattices in `PSp_2d(Q_p)`, `d >= 4`, large `p`, with their Prasad--Deligne extensions. This is a
+    corollary of Gohla--Thom 2.16 and 3.4.
+  - **Sp_4(Z).** `deligne-triple-cover-no-weakly-bernoulli-liftable-action` is open. It follows from
+    `deligne-class-congruence-cosystole-bounded-below`, and also from nonsoficity of `E_3` by
+    `weakly-bernoulli-liftable-action-makes-extension-sofic`.
+  - **Where it dies in general.** Popa plus compactness excludes exact trivializations of every bounded block
+    complexity, but not sequences of growing complexity. A uniform dimension-2 expansion input is needed, and property
+    (T) supplies only dimension 1.
