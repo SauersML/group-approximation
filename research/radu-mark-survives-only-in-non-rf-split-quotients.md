@@ -34,4 +34,9 @@ whose kernel image `B` is abelian keeps the mark. This answers, in the negative 
 `research/artifacts/radu-lattice-b2-anchored-gadget-2026-09-12.md` §4: such a quotient must be
 non-residually-finite and non-abelian on the kernel.
 
+*Superseded for amenable quotients (2026-09-13).* `radu-mark-survives-only-if-horizontal-group-embeds`
+shows, without the normal subgroup theorem, that no amenable quotient keeps the mark: the kernel of a
+mark-keeping quotient meets no conjugate of `<a,b,c>`. Items 1–3 remain true, but no amenable quotient
+satisfies their hypothesis.
+
 Proof in `radu-mark-split-quotient-proof`.

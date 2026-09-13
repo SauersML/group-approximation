@@ -24,3 +24,12 @@ Expected sources, to be read before this becomes ESTABLISHED:
 
 Checks still needed: irreducibility in the sense the theorem requires, and triviality of finite
 normal subgroups of `Q` (as a subgroup of a center-free group).
+
+*Status note (2026-09-13).* The amenable-quotient question that motivated this import is settled without
+it by `radu-mark-survives-only-if-horizontal-group-embeds`. A source for a product-of-trees normal
+subgroup theorem was read in part: Burger–Mozes, *Lattices in product of trees*, Publ. Math. IHÉS 92
+(2000), numdam PDF, introduction p. 152: "In Chapter 4 we prove one of the main results of this paper,
+namely the normal subgroup theorem. This concerns lattices Γ whose projections satisfy stronger
+transitivity conditions, in particular they are locally ∞-transitive, and asserts that any nontrivial
+normal subgroup of Γ is of finite index." The theorem number and hypotheses in Chapter 4 were not read,
+and local ∞-transitivity of the two projection closures of `Q` was not checked.
