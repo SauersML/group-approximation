@@ -35,6 +35,15 @@ such that the order of the image of `z` in finite quotients of `Δ~` is unbounde
   - For congruence subgroups, degree-two real cohomology is expected from cuspidal automorphic
     forms that are Steinberg at `∞`, i.e. the top degree of the 2-dimensional building, following
     Harder's cohomology of S-arithmetic groups over function fields. Not checked.
+- **Real classes exist at explicit levels (2026-09-13).** See
+  `sl3-polynomial-congruence-subgroups-have-large-b2`, which is conditional on Soulé's
+  strict fundamental domain.
+  - `b_2(Γ(t^2)) = 927` for `q = 2` and `132920` for `q = 3`. Levels of degree 2 and 3 have
+    thousands of real degree-two classes, and level `t` has none.
+  - Integral classes with nonzero real image exist, so central `Z`-extensions of `Γ(f)` with
+    finite abelianization exist.
+  - The first requirement of this claim therefore holds at those levels. What is left is survival
+    of the centre in finite quotients.
 - **Survival can only happen at `p`-power orders (heuristic; assumes the congruence subgroup
   property, not verified).**
   - If `z` has order `n` in a finite quotient, the class mod `n` is inflated from a finite
