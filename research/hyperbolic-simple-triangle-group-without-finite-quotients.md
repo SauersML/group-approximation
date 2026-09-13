@@ -91,12 +91,27 @@ nontrivial finite quotient, nor some member having none.
   `random-complex-group-no-quotients-above-exp-pn`. Low-rank Lie type is the worst
   case: in `PSL(2,q)` the normalizers of cyclic edge groups have order about `q`, and
   three of them already balance `|S|`. So vertex groups should not embed in `PSL(2,q)`.
-- **Complete permutation and small Lie-type searches (2026-09-13).** An exhaustive
-  enumeration over embedding classes and double cosets finds no nontrivial homomorphism
-  from any of the four candidates into `S_n` for `n <= 30`. It also finds none into
-  `Sp_6(2)`, `L_5(2)`, `O_8^+(2)`, `O_8^-(2)` or `L_4(4)`. The search is calibrated
-  against brute-force counts and known transitive degree-15 actions, and a literal `A_8`
-  triple is found in each Lie-type target. So no candidate acts nontrivially on at most
-  30 points. This is evidence, not a decision: degrees up to 14 are forced by support,
-  and the free-orbit count predicts zeros at this scale either way. See
-  `research/artifacts/hyperbolic-triangle-quotient-search-2026-09-13.md`.
+- **Calibrated searches on the four candidates (2026-09-13, lane
+  ex-hyperbolic-triangle-search).** The candidates are recorded in the open node
+  `a7a7a8-triangle-candidate-without-finite-quotients`.
+  - **Permutation and small Lie type.** No nontrivial homomorphism into `S_n` for `n <= 30`
+    (35 for candidate 1), nor into `Sp_6(2)`, `Sp_8(2)`, `L_5(2)`, `L_6(2)`, `O_8^±(2)`,
+    `L_4(4)` or `U_6(2)`.
+  - **Linear representations** (computer-assisted, unreviewed; complete within their scope).
+    No representation of dimension 4 in characteristic 2
+    (`a7a7a8-triangle-candidates-no-4dim-char2-representation`). An eigenvalue sign
+    invariant alone kills two candidates. None of dimension at most 7 in characteristic 0 or
+    3, 5, 11, 13, 29, 43 (`a7a7a8-triangle-candidates-no-small-linear-representation`).
+    None into `PGL_7` in characteristics 29 and 43.
+  - **Family-wide calibration.** A twist-free configuration search covers all hyperbolic
+    `(A_7,A_7,A_8)` `Z/7`-triangles with link girths `(6,6,8)` at once. No member acts on at
+    most 19 points, and none maps into `L_5(2)`, `O_8^±(2)` or `Sp_8(2)`. 150 random members
+    show no small linear representation. So in these ranges the candidates' zeros carry no
+    information specific to them.
+  - **The counting heuristic, applied to every target family,** predicts that typical members
+    have no finite quotient. The dominant small targets are empty for the whole family. By
+    `convergent-quotient-count-decides-gromov-question`, making even the convergence part of
+    this rigorous would already decide the problem.
+  - **Artifacts:** `research/artifacts/hyperbolic-triangle-quotient-search-2026-09-13.md`,
+    `hyperbolic-triangle-linear-search-2026-09-13.md` and
+    `hyperbolic-triangle-family-calibration-2026-09-13.md`.
