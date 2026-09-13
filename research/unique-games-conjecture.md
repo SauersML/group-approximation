@@ -10,6 +10,8 @@ artifacts:
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md
   - research/artifacts/unique-games-noisy-direction-counterexample-2026-09-07.md
   - research/artifacts/unique-games-affine-test-soundness-2026-09-07.md
+  - research/artifacts/ugc-state-of-the-art-2026-09-12.md
+  - research/artifacts/ugc-galois-games-2026-09-12.md
 ---
 
 **OPEN.** Khot's Unique Games Conjecture: for every `0 < eps < 1/2` there is an

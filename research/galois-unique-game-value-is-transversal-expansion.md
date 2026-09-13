@@ -27,6 +27,15 @@ instance is `Gal(F_2^N, Hadamard code, epsilon-noise)`.
    `max sum_g mu(g) phi(g)` over real positive-definite `phi` with
    `phi(e) = 1` and `phi = 0` on `K \ {e}`.
 
+**Folded long-code noise tests are Galois games.** Take `G = Z_q^R`,
+`K = <(1,...,1)>`, and `mu` the law of `y - x` for `rho`-correlated `x, y`. A
+folded function `f` (`f(x + c 1) = f(x) + c`) is the same thing as the left
+transversal `T_f = { f = 0 }`. The test `f(x) = f(y)` accepts with probability
+exactly `1 - Phi_mu(T_f)`, since folding makes conditioning on `f(x) = 0`
+harmless. So part 2 explains why no folded noise test has perfect completeness:
+`supp mu` generates `G`, which fixes points of `G/K`. Dictators `f = x_i` are
+the subgroup complements `{ x_i = 0 }`.
+
 So a symmetric gap construction of quotient type has two ingredients. The
 SDP side needs a vector with orthonormal `K`-translates that is almost invariant
 under `mu`. The integral side needs every transversal of `K` to expand. That is

@@ -2,8 +2,8 @@
 
 Date: 2026-09-12. Lane `ex-ugc`. Continues
 `research/artifacts/ugc-galois-games-2026-09-12.md` (notation `Gal(G,K,mu)`,
-`Phi_mu`, (3.1)). Status: complete proofs of Theorems 7--8 and Corollary 9.
-Section 4 is an open question with tests. **No bearing on the truth of UGC is
+`Phi_mu`, (3.1)). Status: complete proofs of Theorems 7, 8 and 10 and
+Corollary 9. Section 4 is an open question with tests. **No bearing on the truth of UGC is
 claimed.**
 
 ## 1. Theorem 8: free-subgroup rounding and the duality
