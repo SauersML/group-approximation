@@ -148,8 +148,10 @@ with `A_rho`, with `V^* P V <= P`. Then `V^* P V = P`. The same holds if
    hold with `H_b = H (-) H_wm`.
 
 *Proof.*
-1. `sigma(N)` acts on the Loeb measure algebra, and `A = D^N` is `L^inf` of its
-   invariant sigma-algebra. By Lemma 2, `A_rho` has multiplicity at most `dim rho`
+1. `sigma(N)` acts on the Loeb measure algebra. `D_U` is the tracial ultraproduct of
+   the diagonals, which is `L^inf(X_U, mu_U)` because every Loeb set agrees almost
+   everywhere with an internal set. So `A = D^N` is `L^inf` of the invariant
+   sigma-algebra. By Lemma 2, `A_rho` has multiplicity at most `dim rho`
    on all of `W_rho`. So `E = W_rho` is admissible in the definition of `H_b`,
    since it is invariant under `A_rho` and `W_rho(G)`. Hence `H_inf = 0`.
 2. Block invariance puts `A` in the commutant of `sigma(u)`. So `1 (x) A_rho`
