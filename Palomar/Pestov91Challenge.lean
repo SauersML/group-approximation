@@ -73,6 +73,30 @@ witness is `EL₃(LC(X, 𝔽₂) ⋊ ℤ)` for the binary Toeplitz subshift `X`;
 theorems are existence statements and register nothing about other fields or
 other subshifts.
 
+## Scope, mismatches and limitations
+
+* Ozawa's sentence does not say "infinite"; finite groups are simple, Kazhdan,
+  sofic and hyperlinear for trivial reasons, so both theorems ask `Infinite G`,
+  as Pestov's wording does.
+* The block's separation thresholds, `1 - ε` for permutations and `2 - ε` for
+  unitaries, are stronger than the fixed `1/4` of Pestov's Theorems 3.5 and
+  3.6, so the block's notions imply his (all three conditions of each
+  criterion, including the identity clause, are derived in
+  `Palomar/Pestov91ModelTests.lean`).  The converse for hyperlinearity, which
+  is Pestov's Remark 3.7 by tensor-power amplification, is not formalized; it
+  is not needed, since a group satisfying the block's notion is hyperlinear.
+* `IsKazhdanPair` quantifies over Hilbert spaces in `Type` and asks for no
+  separability; `HasPropertyT` asks for a finite Kazhdan set, the compact case
+  for a discrete group.
+* The permitted axioms are `propext`, `Classical.choice` and `Quot.sound`;
+  the solution uses no others.
+* Neither Mathlib nor any earlier formalisation known to the authors defines
+  soficity, hyperlinearity or Kazhdan's property `(T)`, so the block defines
+  them from the textbook sources named above.
+* The repository is released under Apache-2.0; the production process, AI
+  involvement and the absence of human expert review are recorded in
+  `README.md` and `formalization.yaml`.
+
 The prose of this module was written by Claude (Anthropic).
 -/
 

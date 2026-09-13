@@ -146,9 +146,8 @@ sources:
       - name: Claude (Anthropic)
         role: >-
           solved the problem, with no custom proof tool; reviewed it in two
-          separate agent sessions; and wrote all the prose: the narrative
-          fields of this file for this result and the docstrings of the
-          Palomar Pestov91 modules
+          separate agent sessions; wrote all the prose: this file's narrative
+          fields for it and the Palomar Pestov91 docstrings
     note: >-
       The positive answer to Ozawa's question, the question checked by
       Palomar/comparator-pestov91.json, is first presented in this project.
@@ -1545,6 +1544,21 @@ alignment:
         surjunctive group is sofic.
       lean: BowenChapman.not_all_surjunctive_groups_sofic
       module: Palomar.BowenChapmanChallenge
+      status: proved
+
+    - source: >-
+        Ozawa's question (arXiv:math/0306067, 2003), printed by Pestov as Open
+        question 9.1 (arXiv:0804.3968v8, p. 21): can an infinite simple group
+        with Kazhdan's property (T) be hyperlinear? Yes.
+      lean: Pestov91.exists_infinite_simple_propertyT_hyperlinear
+      module: Palomar.Pestov91Challenge
+      status: proved
+
+    - source: >-
+        The sofic form of Pestov's Open question 9.1: can an infinite simple
+        group with Kazhdan's property (T) be sofic? Yes.
+      lean: Pestov91.exists_infinite_simple_propertyT_sofic
+      module: Palomar.Pestov91Challenge
       status: proved
 
     - source: >-
