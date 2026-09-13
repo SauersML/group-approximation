@@ -65,6 +65,54 @@ repo graph was searched. Web search was unavailable this session, so no search a
   groups have order 2 the core is a Coxeter group. It is linear, so the triangle embeds
   in a finite group whatever the curvature.
 
+- **Tool audit (lane ex-hyperbolic-triangle-theory, 2026-09-13).**
+  - *Counting over random identifications.* `convergent-quotient-count-decides-gromov-question`:
+    for any finite family of gluings, merely proving that the expected number of finite
+    simple quotients is finite already yields a quotientless hyperbolic Kazhdan group.
+    Under "every hyperbolic group is residually finite" that count is infinite for every
+    member. So the heuristic `|S|^(-χ_orb)` cannot be turned into a proof by soft
+    means.
+  - *Bounded degree is computable.* `linear-quotient-exclusion-lifts-from-char-zero`:
+    for each `d`, one characteristic-0 Nullstellensatz certificate with its integer `N`,
+    plus Groebner bases over `F_p` for the primes dividing `N`, decides every quotient
+    with a projective module of dimension `<= d`, in every characteristic. What remains
+    is the unbounded part: large alternating groups and classical groups of unbounded
+    dimension.
+  - *Property (T) does not obstruct quotients.* Caprace–Conder–Kaluba–Witzel Theorems
+    1.3–1.4 (read at source): the KMS groups `G_{HB_2^(2)}(p)` are infinite hyperbolic,
+    have (T) for `p >= 7`, and have finite simple quotients of arbitrarily large rank.
+    Also, amalgamating into simple vertex groups destroys (T)
+    (`simple-vertex-triangles-are-universal-for-triangle-vtf`).
+  - *Normal subgroup theorems cannot apply.* A non-elementary hyperbolic group has
+    infinite normal subgroups of infinite index. For example, a deep Dehn filling
+    `G/<<g^m>>` of a loxodromic element is again infinite hyperbolic
+    (`hyperbolic-group-relative-to-maximal-elementary-subgroup` followed by
+    `relatively-hyperbolic-dehn-filling`). Margulis- or Bader–Shalom-type theorems need irreducible lattices in
+    products, which contain `Z^2` and are not hyperbolic.
+  - *Deep fillings are not automatically special.* Lubotzky–Manning–Wilton,
+    arXiv:1702.08200v2, Corollary 1.7 (read at source): all sufficiently long
+    peripherally finite fillings need not be virtually special, and their counterexamples
+    are Kazhdan `k`-fold triangle groups. For simple vertex groups Wise's MSQT covers
+    almost nothing. It certifies fillings `N <= Ṗ` for a finite-index `Ṗ < E`, and
+    `N <= Ṗ` forces `N <= core_E(Ṗ)`. If `E/N` is simple then `core_E(Ṗ) = N` unless
+    `Ṗ = E`, so for a given `Ṗ != E` at most one filling with simple quotient is
+    covered.
+  - *Representation varieties.* All quotients Caprace–Conder–Kaluba–Witzel found for
+    their harder groups came from representations with infinite image (`U(3,1)`,
+    `U(6)`, `PGL_3(Z[ω])`) followed by congruence images. Their Question 5.17, a
+    Groebner-basis form over quotients of `PSL_2(Z)`, is formally equivalent to Gromov's
+    question (their Remark 5.18). By Malcev, a simple-vertex triangle is quotientless iff
+    every finite-dimensional representation over every field is trivial.
+- **Next targets.**
+  1. Run the bounded-degree exclusion on the explicit `(A_7, A_7, A_8)` candidates in
+     degrees 4–8, and on the cores of the unresolved Caprace–Conder–Kaluba–Witzel
+     trivalent groups, keeping integer certificates.
+  2. Build a Kazhdan member with simple vertex groups and connected links. A natural
+     source would be arithmetic `C_k * C_k` lattices in `PGL_2` over a local field, with
+     `k = N(𝔭) + 1` and cyclic vertex stabilizers from CM tori of definite quaternion
+     algebras. Their congruence quotients `PSL_2(F_q)` would have Ramanujan coset graphs
+     of unbounded girth, giving (T) through Ershov–Jaikin-Zapirain once `k >= 17`. This is
+     not constructed, and existence of such lattices is unchecked.
 - **Where it dies.** Showing that no vertex-injective finite quotient exists means
   excluding every finite overgroup of the three vertex groups with the prescribed
   intersections. That is the large-quotient barrier recorded in
