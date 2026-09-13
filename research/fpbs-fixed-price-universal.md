@@ -6,6 +6,7 @@ title: All free probability-preserving actions of each countably infinite group 
 root: true
 goal: true
 artifacts:
+  - research/artifacts/fpbs/docs/binary-descent-entropy-tail.md
   - research/artifacts/fpbs/navigation.md
   - research/artifacts/fpbs/docs/sparse-base-surgery.md
   - research/artifacts/fpbs/docs/isoperimetric-test-descent.md
@@ -20,6 +21,17 @@ artifacts:
 **UNIVERSAL GOAL; OPEN.** For every countably infinite group `Gamma`, any two
 essentially free probability-measure-preserving actions of `Gamma` on standard
 probability spaces have the same cost.
+
+**Entropy and traffic refinement (September 12, 2026).** The established
+`fpbs-binary-entropy-traffic-tail-bound` bounds the conditional descent
+defect by a truncated traffic multiple of the total one-site flag entropy
+plus the repeated-traffic tail. Vanishing entropy and uniformly integrable
+traffic along near-optimal plans would therefore give descent. Neither is
+supplied universally. An explicit sequence of optimal plans on one fixed
+odometer extension has budget one, entropy tending to zero, and defect
+exactly one; it proves the need for additional traffic control in that
+inference. Both actions in the example have cost one, so the example does
+not refute cost preservation.
 
 **Scope audit, September 10, 2026.** The current proof search targets this
 universal statement. The earlier September 9 priority assessment is historical.
