@@ -137,3 +137,5 @@ the augmentation rank.
     - It does not touch the summand node without `v-detecting-rank-functions-extend-to-ternary-leavitt-units`.
   - **Next lead.** `T = <x_0, x_1, C>` with `C` a product of two disjoint clopen 3-cycles. Look for a matrix over
     `F_3[T]` whose rank is forced both through `(1 - [C])^3 = 0` and through the wandering bound on `x_0`.
+
+*Verification by `w3-vf-linear` (2026-09-12), §34 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: partial on w7-v-gate-c3 f5b2406fa, Sections 1–3 re-derived except the cited [CFP] and [VX] inputs. Claims 1.1–1.2, the Section 1.3 computation, Claim 2.1 and Claims 3.1–3.3 PASS. Fix: `C` covers `X`, so it is a product of two disjoint clopen 3-cycles, not a clopen 3-cycle, and `T` contains no clopen 3-cycle. The gate stays OPEN.*

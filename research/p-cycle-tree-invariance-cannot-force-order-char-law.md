@@ -12,8 +12,8 @@ artifacts:
   - research/artifacts/p-cycle-tree-rank-models-and-ternary-gate-2026-09-12.md
 ---
 
-**OPEN.** The proof is Section 2 of the artifact. `w3-vf-linear` §33.3 PASSed claims 1–6, subject to the scope
-correction applied in this version.
+**ESTABLISHED** (route `p-cycle-tree-invariance-cannot-force-order-char-law-proof`; verified by `w3-vf-linear`, §33.3
+and §34.6). The proof is Section 2 of the artifact. The §33.3 scope correction is applied in this version.
 
 **Setting.**
 - Let `char F = p > 0`, and let `E` be an elementary abelian `p`-group with basis `(tau_i)`. For instance `E_infinity`
@@ -72,3 +72,5 @@ rho_m([g]) = exp_m(lambda(g) u) in L[u]/(u^m),      rk_m(M) = rank_L rho_m(M) / 
     average of `rk_m` over cyclic shifts, which by coherence is `rk_m` again.
 
 *Verification by `w3-vf-linear` (2026-09-12), §33.3 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on w7-v-cycle-c3 2e8bf4f44 for claims 1–6: the exp_m homomorphism, the Lemma 2.1 substitution, the profiles, the Frobenius vertices, the Schwartz–Zippel bound `k(k+1)/p^k`, non-extension (`w_1 = 1`), and both Mackey restrictions of the wreath induction all re-derive. Before ESTABLISHED, the scope must be corrected. The models exist only on elementary abelian p-groups, and the only extension to `W = E_p ⋊ <s>` that was examined breaks V-conjugacy. So the title and "Why it matters" must say elementary abelian p-subgroups, not p-groups. Not decision-level.*
+
+*Verification by `w3-vf-linear` (2026-09-12), §34.6 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: PASS on the w7-v-cycle-c3 scope fix a886f33f26. Every §33.3 location is scoped, and claims 1–6 are unchanged. Route `p-cycle-tree-invariance-cannot-force-order-char-law-proof` (`requires: []`) lands this claim ESTABLISHED.*
