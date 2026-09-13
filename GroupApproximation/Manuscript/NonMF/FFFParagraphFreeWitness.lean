@@ -57,17 +57,20 @@ same order; the only difference is that the first writes the sixth as
 `TheoremC.KillsAllMFTargets Q` and the second spells that definition out.
 `printedTorsionFreeTheorem_of_simplified` and its converse are the two
 directions, and they are what lets the assembled F₂ endpoint
-`TheoremC.manuscriptTorsionFreeSimplified_openAdmissions` be read as the printed
-theorem.
+`TheoremC.manuscriptTorsionFreeSimplified_of_leastAreaInputs` be read as the
+printed theorem.
 
 ## Residual
 
 Nothing here is closed on its own — every declaration carries its inputs in its
 type.  What the module establishes is that the input list of `thm:torsion-free`
 **loses one entry**: `FinitelyPresentedInfiniteSimpleStatement` is not needed.
-What remains, after supplying `TheoremC.literatureInputs` and Hull's bundle, is
-the five admissions of `Manuscript/NonMF/TheoremCAssembly.lean` — Hull's four
-§5/§6 leaves and the density model — and nothing else.
+What remains, after supplying
+`TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves` and
+`TorsionFree.hullInputs_of_leastAreaLeaves`, is their three hypotheses — Osin's
+Lemma 4.4 at least-area diagrams (`hgreendlinger`), his Lemma 5.1 in the
+embedded form (`hbridge`) and Kotowski–Kotowski with Ollivier–Wise (`hKO`) —
+and nothing else.
 
 ## A note on `printedTorsionFreeFullMFRadical_of_configuration`
 
@@ -301,9 +304,11 @@ theorem paragraphFreeWitness_of_literatureInputs (I : LiteratureInputs) :
 /-- **`thm:torsion-free` from the earlier construction's citations alone.**
 
 Neither hypothesis mentions a simple group.  Supplying
-`TheoremC.literatureInputs` for `I` reduces this to the five admissions of
-`Manuscript/NonMF/TheoremCAssembly.lean`; `hHull` is Hull's Theorem 7.1 with
-Osin's Lemma 7.1, which those admissions also carry in corrected form. -/
+`TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves` for
+`I` reduces `I` to its three hypotheses `hgreendlinger`, `hbridge` and `hKO`;
+`hHull` is Hull's Theorem 7.1 with Osin's Lemma 7.1, which
+`TorsionFree.hullInputs_of_leastAreaLeaves` produces in corrected form from
+`hgreendlinger` and `hbridge`. -/
 theorem printedTorsionFreeTheorem_of_literatureInputs (I : LiteratureInputs)
     (hHull : TorsionFreePrinted.HullPrintedInputs.{0}) :
     TorsionFreePrinted.PrintedTorsionFreeTheorem :=
@@ -312,10 +317,12 @@ theorem printedTorsionFreeTheorem_of_literatureInputs (I : LiteratureInputs)
 
 /-- **`thm:torsion-free` over the two bundles the corpus actually produces.**
 
-This is the form in which the printed theorem rests on the five admissions of
-`Manuscript/NonMF/TheoremCAssembly.lean` **and on nothing else**.  Both
-hypotheses have producers there: `TheoremC.literatureInputs` and
-`TorsionFree.hullInputs`, the latter assembled from Hull's four §5/§6 leaves.
+This is the form in which the printed theorem rests on the three least-area
+hypotheses `hgreendlinger`, `hbridge` and `hKO` **and on nothing else**.  Both
+hypotheses have producers over them:
+`TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves` and
+`TorsionFree.hullInputs_of_leastAreaLeaves`, the latter from `hgreendlinger` and
+`hbridge` alone.
 `TorsionFreePrinted.HullPrintedInputs`, which the printed section cites, has no
 producer anywhere in the corpus, so the version above is strictly the more
 conditional one. -/
