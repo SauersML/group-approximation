@@ -27,11 +27,13 @@ host's own at a fixed alphabet size.
   - Averaging over `H` gives an idempotent linear automaton `P` onto `Y`.
   - A self-map `tau` of `Y` extends to the automaton `Phi(z) = tau(Pz) + (z - Pz)`.
   - `Phi` is injective iff `tau` is, surjective iff `tau` is, and `Phi(X) ∩ Y = tau(Y)`.
-- **Reduced to `p`-subgroups over prime-power alphabets** (artifact Section 3; unverified). If `[H : S]` is a
-  unit mod `m`, averaging over `H/S` extends a self-map of `A^(G/H)` to one of `A^(G/S)` with the same
-  properties. So the claim at `S` gives the claim at `H`. For `m = p^k` only nontrivial finite `p`-subgroups
-  remain.
-- **Open when a prime divides both `m` and `|H|`.** The averaging step has no replacement there (Attempts).
+- **Reduced to `p`-subgroups over prime-power alphabets** (artifact Section 3; verified by w4-vf-positive-b,
+  Section 10.3). If `[H : S]` is a unit mod `m`, averaging over `H/S` extends a self-map of `A^(G/H)` to one
+  of `A^(G/S)` with the same properties. So the claim at `S` gives the claim at `H`. For `m = p^k` only
+  nontrivial finite `p`-subgroups remain.
+- **Open when a prime divides both `m` and `|H|`.** There no retraction onto `Y` commutes with constants, so
+  the averaging proof does not run. Other automaton retractions onto `Y` exist, such as the min retraction,
+  but no extension of `tau` through one is known (Attempts).
 
 **Why a positive lane cares.**
 - Coset shifts with finite stabilizers are exactly the codomains that survive:
@@ -66,8 +68,8 @@ host's own at a fixed alphabet size.
   to the new base `tau(rho(z))`. Artifact Section 2.
 - **Alphabet changes.** Products of alphabets keep the shared prime. Enlarging `A` to `B` with `|B|` coprime
   to `|H|` needs an injective extension of `tau` to `B^(G/H)`, a marker problem. Not attempted.
-- **Linear shadow** (artifact Section 4; unverified). By duality, linear surjunctivity of `K^(G/H)` means that
-  surjective `K[G]`-endomorphisms of `K[G/H]^n` are injective.
+- **Linear shadow** (artifact Section 4; verified by w4-vf-positive-b, Section 10.4). By duality, linear
+  surjunctivity of `K^(G/H)` means that surjective `K[G]`-endomorphisms of `K[G/H]^n` are injective.
   - If `char K` does not divide `|H|`, then `K[G/H] ≅ K[G]e` is projective, surjections split, and stable
     finiteness of `K[G]` finishes.
   - If `char K = p` divides `|H|`, the module is not projective. Its endomorphism ring is the mod-`p` Hecke

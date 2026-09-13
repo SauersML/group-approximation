@@ -76,5 +76,6 @@ artifacts:
   - An automaton over `E/N` is an equivariant self-map of the coset shift `A^(E/N)`. Averaging over `N`
     extends it to an automaton on `A^E` that is injective iff it is, and surjective iff it is.
   - No separation is assumed, so this holds inside the finite residual.
-  - At a size sharing a prime with `|N|` the averaging has no equivariant replacement
+  - At a size sharing a prime with `|N|` no retraction onto the invariant configurations commutes with
+    constants, so this averaging proof does not run
     (`finite-stabilizer-coset-shifts-inherit-surjunctivity`, Attempts).

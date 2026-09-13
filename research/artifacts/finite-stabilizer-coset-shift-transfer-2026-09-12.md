@@ -267,4 +267,4 @@ surjunctivity at size `m` passes from `G` to `G/H`.
   `H = <a>` and `p = 2`. The product `(1 + a) . b(1 + a) . ... . b(1 + a)` of `k + 1` elements of
   `K[G] I_H` contains the reduced word `(ab)^k a` with coefficient `1`, so it is nonzero.
 - So `zx` need not be a unit, and stable finiteness does not apply. (This `G` is amenable, so Question 9
-  holds there. The example only shows that this proof does not run.) Not pursued further.
+  holds there for finite `K`. The example only shows that this proof does not run.) Not pursued further.
