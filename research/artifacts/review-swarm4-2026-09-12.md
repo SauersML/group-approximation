@@ -1500,3 +1500,73 @@ No other occurrence of a genus bound was found.
   - It is known (Li–Renault), and the masa-with-expectation strengthening is correctly credited as elementary.
 - **`uct-cartan-trivial-k-kirchberg-without-cartan-exists`: correctly OPEN.** It is exactly the UCT problem in
   Kirchberg's test class.
+
+## 39. Percolation thresholds, virtual sections of Aut(F_n) -> Out(F_n), and Toms–Winter division (17:27–17:41)
+
+### 39.1 Percolation (1455b5b89, df535c054, 6c78684d0): six PASS, one correctly OPEN
+
+- **`fpbs-expanding-factor-product-strict-thresholds`: PASS.** The chain checks:
+  - `p_c(X) <= p_c(G) <= 1/(1+h)` (Benjamini–Schramm);
+  - `||A_X|| <= ||A_G|| + d_K`;
+  - walk counting gives `p_(2->2) >= 1/||A_X||`;
+  - uniqueness bounds the two-point function below, which makes `T_p` unbounded above `p_u`.
+- **`fpbs-mohar-adjacency-norm-cheeger-bound` and `fpbs-regular-tiling-edge-isoperimetric-constant`: PASS as citations.**
+  They are Lyons–Peres Theorem 6.7 and Häggström–Jonasson–Lyons Theorem 4.1, and the normalization `Φ_E = h/d` checks.
+- **`fpbs-surface-group-times-zk-product-sets-strict-thresholds`: PASS.**
+  - `h² = 16g² - 16g` gives `||A_G|| <= 4√g`.
+  - At `g = 3, k = 1`, `1 + √96 - 4√3 ≈ 3.87 > 2`.
+  - For `k <= g-2` the criterion reduces to `(√g - 1)² > 0`.
+  - At `g = 2` it fails.
+  - New perturbative instances of strict thresholds on product generating sets of `Γ_g × Z^k`. No novelty is claimed,
+    correctly.
+- **`fpbs-generating-set-threshold-comparison`: PASS.**
+  - Uniforms are indexed by uses, so `ξ` is Bernoulli(`φ(p)`) on `G′`.
+  - Padding makes `ω` Bernoulli(`p`), because `∏(1 - c_j) >= (1-c)^M = 1-p`.
+  - `ξ`-clusters nest in `ω`-clusters.
+  - Hutchcroft–Pan transfers uniqueness.
+  - The reading, that a gap transfers only with margin `(p_u/M)^L`, is correctly scoped.
+- **`fpbs-generating-sets-connected-by-product-moves`: PASS.** Removal in decreasing word length always has both
+  factors present, and neither factor is the removed element or its inverse (lengths differ).
+  `fpbs-gap-survives-product-generator-moves` is correctly OPEN, and equivalent to Choi–Seo Question 1.2.
+- **`fpbs-twisted-level-percolation-disconnected-at-low-density`: PASS, conditional on Osin Lemma 2.27 and relative
+  hyperbolicity along `E(t)`.**
+  - `E(t) = <t>` meets `N` trivially, and `m ↦ φ^-m(x)` is injective. So each edge has at most `2|S|` witnesses, a
+    self-avoiding path needs `>= l/2` independent pairs, and a path is open with probability `<= (2|S|)^l δ^(l/2)`.
+  - The `H`-components lie in the distinct cosets `s w_i^-1 H`, so they are isolated. Osin's bound then gives
+    `l^1`-control of the exponents by `K(l+1)`.
+  - The two-point sum is `< 1` for small `δ`, and ergodicity makes disconnection almost sure.
+  - This correctly refutes `fpbs-twisted-level-percolation-connected` and invalidates the twisted-level route to fixed
+    price. `fpbs-hyperbolic-3-manifold-groups-fixed-price-one` stays OPEN.
+- **`osin-isolated-components-bounded-by-relative-area`: PASS as a citation.**
+
+### 39.2 Virtual sections of `Aut(F_n) -> Out(F_n)` (67f49fd18): two PASS
+
+- **`aut-out-free-abelianized-extension-splits-rationally`: PASS.**
+  - The Fox Jacobian determinant is a crossed homomorphism.
+  - For `ι_g`, `det(tI + uv^T) = t^(n-1)(t + v^T u) = t^(n-1)`, since `v^T u = 1 - t` by the fundamental formula. So
+    `h(ι_g) = (n-1)[g]` and `(n-1)c = 0`.
+  - Rows 0 and 1 of the Lyndon–Hochschild–Serre spectral sequence agree for `F_n` and `F_n^ab`, and `d_2` is cup
+    product with `c`, which vanishes rationally.
+  - The reading is correct: no rational cohomological argument with coefficients pulled back from `Out(F_n)` excludes
+    a virtual section.
+- **`free-splitting-fa-lifts-choose-a-side`: PASS.**
+  - `π^-1(J_B)` acts on the Bass–Serre tree of `<p> * B` without inversions.
+  - FA gives a fixed vertex. A fixed `<p>`-vertex plus finite abelianization gives (S), and otherwise the fixed tree is
+    one `B`-vertex, which is (N).
+  - The hypothesis holds for `n >= 5` through property (T) of `Aut(F_(n-1))`.
+  - `out-free-groups-virtually-embed-in-aut-free-groups` stays OPEN.
+
+### 39.3 Toms–Winter: tracial support projections and division (ce56c9923): two PASS, three correctly OPEN
+
+- **`ultrapower-comparison-with-rank-density-divides-projections`: PASS.**
+  - RD_b gives `e′` with `σ(e′) = σ(p)/n`.
+  - PC places `n - 1` orthogonal copies of `e′` under `p`.
+  - The remainder has the profile of `e′`. It differs from a copy by a projection that vanishes on every limit trace,
+    and such a projection is zero in the uniform tracial ultrapower. Matrix units follow.
+- **`uniform-gamma-iff-tracial-support-projections-and-division`: PASS, conditional on CETW Theorem 4.6 and Vaccaro
+  arXiv:2604.24682v2 Proposition 1.6.**
+  - Lemma A identifies TSP with `γ_A(a) = 0` through diagonal sequences.
+  - (b) lifts divided support projections to tracial almost divisibility.
+  - The imports were read by the lane and not re-extracted here.
+- **`comparison-forces-tracial-support-projections`, `tracial-comparison-gives-gamma-on-lfnd-rank-density-locus` and
+  `gamma-failure-invisible-to-projection-comparison`: correctly OPEN.** Their equivalence wiring checks.
