@@ -110,7 +110,7 @@ theorem core_step {x : ℤ → Bool} (hx : x ∈ coreSubshift stepSubshift) (i :
   have h0 : y 0 = x i := by simpa using congrFun hyw 0
   have h1 : y 1 = x (i + 1) := by simpa using congrFun hyw 1
   rw [← h1]
-  exact hy' 0 1 (by norm_num) (h0.trans hi)
+  exact hy' 0 1 zero_le_one (h0.trans hi)
 
 theorem core_mono {x : ℤ → Bool} (hx : x ∈ coreSubshift stepSubshift) {i : ℤ} (hi : x i = true) :
     ∀ n : ℕ, x (i + n) = true := by
