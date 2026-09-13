@@ -2,7 +2,7 @@
 rg: 2
 id: monster-bc-failure-at-measured-coefficient-is-the-module-crux
 kind: claim
-title: The module route reduces to whether an expander monster fails Baum--Connes at a measured module-dual coefficient, and the only surviving detector is the maximal-versus-reduced comparison
+title: The module route reduces to whether an expander monster fails Baum--Connes at a measured module-dual coefficient; for a triple defect the proper-orbit and tracial detectors are excluded and the maximal-versus-reduced comparison survives
 distinct_from:
   some-nonexact-group-has-a-k-inexact-module-triple: that is the open existence of the K-defect; this isolates the single enabling question behind it and identifies the one detector not yet excluded.
   module-defect-needs-non-k-exact-host: that is the established necessary condition on the host (fails Baum--Connes with coefficients); this is the open sufficient-direction crux, once such a host is fixed.
@@ -40,7 +40,10 @@ satisfy Baum--Connes would kill the route.
   supported on `Z` factors through `q`, so it annihilates `ker q_*` and sees no defect; the
   faithful Haar trace charges the ideal `C_0(U) ⋊_r G` too, so it never certifies a class to lie
   outside the ideal image. Either way an invariant-measure trace cannot separate `ker q_*` from
-  `im i_*`.
+  `im i_*`. This exclusion is about the triple. For (Q) itself the Haar trace still detects
+  surjectivity failures of `mu_(G, C(V^))` through Lück's ring `Λ^(V ⋊ G)`. At the Bernoulli
+  coefficient over a torsion-free host that ring is `Z[1/p]`
+  (`bernoulli-bc-splits-into-host-and-cylinder-comparison`, item 7).
 - *Maximal-versus-reduced comparison.* Not excluded, and the natural home of the defect. The
   maximal crossed product is exact, so
   `0 -> C_0(U) ⋊_max G -> C(X) ⋊_max G -> C(Z) ⋊_max G -> 0` yields a genuine six-term exact
@@ -94,3 +97,15 @@ satisfy Baum--Connes would kill the route.
   - The mechanisms recorded so far all need an equivariant splitting, a finite quotient or a
     co-amenable section (`split-quotients-give-exact-reduced-crossed-products`), and the
     Bernoulli survivors above have none of them.
+- **At the Bernoulli coefficient, (Q) is the host plus one comparison map (2026-09-13).**
+  `bernoulli-bc-splits-into-host-and-cylinder-comparison` (established):
+  - Take `V = F_p[Z]` for a `G`-set `Z` with finite point stabilizers, `X = (Z/p)^Z`,
+    `I_1 = C_0(X \ {0})`. Then `mu_(G, C(X)) = mu_G ⊕ mu_(G, I_1)`, through the fixed point `0`.
+  - `K^top_*(G; I_1)` is computed for **every** `G`: the Chakraborty--Echterhoff--Kranz--Nishikawa
+    weak K-equivalence plus going-down.
+  - `mu_(G, I_1)` is surjective (resp. injective) iff one reduced comparison map `T_r` is.
+  - For torsion-free `G` this says the cylinder projections form a free basis of `K_0(I_1 ⋊_r G)`
+    and `K_1(I_1 ⋊_r G) = 0`.
+  - `T_r` is an isomorphism modulo every finite support level. So a Bernoulli witness beyond the
+    host lives in configurations of unbounded support, where a monster's expander markings sit.
+  - Where it stops: nothing computes `T_r` over an expander monster.
