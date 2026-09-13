@@ -186,23 +186,62 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
      - It needs no duplicate-free hypothesis, because overlapping positions share a dart.
      - It applies to `cellDarts Δ i`, giving the cell part t₁.
      - It also applies to `outerDarts Δ`, giving t₂ of the section pocket.
-5. **Next** (~07:45).
-   - Planar separation (A) is now on main: `simpleClosedWalkSides : SimpleClosedWalkSidesStatement`
-     (GGT/VanKampen/SimpleClosedWalkSides, 79008d7e5 and 4dce22f1e, `#audit_closed_axioms`).
-     - Both sides of a simple closed walk `w` in a planar map are disc regions.
-     - Their cycles are `w` and `w.reverse.map alpha`, and both follow the boundary.
-     - A walk with a repeated vertex (a pinch) is not covered.
-   - dgo-analytic's `OsinPocketPieces` (9cb70824c) names kh-ejz for `SectionPocketFaceSetInput` and
-     `OsinSectionPocketFaceSetSectionStatement`.
-     - The statement: two exterior regions of cell `i` to section `j` enclose a `PocketFaceSet`.
-     - A `PocketFaceSet` is a face set with a BoundaryCycle split `s₁ ++ invDarts t₁ ++ s₂ ++ t₂`, where `t₂` is an arc
-       of `∂X`, and with a kept cell inside.
-     - It does not consume `MultipleEdgePocketRegionInput`.
-     - At ~07:45 I asked main which comes first. The default is the section pocket.
-   - The route for the section pocket:
-     - build the walk from the two region sides and the two gap arcs;
-     - take `PocketFaceSet.boundary` from the inner side of `simpleClosedWalkSides` when the walk is simple;
-     - get the kept cell through hull-select's zero-cell merge. OsinPocketZeroCellMerge is not on main at 07:45.
+5. **Item `SectionPocketFaceSetInput`** (lead, ~08:30; fff-quotient joins as helper).
+   - The Prop (OsinPocketPieces.lean:161, dgo-analytic): two distinct exterior regions `a ≠ b` of cell `i` to section
+     `j`, in a `GloballyDistinguishedSectionFamily`, give `Nonempty (PocketFaceSet D eps S.diagram lo hi)`.
+   - Planar separation on main: `simpleClosedWalkSides` (GGT/VanKampen/SimpleClosedWalkSides, 79008d7e5 and
+     4dce22f1e). Both sides of a simple closed walk in a planar map are disc regions. A pinched walk is not covered.
+   - **Landed:** new module `GGT/VanKampen/Estimating/OsinPocketSectionFaceSet`.
+     - v1 landed unverified at 22c13e69c; green probe 0913-091517-29709 on the same bytes.
+     - v2 (the pocket walk) lands with this report, after green probe 0913-094356-29530 on the same bytes. It is
+       unwired.
+     - v2 renames the v1 helper `PocketFaceSet.outerFace_not_mem_sideFaces` to
+       `outerFace_not_mem_sideFaces_of_mem_outerDarts`, because dgo-analytic's OsinPocketRegionOfSimple declares the
+       old name.
+     - All declarations below are under `#audit_axioms`:
+     ```lean
+     theorem CyclicArc.exists_spanArc (X Y : CyclicArc cycle) (hX : 0 < X.length)
+         (hXY : ∀ d ∈ X.darts, d ∉ Y.darts) :
+         ∃ Gap T : CyclicArc cycle, Gap.start = X.rest.start ∧ T.start = X.start ∧
+           T.darts = X.darts ++ Gap.darts ++ Y.darts
+     theorem CyclicArc.exists_transport (f : α → List Dart) (h : a₁ = a₂) (arc : CyclicArc (f a₁)) :
+         ∃ arc' : CyclicArc (f a₂), arc'.start.1 = arc.start.1 ∧ arc'.length = arc.length ∧
+           arc'.darts = arc.darts
+     noncomputable def PocketFaceSet.ofSimpleClosedWalk (source kept) (sourceArc) (targetArc)
+         (firstSide secondSide)
+         (hw : IsSimpleClosedWalk X.toCombMap
+           (firstSide ++ invDarts X sourceArc.darts ++ secondSide ++ targetArc.darts))
+         (hsource : 0 < sourceArc.length) (htarget : 0 < targetArc.length)
+         (hkept : (cell X kept).face ∈ sideFaces X.toCombMap (…)) (side bounds) (hlo) (hhi) :
+         PocketFaceSet D eps X lo hi                                  -- faces := sideFaces, boundary := hw.innerCycle
+     theorem PocketFaceSet.ofSimpleClosedWalk_simple : (ofSimpleClosedWalk …).Simple
+     structure PocketWalk (D) (eps) (X) (lo hi : ℕ)   -- source, sourceArc, targetArc, firstSide, secondSide, bounds
+     def PocketWalk.walk (K) := K.firstSide ++ invDarts X K.sourceArc.darts ++ K.secondSide ++ K.targetArc.darts
+     noncomputable def PocketWalk.toPocketFaceSet (K) (kept) (hw : IsSimpleClosedWalk X.toCombMap K.walk)
+         (hkept : (cell X kept).face ∈ sideFaces X.toCombMap K.walk) : PocketFaceSet D eps X lo hi
+     theorem PocketWalk.exists_of_exteriorAt (S : RealizedSectionFamily D lambda c eps Delta cuts)
+         (ha : a ∈ exteriorAt S.family i) (hb : b ∈ exteriorAt S.family i) (hab : a ≠ b)
+         (hja : TargetsSectionIndex cuts j a) (hjb : TargetsSectionIndex cuts j b) :
+         ∃ (K : PocketWalk D eps S.diagram (cuts.cut j.castSucc) (cuts.cut j.succ)) (x y),
+           (x = a ∧ y = b ∨ x = b ∧ y = a) ∧ K.source = i ∧ K.firstSide = y.2.leftSide ∧
+           K.secondSide = x.2.rightSide ∧
+           (∃ Gap, K.sourceArc.darts = x.2.sourceArc.darts ++ Gap.darts ++ y.2.sourceArc.darts) ∧
+           K.targetArc.start.1 = x.2.targetArc.start.1 ∧
+           K.targetArc.start.1 + K.targetArc.length = y.2.targetArc.start.1 + y.2.targetArc.length
+     ```
+   - Orientation: `x` is the region whose outer arc starts first. `t₁` runs forward on `∂Π_i` from `x`'s source arc to
+     `y`'s, and `t₂` runs on `∂X` from the start of `x`'s outer arc to the end of `y`'s.
+   - **Residual** for `SectionPocketFaceSetInput`, given `exists_of_exteriorAt`:
+     - (i) `IsSimpleClosedWalk S.diagram.toCombMap K.walk`. This is false in general: a pinched pocket repeats a vertex.
+       hull-respell's `PocketPinchStatement` and its reduction `PocketPinchPinchedStatement` (OsinPocketPinchUnpinched)
+       both take a `PocketFaceSet` as input, so the pinched case still needs a face set first.
+       Wanted: a sides theorem for closed walks with distinct darts that touch but never cross (sub-piece P2, open to
+       fff-quotient). Reduction: take the faces reachable from the left faces of the walk without crossing an edge of
+       the walk. The `BoundaryCycle` conditions then follow once no right face of the walk is reachable.
+     - (ii) the kept cell on the side of the walk. Without it, the pocket holds no relator cell, and hull-select's
+       zero-cell merge should contradict weight maximality. `OsinPocketZeroCellMerge` (`innerBoundary`,
+       `toInnerGRegion`, `mergedGeometry`) is on main. The contradiction module `OsinPocketZeroCellMergeFalse`, which
+       its docstring names, is not.
    - When hull-euler's C6 Prop arrives, check it against this output.
 
 ## W1 assignment (2026-09-13 ~03:00)
