@@ -293,23 +293,29 @@ Split (ROSTER l.1085), which supersedes msg 7ca57652:
 - hull-count94 writes the producer of `Q` (planned `OsinLemma94ClassJoins`) and assembles `OsinLemma94ClassCountInput`;
 - this lane writes the kind-level transition count `≤ K n`.
 
-`GGT/VanKampen/Estimating/OsinLemma94ClassTransitions.lean`: LANDED 2767e402d; probe 0913-160635-97844 GREEN (base
-778e23fbd), BUILT; queued for wiring after `OsinLemma94ShortSides`.
-- `OsinLemma94RealizedPolygons.KindJoins P k s`: sides `s` and `(s + 1) % k_i` both have kind `.cell j`, for one `j`;
-- `kindNonJoins`, `relatorPolygons` (the polygons with an (A1) side), `shortAdjacent`, and `longTransitions` (the kind
-  non-joins where neither side is short);
-- `card_shortAdjacent_le`: `≤ 2 #shortSides`. `card_kindNonJoins_le`: `≤ 2 #shortSides + #longTransitions`;
-- `sum_card_kindNonJoins_le_mul`: `∑_{relatorPolygons} #kindNonJoins ≤ 48 ε n + ∑_{relatorPolygons} #longTransitions`;
+`GGT/VanKampen/Estimating/OsinLemma94ClassTransitions.lean`: LANDED ec3c531fc (restated, supersedes 2767e402d);
+probe 0913-170102-49407 GREEN (base bdd1835ba), BUILT; queued for wiring after `OsinLemma94ShortSides`.
+
+Pearl finding (sent to main and hull-count94, ~16:50): a value-one loop of `∂Δ` at a vertex (a hair `x x⁻¹` or one
+G-face) makes a polygon read two sides `boundary j`, `boundary j` in a row. The boundary word is fixed and least area
+counts only R-cells, so no hypothesis removes it. With `λ < 1` there are many, so cell-only joins leave the count
+unbounded. Osin counts one (A2) arc there. So boundary sides now join too (Rule 22; the old names had no Lean users).
+- `OsinLemma94RealizedPolygons.KindJoins P k s`: sides `s` and `(s + 1) % k_i` have kind `.cell j` for one `j`, or
+  kind `.boundary j` for one `j`;
+- `kindNonJoins`, `runEnds` (the (A1)/(A2) sides that do not join), `cuttingSides`, `relatorPolygons` (the polygons
+  with an (A1) side), `longTransitions` (the run ends whose next side is not short);
+- `card_kindNonJoins_le`: `≤ #short + #cutting + #runEnds`. `card_runEnds_le`: `≤ #short + #longTransitions`;
+- `sum_card_runEnds_le_mul`: `∑_{relatorPolygons} #runEnds ≤ 24 ε n + ∑_{relatorPolygons} #longTransitions`;
 - `card_filter_not_le_kindNonJoins_add`: for any join predicate `J`, `#¬J ≤ #kindNonJoins + #(KindJoins ∧ ¬J)`;
-- `OsinLemma94KindTransitionInput`: `∑_{relatorPolygons} #kindNonJoins ≤ K n`, under the binders of `ClassCountInput`;
+- `OsinLemma94KindTransitionInput`: `∑_{relatorPolygons} #runEnds ≤ K n`, under the binders of `ClassCountInput`;
 - `OsinLemma94LongTransitionInput`: the same bound for `#longTransitions`, the residual;
-- `osinLemma94KindTransitionInput_of_longTransitions`: the first Prop from the second, with `48 ε + K`.
+- `osinLemma94KindTransitionInput_of_longTransitions`: the first Prop from the second, with `24 ε + K`.
 
 For hull-count94:
 - `exists_cyclicRuns` gives `classCount ≤ max 1 #¬J`.
 - With `card_filter_not_le_kindNonJoins_add`, the non-joins of the ClassJoins predicate are the kind non-joins plus the
-  same-cell junctions whose gap is not value one.
-- A polygon with an (A1) side never has exactly one kind non-join.
+  junctions whose gap is not value one or meets the face walk (bad junctions: fff-periodic, written by hull-component).
+- Cutting classes are counted apart (audit-intro's forest lemma, team-lead 15:55), so the count takes only run ends.
 
 Model tests of the residual:
 - Unpinched bubbles.
