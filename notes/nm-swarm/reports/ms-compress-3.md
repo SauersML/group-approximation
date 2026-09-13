@@ -63,6 +63,20 @@ Hygiene only: `CentralCoronaCornerPrintedRoute.lean`'s module docstring quotes a
 - CLAIM k-algebra structure on R_X, k-linearity of restriction, and the kernel glue:
   `GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean` (`TransientIdealLocallyMatricialStatement`,
   `coreRestrictionLocallyFiniteKernel_of_transientLocallyMatricial`). Proposed to ct-rank-two-limit directly (17:3x).
+- **LANDED 59f433288** (probe 0913-175855-72351 GREEN, BUILT line checked; queued for wiring):
+  `GroupApproximation/Dynamics/ClopenCrossedProductAlgebra.lean`.
+  - `ClopenCoeff.instAlgebra` (`c • f = const c * f`), `ClopenCoeff.smul_algebraMap`, `ClopenCoeff.instSMulCommClass`.
+    Mathlib's `SkewMonoidAlgebra` instance then gives `Algebra k R_X`, `IsScalarTower k R_X R_X` and `SMulCommClass k R_X R_X`,
+    checked by examples in the module.
+  - `ClopenCrossedProduct.algebraMap_eq_coeff`, `restrict_algebraMap`, `restrict_smul`, `restrictAlgHom`,
+    `restrictAlgHom_apply`, `smul_mem_transientIdeal`.
+  - `ChainCore.TransientIdealLocallyMatricialStatement`: the locally matricial clause of lem:transient-matrices (tex 1476) at
+    `Y = CR(T)`, finite field.
+  - `ChainCore.RankTwoLimit.coreRestrictionLocallyFiniteKernel_of_transientLocallyMatricial`: the residual
+    `CoreRestrictionLocallyFiniteKernelStatement` of the rank-two remark follows from it.
+  - Every audit is classical. The closed producer is chain-matricial's `isLocallyMatricialIn_transientIdeal` (module 5).
+    Nothing produces it yet, and nobody's .files holds a file for it.
+- No census rows: the remark's rows belong to ct-rank-two-limit, and "locally matricial" (`eda117e756e6`) to chain-matricial.
 
 ## Range status
 Every sentence of tex 583–657 is carried by a closed, root-reachable declaration or is honestly structural (hypothesis,
