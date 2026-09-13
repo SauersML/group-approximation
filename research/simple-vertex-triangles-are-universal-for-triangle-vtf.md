@@ -76,6 +76,15 @@ an amalgam along a segment `J` with corners of `P` on both sides.
 - A quotient search on a simple-vertex member with disconnected links runs on the
   smaller core `Λ°`, where it asks for injectivity on the `B_v`.
 - A candidate needs an edge group of order at least 3 (U6).
+- **Property (T) is not transferred.** When some `B_v` is a proper subgroup of `A_v`,
+  `Λ(T)` splits nontrivially over the finite group `B_v` (U2), so it has infinitely many
+  ends and fails (T), even when `Λ°` has (T). Examples are the Kazhdan triangles of
+  Caprace–Conder–Kaluba–Witzel, Theorem 1.2 (`H_31`, `H_109`, with vertex groups
+  `PSL_2(p)`, `C_5 × C_5` and a Sylow 5-subgroup), and those of Lubotzky–Manning–Wilton,
+  arXiv:1702.08200v2, Corollary 1.7. A quotientless member with (T) and simple vertex
+  groups must have connected links. The Kazhdan version of the target does not need
+  this, because (T) can be added afterwards by
+  `kazhdan-quotientless-hyperbolic-via-common-quotient`.
 
 **Model test.** With trivial edge groups (U4) fails: `A_5 * A_5 -> A_5`. With `A_v = B_v`
 the statement reduces to `simple-vertex-groups-vtf-iff-some-finite-quotient`. The
