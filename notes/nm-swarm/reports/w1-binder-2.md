@@ -96,3 +96,7 @@ the blocks. That instantiation stays with fff-periodic.
 
 - 17:0x: verdict and ownership map; claim landed (7564433ff).
 - 17:1x: factor cover landed (2336592ee).
+
+CLAIM osinLemma94SameCellScanInput_of_pocket GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellCount.lean (helpers OsinUnboundSameCellCycle, OsinUnboundSameCellBlocks)
+
+Lead item 17:5x: prove the scan residual over the named premise OsinLemma94SameCellPocketInput. Ownership re-checked 18:0x: no count module on origin, in the shared tree or in lanes/*.files.
