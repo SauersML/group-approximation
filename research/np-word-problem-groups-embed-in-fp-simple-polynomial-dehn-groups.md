@@ -77,6 +77,29 @@ unknown; see the Attempts below.
    no distorted cyclic subgroups.** Excluded for `BS(1,2)` by the solvable
    subgroup theorem. That import wasn't read at primary source in this lane.
 
+5. **Röver--Nekrashevych over Cornulier--Tessera's quadratic host: reduces the
+   BS(1,2) test case to two upper bounds** (lane `solve-bh-poly-dehn`,
+   2026-09-13).
+   - **Parameter hosts are not rational.** The polynomial parameter hosts with
+     `k >= 1` (`polynomial-parameter-affine-groups-are-self-similar`) have
+     infinitely many states: the elementary matrix with entry `t` gets states
+     with `t`-coefficient `p^j` at depth `j`. So Zaremsky's Corollary at TeX l.258
+     does not apply to them.
+   - **A host that works.** Cornulier--Tessera's
+     `Gamma_2 = Z[1/2]^2 x|_(2I,[[2,1],[1,1]]) Z^2` (arXiv:1003.0148, Theorem
+     `gaga`, quadratic Dehn function, contains `BS(1,2)`) is a rational, weakly
+     diagonal self-similar group on the 9-ary tree
+     (`cornulier-tessera-host-is-rational-weakly-diagonal-self-similar`).
+   - **The envelope.** `S = [V_10(Gamma_2), V_10(Gamma_2)]` is finitely
+     presented and simple, and contains `BS(1,2)`
+     (`bs12-lies-in-fp-simple-rn-envelope-of-quadratic-dehn-host`). Only
+     `δ_S ≽ n^2` is known.
+   - **What's left.** The test case `bs12-embeds-in-fp-simple-group-with-polynomial-dehn-function`
+     now needs `rover-nekrashevych-dehn-polynomial-in-host-and-vd` (Zaremsky's
+     stated suspicion, TeX l.128) and
+     `higman-thompson-vd-has-polynomial-dehn-function` at `d = 10`. Both are
+     open.
+
 **Remaining gap.** A family of finitely presented simple groups with polynomial
 Dehn function that contains distorted cyclic subgroups, and more generally the
 BORS S-machine hosts. None was found in the checked literature. A literature
