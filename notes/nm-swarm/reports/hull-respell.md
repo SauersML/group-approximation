@@ -40,8 +40,11 @@ dependency of this probe.
 
 | Prop | input | owner |
 |---|---|---|
-| `OsinPhiPrimeCountSectionStatement` | `PhiPrimeCountInput D λ c ε W` (`OsinAppendixEulerCount`) | dgo-analytic |
-| `OsinSectionPocketCutSectionStatement` | `SectionPocketCutInput D λ c ε W` (`OsinAppendixDescentCut`) | hull-euler |
+| `OsinPhiPrimeCountSectionStatement` | `PhiPrimeCountInput D λ c ε W` (`OsinAppendixEulerCount`) | hull-euler |
+| `OsinSectionPocketCutSectionStatement` | `SectionPocketCutInput D λ c ε W` (`OsinAppendixDescentCut`) | dgo-analytic |
+
+The owners follow the 09-13 swap: hull-euler owns PhiPrimeCountInput and dgo-analytic owns
+SectionPocketCutInput.
 
 Assemblies:
 - `osinEulerCountSection_of_phiPrimeCount hcount : OsinEulerCountSectionStatement`.
@@ -53,16 +56,55 @@ A part proved at fixed parameters under `OsinCCondition` gives its section Prop 
 `ρ₀ = 1`.
 
 ### Residual Props for the closed target
-- `OsinLemma94SectionStatement` (h94), owned by hull-unbound with hull-count94. It follows from
-  `OsinLemma94RunInput` through `osinLemma94Section_of_runInput`.
+- `OsinLemma94SectionStatement` (h94). hull-unbound replaced the RunInput route with
+  `osinLemma94Section_of_pieces hmetric hrun` (`OsinLemma94Pieces.lean`, b8441172e):
+  - `hmetric : OsinLemma94AntiparallelMetricStatement`. Main has the theorem
+    `osinLemma94AntiparallelMetric` (`OsinLemma94AntiparallelMetric.lean:61`, hull-count94).
+  - `hrun : OsinLemma94PlanarRunInput` is open (hull-unbound).
 - One of these two sets:
   - `OsinMultipleEdgeCutSectionStatement`, `OsinLoopCutSectionStatement`,
     `OsinEulerCountSectionStatement`, `OsinDescentSectionStatement`;
   - `OsinMultipleEdgeCutSectionStatement`, `OsinLoopCutSectionStatement`,
     `OsinPhiPrimeCountSectionStatement`, `OsinSectionPocketCutSectionStatement`.
 
-On origin/main no producer of any of the six fixed-parameter inputs exists yet. The flip to
-`relativeGreendlingerQuasiGeodesicLeastArea_closed` happens when h94 and one of the two sets land.
+On origin/main (5f9c16b7b) no producer of any of the six fixed-parameter inputs exists yet. The flip
+to `relativeGreendlingerQuasiGeodesicLeastArea_closed` happens when h94 and one of the two sets land.
+
+## W1 helper: pocket shelling (item of 09-13 ~02:00)
+The lead asked this lane for the shelling producer of the pocket cut core, that is
+`FaceSetEarStatement` (`VanKampen/FaceSetPeelProducer.lean:171`), which closes only from
+`FaceSetEarData` (`VanKampen/FaceSetEar.lean:57`).
+
+- **The ear statements are false.** `GGT/VanKampen/FaceSetEarSpurCounterexample` (9dda53a05, probe
+  0913-025312-66955 GREEN) proves `not_faceSetEarStatement : ¬ Embedded.FaceSetEarStatement.{0,0,0}`
+  and `not_faceSetEarDataStatement : ¬ Embedded.FaceSetEarDataStatement.{0,0,0}`, both with
+  `#audit_closed_axioms`.
+  - The map has four darts, face cycles `[0,1,2]` and `[3]`, and a spur `{0,1}` inside the G-face
+    `face 0`.
+  - The face set `{face 0}` has the boundary cycle `[2]` and no peelable ear.
+- Consumers with a binder on the false Prop: `FaceSetPeelProducer.lean:182,194`,
+  `Estimating/PieceConstruction.lean:30,56` and `Estimating/PieceCore.lean:228`.
+- The same map refutes `RegionShellingStatement` (`FaceShelling.lean:194`), because a `FaceShelling`
+  step never erases a spur.
+  - audit-sec5 holds that module (`VanKampen/RegionShellingSpurCounterexample.lean`, not yet on main),
+    and this lane does not duplicate it.
+  - Consumer with a binder: `Estimating/PieceConstruction.lean:83`.
+- Correct form: face-set pasting must allow alpha-pair erasure (`FaceSetWordHomotopy.eraseAlphaPair`).
+  `CellShellingWithGCells` carries it through `gMove`.
+- **Superseded.** The lead's ruling of 09-13 ~03:35 drops the rebased `RegionCutData`. The carrier is
+  an `IsDiscRegion` face set with `DiscDiagram.ofPlanar` on `replaceGRegion`.
+  - No consumer then needs a shelling of the pocket, so this lane builds no producer.
+  - It did not negotiate piece (a) with dgo-analytic, which is now on DescentInput and
+    `OsinPocketOuterPart`.
+- **Design on file**, in case a consumer of `RegionCutWithGCells.shelling` appears. Let
+  `region : IsDiscRegion Δ outside` with `Δ.outerFace ∈ outside`, and let `fs` list the relator faces
+  outside `outside`. The enclosed faces then admit
+  `CellShellingWithGCells Δ (univ.filter (· ∉ outside)) gs (fs.map (orientedFaceDarts Δ · false))
+  (invDarts Δ region.cycle)`. The proof:
+  - `reclosedMap Δ outside region` is planar.
+  - Induct by edge deletion as in `isRelatorProduct_of_planar`.
+  - A relator face attaches by `step` and a G-face by `gMove {f}` along
+    `FaceSetMoveSequence.shellStep`. A one-face tree closes by `gMove ∅` through alpha pairs.
 
 ## `HullSC.HullRelatorRespellingStatement` (roster: if a consumer remains after theoremc-retire)
 - One consumer chain remains on main, in root-wired `Manuscript/NonMF/TheoremCAssembly.lean`:
@@ -113,5 +155,7 @@ On origin/main no producer of any of the six fixed-parameter inputs exists yet. 
   seven Euler modules (0912-104426-41122).
 
 ## Next
+- The lead has been asked for the next item (09-13 ~04:00). Proposed: a piece of the weighted planar van
+  Kampen lemma (`PlanarVanKampenWeighted`, kh-torsion, not on main yet).
 - Flip to `relativeGreendlingerQuasiGeodesicLeastArea_closed` as h94 and the parts land. A watcher on
   landed.log follows the part owners.
