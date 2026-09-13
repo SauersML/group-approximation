@@ -5,7 +5,7 @@ kind: route
 title: F is torsion-free of infinite cohomological dimension, so it has no contractible Rips complex
 target: thompson-f-has-no-contractible-rips-complex
 requires:
-  - torsion-free-contractible-rips-complex-gives-type-f
+  - contractible-rips-complex-gives-finite-classifying-space
 ---
 
 `F` is the group of orientation-preserving piecewise-linear homeomorphisms of
@@ -32,5 +32,5 @@ groups*, Enseign. Math. 42 (1996)).
    when passing to a subgroup (Brown, *Cohomology of Groups*, Chapter VIII).
    Hence `cd F >= n` for all `n`.
 5. **Conclusion.** If `P_r(F,S)` were contractible for some finite generating
-   set `S` and some `r`, then `torsion-free-contractible-rips-complex-gives-type-f`
+   set `S` and some `r`, then `contractible-rips-complex-gives-finite-classifying-space`
    would give `cd F <= |B_S(r)| - 1 < ∞`, contradicting step 4.

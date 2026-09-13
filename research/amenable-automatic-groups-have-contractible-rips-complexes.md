@@ -16,7 +16,7 @@ contractible. (Existential reading of Zaremsky Problem 4.1; see
 Consequences:
 
 - every torsion-free amenable automatic group has a finite `K(G,1)`
-  (`torsion-free-contractible-rips-complex-gives-type-f`);
+  (`contractible-rips-complex-gives-finite-classifying-space`);
 - Thompson's group `F` is not both amenable and automatic
   (route `thompson-f-not-amenable-and-automatic-via-rips`).
 

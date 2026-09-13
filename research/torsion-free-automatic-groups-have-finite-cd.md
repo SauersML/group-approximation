@@ -18,7 +18,7 @@ this claim together give `thompson-f-is-not-automatic` (route
 
 - **Contractible Rips complexes.** For a torsion-free group, a contractible Rips
   complex gives finite cohomological dimension
-  (`torsion-free-contractible-rips-complex-gives-type-f`). So
+  (`contractible-rips-complex-gives-finite-classifying-space`). So
   `automatic-groups-have-contractible-rips-complexes` implies this claim (route
   `torsion-free-automatic-finite-cd-via-rips`). The obvious attempt at that
   prerequisite stops short. The synchronous fellow traveller property with

@@ -17,3 +17,8 @@ The reason is dimension: `F` is torsion-free and contains `Z^n` for every `n`,
 so it has infinite cohomological dimension and no finite `K(F,1)`. This is the
 input behind the parenthetical of Zaremsky Problem 4.1
 (`zaremsky-4-01-amenable-automatic-contractible-rips`).
+
+The general fact used, that a contractible Rips complex of a torsion-free group
+gives a finite `K(G,1)`, is `contractible-rips-complex-gives-finite-classifying-space`.
+The duplicate of that claim which this lane landed in 977c5cb6f6 was retired on
+2026-09-13 in favour of it.

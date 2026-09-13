@@ -51,7 +51,7 @@ Never write a `requires: []` route into this claim.
 ## Why the parenthetical holds
 
 A torsion-free group with a contractible Rips complex has a finite `K(G,1)`
-(`torsion-free-contractible-rips-complex-gives-type-f`). `F` is torsion-free of
+(`contractible-rips-complex-gives-finite-classifying-space`). `F` is torsion-free of
 infinite cohomological dimension, so no Rips complex of `F` is contractible
 (`thompson-f-has-no-contractible-rips-complex`). A yes answer therefore gives
 `thompson-f-is-not-both-amenable-and-automatic` (route
@@ -88,7 +88,7 @@ not reached. No answer to Problem 4.1 was found.
   does not produce one contractible complex, and the argument never uses
   amenability.
 - 2026-09-13: **what a yes answer must contain.** By
-  `torsion-free-contractible-rips-complex-gives-type-f`, it would show every
+  `contractible-rips-complex-gives-finite-classifying-space`, it would show every
   torsion-free amenable automatic group is of type F. For the consequence about
   `F` the weaker statement "torsion-free amenable automatic groups have finite
   cohomological dimension" already suffices.

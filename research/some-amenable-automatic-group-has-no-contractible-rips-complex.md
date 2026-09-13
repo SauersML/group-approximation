@@ -16,7 +16,7 @@ see `zaremsky-4-01-amenable-automatic-contractible-rips`.)
 
 - 2026-09-13 (lane z4-01-amen-auto-rips): **infinite-dimensional candidates.**
   A torsion-free amenable automatic group of infinite cohomological dimension
-  would be an example, by `torsion-free-contractible-rips-complex-gives-type-f`.
+  would be an example, by `contractible-rips-complex-gives-finite-classifying-space`.
   `F` would be one if it were both amenable and automatic
   (`thompson-f-has-no-contractible-rips-complex`). No such group is known to
   this lane.

@@ -33,6 +33,6 @@ a contractible Rips complex?") without the amenability hypothesis. It implies
   and `Z^n` with standard generators (`rips-complexes-of-integer-lattices-are-contractible`,
   Virk). Both are automatic.
 - **Consequence to keep in view.** With `thompson-f-has-no-contractible-rips-complex`
-  and `torsion-free-contractible-rips-complex-gives-type-f`, this claim implies
+  and `contractible-rips-complex-gives-finite-classifying-space`, this claim implies
   that `F` is not automatic. It is at least as hard as the negative answer to
   Zaremsky Problem 2.2.
