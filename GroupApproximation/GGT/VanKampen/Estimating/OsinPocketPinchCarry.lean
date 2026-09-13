@@ -46,6 +46,7 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
 /-- A face set holding both pinch faces. -/
 abbrev Inside (s : Finset Delta.toCombMap.Face) : Prop := I.leftFace ∈ s ∧ I.rightFace ∈ s
 
+open scoped Classical in
 /-- **A face lies in the image of a face set holding both pinch faces exactly when it lay in the
 face set.** -/
 theorem kept_mem_faceSet_iff_of_inside {s : Finset Delta.toCombMap.Face} (hs : I.Inside s)

@@ -1,3 +1,39 @@
+# go-lemma42 (lane report, 2026-09-13, pinch-step (ii))
+
+Item (team-lead, ~15:00): sub-piece (ii) of hull-respell's pinch-step route. Carry the pocket face set K across one
+split that merges corners inside K, with K' in walk order and fewer repeated visits. The route is
+`PocketPinchStepStatement` (OsinPocketPinchStep, 8a7d46d90). I asked hull-respell for its interface and had no reply,
+so the interface mirrors kh-cckw's E4 (`OsinPocketPinchSplitWalk`, ceeb03ecd).
+
+## Module `Estimating/OsinPocketPinchCarry` (unwired)
+- 9acc804f2: landed unverified. Probe 0913-153115-61308 FAILED with one error: `Finset.mem_image` on `I.faceSet s`
+  needs `open scoped Classical in`, as in SurgeryPinchSplitRegions.
+- Re-probe of the fixed bytes: see LANDED below.
+- namespace `PinchSplit.Input`:
+  - `Inside s`: `leftFace ∈ s ∧ rightFace ∈ s`;
+  - `kept_mem_faceSet_iff_of_inside`, `faceOf_mem_faceSet_iff_of_inside`, `isBoundaryDart_iff_of_inside`: with both
+    merged faces in `s`, a face lies in the image face set exactly when it lay in `s`, so the boundary darts are unchanged;
+  - `transportBoundaryCycleInside` with `_cycle` (rfl);
+  - `vertexOf_eq_of_stretchAvoids_or`: a stretch in either direction stays on one new vertex.
+- namespace `PocketFaceSet`:
+  - `pinchSplitInside K I hs : PocketFaceSet D eps I.diagram lo hi`, with rfl lemmas `_faces`, `_source`, `_kept`,
+    `_boundary_cycle`, `_firstSide`, `_secondSide` and the arc lemmas `_sourceArc_darts`, `_targetArc_darts`,
+    `_targetArc_start`;
+  - `pinchSplitInside_closedWalk K I hs hchain hcloses`. Each turn is `StretchAvoids (alpha d) e ∨ StretchAvoids e (alpha d)`.
+    The outer pairing at the split vertex turns against vertex rotation: the new vertex (y, x] reads e₁, gap, alpha d₂.
+  - `pinchSplitInside_repeatedVisits_lt K I hs he₁ he₂ hx hy` and `_of_stretch`;
+  - `exists_pinchStep_of_inside hlabel K I hs hchain hcloses he₁ he₂ hx hy`: exactly the conclusion of
+    `PocketPinchStepStatement`, with `X' := I.diagram` and `K' := K.pinchSplitInside I hs`.
+
+## Applicability and residual
+- `PinchSplit.Input` requires `left_not_cell` and `right_not_cell`. Under `Inside` both merged faces lie in K, so they
+  must be G-faces of K (`inner_face`, second disjunct: boundary value 1). `left_ne_outer` and `right_ne_outer` follow
+  from `outerFace_not_mem`.
+- RESIDUAL, for the composition (hull-respell): from a pinched K in walk order, build an `Input` with `Inside` at an
+  outermost passage (`Cycles`, G-face corners), with `hchain`, `hcloses`, `e₁` and `e₂`. When a corner is a relator cell
+  this needs a doubled edge (face edge doubling) first, or a different K' (kh-cckw: neither on-main pinch model has a
+  G-face corner pinch).
+
 # go-lemma42 (lane report, 2026-09-13)
 
 Item (team-lead, after the 08:30 restart): Estimating/OsinPocketGlueDiagram, then the `htransport` of
