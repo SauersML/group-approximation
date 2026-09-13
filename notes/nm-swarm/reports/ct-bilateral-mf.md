@@ -44,3 +44,5 @@ exactly when GL_3(R_X) is MF".  Added to the manuscript by 73a84cd9c, after the 
 - Next: discharge the (T) clause of `BilateralThreeCellStatement` once ct-bilateral-cell lands S and the corner
   embedding; add the `transientIdeal` wrapper once chain-matricial lands `transientIdeal_eq_span_defects`.
 - 09-13 16:55: BilateralThreeCorollaries LANDED d2f3e22b5 (probe 0913-165128-18372 GREEN), wiring queued.
+- CLAIM BilateralThreeTransferStatement GroupApproximation/Manuscript/ChainCore/BilateralThreeTransfer.lean
+  (ct-rank-budget's piece, owner ct-bilateral-mf; producer over the cell, countability and nonzero-defect pieces).
