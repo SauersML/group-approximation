@@ -57,7 +57,7 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
   * **Wave 7 lanes on these inputs** (started about 20:45; verifier w4-vf-gate unless noted).
     * w7-el3j-sofic decides the shared input. `EL_3(J)` maps onto `EL_3(F_2[z, z^-1])` with a locally
       finite kernel and a residually finite quotient, so the lane first checks whether it contains `V`
-      or another group of unknown soficity. Landed 58760b6ad6 (verification pending w4-vf-gate): the
+      or another group of unknown soficity. Landed 58760b6ad6 (verifier PASS §31 at 216396d9ee): the
       containment check finds none, and the verdict is open. Section 3 of its artifact is announced in the
       summary but not yet on main. It makes the two one-sided halves LEF.
     * w7-sub-multiletter works on L1 SUB from the multi-letter inputs only: V's multiplication table on
@@ -292,8 +292,8 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
         cylinders cannot force `theta < 1`. The next configuration, with the constant root groups, is
         already all of `R^x`, so a relation-only proof would isolate no smaller certificate.
       * The soficity of `EL_3(J)` is still undecided. Lane w7-el3j-sofic (artifact
-        `jacobson-el3-soficity-firewalls-2026-09-12.md`; 58760b6ad6; established on paper, verification
-        pending w4-vf-gate) finds no reduction and records firewalls.
+        `jacobson-el3-soficity-firewalls-2026-09-12.md`; 58760b6ad6; established, verifier PASS §31 at
+        216396d9ee with no corrections) finds no reduction and records firewalls.
         * **Containment.** `jacobson-elementary-subgroups-are-locally-finite-by-linear`: every subgroup of
           `EL_n(J_F)` is locally finite by residually finite linear. So `EL_3(J)` contains no finitely
           generated infinite simple group (`V`, `T`, `R^x`), no `EL_3(C_2)`, and no finitely generated
@@ -369,8 +369,8 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | Toeplitz input and sofic firewall | w5-sub-fock (family SUB) | Established, verifier PASS §28: the Toeplitz pair is finite-subgroup data; `sofic-subgroups-carry-independent-cylinder-defects`; `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`. Open input shared with L8: soficity of `EL_3(J)` (L5) |
 | graph-of-groups firewall | w6-mismatch-c2 (family SUB) | Established, verifier PASS §29 (d0f2b3f648; verdict 4373d18c44): `graphs-of-locally-finite-groups-carry-regular-rank-models`; the depth-mismatched pair is inert as a factor; Attempts entries on the SUB target and on `binary-complement-corner-has-no-weakly-finite-image` (L5) |
 | depth-monotone firewall (char 3) | w6-mismatch-c3 (family SUB) | Established, verifier PASS §30 (74247b5cff, a5226d4756; verdict 794ae892b2; established f31c52ae43): `depth-monotone-leavitt-subalgebras-are-stably-finite`; `depth-monotone-configurations-cannot-force-ternary-minus-one`. The pair is inert for the anti-central form; the defect form is not firewalled (L9b) |
-| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established on paper, verification pending w4-vf-linear-b; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6): no containment reduction; Kazhdan, so LEA iff LEF; verdict open (L5). The other three have not landed. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
-| verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §30, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
+| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established on paper, verification pending w4-vf-linear-b; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6; verifier PASS §31 at 216396d9ee): no containment reduction; Kazhdan, so LEA iff LEF; verdict open (L5). The other three have not landed. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
+| verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §31, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
 ### L7. The listed mechanism dies
 
