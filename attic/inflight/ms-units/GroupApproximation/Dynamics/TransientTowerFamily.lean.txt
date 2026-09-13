@@ -3,6 +3,7 @@ import GroupApproximation.Dynamics.TransientSupport
 import GroupApproximation.Dynamics.TransientIdealExact
 import GroupApproximation.Algebra.CrossedProductTowerMatrixUnits
 import GroupApproximation.Meta.AxiomGuard
+import Mathlib.Data.Finset.Sort
 
 /-!
 # Tower levels over clopen cells give matrix units in the transient ideal
@@ -123,7 +124,7 @@ theorem disjoint_transientTowerLevel (hm : ExponentBound T C m)
     (j : Fin (S b).card) (hab : a ≠ b ∨ transientTowerExp S a i ≠ transientTowerExp S b j) :
     Disjoint (transientTowerLevel T cell S a i) (transientTowerLevel T cell S b j) := by
   by_cases hsame : (S a, transientTowerExp S a i) = (S b, transientTowerExp S b j)
-  · obtain ⟨-, hd⟩ := Prod.mk.inj_iff.1 hsame
+  · have hd : transientTowerExp S a i = transientTowerExp S b j := (Prod.ext_iff.1 hsame).2
     rcases hab with hab | hne
     · rw [transientTowerLevel, transientTowerLevel, hd]
       exact (Set.disjoint_image_iff (T ^ transientTowerExp S b j).injective).2 (hdisj a b hab)
@@ -144,7 +145,7 @@ theorem isMatrixUnitFamily_transientTower (hm : ExponentBound T C m)
     (fun a i j hij => transientTowerCoeff_mul_of_disjoint T k hcell
       (disjoint_transientTowerLevel hm hsub hdisj i j
         (Or.inr fun h => hij (transientTowerExp_injective S a h))))
-    (fun a b hab i j => transientTowerCoeff_mul_of_disjoint T k hcell
+    (fun _ _ hab i j => transientTowerCoeff_mul_of_disjoint T k hcell
       (disjoint_transientTowerLevel hm hsub hdisj i j (Or.inl hab)))
 
 /-- **The arrows lie in the transient ideal** when `C` avoids the invariant set `Y`. -/
@@ -158,7 +159,7 @@ theorem transientTowerUnit_mem_transientIdeal {Y : Set X} (hY : T '' Y = Y)
   rw [Pestov91.CrossedProduct.towerUnit, SkewMonoidAlgebra.coeff_single, Finsupp.single_apply]
   split_ifs with hg
   · show LocallyConstant.charFn k (isClopen_transientTowerLevel T cell S hcell a i) y = 0
-    exact charFn_apply_eq_zero k _ fun hyL => Set.disjoint_left.1 hCY
+    exact charFn_apply_eq_zero _ fun hyL => Set.disjoint_left.1 hCY
       (level_subset (transientTowerExp_mem S a i) (transientTowerLevel_subset_level hsub a i hyL))
       hy
   · rw [map_zero]
