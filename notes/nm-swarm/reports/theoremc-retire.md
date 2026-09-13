@@ -1,7 +1,7 @@
 # theoremc-retire lane report
 
 Lane `theoremc-retire` (clone cs-stages) of the non-MF every-line swarm.
-Updated 2026-09-13 ~15:08.
+Updated 2026-09-13 ~15:50.
 
 ## Status
 
@@ -16,6 +16,8 @@ Updated 2026-09-13 ~15:08.
   `0913-060950-64731`) states Theorem C over hgreendlinger alone.
 - Current item: the one-cell connector pair of Case 1 of Lemma 9.4, meaning a backwards pair whose
   two sides are arcs of one cell. The threading T is landed (48c6cc71e, probe `0913-145812-91168`).
+  The site-5 follow-on S5 (main 15:16) was retracted by main at 15:25 and did not land. Its
+  window is closed and the holds are released (see its section below).
   - The face walk is proved: `osinLemma94CaseOneWalk` (ko-closed, eb9010962 and 8f0f73966,
     probe `0913-095509-55850`).
   - After (A), `osinLemma94CaseOneInput_of_walk` takes `hsame : OsinLemma94CaseOneSameCellStatement`.
@@ -136,6 +138,58 @@ term change.
   SectionResiduals (hull-unbound), DescentResiduals (dgo-analytic), CaseTwo (sec5-sentences),
   GreendlingerOpenResiduals (ghw-assembly).
 
+## The site-5 follow-on S5 (retracted, not landed)
+
+- Outcome:
+  - Main retracted the 15:16 ruling at 15:25; the message reached this lane after the co-probe
+    had started. Main accepted hull-count94's side-route ruling: SideBudget is over-strong, so waist
+    binders 1-2 move to the class route (`OsinLemma94ClassCountInput`). The side-level Count and
+    Covers inputs get no `OsinLemma97Below` respelling. Site 5 (C) is served by the below binder
+    hull-count94 adds to ClassCountInput in its PolygonClasses respell.
+  - Co-probe `0913-153647-93989` (base ea7a1d52d, 17 modules) finished GREEN, but its bytes are
+    withdrawn. Nothing was landed.
+  - 15:44: the tree bytes of PlanarPieces and PolygonCount were restored from `pre-S5/` and equal
+    origin (md5 8ca770a0, 47bf24bd). Both were dropped from this lane's files. The CLOSED line is
+    in wire-queue.txt, and releases went to the five owners.
+  - The replay script and the candidates stay in the backup directory for reference.
+- Ruling (main 15:16, retracted 15:25): this lane runs it. `OsinLemma94PolygonCountInput` (PlanarPieces) and
+  `OsinLemma94PolygonCoversInput` (PolygonCount) gain
+  `OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount`, spelled out after
+  `Delta.LeastArea → 0 < Delta.rCellCount →`. The SHA goes to fff-periodic when it lands.
+- Replay script `$NM/backup/theoremc-retire/apply-S5.py`, on the apply-T.py engine: 2 inserts and
+  6 count-asserted replacements.
+  - PlanarPieces: a docstring sentence and the binder in the Count def;
+    `osinLemma94Section_of_planarPieces` passes `hbelow` to `hcountEps`.
+  - PolygonCount: a docstring sentence and the binder in the Covers def;
+    `osinLemma94PolygonCoversInput`'s intro gains `_hbelow`; `_of_sideBudget`'s intro gains `hbelow`
+    and passes it to the covers half.
+  - Unchanged: `OsinLemma94PolygonSideBudgetInput`, `OsinLemma94UnboundSameCellStatement`,
+    `OsinLemma94ClassCountInput`.
+- MANIFEST (md5 base → candidate): PlanarPieces 8ca770a0→42fb8926, PolygonCount 47bf24bd→8ce0bff9.
+- Rule 22 grep at origin de7677d98: the Lean users of the two statements and their producers are
+  PlanarPieces, PolygonCount, SectionResiduals (passes `hcount` by name) and
+  GreendlingerOpenResiduals (`_of_sideBudget hbudget hsame`, signature unchanged). The hits in
+  CConditionLineModel and PolygonCovers are docstrings. GreendlingerPocketParts' `hcountEps` is the
+  PhiPrimeCount obtain, so it needs no edit.
+- Gates: `S5-prep.sh --check` at origin 868781ff8, then `S5-prep.sh` at origin 3fa78684f, PREP OK.
+  - The tree equals origin for the 16 gated modules, and the candidates equal the dry run.
+  - The tree bytes are backed up in `pre-S5/`, and the edited paths are in this lane's files.
+  - PolygonClasses has hull-count94's GREEN unlanded bytes (tree aa758203, origin 5832f39d). The
+    probe builds the origin bytes, and `S5-land.sh` accepts a moved PolygonClasses only if it names
+    none of the respelled declarations.
+- Hold notices (15:34) went to hull-count94, hull-unbound, ghw-assembly, hull-respell and ghw-charp2,
+  with the window line in wire-queue.txt.
+- Co-probe, 17 modules: PlanarPieces, PolygonCount, SectionResiduals, GreendlingerOpenResiduals,
+  GreendlingerPocketParts; every importer of the edited modules (DiscEmbeddingAwayUnbound,
+  CaseOneWalk, ChainRespell, DartMinimal, InsertionTransport, PolygonClasses, PolygonCovers,
+  ShortSides, OsinUnboundCaseOneFace); and PocketParts' importers EulerSection, DescentResiduals,
+  PocketPieces.
+- Push-time gate `S5-land.sh TAG [--land]`. It requires:
+  - the record verdict GREEN;
+  - each edited file's origin md5 equal to its base, and its tree md5 equal to its candidate;
+  - no probed module moved since the base, unless the moved bytes name no respelled declaration;
+  - no new origin user of the respelled names since the base.
+
 ## Landed
 
 | SHA | what |
@@ -145,7 +199,7 @@ term change.
 | 2c3c8cb40 | normal landing after the green probe: `TheoremCAssembly`, `SeedFromTheoremC`, `SeedRemarkTheoremC`. `TheoremCAssemblyKOLeaves` is recorded as compiled; its bytes are unchanged since 4874b8162 |
 | b1dc27674 | attic copy of the zip-and-fold flip of `TheoremCAssemblyKOLeaves` (before the probe) |
 | e1b326ec3 | normal landing of that flip after green probe `0913-021752-29195` (base b1dc27674) |
-| 84241b175, 3e9636d74, aa7391c47, a0607c71f, 1144b49f5, 9025704c3, b401d6d3d, 32643dcc6, d4062cdf1, d8e7335b7 | this report and the census row |
+| 84241b175, 3e9636d74, aa7391c47, a0607c71f, 1144b49f5, 9025704c3, b401d6d3d, 32643dcc6, d4062cdf1, d8e7335b7, c280394e3 | this report and the census row |
 | f019265bb | new `Manuscript/NonMF/TheoremCAssemblyFoldLeaf.lean` (before the probe). Probe `0913-034425-9721` (base 5f9c16b7b) compiled these exact bytes (md5 a2db324a), so there was no second landing |
 | c5f953323 | new `Manuscript/NonMF/TheoremCAssemblyGreendlingerLeaf.lean` (before the probe). Probe `0913-060950-64731` (base 5f789a7ba) compiled these exact bytes (md5 7dea5861), so there was no second landing |
 | 8a36ad06c, 0e3aaff95 | new `Estimating/OsinLemma94CaseOneWalk.lean` and its side-kind conjuncts. Probe `0913-084930-32564` green |
@@ -317,8 +371,10 @@ binder `hrespell` at `GGT/HullSCLemma44FamilyAssembly.lean:548, 655, 670`,
 - Sent (15:08), after T landed: hold releases to the five owners, the window line closed in
   wire-queue.txt, and messages to main (T landed, the (A) record correction, hull-unbound's
   verdict, the Count/Covers ruling request), jacobson, ko-closed, ghw-assembly and fff-periodic.
-- fff-periodic's Count/Covers binder: a follow-on co-probe on T's binder form, owner by main's
-  ruling.
+- fff-periodic's Count/Covers binder: none. main 15:16 gave it to this lane as S5, then retracted it
+  at 15:25 in favor of the class route. S5 did not land, and the holds are released.
+- `OsinLemma94CaseOneSameCellStatement` is at `OsinUnboundCaseOneFace.lean:476` on origin 4b3c698de
+  (audit-sec5's line correction).
 - After jacobson's producer lands: a Case 1 census row (the composition is already on main in
   ghw-assembly's waist).
 - Offered to the lead: once GreendlingerLeaf is wired, re-point `SeedFromTheoremC.E` at
