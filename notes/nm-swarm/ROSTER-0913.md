@@ -309,3 +309,22 @@ For EVERY census row in your range with status formalized or definition, and eve
   - New rule: a formalized row needs every carrier module in the root import closure.
   - Blocker: `JacobsonComplementarySentence` has no importer, queue line or green record; sent to jacobson.
   - The lead landed the missing `metadata/nm-census-rows/hull-count94.tsv`.
+- **Audits.** The W3 leaf truth audit (MirrorFoldPinched and MirrorFoldDistinct for arbitrary X) moves to dgo-geometric. Its GHW Archimedean items are green and wired, and no audit lane was free.
+  - dgo-geometric's `Algebra/IntegerPolynomialUnisolvence` (4896458dc) duplicates ghw-assembly's IntegerGridFinite. It is red with a sorryAx and stays an unwired orphan: no fix and no deletion.
+
+## Reassignments 09-13 ~03:35
+- **W1 (a) carrier: RULED by the lead.** dgo-analytic did not answer two nudges. The carrier is the outside face set with `IsDiscRegion`, and the piece is `DiscDiagram.ofPlanar` on `replaceGRegion`. There is no rebased full `RegionCutData`.
+  - Why: a rebased copy needs a shelling of the pocket along the walk. That is `RegionShellingStatement` (FaceShelling.lean:194), which main flags as "the one planar fact still missing", with no producer.
+  - `DiscDiagram.LeastArea` is algebraic (OsinAppendixSections.lean:112). So the piece's least area needs only a weighted form of the closed `isRelatorProduct_of_planar` (PlanarVanKampen.lean:122) on Δ with the pocket collapsed.
+  - kh-torsion (free after hzip): new `GGT/VanKampen/PlanarVanKampenWeighted.lean`, holding the weighted ear induction and the DiscDiagram corollary. Its C1 fallback on PlanarRunInput is withdrawn.
+  - hull-select: the shelling-free carrier structure. It is additive, so RegionCutData and ofRegionCut stay. Also ports of diagram_boundaryWord, boundarySectionCuts, fourSectionCuts and leastAreaCut, and the ofPlanar analogue of `ofRegionCut`. It lands the structure statement first.
+  - kh-ejz (free after the Euler multigraph Props, 04240bd43): the pocket geometry from a ≠ b. That is IsDiscRegion for both sides, the split s₁t₁s₂t₂, quasi-geodesic parts, short sides, and at least one kept cell.
+  - go-lemma42: (c) retargets to the ofPlanar piece.
+  - dgo-analytic: DescentInput only. It sends kh-ejz any carrier code it has, and re-grades or supersedes census LINE:1688.
+- **W3 hKO.** hzip is CLOSED: `CCKW.zipSpur_cosetComplex` (8389a0e6c, #audit_closed_axioms, root-imported). The remaining leaf is hfold.
+  - dgo-geometric's truth audit: `MirrorFoldDistinctStatement X` and `MirrorFoldPinchedStatement X` are both TRUE for every X, using only irreflexivity and tri_adj. The owners keep going; there is no restatement.
+  - dgo-geometric next writes the nonvacuity fixture `GGT/SystolicDiscMirrorFoldModel` and checks the wiring of NaiveFreeProductPropertyOfAcylindricallyHyperbolic.
+  - theoremc-retire: Theorem C over hgreendlinger, hbridge and hfold, in a new module specializing TheoremCAssemblyKOLeaves (e1b326ec3) at hzip := zipSpur_cosetComplex. Then C1 of PlanarRunInput if hull-unbound hands it over.
+- **W1 h94.** hull-unbound has two open items: the Case 2 minimality measure (theoremc-retire proposes dart count) and the OsinUnboundSharedEdge red.
+- **census merge 4** (86df293af): 340 formalized, 23 partial (down from 59). Five carrier modules are unwired, and JacobsonComplementarySentence is still blocked.
+- **root-wire** was sent on wave 3 over queue entries since c72bdfd5d, plus the census's unwired carriers that have green records.

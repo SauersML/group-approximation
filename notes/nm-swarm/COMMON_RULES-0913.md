@@ -18,7 +18,7 @@ Roster and per-lane targets: `$NM/ROSTER.md` (read your own `## <lane>` section 
   partial 19, provenance 19, attribution 18, unassigned 5); conditional baseline 102 findings (buried-conditional
   32, open-predicate 30, conditional-debt 27, carrier-debt 9, carrier-data 3, inlined-statement 1); the four top
   endpoints in `Manuscript/NonMF/TorsionFreeLiteratureInputsLeastArea.lean` still take hgreendlinger, hbridge,
-  hKO, hW; root-imported `Manuscript/NonMF/TheoremCAssembly.lean` still has 5 sorries.  The frontier write-up is
+  hKO, hW; the 5 sorries of `Manuscript/NonMF/TheoremCAssembly.lean` were retired at 2c3c8cb40 (09-13 01:46).  The frontier write-up is
   `notes/nm-swarm/reports/census2.md` (snapshot 09-12 10:06; some items landed since — grep origin/main).
 - You are a LANE, NOT the coordinator.  Never launch agents.  Old lane names are reused where you continue a
   predecessor: read `notes/nm-swarm/reports/<lane>.md` and `$NM/lanes/<lane>.files` first; the predecessor is dead
@@ -190,3 +190,5 @@ Roster and per-lane targets: `$NM/ROSTER.md` (read your own `## <lane>` section 
 - `autoImplicit` is ON in this repo: a missing import appears as "Function expected … unknown identifier
   treated as implicitly bound", not as "unknown identifier". `push_neg` → `push Not`;
   `ContinuousLinearMap.add_apply` → root `add_apply`; `List.take_append_eq_append_take` → `List.take_append`.
+- `nmprobe.sh` REFUSES any non-`.lean` entry in `lanes/<lane>.files`. `nmland.sh` does not read that list, so keep
+  report and census-row paths out of `.files` and pass them to nmland directly (kh-torsion, 09-13).
