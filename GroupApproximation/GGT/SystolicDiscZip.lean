@@ -1,5 +1,7 @@
 import GroupApproximation.GGT.SystolicDiscZipFold
+import GroupApproximation.GGT.SystolicDiscZipPinch
 import GroupApproximation.GGT.SystolicDiscMovesAdapter
+import GroupApproximation.Kazhdan.CCKWCosetComplex
 import GroupApproximation.Meta.AxiomGuard
 
 set_option linter.unusedSectionVars false
@@ -11,11 +13,13 @@ A triangulated disc whose boundary walk backtracks, `p ++ u :: v :: u :: q`, giv
 boundary `p ++ u :: q`, unless that walk is the constant walk `[u]`.  On a cycle disc let
 `du dv` be the exterior darts of the backtrack and `p` the exterior dart before `du`.  When the
 corners before `du` and after `dv` lie at different vertices the pair folds
-(`CycleDisc.zip_fold`); otherwise the loop `du dv` pinches off (`ZipPinchStatement`).
+(`CycleDisc.zip_fold`); otherwise the loop `du dv` pinches off (`zipPinchStatement`).
 
 * `CycleDisc.boundary_eq_take`: the boundary walk closes up at its first label.
 * `CycleDisc.zip_spur`: the backtrack of a cycle disc zips, given the pinch case.
 * `zipSpurStatement_of_zipPinch`: HC3(d) from the pinch case.
+* `zipSpurStatement`: HC3(d) for every triangle complex.
+* `CCKW.zipSpur_cosetComplex`: HC3(d) at the coset complex of `GHB(7)`.
 -/
 
 namespace GroupApproximation.Systolic
@@ -113,10 +117,26 @@ theorem zipSpurStatement_of_zipPinch (hpinch : ZipPinchStatement X) : ZipSpurSta
       exact D'.nonempty_disc
   · exact absurd hq (List.cons_ne_nil _ _)
 
+/-- **HC3(d)**: a triangulated disc whose boundary walk backtracks gives a disc with the
+backtrack removed, unless the walk is constant. -/
+theorem zipSpurStatement : ZipSpurStatement X :=
+  zipSpurStatement_of_zipPinch (zipPinchStatement X)
+
 end GroupApproximation.Systolic
+
+namespace GroupApproximation.KMSGroup.CCKW
+
+/-- **HC3(d) at the coset complex of `GHB(7)`**, the input `hzip` of
+`GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold`. -/
+theorem zipSpur_cosetComplex : Systolic.ZipSpurStatement cosetComplex :=
+  Systolic.zipSpurStatement
+
+end GroupApproximation.KMSGroup.CCKW
 
 #audit_axioms GroupApproximation.Systolic.singleton_head_eq_take
 #audit_axioms GroupApproximation.Systolic.CycleDisc.boundary_eq_take
 #audit_axioms GroupApproximation.Systolic.CycleDisc.nonempty_disc
 #audit_axioms GroupApproximation.Systolic.CycleDisc.zip_spur
 #audit_axioms GroupApproximation.Systolic.zipSpurStatement_of_zipPinch
+#audit_axioms GroupApproximation.Systolic.zipSpurStatement
+#audit_closed_axioms GroupApproximation.KMSGroup.CCKW.zipSpur_cosetComplex
