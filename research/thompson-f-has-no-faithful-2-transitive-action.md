@@ -14,16 +14,27 @@ so this says the transitivity degree of `F` is 1.
 
 ## Attempts
 
-- 2026-09-13 (z2-20-f-2-transitive), plan. Suppose `F` acts 2-transitively on
-  `Ω`, and write `F_ω` for point stabilizers. For an open interval `U ⊂ (0,1)`,
-  let `F_U^c` be the elements with compact support in `U`.
-  - **Case I:** some `F_U^c` fixes a point. Let `O_ω` be the union of the
-    intervals `U` with `F_U^c ≤ F_ω`, and `C_ω = (0,1) \ O_ω`. The map
-    `ω ↦ C_ω` is equivariant. Primitivity forces it to be injective, and then
-    `F_ω` is the setwise stabilizer of `C_ω`. Invariant antisymmetric
-    relations (compare `inf C_ω`, `sup C_ω`, leftmost disagreement points)
-    must be empty, which forces strong constraints. Analysis in progress.
-  - **Case II:** no `F_U^c` fixes a point. Test confinedness of `F_ω` with the
-    commutator lemma of Le Boudec–Matte Bon (arXiv:2012.03997, Theorem 3.5,
-    from arXiv:2006.08677 Theorem 3.17).
-  Neither case is closed.
+- 2026-09-13 (z2-20-f-2-transitive). Suppose `F` acts 2-transitively on `Ω`.
+  For an open interval `U ⊂ (0,1)`, `F_U^c` denotes the elements with compact
+  support in `U`.
+  - **Case I: some `F_U^c` fixes a point. Dead.** The complement `C_ω` of the
+    union of intervals whose `F_U^c` fixes `ω` is an equivariant, nonempty,
+    proper closed set. Pushing a gap endpoint makes the extreme point of
+    `C_ω Δ C_{gω}` lie on one side only, an antisymmetric invariant relation.
+    Recorded as `thompson-f-two-transitive-rigid-stabilizers-fix-no-point`
+    (unreviewed).
+  - **Case II: no `F_U^c` fixes a point. Open.** Every `F_U^c` acts on `Ω` with
+    all orbits infinite. The grid condition
+    (`thompson-f-two-transitive-actions-satisfy-grid-condition`) holds at every
+    `x`. Every unordered pair `{ω,ω'}` then gets an equivariant hull `[η,ξ]`:
+    `ω' ∈ O_x^-(ω)` iff `x` is right of `ξ`, and `ω' ∈ O_x^+(ω)` iff `x` is
+    left of `η`. This is well defined by the grid condition, and hulls satisfy
+    an ultrametric-type inequality. An element swapping `ω, ω'` fixes both
+    `η` and `ξ`. Missing: an antisymmetric invariant attached to a hull
+    endpoint, or a proof that point stabilizers are confined. Confined
+    stabilizers, via the commutator lemma of Le Boudec–Matte Bon
+    (arXiv:2006.08677 Theorem 3.17, restated as arXiv:2012.03997 Theorem 3.5),
+    would put some `F_U^c` in a stabilizer and so reduce to Case I.
+  - Candidates that Case II allows and that must be killed or realized:
+    stabilizers of dense subsets or of partitions of an `F`-orbit
+    (Golan–Sapir's maximal subgroups; Jones' subgroup).
