@@ -17,18 +17,26 @@ the Euler count `|M| ≤ 3(n + r − 1)` of Osin's `Φ'_M` (arXiv:math/0411039v3
 | `Estimating/OsinAppendixEulerHereditary` | `card_le_of_endpoints`, `hasEndpointClosedPlanarEdgeBound_of_phiData` | green 0912-104426-41122 |
 | `Estimating/OsinAppendixEulerCount` | `PhiPrimeCountInput`, `eulerCountInput_of_phiPrimeCount` | green 0912-104426-41122 |
 | `CombMapRestrictionFaceClasses` | `CombMap.IsRestriction.faceOf_eq_of_faceClass` | green 0913-032836-75226 |
+| `Estimating/OsinAppendixEulerExterior` | `sideCellO`, `crossO`, `ExtPhiData`, `phiMapO`, `phiSubdividedMultigraphO` | green 0913-044600-43289 |
+| `Estimating/OsinAppendixEulerExteriorCount` | `phiMapO_dartCount`, `phiMapO_vertexCount_le`, `phiMapO_planar`, `card_add_six_le_of_linkedO` | green 0913-045049-59145 |
+| `Estimating/OsinAppendixEulerEmptyTwoGon` | `EmptyTwoGonInput`, the piece Prop of C6 | green 0913-061850-77139 |
 
-None of these modules is wired to the root. kh-ejz's `Estimating/OsinAppendixEulerMultigraph`
-(69c4c69da, 04240bd43) provides the Euler count with two-gons, and this lane consumes it.
+On origin/main the root imports Subdivided, RegionFaces, Phi, PhiCount, PhiBound and Hereditary,
+and kh-ejz's `Estimating/OsinAppendixEulerMultigraph`. Count, Exterior, ExteriorCount and
+EmptyTwoGon are not wired.
 
 ## Landings
 
 - 44c6bab14, e4cb2d641, 864fdf3d2, f7a0fc32e, 1777a684a, cdd4b82df, 2cfa0c398: the seven Euler modules.
-- 14d85b1d0, 30545e88a: this report.
+- 14d85b1d0, 30545e88a, fbef94518: this report.
 - 9fdb800358088b2ba0b14717a16f16fd041f69f8: `CombMapRestrictionFaceClasses`.
-  - Landed unverified.
-  - Probe 0913-032836-75226 was green, and the md5 of the green record equals the md5 on origin/main.
-  - The commit is an ancestor of origin/main.
+  Probe 0913-032836-75226 green, md5 of the green record equal to origin/main, ancestor of main.
+- 4e27d4965d3b6bc90312e1080a4d20abce59d18b: `OsinAppendixEulerExterior`.
+  Probe 0913-044600-43289 green, md5 equal to origin/main, ancestor of main.
+- 0508228436ea9d7aee9c324702401676b8cef61d: `OsinAppendixEulerExteriorCount`.
+  Probe 0913-045049-59145 green with `BUILT`, md5 equal to origin/main, ancestor of main.
+- 16d923f2780221c7eb733c90b6b2a962a4871bc4: `OsinAppendixEulerEmptyTwoGon`. Landed unverified,
+  then probe 0913-061850-77139 green with `BUILT`, md5 equal to origin/main, ancestor of main.
 
 ## The face-class lemma (J)
 
@@ -43,12 +51,7 @@ theorem CombMap.IsRestriction.faceOf_eq_of_faceClass (h : M.IsRestriction N e)
 ```
 
 Take a connected restriction of a planar map. Advancing around ambient faces and crossing ambient
-edges that are not retained never passes between two different faces of the restriction. The proof
-grows the restriction one actual edge at a time:
-
-- an added edge between different faces joins them;
-- an added edge on one face is a spur, since otherwise deleting it would raise the Euler
-  characteristic above two.
+edges that are not retained never passes between two different faces of the restriction.
 
 ## Residual
 
@@ -62,42 +65,67 @@ def PhiPrimeCountInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
           S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)
 ```
 
+## C6: the empty two-gon
+
+`EmptyTwoGonInput D lambda c eps W` (`Estimating/OsinAppendixEulerEmptyTwoGon.lean`). Take:
+
+- a least-area diagram and a distinguished system `S`;
+- two different regions `a`, `b` of `exteriorAt S.family i` that both target section `j`;
+- a `PocketRegion` `P` of `S.diagram` that contains `a.1` and `b.1`, holds no relator cell and
+  meets no other selected region;
+- an arc `source` of `cellDarts i` with `a.s + b.s ≤ source.length`;
+- an arc `target` of the boundary from the start of `a`'s target arc to the end of `b`'s, with
+  `a.t + b.t ≤ target.length`.
+
+If `invDarts P.outer.cycle = source.reverseDarts ++ a.2.rightSide ++ target.darts ++ b.2.leftSide`,
+the Prop gives `False`. This is the proof of Osin's Lemma 9.7(a), osin 1731–1733: "otherwise one
+can include the ε-contiguity subdiagrams corresponding to the edges e and f of Φ′M into a single
+ε-contiguity subdiagram in the obvious way, contrary to the definition of M."
+
+The carrier is the merged region, not the pocket between `a` and `b`, so two regions sharing a
+side and pinched pockets are covered. It is true through `false_of_collapse_singleton`
+(`OsinAppendixCutMerge.lean:120`) with `absorbed = {a, b}`:
+
+- `R` comes from `P`;
+- `H` has the four pieces of the equation;
+- `hrespects` holds because `target` runs from `a`'s start to `b`'s end inside section `j`;
+- `hsource` and `htarget` come from `S.nondegenerate`;
+- `hweight` comes from the two length bounds.
+
+By the roster, kh-ejz and hull-select discharge it.
+
 ## Plan: Lemma 9.3 with one merged outer vertex
 
 `O` is the dual vertex of the outer face of `Δ`. All sections meet there.
 
-- **C1.** The exterior map `Φ''`. Generalize `cross` to `target = none`: for an exterior region the
-  retained dart at `O` is `alpha` of the head of the target arc, since `targetBoundaryDarts none`
-  is the arc itself. Restrict the dual of `collapsedMap` to the regions linked to `O`, and give the
-  result a `SubdividedMultigraph` instance.
-- **C2.** Take `m + 6 ≤ 3c + t` from kh-ejz's `edgeBound_of_subdividedMultigraph`.
-- **C3.** A face of degree less than six is a two-gon `Π–a–O–b` with `a ≠ b` exterior regions of
-  one cell. `NoMultipleEdges` excludes two-gons between two cells.
-- **C4.** Inject into the `r` corners every two-gon whose gap at `O` contains a corner. This uses
-  `RespectsSections` and nondegenerate arcs.
-- **C5.** Inject every other two-gon whose face class holds a cell into the components not linked
-  to `O` and the isolated cells, using (J). The darts of a component that is not retained are all
-  connected by `FaceClassStep`, because `sigma = facePerm ∘ alpha`. Sum over the components with
-  `card_le_of_linked`.
-- **C6.** An empty two-gon gives `False`. Such a two-gon has two exterior regions `a ≠ b` of one
-  cell, consecutive at `O` in one section, with no relator cell in its face class. The proof merges
-  `a` and `b` against `card_minimal` through `false_of_collapse_singleton`
-  (`OsinAppendixCutMerge.lean:120`).
-- **Assembly.** With `k4 ≤ r + (components) + (isolated cells)`, the per-component bounds sum to
-  `|M| ≤ 3(n + r − 1)`.
+- **C1, C2.** Done: `phiMapO` is a `SubdividedMultigraph`, and linked regions give
+  `|E| + 6 ≤ 3|V| + t`.
+- **C3.** A face of `phiMapO` of degree less than six is a two-gon between two different regions
+  `a`, `b` with the same pair of ends. `NoMultipleEdges` excludes two cells, so `a` and `b` are
+  exterior regions of one cell.
+- **C4.** Inject into the `r` corners every two-gon whose gap at `O` contains a corner.
+- **C5.** Inject every other two-gon whose face class holds a relator cell into the components
+  not linked to `O` and the isolated cells, through (J). Sum over the components with
+  `card_le_of_endpoints`.
+- **C6.** Stated as `EmptyTwoGonInput`.
+- **Extraction.** From an empty two-gon of `phiMapO` to the hypotheses of `EmptyTwoGonInput`: the
+  merged `PocketRegion`, the two arcs and the boundary equation. By the roster hull-euler builds it
+  and consumes the region-side carrier (a).
+- **Assembly.** `PhiPrimeCountInput` from `EmptyTwoGonInput`, then
+  `OsinPhiPrimeCountSectionStatement`.
 
-C1 to C5 need nothing from other lanes. C6 needs the pocket between `a` and `b` as a disc region
-carrying a `ContiguityGeometry` for the merged region: the W1 (a) carrier (`IsDiscRegion` plus
-`DiscDiagram.ofPlanar`) and kh-ejz's pocket geometry from `a ≠ b`. By the roster, hull-euler
-consumes that carrier and does not build it. I have asked the lead whether hull-euler may state a
-named piece Prop for the empty-pocket merge.
+## Open questions to the lead
+
+1. Does the carrier (a) cover two exterior regions of one cell (target `none`), or only regions
+   between two cells?
+2. Should `EmptyTwoGonInput` instead be the single shared merge Prop proposed by audit-sec5 for
+   the inputs of `false_of_collapse_singleton` (MultipleEdgeCut, SectionPocketCut and C6)?
 
 ## Census
 
-No rows yet. (J) carries no printed sentence. The rows wait for the closure of
-`PhiPrimeCountInput`, which carries the Euler count inside the proof of `thm:hull` (tex 1636,
-through Osin's Lemma 9.7(a)).
+No rows yet. The rows wait for the closure of `PhiPrimeCountInput`, which carries the Euler count
+inside the proof of `thm:hull` (tex 1636, through Osin's Lemma 9.7(a)).
 
 ## Next
 
-C1, the exterior crossings and the `O`-linked restriction.
+C3, the two-gons of `phiMapO`.
