@@ -92,6 +92,25 @@ parts 1--2.
 | `leavitt-triangular-units-have-linear-depth-growth` | q34-unit-depth | PASS | 6 §22.1 |
 | `leavitt-free-group-leading-term-forces-linear-depth` | q34-unit-depth | PASS | 6 §22.2 |
 | `leavitt-heisenberg-centers-have-infinite-centralizer-rank` | q34-unit-depth | PASS | 6 §22.3 |
+| `linear-quotient-exclusion-lifts-from-char-zero` | hyperbolic-triangle-theory | PASS | 7 §23 |
+| `opposite-slice-contains-function-field-hecke-pair` | nonore-relative-gate | PASS at the checked steps | 7 §24.1 |
+| `kt-double-hyperlinearity-requires-function-field-hecke-re` | nonore-relative-gate | PASS | 7 §24.2 |
+| `simple-nonsofic-width-over-bounded-base-symmetric-wreath` | weak-sofic-deep-wreath | PASS | 7 §25.1 |
+| `iterated-simple-wreath-bounded-commutator-width` | weak-sofic-deep-wreath | PASS | 7 §25.2 |
+| `relator-width-bounded-over-simple-iterated-wreath-products` | weak-sofic-deep-wreath | PASS at the checked steps | 7 §25.3 |
+| `one-compressor-wreath-has-models-with-exact-origin-vertex` | hs-instability-extension | PASS at the checked steps | 7 §26.1 |
+| `unit-type-vertex-rounding-agrees-with-sigma-on-laurent-steinberg` | hs-instability-extension | PASS at the checked steps | 7 §26.2 |
+| `simple-group-classical-width-finite-field-linear-soficity` | weak-sofic-classical-covering | PASS at the checked steps (Lemmas 1.1--5.3 and the route) | 7 §27.1 |
+| `simple-group-width-over-all-finite-simple-groups` | weak-sofic-classical-covering | PASS | 7 §27.2 |
+| `deligne-cover-hyperlinearity-is-monotone-in-genus` | nh-deligne-hs | PASS | 7 §28.1 |
+| `dyadic-hnn-family-is-monotone-in-rank-and-primes` | nh-dyadic-pair | PASS | 7 §28.2 |
+| `edge-twist-extensions-of-triangle-colimits-moment-test` | hyperbolic-triangle-theory | PASS | 7 §29 |
+| `flexible-hs-stability-descends-to-retracts-finite-index` | hs-instability-kazhdan | PASS at the checked steps | 7 §30 |
+| `transitive-wreath-towers-bounded-commutator-width` | weak-sofic-deep-wreath | PASS | 7 §31 |
+| `nonamenable-relatively-kazhdan-infranormal-sofic-wreath` | nh-dyadic-pair | PASS | 7 §32 |
+| `simple-group-relator-templates-over-finite-simple-groups` | weak-sofic-classical-covering | PASS at the checked steps | 7 §33 |
+| `sl3-polynomial-congruence-subgroups-have-large-b2` | hs-instability-kazhdan | PASS as a conditional (Soulé's fundamental domain named, not imported); computation not re-run | 7 §33 |
+| `relator-width-over-towers-of-bounded-commutator-width`, and hence `simple-nonsofic-relator-width-over-iterated-wreath-products` | weak-sofic-deep-wreath | PASS | 7 §34 |
 
 No FAIL on a claim that decides a famous problem. No false establishment found.
 
@@ -164,18 +183,35 @@ parts 1--2:
   established. They are first in the queue: the check is whether the exclusions are exhaustive proofs rather
   than search results.
 
+**Refill landings 01:44--02:21, third sweep at tip `6965e0292`.** No route fires into a famous root.
+- **`non-hyperlinear-group`, through the stable Deligne triple cover.**
+  - `nonhyperlinear-via-stable-deligne-triple-cover` requires the OPEN `deligne-stable-triple-cover-is-not-hyperlinear`.
+  - That claim's route needs `deligne-central-mark-hs-collapse`, which has two routes:
+    - one needs the OPEN `sp4-schur-kernel-meets-the-deligne-triple-class`;
+    - the other needs `maslov-mod3-projective-defect-gap`.
+  - The gap's chordal route needs the routeless `c2-root-chart-maslov-holonomy-gap`.
+  - Its other route needs `maslov-sector-tracial-generator-ucp-liftability`. Two of that claim's three premises
+    are established, and the third, `maslov-diverging-positive-lifts-have-vanishing-high-degree-mass`, has no
+    route.
+  - **That routeless claim is the single open gate** between the established Deligne and Maslov machinery and
+    this famous root. When it is established, the chain decides a famous problem and needs review first.
+- **`non-hyperlinear-group`, through co-dense Kazhdan HNN groups.** `hnn-over-codense-kazhdan-subgroup-not-hyperlinear`
+  is established. But `stable-group-with-codense-kazhdan-subgroup` is OPEN: its two routes need the routeless
+  `sl2-z-inverse-pq-is-hs-stable` or the OPEN `sl3-laurent-f2-is-flexibly-hs-stable`.
+- **`non-residually-finite-hyperbolic-group`.** `non-rf-hyperbolic-via-persistent-edge-twist` requires the routeless
+  `hyperbolic-triangle-colimit-with-persistent-edge-twist`.
+- **Other new routes into famous roots, all inert.**
+  - `function-field-hecke-non-re-from-laurent-hs-stability` requires the open Laurent stability claim.
+  - `rigidity-counterexample-from-leavitt-f2-linear-soficity` requires the open Gottschalk gate.
+  - `no-heisenberg-from-algebraic-dependence` requires an open claim.
+
 ## 4. Queue
 
-- Refill claims established since 01:09 and not yet reviewed:
-  - `unit-type-vertex-rounding-agrees-with-sigma-on-laurent-steinberg`;
-  - `one-compressor-wreath-has-models-with-exact-origin-vertex`;
-  - `linear-quotient-exclusion-lifts-from-char-zero`;
-  - `simple-group-classical-width-finite-field-linear-soficity`;
-  - `simple-group-width-over-all-finite-simple-groups`;
-  - `non-linear-sofic-simple-groups-bounded-width-in-classical-groups`;
-  - `simple-nonsofic-width-over-bounded-base-symmetric-wreath`;
-  - `opposite-slice-contains-function-field-hecke-pair`;
-  - `kt-double-hyperlinearity-requires-function-field-hecke-re`.
+- Refill landings after 02:21, as they arrive.
+- **Not reproduced, may be worth an MSI rerun:**
+  - the a7a7a8 Singular certificates;
+  - the `SL_3(F_q[t])` congruence Euler characteristics;
+  - the edge-twist GAP moments (`experiments/edge-twist-moments/`).
 
 ## Part files
 
@@ -191,3 +227,7 @@ parts 1--2:
 - `ex-review-backlog-2026-09-13-part6.md`: refills, second batch (a7a7a8 exclusions, the finite simple spectrum
   and quotient count, Deligne Schatten collapse, Kazhdan cover rounding, roundable-part invariance, Laurent
   descent, Leavitt depth growth and centralizer rank).
+- `ex-review-backlog-2026-09-13-part7.md`: refills, third batch (char-zero lift, the function-field Hecke pair,
+  wreath and tower widths, classical width and width over all finite simple groups, Laurent Steinberg agreement,
+  genus and rank monotonicity, the edge-twist moment test, retract descent, a sofic infranormal wreath, large
+  `b_2`).
