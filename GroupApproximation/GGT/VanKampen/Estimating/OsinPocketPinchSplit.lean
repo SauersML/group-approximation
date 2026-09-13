@@ -146,7 +146,7 @@ theorem vertexOf_eq_of_diagram {d e : Delta.toCombMap.Dart}
     Delta.toCombMap.vertexOf d = Delta.toCombMap.vertexOf e := by
   rw [CombMap.vertexOf_eq_iff] at h
   refine OrbitClassifier.eq_of_sameCycle I.diagram.toCombMap.sigma Delta.toCombMap.vertexOf
-    (fun z => ?_) h
+    (fun (z : Delta.toCombMap.Dart) => ?_) h
   have hz : Delta.toCombMap.sigma.SameCycle z (Equiv.swap I.x I.y z) := by
     by_cases hx : z = I.x
     · rw [hx, Equiv.swap_apply_left]
@@ -212,24 +212,28 @@ noncomputable def pinchSplit (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.I
     (hs : I.Avoids K.faces) : PocketFaceSet D eps I.diagram lo hi where
   faces := I.faceSet K.faces
   outerFace_not_mem := by
-    rw [I.diagram_outerFace, I.kept_mem_faceSet_iff hs]
-    exact K.outerFace_not_mem
+    rw [I.diagram_outerFace]
+    exact fun h => K.outerFace_not_mem ((I.kept_mem_faceSet_iff hs).mp h)
   source := I.cellMap.indexEquiv K.source
   source_not_mem := by
-    rw [I.cellMap.indexed_cell, I.cellMap.face_eq, I.kept_mem_faceSet_iff hs]
-    exact K.source_not_mem
+    rw [I.cellMap.indexed_cell, I.cellMap.face_eq]
+    exact fun h => K.source_not_mem ((I.kept_mem_faceSet_iff hs).mp h)
   kept := I.cellMap.indexEquiv K.kept
   kept_mem := by
-    rw [I.cellMap.indexed_cell, I.cellMap.face_eq, I.kept_mem_faceSet_iff hs]
-    exact K.kept_mem
+    rw [I.cellMap.indexed_cell, I.cellMap.face_eq]
+    exact (I.kept_mem_faceSet_iff hs).mpr K.kept_mem
   sourceArc := K.sourceArc.mapTo id (I.cellDarts_eq K.source)
   targetArc := K.targetArc.mapTo id I.outerDarts_eq
   firstSide := K.firstSide
   secondSide := K.secondSide
   boundary := I.transportBoundaryCycle hs K.boundary
   decomposition := by
-    rw [CyclicArc.mapTo_darts, CyclicArc.mapTo_darts, List.map_id, List.map_id]
-    exact K.decomposition
+    have h1 : (K.sourceArc.mapTo id (I.cellDarts_eq K.source)).darts = K.sourceArc.darts :=
+      (CyclicArc.mapTo_darts _ _ _).trans (List.map_id _)
+    have h2 : (K.targetArc.mapTo id I.outerDarts_eq).darts = K.targetArc.darts :=
+      (CyclicArc.mapTo_darts _ _ _).trans (List.map_id _)
+    exact K.decomposition.trans (congrArg₂ (fun (a b : List X.toCombMap.Dart) =>
+      K.firstSide ++ invDarts X a ++ K.secondSide ++ b) h1.symm h2.symm)
   firstSide_length_le := K.firstSide_length_le
   secondSide_length_le := K.secondSide_length_le
   firstSide_norm_le := K.firstSide_norm_le

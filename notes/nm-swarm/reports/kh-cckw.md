@@ -294,3 +294,29 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
   boundary, and planarity alone does not rule the pinch out. That case stays in `PocketPinchPinchedStatement` (hull-respell).
 - Stale offers withdrawn: P2' touching walks landed as kh-ejz's `NoncrossingClosedWalkSides` (26a7858f2), which also adds the
   producer `PocketFaceSet.ofBoundaryCycle`.
+
+## W1 PINCHSPLIT TRANSPORT (09-13, handed by hull-respell for the vertex-explosion induction)
+- Statement: at a pinch `I : PinchSplit.Input X` whose merged faces avoid `K.faces`, the pocket face set transports to
+  `I.diagram` by the identity on darts, still follows the boundary, and `x`, `y` end on different vertices. hull-respell
+  writes the digon doubling, the gap analysis and the induction down to `Unpinched`.
+- LANDED UNVERIFIED 9beb8f992 (orphan, md5 d08848c38ff39d63afe44a210176f4b1 verified via `git show`).
+- First probe 0913-134915-20020 red. The boundary half was already green: `sigma_apply_of_alpha_mem`,
+  `transportBoundaryCycle`, `_boundaryPerm_val`, `walkStep_transport` and `_followsBoundary`. Five errors came from
+  `I.diagram` darts and faces agreeing with `X`'s only by unfolding:
+  - `swap_apply_of_ne_of_ne` could not find `DecidableEq I.diagram.toCombMap.Dart`. Fixed by annotating the
+    classifier binder with `Delta`'s dart type.
+  - Three `rw [kept_mem_faceSet_iff]` steps were not type-correct at instances transparency. Fixed by applying the
+    iff with `exact`.
+  - `rw [mapTo_darts]` in `decomposition` failed for the same reason. Fixed with `congrArg₂` on explicit arc equalities.
+- PROBE GREEN 0913-135730-54647 (base 67ec49f02). The module is BUILT with an empty error index, and every
+  `#audit_axioms` is [propext, Classical.choice, Quot.sound]. The bytes, md5 a68b7a2ae480590649f2965c8951481f, are
+  the ones in the green record. Landed over 9beb8f992 and queued for wiring.
+- New orphan `GGT/VanKampen/Estimating/OsinPocketPinchSplit`:
+  - namespace `PinchSplit.Input`: `sigma_apply_of_alpha_mem`, `transportBoundaryCycle hs B`, `transportBoundaryCycle_cycle`,
+    `transportBoundaryCycle_boundaryPerm_val`, `walkStep_transport`, `transportBoundaryCycle_followsBoundary hs B h`;
+    `vertexOf_eq_of_diagram` (the split refines vertices), `sameCycle_x_of_stretch hn hy`, `sameCycle_y_of_stretch hn hx`,
+    and `vertexOf_x_ne_y`, by counting against `I.vertexCount_eq`.
+  - namespace `PocketFaceSet`: `pinchSplit K I hs : PocketFaceSet D eps I.diagram lo hi`, the rfl lemmas `pinchSplit_faces`,
+    `_source`, `_kept`, `_boundary_cycle`, `_firstSide`, `_secondSide`, plus `_sourceArc_darts`, `_targetArc_darts`,
+    `_targetArc_start`, and `pinchSplit_followsBoundary`.
+- RESIDUAL of the pinch (unchanged, hull-respell's induction): `PocketPinchPinchedStatement`.
