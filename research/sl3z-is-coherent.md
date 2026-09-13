@@ -55,6 +55,8 @@ finitely presented. This is the affirmative answer to Serre's question
     alone gives nothing.
 - 2026-09-13 (z3-04-sl3z-incoherent): every thin witness meets every
   maximal-parabolic unipotent radical in rank at most one
-  (`sl3z-dense-with-unipotent-lattice-has-finite-index`, pending the Tits
-  citation). A finitely generated subgroup containing a lattice of such a
-  radical is therefore finitely presented.
+  (`sl3z-dense-with-unipotent-lattice-has-finite-index`). Its finite-index
+  input `sl3z-congruence-elementary-generators-have-finite-index` is proved by
+  z3-04-sl3z-coherent (0796f76859) through `E(m) >= Γ(m^2)` and Bass–Milnor–Serre,
+  without Tits' note. A finitely generated subgroup containing a lattice of
+  such a radical is therefore finitely presented.

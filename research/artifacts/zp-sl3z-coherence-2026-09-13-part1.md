@@ -19,8 +19,8 @@ the arXiv API was rate limited.
 | `sl3z-incoherent-via-euler-fibered-subgroup` | route | Wang-sequence proof |
 | `sl3z-contains-rfrs-cd2-subgroup-with-positive-b2` | open | criterion 2 prerequisite |
 | `sl3z-incoherent-via-rfrs-cd2-positive-b2` | route | via `virtually-rfrs-cd2-coherence-characterization` (Fisher–Linton–Sánchez-Peralta, arXiv:2603.16763v1, Cor. 4.1) |
-| `sl3z-dense-with-unipotent-lattice-has-finite-index` | open pending citation | Venkataramana-type statement for SL_3, self-contained modulo Tits' `E(m)` finite index |
-| `sl3z-congruence-elementary-generators-have-finite-index` | open (citation to check) | Tits 1976, recalled |
+| `sl3z-dense-with-unipotent-lattice-has-finite-index` | established through its route once the input below compiles | Venkataramana-type statement for SL_3 |
+| `sl3z-congruence-elementary-generators-have-finite-index` | proof route by z3-04-sl3z-coherent (0796f76859) | `E(m) >= E_3(Z, m^2) = Γ(m^2)` (Bass–Milnor–Serre Cor. 4.3); Tits' note not needed |
 
 ## 2. Profile of any witness
 
@@ -32,8 +32,8 @@ Let `N <= SL_3(Z)` be finitely generated and not finitely presented.
    and every infinite-order element has polycyclic centralizer.
 3. `N` meets the integral points of every maximal-parabolic unipotent radical
    in rank at most one, and contains no finite-index subgroup of a rational
-   conjugate of the integral Heisenberg group. This is conditional on the
-   Tits citation.
+   conjugate of the integral Heisenberg group. The finite-index input is now
+   proved without Tits' note (see §7).
 4. If `N = ker(G -> Z)` for a finitely presented `G <= SL_3(Z)`, then `G` is
    thin too. `G/N` embeds in `Out(N)`, because the centralizer of the
    Zariski-dense `N` is trivial. The monodromy fixes the conjugacy class of
@@ -129,8 +129,8 @@ property. So `C` must be thin. Combination theorems for thin subgroups of
 
 ## 5. Sharpest next targets
 
-1. Verify Tits' `E(m)` finite-index theorem from the source and land the
-   citation route; that establishes `sl3z-dense-with-unipotent-lattice-has-finite-index`.
+1. Done by z3-04-sl3z-coherent (0796f76859): `E(m)` has finite index through
+   `E(m) >= Γ(m^2)`, which establishes `sl3z-dense-with-unipotent-lattice-has-finite-index`.
 2. Decide whether one-ended hyperbolic groups of cd 2 with `chi > 0` admit
    discrete faithful representations into `SL_3(R)`, first at all, then with
    integral image. A general "no" would push (C2) to non-hyperbolic RFRS
@@ -160,3 +160,23 @@ finite-index part of `H` inside it.
   a cubic field `K`. Then `Q[H_1] <= K` and `H_1` is abelian. This sub-case
   gives a short independent argument for the torus part of the
   classification.
+
+## 7. Independent check of the level-squared commutator identity
+
+`sl3-level-q-elementary-group-contains-e3-of-q-squared` (z3-04-sl3z-coherent)
+rests on the identity, for distinct `i, j, l` and `a, b ∈ q`, `c ∈ A`:
+
+`e_ji(c) e_ij(ab) e_ji(-c) = [e_jl(ca) e_il(a), e_li(-bc) e_lj(b)]`.
+
+Check. Put `x = e_jl(ca) e_il(a) = I + u e_l^T` with `u = a(e_i + c e_j)`, and
+`y = e_li(-bc) e_lj(b) = I + e_l v^T` with `v = b(e_j - c e_i)`. The cross
+term `E_li E_lj` vanishes. Then `e_l^T u = 0`, `v^T e_l = 0`,
+`v^T u = ab(c - c) = 0`, and `e_l^T e_l = 1`.
+
+- `xy = I + u e_l^T + e_l v^T + u v^T`.
+- Multiplying by `x^-1 = I - u e_l^T` gives `I + e_l v^T + u v^T`.
+- Multiplying by `y^-1 = I - e_l v^T` gives `I + u v^T`.
+
+On the other side, `e_ji(c) e_ij(ab) e_ji(-c) = I + ab (e_i + c e_j)(e_j - c e_i)^T = I + u v^T`.
+The identity holds. Every factor of the commutator is a level-`q`
+elementary matrix, because `ca, bc ∈ q`.
