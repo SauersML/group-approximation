@@ -58,10 +58,14 @@ holds for `A = F_2[2V]`, with `e = e^(1)` and `f = f^(1)`. In particular `c e b 
 `(K_0(T), [T])` has no state. When it is solvable, `A` is not directly finite and `2V` is not surjunctive.
 
 *Proof.*
-- **Theorem B applies.** The node's Scope paragraph and [CS] Section 2 say it holds verbatim for `F_2[H]` whenever `H` contains `g` and
-  the `π_M` and satisfies `D(H) ⊆ H`. Here `H = 2V` contains `g ⊗ 1` and `π_M ⊗ 1`, and Section 1 gives
-  `D(2V) ⊆ 2V`. The one commutation it uses holds: `D(h)` commutes with every ternary permutation unit `π ⊗ 1`,
-  since `(π ⊗ 1) D(h) (π ⊗ 1)^(-1) = Σ_i (s_(τ(i)) ⊗ 1) h (t_(τ(i)) ⊗ 1) = D(h)`.
+- **Theorem B applies.** The node's Scope paragraph and [CS] Section 2 cover subgroups of the units of `R`. `2V`
+  lies in the units of `B`, so it is not such a subgroup. The proof of [CS] Theorem B (Sections 0–2) uses only
+  three inputs, and each holds for `H = 2V`.
+  - The identities among `g`, the `D^j(g)` and the `π_M` hold in `V`, and `x -> x ⊗ 1` carries them into `2V`,
+    since `D(X ⊗ 1) = D_2(X) ⊗ 1`.
+  - `D` is an injective endomorphism of `2V` (Section 1).
+  - `D(h)` commutes with every ternary permutation unit `π ⊗ 1`, `g ⊗ 1` included, since
+    `(π ⊗ 1) D(h) (π ⊗ 1)^(-1) = Σ_i (s_(τ(i)) ⊗ 1) h (t_(τ(i)) ⊗ 1) = D(h)`.
 - **Directly finite fails.** From `c e b = 1`, put `d = c` and `a = e b`, so `d a = 1`. If `a d = 1`, then
   `e (b c) = 1`, hence `e = e · e b c = e b c = 1`. That is false, because `g ⊗ 1 != 1`.
 - **Not surjunctive.** Apply `stable-finiteness-failure-refutes-surjunctivity`. QED

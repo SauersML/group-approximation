@@ -22,9 +22,12 @@ injective and not surjective.
 - `V <= 2V`, so `thompson-v-nonsurjunctive` implies this claim
   (`thompson-v-nonsurjunctivity-ascends-to-brin-thompson-2v`). The linear gate for `2V` is implied by the
   gate for `V` (artifact Corollary 2.2).
-- The binary Theorem B (`binary-cyclic-corner-full-iff-complement-corner-has-no-state`) applies to `F_2[2V]`,
-  because `2V` contains `g` and the nine-cylinder units and is stable under the halving `D` (artifact
-  Proposition 2.1).
+- The binary Theorem B (`binary-cyclic-corner-full-iff-complement-corner-has-no-state`) holds for `F_2[2V]`
+  (artifact Proposition 2.1). Its scope paragraph covers only subgroups of the units of `L_(F_2)(1,2)`. Its proof
+  uses three inputs, and each holds in `2V`:
+  - the identities among `g`, its halvings and the nine-cylinder units;
+  - an injective halving endomorphism `D` of the host;
+  - `D(h)` commuting with `g`.
 - `2V` contains the ternary baker unit `u = Σ_i s_i ⊗ t_i`, which conjugates `V ⊗ 1` onto `D(V) ⊗ 1`. So the
   halving endomorphism of Theorem B is inner in `2V`. No element of `V` conjugates `V` into `D(V)`
   (artifact Lemma 2.3).
