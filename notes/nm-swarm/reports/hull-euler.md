@@ -28,7 +28,8 @@ The lane consumes three peer modules:
 - ghw-charp2's `Estimating/OsinAppendixEulerExteriorLinked` (cbca8029b): `linkedComponentO`,
   `endCellsO`, `ExtPhiData.mono`, `linked_linkedComponentO`, `card_add_six_le_linkedComponentO`.
 - leavitt-units' `Estimating/OsinAppendixEulerCornerTwoGon` (d0a41c1da): C4.
-- hs-vanishes' `Estimating/OsinAppendixEulerExteriorCellFaces` (bdd687708): C5.
+- hs-vanishes' `Estimating/OsinAppendixEulerExteriorCellFaces` (a6a2cadda): C5 and its proof
+  `cellFaceCountInput`.
 
 On origin/main the root imports Subdivided, RegionFaces, Phi, PhiCount, PhiBound and Hereditary,
 and kh-ejz's `Estimating/OsinAppendixEulerMultigraph`. Count, Exterior, ExteriorCount,
@@ -70,13 +71,23 @@ theorem phiPrimeCountInput_of_smallFaces
 | Prop | Module, SHA | Lane | State |
 |---|---|---|---|
 | `CornerTwoGonInput` (C4) | `OsinAppendixEulerCornerTwoGon`, d0a41c1da | leavitt-units | stated, compiles as an import in 0913-093143-91859 |
-| `CellFaceCountInput` (C5) | `OsinAppendixEulerExteriorCellFaces`, bdd687708 | hs-vanishes | stated, green record 0913-090700-76588 |
+| `CellFaceCountInput` (C5) | `OsinAppendixEulerExteriorCellFaces`, a6a2cadda | hs-vanishes | proved: `cellFaceCountInput`, green record 0913-100213-68371 |
 | `TwoGonHoldsInput` (C6′) | `OsinAppendixEulerSmallFaces`, 4beca2743 | debt-conditional | stated, green record 0913-093143-91859 |
 | `EmptyTwoGonInput` (C6) | `OsinAppendixEulerEmptyTwoGon`, 16d923f27 | fff-periodic | proved: `emptyTwoGonInput_holds` (2aa17abb0) |
 
 `emptyTwoGonInput_holds` (`Estimating/OsinPocketDiscEmptyTwoGon.lean`) takes no Prop hypothesis.
 Probe record `fff-periodic.green.0913-091627-32913` reads `PROBE GREEN`, and its md5 equals the
 file on origin/main. The earlier record `0913-090831-85897` reads `PROBE FAILED rc=1`.
+
+`cellFaceCountInput (D) (eps) (W) : CellFaceCountInput D eps W`
+(`Estimating/OsinAppendixEulerExteriorCellFaces.lean`, a6a2cadda) also takes no Prop hypothesis.
+Checked 0913:
+- Probe record `hs-vanishes.green.0913-100213-68371` reads `PROBE GREEN`, and its md5 equals the
+  file on origin/main.
+- The definitions of `CellFaceCountInput` and `HoldsCellO` are the same as in bdd687708.
+- The file has no `sorry`, `axiom` or `native_decide`, and the theorem carries `#audit_axioms`.
+- The new import `OsinAppendixEulerHereditary` was already visible to SmallFaces through
+  `OsinAppendixEulerCount`. So SmallFaces needs no new probe.
 
 The statements, with `C := linkedComponentO E a₀` over `S.diagram`:
 
@@ -159,7 +170,9 @@ fff-periodic and nm-endpoints have been told.
 
 - **C1, C2, C3.** Done: `phiMapO` is a `SubdividedMultigraph`, linked regions give
   `|C| + 6 ≤ 3|V| + t`, and the two-gons are exterior pairs of one cell.
-- **C4, C5.** Stated by leavitt-units and hs-vanishes. The assembly consumes them as stated.
+- **C4.** Stated by leavitt-units. The assembly consumes it as stated.
+- **C5.** Proved by hs-vanishes: `cellFaceCountInput` (a6a2cadda), with the statement of
+  bdd687708 unchanged.
 - **C6′.** `TwoGonHoldsInput`, stated here in the vocabulary of C4 and C5. debt-conditional
   proves it.
 - **C6.** `EmptyTwoGonInput`, proved by fff-periodic.
@@ -172,6 +185,7 @@ inside the proof of `thm:hull` (tex 1636, through Osin's Lemma 9.7(a)).
 
 ## Next
 
-1. When C4, C5 and C6′ are proved, close `PhiPrimeCountInput` through
-   `phiPrimeCountInput_of_smallFaces`, with `#audit_closed_axioms` on the endpoint.
+1. When C4 and C6′ are proved, close `PhiPrimeCountInput` through
+   `phiPrimeCountInput_of_smallFaces` with `hcell := cellFaceCountInput D eps W`, and put
+   `#audit_closed_axioms` on the endpoint.
 2. Then `OsinPhiPrimeCountSectionStatement`, and the census rows.
