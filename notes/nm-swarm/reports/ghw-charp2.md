@@ -1,5 +1,58 @@
 # ghw-charp2 lane report
 
+## Item 3 (09-13): the additive non-archimedean places for GHWFinitelyGeneratedCharZero
+
+Lead order: take the unstarted piece of the residual `GHWFinitelyGeneratedCharZero`, after settling the file name and
+the interface lemma with ghw-assembly.  ghw-assembly had already landed the grid finiteness (`Algebra/IntegerGridFinite`,
+3108f1cc7) and started the archimedean places.  It proposed the non-archimedean statement below for ghw-charp2, and I
+accepted it verbatim.
+
+### Status: CLOSED (interface lemma; this item has no endpoint Prop)
+
+- Compiled evidence: probe 0913-033545-85262 (base a4c5b47db) is PROBE GREEN, with `GHWCharZeroPlaces` and
+  `IntegerPlacesMinpoly` BUILT.  All four declarations depend on `[propext, Classical.choice, Quot.sound]`.  The
+  landed bytes are the probed bytes.
+
+- `GroupApproximation/Algebra/IntegerPlacesMinpoly.lean` (new): `IntegerPlacesMinpoly.exists_places_minpoly_coeff d K hM`.
+  - Setup: `B = ℤ[t_1..t_d]`, `L = Frac B`, `K/L` finite (`K : Type`, `[CharZero K]`), and `M > 0`.
+  - Claim: there are additive valuations `v : Fin r → AddValuation K (WithTop ℤ)` and uniformizers `π` with
+    `v j (π j) = 1` with this property.  Suppose `M^k b` is integral over `B` for some `k` and `-N ≤ v j b` for every
+    `j`.  Then every coefficient of `minpoly L (M^N b)` is `algebraMap G` for some `G ∈ ℤ[t]` of total degree at
+    most `N·[K:L]`.
+- `Kazhdan/GHWCharZeroPlaces.lean`, restated.  By rule 22, no declaration outside the file uses the old statements.
+  - The place bound is sharpened to `w c_i ≤ exp (N·(deg − i))`, in `_le` and in `_le_family`.
+  - `GHW.exists_places_minpoly_coeff` now says that the coefficients of `minpoly L (M^N a)` are integer polynomials of
+    total degree at most `N·[K:L]`.  The old statement was about `M^(N·[K:L]) c_i(a)`.
+
+### Route
+
+- Scaling: `c_i(M^N a) = M^(N(deg−i)) c_i(a)` (`IsIntegrallyClosed.minpoly_smul`, `coeff_scaleRoots`).
+- Valuation bounds:
+  - at `p | M`, the sharp bound gives `v_p(c_i(M^N a)) ≤ exp(−N(deg−i))·exp(N(deg−i)) = 1`;
+  - at the degree place, `c_i(M^N a) ≤ exp(N(deg−i)) ≤ exp(N·[K:L])`.
+- Integrality: `M^k·M^N a` is integral, so the coefficients of `minpoly B` of it lie in `B` and equal
+  `M^(k(deg'−i)) c_i(M^N a)`.  `exists_algebraMap_eq` then clears the `p | M` denominators.
+- Additive form: `ValuationWithTopInt.addVal`, `addVal_eq_one` and `neg_le_addVal_iff`.  The case `b = 0` is trivial.
+
+### Landed
+
+- 0379bac08: `Algebra/IntegerPlacesMinpoly.lean` (new) and the restated `Kazhdan/GHWCharZeroPlaces.lean`.  This was a
+  normal landing on the green record 0913-033545-85262.  ghw-assembly has the SHA and the signature.
+
+### Census and wiring
+
+- Row b6d1590be7ab now also cites `IntegerPlacesMinpoly.exists_places_minpoly_coeff`.  It stays `partial`, because the
+  char-0 Prop is open.
+- Queued `GroupApproximation.Algebra.IntegerPlacesMinpoly ghw-charp2 0379bac08`.  It imports `GHWCharZeroPlaces`,
+  which imports `IntegerGaussValuations`.
+
+### Residual (exact)
+
+- None for this item.
+- Still open, owned by ghw-assembly (the archimedean places over grid points, Noether normalization over ℚ, and the
+  assembly through `hasHaagerupProperty_of_countable_places`; the grid finiteness `IntegerGridFinite` has landed):
+  `GHWFinitelyGeneratedCharZero : ∀ (F : Type) [Field F] [CharZero F] (s : Set (GL (Fin 2) F)), s.Finite → HasHaagerupProperty.{0, 0} (Subgroup.closure s)`.
+
 ## Item 2 (09-13): places over ℚ(t_1..t_d) for GHW characteristic 0
 
 Lead order: characteristic 0 belongs to ghw-assembly, which owns the grid/Nullstellensatz finiteness, the archimedean
@@ -7,6 +60,10 @@ places and the assembly.  ghw-charp2 builds the non-archimedean places over ℚ 
 p | M, `exists_places_over`) on the char-p template.  Printed sentence: tex 1146--1147, the GHW Theorem 4 clause.
 
 ### Status: CLOSED (lemmas; this item has no endpoint Prop)
+
+- Superseded statements: Item 3 (0379bac08) restated the three lemmas below.  The bound is now `exp (N·(deg − i))`, and
+  `exists_places_minpoly_coeff` is about the coefficients of `minpoly L (M^N a)`.  The descriptions below are the
+  d2cf04137 versions.
 
 - `GroupApproximation/Kazhdan/GHWCharZeroPlaces.lean` (new):
   - `GHW.exists_places_minpoly_coeff_le`.  Setup: a place `w` of `L` with uniformizer `π`, and `K/L` finite
@@ -144,6 +201,7 @@ property~\cite[Theorem~4]{GHW}".  `GHWTheoremFour` itself belongs to ghw-assembl
 
 ## Next
 
-- Item 2 is closed.  Waiting for ghw-assembly's feedback on the places interface; I will adapt the statement if
-  they need a different shape (rule 22: grep users and probe them together).  Otherwise I wait for the next item
-  from the lead.
+- Item 3 is closed and landed (0379bac08).  ghw-assembly has the final name and signature of
+  `IntegerPlacesMinpoly.exists_places_minpoly_coeff`.
+- If ghw-assembly needs a different shape while assembling, I will change the statement (rule 22: grep users and
+  probe them together).  Otherwise I take the next item from the lead.
