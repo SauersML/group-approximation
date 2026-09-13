@@ -36,3 +36,8 @@ non-MF machinery.
 - **Where to look.** An extension `0 -> M_fin -> B -> J -> 0` of the Toeplitz-Jacobson algebra in
   which the isometry of `J` does not lift to a one-sided pair of `B` would need two steps. Whether
   such an extension exists is the concrete form of the question.
+- **A finitely generated positive instance (un-hh-extension, unreviewed).** The Toeplitz extension of
+  the Pestov ring in `toeplitz-subshift-kazhdan-group-has-pestov-mf-quotient` has
+  `hh(R) = d(R) = ReR ~= M_inf(A_+)` with quotient `LC(Y,F_2) x| Z`, so one step, and a simple directly
+  finite quotient. Its MF radical is computed there with no relative step: the defect comes from a genuine
+  one-sided pair, and the congruence kernel equals `EL_n(R,J)` over `F_2`.
