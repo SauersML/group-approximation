@@ -26,7 +26,9 @@ This module states the two facts that sentence uses, at printed generality:
 and Osin's Definition 4.25.
 
 `HullSC.FreeProductUnionGeometryStatement` and the `HullSCUnionGeometry*` modules give the free
-product only the manuscript's union alphabet over `Type`. Neither Prop here is proved yet.
+product only the manuscript's union alphabet over `Type`. `GGT/HullLemma35FreeFactors.lean`
+proves `PrintedFreeFactorsHypEmbedded` (`printedFreeFactorsHypEmbedded`). `PrintedHullLemma35` is
+not proved yet.
 -/
 
 namespace GroupApproximation
