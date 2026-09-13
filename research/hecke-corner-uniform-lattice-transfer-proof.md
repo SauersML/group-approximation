@@ -107,6 +107,8 @@ So the corner, with its normalized trace, is Connes-embeddable.
   realization of `tau o rho`.
 
 **Step 7: (HC3).**
+- **Countability.**  `Gamma` is discrete in the second countable space `G`,
+  so it is countable, as (HC0) requires.
 - **Finite stabilizers.**  The stabilizer of `gK` in `Gamma` is
   `Gamma ∩ g K g^(-1)`, a discrete subgroup of a compact group, hence finite.
 - **Finitely many orbits.**  Each double coset `Gamma g K` is open, because

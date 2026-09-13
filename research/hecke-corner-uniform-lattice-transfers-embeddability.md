@@ -39,8 +39,8 @@ into `M` from a *-algebra with no Connes-embeddable tracial state forces
 `Gamma` to be nonhyperlinear.  An example of such a *-algebra is the BCS algebra
 of `mipstar-bcs-tracial-nonru-exists`.
 
-**(HC3) Totally disconnected groups.**  Let `G` be locally compact and totally
-disconnected, `K <= G` compact open, and `Gamma <= G` a uniform lattice
+**(HC3) Totally disconnected groups.**  Let `G` be second countable, locally
+compact and totally disconnected, `K <= G` compact open, and `Gamma <= G` a uniform lattice
 (discrete, with `Gamma\G` compact).  Then `X = G/K` with `x_0 = K` satisfies
 (HC0), and `M_(G,K) := pi(G)'` on `l^2(G/K)` is the Hecke von Neumann algebra
 of `(G, K)`.  Unimodularity is not needed.
