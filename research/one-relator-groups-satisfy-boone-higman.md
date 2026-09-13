@@ -98,4 +98,13 @@ theorem cited here covers it.
      `(Z[1/2] * Z[1/2]) ⋊ Z`
      (`drutu-sapir-group-index-two-squaring-mapping-torus`).
    - So the residual is not only non-residually-finite groups such as
-     Baumslag--Gersten. No imported theorem reaches `DS`.
+     Baumslag--Gersten. No imported theorem reaches `DS`; attempt 6 settles it.
+6. **Power-map ascending HNN steps (2026-09-13).** *Settles `DS`, not the root.*
+   `power-map-free-mapping-tori-satisfy-permutational-boone-higman` puts every
+   ascending HNN extension of `F_n` along `x_i -> x_π(i)^(m_i)` in `B_A`, through
+   `pbh-class-closed-under-relative-holomorphs`. This covers `DS`, by the route
+   `drutu-sapir-bh-via-power-map-mapping-tori`. The root stays open. These are not
+   reached:
+   - Magnus steps over non-free bases, such as Baumslag--Gersten;
+   - ascending steps whose endomorphism is not realized as a partial-conjugation
+     mapping torus in the sense of that claim.

@@ -9,8 +9,10 @@ distinct_from:
   fp-residually-finite-boone-higman: that is Boone--Higman for all finitely presented residually finite groups; this is one residually finite one-relator input.
 ---
 
-**OPEN.** `DS = <a, b | a^2 b^2 a^-2 b^-1>` embeds in a finitely presented simple
-group.
+**ESTABLISHED (2026-09-13)** through `drutu-sapir-bh-via-power-map-mapping-tori`.
+Not independently reviewed. `DS = <a, b | a^2 b^2 a^-2 b^-1>` embeds in a finitely
+presented simple group. It even lies in the permutational class `B_A`, as a member
+of `power-map-free-mapping-tori-satisfy-permutational-boone-higman`.
 
 **What makes it a test case:**
 - **Genuine input.** It is a one-relator group, so it has solvable word problem
@@ -49,10 +51,22 @@ the Baumslag--Gersten group.
 2. **Affine or linear hosts.** *Die.* Affine actions on `Z_p` realize `BS(1,2)`
    self-similarly, but their images are metabelian, so no such action of `DS` is
    faithful. Any faithful linear host is excluded by [DS05].
-3. **Open directions.**
+3. **Other directions (superseded 2026-09-13).**
    - A faithful self-similar action of `DS` or of `K` on a regular rooted tree,
      which is consistent with residual finiteness. That would give Boone--Higman via
-     `fp-self-similar-groups-embed-in-fp-simple-groups`. It is unknown whether such
-     an action exists.
-   - A type (A) actor containing `DS`.
-   - Permanence of `B_A` under ascending HNN extensions of free groups.
+     `fp-self-similar-groups-embed-in-fp-simple-groups`. It is still unknown whether
+     such an action exists.
+   - A type (A) actor containing `DS`: supplied by attempt 4.
+   - Permanence of `B_A` under ascending HNN extensions of free groups: proved for
+     partial-conjugation mapping tori (`pbh-class-closed-under-relative-holomorphs`).
+4. **Relative automorphisms (2026-09-13).** *Succeeds.* Let `B = BS(1,2) = <u, σ>`.
+   The index-two subgroup `K` embeds in `Aut_B(B * F_2) × Z`:
+   - both squaring relations become conjugation by `σ` of the free letters;
+   - the free product structure comes from left multiplication by `u` and by a
+     conjugate of `u` under a second letter.
+
+   `Aut_B(B * F_2)` lies in `B_A` by
+   `pbh-passes-to-relative-free-group-automorphisms`, and `B_A` passes to the
+   index-two overgroup `DS`. Details are in `pbh-relative-holomorph-closure-proof`,
+   `power-map-free-mapping-tori-pbh-proof` and
+   `drutu-sapir-bh-via-power-map-mapping-tori`.
