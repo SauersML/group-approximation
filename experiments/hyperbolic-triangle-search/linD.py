@@ -130,13 +130,22 @@ if __name__ == "__main__":
         print("CAL literal A8 triple ::", analyse("cal8", (mH, mH, mH),
               ([c8[0], c8[1]], [c8[1], c8[2]], [c8[2], c8[0]]), (A8, A8, A8), (1, 1, 1),
               K, om, d, n8, words)); sys.stdout.flush()
-    elif which == "twist":
-        # all 343 projective mu_7-twists (a,b,c) for each candidate: G_i -> PGL_d(K)
+    elif which in ("twist", "twistorbits"):
+        # projective mu_7-twists (a,b,c) for each candidate: G_i -> PGL_d(K). "twistorbits" takes
+        # one representative per orbit of (Z/7)^x acting by multiplication (58 orbits). This is valid
+        # when the modules are rational (permutation modules): Galois conjugation w -> w^j maps the
+        # zero set of twist (a,b,c) onto that of (ja,jb,jc). Optional argv[3] = candidate indices "1,2".
         ns = {}; exec(open("cands.py").read(), ns)
+        sel = [int(s) for s in sys.argv[3].split(",")] if len(sys.argv) > 3 else [1, 2, 3, 4]
+        twl = list(itertools.product(range(7), repeat=3))
+        if which == "twistorbits":
+            twl = sorted(set(min(tuple((j * x) % 7 for x in tw) for j in range(1, 7)) for tw in twl))
+            print("twist orbit representatives:", len(twl)); sys.stdout.flush()
         for k, c in enumerate(ns["CANDS"], 1):
+            if k not in sel: continue
             pr = tuple([E(s) for s in c[X]] for X in "ABC")
             tally = {}
-            for tw in itertools.product(range(7), repeat=3):
+            for tw in twl:
                 res = analyse("c", (mA, mB, mC), pr, (A7, A7, A8), tuple(c["e"]), K, om, d,
                               norm, words, tw)
                 tally[res] = tally.get(res, 0) + 1

@@ -178,15 +178,22 @@ with no eigenbases.
   `t = ω^a α(q)^{e_1}`, `u = ω^b β(y_B)^{e_2}`, `v = ω^c α(p)^{e_3}`.
 - **Why the linear case misses them.** Characteristic polynomials cannot see these twists, because
   `ζ·{all 7th roots} = {all 7th roots}`.
-- **Result.** All `343` twists give the trace ideal `(1)` for all four candidates, over `F_29` and over
+- **Result in characteristics 29 and 43.** All `343` twists give the trace ideal `(1)` for all four candidates, over `F_29` and over
   `F_43` (300 s each).
+- **Result in characteristic 0** (`linD_d7c0_twistorbits_12.out`, `_34.out`).
+  - The modules are rational, so `σ_j: ω -> ω^j` maps the zero set for twist `(a,b,c)` onto the zero set for
+    `(ja, jb, jc)`. So one representative per orbit of `(Z/7)^×` suffices: 58 orbits.
+  - All 58 orbits give `(1)` over `Q(ζ_7)` for all four candidates.
 - **Conclusion (computer-assisted, unreviewed).** `Hom(G_i, PGL_7(K))` is trivial whenever
-  `char K ∈ {29, 43}`. This excludes quotients inside `PSL_7(29^m)` and `PSL_7(43^m)`.
+  `char K ∈ {0, 29, 43}`.
+  - This excludes quotients inside `PSL_7(29^m)` and `PSL_7(43^m)`.
+  - In characteristic 0 it is case (b) of `linear-quotient-exclusion-lifts-from-char-zero` (L1) for `d = 7`.
 - **In dimension 4, characteristic 2,** no twist is possible: `λ·{1, ω, ω², ω⁴}` is one of the two
   eigenvalue types only for `λ = 1`.
 
 **Not covered.**
-- **Projective twists** in characteristic 0 and in characteristics 3, 5, 11, 13.
+- **Projective twists** in odd characteristics other than 29, 43 and 7. The integral twisted certificate over
+  `Z[z]/Φ_7(z)` (`linZ.py twist`) had not finished at this version.
 - **Dimension 7:** characteristic 2 (other modules, for example `1|6` for `A_8`), characteristic 7
   (unipotent edge generators), and all other odd primes. A Gröbner basis over `Z[ζ_7]` would give
   all but finitely many primes; that has not been computed.

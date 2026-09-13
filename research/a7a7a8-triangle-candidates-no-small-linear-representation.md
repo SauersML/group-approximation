@@ -26,8 +26,10 @@ every homomorphism `G_i -> GL_d(K)` with `d <= 7` is trivial.
 **Projective representations `G_i -> PGL_7(K)` are recorded separately.** These are the ones where the lifts of an edge
 generator differ by a 7th root of unity.
 - For `char K ∈ {29, 43}`, all 343 twists give trace ideal `(1)`.
-- In characteristic 0, all 58 Galois orbits of twists give `(1)` for `G_1` and `G_3`; `G_2` and `G_4` are running.
-- The integral version is running.
+- In characteristic 0, all 58 Galois orbits of twists give `(1)` for all four candidates. So
+  `Hom(G_i, PGL_7(K))` is trivial in characteristic 0; this is case (b) of
+  `linear-quotient-exclusion-lifts-from-char-zero`.
+- The integral twisted version, for all other odd characteristics at once, is running.
 - Status: `research/artifacts/hyperbolic-triangle-linear-search-2026-09-13.md` §5.
 
 The claim is computer-assisted (Sage 10.7 / Singular) and unreviewed. For `p = 3, 5` the list of small
