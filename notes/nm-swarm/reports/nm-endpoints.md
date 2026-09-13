@@ -41,7 +41,8 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
   only residual.
 - `93cb4e04f`: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMergeRegion.lean`, the
   value half of the zero-cell pocket merge, built with no shelling (section below). Probe
-  0913-062000-78681 was green on the bytes of main. The module is queued for wiring.
+  0913-062000-78681 was green on the bytes of main. The module is root-imported
+  (GroupApproximation.lean:4970).
 - `decced35e`: `TorsionFreeSectionAssembly` checks `simpleUniqueTraceAtHypEmbedded_closed` with
   `#audit_closed_axioms` instead of `#audit_axioms` (roster item; no statement changed). Probe
   0913-084302-12415 is green and the module is BUILT. It was already root-reachable through
@@ -50,6 +51,10 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
   `KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed` and `Hyperbolic.sharpExistence_closed`
   (root-imported), as ko-closed asked. The owner note now points to fff-periodic's
   `TorsionFreeGreendlingerLeaf`.
+- The ten rows now cite fff-periodic's `TorsionFreeGreendlingerLeaf` forms `*_of_greendlinger`.
+  559636b4a root-imported that module (GroupApproximation.lean:4974), and the rows are re-graded
+  at origin 3c6b4b505. Each carrier takes `hgreendlinger` alone, so every row stays partial. Row
+  8097c371f35d keeps ko-closed's two `_closed` carriers.
 
 ## Zero-cell pocket merge: the value half (lead ruling ~05:00)
 
@@ -95,13 +100,18 @@ This lane owns the value.
   - given `hwalk`, every embedded boundary rotates the pocket cycle
     (`FaceSetBoundary.exists_cycle_eq_rotate`).
 
-## Residual statements (exact, at origin 0358f4537)
+## Residual statements (exact, at origin 3c6b4b505)
 
-1. OPEN: `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`. On
-   main its producers still take `OsinLemma97SectionStatement`
-   (`relativeGreendlingerQuasiGeodesicLeastArea_of_osinLemma97`) or pocket inputs. The pocket
-   layer on `PocketRegion` is still landing. This lane's value half of the zero-cell merge
-   is at 93cb4e04f.
+1. OPEN: `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`. It has
+   no closed producer on main.
+   - The root-imported `relativeGreendlingerQuasiGeodesicLeastArea_of_pocketParts`
+     (Estimating/OsinAppendixGreendlingerPocketParts.lean:131, a452fa727) takes five section
+     Props: `OsinLemma94SectionStatement`, `OsinMultipleEdgeCutSectionStatement`,
+     `OsinLoopCutSectionStatement`, `OsinPhiPrimeCountSectionStatement` and
+     `OsinSectionPocketCutSectionStatement`.
+   - The other producers take `OsinLemma97SectionStatement` (`_of_osinLemma97`), the five parts
+     of `_of_parts`, or `OsinSection97PocketInputsStatement` (`_of_pocketInputs`).
+   - This lane's value half of the zero-cell merge is at 93cb4e04f.
 2. CLOSED: `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}`.
    - It is proved by `HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed`
      (GGT/HullSCLemma51EmbeddedBridgeHolds.lean:20, 18682110d).
@@ -140,15 +150,18 @@ This lane re-grades the rows as walls close and lands no flip. The final roster 
   `TorsionFreeLimitSetEndpoints` and `TorsionFreeSectionAssembly`.
 
 fff-periodic's `TorsionFreeGreendlingerLeaf` (1edf0f7b4, probe 0913-063820-983 green) states 23
-forms `*_of_greendlinger` over hgreendlinger alone. It is queued for wiring but not yet
-root-imported, so the rows keep the root-imported four-leaf carriers. Each four-leaf flip is
-`theorem printedFoo : PrintedFoo := TorsionFreeFourLeaves.printedFoo_of_fourLeaves <walls>`,
-followed by `#audit_closed_axioms`, where `<walls>` are the closed producers above.
-- Walls 2 to 4 are closed, so every flip now waits on wall 1 alone:
-  - walls 1 and 2: `thm:hull`, `lem:saturation`, `HullCommonQuotientStatement`,
+forms `*_of_greendlinger` over hgreendlinger alone. 559636b4a root-imported it
+(GroupApproximation.lean:4974), so the rows now cite it. Each form applies its four-leaf form to
+the closed producers its proof uses. Each flip is
+`theorem printedFoo : PrintedFoo := TorsionFreeGreendlingerLeaf.printedFoo_of_greendlinger <W1>`,
+followed by `#audit_closed_axioms`, where `<W1>` is a closed producer of wall 1.
+- Walls 2 to 4 are closed, so every flip now waits on wall 1 alone. Each form applies:
+  - the bridge producer only: `thm:hull`, `lem:saturation`, `HullCommonQuotientStatement`,
     `FournierFacioQuotientStatement`;
-  - walls 1 to 3: `LiteratureInputs` and `Configuration` (row dab2f2bfe084);
-  - all four walls: `FournierFacioParagraph`, `thm:torsion-free`, `cor:regular-nonmf-algebra`.
+  - the bridge and Kotowski-Ollivier producers: `LiteratureInputs` and `Configuration` (row
+    dab2f2bfe084);
+  - all three producers: `FournierFacioParagraph`, `thm:torsion-free`,
+    `cor:regular-nonmf-algebra`.
 - `hKO` is `KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed`.
 - This lane lands no reduced-leaf wrapper, since reshaping a binder retires no finding.
 
@@ -165,8 +178,7 @@ followed by `#audit_closed_axioms`, where `<walls>` are the closed producers abo
   - 2f55113239ce: lem:saturation;
   - 8097c371f35d: the Fournier-Facio sentence;
   - dab2f2bfe084: the G_0 sentence.
-- None of them retires a baseline finding: a four-leaf form reshapes a conditional, it does not
-  discharge one.
+- None of them retires a baseline finding: each carrier still takes `hgreendlinger`.
 - No row was added for the proof-step rows bcc99703f838, 2d1cd22e5f49, 2f997e5af4e6 and
   721da4c14d11, because no four-leaf theorem proves those sentences exactly.
 - The merged census unions the carriers of every lane's row on a hash:
@@ -175,25 +187,26 @@ followed by `#audit_closed_axioms`, where `<walls>` are the closed producers abo
     header, so that key looks misplaced.
   - 8097c371f35d also carries hl-lemma46's row.
   - dab2f2bfe084 also carries cite-hull's row.
-  - All ten hashes also carry fff-periodic's rows, on the `TorsionFreeGreendlingerLeaf`
-    `*_of_greendlinger` forms (1edf0f7b4, not yet root-imported at a73ab6f78).
-- hull-bridge's `TorsionFreeGreendlingerForms` (99db3338a, queued, no importers) gives 17 more
-  endpoints over hgreendlinger alone, built on this lane's five least-area modules. No row of this
-  lane names it. The lead checked that it does not collide with `TorsionFreeGreendlingerLeaf`.
+  - All ten hashes also carry fff-periodic's rows. They cite the same `*_of_greendlinger`
+    carriers and record the four-leaf forms these supersede.
+- hull-bridge's `TorsionFreeGreendlingerForms` (99db3338a, root-imported at 559636b4a,
+  GroupApproximation.lean:4989) gives 17 more endpoints over hgreendlinger alone, built on this
+  lane's five least-area modules. No row of this lane names it. The lead checked that it does not collide with `TorsionFreeGreendlingerLeaf`.
   - The two modules use separate namespaces, and both stay.
   - Four `_of_greendlinger` names occur in both, which is harmless across namespaces:
     hullCommonQuotient, literatureInputs, fournierFacioParagraph and
     hullSmallCancellationTorsionFreePrinted.
   - hull-bridge gave census the mapping for its 54 baseline lines.
 
-## Wall status on main (checked 2026-09-13 at origin 0358f4537)
+## Wall status on main (checked 2026-09-13 at origin 0358f4537, wiring rechecked at 3c6b4b505)
 
 - Walls 2, 3 and 4 are closed (above).
 - theoremc-retire's `TheoremCAssemblyFoldLeaf` states Theorem C over hgreendlinger, hbridge and
   hfold. The root imports it (GroupApproximation.lean:4961).
-- Its `TheoremCAssemblyGreendlingerLeaf` (c5f953323, queued for wiring) states Theorem C over
-  hgreendlinger alone, per its wire-queue entry: `manuscriptTorsionFreeFullMFRadical_of_greendlinger`
-  and `manuscriptTorsionFreeSimplified_of_greendlinger`.
+- Its `TheoremCAssemblyGreendlingerLeaf` (c5f953323, root-imported, GroupApproximation.lean:4969)
+  states Theorem C over hgreendlinger alone, per its wire-queue entry:
+  `manuscriptTorsionFreeFullMFRadical_of_greendlinger` and
+  `manuscriptTorsionFreeSimplified_of_greendlinger`.
 - Wall 1 has no closed producer. No closed producer of `OsinLemma97SectionStatement` has
   landed.
 - `HullCitationSentences.printedHullTheorem312*` and `printedSaturationHullPair`, and
@@ -249,8 +262,8 @@ row names the closed endpoint and says "retires open-predicate <decl>".
 
 - The value half of the zero-cell merge is on main and green, and `hrot` is agreed with
   hull-select (section above). The two offered lemmas get built only if hull-select asks.
-- Move the ten rows onto whichever module is root-imported first: `TorsionFreeGreendlingerLeaf`
-  (fff-periodic) or `TorsionFreeGreendlingerForms` (hull-bridge).
+- The ten rows cite `TorsionFreeGreendlingerLeaf` (root-imported at 559636b4a). Once wall 1 has a
+  closed producer, re-grade them onto the closed flips, which fff-periodic owns.
 - `OsinDescentStepInput` is RETIRED as off route (lead, 2026-09-13; audit-sec5 and
   dgo-analytic agree). This lane built nothing on it and deleted nothing. dgo-analytic adds the
   docstring note.
