@@ -129,3 +129,21 @@ Property (T) closes the Higson--Kasparov route for both.
     about this root.
   - A K-theory defect of the quotient `C*_(E_M) G -> C*_r G` would refute one
     of the two conjectures at trivial coefficients. No mechanism controls it.
+- **Module quotients over a non-exact group.** Live route
+  `bc-counterexample-via-module-k-inexactness`.
+  - `k-inexact-module-triple-refutes-trivial-coefficient-bc` (established) runs the
+    Higson--Lafforgue--Skandalis chase on
+    `C_0(V^ \ W^perp) ⋊_r G -> C*_r(V ⋊ G) -> C*_r((V/W) ⋊ G)`. It uses the
+    Chabert--Echterhoff transfer and half-exactness of `K^top`
+    (`amenable-kernel-bc-transfer-and-ktop-half-exactness`).
+  - A middle-term K-defect refutes the conjecture with trivial coefficients for `V ⋊ G`
+    (surjectivity) or for `(V/W) ⋊ G` (injectivity).
+  - Fences:
+    - `split-quotients-give-exact-reduced-crossed-products`: module splittings, finite
+      quotients and co-amenable sections are exact, while permutational wreath quotients
+      `F_p wr G -> F_p wr_(G/H) G` escape;
+    - `module-dual-actions-have-no-wandering-open-sets`: no proper open orbit, so no
+      transplanted ghost;
+    - `window-defect-forces-module-triple-inexactness`: a sufficient C*-criterion, a
+      local-to-global gluing defect of an algebraic subshift.
+  - Open input: `some-nonexact-group-has-a-k-inexact-module-triple`.
