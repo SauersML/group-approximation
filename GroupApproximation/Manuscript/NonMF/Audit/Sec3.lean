@@ -15,7 +15,6 @@ import GroupApproximation.KOne.ClassicalKOne
 import GroupApproximation.KOne.LeavittKOneScalarKernel
 import GroupApproximation.KOne.LeavittKOneScalarQuotient
 import GroupApproximation.KOne.StableWhitehead
-import GroupApproximation.Leavitt.AryLeavitt
 import GroupApproximation.Leavitt.AryPurelyInfinite
 import GroupApproximation.Leavitt.BinaryLeavittSimple
 import GroupApproximation.Leavitt.CongruenceSubgroups
@@ -29,13 +28,17 @@ import GroupApproximation.Leavitt.PreusserAssembly
 import GroupApproximation.Leavitt.ProperlyInfiniteUnit
 import GroupApproximation.Leavitt.RankTwoNormalGeneration
 import GroupApproximation.Leavitt.UniversalOneSidedPairRing
+import GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral
 import GroupApproximation.Manuscript.NonMFSentences.BinaryExampleSentences
 import GroupApproximation.Manuscript.NonMFSentences.CountableAbelianMFPrintedRoute
+import GroupApproximation.Manuscript.NonMFSentences.EJZCitationSentences
 import GroupApproximation.Manuscript.NonMFSentences.FullDefectAllRanksSentences
 import GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark
 import GroupApproximation.Manuscript.NonMFSentences.HeadlineCitationSentences
 import GroupApproximation.Manuscript.NonMFSentences.LeavittKOneFormulaSentences
 import GroupApproximation.Manuscript.NonMFSentences.LeavittKOneQuotientEvaluations
+import GroupApproximation.Manuscript.NonMFSentences.LeavittMFQuotientBothInclusions
+import GroupApproximation.Manuscript.NonMFSentences.LeavittMFQuotientDiagonalSentence
 import GroupApproximation.Manuscript.NonMFSentences.LeavittMFQuotientSentences
 import GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsCongruencePrinted
 import GroupApproximation.Manuscript.NonMFSentences.MFQuotientUnitsCornerUnits
@@ -53,9 +56,13 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingProperIsome
 import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingRankTwo
 import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingUnconditional
+import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonBlockAction
+import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonFiniteMatrices
+import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonKernelFinitary
 import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankFourSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankTwoInert
 import GroupApproximation.Manuscript.OneSidedMFRadical.KhanhThanhDecompositionClosed
+import GroupApproximation.Manuscript.OneSidedMFRadical.KhanhThanhDiagonalDecomposition
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFHomKernel
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientCanonicalKOne
 import GroupApproximation.Manuscript.OneSidedMFRadical.MFQuotientUnitsAGPProof
@@ -238,6 +245,8 @@ with $a\in R$. -/
 /-! ## L872 `718cc7b04afd`: For $i=1,2,3$, set -/
 
 #audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_compressorPieceDef
+#audit_axioms GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.PrintedCompressorPieces
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.printedCompressorPieces
 
 /-! ## L872 `fa78bbc31649`: Here $e^2=e$ and $es=te=0$. -/
 
@@ -259,6 +268,8 @@ $u=u_3u_2u_1\in\EL_4(R)$ is the matrix -/
 /-! ## L888 `c0383f82a141`: invertible as a product of elementary matrices. -/
 
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_compressorInvertible
+#audit_axioms GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.PrintedCompressorInvertible
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.printedCompressorInvertible
 
 /-! ## L893 `3e97a39311f3`: So $uLu^{-1}\le L$, and \eqref{eq:intertwine} gives the last
 assertion. -/
@@ -275,6 +286,8 @@ since on the right the increment $sat\cdot(s,\ldots,et^{j-1})$ from row $j$ of $
 /-! ## L899 `d1142160bf17`: The element -/
 
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_centralMark
+#audit_axioms GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.PrintedCentralMark
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.printedCentralMark
 
 /-! ## L904 `0f4f9e94cc50`: Both $uc$ and $e_{12}(e)u$ equal $u+et\,E_{14}$: the last column of
 $uc$ is $(e,et,et^2,t^3)^{\mathsf T}(1+et)$ and $e^2=e$, $te=0$, while … -/
@@ -291,6 +304,10 @@ $[e_{12}(e),e_{23}(1)]=e_{13}(e)$ gives the second identity. -/
 diagonal matrix of this shape commutes with every $\operatorname{diag}(A,1)$, so … -/
 
 #audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingSentences.manuscriptSentence_centralMarkCentral
+#audit_axioms GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.PrintedCentralMarkCentral
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.printedCentralMarkCentral
+#audit_axioms GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.core_isBlockDiagOne
+#audit_axioms GroupApproximation.Manuscript.NonMF.RingCompressionCellGeneral.centralMarkMatrix_commute_blockDiagOne
 
 /-! ## L919 `29118a9b250c`, `5cbedadd4606`: Let $R$ be a countable unital associative ring. -/
 
@@ -311,6 +328,7 @@ is trivial. Every homomorphism from $\EL_4(\mathcal C)$ to an MF group is … -/
 /-! ## L936 `0939d33e1ff4`: The ring $\mathcal C$ is nonzero, since it maps onto $L_{\F_2}(1,2)$,
 and finitely generated, so both groups have property~\textup{(T)} … -/
 
+#audit_closed_axioms GroupApproximation.Manuscript.NonMFSentences.EJZCitationSentences.manuscriptSentence_universalRingBothGroupsPropertyT
 #audit_closed_axioms GroupApproximation.Manuscript.NonMFSentences.UniversalRingSentences.manuscriptSentence_universalRingPrintedReasons
 #audit_closed_axioms GroupApproximation.Manuscript.NonMFSentences.UniversalRingSentences.universalToLeavitt_surjective
 #audit_closed_axioms GroupApproximation.Manuscript.NonMFSentences.HeadlineCitationSentences.manuscriptSentence_propertyTGivesFinitelyGenerated
@@ -438,15 +456,6 @@ $e_{12}(r)$ to $e_{ij}(\pm r)$ for all $i\ne j$, so the copy of $\EL_2(R)$ on �
 every homomorphism from $\EL_n(R)$ to an MF group be trivial. -/
 
 #audit_closed_axioms GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.manuscriptSentence_hypothesisNeedNotPass
-
-/-! ## L1008 `a4b5b1a0504a`: The non-MF conclusion passes up from corners: if a nonzero
-idempotent $p\in R$ is such that the ring $pRp$, with unit $p$, satisfies the hypothesis,
-… -/
-
-#audit_closed_axioms GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.manuscriptSentence_cornerPassesUp
-#audit_axioms GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.cornerElementaryHom_injective
-#audit_axioms GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.cornerElementaryHom_val
-#audit_axioms GroupApproximation.Manuscript.NonMFSentences.FullDefectCornerRemark.isOperatorMF_of_injective'
 
 /-! ## L1017 `017719ec2a80`: The same conclusion holds for $R=L_k(1,m)$, for every countable
 field $k$ and every $m\ge2$. -/
@@ -638,11 +647,24 @@ signed permutations, hence $\EL_n(R,ReR)$. -/
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptSentence_sandwichesAndRelativeElementaryKilled
 #audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.relativeElementary_span_le_of_elGen_mem
 
+/-! ## L1122 `0a08ffd095d6`: For $J$ the inclusion of Proposition~\ref{prop:torsion-defect-ring}
+is an equality. -/
+
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.manuscriptSentence_jacobsonRadical
+
+/-! ## L1122 `11137e57b26d`: The algebra $J$ acts faithfully on $V=\F_2^{(\mathbb N)}$ by the
+shift, $e=1-st$ is the projection onto the first vector $b_0$ of the standard basis … -/
+
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.manuscriptSentence_jacobsonShiftAction
+
 /-! ## L1122 `754a868fc8f5`: So $\EL_n(J,JeJ)$ is this kernel; the quotient
 $\EL_n(\F_2[z,z^{-1}])$ is residually finite, so MF, and -/
 
 #audit_axioms GroupApproximation.JacobsonLaurent.manuscriptSentence_laurentElementaryResiduallyFiniteMF
 #audit_axioms GroupApproximation.JacobsonLaurent.isOperatorMF_of_injective_into_binaryLaurentGL
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.manuscriptSentence_jacobsonKernelFinitary
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.manuscriptSentence_jacobsonRadical
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.radicalEquivSLUnion
 
 /-! ## L1122 `76588fb18d3b`: Let $\GL_{\mathrm{fs}}(V^n)$ be the group of automorphisms $g$ of
 $V^n$ such that $g-I$ has finite matrix support in this basis, a condition stronger … -/
@@ -655,13 +677,18 @@ $V^n$ such that $g-I$ has finite matrix support in this basis, a condition stron
 of transvections, and each transvection is a relative root $e_{ij}(f_{uv})$ or, … -/
 
 #audit_axioms GroupApproximation.FinitaryLinear.manuscriptSentence_binaryGLfsProductOfTransvections
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.blockAct_elGen_matUnit
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.blockAct_commutator_matUnit
 
-/-! ## L1145 `3009704fef89`: Three coordinates carry
-property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}, and the fourth makes the compression by $s$
-invertible. -/
+/-! ## L1122 `b47d06c5c362`: The Toeplitz--Jacobson algebra $J=\F_2\langle s,t\mid ts=1\rangle$
+has $1-st\ne0$ of order two, while $J/J(1-st)J\cong\F_2[z,z^{-1}]\ne0$, so $1-st$ … -/
 
-#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankFour.manuscriptSentence_threeCoordinatesCarryPropertyT
-#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonRankFour.manuscriptSentence_fourthCoordinateMakesCompressionInvertible
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.manuscriptSentence_jacobsonQuotientLaurent
+
+/-! ## L1122 `d5e56b196927`: The kernel of $\EL_n(J)\to\EL_n(\F_2[z,z^{-1}])$ lies in
+$\GL_{\mathrm{fs}}(V^n)$. -/
+
+#audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonSymbol.manuscriptSentence_jacobsonKernelFinitary
 
 /-! ## L1145 `61b6abd03b91`: The rank four is three plus one. -/
 
@@ -943,13 +970,6 @@ $\Rad_{\mathrm{MF}}(H)=[H,H]=\EL_d(R)$ and -/
 #audit_axioms GroupApproximation.LeavittKOneFormulaSentences.manuscriptSentence_quotientByElementaryIsScalarQuotient
 #audit_closed_axioms GroupApproximation.LeavittKOneFormulaSentences.manuscriptLeavittKOneFormula
 
-/-! ## L1298 `dcf6fa4be4de` (definition): Let $k$ be a countable field, let $d\ge2$, let
-$R=L_k(1,d)$, and let $H=R^\times$. -/
-
-#audit_axioms GroupApproximation.AryLeavitt.AryLeavittAlgebra
-#audit_axioms GroupApproximation.LeavittKOneFormulaSentences.PrintedLeavittMFQuotientFull
-#audit_closed_axioms GroupApproximation.LeavittKOneFormulaSentences.manuscriptLeavittMFQuotientFull
-
 /-! ## L1307 `3c68c15758e8`: Theorem~\ref{thm:mf-quotient-units} identifies the radical with
 $[H,H]$ and the quotient with $K_1(R)$. -/
 
@@ -962,11 +982,18 @@ the abelian group of diagonal matrices with entries in $k^\times$, which … -/
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.KhanhThanhDiagonal.scalarSurjective_everyArity
 #audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.LeavittKOneFormula.scalarKernel
 #audit_closed_axioms GroupApproximation.LeavittKOneFormulaSentences.manuscriptLeavittKOneFormula
+#audit_axioms GroupApproximation.LeavittMFQuotientDiagonalSentence.PrintedKhanhThanhSentence
+#audit_closed_axioms GroupApproximation.LeavittMFQuotientDiagonalSentence.manuscriptSentence_khanhThanhPrinted
+#audit_axioms GroupApproximation.LeavittMFQuotientDiagonalSentence.mem_printedDiagonal_iff
+#audit_axioms GroupApproximation.Manuscript.OneSidedMFRadical.KhanhThanhDiagonal.printedDiagonal
 
 /-! ## L1307 `f6962254d259`: So $[H,H]\le\EL_d(R)$, while $\EL_d(R)\le[H,H]$ because every
 homomorphism from $\EL_d(R)$ to an MF group is trivial … -/
 
 #audit_closed_axioms GroupApproximation.Manuscript.OneSidedMFRadical.KhanhThanhDiagonal.manuscriptSentence_commutatorInElementaryPrinted
+#audit_axioms GroupApproximation.LeavittMFQuotientBothInclusions.PrintedLeavittBothInclusions
+#audit_closed_axioms GroupApproximation.LeavittMFQuotientBothInclusions.manuscriptSentence_bothInclusionsPrinted
+#audit_axioms GroupApproximation.LeavittMFQuotientBothInclusions.elementary_le_commutator_of_trivial
 
 /-! ## L1320 `6d3ca647302e`: For $d=2$ the quotient is trivial for every countable field $k$, so
 every homomorphism from $L_k(1,2)^\times$ to an MF group is trivial. For … -/
