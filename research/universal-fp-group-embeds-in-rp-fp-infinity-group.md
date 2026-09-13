@@ -94,6 +94,16 @@ containing an `F_∞` subgroup of finite index.
   have an `F_∞` host? That is the open claim
   `type-fn-plus-1-hosts-for-all-n-give-f-infinity-hosts`, and it is where the
   two parts of Problem 1.1 could come apart.
+- **Split-edge rope containers: dead at level 3** (established:
+  `split-edge-hnn-with-non-fp2-edge-is-not-fp3`). Suppose an HNN container has
+  a finitely generated, non-`FP_2` edge group `L`, for instance Higman's double
+  `F *_R F`, one of whose images is a retract of the vertex group with an
+  `FP_2` kernel, while the other image passes through an `FP_2` subgroup. Then
+  the container is never `FP_3`, on product coefficients, even when it is
+  finitely presented and an integral homology circle. This kills the
+  acyclic-host twisted rope container
+  (`acyclic-host-twisted-rope-container-is-never-fp3`). So a rope-shaped host
+  has to embed the double without a split retraction on either side.
 - **Defect criterion for HNN hosts** (standard; not yet a node). Let
   `H = HNN(V, L', α, β)` be finitely generated and `X = ∏_Λ ZH`. By the
   Bieri--Eckmann criterion, `H` is of type `FP_n` iff `H_k(H; X) = 0` for
