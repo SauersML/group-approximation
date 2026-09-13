@@ -120,3 +120,35 @@ as open even in the arithmetic Bruhat--Tits setting.  If it were proved here,
 horn, since `K` has no nontrivial finite quotients.  This is the exact missing
 stability theorem, not a consequence of property `(T)` or local ball
 rigidity.  The complete source audit is in the attached artifact.
+
+## Attempts
+
+Added 2026-09-13 by lane ex-fp-kazhdan-titz-witzel. It indexes what the graph already records
+about the gate.
+- **Smaller forms of the gate.**
+  - `titz-witzel-sofic-gate-has-only-seven-relators`: three variables and seven essential
+    relators.
+  - `titz-witzel-sofic-gate-two-generators-four-approximate-relators`: two variables and four
+    approximate relators.
+- **Structured models: each collapses the mark or keeps a linear defect.**
+  - `titz-witzel-cyclic-affine-ansatz-has-linear-defect`
+  - `titz-witzel-cyclic-normalizer-ansatz-collapses-mark`
+  - `titz-witzel-central-square-lifts-collapse-mark`
+  - `titz-witzel-regular-packets-collapse-mark`
+  - `titz-witzel-trivial-second-matching-collapses-mark`
+  - `titz-witzel-sparse-defect-needs-dense-generator-surgery`: sparse surgery on exact finite
+    models.
+- **Necessary shape of any solution.**
+  - `titz-witzel-both-matchings-need-macroscopic-support`
+  - `titz-witzel-sandwich-matchings-need-macroscopic-noncommutation`
+  - `titz-witzel-two-generator-gate-forces-macroscopic-noncommutation`
+- **Transfer from a donor lattice: dead.** See `titz-witzel-same-building-sofic-donor-collapses`
+  and `titz-witzel-kernel-not-elementary-sofic`.
+- **Refuting the gate through known certificates: dead.** `K` has cohomological dimension two.
+  - The expander-matching criterion, Kun--Thom wreath products and lamp configurations have no
+    instance in any subgroup of `K`, by `vcd-two-groups-contain-no-kazhdan-commuting-pairs` and
+    `kazhdan-compression-instances-have-infinite-vcd`.
+  - The Kun--Thom double is not excluded by that count.
+- **Where it stops.** In both directions the missing ingredient is quantitative:
+  - a construction whose sparse defects are exact on no relator, for the positive side;
+  - the dimension-independent repair inequality of the audit, for the negative side.
