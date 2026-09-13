@@ -118,3 +118,30 @@ and refutes STW XXIII for `B` (route
     The open step is to show that the slack runs out before the walls escape,
     so that some carries are uniform across copies and part 3 of the swap
     theorem applies.
+- **Signpost (2026-09-13, lane ex2-rank-monotone-rounding): block-diagonal
+  monotone rounding is dead in `A`, so realizers must transport between copies.**
+  - *Rank counts never obstruct.*
+    `toms-rank-bookkeeping-admits-monotone-realizer-profiles`: the profiles
+    `ceil(r_n F_n - 2)` meet every rank-level constraint and push all walls away at
+    all-wall points. At the level of totals, slack does not run out.
+  - *Correction to the hypersimplex bullet above.*
+    `toms-block-diagonal-sharpening-has-fuzz-persistence`: a vertex-fixing
+    rounding moves each block trace by at most one line. A Brouwer degree
+    argument over independent copy coordinates shows it cannot extend across
+    walls, so copy-diagonal 2-norm rounding does not follow.
+  - *The open step above, settled for block-diagonal realizers.*
+    `toms-line-subalgebra-has-no-nonconstant-continuous-rank`:
+    - suppose the containments into all stages beyond `n` are block-diagonal
+      with blockwise domination;
+    - a robust Poincare–Miranda point then makes at least half the copies jump
+      at once, because violators sit at their own minimum and each spends a
+      macroscopic share of the slack;
+    - so `eps_M >= 1/(2 r_n)` for all `M > n`, and no such sequence realizes a
+      non-constant continuous rank. This includes the whole line subalgebra, and
+      no twist is used.
+  - *What is left.* Beyond every stage, a realizer in `A` must carry support
+    between copies. Carries made uniformly across copies are useless
+    (`toms-twisted-swap-pairs-are-totally-degeneracy-forcing`), so the crux is
+    copy-dependent carries. For `B`, with point-evaluation summands and
+    contaminated branch traces, the block-diagonal theorem has not yet been
+    re-run.

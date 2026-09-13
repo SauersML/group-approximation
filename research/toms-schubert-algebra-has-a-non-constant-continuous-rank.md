@@ -66,3 +66,14 @@ The non-simple limit `A` of Toms's Section 4 is the cleaner test case.
   stage-`m` piece per leaf, which is the granularity of the first approximant.
   Next: carries weighted by continuous functions that vanish where their
   sections degenerate, so failed carries cost trace but not rank.
+- **Settled for `A` (2026-09-13): block-diagonal realizers are dead.**
+  `toms-line-subalgebra-has-no-nonconstant-continuous-rank` covers the
+  non-simple limit.
+  - No Cuntz-increasing realizer of a non-constant continuous rank is
+    block-diagonal, with blockwise domination, into all stages beyond some `n`.
+  - The reason is a robust Poincare–Miranda point where half the copies jump
+    together. This settles the leaf-block-diagonal question above in `A`.
+  - So every construction must carry support between twisted copies.
+    Carries made uniformly across copies lose everything at one point, so the
+    weighted-carry plan has to use copy-dependent carries.
+  - The theorem has not been re-run for `B`.
