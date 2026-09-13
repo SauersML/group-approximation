@@ -14,8 +14,11 @@ chosen in `bh-survey-open-cases-status-2026-09-12.md` §4.
    presented simple group.
 3. `A` is residually finite.
 
-**Why it matters.** Survey Remark 5.4 and BFFHZ (arXiv:2503.21882v2, after
-Corollary B) both list type B̃_n as open.
+**Why it matters.** Two sources list type B̃_n as open:
+- survey Remark 5.4, p. 18, re-read from the PDF;
+- BFFHZ, arXiv:2503.21882v2, after Corollary B. This one is taken from the
+  quotation in `c-tilde-artin-groups-satisfy-permutational-boone-higman` and was
+  not re-read here.
 
 **Ingredients:**
 - the Li–Roushon fibration;
@@ -37,7 +40,8 @@ Type D̃_n is not reached; see §6.
 
 ## 3. What Li–Roushon prove
 
-Quoted from the source, with the LaTeX rendered as text.
+Quoted from the source, with the LaTeX rendered as text. Proposition `fibration`
+uses `n` where this note writes `m`.
 
 1. **The model.** `M_{B̃_n} = {u ∈ C^n | u_i ± u_j ∉ Z for i ≠ j; u_k ∉ Z}`.
    - "W_{B̃_n} acts properly discontinuously on M_{B̃_n} and
