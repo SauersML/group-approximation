@@ -69,14 +69,35 @@ elementary-matrix computations with no cited theorem.
 | 0f4f9e94cc50 | `Both uc and e₁₂(e)u equal u+etE₁₄: last column (e,et,et²,t³)ᵀ(1+et) …; e₁₂(e)u adds e times row 2 …` | **GAP**: `compressor_mul_centralMark` proves `uc = e₁₂(e)u` by a single `fin_cases` computation; neither the common value `u+etE₁₄` nor the two printed column and row reasons is carried. Fix G3 |
 | 419d553a0d48 | `So ucu⁻¹=e₁₂(e)`, and the Steinberg relation gives the second identity | PASS; correction: add the Steinberg relation `elementaryRoot_commutator` used by `defect_eq` |
 
-## Builds (claimed)
+## Builds
 
-- G1 `PrintedTwoCopiesConverse`: for every ring and every `v, w : Fin 2 → R` with `w_iv_j = δ_ij`, `w₀v₀ = 1` and
-  `w₁(1-v₀w₀)v₁ = 1`, along `w₁v₁ - (w₁v₀)(w₀v₁)`.
-- G2 `PrintedTwoCopiesFourEquations`: the four printed equations with their printed middle sums.
-- G3 `PrintedCompressorMarkProducts`: `uc = u + etE₁₄`, `e₁₂(e)u = u + etE₁₄`, the last column of `uc` is the last column of
-  `u` times `1+et`, and the first row of `e₁₂(e)u` is row 1 plus `e` times row 2.
+All three are LANDED at a74a166ae in `GroupApproximation/Manuscript/NonMFSentences/OneSidedInversesPrintedSteps.lean`
+(probe 0913-171514-15612 GREEN, BUILT, md5 of the landed bytes = green record). The module is unwired and queued in
+`$NM/wire-queue.txt`. Each endpoint carries `#audit_closed_axioms`; the helper lemmas carry `#audit_axioms`.
+
+- G1 `printedTwoCopiesConverse : PrintedTwoCopiesConverse`: for every ring and every `v, w : Fin 2 → R` with
+  `w_iv_j = δ_ij`, `w₀v₀ = 1` and `w₁(1-v₀w₀)v₁ = 1`, along `w₁v₁ - (w₁v₀)(w₀v₁)`. Row `c90393ba6292`.
+- G2 `printedTwoCopiesFourEquations : PrintedTwoCopiesFourEquations`: the four printed equations with their printed middle
+  sums (`w1_mul_v1_eq_sum`, `w0_mul_v1_eq_sum`, `sum_t_pow_sub_mul_e_eq_zero`, `w1_mul_v0_eq_sum`,
+  `sum_e_mul_s_pow_sub_eq_zero`). Row `f437c7807b77`.
+- G3 `printedCompressorMarkProducts : PrintedCompressorMarkProducts`: `uc = u + etE₁₄`, `e₁₂(e)u = u + etE₁₄`, the last
+  column of `uc` is the last column of `u` times `1+et`, and the first row of `e₁₂(e)u` is row 1 plus `e` times row 2.
+  Row `0f4f9e94cc50`.
+
+## Census rows
+
+`metadata/nm-census-rows/ms-inverses-2.tsv`: 9 corrections naming existing on-main carriers (50b95d51d) and 3 rows for the
+new carriers (after a74a166ae).
+
+## Range status
+
+Every sentence of tex 809–929 has a carrier at printed generality along the printed route, and no carrier has a literature
+binder. The three new rows are `formalized` once the module is wired into the root.
 
 ## Progress log
 
-- 09-13 ~17:15: ledger landed; module written; probe queued.
+- 09-13 ~17:01: ledger landed (d5d320909).
+- 09-13 ~17:09: first probe 0913-170959-92332 RED (`(1 + Matrix.single 0 1 P.e) * compressorMatrix P` needed a type
+  ascription before `0 j`); text copies preserved (2b9939b2b, 533caf0a9).
+- 09-13 ~17:15: probe 0913-171514-15612 GREEN; 9 row corrections landed (50b95d51d).
+- 09-13 ~17:20: module LANDED a74a166ae; 3 rows appended; wire queue line added.
