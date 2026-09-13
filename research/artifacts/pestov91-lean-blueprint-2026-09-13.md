@@ -1,6 +1,12 @@
 # Pestov 9.1 in Lean: blueprint, part 1 of 2 (contract, witness, discharge map)
 
 Lane `pc-architect`, 2026-09-13, **v2**. Main tip `d62ea043a`. Namespace `GroupApproximation.Pestov91`.
+
+**Partly superseded by part 3 (v3):**
+- The ring is the landed `CrossedProduct.lean` over `Multiplicative ℤ`, with
+  `WitnessRing := SkewMonoidAlgebra (LocallyConstant ToeplitzSpace (ZMod 2)) (Multiplicative ℤ)`.
+- G1, G2, G4 and G7 are re-pinned in `pestov91-lean-blueprint-2026-09-13-part3.md`, which also has the SPLIT
+  helper files.
 - Part 2 (`pestov91-lean-blueprint-2026-09-13-part2.md`): decisions, mismatches and the arbitration log.
 - Skeleton: `wip/pestov91/skeleton/GroupApproximation/Pestov91/Witness.lean.txt`.
 - Interface changes: SendMessage `pc-architect`.
