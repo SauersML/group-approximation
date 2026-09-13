@@ -68,7 +68,7 @@ contains `H_3(Z)` iff `F_2[H_3(Z)]` embeds in `R`.
   (`leavitt-north-south-thompson-unit-has-cyclic-centralizer`), so `rho(c) = 1`.
 - **Diagonal copies.** `phi(x) = s_0 x t_0 + s_1 x t_1` identifies with `diag(x,x)` under `R ≅ M_2(R)`, so
   `C_R(phi(c)) = M_2(F_2[c^(+-1)])` and `rho(phi(c)) = 4`. Likewise `rho(phi^j(c)) = 4^j`.
-- **Exact computation (MSI, `centralizer_dim.py` in the lane directory).** For several infinite-order units
+- **Exact computation (MSI, `centralizer_dim.py` in `/projects/standard/hsiehph/sauer354/ex/ex-q34-unit-depth/`).** For several infinite-order units
   `u`, `dim(C_R(u) ∩ R_N)` was computed by exact linear algebra for `N = 1..4` (basis sizes 8, 40, 176, 736).
 
 | unit | depth | `N = 4`: `dim C ∩ R_4` | powers of `u` in `R_4`, span |
@@ -92,8 +92,19 @@ contains `H_3(Z)` iff `F_2[H_3(Z)]` embeds in `R`.
   - `qbb` and `Qb` are the identity on the cylinder `[00]`. Their excess contains the corner `s_00 R t_00`,
     which is `F_2[u]`-torsion and does not count toward `rho`. For the other two no fixed cylinder of length
     `<= 3` was found.
-  - Whether their excess is torsion, meaning a finite-order block on a `u`-invariant clopen set, or genuine rank
-    is not decided here.
+  - **Torsion analysis (`rank_probe.py`).** Take a basis `z_1..z_d` of `C_R(u) ∩ R_3`, and record
+    `dim span{ u^i z_k : i <= j }` for `j = 0..12`. For a module of rank `r` the increments tend to `r`.
+    - Controls: `A` gives increments 1, `phi(A)` gives increments 4.
+    - Eight excess units (`ZnRRpzpb`, `qbb`, `mmbzQ`, `yAam`, `PN`, `my`, `yxNW`, `BYxam`) all give
+      increments exactly 1 at every step.
+    - Most excess basis vectors have a `u`-orbit span that stabilizes, and so are `F_2[u]`-torsion. Examples:
+      17 of 18 for `ZnRRpzpb` and 21 of 23 for `mmbzQ`.
+    - `ZnRRpzpb` and `mmbzQ` have no `u`-invariant diagonal idempotent at level 5
+      (`block_probe.py`: one invariant atom). So the torsion does not come from a finite-order block on an
+      invariant cylinder set. It comes from non-diagonal commuting elements on which `u` has finite order.
+  - **Reading.** Every excess centralizer found is torsion over `F_2[u]`, and every sampled unit has rank-1
+    behaviour at depth 3. No unit with centralizer rank above 1 was found, except the diagonal copies
+    `phi^j`.
 
 ## 4. The resulting reduction
 
@@ -105,5 +116,5 @@ Either of the open claims below excludes both subgroups.
 - `leavitt-units-of-infinite-order-have-linear-depth-growth`: `lambda > 0`.
 - `leavitt-unit-centralizers-have-finite-rank`: `rho < ∞`.
 
-They are independent in form. The second is purely algebraic. The torsion analysis of Section 3 decides
-whether the excess centralizers seen at small depth test it.
+They are independent in form. The second is purely algebraic. By the torsion analysis of Section 3, the
+excess centralizers seen at small depth are torsion and do not test it.

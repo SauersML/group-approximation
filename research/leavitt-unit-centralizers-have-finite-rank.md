@@ -31,10 +31,12 @@ Theorem E actor.
 of the span of the powers of `u` in `R_4`, so the centralizer is `F_2[u^(+-1)]` up to depth 4. The diagonal copy
 `phi(A)` gives the factor 4 (`research/artifacts/leavitt-unit-centralizer-rank-2026-09-13.md`, Section 3).
 - A screen of 2584 units with no order `<= 64` found 218 with excess centralizer in `R_3`.
-- In four probed cases the excess grows like `4^N`. For two of them this is explained by torsion: the unit is the
-  identity on the cylinder `[00]`.
-- Whether the other excess is torsion or genuine rank is open. A unit with exponentially growing torsion-free
-  centralizer would be the first candidate Heisenberg center.
+- In four probed cases the excess grows like `4^N`.
+- For eight excess units, the span of `u^i (C_R(u) ∩ R_3)` grows by exactly 1 per power over `i <= 12`, and most
+  excess basis vectors have finite `u`-orbits. So the excess is `F_2[u]`-torsion and the observed rank is 1, even
+  for units with no invariant diagonal idempotent.
+- A unit with exponentially growing torsion-free centralizer would be the first candidate Heisenberg center. None
+  was found.
 
 **Why rank rather than dimension.** Parts of `R` on which `u` has finite order give huge centralizers, for
 example all of a corner where `u = 1`. These are `F_2[u]`-torsion and do not count toward `rho`.
