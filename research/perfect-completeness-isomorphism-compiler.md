@@ -62,6 +62,20 @@ It would also make `qa`-isomorphism RE-hard.
   - scalar port profiles are cosets, and affine on Boolean ports, at the `q`,
     `qa` and `qc` levels (`torsor-cfi-port-profiles-are-cosets`);
   - so atom-by-atom torsor gadgets cannot realize NAND.
+- **Squarifying the verifier inside its own port algebra.**
+  - Latin completions of the answer blocks are closure-safe only if every
+    block's rows form a regular group and every pair support is coset-hull
+    safe (`port-generated-square-completions-force-coset-support`).
+  - Where it dies: on Boolean answers this is affine safety, which the JNVWY
+    firewall excludes.  On oracularized verifiers it lands in coset syntax.
+- **Compiling into coset systems over nonabelian groups.**
+  - The algebra depends only on the relation sets.  If some abelian
+    relabeling makes them cosets, it is a finitely presented group-algebra
+    corner, so the compiler is goal-level
+    (`relabelable-coset-systems-are-solution-group-corners`).
+  - What survives: coset systems with no affine relabeling, and square
+    presentations with padding outside the port algebra (auxiliary
+    randomness, lifts carrying information beyond the answer).
 - **Uniform classical-solution-preserving gadgets.**  Blocked by the Babai
   argument recorded on `qc-isomorphic-not-qa-isomorphic-graph-pair-exists`
   (conditional on NP not in quasipolynomial time).
