@@ -35,3 +35,11 @@ artifacts:
    virtual freeness, and by amenability.
 5. **Screen.** Apply Corollary 2 of `strict-pairs-transfer-to-table-realizations` to
    `H -> H / (H ∩ Gamma_0)`, a subgroup of a residually finite group (Section 5).
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 44 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS, given Remark 3.6 and the cited nodes. Items 1–5 re-derived on paper:*
+- *the square table from the relators;*
+- *(E1)–(E4) and the three cases;*
+- *the six substitutions and the five triples;*
+- *the coset-sum step and the radius count.*
+
+*Theorem 2.1 uses, without saying so, that `P_xz`, `P_y`, `V` and `<a,x,y>` are proper subgroups. This follows from normal forms. Item 2 is implied by `radu-lattice-one-sided-pairs-need-radius-five`.*

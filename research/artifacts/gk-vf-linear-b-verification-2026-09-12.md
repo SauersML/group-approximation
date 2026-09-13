@@ -2219,3 +2219,161 @@ Nothing subsumes the claim, and nothing refutes it or any route.
    - Section 6 (literature);
    - the node `ternary-counterexample-from-rank-kill-and-state-realization`;
    - a step-by-step audit of the "Which relations it uses" list.
+
+## 44. One-sided pairs over Radu's lattice need residual coincidences (w7-vh-anchored; 9458a0c3d1): PASS
+
+**Scope.**
+- Artifact `research/artifacts/radu-lattice-anchored-linear-gadgets-2026-09-12.md` (blob `58655ba90f`), Sections 0–6.
+- Claim `radu-lattice-one-sided-pairs-need-residual-coincidences` (blob `0e92fa7efb`).
+- Route `radu-lattice-residual-coincidences-proof` (blob `0db06014b5`).
+- Cited, not re-derived:
+  - Remark 3.6 of arXiv:2509.05054v2, through `radu-bmw-lattice-embeds-in-titz-witzel-kernel`;
+  - Corollary 2 of `strict-pairs-transfer-to-table-realizations`;
+  - Corollary 3 of `one-sided-inverse-pairs-transfer-to-table-realizations`;
+  - `radu-bmw-coordinate-subgroups-are-sofic`;
+  - the Section 4 rows that cite other nodes.
+
+**Verdict.** PASS given the cited inputs.
+- Items 1, 3 and 4 were re-derived on paper.
+- Item 2 was re-derived given Remark 3.6.
+- The automata screen was re-derived given Corollary 2.
+- Nothing is decision-level.
+
+### 44.1 Section 0
+
+**Square table.**
+- A relator `h v h' v'` with involutive letters gives `h v = v' h'`, and its cyclic shift gives `h' v' = v h`.
+- The six relators give the nine entries `ax = xa`, `ay = ya`, `bx = xb`, `az = zb`, `bz = za`, `by = yc`, `cy = yb`,
+  `cx = zc` and `cz = xc`.
+- **Bijection.** The images `(x,a), (y,a), (x,b), (z,b), (z,a), (y,c), (y,b), (z,c), (x,c)` are distinct, so
+  `(h, v) -> (v', h')` is a bijection.
+- **Commuting pairs.** They are `(a,x)`, `(a,y)` and `(b,x)`.
+- **Agreement with the radius-five artifact.** `xza = xbz = bxz` and `xzc = xcx = czx`, which gives `delta a = b delta`
+  and `delta c = c delta^(-1)`.
+
+**Length.** Square moves keep the numbers of horizontal and vertical letters, and free reduction lowers them. With
+unique normal forms, `|alpha omega| = |alpha| + |omega|`.
+
+### 44.2 Section 1
+
+**Lemma 1.1.**
+- The alternating series is a two-sided inverse.
+- At `p = 2`, `(1+t)^2 = 0`, so `((1+t) X (1+t))^2 = 0`.
+
+**Theorem 1.2, re-derived.**
+- **Setup.**
+  - Products of two letters fall into four kinds.
+  - The table bijection makes each `v h` equal to exactly one `h'' v''`.
+  - The coefficient equations (E1)–(E4) were recomputed.
+- **Case `alpha_0 != beta_0`.** (E2) kills one of the two elements, which contradicts (E1).
+- **Case `alpha_0 = beta_0 = 1`.**
+  - (E2) gives `alpha = beta`.
+  - (E3) allows at most one letter of each type, and (E1) forces an even number of letters.
+  - (E4) at `h v = v' h'` forces `v' = v` and `h' = h`, so `h` and `v` commute.
+  - Then `(1 + h + v)^2 = 1 + hv + vh = 1` over `F_2`.
+- **Case `alpha_0 = beta_0 = 0`.**
+  - (E1) and (E3) give exactly one letter, say `h`, with `alpha_h = beta_h = 1`.
+  - (E3) makes both horizontal parts `{h}`.
+  - Let `P` and `Q` be the vertical parts of `alpha` and `beta`.
+    - If `P` and `Q` are both nonempty, (E3) makes them one singleton, and (E1) fails.
+    - If `P` is nonempty and `Q` is empty, (E4) at `h v = v' h'` fails.
+    - If `Q` is nonempty and `P` is empty, (E4) at the entry `h'' v'' = v h` fails.
+  - So `alpha = beta = h`.
+
+**Proposition 1.3.**
+- `iota(AB) = iota(B) iota(A)` once the transpose is included.
+- If `A` and `B` are `iota`-fixed, then `AB = iota(BA) = I_n`.
+- Elements supported in `B_1` are `iota`-fixed because the letters are involutions.
+- So the no-pair statement holds over every commutative ring.
+
+### 44.3 Section 2
+
+**Theorem 2.1.**
+- **Substitutions.** The six substitutions `b = zaz`, `a = zbz`, `c = yby`, `b = ycy`, `z = cxc` and `x = czc` follow
+  from `az = zb`, `by = yc` and `cx = zc`.
+- **Generation.** All five generation checks hold, and the criterion is equivalent to containing one of the five
+  triples.
+- **Non-generation.**
+  - The four cases land in `P_xz`, `P_y`, `V` and `{a,x,y}`.
+  - `<a,x,y> = {1,a} <x,y>` is a quotient of `C_2 x D_infinity`.
+
+**Properness (note 2).** The "otherwise" direction needs these four subgroups to be proper. That holds by normal forms.
+- The `y`-squares send `y` to `y`, so `P_y = A ∪ A y`.
+- The `x`- and `z`-squares keep `{x, z}`, so `P_xz = A <x,z>`.
+- So `P_y` misses `x`, `P_xz` misses `y`, `V` misses `a`, and `<a,x,y>` misses `b`.
+
+### 44.4 Section 3
+
+**Theorem 3.1.**
+- **Residually finite quotient.** `Q = Gamma_R / Gamma_0` is residually finite, since a finite-index normal subgroup
+  missing `g` contains `Gamma_0`.
+- **Direct finiteness (note 3).** Direct finiteness of `M_n(F_p[Q])` also follows without surjunctivity. Map to a
+  finite quotient of `Q` that is injective on the finite supports of `pi(A)`, `pi(B)` and `pi(A) pi(B)`. The
+  matrix algebra there is finite-dimensional, so it is directly finite.
+- **Coset sums.** The coset-sum and two-point steps check.
+- **Support group.** The finite residual of the support group `H` lies in `H ∩ Gamma_0`, because
+  `N ∩ H` has finite index in `H` for every `N`.
+
+**Corollary 3.2.**
+- `(u^(-1) A, B u)` satisfies `B u u^(-1) A = I_n`, and its defect is `u^(-1) D u`.
+- Both points lie in `S_A S_B ∪ {1} ⊆ B_(r+s)`.
+- So `8 <= |g^(-1) h| <= 2(r+s)`.
+
+**Blind radius.** `((zx)^2)^(-1) (xz)^2 = (xz)^4 = delta^4`.
+
+**Consequences.** Windows with `r + s <= 3` carry no pair. At `p = 2`, a zero coset sum means an even number of
+points.
+
+### 44.5 Section 5
+
+**Unit-ball addresses.**
+- Distinct letters have a product of length two (Section 0).
+- So `s = s' m'` with `s, s', m'` in `B_1` and `m' != 1` forces `(s', s)` to be `(1, m')` or `(m', 1)`.
+
+**Invariant.**
+- `H / (H ∩ Gamma_0)` embeds in `Q`, so it is residually finite.
+- Corollary 2 gives `w^(-1) w'` in `Gamma_0 \ {1}` with `p(w) != p(w')`.
+- With Remark 3.6, the window has diameter at least 8, while a ball of radius three has diameter at most 6.
+
+**Smallest survivor shape.** This part is descriptive, and it asserts no existence.
+
+### 44.6 Route, claim node, scan and notes
+
+**Route and claim node.**
+- Route items 1–5 match the steps above.
+- The displays in claim items 1–4 and in the automata screen were recomputed.
+
+**Scan.** Main `f2d0166f7e`: I read the 16 ESTABLISHED claims among the `Gamma_R|Radu|radu-` hits.
+- **`radu-lattice-one-sided-pairs-need-radius-five`** (`c7fbc72300`, Section 45).
+  - It excludes `r + s = 4` given Remark 3.6, for linear pairs over any field.
+  - So it implies item 2.
+  - It does not contradict "Length alone gives nothing more", which is about length only.
+- **`radu-horizontal-projection-kills-delta-squared`.** `delta^4 in Lambda_v` is consistent with Section 3.
+- **`radu-lattice-defect-idempotents-avoid-finite-subgroups`,
+  `nonsofic-subgroups-of-radu-lattice-have-nonamenable-edge-groups` and
+  `radu-bmw-lattice-splits-as-amalgams-of-virtually-free-groups`.** These are consistent with Sections 2–4.
+- **Other hits.** The remaining hits constrain automata outputs, the mark or the kernel. None bounds supports.
+
+Nothing refutes the claim or the route.
+
+**Notes.** No claim changes status.
+1. **"(Lemma 3.5)" in Section 3.** It names a lemma of the source paper, not of this artifact. I did not reread the
+   source.
+2. **Properness in Theorem 2.1.** The theorem uses properness without saying so, and it holds by normal forms
+   (Section 44.3).
+3. **Item 1 imports.** Item 1 needs neither `sofic-groups-are-surjunctive` nor
+   `stable-finiteness-failure-refutes-surjunctivity`. Section 44.4 gives the direct argument.
+4. **Superseded by the radius-five claim.** Two passages are superseded by
+   `radu-lattice-one-sided-pairs-need-radius-five`:
+   - the Section 4 sentence "blind from `r + s = 4` on";
+   - the Section 6 question "whether any invariant reaches `r + s >= 4`".
+
+   With the idempotent law, the coincidence screen excludes `r + s = 4`, and Section 6 of that artifact records the
+   correction. Read as a statement about coincidence alone, the Section 4 sentence stays correct.
+5. **Not checked.** I did not check the Section 4 rows that cite other nodes, or the rest of the Section 6 list.
+
+**Correction to Section 43, note 2.**
+- **The slip.** Note 2 calls the quotient of Proposition 3.1 "the smallest weakly finite reflection". It is the
+  largest weakly finite image, the quotient by the smallest ideal `J_omega`, as Section 43.3 and the scan paragraph
+  say. The verdict does not change.
+- **Lane fix.** `w7-matrix-state-deficit` resolved notes 1–2 at `37bb43d68a`.
