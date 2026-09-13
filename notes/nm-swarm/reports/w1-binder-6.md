@@ -27,5 +27,37 @@ new modules.
     relator cell. Regions never contain a relator cell, so the region family avoids the doubling. Induct on the
     number of outer cell darts.
 
+## Module `GGT/VanKampen/SurgeryOuterCellThickening.lean` (probe 0913-173850-9813 GREEN, BUILT; unwired)
+
+Namespace `GroupApproximation.GGT.VanKampen.OuterCellThickening`. It imports only `SurgeryOuterSpurThickening` and
+`AxiomGuard`. These names are stable, so consume them:
+
+| declaration | content |
+|---|---|
+| `IsOuterCellDart Delta x` | `faceOf x = outerFace ∧ ∃ C ∈ relatorCells, C.face = faceOf (alpha x)` |
+| `OuterCellThickeningStatement`, `outerCellThickening` (closed) | for `S` over `Delta` with `1 < Delta.boundaryWord.length` and no relator word of value one: `∃ S' e`, O-equivalent, no outer spur, no outer cell dart, no relator word of value one, same weight, same target profiles and source indices |
+| `spur_of_noOuterSpur` | `CopyClean.spur` |
+| `cell_outer_of_noOuterCellDart hno i` | `CopyClean.cell_outer` for the source cell `i` |
+| `leastArea_of_oEquivalent`, `relatorValue_ne_one_of_oEquivalent` | least area and the value condition pass to O-equivalent diagrams |
+| `sectionFamilyOfAvoid S j hlen havoid` | the spur thickening's `sectionFamily`, with any `havoid` in place of the spur hypothesis |
+| `exists_of_isOuterCellDart`, `outerCellCount_lt`, `noOuterSpur`, `cell_avoid`, `exists_cellFree` | the induction |
+
+Route: double the exterior along an outer cell dart. The new exterior dart has its reverse on the digon, and the
+digon is no relator cell, so the number of outer cell darts drops by one. `exists_of_isOuterSpur` holds for any outer
+doubling, so no spur appears. When no relator word has value one, no region contains a relator cell, so every region
+avoids the face across the doubled dart. `outerCellThickening` runs `outerSpurThickening` first and then this
+induction.
+
+## Split of `CopyClean` (agreed with ms-cite-2, 17:3x)
+
+| field | owner |
+|---|---|
+| `spur` | hs-vanishes `outerSpurThickening`, carried along by this module |
+| `cell_outer` | this lane (above) |
+| `side_cell` | ms-cite-2: `SurgeryCellSideThickening`, plus a side-dart variant of the doubling transport (`SurgeryFaceEdgeDoublingSideRegions`) |
+| `side_outer` | this lane, after ms-cite-2's variant transport interface lands |
+| `cell_self`, `regions` | copies (b)/(c), ruled to leavitt-units at 14:00; nothing in flight |
+
 ## Progress log
-- 17:0x: claim landed; the statement module comes next.
+- 17:0x: claim landed (c0892aaee).
+- 17:3x: module written, attic copy e854e80fa, probe 1 started.
