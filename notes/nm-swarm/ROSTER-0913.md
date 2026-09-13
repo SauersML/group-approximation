@@ -530,3 +530,45 @@ For EVERY census row in your range with status formalized or definition, and eve
   - cite-hull lands the Cor 7.4 piece statements now. jacobson, simple-group, hl-lemma46, fff-quotient and hull-component wait on the names.
   - nm-endpoints adds `#audit_closed_axioms` for `simpleUniqueTraceAtHypEmbedded_closed`.
   - dgo-analytic's lane report on main (09-12) still names hull-respell for SectionPocketCutInput. The roster names dgo-analytic, and dgo-analytic refreshes the report.
+
+## Restart and rulings 09-13 ~08:30–09:10
+
+- **Restart.** The coordinator process restarted at ~08:30. All 36 lanes were resumed with their current item in the resume message; none were lost.
+- **Owners.**
+  - OsinAppendixCutMerge (red on main since 09-12, omega at line 103) moves from hull-respell to hl-lemma46 for a proof-only repair. hull-respell's attempt is in the attic (a208f19a3). Nothing blocks on it now (see the disc collapse below).
+  - The verifier fix in `scripts/check_non_mf_unconditional.py` stays with systolic-counts, whose calibration runs are under way. census re-runs verify-unconditional when it lands.
+- **Lemma 9.4 over E.** hull-unbound's change is approved. GDSF labels are legal only over E := symmetricLabelAlphabet D, so PlanarPieces applies hmetric at (E, c+2) through `carrier_eq`, and CaseOne/CaseTwo take `WordConnectorPair E` (f2cc2be97). theoremc-retire restates CaseOneWalkStatement over E.
+- **Lemma 9.4 respelling.** The statements are at 7a225d1d0 (Estimating/OsinLemma94ChainRespell), and `chainRespellInput_of_pieces` is proved.
+  - CornerInsertionInput: simple-group.
+  - PendantPathRemovalInput: jacobson.
+  - SeparatingPathRemovalInput: hull-component, over GFaceMerge and the pendant removal.
+- **Lemma 9.4 SideBudget.** `OsinLemma94PolygonCountInput.SideBudget` (∑ sideCount ≤ K·n, K before ε) is over-strong as stated. hull-count94 and audit-sec3 found this independently.
+  - Pockets: a region side of length ≤ ε touching a cell s times leaves s unselected 2-sided G-faces, and DartMinimal keeps them.
+  - Spurs: spaced backtracks of a quasi-geodesic ∂Δ split (A2) sides.
+  - hull-unbound fixes the spelling. The two options:
+    - F1: ∃K after ∀ε, with the antiparallel metric statement restated as ∃eps0 ∀eps ∀K ∃rho0, gated on sec5-sentences confirming that eps0 does not depend on K. Preferred.
+    - F2: merged and pinch-split antecedents, with a weight_maximal carve-out.
+  - The (A2) value-1 excursion skip is approved.
+  - The fixed statement must be model-tested against both mechanisms, and must check whether `cuts.count` is bounded by n.
+  - `Covers L` is true with L = 24ε, and hull-count94 builds it now.
+- **LoopCut ruling (A), gate answers.**
+  - Case 2 builds no new region candidate (sec5-sentences).
+  - `ContiguityGeometry.ofSingletonFace`, `exists_quadrilateral_region` and the shared-edge producer can each force a same-cell competitor (hull-unbound, theoremc-retire), so (A) costs a refutation of Case 1 with i = j. For now that subcase stays a named hypothesis in theoremc-retire's OsinUnboundCaseOneFace.
+  - Still waiting on audit-sec5 (does least area kill the same-cell quadrilateral?) and ghw-charp2's site census.
+- **Lemma 9.3.** hull-euler's green assembly `phiPrimeCountInput_of_smallFaces` (Estimating/OsinAppendixEulerSmallFaces, 2279167e6, probe 0913-090235-64116) fixes the interfaces:
+  - C4 `CornerFacesInput`: leavitt-units. Its parallel `CornerTwoGonInput` (d0a41c1da) is bridged or marked superseded.
+  - C5 `CellFacesInput`: hs-vanishes. Its parallel `CellFaceCountInput` (bdd687708) likewise.
+  - C6′ `SmallFaceHoldsInput`: debt-conditional.
+  - Rule from here: the assembly owner states the piece Props and the producers prove them.
+- **Closed.**
+  - `EmptyTwoGonInput` has no hypotheses left: fff-periodic's `emptyTwoGonInput_holds` (2aa17abb0) collapses through `Surgery.InnerDiscRegion.ofPocketRegion` and `false_of_disc_collapse_singleton` (OsinPocketDiscMerge), so pinched pockets are covered. hull-select's zero-cell merge consumes the same contradiction.
+  - `PocketRegionOfSimpleStatement` (dgo-analytic, c03054996, probe 0913-090829-84396) is closed over hull-component's `SimpleClosedWalkSides.sideFaces_boundaryCycle_eq` (d20913c51, probe 0913-090043-59913).
+  - dgo-geometric's pinched two-gon model is green (4b78f0090, probe 0913-090336-67076). `no_faceSetBoundary` shows that FollowsBoundary routes cannot reach pinched pockets.
+- **Pocket pieces.** They are restated in the ruled order, pinch, region, collar (a032ab802). The residual Props:
+  - OsinSectionPocketFaceSetSectionStatement: kh-ejz;
+  - PocketPinchStatement: hull-respell;
+  - PocketCollarStatement: kh-torsion. It is the one double-collar construction, and hull-select's MultipleEdgeCut assembly consumes it.
+  - PocketCell/OuterTransportStatement: go-lemma42, with sec2-sentences on two sub-pieces.
+- **DGO Proposition 4.35.** `RelHyp.DGOProposition435PrintedStatement` is false as formalized: over G = ZMod 5, the forced base {t², t, t⁴} is not inversion-closed. baseline-debt lands `not_dgoProposition435PrintedStatement` in a new module, refuting the Lean spelling only. The `h435` consumers in GGT/DGOProposition435Printed are vacuous, and no census row names them.
+- **Wiring.** Wave 8 is root green at 830b05464. Wave 9 (23 modules, build base 045b5f849) is building.
+- **census merge 13** (9b413742b): 498 rows, 344 formalized; verify-unconditional 0 new; baseline 153 findings. 14 of the 18 open rows sit over hgreendlinger, and 7 unrooted carrier modules clear with wave 9.
