@@ -40,9 +40,17 @@ groups.
    faithful state-closed action on any regular rooted tree, transitive or not.
    *Not excluded:* a larger finitely presented self-similar overgroup of `B`.
 2. **Affine digit self-similar hosts** (Zaremsky's Example 4.7).
-   *Dies* for every commutative coordinate ring of positive transcendence degree
-   (`affine-self-similar-coordinate-rings-are-one-dimensional`), and `R` has
-   transcendence degree one.
+   - *Dies for commutative coordinate rings* of positive transcendence degree
+     (`affine-self-similar-coordinate-rings-are-one-dimensional`), and `R` has
+     transcendence degree one.
+   - *Dies for commuting linear parts, whatever the translations.* Take a
+     finitely generated digit-affine self-similar group over `O`, for a
+     uniformizer with `pi^e = p`. If its linear parts commute, its translation
+     subgroup has finite rank. That subgroup would contain `[B,B] = R`, which has
+     infinite rank (`digit-affine-hosts-with-abelian-linear-parts-have-finite-rank`).
+   - *Not excluded:* overgroups whose linear parts do not commute, such as
+     `R'^n x| GL_n(R')` with `n >= 2`; other uniformizers and non-scalar
+     contractions; self-similar hosts that are not affine.
 3. **Algebra unit-group hosts through matrices.**
    *Dies* by `char-zero-algebra-unit-hosts-exclude-unipotents`. Any such host
    containing `B` through matrices over a characteristic-zero algebra contains
@@ -80,3 +88,19 @@ groups.
    *Not attempted here;* lane `bh-type-a-actions` owns that route. The affine
    actions of `B` have infinitely many orbits of pairs, because
    `R \ 0` splits into infinitely many unit classes.
+7. **Lamplighter hosts** (M. R. Almeida and two coauthors, arXiv:2609.01868v1,
+   1 September 2026). Abstract, read 2026-09-12. When `G` is a non-torsion
+   contracting self-similar group, they show that under certain conditions
+   `V_m(Z^d wr_X G)` is finitely presented and virtually simple. "Moreover, we
+   prove that Z^d ≀_X G embeds into a finitely presented simple group."
+   - *For `B` this reduces to `G`.* Suppose `B <= A wr_X G` with `A` finitely
+     generated abelian. If the composite `B -> G` is not injective, its kernel
+     meets `R` in a nonzero ideal `I` (Attempt 4). `I` is torsion-free, so it
+     embeds as a `Z[s^±1,t^±1]`-module in the free part `Z[X]^d` of the base.
+   - *No room in the base.* Every nonzero element of `I` has annihilator
+     `P = (s - 1 - t)`, which is prime. So `P` is an associated prime of some
+     orbit module `Z[Z^2/H]`, and it contains `h - 1` for every `h in H`. Since
+     `(1+x)^a x^b = 1` forces `a = b = 0`, we get `H = 1`. But `Z[Z^2]` is a
+     domain, and its only associated prime is `0`.
+   - *Consequence.* This route needs `B` inside the contracting self-similar
+     group `G` itself.
