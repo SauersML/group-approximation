@@ -55,3 +55,24 @@ automata. A counterexample refutes Gottschalk's conjecture.
   - **Data.** Rigid, with two patch symbols at every address, augmentation 1 and counts `8, 9, 10`.
   - **Where the methods stop.** Proposition 5 has no background `0`. Backgrounds `1` and `2` leave
     residues at `{a, b}` and `{1}`.
+- **Next seed closed on paper** (w7-two-patch-rigid, `rigid-two-patch-seed-rule-is-never-injective`, artifact
+  `rigid-two-patch-seed-relation-moves-2026-09-12.md`; awaiting re-derivation by w3-vf-nonlinear).
+  - **Free memory.** Every pair is blind at two coordinates, so three two-site moves exist.
+  - **Relations.** Their conflicts force an amenable group except under `(a^-1 b)^2 = 1`, where a fourth
+    two-site move realizes. If all three fail otherwise, `<a, b>` is a quotient of a finite or Euclidean
+    triangle group.
+  - **Net.** If verified, the next seed is not injective over any group, unit case included. "Where the
+    methods stop" above is then superseded for it.
+- **Uniform filters** (same artifact, Section 5).
+  - **Constants.** If `v -> mu(v, v, v)` is not injective, `tau_mu` is not injective over any group.
+  - **Marked quotients.** Injectivity descends to marked quotients. So an injective unbalanced rule restricts
+    to a balanced rule on the coincidence pattern of `1, a, b` in every amenable quotient.
+- **Free-memory census** (same artifact, Section 6). There are 855 raw rigid unbalanced two-patch rules.
+  - **Constants.** 126 of them collapse on constants.
+  - **Classes `I_3` and `I_1`** (504 rules). They have two-site collisions over free memory. Relation tables
+    are done only for the next seed.
+  - **Class `I_0`** (195 rules). Collisions need three or more sites. Not searched.
+  - **Class `II`** (30 rules, pair-distinct). No finite collision over free memory, by
+    `pair-distinct-ternary-rules-pre-injective-on-free-memory`.
+- **Smallest open case.** `unit-case-pair-distinct-two-patch-rules-are-not-injective`, with seed
+  `x_1 + x_a - x_b + [(0,1,0)] - [(1,2,2)]`.
