@@ -405,3 +405,33 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
   - The model's conclusion comes from `petalK` instead. That is the pocket at Π, with the source and kept cells swapped
     (`pinchedPocketPetal_conclusion`). So configuration B needs that branch, and thickening followed by a split does not
     reach it.
+
+## W2 HAIR OPENING (09-13, lead item; rulings-1600 l.19–22, 39)
+- Item: hair opening at a pinch, the Prop that sec5-sentences states in its `OsinLemma94LongTransitionInput` module.
+  Users are sec5-sentences (`OsinLemma94LongTransitionInput`) and simple-group's producer for
+  `OsinLemma94PinchedQuadrilateralStatement`. The Prop shape has not arrived yet, so I have built the transport any
+  shape needs.
+- weight_maximal part: hs-vanishes's `OuterSpurThickening.sectionFamily` (SurgeryOuterSpurThickening, 36ff632cd).
+  It carries `weight_maximal` and `card_minimal` across the thickening of an outer hair. I asked hs-vanishes once to
+  confirm the module; no reply yet.
+- Inner hairs: nothing on main carried a distinguished family across `FaceEdgeDoubling` (scan of main and the shared
+  tree). New orphan `GGT/VanKampen/SurgeryHairOpening`, namespace `HairOpening`, importing `SurgeryOuterSpurThickening`:
+  - `regionFamilyEquiv`, `_profile`, `_source`: the old regions correspond to the transported ones;
+  - `sectionFamily S f j hlen hf havoid`: the distinguished family across the doubling at an inner face `f`, when no
+    region contains `f` or the face across `w_j`. This mirrors `OuterSpurThickening.sectionFamily`. The competitor
+    class is unchanged, so `weight_maximal` and `card_minimal` carry over. Also `_diagram`, `_family` (rfl);
+  - `IsHair`, `one_lt_length_of_isHair`, `exists_dart_eq`;
+  - `exists_opened S hx hf havoid`: a hair of an inner face that no region contains. It gives `S'`, `e : S.family ≃
+    S'.family`, O-equivalence, the same weight, the same target profiles and source cells, and a G-face two-gon of
+    value one other than the exterior.
+- PROBE GREEN 0913-165242-22067, first try (base caf4743de, BUILT GroupApproximation.GGT.VanKampen.SurgeryHairOpening,
+  empty error index, record md5 8ae8a4ee = the landing bytes). `#audit_axioms` on 5 names gives
+  [propext, Classical.choice, Quot.sound], and the build log has 0 error, warning or sorry lines.
+- Model-test points for the Prop shape:
+  - The opened diagram has two more darts, so the opened family is never `DartMinimal` when `S` is. A conclusion
+    asking for `S'.DartMinimal` fails on every hair.
+  - On sec5-sentences' model (a bubble `B` pinched around a hair), the hair has `B` on both sides. `B` is not a
+    contiguity, so no region contains it, which gives `havoid`. `B ≠ outerFace` gives `hf`. So `exists_opened`
+    applies.
+  - For simple-group's `f` (an inner non-cell face avoided by all regions), a hair of `f` is opened the same way.
+    `havoid` is its standing hypothesis.
