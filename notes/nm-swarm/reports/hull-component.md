@@ -61,7 +61,10 @@ The lead assigned the uncollared pocket carrier with both FollowsBoundary over
 - Consumer: dgo-analytic's Estimating/OsinPocketRegionOfSimple, for `PocketRegionOfSimpleStatement`. The kept cell
   and the source cell transfer from `PocketFaceSet.faces` to `(ofSimpleClosedWalk ..).faces` through this equality.
   The exterior face gives `hf`, and `CombMap.connected_of_planar` gives `hM`.
+- Consumed: `pocketRegionOfSimple` (Estimating/OsinPocketRegionOfSimple) landed in c03054996 and closes
+  `PocketRegionOfSimpleStatement`, with closed axioms [propext, Classical.choice, Quot.sound]. It built green
+  together with this module in dgo-analytic probe 0913-090829-84396.
+- dgo-analytic has no further sub-piece for this lane.
 
 ## Next
-dgo-analytic queued its consumer, Estimating/OsinPocketRegionOfSimple (a032ab802). This lane has asked
-dgo-analytic for the next W1 sub-piece and writes nothing until it names one.
+Asking the lead for the next item.
