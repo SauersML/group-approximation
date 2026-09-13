@@ -60,6 +60,16 @@ is not properly infinite in `A`.  It would follow if `1_X` were finite in `A`.
     isometry, which is excluded.  Approximating by the algebraic crossed
     product loses the isometry property exactly where rounding is hard, the
     Borel/clopen gap of the Nadkarni contrast.
+* **Z-stable variants are dichotomous.**  Boldrini--Prasad (arXiv:2607.01896,
+  Theorem 7.4, p. 26) tensor these crossed products with the Z-stable algebra
+  `C*_r(⊕_N F_infinity)`.  That tensor product is itself the crossed product
+  of an action of `⊕_N F_infinity` that factors through `F_infinity`, so it has
+  the same type semigroup.  In the traceless case it is "simple, exact,
+  Z-stable and traceless, hence it is purely infinite".
+  * This says nothing about `A` itself: `A ⊗ Z` is purely infinite for every
+    simple traceless `A`.
+  * It does show that a mixed `A` must fail Z-stability, as every Rørdam-type
+    algebra does, and that the dynamics alone never forces mixedness.
 * **Tame algebras are excluded.**
   * `V(A)` must be non-separative
     (`stw29-separative-projection-monoid-dichotomy`).
