@@ -21,6 +21,12 @@ distinct_from:
 `χ_(-∞,c)(a)` for a self-adjoint `a ∈ M_n(Z[i][Γ])` whose reduced spectrum misses `c`. The
 support of `a` generates a finitely generated subgroup carrying the same witness.
 
+**Two flavors (2026-09-12).** By `torsion-free-trace-defects-are-discrete-or-real-rank-zero`, a witness
+`Γ` has one of two kinds of trace image:
+- **arithmetic**, `τ_*(K_0(C*_r Γ)) = (1/m)Z` with `m >= 2`, so that `C*_r(Γ * Z)` has projections of
+  traces `k/m` only;
+- **dense**, in which case `C*_r(Γ * Z)` has real rank zero (`torsion-free-real-rank-zero-reduced-cstar-exists`).
+
 ## Attempts
 
 - **Where a witness must live.** Reduced assembly must fail to be surjective for `Γ`, since its
