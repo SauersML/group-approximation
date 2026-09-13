@@ -7,6 +7,7 @@ distinct_from:
   coordinate-action-not-sofic: that refutes soficity of the Kun-Thom coset action through property (T) of the stabilizer; here the stabilizer C_chi is a free product of four involutions, a-T-menable, and no nonsoficity mechanism is known
   radu-metabelian-quotient-embeds-in-edge-lamp-wreath: that proves soficity of this action implies soficity of G_2; this asks for the action itself
   radu-square-lamp-forces-reflections-in-finite-actions: that excludes genuine finite actions as models of this coset action; this asks for approximate ones
+  dyadic-bruhat-tits-vertex-action-is-sofic: that is the action of PSL_2(Z[1/2]) on its dyadic tree, with a single inverted prime and stabilizer PSL_2(Z); this is the action of a quaternionic lattice with two inverted primes on a double cover of the framed vertices of its second tree, with stabilizer a free product of involutions
 artifacts:
   - research/artifacts/radu-edge-lamp-host-and-square-firewall-2026-09-13.md
 ---
@@ -51,3 +52,16 @@ itself on most points.
   - A model has to see the second prime approximately, although no genuine finite action does.
   - A necessary condition: the action of `Q` on the framed vertices of its second tree must itself
     be sofic.
+* **Same fork as the dyadic vertex action.**
+  - This is one instance of the family "an `S`-arithmetic lattice acting on the Bruhat–Tits tree at an
+    inverted prime". Other instances are `dyadic-bruhat-tits-vertex-action-is-sofic` (the live route
+    there is random lifts with Bass–Serre separation) and `function-field-rank-one-vertex-action-is-sofic`.
+  - The fork has the same shape in each case. A positive answer forces flexible permutation
+    instability of the lattice (`psl2-bruhat-tits-action-soficity-forces-p-instability`; here
+    `radu-edge-coset-action-not-sofic-via-stability`). Genuine finite models are excluded by
+    codensity.
+  - What differs here: two primes are inverted; the stabilizer `C_χ ≅ C_2^(*4)` is torsion-generated
+    and virtually free; the space is a double cover of framed vertices rather than one colour of
+    vertices; and the codensity input is proved from Radu's residual instead of from the congruence
+    subgroup property.
+  - A random-lift construction that works for the dyadic action should be tested on this one.
