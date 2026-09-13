@@ -27,6 +27,11 @@ artifacts:
   and satisfy every Serre inequality
   (`finite-spectrum-integral-elements-obey-determinant`, via Zalesskii's
   theorem). So the model failure above cannot occur with finitely many atoms.
+- **The violating self-adjoint matrix must have norm above two.** Over every
+  group, a self-adjoint integral matrix of norm at most two decomposes into
+  matrices over finite or virtually cyclic groups and obeys every Serre
+  inequality (`norm-two-integral-matrices-reduce-to-virtually-cyclic-groups`,
+  via the McKee--Smyth classification).
 
 ## Attempts
 

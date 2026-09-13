@@ -35,6 +35,9 @@ which Thom proves for sofic groups (arXiv:math/0701294v3, Theorem 1.1).
   spectrum over every group (`integral-spectra-of-small-capacity-are-finite`).
 - **No Aut(C/Qbar)-invariance** of kernel dimensions if `lambda` is
   transcendental (`galois-invariance-implies-algebraic-eigenvalues`).
+- **Norm above two.** At norm at most two, over every group, the matrix reduces to
+  finite or virtually cyclic groups
+  (`norm-two-integral-matrices-reduce-to-virtually-cyclic-groups`).
 
 ## Attempts
 
