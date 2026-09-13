@@ -78,3 +78,29 @@ whether such a group is already known is open here.
    A finitely presented residually finite overgroup would suffice. That is the
    route `unbounded-prime-torsion-via-rf-higman-embedding`, whose open clause
    is `rf-higman-embedding-for-decidable-groups`.
+7. **Frames of products of finite groups (2026-09-13).** *Dies when infinitely
+   many factors have nonzero Schur multiplier.*
+   - A group `G <= prod_n S_n` containing `(+)_n S_n` retracts onto every finite
+     subproduct. So `H_2(G; Z)` contains `(+)_(n <= m) H_2(S_n)` for every `m`
+     (`products-of-finite-groups-with-schur-factors-not-fp`).
+   - Hence the Kassabov--Nikolov frames of products of alternating groups
+     (arXiv:math/0602446), which do have torsion of every prime order, are not
+     finitely presented (`kassabov-nikolov-alternating-frames-are-not-fp`).
+   - The obstruction is blind to factors with trivial multiplier. Kassabov's
+     `EL_3(R) <= prod_n SL_(3n)(F_p)` (their Proposition `g0`) contains
+     `(+)_n SL_(3n)(F_p)`, so it has unbounded prime torsion. Its finite
+     presentability is not decided here.
+   - What is known about it: by `fp2-over-q-descends-along-locally-finite-kernels`,
+     a finite presentation of `EL_3(R)` would make its quotient by
+     `(+)_n SL_(3n)(F_p)` of type `FP_2` over `Q`. By attempt 6, that quotient is
+     never finitely presented.
+8. **Other standard classes.** *Die, by standard facts not rechecked here.*
+   - *Virtually residually-`p` groups*, including Golod--Shafarevich constructions.
+     If `N` has index `i` and is residually `p`, an element of prime order `q`
+     outside `N` forces `q | i`. Inside `N` it survives in a finite `p`-quotient,
+     so `q = p`.
+   - *Finite graphs of finite groups.* Finite subgroups fix a vertex of the
+     Bass--Serre tree, so torsion orders divide vertex group orders.
+   - *Lattices in products of trees* act properly and cocompactly on a CAT(0)
+     space (attempt 3).
+   - *S-arithmetic groups over function fields* are linear (attempt 1).

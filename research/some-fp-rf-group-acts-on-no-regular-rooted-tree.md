@@ -52,4 +52,8 @@ because self-similar groups are subgroups of `Aut(T_d)`. The route
    - This session read that paper only in outline, and did not check whether
      finite presentation survives the passage to the subgroup.
 
-   Not pursued further here.
+   *Resolved for the frames (2026-09-13).* Every frame of a product of
+   alternating groups has `H_2(-; Z)` not finitely generated, so none is
+   finitely presented (`kassabov-nikolov-alternating-frames-are-not-fp`). The
+   group `EL_3(R) <= prod_n SL_(3n)(F_p)` behind their construction has factors
+   with trivial multiplier, and this obstruction does not reach it.
