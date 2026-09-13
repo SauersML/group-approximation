@@ -77,12 +77,15 @@ asymptotic coboundary iff `w^♯ = KK^G(ι_B)`.
   `KK^G(ι_A) ⊗ x ∈ KK^G(C, E) = 0 = KK^G(ι_(O_2))`.  So item 2 realizes `x`.
   For `A = O_2` this realizes every element of `KK^G(E, E)`.
 
-**Item 4.**  Apply item 2 with `A = C(G)`, left translation `σ`.
-- `[1]_0 ⊗ x ∈ K_0(O_2) = 0` for every `x`.
-- By (IR), `KK^G(C(G), E) = K_0(O_2) = 0`.  So `x = 0` and
-  `KK^G(ι_(C(G))) ⊗ x = 0`.
-- Item 2 therefore gives a unital equivariant `C(G) → O_2` iff
-  `KK^G(ι_(O_2)) = 0`.  The towers `e_g` are the images of the `δ_g`.
+**Item 4.**  Write `E = (O_2, β)`, and recall `K_0(O_2) = 0`.
+- **(i ⟹ iii).**  For `(A, α)` take `x = 0 ∈ KK^G(A, E)`.  Then
+  `[1_A]_0 ⊗ x = 0 = [1]_0`, and `KK^G(ι_A) ⊗ x = 0 = KK^G(ι_(O_2))` by (i).
+  Item 2 gives the embedding.
+- **(iii ⟹ ii).**  Take `A = C(G)` with left translation.  The towers `e_g`
+  are the images of the `δ_g`.
+- **(ii ⟹ i).**  Let `φ : C(G) → O_2` be unital and equivariant.  Then
+  `KK^G(ι_(O_2)) = KK^G(ι_(C(G))) ⊗ KK^G(φ)`, and
+  `KK^G(φ) ∈ KK^G(C(G), E) ≅ KK(C, O_2) = 0` by (IR).
 
 **Item 5.**
 - **(⟹)** Rokhlin projections `e_g ∈ F_∞(O_2)`, as in Barlak--Li

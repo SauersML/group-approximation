@@ -33,10 +33,14 @@ group, `β : G ↷ B` a pointwise outer action on a unital Kirchberg algebra, an
      equivariantly into `(O_2, β)`;
    - every element of `KK^G(E, E)`, idempotents included, is the class of a
      unital equivariant endomorphism of `(O_2, β)`.
-4. **Non-central Rokhlin towers.**  A pointwise outer `β : G ↷ O_2` admits
-   projections `e_g ∈ O_2` with `Σ_g e_g = 1` and `β_h(e_g) = e_(hg)` iff
-   `KK^G(ι_(O_2)) = 0`.  Under Green--Julg that is the class of the averaging
-   projection `|G|^(−1) Σ_g u_g` in `K_0(O_2 ⋊_β G)`.
+4. **Non-central Rokhlin towers and universality.**  For a pointwise outer
+   `β : G ↷ O_2` the following are equivalent:
+   - (i) `KK^G(ι_(O_2)) = 0`.  Under Green--Julg this says the averaging
+     projection `|G|^(−1) Σ_g u_g` is `0` in `K_0(O_2 ⋊_β G)`;
+   - (ii) there are projections `e_g ∈ O_2` with `Σ_g e_g = 1` and
+     `β_h(e_g) = e_(hg)`;
+   - (iii) every separable exact unital `G`-algebra admits a unital equivariant
+     embedding into `(O_2, β)`.
 5. **Central eigen-unitaries.**  Let `G = Z/p`, `α : G ↷ O_2` outer with
    `O_2 ⋊_α G ≅ O_2`, and `ψ ∈ Ĝ` nontrivial.  Then `α` has the Rokhlin
    property iff `F_∞(O_2) = A_∞ ∩ O_2'` contains a unitary `w` with
@@ -82,6 +86,11 @@ eigen-unitary is again the unit-class problem of
   contractible.
 
 No priority is claimed.  Items 1 and 2 are immediate from Gabe--Szabó and are
-close to their Remark 6.5.
+close to their Remark 6.5.  Their Theorem G (dynamical `O_2`-embedding
+theorem) gives, for an amenable action on a separable exact algebra and an
+isometrically shift-absorbing `β` on a Kirchberg algebra, "a proper cocycle
+embedding (A, α) → (B ⊗ O_2, β ⊗ id_(O_2))".  Items 3 and 4 give unital,
+genuinely equivariant embeddings into `β` itself.  The action is not assumed
+to absorb `id_(O_2)`, and for a phantom it does not.
 
 Proof: `zp-o2-contractible-crossed-product-only-coboundaries-proof`.
