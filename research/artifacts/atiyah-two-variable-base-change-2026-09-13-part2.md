@@ -47,9 +47,14 @@ There are `E >= 1` and `k_1` such that
 is the primitive integral Chow form of `Z`.
 
 *Proof.*
-* **Almost all primes.** `Lambda_(D-1) (x) Z_p = O_K (x) Z_p` for all but
-  finitely many `p`. For those `p`, `Lambda_(k,p)` is constant for `k >= D-1`
-  and `h_fin` has no `p`-part. Let `S` be the finite set of the other primes.
+* **Almost all primes.** Put `k_0 = max(1, D-1)`, so that `Lambda_(k_0)` has
+  rank `D` and contains `1, zeta_1, zeta_2`. `Lambda_(k_0) (x) Z_p = O_K (x) Z_p`
+  for all but finitely many `p`. For those `p` the `zeta_i` are `p`-integral, so
+  `Lambda_(k,p)` is constant for `k >= k_0` and `h_fin` has no `p`-part. Let `S`
+  be the finite set of the other primes.
+  *(Corrected by ex-verify2-quantum-l2, 2026-09-13. The text used `D-1` in place
+  of `k_0`. For `D = 1`, `Lambda_0 = Z` does not see the denominators of a
+  rational point: see the model test `Z = {(1/2, 1/3)}` in Part 3 §6.)*
 * **Normalization at `p in S`.** Put `O'_p = prod_(w|p) O_w`. For each `w | p`,
   pick `varpi_w in {1, zeta_1^-1, zeta_2^-1}` with
   `|varpi_w|_w = pi_w^-1`, `pi_w := max(1, |zeta_1|_w, |zeta_2|_w)`. Then
