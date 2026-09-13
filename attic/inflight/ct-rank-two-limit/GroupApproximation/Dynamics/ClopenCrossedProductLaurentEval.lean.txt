@@ -1,0 +1,186 @@
+import GroupApproximation.Dynamics.ClopenCrossedProduct
+import GroupApproximation.Meta.AxiomGuard
+import Mathlib.Algebra.Polynomial.Laurent
+import Mathlib.Data.Matrix.Basic
+import Mathlib.Data.Matrix.Notation
+import Mathlib.Algebra.Group.Int.Even
+
+/-!
+# Evaluating `R_Y` at points of period at most two
+
+`non_mf_groups_exist.tex`, `sec:chain-core`, the remark after `cor:dynamic-rank-budget`
+(tex 1796–1805):
+
+> Its finitely generated restriction image lies in a finite product of groups
+> $\GL_2(k[z,z^{-1}])$ [...] The same reasoning applies to unit groups when every core point has
+> period at most two: a finite invariant clopen partition gives matrix blocks of size at most two
+> over $k[z,z^{-1}]$.
+
+A point `x` with `T x = x` gives the ring map `R_X → k[z,z^{-1}]`, `f ↦ f(x)`, `u ↦ z`
+(`evalLaurent`).  When `T ∘ T = id`, every point `x` gives the ring map
+`R_X → M_2(k[z,z^{-1}])`, `f ↦ diag(f(x), f(T x))`, `u ↦ z P` with `P` the transposition
+(`evalPair`); its first row recovers all Laurent coefficients at `x`.  These are the matrix blocks
+of size at most two of the printed argument, one block per point, with the coefficient data read off
+by `coeff_evalLaurent` and `coeff_evalPair_row`.
+-/
+
+namespace GroupApproximation
+namespace ClopenCrossedProduct
+
+open Multiplicative (ofAdd toAdd)
+
+variable {X : Type*} [TopologicalSpace X]
+
+/-- A fixed point of `T` is fixed by every power of `T`. -/
+theorem zpow_apply_of_apply_eq {T : X ≃ₜ X} {x : X} (hx : T x = x) (n : ℤ) : (T ^ n) x = x := by
+  have hs : T.symm x = x := T.symm_apply_eq.mpr hx.symm
+  induction n using Int.induction_on with
+  | zero => rfl
+  | succ i ih => rw [zpow_add_one, Homeomorph.mul_apply, hx, ih]
+  | pred i ih => rw [zpow_sub_one, Homeomorph.mul_apply, Homeomorph.inv_apply, hs, ih]
+
+/-- If `T ∘ T = id`, then `T ^ n` is the identity for even `n` and `T` for odd `n`. -/
+theorem zpow_apply_of_apply_apply_eq {T : X ≃ₜ X} (hT : ∀ y, T (T y) = y) (n : ℤ) (x : X) :
+    (T ^ n) x = if Even n then x else T x := by
+  have hs : ∀ y, T.symm y = T y := fun y ↦ T.symm_apply_eq.mpr (hT y).symm
+  induction n using Int.induction_on generalizing x with
+  | zero => simp
+  | succ i ih =>
+    rw [zpow_add_one, Homeomorph.mul_apply, ih, Int.even_add_one]
+    by_cases h : Even (i : ℤ) <;> simp [h, hT]
+  | pred i ih =>
+    rw [zpow_sub_one, Homeomorph.mul_apply, Homeomorph.inv_apply, hs, ih, Int.even_sub_one]
+    by_cases h : Even (-(i : ℤ)) <;> simp [h, hT]
+
+section Eval
+
+variable (T : X ≃ₜ X) (k : Type*) [CommRing k]
+
+/-- `ℤ → k[z,z^{-1}]ˣ`, `n ↦ zⁿ`, as a monoid hom into `k[z,z^{-1}]`. -/
+noncomputable def laurentT : Multiplicative ℤ →* LaurentPolynomial k where
+  toFun j := LaurentPolynomial.T (toAdd j)
+  map_one' := LaurentPolynomial.T_zero
+  map_mul' a b := by rw [toAdd_mul, LaurentPolynomial.T_add]
+
+/-- **Evaluation at a fixed point**, `R_X → k[z,z^{-1}]`: `f ↦ f(x)` and `u ↦ z`. -/
+noncomputable def evalLaurent {x : X} (hx : T x = x) :
+    ClopenCrossedProduct T k →+* LaurentPolynomial k :=
+  SkewMonoidAlgebra.liftNCRingHom
+    (LaurentPolynomial.C.comp
+      ((LocallyConstant.evalRingHom x).comp (ClopenCoeff.of T k).symm.toRingHom))
+    (laurentT k) (fun {c j} ↦ by
+      have hj : (ClopenCoeff.of T k).symm (j • c) x = (ClopenCoeff.of T k).symm c x := by
+        show (ClopenCoeff.of T k).symm c ((T ^ (-toAdd j)) x) = _
+        rw [zpow_apply_of_apply_eq hx]
+      show LaurentPolynomial.C ((ClopenCoeff.of T k).symm (j • c) x) * laurentT k j =
+        laurentT k j * LaurentPolynomial.C ((ClopenCoeff.of T k).symm c x)
+      rw [hj, mul_comm])
+
+/-- The Laurent coefficients of `evalLaurent y` are the coefficients of `y` evaluated at `x`. -/
+theorem coeff_evalLaurent {x : X} (hx : T x = x) (y : ClopenCrossedProduct T k) (n : ℤ) :
+    (evalLaurent T k hx y).coeff n = (ClopenCoeff.of T k).symm (y.coeff (ofAdd n)) x := by
+  classical
+  induction y using SkewMonoidAlgebra.induction_on with
+  | zero => simp
+  | single g c =>
+    obtain ⟨m, rfl⟩ : ∃ m : ℤ, ofAdd m = g := ⟨toAdd g, rfl⟩
+    show (LaurentPolynomial.C ((ClopenCoeff.of T k).symm c x) * LaurentPolynomial.T m).coeff n = _
+    rw [← LaurentPolynomial.single_eq_C_mul_T, AddMonoidAlgebra.coeff_single,
+      SkewMonoidAlgebra.coeff_single_apply, Finsupp.single_apply]
+    by_cases h : m = n
+    · subst h
+      simp
+    · rw [if_neg h, if_neg fun h' ↦ h (ofAdd.injective h')]
+      simp
+  | add y z hy hz =>
+    rw [map_add, AddMonoidAlgebra.coeff_add, Finsupp.add_apply, hy, hz,
+      SkewMonoidAlgebra.coeff_add, Finsupp.add_apply, map_add]
+    rfl
+
+/-- The transposition matrix `P`. -/
+def swapMat (L : Type*) [CommRing L] : Matrix (Fin 2) (Fin 2) L := !![0, 1; 1, 0]
+
+theorem swapMat_mul_self (L : Type*) [CommRing L] : swapMat L * swapMat L = 1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> simp [swapMat, Matrix.mul_apply, Fin.sum_univ_two]
+
+/-- `n ↦ zⁿ Pⁿ`: `Pⁿ = 1` for even `n` and `P` for odd `n`. -/
+noncomputable def laurentSwap : Multiplicative ℤ →* Matrix (Fin 2) (Fin 2) (LaurentPolynomial k) where
+  toFun j := LaurentPolynomial.T (toAdd j) •
+    (if Even (toAdd j) then 1 else swapMat (LaurentPolynomial k))
+  map_one' := by simp [LaurentPolynomial.T_zero]
+  map_mul' a b := by
+    rw [toAdd_mul, LaurentPolynomial.T_add, smul_mul_smul_comm]
+    congr 1
+    by_cases ha : Even (toAdd a) <;> by_cases hb : Even (toAdd b) <;>
+      simp [ha, hb, Int.even_add, swapMat_mul_self]
+
+/-- `f ↦ diag(f(x), f(T x))`. -/
+noncomputable def coeffPair (x : X) :
+    ClopenCoeff T k →+* Matrix (Fin 2) (Fin 2) (LaurentPolynomial k) :=
+  (Matrix.diagonalRingHom (Fin 2) (LaurentPolynomial k)).comp
+    (Pi.ringHom fun i : Fin 2 ↦ LaurentPolynomial.C.comp
+      ((LocallyConstant.evalRingHom (![x, T x] i)).comp (ClopenCoeff.of T k).symm.toRingHom))
+
+theorem coeffPair_apply (x : X) (c : ClopenCoeff T k) (i l : Fin 2) :
+    coeffPair T k x c i l =
+      if i = l then LaurentPolynomial.C ((ClopenCoeff.of T k).symm c (![x, T x] i)) else 0 :=
+  rfl
+
+/-- **Evaluation at a point of period at most two**, `R_X → M_2(k[z,z^{-1}])`:
+`f ↦ diag(f(x), f(T x))` and `u ↦ z P`, when `T ∘ T = id`. -/
+noncomputable def evalPair (hT : ∀ y, T (T y) = y) (x : X) :
+    ClopenCrossedProduct T k →+* Matrix (Fin 2) (Fin 2) (LaurentPolynomial k) :=
+  SkewMonoidAlgebra.liftNCRingHom (coeffPair T k x) (laurentSwap k) (fun {c j} ↦ by
+    obtain ⟨n, rfl⟩ : ∃ n : ℤ, ofAdd n = j := ⟨toAdd j, rfl⟩
+    have hev : ∀ y, (ClopenCoeff.of T k).symm (ofAdd n • c) y =
+        (ClopenCoeff.of T k).symm c (if Even n then y else T y) := by
+      intro y
+      show (ClopenCoeff.of T k).symm c ((T ^ (-n)) y) = _
+      rw [zpow_apply_of_apply_apply_eq hT, Int.even_neg]
+    show coeffPair T k x (ofAdd n • c) * laurentSwap k (ofAdd n) =
+      laurentSwap k (ofAdd n) * coeffPair T k x c
+    ext i l
+    by_cases hn : Even n <;> fin_cases i <;> fin_cases l <;>
+      simp [coeffPair_apply, laurentSwap, swapMat, hev, hn, hT, Matrix.mul_apply,
+        Fin.sum_univ_two, mul_comm])
+
+theorem evalPair_single_row (hT : ∀ y, T (T y) = y) (x : X) (m : ℤ) (c : ClopenCoeff T k) :
+    evalPair T k hT x (SkewMonoidAlgebra.single (ofAdd m) c) 0 0 +
+        evalPair T k hT x (SkewMonoidAlgebra.single (ofAdd m) c) 0 1 =
+      LaurentPolynomial.C ((ClopenCoeff.of T k).symm c x) * LaurentPolynomial.T m := by
+  show (coeffPair T k x c * laurentSwap k (ofAdd m)) 0 0 +
+      (coeffPair T k x c * laurentSwap k (ofAdd m)) 0 1 = _
+  by_cases hm : Even m <;>
+    simp [coeffPair_apply, laurentSwap, swapMat, hm, Matrix.mul_apply, Fin.sum_univ_two,
+      mul_comm]
+
+/-- The first row of `evalPair y` recovers the Laurent coefficients of `y` at `x`. -/
+theorem coeff_evalPair_row (hT : ∀ y, T (T y) = y) (x : X) (y : ClopenCrossedProduct T k)
+    (n : ℤ) :
+    (evalPair T k hT x y 0 0 + evalPair T k hT x y 0 1).coeff n =
+      (ClopenCoeff.of T k).symm (y.coeff (ofAdd n)) x := by
+  classical
+  induction y using SkewMonoidAlgebra.induction_on with
+  | zero => simp
+  | single g c =>
+    obtain ⟨m, rfl⟩ : ∃ m : ℤ, ofAdd m = g := ⟨toAdd g, rfl⟩
+    rw [evalPair_single_row, ← LaurentPolynomial.single_eq_C_mul_T, AddMonoidAlgebra.coeff_single,
+      SkewMonoidAlgebra.coeff_single_apply, Finsupp.single_apply]
+    by_cases h : m = n
+    · subst h
+      simp
+    · rw [if_neg h, if_neg fun h' ↦ h (ofAdd.injective h')]
+      simp
+  | add y z hy hz =>
+    rw [map_add, Matrix.add_apply, Matrix.add_apply, add_add_add_comm, AddMonoidAlgebra.coeff_add,
+      Finsupp.add_apply, hy, hz, SkewMonoidAlgebra.coeff_add, Finsupp.add_apply, map_add]
+    rfl
+
+end Eval
+
+end ClopenCrossedProduct
+end GroupApproximation
+
+#audit_axioms GroupApproximation.ClopenCrossedProduct.coeff_evalLaurent
+#audit_axioms GroupApproximation.ClopenCrossedProduct.coeff_evalPair_row
