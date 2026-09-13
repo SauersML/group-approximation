@@ -83,15 +83,25 @@ finite trace on `A/I` annihilates `π_*(G)`.  Two sub-cases:
   finiteness ideal of the (new) annihilating trace on `A/I` gives the next layer
   of a filtration `I = I_1 ⊊ I_2 ⊊ … ` of `A`.  Termination is a transfinite
   induction on the (separable, hence countable-length) primitive-ideal filtration.
-- **(b2) `π_*(G) ∩ K_0^+(A/I) ≠ {0}`.**  A singular boundary class is detected
+- **(b2) `π_*(G) ∩ K_0^+(A/I) ≠ {0}`.**  The descended boundary is detected
   **positively** by the quotient.  Let `K ⊆ R` be the ideal of `E` with
-  `K/J = I`, so `A/I = R/K`.  For `0 → R/K → E/K → E/R → 0` the boundary image
-  is `π_*(G) = (q_K)_*(H)`.  By Spielberg (Brown--Dadarlat Prop 4.1),
-  `π_*(G) ∩ K_0^+(R/K) ≠ {0}` forces `E/K` **not stably finite** -- exactly
-  Theorem 9 (`bk-radical-projection-quotients-are-toeplitz-infinite`).  This is
-  the Toeplitz obstruction: no faithful embedding of `A` into a **stably finite**
-  QD algebra can kill `G`, because a nonzero projection class of a stably finite
-  quotient cannot map to `0` (Brown--Dadarlat, remark after Def 4.4).
+  `K/J = I`, so `A/I = R/K`; the boundary image is `π_*(G) = (q_K)_*(H)`.  By
+  Spielberg (Brown--Dadarlat Prop 4.1), `π_*(G) ∩ K_0^+(R/K) ≠ {0}` forces `E/K`
+  **not stably finite** -- exactly Theorem 9
+  (`bk-radical-projection-quotients-are-toeplitz-infinite`).  Consequences,
+  stated carefully:
+  - By the Brown--Dadarlat remark after Def 4.4, `A/I` (being non-singular for
+    `π_*(G)`) has **no** faithful embedding into a stably finite QD algebra
+    killing `π_*(G)`.  So the *peeling / gluing route*, which factors the killing
+    of `G` through such an embedding of the quotient `A/I`, is **blocked** here.
+  - This is *not* an absolute obstruction to killing `G` in `A`: a general
+    faithful embedding of `A` need not respect the ideal `I`, so positivity in
+    `K_0^+(A/I)` does not by itself put `G` into `K_0^+(A)`.  The absolute
+    obstruction (§2, item 2) is only `G ∩ K_0^+(A) ≠ {0}`; for the radical
+    (`J = 0`) `H` is singular in `K_0(R)`, so none is present at the top.
+  - What (b2) shows is that the boundary cannot be peeled off *through the
+    quotient side*: an ideal-equivariant embedding that does not factor through
+    the infinite quotients `E/K` is the only route left.
 
 ## 3. The obstruction is forced, so relative Lemma B is conditional
 
@@ -102,25 +112,30 @@ counterexample with UCT quotients, some `h ∈ H` has strictly positive rank
 `(q_{P_i})_*(H) ∩ K_0^+(R/P_i) ≠ {0}`.  So the escaping-with-positive-detection
 case (b2) occurs at the elementary points of any type I counterexample.
 
-**Conclusion.**  Relative Lemma B cannot hold as an *unconditional* tool that
-kills all of `H` by pushing it into a quotient: the very feature a counterexample
-must have (a quotient detecting a boundary class positively, Cor 10 / Thm 9) is
-the obstruction to it.  Its correct scope is the **ideal-captured** case (a):
+**Conclusion.**  The *filtration / peeling route* to relative Lemma B -- kill `H`
+by descending through quotients -- is blocked wherever a quotient detects the
+boundary positively, which Cor 10 / Thm 9 force at the elementary points of a
+type I counterexample.  The route works only in the **ideal-captured** case (a):
 when the boundary is carried by the finiteness ideal `I` (`π_*(G)=0`), a faithful
 densely finite trace is available on `I` and Lemma B applies there, leaving only
-the one Brown--Dadarlat gluing step.  The residual open content is therefore
-sharpened to two independent questions:
+the one Brown--Dadarlat gluing step.  This is not an absolute impossibility of
+killing `H` (which would need `H ∩ K_0^+(R) ≠ {0}`, and `H` is singular): it says
+the boundary cannot be removed through the infinite quotients, so a single
+ideal-equivariant embedding (CGSTW-type, not factoring through those quotients)
+is the only remaining route.  The residual open content is therefore sharpened to
+two independent questions:
 
 1. **(gluing)** In case (a), does the single index map
    `∂ : K_1(A/I) → K_0(I)` die under the Lemma-B embedding of `I`?  (This is one
    Brown--Dadarlat step, not a transfinite tower.)
-2. **(the shape to avoid)** Can case (b2) be realised by a **stably finite**
-   `E` -- an infinitesimal boundary class in a trace-finite ideal whose image in
-   a quotient is a genuine positive projection class?  If yes, it is a Problem
-   VII counterexample; if provably no, relative Lemma B holds in case (b) too.
-   The obstruction to (b2) being stably finite is that it needs a class that is
-   singular in `K_0(R)` yet positive-with-a-projection in `K_0(R/K)`, with `E/K`
-   forced infinite -- Theorem 9 says the two are the same event.
+2. **(the shape to avoid)** Can a glued UCT `E` be **stably finite** while some
+   quotient `R/K` detects the singular boundary positively -- a class singular in
+   `K_0(R)` yet positive-with-a-projection in `K_0(R/K)`, `E/K` forced infinite by
+   Theorem 9?  Nothing here excludes it: the descent (Prop 1) leaves no trace
+   obstruction, and `E` stably finite does not force its quotients `E/K` stably
+   finite.  Deciding this is Problem VII for the glued UCT radical itself, now
+   reduced to the single ideal-equivariant realisation question of §0 -- realise
+   a killing embedding of `R` that does not factor through the infinite quotients.
 
 ## 4. Model tests
 
