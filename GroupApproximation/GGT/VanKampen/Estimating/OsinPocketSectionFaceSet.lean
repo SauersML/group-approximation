@@ -35,7 +35,8 @@ This module proves steps towards `SectionPocketFaceSetInput`.
   outside.
 * `PocketWalk.toPocketFaceSetOfNoncrossing`: a noncrossing pocket walk (`IsNoncrossingClosedWalk`,
   which lets the walk touch itself at a vertex) with a relator cell on its side gives a
-  `PocketFaceSet` with the walk as its boundary cycle.
+  `PocketFaceSet` with the walk as its boundary cycle, in walk order
+  (`toPocketFaceSetOfNoncrossing_closedWalk`).
 
 Not proved here: that the pocket walk is noncrossing, and that a relator cell lies on its side.
 
@@ -332,6 +333,14 @@ theorem toPocketFaceSetOfNoncrossing_cycle (K : PocketWalk D eps X lo hi)
     (K.toPocketFaceSetOfNoncrossing kept hw hkept).boundary.cycle = K.walk :=
   rfl
 
+/-- The pocket face set of a noncrossing pocket walk is in walk order: its boundary cycle is the
+walk, so the `chain` and `closes` fields of the walk make it a closed walk. -/
+theorem toPocketFaceSetOfNoncrossing_closedWalk (K : PocketWalk D eps X lo hi)
+    (kept : Fin X.rCellCount) (hw : IsNoncrossingClosedWalk X.toCombMap K.walk)
+    (hkept : (cell X kept).face ∈ sideFaces X.toCombMap K.walk) :
+    (K.toPocketFaceSetOfNoncrossing kept hw hkept).ClosedWalk :=
+  ⟨hw.chain, hw.closes⟩
+
 end Diagram
 
 variable {Delta : DiscDiagram.{u, w, v} W} {lambda c : ℝ}
@@ -451,3 +460,4 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketWalk.exists_of_exteriorAt
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.ofBoundaryCycle
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketWalk.toPocketFaceSetOfNoncrossing_cycle
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketWalk.toPocketFaceSetOfNoncrossing_closedWalk

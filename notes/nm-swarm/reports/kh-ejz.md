@@ -186,9 +186,12 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
      - It needs no duplicate-free hypothesis, because overlapping positions share a dart.
      - It applies to `cellDarts Δ i`, giving the cell part t₁.
      - It also applies to `outerDarts Δ`, giving t₂ of the section pocket.
-5. **Item `SectionPocketFaceSetInput`** (lead, ~08:30; fff-quotient joins as helper).
-   - The Prop (OsinPocketPieces.lean:161, dgo-analytic): two distinct exterior regions `a ≠ b` of cell `i` to section
-     `j`, in a `GloballyDistinguishedSectionFamily`, give `Nonempty (PocketFaceSet D eps S.diagram lo hi)`.
+5. **Item `SectionPocketFaceSetInput`** (lead, ~08:30). fff-quotient joined as helper and offered three sub-pieces;
+   the lead reassigned it before this lane answered, so no sub-piece is handed out.
+   - The Prop (OsinPocketPieces.lean:228, dgo-analytic, restated under ruling (B) at bdc7337fd and cb0ec2d30): two
+     distinct exterior regions `a ≠ b` of cell `i` to section `j`, in a `GloballyDistinguishedSectionFamily`, give an
+     O-equivalent copy `X'` of `S.diagram` whose labels are letters of `symmetricLabelAlphabet D`, and a
+     `PocketFaceSet D eps X' lo hi` in walk order (`K.ClosedWalk`).
    - Planar separation on main: `simpleClosedWalkSides` (GGT/VanKampen/SimpleClosedWalkSides, 79008d7e5 and
      4dce22f1e). Both sides of a simple closed walk in a planar map are disc regions. A pinched walk is not covered.
    - **Landed:** new module `GGT/VanKampen/Estimating/OsinPocketSectionFaceSet`.
@@ -255,8 +258,12 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
        face set whose boundary cycle is `s_1 t_1 s_2 t_2` and which contains a relator cell),
        `PocketFaceSet.ofNoncrossingClosedWalk`, `PocketWalk.toPocketFaceSetOfNoncrossing`, and
        `toPocketFaceSetOfNoncrossing_cycle` (the boundary cycle is `K.walk`).
-       Open: the turning condition for `K.walk`. P2' does not touch (iii): a walk holding both darts of an edge
-       violates `alpha_not_mem`.
+       **Walk order landed with this report** (green probe 0913-130217-56077, base including cb0ec2d30): new lemma
+       `toPocketFaceSetOfNoncrossing_closedWalk`, giving `(K.toPocketFaceSetOfNoncrossing kept hw hkept).ClosedWalk`
+       from the `chain` and `closes` fields of `hw`. So this producer meets the `ClosedWalk` conclusion of the
+       restated Prop.
+       Open: the turning condition and `alpha_not_mem` for the walk on the copy. On `S.diagram` a walk holding both
+       darts of an edge violates `alpha_not_mem`, which is why ruling (B) moves the construction to a copy.
        **Model test landed with this report** (green probe 0913-125753-37346): new module
        `Estimating/OsinPocketPinchedTwoGonNoncrossing`, unwired. The cycle `[5,3,4,6]` of the pinched pocket of
        OsinPocketPinchedTwoGonRegion is noncrossing and not simple (`pocket_noncrossing_not_simple`): one rotation step
@@ -265,21 +272,22 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
        Additive in NoncrossingClosedWalkSides: `turn_mem_of_first`, the turning condition at one dart from the first
        walk edge met when rotating from its reversal.
      - (ii) the kept cell on the side of the walk. Without it, the pocket holds no relator cell, and hull-select's
-       zero-cell merge should contradict weight maximality. `OsinPocketZeroCellMerge` (`innerBoundary`,
-       `toInnerGRegion`, `mergedGeometry`) is on main. The contradiction module `OsinPocketZeroCellMergeFalse`, which
-       its docstring names, is not.
-     - (iii) **Construction gap, reported to main with a ruling request.** `cycle_mem_iff` forbids a dart and its
-       reverse in one boundary cycle. The pocket walk contains both darts of an edge in three configurations that
-       `DiscDiagram` allows:
+       zero-cell merge contradicts weight maximality. `zeroCellPocketMerge` (`OsinPocketZeroCellMergeFalse`,
+       ce1028aa1, closed) is on main. It is stated on `S.diagram`, for a `PocketRegion S.diagram` whose inverse
+       complement cycle is `s₁ t₁ s₂ t₂`. The face set now lives on the copy `X'`, so the kept cell needs either the
+       merge on `X'` or a transport of the relator-free side back to `S.diagram`. Asked main which lane states it.
+     - (iii) **Construction gap: ruling (B) adopted** (dgo-analytic, bdc7337fd, 12:19). `cycle_mem_iff` forbids a
+       dart and its reverse in one boundary cycle. The pocket walk contains both darts of an edge in three
+       configurations that `DiscDiagram` allows:
        - (a) a spur of section `j` between the two targets. Both darts are `outerDarts` with `faceOf = outerFace`.
          `OEquivalentDiscDiagram` keeps `boundaryWord`, and `SurgeryFaceEdgeDoubling` needs `f ≠ outerFace`.
        - (b) an edge of the gap arc with cell `i` on both sides.
        - (c) `x.right` sharing an edge with `y.left` behind the cell.
        The manuscript's `Γ_1`, with sides `inv y.right` and `inv x.left`, avoids (c) only. No model test was run.
-       Options put to main:
-       - (A) keep the statement, build P2', and rule (a)–(c) out;
-       - (B) produce the face set on an O-equivalent copy, with a boundary edge doubling for spurs;
-       - (C) merge the Prop with `PocketPinchStatement`.
+       Ruling (B): the face set is produced on an O-equivalent copy with legal labels. hs-vanishes builds the spur
+       thickening (the copy), and dgo-analytic added label legality and `PocketPinchLabelledStatement`. No statement
+       of the thickening is on main or in the hs-vanishes report yet, so this lane asked main for its name and shape.
+       The copy must carry `K.walk` to a walk that holds no edge in both directions, in cases (a) to (c).
    - When hull-euler's C6 Prop arrives, check it against this output.
 
 ## W1 assignment (2026-09-13 ~03:00)
