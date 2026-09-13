@@ -68,3 +68,27 @@ the actor comes from evaluating its own generators, via
      conditions couple scales and are not a one-dimensional shift of finite
      type, so pumping fails. Uniqueness still makes each witness computable
      (clause 2 of the rigidity claim), but gives no complexity bound.
+6. **Displacement and hardness are free; finite presentation is the whole
+   problem (2026-09-13).**
+   `scale-preserving-hard-half-finite-permutations-exist`: for every recursive
+   `R` there is a half-finite involution `gamma` with `gamma(x) < 2x` that is
+   scale-preserving (`gamma(B_j) = B_j` on each dyadic block) and whose
+   evaluation map is not in `F(R)`. So clauses 1 and 2 hold together with a
+   single generator, with displacement well below the `4x` ceiling and even
+   scale-preserving; by
+   `half-finite-generators-with-e2-are-strongly-shift-similar` the envelope is
+   already finitely generated and strongly shift-similar. Only clause 3, finite
+   presentation, is left, and displacement growth is not what is missing.
+   - *What the construction lacks.* Its blocks are diagonalized independently,
+     so there is no finite rule linking scales. Clause 1 of
+     `fp-alt-fin-envelopes-are-unique-solutions-of-their-relators` says a finite
+     presentation would force `gamma` to be the unique solution of finitely
+     many relators, a finite certificate this `gamma` does not carry.
+   - *The sharpened gap.* Replace the block-by-block diagonalization by one
+     finite cross-scale rule — a self-similar or automaton-driven action on the
+     dyadic scales, so that a length-`t` relator at `x` reading scales
+     `j, ..., j + O(t)` pins the whole tuple — whose iterated evaluation still
+     beats `R`. This is a forced-unique tiling on the binary scale tree rather
+     than on the line: pumping (a finite alphabet on `N`) does not apply, since
+     each scale `j` carries `2^j` offset values, an unbounded alphabet. Whether
+     a finite such rule can be both unique and hard is the open question.
