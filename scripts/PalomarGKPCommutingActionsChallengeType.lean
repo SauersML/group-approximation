@@ -1,37 +1,40 @@
-import Palomar.Pestov91Solution
+import Palomar.GKPCommutingActionsChallenge
 
 /-!
-# Dump the Pestov 9.1 statements and their declaration closures
+# Dump the GKP Question 4.2 statements and their declaration closures
 
-The solution-side driver for `Palomar/comparator-pestov91.json`, twin of
-`scripts/PalomarPestov91ChallengeType.lean`.
+The challenge-side driver for `Palomar/comparator-gkp-commuting-actions.json`,
+twin of `scripts/PalomarGKPCommutingActionsSolutionType.lean`.
 
 `leanprover/comparator` compares the exported challenge and solution
 `ConstantVal`s structurally and then walks the constants each compared type
 mentions, transitively, requiring each to be identical in both environments:
-name, type and value.  For the six shared definitions and the two compared
+name, type and value.  For the nine shared definitions and the two compared
 theorems this driver prints the level parameters, the type hash, the transitive
 closure with a type and value hash per constant, and the `pp.all` type, and
 `scripts/check_palomar_statement_match.sh` diffs the two drivers' output.
 
-The solution imports the development, whose instances the challenge never sees,
-so this is where an instance resolved differently inside a shared definition
-shows up.
+The values of the nine definitions are walked as well, because Comparator
+compares them; the proofs of the two theorems are not, because the challenge
+states them with holes.
 
-Run with `lake env lean scripts/PalomarPestov91SolutionType.lean`.
+Run with `lake env lean scripts/PalomarGKPCommutingActionsChallengeType.lean`.
 -/
 
 open Lean Meta in
 #eval show MetaM Unit from do
   let targets : List (Bool × Name) :=
-    [(true,  `Pestov91.IsKazhdanPair),
-     (true,  `Pestov91.HasPropertyT),
-     (true,  `Pestov91.hammingDist),
-     (true,  `Pestov91.IsSoficGroup),
-     (true,  `Pestov91.hsDistSq),
-     (true,  `Pestov91.IsHyperlinearGroup),
-     (false, `Pestov91.exists_infinite_simple_propertyT_hyperlinear),
-     (false, `Pestov91.exists_infinite_simple_propertyT_sofic)]
+    [(true,  `GKPCommutingActions.hammingDist),
+     (true,  `GKPCommutingActions.IsUnital),
+     (true,  `GKPCommutingActions.IsMultiplicative),
+     (true,  `GKPCommutingActions.IsOrbitApproximation),
+     (true,  `GKPCommutingActions.IsSoficGroup),
+     (true,  `GKPCommutingActions.IsSoficAction),
+     (true,  `GKPCommutingActions.ActionsCommute),
+     (true,  `GKPCommutingActions.combinedAction),
+     (true,  `GKPCommutingActions.combinedActionPair),
+     (false, `GKPCommutingActions.commuting_sofic_actions_need_not_combine),
+     (false, `GKPCommutingActions.exists_commuting_sofic_actions_not_sofic)]
   let env ← getEnv
   for (isShared, target) in targets do
     let some info := env.find? target

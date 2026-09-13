@@ -29,6 +29,7 @@ name: Palomar Comparator
 #   Palomar/comparator-pestov91.json     the two Pestov Open Question 9.1 theorems
 #   Palomar/comparator-type-a2.json      the FFWZ Question 5.8 theorem
 #   Palomar/comparator-guba-thompson.json  the two Guba Question 3.20 theorems
+#   Palomar/comparator-gkp-commuting-actions.json  the two GKP Question 4.2 theorems
 #
 # The values after the first are the entries of `PALOMAR_CONFIGS` and
 # `PALOMAR_PENDING_CONFIGS` in `scripts/check_palomar_submission.py`, which is
@@ -37,21 +38,14 @@ name: Palomar Comparator
 # whichever value is dispatched, so a LIX run does not depend on remembering to
 # change a second field.
 #
-# The pending values WILL FAIL until the propositions their solutions assume are
-# proved, because the theorems those configurations name do not exist yet:
-# `Palomar/LIXStrongSolution.lean` proves each selected statement from
-# `NinetyNineProblems.ClimbedPowersOutside`, which follows from
-# `GroupApproximation.NinetyNineProblems.LemmaTwoHoldsAtPowers`
-# (`climbedPowersOutside_of_lemmaTwoHoldsAtPowers`);
-# `Palomar/Pestov91Solution.lean` assumes an infinite simple LEF group with
-# property (T); `Palomar/TypeA2Solution.lean` assumes
-# `GroupApproximation.TypeA2.Question58`; and `Palomar/GubaThompsonSolution.lean`
-# assumes three facts about Thompson's group F: K[F] has no zero divisors, Guba's
-# Theorem 3.18 holds for x_0, and x_1 lies in a subgroup isomorphic to F by an
-# isomorphism sending x_1 to x_0, which contains or is contained in each of its
-# conjugates.  They are listed here so that the day the theorems exist the
-# dispatch takes no editing, and `scripts/check_palomar_submission.py` is where
-# that state is recorded.
+# The pending value `Palomar/comparator-lix-strong.json` WILL FAIL until the
+# proposition its solution assumes is proved, because the theorems that
+# configuration names do not exist yet: `Palomar/LIXStrongSolution.lean` proves
+# each selected statement from `NinetyNineProblems.ClimbedPowersOutside`, which
+# follows from `GroupApproximation.NinetyNineProblems.LemmaTwoHoldsAtPowers`
+# (`climbedPowersOutside_of_lemmaTwoHoldsAtPowers`).  It is listed here so that
+# the day the theorems exist the dispatch takes no editing, and
+# `scripts/check_palomar_submission.py` is where that state is recorded.
 #
 # WHY MANUAL ONLY.  It builds two extra toolchains and a Rust kernel checker,
 # and the answer only changes when the Palomar surface changes.  Run it before
@@ -165,7 +159,8 @@ jobs:
                      PalomarBowenChapmanChallenge PalomarBowenChapmanSolution \
                      PalomarPestov91Challenge PalomarPestov91Solution \
                      PalomarTypeA2Challenge PalomarTypeA2Solution \
-                     PalomarGubaThompsonChallenge PalomarGubaThompsonSolution
+                     PalomarGubaThompsonChallenge PalomarGubaThompsonSolution \
+                     PalomarGKPCommutingActionsChallenge PalomarGKPCommutingActionsSolution
 
       # Comparator's sandbox.  Landrun is Go; the runner ships a toolchain.
       # Two things about the path, both learned the hard way: the module is

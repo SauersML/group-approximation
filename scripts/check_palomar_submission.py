@@ -152,11 +152,15 @@ class Findings:
 
 # Every Comparator configuration this repository offers.  One configuration is
 # one submission; the registry has no notion of a repository submitting two
-# results at once, so the two entries below are two submissions of the same
+# results at once, so the entries below are separate submissions of the same
 # tree and each has to hold on its own.
 PALOMAR_CONFIGS = (
     "Palomar/comparator-lix.json",  # the three ProblemLIX theorems
     "Palomar/comparator-bowen-chapman.json",  # the two Bowen-Chapman Problem 1.1 theorems
+    "Palomar/comparator-pestov91.json",  # the two Pestov Open Question 9.1 theorems
+    "Palomar/comparator-type-a2.json",  # the FFWZ Question 5.8 theorem
+    "Palomar/comparator-guba-thompson.json",  # the two Guba Question 3.20 theorems
+    "Palomar/comparator-gkp-commuting-actions.json",  # the two GKP Question 4.2 theorems
 )
 
 # Configurations whose SOLUTION is still a skeleton: it proves each theorem its
@@ -166,16 +170,7 @@ PALOMAR_CONFIGS = (
 #   * `Palomar/LIXStrongSolution.lean` proves each of its three theorems from
 #     `GroupApproximation.NinetyNineProblems.ClimbedPowersOutside`, which follows
 #     from the one proposition the construction still owes,
-#     `NinetyNineProblems.LemmaTwoHoldsAtPowers` (`climbedPowersOutside_of_lemmaTwoHoldsAtPowers`);
-#   * `Palomar/Pestov91Solution.lean` proves both of its theorems from the
-#     existence of an infinite simple LEF group with property (T);
-#   * `Palomar/TypeA2Solution.lean` proves its theorem from
-#     `GroupApproximation.TypeA2.Question58`;
-#   * `Palomar/GubaThompsonSolution.lean` proves both of its theorems from three
-#     facts about Thompson's group F: K[F] has no zero divisors, Guba's Theorem
-#     3.18 holds for x0, and x1 lies in a subgroup isomorphic to F by an
-#     isomorphism sending x1 to x0, which contains or is contained in each of
-#     its conjugates.
+#     `NinetyNineProblems.LemmaTwoHoldsAtPowers` (`climbedPowersOutside_of_lemmaTwoHoldsAtPowers`).
 #
 # That is the honest state of the work and not a defect, so each such pair is
 # checked for everything that is meaningful now -- the configuration's shape,
@@ -197,9 +192,6 @@ PALOMAR_CONFIGS = (
 # summary line says so.
 PALOMAR_PENDING_CONFIGS = (
     "Palomar/comparator-lix-strong.json",  # the three ProblemLIXStrong theorems
-    "Palomar/comparator-pestov91.json",  # the two Pestov Open Question 9.1 theorems
-    "Palomar/comparator-type-a2.json",  # the FFWZ Question 5.8 theorem
-    "Palomar/comparator-guba-thompson.json",  # the two Guba Question 3.20 theorems
 )
 
 # The files `copy_surface` copies and `--self-test` plants defects into.  The
@@ -219,6 +211,8 @@ SURFACE_FILES = (
     "Palomar/comparator-type-a2.json",
     "Palomar/GubaThompsonChallenge.lean", "Palomar/GubaThompsonSolution.lean",
     "Palomar/comparator-guba-thompson.json",
+    "Palomar/GKPCommutingActionsChallenge.lean", "Palomar/GKPCommutingActionsSolution.lean",
+    "Palomar/comparator-gkp-commuting-actions.json",
     "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
     "formalization.yaml",
 )
@@ -843,34 +837,42 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "`exists_finitelyGenerated_surjunctive_not_sofic`: the compared signature diverges"),
     ("bowen-chapman comparator permitting a fourth axiom",
      "Palomar/comparator-bowen-chapman.json: permitted_axioms"),
-    # The Pestov 9.1 surface, pending: the same four rules as the strengthened
-    # LIX surface.
+    # The Pestov 9.1 surface.
     ("pestov91 challenge with a project-local import",
      "Palomar/Pestov91Challenge.lean:1:"),
     ("pestov91 shared block edited on one side",
      "Palomar/comparator-pestov91.json: shared block diverges"),
-    ("pestov91 solution missing an `_of` form",
-     "does not declare `exists_infinite_simple_propertyT_sofic_of`"),
+    ("pestov91 signature edited on one side",
+     "`exists_infinite_simple_propertyT_sofic`: the compared signature diverges"),
     ("pestov91 comparator permitting a fourth axiom",
      "Palomar/comparator-pestov91.json: permitted_axioms"),
-    # The FFWZ Question 5.8 surface, pending.
+    # The FFWZ Question 5.8 surface.
     ("type-a2 challenge with a project-local import",
      "Palomar/TypeA2Challenge.lean:1:"),
     ("type-a2 shared block edited on one side",
      "Palomar/comparator-type-a2.json: shared block diverges"),
-    ("type-a2 solution missing an `_of` form",
-     "does not declare `exists_isTypeA2_quotient_not_isFinitelyPresented_of`"),
+    ("type-a2 signature edited on one side",
+     "`exists_isTypeA2_quotient_not_isFinitelyPresented`: the compared signature diverges"),
     ("type-a2 comparator permitting a fourth axiom",
      "Palomar/comparator-type-a2.json: permitted_axioms"),
-    # The Guba Question 3.20 surface, pending.
+    # The Guba Question 3.20 surface.
     ("guba-thompson challenge with a project-local import",
      "Palomar/GubaThompsonChallenge.lean:1:"),
     ("guba-thompson shared block edited on one side",
      "Palomar/comparator-guba-thompson.json: shared block diverges"),
-    ("guba-thompson solution missing an `_of` form",
-     "does not declare `question_3_20_common_multiple_of`"),
+    ("guba-thompson signature edited on one side",
+     "`question_3_20_common_multiple`: the compared signature diverges"),
     ("guba-thompson comparator permitting a fourth axiom",
      "Palomar/comparator-guba-thompson.json: permitted_axioms"),
+    # The GKP Question 4.2 surface.
+    ("gkp challenge with a project-local import",
+     "Palomar/GKPCommutingActionsChallenge.lean:1:"),
+    ("gkp shared block edited on one side",
+     "Palomar/comparator-gkp-commuting-actions.json: shared block diverges"),
+    ("gkp signature edited on one side",
+     "`exists_commuting_sofic_actions_not_sofic`: the compared signature diverges"),
+    ("gkp comparator permitting a fourth axiom",
+     "Palomar/comparator-gkp-commuting-actions.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("nine arXiv classes", "one to eight distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
@@ -968,11 +970,11 @@ def plant(name: str, root: Path) -> None:
         path.write_text(path.read_text().replace(
             "def hsDistSq (Y : FiniteCarrier) (A B : Matrix Y Y ℂ) : ℝ :=",
             "def hsDistSq' (Y : FiniteCarrier) (A B : Matrix Y Y ℂ) : ℝ :=", 1))
-    elif name == "pestov91 solution missing an `_of` form":
+    elif name == "pestov91 signature edited on one side":
         path = root / "Palomar" / "Pestov91Solution.lean"
         path.write_text(path.read_text().replace(
-            "theorem exists_infinite_simple_propertyT_sofic_of",
-            "theorem exists_infinite_simple_propertyT_sofic_renamed", 1))
+            "theorem exists_infinite_simple_propertyT_sofic :",
+            "theorem exists_infinite_simple_propertyT_sofic : True →", 1))
     elif name == "pestov91 comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-pestov91.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
@@ -986,11 +988,11 @@ def plant(name: str, root: Path) -> None:
         path.write_text(path.read_text().replace(
             "def IsTypeA2 (G S : Type) [Group G] [MulAction G S] : Prop :=",
             "def IsTypeA2' (G S : Type) [Group G] [MulAction G S] : Prop :=", 1))
-    elif name == "type-a2 solution missing an `_of` form":
+    elif name == "type-a2 signature edited on one side":
         path = root / "Palomar" / "TypeA2Solution.lean"
         path.write_text(path.read_text().replace(
-            "theorem exists_isTypeA2_quotient_not_isFinitelyPresented_of",
-            "theorem exists_isTypeA2_quotient_not_isFinitelyPresented_renamed", 1))
+            "theorem exists_isTypeA2_quotient_not_isFinitelyPresented :",
+            "theorem exists_isTypeA2_quotient_not_isFinitelyPresented : True →", 1))
     elif name == "type-a2 comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-type-a2.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
@@ -1004,13 +1006,31 @@ def plant(name: str, root: Path) -> None:
         path.write_text(path.read_text().replace(
             "def conjBy (a b : FreeGroup (Fin 2)) : FreeGroup (Fin 2) :=",
             "def conjBy' (a b : FreeGroup (Fin 2)) : FreeGroup (Fin 2) :=", 1))
-    elif name == "guba-thompson solution missing an `_of` form":
+    elif name == "guba-thompson signature edited on one side":
         path = root / "Palomar" / "GubaThompsonSolution.lean"
         path.write_text(path.read_text().replace(
-            "theorem question_3_20_common_multiple_of",
-            "theorem question_3_20_common_multiple_renamed", 1))
+            "theorem question_3_20_common_multiple (K : Type*) [Field K]",
+            "theorem question_3_20_common_multiple (K : Type*) [Field K] (_extra : True)", 1))
     elif name == "guba-thompson comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-guba-thompson.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
+    elif name == "gkp challenge with a project-local import":
+        path = root / "Palomar" / "GKPCommutingActionsChallenge.lean"
+        path.write_text(
+            "import GroupApproximation.CommutingSoficActions.Endpoint\n"
+            + path.read_text())
+    elif name == "gkp shared block edited on one side":
+        path = root / "Palomar" / "GKPCommutingActionsSolution.lean"
+        path.write_text(path.read_text().replace(
+            "def hammingDist (A : FiniteCarrier) (p q : Equiv.Perm A) : ℝ :=",
+            "def hammingDist' (A : FiniteCarrier) (p q : Equiv.Perm A) : ℝ :=", 1))
+    elif name == "gkp signature edited on one side":
+        path = root / "Palomar" / "GKPCommutingActionsSolution.lean"
+        path.write_text(path.read_text().replace(
+            "theorem exists_commuting_sofic_actions_not_sofic :",
+            "theorem exists_commuting_sofic_actions_not_sofic : True →", 1))
+    elif name == "gkp comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-gkp-commuting-actions.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
     elif name == "LIX result dropped from the metadata":
         _edit_metadata(root,

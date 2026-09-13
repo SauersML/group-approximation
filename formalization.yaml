@@ -867,9 +867,12 @@ related_formalizations:
       project's own.
 
 status:
-  # Axiom closures computed by scripts/PalomarAxioms.lean and
-  # scripts/PalomarLIXAxioms.lean and scripts/PalomarBowenChapmanAxioms.lean,
-  # checked by .github/workflows/palomar-check.yml.
+  # Axiom closures computed by scripts/PalomarAxioms.lean,
+  # scripts/PalomarLIXAxioms.lean, scripts/PalomarBowenChapmanAxioms.lean,
+  # scripts/PalomarPestov91Axioms.lean, scripts/PalomarTypeA2Axioms.lean,
+  # scripts/PalomarGubaThompsonAxioms.lean and
+  # scripts/PalomarGKPCommutingActionsAxioms.lean, checked by
+  # .github/workflows/palomar-check.yml.
   scope: >-
     Palomar/LIXChallenge.lean states that not every nontrivial simple unital
     C*-algebra is K1-injective, that the counterexample can be taken separable,
@@ -879,6 +882,27 @@ status:
     is sofic, and that some finitely generated group is surjunctive and not
     sofic; Palomar/BowenChapmanSolution.lean proves both from
     GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic.
+    Palomar/Pestov91Challenge.lean states that some infinite simple group with
+    Kazhdan's property (T) is hyperlinear, and that some such group is sofic;
+    Palomar/Pestov91Solution.lean proves both from
+    GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef.
+    Palomar/TypeA2Challenge.lean states that some group action of type [A2]
+    has a quotient by its kernel that is not finitely presented;
+    Palomar/TypeA2Solution.lean proves it from
+    GroupApproximation.TypeA2.question58.
+    Palomar/GubaThompsonChallenge.lean states that for every field K and every
+    b in the group ring K[F] of Thompson's group F the equation
+    (1 - x1) u = b v has a non-zero solution, and that for non-zero b the
+    common multiple b v can be taken non-zero;
+    Palomar/GubaThompsonSolution.lean proves both from
+    GroupApproximation.ThompsonOre.one_sub_x1_solution.
+    Palomar/GKPCommutingActionsChallenge.lean states that commuting sofic
+    actions of countable groups on a countable set need not combine to a sofic
+    action, both as the negation of the biconditional over finite index sets
+    and as two commuting sofic actions of one countable sofic group whose
+    combined action is not sofic; Palomar/GKPCommutingActionsSolution.lean
+    proves both from
+    GroupApproximation.CommutingSoficActions.exists_commuting_sofic_actions_not_sofic.
   main_results:
     - declaration: ProblemLIX.not_all_simple_unital_k1Injective
       file: Palomar/LIXSolution.lean
@@ -909,6 +933,48 @@ status:
       sorry_count: 0
       axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator-bowen-chapman.json
+
+    - declaration: Pestov91.exists_infinite_simple_propertyT_hyperlinear
+      file: Palomar/Pestov91Solution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-pestov91.json
+
+    - declaration: Pestov91.exists_infinite_simple_propertyT_sofic
+      file: Palomar/Pestov91Solution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-pestov91.json
+
+    - declaration: FFWZ.exists_isTypeA2_quotient_not_isFinitelyPresented
+      file: Palomar/TypeA2Solution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-type-a2.json
+
+    - declaration: GubaThompson.question_3_20
+      file: Palomar/GubaThompsonSolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-guba-thompson.json
+
+    - declaration: GubaThompson.question_3_20_common_multiple
+      file: Palomar/GubaThompsonSolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-guba-thompson.json
+
+    - declaration: GKPCommutingActions.commuting_sofic_actions_need_not_combine
+      file: Palomar/GKPCommutingActionsSolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-gkp-commuting-actions.json
+
+    - declaration: GKPCommutingActions.exists_commuting_sofic_actions_not_sofic
+      file: Palomar/GKPCommutingActionsSolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-gkp-commuting-actions.json
 
 fidelity:
   divergences: >-

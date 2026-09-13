@@ -6,44 +6,23 @@ import Palomar.Pestov91Challenge
 The challenge-side driver for `Palomar/comparator-pestov91.json`, twin of
 `scripts/PalomarPestov91SolutionType.lean`.
 
-`leanprover/comparator` decides a submission by comparing the exported
-Challenge and Solution `ConstantVal`s structurally -- not up to definitional
-unfolding -- and then walking the constants each compared type mentions,
-transitively, requiring each ordinary declaration to be IDENTICAL in both
-environments.  Identical means name, type **and value**.
+`leanprover/comparator` compares the exported challenge and solution
+`ConstantVal`s structurally and then walks the constants each compared type
+mentions, transitively, requiring each to be identical in both environments:
+name, type and value.  For the six shared definitions and the two compared
+theorems this driver prints the level parameters, the type hash, the transitive
+closure with a type and value hash per constant, and the `pp.all` type, and
+`scripts/check_palomar_statement_match.sh` diffs the two drivers' output.
 
-## Why this driver prints two groups
-
-The configuration is not submittable yet: `Palomar/Pestov91Solution.lean`
-derives each selected statement from the existence of an infinite simple LEF
-group with property (T), which the development still owes, so its theorems
-carry a hypothesis the challenge's do not and are named `<theorem>_of`.
-Comparing the two sides' theorem statements today would report a difference
-that is the honest state of the work.
-
-What can be compared today is the **shared block**: `IsKazhdanPair`,
-`HasPropertyT`, `hammingDist`, `IsSoficGroup`, `hsDistSq` and
-`IsHyperlinearGroup`, written byte-identically in both files.  The solution
-imports the development, whose instances the challenge never sees, so an
-instance resolved differently inside one of them shows up here and fails the
-real Comparator.
-
-So the report is in two groups, separated by `pending-boundary:`.  Everything
-before the boundary is diffed against the Solution twin and gates;
-everything after it is printed for inspection.  When the witness lands, the
-theorem names on the solution side lose their `_of`, the boundary moves to the
-end, and the whole report is diffed like the submittable pairs.
+The values of the six definitions are walked as well, because Comparator
+compares them; the proofs of the two theorems are not, because the challenge
+states them with holes.
 
 Run with `lake env lean scripts/PalomarPestov91ChallengeType.lean`.
 -/
 
 open Lean Meta in
 #eval show MetaM Unit from do
-  -- `(true, n)` is a shared-block declaration, printed before the boundary and
-  -- diffed against the twin; `(false, n)` is a compared statement, printed
-  -- after it and reported without gating.  One flat list and one inline body,
-  -- matching `scripts/PalomarLIXStrongChallengeType.lean` exactly, so that the
-  -- drivers cannot drift in how they walk the closure.
   let targets : List (Bool × Name) :=
     [(true,  `Pestov91.IsKazhdanPair),
      (true,  `Pestov91.HasPropertyT),
@@ -54,20 +33,17 @@ open Lean Meta in
      (false, `Pestov91.exists_infinite_simple_propertyT_hyperlinear),
      (false, `Pestov91.exists_infinite_simple_propertyT_sofic)]
   let env ← getEnv
-  let mut boundaryPrinted := false
   for (isShared, target) in targets do
-    unless isShared || boundaryPrinted do
-      IO.println "pending-boundary:"
-      boundaryPrinted := true
     let some info := env.find? target
       | throwError "declaration {target} is not in this environment"
     IO.println s!"declaration: {target}"
     IO.println s!"levelParams: {info.levelParams}"
     IO.println s!"typeHash: {hash info.type}"
-    -- the transitive closure of constants the compared type mentions, which is
-    -- exactly the set Comparator compares
     let mut seen : NameSet := {}
     let mut stack : List Name := info.type.getUsedConstants.toList
+    if let some v := info.value? then
+      if isShared then
+        stack := v.getUsedConstants.toList ++ stack
     while !stack.isEmpty do
       let n :: rest := stack | break
       stack := rest
@@ -92,5 +68,3 @@ open Lean Meta in
         ppExpr info.type
     IO.println "type:"
     IO.println (toString fmt)
-  unless boundaryPrinted do
-    throwError "no compared statement was reported, so the pending boundary was never printed"

@@ -1,6 +1,6 @@
 name = "GroupApproximation"
 version = "0.1.0"
-defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution", "PalomarBowenChapmanChallenge", "PalomarBowenChapmanSolution"]
+defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution", "PalomarBowenChapmanChallenge", "PalomarBowenChapmanSolution", "PalomarPestov91Challenge", "PalomarPestov91Solution", "PalomarTypeA2Challenge", "PalomarTypeA2Solution", "PalomarGubaThompsonChallenge", "PalomarGubaThompsonSolution", "PalomarGKPCommutingActionsChallenge", "PalomarGKPCommutingActionsSolution"]
 
 [[require]]
 name = "mathlib"
@@ -108,14 +108,10 @@ roots = ["Palomar.BowenChapmanSolution"]
 # hyperlinear, or sofic?).  Same protocol as the pairs above:
 # `Palomar/Pestov91Challenge.lean` imports Mathlib only and carries its own
 # copies of property (T), soficity and hyperlinearity, taking infiniteness and
-# simplicity from Mathlib.
-#
-# NOT in `defaultTargets`, for the reason given for the strengthened LIX pair:
-# `Palomar/Pestov91Solution.lean` proves both statements from the existence of
-# an infinite simple LEF group with property (T), which the development does not
-# prove yet, so its theorems carry a hypothesis the challenge's do not and the
-# configuration is listed as pending in `scripts/check_palomar_submission.py`.
-# Both libraries join `defaultTargets` when that group is constructed.
+# simplicity from Mathlib; `Palomar/Pestov91Solution.lean` proves both
+# statements from the development endpoint
+# `GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef`, an infinite
+# simple LEF group with property (T).  Both libraries are in `defaultTargets`.
 
 [[lean_lib]]
 name = "PalomarPestov91Challenge"
@@ -131,12 +127,9 @@ roots = ["Palomar.Pestov91Solution"]
 # presented?).  Same protocol: `Palomar/TypeA2Challenge.lean` imports Mathlib
 # only and carries its own copies of type [A_2], their Definition 1.3 with
 # n = 2, and of the kernel of an action, taking finite presentation and finite
-# generation from Mathlib.
-#
-# NOT in `defaultTargets`, for the same reason: `Palomar/TypeA2Solution.lean`
-# proves the statement from `GroupApproximation.TypeA2.Question58`, which the
-# development does not prove yet, so the configuration is pending.  Both
-# libraries join `defaultTargets` when that proposition is proved.
+# generation from Mathlib; `Palomar/TypeA2Solution.lean` proves the statement
+# from `GroupApproximation.TypeA2.question58`.  Both libraries are in
+# `defaultTargets`.
 
 [[lean_lib]]
 name = "PalomarTypeA2Challenge"
@@ -150,15 +143,9 @@ roots = ["Palomar.TypeA2Solution"]
 # Question 3.20 of Guba's survey on the amenability of Thompson's group F (does
 # the equation (1 - x_1) u = b v have a non-zero solution in K[F] for every b?).
 # `Palomar/GubaThompsonChallenge.lean` imports Mathlib only and carries its own
-# copy of the presentation of F.
-#
-# NOT in `defaultTargets`, for the same reason: `Palomar/GubaThompsonSolution.lean`
-# proves both statements from three facts about F that the development does not
-# prove on F yet -- K[F] has no zero divisors, Guba's Theorem 3.18 holds for x_0,
-# and x_1 lies in a subgroup H with an isomorphism H -> F sending x_1 to x_0,
-# which contains or is contained in each of its conjugates -- so the
-# configuration is pending.  Both libraries join `defaultTargets` when those
-# facts are proved.
+# copy of the presentation of F; `Palomar/GubaThompsonSolution.lean` proves both
+# statements from `GroupApproximation.ThompsonOre.one_sub_x1_solution`.  Both
+# libraries are in `defaultTargets`.
 
 [[lean_lib]]
 name = "PalomarGubaThompsonChallenge"
@@ -167,3 +154,23 @@ roots = ["Palomar.GubaThompsonChallenge"]
 [[lean_lib]]
 name = "PalomarGubaThompsonSolution"
 roots = ["Palomar.GubaThompsonSolution"]
+
+# The eighth Comparator configuration,
+# `Palomar/comparator-gkp-commuting-actions.json`: Question 4.2 of Gao,
+# Kunnawalkam Elayavalli and Patchell (when commuting actions of groups G_i on
+# one set are each sofic, is the action of the direct sum sofic?).  Same
+# protocol: `Palomar/GKPCommutingActionsChallenge.lean` imports Mathlib only and
+# carries its own copies of soficity for groups and for actions, their
+# Definition 2.1, and of the action that commuting actions combine into;
+# `Palomar/GKPCommutingActionsSolution.lean` proves both statements from the
+# development endpoint
+# `GroupApproximation.CommutingSoficActions.exists_commuting_sofic_actions_not_sofic`.
+# Both libraries are in `defaultTargets`.
+
+[[lean_lib]]
+name = "PalomarGKPCommutingActionsChallenge"
+roots = ["Palomar.GKPCommutingActionsChallenge"]
+
+[[lean_lib]]
+name = "PalomarGKPCommutingActionsSolution"
+roots = ["Palomar.GKPCommutingActionsSolution"]

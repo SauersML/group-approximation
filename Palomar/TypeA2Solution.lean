@@ -28,6 +28,8 @@ The Challenge theorem `exists_isTypeA2_quotient_not_isFinitelyPresented` applies
 bridge to `GroupApproximation.TypeA2.question58` from `GroupApproximation.TypeA2.Answer`.
 That module builds the witness from Thompson's group `F` acting on the positive dyadic
 rationals.
+
+The prose of this module was written by Claude (Anthropic).
 -/
 
 namespace FFWZ
