@@ -182,6 +182,7 @@ jobs:
                      PalomarLIXStrongChallenge PalomarLIXStrongSolution \
                      PalomarBowenChapmanChallenge PalomarBowenChapmanSolution \
                      PalomarPestov91Challenge PalomarPestov91Solution \
+                     PalomarPestov91ModelTests \
                      PalomarTypeA2Challenge PalomarTypeA2Solution \
                      PalomarGubaThompsonChallenge PalomarGubaThompsonSolution \
                      PalomarGKPCommutingActionsChallenge PalomarGKPCommutingActionsSolution \

@@ -121,6 +121,13 @@ roots = ["Palomar.Pestov91Challenge"]
 name = "PalomarPestov91Solution"
 roots = ["Palomar.Pestov91Solution"]
 
+# `PalomarPestov91ModelTests` exercises every definition of the Pestov 9.1 shared
+# block on controls and bridges it to Pestov's Theorems 3.5 and 3.6; it is not a
+# submission library.
+[[lean_lib]]
+name = "PalomarPestov91ModelTests"
+roots = ["Palomar.Pestov91ModelTests"]
+
 # The sixth Comparator configuration, `Palomar/comparator-type-a2.json`:
 # Question 5.8 of Fournier-Facio, Wu and Zaremsky (is there an action of type
 # [A_2] whose acting group, modulo the kernel of the action, is not finitely

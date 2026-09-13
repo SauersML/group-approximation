@@ -128,7 +128,7 @@ def hammingDist (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=
 to the local criterion of Pestov, Theorem 3.5 (page 8), which asks
 multiplicativity only when `gh ∈ F`, closeness of `θ(e)` to the identity, and
 separation `1/4` in place of `1 - ε` (`isSoficGroup_iff_isPestovSofic` in
-`wip/pestov91/fidelity/Pestov91ModelTests.lean`). -/
+`Palomar/Pestov91ModelTests.lean`). -/
 def IsSoficGroup (G : Type) [Group G] : Prop :=
   ∀ (F : Finset G) (ε : ℝ), 0 < ε →
     ∃ (Y : FiniteCarrier) (σ : G → Equiv.Perm Y),

@@ -1,16 +1,41 @@
 /-
-Model tests for the definitions in the Pestov 9.1 Palomar shared block.
-Fidelity driver, unwired: no lake target builds files under wip/.
+Copyright (c) 2026 The group-approximation authors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+-/
+import Palomar.Pestov91Solution
+import GroupApproximation.Kazhdan.IntegerNotKazhdan
+import GroupApproximation.Kazhdan.OrbitAverageFiniteControl
+import GroupApproximation.Pestov91.Centre
+import GroupApproximation.Pestov91.Kazhdan
+import GroupApproximation.Sofic.SoficAmplification
+import Mathlib.GroupTheory.SpecificGroups.Cyclic
 
-Build, once the lakefile has the `PalomarPestov91Solution` library:
-  lake build PalomarPestov91Solution
-  lake env lean <path>/Pestov91ModelTests.lean
+/-!
+# Model tests for the Pestov 9.1 challenge
+
+Every definition of the shared block of `Palomar/Pestov91Challenge.lean` is exercised
+on controls, and the block's soficity and hyperlinearity are compared with the local
+criteria of Pestov's Theorems 3.5 and 3.6.  The library `PalomarPestov91ModelTests`
+is built by `.github/workflows/palomar-check.yml` and is not a submission library.
 
 Every statement below is phrased in the CHALLENGE vocabulary
 (`Pestov91.IsKazhdanPair`, `Pestov91.HasPropertyT`, `Pestov91.IsSoficGroup`,
 `Pestov91.IsHyperlinearGroup`), which is what the Comparator compares.  The
 development's controls live in the `GroupApproximation` vocabulary and reach
 the challenge only through the bridges of `Palomar/Pestov91Solution.lean`.
+
+* Property `(T)`: finite groups and `EL₃(ℤ)` pass; `ℤ` fails; a nonpositive
+  tolerance is never a Kazhdan pair.
+* Soficity and hyperlinearity: finite groups and `ℤ` pass; the separation
+  clauses force injectivity on the test set; the identity clauses of Pestov's
+  criteria follow from multiplicativity at `1`, by left invariance of the
+  Hamming and Hilbert–Schmidt distances (`test_identity_clause_is_implied`,
+  `test_hyperlinear_identity_clause_is_implied`).
+* Calibration: `ℤ/2` meets every conjunct of the compared statements except
+  `Infinite`, and `ℤ` meets every conjunct except property `(T)`.
+* `isSoficGroup_iff_isPestovSofic`: the block's soficity is Pestov's Theorem 3.5.
+* `isPestovHyperlinear_of_isHyperlinearGroup`: the block's hyperlinearity gives
+  all three conditions of Pestov's Theorem 3.6.
 
 Sources, checked against the PDFs:
 * V. G. Pestov, *Hyperlinear and sofic groups: a brief guide*, arXiv:0804.3968:
@@ -22,19 +47,15 @@ Sources, checked against the PDFs:
   Definition 1.1.1 ((Q, ε)-invariant vectors), Definition 1.1.3 (Kazhdan pair,
   property (T)), Theorem 1.3.1 (a discrete group with property (T) is finitely
   generated).
+
+The prose of this module was written by Claude (Anthropic).
 -/
-import Palomar.Pestov91Solution
-import GroupApproximation.Kazhdan.IntegerNotKazhdan
-import GroupApproximation.Kazhdan.OrbitAverageFiniteControl
-import GroupApproximation.Pestov91.Centre
-import GroupApproximation.Pestov91.Kazhdan
-import GroupApproximation.Sofic.SoficAmplification
-import Mathlib.GroupTheory.SpecificGroups.Cyclic
 
 namespace Pestov91
+namespace ModelTests
 
 open GroupApproximation
-open scoped Pointwise
+open scoped Pointwise Matrix
 
 /-! ## `IsKazhdanPair` and `HasPropertyT` -/
 
@@ -238,71 +259,130 @@ theorem isSoficGroup_iff_isPestovSofic : IsSoficGroup G ↔ IsPestovSofic G :=
 
 /-! ## The block's hyperlinearity gives Pestov's Theorem 3.6 -/
 
-/-- Pestov, Theorem 3.6, conditions (1) and (3), with the normalized
+/-- Left multiplication by a unitary matrix preserves the squared normalized
+Hilbert–Schmidt distance: `‖U(A - B)‖₂ = ‖A - B‖₂`, column by column, because
+`star U * U = 1`. -/
+theorem hsDistSq_unitary_mul_left (Y : FiniteCarrier) {U : Matrix Y Y ℂ}
+    (hU : U ∈ Matrix.unitaryGroup Y ℂ) (A B : Matrix Y Y ℂ) :
+    hsDistSq Y (U * A) (U * B) = hsDistSq Y A B := by
+  have hUU : star U * U = 1 := Matrix.mem_unitaryGroup_iff'.mp hU
+  -- a column of `U * M` is `U *ᵥ (column of M)`, and `U` preserves the sum of squares
+  have hcol : ∀ v : Y → ℂ,
+      ∑ i, Complex.normSq ((U *ᵥ v) i) = ∑ i, Complex.normSq (v i) := by
+    intro v
+    have h1 : ∀ w : Y → ℂ, ∑ i, Complex.normSq (w i) = (star w ⬝ᵥ w).re := by
+      intro w
+      rw [dotProduct, Complex.re_sum]
+      refine Finset.sum_congr rfl fun i _ ↦ ?_
+      simp only [Pi.star_apply, Complex.star_def]
+      rw [← Complex.normSq_eq_conj_mul_self, Complex.ofReal_re]
+    rw [h1, h1, Matrix.star_mulVec, Matrix.dotProduct_mulVec, Matrix.vecMul_vecMul,
+      ← Matrix.star_eq_conjTranspose, hUU, Matrix.vecMul_one]
+  unfold hsDistSq
+  congr 1
+  have hsub : ∀ M N : Matrix Y Y ℂ, (M - N) = fun i j ↦ M i j - N i j := fun _ _ ↦ rfl
+  calc ∑ i, ∑ j, Complex.normSq ((U * A) i j - (U * B) i j)
+      = ∑ j, ∑ i, Complex.normSq ((U *ᵥ fun k ↦ A k j - B k j) i) := by
+        rw [Finset.sum_comm]
+        refine Finset.sum_congr rfl fun j _ ↦ Finset.sum_congr rfl fun i _ ↦ ?_
+        congr 1
+        simp only [Matrix.mul_apply, Matrix.mulVec, dotProduct, mul_sub,
+          Finset.sum_sub_distrib]
+    _ = ∑ j, ∑ i, Complex.normSq (A i j - B i j) := by
+        refine Finset.sum_congr rfl fun j _ ↦ ?_
+        exact hcol (fun k ↦ A k j - B k j)
+    _ = ∑ i, ∑ j, Complex.normSq (A i j - B i j) := Finset.sum_comm
+
+/-- `hsDistSq` is symmetric. -/
+theorem hsDistSq_comm (Y : FiniteCarrier) (A B : Matrix Y Y ℂ) :
+    hsDistSq Y A B = hsDistSq Y B A := by
+  unfold hsDistSq
+  congr 1
+  refine Finset.sum_congr rfl fun i _ ↦ Finset.sum_congr rfl fun j _ ↦ ?_
+  rw [← neg_sub, Complex.normSq_neg]
+
+/-- Pestov's condition 3.6(2), `‖σ(1) - 1‖₂ < ε`, follows from the block's
+multiplicativity clause at `g = h = 1` when `σ(1)` is unitary: by left
+invariance, `d(σ(1), σ(1)²) = d(1, σ(1))`. -/
+theorem test_hyperlinear_identity_clause_is_implied (Y : FiniteCarrier)
+    {U : Matrix Y Y ℂ} (hU : U ∈ Matrix.unitaryGroup Y ℂ) {ε : ℝ}
+    (h : hsDistSq Y U (U * U) ≤ ε) : hsDistSq Y U 1 ≤ ε := by
+  have key : hsDistSq Y (U * 1) (U * U) = hsDistSq Y 1 U := hsDistSq_unitary_mul_left Y hU 1 U
+  rw [mul_one] at key
+  rw [hsDistSq_comm, ← key]
+  exact h
+
+/-- Pestov, Theorem 3.6, all three conditions, with the normalized
 Hilbert–Schmidt norm of Example 2.7: `‖u - v‖₂ = √(hsDistSq Y u v)`.
-Condition (2), `‖σ(1) - 1‖₂ < ε`, is left out: deriving it from the block needs
-left invariance of the Hilbert–Schmidt distance under unitaries, which the
-development does not have. -/
+Condition (2) is `identity`. -/
 structure PestovHyperlinearModel (G : Type) [Group G] (F : Finset G) (ε : ℝ) where
   carrier : FiniteCarrier
   nonempty : 0 < Fintype.card carrier
   map : G → Matrix carrier carrier ℂ
   isUnitary : ∀ g : G, map g ∈ Matrix.unitaryGroup carrier ℂ
+  identity : Real.sqrt (hsDistSq carrier (map 1) 1) < ε
   multiplicative : ∀ g ∈ F, ∀ h ∈ F, g * h ∈ F →
     Real.sqrt (hsDistSq carrier (map (g * h)) (map g * map h)) < ε
   separated : ∀ g ∈ F, ∀ h ∈ F, g ≠ h →
     1 / 4 ≤ Real.sqrt (hsDistSq carrier (map g) (map h))
 
-/-- Conditions (1) and (3) of Pestov's Theorem 3.6, without condition (2), which
-`PestovHyperlinearModel` leaves out. -/
+/-- Hyperlinearity in the form of Pestov's Theorem 3.6. -/
 def IsPestovHyperlinear (G : Type) [Group G] : Prop :=
   ∀ (F : Finset G) (ε : ℝ), 0 < ε → Nonempty (PestovHyperlinearModel G F ε)
 
-/-- The block's hyperlinearity gives conditions (1) and (3) of Pestov's
-Theorem 3.6.  This checks the squaring convention of `hsDistSq`: a squared
-tolerance `ε²/2` gives `‖·‖₂ < ε`, and the squared separation `2 - ε` gives
-`‖·‖₂ ≥ 1/4`. -/
+/-- The block's hyperlinearity gives Pestov's Theorem 3.6.  This checks the
+squaring convention of `hsDistSq`: a squared tolerance `ε²/2` gives
+`‖·‖₂ < ε`, and the squared separation `2 - ε` gives `‖·‖₂ ≥ 1/4`; condition
+(2) comes from multiplicativity at `1 ∈ insert 1 F` and left invariance. -/
 theorem isPestovHyperlinear_of_isHyperlinearGroup (h : IsHyperlinearGroup G) :
     IsPestovHyperlinear G := by
+  classical
   intro F ε hε
   have hε2 : 0 < ε ^ 2 / 2 := div_pos (pow_pos hε 2) two_pos
-  obtain ⟨Y, σ, hY, hU, hmul, hsep⟩ := h F (min (ε ^ 2 / 2) 1) (lt_min hε2 one_pos)
+  obtain ⟨Y, σ, hY, hU, hmul, hsep⟩ :=
+    h (insert 1 F) (min (ε ^ 2 / 2) 1) (lt_min hε2 one_pos)
+  have h2 : min (ε ^ 2 / 2) 1 ≤ ε ^ 2 / 2 := min_le_left _ _
   refine ⟨{ carrier := Y, nonempty := hY, map := σ, isUnitary := hU,
-            multiplicative := ?_, separated := ?_ }⟩
+            identity := ?_, multiplicative := ?_, separated := ?_ }⟩
+  · rw [Real.sqrt_lt' hε]
+    have h1 := hmul 1 (Finset.mem_insert_self 1 F) 1 (Finset.mem_insert_self 1 F)
+    rw [mul_one] at h1
+    have := test_hyperlinear_identity_clause_is_implied Y (hU 1) h1
+    linarith
   · intro g hg h' hh' _
     rw [Real.sqrt_lt' hε]
-    have h1 := hmul g hg h' hh'
-    have h2 : min (ε ^ 2 / 2) 1 ≤ ε ^ 2 / 2 := min_le_left _ _
+    have h1 := hmul g (Finset.mem_insert_of_mem hg) h' (Finset.mem_insert_of_mem hh')
     linarith
   · intro g hg h' hh' hne
     rw [Real.le_sqrt' (by norm_num)]
-    have hs := hsep g hg h' hh' hne
+    have hs := hsep g (Finset.mem_insert_of_mem hg) h' (Finset.mem_insert_of_mem hh') hne
     have hm : min (ε ^ 2 / 2) 1 ≤ 1 := min_le_right _ _
     have hq : (1 / 4 : ℝ) ^ 2 = 1 / 16 := by norm_num
     rw [hq]
     linarith
 
+end ModelTests
 end Pestov91
 
-#print axioms Pestov91.test_hasPropertyT_of_finite
-#print axioms Pestov91.test_hasPropertyT_intElementary
-#print axioms Pestov91.test_infinite_intElementary
-#print axioms Pestov91.test_infinite_propertyT_intElementaryModCentre
-#print axioms Pestov91.test_not_hasPropertyT_int
-#print axioms Pestov91.test_not_isKazhdanPair_int
-#print axioms Pestov91.test_not_isKazhdanPair_of_nonpos
-#print axioms Pestov91.test_isSoficGroup_of_finite
-#print axioms Pestov91.test_isSoficGroup_int
-#print axioms Pestov91.test_isHyperlinearGroup_of_finite
-#print axioms Pestov91.test_isHyperlinearGroup_int
-#print axioms Pestov91.test_soficSeparation_is_not_vacuous
-#print axioms Pestov91.test_hyperlinearSeparation_is_not_vacuous
-#print axioms Pestov91.test_isSoficGroup_model_injOn
-#print axioms Pestov91.test_isHyperlinearGroup_model_injOn
-#print axioms Pestov91.test_identity_clause_is_implied
-#print axioms Pestov91.test_isSimpleGroup_zmod_two
-#print axioms Pestov91.test_not_isSimpleGroup_punit
-#print axioms Pestov91.test_finite_simple_group_meets_all_but_infinite
-#print axioms Pestov91.test_int_meets_infinite_sofic_hyperlinear_not_propertyT
-#print axioms Pestov91.isSoficGroup_iff_isPestovSofic
-#print axioms Pestov91.isPestovHyperlinear_of_isHyperlinearGroup
+#print axioms Pestov91.ModelTests.test_hasPropertyT_of_finite
+#print axioms Pestov91.ModelTests.test_hasPropertyT_intElementary
+#print axioms Pestov91.ModelTests.test_infinite_intElementary
+#print axioms Pestov91.ModelTests.test_infinite_propertyT_intElementaryModCentre
+#print axioms Pestov91.ModelTests.test_not_hasPropertyT_int
+#print axioms Pestov91.ModelTests.test_not_isKazhdanPair_int
+#print axioms Pestov91.ModelTests.test_not_isKazhdanPair_of_nonpos
+#print axioms Pestov91.ModelTests.test_isSoficGroup_of_finite
+#print axioms Pestov91.ModelTests.test_isSoficGroup_int
+#print axioms Pestov91.ModelTests.test_isHyperlinearGroup_of_finite
+#print axioms Pestov91.ModelTests.test_isHyperlinearGroup_int
+#print axioms Pestov91.ModelTests.test_soficSeparation_is_not_vacuous
+#print axioms Pestov91.ModelTests.test_hyperlinearSeparation_is_not_vacuous
+#print axioms Pestov91.ModelTests.test_isSoficGroup_model_injOn
+#print axioms Pestov91.ModelTests.test_isHyperlinearGroup_model_injOn
+#print axioms Pestov91.ModelTests.test_identity_clause_is_implied
+#print axioms Pestov91.ModelTests.test_isSimpleGroup_zmod_two
+#print axioms Pestov91.ModelTests.test_not_isSimpleGroup_punit
+#print axioms Pestov91.ModelTests.test_finite_simple_group_meets_all_but_infinite
+#print axioms Pestov91.ModelTests.test_int_meets_infinite_sofic_hyperlinear_not_propertyT
+#print axioms Pestov91.ModelTests.isSoficGroup_iff_isPestovSofic
+#print axioms Pestov91.ModelTests.isPestovHyperlinear_of_isHyperlinearGroup
