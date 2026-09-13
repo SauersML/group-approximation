@@ -122,3 +122,21 @@ of continuous ranks on `T(B)`.
       `toms-schubert-algebra-fails-o6-plus` handle joins and meets.
     - Not proved: range bundles of approximants may carry further Chern classes
       that this count ignores.
+    - **Correction (2026-09-13).** The dilution estimate above is valid only
+      for a swap made in **one copy** of the level-`r` node.
+      - A swap made uniformly in all copies is a bundle map between the
+        pushforwards of a twisted pair. By
+        `toms-twisted-swap-pairs-are-totally-degeneracy-forcing`, such a pair
+        stays totally degeneracy-forcing at every later stage.
+      - At one point the swap loses the whole pushforward, a fixed fraction
+        `w/(2 k d_r)` of the unit.
+      - So only copy-dependent rotations dilute, and forced pairs with maximal
+        2-norm defect exist at every scale.
+- **Rigidity form and a firewall (2026-09-13).**
+  - `toms-schubert-algebra-misses-a-rank-via-constant-ranks` derives this claim
+    from the stronger conjecture `toms-schubert-algebra-continuous-ranks-are-constant`.
+  - Any proof must use off-diagonal traces.
+    `toms-diagonal-quotient-has-nonconstant-continuous-ranks` shows that the
+    diagonal quotient of Toms's non-simple limit has non-constant continuous
+    ranks, via an element with Lebesgue law at every trace, and that Toms's pair
+    is not degeneracy-forcing on the diagonal.
