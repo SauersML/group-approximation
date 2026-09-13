@@ -31,9 +31,19 @@ unverified, probe pending).  Once that probe is green, hW is
 (FinitelyPresentedInfiniteSimpleClosed).
 
 ## Next
-Lemma 4.6 is split among hl-lemma46 (dynamics), simple-group (Case 1 and assembly) and kh-ejz (casing
-pair and the unit-frame reduction).  The `|I| = 1` item assigned to this lane was already landed by
-simple-group, so this lane has no open item and is waiting for the lead to assign one.
+The `|I| = 1` item was already landed by simple-group; this lane wrote no draft for it.
+
+W2 hbridge, the M2 certificate cut (lead, 2026-09-13): take one separable CutFaces piece that
+hull-component, the owner, has not started.  On main: CutFaces (d62ea043a, 74c6b03ff) and CutSides
+(74c6b03ff: `CutFace.left_val_mem`, `right_val_mem`, `arc_val_mem`; `left_designated` and
+`right_designated` are marked in flight).  Proposed to hull-component, each in a new module of this lane:
+- (a) `CutFace.right_designated`, a letter of `R` sharing its coset with an arc letter `b` has inverse
+  value `X · b.val · Y` over bounded products (via `exists_designated_of_face`, `false_of_crossCoset`);
+- (b) a `CutFace` with the arc rotated first, from `exists_geodesicCut_of_leastAreaCertificates`
+  (LetterMoves), `IsSmallCancellation.admissible` and `List.rotate_append_length_eq`.
+
+No Lean is written until hull-component names the piece.  Then the statement lands first, the proof
+second, and only the new module is probed.
 
 ## Census
 No row: these modules prove the cited group consumed at tex 1679 and do not carry a sentence (same
