@@ -191,13 +191,18 @@ at `n = 20`. Put `G_Gamma = <x,y | cycle words>`. A zero divisor with this label
 exactly when some torsion-free quotient of `G_Gamma` is injective on the vertices.
 
 **Sound sieves.** Each is exact and passes to every quotient, or is §4.
-1. Coincidence: a relator read from a vertex returns to a different vertex. This is a Todd--Coxeter
-   scan that defines no new cosets.
+1. Coincidence: a partial Todd--Coxeter enumeration of `<x,y | cycle words so far>`, seeded with
+   the product graph, with each seed coset tagged by its product. Merging two cosets with different
+   tags is a contradiction. New cosets are defined only up to a limit. Every relation read off the
+   table holds in each realization of each completion, so sieves 1, 2, 3 and 6 also prune partial
+   labellings.
 2. Roots: a closed path reading a proper power `w^k` forces `w = 1`. Add `w` and rescan.
 3. `G_Gamma` finite, detected by a bounded coset enumeration.
 4. `G_Gamma` EA (KLM).
 5. Orderable quotient (§4, complete pattern, `|A| = 3`): exclude when the `2 x (n/2 + 1)` matrix of
    exponent sums of the cycle words has rank less than 2.
+6. Powers: if the table shows `u^e = 1` for a reduced word `u` and some `e >= 2`, then `u = 1`,
+   since the host is torsion-free. Add `u` and rescan.
 
 ## 6. Status
 
@@ -213,6 +218,35 @@ exactly when some torsion-free quotient of `G_Gamma` is injective on the vertice
   - `G_2`: index 4, normal, with the presentation in §2. `H^ab = Z^3 x Z/2`.
   - `G_3`: index 8, normal, `H^ab = Z^2 x Z/8`. The structure in §2 is by hand and does not use
     this output.
-- Pending, on MSI: the folded-graph search over `F_2`. The first program uses bounded Todd--Coxeter
-  coincidence pruning and sieves 1, 2, 3 and 5. It is being tested on labelled structures from
-  finite groups. Then: check every graph with `n <= 16`, measure growth, and try `n = 20`.
+- Folded-graph search over `F_2`, in `zero-divisor-search-2026-09-12-search/`. `zds.c` (md5
+  `380fa4a27fecf56f29abae8d2117b724`) reads the output of `nauty-geng -c -t -d3 -D3 n`, the
+  connected triangle-free cubic graphs. A component of a zero divisor is again one, and A--T reduce
+  to simple triangle-free graphs, so these are the only graphs to check. The program searches port
+  labellings depth-first, one vertex at a time. Vertex 0 gets the ports `1, x, y` in a fixed order;
+  this loses nothing, because the `S_3` on port names comes from translating `alpha`. Partial
+  labellings are pruned by sieves 1, 2 and 3, with at most 4000 cosets. Complete labellings are
+  pruned by sieves 1, 2, 3, 5 and 6, with at most 64000 cosets. Sieve 6 tries words of length at
+  most 4 and `e <= 8`. Sieve 4 is not implemented. A graph with no surviving labelling carries no
+  zero divisor.
+  - Soundness test (`testgen.g`, `test.sbatch`). The input is all 175 groups of order 6 to 40, plus
+    `A_5`, `SL(2,5)`, `PSL(2,7)` and `S_5`, with sampled `x, y`. It gives 99158 components of
+    solutions of `(1 + x + y) beta = 0` over `F_2`, each with at most 40 vertices. With sieves 2--6
+    off, sieve 1 prunes no prefix of any of them, at coset limits 0 and 4000/64000. With the ports
+    normalized at vertex 0, the DFS reaches every one. Runs `v2-t-c0`, `v2-t-c4000` and
+    `v2-ctl-c4000` in `surv.591297.log`: 0 failures.
+  - `n <= 14`. geng gives 1, 2, 6, 22 and 110 graphs for `n = 6..14`, as in A--T Table 3.
+    - An earlier version without sieve 6 (md5 `9dbb1e544f837e983be08dfbaae73c35`, not landed; log
+      `test.589526.log`) left no labelling for `n <= 12`. At `n = 14` it left 16, all on the graph
+      ``M???FAW`agD_K_Q_?``.
+    - GAP (`surv.g`, `surv14.gap.out`): each of the 16 groups `<x,y | cycle words>` has
+      abelianization `Z/3 x Z/7`. Enumeration over the trivial subgroup exceeds 2,000,000 cosets.
+      Up to conjugacy, the only proper subgroup of index at most 4 has index 3 and abelianization
+      `(Z/7)^2`.
+    - With sieve 6 at complete labellings, nothing survives (`v2-s14.out`: 110 graphs, 8,428,940
+      nodes, 320 power relators). This reproduces A--T's case `n = 14` without their list of
+      forbidden subgraphs.
+  - Cost. At `n = 14` the node count per graph has median 33,989 and maximum 855,949. From `n = 10`
+    to `n = 14` it grows 3.3 to 4.3 times per two vertices. That projects about 1.7 core-hours at
+    `n = 16`, 68 at `n = 18`, and 3400 at `n = 20` over all 97546 graphs. Running on MSI: `n = 6..16`
+    with this version (job 592716), and root choice and stronger inner sieves at `n = 14`
+    (`zds3.c`, not landed).

@@ -1,0 +1,86 @@
+survivors: 16
+Syntax warning: Unbound global variable in surv.g:25
+    Print("  index <= 4: ", List(L, H -> [ Index(G, H), AbelianInvariants(H) ]\
+), "\n");
+                                                 ^
+== 1 [ "xYYXyXyx", "yxyyXyx", "xYxyxxYx", "yxxYxxYx", "xYYxYYxYx", 
+  "yyXXYxYx", "xYxxYxyx", "yyXyxyx" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 2 [ "xYYXyXyx", "yyXyyXyx", "xYxxYYxYx", "yyXXYxYx", "xYYxYxxYx", 
+  "yxyxxYx", "xYxyxyx", "yxxYxyx" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 3 [ "xYxyxyx", "yxxYxyx", "xYYxYxxYx", "yxyxxYx", "xYxxYYxYx", "yyXXYxYx", 
+  "xYYXyXyx", "yyXyyXyx" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 4 [ "xYxxYxyx", "yyXyxyx", "xYYxYYxYx", "yyXXYxYx", "xYxyxxYx", 
+  "yxxYxxYx", "xYYXyXyx", "yxyyXyx" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 5 [ "xYYxYxxYx", "yxyxxYx", "xYxyxyx", "yxxYxyx", "xYYXyXyx", "yyXyyXyx", 
+  "xYxxYYxYx", "yyXXYxYx" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 6 [ "xYYxYYxYx", "yyXXYxYx", "xYxxYxyx", "yyXyxyx", "xYYXyXyx", "yxyyXyx", 
+  "xYxyxxYx", "yxxYxxYx" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 7 [ "xYxyxxYx", "yxxYxxYx", "xYYXyXyx", "yxyyXyx", "xYxxYxyx", "yyXyxyx", 
+  "xYYxYYxYx", "yyXXYxYx" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 8 [ "xYxxYYxYx", "yyXXYxYx", "xYYXyXyx", "yyXyyXyx", "xYxyxyx", "yxxYxyx", 
+  "xYYxYxxYx", "yxyxxYx" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 9 [ "xxYxxYxy", "yXXYxYxy", "xyxyyXy", "yXXyXyyXy", "xxYYXyXy", 
+  "yXyyXXyXy", "xyyXyxy", "yXyxyxy" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 10 [ "xxYxyxy", "yXyyXyxy", "xyyXyyXy", "yXyxyyXy", "xxYYXyXy", 
+  "yXXyXXyXy", "xyxxYxy", "yXXYxYxy" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 11 [ "xyxxYxy", "yXXYxYxy", "xxYYXyXy", "yXXyXXyXy", "xyyXyyXy", 
+  "yXyxyyXy", "xxYxyxy", "yXyyXyxy" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 12 [ "xyyXyxy", "yXyxyxy", "xxYYXyXy", "yXyyXXyXy", "xyxyyXy", 
+  "yXXyXyyXy", "xxYxxYxy", "yXXYxYxy" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 13 [ "xxYYXyXy", "yXXyXXyXy", "xyxxYxy", "yXXYxYxy", "xxYxyxy", 
+  "yXyyXyxy", "xyyXyyXy", "yXyxyyXy" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 14 [ "xxYYXyXy", "yXyyXXyXy", "xyyXyxy", "yXyxyxy", "xxYxxYxy", 
+  "yXXYxYxy", "xyxyyXy", "yXXyXyyXy" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 15 [ "xyxyyXy", "yXXyXyyXy", "xxYxxYxy", "yXXYxYxy", "xyyXyxy", "yXyxyxy", 
+  "xxYYXyXy", "yXyyXXyXy" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+== 16 [ "xyyXyyXy", "yXyxyyXy", "xxYxyxy", "yXyyXyxy", "xyxxYxy", "yXXYxYxy", 
+  "xxYYXyXy", "yXXyXXyXy" ]
+  abelian invariants [ 3, 7 ]
+  enumeration over the trivial subgroup exceeds 2000000 cosets
+  index <= 4: [ [ 1, [ 3, 7 ] ], [ 3, [ 7, 7 ] ] ]
+GAPDONE

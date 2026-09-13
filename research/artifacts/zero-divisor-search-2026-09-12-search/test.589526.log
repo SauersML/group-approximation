@@ -1,0 +1,32 @@
+9dbb1e544f837e983be08dfbaae73c35  zds.c
+12b004e3a95b6ecdd75fa91b3251dc5d  testgen.g
+GAP rc=0
+groups: 175
+structures: 99158
+GAPDONE
+99158 testdata.txt
+== test c=0
+rc=0
+TOTAL items 99158 nodes 0 surv 0 prunes coinc 0 ab 0 finite 0 fails 0 climit 0
+== test c=64
+rc=0
+TOTAL items 99158 nodes 0 surv 0 prunes coinc 0 ab 0 finite 0 fails 0 climit 64
+== test c=4000
+rc=0
+TOTAL items 99158 nodes 0 surv 0 prunes coinc 0 ab 0 finite 0 fails 0 climit 4000
+== n=6 graphs 1
+rc=0 seconds=0 surv_lines=0
+TOTAL items 1 nodes 201 surv 0 prunes coinc 102 ab 0 finite 14 fails 0 climit 4000
+== n=8 graphs 2
+rc=0 seconds=0 surv_lines=0
+TOTAL items 2 nodes 2577 surv 0 prunes coinc 1472 ab 0 finite 47 fails 0 climit 4000
+== n=10 graphs 6
+rc=0 seconds=1 surv_lines=0
+TOTAL items 6 nodes 32075 surv 0 prunes coinc 18981 ab 0 finite 1100 fails 0 climit 4000
+== n=12 graphs 22
+rc=0 seconds=15 surv_lines=0
+TOTAL items 22 nodes 504920 surv 0 prunes coinc 295458 ab 0 finite 5633 fails 0 climit 4000
+== n=14 graphs 110
+rc=0 seconds=217 surv_lines=16
+TOTAL items 110 nodes 8428940 surv 16 prunes coinc 5117706 ab 0 finite 157135 fails 0 climit 4000
+ALLDONE
