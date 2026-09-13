@@ -1,14 +1,38 @@
 # hull-count94
 
 ## Scope
-- Roster, Reassignments 09-13 (W1 h94): `OsinLemma94AntiparallelMetricStatement`
-  (`Estimating/OsinLemma94Pieces.lean`, hull-unbound's file). It is the `hmetric` input of
-  `osinLemma94Section_of_pieces`, which gives `OsinLemma94SectionStatement` (h94 of the assembly).
-- CLOSED by sec5-sentences (roster ~03:55): `osinLemma94AntiparallelMetric` (e3da1ba60) on
-  `unboundOrientedWordPolygonMonotone` (779509227), probe 0913-034427-9910 GREEN, both queued for
-  wiring. That proof consumes this lane's oriented layer below.
+- Lead (W1 h94): the `side_budget` and `covers` piece of `OsinLemma94PlanarRunInput`
+  (`Estimating/OsinLemma94Pieces.lean`, hull-unbound's file). hull-unbound states it as a named Prop
+  in its pieces module and sends this lane the Lean name and file. Until then this lane writes no
+  Lean for it.
+- The two fields of `OsinLemma94PlanarPolygons D λ c ε K S`:
+  - `side_budget : ∑ k, sideCount k ≤ K * Delta.rCellCount`. This is Lemma 9.3 ("`∑ n_i ≤ 53 n`")
+    and (38) ("`k_i ≤ 4 n_i`") with one constant `K`.
+  - `covers`: `∑_i |unboundDarts S.family i| ≤ ∑_k classWordLength (word k) (sideCount k)
+    (relatorSides k)`. This is `S ≤ ∑ S_i`: every unbound dart of an `R`-cell lies on an (A1) side.
+- Earlier item, CLOSED: `OsinLemma94AntiparallelMetricStatement`, by sec5-sentences
+  (`osinLemma94AntiparallelMetric`, e3da1ba60, probe 0913-034427-9910 GREEN), on this lane's
+  oriented layer below.
 - `OsinLemma94RunInput` and `OsinLemma94Counting` are superseded. Their files stay on main
   untouched (82ba54dfb, GREEN 0913-010901-92003) and have no users.
+
+## Plan (from main, before the name arrives)
+- `side_budget`.
+  - The arithmetic of Lemma 9.3 is on main. `lemma61_arcCount_le` (`Estimating/Unbound.lean`)
+    gives `typeA12 + typeA3 ≤ 53 n` from `e ≤ 3(v − 1)`, `v ≤ n + r`, `r ≤ 4`,
+    `typeA12 ≤ 2e + n + r` and `typeA3 ≤ 2e`.
+  - `OsinLemma94PlanarRunInput` already assumes the Euler count
+    `S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)`, and `SectionCuts.count_le` gives `r ≤ 4`.
+  - What remains is to count the arcs of the component walks against `|M|`, `n` and `r`, and to
+    bound the extra sides that cutting paths and corners add.
+- `covers`.
+  - `RegionCandidate.perimeter_eq` (`Estimating/RegionPartition.lean`) splits each cell perimeter
+    into exterior-bound, interior-bound and unbound darts.
+  - `false_of_unbound_shared_edge` (`Estimating/OsinUnboundSharedEdge.lean`, 8009a06ff) rules out an
+    unbound dart that faces a relator cell or the exterior. It needs `LabelLegal`, `weight_maximal`,
+    nontrivial relator words and a cell with more than one dart.
+  - What remains is that the (A1) sides of the component walks carry the unbound darts with
+    their lengths.
 
 ## On main (this lane)
 - `GGT/OlshanskiiFirstVisit.lean` and `GGT/OlshanskiiOrientedLemma25.lean`: 1c5f36398, GREEN
@@ -51,33 +75,22 @@
   It stays partial, and its residual is `OsinLemma94PlanarRunInput`.
 
 ## OsinUnboundSharedEdge triage (lead, ~04:10)
-- Route check: nothing imports `Estimating/OsinUnboundSharedEdge.lean`.
-  - No file under `GroupApproximation/` names the module, on origin/main or in the shared tree. The
-    same grep does find the importer of `OsinLemma94Pieces`.
-  - Its declarations `SectionCuts.exists_section_of_lt` and
-    `RealizedSectionFamily.false_of_unbound_shared_edge` are used only inside the module, and no census
-    row cites them.
-  - So the `osinLemma94Section_of_pieces` / `OsinLemma94PlanarRunInput` route does not depend on it.
-    As the lead instructed, there is no diagnosis and no fix.
-- Disk differs from main.
-  - origin has b52365364's 347 lines (md5 b6a6c77e). These are the red bytes of 0913-022343-56095 and
-    of root-wire wave 1, equal to hull-unbound's `.red-0913-022343` backup.
-  - The shared tree holds an unlanded 531-line rewrite (md5 82ea7352, mtime 09-13 04:16:41), listed
-    only in `hull-unbound.files`. It splits the long proof into `digon_decomposition`,
-    `false_of_digon_region`, `false_of_digon_toward_cell` and `false_of_digon_toward_outer`.
-  - hull-unbound is probing that draft (0913-042440-98733, started 04:24:40), so it is fixing the red
-    itself.
-  - The landing condition "disk = main" does not hold. This lane stops and does not touch the file.
+- Route check: nothing on the `osinLemma94Section_of_pieces` / `OsinLemma94PlanarRunInput` route
+  imported `Estimating/OsinUnboundSharedEdge.lean`. As the lead instructed, this lane did no diagnosis
+  and no fix.
+- hull-unbound fixed the red itself: 8009a06ff, probe 0913-042440-98733 GREEN.
 
 ## Residual
-- This lane owns no open Prop.
-- `OsinLemma94PlanarRunInput` is the only other input of `osinLemma94Section_of_pieces`. hull-unbound
-  owns it; sec5-sentences takes a case and theoremc-retire takes C1.
+- This lane owns no open Prop until hull-unbound's side_budget/covers Prop lands.
+- The rest of `OsinLemma94PlanarRunInput` stays with hull-unbound. sec5-sentences takes a case and
+  theoremc-retire takes C1.
 
 ## Next
-- The next item the lead names.
+- When the Lean name and file arrive: a new module of this lane, with the path checked on origin and
+  on disk right before writing. The statement lands unverified first. Then the proof, a probe, the
+  landing, a census row and the wire queue.
 
 ## Coordination
-- hull-unbound owns `OsinLemma94Pieces` and `UnboundWordPolygonMonotone`.
+- hull-unbound owns `OsinLemma94Pieces`, `OsinUnboundSharedEdge` and `UnboundWordPolygonMonotone`.
 - sec5-sentences owns `UnboundMonotoneMorseIndex`, `UnboundOrientedWordConnectors`,
   `UnboundOrientedWordPolygon` and `OsinLemma94AntiparallelMetric`.
