@@ -68,3 +68,12 @@ group.
    carried by the `A`-letters (relations G5 and G8). So the map is not a
    homomorphism. *Dies as stated.* Machines whose zero tests are invisible to the
    shift were not examined.
+2. **Module into finite lamps over a type (A) actor.** Finite lamps over a type (A)
+   actor stay of type (A) (`bh-type-a-class-closed-under-permutational-lamp-wreaths`),
+   so it would suffice to put `M` in an actor and `T` in the lamps. *Dies for
+   abelian lamps:* by `kms-configuration-modules-avoid-abelian-lamp-bases`, every
+   embedding of `G(MM_k)` into an abelian-lamp permutational wreath product sends
+   each `x(q_j)` outside the base. The reason is that `a'_1` acts as `a_1 - 1` on
+   the configuration submodule while the `a_1`-orbit of `x(q_j)` spans an
+   infinite-dimensional space (`invertible-difference-modules-are-not-permutation-submodules`).
+   Nonabelian finite lamps and non-base placements were not examined.
