@@ -137,6 +137,25 @@ induction hypothesis on quotient-ball stretches.
     cuts `p` off, so the boundary darts are the darts of `r` (`Strip.join_boundary`).
   - The transport is the identity on darts (`Strip.joinTransport`).
   - Queued for wiring. It is infrastructure, so it has no census row.
+- kh-torsion's fourth sub-piece, GGT/VanKampen/SurgeryGeodesicCollarInsert: LANDED 2750beb3d, green
+  in probe 0913-152308-19611 (base ae463a301, BUILT, `#audit_closed_axioms` on
+  `GeodesicCollar.insertStatement`, `#audit_axioms` on eight lemmas). It proves kh-torsion's
+  `InsertStatement`, the insertion stage of the collar surgery.
+  - The strip face `F` of `p ++ q` is enumerated from the head of `p`, so `p` is the prefix up to
+    the head of `q` (`FaceBoundary.isFaceCycle.exists_rotate_eq`,
+    `CornerInsertion.exists_forwardOffset_eq`). `GFaceWordInsertion.exists_split_corner_output`
+    then inserts a path reading `g` from the head of `p` to the head of `q`.
+  - The new face set is `insert suffixSide (S.erase F)` (`Strip.insertFaces`). Its boundary darts
+    are the path followed by the image of `r` (`Strip.insert_boundary`), and together they form a
+    simple closed walk (`Strip.insert_walk`). The transport is `originalEmbedding` with
+    `originalCellMap` (`Strip.insertTransport`).
+  - The first probe (0913-150935-4440) failed on two deprecated `List` names and a
+    `rw [List.map_map]` that the rebased dart types blocked. The proof of that step now uses
+    `Eq.trans`.
+  - Queued for wiring. It is infrastructure, so it has no census row.
+- Next item from the lead: a StripStatement sub-module (Double or Pinch) from kh-torsion, written
+  in a new module of this lane and stated over the weakest hypothesis its step needs. I have asked
+  kh-torsion which one to take.
 
 ## Risks recorded
 - `BoundedRelativeLinearAreaTransferStatement` may be unprovable: its W-only area predicate cannot see the
