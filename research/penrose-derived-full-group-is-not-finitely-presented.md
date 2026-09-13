@@ -9,6 +9,8 @@ invalidates:
 distinct_from:
   penrose-derived-full-group-is-finitely-presented: That is the positive claim; this is its negation. When this claim is established it should be named in that claim's refuted_by, and it kills the two Penrose routes to the orbit-certificate and IRS claims.
   penrose-derived-full-group-homology-is-finitely-generated: That proves the homological obstruction to this claim vanishes; this is the negation itself, still open.
+refuted_by:
+  - penrose-derived-full-group-is-finitely-presented
 ---
 
 **OPEN.** `D(𝒫)` is not finitely presented. Here `𝒫` is the Penrose tiling group of

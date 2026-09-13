@@ -7,6 +7,8 @@ distinct_from:
   periodic-approximable-subshifts-host-no-fp-simple-group: That kills finitely presented simple subgroups for subshifts with periodic approximations, including minimal Z-subshifts; this asks for finite presentation over Labbé's aperiodic Z^2 SFT, where that obstruction provably cannot fire.
 artifacts:
   - research/artifacts/fp-simple-amenable-z2-sft-2026-09-12.md
+refuted_by:
+  - labbe-shift-derived-full-group-is-not-finitely-presented
 ---
 
 **OPEN.** Let `Omega_U` be Labbé's 19-tile Wang shift (`minimal-aperiodic-wang-shift-exists`). The group `D([[Z^2 ~ Omega_U]])` is finitely presented.

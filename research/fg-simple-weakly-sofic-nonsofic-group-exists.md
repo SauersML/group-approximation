@@ -7,6 +7,8 @@ distinct_from:
   fg-simple-weakly-sofic-groups-are-sofic: that is the rigidity statement; this is its negation, recorded so that conditional refutations have a target.
   weakly-sofic-not-sofic: that separates the classes with a non-simple group, the Kun--Thom wreath; this asks for a simple separating group.
   linear-sofic-nonsofic-group: that asks for a linear sofic nonsofic group of any kind; a finitely generated simple such group, over any field, is an instance of this claim.
+refuted_by:
+  - fg-simple-weakly-sofic-groups-are-sofic
 ---
 
 **OPEN.** There is a finitely generated simple group that is weakly sofic and not sofic. This is the

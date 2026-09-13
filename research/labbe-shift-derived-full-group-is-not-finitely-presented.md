@@ -11,6 +11,8 @@ distinct_from:
   labbe-shift-derived-full-group-is-finitely-presented: That is the positive claim; this is its negation. When this claim is established it should be named in that claim's refuted_by, and it kills the three Labbé routes to the orbit-certificate, IRS and amenable roots.
   labbe-shift-derived-full-group-is-lef: That is local embeddability into finite groups, which would imply this claim; this is the negation of finite presentation itself, which could also follow from non-LEF mechanisms.
   labbe-shift-derived-full-group-homology-is-finitely-generated: That proves the homological obstruction to this claim vanishes; this is the negation itself, still open.
+refuted_by:
+  - labbe-shift-derived-full-group-is-finitely-presented
 ---
 
 **OPEN.** `D([[Z^2 ~ Omega_U]])` is not finitely presented.

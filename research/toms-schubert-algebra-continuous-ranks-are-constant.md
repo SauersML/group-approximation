@@ -6,6 +6,8 @@ title: In Toms's no-Gamma AH algebra every positive element with finite continuo
 distinct_from:
   doubling-ah-finite-stage-continuous-ranks-are-constant: that proves constancy only for finite-stage elements and countable orthogonal sums of them; this asserts it for every positive element of B tensor K, including genuine Cuntz suprema.
   toms-schubert-algebra-misses-a-rank: that asks for one unrealized continuous affine function; this asserts the much stronger rigidity that no non-constant continuous function is a rank, and implies that claim.
+refuted_by:
+  - toms-schubert-algebra-has-a-non-constant-continuous-rank
 ---
 
 **OPEN.** Let `B` be Toms's simple AH algebra without uniform property Gamma

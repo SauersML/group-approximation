@@ -7,6 +7,8 @@ distinct_from:
   toms-schubert-algebra-continuous-ranks-are-constant: that is the opposite rigidity conjecture, that every continuous rank in B is constant; this is its negation, the constructive side.
   toms-schubert-algebra-misses-a-rank: that asks for one unrealized continuous affine function; this asks only for one realized non-constant one, which all ranks occurring would give and which does not by itself give all ranks.
   doubling-ah-finite-stage-continuous-ranks-are-constant: that proves constancy for finite-stage elements and orthogonal sums of them; this asks for a genuine Cuntz supremum that escapes it.
+refuted_by:
+  - toms-schubert-algebra-continuous-ranks-are-constant
 ---
 
 **OPEN.** Let `B` be Toms's simple AH algebra without uniform property Gamma

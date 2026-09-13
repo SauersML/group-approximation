@@ -5,6 +5,8 @@ kind: claim
 title: The derived subgroup of the Penrose tiling full group is finitely presented
 distinct_from:
   labbe-shift-derived-full-group-is-finitely-presented: That is finite presentation for Labbé's Wang shift over Z^2; this is finite presentation for the Penrose tiling group of Chornyi--Juschenko--Nekrashevych, acting through Z^2 ⊕ Z/5 on a cut torus. Either one alone would carry the hyperlinear finitely presented simple root.
+refuted_by:
+  - penrose-derived-full-group-is-not-finitely-presented
 ---
 
 **OPEN.** Let `𝒫` be the topological full group of Penrose tilings
