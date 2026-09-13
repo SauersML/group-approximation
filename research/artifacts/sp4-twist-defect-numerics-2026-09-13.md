@@ -106,11 +106,26 @@ gives about `0.89` there, so those two values are optimizer failures, not bars.
 **Exact upper bound.** Rational arithmetic over every row: `psi_q = (1/17, 1/17, 0, 0, -1/17, -1/17, 0, 0)` gives
 `max_r |<e_r, psi_q> - k_r| = 5/17` exactly. So `kappa* <= 5/17`.
 
-**Lower bound.**
-- A float dual certificate on the `27` active rows (`w >= 0`, `sum w = 1`, `|sum w s e| <= 6e-9`) gives `-sum w s k =
-  0.294117650808`, which is `5/17` to `4e-9`.
-- The exact rational certificate is job `lpdual`; see `lpdual.*.log` when it is added. Until then, `kappa* = 5/17` is
-  exact as an upper bound and float-certified as a lower bound.
+**Lower bound, exact** (job 709305: `lp_dual_exact.py`, log `lpdual.709305.log`).
+- At `psi_q`, `27` rows are active. A simplex vertex of `{w >= 0, sum w s_r e_r = 0, sum w = 1}` on those rows has
+  support `8`. Solving over `Q` on the support gives an exact certificate:
+
+```text
+sign  exponent vector (letters 0..7)   lift   weight
+ +1   [0, 2, 0, 0, -3, 0, 0, -1]        0      12/187
+ +1   [0, 2, 0, 0, -3, 0, 0,  1]        0      12/187
+ -1   [0, 9, 0, 0, 0, -3, 0, 0]         1      31/187
+ +1   [2, 0, 0, -1, 0, -3, 0, 0]        0      31/374
+ +1   [2, 0, 0,  1, 0, -3, 0, 0]        0      31/374
+ +1   [2, 3, -1, 0, 0, 0, 0, 0]         0      7/34
+ +1   [2, 3,  1, 0, 0, 0, 0, 0]         0      7/34
+ -1   [9, 0, 0, 0, -3, 0, 0, 0]         1      24/187
+```
+
+- The weights balance the exponent vectors exactly. So for every `psi`,
+  `max_r |<e_r, psi> - k_r| >= sum w s_r (<e_r, psi> - k_r) = -sum w s_r k_r = 5/17`.
+- With the upper bound, **`kappa* = 5/17` exactly**, over the distinct rows of this window. The two rows with lift
+  `1` are exponent vectors of long-root words: `9` letters of one long positive root against `3` of the other sign.
 
 **Consequence, exact over this window.**
 - Take the exact seed rescaled by `phi = 2 pi delta' psi_q`, with signed `delta' = theta - 1/2` for the metaplectic seed
