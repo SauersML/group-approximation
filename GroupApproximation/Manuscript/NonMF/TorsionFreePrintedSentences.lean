@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.NonMF.RegularNonMFAlgebra
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Sentence carriers for the printed proofs of `sec:torsion-free`
@@ -322,19 +323,33 @@ theorem manuscriptSentence_theoremHomsTrivial {Q : Type} [Group Q] [Countable Q]
   letI := instM
   exact OneSidedMFRadical.manuscriptFullRadicalKillsMFTargets Q M htop hM f x
 
-/-- **`thm:torsion-free`, printed sentence.**
+/-- **`thm:torsion-free`, printed sentence**, tex lines 1713-1716 (proof of
+`thm:torsion-free`):
 
-> If a quotient `Q̄` of `Q` is MF, then the quotient map `Q → Q̄` is trivial, so
-> `Q̄ = 1`. -/
-theorem manuscriptSentence_theoremQuotientTrivial {Q : Type} [Group Q]
-    (hkill : ∀ (M : Type) (_ : Group M), IsOperatorMF M →
-      ∀ (f : Q →* M) (x : Q), f x = 1)
-    (L : Type) (instL : Group L) (r : Q →* L) (hr : Function.Surjective r)
-    (hMF : IsOperatorMF L) : ∀ y : L, y = 1 := by
-  letI := instL
-  intro y
+> By the last assertion of Theorem~\ref{thm:compression-criterion}, every
+> homomorphism from $Q$ to an MF group is trivial.  If a quotient $\bar Q$ of $Q$
+> is MF, then the quotient map $Q\to\bar Q$ is trivial, so $\bar Q=1$.
+
+`Q` carries the hypotheses the proof has reached at this point: `Q` and the
+subgroup `L = φ(Γ)` have property (T) and `𝔇_Q(L) = Q`.  The conclusion is the
+sentence's two clauses: the quotient map is trivial, and `Q̄ = 1`. -/
+def PrintedTheoremQuotientTrivial : Prop :=
+  ∀ (Q : Type) [Group Q] [Countable Q] (L : Subgroup Q),
+    HasKazhdanPropertyT.{0, 0} ↥L → HasKazhdanPropertyT.{0, 0} Q →
+      OneSidedMFRadical.printedDefect L = ⊤ →
+        ∀ (Qbar : Type) [Group Qbar] (r : Q →* Qbar), Function.Surjective r →
+          IsOperatorMF Qbar → (∀ x : Q, r x = 1) ∧ ∀ y : Qbar, y = 1
+
+/-- **`thm:torsion-free`, printed sentence**: an MF quotient of `Q` is trivial.
+The quotient map is trivial by `manuscriptSentence_theoremHomsTrivial`, and a
+surjection that kills everything has trivial target. -/
+theorem manuscriptSentence_theoremQuotientTrivial : PrintedTheoremQuotientTrivial := by
+  intro Q _ _ L hLT hQT hD Qbar _ r hr hMF
+  have hkill : ∀ x : Q, r x = 1 :=
+    (manuscriptSentence_theoremHomsTrivial L hLT hQT hD).2 Qbar inferInstance hMF r
+  refine ⟨hkill, fun y ↦ ?_⟩
   obtain ⟨x, rfl⟩ := hr y
-  exact hkill L instL hMF r x
+  exact hkill x
 
 /-! ## `cor:relative-quotient`, printed proof -/
 
@@ -533,3 +548,6 @@ end TorsionFreePrintedSentences
 end NonMF
 end Manuscript
 end GroupApproximation
+
+#audit_closed_axioms
+  GroupApproximation.Manuscript.NonMF.TorsionFreePrintedSentences.manuscriptSentence_theoremQuotientTrivial

@@ -52,7 +52,7 @@ theorem isStronglyOperatorMF_of_subsingleton (G : Type u) [Group G] [Subsingleto
   refine tendsto_const_nhds.congr fun n ↦ ?_
   show leftRegularNorm c = ‖∑ g ∈ c.support,
     c g • ((1 : Matrix.unitaryGroup pointModel ℂ) : Matrix pointModel pointModel ℂ)‖
-  rw [leftRegularNorm, Finset.sum_congr rfl hreg, Matrix.unitaryGroup.one_val,
+  rw [leftRegularNorm, Finset.sum_congr rfl hreg, Matrix.UnitaryGroup.one_val,
     ← Finset.sum_smul, ← Finset.sum_smul, norm_smul, norm_smul, CStarRing.norm_one,
     CStarRing.norm_one]
 
