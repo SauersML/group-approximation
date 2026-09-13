@@ -92,6 +92,22 @@ Blueprint: `research/artifacts/un-blueprint-2026-09-13-part1.md`.
     (`irreducible-sft-leavitt-gl-max-mf-quotient-formula`), read homologically through Matui
     (`matui-sft-groupoid-homology-is-k-theory`);
   - the general low-degree homology form is open (`steinberg-gl-max-mf-quotient-is-low-degree-homology`).
+- **F9. The coarse face** (un-open-7, 47fd74e1a7, unreviewed). Two facts about the ladder that use no
+  operator algebra.
+  - **RF-rigidity is free, on both sides.** `un-ladder-rf-rigidity-is-free-mf-rigidity-is-dynamical`:
+    `EL_n(R)` is perfect and has no nontrivial finite quotient, and every homomorphism from `EL_n(R)/Z`
+    to a residually finite group is trivial, from simplicity of the central quotient alone. With
+    `RF ⊆ LEF ⊆ MF`, the whole dichotomy sits in the gap `RF ⊊ MF`, which is why the non-MF paper states
+    its theorems for MF targets and not for finite or residually finite ones.
+  - **A quasi-isometry invariant separates the ends.** `lef-infinite-simple-groups-are-qi-rigid`: a
+    finitely generated infinite simple LEF group is not finitely presented, hence is quasi-isometric to
+    no finitely presented group. Every measure-side rung is such a group, while the non-MF paper supplies
+    finitely presented Kazhdan examples with no MF quotient. Unlike (L), (Σ) and (M), this separation
+    survives every quasi-isometry.
+  - Open: whether a paradox-side rung is itself finitely presented
+    (`paradox-side-elementary-group-is-finitely-presented`), which would move the separation inside the
+    ladder; and whether LEF growth separates measure-side rungs from each other
+    (`elementary-group-lef-growth-separates-subshifts`).
 - **Flagship instance.** `free-group-cantor-elementary-group-lef-iff-invariant-measure`: for minimal
   topologically free free-group Cantor systems with finitely generated crossed product, (L) and (M) collapse
   to one dynamical dichotomy, invariant measure versus none. The band `3 <= N < 2n` is open.
