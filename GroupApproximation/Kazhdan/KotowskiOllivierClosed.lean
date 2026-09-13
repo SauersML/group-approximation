@@ -37,12 +37,14 @@ sums are `CCKW.typedCountStatement_cosetComplex` and `GHBHyperbolicStokes.bounda
   `hpinch : Systolic.MirrorFoldPinchedStatement CCKW.cosetComplex`, HC6 at a common third vertex.
 * `kotowskiOllivier_closed` discharges that leaf by `Systolic.mirrorFoldPinched`
   (`GGT/SystolicDiscMirrorFold.lean`).  It has no binder.
+* `Hyperbolic.sharpExistence_closed` restates it at `Hyperbolic.SharpExistence`
+  (`Kazhdan/TorsionFreeHyperbolicKazhdan.lean`).
 
 ## Manuscript status
 
-`kotowskiOllivier_closed` proves `TheoremC.KotowskiOllivierStatement` with no binder, and
-`#audit_closed_axioms` checks that its axioms are among `propext`, `Classical.choice` and
-`Quot.sound`.  This closes the `hKO` input of the paragraph at tex line 1675.  The rest of that
+`kotowskiOllivier_closed` and `Hyperbolic.sharpExistence_closed` prove
+`TheoremC.KotowskiOllivierStatement` with no binder, and `#audit_closed_axioms` checks that their
+axioms are among `propext`, `Classical.choice` and `Quot.sound`.  This closes the `hKO` input of the paragraph at tex line 1675.  The rest of that
 paragraph is not proved here.
 -/
 
@@ -77,8 +79,18 @@ theorem kotowskiOllivier_closed : Manuscript.NonMF.TheoremC.KotowskiOllivierStat
 
 end KotowskiOllivierClosed
 end KMSGroup
+
+namespace Hyperbolic
+
+/-- **An infinite, finitely presented, torsion-free hyperbolic group with property (T)**, from
+`GHB(7)`: `SharpExistence`, with no binder. -/
+theorem sharpExistence_closed : SharpExistence :=
+  KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed
+
+end Hyperbolic
 end GroupApproximation
 
 #audit_axioms GroupApproximation.KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_of_leaves
 #audit_axioms GroupApproximation.KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_of_pinched
 #audit_closed_axioms GroupApproximation.KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed
+#audit_closed_axioms GroupApproximation.Hyperbolic.sharpExistence_closed
