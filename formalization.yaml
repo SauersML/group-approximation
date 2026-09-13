@@ -278,6 +278,111 @@ sources:
       2026-09-13. The search was bounded: journal-side citing records could
       not be opened.
 
+  - title: An amenable trace that is not quasidiagonal
+    type: original-proof
+    relationship: other
+    contributors:
+      - name: Astra
+        role: solved the problem, using a custom proof tool
+      - name: Claude (Anthropic)
+        role: >-
+          wrote all the prose: the narrative fields of this file for this
+          result and the docstrings of its Palomar modules
+    note: >-
+      The negative answer to Problem X(1) of Schafhauser, Tikuisis and White,
+      "Nuclear C*-algebras: 99 problems" (arXiv:2506.10902 v2, p. 15), the
+      question checked by Palomar/comparator-stw-x1.json, is first presented
+      in this project. Ozawa's preprint arXiv:2609.08892 v1 (2026-09-08
+      15:31:26 UTC) independently implies the same answer later: it answers
+      Problem X(2), and the trace of the hyperfinite II1 factor is amenable
+      and, by his theorem, not quasidiagonal, although he states no result on
+      X(1). The question, which is N. P. Brown's (Mem. Amer. Math. Soc. 184
+      (2006), no. 865), reads: "Are amenable traces on C*-algebras necessarily
+      quasidiagonal?" The problem was stated in Lean against the development's
+      group on 2026-08-27 between 06:49:06 and 07:07:05 UTC (2dbea8f73,
+      f2e177871, 8a4268878), and the counterexample was proved in this public
+      repository on 2026-08-31 at 06:19:37 UTC (4830b808c). On 2026-09-13 the
+      fidelity review research/artifacts/fz-stw-x1-review-2026-09-13.md passed
+      at 08:21:45 UTC (304a14bad), and the Palomar pair landed at 09:53:23 UTC
+      (0badf535c), with GroupApproximation/PalomarBridges/X1.lean moving the
+      witness to Type 0. The argument postdates the latest version of the
+      source, v2 of 2026-05-08. The review's priority search, refreshed to
+      2026-09-13, was a bounded web and arXiv search. Eckhardt's
+      arXiv:2608.28772 v1 (2026-08-28) makes no claim about amenable traces or
+      X(1), none of the other works it screened answers X(1), and no earlier
+      answer was found.
+
+  - title: A tracial completion with a discontinuous trace
+    type: original-proof
+    relationship: other
+    contributors:
+      - name: Astra
+        role: solved the problem, using a custom proof tool
+      - name: Claude (Anthropic)
+        role: >-
+          wrote all the prose: the narrative fields of this file for this
+          result and the docstrings of its Palomar modules
+    note: >-
+      The negative answer to Problem XXII of Schafhauser, Tikuisis and White,
+      "Nuclear C*-algebras: 99 problems" (arXiv:2506.10902 v2, p. 24), and to
+      its general form, Question 1.1 of Carrión, Castillejos, Evington, Gabe,
+      Schafhauser, Tikuisis and White (arXiv:2310.20594), the questions
+      checked by Palomar/comparator-stw-xxii.json, is first presented in this
+      project. For a C*-algebra A with non-empty compact trace space they ask:
+      "Are all traces on Ā^{T(A)} automatically ‖·‖_{2,T(A)}-continuous?"
+      Research notes isolating the obstruction were committed to this public
+      repository from 2026-08-30 at 15:52:28 UTC (dbdccafe0). The
+      counterexample node and its audit,
+      research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md,
+      were recorded on 2026-08-31 at 04:12:46 and 04:13:38 UTC (8c45e6587,
+      0cdbec5e0), and the first Lean development followed at 05:31:45 UTC
+      (40d02e604). The Lean endpoint
+      GroupApproximation.STW22.antipodalFactorialNegativeSolutionToProblemXXII
+      landed on 2026-09-05 at 20:22:52 UTC (2962b1f4f). On 2026-09-13 the
+      fidelity review research/artifacts/fz-stw-xxii-review-2026-09-13.md
+      passed at 08:38:10 UTC (31da2ecfd), and the Palomar pair, with
+      GroupApproximation/PalomarBridges/XXII.lean, landed at 10:53:27 UTC
+      (8444aeb6c). That postdates the latest versions of both sources, v2 of
+      arXiv:2506.10902 of 2026-05-08 and v6 of arXiv:2310.20594 of 2026-08-07.
+      The review's novelty refresh of 2026-09-13 finds both still posing the
+      question, and Toms (arXiv:2606.12188 v2), Evington and Tikuisis
+      (arXiv:2604.24206), Moradi and Amini (arXiv:2606.13924) and web searches
+      give no answer. No earlier or independent answer was found; the review
+      records this as a search result, not a proof of absence.
+
+  - title: A properly infinite Toeplitz algebra
+    type: original-proof
+    relationship: other
+    contributors:
+      - name: Astra
+        role: solved the problem, using a custom proof tool
+      - name: Claude (Anthropic)
+        role: >-
+          wrote all the prose: the narrative fields of this file for this
+          result and the docstrings of its Palomar modules
+    note: >-
+      The positive answer to Question 5.4 of Blanchard, "Continuous families
+      of properly infinite C*-algebras" (arXiv:1507.02535 v1, p. 9; also
+      arXiv:1312.7722 v7, p. 8), the question checked by
+      Palomar/comparator-blanchard-toeplitz.json, is first presented in this
+      project. Blanchard asks: "But is T(E_DD) properly infinite?" The argument
+      was committed to this public repository on 2026-09-13 at 03:25:16 UTC
+      (412dd7632): the isometries are creation operators of two orthonormal
+      sections of E_DD ⊗ E_DD. The review
+      research/artifacts/fz-blanchard-q54-review-2026-09-13.md passed it at
+      07:01:26 UTC (03e45cd5a). The Lean development and the Palomar pair
+      landed at 11:46:08 UTC (4caf6aea2), with a docstring citation fix at
+      12:44:30 UTC (77c9de1d2). That postdates the latest versions of both
+      sources, v1 of arXiv:1507.02535 of 2015-07-09 and v7 of arXiv:1312.7722
+      of 2015-04-15. The review screens both arXiv listings, the one citing
+      paper that Semantic Scholar lists (Blanchard, arXiv:1606.04773, whose
+      abstract page and ar5iv text do not mention E_DD), the HAL record of
+      arXiv:1312.7722, arXiv:2607.20361 and six web searches; one search
+      engine's generated summary claimed an answer that the pages it linked do
+      not contain. No earlier or independent answer was found. The search was
+      bounded: MathSciNet, zbMATH, Google Scholar and Blanchard's post-2016
+      arXiv listing were not checked.
+
   # Background for the LIX result: the problem and its history, the positive
   # results the counterexample had to avoid, the construction's ancestry and
   # the barrier it evades, the topology the obstruction rests on, and the
@@ -977,13 +1082,20 @@ automation:
     direction. No Codex or GPT agent worked on that result. The two methods
     entries above are the two runs, in that order.
 
-    The Fournier-Facio-Wu-Zaremsky, Guba and Gao-Kunnawalkam
-    Elayavalli-Patchell problems were solved by Astra, using a custom proof
-    tool. All prose for those three results, the narrative fields of this file
-    and the docstrings of their Palomar modules, was written by Claude
+    The Fournier-Facio-Wu-Zaremsky, Guba, Gao-Kunnawalkam Elayavalli-Patchell
+    and Blanchard problems were solved by Astra, using a custom proof tool.
+    All prose for those four results, the narrative fields of this file and
+    the docstrings of their Palomar modules, was written by Claude
     (Anthropic), which also produced their Lean formalisations under the
     author's direction. Those formalisations belong to the second methods
     entry above.
+
+    Problems X(1) and XXII of Schafhauser, Tikuisis and White were solved by
+    Astra, using a custom proof tool. All prose for those two results, the
+    narrative fields of this file and the docstrings of their Palomar modules,
+    was written by Claude (Anthropic). Their Lean formalisations were produced
+    by AI coding agents, Codex (OpenAI) and Claude (Anthropic), under the
+    author's direction.
 
 review:
   status: self-assessed
