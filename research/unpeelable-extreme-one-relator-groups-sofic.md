@@ -10,6 +10,7 @@ distinct_from:
   linton-shell-sofic: that locates the difficulty inside the rational-derived shell; this locates it by the syllable structure of the Magnus extremes, and a group can be hard for either picture independently.
 artifacts:
   - research/artifacts/peelable-extreme-one-relator-sofic-2026-09-11.md
+  - research/artifacts/or-unpeelable-extreme-2026-09-12.md
 ---
 
 OPEN. Let `G = <a,t | w>` be torsion-free, and suppose that for every free
@@ -50,5 +51,38 @@ remainder is [[no-magnus-envelope-one-relator-groups-sofic]], routed by
    syllables of the relator path running along the two supporting lines
    `chi = max` and `chi = min`. A group in this class must be unpeelable at
    both supporting lines in every direction and for every choice of basis.
-   When `b_1(G) = 1` there is a single class up to sign, and only changes of
-   basis preserving it remain.
+   When `b_1(G) = 1` there is a single class up to sign. The bases preserving
+   it are related by inner automorphisms composed with `a -> a^(+-1)`,
+   `t -> t a^k`. These keep every local extremum of the relator path and its
+   exponent, so the top and bottom syllables are the same in every
+   zero-exponent basis (Lemma L1 of the 2026-09-12 artifact). The hypothesis
+   is then decided in a single basis.
+5. **Descend and enumerate.** *Closes every relator of length at most 14, and
+   stops at an explicit family at length 15.* Three conditional descents
+   reduce `G` to a one-relator group with a shorter relator:
+   - a common level gcd `g >= 2`, via `G = <a, t^g | w> *_(t^g) <t>`;
+   - coefficients `U_i = c^(k_i)` at an extreme, a one-move amenable envelope
+     over `<c>`;
+   - overlap rank one, an HNN extension of `B_0` over `Z`.
+
+   A certificate is a finite tree of basis changes and descents. Its leaves are
+   [[peelable-extreme-one-relator-groups-are-sofic]],
+   [[partially-positive-one-relator-groups-are-sofic]], Wise's torsion
+   theorem, or `G = Z`. A search over all cyclically reduced relators, up to
+   symmetry, certifies every `<a,t | w>` with `|w| <= 14`. At `|w| = 15` it
+   leaves 33 classes. Up to symmetry they are exactly the relators with Magnus
+   rewriting `a_1^e a_0^(x_1) a_2^(x_2) a_0^(x_3) a_2^(x_4)`, where
+   `{|x_1|,|x_3|} = {|x_2|,|x_4|} = {1,2}` and the exponents are not all of
+   one sign. Partially positive automorphic images of length at most 19 close
+   3 of them, which leaves 30. Each of the 30 is
+   `<x,y,t | x^t = v^(-e), (v^(-e))^t = y>`, with
+   `v = x^(x_1) y^(x_2) x^(x_3) y^(x_4)`. Each has these properties:
+   - `b_1 = 1`;
+   - a free Magnus piece `F(x,y)`;
+   - proper malnormal Magnus subgroups `<x,v>` and `<v,y>` that meet in `<a_1>`;
+   - a kernel over `Z` that is not finitely generated.
+
+   None of the following applies to them: the torsion theorem, `pi(w) >= 3`,
+   fibring, amenable-edge permanence, or malnormal combination. An amenable
+   envelope would have to begin with an infinite cyclic splitting of `F(x,y)`
+   whose rank-2 vertex group properly contains a Magnus subgroup. Still OPEN.
