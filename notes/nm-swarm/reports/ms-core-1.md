@@ -54,14 +54,14 @@ None in this range.
 
 - CLAIM (09-13 ~17:40, assigned by main): help ct-return-tower close `ReturnRingCrossedProductStatement`
   (`Dynamics/ReturnTowerStatements`, 4d2084188; tex 1721–1726): `P_C = p_C R_X p_C ≃+* LC(C,k) ⋊_{S_C} ℤ`.
-  - Split proposed to ct-return-tower in one message. ms-core-1 takes:
-    1. the ℤ-crossed-product lift over `SkewMonoidAlgebra.liftNCRingHom`;
-    2. the return unitary v = Σ_h u^h 1_{C_h}, its inverse and covariance;
+  - Split agreed with ct-return-tower (its reply ~17:45). ms-core-1 takes:
+    1. the ℤ-crossed-product lift over `SkewMonoidAlgebra.liftNCRingHom` (`Algebra/ZCrossedProductLift`: `liftOfUnit`,
+       `covariant_zpow`, `ringHom_ext`);
     3. injectivity and surjectivity (splitting partial shifts along returns);
-    4. the closed `returnRingCrossedProductStatement_holds`.
-  - ct-return-tower keeps `Dynamics/ReturnCells` (cells, extension by zero). Items 2–4 consume it once it is on origin.
-  - Modules: `Dynamics/ReturnRingCrossedProduct.lean`, plus small new helpers named `Algebra/ZCrossedProductLift.lean` and
-    `Dynamics/ReturnRing*.lean`.
+    4. the closed `returnRingCrossedProductStatement_holds`, in `Dynamics/ReturnRingCrossedProduct.lean`.
+  - ct-return-tower owns item 2, the return unitary and covariance (`Dynamics/ReturnRingUnit`: `returnP`, `ReturnCorner`,
+    `returnV`, `returnW`, `returnUnit`, `returnV_mul_coeff_extend`). It also keeps `Dynamics/ReturnCells`. Items 3 and 4
+    consume both once they are on origin.
 
 ## Notes for the owners (relayed through main)
 
