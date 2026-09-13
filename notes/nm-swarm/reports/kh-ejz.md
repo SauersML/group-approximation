@@ -65,7 +65,47 @@ Census: metadata/nm-census-rows/kh-ejz.tsv, LINE:1675 `partial` (does not carry 
     `restrict_planar_of_euler_four`, with the `[u]` branch at outer degree 2.
   - `hfold`: `Systolic.mirrorFold X : Systolic.MirrorFoldStatement X`, fff-periodic.
 
-## Current assignment (2026-09-12)
+## Current assignment (2026-09-13)
+Roster: target PiFinitePresentation (the finite-presentation transfer `hW` needs), then row LINE:1675 with
+nm-endpoints.
+
+1. **PiFinitePresentation is closed and landed.** It is the product step of Proposition 4.7 below:
+   `isFinitelyPresented_sup_of_commute` and `isFinitelyPresented_of_commutator_le`
+   (QTwoFinitePresentationProduct), landed ba54a571f, green probe 0912-103148-88562. fff-quotient's
+   `isFinitelyPresented_stabK_of_upsilon` (QTwoFinitePresentationStabK, ec1a3f2ae) consumes it. No new
+   landing is needed for the target.
+2. **`hW` residual on origin/main.** `HydeLodha.FinitelyPresentedInfiniteSimpleLeaves := StabKFinitelyPresented qTwo`
+   (GroupTheory/HydeLodha/FinitelyPresentedInfiniteSimpleLeaves.lean, 65dd38c11).
+   `isFinitelyPresented_stabK_of_upsilon hU le_rfl qTwo_le_gammaTwo` reduces that leaf to Hyde–Lodha
+   Lemma 4.6, which is open:
+   ```lean
+   def UpsilonFinitelyPresented : Prop :=
+     ∀ Γ : Subgroup (Equiv.Perm ℚ), qTwo ≤ Γ → Γ ≤ gammaTwo → ∀ a b : ℚ, (∃ M, a ∈ Grid 6 M) →
+       (∃ M, b ∈ Grid 6 M) → a < b → b ≤ a + 1 → Group.IsFinitelyPresented ↥(upsilon Γ a b)
+   ```
+   hl-lemma46b's in-flight copy (attic/inflight/hl-lemma46b/.../FinitelyPresentedInfiniteSimpleLeaves.lean.txt)
+   re-points the leaf at `UpsilonFinitelyPresented`.
+3. **Lemma 4.6 on origin/main.**
+   - At `Γ = Γ₂` (Lemma 4.5): `isFinitelyPresented_upsilon_gammaTwo_short`, `_unit`
+     (QTwoFinitePresentationShort), `isFinitelyPresented_upsilon_gammaTwo_long` (QTwoFinitePresentationLong).
+   - Case 1 helpers (QTwoLemmaFourSixCaseOne, 44d75dddd): `upsilonc`, `upsilon_commutator_inter_upsilonc`,
+     `pow_conj_mem_commutator_upsilon`.
+   - Twisted generators, `H ≅ F₆` (QTwoLemmaFourSixGenerators, 7db72cfc1): `exists_twisted_generators`.
+   - Tools: `isFinitelyPresented_of_casingPair` (GroupTheory/CasingPair), `isFinitelyPresented_of_ascending`
+     (GroupTheory/AscendingHNNRecognition).
+   Missing:
+   - (i) the Case 1 assembly: `⟨H, f⟩` through `isFinitelyPresented_of_ascending`, then the casing pair
+     `Υ_{Γ₂}(I)' ≤ N ≤ Υ_Γ(I) ≤ Υ_{Γ₂}(I)`;
+   - (ii) Case 2, `|I| = 1`;
+   - (iii) the reduction from a general `[a, b]` to the unit frame.
+4. **Row LINE:1675** is carried by `fournierFacioParagraph_of_leastAreaLeaves (hgreendlinger) (hbridge) (hKO) (hW)`
+   (TorsionFreeLiteratureInputsLeastArea). It flips only when all four walls close. nm-endpoints owns the flip.
+5. **Not root-wired:** QTwoFinitePresentationProduct and QTwoFinitePresentationNormal (mine), and
+   fff-quotient's Restrict, StabKSplit and StabK.
+6. **Coordination.** On 2026-09-13 I asked the lead for a Lemma 4.6 split with hl-lemma46: which of (i)–(iii)
+   is mine, and the exact Prop name hl-lemma46 will consume. I write no Lean until the lead confirms.
+
+## Assignment (2026-09-12)
 Hyde–Lodha Proposition 4.7, alongside fff-quotient:
 `HydeLodha.StabKFinitelyPresented Γ` (GroupTheory/HydeLodha/QTwoFinitelyPresented.lean). Edits to the rooted
 Q2 modules (QTwoFinitelyPresented, QTwoFinitePresentationShort, QTwoBrownTriangle,
