@@ -32,3 +32,35 @@ Declaration names are chosen so that they cannot collide with kh-torsion's modul
 4. The face set becomes the `kept` image. The boundary darts are unchanged, the walk stays simple (`isSimpleClosedWalk_pinch`),
    and the new strip has `q' = none :: q`.
 5. Transport = doubling transport, then the identity-on-darts pinch transport.
+
+## BINDER 8 CLOSED (2026-09-13 ~18:10)
+
+- LANDED c8c512bbd, probe 0913-180704-2462 GREEN (`BUILT GroupApproximation.GGT.VanKampen.SurgeryGeodesicCollarStripStep`).
+- Closed endpoints, each `#audit_closed_axioms` = [propext, Classical.choice, Quot.sound]:
+  - `GeodesicCollar.StripStep.stripStepStatement_holds : GeodesicCollar.StripStepStatement`
+  - `GeodesicCollar.StripStep.stripStatement_holds : GeodesicCollar.StripStatement`
+  - `GeodesicCollar.StripStep.geodesicCollarStatement_holds : GeodesicCollarStatement`
+- Wiring: queued in `wire-queue.txt`. The module imports `SurgeryGeodesicCollarInduction` (not in the root yet) and
+  `SurgeryGeodesicCollarReduction`.
+- Consumers: any `GeodesicCollarStatement` binder (waist binder 8 of
+  `relativeGreendlingerQuasiGeodesicLeastArea_of_openResiduals`, and the section pocket cut residuals) can take
+  `GeodesicCollar.StripStep.geodesicCollarStatement_holds`. The binder flip belongs to the waist owners; this lane edits
+  none of their files.
+
+## Module (2026-09-13 ~17:40, draft preserved at attic 677af02a3)
+
+`GroupApproximation/GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean`, namespace `GeodesicCollar.StripStep`:
+
+| declaration | content |
+|---|---|
+| `rotate_merged`, `vertexOf_alpha_getLast` | list and walk helpers |
+| `not_mem_face`, `faceOf_getLast`, `faceOf_ne` | the next dart is off the strip face |
+| `kept_mem_faceSet_iff_of_mem`, `isBoundaryDart_faceSet_iff_of_mem`, `pinchTransport` | a pinch whose face set contains both pinch faces keeps the boundary and is a transport |
+| `digonCycles`, `digonInput`, `leftFace_mem`, `rightFace_mem`, `pinchStrip`, `stripStep_of_digon` | pinch of the strip face with a G-digon `[d, n]` gives the strip along `p ++ [d]` |
+| `isFaceCycle_embed`, `faceOf_head_ne`, `doubleStrip` | the strip survives doubling the next dart |
+| `stripStepStatement_holds : StripStepStatement` | closed endpoint |
+| `stripStatement_holds : StripStatement` | via `stripStatement_of_step` |
+| `geodesicCollarStatement_holds : GeodesicCollarStatement` | binder 8, via `geodesicCollarStatement_of_strip` |
+
+Coordination: ms-inverses-1 and ms-core-2 offered to take step 1 and steps 3–4 respectively. Both were
+declined because the code was already on disk.
