@@ -798,3 +798,62 @@ For EVERY census row in your range with status formalized or definition, and eve
   - ko-closed: case (a) by the value argument, after the threshold gate.
   - jacobson: the (b) collar step, if ko-closed agrees.
   - root-wire: wave 13.
+
+## Rulings 09-13 ~13:40–13:46
+
+- Lemma 9.4 realization: OsinLemma94PolygonRealizationInput is CLOSED.
+  - hull-unbound 409bbbf72 (Case 2, probe 0913-131745-36741) and 4002b9371 (partition, probe 0913-133025-35313), module OsinLemma94SectionResiduals.
+  - `osinLemma94Section_of_residuals` takes only PolygonCountInput and CaseOneInput.
+- Wave 13 (root-wire): building, tag 0913-133632-59092, base 03f8f2c88, 30 modules.
+  - Includes the partition chain: PolygonLists, Kinds, Sides, Maximal, Partition, then SectionResiduals at 4002b9371.
+- Patch 10(f) is overruled.
+  - `osinLemma94CaseOneInput_of_walk` stays and takes a same-cell binder after (A).
+  - hull-unbound does not compose it today; the section closes over the option (2) spelling.
+- Option (2) Dense respelling: hull-unbound drafts it in OsinLemma94Pieces.
+  - A one-cell conjunct at λ⁻¹(ε + c), inside the F1 order ∀ λ c, ∃ ε₀, ∀ ε ≥ ε₀, ∀ K, ∃ ρ₀.
+  - Gated on sec5-sentences (the proof delivers it) and ko-closed (case (a) consumes it).
+  - Co-probed with AntiparallelMetric, PlanarPieces and SectionResiduals. Fallback (1) if the proof cannot deliver.
+- R2 Euler lemma: hull-euler builds NoncrossingClosedWalkEuler.
+  - `IsNoncrossingClosedWalk.reclosed_euler`, with outer following as a hypothesis, and `toDiscRegion_of_euler`.
+  - The three-petal rose is the model test.
+  - It does not wait on C6′.
+- R2 pocket region: dgo-analytic drafts the noncrossing-walk region builder over hull-euler's signature and lands it unwired.
+  - The Simple / PocketRegionOfSimple / PocketCarrier / collar co-probe waits for a green Euler lemma and no port failure from fff-quotient.
+- C6′ pinched-walk case: debt-conditional carries PocketPinchStatement, the existing hpocket binder (hull-respell's piece, reduced by kh-cckw). No new Prop.
+- audit-sec3 truth audit of the residuals:
+  - PartitionInput and CaseTwoInput are true and proved.
+  - Wrap-pair fidelity note: Maximal skips (sideCount − 1, 0), and baseOf does not rotate to a turn, so a run can split at the base, at most one extra side per polygon. Routed to hull-count94, audit-intro (take the SideBudget class cyclically or add one class per polygon to L) and theoremc-retire.
+  - Card bound: no fixture; the induction discharges it (osinLemma97_atParameters_of_inputs).
+- Census, merge 17 (baseline-debt): no residual Prop outside W1.
+  - baseline-debt re-grades the cite-ejz LINE:1145 row itself; sec5-sentences re-grades LINE:1629.
+  - baseline-debt then takes the unowned flip-list docstrings (nm-endpoints report ~236–245, Assembly.lean:818).
+- nm-endpoints cf3c78b35: 16 flip-list docstrings marked, probe 0913-133143-40961; report 3acae2f1d re-checks the residuals at bf7d5994b.
+- audit-sec5 same-cell model test. (A) survives and does not force (C).
+  - (1) No R-cell in the pocket H: metric kill false_of_sameCell_connector_of_noCells.
+    - Morse radius κ; ε < κ + (2κ + c′)/(2λ).
+    - No DartMinimal, Maximal or least area.
+  - (2) An R-cell in H: nonempty_osinLoopCut_of_sameCell_connector from ofParts, ofSimpleClosedWalk and diagram_leastAreaCut.
+    - Needs OsinLemma97Below (option (i) threading).
+  - Gap: a folded spur at the junction defeats theoremc-retire's DartMinimal/PendantPathRemoval/Maximal route for case (a).
+  - Site (i): false_of_digon_toward_cell at i₂ = i is false as printed. Option (a) stands, and binder (C) discharges from hbelow.
+  - Forwarded to ko-closed to decide:
+    - (1) versus the λ⁻¹(ε+c) respelling, which may cancel hull-unbound's draft;
+    - (2) versus jacobson's collar step;
+    - whether audit-sec5 writes (1).
+- LoopCutCapCounterexample (0c7a92957, unwired): audit-sec5 writes the post-(A) rewrite in place for ghw-charp2's co-probe. No attic move.
+- hull-count94 Stage B, module OsinLemma94PolygonClasses: ClassBudget over polygons with an (A1) class and ≥ 2 classes; ClassCovers with L = 24ε + 2(K+24)⌈(c+2)/λ⌉.
+  - Helpers: audit-intro (short-side count ≤ 2ε|M|), sec5-sentences (ClassBudget from the 9.3 run counts), hull-component (gap-length lemma, bubble accounting).
+- Ruling: CaseOneInput and CaseOneWalk take pairs on class words, gaps included (roster l.786).
+  - The Rule 22 change folds into one co-probe with hull-unbound's Dense respelling, after ghw-charp2's (A) co-probe.
+- Opening surgeries: not built yet (l.786 stands). hull-count94's finding: no FaceSetBoundary region contains a hair or a bubble.
+  - Goes to ko-closed and theoremc-retire.
+  - If a user needs a region containing a gap: hair opening goes to hs-vanishes (extends (a); against weight_maximal), bubble un-pinch goes to leavitt-units (over hull-respell's vertex explosion).
+- systolic-counts flip list 20d0ec06d: 48 flip, 37 superseded, 1 keep; 11 of the 86 are vacuous at {0,0,0}.
+  - The embedded bridge's closed theorem states an implication with the LA-certificate antecedent; the verifier flags it buried-conditional. The antecedent is the hgreendlinger slot.
+  - Census: 307/366 clear under LA.
+- hull-respell 24ff94312 (OsinPocketClosedWalkNoncrossing, probe 0913-133554-56930): every pocket face set in walk order is IsNoncrossingClosedWalk.
+  - Under R2, K.Simple = K.ClosedWalk + outer FollowsBoundary, and the R2 pinch only absorbs lakes and re-pairs side darts.
+  - B (source in a lake) stays inside PocketPinchLabelledStatement.
+- debt-conditional C6′: module 1 81cb719d3 green; module 2 OsinAppendixEulerTwoGonFaceClass ee96efa9d, probing.
+  - Ruling: no new pinched-walk Prop. The two-gon pocket walk has the section pocket shape, so module 4 consumes kh-ejz's O-equivalent face set, then PocketPinchLabelledStatement, then ofSimpleClosedWalk and EmptyTwoGon.
+  - The pinch statement must cover that pocket.
