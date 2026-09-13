@@ -28,6 +28,16 @@ unital AH algebra with a non-nilpotent unitary component group.
   Every bordism detector is blind at c = 5 for sphere-product seeds
   (rank-two-trapping-blind-to-fivefold-sphere-commutators). Stabilizing a
   rank-two seed kills it: 6 nu' in pi_6 U(2) maps to 0 in pi_6 U(3) ≅ Z/6.
+- *m = 1 in any rank.* Dead for c >= 4. Spin bordism kills every fourfold
+  commutator of U(N)-valued maps, for every N and every seed manifold
+  (spin-trapping-blind-to-fourfold-commutators-in-every-rank). So for
+  c >= 4 the structure must have m >= 2.
+- *Odd primes need rank above p.* The witness has finite order. So,
+  arXiv:1707.00739v2 p. 1, quotes two results. p-regular Lie groups have
+  homotopy nilpotence class at most 3 (Kaji–Kishimoto), and quasi-p-regular
+  SU(n) with p >= 7 do too (Kishimoto). So for c >= 4, the p-primary part of
+  a c-fold commutator of SU(N)-valued seeds vanishes whenever p >= N. It
+  must come from p = 2 or from primes p < N.
 - *Unbounded N is not known even for small c.* No c-fold visible commutator
   in U(N) with N >= 3 is known to this lane, for any c >= 2.
 - *Bott brackets.* <a_i, a_j> = (i−1)!(j−1)!·g in pi_{2N} U(N) has odd
