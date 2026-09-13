@@ -8,6 +8,7 @@ distinct_from:
   leavitt-group-algebra-not-stably-finite: that is the linear target on the Kazhdan Leavitt unit group; this is the linear target on a lattice in a product of trees, which has the Haagerup property and no rigid compression defect.
 artifacts:
   - research/artifacts/radu-lattice-strict-automaton-screens-2026-09-12.md
+  - research/artifacts/radu-lattice-anchored-linear-gadgets-2026-09-12.md
 ---
 
 **OPEN.** Let `Gamma_R` be Radu's BMW lattice (`radu-bmw-lattice-embeds-in-titz-witzel-kernel`). For
@@ -66,3 +67,22 @@ automaton on `(F_p^n)^(Gamma_R)`, that is `radu-bmw-lattice-nonsurjunctive`
       virtually free groups over `F_2` are not unique. Matching them over the base is exactly where the
       two embeddings of `A_ev` disagree. No construction is known, and neither is a gluing theorem over
       a nonamenable base.
+* **Unit ball, letter sets and the finite residual (w7-vh-anchored, 2026-09-12).**
+  Artifact: `research/artifacts/radu-lattice-anchored-linear-gadgets-2026-09-12.md`.
+  - **Small gadgets.** A factor `I_n + nilpotent`, including every gadget built from `1 + t`, is a
+    unit. A pair with `iota(A) = A` and `iota(B) = B`, for `iota(g) = g^(-1)` composed with transpose,
+    is never strict. At size one this covers every element supported in the unit ball. Over `F_2`
+    the solutions of `beta alpha = 1` there are `alpha = beta` in `{1, h, v, 1 + h + v}`, with
+    `hv = vh` in the last case.
+  - **Letter sets.** A set of letters generates `Gamma_R` iff it contains `{a,y,z}`, `{b,x,y}`,
+    `{b,y,z}`, `{c,x,y}` or `{c,y,z}`. Otherwise it generates a sofic subgroup.
+  - **Finite residual.** Modulo `Gamma_0` a pair becomes two-sided, so the defect support has two
+    points in one coset of `Gamma_0`. With Remark 3.6 (`delta^(+-4)` shortest in `Gamma_0`), supports
+    in `B_r` and `B_s` need `r + s >= 4`. The screen is blind at `r + s = 4`, through
+    `((zx)^2)^(-1) (xz)^2 = delta^4`.
+  - **Where it stops.** Transposed hinges kill letter identifications only; hinges among longer
+    products survive. A witness must put two defect points in one coset of `Gamma_0`, at distance at
+    least eight. For strict automata the same invariant, through quotient folding
+    (`strict-pairs-transfer-to-table-realizations`), makes every Garden of Eden window distinguish two
+    cells that differ by an element of `Gamma_0`, so its diameter is at least eight. No candidate is
+    known.
