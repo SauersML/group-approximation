@@ -78,7 +78,10 @@ algebra with a nonzero fivefold commutator.
   bracket (c_3), and hence every depth-four bracket (c_4), is trivial at all
   primes p >= k. For k = 3 a class-five seed must be 2-primary. For k = 4 it
   must be 2- or 3-primary. For U(k)-valued seeds this holds at primes not
-  dividing k; the primes dividing k were not checked.
+  dividing k. For k = 3 the prime 3 is checked too. The stable fivefold
+  commutator map of U(3) has 2-power order, and 2-locally it is the SU(3)
+  map composed with the projection U(3) -> SU(3)
+  (rank-three-stable-fivefold-commutator-two-primary).
 - *Witnesses that mix the protected block with Q.* Unexplored. The trapped
   invariant is only constant on components, not a homomorphism. A commutator
   with a unitary that is not block diagonal is not computed by the seed
