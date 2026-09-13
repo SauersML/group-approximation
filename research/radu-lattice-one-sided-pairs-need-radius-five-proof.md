@@ -34,3 +34,11 @@ artifacts:
    `a, b, c` through `Omega` keeps `Omega`, and a case check in `<x,z>` together with the position of
    `y` gives `Omega Omega ∩ Omega = ∅`.
 6. **Item 4** (§4.3). `(zx)^(-1) (xz)^3 = delta^4` and `(xz)^(-1) (zx)^3 = delta^(-4)`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 45 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS, given Remark 3.6. Items 1–6 re-derived on paper:*
+- *Lemmas 1.1–1.2;*
+- *Theorem A, steps 1–5;*
+- *Lemma B;*
+- *Lemmas 4.1–4.2, with the twisting rules and the exponent sets.*
+
+*Theorem C and item 3 stay conditional on H10. In the last case of Lemma 4.1 the two parenthetical reasons are swapped; the conclusion is unaffected.*
