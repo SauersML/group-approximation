@@ -81,3 +81,38 @@ and refutes STW XXIII for `B` (route
     parts, the analogue of Toms's Theorem 2. In `B` the fresh point-evaluation
     summands are trivial blocks, but maps from twisted pieces into them are still
     sections of nontrivial line bundles over `CP` factors.
+- **Signpost (2026-09-13): the 2-norm form is probably too weak; monotonicity
+  of supports must be used.**
+  - *Proved ingredients.*
+    - `toms-diagonal-quotient-has-nonconstant-continuous-ranks`: diagonal traces
+      cannot obstruct.
+    - `toms-twisted-swap-pairs-are-totally-degeneracy-forcing`: a transport
+      between twisted halves, made uniformly across copies, loses everything at
+      one point, at every scale.
+  - *Why fuzz persistence need not hold in 2-norm (heuristic).* Put the `M`
+    copies of a stage-`N` fuzzy line at positions `s in [0,1]^M`, alongside the
+    CP coordinates `z`. Sharpening needs a continuous `lambda: [0,1]^M -> [0,1]^M`
+    that:
+    - fixes the vertices;
+    - keeps `sum lambda` within `eps M` of `sum s`;
+    - leaves at most `eps M` coordinates fractional.
+    On each level set, the hypersimplex has a connected 1-skeleton. Mapping edges
+    along a spanning tree and extending over the contractible tree gives such
+    maps with no dependence on `z`. The rounded element is copy-block-diagonal,
+    so no twisted rotation occurs.
+  - *Paths do not force rotations.* Along a path from the half-1 vertex to the
+    half-2 vertex, a near projection can drop lines and add others one at a time,
+    with at most two fuzzy lines at any moment. So near projections that are Cauchy in
+    uniform 2-norm, i.e. projections of `M_k(A^u)` with non-constant profile, may
+    well exist. Existence of such projections would not give a rank.
+  - *What is left.* A Cuntz realizer only grows supports: `a_N <~ a_(N+1)`. So
+    rounding may not send an old fuzzy line to `0` unless a transport carries it
+    into a line that is switched on. Monotone rounding near an adversarial
+    point, where every copy sits at a wall of the stage-`N` rank function, must
+    either:
+    - keep all limit directions, which moves walls outward and spends rank
+      slack; or
+    - carry them into sibling copies, which are twisted halves.
+    The open step is to show that the slack runs out before the walls escape,
+    so that some carries are uniform across copies and part 3 of the swap
+    theorem applies.
