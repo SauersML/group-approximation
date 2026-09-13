@@ -73,3 +73,9 @@ claim is the 3-manifold case of that alternative.
   line, such as Rokhlin bases and rotation or odometer codings of that line.
   A working set must correlate openness across fibre lines, and it cannot do
   so through a factor on which `N` acts trivially.
+  `fpbs-finite-window-twisted-levels-disconnected` extends this to sets that
+  read any finite window `W`, below the threshold `delta_0^|W^-1 W|`, and
+  shows that small generating sets can be taken local. Clumped sets open
+  exponentially many paths with one rare event. So the claim waits on a
+  clump-level count, or on a construction with clumps much larger than
+  `1/delta`.
