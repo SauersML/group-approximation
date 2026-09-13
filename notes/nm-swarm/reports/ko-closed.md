@@ -3,7 +3,7 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
-## STATE (09-13 ~07:10): hKO and SharpExistence CLOSED; flip item in coordination
+## STATE (09-13 ~07:20): hKO and SharpExistence CLOSED; flip item withdrawn (hull-bridge)
 `theorem GroupApproximation.KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed :
 Manuscript.NonMF.TheoremC.KotowskiOllivierStatement :=
 kotowskiOllivier_of_pinched (Systolic.mirrorFoldPinched CCKW.cosetComplex)`, and
@@ -21,27 +21,19 @@ kotowskiOllivier_of_pinched (Systolic.mirrorFoldPinched CCKW.cosetComplex)`, and
 
 ## ASSIGNMENT (lead, 09-13 ~06:50)
 1. `Hyperbolic.SharpExistence` with no binder: DONE, `Hyperbolic.sharpExistence_closed` (b0ab67b4a).
-2. Flips for nm-endpoints' five modules (27 baseline findings).  Finding: no new module is needed.
-   fff-periodic's `Manuscript/NonMF/TorsionFreeGreendlingerLeaf.lean` (1edf0f7b4, probe 0913-063820-983 green) already
-   has a form that takes `hgreendlinger` alone for each of them, and fff-periodic's rows name those forms on the same
-   hashes.  The only rows that still name the 18 old declarations are sec5-sentences' LINE:284, 291, 1636, 1650 and 1718.
-   So each flip is a carrier drop in those rows.  The split was proposed to nm-endpoints, and the mapping goes to census once they agree.
-   Old → new (`TorsionFreeGreendlingerLeaf.*`):
-   - LeastAreaAssembly `manuscriptTorsionFreeTheorem_of_leastAreaLeaves` → `printedTorsionFreeTheorem_of_greendlinger`;
-     `printedSaturationNoOmega_of_leastAreaLeaves` → `printedSaturation_of_greendlinger`;
-     `manuscriptRegularNonMFAlgebra_of_leastAreaLeaves` → `printedRegularNonMFAlgebra_of_greendlinger`.
-   - OsinNotion `manuscript{TorsionFreeTheorem,Saturation,RegularNonMFAlgebra}Osin_of_leastAreaLeaves` →
-     `printed{TorsionFreeTheorem,Saturation,RegularNonMFAlgebra}Osin_of_greendlinger`.  The 3 carrier-data lines
-     (`Printed*Osin`) wait for W1.
-   - HullPrintedLeastArea `manuscriptSentence_hullTheorem{,Osin}_of_leastAreaLeaves` → `printedHullTheorem{,Osin}_of_greendlinger`.
-   - LimitSetEndpoints `manuscript{HullTheorem,Saturation}LimitSet_of_leastAreaLeaves` →
-     `printed{HullTheorem,Saturation}LimitSet_of_greendlinger`.
-   - SectionAssembly `manuscriptRegularNonMFAlgebra{,Osin,LimitSet}_of_hullLeaves_closedGO` and
-     `manuscriptRegularNonMFAlgebra_closedCitations` → `printedRegularNonMFAlgebra{,Osin,LimitSet}_of_greendlinger`.
-3. Row 8097c371f35d, baseline lines 369-370 (`kotowskiOllivier_of_leaves`, open-predicate and buried-conditional,
-   census merge 63f147d7b).  No lane row names `kotowskiOllivier_of_leaves` any more; ko-closed dropped it at
+2. WITHDRAWN by the lead (~07:15).  hull-bridge owns the flips for nm-endpoints' five endpoint modules: it has unlanded
+   drafts `TorsionFreeGreendlingerForms.lean` and `TorsionFreeGreendlingerSentences.lean`, and the roster's
+   "Reassignments 09-13 ~06:30" gives it those modules.  ko-closed wrote nothing for them.  Before the withdrawal,
+   ko-closed found and sent nm-endpoints and census the following (the mapping is in this report at 62e77b1cf):
+   - fff-periodic's `TorsionFreeGreendlingerLeaf` (1edf0f7b4) already has forms that take `hgreendlinger` alone;
+   - the 18 old declarations are named only in sec5-sentences' rows LINE:284, 291, 1636, 1650 and 1718;
+   - `TorsionFreeGreendlingerLeaf` is imported by nothing and is not in the wire queue.
+3. Row 8097c371f35d is nm-endpoints' file (`metadata/nm-census-rows/nm-endpoints.tsv`); do not land it.  Its carriers are
+   the `TorsionFreeFourLeaves` forms.  Baseline lines 369-370 (`kotowskiOllivier_of_leaves`, open-predicate and
+   buried-conditional, census merge 63f147d7b) came from ko-closed's old LINE:1675 row, which dropped that carrier at
    2d25ebab5.  Row LINE:1675 now names `kotowskiOllivier_closed` and `Hyperbolic.sharpExistence_closed`, and drops
-   `kotowskiOllivier_of_pinched`, which has a binder.  Census is asked to retire the two lines at its next merge.
+   `kotowskiOllivier_of_pinched`, which has a binder.  I sent both `_closed` names to nm-endpoints, who swaps and
+   re-grades their own row, and asked census to retire the two lines at its next merge.
 
 ## LANDED (all GREEN, all wire-queued)
 | module | SHA | probe |
@@ -86,10 +78,15 @@ imports it.
   - flip `hKO := KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed` in the `_of_leastAreaInputs` forms and
     `SeedFromTheoremC`, once `Kazhdan.KotowskiOllivierClosed` is wired;
   - also, `hfold := Systolic.mirrorFold CCKW.cosetComplex` for the `_of_leastAreaZipFold` forms.
-- nm-endpoints (~06:00): the rows that waited on `hpinch` now wait on wall 1 only.  (~07:10): split proposal for item 2.
+- nm-endpoints (~06:00): the rows that waited on `hpinch` now wait on wall 1 only.
+  - ~07:10: I proposed a split for item 2.
+  - ~07:15: they replied that no split is needed and hull-bridge owns the flips.  Row 8097c371f35d is in their tsv,
+    and they swap its carrier themselves.  I sent them `kotowskiOllivier_closed` and `Hyperbolic.sharpExistence_closed`.
+- census (~07:10): asked to retire baseline lines 369-370.  (~07:15): told that no five-module mapping will come.
+- main (~07:10): milestone report, plus the unwired `TorsionFreeGreendlingerLeaf`.
 - kh-cckw: the every-X HC6 is `Systolic.mirrorFold`.  This corrects my earlier name `mirrorFoldStatement`.
 - sec2-sentences: docstring fixed (4be3a3a5c).
 
 ## NEXT
-Await nm-endpoints' reply on item 2, then send census the old → new names.  Census retires baseline lines 369-370.
-No Prop is owned.
+No Prop is owned and no action is pending.  nm-endpoints swaps the carrier on its row 8097c371f35d, and census
+retires baseline lines 369-370 at its next merge.  The lane is free for reassignment.
