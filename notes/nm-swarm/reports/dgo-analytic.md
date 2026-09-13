@@ -51,7 +51,8 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 * `Estimating/OsinAppendixAssemblyDescent.lean` (5957159598): the retirement note on `OsinDescentStepInput`.
   * The shared tree's copy carries ghw-charp2's staged patch 06a (`(T.respects a …).2` at l.199), which needs ruling (A) in `RespectsSections`. Until (A) lands, the file is out of this lane's probe overlay (probe 0913-141323-26359 failed there, before this lane's module).
 * `Estimating/OsinPocketRegionNoncrossingWalk.lean` (8bbf0a9c8, probe 0913-140151-74557, unwired, wire-queued): `PocketRegion.ofNoncrossingClosedWalk`.
-* `Estimating/OsinPocketCutResiduals.lean` (probe 0913-141538-35582 green at base 80df00345, unwired, wire-queued): `sectionPocketCutInput_of_residuals` and `osinSectionPocketCutSection_of_residuals`, which pass the three closed pieces.
+* `Estimating/OsinPocketCutResiduals.lean` (1b4053286, probe 0913-141538-35582, unwired, wire-queued): `sectionPocketCutInput_of_residuals` and `osinSectionPocketCutSection_of_residuals`, which pass the three closed pieces.
+  * Restated after go-lemma42's `pocketCellTransport` (874a332a2; probe 0913-141750-43433 green, md5 equal to main). `hcell` is dropped, so both theorems pass four closed pieces. The two theorems had no Lean users. Probe 0913-142350-67007 green at base 538afe1ed.
 
 ### The pieces, in the order of the assembly
 
@@ -61,7 +62,7 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 | `PocketPinchLabelledStatement`, implied by `PocketPinchStatement` | hull-respell | a `PocketFaceSet` in walk order (`ClosedWalk`) of a diagram with legal labels has an O-equivalent copy with a `Simple` one (boundary cycle `IsSimpleClosedWalk`), by simple circuits or a 0-refinement |
 | `PocketRegionOfSimpleStatement` | dgo-analytic | a `Simple` face set gives a `PocketCarrier` (both cycles `FollowsBoundary`, sides of length and norm at most `ε`) |
 | `PocketCollarStatement` | dgo-analytic from kh-torsion's `GeodesicCollarStatement` | a `Nondegenerate` `PocketCarrier` has an O-equivalent copy with a `Collared` carrier (sides admissible geodesic words) |
-| `PocketCellTransportStatement`, `PocketOuterTransportStatement` | go-lemma42; the outer one closed by hull-select (`pocketOuterTransport`, 71d59592c) | regions of copies of the pocket to `t_1` and `t_2` glue back, target `OsinMultipleEdgeCut.ofPocketRegion` |
+| `PocketCellTransportStatement`, `PocketOuterTransportStatement` | both closed: go-lemma42's `pocketCellTransport` (874a332a2) and hull-select's `pocketOuterTransport` (71d59592c) | regions of copies of the pocket to `t_1` and `t_2` glue back, target `OsinMultipleEdgeCut.ofPocketRegion` |
 
 Assembly, proved:
 
@@ -69,7 +70,7 @@ Assembly, proved:
 * `PocketCarrier.nonempty_osinSectionPocketCut`: a collared carrier gives the cut.
 * `sectionPocketCutInput_of_pieces hpinch hregion hcollar hcell houter`.
 * `osinSectionPocketCutSection_of_pieces`.
-* `sectionPocketCutInput_of_residuals hpinch hgeodesic hcell` and `osinSectionPocketCutSection_of_residuals hfaces hpinch hgeodesic hcell` (`Estimating/OsinPocketCutResiduals`). They pass `pocketRegionOfSimple`, `pocketCollarStatement_of_geodesicCollar hgeodesic` and hull-select's `pocketOuterTransport`. So the section pocket producer takes exactly the four open Props below.
+* `sectionPocketCutInput_of_residuals hpinch hgeodesic` and `osinSectionPocketCutSection_of_residuals hfaces hpinch hgeodesic` (`Estimating/OsinPocketCutResiduals`). They pass `pocketRegionOfSimple`, `pocketCollarStatement_of_geodesicCollar hgeodesic`, go-lemma42's `pocketCellTransport` and hull-select's `pocketOuterTransport`. So the section pocket producer takes exactly the three open Props below.
 
 ### The region piece
 
@@ -190,7 +191,7 @@ R2 with kh-ejz's `IsNoncrossingClosedWalk` (26a7858f2) as `Simple` (~13:20, sent
   * Q2: this lane states the zero-cell merge on the copy (roster l.405 and l.617).
     * sec2-sentences' kept cell (`Estimating/OsinPocketKeptCell`, 492057fb6) is stated on the diagram of the thickened family `S'` of hs-vanishes' `OuterSpurThickeningStatement`. `OEquivalentDiscDiagram` keeps no darts, so nothing is transported: the merge on that copy is `zeroCellPocketMerge` at `S'`.
     * `exists_kept_of_pocketRegion` takes a `PocketRegion` with `hinner : P.inner.cycle = K.walk` and no `FollowsBoundary`. A pinched pocket walk whose outer cycle follows (Configuration A) therefore gets its kept cell from `exists_kept_of_pocketRegion … (PocketRegion.ofNoncrossingClosedWalk hw hout hfollows heuler) rfl havoid`, once hull-euler's lemma supplies `heuler`. This is blocker 1 of the ~14:05 rulings, so the Euler lemma is needed under R1 as well (hull-euler told).
-    * On origin/main only `OuterSpurThickeningStatement` outputs a family. The copies for (b), a gap-arc edge with the cell on both sides, and for (c) have no statement. Only there would a merge stated on a family's diagram not apply. Scope sent to the lead.
+    * On origin/main only `OuterSpurThickeningStatement` outputs a family, and it is now proved (`outerSpurThickening`, 36ff632cd). The copies for (b), a gap-arc edge with the cell on both sides, and for (c) have no statement. Only there would a merge stated on a family's diagram not apply. Scope sent to the lead.
 * Builder (this lane): `Estimating/OsinPocketRegionNoncrossingWalk`, `PocketRegion.ofNoncrossingClosedWalk hw hout hfollows heuler`.
   * The inner region comes from `toDiscRegion_of_euler` and the outer from `toDiscRegion_of_followsBoundary`. The inverse complement cycle is the walk.
   * `heuler` has the type of the conclusion of hull-euler's lemma, so the co-probe passes `hw.reclosed_euler X.planar hfollows` and nothing unlanded is imported here.
@@ -224,8 +225,10 @@ New with the ruled order:
 * `OsinSectionPocketFaceSetSectionStatement` (kh-ejz).
 * `PocketPinchLabelledStatement` (hull-respell), or `PocketPinchStatement` through the weakening lemma. kh-cckw reduced the unlabelled one to `PocketPinchPinchedStatement` (33951a5b6). Configurations A and B are escalated.
 * `GeodesicCollarStatement` (kh-torsion, `SurgeryGeodesicCollar.lean:67`), in place of `PocketCollarStatement`.
-* `PocketCellTransportStatement` (go-lemma42).
-* `PocketOuterTransportStatement` is closed. hull-select's `pocketOuterTransport` is in `Estimating/OsinPocketGlueOuterTransport` (71d59592c, `#audit_closed_axioms`). `Estimating/OsinPocketCutResiduals` passes it as `houter`, together with `pocketRegionOfSimple` and the collar from `GeodesicCollarStatement`.
+* `PocketCellTransportStatement` and `PocketOuterTransportStatement` are closed, both under `#audit_closed_axioms`:
+  * go-lemma42's `pocketCellTransport` (`Estimating/OsinPocketGlueCellTransport`, 874a332a2, probe 0913-141750-43433);
+  * hull-select's `pocketOuterTransport` (`Estimating/OsinPocketGlueOuterTransport`, 71d59592c).
+  * `Estimating/OsinPocketCutResiduals` passes both, together with `pocketRegionOfSimple` and the collar from `GeodesicCollarStatement`.
 * Outside `SectionPocketCutInput`, `descentInput_of_sectionPocketCut` still takes `LoopCutInput` (ruling (A) final), `MultipleEdgeCutInput`, `EulerCountInput`, `UnboundInput` and `O52LeastAreaStatement`.
 
 Closed here:
