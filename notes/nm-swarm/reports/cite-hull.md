@@ -136,3 +136,28 @@ This is Theorem 7.1 itself and is outside this lane.
 ## Split
 No split is needed. Every non-7.1 Hull citation is either closed here or reduces to
 Theorem 7.1's two least-area leaves, and those are owned elsewhere.
+
+## Update 09-13 ~02:00 (appended by the lead from the lane's SendMessage report)
+
+This update supersedes three claims above: that Theorem 3.12 closed only (1)⇔(4), that Lemma 5.8 was not formalized, and the status of Corollary 7.4.
+
+- **Hull Theorem 3.12, all four clauses: closed.**
+  - Declaration: `printedHullTheorem312 : PrintedHullTheorem312` (#audit_closed_axioms), in `GroupApproximation/Manuscript/NonMF/HullTheorem312Lemma58.lean`.
+  - Landed at e182ac440. Probe 0913-015651-30488 is GREEN on base c52176461. The module is queued for wiring.
+  - Each clause is joined to (4) by a proved theorem: Osin 1.1, the easy AH direction, geodesic Cayley AH3Data, `osinTheorem12_unconditional`, `exists_isNonDegenerate_isHypEmbedded`, and `osinAH4ToAH1_of` (Osin 5.4 with DGO 6.12).
+- **Hull Lemma 5.8, printed generality: closed.**
+  - Declaration: `printedHullLemma58 : PrintedHullLemma58.{u}` (#audit_closed_axioms), in the same module.
+  - The proof follows Hull's route: DGO 4.27, Osin 5.4, DGO 6.12, then DGO 4.33(b).
+  - Helper: `normalizesNoNontrivialFinite_of_isHyperbolicallyEmbedded`.
+- **Census rows (5e7a8a33f):** LINE:1629 names `printedHullTheorem312`, and LINE:1659 names `printedHullLemma58`.
+- **Corollary 5.7:** closed earlier (`printedHullCorollary57`, 18de0ce6a).
+- **Corollary 7.4, printed generality: not closed.**
+  - Over the two walls, `HullSC.hullBallFormStatementGeneral_of_leastAreaLeaves` gives Theorem 7.1 for every AH group. The walls are `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0,0,0}` and `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0,0,0}`.
+  - Missing, but independent of the walls:
+    - K(G), the maximal finite normal subgroup (DGO 6.14). Only the spelling `HasTrivialFiniteRadical` exists.
+    - AH0.
+    - Hull Lemma 5.10.
+    - Hull Lemma 3.5 in general form. `HullSCFreeProductFactor` covers only the manuscript's finitely presented torsion-free case.
+  - Missing and dependent on the walls: Hull Corollary 7.3.
+  - Rows L1675 (dab2f2bfe084) and L1644 stay partial on the two walls.
+- **Next:** this lane formalizes the wall-independent pieces, then `printedHullCorollary74_of_leastAreaLeaves`, which leaves exactly the two walls as the residual.
