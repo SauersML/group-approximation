@@ -216,7 +216,10 @@ Open: row 29.
   - At index 12, 28 of 116 characters pass it, but none has a collapsing
     representative with `RPOT = 1`.
   - None of its 7 Nielsen images of length `≤ 17` has a certificate at
-    index `≤ 10`.
+    index `≤ 10`. One of them, `AATTaaTAtATaatt`, also has none at index
+    `≤ 12`: 12 characters pass the monic filter and none collapses.
+  - `images.py 19` finds 6 more images, of length 18–19 (`images29_19.out`,
+    `words29img19.txt`). None has a certificate at index `≤ 8`.
   - Row 16 has the same `δ` and is certified at index 12 (`S = 17`, `F_74`),
     so this `δ` is not an obstruction.
 - **No obstruction isolating row 29 has been identified.** A certificate is
