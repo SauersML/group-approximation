@@ -1,179 +1,222 @@
-# One mechanism behind the non-MF paper and the Pestov 9.1 answer — synthesis, part 2
+# One ladder behind the non-MF paper and the Pestov 9.1 answer — synthesis, part 2 of 3
 
-Lane `un-synthesis`, 2026-09-13, refresh 1 (main tip d1ca5488fc). Status tags as in part 1: [REVIEWED PASS · sha],
-[unreviewed], [import], [printed], [OPEN].
+Lane `un-synthesis`, 2026-09-13, refresh 2 (main tip 938ae27b49). Status tags and review landings as in part 1.
 
-## 8. The flagship: free-group actions
+## 7. The paradox mechanism
 
-**Assembled statement** [OPEN as an assembly: its inputs are unreviewed except S4; proposed to un-architect as a
-review-gated claim; no node yet].
+### 7.1 The simple core: one compression lemma, read by the target
 
-Let `2 ≤ r < ∞` and let `F_r ↷ X` be a minimal, topologically free, expansive action on the Cantor set, so
-`R = LC(X,F_q)⋊F_r` is finitely generated. Topologically free ⇒ effective holds for Hausdorff transformation
-groupoids; that is standard and not re-derived here. Let `N ≥ 3`. Then `S_N = EL_N(R)/Z` is an infinite, finitely
-generated, simple Kazhdan group (§3, REVIEWED PASS), and exactly one of the following holds.
-- **Measure branch.** `X` carries an invariant probability measure. Then `R` is matricial (Theorem C of un-measure),
-  so `EL_N(R)` is LEF for every `N` (§6), hence sofic, hyperlinear and MF.
-- **Paradox branch.** `X` carries no invariant probability measure. Then some `n` has `2n[1] ≤ n[1]` (Theorem G), and
-  every homomorphism from `EL_N(R)` to an MF group is trivial for `N ≥ 2n`; for `N ≥ 2` if `2θ ≤ θ` in `S(𝒢)`.
-- **Open inside the paradox branch:** ranks `3 ≤ N < 2n` (§12).
+**Lemma C** [unreviewed; un-open-8 3e2e7a2505, `compression-defects-die-in-rigid-targets`]. Let `ψ : G → H`, `L ≤ G`,
+`uLu⁻¹ ≤ L`, `c ∈ C_G(L)` and `l ∈ L`. Suppose `S ≤ H` satisfies:
+- (S1) `ψ(L) ⊆ S`;
+- (S2) everything commuting with `ψ(L)` commutes with `S`;
+- (S3) `ψ(u)Sψ(u)⁻¹ = S`.
 
-**Theorem C, free groups** [unreviewed; un-measure 3f486a4805, `free-group-crossed-product-matricial-iff-invariant-measure`].
-For a minimal topologically free `F_r ↷ X` (`r ∈ ℕ ∪ {∞}`) and a field `k`, the following are equivalent:
-- an invariant probability measure exists;
-- the action is residually finite;
-- `LC(X,k)⋊F_r` embeds unitally in some `∏_ω M_N(k)`;
-- it admits a unital homomorphism into one;
-- it carries a unital Sylvester matrix rank function.
+Then `ψ([ucu⁻¹,l]) = 1`. So `ψ` kills the intrinsic defect `𝔇_G(L)` as soon as every compressor admits a *rigid
+support*.
 
-Inputs: Kerr–Nowak Thm 5.2, a secondary import through Ma arXiv:2209.00580. The primary paper is still to be checked
-(`kerr-nowak-measure-free-group-actions-are-rf`).
+| target | rigid support `S` | rigidity input | conclusion | (T) needed |
+|---|---|---|---|---|
+| finite group | `ψ(L)` | counting | `ψ(𝔇_G L) = 1` | no |
+| `GL_d(K)` | Zariski closure | dimension, components | `ψ(𝔇_G L) = 1` | no |
+| directly finite ring model | (ring level) | rank | `φ(ReR) = 0` | no |
+| MF group (norm corona) | range of the Kazhdan projection in the adjoint corona | stable finiteness of the corona (tex Thm l.478) | Hilbert–Schmidt invisible; exact on a normal (T) `K ≤ 𝔇` (Thm l.646) | yes |
+| tracial ultraproduct | none known | — | [OPEN] `hyperlinear-groups-kill-rigid-compression-defects` | — |
 
-**Why free groups.** For free groups "measure ⇒ residually finite" is a theorem, so the char-p gap of §7 closes by
-dynamics rather than by Kaplansky. For `ℤ²` it fails (§9).
+**Readings.**
+- The two papers are two readings of Lemma C:
+  - **non-MF paper:** a full defect exists, so rigid targets see nothing;
+  - **Pestov 9.1:** the ring is directly finite, so no ring defect exists and exact matricial models can exist.
+- **Linear images** [unreviewed, `one-sided-defect-ideal-dies-in-linear-images-of-el`]. For `ts = 1`, `e = 1−st` and
+  `N ≥ 4`, every homomorphism from `EL_N(R)` to a finite group or to `GL_d(K)` is trivial on `E_N(R,ReR)`, with no (T)
+  and no finite generation. Property (T) is needed only at the MF level.
+- **Model test:** in `GL_2(ℚ)` with `L` the integer unitriangulars and `u = diag(2,1)`, the defect is trivial, as it must
+  be for a linear group.
 
-## 9. The families this produces
+### 7.2 Exact rank thresholds
 
-**Paradox families: finitely generated simple Kazhdan groups with no nontrivial MF quotient** [unreviewed; un-paradox
-4253950d2e].
-- **Headline:** `boundary-action-elementary-simple-kazhdan-not-mf`. `EL_N(LC(∂F_d,F_q)⋊F_d)/Z` (`d ≥ 2`, `N ≥ 3`) is
-  infinite, finitely generated, simple and Kazhdan, with no nontrivial MF quotient. It is Pestov's construction with
-  the measure-carrying ℤ-subshift replaced by the paradoxical boundary action.
-- **Families:** `paradoxical-steinberg-families-kazhdan-no-mf-quotient`:
-  - (F1) boundary actions;
-  - (F2) Nekrashevych algebras of finitely generated self-similar actions;
-  - (F3) `L_k(1,m)`, the printed case.
-- **Non-IBN:** `EL_N(L_k(2,3))`, `N ≥ 3` (§5, Theorem 5).
+- **Theorem P** [PASS · f15928d5c9; canonical `stably-infinite-ring-elementary-groups-have-no-mf-quotient`; same theorem
+  PASS · d60f405998 `paradoxical-ring-el-n-full-mf-radical-from-twice-level`, PASS · 2ba472b59d
+  `full-defect-in-m-by-m-kills-mf-quotients-of-el-2m`]. If `2n[1] ≤ n[1]` in `V(R)`, every homomorphism from `EL_N(R)`
+  to an MF group is trivial for `N ≥ 2n`.
+  - Proof: tex l.918 at rank 2 over `M_n(R)`, plus `EL_2(M_n R) = EL_(2n)(R)`.
+  - Novelty: NEW (bounded), a routine corollary of the manuscript.
+- **Non-IBN** [PASS · d60f405998 after a scope repair; `non-ibn-ring-el-n-full-mf-radical-above-module-rank`]. If
+  `R^m ≅ R^(m+d)`, the same holds for `N ≥ max(m+1,3)`.
+- **Groupoids without an invariant measure** [PASS · f15928d5c9, canonical `no-invariant-measure-steinberg-elementary-no-mf-quotient`;
+  same theorem PASS · d60f405998 `measure-free-ample-groupoid-el-n-full-mf-radical`]. There is no MF quotient from rank
+  `2n`. The chain behind it is Rainone–Sims Tarski [import, PASS], ABBL states→measures [import, PASS] and the bridge `ι`.
+- **Almost unperforated `S(𝒢)`** [PASS · fbaddd57b0 after repair; `unperforated-paradox-makes-steinberg-purely-infinite`].
+  Exactly one of these holds:
+  - an invariant measure exists;
+  - `A_k(𝒢)` is properly purely infinite and simple, and `EL_n` has no MF quotient for every `n ≥ 2`.
 
-**Measure families: finitely generated simple Kazhdan LEF groups** [unreviewed; un-measure f0cf0a1353].
-- `toeplitz-free-group-elementary-groups-are-lef-kazhdan`. Take `X` a uniquely ergodic Toeplitz `F_r`-subshift over a
-  free odometer (Cecchi-Bernales–Cortez–Gómez 2305.09835 [import]). Then `LC(X,F_q)⋊F_r` is finitely generated, simple
-  and matricial, and `EL_n` (`n ≥ 3`) is LEF and Kazhdan over a **non-amenable** acting group.
-- Simplicity mod centre follows from S4 (REVIEWED) once effectiveness is recorded for these actions.
+  The owner repair: exclusivity in characteristic `p`, and rank-two requires.
 
-**Boundary of the tower method** [unreviewed; un-measure 3f486a4805, `matricial-z2-sft-crossed-products-give-quantum-tilings`].
-For a free minimal ℤ²-SFT, `LC(Ω,k)⋊ℤ²` is matricial iff finite-dimensional covariant quantum tilings (Q1)–(Q3) exist
-at every scale. Quantum-rigid SFTs are never matricial, despite carrying invariant measures. This connects to the
-reviewed Theorem Q (`zd-derived-full-group-fp-forces-quantum-rigidity`, ex-verify2-groups part 9, 00e9ab3615).
+### 7.3 The MF spectrum of a ring
 
-## 10. Trace and corona invariants
+[PASS · 7c7fdace42: `mf-rigidity-is-monotone-in-matrix-rank`, `mf-thresholds-rescale-under-matrix-amplification`; novelty:
+monotonicity FOLKLORE, rescaling NEW (bounded) routine.]
 
-[All unreviewed; un-traces 102def4e00; queued with un-verify-measure.]
-- **Kazhdan collapse** (`kazhdan-trace-amenable-iff-qd-iff-fd-limit`). For a countable Kazhdan group, a trace on
-  `C*_max` is amenable ⟺ quasidiagonal ⟺ a limit of finite-dimensional traces. The canonical trace qualifies iff the
-  group is residually finite. This is essentially Ozawa/Kirchberg (Ozawa survey Thms 6.1, 7.4 [import]).
-- **The ring criterion** (`elementary-group-trace-amenable-iff-ring-residually-finite`). For finitely generated `R`
-  and `n ≥ 3`, `τ_(EL_n R)` is amenable ⟺ QD ⟺ `R` is residually finite.
-  - So the Leavitt and Pestov groups both have non-amenable canonical traces.
-  - The candidate "QD trace ⟺ matricial rank function" is **refuted** by the Pestov ring.
-- **Corona traces separate the branches** (`corona-traces-separate-paradox-from-measure-for-el-n`).
-  - A trace of the form `tr_ω ∘ Φ` with `Φ` into a norm matrix corona is a *corona trace*.
-  - Corona trace ⇒ operator MF; LEF ⇒ the canonical trace is a corona trace.
-  - Paradox branch: only the trivial corona trace.
-  - For subshift rings and `n ≥ 4`: corona trace ⟺ MF ⟺ directly finite.
-- **No ucp lift** (`quotientless-lef-kazhdan-corona-trace-has-no-ucp-lift`). For an infinite LEF Kazhdan group
-  without finite quotients, the realizing corona map has no ucp lift.
-- **Reduced side.** For infinite Kazhdan groups the trace on `C*_r` is never amenable and `C*_r` is never QD. On the
-  measure branch, `C*_r` being MF is [OPEN] (`directly-finite-subshift-el-n-reduced-cstar-is-mf`). On the paradox
-  branch it is not MF [printed l.1038].
+- **The two thresholds.**
+  - `mf(R) = sup{N ≥ 2 : EL_N(R) MF}`.
+  - `rig(R) = min{N ≥ 2 : every homomorphism from EL_N(R) to an MF group is trivial}`.
+- **Monotonicity.** MF is a down-set in `N` and rigidity an up-set, with `mf(R) < rig(R)`. So the ranks split into three
+  consecutive regimes: MF, the *middle* (not MF but with a nontrivial MF quotient), and rigid.
+- **Rescaling.**
+  - `rig(M_m R) = max(2, ⌈rig(R)/m⌉)`, and `mf(M_m R) = ⌊mf(R)/m⌋` (or 1).
+  - The dichotomy conditions are stable under amplification; the threshold values are finer data.
+- **Calibration.** Pestov's ring has `(mf, rig) = (∞, ∞)`; `L_k(1,2)` has `(1, 2)`.
+- **Which invariant rigidity measures** [unreviewed reading]. For simple `R`: `V(R)` has no nonzero state ⟺ `R` not stably
+  finite ⟹ `rig(R) < ∞`. This is a Morita-invariant, monoid-level condition. The LEF side is not monoid-level (refutation F3).
+- **The middle regime is inhabited** [unreviewed; `toeplitz-ring-has-infinite-middle-mf-regime`; NEW (bounded) routine].
+  The Toeplitz–Jacobson algebra `J = F_2⟨s,t | ts=1⟩` has `mf(J) ≤ 3` and `rig(J) = ∞`.
+  - `J` is not simple, since its defect ideal is not full.
+  - Hence (M⇐) reformulates exactly as: **for simple rings the middle regime is empty.**
 
-## 11. Examples and calibration refutations
+### 7.4 The Hilbert-hotel radical sandwich
 
-[Table from un-calibration 8d27ba78e6, un-converse, un-paradox and un-measure. Entry statuses as tagged; "∅MF" means
-every homomorphism to an MF group is trivial.]
+[unreviewed; un-open-1 36226184dd.]
+- **The radical** (`hilbert-hotel-radical-is-smallest-directly-finite-quotient`). Iterate "ideal generated by the defects
+  `1−st`, `ts = 1`" transfinitely. The result `hh(R)` is the smallest ideal with directly finite quotient.
+- **The sandwich** (`mf-radical-sandwiched-by-hilbert-hotel-radical`). Let `R` have torsion additive group (e.g. an
+  algebra in characteristic `p`) and `n ≥ 4`. Then:
+  - `EL_n(R, hh(R)) ≤ Rad_MF(EL_n R)` (`mf-radical-contains-hilbert-hotel-elementary-subgroup`, from tex
+    `prop:torsion-defect-ring` and the relative step `relative-torsion-defect-mf-radical-step`);
+  - if `EL_n(R/hh)` is MF, then `Rad_MF(EL_n R) ≤ EL_n(R) ∩ GL_n(R, hh)`.
+- **Reading.**
+  - The paradox side supplies the radical, and the measure side supplies the hypothesis that `EL_n(R/hh)` is MF.
+  - Model tests: `L_k(1,m)` (radical everything), Pestov (radical trivial), Toeplitz `J` (radical `EL_n(J, JeJ)`,
+    agreeing with the printed computation).
+- **Open.**
+  - `hilbert-hotel-radical-is-reached-in-one-step`.
+  - `zero-dimensional-hilbert-hotel-radical-is-core-ideal`, which would make the printed core theorem a corollary.
+  - Predicted object: a Kazhdan group whose MF radical is proper and nontrivial and whose maximal MF quotient is an
+    infinite simple LEF Kazhdan group.
 
-| ring `R` | f.g. | simple | finiteness | branch | matricial over finite fields | `EL_N(R)` |
-|---|---|---|---|---|---|---|
-| `L_k(1,2)` (`𝒢_2`) | yes (`k` finite) | yes | not directly finite | paradox, `2θ≤θ` | no | ∅MF for `N≥2` [printed] |
-| `LC(X,F_q)⋊ℤ`, minimal subshift | yes | yes | stably finite | measure | yes (towers) | LEF, Kazhdan for `N≥3` [REVIEWED] |
-| `LC(∂F_d,F_q)⋊F_d` | yes | yes | purely infinite | paradox | no | ∅MF, simple Kazhdan [unreviewed] |
-| Toeplitz `F_r`-subshift ring | yes | yes | stably finite | measure, RF | yes | LEF Kazhdan [unreviewed] |
-| `L_k(2,3)` | yes | — | directly finite (Cohn, recalled) | non-IBN | no | ∅MF for `N≥3` [unreviewed] |
-| `LC(ℤ_2,F_q)⋊ℤ` odometer | **no** | yes | stably finite | measure | yes | LEF, **no (T)** [unreviewed] |
-| Weyl `A_1(ℚ)` | no | yes | stably finite, no f.d. modules | — | yes, in `∏M_p(F_p)` | LEF [unreviewed] |
-| `F_q[Γ]`, `Γ` amenable, not LEF | yes | no | stably finite, faithful rank fn | — | no | Kazhdan, **not LEF** [unreviewed] |
-| algebraic Toeplitz `J` | yes | no | not directly finite | defect not full | — | not MF (`n≥4`) but has a nontrivial MF quotient |
-| Labbé `LC(Ω_U,F_q)⋊ℤ²` | yes | yes | measure | measure | ⟺ quantum tilings | unknown |
+### 7.5 The unit-group face
 
-**Refutations every statement must respect** [un-calibration, unreviewed].
-- **(F1)** "Embeds in `∏_ω M_N(k)` over the base field" is the wrong condition. `A_1(ℚ)` has no characteristic-0
-  model but embeds in `∏_ω M_p(F_p)`. The right condition allows varying fields (Theorem C, §6).
-- **(F2)** Kazhdan families need finitely generated rings, so expansive actions (subshifts), not odometers.
-- **(F3)** A faithful rank function plus stable finiteness does not give LEF (`F_q[Γ]`, not simple).
-- **(F4)** "No MF quotient" needs a **full** defect. The Toeplitz algebra has a non-full defect and a nontrivial MF
-  quotient.
-- **(F6)** [printed Prop l.1072] In positive characteristic, `EL_4(R)` MF ⇒ `R` directly finite.
+[unreviewed; un-k1-homology 5c83d35b84, un-full-groups-bridge 21ed3e7571.]
+- **The paradox extreme** (`purely-infinite-steinberg-gl-max-mf-quotient-is-k1`). Under local compressibility the maximal
+  MF quotient of `GL_n(A_k 𝒢)` is `K_1`.
+  - For irreducible SFT Leavitt algebras (`irreducible-sft-leavitt-gl-max-mf-quotient-formula`) it is
+    `(Coker(1−Nᵗ) ⊗ k^×) ⊕ Ker(1−Nᵗ)`, read as `(H_0(G_A) ⊗ k^×) ⊕ H_1(G_A)` through Matui.
+  - The `K_1` formula is PRIOR (Ara–Brustenga–Cortiñas 0903.0056); the MF half is tex l.1218.
+- **The measure extreme.** For exactly matricial algebras the radical is trivial (`steinberg-gl-mf-radical-is-commutator-or-trivial`).
+  The two extremes are exclusive, not exhaustive.
+- **Thompson's `V_d` inside Leavitt units** (`leavitt-mf-quotients-see-thompson-vd-through-parity`). MF quotients see
+  `V_d` only through a parity character.
+  - `V = V_2` lies in the MF radical over every field.
+  - This says nothing about whether `V_d` itself is MF.
+- **Open:** `steinberg-gl-max-mf-quotient-is-low-degree-homology`.
 
-## 12. The open middle
+## 8. The measure mechanism
 
-- **(M1) The low-rank band** [OPEN, `el-n-mf-quotient-below-twice-paradoxical-level-exists`]. Ranks `3 ≤ N < 2p(R)`
-  on the paradox branch. First case: `EL_3(L_k(3,4))`. Here transport is silent and towers are dead. A nontrivial
-  MF quotient would be a new object: a Kazhdan group with an MF quotient sitting inside `EL_4`, which has none.
-  Owner: un-low-rank-band.
-- **(M2) Is stable finiteness enough?** [OPEN, `stably-finite-simple-rings-have-mf-elementary-groups`] For simple
-  stably finite `R`, is `EL_N(R)` MF, or does it have an MF quotient? A counterexample must be simple and non-matricial.
-  Greenfeld's non-simple examples [import] show stable finiteness alone does not make a ring matricial.
-- **(M3) The converse of Theorem C** [OPEN, `stably-mf-elementary-groups-force-matricial-rings`]. Does stable MF of
-  `EL_N(R)` force a matricial ring, or at least a rank function? Operator-norm models give unitaries, not ring maps.
-- **(M4) Measure without towers.** ℤ²-SFTs with invariant measures that are quantum-rigid, and characteristic-p
-  "measure ⇒ rank function" [OPEN, `invariant-measure-gives-rank-function-any-field`, Kaplansky-hard]. Candidate new
-  objects: Kazhdan simple groups that are sofic or linear-sofic but not LEF. Owners: un-sofic-not-lef, un-labbe-ring.
-- **(M5) Does `ι` reflect paradox?** [OPEN, `type-semigroup-reflects-paradox-of-steinberg-algebra`], Kaplansky-hard.
-- **(M6) Soficity on the paradox branch.** No MF quotient does not preclude soficity: the non-MF paper builds a
-  sofic non-MF group. A simple ring that is not stably finite but has no halvable idempotent would give Kazhdan
-  candidates for sofic non-MF simple groups (un-converse O4). Owner: un-hyperlinear-paradox.
-- **(M7) Non-almost-unperforated type semigroups** (Boldrini–Prasad `F_∞` actions). The sharp theorem (§5, Theorem 6.4)
-  does not apply there. The measure-free ones still fall under Theorem G at rank `2n`, and they are not finitely
-  generated.
+### 8.1 The Tarski chain
 
-## 13. Status ledger (node → status)
+[PASS · 2ba472b59d; `algebraic-tarski-for-steinberg-algebras`, item 1 scope-repaired "nonzero" → "faithful", c725d8a93f.]
+For minimal `𝒢` with compact unit space and any countable field:
 
-| node | status |
-|---|---|
-| `steinberg-elementary-groups-are-simple-mod-centre` (+ S1, S2, S3 nodes) | REVIEWED PASS · 171f0f7525 |
-| `steinberg-algebra-simple-iff-minimal-effective` | import, REVIEWED PASS · 171f0f7525 |
-| `simple-ring-stably-finite-iff-unit-not-paradoxical` | REVIEWED PASS · 638d4941b5 |
-| `kmp-tarski-theorem-preordered-monoids` | import, REVIEWED PASS · 638d4941b5 |
-| `stably-infinite-ring-elementary-groups-have-no-mf-quotient` / `paradoxical-ring-el-n-full-mf-radical-from-twice-level` / `full-defect-in-m-by-m-kills-mf-quotients-of-el-2m` | unreviewed (one theorem, canonical pending) |
-| `mf-elementary-groups-force-stably-finite-simple-rings` | unreviewed |
-| `non-ibn-ring-el-n-full-mf-radical-above-module-rank` | unreviewed |
-| `no-invariant-measure-steinberg-elementary-no-mf-quotient` / `measure-free-ample-groupoid-el-n-full-mf-radical` | unreviewed (canonical pending) |
-| `unperforated-paradox-makes-steinberg-purely-infinite` | unreviewed |
-| `algebraic-tarski-for-steinberg-algebras` | unreviewed |
-| `char-zero-steinberg-stably-finite-iff-invariant-measure` / `invariant-measure-gives-rank-function-in-char-zero` | unreviewed |
-| `measure-side-stable-finiteness-contains-char-p-kaplansky` | unreviewed |
-| `matricial-steinberg-algebras-have-invariant-measures` | unreviewed |
-| `exactly-matricial-rings-have-lef-general-linear-groups` | unreviewed |
-| `residually-finite-actions-give-matricial-crossed-products` | unreviewed |
-| `free-group-crossed-product-matricial-iff-invariant-measure` | unreviewed |
-| `matricial-z2-sft-crossed-products-give-quantum-tilings` | unreviewed |
-| `boundary-action-elementary-simple-kazhdan-not-mf` | unreviewed |
-| `paradoxical-steinberg-families-kazhdan-no-mf-quotient` | unreviewed |
-| `toeplitz-free-group-elementary-groups-are-lef-kazhdan` | unreviewed |
-| `corona-traces-separate-paradox-from-measure-for-el-n` (+ un-traces family) | unreviewed |
-| `weyl-algebra-over-q-is-lef-ring-not-matricial-over-q` / `weyl-algebra-is-exactly-matricial` | unreviewed (overlap) |
-| `group-ring-lef-iff-group-lef-iff-elementary-group-lef`, `odometer-crossed-product-elementary-groups-not-kazhdan` | unreviewed |
-| `el-n-mf-quotient-below-twice-paradoxical-level-exists`, `stably-finite-simple-rings-have-mf-elementary-groups`, `stably-mf-elementary-groups-force-matricial-rings`, `invariant-measure-gives-rank-function-any-field`, `type-semigroup-reflects-paradox-of-steinberg-algebra`, `directly-finite-subshift-el-n-reduced-cstar-is-mf`, `directly-finite-simple-ring-el-n-trace-is-corona-trace` | OPEN |
+  `A_k(𝒢)` has a faithful Sylvester matrix rank function ⟹ stably finite ⟹ `θ = [𝒢⁰]` completely non-paradoxical
+  ⟺ an invariant probability measure exists.
 
-## 14. Credits and novelty bound
+- **Ring-level Tarski** [PASS · 638d4941b5; FOLKLORE: Tarski, Goodearl–Handelman, KMP 2502.17190 Cor 2.16].
+  `simple-ring-stably-finite-iff-unit-not-paradoxical`.
+- **Caution.** A state on `V(R)` is strictly weaker than a Sylvester rank function. They agree on regular rings, and
+  Steinberg algebras are not regular.
 
-- **Prior work carried by this theory:**
-  - Ershov–Jaikin-Zapirain (property (T));
-  - Steinberg and BCFS (simplicity);
-  - Clark–Edie-Michell (centre);
-  - Rainone–Sims (Tarski for type semigroups, stable finiteness);
-  - Kwaśniewski–Meyer–Prasad (Tarski for preordered monoids);
-  - ABBL (states to measures);
-  - Larki (pure infiniteness);
-  - Ara–Goodearl–Pardo and Khanh–Thanh (units, `K_1`);
-  - Grigorchuk–Medynets and Ma (LEF full groups);
-  - Kerr–Nowak (free-group actions);
-  - Ara–Claramunt (rank embeddings);
-  - Greenfeld (non-linear-sofic stably finite algebras);
-  - Cecchi-Bernales–Cortez–Gómez (Toeplitz subshifts);
-  - Ozawa and Kirchberg (traces of Kazhdan groups);
-  - Malcev and Elek–Szabó.
-- **Bounded novelty** (un-prior-art 538afe1ed4): within the sources read, no prior Kazhdan simple group built from a
-  Steinberg algebra, and no prior link from ring paradox or matricial approximation to MF or sofic properties of
-  `EL_n`, beyond the non-MF paper. The three headline objects (boundary group, Toeplitz family, free-group equivalence)
-  are queued for an ex-novelty check.
+### 8.2 Characteristic zero is exact, but property (T) lives only in characteristic p
+
+- **Char 0** [PASS · 2ba472b59d, `invariant-measure-gives-rank-function-in-char-zero`; PASS · f15928d5c9,
+  `char-zero-steinberg-stably-finite-iff-invariant-measure`]. For `k ⊆ ℂ`, an invariant measure gives a faithful rank
+  function through the finite von Neumann algebra of `τ(f) = ∫ f|_X dμ`, so all four conditions of §8.1 are equivalent.
+- **(T) only in char p** (un-tarski artifact §4.2). EJZ needs `R` finitely generated as a ring. A field finitely generated
+  as a ring is finite (Artin–Tate), so every Kazhdan example lives over a finite field.
+- **The Kaplansky firewall** (`measure-side-stable-finiteness-contains-char-p-kaplansky`, established). "Invariant measure
+  ⟹ stably finite" for free minimal Cantor actions over `k` would prove Kaplansky's stable finiteness conjecture over `k`.
+  [OPEN] `invariant-measure-gives-rank-function-any-field`.
+- **Consequence.** The Kazhdan groups live exactly where "measure ⟹ matricial" is not a theorem. The measure branch must
+  be witnessed by hand: Pestov's towers, Kerr–Nowak towers for free groups, Følner models for amenable groups.
+
+### 8.3 Rank models without towers
+
+- **Amenable acting groups** [PASS · 560decb046; `amenable-minimal-crossed-products-have-faithful-rank-models`]. Følner
+  truncation of the orbit representation embeds `LC(X,k)⋊Γ` in a rank ultraproduct over any field.
+- **Algebraic amenability** [unreviewed; un-open-4 dc5fe60cca, 4d7f0d1db7, a7955b459f].
+  - A simple affine amenable algebra, e.g. one of subexponential growth, has a unital rank model over any field
+    (`simple-amenable-affine-algebras-have-unital-rank-models`; Elek math/0203261 and math/0311376 [import]).
+  - Instances: zero-entropy Pestov rings (`zero-entropy-subshift-pestov-ring-has-rank-model-by-growth`), and ℤ^d subshifts
+    of subexponential complexity (`subexponential-complexity-zd-subshift-rings-have-rank-models`), including Labbé's
+    Wang shift (`labbe-wang-shift-has-polynomial-pattern-complexity`).
+  - [OPEN] `positive-entropy-subshift-crossed-product-is-amenable`.
+
+### 8.4 Which acting groups turn measures into towers
+
+[unreviewed; un-rf-beyond-free 0a7f2b4343, 5309163713.]
+- **The class `𝔑`.** `Γ ∈ 𝔑` if every Cantor action with a full-support invariant measure is residually finite.
+  - `𝔑` is closed under subgroups and finite-index overgroups.
+  - Every virtually free group is in `𝔑` (`virtually-free-group-measure-actions-are-rf`).
+  - `ℤ² ∉ 𝔑` (`z2-containing-groups-have-non-rf-measure-actions`).
+  - [OPEN] `measure-rf-class-is-exactly-virtually-free-groups`.
+  - [OPEN, gated like the flagship] `virtually-free-cantor-elementary-group-lef-iff-invariant-measure`.
+- **Towers over every residually finite group** (`residually-finite-group-toeplitz-elementary-groups-lef-kazhdan`). Every
+  f.g. infinite residually finite `Γ`, **including Kazhdan `Γ`**, has a free minimal RF Toeplitz subshift with an invariant
+  measure. So `EL_n` over it is LEF and Kazhdan.
+  - The free-group Toeplitz family [PASS · 10083fd646, `toeplitz-free-group-elementary-groups-are-lef-kazhdan`] is the
+    case `Γ = F_r`.
+
+### 8.5 The middle rung is realised: linear sofic, not LEF
+
+[PASS · 560decb046; `simple-kazhdan-linear-sofic-non-lef-group-exists`.] Let `Γ_p` be the Abels–Prüfer group
+(finitely presented, amenable, not residually finite), `X ⊆ 2^(Γ_p)` a free minimal subflow (Gao–Jackson–Seward [import])
+and `R = LC(X,F_q)⋊Γ_p`. Then `S_N = EL_N(R)/Z` (`N ≥ 3`) is:
+- infinite, finitely generated, simple and Kazhdan;
+- `F_q`-linear sofic, via Følner rank models and (Σ⇐);
+- not LEF, since `Γ_p ↪ S_N` (`crossed-product-group-embeds-in-projective-elementary-group`, PASS).
+
+**Consequences.**
+- `R` has rank models but is not exactly matricial. So rungs (L) and (Σ) are genuinely distinct among simple rings with
+  Kazhdan groups.
+- It is a live test ring for (M⇐): MF of this `S_N` would give an MF, non-LEF simple Kazhdan group.
+- Soficity, hyperlinearity and MF of `S_N` are open.
+
+## 9. Traces and operator algebras
+
+- **MF traces** [PASS on mathematics · 10083fd646, with credit and naming GAPs applied].
+  - The "corona traces" of un-traces are **Schafhauser's MF traces** (arXiv:1705.06555; Rainone–Schafhauser), a PRIOR
+    concept.
+  - LEF ⟹ the canonical trace is MF (folklore) ⟹ operator MF (tex l.1349 argument).
+  - For an infinite LEF Kazhdan group without finite quotients, the realising map has no ucp lift.
+- **Separation** [PASS (ii)–(iv) · 10083fd646]. On the paradox branch only the trivial MF trace exists; on the measure
+  branch the canonical trace is MF. Item (i) was conditional on Theorem P, which has since passed (f15928d5c9). This is a
+  trace-level reading of tex l.918 and LEF embeddings, not a new invariant.
+- **The Kazhdan collapse** [PASS · 10083fd646; subsumed by the older `stw10-kazhdan-full-group-traces-are-qd` (Brown Mem.
+  AMS 184), PRIOR Kirchberg 1994]. For a Kazhdan group, amenable trace ⟺ QD ⟺ finite-dimensional limit.
+  - The ring criterion: `τ_(EL_n R)` amenable ⟺ `R` residually finite (PASS; ring step FOLKLORE).
+  - So the canonical trace is blind to the dichotomy: both calibrating groups have non-amenable canonical traces.
+- **Reduced C*-algebras** [unreviewed; un-reduced-cstar 3a56e40cf8].
+  - **Paradox side, decided** (`measure-free-steinberg-el-n-reduced-cstar-not-mf`). For `N ≥ 2n` and every nontrivial
+    quotient `Q`, `C*_r(Q)` is separable, stably finite and not MF.
+  - **Measure side, three firewalls:**
+    - infinite simple groups are not PMF (`minimally-almost-periodic-groups-are-not-pmf`);
+    - ring-induced models carry invariant vectors for non-amenable stabilisers, so they never converge strongly
+      (`ring-model-permutation-vectors-block-strong-convergence`, the Magee–de la Salle mechanism);
+    - the missing step is a deterministic no-outlier theorem.
+  - [OPEN] `free-group-cantor-el-n-reduced-cstar-mf-iff-invariant-measure`. Its sufficiency half implies the famous root
+    `infinite-kazhdan-group-with-mf-reduced-cstar`.
+
+## 10. The coarse face
+
+[unreviewed; un-open-7 47fd74e1a7.]
+- **RF-rigidity is free** (`un-ladder-rf-rigidity-is-free-mf-rigidity-is-dynamical`). At every rung `EL_n(R)` is perfect
+  with no finite quotients, and `S` has no nontrivial map to a residually finite or linear group. So the dichotomy lives
+  entirely in the gap `RF ⊊ MF`, which is why the non-MF paper states its theorems for MF targets.
+- **A quasi-isometry invariant separates the ends** (`lef-infinite-simple-groups-are-qi-rigid`). A f.g. infinite simple LEF
+  group is not finitely presented, hence quasi-isometric to no finitely presented group (Vershik–Gordon, PRIOR; standard
+  `finitely-presented-lef-groups-are-residually-finite`, PASS · 560decb046).
+  - Every measure rung is such a group.
+  - The non-MF paper supplies finitely presented Kazhdan groups with no MF quotient.
+- **Open.**
+  - `paradox-side-elementary-group-is-finitely-presented` (via `K_2(n, L_k(1,d))`), which would move the separation inside
+    the ladder.
+  - `elementary-group-lef-growth-separates-subshifts`.
