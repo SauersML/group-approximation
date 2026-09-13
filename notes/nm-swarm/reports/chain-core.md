@@ -33,19 +33,44 @@ Module `GroupApproximation.Dynamics.ClopenDefectPair` (32275d037), eq:clopen-def
 | `ts = 1`, `st = 1 - d` | `defectT_mul_defectS hP hTP`, `defectS_mul_defectT hP hTP`; closed endpoint `printedClopenDefectPair` |
 | generic ring calculation | `mul_eq_one_of_conj`, `mul_eq_one_sub_of_conj` |
 | "restriction to the directly finite ring `R_Y` forces `d|_Y = 0`" | `map_defectD_eq_zero [IsDedekindFiniteMonoid A] (φ : ClopenCrossedProduct T k →+* A) hP hTP : φ (defectD T k hP) = 0` |
-| "each defect has additive order at most two" | `two_nsmul_defectD (h2 : (2 : k) = 0) hP : 2 • defectD T k hP = 0` |
+| "which have additive order at most two" | `two_nsmul_defectD (h2 : (2 : k) = 0) hP : 2 • defectD T k hP = 0` |
 
-Status: both modules are probe GREEN (0913-154019-19595, md5 = origin/main) and queued for wiring.
-Names are stable; any signature change will be recorded here.
+Module `GroupApproximation.Dynamics.ClopenCrossedProductComap` (067b40a5e).  `S : Z ≃ₜ Z`,
+`π : C(X, Z)`, `hπ : ∀ x, π (T x) = S (π x)`; `Y : Set X`, `hY : T '' Y = Y`.
 
-Still to come in S1: the printed LEF definition and `≃ IsLEFRing`; LEF ⇒ directly and stably
-finite; `GL_n` of an LEF ring is LEF, and countable ⇒ MF; `R_X` countable.
+| manuscript object | declaration |
+|---|---|
+| `π ∘ T^n = S^n ∘ π` | `semiconj_zpow hπ n` |
+| coefficient pullback `f ↦ f ∘ π` | `coeffComap T S k π : ClopenCoeff S k →+* ClopenCoeff T k`, `coeffComap_of`, `coeffComap_smul` |
+| pullback `R_S → R_T` | `comap k π hπ : ClopenCrossedProduct S k →+* ClopenCrossedProduct T k` (= `Pestov91.CrossedProduct.coeffMap`); `comap_coeff`, `comap_unit_zpow`, `comap_unit` |
+| `LC(X,k) → R_X` injective | `coeff_injective T k` |
+| `T|_Y` | `restrictHomeo T hY : Y ≃ₜ Y`, `restrictHomeo_apply`, `mem_iff_apply_mem` |
+| **restriction `R_X → R_Y`** (the one definition, 16:20 ruling) | `restrict T k hY : ClopenCrossedProduct T k →+* ClopenCrossedProduct (restrictHomeo T hY) k`; `restrict_coeff : C(f) ↦ C(f|_Y)`, `restrict_unit` |
+
+Module `GroupApproximation.Dynamics.ClopenDefectRestriction` (a55be3025):
+
+| manuscript object | declaration |
+|---|---|
+| `d` restricts to `0` in a directly finite `R_Y` | `restrict_defectD_eq_zero hY [IsDedekindFiniteMonoid (ClopenCrossedProduct (restrictHomeo T hY) k)] hP hTP` |
+| `P ∖ T(P)` misses `Y` (`k` nontrivial) | `notMem_diff_image_of_mem hY hP hTP hy` |
+| tex 1457 "They avoid `Y` … calculate" | closed endpoint `printedDefectsAvoidY` |
+| tex 1462 "Restriction … forces `d|_Y=0`" | closed endpoint `printedRestrictionKillsDefect` |
+| tex 1646–1647 "which have additive order at most two" (`k = 𝔽₂`) | closed endpoint `printedDefectAdditiveOrderTwo` |
+
+Status: ClopenCrossedProduct and ClopenDefectPair GREEN in probe 0913-154019-19595; Comap and
+DefectRestriction GREEN in 0913-162119-82055.  All four are queued for wiring.  Names are stable,
+and any signature change will be recorded here.
+
+Still to come in S1: the printed LEF definition and `≃ IsLEFRing`.  Moved by the rulings:
+LEF ⇒ DF/SF, `GL_n` LEF, countable ⇒ MF and `R_X` countable go to hull-bridge (16:20);
+`restrict_surjective` goes to chain-matricial (16:25), and chain-core declares none.
 
 ## Existing carriers (origin/main, grepped for uses)
 
 | manuscript object | carrier | module |
 |---|---|---|
 | algebraic crossed product, `C`, `u`, Laurent form | `Pestov91.CrossedProduct.{C, unit, unitOf, unitHom, val_unit_zpow, exists_sum_C_mul_unit_zpow}` over `SkewMonoidAlgebra A (Multiplicative ℤ)` | Pestov91/CrossedProduct |
+| equivariant coefficient map of crossed products | `Pestov91.CrossedProduct.coeffMap`, `coeffMap_injective`, `coeffMap_surjective` | Algebra/SkewMonoidAlgebraCoefficientMap |
 | LEF ring (full-map form) | `Pestov91.IsLEFRing`, `isLEFRing_of_finite`, `IsLEFRing.matrix` | Pestov91/LEF |
 | units of an LEF ring are LEF | `Pestov91.IsLEFRing.isLEF_units`; EL: `isLEF_elementaryGroup` | Pestov91/LEF |
 | cycle-type periodic models ⇒ LEF crossed product | `Pestov91.isLEFRing_skewMonoidAlgebra_of_periodic` (`shiftMatrix`, `periodicModel`) | Pestov91/LEFCrossedProduct |
@@ -59,22 +84,26 @@ finite; `GL_n` of an LEF ring is LEF, and countable ⇒ MF; `R_X` countable.
 | directly / stably finite | Mathlib `IsDedekindFiniteMonoid`, `IsStablyFiniteRing` | Mathlib pin 81a5d257 |
 | `f ∘ T⁻¹` on locally constant functions | Mathlib `LocallyConstant.congrLeftRingEquiv`, `comapRingHom` | Mathlib pin |
 
-## Sub-items and owners (09-13 15:07 assignment)
+## Sub-items and owners (09-13 15:07 assignment; 16:20 and 16:25 rulings)
 
 ### S1 `basics` — chain-core
 Keys: `275bedb28f9f` `752564275a33` `a1bda19b475a` `8a557cb954fb` `6011dc411b20` `2d1ca8689ac6`
-`b1a4887c5412` `1d0bcc92a75f` `1a88ddc187c0` `549aa93e832f` `bba38420cf8b` `6e533530564d`
-`aa429ec8d623`.
+`549aa93e832f` `bba38420cf8b`, and the section preamble `d59fc0887768` `753b90beed12`
+(tex 1341–1343).
+Moved to hull-bridge (16:20): `b1a4887c5412` `1d0bcc92a75f` `1a88ddc187c0` `6e533530564d`.
+Retired: `aa429ec8d623` is no longer a census key.  Its sentence is now the clause "which have
+additive order at most two" inside `a1d5cde2c840` (thm:core-mf-radical, tex 1644–1647), and
+`printedDefectAdditiveOrderTwo` carries that clause.
 Leaves:
 1. coefficient synonym, `ℤ`-action, `R_X`, `u f u⁻¹ = f ∘ T⁻¹`: landed (table above).
 2. the printed LEF definition (partial tables, `0`/`1` when present) and its equivalence with
    `IsLEFRing`.
-3. LEF rings are directly finite and stably finite (`IsStablyFiniteRing`), via `IsLEFRing.matrix`.
-4. `GL_n` of an LEF ring is LEF (compose 3 with `isLEF_units`); countable ⇒ MF by
-   `isOperatorMF_of_isLEF`.
-5. eq:clopen-defect-pair: landed (table above).
-6. unital hom into a directly finite ring kills `d`; `2 • d = 0` over `F_2`: landed (table above).
-7. `R_X` is countable (countable clopen basis).
+3. pullback along a semiconjugacy and restriction `R_X → R_Y`: landed (table above).
+4. eq:clopen-defect-pair: landed (table above).
+5. unital hom into a directly finite ring kills `d`; `d|_Y = 0`; `2 • d = 0` over `F_2`: landed
+   (tables above).
+6. preamble: `753b90beed12` graded `structural`; `d59fc0887768` ("can identify the whole MF radical
+   even when the defect ideal is proper") waits for chain-radical's thm:core-mf-radical endpoint.
 
 ### S2 `recurrence` — hull-euler
 Keys: `49f76a64907a` `d5af28721656` `3ebdab1c418b` `0ae6fc9e199c` `73bd8ac910aa` `3ef2a7cdb9bd`
@@ -111,6 +140,7 @@ Missing: locally matricial (definition); LC extension from closed subsets; restr
 compactly supported in `X∖Y`; exactness of `0 → I → R_X → R_Y → 0`; `I` generated by the defect
 indicators; compact clopen partial shift graphs, class size ≤ `m`, loop erasing, freeness on `U`,
 clopen representative set, levels ⇒ `M_h(k)`; local matriciality.
+`restrict_surjective` and `ker_restrict_eq_transientIdeal` are built against chain-core's `restrict`.
 
 ### S6 `theorems` — chain-reflection, chain-radical (needs S1, S4, S5)
 thm:core-ring-reflection (chain-reflection) keys: `42c043ef7ab5` `8981cd70915a` `43afa4ee3f10`
@@ -135,6 +165,8 @@ S1 → S3 → S4 (with S2) → S5 → S6.  Only S1 and S2 have no upstream depen
 - 09-13: S1 interfaces landed unverified: ClopenCrossedProduct 0c76b1c47, ClopenDefectPair
   32275d037 (closed endpoint `printedClopenDefectPair`).  Probe 0913-154019-19595 GREEN for both
   (md5 = origin/main), queued for wiring.  Sub-items S2–S6 were reassigned by main (owners above).
-- 09-13: next S1 interface: `ClopenCrossedProduct.comap` (pullback along a semiconjugacy
-  `π ∘ T = S ∘ π`), restriction `R_X → R_Y` to an invariant `Y`, and `d|_Y = 0` (keys
-  `549aa93e832f`, `bba38420cf8b`).  After that: LEF ⇒ DF/SF, `GL_n` LEF, `R_X` countable.
+- 09-13: ClopenCrossedProductComap 067b40a5e and ClopenDefectRestriction a55be3025, probe
+  0913-162119-82055 GREEN, queued for wiring.  Census rows: `549aa93e832f` and `bba38420cf8b`
+  formalized, `753b90beed12` structural.  Rulings 16:20 and 16:25 recorded above.  Next:
+  re-probe DefectPair and DefectRestriction with docstrings updated to the current tex line numbers
+  and the reworded additive-order clause; then the printed LEF definition.
