@@ -115,3 +115,14 @@ nontrivial finite quotient, nor some member having none.
   - **Artifacts:** `research/artifacts/hyperbolic-triangle-quotient-search-2026-09-13.md`,
     `hyperbolic-triangle-linear-search-2026-09-13.md` and
     `hyperbolic-triangle-family-calibration-2026-09-13.md`.
+- **Literature candidates: the CCKW (6,6,8) cores (2026-09-13).** By
+  `simple-vertex-triangles-are-universal-for-triangle-vtf`, the CCKW trivalent groups are
+  members after amalgamation.
+  - **The list.** Nineteen groups of half-girth type `(3,3,4)` have no simple quotient in CCKW's
+    tables. They are extracted verbatim from the arXiv source, with presentations converted to GAP.
+  - **The filter.** An edge-eigenvalue compatibility test on faithful irreducible vertex
+    characters shows that 16 of them have no representation in dimension `<= 6` that is faithful
+    and irreducible on every vertex group.
+  - **The survivors.** `G_0^{14,26,40}`, `G_4^{14,26,40}` and `G_0^{18,26,40}` have compatible
+    triples in dimension 3 and are the natural targets for a trace-ideal search.
+  - **Artifact:** `research/artifacts/cckw-quotientless-trivalent-cores-2026-09-13.md`.
