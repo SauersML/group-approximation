@@ -203,7 +203,7 @@ theorem compressorMatrix_mul_centralMarkMatrix_lastCol (i : Fin 4) :
 /-- `e₁₂(e)u` adds `e` times the second row `(0, s, 0, et)` of `u` to its first row
 (tex 920–922). -/
 theorem elementaryMatrix_mul_compressorMatrix_firstRow (j : Fin 4) :
-    ((1 + Matrix.single 0 1 P.e) * compressorMatrix P) 0 j
+    ((1 + Matrix.single 0 1 P.e : Matrix (Fin 4) (Fin 4) R) * compressorMatrix P) 0 j
       = compressorMatrix P 0 j + P.e * compressorMatrix P 1 j := by
   fin_cases j <;>
     simp [compressorMatrix, Matrix.mul_apply, Fin.sum_univ_succ, Matrix.one_apply]
@@ -228,7 +228,7 @@ def PrintedCompressorMarkProducts : Prop :=
         compressorMatrix P + Matrix.single 0 3 (P.e * P.t) ∧
       (∀ i : Fin 4, (compressorMatrix P * centralMarkMatrix P) i 3 =
         compressorMatrix P i 3 * (1 + P.e * P.t)) ∧
-      ∀ j : Fin 4, ((1 + Matrix.single 0 1 P.e) * compressorMatrix P) 0 j =
+      ∀ j : Fin 4, ((1 + Matrix.single 0 1 P.e : Matrix (Fin 4) (Fin 4) R) * compressorMatrix P) 0 j =
         compressorMatrix P 0 j + P.e * compressorMatrix P 1 j
 
 theorem printedCompressorMarkProducts : PrintedCompressorMarkProducts := by
