@@ -9,19 +9,23 @@ requires:
   - soft-kazhdan-central-elements-fixed-by-normal-closure
   - kun-thom-nonsofic-wreath
   - diagonal-normalizer-rigidity
+  - coarse-frame-normalizers-are-near-block-monomial
 artifacts:
   - research/artifacts/ex-q34-kt-wreath-soft-kernel-2026-09-13.md
   - research/artifacts/ex-q34-kt-wreath-soft-kernel-part2-2026-09-13.md
+  - research/artifacts/ex-q34-kt-wreath-soft-kernel-part3-2026-09-13.md
 ---
 
-Full proofs: part 1 artifact §1--2 (monomial facts, Lemma 1) and part 2
-artifact Lemma 6, Theorem 7 and Corollary 8.
+Full proofs:
+- part 1 artifact §1--2: monomial facts and Lemma 1;
+- part 2 artifact: Lemma 6, Theorem 7 and Corollary 8;
+- part 3 artifact: Theorem 9 and Corollary 11.
 
-1. **Soft lamps.**  The permutation part `psi` of a monomial model is a
+1. **Soft lamps.**  The permutation part `psi` of a block-monomial model is a
    homomorphism, since `d_H <= ||.||_2^2 / 2`.  `psi(W)` is sofic, so `psi`
    kills `K_even` (`kun-thom-wreath-sofic-radical-is-fibre-parity-kernel`).
-   Since `||(c; sigma) - (c; id)||_2^2 = 2 d_H(sigma, id)`, `rho(K_even)` is
-   diagonal.
+   Since `||(u; sigma) - (u; id)||_2^2 = 2 d_H(sigma, id)`, `rho(K_even)` is
+   block-diagonal.
 2. **Deep congruence conjugates.**
    - `Gamma(m^k) = ker(EL_r(R_+) -> SL_r(R_+/m^k))` is Kazhdan, since it has
      finite index in `Gamma`.
@@ -35,9 +39,10 @@ artifact Lemma 6, Theorem 7 and Corollary 8.
      has entries `1 + O(x^(k(1..1)))`.  For `k >= 2 max b`, conjugating by
      `h^(-1)` keeps them polynomial, so `s(Gamma(m^k)) <= h Gamma h^(-1)` by
      Suslin's `SL_r(R_+) = EL_r(R_+)`.
-3. **Transport.**  `a = e_Gamma + e_(h' Gamma)` centralizes such a conjugate
-   `Lambda`, has trivial permutation part, and `G` is residually finite.
-   `soft-kazhdan-central-elements-fixed-by-normal-closure` gives
+3. **Transport.**  `a = e_Gamma + e_(h' Gamma)` lies in the abelian normal soft
+   subgroup `K_even` and centralizes such a conjugate `Lambda`.  `G` is
+   residually finite.  `soft-kazhdan-central-elements-fixed-by-normal-closure`,
+   item 1 for `k = 1` and item 2 for `k >= 2`, gives
    `rho(e_(h Gamma) + e_(h h' Gamma)) = rho(e_Gamma + e_(h' Gamma))` for all
    `h in N`.
 4. **Homomorphism and perfectness.**  `f(h) = rho(e_Gamma + e_(h Gamma))`
@@ -50,8 +55,10 @@ artifact Lemma 6, Theorem 7 and Corollary 8.
    part 2), so its permutation models separate points.
 6. **Corollaries.**
    - Regular models are injective, so none exist.
-   - The finitary masa form follows from clause 1 of
-     `diagonal-normalizer-rigidity` and the diagonal argument.
+   - The finitary masa and bounded-rank-frame forms follow from clause 1 of
+     `diagonal-normalizer-rigidity`, from
+     `coarse-frame-normalizers-are-near-block-monomial`, and from the diagonal
+     argument.
    - Lamp quotients `W/U`, `U <= K_even`, follow by Theorem A of
      `research/artifacts/kun-thom-lamp-quotient-hosts-2026-09-12.md` and the
      same argument on images of pairs.
