@@ -16,7 +16,8 @@ The bridge is proved by `HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded
 `hgreendlinger` alone.  The forms come from:
 * `HullSCTheorem71GeneralLeastArea`: the canonical quotient, one step, tower and ball form of
   Theorem 7.1, at every ambient group;
-* `HullSCLemma44BoundedLeastAreaCanonical`: the torsion-free canonical quotient and one step.
+* `HullSCLemma44BoundedLeastAreaCanonical`: the bounded canonical Lemma 4.4, the torsion-free
+  canonical quotient and one step.
 -/
 
 namespace GroupApproximation
@@ -61,6 +62,18 @@ theorem hullBallFormStatementGeneral_of_greendlinger
   hullBallFormStatementGeneral_of_leastAreaLeaves hgreendlinger
     relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed
 
+/-- **Hull's Lemma 4.4 in canonical bounded form**, behind `\label{thm:hull}` (tex line 1636),
+over the least-area Greendlinger leaf alone, through the least-area spelling waist. -/
+theorem boundedHullLemma44CanonicalQuotientStatement_of_greendlinger
+    (hgreendlinger :
+      GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    BoundedHullLemma44CanonicalQuotientStatement.{0} :=
+  boundedHullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeastArea
+    (relativeGreendlingerQuasiGeodesicSpellingLeastAreaStatement_of_leastAreaGreendlinger
+      hgreendlinger relativeDiscRealizationSpellingStatement
+      relativeExteriorArcConversionAtWordRotatedStatement)
+    relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed
+
 /-- **Hull's canonical quotient at a torsion-free ambient group** (tex line 1636,
 `\label{thm:hull}`), over the least-area Greendlinger leaf alone. -/
 theorem torsionFreeHullCanonicalQuotientStatement_of_greendlinger
@@ -86,5 +99,6 @@ end GroupApproximation
 #audit_axioms GroupApproximation.HullSC.hullOneStepStatementGeneral_of_greendlinger
 #audit_axioms GroupApproximation.HullSC.hullTowerStatementGeneral_of_greendlinger
 #audit_axioms GroupApproximation.HullSC.hullBallFormStatementGeneral_of_greendlinger
+#audit_axioms GroupApproximation.HullSC.boundedHullLemma44CanonicalQuotientStatement_of_greendlinger
 #audit_axioms GroupApproximation.HullSC.torsionFreeHullCanonicalQuotientStatement_of_greendlinger
 #audit_axioms GroupApproximation.HullSC.hullOneStepStatement_of_greendlinger
