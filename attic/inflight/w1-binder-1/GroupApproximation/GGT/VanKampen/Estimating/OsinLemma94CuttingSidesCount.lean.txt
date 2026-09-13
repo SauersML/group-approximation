@@ -226,7 +226,7 @@ theorem walk_isChain (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) :
     ((List.range (P.sideCount k)).flatMap (P.sideDarts k)).IsChain
       fun d e => S.diagram.toCombMap.facePerm d = e := by
   rw [← P.walk k]
-  exact isChain_rotate_of_isChain_closes (S.diagram.faceBoundary (P.face k)).nonempty
+  exact Embedded.isChain_rotate_of_isChain_closes (S.diagram.faceBoundary (P.face k)).nonempty
     (S.diagram.faceBoundary (P.face k)).chain (S.diagram.faceBoundary (P.face k)).closes
     (P.base k)
 
