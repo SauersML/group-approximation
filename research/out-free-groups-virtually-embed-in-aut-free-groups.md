@@ -8,6 +8,7 @@ distinct_from:
   aut-free-groups-satisfy-permutational-boone-higman: that is the known theorem that every Aut(F_m) embeds in a finitely presented simple group; this asks whether Out(F_n) virtually sits inside some Aut(F_m) at all.
 artifacts:
   - research/artifacts/bh-out-fn-closed-mcg-2026-09-12.md
+  - research/artifacts/bh-out-fn-into-aut-fm-2026-09-12.md
 ---
 
 **OPEN.** For every `n ≥ 3` there are a finite-index subgroup `L ≤ Out(F_n)`,
@@ -75,3 +76,40 @@ This premise feeds `out-fn-bh-via-virtual-embedding-in-aut-fn`.
      429. The Laudenbach-sequence splittings (arXiv:2012.01529, 2310.13527)
      concern a different extension. Details are in
      `research/artifacts/bh-aut-out-virtual-section-2026-09-12.md`.
+6. **Larger rank through a preserved free splitting.**
+   `free-splitting-compatible-aut-lifts-are-virtual-sections`.
+   - **Hypothesis.** Suppose `ρ: L → Aut(F_n ∗ C)` preserves the conjugacy
+     classes of both factors and induces the given outer action on the `F_n`
+     factor.
+   - **Conclusion.** Then `ρ(L)` acts on the Bass--Serre tree, and a fixed vertex
+     of either type restricts to a section of `Aut(F_n) → Out(F_n)` over `L`.
+   - **Scope.** For `n ≥ 4`, finite-index `L` has (T) and so has FA. Every such
+     homomorphism into `Aut(F_(n+k))` is therefore a virtual section, so passing
+     to larger rank gains nothing for these constructions.
+   - **What is left.** If only `[F_n]` is preserved, `L` acts on `G/F_n`, and a
+     finite orbit again gives a virtual section. An embedding that avoids the
+     same-rank question must preserve no such splitting, and must act on `G/F_n`
+     without finite orbits.
+   - **Necessary shape inside `Out`.** `β ↦ [β ∗ id_⟨t⟩]` embeds `Aut(F_m)` in
+     `Out(F_m ∗ ⟨t⟩)` onto the classes having a representative that preserves
+     `F_m` and fixes `t`. So the image of any such embedding of `L`, read in
+     `Out(F_(m+1))`, fixes the conjugacy class of the primitive element `t`.
+     Covering representations cannot give this: every finite-index subgroup
+     contains powers of atoroidal elements (Brinkmann; not re-read), and these
+     fix no nontrivial conjugacy class.
+   - **Torsion free factors.**
+     - Carette (arXiv:1301.4446, Corollary 3.2) virtually splits
+       `Aut(G) → Out(G)` for `G = F_k ∗ H` with `H` finite and nontrivial, using
+       lifts that fix `H`.
+     - Restriction to a characteristic free subgroup of finite index then embeds
+       a finite-index subgroup of `Out(F_k ∗ H)` in some `Aut(F_m)`, so
+       `Out(F_k ∗ H)` satisfies PBH.
+     - Nothing transfers to `Out(F_n)`. After the lift and the quotient by
+       `⟨⟨H⟩⟩`, a section of `Out(F_n ∗ H) → Out(F_n)` becomes a virtual
+       section of `Aut(F_n) → Out(F_n)`.
+     - Carette calls his strategy "hopeless for many torsion-free groups like
+       orientable surface groups ... or free groups".
+   - **Other constructions checked.** In `F_n ∗ Z/2`, sending `s` to
+     `F_n`-conjugates gives `Aut(F_n)`, not `Out(F_n)`, and direct products give
+     hosts that are not free. Details:
+     `research/artifacts/bh-out-fn-into-aut-fm-2026-09-12.md`.
