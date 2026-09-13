@@ -6,21 +6,26 @@ baseline is unchanged since 3f71a3a50.
 
 ## Status
 
-- W1 `PhiPrimeCountInput`, item C3 of hull-euler's Lemma 9.3 plan (assigned by main after the Cut module):
-  - C3 says: a face of `Φ'_M` of degree less than six is a two-gon `Π–a–O–b`, where `a ≠ b` are exterior regions
-    of one cell. `NoMultipleEdges` excludes two-gons between two cells.
-  - hull-euler states C3 as a named Prop. I write no Lean until it sends the name and file; I have sent it the
-    shape I can discharge.
-  - I have read C1 (`Estimating/OsinAppendixEulerExterior`, 4e27d4965), which gives `phiSubdividedMultigraphO`.
-  - Route:
-    - kh-ejz's `isTwoGon_of_faceDegree_lt_six` gives a cell dart `d` with `facePerm⁴ d = d`, whose region `a` and
-      the region `b` of `facePerm² d` differ.
-    - By `facePerm_of_cell` and `facePerm_of_midpoint`, the two midpoint darts of `a` have ends `u ≠ v`, and those
-      of `b` have ends `v` and `u`.
-    - The end of a midpoint dart is `sideCellO region side`, so `{u, v} = {some a.source, a.target}` and
-      `{u, v} = {some b.source, b.target}`.
-    - Checking the four side cases: either both ends are cells, which contradicts `NoMultipleEdges`, or
-      `a.target = b.target = none` and `a.source = b.source`.
+- C3 (a small face of `Φ'_M` is a two-gon between exterior regions of one cell) was closed by hull-euler itself at
+  c48f20f41 (`ExtPhiData.exterior_of_isTwoGon`), so my C3 item is done.
+- C6′ of hull-euler's Lemma 9.3 plan (assigned by main): prove `TwoGonHoldsInput`
+  (`Estimating/OsinAppendixEulerSmallFaces.lean:94`, hull-euler 4beca2743). It is consumed by
+  `OsinTwoGonHoldsSectionStatement` (`OsinAppendixEulerSection.lean:57`).
+  - Module 1 `Estimating/OsinAppendixEulerTwoGonLabels.lean`: landed 81cb719d3, probe 0913-125826-38654 GREEN,
+    queued for wiring. It gives the labels `i`, `j` and exterior regions `a ≠ b` of cell `i`, both targeting
+    section `j`, with the target arc of `a` ending before that of `b` starts.
+  - Module 2 `Estimating/OsinAppendixEulerTwoGonFaceClass.lean`: landed ee96efa9d, probe 0913-134440-98829
+    GREEN, and origin bytes match the green record. Queued for wiring. It provides the face-class tools:
+    - retained darts in the face class of the two-gon lie on the outer face, in `a` or `b`, or on cell `i`;
+    - face classes run around collapsed faces and along boundary chains through darts that are not retained;
+    - arc-inclusion lemmas.
+  - Route for the rest:
+    - `PocketWalk.exists_of_le` gives the pocket walk `b.left ++ invDarts(source arc) ++ a.right ++ target arc`.
+    - Module 3, given `outerFace ∉ sideFaces` and `cell i ∉ sideFaces`, shows that the pocket faces hold no
+      relator cell and meet no region other than `a` and `b`. This uses `¬HoldsCell`, `¬HoldsCorner` and
+      `NoLoops`.
+    - Module 4 builds the `PocketRegion` (`PocketRegion.ofSimpleClosedWalk`) and applies `EmptyTwoGonInput`,
+      taken as a hypothesis.
 - W2 hbridge, the M2 setup module (handout from hull-bridge, ROSTER ~02:50):
   - The module is `GroupApproximation/GGT/HullSCLemma51LetterPullbackCut.lean`, which proves
     `HullSC.letterStepBound_of_cutLiftOutcome`.
@@ -144,9 +149,14 @@ rows. So the owning lanes, or census `overrides.tsv`, must do the re-routing.
 
 - The four walls above. Of these, this lane contributes only to hbridge, and only through the Cut module.
 - The Cut module's only non-input hypothesis is `CutLiftOutcome W D q hq`, which hull-bridge owns.
+- C6′, planned:
+  - `EmptyTwoGonInput` (16d923f27) is taken as a hypothesis, per the assignment.
+  - The pinched (non-simple) pocket walk case is a contradiction-shaped Prop over the `TwoGonHoldsInput` binders
+    and the labels. hull-respell owns it. I will name it when module 4 lands and cc hull-respell and hull-euler.
 
 ## Next
 
 - The Cut module is done: green, on main, SHA sent to hull-bridge, and queued for wiring.
-- C3: when hull-euler's Prop arrives, write the proof in a new module of my own. Then register it, back it up, land
-  it unverified, probe it and re-land it green.
+- C6′: write module 3 (the face-class invariant over the pocket walk) and module 4 (the pocket region and
+  `EmptyTwoGonInput`). Module 4 splits on whether the rotated walk `T.reverseDarts ++ a.right ++ t ++ b.left` is
+  simple. The simple case uses `PocketRegion.ofSimpleClosedWalk`, whose `invDarts outer` is the walk itself.
