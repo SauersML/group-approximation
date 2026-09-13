@@ -11,6 +11,13 @@ Lead: main (ct-* lanes). Printed item: `non_mf_groups_exist.tex`, the paragraph 
 > and $wFw^{-1}\subset J$. Over $\F_2$, every finite subset of $K_n(I)$ is simultaneously conjugate into the
 > unitized $K_n(J)$ by $wI_n$; for $n\ge2$ this involution lies in $\EL_n(R_X)$.
 
+## Status
+
+- **Finite-field clause CLOSED**: `ClopenCrossedProduct.involutionLocalizationRingClause_closed :
+  InvolutionLocalizationRingClause`, `#audit_closed_axioms`, landed 0011a8b3a.
+- F₂ clause: `involutionLocalizationMatrixClause_of_ringClause` (ms-core-3, probing) over
+  `CoreKernelElementaryStatement` (ms-units, over chain-matricial's local matriciality of the transient ideal).
+
 ## Interface (landed 8b453b096; consumers: ct-rank-budget, ms-core-3, ms-units)
 
 `GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean`, namespace `GroupApproximation.ClopenCrossedProduct`:
@@ -22,7 +29,7 @@ Lead: main (ct-* lanes). Printed item: `non_mf_groups_exist.tex`, the paragraph 
 | `InvolutionLocalizationRingClause` | finite-field clause (tex 1664–1667) |
 | `InvolutionLocalizationMatrixClause` | `F₂` clause (tex 1667–1669), including `w I_n ∈ EL_n` for `n ≥ 2` |
 | `PrintedInvolutionLocalization` | `RingClause ∧ MatrixClause` |
-| `ChainCoreDefectCoverStatement` | piece: `X ∖ Y` covered by translates of defects `P ∖ T(P)` (lem:chain-core-models) |
+| `ChainCoreDefectCoverStatement` | piece: `X ∖ Y` covered by translates of defects `P ∖ T(P)`; CLOSED `chainCoreDefectCoverStatement_holds` (0011a8b3a) |
 | `CoreKernelElementaryStatement` | piece: over `F₂`, `n ≥ 2`, `ker (coreRestrictMatrixUnits T (ZMod 2) n) ≤ EL_n(R_X)` |
 
 ## Route (as printed, with one construction-order note)
@@ -39,7 +46,7 @@ Lead: main (ct-* lanes). Printed item: `non_mf_groups_exist.tex`, the paragraph 
    Every printed claim is proved; only the organisation of the cells differs.
 4. Swap and unitization (tex 1684–1687): `exists_swapUnit`, with `w⁻¹ = w` and `w 1_A w⁻¹ = 1_{T^h A}` on each
    cell; `w 1_K w⁻¹ = ∑ 1_{T^h A} ≤ p_C`, so `w F w⁻¹ ⊆ J` (`conj_eq_sandwich`, `sandwich_eq_self`).
-5. Kernel matrices (tex 1689–1693): owned by ms-core-3 (see Splits).
+5. Kernel matrices (tex 1689–1693): ms-core-3 (see Splits).
 
 ## Modules
 
@@ -49,25 +56,27 @@ Lead: main (ct-* lanes). Printed item: `non_mf_groups_exist.tex`, the paragraph 
 | `Dynamics/ReturnPlacement.lean` | step 3: `card_returns_ge`, `card_visits_le`, `card_target_visits_le`, `IsPlacement`, `exists_returnPlacement` | LANDED bc6aa7b90, wire-queued |
 | `Dynamics/InvolutionLocalizationStatement.lean` | the interface above | LANDED 8b453b096, wire-queued |
 | `Dynamics/TransientSupport.lean` | steps 1–2: `CoeffVanishOn` (ideal closure), `exists_clopen_support`, `exists_wandering_clopen_cover`, `exists_uniform_return` | LANDED 8b453b096, wire-queued |
-| `Dynamics/InvolutionLocalizationRing.lean` | `involutionLocalizationRingClause_of_cover : ChainCoreDefectCoverStatement → InvolutionLocalizationRingClause`; `zpow_mem_chainRecurrentSet`, `mem_coreTransientIdeal_iff`, `charFn_eq_sum_of_partition` | probing |
+| `Dynamics/InvolutionLocalizationRing.lean` | `involutionLocalizationRingClause_of_cover`; `zpow_mem_chainRecurrentSet`, `mem_coreTransientIdeal_iff`, `charFn_eq_sum_of_partition`, `conj_eq_sandwich`, `sandwich_eq_self` | LANDED cc4d23eff, wire-queued |
+| `Dynamics/InvolutionLocalizationRingClosed.lean` | `chainCoreDefectCoverStatement_holds`, `involutionLocalizationRingClause_closed` (closed endpoints) | LANDED 0011a8b3a, wire-queued |
 
 ## Splits (agreed directly with the helpers main sent)
 
 - ms-core-3: `involutionLocalizationMatrixClause_of_ringClause (hring : InvolutionLocalizationRingClause)
-  (hel : CoreKernelElementaryStatement) : InvolutionLocalizationMatrixClause`, in its own module.
-- ms-units: a producer of `CoreKernelElementaryStatement` over chain-matricial's local matriciality of the
-  transient ideal (with chain-radical's landed `ker_elementaryMatrixUnitMap_le_elementaryGroup`), and
-  ct-rank-budget's `UnitKernelLocallyFiniteStatement` (tex 1693, K_1(I) locally finite), in `Dynamics/CoreKernelFTwo.lean`.
+  (hel : CoreKernelElementaryStatement) : InvolutionLocalizationMatrixClause`, in `Dynamics/InvolutionLocalizationMatrix.lean`.
+- ms-units: a producer of `CoreKernelElementaryStatement` over `TransientIdealLocallyMatricialFTwoStatement` (with
+  chain-radical's landed `ker_elementaryMatrixUnitMap_le_elementaryGroup`), and ct-rank-budget's
+  `UnitKernelLocallyFiniteStatement` (tex 1693, K_1(I) locally finite), in `Dynamics/CoreKernelFTwo.lean`.
 
-## Residual statements (after the in-flight pieces land)
+## Residual statements
 
-- `ChainCoreDefectCoverStatement` (owner chain-itinerary; lem:chain-core-models defect cover). On origin, the
-  covering data exist in `Dynamics/ChainRecurrenceCovering.lean`; the producer in this exact spelling is not landed.
-- `CoreKernelElementaryStatement` (ms-units, over chain-matricial's local matriciality).
+- `CoreKernelElementaryStatement` := `∀ X [MetricSpace X] [CompactSpace X] [TotallyDisconnectedSpace X] [Nonempty X]
+  T n, 2 ≤ n → (coreRestrictMatrixUnits T (ZMod 2) n).ker ≤ elementaryGroup (Fin n) (ClopenCrossedProduct T (ZMod 2))`
+  (ms-units, over chain-matricial's local matriciality of the transient ideal).
+- The matrix clause assembly (ms-core-3, probing).
 
 ## Progress log
 
 - 09-13 ~16:35: plan; ClopenSwapInvolution authored.
 - 09-13 16:55: ClopenSwapInvolution landed. 17:10: ReturnPlacement landed.
 - 09-13 17:37: statement (kernel spelling) and TransientSupport landed; splits with ms-core-3 and ms-units agreed.
-- 09-13 ~17:45: ring clause assembly probing.
+- 09-13 17:47: ring clause assembly landed. 17:51: finite-field clause closed (0011a8b3a).
