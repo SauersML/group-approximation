@@ -83,6 +83,23 @@ classified. The one remaining partial row (abb56744db26) waits on hgreendlinger,
   thm:torsion-free, whose carriers are over hgreendlinger (the W1 wall, other swarm).
 - 80279f06992b: to be regraded `formalized` when P3 lands.
 
+## Item 2 (main ~18:30): the Y-pocket twin of the Case 1 X-pocket reduction (W1 binder 3)
+
+CLAIM the Y-pocket statement of Lemma 9.4 Case 1 across one relator cell, the connector-pair swap, and the Y reduction to
+the five X shape statements — `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellYPocket.lean`. Path and names
+are free on origin, in the shared tree and in every `lanes/*.files` (checked ~18:35).
+
+Definition audit (the symmetry is real, no Y-only premise):
+- `WordConnectorPair` (UnboundWordConnectors:23) swaps source and target with `a := b'`, `a' := b`, `b := a'`, `b' := a`,
+  `startConnector := endConnector` and `endConnector := startConnector`. `start_geodesic` and `end_geodesic` swap literally,
+  `source_forward` is the backward hypothesis `b' < b`, and the `_long` fields hold by `wordDist_comm`.
+- The side sets are the only asymmetry: `source_mem : source ∈ relatorSides k = {i | ∃ j, kind k i = .cell j}`,
+  `target_mem : target ∈ longSides k = {i | kind k i ≠ .short}`. In the same-cell case `kind source = kind target = .cell j`, so
+  the old target is a relator side and the old source is a long side.
+- Face walk `X q⁻¹ Y p⁻¹` rotated by `(X ++ q⁻¹).length` is `Y p⁻¹ X q⁻¹`; carrier `q B p A` rotated by `(q ++ B).length` is
+  `p A q B`. The value equations `hsource`/`htarget` and `hX`/`hY` trade places.
+- So the Y-pocket for `C` is the X-pocket for the swapped pair with `X := Y`, `B := A`, for every shape.
+
 ## Progress log
 
 - 16:5x ledger v1.
