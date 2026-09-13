@@ -31,6 +31,14 @@ screen with no known violator. This artifact records the following.
    supply. So the self-similar route to `fp-residually-finite-boone-higman` and
    a residually finite Higman embedding theorem cannot both hold.
 
+   **Correction (2026-09-13).** The general residually finite Higman embedding
+   theorem is false: Rauzy, arXiv:2002.02540, Theorem 1
+   (`rf-higman-embedding-for-decidable-groups-fails`).
+   - Its obstruction is failure of effective residual finiteness, and `Gamma` is
+     effectively residually finite.
+   - So the input still needed is a finitely presented residually finite
+     overgroup of `Gamma` itself, which remains open.
+
 ## Sources read in this session
 
 - Zaremsky, arXiv:2405.09722v2, the full text (pdftotext). Definition 2.1
