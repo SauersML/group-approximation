@@ -43,9 +43,16 @@ beyond it, and neither do classical targets of any type or rank.
     (`perfect-group-relator-width-over-nilpotent-groups`), and products and bounded extensions of
     these by the template trick. This is the non-simple room of Glebsky's extension proofs, with deep
     iterated wreath products as the model case (lane `ex-weak-sofic-deep-wreath`).
+
+  **The second option is empty (2026-09-13, lane `ex2-weak-sofic-bounded-factors`, unreviewed).** By
+  `fp-simple-weak-soficity-is-finite-field-linear-soficity`, a finitely presented simple group that is not linear
+  sofic over finite fields has bounded width over every finite group. There are two routes. One is
+  Nikolov--Schneider--Thom Theorem 4 (`nst-simple-weakly-sofic-groups-are-psl-approximable`) with this node's PSL
+  case. The other reduces to `Q/Q_0` (`relator-width-bounded-by-almost-simple-quotients`) and applies the finite-simple
+  templates in the socle. So only the first option remains.
 - **Binary Leavitt unit group.** `R^x` has weak models into finite simple groups iff it is linear sofic
   over finite fields. In characteristic `2` this is the Gottschalk gate
-  `binary-leavitt-unit-group-is-f2-linear-sofic`. If `R^x` is not linear sofic over finite fields,
-  every weak model of `R^x` uses non-simple targets of the kind above.
+  `binary-leavitt-unit-group-is-f2-linear-sofic`. If `R^x` is not linear sofic over finite fields, it has no weak
+  models at all, so it is not weakly sofic (`fp-simple-weak-soficity-is-finite-field-linear-soficity`).
 
 Derivation: `simple-group-width-over-all-finite-simple-groups-proof`.

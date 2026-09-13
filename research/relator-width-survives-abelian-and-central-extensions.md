@@ -42,4 +42,7 @@ characters fixed by the action.
 
 **Where this stops.** An abelian layer costs an additive `2|X|K`, but a central layer multiplies the constant
 by `2L`. Iterating (a) and (b) therefore bounds the width only for boundedly many layers above `𝒞`.
-Nilpotent-by-nilpotent groups whose kernel has unbounded class are not covered.
+Nilpotent-by-nilpotent groups whose kernel has unbounded class are not covered by this elementary argument.
+They are covered, with the classification and non-explicit constants, by
+`relator-width-bounded-by-almost-simple-quotients` through Nikolov--Segal: every finite soluble group has bounded
+width. The value of this node is that it avoids the classification and gives explicit constants.
