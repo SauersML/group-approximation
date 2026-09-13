@@ -28,20 +28,40 @@ gate (a), with no dependence on the open `wall-rigid-z2-sft-is-quantum-rigid`. B
   - A horizontally periodic row gives a doubly periodic point (predecessor's Proposition 5). So the row
     subshift must be non-sofic without periodic points, and every `F`-cycle of `p`-periodic rows must meet a
     forbidden pattern, for every `p`.
+- **Markov criterion (partial obstruction).**
+  - The trace `x -> (F^n(x)_0)_(n>=0)` conjugates the right-permutive automaton `F^+` on right half-rows `Y^+`
+    to the upward shift on one-sided columns `X_c^+`.
+  - A positively expansive open map is conjugate to a one-sided SFT (Parry's theorem, recalled). So if `F^+` is
+    open on `Y^+`, then `X_c^+` is an SFT, it has a periodic column, and Proposition 5 gives a periodic point.
+    The same holds with rows and columns exchanged.
+  - A free example therefore needs both one-sided automata to be non-open on the relevant subshifts. The
+    obvious local lift `x'_0 = x_0` of a nearby row need not stay legal far from the corner, so openness is not
+    automatic.
+- **Complexity constraint (Ledrappier ambient).** Kari–Moutot, arXiv:1806.07107, Theorem 6 (read from the
+  source PDF, page 5): "Any low complexity `c ∈ X_(f_L)` is periodic", where low complexity means
+  `|P(c, D)| <= |D|` for some finite shape `D`. So a free sub-SFT of Ledrappier's shift has
+  `|L_D(Ω)| > |D|` for every shape `D`. Their Section 3 extends this to algebraic subshifts over `F_p` whose
+  polynomial has line factors in at most one direction. Their Lemma 7 (page 6): a configuration annihilated by
+  two coprime polynomials is two-periodic. So no free example lies inside two coprime algebraic shifts.
 - **Recodings of known aperiodic sets: dead or unchecked.**
   - Labbé's shift is heuristically excluded: it has four nonexpansive fault directions, one irrational,
     against three rational side directions here (`quantum-rigidity-passes-to-sub-sfts`, Remark).
   - Kari–Papasoglu 4-way deterministic tiles give corner determinism only. In the vertex recoding
     `(left edge, bottom edge)` the triangle rule fails, because `v(z + e_2)` is not determined by `u(z)` and
     `u(z+e_1)`.
+  - Kari's multiplier tiles fail too. The sequential carry makes the tile at `(i+1, n)` a function of the tiles
+    at `(i, n)` and `(i+1, n-1)`, but the other two projections of that triangle are not injective.
   - Hierarchical tilings with only horizontal and vertical faults (Robinson type) are not excluded by the
     direction count. No permutive recoding of them was checked.
-- **Ledrappier's shift over `F_2` as ambient: open.** `F^(2^k) = 1 + σ^(2^k)` is a built-in 2-adic hierarchy.
+- **Ledrappier's shift over `F_2` as ambient: open.** `F^(2^k) = 1 + σ^(2^k)`, and `c -> (1+X+Y) c(X^2, Y^2)` is a
+  linear inflation preserving `X_L`. Both give a built-in 2-adic hierarchy.
   - Toeplitz rows are dead. For the period-doubling row `d`, `F^(2^k)(d)` is supported on
     `n ≡ -1 mod 2^k`, so the orbit closure contains the zero configuration.
   - Sturmian rows are unchecked. Rows at times `2^k` are codings through the windows
     `[0,θ) Δ ([0,θ) - 2^k α)`, and rows at time `2^m - 1` through windows with up to `2^m` pieces. Avoiding
     near-zero rows needs `2^k α mod 1` bounded away from `0`. Whether the closure is minimal, or an SFT, was not
     checked.
+  - Zero-run constraints are too weak. Forbidding long zero runs in all rows forbids long `2^k`-periodic
+    stretches of row `0`, but `110`-periodic rows survive, giving periodic points.
 - **No obstruction found.** Positively expansive automata have dense periodic points on full shifts (recalled,
   Boyle–Kitchens). That does not pass to non-sofic invariant subsets, which is where a free example would live.
