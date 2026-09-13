@@ -7,6 +7,7 @@ distinct_from:
   fpbs-nonamenability-bounds-critical-connectivity-operator: that asks for l2-boundedness of the whole critical connectivity operator; this asks only that the two-point function be summable along one amenable wq-normal subgroup at some parameter above p_c, which by fpbs-bs-iff-finite-relative-susceptibility is equivalent to the threshold gap for that group.
 artifacts:
   - research/artifacts/fpbs/docs/relative-susceptibility-reduction.md
+  - research/artifacts/fpbs/docs/ps-averaged-tilt-relative-susceptibility.md
 ---
 
 **OPEN.** For every nonamenable finitely generated group `Gamma` having an
@@ -52,3 +53,17 @@ group, to `p_c < p_u` on every Cayley graph of `Gamma`.
   uniqueness by quantities independent of distance. **Where it dies:**
   conditioning on connection costs `theta^(-2)`, and the Russo integral is not
   integrable at `p_c` under mean-field behaviour.
+* **Patterson--Sullivan averaged tilt (`ps-averaged-tilt-relative-susceptibility.md`).**
+  For normal `H` with hyperbolic `Q = Gamma/H`, tilting Hutchcroft's
+  nonunimodular argument (arXiv:1711.02590) by the Radon--Nikodym cocycle of a
+  quasi-invariant measure `nu` on `dQ` gives an exact mass-transport principle
+  and a symmetric convex averaged susceptibility
+  `chi^nu_(p,1/2) = sum_q sigma_p(q) int (d(q_* nu)/d nu)^(1/2) d nu`, with
+  `E_p|K_o ∩ H| <= chi^nu_(p,1/2) <= chi_p`. So `p_c < p_t^nu` already gives this
+  claim, and on `F_2` exact layers and left-continuity also transfer.
+  **Where it dies:** three source steps need a supremum over directions or a
+  positive orbit mass: sprinkling (the supremum is L2-strength by a Schur test,
+  and any multiplicative closure is at least `||S_p||` by Kesten), the tilted
+  Aizenman--Barsky BK step (orbits are `nu`-null), and the best-versus-worst
+  comparison. A kernel satisfying the Harris--FKG distortion bounds has finite
+  average and infinite supremum, and on `X_rig` nothing forces a radial profile.
