@@ -7,43 +7,30 @@ distinct_from:
   rover-nekrashevych-finite-presentation-criteria: that records finiteness properties, simplicity of the commutator subgroup and the abelianization; this computes the BNSR invariants on the character sphere.
 ---
 
-**OPEN (candidate answer to Zaremsky Problem 1.14).** Let `G <= Aut(T_d)`, `d >= 2`,
-be a finitely generated self-similar group, and put `Γ = V_d(G)`.
+**OPEN (candidate answer to Zaremsky Problem 1.14).** Let `G <= Aut(T_d)`, `d >= 2`, be a finitely generated
+self-similar group, and put `Γ = V_d(G)`.
 
-1. **Sphere.** Restriction to `G` (acting on one cone) identifies `Hom(Γ,R)` with
-   the space of characters `χ: G -> R` satisfying `χ(g) = Σ_{x in X} χ(g|_x)` for all `g`.
+1. **Sphere.** Restriction to `G` (acting on one cone) identifies `Hom(Γ,R)` with the characters `χ: G -> R`
+   satisfying `χ(g) = Σ_{x in X} χ(g|_x)` for all `g`.
 2. **Invariants.** `Σ^m(Γ) = S(Γ)` for every `m >= 1` such that `Γ` has type `F_m`.
 
-Model tests. With `G` trivial, `Γ = V_d` has finite abelianization, so both
-statements are vacuous. For the binary odometer `a = σ(1, a)` the sphere is `S^0`.
-There, item 2 says both kernels of `Γ -> Z` are of type `F_m` whenever `Γ` is.
+Model tests. With `G` trivial, `Γ = V_d` has finite abelianization, so both items are vacuous. For the binary
+odometer `a = σ(1, a)` the sphere is `S^0`, and item 2 says both kernels of `Γ -> Z` have type `F_m` whenever `Γ` does.
 
 ## Attempts
 
-- **Item 1 and `m = 1` (lane z1-14-rover-nek, 2026-09-13).** Both have written proofs,
-  landing as separate claims: `rover-nekrashevych-characters-are-sum-invariant`
-  and `rover-nekrashevych-groups-have-full-bns-invariant`. The `m = 1` proof
-  realizes a character by elements supported on arbitrarily small cones. Those
-  elements commute with every generator that fixes a cone pointwise.
-- **Higher `m`, proposed route.** Let `X` be the Stein–Farley complex of `Γ`
-  (vertices with `n` feet, cloning-system complex). Its cell stabilizers are
-  finite-index subgroups of `G^n ⋊ S_n`.
-  - Key observation: `χ(Stab σ) = χ(G) = χ(Γ)`, so `ker χ · Stab σ = Γ`. Hence
-    `ker χ` acts cocompactly on every cocompact `Γ`-subcomplex, for discrete `χ`.
-  - Cell stabilizers in `ker χ` are `K_n ⋊ P` with `K_n = ker(χ ⊕ ... ⊕ χ: G^n -> R)`.
-    When `G` has type `F_m` and `n >= m+1`, `K_n` has type `F_m` by Meinert's product
-    inequality (source to verify).
-  - Ascending links in `X` are simplices, so `X_{>= n_1}` is homotopy equivalent to
-    `X`. The low-feet cells, whose stabilizers may fail, can therefore be discarded.
-    Descending links are those used to prove `Γ` is of type `F_m`.
-  - With Brown's criterion this would give `ker χ` of type `F_m` for every discrete
-    `χ`. Rational points would then lie in `Σ^m`; the irrational points need a
-    Morse argument on `X × R`.
-  - Missing, to verify from sources: the exact Stein–Farley complex and descending
-    links for `V_d(G)` (Skipper–Witzel–Zaremsky 2019; Witzel–Zaremsky cloning systems),
-    Meinert's inequality, and the stabilizer form of the Σ-criterion.
-- **Caution.** A contracting `G` that is not finitely presented can still have
-  `V_d(G)` finitely presented (Nekrashevych, Theorem 5.9). An example is the Basilica
-  group, whose sum-invariant characters `χ(a) = χ(b)` exist assuming its abelianization
-  `Z^2` (Grigorchuk–Żuk, not re-derived here). The stabilizer route says nothing
-  there. `Σ^2(V_2(Basilica))` is the first test case where item 2 could fail.
+- **Item 1: ESTABLISHED** as `rover-nekrashevych-characters-are-sum-invariant` (unreviewed).
+- **Item 2, `m = 1`: ESTABLISHED** as `rover-nekrashevych-groups-have-full-bns-invariant` (unreviewed). The
+  characters are realized on arbitrarily small cones, where they commute with cone-fixing generators of `V_d`.
+- **Item 2 for `G` of type `F_m`: OPEN**, isolated as `rover-nekrashevych-higher-sigma-invariants-are-full` and
+  reduced by `rover-nekrashevych-higher-sigma-full-via-kernel-brown` to two named inputs:
+  - `rover-nekrashevych-stein-farley-complex-properties`;
+  - `characters-living-on-m-plus-one-factors-lie-in-sigma-m`.
+  - Key step: `χ(Stab σ) = χ(Γ)` for every cell, so the kernel of the full character map acts cocompactly on every
+    cocompact subcomplex, with stabilizers that are kernels on products `G^n`.
+- **Item 2 when `G` is not of type `F_m` but `Γ` is: OPEN, no route.** Nekrashevych (arXiv:1312.5654, Theorem 5.9)
+  gives finite presentation of `V_d(G)` for every contracting `G`, finitely presented or not. The Basilica group has
+  the character `χ(a) = χ(b) = 1`, assuming its abelianization `Z^2` (Grigorchuk–Żuk, not re-derived here). So
+  `Σ^2(V_2(Basilica))` is the first test where item 2 could fail. The stabilizer route gives nothing there, because
+  `Basilica^n` is not finitely presented. A proof would need a different complex, such as the nucleus-based
+  presentation of Nekrashevych.
