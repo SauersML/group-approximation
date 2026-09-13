@@ -20,3 +20,12 @@ product-action equivalence proves fixed price for that group. Apply the
 separately OPEN countable passage for the universal target. This route
 uses no reverse weak-containment assertion. Both unresolved premises
 remain required; the route is not a proof of the universal conclusion.
+
+**Restatement, not reduction (audit of September 12, 2026).** Over all free
+factor maps of one finitely generated group, the first premise is
+equivalent to fixed price for that group: the identities also give the
+converse, through lifted base plans. So this route has the same logical
+content as `fpbs-fixed-price-from-bernoulli-cost-equality`, namely
+finitely generated fixed price plus the countable passage. It is a valid
+deduction, not a reduction to a weaker premise. See the scope audit in
+`fpbs-correlated-reuse-flags-removable`.
