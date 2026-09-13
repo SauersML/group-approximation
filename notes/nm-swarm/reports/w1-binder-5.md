@@ -103,6 +103,26 @@ theorem CellPocketWalk.exists_clean_of_copy (hcopy : CellPocketCopyCleanStatemen
   - It does not tie `S'` to `S`, which is enough because the multiple-edge cut concludes on `Δ` itself.
   - Expected producer: edge doubling along the offending edges (cell self-edges, Π_i–Π_j edges, a–b edges, sides along a cell), with weight and card unchanged, as in `OuterSpurThickeningStatement`.
 
+## Producer (i) for `CellPocketCopyCleanStatement` (main's 17:5x assignment)
+
+Truth analysis, dart by dart. No falsity found; the risk is construction. Three surgeries:
+
+| surgery | clauses | doubling | region transport | owner |
+|---|---|---|---|---|
+| T1 cell edges | `cell_self_first`, `cell_self_second`, `cell_cell` | inside the relator face of the dart (`FaceEdgeDoubling.diagram`) | regions avoid both relator faces when no relator word has value one: existing `FaceEdgeDoublingRegions.regionFamily` | this lane |
+| T2 cell–side | `side_first`, `side_second` | inside the relator face | the region on the other side contains the across face | ms-cite-2 (`SurgeryCellSideThickening`, in flight) |
+| T3 side–side between two regions | `regions` | inside a region G-face | region containing the doubled face, boundary dart replaced: no transport on main | unowned |
+
+- Configuration (b′) and same-cell spurs are T1: an edge with `Π_i` on both sides. Its darts lie on no contiguity arc,
+  since an arc dart has a region face across it.
+- T1 counts only relator faces with at least two darts. Two distinct regions with nondegenerate disjoint arcs on `Π_i`
+  force two distinct darts of `Π_i`, so the clauses at `Π_i` and `Π_j` still follow.
+
+CLAIM T1 cell-edge thickening: `GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickening.lean`, plus its model
+`GroupApproximation/GGT/VanKampen/SurgeryCellEdgeThickeningModel.lean`, in the precedent style of
+ms-cite-2's `SurgeryCellSideThickeningModel`: `decide` on dart permutations before and after doubling, for a spur on a
+relator face and for a relator–relator edge.
+
 ## Residual for the binder-5 producer (cell-to-cell pocket)
 
 - Step 3: an O-equivalent copy with legal labels satisfying cell edge conditions, then `walk.Nodup` and
