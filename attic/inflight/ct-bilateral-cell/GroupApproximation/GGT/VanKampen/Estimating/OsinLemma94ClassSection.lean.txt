@@ -145,12 +145,12 @@ theorem classCount_le_six_mul_otherClasses (hS : S.DartMinimal) (hmax : P.Maxima
   have hcut := Q.card_cuttingClasses_le_of_dartMinimal hS hmax k
   have hsum := Q.card_cuttingClasses_add_otherClasses k
   have hpos : 0 < (Q.otherClasses k).card := by
-    unfold budgetPolygons at hk
-    rw [Finset.mem_filter] at hk
+    classical
+    simp only [budgetPolygons, Finset.mem_filter] at hk
     obtain ⟨-, -, i, hi, j, hj⟩ := hk
     refine Finset.card_pos.2 ⟨i, (Q.mem_otherClasses k i).2 ⟨hi, ?_⟩⟩
     rw [hj]
-    exact fun h => OsinLemma94SideClass.noConfusion h
+    exact fun h => by cases h
   omega
 
 /-- **The class budget from the other classes.** -/

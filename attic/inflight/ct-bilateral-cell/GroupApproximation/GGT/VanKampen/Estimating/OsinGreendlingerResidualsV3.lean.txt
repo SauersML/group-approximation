@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV2
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassSection
+import GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellCount
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -13,8 +14,9 @@ reduction of `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2`
 `OsinLemma94UnboundSameCellStatement`.
 
 * The class count is `osinLemma94ClassCountInput_of_endLoops` over the end loops
-  `OsinLemma94ClassEndLoopsInput` and hypothesis (ii) `osinLemma94SameCellFactorInput_of_scan` over
-  the scan `OsinLemma94SameCellScanInput`; the cutting classes are closed
+  `OsinLemma94ClassEndLoopsInput` and hypothesis (ii): `osinLemma94SameCellFactorInput_of_scan`
+  over `osinLemma94SameCellScanInput_of_pocket`, whose premise is the pocket value clause
+  `OsinLemma94SameCellPocketInput`.  The cutting classes are closed
   (`card_cuttingClasses_le_of_dartMinimal`).
 * Case 1 and Case 2 enter on class words, `OsinLemma94ClassCasesInput`.
 * Loops, the Euler count from C4, the repaired pinch and the closed collar insertion are as in V2.
@@ -32,12 +34,12 @@ namespace GroupApproximation.GGT.VanKampen
 universe u w v
 
 /-- **Osin's Lemma 4.4 at least-area diagrams, along the class route**: Lemma 9.4 from the end
-loops, the same-cell scan and the class-word cases; loops from `osinLoopCutSection`; the Euler
-count from C4 and C6′; the pocket residuals with the pinch at a positive side bound; and the closed
-collar insertion. -/
+loops, the same-cell pocket values and the class-word cases; loops from `osinLoopCutSection`; the
+Euler count from C4 and C6′; the pocket residuals with the pinch at a positive side bound; and the
+closed collar insertion. -/
 theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV3
     (hloops : OsinLemma94ClassEndLoopsInput.{u, w, v})
-    (hscan : OsinLemma94SameCellScanInput.{u, w, v})
+    (hpocket : OsinLemma94SameCellPocketInput.{u, w, v})
     (hcases : OsinLemma94ClassCasesInput.{u, w, v})
     (htwogon : OsinTwoGonHoldsSectionStatement.{u, w, v})
     (hregion : OsinMultipleEdgePocketRegionSectionStatement.{u, w, v})
@@ -46,7 +48,8 @@ theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV3
     RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
   relativeGreendlingerQuasiGeodesicLeastArea_of_residualsPos
     (osinLemma94Section_of_classCount
-      (osinLemma94ClassCountInput_of_endLoops hloops (osinLemma94SameCellFactorInput_of_scan hscan))
+      (osinLemma94ClassCountInput_of_endLoops hloops
+        (osinLemma94SameCellFactorInput_of_scan (osinLemma94SameCellScanInput_of_pocket hpocket)))
       hcases)
     osinLoopCutSection
     (osinPhiPrimeCountSection_of_pieces osinCornerTwoGonSection htwogon)
