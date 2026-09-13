@@ -29,22 +29,24 @@ separable `D`, `KK^*(D, C)` and `KK^*(C, D)` are uniquely `p`-divisible
    unverified asserts that `O_2 ⋊_α Z_p` is `M_(p^∞)`-absorbing before the UCT is
    known.  What (i) needs is a KK-equivalence `C ~_KK C ⊗ M_(p^∞)`.  This claim
    supplies its KK-algebraic core: `p` is already a unit in `KK(C, C)`, with no
-   UCT, outerness or classification input.  Passing from "`p` invertible" to the
-   KK-equivalence with the inductive limit `C ⊗ M_(p^∞)` uses the Milnor `lim^1`
-   sequence for KK of an inductive limit in the first variable.  That step is
-   recorded separately and is not asserted here.
+   UCT, outerness or classification input.  The passage to the inductive limit
+   `C ⊗ M_(p^∞)` is `o2-zp-crossed-products-absorb-uhf-p-without-uct`, through the
+   Meyer--Nest homotopy colimit.
 2. *The per-prime class is a cyclotomic class.*  Every witness at `p` in the
    sense of `nuclear-algebra-without-uct-exists` is `C = O_2 ⋊_α Z_p` with
    `KK(C, C)` a `Z[ζ_p, 1/p]`-algebra.  Conversely, Barlak--Li's realization
    `O_2 ⋊_(id ⊗ γ) Z_p ~_KK Ã^(p−1)` gives `M_(p−1)(KK(Ã, Ã))`, which contains
    `Z[ζ_p, 1/p]` through the companion matrix of `Φ_p`.
-3. *No K-theoretic signature from these invariants.*  Any test built from
-   `K_*(C)`, `K^*(C)` and the dual action sees `Z[ζ_p, 1/p]`-modules.  Every
-   such module with countable underlying group already occurs for UCT algebras:
-   take `Ã` with the right K-theory.  So they cannot certify a failure of the
-   UCT by themselves.  The certificate must live in non-K-theoretic structure,
-   such as the full `KK`-ring, Künneth failures or central sequences.  This
-   sentence is a heuristic reading, not a theorem: the realization of the dual
-   action on K-theory by a UCT example was not checked.
+3. *What K-theoretic signatures cannot do.*  Every `O_2 ⋊_α Z_p`, UCT or not,
+   has uniquely `p`-divisible K-theory and K-homology, no invariant or coinvariant
+   classes under the dual action, and `[1_C] = 0` in `K_0(C)`.  The last holds
+   because `β` is unital, so `(1 − β_*)[1_C] = 0` and `1 − β_*` is invertible.
+   So none of these properties can certify a failure of the UCT.  A certificate
+   must use finer structure.  One candidate is a `Z[ζ_p, 1/p]`-module, with the
+   dual action, that no bootstrap-class action realizes.  Others are Künneth
+   failures and central sequences.  Which modules bootstrap-class actions realize
+   was not determined.  For quasi-free actions, the K-theory is cyclic torsion
+   `O/(1 − ζ^a − ζ^b)` over `O = Z[ζ_p, 1/p]`.  That formula comes from Pimsner's
+   Cuntz--Pimsner sequence and was not re-derived from the source.
 
 Proof: `o2-zp-crossed-products-invert-p-in-kk-proof`.
