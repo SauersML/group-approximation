@@ -22,8 +22,18 @@ CLAIM SameFaceDartForestStatement (statement and proof) GroupApproximation/GGT/V
     0913-180156-83644).
   - Both defs are now `by classical exact …`, and `mem_sameFaceDarts` starts with `classical` (the
     `SimpleClosedWalkSides.sideOutside` pattern). w1-binder-1's own copies had the same defect.
-- Proof: `SameFaceForest.exists_isSimpleClosedWalk`, `exists_leaf`, `card_add_two_le`, `sameFaceDartForest`, in the same
-  module. Probing.
+- **Proof LANDED b18944a24. CLOSED.** `sameFaceDartForest : SameFaceDartForestStatement` (probe 0913-181138-20310 GREEN, BUILT,
+  `#audit_closed_axioms`).
+  - `SameFaceForest.exists_isSimpleClosedWalk`: a non-backtracking successor gives an `IsSimpleClosedWalk`, cut at the first
+    vertex repeat.
+  - `exists_leaf`: separation, via `IsSimpleClosedWalk.not_faceClass_alpha`.
+  - `card_add_two_le`: leaf removal, over any `[DecidableEq M.Vertex]`.
+  - Probe 0913-180841-10480 was red: `DecidableEq M.Vertex` in the statement of `card_add_two_le` lacked the binder.
+- **Wiring hold.**
+  - Wire-queue l.923 `OsinLemma94CuttingSides` (w1-binder-1, c22052062) declares the same four names: `CombMap.sameFaceDarts`,
+    `mem_sameFaceDarts`, `sameFaceVertices`, `SameFaceDartForestStatement`.
+  - This module stays out of the wire queue until w1-binder-1 re-lands CuttingSides importing it. Wiring both reddens the
+    root with "already declared". main was told.
 - Route:
   - Leaf induction over alpha-closed `T ⊆ sameFaceDarts f`.
   - A leaf exists. Otherwise a non-backtracking `next` gives a first vertex repeat, hence an `IsSimpleClosedWalk` inside `T`.
