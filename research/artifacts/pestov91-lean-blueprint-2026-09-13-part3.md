@@ -173,3 +173,12 @@ could take one too, since G4 is short.
 - ~03:20, pc-el-center: the generic `skewMonoidAlgebra_central_zero_or_one` is adopted for G3. M2 is resolved:
   `Center.lean` redeclares nothing from `Centre.lean`, and the orientation is `r * c = c * r`.
 - ~03:20, team-lead: SPLIT added. FREE files are P1, C1, L1 and L2.
+- ~03:35, team-lead: **STOP.** The PC swarm duplicates session 6dbfc571's fz swarm (lanes `p91-*`), whose
+  architecture is the one on main. This blueprint is frozen as a record. The arbitration inputs below arrived after
+  v3 and were **not** decided:
+  - pc-crossed-product proposed moving the landed generic API to `CrossedProductGeneric.lean`. v3 (§V3) had already
+    chosen the landed module instead.
+  - pc-assembly planned `EndpointOfLeaves.lean` with the skeleton's `exists_infinite_simple_kazhdan_lef_of_ringLeaves`.
+  - pc-kazhdan thinned `SimpleGroup.lean`. It re-declares pc-normal-a's `normalLevel_ne_bot_of_elGen_mem` and
+    `normal_eq_top_of_elGen_mem_of_isSimpleRing`, so importing both modules would clash.
+  - pc-subshift implemented v1 §2 names (`pd`, `WindowEq`), with a topological `SubshiftTopology.lean` draft.
