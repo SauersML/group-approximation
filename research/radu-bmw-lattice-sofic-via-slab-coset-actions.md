@@ -6,7 +6,8 @@ title: Embed Radu's lattice in the free generalized wreath product of Z over its
 target: radu-bmw-lattice-sofic
 requires:
   - free-kernel-tree-actions-embed-in-free-generalized-wreath
-  - radu-horizontal-slab-coset-actions-are-sofic
+  - radu-edge-coset-action-is-sofic
+  - sofic-set-actions-pass-to-finite-fibred-quotients
   - radu-horizontal-tree-group-is-linear
   - radu-bmw-lattice-embeds-in-titz-witzel-kernel
 ---
@@ -23,29 +24,29 @@ requires:
 
 **The Q-set of oriented edges.**
 * *Vertex stabilizer.* `Γ_R` is simply transitive on `V(T_h) × V(T_v)`. Horizontal letters move only
-  the `T_h`-coordinate, and `A = <a,b,c>` is simply transitive on `V(T_h)`, so
-  `Stab_(Γ_R)(v_0) = A`. It meets `Λ_v` trivially.
+  the `T_h`-coordinate, and `C = <a,b,c>` is simply transitive on `V(T_h)`, so `Stab_(Γ_R)(v_0) = C`.
+  It meets `Λ_v` trivially.
 * *Local action on edges.* The relators give `ax = xa`, `bx = xb`, `cx = zc`, `ay = ya`, `by = yc`,
-  `cy = yb`, `az = zb`, `bz = za`, `cz = xc`. In `T_v`, `g·(w·v_0) = (gw)·v_0` for `g ∈ A` and
-  `w ∈ V`. Hence `a` and `b` fix the `x`-, `y`- and `z`-neighbours of `v_0`. `c` fixes the
-  `y`-neighbour and swaps the `x`- and `z`-neighbours: `c·(xv_0) = (zc)v_0 = z v_0`.
-* *Orbits and stabilizers.* The oriented edge `v_0 → xv_0` has stabilizer
-  `A_c = ker(χ_c)`, and its `Q`-orbit contains its reverse (apply `x`) and the `z`-edges (apply
-  `c`). The oriented edge `v_0 → yv_0` has stabilizer `A`, and its orbit contains its reverse (apply
-  `y`). So
-
-  ```text
-  E^±(Y) ≅ Q/A_c ⊔ Q/A        as Q-sets.
-  ```
+  `cy = yb`, `az = zb`, `bz = za`, `cz = xc`. Since `g·(w·v_0) = (gw)·v_0` in `T_v`, `a` and `b` fix
+  the `x`-, `y`- and `z`-neighbours of `v_0`, while `c` fixes the `y`-neighbour and swaps the other
+  two: `c·(xv_0) = (zc)v_0 = zv_0`.
+* *Orbits and stabilizers.* The oriented edge `v_0 → xv_0` has stabilizer `C_χ = ker(χ : c ↦ −1)`.
+  Its `Q`-orbit contains its reverse (apply `x`) and the `z`-edges (apply `c`). The oriented edge
+  `v_0 → yv_0` has stabilizer `C`, and its orbit contains its reverse (apply `y`). So
+  `E^±(Y) ≅ Q/C_χ ⊔ Q/C` as `Q`-sets. This agrees with item 1 of
+  `radu-metabelian-quotient-embeds-in-edge-lamp-wreath`.
 
 **Conclusion.**
-* *Embedding.* Item 1 of `free-kernel-tree-actions-embed-in-free-generalized-wreath` gives
-  `Γ_R ↪ Z ≀^*_(Q/A_c ⊔ Q/A) Q`.
-* *Soficity.* Under `radu-horizontal-slab-coset-actions-are-sofic` both orbits are sofic actions of
-  the sofic group `Q`, so item 3 of that claim makes `Γ_R` sofic.
+* *Both orbits are sofic.* Assume `radu-edge-coset-action-is-sofic`, i.e. `Q ↷ Q/C_χ` is sofic. Then
+  `Q ↷ Q/C` is sofic by `sofic-set-actions-pass-to-finite-fibred-quotients`, applied to
+  `Q/C_χ → Q/C` with fibres of size 2.
+* *Embedding.* By item 1 of `free-kernel-tree-actions-embed-in-free-generalized-wreath`,
+  `Γ_R ↪ Z ≀^*_(Q/C_χ ⊔ Q/C) Q`.
+* *Soficity.* Item 3 of that claim makes the free generalized wreath product sofic, and hence `Γ_R`.
 
-**Also obtained.** By item 2 of the same claim, `G_2 = Γ_R/[Λ_v,Λ_v]` embeds in
-`Z ≀_(Q/A_c ⊔ Q/A) Q`. So `G_2` is sofic under the same hypothesis, with no quotient by square
-boundaries.
+**What this adds to the metabelian route.** `radu-metabelian-quotient-sofic-via-edge-coset-action`
+derives soficity of `G_2 = Γ_R/[Λ_v,Λ_v]` from the same action, through restricted lamps. With free
+lamps the same single set action gives soficity of Radu's lattice itself. No marked limit over the
+lower central series of `Λ_v` is needed.
 
 ∎

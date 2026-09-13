@@ -25,6 +25,15 @@ actions `φ` of `Q` on finite sets `A`, and on most points `s` injective colouri
 window `E ⊂ Q/C_χ` with `π_(φ(g)s)(x) = π_s(g^(−1)x)`. By `radu-metabelian-quotient-embeds-in-edge-lamp-wreath`
 this implies that `G_2 = Γ_R/[Λ_v, Λ_v]` is sofic.
 
+**Stakes: Radu's lattice itself (ex2-radu-chain-lamp-positive, 2026-09-13; unreviewed).** This claim
+also implies `radu-bmw-lattice-sofic`, through `radu-bmw-lattice-sofic-via-slab-coset-actions`.
+* *Embedding.* With free lamps, `Γ_R ↪ Z ≀^*_(Q/C_χ ⊔ Q/C) Q`
+  (`free-kernel-tree-actions-embed-in-free-generalized-wreath`).
+* *The second orbit.* `Q ↷ Q/C` is the 2-to-1 quotient of this action, so it is sofic as well
+  (`sofic-set-actions-pass-to-finite-fibred-quotients`).
+* *Conclusion.* Gao–Kunnawalkam Elayavalli–Patchell Theorem 3.7 then makes `Γ_R` sofic, with no
+  marked limit over the lower central series.
+
 **Shape of a model.** A colouring `f(s) = π_s(C_χ)` is almost invariant under `a, b, cac, cbc` and
 separates `s` from `φ(g)s` for the eight elements `g` of `D_4 = <x, c>`. Equivalently, the almost
 action carries an almost `C_χ`-invariant partition that each reflection `x, z, c, xzc` moves off
