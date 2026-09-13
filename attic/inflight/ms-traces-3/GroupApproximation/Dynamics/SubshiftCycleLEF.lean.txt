@@ -1,4 +1,5 @@
 import GroupApproximation.Dynamics.SubshiftFiniteWindow
+import GroupApproximation.Dynamics.RetainedSubshiftPeriodic
 import GroupApproximation.Pestov91.LEFCrossedProduct
 import Mathlib.Algebra.Order.BigOperators.GroupWithZero.Finset
 
@@ -99,8 +100,7 @@ theorem isLEFRing_clopenCrossedProduct_of_cycleCondition {A : Type} [Topological
     have h := hp0 s ⟨j, by omega⟩
     simp only [word_apply] at h
     rw [h]
-    congr 1
-    omega
+    exact congrArg _ (by omega)
   · funext s
     show (ClopenCoeff.of T k).symm a ((T ^ (-toAdd g)) (w s n)) =
       (ClopenCoeff.of T k).symm a (w s (n - ((toAdd g : ℤ) : ZMod N)))
@@ -116,16 +116,6 @@ theorem isLEFRing_clopenCrossedProduct_of_cycleCondition {A : Type} [Topological
     ring
 
 variable {A : Type*}
-
-/-- Consecutive words of a point of `X` are joined by a directed path of the word graph. -/
-theorem reflTransGen_word {X : Set (ℤ → A)} (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X)
-    {x : ℤ → A} (hx : x ∈ X) (i : ℤ) (r n : ℕ) :
-    Relation.ReflTransGen (wordEdge X r) (word x i r) (word x (i + n) r) := by
-  induction n with
-  | zero => rw [show i + ((0 : ℕ) : ℤ) = i by omega]
-  | succ n ih =>
-    rw [show i + ((n + 1 : ℕ) : ℤ) = i + n + 1 by omega]
-    exact ih.tail (wordEdge_word hX hx (i + n) r)
 
 /-- **Model test.** The full shift satisfies the cycle condition: every word `w` of length `r + 1`
 is read from a configuration showing `Fin.tail w` at `0` and `Fin.init w` at `r`. -/
@@ -178,7 +168,6 @@ end WordGraph
 end GroupApproximation
 
 #audit_axioms GroupApproximation.WordGraph.isLEFRing_clopenCrossedProduct_of_cycleCondition
-#audit_axioms GroupApproximation.WordGraph.reflTransGen_word
 #audit_axioms GroupApproximation.WordGraph.cycleCondition_univ
 #audit_axioms GroupApproximation.WordGraph.isLEFRing_clopenCrossedProduct_univ
 #audit_closed_axioms GroupApproximation.WordGraph.printedSubshiftCycleConditionLEF
