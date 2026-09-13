@@ -22,3 +22,5 @@ Artifact Sections 1 and 2.
 - **Theorem 2.3.** Rerun the lower-bound proofs of the characteristic-three artifact. They use minors,
   additivity, subadditivity, commuting idempotent splits, conjugation and compactness only. Nonemptiness is
   item 2 of `sylvester-rank-functions-iff-no-triangular-certificate`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 42 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Lemma 2.1, Theorem 2.2 and items 2–5 of Theorem 2.3 re-derived on paper. Items 1 and 6 checked as a step census of the characteristic-three proofs. The Section 1 census of [TRI] and [RR] is cited. Not decision-level.*

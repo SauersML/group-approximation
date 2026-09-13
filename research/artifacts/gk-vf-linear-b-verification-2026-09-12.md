@@ -1903,3 +1903,124 @@ stays OPEN: Proposition E restricts where a left inverse can live and refutes no
   - Residual finiteness of `GL_2(F_3[s0])` through congruence maps.
   - `SL_fin(F_3) <= GL_2(T)`, which makes `GL_2(T)` not residually finite.
   - The absence statement that no node on main decides soficity of `GL_2(T)`.
+
+## 42. Two-root gate lower bounds and commuting Jordan certificates for matrix states (w6-upg-separate; fdf1237ec2): PASS
+
+Scope:
+- the artifact `research/artifacts/two-root-certificates-separate-2026-09-12.md` (blob `0116f471c9`);
+- the claims `two-root-gate-lower-bounds-hold-for-matrix-states` (Sections 1–2) and
+  `commuting-jordan-certificates-flatten-to-minors` (Section 3);
+- the routes `two-root-gate-lower-bounds-matrix-states-proof` and `commuting-jordan-certificates-flatten-proof`.
+
+Both claims landed ESTABLISHED before verification. I re-derived on paper Lemma 2.1, Theorem 2.2, items 2–5 of
+Theorem 2.3, and all of Section 3. For items 1 and 6 of Theorem 2.3 the check is a step census of the proofs in
+`research/artifacts/char-three-defect-gap-and-descent-2026-09-12.md` ([C3], blob `45397b534e`), not a re-derivation
+of [C3]. Neither claim is decision-level, and nothing is refuted.
+
+### 42.1 Matrix states, Lemma 2.1 and Theorem 2.2 (claim items 1–2)
+
+- **Facts from the three axioms.**
+  - `d(M) <= min(rows, columns)`, since `M = M I_c = I_r M`.
+  - `M + N = [I I] (M (+) N) [I I]^T`, so `d(M + N) <= d(M) + d(N)`.
+  - `d(UMV) = d(M)` for invertible `U`, `V`, and `d(M (+) 0) = d(M)`, since each is a minor of the other.
+- **Item 1 (Lemma 2.1).**
+  - `ker d` is an ideal, since `d(x + y) <= d(x) + d(y)` and `d(axb) <= d(x)`. It is proper, since `d(1) = 1`.
+  - `d` descends. A matrix `E` with entries in `ker d` is a sum of one-entry matrices, each a minor of an entry, so
+    `d(E) = 0`. Then `d(M + E) <= d(M) + d(E)` and `d(M) <= d(M + E) + d(-E)` give `d(M + E) = d(M)`.
+  - The descended state is faithful on elements by construction.
+  - Push-through. Row and column operations reduce `[[I_n, X],[Y, I_m]]` to `I_n (+) (I_m - YX)`, and also to
+    `(I_n - XY) (+) I_m`. So `n + d(I_m - YX) = d(I_n - XY) + m`, which is the display of Lemma 2.1 at `m = n`.
+  - Suppose `XY = I_n` modulo `ker d`. Then `d(I_n - XY) = 0`, so `d(I_n - YX) = 0`. Each entry of `I_n - YX` is a
+    minor, so it lies in `ker d`, and `YX = I_n` modulo `ker d`.
+- **Item 2 (Theorem 2.2).**
+  - `D_rho` lies in `ker d`. So `rho` followed by the quotient map is a representation of `Γ` into the weakly finite
+    `K`-algebra `A/ker d`, and it kills the defect.
+  - `weakly-finite-leavitt-representations-killing-defect-are-trivial` gives `rho(g) - 1` in `ker d`. Section 36.2
+    re-derived steps 4–5 of that node and cited steps 1–3. The artifact's application is the same argument.
+  - On `K[Γ]`, with `rho` the inclusion, `ker d` contains the augmentation ideal. That ideal is maximal, so
+    `A/ker d = K`. A faithful matrix state on a field is the rank, since `M = U (I_r (+) 0) V` with `U` and `V`
+    invertible.
+
+### 42.2 Theorem 2.3 (claim item 3)
+
+- **Scope.** `eps_+ = 2(1 + [z])` and `eps_-` are orthogonal central idempotents with `eps_+ + eps_- = 4 = 1`. Since
+  `1 = [1 1] (eps_+ (+) eps_-) [1 1]^T` and `eps_+ (+) eps_- = [eps_+; eps_-] 1 [eps_+ eps_-]`, every matrix state has
+  `d(eps_+) + d(eps_-) = 1`. So each `d` in `A_mat` has `d(eps_+) = 0` and factors through `S_-`. Conversely, a matrix
+  state on `S_-` pulls back along `F_3[G] -> S_-`.
+- **Nonemptiness.** So `A_mat` is nonempty iff `S_-` carries a matrix state. By item 2 of
+  `sylvester-rank-functions-iff-no-triangular-certificate`, that holds iff `S_-` has the rank condition. The easy
+  direction checks: `XY = I_(n+1)`, with `Y` of size `n x (n+1)`, gives `n + 1 <= d(Y) <= d(I_n) = n`.
+- **Compactness and positivity.** Every value lies in `[0, min(rows, columns)]`, and every axiom is a closed
+  condition. So `A_mat` is compact, and `c_3^mat` is attained. If `d(D) = 0`, item 2 gives `d(1 - [z]) = 0`, hence
+  `d(eps_-) = 0`.
+- **Item 2 (Lemma 1.2).** `P` commutes with the entries of `phi(Y)`, so `phi(XMY) P = phi(X) (phi(M) P) phi(Y)`, and
+  `d(phi(XMY) P) <= d(phi(M) P)`. Normalization and additivity need `phi` unital and `d(P) > 0`.
+- **Items 3–4 (Lemmas 1.3–1.4).**
+  - The identities `1 - [gh] = (1 - [g]) + [g](1 - [h])`, `1 - [g^(-1)] = -[g^(-1)](1 - [g])` and
+    `1 - [kgk^(-1)] = [k](1 - [g])[k^(-1)]` make `K_d` a normal subgroup.
+  - If `d(D_A) = 0`, then `d o F_3[iota_A]` is a matrix state killing `D`, so `iota_A(G) <= K_d` by Theorem 2.2.
+  - `K_d <z> / <z>` is a nontrivial normal subgroup of the simple group `G/<z>`, so `K_d <z> = G`.
+  - `G` is perfect and `z` is central, so `G = [G, G] <= K_d`. Then `z` lies in `K_d`, and `d(eps_-) = 0`.
+- **Item 5.**
+  - When `d(eps_-) > 0`, compressing along the central idempotent `eps_-` gives `d(D eps_-) >= c_3^mat d(eps_-)`.
+  - `iota_A(-1) = 1 - 2 p_A = tau_A`, so `F_3[iota_A](eps_-) = Q_A`, and `Q_A` commutes with the image of
+    `F_3[iota_A]`. Compressing along `iota_A` with `P = Q_A` gives an element of `A_mat`, so
+    `d(D_A Q_A) >= c_3^mat d(Q_A)`.
+  - `d(Q_A) = 1/2` is [C3]'s argument: `N(Q_A) = N(u Q_A u^-1) = N(1 - Q_A)` by Lemma 1.1.5 (conjugation), then
+    Lemma 1.1.3 (additivity). Both steps are valid for matrix states. So `d(D_A) >= d(D_A Q_A) >= c_3^mat/2`.
+- **Items 1 and 6 (census).**
+  - I re-read the proofs of [C3] Lemmas 1.1.1, 1.1.3 and 1.1.5 and Theorems 3.1.2–3.1.4.
+  - Each step is a minor, additivity, subadditivity, a commuting idempotent split, conjugation by a unit, or
+    compactness. Fact 1.5 is a statement about conjugation in `G`.
+  - The Frobenius inequality (Lemma 1.1.2) enters only through Lemma 1.1.4. That lemma gives `c_3 <= 2/3` and
+    Theorem 3.1.1, and the claim excludes both.
+
+### 42.3 Theorem 3.1, Corollary 3.2 and Example 3.3 (second claim)
+
+- **Base.** At `j = 1` the display is the hypothesis `f <~ xP`.
+- **Induction step.** Apply `separated-triangular-steps-flatten-to-minors` (re-derived in Section 37) to
+  `f^((+)j) <~ x^j P (+) P^((+)(j-1))` and `f <~ xP`, with corner `P`, up to a permutation of blocks. This gives
+  `f^((+)(j+1)) <~ [[x^j P, P],[0, xP]] (+) P^((+)(j-1))`.
+- **Frobenius matrix.** Using `P x^j = x^j P`, so that `x P x^j = x^(j+1) P`:
+  - `[[x^j P, P],[0, xP]] [[I, 0],[-x^j, I]] = [[0, P],[-x^(j+1) P, xP]]`;
+  - `[[I, 0],[-x, I]] [[0, P],[-x^(j+1) P, xP]] = [[0, P],[-x^(j+1) P, 0]]`.
+  A column swap and a sign give `P (+) x^(j+1) P`. So `f^((+)(j+1)) <~ P^((+)j) (+) x^(j+1) P`.
+- **End.** At `j = m`, `x^m P = 0`, and a zero block drops out of a minor bound.
+- **Corollary 3.2.**
+  - Take an idempotent `f <~ xP` and an idempotent `e` with `P <~ e`. Then `f' = f^((+)m)` is a minor `X e' Y` of
+    `e' = e^((+)(m-1))`.
+  - Put `a = f' X e'` and `b = e' Y f'`. Then `ab = f' (X e' Y) f' = f'`, `aba = a` and `bab = b`. So `ba` is an
+    idempotent equivalent to `f'`, with `e' (ba) e' = ba`.
+  - So `[e'] = [ba] + [e' - ba] >= [f']`, and `m s[f] <= (m - 1) s[e]`. Taking the supremum over `f` and the infimum
+    over `e` gives the display.
+- **Example 3.3.** Take `R = F_3[u]/(u^3)` and `d(M) = dim_(F_3) soc(Im M)`.
+  - `d(I_1) = dim soc R = 1`, and `d` is additive on block sums.
+  - `Im(MY) ⊆ Im M`, and a submodule has a smaller socle.
+  - `Im(XM)` is a quotient of `Im M`. A finitely generated `R`-module is a sum of cyclic modules `R/(u^i)`, and its
+    socle dimension is the number of summands, `dim N/uN`, which does not grow under quotients. So `d(XMY) <= d(M)`.
+  - `d(u) = dim (u^2 R) = 1`. With `x = u`, `P = 1` and `m = 3`, the value form would give `d(u) <= 2/3`.
+
+### 42.4 Displays, scan and notes
+
+- **Displays recomputed.**
+  - The claim displays: `f^((+)j) <~ P^((+)(j-1)) (+) x^j P` and `rho^s(xP) <= (1 - 1/m) rho_s(P)`.
+  - The route displays: `[[x^j P, P],[0, xP]] ~ P (+) x^(j+1) P` and `n + d(I - YX) = d(I - XY) + n`.
+  - The item 3 values `d(Q_A) = 1/2` and `d(D_A Q_A) >= c_3^mat/2`.
+  - `N_12^3 = [x_12(1)]^3 - 1 = 0` in characteristic three, the instance with `m = 3`.
+- **Cited, not re-derived.** The Section 1 census of [TRI] Theorem A and D.2 and of [RR] Propositions 6, 8 and
+  Corollary 9. Neither claim depends on it.
+- **Subsumption scan** (ESTABLISHED nodes on matrix states, weakly finite images, minors and Jordan certificates).
+  - `rank-condition-rings-have-weakly-finite-images` (Theorem C) is consistent with item 1 and is its global form: it
+    builds a weakly finite image from the rank condition alone.
+  - `k0-state-extends-to-rank-function-iff-triangular-monotone` is consistent with the "Not included" paragraph.
+  - `separated-triangular-steps-flatten-to-minors` and `nilpotent-jordan-certificates-flatten-to-minors` are inputs
+    and special cases (Section 37).
+  - Nothing is subsumed or refuted. The Consequence paragraph is the route checked in Section 43.
+- **Notes.**
+  - The compression bullet of claim item 3 omits the hypotheses `d(P) > 0` and `phi` unital. Artifact Theorem 2.3.2
+    has `d(P) > 0`.
+  - The sentence `c_3^mat <= c_3` after artifact Theorem 2.3 needs anti-central Sylvester rank functions to exist.
+    The node has the proviso.
+  - The lane's Attempts entries on `anti-central-weakly-finite-images-carry-rank-functions` and
+    `ternary-anti-central-disjoint-defects-have-a-strict-deficit` were not checked.
+- **Status.** Not decision-level. No claim changes status.

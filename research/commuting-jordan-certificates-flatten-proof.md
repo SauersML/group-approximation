@@ -16,3 +16,5 @@ Artifact Section 3, Theorem 3.1 and Corollary 3.2.
 - **Frobenius matrix.** `[[x^j P, P],[0, xP]] ~ P (+) x^(j+1) P` by one right and one left elementary
   operation, using `P x^j = x^j P`.
 - **`K_0` reading.** An idempotent minor of an idempotent is dominated in `K_0`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 42 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Theorem 3.1 (induction through the separated step and both elementary operations), Corollary 3.2 and Example 3.3 re-derived on paper. Not decision-level.*
