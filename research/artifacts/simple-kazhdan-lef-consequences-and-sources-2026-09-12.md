@@ -10,6 +10,16 @@ Status: **unreviewed**.
 - **Pestov**, *Hyperlinear and sofic groups: a brief guide*, arXiv:0804.3968. PDF p. 21 states
   "Open question 9.1 (Cf. Ozawa [64]). Let G be an infinite simple group with Kazhdan's property
   (T). Can it be hyperlinear (sofic)?" This matches the root node.
+- **Ozawa [64] = N. Ozawa**, *About the QWEP conjecture*, Internat. J. Math. 15 (2004),
+  arXiv:math/0306067 (LaTeX source, read 2026-09-12). This is the origin of the question.
+  - After Kirchberg's theorem "a group with the properties (F) and (T) is residually finite": "It
+    is unknown whether there exists a simple property (T) group Γ which is hyperlinear. By the
+    above theorem, the full C*-algebra C*Γ of such a group Γ cannot have the LLP."
+  - Earlier: "infinite simple groups with Kazhdan's property (T) ... do not have the property (F)
+    as it was shown by Kirchberg".
+
+  Both statements are consistent with `S`: it lacks (F), and `C*(S)` fails the LLP. `S` answers
+  Ozawa's question positively.
 - **Ershov--Jaikin-Zapirain**, arXiv:0809.4095v2, PDF p. 1, Theorem 1.1. It is quoted verbatim in
   Part 1 §2 and already imported as `elementary-groups-over-fg-rings-have-property-t`. The same page
   2 records that property (T) for `EL_n(R)` was previously known only for commutative `R` or for
