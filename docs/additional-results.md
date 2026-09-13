@@ -49,6 +49,16 @@ Within this family, simplicity is equivalent to infinite minimality.
 This strengthens the earlier word-problem degree result and remains a
 written proof awaiting Lean formalization.
 
+The [finite-model theorem](../research/artifacts/pestov91-four-regular-expanders-and-limits-2026-09-13.md)
+gives one explicit family of four-regular finite simple Cayley expanders
+with a common absolute spectral gap. Its limits at growing dimensions
+are classified exactly by infinite subshifts with strongly connected
+word graphs; the simple limits are precisely the minimal ones. Balancing
+the word graph gives complexity-controlled model sizes. For Sturmian
+parameters, relation radius `l` needs matrix dimension at most `12l+6`,
+giving LEF growth `exp(O(R^2))` independently of the language's Turing degree. This is a
+written extension, not a Lean verification.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
