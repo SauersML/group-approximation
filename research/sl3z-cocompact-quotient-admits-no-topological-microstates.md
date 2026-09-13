@@ -45,6 +45,12 @@ have `y` exactly equivariant on an honest finite action.
   defect-free marks below a uniform scale. Dies at: microstates may have a vanishing proportion of
   defects and relator failures, and holonomy along loops through them is unconstrained. The missing
   input is a defect-tolerant superrigidity for `Λ`-valued almost-cocycles (part 2 artifact, Section 4).
+* **Stability plus exact-model exclusion (conditional).** If `SL_3(Z)` is stable in finite actions
+  (`sl3z-is-stable-in-finite-actions`), every sofic model can be traded for honest finite actions with a
+  vanishing proportion of defects. So nonsoficity follows from
+  `sl3z-cocompact-quotient-not-weakly-contained-in-finite-actions`, the version of the uniform exclusion
+  that tolerates defects (route `sl3z-cocompact-nonsofic-from-stability-and-no-finite-approx`).
+  Dies at: both inputs are open.
 * **Spectral separation.** Hope: the Koopman representation separates `Λ` from the commensurability
   class of `SL_3(Z)`. Dies at: weak containment of representations is too coarse. Under Jacquet--Langlands
   transfer, the real components of `L^2(SL_3(R)/Λ)` recur in `L^2(SL_3(R)/Γ(N))` for suitable `N`

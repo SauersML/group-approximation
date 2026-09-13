@@ -84,3 +84,22 @@ algebras over `Q`. The existence of cocompact lattices in `SL_3(R)` is not impor
   stability fails for infinite sofic Kazhdan groups (Becker--Lubotzky; recalled, not verified). So a
   proof needs a relative, coupling-specific stability, or a route that uses superrigidity
   approximately. Margulis superrigidity is not imported here.
+  *Update (ex-sl3z-cocompact-quotient, 2026-09-13):* the honest-model case is now proved for `Λ` from a
+  cubic division algebra, using Bass--Milnor--Serre Theorem 16.2 in place of Margulis superrigidity
+  (`sl3z-cocompact-quotient-uniformly-far-from-finite-actions`). For the second alternative, the
+  contradiction is norm drift on the finite orbits of the labelled coupling
+  (`sl3-norm-drift-excludes-finite-almost-invariant-configs`), not non-uniformity.
+* **Measure-free reformulation (proved; ex-sl3z-cocompact-quotient).** The action is minimal and uniquely
+  ergodic (`sl3z-cocompact-quotient-uniquely-ergodic-minimal`, via Benoist--Quint Corollaire 1.2). So
+  soficity is equivalent to the existence of topological microstates, finite almost-actions with
+  almost-equivariant marks, and equidistribution is automatic
+  (`uniquely-ergodic-action-sofic-iff-topological-microstates`). The negative direction is
+  `sl3z-cocompact-quotient-admits-no-topological-microstates`, with route
+  `sl3z-cocompact-quotient-nonsofic-from-no-microstates`.
+* **Normal form of models (proved).** Below a fixed scale every microstate carries unique `Λ`-labels,
+  flat on good relator cycles: an almost-action on `V × Λ` commuting with `Λ`, a discretized coupling
+  (`sl3z-cocompact-microstates-carry-flat-lambda-labels`). Finite labelled orbits cost a fixed proportion
+  of defects. Dies at: holonomy through a vanishing proportion of defects is unconstrained.
+* **Stability route (conditional).** Route `sl3z-cocompact-nonsofic-from-stability-and-no-finite-approx`
+  needs `sl3z-is-stable-in-finite-actions` and the defect-tolerant exclusion
+  `sl3z-cocompact-quotient-not-weakly-contained-in-finite-actions`. Both are open.
