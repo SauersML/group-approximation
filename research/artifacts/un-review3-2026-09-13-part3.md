@@ -121,3 +121,9 @@ measure exists; otherwise trivial MF quotients for `N ≥ 2n`, with the band ope
 - A partial embedding of a ball containing the relators and a word for `g` defines a homomorphism to a finite group that
   keeps `g ≠ e`.
 - Standard (Gordon–Vershik; "LEF + finitely presented ⟹ RF").
+
+## Changes applied by un-verify-3 (owner lanes finished; main's instruction)
+
+- **§1 requires fix.** Added `elementary-group-fg-from-fg-coefficient-ring` (established, kernel-checked) to the requires of
+  `free-group-cantor-el-lef-iff-invariant-measure-proof`, so the finite-generation clause of the flagship is backed.
+- **§2 display fix.** Already applied on main by another lane before this pass: the title of `lef-el-groups-force-exactly-matricial-simple-ring` now states the theorem ("A countable simple ring whose elementary groups are LEF embeds unitally in a matrix ultraproduct, and one LEF rank at least four already gives finite fields"). Display re-checked against the body: consistent.

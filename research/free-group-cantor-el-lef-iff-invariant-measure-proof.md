@@ -14,6 +14,7 @@ requires:
   - no-invariant-measure-steinberg-elementary-no-mf-quotient
   - stably-infinite-ring-elementary-groups-have-no-mf-quotient
   - lef-implies-operator-mf
+  - elementary-group-fg-from-fg-coefficient-ring
 artifacts:
   - research/artifacts/un-blueprint-2026-09-13-part1.md
 ---
