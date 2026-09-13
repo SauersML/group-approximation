@@ -15,6 +15,10 @@ Here `n = 2`, `η₂ = 6` and `I = [a, a + 1]` with `a ∈ ℤ[1/6]`.  The case 
 subgroup `N` (in the printed proof `N = ⟨f, H⟩`).  The proof for `|I| < 1` gives `Υ_{Γ₂}([c, d])' ≤ N` for
 every grid interval `[c, d]` inside `(a, a + 1)`, and Case 2 turns that into `Υ_{Γ₂}(I)' ≤ N`.
 
+**Superseded route.** Nothing consumes this statement, and it has no proof.  The formalization proves
+`|I| = 1` through an ascending HNN extension over a shorter interval, not through `Υ'' = Υ'`, so this
+module keeps the dropped route only as a record.
+
 * `LemmaFourSixCaseTwo`: the statement.
 -/
 
