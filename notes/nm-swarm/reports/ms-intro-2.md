@@ -107,6 +107,23 @@ Binder 5 now: steps 2–5 are closed on origin. Open:
 pocket region whose cycle is the walk holds a relator cell. Otherwise it absorbs the regions meeting it and
 `false_of_disc_collapse_singleton` contradicts the distinguished choice.
 
+## Item 3 (main, 18:1x): the `regions` field of binder 6's `CopyClean` split
+
+The split was agreed with w1-binder-6 (reply 18:2x): ms-intro-2 owns `regions`; ms-binary keeps `cell_self` and does not take
+`regions`; the order is outer-first, so the statement keeps the outer invariants of `OuterSideThickeningStatement`.
+
+CLAIM `regions` thickening (18:30), in new modules:
+- `GroupApproximation/GGT/VanKampen/SurgeryRegionPairThickening.lean`: `IsRegionPairDart`, `regionPairCount`,
+  `regions_of_noRegionPairDart`, `RegionPairThickeningStatement` / `regionPairThickening`
+- `GroupApproximation/GGT/VanKampen/SurgeryRegionPairThickeningModel.lean`: a `decide` model test of the doubling
+- `GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingHoldingRegion.lean`: transport of a region holding the doubled
+  face along a side dart whose reverse lies outside it, through `FaceEdgeDoubling.dartImage`
+
+Crux: an edge between faces of two selected regions lies on a side of each, since arc darts cross into cells or the
+exterior. A doubling separates them only if the digon lies in neither region, so the region holding the doubled face
+changes. Its face goes to `cellFace` and the side dart `w_j` to the new dart. No landed transport covers a region
+holding `f`: `FaceEdgeDoubling.regionFamily`, `regionFamilyOfArcs` and `DiscEmbeddingAway` all need `f ∉ s`.
+
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.
 - 17:06 probe 0913-170556-76424 GREEN, BUILT IntroCompressorSentences.
