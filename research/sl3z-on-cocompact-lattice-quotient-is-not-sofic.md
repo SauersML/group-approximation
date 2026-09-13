@@ -23,6 +23,9 @@ distinct_from:
 * *No finite orbits.* A finite orbit of `gΛ` would make `SL_3(Z) ∩ gΛg^(−1)` a lattice of finite index
   in both `SL_3(Z)` and `gΛg^(−1)`. But commensurable lattices are both uniform or both not (part 2
   artifact of `sl3z-lattice-space-action-is-sofic`, Section 8).
+* *Sharp line.* Every pair of lattices inside the commensurability class of the conjugates of `SL_3(Z)`
+  gives a sofic quotient action (`sl3-split-class-lattice-quotient-actions-are-sofic`). So a nonsofic
+  action of this shape needs a lattice outside that class, and cocompact lattices are the simplest ones.
 
 A proof would answer `sl3z-admits-nonsofic-action` and `mixing-free-nonsofic-action-of-sofic-group` with
 one explicit action. A disproof would be a soficity theorem for a higher-rank mixing lattice action
