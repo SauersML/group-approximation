@@ -249,8 +249,8 @@ script `sbox2.py` has md5 `1475fa8724be6a203bd5097b8552202d`, `sbox2.sbatch`
 `0748a6cb9100c3b97c5cab2b82b2887d`, `census_pairs.json`
 `88d50831522fe612ef9412f27237bfb3` and `sbox_pairs.json`
 `1e5080225b5f3600d58ea3a5df69951d`, matching the table above. Slurm:
-`689435_0 uc0-sbox2 COMPLETED 03:15:09 0:0`. Output `sbox2_0_hard.out`, with
-the Singular warnings removed, verbatim:
+`689435_0 uc0-sbox2 COMPLETED 03:15:09 0:0`. Output `sbox2_0_hard.out`, all 24
+lines, verbatim (it has no warning lines):
 
 ```text
 orbit 0: |S| = 21, |T'| = 77 (box), cells 338  [0.0s]
@@ -286,18 +286,21 @@ checked case `(0,1)`. This is the evidence for
 
 ### Status of the other tasks at the time of this harvest
 
-`squeue` at harvest time: tasks 1 to 5 of 689435 (representatives 3, 4, 5, 2
-hard cases) and 689436 task 6 running for about 3.5 h; task 6 of 689435
-(representative 2 sweep) running for about 16 min; tasks 7 and 8
-(representative 6 sweep and row 0) pending. Their output files hold only the
-header and `i = 0 done`, so nothing else is decided.
+`squeue` and `sacct` at harvest time: tasks 1 to 5 of 689435 (the hard cases
+of representatives 3, 4, 5, 2 and 6) and task 6 of 689436 (representative 6)
+running, elapsed `3:49:31`; task 6 of 689435 (representative 2 sweep)
+running, elapsed `33:02`; tasks 7 and 8 (representative 6 sweep and row 0)
+pending. `sbox2_2_hard.out`, `sbox2_3_hard.out`, `sbox2_4_hard.out`,
+`sbox2_5_hard.out` and `sbox2_2_sweep.out` hold the header line and
+`i = 0 done`; `sbox2_6_hard.out` holds only the header line;
+`sboxv.689436_6.log` is empty. So nothing else is decided yet.
 
 | k | decided | still open |
 | --- | --- | --- |
-| 0 | all 210 cases, `(0,1)` verified | none |
-| 1 | all 210 cases, `(0,1)` verified | none |
-| 2 | row 0 | `(1,2), (1,5)` running; rows 1 to 20 (sweep) running |
-| 3 | rows 0 to 20 except the timeouts | `(1,2), (1,5), (2,5)` running |
-| 4 | rows 0 to 20 except the timeouts | `(1,2), (1,5), (2,5)` running |
-| 5 | rows 0 to 20 except the timeouts | `(1,2), (1,5), (1,7), (2,5)` running |
-| 6 | nothing | `(0,1), (0,2), (0,3)` running; rows 1 to 20 and row 0 cases 4 to 20 pending; verify (689436) running |
+| 0 | all 210 cases; `(0,1)` checked (599042) | none |
+| 1 | all 210 cases; `(0,1)` checked (599042) | none |
+| 2 | row 0; `(0,1)` checked (599042) | `(1,2), (1,5)` running (task 4); rows 1 to 20 running (task 6) |
+| 3 | all rows except the timeouts; `(0,1)` checked (599042) | `(1,2), (1,5), (2,5)` running (task 1) |
+| 4 | all rows except the timeouts; `(0,1)` checked (599042) | `(1,2), (1,5), (2,5)` running (task 2) |
+| 5 | all rows except the timeouts; `(0,1)` checked (599042) | `(1,2), (1,5), (1,7), (2,5)` running (task 3) |
+| 6 | nothing | `(0,1), (0,2), (0,3)` running (task 5); `(0,4)` to `(0,20)` pending (task 8); rows 1 to 20 pending (task 7); `(0,1)` check running (689436 task 6) |
