@@ -70,3 +70,16 @@ general graphs.
     and `jnvwy-active-output-has-no-affine-safe-perfect-model` shows that the
     unchanged verifier has no affine-safe perfect model.  Isomorphism syntax
     admits nonabelian local symmetry, but no compiler using it exists.
+- **Nonabelian local symmetry of torsor type.**
+  - Running CFI over a finite group `H` gives colored digraphs whose
+    isomorphism algebras are `H`-valued coset constraint algebras.  Their
+    quantum symmetry is not a group dual when a local coset group is
+    nonabelian (`torsor-cfi-isomorphism-algebra-is-coset-constraint-algebra`).
+  - Where it dies as a compiler: port values of such gadgets are twists of one
+    graph.  Composing quantum isomorphisms makes every realizable scalar port
+    profile a coset, and an affine set on Boolean ports, at the `q`, `qa` and
+    `qc` levels (`torsor-cfi-port-profiles-are-cosets`).  So atom-by-atom
+    torsor gadgets meet the same affine firewall.
+  - What survives: gadget families that are not twists, non-scalar ports, and
+    a single coset-safe `H`-valued constraint system with a perfect trace and
+    no `R^U` model.
