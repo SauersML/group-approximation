@@ -34,3 +34,19 @@ conjecture over C".
   denominator.  This is `strong-atiyah-base-change-from-galois-invariance`, and
   the live route `strong-atiyah-base-change-via-galois-invariance` needs only
   `vn-rank-galois-invariant-for-torsion-free-groups`.
+* **Pointwise off a countable set (2026-09-12, lane `ex-atiyah-torsion-free`).**
+  *Proved for purely transcendental coefficient fields, group by group; algebraic
+  extensions remain.*
+  - `atiyah-base-change-holds-off-a-countable-set`: for a torsion-free `G` with
+    Strong Atiyah over `Qbar`, integrality over `Qbar(z)[G]` fails only at a
+    countable set `E_G` of transcendental `z`. In several variables the
+    exceptions form a null meagre set. The proof uses Jacobson's normal form over
+    `D_(Qbar[G])[x]` and independence of eigenspaces, with no approximation of the
+    group.
+  - One-variable Galois invariance is equivalent to `E_G = ∅`.
+  - Under the determinant conjecture, no point of `E_G` is algebraically
+    Liouville, and each is badly approximable by algebraic numbers of every
+    bounded degree (`determinant-conjecture-excludes-liouville-atiyah-exceptions`).
+  - What is left: emptiness of `E_G`, and finite extensions `F` of
+    `Qbar(z_1..z_s)`, where `D(x_1..x_s) (x) F` must stay a skew field in `U(G)`
+    (Jaikin-Zapirain--Lopez-Alvarez, arXiv:1810.12135v4, Conjecture 3).

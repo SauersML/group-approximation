@@ -29,3 +29,19 @@ over `N(K)` and `N(H)` (Step 1 of `algebraic-atiyah-determinant-colimit-proof`).
   `galois-invariance-via-sofic-luck-approximation` is dead.
 * **From integrality.**  Integer-valued rank functions on `C[H]` need not be
   unique, so Strong Atiyah over `C` does not by itself give invariance.
+* **Locally indicable groups (2026-09-12, lane `ex-atiyah-torsion-free`).**
+  Invariance holds for them: Jaikin-Zapirain--Lopez-Alvarez, arXiv:1810.12135v4,
+  Corollary 6.6 (the independence conjecture), proved through uniqueness of
+  Hughes-free division rings, not approximation. Their soficity is unknown.
+* **Reduced to a countable set (same lane).**
+  - Assume Strong Atiyah over `Qbar`. By
+    `atiyah-base-change-holds-off-a-countable-set`, invariance for matrices over
+    `Qbar(z)[H]` with one transcendental `z` is equivalent to emptiness of a
+    countable set `E_H` of exceptional transcendental numbers. Off `E_H`, the
+    division closure of `Qbar(z)[H]` is `D_(Qbar[H])(x)` and ranks do not depend
+    on `z`.
+  - Under the determinant conjecture every point of `E_H` is badly approximable
+    by algebraic numbers of each bounded degree
+    (`determinant-conjecture-excludes-liouville-atiyah-exceptions`).
+  - So a failure of invariance, given Strong Atiyah over `Qbar`, sits at
+    countably many Diophantine transcendental parameters.
