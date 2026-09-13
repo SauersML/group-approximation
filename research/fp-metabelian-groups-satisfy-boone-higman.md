@@ -73,8 +73,10 @@ It covers:
    (2026-09-12).*
    - **The root.** `char-zero-linear-groups-satisfy-boone-higman` is ESTABLISHED
      through `char-zero-linear-bh-via-polynomial-s-integer-hosts`, so (M0) holds.
-     This rests on `polynomial-linear-groups-satisfy-boone-higman`, whose review
-     is pending (lane `bh-poly-linear-review`).
+     This rests on `polynomial-linear-groups-satisfy-boone-higman`~~, whose review
+     is pending (lane `bh-poly-linear-review`)~~. *Reviewed (lane
+     `bh-poly-linear-review`, 2026-09-12):* that claim stands, with one corrected
+     step.
    - *First case:* Baumslag's torsion-free group `Z[x^±1, (1+x)^-1] x| Z^2`,
      linear over `Q(x)`. It is now established as
      `baumslag-char-zero-metabelian-group-satisfies-boone-higman`, through
@@ -102,7 +104,8 @@ It covers:
 `fp-metabelian-bh-via-linear-factors-and-products` as established:
 - the decomposition;
 - `positive-char-linear-groups-satisfy-boone-higman`;
-- the characteristic-zero root, which rests on the pending review.
+- the characteristic-zero root~~, which rests on the pending review~~. The review
+  is complete (2026-09-12) and the root stands.
 
 Its one remaining input is `boone-higman-closed-under-finite-direct-products`,
 which is OPEN.
