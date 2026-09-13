@@ -271,6 +271,59 @@ the landing until merge 19 (6457b79e5) had re-registered the baseline.  Landed w
   * The landed script already reports `osinLemma94CaseTwo_false` stale on b8231e36d.  This fix did not cause that.
 * Sent to census and main: the SHA and the two stale lines.
 
+### Done: truth audit of binders 2 and 3 of the Lemma 9.4 waist
+
+The lead asked for a truth audit of two residual Props on the post-(A) waist 5f031e3a6, read only.  This lane wrote
+no Lean.  Verdicts went to hull-count94 and fff-periodic (binder 2), jacobson, theoremc-retire and ko-closed
+(binder 3), and main.
+
+* **Binder 2, `OsinLemma94UnboundSameCellStatement` (`Estimating/OsinLemma94PolygonCount.lean:58`): false as
+  spelled.**  It is unchanged on origin/main 1dfbd700f.  The Prop quantifies every `eps`, with no `eps0`.
+  * Hand model at eps = 0.
+    * λ = 1/2, c = 3, μ = 1/16.
+    * G = ℤ/5 * ℤ/5, with all nontrivial factor elements as the alphabet (a block tree of K5's).
+    * r = A·h'·x·x⁻¹·h'', where h' = h'' = 1 in factor 1, x is in factor 2 and A is long and aperiodic.
+    * w = A·g1·g2 with g1 = 3 and g2 = 4, in two geodesic sections cut between g1 and g2.
+  * S.diagram has the A-strip region, one unselected G-face g1 g2 h''⁻¹ h'⁻¹, and the spur x x⁻¹ inside the cell.
+    * At eps = 0 no region from h' or h'' closes inside one section, so the weight maximum is 2|A|.
+    * card 1 is minimal, `unboundSum` = 4 in every GDSF of the class, and LeastArea holds since w ≠ 1.
+  * The spur dart is unbound and lies across its own cell.
+  * At eps ≥ 1 a side letter splits the stretch at the cut and the model dissolves.  The truth of an ∃eps0
+    variant is unknown.
+  * A Lean refutation is not cheap.  It needs hyperbolicity of the free product, `OsinCCondition` at every ρ,
+    weight maximality over the O-class, and DartMinimal lower bounds.
+  * The fold alone (site 5) did not prove falsity, since it presumed a weight-maximal spur.  A stretch flanked
+    by unbound darts across a cut does.
+  * Replacement: no Prop of this shape.  Option (a) routes Covers through:
+    * `OsinUnboundSameCellStretchBound` (`OsinUnboundSameCell.lean:127`, proved);
+    * `OsinLemma94SameCellPocketInput` with hbelow (`OsinUnboundSameCellPocket.lean:47`);
+    * Σ same-cell unbound ≤ ⌈1/λ⌉₊·Σ other unbound + ⌈c/λ⌉₊·(n + 2|S.family|), into hull-count94's
+      `ClassCovers M L` with M = ⌈1/λ⌉₊ (a25fe2383).
+* **Binder 3, `OsinLemma94CaseOneSameCellStatement` (`Estimating/OsinUnboundCaseOneFace.lean:476`): true, and not
+  vacuous in any cheap way.**  48c6cc71e added the `OsinLemma97Below … Delta.rCellCount` binder.
+  * Binder 3 has no hloop or hi binder.
+    * hkind is the split in `osinLemma94CaseOneInput_of_walk` (`OsinUnboundCaseOneRun.lean:94`).
+    * hloop is derived only when the kinds differ (:49).  Equal kinds are exactly where the Case 1 region would
+      run from a cell to itself, which `RespectsSections` forbids.
+    * `hi : i₂ ≠ i` binds `false_of_digon_toward_cell` (`OsinUnboundSharedEdge.lean:398`).
+  * The conclusion is False, so "jointly satisfiable at eps ≥ eps0" would mean false.  The useful check is that
+    there is no cheap contradiction, and there is none.
+    * hkind puts both sides on one cell (`osinLemma94CaseOneWalk_sameCell`).
+    * `Maximal` restricts only consecutive sides.
+    * No GDSF binder can bind a pair from a cell to itself.
+    * For λ ≤ 1/2, quasi-geodesicity alone never excludes the spike q A p.
+    * No full GDSF-level model below the threshold was built.
+  * Why it is true, split on the pocket.
+    * Cell-free: `false_of_sameCell_cellFree_pocketRegion_X` and `_Y` (29c1eeae3), with 2κ + c ≤ λ·eps.
+    * With a relator cell: `nonempty_osinLoopCut_of_pocketRegion`, then `OsinLoopCut.false_of_below`.  Its hb
+      comes from the new binder, and hO52 is `Embedded.o52LeastArea` (proved).
+    * Without the binder (5f031e3a6), the Prop was true but provable only inside the 9.4/9.7 induction.
+  * Open inputs for jacobson's producer:
+    * the pocket region from the walk;
+    * FollowsBoundary for both cycles;
+    * `GeodesicCollarStatement` (`SurgeryGeodesicCollar.lean:67`), which has no producer on main.
+    * `PocketCellTransportStatement` is proved (`pocketCellTransport`).
+
 ## Brief items
 
 | input | producer on main | state |
@@ -311,4 +364,9 @@ the landing until merge 19 (6457b79e5) had re-registered the baseline.  Landed w
   `osinLemma94CaseTwo_false` was already stale on b8231e36d.
 * If a re-registered baseline has a finding that points at the verifier, not at the corpus, this lane fixes the
   script and re-runs the calibration on MSI.
-* Otherwise idle until the lead assigns a new item.
+* Binder audit follow-ups belong to their owners.  This lane lands no Lean for the audit.
+  * Binder 2: fff-periodic and hull-count94 retire it in favour of option (a), folded into `ClassCovers M L`.
+  * Binder 3: jacobson's producer needs the pocket region from the walk, FollowsBoundary for both cycles, and
+    `GeodesicCollarStatement`.
+* Next item, per rulings 14:50: a chain-core sub-item.  S1–S6 all have named owners, so the lead picks the
+  module.  Probes run on stw-fix, under the clone lock shared with chain-itinerary.
