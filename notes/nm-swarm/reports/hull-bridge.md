@@ -43,18 +43,23 @@ induction hypothesis on quotient-ball stretches.
 - Landed: GGT/HullSCLemma51LetterPullbackCutLift (dfa2dfb11), green in probe 0913-041834-85289.
   `CutLift` records one certificate cut of a rotated lift; `CutLiftOutcome` is the interface between
   the cut move and its outcomes.
-- Peers on the chain:
-  - debt-conditional: GGT/HullSCLemma51LetterPullbackCut, `letterStepBound_of_cutLiftOutcome`
-    (the M2 move bound from `CutLiftOutcome`).
-  - hull-component: GGT/HullSCLemma51LetterPullbackCutOutcome (a1f2e52da; `CutMove.outcome_before`,
-    `CutMove.mem_image_of_inner`) and GGT/HullSCLemma51LetterPullbackCutOutcomeSides
-    (`CutMove.outcome_left`, `CutMove.outcome_right`).
-- On disk, waiting for those two modules:
-  - GGT/HullSCLemma51LetterPullbackHolds: `CutLift.toCutMove`, `cutLiftOutcome`, and
+- Peers on the chain (all on main):
+  - debt-conditional: GGT/HullSCLemma51LetterPullbackCut (457c543a8, probe 0913-044157-34176 green),
+    `letterStepBound_of_cutLiftOutcome` (the M2 move bound from `CutLiftOutcome`).
+  - hull-component: GGT/HullSCLemma51LetterPullbackCutOutcome (a1f2e52da), CutOutcomeSides
+    (27f56e14b) and CutOutcomeRight (47b7225af), ending in `CutMove.outcome`: every cut move
+    gives a pullback outcome.
+- Closing modules:
+  - GGT/HullSCLemma51LetterPullbackHolds: `CutLift.toCutMove`, `cutLiftOutcome` (through
+    `CutMove.outcome`), and
     `quotientPeripheralLetterPullbackStatement_holds : QuotientPeripheralLetterPullbackStatement.{u, v, w}`.
   - GGT/HullSCLemma51EmbeddedBridgeHolds: `relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed :
     RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}`.
-- Once the two peer modules land, hbridge has no residual Props.
+- LANDED 18682110d, green in probe 0913-050027-71372 (both endpoints `#audit_closed_axioms`), queued
+  for wiring. `QuotientPeripheralLetterPullbackStatement` and
+  `RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}` are closed; hbridge has no
+  residual Props.
+- Next: the next roster item for this lane.
 
 ## Risks recorded
 - `BoundedRelativeLinearAreaTransferStatement` may be unprovable: its W-only area predicate cannot see the
