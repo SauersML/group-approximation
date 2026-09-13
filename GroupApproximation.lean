@@ -5049,6 +5049,30 @@ import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PendantRemoval
 import GroupApproximation.GGT.HullLemma35PieceWords
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGlueDiagram
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeTransport
+import GroupApproximation.BirmanGenusThree.Section3Algebra
+import GroupApproximation.BirmanGenusThree.Section3Dichotomy
+import GroupApproximation.CStarLimits.Envelope
+import GroupApproximation.CStarLimits.FreeStar
+import GroupApproximation.CStarLimits.Universal
+import GroupApproximation.CuTensor.CuZAxioms
+import GroupApproximation.CuTensor.CuZModel
+import GroupApproximation.CuTensor.CuZModelCompact
+import GroupApproximation.CuTensor.CuZModelCu
+import GroupApproximation.CuTensor.CuZModelRank
+import GroupApproximation.CuTensor.CuZRecognition
+import GroupApproximation.CuTensor.CuntzSubequiv
+import GroupApproximation.CuTensor.RankTwoObstruction
+import GroupApproximation.CuTensor.WayBelow
+import GroupApproximation.GraphCStar.KTheoryIntegers
+import GroupApproximation.GraphCStar.KTheoryRelations
+import GroupApproximation.KirchbergAlgebra.MinTensorSeparable
+import GroupApproximation.KirchbergLoops.CokernelData
+import GroupApproximation.KirchbergLoops.EdgePhase
+import GroupApproximation.KirchbergLoops.GraphRows
+import GroupApproximation.KirchbergLoops.InvariantMatrix
+import GroupApproximation.NielsenThurston.ReductionSystem
+import GroupApproximation.NielsenThurston.VirtuallyCyclic
+import GroupApproximation.SurfaceCurves.SimpleClosedCurve
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
