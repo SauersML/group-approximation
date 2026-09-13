@@ -1,0 +1,42 @@
+TARGET O8p2 |S|=174182400 degree=120 classes=53 ms=1217
+  #alpha classes=9 #beta classes=9
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 120 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 120 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 120 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 8, 28, 56, 28 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 8, 28, 56, 28 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 35, 28, 28, 28 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 120 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 120 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 120 ]
+CAL O8p2 literal (A8,A8,A8): stats=rec(
+  dcs := 567,
+  homs := 9,
+  ordpass := 21,
+  pairs := 81 ) homs=9 ms=8257
+  #alpha classes=3 #beta classes=3
+CAND1 O8p2 stats=rec(
+  dcs := 63,
+  homs := 0,
+  ordpass := 0,
+  pairs := 9 ) homs=0 ms=2028
+  #alpha classes=3 #beta classes=3
+CAND2 O8p2 stats=rec(
+  dcs := 63,
+  homs := 0,
+  ordpass := 0,
+  pairs := 9 ) homs=0 ms=4180
+  #alpha classes=3 #beta classes=3
+CAND3 O8p2 stats=rec(
+  dcs := 63,
+  homs := 0,
+  ordpass := 0,
+  pairs := 9 ) homs=0 ms=3507
+  #alpha classes=3 #beta classes=3
+CAND4 O8p2 stats=rec(
+  dcs := 63,
+  homs := 0,
+  ordpass := 0,
+  pairs := 9 ) homs=0 ms=2226
+RUN_AMB_DONE
+EXIT=0

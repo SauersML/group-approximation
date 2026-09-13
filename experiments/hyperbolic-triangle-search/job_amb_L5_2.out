@@ -1,0 +1,35 @@
+TARGET L5_2 |S|=9999360 degree=31 classes=27 ms=212
+  #alpha classes=2 #beta classes=2
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 15, 15 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 15, 15 ]
+CAL L5_2 literal (A8,A8,A8): stats=rec(
+  dcs := 84,
+  homs := 2,
+  ordpass := 2,
+  pairs := 2 ) homs=2 ms=580
+  #alpha classes=2 #beta classes=2
+CAND1 L5_2 stats=rec(
+  dcs := 84,
+  homs := 0,
+  ordpass := 0,
+  pairs := 2 ) homs=0 ms=187
+  #alpha classes=2 #beta classes=2
+CAND2 L5_2 stats=rec(
+  dcs := 84,
+  homs := 0,
+  ordpass := 0,
+  pairs := 2 ) homs=0 ms=908
+  #alpha classes=2 #beta classes=2
+CAND3 L5_2 stats=rec(
+  dcs := 84,
+  homs := 0,
+  ordpass := 0,
+  pairs := 2 ) homs=0 ms=1114
+  #alpha classes=2 #beta classes=2
+CAND4 L5_2 stats=rec(
+  dcs := 84,
+  homs := 0,
+  ordpass := 0,
+  pairs := 2 ) homs=0 ms=453
+RUN_AMB_DONE
+EXIT=0

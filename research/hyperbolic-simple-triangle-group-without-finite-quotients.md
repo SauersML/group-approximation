@@ -71,3 +71,12 @@ nontrivial finite quotient, nor some member having none.
   `random-complex-group-no-quotients-above-exp-pn`. Low-rank Lie type is the worst
   case: in `PSL(2,q)` the normalizers of cyclic edge groups have order about `q`, and
   three of them already balance `|S|`. So vertex groups should not embed in `PSL(2,q)`.
+- **Complete permutation and small Lie-type searches (2026-09-13).** An exhaustive
+  enumeration over embedding classes and double cosets finds no nontrivial homomorphism
+  from any of the four candidates into `S_n` for `n <= 30`. It also finds none into
+  `Sp_6(2)`, `L_5(2)`, `O_8^+(2)`, `O_8^-(2)` or `L_4(4)`. The search is calibrated
+  against brute-force counts and known transitive degree-15 actions, and a literal `A_8`
+  triple is found in each Lie-type target. So no candidate acts nontrivially on at most
+  30 points. This is evidence, not a decision: degrees up to 14 are forced by support,
+  and the free-orbit count predicts zeros at this scale either way. See
+  `research/artifacts/hyperbolic-triangle-quotient-search-2026-09-13.md`.

@@ -1,0 +1,34 @@
+TARGET Sp6_2 |S|=1451520 degree=63 classes=30 ms=517
+  #alpha classes=1 #beta classes=1
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 35, 28 ]
+CAL Sp6_2 literal (A8,A8,A8): stats=rec(
+  dcs := 7,
+  homs := 1,
+  ordpass := 1,
+  pairs := 1 ) homs=1 ms=633
+  #alpha classes=1 #beta classes=1
+CAND1 Sp6_2 stats=rec(
+  dcs := 7,
+  homs := 0,
+  ordpass := 0,
+  pairs := 1 ) homs=0 ms=1089
+  #alpha classes=1 #beta classes=1
+CAND2 Sp6_2 stats=rec(
+  dcs := 7,
+  homs := 0,
+  ordpass := 0,
+  pairs := 1 ) homs=0 ms=325
+  #alpha classes=1 #beta classes=1
+CAND3 Sp6_2 stats=rec(
+  dcs := 7,
+  homs := 0,
+  ordpass := 0,
+  pairs := 1 ) homs=0 ms=438
+  #alpha classes=1 #beta classes=1
+CAND4 Sp6_2 stats=rec(
+  dcs := 7,
+  homs := 0,
+  ordpass := 0,
+  pairs := 1 ) homs=0 ms=425
+RUN_AMB_DONE
+EXIT=0

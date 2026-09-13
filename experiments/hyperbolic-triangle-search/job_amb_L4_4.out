@@ -1,0 +1,35 @@
+TARGET L4_4 |S|=987033600 degree=85 classes=84 ms=315
+  #alpha classes=2 #beta classes=2
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 15, 70 ]
+    HOM alpha=[ 1 ] beta=[ 1 ] orbits=[ 15, 70 ]
+CAL L4_4 literal (A8,A8,A8): stats=rec(
+  dcs := 126,
+  homs := 2,
+  ordpass := 2,
+  pairs := 2 ) homs=2 ms=795
+  #alpha classes=2 #beta classes=2
+CAND1 L4_4 stats=rec(
+  dcs := 126,
+  homs := 0,
+  ordpass := 0,
+  pairs := 2 ) homs=0 ms=1068
+  #alpha classes=2 #beta classes=2
+CAND2 L4_4 stats=rec(
+  dcs := 126,
+  homs := 0,
+  ordpass := 0,
+  pairs := 2 ) homs=0 ms=728
+  #alpha classes=2 #beta classes=2
+CAND3 L4_4 stats=rec(
+  dcs := 126,
+  homs := 0,
+  ordpass := 0,
+  pairs := 2 ) homs=0 ms=10930
+  #alpha classes=2 #beta classes=2
+CAND4 L4_4 stats=rec(
+  dcs := 126,
+  homs := 0,
+  ordpass := 0,
+  pairs := 2 ) homs=0 ms=16179
+RUN_AMB_DONE
+EXIT=0

@@ -1,0 +1,82 @@
+CAND1 n=23 alphaSets=8 stats=rec(
+  dcs := 29911,
+  homs := 0,
+  ordpass := 0,
+  pairs := 26 ) homs=0 ms=1033
+CAND1 n=24 alphaSets=8 stats=rec(
+  dcs := 29911,
+  homs := 0,
+  ordpass := 0,
+  pairs := 26 ) homs=0 ms=1715
+CAND1 n=25 alphaSets=8 stats=rec(
+  dcs := 29911,
+  homs := 0,
+  ordpass := 0,
+  pairs := 26 ) homs=0 ms=2797
+CAND1 n=26 alphaSets=8 stats=rec(
+  dcs := 29911,
+  homs := 0,
+  ordpass := 0,
+  pairs := 26 ) homs=0 ms=3709
+CAND1 n=27 alphaSets=8 stats=rec(
+  dcs := 29911,
+  homs := 0,
+  ordpass := 0,
+  pairs := 26 ) homs=0 ms=5051
+CAND1 n=28 alphaSets=10 stats=rec(
+  dcs := 92547,
+  homs := 0,
+  ordpass := 0,
+  pairs := 30 ) homs=0 ms=8329
+CAND1 n=29 alphaSets=12 stats=rec(
+  dcs := 272279,
+  homs := 0,
+  ordpass := 0,
+  pairs := 42 ) homs=0 ms=10724
+CAND1 n=30 alphaSets=15 stats=rec(
+  dcs := 1494241,
+  homs := 0,
+  ordpass := 0,
+  pairs := 75 ) homs=0 ms=40669
+CAND2 n=23 alphaSets=8 stats=rec(
+  dcs := 29911,
+  homs := 0,
+  ordpass := 0,
+  pairs := 26 ) homs=0 ms=864
+CAND2 n=24 alphaSets=8 stats=rec(
+  dcs := 29911,
+  homs := 0,
+  ordpass := 0,
+  pairs := 26 ) homs=0 ms=1695
+CAND2 n=25 alphaSets=8 stats=rec(
+  dcs := 29911,
+  homs := 0,
+  ordpass := 0,
+  pairs := 26 ) homs=0 ms=2693
+CAND2 n=26 alphaSets=8 stats=rec(
+  dcs := 29911,
+  homs := 0,
+  ordpass := 0,
+  pairs := 26 ) homs=0 ms=3665
+CAND2 n=27 alphaSets=8 stats=rec(
+  dcs := 29911,
+  homs := 0,
+  ordpass := 0,
+  pairs := 26 ) homs=0 ms=5081
+CAND2 n=28 alphaSets=10 stats=rec(
+  dcs := 92547,
+  homs := 0,
+  ordpass := 0,
+  pairs := 30 ) homs=0 ms=7587
+CAND2 n=29 alphaSets=12 stats=rec(
+  dcs := 272279,
+  homs := 0,
+  ordpass := 0,
+  pairs := 42 ) homs=0 ms=10646
+CAND2 n=30 alphaSets=15 stats=rec(
+  dcs := 1494241,
+  homs := 0,
+  ordpass := 0,
+  pairs := 75 ) homs=0 ms=40154
+RUN_SN_DONE
+EXIT=0

@@ -1,0 +1,34 @@
+TARGET O8m2 |S|=197406720 degree=119 classes=39 ms=531
+  #alpha classes=1 #beta classes=1
+    HOM alpha=[ 3 ] beta=[ 3 ] orbits=[ 28, 28, 28, 35 ]
+CAL O8m2 literal (A8,A8,A8): stats=rec(
+  dcs := 7,
+  homs := 1,
+  ordpass := 1,
+  pairs := 1 ) homs=1 ms=5377
+  #alpha classes=1 #beta classes=1
+CAND1 O8m2 stats=rec(
+  dcs := 7,
+  homs := 0,
+  ordpass := 0,
+  pairs := 1 ) homs=0 ms=4861
+  #alpha classes=1 #beta classes=1
+CAND2 O8m2 stats=rec(
+  dcs := 7,
+  homs := 0,
+  ordpass := 0,
+  pairs := 1 ) homs=0 ms=1909
+  #alpha classes=1 #beta classes=1
+CAND3 O8m2 stats=rec(
+  dcs := 7,
+  homs := 0,
+  ordpass := 0,
+  pairs := 1 ) homs=0 ms=4150
+  #alpha classes=1 #beta classes=1
+CAND4 O8m2 stats=rec(
+  dcs := 7,
+  homs := 0,
+  ordpass := 0,
+  pairs := 1 ) homs=0 ms=2559
+RUN_AMB_DONE
+EXIT=0
