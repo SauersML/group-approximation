@@ -32,3 +32,14 @@ inside `EL_{2p}(R)`, which has none. If false, it strengthens
 - **Ring approximations are dead.** Paradoxical `[R]` means no state at `[R]`, hence no normalized Sylvester rank
   function and no unital embedding into a matrix ultraproduct. An MF quotient would have to come from approximations
   that are not ring homomorphisms.
+- **Module rank: completable columns and free coordinates are dead** (un-low-rank-band, 2026-09-13).
+  - The Bergman recollection above is now imported verbatim: `ara-goodearl-leavitt-mn-monoid-is-one-relator`.
+  - By `leavitt-module-rank-iso-columns-are-not-completable`, at `N = m` every column of every isomorphism
+    `R^M ≅ R^m` (`M ≠ m`) is non-completable in `GL_m`. So "is a unimodular column of `X` an `E_3`-image of `e_1`
+    over `L(3,4)`?" has answer NO, for every choice of `X`.
+  - For module type `(m, m+d)` the ranks `N < m` admit no conjugation between free modules of different ranks at all.
+- **The instance `L_K(3,4)`, `N = 3`, is now its own open claim:** `el3-leavitt-3-4-has-full-mf-radical`. Its band is
+  exactly `{3}`, since `p = 3` and `N ≥ 4` is settled. A proof reduces, by route
+  `el3-leavitt-3-4-full-mf-radical-via-module-iso-image`, to `leavitt-3-4-module-iso-image-normally-generates-e3`: a
+  Suslin-normality statement for non-completable columns. A counterexample to that instance would witness this claim.
+  Artifact: `research/artifacts/un-low-rank-band-noncompletable-columns-2026-09-13.md`.
