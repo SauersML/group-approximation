@@ -1,0 +1,73 @@
+import GroupApproximation.PropertyT.IntegralColumnPlaneClosure
+import GroupApproximation.Kazhdan.KazhdanComplex
+import GroupApproximation.Sofic.LEFSofic
+import GroupApproximation.Sofic.Hyperlinear
+
+/-!
+# Property (T) for `EL_3(R)` and its quotients; LEF groups are hyperlinear
+
+The inputs of the Pestov 9.1 endpoint that concern property `(T)` and hyperlinearity.  Each is a
+theorem already on main, specialised to the form the endpoint consumes.
+
+* `elementaryGroup_fin_three_hasKazhdanPropertyT`: `EL_3(R)` has property `(T)` for every
+  finitely generated unital ring `R` in `Type`.  This is
+  `IntegralColumnPlaneClosure.finitelyGeneratedRingGeneralRankElementaryPropertyT`, the
+  repository's proof of the Ershov--Jaikin-Zapirain theorem, at rank three.  Both universe levels
+  are `0`: the ring lives in `Type`, and the Kazhdan pair is tested against orthogonal
+  representations on complete real inner-product spaces in `Type`.
+* `hasKazhdanPropertyT_quotient`: property `(T)` passes to `G ⧸ N` for a normal subgroup `N`, at
+  the same representation universe, because a representation of `G ⧸ N` pulls back to `G`.  This
+  is `HasKazhdanPropertyT.of_surjective` at the quotient map.
+* `elementaryGroup_fin_three_quotient_center_hasKazhdanPropertyT`: the two together at the centre
+  of `EL_3(R)`.
+* `elementaryGroup_fin_three_quotient_center_hasKazhdanPropertyTComplex`: the same conclusion in
+  the textbook form, unitary representations on complex Hilbert spaces, through
+  `hasKazhdanPropertyT_iff_complex`.
+* `isHyperlinear_of_isLEF`: LEF groups are hyperlinear, `isSofic_of_isLEF` followed by
+  `isHyperlinear_of_isSofic`.
+
+Finite generation of `R` is an argument here.  For the ring of the construction it is proved in
+`Pestov91.RingFinitelyGenerated`.
+-/
+
+namespace GroupApproximation
+namespace Pestov91
+
+universe u w
+
+/-- **`EL_3(R)` has property `(T)`** for every finitely generated unital ring `R`, with
+representation spaces in `Type`. -/
+theorem elementaryGroup_fin_three_hasKazhdanPropertyT (R : Type) [Ring R]
+    (hR : IsFinitelyGeneratedRing R) :
+    HasKazhdanPropertyT.{0, 0} (elementaryGroup (Fin 3) R) :=
+  IntegralColumnPlaneClosure.finitelyGeneratedRingGeneralRankElementaryPropertyT R hR 3 le_rfl
+
+/-- **Property `(T)` passes to quotients by normal subgroups**, at the same representation
+universe. -/
+theorem hasKazhdanPropertyT_quotient {G : Type u} [Group G] (N : Subgroup G) [N.Normal]
+    (hG : HasKazhdanPropertyT.{u, w} G) : HasKazhdanPropertyT.{u, w} (G ⧸ N) :=
+  HasKazhdanPropertyT.of_surjective (QuotientGroup.mk' N) (QuotientGroup.mk'_surjective N) hG
+
+/-- **The central quotient of `EL_3(R)` has property `(T)`** for every finitely generated unital
+ring `R`, with representation spaces in `Type`. -/
+theorem elementaryGroup_fin_three_quotient_center_hasKazhdanPropertyT (R : Type) [Ring R]
+    (hR : IsFinitelyGeneratedRing R) :
+    HasKazhdanPropertyT.{0, 0}
+      (elementaryGroup (Fin 3) R ⧸ Subgroup.center (elementaryGroup (Fin 3) R)) :=
+  hasKazhdanPropertyT_quotient _ (elementaryGroup_fin_three_hasKazhdanPropertyT R hR)
+
+/-- **The central quotient of `EL_3(R)` has property `(T)` in its complex-unitary form** for every
+finitely generated unital ring `R`, with complex Hilbert spaces in `Type`. -/
+theorem elementaryGroup_fin_three_quotient_center_hasKazhdanPropertyTComplex (R : Type) [Ring R]
+    (hR : IsFinitelyGeneratedRing R) :
+    HasKazhdanPropertyTComplex.{0, 0}
+      (elementaryGroup (Fin 3) R ⧸ Subgroup.center (elementaryGroup (Fin 3) R)) :=
+  hasKazhdanPropertyT_iff_complex.mp
+    (elementaryGroup_fin_three_quotient_center_hasKazhdanPropertyT R hR)
+
+/-- **LEF groups are hyperlinear.** -/
+theorem isHyperlinear_of_isLEF {G : Type*} [Group G] (h : IsLEF G) : IsHyperlinear G :=
+  isHyperlinear_of_isSofic (isSofic_of_isLEF h)
+
+end Pestov91
+end GroupApproximation
