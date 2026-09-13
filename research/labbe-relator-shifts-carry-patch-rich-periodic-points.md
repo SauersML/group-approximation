@@ -29,6 +29,11 @@ Every such `y_n` shows a forbidden pattern of `Omega_U`. A periodic configuratio
   - Mechanism: take 3-cycle generators, shrink their pattern sets so that triples never overlap, and move only when every window read is legal.
   - Failure point: commutation relators between disjointly supported elements survive.
     - Conjugation relators `tau_1 tau_2 tau_1^{-1} = tau_3` fail at gate boundaries, where a defect closes one gate and not the other (artifact, Section 6).
+- **Gated extensions of ChJN's generators: dead, proved (ex-fp-simple-relation-climbing, 2026-09-13).**
+  - Statement: `aperiodic-sft-gated-models-break-refinement-relations`. Let the rules fire only at active centres whose `rho`-window is legal.
+  - At a firing centre next to a non-firing one, the refinement relator `s(pi, e) = prod_p W(p, e)` fails. Its length is bounded independently of `rho`.
+  - So gated periodic models of the relators are trivial, and (H1) fails for gated extensions of that generating set.
+  - Survivors: extensions that move points non-standardly on illegal windows, or non-spatial finite groups.
 - **Rational perturbation of the polygon exchange.**
   - Mechanism: code a rational toral rotation by the partition `P_U` (Labbé arXiv:1903.06137, abstract only). This gives periodic configurations with small defect density.
   - Failure point: some atom codes a forbidden adjacency, and every generic orbit meets such a sliver (artifact, Section 4). Nothing controls the relators over the slivers.
