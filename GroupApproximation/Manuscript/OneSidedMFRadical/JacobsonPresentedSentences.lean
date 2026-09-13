@@ -170,7 +170,7 @@ theorem presDefectIdeal_ne_top : presDefectIdeal ≠ ⊤ := by
   intro h
   have h1 : (1 : ToeplitzJacobson) ∈ TwoSidedIdeal.ker presSymbol := by
     rw [ker_presSymbol, h]
-    exact TwoSidedIdeal.mem_top
+    exact TwoSidedIdeal.mem_top _
   rw [TwoSidedIdeal.mem_ker, map_one] at h1
   exact one_ne_zero h1
 
