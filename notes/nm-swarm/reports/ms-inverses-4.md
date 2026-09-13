@@ -140,3 +140,29 @@ Stated by ms-intro-1 at f82985905 (`Estimating/OsinLemma94SameCellPocketPinch.le
 CLAIM corrected spelling of shape 3 and the reduction with it — `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellTouchOnly.lean`
 (new module; imports only ms-intro-1's landed `OsinLemma94SameCellPocketPinch`). Path free on origin, in the shared tree and in
 every `lanes/*.files` (checked 18:5x).
+
+### LANDED f30f8c4fb (probe 0913-184102-98837 GREEN, BUILT, first try; queued for wiring)
+
+- `PocketWalkTouchOnlyShape Delta x b`: `PocketWalkTouchVertexShape` ∧ ¬`PocketWalkSpurShape` ∧ both parts `Nodup` on vertices.
+- `OsinLemma94CaseOneTouchOnlyStatement`: `OsinLemma94CaseOneXPocketStatementOf` under that shape.
+- `osinLemma94CaseOneTouchOnly_of_touchVertex`: the old touch leaf gives the new one.
+- `osinLemma94CaseOneXPocket_of_touchOnly hsimple hbubble hpinch htouchOnly hspur : OsinLemma94CaseOneXPocketStatement`. The case
+  split tests spur, bubble and pinch before the touch.
+- It certifies no printed sentence, so there is no census row.
+
+### Remaining route for `OsinLemma94CaseOneTouchOnlyStatement` (not built here)
+
+- Split each touch vertex with `PinchSplit.Input.diagram` at `alpha x_in` and `alpha b_in`. What it gives:
+  - `oEquivalent`, `label_isLetter`, `rCellCount_eq`;
+  - darts and labels are unchanged, so `invDarts X`, its value and the cell arc keep their dart lists;
+  - `sameCycle_x_of_stretch` puts `x_out` and `alpha x_in` on one new vertex and `b_out`, `alpha b_in` on the other.
+- After the last split the walk is simple. w1-binder-8's in-flight `false_of_simpleWalk_of_below` (shared tree, not on origin at
+  18:5x) takes the split diagram with `equiv` (compose `S`'s O-equivalence with the splits), `hlabel`, `hw`, `hout`, `hi`, `T`,
+  `s = invDarts X`, `hnorm` (`wordNorm_lt_of_end_connector` + `wordNorm_inv`) and `hval`.
+- Open inputs:
+  1. The corners `faceOf x_in` and `faceOf b_in` must be G-faces, not relator cells (`left_not_cell`, `right_not_cell`). A relator
+     cell at a pocket corner needs an edge-doubling thickening first.
+  2. The two corners must lie on distinct faces (`Cycles.face_ne`). By planarity a single face at both pocket corners would separate
+     `f` from `Π`, which share the arc `p`. No lemma on origin states this.
+  3. The side of the walk and `hi` transport across splits that merge corners on the side. The `Avoids` lemmas cover only face sets
+     off the merged faces; go-lemma42's `pinchSplitInside` is the `PocketFaceSet` analogue.
