@@ -72,3 +72,15 @@ cell height spans from random starts. Calibration mode (`calcert`, job file
 is among the affine candidates, then reruns the character loop with the normal
 potential rule and with the heuristic forced. Row 29 is to be rerun with version 2 only
 after this calibration recovers the known certificate.
+
+**Calibration result (job 709467, log `one-relator-magnus-row29-scripts/cal2.709467.log`).**
+- The census index-10 cover of row 23 (`b_1(H) = 2`, 8 characters, 2 monic) is **not**
+  among the affine metabelian candidates (`in_affine_candidates=False`). So the version 1
+  miss came first from the cover set, and only second from potential sampling.
+- On that cover both potential rules recover the certificate: exhaustive (`normal`), and
+  local search with enumeration switched off (`heuristic`). `verify.py` confirms it:
+  `AAttAATTAtAtaTT VERIFIED k=10 S=6 fibre=F_21`.
+- Consequence: fibring certificates do not sit in the affine covers coming from the
+  Alexander module, so a metabelian-cover search is a weak test for row 29. Row 29 is
+  rerun over all transitive actions (`vfib_allreps.py`), with the calibrated potential
+  rule.
