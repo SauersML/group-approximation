@@ -89,10 +89,36 @@ them has already started is left to them and marked here.
 
 ## 2. Verdicts
 
+No FAIL. No GAP. No false establishment found. Nothing reviewed here decides a famous problem.
+
 | claim | verdict | part |
 |---|---|---|
+| `kt-wreath-monomial-models-kill-fibre-even-lamps` | PASS on the lemmas §14.3 left open (Lemmas 2, 6, 10; Theorems M, 7, M_k, 9) | 1 §§1--3 |
+| `soft-kazhdan-central-elements-fixed-by-normal-closure` | PASS, one notation note (Lemma 10 cocycle display) | 1 §§2--3 |
+| `kt-clifford-cover-block-models-kill-the-sign` | PASS | 1 §4 |
+| `simple-group-classical-width-finite-field-linear-soficity` | PASS on part 1 Lemmas 1.4, 2.1, 3.1, 3.2 and part 2 Lemmas 4.1, 4.2, 5.3 | 2 §§1--5 |
+| `non-linear-sofic-simple-groups-bounded-width-in-classical-groups` | PASS as an assembly, one notation note | 2 §6 |
+| `a7a7a8-triangle-candidates-no-4dim-char2-representation` | PASS; certificates rerun on MSI and matched | 3 |
+| `a7a7a8-triangle-candidates-no-small-linear-representation` | PASS at the checked steps; certificates rerun and matched | 3 |
+| twelve literature imports (§1.4 list) | PASS, checked against the PDFs; citation notes on `li-derived-full-group-homology-is-k-theory-cover` and `ollivier-wise-kazhdan-rips-construction` | 4 §1 |
+| `thompson-f-sofic-iff-relator-system-unstable`, `thompson-f-hyperlinear-iff-relator-system-hs-unstable` | PASS | 4 §2 |
+| `relatively-kazhdan-amenable-pairs-allow-sofic-defects`, `rf-hyperbolic-rigid-pair-host-gives-up-nonsofic-group` | PASS | 4 §3 |
+| `non-rf-hyperbolic-group-or-unique-product-nonsofic-group` | PASS as a dichotomy, justification note (Strojnowski); two imports unreviewed | 4 §3 |
+| `thompson-steinberg-three-generator-presentation`, `leavitt-units-two-generator-fifteen-relator-presentation` | PASS | 4 §4 |
+| `arithmetical-complexity-table-of-group-properties` | PASS at the ledger level | 4 §5 |
 
-(Filled as parts land.)
+**Census corrections (part 4 §0).** Four ids were already PASSed in `ex-review-presentations-2026-09-12.md` §0 and
+are dropped: `explicit-eighteen-relator-nonsofic-group`, `explicit-sixty-relator-nonsofic-group`,
+`leavitt-unit-group-steinberg-weyl-presentation` and `thompson-steinberg-presentation-of-leavitt-unit-group`.
+
+**Graph changes.** Review-status lines were landed on the seven (a)--(c) nodes (07d4db0cb8). Notes were sent to the
+owner lanes: kt-wreath-soft-kernel, fp-simple-full-group-obstruct, fp-kazhdan-titz-witzel, left-orderable-nonsofic
+and weak-sofic-classical-covering.
+
+**Still unreviewed, found on the way.** `hyperbolic-kazhdan-cover-of-leavitt-unit-group` and
+`hyperbolic-kazhdan-group-has-infranormal-kazhdan-subgroup` (consumed by the dichotomy), and
+`chordal-abelian-graph-products-hs-stable` (consumed by the Thompson F HS equivalence): I found no PASS for them in the
+review artifacts. The LEF finite-presentation node carries a stale "(unreviewed)" marker, though it was PASSed.
 
 ## 3. Parts
 
