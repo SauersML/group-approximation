@@ -95,3 +95,14 @@ No literature input remains in the range: AGP 1.5 / 1.7 / 2.4, the Menal–Monca
 - LANDED 9f9f5dedc: `GroupApproximation/Manuscript/NonMFSentences/MFQuotientUnitsDisplaysGeneral.lean` (probe 0913-170155-54436 PROBE GREEN, module BUILT and COMPILED, audits in the build log).  Endpoints `PrintedSteinbergDisplaysAtItemA` / `manuscriptSentence_steinbergDisplaysAtItemA` and `PrintedKOneCountableAbelianMF` / `manuscriptSentence_kOneCountableAbelianMF`, both closed.  Queued in wire-queue.
 - Census rows: `metadata/nm-census-rows/ms-units.tsv` (keys 2d6574150d4d, c34115be7c92).
 - Residual in range: none.  Both gaps are closed; every other row reads adequate.
+
+## Item 2 (09-13 ~17:30): help ct-involution with lem:involution-localization
+
+Assigned by main.  Piece proposed to ct-involution in one direct message (17:28); ownership check done: no producer of `UnitKernelLocallyFiniteStatement` or of the F_2 kernel clause on origin, in the shared tree or in any lane's `.files`.
+
+- CLAIM the F_2 finite-matrix clauses of lem:involution-localization (tex 1667–1669, 1691–1693).  Module `GroupApproximation/Dynamics/CoreKernelFTwo.lean`:
+  - `TransientIdealLocallyMatricialFTwoStatement`: residual, instance-free, in chain-radical's interface shape.  Producer: chain-matricial's planned `isLocallyMatricialIn_transientIdeal`.
+  - `PrintedCoreKernelElementaryFTwo`: over F_2 and n ≥ 2, K_n(I) ⊆ EL_n(R_X).  The body is ct-involution's `CoreKernelElementaryStatement`.
+  - `scalarUnit_mem_elementaryGroup_of_sub_one_mem`: "for n ≥ 2 this involution lies in EL_n(R_X)".
+  - `unitKernelLocallyFinite_of_matricial`: ct-rank-budget's `UnitKernelLocallyFiniteStatement`, "local finiteness of K_1(I)".
+  - Each one comes from chain-radical's landed `LocallyMatricialCongruenceKernel`.
