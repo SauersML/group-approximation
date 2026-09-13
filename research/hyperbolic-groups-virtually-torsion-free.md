@@ -47,3 +47,16 @@ separation problem.
   invisible torsion.  So this root and `non-residually-finite-hyperbolic-group`
   are decided together, and the per-group distinction in `distinct_from` above
   does not survive quantification over all hyperbolic groups.
+- **2026-09-12, the obstruction is cohomologically visible (lane
+  ex-hyperbolic-vtf).** `chern-quillen-class-detects-all-prime-order-torsion`
+  builds on every hyperbolic group a class `c in H^N(G;F_p)` that is nonzero on
+  every subgroup of order `p`. It comes from the Chern classes of the regular
+  representations of the finite subgroups, and virtual torsion-freeness is not
+  assumed. `vtf-iff-chern-quillen-class-dies-on-finite-index` proves that `G` is
+  virtually torsion-free iff these classes die on some finite-index subgroup,
+  while invisible `p`-torsion makes them persistent. So a counterexample to this
+  root is exactly a hyperbolic group with a persistent Chern–Quillen class.
+  Consequently every good hyperbolic group is virtually torsion-free
+  (`good-cocompact-proper-groups-are-virtually-torsion-free`), and
+  `every-hyperbolic-group-is-good` would settle this root positively through
+  `hyperbolic-vtf-via-universal-goodness`. Unreviewed.
