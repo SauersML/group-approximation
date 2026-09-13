@@ -149,10 +149,21 @@ Some hits were left unchanged:
 
 ## W1 (c) glue-back transport (2026-09-13)
 
-Status 2026-09-13 08:00: waiting.  The lead gave sec2 one (c) module or instance, to be named by go-lemma42 and written
-in a module sec2 owns.  go-lemma42 owns `DiscDiagram.regionPiece_transport` and `OsinLoopCut.ofRegionPiece`.  The
-carrier is dgo-analytic's `PocketRegion` (Estimating/OsinPocketRegion).  sec2 asked go-lemma42 to name a piece it has
-not started.  No reply has come, and no reminder was sent.
+Status 2026-09-13: go-lemma42 answered.  The lead gave sec2 one (c) module or instance, to be named by go-lemma42 and
+written in a module sec2 owns.  go-lemma42 named two generic pieces that do not touch its files, and sec2 wrote both:
+
+| module | carries | landed |
+|---|---|---|
+| GGT/VanKampen/OEquivalentCellFaces | `cellFaceEquiv`, `cellFaceEquiv_val`, `cellFaceEquiv_faceWord`, `OEquivalentDiscDiagram.faceEquiv`, `OEquivalentDiscDiagram.faceWord_faceEquiv`, `OEquivalentDiscDiagram.ofCellFaceEquiv`, `OEquivalentDiscDiagram.ofCellFaceEquiv_face` | a845f70a0, GREEN 0913-101514-99667 (BUILT, bytes = main) |
+| GGT/VanKampen/Estimating/CyclicArcSub | `Embedded.CyclicArc.sub`, `sub_start`, `sub_length`, `sub_rotated`, `sub_darts` | a845f70a0, probe pending |
+
+`cellFaceEquiv` matches the positions of the cell list with the relator faces.  So an O-equivalence is the same as a
+word-preserving bijection of relator faces with the same boundary word.  `CyclicArc.sub arc i l h` is the arc of
+length `l` starting `i` darts into `arc`, and its darts are `(arc.darts.drop i).take l`.  The consumers are
+go-lemma42's Estimating/OsinPocketGlueDiagram (O-equivalence of X with the glued copy) and
+Estimating/OsinPocketGlueTransport (target sub-arc on the outside cell).  go-lemma42 owns
+`DiscDiagram.regionPiece_transport` and `OsinLoopCut.ofRegionPiece`.  The carrier is dgo-analytic's `PocketRegion`
+(Estimating/OsinPocketRegion).
 
 go-lemma42 has since landed the combinatorial glue (namespace `Surgery.PocketGlue`):
 
