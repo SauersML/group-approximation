@@ -36,6 +36,16 @@ Let `F` be the non-quasidiagonal primitive ideals, `V` the interior of `F`, and
 4. **Glue.**  `bk-no-compact-open-ideals-are-qd-invisible` applies to
    `0 -> E_V -> E -> E/E_V -> 0`.
 
+Shape of a counterexample (consequence 4).  Step 3 uses no traceless hypothesis.
+So for any separable nuclear stably finite `E`, `E/E_V` is quasidiagonal.  If `V`
+had no compact open subset, step 4 would make `E` quasidiagonal.  Hence a
+counterexample has a nonempty compact open `W ⊆ V ⊆ F`.  The compact ideal
+`E_W` is stably finite and exact, so by Gabe's Corollary C it is not traceless.
+The extreme-trace argument of step 1 then puts a nonzero bounded trace on a
+hereditary subalgebra of an ideal of some `E/P'`, `P' ∈ W`, and T2 turns it into a
+nontrivial trace on `E/P'`.  Under the UCT a simple traced primitive quotient is
+quasidiagonal, so this one is prime but not simple.
+
 UCT consequence.  For a `T_1` spectrum, primitive quotients are simple.  A
 simple exact algebra is stably finite iff it is not traceless (artifact Fact
 T3).  A simple nuclear stably finite UCT algebra has a full corner with a

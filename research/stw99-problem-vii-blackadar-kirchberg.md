@@ -14,8 +14,12 @@ artifacts:
 ---
 
 **Problem VII of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026)** (Blackadar--Kirchberg, Math. Ann. 307 (1997),
-Question 7.3.2).  Is every separable nuclear stably finite C\*-algebra
+Question 7.3.1).  Is every separable nuclear stably finite C\*-algebra
 quasidiagonal?
+
+(Question number corrected 2026-09-12 from 7.3.2.  Gabe arXiv:1804.08095v2,
+Moutzouris arXiv:2112.03224v3 and Brown--Dadarlat arXiv:math/0008182 all cite
+"[BK97], Question 7.3.1"; the 1997 paper itself was not reread.)
 
 Context recorded by STW: the non-nuclear version is false.  MIP\*=RE
 (Ji--Natarajan--Vidick--Wright--Yuen) gives a separably acting II₁ factor `M`
@@ -69,6 +73,30 @@ On the negative side, the negation root
 `stw07-qd-trace-positive-class-kills-qd-extension`.  Any algebra feeding it
 must carry a nonquasidiagonal trace and a non-UCT nuclear quotient
 (`stw07-trace-obstruction-forces-nonqd-trace-and-non-uct`).
+
+**Spectral reductions (2026-09-12, lane ex-blackadar-kirchberg; lane proofs, not
+externally reviewed).**
+- Quotients never detect a counterexample.
+  `stw07-separating-qd-quotients-force-quasidiagonality`: a separating family of
+  quasidiagonal quotients forces quasidiagonality.  So every algebra has a
+  largest quasidiagonal quotient, and C(X)-algebras with quasidiagonal fibres are
+  quasidiagonal.
+- Compact-free ideals are invisible.  `bk-no-compact-open-ideals-are-qd-invisible`:
+  an extension of a nuclear quasidiagonal algebra by an exact ideal whose
+  primitive spectrum has no compact open subset is quasidiagonal, with no UCT
+  hypothesis.  This extends Brown--Dadarlat Proposition 4.2 via Gabe's
+  embedding into the cone over `O_2`.  Consequently Problem VII is equivalent to
+  its case `A = J_1 + J_2` with both ideals compact-free: it is a gluing problem.
+- `stw07-qd-radical-criterion-compact-open`: a nuclear algebra is
+  quasidiagonal iff its quasidiagonal radical is compact-free.
+  `bk-counterexample-trichotomy-via-qd-radical` sorts counterexamples into
+  QD-perfect, descending, and glued along a nonzero Ext class.  The glued ones
+  refute the UCT-quotient extension case or produce a non-UCT algebra.
+- `bk-primitive-quotients-qd-or-traceless-force-qd`: if every primitive quotient
+  is quasidiagonal or traceless, the algebra is quasidiagonal.  So the problem
+  holds for `T_1` primitive spectra with UCT primitive quotients, e.g.
+  continuous fields with simple UCT fibres including Kirchberg fibres.  Its
+  `T_1` case is equivalent to the simple case (`bk-t1-primitive-spectrum-case`).
 
 Lean statement: `NinetyNineProblems.ProblemVIIStatement`
 (`GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean`).

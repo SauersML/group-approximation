@@ -28,6 +28,11 @@ Consequences:
    still quasidiagonal.  No stable finiteness of the fibres is assumed.
 3. **Reduction.**  Problem VII for `T_1` primitive spectra follows from its
    simple case (`bk-t1-primitive-spectrum-case`).
+4. **Shape of a counterexample.**  If `E` is separable, nuclear, stably finite
+   and not quasidiagonal, then `Prim(E)` has a nonempty compact open subset `W`
+   in which every primitive quotient is non-quasidiagonal.  At least one
+   primitive quotient over `W` carries a lower semicontinuous trace with a
+   finite nonzero value.  Under the UCT that quotient is prime but not simple.
 
 Mechanism.  The interior `V` of the non-quasidiagonal primitive ideals gives an
 ideal `E_V` that is traceless (extreme traces are factorial and land in some

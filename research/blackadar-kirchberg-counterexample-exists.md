@@ -51,3 +51,17 @@ quasidiagonal.
   `C([0,1], B)` for a counterexample `B`).  Quasidiagonality on an open cover of
   the primitive spectrum carries no information.  The problem is gluing traced
   compact ideals.
+- **Fibrewise shape (2026-09-12).**
+  `bk-primitive-quotients-qd-or-traceless-force-qd`: if every primitive
+  quotient is quasidiagonal or traceless, the algebra is quasidiagonal.  So a
+  counterexample has a nonempty compact open set of non-quasidiagonal primitive
+  quotients, at least one of them traced; under the UCT that one is prime but
+  not simple.  Continuous fields with simple UCT fibres, including Kirchberg
+  fibres, are never counterexamples.  For `T_1` spectra, a counterexample exists
+  iff a simple one does (`bk-t1-primitive-spectrum-case`).
+- **Trichotomy (2026-09-12).**  `bk-counterexample-trichotomy-via-qd-radical`:
+  a counterexample either has no nonzero quasidiagonal quotient, or has a
+  radical that is again a counterexample, or is glued from a quasidiagonal
+  radical by a nonzero Ext class.  In the last case it refutes the UCT-quotient
+  extension conjecture (hence universal K_0-Hahn--Banach), or its quotient is a
+  non-UCT nuclear algebra.
