@@ -56,6 +56,11 @@ A projection `p ∈ R` is *roundable* if the corner representation `γ -> pσ(γ
 - **At the actor.** With `gcd(r, q-1) = 1`, (H1) holds at every trace-preserving `G`-model iff `d(σ) < κ` at every
   one: the totally non-roundable summand is again a model.
 - **Wreath models.** Every trace-preserving wreath model has `d(σ) >= κ`.
+- **Finitary form.** (H1) at every actor model is equivalent to one dimension-uniform inequality (FT) at the fixed
+  threshold `κ/4`.
+  - For some `R` and `ε`, every `(R, ε)`-almost representation of `G` with near-regular trace must admit a genuine
+    `π` of `Γ` and a contraction `x` with `||x||_2 >= 1/2` and intertwining defect `<= κ/4`.
+  - The proof is by ultraproducts in both directions (artifact §6).
 - **Both branches are now threshold statements.** A proof needs one almost-intertwiner below `κ` in each model. A
   counterexample needs a model `κ`-far from every genuine-coordinate model.
 

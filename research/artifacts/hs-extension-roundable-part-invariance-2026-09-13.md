@@ -130,6 +130,23 @@ every trace-preserving `G`-model `σ`.
   almost-intertwiner with a genuine-coordinate model, of defect below `κ` rather than tending to `0`. A
   counterexample needs a model at intertwining distance `>= κ` from every genuine-coordinate model.
 - **Wreath models are at distance `>= κ`.** By §5.2, `d(σ) >= κ` at every trace-preserving wreath model of `G`.
+- **Finitary form at one threshold.** Assume `gcd(r, q-1) = 1`. Call `u : B_R(G) -> U(n)` an
+  `(R, ε)`-almost representation if `||u_g u_h - u_(gh)||_2 <= ε` whenever `g, h, gh ∈ B_R`, and
+  `|tr u_g| <= ε` for `e ≠ g ∈ B_R`. Then (H1) holds at every trace-preserving `G`-model iff (FT) holds:
+
+  ```text
+  (FT)  there are R and ε > 0 such that for every n and every (R, ε)-almost representation u on C^n
+        there are a genuine representation π of Γ on C^(n'), n <= n' <= 2n, and a contraction x ∈ M_(n×n')
+        with ||x||_2 >= 1/2 and max_(s ∈ F_Γ) ||u_s x - x π(s)||_2 <= κ/4.
+  ```
+
+  - *(FT) implies (H1).* The coordinates of an actor model satisfy the hypothesis of (FT) for `U`-most `n`. The
+    resulting `x = (x_n)_U` has defect `<= κ/4 < κ||x||_2`, so `d(σ) < κ`. Corollary D finishes.
+  - *(H1) implies (FT).* Otherwise pick `(k, 1/k)`-almost representations `u^(k)` with no such `(π, x)`. Their
+    ultraproduct is a trace-preserving actor model. Its (H1) rounding, with `x` the coordinate inclusion, meets (FT)
+    at `U`-most `k`, a contradiction.
+  - So (H1) at actor models is a dimension-uniform matrix inequality at the single threshold `κ/4`. It is not a
+    statement with an error tending to `0`.
 - **The obvious candidate does not work.** Regular representations of fixed congruence quotients carry intertwiners
   only on vectors fixed by fixed-level congruence kernels, which have zero trace at regular models
   (`theorem-e-congruence-projections-vanish-at-regular-trace`). A candidate `σ'` must use escaping levels.
