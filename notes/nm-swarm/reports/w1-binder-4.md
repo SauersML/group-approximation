@@ -58,7 +58,9 @@ This is a hand argument, not a Lean model.
   - the inner cycle follows (Configuration B, the lake);
   - the outer cycle follows, plus `reclosed_euler` (Configuration A, the pinched two-gon).
 
-## In flight: `Estimating/OsinAppendixEulerTwoGonMergeDisc` (probing; attic copy landed)
+## Landed: `Estimating/OsinAppendixEulerTwoGonMergeDisc` (13776be09, probe 0913-173915-12004 GREEN, unwired)
+
+All three declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
 
 - `GloballyDistinguishedSectionFamily.false_of_mergeDisc`: the argument of `emptyTwoGonInput_holds`, run at the level of
   `Surgery.InnerDiscRegion` with generic labels. The contiguity geometry is built from the rotated decomposition through
