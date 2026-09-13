@@ -31,3 +31,5 @@ artifacts:
    reduced in the amalgam and not in `H_0`. In `E_F` it equals `x_13(ST) = x_13(1 - Q)`, which lies in `H_0`.
 5. **Kernel.** The kernel `L_3` is locally finite (`jacobson-elementary-subgroups-are-locally-finite-by-linear`,
    item 1).
+
+*Verified independently by `w4-vf-gate` (2026-09-12), Section 32.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
