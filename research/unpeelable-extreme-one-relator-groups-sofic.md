@@ -11,6 +11,7 @@ distinct_from:
 artifacts:
   - research/artifacts/peelable-extreme-one-relator-sofic-2026-09-11.md
   - research/artifacts/or-unpeelable-extreme-2026-09-12.md
+  - research/artifacts/or-length15-residue-2026-09-13.md
 ---
 
 OPEN. Let `G = <a,t | w>` be torsion-free, and suppose that for every free
@@ -86,3 +87,24 @@ remainder is [[no-magnus-envelope-one-relator-groups-sofic]], routed by
    fibring, amenable-edge permanence, or malnormal combination. An amenable
    envelope would have to begin with an infinite cyclic splitting of `F(x,y)`
    whose rank-2 vertex group properly contains a Magnus subgroup. Still OPEN.
+6. **Virtual fibring in finite covers.** *Closes 29 of the 30 length-15 classes
+   by computer-checked certificates; one class stays open.* A certificate is:
+   - a transitive action of `G` on `k` points, which gives a subgroup `H` of
+     index `k`;
+   - an integral character `phi : H ->> Z`, given by a cellular cocycle on the
+     covering complex, whose infinite cyclic cover collapses at both ends onto
+     a finite window.
+
+   Then `ker phi` is free (Lyndon asphericity, then Bieri's theorem on normal
+   subgroups in groups of cohomological dimension 2), so `H = F_n x| Z`. So `G`
+   is residually finite, hence sofic. An automorphic image of the relator
+   presents the same group, so it may be used instead.
+
+   Certificates were found at index 3–12. One of them lives on a length-16 image
+   (row 18). An independent verifier re-checked all of them
+   (`research/artifacts/or-length15-residue-2026-09-13.md`).
+
+   The remaining class is `AAttATaTAttaaTT`, with level exponent sums
+   `[-3,1,1]`. It has no certificate at index `<= 12`, and none of its 7 images of
+   length `<= 17` has one at index `<= 10`. A finite census cannot establish the
+   claim, so it stays OPEN.
