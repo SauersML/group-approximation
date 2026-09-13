@@ -87,6 +87,11 @@ least `1 − N/n` at every trace. Let `n → ∞` along the given sequence. ∎
   and non-elementary, with Bauer `T(A)`, tlfnd and strict comparison. Then `A ≅ A ⊗ Z` iff for
   every `n` some `x ∈ W(A)` has `n x ≤ [1] ≤ (n+1) x`, iff unital `Z_{n,n+1} → A` exist for
   arbitrarily large `n`.
+- **Purity on Bauer simplices, no nuclearity.** Let `A` be exact with Bauer `T(A)` and
+  strict comparison. Theorem 1 of the first artifact turns (1) into RD_b, and the spectral
+  estimates turn RD_b into rank density. Then `rank-density-and-strict-comparison-give-purity`
+  gives purity. Conversely purity gives (3) at the compact class `[1]`. So `A` is pure iff
+  `[1_A]` is almost divisible (`bauer-strict-comparison-pure-iff-divisible-unit`).
 - **The crux as part (1) of STW XXVII at one element.** Purity asks almost divisibility of every
   Cuntz class. On this locus, strict comparison plus almost divisibility of `[1]` alone gives
   RD_b (Theorem 1), then purity (`rank-density-and-strict-comparison-give-purity`), then

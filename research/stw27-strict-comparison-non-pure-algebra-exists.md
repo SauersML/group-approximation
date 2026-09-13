@@ -53,3 +53,14 @@ Everything any such `A` must satisfy:
   obstruction can survive in a simple limit together with strict comparison
   is the live question for this root; see
   `simple-unital-ash-algebras-realize-ranks-approximately` once landed.
+- **Bauer simplices: the obstruction sits at the unit (2026-09-12, lane
+  `ex-toms-winter`).** Suppose the witness has a Bauer trace simplex. By
+  `bauer-strict-comparison-pure-iff-divisible-unit` (exact algebras, no dimension
+  hypothesis), its unit is almost indivisible: for some `n`, no `x ∈ W(A)`
+  satisfies `n x ≤ [1] ≤ (n+1) x`.
+  - Such a witness admits no unital `Z_{n,n+1}` for that `n`.
+  - It contains no unital simple infinite-dimensional unique-trace subalgebra,
+    such as `Z` or a UHF algebra.
+  - On Bauer simplices, central step functions turn divisibility of the unit into
+    rank density of every continuous profile. So rank density fails exactly at the
+    constant profiles.

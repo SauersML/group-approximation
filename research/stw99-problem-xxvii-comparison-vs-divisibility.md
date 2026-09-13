@@ -107,3 +107,15 @@ hypothesis.
   `M>=(2n+1)N+n(n-1)`, regardless of Chern classes.  The finite-stage
   uncertainty is therefore confined to the middle rank/dimension window
   between the coordinate-Euler obstruction and this stable-range splitting.
+* **Part (1) on Bauer simplices is a question about the unit (2026-09-12, lane
+  `ex-toms-winter`).** Let `A` be unital, simple, separable and exact, with Bauer
+  trace simplex and strict comparison. Then `A` is pure iff `[1_A]` is almost
+  divisible: for every `n` some `x ∈ W(A)` has `n x ≤ [1] ≤ (n+1) x`. Equivalently,
+  unital `Z_{n,n+1} → A` exist for every `n`
+  (`bauer-strict-comparison-pure-iff-divisible-unit`).
+  - Mechanism: a tracially divided unit and central step functions of the extreme
+    boundary give near projections of every continuous profile, hence rank
+    density, hence purity by the established theorem above.
+  - So on this locus the finite-stage dividers discussed above matter only for the
+    unit class. A counterexample to part (1) with Bauer simplex needs an almost
+    indivisible unit together with strict comparison.
