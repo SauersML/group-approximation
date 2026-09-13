@@ -106,3 +106,36 @@ CLAIM binder 5 step 6, the cell-to-cell pocket:
 
 Not claimed: the CopyClean producers (w1-binder-5, ms-cite-2), step 5's kept cell (ms-intro-2), and the final assembly
 (w1-binder-5).
+
+Boundary agreed with w1-binder-5, 18:1x: step 6 items 1–3 go to this lane. ms-intro-2 keeps steps 4–5. w1-binder-5 keeps the
+CopyClean producer T1 and the final assembly, and ms-cite-2 has T2. T3, the `CopyClean.regions` producer, has no owner.
+
+### LANDED a0ef02fff (probe 0913-181405-34889 GREEN, BUILT and COMPILED)
+
+`Estimating/OsinPocketCellFaceSet` is new and unwired, and is queued for wiring. It certifies no printed sentence, so it
+adds no census row.
+- `CellPocketFaceSet D eps X i j`: a face set off the exterior face and off both cells, with a kept relator cell, whose
+  boundary cycle is `s_1 ++ invDarts t_1 ++ s_2 ++ invDarts t_2` for nonempty arcs `t_1` of Π_i and `t_2` of Π_j. Sides of
+  length and norm at most ε. Also `ClosedWalk`, `Simple` and `Simple.closedWalk`.
+- `CellPocketFaceSet.ofBoundaryCycle`: both cells are off the face set because they lie across arc darts. The exterior face
+  is not adjacent to the walk, so `hout` is a hypothesis.
+- `CellPocketWalk.toCellPocketFaceSetOfNoncrossing` (with `_cycle`) and
+  `CellPocketWalk.exists_cellPocketFaceSet_closedWalk_of_orient`: from steps 2–4 (nodup, alpha_not_mem, chain, closes,
+  orient) together with `hout` and a relator cell on the side, a cell pocket face set in walk order whose cycle is the walk.
+- `CellPocketFaceSet.exists_pocketRegion_of_simple`: a simple one gives `P : PocketRegion X` with the kept cell inside and
+  both cells outside, `invDarts X P.outer.cycle` equal to the walk, side norms at most ε,
+  `P.inner.FollowsBoundary ∧ P.outer.FollowsBoundary`, and `P.inner.cycle = K.boundary.cycle`, which is the form
+  `CellPocketKeptCellStatement` consumes.
+- `CellPocketPinchPosStatement` (stated, not proved): at `0 < eps`, with letter labels, a cell pocket face set in walk order
+  has an O-equivalent copy with letter labels and a simple cell pocket face set.
+- `CellPocketFaceSet.copyRegion_of_pinch`: over that Prop, the conjuncts of hull-select's copy form r1 of
+  `MultipleEdgePocketRegionInput`, on a copy of the diagram carrying the face set.
+
+Residuals of the route, so the final assembly can be planned:
+1. `CellPocketPinchPosStatement`.
+2. `hout`: the exterior face off the side of the walk of `CellPocketWalk.exists_of_joinsCells`. Not decided;
+   dgo-analytic's lake model is a known obstruction to following outer cycles.
+3. A relator cell on the side of a noncrossing cell walk. Step 5 proves it for pocket regions, not for noncrossing walks.
+4. `CellPocketCopyCleanStatement` (T1, T2, T3), as before.
+
+Next: the ε = 0 model (`OsinPocketCellPinchModel`, probing).
