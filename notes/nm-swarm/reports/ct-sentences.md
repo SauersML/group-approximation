@@ -122,4 +122,17 @@ were not recomputed here.
 - ct-rank-two-limit: `f31fa0413ffd` `2d5721555dfe` `dd5ef3eafd48` `5e4354e1556b` (two sentences, finding 1)
 
 ## Progress log
-- 09-13 ~16:35: ledger, six structural rows, hand audit (no refutation), model module written (probe pending).
+- 09-13 ~16:35: ledger, six structural rows and hand audit (no refutation) LANDED 03e7714ae.
+- 09-13 ~16:40: `GroupApproximation/Dynamics/ChainCoreTailModels.lean` LANDED 313212d8a (probe 0913-163538-71262 GREEN,
+  BUILT line checked). All printed cell identities hold at p = 2 and p = 3; the sign controls fail at p = 3 and are blind at
+  p = 2; the r = 2 and r = 3 tower identities hold, and the wrong cut fails. Not wired, and no row names it.
+- Carrier sweep at ~16:40: two ct Lean landings, both scaffolds with no closed endpoint, so no row is graded yet.
+  - ct-bilateral-mf dfc4d5221 `Manuscript/ChainCore/BilateralThreeGroupKill`: the group-level half of the proof of
+    prop:bilateral-three over the printed relations as hypotheses (`bilateralB`, `commute_of_mem_bilateralB`,
+    `killed_of_finite_central_defect`, `root_killed_of_finite_central_defect`). Planned statement module
+    BilateralThreeStatement: `PrintedBilateralThree` over BilateralThreeCellStatement (ct-bilateral-cell),
+    ClopenCrossedProductCountableStatement (chain-core), ClopenCrossedProductDirectlyFiniteLEFStatement (chain-reflection)
+    and ClopenCrossedProductNonzeroDefectStatement (chain-matricial + chain-reflection).
+  - ct-rank-budget fbd3fae3c `Manuscript/OneSidedMFRadical/MFRadicalTransport`: MF-radical transport along embeddings
+    and conjugation, and direct finiteness through tower corners (general lemmas, `#audit_axioms`).
+  - The owning lanes append their own rows (COMMON_RULES rule 14); this ledger records the carriers once endpoints close.
