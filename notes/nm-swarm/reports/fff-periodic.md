@@ -2,6 +2,59 @@
 
 Non-MF verbatim formalization swarm, 2026-09-12.  Clone nm-c.
 
+## 09-13: `EmptyTwoGonInput` closed (route A), LANDED and GREEN
+
+Assignment (lead): a closed producer of hull-euler's `EmptyTwoGonInput`
+(`Estimating/OsinAppendixEulerEmptyTwoGon`), keyed on `IsDiscRegion`, so that pinched pockets
+(no `FaceSetBoundary`, dgo-geometric's `OsinPocketPinchedTwoGonModel`) are covered.
+
+Producer: `GroupApproximation.GGT.VanKampen.emptyTwoGonInput_holds :
+EmptyTwoGonInput D lambda c eps W`, for all parameters, with no hypotheses.
+`#print axioms` = [propext, Classical.choice, Quot.sound].
+
+Route A, as assigned.
+1. Collapse the pocket interior. `Surgery.InnerDiscRegion` is the inner-collapse structure keyed
+   on `region : IsDiscRegion`. `InnerDiscRegion.ofPocketRegion P hcells` builds it from the
+   pocket, using `P.inner`.
+2. Take the value from `P.listVal_inner_eq_one hcells`.
+3. The merged face has no internal dart, so `ContiguityGeometry.ofSingletonFace` gives one
+   region (`InnerDiscRegion.mergedGeometry`) whose weight is at least `a.w + b.w`.
+4. Transport the other regions with `InnerDiscRegion.regionFamily_profile` and
+   `regionFamily_avoid_merged`. The family then has one fewer region and weight at least as
+   large, which contradicts `weight_maximal` or `card_minimal`
+   (`GloballyDistinguishedSectionFamily.false_of_disc_collapse_singleton`).
+
+The proof does not use `LeastArea`, `a.1 ⊆ P.faces` or `b.1 ⊆ P.faces`. The merged region
+targets a section, so the proof stays loop-free under the pending LoopCut ruling.
+
+| Module | Lines | Landed |
+|---|---|---|
+| `V/SurgeryInnerDiscCollapse` | 250 | da2d0b963 |
+| `V/SurgeryInnerDiscCollapseDarts` | 369 | da2d0b963 |
+| `V/SurgeryInnerDiscCollapseRegions` | 370 | da2d0b963 |
+| `V/SurgeryInnerDiscCollapseMerged` | 77 | da2d0b963 |
+| `V/Estimating/OsinPocketDiscMerge` | 257 | 2aa17abb0 |
+| `V/Estimating/OsinPocketDiscEmptyTwoGon` | 89 | 2aa17abb0 |
+
+The four collapse modules copy `SurgeryInnerCollapse*` with the region keyed on `IsDiscRegion`
+(`InnerGRegion` → `InnerDiscRegion`, `R.boundary.cycle` → `R.region.cycle`).
+`SurgeryGCellCollapse.InteriorGCellRegion` has no transport API, so these modules do not
+duplicate it.
+
+Verification.
+- Probe `0913-091627-32913` (base fd51edbc6, which contains the CutMerge omega fix e7e55c0f2):
+  PROBE GREEN. It BUILT `OsinPocketDiscMerge` and `OsinPocketDiscEmptyTwoGon`, with no errors
+  and no warnings.
+- The four collapse modules were BUILT in probe `0913-090831-85897` on the same bytes. In the
+  later probe they were replayed and COMPILED.
+- The bytes of all six files equal origin/main.
+- The six modules are queued in `wire-queue.txt`.
+- An earlier probe went red only at the peer's `OsinAppendixCutMerge:103`. hl-lemma46 fixed it
+  at e7e55c0f2, and I did not edit that file.
+
+Residual Props: none. No census row is added, because `EmptyTwoGonInput` is hull-euler's piece
+Prop. The signatures of `Systolic.mirrorFold` and `mirrorFoldPinched` are unchanged.
+
 ## 09-13: four-leaf endpoint flips, LANDED and GREEN
 
 Assignment (lead, after hfold closed): every baseline declaration of `TorsionFreeFourLeaves`,
