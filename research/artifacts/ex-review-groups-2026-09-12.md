@@ -157,6 +157,10 @@ every group.
   algebras (with a rank-1 note), non-finite-presentation of LEF simple rings, and linear soficity from ring
   rank models. The Z^d simplicity and rank-model claims pass at step level. Part 12.
 
+- **§13, fp-kazhdan Kac–Moody and Titz–Witzel refills (~02:25 CDT).** PASS on IRS-rigid almost actions,
+  Haagerup orbit full groups, compression triples in proper CAT(0) groups (the Kac–Moody instance
+  conditional), the (2,4,6) lattice citation assembly, and the two vcd fences. Part 13.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -171,3 +175,4 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part10.md`: §10, Atiyah base change under the determinant conjecture.
 - `research/artifacts/ex-review-groups-2026-09-12-part11.md`: §11, Atiyah hosts and the Pestov 9.1 extras.
 - `research/artifacts/ex-review-groups-2026-09-12-part12.md`: §12, fp-kazhdan-ring refill.
+- `research/artifacts/ex-review-groups-2026-09-12-part13.md`: §13, fp-kazhdan Kac–Moody and Titz–Witzel refills.
