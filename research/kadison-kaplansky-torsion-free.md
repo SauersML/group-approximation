@@ -64,6 +64,10 @@ group `G * Z`.
   `torsion-free-matrix-trace-defect-exists`.
 - *One group at a time:* for a torsion-free acylindrically hyperbolic group, whose
   reduced algebra is itself selfless, the two statements coincide on the group.
+- *Exact per-group form:* `free-product-kk-iff-trace-conjecture-for-factors`. The
+  projection traces of `C*_r(G * H)` are `(τ_*K_0(C*_r G) + τ_*K_0(C*_r H)) ∩ [0,1]`
+  (Fima--Germain K-theory and strict comparison). So this root holds for `G * Z` iff
+  `τ_*(K_0(C*_r G)) ⊆ Z`, and the trace conjecture passes to free products.
 
 ## Attempts
 
