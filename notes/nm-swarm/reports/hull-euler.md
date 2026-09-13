@@ -75,6 +75,10 @@ queued (wire-queue lines 626–627), and leavitt-units' Count and Section module
   green with `BUILT` (base 19866c7d6), no errors or warnings, all six `#audit_axioms` inside the
   classical allowlist. The md5 of the green record equals origin/main, and the commit is an
   ancestor of main.
+- 20911e5b2bfacab73fae5aedbb6c971176990b01: `Dynamics/ChainRecurrence`, S2. Landed after probe
+  0913-160538-94022 read `PROBE GREEN` with `BUILT` (base ac3acde9d), no warnings. All ten
+  `#audit_axioms` lie inside the classical allowlist. The md5 of the green record equals the file
+  on origin/main, and the commit is an ancestor of main.
 
 ## Residual Props
 
@@ -326,6 +330,50 @@ takes `P : PocketRegion S.diagram` and `hinner : P.inner.cycle = K.walk`, with n
 has no planned proof. hull-select produces the four inputs of `ofNoncrossingClosedWalk` for
 non-simple pocket walks and consumes `reclosed_euler`; it has the statement and SHAs.
 
+## S2: chain recurrence (sec:chain-core)
+
+Lead's item (09-13 15:10): chain-core sub-item S2 `recurrence`. The keys are 49f76a64907a,
+d5af28721656, 3ebdab1c418b, 0ae6fc9e199c, 73bd8ac910aa, 3ef2a7cdb9bd and c99bf0bdb029, plus the
+closed-and-invariant part of d8e1a694d87c.
+
+Module `GroupApproximation/Dynamics/ChainRecurrence.lean` (20911e5b2, green 0913-160538-94022,
+unwired). It imports only Mathlib and `Meta.AxiomGuard`. Namespace `GroupApproximation.Dynamics`:
+
+- `ChainStep T V a b := (T a, b) ∈ V`, one step of an entourage chain.
+- `transGen_iff_exists_seq`: `TransGen R a b` iff there are `r ≥ 1` and `xs : ℕ → X` with
+  `xs 0 = a`, `xs r = b` and `R (xs i) (xs (i + 1))` for `i < r`.
+- `transGen_chainStep_map f hf h`: chains transport along a map carrying steps to steps.
+- `IsChainRecurrent T x := ∀ V ∈ 𝓤 X, TransGen (ChainStep T V) x x`, and
+  `chainRecurrentSet T := {x | IsChainRecurrent T x}` is the printed `CR(T)`
+  (`mem_chainRecurrentSet` is `Iff.rfl`).
+- `IsMetricChainRecurrent T x` is the printed metric definition. `isChainRecurrent_iff_metric`
+  shows that the two definitions agree for a pseudometric.
+- `chainRecurrentSet_eq_of_compact h₁ h₂ T` and `isMetricChainRecurrent_iff_of_compact h₁ h₂`:
+  on a compact space the set does not depend on the compatible uniformity or metric.
+- `isClosed_chainRecurrentSet [CompactSpace X] (hT : Continuous T) :
+  IsClosed (chainRecurrentSet T)`.
+- `apply_mem_chainRecurrentSet_iff (T : X ≃ₜ X) : T x ∈ CR(T) ↔ x ∈ CR(T)` and
+  `image_chainRecurrentSet T : T '' CR(T) = CR(T)`, both over compact `X`.
+- `mapsTo_chainRecurrentSet (hπ : Continuous π) (h : Function.Semiconj π T S) :
+  Set.MapsTo π CR(T) CR(S)`, over compact `X`: chain recurrence passes to factors.
+- `IsWandering (T : Equiv.Perm X) W`: distinct integer translates `T ^ m '' W` are pairwise
+  disjoint. `isWandering_diff_image (hP : T '' P ⊆ P) : IsWandering T (P \ T '' P)`, through
+  `image_pow_succ_subset`.
+
+The hypotheses are the printed setting (compactness, continuity, `T(P) ⊆ P`, a factor map), not
+cited results. Compactness enters only through uniform continuity of `T`, `T⁻¹` and `π`.
+
+Not in the module:
+
+- nonemptiness of `CR(T)`;
+- the covering of `X \ CR(T)` by translates of the defects (0ae6fc9e199c).
+
+The covering has a direct zero-dimensional proof. For `x ∉ CR(T)` and a fine clopen partition,
+the atom of `x` lies on no cycle of the atom graph, where `A → B` iff `T(A) ∩ B ≠ ∅`. Let `P` be
+the union of the atoms reachable from it by paths of positive length. Then `P` is clopen,
+`T(P) ⊆ P` and `Tx ∈ P \ T(P)`. Ownership is asked of the lead, since chain-subshift proves
+`Y_0 = CR(T)` on the subshift route.
+
 ## Census
 
 No rows yet. The rows wait for the closure of `PhiPrimeCountInput`, which carries the Euler count
@@ -347,3 +395,7 @@ inside the proof of `thm:hull` (tex 1636, through Osin's Lemma 9.7(a)). The sect
 4. The R2 Euler lemma is green. A consumer fills `heuler` of `PocketRegion.ofNoncrossingClosedWalk`
    with `hw.reclosed_euler Delta.planar hfollows`. Wiring `NoncrossingClosedWalkEuler` is the
    lead's call.
+5. S2. `Dynamics/ChainRecurrence` is landed (20911e5b2) and queued for wiring. chain-subshift
+   (`Y_0 = CR(T)`) and chain-itinerary consume it. Waiting on the lead's ruling for the covering
+   of `X \ CR(T)` (0ae6fc9e199c), direct or through the subshift route, and for nonemptiness.
+   Census rows for the S2 keys after the ruling.
