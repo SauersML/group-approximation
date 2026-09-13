@@ -194,6 +194,9 @@ Why C6′ holds, the route for debt-conditional:
     The Regions transport carries only regions that avoid the doubled face and the face across it,
     so `a` and `b` need their own transport.
   - Ruling (B) (bdc7337fd) names only (a) and (b). Checked 09-13.
+  - Owners (lead, 09-13): hs-vanishes has (a). leavitt-units has (b) and the transport for (c).
+    sec2-sentences has the kept cell on the copy. debt-conditional keeps C6′ and assembles the
+    pieces.
   - No landed declaration builds a `PocketRegion` from a pinched walk.
     `noncrossingClosedWalkSides` (26a7858f2) concludes only two `BoundaryCycle`s, and
     `bothFollowUnpinched` (74d4ebd34) needs `FollowsBoundary` on both cycles. Checked 09-13.
@@ -314,7 +317,14 @@ theorem IsNoncrossingClosedWalk.reclosed_euler (hw : IsNoncrossingClosedWalk M w
       M.eulerCharacteristic
 ```
 
-The lemma is needed only under R2. R2 against R1 waits on kh-torsion.
+The lemma is needed under R2, and also under R1 for configuration A (dgo-analytic's correction,
+09-13). sec2-sentences' `exists_kept_of_pocketRegion` (`Estimating/OsinPocketKeptCell.lean:100`)
+takes `P : PocketRegion S.diagram` and `hinner : P.inner.cycle = K.walk`, with no
+`FollowsBoundary`. So the kept cell of a pinched pocket walk whose outer cycle follows is
+`exists_kept_of_pocketRegion … (ofNoncrossingClosedWalk hw hout hfollows
+(hw.reclosed_euler _ hfollows)) rfl havoid`. The lead still prefers R2: under R1, configuration A
+has no planned proof. hull-select produces the four inputs of `ofNoncrossingClosedWalk` for
+non-simple pocket walks and consumes `reclosed_euler`; it has the statement and SHAs.
 
 ## Census
 
