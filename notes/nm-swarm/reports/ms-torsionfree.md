@@ -109,6 +109,31 @@ Note on `dab2f2bfe084`:
 
 When hgreendlinger closes, all eleven rows flip by applying the closed producer.
 
+## C6′ leaf (W1 binder 4, `OsinTwoGonHoldsSectionStatement`), coordinator item 09-13 ~17:20
+
+CLAIM lake pocket region from inner following `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketRegionInnerFollows.lean`
+
+- Proposed to w1-binder-4 in one message (17:55), with no reply requested unless it objects.
+- The leaf covers the inner branch of L2 plus L3 of w1-binder-4's report.
+- Ownership check (17:50): nothing on origin, in the shared tree, in `$NM/drafts` or in any lane report builds a
+  `PocketRegion` or an outer disc region from inner following.
+  - hl-lemma46's report mentions only the inner disc (`toDiscRegion_of_followsBoundary`).
+  - The pieces this lane consumes are landed: `IsNoncrossingClosedWalk.reverseMapAlpha` and
+    `FirstTurnWalk.not_mem_sideFaces` (hull-select), `reclosed_euler` (hull-euler), `toDiscRegion_of_euler`,
+    `toDiscRegion_of_followsBoundary`.
+- Statement, stated before building:
+  - `sideFaces M (w.reverse.map α) = sideOutside M w` for a noncrossing `w` on a planar map;
+  - `PocketRegion.ofNoncrossingClosedWalkInner hw hout hin`:
+    - faces = `sideFaces w`, inner cycle `w`, outer cycle `w.reverse.map α`;
+    - inner disc from `toDiscRegion_of_followsBoundary`;
+    - outer disc from `reclosed_euler` on the reversed walk, whose outer cycle is `w`.
+- Why it matters: in the lake (Configuration B) the inner cycle follows while the outer does not.
+  - `PocketRegion.outer` needs only a connected, χ-preserving reclosing of the complement, which the reversed walk
+    supplies.
+  - So `emptyTwoGonInput_holds`, `InnerDiscRegion.ofPocketRegion` and `P.listVal_inner_eq_one` fire in the lake.
+- Model test: the labelled lake rose (`OsinPocketLakeLabelledModel.roseDiagram`, walk `[0,2]`).
+
 ## Progress
 
 - 09-13 ~17:15: ledger landed; regrade row for `a9dd4b90e479` landed. No carrier gap outside W1 in range.
+- 09-13 ~17:55: C6′ leaf claimed (above).
