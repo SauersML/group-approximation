@@ -91,6 +91,17 @@ equals 68481e4d7.
 
 ## Lean
 
-- `GroupApproximation/Manuscript/NonMFSentences/CitationSweepIntroAudit.lean` (new): `#audit_closed_axioms` for
-  `manuscriptShiftKernelIsOperatorMF`, `manuscriptMFNotClosedUnderIntSemidirect` and
-  `printedNegativeConnesEmbeddingSentence`. Probe pending; it lands only after a green verdict.
+- `GroupApproximation/Manuscript/NonMFSentences/CitationSweepIntroAudit.lean` (new), LANDED c04133c00:
+  `#audit_closed_axioms` for `manuscriptShiftKernelIsOperatorMF`, `manuscriptMFNotClosedUnderIntSemidirect` and
+  `printedNegativeConnesEmbeddingSentence`.
+  - Probe 0913-171556-18781 (base e24b2ae3b) was GREEN: a BUILT line for the module, and each of the three reported
+    only propext, Classical.choice and Quot.sound.
+  - The lead restart killed the local watcher before it wrote the evidence record. Re-probe 0913-172317-48724 on the
+    same bytes (md5 f0275ed1…) was GREEN from the artifact cache and recorded the evidence nmland needs.
+  - Queued for wiring in `wire-queue.txt`. Until it is root-imported, these closed audits certify the carriers but
+    do not change the root closure.
+
+## State
+
+Scope finished for tex 1–1337. The ledger and census correction landed at 09d4f6b3d, the audit module at c04133c00.
+The only still-assumed cited result is Hull's small cancellation theorem, through the W1 wall, which other lanes own.
