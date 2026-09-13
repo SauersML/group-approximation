@@ -4,7 +4,7 @@ id: fpbs-pivotal-nonconcentration-universal
 kind: claim
 title: Every nonamenable Cayley graph avoids full critical pivotal sensitivity concentration
 distinct_from:
-  fpbs-pivotal-budget-universal: that is the uniform near-critical linear budget; this only forbids the whole asymptotic normalized budget from concentrating in some neighbourhood above criticality, and is strictly weaker.
+  fpbs-pivotal-budget-universal: that is the uniform near-critical linear budget; this only forbids the whole asymptotic normalized budget from concentrating in some neighbourhood above criticality. It is implied by that claim, and no graph separating the two is known.
 ---
 
 OPEN. With the exact limit order of Section 2, prove that some epsilon>0 has B(epsilon)<-log rho for every nonamenable locally finite Cayley graph. The stronger B(epsilon)->0 would suffice but is not proved.
@@ -41,3 +41,12 @@ OPEN. With the exact limit order of Section 2, prove that some epsilon>0 has B(e
   `fpbs-bridgeless-collective-fragility`, and the evolution of the bridge tree
   as the parameter increases is part of the problem rather than a correction
   to it.
+* **Assume the critical l2 gap.** If `p_c<p_(2->2)`, then for some `p0>c` the
+  conditional pivotal count is at most a constant `C_0` for all `p<=p0`,
+  `n>=1` and `R>=n`. So `M_(n,R)(c+epsilon) <= C_0 n^(-1) log(1+epsilon/c)`
+  and `B(epsilon)=0` for `epsilon<=p0-c`
+  (`fpbs-l2-gap-cayley-graphs-satisfy-pivotal-kernels`); every such graph
+  already has `p_c<p_u`. **Where it dies:** `C_0` comes from a full-space
+  bubble that is infinite at every uniqueness parameter, so bounding it above
+  `c` already proves nonuniqueness (Section 6 of
+  `research/artifacts/fpbs/docs/pivotal-kernel-ordering-2026-09-12.md`).

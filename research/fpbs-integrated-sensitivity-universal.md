@@ -55,3 +55,12 @@ OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity mu
   `fpbs-pivotal-nonconcentration-universal`. Neither version is proved, and
   the collapse forces exactly the boundary value `-log rho`, so no slack is
   visible from this side.
+* **Assume the critical l2 gap.** If `p_c<p_(2->2)`, then for some `p0>p_c`
+  the conditional pivotal count is at most a constant `C_0` for all `p<=p0`,
+  `n>=1` and `R>=n`. The integral in (IS) is then at most
+  `C_0 log((p_c+epsilon)/p_c)`, so (IS) holds
+  (`fpbs-l2-gap-cayley-graphs-satisfy-pivotal-kernels`); every such graph
+  already has `p_c<p_u`. **Where it dies:** `C_0` comes from a full-space
+  bubble that is infinite at every uniqueness parameter, so bounding it above
+  `p_c` already proves nonuniqueness (Section 6 of
+  `research/artifacts/fpbs/docs/pivotal-kernel-ordering-2026-09-12.md`).

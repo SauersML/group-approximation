@@ -51,3 +51,12 @@ OPEN. For every fixed nonamenable Cayley graph, does some p0 in (pc,1) satisfy l
   its derivative with a Bernoulli pivotal count is an error the note names
   explicitly. It does show that no argument using only the spectral
   decomposition can exclude the scale.
+* **Assume the critical l2 gap.** If `p_c<p_(2->2)`, then some `p0>c` has
+  `L_n(p0) <= C_0/n` with `C_0 = 2 d ||T_(p0)||_(2->2)^2`, so the growth rate
+  is `0` (`fpbs-l2-gap-cayley-graphs-satisfy-pivotal-kernels`); every such
+  graph already has `p_c<p_u`. **Where it dies:** the bound replaces the
+  finite-ball pivotal event by a full-space BK bubble, which is infinite at
+  every uniqueness parameter. Keeping the ball gives finite bubbles, but they
+  increase to the full-space one as `R` grows, so the supremum over `R>=n` in
+  `L_n` is exactly what the method cannot reach (Section 6.3 of
+  `research/artifacts/fpbs/docs/pivotal-kernel-ordering-2026-09-12.md`).

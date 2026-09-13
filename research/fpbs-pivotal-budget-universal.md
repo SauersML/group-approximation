@@ -42,3 +42,17 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
   `fpbs-pivotal-nonconcentration-universal` and
   `fpbs-integrated-sensitivity-universal`, which this claim implies and which
   are not known to be strictly weaker in any useful sense.
+* **Assume the critical l2 gap.** On every Cayley graph a BK bubble, split at
+  the connectivity operator by Cauchy–Schwarz, gives
+  `E_p[N_(n,R)|E_(n,R)] <= 2 d ||T_p||_(2->2)^2` for all `n>=1` and `R>=n`
+  (`fpbs-l2-gap-gives-bounded-pivotal-counts`). So the budget holds, with a
+  count bounded independently of `n`, on every Cayley graph with
+  `p_c<p_(2->2)` (`fpbs-l2-gap-cayley-graphs-satisfy-pivotal-kernels`). That
+  class includes hyperbolic groups and the non-cactus products `T_k x Z^m`
+  (`fpbs-pivotal-kernels-hold-on-known-gap-test-graphs`), but all of them
+  already have `p_c<p_u`. **Where it dies:** the bound passes through a
+  full-space bubble `W_n(p)` that is infinite at every uniqueness parameter,
+  so a bound on it above `p_c` already certifies nonuniqueness. The
+  finite-radius bubbles are finite but increase to `W_n`, so a universal proof
+  must control the pivotal event uniformly over `R>=n` (Section 6 of
+  `research/artifacts/fpbs/docs/pivotal-kernel-ordering-2026-09-12.md`).
