@@ -37,6 +37,14 @@ permutational wreath product `Q = T_1 wr T_2 wr ... wr T_d` of transitive groups
   every nilpotent-by-(locally finite variety) class, with no restriction on the nilpotency class
   (`relator-width-over-nilpotent-by-locally-finite-groups`). Iterated wreath products of
   nonabelian simple groups have trivial Fitting subgroup, so that theorem says nothing about them.
+- **Towers of nonabelian simple groups: settled positively.** When every vertex group is nonabelian
+  simple, the bound holds for every finitely presented group without finite quotients, with no
+  soficity input (`relator-width-bounded-over-simple-iterated-wreath-products`). The mechanism is a
+  balanced template, a spanning tree of dipoles, and nested commutators for one defect, with the
+  uniform commutator width of the towers (`iterated-simple-wreath-bounded-commutator-width`). The
+  depth-two case with symmetric tops is `simple-nonsofic-width-over-bounded-base-symmetric-wreath`. So
+  what remains open here is towers with abelian or solvable layers, such as `C_2 wr Alt(5) wr C_3 wr ...`.
+  There the defect lies in a module and is not a bounded product of commutators.
 - **Direct products and the top-level reduction.** A *template* for `x` is a fixed word in `R^(+-1)`
   whose letters can be conjugated to give `a_x`. A template valid for every tuple in a class stays
   valid over direct products of that class, with conjugators chosen coordinatewise; trivial coordinates
