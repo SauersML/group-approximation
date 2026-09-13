@@ -186,10 +186,12 @@ theorem generatorCoronaHom_apply (G : Type*) [Group G]
     [∀ n, Nonempty (M.space n)] (g : G) :
     (generatorCoronaHom G M g : NormMatrixCStarCorona (fun n ↦ M.space n))
       = coronaMap M (maximalGroupCStarGenerator G g) := by
-  have h : (generatorCoronaHom G M g : NormMatrixCStarCorona (fun n ↦ M.space n))
+  calc (generatorCoronaHom G M g : NormMatrixCStarCorona (fun n ↦ M.space n))
       = coronaMap M (maximalGroupCStarGenerator G g) + (1 - coronaMap M 1) := rfl
-  rw [h, coronaMap_one]
-  abel
+    _ = coronaMap M (maximalGroupCStarGenerator G g) + (1 - 1) :=
+        congrArg (fun t ↦ coronaMap M (maximalGroupCStarGenerator G g) + (1 - t))
+          (coronaMap_one M)
+    _ = coronaMap M (maximalGroupCStarGenerator G g) := by abel
 
 /-- **Printed sentence 4, first clause.**
 
