@@ -1,0 +1,43 @@
+# Lane ct-bilateral-cell: the three-coordinate cell of prop:bilateral-three
+
+Scope: the ring and matrix identities of the proof of `prop:bilateral-three` (tex 1549–1596 at
+origin/main 68481e4d7), the corner algebra `S`, its embedding in `GL₃(R_X)`, and the closed
+discharge of ct-bilateral-mf's `BilateralThreeCellStatement`.  Written by ct-bilateral-cell only.
+
+## Landed (consume these names)
+
+`5d90422ea` (and 923231b3c): namespace `GroupApproximation.BilateralThreeCell`.
+
+| printed object | declaration | module |
+|---|---|---|
+| a unit `u` and idempotent `p = 1_P` with `u p u⁻¹ ≤ p` | `Cell R` (fields `u`, `p`) | Algebra/BilateralThreeCellLevels |
+| `u^j p u^{-j}` nested | `Cell.lvl`, `lvl_mul_lvl_of_le`, `lvl_mul_lvl_of_le'` | same |
+| `d`, `f_{ab} = u^a d u^{-b}`, wandering | `Cell.d`, `Cell.f`, `Cell.f_mul_f` | same |
+| negative levels lie outside `P` | `p_mul_f`, `f_mul_p`, `corner_mul_f`, `f_mul_corner` | same |
+| `s = up`, `t = pu⁻¹`, `ts = p`, `st = p - d`, `uau⁻¹ = sat` | `Cell.s`, `Cell.t`, `t_mul_s`, `s_mul_t`, `unit_conj_eq_s_mul_t` | same |
+| `r`, "acts outside `P`" | `Cell.r`, `Cell.rInv`, `Cell.rUnit`, `r_mul_corner`, `corner_mul_r` | same |
+| `W = diag(u,u,u) diag(1,1,r)` | `Cell.W` (diagonal `Cell.w`) | Algebra/BilateralThreeCellMatrices |
+| `c`, `ℓ`, `y`, `z`, `δ` | `Cell.c`, `Cell.ell`, `Cell.y`, `Cell.z`, `Cell.delta` | same |
+| embedded `L` over a coefficient set `S` | `coreGroup (S : Set R)` | same |
+| `W` conjugates `L` into `L` | `Cell.W_conj_root`, `Cell.W_conj_mem_coreGroup` | same |
+| `c ∈ C_B(L)`; `z` commutes with `L`, `W`, `c`, `y` | `c_commute_coreGroup`, `z_commute_coreGroup`, `z_commute_W`, `z_commute_c`, `z_commute_y` | same |
+| `WcW⁻¹ = e₁₃(f_{0,-2})`, `δ = [WcW⁻¹,ℓ]`, `[y,δ] = z⁻¹` | `W_conj_c`, `delta_eq`, `commutator_y_delta` | same |
+| `B = ⟨L,W,c,y⟩`, `z` central in `B` | `Cell.B`, `z_commute_B`, `z_mem_B` | same |
+| `[z,e₃₁(f_{-2,0})] = e₃₁(f_{-1,0})`, `[e₂₃(f_{0,-1}),e₃₁(f_{-1,0})] = e₂₁(d)` | `commutator_z_root`, `commutator_roots_defect` | same |
+| all printed identities, closed | `printedBilateralThreeCellIdentities : PrintedBilateralThreeCellIdentities` | same |
+| the cell in `R_X`, `d = 1_{P∖T(P)} ≠ 0` | `ClopenCrossedProduct.bilateralCell`, `bilateralCell_d`, `coeff_injective`, `defectD_ne_zero` | Dynamics/BilateralThreeCellClopen |
+
+Commutators are Mathlib's `⁅g,h⁆ = g h g⁻¹ h⁻¹`; every printed sign holds in that convention.
+
+## In flight (probing)
+
+* Algebra/BilateralThreeCellCorner: `Cell.Corner` (Mathlib `IsIdempotentElem.Corner`),
+  `Cell.cornerEmbed S : elementaryGroup (Fin 3) ↥S →* GL₃(R)` ("adjoining identity on `1-p`"),
+  `cornerEmbed_injective`, `range_cornerEmbed`, `unit_conj_mem_range`, `isOfFinOrder_z`.
+* Manuscript/ChainCore/BilateralThreeCellDischarge: `cellRing` (the printed `S`),
+  `isFinitelyGeneratedRing_cellRing`, and the closed `bilateralThreeCellStatement :
+  BilateralThreeCellStatement`.
+
+## Residual statements
+
+None beyond the two in-flight modules.
