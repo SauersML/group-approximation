@@ -162,7 +162,7 @@ theorem glueUnsplit_glueSplit (g : S.GlueDart) : S.glueUnsplit (S.glueSplit g) =
         (S.seamEquiv ⟨d.1, d.2, h⟩).2
       rw [S.glueSplit_inl_of_notMem d h, S.glueUnsplit_inr_of_eq _ hx]
       exact congrArg Sum.inl (Subtype.ext
-        (congrArg Subtype.val (S.seamEquiv.symm_apply_apply ⟨d.1, d.2, h⟩)))
+        (congrArg Subtype.val (S.seamEquiv.symm_apply_apply ⟨d.1, d.2, h⟩) :))
   · exact S.glueUnsplit_inr_of_ne x.1 x.2
 
 theorem glueSplit_glueUnsplit (z : S.InteriorDart ⊕ X.Dart) :
@@ -259,7 +259,7 @@ theorem glueEmbedding_seam (b : BoundaryDart M S.faces) :
     (S.glueEmbedding (S.seamEquiv b).1 : S.GlueDart) = Sum.inl ⟨b.1, b.2.1⟩ := by
   rewrite [glueEmbedding_apply, S.glueUnsplit_inr_of_eq _ (S.seamEquiv b).2]
   exact congrArg Sum.inl (Subtype.ext
-    (congrArg Subtype.val (S.seamEquiv.symm_apply_apply b)))
+    (congrArg Subtype.val (S.seamEquiv.symm_apply_apply b) :))
 
 theorem glueAlpha_glueEmbedding (x : X.Dart) :
     S.glueAlpha (S.glueEmbedding x) = S.glueEmbedding (X.alpha x) :=
