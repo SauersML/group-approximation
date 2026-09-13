@@ -30,6 +30,21 @@ All three declarations depend only on the axioms [propext, Classical.choice, Quo
 - `twoGonHoldsInput_of_eitherFollows : TwoGonHoldsInput`. The outer branch uses `PocketRegion.ofNoncrossingClosedWalk`
   and `reclosed_euler`; the inner branch uses the named Prop. Both then go through `emptyTwoGonInput_holds`.
 
+## Landed: `Estimating/OsinAppendixEulerTwoGonInnerFollowsClosed` (6fcc8658b, probe 0913-182332-15112 GREEN, unwired)
+
+- `pocketRegionOfInnerFollowsStatement` (`#audit_closed_axioms`) is ms-torsionfree's `PocketRegion.ofNoncrossingClosedWalkInner`
+  (2d0b61555).
+- `twoGonHoldsInput_of_eitherFollowsPocket` and `twoGonHoldsInput_of_eitherFollowsCopyPocket` give C6′ from either
+  noncrossing residual alone.
+- All three declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
+
+## In flight: `BoundaryCycleFaceClass` (probing; attic c5e142c1b)
+
+- `BoundaryCycle.eqvGen_of_mem_of_followsBoundary`: all darts of a following boundary cycle lie in one face class of the
+  walk.
+- `IsNoncrossingClosedWalk.eqvGen_of_mem_of_innerFollows` is `TwoGonWalkHyp.connected` for inner-following walks.
+- Hand argument: in Configuration A (outer following only) the two lobes share no edge, so `connected` fails there.
+
 ## Landed: `Estimating/OsinAppendixEulerTwoGonEitherFollowsCopy` (704b70f2c, probe 0913-181302-25404 GREEN, unwired)
 
 All four declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
