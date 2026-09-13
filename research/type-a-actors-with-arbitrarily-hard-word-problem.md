@@ -67,3 +67,15 @@ Its consequences:
      Inside a larger actor such as `2V`, the Mihailova subgroup is not a point
      stabilizer, and no enlargement to one is known.
    - *Status.* No actor of this kind is known.
+5. **Normalizing groups.** By `normalizer-image-of-type-a-actor-is-type-a`,
+   hardness may enter through permutations that *normalize* an actor.
+   - *The condition.* Suppose `Q <= N_(Sym(S))(Γ)` is finitely generated,
+     `Q/(Q ∩ Γ)` is finitely presented, and `Q` has hard word problem. Then `ΓQ`
+     is a hard type (A) actor, and `Q` needs no type (A) action of its own.
+   - *Where it stalls.*
+     - The Cantor normalizer of `V` is `Aut(V)`, reported rational.
+     - Houghton normalizers are expected to be commensurable with the actor.
+     - Twisted Brin--Thompson normalizers pass the problem back to the actor's
+       own normalizer.
+   - *Status.* No oligomorphic finitely presented actor with a hard normalizer is
+     known.
