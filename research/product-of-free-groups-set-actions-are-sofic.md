@@ -32,6 +32,9 @@ compiler's first rope `Gamma_e` would be sofic on every branch
   Amenable actions need not be sofic
   ([[amenable-action-of-a-sofic-group-need-not-be-sofic]]). Both
   counterexamples use a Kazhdan actor.
+- An orbit is sofic whenever its stabilizer meets `F x 1` or `1 x F'` in an
+  amenably separable subgroup
+  ([[g-x-free-set-actions-sofic-when-kernel-amenably-separable]]).
 
 ## Attempts
 
@@ -62,3 +65,15 @@ compiler's first rope `Gamma_e` would be sofic on every branch
   is sofic. GKP derive it only from a positive answer to their Question 4.2,
   which is false in general. The pullback to `F x F` could still be sofic
   without `Q` sofic, as happens for one free factor.
+- **Pulling back the Kun--Thom combined action (dies; lane ex3-pfg-negative).**
+  The nonsofic `G x G ↷ (G x G)/ΔΓ` of
+  [[commuting-sofic-actions-need-not-combine]], pulled back to `F x F'` along
+  any homomorphisms, is sofic. `G x 1` acts freely and `G` is residually
+  finite, so the kernel `L ∩ (F x 1)` is amenably separable.
+  Restriction arguments cannot move the Kazhdan obstruction into `F x F'`
+  either, since every subgroup of `F x F'` is Haagerup.
+- **Where a counterexample must live (fence, lane ex3-pfg-negative).** By
+  [[g-x-free-set-actions-sofic-when-kernel-amenably-separable]] the
+  stabilizer needs both `N_1` and `N_2` to fail amenable separability. In
+  particular both are infinitely generated and both coordinate actions are
+  non-free. For full projections, `Q` is neither residually amenable nor LEF.
