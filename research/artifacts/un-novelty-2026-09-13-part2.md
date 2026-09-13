@@ -85,19 +85,28 @@ Surveys 39 (1984); Wilson, Proc. Cambridge Philos. Soc. 71 (1972); Borevich–Va
 
 ## 4. Wave-3 and open-explorer landings (checked up to 14:50:29 CDT)
 
-### 4.1 `boundary-action-simple-kazhdan-group-is-nonsofic` (un-hyperlinear-paradox 82478cbb12): famous-problem level
+### 4.1 `boundary-action-simple-kazhdan-group-is-nonsofic` (un-hyperlinear-paradox 82478cbb12)
 
-**Against the literature: NEW.** No nonsofic group is known there. Existence of a non-sofic group is open per Capraro–
-Lupini, LNM 2136 (2015), and Pestov, arXiv:0804.3968 (search listings; not re-read).
+**Correction (coordinator, 2026-09-13).** An earlier version of this section called existence of nonsofic groups open
+in the literature. That was wrong, and I checked the correction at main's tip ccf79fa351:
+- **Root node.** `openai-leavitt-unit-nonsofic` (root: true) is ESTABLISHED: "Theorem 1.1. The unit group
+  `L_(F_2)(1,2)^x` is not sofic". Announced by OpenAI on 2026-08-01, it answers Weiss's question (Pestov 0804.3968, Open
+  Question 3.8).
+- **Lean.** `GroupApproximation/Endpoint/MainResults.lean` has `nonsofic_groups_exist` (l.210) and
+  `exists_finitelyPresented_nonsofic_group` (l.254).
+- **Stale sources.** Capraro–Lupini (LNM 2136, 2015) and Pestov's guide predate that theorem, so their "open" wording is
+  out of date.
 
-**Against the repo: a routine corollary.** It combines the established Lean node
-`d-ary-leavitt-groups-nonsofic-over-finite-fields` with `boundary-crossed-product-carries-leavitt-family`.
-- Any "nonsofic" framing stands or falls with the repo's own nonsofic Leavitt theorem.
-- This node adds only simplicity and (T).
+**Verdict: NEW EXAMPLE (bounded), not a first nonsofic group.**
+- S_∂ = EL_N(LC(∂F_d,k)⋊F_d)/Z is nonsofic by a routine corollary. Combine the established Leavitt nonsoficity (OpenAI's
+  theorem; in-repo generalization `d-ary-leavitt-groups-nonsofic-over-finite-fields`) with the unital Leavitt family inside
+  the boundary crossed product (`boundary-crossed-product-carries-leavitt-family`, Spielberg-type at C*-level, §4.2).
+- What the node adds is a nonsofic group that is also infinite, finitely generated, simple and Kazhdan, with no MF
+  quotient, over the paradoxical boundary action.
+- Credit OpenAI's theorem for the nonsoficity mechanism.
 
-**Flags.**
-- The verifier should re-derive the corollary.
-- Confirm that the Lean node is root-reachable with axiom closure [propext, Classical.choice, Quot.sound].
+**Flag.** The verifier should re-derive the corollary: the corner trick putting EL_N(L_k(1,2)) inside S_∂ with no central
+scalars, and passage of nonsoficity through the quotient by C ≤ k^× I_N.
 
 ### 4.2 Other boundary-action nodes
 - **`boundary-crossed-product-carries-leavitt-family`: FOLKLORE, and PRIOR at C*-level.** J. Spielberg, "Free-product
