@@ -30,4 +30,9 @@ existence claim for infinite hyperbolic Kazhdan groups
 
 - 2026-09-13 (lane z2-19-hyperbolic-nv): answered through
   `some-hyperbolic-group-does-not-embed-in-thompson-v-proof`, which consumes two
-  established claims already on main. Unreviewed by a ZP verifier.
+  established claims already on main.
+- 2026-09-13: review **PASS** by z-verify-groups
+  (`research/artifacts/zp-review-groups-2026-09-13-part1.md`, §9, landed
+  c0ff0a5f90). The review confirms the reading, the chain Farley → subgroups
+  inherit a-T-menability → (T) with Haagerup forces finiteness → an Sp(2,1)
+  lattice partner, and the credit to Xiaolei Wu.
