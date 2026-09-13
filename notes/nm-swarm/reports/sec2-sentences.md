@@ -284,7 +284,8 @@ below are on main; sec2 has not read their proofs.
 
 ## Pocket kept cell on the O-equivalent copy (2026-09-13)
 
-Status 2026-09-13 14:10: **partial** (simple walks, with an avoidance binder).  The lead's item is kh-ejz's residual
+Status 2026-09-13 15:10: **partial** (simple walks, no avoidance binder; noncrossing walks wait for a `PocketRegion`
+producer).  The lead's item is kh-ejz's residual
 (ii): the premise `hkept : (cell X' kept).face ∈ sideFaces X'.toCombMap K.walk` of `PocketWalk.toPocketFaceSet`, on the
 copy `X'`.
 
@@ -298,6 +299,7 @@ untouched; the new module only imports OsinPocketZeroCellMergeFalse.
 | module | carries | state |
 |---|---|---|
 | Estimating/OsinPocketKeptCell | `RealizedSectionFamily.targetArc_end_le_start`; `GloballyDistinguishedSectionFamily.exists_kept_of_pocketRegion` and `exists_kept_of_simple`; `#audit_axioms` on all three | compiled: probe 0913-140023-67387 GREEN (BUILT) at base 492057fb6, the landing commit (md5 4d34649d91379d23a7b79a4b2966eff3 = main); unwired, queued for wiring |
+| Estimating/OsinPocketKeptCellAbsorbed | `Embedded.FaceSetBoundary.subset_or_disjoint`; `RealizedRegionFamily.subset_of_not_disjoint_pocketRegion`; `PocketMeetsContainedStatement` with `pocketMeetsContained` (`#audit_closed_axioms`); `GloballyDistinguishedSectionFamily.false_of_disc_absorbed_section`, `exists_kept_of_pocketRegion_of_value`, `exists_kept_of_simple_of_value` (`#audit_axioms`) | compiled: probe 0913-150844-93030 GREEN (BUILT) at base 53ef29c55, which contains the landing 3a76a2fb8 (md5 2696aec84213d40e089928383a4106ed = main); unwired, queued for wiring |
 
 `exists_kept_of_simple` takes the output of `PocketWalk.exists_of_exteriorAt` on `S` (regions `x ≠ y` exterior to cell
 `i` and targeting section `j`, the walk `K`, the gap equation, the two target-arc endpoints), and then:
@@ -324,20 +326,47 @@ Proof.
 Open.
 1. **Noncrossing walks.**
    - `toPocketFaceSetOfNoncrossing` needs `hkept` for a noncrossing walk, which is the case that covers a pinch.
-   - `PocketRegion` asks for `IsDiscRegion` on both sides.
-   - The one producer from a walk, `toDiscRegion_of_followsBoundary`, needs `FollowsBoundary`, and a pinched cycle
-     fails it (`OsinPocketPinchedTwoGonModel.not_followsBoundary`).
-   - So `exists_kept_of_pocketRegion` reaches a pinched pocket only through another `PocketRegion` producer.
-2. **`havoid`.**
-   - A third member of the family can lie inside the pocket, so the binder is a real premise.
-   - The route is to absorb the members that meet the pocket (`false_of_disc_collapse_singleton`).
-   - Suppose each such member lies inside the pocket.  Then its source and target darts lie in `K.src ∪ K.tgt`,
-     because no relator cell is in the pocket, every face is a G-cell (`all_gCells`), and the faces are disjoint.
-     Counting darts then gives the weight bound.
-   - "Meets implies contained" has two obstacles:
-     - (a) `FaceShelling` allows an empty arc, so two lobes can touch at a walk vertex;
-     - (b) across the inverse source arc, the face of cell `i` must lie outside the member.  `all_gCells` does not give
-       this without `listVal C.word ≠ 1` (`faces_not_mem_of_value`).
+   - `PocketRegion` asks for `IsDiscRegion` on both sides.  A pinched cycle fails `FollowsBoundary`
+     (`OsinPocketPinchedTwoGonModel.not_followsBoundary`), so the walk's side cannot come from
+     `toDiscRegion_of_followsBoundary`.
+   - The producer is dgo-analytic's `PocketRegion.ofNoncrossingClosedWalk hw hout hfollows heuler`
+     (Estimating/OsinPocketRegionNoncrossingWalk, 8bbf0a9c8, wired).  Its `inner.cycle = walk` holds by `rfl`.
+   - **Blocker 1** is its premises: `hout` and `hfollows` (hull-select), and `heuler` (hull-euler).  Given them,
+     `exists_kept_of_pocketRegion_of_value S hxS hyS hxy K hgap hfirst hsecond hvalue
+     (PocketRegion.ofNoncrossingClosedWalk hw hout hfollows heuler) rfl` gives the kept cell with no `havoid`.
+2. **`havoid`: removed by absorption (2026-09-13 15:10).**  Module `Estimating/OsinPocketKeptCellAbsorbed` (table
+   above).
+   - Notation: `t_1 = invDarts S.diagram K.sourceArc.darts` and `t_2 = K.targetArc.darts`, the source and target parts
+     of `K.walk`.
+   - A third member of the family can lie inside the pocket, so `havoid` was a real premise.  The new theorems drop it,
+     and with it `hstart`, `hend`, `hjx` and `hjy`.
+   - New premises: `hfirst : K.firstSide = y.2.leftSide`, `hsecond : K.secondSide = x.2.rightSide` and
+     `hvalue : ∀ C ∈ S.diagram.relatorCells, RelLetter.listVal C.word ≠ 1`.
+     - `PocketWalk.exists_of_exteriorAt` gives `hfirst`, `hsecond` and the gap equation.
+     - `S.cell_listVal_ne_one hW hlambda hrho` gives `hvalue`.
+   - **Meets implies contained**: the named Prop `PocketMeetsContainedStatement`, proved by `pocketMeetsContained`.
+     - Statement: for a pocket region `P` whose cycle is the walk, every selected region meeting `P` lies in `P`.
+     - Proof: a region dart leaving `P` lies on the walk.
+       - On a side it lies on the boundary of `y` or `x`, which contradicts disjointness.
+       - On `t_1` it crosses into the cell `i`, whose word has value `≠ 1`.
+       - On `t_2` it crosses into the exterior.
+     - `Embedded.FaceSetBoundary.subset_or_disjoint` then gives containment.
+   - Model tests, before building.
+     - (a) Two lobes touching at a walk vertex are excluded by the region's own `FaceSetBoundary`.
+       - Membership in `P` is constant along boundary steps, so an edge-disconnected second part has no boundary dart.
+       - That part is then closed under `alpha` and `sigma`, and by planarity it holds the exterior face.  This
+         contradicts `all_gCells`.
+       - Smallest model: `OsinPocketPinchedTwoGonModel.no_faceSetBoundary`.
+     - (b) The face of cell `i` needs `hvalue`.  With it, neither model breaks the Prop.
+   - Weight.
+     - The collapse absorbs `A = {a ∈ S.family | ¬ Disjoint a.1 P.faces}`, which holds `x` and `y`: the source darts of
+       each lie on `t_1`.
+     - The source and target darts of the members of `A` are pairwise distinct.  Each leaves `P` into a relator cell
+       or the exterior, so it lies on `t_1 ∪ t_2`.  A side is excluded by disjointness, or by `cycle_nodup` for
+       `x` and `y` themselves.
+     - So `familyWeight A ≤ |t_1| + |t_2|`, and `false_of_disc_collapse_singleton` gives False.
+   - Separate route: debt-conditional is writing a two-gon `havoid` (face-class invariant,
+     `Estimating/OsinAppendixEulerTwoGonPocketClass`).
 
 ## Census
 
