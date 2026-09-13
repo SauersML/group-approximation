@@ -259,13 +259,12 @@ variable {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiag
   (havoid : ∀ a ∈ S.family, f ∉ a.1)
 
 /-- **A section family across a split insertion** between two corners of a G-face that no
-selected region contains. -/
+selected region contains.  `CornerOutput.originalReplacement` already starts from the original
+diagram, so the rebase to the corner needs no step of its own. -/
 noncomputable def insertionSection : RealizedSectionFamily D lambda c eps Delta cuts where
   diagram := R.diagram
-  equiv := (S.equiv.trans (GFaceRebase.replacement S.diagram f start.val hf hcells).oEquivalent).trans
-    (CornerOutput.originalReplacement R.toCellOutput).oEquivalent
-  reduced := (CornerOutput.originalReplacement R.toCellOutput).reduced
-    ((GFaceRebase.replacement S.diagram f start.val hf hcells).reduced S.reduced)
+  equiv := S.equiv.trans (CornerOutput.originalReplacement R.toCellOutput).oEquivalent
+  reduced := (CornerOutput.originalReplacement R.toCellOutput).reduced S.reduced
   family := (CornerOutput.originalEmbedding R.toCellOutput).regionFamily
     (CornerOutput.originalCellMap R.toCellOutput) hcells hf S.family havoid
   pairwise := (CornerOutput.originalEmbedding R.toCellOutput).regionFamily_pairwise
