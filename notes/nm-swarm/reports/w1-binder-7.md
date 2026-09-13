@@ -41,11 +41,11 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
   - `rescueK eps heps` and `rescueK_simple`;
   - `wrapRoseRescue : WrapRoseRescue`, which passes `#audit_closed_axioms`.
 
-## In flight
+## LANDED 4db9c6729 (probe 0913-171243-3240 GREEN, BUILT and COMPILED)
 
-- `Estimating/OsinDescentResidualsPos` (attic b1a24dad6, probing): `osinDescentSection_of_residualsPos` and
+- `Estimating/OsinDescentResidualsPos`: `osinDescentSection_of_residualsPos` and
   `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsPos`, the two assemblies of `OsinDescentResiduals` with the repaired
-  pinch.
+  pinch. The module is unwired and queued for wiring.
 
 ## For the waist owner (ghw-assembly), through the lead
 
