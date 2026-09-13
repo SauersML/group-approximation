@@ -35,4 +35,15 @@ non-embeddable quantum symmetry that is genuinely quantum.
 **Syntax.**  `coset-systems-are-torsor-isomorphism-games` reduces the problem,
 on torsor digraphs, to a tracial non-`R^U` coset constraint system with a
 nonabelian fibre image: `tracial-non-ru-coset-system-with-nonabelian-fibre-exists`.
-Pairs whose fibres are not torsors are not covered by that reduction.
+Pairs whose fibres are not torsors are not covered by that reduction.  The
+shared-coordinate case is `torsor-cfi-isomorphism-algebra-is-coset-constraint-algebra`.
+
+**Plain graphs.**  Roberson--Schmidt, arXiv:2111.12362v1, Theorem 4.7 removes
+vertex colours by attaching paths of distinct lengths, and keeps the quantum
+automorphism group when every degree is at least 3.  Their edge decoloring
+(Definition 4.9, Lemma 4.10) subdivides edges.  The image of a subdivision
+vertex is `u_(vx) u_(wy) + u_(vy) u_(wx)`, which is a projection only if the
+products commute (their Lemma 4.8).  So this technique applies only to coset
+systems whose adjacent fibre PVMs commute, and a plain-graph version of this
+claim needs a different decoloring.  Read at source in the arXiv text,
+pp. 12--17.
