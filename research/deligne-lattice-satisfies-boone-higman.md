@@ -97,6 +97,44 @@ simple group contains `Gamma~`.
   - **Specific inputs.** Property (T) and the infinite center of `Gamma~` enter
     none of the shell clauses in any known way. No clause was decided for
     `P = Gamma~`.
+- **SingFix clauses at `P = Gamma~` (2026-09-13, lane `solve-deligne-shell-singfix`):
+  undecided. Nothing specific to `Gamma~` enters them, and the terminated-digit
+  overgroup is closed.**
+  - **The clauses.**
+    - Belk--Hyde--Matucci Theorem 2.1 at `n = 2` is quoted verbatim in
+      `research/artifacts/shell-envelope-local-tests-2026-09-13.md`. It makes
+      `E_nu` finitely presented once `A_1`, `A_12` and `A_2` are.
+    - `A_1` is an extension of the simple, not finitely generated neighborhood
+      kernel by `Q = <rho(Gamma~), tau>`. `Q` contains the fiber product
+      `R_nu x_Z R_nu` with index two (`shell-germ-group-has-index-two-fiber-product`).
+    - Finite presentation of `A_1` forces `R_nu` to be an ascending HNN extension
+      over a finitely generated base (`shell-germ-fp-is-an-ascending-hnn-gate`).
+    - These groups see `Gamma~` only through its regular action near infinity.
+      No use of property (T), the infinite center or the failure of residual
+      finiteness was found in any of them.
+  - **Free-near-shift obstruction: avoidable computably.**
+    `central-cyclic-inputs-have-computable-mixed-near-relations` makes the
+    central generator `z` act by a residue-affine permutation. That kills a
+    reduced word of `Gamma~ * <s>` in `R_nu`.
+  - **Fixed-base terminated-digit overgroups: dead.** By
+    `fixed-base-shell-inputs-embed-in-odometer-rn-groups`, a fixed-base shell
+    action would embed `Gamma~` in `V_(h,r)(<a>)`, whose Kazhdan subgroups are
+    finite. So `fixed-base-shells-embed-in-contracting-rsg` never applies to
+    `Gamma~`, or to any input with an infinite Kazhdan subgroup.
+  - **Contracting rational similarity hosts sit at Gromov's question.**
+    - Every hyperbolic group embeds in a contracting rational similarity group
+      (`hyperbolic-groups-embed-in-contracting-rsgs`).
+    - A theorem that Kazhdan subgroups of contracting rational similarity groups
+      are residually finite would therefore make every hyperbolic group with
+      property (T) residually finite. That would be the direct analogue of
+      `kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf`.
+    - So excluding `Gamma~` from these hosts along the lines of the
+      Rover--Nekrashevych argument needs a result of that strength.
+  - **Still open for `Gamma~`:**
+    - residue-affine enumerations whose slopes involve several primes. Their
+      markings form a product of trees, and the Kazhdan marking argument does not
+      transfer;
+    - finite presentation of any `S(M,M')`, or of `E_nu` itself.
 - **Not yet tested:**
   - Brin--Thompson groups `nV` with `n >= 2`, where the FW argument for cone
     structures does not transfer;
