@@ -149,12 +149,14 @@ finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
   claim (`dihedral-marker-stable-formalizability-from-integer-marker`,
   `thompson-v-marker-stable-formalizability-from-dihedral`). So the V marker cannot refute this claim
   unless the integer marker already does: simple hosts add no difficulty to this test object beyond Z.
-- **Integer warm-up, one-ancilla residue located (w5-integer-marker).** For the marker's pattern
-  `001 | 100`, flipped cells avoid every active marker's control window and markers sit at distance
-  `>= 5` (`marker-flip-cells-avoid-all-marker-control-windows`). The one-ancilla Bennett word
-  `A' B A` (`A: y += m(x)`, `B: x += y`) is structurally reversible, hence formalizable, but its
-  shadow is `tau x id` only up to a single Boolean-vanishing formal residue
-  `r = m(x) + m(x + m(x))` on the ancilla, concentrated on the distance-`5,6` overlapping windows,
-  of degree `>= 8` (`one-ancilla-marker-residue-is-supported-on-window-overlaps`). Clearing `r` with a
-  finite `Z`-equivariant word of allowed gates is the whole one-ancilla question; one extra shear
-  cannot equal `r`, and the graded layers are onto, so only termination is open.
+- **Integer warm-up, one-ancilla residue (w5-integer-marker, corrected after w3-vf-nonlinear).** For
+  the marker's pattern `001 | 100`, markers sit at distance `>= 5`, sharp at 5, and the marker set is
+  invariant under partial flips (`marker-flip-cells-avoid-all-marker-control-windows`, PASS). The
+  one-ancilla Bennett word `A' B A` (`A: y += m(x)`, `B: x += y`) is a formal pair sending `(x, 0)` to
+  `(x + m(x), r(x))`, where `r = m(x) + m(x + m(x))` is the First-test residue above. `r` vanishes on
+  points, and its lowest-degree part `x_(g-2) x_g x_(g+1) + x_(g-1) x_g x_(g+2)` comes from the adjacent
+  cells `j = g -+ 1` (`one-ancilla-marker-residue-is-supported-on-window-overlaps`). This word is not a
+  candidate realization: for Boolean `y` its data output is `x + y + m(x)`, so clearing `r` alone does
+  not give `tau x id`. In any word of data-ancilla track shears the data track is written at least
+  twice, and between the writes the marker windows read `y`-dependent cells. The `4Z` residue classes
+  avoid exactly this.
