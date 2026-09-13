@@ -10,6 +10,15 @@ hs-vanishes and sec2-sentences. This lane never edits their files.
 - CLAIM C6′ merge-disc route `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonMergeDisc.lean`
 - CLAIM C6′ either-follows assembly `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEitherFollows.lean`
 - CLAIM C6′ copy-route assembly `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEitherFollowsCopy.lean`
+- CLAIM C6′ inner-builder discharge `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonInnerFollowsClosed.lean`
+  (waits for ms-torsionfree's `OsinPocketRegionInnerFollows`)
+- CLAIM L4/L5 producers of `TwoGonClassHyp` and `TwoGonWalkHyp` `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonClassWalkHyp.lean`
+  - At 18:20 neither producer is on origin or in the shared tree. debt-conditional last landed at 16:47.
+
+Split of L1 (ms-inverses-2's proposal, no collision):
+- ms-inverses-2 takes L1a: rotation invariance of noncrossing walks, and `hw` in the decomposition spelling from `CopyClean`.
+- ms-inverses-2 also takes L1b, the `regions` clause: an O-equivalent copy that separates edges joining `a` to `b`.
+- ms-torsionfree takes the inner-following builder.
 
 ## Landed: `Estimating/OsinAppendixEulerTwoGonEitherFollows` (c5f2b7378, probe 0913-180835-10074 GREEN, unwired)
 
