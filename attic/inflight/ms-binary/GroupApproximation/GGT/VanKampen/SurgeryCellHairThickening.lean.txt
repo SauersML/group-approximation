@@ -136,8 +136,8 @@ theorem exists_of_faceOf_eq_keep {g : Delta.toCombMap.Face} (hg : g ≠ f)
     ∃ d, Delta.toCombMap.faceOf d = g ∧ embed Delta.toCombMap d = x := by
   have hmem := ((FaceEdgeDoubling.boundary Delta f j hlen
     (FaceEdgeDoubling.keep Delta f j hlen g)).mem_iff x).mpr hx
-  rw [FaceEdgeDoubling.boundary_kept Delta f j hlen hg, List.mem_map] at hmem
-  obtain ⟨d, hd, hdx⟩ := hmem
+  rw [FaceEdgeDoubling.boundary_kept Delta f j hlen hg] at hmem
+  obtain ⟨d, hd, hdx⟩ := List.mem_map.mp hmem
   exact ⟨d, ((Delta.faceBoundary g).mem_iff d).mp hd, hdx⟩
 
 /-- A dart of the face of `f` is the image of an old dart of `f`. -/
