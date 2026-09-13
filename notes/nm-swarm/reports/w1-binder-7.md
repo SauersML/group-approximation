@@ -47,6 +47,21 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
   `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsPos`, the two assemblies of `OsinDescentResiduals` with the repaired
   pinch. The module is unwired and queued for wiring.
 
+## 2026-09-13 ~17:35: after the lead restart, the wrap residual
+
+- CLAIM, the full-arc characterization of the wrap case: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArc.lean`,
+  a new module.
+  - `PocketFaceSet.not_simple_of_full_sourceArc`: in ANY diagram, a pocket face set whose source arc is the whole cell cycle is
+    not simple, unless its cycle is that reversed arc alone.
+  - `PocketFaceSet.not_simple_of_full_targetArc`: likewise when the target arc is the whole exterior cycle, unless the cycle is
+    that arc alone.
+  - Consequence: the wrap case is exactly a full arc with a nonempty remainder. Doublings and splits transport arcs and sides
+    and keep a full arc full, so no transport-based step closes it. The step has to re-decompose the walk.
+- CLAIM, the trims at `0 < eps`, in a second new module after that one: move one dart of an arc into a side with room. The
+  cycle is unchanged, so walk order and repeated visits are unchanged, and the data stop being wrap data.
+- Agreed with ms-intro-4, which takes "first-turn order survives the edge doublings" in
+  `Estimating/OsinPocketEdgeDoublingFirstTurns.lean`.
+
 ## For the waist owner (ghw-assembly), through the lead
 
 The one-line swap in `relativeGreendlingerQuasiGeodesicLeastArea_of_openResiduals` (`OsinGreendlingerOpenResiduals`):
