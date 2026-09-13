@@ -51,5 +51,17 @@ The rotated lift `arc ++ tail = x ++ comp λ h⁻¹ :: y` either has the unknown
 - Inside the arc, with no side letter at that coset: `mem_image_of_inner`. The face bounds `h`, which gives
   `q h ∈ q '' boundedProducts`.
 
+## W1 (09-13 after the 08:30 restart): helper to dgo-analytic on the region piece
+The lead assigned the uncollared pocket carrier with both FollowsBoundary over
+`PocketRegion.ofSimpleClosedWalk` (a11a8d850). dgo-analytic handed this lane one sub-piece.
+- GGT/VanKampen/SimpleClosedWalkSideFaces (d20913c51; GREEN 0913-090043-59913; in the wire queue):
+  `SimpleClosedWalkSides.sideFaces_boundaryCycle_eq (hM : M.IsConnected) (boundary : BoundaryCycle M faces)
+  (hf : f ∉ faces) : sideFaces M boundary.cycle = faces`, with `sideFaces_boundaryCycle_subset` (no
+  connectivity) and the transport lemmas `faceOf_mem_iff_of_faceClass` and `faceOf_of_alpha_closed`.
+- Consumer: dgo-analytic's Estimating/OsinPocketRegionOfSimple, for `PocketRegionOfSimpleStatement`. The kept cell
+  and the source cell transfer from `PocketFaceSet.faces` to `(ofSimpleClosedWalk ..).faces` through this equality.
+  The exterior face gives `hf`, and `CombMap.connected_of_planar` gives `hM`.
+
 ## Next
-Asking the lead for the next item.
+dgo-analytic queued its consumer, Estimating/OsinPocketRegionOfSimple (a032ab802). This lane has asked
+dgo-analytic for the next W1 sub-piece and writes nothing until it names one.
