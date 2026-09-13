@@ -52,6 +52,11 @@ commutative ring `R`, a ring map `A -> R` is a pair `(u, v)` in `R[G]` with
    `supp u in S`. So for each `S` only finitely many units of `Z[G]` are
    supported in `S`.
 
+   The existence of `T(S)` is property (U) of Friedman--Gustavson--Pappas
+   (Thm. 2.3, cited in Tabei arXiv:2608.00103v1, Section 2.2). The adjugate
+   argument of the proof gives `T(S)` explicitly. What is new here is the
+   height bound.
+
    On `P`, for each radius `r` there is a finite `H(r)` bounding the height of
    every unit of `Z[P]` supported in `B(r)`. The units supported in `B(r)` are
    the `Z`-points of `A_{B(r), T(B(r))}`, which a Groebner basis over `Q`
