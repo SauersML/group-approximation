@@ -1,6 +1,8 @@
 # The four-transvection set: depth-monotone escape, algebra firewalls, and the combined defect firewall
 
-Lane `w7-escape-set`, 2026-09-12. Verifier `w4-vf-gate` (re-derivation requested). Questions from `w6-mismatch-c3`
+Lane `w7-escape-set`, 2026-09-12. Verifier `w4-vf-gate`: Sections 1–5 PASS with no corrections (Section 36 of
+`research/artifacts/gk-vf-gate-verification-2026-09-12.md`, 89d646844c; its wording advisories are applied here).
+Questions from `w6-mismatch-c3`
 (`depth-monotone-configurations-cannot-force-ternary-minus-one`).
 
 ## 0. Task and verdict
@@ -255,15 +257,16 @@ Then `ρ_3` is a homomorphism into `Q_3^x`, `Q_3` is stably finite, `ρ_3(z) = -
   `n 1_[11] = 0` and `m 1_[11] = 1_[10]`. If `a + bn + cm = 0`, applying it to `1_[11]` gives `a = c = 0`, and then
   `b = 0`. QED
 
-**Remark 4.4 (answer to question 2).** No obstruction to combining exists. `z -> -1` and `D != 0` fail together only
-for algebra-level models (Lemma 3.1), and `ρ_3` is not additive. So form (iv) is firewalled on every depth-monotone
+**Remark 4.4 (answer to question 2).** On these groups no obstruction to combining exists. Algebra-level models kill
+`D` (Lemma 3.1), but the models of Theorems 4.1 and 4.3 are not additive and keep `z -> -1` with `D != 0`. Which
+other non-additive models combine the two is not decided. So form (iv) is firewalled on every depth-monotone
 unit group that contains the standard frame, that is on `H^ω_≤` with `ω(0) <= ω(1)`. Theorem 4.1 gives the same for
 every sofic subgroup of `G` containing `z` and the standard frame. The anti-involution `g -> (g*)^(-1)` carries this
 to `H^ω_≥`, with the frame replaced by its image.
 
 ## 5. Where it stops
 
-**Proved here, on paper.**
+**Proved here, on paper, and re-derived by `w4-vf-gate` (Section 36, PASS).**
 - `S4` escapes conjugation into every weighted unit group, and `x_0` escapes by local finiteness (Section 1).
 - `<S4>` sits in `EL_2(J_(F_3))`, contains `z`, and has a weakly finite symbol model with `z -> -1`. Every
   five-transvection set `S4 ∪ {T}` has a character model (Sections 2 and 3).

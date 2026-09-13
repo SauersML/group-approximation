@@ -59,8 +59,8 @@ artifacts:
     one. Local finiteness on cylinder functions excludes `x_0` and every group containing it
     (`four-transvection-set-escapes-depth-monotone-units`).
   - **Not the candidate.** Code `(0,1)` puts `<S4>` inside `EL_2(J_(F_3))` with `z in <S4>`. The symbol onto
-    `SL_2(F_3[ζ, ζ^(-1)])` is a weakly finite model with `z -> -1`. Every five-transvection set has a character model
-    into `GL_2(F_3)`. Six transvections span `R`, and from there on no algebra-level firewall applies
+    `SL_2(F_3[ζ, ζ^(-1)])` is a weakly finite model with `z -> -1`. Every five-transvection set `S4 ∪ {T}` has a
+    character model into `GL_2(F_3)`. Six transvections span `R`, and from there on no algebra-level firewall applies
     (`four-transvection-units-have-a-weakly-finite-symbol-image`).
   - **Defect form.** Algebra-level models kill `D`. Sofic subgroups containing `z` and the frame have weakly finite
     models with `D != 0`, and so has `H^ω_≤` for `ω(0) <= ω(1)` (`depth-monotone-units-carry-weakly-finite-nonzero-defect`).

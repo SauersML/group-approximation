@@ -10,7 +10,8 @@ artifacts:
   - research/artifacts/four-transvection-escape-set-2026-09-12.md
 ---
 
-**OPEN** (proved on paper, artifact Section 1; held OPEN until `w4-vf-gate` re-derives it).
+**ESTABLISHED** (artifact Section 1, route `four-transvection-escape-proof`). Verified by `w4-vf-gate` in Section 36.1
+of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`, PASS with no corrections.
 
 **Statement.** Let `R = L_K(1,2)` over any field `K`, `T_(σ,κ) = 1 + s_σ t_κ`, and
 `S4 = {T_(0,1), T_(1,0), T_(1,00), T_(00,1)}`. For a weight `ω`, `H^ω_≤` and `H^ω_≥` are the unit groups of the
@@ -31,4 +32,5 @@ firewall under every conjugation as soon as its span holds a one-sided inverse p
 contains an element that acts on cylinder functions without being locally finite.
 
 **Scope.** Escaping this firewall is not escaping all of them: `four-transvection-units-have-a-weakly-finite-symbol-image`
-gives `<S4>`, and every five-transvection set, a weakly finite model with `z -> -1`.
+gives `<S4>`, and every five-transvection set of the form `S4 ∪ {T}`, a weakly finite model with `z -> -1`. Other
+five-transvection sets are not covered.

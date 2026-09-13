@@ -7,11 +7,14 @@ distinct_from:
   depth-monotone-configurations-cannot-force-ternary-minus-one: that gives weakly finite models of weighted unit groups with z -> -1, all of which kill D; this gives models with z -> -1 and D != 0 on the same groups, so their relations cannot force the defect form either.
   anti-central-sofic-data-cannot-force-defect-submultiplicativity: that realizes anti-central regular ranks with cylinder defects of rank 5/9 on sofic subgroups; this is the weakly finite form for the standard frame read directly from the group algebra, plus an explicit tensor-cube model on H^omega_<= that uses no soficity and no rank function.
   ternary-weakly-finite-representations-kill-two-root-defect: that asks D = 0 in every weakly finite representation of G; this realizes D != 0 on every sofic subgroup containing z and the frame, so a proof has to use relations outside all of them.
+  unitriangular-data-cannot-assemble-corner-leavitt-families: that gives a regular rank model with nonzero two-root defect on the unitriangular group, which does not contain z; this is the anti-central form, a weakly finite model with z -> -1 and D != 0 on groups that contain z.
 artifacts:
   - research/artifacts/four-transvection-escape-set-2026-09-12.md
 ---
 
-**OPEN** (proved on paper, artifact Section 4 and Lemma 3.1; held OPEN until `w4-vf-gate` re-derives it).
+**ESTABLISHED** (artifact Section 4 and Lemma 3.1, route `depth-monotone-tensor-cube-defect-proof`). Verified by
+`w4-vf-gate` in Sections 36.3–36.4 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`, PASS with no
+corrections.
 
 **Statement.** Let `G = L_(F_3)(1,2)^x`, `z = -1`, `ε_- = 2(1 - [z])`, `x_12(1) = 1 + s_0 t_10`,
 `x_23(1) = 1 + s_10 t_11`, and `D_ρ = (ρ(x_23(1)) - 1)(ρ(x_12(1)) - 1)`.
@@ -24,8 +27,8 @@ artifacts:
    `s_10 t_11 s_0 t_10 = 0`.
 
 **Consequence.** The defect form is firewalled on every depth-monotone unit group that contains the standard frame.
-This answers the second question of `w6-mismatch-c3`. The depth-monotone models kill `D` only because they are
-algebra homomorphisms. The tensor cube is not additive, and it keeps the sign because the power is odd.
+This answers the second question of `w6-mismatch-c3`. The depth-monotone models kill `D` because they are algebra
+homomorphisms (item 4). The tensor cube is not additive, and it keeps the sign because the power is odd.
 
 **Scope.** On `H^ω_≥`, compose with `g -> (g*)^(-1)` and use the image frame. Subgroups not known to be sofic are not
 covered. The smallest one known to escape every algebra-level model is `Γ_5`, in
