@@ -1,0 +1,47 @@
+# Lane ms-core-1: the sec:chain-core opening (tex 1338–1370 at origin/main 68481e4d7)
+
+Scope: a sentence ledger, model tests, and unowned leaves only (Brief C of the wave-2 roster).
+- Keys come from the census worklist, merge 0913-160921. Its line numbers are 2 lower than at 68481e4d7.
+
+## Ledger
+
+| key | tex | sentence (abridged) | owner | carriers on origin/main | status | note |
+|---|---|---|---|---|---|---|
+| `d59fc0887768` | 1341 | the torsion-defect argument can identify the whole MF radical even when the defect ideal is proper | chain-core | none | unassigned | waits for chain-radical's thm:core-mf-radical endpoint (chain-core.md) |
+| `753b90beed12` | 1342 | such a computation for algebraic crossed products from zero-dimensional dynamics | chain-core | `ClopenCrossedProduct` | structural (row landed) | |
+| `275bedb28f9f` | 1345 | X nonempty compact metrizable zero-dimensional, T a homeomorphism | chain-core | `ClopenCrossedProduct T k` over `T : X ≃ₜ X` | unassigned | the module states that the printed hypotheses belong to the theorems that use them |
+| `752564275a33` | 1346–1349 | for a finite field k, R_X = LC(X,k) ⋊_T ℤ with u f u⁻¹ = f ∘ T⁻¹ | chain-core | `ClopenCrossedProduct`, `coeff`, `unit`, `unit_mul_coeff_mul_inv` | unassigned | definition, stated for every ring k |
+| `a1bda19b475a` | 1351–1353 | LC means locally constant; the crossed product is algebraic, with unique finite Laurent expansions | chain-core | existence: `exists_sum_coeff_mul_unit_zpow` | unassigned | no uniqueness lemma on origin; the docstring asserts uniqueness by construction (finitely supported ℤ → LC(X,k)) |
+| `8a557cb954fb` | 1353–1354 | the powers of u remain formal even if T has finite order | chain-core | by construction (`SkewMonoidAlgebra`) | unassigned | no lemma `unit ^ i = unit ^ j → i = j` on origin |
+| `6011dc411b20` | 1354–1357 | the printed LEF ring definition | chain-core (S1 leaf 2, next) | `Pestov91.IsLEFRing` | unassigned | model test 1 |
+| `2d1ca8689ac6` | 1357–1358 | a group is LEF with the analogous multiplicative definition | chain-core | `Sofic.IsLEF` (targets `Equiv.Perm (Fin n)`) | unassigned | finite-group and permutation targets agree (Cayley) |
+| `b1a4887c5412` | 1358–1359 | finite inverse-pair tables show LEF rings are stably finite | hull-bridge (ruling 16:17, S1 item 3) | none: `LEFStablyFiniteInterface` (Algebra/DirectlyFiniteReflection) has no producer | unassigned | model test 2 |
+| `1d0bcc92a75f` | 1359–1360 | entrywise finite ring models show GL_n of an LEF ring is LEF | hull-bridge (S1 item 4) | `IsLEFRing.matrix`, `IsLEFRing.isLEF_units` | unassigned | `(hA.matrix (Fin n)).isLEF_units` gives LEF of `(Matrix (Fin n) (Fin n) A)ˣ` |
+| `1a88ddc187c0` | 1361–1362 | countable LEF groups are MF, by the regular representations of the local models | hull-bridge (S1 item 4) | `isOperatorMF_of_isLEF [Countable G]` (Sofic/LocallyFiniteMF) | unassigned | `IsOperatorMF` is the corona form. The printed MF definition (tex 87–98, CDE) is the asymptotic-unitary form, and the bridge lies in ms-intro-1's range |
+| `49f76a64907a` | 1364–1367 | chain recurrent, for a compatible metric | hull-euler (S2) | `IsMetricChainRecurrent`, `isChainRecurrent_iff_metric`, `isMetricChainRecurrent_iff_of_compact` (20911e5b2) | unassigned | the printed chain x_0, …, x_r with r ≥ 1 matches `TransGen (ChainStep T V)` |
+| `d5af28721656` | 1367–1368 | Y = CR(T) | hull-euler (S2) | `chainRecurrentSet`, `chainRecurrentSet_eq_of_compact` | unassigned | definition; independence of the metric on compact X is landed |
+| `3ebdab1c418b` | 1368–1369 | we first construct this set in a form that also supplies finite ring models | hull-euler (S2) | none | unassigned | structural |
+
+## Model tests (by argument; no printed claim in this range is false)
+
+1. **The printed LEF definition is equivalent to `IsLEFRing`.** The printed definition preserves the sums and products that stay in the subset, and preserves 0 and 1 when present. `IsLEFRing` preserves 0, 1 and every pairwise sum and product of the subset.
+   - `IsLEFRing` ⇒ printed is immediate.
+   - Printed ⇒ `IsLEFRing`: apply the printed definition to t′ = t ∪ (t + t) ∪ (t · t) ∪ {0, 1}. Every pairwise sum and product of t stays in t′.
+2. **LEF rings are stably finite.**
+   - Take a, b ∈ M_n(A) with ab = 1.
+   - `IsLEFRing.matrix` gives a finite model φ of M_n(A) that is injective on {a, b, ab, ba, 1}.
+   - Finite rings are directly finite, so φ(b)φ(a) = 1 = φ(1). Injectivity then gives ba = 1.
+3. **The powers of u are formal.** For T = id on a point and k = F_2, R_X = F_2[u, u⁻¹], and the u^j are pairwise distinct.
+
+## Unowned leaves
+
+None in this range.
+- Every key has an owner. The S1 keys are listed in the census chain-owners table; the S2 keys and hull-bridge's items 3, 4 and 7 are set by the roster rulings of 16:00–16:17.
+- Nothing was built, and no census rows were appended.
+
+## Notes for the owners (relayed through main)
+
+- chain-core: keys `a1bda19b475a` and `8a557cb954fb` have no uniqueness or formal-powers lemma on origin. The module docstring asserts both by construction.
+- hull-bridge:
+  - Item 3 is a short composition of `IsLEFRing.matrix` with direct finiteness of finite rings. Its producer of `LEFStablyFiniteInterface` unblocks chain-reflection.
+  - Item 4 composes `IsLEFRing.matrix` with `IsLEFRing.isLEF_units`.
