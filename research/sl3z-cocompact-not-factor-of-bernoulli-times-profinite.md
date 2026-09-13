@@ -22,15 +22,24 @@ profinite completion `SL_3(Ẑ)`. Then there is no measurable map `Ψ : s × p �
 2. The same holds with `s × p` replaced by any action whose `Λ`-valued cocycles are virtually
    cohomologous to homomorphisms on finite-index subgroups.
 
-**Calibration.**
-* `Λ = SL_3(Z)` fails (R). There the untwisted holonomy may be the identity embedding of a congruence
-  subgroup, and properness gives nothing: the argument uses (R) exactly once.
-* Weak containment. `s ≺ p` (Abért--Weiss: Bernoulli shifts are weakly contained in every free action;
-  recalled, not imported), and `p` is weakly contained in finite actions. By equivalent
-  form 2 of `sl3z-cocompact-quotient-not-weakly-contained-in-finite-actions`, weak containment of `X` in
-  finite actions means that `X` is a factor of a Loeb ultraproduct of finite actions. This theorem is
-  therefore the separable half of that exclusion. It excludes every model in which the approximating
-  finite actions sit inside one fixed profinite action, possibly after a Bernoulli product.
+**Calibration (correction, 2026-09-13): this theorem does not separate `Λ` from `SL_3(Z)`.** The first
+version of this node called the theorem "the separable half" of the weak-containment exclusion. That
+framing is wrong. The same untwisting applies to `SL_3(Z) ↷ SL_3(R)/SL_3(Z)` with Haar measure.
+* The untwisted holonomy `ρ : Γ_a → SL_3(Z)` may have finite image. Then step 8 of the proof gives a
+  contradiction.
+* Otherwise, by Margulis superrigidity, `ρ` virtually extends to an automorphism `θ` of `SL_3(R)`. The
+  lifted map is then equivariant for the twisted conjugation `x ↦ δxθ(δ)^(−1)` of a Zariski-dense `Γ_1`.
+  By Borel density, invariant probability measures of that action sit on its fixed points. So the map is
+  essentially constant and cannot be a factor map onto Haar measure.
+
+This is a sketch: Margulis superrigidity and Borel density are not imported here. The Hecke action *is*
+weakly contained in finite actions, through its finite Hecke orbits. So Bernoulli-times-profinite models
+are already too small for an action that is weakly contained. (R) enters the proof only as a cheap
+replacement for superrigidity. The theorem calibrates the tools. It excludes nothing that separates
+commensurability classes, and the whole weak-containment question lives in the ultraproducts. (`s ≺ p`
+by Abért--Weiss, recalled and not imported, and `p` is weakly contained in finite actions. By equivalent
+form 2 of `sl3z-cocompact-quotient-not-weakly-contained-in-finite-actions`, weak containment means being
+a factor of a Loeb ultraproduct of finite actions.)
 
 **Where the argument stops.** Ioana's proof zooms in at a finite level `n` where the cocycle is almost
 constant on fibres of `r_n`. In an ultraproduct of finite actions the relevant level is nonstandard, with
