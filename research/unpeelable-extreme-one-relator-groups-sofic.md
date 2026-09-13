@@ -121,7 +121,8 @@ remainder is [[no-magnus-envelope-one-relator-groups-sofic]], routed by
    containing a Magnus subgroup) does not exist here. The envelope route is left
    only with `F_-` or `F_+` being itself a vertex group of a cyclic splitting.
 8. **Linton's Z-stable criterion.** *Closes row 29 by theory.* For `AAttATaTAttaaTT`,
-   `G = F(x,y) *_psi` has `sZ(psi) = 2` and a tree graph of cyclic stabilisers, so
+   `G = F(x,y) *_psi` has `sZ(psi) = 2` and a graph of cyclic stabilisers with no alternating
+   cycle, so
    [[row29-one-relator-group-is-hyperbolic-and-virtually-special]]. The same pullback test
    passes for 27 of the 30 length-15 residue classes. With Haglund–Wise, as imported in
    `hyperbolic-cubulated-rf-citation`, every length-15 residue class is sofic. The claim

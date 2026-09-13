@@ -9,9 +9,10 @@ A = <x,u>, B = <u,y>, psi(x) = u, psi(u) = y, the test checks:
   T3  the only monochromatic cycles are the x-loop at the base of Gamma_A and the y-loop at the base
       of Gamma_B;
   T4  x in A, u in A, u in B, y in B, x not in B, y not in A.
-If T1-T4 hold then s_Z(psi) = 2. The graph of cyclic stabilisers is then the path
-[<x>]_A -t- [<u>]_B -H- [<u>]_A -t- [<y>]_B, which is a tree (artifact
-one-relator-magnus-row29-2026-09-13.md, section 6). Output: one VERDICT line per class.
+If T1-T4 hold then s_Z(psi) = 2. The graph of cyclic stabilisers then has the single H-edge
+[<u>]_A - [<u>]_B, and every t-edge joins one of its ends to [<x>]_A or [<y>]_B, so it has no
+cyclically alternating closed path (route row29-virtually-special-via-linton-z-stable-graph).
+Output: one VERDICT line per class.
 Usage: lintontree.py residue-output.txt
 """
 import sys, ast, re

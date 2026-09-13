@@ -97,15 +97,17 @@ arXiv:1105.0129v2, (2.4) and Theorem 2.2).
   rank, and `A`, `B` are malnormal. So `sZ(psi) = 2`.
 - Folded graphs (`monocycles.py`, `monocycles.out`): the only monochromatic cycles are the base
   loops `x` in `Gamma_A` and `y` in `Gamma_B`.
-- Graph of cyclic stabilisers: the path `[<x>]_A -t- [<u>]_B -H- [<u>]_A -t- [<y>]_B`. It is a
-  tree, so there is no cyclically alternating word.
+- Graph of cyclic stabilisers: its only H-edge joins `[<u>]_A` to `[<u>]_B`, and every t-edge joins
+  one of these to `[<x>]_A` or `[<y>]_B`. So there is no cyclically alternating word. This holds
+  whether t-edges are read literally from p. 27 or, as in Figure 6, only between the A-part and the
+  B-part. Under the second reading the graph is a path.
 - Theorem 6.14 gives no Baumslag–Solitar subgroups, and Theorem 7.1 gives hyperbolic and
   virtually special.
 - Residual finiteness, hence soficity, follows by Haglund–Wise, quoted in
   `hyperbolic-cubulated-rf-citation` and not re-checked.
 
 **Same test on the whole residue** (`lintontree.py`, `lintontree.v2.out`): 27 of the 30 REST
-classes, row 29 included, pass tests T1–T4, so the same path argument applies to them. The other
+classes, row 29 included, pass tests T1–T4, so the same argument applies to them. The other
 3 each have one extra rank-1 component in `A x B`. They need a larger graph and already have
 fibring certificates.
 
@@ -120,3 +122,13 @@ folding, which made the first `lintontree` run report 19 spurious failures (`x n
 **All-actions search (job 710304, cancelled as superseded).** Its calibration used heuristic
 potentials only and recovered row 23's index-10 certificate (`VERIFIED k=10 S=5 fibre=F_21`). The
 row-29 index-13 stage was cancelled once the theory route landed (`allreps29.710304.log`).
+
+**Correction (after 89a3d7a24).**
+- The first version of the route called the graph of cyclic stabilisers a path and argued through
+  trees. Read literally, p. 27 also gives t-edges `[<x>]_A - [<u>]_A` and `[<u>]_B - [<y>]_B`, so
+  the graph can have cycles. The route now uses only the H-edge structure, and the conclusion is
+  unchanged.
+- `lintonstab.py` can drop a generator from its `gens=` listing when a pullback contains a 2-cycle
+  of one letter. For example, `pb_ex615.out` lists one of the two generators of a rank-2
+  intersection. Ranks and component counts, which the argument uses, are computed as `E - V + 1`
+  and are unaffected.
