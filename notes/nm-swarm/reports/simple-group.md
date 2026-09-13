@@ -57,5 +57,18 @@ construction (`G_0`, `Γ`, `t`, `J`); hW supplies only the finitely presented in
 isomorphic to `J`. The sentence as a whole is graded through `FournierFacioParagraph`, which also needs the
 hull-* and kh-* leaves.
 
-## Next
-The lane's scope is finished; waiting for the lead to assign more work.
+## Dropped: Hull Corollary 7.3 draft
+cite-hull landed Corollary 7.3 (`Manuscript/NonMF/HullCorollary73`, a2299c82c, wired 830b05464) and
+Corollary 7.4 (c6e0b6c33). The simple-group draft of 7.3 was never landed, so nothing needs retiring.
+
+## Next: W1 corner-to-corner insertion on section families (09-13 ~08:40)
+The lead assigned the corner-to-corner insertion transported to `RealizedSectionFamily`. It is one of the
+respell surgeries under hull-unbound's `GloballyDistinguishedSectionFamily.ChainRespellInput`. hull-unbound
+states that Prop, and this lane writes no Lean before the statement arrives.
+- On main: `GFaceWordInsertion.CornerOutput` with `originalEmbedding` and `originalCellMap`
+  (GFaceCornerInsertion), `CornerOutput.retainedRegionRealization` (GFaceCornerRegionSelection),
+  `DiscEmbeddingAway.regionFamily_profile` (GFaceQuadrilateralRegion) and
+  `RegionCandidate.respectsSections_of_sameTargetProfile` (OsinUnboundCaseOne). The models are
+  `Surgery.GFaceMerge.transportSection` and `PinchSplit.transportDistinguished`.
+- Not on main: the unbound darts of a relator cell through a `DiscEmbeddingAway`, so `unboundSum` across a
+  corner insertion, and the dart count of a corner output.
