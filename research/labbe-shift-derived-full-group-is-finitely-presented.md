@@ -54,6 +54,15 @@ only together with `labbe-shift-derived-full-group-is-amenable`.
 - **Presentations for minimal subshifts (arXiv:1508.04454, Theorem `IntroMain`, lines 70--96, read from source).**
   - It gives an infinite presentation, with generators indexed by words of the language, and a solvable word problem iff the language is recursive.
   - It gives no finite presentation and no finiteness criterion.
+- **Relation climbing (ex-fp-simple-relation-climbing, 2026-09-13).** Live, positive side.
+  - Route: `labbe-fp-via-local-relation-climbing`. It requires a `Z^2` local presentation in the
+    Grigorchuk–Medynets form (`zd-subshift-derived-full-group-local-presentation`) and climbing of
+    bounded local relations (`labbe-full-group-local-relations-climb`). Both are open.
+  - In one dimension only the refinement and commutation relations above the Markov scale fail
+    in periodic models (artifact `fp-simple-relation-climbing-2026-09-13.md`, Remark 2.1).
+  - Exact data for `Omega_U`: ChJN's `R_1 = 3`, so `𝒯_5` has 1184 generators. At every radius from
+    2 to 7 some illegal ball patch has all sub-balls legal, and every such patch already has an
+    illegal union of two sub-balls (`labbe-ball-legality-is-pairwise-at-radii-two-to-seven`).
 - **Expert heuristic (read from source).** Nekrashevych, arXiv:2509.05524, TeX line
   3362: "Full groups of shift-invariant groupoids, on the other hand, are rarely
   finitely presented." It is a remark, not a theorem; the only finite presentation
