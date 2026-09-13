@@ -11,6 +11,8 @@ distinct_from:
 
 **ESTABLISHED GENERAL OBSTRUCTION.**
 
+Reviewed 2026-09-13 by `ex-verify2-groups`: PASS on (SCI1)--(SCI6), re-derived (`research/artifacts/ex-review2-groups-2026-09-13-part5.md` §2). (SCI6) was checked against arXiv:2608.02025v2 p. 3: `u_1` conjugates `P` onto `P_1`, and `[P_1, S] = 1` puts `pi(P_1) cap pi(S)` in the centre of the simple group `pi(S)`. The TeX escapes in the display below were damaged in transcription (`Hackslash` is `H \backslash`, a tab before `ag` is `\tag`, `le` is `\le`). The same derivation in plain notation is in `strict-one-sided-compression-forces-infinite-bi-index-proof`.
+
 Let (Hle G), and suppose that some (tin G) is a strict one-sided
 compressor:
 [
