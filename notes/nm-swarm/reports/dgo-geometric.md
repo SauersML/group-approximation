@@ -96,8 +96,9 @@ byte-equal to main. It uses kh-ejz's `isNoncrossingClosedWalk_pinchCycle`.
 Verdict for Configuration A: the prediction holds on this model.
 
 `Estimating/OsinPocketLakeModel` tests Configuration B on the smallest map with that shape. It
-landed unverified at 67e5b2f9c, together with `pinchCycle_innerCycle_not_followsBoundary` in
-OuterFollows, and its probe is running. The map is a rose with two petals:
+landed at 67e5b2f9c, together with `pinchCycle_innerCycle_not_followsBoundary` in OuterFollows.
+Probe 0913-140543-86239 (base 037386a74) is GREEN with `BUILT` for both modules, and both files are
+byte-equal to main. The map is a rose with two petals:
 - four darts, the edges `{0,1}` and `{2,3}`, and one vertex with rotation `0 ↦ 1 ↦ 2 ↦ 3`;
 - the faces `K = [0,2]`, the lake `Π = [1]` and the outside `O = [3]`, so χ = 1 − 2 + 3 = 2.
 
@@ -119,11 +120,11 @@ pinch Prop. The model is a bare map: it has no labels, relator cells or arcs, so
 
 ### Residual and next
 
-No Prop owned by this lane is open. `OsinPocketPinchedTwoGonLobe` is green as landed (4181011af),
-so it needs no second landing. Next, in order:
-1. the probe of `OsinPocketLakeModel` and the extended OuterFollows;
-2. hull-respell's smallest A and B, as dgo-analytic asks, once their dart lists are available;
-3. if the lead asks, a diagram-level lake fixture: a `PocketFaceSet` with the source cell in the
+No Prop owned by this lane is open. `OsinPocketPinchedTwoGonLobe` (4181011af), OuterFollows and
+`OsinPocketLakeModel` (67e5b2f9c) are green as landed, so none needs a second landing. Next, in
+order:
+1. hull-respell's smallest A and B, as dgo-analytic asks, once their dart lists are available;
+2. if the lead asks, a diagram-level lake fixture: a `PocketFaceSet` with the source cell in the
    lake.
 
 ## 2026-09-13: P_naive wiring check
