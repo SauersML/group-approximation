@@ -9,6 +9,7 @@ distinct_from:
   colored-cfi-rung-is-the-solution-group-case: that cites Roberson--Schmidt over F_2, where the algebra is a linear-system algebra and the symmetry a group dual; this runs the CFI construction over an arbitrary finite group and gets H-valued coset constraints and non-group-dual Hopf subalgebras C(L).
   closure-safe-support-is-exactly-the-colored-iso-rung: that characterizes which bisynchronous traces feed the colored rung; this computes the isomorphism algebra of one explicit family of colored digraphs exactly.
   finite-phase-monomial-game-algebra-dictionary: that identifies monomial isomorphism games with quantum-reflection algebras; this identifies torsor CFI isomorphism games with H-valued coset constraint algebras.
+  coset-systems-are-torsor-isomorphism-games: that is the binary, question-vertex presentation (regular fibres K_q, pairwise cosets c D), landed later the same night; this is the relation-point presentation with contexts of any arity and arbitrary local relations R_k, whose effective constraints are the left cosets {g : g R_k = R'_k}. The two dictionaries share the left-shift mechanism.
 ---
 
 **ESTABLISHED** by `torsor-cfi-isomorphism-algebra-is-coset-constraint-algebra-proof`.

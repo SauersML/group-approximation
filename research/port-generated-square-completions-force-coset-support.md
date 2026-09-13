@@ -9,6 +9,8 @@ distinct_from:
   harris-circulant-one-matrix-compiler-forces-affine-support: that treats the translation completion under an exact colour-equality presentation; this treats every Latin completion under closure-safety alone, and derives the group structure instead of assuming it.
   closure-safe-support-is-exactly-the-colored-iso-rung: that proves closure-safe bisynchronous gaps are colored isomorphism gaps; this classifies which squarifications of a synchronous game built from its own port projections can be closure-safe.
   torsor-cfi-port-profiles-are-cosets: that proves coset profiles for torsor CFI gadgets; this shows that port-generated squarification of an oracularized verifier lands in that coset syntax.
+  coset-systems-are-torsor-isomorphism-games: that proposes coset systems as a square completion and computes their isomorphism algebras; this proves that any closure-safe completion inside the port algebra must be a coset system, with coset-hull safety as the price.
+  coset-refinement-forces-rectangular-central-splitting: that fixes group structures, allows padding, and gives the central rectangle splitting, with the coset-hull test when there is no padding (its Corollary 4); this assumes no group structure, derives the regular groups (L1) from closure-safety of arbitrary Latin squares, and covers only completions inside the port algebra.
 ---
 
 **ESTABLISHED** by `port-generated-square-completions-force-coset-support-proof`.
@@ -45,6 +47,13 @@ It has not been reviewed by an ex-verify lane.
    colouring of `S_3` on points and 2-subsets has a classical closure-safe
    trace whose port support, point-in-pair incidence, is not rectangular.  So
    it is not a coset of any subgroup.
+
+**Relation to coset systems.**  (L1) and (L2) say that the completed game,
+after coarsening colours to components, is a coset system in the sense of
+`coset-systems-are-torsor-isomorphism-games`: regular fibres `K_q` and
+pairwise cosets `M_(qq') s_0`.  So among completions inside the port algebra,
+the coset system is not one choice among several.  It is the only closure-safe
+one.
 
 **What this settles.**  Nonabelian local symmetry does not help while the
 squarification stays inside the port measurement's own algebra: groups
