@@ -138,6 +138,7 @@ Files owned by other lanes were not edited. Their owners were messaged on 2026-0
 - ko-closed: Kazhdan/KotowskiOllivierClosed.lean:11-12;
 - nm-endpoints: TorsionFreeLeafAssembly.lean:29, 36-37, 123; TorsionFreeLiteratureInputsLeastArea.lean:18-23, 101;
   TorsionFreeSaturationFromCorrected.lean:21, 74, 264, 435.
+  nm-endpoints fixed all three at fe61152ed, after probe 0913-030945-26927 GREEN.
 
 Some hits were left unchanged:
 - Accurate history: the TheoremCAssembly header, SeedFromTheoremC.lean:29-32, and theoremc-retire's row and report.
