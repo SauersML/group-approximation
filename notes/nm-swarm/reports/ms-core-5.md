@@ -100,3 +100,31 @@
   `mem_mfHomKernel_iff`, so this module does not consume it. The budget assembly uses it for radical equality.
 - LANDED bec8b25e6: probe 0913-173847-9539 GREEN, `BUILT GroupApproximation.Manuscript.NonMFSentences.CoreMFRadicalGLKill`, both audited theorems depend on [propext, Classical.choice, Quot.sound]; wiring queued.  Census row `2b6b9904f2d6` partial.
 - CLAIM the discharge of `CoreKernelLeRelativeElementaryStatement` (K_n ≤ EL_n(R_X, I) over F_2, n ≥ 2): chain-radical's `ker_elementaryMatrixUnitMap_eq` at the core restriction, with ms-units' `zmodTwoAlgebra` and `isLocallyMatricialIn_coreTransientIdeal` over `TransientIdealLocallyMatricialFTwoStatement` (eaa87e3a1), then `relativeElementary_mono` over a new named Prop `CoreTransientIdealLeDefectIdealStatement` (I ≤ ⟨defects⟩, owner chain-matricial).  Module `GroupApproximation/Manuscript/NonMFSentences/CoreKernelRelativeElementary.lean`.  Assigned by main 09-13 ~17:50; chain-radical.files holds no module 6.
+
+## Module `GroupApproximation/Manuscript/NonMFSentences/CoreKernelRelativeElementary.lean`
+
+- Namespace `GroupApproximation.ChainCore.CoreMFRadicalGLKill`. Imports CoreMFRadicalGLKill (bec8b25e6) and
+  `Dynamics/CoreKernelFTwo` (ms-units, eaa87e3a1). Attic copy dbd90e13a.
+
+| declaration | content |
+|---|---|
+| `CoreTransientIdealLeDefectIdealStatement` | new residual Prop, owner chain-matricial (planned `transientIdeal_eq_span_defects`): `coreTransientIdeal T (ZMod 2) ≤ defectIdeal T (ZMod 2)` |
+| `coreKernelLeRelativeElementary_of_pieces (hmat : TransientIdealLocallyMatricialFTwoStatement) (hgen : CoreTransientIdealLeDefectIdealStatement) : CoreKernelLeRelativeElementaryStatement` | `ChainRadical.ker_elementaryMatrixUnitMap_eq` at the core restriction under `letI := zmodTwoAlgebra T`, then `relativeElementary_mono` |
+| `coreMFRadicalKillGL_of_transientMatrices (hbil) (hmat) (hgen) : CoreMFRadicalKillGLStatement` | composite |
+
+- The GL clause of `CoreMFRadicalKillStatement` now rests on three Props:
+  1. `PrintedBilateralThree` (ct-bilateral-mf);
+  2. `TransientIdealLocallyMatricialFTwoStatement` (ms-units' spelling; owner chain-matricial module 5, which ms-core-4
+     is second-starting);
+  3. `CoreTransientIdealLeDefectIdealStatement` (chain-matricial module 6).
+- Algebra instance: consumed as ms-units' `zmodTwoAlgebra`, an `abbrev` (not an instance) built from `2 = 0`.
+  `isLocallyMatricialIn_coreTransientIdeal` holds for every `F₂`-algebra structure, and Mathlib has
+  `Subsingleton (Algebra (ZMod p) R)`. This module adds no instance.
+- Two in-flight files, recorded for main:
+  - ms-compress-3's `Dynamics/ClopenCrossedProductAlgebra.lean` declares a GLOBAL
+    `noncomputable instance instAlgebra : Algebra k (ClopenCoeff T k)`. Through Mathlib's SkewMonoidAlgebra instance,
+    that makes a second `Algebra (ZMod 2) R_X` path at wiring, equal to `zmodTwoAlgebra` only propositionally.
+  - `Dynamics/ClopenCoreReflection.lean` (unlanded, no `.files` owner) states `CoreKernelDefectInterface`, the
+    hom-killing form of "the defects generate I". It implies `CoreTransientIdealLeDefectIdealStatement` via the
+    quotient `R_X → R_X ⧸ defectIdeal`.
+- LANDED 14ba7a42d: probe 0913-180233-86224 GREEN, `BUILT GroupApproximation.Manuscript.NonMFSentences.CoreKernelRelativeElementary`, both audited theorems depend on [propext, Classical.choice, Quot.sound], 0 warnings; wiring queued.  Census row `2b6b9904f2d6` refreshed (partial, three residual Props).  The first landing attempt ended with neither LANDED nor REFUSED and landed nothing; the retry landed.
