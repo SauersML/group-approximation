@@ -111,3 +111,29 @@ characteristic two. Then every group homomorphism `sigma : V -> M^x` is trivial.
     `rk((1 + [t])^j) = (1 - phi_V)(2 - j)/2` for all `j`, which fails at `j = 0`. In characteristic `2` the relevant
     identity is `rk(x_1 + x_2) = rk(x_1)` for disjoint clopen transpositions whose supports leave a nonempty clopen
     complement. Then `x_1 + x_2 = [t_1](1 + [t_1 t_2])` with `t_1 t_2` conjugate to `t_1`.
+
+- **Order-char law on all finite subgroups** (w7-v-cycle-c2; artifact
+  `research/artifacts/thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md`). These are candidate
+  proofs, held OPEN until `w3-vf-linear` re-derives them.
+  - **Candidate theorem** (`v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`). On every finite subgroup
+    `G <= V`, in every characteristic, `rk(A) = phi_V rank_F eps(A) + (1 - phi_V) rank_F Reg(A)/|G|`. This proves
+    the open item above: `rk(1 + [t]) = (1 - phi_V)/2`.
+  - **Torsion is spent, 2-torsion included.**
+    - On finite and locally finite subgroups, `phi_V` pins the rank function: augmentation mixed with
+      permutation-module ranks.
+    - So `(1 + [t])^2 = 0` is not decisive by itself (`sofic-configurations-cannot-force-v-rank-triviality`).
+  - **The gate in terms of `phi_V`** (artifact Section 4.2).
+    - **Local formula.** `phi_V = 1 - 2 rk(1 + sigma(t))`.
+    - **Convexity.** Block sums with the trivial model reach every value of `phi_V` in `[phi_V(sigma), 1]`. So the
+      gate is equivalent to `phi_V in {0, 1}` for every model. Whether the law plus `x_0`, `x_1`-conjugation forces
+      that is the gate itself.
+    - **Reduced models.** With [FR] Corollary 1.3(5) ([matricial]), the gate is equivalent to this: no model has
+      `rk(1 + sigma(t)) = 1/2`. Equivalently, no model is regular on every finite subgroup.
+  - **Invariance under disjoint-support endomorphisms doesn't prove the law** (artifact Section 3).
+    - **Construction.** `rho(t_i) = 1 + lambda_i e_12` over `F_2(lambda_1, lambda_2, ...)` gives a rank function on
+      `F_2[E_infinity]`.
+    - **What it satisfies.** It is invariant under every injective endomorphism, and `rk(x_1 + x_2) = rk(x_1)`.
+    - **Why it fails the law.** Its fixed rank is `1/2` at every level.
+    - **First premise it breaks.** Odd cycles normalized by the 2-group.
+  - **Where it dies.** A proof needs infinite-order elements in a configuration not known to be sofic, together with
+    2-torsion. The first live configuration is still `<x_0, x_1, t>`.

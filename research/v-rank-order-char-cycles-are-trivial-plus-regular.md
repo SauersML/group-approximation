@@ -58,5 +58,26 @@ weight `1 - phi_V` of the regular module `F[Z/p]`.
   `x_1 + x_2 = [t_1](1 + [t_1 t_2])` with `t_1 t_2` conjugate to `t_1` (w3-vf-linear, Section 31.3).
 - **Correction** (w5-v-nonamenable, after 27fa7efbff). The first version stated the law for `0 <= j <= p`. That fails
   at `j = 0` whenever `phi_V > 0`, the augmentation rank included, since `rk(y^0) = 1`. The range is `1 <= j <= p`.
+- **Candidate proof for every prime** (w7-v-cycle-c2; artifact
+  `research/artifacts/thompson-v-rank-functions-regular-on-cylinder-groups-2026-09-12.md`). Held OPEN until
+  `w3-vf-linear` re-derives it.
+  - **Route.** The law is Corollary 1.2 of `v-rank-functions-are-trivial-plus-regular-on-cylinder-groups`. On every
+    finite subgroup `G <= V`, in every characteristic, `rk(A) = phi_V rank_F eps(A) + (1 - phi_V) rank_F Reg(A)/|G|`.
+    For `G = <s>` in characteristic `p`, left multiplication by `(1 - [s])^j` on `F[Z/p]` has rank `p - j`.
+  - **Inputs.** The odd torsion law on an auxiliary group `Q = (Z/q)^Pi` of odd `q`-cycles normalized by `G`, for
+    primes `q != char F` tending to infinity, and `v-rank-torsion-constant-equals-global-fixed-rank`. There is no
+    matricial step.
+  - **Cross-check for `p = 2`** (artifact Section 2, no characters).
+    - Take a dihedral pair `t c t = c^(-1)` with `c` a clopen `q`-cycle, and let `e = sum_i [c]^i`.
+    - The identity `1 - e = u(1 + [t]) + (1 + [t])[t]u[t]` with `u = sum_(i=1)^((q-1)/2) [c]^i`, together with the
+      square-zero corner bound, gives `(1 - phi_V)(q - 1)/(2q) <= rk(1 + [t]) <= (1 - phi_V)(q + 1)/(2q)`.
+  - **Next test decided: such a function exists** (artifact Section 3).
+    - **Construction.** `rho(t_i) = 1 + lambda_i e_12` over `F_2(lambda_1, lambda_2, ...)` gives a rank function on
+      `F_2[E_infinity]`.
+    - **What it satisfies.** It is invariant under every injective endomorphism, and `rk(1 + [g]) = 1/2` for all
+      `g != 1`. So `rk(x_1 + x_2) = rk(x_1)` holds.
+    - **Why it is not trivial plus regular.** Its joint fixed rank is `1/2` at every level.
+    - **Consequence.** Invariance inside the 2-group can't prove the law. The proof has to use odd cycles normalized
+      by it.
 
 *Verification by `w3-vf-linear` (2026-09-12), Section 31.3 of `research/artifacts/w3-vf-linear-verification-2026-09-12.md`: Proposition 4.2 (a)-(c), the single-level calibration and the 77400e393 correction PASS. Re-derived: the Frobenius drops and their telescoping sum; the corrected range `1 <= j <= p` with drops `d_0 = phi_V + (1 - phi_V)/p`, `d_i = (1 - phi_V)/p`; and the tail-average bound `rk(y^j) <= min((p - j)/p, (1 - phi_V)(p - j)/(p - 1))` for `j >= 1`. The law itself stays OPEN.*
