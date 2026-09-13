@@ -86,3 +86,32 @@ the Kun--Thom group sits only in its lamps.
 - *Dead for PL flow groups.*  Matte Bon--Triestino's left-orderable groups
   `T(phi)`, which include finitely generated simple ones, contain no infinite
   Kazhdan subgroup (arXiv:1811.12256, Theorem F).
+
+**Non-Kazhdan witnesses (2026-09-13).**  Two bi-orderable candidates, both open,
+neither behind Navas's Question 3.
+
+- *Live: Thompson's F.*  `left-orderable-non-sofic-via-thompson-f`, input
+  `thompson-f-is-not-sofic`.  By `thompson-f-sofic-iff-relator-system-unstable`
+  that input is Arzhantseva--Paunescu's permutation-stability question for the
+  two relators of `F`.  `F` is bi-orderable (`thompson-f-is-bi-orderable`) and
+  has the Haagerup property, so neither a Kazhdan subgroup nor a rigid
+  compression defect can be the mechanism.
+- *Live: the Lodha--Moore group.*
+  `left-orderable-non-sofic-via-lodha-moore-group`, input
+  `lodha-moore-group-is-not-sofic`.  It is finitely presented, bi-orderable and
+  not LEA, and all its proper quotients are abelian.
+- *Dead: embed a torsion-free nonsofic group in a left-orderable group.*  This
+  is the opening paragraph again: left-orderability passes to subgroups, so the
+  nonsofic subgroup would itself have to be left-orderable.
+- *Torsion-free but not orderable: the stability HNN.*  The mechanism of
+  `hnn-over-sl2-z-not-sofic-if-sl2-z-inverse-p-p-stable` should run on
+  torsion-free congruence subgroups of `SL_2(Z[1/p])` (hand remark, not written
+  up).  Congruence quotients still control finite actions, and the `SL_2(Z)` part
+  keeps property (tau).  But the output contains a finite-index subgroup of
+  `SL_2(Z[1/p])`, and such S-arithmetic groups are reported not left-orderable
+  (Lifshitz--Witte Morris, not re-read here).  So it gives no witness.
+- *Dead: Gohla--Thom central extensions.*  `gohla-thom-stable-base-nonsofic-extension`
+  produces central extensions by a finite abelian group, which have torsion.
+- *Untested: random complexes.*  `cocycle-stability-nonsofic-route` would give a
+  nonsofic hyperbolic group from random Linial--Meshulam complexes.
+  Orderability of those groups is not recorded in this graph.
