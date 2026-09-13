@@ -66,12 +66,26 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
   - T2, first-turn order across the exterior spur thickening (`OsinPocketOuterSpur`). T1 and T1′ belong to ms-intro-4.
 - Agreed with ms-cite-1: it runs the counterexample search for `PocketPinchLabelledPosStatement` at `ε ≥ 1`
   (`Estimating/OsinPocketPinchPosModels.lean`). This lane keeps the positive route.
-- In flight: `Estimating/OsinPocketFullArc` (attic 33e4d51f6) and `Estimating/OsinPocketArcTrim` (attic 06cb6c7cd).
-  - The first probe of FullArc (0913-175113-42314) was red: deprecated option lemmas, and two simp goals on reversed
-    arcs and `getLast?`. Fixed and re-probing together with ArcTrim.
-  - ArcTrim: `trimSourceLast` (first side shorter than `ε`) and `trimTargetHead` (second side shorter than `ε`, arc
-    not at the wrapped start). Face set and cycle are unchanged, so walk order, repeated visits and simplicity are
-    unchanged, and the trimmed arc is not full.
+- **LANDED 514e47490** `Estimating/OsinPocketFullArc` (probe 0913-180300-88794: BUILT and COMPILED; the co-probe was red
+  only on ArcTrim). The module is unwired and queued for wiring.
+  - `PocketFaceSet.not_simple_of_full_sourceArc K hfull hrest : ¬ K.Simple`, where hfull is
+    `K.sourceArc.length = (cellDarts X K.source).length` and hrest is
+    `K.firstSide ++ K.secondSide ++ K.targetArc.darts ≠ []`.
+  - `PocketFaceSet.not_simple_of_full_targetArc K hfull hrest`, where hfull is `K.targetArc.length = (outerDarts X).length`
+    and hrest is `K.firstSide ++ invDarts X K.sourceArc.darts ++ K.secondSide ≠ []`.
+  - Helpers: `PocketFullArc.cyclicRel_rotate`, `darts_eq_rotate_of_full`, `outerDarts_chain`, `outerDarts_cyclic`,
+    `closes_mem`, `mem_getLast?_append_singleton`, `PocketFaceSet.invDarts_eq_tail_append`.
+  - Calibration: `PocketFullArc.wrapK_not_simple` passes `#audit_closed_axioms`.
+  - The first probe (0913-175113-42314) was red on deprecated option lemmas and two simp goals, since fixed.
+- **LANDED d5821cd77** `Estimating/OsinPocketArcTrim` (probe 0913-180605-99266 GREEN, BUILT and COMPILED). The module is
+  unwired and queued for wiring.
+  - `CyclicArc.dropLastArc`, `CyclicArc.tailArc` and their `_darts` lemmas.
+  - `PocketFaceSet.trimSourceLast K hlabel hne hroom`, with `hroom : K.firstSide.length < eps`.
+  - `PocketFaceSet.trimTargetHead K hlabel hne hs hroom`, with `hs : K.targetArc.start.1 < (outerDarts X).length` and
+    `hroom : K.secondSide.length < eps`.
+  - `closedWalk_`, `repeatedVisits_` and `simple_..._iff` for both trims: the cycle is unchanged.
+  - `trimSourceLast_sourceArc_lt` and `trimTargetHead_targetArc_lt`: the trimmed arc is not full.
+  - The first co-probe (0913-180300-88794) was red on one decomposition goal, since fixed.
 - Where the step route sticks: a full arc with a nonempty remainder and both sides at length exactly `ε`. No trim has
   room, and transport surgery keeps arcs and sides. This does not refute the Prop, since the conclusion may change the
   source, the kept cell, the arcs and the sides.
