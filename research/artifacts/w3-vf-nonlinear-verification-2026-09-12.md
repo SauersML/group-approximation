@@ -1245,3 +1245,132 @@ Found in a sweep of pushed records; no verification request had come in.
 - That claim's attempts hold:
   - `A(BA) = A` gives `(AB-1)A = 0`.
   - The support subgroup `K` already carries `BA = I != AB` in `M_n(F_p[K])`, so `K` is nonsofic by Elek–Szabó, and Theorem 1.2 applies.
+
+## 27. Integer-marker flip-control disjointness and the one-ancilla residue (w5-integer-marker, 62f488374, 83204067f)
+
+**Claim `marker-flip-cells-avoid-all-marker-control-windows` (ESTABLISHED), route `marker-flip-control-disjointness-proof`. PASS, with a gap in the consequence step.**
+
+The pattern matches `marker-involution-is-formalizable-after-regrouping` (`001*100`). A marker at `i` forces `x_(i-1) = x_(i+1) = 1` and `x_(i±2) = x_(i±3) = 0`.
+
+**Distance bound.** A marker at `i+d`:
+- `d = 1` needs `x_(i+2) = 1` and `x_(i-1) = 0`. Both fail.
+- `d = 2` needs `x_(i-1) = 0`. It is `1`.
+- `d = 3` needs `x_(i+2) = 1`. It is `0`.
+- `d = 4` needs `x_(i+1) = 0`. It is `1`.
+- The pattern is reflection-symmetric, so negative `d` follows. Markers are at distance `>= 5`, and every `j in C_i` has `|j-i| <= 3`.
+- Sharp: `0,0,1,*,1,0,0,1,*,1,0,0` on `i-3, ..., i+8` has markers at `i` and `i+5`, and `C_i ∩ C_(i+5) = {i+2, i+3}`.
+
+**Gap.** The node's "flipping changes no cell of any `C_i`, so every `m_i` keeps its value" covers only active `i`. For an inactive `i`, a flipped marker `j` can lie in `C_i`. Repair:
+- `M(x) ⊆ M(tau x)`, since an active window sees no flip.
+- If `i` is in `M(tau x) \ M(x)`, then some `j` in `M(x) ⊆ M(tau x)` lies in `C_i`. So `tau x` has two markers at distance `<= 3`, contradicting the lemma for `tau x`.
+- So `M(tau x) = M(x)`, and `tau^2 = id`.
+
+**Wording.** The `d = 1` and `d = 3` case texts are garbled. The `d = 3` text calls `x_(i+2) = 0` "the `1` of `001`". The clashing cells above are the intended ones.
+
+**Claim `one-ancilla-marker-residue-is-supported-on-window-overlaps` (OPEN). The decision question is well posed. The support and degree statement is false.**
+- **Gates.** `A` and `A'` are `y += m(x)`, and `B` is `x += y`. Each is a formal involution, so `W = A'BA` has formal inverse `ABA'`. On `y = 0` the data output is `x + m(x)`, and the ancilla output is `r = m(x) + m(x + m(x))`. Correct.
+- **Boolean vanishing.** By `M(tau x) = M(x)`, `r` vanishes on Boolean points, so `r` lies in `(x_h^2 + x_h)`. Correct.
+- **Finding.** `m_g` is multilinear in `C_g`, so `r_g = sum_(∅ != S ⊆ C_g) (prod_(k in S) m_k) ∂_S m_g`. Every `j in C_g` contributes a first-order term `m_j ∂_j m_g`.
+  - For `j = g-1`: the lowest parts are `x_(g-2) x_g` of `m_(g-1)` and `x_(g+1)` of `∂_(g-1) m_g`.
+  - For `j = g+1`: they are `x_g x_(g+2)` and `x_(g-1)`.
+  - Other `j`, and all `|S| >= 2`, give degree `>= 4`.
+  - So the degree-3 part of `r_g` is `x_(g-2) x_g x_(g+1) + x_(g-1) x_g x_(g+2)`, which is nonzero.
+  - The lowest-degree part has degree 3 and comes from the adjacent cells, not from distance-5/6 overlaps. "Monomials have total degree `>= 8`" is false.
+  - The title's "from overlapping marker windows" and artifact Section 2's "Lemma 1.1 places such `j` only at distance `5 <= d <= 6`" apply a Boolean fact in the free ring.
+- **Attempt.** The first Attempt's "degree `>= 8` across a width-13 window" rests on the same expansion and needs re-checking.
+- Sent to the author with the expansion.
+
+**Follow-up (9cb380bf4).** Re-read on main.
+- **Disjointness claim and route.**
+  - Statement 3 now proves `M(x + 1_S) = M(x)` for every `S ⊆ M(x)`, including the reverse inclusion.
+  - The `d = 1..4` texts name the clashing cells.
+  - Correct, so the gap is closed.
+- **Residue node.**
+  - The new title describes the node, and the id is unchanged.
+  - The lowest-degree part is the degree-3 expression above.
+  - "Degree `>= 8`" and the one-extra-shear Attempt are withdrawn.
+  - Correct.
+- **Artifact 2.2.** The clash factor is right. For `j = g+1`, `m_(g+1)` carries `x_(g+2)`, and `∂_(g+1) m_g` carries `1 + x_(g+2)`.
+- **Artifact 2.3.** Tracing `(x, y)` gives data output `x + y + m(x)`. So `W` has shadow `tau x id` only on `y = 0`, and ancilla gates cannot repair it. Correct.
+- **Artifact 2.4.**
+  - Every gate before a single data write `x += f(z)` is bijective in the ancilla for fixed `x`. So `f(z) = m(x)` for every `z`, which would make `m` constant.
+  - Correct as stated. It is a necessary condition on words in that gate class, not a decision.
+  - The closing sentence about `y`-dependent window cells holds after the first non-constant data write.
+- **Hub bullet.** It matches the corrected nodes. Correct.
+- No decision.
+
+## 28. The two-patch ternary seed, the blind-pair criterion and multi-patch transfer (w5-two-patch, cb1a13058, c004d2465, 40df3cbe3, 34aa2d7be)
+
+**Claim `ternary-two-patch-seed-rule-is-never-injective` (OPEN, held for this verdict). PASS. The candidate proof in artifact Sections 1–3 is correct, and the claim can be established by its route.**
+
+The rule is `mu_2(y) = y_1 - y_a + y_b + [y = (0,1,2)] + [y = (1,2,0)]` over `F_3`, with `tau(x)(g) = mu_2(x(g), x(ga), x(gb))`.
+
+**Values.**
+- `mu_2(0,1,2) = 2`, `mu_2(1,1,2) = 2`, `mu_2(0,0,2) = 2`, `mu_2(1,2,0) = 0`, `mu_2(1,2,1) = 0`.
+- Counts: `lambda` is balanced. Patch `(0,1,2)` moves one output from `1` to `2`, and `(1,2,0)` moves one from `2` to `0`. So the counts are `10, 8, 9`.
+
+**Lemma 1 (single flip). Correct.**
+- The windows reading `h` are at `h`, `ha^-1` and `hb^-1`, and the three table rows recompute.
+- With `h = 1` the sites are `1, a, b, a^-1, a^-1 b, b^-1, b^-1 a`. Of the 21 pairs, 12 force a coincidence among `1, a, b`.
+- The other nine match the table. Conflicts occur under `a^2 = 1`, `b = a^2`, `ab = 1`, `b^2 = 1` and `a = b^2`. Agreements occur under `ab = 1`, `a = b^2` and `(a^-1 b)^2 = 1`, and the first two also conflict elsewhere.
+
+**Lemma 2 (`a^2 = 1`). Correct.**
+- The four touched windows are distinct. Since `b` is not in `{1, a}`, the windows at `hb^-1` and `hab^-1` each read one changed site.
+- `lambda(0,0,s) = lambda(1,1,s) = s`, and neither pattern is a patch.
+- All 15 pairs among the six non-fixed sites are accounted for:
+  - five force `a = 1` or `b = 1`;
+  - two conflict under `ab = ba`;
+  - four force values at `hb`: `b^2 = 1` gives 1, `b^2 = a` gives 2 and 1, `(ba)^2 = 1` gives 2;
+  - four force values at `hab`: `a = b^-2` gives 1, `bab = a` gives 2, `b^2 = 1` gives 1, `b^2 = a` gives 2.
+- With `a^2 = 1`, `a = b^-2` is the same relation as `b^2 = a`. So the artifact's third pair `{a = b^-2, b^2 = a}` is a single relation.
+- The unlisted pair `{a = b^-2, bab = a}` gives `b^2 = 1` and then `a = 1`, so no exception is missing.
+- Every conflict makes `H` abelian, cyclic or generated by two involutions.
+
+**Lemma 3 (`b^2 = 1`). Correct.**
+- The windows reading `hb` are at `hb`, `hba^-1` and `h`.
+- `lambda(1,s,0) = lambda(0,s,1) = 1 - s`, and `(1,s,0)` is a patch only at the excluded `s = 2`.
+- All 15 pairs are accounted for:
+  - five are degenerate;
+  - two conflict under `ab = ba`;
+  - four force values at `ha`: `a^2 = 1` gives 0, `b = a^2` gives 2 and 0, `bab = a^-1` gives 2;
+  - four force values at `hba`: `b = a^-2` gives 0, `aba = b` gives 2, `a^2 = 1` gives 0, `b = a^2` gives 2.
+- A forced 2 is itself a conflict. The failure relations make `H` abelian, cyclic, virtually cyclic (`b` inverts `a`), or dihedral (`aba = b` gives `(ab)^2 = 1`).
+
+**Theorem 2. Correct.**
+- **Amenable `H`.** Since `M ⊆ H`, injectivity restricts to `H`. The Garden of Eden theorem gives surjectivity, and a bijective automaton preserves the uniform measure, so `mu_2` would be balanced. Both inputs are ESTABLISHED.
+- **Nonamenable `H`.** `ab = 1`, `b = a^2` and `a = b^2` make `H` cyclic, and `a^2 = b^2 = 1` makes it dihedral. So exactly one of Lemmas 1–3 applies, and its exceptions are amenable. The collisions are finitely supported.
+- **"Where it could fail."** Both items were checked. The tables are complete, and no table-breaking relation leaves `H` nonamenable.
+
+**Artifact Section 4 (blind-pair criterion and next seed). PASS.**
+- **Criterion.**
+  - For `c_i != 0`, exactly one of `y` and `y + e e_i` is a patch, because patches are at distance `>= 2`. So `e = ± t_r c_i^-1`, and the pair is `F_3 \ {r_i - t_r c_i^-1}`, realized at context `r`.
+  - For `c_i = 0`, each patch spoils one of nine contexts.
+  - The common-pair criterion follows from the bijection between pairs and missing symbols.
+- **Seed check.** `N_1 = {2,0}`, `N_a = {2,0}` and `N_b = {1,2}`, so `N = {2}` and the pair is `{0,1}`.
+- **Classes.**
+  - Augmentation 0 is never a unit, and a monomial is never rigid.
+  - The corrected "Where the unit case lives, among rigid rules" (34aa2d7be) gives `(1,1,-1)` and `(1,1,0)`. Correct.
+  - The earlier "exactly one zero coefficient" included `(1,-1,0)`, which has `S = 0`.
+- **Rigid rules.** With `c = (1,1,-1)` and weights `+1`: `N_1 = A_1 - 1`, `N_2 = A_2 - 1`, `N_3 = A_3 + 1`.
+  - So `N = (A_1 ∩ A_2 ∩ (A_3 - 1)) - 1`, and rigidity means `A_1 ∩ A_2 ∩ (A_3 - 1)` is empty.
+  - Two 2-subsets of `F_3` meet, and a 2-subset cannot avoid two symbols. So with two symbols at every address, `A_1 ∩ A_2 = {w}` and `A_3 = F_3 \ {w+1}`.
+- **Next seed** `mu_3 = (x_1 + x_a - x_b) + [(0,0,2)] + [(1,2,0)]`.
+  - `N = {2,0} ∩ {2,1} ∩ {0,1} = ∅`.
+  - All six blind-pair evaluations recompute.
+  - Both patches contain `0` and `2`. The augmentation is 1, and the counts are `8, 9, 10`.
+  - Backgrounds: `P_0 = M`, `M \ P_1 = {a, b}`, `M \ P_2 = {1}`.
+- **Non-Sidon placements.** A coincidence among the seven sites needs `a^2 = 1`, `b^2 = 1`, `(a^-1 b)^2 = 1`, or a cyclic relation. Any two of these involutions generate `H` as a dihedral group. So a nonamenable non-Sidon placement has exactly one involution.
+  - Census Proposition 5.1, which excludes non-rigid rules on Sidon placements, is cited and not re-derived here.
+- **Wording.** "A single flip is invisible nowhere, since the rule is rigid" would read better as "no single flip is invisible, since the rule is rigid".
+
+**`distinct-symbol-patch-collision-2026-09-12.md` Section 3 (cb1a13058). PASS.**
+- **Transfer.** A symbol in every patch is the hypothesis of `avoidable-patches-of-affine-rules-inherit-linear-injectivity`. A bijective linear automaton has a linear inverse, so a non-unit `ell` gives a linear strict automaton.
+- **Proposition 4.** A 2-subset of `F_3` and its nonzero translate cover `F_3`, and a singleton gives at most two symbols.
+- **Proposition 5.**
+  - With `ell kappa = 1`, the coefficient of `g^-1` is `sum_m c_m k_(m^-1 g^-1) = [g = 1]`. So `L(x' - x) = -t delta_1`, and `x'|_M = p`.
+  - Window `1` gains `t` in the patch part and loses `t` in the linear part.
+  - A window with a site outside `M ∪ N^-1` at an address outside `P_c` reads `c` in both configurations and matches no patch.
+- **Seed data.**
+  - Distance `>= 16` from other affine rules: two affine functions agree on at most 9 of the 27 patterns, and `mu_2` is 2 from `lambda`.
+  - The diagonal is the identity, and the backgrounds give `{a}`, `{b}`, `{1}`.
+  - The seed's "Status. Open" there is superseded by Theorem 2 of the two-patch artifact. A forward pointer there would help.

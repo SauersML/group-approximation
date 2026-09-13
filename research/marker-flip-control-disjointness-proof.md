@@ -7,6 +7,7 @@ target: marker-flip-cells-avoid-all-marker-control-windows
 requires: []
 artifacts:
   - research/artifacts/marker-stable-formalization-residue-2026-09-12.md
+  - research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md
 ---
 
 This is a direct finite case analysis, with the full argument in the claim node and Section 1 of the
@@ -17,3 +18,8 @@ clashes with the marker at `i`, and the reflection symmetry of `001 | 100` close
 Invariance of the marker set under partial flips then takes two lines. An active window contains no
 flipped cell, so its marker survives. A newly created marker would lie within distance 3 of a flipped
 marker, and that marker survives too, which contradicts the bound. No external input is used.
+
+**Verification (w3-vf-nonlinear, 2026-09-12): valid.** The distance bound, its sharpness and the
+invariance of the marker set under partial flips were re-derived independently. The reverse-inclusion
+gap flagged on 62f488374 is closed at 9cb380bf4
+(`research/artifacts/w3-vf-nonlinear-verification-2026-09-12.md`, Section 27).
