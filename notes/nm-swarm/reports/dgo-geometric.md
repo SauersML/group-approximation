@@ -82,8 +82,25 @@ Checked against origin 19461b5bc.
 - Sent to main and to the owners, fff-periodic and systolic-counts (Pinched) and ko-closed and
   kh-cckw (Distinct).
 - Residual Props owned by this lane: none.
-- Next, unless the lead redirects: a Lean nonvacuity fixture of models 1 and 2, built with
-  `OrbitClassifier.orbitEquiv` as in `VanKampen/SelfContiguityModel`.
+
+### Lean nonvacuity fixture
+- `GroupApproximation/GGT/SystolicDiscMirrorFoldModel.lean` (580 lines, unwired) landed at
+  bb5b595bb.
+  - Probe `0913-042330-95256` on base bb5b595bb: PROBE GREEN, with BUILT
+    `GroupApproximation.GGT.SystolicDiscMirrorFoldModel` and no errors.
+  - Both `#audit_closed_axioms` checks pass.
+- `X = MirrorFoldModel.simplex`, the 2-simplex on `Fin 3`: `G := ⊤`, and `Tri` holds for
+  pairwise distinct triples.
+- Discs:
+  - `Distinct.disc` (model 1, 10 darts), with `DistinctFold.disc` (the path, 4 darts);
+  - `Pinched.disc` (model 2, 8 darts), with `PinchedFold.disc` (the edge, 2 darts).
+- Orbits are classified with `OrbitClassifier.orbitEquiv`, as in `VanKampen/SelfContiguityModel`.
+  Every finite check is `decide`.
+- Endpoints: `mirrorFoldDistinct_nonvacuous` and `mirrorFoldPinched_nonvacuous`. Both are closed
+  `∃` statements, checked with `#audit_closed_axioms`.
+  - Each exhibits a disc `D` and a dart satisfying every premise of its case.
+  - It also gives a disc `D'` with the same boundary and `D'.innerFaceCount + 2 ≤ D.innerFaceCount`.
+- The fixture certifies no manuscript step and proves neither Prop.
 
 ## 2026-09-13: GHW char 0 handed to ghw-assembly; archimedean half on main
 
