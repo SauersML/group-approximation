@@ -27,6 +27,11 @@ at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-d
   - `DGOTheorem235Printed` and `GerasimovaOsinTheorem11Printed` are recorded as proved:
     `dgoTheorem235Printed` and `gerasimovaOsinTheorem11Printed`. Both carry
     `#audit_closed_axioms` and are imported by the root.
+- `dd0412114`, probe 0913-034738-16893: `GGT/HullLemma35Printed.lean` (new, definitions
+  only), the statements of Hull Lemma 3.5 and of `{G₁, G₂} ↪h G₁ ∗ G₂`.
+- `87762b46c`, probe 0913-051219-87168 (both modules BUILT): `GGT/HullLemma35FreeFactors.lean`
+  (new) proves `printedFreeFactorsHypEmbedded`. The module doc of `HullLemma35Printed` now
+  records the proof. Queued for wiring.
 
 | module | declarations |
 |---|---|
@@ -34,6 +39,8 @@ at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-d
 | `Sofic/StrongConvergenceMFSubsingleton.lean` (new) | `isStronglyOperatorMF_of_subsingleton`, `isStronglyOperatorMF_unit` |
 | `Manuscript/NonMF/NaiveFreeProductPropertyOfAcylindricallyHyperbolic.lean` (new) | `naiveFreeProductProperty_of_isAcylindricallyHyperbolic`, `powersAveragingEstimate_of_isAcylindricallyHyperbolic` |
 | `Manuscript/NonMF/TorsionFreePrintedSentences.lean` (edited) | `PrintedTheoremQuotientTrivial`, `manuscriptSentence_theoremQuotientTrivial : PrintedTheoremQuotientTrivial` |
+| `GGT/HullLemma35Printed.lean` (new) | `IsHypEmbeddedFamily`, `PrintedHullLemma35`, `PrintedFreeFactorsHypEmbedded` |
+| `GGT/HullLemma35FreeFactors.lean` (new) | `printedFreeFactorsHypEmbedded : PrintedFreeFactorsHypEmbedded`, `FreeFactorsHypEmbedded.factorsRelGenSet`, `FreeFactorsHypEmbedded.relBall_finite`, `FreeFactorsHypEmbedded.isFourPointHyperbolic_alphabet` |
 
 ## Findings closed
 
@@ -99,17 +106,9 @@ citation.
 These walls are owned by other lanes: hull-*, kh-* / ko-closed, and simple-group. Wall 4 is
 closed by `finitelyPresentedInfiniteSimple_closed` (47b31bef8, simple-group).
 
-## Next
+This lane's own open item is `GGT.PrintedHullLemma35.{u}` (below).
 
-- Wiring: three modules are queued (`296386753`).
-- The team lead accepted (a) through (d) as closed; census registers them at its re-baseline.
-- New item (team lead, roster "Hull Corollary 7.4 at printed generality"): general Hull
-  Lemma 3.5, `{G₁, G₂} ↪h G₁ ∗ G₂` together with transitivity of hyperbolic embedding.
-  `HullSCFreeProductFactor` covers only the finitely presented torsion-free case. The
-  statement lands first, then the proof. cite-hull owns the other pieces (K(G), AH0,
-  Lemma 5.10, Corollary 7.3).
-
-## Hull Lemma 3.5 (in progress)
+## Hull Lemma 3.5
 
 - Source checked against arXiv:1308.4345v2 (`pdftotext -layout`).
   - Lemma 3.5 is on p. 12 of §3. Hull prints it without a proof, as a "simplification of
@@ -118,26 +117,36 @@ closed by `finitelyPresentedInfiniteSimple_closed` (47b31bef8, simple-group).
   - The proof of Corollary 7.4 (§7) says "Since `{G₁, G₂} ↪h F`, Lemma 3.5 gives that
     `{⟨f₁⟩, ⟨f₂⟩, ⟨h₁⟩, ⟨h₂⟩} ↪h F`".
   - Hull's Lemma 5.9 also "follows from Lemma 5.8 and Lemma 3.5".
-- Statement module `GGT/HullLemma35Printed.lean`, probe 0913-034738-16893 green. It is new,
-  unwired, and holds only definitions:
+- Statements, `GGT/HullLemma35Printed.lean` (`dd0412114`):
   - `IsHypEmbeddedFamily G H := ∃ D : RelGenSet G Λ, D.fam = H ∧ D.IsHyperbolicallyEmbedded`;
   - `PrintedHullLemma35.{u}`: all `n`, `H : Fin n → Subgroup G`, `m`, and
     `K : ∀ i, Fin (m i) → Subgroup (H i)`, with the family indexed by `Σ i, Fin (m i)`;
   - `PrintedFreeFactorsHypEmbedded.{u}`: `![inl.range, inr.range]` in
     `Monoid.Coprod G₁ G₂`, for all groups.
-- Residual Props: `GGT.PrintedFreeFactorsHypEmbedded`, `GGT.PrintedHullLemma35`.
-- Plan for `printedFreeFactorsHypEmbedded`, with `X = ∅`:
-  - Local finiteness: a `Type u` HeadsPartner invariant (the generic letter lemmas of
-    `RelHypFreeProductPeripheral` are universe-polymorphic) gives relative balls `{1}`.
+- **`PrintedFreeFactorsHypEmbedded`: closed.** `printedFreeFactorsHypEmbedded` in
+  `GGT/HullLemma35FreeFactors.lean` (`87762b46c`) carries `#audit_closed_axioms`. The
+  witness is `X = ∅`.
+  - Local finiteness: every relative ball is `{1}`. The invariant "the partial product is
+    `1` or its reduced word begins in the other factor" uses `RelHyp.headIdx_mul_of`.
   - Hyperbolicity: `isFourPointHyperbolic_unionCarrier` at the full factor alphabets
-    (`isFourPointHyperbolic_of_bounded`), transported through a `Type u`
-    `Monoid.Coprod ≃* CoprodI` built with `lift`, since `Higman.coprodEquiv` is only
-    `Type 0`.
-- Plan for `printedHullLemma35`. This is DGO 4.35 at `Fin n`;
-  `RelHyp.DGOProposition435PrintedStatement` is unproved, is used only as `h435` in its own
-  file, and has no lane owner.
-  - Local finiteness: an excursion of a target path between two vertices of `H_i` ends in
-    the finite `D.relBall i n`. Adding those elements as base letters and applying the
-    proved Corollary 4.27 local half, `localFiniteness_of_finite_base_diff`, bounds the ball.
-  - Hyperbolicity of `Γ(G, X ∪ ⋃ (Y_i ∪ K^i))`: guessing geodesics with `dgoProposition414Uniform`.
-    This extends the `Uncone` modules from cyclic members to hyperbolic replacement graphs.
+    (`δ = 1`), carried along `coprodIBoolEquiv` in every universe.
+- **`PrintedHullLemma35`: open.**
+  - It is `RelHyp.DGOProposition435PrintedStatement.{u, 0, 0}` at `Λ = Fin n`,
+    `M i = Fin (m i)`. That statement is unproved, is used only as `h435` in its own file,
+    and has no lane owner.
+  - `DGOProposition435.lean` proves only the joint direction (keep the family, add
+    auxiliary members at equal alphabets), and reduces it to local finiteness. It is not
+    the printed direction.
+  - Local finiteness plan: an excursion of a target path between two vertices of `H_i`
+    ends in the finite `D.relBall i n`. Adding those elements as base letters and applying
+    the proved Corollary 4.27 local half, `localFiniteness_of_finite_base_diff`, bounds the
+    ball.
+  - Hyperbolicity of `Γ(G, X ∪ ⋃ (Y_i ∪ K^i))`: guessing geodesics with
+    `dgoProposition414Uniform`. This extends the `Uncone` modules from cyclic members to
+    hyperbolic replacement graphs.
+
+## Next
+
+- Wiring: `296386753` (three modules), `dd0412114` and `87762b46c` are queued.
+- The team lead accepted (a) through (d) as closed; census registers them at its re-baseline.
+- `PrintedHullLemma35` per the plan above. The local finiteness half comes first.
