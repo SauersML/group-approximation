@@ -94,3 +94,11 @@ fidelity gap was closed by f797a21d6. The new module is queued for wiring.
   and `ClopenCrossedProduct.bilateralCell_*_z`, so nothing collides with ct-bilateral-cell's Corner draft
   (`one_add_pow_of_mul_self_eq_zero`, `z_pow_eq_one_of_natCast_mul_d`, `isOfFinOrder_z`). Proposed to
   ct-bilateral-cell at 17:3x.
+- CLOSED 17:5x: tex 1585–1587 LANDED 1982b6aa4 (probe 0913-174741-34426 GREEN, closed audit; the first probe
+  0913-174305-20653 failed on elaborating `add_left_cancel` inside `congrFun`, fixed by naming the step).
+  Declarations: `ClopenCrossedProduct.PrintedBilateralThreeZCentralOfOrderChar`,
+  `ClopenCrossedProduct.manuscriptSentence_bilateralThreeZCentralOfOrderChar` (closed audit),
+  `ClopenCrossedProduct.bilateralCell_orderOf_z`, `ClopenCrossedProduct.bilateralCell_z_ne_one`,
+  `ClopenCrossedProduct.bilateralCell_z_pow_eq_one_iff`, `ClopenCrossedProduct.nsmul_defectD_eq_zero_iff`,
+  `BilateralThreeCell.ZOrder.z_pow_val`, `BilateralThreeCell.ZOrder.z_pow_eq_one_iff`. Census row `e94a87793eb1`
+  (ct-sentences had graded it partial); module queued in wire-queue.txt.
