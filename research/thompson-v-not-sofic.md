@@ -75,3 +75,13 @@ second nonsoficity mechanism, the other open lane for which is
 - **Action form.** `thompson-v-cantor-pair-bernoulli-action-is-not-sofic` is implied by this claim. It
   is the Kun--Thom Corollary D statement for the Haagerup infranormal pair `(V, V_[0])`, so it is a
   possible stepping stone.
+- **Finite-subgroup rounding and gluing (2026-09-13, lane `solve-v-collapse`).** By
+  `thompson-v-sofic-iff-s4-s3-gluings-nearly-fix-long-words`, every sofic approximation rounds to a
+  free gluing of an `S4`-set and an `S3`-set along `a = (00 01)`. So this claim holds exactly when
+  some `epsilon_0 > 0` works for all `L` and all `nu in C2 wr S_(L/2)`: on `(a_0, b_0, nu^-1 c_0 nu)`,
+  one of the four long words of (2.4) moves at least `epsilon_0 L` points.
+  - **The rounding carries no obstruction.** It removes only the finite subgroups. Every remaining
+    difficulty sits in the four words (`thompson-v-is-a-four-relator-quotient-of-s4-amalgam-s3`).
+  - **Numerics give no evidence.** Annealing over `nu`
+    (`research/artifacts/thompson-v-free-gluing-annealing-2026-09-13.md`) solves a planted `S5`
+    control only at `L = 48`. So its plateaus up to `L = 960` do not support this claim.

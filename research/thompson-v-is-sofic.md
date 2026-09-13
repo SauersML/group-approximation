@@ -50,3 +50,11 @@ Consequences:
   pairs `(A_n, B_n)` that satisfy the two relators of `F` up to `o(1)` while `d(A_n B_n, B_n A_n)` stays
   bounded below. Exact solutions all commute, because finite quotients of `F` are abelian. So such a
   construction must use the error essentially.
+- **Free gluings (2026-09-13, lane `solve-v-collapse`).** By
+  `thompson-v-sofic-iff-s4-s3-gluings-nearly-fix-long-words`, a construction is a sequence of
+  permutations `nu in C2 wr S_(L/2)` such that on `(a_0, b_0, nu^-1 c_0 nu)` the four long words of
+  (2.4) move `o(L)` points. The relators of `S4` and `S3` then hold exactly.
+  - Annealing over `nu` finds no such gluing at `L <= 960`.
+  - It also misses planted exact models from `L = 120` on
+    (`research/artifacts/thompson-v-free-gluing-annealing-2026-09-13.md`), so that is not evidence
+    against this claim.
