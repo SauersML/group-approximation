@@ -56,7 +56,11 @@ algebra with a nonzero fivefold commutator.
 - *Spin_m detection, m >= 2.* Open. The relative lambda-mod-m e-invariant
   reaches eta^3 at depth three. Depth four would need a length-four torsion
   product visible in Omega^{Spin_m}_*, or classes carried by higher cells of
-  U(p).
+  U(p). All m at once reduce to string bordism. MString -> MSpin_m is an
+  E_∞ ring map, so if MString ∧ Sigma^∞ cbar_5 of U(p) is null, every
+  Spin_m detector is blind in rank p, on every seed manifold
+  (spin-m-trapping-factors-through-string-bordism). A class-five input in
+  rank p therefore needs an essential MString ∧ Sigma^∞ cbar_5.
 - *String or tmf detection.* That would see nu^2 and products involving
   kappa-bar, but it needs lambda(TX − W_R) = 0 exactly. Quaternionic steps
   have defect k·q_1 with k >= 1, and complex Grassmannians carry a c_1^2
