@@ -7,7 +7,8 @@ target: half-finite-shift-envelope-wp-computes-generators
 requires: []
 ---
 
-**Step 1. The slide is a translation of a line.** Put `L_p = 2p+1` for `p >= 0`
+**Step 1. The slide is a translation of a line.** Products are compositions,
+`gh = g ∘ h`. Put `L_p = 2p+1` for `p >= 0`
 and `L_p = -2p` for `p < 0`. This is a bijection `Z -> N`, and
 `pos(L_p) = p` satisfies `|pos(x)| <= x`. The slide sends odd `x` to `x+2`,
 even `x != 2` to `x-2`, and `2` to `1`. Checking the three cases gives
@@ -78,5 +79,6 @@ runs in time `C_2 * T(C_2 l) + C_2 l + C_2`. Take the linear bound
 C_3 * (n+3)^2 * ( T( C_3 (n+3)^2 ) + (n+3)^2 )  <=  C_4 * R( C_4 n ) + C_4 n + C_4,
 ```
 
-with `R(n) = (n+3)^2 T((n+3)^2)`, using monotonicity of `T`. So evaluation lies
+with `R(n) = (n+3)^2 ( T((n+3)^2) + (n+3)^2 )`, using monotonicity of `T` and
+`n+3 <= 4n` for `n >= 1`. So evaluation lies
 in `F(R)`, which is the contrapositive of the stated consequence. `∎`

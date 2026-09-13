@@ -34,7 +34,7 @@ of length at most `C * D(n+3)^2`.
 
 **Consequence for hardness.** If some `gamma_i` has a linear displacement bound
 `gamma_i(x) <= K*x + K`, and its evaluation map `n -> gamma_i(n)` (with `n` in
-unary) lies outside `F(R)` for `R(n) = (n+3)^2 * T((n+3)^2)` (notation of
+unary) lies outside `F(R)` for `R(n) = (n+3)^2 * ( T((n+3)^2) + (n+3)^2 )` (notation of
 `uniform-wp-bound-excludes-bh-universal-targets`), then the word problem of `G`
 lies outside `F(T)` for every finite generating set.
 

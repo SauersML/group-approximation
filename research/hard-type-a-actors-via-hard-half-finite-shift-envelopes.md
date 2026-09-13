@@ -8,7 +8,7 @@ requires: [hard-half-finite-permutations-have-fp-shift-envelopes, half-finite-sh
 ---
 
 Fix a recursive `T` and put `T+(m) = m + max_(k<=m) T(k)`, which is recursive
-and non-decreasing. Put `R(n) = (n+3)^2 T+((n+3)^2)`.
+and non-decreasing. Put `R(n) = (n+3)^2 ( T+((n+3)^2) + (n+3)^2 )`.
 
 1. **Hard generators with a finitely presented envelope.** By
    `hard-half-finite-permutations-have-fp-shift-envelopes`, applied to `R`, there
