@@ -46,10 +46,12 @@ of the development with property `(T)`.
   group of the development with property `(T)` into the challenge's two
   statements.
 
-The development endpoint has the shape of
-`GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef_of` in
-`GroupApproximation/Pestov91/Assembly.lean`: `EL₃(A)/Z(EL₃(A))` for an infinite
-finitely generated ring `A`, once that group is simple and LEF.
+The development endpoints have the shapes of
+`GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef_of` and
+`GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef_of_elementary`
+in `GroupApproximation/Pestov91/Assembly.lean`: `EL₃(A)/Z(EL₃(A))`, respectively
+`EL₃(A)`, for a finitely generated ring `A`, once that group is simple and LEF
+and the quotient is infinite.
 
 The prose of this module was written by Claude (Anthropic).
 -/
