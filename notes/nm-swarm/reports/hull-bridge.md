@@ -111,6 +111,19 @@ induction hypothesis on quotient-ball stretches.
   - Queued for wiring. It has no importers, and it is infrastructure, so it has no census row.
 - The collar insertion uses it as follows: the collared side is a sub-path of this walk, and its
   endpoints differ exactly when the rest of the walk is nonempty.
+- kh-torsion's second sub-piece, the disc-level corner join (the inverse of `PinchSplit`):
+  - GGT/VanKampen/SurgeryCornerJoinMap: LANDED e7fa1c6ab, green in probe 0913-105542-93925
+    (BUILT, `#audit_axioms`). `CornerJoin.toCombMap` is `VertexJoin.toCombMap`. A face cycle
+    `alpha x :: xs ++ alpha y :: ys` (`Cycle`) splits into the faces `alpha x :: ys` and
+    `alpha y :: xs`, and every other face keeps its enumeration. `sameCycle_mul_swap_iff` gives
+    the vertices of the join.
+  - GGT/VanKampen/SurgeryCornerJoinDiagram: LANDED 336c80ccc, green in probe 0913-111152-20791
+    (BUILT, `#audit_axioms`). `CornerJoin.Input.diagram` is O-equivalent to the old diagram with
+    the same cells (`cellMap`, `cellDarts_eq`, `outerDarts_eq`). It has the walks
+    `faceBoundary_left_darts`, `faceBoundary_right_darts` and `faceBoundary_kept_darts`, one face
+    more and one vertex fewer. The input carries the value of the left half, and `right_value`
+    derives the other half.
+  - Both are queued for wiring. They are infrastructure, so they have no census rows.
 
 ## Risks recorded
 - `BoundedRelativeLinearAreaTransferStatement` may be unprovable: its W-only area predicate cannot see the
