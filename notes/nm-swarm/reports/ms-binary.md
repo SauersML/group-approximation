@@ -109,3 +109,50 @@ The module will state and prove:
 - Route: the inner doubling of `HairOpening.sectionFamily` along a cell hair. No region contains a relator cell, so
   `havoid` holds. The exterior traversal is unchanged, so no outer spur or outer cell dart appears. The number of cell
   hairs drops by one. Induct on that number.
+
+### LANDED 6ef3e9bd9: `GGT/VanKampen/SurgeryCellHairThickening.lean`
+
+Probe 0913-181336-30630 was GREEN with a BUILT line. It is unwired and queued for wiring. Namespace
+`GroupApproximation.GGT.VanKampen.CellHairThickening`. Consume these names; they are stable.
+
+| declaration | content |
+|---|---|
+| `IsCellHair Delta x` | `HairOpening.IsHair Delta x ∧ ∃ C ∈ relatorCells, C.face = faceOf x` |
+| `cell_self_of_noCellHair hno i` | `CopyClean.cell_self` for the source cell `i` |
+| `relatorFace_not_mem hvalue hC a` | with no relator word of value one, no region contains a relator face |
+| `faceOf_none`, `faceOf_embed_dart`, `faceOf_embed`, `exists_of_faceOf_eq_keep`, `exists_of_faceOf_eq_cellFace`, `exists_of_faceOf_eq_outer` | faces of the darts of an inner `FaceEdgeDoubling.diagram` |
+| `exists_of_isCellHair`, `cellHairCount_lt` | the count drops |
+| `noOuterSpur`, `noOuterCellDart`, `relatorValue_ne_one` | preserved by an inner doubling |
+| `exists_cellHairFree` | the induction |
+| `CellHairThickeningStatement`, `cellHairThickening` (closed) | from no outer spur, no outer cell dart and no relator word of value one: `∃ S' e`, O-equivalent, keeping all three, no cell hair, same weight, profiles and sources |
+| `OuterCellHairThickeningStatement`, `outerCellHairThickening` (closed) | composed after `OuterCellThickening.outerCellThickening`, from `1 < boundaryWord.length` and the value condition |
+
+Rejected route: after rewriting with `FaceEdgeDoubling.boundary_kept`, `rw [List.mem_map]` fails. The list's element type
+is `EdgeInsertion.Dart M`, while the membership instance expects `(FaceEdgeDoubling.map …).Dart`, and they agree only by
+unfolding `toCombMap`. Use `List.mem_map.mp`.
+
+### Interface request from w1-binder-6 (~18:05), accepted
+
+The composition order is `outerSideThickening`, then ms-cite-2's cell-side thickening, then `cell_self` last. This
+lane's statement will take and return:
+- `1 < boundaryWord.length`;
+- the value condition;
+- no outer spur;
+- no outer cell dart;
+- `∀ x, ¬ OuterSideThickening.IsOuterSideDart S.diagram S.family x`;
+- `∀ x, ¬ CellSideThickening.IsCellSideDart S.diagram S.family x`.
+
+- In flight: `GGT/VanKampen/SurgeryCellHairThickeningSides.lean`, with `length_faceImage`, `exists_of_mem_sides` and
+  `noCellSideDart`. Opening a relator face along a dart creates no cell-side dart.
+- Next: `noOuterSideDart` and the six-condition induction, once `SurgeryOuterSideThickening` is on origin.
+- Deviation: the uncompiled `SurgeryCellHairThickeningSides.lean` was preserved with `NM_UNVERIFIED=1` at 2d79b9a51.
+  The wave-2 rules require `NM_ATTIC=1` for in-flight Lean. The module is unwired and nothing imports it, so no root
+  build is affected. It is re-landed normally after a green probe, or after the fix if the probe is red.
+- Repaired: probe 0913-181724-64428 was GREEN with BUILT `SurgeryCellHairThickeningSides` (5002 jobs). The probe base was
+  2d79b9a51, and the blob on main (abd7ed4ce) is the blob that built, so the bytes on main are verified. The normal
+  re-land had nothing to write. The module adds:
+  - `length_faceImage`: the image of a face has as many darts as the face;
+  - `exists_of_mem_sides`: a transported side dart is `embed` of an old side dart;
+  - `noCellSideDart`: opening a relator face along a dart creates no cell-side dart.
+- The six-condition draft (`noOuterSideDart`, `exists_cellHairFree_sides`, `CellHairSidesThickeningStatement`) is written
+  and waits for `SurgeryOuterSideThickening` on origin.
