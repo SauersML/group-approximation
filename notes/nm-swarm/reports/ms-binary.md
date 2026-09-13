@@ -156,3 +156,30 @@ lane's statement will take and return:
   - `noCellSideDart`: opening a relator face along a dart creates no cell-side dart.
 - The six-condition draft (`noOuterSideDart`, `exists_cellHairFree_sides`, `CellHairSidesThickeningStatement`) is written
   and waits for `SurgeryOuterSideThickening` on origin.
+
+### LANDED a36060868: `GGT/VanKampen/SurgeryCellHairThickeningSix.lean`
+
+- Probe 0913-182155-4625 was GREEN with BUILT (5034 jobs), over w1-binder-6's `SurgeryOuterSideThickening` (acd63f3bb).
+  The attic copy is 0e6326bc0. The module is unwired and queued for wiring.
+- It keeps `SurgeryCellHairThickening`'s namespace, `GroupApproximation.GGT.VanKampen.CellHairThickening`, and adds:
+  - `noOuterSideDart family havoid hfree`: opening a relator face along a dart creates no outer side dart.
+  - `exists_cellHairFree_sides S hvalue hspur hcell hoside hcside`: the cell hair induction, keeping all five conditions.
+  - `CellHairSidesThickeningStatement` and `cellHairSidesThickening` (closed, `#audit_closed_axioms`). This is the last
+    step of the agreed order.
+- **Takes:**
+  - `1 < Delta.boundaryWord.length`;
+  - the value condition;
+  - no outer spur;
+  - no outer cell dart;
+  - `∀ x, ¬ OuterSideThickening.IsOuterSideDart S.diagram S.family x`;
+  - `∀ x, ¬ CellSideThickening.IsCellSideDart S.diagram S.family x`.
+- **Returns** `∃ S' e`:
+  - O-equivalent to `S`;
+  - the value condition;
+  - no outer spur, no outer cell dart, no outer side dart and no cell-side dart;
+  - no cell hair (`IsCellHair`);
+  - the same weight;
+  - `SameTargetProfile` and the source index for every region.
+- The `CopyClean` fields then follow from `spur_of_noOuterSpur`, `cell_outer_of_noOuterCellDart`,
+  `OuterSideThickening.side_outer_of_noOuterSideDart`, ms-cite-2's cell-side lemma for `side_cell`, and
+  `cell_self_of_noCellHair`. `regions` is still unowned, because it needs ms-cite-2's side-dart transport.
