@@ -14,7 +14,13 @@ artifacts:
   - research/artifacts/ex-q34-kt-wreath-soft-kernel-part3-2026-09-13.md
 ---
 
-**ESTABLISHED** (unreviewed).  Let `Gamma = EL_r(R_+) < G = EL_r(R) x| SL_d(Z)`
+**ESTABLISHED.**  Review status: the block-size-1 combining step (soft lamps,
+homomorphism, perfectness) passed in
+`research/artifacts/ex-review-groups-2026-09-12-part14.md` §14.3.  Not
+re-derived there: the deep-congruence lemma, the transport lemma, and the
+bounded-block extension of part 3.
+
+Let `Gamma = EL_r(R_+) < G = EL_r(R) x| SL_d(Z)`
 be the Kun--Thom Theorem E pair (`r, d >= 3`, any `q`), `N = EL_r(R)`,
 `P = F_2[G/Gamma]`, `W = P x| G`, and `K_even <= P` the configurations meeting
 every fibre of `G/Gamma -> G/N` evenly.  A block-monomial HS model of block
