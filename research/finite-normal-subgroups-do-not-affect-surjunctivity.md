@@ -69,3 +69,12 @@ artifacts:
   - **What local re-choice cannot reach.** The method re-chooses only the extension data read by finitely
     many products. The analogous cocycle re-choice for Deligne's triple cover is recorded on
     `deligne-triple-cover-nonsurjunctive`.
+- **Quotient direction at coprime alphabet sizes** (lane w6-free-pos-d, artifact
+  `finite-stabilizer-coset-shift-transfer-2026-09-12.md`, Theorem 1; verified by w4-vf-positive-b,
+  Section 10.1 of `gk-vf-positive-b-verification-2026-09-12.md`).
+  - If `E` is surjunctive at size `m` and `gcd(m, |N|) = 1`, then `E/N` is surjunctive at size `m`.
+  - An automaton over `E/N` is an equivariant self-map of the coset shift `A^(E/N)`. Averaging over `N`
+    extends it to an automaton on `A^E` that is injective iff it is, and surjective iff it is.
+  - No separation is assumed, so this holds inside the finite residual.
+  - At a size sharing a prime with `|N|` the averaging has no equivariant replacement
+    (`finite-stabilizer-coset-shifts-inherit-surjunctivity`, Attempts).
