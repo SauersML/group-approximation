@@ -69,18 +69,23 @@ group.
      every input this way. This is a hand argument, first noted in
      `research/artifacts/ideas-2026-09-13/bh/bh-ec-groups.md`, approach 2.
    - **Verdict.** Killed for a fixed `S`; `S` must depend on the input.
-3. **Non-split outer extensions of a fixed simple group: not excluded by that
-   argument.**
+3. **Non-split outer extensions of a fixed simple group.**
    - **Setup.** Let `1 → S → I → Q → 1` with `Q → Out(S)` injective.
-   - **Why the complexity argument doesn't apply.** Here `q = 1` iff some lift of
+   - **Original remark (superseded; see Status).** Here `q = 1` iff some lift of
      `q` acts on `S` by an inner automorphism. That is a search for a conjugator
      in `S`, with no time bound depending only on `S`. So one fixed `S` is not
      ruled out by `complexity-bounded-host-classes-are-not-universal`: the
      overgroup `I` varies with the input, and so does its word-problem
      complexity. This is a hand remark.
-   - **Status.** Open. What is needed is
-     `decidable-groups-embed-in-outer-extensions-of-fp-simple-groups`. No
-     finitely presented simple group with an outer automorphism group rich
-     enough has been identified. Rational hosts such as Thompson's `V` are
-     excluded by the repository's rational-host nodes, since their automorphisms
-     are rational homeomorphisms.
+   - **Status.** Refuted on 2026-09-13 by
+     `outer-extension-word-problem-is-kernel-bounded` (lane
+     solve-bh-outer-ext).
+     - The innerness search above decides triviality in the quotient `Q`, but
+       the input must sit in `I`.
+     - Since `C_I(S) = 1`, `I` embeds in `Aut(S)`, and the word problem of `I`
+       reduces to that of `S` after one exponential substitution.
+     - So one fixed `S`, split or not, is excluded by
+       `complexity-bounded-host-classes-are-not-universal`.
+     - The outer-extension route therefore needs unboundedly complex simple
+       kernels, as the conjecture does
+       (`complex-fp-simple-groups-from-outer-extensions`).

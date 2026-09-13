@@ -26,9 +26,42 @@ problem there is an extension `1 → S → I → Q → 1` with
 - This implies `every-decidable-group-embeds-in-an-isolated-group`, by
   `outer-extensions-of-fp-simple-groups-are-isolated`.
 
-**Complexity.** The argument of `complexity-bounded-host-classes-are-not-universal`
-does not exclude a single fixed `S` here: the quotient's word problem is an
-unbounded innerness search in `S` (root Attempt 3). It does exclude a fixed
-`S` with `Q ≤ Aut(S)` embedded directly (root Attempt 2).
+**Complexity.** Every such `I` embeds in `Aut(S)`, and its word problem costs at
+most one exponential over that of `S`
+(`outer-extension-word-problem-is-kernel-bounded`, 2026-09-13). So for one
+fixed `S`, or any class of such `S` sharing one recursive bound, split and
+non-split extensions alike share one recursive bound, and
+`complexity-bounded-host-classes-are-not-universal` excludes them as universal
+hosts. The earlier remark that non-split extensions of a fixed `S` escape this
+(root Attempt 3) was wrong: the innerness search decides triviality in the
+quotient `Q`, while the input sits in `I`.
+
+Consequently this statement implies
+`fp-simple-groups-with-arbitrarily-complex-word-problem` (route
+`complex-fp-simple-groups-from-outer-extensions`), exactly as
+`boone-higman-conjecture` does. The outer-extension route has no complexity
+advantage over the conjecture: the simple kernels must themselves be
+unboundedly complex.
 
 No construction is known beyond the Boone--Higman cases.
+
+## Attempts
+
+1. **One fixed simple kernel, with non-split outer extensions.** Killed by
+   `outer-extension-word-problem-is-kernel-bounded` (2026-09-13, lane
+   solve-bh-outer-ext). The kernel's automorphism action decides the word
+   problem of `I` after one exponential substitution.
+2. **Known Thompson-like kernels.**
+   - For `V` and `nV`, whose word problems lie in coNP (Birget,
+     arXiv:1902.03852, as recorded on the root
+     `fp-simple-groups-with-arbitrarily-complex-word-problem`), all outer
+     extensions share one recursive bound, so none is universal.
+   - Kernels with hard word problems do exist on main: twisted Brin--Thompson
+     groups `SV_G`, whose word problem is governed by the actor
+     (`twisted-brin-thompson-wp-equals-actor-orbit-problem`). But an input
+     placed in such an actor already satisfies permutational Boone--Higman, so
+     outer extensions add nothing there.
+   - What remains is a universal supply of finitely presented simple kernels
+     of unbounded complexity, each with finitely presented outer extensions
+     containing the input outside the kernel. That is at least as hard as the
+     complexity root.
