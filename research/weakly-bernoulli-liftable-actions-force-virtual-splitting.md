@@ -55,3 +55,28 @@ maps `c : T × X -> W` with `π(c(t, x)) = t` and the cocycle identity outside s
   - **Where it dies in general.** Popa plus compactness excludes exact trivializations of every bounded block
     complexity, but not sequences of growing complexity. A uniform dimension-2 expansion input is needed, and property
     (T) supplies only dimension 1.
+- **Positive polarity without rigidity (ex2-rokhlin-liftable-positive, 2026-09-13).** Settled over non-rigid bases
+  by `weakly-bernoulli-lifts-over-amenable-free-product-bases`.
+  - Over an infinite amenable `Q`, every quotient `X/N` of a free `W`-action is liftable and weakly equivalent to
+    Bernoulli.
+  - Over `Q_p * Z`, built from the Abels--Prüfer quotient, the non-residually-finite central extension
+    `Γ_p *_C (C × Z)` carries a liftable action weakly equivalent to Bernoulli. The base is non-amenable and has
+    no (T).
+  - So some rigidity hypothesis is needed. Non-amenability, failure of (T), or a persistent class alone are not
+    enough.
+  - Exact lifts exist on every treeable free action (`treeable-free-actions-lift-across-finite-normal-extensions`).
+  - The question is exactly almost-lifts on Bernoulli (`weakly-bernoulli-lift-iff-bernoulli-almost-lifts`), and
+    the positive polarity passes to subgroups.
+  - The first undecided non-rigid base is `deligne-sl2-z-1-p-weakly-bernoulli-lift`.
+- **Toledo's examples checked from the source (same lane).** D. Toledo, Publ. IHES 77 (1993) 103--119, pp. 103--105.
+  - The groups are `π_1(M − D)`, where `M` is a compact locally symmetric variety for `SO(2, n)` with `n >= 4` even,
+    and `D` is a smooth totally geodesic divisor. Quoted: "each example admits a surjective homomorphism to a
+    lattice in the Lie group SO(2, n) whose kernel is a free group of infinite rank".
+  - Residual finiteness fails because the groups contain the fundamental group of the boundary of a tubular
+    neighbourhood of `D`. Quoted: "a co-compact lattice in a certain covering group of SO(2, n − 1)". It is not
+    residually finite by Raghunathan's Main Theorem.
+  - That subgroup is a central extension of a cocompact lattice in `SO(2, n − 1)` with `n − 1 >= 3`. That group
+    has real rank 2, so it has property (T) by Kazhdan's theorem (not imported as a node).
+  - Toledo's group itself is not a finite central extension of anything.
+  - **Verdict.** Toledo supplies no base without (T), so the predecessor's recollection does not fit. The Nori
+    and Catanese--Kollár branched-cover examples mentioned on p. 105 rest on the same Raghunathan input.
