@@ -6,8 +6,75 @@ family-form admission and the re-spelling input from the manuscript quotient fie
 `Manuscript.NonMF.TheoremC.FournierFacioQuotientStatement`, so that it rests only on the two geometric
 leaves.
 
+Since 2026-09-13 (every-line swarm) this lane integrates the hgreendlinger wall. The target is
+`theorem relativeGreendlingerQuasiGeodesicLeastArea_closed :
+GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0,0,0}`.
+
+## hgreendlinger: piece Props (decided 2026-09-13, landed a452fa727, probe 0913-012115-15640 GREEN)
+
+The two modules below compiled green on base a452fa727, whose bytes equal origin/main.
+`#audit_axioms` ⊆ {propext, Classical.choice, Quot.sound}. Both are queued for root wiring.
+
+`GGT/VanKampen/Estimating/OsinAppendixGreendlingerParts` holds four part Props. Each has the
+quantifier prefix of `OsinLemma94SectionStatement`:
+`∀ G D, hyperbolic → ∀ λ c μ, 0<λ≤1, 0≤c, 0<μ≤1/16 → ∃ ε₀, ∀ ε ≥ ε₀, ∃ ρ₀ > 0, ∀ ρ ≥ ρ₀, ∀ W,
+OsinCCondition D W ε μ λ c ρ → <input>`.
+
+| Prop | input (`OsinAppendixSectionInduction`) | owner |
+|---|---|---|
+| `OsinMultipleEdgeCutSectionStatement` | `MultipleEdgeCutInput D λ c ε W` (G2) | hull-select |
+| `OsinLoopCutSectionStatement` | `LoopCutInput D λ c ε W` (G2) | go-lemma42 |
+| `OsinEulerCountSectionStatement` | `EulerCountInput D λ c ε W` (G3, G4) | hull-euler |
+| `OsinDescentSectionStatement` | `DescentInput D λ c μ ε W` (G6) | dgo-analytic |
+
+Assemblies:
+- `osinSection97Inputs_of_parts hmulti hloop heuler hdescent : OsinSection97InputsStatement`. The
+  thresholds combine by maxima.
+- `osinLemma97Section_of_parts h94 hmulti hloop heuler hdescent : OsinLemma97SectionStatement`.
+- `relativeGreendlingerQuasiGeodesicLeastArea_of_parts h94 hmulti hloop heuler hdescent :
+  RelativeGreendlingerQuasiGeodesicLeastAreaStatement`, with O52 discharged by `Embedded.o52LeastArea`.
+
+`GGT/VanKampen/Estimating/OsinAppendixGreendlingerPocketParts` is the alternative route to the Euler
+and descent parts, through `OsinAppendixLemma97Pocket` (42e5d2843). That module builds as a
+dependency of this probe.
+
+| Prop | input | owner |
+|---|---|---|
+| `OsinPhiPrimeCountSectionStatement` | `PhiPrimeCountInput D λ c ε W` (`OsinAppendixEulerCount`) | dgo-analytic |
+| `OsinSectionPocketCutSectionStatement` | `SectionPocketCutInput D λ c ε W` (`OsinAppendixDescentCut`) | hull-euler |
+
+Assemblies:
+- `osinEulerCountSection_of_phiPrimeCount hcount : OsinEulerCountSectionStatement`.
+- `osinSection97PocketInputs_of_parts hmulti hloop hcount hpocket : OsinSection97PocketInputsStatement`.
+- `osinDescentSection_of_pocketParts h94 hmulti hloop hcount hpocket : OsinDescentSectionStatement`.
+- `relativeGreendlingerQuasiGeodesicLeastArea_of_pocketParts h94 hmulti hloop hcount hpocket`.
+
+A part proved at fixed parameters under `OsinCCondition` gives its section Prop with `ε₀ = 0` and
+`ρ₀ = 1`.
+
+### Residual Props for the closed target
+- `OsinLemma94SectionStatement` (h94), owned by hull-unbound with hull-count94. It follows from
+  `OsinLemma94RunInput` through `osinLemma94Section_of_runInput`.
+- One of these two sets:
+  - `OsinMultipleEdgeCutSectionStatement`, `OsinLoopCutSectionStatement`,
+    `OsinEulerCountSectionStatement`, `OsinDescentSectionStatement`;
+  - `OsinMultipleEdgeCutSectionStatement`, `OsinLoopCutSectionStatement`,
+    `OsinPhiPrimeCountSectionStatement`, `OsinSectionPocketCutSectionStatement`.
+
+On origin/main no producer of any of the six fixed-parameter inputs exists yet. The flip to
+`relativeGreendlingerQuasiGeodesicLeastArea_closed` happens when h94 and one of the two sets land.
+
+## `HullSC.HullRelatorRespellingStatement` (roster: if a consumer remains after theoremc-retire)
+- One consumer chain remains on main, in root-wired `Manuscript/NonMF/TheoremCAssembly.lean`:
+  `hullRelatorRespelling` (`sorry`) feeds `hullLemma44FamilyInclusionJoint`, which feeds
+  `hullLemma44FamilyInclusion` (`dgoProposition414Uniform hullLemma44FamilyInclusionJoint`).
+- `hullLemma44FamilyInclusionJoint` also consumes the other three sorry declarations that
+  theoremc-retire is told to delete. Retiring them means retiring this chain. This was reported to the lead.
+- This lane does not prove the statement. `GGT/HullSCLemma44RespellingWitness` documents that it is too
+  strong as printed, because `eps` and `rho` are chosen before `W`. The least-area route
+  `GGT.RelHyp.fournierFacioQuotientStatement_of_leastAreaLeaves` does not use it.
+
 ## Compiled on main (probe 0911-211417-50221 GREEN, last landing 3832abdb7)
-All 20 lane files on main match the bytes of that probe.
 - C1, the un-coned joint image: `GGT.cyclicPeripheralRemovalStatement : CyclicPeripheralRemovalStatement`.
   It is closed (`#audit_closed_axioms`) and lives in GGT/HullSCUnconeThin. It builds over GGT/HullSCUncone{Expansion, ClosingJump,
   CosetAvoidance, TriangleConnectors, PathPoints, CosetCoordinates, LemmaA, Walk, LemmaB, Sides} and
@@ -29,34 +96,22 @@ All 20 lane files on main match the bytes of that probe.
   ```
   It is consumed by `Manuscript.NonMF.TorsionFreeLiteratureInputsLeastArea.literatureInputs_of_leastAreaLeaves`
   (field `smallCancellationQuotient`).
-- Census: `metadata/nm-census-rows/hull-respell.tsv`, row LINE:1675, `partial`. The status is partial
-  because of the two leaves below.
+- Census: `metadata/nm-census-rows/hull-respell.tsv`, rows LINE:1636, LINE:1644, LINE:1675, all `partial`. The
+  status is partial because of the hgreendlinger and hbridge leaves.
 
-## Open leaves (other lanes)
-1. `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement` (OsinAppendixSections) is the least-area
-   Greendlinger waist. Its producer on main is
-   `relativeGreendlingerQuasiGeodesicLeastArea_of_inputs (hO52 : O52LeastAreaStatement)
-   (h94 : OsinLemma94SectionStatement) (hin : OsinSection97InputsStatement)` (OsinAppendixAssembly).
-   `o52LeastArea` closes `hO52`. The open inputs are:
-   - `OsinLemma94SectionStatement`, owned by hull-unbound.
-   - `OsinSection97InputsStatement`, the conjunction `MultipleEdgeCutInput ∧ LoopCutInput ∧ EulerCountInput ∧ DescentInput`
-     for every eps0 ≤ eps and rho0 ≤ rho. These belong to hull-select (cuts), hull-euler (Euler count) and dgo-analytic (descent).
+## Open leaves
+1. hgreendlinger: see the residual Props above.
 2. `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement` (HullSCLemma51EmbeddedBridge) is Osin's
    Lemma 5.1 in embedded form. It is owned by hull-bridge and hull-component, via the letter pullback.
 
 ## Relaunch 2026-09-12
 - The relaunch directive gave this lane "E1–E6" and `phiSubdividedGraph`. Those are the six
-  GGT/VanKampen/Estimating/OsinAppendixEuler* modules, which belong to hull-euler. That lane is live and owns them. hull-respell
-  edited none of them.
-- There were no stranded edits: every hull-respell file in the shared tree matches origin/main, and the attic copies are
-  superseded.
-- One batch probe of the six Euler modules ran under hull-euler's lane name (0912-092011-96837) and FAILED
-  in OsinAppendixEulerSubdivided:
-  - Five unused simp arguments at line 71.
-  - Theorems in `namespace SubdividedGraph` whose statements never mention the section variable
-    `S` (`facePerm_ne`, `facePerm_three_ne`, `facePerm_five_ne`, `facePerm_two_ne`,
-    `six_le_faceDegree_of_subdividedGraph`). Lean 4 leaves such variables out, so `S.*` is unknown inside
-    their proofs. The fix is `include S in` or an explicit binder.
-  - The other five modules did not build.
-  This diagnosis went to hull-euler.
-- The scope of this lane is finished. The statements the least-area endpoint consumes went to hull-select.
+  GGT/VanKampen/Estimating/OsinAppendixEuler* modules, which belong to hull-euler. hull-respell edited none of them.
+- There were no stranded edits: every hull-respell file in the shared tree matches origin/main.
+- One batch probe of the six Euler modules ran under hull-euler's lane name (0912-092011-96837) and
+  FAILED in OsinAppendixEulerSubdivided. The diagnosis went to hull-euler, and hull-euler later compiled all
+  seven Euler modules (0912-104426-41122).
+
+## Next
+- Flip to `relativeGreendlingerQuasiGeodesicLeastArea_closed` as h94 and the parts land. A watcher on
+  landed.log follows the part owners.
