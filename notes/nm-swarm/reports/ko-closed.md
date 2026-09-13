@@ -3,6 +3,28 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
+## STATE (09-13 ~17:00): CyclicArc append lemmas LANDED 352622d51 (GREEN 0913-165740-38850, queued)
+- team-lead ~16:40: the append lemma in jacobson's form, in a ko-closed module, for the producer's `T = q A p`.
+  jacobson's transcript is active, so it gets names, not edits to its files.  Record 0913-161512-55953 checked GREEN.
+- `GGT/VanKampen/Estimating/OsinLemma94SameCellSpan.lean` (127 lines) LANDED 352622d51.  Probe 0913-165740-38850:
+  `# PROBE GREEN`, base 2433c7a37, BUILT, errors section empty, md5 471c73e7.  Imports only `OsinPocketSectionFaceSet`
+  and `Meta.AxiomGuard`.  Unwired and queued.
+  - `CyclicArc.exists_append_of_start_eq_rest`: `Y.start = X.rest.start` and `X.length + Y.length ≤ cycle.length` give
+    `T` with `T.start = X.start`, `T.length = X.length + Y.length` and `T.darts = X.darts ++ Y.darts`.
+  - `CyclicArc.exists_appendArc`: the same for three arcs `X G Y`, with `G.start = X.rest.start` and
+    `Y.start = G.rest.start`.
+  - `CyclicArc.darts_disjoint_of_nodup_walk`: on a nodup walk `X ++ q⁻¹ ++ Y ++ p⁻¹`, the arcs `q` and `p` share no dart.
+    This is the `hXY` of kh-ejz's `exists_spanArc`.
+  - `CyclicArc.exists_spanArc_target_source` / `_source_target`: from the `htrav` of `osinLemma94CaseOneWalk_sameCell`
+    (through `FaceBoundary.nodup`) and `0 < q.length` (or `0 < p.length`), a gap arc `A` with `A.start = q.rest.start`
+    (or `p.rest.start`) and `T` with `T.darts = q ++ A ++ p` (or `p ++ A ++ q`).  These are the `A` and `T` of
+    `false_of_sameCell_cellFree_pocketRegion_X` / `_Y`.
+- (a) wiring waits on simple-group's producer for `OsinLemma94PinchedQuadrilateralStatement`.  At 16:58 only its own
+  module names it.  Scan of the 15 registered modules at 16:58: none takes a Case 1 binder with a different target cell
+  or a boundary target.  The one-cell modules work on one cell (`target = some source`), which (a) excludes by
+  `hloop : target ≠ some source`.  So ko-closed has no user for (a) yet; raised with main at 17:00.
+- Residual Props owned by ko-closed: NONE.
+
 ## STATE (09-13 ~16:20): cell-free branch of binder 3 LANDED 29c1eeae3 (GREEN, queued)
 - hull-unbound landed option (a) as `OsinLemma94PinchedQuadrilateralStatement`, d463383fa (probe 0913-160048-79943
   GREEN, queued).  It is the pick (i) below.  Lead ruling 16:20: the pick is not exclusive.  (a) covers Case 1
