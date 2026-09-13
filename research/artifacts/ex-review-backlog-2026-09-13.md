@@ -111,6 +111,8 @@ parts 1--2.
 | `simple-group-relator-templates-over-finite-simple-groups` | weak-sofic-classical-covering | PASS at the checked steps | 7 §33 |
 | `sl3-polynomial-congruence-subgroups-have-large-b2` | hs-instability-kazhdan | PASS as a conditional (Soulé's fundamental domain named, not imported); computation not re-run | 7 §33 |
 | `relator-width-over-towers-of-bounded-commutator-width`, and hence `simple-nonsofic-relator-width-over-iterated-wreath-products` | weak-sofic-deep-wreath | PASS | 7 §34 |
+| `simple-nonsofic-width-over-towers-with-symmetric-levels` | weak-sofic-deep-wreath | PASS | 8 §35 |
+| dependency: `binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` computes established (the equivalence itself not re-derived) | — | graph check | 8 §36 |
 
 No FAIL on a claim that decides a famous problem. No false establishment found.
 
@@ -231,3 +233,5 @@ parts 1--2:
   wreath and tower widths, classical width and width over all finite simple groups, Laurent Steinberg agreement,
   genus and rank monotonicity, the edge-twist moment test, retract descent, a sofic infranormal wreath, large
   `b_2`).
+- `ex-review-backlog-2026-09-13-part8.md`: refills, fourth batch (symmetric-level towers), and the dependency
+  check on the coset-wreath hyperlinearity equivalence.
