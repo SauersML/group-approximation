@@ -5,6 +5,7 @@ kind: claim
 title: "The resonance varieties R^m of the braid arrangement are explicit unions of linear subspaces in every degree 2 <= m <= n-3"
 artifacts:
   - research/artifacts/zp-pure-braid-bnsr-middle-range-2026-09-13.md
+  - research/artifacts/zp-pure-braid-bnsr-pencils-2026-09-13.md
 ---
 
 For every `n >= 5` and `2 <= m <= n - 3`, the degree-`m` resonance variety
@@ -18,14 +19,24 @@ Propagation `R^1 ⊆ R^2 ⊆ ...` holds (Denham–Suciu–Yuzvinsky).
 
 ## Attempts
 
-- Lower bound: by the retract argument, the zero-sum characters supported on
-  disjoint blocks `A_1, ..., A_r` with `sum (|A_i| - 2) <= m` lie in `R^m`. So do
-  their images under the `S_{n+1}`-symmetry of `M_{0,n+1}`, once that action on
-  `H^1` is written down.
-- Degree `n - 3`: pullbacks through the `n + 1` forgetful maps
-  `M_{0,n+1} -> M_{0,n}` are resonant (fibre-type tensor decomposition of the
-  Orlik–Solomon algebra). The reverse inclusion should follow from a
-  nonresonance theorem (Yuzvinsky; Cohen–Dimca–Orlik) applied in every affine
-  chart plus a combinatorial lemma. Not yet checked against the sources.
-- Direct test planned: rank computations of the Aomoto complex of `A_4`
-  (Betti numbers `1, 10, 35, 50, 24`) at sample characters, over `Q`.
+- Candidate formula (conjecture "pencil depth", artifact
+  `zp-pure-braid-bnsr-pencils-2026-09-13.md`, Section 5). Use the symmetric
+  coordinates on the `n+1` punctures, and let `L_U` be the pullback of
+  `H^1(M_{0,U})`. For a family `F = (U_1, ..., U_r)` with `|U_i| >= 4`, let
+  `depth(F)` be the minimum, over set partitions of `F`, of
+  `sum_blocks (|∪ block| - 3)`. Then `R^{<=m}(H_n)` should be the union of the
+  subspaces `L_{U_1} + ... + L_{U_r}` with `depth(F) <= m`.
+- Evidence (random points mod `2^31 - 1`): `n = 5`, degrees <= 2, all 105 pairs
+  and 455 triples of pencil planes, the six 5-point subspaces, 5-point plus
+  plane, and combinatorial hyperplane sections up to codimension 3. `n = 6`,
+  degrees <= 3: sunflower, pairs meeting in 2, a 5-point subspace plus a
+  plane, three pairwise-meeting planes, the 6-point subspace. Every case
+  matches depth exactly.
+- Lower bounds proved: sunflower families
+  (`pure-braid-sunflower-characters-obstruct-bnsr-invariants`, via the retract
+  argument). Pairs meeting in two points:
+  `braid-arrangement-pencils-meeting-in-two-points-are-resonant`, with an exact
+  one-point certificate planned.
+- Upper bound (no other components): not attempted beyond the sampled
+  hyperplane sections. A nonresonance theorem in the style of Yuzvinsky or
+  Cohen–Dimca–Orlik, applied in all charts, is the expected tool.

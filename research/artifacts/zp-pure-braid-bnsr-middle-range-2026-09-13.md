@@ -91,12 +91,12 @@ tropicalize outside `R^m`.
 
 ## E. Open computations and next steps
 
-1. `R^{<=m}(P_n)` for `2 <= m <= n - 3`, explicitly. The first case is `n = 5`, `m = 2`: the Orlik–Solomon algebra of
-   `A_4` has Betti numbers `1, 10, 35, 50, 24`. Predicted components are the five zero-sum 4-strand subspaces
-   (Theorem P with `|A| = 4`) plus one more from the `S_6`-symmetry (characters with every row sum
-   `sum_{j != k} a_{kj} = 0`), six 5-dimensional subspaces in all. Fibre-type tensor decomposition shows
-   these are resonant in degree 2. The converse needs a nonresonance theorem (Yuzvinsky;
-   Cohen–Dimca–Orlik) applied in every chart, plus a combinatorial lemma. Neither is verified here.
+1. `R^{<=m}(P_n)` for `2 <= m <= n - 3`, explicitly. First case `n = 5`, `m = 2` (Orlik–Solomon algebra of `A_4`,
+   Betti numbers `1, 10, 35, 50, 24`). The six 5-dimensional subspaces (five zero-sum 4-strand subspaces and
+   the `S_6`-image "every row sum zero") are resonant in degree 2. CORRECTION, same day: they are not all of
+   `R^2`. The 45 sums of two pencil planes whose puncture sets meet in two points are also resonant in degree
+   2 (computational; artifact `zp-pure-braid-bnsr-pencils-2026-09-13.md`, Sections 3–6, with the refined
+   "pencil depth" conjecture).
 2. Membership: in the middle range, even `Sigma^2(P_5)` for characters with all "rows" nonzero is open.
    Tools: Novikov spectral sequence of `1 -> F_{n-1} -> H_n -> H_{n-1} -> 1` (for `chi` nonzero on the fibre
    `H_0` vanishes, so `H_{p+1}(H_n; Nov) = H_p(H_{n-1}; W)` with `W` a rank `n-2` Gauss–Manin-type module),
