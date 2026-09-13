@@ -49,7 +49,16 @@ not directly finite, so it is a non-sofic subgroup of `G` (artifact Section 6).
 - 2026-09-12 `w6-wf-stage1-a`: where it stands.
   - **The region.** `<h, k, d1, z>` lies in `GL_2(F_3<s0,t0>)`, over the Jacobson algebra. It contains the
     finitary involution `z (hk)^2 = diag(1, 1 + e)`, where `e = 1 - s0 t0`.
-  - **Undecided.** That group is locally finite-by-linear and not residually finite. No node on main
-    decides its soficity, or direct finiteness of its group algebra.
-  - **Next tests.** Artifact Section 6 (T1, T2): invertibility of `P_(d1) + w` in the corner over `<h,k,d1,z>`,
-    and partners among the conjugates of `diag(1, 1 + e)`.
+  - **Closed.** That group is not residually finite, and no node on main decides its soficity, but the next
+    entry needs neither. Tests T1 and T2 of artifact Section 6 are answered negatively.
+- 2026-09-12 `w6-wf-stage1-a`: finite-dimensional chart representations are dead (artifact Proposition E,
+  `finite-dimensional-chart-reps-kill-one-transvection-lift`).
+  - **Statement.** No left inverse is supported in `GL_2(A)`, or in `GL_C(A)` for a complete prefix code
+    chart, when the chart subalgebra `A` has a unital map to some `M_n(K)`. This covers `F_3[s0]`,
+    `F_3<s0,s1>`, `F_3<s0,t0>` and `F_3<s0,t0,t1>`. It contains the chart cases of the residually finite
+    entry and the partner entry above.
+  - **Mechanism.** A finite-dimensional `psi0` with `z -> -1` and `psi0(h) V+ = V-` gives
+    `rho = psi0 ⊗ psi0 ⊗ psi0*`. On the odd part of `d1`, the image of `rho(h)` misses `V+ ⊗ V+ ⊗ V-*`.
+  - **What survives.** The chart entries of the support must generate an algebra with no nonzero
+    finite-dimensional representation, for example one containing `s0, t0, s1, t1`, as the Thompson unit
+    `[[s0, s1 t0],[0, t1]]` does. The support must also generate a non-sofic subgroup.
