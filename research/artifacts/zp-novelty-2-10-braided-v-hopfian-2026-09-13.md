@@ -48,8 +48,13 @@ Thompson group V_br (= bV) is Hopfian. The list's own author still asks the ques
   - Zaremsky arXiv:1403.8132, for the normal-subgroup theorem used in Lemma A;
   - Brin (arXiv:math/0406042) and Dehornoy, for V_br;
   - Artin's representation and Andreadakis, for the residual-nilpotence input of Lemma B.
-  - The owner lane should also check Falk–Randell (residual nilpotence of pure braid groups) and Burillo–González-Meneses,
-    "Pure braid subgroups on braided Thompson's groups" (Publ. Mat. 52, 2008), and credit them if they overlap.
+  - The owner lane should also check Falk–Randell (residual nilpotence of pure braid groups) for overlap with Lemma B.
+  - Correction 2026-09-13, reported by z2-10-bv-hopfian: an earlier version of this bullet attached the title "Pure
+    braid subgroups on braided Thompson's groups" (Publ. Mat. 52, 2008) to Burillo–González-Meneses. That Publ. Mat.
+    paper is Brady–Burillo–Cleary–Stein, "Pure braid subgroups of braided Thompson's groups". Burillo–González-Meneses
+    is "Bi-orderings on pure braided Thompson's groups", arXiv:math/0608646. The owner lane read that PDF: Corollary
+    3.2 says the pure braided group is bi-orderable and Theorem 3.3 says BF is bi-orderable. It does not state
+    residual nilpotence, so the mechanism is related but the result is different; the lane credits it.
 - **Relay wording:** "answers the first question of Zaremsky's Problem 2.10 positively; first proof within the
   sources checked (bounded search)". The second question, whether every quotient of V_br is finitely presented, stays
   open.
