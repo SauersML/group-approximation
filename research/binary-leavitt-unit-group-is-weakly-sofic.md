@@ -60,6 +60,11 @@ for any group (`howie-pro-p-tuple-fails-the-profinite-certificate-at-a5`).
 - **Support-type models: dead.** By `simple-group-support-and-semisimple-rank-models-collapse`,
   models whose length is a monotone subadditive function of support in a finite action
   are sofic models. `R^x` is nonsofic.
+- **Simple and symmetric targets, any lengths: dead.** By
+  `simple-group-relator-width-in-finite-simple-targets`, the generators of `R^x` have uniformly
+  bounded relator width in every symmetric, alternating, sporadic and bounded-rank Lie type
+  group. So no weak model sequence of `R^x` stays in those classes. The survivors are classical
+  groups of unbounded rank and non-simple, non-symmetric finite groups.
 - **Semisimple rank models over C: reduce to linear soficity.** By the same theorem they
   make `R^x` `C`-linear sofic, which is open (`non-linear-sofic-group`).
 - **Ring-unit models: dead.**
