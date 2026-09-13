@@ -13,8 +13,14 @@ distinct_from:
 
 **ESTABLISHED (2026-09-12)** through
 `char-zero-linear-bh-via-polynomial-s-integer-hosts`. That route rests on
-`polynomial-linear-groups-satisfy-boone-higman`, whose independent review is still
-pending (lane `bh-poly-linear-review`).
+`polynomial-linear-groups-satisfy-boone-higman`~~, whose independent review is still
+pending (lane `bh-poly-linear-review`)~~.
+*Reviewed (lane `bh-poly-linear-review`, 2026-09-12).* The status stands.
+- The review checked that claim, the reduction
+  `char-zero-linear-groups-embed-in-polynomial-s-integer-groups` and this route
+  against primary sources.
+- It corrected one step, the embedding into `E_n(R)`.
+- See `research/artifacts/review-bh-polynomial-linear-2026-09-12.md`.
 
 **Statement.** Let `K` be a field of characteristic zero and let `H <= GL_n(K)` be
 finitely generated. Then `H` embeds in a finitely presented simple group.
@@ -44,7 +50,8 @@ denominators. Attempt 8 covers both:
 - after inverting one integer, `Z[t][1/f]` becomes finite free over some
   `Z[1/m][s]`.
 
-Nothing is open beyond the review of the polynomial theorem.
+~~Nothing is open beyond the review of the polynomial theorem.~~ *Updated (review,
+2026-09-12):* that review is complete, so nothing is open.
 
 ## Attempts
 
