@@ -5,6 +5,8 @@ kind: claim
 title: Some properly infinite unital C*-algebra is not K1-injective (negation of STW LXI)
 distinct_from:
   stw99-problem-lxi-properly-infinite-k1-injective: that root asserts K1-injectivity for all properly infinite unital algebras; this is its negation, the target for counterexample routes.
+refuted_by:
+  - stw99-problem-lxi-properly-infinite-k1-injective
 ---
 
 There is a unital properly infinite C\*-algebra `A` and a unitary `u ∈ U(A)` with `[u] = 0` in `K_1(A)`

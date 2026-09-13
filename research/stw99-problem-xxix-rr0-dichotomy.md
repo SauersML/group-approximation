@@ -9,6 +9,8 @@ distinct_from:
 artifacts:
   - research/artifacts/stw99-rr0-cluster-2026-08-30.md
   - research/artifacts/stw29-projection-monoid-dichotomy-audit-2026-08-30.md
+refuted_by:
+  - stw29-rr0-mixed-simple-algebra-exists
 ---
 
 **Problem XXIX of Schafhauser--Tikuisis--White, arXiv:2506.10902**

@@ -22,6 +22,8 @@ artifacts:
   - research/artifacts/lxi-uniform-unitary-length-reformulation-2026-09-12.md
   - research/artifacts/lxi-o2-multiplier-reduction-2026-09-12.md
   - research/artifacts/lxi-halving-homotopy-and-extensions-2026-09-12.md
+refuted_by:
+  - properly-infinite-unital-algebra-not-k1-injective-exists
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**

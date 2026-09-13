@@ -6,6 +6,8 @@ title: Some countably infinite group has isomorphic Bernoulli shifts whose bases
 distinct_from:
   bernoulli-shift-entropy-classifies-for-every-group: that is the universal classification; this is its negation, the existence of one group where it fails.
   bernoulli-isomorphism-collapse-set-is-a-subgroup: that proves the structure of the collapse subgroup D(G) on every group; this asks that D(G) be nonzero for one group.
+refuted_by:
+  - bernoulli-shift-entropy-classifies-for-every-group
 ---
 
 **OPEN.** There is a countably infinite group `G` and standard probability spaces `(L, lambda)`, `(K, kappa)`

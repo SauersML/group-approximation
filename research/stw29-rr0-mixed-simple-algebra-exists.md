@@ -5,6 +5,8 @@ kind: claim
 title: Some simple C*-algebra of real rank zero contains a nonzero finite projection and an infinite projection (negation of STW XXIX)
 distinct_from:
   stw99-problem-xxix-rr0-dichotomy: that root asserts the dichotomy; this is its negation, recorded to hold the construction-side attempts and where each design dies.
+refuted_by:
+  - stw99-problem-xxix-rr0-dichotomy
 ---
 
 There is a simple C\*-algebra of real rank zero containing a nonzero finite
