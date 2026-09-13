@@ -23,8 +23,15 @@ because the implication holds for `n ≤ 2`.
   Low-degree homology does not obstruct: a superperfect kernel gives
   `H_k(Q; M) ≅ H_k(G; M)` for `k ≤ 2` and all `ℤG`-modules `M`, and this is
   compatible with `FP_3`. No invariant found yet.
-- Candidate families to test: groups of type `FP` that are not finitely
-  presented and have no known acyclic level-set model. Examples are Leary's
-  `G_L(S)` in cases where the universal cover of `L` fails to be acyclic
-  (hypotheses being checked from arXiv:1512.06609), and the graphical
-  small-cancellation groups of Brown–Leary (arXiv:2004.04550).
+- Main candidate family, the open case stated by Leary (arXiv:1512.06609,
+  checked from the TeX source 2026-09-13): `G_L(S)` with `L` a finite
+  `R`-acyclic flag complex, `ℤ − S` finite and nonempty, and `L̃` not
+  acyclic. Leary shows these are `FP(R)` and writes "we do not know whether
+  `G_L(S)` is necessarily `FH(R)`". His method would give `FH` from a
+  `π_1(L)`-equivariant map from the vertex link to an acyclic free cocompact
+  `π_1(L)`-complex. By `type-fh3-iff-fp3-and-superperfect-kernel-over-fp-group`,
+  a separation at `n = 3` would need to rule out every finitely presented
+  `Q ↠ G_L(S)` with superperfect kernel.
+- Not candidates: Brown–Leary's graphical small-cancellation groups `G(S)`
+  (arXiv:2004.04550) are stated there to be of type `FH`, of cohomological
+  dimension two.

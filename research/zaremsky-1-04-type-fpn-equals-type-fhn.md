@@ -31,8 +31,11 @@ Never write a `requires: []` route into this claim.
   `H̃_i(X; ℤ) = 0` for `0 ≤ i ≤ n−1`.
 - Printed reading of `FH_n`: `G` acts cellularly on an `(n−1)`-acyclic CW
   complex with finite cell stabilizers and finitely many orbits of cells.
-  Bestvina–Brady and Leary use free actions instead. The two readings define
-  the same class (proof in progress in this region), so either may be used.
+  Leary (arXiv:1512.06609, the definitions recalled before the main
+  constructions, crediting Bestvina–Brady) defines `FH_n(R)` with a free
+  action instead: "an `(n−1)`-`R`-acyclic free `G`-CW-complex with finitely
+  many orbits of cells". The two readings define the same
+  class (`proper-and-free-type-fhn-coincide`), so either may be used.
 - Cocompactness may be weakened to "finitely many orbits of cells of
   dimension `≤ n`": the `n`-skeleton of such a complex is still
   `(n−1)`-acyclic and has finitely many orbits of cells.
@@ -44,10 +47,23 @@ Never write a `requires: []` route into this claim.
   to a Cayley graph along loops generating the relation module. So a No
   answer lives at some `n ≥ 3`.
 
+## Status in the literature
+
+Leary, *Uncountably many groups of type FP* (arXiv:1512.06609v4), section
+recalling finiteness properties, read 2026-09-13 from the arXiv TeX source: "No examples are known that distinguish
+between the properties FP(ℤ), FL(ℤ) and FH(ℤ)." In the same paper, the
+groups `G_L(S)` are `FH_n(R)` when `L` and `L̃` are `(n−1)`-`R`-acyclic
+(Corollary after the Morse-theory proposition), and when `S` is finite and
+`L̃` is `(n−1)`-`R`-acyclic. The open case is stated twice: if `L` is
+`R`-acyclic and `ℤ − S` is finite, then `G_L(S)` is `FP(R)`, "but we do not
+know whether `G_L(S)` is necessarily `FH(R)`". These are the natural
+candidates for a No answer.
+
 ## Attempts
 
-- 2026-09-13 (lane z1-04-fp-fh). Reduction at `n = 3`, proof being written
-  up: `G` is of type `FH_3` iff `G` is of type `FP_3` and `G ≅ Q/P` with `Q`
+- 2026-09-13 (lane z1-04-fp-fh). Reduction at `n = 3`
+  (`type-fh3-iff-fp3-and-superperfect-kernel-over-fp-group`, unreviewed):
+  `G` is of type `FH_3` iff `G` is of type `FP_3` and `G ≅ Q/P` with `Q`
   finitely presented and `P` superperfect (`H_1(P) = H_2(P) = 0`). Forward:
   the orbit space of a free cocompact 2-acyclic 3-complex `Y` has finitely
   presented `π_1 = Q`, and `P = π_1(Y)` has `H_1(P) = H_1(Y) = 0` and
@@ -64,8 +80,11 @@ Never write a `requires: []` route into this claim.
   `⊕_{g ∈ G} H_1(A)` to `H_2`. Gluing acyclic groups along surface subgroups
   representing classes adds `⊕_{g ∈ G} H_1(Σ)`. No construction closes the
   regress yet.
-- Known `FH` examples: Bestvina–Brady kernels over finite acyclic flag
-  complexes act freely and cocompactly on acyclic level sets. Leary's groups
-  `G_L(S)` (arXiv:1512.06609) act freely and cocompactly on level sets; the
-  exact hypotheses under which those are acyclic are being checked from the
-  source.
+- Sufficient criterion for all `n`
+  (`fn-groups-mod-acyclic-normal-subgroups-are-type-fhn`, unreviewed):
+  `FP_n` together with `G ≅ Q/P`, where `Q` is of type `F_{n−1}` and `P` is
+  `(n−1)`-acyclic, implies `FH_n`. Group-theoretic translation of the Yes
+  answer: `every-type-fpn-group-is-fn-minus-1-group-mod-acyclic-subgroup`.
+- Proved pieces (unreviewed): `proper-and-free-type-fhn-coincide`,
+  `type-fhn-groups-are-of-type-fpn`, `type-fp2-groups-are-of-type-fh2`.
+  Proofs: `research/artifacts/zp-fpn-fhn-2026-09-13-part1.md` and `-part2.md`.
