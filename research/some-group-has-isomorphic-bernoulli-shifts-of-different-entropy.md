@@ -12,14 +12,29 @@ distinct_from:
 with `H(L, lambda) != H(K, kappa)` such that `G ↷ (L^G, lambda^G)` and `G ↷ (K^G, kappa^G)` are isomorphic.
 Equivalently, `D(G) != {0}` in `bernoulli-isomorphism-collapse-set-is-a-subgroup`.
 
-It is the negation of `bernoulli-shift-entropy-classifies-for-every-group`. Seward, arXiv:1805.08279v1,
+This is the negation of `bernoulli-shift-entropy-classifies-for-every-group`. Seward, arXiv:1805.08279v1,
 introduction: "if non-soﬁc countable groups G exist, then it is still unknown whether (2^G,u_2^G) and
 (3^G,u_3^G) are isomorphic."
 
-Necessary conditions on `G` are in `bernoulli-entropy-counterexample-constraints`: nonsofic, small Rokhlin
-supremum, and failure passes to supergroups.
+Necessary conditions on `G` are in `bernoulli-entropy-counterexample-constraints`: `G` is nonsofic, its
+Rokhlin supremum is small, and failure passes to supergroups.
 
-Routes into this claim:
-- `leavitt-induced-absorption-gives-bernoulli-collapse`, from
-  `leavitt-unit-algebra-absorbs-an-induced-projective` through
-  `induced-projective-absorption-breaks-bernoulli-classification`.
+## Attempts
+
+- **Algebraic absorption plus co-induced Ornstein.** Dead:
+  - a stable finiteness failure makes a Bernoulli shift absorb an algebraic factor `X_P`
+    (`stable-finiteness-failure-is-algebraic-bernoulli-absorption`);
+  - co-induced summands can be turned into Bernoulli entropy
+    (`coinduced-finite-subgroup-shifts-add-entropy-to-bernoulli`);
+  - but the entropy added is the lifted p-adic trace, which module isomorphisms conserve
+    (`finite-subgroup-induced-absorption-conserves-entropy`, invalidating
+    `leavitt-induced-absorption-gives-bernoulli-collapse`).
+
+  A live version needs an absorbed summand whose dual action is Bernoulli with entropy different from its
+  lifted trace. For an absorbed summand the lifted trace is `0`.
+- **Leavitt doubling.** Dead as a Bernoulli source. `L ≅ L ⊕ L` gives a free ergodic self-square `X_L ≅ X_L²`
+  over the unit group. No Leavitt-module dual action is a Bernoulli factor
+  (`leavitt-module-dual-actions-are-self-squares-off-bernoulli`).
+- **Seward-type relative isomorphisms.** They preserve a common factor, and the recoding along an amenable
+  subrelation needs equal row entropy (`research/artifacts/bernoulli-negative-coinduced-ornstein-2026-09-12.md`,
+  Step 4). A collapse must mix rows or change the common factor.

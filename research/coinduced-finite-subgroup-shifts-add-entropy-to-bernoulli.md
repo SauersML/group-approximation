@@ -38,8 +38,10 @@ applies Theorem C and Seward's Theorem 1.1.
 
 **Why it matters here.** Seward's theorem only moves between Bernoulli shifts, so algebraic self-absorptions
 of Bernoulli shifts (`stable-finiteness-failure-is-algebraic-bernoulli-absorption`) cannot be converted by it
-into Bernoulli isomorphisms. Corollary D converts every absorbed summand that is co-induced from finite
-subgroups. The result is `induced-projective-absorption-breaks-bernoulli-classification`.
+into Bernoulli isomorphisms. Corollary D converts summands co-induced from finite subgroups, and the entropy it
+adds is `log p` times their lifted p-adic trace. Module isomorphisms conserve that trace
+(`finite-subgroup-induced-absorption-conserves-entropy`). So this theorem cannot produce a Bernoulli collapse
+from algebra alone, and `induced-projective-absorption-breaks-bernoulli-classification` is vacuous.
 
 **Sanity checks.**
 - Over amenable groups the statement is consistent with Ornstein–Weiss theory. `Coind(Y)` is a factor of a

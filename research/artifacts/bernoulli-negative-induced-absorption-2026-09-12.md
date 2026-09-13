@@ -1,6 +1,14 @@
 # Induced projective absorption breaks base-entropy classification
 
 Date: 2026-09-12. Lane `ex-bernoulli-negative`. Handwritten proofs, no computation. Unreviewed.
+
+**CORRECTION (same day).** Theorem E below is a valid implication with an impossible hypothesis. The
+additive lifted p-adic trace `t_p: K_0(F_p[G]) -> Z_p` of `lifted-trace-detects-finite-subgroup-projectives`
+takes the value `rho = sum dim(Q_i)/|F_i|` on the summand, while absorption forces `t_p = 0`. So no group
+satisfies the hypothesis, and Target T3 of Section 4 is false (`finite-subgroup-induced-absorption-conserves-entropy`).
+Section 1 (Corollary D) stands. The lesson: the entropy that co-induced Ornstein isomorphisms add is `log p`
+times the lifted trace, and module isomorphisms conserve the lifted trace. The mod-`p` filter of Section 3 is
+the reduction of this trace and is far weaker.
 Part 1 is `research/artifacts/bernoulli-negative-coinduced-ornstein-2026-09-12.md` (Theorem C and the
 notation `Coind`). "Theorem 1.1" is Seward's equal-entropy theorem
 (`bernoulli-shifts-with-equal-base-entropy-are-isomorphic`). `X_h` is the Bernoulli class of base entropy `h`.

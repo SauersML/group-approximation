@@ -48,6 +48,13 @@ Over a finite field `F_q` with `[F_q : F_p] = d`, a one-sided inverse in `M_n(F_
   test. Inside the Bernoulli world, algebraic doubling is exactly stable finiteness failure.
 - No group with `F_p[G]` not stably finite is known, so (c) is conditional twice: on a
   counterexample such as `leavitt-unit-group-algebra-not-directly-finite`, and on Bernoullicity
-  of the absorbed factor. By `bernoulli-entropy-counterexample-constraints`, (c) forces
+  of the absorbed factor.
+- The absorbed summand has lifted p-adic trace `0` (`lifted-trace-detects-finite-subgroup-projectives`),
+  so it is never induced from finite subgroups. The co-induced Ornstein theorem
+  `coinduced-finite-subgroup-shifts-add-entropy-to-bernoulli` adds exactly `log p` times the lifted trace, and
+  cannot supply Bernoullicity with positive entropy here
+  (`finite-subgroup-induced-absorption-conserves-entropy`). A Bernoulli `X_P` would be a new phenomenon: a
+  Bernoulli action dual to a projective module whose entropy differs from its lifted trace. Absorption is also
+  the collapse form of `bernoulli-isomorphism-collapse-set-is-a-subgroup`, item 4. By `bernoulli-entropy-counterexample-constraints`, (c) forces
   `h^Rok_sup(G) <= n log p + min(s, s')`. That is consistent with
   `strict-automaton-bounds-rokhlin-supremum`, which bounds the supremum for the same datum.
