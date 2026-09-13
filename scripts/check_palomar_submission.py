@@ -162,6 +162,7 @@ PALOMAR_CONFIGS = (
     "Palomar/comparator-guba-thompson.json",  # the two Guba Question 3.20 theorems
     "Palomar/comparator-gkp-commuting-actions.json",  # the two GKP Question 4.2 theorems
     "Palomar/comparator-stw-x1.json",  # the two STW Problem X(1) theorems
+    "Palomar/comparator-stw-xxii.json",  # the two STW Problem XXII theorems
 )
 
 # Configurations whose SOLUTION is still a skeleton: it proves each theorem its
@@ -216,6 +217,8 @@ SURFACE_FILES = (
     "Palomar/comparator-gkp-commuting-actions.json",
     "Palomar/STWProblemX1Challenge.lean", "Palomar/STWProblemX1Solution.lean",
     "Palomar/comparator-stw-x1.json",
+    "Palomar/STWProblemXXIIChallenge.lean", "Palomar/STWProblemXXIISolution.lean",
+    "Palomar/comparator-stw-xxii.json",
     "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
     "formalization.yaml",
 )
@@ -885,6 +888,15 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "`exists_separable_amenable_not_quasidiagonal`: the compared signature diverges"),
     ("stw-x1 comparator permitting a fourth axiom",
      "Palomar/comparator-stw-x1.json: permitted_axioms"),
+    # The STW Problem XXII surface.
+    ("stw-xxii challenge with a project-local import",
+     "Palomar/STWProblemXXIIChallenge.lean:1:"),
+    ("stw-xxii shared block edited on one side",
+     "Palomar/comparator-stw-xxii.json: shared block diverges"),
+    ("stw-xxii signature edited on one side",
+     "`exists_factorial_traciallyComplete_with_discontinuous_trace`: the compared signature diverges"),
+    ("stw-xxii comparator permitting a fourth axiom",
+     "Palomar/comparator-stw-xxii.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("nine arXiv classes", "one to eight distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
@@ -893,6 +905,8 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "BowenChapman.not_all_surjunctive_groups_sofic is not listed in status.main_results"),
     ("stw-x1 result dropped from the metadata",
      "STWProblemX1.exists_separable_amenable_not_quasidiagonal is not listed in status.main_results"),
+    ("stw-xxii result dropped from the metadata",
+     "STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace is not listed in status.main_results"),
 )
 
 YAML_CALIBRATIONS = {
@@ -901,6 +915,7 @@ YAML_CALIBRATIONS = {
     "LIX result dropped from the metadata",
     "bowen-chapman result dropped from the metadata",
     "stw-x1 result dropped from the metadata",
+    "stw-xxii result dropped from the metadata",
 }
 
 
@@ -1077,6 +1092,28 @@ def plant(name: str, root: Path) -> None:
         _edit_metadata(root,
                        "    - declaration: STWProblemX1.exists_separable_amenable_not_quasidiagonal",
                        "    - declaration: STWProblemX1.renamed_and_not_republished")
+    elif name == "stw-xxii challenge with a project-local import":
+        path = root / "Palomar" / "STWProblemXXIIChallenge.lean"
+        path.write_text(
+            "import GroupApproximation.PalomarBridges.XXII\n"
+            + path.read_text())
+    elif name == "stw-xxii shared block edited on one side":
+        path = root / "Palomar" / "STWProblemXXIISolution.lean"
+        path.write_text(path.read_text().replace(
+            "def uniformTwoNorm {A : Type*} [CStarAlgebra A] (X : Set (TracialState A)) (a : A) : ℝ :=",
+            "def uniformTwoNorm' {A : Type*} [CStarAlgebra A] (X : Set (TracialState A)) (a : A) : ℝ :=", 1))
+    elif name == "stw-xxii signature edited on one side":
+        path = root / "Palomar" / "STWProblemXXIISolution.lean"
+        path.write_text(path.read_text().replace(
+            "theorem exists_factorial_traciallyComplete_with_discontinuous_trace :",
+            "theorem exists_factorial_traciallyComplete_with_discontinuous_trace : True →", 1))
+    elif name == "stw-xxii comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-stw-xxii.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
+    elif name == "stw-xxii result dropped from the metadata":
+        _edit_metadata(root,
+                       "    - declaration: STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace",
+                       "    - declaration: STWProblemXXII.renamed_and_not_republished")
     elif name == "second licence file at the root":
         (root / "COPYING").write_text("copy\n")
     elif name == "toolchain below the minimum":

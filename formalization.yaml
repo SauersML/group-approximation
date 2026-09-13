@@ -3,9 +3,9 @@ version: "v0.4"
 
 project:
   name: >-
-    Answers to Seven Open Questions on Groups and C*-Algebras
+    Answers to Eight Open Questions on Groups and C*-Algebras
   description: >-
-    This project formalizes, in Lean 4 over Mathlib, answers to seven open
+    This project formalizes, in Lean 4 over Mathlib, answers to eight open
     questions on groups, group actions, group rings and C*-algebras. Each
     answer has its own Comparator configuration in Palomar/, and all of them
     share one Lean development.
@@ -58,6 +58,17 @@ project:
     quasidiagonal. The answer is no: the canonical trace of the maximal group
     C*-algebra of a group built in the development is amenable and not
     quasidiagonal (Palomar/comparator-stw-x1.json).
+
+    Schafhauser, Tikuisis and White ask, as Problem XXII of the same list,
+    whether for a C*-algebra A with non-empty compact trace space every trace
+    on the uniform tracial completion of A is automatically continuous for the
+    uniform 2-norm over T(A). Question 1.1 of Carrión, Castillejos, Evington,
+    Gabe, Schafhauser, Tikuisis and White (arXiv:2310.20594) asks the same for
+    every factorial tracially complete C*-algebra, and Problem XXII is its
+    instance for the uniform tracial completion. The answer is no, in both
+    forms: the development builds a separable C*-algebra whose uniform tracial
+    completion is factorial tracially complete and carries a trace that is not
+    continuous for the uniform 2-norm (Palomar/comparator-stw-xxii.json).
   authors: [Sauers]
   responsible_maintainers: [SauersML]
   license: Apache-2.0
@@ -998,8 +1009,9 @@ status:
   # scripts/PalomarLIXAxioms.lean, scripts/PalomarBowenChapmanAxioms.lean,
   # scripts/PalomarPestov91Axioms.lean, scripts/PalomarTypeA2Axioms.lean,
   # scripts/PalomarGubaThompsonAxioms.lean,
-  # scripts/PalomarGKPCommutingActionsAxioms.lean and
-  # scripts/PalomarSTWProblemX1Axioms.lean, checked by
+  # scripts/PalomarGKPCommutingActionsAxioms.lean,
+  # scripts/PalomarSTWProblemX1Axioms.lean and
+  # scripts/PalomarSTWProblemXXIIAxioms.lean, checked by
   # .github/workflows/palomar-check.yml.
   scope: >-
     Palomar/LIXChallenge.lean states that not every nontrivial simple unital
@@ -1036,6 +1048,13 @@ status:
     and that not every amenable tracial state on a separable unital
     C*-algebra is quasidiagonal; Palomar/STWProblemX1Solution.lean proves both
     from GroupApproximation.PalomarBridges.X1.amenableNonQuasidiagonalTrace_zero.
+    Palomar/STWProblemXXIIChallenge.lean states two theorems. First, some
+    separable C*-algebra with a non-empty compact trace space has a uniform
+    tracial completion (M, X) whose ||.||_{2,X}-continuous traces are exactly
+    the members of X, some trace on M is not ||.||_{2,X}-continuous, and X is
+    not all of T(M). Second, some factorial tracially complete C*-algebra has
+    the same properties. Palomar/STWProblemXXIISolution.lean proves both from
+    GroupApproximation.STW22.antipodalFactorialNegativeSolutionToProblemXXII.
   main_results:
     - declaration: ProblemLIX.not_all_simple_unital_k1Injective
       file: Palomar/LIXSolution.lean
@@ -1121,6 +1140,18 @@ status:
       axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator-stw-x1.json
 
+    - declaration: STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace
+      file: Palomar/STWProblemXXIISolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-stw-xxii.json
+
+    - declaration: STWProblemXXII.exists_factorial_traciallyComplete_with_discontinuous_trace
+      file: Palomar/STWProblemXXIISolution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-stw-xxii.json
+
 fidelity:
   divergences: >-
     Simplicity is Mathlib's IsSimpleRing, which asks
@@ -1194,6 +1225,23 @@ fidelity:
     GroupApproximation.PalomarBridges.X1 moves it to Type 0 through Shrink,
     using separability.
 
+    For Problem XXII of Schafhauser, Tikuisis and White, the definitions follow
+    Carrión, Castillejos, Evington, Gabe, Schafhauser, Tikuisis and White,
+    Tracially complete C*-algebras (CCEGSTW, arXiv:2310.20594v6): tracially
+    complete C*-algebras are Definition 3.4, factoriality is Definition 3.13,
+    and the uniform tracial completion is Definition 3.19, characterised
+    through Corollary 3.29(i). A fidelity review,
+    research/artifacts/fz-stw-xxii-review-2026-09-13.md, passed the statement
+    against both sources. The challenge does not construct the completion of
+    A. It characterises it by a presentation alpha : A -> M, a unital
+    *-homomorphism such that (M, X) is tracially complete, every tracial state
+    of A is sigma o alpha for exactly one sigma in X, and alpha(A) is
+    ||.||_{2,X}-dense in M. The weak* topology on tracial states is the
+    topology induced by the evaluations. Continuity of a trace for
+    ||.||_{2,X} and completeness of the unit ball are stated with sequences.
+    CCEGSTW leave the non-emptiness of X implicit, and the challenge makes it
+    an explicit field. All algebras range over Type 0.
+
 
 alignment:
   statements:
@@ -1249,6 +1297,21 @@ alignment:
         on a separable unital C*-algebra is quasidiagonal.
       lean: STWProblemX1.not_every_amenable_trace_quasidiagonal
       module: Palomar.STWProblemX1Challenge
+      status: proved
+
+    - source: >-
+        Problem XXII of Schafhauser, Tikuisis and White (arXiv:2506.10902v2,
+        p. 24), for factorial tracially complete pairs (CCEGSTW Question 1.1):
+        no.
+      lean: STWProblemXXII.exists_factorial_traciallyComplete_with_discontinuous_trace
+      module: Palomar.STWProblemXXIIChallenge
+      status: proved
+
+    - source: >-
+        Problem XXII for the uniform tracial completion of a separable
+        C*-algebra: no.
+      lean: STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace
+      module: Palomar.STWProblemXXIIChallenge
       status: proved
 
 acknowledgements: >-

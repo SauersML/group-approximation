@@ -1,6 +1,6 @@
 name = "GroupApproximation"
 version = "0.1.0"
-defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution", "PalomarBowenChapmanChallenge", "PalomarBowenChapmanSolution", "PalomarPestov91Challenge", "PalomarPestov91Solution", "PalomarTypeA2Challenge", "PalomarTypeA2Solution", "PalomarGubaThompsonChallenge", "PalomarGubaThompsonSolution", "PalomarGKPCommutingActionsChallenge", "PalomarGKPCommutingActionsSolution", "PalomarSTWProblemX1Challenge", "PalomarSTWProblemX1Solution"]
+defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution", "PalomarBowenChapmanChallenge", "PalomarBowenChapmanSolution", "PalomarPestov91Challenge", "PalomarPestov91Solution", "PalomarTypeA2Challenge", "PalomarTypeA2Solution", "PalomarGubaThompsonChallenge", "PalomarGubaThompsonSolution", "PalomarGKPCommutingActionsChallenge", "PalomarGKPCommutingActionsSolution", "PalomarSTWProblemX1Challenge", "PalomarSTWProblemX1Solution", "PalomarSTWProblemXXIIChallenge", "PalomarSTWProblemXXIISolution"]
 
 [[require]]
 name = "mathlib"
@@ -197,3 +197,27 @@ roots = ["Palomar.STWProblemX1Solution"]
 [[lean_lib]]
 name = "PalomarSTWProblemX1ModelTests"
 roots = ["Palomar.STWProblemX1ModelTests"]
+
+# The tenth Comparator configuration, `Palomar/comparator-stw-xxii.json`: Problem
+# XXII of Schafhauser, Tikuisis and White (are all traces on the uniform tracial
+# completion of a C*-algebra automatically continuous for the uniform 2-norm?),
+# an instance of Question 1.1 of arXiv:2310.20594.  Same protocol:
+# `Palomar/STWProblemXXIIChallenge.lean` imports Mathlib only and carries its own
+# copies of tracial states, the uniform 2-norm and tracially complete
+# C*-algebras; `Palomar/STWProblemXXIISolution.lean` proves both statements from
+# `GroupApproximation.STW22.antipodalFactorialNegativeSolutionToProblemXXII`
+# through `GroupApproximation.PalomarBridges.XXII`.  Both libraries are in
+# `defaultTargets`.  `PalomarSTWProblemXXIIModelTests` exercises every `Prop` of
+# the challenge on a small instance and is not a submission library.
+
+[[lean_lib]]
+name = "PalomarSTWProblemXXIIChallenge"
+roots = ["Palomar.STWProblemXXIIChallenge"]
+
+[[lean_lib]]
+name = "PalomarSTWProblemXXIISolution"
+roots = ["Palomar.STWProblemXXIISolution"]
+
+[[lean_lib]]
+name = "PalomarSTWProblemXXIIModelTests"
+roots = ["Palomar.STWProblemXXIIModelTests"]

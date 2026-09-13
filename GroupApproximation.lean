@@ -4960,6 +4960,7 @@ import GroupApproximation.GroupTheory.HydeLodha.QTwoLemmaFourSixCaseTwo
 import GroupApproximation.Manuscript.NonMF.HullCorollary73
 import GroupApproximation.Manuscript.NonMF.TheoremCAssemblyFoldLeaf
 import GroupApproximation.Manuscript.OneSidedMFRadical.JacobsonThreePlusOnePresented
+import GroupApproximation.PalomarBridges.XXII
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
