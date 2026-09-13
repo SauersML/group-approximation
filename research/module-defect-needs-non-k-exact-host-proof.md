@@ -39,10 +39,22 @@ of crossed products is used: the argument is entirely on `K^top` and its assembl
 
 Take `A = C(X)`, `I = C_0(U)`, `A/I = C(Z)` with `X = V^`, `Z = W^perp`, `U = X \ Z` (the module
 triple). Part 1 says: if `G` satisfies Baum--Connes with coefficients then this particular
-sequence is middle-exact, i.e. there is no defect. Contrapositive: a middle K-defect for the
-module triple forces `G` to fail Baum--Connes with coefficients. Since Baum--Connes with
-coefficients holds for every exact group (indeed exactness is implied by K-exactness), such a `G`
-is in particular non-exact.
+sequence is middle-exact, i.e. there is no defect. Contrapositive: **a middle K-defect for the
+module triple forces `G` to fail Baum--Connes with coefficients.**
+
+A K-defect also forces `G` **non-exact**, by a separate and independent argument. If `G` is
+exact then, by Kirchberg--Wassermann, the reduced crossed-product functor takes every short exact
+sequence of `G`-algebras to a short exact sequence of C*-algebras; a short exact sequence of
+C*-algebras has a six-term exact K-theory sequence, so `K_j(I ⋊_r G) -> K_j(A ⋊_r G) ->
+K_j((A/I) ⋊_r G)` is exact at the middle and there is no defect. Hence a defect forces `G`
+non-exact.
+
+So a defect forces **both** conditions. They are logically independent inputs:
+`exact => K-exact` (this paragraph) and `Baum--Connes-with-coefficients => K-exact` (Part 1),
+and neither of `exact`, `Baum--Connes-with-coefficients` implies the other. In particular
+non-exactness does **not** imply failure of Baum--Connes with coefficients -- Part 3 exhibits
+groups that are non-exact yet satisfy it -- so the failure of Baum--Connes with coefficients is
+the binding condition, not merely a restatement of non-exactness.
 
 **Part 3: the a-T-menable non-exact hosts are pruned.**
 
