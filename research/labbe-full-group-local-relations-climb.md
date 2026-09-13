@@ -71,6 +71,15 @@ and test (T1) in part 2 of the artifact) do not separate the two cases.
   windows the climbed words are occurrence 3-cycles. For non-SFTs this gives the approximants that
   make finite presentation fail (`zd-derived-full-group-fp-forces-finite-type`). For `Omega_U` any
   approximant must contain illegal small windows or be non-spatial.
+  - Colourings with illegal windows under gated rules are dead too: a refinement relator fails at
+    the gate boundary (`aperiodic-sft-gated-models-break-refinement-relations`).
+- **Remark on method (heuristic, not a theorem).** In one dimension climbing fails for a *global*
+  reason: periodic points of the Markov approximations. Every *local* layer computed here looks
+  the same in one and two dimensions. That covers ball legality, pairwise witnesses and the
+  escape to non-interacting offsets, and the colimit tests of small local groups should behave
+  the same way. So a proof of this claim cannot come from bounded local computations alone. It
+  must use global structure: the absence of periodic models, simple connectivity of a complex of
+  configurations, or self-similarity (`labbe-full-group-embeds-in-its-supertile-corner`).
 - **Neighbouring mechanisms.**
   - The algebra analogue, `sft-crossed-product-fp-iff-quantum-rigid`, converts finite
     presentation of the crossed product into a local-to-global property of commuting idempotent

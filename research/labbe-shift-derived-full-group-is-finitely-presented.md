@@ -63,6 +63,17 @@ only together with `labbe-shift-derived-full-group-is-amenable`.
   - Exact data for `Omega_U`: ChJN's `R_1 = 3`, so `𝒯_5` has 1184 generators. At every radius from
     2 to 7 some illegal ball patch has all sub-balls legal, and every such patch already has an
     illegal union of two sub-balls (`labbe-ball-legality-is-pairwise-at-radii-two-to-seven`).
+  - Only SFTs can qualify: a free minimal `Z^d`-subshift with finitely presented derived full group
+    is of finite type (`zd-derived-full-group-fp-forces-finite-type`). Labbé's shift is an SFT, so
+    this theorem cannot refute the claim. It also kills every approximant built from colourings
+    with legal small windows.
+  - Gated periodic models are dead: they break a refinement relator of bounded length at the gate
+    boundary (`aperiodic-sft-gated-models-break-refinement-relations`). A refutation needs extended
+    rules that move points non-standardly on illegal windows, or non-spatial marked groups.
+  - Climbing through interacting coarse pairs fails at radii 2–6, as it does in one dimension
+    (artifact part 2, Section 4). No bounded local computation has separated `Z` from `Z^2`.
+  - Self-similarity transports every relation to the supertile scale
+    (`labbe-full-group-embeds-in-its-supertile-corner`).
 - **Expert heuristic (read from source).** Nekrashevych, arXiv:2509.05524, TeX line
   3362: "Full groups of shift-invariant groupoids, on the other hand, are rarely
   finitely presented." It is a remark, not a theorem; the only finite presentation
