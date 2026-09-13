@@ -48,5 +48,20 @@ compiler.
    known here.
 4. **Twisted doubles `G *_Gamma G` by a `Phi_e`-valued central cocycle.**  Wrong
    polarity: on `INF` the twist vanishes and the untwisted double is nonsofic.
+5. **Rigid simple nonsofic seeds instead of lamps.**  The eighteen-relator
+   presentation of `L_(F_2)(1,2)^x`
+   ([[explicit-eighteen-relator-nonsofic-group]]) is simple, and it is
+   Hamming-rigid: permutations that almost satisfy the relators are almost
+   trivial, uniformly in the degree
+   ([[eighteen-relator-system-is-hamming-rigid]]).  Rigidity controls
+   *approximate* solutions, but the switch needs the seed killed *exactly* on
+   `INF`.  For a simple seed glued by fixed words that is a single finite
+   derivation, a `Sigma^0_1` event, so (D1) of the artifact still forces an
+   unbounded family of independently killed seeds.  One could glue a seed along
+   each full configuration word, but those words are central, so machine
+   letters cannot propagate the gluing by conjugation, and there is one
+   relation per configuration.  Rigidity does not supply the missing finite
+   presentation; it would only sharpen nonsoficity proofs once the lamps
+   survive.
 
 Full analysis: `research/artifacts/sofic-fp-machine-center-amplifier-2026-09-12.md`.
