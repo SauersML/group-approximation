@@ -16,8 +16,10 @@ indicable" or "unique product" in place of "left-orderable" has the same shape,
 and each is implied by the previous one.
 
 This is the cell that blocks `!sofic` against each of `lo`, `li`, `bo` and `up`
-in the group-property atlas, and the corresponding cells for `!mf`, `!lea` and
-`!lef`.
+in the group-property atlas, and the corresponding cells for `!mf`.  The `!lea`
+and `!lef` cells against these four properties are not blocked by it: the
+Lodha--Moore group is finitely presented, bi-orderable and not LEA, hence not
+LEF (`lodha-moore-group-is-bi-orderable-and-not-lea`).
 
 ## Attempts
 
@@ -49,3 +51,27 @@ It still forces torsion-freeness, so it does not escape the first half of the
 obstruction, but it does escape the `Homeo_+(R)` reduction, since unique-product
 groups need not be left-orderable.  This looks like the right place to push
 first, and it is deferred here rather than attempted.
+
+**The rigid-defect mechanism, made torsion-free (2026-09-12).**  The torsion in
+the Kun--Thom group sits only in its lamps.
+
+- *Live, conditional route.*
+  `left-orderable-non-sofic-via-integer-lamp-rigid-pair` turns any
+  left-orderable group with an infranormal non-normal Kazhdan pair into a
+  left-orderable nonsofic group, the integer-lamp wreath or the double.  Its
+  input `left-orderable-group-with-rigid-compression-pair` contains an infinite
+  left-orderable Kazhdan group.  That is Navas's Question 3
+  (`infinite-left-orderable-kazhdan-group`, quoted verbatim from
+  arXiv:1712.06462v2).
+- *Dead: relative property (T).*  Relative (T) of an abelian subgroup is the
+  rigidity ordered groups are known to carry, and it cannot replace (T) in the
+  defect criterion.
+  `relatively-kazhdan-amenable-pairs-allow-sofic-defects` gives a sofic,
+  locally indicable counterexample, and it invalidates
+  `left-orderable-non-sofic-via-relative-kazhdan-defect-criterion`.
+- *Dead for bi-orderable and locally indicable witnesses.*  They contain no
+  nontrivial Kazhdan subgroup, so every mechanism on the shelf is closed to
+  them.
+- *Dead for PL flow groups.*  Matte Bon--Triestino's left-orderable groups
+  `T(phi)`, which include finitely generated simple ones, contain no infinite
+  Kazhdan subgroup (arXiv:1811.12256, Theorem F).
