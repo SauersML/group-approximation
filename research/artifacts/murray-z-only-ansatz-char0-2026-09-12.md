@@ -41,8 +41,65 @@ claim.
 
 ## Mode `solve`
 
-Mode `solve D F` computes Groebner bases over `F` for `f_1, ..., f_7` supported
-in `z^-D .. z^D`, split into cases by the first nonzero coefficient of
-`f_1, ..., f_6`. Runs: `D = 2` over `F_3` (calibration, where Theorem 3 with
-`t = 0` must appear), and `D = 1` and `D = 2` over `Q`. They were still running
-at the time of writing. This file will record their outcome.
+Mode `solve D F` computes Groebner bases (Singular `slimgb`, 7200 s per case)
+over `F` for `f_1, ..., f_7` supported in `z^-D .. z^D`. The variable `ci_j` is
+the coefficient of `z^(j-D)` in `f_i`. Case `ci_j != 0` sets every earlier
+coefficient of `f_1, ..., f_6` to 0 and adds `ci_j w = 1`, so the cases cover
+every solution with some `f_i != 0`, `i <= 6`.
+
+`D = 1` over `Q`, slurm job 588457, verbatim:
+
+```text
+D = 1 over Rational Field: 21 unknowns, 137 equations  [0.0s]
+D = 1 over Rational Field: nonempty cases []  [4.2s]
+DONE
+```
+
+Every case gives the unit ideal over `Q`. So no solution with all `f_i` in
+`z^-1 .. z^1` and some `f_i != 0`, `i <= 6`, exists over any field of
+characteristic 0, as the theorem says.
+
+Calibration, `D = 1` over `F_3`, same job, verbatim except that the 32 printed
+basis elements are cut to the 16 linear ones and the first four nonlinear ones:
+
+```text
+D = 1 over Finite Field of size 3: 21 unknowns, 137 equations  [0.1s]
+// ** _ is no standard basis
+case c1_0 != 0: nonempty, dim 0, GB size 32  [8.8s]
+c7_1
+c7_0
+c6_2
+c6_1 - c7_2
+c6_0 + c7_2
+c5_0 - c5_1 + c5_2
+c4_2 - c5_2
+c4_1 - c5_1 + c5_2
+c4_0
+c3_0 - c3_1 + c3_2
+c2_2
+c2_1 - c3_2
+c2_0 - c3_1 + c3_2
+c1_2 + w
+c1_1
+c1_0 - w
+w^2 - 1
+c7_2^2 - 1
+c5_2*c7_2 + c3_2*w
+c5_1*c7_2 + c3_1*w
+...
+D = 1 over Finite Field of size 3: nonempty cases [('c1_0', 32)]  [13.6s]
+DONE
+```
+
+The Singular warning comes from `dim` applied to the `slimgb` output and does
+not affect the result.
+
+Theorem 3 with `d = 3`, `t = 1`, `w = 0` has `f_1 = f_3 = f_5 = z - z^-1`,
+`f_2 = f_6 = 1 - z^-1`, `f_4 = z - 1` and `f_7 = z`, so `c1_0 = -1` and
+`w = -1`. All 32 printed basis elements vanish at this point (checked by
+hand). So the case split finds the known solutions in positive
+characteristic.
+
+`D = 2` over `F_3` and over `Q` (job 584703, 35 unknowns, 237 equations)
+printed only their header lines. The job was cancelled after 49 minutes,
+still on the first case. These runs are not part of the evidence.
