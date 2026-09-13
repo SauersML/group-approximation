@@ -24,10 +24,11 @@ several sides.  This module joins consecutive sides along one cell, or along one
   letters, and it is counted in the slack.
 * `ClassBudget`: `∑ k_i ≤ K n`, summed over the polygons with an (A1) class and at least two
   classes.
-* `ClassCovers`: `S ≤ ∑ S_i + L n`, where `S_i` sums the (A1) class words.
-* `unbound_lt_of_classes`: the contradiction at fixed parameters, over the classes.
-* `OsinLemma94ClassCountInput`: the count piece over the classes, with
-  `L = 24 ε + 2 (K + 24) ⌈(c + 2) / λ⌉₊`.
+* `ClassCovers M L`: `S ≤ M ∑ S_i + L n`, where `S_i` sums the (A1) class words.
+* `unbound_lt_of_classes`: the contradiction at fixed parameters, over the classes, with the
+  class polygons dense at `⌊ρ / (4 M²)⌋`.
+* `OsinLemma94ClassCountInput`: the count piece over the classes, with `K`, `M` and `L` chosen
+  after `ε`, under clause (b) of Lemma 9.7 below the number of relator cells.
 * `ofSides`: model test, every side its own class.
 -/
 
@@ -136,11 +137,14 @@ constant, summed over the polygons with an (A1) class and at least two classes. 
 def ClassBudget (Q : OsinLemma94ClassPolygons P) (K : ℕ) : Prop :=
   ∑ k ∈ Q.budgetPolygons, Q.classCount k ≤ K * Delta.rCellCount
 
-/-- **The class cover.**  `S ≤ ∑ S_i`, up to `L n`: the unbound darts are covered by the (A1)
-class words of the polygons with at least two classes, except for at most `L n` of them. -/
-def ClassCovers (Q : OsinLemma94ClassPolygons P) (L : ℕ) : Prop :=
+/-- **The class cover.**  `S ≤ M ∑ S_i + L n`: the unbound darts are covered by the (A1)
+class words of the polygons with at least two classes, `M` times over, except for at most
+`L n` of them.  An unbound stretch of a cell with its own cell across is bounded only through
+quasi-geodesicity, at most `⌈1 / λ⌉₊` times the other unbound darts next to it, so the factor
+`M` sits on the class words. -/
+def ClassCovers (Q : OsinLemma94ClassPolygons P) (M L : ℕ) : Prop :=
   (∑ i : Fin S.diagram.rCellCount, ((RegionCandidate.unboundDarts S.family i).card : ℝ)) ≤
-    ∑ k, classWordLength (Q.word k) (Q.classCount k) (Q.relatorClasses k) +
+    (M : ℝ) * ∑ k, classWordLength (Q.word k) (Q.classCount k) (Q.relatorClasses k) +
       (L : ℝ) * Delta.rCellCount
 
 /-- **Model test: the fields are consistent.**  Every side is its own class, with no gaps. -/
@@ -282,42 +286,47 @@ theorem mem_budgetPolygons (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) (i
   rw [Finset.mem_filter]
   exact ⟨Finset.mem_univ k, h2, i, hi, j, hj⟩
 
-/-- **The slack costs a factor `2`.**  If `n √ρ ≤ S ≤ ∑ S_i + L n` and `ρ ≥ 4 L²`, then the
-class polygons are dense at `⌊ρ / 4⌋`. -/
-theorem dense_of_classCovers (Q : OsinLemma94ClassPolygons P) {L rho : ℕ}
-    (hcovers : Q.ClassCovers L) (hL : 4 * L * L ≤ rho)
+/-- **The slack and the factor cost `2 M`.**  If `n √ρ ≤ S ≤ M ∑ S_i + L n`, `M > 0` and
+`ρ ≥ 4 L²`, then the class polygons are dense at `⌊ρ / (4 M²)⌋`. -/
+theorem dense_of_classCovers (Q : OsinLemma94ClassPolygons P) {M L rho : ℕ}
+    (hcovers : Q.ClassCovers M L) (hM : 0 < M) (hL : 4 * L * L ≤ rho)
     (hge : (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ) ≤
       ∑ i : Fin S.diagram.rCellCount, ((RegionCandidate.unboundDarts S.family i).card : ℝ)) :
-    (Delta.rCellCount : ℝ) * Real.sqrt ((rho / 4 : ℕ) : ℝ) ≤
+    (Delta.rCellCount : ℝ) * Real.sqrt ((rho / (4 * M * M) : ℕ) : ℝ) ≤
       ∑ k, classWordLength (Q.word k) (Q.classCount k) (Q.relatorClasses k) := by
   have hrho : (4 : ℝ) * L * L ≤ rho := by exact_mod_cast hL
-  have hquarter : (4 : ℝ) * ((rho / 4 : ℕ) : ℝ) ≤ rho := by
-    have h4 : 4 * (rho / 4) ≤ rho := by omega
+  have hquarter : (4 : ℝ) * M * M * ((rho / (4 * M * M) : ℕ) : ℝ) ≤ rho := by
+    have h4 : 4 * M * M * (rho / (4 * M * M)) ≤ rho := Nat.mul_div_le rho (4 * M * M)
     exact_mod_cast h4
+  have hM0 : (0 : ℝ) < M := by exact_mod_cast hM
   have hL0 : (0 : ℝ) ≤ 2 * (L : ℝ) := by positivity
   have hrho0 : (0 : ℝ) ≤ (rho : ℝ) := Nat.cast_nonneg _
-  have hm0 : (0 : ℝ) ≤ ((rho / 4 : ℕ) : ℝ) := Nat.cast_nonneg _
-  have hQ0 : (0 : ℝ) ≤ 2 * Real.sqrt ((rho / 4 : ℕ) : ℝ) := by positivity
+  have hm0 : (0 : ℝ) ≤ ((rho / (4 * M * M) : ℕ) : ℝ) := Nat.cast_nonneg _
+  have hQ0 : (0 : ℝ) ≤ 2 * M * Real.sqrt ((rho / (4 * M * M) : ℕ) : ℝ) := by positivity
   have hn0 : (0 : ℝ) ≤ (Delta.rCellCount : ℝ) := Nat.cast_nonneg _
   have hsqrtL : 2 * (L : ℝ) ≤ Real.sqrt (rho : ℝ) := by
     rw [Real.le_sqrt hL0 hrho0]
     nlinarith
-  have hsqrtQ : 2 * Real.sqrt ((rho / 4 : ℕ) : ℝ) ≤ Real.sqrt (rho : ℝ) := by
-    rw [Real.le_sqrt hQ0 hrho0, mul_pow, Real.sq_sqrt hm0]
+  have hsqrtQ : 2 * M * Real.sqrt ((rho / (4 * M * M) : ℕ) : ℝ) ≤ Real.sqrt (rho : ℝ) := by
+    rw [Real.le_sqrt hQ0 hrho0, mul_pow, mul_pow, Real.sq_sqrt hm0]
     nlinarith
-  have hstep : Real.sqrt ((rho / 4 : ℕ) : ℝ) ≤ Real.sqrt (rho : ℝ) - L := by linarith
+  have hstep : M * Real.sqrt ((rho / (4 * M * M) : ℕ) : ℝ) ≤ Real.sqrt (rho : ℝ) - L := by
+    linarith
   have hn := mul_le_mul_of_nonneg_left hstep hn0
   rw [mul_sub] at hn
   unfold ClassCovers at hcovers
-  linarith
+  have hmul : (M : ℝ) * ((Delta.rCellCount : ℝ) * Real.sqrt ((rho / (4 * M * M) : ℕ) : ℝ)) ≤
+      M * ∑ k, classWordLength (Q.word k) (Q.classCount k) (Q.relatorClasses k) := by
+    linarith
+  exact le_of_mul_le_mul_left hmul hM0
 
 /-- **The contradiction at fixed parameters, over the classes.**  "Assume that `S ≥ n √ρ`."
-The class polygons are dense at `⌊ρ / 4⌋`.  The polygons outside the class budget have no class
-in `N1`, so the metric half applies to the budgeted polygons alone and gives a backwards
+The class polygons are dense at `⌊ρ / (4 M²)⌋`.  The polygons outside the class budget have no
+class in `N1`, so the metric half applies to the budgeted polygons alone and gives a backwards
 connector pair on class words, which the cases refute. -/
-theorem unbound_lt_of_classes (Q : OsinLemma94ClassPolygons P) {K L rho rhom : ℕ}
-    (hcells : 0 < Delta.rCellCount) (hbudget : Q.ClassBudget K) (hcovers : Q.ClassCovers L)
-    (hrhom : 4 * rhom ≤ rho) (hL : 4 * L * L ≤ rho)
+theorem unbound_lt_of_classes (Q : OsinLemma94ClassPolygons P) {K M L rho rhom : ℕ}
+    (hcells : 0 < Delta.rCellCount) (hbudget : Q.ClassBudget K) (hcovers : Q.ClassCovers M L)
+    (hM : 0 < M) (hrhom : 4 * M * M * rhom ≤ rho) (hL : 4 * L * L ≤ rho)
     (hmetric : ∀ rho' : ℕ, rhom ≤ rho' →
       OsinLemma94DensePolygonsAntiparallel (symmetricLabelAlphabet D) lambda (c + 2) eps rho' K)
     (hcases : ∀ (k : Fin P.count) (C : WordConnectorPair (symmetricLabelAlphabet D) (Q.corner k)
@@ -327,9 +336,13 @@ theorem unbound_lt_of_classes (Q : OsinLemma94ClassPolygons P) {K L rho rhom : �
         ((RegionCandidate.unboundDarts S.family i).card : ℝ)) <
       (Delta.rCellCount : ℝ) * Real.sqrt (rho : ℝ) := by
   by_contra hge
-  have hdense := Q.dense_of_classCovers hcovers hL (not_lt.mp hge)
+  have hdense := Q.dense_of_classCovers hcovers hM hL (not_lt.mp hge)
+  have hle : rhom ≤ rho / (4 * M * M) := by
+    refine (Nat.le_div_iff_mul_le (Nat.mul_pos (Nat.mul_pos (by norm_num) hM) hM)).mpr ?_
+    rw [Nat.mul_comm]
+    exact hrhom
   obtain ⟨k, C, hback⟩ := OsinLemma94DensePolygonsAntiparallel.exists_of_budget_on
-    (hmetric (rho / 4) (by omega)) hcells Q.classCount Q.corner Q.word Q.relatorClasses
+    (hmetric (rho / (4 * M * M)) hle) hcells Q.classCount Q.corner Q.word Q.relatorClasses
     Q.longClasses Q.budgetPolygons Q.mem_budgetPolygons hbudget Q.corner_closed
     (fun k i _ => Q.corner_step k i) Q.quasiGeodesic_of_mem Q.short_of_not_mem hdense
   exact hcases k C hback
@@ -338,26 +351,32 @@ end OsinLemma94ClassPolygons
 
 /-- **Count piece of Lemma 9.4, over the classes.**  Lemma 9.3, "`∑ n_i ≤ 53 n`", and (38),
 "`k_i ≤ 4 n_i`", as one class constant `K` chosen after `ε`, over the polygons with an (A1) class
-and at least two classes.  With it, `S ≤ ∑ S_i + L n`, where `S_i` sums the (A1) class words of
-those polygons and `L = 24 ε + 2 (K + 24) ⌈(c + 2) / λ⌉₊`.  The slack leaves room for the
-unbound darts along selected regions, at most `24 ε n`, and for the value-one arcs at the class
-ends and the region ends, each at most `⌈(c + 2) / λ⌉₊` long. -/
+and at least two classes.  With it, `S ≤ M ∑ S_i + L n`, where `S_i` sums the (A1) class words
+of those polygons and `M > 0` and `L` are also chosen after `ε`.  The factor `M` pays for the
+unbound stretches with their own cell across.  The slack `L n` leaves room for the unbound darts
+along selected regions and for the value-one arcs at the class ends and the region ends.
+Clause (b) of Lemma 9.7 below the number of relator cells of `Δ` is a hypothesis, used against a
+pocket with relator cells behind an edge with one cell on both sides. -/
 def OsinLemma94ClassCountInput : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
     (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
     ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
       ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
-        ∃ K : ℕ, ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+        ∃ K M L : ℕ, 0 < M ∧ ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
           ∀ (W : Set (List (RelLetter G Lambda))),
             OsinCCondition D W eps mu lambda c rho →
             ∀ (Delta : DiscDiagram.{u, w, v} W)
               (cuts : SectionCuts D lambda c Delta.boundaryWord),
               Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
               ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
                 S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
                   ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
-                    ∃ Q : OsinLemma94ClassPolygons P, Q.ClassBudget K ∧
-                      Q.ClassCovers (24 * eps + 2 * (K + 24) * ⌈(c + 2) / lambda⌉₊)
+                    ∃ Q : OsinLemma94ClassPolygons P, Q.ClassBudget K ∧ Q.ClassCovers M L
 
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.word_eq
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.flatMap_word
