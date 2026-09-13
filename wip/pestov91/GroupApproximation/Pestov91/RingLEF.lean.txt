@@ -60,6 +60,17 @@ theorem textbook (h : IsLocalMatrixModel F ψ) :
   ⟨h.map_one, h.injOn, fun a _ b _ _ ↦ map_add ψ a b,
     fun a ha b hb _ ↦ h.map_mul a ha b hb⟩
 
+/-- A local model stays one after composing with an injective ring map. -/
+theorem comp_injective {T : Type*} [Ring T] (h : IsLocalMatrixModel F ψ) (θ : S →+* T)
+    (hθ : Function.Injective θ) : IsLocalMatrixModel F (θ.toAddMonoidHom.comp ψ) where
+  map_one := by
+    rw [AddMonoidHom.comp_apply, h.map_one]
+    exact map_one θ
+  injOn _ ha _ hb hab := h.injOn ha hb (hθ hab)
+  map_mul a ha b hb := by
+    rw [AddMonoidHom.comp_apply, h.map_mul a ha b hb]
+    exact map_mul θ _ _
+
 /-- Entrywise application is multiplicative on matrices with entries in `F`. -/
 theorem mapMatrix_mul {ι : Type*} [Fintype ι] (h : IsLocalMatrixModel F ψ)
     {A B : Matrix ι ι R} (hA : ∀ i j, A i j ∈ F) (hB : ∀ i j, B i j ∈ F) :
@@ -78,6 +89,16 @@ theorem mapMatrix_one {ι : Type*} [DecidableEq ι] (h : IsLocalMatrixModel F ψ
   · exact map_zero ψ
 
 end IsLocalMatrixModel
+
+/-- Models indexed by any finite type give models indexed by `Fin N`. -/
+theorem hasLocalMatrixModels_of_fintype {R : Type*} [Ring R]
+    (h : ∀ F : Finset R, ∃ (n : Type) (_ : Fintype n) (_ : DecidableEq n)
+      (ψ : R →+ Matrix n n (ZMod 2)), IsLocalMatrixModel F ψ) :
+    HasLocalMatrixModels R := fun F ↦ by
+  obtain ⟨n, _, _, ψ, hψ⟩ := h F
+  let e : Matrix n n (ZMod 2) ≃+* Matrix (Fin (Fintype.card n)) (Fin (Fintype.card n)) (ZMod 2) :=
+    Matrix.reindexRingEquiv (R := ZMod 2) (Fintype.equivFin n)
+  exact ⟨Fintype.card n, e.toRingHom.toAddMonoidHom.comp ψ, hψ.comp_injective _ e.injective⟩
 
 section Units
 
@@ -158,6 +179,14 @@ theorem isLEF_elementaryGroup_of_hasLocalMatrixModels {R : Type*} [Ring R]
     IsLEF (elementaryGroup ι R) :=
   isLEF_of_injective (elementaryGroup ι R).subtype Subtype.val_injective
     (isLEF_units_matrix_of_hasLocalMatrixModels hR ι)
+
+/-- LEF passes to the quotient by a trivial normal subgroup; with `Z(EL₃(R)) = ⊥` this is the
+quotient step of §3.3. -/
+theorem isLEF_quotient_of_eq_bot {G : Type*} [Group G] {K : Subgroup G} [K.Normal]
+    (hK : K = ⊥) (h : IsLEF G) : IsLEF (G ⧸ K) :=
+  isLEF_of_injective
+    ((QuotientGroup.quotientMulEquivOfEq hK).trans QuotientGroup.quotientBot).toMonoidHom
+    (MulEquiv.injective _) h
 
 /-! ### Model tests -/
 
