@@ -34,6 +34,9 @@ so `w_W(a) <= sum_r |n_(x,r)| + 2|R| M`.
    (elementary). This includes all towers of cyclic groups acting regularly, symmetric groups, and
    alternating groups of odd degree, in any mixture. So solvable towers of unbounded derived length,
    such as `C_2 wr C_3 wr C_2 wr C_3 ...`, are included.
+3. **All towers of bounded degree.** Every tower of transitive groups of degree `<= m`, with
+   `c = 3(m! + m + 2)`, by `transitive-wreath-towers-bounded-commutator-width` (elementary). This subsumes 1
+   and 2, and establishes `simple-nonsofic-relator-width-over-iterated-wreath-products`.
 
 **Consequence for weak soficity.** A finitely presented simple group, sofic or not, has no weak models,
 with any bi-invariant lengths, in any of these tower classes. For

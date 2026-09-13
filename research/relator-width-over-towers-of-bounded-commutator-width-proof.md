@@ -4,7 +4,7 @@ id: relator-width-over-towers-of-bounded-commutator-width-proof
 kind: route
 title: Induct on depth, handling coordinates fixed by the root tuple recursively inside the same pairs, and orbits of the root tuple by a relatively free top block, spanning-tree dipoles, and nested commutators
 target: relator-width-over-towers-of-bounded-commutator-width
-requires: [full-cycle-wreath-towers-bounded-commutator-width, iterated-simple-wreath-bounded-commutator-width]
+requires: [full-cycle-wreath-towers-bounded-commutator-width, iterated-simple-wreath-bounded-commutator-width, transitive-wreath-towers-bounded-commutator-width]
 ---
 
 **Conventions.**
