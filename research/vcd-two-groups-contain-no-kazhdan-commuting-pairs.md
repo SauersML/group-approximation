@@ -40,7 +40,9 @@ finitely generated commuting partner `B` of an infinite subgroup is LEF.
    and its formalized twin `one-sided-compression-nonsofic-criterion`. Their hypotheses give a
    subgroup `J` that commutes with an infinite Kazhdan subgroup (`Gamma`, or its compressed copy
    `q Gamma q^-1`) and meets it trivially. By (CD2), `J` is finite, hence LEF. So the criterion
-   proves no subgroup of `G` nonsofic.
+   proves no subgroup of `G` nonsofic. The compressor makes this true in every finite virtual
+   cohomological dimension, not only two: by `kazhdan-compression-instances-have-infinite-vcd`,
+   `Gamma` contains `J^n` for every `n`.
 2. **Kun--Thom generalized wreath products** (`kun-thom-nonsofic-wreath`). An infranormal
    subgroup that is not normal has infinite index: if `[G:Gamma] < infinity` and
    `t Gamma t^-1 <= Gamma`, the two subgroups have the same index, so they are equal. Then the
