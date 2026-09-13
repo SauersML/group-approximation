@@ -35,8 +35,37 @@ CLAIM binder 5 step 4, orientation of the cell pocket walk colouring:
 This is the cell analogue of cite-hull's `PocketWalkColour.walk_orient`. Planned declarations:
 - `CellPocketWalkColour.walk_orient`
 - `CellPocketWalkColourStatement` / `cellPocketWalkColour`
-The module consumes jacobson's `OsinPocketCellWalk` and cite-hull's `OsinPocketWalkColour`. The split was proposed to
-w1-binder-5 at 17:24: it keeps step 3; step 5 goes to ms-intro-2 after step 4; step 6 waits on audit-sec5.
+The module consumes jacobson's `OsinPocketCellWalk` and cite-hull's `OsinPocketWalkColour`. The split was agreed with
+w1-binder-5 (its report, 17:40): it keeps step 3; step 5 goes to ms-intro-2 after step 4; step 6 waits on audit-sec5.
+
+**Step 4 CLOSED: LANDED b0ab3a234** (probe 0913-173847-9529 GREEN at base 41d8c3b03, BUILT
+`OsinPocketCellWalkColour`, empty error index; `cellPocketWalkColour` depends on [propext, Classical.choice, Quot.sound]).
+The module is new, unwired and wire-queued.
+```lean
+theorem CellPocketWalkColour.walk_orient (S : RealizedSectionFamily D lambda c eps Delta cuts)
+    (ha : a ∈ S.family) (hb : b ∈ S.family) (hab : a ≠ b) (hai : a.JoinsCells i j) (hbi : b.JoinsCells i j)
+    (K : CellPocketWalk D eps S.diagram i j)
+    (hfirst : K.firstSide = b.sideFrom j) (hsecond : K.secondSide = a.sideFrom i)
+    (h₁ : ∃ G₁, K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i)
+    (h₂ : ∃ G₂, K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j)
+    (hcol : ∀ d, ¬ (faceOf (alpha d) ∈ faces ↔ faceOf d ∈ faces) ↔ walkKeep M K.walk d) :
+    ∀ d ∈ K.walk, ∀ e ∈ K.walk, (faceOf d ∈ faces ↔ faceOf e ∈ faces)
+def CellPocketWalkColourStatement : Prop   -- the same over CellPocketWalk.exists_of_joinsCells, proved:
+theorem cellPocketWalkColour : CellPocketWalkColourStatement.{u, w, v}
+```
+The helpers `mem_boundary_of_mem_sideFrom`, `cell_face_not_mem`, `exists_crossDart` and `walk_cases` need no `i ≠ j`.
+No crossing into the outer face is needed. The Statement closes through `exists_of_joinsCells`, so no Prop is left
+open and there is no vacuity risk. The abstract step `orient_of_sides` is already model-tested
+(`OsinPocketWalkColourModels`).
+
+Feeding the step: `ClosedWalkFaceColouring.isNoncrossingClosedWalk_of_orient hM hne hnodup halpha hchain hcloses
+(fun _ hcol => CellPocketWalkColour.walk_orient S ha hb hab hai hbi K hfirst hsecond h₁ h₂ hcol)`, with `hchain hcloses`
+from w1-binder-5's `exists_of_joinsCells_closedWalk` and `hnodup halpha` from its `walk_nodup_and_alpha_not_mem`
+(e9d8d2faf).
+
+Next: step 5, the kept cell. This is the cell analogue of `exists_kept_of_pocketRegion_of_value`: at least area, a
+pocket region whose cycle is the walk holds a relator cell. Otherwise it absorbs the regions meeting it and
+`false_of_disc_collapse_singleton` contradicts the distinguished choice.
 
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.
