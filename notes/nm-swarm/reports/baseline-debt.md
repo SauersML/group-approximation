@@ -66,6 +66,7 @@ at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-d
 - `7976a7ca7`, probe 0913-132138-96143 (BUILT): `GGT/DGOProposition435PrintedCounterexample.lean`
   (new) proves `RelHyp.not_dgoProposition435PrintedStatement`, per the team lead's ruling. It
   refutes the Lean spelling, not DGO's printed Proposition 4.35. Queued for wiring.
+- `348fc1af7`: the cite-ejz LINE:1155 re-grade and this report, after the C6′ assignment.
 
 | module | declarations |
 |---|---|
@@ -261,12 +262,13 @@ are over hgreendlinger. Each of the other three is partial through one stale lan
   - cite-hull's two rows grade the sentence formalized over `printedHullGeneratingSetLimitSet`
     and `printedHullTheorem312LimitSet` (`#audit_closed_axioms`, root-imported).
 - LINE:1145 `3009704fef89` (EJZ Theorem 1.1).
-  - cite-ejz's row 2 (key LINE:1155) is partial: "First half only; the jacobson row carries
+  - cite-ejz's row 2 (key LINE:1155) was partial: "First half only; the jacobson row carries
     the whole sentence".
   - jacobson's row 26 grades the sentence formalized over
     `manuscriptSentence_threePlusOneGeneral` (`#audit_closed_axioms`, root-imported), which
     packages both halves.
-  - No lane of this swarm owns `cite-ejz.tsv`.
+  - No lane of this swarm owned `cite-ejz.tsv`. Per the lead's ruling, this lane re-graded the
+    row formalized at `348fc1af7`.
 
 Six more partial lane rows, at LINE:1636, 1675 and 1679, name no Greendlinger leaf. Each
 carries one piece of a longer sentence, and those union rows stay partial through
@@ -290,7 +292,8 @@ hgreendlinger, so re-grading these rows flips nothing now.
 
 `merge_rows.py` keeps a union row partial while any lane row is partial. So once hgreendlinger
 closes, these piece rows still hold their union rows partial unless they are re-graded or
-census overrides them. cite-ejz's row does the same to LINE:1145 today.
+census overrides them. cite-ejz's row did the same to LINE:1145 until its re-grade at
+`348fc1af7`.
 
 ## C6′: `OsinTwoGonHoldsSectionStatement` (Lemma 9.3, hcount)
 
@@ -332,6 +335,37 @@ and `rho0 = 1`.
       relator cell.
     - Sent to the team lead with a question: does dgo-analytic's zero-cell merge on the copy
       (Q2) also cover the two-gon pocket?
+- A copy route for module 4, checked on origin:
+  - The conclusion of `TwoGonHoldsInput` is `False`, so it is O-invariant and needs no
+    transport.
+  - The premises do not transport.
+    - `OEquivalentDiscDiagram` (`RelativeGreendlinger.lean:123`) has only `boundaryWord_eq`,
+      `cellIndex` and `cellWord_eq`, with no darts or faces.
+    - `OuterSpurThickeningStatement` (`SurgeryOuterSpurThickening.lean:51`) keeps the family
+      bijection, the weight, the target profiles and the source indices. It does not carry
+      `NoLoops`, `NoMultipleEdges`, the two-gon `f` of `phiMapO`, `¬GapAtOHoldsCorner` or
+      `¬HoldsCellO`.
+    - So a copy route re-derives the pocket's emptiness on the copy, as sec2-sentences does for
+      the kept cell (`3fce53dd1`).
+- The simple-walk case of module 4 is on origin already:
+  `GloballyDistinguishedSectionFamily.exists_kept_of_simple`
+  (`Estimating/OsinPocketKeptCell.lean:163`, sec2-sentences `492057fb6`, probe
+  0913-140023-67387 GREEN, unwired).
+  - Its binders are the output of `PocketWalk.exists_of_exteriorAt`
+    (`OsinPocketSectionFaceSet.lean:427`) on module 1's labels: `x ≠ y` exterior to cell `i` and
+    targeting section `j`, `K`, `hgap`, `hstart` and `hend`. It also takes
+    `hw : IsSimpleClosedWalk S.diagram.toCombMap K.walk` and `havoid`, which ranges over all of
+    `S.family`.
+  - It returns a relator cell on `sideFaces S.diagram.toCombMap K.walk`, through
+    `false_of_disc_pair_singleton`, with no `EmptyTwoGonInput` binder.
+  - So the simple case is module 3 plus `exists_kept_of_simple`, and the residual is the
+    non-simple walk (a pinch or a leak).
+  - Module 3's two inputs for a simple walk are on origin as well:
+    `PocketFaceSet.outerFace_not_mem_sideFaces_of_mem_outerDarts`
+    (`OsinPocketSectionFaceSet.lean:99`) and `PocketFaceSet.cell_face_not_mem_sideFaces`, the
+    theorem after it. So the simple-case glue is only `exists_twoGonLabels`, then
+    `exists_of_exteriorAt`, then `exists_kept_of_simple`.
+  - Sent to debt-conditional with an offer: the simple-case glue, in a new module of this lane.
 - No C6′ Lean from this lane yet.
 
 ## Next
@@ -349,11 +383,12 @@ and `rho0 = 1`.
 - Census debt outside W1: no Prop group is left to formalize. The roster records the lead's
   ruling (`0da58be4b`, `ROSTER-0913.md:828`): this lane re-grades the cite-ejz LINE:1145 row,
   and sec5-sentences re-grades LINE:1629.
-  - Done with this report. cite-ejz row 2 (key LINE:1155, union row `3009704fef89`) now also
+  - Landed at `348fc1af7`. cite-ejz row 2 (key LINE:1155, union row `3009704fef89`) now also
     lists jacobson's whole-sentence carrier, `JacobsonPresented.PrintedThreePlusOneGeneral` and
     `manuscriptSentence_threePlusOneGeneral`, and is graded formalized.
   - Checked on origin: the carrier has `#audit_closed_axioms`
     (`JacobsonThreePlusOnePresented.lean:98`), the root imports the module
     (`GroupApproximation.lean:4962`), and tex 1155-1157 is the sentence of jacobson's row 26.
-- C6′: author the piece debt-conditional hands over, in a new module of this lane. Waiting on
-  the lead's answer on the copy zero-cell merge for the two-gon pocket.
+- C6′: waiting on debt-conditional's pick, either the simple-case glue offered above or another
+  piece, and then writing it in a new module of this lane. Also waiting on the lead's answer on
+  the copy zero-cell merge for the two-gon pocket.
