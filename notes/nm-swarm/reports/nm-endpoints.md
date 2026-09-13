@@ -61,6 +61,9 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
   flip list (section "Superseded wrappers"). No statement changed. Probe 0913-133143-40961 is
   green and all three modules are BUILT. They were already root-reachable, so there is no
   wire-queue line.
+- The ten rows are graded over ghw-assembly's W1 waist (lead ruling ~14:45) at origin
+  d60f40599. Each names the waist's eight binders with owners (residual item 1) and stays
+  partial. The tsv lands together with this version of the report.
 
 ## Zero-cell pocket merge: the value half (lead ruling ~05:00)
 
@@ -106,83 +109,65 @@ This lane owns the value.
   - given `hwalk`, every embedded boundary rotates the pocket cycle
     (`FaceSetBoundary.exists_cycle_eq_rotate`).
 
-## Residual statements (exact, at origin bf7d5994b)
+## Residual statements (exact, at origin d60f40599)
 
 1. OPEN: `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`. It has
-   no closed producer on main.
-   - The root-imported `relativeGreendlingerQuasiGeodesicLeastArea_of_pocketParts`
-     (Estimating/OsinAppendixGreendlingerPocketParts.lean:131, a452fa727) takes five section
-     Props: `OsinLemma94SectionStatement`, `OsinMultipleEdgeCutSectionStatement`,
-     `OsinLoopCutSectionStatement`, `OsinPhiPrimeCountSectionStatement` and
-     `OsinSectionPocketCutSectionStatement`.
-   - The loop slot closes under LoopCut ruling (A) by ghw-charp2's patch 07,
-     `osinLoopCutSection : OsinLoopCutSectionStatement`. That patch is not on origin yet
-     (patches 01-10 land as one co-probe). This lane then lands
-     `relativeGreendlingerQuasiGeodesicLeastArea_of_loopClosed`
-     (Estimating/OsinAppendixGreendlingerLoopClosed, drafted, not in the repo) over the other four
-     slots.
-   - Below, "no producer" means that no theorem on origin concludes the Prop. The binder-free
-     producers named below carry `#audit_axioms`, not `#audit_closed_axioms`, unless marked closed.
-   - `OsinLemma94SectionStatement` comes from `osinLemma94Section_of_residuals`
-     (OsinLemma94SectionResiduals.lean, hull-unbound, 4002b9371, not root-imported). It passes the
-     closed pieces to `osinLemma94Section_of_planarPieces` (OsinLemma94PlanarPieces.lean:441,
-     root-imported). Only the polygon count and Case 1 stay hypotheses:
-     - `OsinLemma94AntiparallelMetricStatement` is closed (`osinLemma94AntiparallelMetric`).
-     - `OsinLemma94PolygonRealizationInput` is closed (`osinLemma94PolygonRealizationInput`,
-       `#audit_closed_axioms`, 4002b9371). It applies `osinLemma94PolygonRealizationInput_of_pieces`
-       to the binder-free respelling surgery, the arcs and ghw-assembly's
-       `osinLemma94PolygonPartitionInput`:
-       - OsinLemma94PolygonPartition.lean:145, 746028b24;
-       - probe 0913-132334-2532 green, `#audit_closed_axioms`, not root-imported.
-     - `OsinLemma94PolygonCountInput` comes from `osinLemma94PolygonCountInput_of_sideBudget`
-       (OsinLemma94PolygonCount.lean:98), over `OsinLemma94PolygonSideBudgetInput` (no producer;
-       hull-count94).
-     - `OsinLemma94CaseOneInput`:
-       - On origin, `osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk`
-         (OsinUnboundCaseOneRun.lean:78) takes no open binder.
-       - theoremc-retire's `osinLemma94CaseOneInput_of_walk_of_sameCell` (:89, 3292f7a20) also
-         takes `OsinLemma94CaseOneSameCellStatement` (OsinUnboundCaseOneFace.lean:466, no
-         producer).
-       - Patch 10 (f) is overruled, so `_of_walk` is not deleted. After patches 01-10 it gains the
-         same-cell binder, and that Prop is not redundant after patch 09 (d).
-     - `OsinLemma94CaseTwoInput` is closed by `osinLemma94CaseTwoInput`:
-       - OsinLemma94CaseTwo.lean, sec5-sentences, e0e94015d;
-       - probe 0913-131149-5355 green, `#audit_closed_axioms`, not root-imported yet.
-       - It applies `osinLemma94CaseTwoInput_of_insertion` to sec2-sentences'
-         `separatedCornerInsertionInput` (619b70139).
-     - Site 5 (patch 10 (d), `alpha_faceOf_not_cell_of_unbound` at j = i): under (A), an unbound
-       dart of cell i whose reverse also lies on cell i lies on no polygon walk. The ruling is
-       option (a), owned by fff-periodic:
-       - `Covers` takes a factor ⌈1/λ⌉ on the sides, and L depends on λ and c. `dense_of_covers`
-         absorbs the factor. This is co-probed with hull-count94.
-       - fff-periodic proves case (T), where C2 has no relator cell.
-       - Case (C) is a named binder of the Covers input, owned by fff-periodic. It can be
-         discharged from the threaded `OsinLemma97Below`.
-       - So `osinLemma94PolygonCoversInput`, closed on origin, becomes a producer over the case (C)
-         binder once the respelling lands.
-   - `OsinMultipleEdgeCutSectionStatement` comes from `osinMultipleEdgeCutSection_of_pieces`
-     (OsinPocketMultipleEdgeAssembly.lean:207, hull-select, 2db85602c, root-imported). Its leaves have
-     no producer: `OsinMultipleEdgePocketRegionSectionStatement` (kh-ejz), `GeodesicCollarStatement`
-     (kh-torsion) and `PocketCellTransportStatement` (go-lemma42).
-   - `OsinPhiPrimeCountSectionStatement` comes from `osinPhiPrimeCountSection_of_pieces`
-     (OsinAppendixEulerSection.lean:62, hull-euler, 6401c70a6, landed unverified, not root-imported).
-     - C5 is applied inside by `cellFaceCountInput`.
-     - C4 `OsinCornerTwoGonSectionStatement` comes from the binder-free `osinCornerTwoGonSection`:
-       - OsinAppendixEulerCornerTwoGonSection.lean, leavitt-units, 0c42391c2;
-       - probe 0913-130704-80770 green, not root-imported.
-       - It uses `cornerTwoGonInput` (90245333d).
-     - The one leaf with no producer is C6′ `OsinTwoGonHoldsSectionStatement` (debt-conditional).
-   - `OsinSectionPocketCutSectionStatement` comes from `osinSectionPocketCutSection_of_pieces`
-     (OsinPocketPieces.lean:521, root-imported).
-     - `PocketRegionOfSimpleStatement` is closed (`pocketRegionOfSimple`).
-     - The collar goes through `pocketCollarStatement_of_geodesicCollar` to `GeodesicCollarStatement`.
-     - The pinch goes through `pocketPinchLabelledStatement_of_pocketPinchStatement` and
-       `pocketPinchStatement_of_pinched` to `PocketPinchPinchedStatement` (kh-cckw).
-     - Its leaves with no producer: `OsinSectionPocketFaceSetSectionStatement` (kh-ejz),
-       `PocketPinchPinchedStatement`, `GeodesicCollarStatement`, `PocketCellTransportStatement` and
-       `PocketOuterTransportStatement` (go-lemma42).
-   - The other producers take `OsinLemma97SectionStatement` (`_of_osinLemma97`), the five parts
-     of `_of_parts`, or `OsinSection97PocketInputsStatement` (`_of_pocketInputs`).
+   no closed producer on main. The ten rows grade it over the W1 waist (lead ruling ~14:45):
+   - `relativeGreendlingerQuasiGeodesicLeastArea_of_openResiduals`
+     (Estimating/OsinGreendlingerOpenResiduals.lean, ghw-assembly, 8a07ad7d0). Probe
+     0913-143433-44532 is green. It carries `#audit_axioms`, is wire-queued (line 688) and is not
+     root-imported.
+   - It applies dgo-analytic's `relativeGreendlingerQuasiGeodesicLeastArea_of_residuals`
+     (OsinDescentResiduals.lean:55, 5be777f16) to `osinLemma94Section_of_residuals hcount94 hone`
+     (OsinLemma94SectionResiduals.lean:55, hull-unbound, 4002b9371) and to
+     `osinPhiPrimeCountSection_of_pieces osinCornerTwoGonSection htwogon`
+     (OsinAppendixEulerSection.lean:62).
+   - Proved inside it. "Closed" marks `#audit_closed_axioms`; the others are binder-free under
+     `#audit_axioms`.
+     - Lemma 9.4: the antiparallel metric (closed), `osinLemma94PolygonRealizationInput` (closed,
+       over ghw-assembly's partition, OsinLemma94PolygonPartition.lean:145, 746028b24) and
+       `osinLemma94CaseTwoInput` (closed, OsinLemma94CaseTwo.lean, sec5-sentences, e0e94015d).
+     - The Euler count: C4 `osinCornerTwoGonSection` (leavitt-units, 0c42391c2) and C5
+       `cellFaceCountInput`.
+     - The pockets: `pocketCellTransport` (closed, OsinPocketGlueCellTransport.lean:164,
+       go-lemma42, 874a332a2) and `pocketOuterTransport` (closed,
+       OsinPocketGlueOuterTransport.lean:147, 71d59592c). They enter through
+       `osinMultipleEdgeCutSection_of_pieces` (OsinPocketMultipleEdgeAssembly.lean:207) and
+       `osinSectionPocketCutSection_of_residuals` (OsinPocketCutResiduals.lean:58, 5ef75ffa7).
+   - LoopCut ruling (A) landed at f04929ebb (ghw-charp2, 27 files). The eight binders, with owners
+     from the lead's ~14:25 rulings and ghw-assembly's report:
+     1. `OsinLemma94PolygonCountInput` (hull-count94). Its producer
+        `osinLemma94PolygonCountInput_of_sideBudget` (OsinLemma94PolygonCount.lean:126) takes
+        `OsinLemma94PolygonSideBudgetInput` (:109, no producer) and, since (A),
+        `OsinLemma94UnboundSameCellStatement` (:58, no producer; site 5, which the lead routed to
+        fff-periodic under option (a)). hull-count94's `OsinLemma94ClassCountInput`
+        (OsinLemma94PolygonClasses.lean:345, 6db79cea7) supersedes the side budget once the Case 1
+        users move to class words.
+     2. `OsinLemma94CaseOneInput` (theoremc-retire; ko-closed case (a), jacobson case (b)). Its
+        producer `osinLemma94CaseOneInput_of_walk` (OsinUnboundCaseOneRun.lean:85) takes the walk,
+        which `osinLemma94CaseOneWalk` proves (OsinLemma94CaseOneWalkHolds.lean:197), and, since
+        (A), `OsinLemma94CaseOneSameCellStatement` (OsinUnboundCaseOneFace.lean:474, no producer;
+        jacobson owns the producer).
+     3. `OsinLoopCutSectionStatement` (ghw-charp2). It is proved on origin by `osinLoopCutSection`
+        (OsinAppendixGreendlingerParts.lean:74, f04929ebb, closed). The waist does not apply it
+        yet.
+     4. `OsinTwoGonHoldsSectionStatement`, C6′ (debt-conditional; baseline-debt, hs-vanishes). It
+        has no producer on main or in the tree.
+     5. `OsinMultipleEdgePocketRegionSectionStatement` (kh-ejz). No producer.
+     6. `OsinSectionPocketFaceSetSectionStatement` (kh-ejz; cite-hull (C), hl-lemma46 (D),
+        sec2-sentences, hull-select, hull-euler). No producer.
+     7. `PocketPinchLabelledStatement` (hull-respell; kh-cckw E4, go-lemma42 (ii)).
+        `pocketPinchLabelledStatement_of_step` (OsinPocketPinchStep.lean:72, 8a7d46d90) reduces it
+        to `PocketPinchStepStatement` (:60, no producer). That is a reshape, not a discharge.
+     8. `GeodesicCollarStatement` (kh-torsion; hull-bridge Insert, simple-group Strip). Join is
+        closed (`GeodesicCollar.joinStatement`). No producer.
+   - So the residual is binders 1, 2 and 4-8. ghw-assembly's follow-up drops binder 3 and
+     replaces binders 1-2 with their leaf producers. The expected list after it is
+     `OsinLemma94PolygonSideBudgetInput`, `OsinLemma94UnboundSameCellStatement`,
+     `OsinLemma94CaseOneSameCellStatement`, then binders 4-8. This lane asked ghw-assembly to
+     confirm it when the follow-up lands.
+   - This lane writes no `OsinAppendixGreendlingerLoopClosed` (lead ruling ~14:45). It would close
+     the loop slot over `_of_pocketParts`, a less reduced composition than the waist.
    - This lane's value half of the zero-cell merge is at 93cb4e04f.
 2. CLOSED: `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}`.
    - It is proved by `HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed`
@@ -290,6 +275,8 @@ followed by `#audit_closed_axioms`, where `<W1>` is a closed producer of wall 1.
   - 8097c371f35d: the Fournier-Facio sentence;
   - dab2f2bfe084: the G_0 sentence.
 - None of them retires a baseline finding: each carrier still takes `hgreendlinger`.
+- At origin d60f40599 each row also names the W1 waist and its eight binders with owners
+  (residual item 1).
 - No row was added for the proof-step rows bcc99703f838, 2d1cd22e5f49, 2f997e5af4e6 and
   721da4c14d11, because no four-leaf theorem proves those sentences exactly.
 - The merged census unions the carriers of every lane's row on a hash:
@@ -319,7 +306,7 @@ followed by `#audit_closed_axioms`, where `<W1>` is a closed producer of wall 1.
   `manuscriptTorsionFreeFullMFRadical_of_greendlinger` and
   `manuscriptTorsionFreeSimplified_of_greendlinger`.
 - Wall 1 has no closed producer. No closed producer of `OsinLemma97SectionStatement` has
-  landed.
+  landed. Its most reduced composition on main is ghw-assembly's waist (residual item 1).
 - `HullCitationSentences.printedHullTheorem312*` and `printedSaturationHullPair`, and
   `HullTheorem312Lemma58.printedHullTheorem312`, are closed and root-imported. They carry tex
   1629–1630 and 1662 (Hull Theorem 3.12, Corollary 5.7, Lemma 5.8). They are not `thm:hull` and
@@ -378,15 +365,11 @@ row names the closed endpoint and says "retires open-predicate <decl>".
 - `OsinDescentStepInput` is RETIRED as off route (lead, 2026-09-13; audit-sec5 and
   dgo-analytic agree). This lane built nothing on it and deleted nothing. dgo-analytic adds the
   docstring note.
-- LoopCut is ruled (A), final: `RespectsSections` gains `target ≠ some source` as its first
-  conjunct. ghw-charp2 lands patches 01-10 as one co-probe, and this lane holds every
-  `LoopCutInput` edit and runs no probe until then. When patch 07's `osinLoopCutSection` is on
-  origin:
-  - land `Estimating/OsinAppendixGreendlingerLoopClosed` (unverified), probe it, land it plain
-    after green, and queue it for wiring;
-  - re-grade the ten rows (hgreendlinger stays residual, over the four slots above), and update
-    their residual notes.
-- Meanwhile, keep the ten rows current. Wall 1 (`hgreendlinger`) is their only residual.
+- The ten rows are graded over the W1 waist's eight binders (lead ruling ~14:45). When
+  ghw-assembly's follow-up lands, re-grade them onto the list that ghw-assembly sends, with
+  owners. Then land the tsv and this report, and send main the SHAs.
+- LoopCut ruling (A) is on origin (f04929ebb, 27 files). This lane writes no
+  `OsinAppendixGreendlingerLoopClosed`, and it has no `LoopCutInput` edit to make.
 - A closed `LiteratureInputs` needs its own namespace, because `TheoremC.literatureInputs` was
   the name of the deleted admission.
 - Row f2bf6328169e (tex 1725, the DGO and GO sentence) belongs to cite-osin, which grades it
