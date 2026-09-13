@@ -7,6 +7,7 @@ distinct_from:
   radu-horizontal-quotient-is-arithmetic-lattice: that finds the S_3-vertex p of the second tree and proves transitivity; this computes how the horizontal letters a, b, c act on the star of p
   radu-delta-squared-orbit-is-signed-permutation-module: that defines the sign character psi' combinatorially from the square relators; this identifies its restriction to <a,b,c> with a congruence condition at the second prime
   radu-square-lamp-forces-reflections-in-finite-actions: that is the finite-set consequence of the mark; this is the arithmetic reason finite quotients cannot separate the sign
+  radu-xz-slab-is-second-tree-edge-stabilizer: that identifies the slab <a,b,c,x,z> with an edge stabilizer of the second tree and psi' with the local sign sgn_6 on the edge's neighbourhood; this uses the same local computation for <a,b,c> to identify the kernel C_chi with the fixator of a star, and the edge coset space Q/C_chi with a double cover of framed vertices
 artifacts:
   - research/artifacts/radu-edge-lamp-host-and-square-firewall-2026-09-13.md
   - research/artifacts/radu-h4-star-check.py
@@ -21,6 +22,8 @@ artifacts:
 
 1. **The horizontal lattice fixes `p`.** `ρ(a)`, `ρ(b)`, `ρ(c)` fix `p`. On the three edges at `p`,
    `a` and `b` act trivially, and `c` fixes the edge `[p, xp]` and swaps `[p, xy·p]` and `[p, zy·p]`.
+   `radu-xz-slab-is-second-tree-edge-stabilizer` (item 2) computed the same local action
+   independently, with a different script; the two computations agree.
 2. **The sign is local.** `χ` is the permutation character of `C` on the star of `p`:
 
    ```text
