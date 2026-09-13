@@ -5,6 +5,8 @@ kind: claim
 title: "Some group G of type F_infinity has Sigma^m(G) properly containing Sigma^{m+1}(G) for every m >= 1"
 distinct_from:
   zaremsky-1-18-properly-nested-bnsr-invariants: that claim is Problem 1.18 as a question, established by either answer; this is the affirmative answer, an existence statement about one group
+artifacts:
+  - research/artifacts/zp-properly-nested-bnsr-2026-09-13-part1.md
 ---
 
 There is a group `G` of type `F_∞` whose homotopical BNSR invariants satisfy

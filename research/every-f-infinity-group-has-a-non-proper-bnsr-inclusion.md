@@ -6,6 +6,8 @@ title: "Every group G of type F_infinity has some m >= 1 with Sigma^m(G) = Sigma
 distinct_from:
   f-infinity-group-with-properly-nested-bnsr-invariants: that claim asserts one F_infinity group whose chain of BNSR invariants drops at every degree; this is its negation, a universal statement that some inclusion is an equality
   zaremsky-1-18-properly-nested-bnsr-invariants: that claim is Problem 1.18 as a question; this is the negative answer
+artifacts:
+  - research/artifacts/zp-properly-nested-bnsr-2026-09-13-part1.md
 ---
 
 For every group `G` of type `F_∞` there is `m ≥ 1` with
