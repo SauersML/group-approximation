@@ -49,6 +49,14 @@ wreaths non-hyperlinear.
     - The corollary of the criterion applies once some finitely presented cover sequence has
       extra finite quotients (`sl3-polynomial-covers-have-extra-finite-quotients`).
     - Route: `el-r-vertex-instability-via-rank-three-covers`.
+  - **Rank 3, central extension of a congruence subgroup: open, route recorded.**
+    - `flexible-hs-stability-descends-to-retracts-finite-index` lets instability pass up
+      from a finite-index subgroup `Δ` of `SL_3(F_q[t])`.
+    - At such a `Δ`, the scalar mechanism can come back to life. It needs a real degree-two class
+      whose Kazhdan central `Z`-extension keeps its centre visible at unbounded orders in finite
+      quotients (`sl3-polynomial-finite-index-z-extension-center-survives`).
+    - Route: `el-r-vertex-instability-via-congruence-central-extension`.
+    - The Deligne cover of `Sp_(2g)(Z)` is the failure model.
   - **Noncommutative cover `EL_r(F_q⟨x_1..x_d⟩)`: screened, not proved dead.** The kernel
     contains the shallow elements `e_ij([x_a, x_b])`.
     - In congruence-type irreducibles of finite quotient rings, (KC1) at these finitely many
