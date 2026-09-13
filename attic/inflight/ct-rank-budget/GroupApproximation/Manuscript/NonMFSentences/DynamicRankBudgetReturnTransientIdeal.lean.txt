@@ -1,7 +1,7 @@
 import GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetReturnBridge
 import GroupApproximation.Manuscript.NonMFSentences.DynamicRankBudgetInducedCore
-import GroupApproximation.Dynamics.ReturnRingUnit
-import GroupApproximation.Dynamics.ReturnCells
+import GroupApproximation.Dynamics.ReturnRingInjective
+import GroupApproximation.Algebra.ZCrossedProductLift
 import GroupApproximation.Dynamics.TransientIdealExact
 import GroupApproximation.Meta.AxiomGuard
 
@@ -17,12 +17,14 @@ This module proves the inclusion used later, `returnTransientIdealStatement_hold
 ReturnTransientIdealStatement`, for every ring isomorphism `θ : R_C ≅ p_C R_X p_C` with the two
 properties of `ReturnRingCrossedProductStatement`.
 
-* The zeroth Laurent coefficient is compatible with `θ` on `C` (`coeff_one_theta`): `θ (C a)` is the
-  extension of `a` by zero, and `θ (u_S^j)`, `j ≠ 0`, is `v^j` or `w^{-j}`, where
-  `v = ∑_h u^h 1_{C_h}` has support in exponents `≥ 1` and `w = ∑_h 1_{C_h} u^{-h}` in exponents
-  `≤ -1`, because `C_0 = ∅` (`posSupp_returnV`, `negSupp_returnW`).
-* Right multiplication by `u_S^{-j}` moves the coefficient at `j` to exponent `0`, and the transient
-  ideal is a right ideal, so every coefficient of `c` vanishes on `C ∩ Y` when `θ c ∈ I`.
+* `theta_eq_returnRingHom`: such a `θ` agrees with the landed `returnRingHom`
+  (`Dynamics/ReturnRingLift`), since both send coefficients to their extensions by zero and the unit
+  to `v` (`Pestov91.CrossedProduct.ringHom_ext`).
+* `coeff_one_theta`: on `C`, the zeroth Laurent coefficient of `θ c` is that of `c`, from the landed
+  readout `coeff_one_coe_returnRingHom`.
+* Right multiplication by `u_S^{-j}` moves the coefficient at `j` to exponent `0`
+  (`coeff_mul_unit_zpow_neg_toAdd`), and the transient ideal is a right ideal, so every coefficient
+  of `c` vanishes on `C ∩ Y` when `θ c ∈ I`.
 * `CR(S_C) ⊆ C ∩ Y` (`coe_mem_chainRecurrentSet_of_firstReturn`) gives membership in the return
   transient ideal.
 -/
@@ -32,135 +34,7 @@ namespace GroupApproximation.ChainCore.DynamicRankBudget
 open MFQuotientUnits SkewMonoidAlgebra
 open Multiplicative (ofAdd toAdd)
 
-/-! ## Laurent support -/
-
-section Support
-
-variable {A : Type*} [Ring A] [MulSemiringAction (Multiplicative ℤ) A]
-
-/-- All Laurent coefficients at exponents `≤ 0` vanish. -/
-def PosSupp (x : SkewMonoidAlgebra A (Multiplicative ℤ)) : Prop :=
-  ∀ g : Multiplicative ℤ, toAdd g ≤ 0 → x.coeff g = 0
-
-/-- All Laurent coefficients at exponents `≥ 0` vanish. -/
-def NegSupp (x : SkewMonoidAlgebra A (Multiplicative ℤ)) : Prop :=
-  ∀ g : Multiplicative ℤ, 0 ≤ toAdd g → x.coeff g = 0
-
-theorem C_coeff_one (b : A) :
-    (Pestov91.CrossedProduct.C b : SkewMonoidAlgebra A (Multiplicative ℤ)).coeff 1 = b := by
-  classical
-  rw [Pestov91.CrossedProduct.C_apply, coeff_single_apply, if_pos rfl]
-
-theorem single_coeff_one_of_ne {j : ℤ} (hj : j ≠ 0) (b : A) :
-    (single (ofAdd j) b : SkewMonoidAlgebra A (Multiplicative ℤ)).coeff 1 = 0 := by
-  classical
-  rw [coeff_single_apply, if_neg (fun h => hj (ofAdd_eq_one.1 h))]
-
-theorem posSupp_single {g : Multiplicative ℤ} (hg : 1 ≤ toAdd g) (a : A) :
-    PosSupp (single g a : SkewMonoidAlgebra A (Multiplicative ℤ)) := by
-  classical
-  intro g' hg'
-  rw [coeff_single_apply, if_neg]
-  rintro rfl
-  omega
-
-theorem negSupp_single {g : Multiplicative ℤ} (hg : toAdd g ≤ -1) (a : A) :
-    NegSupp (single g a : SkewMonoidAlgebra A (Multiplicative ℤ)) := by
-  classical
-  intro g' hg'
-  rw [coeff_single_apply, if_neg]
-  rintro rfl
-  omega
-
-theorem PosSupp.add {x y : SkewMonoidAlgebra A (Multiplicative ℤ)} (hx : PosSupp x)
-    (hy : PosSupp y) : PosSupp (x + y) := fun g hg => by
-  rw [coeff_add, Finsupp.add_apply, hx g hg, hy g hg, add_zero]
-
-theorem NegSupp.add {x y : SkewMonoidAlgebra A (Multiplicative ℤ)} (hx : NegSupp x)
-    (hy : NegSupp y) : NegSupp (x + y) := fun g hg => by
-  rw [coeff_add, Finsupp.add_apply, hx g hg, hy g hg, add_zero]
-
-theorem PosSupp.sum {ι : Type*} (s : Finset ι) (f : ι → SkewMonoidAlgebra A (Multiplicative ℤ))
-    (h : ∀ i ∈ s, PosSupp (f i)) : PosSupp (∑ i ∈ s, f i) := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => exact fun g _ => by rw [Finset.sum_empty]; rfl
-  | @insert i s hi ih =>
-    rw [Finset.sum_insert hi]
-    exact (h i (Finset.mem_insert_self i s)).add (ih fun j hj => h j (Finset.mem_insert_of_mem hj))
-
-theorem NegSupp.sum {ι : Type*} (s : Finset ι) (f : ι → SkewMonoidAlgebra A (Multiplicative ℤ))
-    (h : ∀ i ∈ s, NegSupp (f i)) : NegSupp (∑ i ∈ s, f i) := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => exact fun g _ => by rw [Finset.sum_empty]; rfl
-  | @insert i s hi ih =>
-    rw [Finset.sum_insert hi]
-    exact (h i (Finset.mem_insert_self i s)).add (ih fun j hj => h j (Finset.mem_insert_of_mem hj))
-
-theorem eq_sum_single (y : SkewMonoidAlgebra A (Multiplicative ℤ)) :
-    y = ∑ g ∈ y.support, single g (y.coeff g) :=
-  (sum_single y).symm.trans (sum_def' y single)
-
-theorem PosSupp.mul {x y : SkewMonoidAlgebra A (Multiplicative ℤ)} (hx : PosSupp x)
-    (hy : PosSupp y) : PosSupp (x * y) := by
-  rw [eq_sum_single y, Finset.mul_sum]
-  refine PosSupp.sum _ _ fun g hg => fun g' hg' => ?_
-  have hgpos : 1 ≤ toAdd g := by
-    by_contra hneg
-    exact (Finsupp.mem_support_iff.1 hg) (hy g (by omega))
-  rw [coeff_mul_single, hx _ (by simp only [toAdd_mul, toAdd_inv]; omega), zero_mul]
-
-theorem NegSupp.mul {x y : SkewMonoidAlgebra A (Multiplicative ℤ)} (hx : NegSupp x)
-    (hy : NegSupp y) : NegSupp (x * y) := by
-  rw [eq_sum_single y, Finset.mul_sum]
-  refine NegSupp.sum _ _ fun g hg => fun g' hg' => ?_
-  have hgneg : toAdd g ≤ -1 := by
-    by_contra hneg
-    exact (Finsupp.mem_support_iff.1 hg) (hy g (by omega))
-  rw [coeff_mul_single, hx _ (by simp only [toAdd_mul, toAdd_inv]; omega), zero_mul]
-
-theorem PosSupp.C_mul {x : SkewMonoidAlgebra A (Multiplicative ℤ)} (hx : PosSupp x) (a : A) :
-    PosSupp (Pestov91.CrossedProduct.C a * x) := fun g hg => by
-  rw [Pestov91.CrossedProduct.C_apply, coeff_single_mul, inv_one, one_mul, one_smul, hx g hg,
-    mul_zero]
-
-theorem NegSupp.C_mul {x : SkewMonoidAlgebra A (Multiplicative ℤ)} (hx : NegSupp x) (a : A) :
-    NegSupp (Pestov91.CrossedProduct.C a * x) := fun g hg => by
-  rw [Pestov91.CrossedProduct.C_apply, coeff_single_mul, inv_one, one_mul, one_smul, hx g hg,
-    mul_zero]
-
-theorem PosSupp.pow {x : SkewMonoidAlgebra A (Multiplicative ℤ)} (hx : PosSupp x) :
-    ∀ n : ℕ, 1 ≤ n → PosSupp (x ^ n)
-  | 0, h => absurd h (by norm_num)
-  | 1, _ => by rw [pow_one]; exact hx
-  | n + 2, _ => by rw [pow_succ]; exact (hx.pow (n + 1) (by omega)).mul hx
-
-theorem NegSupp.pow {x : SkewMonoidAlgebra A (Multiplicative ℤ)} (hx : NegSupp x) :
-    ∀ n : ℕ, 1 ≤ n → NegSupp (x ^ n)
-  | 0, h => absurd h (by norm_num)
-  | 1, _ => by rw [pow_one]; exact hx
-  | n + 2, _ => by rw [pow_succ]; exact (hx.pow (n + 1) (by omega)).mul hx
-
-theorem PosSupp.coeff_one {x : SkewMonoidAlgebra A (Multiplicative ℤ)} (hx : PosSupp x) :
-    x.coeff 1 = 0 :=
-  hx 1 (by simp)
-
-theorem NegSupp.coeff_one {x : SkewMonoidAlgebra A (Multiplicative ℤ)} (hx : NegSupp x) :
-    x.coeff 1 = 0 :=
-  hx 1 (by simp)
-
-end Support
-
-/-! ## Corner powers -/
-
-theorem coe_corner_pow {R : Type*} [Ring R] {e : R} {he : IsIdempotentElem e}
-    (z : Corner R e he) : ∀ n : ℕ, 1 ≤ n → ((z ^ n : Corner R e he) : R) = (z : R) ^ n
-  | 0, h => absurd h (by norm_num)
-  | 1, _ => by rw [pow_one, pow_one]
-  | n + 2, _ => by
-    rw [pow_succ, pow_succ (z : R), coe_corner_mul, coe_corner_pow z (n + 1) (by omega)]
-
+/-- Right multiplication by `u^{-j}` moves the Laurent coefficient at `j` to exponent `0`. -/
 theorem coeff_mul_unit_zpow_neg_toAdd {B : Type*} [Ring B] [MulSemiringAction (Multiplicative ℤ) B]
     (c : SkewMonoidAlgebra B (Multiplicative ℤ)) (g : Multiplicative ℤ) :
     (c * ((Pestov91.CrossedProduct.unit ^ (-toAdd g) : (SkewMonoidAlgebra B (Multiplicative ℤ))ˣ) :
@@ -168,51 +42,17 @@ theorem coeff_mul_unit_zpow_neg_toAdd {B : Type*} [Ring B] [MulSemiringAction (M
   rw [Pestov91.CrossedProduct.val_unit_zpow, coeff_mul_single, one_mul, smul_one, mul_one, ofAdd_neg,
     inv_inv, ofAdd_toAdd]
 
-/-! ## The return ring iso on the zeroth coefficient -/
-
 section Return
 
 variable {X : Type*} [TopologicalSpace X] {T : X ≃ₜ X} {r : ℕ} {C : Set X} (k : Type*) [Ring k]
   (hC : IsReturnSection T r C)
-
-theorem charFn_empty_eq_zero :
-    LocallyConstant.charFn k (isClopen_empty : IsClopen (∅ : Set X)) = 0 := by
-  ext x
-  simp [LocallyConstant.coe_charFn]
-
-/-- `1_{C_0} = 0`: no point returns at time `0`. -/
-theorem cellCoeff_zero : cellCoeff k hC 0 = 0 := by
-  rw [cellCoeff, charFn_congr k (isClopen_returnCell hC 0) isClopen_empty (returnCell_zero hC),
-    charFn_empty_eq_zero, map_zero]
-
-/-- `v = ∑_h u^h 1_{C_h}` has Laurent support in exponents `≥ 1`. -/
-theorem posSupp_returnV : PosSupp (returnV k hC) := by
-  rw [returnV]
-  refine PosSupp.sum _ _ fun h _ => ?_
-  rcases Nat.eq_zero_or_pos h with rfl | hh
-  · rw [cellCoeff_zero, mul_zero]
-    exact fun g _ => rfl
-  · rw [unitPow, Pestov91.CrossedProduct.val_unit_zpow, cellCoeff, ClopenCrossedProduct.coeff_apply,
-      Pestov91.CrossedProduct.single_mul_C]
-    exact posSupp_single (by simp only [toAdd_ofAdd]; omega) _
-
-/-- `w = ∑_h 1_{C_h} u^{-h}` has Laurent support in exponents `≤ -1`. -/
-theorem negSupp_returnW : NegSupp (returnW k hC) := by
-  rw [returnW]
-  refine NegSupp.sum _ _ fun h _ => ?_
-  rcases Nat.eq_zero_or_pos h with rfl | hh
-  · rw [cellCoeff_zero, zero_mul]
-    exact fun g _ => rfl
-  · rw [unitPow, Pestov91.CrossedProduct.val_unit_zpow, cellCoeff, ClopenCrossedProduct.coeff_apply,
-      Pestov91.CrossedProduct.C_mul_single]
-    exact negSupp_single (by simp only [toAdd_ofAdd]; omega) _
-
-variable {hp : IsIdempotentElem
+  {hp : IsIdempotentElem
     (ClopenCrossedProduct.coeff T k (LocallyConstant.charFn k hC.isClopen))}
   (θ : ClopenCrossedProduct (firstReturnHomeomorph hC) k ≃+*
     Corner (ClopenCrossedProduct T k)
       (ClopenCrossedProduct.coeff T k (LocallyConstant.charFn k hC.isClopen)) hp)
 
+/-- The printed unit clause of `ReturnRingCrossedProductStatement` says that `θ u_S = v`. -/
 theorem coe_theta_unit
     (hunit : ∃ v : ℕ → LocallyConstant X k,
         (∀ (h : ℕ) (x : X), v h x = Set.indicator {y | y ∈ C ∧ returnTime T C y = h} 1 x) ∧
@@ -235,60 +75,7 @@ theorem coe_theta_unit
   rw [hv, LocallyConstant.coe_charFn]
   rfl
 
-theorem coe_theta_unit_inv
-    (hv : ((θ ((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k :
-        (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-          ClopenCrossedProduct (firstReturnHomeomorph hC) k) : ClopenCrossedProduct T k)) =
-      returnV k hC) :
-    ((θ (((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k)⁻¹ :
-        (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-          ClopenCrossedProduct (firstReturnHomeomorph hC) k) : ClopenCrossedProduct T k)) =
-      returnW k hC := by
-  have h1 : returnV k hC * ((θ (((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k)⁻¹ :
-        (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-          ClopenCrossedProduct (firstReturnHomeomorph hC) k) : ClopenCrossedProduct T k)) =
-      returnP k hC := by
-    rw [← hv, ← coe_corner_mul, ← map_mul, Units.mul_inv, map_one]
-    rfl
-  have h2 := (θ (((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k)⁻¹ :
-        (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-          ClopenCrossedProduct (firstReturnHomeomorph hC) k)).2.1
-  calc ((θ (((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k)⁻¹ :
-        (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-          ClopenCrossedProduct (firstReturnHomeomorph hC) k) : ClopenCrossedProduct T k))
-      = returnP k hC * ((θ (((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k)⁻¹ :
-        (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-          ClopenCrossedProduct (firstReturnHomeomorph hC) k) : ClopenCrossedProduct T k)) := h2.symm
-    _ = (returnW k hC * returnV k hC) * ((θ (((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k)⁻¹ :
-        (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-          ClopenCrossedProduct (firstReturnHomeomorph hC) k) : ClopenCrossedProduct T k)) := by
-        rw [returnW_mul_returnV]
-    _ = returnW k hC * returnP k hC := by rw [mul_assoc, h1]
-    _ = returnW k hC := returnW_mul_returnP k hC
-
-theorem coe_theta_unit_pow
-    (hv : ((θ ((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k :
-        (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-          ClopenCrossedProduct (firstReturnHomeomorph hC) k) : ClopenCrossedProduct T k)) =
-      returnV k hC) (n : ℕ) (hn : 1 ≤ n) :
-    ((θ ((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k ^ (n : ℤ) :
-        (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-          ClopenCrossedProduct (firstReturnHomeomorph hC) k) : ClopenCrossedProduct T k)) =
-      returnV k hC ^ n := by
-  rw [zpow_natCast, Units.val_pow_eq_pow_val, map_pow, coe_corner_pow _ n hn, hv]
-
-theorem coe_theta_unit_pow_neg
-    (hw : ((θ (((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k)⁻¹ :
-        (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-          ClopenCrossedProduct (firstReturnHomeomorph hC) k) : ClopenCrossedProduct T k)) =
-      returnW k hC) (n : ℕ) (hn : 1 ≤ n) :
-    ((θ ((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k ^ (-(n : ℤ)) :
-        (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-          ClopenCrossedProduct (firstReturnHomeomorph hC) k) : ClopenCrossedProduct T k)) =
-      returnW k hC ^ n := by
-  rw [zpow_neg, zpow_natCast, ← inv_pow, Units.val_pow_eq_pow_val, map_pow, coe_corner_pow _ n hn,
-    hw]
-
+/-- The printed coefficient clause of `ReturnRingCrossedProductStatement`, at a Laurent monomial. -/
 theorem coe_theta_C
     (hcoef : ∀ (f : LocallyConstant C k) (g : LocallyConstant X k),
         (∀ x : C, g x = f x) → (∀ x : X, x ∉ C → g x = 0) →
@@ -304,6 +91,37 @@ theorem coe_theta_C
     (fun x hx => clopenExtendByZero_apply_of_notMem k hC.isClopen _ hx)
   rwa [ClopenCrossedProduct.coeff_apply, ClopenCrossedProduct.coeff_apply,
     RingEquiv.apply_symm_apply] at h
+
+/-- **A return ring iso with the printed properties is `returnRingHom`.** -/
+theorem theta_eq_returnRingHom
+    (hcoef : ∀ (f : LocallyConstant C k) (g : LocallyConstant X k),
+        (∀ x : C, g x = f x) → (∀ x : X, x ∉ C → g x = 0) →
+          ((θ (ClopenCrossedProduct.coeff (firstReturnHomeomorph hC) k f) :
+            ClopenCrossedProduct T k)) = ClopenCrossedProduct.coeff T k g)
+    (hunit : ∃ v : ℕ → LocallyConstant X k,
+        (∀ (h : ℕ) (x : X), v h x = Set.indicator {y | y ∈ C ∧ returnTime T C y = h} 1 x) ∧
+        ((θ ((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k :
+            (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
+              ClopenCrossedProduct (firstReturnHomeomorph hC) k) : ClopenCrossedProduct T k)) =
+          ∑ h ∈ Finset.range (2 * r),
+            ((ClopenCrossedProduct.unit T k ^ (h : ℤ) : (ClopenCrossedProduct T k)ˣ) :
+              ClopenCrossedProduct T k) * ClopenCrossedProduct.coeff T k (v h)) :
+    (θ : ClopenCrossedProduct (firstReturnHomeomorph hC) k →+*
+      Corner (ClopenCrossedProduct T k)
+        (ClopenCrossedProduct.coeff T k (LocallyConstant.charFn k hC.isClopen)) hp) =
+      returnRingHom k hC := by
+  refine Pestov91.CrossedProduct.ringHom_ext (fun a => corner_ext ?_) (corner_ext ?_)
+  · show ((θ (Pestov91.CrossedProduct.C a) : Corner (ClopenCrossedProduct T k)
+        (ClopenCrossedProduct.coeff T k (LocallyConstant.charFn k hC.isClopen)) hp) :
+          ClopenCrossedProduct T k) =
+      ((returnRingHom k hC (Pestov91.CrossedProduct.C a) : ReturnCorner k hC) :
+        ClopenCrossedProduct T k)
+    have hCa : (Pestov91.CrossedProduct.C a : ClopenCrossedProduct (firstReturnHomeomorph hC) k) =
+        ClopenCrossedProduct.coeff (firstReturnHomeomorph hC) k
+          ((ClopenCoeff.of (firstReturnHomeomorph hC) k).symm a) := by
+      rw [ClopenCrossedProduct.coeff_apply, RingEquiv.apply_symm_apply]
+    rw [coe_theta_C k hC θ hcoef, hCa, coe_returnRingHom_coeff, ClopenCrossedProduct.coeff_apply]
+  · exact (coe_theta_unit k hC θ hunit).trans (coe_returnRingHom_unit k hC).symm
 
 /-- **The zeroth Laurent coefficient is compatible with the return ring iso on `C`.** -/
 theorem coeff_one_theta
@@ -322,44 +140,13 @@ theorem coeff_one_theta
     (c : ClopenCrossedProduct (firstReturnHomeomorph hC) k) (y : C) :
     (ClopenCoeff.of T k).symm (((θ c : ClopenCrossedProduct T k)).coeff 1) (y : X) =
       (ClopenCoeff.of (firstReturnHomeomorph hC) k).symm (c.coeff 1) y := by
-  have hv := coe_theta_unit k hC θ hunit
-  have hw := coe_theta_unit_inv k hC θ hv
-  induction c using SkewMonoidAlgebra.induction_on with
-  | zero => simp
-  | single g a =>
-    obtain ⟨j, rfl⟩ : ∃ j : ℤ, ofAdd j = g := ⟨toAdd g, ofAdd_toAdd g⟩
-    have hsplit : (single (ofAdd j) a : ClopenCrossedProduct (firstReturnHomeomorph hC) k) =
-        Pestov91.CrossedProduct.C a *
-          ((ClopenCrossedProduct.unit (firstReturnHomeomorph hC) k ^ j :
-            (ClopenCrossedProduct (firstReturnHomeomorph hC) k)ˣ) :
-              ClopenCrossedProduct (firstReturnHomeomorph hC) k) := by
-      rw [Pestov91.CrossedProduct.val_unit_zpow, Pestov91.CrossedProduct.C_mul_single, mul_one]
-    rcases lt_trichotomy j 0 with hj | rfl | hj
-    · obtain ⟨n, hn⟩ := Int.eq_ofNat_of_zero_le (show 0 ≤ -j by omega)
-      have hjn : j = -(n : ℤ) := by omega
-      have hL : ((θ (single (ofAdd j) a) : ClopenCrossedProduct T k)) =
-          Pestov91.CrossedProduct.C (ClopenCoeff.of T k (clopenExtendByZero k hC.isClopen
-            ((ClopenCoeff.of (firstReturnHomeomorph hC) k).symm a))) * returnW k hC ^ n := by
-        rw [hsplit, map_mul, coe_corner_mul, coe_theta_C k hC θ hcoef, hjn,
-          coe_theta_unit_pow_neg k hC θ hw n (by omega)]
-      rw [hL, (((negSupp_returnW k hC).pow n (by omega)).C_mul _).coeff_one,
-        single_coeff_one_of_ne hj.ne]
-      simp
-    · rw [ofAdd_zero, ← Pestov91.CrossedProduct.C_apply, coe_theta_C k hC θ hcoef, C_coeff_one,
-        C_coeff_one, RingEquiv.symm_apply_apply]
-      exact clopenExtendByZero_apply_of_mem k hC.isClopen _ y.2
-    · obtain ⟨n, hn⟩ := Int.eq_ofNat_of_zero_le (show 0 ≤ j by omega)
-      have hL : ((θ (single (ofAdd j) a) : ClopenCrossedProduct T k)) =
-          Pestov91.CrossedProduct.C (ClopenCoeff.of T k (clopenExtendByZero k hC.isClopen
-            ((ClopenCoeff.of (firstReturnHomeomorph hC) k).symm a))) * returnV k hC ^ n := by
-        rw [hsplit, map_mul, coe_corner_mul, coe_theta_C k hC θ hcoef, hn,
-          coe_theta_unit_pow k hC θ hv n (by omega)]
-      rw [hL, (((posSupp_returnV k hC).pow n (by omega)).C_mul _).coeff_one,
-        single_coeff_one_of_ne hj.ne']
-      simp
-  | add f g hf hg =>
-    simp only [map_add, coe_corner_add, coeff_add, Finsupp.add_apply, LocallyConstant.add_apply, hf,
-      hg]
+  have h' : ((θ c : Corner (ClopenCrossedProduct T k)
+        (ClopenCrossedProduct.coeff T k (LocallyConstant.charFn k hC.isClopen)) hp) :
+          ClopenCrossedProduct T k) =
+      ((returnRingHom k hC c : ReturnCorner k hC) : ClopenCrossedProduct T k) :=
+    congrArg Subtype.val (RingHom.congr_fun (theta_eq_returnRingHom k hC θ hcoef hunit) c)
+  rw [h', coeff_one_coe_returnRingHom, RingEquiv.symm_apply_apply]
+  exact clopenExtendByZero_apply_of_mem k hC.isClopen _ y.2
 
 end Return
 
@@ -384,12 +171,8 @@ end GroupApproximation.ChainCore.DynamicRankBudget
 
 /-! ### Audit -/
 
-#audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.PosSupp.mul
-#audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.NegSupp.mul
-#audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.coe_corner_pow
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.coeff_mul_unit_zpow_neg_toAdd
-#audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.posSupp_returnV
-#audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.negSupp_returnW
-#audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.coe_theta_unit_inv
+#audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.coe_theta_unit
+#audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.theta_eq_returnRingHom
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.coeff_one_theta
 #audit_closed_axioms GroupApproximation.ChainCore.DynamicRankBudget.returnTransientIdealStatement_holds
