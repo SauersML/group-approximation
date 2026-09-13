@@ -188,3 +188,28 @@ Theorem 14 and Proposition 15) applies, and the Item 1 argument runs verbatim.
 - `ex-review-analysis-2026-09-12-part1.md`, §1.2: the class-three root
   `simple-cstar-unitary-components-class-three` through Toms's trapping tower over T^2 × S^3. PASS
   on all five requested items, plus the excess bound and the class-four finite stage.
+- `ex-review-analysis-2026-09-12-part2.md`:
+  - §1.3, the Baum--Connes module K-inexactness reduction and its four supporting theorems: PASS.
+  - §1.4, the Blackadar--Kirchberg spectral structure (separating quotients, compact-free ideals,
+    the traced/traceless dichotomy, the radical criterion, the trichotomy, the simple-case cycle):
+    PASS.
+
+## 2. Sweep of in-scope landings to 23:35 CDT
+
+Checked at tip `347722257`:
+- **Famous roots.** None flipped. These still read OPEN and have no route whose required claims are
+  all established: Rank Problem, Toms--Winter, LXI and its negation, nuclear UCT and its negation, MF
+  Kazhdan, Blackadar--Kirchberg, RR0 dichotomy, Baum--Connes, Kadison--Kaplansky, NH, UGC and its
+  algorithmic negation, quantum PCP and games-QPCP.
+- **New direct routes (`requires: []`) into those roots.** Each is killed by an established
+  invalidator:
+  - `non-uct-witness-from-cartan-respecting-automorphism`, killed by
+    `cartan-respecting-o2-automorphisms-give-uct-crossed-products`, whose proof requires the
+    Barlak--Li import;
+  - `bc-counterexample-via-ghost-projection`, killed by
+    `reduced-group-algebras-contain-no-nonzero-ghosts`;
+  - `games-qpcp-from-tensor-power-amplified-xx-zz`, killed by
+    `natarajan-vidick-games-pcp-amplification-error`, a citation route.
+- **Wording.** `global-walk-reducer-has-net-energy-gain` and
+  `o2-multiplier-ideal-with-non-k1-injective-unitization` have no route and no "OPEN" marker in their
+  first line. They are not established, but a reader has to infer the status.
