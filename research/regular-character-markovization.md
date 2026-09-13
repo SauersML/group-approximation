@@ -45,3 +45,23 @@ permutation integrality automatically.
 - **Independent generator discretizations.** Pairwise good kernels need not
   live on a common latent state space and need not compose. The surviving
   routes below are deliberately whole-table/contextual.
+- **Any argument valid in every tracial algebra.**  Cannot be the proof (§3 of
+  `research/artifacts/q34-rounding-routes-2026-09-12.md`).
+  - The claim is windowwise equivalent to the target.  Suppose every
+    hyperlinear group is sofic but the claim fails at `(T, eps)`.  Then `T`
+    has matrix models with defects `delta_n -> 0`, and no Markov model with
+    defect `< eps`.
+  - In `prod_omega M_{d_n}` the classes of those models satisfy `T` exactly,
+    with trace `0` on tested `g != e`.  The group they generate is
+    hyperlinear, hence sofic.
+  - Its sofic approximation, restricted to `T`, is a permutation model with
+    defect `< eps`, a contradiction.
+  - With unitary models in arbitrary tracial von Neumann algebras the
+    statement is false.  The regular representation of the group of
+    `finitely-presented-nonsofic-group-exists` is an exact model of every
+    window, and a Markov model would make that group sofic
+    (`markov-sofic-equals-sofic`).
+  - So trace inequalities, functional calculus and `M (x) M^op` amplification
+    cannot carry the whole proof.  Some step must use finite dimension (or
+    R^omega-embeddability) in a way that fails for that regular
+    representation.
