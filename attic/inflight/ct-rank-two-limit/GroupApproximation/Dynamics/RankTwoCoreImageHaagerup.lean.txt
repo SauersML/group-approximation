@@ -97,7 +97,6 @@ theorem coeffFiberConst_mul (hΦ : ∀ (n : ℤ) y y', Φ y = Φ y' → Φ ((S ^
     (hx' : CoeffFiberConst S Φ x') : CoeffFiberConst S Φ (x * x') := by
   rw [SkewMonoidAlgebra.mul_def, SkewMonoidAlgebra.sum_def']
   refine coeffFiberConst_sum _ _ fun a _ ↦ ?_
-  dsimp only
   rw [SkewMonoidAlgebra.sum_def']
   refine coeffFiberConst_sum _ _ fun a' _ ↦ coeffFiberConst_single (fun y y' h ↦ ?_) _
   rw [map_mul, LocallyConstant.coe_mul, Pi.mul_apply, Pi.mul_apply, hx a y y' h,
@@ -254,13 +253,19 @@ theorem closure_hasHaagerupProperty_units_of_periodTwo (hS : ∀ y, S (S y) = y)
   let H : Subgroup (ClopenCrossedProduct S k)ˣ :=
     { carrier := {u | (u : ClopenCrossedProduct S k) ∈ A ∧ (↑u⁻¹ : ClopenCrossedProduct S k) ∈ A}
       one_mem' := by
-        simp only [inv_one, Units.val_one]
+        show ((1 : (ClopenCrossedProduct S k)ˣ) : ClopenCrossedProduct S k) ∈ A ∧
+          ((1⁻¹ : (ClopenCrossedProduct S k)ˣ) : ClopenCrossedProduct S k) ∈ A
+        rw [inv_one, Units.val_one]
         exact ⟨A.one_mem, A.one_mem⟩
       mul_mem' := fun {a b} ha hb ↦ by
-        simp only [mul_inv_rev, Units.val_mul]
+        show ((a * b : (ClopenCrossedProduct S k)ˣ) : ClopenCrossedProduct S k) ∈ A ∧
+          (((a * b)⁻¹ : (ClopenCrossedProduct S k)ˣ) : ClopenCrossedProduct S k) ∈ A
+        rw [mul_inv_rev, Units.val_mul, Units.val_mul]
         exact ⟨A.mul_mem ha.1 hb.1, A.mul_mem hb.2 ha.2⟩
       inv_mem' := fun {a} ha ↦ by
-        simp only [inv_inv]
+        show ((a⁻¹ : (ClopenCrossedProduct S k)ˣ) : ClopenCrossedProduct S k) ∈ A ∧
+          ((a⁻¹⁻¹ : (ClopenCrossedProduct S k)ˣ) : ClopenCrossedProduct S k) ∈ A
+        rw [inv_inv]
         exact ⟨ha.2, ha.1⟩ }
   have hle : Subgroup.closure t ≤ H := (Subgroup.closure_le H).mpr fun u hu ↦
     ⟨hE _ (Finset.mem_biUnion.mpr ⟨u, ht.mem_toFinset.mpr hu, by simp⟩),
