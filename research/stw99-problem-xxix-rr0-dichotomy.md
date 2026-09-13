@@ -76,7 +76,8 @@ subalgebra" the exact pure-infiniteness criterion.
   rank.  Its monoid carries the separativity failure `x = [1]`, `y = [1] + r`.
   So a counterexample is a simple non-separative exchange ring with wild `V`,
   and it would answer the Ara--Goodearl--O'Meara--Pardo separativity problem
-  negatively.
+  negatively.  Rordam's non-RR0 example already has this normal form
+  (Acta 2003, page 20: `Q direct_sum Q ~ 1` and `M_2(QBQ) = B`).
 * Positive classes (`stw29-separative-projection-monoid-dichotomy`).
   The dichotomy holds for every simple algebra with (SP) and separative
   `V(A)`: tame `V(A)`, or inductive limits of separative building blocks with
@@ -86,3 +87,16 @@ subalgebra" the exact pure-infiniteness criterion.
   (implied by LX(1)), and stable rank one of those algebras suffices
   (`finite-simple-rr0-algebras-have-stable-rank-one`, Rordam's 2005 open
   question).
+* Crossed-product firewall (unreviewed).
+  `coinvariant-tarski-lemma-simple-dimension-groups` forces `(QQ)` in the
+  `K_0` type semigroup of any group action on a state-ordered, dense simple
+  `K_0`.  Hence `simple-coefficient-crossed-products-dichotomy`: crossed
+  products of simple exact real-rank-zero stable-rank-one coefficients (e.g.
+  simple AF) by properly outer actions of any countable group are
+  dichotomous, which removes Rainone's almost-unperforation hypothesis
+  (`rainone-type-semigroup-crossed-product-dichotomy`).
+  `simple-af-integer-crossed-products-dichotomy` covers non-unital AF
+  coefficients over `Z`.  So a mixed crossed product needs coefficients whose
+  finiteness obstruction is invisible to a dense state-ordered `K_0`.  This
+  matches Rordam's `D rtimes Z`, whose coefficient algebra is non-simple and
+  carries Euler data.
