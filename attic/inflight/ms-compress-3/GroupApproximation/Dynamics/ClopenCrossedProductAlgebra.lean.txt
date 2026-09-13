@@ -73,7 +73,7 @@ section Algebra
 
 variable {X : Type*} [TopologicalSpace X] (T : X ≃ₜ X) (k : Type*) [CommRing k]
 
-example : Algebra k (ClopenCrossedProduct T k) := inferInstance
+example : Nonempty (Algebra k (ClopenCrossedProduct T k)) := ⟨inferInstance⟩
 
 example : IsScalarTower k (ClopenCrossedProduct T k) (ClopenCrossedProduct T k) := inferInstance
 
@@ -90,7 +90,7 @@ variable {Y : Set X}
 theorem restrict_algebraMap (hY : T '' Y = Y) (c : k) :
     restrict T k hY (algebraMap k (ClopenCrossedProduct T k) c) =
       algebraMap k (ClopenCrossedProduct (restrictHomeo T hY) k) c :=
-  (Pestov91.CrossedProduct.coeffMap_single (1 : Multiplicative ℤ) _).trans
+  (Pestov91.CrossedProduct.coeffMap_single _ _ (1 : Multiplicative ℤ) _).trans
     (congrArg (SkewMonoidAlgebra.single (1 : Multiplicative ℤ)) (LocallyConstant.ext fun _ ↦ rfl))
 
 /-- Restriction `R_X → R_Y` is `k`-linear. -/
