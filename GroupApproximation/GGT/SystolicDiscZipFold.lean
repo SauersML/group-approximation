@@ -19,6 +19,7 @@ spur (`CycleDisc.zip_fold`).
 * `CycleDisc.isFaceCycle_tri`: an interior dart heads a face cycle of three darts.
 * `CycleDisc.joined_lab_sigma`: labels are constant along the joined vertex rotation.
 * `CycleDisc.map_lab_foldList`: transport along the fold keeps the labels.
+* `ZipPinchStatement`: the remaining case, both corners at one vertex.
 -/
 
 namespace GroupApproximation.Systolic
@@ -273,6 +274,16 @@ theorem zip_fold {s t : List D.map.Dart} {p du dv : D.map.Dart}
   exact (D.tri y hy).2
 
 end CycleDisc
+
+variable (X) in
+/-- **HC3(d), pinch case.**  The corners before `du` and after `dv` lie at one vertex; this
+includes the spur `dv = alpha du`. -/
+def ZipPinchStatement : Prop :=
+  ∀ (D : CycleDisc X) (s t : List D.map.Dart) (p du dv : D.map.Dart),
+    D.cyc = s ++ du :: dv :: t → D.map.facePerm p = du →
+    D.lab (D.map.facePerm dv) = D.lab du → s ++ t ≠ [] →
+    D.map.sigma.SameCycle (D.map.alpha p) (D.map.alpha dv) →
+    ∃ D' : CycleDisc X, D'.cyc.map D'.lab = s.map D.lab ++ t.map D.lab
 
 end GroupApproximation.Systolic
 
