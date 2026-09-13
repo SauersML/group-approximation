@@ -15,9 +15,9 @@ relation of the Bernoulli shift. Or prove a cross-line disconnection theorem tha
 - Theorem W (Section 2): if `A` depends only on the coordinates in a finite window `W ⊆ Gamma`,
   and `mu(A) < delta_0^D` with `D = |W^-1 W|`, then `Phi_A` does not generate. This covers every
   set that reads finitely many coordinates, on any number of lines.
-- Lemma R (Section 3): the open claim holds iff it holds with finite-window sets. So every working
-  set of measure `delta` can be taken local, and its window then satisfies
-  `D >= log(1/delta) / log(1/delta_0)`.
+- Lemma R (Section 3): the open claim holds iff it holds with finite-window sets. So small
+  generating sets, if they exist, can be taken local. By Theorem W a local one of measure `delta`
+  has a window with `D >= log(1/delta) / log(1/delta_0)`.
 
 **Not settled.** The threshold of Theorem W depends on the window. Section 4 shows that clumped
 sets open exponentially many paths together with one rare event. It gives examples for all three
@@ -32,8 +32,8 @@ was found either. The open claim stays OPEN and the route is not invalidated.
   `c_K = 2^(K+2)` (called `A` there), `rho(delta) = 2^(K+3) |S|^2 sqrt(delta)` and `delta_0` are
   those of `research/artifacts/fpbs/docs/twisted-level-percolation-low-density-disconnection.md`,
   Sections 3 and 4. Here `S` also generates `N`, so `S ∪ {t}` generates `Gamma`.
-- `mu` is the product measure on `[0,1]^Gamma`, with `(g.x)(h) = x(h g)`. The action is free and
-  ergodic.
+- `mu` is the product measure on `[0,1]^Gamma`, with `(g.x)(h) = x(h g)`. The action is essentially
+  free and ergodic.
 - **Points.** `Gamma = <t> N` with `<t> ∩ N = {e}`, so `(u, m) -> t^m u` is a bijection
   `N x Z -> Gamma`. Put `omega_x(t^m u) = 1_A(t^m u . x)`. This is the field of item (1) of
   `fpbs-twisted-level-graph-generates-cyclic-extension`, and `T_omega` is its graph on `N`.
@@ -59,8 +59,8 @@ was found either. The open claim stays OPEN and the route is not invalidated.
 - The events `{omega(g) = 1}`, `g in V'`, depend on disjoint sets of coordinates, so they are
   independent under `mu`. Hence `P(omega = 1 on V) <= delta^(|V| / D)`.
 
-*Steps 1, 3 and 4 of main's proof* are deterministic and are used unchanged: witness sets of size
-at most `2|S|`, and the path count `P_l(s) <= |S|^l 2^((K+2)(l+1))`.
+*Steps 1 and 3 of main's proof* are deterministic and are used unchanged: witness sets of size at
+most `2|S|`, and the path count `P_l(s) <= |S|^l 2^((K+2)(l+1))`.
 
 *Step 2 for windows.* Let `gamma = (w_0, ..., w_l)` be self-avoiding.
 - As in main's Step 2 there are at most `(2|S|)^l` choice functions `c`, and each has at least
@@ -75,13 +75,13 @@ Since `delta^(1/D) < delta_0` and `rho` is increasing, `c_K rho / (1 - rho) < 1`
 *Almost sure disconnection.*
 - The set of `x` whose `Phi_A`-class is the whole orbit `Gamma x` is `Gamma`-invariant. By
   ergodicity it has measure 0 or 1.
-- By item (1) of the criterion it is the event that `T_(omega_x)` is connected. That event has
+- By the dictionary of Section 1 and freeness, it is the event that `T_(omega_x)` is connected. That event has
   probability at most `P(e <-> s) < 1`, so its measure is 0. ∎
 
 **What it covers.** Every `W`-local set below its threshold, whichever lines it reads. That
 includes Rokhlin-type bases, rare patterns and thinned percolation read in a bounded radius. It
 does not cover sets that are not local, such as those reading whole lines `x|_(<t> F)`. By
-Lemma R those reduce to local sets anyway.
+Lemma R the open claim reduces to local sets anyway.
 
 ## 3. Lemma R: reduction to finite windows
 
@@ -155,7 +155,8 @@ whole fibre word is paid for by one rare event.
 - Take `D` a geodesic segment of length `R` through `e`, with `l = R`. Then `W = Q D^-1` has
   `|W| <= |Q| (R + 1)` and `delta <= (R + 1) p`.
 - The charge per step of the open segment is `P(gamma open)^(1/l) >= p^(1/R) >=
-  (delta / (R+1))^(1/R)`, which is `delta^(O(1/|W|))` for fixed `Q`.
+  (R+1)^(-1/R) delta^(1/R)`. Since `|W| <= 2|Q| R`, this is at least
+  `(R+1)^(-1/R) delta^(2|Q| / |W|)`.
 - So a per-witness first moment cannot beat thresholds exponentially small in `|W|`. The exponent
   `1/D` of Theorem W can improve at best to order `1/|W|`.
 
@@ -187,7 +188,7 @@ whole fibre word is paid for by one rare event.
      violated for fixed `l >= 3` and large `k`.
 3. **Rare patterns in a ball, possibly repeated along `phi`-orbits.**
    - Let `A = {x : C(x) ∩ B_R != ∅}`, with `B_R` the ball of radius `R` in `Gamma` for
-     `S ∪ {t, t^-1}`. Since `B_R` is symmetric, `A = A_(B_R)` and `O(x) = B_R C(x)`.
+     `S ∪ {t, t^-1}`. Since `B_R` is symmetric, `A = A_(B_R)` and its open set is `B_R C(x)`.
    - The shape `Q` is arbitrary. For example, `Q = ∪_(|j| <= J) t^j Q_0` with `Q_0 ⊆ N` reads the
      rows `phi^-a(Q_0) u` at the levels `a+j`, since `t^j q t^a u = t^(a+j) phi^-a(q) u`. That is a
      pattern repeated along a `phi`-orbit.
