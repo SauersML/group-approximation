@@ -6,7 +6,7 @@ title: Every subgroup of GL_N(Z[1/m][t_1..t_k]) embeds in a finitely presented s
 distinct_from:
   rational-linear-groups-satisfy-boone-higman: that is Zaremsky's GL_n(Q) theorem, the case k = 0; this adds polynomial coordinates of every transcendence degree through parameter-coordinate hosts.
   algebraic-linear-groups-satisfy-boone-higman: that is the transcendence-degree-zero class through restriction of scalars; this is linear groups over polynomial rings Z[1/m][t_1..t_k], including SL_3(Z[t]).
-  char-zero-linear-groups-satisfy-boone-higman: that is the full characteristic-zero class and stays open; this is its polynomial-coordinate part, and Laurent or rational-function denominators are not covered.
+  char-zero-linear-groups-satisfy-boone-higman: that is the full characteristic-zero class, which this claim settles only together with the change of coordinates char-zero-linear-groups-embed-in-polynomial-s-integer-groups; this is the case where polynomial coordinates are given.
   positive-char-surface-linear-groups-satisfy-boone-higman: that is a positive-characteristic class reached through Leavitt tensor hosts; this is characteristic zero through self-similar affine hosts.
   el3-z-t-embeds-in-no-host-with-number-field-local-groups: that excludes eventually similar hosts whose local groups are linear over number fields; the host here has local group Z[t]^n x| E_n(Z[t]), which is not linear over a number field.
 artifacts:
@@ -40,6 +40,15 @@ Every subgroup of `GL_N(R)` embeds in a finitely presented simple group.
 - The simple group is the commutator subgroup of a Röver–Nekrashevych group of `G`,
   as in Zaremsky's theorem.
 
-**Not covered.**
-- Laurent coordinates, such as `SL_3(Z[t^(+-1)])`.
-- Denominators that are non-constant polynomials in the `t_j`.
+**Beyond polynomial coordinates** (2026-09-12, lane `bh-char0-linear-reduction`).
+- **Not covered by this host directly:**
+  - Laurent coordinates, such as `SL_3(Z[t^(+-1)])`;
+  - denominators that are non-constant polynomials in the `t_j`.
+- **Reached by changing coordinates first.**
+  `char-zero-linear-groups-embed-in-polynomial-s-integer-groups` puts every
+  finitely generated characteristic-zero linear group in some
+  `GL_M(Z[1/m][s_1..s_k])`. For example, `SL_3(Z[t^(+-1)]) <= SL_6(Z[s])` with
+  `s = t + t^-1`.
+- **Consequence.** Route `char-zero-linear-bh-via-polynomial-s-integer-hosts`
+  then settles `char-zero-linear-groups-satisfy-boone-higman`, resting on this
+  claim.

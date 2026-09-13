@@ -69,12 +69,19 @@ It covers:
 
 ## What is missing, precisely
 
-1. **Characteristic zero, positive transcendence degree.** No envelope is known.
+1. **Characteristic zero, positive transcendence degree.** *Settled for one factor
+   (2026-09-12).*
+   - **The root.** `char-zero-linear-groups-satisfy-boone-higman` is ESTABLISHED
+     through `char-zero-linear-bh-via-polynomial-s-integer-hosts`, so (M0) holds.
+     This rests on `polynomial-linear-groups-satisfy-boone-higman`, whose review
+     is pending (lane `bh-poly-linear-review`).
    - *First case:* Baumslag's torsion-free group `Z[x^±1, (1+x)^-1] x| Z^2`,
-     linear over `Q(x)`. It is recorded as the open claim
-     `baumslag-char-zero-metabelian-group-satisfies-boone-higman`.
+     linear over `Q(x)`. It is now established as
+     `baumslag-char-zero-metabelian-group-satisfies-boone-higman`, through
+     `GL_14(Z[s'])`.
    - *The product step cannot help it.* It is a one-factor case.
-   - *Excluded hosts:*
+   - *Excluded hosts,* which still stand. The envelope comes instead from
+     parameter-coordinate affine hosts:
      - `B` itself as a self-similar input (`baumslag-char-zero-metabelian-group-is-not-self-similar`);
      - affine self-similar hosts (`affine-self-similar-coordinate-rings-are-one-dimensional`);
      - Leavitt unit groups over characteristic-zero rings, which are not simple
@@ -86,14 +93,24 @@ It covers:
    - Degree two has envelopes (`positive-char-surface-linear-groups-satisfy-boone-higman`),
      but they are not known to be highly transitive, MIF, or in `B_A`. So products
      with other characteristics are not covered.
-   - Degree three and above is open even without products
-     (`positive-char-linear-groups-satisfy-boone-higman`).
+   - Every degree now has envelopes. `positive-char-linear-groups-satisfy-boone-higman`
+     is established, according to `cairn why`, through Leavitt projective
+     elementary hosts. Those envelopes are not known to lie in `B_A` either.
 3. **The product step** outside `B_A` (`boone-higman-closed-under-finite-direct-products`).
+
+**Route status (2026-09-12).** `cairn why` on MSI reports three inputs of
+`fp-metabelian-bh-via-linear-factors-and-products` as established:
+- the decomposition;
+- `positive-char-linear-groups-satisfy-boone-higman`;
+- the characteristic-zero root, which rests on the pending review.
+
+Its one remaining input is `boone-higman-closed-under-finite-direct-products`,
+which is OPEN.
 
 ## Attempts
 
-1. **Linear factors and products** (this node's route). *Stops* at the three
-   inputs above.
+1. **Linear factors and products** (this node's route). *Stops* at the product
+   step alone (see route status above).
 2. **Global-field factors through finitely presented self-similar hosts.**
    *Established* (`global-field-soluble-linear-products-satisfy-boone-higman`).
    - *Stops at transcendence degree one in positive characteristic.* Zaremsky's
