@@ -108,4 +108,7 @@ satisfy Baum--Connes would kill the route.
     and `K_1(I_1 ⋊_r G) = 0`.
   - `T_r` is an isomorphism modulo every finite support level. So a Bernoulli witness beyond the
     host lives in configurations of unbounded support, where a monster's expander markings sit.
-  - Where it stops: nothing computes `T_r` over an expander monster.
+  - Where it stops: nothing computes `T_r` over an expander monster. `T_r` is always injective
+    (`bernoulli-assembly-injective-beyond-the-host`). Its surjectivity is the open
+    `bernoulli-cylinder-comparison-fails-for-some-group`, which routes into the root by
+    `bc-counterexample-via-bernoulli-cylinder-defect`.

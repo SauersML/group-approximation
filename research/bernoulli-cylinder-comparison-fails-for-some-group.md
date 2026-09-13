@@ -1,0 +1,55 @@
+---
+rg: 2
+id: bernoulli-cylinder-comparison-fails-for-some-group
+kind: claim
+title: Some countable group has a non-surjective Bernoulli cylinder comparison, which would refute trivial-coefficient Baum--Connes for F_p wr_Z G
+distinct_from:
+  monster-bc-failure-at-measured-coefficient-is-the-module-crux: that is question (Q) for measured dual-module coefficients and module triples; this is its Bernoulli case with the host removed, one explicit map on reduced K-theory.
+  some-nonexact-group-has-a-k-inexact-module-triple: that asks for a K-theory exactness defect of a module triple; this asks for a non-surjective comparison at a single coefficient, with no triple.
+---
+
+**OPEN.** There are a countable group `G`, a prime `p` and a `G`-set `Z` with finite point stabilizers such that the
+cylinder comparison
+
+```text
+T_r : ⊕_([s] ∈ G\S) R(G_s)  ->  K_*( C_0((Z/p)^Z \ {0}) ⋊_r G )
+```
+
+of `bernoulli-bc-splits-into-host-and-cylinder-comparison` is not surjective. On `[τ] ∈ R(G_s)`, `T_r` gives
+`[1_(C_s) p_τ]`.
+
+**What it would give.** Route `bc-counterexample-via-bernoulli-cylinder-defect`: reduced assembly for `F_p wr_Z G`
+would not be surjective. That is a counterexample with trivial coefficients, with no dichotomy on the host and no module
+triple.
+
+**Equivalent forms.**
+- `T_r` is always injective (`bernoulli-assembly-injective-beyond-the-host`). So the claim says `T_r` is not an
+  isomorphism.
+- Let `C_ρ` be the mapping cone of the cylinder *-homomorphism
+  `ρ : c_0(S) -> K(l^2 S) ⊗ C_0((Z/p)^Z \ {0})`.
+  - The mapping-cone extension is completely positively split, so its reduced crossed products are exact. Hence
+    `K_*(C_ρ ⋊_r G) = 0` iff `T_r` is an isomorphism.
+  - `ρ` is a weak K-equivalence (Claim W of `research/artifacts/bc-bernoulli-rank-functionals-torsion-2026-09-13.md`),
+    so `K_*(C_ρ ⋊ H) = 0` for finite `H`, and going-down gives `K^top_*(G; C_ρ) = 0`.
+  - So the claim says that `G` fails Baum--Connes at the weakly contractible coefficient `C_ρ`.
+- For torsion-free `G` and `Z = G`, some class of shape (a), (b) or (c) of `bernoulli-assembly-injective-beyond-the-host`
+  exists.
+
+**Model test.** `G = Z` (amenable) fails the claim, because `T_r` is an isomorphism by Pimsner--Voiculescu. So does
+every group satisfying Baum--Connes with coefficients. No group satisfying it is known.
+
+## Attempts
+
+- **Hosts with coefficients.** If `G` satisfies Baum--Connes with coefficients, `T_r` is an isomorphism (CEKN
+  arXiv:2210.09209, Theorem 2.8, second sentence). So a witness fails Baum--Connes with coefficients. Among known groups
+  that means a large-girth expander monster (`osajda-monster-hosts-for-bc-module-route`), whose known failure is
+  injective-not-surjective (Willett--Yu I, Corollary 1.7) at a coefficient that is not a module dual.
+- **Rank functionals.** Ranks at finite-support configurations prove injectivity and see shape (a). They vanish on the
+  rank-invisible tail classes of shape (b) and do not see `K_1`, shape (c).
+- **Gapped induced-subgraph operators.** A shape-(a) candidate is a projection whose rank at a configuration counts a
+  non-local invariant of its support, such as the kernel dimension of the Laplacian of the induced subgraph (its number
+  of components). Such kernel projections are not in the algebra. The full shift contains every induced subgraph,
+  including long paths, whose small nonzero eigenvalues close the gap. A monster's embedded expanders give a uniform gap
+  only on the subshift of expander markings, and that subshift is not a module dual.
+- **Where it stops.** A witness needs a spectral gap uniform over all Bernoulli configurations, or a K-theory class not
+  produced by functional calculus from local operators. Neither is known over any group.
