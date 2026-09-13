@@ -178,3 +178,28 @@ No finding makes the endpoint false, vacuous or conditional, so none went to mai
   - the Solution's unsuffixed theorems match the Challenge types (fz-integrate's `ChallengeType`/`SolutionType`
     diff);
   - the witness type is in `Type`.
+
+## 9. The one pc landing at a final path, and the stop
+
+**622570981 (pc-ring-fg): `GroupApproximation/Pestov91/RingFinitelyGenerated.lean` with its root import.**
+- **Record.** The landed md5 `7c3c852d…` equals `$PC/lanes/pc-ring-fg.green.0913-022059-42708`, base f57a883df. The 13
+  printed closures are all `[propext, Classical.choice, Quot.sound]`.
+- **Root.** The `GroupApproximation.lean` diff is exactly `+import GroupApproximation.Pestov91.RingFinitelyGenerated`.
+  That line brings fz's `CrossedProduct` and `CrossedProductFG` into the root closure.
+  - I grepped every declaration name of the module against `GroupApproximation/**` at 111f976ee, with no hit.
+  - The qualified names of the two fz modules sit in `GroupApproximation.Pestov91.CrossedProduct`, which only
+    Pestov91 files use.
+  - The probe built the module, not the root, so the root build of this line rests on that scan and on CI.
+- **Statements.**
+  - `closure_range_coordinateIndicator` proves that the indicators `[xᵢ = b]` generate `LocallyConstant X (ZMod 2)`.
+    Its only assumption is `CompactSpace X` for `X : Set (ℤ → Bool)`.
+  - `isFinitelyGeneratedRing_crossedProduct` holds for an arbitrary `MulSemiringAction` instance plus an explicit
+    `hact`: every `[xₖ = b]` is a translate of `[x₀ = b]`.
+  - `exists_smul_coordinateIndicator_of_comap` discharges `hact` for pullback actions under explicit `hτ` and
+    `hsmul`.
+  - Every conditional step is a binder, and the docstrings say so. Expansiveness enters exactly through the
+    coordinate indicators, as 6.8 requires.
+- **Lints.** `omit [CompactSpace X] in` precedes the docstring.
+
+**Stop.** pc-architect's c052afa7d (02:30) records that the coordinator stopped the PC swarm as a duplicate of the fz
+swarm. I did not re-run the pc-review driver after that (part 1 §3).

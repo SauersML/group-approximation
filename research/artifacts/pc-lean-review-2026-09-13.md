@@ -73,9 +73,10 @@ There are two vocabularies on main, with bridges between them.
     (`Kazhdan/IntegerNotKazhdan.lean:39`).
   - Free groups: `not_hasKazhdanPropertyT_freeGroup` (`Kazhdan/FreeGroupSharpProfile.lean:67`).
   - Amenable groups with (T) are finite (`Kazhdan/AmenableKazhdanFinite.lean:105`).
-- **Gap: no compiled negative control in the block's vocabulary.** The fz driver has positive controls only, and a
-  `HasPropertyT` that unfolded to `True` would pass them. The composition `¬ Pestov91.HasPropertyT (Multiplicative ℤ)`
-  is one line from the bridge. It is in the pc-review driver of §3, to be probed when `pcprobe.sh` exists.
+- **Gap at 02:06, since closed.** The fz Palomar driver has positive controls only, and a `HasPropertyT` that
+  unfolded to `True` would pass them. fz p91-statement has since compiled `test_not_hasPropertyT_int` and
+  `test_not_isKazhdanPair_int` in the block's vocabulary (record 0913-021315-6428, landed under
+  `wip/pestov91/fidelity/`; part 2 §6.11).
 - **Universes: no trivialization.**
   - `E` ranges over `Type`, and the witness is a group in `Type`, so `ℓ²(G)` is among the tested spaces.
   - `IsKazhdanPair.liftUniverse` (`Kazhdan/KazhdanUniverse.lean:335`) proves that a pair tested on spaces in the
@@ -108,7 +109,9 @@ There are two vocabularies on main, with bridges between them.
     of main.
   - The degenerate control `soficSeparation_fails_of_eq` is in the fz probe-only
     `LEFHyperlinearChallengeDriver` (0913-013243-89830).
-  - The block-vocabulary composition `∃ G, ¬ Pestov91.IsSoficGroup G` is in the pc-review driver.
+  - The block-vocabulary composition `∃ G, ¬ Pestov91.IsSoficGroup G` compiled in the pc-review probe with closure
+    `[propext, Classical.choice, Quot.sound]`. That probe failed on another test, so this is not landing evidence
+    (§3).
 
 ### 2.3 Hyperlinearity: faithful, normalized Hilbert–Schmidt metric
 
@@ -119,7 +122,7 @@ There are two vocabularies on main, with bridges between them.
   - `hsDistSq Y A B = (Σ_i Σ_j normSq(A_ij − B_ij)) / |Y|`.
 - **The metric.** `hsDistSq` is exactly `d_HS²` of Example 2.7. It is the normalized Hilbert–Schmidt metric, not the
   operator norm. For example, `I` and `diag(−1, 1, …, 1)` on `n` points are at operator distance 2 but squared HS
-  distance `4/n`; the pc-review driver checks the case `n = 4`.
+  distance `4/n`. My Lean check of this computation did not compile (§3), so the point rests on the formula.
 - **Block ⇒ Theorem 3.6.**
   - (1) `d_HS ≤ √ε`.
   - (3) `d_HS ≥ √(2 − ε) ≥ 1/4` for `ε ≤ 1`.
@@ -157,12 +160,17 @@ negative control in the Challenge vocabulary.
 
 ## 3. pc-review driver (probe-only, not for landing)
 
-`$PC/lanes/pc-review/GroupApproximation/Pestov91/ReviewModelTests.lean`. It proves, in the block's vocabulary:
-- `¬ HasPropertyT (Multiplicative ℤ)`;
-- `HasPropertyT G` for every finite `G`;
-- `¬ Infinite Unit` and `¬ IsSimpleGroup Unit`;
+`$PC/lanes/pc-review/Palomar/Pestov91ReviewModelTests.lean`, with a probe-only `lakefile.toml` overlay. I trimmed it to
+the controls that fz's compiled `wip/pestov91/fidelity/Pestov91ModelTests.lean` does not state (part 2 §6.11):
 - `IsSoficGroup (FreeGroup (Fin 2))`;
 - `∃ G, ¬ IsSoficGroup G`;
+- `¬ Infinite Unit`;
 - the HS computation of §2.3.
 
-It also prints their axiom closures. Status: written, **not yet probed**. The result will be recorded in part 2.
+Outcome: probe `0913-022448-59655` (base 1d4068771) **FAILED**, on the HS test only. After `simp`, the sum ran over
+the carrier's bundled `Fintype` instance, and `Fin.sum_univ_four` did not fire, leaving an unsolved goal.
+- The other three compiled. Their printed closures were `[propext, Classical.choice, Quot.sound]`.
+- Because the probe failed overall, this is **not** landing evidence, and pcprobe left no `.green.` record.
+- A fixed version (two points, with `show` to normalize the sum) is in the lane directory. It was not re-probed: the
+  coordinator stopped the PC swarm at 02:30 as a duplicate of the fz swarm (c052afa7d).
+- The fidelity conclusions of §2 do not rest on this driver.
