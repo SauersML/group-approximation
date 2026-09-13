@@ -203,5 +203,12 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
   as `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold`, so ko-closed can drop the hT6 binder of `kotowskiOllivier_of_leaves`.
 
 ## NEXT (09-13)
+- The lead accepted hT6. Holders of the every-X leaves: (a) `ZipPinchStatement X` with systolic-counts, and kh-torsion offers a split;
+  (b) `MirrorFoldDistinctStatement X` with ko-closed; (c) `MirrorFoldPinchedStatement X` with theoremc-retire.
+- 09-13, lead directive: offer ko-closed a split of (b) and send the KO note in the same message. Sent. The proposed pieces follow
+  ko-closed's hfold SPLIT plan:
+  - b1: deleting the edge of d gives the quad [d1,d2,e1,e2]; show `FoldMap.IsFoldable (p := d1) (d := d2) (e := e1)`.
+  - b2: delete the digon [d1,e2] and transport to a `TriangulatedDisc` with `innerFaceCount + 2 ≤`.
+  - b3: assembly.
+  - If ko-closed declines, message hull-unbound (W1 hgreendlinger) and take a piece it has not started.
 - When the generic producers land: `theorem systolicInvariantClique : CCKW.SystolicInvariantCliqueStatement`.
-- Then the next roster item, or ask the lead.
