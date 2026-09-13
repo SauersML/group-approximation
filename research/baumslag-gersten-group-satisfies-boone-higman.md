@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/bh-baumslag-gersten-2026-09-12.md
   - research/artifacts/one-relator-boone-higman-2026-09-12.md
+  - research/artifacts/bh-bg-similarity-hosts-2026-09-12.md
 ---
 
 **OPEN.** Let `BG = < a, t | b a b^-1 = a^2 >`, where `b = t a t^-1`. `BG` has
@@ -35,12 +36,25 @@ group contains it.
   can never act as a fixed-point-free adding machine on the whole space, and an
   odometer piece for `a` that `b` preserves forces a fixed point of `a`
   elsewhere.
-- **Röver--Nekrashevych and eventually-similar hosts (open).** `BG` surjects onto
-  `Z`, so it has neither FW nor (T).
-  `fw-subgroups-of-eventually-similar-groups-virtually-embed` and
-  `kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf` therefore do not
-  apply. Those hosts contain non-residually-finite groups such as `V`, so they
-  are not excluded. No embedding of `BG` into such a host was found.
+- **Röver--Nekrashevych and Higman--Thompson hosts (dead).**
+  - Every homomorphism from `BG` to the almost-automorphism group of a regular
+    rooted forest kills `a`
+    (`baumslag-gersten-embeds-in-no-rover-nekrashevych-group`).
+  - So `BG` embeds in no `V_{d,r}(G)` with `G` self-similar, and in no
+    `V_{d,r}`, `V`, `T` or `F`.
+  - The FW and (T) criteria cannot give this, because `BG` surjects onto `Z`.
+    The obstruction is equicontinuity:
+    - the image of `a` is conjugate to its square, so it is equicontinuous
+      (`almost-automorphism-conjugate-to-proper-power-is-equicontinuous`);
+    - an equicontinuous `a` acts trivially on any compact zero-dimensional
+      space (`baumslag-gersten-equicontinuous-generator-acts-trivially`).
+- **Eventually-similar hosts beyond the full shift (open).**
+  - The obstruction above does not reach shifts of finite type with several
+    cone types, or local groupoids that are not isometric.
+  - `fw-subgroups-of-eventually-similar-groups-virtually-embed` needs FW, so
+    it does not apply either.
+  - In every Cantor-space host, the image of `a` must fail to be
+    equicontinuous.
 - **Rational similarity groups (open).** BBMZ embed every hyperbolic group in a
   full, contracting RSG, through its action on the horofunction boundary.
   `BG` contains `BS(1,2)`, so it is not hyperbolic, and no compact model for it
@@ -53,6 +67,10 @@ group contains it.
   Bass--Serre tree of its HNN structure with stabilizers conjugate to
   `BS(1,2)`. But tree distance is unbounded, so there are infinitely many
   orbits of two-element subsets. No type (A) action of `BG`, or of a finitely
-  presented overgroup, was found.
+  presented overgroup, was found. For Brin--Thompson `nV`, the image of `a`
+  has exponent vector zero at every periodic point. But the pumping step of
+  the Röver--Nekrashevych obstruction fails there, so `nV` stays open.
 
-See `research/artifacts/bh-baumslag-gersten-2026-09-12.md` for the host table.
+See `research/artifacts/bh-baumslag-gersten-2026-09-12.md` for the host table,
+and `research/artifacts/bh-bg-similarity-hosts-2026-09-12.md` for the
+Thompson-like and Röver--Nekrashevych hosts.
