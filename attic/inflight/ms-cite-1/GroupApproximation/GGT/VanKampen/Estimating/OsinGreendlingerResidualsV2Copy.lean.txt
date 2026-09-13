@@ -1,0 +1,70 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV2
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopy
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The Greendlinger waist at six residuals, with the multiple-edge region on a copy
+
+`relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2` (`OsinGreendlingerResidualsV2`) takes
+binder 5 as `OsinMultipleEdgePocketRegionSectionStatement`, the pocket region on the optimal diagram
+itself.  That form is circular: configuration (b′) leaves no pocket region on `S.diagram`, and
+excluding it needs Lemma 9.7(b), the lemma being proved.
+
+`relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2Copy` is the same composition with
+binder 5 taken on an O-equivalent copy, `OsinMultipleEdgePocketRegionCopySectionStatement`
+(`OsinPocketMultipleEdgeCopy`).  The old binder implies the new one
+(`OsinMultipleEdgePocketRegionSectionStatement.copySection`), so this waist asks for no more than
+`_of_residualsV2`.  The other five residuals and the closed pieces are those of `_of_residualsV2`:
+the collar insertion `GeodesicCollar.StripStep.geodesicCollarStatement_holds`, the cell transport
+`pocketCellTransport`, the loop part `osinLoopCutSection` and the corner count
+`osinCornerTwoGonSection`.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 1636, "Hull's small cancellation theorem", through Osin's
+Lemmas 9.7 and 4.4); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+/-- **Osin's Lemma 4.4 at least-area diagrams from six residuals, with the multiple-edge pocket
+region on a copy**: `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2` with binder 5 on an
+O-equivalent copy of the optimal diagram. -/
+theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2Copy
+    (hcount : OsinLemma94PolygonCountInput.{u, w, v})
+    (hrcell : OsinLemma94CaseOneRCellStatement.{u, w, v})
+    (htwogon : OsinTwoGonHoldsSectionStatement.{u, w, v})
+    (hregion : OsinMultipleEdgePocketRegionCopySectionStatement.{u, w, v})
+    (hfaces : OsinSectionPocketFaceSetSectionStatement.{u, w, v})
+    (hpinch : PocketPinchLabelledPosStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  relativeGreendlingerQuasiGeodesicLeastArea_of_pocketParts
+    (osinLemma94Section_of_residuals hcount
+      (osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk
+        (osinLemma94CaseOneSameCell_of_rCell hrcell)))
+    (osinMultipleEdgeCutSection_of_copyPieces hregion
+      GeodesicCollar.StripStep.geodesicCollarStatement_holds pocketCellTransport)
+    osinLoopCutSection
+    (osinPhiPrimeCountSection_of_pieces osinCornerTwoGonSection htwogon)
+    (osinSectionPocketCutSection_of_residualsPos hfaces hpinch
+      GeodesicCollar.StripStep.geodesicCollarStatement_holds)
+
+/-- **The copy waist gives the waist on the optimal diagram**: `_of_residualsV2` from
+`_of_residualsV2Copy` through `copySection`. -/
+theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2_of_copy
+    (hcount : OsinLemma94PolygonCountInput.{u, w, v})
+    (hrcell : OsinLemma94CaseOneRCellStatement.{u, w, v})
+    (htwogon : OsinTwoGonHoldsSectionStatement.{u, w, v})
+    (hregion : OsinMultipleEdgePocketRegionSectionStatement.{u, w, v})
+    (hfaces : OsinSectionPocketFaceSetSectionStatement.{u, w, v})
+    (hpinch : PocketPinchLabelledPosStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2Copy hcount hrcell htwogon
+    hregion.copySection hfaces hpinch
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2Copy
+#audit_axioms GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2_of_copy
