@@ -25,6 +25,13 @@ includes the binary Leavitt unit group, where the cost and `L^2`-Betti routes ar
   - *Where it dies.* No treeing of the cluster relation itself is known in the nonuniqueness phase.
   - Gaboriau--Lyons produce free subrelations inside cluster relations. Those are not treeings of `R_p`,
     and subrelations say nothing about soficity of the whole.
+  - *Honest scope (part 2 artifact, Section 7).* The natural treeing comes from clusters that are trees of
+    finite 2-connected blocks. That is a purely probabilistic statement close to Benjamini--Schramm itself,
+    so the natural proof of this claim is probabilistic.
+- **The same reduction for sofic groups** (`nonsofic-actions-have-cluster-soficity-threshold-in-pc-pu`). For
+  a group with a free ergodic nonsofic action `a`, a sofic `a`-decorated cluster relation at some `p > p_c`
+  also gives `p_c < p_u`. This covers the residually finite Kun--Thom groups, whose Bernoulli cluster
+  relations are sofic at every level.
 - **Finite models along open paths.** A sofic model of `R_p` needs partial permutations for the moves
   along open `s`-edges, consistent with the decoration `xi` on all edges, including closed ones.
   - Word paths of a nonsoficity certificate `(F, eps_0)` are open only with probability of order `p^L`,
