@@ -79,6 +79,11 @@ queued (wire-queue lines 626–627), and leavitt-units' Count and Section module
   0913-160538-94022 read `PROBE GREEN` with `BUILT` (base ac3acde9d), no warnings. All ten
   `#audit_axioms` lie inside the classical allowlist. The md5 of the green record equals the file
   on origin/main, and the commit is an ancestor of main.
+- 5b63c946c7983f93643f465bb07de2746f1effce: `Dynamics/ChainRecurrenceCovering`, S2 covering
+  (lead's ruling 09-13 16:20). Landed after probe 0913-164527-178 read `PROBE GREEN` with `BUILT`
+  (base 4c1771432), no warnings. The closed endpoint `printedChainCoreCovering` depends on
+  propext, Classical.choice and Quot.sound. The md5 of the green record equals origin/main, and
+  the commit is an ancestor of main. Queued in wire-queue.
 
 ## Residual Props
 
@@ -363,20 +368,45 @@ unwired). It imports only Mathlib and `Meta.AxiomGuard`. Namespace `GroupApproxi
 The hypotheses are the printed setting (compactness, continuity, `T(P) ⊆ P`, a factor map), not
 cited results. Compactness enters only through uniform continuity of `T`, `T⁻¹` and `π`.
 
-Not in the module:
+Lead's rulings (09-13 16:20):
 
-- nonemptiness of `CR(T)`;
-- the covering of `X \ CR(T)` by translates of the defects (0ae6fc9e199c).
+- Covering of `X \ CR(T)` (0ae6fc9e199c): hull-euler builds it directly as a second module, for
+  compact zero-dimensional `X`, by the atom-graph argument.
+- Nonemptiness of `CR(T)`: no new module. It follows from chain-subshift's `coreSubshift_nonempty`
+  and fff-quotient's `coreSubshift_eq_chainRecurrentSet` (M4).
+- Census owner of the seven S2 keys: hull-euler.
 
-The covering has a direct zero-dimensional proof. For `x ∉ CR(T)` and a fine clopen partition,
-the atom of `x` lies on no cycle of the atom graph, where `A → B` iff `T(A) ∩ B ≠ ∅`. Let `P` be
-the union of the atoms reachable from it by paths of positive length. Then `P` is clopen,
-`T(P) ⊆ P` and `Tx ∈ P \ T(P)`. Ownership is asked of the lead, since chain-subshift proves
-`Y_0 = CR(T)` on the subshift route.
+Module `GroupApproximation/Dynamics/ChainRecurrenceCovering.lean` (5b63c946c, green
+0913-164527-178, unwired, queued for wiring). It imports
+`Dynamics.ChainRecurrence` and `Mathlib.Topology.Separation.Profinite`.
+
+- `exists_clopenPartition_subset (hV : V ∈ 𝓤 X)`: over compact Hausdorff totally disconnected
+  `X`, an equivalence relation `E ⊆ V` with open classes (a finite clopen partition finer
+  than `V`).
+- `chainReach T E x := {y | TransGen (ChainStep T E) x y}` is a union of atoms
+  (`mem_chainReach_of_rel`), so it is clopen (`isClopen_of_saturated`). It satisfies
+  `T '' P ⊆ P` (`image_chainReach_subset`) and `T x ∈ P` (`apply_mem_chainReach`). If `E ⊆ V`
+  and no `V`-chain goes from `x` to `x`, then `x ∉ P` (`notMem_chainReach_self`). `P` is the
+  union of the atoms reached from the atom of `Tx` in the atom graph.
+- `exists_isClopen_apply_mem_diff (T : X ≃ₜ X) (hx : x ∉ CR(T))`: a clopen `P` with
+  `T '' P ⊆ P` and `T x ∈ P \ T '' P`.
+- `compl_chainRecurrentSet_subset T : CR(T)ᶜ ⊆ ⋃ P ∈ {P | IsClopen P ∧ T '' P ⊆ P},
+  ⋃ n : ℤ, (T ^ n) '' (P \ T '' P)`, with `n = -1`.
+- Closed endpoint `printedChainCoreCovering : PrintedChainCoreCovering`. It gives the covering,
+  and wandering of every `P \ T '' P`, for every compact Hausdorff totally disconnected
+  uniform space `X : Type` and every `T : X ≃ₜ X`.
 
 ## Census
 
-No rows yet. The rows wait for the closure of `PhiPrimeCountInput`, which carries the Euler count
+S2 rows (sec:chain-core) are in `metadata/nm-census-rows/hull-euler.tsv`:
+
+- 49f76a64907a and d5af28721656: definition;
+- 3ebdab1c418b: structural;
+- d8e1a694d87c: partial (closed and invariant);
+- 0ae6fc9e199c, 73bd8ac910aa and 3ef2a7cdb9bd: formalized;
+- c99bf0bdb029: partial (the factor clause).
+
+The Euler rows wait for the closure of `PhiPrimeCountInput`, which carries the Euler count
 inside the proof of `thm:hull` (tex 1636, through Osin's Lemma 9.7(a)). The section assembly
 6401c70a6 is conditional and adds no row. With C4 proved, one binder remains.
 
@@ -399,6 +429,9 @@ inside the proof of `thm:hull` (tex 1636, through Osin's Lemma 9.7(a)). The sect
    statement is final. A restatement would need a joint probe with `OsinPocketFirstTurnWalk` and
    `OsinPocketFirstTurnWalkModel` (rule 22).
 5. S2. `Dynamics/ChainRecurrence` is landed (20911e5b2) and queued for wiring. chain-subshift
-   (`Y_0 = CR(T)`) and chain-itinerary consume it. Waiting on the lead's ruling for the covering
-   of `X \ CR(T)` (0ae6fc9e199c), direct or through the subshift route, and for nonemptiness.
-   Census rows for the S2 keys after the ruling.
+   (`Y_0 = CR(T)`) and chain-itinerary consume it. `Dynamics/ChainRecurrenceCovering`
+   (0ae6fc9e199c, lead's ruling 16:20) is landed (5b63c946c) and queued for wiring. The census
+   rows for the seven S2 keys and for the closed and invariant part of d8e1a694d87c are in
+   `metadata/nm-census-rows/hull-euler.tsv`. S2 is closed apart from nonemptiness, which the
+   lead assigned to chain-subshift and fff-quotient. `coreSubshift_eq_chainRecurrentSet` is on
+   main (b34b97bfe); `coreSubshift_nonempty` was not at 17:00.
