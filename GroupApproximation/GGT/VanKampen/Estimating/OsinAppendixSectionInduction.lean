@@ -70,14 +70,15 @@ def OsinLemma97Below (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps : ℕ)
       ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
         OsinLemma97bConclusion mu T
 
-/-- **G2, multiple edges**: two distinct selected regions joining the same cells
-enclose a cut. -/
+/-- **G2, multiple edges**: two distinct selected regions joining the same two distinct
+cells enclose a cut.  A region joining a cell to itself is a loop, handled by
+`LoopCutInput`. -/
 def MultipleEdgeCutInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
     (W : Set (List (RelLetter G Lambda))) : Prop :=
   ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
     Delta.LeastArea →
       ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
-        ∀ a ∈ S.family, ∀ b ∈ S.family, a ≠ b → ∀ i j : Fin S.diagram.rCellCount,
+        ∀ a ∈ S.family, ∀ b ∈ S.family, a ≠ b → ∀ i j : Fin S.diagram.rCellCount, i ≠ j →
           a.JoinsCells i j → b.JoinsCells i j →
             Nonempty (OsinMultipleEdgeCut D lambda c eps Delta)
 
@@ -176,10 +177,18 @@ theorem osinLemma97_atParameters_of_inputs
               (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos
                 cut.rCellCount_lt)
           · intro a ha b hb hab i j hai hbj
-            obtain ⟨cut⟩ := hmulti Delta cuts hlea S a ha b hb hab i j hai hbj
-            exact cut.false_of_below hO52 hcondition hlambda hmu hmuUpper hrho hlarge hlea
-              (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos
-                cut.rCellCount_lt)
+            by_cases hij : i = j
+            · subst hij
+              obtain ⟨cut⟩ := hloop Delta cuts hlea S a ha
+                (hai.elim (fun h => h.2.trans (congrArg some h.1.symm))
+                  (fun h => h.2.trans (congrArg some h.1.symm)))
+              exact cut.false_of_below hO52 hcondition hlambda hmu hmuUpper hrho hlarge hlea
+                (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos
+                  cut.rCellCount_lt)
+            · obtain ⟨cut⟩ := hmulti Delta cuts hlea S a ha b hb hab i j hij hai hbj
+              exact cut.false_of_below hO52 hcondition hlambda hmu hmuUpper hrho hlarge hlea
+                (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos
+                  cut.rCellCount_lt)
         refine ⟨fun S => (heuler Delta cuts hlea hcells S (hsimple S).1 (hsimple S).2).1, ?_⟩
         obtain ⟨S⟩ := exists_globallyDistinguishedSectionFamily D lambda c eps Delta cuts
           (DiscDiagram.reduced_of_leastArea hlea) cuts.admissible

@@ -71,10 +71,18 @@ theorem exists_elevenCell_of_below
         (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos
           cut.rCellCount_lt)
     · intro a ha b hb hab i j hai hbj
-      obtain ⟨cut⟩ := hmulti Delta cuts hlea S a ha b hb hab i j hai hbj
-      exact cut.false_of_below hO52 hcondition hlambda hmu hmuUpper hrho hlarge hlea
-        (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos
-          cut.rCellCount_lt)
+      by_cases hij : i = j
+      · subst hij
+        obtain ⟨cut⟩ := hloop Delta cuts hlea S a ha
+          (hai.elim (fun h => h.2.trans (congrArg some h.1.symm))
+            (fun h => h.2.trans (congrArg some h.1.symm)))
+        exact cut.false_of_below hO52 hcondition hlambda hmu hmuUpper hrho hlarge hlea
+          (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos
+            cut.rCellCount_lt)
+      · obtain ⟨cut⟩ := hmulti Delta cuts hlea S a ha b hb hab i j hij hai hbj
+        exact cut.false_of_below hO52 hcondition hlambda hmu hmuUpper hrho hlarge hlea
+          (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos
+            cut.rCellCount_lt)
   obtain ⟨S⟩ := exists_globallyDistinguishedSectionFamily D lambda c eps Delta cuts
     (DiscDiagram.reduced_of_leastArea hlea) cuts.admissible
     (fun C _ => hcondition.admissible C.word C.word_mem)
