@@ -34,20 +34,21 @@ Corollary 3.5).
   manifold `U(d)`, which has no characteristic-`p` counterpart known here.
 - **Algebraic dominance: too weak.** Over `C` the word map of `GL_d(C)` is dominant because its image contains
   `U(d)`, but that gives roots only for generic coefficient tuples and nothing uniform in `d`.
-- **Twisted-cyclic reduction (w5-rgr-p).** Amplifying by `k = e` with a twisted cyclic shift `t` makes
-  `w(t)` block-diagonal, reducing RGR_p to a cyclic scalar system `P_m = lambda 1` (`m mod e`) in the `e`
-  twists `b_j in GL_d`; see `rgr-p-reduces-to-cyclic-twist-system` and artifact
-  `research/artifacts/rgr-p-cyclic-twist-reduction-2026-09-12.md`. No loss: the system is equivalent to
-  RGR_p at that amplification.
+- **Twisted-cyclic reduction (w5-rgr-p).** Amplifying by `k = |e|` with a twisted cyclic shift `t` makes
+  `w(t)` block-diagonal, so a solution of the cyclic scalar system `P_m = lambda 1` (`m mod |e|`) in the
+  `|e|` twists `b_j in GL_d` is an RGR_p witness; see `rgr-p-reduces-to-cyclic-twist-system` and artifact
+  `research/artifacts/rgr-p-cyclic-twist-reduction-2026-09-12.md`. Equivalence costs one further
+  amplification (corrected by w4-vf-linear-b): a witness `t` gives the shift `t (x) S` with the same error,
+  so RGR_p holds iff the cyclic system is `eps`-solvable at some amplification of the coefficients.
 - **Scalar vs general-matrix targets (w5-rgr-p).** The `p`-divisibility Jordan subtlety above is confined
   to general-matrix targets. A scalar target `t^e = lambda 1` is solved exactly in every characteristic
-  by the companion matrix of `x^e - lambda` (`scalar-target-power-words-have-exact-roots`), so pure power
-  words are unconditionally clean.
+  by a companion matrix (of `x^|e| - lambda`, inverted when `e < 0`;
+  `scalar-target-power-words-have-exact-roots`), so pure power words are unconditionally clean.
 - **Two-syllable solved (w5-rgr-p).** `c_0 t c_1 t c_2 = lambda 1` has the explicit exact solution
   `t = [[0, c_0^(-1) lambda c_2^(-1)], [c_1^(-1), 0]]` in `GL_(2d)`; the equal-exponent two-syllable word
   reduces to power words (`two-syllable-nonsingular-words-are-exactly-solvable`).
-- **Where it stops (w5-rgr-p).** The `e` cyclic rotations are not mutually conjugate (the fixed `c_i` do
-  not rotate), so the system does not collapse; and rank slack does not obviously help, because
-  block-diagonality pins the cycle length to `e` (a longer shift makes `w(t) - lambda` nearly full rank).
-  First open shapes: unequal-exponent two-syllable `c_0 t^(e_1) c_1 t^(e_2) c_2` (`e_1 != e_2`), and
-  all-exponent-one `c_0 t c_1 ... t c_l` for `l >= 3`.
+- **Where it stops (w5-rgr-p).** The `|e|` cyclic rotations are not mutually conjugate (the fixed `c_i` do
+  not rotate), so the system does not collapse. The number of blocks of a twisted shift must divide `e`, so
+  rank slack cannot be telescoped along a long chain of blocks; slack inside each amplified block remains
+  available. First open shapes: unequal-exponent two-syllable `c_0 t^(e_1) c_1 t^(e_2) c_2` (`e_1 != e_2`),
+  and all-exponent-one `c_0 t c_1 ... t c_l` for `l >= 3`.

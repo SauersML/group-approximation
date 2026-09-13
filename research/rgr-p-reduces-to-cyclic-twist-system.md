@@ -48,7 +48,9 @@ block form", and amplified by `k = e`. That is false as written.
 
 ## Attempts
 
-- The `e` rotations are **not** mutually conjugate, because the fixed `c_i` do not rotate with the
+- The `|e|` rotations are **not** mutually conjugate, because the fixed `c_i` do not rotate with the
   starting block. The coefficient-free conjugacy collapse does not apply.
-- Rank slack over the `e` blocks lets one drop a fixed number of blocks, not an `eps`-fraction growing
-  with amplification, because block-diagonality pins the cycle length to `e`.
+- Block-diagonality needs the number of blocks to divide `e`, so rank slack cannot be telescoped along a
+  long chain of blocks. After the further amplification in "No loss", each block equation is `(dk) x (dk)`
+  and may carry rank error `eps dk`; that slack remains available. (Corrected by w5-rgr-p: an earlier line
+  said slack only allows dropping a fixed number of blocks.)
