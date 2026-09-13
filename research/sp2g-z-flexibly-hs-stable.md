@@ -68,3 +68,53 @@ non-residually-finite lattice, is not hyperlinear.  Route
 - **What remains.**  A correction theorem for non-hyperfinite asymptotic
   representations of a higher-rank Kazhdan lattice against the (T)
   obstruction.  This is the same open core as `sln-z-flexibly-hs-stable`.
+- **Decision audit, g = 2 (2026-09-13, lane `solve-nh-flexible-sp4`).**
+  Undecided; the open core above is unchanged, and three candidate
+  mechanisms are now closed or pinned.
+  - **Literature, read from the TeX sources on MSI.**
+    - Dogon arXiv:2211.10492, Definition 1.2 matches the statement here.
+      p. 3 says "deciding flexible HS-stability in this scenario is
+      extremely interesting", but it is not a numbered question.
+    - Fournier-Facio--Gerasimova--Spaas arXiv:2307.13155, introduction:
+      "Whereas flexible stability of most property (T) groups is open".
+      Their theorem (infinite hyperlinear Kazhdan groups are never locally
+      HS-stable) is, for finitely presented groups, the strict notion
+      (their lemma that local and ordinary stability agree for finitely
+      presented groups), so it does not touch this claim.
+    - Becker--Lubotzky arXiv:1809.00632 §4.4 introduces the flexible notion
+      as "a path towards finding a non-sofic group" (permutation version).
+  - **The hyperfinite part is already known.**
+    `character-rigidity-equals-hyperfinite-hs-stability` (Dogon--Vigdorovich
+    Theorem 1.6) makes hyperfinite HS-stability equivalent to character
+    rigidity for irreducible lattices with (T;FD) in center-free higher-rank
+    groups. Their introduction records character rigidity "most notably when
+    G has a property (T) factor", citing Bekka, Peterson and others. Those
+    were not re-read here.
+    - So `PSp_4(Z) <= PSp_4(R)` is hyperfinitely HS-stable.
+    - Any non-roundable asymptotic representation of `PSp_4(Z)` therefore has
+      a non-hyperfinite limit.
+    - Passing between `Sp_4(Z)` and `PSp_4(Z)` is not claimed.
+  - **Scalar-cocycle witnesses have no input.**
+    `sp4-projective-models-with-cocycles-to-one-round-strictly`: every exact
+    finite-dimensional projective model of `Sp_4(Z)` with cocycles tending
+    to 1 rounds strictly in operator norm, because only finitely many classes
+    are realized in finite dimensions (`sp4-fd-projective-multiplier-is-finite`).
+    - This is the mechanism of `rf-kazhdan-group-not-flexibly-hs-stable`
+      (the Ioana--Spaas--Wiersma Theorem A remark, Heisenberg covers), and it
+      cannot refute this claim at g = 2.
+    - A counterexample needs non-scalar defects, or asymptotically projective
+      models at non-realized twists. A Connes-embeddable sequence of the
+      latter refutes the claim (twisted-sector bullet above).
+  - **Kazhdan covers, product case (hand remark).**
+    `kazhdan-cover-models-round-iff-kernel-fixed-mass-one` says models
+    pulled back from a Kazhdan cover round iff the kernel's fixed mass tends
+    to 1. Product covers `Sp_4(Z) x K`, with `K` Kazhdan and Kazhdan pair
+    `(Q,κ)`, give nothing.
+    - For a unitary `τ : K -> U(d)` with fixed projection `E`, every
+      `v ⊥ ran E` has `Σ_(q∈Q) ||(τ(q)-1)v||^2 >= κ^2 ||v||^2`.
+    - Summing over an orthonormal basis of `ran(1-E)` gives
+      `Σ_q ||τ(q)-1||_(2,d)^2 >= κ^2 tr_d(1-E)`.
+    - So condition (KC1) forces `tr_d E -> 1`.
+    - A counterexample from that criterion needs a finitely presented Kazhdan
+      cover whose kernel is elementwise almost trivial but has common fixed
+      mass bounded away from 1. None is known.
