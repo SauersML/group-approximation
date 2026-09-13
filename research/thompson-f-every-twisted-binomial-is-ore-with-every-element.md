@@ -68,6 +68,29 @@ Equivalent forms:
   (`thompson-f-multibump-binomials-meet-stabilizer-ideals`). For general `b` the second bump
   is not central, and using `K[F_[0,m]]` as a coefficient ring would need dimension counts
   over `K[F_[0,m]]`, which is the Ore condition for a copy of `F`.
+- **Shifting with the centralizer (dead).** Only leftmost powers of `g` give scalar
+  congruences modulo `(1 + lambda g) R`. As a right module `R/(1 + lambda g) R` has basis
+  the cosets `<g> w`, and for `z` in `C_F(g)` outside `<g>` left multiplication sends the
+  coset `<g> w` to the different coset `<g> z w`. So a count cannot strip commuting elements
+  such as `g_1 g_2^-1`, even though conjugation by them pushes both sides of a shared
+  endpoint toward it.
+- **Opposite orientations (partial reduction, open).** Let `g = g_1 g_2` with bumps
+  `(p, m)` and `(m, q)` sharing a dyadic endpoint `m`.
+  - *Same orientation* (both below or both above the diagonal): conjugation by `g` and by
+    `g^-1` each contracts one side of `m` and expands the other, so a monomial moving `m`
+    is never pushed into a small region.
+  - *Opposite orientations*: `g^-1` moves the points of both bumps toward `m`. Factor out
+    powers of `g_1` and `g_2` to kill the germs at `p` and `q` (index trick at both outer
+    endpoints), then conjugate by `g^-K`. Every monomial of `b`, including those moving `m`,
+    lands in `F_[m-delta, m+delta]`, where `h -> g^-1 h g` is conjugation by the two-sided
+    affine expansion of `g` at `m`, the analogue of Step 4 of Proposition 1.
+  - Missing: a submonoid `P` of `F_[m-delta,m+delta]` such that every finite subset has a
+    right translate inside `P`, `P` is invariant under that two-sided zoom, and `P` has
+    unique normal forms whose letter depths satisfy the insertion bound of the one-bump
+    count. With such `P`, steps 5c–5g of
+    `thompson-f-binomials-meet-bump-endpoint-stabilizer-ideals-proof` would run with
+    crossing letters of every depth inside the window. The one-sided monoid `M` does not
+    work: its nontrivial elements all move points near the right endpoint.
 - **Global count with an endpoint-moving shift (open).** The one-bump count factors out
   powers of `g`, pushes the rest into the affine end of the bump, and counts positive normal
   forms in a letter window shifted by conjugation. The product count of
