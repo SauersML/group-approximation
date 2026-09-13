@@ -15,6 +15,10 @@ Rulings (lead, 09-13):
 * ~08:30: the pieces run in the order pinch, then region, then collar.
 * ~09:15 (this lane, on kh-torsion's degenerate case): the collar takes `PocketCarrier.Nondegenerate`.
   The assembly proves it at least area (`nondegenerate_of_leastArea`).
+* ~09:50:
+  * LoopCut ruling (A) is final: `RespectsSections` gains `target ≠ some source` as its first conjunct.
+  * ghw-charp2's patch 06a edits `OsinAppendixAssemblyDescent` lines 199-200 (`T.respects a …` becomes `(T.respects a …).2`); this lane holds edits on that file until ghw-charp2 reports landed.
+  * hl-lemma46's `PocketRegion.exists_twoCollars_of_ne_or` (7eb17a3e9) covers the collar, modulo kh-torsion's `GeodesicCollarStatement`.
 
 Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 (`Estimating/OsinAppendixDescentInduction`).
@@ -26,7 +30,8 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 * `Estimating/OsinPocketPieces.lean`:
   * First statement, collar before pinch: 9cb70824c, probe 0913-073133-62116.
   * Restated in the ruled order: a032ab802, probe 0913-085713-52794, with the census row and the earlier report.
-  * Nondegeneracy as the collar hypothesis, with `nondegenerate_of_leastArea`: landed with this report.
+  * Nondegeneracy as the collar hypothesis, with `nondegenerate_of_leastArea`: b34e788e8.
+* `Estimating/OsinPocketCollarOfGeodesic.lean`: `pocketCollarStatement_of_geodesicCollar : GeodesicCollarStatement → PocketCollarStatement`, probe 0913-100702-85407, landed with this report.
 * `Estimating/OsinPocketRegionOfSimple.lean`:
   * The carrier `PocketFaceSet.toPocketCarrier`: a032ab802.
   * `pocketRegionOfSimple : PocketRegionOfSimpleStatement`, closed: c03054996, probe 0913-090829-84396.
@@ -39,7 +44,7 @@ Target: a closed `DescentInput`, through `descentInput_of_sectionPocketCut`
 | `SectionPocketFaceSetInput`, `OsinSectionPocketFaceSetSectionStatement` | kh-ejz (kept cell through hull-select's zero-cell merge) | two distinct exterior regions to section `j` give a `PocketFaceSet` of the optimal diagram |
 | `PocketPinchStatement` | hull-respell | a `PocketFaceSet` has an O-equivalent copy with a `Simple` one (boundary cycle `IsSimpleClosedWalk`), by simple circuits or a 0-refinement |
 | `PocketRegionOfSimpleStatement` | dgo-analytic | a `Simple` face set gives a `PocketCarrier` (both cycles `FollowsBoundary`, sides of length and norm at most `ε`) |
-| `PocketCollarStatement` | kh-torsion | a `Nondegenerate` `PocketCarrier` has an O-equivalent copy with a `Collared` carrier (sides admissible geodesic words) |
+| `PocketCollarStatement` | dgo-analytic from kh-torsion's `GeodesicCollarStatement` | a `Nondegenerate` `PocketCarrier` has an O-equivalent copy with a `Collared` carrier (sides admissible geodesic words) |
 | `PocketCellTransportStatement`, `PocketOuterTransportStatement` | go-lemma42 | regions of copies of the pocket to `t_1` and `t_2` glue back, target `OsinMultipleEdgeCut.ofPocketRegion` |
 
 Assembly, proved:
@@ -71,6 +76,21 @@ It goes through `PocketFaceSet.sideFaces_boundary_cycle_eq_faces`, applied at `C
 Probe 0913-090829-84396 GREEN, `#audit_closed_axioms` ⊆ {propext, Classical.choice, Quot.sound}.
 
 hull-component has no further sub-piece here and was told to ask the lead (~09:15).
+
+### The collar piece
+
+`Estimating/OsinPocketCollarOfGeodesic.lean` proves `pocketCollarStatement_of_geodesicCollar : GeodesicCollarStatement → PocketCollarStatement`.
+
+* `exists_collaredWord D g`: a geodesic word in the letters of `D` of value `g`, from `GGT.OsinComponents.existsGeodesicWord`.
+* The collar insertion needs an inverse closed base and every label a letter. Neither holds for an arbitrary `D` and diagram, so it runs at `allLettersRelGenSet G Lambda`, whose base and subgroups are all of `G`. The collars still read the geodesic words of `D`.
+* `Nondegenerate` is the hypothesis `hne` of `PocketRegion.exists_twoCollars_of_ne_or`: arc `t_1` is `invDarts X K.sourceArc.darts`, and `t_2` is `K.targetArc.darts`.
+* The new carrier:
+  * the cells `source` and `kept` move along `E.cellIndex`, and stay on their sides of the pocket;
+  * the source arc is carried through the cell darts outside the pocket, and the target arc through the outer darts (`CyclicArc.mapTo`);
+  * the sides are the collars. Each side is as long as the norm of the old side value, which is at most `ε`, and keeps that value.
+* `Collared` is then the geodesic words' admissibility and lengths.
+
+Probe 0913-100702-85407 GREEN, `#audit_axioms` ⊆ {propext, Classical.choice, Quot.sound} on all six declarations.
 
 ### The degenerate carrier
 
@@ -109,14 +129,15 @@ New with the ruled order:
 
 * `OsinSectionPocketFaceSetSectionStatement` (kh-ejz).
 * `PocketPinchStatement` (hull-respell).
-* `PocketCollarStatement` (kh-torsion), with the hypothesis `K.Nondegenerate`.
+* `GeodesicCollarStatement` (kh-torsion, `SurgeryGeodesicCollar.lean:67`), in place of `PocketCollarStatement`.
 * `PocketCellTransportStatement` and `PocketOuterTransportStatement` (go-lemma42).
-* Outside `SectionPocketCutInput`, `descentInput_of_sectionPocketCut` still takes `LoopCutInput` (on hold), `MultipleEdgeCutInput`, `EulerCountInput`, `UnboundInput` and `O52LeastAreaStatement`.
+* Outside `SectionPocketCutInput`, `descentInput_of_sectionPocketCut` still takes `LoopCutInput` (ruling (A) final), `MultipleEdgeCutInput`, `EulerCountInput`, `UnboundInput` and `O52LeastAreaStatement`.
 
 Closed here:
 
 * `PocketRegionOfSimpleStatement` (`pocketRegionOfSimple`).
 * The nondegeneracy of carriers at least area (`nondegenerate_of_leastArea`).
+* `PocketCollarStatement` from `GeodesicCollarStatement` (`pocketCollarStatement_of_geodesicCollar`, through hl-lemma46's two collars).
 
 ## Scope 1: Dahmani–Guirardel–Osin Theorem 2.35, analytic half
 
