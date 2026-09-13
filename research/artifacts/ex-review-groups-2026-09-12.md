@@ -161,6 +161,12 @@ every group.
   Haagerup orbit full groups, compression triples in proper CAT(0) groups (the Kac–Moody instance
   conditional), the (2,4,6) lattice citation assembly, and the two vcd fences. Part 13.
 
+- **§14, finite-cd doubles, SFT presentations, wreath monomial models (~02:40 CDT).** PASS on the torsion-free
+  nonsofic double of finite cohomological dimension (ex-fp-kazhdan-titz-witzel); at step level on the
+  quantum-rigidity presentation criterion and finite presentation forcing finite type (ex-fp-kazhdan-ring);
+  and at the combining step on monomial models of the Kun–Thom wreath (ex-q34-kt-wreath-soft-kernel).
+  Part 14.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -176,3 +182,4 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part11.md`: §11, Atiyah hosts and the Pestov 9.1 extras.
 - `research/artifacts/ex-review-groups-2026-09-12-part12.md`: §12, fp-kazhdan-ring refill.
 - `research/artifacts/ex-review-groups-2026-09-12-part13.md`: §13, fp-kazhdan Kac–Moody and Titz–Witzel refills.
+- `research/artifacts/ex-review-groups-2026-09-12-part14.md`: §14, finite-cd doubles, SFT presentations, wreath monomial models.
