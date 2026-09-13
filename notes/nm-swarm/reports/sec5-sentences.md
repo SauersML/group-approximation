@@ -136,8 +136,49 @@ Assignment: one case of `OsinLemma94PlanarRunInput`, the last residual of `osinL
   - That module will not be built: `OsinLemma94Pieces` supersedes the run input.
   - The residual is `OsinLemma94PlanarRunInput`.
 
+hull-unbound has been silent since 02:31, so the default stands (ROSTER): Case 2 goes to this lane, measured by dart count.
+
+## Case 2 input: dart-minimal families
+
+`GGT/VanKampen/Estimating/OsinLemma94DartMinimal.lean`:
+- LANDED 88db0df7b; probe 0913-062132-82302 GREEN (base 88db0df7b), BUILT.
+- Queued for wiring after `OsinUnboundReduced` and `OsinLemma94AntiparallelMetric`.
+
+Declarations:
+- `GloballyDistinguishedSectionFamily.unboundSum` (Osin's `S`) and `DartMinimal`. A family is dart-minimal when no
+  distinguished family with the same card and the same `S` sits on a diagram with fewer darts.
+  - `exists_dartMinimal`: by strong induction on the dart count.
+- `Surgery.GFaceMerge.transportDistinguished_dartCount_add_two` and `PinchSplit.transportDistinguished_dartCount`: a merge
+  removes two darts and a pinch split keeps them.
+  - So `exists_reduced_dartCount_le` never adds darts, and `exists_reduced_dartMinimal` gives a family that is merged,
+    split at pinches and dart-minimal, with the same card and `S`.
+- `OsinLemma94PlanarPolygons.ofUnboundSumEq`: the polygons read the family only through `S`.
+- `OsinLemma94PlanarRunInputReduced` is `OsinLemma94PlanarRunInput` with
+  `S.UnselectedGFacesMerged → S.UnselectedPinchesSplit → S.DartMinimal →` added after the card bound.
+- `osinLemma94PlanarRunInput_of_reduced` (exact reduction) and `osinLemma94Section_of_planarRunInputReduced` (with
+  `osinLemma94AntiparallelMetric`). Together they give `OsinLemma94SectionStatement` from
+  `OsinLemma94PlanarRunInputReduced.{u, w, v}` alone.
+
+Residual of W1 h94: `OsinLemma94PlanarRunInputReduced.{u, w, v}`.
+
+### Case 2 exchange (design, not yet in Lean)
+
+Setup: a reduced dart-minimal family, and a stretch of `m` edges of an unselected G-face replaced by a connector word `s`
+with `|s| < m`.
+1. Insert `s` across the face (`GFaceWordInsertion.exists_split_corner_output`): +2|s| darts.
+2. Merge across the first old edge (`Surgery.GFaceMerge`): -2 darts.
+3. Delete the remaining old edges as spikes, tip first (`EdgeDeletion`, `SpikeDeletion`): -2(m-1) darts.
+
+Net: 2(|s| - m) < 0 darts, with the same card and `S`. This contradicts `DartMinimal`.
+
+Still missing:
+- transport of distinguished families across the insertion (respects, nondegenerate, labelLegal, reduced, `S`);
+- a spike-deletion diagram surgery with region transport;
+- the condition under which the old stretch is pendant after the merge.
+
 ## Next
 
-1. Case 2 of `OsinLemma94PlanarRunInput`: the case hull-unbound assigns, or the default above.
-2. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
+1. `SurgerySpikeDeletion*`: a diagram surgery and region transport, modelled on `SurgeryGFaceMerge*`.
+2. Transport across `GFaceWordInsertion`, then `Estimating/OsinUnboundBridgeExchange.lean`: Case 2 under `DartMinimal`.
+3. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
    re-grade the rows formalized.
