@@ -48,14 +48,18 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
     new decisive input.
   * **One shared input** (L5, L8). The Toeplitz form of the descent line and the Cohn reduction through
     `binary-jacobson-el3-rank-radical-is-the-finitary-kernel` both need `EL_3(J)`, `J = F_2<s0, t0>`, to be
-    nonsofic. Its soficity is undecided on main. Nonsoficity is necessary for either route and proves
-    neither. The Jacobson claim implies nonsoficity, since a sofic group has a faithful permutation model,
+    nonsofic. Its soficity is still undecided, and it reduces to no known open case (w7-el3j-sofic, L5):
+    `EL_3(J)` contains no `V`, no `R^x` and no `EL_3(C_2)`, and it is Kazhdan, so an amenable
+    approximation would be a LEF proof specific to rank three. Nonsoficity is necessary for either route
+    and proves neither. The Jacobson claim implies nonsoficity, since a sofic group has a faithful permutation model,
     and no converse is known. A nonsofic `EL_3(J)` only removes the firewall without giving a deficit
     (w4-vf-gate check).
   * **Wave 7 lanes on these inputs** (started about 20:45; verifier w4-vf-gate unless noted).
     * w7-el3j-sofic decides the shared input. `EL_3(J)` maps onto `EL_3(F_2[z, z^-1])` with a locally
       finite kernel and a residually finite quotient, so the lane first checks whether it contains `V`
-      or another group of unknown soficity.
+      or another group of unknown soficity. Landed 58760b6ad6 (verification pending w4-vf-gate): the
+      containment check finds none, and the verdict is open. Section 3 of its artifact is announced in the
+      summary but not yet on main. It makes the two one-sided halves LEF.
     * w7-sub-multiletter works on L1 SUB from the multi-letter inputs only: V's multiplication table on
       depth-changing letters, commutation of disjointly supported depth-changing letters, and the
       Toeplitz quarter.
@@ -287,8 +291,29 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
         not sofic. If `EL_3(J)` is sofic, the Jacobson claim is false and Toeplitz-plus-Weyl data at two
         cylinders cannot force `theta < 1`. The next configuration, with the constant root groups, is
         already all of `R^x`, so a relation-only proof would isolate no smaller certificate.
-      * The soficity of `EL_3(J)` is undecided on main: locally finite kernel, residually finite
-        quotient, and the literature check owed in L8 still stands.
+      * The soficity of `EL_3(J)` is still undecided. Lane w7-el3j-sofic (artifact
+        `jacobson-el3-soficity-firewalls-2026-09-12.md`; 58760b6ad6; established on paper, verification
+        pending w4-vf-gate) finds no reduction and records firewalls.
+        * **Containment.** `jacobson-elementary-subgroups-are-locally-finite-by-linear`: every subgroup of
+          `EL_n(J_F)` is locally finite by residually finite linear. So `EL_3(J)` contains no finitely
+          generated infinite simple group (`V`, `T`, `R^x`), no `EL_3(C_2)`, and no finitely generated
+          torsion-free group that is not residually finite.
+        * **Monolith.** Every nontrivial normal subgroup contains `L = GL_fin(N x {1,2,3}, F_2)`, so
+          `EL_3(J)` is not residually amenable.
+        * **Kazhdan.** `jacobson-elementary-groups-are-lea-only-if-lef`: `EL_n(J)` has property (T) for
+          `n >= 3`. So `EL_3(J)` is LEA iff LEF, and `EL_n(J)` is not LEA for `n >= 4`. A scheme uniform in
+          `n` would make `EL_4(J)` LEF. Sofic approximations that are not amenable embeddings stay possible.
+        * **Announced, not yet on main** (artifact Section 3). The halves `pi^-1 SL_3(F_2[z])` and
+          `pi^-1 SL_3(F_2[z^-1])` are LEF and contain `L`. They generate `EL_3(J)`, which is a proper quotient
+          of their amalgam. So a nonsoficity proof must use the relations of both halves jointly.
+        * *(lead)* `EL_3(J)` lies in `R^x` and contains no copy of `V`. So a nonsoficity proof for `V`
+          cannot reach `EL_3(J)` through a subgroup, and the shared input stays separate from the V gate
+          of L8. If Section 3 lands as announced, it repeats the pattern of the depth-monotone firewall and
+          of the Fock lift (L9b): one-sided data are approximable, so a decisive relation must use
+          depth-raising and depth-lowering letters together. Those are the relations w7-sub-multiletter
+          targets.
+        * The literature check owed in L8 still stands for soficity itself. The lane cites
+          Ershov--Jaikin-Zapirain only for property (T).
       * **Archive context** (09-08 Jacobson region; lead summary).
         * `binary-jacobson-core-is-weakly-sofic-with-fd-head-radical`: `EL_28(J)` is weakly sofic by
           Glebsky's extension theorem, and every finite-dimensional unitary representation of it kills the
@@ -344,7 +369,7 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | Toeplitz input and sofic firewall | w5-sub-fock (family SUB) | Established, verifier PASS §28: the Toeplitz pair is finite-subgroup data; `sofic-subgroups-carry-independent-cylinder-defects`; `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`. Open input shared with L8: soficity of `EL_3(J)` (L5) |
 | graph-of-groups firewall | w6-mismatch-c2 (family SUB) | Established, verifier PASS §29 (d0f2b3f648; verdict 4373d18c44): `graphs-of-locally-finite-groups-carry-regular-rank-models`; the depth-mismatched pair is inert as a factor; Attempts entries on the SUB target and on `binary-complement-corner-has-no-weakly-finite-image` (L5) |
 | depth-monotone firewall (char 3) | w6-mismatch-c3 (family SUB) | Established, verifier PASS §30 (74247b5cff, a5226d4756; verdict 794ae892b2; established f31c52ae43): `depth-monotone-leavitt-subalgebras-are-stably-finite`; `depth-monotone-configurations-cannot-force-ternary-minus-one`. The pair is inert for the anti-central form; the defect form is not firewalled (L9b) |
-| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established on paper, verification pending w4-vf-linear-b; the deficit stays open in Sylvester form (L9). The other four have not landed. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
+| wave 7 input lanes | w7-el3j-sofic, w7-sub-multiletter, w7-sylv-global; w7-v-cycle-c2, w7-v-cycle-c3 (upstream of L8) | Started about 20:45. w7-sylv-global landed (696ae35bc7, 0a9c95f793): both Sylvester descent counterparts established on paper, verification pending w4-vf-linear-b; the deficit stays open in Sylvester form (L9). w7-el3j-sofic landed (58760b6ad6): no containment reduction; Kazhdan, so LEA iff LEF; verdict open (L5). The other three have not landed. Targets: soficity of `EL_3(J)`; `theta < 1` from multi-letter inputs; the order-char cycle law at `p = 2, 3` (header) |
 | verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §30, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
 ### L7. The listed mechanism dies
@@ -409,6 +434,9 @@ without completeness.
       kernel case is known before relying on this marker in either direction.
     * If soficity is closed under amenable kernels, the Jacobson claim is false. This route would then
       die, but the L8 target would be untouched.
+    * Lane w7-el3j-sofic (58760b6ad6) calls `E` a Kazhdan, monolithic instance of the open
+      amenable-by-sofic permanence problem. Its literature for that is in artifact Section 4, which is not
+      yet on main, so the marker is still unverified (L5).
 * **Rank four.** Source: w4-cohn-el3, `thompson-v-lifts-into-rank-four-cohn-elementary-group`, established;
   verification requested from w4-vf-gate.
   * **The lift.** Thompson's `V` lifts injectively into `GL_2(C_2)` over the quotient `C_2 -> R`. The lift
