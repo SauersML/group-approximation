@@ -61,3 +61,5 @@ distance, combined with the standard fact that finitely presented LEF groups are
 fixed-point-ratio and exact-model statements on 2026-09-13, and no literature search for this form.
 
 Route: `gap-sofic-approximations-are-local-embeddings-proof`.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** Both directions, the affine and projective gap bounds, and Corollaries 1–4 re-derived; model tests consistent. No change needed. Credit note (recalled): an instance of the folklore fact that approximation through uniformly discrete bi-invariant metrics is LEF. See `research/artifacts/sk-review-3-2026-09-13-part2.md`.
