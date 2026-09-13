@@ -160,6 +160,13 @@ established, unreviewed nodes, and the route is added after review).
 **The middle** (a new object in any case):
 - `rank-modelled-simple-algebra-with-non-lef-kazhdan-el-group`: a finitely generated infinite simple
   rank-modelled algebra over a finite field, with some `EL_N(R)` not LEF.
+- **REALISED (unreviewed)** by un-sofic-not-lef (9ef8948121).
+  - `R = LC(X,F_q) ⋊ Γ_p`, for a free minimal subflow of the Abels–Prüfer group.
+  - `S_N = EL_N(R)/Z` is infinite, simple, Kazhdan, `F_q`-linear sofic and not LEF
+    (`simple-kazhdan-linear-sofic-non-lef-group-exists`).
+  - Mechanism: Følner rank models, and a Whitehead embedding of the finitely presented, non-residually-finite `Γ_p`.
+  - This is the middle rung the ladder predicts: measure without towers. It sits strictly between the Pestov end
+    and the paradox end.
 - Conditional route `non-lef-kazhdan-el-group-from-fp-rank-modelled-simple-algebra`.
 - Together with (M⇐), it would give MF-but-not-LEF Kazhdan groups of simple rings.
 - Other middle sources:
@@ -208,6 +215,17 @@ established, unreviewed nodes, and the route is added after review).
   - For exactly matricial algebras the MF radical is trivial.
   - For irreducible SFT Leavitt algebras there is an explicit formula, read through Matui's groupoid homology.
   - The general low-degree homology statement is open.
+- **un-sofic-not-lef 9ef8948121:**
+  - Følner rank models for crossed products of amenable groups;
+  - the Whitehead embedding;
+  - finitely presented LEF groups are residually finite;
+  - the Gao–Jackson–Seward free subflow import;
+  - the middle-rung object.
+- **un-boundary-families 0e439a2b56:** paradoxical Cantor actions give simple Kazhdan groups with no MF quotient
+  (north–south, free products of finite groups, `p`-adic projective line). Open: one-ended hyperbolic groups.
+- **un-open-5 bec8c05389, 7e6f1c8002:** the marked group determines the subshift language; continuum many simple
+  Kazhdan LEF groups; every Turing degree is a word problem. Open: isomorphism ⇒ orbit equivalence, and LEF growth
+  against complexity.
 - **un-architect (this landing):**
   - root and route;
   - D0 nodes (Leavitt citation, crossed-product proof);

@@ -8,7 +8,17 @@ distinct_from:
   fp-simple-algebra-over-finite-field-with-rank-model: that asks only for the ring; this asks for the Kazhdan non-LEF elementary group and follows from that ring plus the LEF converse.
 ---
 
-**OPEN.** There are:
+**ESTABLISHED (unreviewed)** by the complete route `rank-modelled-non-lef-el-via-amenable-non-rf-subflow` (lane
+`un-sofic-not-lef`, 9ef8948121). `R = LC(X, F_q) ⋊ Γ_p`, where `X` is a free minimal subflow of the finitely presented,
+amenable, non-residually-finite Abels–Prüfer group `Γ_p`:
+- Følner rank models;
+- `Γ_p` sits inside `EL_N(R)` by Whitehead's lemma, so `EL_N(R)` is not LEF.
+
+The group-level strengthening, simple modulo centre and `F_q`-linear sofic, is
+`simple-kazhdan-linear-sofic-non-lef-group-exists`. No finite presentation of the ring is used; the original
+fp-ring route below stays conditional.
+
+There are:
 - a finite field `k`;
 - a finitely generated, infinite, simple unital `k`-algebra `R` with a unital rank model over `k`;
 - some `N >= 3`

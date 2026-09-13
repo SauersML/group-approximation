@@ -39,9 +39,32 @@ title: UN root — over a simple ring, the approximation type of the Kazhdan ele
 - (Σ⇒): `linear-sofic-el-groups-force-rank-model`;
 - (M⇐): `stably-finite-simple-rings-have-mf-elementary-groups`.
 
-A counterexample to a converse is itself a new object. Example:
-`rank-modelled-simple-algebra-with-non-lef-kazhdan-el-group`, together with (M⇐), would give a finitely
-generated simple-ring Kazhdan group that is MF but not LEF.
+A counterexample to a converse is itself a new object.
+
+**The middle rung is realised (unreviewed).** `simple-kazhdan-linear-sofic-non-lef-group-exists` (un-sofic-not-lef,
+9ef8948121): `EL_N(LC(X,F_q) ⋊ Γ_p)/Z`, over a free minimal subflow of the Abels–Prüfer group, is infinite, simple,
+Kazhdan, `F_q`-linear sofic and not LEF.
+- Its ring has rank models but is not exactly matricial: otherwise `GL_N` would be LEF, but it contains `Γ_p`.
+- So it is consistent with (L) and (Σ), and it is a live test ring for (L⇒).
+- Together with (M⇐), it would give an MF but non-LEF simple Kazhdan group.
+
+**Paradox-side families (unreviewed).**
+- `paradoxical-cantor-actions-give-simple-kazhdan-not-mf` (un-boundary-families, 0e439a2b56): a minimal topologically
+  free Cantor action with a finite generating clopen family and `2[X] <= [X]` gives infinite simple Kazhdan groups
+  with no MF quotient. Instances:
+  - `free-product-finite-groups-boundary-simple-kazhdan-not-mf`;
+  - `p-adic-projective-line-elementary-simple-kazhdan-not-mf`;
+  - `boundary-action-elementary-simple-kazhdan-not-mf`. Correctness note: there `k` must be finite for finite
+    generation and (T).
+- Open: `hyperbolic-group-cantor-model-simple-kazhdan-not-mf`.
+
+**Along the Pestov end, the approximation type is constant but the group is not** (un-open-5, unreviewed):
+- `marked-subshift-elementary-group-determines-language` and `continuum-many-simple-kazhdan-lef-groups` (bec8c05389);
+- `every-turing-degree-is-a-simple-kazhdan-lef-word-problem` (7e6f1c8002).
+
+The dynamics lives in the isomorphism type and the word problem, not in the approximation rung. Open:
+`subshift-elementary-group-isomorphism-forces-orbit-equivalence` and
+`subshift-elementary-group-lef-growth-tracks-complexity`.
 
 Blueprint: `research/artifacts/un-blueprint-2026-09-13-part1.md`.
 
