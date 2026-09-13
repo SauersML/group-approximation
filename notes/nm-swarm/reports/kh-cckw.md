@@ -169,3 +169,39 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
 - `decide +kernel` over `∀ … : Fin 3, … → False` (or an atomic `= …` conclusion) failed to synthesize `Decidable`; the same shape with
   a `∧`/`∨` conclusion synthesizes. Derive odd-cycle facts from the four-cycle lemma instead.
 - `simp only [smulVertex, mul_smul]` left `⟨x.fst, g • h • x.snd⟩ = ⟨x.fst, g • h • x.snd⟩` open; use `congrArg (Sigma.mk x.1) (mul_smul g h x.2)`.
+
+## RELAUNCH 09-13 (non-MF every-line swarm; target: closed hT6)
+- sec4-sentences is dead, so the T6 assembly it owned is now mine (roster W3).
+- 740ad6224 (PROBE GREEN 0913-015305-10857, base 49ad84503): `GGT/SystolicProjectionClique` and `GGT/SystolicTriangleCondition`.
+  - Fix: the orphan landed unverified at 3cf9bd845 was red. `omega` ran before the base point `o` of
+    `exists_walk_iterate_stepToward` was resolved; it is now passed explicitly.
+  - `projectionClique_of_linksSixLarge hfill hfold h6 hconn : ProjectionClique X.G`.
+  - New: `triangleCondition_of_linksSixLarge hfill hfold h6 hconn : TriangleCondition X.G`. Proof: strong induction on the
+    distance, with a least disc over the closed path u ⇝ o ⇝ v → u. Its corners u, v, o have degree ≥ 3, its two sides are geodesics,
+    and the boundary curvature is ≥ 6.
+  - With `noInducedFourCycle_of_linksSixLarge` and `noInducedFiveCycle_of_linksSixLarge` (SystolicProjection), all four graph
+    conditions of `dismantlable_of_forall_dist_le` now hold over hfill, hfold, h6, hconn.
+- 7d64d1118 (PROBE GREEN 0913-020656-77896, base 79a62aa7c; every theorem passes `#audit_axioms`), new orphans:
+  - `GGT/SystolicInvariantClique`:
+    - `dist_iso hconn f a b`: graph automorphisms preserve distance.
+    - `exists_invariantClique_of_graphConditions hconn hF1 hF2 hC4 hC5 hfin ρ`. H is the intersection of the balls of radius R about
+      the orbit of o, where R is the largest distance from the orbit to o. H is finite, contains o and is invariant, so it is
+      dismantlable and holds an invariant clique.
+    - `exists_invariantClique_of_linksSixLarge hzip hfold hsc hconn h6 hfin ρ`. hfill comes from `fillingStatement_of_simplyConnected`
+      with the proved moves `attachTriangleStatement`, `insertChordStatement`, `attachPendantStatement`.
+  - `Kazhdan/CCKWSystolicInvariantClique`:
+    - `CCKW.systolicInvariantClique_of_zipFold (hzip : ∀ (V : Type) (X : Systolic.TriangleComplex V), Systolic.ZipSpurStatement X)
+      (hfold : ∀ V X, Systolic.MirrorFoldStatement X) : CCKW.SystolicInvariantCliqueStatement`.
+    - `CCKW.invariantCliques_of_zipFold`, `CCKW.cckwFiniteOrderConjugateIntoVertex_of_zipFold hzip hfold` and
+      `sharpExistence_ghb7_of_zipFoldHyp hzip hfold hhyp` use only the leaves at `CCKW.cosetComplex`.
+
+## RESIDUAL (09-13, exact)
+- hT6 = `CCKW.SystolicInvariantCliqueStatement` rests on `∀ (V : Type) (X : Systolic.TriangleComplex V), Systolic.ZipSpurStatement X`
+  and `∀ (V : Type) (X : Systolic.TriangleComplex V), Systolic.MirrorFoldStatement X`. These are kh-torsion's and fff-periodic's
+  producers, which the roster already asks them to state for every X.
+- The Kotowski–Ollivier route needs no hT6. `sharpExistence_ghb7_of_zipFoldHyp` takes the same `hzip hfold` at `CCKW.cosetComplex`
+  as `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold`, so ko-closed can drop the hT6 binder of `kotowskiOllivier_of_leaves`.
+
+## NEXT (09-13)
+- When the generic producers land: `theorem systolicInvariantClique : CCKW.SystolicInvariantCliqueStatement`.
+- Then the next roster item, or ask the lead.
