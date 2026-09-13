@@ -31,7 +31,7 @@ namespace GroupApproximation.ChainCore.DynamicRankBudget
 open MFQuotientUnits ReturnTowerUnits
 
 variable {R : Type*} [Ring R] {N r : ℕ} (τ : ReturnTowerUnits R N r)
-variable {n : Type*} [Fintype n] [DecidableEq n]
+variable {n : Type*} [DecidableEq n]
 
 /-- Every entry of `M - 1` lies in the corner `p_C R p_C`. -/
 def IsCornerDeviation (M : Matrix n n R) : Prop :=
@@ -65,7 +65,7 @@ theorem p_mul_mul_p_of_isCornerDeviation {M : Matrix n n R} (hM : IsCornerDeviat
 
 /-- The inverse of a unit with corner deviation has corner deviation:
 `g⁻¹ - 1 = -((g - 1) g⁻¹) = -(g⁻¹ (g - 1))`. -/
-theorem isCornerDeviation_inv {g : (Matrix n n R)ˣ}
+theorem isCornerDeviation_inv [Fintype n] {g : (Matrix n n R)ˣ}
     (hg : IsCornerDeviation τ (g : Matrix n n R)) :
     IsCornerDeviation τ (↑g⁻¹ : Matrix n n R) := by
   intro i j
@@ -83,18 +83,15 @@ theorem isCornerDeviation_inv {g : (Matrix n n R)ˣ}
 
 /-- **The phase-zero placement** of `M ∈ M_n(R)` in `M_n(M_r(P_C))`. -/
 def placement (hr : 0 < r) (M : Matrix n n R) : Matrix n n (Matrix (Fin r) (Fin r) τ.Base) :=
-  Matrix.of fun i j => Matrix.of fun a b =>
-    if (⟨0, hr⟩ : Fin r) = a ∧ (⟨0, hr⟩ : Fin r) = b then cornerOf τ (M i j)
-    else if i = j ∧ a = b then 1 else 0
+  Matrix.of fun i j =>
+    Matrix.single ⟨0, hr⟩ ⟨0, hr⟩ (cornerOf τ (M i j)) +
+      if i = j then 1 - Matrix.single ⟨0, hr⟩ ⟨0, hr⟩ 1 else 0
 
-theorem placement_eq (hr : 0 < r) (M : Matrix n n R) (i j : n) :
+theorem placement_apply (hr : 0 < r) (M : Matrix n n R) (i j : n) :
     placement τ hr M i j =
       Matrix.single ⟨0, hr⟩ ⟨0, hr⟩ (cornerOf τ (M i j)) +
-        if i = j then 1 - Matrix.single ⟨0, hr⟩ ⟨0, hr⟩ 1 else 0 := by
-  refine Matrix.ext fun a b => ?_
-  simp only [placement, Matrix.of_apply, Matrix.add_apply, Matrix.single_apply, ite_apply,
-    Matrix.sub_apply, Matrix.one_apply, Matrix.zero_apply]
-  split_ifs <;> simp_all
+        if i = j then 1 - Matrix.single ⟨0, hr⟩ ⟨0, hr⟩ 1 else 0 :=
+  rfl
 
 theorem phi_single (i₀ j₀ : Fin r) (c : τ.Base) :
     τ.phi (Matrix.single i₀ j₀ c) = τ.a (τ.lo i₀) * (c : R) * τ.b (τ.lo j₀) := by
@@ -115,14 +112,14 @@ theorem phi_placement (hr : 0 < r) (M : Matrix n n R) (i j : n) :
     τ.phi (placement τ hr M i j) =
       τ.a (τ.lo ⟨0, hr⟩) * (τ.p * M i j * τ.p) * τ.b (τ.lo ⟨0, hr⟩) +
         if i = j then τ.phi 1 - τ.a (τ.lo ⟨0, hr⟩) * τ.p * τ.b (τ.lo ⟨0, hr⟩) else 0 := by
-  rw [placement_eq, map_add, phi_single, coe_cornerOf]
+  rw [placement_apply, map_add, phi_single, coe_cornerOf]
   split_ifs
   · rw [map_sub, phi_single, coe_cornerOne]
   · rw [map_zero]
 
 /-- **"which $\Phi$ sends to $(1-p_C)I_n+g$"** (tex 1755): unitization sends the phase-zero
 placement of a corner deviation back to the matrix. -/
-theorem unitize_placement (hr : 0 < r) (ha : τ.a (τ.lo ⟨0, hr⟩) = τ.p)
+theorem unitize_placement [Fintype n] (hr : 0 < r) (ha : τ.a (τ.lo ⟨0, hr⟩) = τ.p)
     (hb : τ.b (τ.lo ⟨0, hr⟩) = τ.p) {M : Matrix n n R} (hM : IsCornerDeviation τ M) :
     τ.unitize n (placement τ hr M) = M := by
   have hp : τ.p * τ.p = τ.p := τ.isIdempotentElem_p.eq
@@ -142,7 +139,7 @@ theorem unitize_placement (hr : 0 < r) (ha : τ.a (τ.lo ⟨0, hr⟩) = τ.p)
     abel
 
 /-- The phase-zero placement of a unit with corner deviation, as a unit of `M_n(M_r(P_C))`. -/
-def placementUnit (hr : 0 < r) (ha : τ.a (τ.lo ⟨0, hr⟩) = τ.p)
+def placementUnit [Fintype n] (hr : 0 < r) (ha : τ.a (τ.lo ⟨0, hr⟩) = τ.p)
     (hb : τ.b (τ.lo ⟨0, hr⟩) = τ.p) (g : (Matrix n n R)ˣ)
     (hg : IsCornerDeviation τ (g : Matrix n n R)) :
     (Matrix n n (Matrix (Fin r) (Fin r) τ.Base))ˣ where
@@ -155,7 +152,7 @@ def placementUnit (hr : 0 < r) (ha : τ.a (τ.lo ⟨0, hr⟩) = τ.p)
     rw [map_mul, map_one, unitize_placement τ hr ha hb (isCornerDeviation_inv τ hg),
       unitize_placement τ hr ha hb hg, Units.inv_mul]
 
-theorem coe_placementUnit (hr : 0 < r) (ha : τ.a (τ.lo ⟨0, hr⟩) = τ.p)
+theorem coe_placementUnit [Fintype n] (hr : 0 < r) (ha : τ.a (τ.lo ⟨0, hr⟩) = τ.p)
     (hb : τ.b (τ.lo ⟨0, hr⟩) = τ.p) (g : (Matrix n n R)ˣ)
     (hg : IsCornerDeviation τ (g : Matrix n n R)) :
     (placementUnit τ hr ha hb g hg : Matrix n n (Matrix (Fin r) (Fin r) τ.Base)) =
@@ -163,7 +160,7 @@ theorem coe_placementUnit (hr : 0 < r) (ha : τ.a (τ.lo ⟨0, hr⟩) = τ.p)
   rfl
 
 /-- **Unitization sends the placement unit back to `g`** (tex 1754–1755). -/
-theorem unitizeGL_placementUnit (hr : 0 < r) (ha : τ.a (τ.lo ⟨0, hr⟩) = τ.p)
+theorem unitizeGL_placementUnit [Fintype n] (hr : 0 < r) (ha : τ.a (τ.lo ⟨0, hr⟩) = τ.p)
     (hb : τ.b (τ.lo ⟨0, hr⟩) = τ.p) (g : (Matrix n n R)ˣ)
     (hg : IsCornerDeviation τ (g : Matrix n n R)) :
     τ.unitizeGL n (placementUnit τ hr ha hb g hg) = g :=
@@ -175,9 +172,13 @@ theorem placement_sub_one_apply (hr : 0 < r) (M : Matrix n n R) (i j : n) (a b :
       if (⟨0, hr⟩ : Fin r) = a ∧ (⟨0, hr⟩ : Fin r) = b then
         cornerOf τ (M i j) - (if i = j then 1 else 0)
       else 0 := by
-  simp only [placement, Matrix.sub_apply, Matrix.of_apply, Matrix.one_apply, ite_apply,
-    Matrix.zero_apply]
-  split_ifs <;> simp_all
+  rw [Matrix.sub_apply, Matrix.sub_apply, placement_apply, Matrix.add_apply, Matrix.single_apply]
+  by_cases hij : i = j
+  · subst hij
+    rw [if_pos rfl, if_pos rfl, Matrix.one_apply_eq, Matrix.sub_apply, Matrix.single_apply]
+    split_ifs <;> abel
+  · rw [if_neg hij, if_neg hij, Matrix.one_apply_ne hij, Matrix.zero_apply]
+    split_ifs <;> abel
 
 /-- **The deviation of the placement is `M - 1` in phase `(0,0)` and `0` elsewhere.** -/
 theorem coe_placement_sub_one_apply (hr : 0 < r) {M : Matrix n n R}
@@ -185,16 +186,14 @@ theorem coe_placement_sub_one_apply (hr : 0 < r) {M : Matrix n n R}
     ((placement τ hr M - 1) i j a b : R) =
       if (⟨0, hr⟩ : Fin r) = a ∧ (⟨0, hr⟩ : Fin r) = b then (M - 1) i j else 0 := by
   rw [placement_sub_one_apply]
-  split_ifs with h
+  split_ifs with h hij
   · have key := p_mul_mul_p_of_isCornerDeviation τ hM i j
-    by_cases hij : i = j
-    · rw [if_pos hij]
-      show τ.p * M i j * τ.p - τ.p = (M - 1) i j
-      rw [key, if_pos hij, add_sub_cancel_right]
-    · rw [if_neg hij]
-      show τ.p * M i j * τ.p - 0 = (M - 1) i j
-      rw [key, if_neg hij, add_zero, sub_zero]
-  · exact coe_corner_zero _ _
+    show τ.p * M i j * τ.p - τ.p = (M - 1) i j
+    rw [key, if_pos hij, add_sub_cancel_right]
+  · have key := p_mul_mul_p_of_isCornerDeviation τ hM i j
+    show τ.p * M i j * τ.p - 0 = (M - 1) i j
+    rw [key, if_neg hij, add_zero, sub_zero]
+  · rfl
 
 end GroupApproximation.ChainCore.DynamicRankBudget
 
@@ -202,7 +201,6 @@ end GroupApproximation.ChainCore.DynamicRankBudget
 
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.p_mul_mul_p_of_isCornerDeviation
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.isCornerDeviation_inv
-#audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.placement_eq
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.phi_single
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.phi_placement
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.unitize_placement
