@@ -7,7 +7,10 @@ distinct_from:
   non-weakly-sofic-finitely-presented-reduction: that transfers a hypothetical non-weakly-sofic group to a finitely presented one; this is the existence statement itself.
   weakly-sofic-not-sofic: that separates weak soficity from soficity through a weakly sofic nonsofic group; this asks for a group outside the weakly sofic class.
   binary-leavitt-unit-group-is-weakly-sofic: that asks whether one explicit simple nonsofic group is weakly sofic; a negative answer there would establish this claim.
+root: true
 ---
+
+**Root (2026-09-13, ex-steward).** Glebsky--Rivera, J. Algebra 320 (2008), Conjecture 4.5, as stated below.
 
 **OPEN.** There is a countable group that is not weakly sofic in the sense of Glebsky--Rivera
 (Definition 4.1 of J. Algebra 320 (2008)). This is their Conjecture 4.5, equivalent by their

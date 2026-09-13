@@ -8,7 +8,10 @@ artifacts:
   - research/artifacts/pauli-frustration-stabilizer-rounding-2026-09-12.md
 distinct_from:
   quantum-pcp-constant-gap-local-hamiltonian: that is the Hamiltonian form; this is the games form, whose honest provers must be efficient given copies of the witness. MIP* = RE shows the games form is meaningless without that efficiency requirement.
+root: true
 ---
+
+**Root (2026-09-13, ex-steward).** The Fitzsimons--Vidick games quantum PCP conjecture, as quoted by Bergamaschi--Metger--Vidick--Zhang, arXiv:2510.01333v1, Section 1.1.
 
 **OPEN.** The conjecture of Fitzsimons--Vidick, in the form quoted by
 Bergamaschi--Metger--Vidick--Zhang (arXiv:2510.01333v1, Section 1.1): there is an

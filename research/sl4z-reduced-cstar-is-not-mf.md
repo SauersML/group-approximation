@@ -5,7 +5,10 @@ kind: claim
 title: The reduced C-star algebra of SL_4(Z) is not MF
 distinct_from:
   sl4z-representations-have-sl2-invariant-vectors: that excludes strongly convergent genuine finite-dimensional representations; this excludes every MF embedding, including asymptotic homomorphisms that are not near representations.
+root: true
 ---
+
+**Root (2026-09-13, ex-steward).** Magee--de la Salle, arXiv:2312.03220v2, p. 2, quoted below: MF-ness of `C*_r(SL_4(Z))` is not known. This claim is its negative side.
 
 OPEN.  `C*_r(SL_4(Z))` admits no injective *-homomorphism into a norm matrix
 corona `prod_n M_(k_n) / sum_n M_(k_n)`.

@@ -6,7 +6,10 @@ title: There is no unital homomorphism from L_(F_2)(1,2) ⊗ L_(F_2)(1,2) to L_(
 distinct_from:
   leavitt-tensor-powers-are-left-coherent: that is coherence of tensor powers, whose Attempts record the embedding question as open; this is the embedding question itself in characteristic two, as a target for implications.
   leavitt-commuting-units-are-algebraically-dependent: that is a statement about pairs of commuting units; this is the tensor-square nonembedding that it implies.
+root: true
 ---
+
+**Root (2026-09-13, ex-steward).** The case `k = F_2` of Ara--Cortiñas, *Tensor products of Leavitt path algebras*, arXiv:1108.0352v3, p. 8, Question 5.7, quoted below.
 
 **OPEN.** Let `L = L_(F_2)(1,2)`. No unital ring homomorphism `L ⊗_(F_2) L -> L` exists. Since `L ⊗ L` is
 simple, the same statement holds for unital embeddings.

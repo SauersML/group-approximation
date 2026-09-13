@@ -5,7 +5,10 @@ kind: claim
 title: There is an infinite left-orderable group with property (T) (Navas's Question 3)
 distinct_from:
   left-orderable-group-with-rigid-compression-pair: that asks for a Kazhdan pair with compressions inside a left-orderable group and implies this; this asks only for one infinite left-orderable Kazhdan group.
+root: true
 ---
+
+**Root (2026-09-13, ex-steward).** Navas, *Group actions on 1-manifolds: a list of very concrete open questions*, arXiv:1712.06462v2, p. 3, Question 3, quoted below.
 
 **Statement (OPEN).**  Some infinite group with Kazhdan's property (T) is
 left-orderable.
