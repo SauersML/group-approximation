@@ -10,7 +10,9 @@ artifacts:
   - research/artifacts/bh-leavitt-path-steinberg-hosts-2026-09-12.md
 ---
 
-**OPEN (citation to import).** Let `E` be a finite graph with `L = L_K(E)` purely
+**ESTABLISHED (literature import, 2026-09-12; route `purely-infinite-leavitt-path-cancellation-agp-proof`,
+from Ara--Goodearl--Pardo Proposition 2.2 in `agp-purely-infinite-simple-rings-have-cancellative-projectives`).**
+Let `E` be a finite graph with `L = L_K(E)` purely
 infinite simple. If `P` and `Q` are nonzero finitely generated projective right
 `L`-modules with `[P] = [Q]` in `K_0(L)`, then `P ≅ Q`.
 
@@ -22,7 +24,13 @@ Those are properties (P1) and the complement half of (P2) in
 
 ## Attempts
 
-- **Expected sources, not yet read.**
+- **Resolved (2026-09-12, ex-lueck-approximation).** Ara--Goodearl--Pardo, arXiv:math/0111066v1, was
+  read from PDF text. "Proposition 2.2. If R is a purely infinite simple ring, then V(R)∗ is a group.
+  In particular, any nonzero finitely generated projective R-modules which are stably isomorphic must be
+  isomorphic." The definition assumes only simplicity and infinite idempotents in every nonzero right
+  ideal, so non-regular `L_K(E)` is covered. Downstream consumer:
+  `leavitt-path-unit-groups-with-trivial-unit-class-are-l2-acyclic`.
+- **Expected sources (as first recorded).**
   - Ara--Moreno--Pardo (Algebr. Represent. Theory 2007): `V(L_K(E)) ≅ M_E`, the
     graph monoid.
   - Ara--Goodearl--Pardo, arXiv:math/0111066: for a purely infinite simple ring,
