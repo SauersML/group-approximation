@@ -74,3 +74,17 @@ though it has no rate.
   claim and is the seed of `regular-finite-table-quantum-classical-hamming-gap`; the
   absence of separators across many small tables is evidence for the collapse
   and tells the affirmative programme where to look.
+- **Prove the collapse for tracial models.**  False (§3 of
+  `research/artifacts/q34-rounding-routes-2026-09-12.md`).
+  - Replace "finite-dimensional quantum" by "tracial".  The regular
+    representation of the group of `finitely-presented-nonsofic-group-exists`
+    is then a feasible point on the regular face.
+  - Points of `closure(C_class)` near the face are finite partial actions with
+    small loss, so equality would make that group sofic.
+  - The closure of the finite-dimensional cone is the R^omega-embeddable cone.
+    So a proof has to separate R^omega-embeddable data from that regular
+    representation.
+  - The known CP versus CPSD separators do not transfer.  On the regular face
+    the second-order data `tau(U_h^* U_g)`, on tested pairs, is near the
+    identity matrix, which is CP.  A separator there must read product
+    (associativity) data.
