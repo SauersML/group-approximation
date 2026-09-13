@@ -217,6 +217,30 @@ Lane `ex-verify-dynamics`, 2026-09-13.
   - `δ'(γ) = ĝ δ(γ) ĝ^-1` satisfies `π∘δ' = id` on `Q_0`, so it splits the extension over `Q_0`.
   - Deligne: `E_3` is not residually finite, so the extension is not virtually split.
 
+## 13e. Import checks against sources, and Radu's horizontal quotient (79102e615f)
+
+| item | verdict |
+|---|---|
+| Alpeev–Seward arXiv:1705.09707, Theorem 1.11(i)–(ii) (text line 250), consumed by §5, §10, §13b | PASS, verbatim |
+| Popa math/0512646v8, Theorem 0.3 and the freeness sentence for generalized Bernoulli actions (text line 186), consumed by §9 | PASS, verbatim. The s-malleability and weak-mixing sentences did not grep, because of hyphenation, and are not re-checked |
+| Burger–Mozes, *Groups acting on trees: from local to global structure*, Publ. IHÉS 92: §1.1 definitions (p. 116), p. 117 normal-subgroup sentences, Proposition 1.2.1(1)–(3) (p. 117), Lemma 3.1.1 (p. 141), Proposition 3.1.2 (p. 142); consumed by §11 | PASS, read from the PDF pages. The lattices paper (items 4–5 of the node) was not read here; it feeds only conditional routes and examples |
+| `radu-horizontal-quotient-is-quaternionic-s-arithmetic` (+ `-proof`) | PASS. The exact normalizer and trace checks are taken from the landed script output |
+| OPEN `radu-horizontal-quotient-is-arithmetic-lattice` | open, with Attempts; the Euler characteristic numerology is marked unverified |
+
+- **Traces.**
+  - `det ρ(ba) = m²`, so `tr g = m + 1/m = w`.
+  - Fricke gives `tr[g,h] = w² + 1/4 + (1/2 − w)² + (w/2)(1/2 − w) − 2 = (3/2)w² − (3/4)w − 3/2`, which is `0`
+    by `w² = (w+2)/2`. So `tr[g,h] − 2 = −2`, and `⟨g,h⟩` is irreducible.
+- **Ramification.**
+  - The 2×2 leading minor is `w/2 − 3`, and the 3×3 minor, recomputed here, is `4`.
+  - The sign sequence `+,+,−,+,−` gives signature `(1,3)`, the trace form of the Hamilton quaternions. So `B`
+    ramifies at both real places.
+  - Discriminant `−4` makes `O_𝔭` maximal of discriminant `1` at odd `𝔭`, so `B` is split there.
+  - `B_𝔮 = M_2(Q_2)`, and reciprocity then splits `B` at `𝔮'`.
+- **Discreteness.** Scale `β ∈ N(O)` to be integral with `nrd β` in a finite set of `S`-units modulo squares.
+  Positive definiteness at the real places bounds `β` there, so `O[1/2]` meets bounded sets at every place in
+  finite sets.
+
 ## 14. Firing sweep (135 nodes landed by the eight original lanes; refills in §§10, 13)
 
 - **`requires: []` routes: 18.**
