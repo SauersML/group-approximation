@@ -104,7 +104,13 @@ every group.
   mismatch. PASS on the Chern–Quillen VTF chain (ex-hyperbolic-vtf), the unique-product dichotomy
   (ex-left-orderable-nonsofic) and norm quantization below two (ex-determinant-monster). Part 2.
 
+- **§3, Thompson F and residual finiteness complexity (to 00:05 CDT).** Status recheck: Pestov 9.1
+  establishes after review, and nothing else famous flips. PASS on the Thompson F sofic and hyperlinear
+  stability dictionaries (ex-thompson-v-soficity). PASS on `RF_fp` and `LEF_fp` Pi^0_2-completeness
+  (ex-complexity-sofic), after Lemma A, false as first stated, was corrected in `ec53d79731`. Part 3.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
 - `research/artifacts/ex-review-groups-2026-09-12-part2.md`: §2, sweep, VTF chain, dichotomy, quantization.
+- `research/artifacts/ex-review-groups-2026-09-12-part3.md`: §3, status recheck, Thompson F dictionaries, `RF_fp` completeness.
