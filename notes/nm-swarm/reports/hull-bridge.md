@@ -39,6 +39,23 @@ induction hypothesis on quotient-ball stretches.
   `relativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement_of_letterPullback` and (D)'s producer of
   `QuotientPeripheralLetterPullbackStatement`. It will land when (D)'s module is on main.
 
+## Swarm 2026-09-13
+- Landed: GGT/HullSCLemma51LetterPullbackCutLift (dfa2dfb11), green in probe 0913-041834-85289.
+  `CutLift` records one certificate cut of a rotated lift; `CutLiftOutcome` is the interface between
+  the cut move and its outcomes.
+- Peers on the chain:
+  - debt-conditional: GGT/HullSCLemma51LetterPullbackCut, `letterStepBound_of_cutLiftOutcome`
+    (the M2 move bound from `CutLiftOutcome`).
+  - hull-component: GGT/HullSCLemma51LetterPullbackCutOutcome (a1f2e52da; `CutMove.outcome_before`,
+    `CutMove.mem_image_of_inner`) and GGT/HullSCLemma51LetterPullbackCutOutcomeSides
+    (`CutMove.outcome_left`, `CutMove.outcome_right`).
+- On disk, waiting for those two modules:
+  - GGT/HullSCLemma51LetterPullbackHolds: `CutLift.toCutMove`, `cutLiftOutcome`, and
+    `quotientPeripheralLetterPullbackStatement_holds : QuotientPeripheralLetterPullbackStatement.{u, v, w}`.
+  - GGT/HullSCLemma51EmbeddedBridgeHolds: `relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed :
+    RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0, 0, 0}`.
+- Once the two peer modules land, hbridge has no residual Props.
+
 ## Risks recorded
 - `BoundedRelativeLinearAreaTransferStatement` may be unprovable: its W-only area predicate cannot see the
   relations of G (docstring in GGT/HullSCLemma44BoundedInput). Nothing routes through it.
