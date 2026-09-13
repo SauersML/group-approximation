@@ -38,3 +38,7 @@ remark does not single out outer actions.
   unit class in `o2-central-sequence-k-theory-bi-cyclotomic-transfer`.
 
 Route: `outer-zp-actions-on-o2-strongly-approx-inner-via-detection`.
+
+## Attempts
+
+- Through `outer-zp-actions-on-o2-strongly-approx-inner-via-detection`, waiting on `zp-restriction-and-crossed-product-detect-kk-g-contractibility`. The only route into that claim, `zp-detection-from-strong-approximate-innerness`, needs this claim back, so the pair is an equivalence rather than an attack. The live attempt is the `p = 2` criterion `z2-o2-actions-anti-inner-and-o3-rokhlin-criterion` above.

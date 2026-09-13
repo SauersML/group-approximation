@@ -50,3 +50,7 @@ products commute (their Lemma 4.8).  So this technique applies only to coset
 systems whose adjacent fibre PVMs commute, and a plain-graph version of this
 claim needs a different decoloring.  Read at source in the arXiv text,
 pp. 12--17.
+
+## Attempts
+
+- Through `non-group-dual-colored-qc-qa-pair-from-coset-system`, waiting only on `tracial-non-ru-coset-system-with-nonabelian-fibre-exists`, which has no route into it. Where the Roberson--Schmidt decoloring stops for plain graphs is recorded in the section "Plain graphs" above.
