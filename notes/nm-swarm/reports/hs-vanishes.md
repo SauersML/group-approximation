@@ -113,8 +113,8 @@ Its plan (`674b1b428`) names four more pieces:
 4. `WordConnectorPair` with `target_backward : b' < b`, and the component-family theorem at that
    orientation.
 
-sec5-sentences helps with one piece, and this lane takes a second one, confirmed through
-sec5-sentences rather than hull-count94.  State at origin `304a14bad`:
+The lead asked this lane to take a second piece, after confirming it with sec5-sentences rather than
+hull-count94.  State at origin `304a14bad`:
 
 * hull-count94:
   * `OlshanskiiFirstVisit` and `OlshanskiiOrientedLemma25` (`1c5f36398`), recorded GREEN in the wire
@@ -138,17 +138,19 @@ sec5-sentences rather than hull-count94.  State at origin `304a14bad`:
   * The closed `OsinLemma94AntiparallelMetricStatement`, from `isHyperbolicSpace_cayley_of_fourPoint`
     and monotone thresholds as in `unboundWordPolygonMonotone`.
 
-hs-vanishes proposed to sec5-sentences that it take both, consuming the wrapper through its
-statement.  No Lean is written until that is confirmed.
+hs-vanishes proposed to sec5-sentences that it take both.  sec5-sentences answered that it had
+already done both, after origin `7157facfd`, so this lane wrote no Lean for the layer:
 
-The closed statement also needs an oriented `OsinUnboundScale.exists_polygonPair`, which origin
-does not have.
-* `exists_orientedClassPair_of_aggregate_all` has no consumer on origin.
-* Its short-class hypothesis is `classLength vs n Bᶜ < a n / 1000`, not `≤ eps n`.
-* With `a = λ √ρ / 240 − c`, the scale's `density_large` gives both `100000 (δ + 1) ≤ a` and
-  `eps < a / 1000`.
+* `779509227` (`UnboundOrientedWordPolygon`): `OsinUnboundScale.exists_orientedPolygonPair` and the
+  closed `unboundOrientedWordPolygonMonotone : UnboundOrientedWordPolygonMonotoneStatement`.
+* `e3da1ba60` (`OsinLemma94AntiparallelMetric`): `exists_component_dense_of_sideBudget` and the
+  closed `osinLemma94AntiparallelMetric : OsinLemma94AntiparallelMetricStatement`, with
+  `#audit_closed_axioms`.
+* Probe `0913-034427-9910` GREEN (wire queue, 03:46).  Both modules are queued and not yet in the
+  root.
 
-That lemma goes with the proposed piece.
+So the metric half of Lemma 9.4 is closed.  The only open input of `osinLemma94Section_of_pieces`
+is `OsinLemma94PlanarRunInput`, owned by hull-unbound.
 
 Where the landed chain loses the orientation, which is where each piece plugs in:
 
@@ -180,15 +182,14 @@ Interfaces read at origin/main: `OlshanskiiPolygonClasses`, `OlshanskiiCutClasse
 * LANDED `850cd7b7d`: both modules, landed unverified.
 * Probe `0913-014626-72541` GREEN on base `a763cb445` (BUILT and COMPILED both modules).  The bytes
   on origin are identical, so the green landing reported NOTHING TO LAND (`49ad84503`).
-* Rows LANDED `d785326e7`.  Report LANDED `031bcc87b`, updated in `3e34da4ea` and by the commit that
-  carries this section.
+* Rows LANDED `d785326e7`.  Report LANDED `031bcc87b`, updated in `3e34da4ea`, `a4c5b47db` and by the
+  commit that carries this section.
 * Wire queue: `GroupApproximation.Manuscript.OneSidedMFRadical.HSVanishesProducers` at `850cd7b7d`;
   root-imported by root-wire's wave 2, `c72bdfd5d` (02:45).
 * Census merge `63f147d7b` (files at `94bb0a9f8`, 02:41): baseline lines 66 and 79 removed as stale.
   The three rows merged as `partial`.  The merge predates the root import, and a formalized row now
   needs its carriers in the root closure; the next merge regrades them.
 * Residual propositions owned by this lane: none.  The target is met by the producer.
-* Next: proposed to sec5-sentences, not yet confirmed: the dense-component selection at side budget
-  `K n` and the closed `OsinLemma94AntiparallelMetricStatement`, in
-  `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94AntiparallelMetric.lean` (no collision in
-  the repo or in Mathlib at `81a5d257`).  No Lean in flight.
+* Next: no piece.  The W1 h94 metric layer closed through sec5-sentences (`e3da1ba60`).  The
+  planar cases of `OsinLemma94PlanarRunInput` are split among hull-unbound, theoremc-retire (C1) and
+  sec5-sentences (roster, ~03:55).  The lead is asked for the next assignment.  No Lean in flight.
