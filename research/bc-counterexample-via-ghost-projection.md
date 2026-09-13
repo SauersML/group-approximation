@@ -10,8 +10,13 @@ requires: []
 **Dead.**
 
 **The proposal.**
-- Let `G` be a Gromov monster, or one of Osajda's residually finite monsters.
-  Its Cayley graph contains a coarsely embedded expander `X = ⊔ X_n`.
+- Let `G` be a Gromov monster, whose Cayley graph contains a **weakly** embedded
+  expander `X = ⊔ X_n`, or one of Osajda's isometric-expander groups, where the
+  embedding is isometric.
+  - Corrected 2026-09-13. An earlier version also listed Osajda's residually
+    finite non-exact groups and called the embedding coarse.
+  - Their relators are Z/2-homology covers and never form an expander family
+    (`osajda-rf-relator-covers-are-not-expanders`).
 - The spectral projection onto the functions that are constant on each `X_n`
   is a non-compact ghost.
 - Higson--Lafforgue--Skandalis (GAFA 12 (2002); context, not imported) use it

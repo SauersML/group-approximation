@@ -36,25 +36,32 @@ So the entry ticket for the module route is not non-exactness but the failure of
 with coefficients, which non-exactness does not imply (item 3). Among known finitely generated
 groups this failure is produced only by an **embedded expander** (weakly embedded for Gromov
 monsters, isometrically for Osajda's groups; corrected 2026-09-13 after
-`ex-review-analysis-2026-09-12-part9`): Gromov monsters,
-Osajda's isometric-expander groups,
-and the residually finite non-exact groups built over an expanding family
-(`osajda-monster-hosts-for-bc-module-route`, items (1),(2),(4)). The remaining a-T-menable
-non-exact groups are pruned.
+`ex-review-analysis-2026-09-12-part9`): Gromov monsters and Osajda's isometric-expander groups
+(`osajda-monster-hosts-for-bc-module-route`, items (1),(2)).
+- Osajda's residually finite non-exact groups (item (4)) are **not** verified hosts. Their
+  relators are Z/2-homology covers, which never form an expander family
+  (`osajda-rf-relator-covers-are-not-expanders`). An earlier version of this node listed them;
+  corrected 2026-09-13.
+- The a-T-menable non-exact groups are pruned.
 
 **Consequences.**
 - The module route does not *create* a Baum--Connes failure. It can only *internalise* a
   coefficient failure the host already has, moving it from a coefficient `B` to the group
   `V ⋊ G` with trivial coefficients. The host must already be a coefficient-counterexample group.
-- The known coefficient failures of the monsters are realised at **boundary** coefficients with
-  no invariant measure -- `l^inf(G)`, `C(βG)`, the uniform Roe algebra -- where the expander's
-  ghost lives. The module route asks for the failure to persist at the far smaller coefficient
+- The known coefficient failures of the monsters are realised at **Stone--Cech** coefficients
+  with no invariant probability measure: `l^inf(G) = C(βG)`, or `C_0(Ω_(βX))` in Finn-Sell's
+  form. That is where the expander's ghost lives.
+  - The corona coefficients over `Ω_(∂βX)` satisfy Baum--Connes
+    (`monster-bc-detector-lives-on-a-proper-orbit-ideal`).
+  - An earlier version called the failing coefficients "boundary" coefficients; corrected
+    2026-09-13.
+- The module route asks for the failure to persist at the far smaller coefficient
   `C(V^)`, which carries the **invariant Haar probability measure of full support** and no proper
   open orbit (`module-dual-actions-have-no-wandering-open-sets`). So the sharp open crux of
   `some-nonexact-group-has-a-k-inexact-module-triple` is:
 
   > Does the Baum--Connes-with-coefficients failure of an expander monster already occur at some
-  > *measured* module-dual coefficient `C(V^)`, or only at boundary coefficients?
+  > *measured* module-dual coefficient `C(V^)`, or only at Stone--Cech coefficients?
 
   A theorem that every `G`-action on a compact space carrying an invariant probability measure of
   full support satisfies Baum--Connes with those coefficients would **kill** the module route; no

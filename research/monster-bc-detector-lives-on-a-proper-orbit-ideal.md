@@ -13,10 +13,17 @@ distinct_from:
 from Finn-Sell, *On the Baum--Connes conjecture for Gromov monster groups*, arXiv:1401.6841v2,
 which recasts Higson--Lafforgue--Skandalis (HLS02) and Willett--Yu (WY12) groupoid-theoretically.
 
-Let `Γ` be a Gromov monster: it coarsely contains a large-girth bounded-degree expander
-`X ֒-> Γ`. Let `βX` be the Stone--Cech compactification, `∂βX = βX \ X` the corona, and
-`Ω_(βX)`, `Ω_(∂βX)` the enveloping `Γ`-spaces of the partial translation action (Finn-Sell
-Thms 3.6, 4.3).
+Let `Γ` be a Gromov monster **in Finn-Sell's sense** (Definition 3.5): a finitely generated
+group with a **coarse** embedding `X ֒-> Γ` of a large-girth expander of bounded degree.
+- Finn-Sell calls this definition "quite strong" and says groups of this nature rely "completely
+  on the work of Osajda".
+- So Theorems 3.7, 3.8 and 4.4 below apply as stated to host item (2) of
+  `osajda-monster-hosts-for-bc-module-route`, the isometric-expander groups.
+- Gromov's original monsters (item (1)) have only weakly embedded expanders. Higson--Lafforgue--
+  Skandalis treat them directly (clarified 2026-09-13).
+
+Let `βX` be the Stone--Cech compactification, `∂βX = βX \ X` the corona, and `Ω_(βX)`,
+`Ω_(∂βX)` the enveloping `Γ`-spaces of the partial translation action (Finn-Sell Thms 3.6, 4.3).
 
 **(1) Where the failure lives, and its sign.** *Finn-Sell Theorem 3.7.* The Baum--Connes assembly
 map for `Γ` with coefficients in `C_0(Ω_(βX))` **fails to be a surjection but is an injection**.

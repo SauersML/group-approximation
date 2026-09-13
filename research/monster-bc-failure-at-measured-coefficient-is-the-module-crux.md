@@ -10,7 +10,8 @@ distinct_from:
 ---
 
 **OPEN.** Fix an expander-monster host `G` failing Baum--Connes with coefficients
-(`osajda-monster-hosts-for-bc-module-route`, items (1),(2),(4)); by
+(`osajda-monster-hosts-for-bc-module-route`, items (1),(2); item (4) is not a verified host, see
+`osajda-rf-relator-covers-are-not-expanders`); by
 `module-defect-needs-non-k-exact-host` this is forced. The module route
 (`bc-counterexample-via-module-k-inexactness`) then turns on:
 
@@ -22,10 +23,13 @@ A "yes" builds a trivial-coefficient counterexample; a proof that measured coeff
 satisfy Baum--Connes would kill the route.
 
 **Why this is the whole content.**
-- The known monster failures are at **boundary** coefficients: `l^inf(G) = C(βG)`, the uniform
-  Roe algebra, the coarse-groupoid algebra (Higson--Lafforgue--Skandalis). These carry **no**
-  `G`-invariant probability measure -- `βG` has none for infinite `G` -- and the witness is the
-  expander's non-compact ghost supported on the boundary.
+- The known monster failures are at **Stone--Cech** coefficients: `l^inf(G) = C(βG)`, or
+  `C_0(Ω_(βX))` in Finn-Sell's groupoid form (Higson--Lafforgue--Skandalis;
+  `monster-bc-detector-lives-on-a-proper-orbit-ideal`).
+  - These carry **no** `G`-invariant probability measure, since `G` is non-amenable. An earlier
+    version said "for infinite `G`", which fails for amenable `G`; corrected 2026-09-13.
+  - The witness is the expander's non-compact ghost, which dies in the corona quotient.
+  - The corona coefficients over `Ω_(∂βX)` satisfy Baum--Connes (Finn-Sell Corollary 4.4).
 - A module dual `X = V^` is the opposite: compact metrizable, with the invariant Haar
   probability measure of full support and no proper open orbit
   (`module-dual-actions-have-no-wandering-open-sets`). To our knowledge no counterexample to
@@ -71,13 +75,21 @@ satisfy Baum--Connes would kill the route.
   the reduced ideal image. Traces are excluded above; the proper-orbit index is excluded by the
   geometry. A genuinely new, non-tracial, boundary-type index adapted to a compact **measured**
   system is what is missing.
-- **Residually finite handle, untested.** For an RF host (`osajda-monster-hosts-for-bc-module-route`
-  item (4)) with congruence quotients `G/N_i`, the reduced trace of a gapped spectral projection
-  is a limit of finite eigenvalue fractions (the mechanism recorded in
-  `bc-kun-thom-gap-label-is-congruence-eigenvalue-limit` for the group algebra). Whether the
-  analogous congruence approximation computes the **max-vs-reduced** comparison for the module
-  coefficient `C((Z/p)^G)`, rather than a trace, is unexplored and is the most concrete next
-  probe.
+- **Residually finite handle, untested and currently without a host.**
+  - The idea: for a residually finite host with congruence quotients `G/N_i`, the reduced trace of
+    a gapped spectral projection is a limit of finite eigenvalue fractions. That mechanism is
+    recorded for the group algebra in `bc-kun-thom-gap-label-is-congruence-eigenvalue-limit`.
+    Whether the analogous congruence approximation computes the **max-vs-reduced** comparison for
+    the module coefficient `C((Z/p)^G)`, rather than a trace, is unexplored.
+  - **No host (2026-09-13).** An earlier version pointed to Osajda's residually finite non-exact
+    groups (host item (4)).
+    - Their relators are Z/2-homology covers, which never form an expander family
+      (`osajda-rf-relator-covers-are-not-expanders`).
+    - No known theorem makes them fail Baum--Connes with coefficients, and by
+      `module-defect-needs-non-k-exact-host` a host must fail it.
+  - So the handle needs a residually finite group containing a weakly or coarsely embedded
+    expander. This lane knows of none; the check is bounded to HLS02, Willett--Yu I, Finn-Sell
+    arXiv:1401.6841 and Osajda arXiv:1703.03791.
 - **The kill through measured coefficients contains trivial-coefficient Baum--Connes.**
   - Consider a theorem that Baum--Connes holds at every coefficient `C(X)` whose compact `G`-space
     carries an invariant probability measure of full support. The one-point space with its Dirac
