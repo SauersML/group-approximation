@@ -148,6 +148,23 @@ clobbers.
     - `2d6574150d4d` and `c34115be7c92` (`MFQuotientUnitsDisplaysGeneral`, 9f9f5dedc);
     - `e681972f7114` and `901f1b49e4e9` (`MaxInfiniteProperIsometry`, 88180a8b8).
   - `KazhdanTransportSentences.lean` and `RankTwelveConfiguration.lean` have no audit lines in source.
+- **Wave 2 landings after 17:00 (all probe GREEN, queued for wiring):**
+  - `IntroMFDefinitionCoronaBridge` 0f5189f9a: IsOperatorMF ⟺ the printed MF definition at tex 87–98, for every countable G.
+  - `KorchaginLiteralSentence` and `IntroCompressorCentralizerSentence` c28a60924.
+  - `NormalKazhdanPrintedHypothesis` 796b5b00f: thm:normal-kazhdan over `PrintedOpAlmostRepresentation`.
+  - `OneSidedInversesPrintedSteps` a74a166ae.
+  - `BinaryExamplePrintedRoute` eb25dd606.
+  - `CitationSweepIntroAudit` c04133c00.
+  - `StepSubshiftCoreCalibration` 66a51b0eb (model only).
+  - `BilateralThreeTransfer` f087d9a4d.
+  - `ReturnTowerUnits` 28cd138ca and `ReturnTowerStatements` 4d2084188.
+  - `DynamicRankBudget` a2cb17f58 and `DynamicRankBudgetTorsionTransfer` aadb514ad.
+- **More census items:**
+  - Row corrections are in the lane files under `metadata/nm-census-rows/`: ms-intro-1, ms-intro-2, ms-inverses-2 (9 corrections), ms-compress-4 and ms-cite-1 (`b1b04e376fe7`: the Korchagin full-sequence carrier).
+  - `NON_MF_DISPLAY_CENSUS.tsv` (regenerated 14:17) still lists four displays of the old limsup-combination proof that are no longer in the tex: `ba198b2b9795`, `099d5bf78229`, `c3da18932be7`, `63be4079d36b`.
+  - Rows `69843250783b` and `5870021d2e03` carry the unnumbered z and v/w displays.
+  - Statement key `0ae6fc9e199c` is carried by hull-euler's direct atom-graph covering. The printed proof route is the pullback of symbolic defects (`042966c81c7e`, chain-itinerary), so grade the proof sentences against that route.
+- **Literature inputs:** the only cited result still assumed in any formalized or partial chain is Hull's small cancellation theorem, through hgreendlinger. See the ms-cite-1 and ms-cite-2 reports.
 - **Tex issue for the manuscript owner** (tex 663–664): the second badge of thm:normal-kazhdan names
   `NormalKazhdanPrintedRoute.manuscriptNormalKazhdanRadical_printedRoute`, which carries the old limsup-combination proof.
   The printed proof is the ultrafilter-trace route, closed as
