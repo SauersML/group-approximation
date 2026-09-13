@@ -990,3 +990,94 @@ against main.
 
 PASS. The target and `rokhlin-window-transport-is-dominated` stay OPEN. The domination node is a normal form, so nothing
 here is decision-level, and nothing is refuted.
+
+**Follow-up (`0a977f4e8`).** The lane took up the optional points.
+- Corollary 2(2) now uses `>=`, which is right: the two sides are equal at `C = 1`.
+- The `Z/5` calibration names `F = Z/5` and an order that starts `4 < 1 < 2`.
+  - The readers of site `0` are `0`, `3` and `4`.
+  - `x(4)` enters `y_4` but not `y_1`, and `x(2)` enters `y_1` but not `y_4`. So `(y_4, y_1)` is uniform and
+    independent of `x(0)`, and the terms of `4` and `1` vanish.
+  - Since `x(0) = y_1 + y_2 + y_4`, the term of `2` is `H(x(0) | y_4, y_1) - 0 = 1` bit.
+- Proposition 6 and the Følner node now state the empty cases.
+  - For `F = ∅`, `lambda = 0` and `H(x(1) | y_F) = k log q`.
+  - For `m = 0`, `y_F` depends only on `x` off site `1`.
+  - Both give `Phi >= log q`.
+- The two ESTABLISHED nodes cite Sections 9.1 and 9.4. The artifact's status section records that the Seward quotation
+  was not checked.
+
+Follow-up PASS.
+
+## 10. w6-free-pos-d: the coprime transfer to finite-stabilizer coset shifts (`3bf9dea0d`, `22506cf72`)
+
+`finite-stabilizer-coset-shifts-inherit-surjunctivity` is OPEN. Its Status bullet for `gcd(m, |H|) = 1` names this
+verifier. This section checks Theorem 1 and its remarks (artifact Section 1), then Section 2 and the node's Attempts.
+The claim has no proof route on main, so the verdict appears only here.
+
+### 10.1 Theorem 1 (coprime transfer). PASS.
+
+- **Identification.** `iota(g.y)(k) = y(g^-1 kH) = iota(y)(g^-1 k)`. `iota` is a continuous bijection from a compact
+  space onto `Y`, so it is a homeomorphism.
+- **Averaging.**
+  - `P` commutes with the shift, because right multiplication by `h` commutes with left translation.
+  - `P(z)(kh') = P(z)(k)` by the reindexing `h -> h'h`, and `P(y) = c|H| y = y` on `Y`.
+  - So `P^2 = P` with image `Y`, and `z = Pz + (z - Pz)` splits `X = Y ⊕ ker P`.
+- **Extension.**
+  - `tau o P` and `z -> z - Pz` are continuous and equivariant, since the shift acts by group automorphisms.
+    Curtis–Hedlund–Lyndon holds for every group, so `Phi` is an automaton.
+  - `P(Phi z) = tau(Pz)`, because `P` is additive and fixes `tau(Pz) in Y`.
+  - Injectivity, `Phi(X) ∩ Y = tau(Y)` and the preimage `z = u + (t - Pt)` all re-derive as written.
+  - `Phi` restricted to `Y` is `tau`, which gives the other direction of the node's "injective iff".
+- **Remarks.**
+  - *Memory:* `tau(Pz)(k)` reads `Pz(kf)`, which reads `z(kfh)`. With `z - Pz` reading `H`, the memory is `FH ∪ H`.
+  - *Several orbits:* each `P_i` needs its own inverse of `|H_i|`, and `Phi` acts on `(A^r)^G`. So the hypothesis is
+    needed at size `m^r`, as stated.
+  - *No per-`H` converse:* over `Z/2 × Z` the normal subgroup `H = Z/2` acts trivially on `B^(G/H)`. An injective
+    equivariant `F` would give `F(h.z) = F(z)`, so `h.z = z` for every `z`, which fails.
+  - Section 0's restriction argument needs `Y ≠ X`, which holds for `H ≠ 1` and `m >= 2`.
+- **Wording (optional).** The node says "a group" and the artifact "a countable group". The proof never uses
+  countability, so both are fine.
+- **Subsumption.** 24 nodes on main mention coset shifts. None transfers surjunctivity to self-maps of a
+  finite-stabilizer coset shift.
+  - `compressed-coset-shifts-carry-strict-equivariant-embeddings` needs `u H u^-1` properly inside `H`, which is
+    impossible for finite `H`.
+  - `site-pullbacks-strict-iff-stabilizer-self-compressed` concerns one-site maps.
+  - `full-shift-maps-to-infinite-stabilizer-coset-shifts-are-constant` and
+    `bernoulli-factors-to-infinite-stabilizer-coset-shifts-trivial` need infinite stabilizers.
+  - `invariant-output-injective-ca-need-torsion` and `invariant-output-injective-automata-need-invisible-symmetry`
+    concern automata from `X` into `Y`.
+  - `wreath-surjunctivity-reduces-to-stabilizer-products` concerns wreath products.
+  - The cited ids exist, and the node's Status bullets match Theorem 1.
+
+### 10.2 Section 2 and the Attempts (shared prime). Correct.
+
+- **Lemma 2.**
+  - Cauchy gives `h` of order `p` in `H` and `a` of order `p` in `A`, since `p | m = |A|`.
+  - On `F' = <h>F`, the map `f -> hf` has orbits of size exactly `p`.
+  - The sites `k h^i r` are distinct. `z(k h^i r) = a^i` gives `z(khf) = z(kf) a`, including the wrap at `i = p - 1`.
+  - Output in `Y` and equivariance under constants give `mu'(w) = mu'(wa) = mu'(w) a`, so `a = 1`. Correct.
+  - *Also:* at `k = 1` the enlargement can be skipped. Put `z(hx) = z(x) a` on every orbit of `x -> hx` in `G`. Then
+    the window at `h` is the window at `1` times `a`, whatever the memory.
+- **Corollary 3.** `(Qz)c in Y`, and `zc = ((Qz)c)(z (Qz)^-1)` uses commutativity. Correct.
+- **The three properties.**
+  - Step 3 of Theorem 1 is the splitting property with `y = tau(Pz)`.
+  - Step 5 uses that `P` has image `Y` and fixes `Y`.
+  - Step 6 uses splitting and commutativity. Correct.
+- **Wording (optional).** "has to depend on `tau`, or has to leave the shape" says more than is shown. Corollary 3
+  shows that the proof of Theorem 1 cannot run with a `tau`-independent `P`. It does not show that every
+  `tau`-independent extension of that shape fails.
+- **Min retraction.** The fibre over base `b` has `(m-b)^|H| - (m-b-1)^|H|` points, and the section limits its
+  conclusion to blockwise gauges. Correct.
+- **Amenable hosts.**
+  - `Y` is of finite type, through the two-cell patterns on `{k, kh}`.
+  - `Y` is strongly irreducible with gap `H`: `F_1 H ∩ F_2 H` is empty iff `F_2 ∩ F_1 H` is.
+  - `tau(Y)` is conjugate to `Y`, so it has the same entropy.
+  - Over amenable groups, a strongly irreducible subshift has no proper subshift of full entropy. This is standard,
+    and I did not re-read the source either. Correct.
+- **Node Attempts.**
+  - *Linear averaging:* with memory `H`, output in `Y` forces equal coefficients (reindex by `h -> h'h`), and fixing
+    `Y` forces `c|H| = 1` mod `m`. Correct.
+  - *Translation-equivariant retractions* is Lemma 2 with `A = Z/m` and `a = m/p`.
+  - `22506cf72` dropped the two "(to land)" markers, matching Section 2.
+
+PASS for Theorem 1. The claim stays OPEN at a shared prime. A transfer lemma between two surjunctivity properties is
+not decision-level, and nothing is refuted. The Status bullet can cite Section 10.1 in place of "unverified".
