@@ -106,6 +106,36 @@ The roster lists it among the orphans left on main, unwired, with no deletion. F
   - `GroupApproximation.Kazhdan.GHWJacobsonKazhdanFinite ghw-assembly 8d44c0d7a`, to be wired after
     `GHWTheoremFourClosed`.
 
+## Closed-wall flips (2026-09-13)
+
+The lead's item: for each baseline finding on a closed wall, add a form that consumes the closed
+producers. The flips are split by consumer module. This lane's set is the Kazhdan, CCKW, KMSGroup
+and HydeLodha consumers of `FinitelyPresentedInfiniteSimpleStatement`, zipSpur, zipPinch and
+`SystolicInvariantClique`.
+
+- On origin 5f789a7ba, 18 baseline lines name these four walls: 8 name the first and 10 name each
+  of the other three.
+- Lines 369 and 370 are in this lane's set.
+  - They are the open-predicate and buried-conditional findings on
+    `KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_of_leaves` (`Kazhdan/KotowskiOllivierClosed`),
+    which binds hzip, hfold and hT6.
+  - ko-closed landed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement` at f65f99f17.
+    - It has no binder and carries `#audit_closed_axioms`.
+    - Probe 0913-055250-45566 is GREEN, and its md5 matches the landed bytes.
+    - The root imports the module.
+  - This lane adds no module, since a second copy would duplicate that theorem.
+  - The census lane has the old and new names.
+  - No lane row names `_of_leaves` now. ko-closed's LINE:1675 row names `kotowskiOllivier_closed`.
+- No baseline line names a HydeLodha or CCKW declaration.
+- The other 16 lines are in other sets:
+  - 220, 223, 232, 235 and 286 are in `Manuscript/NonMF/TorsionFreeLiteratureInputsLeastArea`
+    (hull-bridge).
+  - 327-334 are in `Manuscript/NonMF/TheoremCAssemblyKOLeaves` (fff-periodic).
+  - 301, 304 and 307 are the `_of_hullLeaves_closedGO` forms in
+    `Manuscript/NonMF/TorsionFreeSectionAssemblyClosedGO`. nm-endpoints owns the module, and the
+    partition names no lane for them, so the lead has been asked.
+
 ## Next
 
-The roster section has no further item. The lane waits for the lead's next assignment.
+Waiting for the census lane to retire lines 369/370, and for the lead to rule on lines 301/304/307
+and assign the next item.
