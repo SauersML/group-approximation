@@ -68,7 +68,7 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
   - Every leaf on the ruled `_of_pocketParts` route has a named owner.
   - The only leaves no lane owns are `EstimatingJointConstructionStatement` and `PrefixKernelConeCutInductionStatement`, on the dead `_of_reduced` route. Taking either would duplicate W1.
   - Stale owner: C6′ `TwoGonHoldsInput` (`Estimating/OsinAppendixEulerSmallFaces:94`). The roster names debt-conditional, but that lane has no module and no report entry for it.
-  - Proposed pick: C6′ in a new module `Estimating/OsinAppendixEulerTwoGonHolds`, if the lead reassigns it. Nothing is probed until the lead rules.
+  - Ruled (lead, 09-13): C6′ stays with debt-conditional, which is working on it. This lane does not start it. The census goes into the roster.
   - Risk on the docstring route of C6′: `PocketRegion.ofSimpleClosedWalk` needs the merged walk (source arc reversed, right side of `a`, target arc, left side of `b`) to be simple. dgo-geometric's `OsinPocketPinchedTwoGonRegion` (`not_isSimpleClosedWalk`) shows a pinched pocket, so the route needs a no-pinch lemma for the optimum or a producer for pinched pockets.
 - Done for hull-select (team-lead: "hl-lemma46 joins as your helper"): `Estimating/OsinPocketMultipleEdgeTransport` at 1d177113c. Probe 0913-104724-79095: PROBE GREEN, BUILT, bytes = origin/main; axioms propext, Classical.choice, Quot.sound; in wire-queue. SHA and statement sent to hull-select.
   - `PocketRegion.fourSectionCuts_cellTransport`, with the statement hull-select specified: regions to sections `1` and `3` of the four-part multiple-edge pocket cut glue back into cell-to-cell regions. It is the `htransport` argument of `OsinMultipleEdgeCut.ofPocketRegion`.
