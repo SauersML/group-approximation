@@ -157,3 +157,21 @@ factors through a finite quotient of `F_m`.
      - A Hilbert--Schmidt analogue with approximate laws is the natural
        collapse input. Its exact form was not settled, and neither form was
        proved or refuted.
+6. **Local restricted Burnside, partly settled** (lane
+   solve-local-restricted-burnside, 2026-09-13). Not solved.
+   - `LRB(m,N)` of Attempt 5 is now the established node
+     `local-restricted-burnside-iff-partial-burnside-finite-quotients`.
+     - It holds iff some partial Burnside group
+       `Π_R(m,N) = F_m/⟨⟨h^N : |h| <= R⟩⟩` has only exponent-`N` finite quotients.
+     - For odd `N >= n_1(F_m)` it makes every large stage `G_k` not residually
+       finite.
+     - Residual finiteness of infinitely many stages refutes it.
+   - **Small radii fail.** `partial-burnside-presentations-are-golod-shafarevich`
+     gives unbounded finite `p`-groups satisfying the law on words of length
+     `<= R` whenever a prime power `q | N` has `q >= 4R + 5`.
+   - **Nilpotent groups satisfy it.**
+     `finite-nilpotent-groups-satisfy-local-restricted-burnside`. So large stages
+     `G_k` have finite pro-p completions, and a refutation at large radii needs
+     non-nilpotent finite groups.
+   - **Open instance.** `large-odd-exponent-local-restricted-burnside`, routed into
+     `non-residually-finite-hyperbolic-group`.
