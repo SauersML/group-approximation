@@ -22,4 +22,8 @@ requires a properly infinite, non-full projection in `M(C(X) ⊗ K)` whose fibre
 - Whether such a projection exists is a converse to the corona factorization property question: CFP asks
   whether full projections are properly infinite.
 - For finite-dimensional `X` no such projection exists, by Dixmier--Douady.
-- For infinite-dimensional `X` the question is open here.
+- For infinite-dimensional `X` the question is open here. It is now the open claim
+  `properly-infinite-nonzero-fibre-projection-is-full` (lane ex2-k1-defect-ideal).
+- `nonzero-fibre-projection-full-under-weak-omega-comparison` proves fullness whenever `Cu(C(X))` has
+  weak ω-comparison. The proof uses Ortega--Perera--Rørdam arXiv:0903.2917v4, Propositions 4.5 and 4.8.
+- So a counterexample needs a base such as `∏ S²`.

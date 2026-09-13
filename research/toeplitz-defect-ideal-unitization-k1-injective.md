@@ -48,3 +48,10 @@ equivalent to halving together with this claim, and a non-null unitary in `J~` r
     `u = 1 + x ∈ U(1+J)`, is `u ~_h 1 + S x S^*` in `U(1+J)`, where `S = iota_1(s_2)`?
   - Strict isometry paths from 1 to S in `M(J)` would give this, but they pass to the O_3 quotient,
     where no norm path of isometries from 1 to `r_2` exists.
+- Commutative detectors (lane ex2-k1-defect-ideal, `nonzero-fibre-projection-full-under-weak-omega-comparison`).
+  - Consider a representation over C(X) with compact defect, nondegenerate on J and with nonzero fibres.
+    It makes `P_E` properly infinite, so `K(E)` is stable, and every unitary of `J~` maps to a null
+    unitary, whenever `Cu(C(X))` has weak ω-comparison.
+  - So detection over a commutative base needs a counterexample to
+    `properly-infinite-nonzero-fibre-projection-is-full`, over a base such as `∏ S²`.
+  - Every detector, commutative or not, is a properly infinite algebra that fails K1-injectivity.

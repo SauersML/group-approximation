@@ -113,5 +113,9 @@ counterexample to `properly-infinite-nonzero-fibre-projection-is-full`, over a b
   - Proper infiniteness puts `θ^J` inside some `N_m`, by perturbing an approximate frame, for every J.
   - Once `J > r`, this forces `c_{top}(W) = 0` for the window `W = ⊕_{n<k≤m} M_k`, since
     `c(N_m) = c(W)`.
-  - Tails without sections would need obstructions invisible to Chern classes, such as torsion
-    secondary obstructions.
+  - This uses the triviality of the initial window. With a nontrivial initial window, mixed terms
+    `c_j(N_n) c_{rk W - j}(W)` can compensate (correction, 2026-09-13).
+  - Tree designs `M_{iw} ≅ M_w ⊕ R_{iw}` still fail: level k contains `M_∅^{⊕2^k}`, and
+    `e(M_∅)^{2^k} = 0` once `2^k` exceeds the dimension of the finite stage that `M_∅` comes from.
+  - So tails without sections need torsion secondary obstructions, or copies `V_w W` that move into
+    early windows at different points.

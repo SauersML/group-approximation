@@ -47,9 +47,15 @@ Why it matters (converse direction of the Corona Factorization question):
     continuous, and `{‖p(x)‖ = 1}` need not be closed.
 - **Partial positive lemma**: if `sup_x ‖W^*ξ(x)‖ < 1` for some isometry `W ∈ L(E)`, then `ξ^⊥`
   contains a complemented copy of E.
-- **Chern-class protection is impossible.** If `E = ⊕ M_k` with a trivial initial window of rank r, proper
-  infiniteness forces the top Chern class of every late window to vanish. So tails without sections must
-  be protected by secondary torsion obstructions.
+- **Chern-class protection.** Take `E = ⊕ M_k` with finite-rank pieces.
+  - If the initial window has rank r and is trivial, proper infiniteness forces the top Chern class of
+    every late window to vanish.
+  - With a nontrivial initial window, mixed Chern terms can compensate. Still, a witness ξ with
+    `F = ξ^⊥` having no unit section needs `θ^J ⊆ F ⊕ θ` for every J.
+  - Protecting tails requires either torsion secondary obstructions, or orthogonal copies `V_w W` of a
+    window W that move into early windows at different points in an infinite-dimensional pattern. The
+    simple tree designs `M_{iw} ⊇ M_w` fail, because `e(M_∅)^{2^k} = 0` for bundles pulled back from a
+    finite stage.
 - **Literature (bounded).** Checked:
   - OPR arXiv:0903.2917v4 sections 1 to 4;
   - OPR arXiv:0904.0541, already on main as `opr-properly-infinite-multiple-splits-citation`.
