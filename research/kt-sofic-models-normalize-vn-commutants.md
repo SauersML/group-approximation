@@ -58,9 +58,38 @@ realized by permutation matrices in `M = prod_U M_n`. Then `sigma(G)` normalizes
   genuine finite-dimensional coordinate models
   (`ccr-holds-for-all-genuine-fd-coordinate-models`). A witness needs
   positive-density non-exactness of `sigma` itself, not only of `z`.
-- **Expected excess, unproved.** Even in exact regular congruence models the core
-  should be a proper subalgebra of `R`. An ultraproduct of right group algebras of
-  the finite quotients contains Fourier-spread projections which are expected not
-  to be 2-norm limits of bounded combinations of centralizer permutations and
-  invariant diagonals. If so, Kun--Thom's permutation calculus cannot reach `R` even
-  where normalization is known, and the linear content has to come from elsewhere.
+- **The core and its bicommutant.** An ultraproduct of right group algebras of
+  finite quotients contains Fourier-spread projections which are not 2-norm limits
+  of bounded combinations of centralizer permutations and invariant diagonals, so
+  `N_sigma` is expected to be proper in `R` even for exact regular models (unproved).
+  The relative bicommutant `A_sigma` of the core repairs this. It is also normalized
+  (item 4 of `kt-sofic-monomial-commutant-core-is-normalized`), and through the
+  Alekseev--Thom genuine centralizer groups it contains `prod_U C[A_n]`. Hence:
+
+  ```text
+  (DENS)  R = A_sigma, i.e.  R' cap M = (C_(S_U)(sigma(Gamma)) union (D cap R))' cap M
+  ```
+
+  implies normalization for `sigma`. (DENS) is Alekseev--Thom Open Problem 6.2(a) for
+  the sofic model of `Gamma`, with the coordinate algebras prescribed as group algebras
+  of the permutation centralizers. It is not covered by
+  `at-op62-holds-for-representation-lifts`: that instance needs genuine unitary
+  representation lifts of `Gamma`, while a non-exact sofic model supplies only
+  asymptotic permutation actions. Under (DENS) the model is in the finite-dimensional
+  setting of `wall-coordinate-reduction-under-at-op62`.
+- **(DENS) is stronger than needed.** Already at coordinate level it fails for exact
+  transitive models `Q ↷ Q/Delta` with `Delta` not normal: the commutant is the Hecke
+  algebra `C[Delta\Q/Delta]`, while the centralizer group algebra is `C[N_Q(Delta)/Delta]`.
+  Normalization still holds there, because the finite image of `Gamma` is normal. So
+  the Hecke content of `R` needs a mechanism other than permutation density. Large-girth
+  `Delta` keep the canonical trace, so canonical-trace exact models carry it too
+  (coordinate-level remark, not transferred to the ultraproduct).
+- **Literature check (bounded).** Alekseev--Thom, arXiv:2608.05362, read from the arXiv
+  HTML on 2026-09-12 on MSI. Theorem 3.1 (verbatim): "Let G be a Kazhdan group and let
+  π:G→∏_𝒰 Sym(X_n) be a sofic embedding represented by homomorphisms α_n:F_S→Sym(X_n).
+  Then there exist an essentially equivalent sofic embedding π′:G→∏_𝒰 Sym(Y_n), and
+  subgroups A_n≤Sym(Y_n) such that C_{∏_𝒰 Sym(Y_n)}(π′(G))=∏_𝒰 A_n." Proposition 4.5
+  represents centralizer elements by bisections of the cluster groupoid, and Proposition
+  5.1 upgrades them to genuine homomorphisms by Becker--Chapman. The paper states no
+  result on the von Neumann or unitary commutant of a sofic embedding; Open Problem
+  6.2 asks about arbitrary unitary representations. No other source was checked.

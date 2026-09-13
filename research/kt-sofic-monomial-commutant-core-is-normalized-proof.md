@@ -64,3 +64,18 @@ it commutes with the trace-preserving conditional expectation `E_(N_sigma)`. If
 `z in R`, then `E_(N_sigma)(z) in N_sigma <= R` and its transport stays in `N_sigma <= R`.
 Hence `sigma(g)(z - E_(N_sigma)(z))sigma(g)^* notin R` whenever `sigma(g) z sigma(g)^* notin R`.
 This is item 3.
+
+**Step 4 (relative bicommutant).** Let `S = C_(S_U)(sigma(Gamma)) union (D cap R)`. By Steps
+2a and 2b, `sigma(g) S sigma(g)^-1 = S`, so `Ad sigma(g)` preserves `B_sigma = S' cap M` and
+`A_sigma = B_sigma' cap M`. Every `sigma(gamma)` commutes with `S`, so `sigma(Gamma) <= B_sigma`,
+and hence `A_sigma <= sigma(Gamma)' cap M = R`. Also `S <= A_sigma`, so `N_sigma <= A_sigma`.
+
+For the conditional add-on, assume `C_(S_U)(sigma(Gamma)) = prod_U A_n` with genuine finite
+groups `A_n` (Alekseev--Thom Theorem 3.1 provides this after padding by `o(|Y_n|)` points,
+which does not change `M`; nothing below uses that import). If `x in M` commutes with every sequence in
+`prod_U A_n`, then `sup_(a in A_n) ||[x_n, a]||_2 -> 0` along `U`: otherwise a sequence of bad
+`a_n` would be an element of `prod_U A_n` not commuting with `x`. Averaging `a x_n a^-1`
+over the finite group `A_n` is the conditional expectation onto `A_n' cap M_n`, so
+`x in prod_U (A_n' cap M_n)`. The reverse inclusion is clear. The same argument, averaging
+over the compact unitary group of `A_n' cap M_n`, gives
+`(prod_U (A_n' cap M_n))' cap M = prod_U C[A_n]`. These are the displayed identifications.

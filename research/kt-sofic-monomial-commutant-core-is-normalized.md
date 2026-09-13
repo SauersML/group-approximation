@@ -26,6 +26,16 @@ N_sigma = ( C_(S_U)(sigma(Gamma))  union  (D cap R) )''   inside M.
 3. **Witnesses live off the core.** If `z in R` and `sigma(g) z sigma(g)^* notin R`
    for some `g in G`, then `z - E_(N_sigma)(z)` lies in `R` and is orthogonal to
    `N_sigma`, and it has the same property.
+4. **Relative bicommutant.** Put `B_sigma = (C_(S_U)(sigma(Gamma)) union (D cap R))' cap M`
+   and `A_sigma = B_sigma' cap M`. Then `N_sigma <= A_sigma <= R`, and `sigma(G)` normalizes
+   both `B_sigma` and `A_sigma`. **Conditional add-on, no import used:** whenever
+   `C_(S_U)(sigma(Gamma)) = prod_U A_n` for genuine finite subgroups `A_n <= Sym(Y_n)`,
+   uniform averaging over `A_n` gives `(prod_U A_n)' cap M = prod_U (A_n' cap M_n)`, whose
+   relative commutant is `prod_U C[A_n]`. So `A_sigma` then contains the ultraproduct of
+   the group algebras of the centralizer groups, including Fourier-spread elements not
+   in `N_sigma`. Alekseev--Thom (arXiv:2608.05362, Theorem 3.1) supply exactly this
+   description after an essentially equivalent modification of the model; that import
+   is informational here and is not a prerequisite of this claim.
 
 Consequently, in a sofic model any failure of normalization of the von
 Neumann `Gamma`-commutant, which by
