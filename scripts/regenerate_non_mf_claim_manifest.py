@@ -158,6 +158,9 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "lem:transient-matrices": (),
     "thm:core-ring-reflection": (),
     "thm:core-mf-radical": (),
+    "prop:bilateral-three": ("Ershov--Jaikin-Zapirain, Theorem 1.1",),
+    "lem:involution-localization": (),
+    "cor:dynamic-rank-budget": (),
     # `thm:full-defect-ring` moved to EXACT_TARGETS 2026-09-07:
     # `PropertyT/IntegralColumnPlaneClosure.lean` closed
     # `FinitelyGeneratedRingGeneralRankElementaryPropertyT` unconditionally
@@ -280,7 +283,16 @@ DEPENDENCIES: dict[str, list[str]] = {
         "lem:chain-core-models", "lem:transient-matrices"],
     "thm:core-mf-radical": [
         "prop:torsion-defect-ring", "lem:chain-core-models",
-        "lem:transient-matrices"],
+        "lem:transient-matrices", "prop:bilateral-three"],
+    "prop:bilateral-three": [
+        "thm:compression-criterion", "lem:chain-core-models",
+        "lem:transient-matrices", "thm:core-ring-reflection"],
+    "lem:involution-localization": [
+        "lem:transient-matrices", "thm:core-mf-radical"],
+    "cor:dynamic-rank-budget": [
+        "prop:bilateral-three", "thm:core-mf-radical",
+        "lem:involution-localization", "thm:core-ring-reflection",
+        "prop:torsion-defect-ring"],
     "prop:clifford-locally-rf": [
         "prop:clifford-self-embedding", "prop:locally-rf-by-z-trace",
         "thm:factorization-nonmf-trace"],
