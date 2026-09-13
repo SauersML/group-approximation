@@ -235,13 +235,17 @@ unselected G-faces on its sides.  hull-unbound had already proved it in Estimati
 
 As the lead's fallback says, sec2 asked hull-unbound for the face-partition piece (`OsinLemma94PolygonPartitionInput`) or
 another unassigned sub-piece.  ROSTER gives the partition to ghw-assembly, so sec2 also asked ghw-assembly for an
-unassigned sub-piece.  As of 12:45 neither lane has named one, and sec2 told the lead so.
+unassigned sub-piece.  As of 12:45 neither lane had named one, and sec2 told the lead so.  Since then ghw-assembly has
+closed the partition (`osinLemma94PolygonPartitionInput`, Estimating/OsinLemma94PolygonPartition, 746028b24, with
+`#audit_closed_axioms`), so no sub-piece is free.
 
 ## Lemma 9.4 Case 2: the separated corner insertion (2026-09-13)
 
 Status 2026-09-13 13:10: **done**.  sec5-sentences stated the Prop
 `GloballyDistinguishedSectionFamily.SeparatedCornerInsertionInput` (Estimating/OsinLemma94SeparatedInsertion, b52230097).
-Its consumer is sec5's `osinLemma94CaseTwo_of_insertion`, and sec5 handed the proof to sec2.
+Its consumer is sec5's `osinLemma94CaseTwo_of_insertion`, and sec5 handed the proof to sec2.  sec5 has since landed
+`osinLemma94CaseTwoInput` (Estimating/OsinLemma94CaseTwo, e0e94015d, with `#audit_closed_axioms`).  It consumes this
+proof, so Case 2 of Lemma 9.4 is closed.
 
 | module | carries | state |
 |---|---|---|
@@ -268,6 +272,15 @@ along the boundary through position 0 of `outerDarts` at a vertex of degree two,
 e = alpha o_0 and e' = alpha o_(m-1).  `boundary_arc` forbids arcs that wrap around, so the walk must split between e and e',
 and both halves have the same kind.  `Maximal` checks only the pairs with `i + 1 < sideCount`, so `base k` must be placed
 at this split.  The split happens at most once per walk.
+
+ghw-assembly reports that the closed partition handles this split by where the walk starts.  The three declarations
+below are on main; sec2 has not read their proofs.
+- When the head of `outerDarts` lies on the face walk, `baseOf f` starts the walk there (`head?_rotate_baseOf`,
+  Estimating/OsinLemma94PolygonSides, a76186267).
+- `SameSide` on boundary darts requires `outerPos e' = outerPos e + 1`.  So the split between `alpha o_0` and
+  `alpha o_(m-1)` is a break: the pair (last side, side 0), which `Maximal` never checks.
+- In `sidesBreak_of_groups` (Estimating/OsinLemma94PolygonMaximal, 9f03bfcd3), `head?_flatten_ne_of_lt` excludes, at
+  index i+1 ≥ 1, a junction whose `e'` is that head.
 
 ## Pocket kept cell on the O-equivalent copy (2026-09-13)
 
