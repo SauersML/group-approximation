@@ -25,6 +25,19 @@ arXiv:2604.24682v2), so among known examples this is Toms–Winter on Bauer simp
 - Bounded rank density: `toms-winter-holds-on-tlfnd-rank-density-locus`.
 - A unital simple infinite-dimensional unique-trace subalgebra, or unital
   `Z_{n,n+1}` for large `n`: `toms-winter-bauer-tlfnd-iff-tracially-divisible-unit`.
+- Extreme boundary with Haver's property C:
+  `bauer-c-space-strict-comparison-pure-and-z-stable` (2026-09-13, lane
+  `ex-tw-rotation-gluing`, unreviewed).
+- Any boundary whose local unit divisions admit summable covers
+  (`bauer-unit-division-iff-summable-local-division`). In particular, any boundary
+  where `liminf_ω ω · ord_K(ℓ_A(ω)) = 0` for some compatible metric
+  (`bauer-unit-division-metric-order-criterion`).
+
+**Where a counterexample must live** (from those nodes).
+- Its boundary fails property C.
+- It has a nonempty closed failure locus with no relative C-neighbourhoods.
+- Over the Hilbert cube, local divisions of matrix size `N` confine to sets
+  exponentially small in `N`.
 
 **Route.** `toms-winter-bauer-tlfnd-via-divisible-unit` reduces this claim to
 `strict-comparison-forces-tracially-divisible-unit`.

@@ -64,3 +64,15 @@ Everything any such `A` must satisfy:
   - On Bauer simplices, central step functions turn divisibility of the unit into
     rank density of every continuous profile. So rank density fails exactly at the
     constant profiles.
+- **Bauer simplices: the boundary must be strongly infinite-dimensional in a
+  quantitative sense (2026-09-13, lane `ex-tw-rotation-gluing`, unreviewed).**
+  - Its extreme boundary fails Haver's property C
+    (`bauer-c-space-strict-comparison-divides-unit`; purity then follows by
+    `bauer-c-space-strict-comparison-pure-and-z-stable`).
+  - Its local unit divisions admit no summable covers. The failure locus is closed
+    and lies in the C-kernel of the boundary
+    (`bauer-unit-division-iff-summable-local-division`).
+  - For every compatible metric, `liminf_ω ω · ord_K(ℓ_A(ω)) > 0`, where `ℓ_A(ω)` is
+    the Lebesgue number of local divisions of weight `1/N + δ ≤ ω`
+    (`bauer-unit-division-metric-order-criterion`). This is a linear relation between
+    matrix size and cover order, matching in shape the ASH gluing heuristic above.
