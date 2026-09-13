@@ -290,3 +290,22 @@ For EVERY census row in your range with status formalized or definition, and eve
   - sec2-sentences: the stale TheoremC docstring backlog.
   - baseline-debt: audit-sec5's three docstrings.
 - **root-wire.** Wave 1 root build was red only on `OsinUnboundSharedEdge` (hull-unbound: whnf timeout at :147, instance failures at :227 and :251). Rerunning the other 107 modules merged with wave 2.
+
+## Reassignments 09-13 ~02:50
+- **W4 hW CLOSED.** `finitelyPresentedInfiniteSimple_closed` landed in 47b31bef8. It is wired into the root through wave 2 (c72bdfd5d, 116 modules). simple-group's next item is an unstarted Hull Corollary 7.4 piece from cite-hull.
+- **W3 hKO.** `ZipPinchStatement X` is closed for every X (d74b84054, probe 0913-023335-5925 green); kh-torsion wires it with SystolicDiscZip. Two cases remain:
+  - `MirrorFoldPinchedStatement`: fff-periodic, with systolic-counts taking an unstarted subcase.
+  - `MirrorFoldDistinctStatement`: ko-closed. kh-cckw offers b1/b2 (pending-digon deletion c88b8c1db is on main).
+  - theoremc-retire takes a PlanarRunInput piece from hull-unbound. Theorem C is now over hgreendlinger, hbridge, hzip and hfold (e1b326ec3).
+- **W1 cut core.**
+  - hull-select's `i ≠ j →` binder on `MultipleEdgeCutInput` is approved. It lands as one landing across the Prop, SectionInduction and DescentInduction (dgo-analytic's file).
+  - dgo-analytic is asked to fix the (a) carrier now.
+  - go-lemma42 stopped at 01:19 on a usage-limit error and was resumed once on the (c) LoopCut piece. It must produce the `OsinMultipleEdgeCut.transport` shape.
+- **W2 hbridge.**
+  - hull-bridge writes LetterPullbackCutOutcome, Cut, Holds and EmbeddedBridgeHolds on hull-component's CutSides (14850636f), and hands two of them to debt-conditional and leavitt-units.
+  - hull-component keeps CutFaces with fff-quotient and does not start the other four. After that it takes a Corollary 7.4 piece.
+- **GHW char 0.** ghw-charp2 closed the places item (d2cf04137, 321615044, probe 0913-024239-39237). It owns the orphan `Algebra/IntegerGaussValuations.lean`, and next takes grid finiteness or the archimedean places from ghw-assembly.
+- **census.** The merge at 94bb0a9f8 gives 498 rows: 306 formalized and 59 partial. The baseline has 132 findings, verify-unconditional reports 0 new, and verify-decls 0 missing.
+  - New rule: a formalized row needs every carrier module in the root import closure.
+  - Blocker: `JacobsonComplementarySentence` has no importer, queue line or green record; sent to jacobson.
+  - The lead landed the missing `metadata/nm-census-rows/hull-count94.tsv`.
