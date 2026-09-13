@@ -43,7 +43,10 @@ All three declarations depend only on the axioms [propext, Classical.choice, Quo
   noncrossing residual alone.
 - All three declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
 
-## In flight: `Estimating/OsinAppendixEulerTwoGonWalkHypInner` (L5b, probing; attic 1b068764a)
+## Landed: `Estimating/OsinAppendixEulerTwoGonWalkHypInner` (L5b, 20767e008, probe 0913-183536-76676 GREEN, unwired)
+
+Both declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
+Next: the `hno`/`havoid` assembly for inner-following walks, once w1-binder-1's L4/L5a names land.
 
 - `cellFace_not_mem_sideFaces_of_source_mem`: the face of the cell is off the side of a noncrossing walk through a
   reversed arc of that cell.
