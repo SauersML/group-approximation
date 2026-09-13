@@ -148,3 +148,8 @@ Split as agreed:
     - `coreKernelElementaryStatement_of_cells`;
     - `unitKernelLocallyFinite_of_cells`.
   - `TransientCellsStatement` is spelled exactly as ct-involution's `exists_transientCells` conclusion, so its discharge is `exact`.
+- LANDED 963111df2: `Dynamics/TransientTowerExpansion.lean` and `Dynamics/TransientIdealLocallyMatricial.lean` (probe 0913-183120-57227 PROBE GREEN, both BUILT; queued for wiring).
+  - `transientIdealLocallyMatricial_of_cells : TransientCellsStatement → ChainCore.TransientIdealLocallyMatricialStatement`.
+  - Also `transientIdealLocallyMatricialFTwo_of_cells`, `coreKernelElementaryStatement_of_cells`, `unitKernelLocallyFinite_of_cells`.
+  - Residual: `TransientCellsStatement`, spelled as ct-involution's `exists_transientCells` conclusion (which also takes `hcover : ChainCoreDefectCoverStatement`, owner chain-itinerary).
+  - Census row f0c16e5c8519 (partial until the cells land).
