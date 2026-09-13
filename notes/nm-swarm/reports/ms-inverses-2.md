@@ -110,6 +110,26 @@ Ownership check 09-13 ~17:50: no declaration or file on origin or in the shared 
   outer spur thickening (`PocketFaceSet.outerSpurThickening`, kh-cckw de79601b1), stated over the landed `FirstTurn` chain in
   the shape of hull-respell's `FirstTurns`.
 
+### (A) LANDED b122008b7 (probe 0913-175635-59318 GREEN, BUILT, first try)
+
+`Estimating/OsinPocketWrapRoseFirstTurn`, unwired, queued for wiring; no census row (certifies no printed sentence).
+- `wrap_complement`: the complement spelling of `wrapK` is `[3,1]`.
+- `wrap_not_firstTurn_three_one`, `wrap_not_firstTurn_one_three`, `wrap_not_firstTurnWalk`: `[3,1]` fails the chain and the
+  closing turn. This is audit-sec3's by-hand row, now formal.
+- `rescue_complement`, `rescue_firstTurn`: `rescueK` has complement spelling `[4]`, closed by a first turn with `k = 5`.
+- `wrapRoseFirstTurnModel : WrapRoseFirstTurnModel` (`#audit_closed_axioms`).
+- Consequence: the `ε = 0` refutation does not reach the pinch restricted to first-turn order, and at every `ε ≥ 1` the rose
+  has a simple witness in first-turn order.
+
+### (T2) written, waiting on its import
+
+`Estimating/OsinPocketOuterSpurFirstTurns` (attic copy preserved): `PocketFaceSet.outerSpurThickening_firstTurnChain` and the
+closed `pocketOuterSpurFirstTurnChain : PocketOuterSpurFirstTurnChainStatement`.
+- It is a corollary of ms-intro-4's `EdgeInsertion.firstTurnChain_map_embed` (`Estimating/OsinPocketEdgeDoublingFirstTurns`)
+  at the outer face, with distinct corners from `EdgeInsertion.corners_ne` at index 1, because the thickened map is
+  `FaceEdgeDoubling.map X X.outerFace j hlen`. No transport lemma is duplicated.
+- It is probed once ms-intro-4's module lands on origin (its probe 0913-175402-51127 read FAILED; it is iterating).
+
 ## Progress log
 
 - 09-13 ~17:01: ledger landed (d5d320909).
