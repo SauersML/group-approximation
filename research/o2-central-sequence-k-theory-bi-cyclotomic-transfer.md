@@ -59,6 +59,25 @@ Let `G` be a finite abelian group, `A = O_2`, `α : G ↷ A` pointwise outer,
      `Ĝ × 0` and `0 × G`, are what the two transfers kill.  If item 3 holds
      for `(λ, h) = (χ_0^(−k), g_0)`, the image of `[1]` in `M_0[1/p]` lies in
      the `k`-th factor.
+   - **Single-type actions** (integration with
+     `zp-o2-generator-kk-class-is-twisted-asymptotic-innerness`, items 1 and 4).
+     - *Relation.*  If `θ = χ_0^k · 1_E`, then `α_(g_0)` is `χ_0^k`-twisted
+       asymptotically inner.  Along a sequence `t_n → ∞`, `w = u_(t_n)*`
+       satisfies item 3 at `(χ_0^(−k), g_0)`.  So `(1 − x^(−k) y)[1] = 0`
+       integrally.
+     - *Cyclic module.*  `Λ/(y − x^k) = Z[x]/(Φ_p(x), Φ_p(x^k)) = Z[ζ_p]`,
+       because `Φ_p(x)` divides `Φ_p(x^k)`.  So `Λ·[1] ≅ Z[ζ_p]/I`, where
+       `I = Ann([1])`, `x = ζ_p` and `y = ζ_p^k`.
+     - *Rokhlin.*  `α` is Rokhlin iff `I = (1)`.
+     - *Strong approximate innerness.*  `1 − ζ_p^k` and `1 − ζ_p` are
+       associates.  So `α` is strongly approximately inner iff `(1 − y)[1] = 0`
+       iff `𝔭 = (1 − ζ_p) ⊆ I`, and the same holds for `α̂`.  `𝔭` is maximal.
+       So when `α` is strongly approximately inner, transfer alone gives
+       `Λ·[1] ∈ {F_p, 0}`, and Izumi excludes `F_p`.
+     - *Remaining case.*  The open ideals are those `I` with `𝔭 ⊄ I`.  At
+       `p = 2`, `𝔭 = (2)`, which recovers
+       `z2-o2-actions-anti-inner-and-o3-rokhlin-criterion`: `I = nZ` with `n`
+       the order of `[1]`.
 
 **How the transfer avoids the Baaj–Skandalis trap.**  The Attempts on
 `zp-restriction-and-crossed-product-detect-kk-g-contractibility` note that the
