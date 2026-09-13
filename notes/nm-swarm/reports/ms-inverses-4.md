@@ -5,6 +5,11 @@ Snapshot: origin/main 61363f1b9 (tex 1050–1174 byte-identical to 68481e4d7). C
 `metadata/NON_MF_SENTENCE_CENSUS.tsv`, matched by sentence text; every census sentence of the range is present verbatim
 in the current tex.
 
+## Status (2026-09-13 ~17:10)
+
+The range is clean. Every sentence is carried by a closed, root-reachable declaration or honestly classified, and one
+fidelity gap was closed by f797a21d6. The new module is queued for wiring.
+
 ## Ledger (45 rows; tex lines at 61363f1b9)
 
 | key | tex | status | carriers (short) | verdict |
@@ -28,14 +33,14 @@ in the current tex.
 | 1538c6bcbbec | 1099–1101 | formalized | centralFiniteOrderInDefect | ok |
 | 1246801a6fc6 | 1101 | definition | fUnit | ok |
 | 647f63b250b2 | 1102 | formalized | manuscriptSentence_matrixUnits | ok |
-| 6efe099d7fdb | 1103–1104 | formalized | lastDiag, diagonalCommutators | spot-check in progress |
-| 8113a9d8c968 | 1105–1106 | formalized | compressorWeylAndV | spot-check in progress |
+| 6efe099d7fdb | 1103–1104 | formalized | lastDiag, diagonalCommutators | ok: [e_41(f_ii), e_14(±f_ij)] = D(1 ± f_ij) |
+| 8113a9d8c968 | 1105–1106 | formalized | compressorWeylAndV | ok: w_ij, r = w_14 w_25, v = u D(r) |
 | 84ce319a4f15 | 1107 | formalized | vCompressesCore | ok |
 | 7eeed19cdc69 | 1107–1113 | definition | printedCell, printedB (the unnumbered display) | ok |
-| ee85d796d83a | 1114–1116 | formalized | conjugationsByV | spot-check in progress |
-| aeeaaeadaad3 | 1117–1119 | formalized | defectElementAndZ | spot-check in progress |
-| bc99235426ad | 1119–1121 | formalized | zCentral | spot-check in progress |
-| 5b7bdf2351a7 | 1121–1122 | formalized | zOrderAndNontrivial | spot-check in progress |
+| ee85d796d83a | 1114–1116 | formalized | conjugationsByV | ok: all four identities, v c v⁻¹ = e_14(f_02), v z v⁻¹ = z |
+| aeeaaeadaad3 | 1117–1119 | formalized | defectElementAndZ | ok: d = e_24(−f_02) (printedDefectElt), [y,d] = D(1 − f_12) = z⁻¹ |
+| bc99235426ad | 1119–1121 | formalized | zCentral | ok |
+| 5b7bdf2351a7 | 1121–1122 | formalized | zOrderAndNontrivial | ok |
 | 9627d330af8b | 1123–1126 | formalized | criterionKillsCentralElement | ok |
 | 7634d6cc067b | 1126–1129 | formalized | twoCommutatorsKilled (the display identities, and the kills along the pair subring) | ok |
 | f40da910f45b | 1130–1131 | formalized | sandwichesAndRelativeElementaryKilled, relativeElementary_span_le_of_elGen_mem | ok |
@@ -47,7 +52,7 @@ in the current tex.
 | 76588fb18d3b | 1145–1147 | formalized | FinitaryLinear.binaryGLfs, finiteSupportStrongerThanFiniteRank | ok |
 | d5e56b196927 | 1148 | formalized | JacobsonPresented.PrintedToeplitzJacobsonKernelFinitary | ok (presented J) |
 | 7c69447e3d41 | 1149–1152 | formalized | binaryGLfsProductOfTransvections, blockAct_elGen_matUnit, blockAct_commutator_matUnit | ok |
-| 754a868fc8f5 | 1152–1158 | formalized | JacobsonLaurent.*, JacobsonSymbol.jacobsonRadical, radicalEquivSLUnion | GAP (fidelity): the clause ≅ ⋃_N SL_N(F_2) is carried only for the operator model `jacobsonAlgebra`, not for the presented J. Presented J has the equality alone. |
+| 754a868fc8f5 | 1152–1158 | formalized | JacobsonPresented.PrintedToeplitzJacobsonRadicalSLUnion (NEW, f797a21d6); JacobsonLaurent.*, JacobsonSymbol.jacobsonRadical, radicalEquivSLUnion | FIXED: the clause ≅ ⋃_N SL_N(F_2) was carried only for the operator model `jacobsonAlgebra`. It is now stated and proved for the presented J (kernel, residually finite MF target, radical equality, isomorphism, infinite simple locally finite). |
 | 6ba4fb85570c | 1159 | formalized | binarySLUnionInfiniteSimpleLocallyFinite | ok |
 | 61b6abd03b91 | 1159–1160 | formalized | JacobsonRankFour.fourthCoordinateMakesCompressionInvertible | ok |
 | b6d1590be7ab | 1160–1165 | formalized | GHW.printedGHWTheoremFour (closed at every field, GHWTheoremFourClosed), PrintedPresentedJacobsonRankTwoKazhdanFiniteField | ok; [GHW] closed |
@@ -69,9 +74,15 @@ in the current tex.
   carried by `GHW.printedGHWTheoremFour`, which is closed at every field. No binder stands for a cited result.
 - Baseline: `metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt` names no declaration of this range.
 
+## Landed
+
+- c20ed3ab9: this ledger.
+- f797a21d6: `GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedRadicalSLUnion.lean`, probe
+  0913-170344-66064 GREEN. Declarations: `JacobsonPresented.presRadicalEquivSLUnion`,
+  `JacobsonPresented.PrintedToeplitzJacobsonRadicalSLUnion`,
+  `JacobsonPresented.manuscriptSentence_toeplitzJacobsonRadicalSLUnion` (closed audit). Queued in `wire-queue.txt`.
+- Census row: `metadata/nm-census-rows/ms-inverses-4.tsv` (row 754a868fc8f5).
+
 ## Claims
 
-CLAIM tex 1156 display for the presented J: Rad_MF(EL_n(J)) = EL_n(J,JeJ) ≅ ⋃_N SL_N(F_2), an infinite simple locally
-finite group (n ≥ 4) — GroupApproximation/Manuscript/OneSidedMFRadical/JacobsonPresentedRadicalSLUnion.lean (new module;
-consumes `JacobsonPresentedSentences` and `JacobsonKernelFinitary` names; owner of those files, lane jacobson, last landed
-on them 09-13 07:30).
+- CLOSED: tex 1156 display for the presented J (f797a21d6).
