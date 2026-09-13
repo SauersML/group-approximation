@@ -53,3 +53,12 @@ every group satisfying Baum--Connes with coefficients. No group satisfying it is
   only on the subshift of expander markings, and that subshift is not a module dual.
 - **Where it stops.** A witness needs a spectral gap uniform over all Bernoulli configurations, or a K-theory class not
   produced by functional calculus from local operators. Neither is known over any group.
+- **Subgroup tubes (2026-09-13, `bernoulli-defects-vanish-along-bcc-subgroup-tubes`, established).**
+  - Regular representations at configurations supported in a tube `HF` live on a finite union of right `H`-cosets. This
+    gives a restriction *-homomorphism to the Bernoulli datum `(H, HF)`.
+  - When `H` satisfies Baum--Connes with coefficients, shapes (b) and (c) restrict to zero along `HF`. A shape-(a) class
+    has only finitely many `H`-orbits of patterns with nonzero coefficients inside `HF`.
+  - So thin ghosts along cyclic, free, hyperbolic or amenable subgroups are excluded. A witness must spread over pattern
+    shapes that escape every good tube, as a monster's embedded expanders do.
+  - Where it stops: the tubes of good subgroups do not cover the expander-shaped patterns, so the restriction decides
+    nothing there.
