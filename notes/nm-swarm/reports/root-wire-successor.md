@@ -22,10 +22,16 @@ there, so this lane rebuilt their core in a scratch tool (`rwprep.py`):
   - the file lies in the import closure of the record's `# mods` and its blob at the record's base equals its blob at
     the sha.
 - Hold:
-  - a FAILED record names the file (`# mods` or md5 line) and is newer than every covering GREEN record; or
+  - a FAILED record names the file in `# mods` without an md5 line for it, and that record is newer than every
+    covering GREEN record; or
   - the file is a roster hold (`OsinLemma94ClassCovers`, red since a25fe2383).
-  - This is stricter than root-wire's release by closure identity. A module held only by a co-probe that failed
-    elsewhere waits for a newer green record.
+  - Why md5 lines don't count against a file: `nmprobe.sh` writes md5 lines only for overlay files that compiled in
+    that build, even when the probe fails. So a FAILED record's md5 line is evidence that the file compiled.
+  - The first version held any file named in a FAILED record. That falsely held three wave 17 modules on ct-rank-budget's
+    0913-182900-45325, whose errors are all in the new `DynamicRankBudgetReturnTransientIdeal`, while the six rooted
+    files it lists match origin's bytes. The rule was corrected at ~18:40.
+  - A target that never compiled because its build stopped elsewhere stays held until a newer green record covers it.
+    root-wire released some of those by reading the log; this lane does not.
 - Duplicate hits whose matching line is docstring prose (`theorem of both modules ...`) are read by hand and ignored.
 
 ## State at a188b6cc6 (09-13 ~18:25)
@@ -63,5 +69,13 @@ Pre-flight at 172725674:
 - one duplicate hit, `of`, is docstring prose in `TransportSentencesAxiomAudit`.
 
 `BilateralThreeClosures` was dropped from the first draft, after the `coeff_injective` collision.
+
+- The root build (tag 0913-183036-54182, base 99c14b3fb) went to SLURM job 720944 with 32 CPUs and 160G.
+  `dispatch.sh` sends every job of more than 8 CPUs to `msismall,amdsmall`.
+- The job sat PENDING with "Nodes required for job are DOWN, DRAINED or reserved", and the estimated start was 19:47.
+- At ~18:44 `scontrol update job=720944 partition=msismall,amdsmall,agsmall` added agsmall, which had 2466 idle CPUs on
+  mixed nodes. The memory request and nmwire's `sbatch --wait` flow are unchanged.
+- The wave 18 draft (30 gate-OK tops, not launched) pre-flights clean together with wave 17 at def464f1b: 86 newly
+  reachable files, 0 held, 0 without green evidence.
 
 Result: pending.
