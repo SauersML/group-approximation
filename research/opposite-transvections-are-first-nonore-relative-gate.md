@@ -62,6 +62,16 @@ finite-image models collapse the Laurent kernel; and Kun--Thom's nonsofic
 double theorem requires the ambient vertex group to have property (T), while
 `P` surjects onto `SL_2(Z)`.
 
+**Lower bound on the difficulty (2026-09-13).**
+`opposite-slice-contains-function-field-hecke-pair` shows that `P` contains
+the one-place Hecke pair `EL_r(k[x_1]) < EL_r(k[x_1^(+-1)])`, whose double
+embeds in `D`.  Every positive answer here, whether a sofic coset action, a
+sofic or hyperlinear `D`, or `RE/C`, is therefore also a positive answer for
+`SL_r(F_q[t]) < SL_r(F_q[t,1/t])` acting on its Bruhat--Tits building.  That
+pair is Kazhdan, co-dense and incompressible, so no compressor technique
+acts inside it.  The same containment in the full vertex group gives
+`kt-double-hyperlinearity-requires-function-field-hecke-re`.
+
 For the standard elementary positive compressors in rank three, this is the
 only unresolved two-generator type.  Disjoint/root-commuting pairs are covered
 by the commuting theorem, and adjacent-root pairs by the Heisenberg theorem.

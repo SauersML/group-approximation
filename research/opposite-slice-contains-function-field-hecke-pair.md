@@ -8,6 +8,8 @@ distinct_from:
   farey-tree-lift-hits-opposite-steinberg-cycle: that is a no-go for one construction of the slice action; this is a containment theorem which transfers soficity, hyperlinearity and RE/C from the slice down to a commensurated Hecke pair
   sl3-dyadic-building-vertex-action-is-sofic: that is the number-field building action of SL3(Z[1/2]); this shows the function-field building action of SL_r(F_q[t,1/t]) is a sub-action of the Kun--Thom opposite slice
   kun-thom-single-compressor-sofic-joint-nonsofic: that shows one compressor is positive and the full action is nonsofic; this names the algebraic feature that first appears between them, a Laurent unit in the kernel ring
+artifacts:
+  - research/artifacts/opposite-transvection-gate-sandwich-2026-09-13.md
 ---
 
 Keep the notation of `opposite-transvections-are-first-nonore-relative-gate`:
