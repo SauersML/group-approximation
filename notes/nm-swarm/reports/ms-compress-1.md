@@ -58,6 +58,21 @@ Every carrier module is reachable from `GroupApproximation.lean` (import closure
   - `CompressionCriterionSentences.manuscriptSentence_kazhdanProjectionAndStableFinitenessReplaceTheCount`
   - `CompressionCriterionSentences.manuscriptSentence_exactRepresentationCommutantDimensionCount`
 - The fix is additive: a new module with `def Printed… : Prop` and theorems proved by the existing declarations, each carrying `#audit_closed_axioms`. No existing file is edited.
+- **G5 CLOSED: 43c01c44f** (`Manuscript/NonMFSentences/CompressionRadicalClosedEndpoints`; probe 0913-173237-77904 GREEN, BUILT). Closed endpoints:
+  - `printedAllMFTargetsKillIffAllCoronasKill : PrintedAllMFTargetsKillIffAllCoronasKill`
+  - `printedFaithfulCoronaMapGivesMF : PrintedFaithfulCoronaMapGivesMF`
+  - `printedExactRepresentationCommutantDimensionCount : PrintedExactRepresentationCommutantDimensionCount`
+  - `printedKazhdanProjectionAndStableFinitenessReplaceTheCount : PrintedKazhdanProjectionAndStableFinitenessReplaceTheCount`
+  - Queued for wiring. Census rows a8e4ac99b640, 3bd1b6ab184a, fd2cafafd8fa and 240357aed76a are in `metadata/nm-census-rows/ms-compress-1.tsv`.
+
+## Range status (2026-09-13 ~17:40)
+
+- Every sentence of tex 358–467 is carried by a closed, root-reachable declaration at the printed generality along the printed route, or is honestly classified: three `structural` setup or motivation rows and `definition` rows with carriers.
+- The range has no literature input. The one `\cite` in the range, AkemannWalter at tex 466, is carried by the closed theorem `manuscriptSentence_kazhdanProjection`, which proves existence, centrality and the fixed-vector image.
+- Wiring pending: `CompressionRadicalPrintedObjects` (aae8a52a1) and `CompressionRadicalClosedEndpoints` (43c01c44f). Until root-wire takes them, the new carriers of rows 629f562df6bc, 630db09c6f46, daecb970c06a, a8e4ac99b640, 3bd1b6ab184a, fd2cafafd8fa and 240357aed76a are not root-reachable. The existing carriers of those rows already are.
+- Stale docstrings, no mathematical defect (owners: CompressionSentencesA and StableFinitenessSentences have no active lane):
+  - `CompressionSentencesA.lean:179` says `V_n(1) = 1` is "built into the unitaryGroup coercion". It is not; see `normalizeOne`.
+  - `StableFinitenessSentences.sentence_9b9e5b396d6f` quotes "a stably finite algebra"; the printed proof now says "a finite algebra".
 
 ## For the census lane
 
