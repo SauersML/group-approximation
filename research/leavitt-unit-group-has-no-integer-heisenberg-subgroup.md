@@ -34,6 +34,19 @@ into `V`, with `a` and `b` arbitrary units. Its proof combines subadditive depth
 with the linear slope growth of Thompson powers. A remaining counterexample must
 therefore have a center that is a genuinely linear unit, not conjugate into `V`.
 
+**Two independent premises and what a center must look like (lane `ex-q34-unit-depth`).**
+- **Metric premise.** `leavitt-units-of-infinite-order-have-linear-depth-growth` (open) gives the claim through
+  `no-heisenberg-from-linear-depth-growth`. The following are established:
+  - `leavitt-free-group-leading-term-forces-linear-depth` proves it for every unit with a persistent
+    free-group leading term.
+  - `leavitt-triangular-units-have-linear-depth-growth` proves it for every unit conjugate into the
+    degree-monotone unit groups `H_<=`, `H_>=`.
+  - A center must have a nilpotent leading coefficient in every power, for every bi-invariant order on `F_2`.
+- **Algebraic premise.** `leavitt-unit-centralizers-have-finite-rank` (open) gives the claim through
+  `no-heisenberg-from-finite-centralizer-rank`. By `leavitt-heisenberg-centers-have-infinite-centralizer-rank`
+  (established), a center `c` needs `dim_(F_2(c)) F_2(c) ⊗ C_R(c) = ∞`, and `H_3(Z) <= Q` iff the group algebra
+  `F_2[H_3(Z)]` embeds in `R`.
+
 **Matrices over commutative subrings.** These are excluded by the
 positive-characteristic determinant lemma of
 `kun-thom-wreath-embeds-in-leavitt-unit-group`. Passing to the quotients by
