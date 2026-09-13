@@ -34,6 +34,36 @@ and `metadata/NON_MF_SENTENCE_MAP.tsv`.
   `GroupApproximation/Manuscript/NonMFSentences/IntroExamplesTorsion.lean`; a generic swap-involution lemma possibly
   goes in its own module.
 
+## Closed
+
+- P1 LANDED f168ac24e (probe 0913-171403-10145 GREEN, BUILT). Module `Manuscript/NonMFSentences/HeadlineMaximalProperIsometry`,
+  endpoint `manuscriptSentence_headlineMaximalProperIsometry : PrintedHeadlineMaximalProperIsometry` (closed, audited).
+  It is `¬IsDedekindFiniteMonoid (MaximalGroupCStar Rˣ) ∧ ∃ v, star v * v = 1 ∧ ¬IsUnit v`, via
+  `FullDefectRing.properIsometry_of_strictCompression unitCorner unitCompressor`. Queued for wiring.
+- P2 LANDED a236f65c4 (probe 0913-172932-66219 compiled). Module `Manuscript/NonMFSentences/AmenableTraceAnswersProblemX`,
+  endpoint `manuscriptSentence_amenableTraceAnswersProblemX1 : PrintedAmenableTraceAnswersProblemX1` (closed, audited).
+  It gives the W of thm:amenable-trace with its canonical maximal tracial state amenable and not quasidiagonal, and
+  `¬ NinetyNineProblems.ProblemX1Statement.{1}` through that W. Queued for wiring.
+- Census rows 773d78e20: 664f4f34b841 and a96c09324a87.
+
+## In flight
+
+- P3: `Algebra/IdempotentSwapInvolution` (the swap involution of orthogonal equivalent idempotents; producers from a
+  one-sided inverse pair and from two orthogonal isometries) and `Manuscript/NonMFSentences/IntroExamplesTorsion`
+  (`PrintedIntroExamplesTorsion`). The first probe reddened the swap module on four unused simp arguments, which are
+  now fixed; re-probing.
+
+## Notes for the census lane (no landing of mine needed)
+
+- 2d6ab84875e0: add the closed endpoint `LeavittKOneFormulaSentences.manuscriptLeavittMFQuotientFull` next to
+  `manuscriptSentence_unitGroupQuotient` (the latter is `#audit_axioms` with binders at the printed generality).
+- f969236a73d8: the general permanence the sentence asserts is proved too
+  (`SoficByAmenablePermanence.isSofic_of_isSofic_ker_of_isAmenable`); worth naming in the row.
+- abb56744db26 ("The last group has none."): regrade `structural` to `partial`. It is the torsion-free clause of
+  thm:torsion-free, whose carriers are over hgreendlinger (the W1 wall, other swarm).
+- 80279f06992b: to be regraded `formalized` when P3 lands.
+
 ## Progress log
 
 - 16:5x ledger v1.
+- 17:19 lead restart; resumed. P1, P2 landed; rows landed; P3 re-probing.
