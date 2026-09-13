@@ -62,3 +62,16 @@ explicit hinge between the two conjectures.
    `1 + ef + fe + efe + fef + efef`. Nothing forces this to equal 1, but no
    explicit witness `x` was exhibited, so it is not excluded as a mixed identity.
    No mixed identity and no MIF proof was found.
+5. **Leavitt unit groups: settled positively (2026-09-13, lane
+   `solve-q34-known-actors`).** For every prime `p`,
+   `L_(F_p)(1,2)^× / F_p^×` acts faithfully and 2-transitively on the lines of the
+   Chen module of the tail class of `0^∞`, with finitely generated line stabilizers
+   (`leavitt-units-act-two-transitively-on-chen-module-lines`). So it is of type (A)
+   and this question holds for these groups
+   (`leavitt-unit-groups-mod-scalars-satisfy-pbh`, not independently reviewed).
+   - **Binary case.** It was reached independently through the Cantor module
+     (19108f02e).
+   - **Still open.** The tensor-square Leavitt unit groups, where the germ ring becomes
+     a two-variable Laurent ring.
+   - **Census.** `research/artifacts/q34-known-actors-coverage-2026-09-13.md` records
+     the family-by-family coverage.
