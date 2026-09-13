@@ -49,4 +49,4 @@ Complete proof: artifact Sections 1–5.
   and relator error `4L/k`.
 - **Ternary.** Every step is field-independent. The root-pair pieces have order at most 27 and exponent 3.
 
-*Verified independently by `w4-vf-gate` (2026-09-12), Section 38 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
+*Verified independently by `w4-vf-gate` (2026-09-12), Sections 38 and 40 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`. PASS.*
