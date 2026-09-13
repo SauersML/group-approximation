@@ -43,6 +43,8 @@ cannot give the second kind of proof.
 **Credit and novelty.** Items 1 and 2 are immediate from Seward's Corollary 6.1 and
 Lemma 6.2 (`seward-approximate-bernoulli-models-and-semicontinuity`). The formulation
 as a threshold, and the equivalence AINV ⟺ INF, were not found in arXiv:1501.03367v4
-or arXiv:1805.08279v1. Krieger III (arXiv:1705.09707) was not checked.
+or arXiv:1805.08279v1. The introduction of Krieger III (Alpeev–Seward,
+arXiv:1705.09707v3, pages 1–5) states upper semicontinuity on further spaces
+(Corollaries 1.6, 5.7, 5.8) but no such characterization; its body was not read.
 
 **ESTABLISHED 2026-09-12** by [[rokhlin-entropy-is-the-bernoulli-approximation-threshold-proof]].
