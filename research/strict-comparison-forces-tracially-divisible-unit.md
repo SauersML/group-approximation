@@ -12,6 +12,7 @@ distinct_from:
 artifacts:
   - research/artifacts/ex-toms-winter-bauer-divisible-unit-part2-2026-09-12.md
   - research/artifacts/ex-toms-winter-unit-divisibility-equivalences-2026-09-12.md
+  - research/artifacts/ex-tw-c-space-unit-division-part2-2026-09-13.md
 ---
 
 **OPEN.** Let `A` be a unital, simple, separable, nuclear, non-elementary, stably
@@ -57,6 +58,31 @@ single class `[1_A]`.
     the order of the cover. The window `(1/(n+1), 1/n)` needs ratio below
     `(n+1)/n`. This estimate is useless already in dimension one, where it gives
     ratio 4. Ramps and overlaps are the whole problem.
+- **Central staircases with orthogonalizing moves (Bauer simplex): proved over
+  C-space boundaries** (2026-09-13, lane `ex-tw-rotation-gluing`,
+  `bauer-c-space-strict-comparison-divides-unit`).
+  - This repairs the overshoot of localized bumps. A central staircase switches on the
+    `N` pieces of a local division one at a time, so the overshoot per active piece is
+    `1/N`, not `t`.
+  - Strict comparison moves each piece into the exact orthogonal complement of the
+    earlier ones, with rank margin `1 − t − ε`. Ranks add over orthogonal sums, so
+    errors do not compound.
+  - With a fixed number of colours this handles finite-dimensional boundaries.
+    Haver's property C, with precisions `(N_k, δ_k)` and `Σ_k (1/N_k + δ_k)^{1/2}` small,
+    handles every C-space boundary.
+  - Consequences: purity for exact algebras there, and `Z`-stability under tlfnd
+    (`bauer-c-space-strict-comparison-pure-and-z-stable`).
+  - Local-to-global principle: `bauer-strict-comparison-unit-division-is-local`.
+  - **Where it dies.** Strongly infinite-dimensional boundaries such as the Hilbert
+    cube. There, if local divisions at precision `N` shrink in unboundedly many
+    coordinates, no finite family of disjoint levels with summable precision covers.
+    The covers depend only on the precision, so the scheme is non-adaptive, and
+    property C is its natural domain.
+- **Rotation gluing.** On C-spaces it is not needed: the moves above use only global
+  comparisons. Beyond C-spaces it would need partial isometries between local halvings
+  on overlaps. Strict comparison supplies those only between global projections of
+  equal trace (`strict-comparison-bundle-certificate-vanishes`), and such projections
+  are what is being constructed.
 - **Closed versus open windows.** Weak divisibility `[1] = 2a + 3b` gives
   `2z ≤ [1] ≤ 3z` with `z = a + b`, but only closed rank bounds. The level-`(3n+1)`
   trick of the equivalences artifact converts almost divisibility at large levels
@@ -69,4 +95,7 @@ single class `[1_A]`.
   - no unital `Z_{n,n+1}` for large `n`;
   - some locally infinite-dimensional extreme trace
     (`bauer-gamma-failure-localizes-to-infinite-dim-point`);
-  - no comparison certificate (`strict-comparison-bundle-certificate-vanishes`).
+  - no comparison certificate (`strict-comparison-bundle-certificate-vanishes`);
+  - an extreme boundary without property C
+    (`bauer-c-space-strict-comparison-divides-unit`), and a nonempty closed division
+    locus (`bauer-strict-comparison-unit-division-is-local`).
