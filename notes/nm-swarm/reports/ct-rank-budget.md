@@ -59,4 +59,15 @@ coordinator).  This file is written by ct-rank-budget only.
 
 - 09-13 ~16:35: plan landed (ae6756df1).
 - 09-13 16:40: MFRadicalTransport LANDED fbd3fae3c.
-- 09-13 16:46: DynamicRankBudget probe 0913-164602-2510 FAILED (one injectivity term); fixed, re-probing.
+- 09-13 16:46: DynamicRankBudget probe 0913-164602-2510 FAILED (one injectivity term); fixed.
+- 09-13 17:00: DynamicRankBudget LANDED a2cb17f58 (GREEN 0913-165527-31471); census rows landed 87a9e0862.
+- 09-13 17:05: DynamicRankBudgetTorsionTransfer LANDED aadb514ad (GREEN 0913-165831-41224):
+  `TorsionDefectTransferStatement` is closed over `CountableCrossedProductStatement`; residual list is now items
+  1–5 and 7 of the table (not `TorsionDefectTransferStatement`).
+- Open for this lane: the induced core `CR(S_C) = C ∩ CR(T)` and `J = p_C I p_C` inside `ReturnEmbeddingStatement`.
+  ct-return-tower's statements landed 4d2084188 (`ReturnTowerStatements`: `NoShortPeriods`, `IsReturnSection`,
+  `ReturnGapsIn`, `returnTime`, `FirstReturnStatement`, `ReturnRingCrossedProductStatement`,
+  `ReturnTowerUnitsStatement`; `τ.phi`, `τ.unitize`, `τ.unitizeGL`).  ct-involution's in-flight
+  `ReturnPlacement.lean` is the fresh-coordinate matching of lem:involution-localization (tex 1673–1686), not the
+  phase-zero placement of `K_n(J)` under `Φ` (tex 1754–1755); no overlap.  Next: state `CR(S_C) = C ∩ CR(T)`,
+  `J = p_C I p_C` and the placement over those names, and bridge `ReturnEmbeddingStatement` to them.
