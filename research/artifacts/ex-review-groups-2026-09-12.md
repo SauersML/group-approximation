@@ -120,6 +120,11 @@ every group.
   (ex-bernoulli-negative). PASS on the torsion-free nonsofic integer-lamp wreath (ex-left-orderable-nonsofic).
   Part 5.
 
+- **§6, the determinant spectral chain (~00:55 CDT).** PASS on the Serre-class degree bound, heavy eigenvalue
+  implying determinant violation, unbalanced eigenvalue implying nonsofic support, the integer-root-limit
+  characterization through Smith's theorem, and rational-character approximability implying the determinant
+  conjecture (ex-determinant-monster). Both determinant roots stay open. Part 6.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -127,3 +132,4 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part3.md`: §3, status recheck, Thompson F dictionaries, `RF_fp` completeness.
 - `research/artifacts/ex-review-groups-2026-09-12-part4.md`: §4, permutation stability, Păunescu's class, fixed price, frame chain.
 - `research/artifacts/ex-review-groups-2026-09-12-part5.md`: §5, sweep at f79305e9c, Bernoulli absorption, torsion-free wreath.
+- `research/artifacts/ex-review-groups-2026-09-12-part6.md`: §6, the determinant spectral chain.
