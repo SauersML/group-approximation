@@ -102,6 +102,7 @@ def glueRelFaces (O : OEquivalentDiscDiagram P.diagram Xi) :
         (P.glueSeam O).leftFace ⟨C.face, hC⟩ = F) ∨
       ∃ C ∈ Xi.relatorCells, (P.glueSeam O).rightFace ⟨C.face, C.face_ne_outer⟩ = F
 
+open scoped Classical in
 theorem mem_glueRelFaces (O : OEquivalentDiscDiagram P.diagram Xi)
     (F : (P.glueSeam O).glueMap.Face) :
     F ∈ P.glueRelFaces O ↔
