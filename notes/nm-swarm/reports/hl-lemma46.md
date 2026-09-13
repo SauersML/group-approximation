@@ -21,8 +21,13 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
   - The file moved from hull-respell's `.files` to this lane.
   - Probe 0913-090304-65564 built it together with hull-select's `OsinPocketZeroCellMerge`: PROBE GREEN, both BUILT.
   - The red at line 103: in `false_of_cons_singleton`, `omega` treated `family.card` over `RegionCandidate D eps Xi` and over the unfolded sigma type that `Finset.card_cons` infers as two different atoms. An explicit type on `hconscard` fixes it. No statement changed.
-- W1 for hull-select: `Estimating/OsinPocketTwoCollars` (282e3a821; probe 0913-091355-26476 PROBE GREEN, BUILT; axioms propext, Classical.choice, Quot.sound; in wire-queue).
-  - `PocketRegion.exists_twoCollars`: sub-piece 2 of MultipleEdgeCut, with the statement hull-select specified.
+- W1 for hull-select and dgo-analytic: `Estimating/OsinPocketTwoCollars`.
+  - First landing 282e3a821 (probe 0913-091355-26476). The current version is 7eb17a3e9: probe 0913-092959-67901 PROBE GREEN, BUILT; axioms propext, Classical.choice, Quot.sound; in wire-queue.
+  - Split confirmed with kh-torsion: this lane owns the double collar; kh-torsion proves `GeodesicCollarStatement`.
+  - `PocketRegion.exists_twoCollars_of_ne_or`: the general form, suggested by kh-torsion for dgo-analytic's `PocketCollarStatement`, whose arcs may be empty.
+    - It assumes `t₁ ≠ [] ∨ t₂ ≠ [] ∨ listVal (dartWord s₁) ≠ 1 ∨ listVal (dartWord s₂) ≠ 1`.
+    - A side of value `≠ 1` makes its word, and so its side and its collar, nonempty. That discharges both collar steps.
+  - `PocketRegion.exists_twoCollars`: sub-piece 2 of MultipleEdgeCut, with the statement hull-select specified. It is the case `t₁ ≠ []` of the general form; its unused `ht₂` is spelled `_ht₂`.
     - It takes a pocket with inverse complement cycle `s₁ t₁ s₂ t₂`, where `t₁` and `t₂` are nonempty.
     - It returns an O-equivalent diagram whose pocket reads `c₁ t₁ c₂ t₂`, with `c₁` reading `g₁` and `c₂` reading `g₂`.
     - Also returned: the dart embedding, the outer boundary, the outside cells, and each relator cell staying on its side.
