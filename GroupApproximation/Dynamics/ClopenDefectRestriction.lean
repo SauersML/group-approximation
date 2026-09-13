@@ -6,7 +6,7 @@ import Mathlib.Data.ZMod.Defs
 /-!
 # Clopen defects avoid a directly finite invariant set
 
-`non_mf_groups_exist.tex`, proof of `lem:chain-core-models`, tex 1454–1461:
+`non_mf_groups_exist.tex`, proof of `lem:chain-core-models`, tex 1457–1462:
 
 > They avoid $Y$: for any compressed clopen $P$, set $p=1_P$, $d=1_{P\setminus T(P)}$ and calculate
 > \begin{equation}\label{eq:clopen-defect-pair}
@@ -14,17 +14,18 @@ import Mathlib.Data.ZMod.Defs
 > \end{equation}
 > Restriction to the directly finite ring $R_Y$ forces $d|_Y=0$.
 
-and the proof of `thm:core-mf-radical` (tex 1552, where $k=\F_2$):
+and the proof of `thm:core-mf-radical` (tex 1644–1647, where `k = 𝔽₂`):
 
-> Each defect $d$ in \eqref{eq:clopen-defect-pair} has additive order at most two.
+> For elementary groups with $n\ge4$, use Proposition~\ref{prop:torsion-defect-ring} on the
+> defects in \eqref{eq:clopen-defect-pair}, which have additive order at most two and generate $I$.
 
 `R_Y` is `ClopenCrossedProduct (restrictHomeo T hY) k` and restriction is `restrict T k hY`
 (`GroupApproximation.Dynamics.ClopenCrossedProductComap`).
 
 * `restrict_defectD_eq_zero`: `d` restricts to `0` in a directly finite `R_Y`;
 * `notMem_diff_image_of_mem`: so `P ∖ T(P)` misses `Y`;
-* closed endpoints `printedDefectsAvoidY` (tex 1454), `printedRestrictionKillsDefect` (tex 1460) and
-  `printedDefectAdditiveOrderTwo` (tex 1552).
+* closed endpoints `printedDefectsAvoidY` (tex 1457), `printedRestrictionKillsDefect` (tex 1462) and
+  `printedDefectAdditiveOrderTwo` (tex 1646–1647).
 -/
 
 namespace GroupApproximation
@@ -55,7 +56,7 @@ theorem notMem_diff_image_of_mem [Nontrivial k] (hY : T '' Y = Y)
 
 end Restriction
 
-/-- **tex 1460** (proof of `lem:chain-core-models`): "Restriction to the directly finite ring $R_Y$
+/-- **tex 1462** (proof of `lem:chain-core-models`): "Restriction to the directly finite ring $R_Y$
 forces $d|_Y=0$."  For every invariant `Y` with `R_Y` directly finite and every compressed clopen
 `P`, the defect `d = 1_{P∖T(P)}` restricts to `0` in `R_Y`, and `P ∖ T(P)` misses `Y`.
 
@@ -72,7 +73,7 @@ theorem printedRestrictionKillsDefect : PrintedRestrictionKillsDefect := by
   exact ⟨restrict_defectD_eq_zero T k hY hP hTP,
     fun _ hy => notMem_diff_image_of_mem T k hY hP hTP hy⟩
 
-/-- **tex 1454** (proof of `lem:chain-core-models`): "They avoid $Y$: for any compressed clopen $P$,
+/-- **tex 1457** (proof of `lem:chain-core-models`): "They avoid $Y$: for any compressed clopen $P$,
 set $p=1_P$, $d=1_{P\setminus T(P)}$ and calculate" \eqref{eq:clopen-defect-pair}.  With `R_Y`
 directly finite: `ts = 1`, `st = 1 - d`, and the defect set `P ∖ T(P)` is disjoint from `Y`. -/
 def PrintedDefectsAvoidY : Prop :=
@@ -88,8 +89,8 @@ theorem printedDefectsAvoidY : PrintedDefectsAvoidY := by
   exact Set.eq_empty_of_forall_notMem fun _ hy =>
     notMem_diff_image_of_mem T k hY hP hTP hy.2 hy.1
 
-/-- **tex 1552** (proof of `thm:core-mf-radical`, where $k=\F_2$): "Each defect $d$ in
-\eqref{eq:clopen-defect-pair} has additive order at most two." -/
+/-- **tex 1646–1647** (proof of `thm:core-mf-radical`, where `k = 𝔽₂`): "the defects in
+\eqref{eq:clopen-defect-pair}, which have additive order at most two". -/
 def PrintedDefectAdditiveOrderTwo : Prop :=
   ∀ (X : Type) [TopologicalSpace X] (T : X ≃ₜ X) (P : Set X) (hP : IsClopen P),
     2 • defectD T (ZMod 2) hP = 0

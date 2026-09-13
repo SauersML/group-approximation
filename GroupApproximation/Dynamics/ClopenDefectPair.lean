@@ -5,7 +5,7 @@ import Mathlib.Tactic.NoncommRing
 /-!
 # The clopen defect pair
 
-`non_mf_groups_exist.tex`, proof of `lem:chain-core-models`, tex 1454–1461:
+`non_mf_groups_exist.tex`, proof of `lem:chain-core-models`, tex 1456–1462:
 
 > Pull back the symbolic defects to cover $X\setminus Y$ by their translates.  They avoid $Y$: for
 > any compressed clopen $P$, set $p=1_P$, $d=1_{P\setminus T(P)}$ and calculate
@@ -23,7 +23,7 @@ The compressed clopen sets are those of the lemma statement: `P` clopen with `T(
 * `defectT_mul_defectS : t * s = 1` and `defectS_mul_defectT : s * t = 1 - d`, with the closed
   endpoint `printedClopenDefectPair`;
 * `map_defectD_eq_zero`: a unital ring homomorphism into a directly finite ring kills `d`;
-* `two_nsmul_defectD`: `2 • d = 0` when `2 = 0` in `k` (thm:core-mf-radical, tex 1553–1554).
+* `two_nsmul_defectD`: `2 • d = 0` when `2 = 0` in `k` (thm:core-mf-radical, tex 1646–1647).
 -/
 
 namespace GroupApproximation
@@ -115,7 +115,7 @@ theorem defectS_mul_defectT (hP : IsClopen P) (hTP : T '' P ⊆ P) :
   rw [defectD_eq_sub T k hP hTP]
   exact mul_eq_one_sub_of_conj (defectP_mul_defectP T k hP) (unit_mul_defectP_mul_inv T k hP)
 
-/-- "Restriction to the directly finite ring $R_Y$ forces $d|_Y=0$" (tex 1461), in the form
+/-- "Restriction to the directly finite ring $R_Y$ forces $d|_Y=0$" (tex 1462), in the form
 consumed downstream: a unital ring homomorphism from `R_X` into a directly finite ring kills `d`. -/
 theorem map_defectD_eq_zero {A : Type*} [Ring A] [IsDedekindFiniteMonoid A]
     (φ : ClopenCrossedProduct T k →+* A) (hP : IsClopen P) (hTP : T '' P ⊆ P) :
@@ -127,8 +127,8 @@ theorem map_defectD_eq_zero {A : Type*} [Ring A] [IsDedekindFiniteMonoid A]
   calc φ (defectD T k hP) = 1 - (1 - φ (defectD T k hP)) := (sub_sub_cancel _ _).symm
     _ = 0 := by rw [← hst, sub_self]
 
-/-- "Each defect $d$ in \eqref{eq:clopen-defect-pair} has additive order at most two"
-(thm:core-mf-radical, tex 1553–1554, where `k = 𝔽₂`): `2 • d = 0` when `2 = 0` in `k`. -/
+/-- "the defects in \eqref{eq:clopen-defect-pair}, which have additive order at most two"
+(thm:core-mf-radical, tex 1646–1647, where `k = 𝔽₂`): `2 • d = 0` when `2 = 0` in `k`. -/
 theorem two_nsmul_defectD (h2 : (2 : k) = 0) (hP : IsClopen P) : 2 • defectD T k hP = 0 := by
   have hc : ∀ c : LocallyConstant X k, c + c = 0 := fun c => LocallyConstant.ext fun x => by
     show c x + c x = 0
@@ -137,7 +137,7 @@ theorem two_nsmul_defectD (h2 : (2 : k) = 0) (hP : IsClopen P) : 2 • defectD T
 
 end Defect
 
-/-- **eq:clopen-defect-pair** (tex 1456–1460): "for any compressed clopen $P$, set $p=1_P$,
+/-- **eq:clopen-defect-pair** (tex 1457–1461): "for any compressed clopen $P$, set $p=1_P$,
 $d=1_{P\setminus T(P)}$ and calculate $s=up+1-p$, $t=pu^{-1}+1-p$, $ts=1$, $st=1-d$."
 
 The identities hold for every topological space `X`, homeomorphism `T`, ring `k` and clopen `P`
