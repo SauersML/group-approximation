@@ -74,7 +74,8 @@ This lane owns the value.
   bridge (`Embedded.boundaryStep_of_walk`) is hull-select's. This lane drafted the same bridge
   and did not land it.
 - Still open on that interface: `EmptyTwoGonInput` (16d923f27) has no `FollowsBoundary`
-  hypothesis on `P`. Either its consumer supplies `hwalk`, or hull-euler adds the hypothesis.
+  hypothesis on `P`. Either its consumer supplies `hwalk`, or hull-euler adds the hypothesis. The
+  lead has sent that question to hull-euler.
   `MultipleEdgePocketRegionInput` (d00f94876) already concludes that both cycles follow the
   boundary, and hull-respell's `PocketRegion.ofSimpleClosedWalk` (a11a8d850, unverified) builds
   such pockets.
@@ -175,7 +176,12 @@ followed by `#audit_closed_axioms`, where `<walls>` are the closed producers abo
     `*_of_greendlinger` forms (1edf0f7b4, not yet root-imported at a73ab6f78).
 - hull-bridge's `TorsionFreeGreendlingerForms` (99db3338a, queued, no importers) gives 17 more
   endpoints over hgreendlinger alone, built on this lane's five least-area modules. No row of this
-  lane names it.
+  lane names it. The lead checked that it does not collide with `TorsionFreeGreendlingerLeaf`.
+  - The two modules use separate namespaces, and both stay.
+  - Four `_of_greendlinger` names occur in both, which is harmless across namespaces:
+    hullCommonQuotient, literatureInputs, fournierFacioParagraph and
+    hullSmallCancellationTorsionFreePrinted.
+  - hull-bridge gave census the mapping for its 54 baseline lines.
 
 ## Wall status on main (checked 2026-09-13 at origin 0358f4537)
 
@@ -240,8 +246,8 @@ row names the closed endpoint and says "retires open-predicate <decl>".
 
 - The value half of the zero-cell merge is on main and green, and `hrot` is agreed with
   hull-select (section above). The two offered lemmas get built only if hull-select asks.
-- When `TorsionFreeGreendlingerLeaf` is root-imported, re-note the ten rows on its one-binder
-  carriers.
+- Move the ten rows onto whichever module is root-imported first: `TorsionFreeGreendlingerLeaf`
+  (fff-periodic) or `TorsionFreeGreendlingerForms` (hull-bridge).
 - `OsinDescentStepInput` is RETIRED as off route (lead, 2026-09-13; audit-sec5 and
   dgo-analytic agree). This lane built nothing on it and deleted nothing. dgo-analytic adds the
   docstring note.
