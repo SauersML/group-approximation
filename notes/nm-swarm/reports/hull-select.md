@@ -100,15 +100,22 @@ Notes for the producers:
 ## Holds and next
 
 - Hold: no edits to `OsinPocketZeroCellMerge.lean` or `OsinPocketZeroCellMergeFalse.lean` until
-  ghw-charp2's LoopCut census patches 01-09 land (ruling A). The loop-ruling version of the False
+  ghw-charp2's LoopCut census patches 01-10 land (ruling A). The loop-ruling version of the False
   module is at `$NM/backup/hull-select/loopcensus-OsinPocketZeroCellMergeFalse.lean.patched`.
 - `pocketOuterTransport` closes the `houter` binder of the section pocket cut assembly
   (`OsinPocketPieces`). The cell transport `hcell` is still go-lemma42's.
 - Next: item 2, the O-equivalent-copy restatement of `MultipleEdgePocketRegionInput`. It waits
-  for dgo-analytic's R2/R1 carrier fix (ROSTER line 743). The draft is at
-  `$NM/drafts/hull-select-copy-input.lean`. Under R2 the inner `FollowsBoundary` leaves the
-  Input, but `nonempty_osinMultipleEdgeCut_of_pocketRegion` still passes `hin` to
-  `exists_twoCollars_of_ne_or` and `GeodesicCollarStatement`. So R2 also needs kh-torsion's
-  collar restated without it.
+  for dgo-analytic's R2/R1 carrier fix (ROSTER line 743) and kh-ejz's OK to edit its file.
+  - Drafts, R1 form: `$NM/drafts/hull-select-RegionSide-copy-r1.lean` (the whole module) and
+    `$NM/drafts/hull-select-MultipleEdgeAssembly-copy-r1.lean` (the new
+    `multipleEdgeCutInput_of_pieces`).
+  - Form: `∃ X, Nonempty (OEquivalentDiscDiagram Δ X) ∧ (∀ d, legal label) ∧ ∃ P C i' j' s₁ s₂
+    A₁ A₂, …`. It drops the side-length bounds and keeps inner `FollowsBoundary` (R1).
+  - Sent to kh-ejz and, as the target form, to jacobson (14:10).
+  - Rule 22: the assembly is the only code user on origin/main.
+  - Under R2 the inner `FollowsBoundary` leaves the Input, but
+    `nonempty_osinMultipleEdgeCut_of_pocketRegion` still passes `hin` to
+    `exists_twoCollars_of_ne_or` and `GeodesicCollarStatement`. So R2 also needs kh-torsion's
+    collar restated without it.
 - The assembly modules are infrastructure for `thm:hull` (tex 1636, through Osin's Lemma 9.7)
   and certify no printed sentence on their own, so there are no census rows.
