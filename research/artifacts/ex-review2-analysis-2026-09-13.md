@@ -174,9 +174,19 @@ Filled in as each part lands.
 | `rank-two-spin-trapping-blind-to-depth-three-brackets` | unitary-higher-brackets | PASS, ABP recalled | 1 §1.12 |
 | `rank-two-trapping-blind-to-depth-four-brackets` | unitary-higher-brackets | PASS | 1 §1.12 |
 | `spin-trapping-blind-to-fourfold-commutators-in-every-rank` | unitary-higher-brackets | PASS, ABP and Wood recalled | 1 §1.12 |
+| `bauer-c-space-strict-comparison-divides-unit` (Theorem A; Lemma 3 of part 1, Section 3 of part 2) | tw-rotation-gluing | PASS, wording note | 2 §2.2, §2.3 |
+| `bauer-c-space-strict-comparison-pure-and-z-stable` | tw-rotation-gluing | PASS | 2 §2.4 |
+| `bauer-strict-comparison-unit-division-is-local` | tw-rotation-gluing | PASS | 2 §2.5 |
+| `bauer-unit-division-iff-summable-local-division` (Theorem E) | tw-rotation-gluing | PASS | 2 §2.6 |
+| `bauer-unit-division-metric-order-criterion` (Lemma 8.1 of part 4) | tw-rotation-gluing | PASS, wording note | 2 §2.7 |
+| `toms-diagonal-quotient-has-nonconstant-continuous-ranks` | rank-toms-b-obstruct | PASS | 2 §2.8 |
+| `toms-twisted-swap-pairs-are-totally-degeneracy-forcing` | rank-toms-b-obstruct | PASS, wording note | 2 §2.9 |
 
 ## 3. Part files
 
 - `ex-review2-analysis-2026-09-13-part1.md`: the class-four chain (λ-mod-8 trapping over quaternionic
   Grassmannians), the transfer theorem, the gluing proposition, and the depth limits of rank-two and
   rank-N trapping.
+- `ex-review2-analysis-2026-09-13-part2.md`: strict comparison divides the unit over C-space Bauer boundaries
+  (staircases, orthogonalizing moves, summable and metric criteria), and the Toms-algebra diagonal quotient and
+  twisted-halves rigidity, checked against arXiv:2606.12188v2.
