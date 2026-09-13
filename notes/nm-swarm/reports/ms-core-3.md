@@ -1,5 +1,16 @@
 # Lane ms-core-3: sentence ledger for tex 1459–1515 (eq:clopen-defect-pair, lem:transient-matrices)
 
+CLAIM lem:involution-localization, F₂ matrix clause (tex 1689–1693) — module path set once ct-involution's split statement lands
+- Main's item (b): help ct-involution by direct agreement (2026-09-13 ~17:20).
+- Step 1 (support and wandering cover) is ct-involution's: `Dynamics/TransientSupport.lean`, attic 694740ca6, probing.
+  This lane's earlier step-1 proposal is WITHDRAWN, and `TransientSupportCover.lean` was never created.
+- ct-involution splits `PrintedInvolutionLocalization` into a ring clause and a matrix clause, and sends the landed
+  statement names first. Target: `matrixClause_of_ringClause (hring) (hel : CoreKernelElementaryStatement) : <matrix clause>`,
+  with the kernel spelled through ct-rank-budget's `Units.map (RingHom.mapMatrix (restrict T (ZMod 2) …))`.
+- Route (tex 1689–1693): put the entries of `G − 1` and `G⁻¹ − 1` into F; entrywise conjugation by the scalar `w I_n` gives
+  deviations `p_C a p_C` with `a ∈ I`; `w I_n ∈ EL_n` for `n ≥ 2` from `hel`.
+- No Lean is drafted until those names land.
+
 Wave-2 range lane of session `nonsofic-existence-49` (brief C; `notes/nm-swarm/reports/ct-lead.md`).  Snapshot:
 origin/main 19d96c2c5 (tex unchanged since 73a84cd9c).  Keys and paragraph lines come from the census merge
 0913-160921 (`sentence_census.py` over the current tex); owners from the census `CHAIN_OWNERS` map and the lane
