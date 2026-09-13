@@ -40,7 +40,7 @@ namespace GroupApproximation.TwoEndedTailModels
 /-! ### The codimension count (tex 1782–1784) -/
 
 /-- The integers `-L, …, L`. -/
-def window (L : Nat) : List Int := (List.range (2 * L + 1)).map fun t => (t : Int) - L
+def window (L : Nat) : List Int := (List.range (2 * L + 1)).map fun t : Nat => (t : Int) - (L : Int)
 
 /-- The window indices outside the span of the tails `i ≤ -N` and `i ≥ N`. -/
 def tailComplement (N : Int) (L : Nat) : Nat := (window L).countP fun i => decide (-N < i ∧ i < N)
@@ -150,14 +150,16 @@ def eqCycle (M : Nat) (x y : El) : Bool :=
 
 /-- The generators of the table: the shift, two transvections on one coordinate pair, and a transvection on
 disjoint coordinates. -/
-def gens : List El := [(1, []), (0, [(0, 1)]), (0, [(1, 0)]), (0, [(2, 3)])]
+def gens : List El := [(1, []), (0, [(5, 6)]), (0, [(6, 5)]), (0, [(7, 8)])]
 
-/-- The table: the generators and their pairwise products. Every support lies in `[0, 4]`. -/
+/-- The table: the generators and their pairwise products. Every support lies in `[5, 9]` and every exponent in
+`[0, 2]`. So every changed column `j - a` is a nonnegative source, and columns `0, …, 11` see all of both
+elements on the line `ℤ`. -/
 def table : List El := gens ++ gens.flatMap fun x => gens.map fun y => mulEl x y
 
 /-- The copy is well defined and injective on the table: equality in the cycle is equality on the line. -/
 def windowCheck (M : Nat) : Bool :=
-  table.all fun x => table.all fun y => eqLine 6 x y == eqCycle M x y
+  table.all fun x => table.all fun y => eqLine 12 x y == eqCycle M x y
 
 /-- The copy of a product is the product of the copies. -/
 def productCheck (M : Nat) : Bool :=
@@ -174,7 +176,7 @@ def outside (M : Nat) (x y : El) (i : Nat) : Bool := !((support x ++ support y).
 a support. With different exponents, `σ^a i` and `σ^b i` both lie outside the supports. -/
 def separationCheck (M : Nat) : Bool :=
   table.all fun x => table.all fun y =>
-    eqLine 6 x y ||
+    eqLine 12 x y ||
       (List.range M).any fun i =>
         !sameVecN (actCycle M x [i]) (actCycle M y [i]) &&
           if x.1 == y.1 then !outside M x y ((i + x.1) % M)
