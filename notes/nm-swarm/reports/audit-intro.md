@@ -20,6 +20,37 @@ Introduction, and `sec:compression-radical` (One-sided compression).
     for tex line 134 at the literal `W` (defect 4 below).
   - The module carries its own `#audit_closed_axioms` gate.
   - It needs the 09-09 orphan `Sofic/AffineHNNBaseRealization` wired first.
+- `9d3013e41`: probe GREEN (tag `0913-091959-40244`, BUILT). The module is on the wire queue:
+  - `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94RegionSideCount.lean`, a sub-piece
+    of the h94 count of `osinLemma94Section_of_planarPieces`, assigned by hull-count94 (see
+    below).
+  - `#audit_axioms` follows all five declarations.
+
+## Help: the h94 count (hull-count94)
+
+After the 08:30 restart the lead moved this lane to help hull-count94 with `PolygonCount`.
+hull-count94 assigned one sub-piece with a fixed statement, which it consumes from
+`Estimating/OsinLemma94PolygonCount.lean`.
+
+- `RealizedSectionFamily.regionFacingUnbound S i`: the unbound darts of cell `i` whose reverse
+  lies in a selected region.
+- `RealizedSectionFamily.sum_card_regionFacingUnbound_le`: if no relator cell reads the
+  identity, then `∑ i, #(regionFacingUnbound i) ≤ 2 ε |M|`.
+  - The reverse of such a dart is a boundary dart of the region, since no region contains a
+    relator face (`faces_not_mem_of_value`).
+  - Along `boundary_decomposition` it is on neither arc. A dart of the source arc, or of a
+    relator-cell target arc, lies on that cell (`cell_face_injective`) and is bound. An outer
+    dart belongs to no relator cell (`face_ne_outer`).
+  - So the reverse is on the right or left side (`alpha_mem_sides_of_mem_regionFacingUnbound`).
+    `alpha` is injective, distinct cells have disjoint darts, and each side has at most `ε`
+    darts.
+- Helpers: `Embedded.mem_targetBoundaryDarts_cases` and
+  `RealizedSectionFamily.mem_cellDarts_of_mem_regionFacingUnbound`.
+
+A model-test observation for `Covers`, passed to hull-count94: a region has nonempty G-faces, so
+an unbound dart whose reverse lies directly on another relator cell faces no region side. Such
+darts are excluded only through the O-equivalent edge doubling (`false_of_unbound_shared_edge`
+in `OsinUnboundSharedEdge`), so the realization piece has to keep them out.
 
 ## The rows in range
 
