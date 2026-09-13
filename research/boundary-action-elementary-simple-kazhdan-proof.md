@@ -30,8 +30,9 @@ and Hausdorff, and its unit space `∂F_d` is compact and infinite.
    central or everything, so `S_∂` is simple.
 5. **Infinite.** `e_12(r) e_12(r')^(-1) = e_12(r - r')` is not scalar for `r != r'`, and `R` is infinite.
    So the images of the `e_12(r)` are pairwise distinct in `S_∂`.
-6. **Finitely generated and Kazhdan.** By `paradoxical-steinberg-families-kazhdan-no-mf-quotient` (F1),
-   `R` is finitely generated and `EL_N(R)` is finitely generated and Kazhdan. Both properties pass to
-   the quotient `S_∂`.
-7. **No MF quotient.** A homomorphism `S_∂ -> H` with `H` MF composes to one on `EL_N(R)`. That
-   composite is trivial by (F1), so the homomorphism is trivial. `S_∂` is nontrivial, so it is not MF.
+6. **No MF quotient, every countable `k`.** A homomorphism `S_∂ -> H` with `H` MF composes to one on
+   `EL_N(R)`. That composite is trivial by (F1) of `paradoxical-steinberg-families-kazhdan-no-mf-quotient`,
+   so the homomorphism is trivial. `S_∂` is nontrivial, so it is not MF.
+7. **Finitely generated and Kazhdan, finite `k` only.** By the finite-field clause of (F1), `R` is a
+   finitely generated ring and `EL_N(R)` is finitely generated and Kazhdan. Both properties pass to
+   the quotient `S_∂`. For infinite `k` neither clause is asserted (correction paragraph of the claim).

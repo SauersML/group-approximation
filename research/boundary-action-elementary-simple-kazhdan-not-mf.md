@@ -12,19 +12,29 @@ artifacts:
 
 Let `d >= 2`, `k` a countable field, `F_d` acting on its boundary `∂F_d` (infinite reduced words), and
 `R = LC(∂F_d, k) ⋊ F_d`, the algebraic crossed product. For `N >= 3` put
-`S_∂ = EL_N(R) / Z(EL_N(R))`. Then `S_∂` is:
+`S_∂ = EL_N(R) / Z(EL_N(R))`.
 
-1. infinite and finitely generated;
+**For every countable field `k`**, `S_∂` is:
+1. infinite;
 2. simple;
-3. Kazhdan;
-4. such that every homomorphism from `S_∂` to an MF group is trivial. In particular `S_∂` is not MF.
+3. such that every homomorphism from `S_∂` to an MF group is trivial. In particular `S_∂` is not MF.
 
-**The mirror.** The Pestov 9.1 group is `S = EL_3(LC(X, F_2) ⋊ Z)/Z` with `X` a minimal subshift. Both
-rings are Steinberg algebras of minimal effective transformation groupoids on the Cantor set, and both
-groups are infinite, finitely generated, simple and Kazhdan by the same two criteria:
+**If `k` is finite** (for example `k = F_2`, as in the title), `S_∂` is also:
+
+4. finitely generated;
+5. Kazhdan.
+
+**Corrected 2026-09-13 (un-verify).** The first landing asserted 4 and 5 for every countable field. For
+infinite `k`, `EL_N(R)` is not finitely generated, and so has no (T). A finite set of matrices has
+entries with coefficients in a finitely generated subring `A ⊊ k`, and `e_12(λ)` with `λ ∈ k \ A` lies
+outside the subgroup those matrices generate. Clauses 1–3 are unaffected.
+
+**The mirror.** The Pestov 9.1 group is `S = EL_3(LC(X, F_2) ⋊ Z)/Z` with `X` a minimal subshift. Over
+a finite field, both rings are Steinberg algebras of minimal effective transformation groupoids on the
+Cantor set. Both groups are infinite, finitely generated, simple and Kazhdan by the same criteria:
 - ring simplicity from minimality plus effectiveness;
 - group simplicity from local annihilation;
-- plus Ershov–Jaikin-Zapirain.
+- Ershov–Jaikin-Zapirain.
 
 The single difference is the dynamics:
 - The Z-subshift carries an invariant measure and admits return towers, so `S` is LEF.
