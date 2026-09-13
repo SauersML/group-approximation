@@ -32,8 +32,11 @@ second killing theorem in the repository, it is machine-checked, and it is
 the one that survives the passage to torsion-free groups.  The corner that
 the finite-normal branch obtains by averaging, and the central branch
 obtains from a two-point spectrum, is here the fixed-space projection of the
-Kazhdan projection of `K`; normality of `K` is exactly what makes that
-projection invariant under the ambient group, hence a legitimate corner.
+Kazhdan projection of `K`; normality of `K` makes that projection invariant
+under the ambient group, hence a legitimate corner. The mathematical
+extension `virtually-infranormal-kazhdan-mf-detection` weakens normality to
+infranormality inside a finite-index subgroup; that extension has not yet
+been formalized in Lean.
 
 The root `torsion-free-finitely-presented-non-mf` therefore has no remaining
 analytic obstacle on this branch.  What it needs is a torsion-free finitely

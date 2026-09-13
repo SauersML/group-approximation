@@ -72,11 +72,13 @@ Consequences:
 3. The canonical reduced representation is only one instance of (STS1).
    Therefore \(e\) is a maximal-C-star/RFD and actor-stability obstruction,
    not evidence for a nonhyperlinear canonical group trace.
-4. A norm-ultraproduct representation may detect \(e\), because a norm
-   matrix ultraproduct need not have a faithful finite trace.  Tensoring
-   such a detector with a regular-character carrier does not by itself
-   produce positive normalized-HS mass: after passage to a tracial
-   ultraproduct, (STS1) forces the detector to vanish.
+4. Every representation into a finite unital C*-algebra also kills \(e\).
+   The images of \(p\le q\) are equivalent projections, so finiteness
+   forces equality. This includes norm matrix coronas and norm matrix
+   ultraproducts, regardless of whether they have a faithful tracial state.
+   Thus this particular projection cannot supply a norm-ultraproduct
+   detector either. See the finite projection argument in
+   [the infranormal detection note](artifacts/infranormal-mf-detection-2026-09-13.md#6-scope-and-an-associated-correction).
 
 The 2025--26 non-co-hyperlinear IRS results do not bridge this seam.
 Manzoor constructs a non-Connes-embeddable IRS GNS algebra and embeds it in

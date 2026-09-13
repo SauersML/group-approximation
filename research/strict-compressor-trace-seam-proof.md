@@ -156,28 +156,29 @@ retain the quasi-regular vector state, but then it is not a star-homomorphism;
 making that compression into a positive canonical corner is exactly the
 missing trace-to-regular problem.
 
-## 5. Norm detection has zero normalized-HS density
+## 5. Finite C*-targets also kill the projection
 
-A norm matrix ultraproduct
+The absence of a faithful trace on a norm matrix corona does not allow
+this particular projection to survive. Let \(\Theta\) be a unital
+star-homomorphism into any finite unital C*-algebra and put
+\(P=\Theta(p)\), \(Q=\Theta(q)\). Then \(P\le Q\), and the images of
+the canonical group unitaries make \(P\) and \(Q\) unitarily equivalent.
+Choose a partial isometry \(v\) with \(v^*v=Q\), \(vv^*=P\).
+The element \(v+1-Q\) is an isometry with range projection \(P+1-Q\).
+Finiteness forces it to be unitary, so \(P=Q\) and
 \[
- \prod_n M_{d_n}\big/\bigoplus_n M_{d_n}
+                         \Theta(e)=0.                     \tag{16}
 \]
-need not carry a faithful normalized trace, so a star-homomorphism into it
-may detect \(e\).  Let \(E_n\) be projection representatives.  Every
-ultralimit of normalized matrix traces composed with the representation is
-tracial on \(C^*_{\max}(G)\), so (3) forces
-\[
-                         {\operatorname{rank}E_n\over d_n}
-                         \longrightarrow_\omega0.         \tag{16}
-\]
-Thus the same sequence is zero in the normalized-HS ultraproduct.  Tensoring
-with an exact regular-character carrier preserves the rank fraction in
-(16), and direct-sum repetition does the same.  A norm-level MF detector
-therefore cannot be trace-masked into a positive-density HS detector by
-amplification alone.
 
-This is the precise MF-versus-hyperlinear boundary for the Kazhdan
-projection witness.
+Norm matrix coronas and norm matrix ultraproducts are finite by polar
+correction, so (16) applies to both. Nonunital maps have the same conclusion
+after passing to the corner whose unit is \(\Theta(1)\), which is finite.
+Thus this projection supplies no norm-matrix detector to amplify.
+
+This corrects the former claim that a norm ultraproduct could detect
+\(e\). Trace invisibility alone would not give (16); equivalence of the
+two ordered projections is the additional input. The same argument is
+used in [the infranormal detection proof](artifacts/infranormal-mf-detection-2026-09-13.md).
 
 ## 6. What the recent IRS results do and do not provide
 
