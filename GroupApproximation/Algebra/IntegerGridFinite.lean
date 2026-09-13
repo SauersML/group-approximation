@@ -27,6 +27,7 @@ namespace GroupApproximation
 namespace IntegerGridFinite
 
 open MvPolynomial
+open scoped Matrix
 
 variable {d : ℕ}
 
@@ -52,7 +53,7 @@ theorem exists_expo_eq {R : Type*} [CommSemiring R] {N : ℕ} {P : MvPolynomial 
 theorem eval₂_eq_sum {N : ℕ} {P : MvPolynomial (Fin d) ℤ} (hP : P.totalDegree ≤ N)
     (x : Fin d → ℂ) :
     eval₂ (Int.castRingHom ℂ) x P =
-      ∑ e : Fin d → Fin (N + 1), (P.coeff (expo e) : ℂ) * ∏ i, x i ^ (e i : ℕ) := by
+      ∑ e : Fin d → Fin (N + 1), ((P.coeff (expo e) : ℤ) : ℂ) * ∏ i, x i ^ (e i : ℕ) := by
   classical
   have hsub : P.support ⊆ Finset.univ.image (expo (N := N)) := by
     intro m hm
@@ -63,7 +64,7 @@ theorem eval₂_eq_sum {N : ℕ} {P : MvPolynomial (Fin d) ℤ} (hP : P.totalDeg
     Finset.sum_subset hsub fun m _ hm ↦ by rw [notMem_support_iff.mp hm, map_zero, zero_mul]
   have h2 : ∑ m ∈ Finset.univ.image (expo (N := N)),
       (Int.castRingHom ℂ) (P.coeff m) * ∏ i, x i ^ m i =
-      ∑ e : Fin d → Fin (N + 1), (P.coeff (expo e) : ℂ) * ∏ i, x i ^ (e i : ℕ) :=
+      ∑ e : Fin d → Fin (N + 1), ((P.coeff (expo e) : ℤ) : ℂ) * ∏ i, x i ^ (e i : ℕ) :=
     Finset.sum_image fun _ _ _ _ h ↦ expo_injective h
   exact (eval₂_eq' _ _ _).trans (h1.trans h2)
 
@@ -117,19 +118,19 @@ theorem finite_setOf_totalDegree_le_norm_eval_le (z : Fin d → ℕ → ℂ)
   obtain ⟨u, hu⟩ := hA
   -- the coefficients are the inverse matrix applied to the values at the grid points
   have hc : ∀ P : MvPolynomial (Fin d) ℤ, P.totalDegree ≤ N → ∀ e,
-      (P.coeff (expo e) : ℂ) =
+      ((P.coeff (expo e) : ℤ) : ℂ) =
         ∑ k, (↑u⁻¹ : Matrix (Fin d → Fin (N + 1)) (Fin d → Fin (N + 1)) ℂ) e k *
           eval₂ (Int.castRingHom ℂ) (fun i ↦ z i (k i)) P := by
     intro P hP e
     have hw : (fun k : Fin d → Fin (N + 1) ↦ eval₂ (Int.castRingHom ℂ) (fun i ↦ z i (k i)) P) =
-        gridMatrix z N *ᵥ fun e ↦ (P.coeff (expo e) : ℂ) := by
+        gridMatrix z N *ᵥ fun e ↦ ((P.coeff (expo e) : ℤ) : ℂ) := by
       funext k
       rw [eval₂_eq_sum hP]
       simp only [Matrix.mulVec, dotProduct, gridMatrix, Matrix.of_apply]
       exact Finset.sum_congr rfl fun e _ ↦ mul_comm _ _
-    have h1 : (fun e ↦ (P.coeff (expo e) : ℂ)) =
+    have h1 : (fun e ↦ ((P.coeff (expo e) : ℤ) : ℂ)) =
         (↑u⁻¹ : Matrix (Fin d → Fin (N + 1)) (Fin d → Fin (N + 1)) ℂ) *ᵥ
-          (gridMatrix z N *ᵥ fun e ↦ (P.coeff (expo e) : ℂ)) := by
+          (gridMatrix z N *ᵥ fun e ↦ ((P.coeff (expo e) : ℤ) : ℂ)) := by
       rw [Matrix.mulVec_mulVec, ← hu, Units.inv_mul, Matrix.one_mulVec]
     have h2 := congrFun h1 e
     rw [← hw] at h2
@@ -156,7 +157,7 @@ theorem finite_setOf_totalDegree_le_norm_eval_le (z : Fin d → ℕ → ℂ)
   rintro _ ⟨P, hP, rfl⟩
   refine Set.mem_univ_pi.mpr fun e ↦ Set.mem_Icc.mpr ?_
   show -⌈R e⌉ ≤ P.coeff (expo e) ∧ P.coeff (expo e) ≤ ⌈R e⌉
-  have hle : ‖(P.coeff (expo e) : ℂ)‖ ≤ R e := by
+  have hle : ‖((P.coeff (expo e) : ℤ) : ℂ)‖ ≤ R e := by
     rw [hc P hP.1 e]
     refine (norm_sum_le _ _).trans (Finset.sum_le_sum fun k _ ↦ ?_)
     rw [norm_mul]
@@ -165,9 +166,9 @@ theorem finite_setOf_totalDegree_le_norm_eval_le (z : Fin d → ℕ → ℂ)
   have hceil := Int.le_ceil (R e)
   obtain ⟨h1, h2⟩ := abs_le.mp hle
   constructor
-  · have h3 : (-(⌈R e⌉ : ℝ)) ≤ (P.coeff (expo e) : ℝ) := by linarith
+  · have h3 : (-(⌈R e⌉ : ℝ)) ≤ ((P.coeff (expo e) : ℤ) : ℝ) := by linarith
     exact_mod_cast h3
-  · have h3 : (P.coeff (expo e) : ℝ) ≤ (⌈R e⌉ : ℝ) := by linarith
+  · have h3 : ((P.coeff (expo e) : ℤ) : ℝ) ≤ (⌈R e⌉ : ℝ) := by linarith
     exact_mod_cast h3
 
 /-- A sequence of complex numbers algebraically independent over `ℤ`. -/
