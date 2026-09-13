@@ -39,6 +39,19 @@ at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-d
   - `HullLemma35Transitive` was BUILT in 0913-080412-2056 and replayed with the same source.
   - `#audit_axioms` shows only `propext`, `Classical.choice` and `Quot.sound`.
   - Both modules are queued for wiring.
+- Hyperbolicity chain for Hull Lemma 3.5, all new modules, each probed green (BUILT, no
+  warnings, `#audit_axioms` within the three axioms) and queued for wiring:
+  - `5acca195c`: `GGT/HullLemma35Expansion.lean` (guessed paths, step and short-path bounds)
+    and `GGT/HullLemma35Corner.lean` (the corner walk);
+  - `28fbaaffe`, probe 0913-093041-78609: `GGT/HullLemma35Sides.lean` (side points,
+    `LetterNear`, side hypotheses at both corners);
+  - `6dd556d61`: `GGT/HullLemma35Thin.lean` (`thin`, the thin-triangle condition given
+    `LetterNear`);
+  - `7401027ce`, probe 0913-094811-36793: `GGT/HullLemma35PieceGeometry.lean` (quadrilateral
+    and hexagon bounds, `nearBetween_quad`, `nearBetween_hexagon`);
+  - `1369b2bed`, probe 0913-101453-98311: `GGT/HullLemma35PieceWords.lean` (`transEx`, the
+    expansion of member letters into shortest words of `E i`; `properRelGenSet`; bounded
+    expansions of relative balls).
 
 | module | declarations |
 |---|---|
@@ -152,14 +165,20 @@ stands off it.
     through `H i`. Every excursion out of `H i`, and every letter of another member, becomes
     one letter of the finite set `excursionLetters D i n ⊆ D.relBall i n`. The bound is the
     Corollary 4.27 local half, `RelHyp.relBall_finite_adjoinBase'`.
-  - Remaining: `Γ(G, transitive alphabet)` is hyperbolic. The plan is Bowditch's criterion
-    (`OsinEnlargement.guessingGeodesics`) along a geodesic word of `D`, with each component
-    letter expanded into a geodesic word of `E i`. This generalizes the `Uncone` chain from
-    cyclic members to hyperbolic replacement graphs.
-    - The step and short-path conditions come from local finiteness.
-    - The thin-triangle condition comes from the triangle connectors (`Uncone.TriangleConnectors`,
-      stated for any `D`), a quadrilateral and hexagon bound in `Γ(H i, Y_i ∪ K^i)`, and the
-      corner walk.
+  - Remaining: `Γ(G, transitive alphabet)` is hyperbolic. The route is Bowditch's criterion
+    (`OsinEnlargement.guessingGeodesics`) along a geodesic word of `properRelGenSet D`, with
+    each component letter expanded into a shortest word of `E i` (`transEx D E`). This
+    generalizes the `Uncone` chain from cyclic members to hyperbolic replacement graphs.
+    - Step and short-path conditions: `wordDist_guessPath_le`, `guessPath_short` and
+      `length_transEx_le_of_wordNorm_le_one` (landed).
+    - Thin-triangle condition: `thin` (landed), given `LetterNear (properRelGenSet D)
+      (transEx D E) S T`, the bound on the expansion of a letter whose coset another side
+      meets.
+    - `LetterNear`, in progress: the triangle connectors (`Uncone.TriangleConnectors`) close a
+      quadrilateral (one other side meets the coset) or a hexagon (both do) in `Γ(H i, E i)`,
+      bounded by `nearBetween_quad` / `nearBetween_hexagon` (landed). The coset coordinates,
+      connector sides and the transfer back are `GGT/HullLemma35PieceSides.lean` (probing); the
+      case split is `GGT/HullLemma35Letter.lean` (next).
 - **Finding: `RelHyp.DGOProposition435PrintedStatement` is false as formalized.**
   - Counterexample: `G = Multiplicative (ZMod 5)` with generator `t`, `D.base = {t²}`,
     `fam = ⊤`, `M = PEmpty`, `E.base = {t, t⁻¹}`.
@@ -170,10 +189,9 @@ stands off it.
 
 ## Next
 
-- Wiring: `296386753` (three modules), `dd0412114`, `87762b46c` and `be6e71f04` (two
-  modules) are queued.
+- Wiring: `296386753` (three modules), `dd0412114`, `87762b46c`, `be6e71f04` (two modules),
+  `5acca195c` (two modules), `28fbaaffe`, `6dd556d61`, `7401027ce` and `1369b2bed` are queued.
 - The team lead accepted (a) through (d) as closed; census registers them at its re-baseline.
-- Hyperbolicity for `PrintedHullLemma35`, in new modules. First the expansion (guessed paths,
-  step and short-path bounds), then the piece geometry, the letter and corner lemmas, and
-  the thin-triangle assembly. Last, the endpoint `printedHullLemma35 : PrintedHullLemma35`
-  with `#audit_closed_axioms`.
+- Hyperbolicity for `PrintedHullLemma35`: `HullLemma35PieceSides` and `HullLemma35Letter`
+  (`LetterNear` for `properRelGenSet D`), then the assembly through `guessingGeodesics`, then
+  the endpoint `printedHullLemma35 : PrintedHullLemma35` with `#audit_closed_axioms`.
