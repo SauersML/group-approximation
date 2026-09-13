@@ -64,7 +64,17 @@ coordinator).  This file is written by ct-rank-budget only.
 - 09-13 17:05: DynamicRankBudgetTorsionTransfer LANDED aadb514ad (GREEN 0913-165831-41224):
   `TorsionDefectTransferStatement` is closed over `CountableCrossedProductStatement`; residual list is now items
   1–5 and 7 of the table (not `TorsionDefectTransferStatement`).
-- Open for this lane: the induced core `CR(S_C) = C ∩ CR(T)` and `J = p_C I p_C` inside `ReturnEmbeddingStatement`.
+- 09-13 17:55: DynamicRankBudgetPlacement LANDED 14e45f292 (GREEN 0913-175226-46007): `IsCornerDeviation`,
+  `cornerOf`, `placement`, `placementUnit`, `unitizeGL_placementUnit`, `coe_placement_sub_one_apply`
+  (tex 1754–1755 for any return tower with `a_0 = b_0 = p_C`).
+- 09-13 18:01: DynamicRankBudgetInducedCore LANDED 0ff627d8e (GREEN 0913-175920-74172):
+  `coe_mem_chainRecurrentSet_of_firstReturn` (`CR(S_C) ⊆ C ∩ CR(T)`, direct chain route, not the printed saturation).
+- Next: `DynamicRankBudgetReturnKernel` (transport of the placement along ct-bilateral-mf's `blockTransport`,
+  deviations in the return transient ideal) and `DynamicRankBudgetReturnBridge` (`returnEmbeddingStatement_of_pieces`
+  over `ReturnRingCrossedProductStatement`, `InvolutionLocalizationMatrixClause`, `CoreKernelElementaryStatement` and the
+  J piece `θ⁻¹(p_C I p_C) ⊆ I_C`).
+- Open for this lane: `J = p_C I p_C` (the 0-th coefficient compatibility of the return ring iso), then the printed
+  saturation route for tex 1743–1750.
   ct-return-tower's statements landed 4d2084188 (`ReturnTowerStatements`: `NoShortPeriods`, `IsReturnSection`,
   `ReturnGapsIn`, `returnTime`, `FirstReturnStatement`, `ReturnRingCrossedProductStatement`,
   `ReturnTowerUnitsStatement`; `τ.phi`, `τ.unitize`, `τ.unitizeGL`).  ct-involution's in-flight
