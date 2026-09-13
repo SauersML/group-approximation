@@ -242,3 +242,31 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
 - Hyperbolicity closes the same way. `GHBQuotient.isHyperbolicGroup_ghb7_of_zipFold` takes only `hzip hfold` at `CCKW.cosetComplex`, and
   both are now proved (`CCKW.zipSpur_cosetComplex`, `Systolic.mirrorFold CCKW.cosetComplex`). So `sharpExistence_ghb7_of_zipFoldHyp`
   yields `Hyperbolic.SharpExistence` with no open leaf. That endpoint is ko-closed's (KotowskiOllivierClosed), so it is not in my module.
+
+## W1 PINCH (09-13, helping hull-respell)
+- Lead directive: help hull-respell with pinched walks, meaning walks with a repeated vertex. The pinch Prop is `PocketPinchStatement`
+  (Estimating/OsinPocketPieces.lean:190). It drops `Collared` and comes first in the reordered pocket pieces.
+- PROBE GREEN 0913-091746-34826 (base fd51edbc6): both modules BUILT and every theorem passes `#audit_axioms`.
+  - The first probe, 0913-090141-62197, was red. An anonymous constructor ascribed to `SameCycle` elaborates as `Exists`, so
+    `.symm` does not resolve. The fix is `Equiv.Perm.SameCycle.symm (⟨…⟩ : …)`.
+- New orphan `GGT/VanKampen/Estimating/OsinPocketRegionUnpinched`, namespace `Surgery.MapCollapse`:
+  - `Unpinched M faces`: no vertex carries two boundary darts. `BoundaryCycle.unpinched_iff_nodup`: the cycle's vertices are distinct.
+  - `vertexOf_eq_of_boundaryWalk`: a boundary walk from `d` ends at a dart based at the vertex of `alpha d`.
+  - `BoundaryCycle.isSimpleClosedWalk_of_followsBoundary hwalk hpinch : IsSimpleClosedWalk M boundary.cycle`, and the converse
+    `BoundaryCycle.unpinched_of_isSimpleClosedWalk`.
+  - `boundaryWalk_eq_of_isBoundaryDart`: walk determinism. From it, `BoundaryCycle.boundaryPerm_eq_of_followsBoundary` and
+    `BoundaryCycle.exists_component_of_followsBoundary`, which gives one boundary circuit.
+  - `Unpinched.boundaryWalk_alpha`, `BoundaryCycle.reverseAlpha` and `BoundaryCycle.reverseAlpha_followsBoundary`: when the face set
+    is unpinched, the complement cycle follows the boundary.
+  - `PocketRegion.ofUnpinched faces outside hout houter inner hwalk hpinch : PocketRegion Delta`, and `ofUnpinched_outer_followsBoundary`.
+- New orphan `GGT/VanKampen/Estimating/OsinPocketPinchUnpinched`, namespace `PocketFaceSet`:
+  - `simple_of_followsBoundary`, `unpinched_of_simple`;
+  - `exists_simple_of_followsBoundary hwalk hpinch`: the conclusion of `PocketPinchStatement`, with `OEquivalentDiscDiagram.refl`;
+  - `PocketPinchPinchedStatement : Prop` and `pocketPinchStatement_of_pinched (h : PocketPinchPinchedStatement) : PocketPinchStatement`.
+- RESIDUAL of the pinch (exact): `PocketPinchPinchedStatement`. It is `PocketPinchStatement` restricted to
+  `K : PocketFaceSet D eps X lo hi` with `¬(K.boundary.FollowsBoundary ∧ Unpinched X.toCombMap K.faces)`. It needs a different
+  O-equivalent diagram, since `X` itself cannot serve: a simple pocket is unpinched (`unpinched_of_simple`). The peer model
+  `Estimating/OsinPocketPinchedTwoGonModel` shows the same obstruction for a merged face set.
+- Trap: a `git grep` of the bare name `boundaryPerm_apply_val` found nothing, but `rg` found it at
+  Estimating/OsinPocketRegionRotate.lean:54. It takes `[DecidableEq M.Dart]`, so use `classical`.
+- NEXT: give hull-respell these pieces and ask for a sub-piece of the pinched core (Lean name, file, statement).
