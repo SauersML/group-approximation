@@ -92,8 +92,13 @@ every group.
 
 ## Review sections
 
-(None yet: no lane under review had landed at the time of this section.)
+- **§1, ex-kazhdan-simple-hyperlinear (f375478c72, 56bdeb8d3e, 41e82567c8).** `EL_3(LC(X,F_q) ⋊ Z)`
+  modulo its finite centre is an infinite simple Kazhdan LEF group, answering Pestov Open Question 9.1
+  positively. PASS on every checked item: the periodic ring models, LEF of the quotient, root
+  detection, the Ershov–Jaikin-Zapirain hypotheses, the statement of 9.1, EKL2 and the MF
+  convention. There are two wording notes and one credit note. Dead routes and stale prose that rested
+  on the refuted implication are listed in part 1 §1.6. No established claim rests on it. Part 1.
 
 ## Part files
 
-(None yet.)
+- `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
