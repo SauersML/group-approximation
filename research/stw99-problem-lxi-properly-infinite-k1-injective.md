@@ -18,6 +18,8 @@ artifacts:
   - research/artifacts/stw61-circle-and-properly-infinite-coefficient-fock-obstruction-2026-09-05.md
   - research/artifacts/stw61-finite-rank-side-threshold-obstruction-2026-09-05.md
   - research/artifacts/stw61-four-compression-calkin-continuity-obstruction-2026-09-05.md
+  - research/artifacts/lxi-dd-toeplitz-proper-infiniteness-2026-09-12.md
+  - research/artifacts/lxi-uniform-unitary-length-reformulation-2026-09-12.md
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -41,7 +43,32 @@ non-nullness of the same compatible witness at every stage would
 suffice for non-nullness in the limit. STW v2 continues to state
 LXI as open.
 
+Blanchard's arXiv:1312.7722v7 and 1507.02535v1 abstracts assert
+that separable continuous C(X)-algebras with properly infinite
+fibres are properly infinite whenever X is finite-dimensional.
+The bodies prove only matrix proper infiniteness (Proposition
+3.1(2)). Their Corollary 3.3 shows that the assertion for one
+continuous C([0,1])-algebra is equivalent to K1-injectivity of
+`T_2 *_C T_2`, so the abstract claim would decide LXI. It is not
+imported (artifact `lxi-dd-toeplitz-proper-infiniteness-2026-09-12`,
+section 6).
+
 ## Attempts
+
+Lane `ex-k1-properly-infinite` (2026-09-12) added two results.
+
+First, `properly-infinite-unstable-length-uniformly-bounded` and
+its two routes make LXI equivalent to a uniform
+exponential-length bound
+`cel_A(u) <= F(cel_{M_2(A)}(diag(u,1)))`. Via the sequence algebra,
+a counterexample can be assembled from K1-injective properly
+infinite algebras whose unstable length diverges.
+
+Second, `dd-toeplitz-algebra-is-properly-infinite` answers
+Blanchard's Question 5.4. His explicit Pimsner--Toeplitz fields
+of `O_∞` over the Hilbert cube, proposed as test cases for BRR
+5.5(ii), are properly infinite. The Dixmier--Douady obstruction
+has codimension one in `E` and disappears in `E ⊗ E`.
 
 The free-envelope candidate `A_LIX * T2` has a stably null witness,
 but its non-nullness remains unproved. The attached compression notes
