@@ -54,6 +54,15 @@ of continuous ranks on `T(B)`.
   increments are not orthogonal summands.
 - **Dead: Lin's theorem.** Strict comparison plus surjective rank map forces
   stable rank one. `B` has no strict comparison, so neither direction bites.
+- **Dead: Thiel's infimum method.** Thiel's proof for stable rank one has four
+  steps: realize chisels (all simple algebras), realize functional infima
+  (needs (O6+)), approximate from above, and take the maximal soft element
+  `alpha(f) = sup L'_f`. In `B` the third conclusion is free, because the
+  Brown--Perera--Toms elements approximate from above. The fourth step is
+  provably unavailable: `toms-schubert-algebra-has-no-small-joins` shows that
+  two compact classes of constant rank `t` in `B` have no common Cuntz upper bound
+  of rank below `2(1 - eta) t` everywhere. So `L'_f` is not upward directed for
+  `f = (5/4) t`, and `Cu(B)` fails (O6+) or weak cancellation.
 - **Open positive mechanism: central diffuse independence.** Suppose that for
   a uniformly dense family of stage-central `0 <= c <= 1`, some positive
   contraction `b` commutes with `c` and has joint law `mu_(c,tau)` times

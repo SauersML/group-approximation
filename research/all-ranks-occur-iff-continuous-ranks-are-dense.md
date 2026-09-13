@@ -32,6 +32,16 @@ can miss it by a fixed amount at every point of a closed set with empty
 interior. So the greedy upgrade breaks at the first step. Continuity of the
 approximants is exactly what repairs it.
 
+**Relation to Lin's oscillation.** Lin's tracial oscillation
+`omega(a) = lim_n sup_tau (d_tau(a) - tau(f_(1/n)(a)))` vanishes exactly when
+`d(a)` is continuous (H. Lin, arXiv:2112.12036, §5 definition of `omega`). So
+item 3 says that zero-oscillation elements have uniformly dense ranks.
+Fu--Lin (arXiv:2112.14007, Theorem `Teqiv`) prove that tracial approximate
+oscillation zero, the 2-norm density of such elements, is equivalent to
+surjectivity of the rank map plus stable rank one. They assume strict comparison
+throughout. The equivalence here assumes no comparison and uses uniform density
+of ranks, not 2-norm density of elements.
+
 **A second use.** If `d(a) + d(b)` is continuous and both are finite, then
 `d(a) = (d(a) + d(b)) - d(b)` is both lower and upper semicontinuous. So every
 orthogonal summand of an element with continuous rank has continuous rank.
