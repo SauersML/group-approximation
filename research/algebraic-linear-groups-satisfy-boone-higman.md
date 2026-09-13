@@ -28,5 +28,6 @@ recorded because it is the transcendence-degree-zero part of
   cases are `SL_3(Z[t^(+-1)])` and the finitely generated subgroups of
   `GL_n(Q(t))` whose entries need non-constant denominators.
 - **Status.** So `char-zero-linear-groups-satisfy-boone-higman` is established.
-  It rests on the polynomial theorem, whose independent review is still pending
-  (lane `bh-poly-linear-review`).
+  It rests on the polynomial theorem~~, whose independent review is still pending
+  (lane `bh-poly-linear-review`)~~. *Reviewed (lane `bh-poly-linear-review`,
+  2026-09-12):* the polynomial theorem stands, with one corrected step.
