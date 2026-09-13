@@ -47,9 +47,11 @@ entropy over `G` would be isomorphic. That is the finite-entropy part of the str
 
   So the exact recodings that are easy to write down carry no information about the complement they would
   have to capture.
-- **Krieger density.** Also open. Theorem 1.1 of Seward's Part I gives a generating partition with
-  distribution `λ` when `h^Rok_G(X) < H(λ)`, not one near a given partition. At `s = 0`, density of
-  generating partitions among all `L`-labelled partitions, without independence, is not recorded here. It is
-  the non-exact half of this claim.
+- **Krieger density.** Holds at `s = 0` (2026-09-13). Generating partitions are `d^Rok`-dense among all
+  finite-entropy partitions of an ergodic action exactly when its Rokhlin entropy is `0`
+  (`generators-dense-iff-zero-rokhlin-entropy`, from Seward's small-support generators). So every i.i.d.
+  partition has generating partitions arbitrarily close to it, with the same window statistics up to any
+  error, using two extra labels on a small set. The non-exact half of this claim is free, and the claim is
+  purely an exactification statement.
 - **Where it dies.** Exactness: no construction changes an exactly i.i.d. partition on a small set, keeps it
   exactly i.i.d., and increases the information it carries.
