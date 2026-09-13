@@ -186,6 +186,21 @@ relator face and for a relator–relator edge.
   no-cell-edge and no-cell-side `hP` instances; this lane proves the `HasCellPair` instance and the final
   `cellPocketCopyClean : CellPocketCopyCleanStatement`.
 
+### LANDED 21b4d049d (probe 0913-183543-77148 GREEN: BUILT all 3 modules, empty error index, no `sorryAx`)
+
+- `CellEdgeThickening.exists_cellEdgeFree_of_invariant`, additive. Rule 22 check: its only importer on origin is
+  `SurgeryCellEdgeSideThickening`, which was in the same probe.
+- `Estimating/OsinPocketCellCopyProducer.lean`, wire-queued: `HasCellPair`, `joinsCells_map`,
+  `hasCellPair_cellEdgeStep`, `hasCellPair_cellSideStep`, `exists_cellEdgeSideFree_pair`. It gives a family with a cell
+  pair, no cell-edge dart, no cell-side dart and no relator word of value one.
+- **Remaining for `cellPocketCopyClean : CellPocketCopyCleanStatement`:**
+  - ms-intro-2's `RegionPairThickening.exists_regionPairFree_of_invariant` (API agreed) and its `hmono` discharge;
+  - then this lane's `HasCellPair` `hP` for the region-pair step;
+  - then `CellEdgeSideThickening.copyClean_of_noDarts` with `RegionPairThickening.regions_of_noRegionPairDart`.
+- **Named residuals of binder 5 with no producer owner** (ms-cite-1, eb678c70a, `OsinPocketMultipleEdgeCopy`):
+  `CellPocketWalkOuterOffSideStatement` and `CellPocketWalkSideRelatorCellStatement`. There is no producer on origin, no
+  draft in the shared tree and no `.files` entry. Reported to main.
+
 ### T3 side–side thickening (claimed, then withdrawn; see above)
 
 CLAIM T3 side–side thickening:
