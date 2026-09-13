@@ -37,7 +37,10 @@ Röver--Nekrashevych commutators.
 - **Complexity benchmark.** The recursion data varies with `A`, so
   `no-fp-simple-algebra-hosts-every-decidable-algebra` does not fence this
   premise. But the monomial inputs `K<x,y>/(x y^n x : n in X)` force word-problem
-  complexity of `B` beyond any shared recursive bound.
+  complexity of `B` beyond any shared recursive bound. By
+  `ln-completion-word-problem-reduces-to-base-algebra`, the recursion `psi` adds only
+  a fixed elementary overhead to the word problem of `B`, so that complexity must
+  sit in the relators of `B`, not in `psi`.
 
 ## Attempts
 
@@ -50,10 +53,17 @@ Röver--Nekrashevych commutators.
    psi-minimal. Aperiodicity is not checked. Such recursions only cover inputs
    with a degree structure, a class already reached by
    `polynomially-representable-algebras-have-fp-simple-envelopes`.
-3. **Transducer recursions over free `B`** (untried construction). Let `B` be
+3. **Transducer recursions over free `B`**: *dies as a universal method* (2026-09-13). Let `B` be
    free on finitely many generators, with `psi(g)` entries noncommutative
    monomials in the generators, i.e. "linear transducers with stack memory". Such
    elements act as partial isometries on the span of infinite words and can
    implement two-stack moves. The open problem is to simulate the decision
    procedure of `X` so that `x y^n x = 0` exactly for `n in X`, while keeping
    psi-minimality and aperiodicity.
+   **Kill.** `ln-completion-word-problem-reduces-to-base-algebra` bounds the word
+   problem of every completion over a free base by one recursive function of the
+   length, uniformly in `m`, `d` and `psi`. By
+   `no-fp-simple-algebra-hosts-every-decidable-algebra`, some decidable `A_X`
+   embeds in no such completion, whatever its minimality and aperiodicity. Any
+   hosting completion needs a finitely presented base whose own word problem
+   carries the decision procedure for `X`.
