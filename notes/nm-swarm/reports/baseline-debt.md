@@ -412,6 +412,37 @@ and `rho0 = 1`.
   - Probe 0913-150326-35154 (base `09b3b57e4`): the record reads `# PROBE GREEN`, the module
     shows BUILT, and the error index is empty. Landed unwired in the same commit as this report
     line, and queued for wiring.
+- The team lead's answer at 16:00. debt-conditional owns module 4, so it picks the producer for
+  the pinched case and names this lane's piece. Meanwhile this lane has two jobs: the `hnc`
+  producer, in a new module, and switching the glue to sec2-sentences'
+  `exists_kept_of_simple_of_value` (`3a76a2fb8`). The exact statement went to debt-conditional
+  before proving.
+  - `Estimating/OsinPocketWalkCopyNoncrossing.lean` is new and unwired. It proves
+    `PocketWalk.isNoncrossingClosedWalk_of_copyClean`: for a pocket walk `K` with the data of
+    `PocketWalk.exists_of_exteriorAt`, a least-area diagram and `K.CopyClean x y`, `K.walk` is a
+    noncrossing closed walk.
+  - The proof assembles four landed steps: `walk_isChain_closes` (kh-ejz),
+    `walk_nodup_and_alpha_not_mem` (leavitt-units), `PocketWalkColour.walk_orient` (cite-hull)
+    and `ClosedWalkFaceColouring.isNoncrossingClosedWalk_of_orient` (kh-ejz).
+  - So the residual moves from `hnc` to `CopyClean` on the copy. The copy `S'` of
+    `OuterSpurThickeningStatement` gives only the `spur` clause. The roster assigns the copies to
+    hs-vanishes and leavitt-units.
+  - The clause `cell_outer` is needed. A dart of cell `i` in both the gap and the target arc of
+    `K` puts that dart and its reverse in `K.walk`.
+  - `hvalue` has a producer: `leastArea_listVal_word_ne_one` (`OsinAppendixO52Prep.lean:116`),
+    applied to `S.equiv.leastArea hlea`.
+  - `false_of_unpinched` now calls `exists_kept_of_simple_of_value`. Its binders are `hxS`,
+    `hyS`, `hxy`, `K`, `hgap`, `hfirst`, `hsecond`, `hvalue`, `hnc`, `hpinch` and `hno`.
+    - `hx` and `hy` (in `exteriorAt`) became `hxS` and `hyS` (in `S.family`).
+    - `hjx`, `hjy`, `hstart`, `hend` and `havoid` are gone.
+    - No module on origin uses it.
+  - Probe 0913-171531-16914 (base `4db9c6729`):
+    - the record reads `# PROBE GREEN`;
+    - both modules show BUILT, and the error index is empty;
+    - the record's md5 sums match the sources landed.
+    - `#audit_axioms` throws on any axiom outside `propext`, `Classical.choice` and `Quot.sound`
+      (`AxiomGuard.lean:67`), so the build succeeding bounds all three theorems.
+  - Landed unwired in the same commit as this report line.
 
 ## Next
 
@@ -435,11 +466,14 @@ and `rho0 = 1`.
     (`JacobsonThreePlusOnePresented.lean:98`), the root imports the module
     (`GroupApproximation.lean:4962`), and tex 1155-1157 is the sentence of jacobson's row 26.
 - C6′:
-  - Next: land `OsinPocketKeptCellUnpinched` after a green probe, queue it for wiring, and send
-    the name and SHA to debt-conditional and the team lead.
+  - Next: queue `OsinPocketWalkCopyNoncrossing` for wiring and re-queue
+    `OsinPocketKeptCellUnpinched` at the new SHA. Then take the piece debt-conditional names for
+    the pinched case.
   - The lead has answered Q2. The route is the O-equivalent copy, with the conclusion transported
     back, and `OuterSpurThickeningStatement` is not strengthened.
-  - Inputs on `S'` that remain: `hno` (hs-vanishes), `havoid` (sec2-sentences) and `hnc` (no
-    producer on origin). `hpinch` is module 4's case split.
-  - Waiting on the lead's answer for the pinched case: which producer gives a relator cell on the
-    side of a non-simple pocket walk under `hno`.
+  - Inputs on `S'` that remain:
+    - `hno` (hs-vanishes);
+    - `K.CopyClean x y` on the copy (hs-vanishes, leavitt-units);
+    - `hpinch`, which is module 4's case split.
+  - `hnc` follows from `CopyClean` and least area, and `hvalue` from least area. `havoid` is no
+    longer needed.
