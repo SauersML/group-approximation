@@ -29,6 +29,12 @@ permutational class (`fp-simple-highly-transitive-groups-satisfy-pbh`). This
 would remove the last known family of test cases for
 `bh-implies-pbh-iff-fp-simple-groups-satisfy-pbh`.
 
+**Parts two and three settled (2026-09-13).** Rybak, arXiv:2605.14159v3,
+Proposition A, makes these groups MIF (`fp-simple-kac-moody-lattices-are-mif`), and
+BFFHZ Theorem C then gives permutational Boone--Higman for them and all their
+subgroups (`fp-simple-kac-moody-lattices-satisfy-pbh`). What stays open is the first
+part, high transitivity, which this node asks.
+
 **Explicit members.** `simple-kazhdan-kac-moody-lattices-exist` and
 `km-246-lattice-fp-simple-kazhdan-irs-rigid-for-q-ge-4`: the (2,4,6) lattices
 `Λ_q/Z` for `q ≥ 4` are finitely presented, simple and Kazhdan.
@@ -75,3 +81,28 @@ would remove the last known family of test cases for
      topologically free" into high transitivity (possibly Le Boudec--Matte
      Bon, *Confined subgroups and high transitivity*, Ann. H. Lebesgue 2022)
      was not read; the arXiv API was rate-limited.
+
+3. **Through Rybak's hyperbolic curtain model: gives MIF and PBH, not high
+   transitivity (2026-09-13, lane solve-bh-kac-moody).**
+   - Rybak (arXiv:2605.14159v3, Proposition A and its proof, TeX l.1548--1558) makes
+     `G(F)` faithful weakly hyperbolic through the curtain model of the Davis
+     building. Its action on the limit set is topologically free, so it is MIF by
+     her Theorem A.
+   - The criterion that turns topological freeness into high transitivity is proved
+     only for trees. Fima--Le Maître--Moon--Stalder, arXiv:2003.11116, TeX
+     `HTacttrees-DAJ-final.tex` l.413--416: "Let $\Gamma\curvearrowright\mathcal{T}$
+     be a minimal action of general type of a countable group $\Gamma$ on a tree
+     $\mathcal{T}$. If the action on the boundary $\Gamma\curvearrowright \partial\mathcal{T}$
+     is topologically free, then $\Gamma$ admits a highly transitive and highly
+     faithful action; in particular, $\Gamma$ is highly transitive." Their
+     equivalence theorem (l.503--512), which BFFHZ cite as Theorem B, makes
+     `td ≥ 4`, high transitivity, MIF and topological freeness on `∂T` equivalent for
+     faithful minimal general-type tree actions.
+   - Rybak extends only the MIF ⇔ topologically free part to hyperbolic spaces, and
+     proves no high-transitivity statement for lim-free groups.
+   - The Kazhdan members have property (T), hence property FA (standard, not
+     re-read), so they have no general-type tree action and the tree criterion cannot
+     apply to them.
+   - Missing input: a hyperbolic-space analogue of the FLMMS criterion, i.e. that a
+     faithful general-type action on a hyperbolic space that is topologically free on
+     the limit set yields a highly transitive action.
