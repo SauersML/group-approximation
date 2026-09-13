@@ -9,6 +9,26 @@ hs-vanishes and sec2-sentences. This lane never edits their files.
 - CLAIM C6′ uniform noncrossing route `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonNoncrossingRoute.lean`
 - CLAIM C6′ merge-disc route `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonMergeDisc.lean`
 - CLAIM C6′ either-follows assembly `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEitherFollows.lean`
+- CLAIM C6′ copy-route assembly `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEitherFollowsCopy.lean`
+
+## Landed: `Estimating/OsinAppendixEulerTwoGonEitherFollows` (c5f2b7378, probe 0913-180835-10074 GREEN, unwired)
+
+All three declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
+
+- `PocketRegionOfInnerFollowsStatement`: a pocket region on the side of a noncrossing walk whose inner cycle follows its
+  boundary. ms-torsionfree's builder `PocketRegion.ofNoncrossingClosedWalkInner` discharges it once landed.
+- `TwoGonEitherFollowsPocketInput`: the noncrossing residual in which the outer cycle or the inner cycle follows.
+- `twoGonHoldsInput_of_eitherFollows : TwoGonHoldsInput`. The outer branch uses `PocketRegion.ofNoncrossingClosedWalk`
+  and `reclosed_euler`; the inner branch uses the named Prop. Both then go through `emptyTwoGonInput_holds`.
+
+## In flight: `Estimating/OsinAppendixEulerTwoGonEitherFollowsCopy` (probing)
+
+- `GloballyDistinguishedSectionFamily.false_of_eitherFollowsPocket`: the contradiction with generic labels on any
+  globally distinguished family.
+- `TwoGonEitherFollowsCopyInput`: the pocket on some globally distinguished family `S'` over the same `Delta` and
+  `cuts`. That is the output shape of `OuterSpurThickeningStatement` plus `PocketWalk.CopyClean`
+  (`isNoncrossingClosedWalk_of_copyClean`, baseline-debt 42d2d8e26).
+- `twoGonHoldsInput_of_eitherFollowsCopy`, and `twoGonEitherFollowsCopyInput_of_pocketInput`, which takes `S' = S`.
 
 ## Correction (2026-09-13 ~18:05): the lake still has a PocketRegion
 
