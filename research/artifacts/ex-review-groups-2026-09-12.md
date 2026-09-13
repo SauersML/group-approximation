@@ -109,8 +109,14 @@ every group.
   stability dictionaries (ex-thompson-v-soficity). PASS on `RF_fp` and `LEF_fp` Pi^0_2-completeness
   (ex-complexity-sofic), after Lemma A, false as first stated, was corrected in `ec53d79731`. Part 3.
 
+- **§4, stability, Păunescu's class, fixed price, the Q3.4 frame chain (to ~00:30 CDT).** PASS on Leavitt
+  permutation stability (ex-thompson-v-soficity), four Păunescu-class permanence claims including every
+  `PSL_2(C)` lattice (ex-nonsofic-action-entropy), fixed price one for `EL_r` over noncommutative rings
+  (ex-free-bridges), and four frame-rounding claims (ex-q34-collapse). Part 4.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
 - `research/artifacts/ex-review-groups-2026-09-12-part2.md`: §2, sweep, VTF chain, dichotomy, quantization.
 - `research/artifacts/ex-review-groups-2026-09-12-part3.md`: §3, status recheck, Thompson F dictionaries, `RF_fp` completeness.
+- `research/artifacts/ex-review-groups-2026-09-12-part4.md`: §4, permutation stability, Păunescu's class, fixed price, frame chain.
