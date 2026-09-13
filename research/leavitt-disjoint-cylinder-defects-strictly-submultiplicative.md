@@ -233,3 +233,26 @@ than vanishing.
     - on `[A1]`, `b` is three prefix replacements, not one.
 
     Also open: `U_< ⋊ F`, and coefficients from both charts.
+- **Right-child exchange group (w7-gamma-b, 2026-09-12): Borel models die, soficity undecided, no deficit.** Artifact
+  `research/artifacts/right-child-exchange-group-structure-2026-09-12.md`, claim
+  `right-child-exchange-group-has-infinite-dihedral-root-closure`; held OPEN until `w4-vf-gate` re-derives it.
+  * **Only one conjugate increases.**
+    - Of the six `b`-conjugates of the positive roots at `A` and `A1`, only
+      `b iota_(A1)(x_23(1)) b^-1 = 1 + S[A11]T[A101] = iota_A(E_32(t_1))` increases lexicographically.
+    - With `b' = x_0` on `[A1]`, which is `b` without the exchange `A101 <-> A11`, everything lies in `U_< ⋊ <b'>`.
+  * **Infinite dihedral pair.**
+    - That conjugate and `iota_A(x_23(1))` generate `D_inf`. In the frame `(A10, A11)` the degree `-n` part of the
+      `n`-th power of their product is `[[t_1^n,0],[t_1^n,0]]`.
+    - So no locally finite subgroup normalized by `b` contains both `x_23` roots. This contains Lemma 6.1 for every
+      order: setwise, pointwise, piecewise and `b`-twisted Borel models are all dead.
+    - The HNN extension over the finite positive-root group does not model `[b x b^-1, x] = 1` (Britton).
+  * **Splitting.**
+    - `Gamma_b = M ⋊ Gamma'` with `M` elementary abelian, and `Gamma' ≅ <x, y, u, beta>` at the root, in `GL_2` over
+      `F_2<s_0,t_0,t_1>`.
+    - So `Gamma_b` is amenable if and only if `Gamma'` is.
+  * **Theorem S.** For `B` disjoint from `[A]`, the hypothesis is exactly soficity of `Gamma_b × iota_B(D_8)`, that is
+    soficity of `Gamma_b`.
+    - A deficit from its relations would prove `Gamma_b` nonsofic, and that would be the certificate itself.
+    - At a minimizer the numbers are the Theorem S numbers, which agrees with w7-sylv-global Section 4.2.
+  * **Where it stops.** Is `<x, y, u, beta>` amenable, or does it contain a free subgroup? If it is amenable, theta = 1
+    on `Gamma_b`.
