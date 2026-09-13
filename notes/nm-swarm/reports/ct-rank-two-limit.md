@@ -29,7 +29,13 @@ covers every field `K` and every countable subgroup of `GL_2(K)`.  `GL_2(k[z,z^{
 | `Dynamics/ClopenCrossedProductLaurentEval` | `evalLaurent` (fixed points into `k[z,z^{-1}]`), `evalPair` (period ≤ 2 into `M_2(k[z,z^{-1}])`), `coeff_evalLaurent`, `coeff_evalPair_row` | LANDED 86e64d0a3 |
 | `Dynamics/RankTwoCoreImageHaagerup` | `fiberSubring`; `fixedCoreImageHaagerup`, `periodTwoCoreUnitImageHaagerup` (closed); endpoints `printedFixedCoreGLTwoKazhdanFinite_of_kernel`, `printedPeriodTwoCoreUnitsKazhdanFinite_of_kernel`, `printedRankTwoCompressionDefectsTrivial_of_kernel` | LANDED a34f74c76 |
 
-All six modules are queued for wiring in `$NM/wire-queue.txt`.
+| `Dynamics/RankTwoRestrictionImageFinite` | `finite_map_of_kazhdan_of_haagerup`; closed endpoints `printedFixedCoreRestrictionImageFinite`, `printedPeriodTwoCoreUnitRestrictionImageFinite` (restriction images finite, no kernel hypothesis) | LANDED 11c23415f |
+
+All seven modules are queued for wiring in `$NM/wire-queue.txt`.
+
+Census: `2d5721555dfe` (tex 1796–1798) is `formalized`; `f31fa0413ffd`, `dd5ef3eafd48` and `5e4354e1556b` are `partial`
+over `CoreRestrictionLocallyFiniteKernelStatement` alone.  They flip to closed when chain-matricial's
+`isLocallyMatricialIn_transientIdeal` and ms-compress-3's glue land.
 
 Printed endpoints (namespace `GroupApproximation.ChainCore.RankTwoLimit`):
 `PrintedFixedCoreGLTwoKazhdanFinite` (tex 1795–1796), `PrintedPeriodTwoCoreUnitsKazhdanFinite` (tex 1802–1803),
