@@ -1,7 +1,8 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMergeRegion
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionRotate
-import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixCutMerge
-import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerEmptyTwoGon
+import GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundCaseOne
+import GroupApproximation.GGT.VanKampen.Estimating.SingletonFaceRegion
+import GroupApproximation.GGT.VanKampen.SurgeryInnerCollapseRegions
 import GroupApproximation.GGT.VanKampen.SurgeryInnerCollapseMerged
 import GroupApproximation.GGT.VanKampen.SurgeryReclosedVertices
 import GroupApproximation.Meta.AxiomGuard
@@ -27,10 +28,9 @@ collapses `P` to one face and reads that face as one contiguity region: the inpu
 * `Surgery.InnerGRegion.mergedGeometry`: if the boundary cycle of a region, started at any dart,
   is a reversed cell arc, a side, a target arc and a side, the merged face `{R.merged}` is a
   contiguity region with the same target, arc lengths and target start.
-* `GloballyDistinguishedSectionFamily.false_of_zeroCellPocket`: the assembly, with weight
-  hypothesis `a.weight + b.weight ≤ |source| + |target|`.
-* `GloballyDistinguishedSectionFamily.false_of_emptyTwoGon` and `emptyTwoGonFollowsInput`: the
-  empty two-gon of `Φ'_M` (C6, `EmptyTwoGonInput`), when the pocket cycle follows the boundary.
+
+The contradiction itself, through `false_of_collapse_singleton`, is in
+`Estimating/OsinPocketZeroCellMergeFalse.lean`.
 
 ## Manuscript status
 
