@@ -242,3 +242,186 @@ Corollary 5.5 (lines 1822--1830):
 
 Here Corollary 5.4 (lines 1804--1814) requires `L(B) in C_c` for every finite
 set (graph) `B`.
+
+### 2.1 Exact hypotheses of the action-lifting chain
+
+For `E = R semidirect F0` with `F0` free, the chain behind
+`linton-halo-gives-action-sofic` needs:
+
+1. `F0` LERF.  Hall's theorem covers finite rank.  For infinite rank, a finite
+   set `K u {g}` lies in a finite-rank free factor `F'`, which is a retract, so
+   a finite-index subgroup of `F'` separating `g` from `<K>` pulls back to one of
+   `F0`.
+2. Theorem 4.7, then Proposition 4.20: every `F0`-set action is sofic.
+3. A **set-theoretic** halo in the sense of Definition 2.4, meaning a functor
+   on all injections of sets, with `L(B)` sofic for every finite `B`.
+   Proposition 4.26 then gives a sofic `C`-action on `L(X)`.  Its proof uses
+   axiom (iii) and functoriality at the same step.  An equivariant family
+   satisfying only Definition 2.3 is not enough.
+4. Corollary 5.2(a) with `Delta = R` sofic and `Gamma = F0`.
+
+The route as written in the graph asks for exactly (3), so it is sound.  The
+entire difficulty is producing the functor.
+
+## 3. Imported theorems (task 4)
+
+- Torsion (Wise) and `pi(w) >= 3` are already handled.  Louder--Wilton
+  negative immersions give hyperbolic virtually special groups (Linton,
+  arXiv:2202.11324, Theorem 7.2), hence residually finite groups.  Both are
+  recorded in [[nonsofic-one-relator-relator-has-primitivity-rank-two]].
+- A residually `Q`-solvable group has `R = 1` and a free shell, which is
+  [[residually-rationally-solvable-one-relator-sofic]].
+- Jaikin-Zapirain--Linton (arXiv:2303.05976) prove coherence.  It makes no
+  soficity, residual-finiteness or linearity statement about `R`.
+- Linton's arXiv:2407.09272 asserts no residual property of `R` (Section 1.1).
+
+So a counterexample to Question 4.10 must be torsion-free with `pi(w) = 2` and
+`R != 1`.  No known theorem makes `R`, or its free-shell action, sofic on that
+class.  Nothing new is imported, and the open nodes stay open.
+
+## 4. A tame class (task 3, positive part)
+
+Setting.  Let `G = F/<<w>>` with Linton radical `R`.  Write `n <= |w|`, the
+shell `E = G_Q^(n) = R semidirect F0` with `F0 <= E` a free complement, and
+`alpha(f) = (rho |-> f rho f^-1)`, as in
+[[one-relator-soficity-localizes-at-rational-derived-stage]].
+
+**Theorem A.**  Suppose `R` is an internal free product `R = *_{x in X} R_x`
+indexed by an `F0`-set `X` with `f R_x f^-1 = R_{f.x}` for all `f` and `x`.
+Suppose also that every point stabilizer `S_x` is cyclic (possibly trivial).
+
+- (A1) Pick orbit representatives `x_i (i in I)`, and put `S_i = S_{x_i}` and
+  `P_i = R_{x_i} semidirect S_i` (the internal product `R_{x_i} S_i <= E`).
+  Then `E` is isomorphic to the fundamental group `pi_1(P)` of the star of
+  groups `P`.  Its centre is `F0`, its leaves are the `P_i`, and its edge
+  groups are the `S_i`, included in `F0` and in `P_i`.
+- (A2) If every `R_x` is sofic, then `E` and `G` are sofic.
+- (A3) Suppose every `S_x` is trivial and every `R_x` is isomorphic to one
+  group `K`.  Then `L(Y) = *_Y K` is a set-theoretic halo and there is an
+  `F0`-equivariant isomorphism `theta: L(X) -> R`.  If `K` is sofic, the
+  conclusion of `linton-radical-has-equivariant-sofic-halo` holds for `G`.
+- (A4) If `F0 = 1`, that conclusion for `G` is equivalent to `R` being sofic.
+
+*Proof of (A1).*  Let `Phi: pi_1(P) -> E` be the identity on `F0` and the
+inclusion `R_{x_i} S_i <= E` on `P_i`.  These maps agree on the edge groups.
+`Phi` is injective on `P_i` because `R_{x_i} cap S_i <= R cap F0 = 1`.  Let
+`psi: pi_1(P) -> F0` be the identity on `F0` and the projection `P_i -> S_i`.
+If `p: E -> F0` kills `R`, then `p Phi = psi`, as one checks on generators.
+
+`ker(psi)` acts on the Bass--Serre tree `T` of `P`.
+
+- An edge stabilizer is conjugate to some `S_i`, and `psi` is injective on it,
+  so it meets `ker(psi)` trivially.
+- The kernel meets a conjugate of `F0` trivially and meets a conjugate
+  `g P_i g^-1` in `g R_{x_i} g^-1`.
+
+Now count orbits, using `pi_1(P) = ker(psi) semidirect F0`.
+
+- `ker(psi)` has one orbit of central vertices.
+- Leaf vertices and edges of type `i` both correspond to `F0/S_i`.
+- The edge labelled `f S_i` joins the central vertex to the leaf `f S_i`.
+
+So the quotient graph is a star, a tree, and the structure theorem for actions
+with trivial edge stabilizers gives
+
+    ker(psi) = *_{i in I} *_{f S_i in F0/S_i} f R_{x_i} f^-1 .
+
+`Phi` maps the factor `f R_{x_i} f^-1` isomorphically onto `R_{f.x_i}`.  Since
+`f S_i |-> f.x_i` is a bijection from the disjoint union of the `F0/S_i` onto
+`X`, and `R` is the free product of the `R_x`, `Phi` restricts to an
+isomorphism `ker(psi) -> R = ker(p)`.  It is the identity on the common
+complement `F0`, so `Phi` is an isomorphism.  ∎
+
+*Proof of (A2).*  Each `P_i` is sofic-by-cyclic and hence sofic.  A finite
+sub-star is an iterated amalgam of sofic groups over amenable subgroups, so it
+is sofic (Elek--Szabo, arXiv:1010.3424, Theorem 1, as cited in
+`research/artifacts/peelable-extreme-one-relator-sofic-2026-09-11.md`).
+`pi_1(P)` is the directed union of those sub-stars, and they embed by normal
+forms.  Directed unions of sofic groups are sofic, so `E` is sofic.  Then `G`
+is sofic by part 3 of the localization claim.  ∎
+
+*Proof of (A3).*  An injection `j: Y -> Y'` maps `K_y` identically onto
+`K_{j(y)}`.  This is a monomorphism of free products and is functorial.
+
+- Axioms (i) and (ii) are clear.
+- Axiom (iii) holds by uniqueness of reduced forms in `*_X K`.
+
+Discard trivial factors; they form whole orbits.  Then `X` is countable,
+because a nontrivial element lies in at most one factor.  Choose isomorphisms
+`iota_i: K -> R_{x_i}`.  Each `x` is `f.x_i` for unique `i` and `f`, since the
+action is free.  Put `theta = alpha(f) iota_i` on `K_x`, which maps onto
+`R_x`, so `theta` is an isomorphism.
+
+For `g` in `F0`, the functorial automorphism `L(g)` maps `K_x` identically to
+`K_{g.x}`, and `g.x = (gf).x_i`.  So `theta L(g) = alpha(gf) iota_i =
+alpha(g) theta` on `K_x`.  Finite free products of sofic groups are sofic.  ∎
+
+*Proof of (A4).*  Take `X` a point and `L(Y) = *_Y R`, with `theta` the
+identity.  Equivariance is vacuous, and all finite pieces are sofic iff `R` is.
+Conversely, any such halo makes `R` sofic by `linton-halo-gives-radical-sofic`.
+When `F0 = 1` the quotient `G/R` is solvable, so the localization claim
+already reduces `G` to `R`, and the halo adds nothing.  ∎
+
+**Calibration.**
+
+- Baumslag--Gersten `G(1,2)` has `F0 = 1` (its quotient is `Z`).  Its perfect
+  radical is sofic because `G(1,2)` is an HNN extension of `BS(1,2)` over a
+  cyclic group, so (A4) applies.
+- `G = G(1,2) * <s>` is a one-relator group with `F0 != 1`.  `R = <<a>>_G` is
+  perfect.  Kurosh for the kernel of `G -> <t> * <s> = F_2` gives
+  `R = *_{h in F_2/<t>} R_BG^h`.  `F0 = F_2^(n)` acts by left multiplication,
+  with stabilizers `F0 cap h<t>h^-1 = 1` by the exponent sum in `t`.  So (A3)
+  gives the halo claim for this group.
+- Such groups are already sofic as free products.  Theorem A does not exhibit
+  a new sofic one-relator group.  It identifies the one shape of radical where
+  the halo machinery provably runs.
+- Theorem A says nothing when `R` meets a Magnus edge group, which is the
+  staggered free-overlap situation of `magnus-staggered-chain-sofic`.
+
+## 5. Both canonical site assignments fail in `G(1,2)` (task 3, negative part)
+
+Linton's convention gives `[a^t,a] = a^t a (a^t)^-1 a^-1`, so the relator reads
+`a^t a (a^t)^-1 = a^2`.  Here `w = a^-1 mod [N,N]` with `N = <<a>>_F`, so
+`r = a^-1` and `k = 1`.
+
+**(a) Sites are the `G`-conjugates of `r`, and `L(Y) = <Y>`.**  The elements
+`a^-1` and `a^-2 = a^t a^-1 (a^t)^-1` are distinct conjugates.  The subgroup
+intersection is `<a^-1> cap <a^-2> = <a^2>`, which is nontrivial because `G`
+is torsion-free.  The site sets are disjoint, so axiom (iii) fails.
+
+**(b) Sites are `H = <t>`, and `L(Y)` is the `R`-normal closure of
+`{a_i : i in Y}`, with `a_i = t^-i a t^i`.**  The relation reads
+`a_{i+1} a_i a_{i+1}^-1 = a_i^2`.  So `a_0 = a_1 (a_0 a_1^-1 a_0^-1)` lies in
+`<<a_1>>_R`.  Then `L({0}) <= L({1})`, and `L({0}) cap L({1}) = L({0})` is
+nontrivial while `L(empty) = 1`.
+
+More generally, two normal subgroups that meet trivially commute.  So an
+assignment by `R`-normal closures can satisfy (iii) only if pieces over
+disjoint sites commute elementwise, which fails for a nonabelian coupled
+radical.
+
+These refute two specific assignments, not the halo claim: `G(1,2)` satisfies
+the claim by (A4).  No route in the graph uses either assignment, so no
+`invalidates:` node is written.
+
+## 6. Automorphic enrichments do not bypass the halo
+
+`SoficAutEnrThm` (lines 2930--2943) assumes "a set-theoretic (graph-theoretic)
+halo of groups satisfying conditions (a) and (b)".  Here (a) is
+`L(Y u Z) = <L(Y) u L(Z)>`, and (b) says every automorphism of a finite piece
+extends inside `AL_{f,X}(Y)`.  The theorem also assumes that `AL_f(X)` is
+sofic.  Its residual-finiteness shortcut (`AutEnrRFCoroll`, lines 2921--2928)
+needs every `L(Z)` residually finite.
+
+So the enrichment consumes a halo instead of producing one.  Linton supplies
+no residually finite pieces of `R`.
+
+## 7. Status after this lane
+
+- `linton-radical-has-equivariant-sofic-halo`: open in general; proved on the
+  tame class of Theorem A (A3, A4).
+- `linton-halo-gives-action-sofic`, `linton-halo-gives-radical-sofic`: sound as
+  written (Section 2.1).
+- `linton-radical-sofic`, `linton-radical-free-action-sofic`,
+  `linton-shell-sofic`, `one-relator-groups-sofic`: open.  Final `cairn why`
+  output is in the lane report.
