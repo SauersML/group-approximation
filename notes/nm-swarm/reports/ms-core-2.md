@@ -26,8 +26,8 @@ Status: `landed` means a carrier is on origin (unwired unless noted); `planned` 
 | key | tex | sentence | owner | carriers | status |
 |---|---|---|---|---|---|
 | `d8e1a694d87c` | 1372 | Y nonempty, closed, invariant; R_Y LEF | hull-euler (closed, invariant); chain-itinerary (nonempty, LEF) | `Dynamics.isClosed_chainRecurrentSet`, `image_chainRecurrentSet` (20911e5b2); `chainRecurrentSet_nonempty`, `isLEFRing_crossedProduct_chainRecurrentSet` planned | partial |
-| `0ae6fc9e199c` | 1373 | X∖Y covered by translates of P∖T(P), P clopen, T(P) ⊆ P | hull-euler (ruling 16:17: direct atom-graph module) | `Dynamics/ChainRecurrenceCovering.lean` (5b63c946c) | landed |
-| `73bd8ac910aa` | 1375 | each such set is wandering | hull-euler (S2) | none seen on origin | open |
+| `0ae6fc9e199c` | 1373 | X∖Y covered by translates of P∖T(P), P clopen, T(P) ⊆ P | hull-euler (ruling 16:17: direct atom-graph module) | `compl_chainRecurrentSet_subset`, closed endpoint `printedChainCoreCovering` (ChainRecurrenceCovering 5b63c946c) | landed |
+| `73bd8ac910aa` | 1375 | each such set is wandering | hull-euler (S2) | `isWandering_diff_image`, inside `printedChainCoreCovering` (5b63c946c) | landed |
 
 ### Subshift case: word graphs and LEF models (tex 1380–1400), chain-words
 
@@ -66,7 +66,7 @@ Status: `landed` means a carrier is on origin (unwired unless noted); `planned` 
 | `d8f8d764406c` | 1422 | noncyclic edge ⇒ forward-closed set excluding a | `not_reflTransGen_of_not_isCyclicEdge`, `reachableCylinderUnion` (dbb102249) | landed |
 | `9c49a2efb0ca` | 1424 | T(P) ⊆ P | `mapsTo_shift_reachableCylinderUnion` (dbb102249) | landed |
 | `854ec7cb0423` | 1424 | Tx ∈ P∖T(P) | `shift_mem_diff_of_not_isCyclicEdge` (dbb102249) | landed |
-| `3ef2a7cdb9bd` | 1425 | defects wandering by nesting | hull-euler (S2); none seen on origin | open |
+| `3ef2a7cdb9bd` | 1425 | defects wandering by nesting | hull-euler (S2): `isWandering_diff_image` (5b63c946c) | landed |
 
 ### General X (tex 1428–1458), chain-itinerary (plus hull-euler, chain-core)
 
@@ -119,13 +119,15 @@ No false claim found. Each item gives the check.
 
 ## Watch items (for the owners, relayed through main)
 
-- W1, fibre compactness (`807793f12a5e`): the argument needs X_l to be the image π_l(X), or its closure, which is the same set by
-  compactness. `itinerary_image_inverseLimitCore` is landed; the instantiation in ChainCoreGeneral should use that spelling.
+- W1, fibre compactness (`807793f12a5e`): RESOLVED. The argument needs X_l to be the image π_l(X), and origin defines
+  `itinerarySubshift T S := Set.range (itinerary T S)`.
 - W2, two routes for the covering: the statement sentence `0ae6fc9e199c` is carried by hull-euler's direct atom-graph module, while
   the printed proof route is the pullback of symbolic defects (`042966c81c7e`, chain-itinerary, planned). Grade the proof sentences
   against the pullback route.
-- W3, wandering: no landed carrier seen for "P∖T(P) is wandering when T(P) ⊆ P" (`73bd8ac910aa`, `3ef2a7cdb9bd`); owner hull-euler (S2).
+- W3, wandering: RESOLVED. hull-euler's `isWandering_diff_image` (ChainRecurrenceCovering 5b63c946c) carries `73bd8ac910aa` and
+  `3ef2a7cdb9bd`.
 
 ## Progress log
 
-- 09-13 ~17:05: ledger and claim landed.
+- 09-13 ~17:05: ledger and claim landed (7a29fbdf0).
+- 09-13 ~17:15: W1 and W3 resolved against origin; StepSubshiftCoreCalibration probing.
