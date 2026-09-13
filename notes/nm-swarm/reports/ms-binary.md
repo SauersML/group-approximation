@@ -75,3 +75,37 @@ The module will state and prove:
   `metadata/nm-census-rows/ms-binary.tsv`. The module is queued for wiring.
 - Range status: every sentence of tex 1175–1231 is carried by a closed declaration along the printed route or honestly
   classified. Nothing is open in this range.
+
+## Binder 6 help: `CopyClean.cell_self` (main's item, 2026-09-13 ~17:45)
+
+`OsinSectionPocketFaceSetSectionStatement` needs an O-equivalent copy satisfying `PocketWalk.CopyClean`. The fields are
+split as follows; w1-binder-6's split was agreed with ms-cite-2 at 17:3x.
+
+| field | owner |
+|---|---|
+| `spur` | hs-vanishes, `outerSpurThickening` |
+| `cell_outer` | w1-binder-6, `SurgeryOuterCellThickening` (538fe1b33) |
+| `side_cell` | ms-cite-2, `SurgeryCellSideThickening` and the side-dart doubling transport |
+| `side_outer` | w1-binder-6, after ms-cite-2's transport lands |
+| `cell_self` | **this lane** (below). Proposed to w1-binder-6 in one message, ~17:50 |
+| `regions` | unowned; it needs ms-cite-2's side-dart transport |
+
+Ownership check (~17:50):
+- No self-edge or `cell_self` producer exists on origin, in the shared tree, in any `lanes/*.files`, or in `landed.log`.
+- kh-cckw's `SurgeryHairOpening` (557195fb6) opens one hair of an inner face. Its in-flight `SurgeryHairOpeningUnbound`
+  carries the unbound sum across one opening. Neither iterates to a copy without relator hairs. This lane consumes their
+  names and never edits their files.
+- `cell_self` and `regions` were ruled to leavitt-units at 14:00 as copies (b)/(c). Nothing has been in flight since.
+
+CLAIM inner cell-hair thickening GroupApproximation/GGT/VanKampen/SurgeryCellHairThickening.lean
+
+The module will state and prove:
+- `IsCellHair Delta x`: a hair (`HairOpening.IsHair`) whose face is a relator cell.
+- `CellHairThickeningStatement`: a distinguished section family over a diagram with no outer spur, no outer cell dart and
+  no relator word of value one has a distinguished family over the same cuts on an O-equivalent diagram with the same
+  three properties and no cell hair. The regions correspond with the same weight, target profiles and source indices.
+  This composes after `OuterCellThickening.outerCellThickening`.
+- `cell_self_of_noCellHair`: gives `CopyClean.cell_self`.
+- Route: the inner doubling of `HairOpening.sectionFamily` along a cell hair. No region contains a relator cell, so
+  `havoid` holds. The exterior traversal is unchanged, so no outer spur or outer cell dart appears. The number of cell
+  hairs drops by one. Induct on that number.
