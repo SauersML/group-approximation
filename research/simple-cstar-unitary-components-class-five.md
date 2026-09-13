@@ -82,4 +82,8 @@ algebra with a nonzero fivefold commutator.
 - *Unstable detectors.* None known. The unstable map cbar_5 of U(2) may be
   essential at a finite stage. Its survival in a simple limit would need an
   invariant of sections that is not a homology class of the block-diagonal
-  locus.
+  locus. Keeping the embedding of the locus does not help. Z ⊂ M x X has
+  codimension 2pr = dim X, and dim B = m + 2pr. Along a tower m <= 2pr − 2,
+  so the embedded Pontryagin–Thom class, together with its map to U(p), lies
+  in the Freudenthal range. It is a stable class of the seed, and it is
+  covered by rank-two-trapping-blind-to-depth-four-brackets.
