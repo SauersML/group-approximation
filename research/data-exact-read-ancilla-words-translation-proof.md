@@ -9,7 +9,7 @@ artifacts:
   - research/artifacts/marker-nonlinear-ancilla-words-2026-09-12.md
 ---
 
-Section 3 of the artifact. Verification requested from w7-vf-nonlinear.
+Section 3 of the artifact. Verified by w7-vf-nonlinear (verdict at the end of this route).
 - **Step 1.** For fixed `x`, `y -> a_t(x, y)` is a bijection for every `t`, by induction over the three
   gate kinds.
 - **Step 2.** A data write between exact states has a constant value.

@@ -237,13 +237,102 @@ theorem: if every nonlinear read value is `x`-only, the data map is affine.
 **Nodes updated.** Both claim headers are set to ESTABLISHED by their routes, and both routes carry the verdict
 line. Hub `injective-binary-automata-are-stably-formalizable` stays OPEN.
 
-## 3. Queue status at the wrap-up (origin/main 39971c4c)
+## 3. Queue status at the wrap-up (origin/main 39971c4c, rechecked at f09f5eab7)
 
 - **w7-radu-gadget-b4 (86e9c2b3e).** `radu-lattice-radius-two-pairs-force-the-mark-into-the-radical` is held OPEN,
   with route `radu-lattice-radius-two-mark-forcing-proof` held in artifact Section 7. **Not re-derived here;
   pending.**
 - **w7-2v-mixed-support (77aed2b4f, afb6eb112, 9a375e7cd).** The 2V obstruction-state profile was verified by
   w3-vf-nonlinear (83970f525, 90e7a86f9). This lane did not duplicate it.
-- **w7-two-patch-census (6b0ad0644).** `rigid-unbalanced-two-patch-rules-beyond-class-ii-not-injective` is held
-  OPEN, and verification was requested from this lane. It is pending at this landing.
-- **w7-two-patch-unit.** No landing on main as of 39971c4c.
+- **w7-two-patch-census (6b0ad0644).** Partial verification in Section 4. The claim stays OPEN.
+- **w7-two-patch-unit.** No landing on main as of f09f5eab7. Pending.
+
+## 4. Census relation moves (w7-two-patch-census, 6b0ad0644): partial
+
+**Scope.** The node is `rigid-unbalanced-two-patch-rules-beyond-class-ii-not-injective`. Its artifact is
+`rigid-two-patch-census-relation-moves-2026-09-12.md`, with scripts `tp.py`, `census_moves.py`, `level2b.py`,
+`i0_path.py` and `i0_dp.py`.
+- **Re-derived.** The hand inputs (Sections 1–3 and 6) and two replays from Section 4.
+- **Not re-derived.** The machine-generated minimal sets, residuals and counts.
+
+**Section 1. Correct.**
+- **Realization.** A move realizes on `H` when no conflicting pair coincides.
+- **Forced-amenable patterns.** They are correct and closed under supersets:
+  - `d2` with `d3` is a breaker;
+  - one label on each of `a`, `b`, `c` gives a von Dyck quotient `(k, m, n)`, with `k, m, n` in `{2, 3}`, which is
+    finite or `(3, 3, 3)`;
+  - two order-2 labels give a quotient of `D_infinity`.
+
+**Section 2. Correct, and complete for all three shapes.**
+- **Shape `1a`.** All 55 pairs were recomputed.
+  - Eight pairs carry kept labels: `AA` three times, `BB` twice, `AAA` once and `AbAb` twice.
+  - Every other pair is a breaker or one of the table's cyclic, Klein bottle or `Z^2` words. For example,
+    `(Ab, aBa)` gives `AAbAb`, which is `a = c^2`.
+- **Shapes `1b` and `ab`.** The artifact says only "analogous". Completeness follows from `1a` by two symmetries:
+  - the mirror `a <-> b` maps windows to windows and `1a` to `1b`;
+  - the involution `psi: a -> a^-1, b -> a^-1 b` satisfies `psi(g{1, a, b}) = psi(g) a^-1 {1, a, b}`, so
+    `x -> psi(a^-1 x)` maps windows to windows and `ab` to `1b`.
+  Both are automorphisms, so they preserve breakers and amenability and permute the kept labels. (`psi` fixes
+  `a2` and `a3`, and swaps `b` with `c`.)
+- **Why it matters.** `census_moves.py` keeps only the words in `TORS` and silently drops every other relator.
+  Level-1 soundness rests on this completeness. The script also counts every pair that meets a changed site as
+  conflicting, which is the safe direction.
+
+**Section 3. Correct, with notes.**
+- **Swaps.**
+  - `d = a`: all 28 pairs were checked against `universe2.txt`.
+  - `d = b`: by mirror.
+  - `d = c`: correct with `b = ac`.
+- **Cycles.**
+  - `d = a`: the site list and the 66-pair count were checked, and several relators recomputed.
+  - `d = b`: by mirror.
+  - `d = c`: the table is not literally analogous. The kept labels are `a2` and `b2`, because `(ca)^2` is conjugate
+    to `b^2`. Also, `c a^-1` is cyclic (`b = a^2`), not a breaker. Neither difference changes the classification.
+- **`e2` pairs.** By hand, every `e2` pair of all three cycles joins two context sites, as `level2b.py` asserts.
+- **Lemma 3.1. Correct.** An `e2` label beside `d2` would make `H` a quotient of `D_infinity`. So the relaxed swap
+  search (`RELAX` in `level2b.py`) is sound.
+- **Lemma 3.2. Correct, but the artifact gives no proof.** It follows from the cycle table. The only pairs that
+  can coincide in a nonamenable `H` are `e2` context pairs with `e^2 = 1`, and those carry equal values by
+  hypothesis.
+- **Theorem 3.3. Correct.** Suppose no level-1 move realizes. Then `T(H)` contains a residual `R`, and `T(H)` is a
+  pattern above `R` that is not forced amenable. The closure test at `P = T(H)` gives a swap or cycle, which
+  realizes by Lemma 3.1 or 3.2.
+
+**Section 6. Correct, with notes.**
+- **BS words.** All nine `BS(1, ±2)` words were re-derived (e.g. `ABaBab` is `a c a^-1 = c^2`). The groups are
+  solvable, so dropping them is sound.
+- **Lemma 6.1. Correct.** All seven free-by-cyclic rows were checked.
+  - **Levels.** `phi(a) = s_b` and `phi(b) = -s_a` give the stated levels, and each extreme is attained once.
+  - **Kernel.** By Brown's criterion `phi` and `-phi` lie in `Sigma^1`, so `ker phi` is finitely generated. By
+    Moldavanskii it is free, so `G = F_n x| Z`.
+  - **Rank.** The abelianization is `Z`, so `n ≠ 1`. And `n ≠ 0` by Magnus, since each word uses `b` with both
+    signs.
+- **Other checks.**
+  - **Word counts.** The class unions in `i0_universe.txt` match the table: 7 free-by-cyclic, 2 torus-knot and
+    9 BS words.
+  - **Drops.** `i0_dp.py` drops only words that `KNOWN` classifies as amenable or breakers, and keeps unknown words.
+    That is the safe direction.
+- **Proposition 6.2 and the torsion-only argument.** The logic is correct. The torsion-only sets are
+  `{b2, b3, c2}` and `{b2, c2, c3}` for `1a`, and `{a2, b2, c2}` for `1b` and `ab`. Proposition 6.2's labels cover
+  all of them.
+
+**Section 4, replays.** Two rules from `explicit_moves.txt` were replayed, and every window is valid.
+- **`((1,1,0),(0,1,0),(0,1,1),1,1)`.** The `a`-swap (4 windows) and the `a`-cycle (6 windows). Its `c2` and `b2`
+  variants were replayed too, with their equal pairs checked.
+- **`((1,1,2),(0,1,0),(0,2,1),1,1)`.** The `a`-cycle, `b`-swap and `c`-swap.
+  - The closure patterns are `{a2}`, `{a2, b3}`, `{a2, c3}` and `{a3}`, `{a3, b2}`, `{a3, b3}`, `{a3, c2}`, `{a3, c3}`.
+  - These are exactly the supersets of the two residuals that are not forced amenable.
+
+**Not re-derived.**
+- the level-1 minimal sets and residuals of the 699 rules (`census_moves.py`, `level1.txt`);
+- the feasibility searches behind `level2b.txt`, apart from the two replays;
+- the `I_0` minimal sets (`i0_dp.txt`), the 18 torsion-only rules and their swaps and cycles (`i0_close.txt`);
+- the counts 468, 36, 18 and 177, and Sections 5 and 7.
+
+**Verdict.**
+- **Result.** Partial: Sections 1–3 and 6 were re-derived, plus two Section 4 replays. The hand inputs pass with
+  the notes above.
+- **Status.** The claim stays OPEN, and no route is added. The candidate proof for 486 rules depends on
+  machine-generated sets that this lane did not re-derive.
+
+**Nodes updated.** The census node's header and Attempts now carry this partial verdict.

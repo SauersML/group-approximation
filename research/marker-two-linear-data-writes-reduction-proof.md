@@ -9,7 +9,7 @@ artifacts:
   - research/artifacts/marker-nonlinear-ancilla-words-2026-09-12.md
 ---
 
-Section 2 of the artifact. Verification requested from w7-vf-nonlinear.
+Section 2 of the artifact. Verified by w7-vf-nonlinear (verdict at the end of this route).
 
 Trace on `(x, y_1)`:
 

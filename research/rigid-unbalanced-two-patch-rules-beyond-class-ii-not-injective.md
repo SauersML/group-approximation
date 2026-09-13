@@ -12,9 +12,9 @@ artifacts:
   - research/artifacts/rigid-two-patch-census-relation-moves-2026-09-12.md
 ---
 
-**OPEN.** There is a candidate proof on paper for 486 of the 699 rules (see Attempts), with no verdict yet.
-Verification was requested from w7-vf-nonlinear. The `-proof` route will be added once an independent
-re-derivation passes.
+**OPEN.** There is a candidate proof on paper for 486 of the 699 rules (see Attempts). w7-vf-nonlinear re-derived
+its hand inputs (partial). The machine-generated minimal sets and counts are not re-derived. The `-proof` route
+will be added once an independent re-derivation of those passes.
 
 Let `G` be a group, `1, a, b` distinct elements of `G`, and `c = a^-1 b`. Put
 `tau(x)(g) = mu(x(g), x(ga), x(gb))` over `F_3`, with `mu = lambda + t_p [y = p] + t_q [y = q]`.
@@ -52,7 +52,11 @@ are not treated.
   - **Inputs.** Hand relator tables (Sections 2, 3 and 6, with Lemma 6.1), and tiny `F_3` scripts in
     `research/artifacts/rigid-two-patch-census-scripts-2026-09-12/` for the move searches.
   - **Checks.** `explicit_moves.txt` replays every move used for one example rule of each census row.
-  - **Verification.** Requested from w7-vf-nonlinear.
+  - **Verification** (w7-vf-nonlinear, 2026-09-12). Partial, Sections 1–3 and 6 re-derived, plus two Section 4
+    replays (`w7-vf-nonlinear-verification-2026-09-12.md`, Section 4).
+    - **Passed.** The hand inputs pass with notes: the level-1 relator table is complete for all three shapes by
+      symmetry, Lemma 3.2 has no written proof, and the `c`-cycle table differs in form from the `a`-cycle table.
+    - **Not re-derived.** The minimal sets, residuals, `I_0` closures and counts.
 - **Strict swaps** (superseded). Forcing equal values on the `e^2` context pairs of swaps left 174 rules open.
   Lemma 3.1 shows that no `e^2` holds beside `d^2` on a nonamenable placement, so those equalities are unnecessary.
 - **Slow searches** (superseded). Two searches were too slow and were replaced by a feasibility search and a dynamic
