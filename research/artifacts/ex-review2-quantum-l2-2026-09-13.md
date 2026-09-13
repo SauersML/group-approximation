@@ -124,6 +124,7 @@ Some rows cover two to five claims; the rows total 26.
 | 6 | `kms-group-with-stop-relations-simulates-all-words`, logic-quantum's repair, checked independently | **PASS at the checked steps** (KMS v5 relations and Lemmas 4.9–4.14 read at source) |
 | 7 | T2–T4 of `coset-systems-are-torsor-isomorphism-games` and EL2–EL3 of `exact-label-coset-refinements-are-affine` (node level only in logic-quantum) | **PASS** |
 | 8 | the seven established Kac nodes (two from ex2-kac-forbidden-pair, five from ex-kac-quantum-bijection), all re-derived | **PASS** ×7; one justification in (H7) of the hidden-labels proof repaired forward |
+| 9 | Theorem 6: item 3 of `atiyah-base-change-in-transcendence-degree-two-under-det`, every field of transcendence degree at most 2 | **PASS**, conditional as stated; the normalized-curve use of Theorem 4's proof made explicit in Part 4 |
 
 ## 4. Census tally (32 established, unpassed claims at the start)
 
@@ -173,3 +174,4 @@ Some rows cover two to five claims; the rows total 26.
 - `research/artifacts/ex-review2-quantum-l2-2026-09-13-part6.md`: §6. The KMS group with stop relations.
 - `research/artifacts/ex-review2-quantum-l2-2026-09-13-part7.md`: §7. Coset-system quantum symmetry, exact-label affinity, and the Lück edit.
 - `research/artifacts/ex-review2-quantum-l2-2026-09-13-part8.md`: §8. Verdicts on the seven established Kac nodes.
+- `research/artifacts/ex-review2-quantum-l2-2026-09-13-part9.md`: §9. Theorem 6 of the two-variable base change.

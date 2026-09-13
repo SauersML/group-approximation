@@ -35,10 +35,17 @@ dimension, and this dimension is invariant under automorphisms of `C` fixing
     - `trdeg w = 2`: this is Theorem 5.
     - `trdeg w = 1`: `w` is a generic point of an irreducible curve
       `W ⊂ A^2` over `Qbar`, and `W` is not contained in `Y_rho(M)`, since
-      `w notin Y_rho(M)`. By Theorem 4, applied to the restriction of `rho(M)`
-      to `W`, the kernel dimension is constant on `W` off finitely many
-      algebraic points. At the algebraic points of `W` off `Y_rho(M)` it
-      equals `K`. So it is `K` at `w`.
+      `w notin Y_rho(M)`. Pull `rho(M)` back to the normalization `W~` of `W`,
+      a smooth affine curve over `Qbar`. The proof of Theorem 4 (Steps 1-2 of
+      the transcendence-degree-one artifact) shows that the kernel dimension
+      is constant on `W~` off finitely many algebraic points. The value at a
+      point of `W` is the value at any preimage. At the algebraic points of
+      `W` off `Y_rho(M)` it equals `K`. So it is `K` at `w`.
+      *(Justification made explicit by ex-verify2-quantum-l2, 2026-09-13. The
+      statement of Theorem 4 gives only integrality and invariance, and
+      invariance moves `w` only among generic points of `W`. Constancy along a
+      curve is what its proof gives, for smooth curves, hence the
+      normalization.)*
 * **Step 2 (continuity).** `k` is upper semicontinuous on `V(C)`, by Lemma 4 of
   the Liouville artifact. Let `P in V° = pi^-1(U°)`, with fibre
   `P = P_1, ..., P_e` over `w = pi(P)`.
