@@ -1570,3 +1570,290 @@ No other occurrence of a genus bound was found.
   - The imports were read by the lane and not re-extracted here.
 - **`comparison-forces-tracial-support-projections`, `tracial-comparison-gives-gamma-on-lfnd-rank-density-locus` and
   `gamma-failure-invisible-to-projection-comparison`: correctly OPEN.** Their equivalence wiring checks.
+
+## 40. A retraction, virtual sections, the margin class, and the earlier landings (17:41–21:15)
+
+Tip at writing: 82a4dbf6c.
+- **Scope.** Unchanged: ESTABLISHED claims from `01PWzwKNBr2dwjX4pucBuXff` lanes.
+- **Out of scope.** Landings since c0ffe2f06 from sessions `01UM7` (swarm 7) and `012d8`. One of them sits on the
+  non-hyperlinear chain and is checked in passing in 40.5.
+
+### 40.1 Retraction: `free-splitting-fa-lifts-choose-a-side` FAILS as stated, and the §39.2 PASS is withdrawn
+
+- **Counterexamples.** §39.2 passed this claim, which was wrong on scope. `review-swarm6-groups-2026-09-12.md` §2
+  (b09aa6e6e) refutes "exactly one of (S), (N)" twice:
+  - `Γ = 1`;
+  - `Γ = ⟨[id ∗ β]⟩ ≅ Z/2`, with `β` swapping `b_1, b_2`.
+- **The Z/2 example, rechecked.** `id ∗ β` fixes `pB`, `⟨p⟩`, `1B` and `b_3⟨p⟩`, joined by the edges `p`, `1`, `b_3`.
+  So the fixed tree contains a path of length 3, and it is neither a star nor a vertex.
+- **The missing hypothesis.**
+  - §39.2 read step 4 of the route ("for all `β` in a finite-index subgroup of `Aut(B)`") as automatic. It needs
+    `[J_B : Λ] < ∞`.
+  - With that hypothesis the route is correct, and the node's downstream use (finite-index `Γ`, `n >= 5`) satisfies it.
+- **The node is not yet corrected.**
+  - At 82a4dbf6c the Setting still says "Assume `Λ` has property FA and finite abelianization", with no finite-index
+    condition.
+  - This is despite b09aa6e6e §2 saying the Setting "now requires" one.
+  - A reviewer lane is narrowing that Setting, so this lane does not touch the node, to avoid a same-path collision.
+
+### 40.2 `free-splitting-compatible-aut-lifts-are-virtual-sections` (0b1b22a2c): PASS
+
+- **Adjacency.**
+  - Let `u, v` be the vertices stabilized by `φ(A)` and `φ(C)`.
+  - Edge stabilizers are trivial. So a nontrivial element of `G_u` sends the branch at `u` containing `v` into the other
+    branches at `u`, and symmetrically for `G_v`.
+  - An alternating word therefore moves an interior vertex `w` of `[u,v]`, and `⟨G_u, G_v⟩ ∩ G_w = 1`. But
+    `⟨G_u, G_v⟩ = φ(G) = G` and `G_w ≠ 1`.
+- **Well-definedness.**
+  - Both factors are nontrivial, so `N_G(A) = A` and `N_G(C) = C`, and a vertex is determined by its stabilizer.
+  - `A ∩ C = 1`, so the joining edge `e_φ` is a unique group element.
+  - `φψ(A)` and `φψ(C)` are conjugated by `φ(e_ψ)e_φ`, which gives `e_(φψ) = φ(e_ψ)e_φ`.
+- **Normalization and the `C`-vertex section.**
+  - `b′ = g^{-1}ρ(γ)(g)b` and `ι_(b′)^{-1}ρ′(γ)|_A = ι_b^{-1}ρ(γ)|_A` were recomputed by substitution.
+  - `λ(γ)λ(δ) = ι_(ρ(γ)(e_δ)e_γ)^{-1}ρ(γδ)|_A = λ(γδ)`.
+  - `λ(γ)(A) = A` because `ρ(γ)(A) = e_γAe_γ^{-1}`.
+- **(c), (d) and the consequence.**
+  - A type-preserving action has no inversions, so FA gives a fixed vertex.
+  - In (d), `a_γA` is canonical because `N_G(A) = A`, and a point stabilizer of a finite orbit has finite index.
+  - (T) for `Aut(F_n)`, `n >= 4`, passes to `Out(F_n)` and its finite-index subgroups, and (T) gives FA.
+- **Bullet 6 of `out-free-groups-virtually-embed-in-aut-free-groups`.**
+  - `β ↦ [β ∗ id_⟨t⟩]` is injective. An inner representative fixing `t` is `ι_(t^k)`, which preserves `F_m` only for
+    `k = 0`.
+  - The atoroidal remark holds: a periodic class of a lift to a finite-index subgroup is periodic in `F_n`.
+  - Carette arXiv:1301.4446 Corollary 3.2 was not re-extracted. The node stays OPEN.
+
+### 40.3 Benjamini–Schramm margin class (04acd6e6a, artifact only): PASS
+
+The artifact is `research/artifacts/fpbs-single-product-move-2026-09-12.md`. Its Cairn nodes are not on main yet.
+- **Criterion.**
+  - Lemma 3.2, `p_u >= 1/||A_S||`, is walk counting plus Harris–FKG under uniqueness.
+  - Lemma 3.3 is `<A_S 1_F, 1_F> = d|F| − |∂_E F|`.
+- **Moves.**
+  - Add gains `R(t) + R(t^{-1})`, of norm at most 2, and boundaries only grow.
+  - Remove lowers `A_S` entrywise (Lemma 4.1) and loses at most `2|F|` boundary edges.
+  - So one move lowers the margin by at most 2. A Nielsen replacement `s ↦ st` is two moves.
+- **Reach.**
+  - `ρ(S_0)^2 = ||m(S_0)^2|| >= τ(m(S_0)^2) = 1/|S_0|` gives `|S_0| > ε^{-2}`.
+  - Then `m(S) >= |S_0|(1 − 2ε) − 2`.
+  - The remark `ρ(S) <= 2ε` needs `1 + 2ε <= ε|S_0|`, which holds.
+- **Calibration, recomputed.** `F_5` gives 3; `F_4` gives `7 − 2√7 ≈ 1.71`; `F_3` gives `5 − 2√5 ≈ 0.53`; `F_2` gives
+  `3 − 2√3 < 0`.
+- **Theorem 6.1.**
+  - The equivalence with the goal uses `fpbs-hp-relative-burton-keane` and
+    `fpbs-generating-sets-connected-by-product-moves` (§39.1 PASS).
+  - The Thom arXiv:1306.1767v1 Theorem 1 quote was not re-extracted.
+- **Stale node.**
+  - `fpbs-simple-generating-set-with-gap-exists` (OPEN) calls small spectral radius for simple generating sets of every
+    nonamenable group open.
+  - If the Thom quote is accurate, Proposition 5.1 answers that, and Proposition 3.4 then proves the node.
+  - Not edited here, because the product-move lane is landing adjacent nodes.
+  - Review `fpbs-spectral-margin-survives-product-generator-moves` and `fpbs-large-margin-generating-sets-exist` when
+    they land.
+
+### 40.4 Landings reviewed before the break
+
+- **`el3-of-infinite-rank-rings-not-linear-over-number-fields`: PASS.**
+  - Distortion forces virtually unipotent images, and Kronecker's theorem applies.
+  - The logarithm then maps into a finite-dimensional `Q`-space, contradicting infinite additive rank.
+- **`el3-z-t-embeds-in-no-host-with-number-field-local-groups` (2bc488e31): PASS, conditional on
+  `fw-subgroups-of-eventually-similar-groups-virtually-embed` and `kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf`.**
+  (T) gives FW, the FW subgroup virtually embeds in a product of local vertex groups, and the previous claim excludes
+  number-field local groups.
+- **`elementary-groups-over-fg-rings-have-property-t` (2bc488e31): PASS as a citation.** Ershov–Jaikin-Zapirain:
+  `EL_n(R)` has (T) for `n >= 3` and finitely generated `R`.
+- **`gardam-support-pair-has-no-rational-units` (928464921): PASS, computational.**
+  - Singular `slimgb` over `Q` gives the elimination ideal `⟨u_7^4 + 1, u_10^4 + 1⟩`.
+  - `x^4 = −1` has no real root, and no 2-adic root because `−1` is not a square in `Q_2`.
+  - The z3 subset step has no certificate.
+- **Jones index.**
+  - **The original (939a37611, eb8fd6e76) FAILED.** It presented the gap below 2 as content. The Pimsner–Popa free gap
+    `Ind(E) ∈ {1} ∪ [2, ∞]` is automatic:
+    - take `h = a − E(a)`, scaled and signed so that `1 ∈ spec h ⊂ [−1, 1]`;
+    - then `y = 1 + h >= 0` has `E(y) = 1`, and `1 ∈ spec h` forces `λ <= 1/2`.
+  - **The correction (a2cb567b8, 74268da31, 799a3611d, 0afa68066) PASSES.**
+    - `jones-index-blind-on-unbounded-defect-sector` now says the gap is automatic and that a bound below 2 is the
+      defect statement itself.
+    - The lane corrected claim, proof, artifact and hub at 20:43, so no separate
+      `pimsner-popa-index-below-two-is-trivial` node was written.
+    - `relative-normalization-modulo-kazhdan-kernel` stays OPEN.
+- **`strict-comparison-with-rank-density-gives-support-projections`: PASS.** The estimate
+  `|d_τ((q − 1/2)_+) − τ(q)| <= 2τ(q − q^2)` holds pointwise on the spectrum, since `|1_(t > 1/2) − t| <= 2t(1 − t)`
+  on `[0,1]`.
+- **`toms-winter-holds-on-tlfnd-rank-density-locus`: PASS, subsumed by known results; forward edit in this commit.**
+  - Strict comparison and RD_b make the rank map surjective. Edwards writes `f` as an increasing sup of continuous affine
+    `f_n`, and RD_b in `M_(k_n)(A)` gives near projections whose ranks are within `3η_n` of `f_n`.
+  - So Lin (arXiv:2301.09250v2, Theorem 1.1) gives stable rank one, Vaccaro (arXiv:2604.24682) gives uniform Gamma, and
+    CETW Theorem A gives Z-stability.
+  - The node's Scope now records this and asserts no novelty.
+  - The Lin and Vaccaro statements were taken from the graph's citation nodes and not re-extracted.
+- **`comparison-forces-tracial-support-projections`: correctly OPEN.** It is a frontier hole that feeds only
+  `lfnd-locus-gamma-via-support-projections`.
+- **`fpbs-line-independent-twisted-levels-disconnected`: PASS, conditional on Osin Theorem 2.27**
+  (`osin-isolated-components-bounded-by-relative-area`).
+  - Witness injectivity gives at least `l/2` distinct rows, so a witness of length `l` has probability at most
+    `δ^(l/2)`.
+  - The 0–1 law holds because the `N`-action on the i.i.d. rows is mixing, hence ergodic.
+  - `fpbs-cross-line-correlated-transport-set-generates` is correctly OPEN.
+
+### 40.5 In passing: `theorem-e-congruence-projections-vanish-at-regular-trace` (1d9a1ceda, session `01UM7`)
+
+Items 1, 2 and 4 check. Item 3 was checked in outline only.
+1. For `m` distinct `k_i ∈ K`, put `X = Σ_i σ(k_i)` and `T = X^*X/m`. Then `τ(T) = 1` and `Tp = mp`, so
+   `τ(p) <= 1/m`.
+2. The moments of `Σ_s Re σ(s)/|S|` equal those of `λ_Γ`, whose spectrum lies below `1 − κ^2/(2|S|)`.
+   - An `ε`-almost invariant subspace forces eigenvalues `>= 1 − ε^2/2`.
+   - For `ε < κ/√|S|` the closed interval `[1 − ε^2/2, 1]` has `λ_Γ`-spectral measure 0, so portmanteau gives
+     `lim_U dim/n = 0`.
+4. For words in `F`, `|tr π_n(g) − tr σ_n(g)| <= ||π_n(g) − σ_n(g)||_2`. A Kazhdan set generates the group, so
+   `tr π_n(g) → δ_e(g)` for every `g`.
+
+`c6067895f` (session `01PWzw`) only adds an Attempts bullet to `hs-stable-vertex-rounding-for-every-model`, which is
+correctly OPEN.
+
+### 40.6 Graph queries (`cairn why` at 7397fc447, on MSI; route lists rechecked at 0a977f4e8)
+
+- **`jones-index-blind-on-unbounded-defect-sector`:** ESTABLISHED, with a complete derivation.
+- **`relative-normalization-modulo-kazhdan-kernel`: an OPEN frontier hole.**
+  - Both routes are dead by invalidation: `component-space-sizes-miss-leavitt-cover-defect` and
+    `conjugation-invariant-sizes-miss-relative-defect`.
+  - **Cascade.** If established, it reaches `nonsofic-hyperbolic-group` through three steps:
+    1. `relative-defect-via-relative-normalization`, with `relative-defect-normalization-dichotomy`, gives
+       `sofic-groups-kill-rigid-defects-modulo-kazhdan-kernels`.
+    2. `nonsofic-hyperbolic-via-relative-rigid-defect` also needs
+       `hyperbolic-kazhdan-group-has-infranormal-kazhdan-subgroup`.
+    3. The count of further consumers is not rechecked here.
+  - The cascade to `hyperbolic-groups-virtually-torsion-free` has the right sign, because that root is a decision
+    question closed by `hyperbolic-vtf-decided-by-counterexample`.
+- **`nonsofic-hyperbolic-group`: OPEN.**
+  - Five routes target it. `nonsofic-hyperbolic-via-kun-thom-centralizer` is marked dead by
+    `kun-thom-centralizer-normality-automatic-in-hyperbolic`.
+  - Four are open: cocycle stability, the Cheeger threshold, HS-stable Kazhdan hyperbolic groups, and the relative
+    rigid defect.
+  - An earlier draft of this section said three.
+- **`toms-winter-holds-on-tlfnd-rank-density-locus`:** ESTABLISHED. Its route has five `requires:`, and the query
+  reported all of them established.
+  `stw99-problem-xviii-toms-winter-conjecture` is OPEN only through `stw99-xxvi-xxvii-imply-xviii`, and the locus claim
+  does not feed it.
+- **`fpbs-hyperbolic-3-manifold-groups-fixed-price-one`:** OPEN.
+  - The correlated-transport route waits only on `fpbs-cross-line-correlated-transport-set-generates`.
+  - The normal-subgroup route waits on `fpbs-normal-subgroup-bounded-cost-fixed-price-one`.
+- **`fpbs-twisted-level-percolation-connected`:** REFUTED by `fpbs-twisted-level-percolation-disconnected-at-low-density`.
+- **Warnings.** Each query printed 10–12 graph warnings. They belong to the steward's `cairn check` and were not
+  investigated here.
+
+## 41. `sl3z-atiyah-denominator-24` (3d4faea64, attempts in 5f0b48758, session `01UM7`)
+
+Nodes read at 0a977f4e8:
+- `sl3z-strong-atiyah-iff-discrete-iwahori-denominator-8` and its route `sl3z-strong-atiyah-iwahori-denominator-8-proof`;
+- `sl3-zp-open-subgroup-lcm-index-bounds-for-strong-atiyah` and its route `sl3-zp-open-subgroup-lcm-index-bounds-proof`;
+- Attempts 4–6 of `sl3z-satisfies-strong-atiyah`.
+
+Linnell–Schick (arXiv:math/0403229v5) pages 1–10 were read from the PDF. Notation: `G = SL_3(Z)`.
+
+### 41.1 `sl3z-strong-atiyah-iff-discrete-iwahori-denominator-8`: PASS, conditional on `p-adic-analytic-torsion-free-groups-satisfy-strong-atiyah`
+
+The import is swarm 5 §9b (conclusion correct). Its use here is in scope. `Gamma(3)` and `Gamma(4)` have closures
+`I + 3M_3(Z_3)` and `I + 4M_3(Z_2)`, which are torsion-free, so every subgroup of either has integer ranks.
+
+- **Index 21.** `G -> SL_3(F_2)` is onto, `|SL_3(F_2)| = 7 * 6 * 4 = 168`, and `|U| = 8`.
+- **Finite subgroups of `K_I`.**
+  - Minkowski: finite `F <= GL_3(Q)` has order dividing 48. For `F <= G`, `-I` has determinant `-1`, so
+    `F x {+-I} <= GL_3(Z)` and `|F|` divides 24.
+  - An element of order 3 in `K_I` maps to 1 in `U`, so it is `I + 2X`. Its square `I + 4(X + X^2)` is then a nontrivial
+    torsion element of `Gamma(4)`. By Cauchy the finite subgroups are 2-groups, of order dividing 8.
+  - `D_8 = <r, s>` checks on `e_1, e_2, e_3`: `r` has order 4, `s = diag(1,-1,-1)`, and `srs = r^(-1)`.
+  - Reduction mod 2 is not injective on `D_8`, since `r^2`, `s` and `sr^2` are sign matrices. The image is still a
+    2-group, so the conjugation argument applies, and `lcm(K_I) = 8`.
+- **Item 2.**
+  - `Gamma(2) <= K_I` maps onto `SL_3(F_3)` through `SL_3(Z/6) = SL_3(F_2) x SL_3(F_3)`, so
+    `[K_I : K_I cap Gamma(3)] = 5616`.
+  - `[K_I : Gamma(4)] = 43008/21 = 2048`, with `|SL_3(Z/4)| = 168 * 2^8`.
+  - `gcd(5616, 2048) = 16`.
+- **Rank transfer, and the direction of the denominators.**
+  - Restriction to a finite-index `H` divides by the index, `rk_G(A) = rk_H(res A)/[G:H]`. It multiplies denominators.
+  - Induction from any `H` keeps ranks, `rk_G(B) = rk_H(B)` for `B` over `C[H]`. It carries denominators across unchanged.
+  - The forward implication uses induction: `rk_{K_I}(B) = rk_G(B) in (1/24)Z cap (1/16)Z = (1/8)Z`.
+  - The converse uses restriction twice: `(1/168)Z cap (1/5616)Z = (1/24)Z`.
+  - Both use `(1/a)Z cap (1/b)Z = (1/gcd(a,b))Z`. Each transfer is used in the right direction.
+- **`K''`.**
+  - `[G : K''] = 5616/16 = 351` and `[K'' : Gamma(3)] = 16`.
+  - `Gamma(3)` is torsion-free, so finite subgroups inject into a group of order 16, and `D_8` injects mod 3.
+  - Converse: `gcd(8 * 351, 43008) = gcd(2^3 3^3 13, 2^11 3 7) = 24`.
+- **"No finite-index subgroup does better" is proved, not asserted.** The route's Sharpness paragraph is a proof.
+  - `D_8` acts on `G/H`. Stabilizers are 2-subgroups of conjugates of `H`, of order dividing `2^b` with
+    `b = v_2(lcm H)`, so every orbit has size divisible by `2^(3-b)`.
+  - Hence `v_2(lcm H) + v_2([G:H]) >= 3` for every finite-index `H`.
+  - Any gcd of denominators `lcm(H_i)[G:H_i]` therefore has 2-part at least 8, which is the 2-part of 24.
+  - This is unconditional. Under Strong Atiyah for `G` it also follows from the projection `(1/8) sum_{d in D_8} d`, of
+    rank `1/8`.
+- **Scope of the Linnell–Schick Lemma 2.4 citation.**
+  - The lemma (pages 6–7) needs `H` normal of finite index with `lcm(H) < infinity`, and the rank condition with a factor
+    `L` for the preimages of all Sylow subgroups of `G/H`.
+  - Here `H = Gamma(4)`, `lcm(H) = 1`, `L = 1`, and `G/H = SL_3(Z/4)` has order `2^11 3 7`.
+  - The Sylow 2-preimage is `K_I`.
+  - The Sylow 3-preimage `P_3` has ranks in `(1/3)Z`, from `Gamma(4)` at index 3, and `lcm(P_3) = 3`.
+  - The Sylow 7-preimage `P_7` has ranks in `(1/7)Z cap (1/5616)Z = Z`, from `Gamma(4)` and `Gamma(3)`, and `lcm(P_7) = 1`.
+  - So the lemma gives exactly the converse implication. The forward implication is induction, and the lemma is not cited
+    for it.
+  - The route's gcd proof is self-contained. The citation is attribution, and it matches the source.
+- **Nits (wording, no status change).**
+  - "The preimages of the Sylow 3- and 7-subgroups already have ranks in `(1/3)Z` and `Z`, by the index bound against
+    `Gamma(3)`." In fact `(1/3)Z` comes from `Gamma(4)` at index 3, and `Z` needs `Gamma(4)` at index 7 together with
+    `Gamma(3)`.
+  - "Strong Atiyah for `H` gives `SL_3(Z)` only the denominator `lcm(H) [G:H]`" describes what restriction yields. What is
+    proved is the valuation inequality.
+- **Subsumption scan.** No other node at the tip establishes the `K_I` or `K''` equivalence.
+  - `strong-atiyah-kazhdan-groups-2026-09-12.md` records only the odd-prime bound and the index-168 reduction.
+  - `sl3z-strong-atiyah-via-iwahori-index-8` is the refuted torsion-free version.
+  - The converse direction is Lemma 2.4, and the route credits it.
+- **Display check.**
+  - Both claims display ESTABLISHED by their routes.
+  - The required nodes display ESTABLISHED: `p-adic-analytic-torsion-free-groups-satisfy-strong-atiyah` as a literature
+    import, and `sl3-zp-torsion-free-open-subgroups-have-index-divisible-by-48` by its route.
+
+### 41.2 `sl3-zp-open-subgroup-lcm-index-bounds-for-strong-atiyah`: PASS; the consequence is conditional on the index-48 claim
+
+- **Item 1.**
+  - `v_2(p^3 (p^2 - 1)(p^3 - 1)) >= 3 + 1` for odd `p`.
+  - The Sylow 2-subgroup lifts, because the reduction kernel is pro-`p` (profinite Schur–Zassenhaus).
+  - The stabilizers of `P` on `SL_3(Z_p)/W` are 2-subgroups of conjugates of `W`, of order dividing `2^b`. So
+    `v_2(n) >= a - b`.
+- **Item 2, rechecked step by step.**
+  - Irreducible `Q_2`-summands have 2-power dimension, so `Q_2^3` splits as `1+1+1` or `2+1`.
+  - In the `1+1+1` case the signs give `|P| <= 4`. The `2+1` case embeds `P` in `GL_2(Q_2)`.
+  - An abelian `C <= GL_2(Q_2)` has `|C| <= 4`, since `[Q_2(zeta_8) : Q_2] = 4`.
+  - A non-abelian `P` is absolutely irreducible, with `Z(P) <= {+-1}` scalar.
+  - The image of `P` in `PGL_2(C)` is cyclic or dihedral, and the preimage of the cyclic part is abelian. So `|P| <= 8`.
+  - `I` is pro-2 and contains a conjugate of `D_8`, so `lcm(I) = 8` and `[SL_3(Z_2) : I] = 21`.
+- **Consequence.**
+  - The density bijection `SL_3(Z)/H -> SL_3(Z_p)/W`, then restriction and induction, give `rk in (1/(lcm(W) n))Z`.
+  - Odd primes give a 2-part of at least 16.
+  - Torsion-free 2-adic inputs give 48, by `sl3-zp-torsion-free-open-subgroups-have-index-divisible-by-48`. That is swarm
+    5 §10, a PASS with the GAP enumeration trusted; it was not rerun here.
+  - `W = I` gives `gcd(168, 5616) = 24`.
+- **Nit (wiring).**
+  - The route uses the rank transfers and `D_8 <= K_I` from `sl3z-strong-atiyah-iwahori-denominator-8-proof`.
+  - The claim cites `sl3z-strong-atiyah-iff-discrete-iwahori-denominator-8`.
+  - Neither is in `requires:`. The status is unaffected while those nodes stand.
+
+### 41.3 `sl3z-satisfies-strong-atiyah` (5f0b48758): correctly OPEN, and the Attempts 4–6 citations match
+
+- **Attempt 4.**
+  - **Theorem 1.6, Proposition 2.6 and Corollary 2.7.** The account matches the source: an elementary amenable quotient
+    `A`, and SAC for the preimages `H_E` of the finite `E <= A`. Property (T) makes `A` finite, and `E = A` gives
+    `H_E = G`.
+  - **Theorem 4.1 (pages 9–10).** It needs `H` with finite `BH`, `chi(H) = +-1`, SAC for `KH`, and `1 -> H -> G -> Q -> 1`
+    with `Q` elementary amenable and `lcm(G) < infinity`. The node's account matches, and `chi(H) = [G:H] zeta(-1) zeta(-2)
+    = 0` by Harder.
+  - **Definition 4.3 (page 10).** Cohomological completeness matches. The failure argument checks. `Z/p`-acyclicity for
+    every `p` forces `chi = 1`. A nontrivial `Hhat^p` is finite, or 8-dimensional `p`-adic analytic, so its mod-`p`
+    cohomological dimension is infinite or 8, against `cd H = 3`.
+  - **Not read.** Theorem 4.60 lies beyond page 10. The node uses only the cohomological-completeness hypothesis, which
+    Theorem 1.7 in the introduction states.
+- **Attempt 5.** Farkas–Linnell Theorems 1.1–1.3 and 6.1 were not re-read. The zero-divisor argument
+  `(1 - g)(1 + g + ... + g^(n-1)) = 0` is correct.
+- **Attempt 6.**
+  - The inputs are Lemma 2.3, with `H = Gamma(4)`, `L = 1` and `D(Gamma(4))` a division ring, and Proposition 2.2.
+  - Together they give `D(K_I)` semisimple Artinian, and `16 tr(e) in Z` from item 2, as the node says.
+- **Status.** Nothing at the tip proves `8 rk_{K_I}(B) in Z`, so OPEN is correct. The crossed-product reformulation and
+  the discrete-Iwahori sufficient condition are recorded as attempts, not as claims.

@@ -37,11 +37,25 @@ finite nuclear dimension.
 
 **Scope.**
 - With norm locally finite nuclear dimension this was already known, through
-  `rank-density-and-strict-comparison-give-purity` and Winter's theorem. The new
-  part is tracially-but-not-norm locally finite nuclear dimension.
+  `rank-density-and-strict-comparison-give-purity` and Winter's theorem. The
+  tracially-but-not-norm case is new to the graph, but it is also a corollary of
+  known results (last bullet).
 - So a Toms–Winter counterexample must fail RD_b or fail tracially locally
   finite nuclear dimension.
-- **Nearby known result.** Lin (`strict-comparison-rank-surjectivity-forces-sr1`),
-  Vaccaro Theorem B and CETW together give the same conclusion when the rank
-  map is surjective. How RD_b relates to surjectivity was not checked, and no
-  novelty is asserted.
+- **Known results give the same conclusion** (review
+  `research/artifacts/review-swarm4-2026-09-12.md`, Section 40). RD_b and strict
+  comparison make the rank map `Gamma` of
+  `strict-comparison-rank-surjectivity-forces-sr1` surjective:
+  1. By Edwards, a lower semicontinuous affine `f: T(A) -> (0, infinity]` is
+     `sup_n f_n` with continuous affine `0 < f_1 < f_2 < ...`.
+  2. RD_b gives positive contractions `q_n ∈ M_(k_n)(A)`, with `k_n >= max f_n`,
+     of profile `f_n` within `η_n` and defect below `η_n`. Since `|d_τ((q − 1/2)_+) − τ(q)| ≤ 2τ(q − q²)`, the rank
+     of `x_n = (q_n − 1/2)_+` is within `3η_n` of `f_n`.
+  3. Choose `η_n` decreasing to `0` with `6η_n < min_τ (f_{n+1} − f_n)`. Then
+     `d_τ(x_n) < d_τ(x_{n+1})` for all `τ`, strict comparison makes the `x_n`
+     Cuntz increasing, and their supremum in `Cu(A)` has rank `f`.
+
+  So Lin gives stable rank one. Vaccaro (arXiv:2604.24682: stable rank one and
+  tracially locally finite nuclear dimension give uniform property Gamma) gives
+  uniform Gamma, and CETW Theorem A gives Z-stability. The route above is an
+  independent derivation of the same conclusion, and no novelty is asserted.
