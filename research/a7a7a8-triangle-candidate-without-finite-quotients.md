@@ -29,6 +29,16 @@ Claim: at least one `G_i` has no nontrivial finite quotient.
   (`a7a7a8-triangle-candidates-no-4dim-char2-representation`, computer-assisted). This is the
   smallest dimension of a faithful representation of `A_8` over any field. For `G_2` and `G_4` an
   eigenvalue sign obstruction already kills it; for `G_1` and `G_3` a trace-ideal Gröbner basis is `(1)`.
+- **Linear representations up to dimension 7 are ruled out in characteristic 0 and in
+  characteristics 3, 5, 11, 13, 29, 43**
+  (`a7a7a8-triangle-candidates-no-small-linear-representation`, computer-assisted). In
+  dimension 7 the modules are `1 ⊕ 6` and `7`, and the trace ideal is `(1)` for all four
+  candidates. In dimension 6, characteristic 2, with all vertex groups irreducible, the ideal
+  is also `(1)`. Still open in low dimension:
+  - projective `μ_7`-twists, which is where `PSL_7(p)` quotients with `p ≡ 1 mod 7` would live;
+  - characteristic 7;
+  - reducible modules in characteristic 2.
+  See `research/artifacts/hyperbolic-triangle-linear-search-2026-09-13.md` §5.
 - **Where it dies.** Every search above is finite. A decision would need to exclude every
   finite simple group. The same large-quotient barrier stops
   `hyperbolic-simple-triangle-group-without-finite-quotients`.

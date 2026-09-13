@@ -95,12 +95,61 @@ representation of `A_8` over any field. In characteristic 0 or odd characteristi
 (recalled from the character tables). The heuristic expected dimension of the representation variety
 modulo conjugation is `3·15 − 3·12 − 15 = −6`.
 
-## 5. Next
+## 5. Dimensions 6 and 7 (`linD.py`)
 
-- **`d = 6`, characteristic 2.** `A_7` and `A_8` act on the 6-dimensional heart of `F_2^8`; only
-  irreducible restrictions are covered.
-- **`d = 7`, characteristic 0 and `p ≡ 1 mod 7`.** `A_7` acts on `F^7 = 6 + 1` and `A_8` on the 7-dimensional heart.
-  These are the only faithful 7-dimensional modules in characteristic 0, so this case gives all of
-  `Hom(G_i, GL_7(C))`.
+The parametrisation is the same as in §2. In every module used here an element of order 7 has `d`
+distinct eigenvalues, so `C_{GL_d}(t)` is the diagonal torus in the eigenbasis of `t`.
 
-The code is `linD.py`.
+**Modules.**
+- **`d6c2`.** `A_8` acts on the 6-dimensional heart of `F_2^8` (even-weight vectors modulo the
+  all-ones vector), and `A_7` by restriction. This is each group's unique 6-dimensional irreducible
+  in characteristic 2. Only representations in which `A`, `B` and `C` all act irreducibly are
+  covered. One coordinate of `H` is normalised.
+- **`d7c0`, `d7p`.** `A_7` acts on `F^7 = 1 ⊕ 6`, the natural permutation module, and `A_8` on the
+  7-dimensional heart of `F^8`.
+  - **Characteristic 0.** These are the only faithful 7-dimensional modules (irreducible degrees
+    `1, 6, 10, …` for `A_7` and `1, 7, 14, …` for `A_8`).
+  - **Odd `p ≠ 7`.** A faithful 7-dimensional `A_7`-module has composition factors `{6, 1}` and is
+    semisimple. Indeed `F_p^7 = 1 ⊕ 6` and, by Shapiro's lemma, `H^1(A_7, F_p^7) = H^1(A_6, F_p) = 0`,
+    so every `Ext^1` between `1` and `6` vanishes.
+  - **`A_8` in odd characteristic.** For `p = 3, 5` the only nontrivial irreducible of dimension at
+    most 7 is `7`; this is recalled from the Brauer tables, not re-derived. For
+    `p = 11, 13, 29, 43`, which do not divide `|A_8|`, the representation theory is ordinary.
+  - **Normalisation.** Diagonal matrices that are scalar on the summands `6` and `1` centralise
+    `β_1(B)` and `v`. So the coordinates for eigenvalues `1` and `ω` are set to 1, leaving 5 free
+    coordinates.
+
+**Fields and words.**
+- **Fields.** `F_8` for `d6c2`, `Q(ζ_7)` for `d7c0`, and `F_{p^k}` for `d7p`, with `k` the
+  multiplicative order of `p` mod 7.
+- **Words.** The same 117 trace equations.
+
+| mode | calibration: twisted `A_7` triple; literal `A_8` triple | `G_1..G_4` |
+|---|---|---|
+| `d6c2` | 2 points, verified; 1 point, verified | trace ideal `(1)` for all four |
+| `d7c0` | 0-dimensional, 2 points; 0-dimensional, 1 point (not verified over `Q(ζ_7)`) | `(1)` for all four (54 s) |
+| `d7p3` | 2 points, verified; 1 point, verified | `(1)` for all four |
+| `d7p29` | 2 points, verified; 1 point, verified | `(1)` for all four |
+| `d7p5`, `d7p11`, `d7p13`, `d7p43` | same code path as `d7p3` and `d7p29` | `(1)` for all four |
+
+**Conclusion (computer-assisted, unreviewed).** For each `i`:
+- Every homomorphism `G_i -> GL_d(K)` with `d <= 7` and `char K ∈ {0, 3, 5, 11, 13, 29, 43}` is
+  trivial.
+  - For `d <= 6` no computation is needed: `A_8` has no faithful representation of dimension below
+    7 in these characteristics (recalled).
+  - For `d = 7` the conclusion rests on the computation above.
+- No homomorphism `G_i -> GL_6(K)` with `char K = 2` has all three vertex groups acting
+  irreducibly.
+
+**Not covered.**
+- **Projective twists.** `G_i -> PGL_7(K)` where the lifts of an edge generator from its two vertex
+  groups differ by a scalar `ζ ∈ μ_7`. Such twists are invisible to characteristic polynomials,
+  because `ζ·{all 7th roots} = {all 7th roots}`. This is exactly where quotients inside
+  `PSL_7(p^m)` with `7 | p^m − 1` would live. In dimension 4 and characteristic 2 no twist is
+  possible, because `λ·{1, ω, ω², ω⁴}` is one of the two eigenvalue types only for `λ = 1`.
+- **Dimension 7:** characteristic 2 (other modules, for example `1|6` for `A_8`), characteristic 7
+  (unipotent edge generators), and all other odd primes. A Gröbner basis over `Z[ζ_7]` would give
+  all but finitely many primes; that has not been computed.
+- **Characteristic 2, dimensions 5–8:** reducible modules. Here `H^1(A_7, 4) = H^1(A_8, 4) = 0`,
+  because every `A_7` in `AGL_4(2)` fixes a point. So the modules with factors `{4, 1}` are
+  semisimple, but `A_8` has a non-split `1|6`.
