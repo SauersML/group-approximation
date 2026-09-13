@@ -35,7 +35,7 @@ hyperlinear half is open. The trivial group is not infinite.
 | Group | fp, simple, (T) | Approximation status |
 |---|---|---|
 | Caprace--Remy lattices `Lambda_A(F_q)/Z` | `simple-kazhdan-kac-moody-lattices-exist` | open both ways |
-| Titz Mite--Witzel kernels | `titz-witzel-simple-kazhdan-cat0-lattices-exist` | open both ways |
+| Titz Mite--Witzel kernels | `titz-witzel-simple-kazhdan-cat0-lattices-exist`; torsion-free, `cd = 2` | open both ways; no compression or lamp certificate can refute (`vcd-two-groups-contain-no-kazhdan-commuting-pairs`) |
 | binary Leavitt unit group | `leavitt-unit-group-finitely-presented`, `binary-leavitt-unit-group-is-simple`, `rank-twelve-leavitt-simple-non-mf` | nonsofic; hyperlinear open (`binary-leavitt-unit-group-hyperlinear`) |
 
 ## Attempts
@@ -80,5 +80,22 @@ hyperlinear half is open. The trivial group is not infinite.
       `q_min > 2`.
   - The approximate problem is a gauge problem over the Curtis--Tits triangle of finite
     groups `SL_2(q)^2`, `Sp_4(q)`, `G_2(q)` (to be landed as a finite gate).
-- **Titz Mite--Witzel kernels.** Live: `titz-witzel-soficity-is-one-finite-csp`.
-- **Leavitt unit group, hyperlinear half.** Live: `binary-leavitt-unit-group-hyperlinear`.
+- **Titz Mite--Witzel kernels (lane ex-fp-kazhdan-titz-witzel, 2026-09-13).** Live, on two
+  routes.
+  - *Sofic form:* `hyperlinear-fp-kazhdan-via-titz-witzel-kernel`, gated by the
+    three-permutation CSP `titz-witzel-soficity-is-one-finite-csp`.
+  - *Hyperlinear form:* `hyperlinear-fp-kazhdan-via-mf-titz-witzel`. An MF residual is
+    hyperlinear by `kazhdan-mf-hyperlinear-fragment`. This route reopened when
+    `simple-kazhdan-groups-have-full-mf-radical` was refuted. Its failure for every residual is
+    what `titz-witzel-exact-kazhdan-mf-radical-over-z` needs, so the MF question
+    (`titz-witzel-residual-is-mf`) settles one of the two claims either way.
+  - *What separates them from Khanh's group.* The Leavitt group is nonsofic through a compressed
+    infinite Kazhdan subgroup with a commuting non-LEF partner, and it contains `V`, so its
+    virtual cohomological dimension is infinite. The Kac--Moody lattices contain the finite
+    subgroups `U_w` of unbounded order, so theirs is infinite too. The Titz Mite--Witzel residuals
+    have `cd = 2`. There, by `vcd-two-groups-contain-no-kazhdan-commuting-pairs`, a commuting
+    partner of an infinite Kazhdan subgroup is finite, and no infinite lamp group embeds. So they
+    are the recorded candidates on which the compression and lamp certificates are vacuous. The
+    Kun--Thom double is not covered.
+- **Leavitt unit group, hyperlinear half.** Live: `binary-leavitt-unit-group-hyperlinear`, via
+  `hyperlinear-fp-kazhdan-via-leavitt-unit-group`.
