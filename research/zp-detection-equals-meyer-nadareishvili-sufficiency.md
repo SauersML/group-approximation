@@ -6,6 +6,7 @@ title: For G = Z/p, restriction and crossed product detect KK^G-contractibility 
 distinct_from:
   zp-restriction-and-crossed-product-detect-kk-g-contractibility: that is the open detection question itself; this proves it is equivalent to the bootstrap-membership criterion that Meyer and Nadareishvili state they cannot decide, and splits the equivariant UCT into the ordinary UCT plus detection.
   bootstrap-zp-actions-realize-every-cyclotomic-k-module: that realizes Köhler invariants with contractible restriction; this is a formal equivalence between two detection statements for arbitrary separable G-algebras.
+  zp-detection-iff-bootstrap-sufficiency-and-kk-g-generation: that independent node (lane ex-uct-detection-prove, landed later) proves the same detection-sufficiency equivalence for nuclear objects, with the generation and dynamical-uniqueness forms; this adds the all-separable case, verbatim Köhler, Meyer and Arano-Kubota citation nodes, and the splitting UCT_G = UCT plus detection.
 ---
 
 **ESTABLISHED (derivation from cited theorems, no new analytic input).**
