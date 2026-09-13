@@ -89,3 +89,14 @@ max_(s ∈ F_Δ) ||σ_n(s) - ρ_n(s)||_2  ->  0     along U.
     - `E_2(F_q[y])` acts on Nagao's tree without a fixed point, so it has no property FA and hence no property (T).
     - The "finite abelianization for `r >= 4`" bullet above fails at `r = 4`: for `q = 2`, `K_i^ab` is infinite.
   - **Open.** The `St_r(L) → Δ` descent through the `K_2` symbols `{x_i, x_j}` is untouched and remains the gap.
+  - **Update (lane `ex-hs-instability-extension`, 2026-09-13): descent closed at actor models for `d = 3`, `r >= 6`.**
+    - **The reduction as a claim.** The reduction above is now `unit-type-vertex-rounding-agrees-with-sigma-on-laurent-steinberg`
+      (`r >= 5`).
+    - **The descent.** `actor-extension-lifts-vertex-rounding-to-the-laurent-vertex` shows that the central
+      characters of the Steinberg extension on `K_2(r, L) ≅ (F_q^×)^3 ⊕ Λ²Z^3` concentrate at `1`.
+      - Compressor transport by the nonnegative generators `I + E_ij` of `SL_3(Z)`, exact off small trace by (T) of
+        `Γ`, makes their distribution almost invariant.
+      - Property (T) of `Z^3 ⋊ SL_3(Z) ≅ SL_3(Z) ⋉ Λ²Z^3` then forces concentration.
+    - **Consequence.** For `d = 3`, `r >= 6` (Kun–Thom's `r = 6`), (H1) at a trace-preserving actor model implies this
+      claim at that model. So this claim and the Theorem E instance of (H1) are equivalent there.
+    - **Still open.** `d >= 4` (relative (T) for `Λ²Z^d` not checked) and `r <= 5` (outside `K_2` stability).
