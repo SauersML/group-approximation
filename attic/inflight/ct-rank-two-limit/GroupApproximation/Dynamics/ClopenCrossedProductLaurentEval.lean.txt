@@ -120,33 +120,22 @@ theorem swapMat_mul_self (L : Type*) [CommRing L] : swapMat L * swapMat L = 1 :=
 
 /-- `n ↦ zⁿ Pⁿ`: `Pⁿ = 1` for even `n` and `P` for odd `n`. -/
 noncomputable def laurentSwap : Multiplicative ℤ →* Matrix (Fin 2) (Fin 2) (LaurentPolynomial k) where
-  toFun j := LaurentPolynomial.T (toAdd j) •
+  toFun j := (LaurentPolynomial.T (toAdd j) : LaurentPolynomial k) •
     (if Even (toAdd j) then 1 else swapMat (LaurentPolynomial k))
   map_one' := by
-    show LaurentPolynomial.T (toAdd (1 : Multiplicative ℤ)) •
+    show (LaurentPolynomial.T (toAdd (1 : Multiplicative ℤ)) : LaurentPolynomial k) •
       (if Even (toAdd (1 : Multiplicative ℤ)) then 1 else swapMat (LaurentPolynomial k)) = 1
     simp only [toAdd_one, LaurentPolynomial.T_zero, Even.zero, ↓reduceIte, one_smul]
   map_mul' a b := by
-    show LaurentPolynomial.T (toAdd (a * b)) •
-        (if Even (toAdd (a * b)) then 1 else swapMat (LaurentPolynomial k)) =
-      (LaurentPolynomial.T (toAdd a) •
-          (if Even (toAdd a) then 1 else swapMat (LaurentPolynomial k))) *
-        (LaurentPolynomial.T (toAdd b) •
-          (if Even (toAdd b) then 1 else swapMat (LaurentPolynomial k)))
-    rw [Matrix.smul_mul, Matrix.mul_smul, smul_smul]
-    simp only [toAdd_mul, LaurentPolynomial.T_add]
-    congr 1
-    by_cases ha : Even (toAdd a)
-    · by_cases hb : Even (toAdd b)
-      · simp [ha, hb, Int.even_add]
-      · simp [ha, hb, Int.even_add]
-    · by_cases hb : Even (toAdd b)
-      · simp [ha, hb, Int.even_add]
-      · simp [ha, hb, Int.even_add, swapMat_mul_self]
+    dsimp only
+    by_cases ha : Even (toAdd a) <;> by_cases hb : Even (toAdd b) <;> ext i l <;>
+      fin_cases i <;> fin_cases l <;>
+        simp [ha, hb, Int.even_add, swapMat, Matrix.mul_apply, LaurentPolynomial.T_add, mul_comm]
 
 theorem laurentSwap_ofAdd (n : ℤ) :
     laurentSwap k (ofAdd n) =
-      LaurentPolynomial.T n • (if Even n then 1 else swapMat (LaurentPolynomial k)) :=
+      (LaurentPolynomial.T n : LaurentPolynomial k) •
+        (if Even n then 1 else swapMat (LaurentPolynomial k)) :=
   rfl
 
 /-- `f ↦ diag(f(x), f(T x))`. -/
