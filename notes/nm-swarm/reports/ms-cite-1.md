@@ -101,6 +101,30 @@ equals 68481e4d7.
   - Queued for wiring in `wire-queue.txt`. Until it is root-imported, these closed audits certify the carriers but
     do not change the root closure.
 
+## Truth audit of the post-(A) W1 waist binders (lead item, 2026-09-13 ~17:40, origin 97de60f05)
+
+Method:
+- Read each def on origin and the owners' truth audits (audit-sec3, systolic-counts, dgo-analytic, dgo-geometric,
+  hull-euler, audit-intro, hull-count94, w1-binder-1..8).
+- Hand models: degenerate ε, spurs and spikes, same-cell pockets, pinched two-gons, the section count.
+- No new Lean: binder 7's model is already on origin, and no other cheap model exists.
+
+Binders 1 and 3–6 carry the prefix `∃ ε₀ ∀ ε ≥ ε₀ ∃ ρ₀ ∀ ρ ≥ ρ₀ ∀ W, OsinCCondition D W ε μ λ c ρ →`. That prefix rules out
+the cheap degenerate-ε models that refuted binders 2 and 7, which quantify every ε. Binders 7 and 8 have no small
+cancellation prefix at all.
+
+| binder | Prop (origin) | verdict | evidence |
+|---|---|---|---|
+| 1 | `OsinLemma94ClassCountInput` (PolygonClasses:360): ∃ K M L, ∃ Q, `ClassBudget K ∧ ClassCovers M L` | TRUE-plausible | audit-intro's model tests pass both halves. The suspected gap is absent: `SectionCuts.count_le : count ≤ 4` (OsinAppendixSections:152) gives \|family\| ≤ 3(n+3) ≤ 12n, so the same-cell slack ⌈c/λ⌉₊(n + 2\|family\|) ≤ 25⌈c/λ⌉₊·n, w1-binder-2's `T n`. `OsinCCondition` has no reducedness clause, so spikes across their own cell are admissible and unbound, but they cost O(1) per cut (at most four cuts), and inside a section two regions merge through the spike. Route: w1-binder-2's `classCovers_of_sameCellFactor` (2336592ee) with hypotheses (i) e3bbcf801 and (ii) planned, M = ⌈1/λ⌉₊ + 1 |
+| 3 | `OsinLemma94CaseOneSameCellStatement` (CaseOneFace:476) | TRUE-plausible, not circular | systolic-counts' sketch. Cell-free pockets are killed by `false_of_sameCell_cellFree_pocketRegion_X/_Y` (29c1eeae3). A pocket with a relator cell gives a loop cut, then `OsinLoopCut.false_of_below`. Its `hb` is the `OsinLemma97Below … Δ.rCellCount` binder, the induction hypothesis, so there is no circularity. Consumes binder 8 and the pocket region from the walk |
+| 4 | `OsinTwoGonHoldsSectionStatement` → `TwoGonHoldsInput` (EulerSmallFaces:94) | TRUE-plausible, not circular | audit-sec3 (true, orientation right). The conclusion is `False`, so it is O-invariant, and the three configurations with no pocket on `S.diagram` ((a) section backtrack, (b) source-gap edge with cell i on both sides, (c) annulus) are handled on copies inside the proof. w1-binder-4's noncrossing route bypasses the pinch |
+| 5 | `OsinMultipleEdgePocketRegionSectionStatement` → `MultipleEdgePocketRegionInput` (RegionSide:49), on `S.diagram` | **CIRCULAR as spelled** | audit-sec5's configuration (b′) (a spur on Π_i between C1, C2 longer than 2ε) has no `P` on `S.diagram`. Excluding it from an optimal family needs Lemma 9.7(b) itself (lead 15:45; dgo-analytic's lake model kills only `a ∪ gap ∪ b`). Corrected: hull-select's R1 copy form (draft `nm/drafts/hull-select-RegionSide-copy-r1.lean`): `∃ X, Nonempty (OEquivalentDiscDiagram Δ X) ∧ legal labels ∧ ∃ P C i' j' s₁ s₂ A₁ A₂, …`, norms ≤ ε, both `FollowsBoundary`. Plausible; its producer needs the cell-to-cell pinch Prop, which needs the ∃ε₀ prefix or `0 < ε` (wrap-rose shape) |
+| 6 | `OsinSectionPocketFaceSetSectionStatement` → `SectionPocketFaceSetInput` (Pieces:228) | TRUE-plausible | Already on an O-equivalent copy with legal labels. The conclusion ties `K` to the hypotheses only through `ε` and the positions of section j. Hand checks: an empty pocket merges `a ∪ pocket ∪ b` (zero-cell merge); the pocket on the section-j side keeps its target arc inside `[cut j, cut (j+1))`, so there is no wrap. Producer: kh-ejz's `exists_pocketFaceSet_of_exteriorAt_of_value` (336b8afeb) over `CopyClean` (w1-binder-6: five copies still unproduced) |
+| 7 | `PocketPinchLabelledStatement` (Pieces:272) | **FALSE, model on origin** | `OsinPocketWrapRose.pocketPinchWrapRefutation` (87358b0ad, `#audit_closed_axioms`, probe 0913-163031-39703 GREEN): a three-petal rose at ε = 0 with one-letter words. The def block is byte-identical to the refuted one (md5 61b753de). Corrected: `PocketPinchLabelledPosStatement` (`0 < ε`, 1b4736bcb); waist form `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsPos` (4db9c6729). Truth at ε ≥ 1 open; the rose is rescued (`wrapRoseRescue`, closed) |
+| 8 | `GeodesicCollarStatement` (SurgeryGeodesicCollar:67) | TRUE-plausible | audit-sec3 (paper sketch), dgo-geometric (no refutation). Hand checks: `s = []` forces `g = []` and is `geodesicCollarOutput_nil`; `g = rest = []` is excluded by hypothesis; `g = []` with `s ≠ []` identifies the distinct ends of the simple walk inside the strip. The only residual is `StripStepStatement` (w1-binder-8, kh-torsion) |
+
+Sent to main: binder 7 (FALSE) and binder 5 (CIRCULAR), each with the corrected spelling.
+
 ## State
 
 Scope finished for tex 1–1337. The ledger and census correction landed at 09d4f6b3d, the audit module at c04133c00.
