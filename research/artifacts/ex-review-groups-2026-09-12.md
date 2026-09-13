@@ -187,6 +187,18 @@ every group.
   finite presentation forcing finite type for Z^d derived full groups (ex-fp-simple-relation-climbing).
   Part 16.
 
+- **§17, homology of derived full groups, crossed-product rigidity, gated models (~02:55 CDT).**
+  - **FAIL, corrected forward.** The integral degree-2 clause of the recognizable self-similar cohomology
+    theorem is false. The Thue–Morse square has integral H² that is not finitely generated. No consumer used
+    the clause.
+  - **PASS** on:
+    - the H_2 filtration, the Z² criterion, and the Labbé, Penrose and class assemblies
+      (ex-fp-simple-full-group-obstruct);
+    - Ledrappier and permutive rigidity, and the entropy wall certificate (ex-fp-kazhdan-ring);
+    - gated models (ex-fp-simple-relation-climbing).
+
+  Part 17.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
@@ -205,3 +217,4 @@ every group.
 - `research/artifacts/ex-review-groups-2026-09-12-part14.md`: §14, finite-cd doubles, SFT presentations, wreath monomial models.
 - `research/artifacts/ex-review-groups-2026-09-12-part15.md`: §15, eighteen-relator tests, exclusions from amenable orbit full groups, Lodha–Moore, Serre atoms.
 - `research/artifacts/ex-review-groups-2026-09-12-part16.md`: §16, nonsofic doubles in dimension three, bounded-block transport, finite type.
+- `research/artifacts/ex-review-groups-2026-09-12-part17.md`: §17, homology of derived full groups (integral H² correction), crossed-product rigidity, gated models.
