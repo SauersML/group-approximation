@@ -1,0 +1,67 @@
+# Root-wire successor report (lane ms-core-5, acting for the lead)
+
+- The other swarm's coordinator stopped at 17:56 on 09-13, and its `root-wire` lane is gone.
+- The last wiring wave was wave 16: `lead-wire` c0c1a8e3d at 16:32, 31 modules. The last `root-wire` landing was at 16:08.
+- This lane wires the landed modules that queued up after that, with `$NM/nmwire.sh`, one wave at a time.
+- Before every wave it checks `landed.log` for root-wire activity and stops if the other swarm resumed.
+
+## Pre-flight
+
+Only `dupcheck.py` survives in `$NM`. root-wire's `rw/rwtool.py`, `rw/rwgate.py` and `rw/rwclosure.py` are not
+there, so this lane rebuilt their core in a scratch tool (`rwprep.py`):
+
+- `list <sha>`:
+  - finds the unwired landed modules (landed.log paths on the sha, outside the root closure) and their tops;
+  - gives each top a verdict: OK, HOLD, NOEVID, DANGLING or LEX.
+- `wave <sha> <Module...>`:
+  - takes the files the batch makes newly reachable;
+  - checks the green gate, holds, dangling imports, cycles inside the new files, a lexical scan and duplicate
+    declaration names over the new closure (dupcheck's parser).
+- Green gate: a GREEN record in `$NM/lanes` or `fz/lanes` covers a file when either
+  - it lists the file with the md5 of its bytes at the sha, or
+  - the file lies in the import closure of the record's `# mods` and its blob at the record's base equals its blob at
+    the sha.
+- Hold:
+  - a FAILED record names the file (`# mods` or md5 line) and is newer than every covering GREEN record; or
+  - the file is a roster hold (`OsinLemma94ClassCovers`, red since a25fe2383).
+  - This is stricter than root-wire's release by closure identity. A module held only by a co-probe that failed
+    elsewhere waits for a newer green record.
+- Duplicate hits whose matching line is docstring prose (`theorem of both modules ...`) are read by hand and ignored.
+
+## State at a188b6cc6 (09-13 ~18:25)
+
+- Root closure: 6530 files.
+- Unwired landed modules: 296, with 148 tops. Of the tops, 86 are OK, 24 HOLD and 38 NOEVID.
+- LIX lanes (`lix-*`, `rescue-lix`) are held as in-flight campaign files, as in root-wire's hold table.
+
+## Held
+
+| module | reason | owner |
+|---|---|---|
+| `Manuscript.ChainCore.BilateralThreeClosures`, `Algebra.BilateralThreeCellZOrder` | both reach `Dynamics/BilateralThreeCellClopen`, which redeclares `ClopenCrossedProduct.coeff_injective` (also in `Dynamics/ClopenCrossedProductComap`, chain-core) | ct-bilateral-cell |
+| `Dynamics.ClopenCrossedProductAlgebra` | global `ClopenCoeff.instAlgebra`, a second `Algebra (ZMod 2) R_X` beside ms-units' `zmodTwoAlgebra`; waits for main's ruling | ms-compress-3 |
+| `Estimating.OsinLemma94ClassCovers` | red since a25fe2383 (roster) | hull-component |
+| `Dynamics.CoreKernelFTwo` and its importers (`CoreKernelRelativeElementary`, `InvolutionLocalizationClosed`, ...) | FAILED 0913-182039-93403 newer than GREEN 0913-181305-25708 | ms-units |
+| LIX campaign files | in flight | LIX lanes |
+
+## Wave 17 (calibration), launched 09-13 ~18:27
+
+15 ct/ms modules:
+
+- `Dynamics.{TwoEndedMatrixUnits, RankTwoRestrictionImageFinite, ReturnCornerGeneration, ChainCoreTailModels,
+  TwoEndedTailModels}`
+- `Manuscript.NonMFSentences.{DynamicRankBudgetInducedCore, DynamicRankBudgetReturnKernel,
+  DynamicRankBudgetTorsionTransfer, CompressionRadicalClosedEndpoints, CompressionRadicalPrintedObjects,
+  KazhdanProjectionOrderSentences, TransportSentencesAxiomAudit, IntroCompressorSentences,
+  HeadlineMaximalProperIsometry}`
+- `Algebra.LEFRingStablyFinite`
+
+Pre-flight at 172725674:
+
+- 37 newly reachable files (closure 6530 → 6567), every one covered by a GREEN record;
+- 0 held, no dangling import, no cycle, 0 lexical hits;
+- one duplicate hit, `of`, is docstring prose in `TransportSentencesAxiomAudit`.
+
+`BilateralThreeClosures` was dropped from the first draft, after the `coeff_injective` collision.
+
+Result: pending.
