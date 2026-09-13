@@ -9,6 +9,7 @@ distinct_from:
   leavitt-unit-group-finitely-presented: that is finite presentability of the unit group, which the source derives from this comparison; this is the comparison and the homology computation themselves.
 artifacts:
   - research/artifacts/khanh-2609-08428-leavitt-gl-verified-2026-09-11.md
+  - research/artifacts/ex-review-presentations-2026-09-12.md
 ---
 
 **ESTABLISHED (literature import).** Let `R = L_(F_2)(1,2)`. Then
@@ -24,6 +25,17 @@ for `(KH1)` and **Theorem 5.4** for `(KH2)`. Lemma 5.3 there gives
 `leavitt-gl-equals-el-and-perfect-unit-group`. Statements were checked against
 the PDF text; proofs have not been reviewed here. The paper makes no assertion
 about the Steinberg kernel at rank two.
+
+**Rank five without Voronetsky** (`ex-verify-presentation`, 2026-09-12, from the TeX source). The
+paper proves rank four through its criterion, Theorem 5.1, and reaches the other ranks through
+Voronetsky's refinement isomorphism. The criterion also applies directly at `n = 5`:
+1. `GL_4 = E_4` and `GL_3 = E_3`, by Lemma 5.3.
+2. `j_4(N_4) = 1` in `St_5`, because `N_4 = 1` already.
+3. `|X_5(R)|` is simply connected. This is the fan argument from the proof of Theorem 5.4, and
+   Proposition 4.2 covers the vertices and edges it needs at `r = 5`.
+
+So `(KH2)` at `r = 5`, the case that `leavitt-unit-group-steinberg-weyl-presentation` uses, does not
+depend on Voronetsky. See `research/artifacts/ex-review-presentations-2026-09-12.md`, §2.3.
 
 ## Consequences recorded in prose, for the lanes that own them
 

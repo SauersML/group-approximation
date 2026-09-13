@@ -9,8 +9,11 @@ distinct_from:
   sofic-quotient-nonclosure: that is existence of a fixed two-generator finitely presented nonsofic quotient of F_2 whose relators are not written; this is an explicit seven-generator list.
 ---
 
-**ESTABLISHED (2026-09-12, unreviewed)** through
-`explicit-sixty-relator-nonsofic-group-proof`.
+**ESTABLISHED (2026-09-12)** through
+`explicit-sixty-relator-nonsofic-group-proof`. The presentation was reviewed on 2026-09-12 by
+`ex-verify-presentation`: completeness PASS, under the conditions stated on
+`leavitt-unit-group-steinberg-weyl-presentation`
+(`research/artifacts/ex-review-presentations-2026-09-12.md`).
 
 The group
 

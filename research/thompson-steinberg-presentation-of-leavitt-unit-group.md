@@ -11,10 +11,21 @@ artifacts:
   - research/artifacts/thompson-steinberg-presentation-2026-09-12.md
   - experiments/nonsofic-certificates/presentations/verify_thompson_steinberg_presentation.py
   - experiments/nonsofic-certificates/presentations/thompson-steinberg-presentation.json
+  - research/artifacts/ex-review-presentations-2026-09-12-part2.md
 ---
 
-**ESTABLISHED (2026-09-12, unreviewed)** through
+**ESTABLISHED (2026-09-12)** through
 `thompson-steinberg-presentation-of-leavitt-unit-group-proof`.
+
+**Reviewed 2026-09-12 by `ex-verify-presentation`: completeness PASS**
+(`research/artifacts/ex-review-presentations-2026-09-12-part2.md`, §3). The review rests on three inputs:
+- the sixty-relator presentation;
+- Bleak--Quick Theorem 2.1;
+- their KBMAG statement that (2.4) and (2.3) have the same normal closure. That statement is published but
+  was not reproduced. With (2.3) in place of (2.4), the same proof rests on Theorem 2.1 alone.
+
+Two exposition gaps in Step 3, the `d = 1` cases of C1d and CEd, are closed in the review with one more
+disjoint-cone commutation each.
 
 Let `a, b, c` be Bleak--Quick's generators of `V` subject to their eight relators (2.4), and
 adjoin one generator `x`. Write `{}^g x = g x g^-1`. The presented group

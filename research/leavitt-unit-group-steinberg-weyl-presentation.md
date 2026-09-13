@@ -11,10 +11,18 @@ artifacts:
   - research/artifacts/leavitt-unit-group-steinberg-weyl-presentation-2026-09-12.md
   - experiments/nonsofic-certificates/presentations/verify_st5_weyl_presentation.py
   - experiments/nonsofic-certificates/presentations/st5-weyl-presentation.json
+  - research/artifacts/ex-review-presentations-2026-09-12.md
 ---
 
-**ESTABLISHED (2026-09-12, unreviewed)** through
+**ESTABLISHED (2026-09-12)** through
 `leavitt-unit-group-steinberg-weyl-presentation-proof`.
+
+**Reviewed 2026-09-12 by `ex-verify-presentation`: completeness PASS**
+(`research/artifacts/ex-review-presentations-2026-09-12.md`, §1-§2). The presented group is `L^x`
+itself, not a cover. The review rests on two inputs:
+- `atlas-steinberg-spare-index-independence`, re-derived in the review including its additive assembly;
+- Khanh's Theorem 5.4 at rank five, with the statement read verbatim from the TeX. The rank-five case
+  also follows from his criterion Theorem 5.1 without Voronetsky's refinement theorem.
 
 Let `L = L_(F_2)(1,2)`, letters `A = {1,e,f,E,F} = {1,s0,s1,t0,t1}`, `[x,y] = xyx^-1y^-1`.
 Let `P` be the group with generators `c, t, y_1, y_e, y_f, y_E, y_F`, abbreviations

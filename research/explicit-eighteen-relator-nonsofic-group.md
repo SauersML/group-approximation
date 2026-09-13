@@ -9,7 +9,10 @@ distinct_from:
   finitely-presented-nonsofic-group-exists: that is the kernel-checked existence of a finitely presented nonsofic group through a finite-table cover whose relators are never written; this writes them, eighteen in all.
 ---
 
-**ESTABLISHED (2026-09-12, unreviewed)** through `explicit-eighteen-relator-nonsofic-group-proof`.
+**ESTABLISHED (2026-09-12)** through `explicit-eighteen-relator-nonsofic-group-proof`. The presentation
+was reviewed on 2026-09-12 by `ex-verify-presentation`: completeness PASS, under the conditions stated on
+`thompson-steinberg-presentation-of-leavitt-unit-group`, including Bleak--Quick's normal-closure statement for
+(2.4) (`research/artifacts/ex-review-presentations-2026-09-12-part2.md`).
 
 The group
 
