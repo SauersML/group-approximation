@@ -86,7 +86,8 @@ The search visits every double coset in `U \ C_t / V`, listed by GAP `DoubleCose
 | `Sp_8(2)` (degree 255), `L_6(2)` (63), `U_6(2)` (1365) | 0 | 63; 147; 567 | up to 150 s; 50 s; minutes |
 | `S_31` to `S_35`, candidate 1 | 0 | 2,646,721; 2,877,609; 2,877,609; 2,877,609; 7,475,986 | 56 s; 186 s; 401 s; 642 s; 940 s |
 | `S_31` to `S_35`, candidate 2 | 0 | 2,646,721; 2,877,609; 2,877,609; 2,877,609; 7,475,986 | 58 s; 189 s; 377 s; 638 s; 946 s |
-| `S_31` to `S_34`, candidate 3 | 0 | 2,646,721; 2,877,609; 2,877,609; 2,877,609 | 59 s; 183 s; 376 s; 614 s |
+| `S_31` to `S_35`, candidate 3 | 0 | 2,646,721; 2,877,609; 2,877,609; 2,877,609; 7,475,986 | 59 s; 183 s; 376 s; 614 s; 1004 s |
+| `S_31` to `S_35`, candidate 4 | 0 | 2,646,721; 2,877,609; 2,877,609; 2,877,609; 7,475,986 | 59 s; 187 s; 362 s; 604 s; 952 s |
 
 The literal `(A_8, A_8, A_8)` calibration triple gives 5, 3 and 3 passing double cosets into
 `Sp_8(2)`, `L_6(2)` and `U_6(2)` (`job_amb_Sp8_2.out`, `job_amb_L6_2.out`, `job_amb_U6_2.out`).
