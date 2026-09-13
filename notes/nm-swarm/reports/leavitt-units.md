@@ -150,6 +150,20 @@ powers route goes red.  The lane has asked the lead for reassignment.
 The lead reassigned this lane to W2, `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement`.
 hull-bridge's split of clause (b) planned CutOutcome, Cut (M2) and Holds (the producer of
 `QuotientPeripheralLetterPullbackStatement`), and debt-conditional takes one of them.  This lane takes
-the next unstarted one, and asked hull-bridge for its path.  On origin now: CutFaces, CutSides and
-CutBlocks (quotient blocks, `4d91f2870`).  CutOutcome, Cut and Holds are not on origin yet.
-Nothing landed for W2 yet.
+the next unstarted one, and asked hull-bridge for its path.
+
+hull-bridge handed this lane the right-designated case of the cut outcome:
+`CutLift.pullbackOutcome_right` in a new module `HullSCLemma51LetterPullbackCutRight`, importing
+CutLift (`dfa2dfb11`).  The case is: the arc runs through the unknown letter, no letter of `L` reads
+at its coset, and `R[j]` does.  I wrote the full proof from the CutBlocks interface.
+
+Before probing, I found the case already green on origin.  hull-component landed
+`CutMove.outcome_right` and the case split `CutMove.outcome` (`HullSCLemma51LetterPullbackCutOutcomeRight`,
+`47b7225af`, probe `0913-045018-55444`).  hull-bridge then landed `HullSCLemma51LetterPullbackHolds`
+(`18682110d`), which proves `cutLiftOutcome` through `CutLift.toCutMove` and `CutMove.outcome`.
+
+So CutRight was a duplicate, and the lane dropped it: not probed, not registered, not landed.  Nothing
+on origin references it.  The unlanded file was removed from the tree and kept in the lane backup
+folder.  hull-bridge was told.
+
+Nothing landed for W2 by this lane.  The lane has asked the lead for its next item.
