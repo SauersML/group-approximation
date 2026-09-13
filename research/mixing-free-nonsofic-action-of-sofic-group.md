@@ -93,3 +93,9 @@ a Bernoulli shift.
   excluded (`sl3z-cocompact-quotient-uniformly-far-from-finite-actions`). Nonsoficity would follow from
   `sl3z-is-stable-in-finite-actions` together with
   `sl3z-cocompact-quotient-not-weakly-contained-in-finite-actions`.
+* **Containment seeds (solve-sofic-actions, 2026-09-13).** `free-action-containing-nonsofic-group-relation-is-nonsofic`
+  supplies seeds without subgroups: a lattice of a Howe--Moore group with one free action whose restricted
+  orbit relation contains a free action of a nonsofic group has a nonsofic action, hence a free mixing one by
+  `howe-moore-lattice-nonsofic-action-transfers-to-mixing`. Bernoulli actions of simple Kazhdan nonsofic groups
+  cannot seed a sofic host (`simple-kazhdan-bernoulli-relation-hosts-contain-the-group`,
+  `leavitt-unit-bernoulli-relations-have-no-sofic-host`).

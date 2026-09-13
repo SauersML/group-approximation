@@ -40,3 +40,8 @@ where nonsofic examples now exist (`kun-thom-free-nonsofic-action`).
   Hayes--Sale's wreath permanence assumes the acting group sofic, so
   hyperlinearity of that crossed product is not supplied. So this direction
   needs a permanence theorem that does not exist here.
+* **Containment seeds (solve-sofic-actions, 2026-09-13).** A host action containing a nonsofic group's free
+  relation is nonsofic (`free-action-containing-nonsofic-group-relation-is-nonsofic`), but its crossed product
+  contains `L(R_H)`, so a hyperlinear host needs a hyperlinear nonsofic seed relation: Pestov's Question 3.4 one
+  level up again. No new route; Bernoulli seeds of simple Kazhdan nonsofic groups are dead in any case
+  (`simple-kazhdan-bernoulli-relation-hosts-contain-the-group`).

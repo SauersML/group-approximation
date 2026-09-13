@@ -63,3 +63,11 @@ every finite-index subgroup of `SL_3(Z)` and every group commensurable with it.
   index (Margulis normal subgroup theorem), and its finite-index subgroups bring
   nothing new, so a proof that `SL_3(Z) ∈ 𝒮` cannot come from extensions and would
   need a genuinely higher-rank construction.
+* **Containment seeds (solve-sofic-actions, 2026-09-13).** By
+  `free-action-containing-nonsofic-group-relation-is-nonsofic`, one free `SL_3(Z)`-action whose
+  restricted orbit relation contains a free action of any nonsofic group puts `SL_3(Z)` outside `𝒮`,
+  with no subgroup inclusion needed. For the known nonsofic Kazhdan witness `K = L_(F_2)(1,2)^×`
+  Bernoulli seeds are dead: `simple-kazhdan-bernoulli-relation-hosts-contain-the-group` (Popa cocycle
+  superrigidity plus simplicity) would force `K <= SL_3(Z)`, impossible since `SL_3(Z)` is residually
+  finite (`leavitt-unit-bernoulli-relations-have-no-sofic-host`). Still open as seeds: non-s-malleable
+  free actions of `K`, and nonsofic groups that are not simple Kazhdan.
