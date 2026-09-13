@@ -61,8 +61,8 @@ These are model tests. None of them certifies a printed sentence.
      hull-respell's lobe selection.
    - A consumer that needs `K'` to keep the faces, the arcs or the sides of `K` cannot get that
      from the Prop.
-   - The hard pinch cases are Configuration A (notch) and Configuration B (lake). Configuration A
-     is modelled below. Configuration B is not modelled yet.
+   - The hard pinch cases are Configuration A (notch) and Configuration B (lake). Both are modelled
+     below, at the level of the noncrossing `Simple` prediction.
 4. hull-euler, C3 to C5 of `PhiPrimeCountInput`: no truth question is left.
    - Proved: C3 (`exterior_of_isTwoGon`, hull-euler), C4 (`cornerTwoGonInput`, leavitt-units,
      90245333d), C5 (`cellFaceCountInput`, hs-vanishes, a6a2cadda) and C6
@@ -93,16 +93,38 @@ byte-equal to main. It uses kh-ejz's `isNoncrossingClosedWalk_pinchCycle`.
 - `pinchedPocketNoncrossingOuterFollowsModel`: `pinchedK` meets the pinch hypothesis and fails
   today's `Simple`, but it meets the proposed `Simple`. So under R2 this pocket needs no pinch.
 
-Verdict for Configuration A: the prediction holds on this model. Configuration B is not modelled
-yet.
+Verdict for Configuration A: the prediction holds on this model.
+
+`Estimating/OsinPocketLakeModel` tests Configuration B on the smallest map with that shape. It
+landed unverified at 67e5b2f9c, together with `pinchCycle_innerCycle_not_followsBoundary` in
+OuterFollows, and its probe is running. The map is a rose with two petals:
+- four darts, the edges `{0,1}` and `{2,3}`, and one vertex with rotation `0 ↦ 1 ↦ 2 ↦ 3`;
+- the faces `K = [0,2]`, the lake `Π = [1]` and the outside `O = [3]`, so χ = 1 − 2 + 3 = 2.
+
+At the vertex the sectors of `K` lie inside the passages, and `Π` and `O` are separated.
+- `isNoncrossingClosedWalk_lakeCycle` and `lakeCycle_not_isSimpleClosedWalk`: the walk `[0,2]` is
+  a noncrossing closed walk but not a simple one.
+- `lakeCycle_innerCycle_followsBoundary`: the inner cycle follows, since `0 ↦ 2` and `2 ↦ 0` are
+  face steps.
+- `lakeCycle_outerCycle_not_followsBoundary`: the outer cycle `[3,1]` does not follow. The face
+  step from `3` returns to `3`, and `3` is not internal to `{Π, O}` because its reversal `2` lies
+  in `K`.
+- `noncrossingPinchSidesPrediction`: both halves at once. It gives a planar map with a
+  non-simple noncrossing closed walk whose inner cycle fails and outer cycle follows (the pinched
+  two-gon), and another whose inner cycle follows and outer cycle fails (the rose).
+
+Verdict for Configuration B: the prediction holds on this model. Under R2 the lake stays in the
+pinch Prop. The model is a bare map: it has no labels, relator cells or arcs, so it is not a
+`PocketFaceSet`.
 
 ### Residual and next
 
 No Prop owned by this lane is open. `OsinPocketPinchedTwoGonLobe` is green as landed (4181011af),
 so it needs no second landing. Next, in order:
-1. the probe of `OsinPocketPinchedTwoGonOuterFollows`;
-2. a smallest Configuration B (lake) model on which the outer cycle does not follow;
-3. hull-respell's smallest A and B, as dgo-analytic asks.
+1. the probe of `OsinPocketLakeModel` and the extended OuterFollows;
+2. hull-respell's smallest A and B, as dgo-analytic asks, once their dart lists are available;
+3. if the lead asks, a diagram-level lake fixture: a `PocketFaceSet` with the source cell in the
+   lake.
 
 ## 2026-09-13: P_naive wiring check
 
