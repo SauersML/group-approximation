@@ -105,6 +105,7 @@ whole Dinkelbach loop). `S_(4,7)` is the fourteen-monomial set of `P_(3,1)`.
 | `S_(3,5)` | 9 | 12 | 293930 | 17279/6039 | 2.861235 | 15.7 |
 | `S_(3,5)` | 10 | 13 | 1144066 | 481721/172855 | 2.786850 | 117.4 |
 | `S_(3,5)` | 11 | 14 | 4457400 | 3305029/1213918 | 2.722613 | 494.1 |
+| `S_(3,5)` | 12 | 15 | 17383860 | 3456957/1295921 | 2.667568 | 1838.4 |
 | `X_2` | 8 | 10 | 43758 | 3491/2245 | 1.555011 | 0.7 |
 | `X_2` | 9 | 11 | 167960 | 11779/7700 | 1.529740 | 6.9 |
 | `X_2` | 10 | 12 | 646646 | 55632/36845 | 1.509893 | 25.5 |
@@ -121,7 +122,7 @@ whole Dinkelbach loop). `S_(4,7)` is the fourteen-monomial set of `P_(3,1)`.
 
 **Firsts:**
 - `S_(2,4)` first drops below `2` at `D = 11`, and `X_2` below `3/2` at `D = 11`. Both certificates are recorded in `thompson-f-p21-cardinality-certificate-in-degree-eleven`. For the cardinality method, this answers Guba's "close to $10$ or $40$" remark (l.395 above): `11`.
-- `S_(3,5)` (`P_(2,2)`) has no certificate for `D <= 11`. `S_(3,5)` at `D = 12` (`|U| = 17383860`) is still running.
+- `S_(3,5)` (`P_(2,2)`) has no certificate for `D <= 12`. The minimum at `D = 12` is `2.6676`.
 
 **Consistency with the survey.** `X_2` first drops below `2` at `D = 3 = m(m+1)/2`, as Theorem
 `xmy`(b) predicts for `m = 2`. `S_(2,4)` first has a cardinality
@@ -148,7 +149,7 @@ quantitative consequence for `Λ` is derived here.
 ## 4. Exact gap
 
 - **Solving `P_(2,2)` by cardinality:** exhibit a finite `Y ⊆ M_D` with `|S_(3,5) Y| < 2|Y|`.
-  None exists for `D <= 11`, which is exact. Candidates for larger `D` need an explicit
+  None exists for `D <= 12`, which is exact. Candidates for larger `D` need an explicit
   structured family whose `|S Y|` can be counted without enumeration, e.g. a regular language
   in the letter-gap encoding.
 - **Proving non-amenability through this row:** show `S_(3,5)`, or any `S_(m+1,m+d+1)`, doubling

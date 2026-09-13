@@ -30,8 +30,8 @@ and `M_(D,L) ⊆ M_D` those with all letters `<= L`. Let `S ⊆ M` be a finite s
 **Exact values** (`experiments/thompson-f/doubling_flow.cpp`, run on MSI; brute force over all
 subsets agrees on every universe with at most 15 elements):
 - **`S_(3,5)`** (the nine monomials of `P_(2,2)`): `Λ(1..7)` = `28/5, 9/2, 277/70, 835/231,
-  2816/835, 4178/1307, 7501/2447, 22469/7610, 17279/6039, 481721/172855, 3305029/1213918`, so
-  `Λ(11) ≈ 2.7226`.
+  2816/835, 4178/1307, 7501/2447, 22469/7610, 17279/6039, 481721/172855, 3305029/1213918, 3456957/1295921`, so
+  `Λ(12) ≈ 2.6676`.
 - **`S_(2,4)`** (`P_(2,1)`): `7/2, 3, 45/17, 263/107, 400/171, 973/435, 2941/1359, 4737/2245, 7929/3850,
   74419/36845, 159074/80215, 1081546/555319`. The first value below `2` is at `D = 11`
   (`thompson-f-p21-cardinality-certificate-in-degree-eleven`).
@@ -45,7 +45,7 @@ The `X_2` column reproduces the survey's Theorem `xmy`(b) for `m = 2`: the first
 occurs at degree `3 = m(m+1)/2`.
 
 **Scope.** These are exact finite optima, not asymptotics. No certificate for `P_(2,2)` exists
-in degrees up to `11`. This is consistent with both answers to `thompson-f-is-amenable`: a
+in degrees up to `12`. This is consistent with both answers to `thompson-f-is-amenable`: a
 certificate could first appear at a higher degree, which would solve `P_(2,2)`, or never
 appear, which would prove non-amenability. By the equivalence claim, no finite computation of
 this kind can settle the second alternative.
