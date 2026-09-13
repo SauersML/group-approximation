@@ -16,6 +16,15 @@ Reductions toward "every countable subgroup of `GL_2` over a field has the Haage
 * **Reduction** (`hasHaagerupProperty_of_finite_entries`): if every group with an injective
   homomorphism into `GL_2(K)` with entries in a finitely generated subring has the Haagerup
   property, then so does every countable subgroup of `GL_2(K)`.
+
+**Superseded.**  Nothing imports this module, and the closed theorem `printedGHWTheoremFour`
+(`GHWTheoremFourClosed`) does not use it.  Each part has a counterpart on the closed route:
+
+* `closure_le_entrySubgroup`: `entries_mem_of_mem_closure` (`GHWCharP`).
+* `corestrict` and `map_injective`: `mem_range_glMap_of_entries` and `glMap_injective`
+  (`GHWCharP`).
+* `hasHaagerupProperty_of_finite_entries`: `hasHaagerupProperty_of_closure_finite`
+  (`GHWFiniteReduction`).
 -/
 
 namespace GroupApproximation
