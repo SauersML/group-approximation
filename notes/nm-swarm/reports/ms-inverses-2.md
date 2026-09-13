@@ -121,14 +121,21 @@ Ownership check 09-13 ~17:50: no declaration or file on origin or in the shared 
 - Consequence: the `ε = 0` refutation does not reach the pinch restricted to first-turn order, and at every `ε ≥ 1` the rose
   has a simple witness in first-turn order.
 
-### (T2) written, waiting on its import
+### (T2) LANDED d85fcd6ab (probe 0913-180253-88110 GREEN, BUILT, first try)
 
-`Estimating/OsinPocketOuterSpurFirstTurns` (attic copy preserved): `PocketFaceSet.outerSpurThickening_firstTurnChain` and the
-closed `pocketOuterSpurFirstTurnChain : PocketOuterSpurFirstTurnChainStatement`.
-- It is a corollary of ms-intro-4's `EdgeInsertion.firstTurnChain_map_embed` (`Estimating/OsinPocketEdgeDoublingFirstTurns`)
-  at the outer face, with distinct corners from `EdgeInsertion.corners_ne` at index 1, because the thickened map is
-  `FaceEdgeDoubling.map X X.outerFace j hlen`. No transport lemma is duplicated.
-- It is probed once ms-intro-4's module lands on origin (its probe 0913-175402-51127 read FAILED; it is iterating).
+`Estimating/OsinPocketOuterSpurFirstTurns`, unwired, queued for wiring after `OsinPocketEdgeDoublingFirstTurns`; no census row
+(certifies no printed sentence).
+- `PocketFaceSet.outerSpurThickening_firstTurnChain` (`#audit_axioms`) and the closed
+  `pocketOuterSpurFirstTurnChain : PocketOuterSpurFirstTurnChainStatement` (`#audit_closed_axioms`).
+- It is a corollary of ms-intro-4's `EdgeInsertion.firstTurnChain_map_embed` (c2927f84f) at the outer face, with distinct
+  corners from `EdgeInsertion.corners_ne` at index 1, because the thickened map is `FaceEdgeDoubling.map X X.outerFace j hlen`.
+  No transport lemma is duplicated.
+- With ms-intro-4's T1 and T1', all three corner surgeries (doubling outside K, doubling inside K, thickening at the exterior)
+  keep first-turn order, in the same inline spelling of hull-respell's `FirstTurns`.
+
+### Item 2 status
+
+Both claimed leaves are landed. Nothing open in this lane's binder-7 share.
 
 ## Progress log
 
