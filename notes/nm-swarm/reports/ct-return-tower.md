@@ -32,16 +32,31 @@ Module `GroupApproximation.Dynamics.ReturnTowerStatements`, probe GREEN 0913-164
 | the tower in `R_X` is a `ReturnTowerUnits` system over `p_C = 1_C`, `a_i = u^i 1_{D_i}`, `b_i = 1_{D_i} u^{-i}` (tex 1727–1731) | `ReturnTowerUnitsStatement` |
 | `P_C ≅ LC(C,k) ⋊_{S_C} ℤ`, coefficients ↦ extension by zero, `u ↦ v = ∑_h u^h 1_{C_h}` (tex 1723–1726) | `ReturnRingCrossedProductStatement` |
 
+## Closed endpoints
+
+| Prop | closed declaration | module | SHA |
+|---|---|---|---|
+| `ReturnSectionStatement` (tex 1709–1719) | `returnSectionStatement_holds` | `Dynamics/ReturnSection` | e4a681074 |
+| `FirstReturnStatement` (tex 1721–1722) | `firstReturnStatement_holds` | `Dynamics/FirstReturnMap` | e4a681074 |
+
+More consumable names:
+- `Dynamics/ReturnSection`: `exists_separated_clopen_cover`, `nearOrbit`, `sectionStep` (the printed recursion),
+  `exists_isReturnSection`, `IsReturnSection.exists_return` (every point visits `C` within `2r-1` steps),
+  `returnTime_spec`, `returnTime_min`, `returnTime_le_of_mem`, `returnTime_eq_of`, `le_returnTime`, `returnTime_le`,
+  `IsReturnSection.returnGapsIn`, `IsReturnSection.eq_univ_of_one`, `isReturnSection_univ_one`.
+- `Dynamics/FirstReturnMap`: `returnCell T C h`, `returnCell_eq`, `isClopen_returnCell`, `IsReturnSection.inv`,
+  `firstReturnFun`, `firstReturnHomeomorph hC : C ≃ₜ C` (`firstReturnHomeomorph_apply`: `S_C x = T^{h(x)} x`).
+
 ## Residual Props (all mine)
 
-1. `ReturnSectionStatement` — in progress (`Dynamics/ReturnSection.lean`: separated clopen cover, recursion
-   `sectionStep`, clopen, separation, covering, gaps via the middle point `T^r x`).
-2. `FirstReturnStatement` — next (`Dynamics/FirstReturnMap.lean`).
-3. `ReturnTowerUnitsStatement` — the tower partition in `R_X` (`Dynamics/ReturnTowerCrossedProduct.lean`).
-4. `ReturnRingCrossedProductStatement` — splitting partial shifts along returns (`Dynamics/ReturnRingCrossedProduct.lean`).
-5. Printed-sentence assembly and census rows after 1–4 close.
+1. `ReturnTowerUnitsStatement` — probing (`Dynamics/ReturnTowerCrossedProduct.lean`: `towerLevel` = `D_i`, the tower
+   partition, `towerA`/`towerB`, `returnTowerUnits hC k hr`).
+2. `ReturnRingCrossedProductStatement` — next (`Dynamics/ReturnRingCrossedProduct.lean`): splitting partial shifts
+   along returns.
+3. Printed-sentence assembly and census rows after 1–2 close.
 
 ## Progress log
 
 - 09-13 16:37: ReturnTowerUnits GREEN (first probe), LANDED 28cd138ca.
-- 09-13 16:48: ReturnTowerStatements GREEN after an import fix.
+- 09-13 16:48: ReturnTowerStatements GREEN after an import fix, LANDED 4d2084188.
+- 09-13 17:06: ReturnSection and FirstReturnMap GREEN, LANDED e4a681074; both Props closed.
