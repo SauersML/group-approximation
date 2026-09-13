@@ -116,7 +116,7 @@ noncomputable def trimSourceLast (K : PocketFaceSet D eps X lo hi)
   boundary := K.boundary
   decomposition := by
     rw [K.decomposition, CyclicArc.dropLastArc_darts, invDarts_eq_getLast_cons hne]
-    simp only [List.append_assoc, List.singleton_append, List.cons_append]
+    simp only [List.append_assoc, List.cons_append, List.nil_append]
   firstSide_length_le := by
     rw [List.length_append, List.length_singleton]
     omega
