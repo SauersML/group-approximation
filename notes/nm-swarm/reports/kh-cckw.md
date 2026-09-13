@@ -270,3 +270,27 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
 - Trap: a `git grep` of the bare name `boundaryPerm_apply_val` found nothing, but `rg` found it at
   Estimating/OsinPocketRegionRotate.lean:54. It takes `[DecidableEq M.Dart]`, so use `classical`.
 - NEXT: give hull-respell these pieces and ask for a sub-piece of the pinched core (Lean name, file, statement).
+
+## W1 EULER SUB-PIECE (09-13, handed by hull-respell, msg dc23c3a7)
+- Statement: in a planar map, if the boundary cycle of `faces` and that of its complement both follow the boundary, the
+  face set is `Unpinched`. This is the no-lake base case of the pinch under either R1 or R2 (hull-respell.md).
+- PROBE GREEN 0913-123645-3950 (base 8470569d4): BUILT, and every theorem passes `#audit_axioms`.
+  - The first probe, 0913-121742-75339, was red. `exact Subtype.ext (congrArg Subtype.val hab)` passes the goal
+    `↑a = ↑b` into `congrArg` and fixes its endpoints at `BoundaryDart`, so `hab : innerDart a = innerDart b` mismatches.
+    The fix is to state `have hv : (innerDart faces a).1 = (innerDart faces b).1` first.
+- New orphan `GGT/VanKampen/Estimating/OsinPocketUnpinchedEuler`, namespace `Surgery.MapCollapse`:
+  - `restriction_facePerm_eq_boundaryPerm`: in a `PredicateRestriction` that keeps the boundary darts and no internal dart,
+    face rotation at a boundary dart is `FaceSetCircuits.boundaryPerm`. This is first-return composition along the boundary walk.
+  - `boundaryEdgeMap M faces`, the restriction to the boundary edges, with `boundaryEdgeMap_isRestriction`.
+  - `BoundaryEdgeMap.facePerm_innerDart` and `facePerm_outerDart` (complement given by `hmem : ∀ f, f ∈ outside ↔ f ∉ faces`);
+    `sameCycle_innerDart hin` and `sameCycle_outerDart hmem hout`; `isConnected hin`; `isPlanar hM hin a`.
+  - The count: `faceCount_eq_two hmem hin hout a`, `edgeCount_eq : edgeCount = Nat.card (BoundaryDart M faces)`, and
+    `vertexOf_surjective`. With χ = 2 these give V = E, so `vertexOf_bijective hM hmem hin hout a`.
+  - `unpinched_of_followsBoundary_complement hM hmem inner outer hin hout : Unpinched M faces`;
+  - endpoint `BothFollowUnpinchedStatement : Prop` with `bothFollowUnpinched : BothFollowUnpinchedStatement`.
+- No route through `FaceSetCircuits.toDiscRegion` was needed. The boundary edge map stands in for the doubly collapsed
+  map: it has the same boundary edges and two faces, and `IsRestriction.planar` gives χ = 2 directly.
+- Not covered: a pinched walk whose complement has two circuits (a lake). There the complement cycle does not follow the
+  boundary, and planarity alone does not rule the pinch out. That case stays in `PocketPinchPinchedStatement` (hull-respell).
+- Stale offers withdrawn: P2' touching walks landed as kh-ejz's `NoncrossingClosedWalkSides` (26a7858f2), which also adds the
+  producer `PocketFaceSet.ofBoundaryCycle`.
