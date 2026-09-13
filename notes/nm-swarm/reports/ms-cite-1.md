@@ -208,8 +208,13 @@ Probe 0913-183303-64587 GREEN at base 69fe92a83, BUILT for both modules. Both mo
 - `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2_of_copy`: `_of_residualsV2` follows through `copySection`,
   so the copy waist asks for no more.
 
-Residuals of binder 5 now: `CellPocketCopyCleanStatement` (w1-binder-5), `CellPocketPinchPosStatement` (ms-intro-4, at
-`0 < ε`), and the two side statements above, which have no owner yet.
+Residuals of binder 5 now:
+- `CellPocketCopyCleanStatement`: w1-binder-5;
+- `CellPocketPinchPosStatement` (at `0 < ε`): ms-intro-4;
+- `CellPocketWalkOuterOffSideStatement`: w1-binder-3, per main;
+- `CellPocketWalkSideRelatorCellStatement`: ms-inverses-2, per main (`cellPocketKeptCellNoncrossing` probing).
+
+This lane claims none of them.
 
 ## State
 
