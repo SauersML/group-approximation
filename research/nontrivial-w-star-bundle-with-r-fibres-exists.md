@@ -55,6 +55,13 @@ Every unital counterexample with a Bauer simplex yields such a bundle.
   (`toms-ah-counterexample-to-uniform-gamma`) would give a witness if its trace
   simplex were Bauer.  It is not.  Its trace simplex, and that of the non-simple
   limit, is the Poulsen simplex (`toms-doubling-ah-trace-simplex-is-poulsen`).
+  - A non-Bauer simplex is not the obstacle (2026-09-12, lane
+    `ex-tw-projection-starved-bundle`). Every closed set of extreme traces spans
+    a Bauer face whose completion is an R-fibre bundle
+    (`closed-extreme-trace-sets-give-r-fibre-w-star-bundles`).
+  - The obstacle is central halving: the block projections of Toms's towers make
+    every such face bundle trivial
+    (`toms-no-gamma-algebra-is-trivial-on-closed-bauer-faces`).
 - **A dimension-free certificate, and why Toms's mechanism is not yet one.**
   - **The certificate.** `trivial-r-fibre-bundles-compare-equal-trace-projections`:
     in `C_σ(K,R)` over any compact base, equal-trace projections are
@@ -107,3 +114,28 @@ Every unital counterexample with a Bauer simplex yields such a bundle.
   - Every fibre `R` halves its unit, but not uniformly over the base.
   - So such a witness is certified by an existence gap at a constant profile,
     not by a comparison gap.
+- **Faces of arbitrary algebras, and block-balanced towers: dead (2026-09-12, lane
+  `ex-tw-projection-starved-bundle`).**
+  - **Admissible sources are wider than Bauer algebras.** Take any unital separable
+    nuclear algebra with no finite-dimensional representation, simple or not, with any
+    trace simplex. Over every closed set `K` of extreme traces its tracial completion is
+    an R-fibre bundle over `K` (`closed-extreme-trace-sets-give-r-fibre-w-star-bundles`).
+    A divisibility gap of the unit relative to `K`, at one `N`, is a witness.
+  - **Central halving kills every face.** Suppose the algebra has asymptotically central
+    approximate projections with trace `1/2` uniformly on all traces, with no balancing
+    against other elements. Then every face bundle is trivial
+    (`central-halving-trivializes-every-closed-bauer-face-bundle`, via Ozawa Theorem 15).
+    Uniform property Γ implies central halving.
+  - **Towers with central halving.** Towers whose connecting maps split into equal-rank
+    orthogonal blocks have it (`block-balanced-towers-have-central-halving`). These
+    include:
+    - Toms's no-Γ algebra and his non-simple tower, whose diagonal branch traces with
+      free labels give a Hilbert-cube face that is still trivial;
+    - DHTW, HRW products, diagonal AH algebras, and all their corners.
+  - **Compact rigidity does not transfer.** The Hopf doubling tower contains no copy of
+    `M_2`, yet divides its unit over every face
+    (`hopf-doubling-tower-has-no-m2-but-divides-unit-tracially`). So coordinate Euler
+    mass and DHTW-type unit rigidity are not certificates.
+  - **Remaining AH shape.** Connecting maps with no balanced block splitting from
+    infinitely many stages, of higher stable rank, since simple stable-rank-one AH
+    algebras have uniform Γ by Vaccaro's theorem (`ah-face-bundles-are-trivial`).

@@ -78,3 +78,18 @@ profile in `M`.
   - Strict closures of strict-comparison algebras have global approximate equivalence of
     equal-trace projections (`strict-comparison-bundle-certificate-vanishes`). Local
     versions on overlaps were not derived.
+- **Face bundles of block-balanced towers divide (2026-09-12, lane
+  `ex-tw-projection-starved-bundle`).**
+  - **Where it holds.** The claim holds for every bundle over a closed set of extreme
+    traces of an algebra with central halving
+    (`central-halving-trivializes-every-closed-bauer-face-bundle`).
+  - **Which towers have central halving.** Toms's towers, DHTW, HRW products and diagonal
+    AH algebras, together with their corners (`block-balanced-towers-have-central-halving`).
+  - **Tails.** For the infinite tensor products above, the projections `1 ⊗ e_j` are already
+    norm-central with trace `1/2`. So the tail hypothesis of the first sub-bullet is not
+    needed.
+  - **Calibration.** In the Hopf doubling tower no finite stage has a nonzero square
+    subbundle, yet the unit divides over every face
+    (`hopf-doubling-tower-has-no-m2-but-divides-unit-tracially`). So finite-stage
+    characteristic-class obstructions, including the mod-2 count in the tensor-product
+    bullet, cannot refute this claim.
