@@ -92,3 +92,15 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
       - `U = pinchFaces` meets its complement exactly across the walk edges and holds the walk darts. So `∂U = {3,4,5,6}` (`isBoundaryDart_iff`), and the outer face 3 and the source face 0 lie outside.
       - (ii) fails: `U` holds no relator cell, so this model has no pocket face set.
     - Lake rose (`OsinPocketLakeModel`). Every edge is a walk edge, `U = {K}` and `∂U = {0,2}` is the walk; the lake and the outside lie outside.
+  - kh-ejz's report (residual of `SectionPocketFaceSetInput`) lists (iii'), (C) and (ii), and names model tests of (C) on the pinched two-gon and on the lake complement `[3,1]` as its own next item. No reply from kh-ejz yet, so nothing of this item is built or landed.
+  - Drafts staged in the lane scratchpad, unprobed, for whichever sub-step kh-ejz names:
+    - `$NM/drafts/hl-lemma46-OsinPocketWalkColouring.lean`, the pocket-level assembly:
+      - `sideFaces_subset_of_colouring`: the side of the walk lies in every colour class that holds the walk darts. No connectivity is used.
+      - `sideFaces_colouring`: conversely, on a planar map the side of a noncrossing walk is a colour class.
+      - `isNoncrossingClosedWalk_of_colouring`, `PocketWalk.toPocketFaceSetOfColouring`, `PocketWalk.exists_pocketFaceSet_of_orient`. The last takes (iii'), (C) as `horient`, and (ii) as `hkept`.
+    - `$NM/drafts/hl-lemma46-OsinPocketPinchedTwoGonColouring.lean`, the model tests:
+      - On `lobeDiagram`, `pinchWalk : PocketWalk D 0 lobeDiagram 0 2` has walk `[5,3,4,6]`. `pinch_orient`: every colouring puts the four walk darts on one side, because the edges `{0,3}` and `{1,5}` lie on the walk. This is (C) on this map.
+      - `PinchedWalkColouringModel`: a pocket face set with the walk as boundary cycle and the digon `a` kept.
+      - `PinchedWalkNoKeptCell`: on `diagram`, no colour class holds both the walk darts and a relator cell. So (ii) does not follow from (iii') and (C).
+      - `LakeWalkColouringModel`: the rose with walk `[0,2]`.
+    - These overlap kh-ejz's planned (C) model tests. They land only if kh-ejz names them.
