@@ -188,9 +188,9 @@ pieces and the Euler-count chain. dgo-geometric covers the pocket Props and C3�
 - **Consequence.** The count grows with the section length `t` at every `ε`, `ρ` and `n`, so
   moving `∃ K` after `∀ ε` does not repair the Prop. Letting (A2) sides skip value-one excursions
   does.
-- **Offered, not started.** A formal fixture for this instance. A one-cell `LeastArea` diagram
-  over the line model, which would show that the hypotheses of `OsinLemma94SectionStatement`
-  hold together.
+- **Declined by the lead (~13:10).** A formal fixture for this instance is not wanted: the F1
+  ruling already includes (A2), no splits at value-one excursions, and hull-count94 has the
+  instance. The one-cell `LeastArea` nonvacuity model over the line model is skipped too.
 
 ## Lemma 9.3 piece Props and P2 (lead item, 2026-09-13 ~11:40)
 
@@ -232,7 +232,7 @@ The verdicts went to the owners and to the lead at about 13:05. Nothing fails as
      realized family of the same `Delta`.
    - Formal debt:
      - No landed theorem has type `TwoGonHoldsInput`. The closing pieces are over `S.diagram`:
-       `emptyTwoGonInput_holds` (`OsinPocketDiscEmptyTwoGon`) and `false_of_zeroCellPocket`
+       `emptyTwoGonInput_holds` (`OsinPocketDiscEmptyTwoGon`, `2aa17abb0`) and `false_of_zeroCellPocket`
        (`ce1028aa1`). Both take a `PocketRegion` whose complement cycle reads the merged
        decomposition.
      - `S.diagram` has no such region in three configurations:
@@ -248,8 +248,11 @@ The verdicts went to the owners and to the lead at about 13:05. Nothing fails as
        face across.
      - Pinched unions. `noncrossingClosedWalkSides` gives only a `BoundaryCycle`, and
        `bothFollowUnpinched` (`74d4ebd34`) needs `FollowsBoundary` on both cycles. So no landed
-       declaration builds a `PocketRegion` from a pinched walk.
-     - The turning condition for the pocket walk is open (kh-ejz).
+       declaration builds a `PocketRegion` from a pinched walk. `PocketPinchPinchedStatement`
+       (`OsinPocketPinchUnpinched:61`) still has no producer. `toPocketFaceSetOfNoncrossing`
+       (`aa2df0eaa`) gives a `PocketFaceSet` in walk order, not a `PocketRegion`.
+     - The turning condition and `alpha_not_mem` for the pocket walk on the copy are open (kh-ejz
+       report, item 5). `37957f19b` checks them only on the pinched model `[5,3,4,6]`.
    - This verdict first went to hull-euler only, because I read the lead's "(debt-conditional)" as
      a status. It names the owning lane, so `debt-conditional` received the verdict too.
 4. **P2 `NoncrossingClosedWalkSidesStatement` (kh-ejz, `26a7858f2`): proved; one docstring inference
