@@ -18,7 +18,9 @@ codewords reading the site `1`. Then
 
 and hence `Phi >= log q / m` when `m >= 1` (and `Phi >= log q` when `m = 0`).
 
-**Consequence.** A configuration with `Phi < log q / m` has `|E| > m` and `H(psi) < k log q / m`.
+**Consequence.** Let `n >= 1` be an integer. A configuration with `Phi < log q / n` has `m > n`,
+so `|E| > n`, and `H(psi) < k log q / n`. Indeed `m = 0` would give `Phi >= log q`, so `m >= 1`.
+Then `log q / m <= Phi < log q / n` gives `m > n`, and `H(psi)/k <= Phi` gives the entropy bound.
 
 The proof is the chain rule plus subadditivity: codewords not reading `1` are independent of
 `x(1)`, and each codeword that does has the law of `psi(x|_E)`. It uses no group structure beyond

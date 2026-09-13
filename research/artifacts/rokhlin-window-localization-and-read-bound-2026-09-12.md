@@ -57,8 +57,8 @@ for every deficit witness, whatever `F` is.
 **Relation to the landed localization.** `sofic-radical-localizes-bernoulli-deficit-witnesses`
 places a sofic-invisible difference inside `K = <E ∪ F>`. Theorem 1.1 says the host question is
 carried by `<E E^-1>` alone: the codeword set `F` can be anything, and after step 3 the witness is
-a configuration of the difference subgroup. The smallest windows that can be witnesses have
-`|E| = 3`, with `<e_1 e_2^-1, e_1 e_3^-1>` a two-generated non-maximal group.
+a configuration of the difference subgroup. So every witness has `|E| >= 3`, and when `|E| = 3`
+its difference subgroup `<e_1 e_2^-1, e_1 e_3^-1>` is two-generated and not Rokhlin-maximal.
 
 ## 2. Information about one site is bounded by the codewords that read it
 
@@ -77,8 +77,10 @@ because each `fE` consists of `|E|` distinct sites carrying iid values. Also
 first bound; `H(x(1) | y_F) >= 0` gives `Phi >= H(psi)/k`; the maximum of the two is smallest at
 `H(psi)/k = log q/m`. QED.
 
-**Corollary 2.2.** A configuration with `Phi < log q / m` has `|E| >= |F ∩ E^-1| > m` and
-`H(psi(x|_E)) < k log q / m`.
+**Corollary 2.2.** Let `n >= 1` be an integer. A configuration with `Phi < log q / n` has
+`|E| >= m > n` and `H(psi(x|_E)) < k log q / n`, where `m = |F ∩ E^-1|` is its read degree.
+Indeed `m = 0` gives `Phi >= log q`, so `m >= 1`. Then `log q / m <= Phi < log q / n` gives `m > n`,
+and `H(psi)/k <= Phi` gives the entropy bound.
 
 **Scope.** This is the Rokhlin analogue of
 `transport-identity-gives-reciprocal-memory-entropy-bound`, which concerns decoder memory of
@@ -93,7 +95,8 @@ contains `G × G` and finite subgroups of unbounded order
 group and Thompson's `V`. Suppose some configuration over `G` has `Phi < log q` for some `q`. Then:
 1. `h^Rok_sup(G) = 0`, and every uniform Bernoulli shift over `G` has Rokhlin entropy `0`;
 2. for every `q' >= 2` and every `ε > 0` some configuration at `q'` has `Phi < ε`;
-3. every configuration with `Phi < log q' / m` has `|E| > m` and `H(psi)/k < log q'/m`.
+3. for every integer `n >= 1`, every configuration at `q'` with `Phi < log q' / n` has `|E| > n`
+   and `H(psi)/k < log q'/n`.
 
 *Proof.*
 1. By `bernoulli-rokhlin-deficit-has-a-finitary-witness`, `rho_q(G) = inf Phi < log q`, so some `k`
@@ -101,7 +104,7 @@ group and Thompson's `V`. Suppose some configuration over `G` has `Phi < log q` 
    `seward-per-group-rokhlin-entropy-of-bernoulli-shifts` that value is `min{k log q, h_sup(G)}`,
    so `h_sup(G) < ∞`, hence `h_sup(G) = 0`, and `min{H(L), 0} = 0` for every finite base.
 2. Then `rho_(q')(G) = lim_k h^Rok((A'^k)^G)/k = 0 = inf Phi` at `q'`.
-3. Theorem 2.1. QED.
+3. Corollary 2.2. QED.
 
 **Corollary 3.2 (counterexample filter).** By `leavitt-zero-rokhlin-supremum-from-strict-automaton`,
 a strict automaton over `U = L_(F_2)(1,2)^x` forces conclusions 1–3 on `U`. In particular `U` then

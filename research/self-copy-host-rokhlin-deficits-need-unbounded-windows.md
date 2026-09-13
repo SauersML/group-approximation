@@ -17,8 +17,9 @@ Thompson's `V`. Suppose some configuration over `G` has `Phi < log q` (in the se
 
 1. `h^Rok_sup(G) = 0`, so every uniform Bernoulli shift over `G` has Rokhlin entropy `0`;
 2. for every alphabet size `q' >= 2` and every `ε > 0` some configuration at `q'` has `Phi < ε`;
-3. any configuration with `Phi < log q'/m` has window size `|E| > m` and code entropy
-   `H(psi)/k < log q'/m` (`bernoulli-witness-information-is-bounded-by-code-reads`).
+3. for every integer `n >= 1`, any configuration at `q'` with `Phi < log q'/n` has more than `n`
+   codewords reading the site, so window size `|E| > n`, and code entropy `H(psi)/k < log q'/n`
+   (`bernoulli-witness-information-is-bounded-by-code-reads`).
 
 So a single deficit on such a host, for instance the one a strict automaton over the binary
 Leavitt unit group would force, already implies collapse at every alphabet, through windows of
