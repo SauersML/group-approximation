@@ -20,6 +20,15 @@ following are equivalent:
 exactly linear soficity over finite fields. Symmetric, sporadic and exceptional targets add nothing
 beyond it, and neither do classical targets of any type or rank.
 
+**Model test and scope.**
+- *Trivial model.* A sofic group fails (i) and has unbounded width over `PSL_n(q)`, as it should.
+- *Real object.* No finitely presented simple group is known to satisfy (i). No group at all is known
+  to be non-linear-sofic (`non-linear-sofic-group` is open), and whether `R^x` is `F_2`-linear sofic is
+  the open Gottschalk gate.
+- *So the forward direction is a reduction.* It is not a width bound for a known group. The direction
+  (iii) => (i) is unconditional: any weak model of a finitely presented simple group into finite simple
+  groups yields linear soficity over finite fields.
+
 **Consequences.**
 - **Restricted rigidity.** Restricted to finite simple targets, `fg-simple-weakly-sofic-groups-are-sofic`
   for finitely presented groups is: *every finitely presented simple group that is linear sofic over

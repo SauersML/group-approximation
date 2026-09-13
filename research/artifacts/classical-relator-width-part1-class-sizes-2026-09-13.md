@@ -101,16 +101,20 @@ In terms of `n`: `E_0 >= n(n+1)/2 - 1` (Sp), `E_0 >= n(n+1)/2 - 3n - 4` (O), and
 - **Sizes.** Identifying `L = (L')^*`, the admissible `S` are symmetric forms (Sp, `F_0`-dimension
   `m(m+1)/2`), alternating forms (O, `m(m-1)/2`), or skew-hermitian forms (U, `m^2`). So
   `|U| = |U^-| = q^(dim)`.
-- **Inside `Q_0`.**
-  - *Levi part.* For `x in SL(L)` (over `F`), `m(x)` lies in `Q_0`. In case (U) its determinant is
-    `det(x) / det(x)bar = 1`. In case (O), `SL_m(q)` is perfect for `m >= 3`, so
-    `m(SL(L)) <= O(V)' <= Q_0`.
-  - *Radical, case (O).* `u_S u_(S') = u_(S + S')`, and `m(x) u_S m(x)^-1 = u_(x S x^dagger)`. So
-    `[m(x), u_S] = u_(x S x^dagger - S)`, whose form is `B_S` congruence-transformed by an element of
-    `SL(L')` minus `B_S`. For `B_S = b_1^* ∧ b_2^*` and the substitution `b_1 -> b_1 + b_3`, the
-    difference is `b_3^* ∧ b_2^*`. By symmetry every basis form `b_i^* ∧ b_j^*` arises, so
-    `U <= O(V)'`, and likewise `U^- <= O(V)'`.
-  - *Radical, cases (Sp) and (U).* `U, U^- <= Q_0` directly, since they are unipotent isometries.
+- **Inside `I(V)' <= Q_0`, all three cases.**
+  - *Levi part.* `m : SL(L) -> I(V)` is a homomorphism, and `SL_m(q_F)` is perfect for `m >= 3`. So
+    `m(SL(L)) <= I(V)'`.
+  - *Radical.* `u_S u_(S') = u_(S + S')`, and `m(x) u_S m(x)^-1 = u_(x S x^dagger)`. So
+    `[m(x), u_S] = u_(x S x^dagger - S)`. Its form is `B_S` transformed by the substitution `x^dagger`
+    in `SL(L')`, minus `B_S`.
+    - Substitutions `b_i -> b_i + lambda b_j` (`i != j`, `lambda in F`) applied to basis forms produce
+      every admissible basis form. For alternating forms, `b_1^* ∧ b_2^*` under `b_1 -> b_1 + b_3` gives
+      `b_3^* ∧ b_2^*`.
+    - For symmetric and hermitian-type forms, a diagonal form under `b_1 -> b_1 + lambda b_2` gives an
+      off-diagonal term plus a diagonal term in `b_2`, and off-diagonal terms are obtained as in the
+      alternating case.
+    - These differences span all admissible forms (a direct check on basis forms, using `m >= 3`). So
+      `U <= I(V)'`, and likewise `U^- <= I(V)'`.
 - **Big cell.** The map `U^- x m(SL(L)) x U -> Q_0` is injective.
   - `P = Stab(L)` contains `m(SL(L))` and `U`.
   - `U^- ∩ P = 1`: `u^-_(S') a = a + S' a` lies in `L` only when `S' = 0`.

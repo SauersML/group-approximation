@@ -59,6 +59,9 @@ sequence of finite fields `F_(q_i)`.
   presented simple groups.
 - **Binary Leavitt unit group.** `R^x` has weak models in special linear groups over `F_(2^e)` iff it
   is `F_2`-linear sofic (`binary-leavitt-unit-group-is-f2-linear-sofic`).
+- **Scope.** No finitely presented simple group is known to satisfy (i), since no non-linear-sofic group
+  is known (`non-linear-sofic-group`). So (i) => (ii) is a reduction. The implications (iii) => (i) and
+  (ii) => (i) are unconditional.
 
 **Mechanism.**
 - **Template.** `G` is perfect, so in `F(X)` every generator is a product of `J` commutators of words
