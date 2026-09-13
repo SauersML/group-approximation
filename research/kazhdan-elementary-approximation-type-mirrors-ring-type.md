@@ -131,6 +131,10 @@ Blueprint: `research/artifacts/un-blueprint-2026-09-13-part1.md`.
     (`paradox-side-elementary-group-is-finitely-presented`), which would move the separation inside the
     ladder; and whether LEF growth separates measure-side rungs from each other
     (`elementary-group-lef-growth-separates-subshifts`).
-- **Flagship instance.** `free-group-cantor-elementary-group-lef-iff-invariant-measure`: for minimal
-  topologically free free-group Cantor systems with finitely generated crossed product, (L) and (M) collapse
-  to one dynamical dichotomy, invariant measure versus none. The band `3 <= N < 2n` is open.
+- **Flagship instance, ESTABLISHED.** `free-group-cantor-elementary-group-lef-iff-invariant-measure`, route
+  `free-group-cantor-el-lef-iff-invariant-measure-proof`. Its inputs passed review; the assembly is unreviewed.
+  - **Setting:** minimal topologically free free-group Cantor systems with finitely generated crossed product
+    over `F_q`.
+  - **Result:** (L) and (M) collapse to one dynamical dichotomy. `S_N` is LEF for all `N >= 3` iff an invariant
+    measure exists; otherwise there is no MF quotient for `N >= 2n`.
+  - **Open:** the band `3 <= N < 2n`.

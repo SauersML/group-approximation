@@ -140,8 +140,11 @@ Pestov ring.
 **ROOT** `kazhdan-elementary-approximation-type-mirrors-ring-type`: (L), (Σ), (M) of §0 as equivalences.
 Route: `kazhdan-approximation-ladder-from-three-converses`.
 
-**FLAGSHIP** `free-group-cantor-elementary-group-lef-iff-invariant-measure` (open; assembled from
-established, unreviewed nodes, and the route is added after review).
+**FLAGSHIP** `free-group-cantor-elementary-group-lef-iff-invariant-measure`, ESTABLISHED by
+`free-group-cantor-el-lef-iff-invariant-measure-proof`.
+- Every input passed independent review: 171f0f7525 simplicity; f15928d5c9 the no-MF-quotient theorems; 10083fd646
+  the measure side and Kerr–Nowak.
+- The assembly is unreviewed.
 - **Setting.** `F_r` acts minimally and topologically freely on the Cantor set, and `LC(X,F_q) ⋊ F_r` is
   finitely generated.
 - **Claim.** `S_N = EL_N/Z` is infinite, simple and Kazhdan, and it is LEF for all `N` iff an invariant

@@ -8,7 +8,12 @@ distinct_from:
   boundary-action-elementary-simple-kazhdan-not-mf: that is one paradoxical instance, F_d acting on its boundary; this is the dichotomy over every minimal topologically free free-group Cantor system with finitely generated crossed product.
 ---
 
-**OPEN (assembled from unreviewed established nodes; the route is added after review).**
+**ESTABLISHED** by route `free-group-cantor-el-lef-iff-invariant-measure-proof`.
+- Every input passed independent review: 171f0f7525, f15928d5c9, 10083fd646.
+- The assembly is unreviewed.
+- **Scope:** finite coefficient field `F_q`; finitely generated crossed product; LEF for all `N >= 3` iff an
+  invariant probability measure exists; otherwise every MF quotient is trivial for `N >= 2n`. The band
+  `3 <= N < 2n` is open.
 
 **Setting.**
 - `F_r`, with `2 <= r < ∞`, acts minimally and topologically freely on the Cantor set `X`. `q` is a prime
@@ -28,9 +33,9 @@ Kazhdan groups. Root: `kazhdan-elementary-approximation-type-mirrors-ring-type`.
 **Open band.** In case 2, the ranks `3 <= N < 2n` are not covered
 (`el-n-mf-quotient-below-twice-paradoxical-level-exists`).
 
-## Attempts
+## Notes
 
-**Assembly** (every input is on main, established and unreviewed):
+**Assembly.** The complete derivation is in the route. Summary:
 - **Dictionary and simplicity.**
   - `R = A_(F_q)(X ⋊ F_r)` (`crossed-products-are-transformation-steinberg-algebras`). The groupoid is
     Hausdorff and ample; it is minimal, and effective because the action is topologically free. Its unit
