@@ -46,8 +46,6 @@ The two definitions in the shared block are the only notions not taken from Math
   of type (A₂).
 
 All groups and sets are quantified over `Type`, where the example lives.
-
-The prose of this module was written by Claude (Anthropic).
 -/
 
 namespace FFWZ

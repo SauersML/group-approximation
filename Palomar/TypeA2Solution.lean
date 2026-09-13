@@ -8,6 +8,7 @@ import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.Finiteness
 import Mathlib.GroupTheory.GroupAction.Defs
 import GroupApproximation.TypeA2.Statement
+import GroupApproximation.TypeA2.Answer
 
 /-!
 # Fournier-Facio–Wu–Zaremsky Question 5.8: solution
@@ -23,11 +24,10 @@ under `GroupApproximation.TypeA2`, so the bridges hold by `rfl`:
 * `exists_isTypeA2_quotient_not_isFinitelyPresented_of`: the development's `Question58`
   gives the Challenge statement.
 
-The configuration is pending: this module proves the Challenge statement from
-`Question58`.  The witness is the one in the repository's research node
-`research/a2-action-with-non-finitely-presented-image.md`.
-
-The prose of this module was written by Claude (Anthropic).
+The Challenge theorem `exists_isTypeA2_quotient_not_isFinitelyPresented` applies the last
+bridge to `GroupApproximation.TypeA2.question58` from `GroupApproximation.TypeA2.Answer`.
+That module builds the witness from Thompson's group `F` acting on the positive dyadic
+rationals.
 -/
 
 namespace FFWZ
@@ -68,5 +68,12 @@ theorem exists_isTypeA2_quotient_not_isFinitelyPresented_of
     ∃ (G : Type) (_ : Group G) (S : Type) (_ : MulAction G S),
       IsTypeA2 G S ∧ ¬ Group.IsFinitelyPresented (G ⧸ actionKernel G S) :=
   h
+
+/-- **Question 5.8 has a positive answer**: some group action `G ↷ S` of type [A₂]
+has a quotient `G ⧸ ker(G ↷ S)` that is not finitely presented. -/
+theorem exists_isTypeA2_quotient_not_isFinitelyPresented :
+    ∃ (G : Type) (_ : Group G) (S : Type) (_ : MulAction G S),
+      IsTypeA2 G S ∧ ¬ Group.IsFinitelyPresented (G ⧸ actionKernel G S) :=
+  exists_isTypeA2_quotient_not_isFinitelyPresented_of GroupApproximation.TypeA2.question58
 
 end FFWZ
