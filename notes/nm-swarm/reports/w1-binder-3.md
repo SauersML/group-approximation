@@ -134,3 +134,32 @@ Finding: `hout` for a fixed order of the two regions can fail, lake or no lake.
 - The premise needed is a choice of order: `hout` for the walk of `(a, b)` or for the walk of `(b, a)`.
 
 CLAIM the exterior face against the cell pocket walk and the two-order statement, GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOuter.lean
+
+- 18:40: main named the target: `CellPocketWalkOuterOffSideStatement` (ms-cite-1, eb678c70a,
+  `Estimating/OsinPocketMultipleEdgeCopy`), consumed by `OsinGreendlingerResidualsV2Copy`.
+- It is NOT discharged; it looks over-strong.
+  - It quantifies over an arbitrary order `(a, b)`, with `CopyClean a b`, and fixes the walk of that order.
+  - `CopyClean` constrains only the sides of the walk and the cells. Nothing constrains the faces across the gap darts of
+    `t_1` and `t_2`.
+  - The walk darts along a gap reverse cell darts, so the faces across the gap are on the walk's side.
+  - So the statement forbids `Π_i` (or `Π_j`) from touching `∂Δ` between the arcs of `a` and `b` in carrier order. Its
+    hypotheses (least area, a globally distinguished family, CopyClean, closed walk, nodup, no reversed dart) do not give
+    that.
+  - The reduction is proved. No least-area diagram realizing such a gap is built, so this is not a refutation.
+- 18:46: probe 0913-184416-19758 GREEN. `OsinPocketCellWalkOuter` built with 0 warnings, and all five `#audit_axioms`
+  report only `[propext, Classical.choice, Quot.sound]`. The module lands in the same commit as this entry.
+  - `CellPocketWalk.faceOf_alpha_mem_sideFaces_of_mem_arc`: the face across a dart of `t_1` or `t_2` is on the side.
+  - `CellPocketWalk.outerFace_mem_sideFaces_of_mem_arc`: when that face is the exterior face, `hout` fails.
+  - `CellPocketWalk.not_outerFace_across_arc_of_outerOffSide`: `CellPocketWalkOuterOffSideStatement` implies that no
+    dart of `t_1` or `t_2` has the exterior face across it.
+  - `CellPocketWalk.two_le_length_cellDarts_first` / `_second`: both carriers have at least two darts, so the monogon cell
+    of the lake model carries no pocket walk. The lake obstructs following outer cycles, not `hout`.
+- Proposed correction (for ms-cite-1 and main to decide; not landed):
+  - Pick the order. The walk of `(b, a)` spans the complementary gaps, so its side holds the complementary pocket.
+  - The residual is then: the exterior face is off the side of the walk of `(a, b)` or off the side of the walk of
+    `(b, a)`, for noncrossing walks of both orders. Every region face is not the exterior face
+    (`FaceSetBoundary.all_gCells`).
+  - A proof would track the four sides and four gaps, which are exactly the edges where the two sides differ. It is not
+    built.
+- `CellPocketWalkSideRelatorCellStatement` (same file, same fixed order) may have the same issue: the side of the fixed
+  order holds the pocket after the first gap, and the relator cells may lie in the other pocket. Not checked here.
