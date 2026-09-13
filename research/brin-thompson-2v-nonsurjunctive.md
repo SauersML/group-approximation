@@ -8,6 +8,7 @@ distinct_from:
   leavitt-unit-group-nonsurjunctive: that names the unit group of L_(F_2)(1,2); this names 2V, the product-cylinder permutation units of L_(F_2)(1,2) ⊗ L_(F_2)(1,2).
 artifacts:
   - research/artifacts/brin-thompson-2v-gottschalk-host-2026-09-12.md
+  - research/artifacts/brin-thompson-2v-obstruction-state-profile-2026-09-12.md
 ---
 
 **OPEN.** Let `C = {0,1}^N` and let `2V` be the Brin–Thompson group: the homeomorphisms of `C × C` that cut
@@ -52,3 +53,16 @@ injective and not surjective.
   sofic. Where it stopped: `(V ⊗ 1) × (1 ⊗ V)`, `H_u` and `⟨1 ⊗ V, u⟩` each contain `g ⊗ 1` and are sofic iff `V`
   is. A proof specific to `2V` needs `b` and `c` whose supports do not lie together in any one of them, for
   example inside `⟨V ⊗ 1, 1 ⊗ h, u⟩`.
+* **The gate reduces to one value (w7-2v-mixed-support, 2026-09-12; artifact
+  `brin-thompson-2v-obstruction-state-profile-2026-09-12.md`).**
+  - Tower positivity bounds `b` by `2/9`, and a state with `b > 0` yields one with `b = 2/9`. So the linear gate
+    for `2V` holds iff no state of `K_0(F_2[2V])` gives `e` the value `1/3`.
+  - Such a state has the profile `(1/9, 2/9, 2/9, 4/9)`. The augmentation (`b = 0`) cannot be killed and does not
+    matter.
+  - In `⟨V ⊗ 1, 1 ⊗ h, u⟩`, `1 ⊗ h = (1 ⊗ k)(1 ⊗ g)(1 ⊗ k)^(-1)` for an explicit `k` in `V`, so it adds no torsion
+    class.
+  - Where it stopped:
+    - An obstruction must use a relation that is not a conjugation and does not live in `L_3`.
+    - A relation living in `V_1 × V_2`, `H_u` or `⟨V_2, u⟩` would already show that `V` is not sofic.
+    - A firewall needs one state with `s[e] = 1/3`.
+  - Status: on paper, awaiting `w3-vf-nonlinear`.
