@@ -5,6 +5,8 @@ kind: claim
 title: "Some finite planar set has a connected Rips complex that is not homotopy equivalent to a wedge of spheres"
 distinct_from:
   some-infinite-planar-set-has-a-non-wedge-rips-complex: this claim asks for a finite point set; that claim asks for an infinite one
+artifacts:
+  - research/artifacts/zp-planar-rips-search-2026-09-13.md
 ---
 
 There are a finite set `X ⊆ R^2` (Euclidean metric) and a scale `r > 0` such
@@ -19,37 +21,43 @@ the neighbours of `x_0`, and the simplicial retraction sending the new points
 to `x_0` is contiguous to the identity, so the Rips complex keeps its
 homotopy type.
 
+**Constraints any example must meet.** `π_1` is free
+(`planar-rips-projection-is-a-pi1-isomorphism`), and induced normal
+pseudomanifolds of dimension `≥ 2` are crosspolytope boundaries
+(`planar-rips-pseudomanifolds-are-crosspolytope-boundaries`). So a
+counterexample needs torsion in homology, twisted structure over its free
+fundamental group, or non-trivial attaching between spheres (e.g. a cup
+product or a Hopf-type cell).
+
 ## Attempts
 
-- **(A) Torsion.** Homology with torsion rules out a wedge at once. Plan: a
-  bounded search over small planar configurations and scales, reducing each
-  complex by dominated vertices (a vertex whose closed neighbourhood lies in
-  another's can be deleted without changing the homotopy type) and comparing
-  ranks of boundary maps over `F_2`, `F_3` and a large prime. Not yet run.
-- **(B) A circle of spheres around a hole.** Place finite clusters
-  `U_0, …, U_{N−1}` around a large circle, symmetric under a rotation of
-  order `N`, with `d(U_i, U_j) > r` unless `j ∈ {i−1, i, i+1}` (mod `N`).
-  Every simplex lies in some `K_i = R_r(U_i ∪ U_{i+1})`, and
-  `K_i ∩ K_{i+1} = L_{i+1} = R_r(U_{i+1})`. If every `K_i` is simply connected
-  and every `L_i` connected, van Kampen gives `π_1 = Z`. A wedge with
-  `π_1 = Z` has the form `S^1 ∨ W`, whose universal cover has homology free
-  over `Z[t^{±1}]` in each degree `≥ 2`. When `L_i ≃ S^2`, the Mayer–Vietoris
-  sequence of the universal cover (an infinite chain of copies of `K_i`)
-  gives `H_2 = coker(Z[s^{±1}] ⊗ H_2(L) → Z[s^{±1}] ⊗ H_2(K))`, where `s` is
-  the one-step rotation and the deck generator is `t = s^N`. If
-  `H_2(K) = Z` and the two cluster spheres map to `a` and `b` times its
-  generator with `a, b ≠ 0`, the cokernel is `Z[s^{±1}]/(a − b s)`, which is
-  not a free `Z[t^{±1}]`-module, so `R_r(X)` is not a wedge. Open design
-  problem: clusters whose octahedral spheres (regular hexagons at scale just
-  below their diameter give boundaries of octahedra) are both nonzero in
-  `H_2(K)` while clusters two steps apart stay more than `r` apart. With
-  translates of one hexagon this fails: carrying the sphere needs vertex
-  exchanges over distances below `r`, while separation needs steps above `r`.
-- **(C) Periodic strips.** Bend a translation-periodic strip configuration
-  into an annulus with `N` periods and large radius, keeping all pairwise
-  distances away from `r`, so the unit-distance graph is the quotient of the
-  strip's. If the bent complexes `T_N` and `T_M` (`N ≠ M`) were both wedges,
-  the strip complex's `H_2` would be free over `Z[s^{±N}]` and over
-  `Z[s^{±M}]` with ranks `b_2(T_N)` and `b_2(T_M)`, forcing
-  `M·b_2(T_N) = N·b_2(T_M)`. A strip with bounded nonzero `b_2(T_N)` would
-  therefore give counterexamples. Candidate strips not yet chosen.
+- **(A) Torsion.** Homology torsion rules out a wedge at once. Bounded search
+  over 14 families (random clouds, noisy circles, Reuleaux polygons,
+  concentric polygons, lattice annuli, rings of polygons), about 24,000
+  reduced complexes: no torsion mod 2 or mod 3
+  (`research/artifacts/zp-planar-rips-search-2026-09-13.md`).
+- **(B) A circle of spheres around a hole.** Place finite clusters around a
+  large circle, symmetric under a rotation of order `N`, with clusters more
+  than `r` apart unless they are neighbours. Van Kampen gives `π_1 = Z` when
+  the pairwise unions have simply connected Rips complexes. By
+  `wedges-of-spheres-have-free-cyclic-cover-homology`, a wedge would make the
+  homology of the infinite cyclic cover free over `Z[t^{±1}]` in degrees
+  `≥ 2`. If each cluster carries an octahedral `S^2` and in the union of two
+  neighbours both spheres are nonzero multiples `a, b` of one generator of
+  `H_2 = Z`, then Mayer–Vietoris gives `H_2(cover) = Z[s^{±1}]/(a − bs)`, with
+  `s` the one-step rotation and `t = s^N`. That module is not free, so
+  `R_r(X)` would not be a wedge. Obstacle: carrying a sphere from one cluster
+  to the next needs vertex exchanges over distances below `r`, while
+  separation needs steps above `r`. In the search, separated clusters gave
+  independent spheres (`S^1 ∨ ⋁ S^2`), and dense sliding (the `tracks` and
+  `squash` families) collapsed every local sphere, leaving `S^1`.
+- **(C) Winding certificate at any hole.** For every point `p` outside the
+  shadow, the angle around `p` gives an infinite cyclic cover; a discrepancy
+  between twisted and ordinary Betti numbers in degree `≥ 2` certifies a
+  non-wedge. Tested on every core with a hole in the search: no discrepancy.
+- **(D) Structure of cores.** Near the diameter scale, reduced cores almost
+  always have far graphs (pairs at distance `> r`) that are disjoint unions of
+  cycles and edges. Their Rips complexes are then joins of `S^0`s and of
+  independence complexes of cycles, hence wedges. The rare cubic far graphs
+  (12 vertices, `S^2 ∨ S^2 ∨ S^2`) are being classified. A structure theorem
+  for cores would point to a positive answer.
