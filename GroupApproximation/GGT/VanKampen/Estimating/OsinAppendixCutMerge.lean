@@ -92,7 +92,12 @@ theorem false_of_cons_singleton
     · exact ⟨hsource, htarget⟩
     · exact hnondegenerate a ha2
   have hcons := RegionCandidate.familyWeight_cons_singleton H havoid
-  have hconscard := Finset.card_cons (RegionCandidate.singleton_not_mem_of_avoid H havoid)
+  -- The type is spelled out so that `family.card` is taken over `RegionCandidate D eps Xi`,
+  -- as in `hcard`; `Finset.card_cons` alone infers the unfolded sigma type, a different
+  -- `omega` atom.
+  have hconscard : (Finset.cons (⟨{f}, H⟩ : RegionCandidate D eps Xi) family
+      (RegionCandidate.singleton_not_mem_of_avoid H havoid)).card = family.card + 1 :=
+    Finset.card_cons (RegionCandidate.singleton_not_mem_of_avoid H havoid)
   have hle : S.toRealizedSectionFamily.weight ≤
       EstimatingSelection.familyWeight RegionCandidate.weight
         (Finset.cons (⟨{f}, H⟩ : RegionCandidate D eps Xi) family
