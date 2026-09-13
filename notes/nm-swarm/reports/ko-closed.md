@@ -3,6 +3,34 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
+## STATE (09-13 ~13:25): one-cell Case 1 (team-lead's assignment), model test FAILED at (a); no Lean written
+The assignment has two parts, both for theoremc-retire's `OsinLemma94CaseOneOneCellInput`:
+- (a) a pocket with no R-cell ⇒ False;
+- (b) a pocket with an R-cell ⇒ `Nonempty (OsinLoopCut …)`.
+That statement is not landed, and its text has not arrived.
+- Shape 1 is a paper picture, not a formal refutation; there is no global model yet.
+  - Face f runs along cell Π on consecutive sides A (source) and B (target), both `.cell j`.  At their common vertex,
+    Π's boundary makes a spur, so the relator contains `x x⁻¹`.  This is legal once `c ≥ 2λ`.
+  - Then `X = []` and the pocket has no face.  P.Maximal holds (`facePerm (alpha e') ≠ alpha e`).  f has no spur, so
+    NoLoops, GFacesApart and DartMinimal give nothing.
+  - The hairpin `B⁻¹ x x⁻¹ A⁻¹` has as its value the start connector (`< ε`).  The `(λ, c)` bound allows this at every
+    large `ε` when `λ < 1/2`.
+  - Consequences:
+    - The planar pocket lemma "arcs of the cell plus spurs, a spur at every junction" is false, so it is not named.
+    - (a) does not follow from CaseOneInput's hypotheses.
+    - No loop cut exists.
+- Shape 2 is a lake inside a loop of `∂Π`, holding one G-face (`x y x⁻¹ y⁻¹` with x, y commuting).  The vertex-split merge
+  into f keeps the dart count.  So shape 2 survives DartMinimal and dies under (darts, faces) minimality.
+- The value argument proves (a) with no spur, Maximal or DartMinimal input:
+  - a cell-free pocket gives `|B⁻¹M'A⁻¹|_G < ε`;
+  - that is a contradiction once `d(a,a') + d(b',b) ≥ λ⁻¹(ε + c)`, or when `λ > 1/2` and `ε₀ > c/(2λ−1)`.
+- (b) needs the X-pocket as a PocketRegion plus a collar.  `side_short` bounds the section length, and X can be long.
+- The model test and the options went to main and theoremc-retire:
+  - (1) count one-cell pairs separately (A1, roster 590);
+  - (2) a longer one-cell threshold from the metric lemma.
+  Waiting for the ruling.
+- Residual Props owned by ko-closed: NONE.
+
 ## STATE (09-13 ~10:50): `OsinLemma94CellArcsInput` PROVED (hull-unbound's realization split, 1130c8dbc)
 `theorem GroupApproximation.GGT.VanKampen.osinLemma94CellArcsInput_holds : OsinLemma94CellArcsInput.{u, w, v}` is in
 `GGT/VanKampen/Estimating/OsinLemma94CellArcs.lean` (51 lines), the team-lead's assignment.
