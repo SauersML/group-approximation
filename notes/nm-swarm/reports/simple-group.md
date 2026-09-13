@@ -112,10 +112,35 @@ Assigned by the lead. kh-torsion was told before any Lean was written.
   - The transport comes from `CornerOutput.originalReplacement` and `ContiguityTransport`.
   - The collar is the inserted path.
 - Path collision at 14:34: hull-bridge wrote `VanKampen/SurgeryGeodesicCollarInsert.lean` (registered in `hull-bridge.files`)
-  over this lane's draft at the same path. That file is hull-bridge's, and this lane has not edited it since. The lead has been
-  asked to decide who keeps the Prop.
+  over this lane's draft at the same path. That file is hull-bridge's, and this lane has not edited it since.
 - The draft's Strip half (face membership, boundary iff, walk plan, statement plan) is kept at
   `$NM/backup/simple-group/SurgeryGeodesicCollarInsert.strip-and-statement.draft.lean`. It has never been compiled.
+- Ruling (a), on this lane's recommendation: hull-bridge keeps `InsertStatement` and `SurgeryGeodesicCollarInsert.lean`. This
+  lane sent hull-bridge the proof text as one message:
+  - vertex `Nodup` via `internal_fresh` / `internal_vertex_eq_iff`;
+  - the `IsBoundaryDart` iff for `path ++ r.map emb`;
+  - `IsSimpleClosedWalk` for `r = []` and `r ≠ []`;
+  - the `insertStatement` assembly (`hinv` via `hsymm` / `(D.fam i).inv_mem`).
 
 ### Residual for `InsertStatement`
-Open, pending the lead's ruling. Nothing from W2 has landed.
+None for this lane; the Prop is hull-bridge's. Nothing from W2 has landed.
+
+## W3: Stage 1 of the collar, `GeodesicCollar.StripStatement` (binder 8 of the waist 8a07ad7d0)
+Assigned by the lead: the Strip sub-module that hull-bridge had held, either the pinch step or the induction. kh-torsion owns
+`StripStatement`.
+- kh-torsion registered `VanKampen/SurgeryGeodesicCollarPinch.lean` in `kh-torsion.files` at 15:45, so this lane does not write
+  there. kh-torsion has been asked whether it is building the pinch step. The design sent for the step: `PinchSplit.Input`
+  on the doubled map, `x := alpha (embed (p.getLast _))`, `y := some none`, and the merged face cycle rotated by
+  `q.length + 3`.
+- This lane builds the induction in `VanKampen/SurgeryGeodesicCollarInduction.lean` (registered in `simple-group.files`):
+  - `GeodesicCollar.StripStepStatement`, the pinch step: `Strip Delta S p (d :: r)` gives a transport to a strip along the
+    image of `p ++ [d]`;
+  - `stripAppend`: the step repeated along a list `t`, by induction on `t.length`, composing the transports with
+    `Transport.trans`;
+  - `stripStatement_of_step : StripStepStatement → StripStatement`: `stripSingleton` on the first dart, then `stripAppend`.
+- Probe 0913-155533-35125 green (base cda0020eb, errors section empty, compiled md5 `210ab6ce…` = disk). Landed unwired: nothing
+  consumes the module until a theorem for the step exists.
+
+### Residual for `StripStatement`
+`StripStepStatement`, the pinch step (to be settled with kh-torsion). Once a theorem `stripStep : StripStepStatement` exists,
+`stripStatement_of_step stripStep : StripStatement` closes Stage 1.
