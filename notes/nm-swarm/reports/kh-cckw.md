@@ -370,3 +370,30 @@ Infiniteness then follows from χ(X) (finite acyclic X would have χ = |G|·1381
 - Deviation from the request: (a) omits `hK : K.ClosedWalk`. The proof never uses it, an unused binder warns, and
   warnings are errors.
 - RESIDUAL (hull-respell's step Prop and induction): `PocketPinchStepStatement`, which feeds `PocketPinchPinchedStatement`.
+
+## W1 OUTER SPUR TRANSPORT (09-13, sub-piece T2 for hull-respell, on top of their T1 6a0ab4e33)
+- Request: carry a `PocketFaceSet` across `OuterSpurThickening.diagram X j hlen`, keeping `ClosedWalk` and
+  `repeatedVisits`. At a pinch with a gap corner in the exterior, thickening an outer edge there first puts a G-digon in
+  that corner, as `PinchSplit.Input.left_ne_outer` and `right_ne_outer` require.
+- Start position: `OuterSpurThickening.outerDarts_eq` maps the exterior traversal position by position. The reverse of
+  the new dart takes the place of `α w_j`. So `targetArc := K.targetArc.mapTo outerImage (outerDarts_eq …)` keeps
+  `start` and `length`, and `lo_le`, `le_hi` carry over with no rotation.
+- Side condition: `htgt : X.toCombMap.alpha (FaceEdgeDoubling.dart X X.outerFace j) ∉ K.targetArc.darts`. There is no
+  source-arc condition. The doubled dart lies on the exterior, and `cellDarts_eq` maps every cell boundary by the embedding.
+- PROBE GREEN 0913-160514-92421 (base 7740d22a1, BUILT GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterSpur,
+  empty error index, record md5 9d8df99c = the landed bytes). `#audit_axioms` on 8 names gives
+  [propext, Classical.choice, Quot.sound]. The first probe, 0913-155207-89895, FAILED on a single unused-binder linter
+  error, fixed by `fun _ hd`.
+- New orphan `GGT/VanKampen/Estimating/OsinPocketOuterSpur`. It imports `SurgeryOuterSpurThickening` and hull-respell's
+  `OsinPocketEdgeDoubling`, for `card_toFinset_map_eq_of_iff` and `DiscEmbeddingAway.boundaryCycle`.
+  - namespace `OuterSpurThickening`: `vertexOf_embedding_eq_iff`, `vertexOf_alpha_embedding_eq_iff`, `label_letter hlabel`,
+    and `outerArc_mapTo_darts arc havoid`.
+  - namespace `PocketFaceSet`:
+    - `alpha_outerSpurDart_not_mem_targetArc K j hs2` gives `htgt` from `faceOf (α w_j) ∉ K.faces`;
+    - `outerSpurThickening K j hlen htgt : PocketFaceSet D eps (OuterSpurThickening.diagram X j hlen) lo hi`;
+    - rfl lemmas `_faces`, `_source`, `_kept`, `_boundary_cycle`, `_firstSide`, `_secondSide`, plus `_sourceArc_darts`,
+      `_sourceArc_start`, `_sourceArc_length`, `_targetArc_darts`, `_targetArc_start`, `_targetArc_length`;
+    - `outerSpurThickening_closedWalk K j hlen htgt hK` and `outerSpurThickening_repeatedVisits K j hlen htgt`.
+- Limit of use: `htgt` fails when the K-dart beside the exterior corner lies on `t_2`. If `x ∈ t_2` and the corner after
+  `x` is exterior, thickening `w_j = α x` gives `α w_j = x ∈ t_2`. The only repair puts the digon into K, and then
+  `I.Avoids` fails. `htgt` holds when that dart lies in a side, or when its face is not in K.
