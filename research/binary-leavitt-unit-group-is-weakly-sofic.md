@@ -99,7 +99,22 @@ for any group (`howie-pro-p-tuple-fails-the-profinite-certificate-at-a5`).
   - *Where it stops.* The rank survives on the `D`-layer, but the next layer repeats the
     estimate with constants growing in the depth. Unipotent towers of unbounded depth are
     not controlled.
+- **Deep towers, nilpotent-by-bounded groups, symmetric wreath products, any lengths: dead**
+  (lane `ex-weak-sofic-deep-wreath`, 2026-09-13, unreviewed). `R^x` has uniformly bounded relator width
+  over:
+  - iterated wreath products of bounded degree with bounded commutator width, including towers of
+    nonabelian simple groups and full-cycle towers with solvable layers
+    (`relator-width-over-towers-of-bounded-commutator-width`);
+  - every finite group with a nilpotent normal subgroup whose quotient lies in a fixed locally finite
+    variety (`relator-width-over-nilpotent-by-locally-finite-groups`). So unipotent towers
+    `GL_n(F_2[t]/t^k)` with fixed `n` give no weak models, for every `k`;
+  - `H wr Sym(n)` and `H wr Alt(n)` with `|H|` bounded
+    (`simple-nonsofic-width-over-bounded-base-symmetric-wreath`).
 - **What is left.** Lengths not determined by one action or semisimple representation.
   These are capped conjugation word lengths on finite groups with large normal subgroups
-  carrying small lengths, and ranks in characteristic `2` with deep unipotent structure.
-  No construction of either kind is known for `R^x` or for `V`.
+  carrying small lengths, and ranks in characteristic `2` with deep unipotent structure under an
+  unbounded top. The group-theoretic room is:
+  - finite groups whose Fitting quotients leave every locally finite variety;
+  - towers without a commutator width bound;
+  - subgroups of towers, where conjugators are scarce.
+  No construction of any of these kinds is known for `R^x` or for `V`.
