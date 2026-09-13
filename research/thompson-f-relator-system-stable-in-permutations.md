@@ -30,3 +30,8 @@ not sofic. It then makes `V` nonsofic too.
 - **Uniform stability.** Fournier-Facio--Rangarajan, arXiv:2301.03970, prove uniform stability of `F`
   for submultiplicative norms. Their text says the pointwise permutation statement "would imply that F
   is not sofic", and they treat it as out of their scope.
+- **Naive permutation search (2026-09-13): uninformative.** Simulated annealing with single transpositions, for
+  `n` from 64 to 1024, never beat random-level relator defect while keeping `d(AB,BA) >= eps`
+  (`research/artifacts/thompson-f-sofic-anneal-2026-09-13.md`). The landscape is flat for length-12 to 16 relators, so this is
+  no evidence for stability. A meaningful search must start from structure (near-commuting pairs, or truncated
+  dyadic-tree actions).
