@@ -187,7 +187,9 @@ theorem firstTurn_reverse_embed {M : CombMap.{u}} {a b : M.Dart} (hab : a ≠ b)
       ((toCombMap M a b).alpha (embed M e)) ((toCombMap M a b).alpha (embed M d)) := by
   have h1 : FirstTurn M cyc (M.alpha e) (M.alpha d) :=
     FirstTurn.mono (fun z hz => by rwa [FirstTurnWalk.walkKeep_reverse_map_alpha]) h
-  exact FirstTurn.mono (fun z hz => by rwa [FirstTurnWalk.walkKeep_reverse_map_alpha] at hz)
+  exact FirstTurn.mono
+    (fun z hz => (congrFun (FirstTurnWalk.walkKeep_reverse_map_alpha
+      (M := toCombMap M a b) (cyc.map (embed M))) z).mp hz)
     (firstTurn_embed hab h1)
 
 /-- **The first-turn chain of a boundary cycle lifts** across an edge insertion at distinct
