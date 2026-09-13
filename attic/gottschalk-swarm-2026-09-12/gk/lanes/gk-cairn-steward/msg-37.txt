@@ -1,0 +1,9 @@
+Regenerate research/FRONTIER.md from the final cairn check at d20a93228
+
+The final steward check at d20a93228 passed: exit 0, 0 errors, 0 duplicates,
+9815 claims and 10079 routes. Its compiled frontier differs from main's copy
+by 793 insertions and 171 deletions, and no one has regenerated the file
+since ecea91ac0.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

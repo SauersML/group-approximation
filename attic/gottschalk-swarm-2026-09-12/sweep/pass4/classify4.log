@@ -1,0 +1,21 @@
+rev-list objects 161373 secs 148
+tip cd5320f01c paths 5007
+{'SKIP_ONMAIN': 4407, 'SKIP_STALE': 588, 'LAND_NEW': 10, 'RESCUE_DIVERGED': 2}
+4 ('LAND_NEW', 'research', '.txt')
+3 ('LAND_NEW', 'research', '.py')
+2 ('RESCUE_DIVERGED', 'research', '.md')
+1 ('LAND_NEW', 'research', '.md')
+1 ('LAND_NEW', 'research', '.sh')
+1 ('LAND_NEW', 'research', '.out')
+non-skip modified within 2h: 11
+   LAND_NEW 0.2h research/artifacts/or-length15-residue-2026-09-13.md
+   LAND_NEW 0.2h research/artifacts/or-length15-residue-scripts/certs13.txt
+   LAND_NEW 0.2h research/artifacts/or-length15-residue-scripts/negcert.txt
+   LAND_NEW 0.2h research/artifacts/or-length15-residue-scripts/residue-output.txt
+   LAND_NEW 0.2h research/artifacts/or-length15-residue-scripts/residue.py
+   LAND_NEW 0.2h research/artifacts/or-length15-residue-scripts/sweep.sh
+   LAND_NEW 0.2h research/artifacts/or-length15-residue-scripts/verify.py
+   LAND_NEW 0.2h research/artifacts/or-length15-residue-scripts/verify13.out
+   LAND_NEW 0.2h research/artifacts/or-length15-residue-scripts/vfib.py
+   LAND_NEW 0.2h research/artifacts/or-length15-residue-scripts/words30.txt
+   RESCUE_DIVERGED 0.1h research/artifacts/review-swarm4-2026-09-12.md

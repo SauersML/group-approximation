@@ -1,0 +1,10 @@
+rev-list objects 160998 secs 127
+tip 5e3b2f7ebc paths 4980
+{'SKIP_ONMAIN': 4370, 'SKIP_STALE': 604, 'RESCUE_DIVERGED': 6}
+6 ('RESCUE_DIVERGED', 'research', '.md')
+non-skip modified within 2h: 5
+   RESCUE_DIVERGED 0.1h research/affine-extension-of-fp-elementary-group-is-fp.md
+   RESCUE_DIVERGED 0.1h research/algebraic-linear-groups-satisfy-boone-higman.md
+   RESCUE_DIVERGED 0.0h research/artifacts/review-swarm6-analysis-2026-09-12.md
+   RESCUE_DIVERGED 0.1h research/artin-groups-satisfy-boone-higman.md
+   RESCUE_DIVERGED 0.1h research/e-type-artin-groups-satisfy-permutational-boone-higman.md

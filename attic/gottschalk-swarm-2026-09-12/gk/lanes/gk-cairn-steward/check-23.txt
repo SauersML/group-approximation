@@ -1,0 +1,64 @@
+TIP=b06b155011bb5d9dacd4be4b5cfd4c0236bdada0
+TREE files=31545 research=22366
+CHECK_EXIT=4  seconds=17
+ERROR lines: 2   WARNING lines: 41   duplicate lines: 0
+--- ERROR lines (first 40):
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+ERROR: research/gl3-f3-alpha-invariant-states-keep-three-free-spectral-weights.md: unknown keys for claim: ['requires']
+--- duplicate lines (first 30):
+--- non-cycle WARNING lines (first 20):
+WARNING: research/finite-simple-rr0-weak-cancellation-via-stable-rank-one.md: prerequisite finite-simple-rr0-algebras-have-stable-rank-one reads like a restatement of target finite-simple-rr0-algebras-have-weak-cancellation; if the route only renames the problem, replace the prerequisite with one th
+WARNING: research/agent-free-compressor-one-row-kernel-reflection.md: every route that needs agent-free-compressor-one-row-kernel-reflection is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/bcs-projective-kernel-phase-compilation.md: every route that needs bcs-projective-kernel-phase-compilation is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/binary-jacobson-head-root-has-opnorm-square-decoder.md: every route that needs binary-jacobson-head-root-has-opnorm-square-decoder is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/binary-jacobson-raw-cycle-selects-common-pi-intertwiner.md: every route that needs binary-jacobson-raw-cycle-selects-common-pi-intertwiner is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/binary-leavitt-three-row-atomic-compiler.md: every route that needs binary-leavitt-three-row-atomic-compiler is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/binary-pcp-coordinate-atlas-in-hs-microstates.md: every route that needs binary-pcp-coordinate-atlas-in-hs-microstates is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/bisynchronous-to-monomial-game-algebra-compiler.md: every route that needs bisynchronous-to-monomial-game-algebra-compiler is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/central-word-state-face-compiler.md: every route that needs central-word-state-face-compiler is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/centralizing-hnn-perturbed-edge-separation.md: every route that needs centralizing-hnn-perturbed-edge-separation is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/coherent-groupification-of-table-gap.md: every route that needs coherent-groupification-of-table-gap is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/covariant-model-satisfies-cross-context-radical-relators.md: every route that needs covariant-model-satisfies-cross-context-radical-relators is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/exact-kazhdan-radical-kernel-cannot-be-lef.md: every route that needs exact-kazhdan-radical-kernel-cannot-be-lef is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/factorial-commutant-regular-embeddings-are-congruence.md: every route that needs factorial-commutant-regular-embeddings-are-congruence is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/fanizza-coherent-verifier-wandering-promotion.md: every route that needs fanizza-coherent-verifier-wandering-promotion is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/glue-lemma-implies-rich-2to1-hardness.md: every route that needs glue-lemma-implies-rich-2to1-hardness is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/k3-relational-atlas-to-scalar-group-words.md: every route that needs k3-relational-atlas-to-scalar-group-words is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/norm-folner-projections-for-hyperfinite-factor.md: every route that needs norm-folner-projections-for-hyperfinite-factor is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/pzk-tableau-gap-full-corner-monomial-realization.md: every route that needs pzk-tableau-gap-full-corner-monomial-realization is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+WARNING: research/quantitative-hs-stability-for-slofstra-zhang-pictures.md: every route that needs quantitative-hs-stability-for-slofstra-zhang-pictures is invalidated — the hole is no longer load-bearing; retarget it or let it stand as recorded dead space
+--- cycle WARNING lines naming Gottschalk-region words:
+WARNING: dependency cycle through claims: every-group-has-positive-rokhlin-entropy-action -> bernoulli-shift-entropy-classifies-for-every-group -> every-group-has-positive-rokhlin-entropy-action
+WARNING: dependency cycle through claims: f9-hadamard-spectral-idempotent-is-full -> ternary-anti-invariant-swap-corner-is-full -> ternary-anti-central-summand-has-cohn-family -> ternary-anti-central-cohn-family-over-f9 -> f9-hadamard-spectral-idempotent-is-full
+WARNING: dependency cycle through claims: sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one -> thompson-v-ternary-rank-functions-are-augmentation -> sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one
+WARNING: dependency cycle through claims: hs-expander-block-decomposition -> leavitt-steinberg-hs-stable -> tracial-median-concentration -> hs-expander-block-decomposition
+WARNING: dependency cycle through claims: leavitt-evaluation-kernel-unitization-directly-finite -> leavitt-unit-group-algebra-is-directly-finite -> no-left-invertible-lift-of-s0-in-leavitt-group-algebra -> leavitt-evaluation-kernel-unitization-directly-finite
+WARNING: dependency cycle through claims: products-with-a-sofic-factor-are-surjunctive -> surjunctive-groups-are-quantitatively-surjunctive -> products-with-a-sofic-factor-are-surjunctive
+--- goal and refuted_by roots:
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+ERROR: research/anti-central-states-are-forced-exactly-on-binomial-spectra.md: unknown keys for claim: ['requires']
+--- goal routes by status:
+     15 OPEN
+      2 ✗
+SENTINEL=done
+--- requested statuses:
+ternary-anti-central-summand-has-no-weakly-finite-image [OPEN] — No quotient of the ternary Leavitt group algebra in whi
+normal-surjunctive-decoder-memory-forces-surjectivity [ESTABLISHED via normal-surjunctive-decoder-memory-proof] — An inj
+amenable-extensions-of-uqs-groups-are-surjunctive [ESTABLISHED via amenable-extensions-of-uqs-groups-proof] — Extensions
+--- orphan and SCC audit (base 83ff567eb6; old non-region SCCs omitted):
+date: .cairn/cache/graph.json: No such file or directory
+clone HEAD=b06b15501 base=83ff567eb6 graph mtime=
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: '.cairn/cache/graph.json'
+ORPH2-DONE
+SENTINEL=done2

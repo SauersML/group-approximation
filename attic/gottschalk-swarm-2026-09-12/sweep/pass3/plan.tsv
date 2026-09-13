@@ -1,0 +1,7 @@
+# tip 5e3b2f7ebc3606211c392772cc8480aa056a4995
+DEFER	research/affine-extension-of-fp-elementary-group-is-fp.md	-	fresh 0.1h
+DEFER	research/algebraic-linear-groups-satisfy-boone-higman.md	-	fresh 0.1h
+DEFER	research/artifacts/review-swarm6-analysis-2026-09-12.md	-	fresh 0.0h
+DEFER	research/artin-groups-satisfy-boone-higman.md	-	fresh 0.1h
+DEFER	research/e-type-artin-groups-satisfy-permutational-boone-higman.md	-	fresh 0.1h
+SKIP	research/unique-games-conjecture.md	-	this local copy was already merged onto main in 9a95dafb50

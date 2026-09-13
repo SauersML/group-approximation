@@ -1,0 +1,12 @@
+Move two claims' requires lists into their bodies so Cairn compiles
+
+The cairn check at b06b15501 stopped with "unknown keys for claim: ['requires']" on
+anti-central-states-are-forced-exactly-on-binomial-spectra and
+gl3-f3-alpha-invariant-states-keep-three-free-spectral-weights, both landed by
+w7-gl3-f3-states in 61b7d4803. Only routes take requires, so no graph was built.
+That lane has stopped. Each claim now names its dependency in a body sentence.
+No route is added, because the lane asked for re-derivation before any proof
+route. Both claims stay OPEN.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA

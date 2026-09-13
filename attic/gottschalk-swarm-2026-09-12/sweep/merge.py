@@ -29,7 +29,8 @@ for cls, xy, p, w, h, o, age in cands:
     for c in commits:
         r = subprocess.run(['git', 'rev-parse', '--verify', '-q', f'{c}:{p}'], capture_output=True)
         b = r.stdout.decode().strip()
-        if not b or b in seen:
+        # the tip blob is never a base: base == main makes the merge return the local copy wholesale
+        if not b or b in seen or b == o:
             continue
         seen.add(b)
         B = git('cat-file', 'blob', b)

@@ -32,6 +32,14 @@ def tip_blob(p):
 RESCUE_PREFIX = ('notes/nm-swarm/', 'metadata/', 'tools/', '.github/', 'GroupApproximation/', 'wip/', 'Palomar/', 'scripts/', 'bin/', 'vendor/')
 LIVE_PREFIX = ('research/', 'experiments/', 'notes/', 'docs/')
 
+already_merged = {}   # (path, local blob) -> commit that landed its merge
+lm = os.path.join(S, 'landed-merges.tsv')
+if os.path.exists(lm):
+    for l in open(lm):
+        if not l.startswith('#') and l.strip():
+            f = l.rstrip('\n').split('\t')
+            already_merged[(f[0], f[1])] = f[3]
+
 plan = {}   # repo path -> dict(action, src, ack, why, orig)
 for cls, xy, p, w, h, o, age in rows:
     if cls.startswith('SKIP'):
@@ -46,7 +54,13 @@ for cls, xy, p, w, h, o, age in rows:
         plan[p] = dict(action='LIVE', src=p, ack=(o if cls == 'LAND_EDIT' else None), why=cls, orig=p)
     elif cls == 'RESCUE_DIVERGED' and p.startswith('research/'):
         m = merges.get(p)
-        if m is None:
+        W_lines = set(open(p, 'rb').read().splitlines())
+        O_lines = set(git('cat-file', 'blob', o).splitlines())
+        if (p, w) in already_merged:
+            plan[p] = dict(action='SKIP', why=f'this local copy was already merged onto main in {already_merged[(p, w)]}', orig=p)
+        elif W_lines <= O_lines:
+            plan[p] = dict(action='SKIP', why='every local line is already on main (subsumed)', orig=p)
+        elif m is None:
             plan[p] = dict(action='DEFER', why='no merge computed', orig=p)
         elif m[1] == 'CLEAN' and 'M==O' in m[4]:
             plan[p] = dict(action='SKIP', why='merge equals main', orig=p)

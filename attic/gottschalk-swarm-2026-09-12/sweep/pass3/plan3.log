@@ -1,0 +1,7 @@
+Counter({'DEFER': 5, 'LIVE': 1})
+DEFER	research/affine-extension-of-fp-elementary-group-is-fp.md	-	fresh 0.1h
+DEFER	research/algebraic-linear-groups-satisfy-boone-higman.md	-	fresh 0.1h
+DEFER	research/artifacts/review-swarm6-analysis-2026-09-12.md	-	fresh 0.0h
+DEFER	research/artin-groups-satisfy-boone-higman.md	-	fresh 0.1h
+DEFER	research/e-type-artin-groups-satisfy-permutational-boone-higman.md	-	fresh 0.1h
+LIVE	research/unique-games-conjecture.md	research/unique-games-conjecture.md	3-way merge base caddc97f99 (M==W fm-CHANGED)

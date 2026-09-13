@@ -127,6 +127,8 @@ lint() {
     printf '%s\n' "$F" | awk '/^title:[ ]*[^ ]/ {f = 1} END {exit !f}' || { echo "  LINT $p: frontmatter has no non-empty 'title:'"; bad=1; }
     if [ "$kd" = route ]; then
       printf '%s\n' "$F" | awk '/^requires:/ {f = 1} END {exit !f}' || { echo "  LINT $p: route has no 'requires:' key (write 'requires: []' for a direct proof)"; bad=1; }
+    elif [ "$kd" = claim ]; then
+      ! printf '%s\n' "$F" | awk '/^requires:/ {f = 1} END {exit !f}' || { echo "  LINT $p: claim has a 'requires:' key; only routes may (cairn check errors); put the dependency in a route"; bad=1; }
     fi
     for key in requires target distinct_from refuted_by invalidates; do
       want=claim; [ "$key" = invalidates ] && want=route

@@ -1,0 +1,20 @@
+Archive the Gottschalk coordinator's closing scratch files
+
+This commit adds the scratch files changed after the swarm archive
+(5e3b2f7ebc), under the same attic/gottschalk-swarm-2026-09-12/ prefix.
+Every file is new or a file this session pushed there itself, so no other
+session's content is replaced.
+
+- gk/RULES.md: the final note that every lane and the steward have stopped.
+  The steward's final check at d20a93228 was GREEN, and the goal and its ten
+  roots are OPEN. right-child-exchange-group-has-infinite-dihedral-root-closure
+  is ESTABLISHED by its lane's own route, with no verifier verdict.
+- gk/gkland.sh: the lint now rejects a `requires:` key on a claim. Two claims
+  with that key turned check 23 red; the steward fixed them forward in
+  2b2964c1c9.
+- sweep/: merge.py never uses main's own blob as a merge base. plan.py skips
+  local copies that are already merged (landed-merges.tsv) or whose lines are
+  all on main. The pass 3 and pass 4 records are included.
+
+Co-Authored-By: Claude Code <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012d8gi98ecepGFPCfLPcKBA
