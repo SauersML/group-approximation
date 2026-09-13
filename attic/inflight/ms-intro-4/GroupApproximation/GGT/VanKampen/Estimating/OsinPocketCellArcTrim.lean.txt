@@ -85,7 +85,7 @@ noncomputable def trimFirstLast (K : CellPocketFaceSet D eps X i j)
     rw [List.length_append, List.length_singleton]
     omega
   secondSide_length_le := K.secondSide_length_le
-  firstSide_norm_le := (wordNorm_dartWord_le_length hlabel _).trans (by
+  firstSide_norm_le := (PocketFaceSet.wordNorm_dartWord_le_length hlabel _).trans (by
     rw [List.length_append, List.length_singleton]
     omega)
   secondSide_norm_le := K.secondSide_norm_le
@@ -122,7 +122,7 @@ noncomputable def trimSecondLast (K : CellPocketFaceSet D eps X i j)
     rw [List.length_append, List.length_singleton]
     omega
   firstSide_norm_le := K.firstSide_norm_le
-  secondSide_norm_le := (wordNorm_dartWord_le_length hlabel _).trans (by
+  secondSide_norm_le := (PocketFaceSet.wordNorm_dartWord_le_length hlabel _).trans (by
     rw [List.length_append, List.length_singleton]
     omega)
 
