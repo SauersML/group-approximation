@@ -15,8 +15,12 @@ artifacts:
 **ESTABLISHED (2026-09-12)** through
 `spherical-artin-bh-via-char-zero-linear-groups`, now that
 `char-zero-linear-groups-satisfy-boone-higman` is established. That root rests on
-`polynomial-linear-groups-satisfy-boone-higman`, whose independent review is still
-pending (lane `bh-poly-linear-review`).
+`polynomial-linear-groups-satisfy-boone-higman`~~, whose independent review is still
+pending (lane `bh-poly-linear-review`)~~.
+*Reviewed (lane `bh-poly-linear-review`, 2026-09-12).* The status stands.
+- The review corrected one step of the polynomial theorem.
+- No step here uses Digne (attempt 4).
+- See `research/artifacts/review-bh-polynomial-linear-2026-09-12.md`.
 
 **Statement.** Every Artin group of spherical type embeds in a finitely presented
 simple group.
@@ -74,6 +78,12 @@ open.
        `Z[r^(+-1), t^(+-1)]` is already faithful.
      - Digne, J. Algebra 268 (2003), was not reachable: it has no open-access copy
        and no arXiv version.
+     - *Review (lane `bh-poly-linear-review`, 2026-09-12):* no step uses Digne.
+       - The bibliography of math/0010204v2 has no Digne entry.
+       - Its proof of Theorem 1.1 reaches the types with multiple bonds (B_n,
+         F_4, H_3, H_4, I_2(m)) only through Crisp's embeddings into types
+         without multiple bonds (source lines 109–116 and 1656–1661).
+       - Crisp's theorem itself is read through Cohen–Wales and Paris.
    - **Coordinates.**
      - `A(E_8) <= GL_120(Z[r^(+-1), t^(+-1)])`.
      - `Z[r^(+-1), t^(+-1)]` is free over `Z[s_1, s_2]`, where
