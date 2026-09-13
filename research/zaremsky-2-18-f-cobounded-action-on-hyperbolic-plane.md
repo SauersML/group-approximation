@@ -50,10 +50,14 @@ Never write a `requires: []` route into this claim.
 
 ## Attempts
 
-- 2026-09-13 (lane z2-18-f-h2-action): literal reading answered NO by linearity (Tits
-  alternative) plus simplicity of `[F,F]`; see
-  `thompson-f-has-no-cobounded-action-on-hyperbolic-plane-proof`. Unreviewed.
-- 2026-09-13: source reading reduced to rigidity of uniform quasi-actions on `H^2`
-  (uniformly quasisymmetric circle groups are quasisymmetrically conjugate to Möbius
-  groups, V. Markovic, J. Amer. Math. Soc. 19 (2006)); the imported statements are not
-  yet verified from sources. See `thompson-f-has-no-cobounded-action-on-spaces-qi-to-h2`.
+- 2026-09-13 (lane z2-18-f-h2-action): the literal reading is answered NO, using linearity
+  (Tits alternative) plus simplicity of `[F,F]`; see
+  `thompson-f-has-no-cobounded-action-on-hyperbolic-plane-proof`. **Reviewed PASS**:
+  z-verify-groups, `research/artifacts/zp-review-groups-2026-09-13-part1.md` §6.
+- 2026-09-13: the source reading is reduced to Markovic's rigidity theorem (uniformly
+  quasisymmetric circle groups are quasisymmetrically conjugate to Möbius groups, J. Amer.
+  Math. Soc. 19 (2006)) through route `thompson-f-no-cobounded-qi-h2-action-via-markovic`.
+  Two import claims are still open because their sources have not been read:
+  `uniformly-quasisymmetric-circle-groups-are-mobius-conjugates` and
+  `h2-quasi-isometries-have-uniformly-quasisymmetric-boundary-maps`. The root stays open
+  until they are established.

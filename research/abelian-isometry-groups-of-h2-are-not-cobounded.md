@@ -14,3 +14,5 @@ index two) in the one-parameter parabolic group fixing a boundary point; in each
 the orbits stay on a circle, an equidistant curve or a horocycle.
 
 Elementary; proof in `abelian-isometry-groups-of-h2-are-not-cobounded-proof`.
+**Reviewed: PASS** (z-verify-groups, 2026-09-13,
+`research/artifacts/zp-review-groups-2026-09-13-part1.md` §6, landed c0ff0a5f90).
