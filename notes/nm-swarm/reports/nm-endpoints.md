@@ -42,6 +42,14 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
 - `93cb4e04f`: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMergeRegion.lean`, the
   value half of the zero-cell pocket merge, built with no shelling (section below). Probe
   0913-062000-78681 was green on the bytes of main. The module is queued for wiring.
+- `decced35e`: `TorsionFreeSectionAssembly` checks `simpleUniqueTraceAtHypEmbedded_closed` with
+  `#audit_closed_axioms` instead of `#audit_axioms` (roster item; no statement changed). Probe
+  0913-084302-12415 is green and the module is BUILT. It was already root-reachable through
+  `TorsionFreeSectionAssemblyClosedGO`, so there is no wire-queue line.
+- The ten rows are re-noted at origin a73ab6f78. Row 8097c371f35d now also carries ko-closed's
+  `KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed` and `Hyperbolic.sharpExistence_closed`
+  (root-imported), as ko-closed asked. The owner note now points to fff-periodic's
+  `TorsionFreeGreendlingerLeaf`.
 
 ## Zero-cell pocket merge: the value half (lead ruling ~05:00)
 
@@ -155,6 +163,11 @@ followed by `#audit_closed_axioms`, where `<walls>` are the closed producers abo
     header, so that key looks misplaced.
   - 8097c371f35d also carries hl-lemma46's row.
   - dab2f2bfe084 also carries cite-hull's row.
+  - All ten hashes also carry fff-periodic's rows, on the `TorsionFreeGreendlingerLeaf`
+    `*_of_greendlinger` forms (1edf0f7b4, not yet root-imported at a73ab6f78).
+- hull-bridge's `TorsionFreeGreendlingerForms` (99db3338a, queued, no importers) gives 17 more
+  endpoints over hgreendlinger alone, built on this lane's five least-area modules. No row of this
+  lane names it.
 
 ## Wall status on main (checked 2026-09-13 at origin 0358f4537)
 
@@ -227,7 +240,7 @@ row names the closed endpoint and says "retires open-predicate <decl>".
 - The next build piece is the loop-cap Prop for `LoopCutInput`
   (GGT/VanKampen/Estimating/OsinAppendixSectionInduction.lean:86). It starts once audit-sec5
   reports its cap test and the lead rules on the shape. Nothing is built before that ruling.
-- Meanwhile, keep the ten rows current. Wall 1 is their only residual.
+- Meanwhile, keep the ten rows current. Wall 1 (`hgreendlinger`) is their only residual.
 - A closed `LiteratureInputs` needs its own namespace, because `TheoremC.literatureInputs` was
   the name of the deleted admission.
 - Row f2bf6328169e (tex 1725, the DGO and GO sentence) belongs to cite-osin, which grades it
