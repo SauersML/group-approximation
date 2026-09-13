@@ -21,6 +21,20 @@ is not cyclic, the cycle condition fails, `coreSubshift` is exactly the two cons
 `shift_mem_diff_of_not_isCyclicEdge` fires on the step point, and the reachable cylinder union from `true` is
 `{x | x 0 = true}`. It is a model test, not a carrier, so it has no census rows.
 
+CLAIM (09-13 ~18:30, main's item: `CoreModelsLEFStatement`, "R_Y is LEF"; successor to chain-itinerary's general-X route)
+- `GroupApproximation/Dynamics/ChainCoreGeneralFactor.lean`: the factor maps `π_m : Y_* → π_m(Y_*)`, the shift on
+  `π_m(Y_*)`, pullback injective along surjective factor maps, and increasing pullback ranges.
+- `GroupApproximation/Dynamics/ChainCoreGeneralLEF.lean`: `R_{Y_*}` LEF for `Y_* = generalCore T S`. Pullback along
+  `π_m : Y_* → π_m(Y_*)` is injective, the ranges increase, and every element lies in some range. The symbolic inputs
+  are hypotheses: `CycleCondition (itineraryCore T (S l))` and the cycle-condition LEF theorem.
+- `GroupApproximation/Dynamics/ChainCoreGeneralRecurrent.lean`: `generalCore T S = chainRecurrentSet T`.
+- `GroupApproximation/Manuscript/NonMFSentences/CoreModelsLEF.lean`: `coreModelsLEFStatement : CoreModelsLEFStatement`.
+- Boundary agreed by message with ms-traces-3 (symbolic side). It adopts chain-words' unlanded SubshiftFiniteWindow and
+  SubshiftCycleLEF, `cycleCondition_coreSubshift`, the Z_r cycle condition, and nonemptiness.
+- Dead-lane audit at origin a568a49a1: chain-itinerary and chain-subshift have no unlanded bytes. chain-words holds
+  SubshiftFiniteWindow (md5 97ff5d23) and SubshiftCycleLEF (md5 dbc679f8), unlanded with no green record; they go to
+  ms-traces-3.
+
 ## Ledger
 
 Status: `landed` means a carrier is on origin (unwired unless noted); `planned` means named in the owner's report only.
