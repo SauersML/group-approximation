@@ -40,6 +40,29 @@ to non-Connes-embeddability of `M_KT`, not merely sufficient for it.
    Kun–Thom Definition 2.2, and it is what makes the negation the exact
    remaining freedom rather than an artefact of Păunescu's formulation.
 
+## Only the fibre-even lamps need completing
+
+Write `K_even` for the configurations meeting every fibre of `G/Gamma -> G/N`
+evenly, with `N = EL_r(R)`.  It suffices to find a diagonal ultraproduct
+`D_𝒰` with `Θ(L(K_even)) ⊆ D_𝒰` and `Θ(u_g) D_𝒰 Θ(u_g)* = D_𝒰` for `g ∈ G`.
+Nothing is asked of the lamps outside `K_even`, which carry the fibre
+parities.
+
+*Why this suffices.*  `diagonal-normalizer-rigidity` clause 4 makes each
+`Θ(u_g)` monomial.  So `Θ` restricted to `K_even x| G` is a monomial HS model
+whose soft elements include `K_even`.  The proof of
+`kt-wreath-monomial-models-kill-fibre-even-lamps` (part 2 artifact,
+Theorem 7) uses only the following:
+- the diagonality of `Θ(K_even)`;
+- `soft-kazhdan-central-elements-fixed-by-normal-closure`, applied along deep
+  congruence conjugates of `Gamma`;
+- perfectness of `EL_r(R)`;
+- conjugation by `G`.
+It gives `Θ(K_even) = 1`, which contradicts faithfulness.  So this weaker
+completion also refutes `hyperlinear-wreath-model`.  Kun--Thom Corollary D is
+not needed; Theorem 4.1 enters through
+`normal-closure-fixes-gamma-fixed-algebra`.
+
 ## Why no cited result gives it
 
 Kun–Thom start *inside* a permutation ultraproduct and prove a normalization
