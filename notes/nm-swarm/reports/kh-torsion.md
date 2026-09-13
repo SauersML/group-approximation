@@ -201,3 +201,58 @@ successful build.  The six `#audit_axioms` lines pass.  The module is unwired: n
 imports it yet, and hull-select, kh-ejz and go-lemma42 will consume it through the W1 cut sections.
 
 Residual in this lane: none.  Next: whatever index form hull-select asks for.
+
+Later the lead dropped this target from the W1 route.  The module stays on main as a bonus that
+no consumer imports.
+
+## 2026-09-13: the geodesic collar (W1 (a), collar insertion)
+
+Roster assignment: "kh-torsion: proves the collar insertion, spur sides included".  Consumers:
+hull-select's `OsinMultipleEdgeCut.ofPocketRegion`, go-lemma42's LoopCut and dgo-analytic's
+SectionPocketCut.  `SectionCuts` needs quasi-geodesic side sections.  A side reading `x x⁻¹` is
+not quasi-geodesic when `c = 0`, so the side is replaced by a path reading a geodesic word.
+
+Statement, `GGT/VanKampen/SurgeryGeodesicCollar` (LANDED e6d609771, probe 0913-063705-99191 green,
+unwired):
+
+```lean
+namespace GroupApproximation.GGT.VanKampen
+def GeodesicCollarOutput (D) {Delta} (P : PocketRegion Delta) (rest) (g) : Prop :=
+  ∃ Delta'' (E : OEquivalentDiscDiagram Delta Delta'') (P'' : PocketRegion Delta'') collar
+    (ι : Delta.toCombMap.Dart ↪ Delta''.toCombMap.Dart),
+    (∀ d, D.IsLetter (Delta''.label d)) ∧ P''.inner.FollowsBoundary ∧ P''.outer.FollowsBoundary ∧
+    Embedded.invDarts Delta'' P''.outer.cycle = collar ++ rest.map ι ∧
+    Embedded.dartWord Delta'' collar = g ∧ (ι commutes with alpha and label) ∧
+    (cells outside P keep their darts via ι) ∧ (every cell stays on its side)
+def GeodesicCollarStatement : Prop :=
+  ∀ D, (∀ x ∈ D.base, x⁻¹ ∈ D.base) → ∀ Delta, (∀ d, D.IsLetter (Delta.label d)) →
+  ∀ P, P.inner.FollowsBoundary → P.outer.FollowsBoundary →
+  ∀ s rest, Embedded.invDarts Delta P.outer.cycle = s ++ rest →
+  ∀ g, (∀ letter ∈ g, D.IsLetter letter) →
+    RelLetter.listVal g = RelLetter.listVal (Embedded.dartWord Delta s) →
+    (s = [] → g = []) → (g ≠ [] ∨ rest ≠ []) → GeodesicCollarOutput D P rest g
+theorem geodesicCollarOutput_nil ... : GeodesicCollarOutput D P rest []
+```
+
+Use in `ofPocketRegion`:
+1. Apply the statement to `s₁` with `rest = t₁ ++ s₂ ++ t₂`.
+2. Restart the cycle at `s₂.map ι` with `PocketRegion.withOuter`, then apply the statement again.
+3. Take `g_j` from `exists_geodesicWord_isLambdaCQuasiGeodesicWord`.
+
+This gives `hquasi` for the sides, and `|g_j| ≤ |s_j| ≤ eps`.  The `t_j` keep their words and
+their cell arcs.
+
+Proof route (in progress):
+* Sector lemma.  Inner and outer `FollowsBoundary` together with `invDarts outer ~r inner` fix
+  the rotation at every circuit vertex: the entry, then pocket darts, the exit, then complement
+  darts.  So the circuit revisits no vertex, which settles the roster's revisit caveat.
+* Double every side dart `d_k` in its pocket face (`FaceEdgeDoubling`).
+* Pinch-split each interior side vertex (`PinchSplit.Input`), which merges the digons into one
+  strip face.
+* Insert the path `g` across the strip.  For `g = []`, a vertex join of the two ends replaces
+  the insertion.
+* Transport.  The complement face set avoids every doubled and merged face, so it transports
+  through the landed avoid-lemmas (`DiscEmbeddingAway.boundary`, `PinchSplit.Input.transportBoundary`).
+  The pocket side needs a local transport: `d_k` is replaced by the new dart `n_k`.
+
+Residual in this lane: `GeodesicCollarStatement`.
