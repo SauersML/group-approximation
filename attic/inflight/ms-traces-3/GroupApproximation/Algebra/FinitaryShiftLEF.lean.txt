@@ -49,7 +49,7 @@ theorem deviation_mul (g h : GLfin k) :
 theorem deviation_one : deviation (1 : GLfin k) = 0 := by
   show ((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1 = 0
   rw [Units.val_one]
-  exact sub_self _
+  exact sub_self (1 : Module.End k (ℤ →₀ k))
 
 theorem deviation_mul_inv (g : GLfin k) :
     deviation g * deviation g⁻¹ + deviation g + deviation g⁻¹ = 0 := by
