@@ -135,6 +135,17 @@ infinite simple locally finite kernel. Thus neither MF nor LEF survives
 all quotients by locally finite normal subgroups, even in this Kazhdan
 family. Section 6 of the directed-seam proof gives the exact sequence.
 
+The [full MF-closure calculation](../research/artifacts/pestov91-mf-closure-and-monotone-rules-2026-09-13.md)
+computes every normal quotient: delete its selected edges and isolated
+vertex factors, then remove the remaining edges with no directed
+return path. Series and parallel path constructions realize any
+nonconstant monotone Boolean rule for a designated simple kernel's
+MF visibility after selected locally finite input quotients. In
+particular arbitrarily many simple inputs can be jointly necessary:
+every proper subproduct has LEF quotient, while the full product has
+a just non-MF quotient. The source still has three torsion generators
+and property (T). These are written proofs, not Lean formalizations.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
