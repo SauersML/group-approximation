@@ -4,6 +4,7 @@ id: kazhdan-trace-amenable-iff-qd-iff-fd-limit
 kind: claim
 title: "For a Kazhdan group every trace on the full C*-algebra is amenable iff quasidiagonal iff a limit of finite-dimensional traces; the canonical trace is one iff the group is residually finite"
 distinct_from:
+  stw10-kazhdan-full-group-traces-are-qd: that already proves every amenable trace on a Kazhdan full group algebra is a limit of finite-dimensional traces, hence quasidiagonal (Brown Prop. 4.1.12, Kirchberg rigidity); this node restates it in Ozawa's formulation, adds the trivial converses and the canonical-trace clause, and claims no novelty.
   factorization-and-canonical-qd-are-finitely-local: that shows factorization and canonical QD are finitely local for all groups; this shows they coincide, for every trace, on Kazhdan groups.
   hyperlinear-groups-have-factorization-property: that asks whether hyperlinearity gives (F); this identifies (F) with residual finiteness in the Kazhdan case.
   kazhdan-groups-in-hyperfinite-unitary-group-are-rf: that concerns embeddings into U(R); this concerns traces on the full group C*-algebra.
@@ -27,3 +28,5 @@ The canonical trace τ_Γ satisfies (a)–(c) iff Γ is residually finite.
   approximation properties (LEF, MF, sofic).
 
 Proof route: `kazhdan-trace-amenable-iff-qd-iff-fd-limit-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS; credit fix.** The equivalences are re-derived. In substance (a)⇒(c)⇒(b) is the older established `stw10-kazhdan-full-group-traces-are-qd` (Brown, Mem. AMS 184, Prop. 4.1.12, via Kirchberg's rigidity lemma), and the canonical-trace clause is Kirchberg 1994 / Ozawa Thm 7.4. `distinct_from` entry added. See `research/artifacts/un-review-measure-2026-09-13-part2.md` §T1.

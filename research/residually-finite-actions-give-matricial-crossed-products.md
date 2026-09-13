@@ -25,3 +25,5 @@ This is the ring-level counterpart of Ma's Theorem C (LEF topological full group
 models is not needed.
 
 Route: `residually-finite-actions-give-matricial-crossed-products-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Simplicity and window multiplicativity re-derived on basis vectors; Kerr–Nowak Definition 2.1 read from the primary paper (E ⊆ X allowed for perfect X); LEF claimed only over finite k, consistent with (F1). See `research/artifacts/un-review-measure-2026-09-13-part1.md` §M2.

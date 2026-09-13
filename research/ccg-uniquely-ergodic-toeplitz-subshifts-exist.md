@@ -11,3 +11,5 @@ a uniquely ergodic Toeplitz `G`-subshift `(X, σ, G)` and an almost 1-1 factor m
 `π` is a measure conjugacy with the Haar measure.
 
 Route: `ccg-uniquely-ergodic-toeplitz-subshifts-exist-citation`.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Theorem theo:main1 checked verbatim against the arXiv e-print TeX (line 148). See `research/artifacts/un-review-measure-2026-09-13-part1.md` §M7.

@@ -20,7 +20,7 @@ infinite minimal). Is C*_r(EL_n(R_X)) an MF algebra, i.e. does it embed in a nor
 - **Not QD.** C*_r(G) is never QD (Rosenberg, recalled). So MF is the only matricial property of the reduced
   algebra left to decide.
 - **What a positive answer gives.** An embedding gives G operator MF (manuscript Lemma
-  `prop:mf-residual-calculus`) with norms reproducing the reduced norm, i.e. GKMP-type MF.
+  `prop:mf-residual-calculus`) with norms reproducing the reduced norm, i.e. clauses (1) and (3) of GKMP-type MF, not the trace clause (2) (review 2026-09-13).
 
 ## Attempts
 
@@ -47,3 +47,5 @@ infinite minimal). Is C*_r(EL_n(R_X)) an MF algebra, i.e. does it embed in a nor
   - What is missing is exactly a deterministic no-outlier upper bound for models with no almost invariant vectors
     under non-amenable subgroups, e.g. cuspidal-type irreducibles of the finite models (heuristic). The paradox-side
     counterpart is decided: `measure-free-steinberg-el-n-reduced-cstar-not-mf`.
+
+**Review (un-verify-measure, 2026-09-13): display checked (OPEN node).** The GKMP clause is corrected. See `research/artifacts/un-review-measure-2026-09-13-part2.md` §T6.

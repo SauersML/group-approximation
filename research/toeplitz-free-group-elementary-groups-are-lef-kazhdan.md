@@ -23,3 +23,5 @@ and put `R = LC(X, F_q) ⋊ F_r`. Then:
 ball-indexed towers for free minimal actions of non-amenable groups.
 
 Route: `toeplitz-free-group-elementary-groups-are-lef-kazhdan-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Odometer freeness, topological freeness and minimality (Gottschalk, recalled) re-derived; all cited inputs now reviewed. See `research/artifacts/un-review-measure-2026-09-13-part1.md` §M8.

@@ -2,7 +2,7 @@
 rg: 2
 id: directly-finite-simple-ring-el-n-trace-is-corona-trace
 kind: claim
-title: "Is the canonical trace of EL_n over a finitely generated simple directly finite ring always a corona trace?"
+title: "Is the canonical trace of EL_n over a finitely generated simple directly finite ring always an MF trace?"
 distinct_from:
   corona-traces-separate-paradox-from-measure-for-el-n: that proves the separation on paradoxical, matricial and subshift rings; this asks whether direct finiteness alone suffices outside those classes.
 artifacts:
@@ -33,3 +33,7 @@ canonical trace of EL_n(R) a corona trace, in the sense of `lef-group-canonical-
 - **Stably finite without towers (2026-09-13, un-traces).** No candidate ring is known that is stably finite
   and simple, has no matricial rank function, and still has a (T) elementary group. The middle rings of
   un-middle (type semigroups that are not almost unperforated) are the natural test class.
+
+**Naming and credit (review 2026-09-13, un-verify-measure, relaying un-novelty).** A *corona trace* is exactly an MF trace in the sense of C. Schafhauser, *MF traces and the Cuntz semigroup*, arXiv:1705.06555. Its abstract, read at review: "A trace τ on a separable C*-algebra A is called matricial field (MF) if there is a trace-preserving morphism from A to Q_ω". For separable C*_max(G) the two definitions agree, and the graph's MF-trace nodes (`hyperlinear-trace-not-mf-trace`, `faithful-mf-models-realize-all-mf-traces`) use the same notion. Node ids keep the word `corona`; read it as MF trace.
+
+**Review (un-verify-measure, 2026-09-13): display checked (OPEN node).** The necessity bullet is correct; naming paragraph added. See `research/artifacts/un-review-measure-2026-09-13-part2.md` §T6.

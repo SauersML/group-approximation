@@ -19,3 +19,5 @@ ultrafilter `ω`.
 **Model test.** `R = k × k` with a coordinate projection: `R` is not simple, and the conclusion fails.
 
 Route: `simple-rings-with-local-matrix-models-are-matricial-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Proof re-derived; model test checked. See `research/artifacts/un-review-measure-2026-09-13-part1.md` §M1.

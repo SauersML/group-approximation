@@ -23,3 +23,5 @@ artifacts:
 `leavitt-algebra-has-no-unital-rank-model` also shows.
 
 Route: `matricial-steinberg-algebras-have-invariant-measures-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Rank additivity on orthogonal idempotents, bisection equivalence and the measure extension re-derived; the Cuntz calibration holds. See `research/artifacts/un-review-measure-2026-09-13-part1.md` §M3.

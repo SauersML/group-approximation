@@ -21,3 +21,5 @@ artifacts:
 **UN calibration (U2).** Exact tower models and simplicity give LEF groups, not Kazhdan groups. The finitely generated ring that EJZ
 needs comes from expansiveness (subshifts), not from towers. The subshift case is `minimal-subshift-algebra-is-simple-lef-ring`. Row 6
 of the calibration table.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Level subrings, exact level-K models and non-finite-generation re-derived. See `research/artifacts/un-review-measure-2026-09-13-part1.md` §C3.

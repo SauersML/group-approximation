@@ -24,3 +24,5 @@ artifacts:
 models are needed. Finitely presented amenable groups that are not residually finite are examples of item 3, since finitely presented
 and LEF imply residually finite (as recorded in `labbe-shift-derived-full-group-is-lef`). The existence of such groups is recalled, not
 quoted here. Rows 14–15 of the calibration table.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Window multiplicativity, the Whitehead identity w(u)w(−1) = diag(u, u^(−1)) and the Følner rank bound recomputed. See `research/artifacts/un-review-measure-2026-09-13-part1.md` §C2.

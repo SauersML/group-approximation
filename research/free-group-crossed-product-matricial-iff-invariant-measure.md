@@ -21,7 +21,11 @@ Cantor set `X`, `k` a field, and `R = LC(X,k) ⋊ F_r`. The following are equiva
 **Scope.**
 - When (i) fails, `R` has no rank function at all. Two cases:
   - paradoxical actions such as `F_2 ↷ ∂F_2`, on the non-MF side;
-  - Boldrini–Prasad actions without comparison, the middle ground (target U4).
+  - measure-free actions, e.g. the measure-free Boldrini–Prasad actions without comparison. (Review note, 2026-09-13: without
+    an invariant measure, `no-invariant-measure-steinberg-elementary-no-mf-quotient` (unreviewed) places these on the
+    non-MF side from some rank on, not in the middle ground.)
 - The claim is about rings only. The approximation type of `EL_n(R)` when (i) fails is not addressed.
 
 Route: `free-group-crossed-product-matricial-iff-invariant-measure-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS, with a scope-wording fix.** Proof chain re-derived with the Kerr–Nowak primary; the Boldrini–Prasad scope bullet corrected. See `research/artifacts/un-review-measure-2026-09-13-part1.md` §M5.

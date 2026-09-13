@@ -30,3 +30,5 @@ Yet τ_{EL_3} is not QD by Corollary A. The canonical QD trace is blind to parad
 separating trace invariant is the corona trace (`corona-traces-separate-paradox-from-measure-for-el-n`).
 
 Proof route: `elementary-group-trace-amenable-iff-ring-rf-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Level-ideal argument and Corollaries A–C re-derived; no conflict in the factorization-property scan. See `research/artifacts/un-review-measure-2026-09-13-part2.md` §T2.

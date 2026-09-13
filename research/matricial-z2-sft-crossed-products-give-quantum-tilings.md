@@ -28,3 +28,5 @@ every `D`.
   and only contextual periodic quantum tilings can make `R_Ω` matricial.
 
 Route: `matricial-z2-sft-crossed-products-give-quantum-tilings-proof`.
+
+**Review (un-verify-measure, 2026-09-13): PASS, both directions.** The colimit converse is re-derived: kernel elements of 𝒜_D → R_Ω die at finite stages, so finite-dimensional covariant families give window-exact maps, then Lemma S. The artifact bullet that still called the converse open is replaced. Only unreviewed input: item 1 of periodic-quantum-tilings-refute-quantum-rigidity (for the rigid-SFT consequence). See `research/artifacts/un-review-measure-2026-09-13-part1.md` §M6.

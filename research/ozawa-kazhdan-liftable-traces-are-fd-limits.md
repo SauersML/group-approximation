@@ -27,3 +27,5 @@ arXiv:math/0306067v2. Read from the arXiv PDF page images on 2026-09-13.
   and discrete.
 
 Condition (ii) is Brown's amenable trace, so amenable = liftable.
+
+**Review (un-verify-measure, 2026-09-13): PASS.** Theorem 6.1, Definition 7.2, Theorem 7.4 and the p. 26 Kirchberg remark checked verbatim against the arXiv PDF (pdftotext). See `research/artifacts/un-review-measure-2026-09-13-part2.md` §T0.

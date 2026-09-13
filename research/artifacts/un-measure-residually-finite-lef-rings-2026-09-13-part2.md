@@ -98,9 +98,10 @@ They are exact in `ψ_n`, and conjugating by `U^z` gives (Q1)–(Q3) at every `z
   unital matricial embedding. This is consistent with `lef-simple-rings-are-not-finitely-presented`
   combined with `sft-crossed-product-fp-iff-quantum-rigid`, which is an independent route to the same
   conclusion.
-- **Open converse.** Do periodic quantum tilings at every scale (with compatible windows) make `R`
-  matricial? Lemma S removes faithfulness, so what remains is to assemble one exact local model per
-  window. Labbé's shift reduces to `labbe-tiles-admit-periodic-quantum-tilings-at-every-scale`.
+- **Converse (proved in `matricial-z2-sft-crossed-products-give-quantum-tilings-proof`; review 2026-09-13).** Covariant
+  families at every scale make `R` matricial: the local presentations have colimit `R`, window identities hold at a
+  finite stage, a finite-dimensional module gives a window-exact map, and Lemma S applies. Labbé's shift reduces to
+  `labbe-tiles-admit-periodic-quantum-tilings-at-every-scale`.
 
 ## 6. New families, and the unification picture
 
