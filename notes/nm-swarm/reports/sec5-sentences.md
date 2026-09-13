@@ -270,9 +270,32 @@ Groundwork:
 - Cutting sides have the polygon face on both sides of every dart (`cutting_internal`).
 - `GFacesApart`: two unselected G-faces across one edge are the same face.
 
+Stage B (ROSTER l.844-845): hull-count94's module `OsinLemma94PolygonClasses` has `ClassBudget` (over polygons with an
+(A1) class and at least two classes) and `ClassCovers`.
+- Helpers: audit-intro (short-side count), this lane (`ClassBudget` from the 9.3 run counts) and hull-component (the
+  gap-length lemma `QuasiGeodesicValueOneGap`, a3169d05f, and the bubble accounting).
+- The short-side count had already landed here. I told audit-intro (~14:00) so it is not written twice.
+- audit-sec3's wrap-pair note (l.825): a run can split at the base of the face walk, at most one extra class per polygon.
+
+## Option (2): the one-cell conjunct of the metric Prop (gate confirmed ~14:05)
+
+ROSTER l.779 and l.812-815: the Dense respelling adds a one-cell conjunct at `λ⁻¹(ε + c)`. It is gated on this lane
+confirming that the metric proof delivers it. Confirmed to main and hull-unbound:
+- F1's order is on main (Pieces:97, 9f8779c4e), and `osinLemma94AntiparallelMetric` proves it.
+- The pair's vertices are within the Morse radius `κ` of segment points at distance `≥ β = (λ√ρ'/240 − c)/1000`, so
+  `d(a,a') ≥ β − 2κ` and `d(b,b') ≥ β − 2κ` (`nearby_endpoints_keep_shortening_margin` is only the triangle inequality).
+- One more `exists_nat_sqrt_threshold λ c (1000(L + 2κ))` in the ρ₀ of `unboundOrientedWordPolygonMonotone` gives
+  `L < d(a,a')` and `L < d(b',b)` for any `L` fixed before ρ₀. The metric proof uses the scale at `ρ' = ρ/(K+1)² ≥ ρ₁`.
+- Proof side, this lane's files: `UnboundOrientedWordConnectors`, `UnboundOrientedWordPolygon`,
+  `OsinLemma94AntiparallelMetric`. The spelling is hull-unbound's (Pieces). I asked hull-unbound for it.
+- Users of `OsinLemma94DensePolygonsAntiparallel` to co-probe: Pieces, PlanarPieces, `OsinLemma94AntiparallelMetric`,
+  `OsinLemma94SectionResiduals` (importer) and hull-component's unlanded `OsinLemma94BudgetFilter`
+  (`exists_of_budget_on`), which is not in hull-unbound's Rule 22 list.
+
 ## Next
 
-1. Wait for hull-count94's answer on the split (msg 7ca57652). Then write the class count in a new module of this lane,
-   on hull-count94's respelled `SideBudget`, with `sum_card_shortSides_le_mul` for the short sides.
+1. On hull-unbound's spelling: write the proof side of option (2) and co-probe it with the users above.
+2. `ClassBudget` from the 9.3 run counts, on hull-count94's `OsinLemma94PolygonClasses` spelling, with
+   `sum_card_shortSides_le_mul` for the short sides. Waiting for its reply on the split (msg 7ca57652).
 2. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
    re-grade the rows formalized.
