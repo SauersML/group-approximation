@@ -3,6 +3,54 @@
 Lane of the non-MF verbatim swarm. It owns the geometric DGO/Osin carriers and the GHW archimedean
 modules `Kazhdan/GHWArchimedeanMinkowski` and `Kazhdan/GHWArchimedeanWalls`.
 
+## 2026-09-13: P_naive wiring check
+
+The lead's item: the census lists `NonMF.NaiveFreeProductPropertyOfAcylindricallyHyperbolic` as an
+unwired carrier of a partial row, and dgo-analytic's report names this lane as the owner of the Prop.
+If it has a green record, queue it; if the Prop is not closed, say what is missing.
+
+Checked on origin/main after 22108b3e3, with the census files at 39dd43b39.
+
+### Wiring: done, no new queue line
+
+- `Manuscript/NonMF/NaiveFreeProductPropertyOfAcylindricallyHyperbolic` (baseline-debt) was landed in
+  95e6d09ca, the only commit that touches it. It is root-imported at `GroupApproximation.lean:4875`.
+- It entered the root in wave 3: `rw-wave3.mods` line 15, ROOT GREEN 0913-034741-17099, LANDED ROOT
+  ce699b9b8.
+- Its wire-queue line already exists (line 374, baseline-debt 296386753). Its md5 `ca000340` equals the
+  one in baseline-debt's green records 0913-020324-57087, 0913-021321-7359, 0913-022427-58586,
+  0913-025420-71482 and 0913-034738-16893.
+- Census merges 0913-025455, 0913-032518 and 0913-034415 all ran at bases before ce699b9b8. They gave
+  row `92115dd7edef`@1725 the reason "carrier not root-reachable" for this module.
+- Merge 0913-042746 (base 395b3c31c, landed 39dd43b39) gives no such reason. Every declaration of the
+  row is defined, compiled and root-reachable there.
+
+### The Prop is closed
+
+- `TorsionFreePrinted.NaiveFreeProductAtAcylindricallyHyperbolic : Prop` states that every countable
+  `G` with `IsAcylindricallyHyperbolic G` and `HasTrivialFiniteRadical G` has
+  `NaiveFreeProductProperty G`.
+- `naiveFreeProductAtAcylindricallyHyperbolic` proves it
+  (`Manuscript/NonMF/NaiveFreeProductAtAcylindricallyHyperbolicProof`, root-imported,
+  `#audit_closed_axioms`).
+- The proof unpacks `GGT.PNaive.naiveFreeProduct_of_isAcylindricallyHyperbolic` (`GGT/PNaiveAcylindrical`,
+  root-imported, `#audit_axioms`). Its only hypotheses are the class and `hrad`.
+- `IsAcylindricallyHyperbolic` is the definition, not a cited result: some alphabet has a hyperbolic
+  Cayley graph, with an acylindrical, non-elementary action.
+- All eight P_naive modules in this lane's `.files` are root-imported, and their bytes match origin.
+- Nothing is missing.
+
+### What keeps row `92115dd7edef` partial
+
+- `census/merge_rows.py` grades a union row partial when any of its lane rows is partial.
+- There are three `LINE:1725` rows: baseline-debt `partial`, cite-osin `formalized` and sec5-sentences
+  `formalized`.
+- baseline-debt's row describes the DGO 2.35 half, which is tex line 1728, row `f2bf6328169e`
+  (formalized).
+- The fix belongs to baseline-debt: re-grade its `LINE:1725` row, or move it to the line-1728 sentence.
+- dgo-analytic's report, lines 33-34, still lists `NaiveFreeProductAtAcylindricallyHyperbolic` as the
+  residual Prop, owned by dgo-geometric. That line is stale.
+
 ## 2026-09-13: W3 MirrorFold leaf truth audit
 
 The lead's assignment:
