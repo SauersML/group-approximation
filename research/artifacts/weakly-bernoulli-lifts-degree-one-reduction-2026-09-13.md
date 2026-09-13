@@ -110,3 +110,36 @@ quantitative.
   `H^2(F_n, A) = 0`, so R1 is vacuous there, as it should be. Free groups are not w-rigid anyway.
 - **R1, real object.** Over the Gohla--Thom lattices the conclusion is known independently (Theorem G), so R1 is
   consistent there. Whether those lattices have degree-1 Bernoulli expansion is not known to the lane.
+
+## 17. Theorem U: degree-1 expansion is ultrapower cocycle superrigidity
+
+Let `P_𝒰` be the metric ultrapower of the measure algebra of `Bern`, and `P_𝒰(A)` its module of `A`-valued elements
+(Gohla--Thom Section 2.1). There is no Loeb measure here, only the algebra.
+
+**Theorem U.** Let `Gamma` be finitely presented and w-rigid, and `A` finite abelian. The following are equivalent:
+- (i) `Bern` has degree-1 cocycle expansion with coefficients `A` and some rate `rho`;
+- (ii) for every non-principal ultrafilter `𝒰` on `N`, every 1-cocycle `z in Z^1(Gamma, P_𝒰(A))` is cohomologous to a
+  homomorphism: `z = delta f + chi` with `f in P_𝒰(A)` and `chi in Hom(Gamma, A)`.
+
+*Proof.*
+- **(i) => (ii).** Represent `z` by cochains `c_n` on `Bern`. Exactness of `z` means `|delta c_n| -> 0` along `𝒰`.
+  Expansion gives exact `z_n` with `|c_n - z_n| <= rho(|delta c_n|) -> 0`, so `z = [z_n]`. Popa gives
+  `z_n = delta f_n + chi_n`. `Hom(Gamma, A)` is finite, so `chi_n = chi` for `𝒰`-most `n`, and `z = delta [f_n] + chi`.
+- **(ii) => (i).** If no rate works, there are `eta > 0` and `c_n` with `|delta c_n| -> 0` but
+  `dist(c_n, Z^1) >= eta`. The ultraproduct `z = [c_n]` is an exact cocycle. By (ii), `z = delta [f_n] + chi`, so `c_n`
+  is `o(1)`-close along `𝒰` to the exact cocycles `delta f_n + chi`. Contradiction. QED
+
+**Reading.** The central case of the target over `Gamma` reduces (R1 plus U) to superrigidity into finite groups for
+the Bernoulli ultrapower. Popa's proof does not transfer: the malleable deformation is not continuous on `P_𝒰`, and
+the (T) step needs almost invariant vectors that the deformation no longer supplies. If (ii) holds, then for every
+`Y ≺ Bern` embedded in `P_𝒰`, every `A`-extension of `Y` extends into `P_𝒰`, up to a homomorphism twist. So
+ergodic `A`-extensions of actions weakly contained in Bernoulli would again be weakly contained in Bernoulli.
+
+**Heuristic toward failure (not a proof).**
+- Degree-1 defects are codimension-2 membranes, and fillings are codimension-1 chains bounding them.
+- In three-dimensional hyperbolic geometry, attaching a half-plane to each line of a sparse invariant family gives
+  expected crossings of a unit ball `~ sum_R eps e^(2R) e^(-R) = infinity`. Naive fillings of infinite membranes are
+  dense.
+- If membranes of this kind occur as `delta c` for measurable `c` on the Bernoulli orbit complex of a higher-rank
+  lattice, expansion could fail. Membranes that are coboundaries of measurable cochains are special, and none has
+  been constructed.

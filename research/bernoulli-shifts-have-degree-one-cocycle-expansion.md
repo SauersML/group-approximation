@@ -39,3 +39,11 @@ ascent obstruction for `E_3`.
 - **Finite actions.** The analogous statement on congruence quotients is Gohla--Thom "expansion in dimension 1". It is
   known on Bruhat--Tits quotients through Kaufman--Kazhdan--Lubotzky and Evra--Kaufman, and not known for real rank-2
   covers.
+- **Ultrapower form.** By `bernoulli-expansion-iff-ultrapower-cocycle-superrigidity`, this claim is equivalent to Popa
+  superrigidity into `A` for the metric ultrapower of the Bernoulli shift.
+  - Popa's proof dies at the first step: the malleable deformation is not continuous on the ultrapower.
+  - Twisted Koopman representations of ultrapower cocycles are genuine representations, so (T) would finish if they
+    had almost invariant vectors. Nothing supplies them.
+- **Possible failure mechanism (heuristic, artifact Section 17).** Sparse infinite codimension-2 membranes in
+  hyperbolic-type geometry admit only dense naive fillings. Whether such membranes arise as coboundaries of measurable
+  cochains on the Bernoulli orbit complex is not known.
