@@ -52,7 +52,8 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
 - None in this lane: `LemmaFourSixDynamicsStatement` is closed.
   - The two W1 pieces carry no residual Prop of this lane.
   - `GeodesicCollarStatement`, a hypothesis of `exists_twoCollars`, is kh-torsion's.
-  - `PocketCellTransportStatement`, a hypothesis of `fourSectionCuts_cellTransport`, is go-lemma42's.
+  - `PocketCellTransportStatement`, a hypothesis of `fourSectionCuts_cellTransport`, is closed by go-lemma42's `pocketCellTransport` (874a332a2, `Estimating/OsinPocketGlueCellTransport:164`).
+    - hull-select's `OsinPocketMultipleEdgeAssembly:172` still passes it as `hcell`. Passing `pocketCellTransport` there is the consumer owner's edit.
 - hW is one line from closed, in simple-group's `FinitelyPresentedInfiniteSimpleClosed`. It needs an import of `QTwoLemmaFourSixDynamics` and `finitelyPresentedInfiniteSimpleStatement_of_dynamics lemmaFourSixDynamics`. This was reported to the lead; the file is not this lane's.
 
 ## Census
