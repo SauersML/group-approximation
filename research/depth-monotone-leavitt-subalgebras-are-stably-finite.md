@@ -11,7 +11,8 @@ artifacts:
   - research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md
 ---
 
-**OPEN** (proved on paper in the artifact, Sections 1 and 2; awaiting `w4-vf-gate`).
+**ESTABLISHED** by `depth-monotone-leavitt-stable-finiteness-proof` (artifact Sections 1 and 2). Independently
+re-derived by `w4-vf-gate`, Section 30.1 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`.
 
 Let `K` be a field, `R = L_K(1,2)`, and fix `a, b > 0`. For a word `μ` put `ω(μ) = a·#_0(μ) + b·#_1(μ)`.
 - `R^ω_≤ = span{ s_μ t_ν : ω(μ) <= ω(ν) }` is a unital subalgebra, and it is stably finite.

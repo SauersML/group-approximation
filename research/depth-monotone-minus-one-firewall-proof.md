@@ -9,7 +9,7 @@ requires:
 artifacts:
   - research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md
 ---
-Artifact Section 3. **OPEN** until `w4-vf-gate` passes it.
+Artifact Section 3. Passed by `w4-vf-gate` (verdict below).
 1. **Model.** Conjugate the subgroup into a weighted unit group. The embedding of
    `depth-monotone-leavitt-subalgebras-are-stably-finite` extends to a unital ring map `F_3[Γ_0] -> Q`, or into
    `Q^op` on the opposite side, with `[z] -> -1` and `ε_- -> 1`.

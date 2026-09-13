@@ -11,7 +11,8 @@ artifacts:
   - research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md
 ---
 
-**OPEN** (proved on paper in the artifact, Section 3; awaiting `w4-vf-gate`).
+**ESTABLISHED** by `depth-monotone-minus-one-firewall-proof` (artifact Section 3). Independently re-derived by
+`w4-vf-gate`, Section 30.2 of `research/artifacts/gk-vf-gate-verification-2026-09-12.md`.
 
 Let `G = L_(F_3)(1,2)^x`, `z = -1` and `ε_- = 2(1 - [z])`. Let `Γ_0 <= G` contain `z`. Suppose some `u in G` and
 some weight `ω` put `u Γ_0 u^(-1)` inside `(R^ω_≤)^x` or `(R^ω_≥)^x`, as in

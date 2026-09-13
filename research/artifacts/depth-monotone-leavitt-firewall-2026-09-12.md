@@ -7,7 +7,8 @@ Nodes:
 - `depth-monotone-configurations-cannot-force-ternary-minus-one` (Section 3);
 - an Attempts entry on `ternary-leavitt-units-have-no-weakly-finite-representation`.
 
-Decision status: proved on paper here, landed **OPEN** until `w4-vf-gate` passes it.
+Decision status: passed by `w4-vf-gate` (Sections 30.1 and 30.2 of
+`research/artifacts/gk-vf-gate-verification-2026-09-12.md`). Both claims are ESTABLISHED.
 
 ## 0. Setting and summary
 
@@ -220,8 +221,9 @@ These are equivalent:
   pieces change weight by `-a`, `0` and `+b`.
 - `G = ⟨V, 1 + s_00 t_01⟩` (`leavitt-prime-field-units-generated-by-v-and-one-transvection`), and
   `1 + s_00 t_01` lies in `R^1_0`. So the group elements of a certificate must generate a subgroup that no
-  conjugation puts inside any `H^ω_≤` or `H^ω_≥`. Elements of `V` that are weight-level for no `ω` are the obvious
-  source. Transvection sets such as the four-element set below are another.
+  conjugation puts inside any `H^ω_≤` or `H^ω_≥`. Candidates are elements of `V` that are weight-level for no `ω`,
+  and transvection sets such as the four-element set below. They escape without conjugation only, and no
+  conjugation invariant is proved (see Open).
 
 **Depth vectors.** For `λ != 0` put `v(T_(σ,κ)(λ)) = c(σ) - c(κ) in Z^2`. The element `λ s_σ t_κ` is
 homogeneous of degree `v` and nonzero, so with `a = 1`, `b = θ`: `T in H^θ_≤` iff `v_0 + θ v_1 <= 0`, and

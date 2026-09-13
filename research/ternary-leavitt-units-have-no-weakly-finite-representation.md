@@ -49,5 +49,6 @@ artifacts:
     group has a weakly finite model with `z -> -1` (`depth-monotone-configurations-cannot-force-ternary-minus-one`).
     So the relations in `W` give neither a one-sided pair nor a contradiction.
   - **Where it must go.** The group elements of a certificate must generate a subgroup that no conjugation puts
-    inside any weighted unit group: elements of `V` that are weight-level for no weight, or sets like
-    `{T_(0,1), T_(1,0), T_(1,00), T_(00,1)}`. The models kill `D`, so the defect form is not firewalled.
+    inside any weighted unit group. Candidates: elements of `V` that are weight-level for no weight, and sets like
+    `{T_(0,1), T_(1,0), T_(1,00), T_(00,1)}`. These escape without conjugation only, and no conjugation invariant
+    is proved. The models kill `D`, so the defect form is not firewalled.

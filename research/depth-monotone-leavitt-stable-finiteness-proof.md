@@ -8,7 +8,7 @@ requires: []
 artifacts:
   - research/artifacts/depth-monotone-leavitt-firewall-2026-09-12.md
 ---
-Artifact Sections 1 and 2. **OPEN** until `w4-vf-gate` passes it.
+Artifact Sections 1 and 2. Passed by `w4-vf-gate` (verdict below).
 1. **Faithful representation** (Lemma 1.1). `L_K(1,2)` acts on locally constant functions on `{0,1}^N`, and a
    combination `Σ λ_μ s_μ` is detected on the cylinder of `μ_0 1 0^M 1`.
 2. **Invariance** (Lemma 1.2). The functions constant on the weight-`r` stopping partition are invariant under
