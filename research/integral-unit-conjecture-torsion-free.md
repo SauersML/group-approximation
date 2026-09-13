@@ -59,6 +59,13 @@ support (`rational-units-rescale-to-integral-units`).
   image `Z/4 + Z/4` (Gardam, Remark 2). A gauge automorphism would move the
   unit into `Z[P]` only if `rho` lifted to `P -> <s,t> = Z/8 + Z/4`. It
   cannot, because `P^ab = Z/4 + Z/4`. The attack dies at the abelianization.
+* **Lifting Murray's units.** Murray's nontrivial units of `F_d[P]`, `d` an
+  odd prime, solve an ansatz with coefficients in `F_d[z^{+-1}]`,
+  `z = (ab)^2`, and Gardam's inverse formula. Over `Q` the same ansatz has
+  only the trivial solutions `+-z^k ab`, at every support length
+  (`murray-z-only-ansatz-has-no-char0-units`), so no unit of `Z[P]` of that
+  shape reduces to one of Murray's units. The attack dies at the shape: a
+  lift of different shape is not excluded.
 * **Reduction alone.** `Z[zeta_8]` has residue rings of characteristic 2
   and 3 and embeds in `C`. So an argument whose only inputs are mod-2, mod-3
   and complex reductions proves a statement that is false for `Z[zeta_8]`

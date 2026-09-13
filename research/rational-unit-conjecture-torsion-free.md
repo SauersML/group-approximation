@@ -44,6 +44,14 @@ The route `integral-unit-conjecture-from-rational-proof` derives
   conjugates is not Galois-invariant and there is no norm into `Q[P]`.
   Restriction of scalars gives an element of `GL_4(Q[P])`, not a unit of
   `Q[P]`. The attack dies at the missing norm.
+* **Murray's z-only ansatz.** Murray builds nontrivial units of `F_d[P]` for
+  every odd prime `d` from coefficients that depend on `z = (ab)^2` alone,
+  with Gardam's formula for the inverse. Over every field of characteristic
+  zero this ansatz has only the trivial solutions `+-z^k ab`, with no bound on
+  the length of the coefficients (`murray-z-only-ansatz-has-no-char0-units`).
+  The attack dies at the shape of the ansatz: units whose coefficients involve
+  `x` or `y` beyond Murray's fixed factors, or whose inverse is not given by
+  Gardam's formula, are not covered.
 * **Tester group.** By `kaplansky-three-properties-fixed-fp-torsion-free-tester`
   it is enough to decide `Q[U]` for one finitely presented torsion-free group
   `U`. That reformulates the problem without deciding it.
