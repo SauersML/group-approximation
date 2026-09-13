@@ -1,0 +1,1 @@
+{"cases": 72, "identities": ["balanced union-component density moment", "Holder support inequality"], "matching_tuples_checked": 29128, "proves_ugc": false, "scope": "n=1,2,3; m=2,3; q=2,3; three rational laws; two coloring sets", "status": "passed"}

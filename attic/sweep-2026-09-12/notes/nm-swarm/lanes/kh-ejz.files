@@ -1,0 +1,13 @@
+GroupApproximation/PropertyT/ThreeVertexDuality.lean
+GroupApproximation/PropertyT/ThreeVertexClosure.lean
+GroupApproximation/PropertyT/ThreeVertexProposition.lean
+GroupApproximation/PropertyT/ThreeVertexKazhdan.lean
+GroupApproximation/Kazhdan/EJZAngleTranslates.lean
+GroupApproximation/Kazhdan/EJZAngleHeisenberg.lean
+GroupApproximation/Kazhdan/EJZAngleBessel.lean
+GroupApproximation/Kazhdan/EJZAngleSylowFourGram.lean
+GroupApproximation/Kazhdan/EJZAngleSylowFour.lean
+GroupApproximation/Kazhdan/EJZAngleGHB.lean
+GroupApproximation/Kazhdan/GHBLatticeRouteKazhdan.lean
+GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationProduct.lean
+GroupApproximation/GroupTheory/HydeLodha/QTwoFinitePresentationNormal.lean

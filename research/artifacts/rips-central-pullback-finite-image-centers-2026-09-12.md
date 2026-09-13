@@ -240,6 +240,254 @@ hyperbolic application. These checks do not prove that a weaker
 fixed-prime center bound is impossible; they leave that bound as a
 specific unresolved target.
 
+## Central-cover equations for a finite presentation
+
+Write `H=<x_1,...,x_d | r_1,...,r_m>` and fix a finite quotient
+`theta:H -> F`, with `f_i=theta(x_i)`. A normalized cocycle
+`alpha:F x F -> F_p` defines the central extension `E_alpha` with
+multiplication
+
+```text
+(a,f)(b,g) = (a+b+alpha(f,g),fg).
+```
+
+Let `A_j(alpha)` be the central coordinate obtained by evaluating
+`r_j` in the elements `(0,f_i)`. This is a linear function of `alpha`.
+More explicitly, walk along the relator with prefixes `v_0=1,v_1,...`
+in `F`. A positive letter `x_i` contributes `alpha(v_(k-1),f_i)`;
+a negative letter contributes
+
+```text
+alpha(v_(k-1),f_i^(-1)) - alpha(f_i^(-1),f_i).
+```
+
+If `e_ji` is the exponent sum of `x_i` in `r_j`, then a lift of
+`theta` to `E_alpha` exists exactly when the following finite linear
+system has a solution `u=(u_1,...,u_d)`:
+
+```text
+sum_i e_ji u_i = -A_j(alpha)  for j=1,...,m.                       (L)
+```
+
+The images of the generators in that lift are `(u_i,f_i)`.
+The other finite linear equations are the cocycle equations
+
+```text
+alpha(f,g)+alpha(fg,h)=alpha(g,h)+alpha(f,gh),
+alpha(1,f)=alpha(f,1)=0.
+```
+
+Coboundaries have the form
+`alpha(f,g)=b(f)+b(g)-b(fg)`. Thus these equations describe the exact
+obstruction for a specified finite quotient; they are not a bounded
+search over all finite quotients.
+
+If `H^1(H;F_p)=0`, the low-degree sequence gives
+
+```text
+H^1(ker(theta);F_p)^H
+  = ker[ H^2(F;F_p) -> H^2(H;F_p) ].                              (T)
+```
+
+Consequently, with this hypothesis, `(C_p)` is equivalent to saying
+that for every finite quotient `F`, any cocycle for which `(L)` is
+solvable is a coboundary. This is an exact finite-presentation target
+for a uniform argument.
+
+## Coprime triangle stabilizers give lifting, not center exclusion
+
+Suppose `H` is the colimit of a simple triangle of finite vertex groups
+`V_1,V_2,V_3`, with their edge groups identified, and that `p` divides
+none of the orders `|V_i|`. Then
+
+```text
+H^1(H;F_p)=H^2(H;F_p)=0.                                        (A)
+```
+
+Here is a direct proof, which does not assume any spectral theorem.
+For a finite group `V` of order prime to `p`, a normalized cocycle
+`alpha` is the coboundary of
+
+```text
+b(g) = |V|^(-1) sum_(h in V) alpha(g,h).
+```
+
+This follows by summing the cocycle identity over its third variable.
+It proves that every central `C_p` extension of `V` splits. The
+splitting is unique, because two splittings differ by a homomorphism
+`V -> C_p`, and no such nonzero homomorphism exists.
+Now take a central `C_p` extension of `H`. Pull it back to each `V_i`.
+The unique local splittings agree on every edge group, because those
+groups also have order prime to `p`. By the colimit presentation they
+define a splitting on `H`. This proves `H^2(H;F_p)=0`. The same
+colimit presentation shows that every homomorphism `H -> C_p`
+vanishes on the generating vertex groups, proving `H^1(H;F_p)=0`.
+
+For every finite quotient `theta:H -> F`, (T) therefore specializes to
+the isomorphism
+
+```text
+H^1(ker(theta);F_p)^H  ~=  H^2(F;F_p).                            (U)
+```
+
+Moreover, every nonsplit central `C_p` extension `E -> F` is itself
+a finite quotient of `H`. Indeed, (A) produces a lift `H -> E`.
+Its image surjects onto `F`. If it met the kernel `C_p` trivially, it
+would give a splitting `F -> E`, a contradiction. It therefore
+contains `C_p` and is all of `E`.
+
+Thus a local coprime-order certificate automatically solves the
+lifting equations for **every** finite-group cocycle, including any
+nontrivial ones. It does not exclude those cocycles. For these triangle
+groups the required uniform statement is exactly
+
+```text
+H^2(F;F_p)=0 for every finite quotient F of H.                     (Q)
+```
+
+For perfect finite `F`, this says that the Schur multiplier of `F`
+has no `p`-torsion. Looking only at the centers of currently known
+simple quotients can miss this obstruction: a centerless simple
+quotient with a nonzero `p`-part in its multiplier forces a further
+quotient with central `p`-torsion.
+
+## A concrete remaining candidate: H_31 at p=7
+
+Use the following explicit group of Caprace--Conder--Kaluba--Witzel:
+
+```text
+H_31 = <a,b,c |
+  a^5, b^5, c^5, [a,c], [b,c,b], [b,c,c,b], [b,c,c,c],
+  a b a^2 b a^2 b a b^(-1) a b^(-1),
+  b^2 a b a^(-1) b a^(-1) b a b^2 a,
+  (b a b^(-1) a b a^(-1))^2 >.
+```
+
+Their Theorem 1.2 proves that this group is infinite, hyperbolic, and
+has property (T). Its triangle vertex groups are `PSL_2(31)`,
+`C_5 x C_5`, and a Sylow `5` subgroup of `Sp_4(5)`.
+Their orders are respectively `14880`, `25`, and `625`, all coprime
+to `7`. Therefore (A)--(U) apply with `p=7`.
+The abelianization is `C_5`: the local perfect subgroup
+`<a,b>=PSL_2(31)` kills `a,b` in the abelianization, and sending
+`a,b` to `1` and `c` to a generator of `C_5` respects every relator.
+
+This supplies a concrete candidate for the input of the Deligne--Rips
+construction. Its precise remaining condition is
+
+```text
+H^2(F;F_7)=0 for every finite quotient F of H_31.                  (H31)
+```
+
+For this presentation, the first three rows of the exponent-sum
+matrix are `5 I_3`. In characteristic `7`, equations (L) uniquely
+determine the three generator corrections from the power relators.
+The coprime triangle argument proves that all remaining lift equations
+then hold for any finite quotient and any cocycle. Hence solving those
+local equations, even exactly, cannot certify (H31); one must show
+that the finite-quotient cocycle is a coboundary. No proof of (H31) has
+been obtained here.
+
+Primary source for the presentation, triangle groups, and geometric
+properties: P.-E. Caprace, M. Conder, M. Kaluba, S. Witzel,
+*Hyperbolic generalized triangle groups, property (T) and finite simple
+quotients*,
+[arXiv:2011.09276](https://arxiv.org/pdf/2011.09276), Theorem 1.2,
+pp. 2--3. The cohomology and central-lifting deductions above are
+proved here.
+
+## The first retraction kernel has a complete local certificate
+
+Setting `c=1` defines a retraction
+
+```text
+pi:H_31 -> Q=PSL_2(31),
+```
+
+whose section is the vertex group `<a,b>`. Its kernel `K` is the
+normal closure of `c`: after killing `c`, precisely the presentation
+of the vertex group `<a,b>` remains. In particular, `K` is generated
+by conjugates of an element of order `5`; its abelianization has
+exponent `5`.
+
+There is a stronger geometric certificate. Let `X` be the contractible
+triangle complex in the cited construction. The quotient `K\X` is
+the cone on the bipartite coset graph with vertex sets
+`Q/<a>` and `Q/<b>` and edge set `Q`.
+Indeed, there is one vertex of `<a,b>` type, which is the cone apex;
+the other two vertex types are these two coset spaces. The edges of
+`a` and `b` type are the radial edges, the edges of `c` type are
+indexed by `Q`, and the triangles are indexed by `Q`, each joining
+one such base edge to the apex. Thus `K\X` is contractible.
+
+For comparison, its numbers of vertices, edges and faces are
+
+```text
+1+2976+2976 = 5953,
+2976+2976+14880 = 20832,
+14880,
+```
+
+giving Euler characteristic `1`. The `K` stabilizers of vertices
+have orders `1`, `125`, and `5`, respectively. Its only nontrivial
+edge stabilizers have order `5`, and face stabilizers are trivial.
+For every prime `p!=5`, the higher cohomology of these stabilizers
+with `F_p` coefficients vanishes by averaging. The equivariant
+cohomology spectral sequence for the contractible complex therefore
+has only its row of degree zero, which is the cochain complex of
+`K\X`. It follows that
+
+```text
+H^j(K;F_p)=0 for every j>0 and every prime p!=5.                  (K)
+```
+
+In particular, for every `F_7[Q]`-module `V` inflated along `pi`,
+the kernel `K` acts trivially and has vanishing higher cohomology
+with coefficients in `V`. Since `7` does not divide `|Q|`, the
+Hochschild--Serre sequence then gives
+
+```text
+H^j(H_31;V)=0 for every j>0.                                    (V)
+```
+
+This rules out an initial extension of the quotient `Q` by a
+nontrivial elementary abelian `7` group as a quotient of `H_31`
+over `pi`. Such an extension splits by coprimality. Lifts of `pi`
+to the resulting semidirect product differ by a cocycle with
+coefficients in that elementary abelian group; (V) makes every
+such lift conjugate to the complement, so none is surjective.
+
+This certificate does not apply to every deeper normal cover.
+If a further finite quotient has a nontrivial image of `c`, its
+kernel need not contain the order-`5` vertex or edge stabilizers
+used above, and its quotient complex need not be a cone.
+In particular, exclusion of `7`-parts in the multipliers of
+finite **simple** quotients would not establish (H31): arbitrary
+finite quotients and their possible solvable radicals remain in
+the quantifier.
+
+## A concrete obstruction to using only the usual link criterion
+
+The Kac--Moody--Steinberg examples in the same paper provide a direct
+test of a proposed certificate based only on property-(T) link
+expansion and vertex-group orders coprime to the target prime.
+For an odd defining prime `r>=7`, their hyperbolic KMS examples have
+finite `r`-group vertex stabilizers and satisfy the stated link-based
+criterion for property (T). Corollary 7.10 gives quotients
+`SL_3(F_(r^e))` for every `e>=3`.
+Choose `r!=3` and even `e>=4`. Then `r^e=1 mod 3`, so the scalar
+matrices with scalar of order `3` form a central `C_3` in this finite
+quotient. Thus `(C_3)` fails, although all vertex-group orders are
+coprime to `3` and the link criterion holds.
+
+This is not a proof that no more specific finite certificate can
+work. It disproves the inference from those particular local
+hypotheses. The usual real spectral-gap estimate proves vanishing
+over characteristic zero; it gives no estimate ruling out the
+invariant `F_3` characters just exhibited. A new certificate for
+(H31) would have to control finite-quotient central cocycles beyond
+the local splitting and real spectral information.
+
 ## Other attempted transfers
 
 The existing compression examples do not supply a mark for this pullback

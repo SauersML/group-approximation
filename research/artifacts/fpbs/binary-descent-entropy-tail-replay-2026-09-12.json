@@ -1,0 +1,85 @@
+{
+  "scope": "finite exact replay, not infinite theorem verification",
+  "periods": [
+    {
+      "period": 4,
+      "budget": "1",
+      "defect": "1",
+      "max_path_length": 4,
+      "reuse_probabilities": {
+        "1": "1/4",
+        "2": "1/2"
+      }
+    },
+    {
+      "period": 8,
+      "budget": "1",
+      "defect": "1",
+      "max_path_length": 8,
+      "reuse_probabilities": {
+        "1": "1/8",
+        "2": "3/4"
+      }
+    },
+    {
+      "period": 16,
+      "budget": "1",
+      "defect": "1",
+      "max_path_length": 16,
+      "reuse_probabilities": {
+        "1": "1/16",
+        "2": "7/8"
+      }
+    },
+    {
+      "period": 32,
+      "budget": "1",
+      "defect": "1",
+      "max_path_length": 32,
+      "reuse_probabilities": {
+        "1": "1/32",
+        "2": "15/16"
+      }
+    },
+    {
+      "period": 64,
+      "budget": "1",
+      "defect": "1",
+      "max_path_length": 64,
+      "reuse_probabilities": {
+        "1": "1/64",
+        "2": "31/32"
+      }
+    },
+    {
+      "period": 128,
+      "budget": "1",
+      "defect": "1",
+      "max_path_length": 128,
+      "reuse_probabilities": {
+        "1": "1/128",
+        "2": "63/64"
+      }
+    },
+    {
+      "period": 256,
+      "budget": "1",
+      "defect": "1",
+      "max_path_length": 256,
+      "reuse_probabilities": {
+        "1": "1/256",
+        "2": "127/128"
+      }
+    },
+    {
+      "period": 512,
+      "budget": "1",
+      "defect": "1",
+      "max_path_length": 512,
+      "reuse_probabilities": {
+        "1": "1/512",
+        "2": "255/256"
+      }
+    }
+  ]
+}

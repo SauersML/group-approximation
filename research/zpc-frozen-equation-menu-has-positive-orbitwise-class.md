@@ -57,6 +57,15 @@ the non-halting perfect-gap witness.
   permute all of them transitively.  Averaging their projections gives the
   identity but supplies no positive projection supported in one class and
   invariant under the unreadable generators.
+- **The resource collapses to a constant-menu component (established).**
+  `zpc-orbitwise-menu-class-needs-constant-menu-component` proves `(ZOM2)`
+  exists iff some unreadable-ergodic component has an essentially constant
+  selected menu, and any such component is already an ordinary LCS gap
+  (a nonhyperlinear group) by `finite-linear-commutation-system-to-lcs`.
+  So a successful selection here only reaches witnesses that are already
+  solved endpoints; the genuinely open, transitive-menu regime is out of
+  reach of this route and is handled instead by
+  `perfect-gap-zpc-has-finite-readable-translate-algebra`.
 - **Cheapest positive attack.**  Inspect the fixed TailoredMIP verifier after
   quotienting readable assignments by equality of their selected affine
   menus.  If every unreadable generator preserves this coarser finite
