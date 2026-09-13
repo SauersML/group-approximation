@@ -31,12 +31,16 @@ either direction settles `leavitt-el3-rank-models-over-finite-fields-are-trivial
     * relations of locally finite subgroups;
     * single conjugations of locally finite data;
     * finite-subgroup rank calculus;
-    * witnesses from rank-modelled subgroups off the cylinder set.
+    * witnesses from rank-modelled subgroups off the cylinder set;
+    * relations of any sofic subgroup containing both frames (w5-sub-fock, verifier PASS).
 
-    It has to use relations beyond those shapes: straddling units as factors, properties that no rank
-    model has, or global inputs such as corner locality.
+    It has to use relations beyond those shapes: straddling units as factors in a nonsofic configuration,
+    properties that no rank model has, or global inputs such as corner locality.
   * **Cohn coefficients** (L8). This question lies between the V gate and the binary gate, so it adds no
     new decisive input.
+  * **One shared input** (L5, L8). The Toeplitz form of the descent line and the Cohn reduction through
+    `binary-jacobson-el3-rank-radical-is-the-finitary-kernel` both need `EL_3(J)`, `J = F_2<s0, t0>`, to be
+    nonsofic. Its soficity is undecided on main.
 
 Commit hashes below are the ones reported by the landing lanes. Node ids are the stable references.
 
@@ -231,6 +235,35 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
       groups cannot give `theta < 1` when they enter only through single conjugations of locally finite
       data. A proof has to use relations of `R^x` that do not follow from locally finite subgroup
       relations plus single partial conjugations.
+  * **Sofic firewall and the Toeplitz input** (lane w5-sub-fock, family SUB; 2cf82d01d7, 0d600e4efd;
+    artifact `fock-toeplitz-input-and-sofic-independence-2026-09-12.md`; verifier PASS §28).
+    * `sofic-subgroups-carry-independent-cylinder-defects`. Let `H <= R^x` be sofic and contain the
+      frames `iota_(A_i)(D_8)` at disjoint cylinders. The permutation model of a sofic approximation is
+      free on every finite subgroup, gives `rk(D_(A_1)...D_(A_k)) = (3/8)^k`, and has no fixed vector
+      once `H` has an element of infinite order.
+      * **Consequence.** Both firewalls above extend from locally finite data to every sofic subgroup,
+        infinite-order factors included. A relation-only `theta < 1` has to use a nonsofic subgroup
+        containing both frames, and it proves that subgroup nonsofic.
+      * **Not covered.** The global inputs of the route (the defect gap, near-minimal multiplicativity)
+        do not restrict to subgroups.
+    * `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`.
+      * The Toeplitz pair `x_12(t0)`, `x_23(s0)` generates a dihedral group of order 8 inside an
+        order-128 unitriangular group. So the exact Toeplitz commutator is finite-subgroup data, and the
+        quarter of `natural-fock-quantized-compressors-miss-toeplitz-by-a-quarter` measures
+        truncated-shift realizations, not rank models.
+      * With `EL_3(F_2)` the pair generates `EL_3(J)`, `J = F_2<s0, t0>`. With the constant root groups
+        `x_ij(R_0)` it generates `R^x`. The same holds over `F_3`.
+    * **Where this meets L8** (lead).
+      * The smallest two-cylinder configuration in which Toeplitz data can bite is
+        `iota_A(EL_3(J)) x iota_B(EL_3(J))`, which is sofic iff `EL_3(J)` is.
+      * The Jacobson claim of L8, `binary-jacobson-el3-rank-radical-is-the-finitary-kernel`, also makes
+        `EL_3(J)` nonsofic.
+      * So the Toeplitz form of the descent line and the Cohn reduction need the same input: `EL_3(J)` is
+        not sofic. If `EL_3(J)` is sofic, the Jacobson claim is false and Toeplitz-plus-Weyl data at two
+        cylinders cannot force `theta < 1`. The next configuration, with the constant root groups, is
+        already all of `R^x`, so a relation-only proof would isolate no smaller certificate.
+      * The soficity of `EL_3(J)` is undecided on main: locally finite kernel, residually finite
+        quotient, and the literature check owed in L8 still stands.
 
 ### L6. Status
 
@@ -246,7 +279,8 @@ w4-gate-descent: `leavitt-rank-model-defect-gap-on-fixed-point-free-quotients`,
 | approximability node | w4-r4-approx | collapsed |
 | Heisenberg node | w4-heisenberg | dead; firewall landed (f576dccf26); finished |
 | defect gap and descent | w4-gate-descent | Established, verifier PASS: gap, two-sided descent, near-minimal multiplicativity. Open target: `leavitt-disjoint-cylinder-defects-strictly-submultiplicative`, with route `leavitt-rank-triviality-via-strict-defect-submultiplicativity` into `non-linear-sofic-group`. Lead spot-check of the route passes: `f(2) >= c_* delta >= delta^2/(1+eps)` contradicts `theta delta^2` once `eps < 1/theta - 1`. The verifier also passes it as a conditional route (§8.4): `theta < 1` holds uniformly over models, so the choice of near-minimal model cannot evade it |
-| verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10. §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
+| Toeplitz input and sofic firewall | w5-sub-fock (family SUB) | Established, verifier PASS §28: the Toeplitz pair is finite-subgroup data; `sofic-subgroups-carry-independent-cylinder-defects`; `toeplitz-pair-and-weyl-elements-generate-jacobson-el3`. Open input shared with L8: soficity of `EL_3(J)` (L5) |
+| verification | w4-vf-gate | Record: `gk-vf-gate-verification-2026-09-12.md`, Sections 1--10 (later sections, through §28, cover the SUB, characteristic-three and Cohn landings folded into L5, L8 and L9). §10 passes orth's halving obstruction. PASS on every established family node: endpoint, block triviality, reversed root, both firewalls, index-3 placement, completeness transport, defect gap, descent, near-minimal models, opposite-root positivity, approximability collapse. Corrections folded in: L4a, frames, odd characteristic. Plan 2 stays open with two overstatements (§1.7). No decision-level verdict |
 
 ### L7. The listed mechanism dies
 
@@ -331,6 +365,20 @@ without completeness.
   * **Where L8 sits** (lead). The target lies between the V gate and the binary gate: the V gate implies
     it, and it implies the binary gate by pullback along `EL_3(C_2) -> EL_3(R)`. So the route adds no new
     decisive input. It shows that the Cohn question is no harder than the V gate.
+* **V gate firewalls** (lane w5-v-nonamenable; established, verification requested from w3-vf-linear;
+  artifact `thompson-v-rank-gate-sofic-and-characteristic-firewalls-2026-09-12.md`). They constrain every
+  proof of the V gate, which sits upstream of L8.
+  * `sofic-configurations-cannot-force-v-rank-triviality`. For every sofic `K <= V`, sofic approximations
+    give Sylvester rank functions on `F[K]` with `rk(1 - [g]) = 1 - 1/ord(g)` that satisfy every confined
+    premise. So no argument confined to a sofic configuration forces the V gate.
+  * `char-uniform-identities-cannot-force-v-rank-triviality`. The von Neumann rank on `C[V]` satisfies
+    every premise whose identities already hold over a subring of `C`. So a proof in characteristic `p`
+    must use a `p`-sensitive identity, such as `(1 - [s])^p = 0` for a clopen `p`-cycle `s`.
+  * **Next step, open.** `v-rank-order-char-cycles-are-trivial-plus-regular`: the Jordan profile
+    `rk((1 - [s])^j) = (1 - phi_V)(p - j)/p` for `1 <= j <= p` (range corrected by the lane after the
+    restart). Only upper bounds are proved, and the lane records that the law does not imply the gate.
+  * *(lead)* The first firewall is the V-side analogue of the sofic cylinder-defect firewall in L5. So a
+    proof of either gate has to work in a configuration not known to be sofic.
 
 ### L9. Adjacent plans from w3-strategist-neg (tracked here; not an R4 lane)
 
