@@ -73,7 +73,7 @@ theorem test_hasPropertyT_intElementary : HasPropertyT ↥(elementaryGroup (Fin 
 theorem test_infinite_intElementary : Infinite ↥(elementaryGroup (Fin 3) ℤ) :=
   elementaryGroup_infinite (R := ℤ) (0 : Fin 3) 1 (by decide)
 
-/-- Positive control: `EL₃(ℤ)` modulo its centre is infinite and has property
+/-- Positive control: `EL₃(ℤ)` modulo its center is infinite and has property
 `(T)`, so the conjunction `Infinite G ∧ HasPropertyT G` is satisfiable. -/
 theorem test_infinite_propertyT_intElementaryModCentre :
     Infinite (↥(elementaryGroup (Fin 3) ℤ) ⧸ Subgroup.center ↥(elementaryGroup (Fin 3) ℤ)) ∧

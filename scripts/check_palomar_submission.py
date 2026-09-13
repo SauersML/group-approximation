@@ -4,9 +4,12 @@
 A Palomar submission is exactly ONE Comparator configuration path, so a
 repository offering two results is submitted twice, once per configuration
 (PalomarRegistry's CONTRIBUTING rules; the kim-em/PalomarSubmission README).
-This repository submits every entry of `PALOMAR_CONFIGS`, and every check below
+This repository offers every entry of `PALOMAR_CONFIGS`, and every check below
 that is about a submission surface runs once per configuration with the
-configuration path on its finding.  The challenge and solution paths are not
+configuration path on its finding.  `formalization.yaml` is one file per
+repository and describes ONE submission at a time, the entries of
+`PALOMAR_METADATA_CONFIGS`; the other configurations are gated on everything
+except the metadata rows, which they receive when they are submitted.  The challenge and solution paths are not
 written down here: they are read out of each configuration's
 `challenge_module` and `solution_module`, so a rename that updates the lakefile
 and the JSON cannot leave this gate silently checking a file that no longer
@@ -49,11 +52,12 @@ registry submission certify something other than what it appears to:
 6. **`formalization.yaml` drifts out of the registry's mechanical minimum** --
    at most eight arXiv classes, a nonempty `project.description` (which is the
    published abstract), and a source list declaring exactly one result origin.
-   It must also publish, in `status.main_results`, every theorem every
-   configuration submits, against that configuration: a submission surface the
-   metadata never mentions describes a different repository from the one being
-   submitted.  Checked only when PyYAML is importable; skipped, loudly, when it
-   is not.
+   It must also publish, in `status.main_results`, every theorem of the
+   configuration it describes (`PALOMAR_METADATA_CONFIGS`), against that
+   configuration, and no theorem of any other configuration: the registry
+   abstract is `project.description`, so metadata that mixes results describes
+   a different submission from the one being made.  Checked only when PyYAML
+   is importable; skipped, loudly, when it is not.
 
 This is deliberately NOT a reimplementation of Palomar's verifier.  It checks
 the rules this repository can plausibly break by accident, in the shape the
@@ -195,6 +199,16 @@ PALOMAR_CONFIGS = (
 # summary line says so.
 PALOMAR_PENDING_CONFIGS = (
     "Palomar/comparator-lix-strong.json",  # the three ProblemLIXStrong theorems
+)
+
+# The configuration(s) `formalization.yaml` currently describes.  A Palomar
+# submission is one configuration, and the registry abstract is
+# `project.description`, so the metadata is written for one submission at a
+# time: its theorems must appear in `status.main_results`, and no theorem of
+# any other configuration may.  To submit another configuration, rewrite the
+# metadata for it and move it here.
+PALOMAR_METADATA_CONFIGS = (
+    "Palomar/comparator-pestov91.json",
 )
 
 # The files `copy_surface` copies and `--self-test` plants defects into.  The
@@ -748,12 +762,25 @@ def check_metadata(root: Path, pairs: list[Pair], f: Findings) -> None:
             f.note(f"{pair.config_rel} is pending, so its theorems are "
                    "deliberately absent from status.main_results")
             continue
+        if pair.config_rel not in PALOMAR_METADATA_CONFIGS:
+            # The metadata describes another submission; a row for this
+            # configuration would put a second result into that record.
+            if published.get(pair.config_rel):
+                f.add(f"formalization.yaml: status.main_results publishes "
+                      f"{sorted(published[pair.config_rel])[0]} for "
+                      f"{pair.config_rel}, but the metadata describes "
+                      f"{', '.join(PALOMAR_METADATA_CONFIGS)} only")
+            else:
+                f.note(f"{pair.config_rel} is not the submission the metadata "
+                       "describes, so its theorems are deliberately absent "
+                       "from status.main_results")
+            continue
         for name in pair.cfg.get("theorem_names") or []:
             if str(name) not in published.get(pair.config_rel, set()):
                 f.add(f"formalization.yaml: {name} is not listed in "
                       f"status.main_results with comparator_config "
                       f"{pair.config_rel}; the metadata must publish every "
-                      "theorem the configuration submits")
+                      "theorem the configuration it describes submits")
 
     sources = data.get("sources")
     if not (isinstance(sources, list) and sources):
@@ -912,25 +939,17 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
     ("tracked compiled artifact", "is a compiled artifact"),
     ("nine arXiv classes", "one to eight distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
-    ("LIX result dropped from the metadata", "is not listed in status.main_results"),
-    ("bowen-chapman result dropped from the metadata",
-     "BowenChapman.not_all_surjunctive_groups_sofic is not listed in status.main_results"),
-    ("stw-x1 result dropped from the metadata",
-     "STWProblemX1.exists_separable_amenable_not_quasidiagonal is not listed in status.main_results"),
-    ("stw-xxii result dropped from the metadata",
-     "STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace is not listed in status.main_results"),
-    ("blanchard result dropped from the metadata",
-     "BlanchardToeplitz.blanchard_question_5_4 is not listed in status.main_results"),
+    ("pestov91 result dropped from the metadata",
+     "Pestov91.exists_infinite_simple_propertyT_hyperlinear is not listed in status.main_results"),
+    ("foreign result published in the metadata",
+     "but the metadata describes Palomar/comparator-pestov91.json only"),
 )
 
 YAML_CALIBRATIONS = {
     "nine arXiv classes",
     "original result with a substantive source",
-    "LIX result dropped from the metadata",
-    "bowen-chapman result dropped from the metadata",
-    "stw-x1 result dropped from the metadata",
-    "stw-xxii result dropped from the metadata",
-    "blanchard result dropped from the metadata",
+    "pestov91 result dropped from the metadata",
+    "foreign result published in the metadata",
 }
 
 
@@ -1095,18 +1114,20 @@ def plant(name: str, root: Path) -> None:
     elif name == "stw-x1 comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-stw-x1.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
-    elif name == "LIX result dropped from the metadata":
+    elif name == "pestov91 result dropped from the metadata":
         _edit_metadata(root,
-                       "    - declaration: ProblemLIX.not_all_simple_unital_k1Injective",
-                       "    - declaration: ProblemLIX.renamed_and_not_republished")
-    elif name == "bowen-chapman result dropped from the metadata":
+                       "    - declaration: Pestov91.exists_infinite_simple_propertyT_hyperlinear",
+                       "    - declaration: Pestov91.renamed_and_not_republished")
+    elif name == "foreign result published in the metadata":
         _edit_metadata(root,
-                       "    - declaration: BowenChapman.not_all_surjunctive_groups_sofic",
-                       "    - declaration: BowenChapman.renamed_and_not_republished")
-    elif name == "stw-x1 result dropped from the metadata":
-        _edit_metadata(root,
-                       "    - declaration: STWProblemX1.exists_separable_amenable_not_quasidiagonal",
-                       "    - declaration: STWProblemX1.renamed_and_not_republished")
+                       "    - declaration: Pestov91.exists_infinite_simple_propertyT_sofic\n",
+                       "    - declaration: BowenChapman.not_all_surjunctive_groups_sofic\n"
+                       "      file: Palomar/BowenChapmanSolution.lean\n"
+                       "      sorry_count: 0\n"
+                       "      axioms: [propext, Classical.choice, Quot.sound]\n"
+                       "      comparator_config: Palomar/comparator-bowen-chapman.json\n"
+                       "\n"
+                       "    - declaration: Pestov91.exists_infinite_simple_propertyT_sofic\n")
     elif name == "stw-xxii challenge with a project-local import":
         path = root / "Palomar" / "STWProblemXXIIChallenge.lean"
         path.write_text(
@@ -1125,10 +1146,6 @@ def plant(name: str, root: Path) -> None:
     elif name == "stw-xxii comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-stw-xxii.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
-    elif name == "stw-xxii result dropped from the metadata":
-        _edit_metadata(root,
-                       "    - declaration: STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace",
-                       "    - declaration: STWProblemXXII.renamed_and_not_republished")
     elif name == "blanchard challenge with a project-local import":
         path = root / "Palomar" / "BlanchardToeplitzChallenge.lean"
         path.write_text(
@@ -1147,10 +1164,6 @@ def plant(name: str, root: Path) -> None:
     elif name == "blanchard comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-blanchard-toeplitz.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
-    elif name == "blanchard result dropped from the metadata":
-        _edit_metadata(root,
-                       "    - declaration: BlanchardToeplitz.blanchard_question_5_4",
-                       "    - declaration: BlanchardToeplitz.renamed_and_not_republished")
     elif name == "second licence file at the root":
         (root / "COPYING").write_text("copy\n")
     elif name == "toolchain below the minimum":
@@ -1294,7 +1307,8 @@ def main(argv: list[str]) -> int:
     print(f"palomar: {len(PALOMAR_CONFIGS)} submittable configuration(s) "
           f"({', '.join(PALOMAR_CONFIGS)}) each resolve, with shared block and "
           "every compared signature identical and the challenge importing "
-          "Mathlib only; tree and metadata meet the registry minimum")
+          "Mathlib only; tree and metadata meet the registry minimum, and the "
+          f"metadata describes {', '.join(PALOMAR_METADATA_CONFIGS)}")
     if PALOMAR_PENDING_CONFIGS:
         print(f"palomar: {len(PALOMAR_PENDING_CONFIGS)} pending configuration(s) "
               f"({', '.join(PALOMAR_PENDING_CONFIGS)}) resolve, with shared "

@@ -90,7 +90,7 @@ other subshifts.
   for a discrete group.
 * The permitted axioms are `propext`, `Classical.choice` and `Quot.sound`;
   the solution uses no others.
-* Neither Mathlib nor any earlier formalisation known to the authors defines
+* Neither Mathlib nor any earlier formalization known to the authors defines
   soficity, hyperlinearity or Kazhdan's property `(T)`, so the block defines
   them from the textbook sources named above.
 * The repository is released under Apache-2.0; the production process, AI

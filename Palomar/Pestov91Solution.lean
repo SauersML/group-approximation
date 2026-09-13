@@ -55,7 +55,7 @@ the finitely generated ring `A = LC(X, 𝔽₂) ⋊ ℤ` over the Toeplitz subsh
 through `GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef_of_elementary`
 in `GroupApproximation/Pestov91/Assembly.lean`.  The route, all under
 `GroupApproximation/Pestov91/`: finite generation of `A` (`WitnessRing.lean`);
-simplicity of `A` and triviality of its centre for a free minimal action
+simplicity of `A` and triviality of its center for a free minimal action
 (`RingSimple.lean`, `WitnessCentre.lean`); simplicity of `EL₃(A)` from those by
 split annihilators and root extraction (`SplitSimplicity.lean`,
 `WitnessSimple.lean`); infiniteness of `EL₃(A)` from the infinite ring
