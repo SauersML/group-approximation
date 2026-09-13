@@ -298,8 +298,8 @@ sources:
       and, by his theorem, not quasidiagonal, although he states no result on
       X(1). The question, which is N. P. Brown's (Mem. Amer. Math. Soc. 184
       (2006), no. 865), reads: "Are amenable traces on C*-algebras necessarily
-      quasidiagonal?" The problem was stated in Lean against the development's
-      group on 2026-08-27 between 06:49:06 and 07:07:05 UTC (2dbea8f73,
+      quasidiagonal?" The problem was stated in Lean on 2026-08-27
+      between 06:49:06 and 07:07:05 UTC (2dbea8f73,
       f2e177871, 8a4268878), and the counterexample was proved in this public
       repository on 2026-08-31 at 06:19:37 UTC (4830b808c). On 2026-09-13 the
       fidelity review research/artifacts/fz-stw-x1-review-2026-09-13.md passed
@@ -338,7 +338,9 @@ sources:
       0cdbec5e0), and the first Lean development followed at 05:31:45 UTC
       (40d02e604). The Lean endpoint
       GroupApproximation.STW22.antipodalFactorialNegativeSolutionToProblemXXII
-      landed on 2026-09-05 at 20:22:52 UTC (2962b1f4f). On 2026-09-13 the
+      was proved from a Borsuk-Ulam hypothesis on 2026-09-05 at
+      20:22:52 UTC (2962b1f4f) and without it on 2026-09-07 at 06:54:44 UTC
+      (7e2ef9cde). On 2026-09-13 the
       fidelity review research/artifacts/fz-stw-xxii-review-2026-09-13.md
       passed at 08:38:10 UTC (31da2ecfd), and the Palomar pair, with
       GroupApproximation/PalomarBridges/XXII.lean, landed at 10:53:27 UTC
