@@ -68,6 +68,59 @@ Census: metadata/nm-census-rows/kh-ejz.tsv, LINE:1675 `partial` (does not carry 
     `restrict_planar_of_euler_four`, with the `[u]` branch at outer degree 2.
   - `hfold`: `Systolic.mirrorFold X : Systolic.MirrorFoldStatement X`, fff-periodic.
 
+## W1 pocket geometry (2026-09-13 ~04:05)
+The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-euler owns all of `PhiPrimeCountInput`
+(C1–C6). kh-ejz does pocket geometry for W1 (a).
+
+1. **Carrier.** By the roster reconciliation at ~04:05, dgo-analytic's `PocketRegion` (Estimating/OsinPocketRegion.lean,
+   497542415) is the carrier. dgo-analytic states the piece Props in `OsinPocketPieces.lean`, which is not on main yet.
+   Who discharges what:
+   - kh-ejz: region-side data, for a ≠ b and for the loop;
+   - kh-torsion: collar insertion;
+   - hull-respell: the pinched pocket;
+   - dgo-analytic: assembly and `DescentInput`.
+2. **Targets** (under the collar ruling).
+   - **a ≠ b.**
+     - an outside face set containing the outer face, with IsDiscRegion on both sides;
+     - `invDarts Δ' P.outer.cycle = s₁ ++ t₁ ++ s₂ ++ t₂`;
+     - |s₁|, |s₂| ≤ ε, with no quasi-geodesic requirement on the sides;
+     - t₁ and t₂ (λ,c)-quasi-geodesic;
+     - a kept relator cell.
+   - **Loop** (`LoopCutInput`): target = some source; the walk is s t, with s a collared side and t a cell arc. It needs
+     IsDiscRegion, FollowsBoundary, a kept cell, and the `CyclicArc` datum on each cell part.
+   - **go-lemma42 asks for** FollowsBoundary for the outside BoundaryCycle, and each cell part in the form
+     tₖ = invDarts Δ' A.darts with A : CyclicArc (cellDarts Δ' i).
+3. **Landed:** `GGT/VanKampen/Estimating/OsinPocketCellArcs` at 34342893f, after green probe 0913-044529-42148. The normal
+   re-land found identical bytes. The module is queued for wiring. Everything is in namespace `Embedded.CyclicArc` and
+   checked with `#audit_axioms`.
+   ```lean
+   theorem invDarts_darts (arc : CyclicArc cycle) : invDarts Delta arc.darts = arc.reverseDarts
+   theorem dartWord_darts_cellDarts (arc : CyclicArc (cellDarts Delta i)) :
+       dartWord Delta arc.darts = ((cell Delta i).word.rotate arc.start.1).take arc.length
+   theorem dartWord_invDarts_darts_cellDarts (arc : CyclicArc (cellDarts Delta i)) :
+       dartWord Delta (invDarts Delta arc.darts) =
+         RelWord.revInv (((cell Delta i).word.rotate arc.start.1).take arc.length)
+   theorem isLambdaCQuasiGeodesicWord_darts_cellDarts (hcond : OsinCCondition D W eps mu lambda c rho)
+       (arc : CyclicArc (cellDarts Delta i)) : IsLambdaCQuasiGeodesicWord D lambda c (dartWord Delta arc.darts)
+   theorem isLambdaCQuasiGeodesicWord_invDarts_darts_cellDarts (hcond : OsinCCondition D W eps mu lambda c rho)
+       (arc : CyclicArc (cellDarts Delta i)) :
+       IsLambdaCQuasiGeodesicWord D lambda c (dartWord Delta (invDarts Delta arc.darts))
+   ```
+   - Once a cell part is `invDarts Δ' A.darts`, hquasi for t₁ and t₂ follows from these.
+   - `OsinCCondition` is available to the producer: `OsinMultipleEdgeCutSectionStatement` and
+     `OsinLoopCutSectionStatement` (OsinAppendixGreendlingerParts.lean:46-70) quantify
+     `∀ W, OsinCCondition … → MultipleEdgeCutInput …`, and likewise for `LoopCutInput`. So there is no gap.
+4. **Residual (mine): the region-side geometry.**
+   - Starting point: two distinct regions a ≠ b in S.family join cells i ≠ j. They are face-disjoint, and their arcs
+     on a cell are disjoint by `RegionCandidate.cellArcDarts_disjoint`.
+   - To produce: the pocket face set, and the split of its boundary into sides and cell arcs.
+   - Its exact form waits on OsinPocketPieces. Two open questions: is the split the uncollared s₁ t₁ s₂ t₂ or the
+     collared g₁ t₁ g₂ t₂, and is the kept cell part of my discharge?
+   - I asked dgo-analytic; no reply yet.
+5. **Next.**
+   - State and prove the region-side data once OsinPocketPieces lands, then tell go-lemma42.
+   - When hull-euler's C6 Prop arrives, check it against this output.
+
 ## W1 assignment (2026-09-13 ~03:00)
 The lead's order: work on W1 hgreendlinger. hull-euler owns `PhiPrimeCountInput` alone, so take one separable part
 that hull-euler has not started. Land the statement first, then the proof.
@@ -120,7 +173,8 @@ that hull-euler has not started. Land the statement first, then the proof.
      - a pocket holding an R-cell is charged to a cell that is not an endpoint.
    - `NoMultipleEdges` covers only pairs of cells (`JoinsCells`), so (B) does not follow from the hypotheses.
    - With `t ≤ r + (n − endpoint cells)`, the count gives `|M| ≤ 3n + r − 3 ≤ 3(n + r − 1)`.
-   Waiting for the lead's ruling. Nothing is being built in hull-euler's files.
+   The lead's ruling: don't build (A) or (B), because hull-euler owns all of `PhiPrimeCountInput`. See "W1 pocket geometry"
+   above.
 6. **Text fix, landed 46f1c36a2** (green probe 0913-034435-10433), from sec2-sentences's stale-mention backlog. Three
    texts now say Theorem C takes `KotowskiOllivierStatement` as the hypothesis `hKO`:
    - the GHBLatticeRouteKazhdan docstring;
