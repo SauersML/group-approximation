@@ -71,6 +71,11 @@ extend to trace-preserving representations of `G`.
     non-hyperlinear is established (modulo review); the converse — that hyperlinearity of the wreath
     yields a `G`-model whose vertex restriction does not round — is not on main. So (H1) is
     un-reduced, not proven strictly as hard as the target.
+    **Update (lane `ex-q34-kt-double`, 2026-09-12).** The implication quoted as "not on main" is the
+    contrapositive of the established one, and it is now the established claim
+    `kt-hyperlinear-coset-wreath-forces-nonroundable-vertex`. It extracts one explicit non-roundable model
+    from any hyperlinear intermediate coset wreath or from the double. What stays open is a genuine
+    converse: that failure of (H1) at some model produces a hyperlinear wreath.
   - **Most concrete handle: the Laurent sibling.** theorem-e also has route
     `unit-type-rounding-via-laurent-vertex-rounding` (requires `laurent-vertex-rounds-for-every-model`).
     Lane `nh-laurent-commutant` (52efa2195) reduced its converse to a relative-(T) question: is the
@@ -93,3 +98,9 @@ extend to trace-preserving representations of `G`.
     Averaging over the quotient needs `G`-length `>= m^d log q / log(2|F_G|+1)`, so compressor transport does not
     supply the projection.
   - No equivalence with a known-hard statement was obtained. Artifact: `nh-h1-theorem-e-instance-2026-09-12.md`.
+- **Scope: the Fournier--Facio pair (2026-09-12, lane `ex-q34-kt-double`).** Read literally over every
+  infranormal Kazhdan pair, this claim contains the Fournier--Facio pair, where it is false at every
+  faithful model (`fournier-facio-vertex-rounding-fails-at-every-model`). The vertex contains a finitely
+  presented infinite simple group, which every genuine finite-dimensional representation kills. So the
+  general form implies that the Fournier--Facio group is not hyperlinear, and a hyperlinearity proof for
+  that group refutes the general form. The Theorem E instance is unaffected.
