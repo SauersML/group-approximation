@@ -29,6 +29,9 @@ in characteristic zero.
   uniformizers such that, if `M^e a` is integral over `B` and `u_j a ≤ exp N` for all `j`, then
   every coefficient of the minimal polynomial of `M^N a` over `L` is an integer polynomial of total
   degree at most `N n`, where `n = [K : L]`.
+* `exists_intPoly_eq_pow_mul_minpoly_coeff`: then so is `M^(N n)` times every coefficient of the
+  minimal polynomial of `a` itself, since the coefficient `c_i` for `M^N a` is `M^(N (m - i))` times
+  the one for `a`.
 -/
 
 namespace GroupApproximation
@@ -190,9 +193,53 @@ theorem exists_places_minpoly_coeff (d M : ℕ) (hM : 0 < M) (K : Type*) [Field 
           exp_le_exp.mpr (Nat.cast_le.mpr (Nat.mul_le_mul_left N
             ((Nat.sub_le _ _).trans (minpoly.natDegree_le a))))
 
+/-- **Scaled coefficients of `minpoly a` from those of `minpoly (M^N a)`.**  If every coefficient of
+the minimal polynomial of `M^N a` over `L = Frac ℤ[t_1, …, t_d]` is an integer polynomial of total
+degree at most `N n`, where `n = [K : L]`, then so is `M^(N n)` times every coefficient of the minimal
+polynomial of `a`. -/
+theorem exists_intPoly_eq_pow_mul_minpoly_coeff (d M N : ℕ) (hM : 0 < M) {K : Type*} [Field K]
+    [Algebra (FractionRing (MvPolynomial (Fin d) ℤ)) K]
+    [FiniteDimensional (FractionRing (MvPolynomial (Fin d) ℤ)) K] {n : ℕ}
+    (hn : Module.finrank (FractionRing (MvPolynomial (Fin d) ℤ)) K = n) (a : K)
+    (h : ∀ i, ∃ G : MvPolynomial (Fin d) ℤ, G.totalDegree ≤ N * n ∧
+      algebraMap (MvPolynomial (Fin d) ℤ) (FractionRing (MvPolynomial (Fin d) ℤ)) G =
+        (minpoly (FractionRing (MvPolynomial (Fin d) ℤ)) ((M : K) ^ N * a)).coeff i) (i : ℕ) :
+    ∃ G : MvPolynomial (Fin d) ℤ, G.totalDegree ≤ N * n ∧
+      algebraMap (MvPolynomial (Fin d) ℤ) (FractionRing (MvPolynomial (Fin d) ℤ)) G =
+        (M : FractionRing (MvPolynomial (Fin d) ℤ)) ^ (N * n) *
+          (minpoly (FractionRing (MvPolynomial (Fin d) ℤ)) a).coeff i := by
+  obtain ⟨G, hGdeg, hG⟩ := h i
+  have hM0 : (M : FractionRing (MvPolynomial (Fin d) ℤ)) ^ N ≠ 0 :=
+    pow_ne_zero N (Nat.cast_ne_zero.mpr hM.ne')
+  have hsmul : (M : K) ^ N * a = (M : FractionRing (MvPolynomial (Fin d) ℤ)) ^ N • a := by
+    rw [Algebra.smul_def, map_pow, map_natCast]
+  have hcoeff : (minpoly (FractionRing (MvPolynomial (Fin d) ℤ)) ((M : K) ^ N * a)).coeff i =
+      (M : FractionRing (MvPolynomial (Fin d) ℤ)) ^
+          (N * ((minpoly (FractionRing (MvPolynomial (Fin d) ℤ)) a).natDegree - i)) *
+        (minpoly (FractionRing (MvPolynomial (Fin d) ℤ)) a).coeff i := by
+    rw [hsmul, IsIntegrallyClosed.minpoly_smul hM0 (Algebra.IsIntegral.isIntegral a),
+      Polynomial.coeff_scaleRoots, pow_mul]
+    exact mul_comm _ _
+  have hle : (minpoly (FractionRing (MvPolynomial (Fin d) ℤ)) a).natDegree - i ≤ n :=
+    (Nat.sub_le _ _).trans ((minpoly.natDegree_le a).trans_eq hn)
+  refine ⟨(M : MvPolynomial (Fin d) ℤ) ^
+      (N * (n - ((minpoly (FractionRing (MvPolynomial (Fin d) ℤ)) a).natDegree - i))) * G, ?_, ?_⟩
+  · have hc : (M : MvPolynomial (Fin d) ℤ) ^
+          (N * (n - ((minpoly (FractionRing (MvPolynomial (Fin d) ℤ)) a).natDegree - i))) =
+        MvPolynomial.C ((((M ^
+          (N * (n - ((minpoly (FractionRing (MvPolynomial (Fin d) ℤ)) a).natDegree - i)))) : ℕ) :
+            ℤ)) := by
+      rw [map_natCast, Nat.cast_pow]
+    refine (MvPolynomial.totalDegree_mul _ _).trans ?_
+    rw [hc, MvPolynomial.totalDegree_C, zero_add]
+    exact hGdeg
+  · rw [map_mul, map_pow, map_natCast, hG, hcoeff, ← mul_assoc, ← pow_add, ← mul_add,
+      Nat.sub_add_cancel hle]
+
 end GHW
 end GroupApproximation
 
 #audit_axioms GroupApproximation.GHW.exists_places_minpoly_coeff_le
 #audit_axioms GroupApproximation.GHW.exists_places_minpoly_coeff_le_family
 #audit_axioms GroupApproximation.GHW.exists_places_minpoly_coeff
+#audit_axioms GroupApproximation.GHW.exists_intPoly_eq_pow_mul_minpoly_coeff
