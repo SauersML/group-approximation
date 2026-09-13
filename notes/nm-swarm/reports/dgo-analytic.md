@@ -169,6 +169,12 @@ R2 with kh-ejz's `IsNoncrossingClosedWalk` (26a7858f2) as `Simple` (~13:20, sent
 * Evidence for R1 (kh-torsion asked to confirm):
   * `GeodesicCollar.StripStatement` (a89b55a0d, `SurgeryGeodesicCollarAssembly.lean:190`) takes `IsSimpleClosedWalk (s ++ rest)`.
   * From a pocket region that walk comes only from `PocketRegion.isSimpleClosedWalk_invDarts_outer P hin hout`, which uses inner FollowsBoundary.
+* hull-euler (~13:55, checked by hand here): the Euler lemma is false without outer following.
+  * Counterexample: a three-petal rose, darts 0..5, `alpha = (0 1)(2 3)(4 5)`, `sigma` 1→0→3→2→5→4→1, χ = 2.
+  * `w = [0,2,4]` satisfies `IsNoncrossingClosedWalk` (`turn_mem` at m = 1), but its three passages cross pairwise at the vertex, and the inner reclosed map has χ = 0.
+  * `turn_mem` rules out crossing only at vertices passed twice.
+  * The lemma therefore takes `(hw.outerCycle hM).FollowsBoundary`, which R2's `Simple` carries.
+  * Route: χ(N_in) + χ(N_out) = χ(M) + 2, and the outer side preserves χ.
 
 ### Truth caveats sent to dgo-geometric for model tests
 
