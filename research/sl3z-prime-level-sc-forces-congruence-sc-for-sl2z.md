@@ -32,4 +32,7 @@ convergence for `SL_3(Z)`.  At squarefree levels the analogous upper bound holds
 for the new-at-`C_i` parts `(x)_(p in C_i) l^2_0(SL_2(F_p))`, where `C_i` is the
 set of cuspidal prime factors.
 
+The forced statement is recorded as the open claim
+`sl2z-prime-congruence-quotients-converge-strongly`, with numerics.
+
 Proof: `sl3z-prime-level-sc-forces-congruence-sc-for-sl2z-proof`.
