@@ -1,6 +1,7 @@
 # Infinite simple Kazhdan groups and hyperlinearity: inventory, and an independent check of the subshift answer to Pestov 9.1
 
-Lane `isk-hyperlinear-kazhdan`, 2026-09-12. Read at main `3c481f496`.
+Lane `isk-hyperlinear-kazhdan`, 2026-09-12. Read at main `3c481f496`, and cairn rechecked at
+`f2d0166f7`.
 
 ## 0. Outcome
 
@@ -16,10 +17,11 @@ Lane `isk-hyperlinear-kazhdan`, 2026-09-12. Read at main `3c481f496`.
     unitally in a matrix ultraproduct.
   - The simplicity proof (§4) is a separate write-up of root detection by tower localization.
   - Both agree with Part 1 §1–§4 and with the review. No gap was found in Part 1 §1–§4.
-- **Graph status: the root is still OPEN.** The route
+- **Graph status: the root is ESTABLISHED at f2d0166f7.** The route
   `simple-kazhdan-hyperlinear-from-subshift-elementary-group` requires
-  `simple-kazhdan-lef-group-from-minimal-subshift`. That claim has no proof route yet; this is the
-  "combining route" the review says may now be landed. Section 7 records `cairn why`.
+  `simple-kazhdan-lef-group-from-minimal-subshift`. At 3c481f496 that claim had no proof route. Lane
+  `ex-kazhdan-simple-hyperlinear` landed the combining route at 8b65f0932. Section 7 records
+  `cairn why` before and after that commit.
 - **The fp root is untouched.** `hyperlinear-fp-infinite-simple-group` cannot be answered by `S`,
   or through any LEF mechanism (§6).
 
@@ -244,9 +246,9 @@ exactly multiplicative at the ring level.
 
 - **Root `infinite-simple-kazhdan-hyperlinear-group`.** Answered by `S`. The review passed at
   0efeac410, and this lane's derivation agrees. Lane `ex-kazhdan-simple-hyperlinear` landed the
-  combining route `simple-kazhdan-lef-group-from-minimal-subshift-proof` at 8b65f0932. That route
-  should establish the claim, and through `simple-kazhdan-hyperlinear-from-subshift-elementary-group`
-  the root (§7).
+  combining route `simple-kazhdan-lef-group-from-minimal-subshift-proof` at 8b65f0932. Cairn at
+  f2d0166f7 reports the claim ESTABLISHED, and through
+  `simple-kazhdan-hyperlinear-from-subshift-elementary-group` the root ESTABLISHED (§7).
 - **Fp root `hyperlinear-fp-infinite-simple-group`.** `S` is not finitely presented, since f.p. plus
   LEF gives residual finiteness and infinite simple groups are not residually finite. The same
   argument rules out every route that makes a finitely presented group a marked limit of finite
@@ -255,8 +257,8 @@ exactly multiplicative at the ring level.
   them.
 - **`simple-kazhdan-groups-have-full-mf-radical` (SKM1).** `S` is an infinite simple Kazhdan group
   that is operator MF, by `lef-implies-operator-mf`. 8b65f0932 adds
-  `refuted_by: [simple-kazhdan-lef-group-from-minimal-subshift]` to SKM1, so SKM1 becomes REFUTED
-  once the claim is established.
+  `refuted_by: [simple-kazhdan-lef-group-from-minimal-subshift]` to SKM1, and cairn at f2d0166f7
+  reports SKM1 REFUTED (§7).
 - **Hyperlinearity of `Q`.** OPEN, and outside every finite-ring mechanism by the Remark in §5.
 
 ## 7. Cairn status
@@ -292,5 +294,13 @@ against §3–§4:
 - The body of `simple-kazhdan-hyperlinear-from-subshift-elementary-group` still says "That claim is
   OPEN and under independent" review. That text is stale; the route's `requires:` is correct.
 
-**At main f2d0166f7, after 8b65f0932.** Pending: MSI job `cairn-b`. Its results go in the next
-commit.
+**At main f2d0166f7, after 8b65f0932.** MSI job `cairn-b` ran `check` (rc 0, 0 errors) and `why`.
+
+- `infinite-simple-kazhdan-hyperlinear-group` is ESTABLISHED via
+  `simple-kazhdan-hyperlinear-from-subshift-elementary-group`. That route rests on
+  `simple-kazhdan-lef-group-from-minimal-subshift`, which is ESTABLISHED via its `-proof` route. The
+  proof route in turn rests on simplicity modulo the centre, the simple LEF ring and
+  Ershov–Jaikin-Zapirain.
+- `hyperlinear-fp-infinite-simple-group` is still OPEN, with the same two routes as at 3c481f496.
+- `simple-kazhdan-groups-have-full-mf-radical` is REFUTED, "proved false by established claim
+  simple-kazhdan-lef-group-from-minimal-subshift".
