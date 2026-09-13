@@ -53,6 +53,8 @@ hyperlinear half is open. The trivial group is not infinite.
     starting from LEF and amenable groups never produce a group containing `S`. Direct,
     wreath and graph products are iterated extensions and amalgams, so they are covered.
 - **Amenable orbit full groups.** Dead: `kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf`.
+  For IRS-rigid candidates the Haagerup extension is dead too:
+  `irs-rigid-kazhdan-groups-avoid-haagerup-orbit-full-groups`.
 - **Stability shortcut.** Dead by hypothesis. An infinite sofic Kazhdan group is not
   permutation stable (Becker--Lubotzky), and an infinite hyperlinear one is not HS-stable
   (see `infinite-simple-kazhdan-hyperlinear-group`, Attempts).
@@ -67,19 +69,21 @@ hyperlinear half is open. The trivial group is not infinite.
     whose p.m.p. actions are sofic.
   - None is recorded: `sl3z-admits-nonsofic-action` is open.
 - **Kac--Moody lattices (lane ex-fp-kazhdan-kac-moody, 2026-09-13).** Live.
-  - *Sources, read from the PDFs this date.* For the simply connected type-`(2,4,6)`
-    group over `F_q`, the bound `q > 1764^3` of `simple-kazhdan-kac-moody-lattices-exist`
-    drops to `q >= 4`:
-    - Caprace--Thom arXiv:2606.27993v2, Proposition 4.1(1): type `(2,4,6)` with
-      `q_min >= 3` gives (T) for the building completions.
-    - Their Corollary 5.3: every invariant random subgroup of `Lambda/Z` is a convex
-      combination of `delta_e` and `delta_(Lambda/Z)`.
-    - Caprace--Remy arXiv:math/0607664v2, Theorem 20: `[Lambda,Lambda]/Z` is simple, and
-      `Lambda = [Lambda,Lambda]` for `q > 3`.
-    - Proof of their Corollary 21: finite presentation from Abramenko--Muhlherr 1997 once
-      `q_min > 2`.
-  - The approximate problem is a gauge problem over the Curtis--Tits triangle of finite
-    groups `SL_2(q)^2`, `Sp_4(q)`, `G_2(q)` (to be landed as a finite gate).
+  - *Explicit instance.* `km-246-lattice-fp-simple-kazhdan-irs-rigid-for-q-ge-4`: for the
+    simply connected type-`(2,4,6)` group over `F_q`, the recorded bound `q > 1764^3` drops to
+    `q >= 4` (Caprace--Thom Proposition 4.1(1) and Corollary 5.3; Caprace--Remy Theorem 20 and
+    Corollary 21, read at source). These lattices are also IRS-rigid.
+  - *Gate.* `km-246-lattice-is-sofic`, route `hyperlinear-fp-kazhdan-via-km-246-lattice`. By
+    `almost-actions-of-irs-rigid-simple-groups-are-free-or-trivial`, every almost action that is
+    not asymptotically trivial is already a sofic approximation with free finite charts. In the
+    recorded Levi form the charts are `T.SL_2(q)^2`, `T.Sp_4(q)`, `T.G_2(q)`.
+  - *Barriers landed by this lane.*
+    - `irs-rigid-kazhdan-groups-avoid-haagerup-orbit-full-groups`: no realization by bounded
+      piecewise translations of a free action of a Haagerup group.
+    - `compression-triples-avoid-proper-cat0-groups`: the compression certificate is vacuous in
+      proper CAT(0) polyhedral groups whose finitely generated torsion subgroups are finite. This
+      extends the `cd = 2` vacuity below to these lattices, which have infinite virtual
+      cohomological dimension, conditional on a torsion hypothesis recorded there.
 - **Titz Mite--Witzel kernels (lane ex-fp-kazhdan-titz-witzel, 2026-09-13).** Live, on two
   routes.
   - *Sofic form:* `hyperlinear-fp-kazhdan-via-titz-witzel-kernel`, gated by the
