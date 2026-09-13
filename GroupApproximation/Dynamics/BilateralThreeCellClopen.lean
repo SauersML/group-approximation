@@ -1,5 +1,6 @@
 import GroupApproximation.Algebra.BilateralThreeCellMatrices
 import GroupApproximation.Dynamics.ClopenDefectPair
+import GroupApproximation.Dynamics.ClopenCrossedProductComap
 
 /-!
 # The bilateral cell of a compressed clopen set in `R_X`
@@ -15,7 +16,9 @@ The abstract cell of `GroupApproximation.Algebra.BilateralThreeCellLevels` is re
 
 * `ClopenCrossedProduct.bilateralCell`: the `Cell` of a compressed clopen `P`;
 * `bilateralCell_d`: its defect is `d = 1_{P∖T(P)}` (`defectD`);
-* `coeff_injective` and `defectD_ne_zero`: `d ≠ 0` when `D = P∖T(P)` is nonempty.
+* `defectD_ne_zero`: `d ≠ 0` when `D = P∖T(P)` is nonempty, through the injectivity of the
+  coefficient embedding (`ClopenCrossedProduct.coeff_injective`,
+  `Dynamics/ClopenCrossedProductComap.lean`).
 
 So every identity of `BilateralThreeCellMatrices` (the display tex 1579–1581, `z` central in `B`,
 tex 1591–1592) holds verbatim in `GL₃(R_X)` for this cell.
@@ -53,13 +56,6 @@ theorem bilateralCell_d (hP : IsClopen P) (hTP : T '' P ⊆ P) :
     (bilateralCell T k hP hTP).d = defectD T k hP := by
   rw [Cell.d, Cell.lvl_one, defectD_eq_sub T k hP hTP]
   exact congrArg (fun x => defectP T k hP - x) (unit_mul_defectP_mul_inv T k hP)
-
-/-- The coefficient embedding `LC(X, k) → R_X` is injective. -/
-theorem coeff_injective : Function.Injective (coeff T k) := by
-  intro f g h
-  rw [coeff_apply, coeff_apply, Pestov91.CrossedProduct.C_apply,
-    Pestov91.CrossedProduct.C_apply] at h
-  exact (ClopenCoeff.of T k).injective (SkewMonoidAlgebra.single_injective _ h)
 
 /-- "nonempty $D=P\setminus T(P)$" (tex 1550–1551) makes the defect nonzero. -/
 theorem defectD_ne_zero [Nontrivial k] (hP : IsClopen P) {x : X} (hx : x ∈ P \ T '' P) :
