@@ -217,5 +217,13 @@ Defect 4 stays `formalized`, with the new carrier.
   - The model test above went to hull-count94, together with the class-word spelling that
     `Covers` needs.
   - The un-pinch surgery is not on main.
-  - This lane waits for hull-count94's draft patched Prop, and re-runs both tests on it before it
-    lands.
+  - hull-count94 adopted the second spelling. Its draft `OsinLemma94PolygonClasses` has
+    `ClassBudget` over polygons with an (A1) class and at least two classes, and `ClassCovers`
+    with `L = 24ε + 2(K + 24)⌈(c + 2)/λ⌉`.
+  - The sub-piece hull-count94 gave this lane, the short-side count `≤ 2 ε |M|`, was already on
+    main: sec5-sentences landed `OsinLemma94RealizedPolygons.sum_card_shortSides_le` at
+    `4b6dd3cd8`. This lane wrote no duplicate.
+  - This lane waits for the `PolygonClasses` names, and re-runs both tests on the draft before it
+    lands. It also checks the wrap pair: `Maximal` skips the pair `(sideCount − 1, 0)`, so a class
+    can split at the base, at most one extra class per polygon. Either the classes are taken
+    cyclically, or `L` gets one class per polygon.
