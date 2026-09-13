@@ -13,10 +13,13 @@ braided Thompson group. This is the negative answer to Zaremsky Problem 2.9
 ## Attempts
 
 - `k = 1` is impossible: `bV` is perfect (`braided-thompson-group-bv-is-perfect`).
-- The first open case is `k = 2`. From the extension `K → bV → V` and
-  `H_*(V) = 0`: `H_2(bV) = 0` iff `H_1(V; H_1(K)) = 0` and `H_2(K)_V` is
-  killed by the differential from `H_2(V; H_1(K))`. A nonzero class would have
-  to come from one of these two terms.
+- A nonzero class must be torsion, because `bV` is rationally acyclic
+  (`braided-thompson-group-bv-is-rationally-acyclic`, unreviewed).
+- Where torsion could come from: nonzero `H_p(V; C(C^j, Z))` for some `j ≥ 1`,
+  i.e. failure of `cantor-power-function-modules-are-v-acyclic`, most plausibly
+  2-torsion. A counterexample would have to exhibit it, for instance through a
+  nonvanishing differential in the Lyndon–Hochschild–Serre spectral sequence of
+  the acyclic labelled Thompson group `C(C, Z^j) ⋊ V`.
 - Bounded cohomology gives no obstruction to acyclicity, so the quasimorphisms
   of Fournier-Facio–Lodha–Zaremsky (arXiv:2204.05272) do not give a nonzero
-  class here.
+  class.

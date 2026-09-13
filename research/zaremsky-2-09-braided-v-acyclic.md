@@ -34,30 +34,30 @@ the list itself; the arXiv listings of M. Zaremsky and of X. Wu; Palmer–Wu,
 arXiv:2510.16879 (labelled Thompson groups and twisted Brin–Thompson groups are
 acyclic; braided groups are not treated); Skipper–Wu, arXiv:2106.08751
 (homological stability for ribbon Higman–Thompson groups, no stable
-computation). General web searches were exhausted before a full sweep, so the
-check is bounded.
+computation). The status lane z-status-b also found nothing. General web
+searches were exhausted before a full sweep, so the check is bounded.
 
 **Context.**
 
-- Thompson's group `V` is acyclic (Szymik–Wahl, "The homology of the
-  Higman–Thompson groups", Invent. Math. 216 (2019), arXiv:1411.5035).
+- `V` is acyclic (Szymik–Wahl, arXiv:1411.5035; `thompson-v-is-integrally-acyclic`).
 - `bV` is of type `F_∞` (Bux–Fluch–Marschler–Witzel–Zaremsky, arXiv:1210.2931).
-- `bV` has an infinite-dimensional space of homogeneous quasimorphisms
-  (Fournier-Facio–Lodha–Zaremsky, arXiv:2204.05272). That is bounded cohomology
-  and does not obstruct acyclicity: for an acyclic group every such class is
-  exact.
+- The quasimorphisms of `bV` (Fournier-Facio–Lodha–Zaremsky, arXiv:2204.05272)
+  are bounded cohomology and do not obstruct acyclicity.
 
 ## Attempts
 
-- 2026-09-13, degree one: `bV` is perfect, via the extension `K → bV → V` with
-  `K` the colimit of pure braid groups under cabling (see
-  `braided-thompson-group-bv-is-perfect`).
-- Szymik–Wahl route (open): homological stability for the braided
-  Higman–Thompson family, plus the `E_2` group completion of the braided monoidal
-  groupoid in which `bV` is an automorphism group. A heuristic coequalizer
-  computation of that group completion is contractible, which predicts "yes".
-  Both inputs are unproved here.
-- Lyndon–Hochschild–Serre route (open): `E²_{p,q} = H_p(V; H_q(K))`, with
-  `H_1(K) ≅ C_c(Y, Z)`, where `Y` is the space of unordered pairs of distinct
-  points of the Cantor set. Since `V` is acyclic, "yes" follows if every
-  `H_q(K)` is `V`-acyclic.
+- 2026-09-13, degree one: `bV` is perfect (`braided-thompson-group-bv-is-perfect`).
+- 2026-09-13, rational case: `H_n(bV; Q) = 0` for all `n ≥ 1`
+  (`braided-thompson-group-bv-is-rationally-acyclic`, unreviewed). The kernel of
+  `bV → V` has homology built from configuration modules of the Cantor set, and
+  Palmer–Wu's acyclic labelled Thompson groups make those modules V-acyclic over
+  `Q`. So any nonzero integral homology of `bV` is torsion.
+- Integral reduction: "yes" follows from the single open claim
+  `cantor-power-function-modules-are-v-acyclic`, that `C(C^j, Z)` is V-acyclic
+  for all `j ≥ 1`, through the route
+  `braided-thompson-group-bv-is-acyclic-from-cantor-modules`. The crux is
+  2-torsion in the Lyndon–Hochschild–Serre spectral sequence of `C(C, Z^j) ⋊ V`.
+- Szymik–Wahl route (open, not needed if the reduction closes): homological
+  stability for the braided Higman–Thompson family plus the `E_2` group
+  completion of the braided monoidal groupoid of `bV`. A heuristic coequalizer
+  model of that completion is contractible, which also predicts "yes".

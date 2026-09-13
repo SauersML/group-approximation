@@ -14,15 +14,16 @@ For the Brin–Dehornoy braided Thompson group `bV`, `H_k(bV; Z) = 0` for every
 ## Attempts
 
 - Degree one holds: `braided-thompson-group-bv-is-perfect`.
-- Szymik–Wahl route: prove homological stability for the stabilization maps
-  `bV_{2,r} → bV_{2,r+1}` of the braided Higman–Thompson family in all degrees,
-  identify `H_*(bV)` with the homology of the base component of the `E_2` group
-  completion, and show that group completion is contractible. The heuristic
-  model is the reduced homotopy coequalizer of the degree-one and degree-two
-  self-maps of `S^2`, which is contractible. Not yet a proof: the braided
-  monoidal groupoid need not be a homotopy pushout of free `E_2`-algebras.
-- Extension route: `1 → K → bV → V → 1` with `V` acyclic (Szymik–Wahl). It
-  suffices that `H_p(V; H_q(K)) = 0` for all `p ≥ 0`, `q ≥ 1`. The case
-  `p = 0`, `q = 1` is done inside the perfectness proof. The next case is
-  `H_1(V; C_c(Y, Z))`, with `Y` the unordered configuration space of two points
-  of the Cantor set.
+- Rationally it holds in every degree: `braided-thompson-group-bv-is-rationally-acyclic`
+  (unreviewed).
+- Reduction route `braided-thompson-group-bv-is-acyclic-from-cantor-modules`: the
+  integral statement follows from `cantor-power-function-modules-are-v-acyclic`
+  (`C(C^j, Z)` is V-acyclic for all `j ≥ 1`) and Szymik–Wahl. Every other step of
+  the rational proof is integral.
+- Szymik–Wahl route (open): homological stability for the braided
+  Higman–Thompson family in all degrees, plus contractibility of the `E_2` group
+  completion of the braided monoidal groupoid of `bV`. Heuristic model: the
+  reduced homotopy coequalizer of the degree-1 and degree-2 self-maps of `S^2`,
+  which is contractible. The same heuristic in the `E_1` setting would wrongly
+  predict that `F` is acyclic (`H_1(F) = Z^2`), so it needs stability to mean
+  anything.
