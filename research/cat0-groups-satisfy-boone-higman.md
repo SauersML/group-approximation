@@ -54,15 +54,18 @@ space embeds in a finitely presented simple group.
      below.
    - **The frontier node** is `exotic-a2-lattices-satisfy-boone-higman`.
 2. **Products of three or more trees.**
-   - **With a faithful factor.** When the action on one factor is faithful, BLIW
-     Theorem B applies once the edge stabilizers are finitely presented. They are
-     cocompact lattices in products of the remaining trees, hence CAT(0) groups,
-     and `asymptotically-cat0-groups-have-contractible-rips` gives them a
-     contractible Rips complex. The step from there to finite presentation isn't
-     written on main.
-   - **Without a faithful factor.** BLIW Theorem C needs a faithful group in
-     `BS_G` for `G` a vertex stabilizer, and that forces `G` to be residually
-     finite.
+   - **With a faithful factor, or separating factor images.** *Established*
+     (2026-09-13) as `product-of-trees-lattices-with-faithful-factor-satisfy-pbh`.
+     - **Finite presentation.** The edge stabilizers are finitely presented by a
+       Bass--Serre induction on the number of factors.
+     - **Actor.** BLIW's rigid permutation group is a type (A) actor
+       (`faithful-finite-index-graphs-of-groups-have-type-a-overgroups`).
+     - **Also covered.** Lattices whose factor kernels meet trivially over a set
+       of factors with finitely presented image edge stabilizers.
+   - **Without such factors.** Open as
+     `product-of-trees-lattices-satisfy-permutational-boone-higman`. BLIW
+     Theorem C needs a faithful group in `BS_G` for `G` a vertex stabilizer,
+     and that forces `G` to be residually finite.
 3. **Cubulated groups that are not virtually special** and don't split as
    products of trees. Hyperplane orbits give tree actions only when the
    translates are pairwise disjoint, and the dual tree is locally finite only
