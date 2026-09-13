@@ -22,6 +22,7 @@ the Euler count `|M| ≤ 3(n + r − 1)` of Osin's `Φ'_M` (arXiv:math/0411039v3
 | `Estimating/OsinAppendixEulerEmptyTwoGon` | `EmptyTwoGonInput`, the piece Prop of C6 | green 0913-061850-77139 |
 | `Estimating/OsinAppendixEulerExteriorTwoGon` | `phiO_alpha`, `sideCellO_facePerm_facePerm`, `exterior_of_isTwoGon` (C3) | green 0913-065054-20285 |
 | `Estimating/OsinAppendixEulerSmallFaces` | C6′ `TwoGonHoldsInput`, `faceOf_eq_of_faceClassO`, `phiPrimeCountInput_of_smallFaces` from C4, C5, C6′ | green 0913-093143-91859 |
+| `Estimating/OsinAppendixEulerSection` | `OsinCornerTwoGonSectionStatement`, `OsinTwoGonHoldsSectionStatement`, `osinPhiPrimeCountSection_of_pieces` | green 0913-125857-40608 |
 
 The lane consumes three peer modules:
 
@@ -31,9 +32,12 @@ The lane consumes three peer modules:
 - hs-vanishes' `Estimating/OsinAppendixEulerExteriorCellFaces` (a6a2cadda): C5 and its proof
   `cellFaceCountInput`.
 
-On origin/main the root imports Subdivided, RegionFaces, Phi, PhiCount, PhiBound and Hereditary,
-and kh-ejz's `Estimating/OsinAppendixEulerMultigraph`. Count, Exterior, ExteriorCount,
-EmptyTwoGon, ExteriorTwoGon and SmallFaces are not wired.
+On origin/main (root 141bea9e6) the root imports Subdivided, RegionFaces, Phi, PhiCount, PhiBound,
+Hereditary, EmptyTwoGon, ExteriorTwoGon and SmallFaces. It also imports the peer modules
+ExteriorLinked, CornerTwoGon and ExteriorCellFaces, and kh-ejz's
+`Estimating/OsinAppendixEulerMultigraph`. Count, Exterior, ExteriorCount and
+`CombMapRestrictionFaceClasses` are reachable through SmallFaces. `OsinAppendixEulerSection` is
+queued (wire-queue lines 626–627).
 
 ## Landings
 
@@ -55,8 +59,35 @@ EmptyTwoGon, ExteriorTwoGon and SmallFaces are not wired.
   and C5, with C6′ as `TwoGonHoldsInput`. Probe 0913-093143-91859 green with `BUILT` (base
   800254639), md5 of the green record equal to the landed file, ancestor of main. Backup
   `backup/hull-euler/OsinAppendixEulerSmallFaces.lean.0913b` holds the first form.
+- d1f3ebca1, 592caafdc, e84468da9: this report.
+- 6401c70a6f64c4ecde540afcb41da9f1242c6ef6: `OsinAppendixEulerSection`, the section-level
+  assembly with C4 and C6′ as named binders (lead's item, 09-13). Landed unverified, then probe
+  0913-125857-40608 green with `BUILT` (base 711c053f1). All 13 overlay md5s equal origin/main,
+  ancestor of main. Queued at wire-queue lines 626–627.
 
 ## Residual Props
+
+At section level (`Estimating/OsinAppendixEulerSection.lean`, 6401c70a6, green 0913-125857-40608):
+
+```lean
+theorem osinPhiPrimeCountSection_of_pieces
+    (hcorner : OsinCornerTwoGonSectionStatement.{u, w, v})
+    (htwogon : OsinTwoGonHoldsSectionStatement.{u, w, v}) :
+    OsinPhiPrimeCountSectionStatement.{u, w, v}
+```
+
+| Prop | Lane | State |
+|---|---|---|
+| `OsinCornerTwoGonSectionStatement` (C4 uniformly) | leavitt-units | stated, told the exact form 09-13 |
+| `OsinTwoGonHoldsSectionStatement` (C6′ uniformly) | debt-conditional | stated, told the exact form 09-13 |
+
+Both binders use the quantifier prefix of `OsinPhiPrimeCountSectionStatement`
+(`Estimating/OsinAppendixGreendlingerPocketParts.lean:43`). They conclude
+`CornerTwoGonInput D lambda c eps W` and `TwoGonHoldsInput D lambda c eps W`. Inside,
+`phiPrimeCountInput_of_smallFaces` takes `hcell := cellFaceCountInput D eps W`. `ε₀` and `ρ₀` are
+the maxima of the two thresholds. A producer module must import SmallFaces or
+`OsinAppendixEulerSection` and must not be imported by SmallFaces. nm-endpoints fills `hcount` of
+`relativeGreendlingerQuasiGeodesicLeastArea_of_pocketParts` with this theorem.
 
 `phiPrimeCountInput_of_smallFaces` (`Estimating/OsinAppendixEulerSmallFaces.lean`):
 
@@ -176,16 +207,24 @@ fff-periodic and nm-endpoints have been told.
 - **C6′.** `TwoGonHoldsInput`, stated here in the vocabulary of C4 and C5. debt-conditional
   proves it.
 - **C6.** `EmptyTwoGonInput`, proved by fff-periodic.
-- **Assembly.** `phiPrimeCountInput_of_smallFaces`, then `OsinPhiPrimeCountSectionStatement`.
+- **Assembly.** `phiPrimeCountInput_of_smallFaces` (4beca2743). At section level,
+  `osinPhiPrimeCountSection_of_pieces` (6401c70a6) proves `OsinPhiPrimeCountSectionStatement` from
+  `OsinCornerTwoGonSectionStatement` and `OsinTwoGonHoldsSectionStatement`.
 
 ## Census
 
 No rows yet. The rows wait for the closure of `PhiPrimeCountInput`, which carries the Euler count
-inside the proof of `thm:hull` (tex 1636, through Osin's Lemma 9.7(a)).
+inside the proof of `thm:hull` (tex 1636, through Osin's Lemma 9.7(a)). The section assembly
+6401c70a6 is conditional on two named binders and adds no row.
 
 ## Next
 
-1. When C4 and C6′ are proved, close `PhiPrimeCountInput` through
-   `phiPrimeCountInput_of_smallFaces` with `hcell := cellFaceCountInput D eps W`, and put
-   `#audit_closed_axioms` on the endpoint.
-2. Then `OsinPhiPrimeCountSectionStatement`, and the census rows.
+1. When leavitt-units lands a producer of `OsinCornerTwoGonSectionStatement` and debt-conditional
+   lands one of `OsinTwoGonHoldsSectionStatement`, verify each landing:
+   - ancestor of origin/main;
+   - md5 of the green record equal to the landed file;
+   - statement unchanged;
+   - no `sorry`, `axiom` or `native_decide`.
+2. Then write the closure `osinPhiPrimeCountSection := osinPhiPrimeCountSection_of_pieces hK hT`
+   in a module importing both producers, with `#audit_closed_axioms`, probe and land it.
+3. Then the census rows.
