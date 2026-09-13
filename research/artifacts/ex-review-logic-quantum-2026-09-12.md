@@ -48,7 +48,12 @@ The sweep criteria are those of the sibling reviews:
 |---|---|---|---|
 | 1 | `residual-finiteness-of-finite-presentations-is-pi2-complete`, `lef-of-finite-presentations-is-pi2-complete` and their five supporting nodes | complexity-sofic | **GAP, repaired and corrected forward (part 1).**  The theorem is true in my re-derivation.  The Lemma A input slip (`e_tau(c)`) was found by ex-verify-groups (part 3 §3.2) and fixed by the lane in `ec53d79731`.  **New here:** the import clauses "equal in `G(M)` iff equal in `S(M)`" and `T ≅ T_1` fail for zero elements under KMS v5's displayed relations G1--G8.  Lemma A Step 2 and Lemma B B4 use them, and ex-verify-groups §3.2 took them without re-reading.  Repair: the stop relations `x_(q_0 w) = 1`, as the new claim `kms-group-with-stop-relations-simulates-all-words` |
 
+| 2 | the quantum symmetry rung: `qc-qa-graph-gap-gives-non-ce-quantum-automorphism-group`, `lcs-tracial-nonru-gap-gives-qc-qa-cfi-graph-gap`, `closure-safe-support-is-exactly-the-colored-iso-rung`, `colored-cfi-rung-is-the-solution-group-case` | nh-mipstar | **PASS.**  Citations checked at source (BCEHPSW, Roberson--Schmidt).  One import not re-read: synchronous algebra = BCS algebra (P1).  The target roots stay OPEN |
+| 2 | `unique-games-hard-at-completeness-one-half`, `two-to-two-games-theorem`, `galois-unique-game-value-is-transversal-expansion`, `elementary-abelian-galois-games-round-with-linear-loss`, `galois-games-round-through-free-subgroups`, `free-subgroup-rounding-fails-for-non-normal-fibres` | ugc, ugc-rounding-pgroups | **PASS.**  One wording note on `C_2`.  The SoS claim is OPEN, not established |
+
 ## Part files
 
 - `research/artifacts/ex-review-logic-quantum-2026-09-12-part1.md`: §1, residual finiteness and
   LEF of finite presentations (ex-complexity-sofic, landings 076f1bec8c and 0f7c32377c).
+- `research/artifacts/ex-review-logic-quantum-2026-09-12-part2.md`: §2, the quantum symmetry rung
+  (ex-nh-mipstar) and Galois unique games (ex-ugc, ex-ugc-rounding-pgroups).
