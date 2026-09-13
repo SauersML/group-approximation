@@ -23,6 +23,9 @@ Lane `audit-sec3` audits tex 785–1620 of `non_mf_groups_exist.tex`: Section
   - `Audit/Sec3.lean`, regenerated from the census at origin/main `42d443298`, with the new
     carrier and the rows the jacobson and leavitt-units lanes have filled since.
   - The row corrections `metadata/nm-census-rows/audit-sec3.tsv`.
+- `494dc3249`: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean`,
+  probe GREEN (tag `0913-155026-81505`, BUILT, bytes identical to main), queued for wiring. See
+  "Configuration B labelled model" below.
 
 ## The rows in range
 
@@ -383,6 +386,54 @@ They are findings only; nothing was built.
      cell (A: `b | ext | a | Π`; B: `Π | K | O | K`), so no Input exists there.
      `OsinPocketLakeAbsorption` (`49feec035`) needs `Π` in the exterior piece, so a lake containing
      `Π` is the open case of `PocketPinchStepStatement`.
+
+## Configuration B labelled model (lead item, 2026-09-13 15:25)
+
+`GroupApproximation/GGT/VanKampen/Estimating/OsinPocketLakeLabelledModel.lean` formalizes
+configuration B from item 3 above. It landed at `494dc3249` after probe `0913-155026-81505`, whose
+record reads `# PROBE GREEN`, BUILT the module, and holds the landed bytes (md5 `341c9283`). It is
+queued for wiring and adds no census row.
+
+- `roseDiagram` is the rose `OsinPocketLakeModel.M` (darts `Fin 4`, alpha `![1,0,3,2]`, sigma
+  `![1,2,3,0]`, one vertex), labelled in `Perm (Fin 3)` by `![x⁻¹, x, y⁻¹, y]`. Its faces are:
+  - `K = [0,2]`, the relator cell `pocketCell` with word `x⁻¹ y⁻¹`;
+  - `Π = [1]`, the relator cell `petalCell` with word `x`;
+  - `O = [3]`, the exterior face.
+- `pinchedK : PocketFaceSet D 0 roseDiagram 0 1` has:
+  - faces `{K}`, source `Π` and kept `K`;
+  - sourceArc `[1]`, which reads backwards as `[0]`, and targetArc `[2]`;
+  - boundary cycle `[0,2]`.
+
+  `label_isLetter` and `pinchedK_closedWalk` are the hypotheses of `PocketPinchLabelledStatement`.
+  `pinchedK_not_simple` says the cycle is not simple.
+- `petalK` has faces `{Π}`, source `K` and kept `Π`. Its sourceArc is `[0]`, its sides and
+  targetArc are empty, and its cycle is `[1]`. `petalK_simple` holds.
+  `pinchedPocketPetal_conclusion` is the statement's conclusion at `pinchedK`, with
+  `X' = roseDiagram` and the identity O-equivalence. `petalFaces_not_subset` says `{Π} ⊄ {K}`.
+- The vertex split fails.
+  - `corner_zero`: the corner after `0` is `Π`, a relator cell.
+  - `corner_two`: the corner after `2` is the exterior face.
+  - `not_mem_faces_corner_iff`: these are the only darts whose corner is outside `{K}`.
+  - `isEmpty_input`: `IsEmpty (PinchSplit.Input roseDiagram)`, because every face is a relator
+    cell or the exterior.
+- The lake absorption does not apply.
+  - `boundaryEdge`: every dart is a boundary edge of `{K}`.
+  - `eq_outer_of_mem_component`: so the exterior piece is `{O}`.
+  - `source_not_mem_component`: `Π` is not in it, which is the failed hypothesis of
+    `OsinPocketLakeAbsorption`.
+  - `source_mem_absorbed`: `Π` lies in the absorbed lake.
+- `LakeRoseLabelledModel` / `lakeRoseLabelledModel` bundles these facts. The module runs
+  `#audit_closed_axioms` on `pinchedK_closedWalk`, `petalK_simple`,
+  `pinchedPocketPetal_conclusion`, `isEmpty_input` and `lakeRoseLabelledModel`, and
+  `#audit_axioms` on the rest. It certifies no printed sentence.
+- What it calibrates: at B, both routes' hypotheses fail, yet the statement holds there.
+  - The routes are `PinchSplit.Input` and `OsinPocketLakeAbsorption`.
+  - Its witness swaps source and kept, and its faces are not contained in `K`'s faces.
+  - So a proof that covers a lake containing `Π` needs a step other than those two routes. This
+    model does not show that no witness inside `{K}` exists in another O-equivalent diagram.
+- Infrastructure: `nmprobe.sh` (l.43) refuses any line of `lanes/<lane>.files` that is not a
+  `GroupApproximation/**/*.lean` path. The report line was removed from `lanes/audit-sec3.files`
+  (backup `backup/audit-sec3/audit-sec3.files.pre-rose`), and the report is landed without a probe.
 
 ## Open (owned by other lanes)
 
