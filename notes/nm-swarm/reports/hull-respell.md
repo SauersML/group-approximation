@@ -310,7 +310,7 @@ walk) and debt-conditional.
     - The new sides are the old ones with loops cut out, and the label binder bounds their norms by
       their lengths.
     - Then re-pair to the outer order at repeated vertices.
-  - Explosion (R1).
+  - Explosion (R1), superseded by the route by steps below.
     - Thicken with `FaceEdgeDoubling`, `MonogonDoubling` and outer spur thickening (hs-vanishes,
       `SurgeryOuterSpurThickening`, 36ff632cd).
     - Split at gap corners (E2), induct to `Unpinched`, then apply `simple_of_followsBoundary`.
@@ -331,6 +331,37 @@ walk) and debt-conditional.
   - The length bounds pass to the sublists. `wordNorm_dartWord_le_length`, from the label binder,
     bounds each side's norm by its length.
   - Not proved: that the new listing can be taken in walk order. This is part 3, and it is open.
+- **Route by steps along the walk's pairing** (proposed to the lead ~14:30, no ruling yet).
+  - `K.ClosedWalk` pairs the darts at a repeated vertex `v`: each `alpha d` turns to the next dart
+    `e` of the listing. `PinchSplit.Input` at darts `x`, `y` of `v` keeps darts, labels, relator
+    words and the exterior word, and needs the two merged faces to be G-faces off the exterior.
+  - Choose `x`, `y` so that every turn `alpha d ↦ e` at `v` stays on one side of the split. Then walk
+    order survives (E2 carries `K`), and the repeated visits drop.
+  - On an unpinched face set a pocket in walk order is simple (`simple_of_closedWalk_of_unpinched`),
+    with no `FollowsBoundary`. So the route gives `Simple` under R1, and the weaker `Simple` of R2.
+  - It reaches A and B once the corners at `v` are G-faces. In B the split merges a lake corner with
+    an outer corner, and in A it merges corners inside `K`, which needs a variant of E2.
+  - Needs:
+    - thickening, so that the corners at `v` are G-digons;
+    - E2 for a merge inside `K`;
+    - at a vertex passed three or more times with a crossing pairing, no single split separates the
+      turns, and re-pairing can move side darts between `s₁` and `s₂`. This case is not settled.
+  - Proposed: one named residual `PocketPinchStepStatement` in place of named A and B, model-tested
+    by dgo-geometric on the rose and the pinched two-gon.
+- **New module `Estimating/OsinPocketPinchStep`** (probe 0913-143717-61429 green, landed with this
+  report, unwired).
+  - `PocketFaceSet.repeatedVisits K`: the darts of the boundary cycle less the vertices they start
+    at.
+  - `PocketFaceSet.simple_of_closedWalk_of_unpinched hK hpinch : K.Simple`, from `cycle_nonempty`,
+    walk order, `unpinched_iff_nodup`, and `cycle_mem_iff` for `alpha_not_mem`.
+  - `PocketPinchStepStatement`: for letter labels, `K.ClosedWalk` and `¬Unpinched X.toCombMap
+    K.faces`, there are `X'`, `K'` with `Nonempty (OEquivalentDiscDiagram X X')`, letter labels on
+    `X'`, `K'.ClosedWalk` and `K'.repeatedVisits < K.repeatedVisits`.
+  - `pocketPinchLabelledStatement_of_step h : PocketPinchLabelledStatement`, by strong induction on
+    `repeatedVisits`, composing with `OEquivalentDiscDiagram.trans`.
+- **Sub-piece E4 handed to kh-cckw** (msgs 2d966898 and 7dcc7072): `pinchSplit` keeps `ClosedWalk`
+  when no turn at the split vertex passes `x` or `y`, and `repeatedVisits` drops when two cycle darts
+  land on the new vertices of `x` and `y`.
 
 ## Next
 - Done: `SimpleClosedWalkSides` and the `HullSCOneStepQuasiGeodesicLeaves` docstring fix landed
@@ -338,7 +369,9 @@ walk) and debt-conditional.
   `OsinPocketRegionSimpleWalk` is consumed by dgo-analytic's `OsinPocketRegionOfSimple`.
 - Done: `OsinPocketClosedWalkNoncrossing` (probe 0913-133554-56930), landed at 24ff94312.
   dgo-analytic is informed.
-- Done: `OsinPocketLakeAbsorption` (probe 0913-141726-41707), landed with this report.
+- Done: `OsinPocketLakeAbsorption` (probe 0913-141726-41707), landed at 49feec035.
+- Done: `OsinPocketPinchStep` (probe 0913-143717-61429), landed with this report. It is a new file,
+  so Rule 22 has no users to probe.
 - Probe trap, now fixed. This lane's overlay listed `OsinAppendixGreendlingerParts.lean`, and the
   shared tree holds ghw-charp2's unlanded edit of that file (`loopCutInput`). Probe
   0913-140949-521 failed there. The file is off this lane's overlay list, and the rerun is green.
