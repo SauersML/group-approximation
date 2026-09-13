@@ -154,8 +154,13 @@ written in a module sec2 owns.  go-lemma42 named two generic pieces that do not 
 
 | module | carries | landed |
 |---|---|---|
-| GGT/VanKampen/OEquivalentCellFaces | `cellFaceEquiv`, `cellFaceEquiv_val`, `cellFaceEquiv_faceWord`, `OEquivalentDiscDiagram.faceEquiv`, `OEquivalentDiscDiagram.faceWord_faceEquiv`, `OEquivalentDiscDiagram.ofCellFaceEquiv`, `OEquivalentDiscDiagram.ofCellFaceEquiv_face` | a845f70a0, GREEN 0913-101514-99667 (BUILT, bytes = main) |
+| GGT/VanKampen/OEquivalentCellFaces | `cellFaceEquiv`, `cellFaceEquiv_val`, `cellFaceEquiv_faceWord`, `OEquivalentDiscDiagram.faceEquiv`, `OEquivalentDiscDiagram.faceWord_faceEquiv`, `OEquivalentDiscDiagram.ofCellFaceEquiv`, `OEquivalentDiscDiagram.ofCellFaceEquiv_face` | a845f70a0, GREEN 0913-113305-58468 (base 945d97753, record md5 e32a0157 = main; replayed from the olean of 0913-101514-99667, where this module BUILT with no error) |
 | GGT/VanKampen/Estimating/CyclicArcSub | `Embedded.CyclicArc.sub`, `sub_start`, `sub_length`, `sub_rotated`, `sub_darts` | a845f70a0, fix dc64bcdbb, GREEN 0913-102559-44269 (BUILT, bytes = main) |
+
+Correction (2026-09-13 12:45): an earlier version of this table and wire-queue line 595 called 0913-101514-99667
+GREEN.  That record reads PROBE FAILED rc=1.  Every error in it was in the co-probed CyclicArcSub, before the fix
+dc64bcdbb.  root-wire held OEquivalentCellFaces for that reason.  sec2 re-probed it (0913-113305-58468 GREEN), marked lines
+595-596 superseded, and queued a corrected entry at the end of the queue.  The module needed no change.
 
 `cellFaceEquiv` matches the positions of the cell list with the relator faces.  So an O-equivalence is the same as a
 word-preserving bijection of relator faces with the same boundary word.  `CyclicArc.sub arc i l h` is the arc of
@@ -230,7 +235,33 @@ unselected G-faces on its sides.  hull-unbound had already proved it in Estimati
 
 As the lead's fallback says, sec2 asked hull-unbound for the face-partition piece (`OsinLemma94PolygonPartitionInput`) or
 another unassigned sub-piece.  ROSTER gives the partition to ghw-assembly, so sec2 also asked ghw-assembly for an
-unassigned sub-piece.  sec2 is waiting for either answer and has no module in progress.
+unassigned sub-piece.  As of 12:45 neither lane has named one, and sec2 told the lead so.
+
+## Lemma 9.4 Case 2: the separated corner insertion (2026-09-13)
+
+Status 2026-09-13 13:10: **done**.  sec5-sentences stated the Prop
+`GloballyDistinguishedSectionFamily.SeparatedCornerInsertionInput` (Estimating/OsinLemma94SeparatedInsertion, b52230097).
+Its consumer is sec5's `osinLemma94CaseTwo_of_insertion`, and sec5 handed the proof to sec2.
+
+| module | carries | state |
+|---|---|---|
+| Estimating/OsinLemma94SeparatedInsertionProof | `separatedCornerInsertionInput : SeparatedCornerInsertionInput.{u, w, v}`, `#audit_closed_axioms` | compiled: probe 0913-130436-67131 GREEN (BUILT) at base 5a716fd85, which contains the landing commit 619b70139 (md5 3432a9fa904b60987e83537804841c8f = main); `#audit_closed_axioms` gives propext, Classical.choice, Quot.sound; queued for wiring |
+
+Proof.  The walk of f from base r reads `front ++ back`, and n is its length.
+- start := r % n, and finish is the corner `front.length` darts later (`CornerInsertion.exists_forwardOffset_eq`).
+- `GFaceWordInsertion.exists_split_corner_output` gives R, and T := `insertionTransport S R`.  The counts come from
+  `insertionTransport_unboundSum` and `SplitOutput.dartCount_eq`.
+- path' := path.map R.embedding.darts, first := R.suffixSide and second := R.prefixSide.  The suffix side reads the new path
+  and then `back`.  The prefix side reads the reversed new path and then `front`.
+- Joints, along `path`: `back` contains `path` from offset |s|, so the suffix-side chain gives facePerm e = e'.
+- Joints, across `path`: let alpha x' sit at position p of `front`.  The old walk sends it to alpha x at position p + 1.  If
+  p + 1 = |front|, then alpha x would be the first dart of `back` and also lie in `front`, against `nodup_append`.  So the
+  prefix-side chain gives the step.
+- Unselected sides: `SplitOutput.side_ne_outerFace`, `side_ne_cellFace` and `insertionTransport_avoid`.
+
+The module imports simple-group's Estimating/OsinLemma94CornerInsertion (f7538e223, queue line 623) and uses its helpers
+(`CornerInsertion.rel_of_getElem?`, `getElem?_map_of_getElem?`, `exists_forwardOffset_eq`, the `SplitOutput` face lemmas)
+rather than copying them.
 
 Construction constraint for the partition, from reading the fields.  Suppose only one section is nonempty and a walk runs
 along the boundary through position 0 of `outerDarts` at a vertex of degree two, so `facePerm (alpha e') = alpha e` for
