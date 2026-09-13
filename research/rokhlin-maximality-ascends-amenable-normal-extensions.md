@@ -43,14 +43,21 @@ over `W/N` have Rokhlin entropy `k log q` on `(A^k)^(W/N)`, where `|A| = q`. The
   `kun-thom-wreath-deficit-witnesses-need-nonclosed-stabilizers`) say that a counterexample witness folds on
   an invisible kernel element. Any proof must price the independent symbols at the two folded points without a
   model of the quotient's action on the kernel.
-- **Finite kernels (idea, not landed as a claim).** Even `N` finite is unresolved here.
-  - Alpeev–Seward Theorem 1.11(i), together with a marker argument for `h(X | X/N) = 0`, gives only the upper
-    bound `h^Rok_W(A^W) <= h^Rok_(W/N)(A^W/N) / |N|`.
-  - Recoding the Bernoulli shift over `W` as blocks over `W/N` changes the incidence pattern through the
-    extension cocycle whenever the extension does not split. So maximality of `W/N` does not transfer
-    pattern by pattern.
-  - The finite-kernel case is the Rokhlin counterpart of whether finite-by-sofic groups are sofic. Its
-    literature status was not checked here.
+- **Finite kernels (ex-rokhlin-ascent-finite-kernel, 2026-09-13).** Split off as the open claim
+  `rokhlin-maximality-ascends-finite-normal-extensions`, which this claim implies.
+  - **No counting problem along the kernel.** For free ergodic `X`,
+    `n h^Rok_W(X) <= h^Rok_(W/N)(X/N) <= n h^Rok_W(X) + r log n`
+    (`rokhlin-entropy-quotient-formula-for-finite-normal-subgroups`). The `N`-quotient carries all the entropy, the
+    opposite of the infinite-kernel bullet above. As a corollary, maximality descends along finite kernels
+    (`rokhlin-maximality-descends-along-finite-normal-quotients`).
+  - **Ascent for a pair is a statement about `W/N`.** It holds exactly when the twisted section action `Ω/N`, joined
+    with Bernoulli shifts over `W/N`, has unbounded Rokhlin entropy
+    (`rokhlin-finite-kernel-ascent-iff-liftable-entropy-unbounded`). It follows when some liftable action is weakly
+    contained in all free actions (`finite-kernel-rokhlin-ascent-from-weakly-minimal-lift`).
+  - **Where it stops.** At the extension class on Bernoulli orbit relations of `W/N`, not at Følner counting.
+  - **Inclusion.** By Kaloujnine–Krasner, the finite case lies inside the split, locally finite case of this claim.
+  - **Literature.** Not found in the six Seward and Alpeev–Seward papers searched (artifact
+    `rokhlin-finite-kernel-ascent-equivalence-2026-09-13.md`, Section 6).
 - **Coherent kernel windows (ex-rokhlin-ascent-joint-counting, 2026-09-13).** Theorem A run with the roles
   reversed: Følner windows along `N`, maximality along `W/N`.
   - To stay compatible with `W`, the windows must satisfy `T_(wy) = w T_y w^-1`. That covers Ornstein–Weiss
