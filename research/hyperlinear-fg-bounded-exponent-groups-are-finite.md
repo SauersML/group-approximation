@@ -40,10 +40,14 @@ factors through a finite quotient of `F_m`.
    - Residually finite candidates die. A f.g. residually finite group of
      finite exponent embeds in a product of finite quotients of `R(m,N)`,
      hence is a quotient of `R(m,N)` and finite (`restricted-burnside-finiteness`).
-   - Bounded-dimension approximations force LEF
-     (`bounded-dimension-microstates-force-lef`). So a counterexample needs
-     dimensions tending to infinity. An infinite bounded-exponent LEF group
-     would be a counterexample. The MF analogue of that firewall is
+   - Bounded-dimension approximations force finiteness, not just LEF:
+     `bounded-dimension-microstates-bounded-exponent-group-is-finite` passes to
+     a faithful representation in `U(d)` and applies Schur's theorem. So a
+     counterexample needs microstate dimensions tending to infinity. (The
+     earlier inference from `bounded-dimension-microstates-force-lef` alone was
+     incomplete, since LEF does not force finiteness.) An infinite
+     bounded-exponent LEF group would still be a counterexample, through
+     unbounded dimensions. The MF analogue of that firewall is
      `bounded-exponent-lef-group-defeats-burnside-mf-program`.
    - Amenable groups are hyperlinear, so this claim forbids infinite f.g.
      amenable groups of finite exponent. A search summary called that
@@ -54,3 +58,30 @@ factors through a finite quotient of `F_m`.
    hence finite. So flexible HS-stability of the bounded-exponent groups would
    prove this claim. Conversely, one infinite hyperlinear bounded-exponent
    group refutes every such stability principle for that group.
+4. **Counterexample hunt and small exponents** (lane solve-nh-bounded-exponent,
+   2026-09-13). Not solved; no counterexample.
+   - **Verbal products give nothing.** Brude--Sasyk (arXiv:1909.07800v5,
+     Theorem 1.5 and Corollary 1.6, read from the PDF, p. 3) preserve soficity
+     and hyperlinearity under k-Burnside products only for `k = 2, 3, 4, 6`.
+     Those are exactly the exponents where free Burnside groups are finite, so
+     their constructions stay finite on finitely generated finite-exponent
+     inputs. For larger `k` the `k`-Burnside product of two cyclic groups of
+     order `k` is `B(2,k)` itself, since the verbal subgroup lies in `[A,B]`
+     (their Corollary 2.9); soficity there is Pestov's Question 9.4 again.
+   - **Small exponents are trivial.** For `N` dividing `2`, `3`, `4` or `6`,
+     every f.g. group of exponent dividing `N` is finite (Burnside, Sanov,
+     M. Hall; statement pinned from the "Burnside problem" survey page), so
+     the claim holds there vacuously. It is open exactly where `B(m,N)` is not
+     known to be finite, including `N = 5`; `B(m,N)` is infinite for odd
+     `N > 665` (Adian) and large even `N` (Ivanov, Lysenok).
+   - **Stability adds no leverage.** For infinite `B(m,N)`, flexible
+     HS-stability plus hyperlinearity would already force residual finiteness,
+     hence finiteness, so stability for these groups is at least as strong as
+     their non-hyperlinearity. No mechanism for it was found. Rounding
+     almost-order-`N` unitaries one at a time does not control products.
+   - **Literature scan.** arXiv full-text searches for bounded exponent with
+     amenable, Burnside with sofic, and finite exponent with LEF (2026-09-13)
+     returned no construction of an infinite f.g. amenable, sofic, LEF or
+     hyperlinear group of bounded exponent, and no finiteness theorem. The
+     session's web search budget was exhausted, so MathOverflow, zbMATH and
+     MathSciNet were not checked. Not exhaustive.
