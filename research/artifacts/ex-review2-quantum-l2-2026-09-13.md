@@ -125,6 +125,7 @@ Some rows cover two to five claims; the rows total 26.
 | 7 | T2–T4 of `coset-systems-are-torsor-isomorphism-games` and EL2–EL3 of `exact-label-coset-refinements-are-affine` (node level only in logic-quantum) | **PASS** |
 | 8 | the seven established Kac nodes (two from ex2-kac-forbidden-pair, five from ex-kac-quantum-bijection), all re-derived | **PASS** ×7; one justification in (H7) of the hidden-labels proof repaired forward |
 | 9 | Theorem 6: item 3 of `atiyah-base-change-in-transcendence-degree-two-under-det`, every field of transcendence degree at most 2 | **PASS**, conditional as stated; the normalized-curve use of Theorem 4's proof made explicit in Part 4 |
+| 10 | `bernoulli-pattern-expansions-are-finite`: rank locality over Bernoulli coefficients (Lemmas L1–L2, Theorem 1, Corollaries 2–4, model tests) | **PASS**, unconditional over torsion-free hosts as stated; no correction |
 
 ## 4. Census tally (32 established, unpassed claims at the start)
 
@@ -175,3 +176,4 @@ Some rows cover two to five claims; the rows total 26.
 - `research/artifacts/ex-review2-quantum-l2-2026-09-13-part7.md`: §7. Coset-system quantum symmetry, exact-label affinity, and the Lück edit.
 - `research/artifacts/ex-review2-quantum-l2-2026-09-13-part8.md`: §8. Verdicts on the seven established Kac nodes.
 - `research/artifacts/ex-review2-quantum-l2-2026-09-13-part9.md`: §9. Theorem 6 of the two-variable base change.
+- `research/artifacts/ex-review2-quantum-l2-2026-09-13-part10.md`: §10. Rank locality over Bernoulli coefficients.
