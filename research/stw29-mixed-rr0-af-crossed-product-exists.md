@@ -41,10 +41,13 @@ that the brief of this lane targets, including shapes like Rordam's nuclear
   `measure-free-minimal-cantor-action-with-finite-clopen-type`.  Free minimal
   amenable actions of groups with paradoxical towers are excluded.  So are
   topologically free actions of groups with a normal infinite cyclic subgroup
-  acting minimally (`minimal-normal-cyclic-subgroup-cantor-dichotomy`).  Where this
-  dies: no construction of a measure-free minimal Cantor system with a finite
-  clopen class is known.  Even with one, finiteness of `1_A` in
-  `C(X) rtimes_lambda Gamma` is not implied.  Rainone's Proposition 4.17 only
+  acting minimally (`minimal-normal-cyclic-subgroup-cantor-dichotomy`).  The
+  type-semigroup part now exists, unreviewed.  Generic Wehrung witnesses give
+  minimal topologically free actions of `F_infinity` with `[1_X]` finite and
+  `2[1_X]` properly infinite
+  (`topologically-free-minimal-cantor-action-with-finite-clopen-type`).  Where
+  this dies: finiteness of `1_A` in `C(X) rtimes_lambda Gamma` is not implied
+  (`cantor-crossed-product-with-finite-type-is-mixed`).  Rainone's Proposition 4.17 only
   detects infiniteness through partial isometries with coefficients in
   partial isometries of `D`.
 * **Finiteness certificates.**  A counterexample has no quasitrace on its

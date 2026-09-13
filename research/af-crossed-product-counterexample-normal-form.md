@@ -39,8 +39,10 @@ infinite.  Let `Sigma = S(D, Gamma, alpha)` be Rainone's type semigroup.
 mechanism (`af-k0-order-divisible-iff-no-elementary-subquotient`).
 Parts 3--5 say the type semigroup of the coefficient action must be a simple
 monoid in which Tarski's paradoxical multiples cannot be rounded down to a
-single copy.  For `D = C(X)` this is the open claim
-`measure-free-minimal-cantor-action-with-finite-clopen-type`.  Part 4 alone
+single copy.  For `D = C(X)` this is
+`topologically-free-minimal-cantor-action-with-finite-clopen-type`, now
+established (unreviewed) with generic topologically free actions of
+`F_infinity`.  Part 4 alone
 does not certify finiteness in `A`, because the monoid map
 `Sigma -> V(A)` can make finite classes infinite.  A counterexample also needs
 an analytic finiteness certificate in the crossed product.

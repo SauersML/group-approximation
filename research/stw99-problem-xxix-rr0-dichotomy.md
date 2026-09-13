@@ -118,7 +118,16 @@ subalgebra" the exact pure-infiniteness criterion.
     multiple.
   * The design is `stw29-mixed-rr0-af-crossed-product-exists`.  Its commutative
     core is `measure-free-minimal-cantor-action-with-finite-clopen-type`, a
-    sharpened form of Rainone's page-33 question.
+    sharpened form of Rainone's page-33 question.  That core now exists in
+    properly outer form, unreviewed.
+    * Generic witnesses for Wehrung's realization give minimal topologically
+      free actions of `F_infinity` on the Cantor set with `[1_X]` finite and
+      `2[1_X]` properly infinite
+      (`topologically-free-minimal-cantor-action-with-finite-clopen-type`,
+      `rainone-non-almost-unperforated-minimal-outer-action-exists`).
+    * What remains for this design is analytic: finiteness in the crossed
+      product (`cantor-crossed-product-with-finite-type-is-mixed`), then real
+      rank zero.
   * The dichotomy holds beyond AF: for exact real-rank-zero stable-rank-one
     coefficients with unperforated `K_0` and no integer layer
     (`rr0-sr1-coefficient-crossed-products-dichotomy`,
@@ -126,6 +135,6 @@ subalgebra" the exact pure-infiniteness criterion.
   * In the Cantor regime, a normal infinite cyclic or locally finite subgroup
     acting minimally smooths `K_0` enough for the lemma
     (`smoothing-normal-subgroup-cantor-dichotomy`).
-  * The remaining commutative rounding problem reads as a continuous
+  * For free actions, the commutative rounding problem reads as a continuous
     sourceless-orientation problem, the standard separator of Borel from
-    clopen combinatorics.
+    clopen combinatorics (`free-minimal-cantor-action-with-finite-clopen-type`).

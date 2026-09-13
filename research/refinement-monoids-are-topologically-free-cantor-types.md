@@ -27,9 +27,11 @@ generates a free group acting topologically freely.
   finite and `2[1_X]` properly infinite
   (`topologically-free-minimal-cantor-action-with-finite-clopen-type`).
 * Their type semigroups are not almost unperforated: `3(2u) <= 2u <= 2u`
-  holds while `2u <= u` fails.  This answers Rainone's question
-  (arXiv:1502.06153, page 33) for topologically free actions of `F_infinity`.
-  The question as asked, for free actions of `F_2`, stays open
+  holds while `2u <= u` fails.  This answers Rainone's first page-33 question
+  (arXiv:1502.06153): minimal properly outer actions satisfying the
+  hypotheses of his Theorem 4.22 whose type semigroup is not almost
+  unperforated (`rainone-non-almost-unperforated-minimal-outer-action-exists`).
+  His particular question, for free actions of `F_2`, stays open
   (`free-minimal-cantor-action-with-finite-clopen-type`).
 * For such an action, `A = C(X) rtimes_r F_infinity` has the following
   properties.
