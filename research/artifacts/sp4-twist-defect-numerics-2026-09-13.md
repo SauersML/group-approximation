@@ -12,7 +12,8 @@ Numerics only, landed as commentary by lane solve-nh-numerics.
 - Nothing here is evidence for or against non-hyperlinearity of any group, or for or against any sector floor.
 - No node status changes because of this file.
 
-Section 2 (the LP constant) and Section 3 (the larger-dimension descents) are filled in when their jobs finish.
+Sections 1 and 2 are complete. Section 3 has working-set data only; its all-relator table is filled in when the
+evaluation job finishes.
 
 # 0. What main already has, and why this run does not repeat it
 
@@ -152,9 +153,32 @@ bound    0.184537   0.306783   0.457901   0.606305   0.891477
 - **Scope.** All of this concerns abelian relaxations of exact seeds over a finite window. None of it is a sector lower
   bound.
 
-# 3. Seeded descents at d = 20, 30, 40 (job pending)
+# 3. Seeded descents at d = 20, 30, 40 (job 709526)
 
-[pending]
+**Setup.** `descent.sbatch` runs `optimize7.py` from main, unchanged:
+- smoothed maximum at `beta = 30`, mod-3 sector, one restart per dimension, perturbation `eps0 = 0.1`;
+- start point: the stacked metaplectic seed `seed_theta_d10.json (x) 1_m`, rescaled by the coboundary phases of
+  `make_abmin_seeds.py` (`make_seeds_nh.py`). Those phases are the old `0.309` optimum, not the `5/17` optimum;
+- working set: the twenty lifted relators plus a random sample of unlifted relators. Iterations and sample size were
+  scaled down with `d` so that one restart fits in `90` minutes on four cores.
+
+**Working-set data** (`descent2.709526.log`, `v7nh-*.log`):
+
+```text
+d    iterations  sampled unlifted  smoothed max  mean sq    max unlifted  max lifted  max    seconds
+20   300         6,000             0.0092        0.006619   0.2557        0.3204      0.3204 2152
+30   200         3,000             0.0098        0.007109   0.2629        0.2793      0.2793 2301
+40   150         1,500             0.0112        0.007891   0.2757        0.2621      0.2757 2198
+```
+
+**Caveat.** At `d = 30, 40` the working-set maxima fall below the exact bar `0.306783`. But those samples are
+`3,000` and `1,500` of the `304,392` unlifted relators, so a sampling artifact is the expected explanation, as at
+`d = 4`, `beta = 300` in the 2026-09-05 artifact (`0.295` on the working set, `0.340` on all relators). The saved
+minima and their start points are evaluated on all relators by `eval_descent_all.py` (`evalall.sbatch`). That
+evaluator picks the product-order convention by requiring the exact `d = 10` seed to give `(-1)^(k_r) I` on every
+relator.
+
+[all-relator table pending]
 
 # 4. What this suggests for the two live routes
 
