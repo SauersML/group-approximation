@@ -48,3 +48,13 @@ Bauer simplex and a `C(X̂)`-algebra, and no simple algebra would be needed.
     (arXiv:2606.12188v2, Section 6). Such arguments survive 2-norm approximation: every
     soft splitting would have to force a degeneracy of positive normalized rank somewhere.
   - Not attempted beyond this design.
+- **Relation to the summable-division constraint (2026-09-13).**
+  - **The base fits.** `Π_k Y_k`, with infinitely many positive-dimensional factors,
+    contains a Hilbert cube, so it fails Haver's property C. That matches part (d) of
+    `bauer-unit-division-iff-summable-local-division`: under strict comparison, failure of
+    division lives in the C-kernel.
+  - **The theorem does not reach tensor towers.** It assumes a simple algebra with strict
+    comparison. Tensor towers are `C(X̂)`-algebras that are not simple, so it neither excludes
+    nor produces a witness here.
+  - **Not known here.** Whether hyperfinite W*-bundles over C-space bases are trivial
+    without a comparison hypothesis.
