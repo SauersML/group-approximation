@@ -18,8 +18,15 @@ and call `F = W - lambda_max(H) >= 0` its Pauli frustration. Then
 max_(phi stabilizer state) <phi|H|phi>  >=  lambda_max(H) - (1+sqrt2) F.      (SR)
 ```
 
-The optimal constant lies in `[1/sqrt2, 1+sqrt2]`: for `(X+Z)/2` the ratio
-`(lambda_max - stab_max)/F` equals `1/sqrt2`.
+The decomposition may list the same Pauli more than once, with either sign; the
+proof treats each occurrence as its own term. The optimal constant lies in
+`[1/sqrt2, 1+sqrt2]`: for `(X+Z)/2` the ratio `(lambda_max - stab_max)/F` equals
+`1/sqrt2`. The sharp value is the open claim
+`stabilizer-rounding-constant-is-one-over-sqrt2`.
+
+**Model test.** On MSI, 7500 random instances with `n<=3` and exhaustive
+stabilizer enumeration gave no violation of (SR) and a largest ratio of
+`0.707107` (`research/artifacts/pauli-stabilizer-rounding-model-test-2026-09-12.md`).
 
 **Idea.** In a top eigenvector, signed Paulis with expectation above `1/sqrt2`
 pairwise commute, because two anticommuting ones sum to at most `sqrt2`.

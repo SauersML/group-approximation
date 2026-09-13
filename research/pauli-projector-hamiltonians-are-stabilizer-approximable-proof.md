@@ -30,6 +30,15 @@ The term list has `2^(r_a)` entries per constraint. That is polynomial for `r_a 
 For larger `r_a` the verifier instead computes `<phi|Pi_a|phi>`, which is `2^(-t)` or `0`,
 by stabilizer-group intersection in polynomial time.
 
+**Mixed terms.** Put `H_s = sum_a w_a(I-Pi_a)`. The other terms are positive, so
+`H_s <= H` and `lambda_min(H_s) <= lambda_min(H)`. Take a stabilizer `phi` with
+`<phi|H_s|phi> <= (2+sqrt2)lambda_min(H_s)`. Since each `h_b <= I`,
+`<phi|H-H_s|phi> <= V`, and the bound `(2+sqrt2)lambda_min(H)+V` follows. The
+verifier needs `<phi|h_b|phi>` only when the `h_b` act on `O(log n)` qubits or have
+another efficient stabilizer expectation. Otherwise it uses the upper bound `V`
+for their contribution: accept iff `<phi|H_s|phi> + V < b`. On YES instances this
+holds when `V < b-(2+sqrt2)a`; on NO instances `<phi|H_s|phi> + V >= <phi|H|phi> >= b`.
+
 **NP.** A stabilizer state is described by `n` commuting independent signed
 Pauli generators. Validity is checked by symplectic linear algebra over `F_2`.
 For each term, `<phi|P_a|phi>` is `0` if `P_a` anticommutes with some generator,
