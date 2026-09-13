@@ -336,13 +336,24 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
    - **(C) for the pocket is cite-hull's**: `Estimating/OsinPocketWalkColour` (`PocketWalkColourStatement`,
      `pocketWalkColour`), with its model test `OsinPocketWalkColourModels`. It has a green record at 0913-145855 and is
      not on main at 09b3b57e4. This lane does not rebuild it.
+   - **(D) assembly landed** at ae463a301 (green probe 0913-151501-77572): new module
+     `Estimating/OsinPocketColourNoncrossing`, unwired. Both declarations are under `#audit_axioms`:
+     ```lean
+     theorem ClosedWalkFaceColouring.isNoncrossingClosedWalk_of_orient (hM : M.IsPlanar) (hne) (hnodup) (halpha)
+         (hchain) (hcloses) (horient : ∀ faces, (colouring for faces) → ∀ d ∈ w, ∀ e ∈ w, (faceOf d ∈ faces ↔ faceOf e ∈ faces)) :
+         IsNoncrossingClosedWalk M w
+     theorem PocketWalk.exists_pocketFaceSet_closedWalk_of_orient (K : PocketWalk D eps X lo hi) (hne) (hnodup)
+         (halpha) (hchain) (hcloses) (horient) (hkept : ∃ kept, (cell X kept).face ∈ sideFaces X.toCombMap K.walk) :
+         ∃ P : PocketFaceSet D eps X lo hi, P.boundary.cycle = K.walk ∧ P.ClosedWalk
+     ```
+     The colour class gives a boundary cycle equal to the walk (`exists_boundaryCycle_of_orient`), and hull-respell's
+     `BoundaryCycle.isNoncrossingClosedWalk` (24ff94312) makes that cycle noncrossing.
    - **Residual** for `SectionPocketFaceSetInput`:
-     - (D) assembly (this lane, next). Planarity, the four walk facts and the orientation of every colouring give
-       `IsNoncrossingClosedWalk K.walk`, through `exists_boundaryCycle_of_orient` and hull-respell's
-       `BoundaryCycle.isNoncrossingClosedWalk` (24ff94312). Then `toPocketFaceSetOfNoncrossing` and `_closedWalk`.
-     - (iii') `nodup`, `alpha_not_mem`, `chain` and `closes` of `K.walk` on the copy. Copy (a) is closed by
-       hs-vanishes; copies (b) and (c) are with leavitt-units. A search for `walk.IsChain` finds no lemma giving
-       `chain` or `closes` of `K.walk`.
+     - (iii') `nodup` and `alpha_not_mem` of `K.walk` on the copy. Copy (a) is closed by hs-vanishes; copies (b) and
+       (c) are with leavitt-units.
+     - `chain` and `closes` of `K.walk`: this lane, next, for the pocket walk of `exists_of_exteriorAt` on any
+       `RealizedSectionFamily`. The side arcs chain by `BoundaryStep` in the region cycles, the cell arc and the
+       outer arc chain by the face rotation, and the four joints come from the two region cycles.
      - (ii) the kept cell in the side faces. Under the ~14:20 split, `hout` and `hfollows` are hull-select's, `heuler`
        is hull-euler's and `havoid` is sec2-sentences'. sec2-sentences' `OsinPocketKeptCellAbsorbed` replaces
        `havoid` by the value condition.
