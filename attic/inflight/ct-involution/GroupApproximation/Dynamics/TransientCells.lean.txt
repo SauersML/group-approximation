@@ -123,9 +123,10 @@ theorem exists_cells (hC : IsClopen C) {ι Z : Type*} [Finite ι] (g : ι → X 
     have hya' : φ y = (V.equivFin.symm a).1 := hya
     have hyb' : φ y = (V.equivFin.symm b).1 := hyb
     exact hab (V.equivFin.symm.injective (Subtype.ext (hya'.symm.trans hyb')))
-  · have hmem := (V.equivFin.symm a).2
-    rw [hVdef, Finset.mem_filter] at hmem
-    exact hmem.2
+  · have hVne : ∀ v ∈ V, (baseSet T C E m ∩ {y | φ y = v}).Nonempty := fun v hv => by
+      rw [hVdef, Finset.mem_filter] at hv
+      exact hv.2
+    exact hVne _ (V.equivFin.symm a).2
   · have hv : φ y ∈ V := by
       rw [hVdef, Finset.mem_filter]
       exact ⟨hfin.mem_toFinset.2 ⟨y, rfl⟩, ⟨y, hy, rfl⟩⟩
@@ -149,7 +150,7 @@ theorem exists_transientCells (hcover : ChainCoreDefectCoverStatement) (X : Type
     (F : Finset (ClopenCrossedProduct T k))
     (hF : ∀ x ∈ F, x ∈ transientIdeal T k (Dynamics.image_chainRecurrentSet T)) :
     ∃ (C : Set X) (E : Finset ℤ) (m M : ℕ) (cell : Fin M → Set X) (S : Fin M → Finset ℤ)
-      (hcell : ∀ a, IsClopen (cell a)) (rep : Fin M → X),
+      (_ : ∀ a, IsClopen (cell a)) (rep : Fin M → X),
       IsClopen C ∧ Disjoint C (Dynamics.chainRecurrentSet ⇑T) ∧ ExponentBound T C m ∧
       (∀ a, cell a ⊆ baseCell T C E m (S a)) ∧
       (∀ a b, a ≠ b → Disjoint (cell a) (cell b)) ∧
