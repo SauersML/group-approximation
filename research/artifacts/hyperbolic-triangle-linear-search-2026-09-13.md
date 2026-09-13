@@ -235,7 +235,7 @@ homomorphism `G_i -> GL_d(K)` is trivial. The case analysis is in the route of
   - **Status of the effective `N`.** A twisted integral system with `a = 0` gives `N = 1` in about 4 s (`timetw.py`, twist
     `(0,0,1)`). With `a ≠ 0` the diagonal conjugator `D` introduces `z`-monomials everywhere, and the
     integral basis had not finished after about 2 minutes. The runs `linZ.py twist` over all 58 orbit
-    representatives had not finished at this version.
+    representatives were stopped after 50 minutes, at about 11 GB resident each, without output.
 
 **Not covered.**
 - **Projective twists** in odd characteristics other than 29, 43 and 7. The integral twisted certificate over

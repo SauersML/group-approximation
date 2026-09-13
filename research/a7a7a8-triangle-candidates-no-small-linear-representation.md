@@ -35,7 +35,10 @@ representation of dimension at most 7 in any characteristic.
 **Projective representations** `G_i -> PGL_7(K)`, whose edge lifts may differ by `μ_7`, are recorded in
 `research/artifacts/hyperbolic-triangle-linear-search-2026-09-13.md` §§5–6:
 - excluded in characteristics 0, 7, 29 and 43;
-- the integral twisted certificate for the other characteristics was running at this version.
+- excluded in all but finitely many characteristics, by case (b) of
+  `linear-quotient-exclusion-lifts-from-char-zero`;
+- the effective integer `N` is not computed. The integral twisted Gröbner runs with `a ≠ 0` were stopped
+  after 50 minutes and about 11 GB each without finishing.
 
 The claim is computer-assisted (Sage 10.7 / Singular) and unreviewed. The small Brauer characters of
 `A_7` and `A_8` for `p = 2, 3, 5, 7` are recalled rather than re-derived, and so is `H^1(L_4(2), F_2^4) = 0`.
