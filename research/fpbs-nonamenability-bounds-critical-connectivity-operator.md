@@ -88,3 +88,19 @@ gap has to be computed.
   states as a research judgment, not as evidence, that a general proof may
   isolate their common mechanism and replace the geometry by nonamenability;
   no such mechanism is isolated here.
+* **Weight the operator along a tree of cut vertices (2026-09-12).**
+  `fpbs-free-product-cayley-graphs-have-critical-l2-gap` proves
+  `||T_{p_c}||_{2->2} < infinity` for every Cayley graph of a free product
+  `H_1 * ... * H_n` on a union of factor generating sets, other than the line,
+  with no hypothesis on the factors. The method is a Schur test with a
+  Busemann weight on the block–cut tree. The single path toward the end decays
+  geometrically, and at `p_c` the paths away from the end are controlled by a
+  matrix of spectral radius at most 1. **Where it dies:** the product formula
+  needs cut vertices, and the down-path matrix needs block masses that do not
+  depend on the entry vertex. See Section 4.2 of
+  `research/artifacts/fpbs/docs/free-product-critical-l2-2026-09-12.md`.
+  - Separators of two or more vertices, as in amalgams over nontrivial finite
+    groups, break the product formula.
+  - One-ended graphs have no block tree.
+  - Transitive graphs with a cut vertex need a spectral bound, not proved here,
+    for a matrix indexed by orbits of pairs (block, vertex).
