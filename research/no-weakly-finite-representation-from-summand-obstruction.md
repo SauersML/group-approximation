@@ -16,3 +16,5 @@ of `G` gives a nonzero weakly finite image of `S_-`, through the corner cut alon
 obstruction forbids that image.
 
 This route forms an intended cycle with `summand-no-weakly-finite-image-from-no-representation`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 38.2 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication, inheriting the simplicity condition of Theorem 3. `f = 2(1 - u)` is a nonzero idempotent commuting with `rho(iota(G))`, and `[z] -> -f`, so the image of `S_-` is a nonzero unital subring of the weakly finite corner `fWf`.*

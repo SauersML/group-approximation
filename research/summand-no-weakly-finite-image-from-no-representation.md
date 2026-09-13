@@ -15,3 +15,5 @@ Take a nonzero weakly finite quotient `W` of `S_-`. The group `G` maps into `W^x
 required claim, no such `W` exists.
 
 This route forms an intended cycle with `no-weakly-finite-representation-from-summand-obstruction`.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 38.3 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS as an implication. `eps_-` is a central idempotent with `eps_- z = -eps_-`, so `g -> eps_- g` lands in the units of any quotient, with `z -> -1 != 1`. No simplicity is used. The cycle with the summand-obstruction route records an equivalence only.*

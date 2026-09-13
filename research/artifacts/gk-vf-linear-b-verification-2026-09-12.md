@@ -1449,3 +1449,47 @@ nontrivial homomorphism into the unit group of a weakly finite ring of character
 - **Well defined.** `[e (+) f'] = [e' (+) f]` means mutual domination after adding `K`. Apply the hypothesis both ways.
 - **Positive on `H ∩ P`.** `e (+) M (+) K ~ f (+) N (+) K` gives `f (+) K' <=_T e (+) K'`, with `K' = M (+) K`.
 - **Extension.** By the one-step lemma (Section 24). Theorem 2.1(a) makes the extension a Sylvester rank function.
+
+## 38. Implication routes of the weakly finite chain (w5-wf-obstruct, w4-upg-kill): PASS
+
+All four routes are implications. None of them makes a claim decision-level, and the required claims keep
+their own status.
+
+### 38.1 `no-weakly-finite-representation-from-defect-killing`: PASS
+
+- **Matching.** At `K = F_3`, `weakly-finite-leavitt-representations-killing-defect-are-trivial` has the
+  same host class (weakly finite `F_3`-algebras), the same three-leaf frame, and the same defect
+  `D_rho = N_23 N_12` with `N_ab = rho(x_ab(1)) - 1`. That is the product that
+  `ternary-weakly-finite-representations-kill-two-root-defect` sets to zero.
+- **Glue.** For any `rho`, the first claim gives `D_rho = 0` and the second makes `rho` trivial. Both claims
+  and the target quantify over the same `rho`.
+
+### 38.2 `no-weakly-finite-representation-from-summand-obstruction`: PASS, inheriting the simplicity condition through Theorem 3
+
+- **Cut.** Take `rho` nontrivial. Then `u = rho(iota(z)) != 1` (Section 36.3). So `f = 2(1 - u)` is a nonzero
+  idempotent (`f^2 = 4f = f`, and `2` is invertible) that commutes with `rho(iota(G))`.
+- **Image.** `x -> f rho(iota(x))` is a unital map `F_3[G] -> fWf` with `[z] -> -f`, so it factors through
+  `S_-`. Its image is a nonzero unital subring of the weakly finite corner `fWf`, hence a nonzero weakly
+  finite quotient of `S_-`.
+- **Glue.** `ternary-anti-central-summand-has-no-weakly-finite-image` forbids that quotient.
+
+### 38.3 `summand-no-weakly-finite-image-from-no-representation`: PASS
+
+- **Units.** `eps_- = 2(1 - z)` is a central idempotent (`eps_-^2 = 4 eps_- = eps_-`) with
+  `eps_- z = 2(z - 1) = -eps_-`. So `g -> eps_- g` is a homomorphism `G -> S_-^x`, and it passes to any
+  quotient `W`.
+- **Nontrivial.** In a nonzero `W`, `z -> -1 != 1` because `2` is invertible. `W` is then a weakly finite
+  `F_3`-algebra carrying a nontrivial representation, which the required claim forbids.
+- **No simplicity used.** This is direction 3 ⟹ 1 of Theorem 3. Routes 38.2 and 38.3 are the intended cycle.
+  The cycle records an equivalence, not a proof of either claim.
+
+### 38.4 `anti-central-flattening-from-general-state-upgrade`: PASS
+
+- **Contrapositive.**
+  - Suppose no `q'` has `I_(q'+1) <~ I_(q')` over `S_-`.
+  - By part 2 of `sylvester-rank-functions-iff-no-triangular-certificate`, `S_-` has the rank condition.
+  - The general claim gives a Sylvester rank function on `S_-`.
+  - Part 1 then rules out every `I_(q+1) <=_T I_q`.
+- **Conventions.** `I_(q+1) <~ I_q` means `XY = I_(q+1)`, with `X` of size `(q+1) x q`. That is a split
+  epimorphism `S_-^q -> S_-^(q+1)`, which matches the claim's "no epimorphism `A^q -> A^(q+1)`". The unit of
+  `S_-` is `eps_-`.
