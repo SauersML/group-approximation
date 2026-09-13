@@ -3,6 +3,8 @@ rg: 2
 id: higman-rope-trick-group-is-never-fp3
 kind: claim
 title: "The Higman rope-trick group of an infinite one-relator-quotient is never of type FP_3(Q)"
+invalidates:
+  - type-fn-hosts-via-higman-rope-trick
 ---
 
 Let `G = F/R` be a quotient of a free group with `G` infinite and `R != 1`,
