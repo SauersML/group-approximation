@@ -152,6 +152,12 @@ diameter `d + 1`.
   characteristic, refutes finite presentation of the group. Periodic ones work in every characteristic
   (part 1).
 - **Characteristic.** The first certificate found had denominators `2, 3, 5, 53`. Reordering the
-  pivots gave certificates with denominators `3, 5` only (landed script). A certificate with an
-  invertible leading coefficient in characteristic 3 or 5 has not been searched for; the theorem is
-  stated without those two characteristics.
+  pivots gave a certificate with denominators `3, 5` only (landed script), which covers
+  characteristic 2.
+  - Modulo `p` (`experiments/labbe-relation-climbing/idealmodp.py`), `PQ - QP` lies in the ideal for
+    `p = 2, 7, 53`, with multipliers of length `<= 2`.
+  - For `p = 3` and `p = 5` it does not, for multipliers of length up to 4. The span grows by exactly
+    4 per step there, the same as in the other characteristics.
+  - So in characteristics 3 and 5 these two relations do not suffice. Both primes divide `|Alt(5)|`.
+    Other relations of `G` might suffice; that is not searched, and the theorem excludes those two
+    characteristics.
