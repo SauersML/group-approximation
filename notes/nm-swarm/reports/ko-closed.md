@@ -3,7 +3,7 @@
 Predecessor: kh-hyperbolic (dead; report `kh-hyperbolic.md`).  Target: `Kazhdan/KotowskiOllivierClosed.lean`,
 closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
 
-## STATE (09-13 ~14:10): (a) goes by the metric kill at the printed threshold; value module GREEN; ruling sent
+## STATE (09-13 ~14:45): (a) metric kill written, landed unverified at 5063f177b, probe running; value module GREEN
 - The lead forwarded three questions to ko-closed (ROSTER 843–850). ko-closed ruled at ~14:10 and sent the ruling to main
   and audit-sec5:
   - (1) audit-sec5's metric kill replaces the `λ⁻¹(ε + c)` respelling. hull-unbound's option (2) draft in
@@ -39,20 +39,31 @@ closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
     reads an element of word norm at least `λL − c`.
   - `false_of_cellFree_pocket_X` and `false_of_cellFree_pocket_Y`: the value argument in its two cases (pocket across
     X, or across Y).
-- Next: `OsinLemma94OneCellMorse.lean`:
-  - the word-level Morse inequality `d(x0,x1) + d(x1,x3) ≤ 2κ + d(x0,x3)`;
-  - the hairpin bound `λε − c < 2κ`;
-  - the ε₀ threshold;
-  - κ from four-point hyperbolicity;
-  - the two cell-free pocket kills at the printed threshold.
-  The new module restates the value step as a named lemma, so the green value module stays byte-identical to its queued
-  SHA.
+- `GGT/VanKampen/Estimating/OsinLemma94OneCellMorse.lean` (237 lines):
+  - Landed unverified at 5063f177b. Probe bxgtm3yim is running.
+  - `IsLambdaCQuasiGeodesicWord.vertex_detour_le_morse`: under `UnboundEstimate.IsWordMorseRadius D λ c κ`, vertex
+    `i` of a quasi-geodesic word has `|x_i| + d(x_i, val w) ≤ 2κ + |val w|`.
+  - `IsLambdaCQuasiGeodesicWord.lambda_eps_lt_of_hairpin`: for a quasi-geodesic word `A ++ M ++ B` with `0 ≤ λ`,
+    `|val (A++M++B)| < ε`, `ε < |val A|` and `ε < |val B|`, we get `λε − c < 2κ`.
+  - `exists_morse_threshold_of_fourPoint D hhyper λ c (0 < λ)`: `∃ κ, IsWordMorseRadius D λ c κ ∧ ∃ eps0, ∀ ε ≥ eps0,
+    2κ + c ≤ λε`.
+  - `listVal_dartWord_eq_of_cellFree_pocket_X/_Y`: the value step as named lemmas. The value module keeps its queued
+    bytes.
+  - `false_of_cellFree_pocket_X_morse` and `_Y_morse`:
+    - binders as `false_of_cellFree_pocket_X/_Y`, plus `hmorse` and `hthreshold : 2κ + c ≤ λε`;
+    - instead of `hlong`: `hY : |val Y| < ε` (`hX` for the Y case), `hp : ε < |val p|`, `hq : ε < |val q|`;
+    - conclusion False.
 - Not written: case (a) of theoremc-retire's `OsinLemma94CaseOneOneCellInput`, which is not on main. The consumer then
   supplies:
   - the face value 1, from `inner_face` with f a G-face;
   - the walk rotation;
   - a PocketRegion whose outer cycle is `X ++ M'` (or `Y ++ M`);
-  - the arc `q M' p` as a rotation prefix of `cellDarts j`.
+  - the arc `q M' p` as a rotation prefix of `cellDarts j`;
+  - `hp` and `hq` from `source_long` and `target_long`. The face reads `invDarts p`, so this needs `wordNorm_inv`, and
+    `symmetricLabelAlphabet.carrier_eq` because the pair lives over `symmetricLabelAlphabet D` while `OsinCCondition`
+    is over D;
+  - `hY` or `hX` from `startConnector` or `endConnector`, which have length `< ε`, via `wordNorm_listVal_le_length`;
+  - κ and eps0 from `exists_morse_threshold_of_fourPoint`, taken into the max with the other thresholds.
 - Open question to jacobson: who produces the PocketRegion from the Case 1 walk decomposition.
 - Residual Props owned by ko-closed: NONE.
 
