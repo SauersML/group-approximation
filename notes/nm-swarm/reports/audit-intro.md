@@ -25,6 +25,12 @@ Introduction, and `sec:compression-radical` (One-sided compression).
     of the h94 count of `osinLemma94Section_of_planarPieces`, assigned by hull-count94 (see
     below).
   - `#audit_axioms` follows all five declarations.
+- `25aef6af9`: probe GREEN (tag `0913-145849-94334`, BUILT, bytes = main, md5 `edf3ab40`). The
+  module is on the wire queue:
+  - `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassRuns.lean`, the cyclic run
+    decomposition behind `OsinLemma94ClassPolygons`, assigned by hull-count94 (see below).
+  - It imports only Mathlib and `AxiomGuard`. `#audit_axioms` follows all ten declarations.
+  - Census row `LINE:1636` (partial), the key hull-count94 uses for Lemma 9.4.
 
 ## Help: the h94 count (hull-count94)
 
@@ -129,6 +135,58 @@ No draft Prop was on main (`594fe2988`), so the test uses the spelling in the ru
     the un-pinch first.
   - Neither half needs the (darts, faces) minimality.
 
+### Cyclic runs (`OsinLemma94ClassRuns`, sent to hull-count94)
+
+hull-count94 asked for the run decomposition behind `OsinLemma94ClassPolygons`, with a fixed
+statement. main had no cyclic run decomposition.
+
+- `exists_cyclicRuns n J`: for a decidable predicate `J` on the sides `0, …, n − 1`, there are
+  `count`, `base` and `sides` such that:
+  - the runs, read in order, are `(List.range n).rotate base`;
+  - every run is nonempty;
+  - inside a run, each side is followed by the next side mod `n` and satisfies `J`;
+  - if some side fails `J`, every run ends with a side that fails `J`;
+  - `count ≤ max 1 #{s < n | ¬ J s}`.
+- Proof: `runs n base J` is `List.splitBy` of the rotated range, split after each side that
+  fails `J`.
+  - If some `s₀ < n` fails `J`, take `base = (s₀ + 1) % n`. The last run ends at `s₀`, and every
+    other run ends where `splitBy` splits. The rotated range has no duplicates, so the run ends
+    inject into the sides that fail `J`.
+  - Otherwise take `base = 0`. There is at most one run.
+- With `J s` = "side `s` joins side `s + 1`", this gives `classBase`, `classSides`, `sides_eq` and
+  `classSides_ne_nil`.
+  - The end condition gives `gap_last` once `gap s = []` for every side that fails `J`.
+  - `single` holds once `J s` implies that sides `s` and `s + 1` have one (A1) or (A2) kind.
+
+### Model tests on the landed classes (sent to hull-count94 and main)
+
+Both tests were re-run on `OsinLemma94PolygonClasses` (`6db79cea7`), on the pinched-cell model
+above (`t` pinches on one (A1) arc of a maximal polygon `P`, and pendant spurs).
+
+- **`ClassBudget`: passes.**
+  - The `t + 1` sides of `P` on the cell form one class of kind `cell j`. The `t` bubble loops are
+    its gaps, each the subword `abc`, of value one. Sides and gaps together are the reversed cell
+    arc, so `cell_arc` holds.
+  - Each bubble is a polygon with one class. `budgetPolygons` needs two classes, so no bubble is
+    summed.
+  - A pendant spur is a gap `l · inv l`, of value one, and splits no class.
+  - So `∑ k ∈ budgetPolygons, classCount k` does not depend on `t`.
+- **`ClassCovers`: passes.**
+  - The bubble darts inside a class are gap darts, so `classWordLength` counts them.
+  - The uncovered cell darts form runs between covered arcs: classes in `relatorClasses`, and
+    region arcs. A run concatenates one-class polygon words and spurs, so it has value one.
+  - `IsLambdaCQuasiGeodesicWord` quantifies over every pair `i ≤ j`, and `W` is closed under
+    rotation. So a value-one cyclic subword of a relator has at most `⌈c/λ⌉₊ ≤ ⌈(c + 2)/λ⌉₊`
+    letters.
+  - A cell with no covered arc would read a value-one relator, of length at most `c/λ < ρ`. That
+    is excluded once `ρ0 > c/λ`, as in hull-count94's `ρ0 = ⌈c/λ⌉₊ + 2`.
+  - There are at most as many runs as covered arcs. So `L`, fixed before `ρ`, covers them for
+    every `t`.
+  - Not checked here: the bound on region arcs along cells behind the `24` in `L`.
+- **Wrap pair: answered.** `Maximal` constrains only `i + 1 < sideCount`, but `classBase` lets a
+  class run through `(sideCount − 1, 0)`. `exists_cyclicRuns` starts after a class end, so no
+  class splits at the base, and `L` needs no extra class per polygon.
+
 ## The rows in range
 
 There are 191 census rows.
@@ -217,13 +275,18 @@ Defect 4 stays `formalized`, with the new carrier.
   - The model test above went to hull-count94, together with the class-word spelling that
     `Covers` needs.
   - The un-pinch surgery is not on main.
-  - hull-count94 adopted the second spelling. Its draft `OsinLemma94PolygonClasses` has
-    `ClassBudget` over polygons with an (A1) class and at least two classes, and `ClassCovers`
-    with `L = 24ε + 2(K + 24)⌈(c + 2)/λ⌉`.
+  - hull-count94 adopted the second spelling. `OsinLemma94PolygonClasses` landed at `6db79cea7`,
+    with `ClassBudget` over polygons with an (A1) class and at least two classes, and
+    `ClassCovers` with `L = 24ε + 2(K + 24)⌈(c + 2)/λ⌉`. The count residual is now
+    `OsinLemma94ClassCountInput`.
   - The sub-piece hull-count94 gave this lane, the short-side count `≤ 2 ε |M|`, was already on
     main: sec5-sentences landed `OsinLemma94RealizedPolygons.sum_card_shortSides_le` at
     `4b6dd3cd8`. This lane wrote no duplicate.
-  - This lane waits for the `PolygonClasses` names, and re-runs both tests on the draft before it
-    lands. It also checks the wrap pair: `Maximal` skips the pair `(sideCount − 1, 0)`, so a class
-    can split at the base, at most one extra class per polygon. Either the classes are taken
-    cyclically, or `L` gets one class per polygon.
+  - The next sub-piece, the cyclic run decomposition, landed at `25aef6af9`.
+  - Both tests passed on the landed classes, and the wrap pair is answered (see above).
+- Wiring: `OsinLemma94ClassRuns` (`25aef6af9`) is on the wire queue. It imports only Mathlib and
+  `AxiomGuard`.
+- Lane tooling: `nmprobe.sh` refuses a lane-files entry that is not a `GroupApproximation/**/*.lean`
+  path. The report path was dropped from `lanes/audit-intro.files`. On the first probe that ran,
+  the only red was the deprecated `List.getLast?_eq_getLast`, replaced by
+  `List.getLast?_eq_some_getLast`.
