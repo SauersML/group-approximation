@@ -85,6 +85,12 @@ residually finite.
   - *All of H^2 is twists.* The vertex groups are perfect, and for `q >= 8` their Schur multipliers are
     trivial (standard, not re-read). So the hypothesis of the Remark in
     `edge-twist-extensions-of-triangle-colimits-moment-test` holds.
-  - *Not yet done.* That node's moment formula is written for cyclic edge groups of order `p`, so the
-    elementary abelian version still has to be written down. The first-level computation for `q = 8`
-    (`|Q| = 262,080`) has not been run.
+  - *The test for these edges.* The moment test for elementary abelian edge groups is
+    `edge-twist-moment-test-elementary-abelian-edges`.
+  - *First-level data* (`sl2-root-kazhdan-untwisted-first-level-moments`, computed). For `q = 8`, the
+    level `N = ker(Λ_0 -> SL_2(64))` has `b_1(N;F_2) = 18` and `b_2(N;F_2) = 164,858`. The moment space is
+    `I_N = F_2^9`, so no nonzero twist splits there.
+  - *Where it could die.* Unlike the `p >= 5` examples above, `N` has mod-2 first homology. Its dimension
+    `18 = dim_{F_2} sl_2(F_64)` suggests an adjoint congruence 2-cover. Elementary abelian quotients of rank
+    at least 2 have 2-torsion in `H_2`, so that cover is where the Cartan–Leray filter first allows a
+    moment to die.
