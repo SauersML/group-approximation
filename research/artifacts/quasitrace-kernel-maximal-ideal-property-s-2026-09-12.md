@@ -86,3 +86,115 @@ check of item 2 of `sl3z-ozawa-block-corona-has-unique-trace`.
 
 A nonzero stable C*-algebra has no nonzero unital quotient. So (b) removes the only
 elementary ideal-theoretic obstruction to `sl3z-ozawa-corona-trace-kernel-is-stable`.
+
+## 2. Property (S), stability, and a one-translate criterion
+
+**Definitions** (Ortega–Perera–Rørdam, arXiv:0903.2917v4, §2 and Def 4.1). Let `D` be
+a C*-algebra.
+- `F(D) = {a ∈ D_+ : ae = a` for some `e ∈ D_+}`.
+- In `W(D)`, `x <_s y` means `(k+1)x ≤ ky` for some `k`.
+- `D` has **property (S)** if every `a ∈ F(D)` has some `b ∈ D_+` with `a ⊥ b` and
+  `⟨a⟩ <_s ⟨b⟩`.
+
+**Inputs, read from the OPR PDF (pages 1–4, 11–17, 24–26):**
+- **(O1)** Prop 4.5. A separable `D` has (S) iff `D` has no nonzero bounded
+  lower-semicontinuous 2-quasitrace and no nonzero unital quotient.
+  - The "only if" proof takes an arbitrary nonzero bounded 2-quasitrace `τ` and uses
+    only its lower-semicontinuous dimension function `d_τ`.
+  - So (S) excludes every nonzero bounded 2-quasitrace.
+- **(O2)** §4, first paragraph: every stable C*-algebra has property (S). The same
+  paragraph quotes [9] = Hjelmborg–Rørdam, J. Funct. Anal. 155 (1998): a separable
+  `D` is stable iff every `a ∈ F(D)` has `b ∈ D_+` with `a ⊥ b` and `a ≾ b`.
+- **(O3)** Prop 4.7. If `Cu(D)` has the ω-comparison property, then for hereditary
+  `D' ⊂ D ⊗ 𝒦` the following are equivalent: `D'` stable; (S); no nonzero unital
+  quotient and no nonzero bounded 2-quasitrace.
+- **(O4)** Proof of Prop 4.7, quoting [9, Prop 2.2]. A separable `D` is stable if every
+  `a ∈ D_+` and `ε > 0` admit some `b ∈ D_+` with `(a−ε)_+ ≾ b` and
+  `(a−ε)_+ ⊥ b`.
+- The Hjelmborg–Rørdam PDF itself was not read. (O2) and (O4) are as quoted by OPR.
+
+**Proposition 2.1.** The following are equivalent:
+- (i) `K` has property (S);
+- (ii) `K` admits no nonzero bounded 2-quasitrace.
+
+Either one implies:
+- (iii) every bounded 2-quasitrace on `A` vanishes on `K`.
+
+By `sl3z-ozawa-block-qt-linearity-iff-corona-kernel-invisible`, (iii) gives: every
+bounded 2-quasitrace on `B` is a trace.
+
+*Proof.*
+- `K` is separable because `A` is.
+- (i) ⇒ (ii) is (O1), "only if".
+- (ii) ⇒ (i): (ii) excludes the lower-semicontinuous ones in particular, and
+  Cor 1.2(b) excludes unital quotients. Apply (O1), "if".
+- (ii) ⇒ (iii): a bounded 2-quasitrace on `A` restricts, through `M_2(K) ⊂ M_2(A)`,
+  to a bounded 2-quasitrace on `K`, and that restriction is zero. ∎
+
+The converse (iii) ⇒ (ii) would require extending a bounded 2-quasitrace from the
+ideal `K` to `A`. It is not settled here. So (S) is exactly the *intrinsic*
+invisibility of `K`, and it is sufficient for the extrinsic form (iii).
+
+**Proposition 2.2.**
+- `K` stable ⇒ `K` has (S).
+- If `Cu(K)` has ω-comparison, then `K` has (S) ⇒ `K` stable.
+
+*Proof.* The first is (O2). For the second, apply (O3) with `D = K` and `D' = K ⊗ e_11`. ∎
+
+**Proposition 2.3 (one-translate criterion).** Suppose that for every `a ∈ K_+` and
+`δ > 0` there is a unitary `u ∈ A` with `‖a · uau*‖ < δ`. Then `K` is stable.
+
+*Proof.*
+1. **Set-up.** Let `a ∈ K_+` with `‖a‖ ≤ 1`, and `0 < ε < 1`.
+   - Let `h` be continuous, with `h = 0` on `[0, ε/4]`, `h = 1` on `[ε/2, ∞)`, and
+     linear in between.
+   - Then `h(t) = t·k(t)` with `sup k ≤ 2/ε`.
+   - Pick `u` with `‖a · uau*‖ < δ`, where `δ < ε²/6`, and put `y = uau* ∈ K_+`.
+2. **Estimate.** `‖ya‖ = ‖(ay)*‖ < δ`, so `‖y h(a)‖ ≤ ‖ya‖ ‖k(a)‖ < 2δ/ε`.
+3. **The element `b`.** Put `b = (1 − h(a)) y (1 − h(a))`.
+   - `b ∈ K_+`, since `K` is an ideal of the unital `A`.
+   - `(1 − h(a))(a−ε)_+ = 0`, so `b ⊥ (a−ε)_+`.
+   - `‖b − y‖ ≤ ‖h(a)y‖ + ‖y h(a)‖ + ‖h(a) y h(a)‖ < 6δ/ε < ε`.
+4. **Comparison.** By the standard perturbation lemma (Kirchberg–Rørdam, Adv. Math.
+   167 (2002), Lemma 2.2; not re-read from the PDF), `‖b − y‖ < ε` gives
+   `(y−ε)_+ ≾ b`. Also `(a−ε)_+ = u*(y−ε)_+ u ≾ (y−ε)_+`.
+5. So `(a−ε)_+ ≾ b` and `(a−ε)_+ ⊥ b`, and (O4) gives stability. ∎
+
+**Remark 2.4.** The criterion needs a single translate per element. The m-fold
+displacement of `approximately-orthogonal-unitary-translates-kill-quasitraces` needs
+`m` mutually approximately orthogonal translates. Here is an instance where it
+applies.
+- Let `ξ_k` be the normalized part of `δ_{[1:0:0]}` orthogonal to the constants.
+  Then `⟨σ_k(g)ξ_k, ξ_k⟩ → 1_P(g)` (see `sl3z-ozawa-block-corona-unique-trace-proof`,
+  step 3).
+- So for `g ∉ P`, the rank-one block projections `e = [ξ_k ξ_k*]` satisfy
+  `‖e · ρ_∞(g) e ρ_∞(g)*‖ = lim |⟨σ_k(g)ξ_k, ξ_k⟩| = 0`.
+- Whether `e` lies in `B` at all is not decided here. It needs an expansion statement
+  for the parabolic action on the affine charts of `P²(F_p)`.
+
+## 3. Where it stops
+
+- **(S) for `K`** is open, and so is the one-translate hypothesis of Prop 2.3.
+  - Block by block the room exists: a Haar-random unitary moves a rank-`o(n_k)`
+    projection almost orthogonally to itself. But the unitary must lie in `A`.
+  - For `u = ρ_∞(g)`, `‖a · uau*‖` is governed by matrix coefficients of `σ_k(g)` on
+    the range of `a_k`.
+  - Take the spectral elements `f(h) ∈ K`, where `h = Σ_s Re ρ_∞(s)` and `f` vanishes
+    on `sp λ_Γ(h)`. For these, the ranges are eigenspaces of Schreier-graph Laplacians
+    with no localization information. Controlling them would need strong convergence
+    information for `σ_k`, which is not available.
+- **Ghosts.** `K ⊃ B ∩ Ghost(C*_u(⊔_k X_k))`: if `‖T δ_x‖ → 0`, then
+  `tr(T_k* T_k) = avg_x ‖T_k δ_x‖² → 0`. Neither stability of the ghost ideal
+  (Willett–Yu, Higson–Lafforgue–Skandalis) nor a positive ghost with a nonzero
+  quasitrace was established here. Those sources were not read.
+- **Extension (iii) ⇒ (ii)** of Prop 2.1 is not settled.
+
+## 4. Sources checked from PDFs (2026-09-12)
+
+- Boutonnet–Houdayer, arXiv:1908.07812v2, pages 1–5: Theorems A and C, Corollary D.
+- Bader–Boutonnet–Houdayer–Peterson, arXiv:2009.09952v3, pages 1–4: Def 1.2 and
+  the §1 consequences of charmenability. Not used in the proofs above; Corollary D
+  suffices.
+- Ortega–Perera–Rørdam, arXiv:0903.2917v4, pages 1–4, 11–17, 24–26: Def 4.1,
+  Lemma 4.2, Props 4.5 and 4.7, and the reference list ([8] Hirshberg–Rørdam–Winter,
+  [9] Hjelmborg–Rørdam).
