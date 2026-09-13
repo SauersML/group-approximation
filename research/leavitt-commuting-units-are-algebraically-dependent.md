@@ -29,8 +29,9 @@ claim (`algebraic-dependence-from-finite-centralizer-rank`).
   algebraically independent, because `F_2[c^(+-1)] ⊗ F_2[c^(+-1)]` is a Laurent ring in two variables and
   injects into `L ⊗ L`.
 - So this claim implies `no-unital-map-from-leavitt-tensor-square-to-leavitt-over-f2`
-  (`tensor-square-nonembedding-from-algebraic-dependence`). That is the characteristic-two case of
-  Ara--Cortiñas arXiv:1108.0352v3 Question 5.7, recorded as open on `leavitt-tensor-powers-are-left-coherent`.
+  (`tensor-square-nonembedding-from-algebraic-dependence`). That is the case `k = F_2` of Ara--Cortiñas,
+  arXiv:1108.0352v3, page 8, Question 5.7: "Is there a unital homomorphism φ: L_2 ⊗ L_2 → L_2?" This was checked
+  against the PDF, and it is recorded as open on `leavitt-tensor-powers-are-left-coherent`.
 - Conversely, a unital embedding `L ⊗ L -> L` over `F_2` would refute this claim and the finite-rank claim,
   without deciding `H_3(Z)`.
 

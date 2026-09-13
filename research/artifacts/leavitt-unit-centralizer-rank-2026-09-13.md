@@ -102,8 +102,8 @@ contains `H_3(Z)` iff `F_2[H_3(Z)]` embeds in `R`.
     - `ZnRRpzpb` and `mmbzQ` have no `u`-invariant diagonal idempotent at level 5
       (`block_probe.py`: one invariant atom). So the torsion does not come from a finite-order block on an
       invariant cylinder set. It comes from non-diagonal commuting elements on which `u` has finite order.
-  - **Reading.** Every excess centralizer found is torsion over `F_2[u]`, and every sampled unit has rank-1
-    behaviour at depth 3. No unit with centralizer rank above 1 was found, except the diagonal copies
+  - **Reading.** Every excess centralizer probed is torsion over `F_2[u]`, and every probed unit (eight excess
+    units and the control `A`) has rank-1 behaviour at depth 3. No unit with centralizer rank above 1 was found, except the diagonal copies
     `phi^j`.
 
 ## 4. The resulting reduction
