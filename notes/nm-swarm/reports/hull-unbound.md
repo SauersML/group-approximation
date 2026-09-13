@@ -40,12 +40,13 @@ theorem osinLemma94Section_of_planarPieces
   family card, since two optimal families have equal weight and card (`family_card_eq`).
 - Every piece Prop has the prefix of `OsinLemma94SectionStatement` up to
   `S.family.card ≤ 3 * (...)`, followed by `S.DartMinimal →`.
-  - `OsinLemma94PolygonRealizationInput` (hull-unbound): `∃ P : OsinLemma94RealizedPolygons S,
-    P.Maximal`.
+  - `OsinLemma94PolygonRealizationInput` (hull-unbound, CLOSED at 4002b9371):
+    `∃ P : OsinLemma94RealizedPolygons S, P.Maximal`.
   - `OsinLemma94PolygonCountInput` (hull-count94): `P.SideBudget K ∧ P.Covers L` for maximal `P`.
   - `OsinLemma94CaseOneInput` (theoremc-retire): `∀ P, P.Maximal → ∀ k (C : WordConnectorPair ..),
     C.b' < C.b → P.kind k C.target ≠ .cutting → False`. The pair is over `symmetricLabelAlphabet D`.
-  - `OsinLemma94CaseTwoInput` (sec5-sentences): the same with `P.kind k C.target = .cutting`.
+  - `OsinLemma94CaseTwoInput` (sec5-sentences, CLOSED at e0e94015d): the same with
+    `P.kind k C.target = .cutting`.
 - The slack `L n` in `Covers` costs a factor `2` in `√ρ`. For `ρ ≥ 4 L²` and `ρ ≥ 4 ρ_metric`, the
   metric half is applied at `⌊ρ / 4⌋` (`dense_of_covers`, `unbound_lt_of_pieces`).
 
@@ -88,29 +89,31 @@ OsinLemma94PolygonRealizationInput`, with `ε₀ = ρ₀ = 1`.
   `Estimating/OsinLemma94CellArcs.lean` (5e5a98049, green in probe 0913-104724-79090).
 - `OsinLemma94BoundaryArcsInput`: PROVED by cite-hull, `osinLemma94BoundaryArcsInput` in
   `Estimating/OsinLemma94BoundaryArcs.lean` (1b453429f, green in probe 0913-111012-12718).
-- `OsinLemma94PolygonPartitionInput` (ghw-assembly with cite-hull, OPEN): the combinatorial
-  partition of the face walks into maximal sides, given `GFacesApart` and the three arc properties.
-  ghw-assembly's modules on main: `OsinLemma94PolygonLists` (269a91ab3), `OsinLemma94PolygonKinds`
-  (5c69ca42d) and `OsinLemma94PolygonSides` (a76186267).
+- `OsinLemma94PolygonPartitionInput`: PROVED by ghw-assembly, `osinLemma94PolygonPartitionInput`
+  in `Estimating/OsinLemma94PolygonPartition.lean` (746028b24, green in probe 0913-132334-2532).
+  The unselected `G`-faces with walks cut by `sidesOf` form `S.realizedPolygons`, and
+  `realizedPolygons_maximal` proves them maximal. The chain is `OsinLemma94PolygonLists`
+  (269a91ab3), `PolygonKinds` (5c69ca42d), `PolygonSides` (a76186267) and `PolygonMaximal`
+  (9f03bfcd3).
+- So `osinLemma94PolygonRealizationInput : OsinLemma94PolygonRealizationInput` is closed, under
+  `#audit_closed_axioms` in `Estimating/OsinLemma94SectionResiduals.lean`.
 
 ## Assembly over the open pieces (landed)
-`Estimating/OsinLemma94SectionResiduals.lean` (4da8d3ef8, then 0087a5095, green in probe
-0913-125920-42109; queued for wiring):
+`Estimating/OsinLemma94SectionResiduals.lean` (4da8d3ef8, 0087a5095, 409bbbf72, then 4002b9371,
+green in probe 0913-133025-35313; queued for wiring):
 ```lean
-theorem osinLemma94PolygonRealizationInput_of_partition
-    (hpartition : OsinLemma94PolygonPartitionInput.{u, w, v}) :
-    OsinLemma94PolygonRealizationInput.{u, w, v}
+theorem osinLemma94PolygonRealizationInput : OsinLemma94PolygonRealizationInput.{u, w, v}
 
 theorem osinLemma94Section_of_residuals
-    (hpartition : OsinLemma94PolygonPartitionInput.{u, w, v})
     (hcount : OsinLemma94PolygonCountInput.{u, w, v})
-    (hone : OsinLemma94CaseOneInput.{u, w, v})
-    (htwo : OsinLemma94CaseTwoInput.{u, w, v}) :
+    (hone : OsinLemma94CaseOneInput.{u, w, v}) :
     OsinLemma94SectionStatement.{u, w, v}
 ```
-It plugs `osinLemma94AntiparallelMetric`, `cornerInsertionInput`, `pendantPathRemovalInput`,
+The realization theorem passes `cornerInsertionInput`, `pendantPathRemovalInput`,
 `separatingPathRemovalInput_of_pendant`, `quasiGeodesicRespellInput`,
-`osinLemma94CellArcsInput_holds` and `osinLemma94BoundaryArcsInput` into
+`osinLemma94CellArcsInput_holds`, `osinLemma94BoundaryArcsInput` and
+`osinLemma94PolygonPartitionInput` through `osinLemma94PolygonRealizationInput_of_partition`. The
+assembly adds `osinLemma94AntiparallelMetric` and `osinLemma94CaseTwoInput`, then applies
 `osinLemma94Section_of_planarPieces`.
 
 ## Findings
@@ -146,7 +149,8 @@ A1 is ruled and A2 is false. `OsinLemma94SectionStatement` and `UnboundInput` ga
 `OsinLemma97Below … Delta.rCellCount`. PlanarPieces gains `OsinLemma94CaseOneOneCellInput`,
 concluding `Nonempty (OsinLoopCut …)`, and the consumer closes the branch with `false_of_below`.
 theoremc-retire lands the threading through `OsinAppendixSections` after (A) and F1 (lead,
-09-13), and ko-closed writes case (a) and the `OsinLoopCut` construction. theoremc-retire drafts the PlanarPieces statement patch (the A1
+09-13), and ko-closed writes case (a) and the `OsinLoopCut` construction. theoremc-retire drafts
+the PlanarPieces statement patch (the A1
 premise, the one-cell Prop, the consumer split), rebased after F1, and this lane lands it. It waits
 for ghw-charp2's co-probe of census patches 01-10. Rule 22 users of
 PlanarPieces include `OsinLemma94SectionResiduals`, `OsinLemma94DartMinimal` and
@@ -164,15 +168,24 @@ PlanarPieces include `OsinLemma94SectionResiduals`, `OsinLemma94DartMinimal` and
   the exterior contradicts maximality.
 
 ## Residual Props of `osinLemma94Section_of_residuals`
-- `OsinLemma94PolygonPartitionInput` (ghw-assembly with cite-hull).
-- `OsinLemma94PolygonCountInput` (hull-count94; open part `OsinLemma94PolygonSideBudgetInput`).
-- `OsinLemma94CaseOneInput` (theoremc-retire).
-- `OsinLemma94CaseTwoInput` (sec5-sentences, `osinLemma94CaseTwo_of_insertion`).
+- `OsinLemma94PolygonCountInput` (hull-count94). `osinLemma94PolygonCountInput_of_sideBudget`
+  reduces it to `OsinLemma94PolygonSideBudgetInput`.
+- `OsinLemma94CaseOneInput` (theoremc-retire). On main `osinLemma94CaseOneInput_of_walk
+  osinLemma94CaseOneWalk` proves it, but no declaration composes them, because patch 10(f) of
+  ghw-charp2's co-probe deletes `_of_walk`. After patches 01-10 the one-cell pair is the named
+  hypothesis (option (i) above).
+
+Closed pieces plugged in:
+- `OsinLemma94CaseTwoInput`: sec5-sentences, `osinLemma94CaseTwoInput` in
+  `Estimating/OsinLemma94CaseTwo.lean` (e0e94015d, green in probe 0913-131149-5355).
+- `OsinLemma94PolygonPartitionInput`: ghw-assembly, `osinLemma94PolygonPartitionInput` in
+  `Estimating/OsinLemma94PolygonPartition.lean` (746028b24, green in probe 0913-132334-2532), over
+  `OsinLemma94PolygonLists`, `PolygonKinds`, `PolygonSides` and `PolygonMaximal`.
 
 ## Next
 - Land theoremc-retire's PlanarPieces statement patch for the one-cell pair, co-probed with its
   Rule 22 users, once ghw-charp2's co-probe lands.
-- Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once the four residuals close.
+- Then `osinLemma94Section_closed` with `#audit_closed_axioms`, once the count and Case 1 close.
 - Meanwhile help hull-respell with the pocket pinch, as the lead approved. hull-respell is moving
   the proof to a local vertex explosion. kh-cckw has the PinchSplit transport, and hull-respell
   names this lane's piece among the doubling transport, the gap analysis and the induction.
