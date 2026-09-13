@@ -24,6 +24,10 @@ nonzero in reduced cohomology.
   `deligne-class-congruence-cosystole-bounded-below`, gives it through
   `deligne-weak-lift-obstruction-from-congruence-cosystole`.
 - **Nonsoficity of `E_3`.** It implies this claim by `weakly-bernoulli-liftable-action-makes-extension-sofic`.
+- **Degree-one Bernoulli expansion.** Expansion of the Bernoulli shift of `Sp_4(Z)` with `Z/3` coefficients,
+  `bernoulli-shifts-have-degree-one-cocycle-expansion`, gives it through
+  `deligne-weak-lift-obstruction-from-bernoulli-expansion`. This is a degree-one property of the Bernoulli shift
+  alone, independent of the class.
 
 **Payoff.** Case (i) of `finite-kernel-rokhlin-ascent-from-weakly-minimal-lift` would never apply to `E_3`. Only
 `seward-direct-product-relative-rokhlin-entropy-conjecture` would remain as a known sufficient condition for Rokhlin
