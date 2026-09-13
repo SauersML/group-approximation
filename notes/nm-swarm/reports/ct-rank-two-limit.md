@@ -22,12 +22,18 @@ covers every field `K` and every countable subgroup of `GL_2(K)`.  `GL_2(k[z,z^{
 
 | module | content | status |
 |---|---|---|
-| `Algebra/LocallyFiniteCongruenceKernel` | `HasLocallyFiniteKernel ρ`; locally matricial kernel over a finite field ⇒ locally finite; kernels of `GL_n(ρ)` and `Rˣ → Sˣ` are locally finite groups | probing |
-| `Kazhdan/HaagerupFiniteProduct` | point-separating finite families into Haagerup groups; GHW at finitely many `GL_2` over fields | probing |
-| `Dynamics/RankTwoKazhdanLimitStatements` | step Props and printed endpoints | probing |
-| `Dynamics/RankTwoKazhdanLimitAssembly` | endpoints over the step Props | probing |
-| `Dynamics/ClopenCrossedProductLaurentEval` | `evalLaurent` (fixed points into `k[z,z^{-1}]`), `evalPair` (period ≤ 2 into `M_2(k[z,z^{-1}])`), coefficient recovery | authored |
-| `Dynamics/RankTwoCoreImageHaagerup` | producers of `FixedCoreImageHaagerupStatement`, `PeriodTwoCoreUnitImageHaagerupStatement` | planned |
+| `Kazhdan/HaagerupFiniteProduct` | `hasHaagerupProperty_of_injective_pi`, `hasHaagerupProperty_of_injective_pi_glTwo` (GHW at finitely many `GL_2` over fields) | LANDED 8509c9a55 |
+| `Algebra/LocallyFiniteCongruenceKernel` | `HasLocallyFiniteKernel ρ`; `hasLocallyFiniteKernel_of_isLocallyMatricialIn`; `glMap n ρ` (noncommutative rings); `isLocallyFiniteGroup_ker_glMap`, `isLocallyFiniteGroup_ker_unitsMap` | LANDED 70317e581 |
+| `Dynamics/RankTwoKazhdanLimitStatements` | step Props and printed endpoints (below) | LANDED 70317e581 |
+| `Dynamics/RankTwoKazhdanLimitAssembly` | `printedFixedCoreGLTwoKazhdanFinite_of_steps`, `printedPeriodTwoCoreUnitsKazhdanFinite_of_steps`, `printedRankTwoCompressionDefectsTrivial_of_steps` | LANDED 70317e581 |
+| `Dynamics/ClopenCrossedProductLaurentEval` | `evalLaurent` (fixed points into `k[z,z^{-1}]`), `evalPair` (period ≤ 2 into `M_2(k[z,z^{-1}])`), `coeff_evalLaurent`, `coeff_evalPair_row` | probing |
+| `Dynamics/RankTwoCoreImageHaagerup` | `fiberSubring`; `fixedCoreImageHaagerup`, `periodTwoCoreUnitImageHaagerup`; endpoints `*_of_kernel` | probing |
+
+Printed endpoints (namespace `GroupApproximation.ChainCore.RankTwoLimit`):
+`PrintedFixedCoreGLTwoKazhdanFinite` (tex 1795–1796), `PrintedPeriodTwoCoreUnitsKazhdanFinite` (tex 1802–1803),
+`PrintedRankTwoCompressionDefectsTrivial` (tex 1801–1802).  The kernel lemmas serve any lane that needs local
+finiteness of `K_n(I)` over a finite field (`lem:involution-localization` states it for `K_1(I)`; `thm:core-mf-radical`
+for `n ≥ 2` over `F_2`).
 
 ## Residual Props
 
