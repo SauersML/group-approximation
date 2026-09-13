@@ -2,6 +2,7 @@ import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkChain
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColour
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCopyWalk
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketColourNoncrossing
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellNoncrossing
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -22,13 +23,19 @@ distinct exterior regions of the cell `Π` to one section give the pocket walk `
   walk darts one colour (`PocketWalkColour.walk_orient`).
 * At least area, under the edge conditions `PocketWalk.CopyClean`, the walk has distinct darts and
   uses no edge in both directions (`PocketWalk.walk_nodup_and_alpha_not_mem`).
+* So the walk is noncrossing (`ClosedWalkFaceColouring.isNoncrossingClosedWalk_of_orient`).
 * With a relator cell on the side of the walk, the walk is the boundary cycle of a pocket face set
-  in walk order (`PocketWalk.exists_pocketFaceSet_closedWalk_of_orient`).
+  in walk order (`PocketWalk.exists_pocketFaceSet_closedWalk_of_orient`).  In a globally
+  distinguished family the relator cell comes from the value condition and the outer cycle
+  (`GloballyDistinguishedSectionFamily.exists_kept_of_noncrossing_of_value`).
 
-* `PocketWalk.exists_pocketFaceSet_of_exteriorAt`: the assembled statement.
+* `PocketWalk.exists_pocketFaceSet_of_exteriorAt`: the assembled statement, with the relator cell
+  as a hypothesis.
+* `PocketWalk.exists_pocketFaceSet_of_exteriorAt_of_value`: the same for a globally distinguished
+  family, with the relator cell from the value condition and the outer cycle.
 
 Not proved here: an O-equivalent copy with legal labels that satisfies the edge conditions, and
-the relator cell on the side of the walk.
+that the outer cycle of the noncrossing walk follows its boundary.
 
 ## Manuscript status
 
@@ -88,8 +95,63 @@ theorem exists_pocketFaceSet_of_exteriorAt (S : RealizedSectionFamily D lambda c
     (fun _ hcol => PocketWalkColour.walk_orient S hmem.1 hmem.2.1 hmem.2.2 K hKi hfirst hsecond
       hgap hstart hcol) hkept
 
+/-- **The pocket face set of two exterior regions, with the relator cell from the value
+condition.**  Let `a`, `b` be distinct exterior regions of the cell `i` to the section `j` in a
+globally distinguished section family, and let `K`, `x`, `y` be as in
+`exists_pocketFaceSet_of_exteriorAt`.  If the diagram has least area, `K` satisfies the edge
+conditions for `x` and `y`, no relator word has value one, and the outer cycle of `K` as a
+noncrossing closed walk follows its boundary, then `K` is the boundary cycle of a pocket face set
+in walk order. -/
+theorem exists_pocketFaceSet_of_exteriorAt_of_value
+    (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+    {i : Fin S.diagram.rCellCount} {j : Fin cuts.count} {a b : RegionCandidate D eps S.diagram}
+    (ha : a ∈ RegionCandidate.exteriorAt S.family i)
+    (hb : b ∈ RegionCandidate.exteriorAt S.family i) (hab : a ≠ b)
+    (hja : RegionCandidate.TargetsSectionIndex cuts j a)
+    (hjb : RegionCandidate.TargetsSectionIndex cuts j b) :
+    ∃ (K : PocketWalk D eps S.diagram (cuts.cut j.castSucc) (cuts.cut j.succ))
+      (x y : RegionCandidate D eps S.diagram), (x = a ∧ y = b ∨ x = b ∧ y = a) ∧
+      K.source = i ∧ K.firstSide = y.2.leftSide ∧ K.secondSide = x.2.rightSide ∧
+        (∃ Gap : CyclicArc (cellDarts S.diagram i),
+          K.sourceArc.darts = x.2.sourceArc.darts ++ Gap.darts ++ y.2.sourceArc.darts) ∧
+        K.targetArc.start.1 = x.2.targetArc.start.1 ∧
+        K.targetArc.start.1 + K.targetArc.length =
+          y.2.targetArc.start.1 + y.2.targetArc.length ∧
+        (S.diagram.LeastArea → K.CopyClean x y →
+          (∀ C ∈ S.diagram.relatorCells, RelLetter.listVal C.word ≠ 1) →
+          (∀ hw : IsNoncrossingClosedWalk S.diagram.toCombMap K.walk,
+            (hw.outerCycle S.diagram.planar).FollowsBoundary) →
+          ∃ P : PocketFaceSet D eps S.diagram (cuts.cut j.castSucc) (cuts.cut j.succ),
+            P.boundary.cycle = K.walk ∧ P.ClosedWalk) := by
+  obtain ⟨K, x, y, hxy, hKi, hfirst, hsecond, hgap, hstart, hend, hne, hchain, hcloses⟩ :=
+    exists_of_exteriorAt_closedWalk S.toRealizedSectionFamily ha hb hab hja hjb
+  have hmem : x ∈ RegionCandidate.exteriorAt S.family i ∧
+      y ∈ RegionCandidate.exteriorAt S.family i ∧ x ≠ y := by
+    rcases hxy with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+    · exact ⟨ha, hb, hab⟩
+    · exact ⟨hb, ha, hab.symm⟩
+  refine ⟨K, x, y, hxy, hKi, hfirst, hsecond, hgap, hstart, hend,
+    fun hlea hclean hvalue hfollows => ?_⟩
+  have hxS := (PocketWalkColour.mem_exteriorAt S.toRealizedSectionFamily hmem.1).1
+  have hyS := (PocketWalkColour.mem_exteriorAt S.toRealizedSectionFamily hmem.2.1).1
+  obtain ⟨hnodup, halpha⟩ := K.walk_nodup_and_alpha_not_mem hlea hfirst hsecond
+    (S.pairwise x hxS y hyS hmem.2.2) hclean
+  have horient : ∀ faces : Finset S.diagram.toCombMap.Face,
+      (∀ d, ¬ (S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) ∈ faces ↔
+        S.diagram.toCombMap.faceOf d ∈ faces) ↔ walkKeep S.diagram.toCombMap K.walk d) →
+        ∀ d ∈ K.walk, ∀ e ∈ K.walk,
+          (S.diagram.toCombMap.faceOf d ∈ faces ↔ S.diagram.toCombMap.faceOf e ∈ faces) :=
+    fun _ hcol => PocketWalkColour.walk_orient S.toRealizedSectionFamily hmem.1 hmem.2.1
+      hmem.2.2 K hKi hfirst hsecond hgap hstart hcol
+  have hw := ClosedWalkFaceColouring.isNoncrossingClosedWalk_of_orient S.diagram.planar hne
+    hnodup halpha hchain hcloses horient
+  exact K.exists_pocketFaceSet_closedWalk_of_orient hne hnodup halpha hchain hcloses horient
+    (S.exists_kept_of_noncrossing_of_value hxS hyS hmem.2.2 K hgap hfirst hsecond hvalue hw
+      (hfollows hw))
+
 end PocketWalk
 
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.PocketWalk.exists_pocketFaceSet_of_exteriorAt
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketWalk.exists_pocketFaceSet_of_exteriorAt_of_value
