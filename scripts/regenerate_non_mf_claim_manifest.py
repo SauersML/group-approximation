@@ -151,6 +151,13 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # (`thm:compression-criterion`, `lem:ring-compression-cell`) are
     # recorded in DEPENDENCIES, not here.
     "prop:torsion-defect-ring": ("Ershov--Jaikin-Zapirain, Theorem 1.1",),
+    # The dynamical core results have self-contained paper proofs.  Their
+    # analytic input is the existing torsion-defect proposition, recorded
+    # below as an internal dependency; no Lean counterpart is asserted.
+    "lem:chain-core-models": (),
+    "lem:transient-matrices": (),
+    "thm:core-ring-reflection": (),
+    "thm:core-mf-radical": (),
     # `thm:full-defect-ring` moved to EXACT_TARGETS 2026-09-07:
     # `PropertyT/IntegralColumnPlaneClosure.lean` closed
     # `FinitelyGeneratedRingGeneralRankElementaryPropertyT` unconditionally
@@ -267,6 +274,13 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:regular-nonmf-algebra": ["thm:torsion-free"],
     "prop:torsion-defect-ring": [
         "thm:compression-criterion", "lem:ring-compression-cell"],
+    "lem:chain-core-models": [],
+    "lem:transient-matrices": ["lem:chain-core-models"],
+    "thm:core-ring-reflection": [
+        "lem:chain-core-models", "lem:transient-matrices"],
+    "thm:core-mf-radical": [
+        "prop:torsion-defect-ring", "lem:chain-core-models",
+        "lem:transient-matrices"],
     "prop:clifford-locally-rf": [
         "prop:clifford-self-embedding", "prop:locally-rf-by-z-trace",
         "thm:factorization-nonmf-trace"],

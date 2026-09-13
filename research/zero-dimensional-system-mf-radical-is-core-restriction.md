@@ -9,6 +9,7 @@ distinct_from:
   short-period-free-low-rank-mf-radical-is-core-kernel: that proves full low-rank kernels for subshifts; this covers every zero-dimensional compact metrizable system under the same short-period hypotheses.
 artifacts:
   - research/artifacts/pestov91-zero-dimensional-universal-core-reflection-2026-09-13.md
+  - non_mf_groups_exist.tex
 ---
 
 For coefficient field `F_2` and rank at least four, the MF radical
@@ -22,3 +23,8 @@ for `GL_n` with `n>=1` and `EL_n` with `n>=2`. Thus rank two and units
 are covered for every aperiodic compact metrizable zero-dimensional
 system. No finite generation or property (T) of these general ambient
 groups is asserted.
+
+The rank-at-least-four statement and its full kernel proof are printed
+as `thm:core-mf-radical` in the manuscript section `sec:chain-core`.
+The low-rank return-section extension remains in the linked research
+artifact. The manuscript claim has paper-proof status, not Lean status.

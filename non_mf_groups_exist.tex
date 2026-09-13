@@ -246,6 +246,16 @@ with the commutator subgroup, and the largest MF quotient of $\GL_n(R)$
 with $K_1(R)$.  For
 the unit group of $L_k(1,d)$ the quotient is $k^\times/(k^\times)^{d-1}$.
 
+The torsion-defect obstruction also computes entire MF radicals in a
+different family.  For a homeomorphism $T$ of a compact metrizable
+zero-dimensional space $X$, let $R_X$ be the algebraic crossed product
+of the locally constant $\F_2$-valued functions by $T$.  In
+Section~\ref{sec:chain-core} we prove that, for $n\ge4$, the MF radical
+of $\EL_n(R_X)$ is exactly the kernel of restriction to the
+chain-recurrent set.  This kernel is locally finite and the quotient
+is locally embeddable into finite groups.  Over every finite field,
+the same restriction is the universal directly finite ring quotient.
+
 \begin{mainthm}[an amenable nonquasidiagonal trace]
 \label{thm:amenable-trace}
 There is a sofic group $W=W_0\rtimes\mathbb Z$, with $W_0$ locally residually
@@ -1094,8 +1104,10 @@ Let $u$ be the compressor of Lemma~\ref{lem:ring-compression-cell}, put
 $w_{ij}=(1+f_{ji})(1-f_{ij})(1+f_{ji})$, $r=w_{14}w_{25}$, and $v=uD(r)$.
 Since $D(r)$ centralizes $L$, $vLv^{-1}\le L$.  Put
 \[
- c=D(1+f_{02}),\qquad y=e_{42}(f_{10}),\qquad z=D(1+f_{12}),\qquad
+ \begin{gathered}
+ c=D(1+f_{02}),\qquad y=e_{42}(f_{10}),\qquad z=D(1+f_{12}),\\
  \ell=e_{21}(1),\qquad B=\langle L,v,c,y\rangle .
+ \end{gathered}
 \]
 Then $c\in C_B(L)$, and from $rf_{02}r^{-1}=f_{05}$, $rf_{12}r^{-1}=f_{45}$,
 $f_{02}t^3=f_{05}$, and $t^3f_{45}=f_{12}t^3$, direct multiplication with
@@ -1320,6 +1332,261 @@ group is trivial (Theorem~\ref{thm:full-defect-ring}).
 For $d=2$ the quotient is trivial for every countable field $k$, so
 every homomorphism from $L_k(1,2)^\times$ to an MF group is trivial.
 For $k=\mathbb F_q$ the quotient is cyclic of order $\gcd(q-1,d-1)$.
+
+\section{Chain recurrence and exact MF radicals}
+\label{sec:chain-core}
+
+The torsion-defect argument can identify the whole MF radical even
+when the defect ideal is proper.  We give such a computation for
+algebraic crossed products arising from zero-dimensional dynamics.
+
+Let $X$ be a nonempty compact metrizable zero-dimensional space, and
+let $T\colon X\to X$ be a homeomorphism.  For a finite field $k$, put
+\[
+ R_X=\operatorname{LC}(X,k)\rtimes_T\mathbb Z,
+ \qquad ufu^{-1}=f\circ T^{-1}.
+\]
+Here $\operatorname{LC}$ denotes locally constant functions and the
+crossed product is algebraic: its elements have unique finite Laurent
+expansions $\sum_j f_j u^j$.  The powers of $u$ remain formal even if
+$T$ has finite order.  A ring is \emph{LEF} if every finite subset
+admits an injective map into a finite ring preserving the additions
+and multiplications that stay in that subset, and preserving $0$ and
+$1$ when present.  A group is LEF with the analogous multiplicative
+definition.  Finite inverse-pair tables show that LEF rings are stably
+finite.  Entrywise finite ring models, including the entries of
+inverse matrices, show that their general linear groups are LEF.
+Countable LEF groups are MF, by the regular representations of the
+finite groups in their local models.
+
+For a compatible metric on $X$, a point $x$ is \emph{chain recurrent}
+if, for every $\varepsilon>0$, there are $r\ge1$ and
+$x=x_0,x_1,\dots,x_r=x$ with
+$d(Tx_i,x_{i+1})<\varepsilon$.  Write $Y=\operatorname{CR}(T)$ for
+the chain-recurrent set.  We first construct this set in a form that
+also supplies finite ring models.
+
+\begin{lemma}[the chain-recurrent core]\label{lem:chain-core-models}
+The set $Y$ is nonempty, closed and invariant, and $R_Y$ is LEF.
+The complement $X\setminus Y$ is covered by translates of sets
+$P\setminus T(P)$, where $P$ is clopen and $T(P)\subseteq P$.
+Each of these sets is wandering: its distinct integer translates
+are pairwise disjoint.
+\end{lemma}
+
+\begin{proof}
+First suppose $X$ is a subshift over a finite alphabet.  Its word
+graph at level $r$ has the length-$r$ words as vertices and the
+length-$(r+1)$ words as edges, from prefix to suffix.  Call an edge
+cyclic if it lies on a directed cycle, and say the subshift satisfies
+the cycle condition if every edge of every word graph is cyclic.
+
+A subshift satisfying the cycle condition has an LEF crossed product.
+Indeed, fix a finite ring table, express its entries in Laurent form,
+and choose a window determining all coefficient functions and their
+translates used in that table.  At a sufficiently high word-graph
+level, choose cycles containing words witnessing every nonzero
+coefficient of every difference between distinct entries.  Reading
+these cycles gives finite periodic models whose relevant windows
+all belong to the subshift.  Repeat each cycle so its length exceeds
+twice the largest absolute Laurent degree appearing in the table.
+On the corresponding finite cyclic sets, evaluate coefficients as
+diagonal matrices and $u$ as the cyclic shift matrix.  The allowed
+windows preserve the specified products and sums; the separated
+cyclic diagonals and the chosen witnesses distinguish distinct
+entries.  Their product is the required finite matrix-ring model.
+The periodic models need not themselves belong to the subshift.
+
+Retain only the cyclic edges at level $r$, and let $Z_r$ be the
+subshift read from bi-infinite paths in this graph.  Every finite
+path in the retained graph lies in a strongly connected component
+and extends to a periodic path.  Thus $Z_r$ has dense periodic points
+and satisfies the cycle condition.  It is nonempty, and
+$Z_{r+1}\subseteq Z_r$, since a higher-level cycle projects to a
+closed walk at a lower level.  Put $Y_0=\bigcap_r Z_r$.  Compactness
+makes $Y_0$ nonempty, and all its words belong to $X$, so $Y_0\subseteq X$.
+At each fixed length the decreasing finite languages of $Z_r$
+stabilize to the language of $Y_0$.  Consequently $Y_0$ satisfies the
+cycle condition too.  It is precisely the set of points all of whose
+finite words give cyclic edges in the word graphs of $X$.
+
+Closed approximate orbits at a prescribed window scale give closed
+walks through the corresponding word.  Conversely, a cycle through
+a sufficiently long word centered at $x$ gives a closed approximate
+orbit at $x$: realize successive edges by points of $X$, using $x$
+at the initial and final positions.  Overlap of the words gives the
+required accuracy.  Hence $Y_0=\operatorname{CR}(T)$.
+
+A noncyclic edge $a\to b$ gives a forward-closed set of vertices:
+those reachable from $b$, which excludes $a$.  Its cylinder union
+$P$ satisfies $T(P)\subseteq P$.  If $x$ starts with that edge, then
+$Tx\in P\setminus T(P)$.  These defects are wandering by nesting of
+the translates of $P$.
+
+For general $X$, choose refining finite clopen partitions
+$\mathcal P_m$ with mesh tending to zero.  Let $\pi_m\colon X\to X_m$
+be their itinerary subshifts, and let $Y_m$ be the cores just
+constructed.  Refinement gives one-block factor maps
+$\rho_{lm}\colon X_l\to X_m$.  Such maps preserve the cycle
+condition, since cycles map to closed walks.  Thus
+$\rho_{lm}(Y_l)\subseteq Y_m$, and
+\[
+ Y_* =\bigcap_m\pi_m^{-1}(Y_m),\qquad
+ \pi_m(Y_*)=\bigcap_{l\ge m}\rho_{lm}(Y_l).
+\]
+The second equality follows from compactness in the fibers.  The
+sets on its right decrease and satisfy the cycle condition; finite
+language stabilization proves that their intersection does too.
+Coefficient pullback gives injective unital maps of crossed products,
+and every locally constant function is constant on a sufficiently
+fine partition.  Thus $R_{Y_*}$ is an increasing union of LEF rings
+and is LEF.
+
+Chain recurrence passes to factors, so $Y\subseteq Y_*$.  Conversely,
+if $x\in Y_*$, choose $\mathcal P_m$ with mesh below $\varepsilon$.
+A sufficiently accurate closed chain at $\pi_m(x)$ makes the
+zero-coordinate symbol of each next point equal the one-coordinate
+symbol of the preceding point.  Lift the intermediate points
+arbitrarily to $X$, with both endpoint lifts equal to $x$.  Consecutive
+lifts satisfy the $\varepsilon$-chain condition because they lie in
+the same partition atom after shifting.  Hence $Y_*=Y$.
+
+Pull back the symbolic defects to cover $X\setminus Y$ by their
+translates.  They avoid $Y$: for any compressed clopen $P$, set
+$p=1_P$, $d=1_{P\setminus T(P)}$ and calculate
+\begin{equation}\label{eq:clopen-defect-pair}
+ s=up+1-p,\qquad t=pu^{-1}+1-p,\qquad ts=1,\qquad st=1-d.
+\end{equation}
+Restriction to the directly finite ring $R_Y$ forces $d|_Y=0$.
+\end{proof}
+
+Call an algebra \emph{locally matricial} if every finite subset is
+contained in a finite product of full matrix algebras over its
+coefficient field; these subalgebras may have their own local identities.
+
+\begin{lemma}[the transient ideal]\label{lem:transient-matrices}
+Restriction fits into an exact sequence
+\[
+ 0\longrightarrow I\longrightarrow R_X\longrightarrow R_Y
+ \longrightarrow0,\qquad
+ I=\operatorname{LC}_c(X\setminus Y,k)\rtimes_T\mathbb Z.
+\]
+The ideal $I$ is locally matricial and is generated by the indicators
+$1_{P\setminus T(P)}$ of the defects in
+Lemma~\ref{lem:chain-core-models}.
+\end{lemma}
+
+\begin{proof}
+Locally constant functions on a closed subset extend by finite
+clopen partitions.  Their restriction kernel consists exactly of
+functions compactly supported in the complement.  Laurent normal
+forms give exactness.  The translates of the defects cover that
+complement; a finite clopen subdivision subordinate to this cover
+on each compact coefficient support proves the ideal-generation claim.
+
+Put $U=X\setminus Y$.  A compact subset $C\subset U$ has a finite
+cover by wandering clopen sets, say $m$ of them, so each orbit meets
+$C$ in at most $m$ points.  Also $U$ has no periodic points.
+Express a prescribed finite subset of $I$ as linear combinations of
+characteristic functions of compact clopen partial shift graphs.
+Include inverse partial shifts, and let $C$ be the union of their
+sources and ranges.  The equivalence relation they generate on $C$
+has classes of size at most $m$.  Erasing loops shortens any path
+between related points to at most $m-1$ steps.  Freeness on $U$
+makes the arrow between related points unique.  The generated
+relation therefore consists of finitely many partial shifts with
+compact clopen domains.
+
+Choose a finite clopen partition of $C$ separating distinct points
+in each class: the finitely many nonidentity partial shifts have no
+fixed points, so compactness gives such a partition.  Order its atoms
+and select the point in the first occupied atom as the class
+representative.  The representative set is clopen, because presence
+of a related point in an earlier atom is a finite clopen test.
+Refine it according to the occupied atoms, the shift exponents to
+each level, and all original coefficient values.  On each cell the
+classes have a fixed size $h$ and continuously enumerated clopen
+levels.  The characteristic arrows between these levels form a copy
+of $M_h(k)$.  The product of these finitely many matrix algebras
+contains the prescribed elements, proving local matriciality.
+\end{proof}
+
+\begin{theorem}[the universal directly finite quotient]
+\label{thm:core-ring-reflection}
+Every unital homomorphism from $R_X$ to a directly finite ring factors
+uniquely through restriction $R_X\to R_Y$.  This is also the universal
+stably finite and LEF ring quotient.  The same assertions hold for
+$M_m(R_X)\to M_m(R_Y)$ for every $m\ge1$.  In particular, $R_X$ is
+directly finite if and only if it is stably finite, if and only if it
+is LEF, if and only if every point of $X$ is chain recurrent.
+\end{theorem}
+
+\begin{proof}
+A unital homomorphism to a directly finite ring kills every $d$ in
+\eqref{eq:clopen-defect-pair}, hence all of $I$ by
+Lemma~\ref{lem:transient-matrices}.  Since $R_Y$ itself is LEF and
+therefore stably finite, all three universal properties follow.
+For amplification, let $\varphi\colon M_m(R_X)\to A$ be unital with
+$A$ directly finite, and put $e=\varphi(E_{11})$.  The corner $eAe$
+is directly finite: extend a one-sided inverse pair by $1-e$ in $A$.
+Apply the preceding argument to the unital map
+$r\mapsto\varphi(rE_{11})$ into this corner.  Multiplication by the
+other matrix units shows that $\varphi$ kills $M_m(I)$.  Its quotient
+$M_m(R_Y)$ is LEF, as follows entrywise from finite ring tables.
+Finally, $I=0$ exactly when $X=Y$, giving the stated equivalences.
+\end{proof}
+
+\begin{theorem}[the exact MF radical]\label{thm:core-mf-radical}
+Take $k=\F_2$ and $n\ge4$.  Then
+\[
+ \Rad_{\mathrm{MF}}(\EL_n(R_X))
+ =\ker\bigl(\EL_n(R_X)\longrightarrow\EL_n(R_Y)\bigr)
+ =\EL_n(R_X,I).
+\]
+This kernel is locally finite and the restriction map is surjective
+with LEF quotient.  The MF radical of $\GL_n(R_X)$ is the same kernel;
+its maximal MF quotient is its restriction image in $\GL_n(R_Y)$.
+\end{theorem}
+
+\begin{proof}
+The ring $R_X$ is countable: $X$ has a countable clopen basis, and
+each clopen subset is a finite union of basis sets.  Each defect $d$
+in \eqref{eq:clopen-defect-pair} has additive order at most two.
+Proposition~\ref{prop:torsion-defect-ring} therefore kills every root
+with coefficient in $R_XdR_X$ under every MF homomorphism.  These
+ideals generate $I$, so root addition kills all roots with
+coefficients in $I$ and their normal closure $\EL_n(R_X,I)$.
+
+We identify the full restriction kernel.  If $g\in\GL_n(R_X)$
+restricts to the identity, put all entries of $g-1$ and $g^{-1}-1$
+inside one finite matrix-product algebra
+$B=\prod_a M_{h_a}(\F_2)\subset I$, with local identity $p$.
+Then $g=(1-p)I_n+h$ with $h\in\GL_n(B)$.  For $n\ge2$,
+\[
+ \GL_n(B)=\EL_n(B)\cong\prod_a\mathrm{SL}_{nh_a}(\F_2).
+\]
+Indeed every invertible matrix over $\F_2$ has determinant one.
+Under block flattening, scalar roots across distinct outer blocks
+are block roots; a scalar root within one block is a commutator
+through another block.  Thus $g$ is generated by roots with
+coefficients in $I$.  This proves equality of the elementary and
+general linear restriction kernels with $\EL_n(R_X,I)$.  The same
+argument for finitely many $g$ at once places them in a common
+finite group, proving local finiteness.
+
+Lifting elementary coefficients makes the elementary restriction
+surjective.  Its target is LEF by
+Lemma~\ref{lem:chain-core-models}, hence MF, which proves the opposite
+radical inclusion.  For $\GL_n(R_X)$, restriction of any MF
+homomorphism to the elementary subgroup kills the same kernel, while
+the restriction image is a subgroup of the LEF group $\GL_n(R_Y)$.
+\end{proof}
+
+In particular, these groups are MF exactly when $X$ is entirely
+chain recurrent, in which case they are LEF.  The ring theorem holds
+over every finite field; the exact kernel computation for groups
+uses $\F_2$.  No finite generation or property~\textup{(T)} of the
+ambient crossed-product groups is required.
 
 \section{Amenable traces and Clifford lamps}
 \label{sec:amenable-nonqd}

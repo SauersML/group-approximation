@@ -8,6 +8,7 @@ distinct_from:
   subshift-cycle-core-is-largest-lef-subsystem: that constructs the largest LEF subsystem; this characterizes all ring maps to directly finite targets and covers arbitrary compact metrizable zero-dimensional systems.
 artifacts:
   - research/artifacts/pestov91-zero-dimensional-universal-core-reflection-2026-09-13.md
+  - non_mf_groups_exist.tex
 ---
 
 For every compact metrizable zero-dimensional homeomorphism and every
@@ -17,3 +18,7 @@ and LEF rings. Its kernel is the locally matricial transient ideal.
 The property persists under finite matrix amplification. Direct
 finiteness, stable finiteness and ring-LEF are equivalent to chain
 recurrence of the whole system.
+
+The manuscript section `sec:chain-core` gives a self-contained paper
+proof, culminating in `thm:core-ring-reflection`. Its numbered-claim
+manifest records paper-proof status and no Lean counterpart.

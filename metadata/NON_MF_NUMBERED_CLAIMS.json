@@ -7,7 +7,7 @@
       "id": "thm:headline",
       "environment": "mainthm",
       "title": "the unit group of the binary Leavitt algebra",
-      "statement_sha256": "9ff26c02f67232f3233889bf57e7af2691a296656ee145981991d7cf47379ae1",
+      "statement_sha256": "6e54c2f510eda3289d1450337f6843778f7db84e5af43d685763417cd8285e8c",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -519,6 +519,67 @@
       "lean": []
     },
     {
+      "id": "lem:chain-core-models",
+      "environment": "lemma",
+      "title": "the chain-recurrent core",
+      "statement_sha256": "a4137897360ddef801621069894d5f45ef3f3fb69e6b68d694772059fd9f7c8c",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:transient-matrices",
+      "environment": "lemma",
+      "title": "the transient ideal",
+      "statement_sha256": "981db16b7c42cb0d0fb22e50f0f1117a5c0f55bd2ec262ed7232a369432650a4",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:chain-core-models"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "thm:core-ring-reflection",
+      "environment": "theorem",
+      "title": "the universal directly finite quotient",
+      "statement_sha256": "c60d9338ff6396999ed2794df6817ca5bf23544014c0a4295d89d7bfaa8edd9b",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:chain-core-models",
+        "lem:transient-matrices"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "thm:core-mf-radical",
+      "environment": "theorem",
+      "title": "the exact MF radical",
+      "statement_sha256": "9961e6cffce4469e3af907ee33dac13182b998e2afa885f16dc90440dc72c1bf",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "prop:torsion-defect-ring",
+        "lem:chain-core-models",
+        "lem:transient-matrices"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
       "id": "thm:factorization-nonmf-trace",
       "environment": "theorem",
       "title": "canonical-trace obstruction",
@@ -654,7 +715,7 @@
       "id": "cor:regular-nonmf-algebra",
       "environment": "corollary",
       "title": "",
-      "statement_sha256": "9930780730b10195d3f2ecbd5f139e5b64e02917a9b357a3a50689d2670413d0",
+      "statement_sha256": "0ea47be5e2785d8c57399a0a7312edd80217018a54df47bbb852978c3a2a8eb3",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
