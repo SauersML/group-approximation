@@ -8,6 +8,7 @@ distinct_from:
   determinant-conjecture: that is the universal positive statement; this asks for one violating group and matrix, which would refute it
 artifacts:
   - research/artifacts/determinant-conjecture-serre-class-2026-09-11.md
+  - research/artifacts/determinant-spectral-atoms-2026-09-12.md
 ---
 
 **OPEN.** Exhibit a group `G` and `A in M_{m x n}(Z[G])` with
@@ -53,4 +54,16 @@ artifacts:
   L^2-multiplicity is known for sofic groups
   (`vn-rank-galois-invariant-for-torsion-free-groups` records the torsion-free
   question). Unequal atoms alone do not violate the conjecture; the rest of the
-  spectrum must not compensate.
+  spectrum must not compensate. Compensation does happen: the measure
+  `0.3 delta_(phi^2) + 0.1 delta_(phi^-2) + 0.6 arcsine[-6,6]` obeys every
+  Serre inequality (`research/artifacts/determinant-spectral-atoms-2026-09-12.md`,
+  Example 4.2).
+- **A heavy eigenvalue (2026-09-12).** Over any group, an eigenvalue `lambda`
+  of a self-adjoint integral matrix with multiplicity above `n / deg(lambda)`,
+  for instance a transcendental eigenvalue, yields an explicit violation
+  `Q(A)`, with `Q` a box-principle polynomial of degree below `deg(lambda)`
+  (`heavy-eigenvalue-gives-determinant-counterexample`, route
+  `determinant-counterexample-from-heavy-eigenvalue`, open input
+  `integral-matrix-eigenvalue-exceeds-degree-bound`). Conversely the conjecture
+  forces algebraic eigenvalues with that bound, and at the level of one
+  spectral measure nothing more about atoms (`serre-class-atoms-obey-degree-bound`).
