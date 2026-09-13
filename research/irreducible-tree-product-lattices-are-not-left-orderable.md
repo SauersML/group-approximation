@@ -5,6 +5,8 @@ kind: claim
 title: Cocompact lattices with dense projections in products of two boundary-2-transitive tree groups are not left-orderable
 distinct_from:
   higher-rank-p-adic-lattices-are-not-left-orderable: that imports the Deroin–Hurtado theorem for lattices in algebraic p-adic groups; this asks for the same conclusion for lattices in products of non-algebraic tree groups, including non-linear simple lattices
+artifacts:
+  - research/artifacts/zp-tree-lattice-left-orderability-2026-09-13.md
 ---
 
 **OPEN.** Let `T_1`, `T_2` be locally finite trees and let `G_i ≤ Aut(T_i)` be closed,
@@ -14,12 +16,11 @@ orientation-preserving homeomorphisms, i.e. `Γ` is not left-orderable. For simp
 says every action of `Γ` on `R` is trivial.
 
 **Consequence.** It refutes `some-simple-lattice-in-a-product-of-trees-is-left-orderable`
-for every simple lattice whose projection closures are boundary-2-transitive. That includes
-the Burger–Mozes simple lattices in `U(A_(2n)) × U(A_(2m))`: projections dense and
-`U(F)^+` locally `∞`-transitive for 2-transitive `F`
-(`burger-mozes-infinitely-transitive-tree-groups`, items 1, 4, 5). A finite-index subgroup
-has projection closures of finite index, and these contain `U(F)^+`, so the hypotheses
-pass to the simple subgroup.
+for every simple lattice whose projection closures are boundary-2-transitive. That includes the
+Burger–Mozes simple lattices in `U(A_(2n)) × U(A_(2m))`: projections dense and `U(F)^+` locally
+`∞`-transitive for 2-transitive `F` (`burger-mozes-infinitely-transitive-tree-groups`, items 1,
+4, 5). A simple subgroup of finite index lies in `U(F_1)^+ × U(F_2)^+`, since it has no proper
+finite-index subgroup, and it projects densely there.
 
 **Calibration.**
 
@@ -33,35 +34,25 @@ pass to the simple subgroup.
 
 ## Attempts
 
-- (z1-22-lo-simple-bm, 2026-09-13) **Transcribe the Deroin–Hurtado proof, following Witte
-  Morris §3.** The steps and their tree-group inputs:
-  - almost-periodic space `Z` and induced `X = Ind_Γ^G Z` (Theorem 3.15, Definition 3.17):
-    general for finitely generated groups;
-  - stationary `μ_X` (Corollary 3.27) and Furstenberg's decomposition over a minimal
-    parabolic `P` (Theorem 3.28). Use `P = G_(1,ξ_1) × G_(2,ξ_2)`, a product of end
-    stabilizers, which is amenable with `G = KP` for `K` a vertex stabilizer. This needs the
-    Poisson boundary of a bi-`K`-invariant spread-out `μ_G` to be `∂T_1 × ∂T_2`;
-  - Proposition 3.29, that `μ_X` is not `G`-invariant: uses only that a faithful action by
-    translations forces `Γ` abelian;
-  - `χ_P : A → R` on `A = ⟨(a_1,1),(1,a_2)⟩ ≅ Z^2` for hyperbolic `a_i` fixing `ξ_i`,
-    local and global contraction (Lemma 3.32, Key Proposition 3.33). Karlsson–Margulis
-    tracking holds in the CAT(0) space `T_1 × T_2`, but it needs a drift direction realized
-    by one element `â_P ∈ A`, since `A` is discrete;
-  - invariance under centralizers (Corollary 3.35), which needs a full-support statement
-    for `ᶜP`-invariant probability measures on `G/Γ` (Proposition 2.8(2)) and an open big
-    cell `P_a^- U_a^+`. The big cell is plausible for groups with Tits' independence
-    property, such as `U(F)`;
-  - propagation (Corollary 3.42). For products the centralizer of a wall element
-    `(a_1, 1)` contains `1 × G_2`, so one negative wall value already gives a whole factor.
-- **Where it can die.**
-  - (G1) The exposition assumes `G = KΓ`. One-vertex square complex lattices satisfy it,
-    but their simple finite-index subgroups do not, so the harmonic-function version
-    (Witte Morris §5) is needed unless some simple torsion-free lattice acts simply
-    transitively on vertices.
-  - (G6) The Figure 1 propagation argument for `SL(3,Q_p)` uses 60-degree chambers. For a
-    product of two rank-one groups the chambers are quadrants, and the case where `χ_P`
-    vanishes on exactly one wall of `W_P` is not covered by that picture. Remark 3.4(2)
-    says `SL(2,Q_p) × SL(2,Q_p)` is covered, so the general Corollary 4.17 treatment must
-    be read and transcribed.
-  - Also to check: Proposition 2.8(2), the open big cell, and the Poisson boundary
-    identification for non-algebraic `G_i`.
+- (z1-22-lo-simple-bm, 2026-09-13) **Transcribe Deroin–Hurtado as exposed by Witte Morris**
+  (arXiv:2407.09742v1). The artifact records the dictionary, a step table and the status of each
+  step. For perfect `Γ` with `G_i = U(F_i)^+`, `F_i` 2-transitive:
+  - **Settled.** Almost-periodic space, induced space and stationarity: general, with `G ≠ KΓ`
+    handled by the harmonic extension of Witte Morris §5, which uses only `K` open and `Γ`
+    cocompact. Non-invariance of `μ_X`, since `Γ` is perfect. `χ_P` and local contraction. The
+    Case 1 propagation, because the four products of end stabilizers generate `G`. The Case 2
+    propagation, written out for trees in artifact §4, where the forced abelian subgroup
+    `Γ ∩ (K_1 × G_2)` is a non-abelian free vertex stabilizer.
+  - **Settled.** Circle rigidity, used in Theorem 4.1(2) and Proposition 4.19
+    (`tree-product-lattice-circle-actions-have-fixed-points`).
+  - **Available by import.** Howe–Moore for topologically simple boundary-2-transitive tree
+    groups (`howe-moore-property-for-simple-lie-and-p-adic-groups`, item 3). Together with dense
+    projections this gives Moore ergodicity of hyperbolic wall elements on `G/Γ`.
+  - **Sketched.** Open big cell `P_a^- U_a^+` for groups with Tits' independence property and
+    2-transitive local actions (artifact §3, step 9). Drift direction realized in the discrete
+    `A ≅ Z^2` by tuning a product of isotropic random walks (artifact part 2).
+- **Open inputs.**
+  - (G4) Furstenberg's decomposition `μ_X = ∫_K k_* μ_X^P dm_K` with a unique `P`-invariant
+    `μ_X^P`. This is the Poisson boundary of `μ_G = μ_1 ⊗ μ_2` being `∂T_1 × ∂T_2`.
+  - The measure-theoretic points the exposition declares ignored: ergodic components in
+    Corollary 3.35 and Lemma 4.14, and `μ_X` versus `μ_X^P` in Remark 4.21.
