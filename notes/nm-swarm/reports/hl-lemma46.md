@@ -74,3 +74,4 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
   - `PocketRegion.fourSectionCuts_cellTransport`, with the statement hull-select specified: regions to sections `1` and `3` of the four-part multiple-edge pocket cut glue back into cell-to-cell regions. It is the `htransport` argument of `OsinMultipleEdgeCut.ofPocketRegion`.
   - Proof: `PocketCellTransportStatement` (go-lemma42) at `pre = s₁` and at `pre = s₁ t₁ s₂`, as in `hcellT` and `hsecT` of `PocketCarrier.nonempty_osinSectionPocketCut`. The four `partsCut` evaluations are re-proved locally, because the originals are private.
   - Residual: `PocketCellTransportStatement`, a binder standing for go-lemma42's Prop.
+- Consumed: hull-select's `Estimating/OsinPocketMultipleEdgeAssembly` (2db85602c, `multipleEdgeCutInput_of_pieces`) uses `exists_twoCollars_of_ne_or` and `fourSectionCuts_cellTransport`. hull-select has no further sub-piece; the next assignment is asked of the lead.
