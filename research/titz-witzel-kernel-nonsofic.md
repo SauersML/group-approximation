@@ -52,7 +52,10 @@ group known today.
     `cd-two-groups-have-no-infranormal-kazhdan-pairs`). Their double has dimension at most three
     (`fp-torsion-free-nonsofic-group-of-cd-at-most-three`).
   - No such double embeds in `K`. By `compressed-doubles-raise-cohomological-dimension` (DB2),
-    a Kun--Thom double over a Kazhdan pair has cohomological dimension at least three. So every
-    recorded nonsoficity certificate is vacuous in `K`: the criterion, lamps, and doubles. A proof
+    a Kun--Thom double over a Kazhdan pair has cohomological dimension at least three. Infinite
+    Kazhdan subgroups of `K` have trivial centralizers
+    (`kazhdan-subgroups-of-cat0-cd-two-have-trivial-centralizers`), so rigid compression
+    defects vanish too. So every recorded nonsoficity certificate is vacuous in `K`: the
+    criterion, lamps, doubles and rigid defects. A proof
     of this claim needs a new mechanism, such as the repair inequality or the commutator collapse
     above.

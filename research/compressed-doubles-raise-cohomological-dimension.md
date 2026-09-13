@@ -43,8 +43,9 @@ cd(G *_Gamma G) >= n + 1.
   such groups nonsofic actions, not nonsoficity.
 - **Exact dimension of the recorded double.** The double of
   `fp-torsion-free-nonsofic-group-of-cd-at-most-three` has cohomological dimension exactly three.
-- **Not covered.** Rigid compression defects (`sofic-groups-kill-rigid-compression-defects`)
-  whose centralizing element has a power in the centre of `Gamma`. When `<z>` meets `Gamma`
-  trivially, (CD2) already makes `z` trivial.
+- **Rigid compression defects** (`sofic-groups-kill-rigid-compression-defects`). This dimension
+  count does not cover them. In a torsion-free cocompact CAT(0) group of dimension two, such as a
+  Titz--Witzel kernel, infinite Kazhdan subgroups have trivial centralizers
+  (`kazhdan-subgroups-of-cat0-cd-two-have-trivial-centralizers`), so those defects vanish.
 
 Proof: `compressed-doubles-raise-cohomological-dimension-proof`.
