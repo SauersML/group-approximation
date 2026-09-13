@@ -86,3 +86,11 @@ fidelity gap was closed by f797a21d6. The new module is queued for wiring.
 ## Claims
 
 - CLOSED: tex 1156 display for the presented J (f797a21d6).
+- CLAIM (main's 17:2x item, helping ct-bilateral-cell): prop:bilateral-three, tex 1585–1587, "So ⟨z⟩ is a nontrivial
+  finite central subgroup of B, of order char(k)" — GroupApproximation/Algebra/BilateralThreeCellZOrder.lean (new
+  module). It proves z^m = 1 ↔ m•d = 0 for every cell, and for the R_X cell with x ∈ P∖T(P) over a finite field
+  z^m = 1 ↔ char k ∣ m, orderOf z = char k, z ≠ 1, and ⟨z⟩ finite and central in `Cell.B S`. It imports only the
+  landed BilateralThreeCellMatrices and BilateralThreeCellClopen. Names are in namespace `BilateralThreeCell.ZOrder`
+  and `ClopenCrossedProduct.bilateralCell_*_z`, so nothing collides with ct-bilateral-cell's Corner draft
+  (`one_add_pow_of_mul_self_eq_zero`, `z_pow_eq_one_of_natCast_mul_d`, `isOfFinOrder_z`). Proposed to
+  ct-bilateral-cell at 17:3x.
