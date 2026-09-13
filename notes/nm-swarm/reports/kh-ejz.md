@@ -91,8 +91,21 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
    - **go-lemma42 asks for** FollowsBoundary for the outside BoundaryCycle, and each cell part in the form
      tₖ = invDarts Δ' A.darts with A : CyclicArc (cellDarts Δ' i).
 3. **Landed:** `GGT/VanKampen/Estimating/OsinPocketCellArcs` at 34342893f, after green probe 0913-044529-42148. The normal
-   re-land found identical bytes. The module is queued for wiring. Everything is in namespace `Embedded.CyclicArc` and
-   checked with `#audit_axioms`.
+   re-land found identical bytes. The lead wired the module into the root at 1faafe122. The five lemmas below are in
+   namespace `Embedded.CyclicArc` and checked with `#audit_axioms`.
+   Extension, landed e32bac3f3 after green probe 0913-052330-1543, also checked with `#audit_axioms`:
+   ```lean
+   def CyclicArc.rest (arc : CyclicArc cycle) : CyclicArc cycle  -- starts where arc ends
+   theorem CyclicArc.rest_length (arc : CyclicArc cycle) : arc.rest.length = cycle.length - arc.length
+   theorem CyclicArc.rotated_eq_darts_append_rest_darts (arc : CyclicArc cycle) :
+       arc.rotated = arc.darts ++ arc.rest.darts
+   theorem ContiguityGeometry.invDarts_rightSide_length_le (H : ContiguityGeometry D eps Delta faces) :
+       (invDarts Delta H.rightSide).length ≤ eps
+   theorem ContiguityGeometry.invDarts_leftSide_length_le (H : ContiguityGeometry D eps Delta faces) :
+       (invDarts Delta H.leftSide).length ≤ eps
+   ```
+   The side bounds give |s₁|, |s₂| ≤ ε for a side read across `alpha`.
+   The five cell-arc lemmas:
    ```lean
    theorem invDarts_darts (arc : CyclicArc cycle) : invDarts Delta arc.darts = arc.reverseDarts
    theorem dartWord_darts_cellDarts (arc : CyclicArc (cellDarts Delta i)) :
@@ -120,6 +133,13 @@ The lead's ruling on item 5 of the next section: don't build (A) or (B). hull-eu
 5. **Next.**
    - State and prove the region-side data once OsinPocketPieces lands, then tell go-lemma42.
    - When hull-euler's C6 Prop arrives, check it against this output.
+   - Status at 05:22:
+     - C6 is not on main. The roster (07169dd31) makes C6 a named piece Prop in hull-euler's module, shaped for the
+       ofPlanar carrier, with kh-ejz and hull-select discharging it. hull-euler's report (fbef94518) still asks the
+       lead whether to state it.
+     - OsinPocketPieces is not on main either.
+     - At ~05:25 I asked the lead two things: may I state the region-side Prop over `PocketRegion` myself, and should
+       the split be uncollared or collared?
 
 ## W1 assignment (2026-09-13 ~03:00)
 The lead's order: work on W1 hgreendlinger. hull-euler owns `PhiPrimeCountInput` alone, so take one separable part
