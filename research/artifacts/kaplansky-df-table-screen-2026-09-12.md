@@ -87,9 +87,9 @@ are balls. Every cell lies in `BA u {1}`, because the balls are symmetric and co
 | v 2:2 | 44, 44 | 978 | 1,936 | 2 | 4 | 978 | 0 | 275 | 6, 290 | SURVIVES: 8 images, 0 rejected, leave 12 classes. Class SAT: UNSAT (1,936 AND variables, 978 class cells, 4.1 s; solver verdict, no proof log) |
 | atlas 2:2 | 53, 53 | 1,603 | 2,809 | 3 | 27 | 1,603 | 0 | 99 | 4, 112 | **DEAD.** Replay of 420 images leaves 0 classes, 0 images rejected. Minimal certificate: 3 characters and 7 images (6 onto A5, 1 onto A6), in `screen/certs/` |
 | v 2:3 | 44, 211 | 4,410 | 16,632 | 0 | 1 | 4,410 | 0 | 4,410 | 6, 1,962 | SURVIVES: no image obtained, and the single class holds all 4,410 cells. Class SAT: UNSAT (9,284 AND variables, 186.7 s; solver verdict, no proof log). `dfsat` reported the same instance UNSAT in 147 s |
-| v-eld1 2:2 | 259, 259 | 46,724 | 67,081 | 2 | 4 | 46,724 | 0 | 16,626 | 16, 5,597 | SURVIVES: 6 images, 0 rejected, leave 8 classes. Class SAT: pending |
-| eld 1:2 | 35, 933 | 23,382 | 64,085 | 4 | 14 | 23,382 | 0 | 13,420 | 34, 9,981 | SURVIVES: 87 images, 0 rejected, leave 15 classes. Class SAT: pending |
-| eld 2:1 | 933, 35 | 23,382 | 64,085 | 4 | 14 | 23,382 | 0 | 13,420 | 34, 9,981 | SURVIVES: 87 images, 0 rejected, leave 15 classes. Class SAT: pending |
+| v-eld1 2:2 | 259, 259 | 46,724 | 67,081 | 2 | 4 | 46,724 | 0 | 16,626 | 16, 5,597 | SURVIVES: 6 images, 0 rejected, leave 8 classes. Class SAT: **UNKNOWN** at the 1,200 s limit (67,081 AND variables, 0 singleton rows, 46,724 class cells; stopped after 1,239.9 s). Undecided |
+| eld 1:2 | 35, 933 | 23,382 | 64,085 | 4 | 14 | 23,382 | 0 | 13,420 | 34, 9,981 | SURVIVES: 87 images, 0 rejected, leave 15 classes. Class SAT: UNSAT (32,655 AND variables, 24 singleton rows, 23,358 class cells, 162.0 s; solver verdict, no proof log) |
+| eld 2:1 | 933, 35 | 23,382 | 64,085 | 4 | 14 | 23,382 | 0 | 13,420 | 34, 9,981 | SURVIVES: 87 images, 0 rejected, leave 15 classes. Class SAT: UNSAT (32,655 AND variables, 24 singleton rows, 23,358 class cells, 173.7 s; solver verdict, no proof log) |
 
 **Reading of stage 1.**
 - Characters see only the abelianization of the table group.

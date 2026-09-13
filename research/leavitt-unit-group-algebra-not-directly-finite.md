@@ -545,6 +545,11 @@ Details: `research/artifacts/kaplansky-df-sat-search-2026-09-12.md`.
   From radius 2 on no character separates any cell. That fits the table covers approaching the
   simple hosts, where the screen goes blind (Corollary 3).
 
+  Class SAT on these windows (CryptoMiniSat, no proof logs, so it certifies nothing) returned
+  UNSAT on all of them except V with the nine-leaf generators at `2:2`. There the solver stopped
+  UNKNOWN at the 1,200 s limit (67,081 variables, 46,724 cells in 8 classes), so that window is
+  undecided. The nine-leaf `1:2` and `2:1` runs were UNSAT in 162 s and 174 s.
+
 ## Cross-atlas affine update (2026-09-07)
 
 An additional computational translation is now available, with a change
