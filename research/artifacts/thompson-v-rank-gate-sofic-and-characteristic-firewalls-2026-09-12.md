@@ -251,13 +251,18 @@ in `F[V]`. All clopen `p`-cycles are conjugate in `V`.
     average `1/p`.
   - For the second, `1 - [ab] = (1 - [a]) + [a](1 - [b])` and `1 - [a^(-1)] = -[a^(-1)](1 - [a])`. So `1 - [s]` is a
     combination of the `1 - [s_i]` over a generating set, and its rank is at most `rk col(1 - [s_i]) = 1 - phi_V`.
+  - Combining them: for `j >= 1`, the last `p - j` of the `p - 1` drops `d_1, ..., d_(p-1)`, whose sum is
+    `rk(y) <= 1 - phi_V`, give `rk(y^j) <= (1 - phi_V)(p - j)/(p - 1)`.
 - (d) **Calibration.** Both the augmentation rank and the sofic values of Lemma 1.1 satisfy
-  `rk(y^j) = (1 - phi)(p - j)/p`. Sofic values give `1 - deg gcd((1-t)^j, (t-1)^p)/p = 1 - j/p`.
+  `rk(y^j) = (1 - phi)(p - j)/p` for `1 <= j <= p`, with `phi = 1` and `phi = 0` respectively. At `j = 0` every rank
+  function gives `1`. Sofic values give `1 - deg gcd((1-t)^j, (t-1)^p)/p = 1 - j/p`.
   Over `C`, `rk_vN((1 - u_s)^j) = (p - 1)/p` for every `j >= 1`, so the pattern is genuinely `p`-sensitive.
 
 **Open (the order-char cycle law).** Does every rank function on `F[V]` satisfy `rk(y^j) = (1 - phi_V)(p - j)/p` for
-`0 <= j <= p`? This is the `p = char F` analogue of the torsion law, and would be the first `p`-sensitive structure
-theorem on V's rank functions.
+`1 <= j <= p`? Equivalently `d_0 = phi_V + (1 - phi_V)/p` and `d_i = (1 - phi_V)/p` for `1 <= i < p`: weight `phi_V`
+of the trivial module plus weight `1 - phi_V` of the regular module. (The first version of this section wrote
+`0 <= j <= p`, which fails at `j = 0` whenever `phi_V > 0`.) This is the `p = char F` analogue of the torsion law, and
+would be the first `p`-sensitive structure theorem on V's rank functions.
 - **What single-level data allow.** For `p >= 3`, finite data at one tree level can't force it. Take
   `A = F_p[(Z/p)^r]` with augmentation ideal `m`. On `A/m^2` every nonidentity element acts with Jordan type
   `[2, 1^(r-1)]`, giving ranks `1/(r+1)` and `0`, and those ranks are the same for every clopen `p`-cycle in the
