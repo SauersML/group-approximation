@@ -441,6 +441,22 @@ theorem regionFamily_profile {D : RelGenSet G Lambda} {eps : ℕ}
   obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
   exact ⟨b.val, b.property, regionCandidate_profile Delta j hlen _⟩
 
+/-- If no old region targets its own source cell, no transported region does. -/
+theorem regionFamily_noLoop {D : RelGenSet G Lambda} {eps : ℕ}
+    (family : Finset (RegionCandidate D eps Delta))
+    (havoid : ∀ a ∈ family, Delta.toCombMap.faceOf
+      (Delta.toCombMap.alpha (FaceEdgeDoubling.dart Delta Delta.outerFace j)) ∉ a.1)
+    (hfamily : ∀ b ∈ family, b.2.target ≠ some b.2.source)
+    {a : RegionCandidate D eps (diagram Delta j hlen)}
+    (ha : a ∈ regionFamily Delta j hlen family havoid) :
+    a.2.target ≠ some a.2.source := by
+  obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
+  intro h
+  change Option.map (cellMap Delta j hlen).indexEquiv b.val.2.target =
+    some ((cellMap Delta j hlen).indexEquiv b.val.2.source) at h
+  exact hfamily b.val b.property
+    (Option.map_injective (cellMap Delta j hlen).indexEquiv.injective h)
+
 theorem regionFamily_card {D : RelGenSet G Lambda} {eps : ℕ}
     (family : Finset (RegionCandidate D eps Delta))
     (havoid : ∀ a ∈ family, Delta.toCombMap.faceOf
@@ -624,7 +640,10 @@ noncomputable def sectionFamily (S : GloballyDistinguishedSectionFamily D lambda
     intro a ha
     obtain ⟨b, hb, hab⟩ := regionFamily_profile S.diagram j hlen S.family
       (spur_avoid S.diagram j hspur S.family) ha
-    exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab (S.respects b hb)
+    exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab
+      (regionFamily_noLoop S.diagram j hlen S.family (spur_avoid S.diagram j hspur S.family)
+        (fun x hx => (S.respects x hx).1) ha)
+      (S.respects b hb)
   nondegenerate := by
     intro a ha
     obtain ⟨b, hb, hab⟩ := regionFamily_profile S.diagram j hlen S.family
@@ -691,6 +710,7 @@ end GroupApproximation.GGT.VanKampen.OuterSpurThickening
 #audit_axioms GroupApproximation.GGT.VanKampen.OuterSpurThickening.outerDarts_eq
 #audit_axioms GroupApproximation.GGT.VanKampen.OuterSpurThickening.contiguityGeometry
 #audit_axioms GroupApproximation.GGT.VanKampen.OuterSpurThickening.regionFamily_weight
+#audit_axioms GroupApproximation.GGT.VanKampen.OuterSpurThickening.regionFamily_noLoop
 #audit_axioms GroupApproximation.GGT.VanKampen.OuterSpurThickening.regionFamilyEquiv
 #audit_axioms GroupApproximation.GGT.VanKampen.OuterSpurThickening.outerSpurCount_lt
 #audit_axioms GroupApproximation.GGT.VanKampen.OuterSpurThickening.sectionFamily

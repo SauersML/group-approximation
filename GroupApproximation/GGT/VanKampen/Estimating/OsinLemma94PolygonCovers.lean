@@ -14,8 +14,10 @@ covered by the (A1) sides of the polygons, except for at most `L n` of them.
 Take an unbound dart `d` of cell `i` in an optimal family whose relator words do not have value
 one, and look at the face across `d`.
 
-* It is no relator cell and not the exterior (`alpha_faceOf_not_cell_of_unbound`).  Otherwise
-  doubling the edge of `d` adjoins a region and contradicts maximality
+* It is not cell `i` itself, by hypothesis: a region from a cell to itself is not a candidate
+  (`RespectsSections`), so doubling the edge would give no contradiction there.
+* It is no other relator cell and not the exterior (`alpha_faceOf_not_cell_of_unbound`).
+  Otherwise doubling the edge of `d` adjoins a region and contradicts maximality
   (`RealizedSectionFamily.false_of_unbound_shared_edge`).
 * If it lies in no selected region, it is the face of a polygon, and the reverse of `d` lies on
   a side of kind `cell` (`exists_relatorSide_of_unbound`).  A boundary side runs along `∂Δ`, so
@@ -90,21 +92,27 @@ theorem one_lt_cellDarts_length
   rw [CellBoundaryPartition.cellDarts_length_eq_word_length]
   exact lt_of_lt_of_le hrho (hW.long _ (cell S.diagram i).word_mem)
 
-/-- **The face across an unbound dart is no relator cell and not the exterior.**  Otherwise
-the edge is doubled into a digon region, which contradicts maximality. -/
+/-- **The face across an unbound dart is no relator cell and not the exterior**, if it is not
+the cell of the dart.  Otherwise the edge is doubled into a digon region from the cell to a
+different cell or to the exterior, which contradicts maximality. -/
 theorem alpha_faceOf_not_cell_of_unbound
     (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
     (hvalue : ∀ C ∈ S.diagram.relatorCells, RelLetter.listVal C.word ≠ 1)
     (hlen : ∀ i : Fin S.diagram.rCellCount, 1 < (cellDarts S.diagram i).length)
     {i : Fin S.diagram.rCellCount} {d : S.diagram.toCombMap.Dart}
-    (hd : d ∈ RegionCandidate.unboundDarts S.family i) :
+    (hd : d ∈ RegionCandidate.unboundDarts S.family i)
+    (hsame : (cell S.diagram i).face ≠
+      S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d)) :
     (∀ j : Fin S.diagram.rCellCount,
         (cell S.diagram j).face ≠ S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d)) ∧
-      S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) ≠ S.diagram.outerFace :=
-  ⟨fun j hj => S.toRealizedSectionFamily.false_of_unbound_shared_edge S.label_admissible
-      S.weight_maximal hvalue i d hd (hlen i) (Or.inl ⟨j, hj.symm⟩),
-    fun hout => S.toRealizedSectionFamily.false_of_unbound_shared_edge S.label_admissible
-      S.weight_maximal hvalue i d hd (hlen i) (Or.inr hout)⟩
+      S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) ≠ S.diagram.outerFace := by
+  refine ⟨fun j hj => ?_, fun hout => S.toRealizedSectionFamily.false_of_unbound_shared_edge
+    S.label_admissible S.weight_maximal hvalue i d hd (hlen i) (Or.inr hout)⟩
+  by_cases hji : j = i
+  · subst hji
+    exact hsame hj
+  · exact S.toRealizedSectionFamily.false_of_unbound_shared_edge S.label_admissible
+      S.weight_maximal hvalue i d hd (hlen i) (Or.inl ⟨j, hji, hj.symm⟩)
 
 /-- The unbound darts of cell `i` whose reverse lies in no selected region. -/
 noncomputable def unboundOffRegions
@@ -209,7 +217,10 @@ theorem exists_relatorSide_of_unbound (P : OsinLemma94RealizedPolygons S)
 injectively into the darts of the (A1) sides, and distinct cells have disjoint darts. -/
 theorem sum_card_unboundOffRegions_le (P : OsinLemma94RealizedPolygons S)
     (hvalue : ∀ C ∈ S.diagram.relatorCells, RelLetter.listVal C.word ≠ 1)
-    (hlen : ∀ i : Fin S.diagram.rCellCount, 1 < (cellDarts S.diagram i).length) :
+    (hlen : ∀ i : Fin S.diagram.rCellCount, 1 < (cellDarts S.diagram i).length)
+    (hsame : ∀ (i : Fin S.diagram.rCellCount) (d : S.diagram.toCombMap.Dart),
+      d ∈ RegionCandidate.unboundDarts S.family i →
+        (cell S.diagram i).face ≠ S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d)) :
     (∑ i : Fin S.diagram.rCellCount, ((S.unboundOffRegions i).card : ℝ)) ≤
       ∑ k, classWordLength (P.word k) (P.sideCount k) (P.relatorSides k) := by
   have hmem : ∀ (i : Fin S.diagram.rCellCount) (d : S.diagram.toCombMap.Dart),
@@ -227,7 +238,7 @@ theorem sum_card_unboundOffRegions_le (P : OsinLemma94RealizedPolygons S)
     intro d hd
     obtain ⟨i, -, hdi⟩ := Finset.mem_biUnion.mp (Finset.mem_coe.mp hd)
     obtain ⟨hdu, hreg⟩ := Finset.mem_filter.mp hdi
-    obtain ⟨hcell, hout⟩ := S.alpha_faceOf_not_cell_of_unbound hvalue hlen hdu
+    obtain ⟨hcell, hout⟩ := S.alpha_faceOf_not_cell_of_unbound hvalue hlen hdu (hsame i d hdu)
     obtain ⟨k, s, hs, hrel, hds⟩ :=
       P.exists_relatorSide_of_unbound hvalue (hmem i d hdi) hcell hout hreg
     refine Finset.mem_coe.mpr (Finset.mem_biUnion.mpr ⟨k, Finset.mem_univ _,
@@ -243,10 +254,15 @@ theorem sum_card_unboundOffRegions_le (P : OsinLemma94RealizedPolygons S)
   exact hreal.trans P.card_relatorSideDarts_le
 
 /-- **`S ≤ ∑ S_i` up to the unbound darts facing a selected region.**  If those number at most
-`L n`, the polygons cover the unbound darts with slack `L`. -/
+`L n`, and no unbound dart has its own cell across, the polygons cover the unbound darts with
+slack `L`. -/
 theorem covers_of_regionFacing_le (P : OsinLemma94RealizedPolygons S)
     (hvalue : ∀ C ∈ S.diagram.relatorCells, RelLetter.listVal C.word ≠ 1)
-    (hlen : ∀ i : Fin S.diagram.rCellCount, 1 < (cellDarts S.diagram i).length) (L : ℕ)
+    (hlen : ∀ i : Fin S.diagram.rCellCount, 1 < (cellDarts S.diagram i).length)
+    (hsame : ∀ (i : Fin S.diagram.rCellCount) (d : S.diagram.toCombMap.Dart),
+      d ∈ RegionCandidate.unboundDarts S.family i →
+        (cell S.diagram i).face ≠ S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d))
+    (L : ℕ)
     (hregion : ∑ i : Fin S.diagram.rCellCount,
       ((RegionCandidate.unboundDarts S.family i).filter fun d =>
         ∃ a ∈ S.family, S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) ∈ a.1).card ≤
@@ -265,7 +281,7 @@ theorem covers_of_regionFacing_le (P : OsinLemma94RealizedPolygons S)
         ∃ a ∈ S.family, S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) ∈ a.1).card :
           ℝ)) ≤ (L : ℝ) * Delta.rCellCount := by
     exact_mod_cast hregion
-  have h3 := P.sum_card_unboundOffRegions_le hvalue hlen
+  have h3 := P.sum_card_unboundOffRegions_le hvalue hlen hsame
   unfold Covers
   simp only [hsplit, Finset.sum_add_distrib]
   linarith

@@ -355,6 +355,18 @@ theorem regionFamily_profile (family : Finset (RegionCandidate D eps Delta))
   · exact CyclicArc.mapTo_length b.val.2.targetArc R.keep (R.targetDarts_eq b.val.2.target)
   · exact CyclicArc.mapTo_length b.val.2.sourceArc R.keep (R.cellDarts_eq b.val.2.source)
 
+/-- **No transported region is a loop** if none of the family is. -/
+theorem regionFamily_noLoop (family : Finset (RegionCandidate D eps Delta))
+    (havoid : ∀ a ∈ family, R.face ∉ a.1)
+    (hfamily : ∀ b ∈ family, b.2.target ≠ some b.2.source)
+    {a : RegionCandidate D eps R.diagram} (ha : a ∈ R.regionFamily family havoid) :
+    a.2.target ≠ some a.2.source := by
+  obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
+  intro h
+  change Option.map R.cellMap.indexEquiv b.val.2.target =
+    some (R.cellMap.indexEquiv b.val.2.source) at h
+  exact hfamily b.val b.property (Option.map_injective R.cellMap.indexEquiv.injective h)
+
 /-! ## Unbound darts -/
 
 theorem regionCandidate_source_eq_iff (a : { a : RegionCandidate D eps Delta // R.face ∉ a.1 })
@@ -492,7 +504,9 @@ noncomputable def transportSection (S : RealizedSectionFamily D lambda c eps Del
   respects := by
     intro a ha
     obtain ⟨b, hb, hab⟩ := R.regionFamily_profile S.family havoid ha
-    exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab (S.respects b hb)
+    exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab
+      (R.regionFamily_noLoop S.family havoid (fun x hx => (S.respects x hx).1) ha)
+      (S.respects b hb)
   nondegenerate := by
     intro a ha
     obtain ⟨b, hb, hab⟩ := R.regionFamily_profile S.family havoid ha
@@ -541,6 +555,7 @@ end GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionFamily_weight
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionFamily_pairwise
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionFamily_profile
+#audit_axioms GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionFamily_noLoop
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.regionFamily_avoid_shrunk
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.unboundDarts_eq
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.SpikeDeletion.sum_unboundDarts_card

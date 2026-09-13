@@ -494,7 +494,7 @@ theorem cornerTwoGonInput {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSe
   have hbound : ∀ x ∈ E, x.2.target = none → x.2.targetArc.start.1 + x.2.targetArc.length ≤
       (S.diagram.faceBoundary S.diagram.outerFace).darts.length := by
     intro x hx hxt
-    obtain ⟨j, -, -, hj⟩ := S.respects x (P.subset hx) hxt
+    obtain ⟨j, -, -, hj⟩ := (S.respects x (P.subset hx)).2 hxt
     rw [hL]
     exact hj.trans (cuts.cut_le_length j.succ)
   have hcut : ∀ k : Fin cuts.count,

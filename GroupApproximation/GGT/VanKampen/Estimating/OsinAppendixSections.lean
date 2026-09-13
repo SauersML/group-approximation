@@ -83,9 +83,11 @@ so each diagram of the O-class optimum below is reduced as well.
 * **Definition 9.2 over all O-equivalent diagrams.**  `M` consists of
   `ε`-contiguity subdiagrams of cells to cells or to sections, pairwise
   disjoint, of maximal total arc length and then minimal cardinality.  The
-  candidates are `Embedded.RegionCandidate` (the actual geometric witness,
-  self-contiguities allowed, as in Osin before Lemma 9.7(a) excludes loops),
-  restricted to regions whose outer arc lies inside one section.  The optimum
+  candidates are `Embedded.RegionCandidate` (the actual geometric witness),
+  restricted to regions from a cell to a different cell, or to a section with
+  the outer arc inside that section.  Osin allows a region from a cell to itself
+  and excludes it in Lemma 9.7(a); here it is not a candidate
+  (`RespectsSections`).  The optimum
   is taken over every reduced O-equivalent diagram at once, as in
   `RegionGlobalSelection`, so Osin's "passing to an O-equivalent diagram if
   necessary" never leaves the class: a surgery that keeps the relator cells and
@@ -212,14 +214,15 @@ def TargetsSectionIndex {G : Type u} [Group G] {Lambda : Type w}
     cuts.cut j.castSucc ≤ a.2.targetArc.start.1 ∧
       a.2.targetArc.start.1 + a.2.targetArc.length ≤ cuts.cut j.succ
 
-/-- **Definition 9.2's admissible regions**: of a cell to a cell, or of a cell to
-a section of `∂Δ`. -/
+/-- **Definition 9.2's admissible regions**: of a cell to a different cell, or of a
+cell to a section of `∂Δ`.  A region from a cell to itself is not a candidate. -/
 def RespectsSections {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (RelLetter G Lambda))}
     {D : RelGenSet G Lambda} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
     {lambda c : ℝ} {word : List (RelLetter G Lambda)}
     (cuts : SectionCuts D lambda c word) (a : RegionCandidate D eps Delta) : Prop :=
-  a.2.target = none → ∃ j : Fin cuts.count, TargetsSectionIndex cuts j a
+  a.2.target ≠ some a.2.source ∧
+    (a.2.target = none → ∃ j : Fin cuts.count, TargetsSectionIndex cuts j a)
 
 /-- **The contiguity degree** `(Π, Γ, q) = l(q_1) / l(∂Π)` of a region, read on
 its source cell. -/

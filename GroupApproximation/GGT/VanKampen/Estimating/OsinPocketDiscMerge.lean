@@ -78,6 +78,19 @@ theorem regionFamily_profile {D : RelGenSet G Lambda} {eps : ℕ}
   · exact CyclicArc.mapTo_length b.val.2.targetArc R.keep (R.targetDarts_eq b.val.2.target)
   · exact CyclicArc.mapTo_length b.val.2.sourceArc R.keep (R.cellDarts_eq b.val.2.source)
 
+/-- No region of a family carried through the collapse is a loop if none of the family is. -/
+theorem regionFamily_noLoop {D : RelGenSet G Lambda} {eps : ℕ}
+    (family : Finset (RegionCandidate D eps Delta))
+    (havoid : ∀ a ∈ family, Disjoint a.1 R.faces)
+    (hfamily : ∀ b ∈ family, b.2.target ≠ some b.2.source)
+    {a : RegionCandidate D eps R.diagram} (ha : a ∈ R.regionFamily family havoid) :
+    a.2.target ≠ some a.2.source := by
+  obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
+  intro h
+  change Option.map R.cellMap.indexEquiv b.val.2.target =
+    some (R.cellMap.indexEquiv b.val.2.source) at h
+  exact hfamily b.val b.property (Option.map_injective R.cellMap.indexEquiv.injective h)
+
 /-- No region of a family carried through the collapse contains the merged face. -/
 theorem regionFamily_avoid_merged {D : RelGenSet G Lambda} {eps : ℕ}
     (family : Finset (RegionCandidate D eps Delta))
@@ -191,8 +204,9 @@ variable {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
 /-- **The collapse of a disc region absorbing selected regions.**  Let `S` be a distinguished
 section family and `R` a disc region of G-cells of its diagram.  Let `absorbed` be at least two
 selected regions, and suppose every other selected region avoids `R`.  Suppose that after the
-collapse of `R` the merged face is a contiguity region respecting the sections, with nonempty arcs
-whose total length is at least the weight of `absorbed`.  Then there is a contradiction. -/
+collapse of `R` the merged face is a contiguity region from a cell to a different cell or to a
+section, respecting the sections, with nonempty arcs whose total length is at least the weight of
+`absorbed`.  Then there is a contradiction. -/
 theorem false_of_disc_collapse_singleton
     (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
     (R : Surgery.InnerDiscRegion S.diagram)
@@ -216,6 +230,8 @@ theorem false_of_disc_collapse_singleton
     intro a ha
     obtain ⟨b, hb, hab⟩ := R.regionFamily_profile (S.family \ absorbed) hrest ha
     exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab
+      (R.regionFamily_noLoop (S.family \ absorbed) hrest
+        (fun x hx => (S.respects x (Finset.mem_sdiff.mp hx).1).1) ha)
       (S.respects b (Finset.mem_sdiff.mp hb).1)
   have hnondegenerate2 : ∀ a ∈ R.regionFamily (S.family \ absorbed) hrest,
       0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length := by
@@ -252,6 +268,7 @@ end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.ofPocketRegion
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.regionFamily_profile
+#audit_axioms GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.regionFamily_noLoop
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.mergedGeometry
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.InnerDiscRegion.mergedGeometry_targetArc_start
 #audit_axioms GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.false_of_disc_collapse_singleton

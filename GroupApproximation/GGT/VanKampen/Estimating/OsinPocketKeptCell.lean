@@ -143,7 +143,9 @@ theorem exists_kept_of_pocketRegion
     (Surgery.InnerDiscRegion.ofPocketRegion P hcells) havoid
     ((Surgery.InnerDiscRegion.ofPocketRegion P hcells).mergedGeometry (target := none)
       K.sourceArc K.targetArc hrot K.secondSide_length_le K.firstSide_length_le
-      K.secondSide_norm_le K.firstSide_norm_le) ?_ ?_ ?_ ?_
+      K.secondSide_norm_le K.firstSide_norm_le) ?_ ?_ ?_ ?_ ?_
+  · rw [Surgery.InnerDiscRegion.mergedGeometry_target]
+    simp
   · rw [Surgery.InnerDiscRegion.mergedGeometry_targetArc_start,
       Surgery.InnerDiscRegion.mergedGeometry_targetArc_length]
     exact fun _ => ⟨j, K.lo_le, K.le_hi⟩

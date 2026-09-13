@@ -93,6 +93,18 @@ theorem regionFamily_profile {D : RelGenSet G Lambda} {eps : ℕ}
   · exact CyclicArc.mapTo_length b.val.2.sourceArc E.darts
       (E.cellDarts_eq C hcells b.val.2.source)
 
+/-- No region of a transported family is a loop if none of the family is. -/
+theorem regionFamily_noLoop {D : RelGenSet G Lambda} {eps : ℕ}
+    (E : DiscEmbeddingAway Delta Xi f) (C : Surgery.OrderedRCellMap Delta Xi E.faces)
+    (hcells : ∀ cell ∈ Delta.relatorCells, cell.face ≠ f) (hf : f ≠ Delta.outerFace)
+    (family : Finset (RegionCandidate D eps Delta)) (havoid : ∀ a ∈ family, f ∉ a.1)
+    (hfamily : ∀ b ∈ family, b.2.target ≠ some b.2.source)
+    {a : RegionCandidate D eps Xi} (ha : a ∈ E.regionFamily C hcells hf family havoid) :
+    a.2.target ≠ some a.2.source := by
+  obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
+  exact fun h => hfamily b.val b.property
+    ((E.contiguityGeometry_self_target_iff C hcells hf (havoid b.val b.property) b.val.2).mp h)
+
 end GroupApproximation.GGT.VanKampen.DiscEmbeddingAway
 
 namespace GroupApproximation.GGT.VanKampen.GFaceWordInsertion
@@ -135,6 +147,7 @@ theorem exists_quadrilateral_region (D E : RelGenSet G Lambda) (eps : ℕ)
       ∃ (Q : Xi.toCombMap.Face) (H : ContiguityGeometry D eps Xi {Q}),
         H.sourceArc.length = sourceArc.length ∧ H.targetArc.length = targetArc.length ∧
         (H.target = none ↔ target = none) ∧ H.targetArc.start.val = targetArc.start.val ∧
+        (H.target = some H.source ↔ target = some source) ∧
         ∀ family : Finset (RegionCandidate D eps Delta), (∀ a ∈ family, f ∉ a.1) →
           EstimatingSelection.PairwiseCompatible RegionCandidate.Compatible family →
           ∃ family' : Finset (RegionCandidate D eps Xi),
@@ -143,6 +156,8 @@ theorem exists_quadrilateral_region (D E : RelGenSet G Lambda) (eps : ℕ)
             EstimatingSelection.familyWeight RegionCandidate.weight family' =
               EstimatingSelection.familyWeight RegionCandidate.weight family ∧
             (∀ a ∈ family', Q ∉ a.1) ∧
+            ((∀ b ∈ family, b.2.target ≠ some b.2.source) →
+              ∀ a ∈ family', a.2.target ≠ some a.2.source) ∧
             ∀ a ∈ family', ∃ b ∈ family, RegionCandidate.SameTargetProfile a b := by
   have hPlen : sourceArc.reverseDarts.length = sourceArc.length := by
     simp only [CyclicArc.reverseDarts, List.length_map, List.length_reverse,
@@ -345,12 +360,22 @@ theorem exists_quadrilateral_region (D E : RelGenSet G Lambda) (eps : ℕ)
   have hHnone : H.target = none ↔ target = none := by
     change (target.map C1.indexEquiv).map C2.indexEquiv = none ↔ target = none
     simp only [Option.map_eq_none_iff]
+  have hHloop : H.target = some H.source ↔ target = some source := by
+    change (target.map C1.indexEquiv).map C2.indexEquiv =
+      some (C2.indexEquiv (C1.indexEquiv source)) ↔ target = some source
+    constructor
+    · intro h
+      exact Option.map_injective C1.indexEquiv.injective
+        (Option.map_injective C2.indexEquiv.injective h)
+    · intro h
+      rw [h]
+      rfl
   refine ⟨R2.diagram,
     ⟨OEquivalentDiscDiagram.trans (CornerOutput.originalReplacement R1.toCellOutput).oEquivalent
       (CornerOutput.originalReplacement R2.toCellOutput).oEquivalent⟩,
     fun hred => (CornerOutput.originalReplacement R2.toCellOutput).reduced
       ((CornerOutput.originalReplacement R1.toCellOutput).reduced hred),
-    R2.label_admissible, R2.suffixSide, H, hHsource, hHtarget, hHnone, hHstart, ?_⟩
+    R2.label_admissible, R2.suffixSide, H, hHsource, hHtarget, hHnone, hHstart, hHloop, ?_⟩
   intro family havoid hpairwise
   have havoid1 : ∀ a ∈ E1.regionFamily C1 hcells hf family havoid, R1.suffixSide ∉ a.1 := by
     intro a ha hmem
@@ -364,13 +389,16 @@ theorem exists_quadrilateral_region (D E : RelGenSet G Lambda) (eps : ℕ)
     (E2.regionFamily_card C2 hcells2 hf2 (E1.regionFamily C1 hcells hf family havoid)
       havoid1).trans (E1.regionFamily_card C1 hcells hf family havoid),
     (E2.regionFamily_weight C2 hcells2 hf2 (E1.regionFamily C1 hcells hf family havoid)
-      havoid1).trans (E1.regionFamily_weight C1 hcells hf family havoid), ?_, ?_⟩
+      havoid1).trans (E1.regionFamily_weight C1 hcells hf family havoid), ?_, ?_, ?_⟩
   · intro a ha hmem
     obtain ⟨b, hb, hab⟩ := E2.regionFamily_faces C2 hcells2 hf2
       (E1.regionFamily C1 hcells hf family havoid) havoid1 ha
     rw [hab] at hmem
     obtain ⟨g, hg, hgeq⟩ := Finset.mem_map.mp hmem
     exact R2.suffixSide_not_kept g (fun h => havoid1 b hb (h ▸ hg)) hgeq
+  · intro hfamily a ha
+    exact E2.regionFamily_noLoop C2 hcells2 hf2 (E1.regionFamily C1 hcells hf family havoid)
+      havoid1 (fun x hx => E1.regionFamily_noLoop C1 hcells hf family havoid hfamily hx) ha
   · intro a ha
     obtain ⟨b, hb, hab⟩ := E2.regionFamily_profile C2 hcells2 hf2
       (E1.regionFamily C1 hcells hf family havoid) havoid1 ha
@@ -382,4 +410,5 @@ end GroupApproximation.GGT.VanKampen.GFaceWordInsertion
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.SameTargetProfile.trans
 #audit_axioms GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.faceOf_darts
 #audit_axioms GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.regionFamily_profile
+#audit_axioms GroupApproximation.GGT.VanKampen.DiscEmbeddingAway.regionFamily_noLoop
 #audit_axioms GroupApproximation.GGT.VanKampen.GFaceWordInsertion.exists_quadrilateral_region

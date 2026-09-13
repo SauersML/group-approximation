@@ -83,7 +83,7 @@ theorem option_map_map_equiv_eq_some_iff {α β γ : Type*} (e₁ : α ≃ β) (
 /-- **The quadrilateral region of Lemma 9.4 Case 1, on a rotated walk.**  As
 `exists_quadrilateral_region`, but the walk of `f` is read from any position `r`, and `f` may
 have internally paired darts.  The new region runs from a cell to itself exactly when the
-target cell is the source cell. -/
+target cell is the source cell, and no region carried over is a loop if none of the family is. -/
 theorem exists_quadrilateral_region_rotate (D E : RelGenSet G Lambda) (eps : ℕ)
     (Delta : DiscDiagram.{u, w, v} W) (hlabel : ∀ d, E.IsLetter (Delta.label d))
     (f : Delta.toCombMap.Face) (hf : f ≠ Delta.outerFace)
@@ -119,6 +119,8 @@ theorem exists_quadrilateral_region_rotate (D E : RelGenSet G Lambda) (eps : ℕ
             EstimatingSelection.familyWeight RegionCandidate.weight family' =
               EstimatingSelection.familyWeight RegionCandidate.weight family ∧
             (∀ a ∈ family', Q ∉ a.1) ∧
+            ((∀ b ∈ family, b.2.target ≠ some b.2.source) →
+              ∀ a ∈ family', a.2.target ≠ some a.2.source) ∧
             ∀ a ∈ family', ∃ b ∈ family, RegionCandidate.SameTargetProfile a b := by
   have hPlen : sourceArc.reverseDarts.length = sourceArc.length := by
     simp only [CyclicArc.reverseDarts, List.length_map, List.length_reverse,
@@ -345,13 +347,16 @@ theorem exists_quadrilateral_region_rotate (D E : RelGenSet G Lambda) (eps : ℕ
     (E2.regionFamily_card C2 hcells2 hf2 (E1.regionFamily C1 hcells hf family havoid)
       havoid1).trans (E1.regionFamily_card C1 hcells hf family havoid),
     (E2.regionFamily_weight C2 hcells2 hf2 (E1.regionFamily C1 hcells hf family havoid)
-      havoid1).trans (E1.regionFamily_weight C1 hcells hf family havoid), ?_, ?_⟩
+      havoid1).trans (E1.regionFamily_weight C1 hcells hf family havoid), ?_, ?_, ?_⟩
   · intro a ha hmem
     obtain ⟨b, hb, hab⟩ := E2.regionFamily_faces C2 hcells2 hf2
       (E1.regionFamily C1 hcells hf family havoid) havoid1 ha
     rw [hab] at hmem
     obtain ⟨g, hg, hgeq⟩ := Finset.mem_map.mp hmem
     exact R2.suffixSide_not_kept g (fun h => havoid1 b hb (h ▸ hg)) hgeq
+  · intro hfamily a ha
+    exact E2.regionFamily_noLoop C2 hcells2 hf2 (E1.regionFamily C1 hcells hf family havoid)
+      havoid1 (fun x hx => E1.regionFamily_noLoop C1 hcells hf family havoid hfamily hx) ha
   · intro a ha
     obtain ⟨b, hb, hab⟩ := E2.regionFamily_profile C2 hcells2 hf2
       (E1.regionFamily C1 hcells hf family havoid) havoid1 ha
@@ -373,7 +378,8 @@ namespace RealizedSectionFamily
 legal labels and maximal weight among legal section families, and let `f` be an inner face of
 its diagram that is no relator cell and lies in no selected region.  Suppose that some rotation
 of the walk of `f` reads `X ++ q ++ Y ++ p⁻¹`, where `p` is a nonempty arc of a relator cell
-and `q` is a nonempty arc of a relator cell or of a boundary section, and that `s_1`, `s_2` are
+and `q` is a nonempty arc of a different relator cell or of a boundary section, and that `s_1`,
+`s_2` are
 legal words of length and norm at most `ε` with the values of `X` and `Y`.  Then there is a
 contradiction. -/
 theorem false_of_quadrilateral_face {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
@@ -395,6 +401,7 @@ theorem false_of_quadrilateral_face {D : RelGenSet G Lambda} {lambda c : ℝ} {e
     (hsection : target = none → ∃ j : Fin cuts.count,
       cuts.cut j.castSucc ≤ targetArc.start.val ∧
         targetArc.start.val + targetArc.length ≤ cuts.cut j.succ)
+    (hloop : target ≠ some source)
     (s1 s2 : List (RelLetter G Lambda)) (hne1 : s1 ≠ []) (hne2 : s2 ≠ [])
     (hadm1 : HullSC.RelWord.IsAdmissible (symmetricLabelAlphabet D) s1)
     (hinv1 : ∀ l ∈ s1, (symmetricLabelAlphabet D).IsLetter (HullSC.RelWord.inv l))
@@ -406,12 +413,12 @@ theorem false_of_quadrilateral_face {D : RelGenSet G Lambda} {lambda c : ℝ} {e
     (hnorm1 : WordMetric.wordNorm D.alphabet.carrier (RelLetter.listVal s1) ≤ eps)
     (hnorm2 : WordMetric.wordNorm D.alphabet.carrier (RelLetter.listVal s2) ≤ eps) :
     False := by
-  obtain ⟨Xi, ⟨hequiv⟩, hred, hlabelXi, Q, H, hHsource, hHtarget, hHnone, hHstart, -,
+  obtain ⟨Xi, ⟨hequiv⟩, hred, hlabelXi, Q, H, hHsource, hHtarget, hHnone, hHstart, hHloop,
       hretain⟩ :=
     GFaceWordInsertion.exists_quadrilateral_region_rotate D (symmetricLabelAlphabet D) eps
       S.diagram (fun d => hlegal d) f hf hcells source target sourceArc targetArc X Y r htrav
       hsource s1 s2 hne1 hne2 hadm1 hinv1 hadm2 hinv2 hval1 hval2 hlen1 hlen2 hnorm1 hnorm2
-  obtain ⟨family2, hpair2, -, hweight2, havoid2, hprofile2⟩ :=
+  obtain ⟨family2, hpair2, -, hweight2, havoid2, hnoloop2, hprofile2⟩ :=
     hretain S.family havoid S.pairwise
   have hpositive : 0 < H.sourceArc.length := lt_of_lt_of_eq hsource hHsource.symm
   have hlt := RegionCandidate.familyWeight_lt_cons_singleton H havoid2 hpositive
@@ -420,7 +427,7 @@ theorem false_of_quadrilateral_face {D : RelGenSet G Lambda} {lambda c : ℝ} {e
       RegionCandidate.RespectsSections cuts a := by
     intro a ha
     rcases Finset.mem_cons.mp ha with rfl | ha2
-    · intro hnoneQ
+    · refine ⟨fun h => hloop (hHloop.mp h), fun hnoneQ => ?_⟩
       obtain ⟨j, h1, h2⟩ := hsection (hHnone.mp hnoneQ)
       have h3 : cuts.cut j.castSucc ≤ H.targetArc.start.val := by
         rw [hHstart]
@@ -430,7 +437,8 @@ theorem false_of_quadrilateral_face {D : RelGenSet G Lambda} {lambda c : ℝ} {e
         exact h2
       exact ⟨j, hnoneQ, h3, h4⟩
     · obtain ⟨b, hb, hab⟩ := hprofile2 a ha2
-      exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab (S.respects b hb)
+      exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab
+        (hnoloop2 (fun x hx => (S.respects x hx).1) a ha2) (S.respects b hb)
   have hnondegenerate : ∀ a ∈ Finset.cons (⟨{Q}, H⟩ : RegionCandidate D eps Xi) family2
       (RegionCandidate.singleton_not_mem_of_avoid H havoid2),
       0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length := by

@@ -292,8 +292,9 @@ theorem faces_not_mem_of_value {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : 
 
 /-- **Adjoining a digon region contradicts maximality.**  Double the edge at position `j` of a
 face `f` of the diagram of a maximal legal section family, where neither side of the edge lies
-in a selected region.  A contiguity region on the digon with nonempty arcs, respecting the
-sections, adjoined to the transported family, gives a legal section family of larger weight. -/
+in a selected region.  A contiguity region on the digon with nonempty arcs, from a cell to a
+different cell or to a section, respecting the sections, adjoined to the transported family,
+gives a legal section family of larger weight. -/
 theorem false_of_digon_region {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
     {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
     (S : RealizedSectionFamily D lambda c eps Delta cuts)
@@ -312,7 +313,8 @@ theorem false_of_digon_region {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : �
     (hsource : 0 < H.sourceArc.length) (htarget : 0 < H.targetArc.length)
     (hsection : H.target = none → ∃ jc : Fin cuts.count,
       cuts.cut jc.castSucc ≤ H.targetArc.start.val ∧
-        H.targetArc.start.val + H.targetArc.length ≤ cuts.cut jc.succ) :
+        H.targetArc.start.val + H.targetArc.length ≤ cuts.cut jc.succ)
+    (hloopH : H.target ≠ some H.source) :
     False := by
   have havoid1 : ∀ a ∈ FaceEdgeDoubling.regionFamily S.diagram f j hlen hf S.family havoid,
       FaceEdgeDoubling.digon S.diagram f j hlen ∉ a.1 := by
@@ -334,12 +336,15 @@ theorem false_of_digon_region {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : �
       RegionCandidate.RespectsSections cuts a := by
     intro a ha
     rcases Finset.mem_cons.mp ha with rfl | ha1
-    · intro hnone
+    · refine ⟨hloopH, fun hnone => ?_⟩
       obtain ⟨jc, h1, h2⟩ := hsection hnone
       exact ⟨jc, hnone, h1, h2⟩
     · obtain ⟨b, hb, hab⟩ :=
         FaceEdgeDoubling.regionFamily_profile S.diagram f j hlen hf S.family havoid ha1
-      exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab (S.respects b hb)
+      exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab
+        (FaceEdgeDoubling.regionFamily_noLoop S.diagram f j hlen hf S.family havoid
+          (fun x hx => (S.respects x hx).1) ha1)
+        (S.respects b hb)
   have hnondegenerate : ∀ a ∈ Finset.cons
       (⟨{FaceEdgeDoubling.digon S.diagram f j hlen}, H⟩ :
         RegionCandidate D eps (FaceEdgeDoubling.diagram S.diagram f j hlen hf))
@@ -373,7 +378,8 @@ theorem false_of_digon_region {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : �
   exact absurd hle (not_le.mpr (lt_of_eq_of_lt heq.symm hlt))
 
 /-- **Toward a relator cell.**  An edge of cell `i` at position `j` whose other side is
-position `q` of cell `i₂`, with both sides off every selected region, contradicts maximality. -/
+position `q` of a different cell `i₂`, with both sides off every selected region, contradicts
+maximality. -/
 theorem false_of_digon_toward_cell {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
     {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
     (S : RealizedSectionFamily D lambda c eps Delta cuts)
@@ -388,7 +394,8 @@ theorem false_of_digon_toward_cell {D : RelGenSet G Lambda} {lambda c : ℝ} {ep
         (FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j)) ∉ a.1)
     (i₂ : Fin S.diagram.rCellCount) (q : ℕ) (hq : q < (cellDarts S.diagram i₂).length)
     (hget : (cellDarts S.diagram i₂)[q]'hq =
-      S.diagram.toCombMap.alpha (FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j)) :
+      S.diagram.toCombMap.alpha (FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j))
+    (hi : i₂ ≠ i) :
     False := by
   have hf : (cell S.diagram i).face ≠ S.diagram.outerFace := (cell S.diagram i).face_ne_outer
   refine false_of_digon_region S hlegal hmax (cell S.diagram i).face j hlen hf havoid
@@ -407,13 +414,19 @@ theorem false_of_digon_toward_cell {D : RelGenSet G Lambda} {lambda c : ℝ} {ep
         (FaceEdgeDoubling.cellUnitArc_boundaryDarts S.diagram i j hlen hf i₂ q hq hget))
       (Nat.zero_le _) (Nat.zero_le _)
       (Embedded.wordNorm_dartWord_nil_le D eps _) (Embedded.wordNorm_dartWord_nil_le D eps _))
-    ?_ ?_ ?_
+    ?_ ?_ ?_ ?_
   · exact lt_of_lt_of_eq Nat.one_pos
       (FaceEdgeDoubling.sourceUnitArc_length S.diagram i j hlen hf).symm
   · exact lt_of_lt_of_eq Nat.one_pos
       (FaceEdgeDoubling.cellUnitArc_length S.diagram i j hlen hf i₂ q hq).symm
   · intro h
     exact absurd h (Option.some_ne_none _)
+  · intro h
+    change some ((FaceEdgeDoubling.cellMap S.diagram (cell S.diagram i).face j hlen hf).indexEquiv
+        i₂) =
+      some ((FaceEdgeDoubling.cellMap S.diagram (cell S.diagram i).face j hlen hf).indexEquiv i)
+      at h
+    exact hi (Equiv.injective _ (Option.some.inj h))
 
 /-- **Toward the exterior.**  An edge of cell `i` at position `j` whose other side is the
 exterior, at position `p` of the oriented outer boundary, with the cell off every selected
@@ -453,7 +466,7 @@ theorem false_of_digon_toward_outer {D : RelGenSet G Lambda} {lambda c : ℝ} {e
         (FaceEdgeDoubling.outerUnitArc_boundaryDarts S.diagram i j hlen hf p hp hget))
       (Nat.zero_le _) (Nat.zero_le _)
       (Embedded.wordNorm_dartWord_nil_le D eps _) (Embedded.wordNorm_dartWord_nil_le D eps _))
-    ?_ ?_ ?_
+    ?_ ?_ ?_ ?_
   · exact lt_of_lt_of_eq Nat.one_pos
       (FaceEdgeDoubling.sourceUnitArc_length S.diagram i j hlen hf).symm
   · exact lt_of_lt_of_eq Nat.one_pos
@@ -464,9 +477,11 @@ theorem false_of_digon_toward_outer {D : RelGenSet G Lambda} {lambda c : ℝ} {e
         (FaceEdgeDoubling.outerUnitArc S.diagram i j hlen hf p hp).length = p + 1 := by
       rw [h3, FaceEdgeDoubling.outerUnitArc_length S.diagram i j hlen hf p hp]
     exact ⟨jc, le_of_le_of_eq h1 h3.symm, le_of_eq_of_le h4 h2⟩
+  · intro h
+    cases h
 
-/-- **An unbound dart on an edge shared with a relator cell or the exterior contradicts
-maximality.** -/
+/-- **An unbound dart on an edge shared with a different relator cell or the exterior
+contradicts maximality.** -/
 theorem false_of_unbound_shared_edge {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
     {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
     (S : RealizedSectionFamily D lambda c eps Delta cuts)
@@ -478,7 +493,7 @@ theorem false_of_unbound_shared_edge {D : RelGenSet G Lambda} {lambda c : ℝ} {
     (i : Fin S.diagram.rCellCount) (d : S.diagram.toCombMap.Dart)
     (hd : d ∈ RegionCandidate.unboundDarts S.family i)
     (hlen : 1 < (cellDarts S.diagram i).length)
-    (hadj : (∃ i₂ : Fin S.diagram.rCellCount,
+    (hadj : (∃ i₂ : Fin S.diagram.rCellCount, i₂ ≠ i ∧
         S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) = (cell S.diagram i₂).face) ∨
       S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) = S.diagram.outerFace) :
     False := by
@@ -494,18 +509,18 @@ theorem false_of_unbound_shared_edge {D : RelGenSet G Lambda} {lambda c : ℝ} {
         (FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j)) ∉ a.1 := by
     intro a ha
     refine ⟨hnotRelator a ha _ (cell_mem S.diagram i), ?_⟩
-    rcases hadj with ⟨i₂, hi₂⟩ | hout
+    rcases hadj with ⟨i₂, -, hi₂⟩ | hout
     · rw [hi₂]
       exact hnotRelator a ha _ (cell_mem S.diagram i₂)
     · rw [hout]
       intro hmem
       exact (a.2.boundary.all_gCells _ hmem).1 rfl
-  rcases hadj with ⟨i₂, hi₂⟩ | hout
+  rcases hadj with ⟨i₂, hne, hi₂⟩ | hout
   · have hmem2 : S.diagram.toCombMap.alpha
         (FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j) ∈ cellDarts S.diagram i₂ :=
       ((S.diagram.faceBoundary (cell S.diagram i₂).face).mem_iff _).mpr hi₂
     obtain ⟨q, hq, hget⟩ := List.getElem_of_mem hmem2
-    exact false_of_digon_toward_cell S hlegal hmax i j hlen havoid i₂ q hq hget
+    exact false_of_digon_toward_cell S hlegal hmax i j hlen havoid i₂ q hq hget hne
   · have hmem2 : FaceEdgeDoubling.dart S.diagram (cell S.diagram i).face j ∈
         outerDarts S.diagram :=
       List.mem_map.mpr ⟨S.diagram.toCombMap.alpha

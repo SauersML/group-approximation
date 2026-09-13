@@ -198,7 +198,7 @@ theorem exists_twoGonLabels {Delta : DiscDiagram.{u, w, v} W}
   have hyb := P.subset
     (phiRegionO_mem ((phiMapO S.family E).facePerm ((phiMapO S.family E).facePerm y)))
   obtain ⟨hle, j, hja, hjb⟩ := sameSection_of_not_gapHoldsCorner cuts
-    (S.respects _ hya ht) (S.respects _ hyb ht2) (S.nondegenerate _ hya).2
+    ((S.respects _ hya).2 ht) ((S.respects _ hyb).2 ht2) (S.nondegenerate _ hya).2
     (fun k hk => hcorner ⟨y, hyf, hyc, hyO, k, hk⟩)
   refine ⟨y, hyc, hyf, hyO, h4, j, mem_exteriorAt_of_mem hya ht, ?_, Ne.symm hR, hja, hjb, hle⟩
   rw [← hsrc]

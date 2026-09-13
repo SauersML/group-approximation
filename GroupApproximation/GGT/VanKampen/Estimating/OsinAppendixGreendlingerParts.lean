@@ -23,6 +23,7 @@ at fixed parameters under the `C`-condition gives the statement with `ε₀ = 0`
 
 ## What is proved here
 
+* `osinLoopCutSection`: the loop part, vacuous because `RespectsSections` excludes loops;
 * `osinSection97Inputs_of_parts`: `OsinSection97InputsStatement` from the four parts, the
   thresholds combined by maxima;
 * `osinLemma97Section_of_parts` and `relativeGreendlingerQuasiGeodesicLeastArea_of_parts`:
@@ -67,6 +68,12 @@ def OsinLoopCutSectionStatement : Prop :=
           ∀ (W : Set (List (RelLetter G Lambda))),
             OsinCCondition D W eps mu lambda c rho →
               LoopCutInput.{u, w, v} D lambda c eps W
+
+/-- **G2, loops, uniformly in the parameters**, closed: `RespectsSections` excludes loops, so
+`LoopCutInput` is vacuous (`loopCutInput`). -/
+theorem osinLoopCutSection : OsinLoopCutSectionStatement.{u, w, v} := by
+  intro G _ Lambda D _hhyper lambda c mu _ _ _ _ _
+  exact ⟨0, fun eps _ => ⟨1, Nat.one_pos, fun _ _ W _ => loopCutInput.{u, w, v} D lambda c eps W⟩⟩
 
 /-- **G3 with G4, uniformly in the parameters**: `EulerCountInput` for every symmetrized
 family satisfying `C(ε, μ, λ, c, ρ)` once `ε` and then `ρ` are large. -/
@@ -157,3 +164,4 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.osinSection97Inputs_of_parts
 #audit_axioms GroupApproximation.GGT.VanKampen.osinLemma97Section_of_parts
 #audit_axioms GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_parts
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.osinLoopCutSection

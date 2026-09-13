@@ -209,7 +209,7 @@ theorem OsinExteriorDoubleCut.lastSection_total_gt
     simp only [Finset.sum_filter]
     rw [Finset.sum_comm]
     refine Finset.sum_le_sum fun a ha => ?_
-    obtain ⟨j0, hj0⟩ := T.respects a (RegionCandidate.mem_of_mem_exteriorAt ha)
+    obtain ⟨j0, hj0⟩ := (T.respects a (RegionCandidate.mem_of_mem_exteriorAt ha)).2
       (RegionCandidate.target_eq_none_of_mem_exteriorAt ha)
     calc (a.2.sourceArc.length : ℝ)
         = (if RegionCandidate.TargetsSectionIndex cut.sections j0 a then

@@ -47,7 +47,10 @@ noncomputable def retainedSection {alphabet : RelGenSet G Lambda}
     intro a ha
     obtain ⟨b, hb, hab⟩ := (originalEmbedding R).regionFamily_profile (originalCellMap R)
       hcells hf S.family havoid ha
-    exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab (S.respects b hb)
+    exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab
+      ((originalEmbedding R).regionFamily_noLoop (originalCellMap R) hcells hf S.family havoid
+        (fun x hx => (S.respects x hx).1) ha)
+      (S.respects b hb)
   nondegenerate := by
     intro a ha
     obtain ⟨b, hb, hab⟩ := (originalEmbedding R).regionFamily_profile (originalCellMap R)

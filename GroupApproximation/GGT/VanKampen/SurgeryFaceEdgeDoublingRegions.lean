@@ -357,6 +357,22 @@ theorem regionFamily_profile {D : RelGenSet G Lambda} {eps : ℕ}
   obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
   exact ⟨b.val, b.property, regionCandidate_profile Delta f j hlen hf _⟩
 
+/-- No region of a family carried through the doubling is a loop if none of the family is. -/
+theorem regionFamily_noLoop {D : RelGenSet G Lambda} {eps : ℕ}
+    (family : Finset (RegionCandidate D eps Delta))
+    (havoid : ∀ a ∈ family,
+      f ∉ a.1 ∧ Delta.toCombMap.faceOf (Delta.toCombMap.alpha (dart Delta f j)) ∉ a.1)
+    (hfamily : ∀ b ∈ family, b.2.target ≠ some b.2.source)
+    {a : RegionCandidate D eps (diagram Delta f j hlen hf)}
+    (ha : a ∈ regionFamily Delta f j hlen hf family havoid) :
+    a.2.target ≠ some a.2.source := by
+  obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
+  intro h
+  change Option.map (cellMap Delta f j hlen hf).indexEquiv b.val.2.target =
+    some ((cellMap Delta f j hlen hf).indexEquiv b.val.2.source) at h
+  exact hfamily b.val b.property
+    (Option.map_injective (cellMap Delta f j hlen hf).indexEquiv.injective h)
+
 theorem regionFamily_card {D : RelGenSet G Lambda} {eps : ℕ}
     (family : Finset (RegionCandidate D eps Delta))
     (havoid : ∀ a ∈ family,
@@ -401,5 +417,6 @@ end GroupApproximation.GGT.VanKampen.FaceEdgeDoubling
 #audit_axioms GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.contiguityGeometry
 #audit_axioms GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.contiguityGeometry_injective
 #audit_axioms GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamily_profile
+#audit_axioms GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamily_noLoop
 #audit_axioms GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamily_weight
 #audit_axioms GroupApproximation.GGT.VanKampen.FaceEdgeDoubling.regionFamily_pairwise

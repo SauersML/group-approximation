@@ -196,7 +196,7 @@ theorem RealizedSectionFamily.sum_exteriorAt_le_sum_sections
   simp only [Finset.sum_filter]
   rw [Finset.sum_comm]
   refine Finset.sum_le_sum fun a ha => ?_
-  obtain ⟨j0, hj0⟩ := T.respects a (RegionCandidate.mem_of_mem_exteriorAt ha)
+  obtain ⟨j0, hj0⟩ := (T.respects a (RegionCandidate.mem_of_mem_exteriorAt ha)).2
     (RegionCandidate.target_eq_none_of_mem_exteriorAt ha)
   calc (a.2.sourceArc.length : ℝ)
       = (if RegionCandidate.TargetsSectionIndex cuts j0 a then

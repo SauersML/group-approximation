@@ -11,11 +11,13 @@ some `i`.  Indeed otherwise we have `S = ∑_{i=1}^d S_i ≤ (√ρ / 60) ∑_{i
 
 `OsinLemma94PolygonCountInput` (in `OsinLemma94PlanarPieces.lean`) is the side budget `K`
 together with the covering `S ≤ ∑ S_i + L n`.  This module proves the covering for every `ε`
-with `L = 24 ε` (`osinLemma94PolygonCoversInput`), and reduces the count piece to the side
-budget (`osinLemma94PolygonCountInput_of_sideBudget`).
+with `L = 24 ε` (`osinLemma94PolygonCoversInput`), given that no unbound dart has its own cell
+across (`OsinLemma94UnboundSameCellStatement`).  It reduces the count piece to the side budget
+and that statement (`osinLemma94PolygonCountInput_of_sideBudget`).
 
 The covering combines two bounds.
-* An unbound dart facing no selected region lies across an (A1) side of a polygon
+* An unbound dart facing no selected region and not its own cell lies across an (A1) side of a
+  polygon
   (`OsinLemma94RealizedPolygons.covers_of_regionFacing_le`, in `OsinLemma94PolygonCovers.lean`).
 * The unbound darts facing a selected region number at most `2 ε |M|`
   (`RealizedSectionFamily.sum_card_regionFacingUnbound_le`, in `OsinLemma94RegionSideCount.lean`).
@@ -49,11 +51,37 @@ def OsinLemma94PolygonCoversInput : Prop :=
                 S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
                   ∀ P : OsinLemma94RealizedPolygons S, P.Maximal → P.Covers L
 
-/-- **The covering half holds with `L = 24 ε` and `ρ₀ = ⌈c / λ⌉ + 2`.** -/
-theorem osinLemma94PolygonCoversInput : OsinLemma94PolygonCoversInput.{u, w, v} := by
-  intro G _ Lambda D _ lambda c mu hlambda _ _ _ _ eps
-  refine ⟨24 * eps, ⌈c / lambda⌉₊ + 2, by omega,
-    fun rho hrho W hW Delta cuts _ hcells S hcard _ P _ => ?_⟩
+/-- **No unbound dart has its own cell across.**  At the parameters of Lemma 9.4, for `ρ` large,
+no unbound dart of a relator cell of the optimal diagram has its reverse on the same cell.  The
+covering half uses it there: doubling such an edge gives a region from a cell to itself, which
+is not a candidate (`RespectsSections`), so maximality gives no contradiction. -/
+def OsinLemma94UnboundSameCellStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∀ eps : ℕ,
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ (i : Fin S.diagram.rCellCount) (d : S.diagram.toCombMap.Dart),
+                    d ∈ RegionCandidate.unboundDarts S.family i →
+                      (cell S.diagram i).face ≠
+                        S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d)
+
+/-- **The covering half holds with `L = 24 ε` and `ρ₀ = max (⌈c / λ⌉ + 2) ρ₁`**, given that no
+unbound dart has its own cell across, where `ρ₁` is the threshold of that statement. -/
+theorem osinLemma94PolygonCoversInput (hsame : OsinLemma94UnboundSameCellStatement.{u, w, v}) :
+    OsinLemma94PolygonCoversInput.{u, w, v} := by
+  intro G _ Lambda D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16 eps
+  obtain ⟨rho1, -, hsame1⟩ := hsame D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16 eps
+  refine ⟨24 * eps, max (⌈c / lambda⌉₊ + 2) rho1, lt_max_of_lt_left (by omega),
+    fun rho hrho W hW Delta cuts hleast hcells S hcard hmin P _ => ?_⟩
+  have hrho2 : ⌈c / lambda⌉₊ + 2 ≤ rho := (max_le_iff.mp hrho).1
   have hrhoc : c < lambda * rho := by
     have hceil : c / lambda ≤ ⌈c / lambda⌉₊ := Nat.le_ceil _
     have hcast : ((⌈c / lambda⌉₊ : ℕ) : ℝ) + 1 ≤ rho := by
@@ -62,7 +90,7 @@ theorem osinLemma94PolygonCoversInput : OsinLemma94PolygonCoversInput.{u, w, v} 
     linarith [mul_comm lambda (rho : ℝ)]
   have hvalue := S.cell_listVal_ne_one hW hlambda hrhoc
   refine P.covers_of_regionFacing_le hvalue (S.one_lt_cellDarts_length hW (by omega))
-    (24 * eps) ?_
+    (hsame1 rho (max_le_iff.mp hrho).2 W hW Delta cuts hleast hcells S hcard hmin) (24 * eps) ?_
   have hfam : S.family.card ≤ 12 * Delta.rCellCount := by
     have := cuts.count_le
     omega
@@ -93,23 +121,24 @@ def OsinLemma94PolygonSideBudgetInput : Prop :=
                 S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
                   ∀ P : OsinLemma94RealizedPolygons S, P.Maximal → P.SideBudget K
 
-/-- **The count piece of Lemma 9.4 follows from the side budget.**  The covering half is
-`osinLemma94PolygonCoversInput`. -/
+/-- **The count piece of Lemma 9.4 follows from the side budget**, given that no unbound dart has
+its own cell across.  The covering half is `osinLemma94PolygonCoversInput`. -/
 theorem osinLemma94PolygonCountInput_of_sideBudget
-    (hbudget : OsinLemma94PolygonSideBudgetInput.{u, w, v}) :
+    (hbudget : OsinLemma94PolygonSideBudgetInput.{u, w, v})
+    (hsame : OsinLemma94UnboundSameCellStatement.{u, w, v}) :
     OsinLemma94PolygonCountInput.{u, w, v} := by
   intro G _ Lambda D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
   obtain ⟨eps0, hK⟩ := hbudget D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
   refine ⟨eps0, fun eps heps => ?_⟩
   obtain ⟨K, rho1, hrho1, hKeps⟩ := hK eps heps
-  obtain ⟨L, rho2, _, hL⟩ := osinLemma94PolygonCoversInput.{u, w, v} D hhyper lambda c mu
+  obtain ⟨L, rho2, _, hL⟩ := osinLemma94PolygonCoversInput.{u, w, v} hsame D hhyper lambda c mu
     hlambda hlambda1 hc hmu hmu16 eps
   refine ⟨K, L, max rho1 rho2, lt_of_lt_of_le hrho1 (le_max_left _ _),
     fun rho hrho W hW Delta cuts hleast hcells S hcard hmin P hmax => ⟨?_, ?_⟩⟩
   · exact hKeps rho (max_le_iff.mp hrho).1 W hW Delta cuts hleast hcells S hcard hmin P hmax
   · exact hL rho (max_le_iff.mp hrho).2 W hW Delta cuts hleast hcells S hcard hmin P hmax
 
-#audit_closed_axioms GroupApproximation.GGT.VanKampen.osinLemma94PolygonCoversInput
+#audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94PolygonCoversInput
 #audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94PolygonCountInput_of_sideBudget
 
 end GroupApproximation.GGT.VanKampen

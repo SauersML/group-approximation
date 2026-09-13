@@ -50,6 +50,18 @@ theorem regionFamily_profile (family : Finset (RegionCandidate D eps Delta))
   · exact CyclicArc.mapTo_length b.val.2.targetArc id (I.targetDarts_eq b.val.2.target)
   · exact CyclicArc.mapTo_length b.val.2.sourceArc id (I.cellDarts_eq b.val.2.source)
 
+/-- No transported region is a loop if none of the family is. -/
+theorem regionFamily_noLoop (family : Finset (RegionCandidate D eps Delta))
+    (havoid : ∀ a ∈ family, I.Avoids a.1)
+    (hfamily : ∀ b ∈ family, b.2.target ≠ some b.2.source)
+    {a : RegionCandidate D eps I.diagram} (ha : a ∈ I.regionFamily family havoid) :
+    a.2.target ≠ some a.2.source := by
+  obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
+  intro h
+  change Option.map I.cellMap.indexEquiv b.val.2.target =
+    some (I.cellMap.indexEquiv b.val.2.source) at h
+  exact hfamily b.val b.property (Option.map_injective I.cellMap.indexEquiv.injective h)
+
 /-! ## Unbound darts -/
 
 theorem mem_cellArcDarts_iff {Xi : DiscDiagram.{u, w, v} W} (a : RegionCandidate D eps Xi)
@@ -206,7 +218,9 @@ noncomputable def transportSection (S : RealizedSectionFamily D lambda c eps Del
   respects := by
     intro a ha
     obtain ⟨b, hb, hab⟩ := I.regionFamily_profile S.family havoid ha
-    exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab (S.respects b hb)
+    exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab
+      (I.regionFamily_noLoop S.family havoid (fun x hx => (S.respects x hx).1) ha)
+      (S.respects b hb)
   nondegenerate := by
     intro a ha
     obtain ⟨b, hb, hab⟩ := I.regionFamily_profile S.family havoid ha
@@ -248,6 +262,7 @@ theorem transportSection_labelLegal (S : RealizedSectionFamily D lambda c eps De
 end GroupApproximation.GGT.VanKampen.PinchSplit
 
 #audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.regionFamily_profile
+#audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.regionFamily_noLoop
 #audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.unboundDarts_eq
 #audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.sum_unboundDarts_card
 #audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.transportSection

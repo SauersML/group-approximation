@@ -274,7 +274,11 @@ noncomputable def insertionSection : RealizedSectionFamily D lambda c eps Delta 
     obtain ⟨b, hb, hab⟩ := DiscEmbeddingAway.regionFamily_profile
       (CornerOutput.originalEmbedding R.toCellOutput)
       (CornerOutput.originalCellMap R.toCellOutput) hcells hf S.family havoid ha
-    exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab (S.respects b hb)
+    exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab
+      (DiscEmbeddingAway.regionFamily_noLoop (CornerOutput.originalEmbedding R.toCellOutput)
+        (CornerOutput.originalCellMap R.toCellOutput) hcells hf S.family havoid
+        (fun x hx => (S.respects x hx).1) ha)
+      (S.respects b hb)
   nondegenerate := by
     intro a ha
     obtain ⟨b, hb, hab⟩ := DiscEmbeddingAway.regionFamily_profile

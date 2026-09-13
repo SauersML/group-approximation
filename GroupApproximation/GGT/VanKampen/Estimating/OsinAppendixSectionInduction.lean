@@ -82,7 +82,8 @@ def MultipleEdgeCutInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
           a.JoinsCells i j → b.JoinsCells i j →
             Nonempty (OsinMultipleEdgeCut D lambda c eps Delta)
 
-/-- **G2, loops**: a selected region from a cell to itself encloses a cut. -/
+/-- **G2, loops**: a selected region from a cell to itself encloses a cut (vacuous:
+`RespectsSections` excludes loops; `loopCutInput`). -/
 def LoopCutInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
     (W : Set (List (RelLetter G Lambda))) : Prop :=
   ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
@@ -90,6 +91,19 @@ def LoopCutInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
       ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
         ∀ a ∈ S.family, a.2.target = some a.2.source →
           Nonempty (OsinLoopCut D lambda c eps Delta)
+
+/-- **No loops, from the candidate class**: every selected region respects the sections, so
+none joins a cell to itself. -/
+theorem GloballyDistinguishedSectionFamily.noLoops {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) : S.NoLoops :=
+  fun a ha => (S.respects a ha).1
+
+/-- **G2, loops**: vacuous, since no selected region is a loop. -/
+theorem loopCutInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) : LoopCutInput.{u, w, v} D lambda c eps W :=
+  fun _ _ _ S a ha h => absurd h (S.respects a ha).1
 
 /-- **G3 with G4**: the Euler count of `Φ'_M` and the endpoint-closed planar edge
 bound of `Φ_M` at a distinguished system without loops or multiple edges (the
@@ -218,3 +232,5 @@ theorem osinLemma97_atParameters_of_inputs
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.osinLemma97_atParameters_of_inputs
+#audit_axioms GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.noLoops
+#audit_axioms GroupApproximation.GGT.VanKampen.loopCutInput

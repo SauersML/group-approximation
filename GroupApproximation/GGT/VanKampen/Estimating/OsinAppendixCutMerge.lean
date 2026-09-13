@@ -56,9 +56,10 @@ theorem false_of_weight_le_of_card_lt
 
 /-- **Adjoining one region in place of two or more.**  Let `Xi` be a reduced diagram
 O-equivalent to `Delta` with legal labels, carrying a section family `family`.  Adjoin a
-singleton region at a face `f` avoided by `family`, with nonempty arcs and respecting the
-sections.  If the new family is at least as heavy as the distinguished family `S` and `family`
-has at least two regions fewer than `S`, there is a contradiction. -/
+singleton region at a face `f` avoided by `family`, with nonempty arcs, from a cell to a
+different cell or to a section, respecting the sections.  If the new family is at least as heavy
+as the distinguished family `S` and `family` has at least two regions fewer than `S`, there is a
+contradiction. -/
 theorem false_of_cons_singleton
     (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
     {Xi : DiscDiagram.{u, w, v} W} (hequiv : OEquivalentDiscDiagram Delta Xi)
@@ -120,8 +121,9 @@ theorem false_of_cons_singleton
 /-- **The collapse of a region absorbing selected regions.**  Let `S` be a distinguished section
 family and `R` a region of G-cells of its diagram.  Let `absorbed` be at least two selected
 regions, and suppose every other selected region avoids `R`.  Suppose that after the collapse
-of `R` the merged face is a contiguity region respecting the sections, with nonempty arcs whose
-total length is at least the weight of `absorbed`.  Then there is a contradiction. -/
+of `R` the merged face is a contiguity region from a cell to a different cell or to a section,
+respecting the sections, with nonempty arcs whose total length is at least the weight of
+`absorbed`.  Then there is a contradiction. -/
 theorem false_of_collapse_singleton
     (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
     (R : Surgery.InnerGRegion S.diagram)
@@ -145,6 +147,8 @@ theorem false_of_collapse_singleton
     intro a ha
     obtain ⟨b, hb, hab⟩ := R.regionFamily_profile (S.family \ absorbed) hrest ha
     exact RegionCandidate.respectsSections_of_sameTargetProfile cuts hab
+      (R.regionFamily_noLoop (S.family \ absorbed) hrest
+        (fun x hx => (S.respects x (Finset.mem_sdiff.mp hx).1).1) ha)
       (S.respects b (Finset.mem_sdiff.mp hb).1)
   have hnondegenerate2 : ∀ a ∈ R.regionFamily (S.family \ absorbed) hrest,
       0 < a.2.sourceArc.length ∧ 0 < a.2.targetArc.length := by

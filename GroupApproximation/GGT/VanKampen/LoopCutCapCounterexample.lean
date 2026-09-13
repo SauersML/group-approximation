@@ -9,14 +9,16 @@ import GroupApproximation.GGT.VanKampen.Estimating.PieceCore
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# A least-area cap refutes `LoopCutInput` as stated
+# A least-area cap and the loop conjunct of `RespectsSections`
 
 `LoopCutInput` (`Estimating/OsinAppendixSectionInduction.lean`) asks that every selected region
 of a globally distinguished section family whose target is its own source cell encloses an
 `OsinLoopCut`: an enclosed least-area diagram with at least one relator cell and fewer relator
 cells than `Delta`.  When `Delta` has one relator cell no such cut exists, so the statement says
 that no loop is ever selected there.  This file gives a least-area diagram with one relator cell
-whose distinguished family is one loop.
+and a loop region on it.  Before `RespectsSections` required `target ≠ some source`, the one-loop
+family was globally distinguished and `LoopCutInput` was false.  Under that conjunct the cap is
+not a section region, so no family contains it, and on this diagram every family is empty.
 
 The group is `S₃`, and every element is a letter.  The map has ten darts and four faces: the
 relator cell `Π = [0,1,2]` reading `y y y` for the transposition `y = (0 1)`, a G-cell digon
@@ -26,19 +28,18 @@ and the outer face `[9]` reading `g`.  The cell carries the conjugator `γ`, so 
 
 * `leastArea`: the boundary value `g⁻¹` is not `1`, so a relator product of it has index at
   least `1`.
-* `capFamily`: the digon is a contiguity region from `Π` to `Π` with arcs of length `1`, and the
-  family `{cap}` is globally distinguished.  In every O-equivalent diagram a nondegenerate region
-  has the cell as its target, because `y⁻ᵏ g⁻¹ ≠ 1` for `k = 1, 2, 3`; its arcs then have total
-  length `2`, because `y⁻ᵏ ≠ 1` for `k = 3`; and two such regions need four darts of a cell with
-  three.  So every family has weight at most `2`.
-* `not_loopCutInput`: `LoopCutInput D λ c 0 W` is false for `λ ≤ 1` and `0 ≤ c`.
+* `capCandidate`: the digon is a contiguity region from `Π` to `Π` with arcs of length `1`.  It
+  is nondegenerate, and the clause of `RespectsSections` for regions with target `none` holds
+  vacuously.
+* `capCandidate_not_respectsSections`: the loop conjunct fails.
+* `family_eq_empty`: in every O-equivalent diagram a nondegenerate region has the cell as its
+  target, because `y⁻ᵏ g⁻¹ ≠ 1` for `k = 1, 2, 3`, so it is a loop, and every realized section
+  family is empty.
+* `emptyFamily`: the empty family is globally distinguished.
 
-The relator family `{y y y}` does not satisfy `OsinCCondition` at `ε = 0`, so this does not
-refute a consumer that assumes that condition.  It shows that `RegionCandidate`,
-`nondegenerate`, `respects` and `LabelLegal` do not exclude a cap, so `LoopCutInput` as stated is
-false; loops have to be excluded at the level of the candidates or derived from the
-small-cancellation condition.  Once `RespectsSections` requires `target ≠ some source`,
-`capSectionFamily` no longer exists and this file has to be retired.
+The relator family `{y y y}` does not satisfy `OsinCCondition` at `ε = 0`.  The model shows that
+`RegionCandidate`, `nondegenerate` and `LabelLegal` do not exclude a cap, and that the loop
+conjunct of `RespectsSections` does.
 
 ## Manuscript status
 
@@ -392,35 +393,17 @@ noncomputable def capRegion : Embedded.ContiguityGeometry D 0 diagram faces wher
 
 noncomputable def capCandidate : Embedded.RegionCandidate D 0 diagram := ⟨faces, capRegion⟩
 
-/-- The one-region family `{cap}`.  Its only target is a cell, so `respects` is vacuous. -/
-noncomputable def capSectionFamily (lambda c : ℝ) (hlam : lambda ≤ 1) (hc : 0 ≤ c) :
-    RealizedSectionFamily D lambda c 0 diagram (cuts lambda c hlam hc) where
-  diagram := diagram
-  equiv := OEquivalentDiscDiagram.refl diagram
-  reduced := reduced_of_rCellCount_le_one diagram (by decide)
-  family := {capCandidate}
-  pairwise := by
-    intro a ha b hb hab
-    rw [Finset.mem_singleton] at ha hb
-    exact absurd (ha.trans hb.symm) hab
-  respects := by
-    intro a ha hnone
-    rw [Finset.mem_singleton] at ha
-    subst a
-    exact absurd hnone (Option.some_ne_none _)
-  nondegenerate := by
-    intro a ha
-    rw [Finset.mem_singleton] at ha
-    subst a
-    exact ⟨Nat.one_pos, Nat.one_pos⟩
+/-- Both arcs of the cap have length `1`. -/
+theorem capCandidate_nondegenerate :
+    0 < capCandidate.2.sourceArc.length ∧ 0 < capCandidate.2.targetArc.length :=
+  ⟨Nat.one_pos, Nat.one_pos⟩
 
-theorem capSectionFamily_weight (lambda c : ℝ) (hlam : lambda ≤ 1) (hc : 0 ≤ c) :
-    (capSectionFamily lambda c hlam hc).weight = 2 := by
-  change EstimatingSelection.familyWeight Embedded.RegionCandidate.weight {capCandidate} = 2
-  rw [EstimatingSelection.familyWeight, Finset.sum_singleton]
-  rfl
+/-- **The cap fails `RespectsSections`**: its target is its source cell. -/
+theorem capCandidate_not_respectsSections (lambda c : ℝ) (hlam : lambda ≤ 1) (hc : 0 ≤ c) :
+    ¬ Embedded.RegionCandidate.RespectsSections (cuts lambda c hlam hc) capCandidate :=
+  fun h => h.1 rfl
 
-/-! ## Every O-equivalent family has weight at most `2` -/
+/-! ## Every realized section family is empty -/
 
 section Other
 
@@ -533,74 +516,64 @@ theorem region_facts (E : OEquivalentDiscDiagram diagram Y) (a : Embedded.Region
     exact ⟨congrArg some hj,
       some_value_eq sourceArc.length targetArc.length hl1 hl2 hsum hval⟩
 
-/-- **Every realized section family over an O-equivalent diagram has weight at most `2`.** -/
-theorem other_weight_le {lambda c : ℝ} {cuts : SectionCuts D lambda c diagram.boundaryWord}
-    (other : RealizedSectionFamily D lambda c 0 diagram cuts) : other.weight ≤ 2 := by
-  have hcount : other.diagram.rCellCount = 1 := other.equiv.rCellCount_eq
-  have h0 : 0 < other.diagram.rCellCount := by omega
-  have hfacts : ∀ a ∈ other.family, a.2.target = some a.2.source ∧
-      a.2.sourceArc.length + a.2.targetArc.length = 2 :=
-    fun a ha => region_facts other.equiv a (other.nondegenerate a ha)
-  have hcard : ∀ a ∈ other.family, (a.cellArcDarts ⟨0, h0⟩).card = 2 := by
-    intro a ha
-    obtain ⟨htarget, hweight⟩ := hfacts a ha
-    have hsource : a.2.source = ⟨0, h0⟩ :=
-      Fin.ext (by have hs := a.2.source.isLt; change a.2.source.1 = 0; omega)
-    simp only [Embedded.RegionCandidate.card_cellArcDarts, if_pos hsource,
-      if_pos (htarget.trans (congrArg some hsource))]
-    exact hweight
-  have hsum := Embedded.RegionCandidate.sum_cellArcDarts_card_le other.family other.pairwise
-    ⟨0, h0⟩
-  rw [Finset.sum_const_nat hcard, cell_word] at hsum
-  change other.family.card * 2 ≤ 3 at hsum
-  have hweight : ∀ a ∈ other.family, Embedded.RegionCandidate.weight a = 2 :=
-    fun a ha => (hfacts a ha).2
-  change EstimatingSelection.familyWeight Embedded.RegionCandidate.weight other.family ≤ 2
-  rw [EstimatingSelection.familyWeight, Finset.sum_const_nat hweight]
-  omega
+/-- **Every realized section family over an O-equivalent diagram is empty**: its regions would
+be loops, which `RespectsSections` excludes. -/
+theorem family_eq_empty {lambda c : ℝ} {cuts : SectionCuts D lambda c diagram.boundaryWord}
+    (other : RealizedSectionFamily D lambda c 0 diagram cuts) : other.family = ∅ :=
+  Finset.eq_empty_of_forall_notMem fun a ha =>
+    (other.respects a ha).1 (region_facts other.equiv a (other.nondegenerate a ha)).1
+
+theorem weight_eq_zero {lambda c : ℝ} {cuts : SectionCuts D lambda c diagram.boundaryWord}
+    (other : RealizedSectionFamily D lambda c 0 diagram cuts) : other.weight = 0 := by
+  change EstimatingSelection.familyWeight Embedded.RegionCandidate.weight other.family = 0
+  rw [family_eq_empty other, EstimatingSelection.familyWeight, Finset.sum_empty]
 
 end Other
 
-/-- **The one-loop family is globally distinguished.** -/
-noncomputable def capFamily (lambda c : ℝ) (hlam : lambda ≤ 1) (hc : 0 ≤ c) :
+/-- The empty section family on the cap diagram. -/
+noncomputable def emptySectionFamily (lambda c : ℝ) (hlam : lambda ≤ 1) (hc : 0 ≤ c) :
+    RealizedSectionFamily D lambda c 0 diagram (cuts lambda c hlam hc) where
+  diagram := diagram
+  equiv := OEquivalentDiscDiagram.refl diagram
+  reduced := reduced_of_rCellCount_le_one diagram (by decide)
+  family := ∅
+  pairwise := by intro a ha; simp at ha
+  respects := by intro a ha; simp at ha
+  nondegenerate := by intro a ha; simp at ha
+
+/-- **The empty family is globally distinguished**: every family has weight `0`, and no family
+has fewer regions. -/
+noncomputable def emptyFamily (lambda c : ℝ) (hlam : lambda ≤ 1) (hc : 0 ≤ c) :
     GloballyDistinguishedSectionFamily D lambda c 0 diagram (cuts lambda c hlam hc) where
-  toRealizedSectionFamily := capSectionFamily lambda c hlam hc
+  toRealizedSectionFamily := emptySectionFamily lambda c hlam hc
   label_admissible := fun _ => symmetricLabelAlphabet.isLetter D (letter_admissible _)
-  weight_maximal := fun other _ =>
-    (other_weight_le other).trans (capSectionFamily_weight lambda c hlam hc).ge
+  weight_maximal := by
+    intro other _
+    rw [weight_eq_zero other]
+    exact Nat.zero_le _
   card_minimal := by
-    intro other _ hw
-    have hw2 : EstimatingSelection.familyWeight Embedded.RegionCandidate.weight
-        other.family = 2 :=
-      hw.trans (capSectionFamily_weight lambda c hlam hc)
-    change ({capCandidate} : Finset (Embedded.RegionCandidate D 0 diagram)).card ≤
-      other.family.card
-    rw [Finset.card_singleton]
-    refine Finset.card_pos.mpr (Finset.nonempty_iff_ne_empty.mpr fun hempty => ?_)
-    rw [hempty, EstimatingSelection.familyWeight, Finset.sum_empty] at hw2
-    exact absurd hw2 (by decide)
+    intro other _ _
+    change (∅ : Finset (Embedded.RegionCandidate D 0 diagram)).card ≤ other.family.card
+    rw [Finset.card_empty]
+    exact Nat.zero_le _
 
-/-- **`LoopCutInput` is false** on the least-area one-cell diagram, whose distinguished family
-is one loop: a loop cut would enclose a diagram with at least one and fewer than one relator
-cell. -/
-theorem not_loopCutInput (lambda c : ℝ) (hlam : lambda ≤ 1) (hc : 0 ≤ c) :
-    ¬ LoopCutInput.{0, 0, 0} D lambda c 0 W := by
-  intro h
-  obtain ⟨L⟩ := h diagram (cuts lambda c hlam hc) leastArea (capFamily lambda c hlam hc)
-    capCandidate (Finset.mem_singleton_self _) rfl
-  have h1 := L.rCellCount_pos
-  have h2 : L.enclosed.rCellCount < 1 := L.rCellCount_lt
-  omega
+/-- **The cap and the loop conjunct** as a closed proposition, over `S₃` with `ε = 0`, for
+`λ ≤ 1` and `0 ≤ c`: the cap is a nondegenerate region that fails `RespectsSections`, and every
+realized section family is empty. -/
+noncomputable def LoopCutCapStatement : Prop :=
+  ∀ (lambda c : ℝ) (hlam : lambda ≤ 1) (hc : 0 ≤ c),
+    (0 < capCandidate.2.sourceArc.length ∧ 0 < capCandidate.2.targetArc.length) ∧
+      ¬ Embedded.RegionCandidate.RespectsSections (cuts lambda c hlam hc) capCandidate ∧
+      ∀ other : RealizedSectionFamily D lambda c 0 diagram (cuts lambda c hlam hc),
+        other.family = ∅
 
-/-- **The cap counterexample** as a closed proposition: for `λ ≤ 1` and `0 ≤ c`, `LoopCutInput`
-fails over `S₃` with `ε = 0`. -/
-def LoopCutCapCounterexampleStatement : Prop :=
-  ∀ lambda c : ℝ, lambda ≤ 1 → 0 ≤ c → ¬ LoopCutInput.{0, 0, 0} D lambda c 0 W
-
-theorem loopCutCapCounterexample : LoopCutCapCounterexampleStatement :=
-  not_loopCutInput
+theorem loopCutCap : LoopCutCapStatement := fun lambda c hlam hc =>
+  ⟨capCandidate_nondegenerate, capCandidate_not_respectsSections lambda c hlam hc,
+    fun other => family_eq_empty other⟩
 
 end GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample
 
-#audit_axioms GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.not_loopCutInput
-#audit_closed_axioms GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.loopCutCapCounterexample
+#audit_axioms GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.capCandidate_not_respectsSections
+#audit_axioms GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.family_eq_empty
+#audit_axioms GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.emptyFamily
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.LoopCutCapCounterexample.loopCutCap

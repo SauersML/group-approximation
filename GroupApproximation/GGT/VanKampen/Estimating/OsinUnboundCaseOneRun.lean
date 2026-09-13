@@ -17,10 +17,11 @@ connector is spelled by a letter and its inverse (`WordConnectorPair.exists_none
 so they have length and norm at most `ε` once `ε ≥ 3`.  The face is no relator cell and lies in no
 selected region, so `RealizedSectionFamily.false_of_quadrilateral_face` gives the contradiction.
 
-`osinLemma94CaseOneInput_of_walk` proves `OsinLemma94CaseOneInput` from the walk alone.
-`osinLemma94CaseOneInput_of_walk_of_sameCell` takes the pairs whose two sides have the same kind
-from the named hypothesis `OsinLemma94CaseOneSameCellStatement`, and uses the walk only for the
-pairs whose sides have different kinds.
+`osinLemma94CaseOneInput_of_walk` proves `OsinLemma94CaseOneInput` from the walk and the named
+hypothesis `OsinLemma94CaseOneSameCellStatement`.  The hypothesis takes the pairs whose two sides
+have the same kind, and the walk takes the pairs whose sides have different kinds.  There the
+target of the new region is a different cell or a section, so the region is a candidate
+(`RespectsSections`).  `osinLemma94CaseOneInput_of_walk_of_sameCell` is the same statement.
 -/
 
 namespace GroupApproximation.GGT.VanKampen
@@ -31,7 +32,8 @@ open GroupApproximation.GGT.VanKampen.Embedded
 open GroupApproximation.GGT.VanKampen.UnboundEstimate
 
 /-- **One backwards connector pair of Case 1 from the face walk.**  Once `ε ≥ 3`, a backwards
-connector pair of polygon `k` whose target side is not a cutting path gives a contradiction. -/
+connector pair of polygon `k` whose target side is not a cutting path, and whose two sides have
+different kinds, gives a contradiction. -/
 theorem osinLemma94CaseOne_false_of_walk (hwalk : OsinLemma94CaseOneWalkStatement.{u, w, v})
     {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} (heps : 3 ≤ eps)
@@ -40,9 +42,11 @@ theorem osinLemma94CaseOne_false_of_walk (hwalk : OsinLemma94CaseOneWalkStatemen
     (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
     (C : WordConnectorPair (symmetricLabelAlphabet D) (P.corner k) (P.word k) (P.sideCount k)
       (P.relatorSides k) (P.longSides k) eps)
-    (hback : C.b' < C.b) (hcut : P.kind k C.target ≠ .cutting) : False := by
-  obtain ⟨source, target, sourceArc, targetArc, X, Y, r, htrav, hsource, htarget, -, -, hsection,
-    hX, hY⟩ := hwalk P k C hback hcut
+    (hback : C.b' < C.b) (hcut : P.kind k C.target ≠ .cutting)
+    (hkind : P.kind k C.source ≠ P.kind k C.target) : False := by
+  obtain ⟨source, target, sourceArc, targetArc, X, Y, r, htrav, hsource, htarget, hks, hkt,
+    hsection, hX, hY⟩ := hwalk P k C hback hcut
+  have hloop : target ≠ some source := fun h => hkind (hks.trans (hkt source h).symm)
   have hsymm := symmetricLabelAlphabet.symmetric D
   obtain ⟨N⟩ := C.exists_nonempty_connectors hsymm (by omega)
   have hcells : ∀ cell ∈ S.diagram.relatorCells, cell.face ≠ P.face k := by
@@ -67,27 +71,18 @@ theorem osinLemma94CaseOne_false_of_walk (hwalk : OsinLemma94CaseOneWalkStatemen
     exact h
   exact RealizedSectionFamily.false_of_quadrilateral_face S.toRealizedSectionFamily
     S.label_admissible S.weight_maximal (P.face k) (P.face_ne_outer k) hcells
-    (P.face_unselected k) source target sourceArc targetArc X Y r htrav hsource htarget hsection
-    N.endWord N.startWord N.end_nonempty N.start_nonempty N.end_admissible
+    (P.face_unselected k) source target sourceArc targetArc X Y r htrav hsource htarget
+    hsection hloop N.endWord N.startWord N.end_nonempty N.start_nonempty N.end_admissible
     (fun l hl => HullSC.isLetter_relWordInv _ hsymm (N.end_admissible l hl))
     N.start_admissible
     (fun l hl => HullSC.isLetter_relWordInv _ hsymm (N.start_admissible l hl))
     hval1 hval2 (le_of_lt N.end_short) (le_of_lt N.start_short) hnorm1 hnorm2
 
-/-- **Case 1 of Lemma 9.4 from the face walk.**  The thresholds are `ε₀ = 3` and `ρ₀ = 1`. -/
-theorem osinLemma94CaseOneInput_of_walk (hwalk : OsinLemma94CaseOneWalkStatement.{u, w, v}) :
-    OsinLemma94CaseOneInput.{u, w, v} := by
-  intro G _ Lambda D _ lambda c mu _ _ _ _ _
-  refine ⟨3, fun eps heps => ⟨1, Nat.one_pos, ?_⟩⟩
-  intro rho _ W _ Delta cuts _ _ S _ _ P _ k C hback hcut
-  exact osinLemma94CaseOne_false_of_walk hwalk heps P k C hback hcut
-
-/-- **Case 1 of Lemma 9.4, with the same-kind pairs as a hypothesis.**  The pairs whose source
-and target sides have the same kind come from `OsinLemma94CaseOneSameCellStatement`, and the face
-walk handles the other pairs.  The thresholds are `ε₀ = max 3 ε₁` and the `ρ₀` of the hypothesis,
-where `ε₁` is the `ε₀` of the hypothesis. -/
-theorem osinLemma94CaseOneInput_of_walk_of_sameCell
-    (hwalk : OsinLemma94CaseOneWalkStatement.{u, w, v})
+/-- **Case 1 of Lemma 9.4 from the face walk, with the same-kind pairs as a hypothesis.**  The
+pairs whose source and target sides have the same kind come from
+`OsinLemma94CaseOneSameCellStatement`, and the face walk handles the other pairs.  The thresholds
+are `ε₀ = max 3 ε₁` and the `ρ₀` of the hypothesis, where `ε₁` is the `ε₀` of the hypothesis. -/
+theorem osinLemma94CaseOneInput_of_walk (hwalk : OsinLemma94CaseOneWalkStatement.{u, w, v})
     (hsame : OsinLemma94CaseOneSameCellStatement.{u, w, v}) :
     OsinLemma94CaseOneInput.{u, w, v} := by
   intro G _ Lambda D hhyp lambda c mu hlambda hlambda1 hc hmu hmu1
@@ -99,7 +94,15 @@ theorem osinLemma94CaseOneInput_of_walk_of_sameCell
   by_cases hkind : P.kind k C.source = P.kind k C.target
   · exact hsame2 rho hrho W hW Delta cuts hleast hpos S hcard hmin P hmax k C hback hcut hkind
   · exact osinLemma94CaseOne_false_of_walk hwalk ((le_max_left 3 eps1).trans heps) P k C hback
-      hcut
+      hcut hkind
+
+/-- **Case 1 of Lemma 9.4, with the same-kind pairs as a hypothesis**, as
+`osinLemma94CaseOneInput_of_walk`. -/
+theorem osinLemma94CaseOneInput_of_walk_of_sameCell
+    (hwalk : OsinLemma94CaseOneWalkStatement.{u, w, v})
+    (hsame : OsinLemma94CaseOneSameCellStatement.{u, w, v}) :
+    OsinLemma94CaseOneInput.{u, w, v} :=
+  osinLemma94CaseOneInput_of_walk hwalk hsame
 
 end GroupApproximation.GGT.VanKampen
 

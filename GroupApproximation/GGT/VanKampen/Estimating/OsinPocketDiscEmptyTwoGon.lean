@@ -66,7 +66,7 @@ theorem emptyTwoGonInput_holds (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : 
     hothers x hx (fun h => hxab (by simp [h])) (fun h => hxab (by simp [h]))
   have hrespects : RegionCandidate.RespectsSections cuts
       (⟨{R.merged}, H⟩ : RegionCandidate D eps R.diagram) := by
-    refine fun _ => ⟨j, rfl, ?_, ?_⟩
+    refine ⟨fun h => Option.some_ne_none _ h.symm, fun _ => ⟨j, rfl, ?_, ?_⟩⟩
     · show cuts.cut j.castSucc ≤ H.targetArc.start.1
       omega
     · show H.targetArc.start.1 + H.targetArc.length ≤ cuts.cut j.succ

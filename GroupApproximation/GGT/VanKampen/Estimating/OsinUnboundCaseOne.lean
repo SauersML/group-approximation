@@ -45,14 +45,15 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
 
 namespace Embedded.RegionCandidate
 
-/-- Respecting the sections depends only on the target profile. -/
+/-- Respecting the sections depends only on the target profile, once the region is no loop. -/
 theorem respectsSections_of_sameTargetProfile {D : RelGenSet G Lambda} {eps : ℕ}
     {Delta Xi : DiscDiagram.{u, w, v} W} {lambda c : ℝ} {word : List (RelLetter G Lambda)}
     (cuts : SectionCuts D lambda c word) {a : RegionCandidate D eps Xi}
     {b : RegionCandidate D eps Delta} (hab : SameTargetProfile a b)
+    (hloop : a.2.target ≠ some a.2.source)
     (hb : RespectsSections cuts b) : RespectsSections cuts a := by
-  intro hnone
-  obtain ⟨j, -, h1, h2⟩ := hb (hab.1.mp hnone)
+  refine ⟨hloop, fun hnone => ?_⟩
+  obtain ⟨j, -, h1, h2⟩ := hb.2 (hab.1.mp hnone)
   refine ⟨j, hnone, ?_, ?_⟩
   · rw [hab.2.1]
     exact h1
@@ -79,6 +80,19 @@ theorem regionFamily_profile {D : RelGenSet G Lambda} {eps : ℕ}
   · exact CyclicArc.mapTo_length b.val.2.targetArc R.keep (R.targetDarts_eq b.val.2.target)
   · exact CyclicArc.mapTo_length b.val.2.sourceArc R.keep (R.cellDarts_eq b.val.2.source)
 
+/-- No region of a family carried through the collapse is a loop if none of the family is. -/
+theorem regionFamily_noLoop {D : RelGenSet G Lambda} {eps : ℕ}
+    (family : Finset (RegionCandidate D eps Delta))
+    (havoid : ∀ a ∈ family, Disjoint a.1 R.faces)
+    (hfamily : ∀ b ∈ family, b.2.target ≠ some b.2.source)
+    {a : RegionCandidate D eps R.diagram} (ha : a ∈ R.regionFamily family havoid) :
+    a.2.target ≠ some a.2.source := by
+  obtain ⟨b, _, rfl⟩ := Finset.mem_map.mp ha
+  intro h
+  change Option.map R.cellMap.indexEquiv b.val.2.target =
+    some (R.cellMap.indexEquiv b.val.2.source) at h
+  exact hfamily b.val b.property (Option.map_injective R.cellMap.indexEquiv.injective h)
+
 /-- No region of a family carried through the collapse contains the merged face. -/
 theorem regionFamily_avoid_merged {D : RelGenSet G Lambda} {eps : ℕ}
     (family : Finset (RegionCandidate D eps Delta))
@@ -97,8 +111,8 @@ namespace RealizedSectionFamily
 weight among legal section families.  Let `R` be a region of G-cells of its diagram that
 meets no selected region.  After the collapse of `R`, suppose that the merged face reads
 `X ++ q ++ Y ++ p⁻¹`, where `p` is a nonempty arc of a relator cell and `q` is a nonempty arc
-of a relator cell or of a boundary section, and that `s_1`, `s_2` are legal words of length and
-norm at most `ε` with the values of `X` and `Y`.  Then there is a contradiction. -/
+of a different relator cell or of a boundary section, and that `s_1`, `s_2` are legal words of
+length and norm at most `ε` with the values of `X` and `Y`.  Then there is a contradiction. -/
 theorem false_of_quadrilateral_region {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
     {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
     (S : RealizedSectionFamily D lambda c eps Delta cuts)
@@ -117,6 +131,7 @@ theorem false_of_quadrilateral_region {D : RelGenSet G Lambda} {lambda c : ℝ} 
     (hsection : target = none → ∃ j : Fin cuts.count,
       cuts.cut j.castSucc ≤ targetArc.start.val ∧
         targetArc.start.val + targetArc.length ≤ cuts.cut j.succ)
+    (hloop : target ≠ some source)
     (s1 s2 : List (RelLetter G Lambda)) (hne1 : s1 ≠ []) (hne2 : s2 ≠ [])
     (hadm1 : HullSC.RelWord.IsAdmissible (symmetricLabelAlphabet D) s1)
     (hinv1 : ∀ l ∈ s1, (symmetricLabelAlphabet D).IsLetter (HullSC.RelWord.inv l))
@@ -130,12 +145,13 @@ theorem false_of_quadrilateral_region {D : RelGenSet G Lambda} {lambda c : ℝ} 
     False := by
   have hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (R.diagram.label d) :=
     fun d => hlegal (R.val d)
-  obtain ⟨Xi, ⟨hequiv⟩, hred, hlabelXi, Q, H, hHsource, hHtarget, hHnone, hHstart, hretain⟩ :=
+  obtain ⟨Xi, ⟨hequiv⟩, hred, hlabelXi, Q, H, hHsource, hHtarget, hHnone, hHstart, hHloop,
+      hretain⟩ :=
     GFaceWordInsertion.exists_quadrilateral_region D (symmetricLabelAlphabet D) eps R.diagram
       hlabel R.merged R.merged_ne_outer R.merged_not_relatorFace R.merged_noInternalFaceDart
       source target sourceArc targetArc X Y htrav hsource s1 s2 hne1 hne2 hadm1 hinv1 hadm2
       hinv2 hval1 hval2 hlen1 hlen2 hnorm1 hnorm2
-  obtain ⟨family2, hpair2, -, hweight2, havoid2, hprofile2⟩ :=
+  obtain ⟨family2, hpair2, -, hweight2, havoid2, hnoloop2, hprofile2⟩ :=
     hretain (R.regionFamily S.family havoid) (R.regionFamily_avoid_merged S.family havoid)
       (R.regionFamily_pairwise S.family havoid S.pairwise)
   have hpositive : 0 < H.sourceArc.length := lt_of_lt_of_eq hsource hHsource.symm
@@ -145,7 +161,7 @@ theorem false_of_quadrilateral_region {D : RelGenSet G Lambda} {lambda c : ℝ} 
       RegionCandidate.RespectsSections cuts a := by
     intro a ha
     rcases Finset.mem_cons.mp ha with rfl | ha2
-    · intro hnoneQ
+    · refine ⟨fun h => hloop (hHloop.mp h), fun hnoneQ => ?_⟩
       obtain ⟨j, h1, h2⟩ := hsection (hHnone.mp hnoneQ)
       have h3 : cuts.cut j.castSucc ≤ H.targetArc.start.val := by
         rw [hHstart]
@@ -157,6 +173,8 @@ theorem false_of_quadrilateral_region {D : RelGenSet G Lambda} {lambda c : ℝ} 
     · obtain ⟨b, hb, hab⟩ := hprofile2 a ha2
       obtain ⟨c, hc, hbc⟩ := R.regionFamily_profile S.family havoid hb
       exact RegionCandidate.respectsSections_of_sameTargetProfile cuts (hab.trans hbc)
+        (hnoloop2 (fun x hx => R.regionFamily_noLoop S.family havoid
+          (fun y hy => (S.respects y hy).1) hx) a ha2)
         (S.respects c hc)
   have hnondegenerate : ∀ a ∈ Finset.cons (⟨{Q}, H⟩ : RegionCandidate D eps Xi) family2
       (RegionCandidate.singleton_not_mem_of_avoid H havoid2),
@@ -191,5 +209,6 @@ end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.respectsSections_of_sameTargetProfile
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.InnerGRegion.regionFamily_profile
+#audit_axioms GroupApproximation.GGT.VanKampen.Surgery.InnerGRegion.regionFamily_noLoop
 #audit_axioms GroupApproximation.GGT.VanKampen.Surgery.InnerGRegion.regionFamily_avoid_merged
 #audit_axioms GroupApproximation.GGT.VanKampen.RealizedSectionFamily.false_of_quadrilateral_region
