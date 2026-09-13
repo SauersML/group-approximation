@@ -29,8 +29,8 @@ subgroup, such as a lattice.
   Definition 4.23, p. 17, which names `G^+` "an isotropic simple algebraic group"). Read as `G(k)`, item 2
   can fail: `PGL_2(Q_p)` has a finite quotient, and characters of a finite quotient are not `C_0`.
 - For simply connected `G`, `G^+ = G(k)`, which covers `SL_n(Q_p)` and `SL_3(F_q((1/t)))`, the instances
-  used in the graph. A lattice of a non-simply-connected `G(k)` meets `G^+` in a finite-index subgroup,
-  and 𝒮 is closed under commensurability.
+  used in the graph. A lattice of a non-simply-connected `G(k)` needs a separate argument, since `G(k)/G^+`
+  can be an infinite compact group in positive characteristic.
 
 Source: C. Ciobotaru, *A unified proof of the Howe--Moore property*, arXiv:1403.0223, Definition 2.6
 and Theorem 1.1 (verbatim in the artifact, Section 1). Case 1 is due to Howe--Moore (1979) and Zimmer.
