@@ -39,9 +39,10 @@ Neumann algebra `(M, tau)` is injective, with `|tau(pi(g))| < 1` for all
 - **Dichotomy.** Every such group is hyperlinear or HS stable, never both, and
   strict and flexible stability coincide for it.
 - **Question 3.4 for simple groups.** Combined with
-  `infinite-simple-group-permutation-stable-iff-nonsofic`, such a group is a
-  hyperlinear nonsofic group exactly when it is permutation stable but not HS
-  stable. Equivalently, every almost action collapses to the identity, but
+  `infinite-simple-group-permutation-stable-iff-nonsofic`, every countably
+  infinite simple group is a hyperlinear nonsofic group exactly when it is
+  permutation stable but not HS stable. No representation hypothesis is needed
+  for this reading, because nonsofic simple groups satisfy it (Scope below). Equivalently, every almost action collapses to the identity, but
   some asymptotic representation does not collapse.
 - **Firewall.** For such `S`, "prove HS stability, then conclude
   nonhyperlinearity" is a restatement of nonhyperlinearity, as on the
@@ -51,7 +52,10 @@ Neumann algebra `(M, tau)` is injective, with `|tau(pi(g))| < 1` for all
 finitely generated infinite simple group: an injective finite-dimensional
 unitary representation would make `S` a finitely generated linear group, hence
 residually finite (`finitely-generated-linear-groups-are-residually-finite`),
-which an infinite simple group is not. Without the hypothesis, 1 ⇔ 2 ⇔ 3 and
+which an infinite simple group is not. It also holds for every nonsofic
+simple group: an injective `S -> U(d)` would make every finitely generated
+subgroup residually finite, hence sofic, and soficity is determined by finitely
+generated subgroups. Without the hypothesis, 1 ⇔ 2 ⇔ 3 and
 2 ⇒ 4 ⇒ 5 still hold.
 
 **Credit.** Elementary. The identity `tr(X ⊗ conj X) = |tr X|^2` is used the

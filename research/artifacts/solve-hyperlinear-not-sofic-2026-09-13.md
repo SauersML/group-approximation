@@ -10,9 +10,10 @@ Lane `solve-hyperlinear-not-sofic`, 2026-09-13. Target: `hyperlinear-nonsofic-gr
   representation, which covers every finitely generated one. Then `S` is not hyperlinear exactly
   when every asymptotic HS representation collapses, and exactly when `S` is strictly, or
   flexibly, HS stable.
-- **Q3.4 reading.** With `infinite-simple-group-permutation-stable-iff-nonsofic`, such `S` is a
-  hyperlinear nonsofic group exactly when every almost action collapses but some asymptotic
-  representation does not.
+- **Q3.4 reading.** With `infinite-simple-group-permutation-stable-iff-nonsofic`, every countably
+  infinite simple group is a hyperlinear nonsofic group exactly when every almost action collapses
+  but some asymptotic representation does not. Nonsofic simple groups satisfy the representation
+  hypothesis automatically (§5).
 - **Three proposed mechanisms are dead.** Trace statistics (§2), stable witnesses (§3) and
   diagonal-lamp models of the Kun--Thom wreath (§4). Main already settles each; this file
   collects the reasons.
@@ -73,7 +74,9 @@ permutation almost actions are forced to collapse.
 ## 5. The simple-group dictionary
 
 For `S` infinite simple with no finite-dimensional unitary representations (e.g. `EL_4(L)`,
-`S_∂`, Thompson `V` and `T`, the commutator subgroup of the Lodha--Moore group):
+`S_∂`, Thompson `V` and `T`, the commutator subgroup of the Lodha--Moore group). Every nonsofic simple group qualifies: an
+injective `S -> U(d)` would make its finitely generated subgroups residually finite, hence sofic.
+So does every simple group with a finitely generated subgroup that is not residually finite.
 
 | property | collapse statement | main node |
 |---|---|---|
