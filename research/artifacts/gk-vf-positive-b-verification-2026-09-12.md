@@ -1081,3 +1081,97 @@ The claim has no proof route on main, so the verdict appears only here.
 
 PASS for Theorem 1. The claim stays OPEN at a shared prime. A transfer lemma between two surjunctivity properties is
 not decision-level, and nothing is refuted. The Status bullet can cite Section 10.1 in place of "unverified".
+
+### 10.3 Section 3: reduction to subgroups of index coprime to `m` (`4bcbfcf5b`, `2a0a1cbba`). PASS.
+
+- **Theorem 4.**
+  - `P(z)(k) = c sum_(hS) z(kh)` is well defined on `Y_S`, since `z(khs) = z(kh)`.
+  - `hS -> h'hS` permutes `H/S`, so `P(z) in Y_H`. On `Y_H` the sum is `[H : S] z(k)`, so `P` fixes `Y_H`.
+  - `Pz in Y_H ⊆ Y_S` and `z - Pz in Y_S`, so `Phi` maps `Y_S` to itself.
+  - `P(Phi z) = tau(Pz)`, and `Phi z in Y_H` iff `z = Pz` iff `z in Y_H`. The preimage `u + (t - Pt)` lies in `Y_S`.
+    Steps 3 to 6 of Theorem 1 run inside `Y_S` as claimed. Correct.
+- **Corollary 5.**
+  - A strict `tau` on `Y_H` gives a strict `Phi` on `Y_S`, so the claim at `(G, S, m)` gives it at `(G, H, m)`.
+  - Indices multiply, so a single step to a minimal `S` suffices.
+  - For `m = p^k` the minimal subgroups are exactly the `p`-groups. A group that is not a `p`-group has a proper Sylow
+    `p`-subgroup of index coprime to `p`, and proper subgroups of a `p`-group have index a positive power of `p`.
+  - The proper subgroups of `S_3` have index 6, 3 and 2, none coprime to 6. Correct.
+- **Remark (one step inside a `p`-group).**
+  - `R_h` preserves `Y_N`, because `h^-1 N h = N`.
+  - `R_h^p` reads `z(kh^p)` with `h^p in N`, so it is the identity on `Y_N`. For `0 < j < p`, `R_h^j` moves any
+    configuration that separates the cosets `N` and `h^j N`, so the order is exactly `p`.
+  - `Y_H = Fix(R_h) ∩ Y_N`, since `H = <N, h>`.
+  - Every nontrivial `p`-group has a normal subgroup of index `p`, so the step is available along a chain. Correct.
+- **Node.**
+  - The Status bullet "Reduced to `p`-subgroups over prime-power alphabets" matches Theorem 4 and Corollary 5.
+  - The new `distinct_from` entries are accurate.
+    - `surjectivity-descends-to-centralized-coset-quotients` restricts an automaton over `G` to `Y_B` for `B`
+      centralizing the memory.
+    - `finite-normal-subgroups-do-not-affect-surjunctivity` is the two-sided statement across finite normal subgroups.
+  - Notes (a) and (b) are applied. Note (c) stays optional.
+- **Attempts entry on `finite-normal-subgroups-do-not-affect-surjunctivity` (`2a0a1cbba`).**
+  - At normal `N`, `A^(E/N)` is the full shift over `E/N`, and its `E`-equivariant self-maps are the automata over
+    `E/N`. Theorem 1 at `H = N` gives the quotient direction at sizes coprime to `|N|`, with no separation hypothesis.
+    Correct, and the citation of Section 10.1 is right.
+  - `separated-finite-normal-subgroups-preserve-surjunctivity` needs separation, and
+    `strict-automata-memory-keeps-finite-normal-kernel-residual` concerns the other direction. So the entry records
+    something new.
+  - *Wording (optional).* "the averaging has no equivariant replacement" says more than Lemma 2 shows.
+    - Lemma 2 rules out retractions that commute with constants.
+    - The min retraction is a `G`-equivariant retraction onto `Y`.
+    - The node's Status line "The averaging step has no replacement there" has the same issue.
+
+### 10.4 Section 4: the linear shadow (`faca304bb`). PASS.
+
+- **Lemma 6.**
+  - `(f^* (g.y))(v) = y(g^-1 f v) = (g . f^* y)(v)`, and `f^*` reads `y` on `g . supp w_i`.
+  - Conversely, `(Ty)(H e_i)` is a linear functional of finitely many coordinates, so it equals `y(w_i)`.
+    - Equivariance under `H` gives `y(h^-1 w_i) = y(w_i)` for all `y`, so `w_i` is `H`-fixed.
+    - So `f(gH e_i) = g w_i` is well defined, and `f^* = T` by equivariance.
+  - For algebraic duals, `ker f^* = ann(im f)` and `im f^* = ann(ker f)`. The second follows by extending functionals
+    from a complement. Correct.
+- **Proposition 7.**
+  - `he = e`, so `ge` depends only on `gH`, and distinct cosets give disjoint supports. So `K[G]e ≅ K[G/H]`.
+  - `K[G] = K[G]e ⊕ K[G](1 - e)` makes `M` a summand of `K[G]^n`.
+  - The split surjection `f` gives `K[G]^n ≅ K[G]^n ⊕ ker f`, and the projection has a section.
+  - Stable finiteness turns `psi s = 1` into `s psi = 1`, so `ker f = 0`. Correct.
+- **Endomorphism ring.**
+  - `f` is determined by `f(H) in M^H`, whose basis is the orbit sums over `H\G/H`.
+  - Up to the opposite ring, that is the Hecke algebra. When `char K` does not divide `|H|`, it is the corner
+    `eK[G]e`. Correct.
+- **Lemma 8.**
+  - Restriction to `H` preserves projectivity, since `K[G]` is free over `K[H]`.
+  - The orbit `{H}` gives the trivial module as a summand.
+  - A splitting of the augmentation would give an `H`-fixed vector `c sum_h h` with augmentation `c|H| = 0 ≠ 1`.
+    Correct.
+- **Question 9.**
+  - Theorem 4 runs over `K` with `c = [H : S]^-1` and keeps linearity and finite memory, so the Sylow reduction holds.
+  - `stable-finiteness-forces-prime-power-surjunctivity` exists and is OPEN, as cited.
+  - The normal-Sylow case follows from the reduction and Proposition 10. Correct.
+- **Proposition 10.**
+  - With `H` normal, `K[G]` acts on `K[G/H]^n` through `K[Q]`, and the module is free. A surjection has a section,
+    which gives `AB = 1` in `M_n(K[Q])`.
+  - The direction of `finite-normal-p-subgroups-preserve-modular-stable-finiteness` used here, from `K[G]` to `K[Q]`,
+    has a short proof.
+    - Lift `A` and `B` to `M_n(K[G])`. Then `A'B' = 1 + j`, with `j` in the nilpotent kernel, so `1 + j` is invertible.
+    - Stable finiteness of `K[G]` gives `B'(1 + j)^-1 A' = 1`, and reducing gives `BA = 1`. Correct.
+  - I did not re-check the rest of that node. Its verifier is `w3-vf-positive`.
+- **Where it stops.**
+  - `zxH = f(zH) = H`, so `zx - 1` lies in the kernel `K[G] I_H` of `K[G] -> K[G/H]`.
+  - In `<a> * <b>` with `p = 2`, choose `a` from the first factor and `ba` from each of the other `k` factors. This
+    gives `a(ba)^k = (ab)^k a`. Every other choice gives a shorter word, so the coefficient is `1`. Correct.
+  - *Wording (optional).* "Question 9 holds there" is shown only for finite `K`, by the amenable case. The section
+    does not prove it for infinite `K`.
+- **Subsumption.** A title scan for stable finiteness, linear automata and permutation modules gives 113 nodes. None
+  contains Proposition 7 or 10.
+  - `linear-invariant-output-automata-fail-augmentation` is the nearest, and it is cited. It classifies linear automata
+    from the full shift `k^G` into `Y`: augmentation rules them out when `p` divides `|H|`, and they are corner
+    compressions otherwise. Section 4 concerns self-maps of `K^(G/H)`. So Lemma 8 is a module-theoretic relative of
+    that node's item 2, not a copy of it.
+  - `finite-normal-p-subgroups-preserve-modular-stable-finiteness` is used by Proposition 10, as cited.
+  - `weak-sofic-stable-finiteness-from-surjunctivity` goes the opposite way, from surjunctivity of `G` to stable
+    finiteness.
+- **Node.** The linear-shadow Attempts bullet matches Section 4 and says "unverified". It can cite Section 10.4.
+
+PASS for Theorem 4, Corollary 5, Lemmas 6 and 8, and Propositions 7 and 10. The claim stays OPEN at a shared prime, and
+Question 9 stays open for non-normal `H`. Nothing here is decision-level, and nothing is refuted.
