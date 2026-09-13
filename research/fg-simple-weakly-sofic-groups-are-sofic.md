@@ -27,9 +27,21 @@ nonsofic group refutes it.
   - the relator width is bounded over symmetric, alternating, sporadic, bounded-rank Lie type and
     nilpotent groups (`simple-group-relator-width-in-finite-simple-targets`,
     `perfect-group-relator-width-over-nilpotent-groups`).
-  So a counterexample needs finite targets of unbounded chief length outside those classes, or
-  classical groups of unbounded rank together with linear soficity
-  (`non-linear-sofic-simple-groups-bounded-width-in-classical-groups`).
+- **Finite simple targets: settled (2026-09-13, lane `ex-weak-sofic-classical-covering`, unreviewed).**
+  A finitely presented simple group has bounded relator width over **all** finite simple groups iff it
+  is not linear sofic over finite fields (`simple-group-width-over-all-finite-simple-groups`). The
+  classical input is `simple-group-psl-width-is-finite-field-linear-soficity` and
+  `simple-group-classical-width-finite-field-linear-soficity`. So for finitely presented `G`, a
+  counterexample must be of one of two kinds:
+  - (a) linear sofic over finite fields and nonsofic. That is a finite-field, simple-group answer to
+    Arzhantseva--Paunescu Question 8.5 (`linear-sofic-nonsofic-group`), so it is at least as hard to
+    find as a linear sofic nonsofic group.
+  - (b) weakly sofic only through non-simple finite targets of unbounded chief length outside the good
+    classes, such as deep iterated wreath products with non-nilpotent tops (lane
+    `ex-weak-sofic-deep-wreath`).
+
+  An earlier version of this bullet listed classical groups of unbounded rank as possible room. That
+  room is exactly (a): classical targets contribute linear soficity over finite fields and nothing more.
 - **Permanence cannot build a counterexample.** Extensions put a simple subgroup inside the kernel
   (`binary-leavitt-unit-group-is-weakly-sofic`, first attempt), and directed unions reach a finitely
   generated simple group at a finite stage. Glebsky's theorem produces no simple groups.
