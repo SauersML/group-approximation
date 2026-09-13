@@ -1,0 +1,10 @@
+3 ((1, 1, 2), '1a', ('a-swap', 'b-swap', 'c-swap', 'a-cycle', 'b-cycle', 'c-cycle'), ('path sets carry other relators',)) eg ((1, 1, 2), (0, 0, 1), (2, 2, 1), 2, 1)
+30 ((1, 1, 2), '1a', ('a-swap', 'b-swap', 'c-swap', 'b-cycle', 'c-cycle'), ('path sets carry other relators',)) eg ((1, 1, 2), (0, 0, 1), (0, 1, 1), 2, 2)
+6 ((1, 1, 2), '1a', ('a-swap', 'b-swap', 'c-swap', 'b-cycle', 'c-cycle'), ('torsion-only path sets', 'b2:b-swap', 'c2:c-swap', 'b3,c3:b-cycle')) eg ((1, 1, 2), (0, 1, 0), (1, 0, 0), 1, 1)
+21 ((1, 1, 2), '1b', ('a-swap', 'b-swap', 'c-swap', 'a-cycle', 'b-cycle', 'c-cycle'), ('path sets carry other relators',)) eg ((1, 1, 2), (0, 1, 0), (1, 2, 0), 1, 2)
+51 ((1, 1, 2), '1b', ('a-swap', 'b-swap', 'c-swap', 'b-cycle', 'c-cycle'), ('path sets carry other relators',)) eg ((1, 1, 2), (0, 0, 1), (2, 0, 1), 2, 2)
+6 ((1, 1, 2), '1b', ('a-swap', 'b-swap', 'c-swap', 'b-cycle', 'c-cycle'), ('torsion-only path sets', 'a2:a-swap', 'b2:b-swap', 'c2:c-swap')) eg ((1, 1, 2), (0, 0, 1), (0, 1, 1), 1, 1)
+21 ((1, 1, 2), 'ab', ('a-swap', 'b-swap', 'c-swap', 'a-cycle', 'b-cycle', 'c-cycle'), ('path sets carry other relators',)) eg ((1, 1, 2), (0, 1, 0), (0, 2, 1), 2, 2)
+51 ((1, 1, 2), 'ab', ('a-swap', 'b-swap', 'c-swap', 'b-cycle', 'c-cycle'), ('path sets carry other relators',)) eg ((1, 1, 2), (0, 0, 1), (0, 2, 1), 2, 2)
+6 ((1, 1, 2), 'ab', ('a-swap', 'b-swap', 'c-swap', 'b-cycle', 'c-cycle'), ('torsion-only path sets', 'a2:a-swap', 'b2:b-swap', 'c2:c-swap')) eg ((1, 1, 2), (0, 0, 1), (1, 0, 1), 1, 1)
+I_0 rules 195 torsion-only 18 closed 18

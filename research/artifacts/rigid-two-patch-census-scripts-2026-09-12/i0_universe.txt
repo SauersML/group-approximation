@@ -1,0 +1,96 @@
+double pair 1 a support ['b', '1', 'Ab'] sites 15
+   A          breaker  b=ba b=bA b=Ab ba=Aba bb=bAb bb=Abb bA=AbA bAb=AbAb 1=a 1=A Ab=Aba Ab=AbA B=Ba Abb=AbAb
+   B          breaker  b=bb b=1 ba=a bA=bAb bA=A bAb=Ab 1=B 1=Aba a=Ba A=Ab Ab=Abb AbA=AbAb
+   AA         a2       ba=bA a=A Aba=AbA
+   AB         Z        b=A ba=1 bb=bA bb=Ab a=B A=Aba Abb=AbA
+   Ab         breaker  b=bAb b=a b=Abb ba=bb bA=1 1=Ab 1=Ba a=Aba A=B A=AbA Ab=AbAb Aba=Abb
+   BB         b2       b=B ba=Ba bb=1 A=Abb
+   AAB        Z        ba=A
+   AAb        Z        b=AbAb ba=bAb bA=a 1=AbA a=Ab A=Ba Aba=AbAb
+   ABB        Z        ba=B bb=A
+   Abb        Z        b=Ba bb=a bA=B bAb=1 1=Abb A=AbAb Ab=B Ba=Aba
+   BBB        b3       bb=B
+   AAAb       Z        a=AbA
+   AAbb       Klein    bA=Ba a=Abb
+   ABAb       Klein    b=AbA ba=Ab bb=AbAb
+   ABaB       Klein    bAb=A B=Aba
+   ABab       Z2       b=Aba bA=Ab bAb=Abb
+   AbAb       c2       bAb=a 1=AbAb Ab=Ba B=AbA
+   Abbb       Z        bb=Ba bAb=B B=Abb
+   AABAb      BS       ba=AbA
+   AABab      BS       bA=Aba
+   AAbAb      Z        a=AbAb Ba=AbA
+   ABAbb      ?        ba=Abb
+   ABBAb      ?        bb=AbA
+   ABBab      BS       bA=Abb
+   ABabb      BS       bb=Aba
+   AbAbb      Z        bAb=Ba B=AbAb Ba=Abb
+   ABAbAb     ?        ba=AbAb
+   ABaBAb     ?        bAb=AbA
+   ABaBab     BS       bA=AbAb
+   ABabAb     BS       bAb=Aba
+   AbAbAb     c3       Ba=AbAb
+double pair 1 b support ['a', '1', 'Ba'] sites 15
+   A          breaker  a=aa a=1 ab=b 1=A 1=Bab b=Ab aB=aBa aB=B aBa=Ba B=Ba Ba=Baa BaB=BaBa
+   B          breaker  a=ab a=aB a=Ba aa=aBa aa=Baa ab=Bab 1=b 1=B aB=BaB aBa=BaBa A=Ab Ba=Bab Ba=BaB Baa=BaBa
+   AA         a2       a=A aa=1 ab=Ab B=Baa
+   AB         Z        a=B aa=aB aa=Ba ab=1 b=A B=Bab Baa=BaB
+   Ab         breaker  a=b a=aBa a=Baa aa=ab 1=aB 1=Ab 1=Ba b=Bab A=B B=BaB Ba=BaBa Baa=Bab
+   BB         b2       ab=aB b=B Bab=BaB
+   AAA        a3       aa=A
+   AAB        Z        aa=B ab=A
+   AAb        Z        a=Ab aa=b 1=aBa 1=Baa aB=A A=Ba Ab=Bab B=BaBa
+   ABB        Z        ab=B
+   Abb        Z        a=BaBa ab=aBa 1=BaB b=aB b=Ba Ab=B Bab=BaBa
+   AAAb       Z        aa=Ab aBa=A A=Baa
+   AAbb       Klein    b=Baa aB=Ab
+   ABAb       Klein    aBa=B A=Bab
+   ABaB       Klein    a=BaB aa=BaBa ab=Ba
+   ABab       Z2       a=Bab aB=Ba aBa=Baa
+   AbAb       c2       1=BaBa b=aBa A=BaB Ab=Ba
+   Abbb       Z        b=BaB
+   AABaB      ?        aa=BaB
+   AABab      BS       aa=Bab
+   AAbAb      Z        aBa=Ab A=BaBa Ab=Baa
+   AAbaB      BS       aB=Baa
+   AAbab      ?        ab=Baa
+   ABaBB      BS       ab=BaB
+   ABabb      BS       aB=Bab
+   AbAbb      Z        b=BaBa Ab=BaB
+   ABaBAb     ?        aBa=BaB
+   ABaBaB     ?        ab=BaBa
+   ABaBab     BS       aB=BaBa
+   ABabAb     BS       aBa=Bab
+   AbAbAb     c3       Ab=BaBa
+double pair a b support ['1', 'a', 'aB'] sites 15
+   A          breaker  1=a 1=A a=aa a=aBAb b=Ab b=ab B=Ba B=aB Ba=aBa aB=aBa aB=aBA aBB=aBBa
+   B          breaker  1=b 1=B 1=aBA a=Ba a=ab a=aB b=aBAb A=Ab aa=aBa aB=aBB aBa=aBBa aBA=aBAb
+   AA         a2       1=aa a=A Ab=ab aBa=aBA
+   AB         Z        1=ab a=B a=aBA b=A Ba=aa aa=aB ab=aBAb aBa=aBB
+   Ab         breaker  1=Ab 1=Ba 1=aB a=b a=aBa A=B A=aBA Ab=aBAb B=aBB Ba=aBBa aa=ab aB=aBAb aB=aBBa aBA=aBB
+   BB         b2       a=aBB b=B aa=aBBa ab=aB
+   AAA        a3       A=aa
+   AAB        Z        A=ab B=aa aa=aBA
+   AAb        Z        1=aBa a=Ab b=aa A=Ba A=aB aBa=aBAb aBA=aBBa
+   ABB        Z        B=ab aa=aBB ab=aBA
+   Abb        Z        1=aBB a=aBBa b=Ba b=aB Ab=B ab=aBa aBAb=aBB
+   BBB        b3       ab=aBB
+   AAAb       Z        A=aBa Ab=aa
+   AAbb       Klein    1=aBBa A=aBB Ab=aB
+   ABAb       Klein    B=aBa aa=aBAb
+   ABaB       Klein    b=aBA Ba=ab
+   ABab       Z2       1=aBAb B=aBA Ba=aB
+   AbAb       c2       b=aBa Ab=Ba aBAb=aBBa
+   Abbb       Z        b=aBB ab=aBBa
+   AAAbb      ?        A=aBBa
+   AABab      BS       A=aBAb
+   AAbAb      Z        Ab=aBa
+   AAbaB      BS       Ba=aBA
+   AAbab      ?        Ab=aBA
+   AAbbb      ?        Ab=aBB
+   ABAbb      ?        B=aBBa
+   ABBab      BS       B=aBAb
+   ABabb      BS       Ba=aBB
+   AbAbb      Z        b=aBBa
+   AAbAbb     BS       Ab=aBBa
+   ABaBab     BS       Ba=aBAb

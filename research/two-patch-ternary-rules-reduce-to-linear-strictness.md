@@ -74,5 +74,16 @@ automata. A counterexample refutes Gottschalk's conjecture.
   - **Class `I_0`** (195 rules). Collisions need three or more sites. Not searched.
   - **Class `II`** (30 rules, pair-distinct). No finite collision over free memory, by
     `pair-distinct-ternary-rules-pre-injective-on-free-memory`.
+- **Census relation moves** (w7-two-patch-census, `rigid-unbalanced-two-patch-rules-beyond-class-ii-not-injective`,
+  artifact `rigid-two-patch-census-relation-moves-2026-09-12.md`; awaiting re-derivation by w7-vf-nonlinear).
+  - **Classes `I_3` and `I_1`.** Swaps on `{1, d}` and cycles on `{1, d, d^-1}`, with `d` in `a, b, a^-1 b`, close
+    the torsion cases left by two-site moves for 468 of the 504 rules. For the other 36, the proof is missing only
+    where `a^3 = 1` is the only label that holds.
+  - **Class `I_0`.** Every rule has a three-site path move over free memory. Its conflicts include
+    Baumslag–Solitar relators, which are dropped, and free-by-cyclic and torus-knot relators, which are kept.
+    18 rules close. For the other 177, the proof is missing only on nonamenable placements where none of `a^2`,
+    `b^2`, `c^2`, `b^3`, `c^3` holds.
+  - **Net.** If verified, "Relation tables are done only for the next seed" and "Not searched" above are
+    superseded for these 486 rules.
 - **Smallest open case.** `unit-case-pair-distinct-two-patch-rules-are-not-injective`, with seed
   `x_1 + x_a - x_b + [(0,1,0)] - [(1,2,2)]`.

@@ -1,0 +1,316 @@
+rule ((1, 1, 0), (0, 1, 0), (0, 1, 1), 1, 1) row ((1, 1, 0), 'I1', ('1a',), ('a2:a-swap', 'a3:a-cycle'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual a3 pattern a3: a-cycle, e2 pairs forced equal for none
+  residual a3 pattern a3,c2: a-cycle, e2 pairs forced equal for c2
+  residual a3 pattern a3,c3: a-cycle, e2 pairs forced equal for none
+  residual a3 pattern a3,b2: a-cycle, e2 pairs forced equal for b2
+  residual a3 pattern a3,b3: a-cycle, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->2 | context b=0 a b=0 b^-1=0 b^-1 a=0 a b^-1=0 a b^-1 a=0 | 4 windows replayed
+    move a-cycle (e2 equal: c2): change 1:0->1 a:0->2 a^-1:1->0 | context b=0 a^-1 b=2 b^-1=0 b^-1 a=2 a b=0 a b^-1=0 a b^-1 a=0 a^-1 b^-1=0 a^-1 b^-1 a=0 | 6 windows replayed
+    move a-cycle (e2 equal: none): change 1:0->1 a:0->2 a^-1:1->0 | context b=0 a^-1 b=2 b^-1=0 b^-1 a=0 a b=0 a b^-1=0 a b^-1 a=0 a^-1 b^-1=0 a^-1 b^-1 a=0 | 6 windows replayed
+    move a-cycle (e2 equal: b2): change 1:0->1 a:0->2 a^-1:1->0 | context b=0 a^-1 b=2 b^-1=0 b^-1 a=0 a b=0 a b^-1=0 a b^-1 a=0 a^-1 b^-1=2 a^-1 b^-1 a=0 | 6 windows replayed
+rule ((1, 1, 0), (0, 0, 1), (0, 1, 1), 1, 1) row ((1, 1, 0), 'I1', ('1a',), ('a2:a-swap',))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->2 | context b=0 a b=0 b^-1=0 b^-1 a=2 a b^-1=0 a b^-1 a=0 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 0), (0, 2, 1), 1, 2) row ((1, 1, 2), 'I1', ('1a',), ('a2:a-swap', 'a3:OPEN@a3', 'b2:b-swap', 'c2:c-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual a3 pattern a3: OPEN
+  residual a3 pattern a3,c2: c-swap, e2 pairs forced equal for none
+  residual a3 pattern a3,c3: c-cycle, e2 pairs forced equal for none
+  residual a3 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual a3 pattern a3,b3: b-cycle, e2 pairs forced equal for none
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->2 a:1->2 | context b=1 a b=0 b^-1=0 b^-1 a=1 a b^-1=0 a b^-1 a=2 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:1->2 b:1->2 | context a=0 a^-1=0 a^-1 b=0 b a=0 b a^-1=0 b a^-1 b=0 | 4 windows replayed
+    move b-cycle (e2 equal: none): change 1:1->2 b:1->2 b^-1:1->2 | context a=0 a^-1=0 a^-1 b=0 b^-1 a=0 b a=0 b a^-1=0 b a^-1 b=0 b^-1 a^-1=0 b^-1 a^-1 b=0 | 6 windows replayed
+    move c-swap (e2 equal: none): change 1:0->1 c:0->1 | context a=1 a c=0 a^-1=0 c a^-1=0 c a=1 c a c=0 | 4 windows replayed
+    move c-cycle (e2 equal: none): change 1:0->1 c:0->1 c^-1:0->1 | context a=1 a c=0 a^-1=0 c^-1 a^-1=0 c a=1 c a c=0 c a^-1=0 c^-1 a=1 c^-1 a c=0 | 6 windows replayed
+rule ((1, 1, 2), (0, 1, 0), (0, 2, 1), 1, 1) row ((1, 1, 2), 'I1', ('1a',), ('a2:a-swap', 'a3:a-cycle+b-swap+c-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual a3 pattern a3: a-cycle, e2 pairs forced equal for none
+  residual a3 pattern a3,c2: c-swap, e2 pairs forced equal for none
+  residual a3 pattern a3,c3: a-cycle, e2 pairs forced equal for none
+  residual a3 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual a3 pattern a3,b3: a-cycle, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->2 | context b=0 a b=0 b^-1=0 b^-1 a=2 a b^-1=0 a b^-1 a=1 | 4 windows replayed
+    move a-cycle (e2 equal: none): change 1:0->1 a:0->2 a^-1:1->0 | context b=0 a^-1 b=1 b^-1=0 b^-1 a=2 a b=0 a b^-1=0 a b^-1 a=1 a^-1 b^-1=0 a^-1 b^-1 a=2 | 6 windows replayed
+    move b-swap (e2 equal: none): change 1:0->2 b:0->2 | context a=0 a^-1=0 a^-1 b=1 b a=0 b a^-1=0 b a^-1 b=1 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->1 c:0->1 | context a=1 a c=0 a^-1=0 c a^-1=0 c a=1 c a c=0 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 0), (2, 1, 1), 2, 2) row ((1, 1, 2), 'I1', ('1a',), ('a2:a-swap', 'a3:a-cycle+b-swap+c-swap', 'b2:b-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual a3 pattern a3: a-cycle, e2 pairs forced equal for none
+  residual a3 pattern a3,c2: c-swap, e2 pairs forced equal for none
+  residual a3 pattern a3,c3: a-cycle, e2 pairs forced equal for none
+  residual a3 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual a3 pattern a3,b3: a-cycle, e2 pairs forced equal for none
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:1->0 | context b=1 a b=1 b^-1=0 b^-1 a=1 a b^-1=0 a b^-1 a=1 | 4 windows replayed
+    move a-cycle (e2 equal: none): change 1:0->1 a:1->0 a^-1:2->1 | context b=1 a^-1 b=0 b^-1=0 b^-1 a=1 a b=0 a b^-1=0 a b^-1 a=1 a^-1 b^-1=2 a^-1 b^-1 a=1 | 6 windows replayed
+    move b-swap (e2 equal: none): change 1:0->1 b:0->1 | context a=0 a^-1=0 a^-1 b=0 b a=0 b a^-1=0 b a^-1 b=0 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=1 a c=0 a^-1=0 c a^-1=0 c a=1 c a c=0 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 0), (0, 2, 2), 2, 2) row ((1, 1, 2), 'I1', ('1a',), ('a2:a-swap', 'a3:a-cycle+b-swap+c-swap', 'c2:c-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual a3 pattern a3: a-cycle, e2 pairs forced equal for none
+  residual a3 pattern a3,c2: c-swap, e2 pairs forced equal for none
+  residual a3 pattern a3,c3: a-cycle, e2 pairs forced equal for none
+  residual a3 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual a3 pattern a3,b3: a-cycle, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->2 | context b=0 a b=0 b^-1=0 b^-1 a=1 a b^-1=0 a b^-1 a=2 | 4 windows replayed
+    move a-cycle (e2 equal: none): change 1:0->1 a:1->0 a^-1:0->2 | context b=1 a^-1 b=0 b^-1=0 b^-1 a=1 a b=2 a b^-1=0 a b^-1 a=1 a^-1 b^-1=0 a^-1 b^-1 a=2 | 6 windows replayed
+    move b-swap (e2 equal: none): change 1:0->1 b:0->1 | context a=0 a^-1=0 a^-1 b=0 b a=0 b a^-1=0 b a^-1 b=0 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=1 a c=0 a^-1=1 c a^-1=1 c a=1 c a c=0 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 0), (1, 0, 0), 1, 2) row ((1, 1, 2), 'I1', ('1a',), ('a2:a-swap', 'b2:b-swap', 'c2:c-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->2 | context b=0 a b=0 b^-1=1 b^-1 a=0 a b^-1=0 a b^-1 a=1 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->2 b:0->2 | context a=0 a^-1=1 a^-1 b=0 b a=0 b a^-1=1 b a^-1 b=0 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->1 c:0->1 | context a=0 a c=0 a^-1=0 c a^-1=0 c a=0 c a c=0 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 0), (2, 0, 0), 2, 2) row ((1, 1, 2), 'I1', ('1b',), ('a2:a-swap', 'b2:b-swap', 'b3,c2:c-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual b3,c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:1->0 | context b=1 a b=1 b^-1=0 b^-1 a=1 a b^-1=0 a b^-1 a=1 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->1 b:0->1 | context a=0 a^-1=0 a^-1 b=0 b a=0 b a^-1=0 b a^-1 b=0 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=1 a c=0 a^-1=0 c a^-1=0 c a=1 c a c=0 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 0), (1, 2, 0), 1, 1) row ((1, 1, 2), 'I1', ('1b',), ('a2:a-swap', 'b2:b-swap', 'c2:c-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->2 a:2->0 | context b=0 a b=0 b^-1=0 b^-1 a=1 a b^-1=0 a b^-1 a=1 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->2 b:0->2 | context a=0 a^-1=1 a^-1 b=0 b a=0 b a^-1=1 b a^-1 b=0 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->1 c:0->1 | context a=1 a c=0 a^-1=0 c a^-1=0 c a=1 c a c=0 | 4 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (0, 2, 0), 2, 2) row ((1, 1, 2), 'I1', ('1b',), ('b2:b-swap', 'a2,b3:a-swap'))
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual a2,b3 pattern a2,b3: a-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->1 | context b=1 a b=1 b^-1=0 b^-1 a=2 a b^-1=0 a b^-1 a=2 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->2 b:0->2 | context a=0 a^-1=0 a^-1 b=1 b a=0 b a^-1=0 b a^-1 b=1 | 4 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (2, 1, 1), 2, 1) row ((1, 1, 2), 'I1', ('1b',), ('b2:b-swap', 'b3:a-cycle+a-swap+b-cycle+c-swap', 'c2:c-swap'))
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual b3 pattern b3: b-cycle, e2 pairs forced equal for none
+  residual b3 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual b3 pattern b3,c3: b-cycle, e2 pairs forced equal for none
+  residual b3 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual b3 pattern a3,b3: a-cycle, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->1 | context b=1 a b=1 b^-1=2 b^-1 a=1 a b^-1=2 a b^-1 a=1 | 4 windows replayed
+    move a-cycle (e2 equal: none): change 1:0->1 a:0->1 a^-1:0->1 | context b=1 a^-1 b=1 b^-1=2 b^-1 a=1 a b=1 a b^-1=2 a b^-1 a=1 a^-1 b^-1=2 a^-1 b^-1 a=1 | 6 windows replayed
+    move b-swap (e2 equal: none): change 1:0->2 b:0->2 | context a=0 a^-1=0 a^-1 b=1 b a=0 b a^-1=0 b a^-1 b=1 | 4 windows replayed
+    move b-cycle (e2 equal: none): change 1:0->2 b:0->2 b^-1:0->2 | context a=0 a^-1=0 a^-1 b=1 b^-1 a=0 b a=0 b a^-1=0 b a^-1 b=1 b^-1 a^-1=0 b^-1 a^-1 b=1 | 6 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=0 a c=1 a^-1=0 c a^-1=0 c a=0 c a c=1 | 4 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (0, 1, 2), 2, 1) row ((1, 1, 2), 'I1', ('1b',), ('b2:b-swap', 'b3:a-swap+b-cycle+c-swap', 'c2:c-swap'))
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual b3 pattern b3: b-cycle, e2 pairs forced equal for none
+  residual b3 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual b3 pattern b3,c3: b-cycle, e2 pairs forced equal for none
+  residual b3 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual b3 pattern a3,b3: b-cycle, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:1->2 a:2->1 | context b=0 a b=0 b^-1=0 b^-1 a=0 a b^-1=0 a b^-1 a=0 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->2 b:0->2 | context a=0 a^-1=0 a^-1 b=1 b a=0 b a^-1=0 b a^-1 b=1 | 4 windows replayed
+    move b-cycle (e2 equal: none): change 1:0->2 b:0->2 b^-1:0->2 | context a=0 a^-1=0 a^-1 b=1 b^-1 a=0 b a=0 b a^-1=0 b a^-1 b=1 b^-1 a^-1=0 b^-1 a^-1 b=1 | 6 windows replayed
+    move c-swap (e2 equal: none): change 1:0->1 c:0->1 | context a=1 a c=2 a^-1=0 c a^-1=0 c a=1 c a c=2 | 4 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (1, 2, 1), 2, 2) row ((1, 1, 2), 'I1', ('1b',), ('b2:b-swap', 'c2:c-swap'))
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move b-swap (e2 equal: none): change 1:0->2 b:0->2 | context a=0 a^-1=0 a^-1 b=1 b a=0 b a^-1=0 b a^-1 b=1 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->1 c:0->1 | context a=2 a c=1 a^-1=0 c a^-1=0 c a=2 c a c=1 | 4 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (0, 1, 0), 2, 2) row ((1, 1, 2), 'I1', ('1b',), ('b2:b-swap', 'c2:c-swap', 'a2,b3:a-swap'))
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+  residual a2,b3 pattern a2,b3: a-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->1 | context b=1 a b=1 b^-1=0 b^-1 a=1 a b^-1=0 a b^-1 a=1 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->1 b:0->1 | context a=0 a^-1=0 a^-1 b=0 b a=0 b a^-1=0 b a^-1 b=0 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=0 a c=1 a^-1=0 c a^-1=0 c a=0 c a c=1 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 1), (2, 0, 1), 2, 2) row ((1, 1, 2), 'I1', ('ab',), ('a2:a-swap', 'b2:b-swap', 'c2:c-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:1->2 a:2->1 | context b=0 a b=0 b^-1=0 b^-1 a=1 a b^-1=0 a b^-1 a=1 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->1 b:0->1 | context a=0 a^-1=0 a^-1 b=1 b a=0 b a^-1=0 b a^-1 b=1 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=1 a c=1 a^-1=0 c a^-1=0 c a=1 c a c=1 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 0), (2, 0, 0), 1, 1) row ((1, 1, 2), 'I1', ('ab',), ('a2:a-swap', 'c2:c-swap', 'b2,c3:b-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+  residual b2,c3 pattern b2,c3: b-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->2 a:2->0 | context b=1 a b=1 b^-1=0 b^-1 a=1 a b^-1=0 a b^-1 a=1 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->1 b:0->1 | context a=0 a^-1=2 a^-1 b=0 b a=0 b a^-1=2 b a^-1 b=0 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->1 c:0->1 | context a=1 a c=0 a^-1=0 c a^-1=0 c a=1 c a c=0 | 4 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (2, 1, 1), 2, 2) row ((1, 1, 2), 'I1', ('ab',), ('b2:b-swap', 'c2:c-swap'))
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move b-swap (e2 equal: none): change 1:0->1 b:0->1 | context a=0 a^-1=2 a^-1 b=1 b a=0 b a^-1=2 b a^-1 b=1 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=0 a c=1 a^-1=0 c a^-1=0 c a=0 c a c=1 | 4 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (1, 0, 0), 2, 2) row ((1, 1, 2), 'I1', ('ab',), ('b2:b-swap', 'c2:c-swap', 'a2,c3:a-swap'))
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+  residual a2,c3 pattern a2,c3: a-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->1 | context b=1 a b=1 b^-1=1 b^-1 a=0 a b^-1=1 a b^-1 a=0 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->2 b:0->2 | context a=0 a^-1=0 a^-1 b=1 b a=0 b a^-1=0 b a^-1 b=1 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->1 c:0->1 | context a=0 a c=0 a^-1=0 c a^-1=0 c a=0 c a c=0 | 4 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (1, 2, 1), 2, 1) row ((1, 1, 2), 'I1', ('ab',), ('b2:b-swap', 'c2:c-swap', 'c3:a-cycle+a-swap+b-cycle+b-swap+c-cycle'))
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+  residual c3 pattern c3: c-cycle, e2 pairs forced equal for none
+  residual c3 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual c3 pattern b3,c3: b-cycle, e2 pairs forced equal for none
+  residual c3 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual c3 pattern a3,c3: a-cycle, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->1 | context b=1 a b=1 b^-1=1 b^-1 a=2 a b^-1=1 a b^-1 a=2 | 4 windows replayed
+    move a-cycle (e2 equal: none): change 1:0->1 a:0->1 a^-1:0->1 | context b=1 a^-1 b=1 b^-1=1 b^-1 a=2 a b=1 a b^-1=1 a b^-1 a=2 a^-1 b^-1=1 a^-1 b^-1 a=2 | 6 windows replayed
+    move b-swap (e2 equal: none): change 1:0->2 b:0->2 | context a=0 a^-1=0 a^-1 b=1 b a=0 b a^-1=0 b a^-1 b=1 | 4 windows replayed
+    move b-cycle (e2 equal: none): change 1:0->2 b:0->2 b^-1:0->2 | context a=0 a^-1=0 a^-1 b=1 b^-1 a=0 b a=0 b a^-1=0 b a^-1 b=1 b^-1 a^-1=0 b^-1 a^-1 b=1 | 6 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=0 a c=1 a^-1=0 c a^-1=0 c a=0 c a c=1 | 4 windows replayed
+    move c-cycle (e2 equal: none): change 1:0->2 c:0->2 c^-1:0->2 | context a=0 a c=1 a^-1=0 c^-1 a^-1=0 c a=0 c a c=1 c a^-1=0 c^-1 a=0 c^-1 a c=1 | 6 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (1, 0, 2), 2, 1) row ((1, 1, 2), 'I1', ('ab',), ('b2:b-swap', 'c2:c-swap', 'c3:a-swap+b-cycle+b-swap+c-cycle'))
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+  residual c3 pattern c3: c-cycle, e2 pairs forced equal for none
+  residual c3 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual c3 pattern b3,c3: b-cycle, e2 pairs forced equal for none
+  residual c3 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual c3 pattern a3,c3: c-cycle, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:1->2 a:2->1 | context b=0 a b=0 b^-1=0 b^-1 a=0 a b^-1=0 a b^-1 a=0 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->1 b:0->1 | context a=0 a^-1=1 a^-1 b=2 b a=0 b a^-1=1 b a^-1 b=2 | 4 windows replayed
+    move b-cycle (e2 equal: none): change 1:0->1 b:0->1 b^-1:0->1 | context a=0 a^-1=1 a^-1 b=2 b^-1 a=0 b a=0 b a^-1=1 b a^-1 b=2 b^-1 a^-1=1 b^-1 a^-1 b=2 | 6 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=0 a c=1 a^-1=0 c a^-1=0 c a=0 c a c=1 | 4 windows replayed
+    move c-cycle (e2 equal: none): change 1:0->2 c:0->2 c^-1:0->2 | context a=0 a c=1 a^-1=0 c^-1 a^-1=0 c a=0 c a c=1 c a^-1=0 c^-1 a=0 c^-1 a c=1 | 6 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (2, 0, 0), 2, 2) row ((1, 1, 2), 'I1', ('ab',), ('c2:c-swap', 'a2,c3:a-swap'))
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+  residual a2,c3 pattern a2,c3: a-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->1 | context b=1 a b=1 b^-1=2 b^-1 a=0 a b^-1=2 a b^-1 a=0 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=0 a c=1 a^-1=0 c a^-1=0 c a=0 c a c=1 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 0), (1, 2, 1), 1, 1) row ((1, 1, 2), 'I3', ('1a', '1b', 'ab'), ('a2:a-swap', 'b2:b-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:0->2 | context b=0 a b=0 b^-1=1 b^-1 a=2 a b^-1=0 a b^-1 a=1 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->2 b:0->2 | context a=0 a^-1=1 a^-1 b=1 b a=0 b a^-1=1 b a^-1 b=1 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 0), (2, 0, 1), 2, 2) row ((1, 1, 2), 'I3', ('1a', '1b', 'ab'), ('a2:a-swap', 'b2:b-swap', 'c2:c-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->1 a:1->0 | context b=1 a b=1 b^-1=0 b^-1 a=1 a b^-1=0 a b^-1 a=1 | 4 windows replayed
+    move b-swap (e2 equal: none): change 1:0->1 b:0->1 | context a=0 a^-1=0 a^-1 b=0 b a=0 b a^-1=0 b a^-1 b=0 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=1 a c=0 a^-1=0 c a^-1=0 c a=1 c a c=0 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 1), (1, 2, 2), 2, 2) row ((1, 1, 2), 'I3', ('1a', '1b', 'ab'), ('a2:a-swap', 'c2:c-swap'))
+  residual a2 pattern a2: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,c3: a-swap, e2 pairs forced equal for none
+  residual a2 pattern a2,b3: a-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move a-swap (e2 equal: none): change 1:0->2 a:1->2 | context b=0 a b=0 b^-1=1 b^-1 a=2 a b^-1=0 a b^-1 a=1 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->1 c:0->1 | context a=2 a c=2 a^-1=1 c a^-1=1 c a=2 c a c=2 | 4 windows replayed
+rule ((1, 1, 2), (0, 1, 0), (1, 2, 2), 2, 1) row ((1, 1, 2), 'I3', ('1a', '1b', 'ab'), ('b2:b-swap', 'c2:c-swap'))
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move b-swap (e2 equal: none): change 1:0->1 b:0->1 | context a=0 a^-1=0 a^-1 b=0 b a=0 b a^-1=0 b a^-1 b=0 | 4 windows replayed
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=1 a c=0 a^-1=0 c a^-1=0 c a=1 c a c=0 | 4 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (1, 2, 0), 2, 2) row ((1, 1, 2), 'I3', ('1a', '1b', 'ab'), ('b2:b-swap',))
+  residual b2 pattern b2: b-swap, e2 pairs forced equal for none
+  residual b2 pattern b2,c3: b-swap, e2 pairs forced equal for none
+  residual b2 pattern a3,b2: b-swap, e2 pairs forced equal for none
+    move b-swap (e2 equal: none): change 1:0->2 b:0->2 | context a=0 a^-1=0 a^-1 b=1 b a=0 b a^-1=0 b a^-1 b=1 | 4 windows replayed
+rule ((1, 1, 2), (0, 0, 1), (2, 1, 0), 2, 2) row ((1, 1, 2), 'I3', ('1a', '1b', 'ab'), ('c2:c-swap',))
+  residual c2 pattern c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern b3,c2: c-swap, e2 pairs forced equal for none
+  residual c2 pattern a3,c2: c-swap, e2 pairs forced equal for none
+    move c-swap (e2 equal: none): change 1:0->2 c:0->2 | context a=0 a c=1 a^-1=0 c a^-1=0 c a=0 c a c=1 | 4 windows replayed

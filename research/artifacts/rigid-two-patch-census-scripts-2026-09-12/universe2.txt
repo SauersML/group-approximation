@@ -1,0 +1,60 @@
+model a2 support ['1', 'a'] windows ['1', 'a', 'b^-1', 'a b^-1'] sites 8
+   a                      1=a  b=a b  b^-1=b^-1 a  b^-1=a b^-1  b^-1 a=a b^-1 a  a b^-1=a b^-1 a
+   b^-2                   b=b^-1  a b=a b^-1
+   b^-1                   1=b  1=b^-1  1=a b^-1 a  a=a b  a=b^-1 a  a=a b^-1
+   a b^-2                 b=b^-1 a  b=a b^-1  a b=b^-1  a b=a b^-1 a
+   a b^-1                 1=a b  1=b^-1 a  1=a b^-1  a=b  a=b^-1  a=a b^-1 a
+   a b^-1 a b^-1          b=a b^-1 a  a b=b^-1 a
+   a b^-1 a b             b^-1=a b^-1 a  b^-1 a=a b^-1
+model b2 support ['1', 'b'] windows ['1', 'a^-1', 'b', 'b a^-1'] sites 8
+   b                      1=b  a=b a  a^-1=a^-1 b  a^-1=b a^-1  a^-1 b=b a^-1 b  b a^-1=b a^-1 b
+   a^-2                   a=a^-1  b a=b a^-1
+   a^-1                   1=a  1=a^-1  1=b a^-1 b  b=a^-1 b  b=b a  b=b a^-1
+   b a^-2                 a=a^-1 b  a=b a^-1  a^-1=b a  b a=b a^-1 b
+   b a^-1                 1=a^-1 b  1=b a  1=b a^-1  a=b  b=a^-1  b=b a^-1 b
+   b a^-1 b a^-1          a=b a^-1 b  a^-1 b=b a
+   b a^-1 b a             a^-1=b a^-1 b  a^-1 b=b a^-1
+model c2 support ['1', 'c'] windows ['1', 'a^-1', 'c a^-1', 'c'] sites 8
+   c                      1=c  a=a c  a=c a  a c=c a c  a^-1=c a^-1  c a=c a c
+   a^-2                   a=a^-1  c a^-1=c a
+   a^-1                   1=a  1=a^-1  1=c a c  a c=c  c=c a^-1  c=c a
+   c a^-2                 a=c a^-1  a c=a^-1  a^-1=c a  c a^-1=c a c
+   c a^-1                 1=a c  1=c a^-1  1=c a  a=c  a^-1=c  c=c a c
+   c a^-1 c a^-1          a c=c a^-1  a^-1=c a c
+   c a^-1 c a             a=c a c  a c=c a
+model a3 support ['1', 'a', 'a^-1'] windows ['1', 'a^-1', 'b^-1', 'a', 'a b^-1', 'a^-1 b^-1'] sites 12
+   a                      1=a  1=a^-1  a=a^-1  b=a^-1 b  b=a b  a^-1 b=a b  b^-1=b^-1 a  b^-1=a b^-1  b^-1=a^-1 b^-1  b^-1 a=a b^-1 a  b^-1 a=a^-1 b^-1 a  a b^-1=a b^-1 a  a b^-1=a^-1 b^-1  a b^-1 a=a^-1 b^-1 a  a^-1 b^-1=a^-1 b^-1 a
+   b^-2                   b=b^-1  a^-1 b=a^-1 b^-1  a b=a b^-1
+   b^-1                   1=b  1=b^-1  1=a^-1 b^-1 a  a=b^-1 a  a=a b  a=a b^-1  a^-1=a^-1 b  a^-1=a b^-1 a  a^-1=a^-1 b^-1
+   a b^-2                 b=b^-1 a  b=a b^-1  a^-1 b=b^-1  a^-1 b=a^-1 b^-1 a  a b=a b^-1 a  a b=a^-1 b^-1
+   a b^-1                 1=a^-1 b  1=b^-1 a  1=a b^-1  a=b  a=a b^-1 a  a=a^-1 b^-1  a^-1=b^-1  a^-1=a b  a^-1=a^-1 b^-1 a
+   a b                    1=a b  1=a b^-1 a  1=a^-1 b^-1  a=a^-1 b  a=b^-1  a=a^-1 b^-1 a  b=a^-1  a^-1=b^-1 a  a^-1=a b^-1
+   a b^2                  b=a^-1 b^-1  a^-1 b=a b^-1  b^-1=a b
+   a b^-1 a b^-1          b=a b^-1 a  a^-1 b=b^-1 a  a b=a^-1 b^-1 a
+   a b^-1 a b             b^-1=a b^-1 a  b^-1 a=a^-1 b^-1  a b^-1=a^-1 b^-1 a
+   a b^-1 a^-1 b^-1       b=a^-1 b^-1 a  a^-1 b=a b^-1 a  b^-1 a=a b
+   a b^-1 a^-1 b          b^-1=a^-1 b^-1 a  b^-1 a=a b^-1  a b^-1 a=a^-1 b^-1
+model b3 support ['1', 'b', 'b^-1'] windows ['1', 'a^-1', 'b^-1', 'b', 'b a^-1', 'b^-1 a^-1'] sites 12
+   b                      1=b  1=b^-1  a=b^-1 a  a=b a  b=b^-1  a^-1=a^-1 b  a^-1=b a^-1  a^-1=b^-1 a^-1  a^-1 b=b a^-1 b  a^-1 b=b^-1 a^-1 b  b^-1 a=b a  b a^-1=b a^-1 b  b a^-1=b^-1 a^-1  b a^-1 b=b^-1 a^-1 b  b^-1 a^-1=b^-1 a^-1 b
+   a^-2                   a=a^-1  b^-1 a=b^-1 a^-1  b a=b a^-1
+   a^-1                   1=a  1=a^-1  1=b^-1 a^-1 b  b=a^-1 b  b=b a  b=b a^-1  b^-1=b^-1 a  b^-1=b a^-1 b  b^-1=b^-1 a^-1
+   b a^-2                 a=a^-1 b  a=b a^-1  a^-1=b^-1 a  b^-1 a=b^-1 a^-1 b  b a=b a^-1 b  b a=b^-1 a^-1
+   b a^-1                 1=a^-1 b  1=b^-1 a  1=b a^-1  a=b  b=b a^-1 b  b=b^-1 a^-1  a^-1=b^-1  b^-1=b a  b^-1=b^-1 a^-1 b
+   b a                    1=b a  1=b a^-1 b  1=b^-1 a^-1  a=b^-1  b=a^-1  b=b^-1 a  b=b^-1 a^-1 b  a^-1 b=b^-1  b^-1=b a^-1
+   b a^2                  a=b^-1 a^-1  a^-1=b a  b^-1 a=b a^-1
+   b a^-1 b a^-1          a=b a^-1 b  a^-1 b=b^-1 a  b a=b^-1 a^-1 b
+   b a^-1 b a             a^-1=b a^-1 b  a^-1 b=b^-1 a^-1  b a^-1=b^-1 a^-1 b
+   b a^-1 b^-1 a^-1       a=b^-1 a^-1 b  a^-1 b=b a  b^-1 a=b a^-1 b
+   b a^-1 b^-1 a          a^-1=b^-1 a^-1 b  a^-1 b=b a^-1  b a^-1 b=b^-1 a^-1
+model c3 support ['1', 'c', 'c^-1'] windows ['1', 'a^-1', 'c^-1 a^-1', 'c', 'c a^-1', 'c^-1'] sites 12
+   c                      1=c  1=c^-1  a=a c  a=c a  a=c^-1 a  a c=c a c  a c=c^-1 a c  a^-1=c^-1 a^-1  a^-1=c a^-1  c=c^-1  c^-1 a^-1=c a^-1  c a=c a c  c a=c^-1 a  c a c=c^-1 a c  c^-1 a=c^-1 a c
+   a^-2                   a=a^-1  c^-1 a^-1=c^-1 a  c a=c a^-1
+   a^-1                   1=a  1=a^-1  1=c^-1 a c  a c=c  c=c a  c=c a^-1  c^-1 a^-1=c^-1  c^-1=c a c  c^-1=c^-1 a
+   c a^-2                 a=c a^-1  a^-1=c^-1 a  c^-1 a^-1=c a
+   c a^-1                 1=c a c  1=c a^-1  1=c^-1 a  a=c  a c=c^-1  a^-1=c^-1  c=c^-1 a^-1  c=c^-1 a c  c^-1=c a
+   c a                    1=a c  1=c^-1 a^-1  1=c a  a=c^-1  a^-1=c  c=c a c  c=c^-1 a  c^-1=c a^-1  c^-1=c^-1 a c
+   c a^2                  a=c^-1 a^-1  a c=a^-1  a^-1=c a  c^-1 a^-1=c^-1 a c  c a c=c a^-1  c a^-1=c^-1 a
+   c a^-1 c a             a=c a c  a c=c^-1 a  c a=c^-1 a c
+   c a^-1 c^-1 a^-1       a c=c a^-1  a^-1=c^-1 a c  c^-1 a^-1=c a c
+   c a^-1 c^-1 a          a=c^-1 a c  a c=c a  c a c=c^-1 a
+   c a c a                a c=c^-1 a^-1  a^-1=c a c  c a^-1=c^-1 a c
