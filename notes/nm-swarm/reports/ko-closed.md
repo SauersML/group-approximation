@@ -23,6 +23,17 @@ closed `kotowskiOllivier_closed : TheoremC.KotowskiOllivierStatement`.
   module names it.  Scan of the 15 registered modules at 16:58: none takes a Case 1 binder with a different target cell
   or a boundary target.  The one-cell modules work on one cell (`target = some source`), which (a) excludes by
   `hloop : target ≠ some source`.  So ko-closed has no user for (a) yet; raised with main at 17:00.
+- systolic-counts audit (~17:15, at 5f031e3a6 and origin/main 1dfbd700f): `OsinLemma94CaseOneSameCellStatement`
+  (OsinUnboundCaseOneFace.lean:476, with the `OsinLemma97Below` binder since 48c6cc71e) is true, and no cheap
+  contradiction sits among its binders.
+  - The cell-free kill 29c1eeae3 covers one of its two branches, and its threshold is load-bearing.  For `λ ≤ 1/2`,
+    quasi-geodesicity alone never excludes the spike `q A p` (`2λ·eps − c < eps`), so `hmorse` and `2κ + c ≤ λ·eps` do
+    real work.
+  - The relator-cell branch goes through `nonempty_osinLoopCut_of_pocketRegion` and `OsinLoopCut.false_of_below`.
+  - Open inputs of jacobson's composed producer, none owned by ko-closed: the PocketRegion from the walk with the X/Y
+    decomposition, FollowsBoundary for both cycles, and `GeodesicCollarStatement` (no producer on main).
+  - No ko-closed declaration takes binder 3 or `OsinLemma97Below`; only the OsinLemma94SameCellCellFree module
+    docstring names binder 3 (scan of the 15 registered modules).  So the new binder changes none of this lane's users.
 - Residual Props owned by ko-closed: NONE.
 
 ## STATE (09-13 ~16:20): cell-free branch of binder 3 LANDED 29c1eeae3 (GREEN, queued)
