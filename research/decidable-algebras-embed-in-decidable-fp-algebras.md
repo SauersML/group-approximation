@@ -89,18 +89,27 @@ This is the algebra form of Clapham's theorem for groups
      contracted monoid algebra. No embedding of an arbitrary algebra with solvable
      word problem into a contracted monoid algebra with solvable word problem is
      known here.
-3. **Belyaev's construction with Birget in place of Murskii** (2026-09-13). *Open,
-   unchecked.* Every step of Belyaev 1978 would have to keep a solvable word
-   problem when its input has one:
-   - **(i)** Lemma 3, with a computable enumeration and an overalgebra that has a
-     solvable word problem;
-   - **(ii)** Lemma 2, for presentations whose relations are decidable, not only
-     enumerable;
-   - **(iii)** the extensions of Lemma 1;
-   - **(iv)** the two semigroups the proof feeds to Murskii's theorem, which would
-     need solvable word problems so that
-     `birget-semigroup-embedding-preserves-word-problem` can replace Murskii.
+3. **Belyaev's construction with Birget in place of Murskii** (2026-09-13,
+   refined). The full paper was read at source (`belyaev-associative-higman-theorem`,
+   artifact `belyaev-1978-decidability-analysis-2026-09-13`), and this route is now
+   a wired reduction, `decidable-clapham-via-effective-belyaev`. It reduces (C) to
+   exactly two open holes, with three ingredients proved:
+   - **Proved.** The coordinating data (enumeration, the set `Y`, and the counting
+     functions `f, g`) is computable, so `S` and the two Murskii semigroups have
+     recursive relation sets (`belyaev-embedding-relations-are-recursive-for-decidable-input`);
+     the semigroup algebra of a decidable semigroup is decidable
+     (`semigroup-algebra-of-decidable-semigroup-is-decidable`); Birget already
+     preserves the word problem. `K = F_p`, `Q`, and any decidable field finitely
+     generated over its prime field are covered.
+   - **Gap 1** (`belyaev-murskii-semigroups-have-solvable-word-problem`, OPEN). The
+     two semigroups fed to Murskii need *solvable* word problem, not merely
+     recursive relations, for Birget to replace Murskii. Markov–Post shows
+     recursive relations are not enough; the single-power-block shape of the
+     relations is the lever, but confluence was not proved.
+   - **Gap 2** (`belyaev-lemma-one-preserves-word-problem`, OPEN). Lemma 1's
+     overalgebra must keep a solvable word problem; the rank induction reads as a
+     confluence argument for an explicit rewriting, but a full termination and
+     confluence proof was not supplied.
 
-   The paper also takes `K` finitely generated over its prime field, or a finitely
-   generated commutative ring, and its last relations express the generators of
-   `K`. An arbitrary computable field needs separate treatment.
+   So (C) is no longer "recheck the whole paper": it is these two concrete,
+   self-contained lemmas.
