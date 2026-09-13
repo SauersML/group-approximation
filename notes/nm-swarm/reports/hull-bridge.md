@@ -61,6 +61,27 @@ induction hypothesis on quotient-ball stretches.
   residual Props.
 - Next: the next roster item for this lane.
 
+## Flips over the Greendlinger waist 2026-09-13
+- The conditional baseline had 74 findings on the bridge binder. Each consumer now has a form
+  that applies `relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed` and keeps
+  `hgreendlinger` (`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`)
+  as its only binder. The forms are split between three lanes:
+  - hull-bridge, GGT/HullSCGreendlingerForms: the general canonical quotient, one step, tower and
+    ball form, plus the torsion-free canonical quotient and one step.
+  - hull-bridge, Manuscript/NonMF/TorsionFreeGreendlingerSentences: both general hull-paragraph
+    sentences, the hull theorem at Osin's notion over a torsion-free group, the three
+    saturation and theorem sentences, and the Hull citation sentence.
+  - fff-periodic, TorsionFreeGreendlingerLeaf (1edf0f7b4): the printed endpoints of
+    `sec:torsion-free`, the four-leaf sentences, `FournierFacioQuotientStatement`, the literature
+    inputs and the Fournier-Facio paragraph.
+  - theoremc-retire, TheoremCAssemblyGreendlingerLeaf (c5f953323): both forms of Theorem C.
+- An endpoint form of mine duplicated fff-periodic's module, so I dropped it before landing.
+- LANDED 2aa98f8cc, green in probe 0913-071409-41646 (both modules BUILT, `#audit_axioms`), queued
+  for wiring. Census rows are appended for tex lines 1636, 1644, 1662, 1665, 1680 and 1698. The
+  census lane has the old-to-new declaration names for all 74 baseline lines.
+- Residual Prop: `RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}` (W1) alone.
+  When W1 closes, each final flip is one application.
+
 ## Risks recorded
 - `BoundedRelativeLinearAreaTransferStatement` may be unprovable: its W-only area predicate cannot see the
   relations of G (docstring in GGT/HullSCLemma44BoundedInput). Nothing routes through it.
