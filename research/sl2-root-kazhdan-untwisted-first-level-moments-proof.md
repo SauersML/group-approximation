@@ -5,7 +5,7 @@ kind: route
 title: Two M4RI ranks of the coset-indicator matrix of SL_2(64) give the first-level homology and moments of the untwisted q = 8 member
 target: sl2-root-kazhdan-untwisted-first-level-moments
 requires: [edge-twist-moment-test-elementary-abelian-edges, sl2-root-kazhdan-triangle-untwisted-member-maps-onto-sl2]
-artifacts: [experiments/sl2-root-triangle-kazhdan/moment2.py, experiments/sl2-root-triangle-kazhdan/run4.out, experiments/sl2-root-triangle-kazhdan/run3.out]
+artifacts: [experiments/sl2-root-triangle-kazhdan/moment2.py, experiments/sl2-root-triangle-kazhdan/run4.out, experiments/sl2-root-triangle-kazhdan/run3.out, experiments/sl2-root-triangle-kazhdan/h1ad.g, experiments/sl2-root-triangle-kazhdan/h1ad.out]
 ---
 
 **Complex.** `ρ` is injective on the vertex groups and `N = ker ρ` acts freely on the development `X`
@@ -40,4 +40,17 @@ artifacts: [experiments/sl2-root-triangle-kazhdan/moment2.py, experiments/sl2-ro
 - `untw.g` builds the same group from vertex-group presentations and computes `H_1` of the kernel by
   Reidemeister–Schreier in GAP. It returns `(Z/2)^11 × (Z/4)^9` (`run3.out`), whose mod-2 rank is `20`.
 
-The two code paths share no code. ∎
+The two code paths share no code.
+
+**Deformations** (`h1ad.g`, output `h1ad.out`).
+- *The system.* `Λ_0` has the presentation of `untw.g`: `3f` generators, the edge-group bases, and the
+  relators of the three vertex groups. A 1-cocycle for a left module `M` is determined by its values on
+  the generators, subject to the Fox equations `d(r) = 0` for every relator. `h1ad.g` builds this linear
+  system over `F`, with left actions on column vectors, and checks the homomorphism property of the
+  `sl_2` action.
+- *The dimensions.* `dim Z^1 = 3f·dim M - rank`, and `dim B^1 = dim M - dim M^{Λ_0}`.
+- *The comparison.* The same code on the presentation of `SL_2(q^2)` in `u(F_q), v(sF_q)` gives
+  `H^1(SL_2(q^2); M)`.
+- *The 5-term sequence.* `0 -> H^1(Q; M) -> H^1(Λ_0; M) -> H^1(N; M)^Q` is exact, with `N` acting
+  trivially on `M`. So an excess of `H^1(Λ_0; M)` over `H^1(Q; M)` restricts to a nonzero `Q`-equivariant
+  homomorphism `N -> M`, whose kernel is normal in `Λ_0`. ∎

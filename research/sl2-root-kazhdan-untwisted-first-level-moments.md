@@ -30,9 +30,26 @@ the edge groups are `E_12 = { [[1+Px, P^2x],[x, 1+Px]] }`, `E_13 = u(F_8)` and `
 computation of `H_1(ker;Z)` for that kernel returns `(Z/2)^11 × (Z/4)^9`: twenty even invariants, which
 agrees (`run3.out`).
 
+**First-order deformations (computed; `h1ad.g`, `h1ad.out`).** Fox calculus on the presentation of
+`untw.g` gives, over `F = F_64`:
+
+| module `M` | `dim_F H^1(Λ_0; M)` | `dim_F H^1(SL_2(64); M)` |
+|---|---|---|
+| `F^2` | 2 | 1 |
+| `sl_2(F)` (conjugation) | 2 | 1 |
+| `gl_2(F)` (conjugation) | 1 | 0 |
+
+The same numbers hold for `q = 4`. The value `1` for `SL_2(2^n)` on `F^2` agrees with the value recalled
+from the literature, which was not re-read.
+- *What the extra class gives.* In `0 -> H^1(Q;M) -> H^1(Λ_0;M) -> Hom_Q(N, M)`, the extra class restricts
+  to a nonzero `Q`-equivariant homomorphism `N -> sl_2(F)`.
+- *The cover.* Its kernel `N''` is normal in `Λ_0`, and `N/N''` is a nontrivial elementary abelian
+  2-group inside `sl_2(F)`. So `ρ` has a first-order deformation into `SL_2(F[t]/t^2)` that does not come
+  from `SL_2(64)`.
+
 **Reading, not established.**
 - `18 = dim_{F_2} sl_2(F_64)`, and `20 = 12 + 8` would be adjoint plus natural module for `q = 4`. This
-  suggests that the first 2-covers of `N` are adjoint congruence covers, through `SL_2(F_64[t]/t^2)`.
+  suggests that `H_1(N;F_2)` is the adjoint congruence quotient above.
 - There `R = N/N''` is elementary abelian of rank up to 18, with plenty of 2-torsion in `H_2(R;Z)`. By the
   Cartan–Leray filter of `hyperbolic-triangle-colimit-with-persistent-edge-twist`, this is the first
   place where a moment could die.
