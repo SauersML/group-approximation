@@ -11,7 +11,8 @@ Proposition 4.7 assembly (roster: integrator of hW).
   `theorem finitelyPresentedInfiniteSimple_closed : FinitelyPresentedInfiniteSimpleStatement`, audited
   with `#audit_closed_axioms`. It applies `finitelyPresentedInfiniteSimpleStatement_of_dynamics` to
   hl-lemma46's `lemmaFourSixDynamics` (`QTwoLemmaFourSixDynamics`, de535e84c, probe 0913-021539-18816).
-- Queued for wiring in `wire-queue.txt` after `QTwoLemmaFourSixDynamics`.
+- Root-reachable: root-wire's wave c72bdfd5d imports `FinitelyPresentedInfiniteSimpleClosed` (bytes
+  47b31bef8 included), and through it `QTwoLemmaFourSixAssembly` and `QTwoLemmaFourSixDynamics`.
 
 ## Compiled and landed (all green in probes)
 - Presentations: `DoubleCosetFinitePresentation.isFinitelyPresented_of_doubleCosets` (2-dimensional
@@ -46,8 +47,8 @@ Proposition 4.7 assembly (roster: integrator of hW).
   `finitelyPresentedInfiniteSimpleStatement_of_dynamics`.
 
 ## Residual
-None for hW. `FinitelyPresentedInfiniteSimpleStatement` is closed; what remains is wiring the dynamics
-module and `FinitelyPresentedInfiniteSimpleClosed` into the root (root-wire).
+None for hW. `FinitelyPresentedInfiniteSimpleStatement` is closed and reachable from the root on main
+(c72bdfd5d); no wiring remains.
 
 ## Census
 `metadata/nm-census-rows/simple-group.tsv` (copy of `$NM/rows/simple-group.tsv`): `LINE:1679 partial`,
