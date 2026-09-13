@@ -51,8 +51,13 @@ breakpoints.
 **Scope.**
 - This is a lower bound only. By `thompson-f-moment-data-cannot-certify-nonamenability`, no
   finite data of this kind decides amenability.
-- Published numerical estimates (Haagerup–Haagerup–Ramirez-Solano 2015;
-  Elder–Rechnitzer–Janse van Rensburg 2015) are uncertified and were not read here. No
-  novelty is claimed.
+- No novelty is claimed.
+- **Superseded bound (2026-09-13).** Haagerup–Haagerup–Ramirez-Solano (arXiv:1409.1486,
+  `ThompsonF.tex` l.233–236) already published `||A+A^{-1}+B+B^{-1}|| >= 3.60613`, i.e.
+  `||P|| >= 0.90153`, by the same orthogonal-polynomial method from moments `n <= 24`. Their
+  printed Case 2 table agrees exactly with the counts above for `j <= 15`. The exact re-derivation
+  is `thompson-f-norm-bound-from-hhr-exact-moments`.
+- Elder–Rechnitzer–Janse van Rensburg's cogrowth estimate `2.53±0.03` is numerical and uncertified.
+  Pins: `research/artifacts/thompson-f-cogrowth-literature-pins-2026-09-13.md`.
 
 Proof route: `thompson-f-random-walk-norm-lower-bound-proof`.
