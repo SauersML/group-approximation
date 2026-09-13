@@ -203,3 +203,33 @@ than vanishing.
     Theorem 1.1 of the firewall artifact models `π_1(Y_hex)` with `σ(t)` a matching permutation, and a model descends
     to `R^x` only when it kills `t`. The `U_π` contain no cylinder frames, so this gives no `D_A` statement, and a frame
     vertex breaks the one-letter quotient.
+- **Multi-letter relation systems (w7-sub-multiletter, 2026-09-12): three firewalls, no deficit.** Artifact
+  `research/artifacts/multiletter-split-borel-and-coefficient-firewalls-2026-09-12.md`; held OPEN until `w4-vf-gate`
+  re-derives it.
+  * **Lexicographic Borel group** (`lex-decreasing-units-with-order-preserving-letters-are-amenable`).
+    - The monomials `S[v]T[w]` with `[v]` lexicographically left of `[w]` span a locally nilpotent algebra, by
+      compactness of `{0,1}^N`. So `U_<` is a locally finite group. It contains `iota_A(UT_3(R))` at every cylinder
+      and the order-128 Toeplitz group, and Thompson's `F` normalizes it.
+    - `U_< ⋊ P` is amenable for amenable `P <= F`. So `<iota_0(D_8), iota_1(D_8), x_0>`, with the depth-changing
+      generator `x_0`, has `theta = 1` by `sofic-subgroups-carry-independent-cylinder-defects`.
+    - A deficit from relations holding in `U_< ⋊ F` would prove `thompson-f-is-not-amenable`.
+  * **Swaps between cylinder copies** (`split-cylinder-data-cannot-force-defect-submultiplicativity`).
+    - For any `G` and incomparable `A_i`, the copies `iota_(A_i)(G)` and the prefix-replacement swaps between them, at
+      any depths, generate `G wr S_k`.
+    - Every rank model of `G` extends through permuted tensor powers with exactly multiplicative defects. So the swap
+      letters do not break the independence of the "Independent tensor factors" entry.
+    - For `G = R^x`, a deficit from these relations would be the gate itself.
+  * **One-chart coefficients.**
+    - With `S = F_2<s_0,s_1>` (or `F_2<t_0,t_1>`) and a frame `Q` containing `A0, A10, A11` for disjoint cylinders,
+      `Phi_Q(GL_#Q(S))` is residually finite (`pure-leavitt-chart-linear-groups-are-residually-finite`). It contains
+      the frames, their opposite roots and `x^A_12(s_0) x^A_21(1)`.
+    - So the coefficient-root escape of the right-child entry is sofic data when its coefficients come from one chart.
+      Coefficients from both charts lead to `EL_3(J)`, the OPEN claim `binary-jacobson-el3-is-sofic`.
+    - Limit: a unit that strictly contracts a frame projection makes the coefficient algebra non-RFD and embeds `J`.
+      `x_0` does this in every nontrivial frame.
+  * **Where it stops.** In `Gamma_b = <iota_A(D_8), iota_(A1)(D_8), b>` none of the three firewalls applies:
+    - no order preserved by `b` makes both frames' positive roots monotone (artifact Lemma 6.1);
+    - `b` contracts `e_(A10)`;
+    - on `[A1]`, `b` is three prefix replacements, not one.
+
+    Also open: `U_< ⋊ F`, and coefficients from both charts.

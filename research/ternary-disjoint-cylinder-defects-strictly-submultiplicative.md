@@ -66,3 +66,19 @@ gives `b = -b`, so `b = 0`. The fixed-point-free quotient step is automatic.
   - **The form that closes** is `ternary-anti-central-disjoint-defects-have-a-strict-deficit`: disjoint products
     are nonzero, and compressing along `Q_B D_A` lowers the defect by `theta < 1`. It has a landed route to
     `sylvester-rank-functions-on-ternary-leavitt-units-kill-minus-one`.
+- **Multi-letter firewalls in characteristic three (w7-sub-multiletter, 2026-09-12).** Artifact
+  `research/artifacts/multiletter-split-borel-and-coefficient-firewalls-2026-09-12.md`; held OPEN until `w4-vf-gate`
+  re-derives it.
+  * **Lexicographic Borel group** (artifact Section 3).
+    - The artifact's Lemmas 3.1–3.4 use only the monomial calculus. So over `F_3` the lexicographically decreasing
+      unipotents `U_<` form a locally finite 3-group containing `iota_A(UT_3(R))` at every cylinder, and Thompson's
+      `F` normalizes it.
+    - `-1` lies outside `U_< ⋊ P` for `P <= F`. So for amenable `P`, `<-1> x (U_< ⋊ P)` is amenable data for
+      `anti-central-sofic-data-cannot-force-defect-submultiplicativity`. This covers the depth-changing letter `x_0`
+      with the frames at `0` and `1`.
+  * **Cylinder swaps** (artifact Section 2).
+    - Permuted tensor powers model copies of `G` at incomparable `A` and `B`, together with the swap between them,
+      with exactly multiplicative defects.
+    - When `[A] cup [B]` is proper, `z` is not in that group and can be sent to `-1`. This matches the
+      independent-factor remark on `ternary-anti-central-disjoint-defects-have-a-strict-deficit`.
+    - When `[A] cup [B] = X`, `z = iota_A(-1) iota_B(-1)` goes to `+1`, so that case gives no anti-central model.
