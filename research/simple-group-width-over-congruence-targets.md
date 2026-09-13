@@ -71,6 +71,14 @@ same holds for the affine groups of `relator-width-over-transitive-abelian-exten
   `Lambda^2`.
 - `GL_n(R)` and tops with a large abelian quotient.
 
+These are cases this proof does not cover. `relator-width-bounded-by-almost-simple-quotients` (lane
+`ex2-weak-sofic-bounded-factors`, unreviewed) gives a separate reduction, which uses Nikolov--Segal and
+so the classification of finite simple groups.
+- It bounds `w(a)`, computed in `<a>`, by a function of `G` and the width modulo `<a>_0`, the intersection of the
+  kernels of the almost simple quotients of `<a>`. That quotient cannot see any soluble layer.
+- Its authors report that it handles the list above once the almost simple quotients are handled.
+- Theorem B remains a classification-free proof with explicit constants.
+
 Derivation: `simple-group-width-over-congruence-targets-proof`. Credit: elementary, beyond the
 Liebeck--Shalev import. Bounded graph check: no node on congruence targets with unbounded rank. No
 literature search on Singer pairs with trivial common centralizer; the fact is elementary.

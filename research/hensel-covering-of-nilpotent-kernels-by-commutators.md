@@ -47,9 +47,12 @@ the number of commutators.
 - *Top layer.* If `K/K_2` has a trivial quotient module, commutators with elements of `Q` never reach it,
   since their images lie in the augmentation submodule.
 - *Deeper layers.* Coinvariant layers can be reached only at second order, and no bound is on record.
-- *For relator width.* Over `K x| T` with a large simple top `T`, kernels with such layers at unbounded
-  depth are what the present graph does not cover (`fg-simple-weakly-sofic-groups-are-sofic`, refutation
-  room).
+- *For relator width.* Over `K x| T` with a large simple top `T`, no classification-free proof covers
+  kernels with such layers at unbounded depth. `relator-width-bounded-by-almost-simple-quotients`
+  (unreviewed, via Nikolov--Segal and the classification) reduces relator width to the quotient by the
+  intersection of the kernels of the almost simple quotients. That quotient does not see nilpotent
+  kernels at all. So these kernels matter for explicit, classification-free bounds, not for whether
+  a bound exists.
 
 Derivation: `hensel-covering-of-nilpotent-kernels-by-commutators-proof`. Credit: the successive
 approximation is the standard Hensel-type argument for filtered groups; no literature search was run
