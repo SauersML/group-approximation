@@ -40,7 +40,14 @@ artifacts:
 5. **Traces.** `ρ_i(g) := π_φ(g) z_i` is a homomorphism into `U(Mz_i) = U(k_i)`, since
    `z_i` is central. It is irreducible, because `ρ_i(Γ)'' = M_{k_i}`. Then `φ` restricted
    to `Mz_i` is `t_i · tr_{k_i}` with `t_i = φ(z_i)`, so `φ = Σ t_i tr_{k_i}∘ρ_i`.
-   Renormalized finite truncations converge pointwise.
+6. **Finite-dimensional traces.**
+   - For `N ≥ 1` and `L ≥ 1` put `m_i = ⌊L t_i / k_i⌋` for `i ≤ N`, and
+     `ψ_{N,L} = tr ∘ (⊕_{i≤N} ρ_i^{⊕ m_i})`. For `L` large some `m_i > 0`, so this is the
+     normalized trace of a finite-dimensional representation.
+   - Its weight on `tr_{k_i}∘ρ_i` is `m_i k_i / Σ_{j≤N} m_j k_j`, which tends to
+     `t_i / Σ_{j≤N} t_j` as `L → ∞`.
+   - Since `|tr_{k_i}∘ρ_i| ≤ 1`, a diagonal choice `L = L(N)` gives
+     `ψ_{N,L(N)} → φ` pointwise as `N → ∞`.
 
 ## (A2)
 
