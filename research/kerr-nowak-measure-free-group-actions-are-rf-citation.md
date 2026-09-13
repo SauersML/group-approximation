@@ -1,0 +1,22 @@
+---
+rg: 2
+id: kerr-nowak-measure-free-group-actions-are-rf-citation
+kind: route
+title: Kerr–Nowak Theorem 5.2, as quoted verbatim in Ma arXiv:2209.00580
+target: kerr-nowak-measure-free-group-actions-are-rf
+requires: []
+---
+
+**Source read.** Xin Ma, arXiv:2209.00580 (TeX source `main.tex`, fetched on MSI 2026-09-13), remark
+after Theorem `thm: topo group of residually finite action`:
+
+> "it was shown in [K-N, Theorem 5.2] that any minimal action of the free group $\F_r$
+> ($r\in \N\cup{\infty}$) on the Cantor set is residually finite if it admits an $\F_r$-invariant
+> Borel probability measure"
+
+[K-N] = D. Kerr and P. W. Nowak, *Residually finite actions and crossed products*, Ergod. Th. Dynam.
+Sys. 32 (2012), 1582–1614 (Ma's bibliography).
+
+**Bound.** The primary paper was NOT read. arXiv API and Semantic Scholar queries returned HTTP 429.
+A reviewer should confirm Theorem 5.2 and its hypotheses from Kerr–Nowak before this import is
+relied on outside Theorem C of `un-measure`.
