@@ -116,6 +116,32 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
   area, DartMinimal or Maximal excludes shape 3. Nothing on origin states either. sec5-sentences' hair-opening and
   bubble un-pinch Props are not on origin (only `SurgeryHairOpening.IsHair`).
 
+### Landed: the pinch split
+
+- LANDED 8b0c76b7d (probe 0913-180113-80260 GREEN, BUILT): `GGT/VanKampen/ClosedWalkPinchSplit.lean`, queued for wiring.
+  - `IsClosedDartWalk` and `IsSimpleClosedWalk.isClosedDartWalk`.
+  - `IsClosedDartWalk.take` and `.drop`: the two lobes at a repeat of the first vertex at position `k`.
+  - `listVal_dartWord_eq_mul_lobes`, `exists_lobe_listVal_ne_one`, `pinchSplit`.
+
+### Ruling (main ~18:00) and model verdict for shape 3
+
+- Ruling: land the split; model-test whether least area, DartMinimal or Maximal excludes shape 3; state shape 3 as a named
+  Prop in this lane's module; land the reduction of the X-pocket case plus the shape 1–2 excisions.
+- Verdict of the definition check at origin 8b0c76b7d: none of the three conditions constrains a vertex touch.
+  - `DiscDiagram.LeastArea` (OsinAppendixSections:114) counts relator cells.
+  - `DartMinimal` (OsinLemma94PlanarPieces:148) minimizes `dartCount` at equal `unboundSum`. A touch uses no dart, and
+    separating f from Π at v (a vertex split) adds darts, so DartMinimal favours the touch, if anything.
+  - `Maximal` (OsinLemma94PlanarPieces:205) constrains the junction of consecutive sides of one kind. A touch is not a
+    side, since sides are dart lists.
+  - So no exclusion argument follows from the definitions, and a route that needs hnorm on a lobe has no support.
+- A full labelled model is not built. It would need a concrete C(ε, μ, λ, c, ρ) instance (hyperbolic group, long
+  quasi-geodesic relators), a `GloballyDistinguishedSectionFamily` whose `weight_maximal` and `card_minimal` range over
+  every realized family, DartMinimal over every family, and polygons. No lane has built such a model; the existing
+  labelled models (OsinPocketLakeLabelledModel, OsinPocketMultipleEdgeLakeModel) stop before least area and the family.
+- CLAIM shape Props for the Case 1 X-pocket (simple, face bubble, cell pinch, vertex touch, spur) and their case
+  reduction — `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketPinch.lean`. It consumes only origin
+  names: the binder block of `OsinLemma94CaseOneSameCellStatement`, `osinLemma94CaseOneWalk_sameCell`, `sideFaces`.
+
 ## State
 
 Every sentence of tex 1–165 is carried by a closed declaration or honestly classified. The exceptions:
