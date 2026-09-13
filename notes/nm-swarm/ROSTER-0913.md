@@ -390,3 +390,59 @@ For EVERY census row in your range with status formalized or definition, and eve
   - hs-vanishes: own target met (baseline lines retired at 63f147d7b). It now takes a W2 Lemma 5.1 certificate-cut piece from hull-bridge.
   - hull-count94: its newer AntiparallelMetric variant must NOT land over sec5-sentences' e3da1ba60; extra declarations go in a new module. It now triages the OsinUnboundSharedEdge red: route check first; fix only with hull-unbound's agreement and disk = main.
 - **hull-unbound** has been silent since 02:31. Defaults stand unless it objects: Case 2 goes to sec5-sentences (dart count), C1 to theoremc-retire, and the SharedEdge triage to hull-count94.
+
+## Reassignments 09-13 ~05:00
+- **W1 leaf-audit rulings** (audit-sec5 report 160ed175c).
+  - (a) One shared zero-cell pocket merge producer: the inputs of `false_of_collapse_singleton` (OsinAppendixCutMerge.lean:120). It serves the R-cell-free pocket of MultipleEdgeCut and of SectionPocketCut, and C6.
+    - hull-select: statement, FaceSetBoundary on the union, merged ContiguityGeometry at {R.merged}, hweight, assembly. New module Estimating/OsinPocketZeroCellMerge.lean.
+    - nm-endpoints: the value half with no shelling. On an R-cell-free PocketRegion, rCellCount = 0 (`diagram_rCellCount_le`), so the boundary is a budget-0 relator product, moved onto the pocket cycle by `isRelatorProduct_inner_of_diagram` (OsinPocketRegion.lean:177). New module Estimating/OsinPocketMergeRegion.lean.
+    - The value never comes from `InnerGRegion.ofShelling`.
+  - (b) `LoopCutInput` is on HOLD. audit-sec5 model-tests the cap:
+    - |t| > 0: absorbing the pocket raises the weight, against weight_maximal; check the extended family is legal.
+    - |t| = 0: excluded by RegionCandidate or label legality, or give a formal counterexample.
+    - Since b45e7ef30 the case i = j also routes to LoopCut. No loop-case transport is built until the lead rules.
+  - (c) `OsinDescentStepInput` is RETIRED (off route): a docstring note only, no deletion.
+  - (d) `SectionPocketCutInput` belongs to dgo-analytic: the zero-cell case from (a), the pinched pocket from hull-respell.
+  - The collar stays with kh-torsion: GGT/VanKampen/SurgeryGeodesicCollar.lean, or dgo-analytic's piece if that is on disk. PlanarVanKampenWeighted (16d5bf784) is a bonus, not relayed.
+  - go-lemma42's (c) target is `OsinMultipleEdgeCut.ofPocketRegion` (hull-select, 45e7201da): transport for sections 1 and 3. One module goes to sec2-sentences.
+  - dgo-analytic lands the OsinPocketPieces statement unverified now, re-grades LINE:1688, and adds the DescentStep off-route note.
+  - dgo-geometric model-tests each new piece Prop as it lands: merge, collar, OsinPocketPieces, C3–C5.
+- **W1 PhiPrimeCountInput split** (Osin 9.3).
+  - hull-euler keeps C1 (Φ'') and the assembly, and states C2–C5 as named Props.
+  - C2 (m+6 ≤ 3c+t): ghw-charp2. C3 (degree < 6 ⇒ two-gon): debt-conditional. C4 (corner injection): leavitt-units. C5 (face-class injection via (J)): hs-vanishes.
+  - C6 consumes the merge of (a).
+- **W1 h94.** hull-unbound states side_budget and covers as a piece Prop, which goes to hull-count94. hull-unbound keeps realization and the assembly. OsinUnboundSharedEdge is fixed and green (8009a06ff) and wired in wave 5.
+- **W2 hbridge CLOSED** (~05:02). hull-bridge: `relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed : RelativeIsoperimetricBridgeQuasiGeodesicEmbeddedStatement.{0,0,0}` (18682110d, probe 0913-050027-71372).
+  - Built on `quotientPeripheralLetterPullbackStatement_holds` (HullSCLemma51LetterPullbackHolds), hull-component's `CutMove.outcome` (CutOutcome a1f2e52da, CutOutcomeSides 27f56e14b, CutOutcomeRight 47b7225af) and debt-conditional's `letterStepBound_of_cutLiftOutcome` (457c543a8).
+  - leavitt-units' duplicate right case was dropped unlanded.
+  - Flips: hull-bridge adds `_of_greendlinger` forms in new modules (74 baseline findings carry this binder); theoremc-retire specializes TheoremCAssemblyFoldLeaf.
+  - ghw-assembly flips the closed-wall findings: FinitelyPresentedInfiniteSimpleStatement (8), zipSpur, zipPinch and SystolicInvariantClique (10 each).
+- **census merges 8–10** (6fd3d7a55): 339 formalized, 23 partial, baseline 135 (61 open-predicate, 58 buried-conditional, 14 carrier-data). 0 new findings.
+- **W3 hfold CLOSED** (~05:27). fff-periodic: `Systolic.mirrorFold (X) : MirrorFoldStatement X` (GGT/SystolicDiscMirrorFold 426813b24, probe 0913-052528-4751).
+  - Chain: Stage c88b8c1db, Restrict e12190690, PinchedStage 08ae1c587, plus ko-closed's `mirrorFoldDistinct` (81b06b43e).
+  - `kotowskiOllivier_of_pinched` (KotowskiOllivierClosed, cf1675f3b) needs only Pinched, so hKO closes as one application: ko-closed's `kotowskiOllivier_closed`.
+  - Pinched helpers released: kh-cckw goes to hull-respell's pinched pocket, systolic-counts to a go-lemma42 glue module.
+- **Only W1 hgreendlinger is open.** The flips are partitioned by consumer module. Each form consumes all closed producers and leaves hgreendlinger alone:
+  - hull-bridge: Hull 7.1 / LeastArea modules;
+  - fff-periodic: TorsionFreeFourLeaves, SectionSentencesFourLeaves, TheoremC.manuscriptTorsionFree*, other KO/MirrorFold binders;
+  - ghw-assembly: Kazhdan, CCKW, KMSGroup and HydeLodha consumers of FPIS, zip and SIC;
+  - theoremc-retire: TheoremCAssemblyFoldLeaf.
+  - If a declaration looks like it's in two sets, the owner of its module wins.
+- **Hull Corollary 7.4, wall-independent pieces.** cite-hull states them and hands them out:
+  - K(G) (DGO 6.14): simple-group;
+  - Hull Lemma 5.10: hl-lemma46;
+  - AH0: fff-quotient;
+  - Lemma 3.5 in general form: baseline-debt.
+  - Corollary 7.3 over the two walls goes to hull-component. cite-hull keeps the Corollary 7.4 assembly.
+- **GHW Theorem 4 CLOSED.** ghw-assembly: `ghwFinitelyGeneratedCharZero` (GHWCharZero, add35a53a) and `printedGHWTheoremFour` (GHWTheoremFourClosed, 66417a372), green 0913-044200-34335. ghw-charp2's bridge landed at 86635025c.
+  - ghw-assembly next: the Jacobson rank-two consumer, stated over the printed field GL_2(F_2(z)); GHWEntries marked superseded in a docstring only.
+- **Toeplitz–Jacobson CLOSED** (jacobson).
+  - The four L1122 Props: JacobsonPresented ff4a0eea9 and JacobsonPresentedSentences cba3ce8ba, green 0913-043721-21532.
+  - Complementary sentence: JacobsonComplementaryPresented e6dc0d444, green 0913-045006-54503.
+  - Next: row 3009704fef89, two named Props with audit lines.
+- **baseline-debt.** Fix the FaceShelling.lean:190 docstring (RegionShellingStatement refuted at 3f6eaff76), and re-grade the LINE:1725 row: P_naive is closed and wired per dgo-geometric.
+- **root-wire wave 5 ROOT GREEN** a68ab2c6c: 10 modules, closure 6276, 0 dangling.
+  - Wired: MirrorFold Steps, Quad, Embed and Model; IntroWitnessSignSentence; both spur counterexamples; RingCompressionCellGeneral; Audit.Sec3; OsinUnboundSharedEdge.
+  - Wave 6 staging: the Cut chain with LetterPullbackCut, the GHWTheoremFourClosed chain, JacobsonPresented, its Sentences and ComplementaryPresented, OsinPocketCellArcs, GHWJacobsonKazhdanFinite.
+  - 44 root import lines were added by hand by the open-problem campaign; wave 6 is the first root build over them.
+- **census worklist** 0913-044759: 335 formalized, 27 partial. The partial rows are the walls (nm-endpoints 8, cite-hull 4 + 2, 1697, 1719, 1725) plus rows waiting on wiring (Jacobson 1122, ring-compression 872–904, GHW 1145).
