@@ -26,6 +26,12 @@ stable rank one, in particular when `A` has stable rank one.
 Hence `p` and `q` are Murray–von Neumann equivalent in `M_k(A^omega)`, the uniform
 tracial ultrapower.
 
+**Comparison.** More generally, suppose `tau(p) <= tau(q)` for every `tau in T(A)`.
+Then for every `eps > 0` there is a contraction `b in q M_k(A) p` with
+`||p - b*b||_(2,u) < eps`. So `p <~ q` in `M_k(A^omega)`: projections of `A` are
+compared by traces in the uniform tracial ultrapower, with no comparison hypothesis
+on `A`.
+
 **Contrapositive.** Two equal-trace projections of `A` that are not approximately
 equivalent in uniform 2-norm certify that (O6+) fails and that `A tensor K` is not
 of almost stable rank one. Toms's twisted pair `(p_m, q̂_m)` is such a certificate.

@@ -42,3 +42,11 @@ Exactness gives `QT(A) = T(A)` (Haagerup).
      `||p - b*b||_(2,u)^2 <= 2 G_eps / k`, and the same for `q - bb*`.
 4. Choose `eps` with `2 G_eps / k < eps_0^2`. Along `eps_n -> 0` the contractions
    `b_n` define `b in M_k(A^omega)` with `b*b = p` and `bb* = q`. Square.
+5. **Comparison.** Suppose only `tau(p) <= tau(q)` for all `tau`.
+   - The infimum `d(p) ∧ d(q)` in `LAff(K)` is `d(p)`. So Theorem 7.5 still gives
+     `c <~ p, q` with `d(c) = d(p)`, and Steps 2–3 apply verbatim on the `p` side.
+   - On the `q` side only `z_Q <= q` is used.
+   - Then `b = y'* x' in q M_k(A) p` has `b*b = z_P^2 -> p` in uniform 2-norm and
+     `bb* in q M_k(A) q`.
+   - In `M_k(A^omega)`, `v = (b_n)` has `v*v = p`. So `v` is a partial isometry, and
+     `vv*` is a projection in `q M_k(A^omega) q`, hence `vv* <= q`. Square.
