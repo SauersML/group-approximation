@@ -1,5 +1,8 @@
 import GroupApproximation.Pestov91.Centre
 import Mathlib.Algebra.SkewMonoidAlgebra.Basic
+import Mathlib.Data.ZMod.Basic
+import Mathlib.Topology.Connected.TotallyDisconnected
+import Mathlib.Topology.LocallyConstant.Algebra
 
 /-!
 # The centre of the Pestov 9.1 witness ring, and the trivial centre of `EL₃`
@@ -10,7 +13,7 @@ written multiplicatively (blueprint D3).  §1.4 of
 `Z(R) = 𝔽_q`, and §4.4 turns that into `Z(EL₃(R)) ⊆ 𝔽_q^× I₃`.  Over `𝔽₂` the centre of
 `EL₃(R)` is therefore trivial, and the witness is `EL₃(R)` itself (blueprint D5).
 
-This module proves the ring half without committing to a realisation of `A`:
+This module proves the ring half without committing to a realisation of `A` or of the action:
 
 * `skewMonoidAlgebra_central_zero_or_one`.  Let a commutative group `G` act on a ring `A`, and
   suppose every `G`-invariant element of `A` is `0` or `1` and every `g ≠ 1` moves some
@@ -21,10 +24,14 @@ This module proves the ring half without committing to a realisation of `A`:
 * `center_elementaryGroup_skewMonoidAlgebra_eq_bot`: `Z(EL_ι(A ⋊ G)) = ⊥`.  It goes through
   `center_elementaryGroup_eq_bot_of_central_zero_or_one` from
   `GroupApproximation/Pestov91/Centre.lean`.
+* For `A = LC(X, 𝔽₂)` with `(g • f) x = f (τ g x)`, the two hypotheses come from the dynamics.
+  `locallyConstant_invariant_zero_or_one` needs dense orbits: an invariant function is
+  constant on each orbit and has open fibres.  `locallyConstant_exists_smul_ne` needs
+  freeness and total separation: a clopen set containing `x` but not `τ g x` has an indicator
+  that `g` moves.
 
-For the witness the two hypotheses are minimality (an invariant locally constant function is
-constant) and freeness (a nonzero shift moves some clopen indicator).  Both are needed: for the
-trivial action `A ⋊ G` is the group ring `A[G]`, which is commutative when `A` is.
+Both hypotheses are needed.  For the trivial action `A ⋊ G` is the group ring `A[G]`, which is
+commutative when `A` is.
 -/
 
 namespace GroupApproximation
@@ -113,6 +120,51 @@ theorem center_elementaryGroup_skewMonoidAlgebra_eq_bot {ι : Type*} [Fintype ι
     (skewMonoidAlgebra_central_zero_or_one hinv hfree)
 
 end SkewMonoidAlgebra
+
+section LocallyConstant
+
+variable {X G : Type*} [TopologicalSpace X] [Group G]
+  [MulSemiringAction G (LocallyConstant X (ZMod 2))]
+
+/-- **Dense orbits give trivial invariants.**  If `G` acts on `LC(X, 𝔽₂)` by
+`(g • f) x = f (τ g x)` and every orbit of `τ` is dense, a `G`-invariant function is constant,
+so it is `0` or `1`. -/
+theorem locallyConstant_invariant_zero_or_one (τ : G → X → X)
+    (hτ : ∀ (g : G) (f : LocallyConstant X (ZMod 2)) (x : X), (g • f) x = f (τ g x))
+    (hdense : ∀ x : X, Dense (Set.range fun g : G ↦ τ g x)) :
+    ∀ f : LocallyConstant X (ZMod 2), (∀ g : G, g • f = f) → f = 0 ∨ f = 1 := by
+  intro f hf
+  by_cases hX : Nonempty X
+  · obtain ⟨x₀⟩ := hX
+    have hconst : ∀ x : X, f x = f x₀ := by
+      intro x
+      obtain ⟨_, ⟨g, rfl⟩, hg⟩ := (hdense x).exists_mem_open
+        (f.isLocallyConstant.isOpen_fiber (f x₀)) ⟨x₀, rfl⟩
+      have hg' : f (τ g x) = f x₀ := hg
+      rw [← hg', ← hτ g f x, hf g]
+    rcases (by decide : ∀ c : ZMod 2, c = 0 ∨ c = 1) (f x₀) with h0 | h1
+    · exact Or.inl (LocallyConstant.ext fun x ↦ by simp [hconst x, h0])
+    · exact Or.inr (LocallyConstant.ext fun x ↦ by simp [hconst x, h1])
+  · exact Or.inl (LocallyConstant.ext fun x ↦ (hX ⟨x⟩).elim)
+
+/-- **Freeness moves a clopen indicator.**  If `(g • f) x = f (τ g x)`, `X` is totally
+separated and every `g ≠ 1` moves some point, then every `g ≠ 1` moves some locally constant
+function. -/
+theorem locallyConstant_exists_smul_ne [TotallySeparatedSpace X] (τ : G → X → X)
+    (hτ : ∀ (g : G) (f : LocallyConstant X (ZMod 2)) (x : X), (g • f) x = f (τ g x))
+    (hfree : ∀ g : G, g ≠ 1 → ∃ x : X, τ g x ≠ x) :
+    ∀ g : G, g ≠ 1 → ∃ a : LocallyConstant X (ZMod 2), g • a ≠ a := by
+  intro g hg
+  obtain ⟨x, hx⟩ := hfree g hg
+  obtain ⟨U, hU, hxU, hgxU⟩ := exists_isClopen_of_totally_separated hx.symm
+  have hgxU' : τ g x ∉ U := hgxU
+  refine ⟨LocallyConstant.charFn (ZMod 2) hU, fun h ↦ ?_⟩
+  have h1 := congrArg (fun a : LocallyConstant X (ZMod 2) ↦ a x) h
+  simp only [hτ, LocallyConstant.coe_charFn, Set.indicator_of_mem hxU,
+    Set.indicator_of_notMem hgxU', Pi.one_apply] at h1
+  exact (by decide : (0 : ZMod 2) ≠ 1) h1
+
+end LocallyConstant
 
 end Pestov91
 end GroupApproximation
