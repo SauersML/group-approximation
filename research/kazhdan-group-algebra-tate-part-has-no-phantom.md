@@ -33,3 +33,16 @@ distinct_from:
   formula is not proved.
 - **Self-tensoring (partial).** `θ` is monoidal, so `Γ × Γ'` moves the question to products and does
   not decide it.
+- **Square-zero constraint at `p = 2` (derived, unreviewed; lane ex3-uct-tate-diagonal).**
+  - Suppose `kazhdan-tate-crossed-product-inclusion-is-kk-equivalence` holds for `Γ` and for `Γ × Γ`.
+    Under (P1) for `Γ`, `T(C*_r Γ) ≅ (1_T ⊗ τ C*_r Γ) ⊕ Φ`, where `Φ` is the phantom part and
+    `T(Δ)` is an isomorphism onto the first summand.
+  - `T(Δ_(Γ×Γ)) = T(Δ) ⊗ T(Δ)`, so its cone is `S ⊗ Φ ⊕ Φ ⊗ S ⊕ Φ ⊗ Φ`, with `S = 1_T ⊗ τ C*_r Γ`.
+  - `θ = −1` on the two cross terms and `θ = +1` on `Φ ⊗ Φ`. So the non-phantom part of that cone is
+    `Φ ⊗ Φ`, and (P1) for `Γ × Γ` forces `Φ ⊗ Φ ≃ 0` in `KK^(Z/2)`.
+  - So a counterexample of the kind "(P1) true, this claim false" must be a **square-zero** equivariant
+    phantom, realizable as an outer non-Rokhlin `Z/2`-action `α` on `O_2` with `α ⊗ α` Rokhlin.
+  - Inputs: multiplicativity of `1_T ⊗ −` (`1_T ⊗ 1_T ≅ 1_T`) and item 6 of
+    `zp-restriction-trivial-splits-cellular-plus-phantom`.
+  - `Γ × Γ` satisfies Baum–Connes with coefficients with finite wreath products
+    (Nishikawa–Petrosyan Thm. 4.3(5)).
