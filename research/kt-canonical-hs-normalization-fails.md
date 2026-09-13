@@ -65,3 +65,46 @@ intermediate `K` suffices.
   and `haagerup-targets-carry-no-relative-wall` exclude coefficients with
   Haagerup `pi(Gamma)''`.  A witness therefore needs a coefficient with
   non-Haagerup `pi(Gamma)''`, or a canonical model that is not of Fell type.
+- **Genuine vertex coordinates.** Dead, conditional only on the recorded
+  premises (lane `ex-q34-kt-double`, 2026-09-12). By
+  `kt-regular-congruence-mask-removes-trace-faithfulness-from-the-commutant-wall`,
+  a witness may be taken trace-preserving. For a trace-preserving `sigma` whose
+  restriction to `Gamma` flexibly rounds (hypothesis (H1) of
+  `hs-stable-vertex-rounding-for-every-model`, at this one `sigma`), four
+  established per-model claims give normalization of `R`:
+  `nonunit-projection-bounded-by-root-spectral-mass`,
+  `shallow-nonunit-root-mass-vanishes-under-vertex-rounding`,
+  `vertex-rounding-deep-nonunit-root-mass-vanishes` (these three make the
+  rounding unit-type) and `unit-type-vertex-rounding-forces-compressor-commutant-rigidity`.
+  Each has a review record among the 2026-09-12 review artifacts. So every
+  witness is a trace-preserving model of `G` whose restriction to
+  `Gamma = EL_r(F_q[x_1..x_d])` is a `G`-extendable asymptotic representation
+  that is **not** flexibly Hilbert--Schmidt close to genuine representations.
+  Such representations are not known to exist for any infinite higher-rank
+  Kazhdan group (compare Dogon arXiv:2211.10492), so the positive branch of this
+  claim contains a flexible-instability theorem for `Gamma` at `G`-extendable
+  models. Aspect-ratio cascades over genuine vertex coordinates, the natural
+  Hilbert-hotel witness, are excluded by the same chain.
+- **Popa's second independence case.** Popa, arXiv:1308.3982 (abstract, read on
+  MSI 2026-09-12), proves relative free independence in two cases. The first is
+  the amenable-centralizer case recorded in
+  `hnn-hyperlinearity-is-amalgamated-free-haar-unitary`. The second is
+  `Q = prod_omega Q_n` with `Q_n <= M_n` and `Q_n` not intertwining into
+  `Q_n' cap M_n` for every `n`: then for every separable
+  `X <= M (-) (Q' cap M)` some diffuse abelian subalgebra of `Q` is free from `X`
+  relative to `Q' cap M`.
+  - For matrix coordinates the non-intertwining hypothesis never holds, since
+    finite-dimensional subalgebras always intertwine through minimal
+    projections.
+  - With II_1 coordinates `M_n = R` it holds for genuine vertex coordinates:
+    `sigma_n(Gamma)''` is atomic in the Haagerup algebra `R`, and its diffuse
+    commutant does not intertwine into it.
+  - The relative freeness is over `P = Q' cap M`, not over `L(Gamma)`. It gives the
+    amalgamated-free Haar letter of the centralizer HNN group only if
+    `E_P = E_(L(Gamma))` on `L(G)`, a commuting square that already forces
+    commutation stabilizer exactly `Gamma`.
+  - Any model meeting it has genuine vertex coordinates. The rounding chain of the
+    previous item is established for matrix ultraproducts. Whether its per-model
+    claims transfer to II_1-coordinate ultraproducts, where multiplicities are
+    continuous, was not checked. If they transfer, this lever is dead for the
+    Theorem E pair.
