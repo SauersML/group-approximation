@@ -14,5 +14,8 @@ A. Jaikin-Zapirain, *Property (T) for noncommutative universal lattices*,
 arXiv:0809.4095v2, Invent. Math. 179 (2010).
 
 It was read from the arXiv e-print source file `EL_n0909.tex`, fetched with curl
-to `/scratch.global/sauer354/fcah/` on MSI on 2026-09-12. The quotation in the
-target claim matches lines 405--410 of that file. The paper is not refereed here.
+to `/scratch.global/sauer354/fcah/` on MSI on 2026-09-12 and unpacked as
+`/scratch.global/sauer354/fcah/src/EL_n0909.tex`. The quotation in the target
+claim matches lines 405--410 of that file. A second fetch of the same e-print,
+for review-swarm6-groups-2026-09-12 §6, has the quotation at the same lines. The
+paper is not refereed here.

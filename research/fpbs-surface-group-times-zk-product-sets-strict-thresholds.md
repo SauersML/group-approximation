@@ -2,7 +2,7 @@
 rg: 2
 id: fpbs-surface-group-times-zk-product-sets-strict-thresholds
 kind: claim
-title: Surface groups of genus at least three times Z^k have strict thresholds on standard product generating sets
+title: Surface groups of genus g >= 3 times Z^k with k <= max(1, g-2) have strict thresholds on standard product generating sets
 distinct_from:
   fpbs-expanding-factor-product-strict-thresholds: that is the general product criterion stated through edge expansion and adjacency norm; this evaluates it on the {4g,4g} tiling and gives the explicit genus and rank range.
   fpbs-product-every-generating-set: that is the open root over every generating set of a nonamenable product; this proves strict thresholds only for the standard product generating sets of Gamma_g x Z^k.
