@@ -28,6 +28,13 @@ cyclic. This is part (B) of `zaremsky-1-07-juan-pineda-leary-conjecture`.
   element conjugate to a power of one of them (1607.03790, Corollary 1.5). So this
   conjecture forbids an infinite finitely presented torsion-free group with finitely many
   conjugacy classes. This lane found no reference deciding whether such a group exists.
-- Lane z1-07-vc-proof (2026-09-13): working on elementary amenable groups of infinite
-  Hirsch length, and on groups with positive first Betti number through Bieri–Strebel
-  splittings plus Lemma 2.4.
+- Lane z1-07-vc-proof (2026-09-13), all unreviewed:
+  - `elementary-amenable-finite-hirsch-length-bvc-groups-are-vc` settles elementary amenable
+    groups of finite Hirsch length. Infinite Hirsch length is the open
+    `bvc-elementary-amenable-groups-have-finite-hirsch-length`.
+  - `fp-bvc-group-mapping-onto-z-is-ascending-hnn-extension`: a finitely presented BVC group
+    mapping onto `Z` is virtually cyclic or an ascending HNN extension of an infinite finitely
+    generated subgroup of the kernel.
+  - `bvc-bounds-conjugacy-classes-in-fibers-of-maps-to-z` gives `R(alpha^m) <= m·C`.
+  - `osin-group-times-z-has-bvc` shows that neither result survives dropping finite
+    presentation.
