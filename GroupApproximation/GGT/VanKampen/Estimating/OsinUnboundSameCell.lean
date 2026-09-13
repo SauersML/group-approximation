@@ -114,7 +114,7 @@ theorem IsLambdaCQuasiGeodesicWord.stretch_le_keptLetters
   · intro a ha
     obtain ⟨p, hp, hap⟩ := List.mem_flatMap.mp ha
     have hmem : a ∈ pieces.flatMap Prod.fst :=
-      List.mem_flatMap.mpr ⟨p, List.mem_of_mem_filter hp, hap⟩
+      List.mem_flatMap.mpr ⟨p, (List.mem_filter.mp hp).1, hap⟩
     rw [← hsplit] at hmem
     exact hword.1 a (List.mem_of_mem_drop (List.mem_of_mem_take hmem))
   · rw [hsplit]

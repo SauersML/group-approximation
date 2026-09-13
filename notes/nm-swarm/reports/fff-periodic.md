@@ -2,14 +2,27 @@
 
 Non-MF verbatim formalization swarm, 2026-09-12.  Clone nm-c.
 
-## 09-13: SharedEdge same-cell case (`false_of_digon_toward_cell` at i₂ = i), BLOCKED on a ruling
+## 09-13: SharedEdge same-cell case (site 5), ruling (a); binder and word half LANDED unverified
 
 Assignment (lead): patch 03 of ghw-charp2's LoopCut landing adds `hi : i₂ ≠ i` to
 `false_of_digon_toward_cell` (`Estimating/OsinUnboundSharedEdge.lean:377`, hull-unbound).  Close the
 case it leaves open in a new module: an unbound dart `d` of cell `i` with `α d` on cell `i`.  Either
 contradict optimality or least area, or count such darts by something already bounded.
 
-Status: no code, nothing landed, no probe (patches 01-09 are not landed).
+Ruling (lead): option (a).  `Covers` takes a factor `⌈1/λ⌉` on the sides, and `L` may depend on `λ`
+and `c`.  This lane proves (T) in a new module.  (C) is a named binder owned by this lane.  It is
+stated with the Lemma 9.7 induction hypothesis on smaller diagrams in scope (theoremc-retire's
+option (i)).  The `Covers` respelling lands in one co-probe with hull-count94, after ghw-charp2's
+(A) co-probe.  Options (b) and (c) are rejected.
+
+Status: LANDED 593ba10c2 with NM_UNVERIFIED, no probe.  The hold continues: `OsinUnboundSharedEdge`
+is still at 8009a06ff, so patches 01-10 are not landed.
+- `Estimating/OsinUnboundSameCellPocket.lean`: `AvoidEdgeStep` and the (C) binder
+  `OsinLemma94SameCellPocketInput`.
+- `Estimating/OsinUnboundSameCell.lean`: `stretch_le_length`, `keptLetters`,
+  `stretch_le_keptLetters` and the endpoint `OsinUnboundSameCellStretchBound`.
+
+Earlier findings:
 
 1. No competitor under (A).  Same-cell darts lie on no region: `boundary_decomposition` puts both
    arcs on the region's boundary cycle, which runs along its G-faces.  So these darts are always
@@ -43,7 +56,7 @@ Options sent to the lead:
   `dense_of_covers` uses `Covers` only through `linarith`, so a factor `M` on the sides gives
   density at `⌊ρ / (4 M²)⌋`, and `unbound_lt_of_pieces` then asks `4 M² ρₘ ≤ ρ`.  The (T) word
   lemma (a stretch `i..j` of a quasi-geodesic word with a same-value admissible respelling `alt`
-  has `λ (j − i) − c ≤ |alt|`) is drafted outside the repo; it is neither landed nor probed.
+  has `λ (j − i) − c ≤ |alt|`) is landed in `OsinUnboundSameCell` (593ba10c2, unverified).
 - (b) Change PlanarPieces so a cell side may carry value-one same-cell excursions (Osin's 0-refinement).
 - (c) Use a `DartMinimal` measure that keeps spurs unfolded.  The cost is digon polygons, which raise
   `SideBudget`.
@@ -51,7 +64,23 @@ Options sent to the lead:
 audit-sec5 has both configurations for its model test.  A single relator `b^m` inside `r_i` fails
 `pieces_small`, as Greendlinger on `C2` predicts.
 
-Residual Props owned: none yet.  Next: the lead's ruling, then the new module after ghw-charp2 lands.
+Sent: the inline (C) binder form to theoremc-retire, for its threading co-probe to pass `hbelow` to
+the `Covers` call site.  The respelling plan to hull-count94: `M = ⌈1/λ⌉₊`, density `⌊ρ/(4M²)⌋`,
+`L = 24 ε M + 25 ⌈c/λ⌉₊`, `ρ₀ = max(⌈c/λ⌉₊ + 2, ρ_C)`, and the theorem taking
+`hpocket : OsinLemma94SameCellPocketInput`.  The ΣX configurations to audit-sec5.
+
+Residual Prop owned: `OsinLemma94SameCellPocketInput` (binder (C)).  Planned discharge: a pocket
+with relator cells gives `OsinLoopCut.ofPocketRegion` with `s = []`, then `false_of_below` through
+`hbelow`.  This needs a noncrossing pocket builder.
+
+Next, in new modules, all unprobed until ghw-charp2 lands:
+1. Bridge lemma.  On a planar map with `faceOf a = faceOf (α a)`, no `AvoidEdgeStep` path joins `a`
+   to `α a`.  The proof deletes the edge (`EdgeDeletion.euler_balance_of_sameFace`, `V' = V`), so
+   `χ' = 4`.  The deleted map stays connected, contradicting `eulerCharacteristic_le_two`.
+2. Head and tail classes of the pocket, the orientation from connectivity, and laminarity of
+   same-cell pockets on one cell.
+3. The count: `Σ_i |unbound same-cell darts| ≤ ⌈1/λ⌉₊ Σ_i |other unbound darts| + ⌈c/λ⌉₊ (n + 2|M|)`.
+4. The `Covers` co-probe with hull-count94.
 
 ## 09-13: `EmptyTwoGonInput` closed (route A), LANDED and GREEN
 
