@@ -88,12 +88,21 @@ whether such a group is already known is open here.
      finitely presented (`kassabov-nikolov-alternating-frames-are-not-fp`).
    - The obstruction is blind to factors with trivial multiplier. Kassabov's
      `EL_3(R) <= prod_n SL_(3n)(F_p)` (their Proposition `g0`) contains
-     `(+)_n SL_(3n)(F_p)`, so it has unbounded prime torsion. Its finite
-     presentability is not decided here.
-   - What is known about it: by `fp2-over-q-descends-along-locally-finite-kernels`,
-     a finite presentation of `EL_3(R)` would make its quotient by
-     `(+)_n SL_(3n)(F_p)` of type `FP_2` over `Q`. By attempt 6, that quotient is
-     never finitely presented.
+     `(+)_n SL_(3n)(F_p)`, so it has unbounded prime torsion.
+   - **It is not finitely presented either** (`kassabov-g0-is-not-finitely-presented`,
+     2026-09-13), for a different reason.
+     - Weight one edge of the cycle `a_n` by a scalar `λ ≠ 0, 1`.
+     - The resulting marked groups satisfy every relation of `EL_3(R)` of length
+       below about `n/2`.
+     - They break the relation `e_(1,2)((q a^n q)^2 - q a^n q) = 1` with `q = bc`,
+       which holds in `EL_3(R)`.
+   - The descent criterion `fp2-over-q-descends-along-locally-finite-kernels` was
+     not needed. It could not have decided this at the level of `SL_3`. The
+     quotient by `(+)_n SL_(3n)(F_p)` is `EL_3` of the ring generated on
+     `F_p^(Z)` by the bilateral shift and two matrix units. Modulo a locally
+     finite congruence kernel, that is `SL_3(F_p[t^(±1)])`. That is a sketch
+     from this lane, not written up as a node, and main decides no `FP_2`
+     property for either group.
 8. **Other standard classes.** *Die, by standard facts not rechecked here.*
    - *Virtually residually-`p` groups*, including Golod--Shafarevich constructions.
      If `N` has index `i` and is residually `p`, an element of prime order `q`

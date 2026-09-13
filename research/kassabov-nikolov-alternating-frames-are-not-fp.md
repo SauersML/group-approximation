@@ -30,5 +30,6 @@ prime order. They still cannot witness `fp-rf-group-with-unbounded-prime-torsion
 multiplier. Kassabov's group `G_0 = EL_3(R) <= prod_(n >= 3) SL_(3n)(F_p)`,
 the starting point of the Kassabov--Nikolov construction (their Proposition
 `g0`), contains `(+)_n SL_(3n)(F_p)`. Its factors are perfect with trivial
-multiplier for large `n` (standard, not rechecked here). Whether `G_0` is
-finitely presented is not decided here.
+multiplier for large `n` (standard, not rechecked here). `G_0` is not
+finitely presented either, for a different reason: a marked-limit argument
+with twisted cycles (`kassabov-g0-is-not-finitely-presented`, 2026-09-13).
