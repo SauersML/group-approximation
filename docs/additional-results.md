@@ -59,6 +59,16 @@ parameters, relation radius `l` needs matrix dimension at most `12l+6`,
 giving LEF growth `exp(O(R^2))` independently of the language's Turing degree. This is a
 written extension, not a Lean verification.
 
+The [rank-four dichotomy](../research/artifacts/pestov91-subshift-lef-mf-dichotomy-2026-09-13.md)
+classifies every finite-alphabet subshift over every finite field:
+`EL_n(R_X)`, `n>=4`, is MF exactly when it is LEF, exactly when every
+edge of every word graph lies on a directed cycle. A transient edge
+produces an explicit one-sided inverse and an MF-invisible cylinder root;
+cyclic components produce finite ring models. Binary rank-four instances
+have four torsion generators. This connects the Pestov construction to
+the manuscript's non-MF obstruction; the negative rank-three case remains
+outside the theorem. The new proof is not yet Lean-formalized.
+
 ## Infranormal Kazhdan detection (mathematical proof)
 
 The normality assumption in the non-MF manuscript's Kazhdan detector can
