@@ -37,7 +37,7 @@ section Model
 variable {k : Type*} [CommRing k]
 
 /-- The finitary part `g − 1` of `g ∈ GL_fin(ℤ, k)`. -/
-abbrev deviation (g : GLfin k) : Module.End k (ℤ →₀ k) :=
+noncomputable abbrev deviation (g : GLfin k) : Module.End k (ℤ →₀ k) :=
   ((g : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1
 
 theorem deviation_mul (g h : GLfin k) :
@@ -46,8 +46,9 @@ theorem deviation_mul (g h : GLfin k) :
     ((g : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k))
     ((h : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k))
 
-theorem deviation_one : deviation (1 : GLfin k) = 0 :=
-  sub_self _
+theorem deviation_one : deviation (1 : GLfin k) = 0 := by
+  show ((1 : LinearMap.GeneralLinearGroup k (ℤ →₀ k)) : Module.End k (ℤ →₀ k)) - 1 = 0
+  rw [Units.val_one, sub_self]
 
 theorem deviation_mul_inv (g : GLfin k) :
     deviation g * deviation g⁻¹ + deviation g + deviation g⁻¹ = 0 := by
@@ -139,10 +140,10 @@ theorem cycleModel_mul {W S : Finset ℤ} (hinj : Set.InjOn (Int.cast : ℤ → 
 theorem cycleModel_single_far {W : Finset ℤ}
     (hinj : Set.InjOn (Int.cast : ℤ → ZMod N) (W : Set ℤ)) {x : FinitaryShift k}
     (hx : SupportedIn k W (deviation x.left)) {p : ℤ}
-    (hfar : ∀ j ∈ W, (j : ZMod N) ≠ (p : ZMod N) + (toAdd x.right : ZMod N)) :
+    (hfar : ∀ j ∈ W, (j : ZMod N) ≠ (p : ZMod N) + ((toAdd x.right : ℤ) : ZMod N)) :
     ((cycleModel N W x : LinearMap.GeneralLinearGroup k (ZMod N →₀ k)) :
       Module.End k (ZMod N →₀ k)) (single (p : ZMod N) 1) =
-      single ((p : ZMod N) + (toAdd x.right : ZMod N)) 1 := by
+      single ((p : ZMod N) + ((toAdd x.right : ℤ) : ZMod N)) 1 := by
   rw [cycleModel, Units.val_mul, Module.End.mul_apply, cycleShift_zpow_single,
     windowUnit_val N hx hinj, LinearMap.add_apply, Module.End.one_apply,
     windowCopy_single_eq_zero N hfar, add_zero]
@@ -152,16 +153,15 @@ exponents by the finitary parts. -/
 theorem cycleModel_eq_imp [Nontrivial k] {W : Finset ℤ}
     (hinj : Set.InjOn (Int.cast : ℤ → ZMod N) (W : Set ℤ)) {x y : FinitaryShift k}
     (hx : SupportedIn k W (deviation x.left)) (hy : SupportedIn k W (deviation y.left)) {p : ℤ}
-    (hfarx : ∀ j ∈ W, (j : ZMod N) ≠ (p : ZMod N) + (toAdd x.right : ZMod N))
-    (hfary : ∀ j ∈ W, (j : ZMod N) ≠ (p : ZMod N) + (toAdd y.right : ZMod N))
-    (hsep : ((toAdd x.right : ℤ) : ZMod N) = (toAdd y.right : ZMod N) →
+    (hfarx : ∀ j ∈ W, (j : ZMod N) ≠ (p : ZMod N) + ((toAdd x.right : ℤ) : ZMod N))
+    (hfary : ∀ j ∈ W, (j : ZMod N) ≠ (p : ZMod N) + ((toAdd y.right : ℤ) : ZMod N))
+    (hsep : ((toAdd x.right : ℤ) : ZMod N) = ((toAdd y.right : ℤ) : ZMod N) →
       toAdd x.right = toAdd y.right)
     (h : cycleModel N W x = cycleModel N W y) : x = y := by
   have hright : x.right = y.right := by
     have hp := congrArg (fun u : LinearMap.GeneralLinearGroup k (ZMod N →₀ k) =>
       ((u : LinearMap.GeneralLinearGroup k (ZMod N →₀ k)) : Module.End k (ZMod N →₀ k))
         (single (p : ZMod N) 1)) h
-    simp only at hp
     rw [cycleModel_single_far N hinj hx hfarx, cycleModel_single_far N hinj hy hfary,
       Finsupp.single_left_inj one_ne_zero, add_right_inj] at hp
     exact Multiplicative.toAdd.injective (hsep hp)
@@ -172,7 +172,6 @@ theorem cycleModel_eq_imp [Nontrivial k] {W : Finset ℤ}
   have hcopy : windowCopy N W (deviation x.left) = windowCopy N W (deviation y.left) := by
     have hv := congrArg (fun u : LinearMap.GeneralLinearGroup k (ZMod N →₀ k) =>
       ((u : LinearMap.GeneralLinearGroup k (ZMod N →₀ k)) : Module.End k (ZMod N →₀ k))) hw
-    simp only at hv
     rw [windowUnit_val N hx hinj, windowUnit_val N hy hinj] at hv
     exact add_left_cancel hv
   have hdev : deviation x.left = deviation y.left := by
@@ -229,7 +228,7 @@ theorem isLEF_finitaryShift (k : Type) [CommRing k] [Finite k] [Nontrivial k] :
     have hx' := Finset.mem_coe.1 hx
     have hy' := Finset.mem_coe.1 hy
     have hfar : ∀ z ∈ s, ∀ j ∈ W,
-        (j : ZMod N) ≠ ((((M + 2 * E + 1 : ℕ) : ℤ)) : ZMod N) + (toAdd z.right : ZMod N) := by
+        (j : ZMod N) ≠ ((((M + 2 * E + 1 : ℕ) : ℤ)) : ZMod N) + ((toAdd z.right : ℤ) : ZMod N) := by
       intro z hz j hj
       rw [hW, Finset.mem_Icc] at hj
       have hz' := hbound _ E (hE z hz)
@@ -237,7 +236,7 @@ theorem isLEF_finitaryShift (k : Type) [CommRing k] [Finite k] [Nontrivial k] :
       refine intCast_ne_of_ne N (by omega) ?_
       rw [abs_lt]
       constructor <;> omega
-    have hsep : ((toAdd x.right : ℤ) : ZMod N) = (toAdd y.right : ZMod N) →
+    have hsep : ((toAdd x.right : ℤ) : ZMod N) = ((toAdd y.right : ℤ) : ZMod N) →
         toAdd x.right = toAdd y.right := by
       intro hc
       by_contra hne
