@@ -84,3 +84,20 @@ artifacts:
   - **Deficit side.** The matrix-state deficit target is equivalent to the counterexample
     (`ternary-anti-central-matrix-state-defects-have-a-strict-deficit`). So no proof of it can serve as a source of a
     mixing step for (U1b) without first proving the counterexample.
+- 2026-09-12 `w7-wdw-fullness` (artifact `research/artifacts/weakly-finite-image-defect-fullness-2026-09-12.md`; all
+  held OPEN).
+  - **Lemma 5.2, case 2, identified.**
+    - `S_- D S_-` is the kernel of the Leavitt evaluation
+      (`ternary-anti-central-defect-ideal-is-the-evaluation-kernel`). So for every quotient `W`, `W/WDW` is `0` or
+      `L_(F_3)(1,2)`.
+    - For the largest weakly finite image, case 1 is `ternary-defect-is-full-in-largest-weakly-finite-image`, which
+      refutes Gottschalk at stage one. Case 2 maps `W_max` onto `L_(F_3)(1,2)`.
+  - **From `D^((+)k)` to `D`: fails in general.**
+    - A weakly finite skew Laurent domain over `F_3` has a full non-unit `D = 1 + x`, with `I_1 <~ D^((+)3)` and no
+      nonzero idempotent minor (artifact Proposition 4.1).
+    - Artinian rings pass by Brauer's lemma, so finite-block models do not see the gap.
+  - **Special structure of `S_-` recorded.**
+    - `W_max ≅ M_2(ē W_max ē)`, with a unital `W_max -> ē W_max ē`, so the halving acts on states of `W_max`.
+    - Nonzero weakly finite images are faithful on `G`.
+  - **Where it stops.** Neither case forces or forbids a rank function on `W_max`. No mechanism for Question 3.4 on
+    `S_-`.

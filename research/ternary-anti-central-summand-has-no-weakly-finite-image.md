@@ -60,3 +60,16 @@ Sylvester rank function on `S_-`, and its null quotient is weakly finite
     - Every landed anti-central firewall model lives in a weakly finite algebra.
     - An obstruction using only `E⋊V` would show that `V` is not sofic.
     - No mechanism.
+- 2026-09-12 `w7-wdw-fullness` (artifact `research/artifacts/weakly-finite-image-defect-fullness-2026-09-12.md`,
+  Sections 2–3; all held OPEN).
+  - **Weaker refutation target.** `ternary-defect-is-full-in-largest-weakly-finite-image` says
+    `eps_- ∈ J_omega + S_- D S_-`.
+    - This claim implies it (route `no-weakly-finite-image-makes-defect-full`).
+    - It gives `J_1(S_-) != 0` (route `defect-fullness-refutes-ternary-surjunctivity`).
+  - **Evaluation kernel.** `S_- D S_- = ker pi` (`ternary-anti-central-defect-ideal-is-the-evaluation-kernel`). So the
+    weaker target fails iff `pi` factors through `W_max`. Then `W_max` maps onto `L_(F_3)(1,2)`, which refutes this
+    claim.
+  - **Corner through a visible defect.** The corner equation gives a stage-one pair `(c, e_- b)` with
+    `pi(eps_- - e_- b c) != 0`, because `pi(e_-) = 2(1 + w)` is an idempotent other than `1`.
+  - **Where it stops.** No Leavitt-visible defect is known at any stage. A visible defect gives only `J_omega != 0`,
+    not `1 ∈ J_omega`. No mechanism.
