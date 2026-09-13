@@ -57,7 +57,8 @@ induction.
 | `side_cell` | ms-cite-2: `SurgeryCellSideThickening`, plus a side-dart variant of the doubling transport (`SurgeryFaceEdgeDoublingSideRegions`) |
 | `side_outer` | this lane, after ms-cite-2's variant transport interface lands |
 | `cell_self` | ms-binary (`SurgeryCellSelfEdgeThickening`, induction on relator self-edges via `FaceEdgeDoublingRegions.regionFamily`; model test against least area first) |
-| `regions` | unowned; needs ms-cite-2's side transport (ms-binary offered to take it after) |
+| `regions` | ms-intro-2 (`SurgeryRegionPairThickening`, over ms-cite-2's side-dart transport bb3a56f4e; ms-binary withdrew its offer) |
+| `side_outer` | this lane: `outerSideThickening`, LANDED acd63f3bb |
 
 ## Module `GGT/VanKampen/Estimating/RegionProfileTransport.lean` (probe 0913-175337-49759 GREEN; LANDED 8755e832c; wire-queued)
 
@@ -80,7 +81,19 @@ images under `embed`), `mem_regionFamily`, `regionFamily`, `_profile`, `_noLoop`
 `regionFamilyEquiv`, `_profile`, `_source`. Producers: `not_mem_targetArc_of_avoid` (old hypothesis) and
 `alpha_dart_not_mem_targetArc_of_side` (side dart of its own region).
 
-## Module `GGT/VanKampen/SurgeryOuterSideThickening.lean` (under probe; attic a22b1a4c8)
+## Module `GGT/VanKampen/SurgeryOuterSideThickening.lean` (probe 0913-181351-32575 GREEN; LANDED acd63f3bb; wire-queued)
+
+Probe 0913-180632-902 FAILED on `Option.noConfusion hex` (implicit universe) in the digon case of
+`exists_of_isOuterSideDart`; the four `sorryAx` audit errors only propagated from it. The fix is
+`(Option.some_ne_none _ hex).elim` (attic 28b2567e0).
+
+Composition agreed outer-first:
+1. `outerSideThickening`
+2. ms-cite-2 `cellSideThickening` (dc394dd8e) through `exists_cellSideFree_of_invariant`, plus its preserving module
+3. ms-binary `cell_self`
+4. ms-intro-2 `regions` (`SurgeryRegionPairThickening`)
+
+Each later step takes and returns the outer invariants.
 
 Namespace `...VanKampen.OuterSideThickening`:
 - `IsOuterSideDart Delta family x` holds when `faceOf x` is the exterior and `alpha x ∈ a.2.rightSide ++ a.2.leftSide` for some
