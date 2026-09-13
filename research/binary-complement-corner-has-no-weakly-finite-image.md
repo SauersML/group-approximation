@@ -46,3 +46,14 @@ is trivial. The statement no longer mentions `g`.
     weakly finite image. So the relations used must involve overlapping supports or a nonsofic subgroup
     containing `g`.
   - **No mechanism yet.**
+- 2026-09-12 `w6-mismatch-c2`: depth-mismatched transvection factors. Firewall, no mechanism.
+  - **The pair.** The lever pair `T_(0,1)`, `T_(1,00)`, whose product has infinite order, lies in the tree
+    `R_0^x - H - g^-1 R_0^x g` of locally finite subgroups, where `H` is block-triangular.
+  - **Weakly finite model.** `graphs-of-locally-finite-groups-carry-regular-rank-models` gives a nontrivial weakly
+    finite representation of that tree's fundamental group, nonzero on the two-root defect. So those relations cannot
+    rule out a weakly finite image.
+  - **Broken relation.** The single-letter HNN extension breaks `[T_(01,00), T_(1,00)] = 1`, and `H` repairs it.
+  - **What a proof must use.** One of: a nonsofic cycle of Steinberg relations through the pair, `K_2(3,R)`, or a
+    global input.
+
+    Artifact `research/artifacts/mismatched-factor-graph-of-groups-firewall-2026-09-12.md`.

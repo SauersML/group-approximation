@@ -149,3 +149,18 @@ than vanishing.
   * **Moving levels.** Compressor corrections commute with each fixed level group and `D_A D_B` lies in the level
     algebra, so a correction never enters the product as a factor. No mechanism found. Artifact
     `research/artifacts/fock-toeplitz-input-and-sofic-independence-2026-09-12.md`.
+- **Depth-mismatched transvection factors (w6-mismatch-c2): firewall, no deficit.**
+  * **The pair.** `T_(0,1)` and `T_(1,00)` are involutions whose product has infinite order. They lie in `R_0^x`
+    and `g^-1 R_0^x g` (`g ∈ V`). `T_(1,00)` commutes with `T_(01,00)` inside the locally finite block-triangular
+    group `H = U ⋊ (R_0^x cap g^-1 R_0^x g)`.
+  * **Inert as a factor.** `graphs-of-locally-finite-groups-carry-regular-rank-models`: the tree
+    `L_0 - R_0^x - H - g^-1 R_0^x g` carries a weakly finite rank model with `rk(D_A D_B) = (3/8)^2`. So relations
+    routed along it force no deficit.
+  * **Broken relation.** The single-letter HNN extension breaks `[T_(01,00), T_(1,00)] = 1` (Britton), and `H`
+    repairs it.
+  * **What remains for a relation-only proof.** One of:
+    - a nonsofic cycle of Steinberg relations through the pair that no graph of locally finite subgroups routes;
+    - an element of `K_2(3,R)`;
+    - a global input.
+
+    Artifact `research/artifacts/mismatched-factor-graph-of-groups-firewall-2026-09-12.md`.
