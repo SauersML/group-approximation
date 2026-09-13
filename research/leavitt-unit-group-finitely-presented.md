@@ -31,5 +31,14 @@ Steinberg presentation already in this graph, which with the paper's Theorem
 5.4 now presents `R^x` itself. Use this claim for finite presentability, not
 as a computational presentation.
 
+**Short explicit presentations (2026-09-12, unreviewed).** Written-out
+presentations of `R^x` itself, each checked relator by relator in `R^x`:
+`leavitt-unit-group-steinberg-weyl-presentation` (7 generators, 60 relators),
+`thompson-steinberg-presentation-of-leavitt-unit-group` (Thompson's `V` plus
+one transvection: 4 generators, 18 relators, total length 322), and
+`thompson-steinberg-three-generator-presentation` (3 generators, 16 relators).
+Their completeness uses the in-repo spare-index theorem and Khanh's Theorem 5.4,
+not Proposition 6.2.
+
 Consumers: `fp-simple-nonsofic-via-leavitt-unit-group` and
 `fp-simple-full-mf-radical-via-leavitt-unit-group`.
