@@ -572,3 +572,130 @@ Route `sl3z-ozawa-corona-kernel-unique-maximal-ideal-proof`. Artifact §1: Prop 
   2.2 was read.
 - **Remark 2.4.** It leaves open whether the rank-one parabolic projections lie in `B`, and the node's Attempts
   bullet says the same.
+
+## 7. Sp(2,1) lattice quotients with only large-type simple images, and perfect mid-range Linial–Meshulam groups (lane `nrfh-kazhdan-quotientless`, 05d15f17, 005d5c3a)
+
+Read at 5cc8cb507 and re-checked at 0bb801a23. At both tips these files have the same blobs: the three nodes below, the
+three nodes the route requires, `olshanskii-g-subgroup-quotient-citation`,
+`random-complex-mid-range-group-is-perfect-citation` and the artifact `nrfh-kazhdan-quotientless-2026-09-12.md`.
+
+**Subsumption scan** at 5cc8cb507, repeated at 4966a8bcc and 0bb801a23, over `research/`.
+- Pattern: `Sp\(2,1\)|sp21-|1308\.6232|Hoffman--Kahle|Kahle--Paquette|80d log n` (67 files at each tip, same list).
+- Outside this lane's files:
+  - `sp21-lattice-hyperbolic-quotient-without-finite-quotients`, `sp21-lattice-few-alternating-and-large-rank-quotients`,
+    `sp21-noncongruence-simple-kernels-separate-points` and `sp21-one-element-filling-without-finite-quotients` are
+    open. The first is the target that 7.1 approaches.
+  - `random-relators-kill-small-simple-quotients-of-kazhdan-groups` (ESTABLISHED) removes alternating quotients only up
+    to an order bound.
+  - `caprace-kassabov-hyperbolic-kazhdan-alternating-quotients` (ESTABLISHED import) goes the other way: it gives
+    infinitely many alternating quotients.
+  - `filling-no-finite-quotient-iff-simple-image-orders` and `tf-kazhdan-hyperbolic-alternating-kernels-not-separating`
+    (ESTABLISHED) state other things. The second is the node the claim's "Limit of the method" cites.
+  - `random-complex-mid-range-pair-properties` (ESTABLISHED) has no homology statement.
+    `random-complex-group-no-quotients-above-exp-pn` is open.
+- No established node states either claim or a statement containing one.
+
+### 7.1 `sp21-lattice-quotient-with-only-large-type-simple-images` and route `sp21-large-type-simple-images-quotient-proof`: PASS, one wording note
+
+- **Source re-read.** Minasyan, arXiv:math/0406126v2, `main.tex` on MSI. It is the verbatim source named by
+  `olshanskii-g-subgroup-quotient-citation`. Quotes render the TeX markup; the words are the source's.
+  - **Lemma** (TeX 112–114), attributed to Ol'shanskii's Thm 1: a non-elementary `H` is a G-subgroup "if and only if
+    E(H)=E(G) and |H:K(H)|=|G:K(G)|".
+  - **TeX 183:** "if the group G is torsion-free then any its non-elementary subgroup will be a G-subgroup."
+  - **Theorem `mainthm`** (TeX 130–162). The route uses four parts:
+    - 1) "G_1 is a non-elementary hyperbolic group";
+    - 2) "In particular, φ is injective on Q", with `Q = B` finite;
+    - 3) "φ is surjective on each of the subgroups H_1,…,H_k, i.e. φ(H_i)=G_1 for each i=1,2,…,k" (TeX 145–146);
+    - 7) "φ induces a bijective map on sets of conjugacy classes of elements having finite orders in G and G_1
+      respectively" (TeX 156–157).
+
+    Part 6) (TeX 154) is "ker φ is a torsion-free subgroup".
+  - **TeX 164–167:** "Parts 1)-8) of Theorem [mainthm] were proved by A. Ol'shanskii in [Thm. 2] for the case when the
+    subset Q is finite", and "If card(Q)<∞, since each H_i is infinite, the condition (*) becomes trivial and can be
+    omitted". The route needs only finite `Q`, so the import is Ol'shanskii's Theorem 2 and the smallness condition
+    `(*)` does not arise.
+  - Parts 1 and 2 of `olshanskii-g-subgroup-quotient-theorem` match these.
+- **Step 1.** Re-derived.
+  - `Δ_0` is a proper finite-index normal subgroup of the torsion-free non-elementary group `Γ`, so it is
+    non-elementary. The route applies part 1 of the theorem node with `E(Δ_0) = 1`. The condition in the lemma quoted
+    above (TeX 112–114) then holds trivially, and TeX 183 gives the same conclusion directly.
+  - Part 7) with `Γ` torsion-free leaves `H` one finite-order conjugacy class, `{1}`. So `H` is torsion-free.
+  - `φ_1(Δ_0) = φ_1(Γ)` gives `Γ = Δ_0 M`, so `M` maps onto `Γ/Δ_0 != 1`.
+- **Step 2.** Each finiteness bullet checks.
+  - **Abelian.** A quotient `Z/p` of `H` factors through `H^ab`, a quotient of the finite group `Γ^ab`.
+  - **Sporadic, or of order at most `f`.** There are finitely many isomorphism types, each with finitely many
+    epimorphisms from a finitely generated group.
+  - **Congruence kernel.**
+    - `ker(χφ_1)` has finite index and contains a principal congruence subgroup. So it is closed in the congruence
+      topology and equals `Γ ∩ N̄`.
+    - `N̄` contains `closure(M)`. That is open by `normal-subgroups-of-arithmetic-lattices-are-congruence-open`. The
+      node carries no status line, but it has the route `arithmetic-normal-subgroup-congruence-openness-proof`,
+      which ends in `QED` and was not re-read here. Openness needs `M != 1`, and Step 1 records it.
+    - So the kernels come from normal subgroups of the finite group `Γ̄/closure(M)`. Epimorphisms with the same kernel
+      differ by `Aut(S)`.
+  - **Bounded rank, non-congruence kernel.** `χ -> χφ_1` is injective because `φ_1` is onto.
+    `sp21-bounded-rank-simple-quotients-almost-all-congruence` (ESTABLISHED, same setting) counts normal subgroups of
+    `Γ`, and `Aut(S)` is finite.
+  - **`Δ_1`.** It is a finite intersection of finite-index normal subgroups, so it has finite index in the
+    non-elementary torsion-free group `H`. So it is non-elementary, and TeX 183 applies again.
+- **Step 3.** Re-derived.
+  - If `ψ : G ->> S` were bad, then `ψφ_2` would be a bad `χ` and would kill `Δ_1`. That gives `ψ(G) = ψφ_2(Δ_1) = 1`.
+  - Part 7) makes `G` torsion-free, as in Step 1.
+- **Conclusions.** Re-derived.
+  - **(2).** A nontrivial finite quotient of order at most `f` has a simple quotient of order at most `f`.
+  - **(3).** A nontrivial congruence quotient `Γ/N` with `N ⊇ ker π` has a simple quotient with congruence kernel, which
+    Step 3 excludes. So `ker π · Γ(𝔞) = Γ` for every `𝔞`. The closures of the `Γ(𝔞)` form a neighbourhood base of `1`
+    in `Γ̄`, so `ker π` is dense.
+  - **Perfectness.** `G^ab` is finite, and (4) leaves it no simple quotient.
+- **Limit of the method**, last bullet. If `Γ/∪K_i` were finitely presented, its finitely many relators would lie in
+  one `K_i`, and the chain would stop there. Correct.
+- **Tests.**
+  - **`Γ = F_2`.** It is torsion-free and non-elementary with `E = 1`, but not Kazhdan. `F_2^ab = Z^2` has a quotient
+    `Z/p` for every prime `p`, so the abelian bullet of Step 2 fails. Finiteness of `Γ^ab`, from (T), is load-bearing.
+  - **Skipping Step 1 (`H = Γ`, `M = 1`).** Then `closure(M)` is trivial, not open. By strong approximation (not
+    re-read) `Γ` maps onto the simple group `G(O/𝔭)/centre` for almost every prime `𝔭`. That gives infinitely many
+    congruence simple images, and the congruence bullet fails. The proper first quotient is load-bearing, and the route
+    has it.
+- **Wording note.** The paragraph headed "**Contrapositive.**" is not a contrapositive. It is a consequence under the
+  hypothesis that every hyperbolic group is residually finite. Its content is right.
+- **Display check.** Items 1–4 and the sentence "By the classification…" match Steps 1–3 and the Conclusions. CFSG is
+  imported without a node, as the route says.
+
+### 7.2 `random-complex-mid-range-group-is-perfect` (import): PASS, one wording note
+
+- **Source re-read.** Quotes render the TeX markup; the words are the sources'.
+  - **Hoffman–Kahle–Paquette**, arXiv:1308.6232v2, `homology-2014-04-01.tex` on MSI.
+    - `thm:main1` (TeX 216–220): "Let d ≥ 2 be fixed and Y ∼ Y_d(n,p). If p ≥ 80d log n / n then H_{d−1}(Y;Z)=0
+      w.h.p." The node's quote matches. A commented older statement sits at TeX 204–213. The node's numbering and page,
+      "Theorem 1 (p. 3)", were not re-read against the printed PDF.
+    - `thm:main2` (TeX 238–243): for a sequence of primes `q = q(n)` and `p >= 40d log n / n`,
+      `Pr(H_{d−1}(Y;Z/qZ) != 0) <= 1/n^{d+1}`. The remark at TeX 247 says the bound "holds uniformly" in `q`.
+    - TeX 192: "The Meshulam--Wallach Theorem holds for q fixed, and can be made to work for q growing slowly enough
+      compared with n. But it does not seem possible to extend the cocycle-counting arguments from [LM] and [MW09] to
+      cover the case when q is growing much faster than polynomial in n."
+  - **Łuczak–Peled**, arXiv:1607.06985v1, `main.tex` on MSI.
+    - `thm:main` (TeX 171–176): "Let n be an integer, and suppose that Y=𝒴_2 is the random 2-dimensional complex
+      process over n vertices. Then, a.a.s h_n(H_1(Y;Z)=0) = h_n(δ > 0)."
+    - TeX 178: "In particular, the theorem implies that the threshold for the vanishing of the integral first homology
+      of Y_2(n,p) is 2 ln n / n."
+    - The node's sharp-threshold sentence and its hitting-time description match.
+- **Mid-range form.** Re-derived.
+  - For `d = 2` the bound is `160 log n / n`. `p = n^(-1+η) >= 160 log n / n` iff `n^η >= 160 log n`, which holds for
+    all large `n` for every `η > 0`, whatever the base of the logarithm.
+  - The 1-skeleton is complete, so `Y` is connected, and Hurewicz gives `H_1(Y;Z) = π_1(Y)^ab`.
+- **Tests.**
+  - **`η = 1`, `p = 1`.** `Y` is the 2-skeleton of the simplex, which is simply connected. Perfect, as predicted.
+  - **`η = 0`, `p = c/n`.** A fixed edge lies in about `c` triangles on average, so a.a.s. some edge lies in none. The
+    indicator of that edge is a mod-2 cocycle that is not a coboundary, so `H_1(Y;Z) != 0`, as LP TeX 178 says below
+    `h_n(δ > 0)`. The node excludes this range.
+  - **Effective range.** At `η = 1/2`, with `log = ln`: `√n ≈ 2236 < 2468 ≈ 160 ln n` at `n = 5·10^6`, and
+    `√n ≈ 3162 > 2579 ≈ 160 ln n` at `n = 10^7`. So "all large `n`" starts near `10^7` for this constant. The node
+    claims only the asymptotic statement.
+- **Wording note.** The calibration bullet says the Meshulam–Wallach counting argument "does not handle" `Z/q`
+  coefficients with `q` superpolynomial in `n`. HKP (TeX 192) say only that "it does not seem possible to extend" it.
+  "HKP note that the counting argument does not seem to extend" would match the source.
+- **Scope note.** `random-complex-mid-range-pair-properties` uses `0 < η < 1/2`, and this node uses `0 < η < 1`. That is
+  not a defect, since perfectness needs only `p >= 160 log n / n`. Any use together with the pair properties needs
+  `η < 1/2`.
+- **Display check.** The `distinct_from` entries match the tip. `random-complex-group-no-quotients-below-exp-pn` is
+  ESTABLISHED by counting cochains, and `random-complex-group-no-quotients-above-exp-pn` is open.
