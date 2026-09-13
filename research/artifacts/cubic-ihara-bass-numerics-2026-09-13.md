@@ -131,6 +131,35 @@ three permutation samples per prime.  Scaled edge `s = N^(2/3) (lambda - 2 sqrt 
   negative means are partly shortfall, and the non-Ramanujan fractions are lower bounds.  The comparison
   is matched in `N` and `k`.
 
+## Job 4: characteristic-polynomial coincidences among words
+
+- **Probe.**  `experiments/cubic-ihara-bass/cp_main.c`, appended to `sc_p2.c`; `job4.sh`; raw output
+  `res4.txt`.
+- **Method.**  Take one word from each rotation--inversion class of cyclically reduced words of
+  length `2 <= n <= 12`, and compute `(Trd w, Trd w^-1)` mod two primes `P1 = 1000000009` and `P2`,
+  both `= 1 mod 7`.  This identifies the integer polynomial `f_w` up to a 64-bit hash error.
+- **Pairs.**  The arithmetic pairs `m = 1` and `m = 19`, against a Haar-random pair in `SL_3(F_P1)`.
+
+| n | classes | distinct `f_w`: arith m=1 / m=19 / random | extra coincidence (arith) |
+|---|---|---|---|
+| 6 | 66 | 65 / 65 / 66 | `A^6` with `B^6` |
+| 8 | 418 | 417 / 417 / 418 | `A^8` with `B^8` |
+| 10 | 2968 | 2967 / 2967 / 2968 | `A^10` with `B^10` |
+| 11 | 8054 | 8053 / 8053 / 8054 | `A^11` with `B^11` |
+| 12 | 22185 | 22184 / 22184 / 22185 | `A^12` with `B^12` |
+
+- **Only the forced coincidence.**  For both arithmetic pairs, the only coincidence beyond rotation
+  and inversion is `A^n` with `B^n`.  It is forced, because `B = u A u^-1` is conjugate to `A` in
+  `Gamma`.  The same holds for every `n` from 2 to 12 (`res4.txt`).  The random pair has none;
+  accidental collisions mod `P1 ~ 1e9` are negligible at this size.
+- **Reversed words.**  The fraction of classes whose reversed word has the same `f_w` is identical in
+  both ensembles to four digits (`0.1092` at `n = 10`, `0.0438` at `n = 12`).  So it counts words whose
+  reverse lies in their own class, not arithmetic structure.
+- **Consequence for part 5** of `cubic-division-ihara-traces-count-roots-mod-p`.  At these lengths,
+  equal characteristic polynomials occur only between words conjugate in `Gamma` or inverse to each
+  other.  Isomorphic fields with different `f_w` are invisible to this probe.  So no hidden
+  arithmetic coincidence among short words is available to bias the Ihara traces.
+
 ## Interpretation
 
 1. **Random-like everywhere tested.**  The certified thin pair's congruence Schreier graphs match

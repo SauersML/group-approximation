@@ -19,9 +19,7 @@ for example `P^2(F_p)`, `F_p^3 minus 0`, the flag variety, or `SL_3(F_p)` itself
 2. **No short cycles of words.**  Let `w != 1` be a word of length `L`.  If `w^d` is regular
    semisimple mod `p`, every point of `P^2(F_p)` fixed by `w^d` is fixed by `w`.  Hence `w` acts
    on `P^2(F_p)` with fixed points and with cycles of length at least
-   `(log p - log 64) / (6 L log rho)` only.  For uniformly random permutations and a word that
-   is not a proper power, the number of `d`-cycles instead converges to Poisson`(1/d)` for each
-   fixed `d` (Nica, 1994; import).
+   `(log p - log 64) / (6 L log rho)` only.
 3. **Delocalisation lemma** (any Schreier graph).  Let `X` be a finite 4-regular Schreier graph
    of `F_2 = <A, B>`, `x in X`, `R >= 2`, and suppose `B(x, R)` has cyclic fundamental group.  If
    `sum_s f(s y) = lambda f(y)` for all `y` in `B(x, R)`, and `dist(lambda, [-2 sqrt 3, 2 sqrt 3]) >= eps`,
@@ -32,6 +30,12 @@ for example `P^2(F_p)`, `F_p^3 minus 0`, the flag variety, or `SL_3(F_p)` itself
    `K >= (eps R_p)^2 / 128`.  Outliers, if they exist, are spread over at least order
    `eps^2 (log p)^2` disjoint balls of logarithmic radius.  No local configuration can produce them,
    in any sector of `l^2(SL_3(F_p))`, cuspidal ones included.
+
+**Remark (not part of the claim).**  Part 2 is where these graphs differ from random
+permutation models.  There, for a word that is not a proper power, the number of `d`-cycles is
+asymptotically Poisson`(1/d)` for each fixed `d` (recalled from Nica's work on cycles of free words
+in random permutations; not re-read).  The Haar-random `SL_3(F_p)` control shares part 2 with high
+probability, which is why it is the matched control in the numerics.
 
 **Scope.**  This is the deterministic half of the Friedman--Bordenave argument for random
 graphs.  The other half, high-trace cancellation, is the open part
