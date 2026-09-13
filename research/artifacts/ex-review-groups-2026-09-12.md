@@ -114,9 +114,16 @@ every group.
   `PSL_2(C)` lattice (ex-nonsofic-action-entropy), fixed price one for `EL_r` over noncommutative rings
   (ex-free-bridges), and four frame-rounding claims (ex-q34-collapse). Part 4.
 
+- **§5, Bernoulli absorption, the torsion-free wreath, sweep at f79305e9c (~00:40 CDT).** The dead route into
+  non-VTF hyperbolic is killed, and no famous flip occurs besides Pestov 9.1. PASS on stabilizer rigidity of
+  Bernoulli factors, Kaplansky failure as algebraic Bernoulli absorption, and collapse as a self-square
+  (ex-bernoulli-negative). PASS on the torsion-free nonsofic integer-lamp wreath (ex-left-orderable-nonsofic).
+  Part 5.
+
 ## Part files
 
 - `research/artifacts/ex-review-groups-2026-09-12-part1.md`: §1, the simple Kazhdan LEF candidate.
 - `research/artifacts/ex-review-groups-2026-09-12-part2.md`: §2, sweep, VTF chain, dichotomy, quantization.
 - `research/artifacts/ex-review-groups-2026-09-12-part3.md`: §3, status recheck, Thompson F dictionaries, `RF_fp` completeness.
 - `research/artifacts/ex-review-groups-2026-09-12-part4.md`: §4, permutation stability, Păunescu's class, fixed price, frame chain.
+- `research/artifacts/ex-review-groups-2026-09-12-part5.md`: §5, sweep at f79305e9c, Bernoulli absorption, torsion-free wreath.
