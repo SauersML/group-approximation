@@ -292,6 +292,48 @@ hgreendlinger, so re-grading these rows flips nothing now.
 closes, these piece rows still hold their union rows partial unless they are re-graded or
 census overrides them. cite-ejz's row does the same to LINE:1145 today.
 
+## C6′: `OsinTwoGonHoldsSectionStatement` (Lemma 9.3, hcount)
+
+Assigned by the team lead on 09-13, split with debt-conditional.
+`OsinTwoGonHoldsSectionStatement` (`Estimating/OsinAppendixEulerSection.lean:49`) is the last
+open binder of `osinPhiPrimeCountSection_of_pieces`, since C4 is closed
+(`osinCornerTwoGonSection`, `0c42391c2`). `TwoGonHoldsInput` does not use the parameters, so a
+producer of it for all `D`, `λ`, `c`, `ε` and `W` gives the section statement with `eps0 = 0`
+and `rho0 = 1`.
+
+- debt-conditional's plan (its report of 13:50):
+  - module 1 `OsinAppendixEulerTwoGonLabels` (`81cb719d3`, green): the cell `i`, the section
+    `j` and the regions `a ≠ b`;
+  - module 2 `OsinAppendixEulerTwoGonFaceClass` (`ee96efa9d`, green): the face-class tools;
+  - module 3: given `outerFace ∉ sideFaces` and `(cell i).face ∉ sideFaces` for the pocket
+    walk, the pocket holds no relator cell and meets no other region;
+  - module 4: `PocketRegion.ofSimpleClosedWalk` on `S.diagram`, then `EmptyTwoGonInput`, which
+    is proved (`emptyTwoGonInput_holds`, `2aa17abb0`).
+- Offered to debt-conditional: the face-class side link, or the closure from a relator-free
+  pocket. This lane writes only new modules and waits for debt-conditional's pick.
+- Checked against the definitions on origin:
+  - `outerDarts` is the reversed outer boundary under `alpha` (`Estimating/Embedded.lean:79`).
+    So walk darts face into the pocket, and for a noncrossing walk
+    `sideFaces S.diagram.toCombMap K.walk` is the pocket side. `PocketFaceSet.ofBoundaryCycle`
+    proves `outerFace ∉ faces` the same way.
+  - Without noncrossing, `sideFaces` leaks.
+    - (a) If the target arc holds both darts of a spur, one walk dart lies on the outer face.
+    - (b) If a gap edge has cell `i` on both sides, a walk dart lies on cell `i`.
+    - (c) is expected to leak through the interior of `a` or `b`, but this is not checked
+      against the side orientation.
+    So module 3's two inputs fail in the copy configurations, and those cases need the copy.
+  - The 13:40 ruling's route for module 4 (roster `0da58be4b`) does not compose as stated. That
+    route is kh-ejz's copy face set, then `PocketPinchLabelledStatement`, `ofSimpleClosedWalk`
+    and EmptyTwoGon.
+    - `SectionPocketFaceSetInput` (`Estimating/OsinPocketPieces.lean:228`) returns a
+      `PocketFaceSet` on a copy `X'`. It carries a `kept` relator cell and has no link to `a`,
+      `b` or `S.diagram`.
+    - `EmptyTwoGonInput` needs a `PocketRegion S.diagram` that contains `a.1` and `b.1` and no
+      relator cell.
+    - Sent to the team lead with a question: does dgo-analytic's zero-cell merge on the copy
+      (Q2) also cover the two-gon pocket?
+- No C6′ Lean from this lane yet.
+
 ## Next
 
 - Wiring: the root on origin/main imports every module of `296386753`, `dd0412114`,
@@ -304,7 +346,14 @@ census overrides them. cite-ejz's row does the same to LINE:1145 today.
   at 1725 had pulled union row `92115dd7edef` partial.
 - Census row LINE:1682 (partial) records `printedHullLemma35`. Hull Corollary 7.4 and Lemma 5.9
   use Lemma 3.5. They belong to other lanes.
-- Census debt outside W1: no Prop group is left to formalize. The pick sent to the team lead
-  is the two stale re-grades: sec5-sentences' LINE:1629 row, and the ownerless cite-ejz
-  LINE:1155 row. This lane edits the cite-ejz row only on the lead's word, and otherwise waits
-  for a W1 leaf.
+- Census debt outside W1: no Prop group is left to formalize. The roster records the lead's
+  ruling (`0da58be4b`, `ROSTER-0913.md:828`): this lane re-grades the cite-ejz LINE:1145 row,
+  and sec5-sentences re-grades LINE:1629.
+  - Done with this report. cite-ejz row 2 (key LINE:1155, union row `3009704fef89`) now also
+    lists jacobson's whole-sentence carrier, `JacobsonPresented.PrintedThreePlusOneGeneral` and
+    `manuscriptSentence_threePlusOneGeneral`, and is graded formalized.
+  - Checked on origin: the carrier has `#audit_closed_axioms`
+    (`JacobsonThreePlusOnePresented.lean:98`), the root imports the module
+    (`GroupApproximation.lean:4962`), and tex 1155-1157 is the sentence of jacobson's row 26.
+- C6′: author the piece debt-conditional hands over, in a new module of this lane. Waiting on
+  the lead's answer on the copy zero-cell merge for the two-gon pocket.
