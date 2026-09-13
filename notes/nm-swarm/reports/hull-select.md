@@ -27,6 +27,18 @@ Lane `hull-select` of the non-MF every-line swarm (09-13).
     the piece is least area, `0 < rCellCount < Δ.rCellCount`, `count = 4` and the sides are
     short. These are the first seven fields of `OsinMultipleEdgeCut` (hull-select) and of
     `OsinExteriorDoubleCut` (dgo-analytic), with `enclosed := cut.diagram`.
+- 3f87827d0, `GGT/VanKampen/Estimating/OsinPocketMultipleEdgeCut.lean`. The module is
+  unwired. It was probed green in 0913-025730-78976 (base 517188c31) and uses only the
+  classical axioms.
+  - `OsinMultipleEdgeCut.ofRegionCut`: builds an `OsinMultipleEdgeCut D λ c ε Δ` for a
+    least-area `Δ`, taking:
+    - `equiv : OEquivalentDiscDiagram Δ Δ'` (for example `S.equiv`, `Δ' = S.diagram`);
+    - a `RegionCutData Δ'` with `0 < cells.length`;
+    - the partition `invDarts Δ' cycle = s₁ ++ t₁ ++ s₂ ++ t₂` with quasi-geodesic parts;
+    - `|s₁|, |s₂| ≤ ε`;
+    - the transport for sections 1 and 3, into O-equivalent copies of `Δ'`.
+  - Least area and the relator count move along `equiv`, and the transport composes
+    with `OEquivalentDiscDiagram.trans`.
 
 ## Residual Props for `MultipleEdgeCutInput`
 
@@ -35,19 +47,39 @@ Lane `hull-select` of the non-MF every-line swarm (09-13).
    - The carrier has boundary walk `s₁ t₁ s₂ t₂`: `s₁`, `s₂` are sides of `a`, `b`, and
      `t₁`, `t₂` are arcs of the two cells.
    - It keeps at least one relator cell. The zero-cell pocket is excluded by merging.
-   - Open question, sent to the lead 09-13: is the carrier a full `RegionCutData`
-     (`cells_infix` plus `CellShelling`, which needs hull-respell's shelling producer and a
-     re-ordering of `Δ`'s cells), or only the outside face set with `IsDiscRegion`?
-     - In the second case, the piece comes from `DiscDiagram.ofPlanar`
+   - Open question, sent to the lead 09-13: is the carrier a full `RegionCutData` or only
+     the outside face set with `IsDiscRegion`?
+     - Full `RegionCutData`: `cells_infix` is against `Δ'`'s own ordered cells, and
+       `shelling` is indexed by the kept block's conjugators `basepoint⁻¹ * C.conjugator`
+       (`SurgeryCutRecord.lean:52`).
+     - `DiscDiagram.boundary_product` ties that order to the van Kampen product, so the
+       cells can't just be permuted. A producer has to pass to an O-equivalent copy `Δ''`
+       (same map) whose cell list holds the pocket's cells as a block with conjugators
+       taken from a shelling of the pocket. The cells before and after must be rebased so
+       that the product still reads the outer word.
+     - Main has no such rebasing construction. `ofRegionCut` accepts any O-equivalent
+       `Δ'`, so it takes `Δ''` directly.
+     - Outside face set only: the piece comes from `DiscDiagram.ofPlanar`
        (`VanKampen/PlanarVanKampenDiagram.lean:156`, closed) without infix or shelling.
-     - Its least area then needs a weighted planar van Kampen on `Δ` with the inside
+       Its least area then needs a weighted planar van Kampen on `Δ` with the inside
        collapsed, so (a) would also have to give `IsDiscRegion` for the inside face set.
-2. (c), owner go-lemma42: the `transport` field for sections 1 and 3.
-3. Assembly (hull-select, once (a) and (c) are stated): `OsinMultipleEdgeCut` from
-   `fourSectionCuts_leastAreaCut`, the transport, and `S.equiv` (count and least area
-   through `OEquivalentDiscDiagram.leastArea`).
+   - Open question, sent to the lead 09-13: `MultipleEdgeCutInput` allows `i = j`, which
+     is two distinct loops at the same cell.
+     - Proposal: add an `i ≠ j` binder. Both consumers already prove NoLoops, and at
+       `i = j` the `hloop` branch gives False.
+     - That means about 4 lines in `OsinAppendixDescentInduction.lean` (dgo-analytic's
+       files) and in `OsinAppendixSectionInduction.lean` (hull-select).
+     - Otherwise (a) must also cover a pocket whose two cell arcs lie on one cell.
+2. (c), owner go-lemma42: the transport for sections 1 and 3, as `ofRegionCut` takes it.
+   - For every O-equivalent copy `Xi` of the piece, and every region of `Xi` to section 1
+     or 3,
+   - there is a region of an O-equivalent copy of `Δ'` from another cell to a relator
+     cell, with the same contiguity degree.
 
 ## Next
 
-- Build the (b) Prop that matches the carrier dgo-analytic fixes for (a).
-- Build the `OsinMultipleEdgeCut` assembly once the (a) and (c) Props land.
+- After (a) and (c) land: the closed `MultipleEdgeCutInput` producer is `ofRegionCut`
+  applied to `S.equiv`, the carrier of (a), and the transport of (c).
+- After the lead rules on `i ≠ j`: restate `MultipleEdgeCutInput` and probe it together
+  with its users (`OsinAppendixAssembly`, `OsinAppendixLemma97Pocket`,
+  `OsinAppendixGreendlingerParts`, `OsinAppendixDescentInduction`).
