@@ -70,6 +70,8 @@ The sweep criteria are those of the sibling reviews:
 | 7 | `sos-cannot-refute-unique-games-at-completeness-one-half` | ugc | **OPEN, correctly.**  Credit finding: KMS ECCC TR18-006 App. B (p. 54) records the polynomial-round Lasserre 2-to-2 gap with perfect completeness via the 3Lin translation.  With the split this is the claim, pending a written translation.  Literature bullet corrected forward |
 | 7 | `hidden-labels-import-cross-context-commutation` | kac-quantum-bijection | **PASS** |
 
+| 8 | `coset-system-models-are-closed-under-maltsev-tensor` | kac-quantum-compiler | **PASS**; part 8 also lists every established node left unreviewed |
+
 ## Part files
 
 - `research/artifacts/ex-review-logic-quantum-2026-09-12-part1.md`: §1, residual finiteness and
