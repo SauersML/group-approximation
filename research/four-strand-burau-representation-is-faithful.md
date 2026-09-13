@@ -16,14 +16,19 @@ Problem 3.5 (`zaremsky-3-05-four-strand-burau-faithful`).
 
 ## Attempts
 
-- arXiv:2607.05283v1 (Bharathram–Birman–Brendle, July 6, 2026, unrefereed)
-  claims this theorem.
-  - Check by z3-05-burau-search, 2026-09-13: GAP, so no citation route.
-    Gaps G1–G6 are in
+- **The preprint.** arXiv:2607.05283v1 (Bharathram–Birman–Brendle, July 6,
+  2026, unrefereed) claims this theorem.
+- **Check by z3-05-burau-search, 2026-09-13: GAP, so no citation route.**
+  - Gaps G1–G6 are in
     `research/artifacts/zp-burau-n4-verification-2026-09-13-part2.md`.
-  - The decisive gap is the last step of Proposition 6.4: parity of the
-    modified push map `Gamma'`, and the strict increase of
-    `iota(alpha, (beta_*^3)Gamma')`, are asserted without proof.
-  - The preprint's strategy is recorded as the route
-    `four-strand-burau-faithful-via-parity-correction`. It requires the open
-    claim `brunnian-four-braids-admit-parity-correcting-push`.
+  - The decisive gap is the last step of Proposition 6.4. Two facts are
+    asserted without proof: parity of the modified push map `Gamma'`, and the
+    strict increase of `iota(alpha, (beta_*^3)Gamma')`.
+- **The preprint's architecture in Cairn.**
+  - Route `four-strand-burau-faithful-via-brunnian-braids` (lane
+    z3-05-burau-theory) requires two claims:
+    - `burau-four-faithful-iff-faithful-on-brunnian-braids`, established;
+    - `brunnian-four-braids-avoid-burau-kernel`, open.
+  - The unverified combinatorial core is
+    `brunnian-four-braids-admit-parity-correcting-push`. It feeds the chain
+    through `five-strand-moody-witness-via-parity-correction`.

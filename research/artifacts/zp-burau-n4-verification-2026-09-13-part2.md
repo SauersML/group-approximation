@@ -128,7 +128,20 @@ gives the verdict.
     force unequal intersection counts while keeping parity;
   - a text proof of the Lemma 6.3 enumeration;
   - the Condition 2 normalization in Theorem 6.6.
-- **In Cairn:** the argument after Proposition 6.4 is recorded as the route
-  `four-strand-burau-faithful-via-parity-correction`. It requires the open
-  claim `brunnian-four-braids-admit-parity-correcting-push`, which is the
-  content of Proposition 6.4, Corollary 6.5 and Theorem 6.6.
+- **In Cairn:** the unverified content of Proposition 6.4 plus the
+  conjugation step is the open claim
+  `brunnian-four-braids-admit-parity-correcting-push`.
+  - It implies `brunnian-four-braids-have-five-strand-moody-witness` through
+    the route `five-strand-moody-witness-via-parity-correction`, which is
+    Corollary 6.5, checked.
+  - Lane z3-05-burau-theory's chain carries the rest to faithfulness:
+    `brunnian-four-braids-avoid-burau-kernel-via-moody`, then
+    `four-strand-burau-faithful-via-brunnian-braids`.
+  - An earlier route of this lane that repeated that chain
+    (`four-strand-burau-faithful-via-parity-correction`, 5c5c59481a) is
+    retired.
+  - The Corollary 6.5 step does not need minimal position (Proposition 5.1).
+    The winding identity only needs the arc piece and the `alpha` piece to
+    form a simple closed curve, so parity for a transverse representative
+    already gives "sum of absolute coefficients = number of crossings of that
+    representative".

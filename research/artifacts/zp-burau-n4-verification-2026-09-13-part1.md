@@ -81,6 +81,10 @@ contradicts Phi in ker rho_4 outright, so any gap in S9 is load-bearing.
     not Brunnian: forgetting a strand gives Delta_3^2 != 1.
   - The reduced Burau image of Delta^2 is t^4 I, so rho_4 is injective on the
     center. Hence ker rho_4 = 1.
+  - Lane z3-05-burau-theory has since proved the cited centralizer fact and
+    the reduction independently: `burau-faithful-iff-faithful-on-noncentral-normal-subgroup`
+    and `burau-four-faithful-iff-faithful-on-brunnian-braids`, both
+    established.
 - **S4: PASS** (standard). Checked on the Section 7 example below.
 - **S5: PASS, with a typo.** The proof writes "|P(Delta_i)| + ... +
   |P(Delta_{j-1})| = 0" where the signed sum W_i + ... + W_{j-1} = 0 is

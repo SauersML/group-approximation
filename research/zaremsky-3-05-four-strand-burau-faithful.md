@@ -54,7 +54,17 @@ whether this homomorphism is injective for `n = 4`.
       push map still satisfies parity and strictly increases the
       intersection count. Together those facts amount to the theorem for the
       braid in question.
-  - That step is recorded as the open claim
-    `brunnian-four-braids-admit-parity-correcting-push`, with route
-    `four-strand-burau-faithful-via-parity-correction`.
-  - Neither answer route is complete.
+- **The Yes side in Cairn.**
+  - Lane z3-05-burau-theory factored the preprint into
+    `four-strand-burau-faithful-via-brunnian-braids`. That route requires
+    `burau-four-faithful-iff-faithful-on-brunnian-braids`, which is
+    established independently through Long's theorem, and
+    `brunnian-four-braids-avoid-burau-kernel`, which is open.
+  - The unverified step is the open claim
+    `brunnian-four-braids-admit-parity-correcting-push`. It feeds
+    `brunnian-four-braids-have-five-strand-moody-witness` through the route
+    `five-strand-moody-witness-via-parity-correction`.
+- **The No side.** A bounded kernel search in the free point-pushing
+  subgroup `K_4` (lane z3-05-burau-search, MSI) is running. Its result lands
+  as its own claim.
+- Neither answer route is complete.
