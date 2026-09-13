@@ -27,7 +27,8 @@ route `type-fn-plus-1-hosts-from-f-infinity-hosts`.
   arXiv:2607.21727v1, Theorem B (`higman-rope-trick-group-is-never-fp3`): for
   infinite `G = F/R` with `R != 1`, the rope-trick group `Hig_ι(G)` has
   infinite-dimensional `H_3(-; Q)`. Leary's `FP_2` embedding (arXiv:1610.05813)
-  uses the same device (their Remark 3.5).
+  uses the same device: their Remark 2.2 describes Leary's container as the
+  rope-trick HNN extension ([Lea18a, Lemma 2.2]).
 - **Graph-of-groups hosts with the input in a vertex group, over edge groups
   of type `FP_{n+1}`: dead.** If a finite graph of groups with `FP_{n+1}` edge
   groups has fundamental group of type `FP_{n+1}`, then every vertex group is
@@ -58,3 +59,12 @@ route `type-fn-plus-1-hosts-from-f-infinity-hosts`.
   variant (`L' -> G` with `FP_∞` kernel, `P` acyclic of type `FP_∞`) fails:
   on such coefficients the side `ι x 1` factors through `P` and contributes
   nothing. Work in progress in the lane artifact.
+- **Level three, `n = 2` (lane z1-01-ffz-fp3).** The case `n = 2` is
+  `every-finitely-presented-group-embeds-in-an-f3-group`. This claim implies
+  it through `f3-hosts-for-fp-groups-from-type-fn-plus-1-hosts`. Two
+  obstructions are established there:
+  `fp2-vertex-graph-of-groups-infinite-h2-edge-kills-fp3` and
+  `twisted-rope-trick-container-is-not-fp3-over-fp2-hosts`. The live explicit
+  candidate is `acyclic-host-twisted-rope-container-is-of-type-fp3`. It
+  differs from the product rope above: `α` lands in a group `P_0` that is only
+  known to be finitely presented, and `ker π` is not of type `FP_∞`.

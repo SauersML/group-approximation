@@ -31,7 +31,7 @@ its container never goes above `FP_2`. This claim invalidates
 `type-fn-hosts-via-higman-rope-trick`, the dead route that proposes the container
 as an `F_{n+1}` host. It rules out a method, not every host, so it is not a
 witness for `some-type-fn-group-embeds-in-no-type-fn-plus-1-group`. The same
-paper's Theorem A is `fournier-facio-zaremsky-rp-fp-n-hosts-give-f-n-hosts`.
+paper's Theorem A is `ffz-rp-fpn-embedding-gives-fp-fn-embedding`.
 
 **Provenance.** Theorem B, Definition 1.5 and the paper's title, authors and
 date were read from the arXiv v1 HTML on 2026-09-13. An independent reading

@@ -6,7 +6,7 @@ title: "Recursively presented FP_{n+1} hosts give F_{n+1} hosts for groups of ty
 target: every-type-fn-group-embeds-in-a-type-fn-plus-1-group
 requires:
   - every-fg-rp-group-has-rp-fp-n-hosts-for-each-finite-n
-  - fournier-facio-zaremsky-rp-fp-n-hosts-give-f-n-hosts
+  - ffz-rp-fpn-embedding-gives-fp-fn-embedding
 ---
 
 Let `n >= 2` and let `G` be of type `F_n`, so `G` is finitely presented. The

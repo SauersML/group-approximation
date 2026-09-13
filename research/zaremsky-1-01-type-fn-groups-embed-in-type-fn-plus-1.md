@@ -79,3 +79,11 @@ groups of type `FP_n`.
   `every-finitely-presented-group-embeds-in-an-f-infinity-group`.
 - Negative side (lane z1-01-embed-neg): recorded on
   `some-type-fn-group-embeds-in-no-type-fn-plus-1-group`.
+- Homological forms: `universal-fp-group-embeds-in-rp-fp-infinity-group`
+  (Part 2) and `every-fg-rp-group-has-rp-fp-n-hosts-for-each-finite-n`
+  (Part 1), both equivalent through Theorem A
+  (`ffz-rp-fpn-embedding-gives-fp-fn-embedding`).
+- Level three, `E_3` (lane z1-01-ffz-fp3):
+  `every-finitely-presented-group-embeds-in-an-f3-group`, with its homological
+  form `universal-fp-group-embeds-in-an-rp-fp3-group` and the live candidate
+  `acyclic-host-twisted-rope-container-is-of-type-fp3`.

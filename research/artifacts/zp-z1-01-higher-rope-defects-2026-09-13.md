@@ -18,10 +18,13 @@ sources, landed nodes and standard homological algebra.
     In a group of type F_∞?"
   - Question 1.4: "Does every finitely generated group embed in a group of type FP_3? In a group of type
     FP_∞?"
-  - Theorem A (node `fournier-facio-zaremsky-rp-fp-n-hosts-give-f-n-hosts`), Lemma 2.1 (finitely
-    presented + FP_n ⇒ F_n), Theorem B (node `higman-rope-trick-group-is-never-fp3`), Remark 3.5
-    (the rope trick depends on F being free, including Leary's embedding of ⟨F, t | [t, r], r ∈ R⟩
-    into a group of type FP_2).
+  - Theorem A: node `ffz-rp-fpn-embedding-gives-fp-fn-embedding`, imported from the TeX source by lane
+    z1-01-ffz-fp3. This lane's earlier HTML-based import of the same theorem was retired in its favor.
+  - Lemma 2.1: finitely presented + FP_n ⇒ F_n.
+  - Theorem B: node `higman-rope-trick-group-is-never-fp3`.
+  - Remark 2.2: Leary's FP_2 container is the rope-trick HNN extension, [Lea18a, Lemma 2.2].
+  - Remark 3.5: the rope trick depends on F being free, and so does Leary's embedding of
+    ⟨F, t | [t, r], r ∈ R⟩ into a group of type FP_2.
 - Leary, *Subgroups of almost finitely presented groups*, Math. Ann. 372 (2018), arXiv:1610.05813:
   "every countable group embeds in a group of type FP_2".
 - Higman, *Subgroups of finitely presented groups*, Proc. Roy. Soc. London Ser. A 262 (1961).

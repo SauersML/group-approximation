@@ -74,7 +74,7 @@ in the root.
   `Hig_ι(G)` is never of type `FP_3(Q)` for infinite `G = F/R` with `R != 1`
   (Fournier-Facio--Zaremsky, arXiv:2607.21727v1, Theorem B). This kills a
   method for the affirmative answer, not every host, so it is no witness. The
-  same paper's Theorem A (`fournier-facio-zaremsky-rp-fp-n-hosts-give-f-n-hosts`)
+  same paper's Theorem A (`ffz-rp-fpn-embedding-gives-fp-fn-embedding`)
   is a lever for the affirmative side.
 
 - **What a genuine obstruction needs.** It needs an invariant that `U` has and
