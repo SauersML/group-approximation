@@ -129,6 +129,42 @@ property, and it is a nontrivial R-fibre W*-bundle.
 - This is why `ah-face-bundles-are-trivial` and the vector-bundle form of
   `some-tensor-tower-has-unsplittable-tails` stay open.
 
+## 5. Mechanical check of the combinatorics (MSI, 2026-09-13)
+
+**The script.** A small Python script (`/scratch.global/sauer354/ex/ex2-tw-unsplittable-tails/moore_check.py`)
+multiplies all nonzero `F_2`-linear forms in the tail variables `t_{2n+1}, …, t_{2m}` and truncates by
+`t_j^{d_j+1}`, with `d_j = 2^{j−1}`.
+
+**Output, quoted.**
+
+```text
+n=0 m=1 terms=1 monomials=[(1, 2)]
+n=0 m=2 terms=1 monomials=[(1, 2, 4, 8)]
+n=1 m=3 terms=18 monomials=[(1, 2, 4, 8), (1, 2, 8, 4), (1, 4, 2, 8), (1, 4, 8, 2)] ...
+n=0 m=3 terms=1 monomials=[(1, 2, 4, 8, 16, 32)]
+control (0,2) with d_4=7: terms=0
+```
+
+**What it confirms.**
+- For `n = 0` the truncated Moore determinant is exactly the top monomial `Π_j t_j^{2^{j−1}}`.
+- For a tail it is nonzero.
+- Lowering one dimension by one kills it. So the base dimensions of the tower are sharp for this
+  argument.
+
+**Theorem D, same check.** `weyl_check.py` multiplies one linear form per nonzero `c ∈ F_p^s` modulo
+`±`, and truncates by `y_j^{d_j+1}` with `d_j = (p−1)p^{j−1}/2`. Output, quoted:
+
+```text
+p=3 s=2 forms=4 dsum=4 terms=1 sample=[((1, 3), 2)]      control last d-1: terms=0
+p=3 s=4 forms=40 dsum=40 terms=1 sample=[((1, 3, 9, 27), 1)]   control: terms=0
+p=5 s=2 forms=12 dsum=12 terms=1 sample=[((2, 10), 4)]   control: terms=0
+p=7 s=2 forms=24 dsum=24 terms=1 sample=[((3, 21), 6)]   control: terms=0
+```
+
+In each case the truncated Euler class is the single top monomial with a unit coefficient, and the
+controls vanish. This checks the leading-monomial step of Theorem D for these cases. The general
+statement remains a sketch.
+
 ## Trust surfaces
 
 - Theorem C and Corollaries C1–C2 are elementary consequences of Theorem B of part 1, plus the
