@@ -20,9 +20,9 @@ references [Gro99, Wei00] to Gromov and Weiss, verbatim:
 A group is surjunctive when every injective cellular automaton over it, with a
 finite palette, is surjective.  Gromov and Weiss proved that every sofic group
 is surjunctive, and Bowen and Chapman present Problem 1.1 as arising from their
-work.  Ceccherini-Silberstein and Coornaert ask the question in print in 2010,
-as open problem (OP-11) of *Cellular Automata and Groups*, and Arzhantseva and
-Gal record it as open in 2013 (arXiv:1312.7682).  Bowen and Chapman work with
+work.  Ceccherini-Silberstein and Coornaert list the question as open problem
+(OP-11) of *Cellular Automata and Groups* (2010, p. 417), and Arzhantseva and
+Gal (arXiv:1312.7682) record it as open in 2013.  Bowen and Chapman work with
 finitely generated groups and finite sets of colours.
 
 The two theorems below answer **no**:

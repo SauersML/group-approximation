@@ -18,15 +18,17 @@ project:
     answer is no, already for a finitely generated group. The witness is the
     symmetric double of the pair
     Γ = EL₃(𝔽₂[x₁, x₂, x₃]) ≤ G = EL₃(𝔽₂[x₁^±¹, x₂^±¹, x₃^±¹]) ⋊ EL₃(ℤ), the
-    q = 2, r = d = 3 member of the family in Kun and Thom's Theorem E, with the
-    acting group SL₃(ℤ) written as EL₃(ℤ), which is the same group, acting by
-    monomial substitution.
+    q = 2, r = d = 3 member of the family in Kun and Thom's Theorem E, with
+    EL₃(ℤ) = SL₃(ℤ) acting by monomial substitution.
     Reducing exponents modulo n makes G residually finite, so G is surjunctive,
     and the development proves that the double G *_Γ G of a surjunctive group
     is surjunctive over every subgroup (isSurjunctive_symmetricDouble in
     GroupApproximation/Dynamics/DoubleFinitarySite.lean). With Γ trivial this
-    is the free product G * G, a case of the product question that Arzhantseva
-    and Gal record as open, citing Weiss (2000); Doucha and Gismatullin still
+    is the free product G * G
+    (GroupApproximation.Surjunctivity.isSurjunctive_coprodI_double, for
+    Monoid.CoprodI of two copies of G), a case of the product question that
+    Arzhantseva and Gal record as open, citing Weiss (2000); Doucha and
+    Gismatullin still
     state the free-product case ℤ * G as a conjecture (Groups Geom. Dyn. 16
     (2022), Conjecture 3.12), and we have found no later resolution. Both G and
     Γ have property (T), and Γ is infranormal in G without being normal; for
@@ -100,8 +102,9 @@ sources:
       witness the same day at 04:43 UTC (dd87a6b2b); the Lean endpoint
       GroupApproximation.BowenChapman.exists_fg_surjunctive_not_isSofic landed
       at 22:43:16 UTC (92ad0059d) and the Palomar surface at 22:48:48 UTC
-      (c1e3df1ef). That postdates Kun and Thom's v2 and Bowen and Chapman's v1
-      of 2025-11-10, and no earlier or independent answer was found.
+      (c1e3df1ef). That postdates the latest versions of both sources, Kun and
+      Thom's v3 of 2026-08-20 and Bowen and Chapman's v1 of 2025-11-10, and no
+      earlier or independent answer was found.
 
   # Background for the LIX result: the problem and its history, the positive
   # results the counterexample had to avoid, the construction's ancestry and
@@ -350,9 +353,9 @@ sources:
     relationship: background
     note: >-
       Ann. Math. Blaise Pascal 27(1):125-130; arXiv:1312.7682, v1 2013-12-30.
-      Page 127 (page 3 of arXiv v1) records the question answered here as
-      open: "It is still unknown whether every group is surjunctive and whether
-      there exists a non-sofic surjunctive group." The paper proves that a
+      Page 127 records the question answered here as open: "It is still
+      unknown whether every group is surjunctive and whether there exists a
+      non-sofic surjunctive group." The paper proves that a
       split extension with a finitely generated residually finite kernel and a
       surjunctive quotient is surjunctive, which settles the direct product of
       a surjunctive group with the integers, and records on page 128 (v1 page
@@ -461,8 +464,10 @@ sources:
     location: Open Problems, p. 417
     relationship: background
     note: >-
-      Springer Monographs in Mathematics. Its chapter on surjunctive groups is
-      the reference for the attributions to Lawton, Gromov and Weiss. The
+      Springer Monographs in Mathematics. The notes to Chapter 3 (p. 68) are
+      the reference for the attribution to Lawton, and Theorem 7.8.1 (p. 272)
+      for the theorem of Gromov and Weiss that every sofic group is
+      surjunctive. The
       Curtis-Hedlund-Lyndon theorem and the textbook facts on surjunctivity
       used here are proved in this development rather than imported, the
       bridge between the two descriptions of a cellular automaton as
@@ -514,8 +519,8 @@ sources:
       residually finite Kazhdan pairs Γ = EL_r(F_q[x_1, ..., x_d]) inside
       G = EL_r(F_q[x_1^±1, ..., x_d^±1]) ⋊ SL_d(Z), for q a prime power and
       r, d at least 3, and the witness used here is the q = 2, r = d = 3
-      member, with the acting group SL_3 of the integers written as EL_3, which
-      is the same group. Theorem 4.1, the permutation centralizer normalization
+      member, with the acting group SL_3 of the integers, which is EL_3.
+      Theorem 4.1, the permutation centralizer normalization
       theorem behind Theorem A, is proved in this development in a general
       sequential form, for an arbitrary countable Kazhdan group with a Kazhdan
       infranormal subgroup, and the nonsoficity of the double is derived from
@@ -722,8 +727,9 @@ fidelity:
     carrying a finitary site: the kernel of a symmetric double is free of
     infinite rank, so their hypothesis fails and a stratified peeling argument
     replaces it. The Lean theorem is about SymmetricDouble G Γ; at the trivial
-    subgroup that group is the free product G * G, an identification standard
-    in group theory that the formalisation does not carry out. All groups range
+    subgroup that group is the free product G * G, an identification the
+    development carries out as GroupApproximation.Surjunctivity.doubleBotEquiv,
+    which gives isSurjunctive_coprodI_double. All groups range
     over Type 0, and the counterexample is in Type 0.
 
 
