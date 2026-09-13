@@ -7,7 +7,7 @@ invalidates:
   - torsion-free-sofic-exact-mf-radical-via-titz-witzel
 distinct_from:
   titz-witzel-kernel-sofic: this is its negation.
-  openai-leavitt-unit-nonsofic: that is the nonsofic Leavitt unit group from the one-sided compression criterion; this would be a nonsofic torsion-free simple Kazhdan CAT(0) lattice, where no compression pair is known.
+  openai-leavitt-unit-nonsofic: that is the nonsofic Leavitt unit group from the one-sided compression criterion; this would be a nonsofic torsion-free simple Kazhdan CAT(0) lattice, where no compression pair can exist (vcd-two-groups-contain-no-kazhdan-commuting-pairs).
 artifacts:
   - research/artifacts/titz-witzel-sofic-structure-audit-2026-08-26.md
   - research/artifacts/titz-witzel-radu-sublattice-2026-09-11.md
@@ -35,3 +35,13 @@ group known today.
   (`radu-mark-is-controlled-by-one-commutator`).  The only exact-quotient
   input left to make robust is Radu's Proposition 5.4, the collapse of one
   commutator.
+* **Compression pairs and lamps (2026-09-13).** Dead by dimension. `K` has cohomological
+  dimension two, so by `vcd-two-groups-contain-no-kazhdan-commuting-pairs`:
+  - an infinite Kazhdan subgroup of `K` commutes with no nontrivial subgroup meeting it
+    trivially;
+  - `K` contains no `Z^3` and no generalized wreath product with an infinite lamp set.
+
+  So neither the expander-matching criterion (the mechanism of Khanh's finitely presented simple
+  nonsofic group), nor Kun--Thom wreath products, nor the Fournier--Facio wreath shift has an
+  instance in any subgroup of `K`. The same holds in Radu's lattice. The Kun--Thom double
+  `G *_Gamma G` is not excluded by that count.
