@@ -58,7 +58,8 @@ in `GroupApproximation/Pestov91/Assembly.lean`.  The route, all under
 simplicity of `A` and triviality of its centre for a free minimal action
 (`RingSimple.lean`, `WitnessCentre.lean`); simplicity of `EL₃(A)` from those by
 split annihilators and root extraction (`SplitSimplicity.lean`,
-`WitnessSimple.lean`); property `(T)` by the Ershov–Jaikin-Zapirain theorem
+`WitnessSimple.lean`); infiniteness of `EL₃(A)` from the infinite ring
+(`Centre.lean`, `CentreSkew.lean`); property `(T)` by the Ershov–Jaikin-Zapirain theorem
 proved in this repository (`Kazhdan.lean`); the LEF property of `A` from
 periodic models of the Toeplitz sequence (`ToeplitzModel.lean`,
 `LEFCrossedProduct.lean`, `LEFWitness.lean`).  The theorems are existence

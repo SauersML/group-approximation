@@ -145,9 +145,9 @@ sources:
     contributors:
       - name: Claude (Anthropic)
         role: >-
-          solved the problem, with no custom proof tool; reviewed it in two
-          separate agent sessions; wrote all the prose: this file's narrative
-          fields for it and the Palomar Pestov91 docstrings
+          solved the problem, using the custom proof tool Cairn; reviewed it
+          in two separate agent sessions; wrote all the prose: this file's
+          narrative fields for it and the Palomar Pestov91 docstrings
     note: >-
       The positive answer to Ozawa's question, the question checked by
       Palomar/comparator-pestov91.json, is first presented in this project.
@@ -1109,9 +1109,12 @@ sources:
     note: >-
       Adv. Math. 384:107722; arXiv:2007.12655v2. By Proposition 3.19
       (Ozawa-Thom), infinite simple Kazhdan groups are not weakly
-      quasidiagonal. So the witness, which is LEF and hence MF, refutes the
-      introduction's "It is clear from definitions that MF ⇒ weak
-      quasidiagonality" (p. 2). Context only; not formalized.
+      quasidiagonal. So the witness, which is LEF and hence MF (LEF groups
+      are MF: Carrión, Dadarlat and Eckhardt, J. Funct. Anal. 265 (2013),
+      arXiv:1210.4050), contradicts the introduction's "It is clear from
+      definitions that MF ⇒ weak quasidiagonality" (p. 2), not Proposition
+      3.19 itself. Context only; not formalized; the journal version was not
+      compared.
 
 automation:
   methods:
@@ -1133,9 +1136,9 @@ automation:
       models: [Claude (Anthropic)]
       framework: Claude Code
       tool_setup: >-
-        A fleet of Claude Code agents for the mathematics, its two reviews and
-        the Lean development, with remote batch compilation; no custom proof
-        tool.
+        Cairn, a custom proof tool (github.com/SauersML/Cairn), driving a
+        fleet of Claude Code agents for the mathematics, its two reviews and
+        the Lean development, with remote batch compilation.
   notes: >-
     The LIX problem was solved by Astra, using a custom proof tool. All prose
     of that submission was written by Claude Fable 5.1: the registry abstract,
@@ -1159,10 +1162,10 @@ automation:
     entry above.
 
     Ozawa's question, printed by Pestov as Open question 9.1, was solved by
-    Claude (Anthropic) under the author's direction, with no custom proof
-    tool: the construction first appears in the reasoning of a Claude Code
-    agent, and two further Claude Code agents reviewed it in separate
-    sessions. All prose for that result, the narrative fields of this file
+    Claude (Anthropic) under the author's direction, using the custom proof
+    tool Cairn: the construction first appears in the reasoning of a Claude
+    Code agent working in Cairn, and two further Claude Code agents reviewed
+    it in separate sessions. All prose for that result, the narrative fields of this file
     and the docstrings of the Palomar Pestov91 modules, was written by Claude
     (Anthropic), which also produced the Lean formalisation under the
     author's direction. No Codex or GPT agent worked on that result. That
@@ -1500,7 +1503,8 @@ fidelity:
     over every finite field and every infinite minimal subshift. The
     formalized route is finite generation of the ring, its simplicity and
     trivial centre for a free minimal action, simplicity of EL3 by split
-    annihilators and root extraction, property (T) by the
+    annihilators and root extraction, infiniteness of EL3 from the infinite
+    ring, property (T) by the
     Ershov-Jaikin-Zapirain theorem proved in the development, and the LEF
     property by periodic models of the Toeplitz sequence, then LEF to sofic
     to hyperlinear.
