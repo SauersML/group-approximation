@@ -6,18 +6,24 @@ title: If every elementary group over a countable simple ring is LEF, is the rin
 distinct_from:
   stably-mf-elementary-groups-force-matricial-rings: that asks for exact matriciality from MF of every EL_N, a weaker hypothesis and so a stronger claim, which a stably finite non-matricial simple ring with MF elementary groups would refute; this is the LEF rung (L⇒) of the UN root, which survives such a ring.
   exactly-matricial-rings-have-lef-general-linear-groups: that is the forward direction, exact matriciality giving LEF general linear groups; this is its converse over simple rings.
+artifacts:
+  - research/artifacts/un-lef-converse-2026-09-13-part1.md
 ---
 
-**OPEN.** Let `R` be a countable simple unital ring such that `EL_N(R)` is LEF for every `N >= 3`. Then `R`
-embeds unitally in an algebraic ultraproduct of matrix algebras over fields.
+**ESTABLISHED (unreviewed; route `lef-el-groups-matricial-via-lef-ring`, artifact
+`research/artifacts/un-lef-converse-2026-09-13-part1.md`).** Let `R` be a countable simple unital ring such that
+`EL_N(R)` is LEF for every `N >= 3`. Then `R` embeds unitally in an algebraic ultraproduct of matrix algebras over
+fields.
 
-This is rung (L⇒) of `kazhdan-elementary-approximation-type-mirrors-ring-type`.
+In fact more holds: LEF of one `EL_N(R)` with `N >= 4` already gives a unital embedding over FINITE fields
+(`lef-elementary-groups-force-lef-rings` then `simple-lef-rings-are-exactly-matricial`). So for simple rings, rung (L)
+of `kazhdan-elementary-approximation-type-mirrors-ring-type` is an equivalence: LEF `EL_N` for one `N >= 4` ⟺ LEF
+ring ⟺ exactly matricial ⟺ LEF `GL_M` and `EL_M` for all `M`. Rank 3 alone is not covered.
 
-**Why it would matter.** With `exactly-matricial-rings-are-lef-rings` and
-`lef-simple-rings-are-not-finitely-presented`, it shows that no finitely presented infinite simple ring has
-LEF elementary groups in every rank. It also realises the middle rung
-`rank-modelled-simple-algebra-with-non-lef-kazhdan-el-group` as soon as a finitely presented simple
-rank-modelled algebra exists.
+**Consequences.** With `exactly-matricial-rings-are-lef-rings` and `lef-simple-rings-are-not-finitely-presented`:
+- no finitely presented infinite simple ring has a LEF elementary group of rank at least four;
+- the middle rung `rank-modelled-simple-algebra-with-non-lef-kazhdan-el-group` is realised as soon as a finitely
+  presented simple rank-modelled algebra exists.
 
 ## Attempts
 
@@ -29,6 +35,10 @@ rank-modelled algebra exists.
     a group, not a partial ring homomorphism.
   - The missing idea: build the finite ring as an endomorphism ring of a root-subgroup image, using (T) or
     the finite presentation of Steinberg groups to force exactness on larger balls.
+  - **Resolved (un-lef-converse, 2026-09-13):** lift the window to a free ring `A`, whose Steinberg group
+    `St_N(A)`, `N >= 4`, is finitely presented. The finite model then extends to a genuine homomorphism
+    `St_N(A) -> Q`, and its root kernels form a finite-index two-sided ideal `K`. The finite ring is `A/K`,
+    not an endomorphism ring, and no (T) is used.
 - **The contrapositive already works for one-sided inverses.** `cohn-elementary-group-is-not-lef`: over the
   binary Cohn algebra, every finite image of the finitely presented Steinberg cover kills the head root. The
   mechanism is a one-sided compression, so it cannot see stably finite rings. The frontier is stably finite,
