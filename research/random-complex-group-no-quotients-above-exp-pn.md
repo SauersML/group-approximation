@@ -8,13 +8,15 @@ distinct_from:
   random-complex-group-no-quotients-below-exp-pn: that is the proved first-moment regime, orders at most exp(pn/8); this is the complementary regime of larger orders, where the first moment fails.
   meshulam-random-complex-no-polynomial-quotients: that excludes quotients of polynomial order; this asks about orders above exp(n^eta/8), far past any polynomial.
   random-complex-missing-triangle-detected-by-quotient: that asks a random missing triangle to survive in some finite quotient, which by the proved lower regime needs a quotient of order above exp(n^eta/8) and so would refute this claim; this forbids every such quotient.
+artifacts:
+  - research/artifacts/nrfh-kazhdan-quotientless-2026-09-12.md
 ---
 
 **OPEN, conjectural.** For some `0 < η < 1/2`, with `p = n^(-1+η)`, a.a.s.
 `π_1(Y(n,p))` has no nontrivial finite quotient of order greater than
 `exp(n^η/8)`.
 
-Together with `random-complex-group-no-quotients-below-exp-pn` this says that
+Together with `random-complex-group-no-quotients-below-exp-pn`, this says that
 a.a.s. `π_1(Y)` has no nontrivial finite quotient at all. That settles
 `random-complex-group-no-large-finite-quotients`, and hence both the
 quotientless Kazhdan target and the non-residually-finite target through their
@@ -22,17 +24,20 @@ existing random-complex routes.
 
 ## What is left
 
-Every nontrivial finite quotient has a nontrivial simple quotient. By the
-proved lower regime, a.a.s. every simple quotient of `π_1(Y)` has order above
-`exp(n^η/8)`. So the claim is exactly the absence of epimorphisms onto:
+Every nontrivial finite quotient has a nontrivial simple quotient. By the proved
+lower regime, a.a.s. every simple quotient of `π_1(Y)` has order above
+`exp(n^η/8)`. By `random-complex-mid-range-group-is-perfect`, a.a.s. none is
+abelian. So the claim is exactly the absence of epimorphisms onto:
 
 - **alternating groups `A_m` with `log(m!/2) > n^η/8`.** The degree `m` is only
   polynomial in `n`, of order `n^η / log n`, so these are connected `m`-sheeted
   covers of `Y` with alternating monodromy;
 - **simple groups of Lie type of order above `exp(n^η/8)`,** of unbounded rank or
-  over large fields;
-- **cyclic groups of prime order above `exp(n^η/8)`,** which is a homological
-  question about `H_1(Y; Z/ℓ)`.
+  over large fields.
+
+Cyclic groups of prime order are excluded at every order. This was listed here as
+open until 2026-09-12, but it follows from integral homology vanishing; see
+`random-complex-mid-range-group-is-perfect`.
 
 Sporadic groups have bounded order, so none survive for large `n`. As
 `hyperbolic-rf` notes, superrigidity kills bounded-rank Lie quotients only for
@@ -47,6 +52,27 @@ arithmetic hosts, not for random complexes.
   that forces equalities between labels. The open problem is to control the
   entropy of these forced label classes when `|G|` is superexponential in
   `n^η`.
+- **Exact first moment, untruncated: provably diverges (2026-09-12).** No
+  refinement of the previous bullet suffices on its own.
+  - **Free edges.** Let `A_e` be the event that no triangle contains the edge
+    `e`. It has probability `exp(−pn + o(1))`, and on it
+    `π_1(Y) = π_1(Y_e) * Z`.
+  - The events `A_e` over a matching of `j` edges are independent.
+  - **Divergence.** Let `G` be nonabelian simple with `log|G| >= (1+ε)pn`. Then
+    `E[#{N ⊴ π_1(Y) : π_1(Y)/N ≅ G}] >= |G|^(j−2) exp(−jpn + o(1)) -> ∞` once
+    `j > 2 + 2/ε`. The same holds for homomorphisms, for classes in `H^1(Y;G)`,
+    and for index-`m` subgroups with `log m! >= (1+ε)pn`.
+  - **All this mass sits on `∪_e A_e`,** whose probability is at most
+    `n^2 exp(−pn + o(1)) -> 0`.
+  - **Consequence.** No untruncated first-moment count, however it treats labels,
+    proves this claim at orders above `exp((1+ε)pn)`. The count has to be
+    restricted to a good event.
+  - **Controlling quantity.** Let `𝒢_δ` be the event that every edge lies in at
+    least `(1−δ)(n−2)p` triangles and `H_1(Y;Z) = 0`; it holds a.a.s. The claim
+    follows if, for some `δ > 0`,
+    `Σ_{S nonabelian simple, |S| > exp(n^η/8)} E[#{N ⊴ π_1(Y) : π_1(Y)/N ≅ S} · 1_{𝒢_δ}] -> 0`.
+    Whether it does is not determined.
+  - Details in the artifact, §2.2–2.3.
 - **Local spectral expansion and property (T).** A connected cover of `Y` has the
   same links as `Y`, so it is again a `λ`-local spectral expander, and every
   finite-index subgroup of `π_1(Y)` is again Kazhdan. Nothing local bounds the
