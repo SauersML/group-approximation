@@ -22,3 +22,5 @@ it is exactly matricial over finite fields.
 
 **Model test.** `R = F_2 × F_2` is LEF and not simple. Projecting to one factor is unital but not injective,
 so simplicity is needed.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: the semisimple quotient of a finite ring is a product of `M_d(F_q)`, unital projection onto one factor, the ultraproduct homomorphism, and injectivity by simplicity. `research/artifacts/un-review3-2026-09-13-part3.md` §4.

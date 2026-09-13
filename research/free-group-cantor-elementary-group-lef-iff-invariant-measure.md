@@ -65,3 +65,5 @@ Kazhdan groups. Root: `kazhdan-elementary-approximation-type-mirrors-ring-type`.
   their own tower theorem.
 - **Finite generation.** It is needed for (T). Odometer-type towers give LEF but not Kazhdan groups
   (`odometer-crossed-product-elementary-groups-not-kazhdan`).
+
+**Review (un-verify-3, 2026-09-13): PASS (assembly).** Every required node has a PASS review line or is an established import. Re-derived: Step 0 (minimal effective groupoid, simple `S_N` with scalar centre, (T)); Step 1 (with `Λ = F_q^x` finite, the kernel of `∏_ω GL → ∏_ω GL/ΛI` is `[ΛI]` and `EL_N(R) ∩ ΛI = Z`, so `S_N` embeds in an ultraproduct of finite groups); Step 2 (trivial MF quotients from rank `2n`, so not MF, not LEF). Requires note: the route asserts finite generation of `S_N` but does not require `elementary-group-fg-from-fg-coefficient-ring` (established), which this body cites. `research/artifacts/un-review3-2026-09-13-part3.md` §1.

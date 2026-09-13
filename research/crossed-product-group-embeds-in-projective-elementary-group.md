@@ -20,3 +20,5 @@ artifacts:
 - So a non-LEF (or nonsofic) acting group makes every `EL_N(R)/Z`, `N >= 3`, non-LEF (or nonsofic).
 
 Route: `crossed-product-group-projective-elementary-embedding-proof`.
+
+**Review (un-verify-3, 2026-09-13): PASS.** `w(v)w(−1) = diag(v, v^(-1)) ∈ E_2`, and `diag(v, v^(-1), 1) e_13(1) diag(v^(-1), v, 1) = e_13(v)` detects central units. `research/artifacts/un-review3-2026-09-13-part3.md` §7.

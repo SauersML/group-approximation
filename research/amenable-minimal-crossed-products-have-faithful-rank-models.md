@@ -19,3 +19,5 @@ The models truncate the orbit representation to Følner sets. Minimality gives s
 the rank of every nonzero element below by a fixed fraction. Freeness is not used.
 
 Route: `amenable-minimal-crossed-products-faithful-rank-models-proof`.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: the truncation defect has rank `o(|F_n|)`, and faithfulness follows from syndetic visits and a `K`-separated set of columns with disjoint supports `Kh`. Freeness is not needed. `research/artifacts/un-review3-2026-09-13-part3.md` §6.

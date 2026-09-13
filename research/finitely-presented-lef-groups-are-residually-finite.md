@@ -16,3 +16,5 @@ A partial embedding of a ball that contains every relator and a word for `g ≠ 
 It kills the relators and keeps `g` nontrivial.
 
 Route: `finitely-presented-lef-groups-are-residually-finite-proof`.
+
+**Review (un-verify-3, 2026-09-13): PASS (standard).** A partial embedding of a relator ball defines a finite quotient that separates `g`. `research/artifacts/un-review3-2026-09-13-part3.md` §8.

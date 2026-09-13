@@ -31,3 +31,5 @@ and the group lies strictly between the Pestov end (LEF) and the paradox end (no
 MF of `S_N` are open.
 
 Route: `simple-kazhdan-linear-sofic-non-lef-via-abels-prufer-subflow`.
+
+**Review (un-verify-3, 2026-09-13): PASS.** Re-derived: `Γ_p` is not RF, because `c_p` dies in every finite quotient (regular representations are finite-dimensional unitary), hence not LEF by finite presentation. The subflow ring is finitely generated and simple with scalar centre and (T). Faithful Følner rank models plus the reviewed adjoint theorem give `F_q`-linear soficity, and the Whitehead embedding of `Γ_p` gives non-LEF. The GJS import was not re-read. `research/artifacts/un-review3-2026-09-13-part3.md` §5.

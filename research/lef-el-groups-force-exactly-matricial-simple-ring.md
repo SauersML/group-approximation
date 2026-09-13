@@ -47,3 +47,5 @@ ring ⟺ exactly matricial ⟺ LEF `GL_M` and `EL_M` for all `M`. Rank 3 alone i
   finite coincide (`subshift-ring-lef-iff-word-edges-lie-on-cycles`). Test the claim there first: it holds if
   a non-directly-finite subshift ring has a non-LEF elementary group. That is the `cohn-elementary-group-is-not-lef`
   pattern, using the return corner of `clopen-return-towers-transfer-direct-finiteness-and-matrix-rank`.
+
+**Review (un-verify-3, 2026-09-13): PASS.** The route `lef-el-groups-matricial-via-lef-ring` is re-derived (rank four gives a LEF ring; simple LEF rings are exactly matricial over finite fields). The UN root stays open, since (Σ⇒) and (M⇐) are open. Display note: the title is still phrased as a question; restate it as the theorem. `research/artifacts/un-review3-2026-09-13-part3.md` §2.
