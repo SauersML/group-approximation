@@ -199,3 +199,37 @@ section action.
 
 **Not checked.** Seward's Sinai factor paper (arXiv:1804.05269), Hayes's relative sofic entropy papers, surveys. The
 web search budget was exhausted. Novelty is therefore unreviewed.
+
+## 7. Addendum (same day): the checkable sufficient conditions, tested
+
+1. **Bernoulli lifting is excluded over w-rigid quotients.** `bernoulli-lifts-across-finite-kernels-force-virtual-splitting`
+   (complete proof in its route).
+   - The lifting cocycle `c(γ, x) ∈ π^-1(γ)` of a torsor over a diffuse Bernoulli shift is a `W`-valued cocycle.
+   - Popa's Theorem 0.1 (arXiv:math/0512646v8, p. 4) makes it cohomologous to a homomorphism `δ`.
+   - Projecting to `Q`, the conjugator pushes `μ` forward to an invariant probability measure for
+     `γ . g = γ g θ(γ)^-1`. So `θ = π δ` is conjugation by some `g` on a finite-index `Q_0`, and `ĝ δ ĝ^-1` splits the
+     extension over `Q_0`.
+   - So case (ii) of Corollary C covers only virtually split extensions when `Q` is w-rigid, for example `Sp_4(Z)`.
+   - The relative form of Popa's theorem (cocycles of `σ × ρ` come from `ρ`) is consistent with the liftability of
+     every product `L^Q × Y_0` with liftable `Y_0`.
+2. **Property MD.** Seward, arXiv:1602.06680v2, Corollary 8.8, read 2026-09-13: "Let G be a residually finite group
+   with property MD, let G y (X;µ) be an aperiodic p:m:p: action, and let F be a G-invariant sub-σ-algebra with
+   hG(X;µ|F)<∞. The following are equivalent. (1) hG(X;µ|F) = hG(X×Y;µ×ν|F∨B(Y)) for all p:m:p: actions G y (Y;ν).
+   (2) [subgroup formula]. Furthermore, if Σ is a soﬁc approximation to G with hΣ_G(G/∆;u_{G/∆}) ≠ −∞ for every
+   ﬁnite-index normal subgroup ∆◁G and hΣ_G(X;µ) = hG(X;µ) < ∞, then (1) and (2) hold with F = {∅;X}."
+   - For residually finite `Q`, take `Σ` through the quotients by the intersections of all normal subgroups of index
+     at most `i`. The quotient maps give exact models of every finite action, and `X = L^Q` has
+     `h^Σ = h^Rok = H(L)`.
+   - So (1) holds for `Y = Ω/N`, and Corollary C(iii) gives ascent for every finite extension of an MD group.
+   - **Scope.** The same page says "SLn(Z) has property MD precisely when n = 2", because property FD fails for
+     `n > 2`. The MD examples listed there are good groups, whose finite central extensions virtually split.
+3. **Weak containment of `Ω/N` in finite actions.** Seward's Lemma 8.5 and Theorem 8.7 give
+   `h_Q(L^Q × Y | B(Y)) >= h^Σ(L^Q)` for finitely modular `Y`. So `Ω/N ≺ Z` for one finitely modular `Z` also gives
+   (3.1), through Corollary 6.4(4).
+   - Heuristic, not proved: such a weak containment reads approximate lifts on finite quotients `Q/Δ`, hence sofic
+     approximations of `W`, so it would be a sofic-level hypothesis.
+   - This is where Gohla–Thom's obstruction lives: under a cosystolic inequality, actions weakly contained in finite
+     actions carry a nonzero class.
+
+**Net.** The model-free sufficient condition left open is weak containment of `Ω/N` in Bernoulli shifts of `Q`, not in
+finite actions. Equivalently, it is Seward's direct-product equality for the pairs `(L^Q, Ω/N)`.

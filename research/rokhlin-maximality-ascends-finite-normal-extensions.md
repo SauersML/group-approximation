@@ -52,6 +52,19 @@ artifacts:
   by Popa's cocycle superrigidity, a Bernoulli shift of a w-rigid `Q` lifts only when the extension virtually
   splits. There ascent is already a finite-index statement. In particular no Bernoulli shift of `Sp_4(Z)` lifts to
   Deligne's `E_3`.
+- **Property MD gives ascent, but misses higher rank.** Let `Q` be residually finite with property MD (a finitely
+  modular action weakly contains every action).
+  - Seward's Corollary 8.8 in arXiv:1602.06680v2, with a sofic approximation through finite quotients and
+    `X = L^Q`, gives `h_Q(L^Q × Y | B(Y)) = H(L)` for every p.m.p. `Y`.
+  - Case (iii) of `finite-kernel-rokhlin-ascent-from-weakly-minimal-lift`, with `Y = Ω/N`, then makes every finite
+    extension of `Q` maximal.
+  - The same paper records that `SL_n(Z)` has MD exactly when `n = 2`, since MD needs property FD. So this does not
+    reach Deligne-type extensions.
+  - The known MD groups are good in Serre's sense and have no persistent classes. Their finite central extensions
+    virtually split.
+
+  Weak containment of `Ω/N` in finite actions probably already gives soficity of `W`, by reading approximate lifts
+  on finite quotients. This was not written out. Artifact Section 7.
 - **Where it dies (mechanism analysis, artifact Section 5).**
   - The canonical liftable action is the twisted section action `Ω/N`. Weak containment of `Ω/N` in Bernoulli shifts
     asks for an approximate trivialization of the extension class on Bernoulli orbit relations of `Q`.
