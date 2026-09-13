@@ -1,0 +1,32 @@
+18a83240ff82d0bcdcdcd33c15780d72  zds3f.c
+bb21f8e679a4cf406489d09b8d045f2e  /var/spool/slurmd/job595297/slurm_script
+9dcdfdceb7cbe674541e612c8de13e39  g6.g6
+e9ec34ddc80a89b76ea2891069724da0  g8.g6
+7e0db7ec781d9dfade72b7349beaf18d  g10.g6
+8425106f87820a705ae1e8480e94a527  g12.g6
+db238c873aa586bc24c3522ec9f324c1  g14.g6
+87bc3472cb740f66c763003fc01640ce  g16.g6
+f653db5ba40025533134fbaba8fcab86  surv14.txt
+== L6: zds3f -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=0 graphs=1 surv=0 budget=0
+TOTAL items 1 nodes 174 surv 0 prunes coinc 99 ab 0 finite 14 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+== L8: zds3f -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=1 graphs=2 surv=0 budget=0
+TOTAL items 2 nodes 1271 surv 0 prunes coinc 767 ab 0 finite 78 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+== L10: zds3f -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=0 graphs=6 surv=0 budget=0
+TOTAL items 6 nodes 7177 surv 0 prunes coinc 4317 ab 0 finite 397 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+== L12: zds3f -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=0 graphs=22 surv=0 budget=0
+TOTAL items 22 nodes 53560 surv 0 prunes coinc 32461 ab 0 finite 2921 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+== L14: zds3f -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=7 graphs=110 surv=0 budget=0
+TOTAL items 110 nodes 572425 surv 0 prunes coinc 350744 ab 0 finite 25705 power 22 (relators 550) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+== L16: zds3f -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=111 graphs=792 surv=0 budget=0
+TOTAL items 792 nodes 9349699 surv 0 prunes coinc 5795427 ab 0 finite 383859 power 20 (relators 424) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+== L14-c0: zds3f -c 0 -cl 64000 -pw 4 8 rc=0 seconds=11 graphs=110 surv=0 budget=0
+TOTAL items 110 nodes 5758822 surv 0 prunes coinc 3737531 ab 0 finite 84 power 62 (relators 2374) bs 0 fails 0 budget 0 climit 0 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+== L14-c250: zds3f -c 250 -cl 64000 -pw 4 8 rc=0 seconds=3 graphs=110 surv=0 budget=0
+TOTAL items 110 nodes 581416 surv 0 prunes coinc 357779 ab 0 finite 24569 power 22 (relators 550) bs 0 fails 0 budget 0 climit 250 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+== L14-nopw: zds3f -c 1000 -cl 64000 rc=0 seconds=6 graphs=110 surv=20 budget=0
+TOTAL items 110 nodes 572425 surv 20 prunes coinc 350744 ab 0 finite 25707 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 0 0 depth 0 bs -1 40 root 0 probe 0 greedy
+n=14 without power sieve: v1 survivors 16, v3 survivors 20, common 16
+n=12 graphs 22 nodes 53560 per graph 2434.55 median 2280 max 11525
+n=14 graphs 110 nodes 572425 per graph 5203.86 median 3305 max 18744
+n=16 graphs 792 nodes 9349699 per graph 11805.2 median 8237 max 72299
+ALLDONE

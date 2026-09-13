@@ -268,5 +268,28 @@ exactly when some torsion-free quotient of `G_Gamma` is injective on the vertice
   - Root probes cost more than they save. `-probe 6` gives 354,598 search nodes plus 1,270,020
     probe nodes. `-bs 8 -bsd 3` prunes 599 labellings and `-pwd 3` prunes 1073; neither changes
     the node count by more than 1%.
-- Running on MSI with `zds3.c`: `ladder.sbatch` (`n = 6..16`, job 595297) and `n18.sbatch` (all
-  7805 graphs at `n = 18` in 32 shards, job array 595304). `zds.c` at `n = 16`: job 592716.
+- `n <= 18` with `zds3.c`: default order, at most 1000 cosets at partial labellings and 64000 at
+  complete ones, sieve 6 with words of length at most 4 and `e <= 8`. No labelling survives, no
+  run hits a limit, and every exit code is 0.
+  - `ladder.sbatch` (job 595297, log `ladder.595297.log`). `n = 6, 8, 10` take 174, 1271 and
+    7177 nodes.
+
+    | `n` | graphs | nodes | median per graph | max per graph | seconds |
+    |---|---|---|---|---|---|
+    | 12 | 22 | 53,560 | 2,280 | 11,525 | 0 |
+    | 14 | 110 | 572,425 | 3,305 | 18,744 | 7 |
+    | 16 | 792 | 9,349,699 | 8,237 | 72,299 | 111 |
+
+    At `n = 14` without sieve 6, 20 labellings survive. They include the 16 left by the earlier
+    version.
+  - `n18.sbatch` (array job 595304). The concatenated shard logs are `n18.595304.logs.txt`, the
+    output of `agg.sh` is `n18.595304.agg.txt`, and the GRAPH and TOTAL lines are
+    `r18.lines.txt.gz`. geng res/mod gives 32 shards and 7805 graphs, as in A--T Table 3, with no
+    duplicates. The search takes 179,291,759 nodes, with median 11,271 and maximum 324,527 per
+    graph, and 2304 core-seconds. It prunes 111,968,100 labellings by coincidence, 6,551,884 as
+    finite, and 4 by sieve 6.
+  - So the search reproduces A--T's bound `|supp beta| >= 20` for `|supp alpha| = 3` over `F_2`.
+    It uses their reduction to simple triangle-free graphs, but no forbidden subgraphs.
+- Running on MSI: `n20.sbatch` (all graphs at `n = 20` in 128 shards, array job 595808), and
+  `zds.c` at `n = 16` (job 592716). From `n = 14` to `n = 18` the node count per graph roughly
+  doubles per two vertices, which projects about 16 core-hours at `n = 20`.

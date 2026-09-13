@@ -1,0 +1,8 @@
+logs 32 without ALLDONE 0
+shards 32 rc!=0 0 graphs 7805 surv 0 budget 0 seconds 2304 max 173
+geng graphs 7805
+g6 lines 7805 duplicates 0 GRAPH lines 7805
+items 7805 nodes 179291759 coinc 111968100 ab 0 finite 6551884 power 4
+per graph 22971.4 median 11271 max 324527
+333b1977b9e5d9ee97292e9f53d9791e  -
+AGGDONE

@@ -1,0 +1,256 @@
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595307/slurm_script
+== shard 0 graphs 252 md5 d4bb07bbd62a5ed9937a4b1643a754c6
+>Z 252 graphs generated in 0.36 sec
+== r18.0 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=104 done=252 surv=0 budget=0
+TOTAL items 252 nodes 7292502 surv 0 prunes coinc 4554035 ab 0 finite 262951 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595308/slurm_script
+== shard 1 graphs 307 md5 4450ca58dac87206fe88b3f62cb658c7
+>Z 307 graphs generated in 0.25 sec
+== r18.1 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=110 done=307 surv=0 budget=0
+TOTAL items 307 nodes 9454023 surv 0 prunes coinc 5931415 ab 0 finite 333080 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595309/slurm_script
+== shard 2 graphs 276 md5 4e7a7e2aeb9de4181a4f48288054de44
+>Z 276 graphs generated in 0.33 sec
+== r18.2 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=81 done=276 surv=0 budget=0
+TOTAL items 276 nodes 7122912 surv 0 prunes coinc 4430176 ab 0 finite 269703 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595310/slurm_script
+== shard 3 graphs 188 md5 5df96e1d9e5c250c27a483272c1df450
+>Z 188 graphs generated in 0.28 sec
+== r18.3 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=48 done=188 surv=0 budget=0
+TOTAL items 188 nodes 3614357 surv 0 prunes coinc 2251920 ab 0 finite 139393 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595311/slurm_script
+== shard 4 graphs 234 md5 d59dba8a0d838b86b11b9556db9424f3
+>Z 234 graphs generated in 0.31 sec
+== r18.4 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=47 done=234 surv=0 budget=0
+TOTAL items 234 nodes 3558702 surv 0 prunes coinc 2213378 ab 0 finite 138840 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595312/slurm_script
+== shard 5 graphs 213 md5 e7331c0d0ef521ae72f0fa594b6f648f
+>Z 213 graphs generated in 0.26 sec
+== r18.5 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=45 done=213 surv=0 budget=0
+TOTAL items 213 nodes 3598391 surv 0 prunes coinc 2251422 ab 0 finite 132775 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595313/slurm_script
+== shard 6 graphs 281 md5 3db3afd4873d1bcdd235bbd5911bb404
+>Z 281 graphs generated in 0.30 sec
+== r18.6 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=132 done=281 surv=0 budget=0
+TOTAL items 281 nodes 7937963 surv 0 prunes coinc 4956668 ab 0 finite 290552 power 4 (relators 12) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595314/slurm_script
+== shard 7 graphs 170 md5 01250d61384a34998132235ad1e3ee95
+>Z 170 graphs generated in 0.30 sec
+== r18.7 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=34 done=170 surv=0 budget=0
+TOTAL items 170 nodes 2448023 surv 0 prunes coinc 1523639 ab 0 finite 97619 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595315/slurm_script
+== shard 8 graphs 224 md5 c6885a3025687c4aef44a0bd653628f8
+>Z 224 graphs generated in 0.27 sec
+== r18.8 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=50 done=224 surv=0 budget=0
+TOTAL items 224 nodes 4425179 surv 0 prunes coinc 2766347 ab 0 finite 160690 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595316/slurm_script
+== shard 9 graphs 242 md5 1b2a22d2ef0cbf3b477b469dfd85bfa4
+>Z 242 graphs generated in 0.26 sec
+== r18.9 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=76 done=242 surv=0 budget=0
+TOTAL items 242 nodes 6339396 surv 0 prunes coinc 3965550 ab 0 finite 225128 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595317/slurm_script
+== shard 10 graphs 302 md5 68f7098dc3d5f914dd7a263da3deb4e7
+>Z 302 graphs generated in 0.30 sec
+== r18.10 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=100 done=302 surv=0 budget=0
+TOTAL items 302 nodes 8371446 surv 0 prunes coinc 5208009 ab 0 finite 323177 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595318/slurm_script
+== shard 11 graphs 263 md5 d15aad9ed6e652ee0ed130366f3e5796
+>Z 263 graphs generated in 0.31 sec
+== r18.11 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=103 done=263 surv=0 budget=0
+TOTAL items 263 nodes 7983437 surv 0 prunes coinc 4964714 ab 0 finite 302916 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595319/slurm_script
+== shard 12 graphs 170 md5 2d27f764cf50529e3edc7a451b80c0a2
+>Z 170 graphs generated in 0.24 sec
+== r18.12 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=36 done=170 surv=0 budget=0
+TOTAL items 170 nodes 3160884 surv 0 prunes coinc 1981223 ab 0 finite 109679 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595320/slurm_script
+== shard 13 graphs 147 md5 3cc861f6d1d2d58111a4e2366a88ae87
+>Z 147 graphs generated in 0.54 sec
+== r18.13 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=65 done=147 surv=0 budget=0
+TOTAL items 147 nodes 2252295 surv 0 prunes coinc 1417340 ab 0 finite 73840 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595321/slurm_script
+== shard 14 graphs 304 md5 437f2af7efe67d363c3951d7fb11f3a7
+>Z 304 graphs generated in 0.28 sec
+== r18.14 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=102 done=304 surv=0 budget=0
+TOTAL items 304 nodes 8510863 surv 0 prunes coinc 5341239 ab 0 finite 288356 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595322/slurm_script
+== shard 15 graphs 237 md5 2e81018045a9a399c3291a002c95da42
+>Z 237 graphs generated in 0.29 sec
+== r18.15 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=58 done=237 surv=0 budget=0
+TOTAL items 237 nodes 5116756 surv 0 prunes coinc 3199258 ab 0 finite 189087 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595323/slurm_script
+== shard 16 graphs 317 md5 9580d0607dab979146a8db5fe446ea1b
+>Z 317 graphs generated in 0.31 sec
+== r18.16 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=114 done=317 surv=0 budget=0
+TOTAL items 317 nodes 9572400 surv 0 prunes coinc 5989145 ab 0 finite 341020 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595324/slurm_script
+== shard 17 graphs 193 md5 074af6c397d0a9268e6cc7a8d7903244
+>Z 193 graphs generated in 0.62 sec
+== r18.17 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=93 done=193 surv=0 budget=0
+TOTAL items 193 nodes 3602103 surv 0 prunes coinc 2258122 ab 0 finite 123877 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595450/slurm_script
+== shard 18 graphs 146 md5 aabbd7aed9e7372ed55ccd32af09ce43
+>Z 146 graphs generated in 0.22 sec
+== r18.18 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=28 done=146 surv=0 budget=0
+TOTAL items 146 nodes 2406607 surv 0 prunes coinc 1512197 ab 0 finite 84325 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595451/slurm_script
+== shard 19 graphs 345 md5 7c1049dd436cc3e64b67c6c0c461331c
+>Z 345 graphs generated in 0.30 sec
+== r18.19 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=85 done=345 surv=0 budget=0
+TOTAL items 345 nodes 7098453 surv 0 prunes coinc 4430726 ab 0 finite 252127 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595452/slurm_script
+== shard 20 graphs 171 md5 3408d7867f1a3af80a273093fd136ff9
+>Z 171 graphs generated in 0.25 sec
+== r18.20 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=41 done=171 surv=0 budget=0
+TOTAL items 171 nodes 3367905 surv 0 prunes coinc 2095000 ab 0 finite 126653 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595453/slurm_script
+== shard 21 graphs 332 md5 5d84d3455663fe01114ffb2d4fc8eccd
+>Z 332 graphs generated in 0.30 sec
+== r18.21 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=75 done=332 surv=0 budget=0
+TOTAL items 332 nodes 6048184 surv 0 prunes coinc 3770744 ab 0 finite 225058 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595454/slurm_script
+== shard 22 graphs 248 md5 be15c8ba6acd8797886ad93d6b47f1d1
+>Z 248 graphs generated in 0.28 sec
+== r18.22 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=76 done=248 surv=0 budget=0
+TOTAL items 248 nodes 5908153 surv 0 prunes coinc 3662157 ab 0 finite 235571 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595455/slurm_script
+== shard 23 graphs 180 md5 4d7b52da41d78397f524748c0ef0ea83
+>Z 180 graphs generated in 0.27 sec
+== r18.23 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=35 done=180 surv=0 budget=0
+TOTAL items 180 nodes 3398440 surv 0 prunes coinc 2124283 ab 0 finite 119417 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595456/slurm_script
+== shard 24 graphs 212 md5 9536bf4e0b34cb4c7a9a11ed472dbd8f
+>Z 212 graphs generated in 0.28 sec
+== r18.24 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=77 done=212 surv=0 budget=0
+TOTAL items 212 nodes 5687089 surv 0 prunes coinc 3567016 ab 0 finite 204503 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595457/slurm_script
+== shard 25 graphs 188 md5 8b6ed3d4727f73997a4a0b551af2dabe
+>Z 188 graphs generated in 0.25 sec
+== r18.25 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=33 done=188 surv=0 budget=0
+TOTAL items 188 nodes 2864233 surv 0 prunes coinc 1786313 ab 0 finite 100585 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595458/slurm_script
+== shard 26 graphs 254 md5 7d5333472d48056e68a1ab7d82763891
+>Z 254 graphs generated in 0.37 sec
+== r18.26 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=63 done=254 surv=0 budget=0
+TOTAL items 254 nodes 5131496 surv 0 prunes coinc 3186663 ab 0 finite 195520 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595459/slurm_script
+== shard 27 graphs 206 md5 230e721995fce5387435905702d7d98c
+>Z 206 graphs generated in 0.30 sec
+== r18.27 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=44 done=206 surv=0 budget=0
+TOTAL items 206 nodes 3548068 surv 0 prunes coinc 2204378 ab 0 finite 139277 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595460/slurm_script
+== shard 28 graphs 174 md5 a67bc5ed3cb41c9a225bc530104a10e0
+>Z 174 graphs generated in 0.27 sec
+== r18.28 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=31 done=174 surv=0 budget=0
+TOTAL items 174 nodes 2565650 surv 0 prunes coinc 1612206 ab 0 finite 88506 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595461/slurm_script
+== shard 29 graphs 429 md5 494d1927bae7d6bc52aded5ed95ff2f7
+>Z 429 graphs generated in 0.36 sec
+== r18.29 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=173 done=429 surv=0 budget=0
+TOTAL items 429 nodes 14770349 surv 0 prunes coinc 9239105 ab 0 finite 529781 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595462/slurm_script
+== shard 30 graphs 302 md5 2b4d533ed88be6bda400f447cab9f351
+>Z 302 graphs generated in 0.31 sec
+== r18.30 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=82 done=302 surv=0 budget=0
+TOTAL items 302 nodes 6699227 surv 0 prunes coinc 4171731 ab 0 finite 246802 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
+d7115c98eecf0d98ef9b45d59818d6d8  zds18
+18a83240ff82d0bcdcdcd33c15780d72  zds18.c
+e1f75f9fdd0f2661e05e45a13260ffc1  /var/spool/slurmd/job595304/slurm_script
+== shard 31 graphs 298 md5 fda4fdfe8c898cf96cfbaf2df6b0d138
+>Z 298 graphs generated in 0.30 sec
+== r18.31 opts -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=63 done=298 surv=0 budget=0
+TOTAL items 298 nodes 5436273 surv 0 prunes coinc 3401981 ab 0 finite 201076 power 0 (relators 0) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+ALLDONE
