@@ -8,6 +8,7 @@ distinct_from:
   one-relator-fox-magnus-descent-to-derived-linton-radical: that uses the relation module to close the quotient modulo `R'`; this asks for soficity of the full bi-infinite nonabelian chain beyond exactly that first-order boundary.
   one-relator-groups-sofic: that is the question in full; this is the specific amalgamation theorem that would close it through the Magnus hierarchy, and is strictly weaker than closure under amalgamation over arbitrary free subgroups.
   sofic-radical-soficization: that identifies the sofic radical as the kernel of soficization, a construction applied to an arbitrary group; this is an amalgamation statement about a specific bi-infinite chain of one-relator pieces, and no radical or soficization appears in it.
+  no-magnus-hierarchy-one-relator-groups-sofic: that is the rigid remainder, torsion-free groups whose Magnus piece admits no relative amenable hierarchy in any basis; this asks for every staggered kernel, with no rigidity hypothesis, so that class is contained in this one.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---
