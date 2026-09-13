@@ -10,7 +10,8 @@ artifacts:
   - research/artifacts/semidihedral-and-gl2-f3-blocks-forced-states-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof: route `semidihedral-blocks-not-full-proof`; not yet verified; lane verifier `w4-vf-linear-b`).
+**ESTABLISHED** (proof: route `semidihedral-blocks-not-full-proof`; verified by `w4-vf-linear-b`, Section 40 of
+`research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`).
 
 Let `R = L_(F_3)(1,2)`, `G = R^x`, `S_- = eps_- F_3[G]`, `pi : S_- -> R` the evaluation, `alpha(g) = (g^*)^(-1)`, and
 `pi' = pi o alpha_*`. Let `SD = <w, d, h>`, `c_2 = -eps_-(1 + [wh] + [dh])` and `c_1 = eps_- - c_2`.

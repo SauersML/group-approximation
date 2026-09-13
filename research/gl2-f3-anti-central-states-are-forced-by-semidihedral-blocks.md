@@ -10,8 +10,8 @@ artifacts:
   - research/artifacts/semidihedral-and-gl2-f3-blocks-forced-states-2026-09-12.md
 ---
 
-**ESTABLISHED** (proof: route `gl2-f3-anti-central-states-forced-proof`; not yet verified; lane verifier
-`w4-vf-linear-b`).
+**ESTABLISHED** (proof: route `gl2-f3-anti-central-states-forced-proof`; verified by `w4-vf-linear-b`, Section 40 of
+`research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`).
 
 Let `R = L_(F_3)(1,2)`, `G = R^x`, `z = -1`, `S_- = eps_- F_3[G]`, `u = [eps_-]`, `H = E x| V`, `alpha(g) = (g^*)^(-1)`,
 and `trl`, `H_fin` as in `anti-central-state-exists-iff-lifted-trace-relatively-positive`. Let `GL = GL_2(F_3)` be the
