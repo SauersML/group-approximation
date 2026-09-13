@@ -13,7 +13,8 @@ distinct_from:
 **ESTABLISHED** through `fpbs-twisted-level-percolation-disconnected-proof`.
 
 **Setting.**
-- `Gamma = N semidirect_phi Z` is torsion-free and word-hyperbolic.
+- `Gamma = N semidirect_phi Z` is torsion-free and word-hyperbolic, and `N != 1`.
+  The case `N = 1` is excluded: there `Gamma = Z`, `S` is empty and `T_delta` is one vertex, which is connected (review-swarm6-groups-2026-09-12 §3).
 - `t` generates the `Z` factor, with `t u t^-1 = phi(u)`.
 - `S` is a finite symmetric subset of `N \ {e}`.
 - `T_delta(N, S, phi)` is the random graph of `fpbs-twisted-level-graph-generates-cyclic-extension`: pairs `(u, m) in N x Z` are open independently with probability `delta`, and an open pair gives the edges `{u, phi^-m(x) u}` for `x in S`.

@@ -18,7 +18,8 @@ artifacts:
   `β ∈ Aut(B)`.
 - Let `s: Γ → Aut(F_n)` be a section of `π` over `Γ ≤ Out(F_n)`, and put
   `Λ = Γ ∩ J_B`.
-- Assume `Λ` has property FA and finite abelianization.
+- Assume `Λ` has finite index in `J_B`, and that `Λ` has property FA and finite
+  abelianization.
 
 **Statement.** The group `π^{-1}(J_B)` acts on `T` without inversions, and
 exactly one of the following holds.
@@ -39,5 +40,17 @@ finite-index `Γ`.
 different splittings to be incompatible under `Γ`. That is not proved. In case
 (N) the restriction of `ρ` to inner automorphisms raises the same question one
 rank down.
+
+**Correction (review-swarm6-groups-2026-09-12 §2).** The first version of the
+Setting did not require `Λ` to have finite index in `J_B`, and the statement
+was then false.
+- If `Γ = 1`, then `s(Λ)` fixes all of `T`, which is neither a star nor a
+  single vertex.
+- Take `rank B ≥ 3` with basis `b_1, b_2, b_3, …`, and let `β` swap `b_1, b_2`
+  and fix the rest. Put `Γ = ⟨[id ∗ β]⟩ ≅ Z/2` with `s([id ∗ β]) = id ∗ β`.
+  The fixed tree contains `pB` and `b_3⟨p⟩`, which are at distance 3.
+
+Step 4 of the route uses the condition. The finite-index `Γ` of "When the
+hypothesis holds" satisfy it.
 
 The proof is `free-splitting-fa-lifts-choose-a-side-proof`.

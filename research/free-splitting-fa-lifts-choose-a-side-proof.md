@@ -23,10 +23,14 @@ Full argument: Section 2 of the artifact.
    so that `⟨p⟩` is fixed.
    - Then `y(λ) ∈ ⟨p⟩`, and `λ ↦ y(λ)` is a homomorphism to `⟨p⟩ ≅ Z`.
    - Finite abelianization makes it trivial, so `s(λ) = id ∗ β_λ`.
-   - The fixed tree of the standard lift is the star of `⟨p⟩`. The fixed
-     `⟨p⟩`-vertices `x⟨p⟩` need `(id ∗ β)(x) ∈ x⟨p⟩` for all `β` in a
-     finite-index subgroup of `Aut(B)`, `rank B ≥ 2`, which forces
-     `x ∈ ⟨p⟩`. The fixed `B`-vertices are its neighbours `p^m B`.
+   - The fixed tree of the standard lift is the star of `⟨p⟩`. It contains
+     `⟨p⟩` and every neighbour `p^m B`.
+   - A neighbour `p^m b⟨p⟩` of `p^m B`, with `b ∈ B ∖ 1`, is fixed exactly
+     when `β_λ(b) = b` for all `λ`. Since `Λ` has finite index in `J_B`, the
+     `β_λ` form a finite-index subgroup of `Aut(B)`. It contains `ι_{c^k}` for
+     every `c ∈ B` and some fixed `k ≥ 1`, so `b` would commute with every
+     `c^k`. That is impossible, because `rank B ≥ 2`.
+   - Fixed sets are subtrees, so the fixed tree is exactly the star.
 5. **Otherwise (N).** If no `⟨p⟩`-vertex is fixed, the fixed tree contains no
    edge, so it is a single `B`-vertex.
    - Conjugating it to `B` gives `y(λ) ∈ B`.
