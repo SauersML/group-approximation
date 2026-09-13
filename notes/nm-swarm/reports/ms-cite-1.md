@@ -173,6 +173,44 @@ Consequences:
 **Verdict: unsettled at ε ≥ 1.** No counterexample found and no cheap `decide`-sized refutation; no rescue mechanism is
 proved beyond the individual copies above. I built no new model.
 
+## Binder 5 made non-circular, additively (lead item, 2026-09-13 ~18:15; LANDED eb678c70a)
+
+hull-select's r1 copy forms never landed. They are ported into new modules; no existing module is edited. Nothing on
+origin stated the copy form before (checked at ddc52231a). Boundary agreed with w1-binder-5 in one message: this lane
+states and consumes the copy Prop; w1-binder-5, ms-intro-2 (step 5) and ms-intro-4 (step 6) produce it. At
+w1-binder-5's request the copy is of `Δ`, not `S.diagram`: its producer outputs another optimal family over `Δ`.
+
+Probe 0913-183303-64587 GREEN at base 69fe92a83, BUILT for both modules. Both modules are new, unwired and wire-queued.
+
+`Estimating/OsinPocketMultipleEdgeCopy`:
+- `MultipleEdgePocketRegionCopyInput`: the region data of `MultipleEdgePocketRegionInput` on an O-equivalent copy `X` of
+  the least-area diagram with letter labels, with both `FollowsBoundary` clauses (R1), side norms ≤ ε and no length
+  bounds.
+- `MultipleEdgePocketRegionInput.copyInput`: the old form gives the copy form, witness `S.diagram` with `S.equiv`.
+- `multipleEdgeCutInput_of_copyPieces`: the copy form, the collar and the cell transport give `MultipleEdgeCutInput`,
+  through `nonempty_osinMultipleEdgeCut_of_pocketRegion`.
+- `CellPocketWalkOuterOffSideStatement` and `CellPocketWalkSideRelatorCellStatement`, both stated, not proved: for the
+  clean cell pocket walk of `CellPocketWalk.exists_clean_of_copy`, the exterior is off `sideFaces K.walk` and a relator
+  cell is on it.
+- `multipleEdgePocketRegionCopyInput_of_pinch` (at `0 < ε`): `exists_clean_of_copy`, then `CellPocketWalkColour.walk_orient`,
+  then `CellPocketWalk.exists_cellPocketFaceSet_closedWalk_of_orient`, then ms-intro-4's
+  `CellPocketFaceSet.copyRegion_of_pinch` (a0ef02fff), composed with `S'.equiv`.
+- `OsinMultipleEdgePocketRegionCopySectionStatement` (∃ε₀ ∀ε ∃ρ₀ ∀ρ `OsinCCondition` prefix);
+  `OsinMultipleEdgePocketRegionSectionStatement.copySection`; `osinMultipleEdgePocketRegionCopySection_of_pinch`
+  (ε₀ = ρ₀ = 1); `osinMultipleEdgeCutSection_of_copyPieces`.
+
+`Estimating/OsinGreendlingerResidualsV2Copy`:
+- `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopySection`: ct-bilateral-cell's `_of_residualsV2`
+  (ffd56be61) with binder 5 as `OsinMultipleEdgePocketRegionCopySectionStatement`.
+- `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2Copy`: binder 5 replaced by four named residuals,
+  `CellPocketCopyCleanStatement`, `CellPocketWalkOuterOffSideStatement`, `CellPocketWalkSideRelatorCellStatement` and
+  `CellPocketPinchPosStatement`, through `copyRegion_of_pinch`.
+- `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2_of_copy`: `_of_residualsV2` follows through `copySection`,
+  so the copy waist asks for no more.
+
+Residuals of binder 5 now: `CellPocketCopyCleanStatement` (w1-binder-5), `CellPocketPinchPosStatement` (ms-intro-4, at
+`0 < ε`), and the two side statements above, which have no owner yet.
+
 ## State
 
 Scope finished for tex 1–1337. The ledger and census correction landed at 09d4f6b3d, the audit module at c04133c00.
