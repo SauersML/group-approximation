@@ -65,3 +65,26 @@ CLAIM first-turn order across the edge doublings: GroupApproximation/GGT/VanKamp
 - `EdgeInsertion` rotation on embedded darts, and first turns transport along `embed` for distinct corners;
 - the first-turn chain of a pocket survives `faceEdgeDoubling` (hull-respell) and `faceEdgeDoublingInside` (ghw-assembly).
   The chain condition is stated inline; the unregistered draft `OsinPocketPinchFirstTurn` defines `PocketFaceSet.FirstTurns`, which this module does not redeclare.
+
+### LANDED c2927f84f (probe 0913-175826-70210 GREEN, BUILT and COMPILED)
+
+`Estimating/OsinPocketEdgeDoublingFirstTurns` is new and unwired, and is queued for wiring. It certifies no printed sentence,
+so it adds no census row.
+- `EdgeInsertion.sigma_embed_apply`, `sigma_none_apply`: the rotation after an edge insertion at distinct corners `a`, `b`.
+  The new dart `some none` sits just before `a`, and `none` just before `b`.
+- `EdgeInsertion.exists_sigma_step_lift`, `exists_sigma_pow_lift`: `k` old rotation steps become `k2 >= k` new steps. Every
+  dart passed strictly inside the new run is new, or the image of a dart passed strictly inside the old run.
+- `EdgeInsertion.walkKeep_map_embed_iff`, `not_walkKeep_map_embed_none`, `not_walkKeep_map_embed_some_none`.
+- `EdgeInsertion.firstTurn_embed`, `firstTurn_reverse_embed`, `firstTurnChain_map_embed`: first turns, and the first-turn
+  chain of a boundary cycle, lift across the insertion for `a != b`.
+- `PocketFaceSet.faceEdgeDoubling_firstTurnChain` (the doubling outside `K`, hull-respell) and
+  `PocketFaceSet.faceEdgeDoublingInside_firstTurnChain` (the doubling inside `K`, ghw-assembly). Neither takes hypotheses
+  beyond those of the construction. The chain condition is stated inline, in the spelling of `firstTurnWalkPocketInputs`
+  on `cycle.reverse.map alpha`; it is exactly the body of `PocketFaceSet.FirstTurns` in the unregistered draft
+  `OsinPocketPinchFirstTurn`.
+- Model check, on paper: a lifted turn changes only at a rotation step into a corner, where it gains one step past a new
+  dart. Neither new dart lies on an image walk, so the turn is never cut short. `corners_ne` rules out equal corners,
+  because the second corner has index 1.
+- Arcs map through the dart embedding, so no arc length changes. Nothing to report to w1-binder-7's full-arc claim.
+
+Next in this item: none. Ready for the next leaf.
