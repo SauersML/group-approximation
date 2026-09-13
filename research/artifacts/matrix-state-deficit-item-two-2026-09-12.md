@@ -95,8 +95,7 @@ configuration, either item 1 fails at `d_0`, or `d_0'(D) >= d_0(D)`. So `d_0` vi
 `theta < 1`.
 
 *Proof.* Suppose item 1 holds at `d_0`. By (F4), `h(d_0) > 0`, so `d_0'` lies in `S` by (F2). By minimality,
-`d_0'(D) >= c = d_0(D)`, and this inequality is (F3). Since `d_0(D) > 0` by (F1), `d_0'(D) > theta d_0(D)` for every
-`theta < 1`. QED
+`d_0'(D) >= c = d_0(D)`. Since `d_0(D) > 0` by (F1), `d_0'(D) > theta d_0(D)` for every `theta < 1`. QED
 
 **Theorem 2.2 (restatement).**
 1. The target holds in scope `A_S` iff `A_S = ∅`, that is, iff
@@ -134,7 +133,10 @@ Lemma 2.1 and (F4). So the content is in positivity.
 ## 3. (a) The violator on `W`
 
 **Proposition 3.1.** Suppose `S_-` has the rank condition. Let `J` be the intersection of all ideals `I` of `S_-`
-with `S_-/I` weakly finite, and put `W = S_-/J`.
+with `S_-/I` weakly finite, and put `W = S_-/J`. So `J = J_omega(S_-)`, the smallest ideal with weakly finite quotient
+(`weakly-finite-reflection-ideal-detects-weakly-finite-images`). This `W` is not the quotient of Theorem C, which
+is by a maximal ideal among those with rank-condition quotient and is a further image of `W`. Below, `W` always
+means `S_-/J_omega`.
 1. `W` is the largest weakly finite image of `S_-`, and it is nonzero.
 2. A minimizer `d_0` over `A_mat` descends to a matrix state on `W`, and it violates the target for every
    `theta < 1`. Every value in items 1–2 is computed in `W`.
