@@ -22,3 +22,5 @@ ultraproduct of matrix algebras over fields iff, for some finite-index `Λ ≤ Z
   artifact §5.2).
 
 Route: `self-similar-sft-matricial-iff-one-torus-module-proof` (artifact §4).
+
+**Review (un-verify, 2026-09-13): PASS.** (⇒) is the reviewed torus criterion at a scale `≥ max(r,3)` followed by descent to scale 3; (⇐) iterates inflation (`D_(m+1) ≥ D_m + 1`, unbounded), descends to every scale, and applies the reviewed torus criterion (un-review-measure part 3 §L1). Scale-3 algebras use the global language `L_(B_3)(Ω)`, so no relation depends on `r`. See `research/artifacts/un-review-2026-09-13-part10.md` §3.

@@ -25,3 +25,5 @@ For `D >= 3` this raises the scale strictly (`D' >= D + 1`).
 (artifact §5).
 
 Route: `constant-shape-substitutions-inflate-torus-tiling-modules-proof` (artifact §3).
+
+**Review (un-verify, 2026-09-13): PASS.** Well defined on `Z²/SΛ`; (T1) by orthogonality of the parent idempotents; (T2) since `⌊(x+w)/s⌋ − ⌊x/s⌋ ≤ ⌈w/s⌉` and `|w′_i| ≤ 2s_min(D−1) ≤ 2s_i(D−1)` put parents within `B_(2D)` after the lift `t′_2 = t′_1 + w′`; (T3) since the lifted ball has at most `⌈(2D′+1)/s_i⌉ ≤ 2D−1` parent values per coordinate, grouping by parent gives `Σ_(a∈A_p) e_a(p̄)`, expansion over `c + B_D` is an algebraic identity even when lifts coincide on the torus, illegal `ρ̃` die by (T3) and legal `ρ̃` would make `π` legal through `σ(x) ∈ Ω`; `D′ = s_min(D−1) ≥ D+1` for `D ≥ 3`. See `research/artifacts/un-review-2026-09-13-part10.md` §2.

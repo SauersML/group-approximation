@@ -69,3 +69,5 @@ ultraproduct `∏_ω M_(d_k)(F_k)` of matrix algebras over fields?
   - **Searches not run.** A meaningful search needs `D >= D_0` (not explicit), simple factors of dimension `>= 3`, and
     tori of at least `14 × 14` at `D = 3` (`196` sites, `19` idempotents each), which is beyond the compute budget.
     Details: `research/artifacts/un-labbe-torus-decider-inflation-2026-09-13.md` §5.
+
+**Review (un-verify, 2026-09-13) of the un-labbe-torus-decider Attempts: PASS with one wording repair.** The descent/inflation/Corollary C bullet matches reviewed nodes; the golden-rotation eigenvalue argument is correctly marked recalled and limited to recognizable substitutions; the skeleton argument is correctly marked heuristic, and the one sentence asserting column- and row-constancy of the width projections in modules is now marked not proved. See `research/artifacts/un-review-2026-09-13-part10.md` §4.

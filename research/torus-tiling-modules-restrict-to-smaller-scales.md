@@ -17,3 +17,5 @@ So in Theorem 1(d) of `torus-quantum-tilings-decide-matriciality-of-sft-rings` i
 finite-dimensional modules at unboundedly many scales.
 
 Route: `torus-tiling-modules-restrict-to-smaller-scales-proof` (artifact §2).
+
+**Review (un-verify, 2026-09-13): PASS.** (T1) and (T2) restrict directly; for (T3) the partition of unity at the sites of `B_D ∖ B_(D′)` expands the scale-`D′` product into scale-`D` products (all factors commute by (T2) at scale `D`; coinciding torus sites only produce zero terms), each extension of an illegal pattern is illegal, and (T3) at scale `D` kills it. See `research/artifacts/un-review-2026-09-13-part10.md` §1.
