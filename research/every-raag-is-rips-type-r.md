@@ -25,6 +25,24 @@ contractible for every `t ≥ n`, where `n` is the size of a largest clique in
   (Li–Sánchez Saldaña, Theorem 1.5); and, through their free-product closure
   (Theorem 1.3), every `Γ` whose connected components are cliques or
   triangle-free (`raags-with-clique-or-triangle-free-components-are-type-r`).
+- **2026-09-13, products of free groups (UNREVIEWED).** Complete multipartite
+  `Γ`, `A_Γ = F_{n_1} × ⋯ × F_{n_k}`, are of type R with `r_0 = k(k+1) − 1`
+  (`complete-multipartite-raags-are-rips-type-r`). The proof verifies
+  Zaremsky's criterion (arXiv:2410.11993, Theorem 3.1) for l^1 products of trees
+  through tree barycentres, Helly number `k+1` and rounding
+  (`l1-products-of-trees-have-contractible-rips-complexes`). With the
+  free-product closure this covers every `Γ` whose components are complete
+  multipartite or triangle-free
+  (`raags-with-multipartite-or-triangle-free-components-type-r`), including
+  `F_2 × F_2 × F_2` and `Z^2 × F_2`.
+- **Next obstacle.** The smallest uncovered graph is the triangle with a
+  pendant vertex, `A_Γ = Z × (Z^2 * Z)`. The criterion argument needs a
+  barycentre with the Jensen bound `d_1(x,b) ≤ ∫ d_1(x,y) dμ` in the Salvetti
+  cover. For products of trees it comes coordinatewise from Lemma J. For
+  `Z^2 * Z` (a tree of l^1 planes and lines glued at vertices) a candidate is
+  the barycentre in the tree-graded CAT(0) realization, with Jensen proved by
+  the same first-variation argument across the gluing points. That is not
+  checked yet.
 - **Where the imported methods stop.** Li–Sánchez Saldaña glue Rips-contractible
   pieces along sets of diameter ≤ 1 around a point (their Corollary 2.5), which
   is how squares assemble into a two-dimensional Salvetti cover. They call the

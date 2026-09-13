@@ -56,10 +56,15 @@ intersect and have no common point.
   (Hulbert–Zaremsky, arXiv:2608.25614, Theorem B;
   `triangle-free-raag-vr2-is-contractible`).
 
-Open as of 2026-09-13: every connected `Γ` containing a triangle and not
-complete. The smallest cases are the triangle with a pendant vertex
-(`Z^3 *_Z Z^2`) and `K_4` minus an edge (`Z^2 × F_2`). Products such as
-`F_2 × F_2 × F_2` are also open.
+- Complete multipartite `Γ` (products of free groups `F_{n_1} × ⋯ × F_{n_k}`,
+  e.g. `F_2 × F_2 × F_2` and `Z^2 × F_2`): contractible for `t ≥ k(k+1) − 1`,
+  proved on this graph 2026-09-13, UNREVIEWED
+  (`complete-multipartite-raags-are-rips-type-r`). Combined with free products:
+  `raags-with-multipartite-or-triangle-free-components-type-r`.
+
+Open as of 2026-09-13: every connected `Γ` that contains a triangle and is not
+complete multipartite. The smallest is the triangle with a pendant vertex,
+`A_Γ = Z × (Z^2 * Z)`.
 
 ## Attempts
 
