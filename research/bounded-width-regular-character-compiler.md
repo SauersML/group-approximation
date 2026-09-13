@@ -34,3 +34,17 @@ the required quantum-to-classical zero-loss transfer without pointwise rounding.
 - **Decode only an abstract subgroup.** Insufficient: Q3.4 requires finite
   action/fixed-point statistics, not merely a subgroup satisfying finitely many
   memberships. Finite-action decoding is part of the claim.
+- **Build clause 1 with tools valid in every tracial algebra.**  Then the
+  no-gap import has to exclude the regular representation of a nonsofic group
+  (§3 of `research/artifacts/q34-rounding-routes-2026-09-12.md`).
+  - The regular representation of the group of
+    `finitely-presented-nonsofic-group-exists` is a zero-loss model of every
+    window.
+  - Suppose clause 1 applied to it and `bounded-width-operator-csp-no-gap`
+    covered the resulting operator assignment.  Clause 3 would then decode
+    finite actions and make that group sofic.
+  - So finite dimension enters either in clause 1 or in the operator class of
+    the imported theorem.  That node says "operator-valued counterparts"
+    without naming the class.
+  - The first thing to settle is that class, from arXiv:2404.11709.  If it
+    contains every tracial assignment, clause 1 must use finite dimension.
