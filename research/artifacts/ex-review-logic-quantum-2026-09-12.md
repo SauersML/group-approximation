@@ -51,6 +51,10 @@ The sweep criteria are those of the sibling reviews:
 | 2 | the quantum symmetry rung: `qc-qa-graph-gap-gives-non-ce-quantum-automorphism-group`, `lcs-tracial-nonru-gap-gives-qc-qa-cfi-graph-gap`, `closure-safe-support-is-exactly-the-colored-iso-rung`, `colored-cfi-rung-is-the-solution-group-case` | nh-mipstar | **PASS.**  Citations checked at source (BCEHPSW, Roberson--Schmidt).  One import not re-read: synchronous algebra = BCS algebra (P1).  The target roots stay OPEN |
 | 2 | `unique-games-hard-at-completeness-one-half`, `two-to-two-games-theorem`, `galois-unique-game-value-is-transversal-expansion`, `elementary-abelian-galois-games-round-with-linear-loss`, `galois-games-round-through-free-subgroups`, `free-subgroup-rounding-fails-for-non-normal-fibres` | ugc, ugc-rounding-pgroups | **PASS.**  One wording note on `C_2`.  The SoS claim is OPEN, not established |
 
+| 3 | `kazhdan-commutant-compression-stability-is-finitary`, `leavitt-unit-group-outside-class-iff-compression-stability`, `hs-vertex-rounding-and-liftable-masa-force-normalization` | free-unified-theory | **PASS.**  The rows rest on established prerequisites not re-derived here |
+| 3 | `pauli-sums-near-their-one-norm-round-to-stabilizer-states`, `pauli-projector-hamiltonians-are-stabilizer-approximable`, `qudit-stabilizer-rounding-for-code-constraint-hamiltonians`, `pauli-norm-games-qpcp-needs-imperfect-completeness` | quantum-pcp | **PASS.**  Citation routes not re-read; novelty pass advised |
+| 3 | structural sweep of all landings of the twelve lanes | all | **PASS.**  Every direct `requires: []` route into a famous root is killed by an established invalidator |
+
 ## Part files
 
 - `research/artifacts/ex-review-logic-quantum-2026-09-12-part1.md`: §1, residual finiteness and
