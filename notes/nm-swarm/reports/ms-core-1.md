@@ -77,6 +77,16 @@ None in this range.
   - Modules: `Algebra/CornerLEF` (a corner of an LEF ring is LEF), plus new
     `Manuscript/NonMFSentences/DynamicRankBudgetInducedCore*` and `Dynamics/ReturnSection*` helpers.
   - ct-rank-budget keeps `ReturnTransientIdealStatement`, placement, ReturnKernel, the bridge and packaging.
+  - LANDED `Algebra/CornerLEF` 4ce7498e3 (probe 0913-183811-89839 GREEN): `Pestov91.IsLEFRing.corner`.
+  - LANDED `Manuscript/NonMFSentences/DynamicRankBudgetInducedCoreReverse` c56f96a99, verified by probe 0913-184151-5011 GREEN
+    on the same bytes.
+    - `isReturnSection_restrict`, `returnTime_restrict`, `firstReturnHomeomorph_restrict_coe`.
+    - `mem_chainRecurrentSet_firstReturn_of_pieces`: `C ∩ CR(T) ⊆ CR(S_C)`, printed route.
+    - `image_chainRecurrentSet_firstReturn_of_pieces`: `CR(S_C) = C ∩ CR(T)`.
+    - Both take only `CoreRingReflectionStatement` and `CoreModelsLEFStatement` as premises.
+    - Process slip: the first landing used `NM_UNVERIFIED` for a Lean file, and main was told.
+  - Remaining: (a) a direct unconditional proof of `C ∩ CR(T) ⊆ CR(S_C)`; (b) the printed saturation route for
+    `CR(S_C) ⊆ C ∩ Y` (tex 1745–1749).
 
 ## ReturnRing modules (ms-core-1)
 
