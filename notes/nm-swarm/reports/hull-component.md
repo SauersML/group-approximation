@@ -117,5 +117,25 @@ Q, with the Q-level facts as hypotheses. The hypothesis list went to hull-count9
   The lemma takes any T, so it is unaffected.
 - Consumer: hull-count94's producer of Q (Estimating/OsinLemma94ClassJoins, unlanded).
 
+## Bad-junction exclusion (09-13): the planar half
+The lead assigned the bad-junction exclusion. fff-periodic owns the Prop, and this lane writes it.
+- Model test, sent to hull-count94: the "at least 2 non-joins" filter fails on a spur inside a bubble. The exclusion
+  that holds is "at most one same-cell junction of a polygon is not a join", and it needs no DartMinimal.
+- GGT/VanKampen/Estimating/OsinLemma94JunctionPocket (GREEN 0913-170620-78416; landed with this report; in the wire
+  queue), at CombMap level. A junction is `hb : σ b = α a`, `hab : facePerm^(m+1) a = b` with `hleast` (m least),
+  `hm : m ≠ 0`, and `hface : faceOf (α b) ≠ faceOf a`. The split map is `FoldMap.joined M (facePerm^m a) a`.
+  - `reach_or_reach (hM : M.IsConnected) p e x`: after any join, every dart is reached from `facePerm p` or
+    `facePerm e`.
+  - `not_reach`, `junction_not_reach`: the face side (from b) and the gap side (from `facePerm a`) are apart. The
+    proof goes through `PinchLemma.split_euler`.
+  - `reach_gap`, `reach_face`: the gap is on the gap side, and the face across the corner is on the face side.
+  - `gap_alpha_faceOf_ne`: (B) the reversed gap avoids the walk of the face.
+  - `reach_face_or_reach_face`: (C1) of two junctions of one face with different b, every dart is on the face side of
+    one of them. So a given dart, such as one on the outer face, is on the gap side of at most one junction.
+- Open for the exclusion Prop:
+  - the polygon-level spelling, which waits on hull-count94's `J k s` (Estimating/OsinLemma94ClassJoins, unlanded);
+  - value one of the gap. `closedWalk_value_eq_one_of_gCells` (GGT/VanKampen/ClosedWalkValue) needs a
+    `FaceAssembly`, and the general `RegionFaceAssemblyStatement` is an unproved binder.
+
 ## Next
-Ask hull-count94 for the next unstarted piece.
+The polygon-level exclusion over `J k s`, and a value-one route for the gap loop.
