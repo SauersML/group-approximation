@@ -171,9 +171,11 @@ sources:
       passed a second such review, written before its author read the
       first, at 05:56:33 UTC (badc66e2d). A Claude Code agent in a second
       session found the same group independently, three minutes after the
-      first, and committed it at 04:06:49 UTC (5dfab98df). This postdates
-      the latest
-      version of every source checked for an earlier answer. The newest is
+      first, and committed it at 04:06:49 UTC (5dfab98df). The Lean endpoint
+      GroupApproximation.Pestov91.exists_infinite_simple_kazhdan_lef landed
+      with the completed Palomar surface at 08:43:33 UTC (5f9c16b7b). All of
+      this postdates the latest version of every source checked for an
+      earlier answer. The newest is
       Alekseev and Thom's list of known examples (arXiv:2608.05362 v1,
       2026-08-05), which names no simple one. No earlier or independent answer
       was found in print. The check was bounded: the LaTeX sources of more
@@ -997,7 +999,8 @@ sources:
       Sb. Math. 205(6):843-861; arXiv:1105.0719v4, p. 5. "The topological full
       group of any Cantor minimal system is an LEF group", by periodic
       approximation. The witness is made LEF by the same mechanism, applied to
-      the crossed-product ring; this theorem itself is not used.
+      the crossed-product ring; the development proves that ring version and
+      does not use this theorem.
 
   - title: Groups that are locally embeddable in the class of finite groups
     authors: [Anatoly M. Vershik, Evgenii I. Gordon]
