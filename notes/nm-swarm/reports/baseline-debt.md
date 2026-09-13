@@ -61,6 +61,11 @@ at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-d
   proves `printedHullLemma35 : PrintedHullLemma35`. The module doc of `HullLemma35Printed`
   now records the proof. `#audit_closed_axioms` shows only `propext`, `Classical.choice` and
   `Quot.sound`. Queued for wiring.
+- `a719c860b`: the census row for the DGO 2.35 half moved from LINE:1725 to LINE:1728 and is
+  graded formalized.
+- `7976a7ca7`, probe 0913-132138-96143 (BUILT): `GGT/DGOProposition435PrintedCounterexample.lean`
+  (new) proves `RelHyp.not_dgoProposition435PrintedStatement`, per the team lead's ruling. It
+  refutes the Lean spelling, not DGO's printed Proposition 4.35. Queued for wiring.
 
 | module | declarations |
 |---|---|
@@ -73,6 +78,7 @@ at origin/main 8f4475102. Census rows are in `metadata/nm-census-rows/baseline-d
 | `GGT/HullLemma35Transitive.lean` (new) | `HullLemma35.transitiveRelGenSet`, `isSymmetricGeneratingSet_transitive`, `transitive_alphabet_subset` |
 | `GGT/HullLemma35LocalFinite.lean` (new) | `HullLemma35.relBall_finite_transitive`, `exists_enlargedWord`, `relBall_subset_image` |
 | `GGT/HullLemma35Closed.lean` (new) | `printedHullLemma35 : PrintedHullLemma35`, `HullLemma35.isHyperbolicallyEmbedded_transitiveRelGenSet`, `HullLemma35.exists_guessingData_transitive` |
+| `GGT/DGOProposition435PrintedCounterexample.lean` (new) | `RelHyp.not_dgoProposition435PrintedStatement : ¬ DGOProposition435PrintedStatement.{u, v, w}`, `fiveRelGenSet_isHyperbolicallyEmbedded`, `pairRelGenSet_isHyperbolicallyEmbedded` |
 
 ## Findings closed
 
@@ -194,26 +200,30 @@ stands off it.
     - Constants: `δ` and the hexagon bound `C` of `properRelGenSet D`
       (`sixBound_one_of_fourPointHyperbolic`), one `δE` for all `E i` (the index `Fin n` is
       finite), and the expansion bounds of `exists_pieceWord_length_le`.
-- **Finding: `RelHyp.DGOProposition435PrintedStatement` is false as formalized.**
-  - Counterexample: `G = Multiplicative (ZMod 5)` with generator `t`, `D.base = {t²}`,
-    `fam = ⊤`, `M = PEmpty`, `E.base = {t, t⁻¹}`.
-  - The statement forces the base `{t², t, t⁴}` with no members. That alphabet is not
-    inversion-closed, so no `RelGenSet` has it.
-  - Its `h435` consumers in `GGT/DGOProposition435Printed.lean` are vacuous, so none of them
+- **Finding: `RelHyp.DGOProposition435PrintedStatement` is false as formalized.** Proved by
+  `RelHyp.not_dgoProposition435PrintedStatement : ¬ DGOProposition435PrintedStatement.{u, v, w}`
+  in `GGT/DGOProposition435PrintedCounterexample.lean` (probe 0913-132138-96143, BUILT). `#audit_axioms`
+  shows only `propext`, `Classical.choice` and `Quot.sound`.
+  - It refutes the Lean spelling, not DGO's printed Proposition 4.35. When every `M λ` is
+    empty, the conclusion has no members, so the forced base would have to be closed under
+    inversion on its own. It is not, so no `RelGenSet` has it.
+  - Counterexample: `G = ULift (Multiplicative (ZMod 5))` with generator `t`, `D.base = {t²}`,
+    `fam = ⊤`, `M = PEmpty`, `E.base = {t, t⁻¹}`. The forced base `{t², t, t⁻¹}` does not
+    contain `t⁻²`.
+  - The `h435` consumers in `GGT/DGOProposition435Printed.lean` are vacuous, so none of them
     is a carrier: `isRelativelyHyperbolic_original_of_jointPreservation` (line 315),
     `isRelativelyHyperbolic_original_of_jointPreservation_of_cyclic` (line 404) and
     `canonicalQuotientFamilyPreservation_of_jointPreservation` (line 561). This lane's route
     does not use that statement.
-  - Ruling of 09-13: `not_dgoProposition435PrintedStatement` refutes the Lean spelling, not
-    DGO's printed Proposition 4.35, in a new module of this lane (in progress).
-    `GGT/DGOProposition435Printed.lean` stays unedited.
+  - Per the 09-13 ruling, `GGT/DGOProposition435Printed.lean` stays unedited. No census row
+    names it, so nothing needs re-grading.
 
 ## Next
 
 - Wiring: the root on origin/main imports every module of `296386753`, `dd0412114`,
   `87762b46c`, `be6e71f04`, `5acca195c`, `28fbaaffe`, `6dd556d61`, `7401027ce`, `1369b2bed`
-  and `520f03021`. `HullLemma35Letter` (`0efcdd55c`) and `HullLemma35Closed` (`b5f91627e`)
-  are queued.
+  and `520f03021`. `HullLemma35Letter` (`0efcdd55c`), `HullLemma35Closed` (`b5f91627e`) and
+  `DGOProposition435PrintedCounterexample` are queued.
 - The team lead accepted (a) through (d) as closed; census registers them at its re-baseline.
 - The census row for the DGO 2.35 half moved from LINE:1725 to LINE:1728, the sentence it
   describes, and is graded formalized (request relayed by dgo-geometric). Its `partial` grade
