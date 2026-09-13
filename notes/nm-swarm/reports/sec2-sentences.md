@@ -119,14 +119,14 @@ Every change is to documentation only, and each points to the current carrier:
 
 | file | change | state |
 |---|---|---|
-| GGT/HullSCCommonQuotientCorrected | `hullCommonQuotient` is the `LiteratureInputs` field; names its least-area producer | attic f6985a197; probe running |
+| GGT/HullSCCommonQuotientCorrected | `hullCommonQuotient` is the `LiteratureInputs` field; names its least-area producer | landed 2e93f09d1 after probe 0913-025915-88905 GREEN (all seven BUILT) |
 | GGT/HullSCLemma44Canonical | `hullLemma44CanonicalQuotientStatement_zero`: its consumer was retired and nothing uses it | same |
 | GGT/HullSCLemma44JointRelabel | the re-spelling admission path is now described in the past tense | same |
 | GGT/HullSCLemma49PowerDiagramFromComponents | "was the assembly leaf"; names the least-area twin statement | same |
 | NonMF/FournierFacioParagraphFromSimpleFactor | the five literature-input bullets and the axioms note | same |
 | NonMF/HullFillTheoremCCorrected | the printed forms are stated over `hullInputs_of_leastAreaLeaves` | same |
 | NonMF/TorsionFreeSectionCitations | field table, residual paragraph, axioms note | same |
-| NonMF/FFFParagraphFreeWitness | residual section and two theorem docstrings; the module has no importers | attic f6985a197; probed after the seven above |
+| NonMF/FFFParagraphFreeWitness | residual section and two theorem docstrings; the module has no importers | attic f6985a197; probe running |
 | scripts/TheoremCCompletionAudit.lean | "Superseded (2026-09-13)" header; every audit line kept | landed 9ac39c698 |
 | scripts/check_non_mf_unconditional.py | taint-scan docstrings in the past tense | landed 9ac39c698 |
 | metadata/MF_RECOGNITION_SENTENCE_MAP.tsv (row c6172bdc109a) and MF_RECOGNITION_SENTENCE_CENSUS.md:27 | seed-group note: E takes the three hypotheses; census line matches what the generator writes | landed 8f8b5ccab |
