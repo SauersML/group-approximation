@@ -25,14 +25,16 @@ contain a principal congruence subgroup `A(f)`. Under the congruence subgroup pr
    - Dogon's Theorem 1.3 has no input at `Δ`: every central extension of `Δ` by a torsion-free
      abelian group has infinite abelianization, so it is not Kazhdan.
 
-**Hypothesis (FP).** `A` is finitely presented, hence so is `Δ`. This is Behr's theorem on
+**(FP), established.** `A` is finitely presented, hence so is `Δ`. This is Behr's theorem on
 finite presentation of `S`-arithmetic groups over function fields, where the local ranks of `SL_3`
-at the two places add to `4`. It is also the case `m = 4` of the Bux--Köhl--Witzel rank theorem,
-arXiv:1102.0428 (Ann. of Math. 177 (2013)). Its abstract, read on 2026-09-13, says: "the
-finiteness length of an S-arithmetic subgroup Γ in a noncommutative isotropic absolutely almost
-simple group G over a global function field is one less than the sum of the local ranks of G
-taken over the places in S". For `SL_3` and `S = {0,∞}` the sum is `4`, so `A` is of type `F_3`,
-hence finitely presented. Only the abstract was read; the numbered theorem was not.
+at the two places add to `4`. It is also the case `d = 4` of the Rank Theorem of Bux--Gramlich
+(Köhl)--Witzel, arXiv:1102.0428v1 (Ann. of Math. 177 (2013)). The graph already imports it verbatim
+as `laurent-s-arithmetic-finiteness-lengths` ("SL_3(F_q[t,1/t]) ... type F_3, finitely presented"),
+and that node is now wired into the route. So (FP) is a proved input, not an open hypothesis.
+*Correction (ex-verify2-dynamics, 2026-09-13).* The earlier text read only the abstract and treated
+(FP) as a hypothesis. The Rank Theorem text (p. 2: "the finiteness length φ(Γ) of the S-arithmetic
+group Γ = G(O_S) is d − 1 where d := Σ_(p∈S) dim(X_p) is the sum of the local ranks of G") was
+re-read in the review, part 8 §8.3.
 
 Derivation: `laurent-sl3-central-covers-never-witness-instability-proof`.
 

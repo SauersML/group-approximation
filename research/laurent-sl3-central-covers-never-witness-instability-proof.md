@@ -9,6 +9,7 @@ requires:
   - function-field-hecke-pair-is-perfect-codense-kazhdan
   - kazhdan-cover-models-round-iff-kernel-fixed-mass-one
   - finite-multiplier-projective-models-round-strictly
+  - laurent-s-arithmetic-finiteness-lengths
 ---
 
 Notation as in the claim.

@@ -55,8 +55,14 @@ congruence subgroup of level `f` of `SL_3(F_q[t])`. `X_0` is the Bruhat--Tits bu
 
      By Harder's item 2 this is the multiplicity of the Steinberg representation of
      `SL_3(F_q((t))) × SL_3(F_q((1/t)))` in the discrete spectrum at level `A(f)`. Each term on the
-     right is the top Betti number of a congruence subgroup of `SL_3(F_q[t])`, which the Soulé-sector
-     count of `sl3-polynomial-congruence-subgroups-have-large-b2` computes.
+     right is the top Betti number of a congruence subgroup of `SL_3(F_q[t])`.
+     - The vertex groups are principal levels `Γ(f)`, which are in the table of
+       `sl3-polynomial-congruence-subgroups-have-large-b2`.
+     - The edge and chamber groups are parahoric-type levels between `Γ(tf)` and `Γ(f)`. The same
+       Soulé-sector count covers them with double-coset counts in place of the orbit sizes
+       `|SL_3(A)|/|π(Γ_σ)|`, but that table does not list them, and this count has not been done.
+     *Wording correction (ex-verify2-dynamics, 2026-09-13).* The earlier text said the table
+     "computes" all four terms.
 
 4. **Independent check at `f = 1` (under (S)).** Every cell stabilizer of `A` contains
    `Γ(t)`, and `b_2(Γ(t)) = 0`. So `H^*(A;R) = R`, and `b_4(A) = 0`, without using Harder.
