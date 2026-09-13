@@ -63,6 +63,25 @@ parts 1--2.
 | `rank-five-laurent-k2-stability-is-dimension-free` | hidden-solved | PASS, justification note on centrality | 3 §5.6 |
 | `sofic-linear-weakly-sofic-chain-has-a-strict-link` | unused-power | PASS | 3 §5.7 |
 | `howie-pro-p-tuple-fails-the-profinite-certificate-at-a5` | weak-soficity | PASS | 3 §6 |
+| `thompson-elements-are-undistorted-in-leavitt-unit-group` | q34-leavitt-hs | PASS | 4 §7.1 |
+| `thompson-v-has-no-heisenberg-subgroup`, with its three imports | q34-leavitt-hs | PASS | 4 §7.2 |
+| `leavitt-unit-groups-over-finite-fields-mutually-embed` | q34-leavitt-hs | PASS | 4 §7.3 |
+| `leavitt-north-south-thompson-unit-has-cyclic-centralizer` | q34-leavitt-hs | PASS | 4 §7.4 |
+| `kt-hyperlinear-coset-wreath-forces-nonroundable-vertex` | q34-kt-double | PASS as an implication | 4 §8.1 |
+| `fournier-facio-vertex-rounding-fails-at-every-model` | q34-kt-double | PASS | 4 §8.2 |
+| `kt-sofic-monomial-commutant-core-is-normalized` | q34-kt-double | PASS | 4 §8.3 |
+| `block-monomial-hs-models-sofic-mod-amenable-soft-kernel` | q34-collapse | PASS | 4 §9.1 |
+| `leavitt-units-admit-no-bounded-block-monomial-hs-model` and `kt-double-admits-no-bounded-block-monomial-hs-model` | q34-collapse | PASS | 4 §9.2 |
+| `coarse-frame-normalizers-are-near-block-monomial` | q34-collapse | PASS | 4 §9.3 |
+| `standard-identity-witnesses-force-block-displacement` and `leavitt-unit-microstates-are-asymptotically-primitive` | q34-collapse | PASS | 4 §9.4 |
+| `monomial-rank-models-are-sofic-over-every-field` | q34-collapse | PASS at the outline level | 4 §9.5 |
+| `period-doubling-subshift-algebra-is-its-own-matrix-ring` | nh-fresh | PASS | 4 §10.1 |
+| `rf-kazhdan-group-not-flexibly-hs-stable` | hs-instability-kazhdan | PASS | 5 §11.1 |
+| `finite-multiplier-projective-models-round-strictly` | hs-instability-kazhdan | PASS | 5 §11.3 |
+| `one-compressor-actor-models-with-exact-origin-vertex` | hs-instability-extension | PASS at the checked steps | 5 §12 |
+| `relator-width-over-nilpotent-by-locally-finite-groups` | weak-sofic-deep-wreath | PASS | 5 §13 |
+| `simple-group-psl-width-is-finite-field-linear-soficity` | weak-sofic-classical-covering | PASS | 5 §14 |
+| `simple-vertex-triangles-are-universal-for-triangle-vtf` | hyperbolic-triangle-theory | PASS | 5 §15 |
 
 No FAIL on a claim that decides a famous problem. No false establishment found.
 
@@ -74,6 +93,9 @@ No FAIL on a claim that decides a famous problem. No false establishment found.
   `c q^(rk Q) >= c q`.
 - **`simple-group-support-and-semisimple-rank-models-collapse-proof`, item 4.** The multiplicity bound for
   eigenvalues outside `F` now covers purely inseparable eigenvalues.
+- **`a1-invariance-removes-polynomial-dimension-proof`** (landed with part 4). The centrality of
+  `K2(r, R_d)` is now attributed to van der Kallen's theorem for commutative rings, rather than inferred from
+  stabilization. (RFL4) is derived from normality and generation by the three symbols.
 
 ## 3. Sweep for false establishments (lanes of parts 1--2)
 
@@ -112,16 +134,48 @@ parts 1--2:
 - The two triangle routes between the non-VTF triangle claim and the simple-triangle claim form a 2-cycle,
   and both endpoints are open.
 
+**Refill landings 01:09--01:44, second sweep at tip `b3083ac22`.** No route fires into a famous root.
+- **`non-hyperlinear-group`.**
+  - `non-hyperlinear-from-function-field-hecke-non-re` requires the open, routeless
+    `function-field-hecke-pair-is-not-relatively-embeddable`.
+  - `non-hyperlinear-from-opposite-slice-non-re` requires the open
+    `opposite-transvection-slice-is-not-relatively-embeddable`. That claim's only route needs the same open
+    Hecke claim.
+- **The a7a7a8 triangle.** `a7a7a8-triangle-candidate-without-finite-quotients-instance` requires the open
+  candidate claim.
+- **No integer Heisenberg subgroup.** The two routes into `leavitt-unit-group-has-no-integer-heisenberg-subgroup`
+  require the open `leavitt-units-of-infinite-order-have-linear-depth-growth` and
+  `leavitt-unit-centralizers-have-finite-rank`.
+- **Vertex instability.** `el-r-polynomial-vertex-not-flexibly-hs-stable` is OPEN. Its route requires the open
+  `sl3-polynomial-covers-have-extra-finite-quotients`.
+- **Centralizer normalization.** `kt-centralizer-normalization-hs` stays OPEN, as part 4 §8.4 records.
+- **No status stated in prose.** The claims `a7a7a8-triangle-candidates-no-small-linear-representation` and
+  `a7a7a8-triangle-candidates-no-4dim-char2-representation` have `requires: []` routes, so they compute
+  established. They are first in the queue: the check is whether the exclusions are exhaustive proofs rather
+  than search results.
+
 ## 4. Queue
 
-- The ex-q34-* lanes and ex-nh-fresh.
-- Refills, established but unreviewed:
-  - `rf-kazhdan-group-not-flexibly-hs-stable`, with `bdhv-central-extension-property-t`;
-  - `finite-multiplier-projective-models-round-strictly`;
-  - `one-compressor-actor-models-with-exact-origin-vertex`;
-  - `relator-width-over-nilpotent-by-locally-finite-groups`;
-  - `simple-group-psl-width-is-finite-field-linear-soficity`;
-  - `simple-vertex-triangles-are-universal-for-triangle-vtf`.
+- The two a7a7a8 representation exclusions.
+- Refill claims established since 01:09:
+  - `actor-extension-lifts-vertex-rounding-to-the-laurent-vertex`;
+  - `unit-type-vertex-rounding-agrees-with-sigma-on-laurent-steinberg`;
+  - `compressor-extension-makes-roundable-vertex-part-invariant`;
+  - `one-compressor-wreath-has-models-with-exact-origin-vertex`;
+  - `kazhdan-cover-models-round-iff-kernel-fixed-mass-one`;
+  - `deligne-symplectic-covers-are-not-schatten-approximated`, with its three citations;
+  - `finite-simple-spectrum-gives-quotientless-hyperbolic-group`;
+  - `convergent-quotient-count-decides-gromov-question`;
+  - `linear-quotient-exclusion-lifts-from-char-zero`;
+  - `leavitt-free-group-leading-term-forces-linear-depth`;
+  - `leavitt-triangular-units-have-linear-depth-growth`;
+  - `leavitt-heisenberg-centers-have-infinite-centralizer-rank`;
+  - `simple-group-classical-width-finite-field-linear-soficity`;
+  - `simple-group-width-over-all-finite-simple-groups`;
+  - `non-linear-sofic-simple-groups-bounded-width-in-classical-groups`;
+  - `simple-nonsofic-width-over-bounded-base-symmetric-wreath`;
+  - `opposite-slice-contains-function-field-hecke-pair`;
+  - `kt-double-hyperlinearity-requires-function-field-hecke-re`.
 
 ## Part files
 
@@ -130,3 +184,7 @@ parts 1--2:
   beyond Chern--Quillen (ex-hyperbolic-vtf).
 - `ex-review-backlog-2026-09-13-part3.md`: percolation bridges (ex-free-bridges); hidden-solved imports and
   the K2 chain (ex-free-unused-power); Howie's tuple.
+- `ex-review-backlog-2026-09-13-part4.md`: the Q3.4 lanes (ex-q34-leavitt-hs, ex-q34-kt-double,
+  ex-q34-collapse) and ex-nh-fresh.
+- `ex-review-backlog-2026-09-13-part5.md`: refills, first batch (RF Kazhdan HS instability, finite
+  multipliers, one-compressor models, nilpotent-by-locally-finite width, PSL width, triangle universality).
