@@ -126,14 +126,15 @@ Every change is to documentation only, and each points to the current carrier:
 | NonMF/FournierFacioParagraphFromSimpleFactor | the five literature-input bullets and the axioms note | same |
 | NonMF/HullFillTheoremCCorrected | the printed forms are stated over `hullInputs_of_leastAreaLeaves` | same |
 | NonMF/TorsionFreeSectionCitations | field table, residual paragraph, axioms note | same |
-| NonMF/FFFParagraphFreeWitness | residual section and two theorem docstrings; the module has no importers | attic f6985a197; probe running |
+| NonMF/FFFParagraphFreeWitness | residual section and two theorem docstrings; the module has no importers | landed 12738313c after probe 0913-035649-36569 GREEN (BUILT; attic copy f6985a197) |
 | scripts/TheoremCCompletionAudit.lean | "Superseded (2026-09-13)" header; every audit line kept | landed 9ac39c698 |
 | scripts/check_non_mf_unconditional.py | taint-scan docstrings in the past tense | landed 9ac39c698 |
 | metadata/MF_RECOGNITION_SENTENCE_MAP.tsv (row c6172bdc109a) and MF_RECOGNITION_SENTENCE_CENSUS.md:27 | seed-group note: E takes the three hypotheses; census line matches what the generator writes | landed 8f8b5ccab |
 
 Files owned by other lanes were not edited. Their owners were messaged on 2026-09-13:
 - hull-respell: GGT/HullSCOneStepQuasiGeodesicLeaves.lean:25-26, 38;
-- kh-ejz: Kazhdan/GHBLatticeRouteKazhdan.lean:68-69, and the kh-ejz census row ("TheoremC.kotowskiOllivier is still sorry");
+- kh-ejz: Kazhdan/GHBLatticeRouteKazhdan.lean:68-69, and the kh-ejz census row ("TheoremC.kotowskiOllivier is still sorry").
+  kh-ejz fixed both at 46f1c36a2, after probe 0913-034435-10433 GREEN;
 - ko-closed: Kazhdan/KotowskiOllivierClosed.lean:11-12;
 - nm-endpoints: TorsionFreeLeafAssembly.lean:29, 36-37, 123; TorsionFreeLiteratureInputsLeastArea.lean:18-23, 101;
   TorsionFreeSaturationFromCorrected.lean:21, 74, 264, 435.
@@ -158,3 +159,7 @@ Rows: `metadata/nm-census-rows/sec2-sentences.tsv`.  The four sentences with no 
   no occurrence.  Prove the identity in `Lp ℝ 2 shellMeasure` and close with `exact`.
 - `push_neg` is deprecated at the pin, and warningAsError makes it an error; use `push Not at h`.
 - `#audit_closed_axioms` rejects any theorem whose type starts with a binder: wrap endpoints as named Props.
+- `nmprobe.sh` refuses the whole probe if `$NM/lanes/<lane>.files` holds any path that is not `GroupApproximation/**/*.lean`.
+  Keep scripts and metadata out of that file; nmland does not check them against a green record.
+- `metadata/MF_RECOGNITION_SENTENCE_CENSUS.md` says "Do not edit", but CI regenerates it with `--check`.
+  A note change in the map must also be made in the matching md line, exactly as `scripts/sentence_census.py` writes it (`  * {note}`).
