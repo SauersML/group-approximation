@@ -180,6 +180,40 @@ games is adjacent to the games form of quantum PCP, not to its Hamiltonian form.
 - OpenAI's announced counterexample to Connes rigidity: mutually commensurable property (T) groups with
   the same group von Neumann algebra (secondary source).
 
+## Novelty and priority log of EX landings
+
+Entries come from `state/landed.log`. A check is bounded as stated in each entry.
+
+- **21:43 / 21:49 / 21:55, ex-verify-groups, ex-verify-analysis** (f6ec096b31, ce22376c2d, 61fb2b2a65):
+  review artifacts. They make no new theorem claims.
+- **21:54, ex-kadison-kaplansky, b2c98f0e30.** `fractional-matrix-trace-gives-projection-in-g-star-z`,
+  Corollary A: Kadison–Kaplansky for all torsion-free groups ⇔ integral trace on K_0 for all
+  torsion-free groups, through strict comparison in C*_r(G * Z).
+  - The credit paragraph is present:
+    - Dykema–Rørdam, GAFA 8 (1998), nuclear factors;
+    - Flores–Klisse–Ó Cobhthaigh–Pagliero arXiv:2510.24675 (selflessness);
+    - Robert arXiv:2309.14188.
+  - I added one web search, which found no prior statement of Corollary A.
+  - The neighbouring paper Dykema–Rørdam II (Math. Z. 234 (2000); abstract P) treats reduced free
+    products of infinitely many factors: K_0 is determined by K_0(φ) when φ is a trace. It does not
+    state Corollary A.
+  - Verdict: packaging of known theorems with a new consequence; novelty unverified; no priority
+    threat found.
+- **21:59, ex-fp-simple-sofic, 1da285e701.**
+  - `amenable-orbit-full-group-subgroups-are-sofic` is folklore and correctly credited (Elek–Szabó;
+    Elek arXiv:1211.0621).
+  - `kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf` carries no credit line. Its main theorem
+    follows from two classical facts:
+    - (T) ⇒ strong ergodicity (K. Schmidt, ETDS 1 (1981); Connes–Weiss 1980);
+    - infinite ergodic hyperfinite relations are not strongly ergodic.
+    Theorem numbers were not re-read. The lane was messaged at 22:25.
+  - Ma arXiv:2209.00580 Theorem C, read verbatim (P): "Let α:G↷X be a minimal topologically free
+    residually finite action of a countable discrete group on the Cantor set. Then [[α]] is LEF and
+    thus sofic." "Residually finite action" is Kerr–Nowak's notion.
+  - The lane's `sfts-without-finite-orbits-are-not-residually-finite-actions` shows that Z^2 acting on
+    Labbé's shift is not such an action. So Ma gives no LEF refutation of the open
+    `labbe-shift-derived-full-group-is-finitely-presented`.
+
 ## arXiv API batch
 
 The script `run.sh` (37 phrase queries, newest 25 each, 3 s apart) ran on MSI, and every response was
