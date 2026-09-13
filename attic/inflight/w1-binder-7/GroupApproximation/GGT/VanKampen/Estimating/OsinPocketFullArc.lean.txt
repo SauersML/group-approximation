@@ -64,12 +64,18 @@ theorem cyclicRel_rotate {α : Type*} {R : α → α → Prop} {l : List α} (hc
   obtain ⟨-, -, hjoin⟩ := List.isChain_append.mp hchain'
   intro x hx y hy
   have hBA : l.drop n ++ l.take n ≠ [] := fun h => hA (List.append_eq_nil_iff.mp h).2
-  rw [List.getLast?_eq_getLast hBA, List.getLast_append_of_ne_nil hBA hA, Option.mem_some_iff]
+  rw [List.getLast?_eq_some_getLast hBA, List.getLast_append_of_ne_nil hBA hA, Option.mem_some_iff]
     at hx
-  rw [List.head?_eq_head hBA, List.head_append_of_ne_nil hB, Option.mem_some_iff] at hy
+  rw [List.head?_eq_some_head hBA, List.head_append_of_ne_nil hB, Option.mem_some_iff] at hy
   subst hx hy
-  exact hjoin _ (by rw [List.getLast?_eq_getLast hA]; exact Option.mem_some_iff.mpr rfl)
-    _ (by rw [List.head?_eq_head hB]; exact Option.mem_some_iff.mpr rfl)
+  exact hjoin _ (by rw [List.getLast?_eq_some_getLast hA]; exact Option.mem_some_iff.mpr rfl)
+    _ (by rw [List.head?_eq_some_head hB]; exact Option.mem_some_iff.mpr rfl)
+
+/-- The last entry of a list with a final entry appended is that entry. -/
+theorem mem_getLast?_append_singleton {α : Type*} (l : List α) (x : α) :
+    x ∈ (l ++ [x]).getLast? := by
+  rw [List.getLast?_eq_some_getLast (by simp), List.getLast_concat]
+  exact Option.mem_some_iff.mpr rfl
 
 /-- A full arc of a cycle is a rotation of the cycle. -/
 theorem darts_eq_rotate_of_full {α : Type*} {cycle : List α} (arc : CyclicArc cycle)
@@ -86,8 +92,8 @@ theorem vertexOf_alpha_eq_facePerm (M : CombMap.{v}) (d : M.Dart) :
 theorem faceBoundary_cyclic {M : CombMap.{v}} {f : M.Face} (B : FaceBoundary M f) :
     ∀ x ∈ B.darts.getLast?, ∀ y ∈ B.darts.head?, M.facePerm x = y := by
   intro x hx y hy
-  rw [List.getLast?_eq_getLast B.nonempty, Option.mem_some_iff] at hx
-  rw [List.head?_eq_head B.nonempty, Option.mem_some_iff] at hy
+  rw [List.getLast?_eq_some_getLast B.nonempty, Option.mem_some_iff] at hx
+  rw [List.head?_eq_some_head B.nonempty, Option.mem_some_iff] at hy
   subst hx hy
   exact B.closes
 
@@ -95,8 +101,8 @@ theorem faceBoundary_cyclic {M : CombMap.{v}} {f : M.Face} (B : FaceBoundary M f
 theorem closes_mem {M : CombMap.{v}} {walk : List M.Dart} (hw : IsSimpleClosedWalk M walk) :
     ∀ x ∈ walk.getLast?, ∀ y ∈ walk.head?, M.vertexOf (M.alpha x) = M.vertexOf y := by
   intro x hx y hy
-  rw [List.getLast?_eq_getLast hw.ne_nil, Option.mem_some_iff] at hx
-  rw [List.head?_eq_head hw.ne_nil, Option.mem_some_iff] at hy
+  rw [List.getLast?_eq_some_getLast hw.ne_nil, Option.mem_some_iff] at hx
+  rw [List.head?_eq_some_head hw.ne_nil, Option.mem_some_iff] at hy
   subst hx hy
   exact hw.closes
 
@@ -119,7 +125,7 @@ theorem outerDarts_cyclic (X : DiscDiagram.{u, w, v} W) :
   intro x hx y hy
   have hB := (X.faceBoundary X.outerFace).nonempty
   simp only [outerDarts, List.getLast?_map, List.getLast?_reverse, List.head?_map,
-    List.head?_reverse, List.head?_eq_head hB, List.getLast?_eq_getLast hB, Option.map_some,
+    List.head?_reverse, List.head?_eq_some_head hB, List.getLast?_eq_some_getLast hB, Option.map_some,
     Option.mem_some_iff] at hx hy
   subst hx hy
   rw [X.toCombMap.alpha_involutive, vertexOf_alpha_eq_facePerm, (X.faceBoundary X.outerFace).closes]
@@ -132,6 +138,17 @@ open PocketFullArc
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
   {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- The reversed arc ends with the reversal of the first dart of the arc. -/
+theorem invDarts_eq_tail_append {t : List X.toCombMap.Dart} (hne : t ≠ []) :
+    invDarts X t = t.tail.reverse.map X.toCombMap.alpha ++ [X.toCombMap.alpha (t.head hne)] := by
+  cases t with
+  | nil => exact absurd rfl hne
+  | cons a L =>
+    show (a :: L).reverse.map X.toCombMap.alpha =
+      L.reverse.map X.toCombMap.alpha ++ [X.toCombMap.alpha a]
+    rw [List.reverse_cons, List.map_append]
+    rfl
 
 /-- On a full source arc the face rotation takes the last dart to the first. -/
 theorem facePerm_sourceArc_of_full (K : PocketFaceSet D eps X lo hi)
@@ -158,8 +175,8 @@ theorem not_simple_of_full_sourceArc (K : PocketFaceSet D eps X lo hi)
   have hlastfirst : X.toCombMap.facePerm (K.sourceArc.darts.getLast hne) =
       K.sourceArc.darts.head hne :=
     facePerm_sourceArc_of_full K hfull _
-      (by rw [List.getLast?_eq_getLast hne]; exact Option.mem_some_iff.mpr rfl)
-      _ (by rw [List.head?_eq_head hne]; exact Option.mem_some_iff.mpr rfl)
+      (by rw [List.getLast?_eq_some_getLast hne]; exact Option.mem_some_iff.mpr rfl)
+      _ (by rw [List.head?_eq_some_head hne]; exact Option.mem_some_iff.mpr rfl)
   have hv1 : X.toCombMap.vertexOf (X.toCombMap.alpha (K.sourceArc.darts.getLast hne)) =
       X.toCombMap.vertexOf (K.sourceArc.darts.head hne) := by
     rw [vertexOf_alpha_eq_facePerm, hlastfirst]
@@ -168,10 +185,7 @@ theorem not_simple_of_full_sourceArc (K : PocketFaceSet D eps X lo hi)
     rw [X.toCombMap.alpha_involutive]
   have hmem : X.toCombMap.alpha (K.sourceArc.darts.getLast hne) ∈ invDarts X K.sourceArc.darts :=
     List.mem_map_of_mem (List.mem_reverse.mpr (List.getLast_mem hne))
-  have E2 : invDarts X K.sourceArc.darts = K.sourceArc.darts.tail.reverse.map X.toCombMap.alpha ++
-      [X.toCombMap.alpha (K.sourceArc.darts.head hne)] := by
-    conv_lhs => rw [← List.cons_head_tail hne]
-    simp [invDarts]
+  have E2 := invDarts_eq_tail_append (X := X) hne
   have hnd := hS.vertex_nodup
   by_cases h2 : K.secondSide ++ K.targetArc.darts = []
   · have hs2 : K.secondSide = [] := (List.append_eq_nil_iff.mp h2).1
@@ -180,10 +194,14 @@ theorem not_simple_of_full_sourceArc (K : PocketFaceSet D eps X lo hi)
     obtain ⟨b, rest, hb⟩ := List.exists_cons_of_ne_nil hs1
     have hc : K.boundary.cycle = (b :: rest) ++ invDarts X K.sourceArc.darts := by
       rw [K.decomposition, hs2, ht2, hb]
-      simp
+      simp only [List.append_nil]
+    have hc' : K.boundary.cycle = ((b :: rest) ++ K.sourceArc.darts.tail.reverse.map
+        X.toCombMap.alpha) ++ [X.toCombMap.alpha (K.sourceArc.darts.head hne)] := by
+      rw [hc, E2, List.append_assoc]
     have hcl := closes_mem hS
-    rw [hc, E2] at hcl
-    have hvb := hcl (X.toCombMap.alpha (K.sourceArc.darts.head hne)) (by simp) b (by simp)
+    rw [hc'] at hcl
+    have hvb := hcl (X.toCombMap.alpha (K.sourceArc.darts.head hne))
+      (mem_getLast?_append_singleton _ _) b (Option.mem_some_iff.mpr rfl)
     rw [hc, List.map_append, List.nodup_append] at hnd
     exact hnd.2.2 _ (List.mem_map_of_mem (by simp)) _ (List.mem_map_of_mem hmem)
       (hvb.symm.trans (hv2.trans hv1.symm))
@@ -195,7 +213,7 @@ theorem not_simple_of_full_sourceArc (K : PocketFaceSet D eps X lo hi)
     have hc2 : K.boundary.cycle = (K.firstSide ++ K.sourceArc.darts.tail.reverse.map
         X.toCombMap.alpha) ++ X.toCombMap.alpha (K.sourceArc.darts.head hne) :: b :: rest := by
       rw [hc, E2]
-      simp
+      simp only [List.append_assoc, List.singleton_append]
     have hch := hS.chain
     rw [hc2] at hch
     obtain ⟨-, hxb, -⟩ := List.isChain_append_cons_cons.mp hch
@@ -223,8 +241,8 @@ theorem not_simple_of_full_targetArc (K : PocketFaceSet D eps X lo hi)
       (Nat.le_of_lt_succ K.targetArc.start.isLt)
   have hv : X.toCombMap.vertexOf (X.toCombMap.alpha (K.targetArc.darts.getLast hne)) =
       X.toCombMap.vertexOf (K.targetArc.darts.head hne) :=
-    hrel _ (by rw [List.getLast?_eq_getLast hne]; exact Option.mem_some_iff.mpr rfl)
-      _ (by rw [List.head?_eq_head hne]; exact Option.mem_some_iff.mpr rfl)
+    hrel _ (by rw [List.getLast?_eq_some_getLast hne]; exact Option.mem_some_iff.mpr rfl)
+      _ (by rw [List.head?_eq_some_head hne]; exact Option.mem_some_iff.mpr rfl)
   obtain ⟨b, rest, hb⟩ := List.exists_cons_of_ne_nil hrest
   have hc : K.boundary.cycle = (b :: rest) ++ K.targetArc.darts := by
     rw [K.decomposition, hb]
@@ -233,9 +251,9 @@ theorem not_simple_of_full_targetArc (K : PocketFaceSet D eps X lo hi)
   have hbr : (b :: rest) ++ K.targetArc.darts ≠ [] := by simp
   have hvb := hcl (K.targetArc.darts.getLast hne)
     (by
-      rw [List.getLast?_eq_getLast hbr, List.getLast_append_of_ne_nil hbr hne]
+      rw [List.getLast?_eq_some_getLast hbr, List.getLast_append_of_ne_nil hbr hne]
       exact Option.mem_some_iff.mpr rfl)
-    b (by simp)
+    b (Option.mem_some_iff.mpr rfl)
   have hnd := hS.vertex_nodup
   rw [hc, List.map_append, List.nodup_append] at hnd
   exact hnd.2.2 _ (List.mem_map_of_mem (by simp)) _ (List.mem_map_of_mem (List.head_mem hne))
