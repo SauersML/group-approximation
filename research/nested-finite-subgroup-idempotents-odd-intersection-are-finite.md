@@ -10,6 +10,16 @@ artifacts:
   - research/artifacts/binary-kernel-nested-idempotents-2026-09-12.md
 ---
 
+**OPEN, unreviewed.** No route establishes this claim.
+
+> **Correction (2026-09-13, ex-steward).** The uncommitted-work sweep `8f5bd6faa` landed this node
+> half-written. Its body stops mid-word at "every cand" in the list of consequences, so the node's
+> text is incomplete. No complete copy was found. The shared checkout's file, three scratchpad
+> snapshots of it and the sweep records all hold the same truncated 1527-byte text, attic/ and
+> wip/ on main hold no copy, and no later commit extends it. Section 3 ("Consequences") of
+> `research/artifacts/binary-kernel-nested-idempotents-2026-09-12.md` lists the binary
+> candidates the theorem is meant to kill.
+
 Let `p` be a prime, `G` any group, and `H_1, H_2 <= G` finite subgroups with
 `p ∤ |H_1 ∩ H_2|`. Let `e` in `M_n(F_p[H_1])` and `f` in `M_n(F_p[H_2])` be idempotents with
 `f <= e`. If `t_p([e]) = t_p([f])` for the lifted trace
