@@ -80,12 +80,15 @@ theorem tCorner_mem_cellRing [Finite k] (hP : IsClopen P) (hTP : T '' P ⊆ P) :
 
 /-- `char k = 0` in `R_X`, so `⟨z⟩` has order dividing `char k` (tex 1586–1587). -/
 theorem natCast_ringChar_eq_zero : ((ringChar k : ℕ) : ClopenCrossedProduct T k) = 0 := by
-  rw [← map_natCast (coeff T k)]
-  have h : ((ringChar k : ℕ) : LocallyConstant X k) = 0 := by
-    ext x
-    show ((ringChar k : ℕ) : k) = 0
-    exact ringChar.Nat.cast_ringChar
-  rw [h, map_zero]
+  first
+    | (rw [← map_natCast ((coeff T k).comp (LocallyConstant.constRingHom (X := X))) (ringChar k),
+          ringChar.Nat.cast_ringChar (R := k), map_zero]; done)
+    | (rw [← map_natCast (coeff T k) (ringChar k)]
+       have h : ((ringChar k : ℕ) : LocallyConstant X k) = 0 := by
+         ext x
+         show ((ringChar k : ℕ) : k) = 0
+         exact ringChar.Nat.cast_ringChar (R := k)
+       rw [h, map_zero])
 
 end Ring
 
