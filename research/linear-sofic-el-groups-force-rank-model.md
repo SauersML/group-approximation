@@ -31,3 +31,27 @@ This is rung (Σ⇒) of `kazhdan-elementary-approximation-type-mirrors-ring-type
 - **Non-simple warning.** Stably finite finitely generated algebras need not be linear sofic
   (`stably-finite-algebras-need-not-be-linear-sofic`). That source is not simple and makes no statement
   about elementary groups, so it does not touch this claim.
+- **Exact lift and reduction (un-sigma-converse, 2026-09-13, unreviewed).**
+  `linear-sofic-projective-el-lifts-to-gl-rank-models`: a projective model of `S_N` passes through the adjoint
+  to an exact homomorphism `EL_N(R) -> U`, a general-linear rank ultraproduct over `k`, with kernel exactly
+  `Z_N`. So this claim follows from ring rigidity (RR_k) of such exact models, for all `N`, with no metric
+  stability input. `el3-rank-models-factor-through-ring-rank-models` is the `N = 3` form, but it allows the
+  rank model over any characteristic-`p` field. Artifact `un-sigma-converse-2026-09-13.md` §1.
+- **The finitely-presented-cover method of (L⇒) stops here.**
+  - Linear soficity already gives an exact homomorphism into the ultraproduct, so every relator of
+    `St_N(A)` holds exactly and finite presentation adds nothing.
+  - The level-ideal step has no analogue: `{a : sigma(x_ij(a)) = 1}` is `0` by faithfulness.
+  - Root maps satisfy only `n(a + b) = n(a) + n(b) + n(a) n(b)` and `n(a)^p = 0`.
+  - A ring structure appears only after a frame, meaning idempotents `e_i` with `n_ij(a) ∈ e_i M e_j`, as in
+    the block-unipotent extraction. The frame has to come from `sigma` itself. Artifact §2.
+- **Torus frame, `q >= 3`: stops. At `q = 2` there is no torus.**
+  - The diagonal torus of `SL_N(k)` has order prime to `p`, so `sigma(T)` gives exact weight idempotents.
+  - The averages `N^c_ij(a) = sum_μ c(μ)^(-1) sigma(x_ij(μ a))` shift weights by `c ∘ α_ij`.
+  - But `sigma(x_ij(a)) − 1` is a sum of all these shifts, not one corner, and commutators of the sums are
+    not averages of products. So there are candidate frame idempotents but no corner support.
+  - Over `F_2`, the Leavitt case, the torus is trivial.
+- **Famous-level firewall.** Route `non-linear-sofic-via-sigma-converse-at-leavitt`: this claim at
+  `L_(F_2)(1,2)` (simple, centre `F_2`, no rank model) makes some `EL_N(L_(F_2)(1,2))` not `F_2`-linear sofic.
+  That closes the root `non-linear-sofic-group`. So a proof of this claim is at least as hard as exhibiting a
+  non-linear-sofic group. A refutation needs a simple rankless algebra with all `S_N` linear sofic, which at
+  the Leavitt algebra is the open `binary-leavitt-unit-group-is-f2-linear-sofic`.
