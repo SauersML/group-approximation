@@ -176,6 +176,27 @@ Items 1–7 of `bernoulli-isomorphism-collapse-set-is-a-subgroup` were re-derive
   corollary, whose hypotheses `U_*` meets. `U_* × U_*` is finitely presented, hence embeds in `U_*`, and
   `U_*` contains every finite group. The dichotomy node itself is not re-derived here.
 
+## Summary of later sections (details in part 1)
+
+- **§2 ex-nonsofic-action-relative.**
+  - PASS: Theorem MT, Lemmas LC, ED and EQ, the permutation-centralizer blindness, induced actions, and
+    Păunescu Theorem 1.5, verbatim.
+  - GAP (wording) on item 2 of `howe-moore-property-for-simple-lie-and-p-adic-groups`: Ciobotaru's family is
+    `G^+`. Corrected forward at f606d06f01 and 1f4521d11e.
+- **§3 ex-nonsofic-action-entropy.** PASS: SOE invariance, measure-equivalence invariance of 𝒮, product-tree
+  lattices, factorwise Howe–Moore, the tree-product mixing transfer, and weak-containment blindness.
+- **§4 ex-bernoulli-positive.** PASS: the approximation threshold, semicontinuous blindness, and the Seward II
+  imports, verbatim. No route into the Bernoulli roots fires.
+- **§5 ex-rokhlin-lower.** PASS: zero outer entropy of fixed factors, and non-co-amenability of actor
+  subgroups.
+- **§6 ex-tree-lattice-mixing.** PASS: the induced-mixing criterion, and no induced mixing from Radu's lattice.
+- **§7 ex-bernoulli-negative, 74c6402170.** PASS with one local fix on the meager-classes proof
+  (`W^-1 W` windows).
+
 ## Part files
 
-None yet.
+- **§8 ex-lattice-space-action.** PASS: equidistributed finite orbits give sofic actions, and
+  `SL_n(Z) ↷ SL_n(R)/SL_n(Z)` is sofic through Hecke orbits. The refutation of
+  `sl3z-lattice-space-action-is-not-sofic` stands.
+
+- `research/artifacts/ex-review-dynamics-2026-09-12-part1.md`: §2–§8.
