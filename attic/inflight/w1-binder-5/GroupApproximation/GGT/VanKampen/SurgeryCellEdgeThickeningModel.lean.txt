@@ -137,9 +137,9 @@ theorem spur_cellEdge_after :
 still has three darts. -/
 theorem spur_retained :
     (∀ x : Fin 4, x ≠ 2 →
-      (spurFaceClassA (Fin.castLE (by norm_num) x)).val = (spurFaceClassB x).val) ∧
+      (spurFaceClassA (Fin.castLE (by decide) x)).val = (spurFaceClassB x).val) ∧
       (∀ x : Fin 4,
-        spurAlphaA (Fin.castLE (by norm_num) x) = Fin.castLE (by norm_num) (spurAlphaB x)) ∧
+        spurAlphaA (Fin.castLE (by decide) x) = Fin.castLE (by decide) (spurAlphaB x)) ∧
       (Finset.univ.filter fun x : Fin 6 => spurFaceClassA x = 0).card = 3 := by
   decide
 
@@ -231,9 +231,9 @@ theorem shared_cellEdge_after :
 still has two darts. -/
 theorem shared_retained :
     (∀ x : Fin 6, x ≠ 0 →
-      (sharedFaceClassA (Fin.castLE (by norm_num) x)).val = (sharedFaceClassB x).val) ∧
+      (sharedFaceClassA (Fin.castLE (by decide) x)).val = (sharedFaceClassB x).val) ∧
       (∀ x : Fin 6,
-        sharedAlphaA (Fin.castLE (by norm_num) x) = Fin.castLE (by norm_num) (sharedAlphaB x)) ∧
+        sharedAlphaA (Fin.castLE (by decide) x) = Fin.castLE (by decide) (sharedAlphaB x)) ∧
       (Finset.univ.filter fun x : Fin 8 => sharedFaceClassA x = 0).card = 2 := by
   decide
 
