@@ -38,13 +38,22 @@ the restricted Burnside theorem it would not be residually finite.
   Ol'shanskii–Sapir (footnote 5) report that "in all known cases the resulting
   group is obviously finite". They do not say whether that covers their own
   words `w_i`. Not attempted yet.
-- What deciding it needs: the explicit S-machine presentation `Z(𝕊, Λ)` of
-  `ℋ` (arXiv:math/0208237 §5.3) and the explicit words `w_i` (their Remark 1.4
-  and Remark 4.3). A first structural test: if every `b_i` is a word in the tape
-  letters `𝒜` (which the chain ending in `B(s,n)` inside `⟨𝒜⟩` suggests; still to
-  check in §5.4 and §6.1), then in `H̄_{phi}` every state and command letter
-  equals a tape-letter word. The S-rule relations then turn into relations
-  among tape letters, which is where a collapse to a finite group would show.
+- What deciding it needs: the explicit words `w_i` (their Remark 1.4 and
+  Remark 4.3) and the S-machine presentation `Z(𝕊, Λ)` of `ℋ` (§5.1–§5.3,
+  read 2026-09-13). The generators are `X = K ∪ A ∪ R` (state, tape and command
+  letters). For each rule `τ` and each state letter `z` there is a relation
+  `r(τ,z_-)^-1 z(ω) r(τ,z) = v(z_-) z(ω') u(z)`, plus `r(τ,z) b = b r(τ,z)` for
+  every `b in A(z)` whenever `τ` does not lock `z`-sectors, plus the hub
+  `Λ(0) = 1`. `⟨A(κ(1))⟩` has exponent `n` (Lemma 5.2).
+- Conditional first test. Suppose every `b_i` is a word in the tape letters
+  `A(κ(1))`. That is likely, since the chain ends in `B(s,n) <= ℋ`, but
+  unverified: check that `B(s,n)` of Theorem 1.3 is `⟨A(κ(1))⟩`. Then in
+  `H̄_phi` every generator equals a word in `A(κ(1))`, so the image of
+  `A(κ(1))` is the whole group. So every command letter `r(τ, κ(1))` of a rule
+  that does not lock `κ(1)`-sectors is central there. By Fig. 13 those are the
+  working rules of steps `𝕊_2, ..., 𝕊_{2n}`. What remains is to push this
+  through the transition relations at `z = κ(1)` and the hub, where a collapse
+  to a finite group would show.
 - Every torsion quotient of `𝒢` is controlled by these groups (item 1 of
   `ascending-hnn-torsion-quotients-see-only-coinvariants`). So if all of them
   are finite, the Ol'shanskii–Sapir extension is dead for Problem 1.11 in the

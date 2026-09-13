@@ -71,7 +71,9 @@ its own node):
   - Live test: `olshanskii-sapir-hnn-has-infinite-coinvariants` (open), wired by
     `fp-torsion-via-olshanskii-sapir-coinvariants`.
 - 2026-09-13, limits of hyperbolic groups: dead.
-  `fp-direct-limit-of-quotients-equals-a-finite-stage` and
-  `hyperbolic-limit-torsion-groups-are-not-finitely-presented` (established):
-  a torsion limit of infinite hyperbolic groups is never finitely presented.
+  `fp-direct-limit-of-surjections-stabilizes` and
+  `fp-torsion-group-is-no-limit-of-non-torsion-groups` (established, lane
+  z1-11-torsion-block): a torsion limit through infinitely many stages with
+  elements of infinite order, e.g. infinite hyperbolic stages, is never finitely
+  presented.
 - Obstruction side: lane z1-11-torsion-block.

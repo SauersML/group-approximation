@@ -46,7 +46,7 @@ the standard constraints. The construction side adds two firewalls:
 - Limits of hyperbolic groups (Ol'shanskii, Ivanov–Ol'shanskii): dead. Every
   stage is an infinite hyperbolic group and so has an element of infinite
   order, while a finitely presented limit equals a stage
-  (`hyperbolic-limit-torsion-groups-are-not-finitely-presented`, established).
+  (`fp-torsion-group-is-no-limit-of-non-torsion-groups`, established).
 - Self-similar torsion groups themselves: finitely generated contracting regular
   branch groups are not finitely presented (Bartholdi–Grigorchuk–Šunić,
   arXiv:math/0510294, Theorem 4.7), and neither are torsion spinal groups
