@@ -125,6 +125,51 @@ cancellation prefix at all.
 
 Sent to main: binder 7 (FALSE) and binder 5 (CIRCULAR), each with the corrected spelling.
 
+## Counterexample search for the corrected binder 7 at ε ≥ 1 (lead item, 2026-09-13 ~18:05)
+
+Target: `PocketPinchLabelledPosStatement` (`Estimating/OsinPocketPinchPositive.lean`, 1b4736bcb), i.e. binder 7 with
+`0 < ε`. Scope agreed with w1-binder-7: this lane does the counterexample search; w1-binder-7 keeps the positive route
+(`OsinPocketFullArc`, `OsinPocketArcTrim`, the step).
+
+**No counterexample found. The natural candidates are all rescued, and the obstruction is specific to ε = 0.**
+
+What a counterexample would have to be. The Prop has NO `OsinCCondition` binder, so a refutation is one concrete diagram
+`X`, positions `lo, hi`, and a pocket face set `K` in walk order (`K.ClosedWalk`) whose every O-equivalent copy has no
+simple pocket face set at `(lo, hi)` — the exact shape of the rose. The rose's refutation
+(`OsinPocketWrapMonogon.no_simple_of_oEquivalent_monogons`) is driven by the ε = 0 length invariant: sides must have
+length ≤ 0, so `s₁ = s₂ = []`, each arc has at most one dart, and the boundary cycle collapses to a loop or to nothing.
+At ε ≥ 1 that invariant is gone; a side may carry a dart.
+
+Why every candidate is rescued at ε ≥ 1.
+- **The rose itself:** `wrapRoseRescue` (kept `{R}`, `s₁ = [5]`, empty arcs), closed on origin.
+- **A monogon source or exterior with a second relator cell:** the second cell `{R}` with its one dart as `s₁` is a
+  simple pocket face set at ε ≥ 1.
+- **The long analog over `F(a,b)` with boundary letter `c = aᴺbᴺ`** (w1-binder-7's paper rescue): shorten the source arc
+  to `N−1` darts and make the trimmed letter one side, the `c`-dart the other, giving empty pinch and a simple `K`.
+- **Nested petals / a remainder touching the arc at a vertex / labels forcing a repeated vertex:** all are pinched `K`
+  whose boundary cycle repeats a vertex `v`. The sub-walk between the two visits of `v` is a simple closed sub-walk. Its
+  boundary-side part is a sub-arc of `t₂`, so still inside `[lo, hi)`; its sides are sub-lists of `s₁, s₂`, so still
+  ≤ ε; one of the two lobes holds the relator cell (its interior is nonempty by the same disc-region count that gives
+  `PocketFaceSet.kept`). That is the innermost-simple-circuit re-decomposition, Osin's own resolution of a pinched `Γ₁`.
+  The conclusion fixes only `ε, lo, hi`, so this K' may change source, kept, arcs and sides freely.
+- **w1-binder-7's suspected-stuck configuration** (a full arc with a nonempty remainder AND both sides at length exactly
+  ε): the trims have no room, and transport surgery keeps arcs full, so the STEP route stalls. But it is not a
+  refutation: the re-decomposition above changes source/kept/arcs and does not need a trim. Concretely, a full source
+  arc `t₁ = ∂Π` with a nonempty remainder makes the boundary cycle `s₁ ++ invDarts(∂Π) ++ s₂ ++ invDarts(t₂)`; ∂Π is a
+  closed sub-walk on its own, so the vertex where it closes is the repeat, and the sub-walk `invDarts(∂Π)` is simple iff
+  Π is not a monogon — which at ε ≥ 1 is compatible with relator words longer than 2ε.
+
+Why the ε = 0 obstruction does not lift. At ε = 0 every side is empty, so the two lobes of a pinched cycle are bounded by
+arcs alone; a lobe with one dart is a loop, whose single vertex repeats, so it is not a simple closed walk, and a lobe
+with no dart is empty. The re-decomposition therefore yields no simple sub-pocket. At ε ≥ 1 a lobe can borrow one dart
+into a side, which is exactly the room the rescue needs. So the counterexample family is confined to ε = 0, which the
+`0 < ε` binder excludes.
+
+**Verdict: `PocketPinchLabelledPosStatement` is TRUE-plausible at ε ≥ 1.** No cheap `decide`-sized diagram refutes it,
+and I built no new model: a second rescue diagram would duplicate `wrapRoseRescue`, and the positive proof (the
+sub-circuit step) is w1-binder-7's route, not a refutation. The general truth is still open; it needs the
+innermost-circuit step, which w1-binder-7 owns.
+
 ## State
 
 Scope finished for tex 1–1337. The ledger and census correction landed at 09d4f6b3d, the audit module at c04133c00.
