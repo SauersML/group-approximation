@@ -658,7 +658,27 @@ examined.
   `Gamma x Gamma`.
 * arXiv:2307.11728, html rendering: the statement of Gaboriau's criterion for
   weakly normal subgroups.
+* Gaboriau, "Around the orbit equivalence theory, measure equivalence, cost
+  and l^2 Betti numbers", notes dated October 3, 2025, from the PDF: page 1,
+  2.30 in Section 2.3, and pages 19--23 (2.45--2.67).
+* Gaboriau, "Coût des relations d'équivalence et des groupes", Invent. Math.
+  139 (2000), from the PDF: the abstract and Critère VI.24.
+* Slutsky, arXiv:2607.20273v1, pages 1--6 from the PDF: Theorems 1.1 and 1.3,
+  Corollaries 1.2 and 1.4--1.9, Corollaries 2.4 and 2.5.
+* Bevilacqua--Bowen, arXiv:2510.05459, pages 26--31, 46--56 and 76--79 from
+  the PDF: Section 4.1 (Theorem 4.5, Lemmas 4.8 and 4.11, Theorem 4.12),
+  Definition 27, Theorem 7.1, Lemma 7.2, Theorem 8.1, Definitions 30 and 31,
+  Theorem 9.3, Corollary 9.4, Lemma 9.5, Corollaries 10.8 and 10.9,
+  Remark 21, and Appendix A (Definitions 37--40, Theorem A.1, Corollary A.2,
+  Lemmas A.3 and A.4).
+* Abert--Nikolov, arXiv:math/0701361v3, pages 1--3 from the PDF: the
+  abstract and Theorems 1 and 2.
 
-The html renderings were read through a summarizing fetch tool, so only
-theorem statements are relied on above. No proof step of the cited papers
-has been independently re-checked.
+The html renderings were read through a summarizing fetch tool, so Sections 3
+and 4 rely on them only at the level of theorem statements. The quotations in
+Section 6 were checked against the PDFs above. No proof in the cited papers
+has been re-checked, apart from the steps of Bevilacqua--Bowen named in 6.1.
+The standard facts flagged in Section 6 were not re-read: Moore's ergodicity
+theorem, Zimmer amenability, stabilizers of boundary points, the Morse lemma,
+thin triangles, Coornaert's growth theorem, and normal subgroups of surface
+groups.
