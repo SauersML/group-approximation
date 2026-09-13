@@ -161,6 +161,7 @@ PALOMAR_CONFIGS = (
     "Palomar/comparator-type-a2.json",  # the FFWZ Question 5.8 theorem
     "Palomar/comparator-guba-thompson.json",  # the two Guba Question 3.20 theorems
     "Palomar/comparator-gkp-commuting-actions.json",  # the two GKP Question 4.2 theorems
+    "Palomar/comparator-stw-x1.json",  # the two STW Problem X(1) theorems
 )
 
 # Configurations whose SOLUTION is still a skeleton: it proves each theorem its
@@ -213,6 +214,8 @@ SURFACE_FILES = (
     "Palomar/comparator-guba-thompson.json",
     "Palomar/GKPCommutingActionsChallenge.lean", "Palomar/GKPCommutingActionsSolution.lean",
     "Palomar/comparator-gkp-commuting-actions.json",
+    "Palomar/STWProblemX1Challenge.lean", "Palomar/STWProblemX1Solution.lean",
+    "Palomar/comparator-stw-x1.json",
     "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
     "formalization.yaml",
 )
@@ -873,12 +876,23 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "`exists_commuting_sofic_actions_not_sofic`: the compared signature diverges"),
     ("gkp comparator permitting a fourth axiom",
      "Palomar/comparator-gkp-commuting-actions.json: permitted_axioms"),
+    # The STW Problem X(1) surface.
+    ("stw-x1 challenge with a project-local import",
+     "Palomar/STWProblemX1Challenge.lean:1:"),
+    ("stw-x1 shared block edited on one side",
+     "Palomar/comparator-stw-x1.json: shared block diverges"),
+    ("stw-x1 signature edited on one side",
+     "`exists_separable_amenable_not_quasidiagonal`: the compared signature diverges"),
+    ("stw-x1 comparator permitting a fourth axiom",
+     "Palomar/comparator-stw-x1.json: permitted_axioms"),
     ("tracked compiled artifact", "is a compiled artifact"),
     ("nine arXiv classes", "one to eight distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
     ("LIX result dropped from the metadata", "is not listed in status.main_results"),
     ("bowen-chapman result dropped from the metadata",
      "BowenChapman.not_all_surjunctive_groups_sofic is not listed in status.main_results"),
+    ("stw-x1 result dropped from the metadata",
+     "STWProblemX1.exists_separable_amenable_not_quasidiagonal is not listed in status.main_results"),
 )
 
 YAML_CALIBRATIONS = {
@@ -886,6 +900,7 @@ YAML_CALIBRATIONS = {
     "original result with a substantive source",
     "LIX result dropped from the metadata",
     "bowen-chapman result dropped from the metadata",
+    "stw-x1 result dropped from the metadata",
 }
 
 
@@ -1032,6 +1047,24 @@ def plant(name: str, root: Path) -> None:
     elif name == "gkp comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-gkp-commuting-actions.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
+    elif name == "stw-x1 challenge with a project-local import":
+        path = root / "Palomar" / "STWProblemX1Challenge.lean"
+        path.write_text(
+            "import GroupApproximation.PalomarBridges.X1\n"
+            + path.read_text())
+    elif name == "stw-x1 shared block edited on one side":
+        path = root / "Palomar" / "STWProblemX1Solution.lean"
+        path.write_text(path.read_text().replace(
+            "def hilbertSchmidtNorm (Y : FiniteCarrier) (T : Matrix Y Y ℂ) : ℝ :=",
+            "def hilbertSchmidtNorm' (Y : FiniteCarrier) (T : Matrix Y Y ℂ) : ℝ :=", 1))
+    elif name == "stw-x1 signature edited on one side":
+        path = root / "Palomar" / "STWProblemX1Solution.lean"
+        path.write_text(path.read_text().replace(
+            "theorem exists_separable_amenable_not_quasidiagonal :",
+            "theorem exists_separable_amenable_not_quasidiagonal : True →", 1))
+    elif name == "stw-x1 comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-stw-x1.json",
+                     lambda c: c["permitted_axioms"].append("sorryAx"))
     elif name == "LIX result dropped from the metadata":
         _edit_metadata(root,
                        "    - declaration: ProblemLIX.not_all_simple_unital_k1Injective",
@@ -1040,6 +1073,10 @@ def plant(name: str, root: Path) -> None:
         _edit_metadata(root,
                        "    - declaration: BowenChapman.not_all_surjunctive_groups_sofic",
                        "    - declaration: BowenChapman.renamed_and_not_republished")
+    elif name == "stw-x1 result dropped from the metadata":
+        _edit_metadata(root,
+                       "    - declaration: STWProblemX1.exists_separable_amenable_not_quasidiagonal",
+                       "    - declaration: STWProblemX1.renamed_and_not_republished")
     elif name == "second licence file at the root":
         (root / "COPYING").write_text("copy\n")
     elif name == "toolchain below the minimum":

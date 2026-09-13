@@ -870,8 +870,9 @@ status:
   # Axiom closures computed by scripts/PalomarAxioms.lean,
   # scripts/PalomarLIXAxioms.lean, scripts/PalomarBowenChapmanAxioms.lean,
   # scripts/PalomarPestov91Axioms.lean, scripts/PalomarTypeA2Axioms.lean,
-  # scripts/PalomarGubaThompsonAxioms.lean and
-  # scripts/PalomarGKPCommutingActionsAxioms.lean, checked by
+  # scripts/PalomarGubaThompsonAxioms.lean,
+  # scripts/PalomarGKPCommutingActionsAxioms.lean and
+  # scripts/PalomarSTWProblemX1Axioms.lean, checked by
   # .github/workflows/palomar-check.yml.
   scope: >-
     Palomar/LIXChallenge.lean states that not every nontrivial simple unital
@@ -903,6 +904,11 @@ status:
     combined action is not sofic; Palomar/GKPCommutingActionsSolution.lean
     proves both from
     GroupApproximation.CommutingSoficActions.exists_commuting_sofic_actions_not_sofic.
+    Palomar/STWProblemX1Challenge.lean states that some separable unital
+    C*-algebra carries a tracial state that is amenable and not quasidiagonal,
+    and that not every amenable tracial state on a separable unital
+    C*-algebra is quasidiagonal; Palomar/STWProblemX1Solution.lean proves both
+    from GroupApproximation.PalomarBridges.X1.amenableNonQuasidiagonalTrace_zero.
   main_results:
     - declaration: ProblemLIX.not_all_simple_unital_k1Injective
       file: Palomar/LIXSolution.lean
@@ -976,6 +982,18 @@ status:
       axioms: [propext, Classical.choice, Quot.sound]
       comparator_config: Palomar/comparator-gkp-commuting-actions.json
 
+    - declaration: STWProblemX1.exists_separable_amenable_not_quasidiagonal
+      file: Palomar/STWProblemX1Solution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-stw-x1.json
+
+    - declaration: STWProblemX1.not_every_amenable_trace_quasidiagonal
+      file: Palomar/STWProblemX1Solution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: Palomar/comparator-stw-x1.json
+
 fidelity:
   divergences: >-
     Simplicity is Mathlib's IsSimpleRing, which asks
@@ -1029,6 +1047,26 @@ fidelity:
     gives GroupApproximation.Surjunctivity.isSurjunctive_coprodI_double. All
     groups range over Type 0, and the counterexample is in Type 0.
 
+    For Problem X(1) of Schafhauser, Tikuisis and White, a tracial state is a
+    linear functional tau with tau(1) = 1, tau(x* x) >= 0 and tau(xy) = tau(yx).
+    A trace is amenable when there are unital completely positive maps phi_n
+    into matrix algebras with ||phi_n(ab) - phi_n(a) phi_n(b)||_2 -> 0 in the
+    normalized Hilbert-Schmidt norm and tr(phi_n(a)) -> tau(a) for the
+    normalized trace; this is condition (2) of Brown's Theorem 3.1.6, an
+    equivalent form of his definition, taken as the definition. A trace is
+    quasidiagonal when there are such maps asymptotically multiplicative in
+    operator norm, which is Brown's Definition 3.3.1. Complete positivity is
+    stated as nonnegativity of every form sum_ij <xi_i, phi(a_i* a_j) xi_j>,
+    that is, positivity of every block matrix [phi(a_i* a_j)]. The algebras
+    are unital, as Mathlib's CStarAlgebra is, and separable, as in Brown;
+    STW note that X(1) reduces to the separable case. The matrix sizes are not
+    required to be positive, since the trace clause at a = 1 already makes all
+    but finitely many of them positive. All algebras range over Type 0. The
+    development's witness, the maximal group C*-algebra of its MarkedGroup
+    with the canonical trace, lives in Type 1, and
+    GroupApproximation.PalomarBridges.X1 moves it to Type 0 through Shrink,
+    using separability.
+
 
 alignment:
   statements:
@@ -1068,6 +1106,22 @@ alignment:
         surjunctive group is sofic.
       lean: BowenChapman.not_all_surjunctive_groups_sofic
       module: Palomar.BowenChapmanChallenge
+      status: proved
+
+    - source: >-
+        Problem X(1) of Schafhauser, Tikuisis and White (are amenable traces on
+        C*-algebras necessarily quasidiagonal?): no, some separable unital
+        C*-algebra carries a tracial state that is amenable and not
+        quasidiagonal.
+      lean: STWProblemX1.exists_separable_amenable_not_quasidiagonal
+      module: Palomar.STWProblemX1Challenge
+      status: proved
+
+    - source: >-
+        Problem X(1) as a universal statement: not every amenable tracial state
+        on a separable unital C*-algebra is quasidiagonal.
+      lean: STWProblemX1.not_every_amenable_trace_quasidiagonal
+      module: Palomar.STWProblemX1Challenge
       status: proved
 
 acknowledgements: >-

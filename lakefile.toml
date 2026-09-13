@@ -1,6 +1,6 @@
 name = "GroupApproximation"
 version = "0.1.0"
-defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution", "PalomarBowenChapmanChallenge", "PalomarBowenChapmanSolution", "PalomarPestov91Challenge", "PalomarPestov91Solution", "PalomarTypeA2Challenge", "PalomarTypeA2Solution", "PalomarGubaThompsonChallenge", "PalomarGubaThompsonSolution", "PalomarGKPCommutingActionsChallenge", "PalomarGKPCommutingActionsSolution"]
+defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution", "PalomarLIXChallenge", "PalomarLIXSolution", "PalomarBowenChapmanChallenge", "PalomarBowenChapmanSolution", "PalomarPestov91Challenge", "PalomarPestov91Solution", "PalomarTypeA2Challenge", "PalomarTypeA2Solution", "PalomarGubaThompsonChallenge", "PalomarGubaThompsonSolution", "PalomarGKPCommutingActionsChallenge", "PalomarGKPCommutingActionsSolution", "PalomarSTWProblemX1Challenge", "PalomarSTWProblemX1Solution"]
 
 [[require]]
 name = "mathlib"
@@ -174,3 +174,26 @@ roots = ["Palomar.GKPCommutingActionsChallenge"]
 [[lean_lib]]
 name = "PalomarGKPCommutingActionsSolution"
 roots = ["Palomar.GKPCommutingActionsSolution"]
+
+# The ninth Comparator configuration, `Palomar/comparator-stw-x1.json`: Problem
+# X(1) of Schafhauser, Tikuisis and White (are amenable traces on C*-algebras
+# necessarily quasidiagonal?), N. P. Brown's question.  Same protocol:
+# `Palomar/STWProblemX1Challenge.lean` imports Mathlib only and carries its own
+# copies of tracial states and of Brown's amenable and quasidiagonal traces;
+# `Palomar/STWProblemX1Solution.lean` proves both statements from
+# `GroupApproximation.PalomarBridges.X1.amenableNonQuasidiagonalTrace_zero`, the
+# development's witness moved to `Type`.  Both libraries are in
+# `defaultTargets`.  `PalomarSTWProblemX1ModelTests` exercises every `Prop` of
+# the challenge on a small instance and is not a submission library.
+
+[[lean_lib]]
+name = "PalomarSTWProblemX1Challenge"
+roots = ["Palomar.STWProblemX1Challenge"]
+
+[[lean_lib]]
+name = "PalomarSTWProblemX1Solution"
+roots = ["Palomar.STWProblemX1Solution"]
+
+[[lean_lib]]
+name = "PalomarSTWProblemX1ModelTests"
+roots = ["Palomar.STWProblemX1ModelTests"]

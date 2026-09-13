@@ -21,8 +21,10 @@ name: Palomar check
 # `Palomar/comparator-pestov91.json` for Pestov's Open Question 9.1,
 # `Palomar/comparator-type-a2.json` for Question 5.8 of Fournier-Facio, Wu and
 # Zaremsky, `Palomar/comparator-guba-thompson.json` for Question 3.20 of Guba's
-# survey on Thompson's group F, and `Palomar/comparator-gkp-commuting-actions.json`
-# for Question 4.2 of Gao, Kunnawalkam Elayavalli and Patchell.  So there are two
+# survey on Thompson's group F, `Palomar/comparator-gkp-commuting-actions.json`
+# for Question 4.2 of Gao, Kunnawalkam Elayavalli and Patchell, and
+# `Palomar/comparator-stw-x1.json` for Problem X(1) of Schafhauser, Tikuisis and
+# White.  So there are two
 # libraries, one axiom driver and one statement-match pair per configuration,
 # and every check below runs for all of them.  A step that covered only some would leave a surface
 # ungated while looking exactly like a green gate.
@@ -75,6 +77,9 @@ on:
       - 'scripts/PalomarGKPCommutingActionsChallengeType.lean'
       - 'scripts/PalomarGKPCommutingActionsSolutionType.lean'
       - 'scripts/PalomarGKPCommutingActionsAxioms.lean'
+      - 'scripts/PalomarSTWProblemX1ChallengeType.lean'
+      - 'scripts/PalomarSTWProblemX1SolutionType.lean'
+      - 'scripts/PalomarSTWProblemX1Axioms.lean'
       - 'formalization.yaml'
       - 'lakefile.toml'
       - 'lean-toolchain'
@@ -171,7 +176,9 @@ jobs:
                      PalomarPestov91Challenge PalomarPestov91Solution \
                      PalomarTypeA2Challenge PalomarTypeA2Solution \
                      PalomarGubaThompsonChallenge PalomarGubaThompsonSolution \
-                     PalomarGKPCommutingActionsChallenge PalomarGKPCommutingActionsSolution
+                     PalomarGKPCommutingActionsChallenge PalomarGKPCommutingActionsSolution \
+                     PalomarSTWProblemX1Challenge PalomarSTWProblemX1Solution \
+                     PalomarSTWProblemX1ModelTests
 
       # The check that reproduces Comparator's comparison, for every pair;
       # the script loops over the configurations and fails if a
@@ -220,8 +227,9 @@ jobs:
         if: always()
         run: lake env lean scripts/PalomarBowenChapmanAxioms.lean
 
-      # The Pestov 9.1, FFWZ Question 5.8, Guba Question 3.20 and GKP Question
-      # 4.2 surfaces: the compared theorems, from their development endpoints.
+      # The Pestov 9.1, FFWZ Question 5.8, Guba Question 3.20, GKP Question 4.2
+      # and STW Problem X(1) surfaces: the compared theorems, from their
+      # development endpoints.
       - name: Palomar axiom closure (Pestov 9.1)
         id: axioms-pestov91
         continue-on-error: true
@@ -246,6 +254,12 @@ jobs:
         if: always()
         run: lake env lean scripts/PalomarGKPCommutingActionsAxioms.lean
 
+      - name: Palomar axiom closure (STW X(1))
+        id: axioms-stw-x1
+        continue-on-error: true
+        if: always()
+        run: lake env lean scripts/PalomarSTWProblemX1Axioms.lean
+
       - name: Reject a run whose axiom closures were not all clean
         if: always()
         run: |
@@ -257,6 +271,7 @@ jobs:
           a2='${{ steps.axioms-type-a2.outcome }}'
           gq='${{ steps.axioms-guba-thompson.outcome }}'
           gkp='${{ steps.axioms-gkp-commuting-actions.outcome }}'
+          x1='${{ steps.axioms-stw-x1.outcome }}'
           echo "non-MF closure: $nonmf"
           echo "LIX closure: $lix"
           echo "LIX strengthened closure: $strong"
@@ -265,12 +280,14 @@ jobs:
           echo "FFWZ 5.8 closure: $a2"
           echo "Guba 3.20 closure: $gq"
           echo "GKP 4.2 closure: $gkp"
+          echo "STW X(1) closure: $x1"
           # `skipped` counts as a failure: the closure was not computed, and a
           # check that did not run must not read like one that passed.
           if [ "$nonmf" != success ] || [ "$lix" != success ] \
              || [ "$strong" != success ] || [ "$bc" != success ] \
              || [ "$p91" != success ] || [ "$a2" != success ] \
-             || [ "$gq" != success ] || [ "$gkp" != success ]; then
+             || [ "$gq" != success ] || [ "$gkp" != success ] \
+             || [ "$x1" != success ]; then
             echo "::error::an axiom-closure driver did not report success"
             exit 1
           fi

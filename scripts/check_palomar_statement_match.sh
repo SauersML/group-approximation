@@ -26,8 +26,8 @@
 # original `Palomar/comparator.json` -- so it is submitted once per
 # configuration and each pair has to match on its own.  The loops below are
 # over the driver prefixes: empty for the non-MF pair, `LIX`, `BowenChapman`,
-# `Pestov91`, `TypeA2`, `GubaThompson` and `GKPCommutingActions` for the
-# submittable pairs, and `LIXStrong` for the pending one.  Every pair is run
+# `Pestov91`, `TypeA2`, `GubaThompson`, `GKPCommutingActions` and
+# `STWProblemX1` for the submittable pairs, and `LIXStrong` for the pending one.  Every pair is run
 # even after one fails: knowing that both differ is different information from
 # knowing that one does, and a script that stopped at the first would need a
 # second invocation to find out.
@@ -65,7 +65,7 @@ trap 'rm -rf "$work"' EXIT
 
 status=0
 
-for prefix in "" LIX BowenChapman Pestov91 TypeA2 GubaThompson GKPCommutingActions; do
+for prefix in "" LIX BowenChapman Pestov91 TypeA2 GubaThompson GKPCommutingActions STWProblemX1; do
   # A label for the messages: the empty prefix is the original non-MF pair.
   label="${prefix:-non-MF}"
   pair_ok=1
