@@ -1743,3 +1743,163 @@ paper. Neither claim is decision-level. No trace-lowering relation and no one-si
   - `leavitt-prime-field-units-generated-by-v-and-one-transvection`.
   - `twisted-leavitt-corner-fullness-equals-absence-of-k0-states`, items 3 and 5, and Theorem E behind them.
   - Krull–Schmidt, Frobenius reciprocity, and freeness of projectives over a Sylow subgroup.
+
+## 41. Two-piece corner criterion and finite-dimensional chart representations (w6-wf-stage1-a; 8e889c4923, 13c4f95756): PASS
+
+Scope:
+- the artifact `research/artifacts/ternary-one-transvection-two-piece-lift-2026-09-12.md` (blob `9329b3a18d`);
+- the claims `two-piece-left-inverses-are-corner-left-inverses` (Theorem A) and
+  `finite-dimensional-chart-reps-kill-one-transvection-lift` (Proposition E);
+- the routes `two-piece-left-inverses-are-corner-left-inverses-proof` and
+  `finite-dimensional-chart-reps-kill-one-transvection-lift-proof`.
+
+Both claim nodes ask for re-derivation. I re-derived Sections 1–8 of the artifact on paper; the standard inputs I only
+cite are listed in 41.4. Neither claim is decision-level. `one-transvection-ternary-s0-lift-is-left-invertible`
+stays OPEN: Proposition E restricts where a left inverse can live and refutes nothing.
+
+### 41.1 Section 1, Theorem A and Corollary A.1
+
+- **Honest idempotents.**
+  - `eps_-^2 = 4(2 - 2[z]) = 8(1 - [z]) = eps_-`, and `[z] = -1` in `S_-`.
+  - For an involution `d`, the same computation gives `P_d^2 = P_d`, and `[d]P_d = P_d[d] = 2([d] - 1) = -P_d`.
+  - `d1^2 = 1 + 3 p1 = 1` and `pi(P1) = 2(1 - d1) = -2 p1 = p1`.
+  - `d0 = z d1` gives `[d0] = -[d1]`, so `P0 + P1 = 4 = 1` and `P0 P1 = 4(1 - [d1]^2) = 0`.
+  - `pi(P0) = 2(2 + p1) = 1 - p1 = p0`.
+- **Theorem A(1).** `v = P'vP'` gives `vP = 0`.
+  - `c'P = P + vP - PhvP = P`, and `c'hP' = PhP' + vhP' - Ph(vhP') = P'`.
+  - So `c'b = 1` with `b = P + hP'`. Since `a = u0 b`, `c = c'u0^(-1)` gives `ca = 1`.
+- **Theorem A(2).** Put `C = cu0`. Then `Cb = CP + ChP' = 1`.
+  - Multiplying on the right by `P` gives `CP = P`, since `P'P = 0`.
+  - Multiplying on the right by `P'` gives `ChP' = P'`.
+  - So `P'CP = 0` and `P' = P'ChP' = (P'CP')hP'`.
+  - Both directions hold in any unital ring, as the route says.
+- **Corollary A.1.**
+  - `pi(a) = u0 s0 t0 + u1 s1 t1 = s00 t0 + s01 t1 = s0`. This is not a unit, so `ca = 1` forces `ac != 1`.
+  - `pi(Y_h) = s10 t1` corresponds to `s0` under `y -> t1 y s1`, so it is a proper isometry of `p1 R p1`.
+
+### 41.2 Proposition B, Construction C and Section 5
+
+- **Proposition B.**
+  - For (2): `P[g]P[k]P = 2P[g](1 - [d])[k]P = 2(Y_(gk) - Y_(gdk))`, and `2 = -1`.
+  - For (3), `4 = 1` gives `Y_g = [g] - [dg] - [gd] + [dgd]`. Up to `z`, the only possible coincidence is
+    `dg = ±gd`:
+    - `dg = gd` gives `2[g] - 2[dg] != 0`;
+    - `dg = zgd` gives `[gd] = -[dg]` and `[dgd] = -[g]`, so `Y_g = 0`.
+  - Distinct double cosets `DgD` have disjoint supports.
+  - (4) is (2) applied to `v = sum lambda_g Y_g`.
+  - `pi(Y_g) = s1 g_11 t1` is `p1 g p1 = s1 (t1 g s1) t1`.
+- **Construction C.**
+  - `t01 s00 = t1 s0 = 0`, so `x^(-1) = 1 - s00 t01` and `x^3 = 1`.
+  - `g0` sends `s0, s10, s11` to `s00, s01, s1`.
+  - `t01 s00 = 0`, `t01 s01 = 1` and `t01 s1 = 0` give `u0 = s00 t0 + (s01 - s00) t10 + s1 t11`, and `u0 s0 = s00`.
+  - The chart entries of `h = s0 t1 - s1 t0 + s10 t1` are `0, 1, -1, s0`.
+  - `[[0,1],[-1,s0]]` and `[[s0,-1],[1,0]]` multiply to `I` in both orders.
+  - `omega^2 = -I` and `omega [[1,-s0],[0,1]] = h`.
+  - `u0 s1 = (s01 - s00) t0 + s1 t1` and `u0 s10 = s01 - s00`.
+  - So `u1 = u0 h = s00 t00 + s01 (t1 - t00) - s1 t01`, and `u1 s1 = u0 (s0 + s10) = s01`.
+  - `P0 = -(1 + [d1])` and `P1 = -(1 - [d1])` give the four-term `a`.
+  - On the visible side, `(s1 t10)(s10 t1) = s1 t0 s0 t1 = p1`.
+- **Lemma D.1.** A finite quotient that is injective on `supp(ba - 1)` sends `ab = 1` to the finite-dimensional
+  algebra `K[Q]`, and there it forces `ba = 1`.
+- **Proposition D.**
+  - Theorem A(1) in `S_-(H)`, with `u0 = 1` and `u1 = h`, gives `c'b = 1` for `b = P0 + [h]P1`.
+  - Direct finiteness would make `pi(b) = p0 + hp1 = [[1,1],[0,s0]] = diag(1,s0)[[1,1],[0,1]]` a unit.
+  - But `diag(1,t0)diag(1,s0) = 1` and `diag(1,s0t0) != 1`, so `diag(1,s0)` is not a unit.
+- **The partner k.**
+  - `k = [[0,-1],[1,t0]]` and `[[t0,1],[-1,0]]` multiply to `I` in both orders.
+  - `kh = [[1,-s0],[-t0,-1]]` and `k d1 h = [[-1,s0],[t0,0]]`, using `t0 s0 = 1`.
+  - So `pi(Y_k Y_h) = s1(0 - (-1))t1 = p1`.
+- **Claim D.3.**
+  - `rho(P1)` is idempotent, so `tr rho(Y_g) = 2(tr rho(g) - tr rho(d1 g))`.
+  - This is `2((a+c)^2(a'+c') - (a-c)^2(a'-c')) = 8aca' + 4(a^2+c^2)c' = 2aca' + a^2c' + c^2c'`.
+  - The values at `g = 1`, `k d1 h` and `kh` are all `1`.
+  - The images `[[-1,s],[s^(-1),0]]` and `[[1,-s],[-s^(-1),-1]]` have the inverses the artifact states. The
+    second has determinant `-1 - 1 = 1`.
+  - So `tr rho(w) = 1 - 1 - 1 = -1`.
+- **The finitary involution.**
+  - `hk = [[1,t0],[s0,1 + s0t0]]`, and `1 + s0t0 = -1 - e`.
+  - `t0 e = 0`, `e s0 = 0` and `(1 + e)^2 = 1 + 3e = 1` give `(hk)^2 = -diag(1,1+e)`.
+  - `n = diag(1,1+e) = 1 + s1 e t1 = 1 + p1 - s10 t10`, and `rho0(n) = I` because `e -> 0`.
+
+### 41.3 Proposition E, its corollaries, and Sections 6–7
+
+- **Ring map.** `rho(z) = (-1)^3 = -1`, so `rho(eps_-) = 2 · 2 = 1`, and `rho` is unital on `eps_- F_3[H]`.
+- **Odd part.**
+  - `psi0*(d1) f = f ∘ psi0(d1)`, which is `±f` on `V±*`. So `rho(d1)` acts on `W_(abc)` by the sign `abc`.
+  - `rho(P1) = 2(1 - rho(d1))` is `0` on the even blocks and `4 = 1` on the odd ones.
+- **Compression.** `v = P1 v P1` and `v Y_h = P1` give `rho_O(v) rho_O(h) = 1_O`. So `rho_O(h)` is injective on
+  the finite-dimensional space `O`, hence onto.
+- **Missing block.**
+  - For `f in V-*`, `psi0*(h) f = f ∘ g^(-1)` vanishes on `V-`, because `g^(-1)V- = V+`.
+  - Into `W_(++-)`, the blocks from `(++-)` and `(+-+)` have first factor `pi+ g i+ = 0`.
+  - The block from `(-++)` has second factor `0`, and the block from `(---)` has third factor `0`.
+  - `g` maps `V+` onto `V-` and `V != 0`, so `dim V+ = dim V- >= 1` and `W_(++-) != 0`.
+- **Why a tensor cube.** `psi0(P1)` is the projection onto `V-`, and `psi0(Y_h) = pi- g i-`. For `GL_2(phi)`
+  this is `phi(s0)`, which can be invertible.
+- **Corollary E.1.**
+  - `t0 d1 s0 = 1`, `t1 d1 s1 = 2 = -1`, and the off-diagonal entries vanish, so `d1 = diag(1,-1)`.
+  - `psi0(h) = [[0,I],[-I,phi(s0)]]` sends `(x,0)` to `(0,-x)`.
+- **Instances.**
+  - `F_3[s0]` and `F_3<s0,s1>`: distinct words in the `s_i` are distinct normal-form monomials. So these algebras
+    are polynomial and free, and `s_i -> 1` is well defined.
+  - `T = F_3<s0,t0>`: the monomials `s0^a t0^b` are independent and multiply through `t0 s0 = 1`, so
+    `s0, t0 -> 1` is well defined.
+  - `F_3<s0,t0,t1>`: the monomials `s0^a t_nu` have no `s1 t1` junction, so they are independent.
+  - They are closed under multiplication through `t0 s0 = 1` and `t1 s0 = 0`, so `s0, t0 -> 1`, `t1 -> 0` is well
+    defined.
+- **Corollary E.2.**
+  - `h s0 = -s1` and `h^(-1) s1 = -s0`, so both displayed entries vanish.
+  - `t_u d1 s_w = delta_uw + t_u s1 t1 s_w`, which gives sign `-1` exactly on words beginning with `1`.
+  - `psi0(h)V+ ⊆ V-` and `psi0(h)^(-1)V- ⊆ V+`, so `psi0(h)V+ = V-`.
+- **What escapes.**
+  - In a finite-dimensional representation, `t1 s1 = 1` makes `s1` invertible. Then `t0 s1 = 0` gives `t0 = 0`,
+    which contradicts `t0 s0 = 1`.
+  - `[[s0, s1t0],[0,t1]]` and `[[t0,0],[s0t1,s1]]` multiply to `I` in both orders, using `t0 s1 = t1 s0 = 0` and
+    `s0t0 + s1t1 = 1`.
+- **Section 6.**
+  - Item 2 is Proposition D applied to `H_v`, followed by Elek–Szabó.
+  - Item 5 and "What escapes" are Corollary E.1 applied to `A_v`.
+  - T1: `rho_O(Y_k Y_h) = rho_O(k) rho_O(h)` is not onto, so `P1 + w` is not invertible in the corner.
+  - This subsumes Claim D.3, because a nilpotent `w` would make `P1 + w` invertible.
+  - T2: `n` and its `H1`-conjugates lie in `GL_2(T)`.
+  - Item 3 is stated conditionally, and I did not re-derive it.
+- **Section 7.**
+  - `F_3[C_3] = F_3[X]/(X - 1)^3` is local.
+  - `M_x = 1 + [x] + [x^2] = N_x^2`, `pi(M_x) = (x - 1)^2 = 0` and `M_x^2 = N_x^4 = 0`.
+
+### 41.4 Displays, scan and inputs
+
+- **Displays.** Both claim nodes and both routes match the artifact and my recomputation:
+  - `c = (P + v - Phv) u0^(-1)` and `v = P'cu0P'`;
+  - the four-term `a`, `h`, `h^(-1)` and `omega`;
+  - `Y_g Y_k = Y_(g d1 k) - Y_(gk)`;
+  - the block `V+ ⊗ V+ ⊗ V-*`, the instance maps, and the Thompson unit with its inverse.
+
+  The Attempts entries of the OPEN lift node match Sections 5, 6 and 8.
+- **Subsumption scan.** I checked, without truncation, every claim node that mentions:
+  - lifts of `s0` or two-piece lifts;
+  - `Y_h`, sign-Hecke corners, `psi0` or tensor cubes;
+  - `J_1(S_-)` or one-sided units.
+
+  Findings:
+  - `two-piece-s0-lifts-telescope-to-a-corner` (over `F_2`) fixes the partner and asks, through `C'C`, when `ba`
+    is a unit. It is consistent with Theorem A: a unit `C'C` makes `C` left invertible, but not conversely.
+  - Four nodes are over `F_2` with triangular pieces: `finite-support-triangular-two-piece-s0-lifts-do-not-exist`,
+    `two-piece-s0-lift-with-triangular-defect-exists`, `finite-support-multi-piece-triangular-s0-lift-exists`
+    and `triangular-piece-lifts-need-non-directly-finite-shift-group`. Section 6 item 2 has the shape of the last.
+  - `swap-separated-pairs-avoid-finitely-represented-supports` filters a different equation and needs `w in H`.
+    Its one-sided-inverse argument gives only bijectivity of `rho_O(h)`.
+  - `depth-monotone-configurations-cannot-force-ternary-minus-one`: the remark after Corollary D.2 is consistent
+    with it, and Proposition E does not use it.
+  - `leavitt-unit-hosts-exclude-matrices-over-commutative-rings` concerns maps of the whole group. Proposition E
+    represents proper subgroups such as `GL_2(T)`, so the two are consistent.
+  - Three nodes are over `F_2`, and neither claim decides them: `s0-lifts-cannot-be-supported-in-the-all-ones-stabilizer`,
+    `left-invertible-lift-of-s0-in-leavitt-group-algebra` and `leavitt-unit-group-algebra-not-directly-finite`.
+  - `odd-tensor-closure-kills-projective-zpc-gluing-identities` concerns different identities.
+  - Nothing is subsumed or refuted.
+- **Cited, not re-derived.**
+  - `weakly-finite-reflection-ideal-detects-weakly-finite-images`: `ca = 1 != ac` gives `J_1(S_-) != 0`.
+  - Elek–Szabó.
+  - Residual finiteness of `GL_2(F_3[s0])` through congruence maps.
+  - `SL_fin(F_3) <= GL_2(T)`, which makes `GL_2(T)` not residually finite.
+  - The absence statement that no node on main decides soficity of `GL_2(T)`.

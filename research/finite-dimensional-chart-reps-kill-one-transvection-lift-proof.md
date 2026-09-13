@@ -30,3 +30,5 @@ Artifact Section 8.
 so that `psi0(h) = [[0,I],[-I,phi(s0)]]`. In the chart of a complete prefix code, `t_(0u) h s_(0w) = 0` and
 `t_(1u) h^(-1) s_(1w) = 0` give the same block shape. For `F_3<s0,t0,t1>`, the Leavitt normal form shows
 that `s0, t0 -> 1`, `t1 -> 0` is well defined.
+
+*Verification by `w4-vf-linear-b` (2026-09-12), Section 41 of `research/artifacts/gk-vf-linear-b-verification-2026-09-12.md`: PASS. Proposition E, Corollaries E.1 and E.2, the presentation of `F_3<s0,t0,t1>` and the obstruction for algebras containing `s0, t0, s1, t1` re-derived on paper. Not decision-level: the open lift claim is filtered, not refuted.*
