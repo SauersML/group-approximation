@@ -26,7 +26,9 @@ Let `Q` be finite simple of Lie type of rank `<= rho` over `F_q`, and suppose so
 `r(a) != 1`; otherwise (E1) gives `w = 0`.
 - **The class is large.** Let `S` be the conjugacy class of `r(a)`. `Q` acts on `S` by
   conjugation, nontrivially. So `C[S]` minus its trivial summand is a nontrivial
-  representation, and `|S| - 1 >= c q^rho` by item 3 of `liebeck-shalev-normal-subset-covering`.
+  representation, and `|S| - 1 >= c q^(rk Q) >= c q` by item 3 of `liebeck-shalev-normal-subset-covering`.
+  The rank of `Q` may be below `rho`; only `|S| >= c q` is used below (review 2026-09-13,
+  `research/artifacts/ex-review-backlog-2026-09-13-part2.md` §2.2).
 - **The group is not too large.** `|Q| <= q^(D(rho))`, with `D(rho)` the dimension of the
   ambient algebraic group, which is bounded in terms of `rho`.
 - **Covering.** So `log|Q| / log|S|` is bounded in terms of `rho` once `q` is large. The finitely

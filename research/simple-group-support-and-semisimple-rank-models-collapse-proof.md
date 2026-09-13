@@ -138,8 +138,12 @@ homomorphism, so `Ad(w(a)) = w(Ad(a))` for every word. Put `n = dim V` and `rho 
   - *Jordan count.* Over an algebraic closure, `dim C(g) = sum_lambda sum_j (mu'_(lambda,j))^2`,
     with `mu'_lambda` the conjugate partition of the Jordan type at `lambda`. All parts sum to `n`,
     and the largest part at `lambda` is the geometric multiplicity `n - rk(g - lambda)`.
-  - *Multiplicities.* For `lambda in F` this is at most `n - rho`. For `lambda` outside `F`, a Galois
-    conjugate has the same multiplicity, so it is at most `n/2`.
+  - *Multiplicities.* For `lambda in F` this is at most `n - rho`. For `lambda` outside `F`, let `m`
+    be its minimal polynomial over `F`, of degree at least 2. Every Jordan block at `lambda` comes
+    from exactly one cyclic summand `F[x]/(m^k)` of the `m`-primary part of `V`, and that summand has
+    `F`-dimension at least `deg m`. So the multiplicity is at most `n/2`. This also covers purely
+    inseparable `lambda` over imperfect fields, where no second Galois conjugate exists (review
+    2026-09-13, `research/artifacts/ex-review-backlog-2026-09-13-part2.md` §2.1).
   - *Result.* `dim C(g) <= n max(n - rho, n/2)`, hence `rk(Ad(g) - 1) >= n min(rho, n/2)`.
 - **Conclusion.** Lemma 2.3 applied to the tuple `Ad(a)` over `F` gives
   ```text
