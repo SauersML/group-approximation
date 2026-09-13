@@ -245,8 +245,28 @@ exactly when some torsion-free quotient of `G_Gamma` is injective on the vertice
     - With sieve 6 at complete labellings, nothing survives (`v2-s14.out`: 110 graphs, 8,428,940
       nodes, 320 power relators). This reproduces A--T's case `n = 14` without their list of
       forbidden subgraphs.
-  - Cost. At `n = 14` the node count per graph has median 33,989 and maximum 855,949. From `n = 10`
-    to `n = 14` it grows 3.3 to 4.3 times per two vertices. That projects about 1.7 core-hours at
-    `n = 16`, 68 at `n = 18`, and 3400 at `n = 20` over all 97546 graphs. Running on MSI: `n = 6..16`
-    with this version (job 592716), and root choice and stronger inner sieves at `n = 14`
-    (`zds3.c`, not landed).
+  - Cost with this order. At `n = 14` the node count per graph has median 33,989 and maximum
+    855,949. From `n = 10` to `n = 14` it grows 3.3 to 4.3 times per two vertices, which projects
+    about 3400 core-hours at `n = 20` over all 97546 graphs.
+- Vertex order (`zds3.c`, md5 `18a83240ff82d0bcdcdcd33c15780d72`). `zds.c` labels the vertices in
+  BFS order. By default `zds3.c` labels next the vertex with the most labelled neighbours, lowest
+  index first, and joins it to the spanning tree at its first labelled neighbour. It adds three
+  options, each off by default:
+  - `-probe D` picks the root with the fewest labellings of its first `D` vertices. Any vertex can
+    be the root, since the `S_3` on port names acts on all vertices at once.
+  - `-pwd D` runs sieve 6 on partial labellings with at most `D` vertices unlabelled.
+  - `-bs K -bsd D` excludes a labelling with at most `D` vertices unlabelled when the table shows
+    `a b a^-1 = b^j` with `|j| <= K`. Here `(a, b)` runs over 72 pairs: a letter with a letter of
+    the other class, or with a two-letter word in both classes, in either order. Each pair is a
+    basis of `F(x, y)`. So the host is a quotient of `BS(1, j)`, hence solvable, and KLM applies.
+- Job `exp14.sbatch` (593423, log `exp14.593423.log`) ran at `n = 14`. No labelling survives in
+  any run.
+  - Soundness test as above, with the new order: 0 failures (`v3-t-c0`, `v3-t-c4000`, `v3-ctl`).
+  - `-bfs`: 8,426,048 nodes, against 8,428,940 for `zds.c`, whose spanning tree differs slightly.
+  - Default order: 571,963 nodes, 15 times fewer, with median 3,305 and maximum 18,413 per graph.
+    It takes 20 s, or 6 s with at most 1000 cosets at partial labellings (572,425 nodes).
+  - Root probes cost more than they save. `-probe 6` gives 354,598 search nodes plus 1,270,020
+    probe nodes. `-bs 8 -bsd 3` prunes 599 labellings and `-pwd 3` prunes 1073; neither changes
+    the node count by more than 1%.
+- Running on MSI with `zds3.c`: `ladder.sbatch` (`n = 6..16`, job 595297) and `n18.sbatch` (all
+  7805 graphs at `n = 18` in 32 shards, job array 595304). `zds.c` at `n = 16`: job 592716.

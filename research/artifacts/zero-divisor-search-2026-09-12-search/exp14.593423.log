@@ -1,0 +1,32 @@
+18a83240ff82d0bcdcdcd33c15780d72  zds3.c
+fb8f4c48ba0dc6a7bea83bf22b51dc2e  exp14.sbatch
+db238c873aa586bc24c3522ec9f324c1  g14.g6
+db00ce56cb5be883241095e80983b68e  testdata.txt
+== v3-t-c0: zds3 -t -c 0 rc=0 seconds=2 bad=0 surv=0
+TOTAL items 99158 nodes 0 surv 0 prunes coinc 0 ab 0 finite 0 power 0 (relators 0) bs 0 fails 0 budget 0 climit 0 leaf 0 pw 0 0 depth 0 bs -1 40 root 0 probe 0 greedy
+== v3-t-c4000: zds3 -t -c 4000 -cl 64000 rc=0 seconds=51 bad=0 surv=0
+TOTAL items 99158 nodes 0 surv 0 prunes coinc 0 ab 0 finite 0 power 0 (relators 0) bs 0 fails 0 budget 0 climit 4000 leaf 64000 pw 0 0 depth 0 bs -1 40 root 0 probe 0 greedy
+== v3-ctl: zds3 -t2 -c 4000 -cl 64000 rc=0 seconds=52 bad=0 surv=0
+TOTAL items 99158 nodes 662044 surv 0 prunes coinc 0 ab 0 finite 0 power 0 (relators 0) bs 0 fails 0 budget 0 climit 4000 leaf 64000 pw 0 0 depth 0 bs -1 40 root 0 probe 0 greedy
+== v3-base: zds3 -c 4000 -cl 64000 -pw 4 8 rc=0 seconds=20 bad=0 surv=0
+TOTAL items 110 nodes 571963 surv 0 prunes coinc 350380 ab 0 finite 25770 power 20 (relators 490) bs 0 fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+== v3-bfs: zds3 -c 4000 -cl 64000 -pw 4 8 -bfs rc=0 seconds=196 bad=0 surv=0
+TOTAL items 110 nodes 8426048 surv 0 prunes coinc 5117082 ab 0 finite 155863 power 20 (relators 478) bs 0 fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 bfs
+== v3-pwd3: zds3 -c 4000 -cl 64000 -pw 4 8 -pwd 3 rc=0 seconds=19 bad=0 surv=0
+TOTAL items 110 nodes 569370 surv 0 prunes coinc 347993 ab 0 finite 25489 power 1073 (relators 32498) bs 0 fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 3 bs -1 40 root 0 probe 0 greedy
+== v3-probe6: zds3 -c 4000 -cl 64000 -pw 4 8 -probe 6 rc=0 seconds=72 bad=0 surv=0
+TOTAL items 110 nodes 1624618 surv 0 prunes coinc 425755 ab 0 finite 30493 power 20 (relators 504) bs 0 fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 6 greedy
+== v3-probe9: zds3 -c 4000 -cl 64000 -pw 4 8 -probe 9 rc=0 seconds=287 bad=0 surv=0
+TOTAL items 110 nodes 7879585 surv 0 prunes coinc 4593154 ab 0 finite 381230 power 22 (relators 522) bs 0 fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 9 greedy
+== v3-bs8: zds3 -c 4000 -cl 64000 -pw 4 8 -bs 8 -bsd 3 rc=0 seconds=20 bad=0 surv=0
+TOTAL items 110 nodes 570577 surv 0 prunes coinc 349068 ab 0 finite 25617 power 20 (relators 490) bs 599 fails 0 budget 0 climit 4000 leaf 64000 pw 4 8 depth 0 bs 8 3 root 0 probe 0 greedy
+== v3-c1000: zds3 -c 1000 -cl 64000 -pw 4 8 rc=0 seconds=6 bad=0 surv=0
+TOTAL items 110 nodes 572425 surv 0 prunes coinc 350744 ab 0 finite 25705 power 22 (relators 550) bs 0 fails 0 budget 0 climit 1000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+== v3-c16000: zds3 -c 16000 -cl 64000 -pw 4 8 rc=0 seconds=75 bad=0 surv=0
+TOTAL items 110 nodes 571761 surv 0 prunes coinc 350230 ab 0 finite 25787 power 20 (relators 490) bs 0 fails 0 budget 0 climit 16000 leaf 64000 pw 4 8 depth 0 bs -1 40 root 0 probe 0 greedy
+v3-base graphs 110 nodes 571963 probe 0 median 3305 max 18413
+v3-bfs graphs 110 nodes 8426048 probe 0 median 33989 max 855949
+v3-probe6 graphs 110 nodes 354598 probe 1270020 median 1473 max 18413
+v3-probe9 graphs 110 nodes 501002 probe 7378583 median 2902 max 18341
+/dev/fd/63 /dev/fd/62 differ: byte 19, line 1
+ALLDONE
