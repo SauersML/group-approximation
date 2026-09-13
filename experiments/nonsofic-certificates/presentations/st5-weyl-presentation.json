@@ -1,0 +1,429 @@
+{
+ "chart": [
+  "00",
+  "01",
+  "10",
+  "110",
+  "111"
+ ],
+ "generators": {
+  "c": "S[00]T[111] + S[01]T[00] + S[10]T[01] + S[110]T[10] + S[111]T[110]",
+  "t": "1 + S[0]T[0] + S[00]T[01] + S[01]T[00]",
+  "y1": "1 + S[00]T[01]",
+  "ye": "1 + S[000]T[01]",
+  "yf": "1 + S[00]T[0] + S[000]T[00]",
+  "yE": "1 + S[00]T[010]",
+  "yF": "1 + S[00]T[011]"
+ },
+ "relators": [
+  {
+   "family": "W",
+   "name": "t^2",
+   "word": "t t",
+   "length": 2
+  },
+  {
+   "family": "W",
+   "name": "c^5",
+   "word": "c c c c c",
+   "length": 5
+  },
+  {
+   "family": "W",
+   "name": "(tc)^4",
+   "word": "t c t c t c t c",
+   "length": 8
+  },
+  {
+   "family": "W",
+   "name": "(t c^-1 t c)^3",
+   "word": "t c^-1 t c t c^-1 t c t c^-1 t c",
+   "length": 12
+  },
+  {
+   "family": "W",
+   "name": "(t c^-2 t c^2)^2",
+   "word": "t c^-1 c^-1 t c c t c^-1 c^-1 t c c",
+   "length": 12
+  },
+  {
+   "family": "K",
+   "name": "[y1, (34)]",
+   "word": "y1 c c t c^-1 c^-1 y1^-1 c c t^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "K",
+   "name": "[y1, (45)]",
+   "word": "y1 c^-1 c^-1 t c c y1^-1 c^-1 c^-1 t^-1 c c",
+   "length": 12
+  },
+  {
+   "family": "K",
+   "name": "[ye, (34)]",
+   "word": "ye c c t c^-1 c^-1 ye^-1 c c t^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "K",
+   "name": "[ye, (45)]",
+   "word": "ye c^-1 c^-1 t c c ye^-1 c^-1 c^-1 t^-1 c c",
+   "length": 12
+  },
+  {
+   "family": "K",
+   "name": "[yf, (34)]",
+   "word": "yf c c t c^-1 c^-1 yf^-1 c c t^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "K",
+   "name": "[yf, (45)]",
+   "word": "yf c^-1 c^-1 t c c yf^-1 c^-1 c^-1 t^-1 c c",
+   "length": 12
+  },
+  {
+   "family": "K",
+   "name": "[yE, (34)]",
+   "word": "yE c c t c^-1 c^-1 yE^-1 c c t^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "K",
+   "name": "[yE, (45)]",
+   "word": "yE c^-1 c^-1 t c c yE^-1 c^-1 c^-1 t^-1 c c",
+   "length": 12
+  },
+  {
+   "family": "K",
+   "name": "[yF, (34)]",
+   "word": "yF c c t c^-1 c^-1 yF^-1 c c t^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "K",
+   "name": "[yF, (45)]",
+   "word": "yF c^-1 c^-1 t c c yF^-1 c^-1 c^-1 t^-1 c c",
+   "length": 12
+  },
+  {
+   "family": "L",
+   "name": "(t y1)^3",
+   "word": "t y1 t y1 t y1",
+   "length": 6
+  },
+  {
+   "family": "D",
+   "name": "y1^2",
+   "word": "y1 y1",
+   "length": 2
+  },
+  {
+   "family": "B",
+   "name": "[X12(1), X34(1)]",
+   "word": "y1 c c y1 c^-1 c^-1 y1^-1 c c y1^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(1), X34(e)]",
+   "word": "y1 c c ye c^-1 c^-1 y1^-1 c c ye^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(1), X34(f)]",
+   "word": "y1 c c yf c^-1 c^-1 y1^-1 c c yf^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(1), X34(E)]",
+   "word": "y1 c c yE c^-1 c^-1 y1^-1 c c yE^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(1), X34(F)]",
+   "word": "y1 c c yF c^-1 c^-1 y1^-1 c c yF^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(e), X34(e)]",
+   "word": "ye c c ye c^-1 c^-1 ye^-1 c c ye^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(e), X34(f)]",
+   "word": "ye c c yf c^-1 c^-1 ye^-1 c c yf^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(e), X34(E)]",
+   "word": "ye c c yE c^-1 c^-1 ye^-1 c c yE^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(e), X34(F)]",
+   "word": "ye c c yF c^-1 c^-1 ye^-1 c c yF^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(f), X34(f)]",
+   "word": "yf c c yf c^-1 c^-1 yf^-1 c c yf^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(f), X34(E)]",
+   "word": "yf c c yE c^-1 c^-1 yf^-1 c c yE^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(f), X34(F)]",
+   "word": "yf c c yF c^-1 c^-1 yf^-1 c c yF^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(E), X34(E)]",
+   "word": "yE c c yE c^-1 c^-1 yE^-1 c c yE^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(E), X34(F)]",
+   "word": "yE c c yF c^-1 c^-1 yE^-1 c c yF^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(F), X34(F)]",
+   "word": "yF c c yF c^-1 c^-1 yF^-1 c c yF^-1 c^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(1), X13(1)]",
+   "word": "y1 t c y1 c^-1 t^-1 y1^-1 t c y1^-1 c^-1 t^-1",
+   "length": 12
+  },
+  {
+   "family": "B",
+   "name": "[X12(1), X32(1)]",
+   "word": "y1 c t y1 t^-1 c^-1 y1^-1 c t y1^-1 t^-1 c^-1",
+   "length": 12
+  },
+  {
+   "family": "C",
+   "name": "[X12(E), X23(e)] = X13(1)",
+   "word": "yE c ye c^-1 yE^-1 c ye^-1 c^-1 t c y1^-1 c^-1 t^-1",
+   "length": 13
+  },
+  {
+   "family": "C",
+   "name": "[X12(F), X23(f)] = X13(1)",
+   "word": "yF c yf c^-1 yF^-1 c yf^-1 c^-1 t c y1^-1 c^-1 t^-1",
+   "length": 13
+  },
+  {
+   "family": "C",
+   "name": "[X12(E), X23(f)] = X13(0)",
+   "word": "yE c yf c^-1 yE^-1 c yf^-1 c^-1",
+   "length": 8
+  },
+  {
+   "family": "C",
+   "name": "[X12(F), X23(e)] = X13(0)",
+   "word": "yF c ye c^-1 yF^-1 c ye^-1 c^-1",
+   "length": 8
+  },
+  {
+   "family": "C",
+   "name": "[X12(1), X23(1)] = X13(1)",
+   "word": "y1 c y1 c^-1 y1^-1 c y1^-1 c^-1 t c y1^-1 c^-1 t^-1",
+   "length": 13
+  },
+  {
+   "family": "C",
+   "name": "[X12(1), X23(e)] = X13(e)",
+   "word": "y1 c ye c^-1 y1^-1 c ye^-1 c^-1 t c ye^-1 c^-1 t^-1",
+   "length": 13
+  },
+  {
+   "family": "C",
+   "name": "[X12(e), X23(1)] = X13(e)",
+   "word": "ye c y1 c^-1 ye^-1 c y1^-1 c^-1 t c ye^-1 c^-1 t^-1",
+   "length": 13
+  },
+  {
+   "family": "C",
+   "name": "[X12(1), X23(f)] = X13(f)",
+   "word": "y1 c yf c^-1 y1^-1 c yf^-1 c^-1 t c yf^-1 c^-1 t^-1",
+   "length": 13
+  },
+  {
+   "family": "C",
+   "name": "[X12(f), X23(1)] = X13(f)",
+   "word": "yf c y1 c^-1 yf^-1 c y1^-1 c^-1 t c yf^-1 c^-1 t^-1",
+   "length": 13
+  },
+  {
+   "family": "C",
+   "name": "[X12(1), X23(E)] = X13(E)",
+   "word": "y1 c yE c^-1 y1^-1 c yE^-1 c^-1 t c yE^-1 c^-1 t^-1",
+   "length": 13
+  },
+  {
+   "family": "C",
+   "name": "[X12(E), X23(1)] = X13(E)",
+   "word": "yE c y1 c^-1 yE^-1 c y1^-1 c^-1 t c yE^-1 c^-1 t^-1",
+   "length": 13
+  },
+  {
+   "family": "C",
+   "name": "[X12(1), X23(F)] = X13(F)",
+   "word": "y1 c yF c^-1 y1^-1 c yF^-1 c^-1 t c yF^-1 c^-1 t^-1",
+   "length": 13
+  },
+  {
+   "family": "C",
+   "name": "[X12(F), X23(1)] = X13(F)",
+   "word": "yF c y1 c^-1 yF^-1 c y1^-1 c^-1 t c yF^-1 c^-1 t^-1",
+   "length": 13
+  },
+  {
+   "family": "P",
+   "name": "[X12(e), X23(e)] = [X14(e), X43(e)]",
+   "word": "ye c ye c^-1 ye^-1 c ye^-1 c t ye t^-1 c^-1 c^-1 c^-1 t c^-1 t ye t^-1 c t^-1 c c c t ye^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t ye^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "P",
+   "name": "[X12(e), X23(f)] = [X14(e), X43(f)]",
+   "word": "ye c yf c^-1 ye^-1 c yf^-1 c t yf t^-1 c^-1 c^-1 c^-1 t c^-1 t ye t^-1 c t^-1 c c c t yf^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t ye^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "P",
+   "name": "[X12(e), X23(E)] = [X14(e), X43(E)]",
+   "word": "ye c yE c^-1 ye^-1 c yE^-1 c t yE t^-1 c^-1 c^-1 c^-1 t c^-1 t ye t^-1 c t^-1 c c c t yE^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t ye^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "P",
+   "name": "[X12(e), X23(F)] = [X14(e), X43(F)]",
+   "word": "ye c yF c^-1 ye^-1 c yF^-1 c t yF t^-1 c^-1 c^-1 c^-1 t c^-1 t ye t^-1 c t^-1 c c c t yF^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t ye^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "P",
+   "name": "[X12(f), X23(e)] = [X14(f), X43(e)]",
+   "word": "yf c ye c^-1 yf^-1 c ye^-1 c t ye t^-1 c^-1 c^-1 c^-1 t c^-1 t yf t^-1 c t^-1 c c c t ye^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t yf^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "P",
+   "name": "[X12(f), X23(f)] = [X14(f), X43(f)]",
+   "word": "yf c yf c^-1 yf^-1 c yf^-1 c t yf t^-1 c^-1 c^-1 c^-1 t c^-1 t yf t^-1 c t^-1 c c c t yf^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t yf^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "P",
+   "name": "[X12(f), X23(E)] = [X14(f), X43(E)]",
+   "word": "yf c yE c^-1 yf^-1 c yE^-1 c t yE t^-1 c^-1 c^-1 c^-1 t c^-1 t yf t^-1 c t^-1 c c c t yE^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t yf^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "P",
+   "name": "[X12(f), X23(F)] = [X14(f), X43(F)]",
+   "word": "yf c yF c^-1 yf^-1 c yF^-1 c t yF t^-1 c^-1 c^-1 c^-1 t c^-1 t yf t^-1 c t^-1 c c c t yF^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t yf^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "P",
+   "name": "[X12(E), X23(E)] = [X14(E), X43(E)]",
+   "word": "yE c yE c^-1 yE^-1 c yE^-1 c t yE t^-1 c^-1 c^-1 c^-1 t c^-1 t yE t^-1 c t^-1 c c c t yE^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t yE^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "P",
+   "name": "[X12(E), X23(F)] = [X14(E), X43(F)]",
+   "word": "yE c yF c^-1 yE^-1 c yF^-1 c t yF t^-1 c^-1 c^-1 c^-1 t c^-1 t yE t^-1 c t^-1 c c c t yF^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t yE^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "P",
+   "name": "[X12(F), X23(E)] = [X14(F), X43(E)]",
+   "word": "yF c yE c^-1 yF^-1 c yE^-1 c t yE t^-1 c^-1 c^-1 c^-1 t c^-1 t yF t^-1 c t^-1 c c c t yE^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t yF^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "P",
+   "name": "[X12(F), X23(F)] = [X14(F), X43(F)]",
+   "word": "yF c yF c^-1 yF^-1 c yF^-1 c t yF t^-1 c^-1 c^-1 c^-1 t c^-1 t yF t^-1 c t^-1 c c c t yF^-1 t^-1 c^-1 c^-1 c^-1 t c^-1 t yF^-1 t^-1 c t^-1 c",
+   "length": 38
+  },
+  {
+   "family": "Q",
+   "name": "[X12(e), X23(E)] [X12(f), X23(F)] = X13(1)",
+   "word": "ye c yE c^-1 ye^-1 c yE^-1 c^-1 yf c yF c^-1 yf^-1 c yF^-1 c^-1 t c y1^-1 c^-1 t^-1",
+   "length": 21
+  }
+ ],
+ "relator_count": 60,
+ "family_counts": {
+  "W": 5,
+  "K": 10,
+  "L": 1,
+  "D": 1,
+  "B": 17,
+  "C": 13,
+  "P": 12,
+  "Q": 1
+ },
+ "total_length": 1007,
+ "max_length": 38,
+ "relators_failing_in_G": [],
+ "relator_sha256": "9e0edd1308179c712525f11b0567a3a256ba21ec2481e8fed1528a4bcbacec9c",
+ "weyl_presented_order": 120,
+ "weyl_table_is_permutation_rep": true,
+ "weyl_words_found": 120,
+ "weyl_word_image_mismatches": 0,
+ "x_word_checks": 600,
+ "x_word_mismatches": 0,
+ "family_control_checked": {
+  "A+B": 6500,
+  "St3 (P2, CK, unit)": 1500,
+  "partition": 60,
+  "D": 100
+ },
+ "family_control_failures": {
+  "A+B": 0,
+  "St3 (P2, CK, unit)": 0,
+  "partition": 0,
+  "D": 0
+ },
+ "negative_controls_nonidentity": {
+  "[X12(e), X21(E)] = 1": true,
+  "(t ye)^3 = 1": true,
+  "[ye, (23)] = 1": true,
+  "(tc)^3 = 1": true,
+  "[X12(e), X23(E)] = X13(1)": true,
+  "[X12(e), X23(e)] = [X14(e), X43(f)]": true
+ },
+ "dual": {
+  "dual_mode": true,
+  "products_cross_checked": 44473,
+  "elements_registered": 0,
+  "parses_cross_checked": 0
+ },
+ "seconds": 2.4,
+ "verdict": "PASS"
+}
