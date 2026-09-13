@@ -63,3 +63,37 @@ The three modules are orphans, not reachable from the root.  A consumer imports
 
 In this scope no statement is left open.  The cycle-form API above is available to kh-ejz and
 fff-periodic for HC3(d) and HC6.  This lane has added no census rows.
+
+## 2026-09-13: HC3(d), the zip spur (every-line swarm)
+
+Roster target: closed hzip, `zipSpur_cosetComplex : Systolic.ZipSpurStatement CCKW.cosetComplex`,
+with the producer stated for every triangle complex `X`.  HC3(d) was reassigned here from kh-ejz.
+
+Split.  Put the disc in cycle form and split the boundary so that the exterior cycle is
+`s ++ du :: dv :: t`, with the backtrack `u v u` at `du dv`.  Let `p` be the exterior dart
+before `du`.
+
+* Fold, `¬ sigma.SameCycle (alpha p) (alpha dv)`: the corners before `du` and after `dv` lie at
+  different vertices, so the two edges fold together.  This is `CycleDisc.zip_fold` in
+  `GGT/SystolicDiscZipFold`: probe 0913-013751-25100 green, landed 4e52166c8.
+* Pinch, `sigma.SameCycle (alpha p) (alpha dv)`: both corners lie at one vertex, and the loop
+  `du dv` pinches off.  This includes the spur `dv = alpha du`.  It is stated as
+  `ZipPinchStatement X` in `GGT/SystolicDiscZipFold` (9445c7860) and handed to systolic-counts,
+  who will prove `zipPinchStatement` in `GGT/SystolicDiscZipPinch`.
+
+Assembly, `GGT/SystolicDiscZip` (9445c7860):
+
+* `CycleDisc.boundary_eq_take`: the boundary walk closes at its first label.
+* `CycleDisc.zip_spur`: case split on `SameCycle`.
+* `zipSpurStatement_of_zipPinch (hpinch : ZipPinchStatement X) : ZipSpurStatement X`.  The cases
+  come from `split_boundary`: the walk after the backtrack is empty (the walk `[u]`), a single
+  closing vertex, or a longer run.
+
+Evidence: probe 0913-015959-45107 (base 9445c7860) is PROBE GREEN with
+`BUILT GroupApproximation.GGT.SystolicDiscZipFold` and `BUILT GroupApproximation.GGT.SystolicDiscZip`,
+and no warnings.  `zipSpurStatement_of_zipPinch` depends on axioms `[propext, Classical.choice, Quot.sound]`.
+Both modules are unwired.
+
+Residual: `ZipPinchStatement X` (systolic-counts).  After that lands green, this lane adds
+`theorem zipSpurStatement : ZipSpurStatement X` and `CCKW.zipSpur_cosetComplex`, audits both
+with `#audit_closed_axioms`, and queues `GroupApproximation.GGT.SystolicDiscZip` for wiring.
