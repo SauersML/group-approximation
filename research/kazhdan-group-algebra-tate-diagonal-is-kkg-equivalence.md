@@ -68,3 +68,13 @@ inclusion `ΔΓ ≤ Γ^p` gives a `G`-equivariant \*-homomorphism
     product of the single weakly contractible `W`-object `Y` above.
   - The `γ`-parts need no γ-element at all: `γ_W · Y = 0` already follows from
     weak contractibility (Meyer–Nest Thm. 8.3).
+* **Split (ex3-uct-tate-diagonal, proved, unreviewed).**  This claim is
+  equivalent to the conjunction of two open claims:
+  - `kazhdan-tate-crossed-product-inclusion-is-kk-equivalence`, a
+    non-equivariant KK statement;
+  - `kazhdan-group-algebra-tate-part-has-no-phantom`.
+
+  The route is `kazhdan-tate-diagonal-from-crossed-product-and-no-phantom`.
+  `Y` vanishes on every visible subgroup
+  (`wreath-tate-cone-vanishes-on-centralizer-and-amenables`), so an
+  obstruction must live on non-induced Kazhdan objects.
