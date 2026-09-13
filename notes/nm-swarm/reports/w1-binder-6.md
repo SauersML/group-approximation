@@ -56,7 +56,31 @@ induction.
 | `cell_outer` | this lane (above) |
 | `side_cell` | ms-cite-2: `SurgeryCellSideThickening`, plus a side-dart variant of the doubling transport (`SurgeryFaceEdgeDoublingSideRegions`) |
 | `side_outer` | this lane, after ms-cite-2's variant transport interface lands |
-| `cell_self`, `regions` | copies (b)/(c), ruled to leavitt-units at 14:00; nothing in flight |
+| `cell_self` | ms-binary (`SurgeryCellSelfEdgeThickening`, induction on relator self-edges via `FaceEdgeDoublingRegions.regionFamily`; model test against least area first) |
+| `regions` | unowned; needs ms-cite-2's side transport (ms-binary offered to take it after) |
+
+## Module `GGT/VanKampen/Estimating/RegionProfileTransport.lean` (probe 0913-175337-49759 GREEN; LANDED 8755e832c; wire-queued)
+
+Namespace `...VanKampen.RegionProfileTransport`. The correspondence is `e : selected ≃ selected'` with
+`he : ∀ a, SameTargetProfile (e a).1 a.1 ∧ (e a).1.2.source.val = a.1.2.source.val`, which is the output shape of
+every thickening above.
+
+| declaration | content |
+|---|---|
+| `mem_exteriorAt e he hi a ha` | exterior region of cell `i` ↦ exterior region of cell `i'` whenever `i'.val = i.val` |
+| `targetsSectionIndex hab hb` | `TargetsSectionIndex cuts j` passes along a same target profile |
+| `val_ne e hab` | distinct regions stay distinct |
+| `exists_exteriorPair e he ha hb hab hja hjb` | the pair `a ≠ b` of `exists_pocketFaceSet_of_exteriorAt_of_value`, on the copy |
+
+## Plan for `side_outer`
+
+- Mirror ms-cite-2's cell-side statement for the exterior: `IsOuterSideDart Delta family x` holds when `faceOf x` is
+  the exterior and `alpha x ∈ a.2.rightSide ++ a.2.leftSide` for some region `a`.
+- The spur module's transport uses `faceOf (alpha w_j) ∉ s` only to get `alpha w_j ∉ targetArc.darts`. The owning
+  region gets that instead from `alpha w_j` being a side dart and the boundary cycle having no repeated dart. Every
+  other region avoids the face, since regions are disjoint.
+- Induction on the number of outer side darts. The statement keeps no outer spur, no outer cell dart and no relator
+  word of value one.
 
 ## Progress log
 - 17:0x: claim landed (c0892aaee).
