@@ -268,6 +268,30 @@ are over hgreendlinger. Each of the other three is partial through one stale lan
     packages both halves.
   - No lane of this swarm owns `cite-ejz.tsv`.
 
+Six more partial lane rows, at LINE:1636, 1675 and 1679, name no Greendlinger leaf. Each
+carries one piece of a longer sentence, and those union rows stay partial through
+hgreendlinger, so re-grading these rows flips nothing now.
+
+- Two rows give a reason that is now stale.
+  - fff-quotient, LINE:1636, calls finite presentation "the one hypothesis, owned by
+    simple-group". It is closed as `HydeLodha.finitelyPresentedInfiniteSimple_closed`
+    (`GroupTheory/HydeLodha/FinitelyPresentedInfiniteSimpleClosed.lean:49`,
+    `#audit_closed_axioms`). The row also asks the lead to confirm its tex line. simple-group
+    and hl-lemma46 key the same Hyde–Lodha witness at LINE:1679.
+  - kh-torsion, LINE:1675, says the sentence "stays partial until hfold (MirrorFoldStatement)
+    closes". Both fold cases are proved as `Systolic.mirrorFoldDistinct` and
+    `Systolic.mirrorFoldPinched` (`#audit_axioms`). hKO is closed as
+    `KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_closed` (`#audit_closed_axioms`).
+- Four rows are accurate:
+  - ko-closed, LINE:1675 (hKO);
+  - kh-ejz, LINE:1675 (its own route over hconj and hhyp, CCKW 3.1);
+  - hl-lemma46, LINE:1679 (the Lemma 4.6 dynamics);
+  - simple-group, LINE:1679 (hW). This sentence also needs the hull-* and kh-* leaves.
+
+`merge_rows.py` keeps a union row partial while any lane row is partial. So once hgreendlinger
+closes, these piece rows still hold their union rows partial unless they are re-graded or
+census overrides them. cite-ejz's row does the same to LINE:1145 today.
+
 ## Next
 
 - Wiring: the root on origin/main imports every module of `296386753`, `dd0412114`,
