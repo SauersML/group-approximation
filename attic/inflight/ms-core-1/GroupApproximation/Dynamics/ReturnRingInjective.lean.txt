@@ -128,8 +128,9 @@ theorem coeff_one_coe_returnRingHom (z : ClopenCrossedProduct (firstReturnHomeom
               ClopenCrossedProduct (firstReturnHomeomorph hC) k) := by
       rw [Pestov91.CrossedProduct.val_unit_zpow, ofAdd_toAdd, ClopenCrossedProduct.coeff_apply,
         Pestov91.CrossedProduct.single_eq_C_mul]
-    rw [hs, map_mul, coe_corner_mul, coe_returnRingHom_coeff, coe_returnRingHom_unit_zpow,
-      coeff_one_coeff_mul_coe_returnUnit_zpow, SkewMonoidAlgebra.coeff_single_apply]
+    rw [SkewMonoidAlgebra.coeff_single_apply, hs, map_mul, coe_corner_mul,
+      coe_returnRingHom_coeff, coe_returnRingHom_unit_zpow,
+      coeff_one_coeff_mul_coe_returnUnit_zpow]
     by_cases hg : g = 1
     · subst hg
       rw [if_pos toAdd_one, if_pos rfl, RingEquiv.symm_apply_apply]
