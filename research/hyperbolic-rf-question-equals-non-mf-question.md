@@ -35,6 +35,15 @@ Consequently [[mf-kazhdan-group-without-finite-quotients-is-trivial]] is an
 open sufficient premise, and the old citation route cannot establish it.
 This is a proof gap, not a refutation of the four-way target.
 
+**Update (2026-09-12, lane ex-kazhdan-simple-hyperlinear).** The general premise is false:
+- `lef-kazhdan-group-without-finite-quotients-exists` refutes
+  `mf-kazhdan-group-without-finite-quotients-is-trivial`: `EL_3` over a minimal subshift algebra is
+  an infinite LEF Kazhdan group without finite quotients;
+- `operator-mf-group-not-weakly-quasidiagonal-exists`.
+
+So the existing proof route requires a false claim and can never fire. The implication (3) ⇒ (4)
+needs an argument that uses hyperbolicity. The four-way target itself stays open.
+
 Two independent attempts to repair the bridge with hyperbolicity, finite
 presentation, or property (T) found no usable theorem. Local lifting for the
 full group C*-algebra and local operator-norm matrix stability are sufficient

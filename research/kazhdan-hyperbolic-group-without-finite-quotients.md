@@ -6,7 +6,7 @@ title: An infinite word-hyperbolic Kazhdan group with no nontrivial finite quoti
 distinct_from:
   hyperbolic-group-without-finite-quotients: that is the plain Kapovich--Wise target without property (T); this adds (T), and the extra clause is free by Olshanskii's common quotients
   torsion-free-hyperbolic-kazhdan-partner-exists: that is an established existence theorem for a hyperbolic Kazhdan group, which is residually finite; this demands a hyperbolic Kazhdan group with no finite quotients at all, which is open
-  simple-kazhdan-groups-have-full-mf-radical: that proves full MF radical for simple Kazhdan groups, none of which is known to be hyperbolic; this asks for a hyperbolic Kazhdan group without finite quotients, which is non-MF by Ozawa--Thom
+  simple-kazhdan-groups-have-full-mf-radical: that proves full MF radical for simple Kazhdan groups, none of which is known to be hyperbolic; this asks for a hyperbolic Kazhdan group without finite quotients, which is non-MF by Ozawa--Thom (premise refuted 2026-09-12, see body)
 ---
 
 Exhibit an infinite word-hyperbolic group `Q` with property `(T)` such that
@@ -16,6 +16,12 @@ By `mf-kazhdan-group-without-finite-quotients-is-trivial`, such a `Q` is not MF,
 so it is a `non-mf-hyperbolic-group`.  By
 `kazhdan-quotientless-hyperbolic-via-common-quotient` it exists as soon as any
 non-residually-finite hyperbolic group exists.
+
+**Correction (2026-09-12, lane ex-kazhdan-simple-hyperlinear).**
+`mf-kazhdan-group-without-finite-quotients-is-trivial` is refuted by
+`lef-kazhdan-group-without-finite-quotients-exists`. So the previous paragraph does not show that
+`Q` is non-MF. Showing that needs an argument that uses hyperbolicity; property (T) and the absence
+of finite quotients are not enough.
 
 ## Attempts
 

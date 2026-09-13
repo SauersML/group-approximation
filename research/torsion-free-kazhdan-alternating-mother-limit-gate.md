@@ -13,6 +13,19 @@ artifacts:
   - research/artifacts/torsion-free-exact-radical-team-audit-2026-08-26.md
 ---
 
+**Correction (2026-09-12, lane ex-kazhdan-simple-hyperlinear).** Three passages exclude a simple
+limit:
+- "In fact the two conditions in `(AMG1)` can never produce a simple limit here";
+- the Ozawa--Thom "compulsory escape" paragraph;
+- "Accordingly this is not a surviving alternate seed program".
+
+All three rest on (EKL2) of `exact-kazhdan-radical-kernel-cannot-be-lef`, which is false:
+`lef-kazhdan-group-without-finite-quotients-exists` gives an infinite LEF Kazhdan group without
+finite quotients. Simple Kazhdan marked limits of finite quotients of a Kazhdan mother do occur,
+with torsion (`finite-simple-groups-converge-to-simple-kazhdan-group`; its simplicity input is
+under review). So the exact gates `(AMG1)` remain valid diagnostics, but whether a torsion-free
+simple alternating limit exists is **open**, not excluded.
+
 There is a finitely generated torsion-free property-`(T)` group `Gamma_0`
 with epimorphisms onto alternating groups of unbounded degree.  Namely, take a
 torsion-free finite-index normal subgroup of `Out(F_5)`.  Property `(T)` comes
