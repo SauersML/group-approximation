@@ -50,6 +50,11 @@ finitely generated (`elementary-groups-over-fg-rings-have-property-t`).
   - Every natural finite set on which `GL_N(F_q)` acts (vectors, subspaces, flags) turns a rank
     defect `r` into a Hamming defect `1 - q^(-O(r))`. So almost multiplicativity in rank does not
     transfer.
+  - Exact form (sk-fp-sofic-a, 2026-09-13, unreviewed): `gap-sofic-approximations-are-local-embeddings`.
+    A sofic approximation inside permutation groups with a uniform fixed-point gap is a local
+    embedding. Affine maps of finite vector spaces and `PGL_m(F_q)` on lines have gap `1/2`. So for
+    finitely presented infinite simple `S`, no sofic approximation of `S` takes values in `F_q`-linear,
+    affine or projective linear maps, and gate (c) needs permutation models of another kind.
 - **Standard soficity certificates: dead.**
   - A finitely presented infinite simple group is not LEA (`hyperlinear-fp-infinite-simple-group`,
     Attempts).
