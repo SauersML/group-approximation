@@ -1,0 +1,83 @@
+{
+ "A_weyl_cosets": [
+  120,
+  true
+ ],
+ "A_control_235_cosets": [
+  60,
+  true
+ ],
+ "B_b_equals_lane_reading": true,
+ "B_P": {
+  "count": 60,
+  "failing": [],
+  "total_length": 1007,
+  "max_length": 38,
+  "sha_matches_json": true
+ },
+ "B_Q": {
+  "count": 18,
+  "failing": [],
+  "total_length": 322,
+  "max_length": 37,
+  "sha_matches_json": true
+ },
+ "C_24_tex_equals_json": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "C_23_hold": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "C_iota_images": {
+  "iota1(a)": true,
+  "iota1(b)": true,
+  "iota1(c)": true
+ },
+ "C_T_images": {
+  "T(00,10)": true,
+  "T(01,10)": true,
+  "T(10,01)": true,
+  "T(10,110)": true,
+  "T(001,011)": true,
+  "T(000,010)": true
+ },
+ "D_abelianization_diagonal_P": [
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1
+ ],
+ "D_abelianization_diagonal_Q": [
+  1,
+  1,
+  1,
+  1
+ ],
+ "E1_weyl_words": 120,
+ "E1_c_is_product_of_transpositions": true,
+ "E1_commutation_instances": 6500,
+ "E1_failures": [],
+ "E2_boundary_empty_complement_B-dis": true,
+ "E2_P_family_letters": true,
+ "E2_random_trials": 300,
+ "E2_failures": [],
+ "seconds": 0.9,
+ "verdict": "PASS"
+}
