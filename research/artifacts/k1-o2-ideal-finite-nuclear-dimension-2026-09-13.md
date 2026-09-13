@@ -77,6 +77,34 @@ Minimality: let `K/J_0` be a nonzero ideal of `I/J_0` with no unital quotient, a
 of K. The image of `J_0` in `K/L` is an ideal, and the quotient by it is a unital quotient of `K/J_0`. So the
 image is all of `K/L`, and `K/L` is a unital quotient of `J_0`, which is 0. Hence `K in F` and `K ⊆ J_0`. Square.
 
+**Corollary 5 (simple ideals).** If I is simple and σ-unital with nuclear dimension at most ω, then I is
+stable and `I~` is K1-injective. A non-unital simple algebra has no nonzero unital quotient, so this follows
+from Lemma 1, Robert's Corollary 1 and Lemma 2. So a simple witness ideal has infinite nuclear dimension.
+
+## 4. Projection approximate units: witnesses need failure of cancellation
+
+**Proposition 6.** Let I be σ-unital, and suppose it has an increasing approximate unit of projections
+`p_1 <= p_2 <= ...`, each full in I. Suppose that for all n and k there is m with
+`p_n^{⊕k} ≲ p_m - p_n` (Murray--von Neumann). Then `I~` is K1-injective. No O_2 is needed here.
+
+*Proof.* Let `u in U(I~)` with `[u] = 0` in `K_1(I)`. After scaling, `u = 1 + x` with `x in I`. For large n,
+`p_n x p_n` is close to x, so u is homotopic to `v + (1 - p_n)` with `v in U(p_n I p_n)`. The corner is
+full, so `K_1(p_n I p_n) -> K_1(I)` is an isomorphism (Brown), and `[v] = [u] = 0`. So
+`diag(v, p_n, ..., p_n)` is null in `U(M_{k+1}(p_n I p_n))` for some k. Choose m and partial isometries
+`w_1, ..., w_k in I` with `w_j^* w_j = p_n`, and with ranges `q_j` orthogonal and below `p_m - p_n`. Put
+`w_0 = p_n`, `Psi([x_ij]) = sum w_i x_ij w_j^*`, and `Q = Psi(1)`. The path `Psi(gamma_t) + (1 - Q)` joins
+`v + (1 - p_n)` to 1 inside `U(I~)`. Square.
+
+**Corollary 7.** Let I be as in Proposition 6, with a unital O_2 in `M(I)`, and suppose that
+`[a] + [p] >= [b] + [p]` implies `[a] >= [b]` in the Murray--von Neumann monoid of I (order cancellation).
+Then `I~` is K1-injective. So a witness ideal with an approximate unit of full projections must fail
+order cancellation of projections.
+
+*Proof.* Take the words `S_w` with `|w| = j`. The projections `S_w p_n S_w^*` are orthogonal, lie in I, and
+are equivalent to `p_n` through `S_w p_n in I`. Their sum `R_j` satisfies `||p_m R_j - R_j|| -> 0`, because
+`p_m -> 1` strictly. So `R_j ≲ p_m` for large m, that is `2^j [p_n] <= [p_m] = [p_m - p_n] + [p_n]`.
+Order cancellation gives `(2^j - 1)[p_n] <= [p_m - p_n]`, and Proposition 6 applies. Square.
+
 **Remark.** The commutative model `I = C_0(Y) ⊗ O_2` with Y locally compact and non-compact already has
 unital quotients on every nonzero ideal. So Proposition 4 removes only genuinely stable parts, and it does
 not reduce the problem to unital algebras. The predecessor's constraints stand: no finite-dimensional
