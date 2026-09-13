@@ -26,7 +26,9 @@ Equivalent forms:
    recursively presented group of type `FP_∞`. Theorem A of the same paper
    (with `n = ∞`) gives 3 ⇒ this claim; the converse holds because an `F_∞`
    host is finitely presented, hence recursively presented, and of type
-   `FP_∞`.
+   `FP_∞`. The graph records the universal-group version of form 3 as
+   `universal-fp-group-embeds-in-rp-fp-infinity-group`, with routes in both
+   directions.
 
 ## Attempts
 
@@ -37,5 +39,8 @@ Equivalent forms:
   to be of type `F_∞` already.
 - A host containing `U` contains Thompson's group `F` (cohomological dimension
   `∞`) and every finite group, so it has infinite cohomological dimension and
-  torsion of every order. Thompson-like groups of type `F_∞` have these
-  features; groups with a finite-dimensional classifying space do not.
+  torsion of every order. It also has unsolvable word problem
+  (`universal-fp-group-hosts-have-unsolvable-word-problem`). That rules out
+  Thompson-like groups with solvable word problem (`F`, `T`, `V`, `nV`), and
+  infinite cohomological dimension rules out groups with a finite-dimensional
+  classifying space.

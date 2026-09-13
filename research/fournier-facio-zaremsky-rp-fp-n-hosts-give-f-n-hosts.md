@@ -32,6 +32,7 @@ hence recursively presented, and of type `FP_n`, and every finitely generated
 recursively presented group embeds in a finitely presented group (Higman).
 So for each `n` the two statements are equivalent.
 
-Consumers: `f-infinity-hosts-via-rp-fp-infinity-hosts` and
-`type-fn-plus-1-hosts-via-rp-fp-n-hosts`, into the affirmative answers of
-Zaremsky Problem 1.1.
+Consumer: `type-fn-plus-1-hosts-via-rp-fp-n-hosts`, into the affirmative
+first part of Zaremsky Problem 1.1. At `n = ∞` the same argument is written
+out, with the isomorphism checked, on
+`fp-f-infinity-hosts-from-rp-fp-infinity-host`.

@@ -3,6 +3,8 @@ rg: 2
 id: universal-fp-group-embeds-in-rp-fp-infinity-group
 kind: claim
 title: "A universal finitely presented group embeds in a recursively presented group of type FP_infinity"
+artifacts:
+  - research/artifacts/zp-z1-01-higher-rope-defects-2026-09-13.md
 distinct_from:
   every-finitely-presented-group-embeds-in-an-f-infinity-group: that quantifies over all finitely presented groups and asks for F_infinity hosts; this asks for one recursively presented FP_infinity host of one universal group, a homological target in which Leary-type FP constructions can be used; the two are equivalent through two routes resting on Fournier-Facio--Zaremsky's Theorem A
 ---
@@ -77,3 +79,29 @@ containing an `F_∞` subgroup of finite index.
   contains arbitrary finitely presented subgroups is the open step. Pending:
   reading Leary, *Uncountably many groups of type FP*, and *Subgroups of
   almost finitely presented groups*, verbatim.
+- **Defect criterion for HNN hosts** (standard; not yet a node). Let
+  `H = HNN(V, L', α, β)` be finitely generated and `X = ∏_Λ ZH`. By the
+  Bieri--Eckmann criterion, `H` is of type `FP_n` iff `H_k(H; X) = 0` for
+  `1 <= k <= n-1` and every `Λ`. By the Mayer--Vietoris sequence of the HNN
+  extension, this holds iff `φ_k = α_* - tβ_*: H_k(L'; X) -> H_k(V; X)` is
+  onto for `1 <= k <= n-1` and one-to-one for `0 <= k <= n-2`. A rope has to
+  cancel the homological defects of the edge group against those of the vertex
+  group in every degree up to `n-1`. Leary's rope does this in degree 1 only.
+  See `research/artifacts/zp-z1-01-higher-rope-defects-2026-09-13.md`, §4.
+- **Product ropes: preliminary, unreviewed.** Take `V = P x G`, `α = (ι, 1)`,
+  `β = (ι, π)` with `P` of type `FP_∞`. On `X` the map `α_*` factors through
+  `H_k(P; X) = 0` in positive degrees, so `φ_k = -t_* β_*`. If `ker π` is also
+  of type `FP_∞`, then `β_*` compares the `G`-homology of the coinvariant
+  modules `X_N` and `X_P`. The collapse `X_N -> X_P` looks non-injective in a
+  way that adds `G`-defects. The computation and the guess are in the
+  artifact, §6.
+- **Splitting hosts over good edge groups add nothing** (established:
+  `fp-n-splittings-over-fp-n-edges-have-fp-n-vertex-groups`). Suppose a host of
+  type `FP_∞` splits as a finite graph of groups with edge groups of type
+  `FP_∞`, and `U` is a factor or a retract of a vertex group. Then `U` is
+  itself of type `FP_∞`. So such a host reduces to form (4).
+- **Merge note.** Lane z1-01-embed-pos landed an equivalent claim over all
+  finitely generated recursively presented groups at e7d92b58d4. It was
+  retired in favor of this claim, together with its two routes, which
+  duplicated this claim's two routes. The three bullets above are the content
+  only the retired claim carried.

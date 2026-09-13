@@ -39,8 +39,11 @@ sources, landed nodes and standard homological algebra.
   - `some-type-fn-group-embeds-in-no-type-fn-plus-1-group` (lane z1-01-embed-neg)
   - `some-finitely-presented-group-embeds-in-no-f-infinity-group`
 - Homological equivalents, with routes both ways through Theorem A and Higman:
-  - `every-fg-rp-group-embeds-in-an-rp-fp-infinity-group`
+  - `universal-fp-group-embeds-in-rp-fp-infinity-group` (lane z1-01-ffz-fpinf, 807c320863). It replaced
+    this lane's equivalent claim over all f.g. recursively presented groups, landed at e7d92b58d4 and
+    retired together with its two routes. The attempts from §4 and §6 were merged into it.
   - `every-fg-rp-group-has-rp-fp-n-hosts-for-each-finite-n`
+  - Host fence: `universal-fp-group-hosts-have-unsolvable-word-problem`.
 - Dead routes into the affirmative first part:
   - `type-fn-hosts-via-higman-rope-trick`, killed by Theorem B;
   - `type-fn-hosts-via-vertex-groups-over-fp-edges`, killed by

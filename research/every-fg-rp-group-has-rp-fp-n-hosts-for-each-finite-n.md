@@ -4,7 +4,7 @@ id: every-fg-rp-group-has-rp-fp-n-hosts-for-each-finite-n
 kind: claim
 title: "For each finite n, every finitely generated recursively presented group embeds in a recursively presented group of type FP_n"
 distinct_from:
-  every-fg-rp-group-embeds-in-an-rp-fp-infinity-group: that asks for one FP_infinity host; this allows the host to depend on n, and is implied by that claim
+  universal-fp-group-embeds-in-rp-fp-infinity-group: that asks for one recursively presented FP_infinity host of a universal finitely presented group; this allows the host to depend on n, and is implied by that claim
   every-type-fn-group-embeds-in-a-type-fn-plus-1-group: that is the homotopical first part of Zaremsky Problem 1.1; this is its homological form, equivalent through Fournier-Facio--Zaremsky Theorem A
 ---
 
@@ -25,4 +25,7 @@ equivalence.
   1.3 of Fournier-Facio--Zaremsky (arXiv:2607.21727v1) in homological form,
   and it is open.
 - The attempts recorded on
-  `every-fg-rp-group-embeds-in-an-rp-fp-infinity-group` apply level by level.
+  `universal-fp-group-embeds-in-rp-fp-infinity-group` apply level by level:
+  the rope trick, the host fence
+  `universal-fp-group-hosts-have-unsolvable-word-problem`, and the
+  Mayer--Vietoris defect criterion for HNN hosts.
