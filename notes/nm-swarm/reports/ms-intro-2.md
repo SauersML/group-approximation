@@ -63,6 +63,14 @@ Feeding the step: `ClosedWalkFaceColouring.isNoncrossingClosedWalk_of_orient hM 
 from w1-binder-5's `exists_of_joinsCells_closedWalk` and `hnodup halpha` from its `walk_nodup_and_alpha_not_mem`
 (e9d8d2faf).
 
+CLAIM binder 5 step 5, the kept relator cell of the cell pocket (17:55), in two new modules:
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellMeetsContained.lean`:
+  `RealizedRegionFamily.subset_of_not_disjoint_cellPocketRegion`, `CellPocketMeetsContainedStatement` /
+  `cellPocketMeetsContained`
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellKeptCell.lean`:
+  `GloballyDistinguishedSectionFamily.exists_kept_of_cellPocketRegion_of_value`, `CellPocketKeptCellStatement` /
+  `cellPocketKeptCell`
+
 Next: step 5, the kept cell. This is the cell analogue of `exists_kept_of_pocketRegion_of_value`: at least area, a
 pocket region whose cycle is the walk holds a relator cell. Otherwise it absorbs the regions meeting it and
 `false_of_disc_collapse_singleton` contradicts the distinguished choice.
