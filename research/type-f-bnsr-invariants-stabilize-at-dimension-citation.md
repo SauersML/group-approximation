@@ -14,7 +14,12 @@ BNSR-invariants of the McCool groups", arXiv:2505.18826, §2.1
 then Σn(G)=Σ∞(G)". They add "(for example this follows from [Zar17, Citation
 1.5])".
 
-Corroboration of the homological half (not a replacement for the import).
+A derivation from verified sources is in
+`cocompact-contractible-d-complex-bnsr-stabilize-at-d-proof`, which uses
+Definition 1.1 and Citation 1.5 of arXiv:1507.08597 and covers proper
+cocompact actions.
+
+Corroboration of the homological half.
 Let `X` be the universal cover of a finite `n`-dimensional `K(G,1)`, a
 contractible free cocompact `G`-complex. Let `Y ⊆ X` be any subcomplex, for
 instance a superlevel set of a character height function. Then

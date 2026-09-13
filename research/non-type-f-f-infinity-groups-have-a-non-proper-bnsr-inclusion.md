@@ -15,6 +15,11 @@ equivalent to the negative answer to Zaremsky Problem 1.18.
 
 ## Attempts
 
+- **Proper cocompact finite-dimensional models.** Established: if `G` acts
+  properly and cocompactly on a contractible `d`-dimensional complex, the chain
+  is constant from `d` (`cocompact-contractible-d-complex-bnsr-stabilize-at-d`).
+  So the open part concerns `F_∞` groups with no such action, for example
+  every torsion-free group of infinite cohomological dimension.
 - **Finite cohomological dimension.** Groups of type `F_∞` with finite `cd`
   but not of type F would be exotic; whether they exist is Zaremsky Problem
   1.21. For them the argument of Proposition 1 in

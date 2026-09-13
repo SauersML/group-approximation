@@ -39,10 +39,20 @@ There is a group `G` of type `F_∞` whose homotopical BNSR invariants satisfy
     holds for globally defined Thompson-like groups".
   - The Lodha–Moore groups: all higher invariants equal `Σ^2`
     (arXiv:2007.12518, abstract).
-  - Finite-dimensional examples realize long finite chains: Houghton groups `H_n`
-    give levels `1, …, n−1` (arXiv:1808.00634, Theorems 2.2 and 2.3), and the
-    pure symmetric automorphism groups `PΣAut_n` have characters in
-    `Σ^{n−2} \ Σ^{n−1}` (arXiv:1607.03043).
+  - Long finite chains occur in finite-dimensional groups and in groups that
+    are not `F_∞`:
+    - Houghton groups `H_n` realize levels `1, …, n−1` (arXiv:1808.00634,
+      Theorems 2.2 and 2.3).
+    - The pure symmetric automorphism groups `PΣAut_n` have characters in
+      `Σ^{n−2} \ Σ^{n−1}` (arXiv:1607.03043).
+    - The pure braid groups `P_n` have `Σ^{m−2}(P_n) ⊊ Σ^{m−3}(P_n)` for
+      `3 ≤ m ≤ n` and `Σ^∞(P_n) = Σ^{n−2}(P_n)` (arXiv:1507.08597,
+      Theorems 5.7 and 3.9).
+- **More necessary conditions (established).** `G` admits no proper cocompact
+  action on a contractible finite-dimensional complex
+  (`cocompact-contractible-d-complex-bnsr-stabilize-at-d`). Characters
+  nonzero on the center lie in `Σ^∞` (arXiv:1507.08597, Corollary 1.6, from
+  [MMV01, Lemma 2.1]). So the chain lives on characters vanishing on `Z(G)`.
 - **Why product and germ mechanisms stall (artifact §5).**
   - Joins and convex hulls: conic Carathéodory bounds the number of levels.
   - Germ characters of Thompson-like groups: self-embeddings act on germ
