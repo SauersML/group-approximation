@@ -31,3 +31,23 @@ quasidiagonal.
 - **Normal form.**  `stw07-counterexample-has-singular-trace-normal-form`: a
   counterexample may be taken with a character whose stable essential kernel
   carries an unbounded trace and no bounded one.
+- **Quotient-detected candidates: dead (2026-09-12).**
+  `stw07-separating-qd-quotients-force-quasidiagonality`: any algebra whose
+  quasidiagonal quotients separate points is quasidiagonal.  This kills
+  C(X)-algebras with quasidiagonal fibres (continuous or not), residually
+  finite-dimensional algebras, and algebras residually in the solved classes.
+  A counterexample has a nonzero quasidiagonal radical `R_qd(E)`.
+- **Compact-free index carriers: dead (2026-09-12).**
+  `bk-no-compact-open-ideals-are-qd-invisible`: an extension of a nuclear
+  quasidiagonal algebra by an exact ideal with no compact open primitive subset
+  is quasidiagonal, with no UCT hypothesis.  So suspension-like, cone-like and
+  field-over-a-line ideals cannot carry the index obstruction.
+  `stw07-qd-radical-criterion-compact-open`: `E` is quasidiagonal iff
+  `Prim(R_qd(E))` has no compact open subset.  A counterexample therefore has a
+  compact ideal inside `R_qd(E)` carrying a lower semicontinuous trace with a
+  finite nonzero value.
+- **Gluing reduction (2026-09-12).**  Problem VII is equivalent to its case
+  `A = J_1 + J_2` with both ideals compact-free, hence AF-embeddable (take
+  `C([0,1], B)` for a counterexample `B`).  Quasidiagonality on an open cover of
+  the primitive spectrum carries no information.  The problem is gluing traced
+  compact ideals.
