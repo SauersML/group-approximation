@@ -1,0 +1,57 @@
+---
+rg: 2
+id: amenability-of-finite-presentations-is-pi1-hard
+kind: claim
+title: Non-halting many-one reduces to amenability of finite presentations
+distinct_from:
+  amenability-of-finite-presentations-is-pi2-complete: that asks for a reduction from the Pi-zero-two complete set TOT; this asks only for one from the complement of the halting problem, the first intermediate step, which that root implies.
+  amenability-of-finite-presentations-arithmetical-position: that is the established Sigma-zero-one hardness through Adian--Rabin, where the positive branch is the trivial group; this is hardness on the other side, where the positive branch must be amenable because a machine runs forever.
+---
+
+**OPEN.** There is a computable map `e -> P_e` into finite presentation codes
+such that
+
+```text
+P_e is amenable   iff   the e-th machine does not halt on empty input.   (PI1A)
+```
+
+**What it would give.**
+- **Not r.e.** `AMENABLE_fp` would not be recursively enumerable
+  (`amenable-fp-not-re-from-pi1-hardness`).
+- **`D_2`-hardness.** Combine `(PI1A)` with the Adian--Rabin reduction
+  `w -> L_w` of `amenability-of-finite-presentations-arithmetical-position`. The
+  map `(w, e) -> L_w x P_e` reduces `{(w,e) : w = 1, e does not halt}`, which is
+  `D_2`-complete, to `AMENABLE_fp`. It works because a direct product is
+  amenable iff both factors are.
+- **It is implied by the root.** See `amenable-fp-pi1-hard-from-pi2-completeness`.
+
+## Attempts
+
+1. **Certificate screen** (proved here). In any family with `(PI1A)`, the
+   positive branch avoids every recursively enumerable class `C` of amenable
+   finite presentations. If every non-halting `e` had `P_e in C`, then
+   `{e : P_e in C}` would equal the non-halting set and be c.e., a
+   contradiction. In particular, it cannot lie inside the loci of
+   `finite-graphs-of-amenable-groups-have-sigma1-locus` or
+   `genuine-hnn-switches-over-amenable-bases-are-sigma1`, which are c.e.
+   certificate classes on their amenable side. Amenability on the positive branch
+   must be an infinitary phenomenon.
+2. **Solvable machine simulators.** The Kharlampovich groups `G(M)`
+   (Kharlampovich--Myasnikov--Sapir, arXiv:1204.6506v5, Section 4) are finitely
+   presented, solvable of class three, and simulate Minsky machines. Each
+   halting instance is an equation `x_(q_1 A_0) * a_1^(n) * ... = 1` inside an
+   elementary abelian normal subgroup.
+   - *What it supplies.* An amenable finitely presented machine is available.
+   - *Where it dies.* Its outputs are `Sigma^0_1` events, and a finite packet of
+     them coupled to an amenable base stays at `Sigma^0_1` by the screens in the
+     root. `(PI1A)` needs the opposite polarity: running forever must be what
+     keeps the group amenable.
+3. **Gated propagation.** In the Baumslag--Remeslennikov group
+   `<a,s,t | [s,t], [a,a^t], a^s = a a^t>`, conjugation by `s` derives
+   `[a, a^(t^j)] = 1` for every `j` from one relator. That derivation is the
+   infinitary amenable mechanism the screen asks for. A family for `(PI1A)` would
+   let the `j`-th derivation consume the `j`-th machine step, so that halting at
+   step `N` leaves `a` and `a^(t^j)` free for some `j > N`. *Open.* One
+   constraint is recorded: conjugation is an automorphism, so the gate must stop
+   *producing* derivations after halting. It can never make an element nontrivial
+   later.
