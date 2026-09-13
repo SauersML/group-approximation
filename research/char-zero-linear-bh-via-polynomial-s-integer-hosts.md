@@ -28,4 +28,7 @@ claim). So `k = 1`, `m = 1`, `M = 6` and `n' = 12`.
 - Step 1 is standard commutative algebra, proved in
   `char-zero-polynomial-embedding-via-noether-normalization`.
 - Step 2 rests on `polynomial-linear-groups-satisfy-boone-higman`. That claim is
-  ESTABLISHED but not yet independently reviewed (lane `bh-poly-linear-review`).
+  ESTABLISHED~~ but not yet independently reviewed (lane `bh-poly-linear-review`)~~.
+  *Reviewed (lane `bh-poly-linear-review`, 2026-09-12):* both steps pass.
+  - The review corrected the embedding step of the polynomial route.
+  - See `research/artifacts/review-bh-polynomial-linear-2026-09-12.md`.
