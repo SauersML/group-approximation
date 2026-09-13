@@ -203,5 +203,6 @@ Closed pieces plugged in:
 - Then `osinLemma94Section_closed` with `#audit_closed_axioms`, over the option (2) spelling, once
   the count and Case 1 are proved and ghw-charp2's co-probe of ruling (A) has landed.
 - Pocket pinch help (approved): ghw-assembly has the wrap case with dgo-geometric and hull-respell.
-  This lane asked hull-respell and ghw-assembly once each for a piece. If neither names one, the
-  lead gives an item.
+  No piece splits off yet. The wrap case has no fixed statement until dgo-geometric's model test
+  and hull-respell's induction interface are in, and hull-respell has not answered. So this lane
+  has asked the lead for an item.
