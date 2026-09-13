@@ -33,3 +33,19 @@ read at source. This node now imports only the s-malleable form, and that is the
 `kazhdan-map-bernoulli-finite-extensions-are-trivial` reduces an arbitrary base to `([0,1], Leb)^G`
 by multiplying with an independent Bernoulli factor (artifact Theorem 4.1, step 0), and uses only
 finite targets `V = Sym(n)`.
+
+**Verification (2026-09-12, lane `ex-nonsofic-action-entropy`).** Read from the arXiv:math/0512646v8
+PDF, p. 4: *"0.1. Theorem (Cocycle superrigidity). Let Γ ↷^σ X be a s-malleable action (e.g. a
+generalized Bernoulli Γ-action) and assume Γ has an infinite rigid subgroup H such that either H is
+wq-normal with σ mixing, or that H is w-normal with σ|H weak mixing. Let 𝒱 be a Polish group of
+finite type. Then any 𝒱-valued cocycle for σ is cohomologous to a group morphism of Γ into 𝒱. More
+generally, if σ' is an action of the form σ'_g = σ_g × ρ_g ∈ Aut(X × Y, μ × ν), g ∈ Γ, where ρ is an
+arbitrary Γ-action on a standard probability space (Y, ν), then any 𝒱-valued cocycle w for σ' is
+cohomologous to a 𝒱-valued cocycle w' which is independent on the X-variable (i.e. w' comes from a
+cocycle of ρ)."* Here *"A Polish group 𝒱 is of finite type if it is isomorphic to a closed subgroup of
+the group of unitary elements 𝒰(N) of a countably generated finite von Neumann algebra N"*, and
+*"Countable discrete groups and separable compact groups are of finite type"* (p. 4). The theorem
+number is confirmed; compact targets are covered, which is what Remark 4.3 of the artifact needed.
+The introduction (p. 3) calls generalized Bernoulli actions over any standard base s-malleable;
+Definition 4.3 was not read, so the diffuse-base reduction above stays in force. The OE consequences
+are imported separately in `popa-oe-superrigidity`.
