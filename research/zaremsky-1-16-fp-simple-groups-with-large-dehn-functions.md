@@ -70,7 +70,11 @@ only recursive functions can occur.
   root of the Boone–Higman region, implied by `boone-higman-conjecture`) with
   `dehn-function-bound-gives-word-problem-time-bound`, through the route
   `fp-simple-unbounded-dehn-via-complex-word-problem`.
-- Strong reading: quasi-retract hosts, see Attempts 2.
+- Strong reading ⇐ `fp-linear-groups-realize-every-recursive-dehn-lower-bound`
+  (open, conjectured false by Gersten–Riley) with
+  `linear-groups-over-q-are-quasi-retracts-of-simple-groups` and
+  `quasi-retracts-have-smaller-dehn-functions`, through the route
+  `fp-simple-large-dehn-via-linear-quasi-retracts`. See Attempts 2.
 
 ## Attempts
 
