@@ -210,6 +210,12 @@ Theorem 14 and Proposition 15) applies, and the Item 1 argument runs verbatim.
     closure-safe colored rung, and the Roberson--Schmidt import. PASS.
   - §1.13, ex-ugc Galois games: transversal value, linear rounding over F_p^N, free-subgroup rounding,
     and hardness at completeness 1/2. PASS, with one wording note on C_2.
+- `ex-review-analysis-2026-09-12-part7.md`:
+  - §1.14, ex-quantum-pcp stabilizer rounding (qubit SR, Pauli projectors, the energy test, qudit
+    codes): PASS.
+  - §1.15, ex-mf-kazhdan-cstar invariant-vector obstructions (Magee--de la Salle import, matricially
+    stable overgroups, the principal SL_2 in Deligne's representations, SL_3(Z) witnesses, cubic
+    division lattices): PASS.
 
 ## 2. Sweep of in-scope landings to 23:35 CDT
 
