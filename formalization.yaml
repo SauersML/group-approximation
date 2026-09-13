@@ -45,8 +45,9 @@ sources:
       - name: Claude (Anthropic)
         role: >-
           solved the problem, using the custom proof tool Cairn; reviewed it
-          in two separate agent sessions; wrote all the prose: this file's
-          narrative fields and the Palomar Pestov91 docstrings
+          in two separate agent sessions; wrote the submission's prose:
+          abstract, this file's narrative, README section, Pestov91
+          docstrings
     note: >-
       The positive answer to Ozawa's question, the question checked by
       Palomar/comparator-pestov91.json, is first presented in this project.
@@ -383,14 +384,15 @@ automation:
         fleet of Claude Code agents for the mathematics, its two reviews and
         the Lean development, with remote batch compilation.
   notes: >-
-    The problem was solved by Claude (Anthropic) under the author's
+    The problem was solved by Claude (Anthropic) under the user's
     direction, using the custom proof tool Cairn: the construction first
     appears in the reasoning of a Claude Code agent working in Cairn, and two
-    further Claude Code agents reviewed it in separate sessions. All prose,
-    the narrative fields of this file and the docstrings of the Palomar
-    Pestov91 modules, was written by Claude (Anthropic), which also produced
-    the Lean formalization under the author's direction. No other AI system
-    worked on this result.
+    further Claude Code agents reviewed it in separate sessions. Claude
+    (Anthropic) wrote the prose of this submission itself: the registry
+    abstract, the narrative fields of this file, the README section and the
+    docstrings of the Palomar Pestov91 modules. It also produced the Lean
+    formalization, under the user's direction. No other AI system worked on
+    this result.
 
 review:
   status: self-assessed
