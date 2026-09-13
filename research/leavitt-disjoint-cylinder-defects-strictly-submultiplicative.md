@@ -228,7 +228,8 @@ than vanishing.
     - Limit: a unit that strictly contracts a frame projection makes the coefficient algebra non-RFD and embeds `J`.
       `x_0` does this in every nontrivial frame.
   * **Where it stops.** In `Gamma_b = <iota_A(D_8), iota_(A1)(D_8), b>` none of the three firewalls applies:
-    - no order preserved by `b` makes both frames' positive roots monotone (artifact Lemma 6.1);
+    - no order preserved by `b` makes the positive roots of each frame monotone in one common direction (artifact
+      Lemma 6.1, corrected at w4-vf-gate Section 35.4: with per-root directions some order preserved by `b` works);
     - `b` contracts `e_(A10)`;
     - on `[A1]`, `b` is three prefix replacements, not one.
 

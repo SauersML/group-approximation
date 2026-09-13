@@ -36,4 +36,5 @@ Order `X` lexicographically, and write `U < W` when every point of `U` is below 
   `<-1> x (U_< ⋊ P)` is sofic data for `anti-central-sofic-data-cannot-force-defect-submultiplicativity`.
 
 **Scope.** Let `b = iota_A(w_23) iota_(A1)(w_12)` be the right-child product. No total order preserved by `b` makes the
-positive roots of both frames monotone (artifact Lemma 6.1). So `<iota_A(D_8), iota_(A1)(D_8), b>` is not covered.
+positive roots of each frame monotone in one common direction (artifact Lemma 6.1, hypothesis as corrected in
+`research/artifacts/gk-vf-gate-verification-2026-09-12.md`, Section 35.4). So `<iota_A(D_8), iota_(A1)(D_8), b>` is not covered.

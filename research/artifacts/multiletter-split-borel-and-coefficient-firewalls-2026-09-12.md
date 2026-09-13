@@ -273,16 +273,23 @@ Each lemma was tested against the firewall models on main.
 ## 6. Where it stops
 
 **Lemma 6.1.** Let `b = iota_A(w_23) iota_(A1)(w_12)`, which sends `A10 -> A100`, `A110 -> A11` and `A111 -> A101`
-(`leavitt-right-child-frames-generate-infinite-order-units`, item 2). Consider total orders on `X` in which every
-positive root of the frames at `A` and `A1` moves points strictly one way. In any such order all of them move the same
-way, and no such order is preserved by `b`.
+(`leavitt-right-child-frames-generate-infinite-order-units`, item 2). Consider total orders on `X` in which, for each
+of the frames at `A` and `A1`, all positive roots move points strictly in one common direction. In any such order both
+frames move the same way, and no such order is preserved by `b`.
 
 *Proof.*
-* **Same direction.** If the roots at `A` move down, then `[A10] < [A11] ⊇ [A110]`, so `S[A10]T[A110]` moves down too.
-  The other mixed case is symmetric.
+* **Same direction.** If the frame at `A` moves down, then `[A10] < [A11] ⊇ [A110]`, so `S[A10]T[A110]` moves down.
+  It is a root of the frame at `A1`, so that whole frame moves down. The upward case is symmetric.
 * **Not preserved.** Downward roots `S[A10]T[A110]` and `S[A110]T[A111]` need `[A10] < [A110] < [A111]`, so
   `[A10] < [A11]`. If `b` preserves the order, then `b[A10] < b[A110] < b[A111]`, that is `[A100] < [A11] < [A101]`.
   But `[A101]` lies in `[A10]`, which is below `[A11]`. The upward case is symmetric. QED
+
+*Remark (hypothesis corrected after `research/artifacts/gk-vf-gate-verification-2026-09-12.md`, Section 35.4).*
+With a separate direction for each root, the lemma fails. Let `phi_2(0y) = 1 phi_2(y)` and `phi_2(1y) = 0y`. Pull
+the lexicographic order on `[A]` back along `Psi = (0y -> 0y, 10y -> 10y, 111y -> 110y, 110y -> 111 phi_2(y))`.
+`Psi b Psi^(-1)` lies in `F`, so `b` preserves this order. The blocks come in the order
+`[A0] < [A10] < [A111] < [A110]`: `S[A110]T[A111]` moves up and the other five roots move down. Theorem 3.5 needs all
+six roots in one `T_<`, which is the common-direction hypothesis, so item 1 below is unaffected.
 
 **Next live systems.**
 1. **`Gamma_b = <iota_A(D_8), iota_(A1)(D_8), b>`.**
