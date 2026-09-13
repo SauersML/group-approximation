@@ -284,8 +284,8 @@ below are on main; sec2 has not read their proofs.
 
 ## Pocket kept cell on the O-equivalent copy (2026-09-13)
 
-Status 2026-09-13 15:10: **partial** (simple walks, no avoidance binder; noncrossing walks wait for a `PocketRegion`
-producer).  The lead's item is kh-ejz's residual
+Status 2026-09-13, after 3e7ce7227: **partial**.  There is no avoidance binder.  Simple walks take `hw`; noncrossing
+walks take `hw` and `hfollows` (hull-select).  The lead's item is kh-ejz's residual
 (ii): the premise `hkept : (cell X' kept).face ∈ sideFaces X'.toCombMap K.walk` of `PocketWalk.toPocketFaceSet`, on the
 copy `X'`.
 
@@ -300,6 +300,7 @@ untouched; the new module only imports OsinPocketZeroCellMergeFalse.
 |---|---|---|
 | Estimating/OsinPocketKeptCell | `RealizedSectionFamily.targetArc_end_le_start`; `GloballyDistinguishedSectionFamily.exists_kept_of_pocketRegion` and `exists_kept_of_simple`; `#audit_axioms` on all three | compiled: probe 0913-140023-67387 GREEN (BUILT) at base 492057fb6, the landing commit (md5 4d34649d91379d23a7b79a4b2966eff3 = main); unwired, queued for wiring |
 | Estimating/OsinPocketKeptCellAbsorbed | `Embedded.FaceSetBoundary.subset_or_disjoint`; `RealizedRegionFamily.subset_of_not_disjoint_pocketRegion`; `PocketMeetsContainedStatement` with `pocketMeetsContained` (`#audit_closed_axioms`); `GloballyDistinguishedSectionFamily.false_of_disc_absorbed_section`, `exists_kept_of_pocketRegion_of_value`, `exists_kept_of_simple_of_value` (`#audit_axioms`) | compiled: probe 0913-150844-93030 GREEN (BUILT) at base 53ef29c55, which contains the landing 3a76a2fb8 (md5 2696aec84213d40e089928383a4106ed = main); unwired, queued for wiring |
+| Estimating/OsinPocketKeptCellNoncrossing | `PocketWalk.outerFace_not_mem_sideFaces_of_noncrossing`, `GloballyDistinguishedSectionFamily.exists_kept_of_noncrossing_of_value` (`#audit_axioms`); `PocketKeptCellNoncrossingStatement` with `pocketKeptCellNoncrossing` (`#audit_closed_axioms`) | compiled: probe 0913-155924-73125 GREEN (BUILT) at base 58aef0a2b, which contains the landing 3e7ce7227 (md5 7aaf15704e7b4c6919f9b22f80a4c45a = main); unwired, queued for wiring |
 
 `exists_kept_of_simple` takes the output of `PocketWalk.exists_of_exteriorAt` on `S` (regions `x ≠ y` exterior to cell
 `i` and targeting section `j`, the walk `K`, the gap equation, the two target-arc endpoints), and then:
@@ -331,9 +332,16 @@ Open.
      `toDiscRegion_of_followsBoundary`.
    - The producer is dgo-analytic's `PocketRegion.ofNoncrossingClosedWalk hw hout hfollows heuler`
      (Estimating/OsinPocketRegionNoncrossingWalk, 8bbf0a9c8, wired).  Its `inner.cycle = walk` holds by `rfl`.
-   - **Blocker 1** is its premises: `hout` and `hfollows` (hull-select), and `heuler` (hull-euler).  Given them,
-     `exists_kept_of_pocketRegion_of_value S hxS hyS hxy K hgap hfirst hsecond hvalue
-     (PocketRegion.ofNoncrossingClosedWalk hw hout hfollows heuler) rfl` gives the kept cell with no `havoid`.
+   - **Blocker 1** was its premises `hout`, `hfollows` and `heuler`.  Module `Estimating/OsinPocketKeptCellNoncrossing`
+     (table above) removes two of them.
+     - `hout` is proved: a target-arc dart is a walk dart whose reversal lies on the exterior face
+       (`PocketWalk.outerFace_not_mem_sideFaces_of_noncrossing`).
+     - `heuler` is `hw.reclosed_euler S.diagram.planar hfollows` (hull-euler, NoncrossingClosedWalkEuler at 19866c7d6,
+       GREEN record 0913-150114-7274, bytes = main).
+     - `exists_kept_of_noncrossing_of_value` keeps two hypotheses, `hw : IsNoncrossingClosedWalk S.diagram.toCombMap
+       K.walk` and `hfollows : (hw.outerCycle S.diagram.planar).FollowsBoundary`.  hull-select produces both from
+       first turns (`firstTurnWalkPocketInputs`, Estimating/OsinPocketFirstTurnWalk).
+     - The conclusion is the `hkept` premise of `PocketWalk.toPocketFaceSetOfNoncrossing`.
 2. **`havoid`: removed by absorption (2026-09-13 15:10).**  Module `Estimating/OsinPocketKeptCellAbsorbed` (table
    above).
    - Notation: `t_1 = invDarts S.diagram K.sourceArc.darts` and `t_2 = K.targetArc.darts`, the source and target parts
