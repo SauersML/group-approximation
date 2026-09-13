@@ -47,13 +47,27 @@ More consumable names:
 - `Dynamics/FirstReturnMap`: `returnCell T C h`, `returnCell_eq`, `isClopen_returnCell`, `IsReturnSection.inv`,
   `firstReturnFun`, `firstReturnHomeomorph hC : C ≃ₜ C` (`firstReturnHomeomorph_apply`: `S_C x = T^{h(x)} x`).
 
-## Residual Props (all mine)
+| `ReturnTowerUnitsStatement` (tex 1727–1734) | `returnTowerUnitsStatement_holds` | `Dynamics/ReturnTowerCrossedProduct` | 7b0a3343c |
 
-1. `ReturnTowerUnitsStatement` — probing (`Dynamics/ReturnTowerCrossedProduct.lean`: `towerLevel` = `D_i`, the tower
-   partition, `towerA`/`towerB`, `returnTowerUnits hC k hr`).
-2. `ReturnRingCrossedProductStatement` — next (`Dynamics/ReturnRingCrossedProduct.lean`): splitting partial shifts
-   along returns.
-3. Printed-sentence assembly and census rows after 1–2 close.
+- `Dynamics/ReturnTowerCrossedProduct`: `towerLevel T C i` (= `D_i`), `isClopen_towerLevel`, `towerLevel_of_lt`
+  (`D_i = C` for `i < r`), `exists_mem_image_towerLevel` / `eq_of_mem_image_towerLevel` (the tower partition),
+  `unitPow T k j` (`u^j`), `unitPow_mul`, `unitPow_mul_coeff`, `comap_zpow_neg_charFn`, `towerA`, `towerB`,
+  `returnTowerUnits k hC hr : ReturnTowerUnits R_X (2r-1) r` with rfl lemmas `returnTowerUnits_p/_a/_b`.
+
+## Residual Prop: `ReturnRingCrossedProductStatement` (tex 1723–1726), split with ms-core-1
+
+- Mine, probing: `Dynamics/ReturnCells` (`image_returnCell`: `T^h C_h = returnCell T⁻¹ C h`; `returnCell_eq_empty_of_le`;
+  `disjoint_returnCell`; `sum_indicator_returnCell`; `clopenExtendByZero` with `_mul/_add/_zero/_one/_injective/_eq_of/
+  _restrict`; `exists_separated_clopen_cover_abs`, the printed `0 < |j| < r` spelling) and `Dynamics/ReturnRingUnit`
+  (`returnP`, `cellCoeff`, `backCellCoeff`, `returnV` = printed `v`, `returnW`, `returnUnit k hC : (ReturnCorner k hC)ˣ`,
+  covariance `returnV_mul_coeff_extend`).
+- ms-core-1 (sent by main): `Dynamics/ReturnRingCrossedProduct` — the lift out of the crossed product, injectivity,
+  surjectivity, closed `returnRingCrossedProductStatement_holds`.
+
+## Census rows
+
+`metadata/nm-census-rows/ct-return-tower.tsv` LANDED 988ae81b2: tex 1710, 1716, 1717, 1719, 1721, 1722, 1727, 1731, 1732,
+1734, 1739, 1740.  Pending: 1709 (after ReturnCells lands), 1723 and 1726 (after the ring iso).
 
 ## Progress log
 
