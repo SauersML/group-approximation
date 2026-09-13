@@ -45,3 +45,9 @@ group known today.
   nonsofic group), nor Kun--Thom wreath products, nor the Fournier--Facio wreath shift has an
   instance in any subgroup of `K`. The same holds in Radu's lattice. The Kun--Thom double
   `G *_Gamma G` is not excluded by that count.
+  - Such doubles are nonsofic in some finite cohomological dimension
+    (`kun-thom-double-of-hyperbolic-pair-has-finite-cd`).
+  - Whether dimension two admits them is `cd-two-groups-have-no-infranormal-kazhdan-pairs`.
+  - A proof of this claim through a double would need a strictly compressed Kazhdan subgroup
+    `Gamma` inside `K`. When `H_2(Gamma;Q)` is finite-dimensional, all its rational 2-classes
+    would have to die in `K`. See that node's cohomological necessary condition.

@@ -48,13 +48,15 @@ be vacuous in the Titz Mite--Witzel kernels and in Radu's lattice.
 
   A strict compression in dimension two with finite-dimensional `H_2(Gamma;Q)` must therefore kill
   every rational 2-class of `Gamma` in `K`.
-- **Convex-cocompact case (sketch, not written as a proof).** Suppose `K` acts properly and
-  cocompactly on a CAT(0) space with no Euclidean factor, and `Gamma` acts cocompactly on a unique
-  minimal convex set `C`.
-  - Then `t C = C`, so `t` lies in the stabilizer `S` of `C`, and `Gamma` has finite index in `S`.
-  - Conjugation by `t` preserves `[S : Gamma]`, so `t Gamma t^-1 = Gamma`.
-  - Uniqueness of `C` and the no-Euclidean-factor hypothesis were not checked for the Titz--Witzel
-    buildings.
+- **Finite-index compression, convex-cocompact case (sketch, not written as a proof).** Suppose
+  `K` acts properly and cocompactly on a CAT(0) space, `Gamma` acts cocompactly on a unique minimal
+  nonempty closed convex invariant set `C`, and `[Gamma : t Gamma t^-1]` is finite.
+  - `t Gamma t^-1` also acts cocompactly on `C`, so by uniqueness its minimal set `t C` equals `C`.
+  - The stabilizer `S` of `C` acts properly on `C`, so `Gamma` has finite index in `S`.
+  - Conjugation by `t in S` preserves `[S : Gamma]`, so `t Gamma t^-1 = Gamma`.
+  - The uniqueness hypothesis was not checked for the Titz--Witzel buildings, and the sketch
+    says nothing about compressions of infinite index. There the minimal set of `t Gamma t^-1`
+    can be a proper subset of `C`.
 - **Where it stops.** Nothing forces a Kazhdan subgroup of `K` to be convex-cocompact, or its
   rational 2-classes to survive in `K`. The finite-dimension example of
   `kun-thom-double-of-hyperbolic-pair-has-finite-cd` has a non-quasiconvex `Gamma_hat` inside a
