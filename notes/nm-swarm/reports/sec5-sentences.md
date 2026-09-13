@@ -116,8 +116,28 @@ Both files LANDED at b1bd127ec. Probe 0913-025907-87619 GREEN (base b1bd127ec): 
 
 The remaining input of `osinLemma94Section_of_pieces` is `OsinLemma94PlanarRunInput` (hull-unbound).
 
+Collision: hull-count94 also wrote `OsinLemma94AntiparallelMetric.lean`, and its version overwrote the local file at 03:47.
+- By 04:02 the local file was back to the bytes of e3da1ba60.
+- hull-count94's probe 0913-035614-34211 still holds its own version. I asked it not to land that result at this path,
+  since its file redeclares `OsinUnboundScale.exists_orientedPolygonPair`.
+
+## W1 h94 planar half, with hull-unbound (team-lead, 2026-09-13 ~04:00)
+
+Assignment: one case of `OsinLemma94PlanarRunInput`, the last residual of `osinLemma94Section_of_pieces`.
+- hull-unbound owns the Prop and assigns the case. theoremc-retire takes Case 1 once hull-unbound hands it over.
+- I have asked hull-unbound which case is mine, with its Lean name and file.
+- Default, if there is no answer by the end of my next probe cycle: Case 2 in a new module of this lane, with no edits to
+  hull-unbound's files.
+  - Case 2 needs minimality of `∑ l(t_j)`, and `GloballyDistinguishedSectionFamily` has no field for it
+    (theoremc-retire's finding).
+  - The default measure is the dart count of the diagram.
+- Census row L1636 (this lane) re-grades the note "planned producer `Estimating/OsinLemma94RunProducer.lean`
+  (sec5-sentences)" on `osinLemma94Section_of_runInput` and `OsinLemma94RunInput`.
+  - That module will not be built: `OsinLemma94Pieces` supersedes the run input.
+  - The residual is `OsinLemma94PlanarRunInput`.
+
 ## Next
 
-1. Take the next W1 piece that hull-count94 or the lead gives this lane.
+1. Case 2 of `OsinLemma94PlanarRunInput`: the case hull-unbound assigns, or the default above.
 2. Watch origin/main for closed producers of the two walls. When both land, flip the four forms to closed endpoints and
    re-grade the rows formalized.
