@@ -57,7 +57,7 @@ kh-torsion wires the endpoint and queues both modules.
 | `ha : AttachTriangleStatement X` | `Systolic.attachTriangleStatement`, `GGT/SystolicDiscMovesChord.lean:298` | closed (kh-torsion) |
 | `hb : InsertChordStatement X` | `Systolic.insertChordStatement`, `GGT/SystolicDiscMovesChord.lean:254` | closed (kh-torsion) |
 | `hc : AttachPendantStatement X` | `Systolic.attachPendantStatement`, `GGT/SystolicDiscMovesAdapter.lean:136` | closed (kh-torsion) |
-| `hd : ZipSpurStatement X` | `Systolic.zipSpurStatement_of_zipPinch`, `GGT/SystolicDiscZip.lean` | its one input `ZipPinchStatement X` is closed (`Systolic.zipPinchStatement`, this lane, green); kh-torsion wires the closed endpoint |
+| `hd : ZipSpurStatement X` | `Systolic.zipSpurStatement` and `CCKW.zipSpur_cosetComplex`, `GGT/SystolicDiscZip.lean:122,131` | closed (kh-torsion, 8389a0e6c, probe 0913-030432-13308), from `Systolic.zipPinchStatement` (this lane) |
 | `hcount` | `CCKW.typedCountStatement_cosetComplex`, `Kazhdan/GHBHyperbolicDiscCounts.lean` | closed (kh-hyperbolic) |
 | `hsum` | `GHBHyperbolicStokes.boundarySumStatement`, `Kazhdan/GHBHyperbolicDiscCounts.lean:56` | closed (kh-hyperbolic) |
 
@@ -74,8 +74,9 @@ kh-torsion wires the endpoint and queues both modules.
 * `GGT.SystolicDiscCounts`, `GGT.SystolicDiscFilling`, `GGT.SystolicDiscMovesChord` and
   `Kazhdan.GHBHyperbolicDiscCounts` are not yet reachable from the root.  This lane queued
   `GroupApproximation.GGT.SystolicDiscCounts systolic-counts 4c12845a1`.
-* kh-torsion queues `GGT.SystolicDiscZipPinch` with `GGT.SystolicDiscZip`.  Root-wire wave 2
-  (wire-queue line 382) already carries `SystolicDiscZip`.
+* kh-torsion queued `GGT.SystolicDiscZipPinch systolic-counts d74b84054` and
+  `GGT.SystolicDiscZip kh-torsion 8389a0e6c`.  The root imports `GGT.SystolicDiscZip` since c72bdfd5d,
+  and `SystolicDiscZip` imports `SystolicDiscZipPinch`, so this lane's module is in the root closure.
 * Stale notes:
   * wire-queue line 318, "GHBHyperbolicDiscCounts waits on red Filling/Counts";
   * the `EdgeInsertion.embed_injective` hold on `EdgeInsertionFaceCycles` and `SystolicDiscMovesChord`,
@@ -101,5 +102,4 @@ This lane offered fff-periodic the vertex-split step and writes no Lean until th
 
 ## Next
 
-* kh-torsion has the green SHA and wires the closed `ZipSpurStatement X` endpoint.
 * Settle the file name and interface with fff-periodic, then write and probe the split module.
