@@ -54,6 +54,23 @@ profile in `M`.
     bases such as the Hilbert cube.
   - Heuristic analogy, not proved: selection theorems for non-convex values (Uspenskij,
     C-spaces) fail beyond C-spaces, and the Hilbert cube is not a C-space.
+- **Infinite tensor products (Hirshberg–Rørdam–Winter type).** Let `B = ⊗_j B_j` over
+  `X = ∏_j X_j`, with `B_j = End(θ ⊕ L_j)` for line bundles `L_j` over `X_j`. Its fibres are the
+  CAR algebra and its trace simplex is `Prob(X)`, so the strict closure is an R-fibre bundle.
+  This is the base algebra of Dadarlat–Hirshberg–Toms–Winter's non-embedding example.
+  - **Tails give triviality.** Suppose every tail `⊗_{j>k} B_j` divides its unit tracially. A tail
+    order zero `M_N` with trace near `1` commutes exactly with `⊗_{j≤k} B_j ⊗ 1`, and so is
+    approximately central and approximately multiplicative. Ozawa's Theorem 15 (iii) then makes
+    the bundle trivial. So an existence-gap witness of this type needs a tail with an indivisible
+    unit.
+  - **Characteristic classes see little (heuristic).** At stage `k` the unit is
+    `E_k = ⊗_{j≤k}(θ ⊕ L_j)` of rank `2^k`. A tracial halving with rank defect `ρ` would give,
+    if its pieces were bundles, `E_k ≅ W ⊕ W ⊕ R` with `rank R ≤ ρ`. In `K^0`,
+    `[E_k] = Π_j(2 + t_j) ≡ Π_j t_j` mod 2, with `t_j = [L_j] − 1`. The mod-2 Chern-class
+    obstruction lives in the square-free components, of complex degree at most `k`. It vanishes
+    once `ρ ≥ k`, while `n = 2^k`. Unstable-range obstructions and the passage from order zero
+    maps to bundles were not examined. So these products look unpromising as existence-gap
+    witnesses.
 - **Rotation gluing.** On an overlap, two local halvings with orthogonal equivalent pieces
   rotate into each other by central cosines. That needs partial isometries between local
   halvings.

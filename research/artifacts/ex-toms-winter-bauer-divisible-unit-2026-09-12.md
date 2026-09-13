@@ -150,6 +150,13 @@ unit of `A` is tracially `N`-divisible for arbitrarily large `N`, then `A` has R
   were not examined.
 - **Why no comparison is needed.** The pieces `z_j e_j` commute exactly, so the defect is
   computed by functional calculus. Comparison is only used afterwards, to move projections.
+- **Relation to CETW Corollary 3.2 (credit).** CETW (arXiv:1912.04207, Section 3, read on MSI,
+  lines 642–740) show that on Bauer simplices it suffices "to tracially divide the unit in an
+  approximately central fashion": uniform Γ holds iff for each `n` there are central projections
+  `p_1, …, p_n ∈ A^ω ∩ A'` summing to `1` with `τ(p_i) = 1/n` for all limit traces. Their
+  Question 3.5 asks the same for general Choquet simplices. Theorem 1 is the non-central
+  analogue of that mechanism: a non-central tracial division of the unit gives near projections
+  of every continuous profile, but not Gamma.
 - **Where the hypothesis holds.**
   - Unital limits of `M_{n_i}(C(X_i))` with `n_i → ∞`.
   - Algebras with a unital simple infinite-dimensional unique-trace subalgebra (Lemma 3.1).
