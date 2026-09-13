@@ -149,15 +149,16 @@ every printed representation is an `OpAlmostRepresentation` through the `extends
 projection. -/
 def PrintedAsymptoticRepresentationNormalization : Prop :=
   ∀ (G : Type) [Group G] (B : OpAlmostRepresentation G),
-    (∀ n, (normalizeOne B).map n 1 = 1) ∧
-      ∀ g : G, Tendsto (fun n ↦
-        ‖((normalizeOne B).map n g : Matrix (B.model n) (B.model n) ℂ) -
-          (B.map n g : Matrix (B.model n) (B.model n) ℂ)‖) atTop (𝓝 0)
+    (normalizeOne B).map = normalizeOneMap B ∧
+      (∀ n, (normalizeOne B).map n 1 = 1) ∧
+        ∀ g : G, Tendsto (fun n ↦
+          ‖(normalizeOneMap B n g : Matrix (B.model n) (B.model n) ℂ) -
+            (B.map n g : Matrix (B.model n) (B.model n) ℂ)‖) atTop (𝓝 0)
 
 theorem printedAsymptoticRepresentationNormalization :
     PrintedAsymptoticRepresentationNormalization := by
   intro G _ B
-  exact ⟨(normalizeOne B).map_one, normalizeOne_map_sub_tendsto B⟩
+  exact ⟨rfl, (normalizeOne B).map_one, normalizeOne_map_sub_tendsto B⟩
 
 /-! ## 2. `Ad(V(g))` on the Hilbert--Schmidt bounded sequences -/
 
@@ -212,8 +213,9 @@ theorem printedMatrixCoronaFinite_viaAmplification (X : ℕ → FiniteModel)
   have h1 : star (e v) * e v = 1 := by
     rw [← map_star, ← map_mul, hv, map_one]
   have h2 : e v * star (e v) = 1 := OneSidedMFRadical.sentence_993df6a79c44 X k (e v) h1
-  apply e.injective
-  rw [map_mul, map_star, h2, map_one]
+  have h3 : e (v * star v) = e 1 := by
+    rw [map_mul, map_star, h2, map_one]
+  exact EquivLike.injective e h3
 
 /-- **The printed sentence (tex 455–456), both clauses.** The corona `A` is finite, and every
 matrix algebra `M_k(A)` over it is finite, the latter through the amplification
@@ -234,8 +236,9 @@ theorem printedCoronaStablyFiniteViaAmplification :
   have h1 : star (f v) * f v = 1 := by
     rw [← map_star, ← map_mul, hv, map_one]
   have h2 := printedMatrixCoronaFinite_viaAmplification X k (f v) h1
-  apply f.injective
-  rw [map_mul, map_star, h2, map_one]
+  have h3 : f (v * star v) = f 1 := by
+    rw [map_mul, map_star, h2, map_one]
+  exact EquivLike.injective f h3
 
 end
 
