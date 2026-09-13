@@ -42,6 +42,13 @@ theorem coeff_mul_unit_zpow_neg_toAdd {B : Type*} [Ring B] [MulSemiringAction (M
   rw [Pestov91.CrossedProduct.val_unit_zpow, coeff_mul_single, one_mul, smul_one, mul_one, ofAdd_neg,
     inv_inv, ofAdd_toAdd]
 
+/-- The same shift in `R_X`, spelled with `ClopenCrossedProduct.unit`. -/
+theorem clopen_coeff_mul_unit_zpow_neg_toAdd {Y : Type*} [TopologicalSpace Y] (S : Y ≃ₜ Y)
+    (k : Type*) [Ring k] (c : ClopenCrossedProduct S k) (g : Multiplicative ℤ) :
+    SkewMonoidAlgebra.coeff (c * ((ClopenCrossedProduct.unit S k ^ (-toAdd g) :
+      (ClopenCrossedProduct S k)ˣ) : ClopenCrossedProduct S k)) 1 = SkewMonoidAlgebra.coeff c g :=
+  coeff_mul_unit_zpow_neg_toAdd (B := ClopenCoeff S k) c g
+
 section Return
 
 variable {X : Type*} [TopologicalSpace X] {T : X ≃ₜ X} {r : ℕ} {C : Set X} (k : Type*) [Ring k]
@@ -83,14 +90,15 @@ theorem coe_theta_C
             ClopenCrossedProduct T k)) = ClopenCrossedProduct.coeff T k g)
     (a : ClopenCoeff (firstReturnHomeomorph hC) k) :
     ((θ (Pestov91.CrossedProduct.C a) : ClopenCrossedProduct T k)) =
-      Pestov91.CrossedProduct.C (ClopenCoeff.of T k (clopenExtendByZero k hC.isClopen
-        ((ClopenCoeff.of (firstReturnHomeomorph hC) k).symm a))) := by
-  have h := hcoef ((ClopenCoeff.of (firstReturnHomeomorph hC) k).symm a)
-    (clopenExtendByZero k hC.isClopen ((ClopenCoeff.of (firstReturnHomeomorph hC) k).symm a))
-    (fun x => clopenExtendByZero_apply_of_mem k hC.isClopen _ x.2)
+      ClopenCrossedProduct.coeff T k (clopenExtendByZero k hC.isClopen
+        ((ClopenCoeff.of (firstReturnHomeomorph hC) k).symm a)) := by
+  have hCa : (Pestov91.CrossedProduct.C a : ClopenCrossedProduct (firstReturnHomeomorph hC) k) =
+      ClopenCrossedProduct.coeff (firstReturnHomeomorph hC) k
+        ((ClopenCoeff.of (firstReturnHomeomorph hC) k).symm a) := by
+    rw [ClopenCrossedProduct.coeff_apply, RingEquiv.apply_symm_apply]
+  rw [hCa]
+  exact hcoef _ _ (fun x => clopenExtendByZero_apply_of_mem k hC.isClopen _ x.2)
     (fun x hx => clopenExtendByZero_apply_of_notMem k hC.isClopen _ hx)
-  rwa [ClopenCrossedProduct.coeff_apply, ClopenCrossedProduct.coeff_apply,
-    RingEquiv.apply_symm_apply] at h
 
 /-- **A return ring iso with the printed properties is `returnRingHom`.** -/
 theorem theta_eq_returnRingHom
@@ -120,7 +128,7 @@ theorem theta_eq_returnRingHom
         ClopenCrossedProduct.coeff (firstReturnHomeomorph hC) k
           ((ClopenCoeff.of (firstReturnHomeomorph hC) k).symm a) := by
       rw [ClopenCrossedProduct.coeff_apply, RingEquiv.apply_symm_apply]
-    rw [coe_theta_C k hC θ hcoef, hCa, coe_returnRingHom_coeff, ClopenCrossedProduct.coeff_apply]
+    rw [coe_theta_C k hC θ hcoef, hCa, coe_returnRingHom_coeff]
   · exact (coe_theta_unit k hC θ hunit).trans (coe_returnRingHom_unit k hC).symm
 
 /-- **The zeroth Laurent coefficient is compatible with the return ring iso on `C`.** -/
@@ -138,8 +146,8 @@ theorem coeff_one_theta
             ((ClopenCrossedProduct.unit T k ^ (h : ℤ) : (ClopenCrossedProduct T k)ˣ) :
               ClopenCrossedProduct T k) * ClopenCrossedProduct.coeff T k (v h))
     (c : ClopenCrossedProduct (firstReturnHomeomorph hC) k) (y : C) :
-    (ClopenCoeff.of T k).symm (((θ c : ClopenCrossedProduct T k)).coeff 1) (y : X) =
-      (ClopenCoeff.of (firstReturnHomeomorph hC) k).symm (c.coeff 1) y := by
+    (ClopenCoeff.of T k).symm (SkewMonoidAlgebra.coeff ((θ c : ClopenCrossedProduct T k)) 1) (y : X) =
+      (ClopenCoeff.of (firstReturnHomeomorph hC) k).symm (SkewMonoidAlgebra.coeff c 1) y := by
   have h' : ((θ c : Corner (ClopenCrossedProduct T k)
         (ClopenCrossedProduct.coeff T k (LocallyConstant.charFn k hC.isClopen)) hp) :
           ClopenCrossedProduct T k) =
@@ -164,7 +172,7 @@ theorem returnTransientIdealStatement_holds : ReturnTransientIdealStatement := b
     rw [map_mul, coe_corner_mul]
     exact (ClopenCrossedProduct.coreTransientIdeal T k).mul_mem_right _ _ hc
   have h0 := (ClopenCrossedProduct.mem_transientIdeal_iff_forall_coeff _ _ _).1 hmem 1 (y : X) hyT
-  rw [coeff_one_theta k hC θ hcoef hunit, coeff_mul_unit_zpow_neg_toAdd] at h0
+  rw [coeff_one_theta k hC θ hcoef hunit, clopen_coeff_mul_unit_zpow_neg_toAdd] at h0
   exact h0
 
 end GroupApproximation.ChainCore.DynamicRankBudget
@@ -172,6 +180,8 @@ end GroupApproximation.ChainCore.DynamicRankBudget
 /-! ### Audit -/
 
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.coeff_mul_unit_zpow_neg_toAdd
+#audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.clopen_coeff_mul_unit_zpow_neg_toAdd
+#audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.coe_theta_C
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.coe_theta_unit
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.theta_eq_returnRingHom
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.coeff_one_theta
