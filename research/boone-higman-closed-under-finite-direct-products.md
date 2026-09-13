@@ -11,6 +11,7 @@ distinct_from:
   fp-simple-groups-embed-in-fp-simple-mif-groups: that is BFFHZ Question 3.4, one sufficient hypothesis for this closure; this is the closure statement.
 artifacts:
   - research/artifacts/bh-product-closure-2026-09-12.md
+  - research/artifacts/bh-simple-products-embed-2026-09-12.md
 ---
 
 **OPEN.** Let `G <= S` and `H <= T` for finitely presented simple groups `S` and
@@ -32,6 +33,13 @@ presented simple group.
   groups (BFFHZ Question 3.4, `fp-simple-groups-embed-in-fp-simple-mif-groups`),
   then use BFFHZ Theorem C (iv)⇒(i) and closure of `B_A` under products. Route:
   `bh-direct-products-via-mif-envelopes`.
+- **From relatively simple kernel removal.**
+  `bh-product-closure-via-relatively-simple-kernel-removal` uses:
+  - FFWZ Theorem C and the product lemma, as above;
+  - the finitely presented relatively simple group of the product actor
+    (`abstract-btb-pairs-fp-and-relatively-simple`);
+  - the second part of FFWZ Question 5.9
+    (`fp-relatively-simple-pairs-embed-with-fng-kernels`), applied to that group.
 
 **Why it matters.** It is step (P) of `fp-metabelian-groups-satisfy-boone-higman`.
 A finitely generated metabelian group embeds in a product of linear groups over
@@ -91,3 +99,46 @@ live in different hosts. The embedding is Wehrfritz's Corollary 1.2, recorded in
    `G <= A^x/F^x` and `H <= B^x/F^x` give `G x H <= (A ⊗_F B)^x / F^x` via
    `(a,b) -> a ⊗ b`. *Stops*: it raises the tensor degree of Leavitt hosts, whose
    finite presentation in higher degree is open, and it cannot mix characteristics.
+7. **Coordinatewise abstract twisted Brin--Thompson groups** (lane
+   `bh-simple-products-embed`).
+   - `SV_{A_1} x SV_{A_2}` is finitely presented, and `S x T` meets
+     `SK_{A_1} x SK_{A_2}` trivially. That pair is not relatively simple, since
+     `SV_{A_1} x SK_{A_2}` is a proper normal subgroup outside it.
+   - The relatively simple group built from both actors is `SV_A` for the product
+     actor `A`, and `S x T` sharply embeds in it
+     (`abstract-btb-pairs-fp-and-relatively-simple`).
+   - *Stops* at the gate of Attempt 2. Removing `SK_A` is the second part of FFWZ
+     Question 5.9 (`fp-relatively-simple-pairs-embed-with-fng-kernels`).
+8. **"Every finitely presented simple group satisfies PBH"** (lane
+   `bh-simple-products-embed`). By BFFHZ Theorem C (i)⇔(iv) this is Question 3.4,
+   so it is Attempt 1.
+   - **A sufficient intrinsic condition.** `S` has a proper finitely generated
+     subgroup `H` with finitely many double cosets `H\S/H`. Then `S ↷ S/H` is
+     faithful of type [A_2], and `SV_S` is a finitely presented simple group
+     containing `S`.
+   - *Stops*: no general source of such `H`.
+9. **Wreath and automorphism overgroups** (lane `bh-simple-products-embed`).
+   - `S ≀ Z/2` and `Aut(S x T)` contain `S x S` and `S x T` as normal subgroups. So
+     neither is simple, and their envelopes pose the same problem.
+   - For `B ≀_X Q` with `B` perfect and `Q` simple acting non-trivially, FFWZ
+     Lemma 3.1 makes the base the largest normal subgroup. A subgroup meeting the
+     base trivially embeds in `Q`, so nothing is gained.
+   - *Dies.*
+10. **Joint embedding and squares** (lane `bh-simple-products-embed`). The claim
+    holds iff both of the following hold:
+    - (JE) any two finitely presented simple groups embed in a common one;
+    - (SQ) `U x U` embeds in a finitely presented simple group for every finitely
+      presented simple `U`.
+
+    For the converse, take `S, T <= U`; then `S x T <= U x U`. *Stops*: (JE) is
+    known for PBH groups through free products (BFFHZ Corollary F), and (SQ) for
+    PBH groups by Attempt 5. Neither is known in general.
+11. **The Theorem C actor of `S x T` itself** (lane `bh-simple-products-embed`).
+    Rerun FFWZ's proof of Theorem C with `Γ = S x T`.
+    - `Aut_Γ(Γ * F_n)` is finitely presented (trivial center), stabilizers are
+      finitely generated, and the Γ-translations act freely.
+    - Finitely many pair orbits came from high transitivity, which FFWZ derive from
+      simplicity. This was not rechecked here.
+    - The action is never faithful. With `w` from Attempt 4, `x_1 ↦ x_1 w(x_2)` is a
+      non-trivial automorphism that acts trivially.
+    - *Dies*: at best one more relative actor, behind the gate of Attempt 2.
