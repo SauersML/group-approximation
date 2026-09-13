@@ -263,15 +263,77 @@ proof.
     and complement cycle both follow the boundary is unpinched.
   - `pinchedPocketLobe_conclusion` (dgo-geometric, `OsinPocketPinchedTwoGonLobe`, 4181011af): on
     the pinched two-gon model, a lobe of `X` itself witnesses the conclusion.
-- State: no Lean yet.
+- State: no Lean yet, parked by the W1 item below.
   - Asked dgo-geometric for the model-test result and hull-respell for the induction interface.
   - If the model test fails the wrap statement, the counterexample shape goes to the lead before
     anything is built.
+- hull-unbound offered to take a sub-piece. Nothing splits cleanly before the wrap statement is
+  fixed, so the offer was declined.
+
+### The wrap pair of `Maximal` (audit-sec3)
+
+- audit-sec3 graded `OsinLemma94PolygonPartitionInput` true and proved. Fidelity note: `Maximal`
+  does not check the wrap pair (the last side against the first).
+- Its model test: adding the wrap pair makes the Prop false unless one-side polygons are exempt
+  (`2 ≤ sideCount`).
+- Lead's ruling: no code fix, and the wrap pair is dropped. At the base the extra side counts as
+  one class per polygon in `L`, which hull-count94 adds to its count.
+
+## W1 top-level composition (2026-09-13, current item)
+
+The lead's item: the least-area Greendlinger waist
+`RelativeGreendlingerQuasiGeodesicLeastAreaStatement` over the open residual Props only, through
+`relativeGreendlingerQuasiGeodesicLeastArea_of_pocketParts`.
+
+- Existing composition: dgo-analytic's `OsinDescentResiduals` (5be777f16, probe
+  0913-142842-93848 GREEN, wire queue line 685).
+  - It plugs in `osinMultipleEdgeCutSection_of_pieces`, `osinSectionPocketCutSection_of_residuals`
+    and, through them, `pocketCellTransport` and `pocketOuterTransport`.
+  - Its `relativeGreendlingerQuasiGeodesicLeastArea_of_residuals` still takes `h94` and `hcount`
+    whole. This lane consumes it and does not duplicate it.
+- New module `Estimating/OsinGreendlingerOpenResiduals` (this lane):
+  `relativeGreendlingerQuasiGeodesicLeastArea_of_openResiduals` passes
+  `osinLemma94Section_of_residuals hcount94 hone` for h94 and
+  `osinPhiPrimeCountSection_of_pieces osinCornerTwoGonSection htwogon` for hcount.
+- Residual binders (eight):
+  1. `OsinLemma94PolygonCountInput` (hull-count94).
+  2. `OsinLemma94CaseOneInput` (theoremc-retire).
+  3. `OsinLoopCutSectionStatement` (ghw-charp2's patch 07).
+  4. `OsinTwoGonHoldsSectionStatement`, C6′ (debt-conditional).
+  5. `OsinMultipleEdgePocketRegionSectionStatement` (kh-ejz).
+  6. `OsinSectionPocketFaceSetSectionStatement` (kh-ejz).
+  7. `PocketPinchLabelledStatement` (hull-respell).
+  8. `GeodesicCollarStatement` (kh-torsion).
+- hloop: the closed `osinLoopCutSection` exists only in ghw-charp2's staged
+  `OsinAppendixGreendlingerParts`, not on origin/main 5be777f16. Binder 3 goes once (A) lands.
+- hcount: C4 is closed by `osinCornerTwoGonSection` (leavitt-units, 0c42391c2). C6′ has no
+  producer on main or in the working tree.
+- Producers in files staged for (A), which this module does not import:
+  - `osinLemma94PolygonCountInput_of_sideBudget` (`OsinLemma94PolygonCount`). On main it takes
+    `OsinLemma94PolygonSideBudgetInput`; the staged version adds
+    `OsinLemma94UnboundSameCellStatement`.
+  - `osinLemma94CaseOneInput_of_walk` (`OsinUnboundCaseOneRun`). On main it takes
+    `OsinLemma94CaseOneWalkStatement`; the staged version adds `OsinLemma94CaseOneSameCellStatement`.
+- Kept whole on purpose:
+  - `PocketPinchLabelledStatement`: `pocketPinchLabelledStatement_of_pocketPinchStatement` would
+    trade it for the stronger unlabelled pinch, and lakes stay inside the labelled one.
+  - `GeodesicCollarStatement`: kh-torsion's `SurgeryGeodesicCollarAssembly` reduces it to Strip,
+    Insert and Join, but the R1/R2 restatement is pending.
+- Imports: `OsinDescentResiduals`, `OsinLemma94SectionResiduals` and
+  `OsinAppendixEulerCornerTwoGonSection`. None is staged for (A), and every staged file in their
+  closures is already in the root import closure.
+- go-lemma42's probe 0913-141750-43433 (`OsinPocketGlueCellTransport`, base 874a332a2) is GREEN.
+- State: LANDED 8a07ad7d0.
+  - Probe 0913-143433-44532 is GREEN on base c5cb8e691, and the md5 matches the landed bytes.
+  - Unwired. Wire queue: `GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerOpenResiduals
+    ghw-assembly 8a07ad7d0`, after `OsinDescentResiduals`.
+  - The binder list went to the lead. No census row: the module certifies no printed sentence.
 
 ## Next
 
-- Wrap case: when both replies are in, propose a split with dgo-geometric and hull-respell, then
-  write this lane's modules under `GGT/VanKampen/Estimating/`.
+- W1 composition: once (A) lands, drop binder 3 with `osinLoopCutSection`, and ask the lead about
+  replacing binders 1-2 with their staged producers.
+- Wrap case (parked): when both replies are in, propose a split with dgo-geometric and hull-respell.
 - Still waiting on the audit:
   - dgo-analytic, baseline-debt and sec5-sentences to re-grade their rows;
   - census to re-grade or retire cite-ejz's LINE:1155, retire baseline lines 369/370 and re-merge.
