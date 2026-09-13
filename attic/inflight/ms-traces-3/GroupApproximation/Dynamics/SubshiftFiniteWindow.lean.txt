@@ -61,12 +61,10 @@ def shiftHomeomorph [TopologicalSpace A] {X : Set (ℤ → A)}
     (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X) : ↥X ≃ₜ ↥X where
   toFun x := ⟨shift 1 x.1, hX 1 x.2⟩
   invFun x := ⟨shift (-1) x.1, hX (-1) x.2⟩
-  left_inv x := Subtype.ext <| funext fun i => show x.1 (1 + (-1 + i)) = x.1 i by
-    congr 1
-    omega
-  right_inv x := Subtype.ext <| funext fun i => show x.1 (-1 + (1 + i)) = x.1 i by
-    congr 1
-    omega
+  left_inv x := Subtype.ext <| funext fun i =>
+    show x.1 (1 + (-1 + i)) = x.1 i from congrArg x.1 (add_neg_cancel_left 1 i)
+  right_inv x := Subtype.ext <| funext fun i =>
+    show x.1 (-1 + (1 + i)) = x.1 i from congrArg x.1 (neg_add_cancel_left 1 i)
   continuous_toFun :=
     ((continuous_shift (A := A) (1 : ℤ)).comp continuous_subtype_val).subtype_mk fun x => hX 1 x.2
   continuous_invFun :=
@@ -85,18 +83,15 @@ theorem zpow_apply_coord [TopologicalSpace A] {X : Set (ℤ → A)} {T : ↥X �
     have h := congrFun (hT (T.symm x)) (-1 + m)
     rw [Homeomorph.apply_symm_apply, shift_apply] at h
     rw [h]
-    congr 1
-    omega
+    exact congrArg (T.symm x).1 (add_neg_cancel_left 1 m).symm
   induction n generalizing x m with
   | zero => rw [zpow_zero, Homeomorph.one_apply, zero_add]
   | succ i ih =>
     rw [zpow_add_one, Homeomorph.mul_apply, ih, hT, shift_apply]
-    congr 1
-    omega
+    exact congrArg x.1 (by ring)
   | pred i ih =>
     rw [zpow_sub_one, Homeomorph.mul_apply, ih, Homeomorph.inv_apply, hsymm]
-    congr 1
-    omega
+    exact congrArg x.1 (by ring)
 
 /-- Evaluation of coefficients along a family of points `w : ι → κ → Y`:
 `a ↦ (n ↦ (s ↦ a (w s n)))`. -/
