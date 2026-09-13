@@ -239,9 +239,16 @@ and each gets a docstring mark only, with no statement change and no deletion:
 The other items on the list are in modules this lane does not own:
 - `HullSCLemma49PowerDiagramFromComponents` and `HullSCLemma44Canonical` belong to sec2-sentences.
 - `HullSCOneStepQuasiGeodesicLeaves` belongs to hull-respell.
-- The rest have no owner in the roster.
-- systolic-counts also flags the stale docstring at `Estimating/Assembly.lean:818` ("Still open, and
-  not addressed here"). That module is not this lane's either.
+- The lead's rulings draft (~13:40) gives baseline-debt the rest. It also gives baseline-debt the
+  stale docstring at `Estimating/Assembly.lean:818` ("Still open, and not addressed here").
+
+systolic-counts landed the list at 20d0ec06d (`notes/nm-swarm/reports/systolic-counts.md`). Its
+check on 0183c4b57 covers all 49 flip pairs, since `TorsionFreeLeafAssembly` :173 has two targets.
+- Each target is root-reachable and not `sorry`-tainted.
+- Each requirement a target names is discharged under the least-area statement.
+- BLC:123, the nearest form named at :103, passes the same check.
+- The second target of :173 is `TheoremC.manuscriptTorsionFreeFullMFRadical_of_leastAreaInputs`, a
+  theoremc-retire form. The docstring names only `TorsionFreeLeastAreaAssembly`'s form.
 
 ## Flips (ownership final, roster ~06:36)
 
