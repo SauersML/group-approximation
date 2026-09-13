@@ -20,10 +20,17 @@ with `|H| <= N`, every `n`, every `Q = H wr Sym(n) = H^n ⋊ Sym(n)` or `Q = H w
 **Consequence.** No sequence of weak models of `G`, with any bi-invariant lengths, has all its
 targets of the form `H wr Sym(n)` or `H wr Alt(n)` with `|H|` bounded. This is the depth-two case with
 the richest top. For the binary Leavitt unit group and every finitely presented simple nonsofic group,
-the wreath-shaped room left on `fg-simple-weakly-sofic-groups-are-sofic` is now:
+the wreath-shaped room left on `fg-simple-weakly-sofic-groups-are-sofic` was, when this node landed:
 - unbounded bases under symmetric tops;
-- small tops of large depth (`simple-nonsofic-relator-width-over-iterated-wreath-products`);
+- small tops of large depth;
 - classical groups of unbounded rank.
+
+Later landings closed most of it:
+- towers of bounded degree (`simple-nonsofic-relator-width-over-iterated-wreath-products`);
+- towers mixing bounded levels with symmetric levels of any degree, which covers bases that are
+  themselves such towers (`simple-nonsofic-width-over-towers-with-symmetric-levels`);
+- classical targets, which reduce to linear soficity over finite fields
+  (`simple-group-width-over-all-finite-simple-groups`).
 
 **Mechanism.**
 1. **Top.** Match abelianization by a fixed exponent block `prod_r r^(n_(x,r))`, then cover the even
