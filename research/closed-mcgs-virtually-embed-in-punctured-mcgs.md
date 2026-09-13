@@ -49,3 +49,12 @@ This premise feeds `closed-mcg-bh-via-punctured-mcg-host`.
    mapping class group of a closed surface into that of a different closed
    surface." Those targets are closed again, so they reduce the problem to
    itself.
+4. **Compactly supported copies in asymptotic mapping class groups.** *Reduces
+   to this premise.* Take an injective homomorphism from a finite-index subgroup
+   to the Aramayona--Funar group `B_h` or `H_h` whose image in `V` is finite. By
+   part (a) of `closed-mcg-in-asymptotic-mcg-is-bordered-or-infinite-in-v`, it
+   already gives this premise, with `Σ′` the genus-`h` surface with `2n`
+   punctures.
+   - A new construction in these hosts would need infinite image in `V`. That
+     is part (b), which is open.
+   - Forgetful sections have infinite image, by part (d).
