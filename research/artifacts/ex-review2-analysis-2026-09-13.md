@@ -192,6 +192,21 @@ Filled in as each part lands.
 | `o2-rokhlin-iff-unit-vanishes-in-fixed-central-sequences` | uct-detection-prove | PASS | 3 §3.7 |
 | `o2-contractible-crossed-product-inner-half-flip-mcduff` | uct-detection-prove | PASS | 3 §3.8 |
 | `zp-detection-iff-bootstrap-sufficiency-and-kk-g-generation` | uct-detection-prove | PASS after graph fix `d16d59955a` | 3 §3.1, §3.9 |
+| `ara-goodearl-tame-refinement-monoids-separative` | rr0-dichotomy | PASS, quote verbatim | 4 §4.1 |
+| `opr-cfp-rr0-dichotomy` | rr0-dichotomy | PASS, quote verbatim | 4 §4.1 |
+| `opr-mixed-simple-refinement-monoid` | rr0-dichotomy | PASS, quote verbatim | 4 §4.1 |
+| `opr-properly-infinite-multiple-splits` | rr0-dichotomy | PASS, quote verbatim | 4 §4.1 |
+| `rainone-type-semigroup-crossed-product-dichotomy` | rr0-dichotomy | PASS as import | 4 §4.1 |
+| `rordam-mixed-examples-not-real-rank-zero` | rr0-dichotomy | PASS as import, not re-read | 4 §4.1 |
+| `coinvariant-tarski-lemma-minimal-nowhere-scattered` | rr0-tarski-ideals | PASS | 4 §4.2 |
+| `af-k0-order-divisible-iff-no-elementary-subquotient` | rr0-tarski-ideals | PASS | 4 §4.3 |
+| `dimension-group-divisible-iff-no-integer-subquotient` | rr0-tarski-ideals | PASS | 4 §4.4 |
+| `nowhere-scattered-af-crossed-products-dichotomy` | rr0-tarski-ideals | PASS | 4 §4.5 |
+| `nowhere-scattered-af-integer-crossed-products-dichotomy` | rr0-tarski-ideals | PASS, note | 4 §4.6 |
+| `rr0-sr1-coefficient-crossed-products-dichotomy` | rr0-tarski-ideals | PASS | 4 §4.7 |
+| `minimal-normal-cyclic-subgroup-cantor-dichotomy` | rr0-tarski-ideals | PASS | 4 §4.8 |
+| `smoothing-normal-subgroup-cantor-dichotomy` | rr0-tarski-ideals | PASS | 4 §4.9 |
+| `af-crossed-product-counterexample-normal-form` | rr0-tarski-ideals | PASS, Rainone 4.17 verbatim | 4 §4.10 |
 
 ## 3. Part files
 
@@ -204,3 +219,6 @@ Filled in as each part lands.
 - `ex-review2-analysis-2026-09-13-part3.md`: detection for Z/p-actions (Meyer--Nadareishvili sufficiency, the
   cellular-plus-phantom splitting, the (D)/(L)/(S)/(K) equivalences), and the O_2 dynamics (Rokhlin iff
   contractible, fixed central sequences, half-flip and McDuff), with Gabe--Szabó quotes checked verbatim.
+- `ex-review2-analysis-2026-09-13-part4.md`: the RR0 dichotomy lanes (coinvariant Tarski lemma, order divisibility
+  of AF K_0, crossed-product dichotomies for AF, integer, RR0-sr1 and Cantor coefficients, the counterexample normal
+  form), with Rainone 4.17, OPR 5.16, 5.17, 4.3 and Ara--Goodearl 2.3 checked verbatim.
