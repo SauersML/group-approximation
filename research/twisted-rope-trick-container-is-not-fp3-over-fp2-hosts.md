@@ -3,6 +3,8 @@ rg: 2
 id: twisted-rope-trick-container-is-not-fp3-over-fp2-hosts
 kind: claim
 title: "The twisted rope-trick container is never FP_3(Q) when the host of the double has finite rational H_2"
+invalidates:
+  - f3-hosts-for-fp-groups-via-rope-trick-over-fp2-host
 distinct_from:
   higman-rope-trick-group-is-never-fp3: that is the untwisted case with one embedding over an arbitrary finitely generated host, read from the source; this allows two different embeddings of the double and needs the host to have finite-dimensional rational H_2 unless the embeddings agree on H_2
   fp2-vertex-graph-of-groups-infinite-h2-edge-kills-fp3: that concerns arbitrary finite graphs of groups whose vertex groups have finite rational H_2; here the vertex group P x G may have infinite rational H_2 because G may
@@ -24,6 +26,8 @@ happens in particular:
 2. when `dim_Q H_2(P; Q) < ∞`, for instance `P` of type `FP_2(Q)`, whatever
    `ι` and `ι'` are.
 
+This kills the route `f3-hosts-for-fp-groups-via-rope-trick-over-fp2-host`.
+
 **What is left for a higher rope trick.** A rope-trick container of this
 shape can be of type `FP_3(Q)` only if `H_2(ι) − H_2(ι')` is injective on
 `ker H_2(π; Q)` up to a finite-dimensional subspace. Here `ker H_2(π; Q)` is
@@ -31,6 +35,6 @@ the infinite-dimensional space `([F, R]/[R, R]) ⊗ Q` (Lemma 3.4 of the source)
 So `H_2(P; Q)` must be infinite-dimensional, and the two embeddings must differ
 there in an essentially injective way. For the container to have finite
 rational `H_2`, the difference must also be almost onto the part of
-`H_2(P; Q)` that the embeddings do not cancel. The acyclic-host twisted
-container, lane z1-01-ffz-fp3, meets both conditions, and whether it is of
-type `FP_3` is open.
+`H_2(P; Q)` that the embeddings do not cancel. The open claim
+`acyclic-host-twisted-rope-container-is-of-type-fp3` names a container that
+meets both conditions.
