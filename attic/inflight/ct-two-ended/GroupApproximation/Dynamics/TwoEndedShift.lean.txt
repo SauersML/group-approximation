@@ -181,9 +181,9 @@ instance : CompactSpace TwoEnded := by
   exact isCompact_iff_compactSpace.1 isClosed_setOf_monotone.isCompact
 
 instance : TopologicalSpace.MetrizableSpace TwoEnded := by
-  haveI : TopologicalSpace.MetrizableSpace Bool := inferInstance
-  haveI : TopologicalSpace.MetrizableSpace (ℤ → Bool) := TopologicalSpace.metrizableSpace_pi
-  exact TopologicalSpace.MetrizableSpace.subtype {f : ℤ → Bool | Monotone f}
+  haveI : TopologicalSpace.SecondCountableTopology TwoEnded := by
+    exact TopologicalSpace.Subtype.secondCountableTopology {f : ℤ → Bool | Monotone f}
+  exact TopologicalSpace.metrizableSpace_of_t3_secondCountable TwoEnded
 
 theorem tendsto_pt_atTop : Tendsto pt atTop (𝓝 posInf) := by
   rw [tendsto_subtype_rng, tendsto_pi_nhds]
