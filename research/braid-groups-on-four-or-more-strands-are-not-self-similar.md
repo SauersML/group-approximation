@@ -35,6 +35,20 @@ and because `[B_n, B_n] ∩ Z(B_n) = 1`. So `K` lies in the joint core, and the
 action is not faithful. Derivation:
 `braid-non-self-similarity-via-geometric-injections`.
 
+## Scope: finite-index subgroups
+
+The same proof applies to every finite-index subgroup `G'` of `B_n` with `n >= 4`,
+for example the pure braid group `P_n`. The substitutions:
+- `Z(G') = G' ∩ Z(B_n)`, because the centralizer of `pi(G')`, a finite-index
+  subgroup of `Mod^±(S_(0,n+1))`, is trivial (Lemma A, step 1);
+- the exponent sum is still nonzero on `Z(G')`, so `[G',G'] ∩ Z(G') = 1`;
+- `pi(G')` has finite index in `Mod^±(S_(0,n+1))`, so Lemma A and the rigidity
+  claim apply unchanged, with `core_(G')` in place of `core_G`.
+
+So no finite-index subgroup of `B_n` with `n >= 4` is self-similar (unreviewed).
+This does not exclude self-similar overgroups: containing `B_n` is a different
+question, the Part 2 territory of Problem 3.9.
+
 ## Contrast with n = 3
 
 `B_3 / Z(B_3) = PSL_2(Z)` is virtually free, and conjugation by `diag(2,1)` is an
