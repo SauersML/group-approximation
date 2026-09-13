@@ -103,6 +103,20 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     exactly those produced by `trimSourceLast` and `trimTargetHead`.
   - So the innermost-circuit rescue of ms-cite-1's record 5f21c733e does not prove the Pos binder, and the step has to build
     copies: trim, double the trimmed side dart, split.
+- **In flight: `Estimating/OsinPocketTrimDouble`** (attic 63661a8ae; probe 0913-18xx running), the first stage of the wrap-case step:
+  - `PocketFaceSet.exists_trimDouble K hlabel hne hroom hlen hK`: first `trimSourceLast`, then hull-respell's
+    `faceEdgeDoubling` at the source face on the trimmed dart. After the trim that dart is off the source arc, which supplies
+    `hsrc`.
+  - The output is an O-equivalent copy with letter labels and a pocket face set in walk order in the same positions: same
+    repeated visits, a source arc one dart shorter, and a first-side dart whose across-face is the new digon. The digon is a
+    G-face that is not the exterior, not a relator face, and not in the face set.
+  - Rotation at the junction vertex `p` after the doubling (paper, from `EdgeInsertion.toCombMap`): `embed x → none →
+    embed(head t₁)`, where `x = α(last t₁)`. The corner after `embed x` is the digon, so `embed x` is a legal split dart
+    `I.x`.
+  - Still open: the second split dart. It needs a G-corner outside the face set in the other gap at `p`, for the wrap shape
+    with `t₂` full (the exterior corner, through kh-cckw's outer spur thickening), and the StretchAvoids chain.
+- ms-intro-4 (binder 5, `CellPocketPinchPosStatement`) imports ArcTrim and FullArc; their helper names stay fixed. There is
+  no generic boundary-cycle layer, and `exists_trimDouble` is at `PocketFaceSet` level.
 - Where the step route sticks: a full arc with a nonempty remainder and both sides at length exactly `ε`. No trim has
   room, and transport surgery keeps arcs and sides. This does not refute the Prop, since the conclusion may change the
   source, the kept cell, the arcs and the sides.
