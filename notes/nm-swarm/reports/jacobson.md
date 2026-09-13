@@ -122,13 +122,14 @@ for the presented `ToeplitzJacobson = F_2⟨s,t⟩/(ts = 1)`. It was the operato
 - Root-imported (root 4a6cb4e55): JacobsonPresented, JacobsonPresentedSentences,
   JacobsonComplementaryPresented and JacobsonComplementarySentence.
 - Root-imported (root 830b05464): JacobsonThreePlusOnePresented (2104ff622).
-- Queued in `wire-queue.txt`: JacobsonPresentedKazhdanFinite (29632bb14). Its imports
-  `GHWJacobsonKazhdanFinite` and `JacobsonPresentedSentences` are root-imported.
+- Root-imported (checked on origin/main at 13:12): JacobsonPresentedKazhdanFinite (29632bb14) and
+  OsinLemma94PendantRemoval (61c2ade8e).
+- Queued in `wire-queue.txt`: OsinPocketCellWalk (65e5e758c), after OsinPocketSectionFaceSet.
 
 ## Residual Props
 None for the roster target (the four L1122 rows and c149d33e8f7e), for 3009704fef89 or for the
-rank-two transport. The transport endpoint becomes root-reachable once JacobsonPresentedKazhdanFinite
-is wired.
+rank-two transport. The transport endpoint is root-reachable, since JacobsonPresentedKazhdanFinite
+is root-imported.
 
 None for W1 either. `GloballyDistinguishedSectionFamily.PendantPathRemovalInput` is closed
 by `pendantPathRemovalInput` (OsinLemma94PendantRemoval). The statement is unchanged. The
@@ -163,8 +164,7 @@ dropped: cite-hull closed Hull Corollary 7.4 (c6e0b6c33).
   OsinLemma94SpikeTransport. This lane keeps no copy.
 - Status (10:25): probe GREEN 0913-102123-19053 (base 615da4f77, BUILT
   OsinLemma94PendantRemoval). All four `#audit_axioms` pass. The module lands in the same commit as
-  this paragraph, after SpikeTransport landed (ba4233ef8). It is queued for wiring after
-  OsinLemma94SpikeTransport and OsinLemma94ChainRespell.
+  this paragraph, after SpikeTransport landed (ba4233ef8). It is now root-imported.
 
 ## W1: the pocket walk of two regions joining the same two cells (09-13)
 The lead assigned the producer side of kh-ejz's `MultipleEdgePocketRegionInput`
@@ -190,5 +190,7 @@ The lead assigned the producer side of kh-ejz's `MultipleEdgePocketRegionInput`
   to wait for dgo-analytic's restatement dropping `P.inner.FollowsBoundary`. At 13:07
   OsinPocketRegionSide:67 still has it.
 - Status (13:10): probe GREEN 0913-130857-87977 (base 3b5232827, BUILT OsinPocketCellWalk). All
-  four `#audit_axioms` pass. The module lands with this paragraph. It is a new file importing only
-  modules on main (OsinPocketSectionFaceSet, OsinAppendixSectionInduction), with no consumer yet.
+  four `#audit_axioms` pass. Landed 65e5e758c (bytes verified against origin/main). It is a new
+  file importing only modules on main (OsinPocketSectionFaceSet, OsinAppendixSectionInduction),
+  with no consumer yet. It is queued for wiring after OsinPocketSectionFaceSet, which is not
+  root-imported.
