@@ -69,3 +69,19 @@ convergence to them.
   a deviation that vanishes only after balanced symmetric extension (direct
   evidence for `definetti-group-table-rounding`).  Directed cycles need not be
   searched at all.
+- **Realize the lifted law from positivity and identities alone.**  Cannot
+  work, by `cayley-traffic-law-refutes-markov-reconstruction`.
+  - For every group `G`, the rooted Cayley law `lambda_G` takes the canonical
+    value on every connected test graph and meets the positivity and
+    reflection constraints.  In the reading where the extension only has to be
+    near the canonical values on tested graphs, this claim is met at zero
+    defect with no microstate, so it carries no information.
+  - For the group `G_ns` of `finitely-presented-nonsofic-group-exists`, some
+    window and `eps` admit no finite action within `eps` of `lambda_{G_ns}`
+    on the triangle and loop graphs.  So no realization step can read only
+    such a law.
+  - The strong reading asks for a law within `delta` of the closure `K` of
+    finite-action laws on the tested graphs.  `K` is convex, and a finite
+    linear inequality valid on `K` separates `lambda_{G_ns}` from it.  A law in
+    `K` near the canonical values is a sofic model of the window, so this
+    reading is the target, window by window.
