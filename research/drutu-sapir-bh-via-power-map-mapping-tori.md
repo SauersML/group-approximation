@@ -37,15 +37,20 @@ finitely presented simple group. ∎
   uniformly.
 - **Letters.** `K` embeds in `Aut_B(B * F_2) × Z`, with `F_2` free on `z_0, z`:
   - `x` and `y` act by left multiplication of `z_0` by `u^-1` and `z^-1 u^-1 z`;
-  - `s` acts by the automorphism fixing `B` that sends each letter `w` to
-    `σ^-1 w σ`, paired with the generator of `Z`. It conjugates left
-    multiplication by `g` to left multiplication by `σ g σ^-1`, up to the
-    identity on `z`.
+  - `s` acts by the automorphism `S` fixing `B` that sends each letter
+    `w ∈ {z_0, z}` to `σ^-1 w σ`, paired with the generator of `Z`. On `B * <z>`
+    it restricts to `α = c_(σ^-1) ∘ β`, and `S ι(g) S^-1 = ι(β(g))`, where
+    `ι(g)` sends `z_0` to `g^-1 z_0`. For `g = u` and `g = z^-1 u z` this is the
+    squaring relation.
+  - `S` differs from the element `T` of `pbh-relative-holomorph-closure-proof`
+    by right multiplication of `z_0` by `σ`, which commutes with every `ι(g)`.
 - **Actors.**
   - `Aut_B(B * F_2)` lies in `B_A` by
     `pbh-passes-to-relative-free-group-automorphisms`. Behind that claim, `B`
     sits in a finitely presented simple MIF group `M'` (BFFHZ Theorem C), and
     `Aut_M'(M' * F_2)` carries a type (A) action (BFFHZ Theorem E).
-  - `DS` then embeds in the finite wreath product of that actor with `S_2`.
+  - `K` lies in the product of that actor with an actor containing `Z`, and `DS`
+    in the wreath product of this product with `S_2` (parts (a) and (b) of
+    `type-a-actions-closed-under-products-and-finite-wreaths`).
 - **Simple envelope.** It is the twisted Brin--Thompson group of the resulting
   actor (Zaremsky, arXiv:2405.18354, Corollary B).

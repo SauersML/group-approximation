@@ -38,10 +38,9 @@ simple group.
 
 ## Automorphisms allowed in (T)
 
-`β` may act on `M` by any inner automorphism of `Q` and on the letters by any
-automorphism fixing `M`. For `m = 1` with letter `z`, that means
-`β(x) = k x k^-1` on `M` and `β(z)` any image of `z` under an automorphism of
-`Q`. Two basic kinds:
+The automorphisms in (T) are exactly `β = c_k ∘ α` with `k ∈ Q` and
+`α ∈ Aut_M(Q)` arbitrary. For `m = 1` with letter `z` and `σ ∈ M`, two basic
+kinds:
 - **Partial conjugation:** `β = c_σ` on `M` for some `σ ∈ M`, and `β(z) = z`.
 - **Letter multiplication:** `β = c_σ` on `M` and `β(z) = z n` with `n ∈ M`. Its
   inverse is `c_σ^-1` on `M` and `z -> z σ^-1 n^-1 σ`.
@@ -62,8 +61,10 @@ The general power-map family is `power-map-free-mapping-tori-satisfy-permutation
 
 ## Credit
 
-No priority is claimed. The embedding of `Q` in `Aut_M(M * F_(m+1))` by left
-multiplication of a new letter is the mechanism BFFHZ use to place `A * B`
-inside `Aut_G(G * F_n)` in their proof of Corollary F, as recorded in
-`pbh-passes-to-relative-free-group-automorphisms`. What is added here is the
-conjugation formula with `Aut_M(Q)` and the ascending HNN consequence.
+No priority is claimed. BFFHZ place `A * B` inside `Aut_G(G * F_n)` in their
+proof of Corollary F, as recorded in
+`pbh-passes-to-relative-free-group-automorphisms`. Their embedding was not
+re-read here, so this node does not assert that it is the left-multiplication
+map of Step 1. The sources read were only the repo nodes, and none of them
+contains the conjugation formula with `Aut_M(Q)` or the ascending HNN
+consequence.

@@ -41,8 +41,8 @@ solvable word problem and embeds in a finitely presented simple group.
 ## What this does not reach
 
 - **Other endomorphisms.** General injective endomorphisms of `F_n` stay open
-  here. `pbh-class-closed-under-relative-holomorphs` reaches `F_n *_φ` exactly
-  when some finite-index subgroup of the mapping torus is isomorphic to `J *_β`
+  here. `pbh-class-closed-under-relative-holomorphs` reaches `F_n *_φ`
+  whenever some finite-index subgroup of the mapping torus is isomorphic to `J *_β`
   as in its part (T). For example it also gives
   `< x, y, t | t x t^-1 = x^2, t y t^-1 = y x >`. It is not decided whether every
   injective endomorphism is realized in this way. A test case not settled here is
@@ -59,6 +59,6 @@ solvable word problem and embeds in a finitely presented simple group.
 - **Linear hosts.** `DS` is not linear.
 - **Relative automorphisms.** What works is that the squaring step `t` is realized
   as conjugation by `σ` inside `BS(1,2)`. The free product structure comes from a
-  free letter, as in the proof of BFFHZ Corollary F. The two sit together in
+  free letter. The two sit together in
   `Aut_B(B * F_2)`, which lies in `B_A` by
   `pbh-passes-to-relative-free-group-automorphisms`.
