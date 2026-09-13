@@ -96,6 +96,28 @@ twisted Brin--Thompson constructions over an actor in `F(g)` stays in the
 `m`-fold iterate of `g -> g*`. Finite towers over a bounded actor never leave the
 elementary functions over `g`.
 
+**Credit.**
+- **The groups.** `SV_G` and its brick calculus are due to Belk--Zaremsky,
+  *Twisted Brin--Thompson groups*, arXiv:2001.04579, Geom. Topol. 26 (2022).
+  The finite-presentation criterion is Zaremsky, arXiv:2405.18354.
+- **Part (b) is not new in mechanism.** Tracking one brick through the word, with
+  a polynomial-size nontriviality witness, is the method behind J.-C. Birget,
+  *The word problem of the Brin--Thompson group is coNP-complete*,
+  arXiv:1902.03852, and *Circuits, coNP-completeness, and the groups of Richard
+  Thompson*, arXiv:math/0310335. Lane `ex-novelty` reports that the latter also
+  observes that known finitely presented simple groups have low-complexity word
+  problems; this lane did not re-read it. The only addition in (b) is
+  relativizing the method to the actor's orbit problem.
+- **Parts (a), (c) and (d).** These are the stabilizer-membership lower bound,
+  the two-sided transfer between classes, and the equivalences. None was found
+  stated in a bounded check:
+  - the abstracts of the Belk--Zaremsky paper and of Zaremsky arXiv:2201.00711,
+    as reported by `ex-novelty`, whose bodies were not read;
+  - Birget's two papers above;
+  - the survey statements already imported on main.
+
+  They are treated as new here, and unreviewed.
+
 **Not claimed.** No reduction of stabilizer membership to the actor's word
 problem is proved. An actor with easy word problem and hard stabilizer membership
 would already give hard finitely presented simple groups through (a).
