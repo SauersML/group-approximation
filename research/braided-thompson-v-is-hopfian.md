@@ -16,8 +16,15 @@ quotient of `bV` is finitely presented.
 
 Status: complete argument in `research/artifacts/zp-braided-v-hopfian-2026-09-13.md`
 (§§1–5). Reviewed PASS by z-verify-groups (d228d90964): see
-`research/artifacts/zp-review-groups-2026-09-13-part2.md` §11. The novelty check is pending,
-so do not describe this as a first answer yet.
+`research/artifacts/zp-review-groups-2026-09-13-part2.md` §11. Novelty (z-status-b,
+40882660bb, `research/artifacts/zp-novelty-2-10-braided-v-hopfian-2026-09-13.md`): NEW within
+the sources checked, a bounded search without MathSciNet or zbMATH. Wording to use: "answers
+the first question of Zaremsky Problem 2.10 positively; first proof within the sources checked".
+
+Credit: Zaremsky arXiv:1403.8132 (normal subgroups of `V_br`); Brin and Dehornoy (`V_br`);
+Sam–Snowden arXiv:1409.1670 (noetherianity of `FS^op`-representations); Artin, Andreadakis
+and Magnus (residual nilpotence input); Burillo–González-Meneses arXiv:math/0608646 (cloning
+compatible with the lower central series order on `PBV`).
 
 ## Attempts
 

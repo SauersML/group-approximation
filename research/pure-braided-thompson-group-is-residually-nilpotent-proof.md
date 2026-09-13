@@ -30,3 +30,16 @@ artifacts:
    lies in `∩_c gamma_c(PB_T) = 1`.
    - The embedding of graded pieces follows from step 2 at `c` and `c+1`:
      `gamma_c(PB_T) ∩ gamma_{c+1}(P_br) = gamma_{c+1}(PB_T)`.
+
+**Credit and related work.**
+- Residual nilpotence of `PB_n` is classical and is commonly credited to Falk–Randell. That
+  source was not re-read here; step 3 is a self-contained derivation.
+- Burillo–González-Meneses, *Bi-orderings on pure braided Thompson's groups*
+  (arXiv:math/0608646v1), treat the same direct limit `PBV = P_br`. Read from the PDF:
+  - Lemma 3.1 shows that doubling a strand preserves the Kim–Rolfsen bi-order of the pure
+    braid group, through the lower central series of `F_n` and the Magnus expansion.
+  - Corollary 3.2: "The group PBV is bi-orderable."
+  - Theorem 3.3: "The group BF is bi-orderable."
+  They do not state residual nilpotence of `P_br`, but their argument that cloning is
+  compatible with the lower-central-series structure is closely related to step 2 and step 3,
+  and should be credited alongside this node.

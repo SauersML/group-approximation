@@ -64,6 +64,14 @@ For every tree `T`, `PB_T ∩ gamma_c(P_br) = gamma_c(PB_T)`, and `∩_c gamma_c
    `∩_c A_c = 1` by Magnus. Artin's representation is faithful with image in `IA_n = A_1`.
 5. An element of `∩_c gamma_c(P_br)` lies in some `PB_T`, hence in `∩_c gamma_c(PB_T) = 1`.
 
+*Related work.* Residual nilpotence of `PB_n` is classical and commonly credited to Falk–Randell; that
+source was not re-read. Burillo–González-Meneses (arXiv:math/0608646v1) handle the same direct limit
+`PBV = P_br`:
+- their Lemma 3.1 proves that strand doubling preserves the Kim–Rolfsen bi-order, via the lower central
+  series of `F_n`;
+- Corollary 3.2 proves that `PBV` is bi-orderable, and Theorem 3.3 that `BF` is.
+They do not state Lemma B, but their mechanism is closely related.
+
 ## 3. Graded pieces form a finitely generated FS^op-representation
 
 For `c >= 1` put `L_c(n) := gamma_c(PB_n) / gamma_{c+1}(PB_n)`, a finitely generated abelian group.
