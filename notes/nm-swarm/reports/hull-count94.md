@@ -50,6 +50,25 @@
 - The LINE:1636 row (thm:hull, Osin Lemma 9.4 inside Hull's proof) now follows the pieces route.
   It stays partial, and its residual is `OsinLemma94PlanarRunInput`.
 
+## OsinUnboundSharedEdge triage (lead, ~04:10)
+- Route check: nothing imports `Estimating/OsinUnboundSharedEdge.lean`.
+  - No file under `GroupApproximation/` names the module, on origin/main or in the shared tree. The
+    same grep does find the importer of `OsinLemma94Pieces`.
+  - Its declarations `SectionCuts.exists_section_of_lt` and
+    `RealizedSectionFamily.false_of_unbound_shared_edge` are used only inside the module, and no census
+    row cites them.
+  - So the `osinLemma94Section_of_pieces` / `OsinLemma94PlanarRunInput` route does not depend on it.
+    As the lead instructed, there is no diagnosis and no fix.
+- Disk differs from main.
+  - origin has b52365364's 347 lines (md5 b6a6c77e). These are the red bytes of 0913-022343-56095 and
+    of root-wire wave 1, equal to hull-unbound's `.red-0913-022343` backup.
+  - The shared tree holds an unlanded 531-line rewrite (md5 82ea7352, mtime 09-13 04:16:41), listed
+    only in `hull-unbound.files`. It splits the long proof into `digon_decomposition`,
+    `false_of_digon_region`, `false_of_digon_toward_cell` and `false_of_digon_toward_outer`.
+  - hull-unbound is probing that draft (0913-042440-98733, started 04:24:40), so it is fixing the red
+    itself.
+  - The landing condition "disk = main" does not hold. This lane stops and does not touch the file.
+
 ## Residual
 - This lane owns no open Prop.
 - `OsinLemma94PlanarRunInput` is the only other input of `osinLemma94Section_of_pieces`. hull-unbound
