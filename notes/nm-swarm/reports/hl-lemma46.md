@@ -96,14 +96,23 @@ consumes. The 09-13 final split (roster) runs through simple-group's interface
       - (ii) fails: `U` holds no relator cell, so this model has no pocket face set.
     - Lake rose (`OsinPocketLakeModel`). Every edge is a walk edge, `U = {K}` and `∂U = {0,2}` is the walk; the lake and the outside lie outside.
   - kh-ejz's report (residual of `SectionPocketFaceSetInput`) lists (iii'), (C) and (ii), and names model tests of (C) on the pinched two-gon and on the lake complement `[3,1]` as its own next item. No reply from kh-ejz yet, so nothing of this item is built or landed.
-  - Drafts staged in the lane scratchpad, unprobed, for whichever sub-step kh-ejz names:
-    - `$NM/drafts/hl-lemma46-OsinPocketWalkColouring.lean`, the pocket-level assembly:
-      - `sideFaces_subset_of_colouring`: the side of the walk lies in every colour class that holds the walk darts. No connectivity is used.
-      - `sideFaces_colouring`: conversely, on a planar map the side of a noncrossing walk is a colour class.
-      - `isNoncrossingClosedWalk_of_colouring`, `PocketWalk.toPocketFaceSetOfColouring`, `PocketWalk.exists_pocketFaceSet_of_orient`. The last takes (iii'), (C) as `horient`, and (ii) as `hkept`.
-    - `$NM/drafts/hl-lemma46-OsinPocketPinchedTwoGonColouring.lean`, the model tests:
-      - On `lobeDiagram`, `pinchWalk : PocketWalk D 0 lobeDiagram 0 2` has walk `[5,3,4,6]`. `pinch_orient`: every colouring puts the four walk darts on one side, because the edges `{0,3}` and `{1,5}` lie on the walk. This is (C) on this map.
-      - `PinchedWalkColouringModel`: a pocket face set with the walk as boundary cycle and the digon `a` kept.
-      - `PinchedWalkNoKeptCell`: on `diagram`, no colour class holds both the walk darts and a relator cell. So (ii) does not follow from (iii') and (C).
-      - `LakeWalkColouringModel`: the rose with walk `[0,2]`.
-    - These overlap kh-ejz's planned (C) model tests. They land only if kh-ejz names them.
+  - Superseded, left unlanded: the draft assembly `$NM/drafts/hl-lemma46-OsinPocketWalkColouring.lean`. kh-ejz's `PocketWalk.exists_pocketFaceSet_closedWalk_of_orient` (ae463a301) and the model tests in `Estimating/OsinPocketColouringModel` (15504a498) cover it.
+- Current item (lead, 09-13 15:50): piece (ii) of (D), the `hkept` binder of `exists_pocketFaceSet_closedWalk_of_orient`. kh-ejz owns binder 6 (`OsinSectionPocketFaceSetSectionStatement`) and consumes it. (C), cite-hull's `PocketWalkColourStatement`, is a named hypothesis until it lands.
+  - Already on main: sec2-sentences' `pocketKeptCellNoncrossing` (`Estimating/OsinPocketKeptCellNoncrossing`, 3e7ce7227). It gives the kept cell from the family binders (`x ≠ y` selected, `hgap`, `hfirst`, `hsecond`, the output shape of (C)), `hvalue`, `hw` and `hfollows : (hw.outerCycle S.diagram.planar).FollowsBoundary`.
+    - At binder 6, `hw` is `isNoncrossingClosedWalk_of_orient` from (C) and (iii'), and `hvalue` is `S.cell_listVal_ne_one hW hlambda hrho` (`Estimating/OsinLemma94PolygonCovers:80`) with `c < lambda * rho`.
+  - The gap is `hfollows`, which fails at a lake.
+    - dgo-analytic's `OsinPocketLakeLabelledModel` (494dc3249) puts a relator cell on the side of the rose walk `[0,2]`, while `lakeCycle_outerCycle_not_followsBoundary` holds for that walk.
+    - The lake case of kh-ejz's `OsinPocketColouringModel` shows that (C) and (iii') do not exclude lakes.
+    - hull-select's first-turn producer (`FirstTurnWalkPocketInputsStatement`, a29b02280) needs a first-turn chain on the complement spelling, and that chain fails at a lake (`lake_not_firstTurn`).
+  - The absorption proof (`exists_kept_of_pocketRegion_of_value`, `subset_of_not_disjoint_pocketRegion`, `InnerDiscRegion.ofPocketRegion`) reads only `P.faces`, `P.inner` and `P.outerFace_not_mem`, never `P.outer`. So `hfollows` enters only through `heuler`. hull-euler's torus rose `[0,2,4]` (`NoncrossingClosedWalkEuler` docstring) shows that without it the inner Euler equation can fail for a noncrossing walk.
+  - Routes to the inner disc on `sideFaces`:
+    - If the outer cycle follows its boundary: `reclosed_euler`, the landed route.
+    - If the inner cycle follows its boundary: `BoundaryCycle.toDiscRegion_of_followsBoundary` (`SurgeryReclosedPlanarity:36`). Both lake models have it (`lakeCycle_innerCycle_followsBoundary`, `pocketCycle_innerCycle_followsBoundary`).
+    - If neither follows (a pinch and a lake together, or the torus rose): open.
+  - Proposal sent to kh-ejz at 16:23, in one message; awaiting the reply. Nothing is built before agreement.
+    - F1: `PocketWalkKeptCellStatement`, which is `PocketKeptCellNoncrossingStatement` with the `hfollows` binder deleted, in a new module `Estimating/OsinPocketWalkKeptCell`.
+    - F2, the fallback: sec2-sentences' Prop as landed. kh-ejz passes `hfollows`, and lake exclusion becomes a named residual.
+    - Also asked: `hvalue`, or `(hW : OsinCCondition …) (hlambda) (hrho)` in its place.
+  - Model test plan for the agreed statement:
+    - Positive: on `lobeDiagram`, `pinchWalk` with kept cell `⟨1,_⟩` (draft `$NM/drafts/hl-lemma46-OsinPocketPinchedTwoGonColouring.lean`).
+    - Calibration: on `diagram`, `hw`, `hout`, `hfollows` and `heuler` hold for `[5,3,4,6]`, but no relator cell lies on the side, so the family binders carry the proof.
