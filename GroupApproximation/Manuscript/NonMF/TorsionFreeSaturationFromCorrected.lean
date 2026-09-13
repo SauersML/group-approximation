@@ -18,9 +18,9 @@ builds carries one —
 * `HullSC.HullTowerStatement` (same file),
 * `HullSC.TorsionFreeHullCanonicalQuotientStatement`
   (`GGT/HullSCCanonicalQuotientPublished.lean`),
-* `TheoremCAssembly`'s `TorsionFree.hullTheorem71`.
+* `TorsionFree.hullTheorem71_of_leastAreaLeaves` (`Manuscript/NonMF/TheoremCAssembly.lean`).
 
-So closing all four §5/§6 leaves of Hull's Theorem 7.1 would still leave
+So closing every leaf of Hull's Theorem 7.1 would still leave
 `thm:torsion-free` standing on a literature package.  The header of
 `Manuscript/NonMF/HullPrintedInputs.lean` records the asymmetry, and
 `Manuscript/NonMF/TorsionFreeSectionCitations.lean` names the repair — *"the
@@ -71,8 +71,8 @@ assumed, since `GGT.OsinPrinted.osinLemma71Printed` is a theorem.
 
 `thm:torsion-free`, in both printed forms, from the Fournier-Facio paragraph and
 one of: the printed `thm:hull` at a torsion-free ambient group, or
-`HullSC.HullOneStepStatement`, which `TheoremCAssembly.TorsionFree.hullOneStep`
-already proves modulo the four §5/§6 admissions.  No `HullSmallCancellationPrinted`
+`HullSC.HullOneStepStatement`, which `HullSC.hullOneStepStatement_of_leastAreaLeaves`
+proves over the two least-area leaves.  No `HullSmallCancellationPrinted`
 and no `OsinLemma71Printed` occur in any hypothesis below.
 
 `HullSmallCancellationPrinted` stays where it is, as the record of what the
@@ -140,7 +140,8 @@ theorem hullSmallCancellationTorsionFreePrinted_of_printed
 `m` of `HullSC.hullBallFormNG_of_oneStep` and the finite-set form of
 `HullCorrectedInputs.smallCancellation_of_ballFormNG`.  This is the direction
 that matters: the printed proposition is now reachable from a statement this
-repository proves modulo the four §5/§6 admissions. -/
+repository proves over the two least-area leaves
+(`HullSC.hullOneStepStatement_of_leastAreaLeaves`). -/
 theorem hullSmallCancellationTorsionFreePrinted_of_oneStep
     (hOne : HullSC.HullOneStepStatement.{0}) :
     HullSmallCancellationTorsionFreePrinted.{0} := by
@@ -261,8 +262,8 @@ theorem manuscriptSaturation_of_corrected
 
 /-- **Hull's one-relator construction gives the corrected bundle.**
 
-The small-cancellation field is `TheoremCAssembly.TorsionFree.hullTheorem71`'s
-own route — the induction on `m` of `HullSC.hullBallFormNG_of_oneStep` followed
+The small-cancellation field is the route of
+`TorsionFree.hullTheorem71_of_leastAreaLeaves` — the induction on `m` of `HullSC.hullBallFormNG_of_oneStep` followed
 by `HullCorrectedInputs.smallCancellation_of_ballFormNG`.  The Osin field needs
 no input at all: `GGT.OsinPrinted.osinLemma71Printed` is a theorem. -/
 def hullInputsCorrected_of_oneStep (hOne : HullSC.HullOneStepStatement.{0}) :
@@ -432,9 +433,9 @@ theorem manuscriptTorsionFreeFullMFRadical_of_torsionFreePrinted
 7.1 in the one-relator construction form.**
 
 This is the statement the campaign needs: its Hull input is the one
-`TheoremCAssembly.TorsionFree.hullOneStep` proves, so the four §5/§6
-admissions are the whole of the open debt.  `HullSmallCancellationPrinted` does
-not occur. -/
+`HullSC.hullOneStepStatement_of_leastAreaLeaves` proves, so on the Hull side the
+open debt is the two least-area leaves.  `HullSmallCancellationPrinted` does not
+occur. -/
 theorem manuscriptTorsionFreeTheorem_of_oneStep
     (hFFF : FournierFacioParagraph) (hOne : HullSC.HullOneStepStatement.{0}) :
     PrintedTorsionFreeTheorem :=

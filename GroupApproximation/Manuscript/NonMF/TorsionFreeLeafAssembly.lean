@@ -26,15 +26,17 @@ import GroupApproximation.Meta.AxiomGuard
 This module runs the section along its printed route, with every open input a
 **named statement taken as a hypothesis of an intermediate lemma**, never a
 literature package bound at an endpoint and never an admission.  It does not
-import `TheoremCAssembly`, whose admissions are `sorry`s; the derivations below
-spell out the chain over hypotheses instead.
+import `TheoremCAssembly`; the derivations below spell out the chain over
+hypotheses instead.
 
 ## The leaves
 
 * `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement` — Osin's §9
-  relative Greendlinger lemma at quasi-geodesic boundaries.  It replaces the two
-  estimating admissions of `TheoremCAssembly` (`estimatingSelectionConstruction`,
-  `estimatingUnboundOutput`): both were only ever spent through it, by the waists
+  relative Greendlinger lemma at quasi-geodesic boundaries.  It stands in for the
+  two estimating statements `GGT.VanKampen.EstimatingSelectionConstructionStatement`
+  and `GGT.VanKampen.EstimatingUnboundOutputStatement`, whose admissions
+  `TheoremCAssembly` deleted on 2026-09-13: both admissions were only ever spent
+  through it, by the waists
   `HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_greendlinger` and
   `HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_greendlinger`.
 * `HullSC.RelativeIsoperimetricBridgeQuasiGeodesicStatement` — Osin's Lemma 5.1
@@ -120,8 +122,7 @@ theorem hullLemma49KernelPower_of_greendlinger
 /-- **Hull's Theorem 7.1 for one target element**, over a torsion-free group,
 from the two Hull leaves: the canonical quotient `G ⧸ ⟨⟨W⟩⟩` of Lemmas 4.4 and
 4.9, with Hull's §6 relator transported into the selected auxiliary family.
-This is `TheoremCAssembly.TorsionFree.hullOneStep` with its admissions replaced
-by the two named leaves. -/
+Its least-area counterpart is `HullSC.hullOneStepStatement_of_leastAreaLeaves`. -/
 theorem hullOneStep_of_leaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicStatement.{0, 0, 0})

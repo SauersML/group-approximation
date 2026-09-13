@@ -31,6 +31,14 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
 
   No other tex line reference in this lane's modules is out of date.
 - `96ebd17c2`: the TorsionFreeKOLeaves decision (section below).
+- Landed together with this report version: docstring-only updates to
+  `TorsionFreeLeafAssembly`, `TorsionFreeLiteratureInputsLeastArea` and
+  `TorsionFreeSaturationFromCorrected` (reported by sec2-sentences), probed green. They
+  named `TheoremCAssembly` declarations that 2c3c8cb40 deleted: `hullOneStep`,
+  `hullTheorem71`, `literatureInputs` and the estimating admissions. They now name
+  `HullSC.hullOneStepStatement_of_leastAreaLeaves`,
+  `TorsionFree.hullTheorem71_of_leastAreaLeaves` and the surviving
+  `GGT.VanKampen.Estimating*Statement`s.
 
 ## Residual statements (exact)
 
@@ -43,9 +51,11 @@ Lane `nm-endpoints`, target census2 U7: the closed top endpoints of `sec:torsion
 3. `TheoremC.KotowskiOllivierStatement`, which is `Hyperbolic.SharpExistence`. Its producer
    `KMSGroup.KotowskiOllivierClosed.kotowskiOllivier_of_leaves` (c5a8ae8fb) still takes the
    zip, fold and fixed-clique leaves of GHB(7).
-4. `TorsionFreePrinted.FinitelyPresentedInfiniteSimpleStatement`. Its producer
-   `HydeLodha.finitelyPresentedInfiniteSimpleStatement_of_leaves` still takes
-   `StabKFinitelyPresented qTwo` (Hyde–Lodha, Proposition 4.7).
+4. CLOSED: `TorsionFreePrinted.FinitelyPresentedInfiniteSimpleStatement`. It is proved by
+   `HydeLodha.finitelyPresentedInfiniteSimple_closed`
+   (GroupTheory/HydeLodha/FinitelyPresentedInfiniteSimpleClosed.lean:49, 47b31bef8), which
+   carries `#audit_closed_axioms` and is root-imported (GroupApproximation.lean:4790).
+   Every `hW` binder below is spent by that one application.
 
 Every other input is already closed: DGO 2.35, GO 1.1, Chiodo, Minasyan–Osin, the
 free-product union geometry, and the hard direction of Osin 1.1.
@@ -61,6 +71,9 @@ followed by `#audit_closed_axioms`.
   `FournierFacioQuotientStatement`.
 - Walls 1 to 3: `LiteratureInputs` and `Configuration` (row dab2f2bfe084).
 - All four walls: `FournierFacioParagraph`, `thm:torsion-free`, `cor:regular-nonmf-algebra`.
+  Wall 4 is closed, so these wait on walls 1 to 3 only. The flip passes
+  `HydeLodha.finitelyPresentedInfiniteSimple_closed` as `hW`. This lane lands no three-leaf
+  wrapper, since reshaping a binder retires no finding.
 
 ## Census rows
 
@@ -79,16 +92,17 @@ None of them retires a baseline finding: a four-leaf form reshapes a conditional
 not discharge one. No row was added for the proof-step rows bcc99703f838, 2d1cd22e5f49,
 2f997e5af4e6 and 721da4c14d11, because no four-leaf theorem proves those sentences exactly.
 
-## Wall status on main (checked 2026-09-13 at origin 4062bc4b8)
+## Wall status on main (checked 2026-09-13 at origin 4b4db96a4)
 
-- No closed producer of any of the four walls, or of their feeders
-  (`OsinLemma97SectionStatement`, `QuotientPeripheralLetterPullbackStatement`,
-  `UpsilonFinitelyPresented`, `StabKFinitelyPresented`).
-- `KotowskiOllivierClosed.kotowskiOllivier_closed` has not landed. ko-closed will message
-  this lane when it does.
-- `TheoremC.kotowskiOllivier` (TheoremCAssembly.lean:653) is still `sorry`.
-- The fff-quotient lane has Proposition 4.7 green over exactly Lemma 4.6
-  (`UpsilonFinitelyPresented`).
+- Wall 4 is closed (`HydeLodha.finitelyPresentedInfiniteSimple_closed`, 47b31bef8,
+  root-imported).
+- Walls 1 to 3 have no closed producer. No closed producer of
+  `OsinLemma97SectionStatement` or `QuotientPeripheralLetterPullbackStatement` has landed.
+- `KotowskiOllivierClosed.kotowskiOllivier_closed` has not landed.
+  `kotowskiOllivier_of_leaves` (Kazhdan/KotowskiOllivierClosed.lean:47) still takes
+  `hzip`, `hfold` and `hT6`. ko-closed will message this lane when it lands.
+- `TheoremCAssembly` has no `sorry` left (2c3c8cb40). `kotowskiOllivier` there became the
+  hypothesis `hKO`.
 
 ## Flip readiness (checked at origin/main)
 

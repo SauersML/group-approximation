@@ -15,15 +15,9 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # The literature inputs of `sec:torsion-free`, over the least-area leaves
 
-`TheoremC.literatureInputs` assembles the five statements the Fournier-Facio
-paragraph cites.  Two of its fields rest on the admissions of `TheoremCAssembly`:
-
-* `smallCancellationQuotient`, through `fournierFacioQuotientStatement_of_hull_osin24`
-  and the family-inclusion Lemma 4.4;
-* `hullCommonQuotient`, through `TorsionFree.hullOneStep`.
-
-This module is its twin, with every Hull-side input spent through the same pair of
-leaves as the section's Hull chain:
+`TheoremC.LiteratureInputs` bundles the five statements the Fournier-Facio
+paragraph cites.  This module assembles it, with every Hull-side input spent through
+the same pair of leaves as the section's Hull chain:
 
 * `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement`, Osin's
   Lemma 4.4 at least-area diagrams;
@@ -97,8 +91,8 @@ namespace TorsionFreeLiteratureInputsLeastArea
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.Manuscript.NonMF.TorsionFreePrinted
 
-/-- **The five literature inputs of the Fournier-Facio paragraph**, the twin of
-`TheoremC.literatureInputs` over the least-area leaves. -/
+/-- **The five literature inputs of the Fournier-Facio paragraph**, over the
+least-area leaves and `hKO`. -/
 theorem literatureInputs_of_leastAreaLeaves
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0})
