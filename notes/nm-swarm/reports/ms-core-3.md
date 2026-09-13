@@ -31,6 +31,28 @@ CLAIM lem:involution-localization, F₂ matrix clause (tex 1689–1693) — modu
     - The local finiteness of `K_1(I)` (tex 1693) belongs to chain-radical.
   - Census rows `50c5dd41dff4`, `5c06eec5555b` and `1c114e2c4209` are graded `partial` over that one open Prop
     (`metadata/nm-census-rows/ms-core-3.tsv`).
+- 09-13 ~18:30, main's next item: chain-core S1 item 2 and the census rows of tex 1338–1370 (chain-core is down since
+  17:56).
+  - **Item 1 was already on main.** chain-core landed `Algebra/LEFPrintedDefinition` and `Dynamics/ClopenLaurent` at
+    967885928. The origin blob md5s equal those in chain-core's green record 0913-172949-67452. The module contents:
+    - `IsPrintedLEFRing` and `printedLEFRingDefinition : ∀ A [Ring A], IsPrintedLEFRing A ↔ Pestov91.IsLEFRing A`;
+    - `IsPrintedLEFGroup` and `printedLEFGroupDefinition`;
+    - `printedLaurentExpansionsUnique` and `printedPowersFormal`.
+    No module was written here. Neither module is root-reachable, and neither has an importer, so both are queued in
+    wire-queue.txt under chain-core's SHA.
+  - **Census rows** (metadata/nm-census-rows/ms-core-3.tsv), for the keys of ms-core-1's ledger (02cae87b7) that had no row:
+    - `275bedb28f9f` and `752564275a33`: definition (ClopenCrossedProduct, root-imported);
+    - `a1bda19b475a` and `8a557cb954fb`: formalized (ClopenLaurent endpoints);
+    - `6011dc411b20` and `2d1ca8689ac6`: definition (LEFPrintedDefinition endpoints).
+    The ClopenLaurent and LEFPrintedDefinition rows note that their modules still await wiring.
+  - Keys already graded by other lanes:
+    - `753b90beed12` (chain-core);
+    - `49f76a64907a`, `d5af28721656` and `3ebdab1c418b` (hull-euler);
+    - `b1a4887c5412`, `1d0bcc92a75f` and `1a88ddc187c0` (ms-core-4).
+    `1a88ddc187c0` is graded `formalized` over `IsOperatorMF`, the corona form. The printed MF definition (tex 87–98) is the
+    asymptotic-unitary form, and ms-core-1 records the bridge as belonging to ms-intro-1's range.
+  - Not rowed: `d59fc0887768` (tex 1341). It has no carrier on main, since chain-radical's thm:core-mf-radical endpoint has
+    not landed.
 - Build trap: the chain-core statement modules do not import `Mathlib.Algebra.Field.ZMod`. Without `Field (ZMod 2)` in
   scope, specializing a `∀ k [Field k]` statement at `ZMod 2` makes the unifier unfold `ZMod 2` arithmetic
   (`Nat.rec` ~29k, `Fin.add` ~5.6k in the diagnostics), and it times out even at 1M heartbeats. Fix: import the module and use
