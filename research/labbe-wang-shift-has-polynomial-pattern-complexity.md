@@ -45,3 +45,5 @@ characteristic `p`, the rank-model assumption that
   - linear repetitivity, i.e. balanced growth of widths and heights of `ω^m(a)`, which the source does not state; or
   - a face count for the arrangement of translates of the polygonal Markov partition boundary
     (`labbe-shift-is-a-toral-rotation-coding`), using that every pattern occurs in a generic tiling by minimality.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part1.md` §3.2): PASS.** Letter-image shapes, the doubling every 8 steps, the cover step (Lemma 5 proof) and the bound 50·4^(m+1) ≤ 50·4^9·n^16 were re-derived. The rank-model consequence is correctly recorded in Attempts only; it also follows from `free-minimal-crossed-products-are-simple-with-rank-models`.

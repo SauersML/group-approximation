@@ -16,3 +16,7 @@ algebra of subexponential growth is amenable".
 amenable `Γ` of exponential growth), so subexponential growth is a sufficient criterion only. Nothing here
 gives exact matricial models, which are strictly stronger; see
 `simple-rings-with-local-matrix-models-are-matricial`.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part1.md` §2.2): PASS.** A routine
+combination of Elek, arXiv:math/0203261 Proposition 4.1, with Arzhantseva–Păunescu, arXiv:1212.6780v1 Corollary 11.15
+(credited on the required claim).

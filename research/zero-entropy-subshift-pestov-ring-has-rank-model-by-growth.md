@@ -3,6 +3,8 @@ rg: 2
 id: zero-entropy-subshift-pestov-ring-has-rank-model-by-growth
 kind: claim
 title: For a zero-entropy minimal subshift the Pestov coefficient ring has GK dimension bounded by growth of complexity, so it has a rank model with no towers
+distinct_from:
+  minimal-subshift-algebra-is-simple-lef-ring: that gives exact matricial models for every infinite minimal subshift, hence a rank model as well; this reaches only the rank model, but by a growth bound alone.
 ---
 
 **ESTABLISHED (unreviewed).** Let `X ⊆ A^Z` be an infinite minimal subshift with word complexity `p(n)` of
@@ -19,3 +21,8 @@ of `kazhdan-elementary-approximation-type-mirrors-ring-type`.
 
 GK dimension `2` is the least possible for an infinite dimensional affine simple algebra, since affine
 algebras of GK dimension `1` are PI, hence finite dimensional when simple and affine.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part1.md` §2.3): PASS.** The ball
+bound `dim R_m ≤ (2m+1)·p(2m+1)` and the GK-dimension value (Bergman's gap theorem, Small–Stafford–Warfield,
+Kaplansky) were checked. As a rank model it is subsumed by the exact models of `minimal-subshift-algebra-is-simple-lef-ring`;
+the growth-only proof is the content.

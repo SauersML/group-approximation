@@ -3,13 +3,16 @@ rg: 2
 id: subexponential-complexity-zd-subshift-rings-have-rank-models
 kind: claim
 title: A minimal Z^d subshift of polynomial pattern complexity gives a crossed product with a unital rank model, with no towers and no invariant measure
+distinct_from:
+  free-minimal-crossed-products-are-simple-with-rank-models: that already gives a faithful unital Følner rank model for every free minimal Z^d Cantor system over a finite field, with no complexity hypothesis; this reaches the rank model of the subshift case by a growth bound alone.
 ---
 
-**ESTABLISHED (unreviewed).** Let `X ⊆ A^(Z^d)` be an infinite minimal subshift whose pattern complexity
-`p(n)` (the number of patterns on the cube `[−n, n]^d`) grows polynomially in `n`, and let
-`R = LC(X, F_q) ⋊ Z^d`. Then `R` has polynomial growth, hence a unital rank model over `F_q`, hence is
-stably finite and carries a faithful Sylvester matrix rank function. When `R` is simple and `N ≥ 3`, the
-Kazhdan groups `EL_N(R)` are `F_q`-linear sofic, hence weakly sofic, by
+**ESTABLISHED (unreviewed; scope repaired at review).** Let `X ⊆ A^(Z^d)` be an infinite minimal subshift on which
+`Z^d` acts **freely** (for a minimal action of the abelian group `Z^d` this is the same as topologically free, since
+each `Fix(g)` is closed and invariant), whose pattern complexity `p(n)` (the number of patterns on the cube
+`[−n, n]^d`) grows polynomially in `n`, and let `R = LC(X, F_q) ⋊ Z^d`. Then `R` is simple, has polynomial growth,
+hence a unital rank model over `F_q`, hence is stably finite and carries a faithful Sylvester matrix rank function.
+For `N ≥ 3` the Kazhdan groups `EL_N(R)` are `F_q`-linear sofic, hence weakly sofic, by
 `rank-modelled-simple-rings-give-linear-sofic-projective-el`.
 
 The same conclusion holds under the weaker hypothesis that `m ↦ |B_m(Z^d)| · p(2m+1)` grows
@@ -28,3 +31,9 @@ discharged by this claim as soon as Labbé's Wang shift is known to have polynom
 is the expected behaviour of a primitive self-similar (substitutive) shift but is recorded here as a
 separate input: `labbe-wang-shift-has-polynomial-pattern-complexity`. Under that input the middle rung
 reduces entirely to the non-matriciality half, which is `un-labbe-ring`'s quantum-tiling question.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part1.md` §2.4): PASS after scope
+repair; subsumed in the free case.** The ball bound `dim R_m ≤ |B_m(Z^d)|·p(2m+1)` was checked. The first version
+asserted the rank model for every infinite minimal subshift; Theorem 1 needs `R` simple for injectivity, and a minimal
+`Z^d`-subshift need not be free (a `Z`-subshift extended trivially in `e_2` is minimal and not effective), so freeness
+was added. In the free case the conclusion already follows from `free-minimal-crossed-products-are-simple-with-rank-models`.

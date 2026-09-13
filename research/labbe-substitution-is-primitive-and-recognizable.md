@@ -33,3 +33,5 @@ properties:
    $z$ is a subword of $\omega^m(u)$."
 
 Route: `labbe-substitution-is-primitive-and-recognizable-citation`.
+
+**Review (un-verify-open, 2026-09-13, `research/artifacts/un-review-open-2026-09-13-part1.md` §3): PASS.** Every quoted statement was checked against the arXiv:1802.03265 PDF (Theorem 10, Propositions 15, 18, 21, 24, Lemmas 3, 5, 19, 20, 23, Corollary 22); the count of 50 legal 2×2 words is the lane's TeX count, not recounted.
