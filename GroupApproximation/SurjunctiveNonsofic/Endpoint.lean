@@ -2,15 +2,16 @@
 Copyright (c) 2026 The group-approximation authors. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 -/
-import GroupApproximation.BowenChapman.EndpointOfNormalization
+import GroupApproximation.SurjunctiveNonsofic.EndpointOfNormalization
 import GroupApproximation.KunThom.CompressorNormalizationCore
 
 /-!
 # A finitely generated surjunctive group that is not sofic
 
-Gromov and Weiss proved that sofic groups are surjunctive.  Bowen and Chapman,
-arXiv:2511.06586, Problem 1.1, ask for the converse: are all surjunctive groups
-sofic?  The theorems below answer no.
+Gromov and Weiss proved that sofic groups are surjunctive.  The converse
+question is recorded by Ceccherini-Silberstein and Coornaert in *Cellular
+Automata and Groups* (2010), OP-11, and restated by Bowen and Chapman,
+arXiv:2511.06586, Problem 1.1.  The theorems below answer no.
 
 The witness is the symmetric double `G *_Γ G` of the pair
 
@@ -31,14 +32,14 @@ with `EL₃(ℤ)` acting by monomial substitution.
   Theorem 4.1).  A compressor that moves an element of `Γ` out of `Γ` then
   makes the double nonsofic.
 
-`GroupApproximation.BowenChapman.EndpointOfNormalization` derives all three
+`GroupApproximation.SurjunctiveNonsofic.EndpointOfNormalization` derives all three
 properties from Theorem 4.1 at this pair, and this module applies it with the
 general Theorem 4.1 producer.
 -/
 
-namespace GroupApproximation.BowenChapman
+namespace GroupApproximation.SurjunctiveNonsofic
 
-/-- **The Bowen–Chapman witness.**  The symmetric double of the explicit pair
+/-- **The Kun–Thom double.**  The symmetric double of the explicit pair
 is finitely generated, surjunctive, and not sofic. -/
 theorem symmetricDouble_fg_surjunctive_not_isSofic :
     Group.FG (SymmetricDouble Ambient Peripheral) ∧
@@ -49,7 +50,7 @@ theorem symmetricDouble_fg_surjunctive_not_isSofic :
       ambient_hasKazhdanPropertyT peripheral_hasKazhdanPropertyT
       peripheral_isInfranormal)
 
-/-- **Bowen–Chapman, Problem 1.1, answered negatively.**  Some finitely
+/-- **Surjunctivity does not characterize soficity.**  Some finitely
 generated group is surjunctive and not sofic. -/
 theorem exists_fg_surjunctive_not_isSofic :
     ∃ (E : Type) (_ : Group E),
@@ -57,4 +58,4 @@ theorem exists_fg_surjunctive_not_isSofic :
   ⟨SymmetricDouble Ambient Peripheral, inferInstance,
     symmetricDouble_fg_surjunctive_not_isSofic⟩
 
-end GroupApproximation.BowenChapman
+end GroupApproximation.SurjunctiveNonsofic

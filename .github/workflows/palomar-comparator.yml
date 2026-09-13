@@ -25,7 +25,7 @@ name: Palomar Comparator
 #   Palomar/comparator.json              the sofic-not-MF group (the default)
 #   Palomar/comparator-lix.json          the three STW Problem LIX theorems
 #   Palomar/comparator-lix-strong.json   the three strengthened LIX theorems
-#   Palomar/comparator-bowen-chapman.json  the two Bowen-Chapman Problem 1.1 theorems
+#   Palomar/comparator-surjunctive-nonsofic.json  the two surjunctive nonsofic group theorems
 #   Palomar/comparator-pestov91.json     the two Pestov Open Question 9.1 theorems
 #   Palomar/comparator-type-a2.json      the FFWZ Question 5.8 theorem
 #   Palomar/comparator-guba-thompson.json  the two Guba Question 3.20 theorems
@@ -159,7 +159,7 @@ jobs:
           lake build PalomarChallenge PalomarSolution \
                      PalomarLIXChallenge PalomarLIXSolution \
                      PalomarLIXStrongChallenge PalomarLIXStrongSolution \
-                     PalomarBowenChapmanChallenge PalomarBowenChapmanSolution \
+                     PalomarSurjunctiveNonsoficChallenge PalomarSurjunctiveNonsoficSolution \
                      PalomarPestov91Challenge PalomarPestov91Solution \
                      PalomarTypeA2Challenge PalomarTypeA2Solution \
                      PalomarGubaThompsonChallenge PalomarGubaThompsonSolution \

@@ -8,22 +8,24 @@ import Mathlib.Data.Real.Basic
 import Mathlib.GroupTheory.Perm.Basic
 
 /-!
-# Bowen–Chapman Problem 1.1: a surjunctive group that is not sofic
+# A surjunctive group that is not sofic
 
-L. Bowen and M. Chapman, *Surjunctivity does not characterize cosoficity of
-invariant random subgroups* (arXiv:2511.06586), print as Problem 1.1, with the
-references [Gro99, Wei00] to Gromov and Weiss, verbatim:
+Does surjunctivity characterize soficity?  Ceccherini-Silberstein and
+Coornaert record the question as OP-11 in *Cellular Automata and Groups*
+(2010), DOI 10.1007/978-3-642-14034-1.  Their second edition (2024),
+p. 527, confirms that the problem list appeared in the first edition.
+The first person to pose the question has not been established.
 
-> Are all surjunctive groups sofic? Namely, does surjunctivity characterize
-> soficity?
+Gromov and Weiss proved that every sofic group is surjunctive.
+Arzhantseva and Gal record the converse as open in their 2013 preprint,
+arXiv:1312.7682.  Bowen and Chapman restate it as Problem 1.1 of
+*Surjunctivity does not characterize cosoficity of invariant random
+subgroups* (arXiv:2511.06586).  Their result concerns invariant random
+subgroups; the declarations here concern groups.
 
-A group is surjunctive when every injective cellular automaton over it, with a
-finite palette, is surjective.  Gromov and Weiss proved that every sofic group
-is surjunctive, and Bowen and Chapman present Problem 1.1 as arising from their
-work.  Ceccherini-Silberstein and Coornaert list the question as open problem
-(OP-11) of *Cellular Automata and Groups* (2010, p. 417), and Arzhantseva and
-Gal (arXiv:1312.7682) record it as open in 2013.  Bowen and Chapman work with
-finitely generated groups and finite sets of colours.
+A group is surjunctive when every injective cellular automaton over it,
+with a finite palette, is surjective.  We use the finite-list formulation
+of cellular automata also used by Bowen and Chapman.
 
 The two theorems below answer **no**:
 
@@ -36,7 +38,7 @@ The two theorems below answer **no**:
 
 Every notion except the definitions in the shared block is Mathlib's.
 
-* `cellularAutomaton γ φ` is Bowen–Chapman's cellular automaton with memory
+* `cellularAutomaton γ φ` is a finite-list cellular automaton with memory
   `γ₁, …, γₙ` and local rule `φ`, the map `Φ(c)(x) = φ(c(x γ₁), …, c(x γₙ))`
   on colourings `c : G → A`.
 * `IsSurjunctive G`: every injective cellular automaton on `G` over a finite
@@ -53,13 +55,13 @@ All groups are quantified over `Type`, where the counterexample lives.
 The prose of this module was written by Claude (Anthropic).
 -/
 
-namespace BowenChapman
+namespace SurjunctiveNonsofic
 
 noncomputable section
 
--- BEGIN SHARED BLOCK (kept byte-identical in `Palomar/BowenChapmanChallenge.lean` and `Palomar/BowenChapmanSolution.lean`)
+-- BEGIN SHARED BLOCK (kept byte-identical in `Palomar/SurjunctiveNonsoficChallenge.lean` and `Palomar/SurjunctiveNonsoficSolution.lean`)
 
-/-- A cellular automaton on `G` with palette `A`, in Bowen–Chapman's form
+/-- A cellular automaton on `G` with palette `A`, in finite-list form
 `Φ(c)(x) = φ(c(x γ₁), …, c(x γₙ))`. -/
 def cellularAutomaton {G : Type} [Group G] {A : Type} {n : ℕ}
     (γ : Fin n → G) (φ : (Fin n → A) → A) : (G → A) → (G → A) :=
@@ -117,4 +119,4 @@ theorem exists_finitelyGenerated_surjunctive_not_sofic :
 
 end
 
-end BowenChapman
+end SurjunctiveNonsofic

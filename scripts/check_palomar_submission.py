@@ -160,7 +160,7 @@ class Findings:
 # tree and each has to hold on its own.
 PALOMAR_CONFIGS = (
     "Palomar/comparator-lix.json",  # the three ProblemLIX theorems
-    "Palomar/comparator-bowen-chapman.json",  # the two Bowen-Chapman Problem 1.1 theorems
+    "Palomar/comparator-surjunctive-nonsofic.json",  # the two surjunctive nonsofic group theorems
     "Palomar/comparator-pestov91.json",  # the two Pestov Open Question 9.1 theorems
     "Palomar/comparator-type-a2.json",  # the FFWZ Question 5.8 theorem
     "Palomar/comparator-guba-thompson.json",  # the two Guba Question 3.20 theorems
@@ -220,8 +220,8 @@ SURFACE_FILES = (
     "Palomar/comparator-lix.json",
     "Palomar/LIXStrongChallenge.lean", "Palomar/LIXStrongSolution.lean",
     "Palomar/comparator-lix-strong.json",
-    "Palomar/BowenChapmanChallenge.lean", "Palomar/BowenChapmanSolution.lean",
-    "Palomar/comparator-bowen-chapman.json",
+    "Palomar/SurjunctiveNonsoficChallenge.lean", "Palomar/SurjunctiveNonsoficSolution.lean",
+    "Palomar/comparator-surjunctive-nonsofic.json",
     "Palomar/Pestov91Challenge.lean", "Palomar/Pestov91Solution.lean",
     "Palomar/comparator-pestov91.json",
     "Palomar/TypeA2Challenge.lean", "Palomar/TypeA2Solution.lean",
@@ -864,15 +864,15 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
      "does not declare `exists_simple_separable_order_six_witness_of`"),
     ("strong comparator permitting a fourth axiom",
      "Palomar/comparator-lix-strong.json: permitted_axioms"),
-    # The Bowen-Chapman surface.
-    ("bowen-chapman challenge with a project-local import",
-     "Palomar/BowenChapmanChallenge.lean:1:"),
-    ("bowen-chapman shared block edited on one side",
-     "Palomar/comparator-bowen-chapman.json: shared block diverges"),
-    ("bowen-chapman signature edited on one side",
+    # The surjunctive nonsofic surface.
+    ("surjunctive-nonsofic challenge with a project-local import",
+     "Palomar/SurjunctiveNonsoficChallenge.lean:1:"),
+    ("surjunctive-nonsofic shared block edited on one side",
+     "Palomar/comparator-surjunctive-nonsofic.json: shared block diverges"),
+    ("surjunctive-nonsofic signature edited on one side",
      "`exists_finitelyGenerated_surjunctive_not_sofic`: the compared signature diverges"),
-    ("bowen-chapman comparator permitting a fourth axiom",
-     "Palomar/comparator-bowen-chapman.json: permitted_axioms"),
+    ("surjunctive-nonsofic comparator permitting a fourth axiom",
+     "Palomar/comparator-surjunctive-nonsofic.json: permitted_axioms"),
     # The Pestov 9.1 surface.
     ("pestov91 challenge with a project-local import",
      "Palomar/Pestov91Challenge.lean:1:"),
@@ -1008,21 +1008,21 @@ def plant(name: str, root: Path) -> None:
     elif name == "strong comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-lix-strong.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
-    elif name == "bowen-chapman challenge with a project-local import":
-        path = root / "Palomar" / "BowenChapmanChallenge.lean"
+    elif name == "surjunctive-nonsofic challenge with a project-local import":
+        path = root / "Palomar" / "SurjunctiveNonsoficChallenge.lean"
         path.write_text("import GroupApproximation.Sofic.Sofic\n" + path.read_text())
-    elif name == "bowen-chapman shared block edited on one side":
-        path = root / "Palomar" / "BowenChapmanSolution.lean"
+    elif name == "surjunctive-nonsofic shared block edited on one side":
+        path = root / "Palomar" / "SurjunctiveNonsoficSolution.lean"
         path.write_text(path.read_text().replace(
             "def hammingDist (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=",
             "def hammingDist' (Y : FiniteCarrier) (p q : Equiv.Perm Y) : ℝ :=", 1))
-    elif name == "bowen-chapman signature edited on one side":
-        path = root / "Palomar" / "BowenChapmanSolution.lean"
+    elif name == "surjunctive-nonsofic signature edited on one side":
+        path = root / "Palomar" / "SurjunctiveNonsoficSolution.lean"
         path.write_text(path.read_text().replace(
             "theorem exists_finitelyGenerated_surjunctive_not_sofic :",
             "theorem exists_finitelyGenerated_surjunctive_not_sofic : True →", 1))
-    elif name == "bowen-chapman comparator permitting a fourth axiom":
-        _edit_config(root, "Palomar/comparator-bowen-chapman.json",
+    elif name == "surjunctive-nonsofic comparator permitting a fourth axiom":
+        _edit_config(root, "Palomar/comparator-surjunctive-nonsofic.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
     elif name == "pestov91 challenge with a project-local import":
         path = root / "Palomar" / "Pestov91Challenge.lean"
@@ -1121,11 +1121,11 @@ def plant(name: str, root: Path) -> None:
     elif name == "foreign result published in the metadata":
         _edit_metadata(root,
                        "    - declaration: Pestov91.exists_infinite_simple_propertyT_sofic\n",
-                       "    - declaration: BowenChapman.not_all_surjunctive_groups_sofic\n"
-                       "      file: Palomar/BowenChapmanSolution.lean\n"
+                       "    - declaration: SurjunctiveNonsofic.not_all_surjunctive_groups_sofic\n"
+                       "      file: Palomar/SurjunctiveNonsoficSolution.lean\n"
                        "      sorry_count: 0\n"
                        "      axioms: [propext, Classical.choice, Quot.sound]\n"
-                       "      comparator_config: Palomar/comparator-bowen-chapman.json\n"
+                       "      comparator_config: Palomar/comparator-surjunctive-nonsofic.json\n"
                        "\n"
                        "    - declaration: Pestov91.exists_infinite_simple_propertyT_sofic\n")
     elif name == "stw-xxii challenge with a project-local import":

@@ -1,4 +1,4 @@
-import GroupApproximation.BowenChapman.LaurentPairKazhdan
+import GroupApproximation.SurjunctiveNonsofic.LaurentPairKazhdan
 import Mathlib.GroupTheory.QuotientGroup.Defs
 
 /-!
@@ -116,7 +116,7 @@ ring that exists, with no hypothesis left over. -/
 /-- Calibration at `A = ℤ`: `EL₃(ℤ)` has property `(T)`. -/
 theorem intElementary_hasKazhdanPropertyT :
     HasKazhdanPropertyT.{0, 0} ↥(elementaryGroup (Fin 3) ℤ) :=
-  elementary_hasKazhdanPropertyT BowenChapman.isFinitelyGeneratedRing_int le_rfl
+  elementary_hasKazhdanPropertyT SurjunctiveNonsofic.isFinitelyGeneratedRing_int le_rfl
 
 /-- Calibration at `A = ℤ`: `EL₃(ℤ)/Z(EL₃(ℤ))` has property `(T)`. -/
 theorem intElementaryModCentre_hasKazhdanPropertyT :
@@ -124,7 +124,7 @@ theorem intElementaryModCentre_hasKazhdanPropertyT :
       (↥(elementaryGroup (Fin 3) ℤ) ⧸
         Subgroup.center ↥(elementaryGroup (Fin 3) ℤ)) :=
   elementaryModCentre_hasKazhdanPropertyT
-    BowenChapman.isFinitelyGeneratedRing_int le_rfl
+    SurjunctiveNonsofic.isFinitelyGeneratedRing_int le_rfl
 
 end Pestov91
 end GroupApproximation

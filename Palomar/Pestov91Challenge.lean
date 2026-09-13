@@ -67,7 +67,7 @@ that the group is nontrivial and every normal subgroup is `⊥` or `⊤`.
   every finite `F ⊆ G` and `ε > 0` there is a map from `G` to the permutations
   of a nonempty finite set that is `ε`-multiplicative on `F` and separates
   distinct elements of `F` by normalized Hamming distance at least `1 - ε`.
-  The block is the one already used by `Palomar/BowenChapmanChallenge.lean`.
+  The block is the one already used by `Palomar/SurjunctiveNonsoficChallenge.lean`.
 * `IsHyperlinearGroup G` is the same local formulation with **unitary
   matrices** in place of permutations and the normalized Hilbert–Schmidt
   metric in place of the Hamming metric: `hsDistSq` is the squared normalized

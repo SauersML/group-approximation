@@ -1,12 +1,8 @@
 /-
 `IsSoficGroup` is exactly the textbook definition of a sofic group.
-Fidelity driver, unwired: no lake target builds files under wip/.  Compiled
-green on MSI on 2026-09-12, 21:28-21:31 CDT, against the origin/main bytes of
-d71ae9349.
-
-Build:
-  lake build PalomarBowenChapmanSolution
-  lake env lean <path>/BcxPestovEquivalence.lean
+Built by the PalomarSurjunctiveNonsoficModelTests target and Palomar CI.
+The original versions were checked on MSI on September 12, 2026; this
+renamed integration has not been recompiled during the present pass.
 
 Why this matters for the challenge.  The theorem concludes `¬ IsSoficGroup`.
 If `IsSoficGroup` were STRONGER than soficity, `¬ IsSoficGroup` would be WEAKER
@@ -23,10 +19,10 @@ block's `IsSoficGroup` differs on its face from the textbook conditions:
 `isSoficGroup_iff_isPestovSofic` below settles all three at once, for an
 arbitrary group in `Type`, with no countability premise: the two are equivalent.
 -/
-import Palomar.BowenChapmanSolution
+import Palomar.SurjunctiveNonsoficSolution
 import GroupApproximation.Sofic.SoficAmplification
 
-namespace BowenChapman
+namespace SurjunctiveNonsofic
 
 open GroupApproximation
 open scoped Pointwise
@@ -97,4 +93,4 @@ theorem isSoficGroup_iff_productRestricted :
     IsSoficGroup G ↔ IsSoficProductRestricted G :=
   isSoficGroup_iff_isSofic.trans (isSofic_iff_productRestricted G)
 
-end BowenChapman
+end SurjunctiveNonsofic

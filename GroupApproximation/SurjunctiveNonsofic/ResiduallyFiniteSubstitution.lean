@@ -33,7 +33,7 @@ an entry of `M - 1` is a nonzero integer, and an entry of `A - 1` is a nonzero L
 polynomial whose finitely many exponents stay distinct modulo a large `n`.
 -/
 
-namespace GroupApproximation.BowenChapman.CongruenceQuotient
+namespace GroupApproximation.SurjunctiveNonsofic.CongruenceQuotient
 
 open scoped Matrix
 
@@ -447,4 +447,4 @@ theorem residuallyFinite_semidirectProduct_of_expSubst {k ι : Type} [CommRing k
 
 end
 
-end GroupApproximation.BowenChapman.CongruenceQuotient
+end GroupApproximation.SurjunctiveNonsofic.CongruenceQuotient

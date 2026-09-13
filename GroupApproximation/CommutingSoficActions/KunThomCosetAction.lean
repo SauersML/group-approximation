@@ -1,5 +1,5 @@
-import GroupApproximation.BowenChapman.LaurentPairKazhdan
-import GroupApproximation.BowenChapman.WreathWitness
+import GroupApproximation.SurjunctiveNonsofic.LaurentPairKazhdan
+import GroupApproximation.SurjunctiveNonsofic.WreathWitness
 import GroupApproximation.KunThom.CompressorNormalizationCore
 import GroupApproximation.Sofic.GeneralizedWreathSofic
 import GroupApproximation.Sofic.LEFSofic
@@ -28,7 +28,7 @@ both groups have property (T), so Kun–Thom Theorem 4.1
 
 namespace GroupApproximation.CommutingSoficActions
 
-open GroupApproximation.BowenChapman
+open GroupApproximation.SurjunctiveNonsofic
 
 /-- `Ambient` is sofic, because it is residually finite. -/
 theorem ambient_isSofic : IsSofic Ambient := by

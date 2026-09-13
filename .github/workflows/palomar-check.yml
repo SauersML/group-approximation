@@ -17,7 +17,7 @@ name: Palomar check
 # `Palomar/comparator.json` for the sofic-not-MF group,
 # `Palomar/comparator-lix.json` for the three STW Problem LIX theorems,
 # `Palomar/comparator-lix-strong.json` for the three strengthened ones,
-# `Palomar/comparator-bowen-chapman.json` for Bowen-Chapman Problem 1.1,
+# `Palomar/comparator-surjunctive-nonsofic.json` for the surjunctivity-soficity question,
 # `Palomar/comparator-pestov91.json` for Pestov's Open Question 9.1,
 # `Palomar/comparator-type-a2.json` for Question 5.8 of Fournier-Facio, Wu and
 # Zaremsky, `Palomar/comparator-guba-thompson.json` for Question 3.20 of Guba's
@@ -64,9 +64,9 @@ on:
       - 'scripts/PalomarLIXStrongChallengeType.lean'
       - 'scripts/PalomarLIXStrongSolutionType.lean'
       - 'scripts/PalomarLIXStrongAxioms.lean'
-      - 'scripts/PalomarBowenChapmanChallengeType.lean'
-      - 'scripts/PalomarBowenChapmanSolutionType.lean'
-      - 'scripts/PalomarBowenChapmanAxioms.lean'
+      - 'scripts/PalomarSurjunctiveNonsoficChallengeType.lean'
+      - 'scripts/PalomarSurjunctiveNonsoficSolutionType.lean'
+      - 'scripts/PalomarSurjunctiveNonsoficAxioms.lean'
       - 'scripts/PalomarPestov91ChallengeType.lean'
       - 'scripts/PalomarPestov91SolutionType.lean'
       - 'scripts/PalomarPestov91Axioms.lean'
@@ -180,7 +180,8 @@ jobs:
           lake build PalomarChallenge PalomarSolution \
                      PalomarLIXChallenge PalomarLIXSolution \
                      PalomarLIXStrongChallenge PalomarLIXStrongSolution \
-                     PalomarBowenChapmanChallenge PalomarBowenChapmanSolution \
+                     PalomarSurjunctiveNonsoficChallenge PalomarSurjunctiveNonsoficSolution \
+                     PalomarSurjunctiveNonsoficModelTests \
                      PalomarPestov91Challenge PalomarPestov91Solution \
                      PalomarPestov91ModelTests \
                      PalomarTypeA2Challenge PalomarTypeA2Solution \
@@ -233,12 +234,12 @@ jobs:
         if: always()
         run: lake env lean scripts/PalomarLIXStrongAxioms.lean
 
-      # The Bowen-Chapman surface: the two compared theorems, from the endpoint.
-      - name: Palomar axiom closure (Bowen-Chapman)
-        id: axioms-bowen-chapman
+      # The surjunctive nonsofic surface: the two compared theorems, from the endpoint.
+      - name: Palomar axiom closure (surjunctive nonsofic groups)
+        id: axioms-surjunctive-nonsofic
         continue-on-error: true
         if: always()
-        run: lake env lean scripts/PalomarBowenChapmanAxioms.lean
+        run: lake env lean scripts/PalomarSurjunctiveNonsoficAxioms.lean
 
       # The Pestov 9.1, FFWZ Question 5.8, Guba Question 3.20, GKP Question 4.2,
       # STW Problem X(1) and STW Problem XXII surfaces: the compared theorems,
@@ -293,7 +294,7 @@ jobs:
           nonmf='${{ steps.axioms-nonmf.outcome }}'
           lix='${{ steps.axioms-lix.outcome }}'
           strong='${{ steps.axioms-lix-strong.outcome }}'
-          bc='${{ steps.axioms-bowen-chapman.outcome }}'
+          bc='${{ steps.axioms-surjunctive-nonsofic.outcome }}'
           p91='${{ steps.axioms-pestov91.outcome }}'
           a2='${{ steps.axioms-type-a2.outcome }}'
           gq='${{ steps.axioms-guba-thompson.outcome }}'
@@ -304,7 +305,7 @@ jobs:
           echo "non-MF closure: $nonmf"
           echo "LIX closure: $lix"
           echo "LIX strengthened closure: $strong"
-          echo "Bowen-Chapman closure: $bc"
+          echo "Surjunctive nonsofic closure: $bc"
           echo "Pestov 9.1 closure: $p91"
           echo "FFWZ 5.8 closure: $a2"
           echo "Guba 3.20 closure: $gq"

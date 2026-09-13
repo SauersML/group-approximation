@@ -1,29 +1,23 @@
 /-
 The challenge's `IsSurjunctive` is not weaker than topological surjunctivity.
-Fidelity driver, unwired: no lake target builds files under wip/.  Compiled
-green on MSI on 2026-09-12, 21:28-21:31 CDT, against the origin/main bytes of
-d71ae9349.  Lowest
-priority of the three: the fidelity verdict does not depend on it, because
-Bowen–Chapman's own definition is the memory-set one the challenge renders.
+Built by the PalomarSurjunctiveNonsoficModelTests target and Palomar CI.
+The original versions were checked on MSI on September 12, 2026; this
+renamed integration has not been recompiled during the present pass.
 
-Build:
-  lake build PalomarBowenChapmanSolution
-  lake env lean <path>/BcxSurjunctivityConverse.lean
-
-`Palomar/BowenChapmanSolution.lean` proves `Surjunctivity.IsSurjunctive G →
+`Palomar/SurjunctiveNonsoficSolution.lean` proves `Surjunctivity.IsSurjunctive G →
 IsSurjunctive G`, which is the direction the theorem needs.  The converse below
 shows the two are equivalent, so the challenge's surjunctivity hypothesis is
 not a weakened one: Curtis–Hedlund–Lyndon (`isFiniteMemory_of_continuous_equivariant`)
 turns a continuous equivariant map of a finite full shift into a memory-set
-automaton, and a `Finset` memory set enumerates as a Bowen–Chapman tuple.
+automaton, and a `Finset` memory set enumerates as a finite tuple.
 -/
-import Palomar.BowenChapmanSolution
+import Palomar.SurjunctiveNonsoficSolution
 
-namespace BowenChapman
+namespace SurjunctiveNonsofic
 
 open GroupApproximation
 
-/-- A memory-set automaton is a Bowen–Chapman automaton, after enumerating the
+/-- A memory-set automaton is a finite-list automaton, after enumerating the
 memory set. -/
 theorem localMap_eq_cellularAutomaton {G : Type} [Group G] {B : Type}
     (M : Finset G) (μ : (M → B) → B) :
@@ -69,4 +63,4 @@ theorem isSurjunctive_iff_surjunctive {G : Type} [Group G] :
     IsSurjunctive G ↔ Surjunctivity.IsSurjunctive G :=
   ⟨surjunctive_of_isSurjunctive, isSurjunctive_of_surjunctive⟩
 
-end BowenChapman
+end SurjunctiveNonsofic
