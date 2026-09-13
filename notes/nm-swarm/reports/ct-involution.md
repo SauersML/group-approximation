@@ -1,8 +1,8 @@
 # Lane ct-involution: lem:involution-localization (tex 1658–1694)
 
-Lead: session nonsofic-existence-49 (ct-* lanes). Printed item: `non_mf_groups_exist.tex`, the paragraph
-before the lemma (tex 1658–1661, the notation K_n(I)), `\label{lem:involution-localization}` (tex 1663–1670)
-and its proof (tex 1672–1694). Added by 73a84cd9c.
+Lead: main (ct-* lanes). Printed item: `non_mf_groups_exist.tex`, the paragraph before the lemma
+(tex 1658–1661, the notation K_n(I)), `\label{lem:involution-localization}` (tex 1663–1670) and its proof
+(tex 1672–1694). Added by 73a84cd9c.
 
 ## Printed statement
 
@@ -11,42 +11,63 @@ and its proof (tex 1672–1694). Added by 73a84cd9c.
 > and $wFw^{-1}\subset J$. Over $\F_2$, every finite subset of $K_n(I)$ is simultaneously conjugate into the
 > unitized $K_n(J)$ by $wI_n$; for $n\ge2$ this involution lies in $\EL_n(R_X)$.
 
+## Interface (landed 8b453b096; consumers: ct-rank-budget, ms-core-3, ms-units)
+
+`GroupApproximation/Dynamics/InvolutionLocalizationStatement.lean`, namespace `GroupApproximation.ClopenCrossedProduct`:
+
+| name | content |
+|---|---|
+| `coreTransientIdeal T k` | `transientIdeal T k (Dynamics.image_chainRecurrentSet T)`, the kernel of `R_X → R_Y` |
+| `coreRestrictMatrixUnits T k n` | `Units.map (RingHom.mapMatrix (restrict T k _))`, defeq to ct-rank-budget's `glCoreRestrict` |
+| `InvolutionLocalizationRingClause` | finite-field clause (tex 1664–1667) |
+| `InvolutionLocalizationMatrixClause` | `F₂` clause (tex 1667–1669), including `w I_n ∈ EL_n` for `n ≥ 2` |
+| `PrintedInvolutionLocalization` | `RingClause ∧ MatrixClause` |
+| `ChainCoreDefectCoverStatement` | piece: `X ∖ Y` covered by translates of defects `P ∖ T(P)` (lem:chain-core-models) |
+| `CoreKernelElementaryStatement` | piece: over `F₂`, `n ≥ 2`, `ker (coreRestrictMatrixUnits T (ZMod 2) n) ≤ EL_n(R_X)` |
+
 ## Route (as printed, with one construction-order note)
 
-1. Finite support: F lies in `1_K R_X 1_K` for a clopen `K ⊆ X∖Y` covered by `m` wandering clopen sets
-   (lem:chain-core-models defect cover, compactness).
-2. Returns: every point of `K` has its first `2m` strictly future returns to `C` within `2mH`.
-   At most `m` of them lie in `K` (wandering cover), so fresh section coordinates exist.
-3. Matching and local constancy: each original coordinate is matched to a fresh coordinate in `C∖K`, constant
-   on clopen cells. CONSTRUCTION ORDER: the printed proof reads the cells off the finite matrix-block construction
-   of lem:transient-matrices (refined by K and C) and matches inside each class. Lean matches piece by piece: `K`
-   is cut into `K_j ⊆ W_j`, and for `x ∈ K_j` the target is the first of its `2m` returns lying in `C∖K` and
-   outside the targets of earlier pieces. At most `m` returns lie in `K` and at most `m−1` in earlier targets.
-   The exponent is locally constant because `C`, `K` and the earlier targets are clopen. Every printed claim
-   (2m returns, at least m fresh, matching, constancy on cells, swap, unitization) is proved; only the
-   organisation of the cells differs.
-4. Swap and unitization: `w = 1 − ∑ (1_{A_i} + 1_{T^{h_i}A_i}) + ∑ (u^{h_i}1_{A_i} + 1_{A_i}u^{−h_i})`, `w² = 1`,
-   `w 1_K w⁻¹ = 1_{⊔ T^{h_i}A_i} ≤ p_C`, so `wFw⁻¹ ⊆ J`.
-5. Kernel matrices: include the entries of deviations and inverse deviations in F; scalar conjugation.
-   Over F_2, `wI_n ∈ K_n(I) ⊆ EL_n(R_X)` for `n ≥ 2` (the finite matrix argument of thm:core-mf-radical,
-   chain-radical); local finiteness of `K_1(I)` (chain-radical).
+1. Finite support (tex 1673): `exists_clopen_support`. F lies in `1_K R_X 1_K` for a clopen `K ⊆ X∖Y`.
+2. Wandering cover (tex 1673–1674): `exists_wandering_clopen_cover`, from `ChainCoreDefectCoverStatement` and
+   `Dynamics.isWandering_diff_image`. Bounded returns: `exists_uniform_return`.
+3. Returns and matching (tex 1675–1686): `Dynamics.card_returns_ge` (2m returns within 2mL),
+   `Dynamics.card_visits_le` (at most m in K), `Dynamics.exists_returnPlacement`.
+   CONSTRUCTION ORDER: the printed proof reads the cells off the matrix-block construction of
+   lem:transient-matrices and matches inside each class. Lean matches piece by piece: K is cut into
+   `K ∩ W_j ∖ ⋃_{i<j} W_i`, and a point of the j-th piece goes to the first of its first 2m returns lying in
+   `C∖K` and outside the targets of earlier pieces (at most m returns in K, at most j < m in earlier targets).
+   Every printed claim is proved; only the organisation of the cells differs.
+4. Swap and unitization (tex 1684–1687): `exists_swapUnit`, with `w⁻¹ = w` and `w 1_A w⁻¹ = 1_{T^h A}` on each
+   cell; `w 1_K w⁻¹ = ∑ 1_{T^h A} ≤ p_C`, so `w F w⁻¹ ⊆ J` (`conj_eq_sandwich`, `sandwich_eq_self`).
+5. Kernel matrices (tex 1689–1693): owned by ms-core-3 (see Splits).
 
 ## Modules
 
 | module | content | status |
 |---|---|---|
-| `GroupApproximation/Dynamics/ClopenSwapInvolution.lean` | step 4: `IsSwapFamily`, `swapElement_mul_self`, `swapElement_mul_mul_swapElement`, `unit_zpow_mul_charFn`, `isSwapFamily_clopen`, `exists_swapUnit` | authored, probing |
-| `GroupApproximation/Dynamics/ReturnPlacement.lean` | steps 2–3: counting of returns and visits, greedy placement | planned |
-| `GroupApproximation/Dynamics/InvolutionLocalization.lean` | `PrintedInvolutionLocalization` and the assembly over piece Props | planned |
+| `Dynamics/ClopenSwapInvolution.lean` | step 4: `IsSwapFamily`, `swapElement_mul_self`, `swapElement_mul_mul_swapElement`, `unit_zpow_mul_charFn`, `isSwapFamily_clopen`, `exists_swapUnit` | LANDED 3bd81b1ad, wire-queued |
+| `Dynamics/ReturnPlacement.lean` | step 3: `card_returns_ge`, `card_visits_le`, `card_target_visits_le`, `IsPlacement`, `exists_returnPlacement` | LANDED bc6aa7b90, wire-queued |
+| `Dynamics/InvolutionLocalizationStatement.lean` | the interface above | LANDED 8b453b096, wire-queued |
+| `Dynamics/TransientSupport.lean` | steps 1–2: `CoeffVanishOn` (ideal closure), `exists_clopen_support`, `exists_wandering_clopen_cover`, `exists_uniform_return` | LANDED 8b453b096, wire-queued |
+| `Dynamics/InvolutionLocalizationRing.lean` | `involutionLocalizationRingClause_of_cover : ChainCoreDefectCoverStatement → InvolutionLocalizationRingClause`; `zpow_mem_chainRecurrentSet`, `mem_coreTransientIdeal_iff`, `charFn_eq_sum_of_partition` | probing |
 
-## Interfaces consumed
+## Splits (agreed directly with the helpers main sent)
 
-- landed: `ClopenCrossedProduct` (chain-core), `Dynamics.chainRecurrentSet`, `Dynamics.image_chainRecurrentSet`,
-  `Dynamics.IsWandering`, `Dynamics.isWandering_diff_image` (hull-euler), `elementaryGroup` (Leavitt).
-- not landed (named piece Props until the owners land): the defect cover of `X∖Y`
-  (chain-itinerary `exists_defect_translate_of_not_mem_chainRecurrentSet`); over F_2, `K_n(I) ⊆ EL_n(R_X)` for
-  `n ≥ 2` and local finiteness of `K_1(I)` (chain-radical module 3).
+- ms-core-3: `involutionLocalizationMatrixClause_of_ringClause (hring : InvolutionLocalizationRingClause)
+  (hel : CoreKernelElementaryStatement) : InvolutionLocalizationMatrixClause`, in its own module.
+- ms-units: a producer of `CoreKernelElementaryStatement` over chain-matricial's local matriciality of the
+  transient ideal (with chain-radical's landed `ker_elementaryMatrixUnitMap_le_elementaryGroup`), and
+  ct-rank-budget's `UnitKernelLocallyFiniteStatement` (tex 1693, K_1(I) locally finite), in `Dynamics/CoreKernelFTwo.lean`.
+
+## Residual statements (after the in-flight pieces land)
+
+- `ChainCoreDefectCoverStatement` (owner chain-itinerary; lem:chain-core-models defect cover). On origin, the
+  covering data exist in `Dynamics/ChainRecurrenceCovering.lean`; the producer in this exact spelling is not landed.
+- `CoreKernelElementaryStatement` (ms-units, over chain-matricial's local matriciality).
 
 ## Progress log
 
 - 09-13 ~16:35: plan; ClopenSwapInvolution authored.
+- 09-13 16:55: ClopenSwapInvolution landed. 17:10: ReturnPlacement landed.
+- 09-13 17:37: statement (kernel spelling) and TransientSupport landed; splits with ms-core-3 and ms-units agreed.
+- 09-13 ~17:45: ring clause assembly probing.
