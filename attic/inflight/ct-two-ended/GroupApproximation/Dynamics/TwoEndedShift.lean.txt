@@ -2,6 +2,7 @@ import GroupApproximation.Dynamics.ChainRecurrence
 import GroupApproximation.Dynamics.ClopenDefectPair
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Data.Int.LeastGreatest
+import Mathlib.Data.ZMod.Basic
 import Mathlib.Topology.Connected.TotallyDisconnected
 import Mathlib.Topology.Metrizable.Basic
 import Mathlib.Topology.UniformSpace.Compact
@@ -55,6 +56,7 @@ abbrev TwoEnded : Type := {f : ℤ → Bool // Monotone f}
 /-- The integer `j`, as the up-set `[j, ∞)`. -/
 def pt (j : ℤ) : TwoEnded :=
   ⟨fun i => decide (j ≤ i), fun a b hab => by
+    show decide (j ≤ a) ≤ decide (j ≤ b)
     by_cases h : j ≤ a
     · rw [decide_eq_true (le_trans h hab)]
       exact le_top
@@ -66,6 +68,8 @@ def posInf : TwoEnded := ⟨fun _ => false, monotone_const⟩
 
 /-- `−∞`, the up-set `ℤ`. -/
 def negInf : TwoEnded := ⟨fun _ => true, monotone_const⟩
+
+theorem bool_true_ne_false : true ≠ false := by decide
 
 theorem pt_apply (j i : ℤ) : (pt j).1 i = decide (j ≤ i) := rfl
 
@@ -123,7 +127,7 @@ theorem pt_injective : Function.Injective pt := by
 theorem pt_ne_posInf (j : ℤ) : pt j ≠ posInf := fun h => by
   have h₁ : decide (j ≤ j) = false := congrFun (congrArg Subtype.val h) j
   rw [decide_eq_true (le_refl j)] at h₁
-  exact Bool.true_ne_false h₁
+  exact bool_true_ne_false h₁
 
 theorem pt_ne_negInf (j : ℤ) : pt j ≠ negInf := fun h => by
   have h₁ : decide (j ≤ j - 1) = true := congrFun (congrArg Subtype.val h) (j - 1)
@@ -149,7 +153,7 @@ theorem singleton_pt_eq (j : ℤ) :
   · rintro ⟨h₁, h₂⟩
     rcases eq_posInf_or_eq_negInf_or_exists_pt x with rfl | rfl | ⟨i, rfl⟩
     · exact absurd h₁ Bool.false_ne_true
-    · exact absurd h₂ Bool.true_ne_false
+    · exact absurd h₂ bool_true_ne_false
     · have hij : i ≤ j := of_decide_eq_true h₁
       have hij' : ¬ i ≤ j - 1 := of_decide_eq_false h₂
       rw [le_antisymm hij (by omega)]
@@ -168,8 +172,10 @@ theorem isClosed_setOf_monotone : IsClosed {f : ℤ → Bool | Monotone f} := by
     rfl
   rw [h]
   refine isClosed_iInter fun a => isClosed_iInter fun b => isClosed_iInter fun _ => ?_
-  exact (isClopen_discrete {p : Bool × Bool | p.1 ≤ p.2}).isClosed.preimage
-    ((continuous_apply a).prodMk (continuous_apply b))
+  have hc : IsClosed ((fun g : ℤ → Bool => (g a, g b)) ⁻¹' {p : Bool × Bool | p.1 ≤ p.2}) :=
+    IsClosed.preimage ((continuous_apply a).prodMk (continuous_apply b))
+      (isClopen_discrete {p : Bool × Bool | p.1 ≤ p.2}).isClosed
+  exact hc
 
 instance : CompactSpace TwoEnded := by
   exact isCompact_iff_compactSpace.1 isClosed_setOf_monotone.isCompact
@@ -285,7 +291,7 @@ theorem not_isChainRecurrent_pt (j : ℤ) : ¬ Dynamics.IsChainRecurrent shift (
     | single hstep => exact Iff.mp hstep (shift_pt_mem_above j)
     | tail _ hstep ih => exact Iff.mp hstep (shift_mem_above ih)
   have hnot : pt j ∉ above j := fun hmem =>
-    Bool.true_ne_false ((decide_eq_true (le_refl j)).symm.trans hmem)
+    bool_true_ne_false ((decide_eq_true (le_refl j)).symm.trans hmem)
   exact hnot (hstay _ (h _ (mem_uniformity_sameSide hQ)))
 
 /-- **The core** (tex 1771–1772): "the core consists of those endpoints". -/
@@ -313,7 +319,7 @@ theorem P_eq : P = Set.range (fun n : ℕ => pt n) ∪ {posInf} := by
   · intro hx
     rcases eq_posInf_or_eq_negInf_or_exists_pt x with rfl | rfl | ⟨j, rfl⟩
     · exact Set.mem_union_right _ (Set.mem_singleton _)
-    · exact absurd hx Bool.true_ne_false
+    · exact absurd hx bool_true_ne_false
     · have hj : ¬ j ≤ -1 := of_decide_eq_false hx
       refine Set.mem_union_left _ (Set.mem_range.2 ⟨j.toNat, ?_⟩)
       show pt (j.toNat : ℤ) = pt j
@@ -356,7 +362,7 @@ theorem P_diff_shift_image_P : P \ shift '' P = {pt 0} := by
     refine Set.mem_inter ?_ ?_
     · cases hx0 : x.1 0
       · exact absurd hx0 h₂'
-      · rfl
+      · exact hx0
     · show x.1 (0 - 1) = false
       rw [zero_sub]
       exact h₁'
@@ -364,16 +370,16 @@ theorem P_diff_shift_image_P : P \ shift '' P = {pt 0} := by
     have h₁' : x.1 0 = true := h₁
     have h₂' : x.1 (0 - 1) = false := h₂
     rw [zero_sub] at h₂'
-    refine Set.mem_diff_of_mem h₂' ?_
+    refine Set.mem_sdiff_of_mem h₂' ?_
     show ¬ x.1 0 = false
     rw [h₁']
-    exact Bool.true_ne_false
+    exact bool_true_ne_false
 
 theorem coeff_injective {X : Type*} [TopologicalSpace X] (T : X ≃ₜ X) (k : Type*) [Ring k] :
     Function.Injective (ClopenCrossedProduct.coeff T k) := by
   intro f g hfg
-  have h : (ClopenCrossedProduct.coeff T k f).coeff 1 =
-      (ClopenCrossedProduct.coeff T k g).coeff 1 := by
+  have h : SkewMonoidAlgebra.coeff (ClopenCrossedProduct.coeff T k f) 1 =
+      SkewMonoidAlgebra.coeff (ClopenCrossedProduct.coeff T k g) 1 := by
     rw [hfg]
   rw [ClopenCrossedProduct.coeff_apply, ClopenCrossedProduct.coeff_apply,
     Pestov91.CrossedProduct.C_apply, Pestov91.CrossedProduct.C_apply,
@@ -383,15 +389,16 @@ theorem coeff_injective {X : Type*} [TopologicalSpace X] (T : X ≃ₜ X) (k : T
 
 theorem defectD_ne_zero : ClopenCrossedProduct.defectD shift (ZMod 2) isClopen_P ≠ 0 := by
   intro hd
-  rw [ClopenCrossedProduct.defectD] at hd
+  have hd' : ClopenCrossedProduct.coeff shift (ZMod 2) (LocallyConstant.charFn (ZMod 2)
+      (isClopen_P.diff (ClopenCrossedProduct.isClopen_image shift isClopen_P))) = 0 := hd
   have hf := coeff_injective shift (ZMod 2)
-    (hd.trans (map_zero (ClopenCrossedProduct.coeff shift (ZMod 2))).symm)
+    (hd'.trans (map_zero (ClopenCrossedProduct.coeff shift (ZMod 2))).symm)
   have hmem : pt 0 ∈ P \ shift '' P := by
     rw [P_diff_shift_image_P]
     exact Set.mem_singleton _
   have h := DFunLike.congr_fun hf (pt 0)
-  rw [LocallyConstant.coe_charFn, Set.indicator_of_mem hmem, Pi.one_apply,
-    LocallyConstant.coe_zero, Pi.zero_apply] at h
+  have h0 : (0 : LocallyConstant TwoEnded (ZMod 2)) (pt 0) = 0 := rfl
+  rw [h0, LocallyConstant.coe_charFn, Set.indicator_of_mem hmem, Pi.one_apply] at h
   exact one_ne_zero h
 
 /-- **tex 1772–1773**: "Over $\F_2$ the ring is not directly finite". -/
