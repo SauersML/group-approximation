@@ -164,6 +164,11 @@ R2 with kh-ejz's `IsNoncrossingClosedWalk` (26a7858f2) as `Simple` (~13:20, sent
 * The transports and `nonempty_osinSectionPocketCut` need `outer_follows`. Under R2, `Simple` is therefore `∃ hw : IsNoncrossingClosedWalk X.toCombMap K.boundary.cycle, (hw.outerCycle X.planar).FollowsBoundary`. A needs no pinch, and B stays in the pinch Prop.
 * New lemma, for this lane: the inner `IsDiscRegion` has to come from `toDiscRegion_of_euler`, that is, χ of the reclosed map of `sideFaces` along a noncrossing walk equals χ of the ambient map. Only the pinched model has it (`innerMap_euler`, by `decide`).
 * dgo-geometric is asked to check the prediction on the pinched two-gon model and on hull-respell's smallest A and B.
+* Lead ruling (~13:40, still pending kh-torsion's answer): under R2, `Simple` is `∃ hw : IsNoncrossingClosedWalk X.toCombMap K.boundary.cycle, (hw.outerCycle X.planar).FollowsBoundary`. A needs no pinch, B stays in the pinch Prop, and cb0ec2d30 stands.
+* Handed to hull-euler: the Euler lemma, `(reclosedMap M (sideFaces M w) (hw.innerCycle hM)).eulerCharacteristic = M.eulerCharacteristic` for a noncrossing `w` whose outer cycle follows. This lane keeps `PocketRegion.ofNoncrossingClosedWalk` and the restatement co-probe.
+* Evidence for R1 (kh-torsion asked to confirm):
+  * `GeodesicCollar.StripStatement` (a89b55a0d, `SurgeryGeodesicCollarAssembly.lean:190`) takes `IsSimpleClosedWalk (s ++ rest)`.
+  * From a pocket region that walk comes only from `PocketRegion.isSimpleClosedWalk_invDarts_outer P hin hout`, which uses inner FollowsBoundary.
 
 ### Truth caveats sent to dgo-geometric for model tests
 
