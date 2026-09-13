@@ -40,6 +40,12 @@ Let `f : {0,1,2,...} -> [0, infinity)` be nondecreasing and subadditive with
    `eps < 1/ceil(1/eps_0)`. If `G` is not `F`-linear sofic, there is `delta_0 > 0`
    such that every tuple `a in GL(V)^X` over `F` satisfies
    `max_r rk(r(a) - 1) >= delta_0 max_x rk(a_x - 1)`.
+4. **Projective form.** With `rho(g) = min_(lambda in F) rk(g - lambda)`, the rank
+   distance to the scalars, the same hypothesis gives
+   `max_r rho(r(a)) >= (delta_0 / 2) min(max_x rho(a_x), n/2)` for every tuple in `GL_n(F)`.
+   This is item 3 applied to the adjoint tuple on `End(V)`, using
+   `n min(rho(g), n/2) <= rk(Ad(g) - 1) <= 2 n rho(g)`. The cap `n/2` accounts for eigenvalues
+   outside `F`. No hypothesis on the Schur multiplier is needed.
 
 **The mechanism.**
 - In a permutation tuple the moved set of the whole group is the union of the

@@ -128,6 +128,25 @@ tuple over `F` with `M > 0` has `delta >= delta_0`.
 - **Converse over finite `F`.** `F`-linear sofic models in `GL_n(F)` with normalized rank
   give `f(s) = 2s/n`.
 
+**Item 4 (projective collapse).** Let `Ad : GL(V) -> GL(End V)`, `Ad(g)(A) = g A g^-1`. It is a
+homomorphism, so `Ad(w(a)) = w(Ad(a))` for every word. Put `n = dim V` and `rho = rho(g)`.
+- **Upper bound.** Write `g = lambda + B` with `rk B = rho`. Then
+  `Ad(g)(A) - A = (B A - A B) g^-1`, and `A -> B A` and `A -> A B` each have rank `n rk B`. So
+  `rk(Ad(g) - 1) <= 2 n rho`.
+- **Lower bound.** `rk(Ad(g) - 1) = n^2 - dim C(g)`, where `C(g)` is the centralizer algebra (its
+  dimension does not change under field extension).
+  - *Jordan count.* Over an algebraic closure, `dim C(g) = sum_lambda sum_j (mu'_(lambda,j))^2`,
+    with `mu'_lambda` the conjugate partition of the Jordan type at `lambda`. All parts sum to `n`,
+    and the largest part at `lambda` is the geometric multiplicity `n - rk(g - lambda)`.
+  - *Multiplicities.* For `lambda in F` this is at most `n - rho`. For `lambda` outside `F`, a Galois
+    conjugate has the same multiplicity, so it is at most `n/2`.
+  - *Result.* `dim C(g) <= n max(n - rho, n/2)`, hence `rk(Ad(g) - 1) >= n min(rho, n/2)`.
+- **Conclusion.** Lemma 2.3 applied to the tuple `Ad(a)` over `F` gives
+  ```text
+  2 n max_r rho(r(a)) >= max_r rk(Ad(r(a)) - 1) >= delta_0 max_x rk(Ad(a_x) - 1)
+                      >= delta_0 n min(max_x rho(a_x), n/2) .
+  ```
+
 ## 3. Remark on an earlier version
 
 An earlier version used the moved subspace `[P, V]` and needed `char F` coprime to `|P|`.
