@@ -77,9 +77,17 @@ non-relabelable system with nonzero algebra is known.
       commutes with `P_q` on `1 - m`.
     - A factor model with the relevant commutators nonzero admits no
       refinement.
-  - What survives: perfect traces whose three-context algebras have enough
-    centre for these splittings, and multi-variable edges with nonabelian
-    exact label groups.  Whether Lin's games have such traces is not known.
+  - These splits are not a further obstruction.  By
+    `forbidden-pair-splits-are-central-rectangle-splittings`, on a perfect
+    trace the split for `(a,a')` is `C(P_q^a) C(P_(q')^(a')) = 0` in the pair
+    algebra, and all splits together are (RCS).
+    - Commuting pairs, including Lin's oracularizable strategies, pass.
+    - The constraint-variable game of `B_I` has the same algebra as the
+      Lin/MSSV source, and every perfect trace of it passes every split.
+  - What survives: hidden labels on the variable questions of a
+    constraint-variable presentation, meaning blocks of the refined `p_v`
+    finer than the two fibres of `x_v`, and multi-variable edges with
+    nonabelian exact label groups.
 - **Gadgets and completions inside the port algebra (lane
   ex-kac-quantum-compiler).**
   - By `torsor-cfi-port-profiles-are-cosets`, scalar port profiles of torsor

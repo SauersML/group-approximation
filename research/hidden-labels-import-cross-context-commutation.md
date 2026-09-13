@@ -57,6 +57,12 @@ In words: on `m` the far context `c''` sees `u`; on `1 - m` the far context
      - `P_(q')^(a')` commutes with `P_q` on `1 - m`.
    - **Factor pair algebras.**  If the pair algebra is a factor, one of
      `P_q^a`, `P_(q')^(a')` must be `0` or `1`.
+   - **Equivalent form (lane ex2-kac-forbidden-pair).**  On a perfect trace
+     this split is equivalent to orthogonal central supports of `P_q^a` and
+     `P_(q')^(a')` in `W*(P_q, P_(q'))`.  Over all forbidden pairs it is
+     (RCS) of `coset-refinement-forces-rectangular-central-splitting`.  Every
+     perfect trace of a constraint-variable presentation passes it
+     (`forbidden-pair-splits-are-central-rectangle-splittings`).
 3. **Hidden labels are not free.**  The shared labels that
    `exact-label-coset-refinements-are-affine` left open must carry variables
    of `c` to neighbours that do not contain them.
