@@ -1,50 +1,38 @@
 # Lane ct-two-ended: the two-ended shift remark (tex 1769–1792)
 
-Printed item: `non_mf_groups_exist.tex`, the remark after `cor:dynamic-rank-budget`, tex 1769–1792
-(origin 049c6689a numbering): the shift on `X = ℤ ∪ {−∞, +∞}` has LEF units
-`R_X^× ≅ GL_fin(ℤ, F_2) ⋊ ℤ`, while `GL_3(R_X)` is not MF.
+Printed item: `non_mf_groups_exist.tex`, the remark after `cor:dynamic-rank-budget`, tex 1769–1792:
+the shift on `X = ℤ ∪ {−∞, +∞}` has LEF units `R_X^× ≅ GL_fin(ℤ, F_2) ⋊ ℤ`, while `GL_3(R_X)` is not MF.
 
 This file is written by ct-two-ended only.
 
-## Landed
+## Landed (all probe-built, #audit clean, wire queued)
 
-- `GroupApproximation.Dynamics.TwoEndedShift` (049c6689a; probe 0913-173838-9003 BUILT), tex 1769–1773,
-  namespace `GroupApproximation.TwoEndedShift`:
-  - `TwoEnded` (monotone maps `ℤ → Bool`), `pt j`, `posInf`, `negInf`;
-    `isTwoEndedCompactification : IsTwoEndedCompactification TwoEnded pt posInf negInf`;
-    instances `CompactSpace`, `SecondCountableTopology`, `MetrizableSpace`
-  - `shift : TwoEnded ≃ₜ TwoEnded`, `shift_pt`, `shift_posInf`, `shift_negInf`
-  - `chainRecurrentSet_shift : Dynamics.chainRecurrentSet shift = {negInf, posInf}`
-  - `P`, `isClopen_P`, `P_eq`, `shift_image_P_subset`, `P_diff_shift_image_P : P \ shift '' P = {pt 0}`
-  - `not_isDedekindFiniteMonoid : ¬ IsDedekindFiniteMonoid (ClopenCrossedProduct shift (ZMod 2))`
-  - closed endpoint `printedTwoEndedCoreAndDefect : PrintedTwoEndedCoreAndDefect` (`#audit_closed_axioms`)
-  - wire queued.
+| tex | module (SHA) | carriers |
+|---|---|---|
+| 1769–1773 | `Dynamics.TwoEndedShift` (049c6689a) | `TwoEnded`, `pt`, `posInf`, `negInf`, `isTwoEndedCompactification`, `shift`, `chainRecurrentSet_shift`, `P`, `P_diff_shift_image_P`, `not_isDedekindFiniteMonoid`; closed `printedTwoEndedCoreAndDefect` |
+| 1774–1779 | `Algebra.FinitaryGeneralLinear` (f4678fca8) | `FinitaryGL.HasFiniteMatrixSupport`, `SupportedIn`, `GLfin`, `shiftGL`, `shiftAction`, `FinitaryShift` |
+| 1779–1780 | `Dynamics.TwoEndedRepresentation` (c6fccaa40) | `rho`, `rho_apply_single_apply`, `rho_injective`, `rho_coeff`, `rho_unit_zpow` |
+| 1780–1782 | `Algebra.LaurentMonomialUnits` (6bc66c851) | `exists_single_of_mul_eq_one`, `exists_single_one_of_mul_eq_one_zmodTwo` |
+| 1780–1782 | `Dynamics.TwoEndedTailSymbols` (12c78de1b) | `symbolOp`, `symbol`, `symbol_mul`, `exists_tail_pos`, `exists_tail_neg`, `exists_tail_translation_pos`, `exists_tail_translation_neg` |
+| 1782–1785 | `Algebra.SupportedCodimension` (164ad2149) | `finrank_quotient_supported_compl`, `card_eq_of_map_supported_compl` |
+| 1782–1785 | `Dynamics.TwoEndedTailBalance` (c42cb1e80) | `card_Ioo_eq`, `exists_common_tail_exponent`, `units_map_mul_shiftGL_zpow_mem_GLfin` |
+| 1774–1779 | `Dynamics.TwoEndedUnitGroup` (217332545) | `tailExponent`, `unitsToFinitaryShift`, `unitsEquivFinitaryShift`; closed `printedTwoEndedUnitGroup`; `printedTwoEndedUnitsLEFGLThreeNotMF_of_pieces` |
+| 1791 | `Dynamics.TwoEndedUnitsLEF` (217332545) | closed `printedTwoEndedUnitsLEF`; `printedTwoEndedUnitsLEFGLThreeNotMF_of_bilateralThree` |
 
-## In flight (text copies under attic/inflight/ct-two-ended/)
+Peer carriers consumed:
+- ct-bilateral-cell `Dynamics.TwoEndedMatrixUnits` (0f53d2260): every finitary block times `u^a` is a unit.
+- ms-traces-3 `Algebra.FinitaryShiftLEF` (1d55d0846): `FinitaryGL.printedFinitaryShiftLEF`, tex 1786–1791.
 
-- `GroupApproximation.Algebra.FinitaryGeneralLinear` (tex 1774–1779), namespace `GroupApproximation.FinitaryGL`:
-  `HasFiniteMatrixSupport`, `SupportedIn`, `hasFiniteMatrixSupport_iff`, `supportedIn_inv`, `GLfin k`,
-  `shiftGL k`, `shiftGL_zpow_single`, `shiftGL_zpow_apply`, `conj_mem_GLfin`,
-  `shiftAction k : Multiplicative ℤ →* MulAut (GLfin k)`, `FinitaryShift k := GLfin k ⋊[shiftAction k] Multiplicative ℤ`.
-- `GroupApproximation.Dynamics.TwoEndedRepresentation` (tex 1779–1780): `diag k f`, `diagHom k`, `coeffHom k`,
-  `shiftHom k`, `rho k : ClopenCrossedProduct shift k →+* Module.End k (ℤ →₀ k)`,
-  `rho_apply_single_apply : rho k x (single i c) l = (of.symm (x.coeff (ofAdd (l − i)))) (pt l) * c`,
-  `rho_injective`, `rho_coeff`, `rho_unit_zpow`.
+## Residual
 
-## Residual steps (along the printed route)
-
-1. Laurent symbols (tex 1780–1782): a unit's symbols at the fixed endpoints are `z^{a_−}`, `z^{a_+}`, and `ρ(x)`
-   translates the far tails by them.
-2. Codimension count (tex 1782–1785): the tail span `k^{(≤−N) ∪ (≥N)}` has codimension `2N − 1`, its image
-   `2N − 1 + a_+ − a_−`, so `a_+ = a_−`; then `ρ(x) σ^{−a} ∈ GL_fin`.
-3. Surjectivity: every finitary block and every `u^a` is a unit (matrix units `ρ(1_{\{r\}} u^{r−c})`).
-4. `R_X^× ≃* FinitaryGL.FinitaryShift (ZMod 2)` (tex 1774–1779).
-5. "R_X^× is LEF although GL_3(R_X) is not MF" (tex 1791–1792): LEF from ms-traces-3's
-   `FinitaryGL.PrintedFinitaryShiftLEF` (module `Algebra/FinitaryShiftLEF`, tex 1786–1791); not MF from
-   ct-bilateral-mf's `PrintedBilateralThree` (Manuscript/ChainCore/BilateralThreeStatement) at `n = 3` with
-   `not_isDedekindFiniteMonoid`.
+- Tex 1791–1792, "GL_3(R_X) is not MF". It is assembled in `printedTwoEndedUnitsLEFGLThreeNotMF_of_bilateralThree` over
+  `Manuscript.ChainCore.BilateralThree.PrintedBilateralThree` (ct-bilateral-mf; still open on origin at 18375ec10).
+  It closes with `printedBilateralThree` once that producer lands.
 
 ## Notes
 
-- ms-core-2's model test `ChainCore.StepSubshiftCoreCalibration.stepSubshift` is the same set as `TwoEnded`
-  (configurations that stay `true`); it is a calibration, not a carrier, so there is no conflict.
+- The symbol is realized through the operator `symbolOp` on `k^{(ℤ)}`. Unfolding a `liftNCRingHom` into
+  `AddMonoidAlgebra k ℤ` against the synthesized semiring instances never finished (whnf timeout at 1M heartbeats).
+- `x.coeff` on `ClopenCrossedProduct` resolves to the ring hom `ClopenCrossedProduct.coeff`; write
+  `SkewMonoidAlgebra.coeff x`.
+- ms-core-2's model test `ChainCore.StepSubshiftCoreCalibration.stepSubshift` is the same set as `TwoEnded`.
