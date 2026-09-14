@@ -197,9 +197,29 @@ relator face and for a relator–relator edge.
   - ms-intro-2's `RegionPairThickening.exists_regionPairFree_of_invariant` (API agreed) and its `hmono` discharge;
   - then this lane's `HasCellPair` `hP` for the region-pair step;
   - then `CellEdgeSideThickening.copyClean_of_noDarts` with `RegionPairThickening.regions_of_noRegionPairDart`.
-- **Named residuals of binder 5 with no producer owner** (ms-cite-1, eb678c70a, `OsinPocketMultipleEdgeCopy`):
-  `CellPocketWalkOuterOffSideStatement` and `CellPocketWalkSideRelatorCellStatement`. There is no producer on origin, no
-  draft in the shared tree and no `.files` entry. Reported to main.
+- **Named residuals of binder 5** (ms-cite-1, eb678c70a, `OsinPocketMultipleEdgeCopy`). This lane flagged them as
+  unowned; main's ruling says both are owned, and this lane does not take them:
+  - `CellPocketWalkOuterOffSideStatement`: w1-binder-3;
+  - `CellPocketWalkSideRelatorCellStatement`: ms-inverses-2 (`cellPocketKeptCellNoncrossing`).
+
+### Resume after the 20:03 outage (20:3x)
+
+- Lane state checked on origin: all six modules present, disk equal to origin, last green record 0913-183543-77148.
+  Nothing re-probed.
+- Landed by ms-intro-2 since 18:40:
+  - `SurgeryRegionPairThickeningStep` (f3a009b81): `StepData`, `stepFamily`, `stepMap`, `stepEquiv` (with
+    `stepEquiv_target`), and the one-step family `RegionPairThickening.sectionFamily S f j hlen hf T`.
+  - `SurgeryRegionPairThickeningCount` (9e31aea90): `one_lt_length_or_of_regions` (the `hmono` discharge),
+    `stepDataOfPair`, `regionPairCount_lt`.
+  - Not yet landed: `exists_regionPairFree_of_invariant`.
+- This lane (probing): `CellPocketCopyProducer.hasCellPair_regionPairStep`, the `HasCellPair` instance for the
+  region-pair step. It is additive in `OsinPocketCellCopyProducer`, which has no importers.
+- Remaining for `cellPocketCopyClean : CellPocketCopyCleanStatement`:
+  1. ms-intro-2's invariant induction;
+  2. then this lane's assembly: `exists_cellEdgeSideFree_pair`, the region-pair induction with invariant
+     "no cell-edge dart ∧ no cell-side dart ∧ no relator word of value one ∧ `HasCellPair`",
+     `CellEdgeSideThickening.copyClean_of_noDarts` with `RegionPairThickening.regions_of_noRegionPairDart` and
+     `one_lt_length_or_of_regions`.
 
 ### T3 side–side thickening (claimed, then withdrawn; see above)
 
