@@ -1,0 +1,212 @@
+VERDICT WORDS phi=-1,0 TTTATATTaaTAAtaa rank=2 u=YYXyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYXyXXX A:x B:y B:YYXyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTATATTaatAATaa rank=2 u=YYxYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxxyXyy A:x B:y B:xxxyXyy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTATATTaatAAtaa rank=2 u=YYxyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYxyXXX A:x B:y B:YYxyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTATATaaTAAttaa rank=2 u=YXyyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YXyyXXX A:x B:y B:YXyyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTATATaatAATTaa rank=2 u=YxYYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxxyyXy A:x B:y B:xxxyyXy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTATATaatAAttaa rank=2 u=YxyyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YxyyXXX A:x B:y B:YxyyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTTATAAATTatAATA via AAtAtATTatAtAATT NONFREE
+VERDICT WORDS phi=-1,1 TTTATAAATTattATA rank=2 u=YxYYXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxyyXy A:x B:y B:xxyyXy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,1 TTTATAAATATTattA rank=2 u=YYXyXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYXyXX A:x B:y B:YYXyXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTTATAAATATaattA via AAtAtAATTAttaTaT NONFREE
+VERDICT WORDS phi=-1,1 TTTATAAtaTTAtATA rank=2 u=yXYYXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxyyxY B:y B:xxyyxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTTATAAtaTatAATA via AAtAtaTTatAtAATT NONFREE
+VERDICT WORDS phi=-1,1 TTTATAAtaTattATA rank=2 u=yxYYXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxyyXY B:y B:xxyyXY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTTATAAtaaTAtATA via AAtAtaTaTAttAATT NONFREE
+VERDICT WORDS TTTATAAtaaatAATA via AAtAtaTaTatAtAATT NONFREE
+VERDICT WORDS TTTATAAtaaattATA via AAtAtaTaTattAATT NONFREE
+VERDICT WORDS TTTATAAtataTTAAA via AAtAtaaTTAtAtATT NONFREE
+VERDICT WORDS phi=-1,1 TTTATAAtataTTAtA rank=2 u=yyXYXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxyxYY B:y B:xxyxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTTATAAtataTatAA via AAtAtaaTTatAtATT NONFREE
+VERDICT WORDS phi=-1,1 TTTATAAtataTattA rank=2 u=yyxYXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxyXYYxxyXYYx A:yyxYXX A:yyxY B:y B:xxyXYYxxyXYYY B:yyxYXX B:xxyX] H=2 t=6 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTTATAAtataaTAAA via AAtAtaTaTattaaTaT NONFREE
+VERDICT WORDS TTTATAAtataaTAtA via AAtAtaTTattaaTaT NONFREE
+VERDICT WORDS TTTATAAtataaatAA via AAtAtATaTattaaTaT NONFREE
+VERDICT WORDS phi=-1,1 TTTATAtATATTatAA rank=2 u=yXXYYX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xyyxxY B:y B:xyyxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTTATAtATATaatAA via AAtataTATAttAATT NONFREE
+VERDICT WORDS phi=-1,1 TTTATAtATATaattA rank=2 u=xxyyxY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxyyxY B:y B:xxyyxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,1 TTTATAtATaattATA rank=2 u=xyyxxY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xyyxxY B:y B:xyyxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTATAtaaTAATTaa rank=2 u=yXYYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyyxY B:y B:xxxyyxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTATAtaaTAAttaa rank=2 u=yXyyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yXyyXXX A:x B:y B:yXyyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTATAtaatAATTaa rank=2 u=yxYYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyyXY B:y B:xxxyyXY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTATAttaaTAATaa rank=2 u=yyXYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyxYY B:y B:xxxyxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTATAttaaTAAtaa rank=2 u=yyXyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyXyXXX A:x B:y B:yyXyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,1 TTTATAttaaattATA rank=2 u=XyyxxY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:XyyxxY B:y B:XyyxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTATAttaatAATaa rank=2 u=yyxYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyXYY B:y B:xxxyXYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,1 TTTATAttataTTAAA rank=2 u=XyyXXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yxxYYx B:y B:yxxYYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,1 TTTATAttataTatAA rank=2 u=xyyXXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yxxYYX B:y B:yxxYYX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTTATAttataaTAAA via AAtAtaTaTattaaTT NONFREE
+VERDICT WORDS phi=-1,1 TTTATAttataaTAtA rank=2 u=yxyyXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yxyyXX A:x B:y B:yxyyXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaTaTAAtaa rank=2 u=XyXXXYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yyxxxYx B:y B:yyxxxYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaTatAATaa rank=2 u=xYXXXYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyxxxyX A:x B:y B:yyxxxyX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaTatAAtaa rank=2 u=xyXXXYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yyxxxYX B:y B:yyxxxYX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaaTATAtaa rank=2 u=yXXXYYX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xyyxxxY B:y B:xyyxxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaaTAAtata rank=2 u=xxxyyxY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyyxY B:y B:xxxyyxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaaTAtAtaa rank=2 u=xyyxxxY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xyyxxxY B:y B:xyyxxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaatATATaa rank=2 u=YXXXYYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:Xyyxxxy A:x B:y B:Xyyxxxy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaatATAtaa rank=2 u=yXXXYYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:XyyxxxY B:y B:XyyxxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaatAATata rank=2 u=xxxyyXy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxxyyXy A:x B:y B:xxxyyXy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaatAAtata rank=2 u=xxxyyXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyyXY B:y B:xxxyyXY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaatAtATaa rank=2 u=Xyyxxxy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:Xyyxxxy A:x B:y B:Xyyxxxy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTaatAtAtaa rank=2 u=XyyxxxY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:XyyxxxY B:y B:XyyxxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTataTAAtaa rank=2 u=yyxxxYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yyxxxYx B:y B:yyxxxYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTatatAATaa rank=2 u=yyxxxyX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyxxxyX A:x B:y B:yyxxxyX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATTatatAAtaa rank=2 u=yyxxxYX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yyxxxYX B:y B:yyxxxYX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATaTaTAAttaa rank=2 u=XyyXXXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yxxxYYx B:y B:yxxxYYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATaTatAAttaa rank=2 u=xyyXXXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yxxxYYX B:y B:yxxxYYX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATaaTATAttaa rank=2 u=yyXXXYX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xyxxxYY B:y B:xyxxxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATaaTAAttata rank=2 u=xxxyxYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyxYY B:y B:xxxyxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATaaTAtAttaa rank=2 u=xyxxxYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xyxxxYY B:y B:xyxxxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATaatATAttaa rank=2 u=yyXXXYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:XyxxxYY B:y B:XyxxxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATaatAATTata rank=2 u=xxxyXyy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxxyXyy A:x B:y B:xxxyXyy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAATataTAAttaa rank=2 u=yxxxYYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yxxxYYx B:y B:yxxxYYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAAtaTaTAAttaa rank=2 u=XyyXXXy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YxxxYYx A:x B:y B:YxxxYYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAAtaaTATAttaa rank=2 u=yyXXXyX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xYxxxYY A:x B:y B:xYxxxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAAtaaTAATTata rank=2 u=xxxYxyy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYXyXXX A:x B:y B:YYXyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAAtaatAATTata rank=2 u=xxxYXyy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYxyXXX A:x B:y B:YYxyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=1,0 TTTAAtaatAAttata rank=2 u=xxxYXYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyxyXXX A:x B:y B:yyxyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=1,0 TTTAAtaatAtAttaa rank=2 u=XYxxxYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XYxxxYY A:x B:y B:XYxxxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,1 TTTAAtataTTATAtA rank=2 u=xxYYXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yxyyXX A:x B:y B:yxyyXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=1,-1 TTTAAtataTatattA rank=2 u=xxyyXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxyyXY B:y B:xxyyXY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTTAAtataaTATAtA via AAtAtaaTTattaTaT NONFREE
+VERDICT WORDS phi=1,0 TTTAAtatatAAttaa rank=2 u=YxxxYYX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YxxxYYX A:x B:y B:YxxxYYX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,0 TTTAAttaaTAATata rank=2 u=xxxYYxy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YXyyXXX A:x B:y B:YXyyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=1,0 TTTAAttaatAAtata rank=2 u=xxxYYXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yxyyXXX A:x B:y B:yxyyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,1 TTTAtATATaatattA rank=2 u=yyxyXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyxyXX A:x B:y B:yyxyXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTATTATTaaTAAtaa via AAtAAtAATTAttaTT NONFREE
+VERDICT WORDS TTATTATTaatAAtaa via AAtAAtAATTattaTT NONFREE
+VERDICT WORDS TTATTATaaTAAttaa via AAtAAtATTAttaaTT NONFREE
+VERDICT WORDS TTATTATaatAATTaa via AAtAAtATTattAATT NONFREE
+VERDICT WORDS TTATTATaatAAttaa via AAtAAtATTattaaTT NONFREE
+VERDICT WORDS TTATTAtaaTAATTaa via AAtAAtaTTAttAATT NONFREE
+VERDICT WORDS TTATTAtaaTAAttaa via AAtAAtaTTAttaaTT NONFREE
+VERDICT WORDS TTATTAtaatAATTaa via AAtAAtaTTattAATT NONFREE
+VERDICT WORDS TTATTAttaaTAATaa via AAtAAtaaTTAttATT NONFREE
+VERDICT WORDS TTATTAttaaTAAtaa via AAtAAtaaTTAttaTT NONFREE
+VERDICT WORDS TTATTAttaatAATaa via AAtAAtaaTTattATT NONFREE
+VERDICT WORDS TTATATTaTaTAAtaa via AAtAtAATTattATAT NONFREE
+VERDICT WORDS TTATATTaTatAATaa via AAtAtAATTAttaTAT NONFREE
+VERDICT WORDS TTATATTaTatAAtaa via AAtAtAATTattaTAT NONFREE
+VERDICT WORDS TTATATTaaTATAtaa via AAtAtAATTAtAtaTT NONFREE
+VERDICT WORDS TTATATTaaTAAtata via AAtAtAATTAttaTaT NONFREE
+VERDICT WORDS TTATATTaaTAtAtaa via AAtAtAATTAtataTT NONFREE
+VERDICT WORDS TTATATTaatATAtaa via AAtAtAATTatAtaTT NONFREE
+VERDICT WORDS TTATATTaatAATata via AAtAtAATTattATaT NONFREE
+VERDICT WORDS TTATATTaatAAtata via AAtAtAATTattaTaT NONFREE
+VERDICT WORDS TTATATTaatAtAtaa via AAtAtAATTatataTT NONFREE
+VERDICT WORDS TTATATaTaTAAttaa via AAtAtATATAttaaTT NONFREE
+VERDICT WORDS TTATATaTatAATTaa via AAtAtATATattAATT NONFREE
+VERDICT WORDS TTATATaTatAAttaa via AAtAtATATattaaTT NONFREE
+VERDICT WORDS TTATATaaTATAttaa via AAtAtATTAtAtaaTT NONFREE
+VERDICT WORDS TTATATaaTAAttaTa via AAtAtATTAttaaTAT NONFREE
+VERDICT WORDS TTATATaaTAAttata via AAtAtATTAttaaTaT NONFREE
+VERDICT WORDS TTATATaaTAtAttaa via AAtAtATTAtataaTT NONFREE
+VERDICT WORDS TTATATaatATATTaa via AAtAtATTatAtAATT NONFREE
+VERDICT WORDS TTATATaatATAttaa via AAtAtATTatAtaaTT NONFREE
+VERDICT WORDS TTATATaatAATTata via AAtAtATTattAATaT NONFREE
+VERDICT WORDS TTATATaatAAttaTa via AAtAtATTattaaTAT NONFREE
+VERDICT WORDS TTATATaatAtATTaa via AAtAtATTatatAATT NONFREE
+VERDICT WORDS TTATATataTAAttaa via AAtAtATaTAttaaTT NONFREE
+VERDICT WORDS TTATATatatAATTaa via AAtAtATaTattAATT NONFREE
+VERDICT WORDS TTATAAtaTTAAtata via AAtAtaTTAtAtaaTT NONFREE
+VERDICT WORDS phi=-1,1 TTATAAtaTTAttata rank=2 u=yXyyXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yXyyXX A:x B:y B:yXyyXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTATAAtaaTAAtata via AAtAtaTaTAtAtaaTT NONFREE
+VERDICT WORDS phi=-1,1 TTATAtATTatAtata rank=2 u=xxYYXy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YxyyXX A:x B:y B:YxyyXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,1 TTATAtATATTatAta rank=2 u=yXXYYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:XyyxxY B:y B:XyyxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTATAtATATaTAAta via AAtatATATattAATT NONFREE
+VERDICT WORDS phi=-1,1 TTATAtATATaTAtta rank=2 u=xxyyXy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxyyXy A:x B:y B:xxyyXy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTATAtATATaatAta via AAtataTATattAATT NONFREE
+VERDICT WORDS TTATAtATaTAAtata via AAtataTATattaaTT NONFREE
+VERDICT WORDS phi=-1,1 TTATAtATaTAttata rank=2 u=yxxYYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yxxYYx B:y B:yxxYYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTATAtaTaTAATTaa via AAtAtaTATAttAATT NONFREE
+VERDICT WORDS TTATAtaTaTAAttaa via AAtAtaTATAttaaTT NONFREE
+VERDICT WORDS TTATAtaTatAATTaa via AAtAtaTATattAATT NONFREE
+VERDICT WORDS TTATAtaaTATAttaa via AAtAtaTTAtAtaaTT NONFREE
+VERDICT WORDS TTATAtaaTAATTata via AAtAtaTTAttAATaT NONFREE
+VERDICT WORDS TTATAtaaTAAttaTa via AAtAtaTTAttaaTAT NONFREE
+VERDICT WORDS TTATAtaaTAtATTaa via AAtAtaTTAtatAATT NONFREE
+VERDICT WORDS TTATAtaatATATTaa via AAtAtaTTatAtAATT NONFREE
+VERDICT WORDS TTATAtaatAATTata via AAtAtaTTattAATaT NONFREE
+VERDICT WORDS TTATAtaatAAttata via AAtAtaTTattaaTaT NONFREE
+VERDICT WORDS TTATAtaatAtATTaa via AAtAtaTTatatAATT NONFREE
+VERDICT WORDS TTATAtataTAATTaa via AAtAtaTaTAttAATT NONFREE
+VERDICT WORDS TTATAtatatAATTaa via AAtAtaTaTattAATT NONFREE
+VERDICT WORDS TTATAtatatAAttaa via AAtAtaTaTattaaTT NONFREE
+VERDICT WORDS phi=-1,1 TTATAttaTTAAtata rank=2 u=xxYYxY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yXyyXX A:x B:y B:yXyyXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTATAttaTaTAATaa via AAtAtaaTATAttATT NONFREE
+VERDICT WORDS TTATAttaTaTAAtaa via AAtAtaaTATAttaTT NONFREE
+VERDICT WORDS TTATAttaTatAATaa via AAtAtaaTATattATT NONFREE
+VERDICT WORDS phi=1,-1 TTATAttaTatAtata rank=2 u=xxYYxy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YXyyXX A:x B:y B:YXyyXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTATAttaaTATATaa via AAtAtaaTTAtAtATT NONFREE
+VERDICT WORDS TTATAttaaTATAtaa via AAtAtaaTTAtAtaTT NONFREE
+VERDICT WORDS TTATAttaaTAATata via AAtAtaaTTAttATaT NONFREE
+VERDICT WORDS TTATAttaaTAtATaa via AAtAtaaTTAtatATT NONFREE
+VERDICT WORDS phi=1,-1 TTATAttaaTAttata rank=2 u=XyyXXy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XyyXXy A:x B:y B:XyyXXy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS TTATAttaatATATaa via AAtAtaaTTatAtATT NONFREE
+VERDICT WORDS TTATAttaatAAtata via AAtAtaaTTattaTaT NONFREE
+VERDICT WORDS TTATAttaatAtAtaa via AAtAtaaTTatataTT NONFREE
+VERDICT WORDS TTATaTAATTaTAtaa via AAtATAttAATAtaTT NONFREE
+VERDICT WORDS TTATaTAATTatATaa via AAtATAttAATatATT NONFREE
+VERDICT WORDS TTATaTAATTatAtaa via AAtATAttAATataTT NONFREE
+VERDICT WORDS TTATaTAATaTAttaa via AAtATAttATAtaaTT NONFREE
+VERDICT WORDS TTATaTAATatATTaa via AAtATAttATatAATT NONFREE
+VERDICT WORDS TTATaTAATatAttaa via AAtATAttATataaTT NONFREE
+VERDICT WORDS TTATaTAAtaTATTaa via AAtATAttaTAtAATT NONFREE
+VERDICT WORDS TTATaTAAtaTAttaa via AAtATAttaTAtaaTT NONFREE
+VERDICT WORDS TTATaTAAtatATTaa via AAtATAttaTatAATT NONFREE
+VERDICT WORDS TTATaTAAttaTATaa via AAtATAttaaTAtATT NONFREE
+VERDICT WORDS TTATaTAAttaTAtaa via AAtATAttaaTAtaTT NONFREE
+VERDICT WORDS TTATaTAAttatATaa via AAtATAttaaTatATT NONFREE
+VERDICT WORDS TTATaaTTAATTaatA via AAttAATTAtAAtaTT NONFREE
+VERDICT WORDS TTATaaTTAAttaaTA via AAttATAATAttaaTT NONFREE
+VERDICT WORDS TTATaaTTAAttaatA via AAttATAATattaaTT NONFREE
+VERDICT WORDS TTATaaTAATTaattA via AAtaataTTattaaTT NONFREE
+VERDICT WORDS TTATaatAATTaattA via AAtaataTTAttaaTT NONFREE
+VERDICT WORDS TTATaatAAttaattA via AAtaataTTAttAATT NONFREE
+VERDICT WORDS TTATaattAATTaatA via AAttaTAATAttaaTT NONFREE
+VERDICT WORDS TTATaattAAttaatA via AAttAATTAtaataTT NONFREE
+VERDICT WORDS TTATatAATTaTAtaa via AAtATattAATAtaTT NONFREE
+VERDICT WORDS TTATatAATTatATaa via AAtATattAATatATT NONFREE
+VERDICT WORDS TTATatAATTatAtaa via AAtATattAATataTT NONFREE
+VERDICT WORDS TTATatAATaTAttaa via AAtATattATAtaaTT NONFREE
+VERDICT WORDS TTATatAATatATTaa via AAtATattATatAATT NONFREE
+VERDICT WORDS TTATatAAtaTATTaa via AAtATattaTAtAATT NONFREE
+VERDICT WORDS TTATatAAtatATTaa via AAtATattaTatAATT NONFREE
+VERDICT WORDS TTATatAAttaTATaa via AAtATattaaTAtATT NONFREE
+VERDICT WORDS TTAATTaaTATAtata via AAtataTATAttAATT NONFREE
+VERDICT WORDS TTAATTaaTAATatta via AAtaatATTAttAATT NONFREE
+VERDICT WORDS TTAATTaaTAtATata via AAtatATaTAttAATT NONFREE
+VERDICT WORDS TTAATTaaTAtAtata via AAtataTaTAttAATT NONFREE
+VERDICT WORDS TTAATTaaTAttATaa via AAttAATTAtaatATT NONFREE
+VERDICT WORDS TTAATTaatATTAtaa via AAttAATTatAAtaTT NONFREE
+VERDICT WORDS TTAATTaatATATata via AAtatATATattAATT NONFREE
+VERDICT WORDS TTAATTaatATAtata via AAtataTATattAATT NONFREE
+VERDICT WORDS TTAATTaatAATatta via AAtaatATTattAATT NONFREE
+VERDICT WORDS TTAATTaatAtATata via AAtatATaTattAATT NONFREE
+VERDICT WORDS TTAATTatATaaTAta via AAtaTAttATatAATT NONFREE
+VERDICT WORDS TTAATTatATaatAta via AAtaTAttaTatAATT NONFREE
+VERDICT WORDS TTAATTataTAAtata via AAtatATTatatAATT NONFREE
+VERDICT WORDS TTAATaTAATTatAta via AtatATTAttaTATattATT NONFREE
+VERDICT WORDS TTAATaTAATaTAtta via AtatATTAtatATTAttaTT NONFREE
+VERDICT WORDS TTAATaTAttaaTAta via AAtaTAttaaTAtATT NONFREE
+VERDICT WORDS TTAATaTaTATAttaa via AAtataTaTattaaTT NONFREE
+VERDICT WORDS TTAATaTatATAttaa via AAtatATaTattaaTT NONFREE
+VERDICT WORDS TTAATaTatAATTata via AAtatAATTAtAtaTT NONFREE
+VERDICT WORDS TTAATaaTAATTatta via AAtaatAATTAttATT NONFREE
+VERDICT WORDS TTAATaaTAtATTata via AAtatAATTAttATaT NONFREE
+VERDICT WORDS TTAATaatATTAttaa via AAtaatATTattaaTT NONFREE
+VERDICT WORDS TTAATaatAATTatta via AAtaatAATTAttaTT NONFREE
+VERDICT WORDS TTAATaatAtATTata via AAtatAATTAttaTaT NONFREE
+VERDICT WORDS TTAATatATTaaTAta via AAtaTAttAATatATT NONFREE
+VERDICT WORDS TTAATatATTaatAta via AAtaTAttAATataTT NONFREE
+VERDICT WORDS TTAATataTATAttaa via AAtataTATattaaTT NONFREE
+VERDICT WORDS TTAATatatAATTata via AAtatAATTAtataTT NONFREE
+VERDICT WORDS TTAAtaTAttATAtaa via AAtaTAttATAtaaTT NONFREE
+VERDICT WORDS TTAAtaTaTATAttaa via AAtataTaTAttaaTT NONFREE
+VERDICT WORDS TTAAtaTatAATTata via AAtatAATTatAtaTT NONFREE
+VERDICT WORDS TTAAtaTatatAtata via AAtatAATTAtataTT NONFREE
+VERDICT WORDS TTAAtaaTAtATTata via AAtatAATTattATaT NONFREE
+VERDICT WORDS TTAAtatATTAtAtaa via AAtatATTAtAtaaTT NONFREE
+VERDICT WORDS TTAAtatATATAttaa via AAtatATATAttaaTT NONFREE
+VERDICT WORDS phi=1,-1 TTAtATTatatAtata rank=2 u=xxYXyy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxYXyyxxYXyyX A:YYxyXX A:x A:YYxy B:y B:YYxyXX B:YxxYXyyxxYXyy B:xyXX] H=2 t=6 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT WORDS phi=-1,1 TTAtATATaTATAtta rank=2 u=xxYxyy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYXyXX A:x B:y B:YYXyXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+SENTINEL_DONE

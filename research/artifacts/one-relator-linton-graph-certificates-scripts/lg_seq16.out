@@ -1,0 +1,177 @@
+VERDICT SEQ16 AAtAtATATAttaaTT NONFREE pp=False
+VERDICT SEQ16 AAtataTaTattaaTT NONFREE pp=False
+VERDICT SEQ16 AAtatATATAttAATT NONFREE pp=True
+VERDICT SEQ16 AAtatATATAttaaTT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTaTattaaTT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTaTattAATT NONFREE pp=False
+VERDICT SEQ16 AAtAtaaTTAtAtATT NONFREE pp=False
+VERDICT SEQ16 AAtatAATTAtAtATT NONFREE pp=True
+VERDICT SEQ16 AAtAtaaTTatataTT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAttaTaTattaaTT rank=2 u=YxxxYYX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YxxxYYX A:x B:y B:YxxxYYX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtAtAATTatataTT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAttATATAttaaTT rank=2 u=XyyXXXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yxxxYYx B:y B:yxxxYYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttAATTatataTT rank=2 u=XyyxxxY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:XyyxxxY B:y B:XyyxxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtAtaTATAttAATT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTATAttaaTT NONFREE pp=False
+VERDICT SEQ16 AAtatATaTattaaTT NONFREE pp=False
+VERDICT SEQ16 AAtatATaTattAATT NONFREE pp=False
+VERDICT SEQ16 AAtataTATAttAATT NONFREE pp=False
+VERDICT SEQ16 AAtAtATaTattAATT NONFREE pp=False
+VERDICT SEQ16 AAtAtAATTAtAtaTT NONFREE pp=False
+VERDICT SEQ16 AAtAtaaTTAtAtaTT NONFREE pp=False
+VERDICT SEQ16 AAtatAATTAtAtaTT NONFREE pp=False
+VERDICT SEQ16 AAtAtATATattAATT NONFREE pp=False
+VERDICT SEQ16 AAtatATATattAATT NONFREE pp=False
+VERDICT SEQ16 AAtataTaTAttaaTT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAttAATTatAtATT rank=2 u=YXXXYYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:Xyyxxxy A:x B:y B:Xyyxxxy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtAtaaTTatAtATT NONFREE pp=False
+VERDICT SEQ16 AAtatAATTAtataTT NONFREE pp=False
+VERDICT SEQ16 AAtAtAATTAtataTT NONFREE pp=False
+VERDICT SEQ16 AAtAtATATattaaTT NONFREE pp=False
+VERDICT SEQ16 AAtataTaTAttAATT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTaTAttAATT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAttATATattaaTT rank=2 u=xyyXXXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yxxxYYX B:y B:yxxxYYX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttAATTAtataTT rank=2 u=xyyxxxY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xyyxxxY B:y B:xyyxxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttAATTAtAtaTT rank=2 u=yXXXYYX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xyyxxxY B:y B:xyyxxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttaTATAttaaTT rank=2 u=XyyXXXy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YxxxYYx A:x B:y B:YxxxYYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttAATTatatATT rank=2 u=Xyyxxxy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:Xyyxxxy A:x B:y B:Xyyxxxy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtAtAATTattATAT NONFREE pp=False
+VERDICT SEQ16 AAtAtATTAttaaTAT NONFREE pp=False
+VERDICT SEQ16 AAtAtATTattaaTAT NONFREE pp=False
+VERDICT SEQ16 AAtAtATTAttAATaT NONFREE pp=True
+VERDICT SEQ16 AAtAtATTattAATaT NONFREE pp=False
+VERDICT SEQ16 AAtAtATTAttaaTaT NONFREE pp=False
+VERDICT SEQ16 AAtAtATTatAtAATT NONFREE pp=False
+VERDICT SEQ16 AAtAtATTAtatAATT NONFREE pp=True
+VERDICT SEQ16 AAtAtATTatatAATT NONFREE pp=False
+VERDICT SEQ16 AAtAtATaTAttAATT NONFREE pp=True
+VERDICT SEQ16 AAtAtATTAtAtaaTT NONFREE pp=False
+VERDICT SEQ16 AAtAtATTatAtaaTT NONFREE pp=False
+VERDICT SEQ16 AAtAtATTAtataaTT NONFREE pp=False
+VERDICT SEQ16 AAtAtATaTAttaaTT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAttAATATAttaTT rank=2 u=XyXXXYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yyxxxYx B:y B:yyxxxYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttaTTatataaTT rank=2 u=XYxxxYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XYxxxYY A:x B:y B:XYxxxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtAtaaTATAttATT NONFREE pp=False
+VERDICT SEQ16 AAtAtaaTATAttaTT NONFREE pp=False
+VERDICT SEQ16 AAtatAATTAttaTaT NONFREE pp=False
+VERDICT SEQ16 AAtAtaaTTattaTaT NONFREE pp=False
+VERDICT SEQ16 AAtAtAATTattaTaT NONFREE pp=False
+VERDICT SEQ16 AAtAtAATTAttaTaT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTTAtAtaaTT NONFREE pp=False
+VERDICT SEQ16 AAtatATTAtAtaaTT NONFREE pp=False
+VERDICT SEQ16 AAtataTATattaaTT NONFREE pp=False
+VERDICT SEQ16 AAtatATTatatAATT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTTatatAATT NONFREE pp=False
+VERDICT SEQ16 AAtataTATattAATT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAttATTAtAtaaTT rank=2 u=yyXXXYX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xyxxxYY B:y B:xyxxxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttaTTAtAtaaTT rank=2 u=yyXXXyX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xYxxxYY A:x B:y B:xYxxxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttAATaTattaTT rank=2 u=yyxxxYX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yyxxxYX B:y B:yyxxxYX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttAATaTattATT rank=2 u=yyxxxyX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyxxxyX A:x B:y B:yyxxxyX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtAtATTattAATT rank=2 u=YxYYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxxyyXy A:x B:y B:xxxyyXy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtAtATTAttaaTT rank=2 u=YXyyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YXyyXXX A:x B:y B:YXyyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtAtATTattaaTT rank=2 u=YxyyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YxyyXXX A:x B:y B:YxyyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtataTTattaaTT rank=2 u=xxxYYXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yxyyXXX A:x B:y B:yxyyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtataTTattAATT rank=2 u=xxxyyXY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyyXY B:y B:xxxyyXY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtataTTAttAATT rank=2 u=xxxyyxY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyyxY B:y B:xxxyyxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtATAttaaTAtATT NONFREE pp=False
+VERDICT SEQ16 AAtATAttAATatATT NONFREE pp=False
+VERDICT SEQ16 AAtATAttaaTatATT NONFREE pp=False
+VERDICT SEQ16 AAtATAttAATAtaTT NONFREE pp=False
+VERDICT SEQ16 AAtATAttaaTAtaTT NONFREE pp=False
+VERDICT SEQ16 AAtATAttAATataTT NONFREE pp=False
+VERDICT SEQ16 AAtATAttaTAtAATT NONFREE pp=False
+VERDICT SEQ16 AAtATAttATatAATT NONFREE pp=False
+VERDICT SEQ16 AAtATAttaTatAATT NONFREE pp=False
+VERDICT SEQ16 AAtATAttATAtaaTT NONFREE pp=False
+VERDICT SEQ16 AAtATAttaTAtaaTT NONFREE pp=False
+VERDICT SEQ16 AAtATAttATataaTT NONFREE pp=False
+VERDICT SEQ16 AAtaTAttaaTAtATT NONFREE pp=False
+VERDICT SEQ16 AAtATattAATataTT NONFREE pp=False
+VERDICT SEQ16 AAtATattaaTAtATT NONFREE pp=False
+VERDICT SEQ16 AAtaTAttAATataTT NONFREE pp=False
+VERDICT SEQ16 AAtATattATAtaaTT NONFREE pp=False
+VERDICT SEQ16 AAtaTAttATAtaaTT NONFREE pp=False
+VERDICT SEQ16 AAtaTAttaTatAATT NONFREE pp=False
+VERDICT SEQ16 AAtATattaTatAATT NONFREE pp=False
+VERDICT SEQ16 AAtatATaTAttAATT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTATattAATT NONFREE pp=False
+VERDICT SEQ16 AAtAtAATTAtatATT NONFREE pp=True
+VERDICT SEQ16 AAtAtaaTTAtatATT NONFREE pp=False
+VERDICT SEQ16 AAtatAATTAtatATT NONFREE pp=True
+VERDICT SEQ16 pp=True AAAttAATTAtatATT rank=2 u=xyyxxxy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xyyxxxy A:x B:y B:xyyxxxy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtatAATTatAtaTT NONFREE pp=False
+VERDICT SEQ16 AAtAtAATTatAtaTT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAttATaTAttaaTT rank=2 u=yxxxYYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yxxxYYx B:y B:yxxxYYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttAATTatAtaTT rank=2 u=yXXXYYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:XyyxxxY B:y B:XyyxxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtAtAATTAttATaT NONFREE pp=True
+VERDICT SEQ16 AAtAtAATTattATaT NONFREE pp=False
+VERDICT SEQ16 AAtAtaaTTAttATaT NONFREE pp=False
+VERDICT SEQ16 AAtatAATTAttATaT NONFREE pp=False
+VERDICT SEQ16 AAtatAATTattATaT NONFREE pp=False
+VERDICT SEQ16 AAtAtaaTATattATT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTTAtatAATT NONFREE pp=False
+VERDICT SEQ16 AAtatATTAtatAATT NONFREE pp=True
+VERDICT SEQ16 pp=True AAAttAATaTAttATT rank=2 u=yyxxxyx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyxxxyx A:x B:y B:yyxxxyx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttAATaTAttaTT rank=2 u=yyxxxYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yyxxxYx B:y B:yyxxxYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttATTatAtaaTT rank=2 u=yyXXXYx sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:XyxxxYY B:y B:XyxxxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtAtaTTattaaTaT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTTattAATaT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTTAttAATaT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTTAttaaTAT NONFREE pp=False
+VERDICT SEQ16 AAtAtAATTattaTAT NONFREE pp=False
+VERDICT SEQ16 AAtAtAATTAttaTAT NONFREE pp=False
+VERDICT SEQ16 AAtAtaTTatAtAATT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAttATTAtataaTT rank=2 u=xyxxxYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xyxxxYY B:y B:xyxxxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttAATATattaTT rank=2 u=xyXXXYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:yyxxxYX B:y B:yyxxxYX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAttAATATattATT rank=2 u=xYXXXYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyxxxyX A:x B:y B:yyxxxyX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=True AAAtatATTAttAATT rank=2 u=xxxyyxy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxxyyxy A:x B:y B:xxxyyxy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtatATTattAATT rank=2 u=xxxyyXy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxxyyXy A:x B:y B:xxxyyXy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtatATTAttaaTT rank=2 u=xxxYYxy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YXyyXXX A:x B:y B:YXyyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtAtaTTAttaaTT rank=2 u=yXyyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yXyyXXX A:x B:y B:yXyyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtAtaTTattAATT rank=2 u=yxYYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyyXY B:y B:xxxyyXY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtAtaTTAttAATT rank=2 u=yXYYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyyxY B:y B:xxxyyxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtaTAttAATatATT NONFREE pp=False
+VERDICT SEQ16 AAtATattAATatATT NONFREE pp=False
+VERDICT SEQ16 AAtATattATatAATT NONFREE pp=False
+VERDICT SEQ16 AAtaTAttATatAATT NONFREE pp=False
+VERDICT SEQ16 AAtATattAATAtaTT NONFREE pp=False
+VERDICT SEQ16 AAtATattaTAtAATT NONFREE pp=False
+VERDICT SEQ16 AAttATAATAttaaTT NONFREE pp=False
+VERDICT SEQ16 AAttAATTAtAAtaTT NONFREE pp=False
+VERDICT SEQ16 AAttaTAATAttaaTT NONFREE pp=False
+VERDICT SEQ16 AAttATAATattaaTT NONFREE pp=False
+VERDICT SEQ16 AAttAATTAtaataTT NONFREE pp=False
+VERDICT SEQ16 AAtAAtATTattAATT NONFREE pp=False
+VERDICT SEQ16 AAtAAtATTAttaaTT NONFREE pp=False
+VERDICT SEQ16 AAtAAtATTattaaTT NONFREE pp=False
+VERDICT SEQ16 AAtaataTTattaaTT NONFREE pp=False
+VERDICT SEQ16 AAtaataTTAttaaTT NONFREE pp=False
+VERDICT SEQ16 AAtaataTTAttAATT NONFREE pp=False
+VERDICT SEQ16 AAttAATTAtaatATT NONFREE pp=False
+VERDICT SEQ16 AAttAATTatAAtaTT NONFREE pp=False
+VERDICT SEQ16 AAtaatATTAttAATT NONFREE pp=False
+VERDICT SEQ16 AAtaatATTattAATT NONFREE pp=False
+VERDICT SEQ16 AAtaatATTattaaTT NONFREE pp=False
+VERDICT SEQ16 AAtAAtaTTAttaaTT NONFREE pp=False
+VERDICT SEQ16 AAtAAtaTTattAATT NONFREE pp=False
+VERDICT SEQ16 AAtAAtaTTAttAATT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAtataaTTattaTT rank=2 u=xxxYXYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyxyXXX A:x B:y B:yyxyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=True AAAtatAATTAttATT rank=2 u=xxxyxyy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxxyxyy A:x B:y B:xxxyxyy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtAAtaaTTAttATT NONFREE pp=False
+VERDICT SEQ16 AAtaatAATTAttATT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAtAtaaTTAttATT rank=2 u=yyXYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyxYY B:y B:xxxyxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtatAATTattaTT rank=2 u=xxxYXyy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYxyXXX A:x B:y B:YYxyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtataaTTAttATT rank=2 u=xxxyxYY sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyxYY B:y B:xxxyxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtAtAATTattaTT rank=2 u=YYxyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYxyXXX A:x B:y B:YYxyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtAAtAATTattaTT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAtAtAATTattATT rank=2 u=YYxYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxxyXyy A:x B:y B:xxxyXyy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtatAATTattATT rank=2 u=xxxyXyy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xxxyXyy A:x B:y B:xxxyXyy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtAtaaTTAttaTT rank=2 u=yyXyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyXyXXX A:x B:y B:yyXyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtAAtAATTAttaTT NONFREE pp=False
+VERDICT SEQ16 AAtAAtaaTTAttaTT NONFREE pp=False
+VERDICT SEQ16 AAtaatAATTAttaTT NONFREE pp=False
+VERDICT SEQ16 pp=False AAAtAtaaTTattATT rank=2 u=yyxYXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:xxxyXYY B:y B:xxxyXYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtatAATTAttaTT rank=2 u=xxxYxyy sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYXyXXX A:x B:y B:YYXyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 pp=False AAAtAtAATTAttaTT rank=2 u=YYXyXXX sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYXyXXX A:x B:y B:YYXyXXX] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT SEQ16 AAtAAtaaTTattATT NONFREE pp=False
+SENTINEL_DONE

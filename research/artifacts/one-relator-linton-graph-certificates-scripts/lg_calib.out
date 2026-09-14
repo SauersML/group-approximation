@@ -1,0 +1,3 @@
+VERDICT CAL-linton-ex1.2 z2yz2X2 rank=2 u=1 sZ=(3, 3) depth=4 mixed_nc=0 V=[A:yyXXyy A:YYxxYYYYxxYYxYYxxYYYYxxYY A:xxYYxxYY B:y B:yXXyyyyXXyy B:xx] H=0 t=4 hloops=2 tloops=0 cycle=False -> PASS_HLOOP
+VERDICT CAL-linton-ex6.12-BS(2,-3) y2zxZyzxZ rank=2 u=1 sZ=(1, 1) depth=2 mixed_nc=0 V=[A:Yxxxy B:xx] H=1 t=1 hloops=2 tloops=0 cycle=True -> FAIL(alternating cycle)
+SENTINEL_DONE

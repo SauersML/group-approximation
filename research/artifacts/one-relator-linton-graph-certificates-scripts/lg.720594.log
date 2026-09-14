@@ -1,0 +1,30 @@
+61fb8fe94a71be996a307db09f7e037a  lintongraph.py
+37778ebd03ce3021530d927f173646ef  census.py
+b5ecec7b7e131fb90b5bcaf2bfe14227  census2.py
+8a51dda071f694b0942c02ec9a83771c  malnormal.py
+dcf220a97cc4608d9a246a667eef409a  residue-output.txt
+26b721a1e47eedcbb971190afbe59991  census3_16.out
+283fd52eac3281b45ae37d8f6a344868  /var/spool/slurmd/job720594/slurm_script
+== calib
+calib rc=0
+VERDICT CAL-linton-ex1.2 z2yz2X2 rank=2 u=1 sZ=(3, 3) depth=4 mixed_nc=0 V=[A:yyXXyy A:YYxxYYYYxxYYxYYxxYYYYxxYY A:xxYYxxYY B:y B:yXXyyyyXXyy B:xx] H=0 t=4 hloops=2 tloops=0 cycle=False -> PASS_HLOOP
+VERDICT CAL-linton-ex6.12-BS(2,-3) y2zxZyzxZ rank=2 u=1 sZ=(1, 1) depth=2 mixed_nc=0 V=[A:Yxxxy B:xx] H=1 t=1 hloops=2 tloops=0 cycle=True -> FAIL(alternating cycle)
+SENTINEL_DONE
+l15 rc=0
+words16 rc=0
+seq16 rc=0
+== lg_l15.out
+30
+     30 -> PASS
+SENTINEL_DONE
+== lg_seq16.out
+176
+    128  NONFREE
+     48 -> PASS
+SENTINEL_DONE
+== lg_words16.out
+211
+    141  NONFREE
+     70 -> PASS
+SENTINEL_DONE
+ALLDONE

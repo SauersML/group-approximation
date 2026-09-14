@@ -1,0 +1,10 @@
+37778ebd03ce3021530d927f173646ef  census.py
+b5ecec7b7e131fb90b5bcaf2bfe14227  census2.py
+43361800fa3a872236f1cac1e4ce0914  census3.py
+8a51dda071f694b0942c02ec9a83771c  malnormal.py
+cb69b7f7052f5679802bbc3091b2bf85  /var/spool/slurmd/job717895/slurm_script
+malnormal rc=0
+census rc=0
+census3 rc=0
+tail: option used in invalid context -- 3
+ALLDONE

@@ -1,0 +1,48 @@
+c288ce8b984a32afd38a63a65455e0e0  lintongraph.py
+  STATE depth=1 flag=B pur=f rank=2 gens=['YYxxYY', 'y']
+    VERTEX part=B from g=xx nu=xx new=True
+  STATE depth=1 flag=A pur=b rank=2 gens=['YYxxYY', 'YYxxYYYYxxYYxYYxxYYYYxxYY']
+    VERTEX part=A from g=xxYYxxYY nu=xxYYxxYY new=True
+  STATE depth=2 flag=B pur=f rank=2 gens=['YYxxYYYYxxYY', 'y']
+    VERTEX part=A from g=yyXXyyyyXXyy nu=yyXXyy new=True
+  STATE depth=2 flag=A pur=m rank=1 gens=['YYxxYYYYxxYYxYYxxYYYYxxYY']
+    VERTEX part=A from g=YYxxYYYYxxYYxYYxxYYYYxxYY nu=YYxxYYYYxxYYxYYxxYYYYxxYY new=True
+  STATE depth=2 flag=B pur=m rank=1 gens=['YYxxYYYYxxY']
+    VERTEX part=B from g=yXXyyyyXXyy nu=yXXyyyyXXyy new=True
+  STATE depth=2 flag=A pur=b rank=2 gens=['YYxxYYYYxxYYxYYxxYYYYxxYY', 'x']
+    VERTEX part=B from g=xx nu=xx new=False
+  STATE depth=3 flag=B pur=f rank=1 gens=['YY']
+    VERTEX part=B from g=yy nu=y new=True
+  STATE depth=3 flag=A pur=b rank=1 gens=['YYxxYYYYxxYYxYYxxYYYYxxYY']
+    VERTEX part=A from g=YYxxYYYYxxYYxYYxxYYYYxxYY nu=YYxxYYYYxxYYxYYxxYYYYxxYY new=False
+VERDICT CAL-linton-ex1.2 z2yz2X2 rank=2 u=1 sZ=(3, 3) depth=4 mixed_nc=0 V=[A:yyXXyy A:YYxxYYYYxxYYxYYxxYYYYxxYY A:xxYYxxYY B:y B:yXXyyyyXXyy B:xx] H=0 t=4 hloops=2 tloops=0 cycle=False -> PASS_HLOOP
+  STATE depth=1 flag=B pur=f rank=1 gens=['XX']
+    VERTEX part=A from g=Yxxxxxxy nu=Yxxxy new=True
+    VERTEX part=B from g=xx nu=xx new=True
+    VERTEX part=B from g=xx nu=xx new=False
+  STATE depth=1 flag=A pur=b rank=1 gens=['YXXXy']
+    VERTEX part=A from g=Yxxxy nu=Yxxxy new=False
+    VERTEX part=A from g=Yxxxy nu=Yxxxy new=False
+    VERTEX part=A from g=Yxxxy nu=Yxxxy new=False
+    VERTEX part=B from g=xxxxxx nu=xx new=False
+  STATE depth=2 flag=B pur=f rank=1 gens=['XXXX']
+    VERTEX part=A from g=Yxxxxxxxxxxxxy nu=Yxxxy new=False
+    VERTEX part=B from g=xxxx nu=xx new=False
+    VERTEX part=B from g=xxxx nu=xx new=False
+  STATE depth=2 flag=A pur=m rank=1 gens=['YXXXy']
+    VERTEX part=A from g=Yxxxy nu=Yxxxy new=False
+    VERTEX part=A from g=Yxxxy nu=Yxxxy new=False
+    VERTEX part=A from g=Yxxxy nu=Yxxxy new=False
+    VERTEX part=B from g=xxxxxx nu=xx new=False
+  STATE depth=2 flag=B pur=m rank=1 gens=['XX']
+    VERTEX part=A from g=Yxxxxxxy nu=Yxxxy new=False
+    VERTEX part=B from g=xx nu=xx new=False
+    VERTEX part=B from g=xx nu=xx new=False
+  STATE depth=2 flag=A pur=b rank=1 gens=['YXXXXXXXXXy']
+    VERTEX part=A from g=Yxxxxxxxxxy nu=Yxxxy new=False
+    VERTEX part=A from g=Yxxxxxxxxxy nu=Yxxxy new=False
+    VERTEX part=A from g=Yxxxxxxxxxy nu=Yxxxy new=False
+    VERTEX part=B from g=xxxxxxxxxxxxxxxxxx nu=xx new=False
+VERDICT CAL-linton-ex6.12-BS(2,-3) y2zxZyzxZ rank=2 u=1 sZ=(1, 1) depth=2 mixed_nc=0 V=[A:Yxxxy B:xx] H=1 t=1 hloops=2 tloops=0 cycle=True -> FAIL(alternating cycle)
+SENTINEL_DONE
+ALLDONE
