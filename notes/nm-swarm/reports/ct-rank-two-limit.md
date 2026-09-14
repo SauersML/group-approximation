@@ -65,6 +65,32 @@ None has a binder-free producer on main at 19:09 (scan calibrated on the closed 
 | `manuscriptRegularNonMFAlgebra_of_residuals`, `…Osin…`, `printedRegularNonMFAlgebraLimitSet_of_residuals` | 7b1fa3182135, 8b1ec28a0e73, dce7a9ff4e83 |
 
 Not covered: `a9dd4b90e479` (Hull 3.12 generating set) is not W1-bound; ms-torsionfree proposes it `formalized`.
+
+## Item 3: the V4 waist (coordinator ~19:35)
+
+Module `GGT/VanKampen/Estimating/OsinGreendlingerWaistV4` (additive, through `_of_pocketParts`):
+- `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4CopySection`, 7 residuals, binder 5 whole.
+- `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4`, 10 residuals: `OsinLemma94ClassEndLoopsInput`,
+  `OsinLemma94SameCellPocketInput`, `OsinLemma94ClassCasesInput` (class route, ct-bilateral-cell V3);
+  `OsinTwoGonHoldsSectionStatement` (C6′); `CellPocketCopyCleanBothOrdersStatement`,
+  `CellPocketWalkOuterOffSideSomeOrderStatement`, `CellPocketWalkEitherFollowsStatement`, `CellPocketPinchPosStatement`
+  (binder 5 on the copy through `osinMultipleEdgePocketRegionCopySection_of_pinchOrder`, ms-cite-1 da5b1466e);
+  `OsinSectionPocketFaceSetProperSectionStatement`, `PocketPinchLabelledSectionStatement` (binders 6 and 7, w1-binder-7).
+- Closed pieces applied: `osinLoopCutSection`, `osinCornerTwoGonSection`, `pocketCellTransport`,
+  `GeodesicCollar.StripStep.geodesicCollarStatement_holds`.
+- ct-bilateral-cell withdrew its local draft of the same name (19:55).  The class-case split
+  (`osinLemma94ClassCases_of_residuals`, `OsinLemma94ClassPairTransfer`, probing) is added when it lands.
+
+Module `Manuscript/NonMF/TorsionFreeResidualsV4`: every endpoint of `TorsionFreeResidualsV2Copy` restated `_of_residualsV4`
+over the ten residuals of `_of_residualsV4`.
+
+LANDED 4091f7433 (probe 0913-195844-97206 GREEN, both BUILT and COMPILED, 24 audits classical, 0 errors); queued for
+wiring.  Census: the 14 W1 rows add the V4 carriers and the V4 residual list, still `partial`.
+
+Module `GGT/VanKampen/Estimating/OsinGreendlingerWaistV4Split`: `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4Split`,
+12 residuals.  `OsinLemma94ClassCasesInput` comes from ct-bilateral-cell's `osinLemma94ClassCases_of_residuals` (6ba28eb0e), over
+the closed `osinLemma94CaseOneWalk` and `osinLemma94CaseTwoInput`, from `OsinLemma94CaseOneRCellStatement`,
+`OsinLemma94ClassCaseGapEndpointStatement` and `OsinLemma94ClassCaseGapSpanStatement`.  Status: probing.
 A later waist exists: `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV3` (2b2af4479, class route, seven binders).  Its
 binder 5 is `OsinMultipleEdgePocketRegionSectionStatement` on the optimal diagram, the form the V2Copy docstring calls
 circular, so this module stays on V2Copy.
