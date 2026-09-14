@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.SurgeryCellEdgeSideThickening
+import GroupApproximation.GGT.VanKampen.SurgeryRegionPairThickeningStep
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -15,9 +16,10 @@ pair is carried as an invariant of every doubling step instead.
 * `HasCellPair S`: two distinct regions of the family join two distinct cells.
 * `joinsCells_map`: a region transported with its source and target through a cell index
   equivalence joins the images of the cells.
-* `hasCellPair_cellEdgeStep`, `hasCellPair_cellSideStep`: one step of the cell-edge thickening
-  (`CellEdgeThickening.sectionFamily`) and one step of the cell-side thickening
-  (`CellSideThickening.sectionFamilyOfArcs`) keep a pair.
+* `hasCellPair_cellEdgeStep`, `hasCellPair_cellSideStep`, `hasCellPair_regionPairStep`: one step of
+  the cell-edge thickening (`CellEdgeThickening.sectionFamily`), one step of the cell-side
+  thickening (`CellSideThickening.sectionFamilyOfArcs`) and one step of the region-pair thickening
+  (`RegionPairThickening.sectionFamily`) keep a pair.
 * `exists_cellEdgeSideFree_pair`: the cell-edge thickening, then the cell-side thickening, keeping
   a pair, the absence of cell-edge darts and of relator words of value one.
 
@@ -88,6 +90,40 @@ theorem hasCellPair_cellSideStep (S : GloballyDistinguishedSectionFamily D lambd
     fun heq => hik (φ.injective heq),
     joinsCells_map φ rfl rfl hai, joinsCells_map φ rfl rfl hbi⟩
 
+/-- **One region-pair doubling step keeps a pair.**  The step correspondence
+`RegionPairThickening.stepMap` is a bijection, and the region holding the doubled face
+(`FaceEdgeDoubling.Holding.holdingGeometry`) as well as every other region
+(`FaceEdgeDoubling.contiguityGeometryOfArcs`) keeps its source and target through the cell index
+equivalence. -/
+theorem hasCellPair_regionPairStep
+    (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+    (f : S.diagram.toCombMap.Face) (j : Fin (S.diagram.faceBoundary f).darts.length)
+    (hlen : 1 < (S.diagram.faceBoundary f).darts.length) (hf : f ≠ S.diagram.outerFace)
+    (T : RegionPairThickening.StepData S.diagram f j S.family) (h : HasCellPair S) :
+    HasCellPair (RegionPairThickening.sectionFamily S f j hlen hf T) := by
+  obtain ⟨a, ha, b, hb, hab, i, k, hik, hai, hbi⟩ := h
+  let φ := (FaceEdgeDoubling.cellMap S.diagram f j hlen hf).indexEquiv
+  have hmap : ∀ (x : RegionCandidate D eps S.diagram) (hx : x ∈ S.family),
+      (RegionPairThickening.stepMap S.diagram f j hlen hf T ⟨x, hx⟩).val.2.source =
+          φ x.2.source ∧
+        (RegionPairThickening.stepMap S.diagram f j hlen hf T ⟨x, hx⟩).val.2.target =
+          x.2.target.map φ := by
+    intro x hx
+    by_cases hxh : x = T.holder
+    · rw [RegionPairThickening.stepMap_val_of_eq S.diagram f j hlen hf T (a := ⟨x, hx⟩) hxh, hxh]
+      exact ⟨rfl, rfl⟩
+    · rw [RegionPairThickening.stepMap_val_of_ne S.diagram f j hlen hf T (a := ⟨x, hx⟩) hxh]
+      exact ⟨rfl, rfl⟩
+  exact ⟨(RegionPairThickening.stepMap S.diagram f j hlen hf T ⟨a, ha⟩).val,
+    (RegionPairThickening.stepMap S.diagram f j hlen hf T ⟨a, ha⟩).property,
+    (RegionPairThickening.stepMap S.diagram f j hlen hf T ⟨b, hb⟩).val,
+    (RegionPairThickening.stepMap S.diagram f j hlen hf T ⟨b, hb⟩).property,
+    fun heq => hab (congrArg Subtype.val
+      ((RegionPairThickening.stepMap_bijective S.diagram f j hlen hf T).1 (Subtype.ext heq))),
+    φ i, φ k, fun heq => hik (φ.injective heq),
+    joinsCells_map φ (hmap a ha).1 (hmap a ha).2 hai,
+    joinsCells_map φ (hmap b hb).1 (hmap b hb).2 hbi⟩
+
 /-- **The cell-edge thickening, then the cell-side thickening, keeping a pair.**  The output family
 has a pair, no cell-edge dart, no cell-side dart and no relator word of value one. -/
 theorem exists_cellEdgeSideFree_pair
@@ -122,4 +158,5 @@ end GroupApproximation.GGT.VanKampen.CellPocketCopyProducer
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketCopyProducer.joinsCells_map
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketCopyProducer.hasCellPair_cellEdgeStep
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketCopyProducer.hasCellPair_cellSideStep
+#audit_axioms GroupApproximation.GGT.VanKampen.CellPocketCopyProducer.hasCellPair_regionPairStep
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketCopyProducer.exists_cellEdgeSideFree_pair
