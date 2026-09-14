@@ -107,9 +107,10 @@ theorem facePerm_dartImage (d : Delta.toCombMap.Dart) :
         (some (some (Delta.toCombMap.alpha d))) = dartImage Delta f j hlen (Delta.toCombMap.facePerm d)
     have e1 : Delta.toCombMap.sigma (Delta.toCombMap.alpha d) = Delta.toCombMap.facePerm d := rfl
     rw [hb, PermOrbitInsert.insertBefore_some, PermOrbitInsert.insertBefore_some, e1, dartImage]
-    split_ifs with h1 h2
+    split_ifs with h1 h2 h3
+    · exact h2.elim
     · rfl
-    · exact absurd (Delta.toCombMap.facePerm.injective (Option.some.inj h2)) hd
+    · exact absurd (Delta.toCombMap.facePerm.injective (Option.some.inj h3)) hd
     · rfl
 
 /-! ## Faces and edges -/
