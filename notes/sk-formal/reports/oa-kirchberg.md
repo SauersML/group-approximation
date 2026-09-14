@@ -14,6 +14,19 @@ CLAIM finite-dimensional orthogonal representations separating points give resid
 CLAIM amenable-trace models give positive definite matrix functions GroupApproximation/Analysis/KirchbergTraceModels.lean
 CLAIM printed sentences d4c75e0d3c7f and the first clause of 1fe81fb1330c GroupApproximation/Manuscript/SimpleKazhdanSofic/KirchbergFactorizationSentences.lean
 
+CLAIM completion of a linear isometry representation GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean
+CLAIM realified Frobenius and trace identities for complex matrix models GroupApproximation/Analysis/KirchbergRealForms.lean
+
+23:35 re-scope: the note is at 37551fd93 (census 649cb1f80, md5 b55c0d23…), section "Brown's formulation" l.283–290.
+- Rows: `88ecdc10f78b` (Theorem 1.1, plus a new clause: Corollary 1.2, every subgroup of U(R) has the factorization property) and `a63ff00e499b` (G lacks the factorization property; G is not a subgroup of U(R); the LLP clause belongs to oa-llp).
+- G is "a group as in Theorem thm:general": infinite, finitely generated, simple and Kazhdan.
+
+Absorbed oa-cstar-group (not resumed, 23:15). It wrote only its report, never landed and now gone from disk. It had no Lean drafts. Its claims are released:
+- `Analysis/GroupCStarRegularTensor`, `Analysis/GroupCStarPositiveDefiniteDilation`, `Analysis/FactorizationTraceToTensor`.
+- The planned content was λ·ρ on C*(G) ⊗ C*(G), the tensor form of the factorization property, and both directions of Brown's equivalence.
+- No printed step on this route consumes the tensor form: the repo definition is the trace side, which is Ozawa's Def 7.2 (F) via Thm 6.1 (ii). oa-llp consumes the trace side too.
+- The complex dilation it planned is replaced here by the real dilation in `KirchbergRealDilation`.
+
 Ownership check, 20:25: no origin declaration inhabits `KirchbergKazhdanFactorizationInput`. No `lanes/*.files` entry and no other swarm's scratchpad names Kirchberg's Theorem 1.1. The `BlackadarKirchberg*` and `KirchbergRordam*` modules are different theorems.
 
 ## Printed text (census 09e580c38)
