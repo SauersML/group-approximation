@@ -289,6 +289,14 @@ CLAIM `OsinLemma94ContactMapSmallFacesInput` (under the binders of `OsinLemma94L
     `Estimating/OsinLemma94ContactEmptyTwoGon.lean`): a nondegenerate small face holding no object gives False.
   - `osinLemma94ContactMapNondegenerateSmallFacesInput_of_pieces`: the residual from the two pieces.
   - The diagram-level two-gon data (rep, f, f′, a, b) is extracted by ms-traces-1 inside part 2.
+  - **Correction (10:5x, ms-traces-1):** part 2 is a count, not False. In configuration C the polygons f and f′ are rich
+    through other cells c, c′, so no sector merge is heavier and the empty two-gon occurs. The Prop is restated before
+    landing, with assembly constant K₁ + K₂.
+  - The injectivity for charging empty faces needs no nesting, and I passed it to ms-traces-1:
+    - two empty faces of one component that share a class are equal (the component lemma);
+    - two of different components in one class would make one hold the other's objects.
+- **LANDED 621c628bf** `CombMapRestrictionComponentFaceClasses` (probe 0914-104136-18898 GREEN; audit clean;
+  wire-queued).
 - Part 1, first brick: `CombMapRestrictionComponentFaceClasses` (attic, probing), with
   `PredicateRestriction.faceOf_eq_of_faceClass_of_componentOf`. Face classes of a planar map separate the faces of a
   first-return restriction inside one component.
