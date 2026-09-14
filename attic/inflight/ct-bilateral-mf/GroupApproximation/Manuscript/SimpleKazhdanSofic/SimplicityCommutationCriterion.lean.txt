@@ -57,14 +57,17 @@ theorem commute_elGen_iff (g : elementaryGroup ι R) {i j : ι} (hij : i ≠ j) 
   · intro h
     refine ⟨fun p hp => ?_, fun q hq => ?_, ?_⟩
     · have hpj := congrFun (congrFun h p) j
-      simpa only [ElementarySimplicity.mul_single_apply, ElementarySimplicity.single_mul_apply,
-        if_pos rfl, if_neg hp] using hpj
+      rw [ElementarySimplicity.mul_single_apply, ElementarySimplicity.single_mul_apply,
+        if_pos rfl, if_neg hp] at hpj
+      exact hpj
     · have hiq := congrFun (congrFun h i) q
-      simpa only [ElementarySimplicity.mul_single_apply, ElementarySimplicity.single_mul_apply,
-        if_pos rfl, if_neg hq, eq_comm] using hiq
+      rw [ElementarySimplicity.mul_single_apply, ElementarySimplicity.single_mul_apply,
+        if_neg hq, if_pos rfl] at hiq
+      exact hiq.symm
     · have hij' := congrFun (congrFun h i) j
-      simpa only [ElementarySimplicity.mul_single_apply, ElementarySimplicity.single_mul_apply,
-        if_pos rfl] using hij'
+      rw [ElementarySimplicity.mul_single_apply, ElementarySimplicity.single_mul_apply,
+        if_pos rfl, if_pos rfl] at hij'
+      exact hij'
   · rintro ⟨h1, h2, h3⟩
     ext p q
     rw [ElementarySimplicity.mul_single_apply, ElementarySimplicity.single_mul_apply]
