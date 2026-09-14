@@ -1,0 +1,28 @@
+OK   [X,A] = I - E21
+OK   [X,B] = I + E30
+OK   [X,C] = I + E32
+OK   [X,D] = I - E41
+OK   C E21 C^-1 = I + (e2+e1)(e1*-e2*)
+OK   A E32 A^-1 = I + (e3+e2)(e2*-e3*)
+OK   [E23,E30] = E20
+OK   C E20 C^-1 = (I+E20)(I+E10)
+OK   A E10 A^-1 = I + (e1+e0)(e0*-e1*)
+OK   C E03 C^-1 = (I+E03)(I-E04)
+OK   SL_2(F_3) generated: order 24, contains opposite transvection True
+OK   K=4: conj E0K = (I+E0K)(I-E0,K+1)
+OK   K=4: conj EK0 = (I+EK0)(I+EK+1,0)
+OK   K=5: conj E0K = (I+E0K)(I-E0,K+1)
+OK   K=5: conj EK0 = (I+EK0)(I+EK+1,0)
+OK   K=6: conj E0K = (I+E0K)(I-E0,K+1)
+OK   K=6: conj EK0 = (I+EK0)(I+EK+1,0)
+OK   K=7: conj E0K = (I+E0K)(I-E0,K+1)
+OK   K=7: conj EK0 = (I+EK0)(I+EK+1,0)
+OK   K=8: conj E0K = (I+E0K)(I-E0,K+1)
+OK   K=8: conj EK0 = (I+EK0)(I+EK+1,0)
+OK   K=9: conj E0K = (I+E0K)(I-E0,K+1)
+OK   K=9: conj EK0 = (I+EK0)(I+EK+1,0)
+OK   [E01,E12] = E02
+OK   [E40,E03] = E43
+OK   [E13,E30] = E10
+OK   [E52,E27] = E57
+TOTAL_FAILS 0

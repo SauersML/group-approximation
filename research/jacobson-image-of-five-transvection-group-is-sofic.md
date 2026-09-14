@@ -28,3 +28,15 @@ the Bruhat–Tits trees at `ζ = 0` and `ζ = ∞`). Amenable-by-sofic groups ar
     `GL_(2M)(F_3)`. These realize `Γ_V` exactly on vectors far from `M`. Near `M` they realize the opposite boundary
     convention (`ST = 1`, `TS = 1 - E_(M-1,M-1)`), so they are not known to respect the relations of `Γ_V` on balls. Not
     tested, and no LEF or sofic model found.
+  - **Rank compressions see only the symbol.** Compressions are rank-approximate homomorphisms, but every finitary
+    element, `x_23(1)` included, has bounded rank defect. So they approximate the quotient
+    `SL_2(F_3[ζ, ζ^(-1)])`, not `Γ_V`.
+- 2026-09-14 `gk3-transvections`: structure (`jacobson-half-line-group-contains-finitary-sl`).
+  - **The finitary part.** `Γ_V` contains every elementary transvection, so it contains the infinite simple group
+    `SL_fin(F_3)`, and `x_23(1)` lies in it. So no finite quotient and no finite-dimensional model of `Γ_V` separates
+    the defect, and `Γ_V` is not residually finite.
+  - **Intrinsic form.** `[𝒯 : Γ_V] <= 2` for `𝒯 = π^(-1)(SL_2(F_3[ζ, ζ^(-1)])) <= GL_2(J)`. So this claim is
+    equivalent to soficity of the symbol preimage `𝒯`, an extension of `SL_2(F_3[ζ, ζ^(-1)])` by `GL_fin(F_3)`.
+  - **What a proof needs.** Sofic approximations in which finitary elements move a positive proportion of points,
+    for example boundary-rich models with many independent half-line boundaries per window. Such an approximation
+    must be sofic but not LEF-by-compression.
