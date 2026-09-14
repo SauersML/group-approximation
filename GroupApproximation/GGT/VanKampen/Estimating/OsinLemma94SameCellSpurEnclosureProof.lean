@@ -1,0 +1,382 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellSpurEnclosure
+import GroupApproximation.GGT.VanKampen.ClosedWalkFirstTurnEnclosure
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The Case 1 one-cell pockets enclose their faces, bridges included
+
+Osin (math/0411039v3, §9), Lemma 9.4, Case 1, across one relator cell `Π`: the face walk of `f`
+reads `X q⁻¹ Y p⁻¹` and the carrier of `Π ≠ f` reads `q B p A`.  The complement spellings
+`B ++ X` and `A ++ Y` are closed walks chained by first turns
+(`SameCellPocketNoncrossing.firstTurn_chain_X`), whether or not they run along bridges.  So they
+enclose the faces reached from their non-bridge reversals (`enclosedFaces`,
+`FirstTurnEnclosure.mem_iff_enclosedFaces`), in the successor form (`EnclosedFaceSetSucc`).
+
+* `SameCellSpurEnclosureProof.face_not_mem_enclosedFaces_X`: `f` and `Π` are off the faces enclosed
+  by `B ++ X`.  One of them holds a walk dart, and the first dart of `p` is an edge between them off
+  the walk.
+* `SameCellSpurEnclosureProof.enclosedFaceSetSucc_X`: `B ++ X` encloses its faces when the exterior
+  face is off them.
+* `SameCellSpurEnclosureProof.disjoint_X_Y`: the two enclosures share no face.  A chain on one side
+  never meets `f` or `Π`, so it crosses no edge of the other walk, and would carry a reversal of the
+  other walk to a dart of it (against `FirstTurnEnclosure.alpha_mem_of_faceClass`).
+* `osinLemma94CaseOneSpurEnclosure : OsinLemma94CaseOneSpurEnclosureStatement`, closed: the exterior
+  face is off one of the two enclosures.  The spur hypothesis and `f ≠ Δ.outerFace` are not used.
+* `osinLemma94CaseOneRCellSpur_of_enclosedSucc`: the spur branch
+  (`OsinLemma94CaseOneRCellSpurStatement`) over `EnclosedSubdiagramLoopCutSuccStatement` and
+  `ClosedWalkEnclosedSubdiagramSuccStatement` alone.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, Hull's small cancellation theorem, through Osin's
+Lemma 9.4, Case 1); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded SimpleClosedWalkSides FirstTurnEnclosure
+
+namespace SameCellSpurEnclosureProof
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {Delta : DiscDiagram.{u, w, v} W} {f : Delta.toCombMap.Face} {j : Fin Delta.rCellCount}
+  {X Y B A : List Delta.toCombMap.Dart} {r n : ℕ}
+
+/-- The face walk rotated to `Y p⁻¹ X q⁻¹`, and the carrier rotated to `p A q B`. -/
+theorem rotate_Y {sourceArc targetArc : CyclicArc (cellDarts Delta j)}
+    (htrav : (Delta.faceBoundary f).darts.rotate r =
+      X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts)
+    (hPi : (cellDarts Delta j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A) :
+    (Delta.faceBoundary f).darts.rotate (r + (X ++ targetArc.reverseDarts).length) =
+        Y ++ sourceArc.reverseDarts ++ X ++ targetArc.reverseDarts ∧
+      (cellDarts Delta j).rotate (n + (targetArc.darts ++ B).length) =
+        sourceArc.darts ++ A ++ targetArc.darts ++ B := by
+  constructor
+  · rw [← List.rotate_rotate, htrav, show X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts
+      = (X ++ targetArc.reverseDarts) ++ (Y ++ sourceArc.reverseDarts) by
+        simp only [List.append_assoc], List.rotate_append_length_eq]
+    simp only [List.append_assoc]
+  · rw [← List.rotate_rotate, hPi, show targetArc.darts ++ B ++ sourceArc.darts ++ A
+      = (targetArc.darts ++ B) ++ (sourceArc.darts ++ A) by
+        simp only [List.append_assoc], List.rotate_append_length_eq]
+    simp only [List.append_assoc]
+
+/-- **The complement spelling `B ++ X` is a nonempty walk chained by first turns.** -/
+theorem firstTurnWalk_X (hf : (cell Delta j).face ≠ f)
+    (sourceArc targetArc : CyclicArc (cellDarts Delta j))
+    (htrav : (Delta.faceBoundary f).darts.rotate r =
+      X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts)
+    (hPi : (cellDarts Delta j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A)
+    (hs : 0 < sourceArc.length) (ht : 0 < targetArc.length) (hne : X ++ B ≠ []) :
+    ∃ hc : B ++ X ≠ [], (B ++ X).IsChain (FirstTurn Delta.toCombMap (B ++ X)) ∧
+      FirstTurn Delta.toCombMap (B ++ X) ((B ++ X).getLast hc) ((B ++ X).head hc) := by
+  have hc : B ++ X ≠ [] := fun h => hne (by
+    obtain ⟨h₁, h₂⟩ := List.append_eq_nil_iff.mp h
+    rw [h₁, h₂]
+    rfl)
+  exact ⟨hc, SameCellPocketNoncrossing.firstTurn_chain_X hf sourceArc targetArc htrav hPi hs,
+    SameCellPocketNoncrossing.firstTurn_close_X hf sourceArc targetArc htrav hPi hs ht hc⟩
+
+/-- The complement spelling `B ++ X` repeats no dart. -/
+theorem nodup_X (hf : (cell Delta j).face ≠ f)
+    (sourceArc targetArc : CyclicArc (cellDarts Delta j))
+    (htrav : (Delta.faceBoundary f).darts.rotate r =
+      X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts)
+    (hPi : (cellDarts Delta j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A) :
+    (B ++ X).Nodup := by
+  have hwalk : (X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts).Nodup := by
+    rw [← htrav]
+    exact List.nodup_rotate.mpr (Delta.faceBoundary f).nodup
+  have hcarrier : (targetArc.darts ++ B ++ sourceArc.darts ++ A).Nodup := by
+    rw [← hPi]
+    exact List.nodup_rotate.mpr (Delta.faceBoundary (cell Delta j).face).nodup
+  have hXnd : X.Nodup :=
+    (List.nodup_append.mp (List.nodup_append.mp (List.nodup_append.mp hwalk).1).1).1
+  have hBnd : B.Nodup :=
+    (List.nodup_append.mp (List.nodup_append.mp (List.nodup_append.mp hcarrier).1).1).2.1
+  exact List.nodup_append.mpr ⟨hBnd, hXnd, fun a ha b hb hab => by
+    subst hab
+    exact hf ((SameCellPocketSides.faceOf_of_mem_cellDarts_rotate hPi
+      (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_right _ ha)))).symm.trans
+      (SameCellPocketSides.faceOf_of_mem_rotate htrav
+        (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_left _ hb)))))⟩
+
+/-- The darts of `B ++ X` lie on `f` or on `Π`. -/
+theorem faceOf_of_mem_X {sourceArc targetArc : CyclicArc (cellDarts Delta j)}
+    (htrav : (Delta.faceBoundary f).darts.rotate r =
+      X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts)
+    (hPi : (cellDarts Delta j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A)
+    {d : Delta.toCombMap.Dart} (hd : d ∈ B ++ X) :
+    Delta.toCombMap.faceOf d = f ∨ Delta.toCombMap.faceOf d = (cell Delta j).face := by
+  rcases List.mem_append.mp hd with hB | hX
+  · exact Or.inr (SameCellPocketSides.faceOf_of_mem_cellDarts_rotate hPi
+      (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_right _ hB))))
+  · exact Or.inl (SameCellPocketSides.faceOf_of_mem_rotate htrav
+      (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_left _ hX))))
+
+/-- **`f` and `Π` are off the faces enclosed by `B ++ X`.** -/
+theorem face_not_mem_enclosedFaces_X (hf : (cell Delta j).face ≠ f)
+    (sourceArc targetArc : CyclicArc (cellDarts Delta j))
+    (htrav : (Delta.faceBoundary f).darts.rotate r =
+      X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts)
+    (hPi : (cellDarts Delta j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A)
+    (hs : 0 < sourceArc.length) (ht : 0 < targetArc.length) (hne : X ++ B ≠ []) :
+    f ∉ enclosedFaces Delta.toCombMap (B ++ X) ∧
+      (cell Delta j).face ∉ enclosedFaces Delta.toCombMap (B ++ X) := by
+  obtain ⟨hc, hfchain, hclose⟩ := firstTurnWalk_X hf sourceArc targetArc htrav hPi hs ht hne
+  have hchain : (B ++ X).IsChain fun d e =>
+      Delta.toCombMap.vertexOf (Delta.toCombMap.alpha d) = Delta.toCombMap.vertexOf e :=
+    hfchain.imp fun _ _ h => h.vertexOf_eq
+  have hturn := turnMem_of_firstTurn hc hfchain hclose
+  have hp := sourceArc.darts_ne_nil_of_length_pos hs
+  have hpface : Delta.toCombMap.faceOf (sourceArc.darts.head hp) = (cell Delta j).face :=
+    SameCellPocketSides.faceOf_of_mem_cellDarts_rotate hPi
+      (List.mem_append_left _ (List.mem_append_right _ (List.head_mem hp)))
+  have hαface : Delta.toCombMap.faceOf (Delta.toCombMap.alpha (sourceArc.darts.head hp)) = f :=
+    SameCellPocketSides.faceOf_of_mem_rotate htrav (List.mem_append_right _
+      (List.mem_map.mpr ⟨_, List.mem_reverse.mpr (List.head_mem hp), rfl⟩))
+  have hkeep := SameCellPocketNoncrossing.not_walkKeep_head_p hf sourceArc targetArc htrav hPi hs
+  have hiff : f ∈ enclosedFaces Delta.toCombMap (B ++ X) ↔
+      (cell Delta j).face ∈ enclosedFaces Delta.toCombMap (B ++ X) := by
+    constructor
+    · intro h
+      have h' := faceOf_alpha_mem_enclosedFaces (c := B ++ X)
+        (x := Delta.toCombMap.alpha (sourceArc.darts.head hp)) (by rwa [walkKeep_alpha])
+        (by rw [hαface]; exact h)
+      rwa [Delta.toCombMap.alpha_involutive, hpface] at h'
+    · intro h
+      have h' := faceOf_alpha_mem_enclosedFaces hkeep (by rw [hpface]; exact h)
+      rwa [hαface] at h'
+  by_cases hX : X = []
+  · have hB : B ≠ [] := by
+      rintro rfl
+      exact hne (by rw [hX]; rfl)
+    have hmem : B.head hB ∈ B ++ X := List.mem_append_left _ (List.head_mem hB)
+    have hBface : Delta.toCombMap.faceOf (B.head hB) = (cell Delta j).face :=
+      SameCellPocketSides.faceOf_of_mem_cellDarts_rotate hPi
+        (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_right _ (List.head_mem hB))))
+    have hcellOut := faceOf_not_mem_enclosedFaces Delta.planar hc hchain hturn hmem
+    rw [hBface] at hcellOut
+    exact ⟨fun h => hcellOut (hiff.mp h), hcellOut⟩
+  · have hmem : X.head hX ∈ B ++ X := List.mem_append_right _ (List.head_mem hX)
+    have hXface : Delta.toCombMap.faceOf (X.head hX) = f :=
+      SameCellPocketSides.faceOf_of_mem_rotate htrav
+        (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_left _ (List.head_mem hX))))
+    have hfOut := faceOf_not_mem_enclosedFaces Delta.planar hc hchain hturn hmem
+    rw [hXface] at hfOut
+    exact ⟨hfOut, fun h => hfOut (hiff.mpr h)⟩
+
+/-- **The complement spelling `B ++ X` encloses its faces**, in the successor form, when the exterior
+face is off them. -/
+theorem enclosedFaceSetSucc_X (hf : (cell Delta j).face ≠ f)
+    (sourceArc targetArc : CyclicArc (cellDarts Delta j))
+    (htrav : (Delta.faceBoundary f).darts.rotate r =
+      X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts)
+    (hPi : (cellDarts Delta j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A)
+    (hs : 0 < sourceArc.length) (ht : 0 < targetArc.length) (hne : X ++ B ≠ [])
+    (hout : Delta.outerFace ∉ enclosedFaces Delta.toCombMap (B ++ X)) :
+    EnclosedFaceSetSucc Delta (enclosedFaces Delta.toCombMap (B ++ X)) (B ++ X) := by
+  obtain ⟨hc, hfchain, hclose⟩ := firstTurnWalk_X hf sourceArc targetArc htrav hPi hs ht hne
+  have hchain : (B ++ X).IsChain fun d e =>
+      Delta.toCombMap.vertexOf (Delta.toCombMap.alpha d) = Delta.toCombMap.vertexOf e :=
+    hfchain.imp fun _ _ h => h.vertexOf_eq
+  have hturn := turnMem_of_firstTurn hc hfchain hclose
+  exact
+    { outerFace_not_mem := hout
+      ne_nil := hc
+      nodup := nodup_X hf sourceArc targetArc htrav hPi
+      chain := hchain
+      closes := hclose.vertexOf_eq
+      mem_iff := mem_iff_enclosedFaces Delta.planar hc hchain hturn
+      turn_mem := hturn
+      turn_next := fun _ hi _ hm hkeep hfirst =>
+        eq_of_firstTurn (firstTurn_getElem_succ hc hfchain hclose hi (Nat.mod_lt _ (by omega)))
+          (List.getElem_mem _) hm hkeep hfirst }
+
+/-- The walks `B ++ X` and `A ++ Y` share no dart. -/
+theorem not_mem_Y_of_mem_X (hf : (cell Delta j).face ≠ f)
+    {sourceArc targetArc : CyclicArc (cellDarts Delta j)}
+    (htrav : (Delta.faceBoundary f).darts.rotate r =
+      X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts)
+    (hPi : (cellDarts Delta j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A)
+    {d : Delta.toCombMap.Dart} (hd₁ : d ∈ B ++ X) (hd₂ : d ∈ A ++ Y) : False := by
+  have hwalk : (X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts).Nodup := by
+    rw [← htrav]
+    exact List.nodup_rotate.mpr (Delta.faceBoundary f).nodup
+  have hcarrier : (targetArc.darts ++ B ++ sourceArc.darts ++ A).Nodup := by
+    rw [← hPi]
+    exact List.nodup_rotate.mpr (Delta.faceBoundary (cell Delta j).face).nodup
+  rcases List.mem_append.mp hd₁ with hB | hX <;> rcases List.mem_append.mp hd₂ with hA | hY
+  · exact (SameCellPocketSides.nodup_append_four hcarrier).2 _
+      (List.mem_append_left _ (List.mem_append_right _ hB)) _ hA rfl
+  · exact hf ((SameCellPocketSides.faceOf_of_mem_cellDarts_rotate hPi
+      (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_right _ hB)))).symm.trans
+      (SameCellPocketSides.faceOf_of_mem_rotate htrav
+        (List.mem_append_left _ (List.mem_append_right _ hY))))
+  · exact hf ((SameCellPocketSides.faceOf_of_mem_cellDarts_rotate hPi
+      (List.mem_append_right _ hA)).symm.trans (SameCellPocketSides.faceOf_of_mem_rotate htrav
+        (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_left _ hX)))))
+  · exact (SameCellPocketSides.nodup_append_four hwalk).1 _ (List.mem_append_left _ hX) _ hY rfl
+
+/-- **From a dart on `f` or on `Π`, a chain off the edges of `A ++ Y` reaches a dart of it**: around
+the face, and across the first dart of `q` when the other face holds the walk. -/
+theorem exists_reach_Y (hf : (cell Delta j).face ≠ f)
+    (sourceArc targetArc : CyclicArc (cellDarts Delta j))
+    (htrav : (Delta.faceBoundary f).darts.rotate r =
+      X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts)
+    (hPi : (cellDarts Delta j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A)
+    (ht : 0 < targetArc.length) (hne : Y ++ A ≠ []) {z : Delta.toCombMap.Dart}
+    (hz : Delta.toCombMap.faceOf z = f ∨ Delta.toCombMap.faceOf z = (cell Delta j).face) :
+    ∃ d ∈ A ++ Y, Relation.EqvGen
+      (CombMap.FaceClassStep Delta.toCombMap (walkKeep Delta.toCombMap (A ++ Y))) z d := by
+  obtain ⟨htrav', hPi'⟩ := rotate_Y htrav hPi
+  have hq := targetArc.darts_ne_nil_of_length_pos ht
+  have hkeep := SameCellPocketNoncrossing.not_walkKeep_head_p hf targetArc sourceArc htrav' hPi' ht
+  have hqface : Delta.toCombMap.faceOf (targetArc.darts.head hq) = (cell Delta j).face :=
+    SameCellPocketSides.faceOf_of_mem_cellDarts_rotate hPi
+      (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_left _ (List.head_mem hq))))
+  have hαface : Delta.toCombMap.faceOf (Delta.toCombMap.alpha (targetArc.darts.head hq)) = f :=
+    SameCellPocketSides.faceOf_of_mem_rotate htrav (List.mem_append_left _ (List.mem_append_left _
+      (List.mem_append_right _ (List.mem_map.mpr ⟨_, List.mem_reverse.mpr (List.head_mem hq), rfl⟩))))
+  have hface : ∀ x y : Delta.toCombMap.Dart, Delta.toCombMap.faceOf x = Delta.toCombMap.faceOf y →
+      Relation.EqvGen
+        (CombMap.FaceClassStep Delta.toCombMap (walkKeep Delta.toCombMap (A ++ Y))) x y :=
+    fun x y e =>
+      eqvGen_faceClass_of_sameCycle Delta.toCombMap _ ((Delta.toCombMap.faceOf_eq_iff x y).mp e)
+  have hcross : Relation.EqvGen
+      (CombMap.FaceClassStep Delta.toCombMap (walkKeep Delta.toCombMap (A ++ Y)))
+      (targetArc.darts.head hq) (Delta.toCombMap.alpha (targetArc.darts.head hq)) :=
+    .rel _ _ (Or.inr ⟨hkeep, rfl⟩)
+  by_cases hY : Y = []
+  · have hA : A ≠ [] := by
+      rintro rfl
+      exact hne (by rw [hY]; rfl)
+    have hAface : Delta.toCombMap.faceOf (A.head hA) = (cell Delta j).face :=
+      SameCellPocketSides.faceOf_of_mem_cellDarts_rotate hPi
+        (List.mem_append_right _ (List.head_mem hA))
+    refine ⟨A.head hA, List.mem_append_left _ (List.head_mem hA), ?_⟩
+    rcases hz with hz | hz
+    · exact .trans _ _ _ (hface _ _ (hz.trans hαface.symm))
+        (.trans _ _ _ (.symm _ _ hcross) (hface _ _ (hqface.trans hAface.symm)))
+    · exact hface _ _ (hz.trans hAface.symm)
+  · have hYface : Delta.toCombMap.faceOf (Y.head hY) = f :=
+      SameCellPocketSides.faceOf_of_mem_rotate htrav
+        (List.mem_append_left _ (List.mem_append_right _ (List.head_mem hY)))
+    refine ⟨Y.head hY, List.mem_append_right _ (List.head_mem hY), ?_⟩
+    rcases hz with hz | hz
+    · exact hface _ _ (hz.trans hYface.symm)
+    · exact .trans _ _ _ (hface _ _ (hz.trans hqface.symm))
+        (.trans _ _ _ hcross (hface _ _ (hαface.trans hYface.symm)))
+
+/-- **The two complement spellings enclose disjoint faces.**  A chain inside the faces enclosed by
+`B ++ X` never meets `f` or `Π`, so it crosses no edge of `A ++ Y`.  It would carry a reversal of
+`A ++ Y` to a dart of `A ++ Y` off the edges of `A ++ Y`, against separation. -/
+theorem disjoint_X_Y (hf : (cell Delta j).face ≠ f)
+    (sourceArc targetArc : CyclicArc (cellDarts Delta j))
+    (htrav : (Delta.faceBoundary f).darts.rotate r =
+      X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts)
+    (hPi : (cellDarts Delta j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A)
+    (hs : 0 < sourceArc.length) (ht : 0 < targetArc.length) (hne₁ : X ++ B ≠ [])
+    (hne₂ : Y ++ A ≠ []) {g : Delta.toCombMap.Face}
+    (hg₁ : g ∈ enclosedFaces Delta.toCombMap (B ++ X))
+    (hg₂ : g ∈ enclosedFaces Delta.toCombMap (A ++ Y)) : False := by
+  obtain ⟨htrav', hPi'⟩ := rotate_Y htrav hPi
+  have hF₁ := face_not_mem_enclosedFaces_X hf sourceArc targetArc htrav hPi hs ht hne₁
+  obtain ⟨hc₂, hfchain₂, hclose₂⟩ := firstTurnWalk_X hf targetArc sourceArc htrav' hPi' ht hs hne₂
+  have hchain₂ : (A ++ Y).IsChain fun d e =>
+      Delta.toCombMap.vertexOf (Delta.toCombMap.alpha d) = Delta.toCombMap.vertexOf e :=
+    hfchain₂.imp fun _ _ h => h.vertexOf_eq
+  have hturn₂ := turnMem_of_firstTurn hc₂ hfchain₂ hclose₂
+  have hclos : ∀ y z : Delta.toCombMap.Dart,
+      Delta.toCombMap.faceOf y ∈ enclosedFaces Delta.toCombMap (B ++ X) →
+      Relation.EqvGen
+        (CombMap.FaceClassStep Delta.toCombMap (walkKeep Delta.toCombMap (B ++ X))) y z →
+      Delta.toCombMap.faceOf z ∈ enclosedFaces Delta.toCombMap (B ++ X) := fun y z hy h => by
+    obtain ⟨a, ha, hna, h'⟩ := (mem_enclosedFaces_iff _ _ y).mp hy
+    exact (mem_enclosedFaces_iff _ _ z).mpr ⟨a, ha, hna, .trans _ _ _ h' h⟩
+  have hoff : ∀ y : Delta.toCombMap.Dart,
+      Delta.toCombMap.faceOf y ∈ enclosedFaces Delta.toCombMap (B ++ X) → y ∉ A ++ Y := by
+    intro y hy hy₂
+    rcases faceOf_of_mem_X htrav' hPi' hy₂ with e | e
+    · exact hF₁.1 (by rw [← e]; exact hy)
+    · exact hF₁.2 (by rw [← e]; exact hy)
+  have htransport : ∀ y z : Delta.toCombMap.Dart,
+      Relation.EqvGen
+        (CombMap.FaceClassStep Delta.toCombMap (walkKeep Delta.toCombMap (B ++ X))) y z →
+      Delta.toCombMap.faceOf y ∈ enclosedFaces Delta.toCombMap (B ++ X) →
+      Relation.EqvGen
+        (CombMap.FaceClassStep Delta.toCombMap (walkKeep Delta.toCombMap (A ++ Y))) y z := by
+    intro y z h
+    induction h with
+    | rel y z hyz =>
+      intro hy
+      rcases hyz with hyz | ⟨hk, hyz⟩
+      · exact .rel _ _ (Or.inl hyz)
+      · refine .rel _ _ (Or.inr ⟨?_, hyz⟩)
+        rintro (hy₂ | hαy₂)
+        · exact hoff y hy hy₂
+        · exact hoff _ (faceOf_alpha_mem_enclosedFaces hk hy) hαy₂
+    | refl y => intro _; exact .refl _
+    | symm y z h ih => intro hz; exact .symm _ _ (ih (hclos z y hz (.symm _ _ h)))
+    | trans y z w hyz _ ih₁ ih₂ => intro hy; exact .trans _ _ _ (ih₁ hy) (ih₂ (hclos y z hy hyz))
+  obtain ⟨x, rfl⟩ := Quotient.exists_rep g
+  obtain ⟨a₁, ha₁, hna₁, hx₁⟩ := (mem_enclosedFaces_iff _ _ x).mp hg₁
+  obtain ⟨a₂, ha₂, hna₂, hx₂⟩ := (mem_enclosedFaces_iff _ _ x).mp hg₂
+  have hseed : Delta.toCombMap.faceOf (Delta.toCombMap.alpha a₁) ∈
+      enclosedFaces Delta.toCombMap (B ++ X) :=
+    (mem_enclosedFaces_iff _ _ _).mpr ⟨a₁, ha₁, hna₁, .refl _⟩
+  have h₂₁ := Relation.EqvGen.trans _ _ _ hx₂ (.symm _ _ (htransport _ _ hx₁ hseed))
+  obtain ⟨d, hd, hreach⟩ : ∃ d ∈ A ++ Y, Relation.EqvGen
+      (CombMap.FaceClassStep Delta.toCombMap (walkKeep Delta.toCombMap (A ++ Y)))
+      (Delta.toCombMap.alpha a₁) d := by
+    by_cases hα : Delta.toCombMap.alpha a₁ ∈ A ++ Y
+    · exact ⟨_, hα, .refl _⟩
+    · have hk : ¬ walkKeep Delta.toCombMap (A ++ Y) (Delta.toCombMap.alpha a₁) := by
+        rintro (h | h)
+        · exact hα h
+        · rw [Delta.toCombMap.alpha_involutive] at h
+          exact not_mem_Y_of_mem_X hf htrav hPi ha₁ h
+      obtain ⟨d, hd, hz⟩ := exists_reach_Y hf sourceArc targetArc htrav hPi ht hne₂
+        (faceOf_of_mem_X htrav hPi ha₁)
+      refine ⟨d, hd, .trans _ _ _ (.rel _ _ (Or.inr ⟨hk, ?_⟩)) hz⟩
+      rw [Delta.toCombMap.alpha_involutive]
+  exact hna₂ (alpha_mem_of_faceClass Delta.planar hc₂ hchain₂ hturn₂ hd ha₂
+    (.symm _ _ (.trans _ _ _ h₂₁ hreach)))
+
+end SameCellSpurEnclosureProof
+
+open SameCellSpurEnclosureProof in
+/-- **The enclosure of a Case 1 one-cell pocket**, closed.  The exterior face is off one of the two
+disjoint enclosures, and that complement spelling encloses its faces with `Π` outside. -/
+theorem osinLemma94CaseOneSpurEnclosure : OsinLemma94CaseOneSpurEnclosureStatement.{u, w, v} := by
+  intro G _ Lambda W Delta f j _hfout hf sourceArc targetArc X Y r htrav B A n hPi hs ht hne₁ hne₂
+    _hsp
+  obtain ⟨htrav', hPi'⟩ := rotate_Y htrav hPi
+  by_cases hout : Delta.outerFace ∈ enclosedFaces Delta.toCombMap (B ++ X)
+  · exact Or.inr ⟨_, enclosedFaceSetSucc_X hf targetArc sourceArc htrav' hPi' ht hs hne₂
+      fun h => disjoint_X_Y hf sourceArc targetArc htrav hPi hs ht hne₁ hne₂ hout h,
+      (face_not_mem_enclosedFaces_X hf targetArc sourceArc htrav' hPi' ht hs hne₂).2⟩
+  · exact Or.inl ⟨_, enclosedFaceSetSucc_X hf sourceArc targetArc htrav hPi hs ht hne₁ hout,
+      (face_not_mem_enclosedFaces_X hf sourceArc targetArc htrav hPi hs ht hne₁).2⟩
+
+/-- **The spur branch**, over the enclosed subdiagram and the loop cut in the successor form. -/
+theorem osinLemma94CaseOneRCellSpur_of_enclosedSucc
+    (hloop : EnclosedSubdiagramLoopCutSuccStatement.{u, w, v})
+    (hsub : ClosedWalkEnclosedSubdiagramSuccStatement.{u, w, v}) :
+    OsinLemma94CaseOneRCellSpurStatement.{u, w, v} :=
+  osinLemma94CaseOneRCellSpur_of_enclosure hloop hsub osinLemma94CaseOneSpurEnclosure
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.rotate_Y
+#audit_axioms GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.firstTurnWalk_X
+#audit_axioms GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.nodup_X
+#audit_axioms GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.face_not_mem_enclosedFaces_X
+#audit_axioms GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.enclosedFaceSetSucc_X
+#audit_axioms GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.not_mem_Y_of_mem_X
+#audit_axioms GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.exists_reach_Y
+#audit_axioms GroupApproximation.GGT.VanKampen.SameCellSpurEnclosureProof.disjoint_X_Y
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.osinLemma94CaseOneSpurEnclosure
+#audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94CaseOneRCellSpur_of_enclosedSucc
