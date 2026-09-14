@@ -88,3 +88,28 @@ Kazhdan LEF group. It separates these groups from the non-C*-simple simple group
      - a topologically free boundary action;
      - ping-pong for conjugates. For each finite `P ⊆ G ∖ {1}`, find `g_1, g_2, g_3` such that every choice `p_i ∈ P` makes
        `⟨g_i^{-1}p_ig_i⟩` non-amenable. Then no amenable subgroup is confined.
+8. **Idempotent commutator lemma, done; its starting conditions, mapped (sk-cstar-idempotent, 2026-09-13).** Artifact
+   `research/artifacts/sk-cstar-idempotent-2026-09-13-part1.md`.
+   - **Established (unreviewed):** `unit-group-confined-subgroups-idempotent-commutator-lemma`. Le Boudec–Matte Bon's Theorem 3.17
+     holds for unit groups of rings, with idempotents as supports, orthogonality as disjointness, compressions as restrictions, and
+     any chosen rigid subgroups `R_E` supported in `E`. With `R_E = EL_3` of a first-return crossed product (infinite, simple,
+     nonamenable), a confined `H` with an idempotent displacement configuration contains some `R_E`. So Attempt 6's lemma exists.
+   - **Established (unreviewed):** `idempotent-displacement-fails-for-polynomially-small-units`. If `1 ∈ span_{F_2}(σ^{±1},σ^{±2})`,
+     no idempotent satisfies (C4) for `σ`, in any ring. This excludes involutions (every transvection), `I+E_12+E_23` and Singer
+     cycles, all already in `EL_3(F_2) ≤ G`. If `σ + σ^{-1} = 1`, no idempotent is displaced at all.
+   - **What remains, and where it dies so far:**
+     - (L3) LBMB's compactness lemma removes any global class `B` from the confining set, at the cost of a confined amenable `K`
+       in the orbit closure with `K ⊆ B ∪ {1}`. For `B_4 = {σ : 1 ∈ span(σ^{±1},σ^{±2})}` these `K` have bounded exponent. Excluding
+       them needs single displacement of each confining element, which Lemma B blocks for `σ^2+σ+1 = 0`.
+     - (L4) Configurations for finite `P ⊆ G ∖ B_4`. Put each `E_σ` as a rank-one idempotent `vφ` over a small tower base, with the
+       towers far apart. The cross conditions then vanish, and what remains is linear algebra over `F_2` on one tower: find `v` outside
+       `span{S^{±1}v, S^{±2}v, R_ρ^{±1}v}`, where the `R_ρ` are the elements of `P` not trivial on `E_σ`.
+       - Spreading `v` over `m ≥ n` translated copies of the tower (a tensor trick) reduces this to the absence of a local operator
+         identity `1 = Σ c_T T`.
+       - The dichotomy in (C3) is the weak point. A global exclusion of `B_4` does not control local identities of other elements of
+         `P` on `σ`'s tower. Example: a tower copy of `GL_6(F_2)` in `G` contains `ω` with `ω^2+ω+1 = 0` on a height-2 tower corner
+         and `ω = 1` off it, so `ω ∉ B_4`.
+       - Mixing `v` across regions where each `ρ` is the identity or behaves differently may avoid this, but no general argument is
+         known.
+     - Verdict: the idempotent route is not dead, but it needs a genericity lemma (L4) with local polynomial identities as its only
+       obstruction, plus a separate exclusion of confined bounded-exponent subgroups (L3).
