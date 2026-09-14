@@ -1,0 +1,254 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94LongTransitions
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionExclusion
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingChains
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ShortSides
+import GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts
+import GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4: cutting transitions are bounded by an Euler count
+
+Piece 2 of `OsinLemma94LongTransitions`: the cutting transitions.  A cutting transition ends a
+cell or boundary run where the walk enters a cutting path.  The first dart of that cutting side is
+a *start*: it has the polygon's face on both sides, and its predecessor at its vertex does not.
+
+Let `X` (`forestDarts`) be the darts with one unselected `G`-face on both sides; the cutting sides
+are made of them.  With `v₀` the vertices all of whose darts lie in `X`:
+
+1. `card_cuttingTransitions_le_sameFaceStarts`: the cutting transitions of polygon `k` are at most
+   the starts of its face.
+2. `sum_card_sameFaceStarts_le`: the starts of the polygons are at most the starts of `X`.
+3. `sigma_ne_of_mem_forestDarts`: a dart-minimal family has no dart of `X` fixed by the rotation
+   (`not_leaf_of_dartMinimal`), so `starts + 2 v₀ ≤ |X|` (`CombMap.card_starts_add_two_mul_le`).
+4. The first-return deletion `forestDeleted` of `X` keeps every face
+   (`exists_keep_faceOf_eq`), so `2 χ(Δ) + |X| ≤ 2 χ(Δ') + 2 v₀`
+   (`PredicateRestriction.two_mul_eulerCharacteristic_le`), with `χ(Δ) = 2`.
+5. `card_forestStarts_add_four_le`: for every set `T` of darts of `Δ'` meeting every component,
+   `starts + 4 ≤ 4 |T|` (`CombMap.eulerCharacteristic_le_two_mul_card_of_hitting`).
+
+A hitting set with one dart per relator cell and one exterior dart gives the bound `4 n`.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (through Osin's Lemma 9.4, arXiv:math/0411039v3, §9); certifies no
+printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open GroupApproximation.GGT.VanKampen.UnboundEstimate
+open scoped Classical
+
+namespace OsinLemma94RealizedPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+/-- A cutting transition is a cell or boundary side followed by a cutting side. -/
+theorem kinds_of_mem_cuttingTransitions (P : OsinLemma94RealizedPolygons S) {k : Fin P.count}
+    {s : ℕ} (hs : s ∈ P.cuttingTransitions k) :
+    s < P.sideCount k ∧ ((∃ j, P.kind k s = .cell j) ∨ ∃ j, P.kind k s = .boundary j) ∧
+      P.kind k ((s + 1) % P.sideCount k) = .cutting := by
+  obtain ⟨hlong, hcut⟩ := Finset.mem_filter.mp hs
+  obtain ⟨hrun, -⟩ := Finset.mem_filter.mp hlong
+  obtain ⟨hrange, hkind, -⟩ := Finset.mem_filter.mp hrun
+  exact ⟨Finset.mem_range.mp hrange, hkind, hcut⟩
+
+/-- A dart of a cell or boundary side does not have the polygon's face across it. -/
+theorem faceOf_alpha_ne_of_cell_or_boundary (P : OsinLemma94RealizedPolygons S) {k : Fin P.count}
+    {s : ℕ} (hs : s < P.sideCount k)
+    (hkind : (∃ j, P.kind k s = .cell j) ∨ ∃ j, P.kind k s = .boundary j)
+    {d : S.diagram.toCombMap.Dart} (hd : d ∈ P.sideDarts k s) :
+    S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) ≠ P.face k := by
+  intro halpha
+  rcases hkind with ⟨j, hk⟩ | ⟨j, hk⟩
+  · obtain ⟨arc, harc⟩ := P.cell_arc k s j hs hk
+    rw [harc] at hd
+    simp only [Embedded.CyclicArc.reverseDarts, List.mem_map, List.mem_reverse] at hd
+    obtain ⟨e, he, rfl⟩ := hd
+    rw [S.diagram.toCombMap.alpha_involutive e] at halpha
+    exact P.face_not_cell k j
+      ((Embedded.faceOf_of_mem_cellDarts (arc.mem_cycle_of_mem_darts he)).symm.trans halpha)
+  · obtain ⟨_hj, arc, harc, _, _⟩ := P.boundary_arc k s j hs hk
+    rw [harc] at hd
+    exact P.face_ne_outer k (halpha.symm.trans
+      (Embedded.faceOf_alpha_of_mem_targetArc_none S.diagram none arc rfl hd))
+
+/-- **The cutting transitions of polygon `k` are at most the starts of its face.** -/
+theorem card_cuttingTransitions_le_sameFaceStarts (P : OsinLemma94RealizedPolygons S)
+    (k : Fin P.count) :
+    (P.cuttingTransitions k).card ≤ (S.diagram.toCombMap.sameFaceStarts (P.face k)).card := by
+  obtain ⟨x0, -⟩ := List.exists_mem_of_ne_nil _ (S.diagram.faceBoundary (P.face k)).nonempty
+  have hhead : ∀ i, i < P.sideCount k →
+      (P.sideDarts k i).headD x0 ∈ (P.sideDarts k i).head? := by
+    intro i hi
+    obtain ⟨a, l, hal⟩ := List.exists_cons_of_ne_nil (P.side_ne_nil k i hi)
+    rw [hal]
+    exact rfl
+  refine Finset.card_le_card_of_injOn
+    (fun s => (P.sideDarts k ((s + 1) % P.sideCount k)).headD x0) ?_ ?_
+  · intro s hs
+    obtain ⟨hsn, hkind, hcut⟩ := P.kinds_of_mem_cuttingTransitions (Finset.mem_coe.mp hs)
+    have hpos : 0 < P.sideCount k := lt_of_le_of_lt (Nat.zero_le s) hsn
+    have htn : (s + 1) % P.sideCount k < P.sideCount k := Nat.mod_lt _ hpos
+    have hy := hhead _ htn
+    have hymem := List.mem_of_mem_head? hy
+    refine Finset.mem_coe.mpr (S.diagram.toCombMap.mem_sameFaceStarts.mpr ⟨?_, ?_⟩)
+    · exact (S.diagram.toCombMap.mem_sameFaceDarts _ _).mpr
+        ⟨P.faceOf_of_mem_sideDarts htn hymem, P.cutting_internal k _ htn hcut _ hymem⟩
+    · obtain ⟨x, hx⟩ : ∃ x, x ∈ (P.sideDarts k s).getLast? := by
+        obtain ⟨a, l, hal⟩ := List.exists_cons_of_ne_nil (P.side_ne_nil k s hsn)
+        exact ⟨(P.sideDarts k s).getLast (P.side_ne_nil k s hsn),
+          List.getLast?_eq_getLast (P.side_ne_nil k s hsn) ▸ rfl⟩
+      have hfp := P.facePerm_getLast_eq_head_mod hsn hx hy
+      have hsymm : S.diagram.toCombMap.sigma.symm
+          ((P.sideDarts k ((s + 1) % P.sideCount k)).headD x0) =
+            S.diagram.toCombMap.alpha x := by
+        rw [Equiv.symm_apply_eq]
+        exact hfp.symm
+      rw [hsymm]
+      intro hmem
+      have halpha := ((S.diagram.toCombMap.mem_sameFaceDarts _ _).mp hmem).1
+      exact P.faceOf_alpha_ne_of_cell_or_boundary hsn hkind (List.mem_of_mem_getLast? hx)
+        (by rw [S.diagram.toCombMap.alpha_involutive]; exact
+          (P.faceOf_of_mem_sideDarts hsn (List.mem_of_mem_getLast? hx)).symm.trans
+            (by rw [← halpha]))
+  · intro s1 hs1 s2 hs2 h12
+    obtain ⟨hs1n, -, -⟩ := P.kinds_of_mem_cuttingTransitions (Finset.mem_coe.mp hs1)
+    obtain ⟨hs2n, -, -⟩ := P.kinds_of_mem_cuttingTransitions (Finset.mem_coe.mp hs2)
+    have hpos : 0 < P.sideCount k := lt_of_le_of_lt (Nat.zero_le s1) hs1n
+    have ht1 : (s1 + 1) % P.sideCount k < P.sideCount k := Nat.mod_lt _ hpos
+    have ht2 : (s2 + 1) % P.sideCount k < P.sideCount k := Nat.mod_lt _ hpos
+    have hy1 := List.mem_of_mem_head? (hhead _ ht1)
+    have hy2 := List.mem_of_mem_head? (hhead _ ht2)
+    have heq : (s1 + 1) % P.sideCount k = (s2 + 1) % P.sideCount k := by
+      by_contra hne
+      have h12' : (P.sideDarts k ((s1 + 1) % P.sideCount k)).headD x0 =
+          (P.sideDarts k ((s2 + 1) % P.sideCount k)).headD x0 := h12
+      exact P.sideDarts_disjoint k ht1 ht2 hne hy1 (h12' ▸ hy2)
+    have e1 := succ_mod_add_sub_one_mod hs1n
+    have e2 := succ_mod_add_sub_one_mod hs2n
+    rw [heq] at e1
+    exact e1.symm.trans e2
+
+end OsinLemma94RealizedPolygons
+
+namespace GloballyDistinguishedSectionFamily
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+
+/-- **The forest darts**: the darts with one unselected `G`-face on both sides. -/
+noncomputable def forestDarts (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) :
+    Finset S.diagram.toCombMap.Dart :=
+  Finset.univ.filter fun d =>
+    S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) = S.diagram.toCombMap.faceOf d ∧
+      S.UnselectedGFace (S.diagram.toCombMap.faceOf d)
+
+variable {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+theorem mem_forestDarts {d : S.diagram.toCombMap.Dart} :
+    d ∈ S.forestDarts ↔
+      S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) = S.diagram.toCombMap.faceOf d ∧
+        S.UnselectedGFace (S.diagram.toCombMap.faceOf d) := by
+  unfold forestDarts
+  rw [Finset.mem_filter]
+  exact ⟨fun h => h.2, fun h => ⟨Finset.mem_univ d, h⟩⟩
+
+theorem alpha_mem_forestDarts_iff (d : S.diagram.toCombMap.Dart) :
+    S.diagram.toCombMap.alpha d ∈ S.forestDarts ↔ d ∈ S.forestDarts := by
+  rw [mem_forestDarts, mem_forestDarts, S.diagram.toCombMap.alpha_involutive d]
+  constructor
+  · rintro ⟨h1, h2⟩
+    exact ⟨h1.symm, h1 ▸ h2⟩
+  · rintro ⟨h1, h2⟩
+    exact ⟨h1.symm, h1.symm ▸ h2⟩
+
+/-- A dart-minimal family has no forest dart fixed by the rotation. -/
+theorem sigma_ne_of_mem_forestDarts (hS : S.DartMinimal) {x : S.diagram.toCombMap.Dart}
+    (hx : x ∈ S.forestDarts) : S.diagram.toCombMap.sigma x ≠ x := by
+  intro h
+  obtain ⟨hx1, hx2⟩ := mem_forestDarts.mp hx
+  refine not_leaf_of_dartMinimal pendantPathRemovalInput hS hx2 hx1 ?_
+  show S.diagram.toCombMap.sigma (S.diagram.toCombMap.alpha (S.diagram.toCombMap.alpha x)) =
+    S.diagram.toCombMap.alpha (S.diagram.toCombMap.alpha x)
+  rw [S.diagram.toCombMap.alpha_involutive x]
+  exact h
+
+/-- **Every face keeps a dart outside the forest.**  Otherwise the darts of the face would be
+closed under reversal and rotation, so every dart would lie on it, the exterior included. -/
+theorem exists_keep_faceOf_eq (d : S.diagram.toCombMap.Dart) :
+    ∃ d', d' ∉ S.forestDarts ∧ S.diagram.toCombMap.faceOf d' = S.diagram.toCombMap.faceOf d := by
+  by_contra hno
+  push_neg at hno
+  let f := S.diagram.toCombMap.faceOf d
+  have hX : ∀ y, S.diagram.toCombMap.faceOf y = f → y ∈ S.forestDarts := fun y hy => by
+    by_contra hy'
+    exact hno y hy' hy
+  have hα : ∀ y, S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha y) = f ↔
+      S.diagram.toCombMap.faceOf y = f := by
+    intro y
+    constructor
+    · intro hy
+      have h1 := (mem_forestDarts.mp (hX _ hy)).1
+      rw [S.diagram.toCombMap.alpha_involutive y] at h1
+      exact h1.trans hy
+    · intro hy
+      exact (mem_forestDarts.mp (hX _ hy)).1.trans hy
+  have hσ : ∀ y, S.diagram.toCombMap.faceOf (S.diagram.toCombMap.sigma y) = f ↔
+      S.diagram.toCombMap.faceOf y = f := by
+    intro y
+    have hfp : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.sigma y) =
+        S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha y) := by
+      have h := S.diagram.toCombMap.faceOf_facePerm (S.diagram.toCombMap.alpha y)
+      rwa [CombMap.facePerm, Equiv.Perm.mul_apply, S.diagram.toCombMap.alpha_involutive] at h
+    rw [hfp]
+    exact hα y
+  obtain ⟨o, -⟩ := List.exists_mem_of_ne_nil _
+    (S.diagram.faceBoundary S.diagram.outerFace).nonempty
+  have ho : S.diagram.toCombMap.faceOf o = S.diagram.outerFace :=
+    ((S.diagram.faceBoundary S.diagram.outerFace).mem_iff o).mp
+      (List.mem_of_ne_nil_of_mem (S.diagram.faceBoundary S.diagram.outerFace).nonempty ‹_›)
+  have hof : S.diagram.toCombMap.faceOf o = f :=
+    (S.diagram.toCombMap.iff_of_eqvGen (fun y => S.diagram.toCombMap.faceOf y = f) hα hσ
+      (S.diagram.planar.1 d o)).mp rfl
+  exact (mem_forestDarts.mp (hX d rfl)).2.1 (hof.symm.trans ho)
+
+/-- The first-return deletion of the forest darts. -/
+noncomputable abbrev forestDeleted (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) :
+    CombMap.{v} :=
+  CombMap.PredicateRestriction.toCombMap S.diagram.toCombMap (fun d => d ∉ S.forestDarts)
+    fun d => not_congr (alpha_mem_forestDarts_iff d)
+
+/-- **Starts and hitting sets.**  For every set `T` of darts of the deleted map meeting every
+component, the starts of the forest darts number at most `4 |T| - 4`. -/
+theorem card_forestStarts_add_four_le (hS : S.DartMinimal) (T : Finset S.forestDeleted.Dart)
+    (hT : ∀ x, ∃ t ∈ T, Relation.EqvGen S.forestDeleted.Adjacent x t) :
+    (S.forestDarts.filter fun y => S.diagram.toCombMap.sigma.symm y ∉ S.forestDarts).card + 4 ≤
+      4 * T.card := by
+  have h1 := CombMap.card_starts_add_two_mul_le S.diagram.toCombMap S.forestDarts
+    fun x hx => sigma_ne_of_mem_forestDarts hS hx
+  have h2 := CombMap.PredicateRestriction.two_mul_eulerCharacteristic_le S.diagram.toCombMap
+    (fun d => d ∉ S.forestDarts) (fun d => not_congr (alpha_mem_forestDarts_iff d))
+    (fun y hy => (mem_forestDarts.mp (not_not.mp hy)).1) exists_keep_faceOf_eq
+  have h3 := CombMap.eulerCharacteristic_le_two_mul_card_of_hitting S.forestDeleted T hT
+  have hchi : S.diagram.toCombMap.eulerCharacteristic = 2 := S.diagram.planar.2
+  simp only [not_not] at h2
+  have hX : Nat.card {d : S.diagram.toCombMap.Dart // d ∈ S.forestDarts} = S.forestDarts.card :=
+    Nat.card_eq_finsetCard S.forestDarts
+  rw [hX, hchi] at h2
+  omega
+
+end GloballyDistinguishedSectionFamily
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_cuttingTransitions_le_sameFaceStarts
+#audit_axioms GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.card_forestStarts_add_four_le
