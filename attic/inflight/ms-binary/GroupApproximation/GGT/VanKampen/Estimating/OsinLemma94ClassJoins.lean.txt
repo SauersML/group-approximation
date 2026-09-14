@@ -222,7 +222,7 @@ theorem joinSides_cellArc {k : Fin P.count} {i : ℕ} {j : Fin S.diagram.rCellCo
         arc.reverseDarts :=
   P.exists_cellArc_of_run (g := P.joinGap k) ((P.joinRuns_spec k).2.1 i hi)
     (fun s hs => ⟨P.lt_sideCount_of_mem_joinSides hi hs, (P.kind_eq_joinKind hi s hs).trans hj⟩)
-    (P.joinSides_nodup hi) (P.joinSides_isChain hi) (fun s hs => P.joinGap_of_last hi hs)
+    (P.joinSides_nodup hi) (P.joinSides_isChain hi) (fun _ hs => P.joinGap_of_last hi hs)
 
 theorem joinSides_boundaryArc {k : Fin P.count} {i jc : ℕ} (hi : i < P.joinCount k)
     (hj : P.kind k ((P.joinSides k i).headD 0) = .boundary jc) :
@@ -232,7 +232,7 @@ theorem joinSides_boundaryArc {k : Fin P.count} {i jc : ℕ} (hi : i < P.joinCou
           arc.start.1 + arc.length ≤ cuts.cut ⟨jc + 1, by omega⟩ :=
   P.exists_boundaryArc_of_run (g := P.joinGap k) ((P.joinRuns_spec k).2.1 i hi)
     (fun s hs => ⟨P.lt_sideCount_of_mem_joinSides hi hs, (P.kind_eq_joinKind hi s hs).trans hj⟩)
-    (P.joinSides_isChain hi) (fun s hs => P.joinGap_of_last hi hs)
+    (P.joinSides_isChain hi) (fun _ hs => P.joinGap_of_last hi hs)
 
 theorem joinSides_quasiGeodesic (hcell : S.CellArcsQuasiGeodesic)
     (hbd : S.BoundaryArcsQuasiGeodesic) {k : Fin P.count} {i : ℕ} (hi : i < P.joinCount k)
@@ -279,14 +279,14 @@ noncomputable def classPolygonsOfJoins (hcell : S.CellArcsQuasiGeodesic)
   sides_eq k := (P.joinRuns_spec k).1
   classSides_ne_nil k i hi := (P.joinRuns_spec k).2.1 i hi
   classKind k i := P.kind k ((P.joinSides k i).headD 0)
-  kind_eq k i hi s hs := P.kind_eq_joinKind hi s hs
-  single k i hi hkind := P.joinSides_length_eq_one hi hkind
+  kind_eq _ _ hi s hs := P.kind_eq_joinKind hi s hs
+  single _ _ hi hkind := P.joinSides_length_eq_one hi hkind
   gap := P.joinGap
   gap_value k _ _ s _ := P.joinGap_value k s
-  gap_last k i hi s hs := P.joinGap_of_last hi hs
-  cell_arc k i j hi hj := P.joinSides_cellArc hi hj
-  boundary_arc k i j hi hj := P.joinSides_boundaryArc hi hj
-  quasiGeodesic k i hi hne := P.joinSides_quasiGeodesic hcell hbd hi hne
+  gap_last _ _ hi _ hs := P.joinGap_of_last hi hs
+  cell_arc _ _ _ hi hj := P.joinSides_cellArc hi hj
+  boundary_arc _ _ _ hi hj := P.joinSides_boundaryArc hi hj
+  quasiGeodesic _ _ hi hne := P.joinSides_quasiGeodesic hcell hbd hi hne
 
 /-- The producer at the parameters of Lemma 9.4, with the arc premises discharged. -/
 noncomputable abbrev joinQ {mu : ℝ} {rho : ℕ} (hW : OsinCCondition D W eps mu lambda c rho)
@@ -376,7 +376,8 @@ theorem card_otherClasses_le (hcell : S.CellArcsQuasiGeodesic)
       List.mem_of_getLast? (hlast_mem i hir)
     have hm' : ((P.joinSides k i).getLast?).getD 0 ∈ P.joinSides k i' := by
       have h := List.mem_of_getLast? (hlast_mem i' hir')
-      exact heq ▸ h
+      rw [show ((P.joinSides k i).getLast?).getD 0 = ((P.joinSides k i').getLast?).getD 0 from heq]
+      exact h
     exact P.eq_of_mem_joinSides hir hir' hm hm'
 
 /-- **Clause (a) for the producer.**  Over the budget polygons, the other classes number at most
