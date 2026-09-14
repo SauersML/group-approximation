@@ -131,13 +131,25 @@ Let `c` be a geodesic in `S̃` from `p` to `q` (Step 2). By Step 5, `F∘c` is a
 *Injectivity.* Suppose `φ(σ) = 1`. Then `F(σD_0) = F(D_0)`, so `σD_0 = D_0` because `F` is injective.
 Deck transformations act freely, so `σ = 1`.
 
-*Quasiconvexity.*
-- `F(S̃)` is convex, because geodesics in `Y` are unique and `F` sends geodesics to geodesics.
-- `φ(π_1 S)` acts cocompactly on `F(S̃)`.
-- `G` acts properly and cocompactly on the locally finite complex `Y`, with finite stabilizers and
-  a compact fundamental domain.
-- So an orbit of `φ(π_1 S)` is coarsely dense in a convex subset, and `φ(π_1 S)` is quasiconvex
-  in `G`.
+*Quasiconvexity.* Put `H = φ(π_1 S)` and `x_0 = F(w_0)` for a point `w_0 ∈ D_0`.
+- `F(S̃)` is convex. Geodesics in `Y` are unique (BH Proposition II.1.4(1)), and by Step 6 `F` sends
+  the geodesic between two points of `S̃` to a geodesic between their images.
+- `F(S̃)` lies in the `D`-neighbourhood of `H·x_0`, where `D` is the diameter of the compact
+  surface `S`, because `F(σx) = φ(σ)F(x)`.
+- `G` acts by isometries on the length space `Y`, properly (finite stabilizers, locally finite
+  complex) and cocompactly (compact fundamental domain `C`). By the Švarc–Milnor lemma
+  (BH Proposition I.8.19), `g ↦ g·x_0` is a quasi-isometry from `G`, with a word metric, to `Y`.
+- `G` is hyperbolic (item 1 of `cckw-ghb2-kms-group-structure`). A quasi-inverse `Y → Cay(G)` is a
+  quasi-isometric embedding of geodesic spaces, so `Y` is hyperbolic (BH Theorem III.H.1.9).
+
+Let `h, h' ∈ H`, and let `γ` be a geodesic in the Cayley graph from `h` to `h'`.
+1. The orbit map sends `γ` to a `(λ,ε)`-quasi-geodesic. By BH Theorem III.H.1.7, it lies within
+   Hausdorff distance `R` of `[h x_0, h' x_0]`.
+2. That geodesic lies in `F(S̃)`, hence within `D` of `H·x_0`.
+3. So every vertex `g` of `γ` has some `h'' ∈ H` with `d_Y(g x_0, h'' x_0) ≤ R + D`. The orbit map is
+   a quasi-isometry, so `d_G(g, h'')` is bounded independently of `h` and `h'`.
+
+This proves that `H` is quasiconvex in `G`.
 
 *Genus.* `π_1(S)` is a closed surface group with `χ = −T/12 < 0`. If `S` is orientable, its genus
 is `1 + T/24`. A connected double cover, orientable in either case, gives genus `1 + T/12`.

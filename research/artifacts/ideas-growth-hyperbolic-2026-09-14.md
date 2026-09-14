@@ -85,13 +85,17 @@ not mean the idea is absent from the literature.
 - *Kill.* A finite computation can only exhibit separating quotients, never non-separability.
 - *Verdict.* DEAD as a decisive route; it yields evidence only.
 
-**R2. Persistent central classes restricted to girth surfaces.**
-- *Idea.* `ghb7-centre-survival-iff-unbounded-orbit-cycle-indices` reduces survival of a centre to
-  orbit-cycle indices `m_ω(N)`. A girth surface is a 2-cycle of `Y/N` in every finite quotient
-  that injects on it. Pairing `ω` with it bounds `m_ω(N)` above by `|ω(S)|`.
-- *Test.* Evaluate `ω` on any S1 solution.
-- *Kill.* `ω(S) = 0` for all solutions gives no bound.
-- *Verdict.* ALIVE, conditional on S1 producing surfaces.
+**R2. Orbit-cycle indices evaluated on girth surfaces.**
+- *Idea.* By `ghb7-centre-survival-iff-unbounded-orbit-cycle-indices`, centre survival is decided
+  by whether `sup_N m_ω(N)` is infinite. A girth surface supplies integer 2-cycles in every `N\Y`,
+  so it might bound `m_ω(N)`.
+- *Quick kill.* Let `S_N = φ^{-1}(N)\S̃`. It maps to `N\Y`, and its class pushes forward to
+  `d_N · [S_K → K\Y]` with `d_N = [φ^{-1}K : φ^{-1}N]`. So the surface gives only
+  `m_ω(N) | d_N · ω(S_K)`, and `d_N` is unbounded as `N` shrinks. A uniform bound would need, for
+  each `N`, a girth surface with group inside `N` and bounded `ω`-value. That is a separability-type
+  statement, not a finite test.
+- *Verdict.* DEAD as a decisive route. The first landed version of this artifact claimed the bound
+  `m_ω(N) ≤ |ω(S)|`; that claim was wrong and is withdrawn.
 
 **R3. Deligne-type finite central extensions of hyperbolic groups.**
 - *Quick kill.* A finite central extension of a hyperbolic group is hyperbolic. So a non-residually
@@ -151,7 +155,7 @@ not mean the idea is absent from the literature.
 
 ## Quick-kill summary
 
-PROMISING: S1 (executed) and S4 (literature). ALIVE: S2, S5, R2, G3 (literature). DEAD: S3, R1,
+PROMISING: S1 (executed) and S4 (literature). ALIVE: S2, S5, G3 (literature). DEAD: S3, R1, R2,
 R3, R4, N1, N2, G1, G2.
 
 ## Execution: S1
@@ -170,7 +174,8 @@ the developing map `S̃ → Y` is a local isometric embedding: every link walk i
 
 Sources, all read at source:
 - CCKW Theorem 3.1(i),(v);
-- Bridson–Haefliger Definition I.5.6, Theorems I.7.39 and I.7.50, Proposition II.1.4(2).
+- Bridson–Haefliger Definition I.5.6, Theorems I.7.39 and I.7.50, Proposition I.8.19,
+  Proposition II.1.4(1),(2), Theorems III.H.1.7 and III.H.1.9.
 
 **Calibration.** Recorded in `experiments/ghb7-girth-surfaces/search-t24.log` and the output of
 `intersections.py`.
@@ -204,11 +209,22 @@ the six orientable certificates:
 
 All checks passed (`verify-genus2.log`).
 
-**Heuristic.** For an orientable surface with `T = 24`, the expected number of labellings is about
-`(6/7)^36 · (180·343/6^6)^4 · (936·2401/6^8)^6 · 7^3 ≈ 23`. The factor `7^3` comes from three
-linear dependencies: on an oriented surface each edge exponent enters the abelianized conditions of
-its two endpoints with opposite signs. Without that factor the estimate is about 0.07. The observed
-6 of 8 orientable classes with ≥ 20 solutions matches the corrected estimate.
+**Exact counts.** These come from an uncapped rerun (`sol24-all.log` on MSI), which stopped after
+class 65 when MSI went down.
+- Orientable classes: 25 has 5,184 labellings, 29 has 1,944, 31 has 3,456, 43 has 6,912 and 65 has
+  116,640. Classes 42 and 51 have none.
+- Non-orientable classes: 17 has 216, 36 has 2,592 and 53 has 432.
+
+Every count is a multiple of `216 = 6^3`. The torus scalings of S2 map labellings to labellings,
+and they act freely because every exponent is nonzero. So labellings come in free orbits of size 216.
+
+**Heuristic, for calibration only.**
+- The naive independence estimate for `T = 24` is `6^{−36} · 180^4 · 936^6 ≈ 0.07` per surface.
+- On an oriented surface each exponent enters the abelianized vertex conditions of its two endpoints
+  with opposite signs. That gives three linear dependencies and raises the estimate to about 23.
+- The observed orientable counts, from 0 to 116,640, are far from Poisson with mean 23. So the
+  heuristic misses structure: the torus orbits, and whatever obstructs classes 42 and 51 (not
+  identified here).
 
 **What this does not do.**
 - It gives surface subgroups of one group, not a general theorem.
@@ -216,7 +232,17 @@ its two endpoints with opposite signs. Without that factor the estimate is about
   girths `2m_i` and `Σ 1/m_i < 1`, provided a finite quotient injective on the vertex groups is
   available for checking. Other `G_{HB_2}(q)` and Kac–Moody–Steinberg groups are the next targets.
 
-**Follow-ups.**
-- R2: pair the orbit-cycle cochains of `ghb7-centre-survival-iff-unbounded-orbit-cycle-indices` with
-  the six surfaces.
-- R1: compute `ψ(π_1 S)` in `Sp_4(F_7)`.
+## Surviving ideas, ranked after execution
+
+1. **S1-family (best next execution).**
+   - *Idea.* Run the same girth-surface search, with the independent verifier, on the other hyperbolic
+     generalized triangle groups with property (T) constructed in CCKW (arXiv:2011.09276), using
+     their presentations in the MSI text extract. Then test whether a counting argument over random
+     girth surfaces gives existence for every triangle of finite groups with trivial face group and
+     `Σ 1/m_i < 1`.
+   - *Kill.* An instance with no girth surface for `T ≤ 48`.
+2. **S4.** Import surface subgroups for arithmetic uniform lattices in `SO(2n,1)` through totally
+   geodesic 3-manifolds and Kahn–Markovic. This is a literature pin, not new mathematics.
+3. **S5.** SAT encoding of bounded folding for one atoroidal `φ ∈ Out(F_3)`.
+4. **S2.** Torus-twisted orbifold planes, as an accelerator for `T ≥ 72`.
+5. **G3.** Finite presentability of Nekrashevych fragmentations; a literature question only.

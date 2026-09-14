@@ -47,7 +47,7 @@ Proof: `ghb7-girth-surfaces-give-surface-subgroups-proof`.
 - CCKW Theorem 3.1(i),(v), read in the MSI text extract used by
   `cckw-ghb2-kms-group-structure-citation`.
 - Bridson–Haefliger, *Metric Spaces of Non-Positive Curvature* (1999), read at source:
-  Definition I.5.6, Definitions I.7.37–7.38, Theorem I.7.39, Theorem I.7.50 and
-  Proposition II.1.4(2).
+  Definition I.5.6, Definitions I.7.37–7.38, Theorem I.7.39, Theorem I.7.50, Proposition I.8.19,
+  Proposition II.1.4(1),(2), and Theorems III.H.1.7 and III.H.1.9.
 
 Instances: `ghb7-contains-a-genus-two-surface-subgroup`.
