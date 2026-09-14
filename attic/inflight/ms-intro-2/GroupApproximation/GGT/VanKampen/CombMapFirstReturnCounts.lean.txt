@@ -137,7 +137,8 @@ theorem card_starts_add_two_mul_le (M : CombMap.{u}) (X : Finset M.Dart)
         2 * Nat.card {v : M.Vertex // ∀ d, M.vertexOf d = v → d ∈ X} ≤ X.card := by
   have hvs : ∀ y, M.vertexOf (M.sigma.symm y) = M.vertexOf y := fun y => by
     have h := M.vertexOf_sigma (M.sigma.symm y)
-    rwa [Equiv.apply_symm_apply] at h
+    rw [Equiv.apply_symm_apply] at h
+    exact h.symm
   let A := X.filter fun y => ∀ d, M.vertexOf d = M.vertexOf y → d ∈ X
   let V₀ := Finset.univ.filter fun v : M.Vertex => ∀ d, M.vertexOf d = v → d ∈ X
   have hdisj : Disjoint (X.filter fun y => M.sigma.symm y ∉ X) A := by
