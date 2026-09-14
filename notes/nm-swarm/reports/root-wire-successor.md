@@ -86,6 +86,33 @@ Result: **ROOT GREEN, landed ef5f85c15** (15 import lines after line 5164).
 - Build: 15222 jobs; `Built GroupApproximation` took 387s.
 - 1 GroupApproximation module was rebuilt and the rest were restored from the artifact cache.
 
+## Wave 18, launched 09-13 ~19:42
+
+36 modules:
+- the 30 gate-OK tops drafted at 18:30;
+- `BilateralThreeClosures` and `BilateralThreeCellZOrder`, released after 131abe1b5 / GREEN 0913-185912-77650;
+- the four unwired tops whose closure reaches `Dynamics.ClopenCrossedProductAlgebra`: `Dynamics.RankTwoKazhdanLimitClosed`,
+  `Manuscript.NonMFSentences.DynamicRankBudgetAssembly`, `Manuscript.ChainCore.CoreMFRadical` and
+  `Manuscript.NonMFSentences.TransientMatrices`.
+
+Main's 19:3x ruling on the instance:
+- Wire `ClopenCoeff.instAlgebra` together with all of its importers, so that any diamond against ms-units'
+  `zmodTwoAlgebra` shows up in one build.
+- `zmodTwoAlgebra` is an `abbrev`, and Mathlib has `Subsingleton (Algebra (ZMod p) R)`.
+- A red call site is reported to its lane, which fixes it with `Subsingleton.elim` there.
+
+Pre-flight at 4a92cb8f2:
+- 101 newly reachable files (closure 6568 → 6669), all covered by GREEN records;
+- 0 held, no dangling import, no cycle, 0 lexical hits;
+- one duplicate hit, `by`, is docstring prose (`structure by unfolding`, `class by class`).
+
+Launch:
+- The first launcher at ~19:25 stopped before building, after a clean pre-flight. Its guard used `grep -v -q` on
+  empty input, which returns 0 under macOS grep. The guard now counts blocking lines with awk.
+- Root build tag 0913-194206-22587, base f416195ba. SLURM job 727457 started at once on msismall (acn91).
+
+Result: pending.
+
 ## Evidence and holds, 18:45–19:10
 
 - `coeff_injective` collision fixed by ct-bilateral-cell at 131abe1b5.
