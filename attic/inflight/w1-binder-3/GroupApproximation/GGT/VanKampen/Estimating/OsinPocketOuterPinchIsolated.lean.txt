@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchSplit
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchFirstTurn
 import Mathlib.Dynamics.PeriodicPts.Lemmas
 import GroupApproximation.Meta.AxiomGuard
 
@@ -44,10 +45,10 @@ namespace OuterPinchIsolated
 
 section Orbit
 
-variable {α : Type*} [Finite α]
+variable {α : Type*}
 
 /-- The minimal period of a point under a permutation of a finite type is positive. -/
-theorem minimalPeriod_pos (σ : Equiv.Perm α) (a : α) : 0 < Function.minimalPeriod σ a :=
+theorem minimalPeriod_pos [Finite α] (σ : Equiv.Perm α) (a : α) : 0 < Function.minimalPeriod σ a :=
   Function.minimalPeriod_pos_of_mem_periodicPts (σ.injective.mem_periodicPts a)
 
 /-- Rotating a point by its minimal period returns to it. -/
@@ -64,7 +65,7 @@ theorem pow_eq_pow_below {σ : Equiv.Perm α} {a : α} {i j : ℕ}
   exact Function.iterate_injOn_Iio_minimalPeriod hi hj h
 
 /-- **A point on the rotation cycle sits at a position below the minimal period.** -/
-theorem exists_pow_lt_of_sameCycle {σ : Equiv.Perm α} {a z : α} (h : σ.SameCycle a z) :
+theorem exists_pow_lt_of_sameCycle [Finite α] {σ : Equiv.Perm α} {a z : α} (h : σ.SameCycle a z) :
     ∃ p < Function.minimalPeriod σ a, (σ ^ p) a = z := by
   obtain ⟨n, hn⟩ := h.exists_nat_pow_eq
   refine ⟨n % Function.minimalPeriod σ a, Nat.mod_lt _ (minimalPeriod_pos σ a), ?_⟩
@@ -173,7 +174,7 @@ theorem isolated_positions (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Inp
   -- `e₀` comes before the minimal period.
   have hk₀N : k₀ < N := by
     by_contra hge
-    push_neg at hge
+    push Not at hge
     rcases hge.lt_or_eq with hlt | heq
     · exact hkeep₀ N hpos hlt (by rw [hper]; exact hkeepα)
     · rw [← heq, hper] at hk₀
@@ -183,7 +184,7 @@ theorem isolated_positions (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Inp
     rw [pow_add_apply, hk₀, hm]
   have hmkN : m + k₀ < N := by
     by_contra hge
-    push_neg at hge
+    push Not at hge
     refine hkeepm (N - k₀) (Nat.sub_pos_of_lt hk₀N) (by omega) ?_
     have h1 : (X.toCombMap.sigma ^ (N - k₀)) e₀ = X.toCombMap.alpha d₀ := by
       rw [← hk₀, ← pow_add_apply, Nat.sub_add_cancel hk₀N.le, hper]
@@ -204,7 +205,7 @@ theorem isolated_positions (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Inp
     rw [hN] at hpN
     refine ⟨p, ?_, hpN, hp⟩
     by_contra hle
-    push_neg at hle
+    push Not at hle
     rcases Nat.lt_trichotomy p k₀ with hlt | heq | hgt
     · rcases Nat.eq_zero_or_pos p with rfl | hp0
       · rw [pow_zero, Equiv.Perm.one_apply] at hp
