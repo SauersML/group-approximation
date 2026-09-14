@@ -965,6 +965,16 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Launched sk-verify-26: review `gap-sofic-approximations-are-local-embeddings` (Theorem O's unreviewed input) and fix the hamming §3.4(3) "iff" wherever it appears.
 178. **USER: "Should I remove it as well?" yes.** Main removes "The human author is responsible for the work." from `Palomar/SurjunctiveNonsoficOverview.txt` l.84–85, pinned onto main's blob at 9e45690bc8.
     - One more archival copy remains, in `wip/sync-2026-09-13/disk/simple_kazhdan_sofic_group.tex:268`, a disk-sync snapshot; it stays as history.
+    - LANDED d6a8afd401: the diff was exactly that sentence, and the local copy was updated.
+179. **REV5 VARIANT B assembled by sk-editor-7b: $SK2/drafts/rev5b.tex, 1002 lines, 11 pp, md5 32207a76…; merge log de2f82c543.** MSI shows 0/0/0, and every page was rendered.
+    - Main read l.1–822 and found no error. Re-derived: the example (windows, E_44, E_st), the P matrix convention, the P2 argument, and "small" (i)/(ii).
+    - Candidate concerns for main's pick:
+      - P2 sits in the introduction before §1 and is heavy there; move it to a remark after the proof of Theorem 1.
+      - The P3 remark rests on "the same argument".
+      - "Finite models" has two senses.
+      - "all three forms" follows the Arzhantseva sentence.
+    - Launched sk-rev5-locators (Ozawa p.527 at the journal, BHV printed Thm 1.3.1 and series, Arzhantseva series and page) and sk-rev5-referee (a hostile review of rev5b, then a one-pass check of rev5a if present).
+    - Waiting for sk-editor-7a (≤ 9 pp) before the pick.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
