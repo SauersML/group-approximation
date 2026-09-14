@@ -29,6 +29,18 @@ CLAIM lamplighter host combination GroupApproximation/Manuscript/SimpleKazhdanSo
 
 CLAIM closed cor:lef and cor:host endpoints GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFCharacterizationClosed.lean
 
+CLAIM LEF passes to subgroups, named closed endpoint (tex l.456–457) GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFSubgroupHeredity.lean
+
+- 10:1x–10:4x:
+  - Rows landed at 5dd91f0d2, keyed at census 9cb80166d. cor:lef and cor:host were held at partial while origin's `LamplighterHost` was red
+    (probe 0914-101202-59232).
+  - Attic copy of the closed module: 3aaf35ae8.
+  - sk-lef-action fixed `LamplighterHost` at 4e0c613ce/4d9f3c157 (its probe 0914-104032-16395 GREEN). `LEFCharacterizationClosed` is re-probing on
+    top of it.
+- oa-expanders' fidelity audit (census d91e3fbac) flagged row 452e0cc9a605, which cited the nonexistent `printedSubgroupsOfLEFAreLEF`.
+  - 5dd91f0d2 already cites `isLEF_of_injective` instead.
+  - `LEFSubgroupHeredity` adds the named closed endpoint `PrintedSubgroupsOfLEFAreLEF`, and the row moves to it after landing.
+
 - 09:2x–10:0x:
   - LANDED 0da57c90d `LEFLamplighterCombination` (probe 0914-092422-61787 GREEN, 4 audits classical).
   - sk-lef-action landed the closed `printedLamplighterHost` (7c8024160). Its Prop `PrintedLamplighterHost` is word for word this lane's
