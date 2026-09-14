@@ -113,3 +113,13 @@ Kazhdan LEF group. It separates these groups from the non-C*-simple simple group
          known.
      - Verdict: the idempotent route is not dead, but it needs a genericity lemma (L4) with local polynomial identities as its only
        obstruction, plus a separate exclusion of confined bounded-exponent subgroups (L3).
+9. **Confined torsion subgroups; pigeonhole commutators (sk-cstar-genericity, 2026-09-14).** Artifact `research/artifacts/sk-cstar-genericity-2026-09-14-part1.md`.
+   - **Established (unreviewed):**
+     - `confined-subgroup-pigeonhole-commutator-lemma`: `H` confined by `P`, `|P| = r`, and any `r+1` conjugators give `g_i^{-1}[p,g_ig_j^{-1}]g_i ∈ H`;
+     - `polynomially-small-units-have-order-dividing-420`: every group inside `B_4 ∪ {1}` has exponent dividing 420;
+     - `laurent-linear-confining-sets-force-infinite-order-elements`: a subgroup confined by a finite subset of `SL_3(F_2[u^{±1}])∖{1}` contains an infinite-order element. The proof uses a generic twist `k = hdh^{-1}` of `d = diag(u,1,u^{-1})`, with trace class `δ = 2`. So (L3) holds for Laurent-linear confining sets, including the constant `B_4` units of Lemma B.
+   - **Reduction of (L3).** By R″ and the exponent bound, (L3) for general `P` needs conjugators with `[p, g_ig_j^{-1}]^{420} ≠ 1`.
+   - **Where it dies:**
+     - for non-constant coefficients there is no trace;
+     - the top-`u`-degree criterion needs nonvanishing cocycle products of coefficient functions of `p` and `p^{-1}` along progressions `T^{-ja}`. Alternating supports can vanish for every step: two arcs at offset about 1/2 for Sturmian `X`.
+   - **Needed next:** conjugators adapted to the coefficient supports, or a torsion invariant finer than degree for `M_3(LC(X,F_2)⋊Z)`.
