@@ -159,6 +159,24 @@ literal step missing.
     the names.
   - `SameCellPocketLoopCutStatement`: ms-traces-2 owns the successor-form enclosed route end to end. It has the exact
     statement text in one message, with an offer to respell before landing if its route needs more binders.
+- ms-traces-2 confirmed no respell: its route has no collar at `g = []`, so it needs no label, `λ ≤ 1` or `0 ≤ c`
+  hypothesis. The route:
+  - carrier: `EnclosedFaceSetSucc` of the far faces;
+  - `Ξ`: `BridgeComponent.component` through `DiscDiagram.ofPlanar`;
+  - least area: `EnclosedPocketRegion.length_filter_le_of_bridgeFree` when bridge-free, otherwise its open
+    `EnclosedBridgeDoublingSuccStatement`;
+  - loop cut: `OsinLoopCut.ofTwoPartBoundary` at `g = []`;
+  - still open: an enclosed analogue of `PocketCellTransportStatement`.
+- LANDED bb887b17d `OsinUnboundSameCellPocketAssembly` (probe 0914-002811-94162 GREEN, BUILT), queued for wiring.
+  - `osinLemma94SameCellPocketInput_of_loopCut (hvalue : SameCellPocketCellFreeValueStatement)
+    (hcut : SameCellPocketLoopCutStatement) : OsinLemma94SameCellPocketInput`
+  - The lane's in-flight file list is empty.
+  - Remaining statements and their owners:
+    - `SameCellPocketCellFreeValueStatement`: w1-binder-5, through `BridgeComponent.listVal_pocket_eq_one`
+      (`BridgeComponentValue`, still not on origin). When it lands, one line discharges the statement, and this lane
+      does that on receiving the names.
+    - `SameCellPocketLoopCutStatement`: ms-traces-2's successor-form enclosed route, which targets the statement
+      unchanged.
 
 ## Progress log
 
