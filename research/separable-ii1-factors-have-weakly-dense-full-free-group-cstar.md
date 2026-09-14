@@ -7,6 +7,7 @@ distinct_from:
   property-t-factors-contain-weakly-dense-popa-algebras: that asks for a simple weakly dense subalgebra with Popa's internal finite-dimensional approximation property; this gives a non-simple residually finite-dimensional one and settles only the QD clause of Brown's Question 3.
 artifacts:
   - research/artifacts/sk-free-5-brown-q3-2026-09-13-part1.md
+  - research/artifacts/sk-verify-14-2026-09-13-part5.md
 ---
 
 **ESTABLISHED (unreviewed, lane sk-free-5, 2026-09-13)** by route `separable-ii1-factors-weakly-dense-free-group-cstar-proof`.
@@ -40,3 +41,5 @@ Let `M` be a II_1 factor with separable predual. There is an injective unital *-
 - Brown–Dykema (arXiv:math/0207005) built weakly dense Popa algebras, which are QD, in the interpolated free group factors. Their introduction presents them as distinct from the previously known weakly dense C*-subalgebras.
 
 **Status on main.** `research/artifacts/sk-answered-questions-2026-09-13-part1.md` lists Q3 as not answered. The QD clause is answered here (unreviewed); the Popa clause for property (T) stays open.
+
+**Review (sk-verify-14, 2026-09-13): PASS.** Re-derived: the norming family (N), the corners, Lemma U (`x*x = e − ey*(1−e)ye` and `1 − t ≤ 1 − t²`), unitarity of `z_i`, isometry on polynomials through the reducing corners `q_j`, the estimate `‖z_i − y_k‖_2 ≤ 5·2^(−i/2)`, and strong convergence. Brown's Question 3 wording confirmed in the e-print math/0111286 (l.3134). T1 is elementary: keep "not found in the bounded search", and do not call it new without a wider search (e.g. Hadwin and Shulman on RFD algebras). See `research/artifacts/sk-verify-14-2026-09-13-part5.md` §§1–2.

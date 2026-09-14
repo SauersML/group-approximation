@@ -8,6 +8,7 @@ distinct_from:
   separable-ii1-factors-have-weakly-dense-full-free-group-cstar: that constructs weakly dense residually finite-dimensional subalgebras in every separable II_1 factor; this constrains where finite-dimensional compressions of weakly dense subalgebras can live when the factor has property (T).
 artifacts:
   - research/artifacts/sk-free-5-brown-q3-2026-09-13-part1.md
+  - research/artifacts/sk-verify-14-2026-09-13-part5.md
 ---
 
 **ESTABLISHED (unreviewed, lane sk-free-5, 2026-09-13)** by route `kazhdan-group-factor-popa-corners-vanishing-trace-proof`.
@@ -28,3 +29,5 @@ Then
 - In particular `L(G_X)` (`subshift-elementary-groups-are-character-rigid`, ICC because it is infinite and simple) is subject to this bound.
 
 The same argument works in any full II_1 factor, with a spectral-gap set in place of `λ(S)` (Connes 1974, recalled, locator not checked).
+
+**Review (sk-verify-14, 2026-09-13): PASS.** Re-derived: the spectral-gap inequality (SG) from ICC, the half-trace projection `e ∈ B′ ∩ pMp`, `‖[e, y_s]‖ ≤ 4η`, and `τ(e)(1 − τ(e)) ≥ τ(p)/4`. The extension to full factors through Connes's spectral-gap sets is recalled, not checked. See `research/artifacts/sk-verify-14-2026-09-13-part5.md` §3.
