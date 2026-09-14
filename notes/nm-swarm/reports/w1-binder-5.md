@@ -342,6 +342,35 @@ CLAIM component API:
   `DiscDiagram.ofPlanarRestrict`, `ofPlanarRestrict_rCellCount`, `ofPlanarRestrict_boundaryWord`.
 - Calibration on the glue model's split map, in a model module of this lane.
 
+w1-binder-6's reply (08:5x):
+- The component/complement split is enough; no sum over all classes.
+- `restrict` with `restrict_isRestriction` is enough; `PredicateRestriction.toCombMap` is not needed.
+- It adds `DiscDiagram.ofPlanarRestrict_rCellCount_of_forall`: every relator face on S gives `relFaces.card` cells.
+- No planarity lemma for its step 3 now.
+
+- **Module A LANDED b5c0d1129** (probe 0914-084146-25213 GREEN: BUILT, empty error index, no `sorryAx`). Wire-queued.
+  - `componentOf`, `componentOf_alpha`, `componentOf_sigma`, `componentOf_self`, `component`, `componentCompl`,
+    `component_connected`, `restrict_isRestriction`;
+  - `vertex/edge/faceCount_component_add`, `eulerCharacteristic_component_add`, `component_planar_of_euler_four`.
+- **Module B `DiscDiagramOfPlanarRestrict`** (probing, attic 8ef06c7451):
+  - Content: `restrict_sameCycle_iff`, `restrictFace` (injective), `mem_of_faceOf_eq`, `liftTraversal`,
+    `restrictFaceBoundary` (with `_darts`, `_word`), `restrictRelFaces` (card via `card_image_of_injective`),
+    `DiscDiagram.ofPlanarRestrict`, `ofPlanarRestrict_rCellCount`, `_of_forall`, `_boundaryWord`, all over the
+    existing `DiscDiagram.ofPlanar`.
+  - Probe 0914-085150-95479 failed at one root. `mem_of_faceOf_eq` used `hα hσ` only in its body, so Lean 4 did not
+    include those section variables (lines 66 and 73), and every later `sorryAx` was the cascade. The fix is
+    `include hα hσ in`.
+- **Calibration `Estimating/CombMapComponentsGlueModel`** (probing, same attic):
+  - On the glue model's split map, `componentOf_m1_iff` recovers exactly the hand invariant `side` ({m1, x3}), and
+    `component m1` and `componentCompl m1` are both connected. Endpoint `glueComponents`.
+  - Planarity of the two pieces is not calibrated. The glued α/σ are noncomputable, so the
+    `OrbitClassifier.orbitEquiv … (by decide)` counting of the lake models does not evaluate there.
+- **Module B and the calibration LANDED 11b0109d9**, both wire-queued.
+  - Probe 0914-085544-98924 GREEN: BUILT `DiscDiagramOfPlanarRestrict` and `CombMapComponentsGlueModel`, empty error
+    index, no `sorryAx`, standard axioms.
+  - The component API of w1-binder-6's full-t₁ route is complete: module A b5c0d1129, module B and the calibration
+    11b0109d9.
+
 - **Reboot recovery (08:3x).** `/private/tmp` was wiped and the infra rebuilt; this lane's clone is now `lix-j`.
   - All lane paths were re-registered in `.files`.
   - `BridgeComponentValue` was already on origin (48c0972d3, landed on green evidence before the reboot), so it was not
