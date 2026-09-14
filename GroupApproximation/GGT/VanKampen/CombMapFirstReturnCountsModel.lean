@@ -1,0 +1,65 @@
+import GroupApproximation.GGT.VanKampen.CombMapFirstReturnCounts
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Calibration of the start count
+
+`CombMap.card_starts_add_two_mul_le` bounds the starts of a dart set `X` plus twice the vertices
+all of whose darts lie in `X` by `|X|`, when the rotation fixes no dart of `X`.  The hypothesis
+cannot be dropped.  On one edge whose two darts are fixed by the rotation, with `X` both darts,
+there are no starts and both vertices lie in `X`, so the left side is `4` and `|X| = 2`
+(`not_card_starts_add_two_mul_le_oneEdge`).
+
+This is the pendant edge of a polygon, which a dart-minimal family does not have
+(`GloballyDistinguishedSectionFamily.sigma_ne_of_mem_forestDarts`).
+
+Infrastructure for the cutting transitions of Osin's Lemma 9.4 (arXiv:math/0411039v3, §9);
+certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.CombMap.FirstReturnCountsModel
+
+open Equiv
+open scoped Classical
+
+/-- One edge, both darts fixed by the rotation. -/
+def oneEdge : CombMap.{0} where
+  Dart := Fin 2
+  dartFintype := inferInstance
+  alpha := Equiv.swap 0 1
+  sigma := 1
+  alpha_involutive := Equiv.swap_apply_self 0 1
+  alpha_fixedPointFree := by decide
+
+theorem card_vertex_oneEdge : Nat.card oneEdge.Vertex = 2 := by
+  have hinj : Function.Injective (Quotient.mk'' : Fin 2 → oneEdge.Vertex) := by
+    intro a b h
+    exact Equiv.Perm.sameCycle_one.mp (Quotient.exact h : Equiv.Perm.SameCycle (1 : Perm (Fin 2)) a b)
+  have hsurj : Function.Surjective (Quotient.mk'' : Fin 2 → oneEdge.Vertex) := fun q =>
+    Quotient.inductionOn' q fun a => ⟨a, rfl⟩
+  have h := Nat.card_congr (Equiv.ofBijective _ ⟨hinj, hsurj⟩)
+  exact h.symm.trans (by simp)
+
+/-- **The start count fails without the fixed-point hypothesis.** -/
+theorem not_card_starts_add_two_mul_le_oneEdge :
+    ¬ ((Finset.univ.filter fun y : oneEdge.Dart =>
+          oneEdge.sigma.symm y ∉ (Finset.univ : Finset oneEdge.Dart)).card +
+        2 * Nat.card {v : oneEdge.Vertex //
+          ∀ d, oneEdge.vertexOf d = v → d ∈ (Finset.univ : Finset oneEdge.Dart)} ≤
+      (Finset.univ : Finset oneEdge.Dart).card) := by
+  have hstarts : (Finset.univ.filter fun y : oneEdge.Dart =>
+      oneEdge.sigma.symm y ∉ (Finset.univ : Finset oneEdge.Dart)) = ∅ := by
+    simp
+  have hall : ∀ v : oneEdge.Vertex, ∀ d, oneEdge.vertexOf d = v →
+      d ∈ (Finset.univ : Finset oneEdge.Dart) := fun _ _ _ => Finset.mem_univ _
+  have hv : Nat.card {v : oneEdge.Vertex //
+      ∀ d, oneEdge.vertexOf d = v → d ∈ (Finset.univ : Finset oneEdge.Dart)} = 2 := by
+    rw [Nat.card_congr (Equiv.subtypeUnivEquiv hall)]
+    exact card_vertex_oneEdge
+  have hX : (Finset.univ : Finset oneEdge.Dart).card = 2 := rfl
+  rw [hstarts, hv, hX]
+  simp
+
+end GroupApproximation.GGT.VanKampen.CombMap.FirstReturnCountsModel
+
+#audit_axioms GroupApproximation.GGT.VanKampen.CombMap.FirstReturnCountsModel.not_card_starts_add_two_mul_le_oneEdge
