@@ -93,6 +93,14 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   `coe_mem_chainRecurrentSet_of_firstReturn_of_pieces` (afa5cd02d) saturates through the towers, gets a corner of a matrix
   ring over an LEF ring, then applies thm:core-ring-reflection. Census LINE:1743 → formalized.
 
+- 09-13 21:30: CLAIM (coordinator item "the 12 unassigned census sentences", merge 3 3f3f4c5c3). ct-rank-budget takes
+  the four tex-1743 sentences that my `LINE:1743` row (which keys only the block's first sentence) does not cover:
+  `7da9f1c6076f` ("its return ring is a corner of the LEF ring R_Y …"), `8f8f0c7b59fa` ("saturating that core through
+  the finite towers …"), `d5dcf496d149` ("Theorem core-ring-reflection applied to this subsystem …"), `e7f732e9cb78`
+  ("The return transient ideal is therefore J=p_C I p_C").  Plan: one module with a named closed Prop per sentence at
+  the printed generality (every finite field), hex-keyed rows.  Handed off: `d59fc0887768` (tex 1341) to ms-core-1;
+  the seven ct-block keys already graded by ct-sentences at ba2a9baf2 (after merge 3's base) need no handoff.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
