@@ -766,6 +766,20 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
       - the claim is for n ≥ 3 but the proof is written for n = 3;
       - §3(e) uses "e" both for e_U and for the identity of Λ_0.
     - Ops: git reports many unreachable loose objects. `git prune --expire=3.hours.ago` is deferred while swap is above half; disk has 20 GiB free.
+159. **RAM action (~10:10 CDT).** Memory pressure level 2 (warn), swap 2.67/3.07 GB, 35% free.
+    - Under the RAM rule, main stopped the two most speculative wave 13 lanes, sk-w-towers and sk-banded-osajda, before either had landed anything.
+    - Their questions stay OPEN in Cairn: whether 𝒲 meets Theorem Q′, and whether some G_X is non-exact.
+    - 6 lanes remain: sk-cairn-steward-5, sk-verify-18/21/22, sk-sofic-almost-action, sk-orthogonality-o.
+    - Most RSS belongs to peer sessions, so the relief is modest.
+    - sk-banded-osajda's last output questioned whether it was the coordinator or the sk-exact-banded lane after compaction (fork role confusion).
+160. **sk-verify-18 final (94e5493f79): queue lines 25–26 PASS.**
+    - `banded-matrix-groups-are-subshift-crossed-product-groups`: PASS, re-derived.
+      - W1: the m = 1 model test "I + δ_0" is singular over F_2; use a coordinate swap at site 0 with m = 2.
+      - W2: the wobbling-group contrast is labeled an open node, but it is a theorem: Juschenko–de la Salle, arXiv:1301.4736 Thm 4.1, as quoted on main in `elek-monod-near-hit-has-torsion-no-kazhdan-subgroup-proof` (source not re-read).
+    - `subshift-el-n-exactness-is-kakutani-invariant`: PASS, re-derived. The corner isomorphism e_V R_X e_V ≅ R_{X_V} is proved inside the route.
+    - Part10 fix to the general first-order form: outside characteristic 2 the Weyl elements are signed, so the commutator gives e_13(±rs) with a fixed sign.
+    - W1 and W2 go to the Cairn steward.
+    - Remaining queue: lines 28–30 (sk-verify-21) and 32–33 (sk-verify-22). 5 lanes live.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
