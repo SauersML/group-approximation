@@ -208,7 +208,14 @@ Binder: `OsinLemma97Below … n := ∀ Xi cutsXi, Xi.LeastArea → 0 < Xi.rCellC
   touch vertex, and it has fewer cells. `SectionPocketFullArcExcludedStatement` is dropped for good.
 - `CLAIM lake model GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean` and
   `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeEnclosed.lean` (Ξ realized), to be landed first.
-- `CLAIM singular carrier GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEnclosedCarrier.lean`.
+- ~~`CLAIM singular carrier GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEnclosedCarrier.lean`~~ superseded
+  (23:5x): the successor route does not cover a full `t_1` (below), so the carrier goes through the Euler pocket region.
+  The path is released and nothing was written there.
+- **LANDED bda10ebe8** `Estimating/OsinPocketFullArcLakeModel` (probe 0913-234651-11200 GREEN, md5 checked; wire-queued).
+  Closed `fullArcLake : FullArcLakeStatement`. `OsinPocketFullArcLakeEnclosed` was never written; `lakePocket` realizes
+  Ξ instead.
+- Open, ruling asked of main (00:0x): transports over a non-following outer cycle. `PocketCellTransportStatement` and
+  `PocketOuterTransportStatement` assume `P.outer.FollowsBoundary` for `PocketRegion.glueDiagram`.
 
 Design:
 - Γ₁ is the enclosed subdiagram Ξ of the pocket walk. Its faces are `sideFaces X K.walk`, with outside walk
