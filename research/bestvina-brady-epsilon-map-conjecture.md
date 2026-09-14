@@ -16,6 +16,26 @@ artifacts:
 ε-map, then K is homotopy equivalent to L with 1- and 2-cells attached. This conjecture implies
 that the geometric dimension of H_L is 3."
 
+## Status in the literature
+
+T. Tâm Nguyên-Phan, *A remark on ε-maps in dimension 1*, arXiv:1907.12063v1 (2019), read from
+the arXiv PDF, verbatim.
+- They state the conjecture for every finite 2-complex: "Conjecture 1 (Bestvina-Brady). Let L be
+  a finite 2-complex. Fix a metric on L. There is ε > 0 such that if g : L → K is a surjective,
+  PL ε-map, then K is homotopy equivalent to L with 1-cells and 2-cells attached." A footnote
+  defines ε-map: "A map is an ε-map if pre-images of points have diameters less than ε."
+- On its status: "While Conjecture 1 might sound “obviously true”, it remains open."
+- In dimension 1 the literal form holds, "for a rather dull reason, which is that such PL-quotients
+  of a circle by ε-maps are graphs that are not trees, and such graphs are always circles with
+  1-cells attached".
+- The relative form fails. "Theorem 3. For each ε > 0, there is a surjective ε-map f : S1 → G to
+  a graph G such that f is NOT a generator in a free basis in π1 (G)."
+
+**Consequence for the route.** A version in which `L` must sit inside the cell-attachment model
+through `g` itself already fails in dimension 1, so no route should rely on it.
+`epsilon-map-conjecture-gives-poincare-kernel-gd-three` uses only the weak form (E), where the
+homotopy equivalence need not restrict to `g`.
+
 ## Reading of the statement
 
 - **L.** The Remark closes the section on Theorem 8.7, where `L` is a flag triangulation of a

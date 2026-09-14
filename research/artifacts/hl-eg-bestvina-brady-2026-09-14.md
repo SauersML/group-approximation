@@ -55,6 +55,12 @@ cohomological dimension 2."
 introduces `G_L(S)`, interpolating between `G_L(∅) ≅ BB_L~ ⋊ π_1(L)` and `G_L(Z) = BB_L`. The
 grep finds no statement about Eilenberg--Ganea or Whitehead, and no geometric-dimension result.
 
+**Nguyên-Phan, arXiv:1907.12063v1 (2019).** Read from the arXiv PDF.
+- It restates the Remark as Conjecture 1 for any finite 2-complex and says "it remains open".
+- Its Theorem 3 shows that in dimension 1 the relative form fails: a small-fiber loop need not be
+  a free-basis element. The literal form holds in dimension 1.
+- Pins are in `bestvina-brady-epsilon-map-conjecture`.
+
 **Nitsche--Thom Theorem 1.2.** Taken as pinned on main in
 `kervaire-laudenbach-holds-for-hyperlinear`.
 
@@ -106,6 +112,8 @@ subcomplex of a contractible 2-complex `Z`, then `gd(H_L) ≤ 2`.
    - For ε below a Lebesgue number of the open-star cover of `L`, coarse lifting builds
      `λ: K → L` with `λ g ≃ id`, as in Bestvina--Brady. Point preimages of `K` near a point lie
      within `ε + 2η` of one fiber, by upper semicontinuity.
+   - The relative version, with `L` included through `g` itself, is false already in dimension
+     1 (Nguyên-Phan, Theorem 3). So any proof of (E) has to change the inclusion.
    - Upgrading to (E) for `g` itself is a relative D2-type problem. The obstruction
      `H_3(M~_g, L~) = ker(Z[π_1 K] ⊗_(Z π_1 L) π_2(L) → π_2(K))` need not vanish. (E) allows other
      inclusions, which this computation does not rule out.
