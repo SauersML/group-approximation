@@ -48,4 +48,17 @@ infinite minimal). Is C*_r(EL_n(R_X)) an MF algebra, i.e. does it embed in a nor
     under non-amenable subgroups, e.g. cuspidal-type irreducibles of the finite models (heuristic). The paradox-side
     counterpart is decided: `measure-free-steinberg-el-n-reduced-cstar-not-mf`.
 
+- **Every representation of the ring models is excluded (2026-09-13, sk-cstar-mf, unreviewed).**
+  - On an embedded Laurent lattice SL_4(F_q[u_V^{±1}]) (a tower of height 2 plus the first-return unit), the
+    models are genuine congruence representations through SL_4(A_ℓ), with A_ℓ a finite principal ideal ring
+    (`lef-models-are-congruence-representations-on-laurent-lattices`).
+  - The Magee–de la Salle argument works verbatim over such rings: every representation of SL_4(A_ℓ) has a
+    nonzero SL_2(A_ℓ)-invariant vector (`sl4-over-finite-chain-rings-has-sl2-invariant-vectors`).
+  - So for ANY unitary representations ρ_ℓ of the finite models (cuspidal, Steinberg or otherwise), ρ_ℓ∘φ_ℓ
+    has the norm-4 outlier z = S+S^{-1}+T+T^{-1} for a free pair in SL_2(F_q[u]) and never converges
+    strongly (`periodic-word-model-representations-never-converge-strongly`). The same holds for every exactly
+    matricial window model.
+  - The cuspidal-type heuristic above is dead. An MF embedding of C*_r(EL_n(R_X)) needs asymptotic
+    representations that are not genuine on any embedded SL_4(F_q[t^{±1}]).
+
 **Review (un-verify-measure, 2026-09-13): display checked (OPEN node).** The GKMP clause is corrected. See `research/artifacts/un-review-measure-2026-09-13-part2.md` §T6.
