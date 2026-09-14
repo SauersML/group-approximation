@@ -136,6 +136,53 @@ def verify_relaxation_certificate(units, alpha0, dirs, P, phi):
 C_KEYS = set()
 
 
+def multiplier_group(name):
+    """Finite subgroups K <= G used to absorb units of eps_- F_3[K] lying over 1 into the beta support.
+
+    If u is a unit of eps_- F_3[K] with pi(u) = 1 and beta alpha = u, then (u^-1 beta) alpha = 1 and
+    u^-1 beta lies in span(K . C). So screening span(K . C) covers every such correction at once.
+    """
+    if name == "none":
+        return [L.IDENTITY]
+    if name == "klein":
+        h1 =L.diagonal_unit(["00", "01", "10", "11"], [1, 1, 2, 2])
+        h2 = L.diagonal_unit(["00", "01", "10", "11"], [2, 2, 1, 2])
+        gens = [h1, h2]
+    elif name == "e2":
+        gens = [L.diagonal_unit(["00", "01", "10", "11"], [2 if i == j else 1 for j in range(4)])
+                for i in range(4)]
+    elif name == "gl2":
+        gens = [L.W, L.D, L.one_plus_nilpotent(L.mul(L.s0, L.t1)),
+                L.diagonal_unit(["0", "1"], [2, 1])]
+    else:
+        raise ValueError(name)
+    group = {L.key(L.ONE): L.IDENTITY}
+    frontier = [L.IDENTITY]
+    while frontier:
+        nxt = []
+        for x in frontier:
+            for g in gens:
+                y = x * g
+                k = L.key(y.val)
+                if k not in group:
+                    group[k] = y
+                    nxt.append(y)
+        frontier = nxt
+        if len(group) > 5000:
+            raise ValueError("multiplier group too large")
+    return list(group.values())
+
+
+def multiply_support(Sm, K, C):
+    """Basis keys of K . C in S_- (signs dropped: span is what matters)."""
+    out = {}
+    for u in K:
+        for c in C:
+            k = Sm.basis(u * Sm.units[c])[0]
+            out[k] = True
+    return list(out)
+
+
 def exhaust(Sm, alpha0, dirs, C, P, lo, hi, rng, report, tag):
     d = len(dirs)
     units_C = {k: Sm.units[k] for k in C}
@@ -170,6 +217,7 @@ def main():
     ap.add_argument("--lo", type=int, default=0)
     ap.add_argument("--hi", type=int, default=10 ** 9)
     ap.add_argument("--max-d", type=int, default=12)
+    ap.add_argument("--mult", choices=["none", "klein", "e2", "gl2"], default="none")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
     rng = random.Random(20260914)
@@ -212,10 +260,14 @@ def main():
 
     lift_keys = PS.ball(Sm, gens, args.lift_radius)
     C = PS.ball(Sm, gens, args.radius)
+    K = multiplier_group(args.mult)
+    if args.mult != "none":
+        C = multiply_support(Sm, K, C)
     C_KEYS = set(C)
     alpha0 = PS.explicit_s0_lift(Sm)
     dirs = kernel_basis(Sm, lift_keys)
     report["sizes"] = {"lift_ball": len(lift_keys), "C": len(C), "P": len(P), "d": len(dirs),
+                       "mult": args.mult, "K": len(K),
                        "image_feasible_alpha0": PS.image_feasible(Sm, alpha0, C, P)}
     print("sizes", report["sizes"], flush=True)
     if args.mode == "relax":
