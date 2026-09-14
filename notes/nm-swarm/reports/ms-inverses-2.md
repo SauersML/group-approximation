@@ -355,6 +355,96 @@ Narrowed residual, enough for both pocket walks:
 - Lean route: classifiers by first hit of rotation, as in hull-euler's `innerVertexClass`, restricted by vertex kind through
   `CombMap.card_orbit_subtypePerm_add`. At short vertices the inner rotation is the first return of `σ`, and at adjacent vertices the outer
   rotation is (`PermFirstReturn`). The other side is classified by the unique walk dart in each orbit.
+- 00:13 network back. Report (6380a985e) and attic copies (e0d824adc, 28b9c2334) landed.
+- 00:14 co-probe 0914-001357-68038: the calibrations BUILT, but the section joints module failed. Both fixes are in the tree:
+  - `Relation.ReflTransGen.mono` takes a `≤` argument, so the proof now uses induction;
+  - `subst` on the projection `x.2.target = none` fails, so a variable-target private lemma is used.
+- 00:38 and 00:58: MSI hop died twice (rc=255). A watcher fetches the remote verdict once the master returns.
+- Stage 2 files written offline, unprobed:
+  - `NoncrossingClosedWalkEulerSectorFree`: `SectorFreeVertexCountStatement` and `eulers_of_sectorFree`;
+  - `NoncrossingClosedWalkReclosedVertex`: both reclosed rotations stay at the old vertex;
+  - `NoncrossingClosedWalkRotationSides`: sides along the rotation, with endpoints alternating.
+- Next piece: the first endpoint after a dart, and the local dichotomy. A passage that is not adjacent is followed at its vertex by a
+  passage that is not adjacent.
+- 01:28 remote verdict of 0914-005813-45742:
+  - `NoncrossingClosedWalkEulerSectorFree` and the section joints module BUILT.
+  - The cell joints module failed: `have hlea' := leastArea_of_oEquivalent …` could not infer the implicit `m`. Fixed with a typed `have`.
+- 01:35 and later: DNS down again. A watcher lands the attic copies and co-probes seven modules once github and MSI are up: calibrations,
+  sector-free residual, both joints, reclosed vertex, rotation sides, passage kinds.
+- Written offline: `NoncrossingClosedWalkPassageDichotomy`.
+  - `faceOf_sigma_pow_not_mem_of_free`: along a free stretch the darts stay outside the side.
+  - `eq_of_adjacent_of_free`: an adjacent passage is the only passage whose free stretch ends at its reversal.
+- Remaining plan for the count:
+  1. The first reversal of a walk dart at-or-after a dart, and the global dichotomy at a vertex (all passages adjacent or none), by
+     induction along the rotation using `eq_of_adjacent_of_free`.
+  2. The inner classifier into `{v // ¬AdjKind v, v has a retained inner dart} ⊕ {i // adjacent i}`, and the outer classifier into
+     `{v // AdjKind v or untouched outer} ⊕ {i // ¬adjacent i}`. Invariance goes through `vertexOf_innerSigma` / `vertexOf_outerSigma`;
+     completeness at one-kind vertices through `PermFirstReturn.sameCycle_iff` on the restricted rotations.
+  3. The count `V_in + V_out = V + |w|`, which discharges `SectorFreeVertexCountStatement`, then both pocket Euler residuals through the
+     joints modules.
+- 09-14 08:19: a laptop reboot wiped /private/tmp, the old $NM with it. Main rebuilt the infra at 08:3x at
+  `/private/tmp/…/f907d0cb-17e5-443b-a723-7114e9553db6/scratchpad/nm`. All green records were lost.
+  - Overlay re-registered: 19 paths.
+  - One co-probe 0914-0835 of the ten unlanded modules: calibrations, sector-free residual, both joints, reclosed vertex, rotation sides,
+    passage kinds, passage dichotomy, vertex kind, passage internal.
+- Written offline, not yet probed:
+  - `NoncrossingClosedWalkVertexKind`:
+    - `PassageAdjacent`;
+    - `exists_first_alpha_after`: the first endpoint after a walk dart is a reversal;
+    - `passageAdjacent_of_vertex`: one adjacent passage makes every passage at its vertex adjacent, by strong induction along the
+      rotation.
+  - `NoncrossingClosedWalkPassageInternal` (`faceOf_sigma_pow_mem_of_free`, `internal_sideFaces_of_short`) and
+    `NoncrossingClosedWalkPassageInternalOuter` (`internal_sideOutside_of_free`): the darts inside a free sector or stretch are internal
+    to one side, so each reclosing jumps over them in one first return.
+- Next: the classifiers, as small files. The inner classifier sends a retained inner dart to its old vertex when that vertex has no
+  adjacent passage, and to the first reversal at-or-after it otherwise. The outer classifier is dual.
+- 08:28 probe 0914-082834-18302 RED, on one error in `PassageKinds`: `Equiv.Perm.inv_apply_self` is unknown. Fixed by `subst` and
+  induction on the power.
+- 08:30 probe 0914-083033-23170 GREEN (18 files recorded compiled).
+  - BUILT lines for the new five: `PassageKinds`, `PassageDichotomy`, `VertexKind`, `PassageInternal`, `PassageInternalOuter`.
+  - Six modules were only replayed, with no BUILT line: calibrations, sector-free residual, both joints, reclosed vertex, rotation sides.
+- LANDED b453ea815 `NoncrossingClosedWalkPassageKinds`.
+- 09:00 forced rebuild: the six replayed sources are touched (bytes unchanged), so the job purges their oleans. Co-probed with the new
+  `NoncrossingClosedWalkInnerKindClass` (`AdjVertex`, `InnerKindIndex`, `exists_first_adjacent`, `innerKindClass` and its two
+  characterizations).
+- 09:07 probe 0914-083654-43931 GREEN with real BUILT lines for the six forced modules and `InnerKindClass`. The chain landed eleven
+  modules in import order:
+  - RotationSides 781817f2a, ReclosedVertex bf480aca6, EulerSectorFree 939892337, calibrations ddbb453df;
+  - section joints 376d31c6e, cell joints a1091f0c8;
+  - PassageDichotomy 27700f376, VertexKind cf3680a57, PassageInternal fa773142a, PassageInternalOuter 9e83f2257, InnerKindClass 544875938.
+- 09:2x probe 0914-0920 (InnerKindInvariant BUILT; InnerKindCount RED on one `omega`, since the short sector needs `0 < a`, from
+  `alpha_not_mem`). LANDED c95771958 `NoncrossingClosedWalkInnerKindInvariant` (`innerKindClass_sigma`, `next_get_eq`).
+- 09:3x probe GREEN: InnerKindCount and `NoncrossingClosedWalkOuterKindClass` BUILT.
+  - LANDED f1897074d `InnerKindCount` (`innerKindVertexEquiv`, `inner_vertexCount_kind`).
+  - LANDED 6513e3e30 `OuterKindClass` (`Touched`, `OuterKindIndex`, `exists_first_short`, `outerKindClass` and its characterizations).
+- 09:4x probe GREEN, first try: `NoncrossingClosedWalkOuterKindInvariant` (`faceOf_alpha_mem_sideOutside_iff`, `prev_get_finRotate`,
+  `outerSigma_pow_val`, `outerKindClass_sigma`) and `NoncrossingClosedWalkOuterKindCount` (`outerSameCycle_of_notShort`,
+  `outer_vertexCount_kind`). Both landed.
+- Co-probing the closing pair:
+  - `NoncrossingClosedWalkSectorFreeVertexCount`: `kinds_of_vertex`, `vertexCount_le_kinds`, `card_passageAdjacent_add`,
+    `sectorFreeVertexCount : SectorFreeVertexCountStatement`, `IsNoncrossingClosedWalk.eulers_of_passageSectorFree`.
+  - `Estimating/OsinPocketWalkEulerSectorFree`: `sectionPocketWalkEuler : SectionPocketWalkEulerStatement`,
+    `cellPocketWalkEuler : CellPocketWalkEulerStatement`, `sectionPocketKeptCell : SectionPocketKeptCellStatement`. These take the joints'
+    chain relation (vertex step ∧ `PassageSectorFree`) at each position through `get_finRotate_of_isChain_closes`.
+- 09:03 probe 0914-090343-18838 RED on one gate: `#audit_closed_axioms` on `eulers_of_passageSectorFree`, which takes inputs. Now
+  `#audit_axioms`. Every proof in the module elaborated.
+- 09:06 probe 0914-090604-65604 GREEN, with BUILT lines for both modules and the closed-axiom audits of `sectorFreeVertexCount`,
+  `sectionPocketWalkEuler`, `cellPocketWalkEuler` and `sectionPocketKeptCell`.
+  - LANDED 68838eeae `NoncrossingClosedWalkSectorFreeVertexCount`.
+  - LANDED 0bd28eecc `Estimating/OsinPocketWalkEulerSectorFree`.
+  - Both queued for wiring.
+- **CLOSED** the section and cell pocket Euler residuals as named Props: `SectionPocketWalkEulerStatement`, `CellPocketWalkEulerStatement`,
+  `SectionPocketKeptCellStatement`; also `SectorFreeVertexCountStatement`. The general `NoninterleavingVertexCountStatement` stays open
+  and has no pocket consumer.
+- Consumers that can now drop the hypothesis (other lanes' modules, unchanged here):
+  - `heuler : CellPocketWalkEulerStatement`:
+    - `sideRelatorCellForOrder_of_eulerStatement`;
+    - `copyRegion_of_offSideWalkEuler`, `multipleEdgePocketRegionCopyInput_of_pinchOrderEuler`,
+      `osinMultipleEdgePocketRegionCopySection_of_pinchOrderEuler`;
+    - the `…Section` and `…Below` variants in `OsinPocketMultipleEdgeCopyOrderSection` and `OsinPocketMultipleEdgeCopyBelow`;
+    - `OsinGreendlingerWaistV4Euler`, `V5` and `TorsionFreeResidualsV4Euler`, `V5`.
+  - `heuler : SectionPocketWalkEulerStatement` or `hkept : SectionPocketKeptCellStatement`: `osinSectionPocketFaceSetSection_of_euler`,
+    `…_of_keptCell`, `sectionPocketFaceSetInput_of_keptCell`, `…_of_residuals`.
 
 ## Progress log
 
