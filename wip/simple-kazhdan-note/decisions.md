@@ -780,6 +780,15 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Part10 fix to the general first-order form: outside characteristic 2 the Weyl elements are signed, so the commutator gives e_13(±rs) with a fixed sign.
     - W1 and W2 go to the Cairn steward.
     - Remaining queue: lines 28–30 (sk-verify-21) and 32–33 (sk-verify-22). 5 lanes live.
+161. **sk-verify-21 final (cd468b492d): queue lines 28–30.**
+    - `piecewise-dyadic-level-models-give-non-uniform-growth`: PASS, conditional on the Krieger import. Theorem B applies to rings A_k that vary with k, because its constants and threshold do not depend on A (sk-verify-14 part 4 l.63).
+    - `matrix-decompositions-of-subshift-rings-need-divisible-unit`: PASS-WITH-FIXES.
+      - F1: route step 6 proves only N = 3·2^n; the general N | k step is given verbatim.
+      - F2: Consequence 2 has no route step; step 7 is given verbatim (Bézout with 3a + 2^n b = 1).
+    - `krieger-subshift-embedding-theorem`: PASS-WITH-FIXES at secondary-source level. arXiv:2606.25475 was read on MSI (l.112 theorem, l.110 q_n, l.220 embedding); Crossref matches the primary paper, which was not opened.
+      - K1: the quote reads "if and only if".
+      - K2: the route names B. Marcus and T. Meyerovitch.
+    - F1, F2, K1 and K2 go to the Cairn steward. Remaining queue: lines 32–33 (sk-verify-22).
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
