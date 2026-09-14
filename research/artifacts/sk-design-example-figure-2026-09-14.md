@@ -79,7 +79,7 @@ Fibonacci word prefix: 010010100100101001010 L3: ['001', '010', '100', '101']
 
 ## Verbatim OLD → NEW (unified diff against rev4.5)
 
-Line delta: 775 → 842 lines (+67). No line of rev4.5 is deleted except the four lines that gain a figure pointer or are followed by a new block.
+Line delta: 775 → 842 lines (+67). Three lines of rev4.5 change, each gaining a figure pointer; everything else is added.
 
 ```diff
 --- rev4.5 simple_kazhdan_sofic_group.tex (md5 29d63f79)
