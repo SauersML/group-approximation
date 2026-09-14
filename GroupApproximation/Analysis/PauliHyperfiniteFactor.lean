@@ -195,8 +195,7 @@ theorem interleave_single_right (i : ℕ) (c : ZMod 2) :
     by_cases hik : i = k
     · subst hik
       simp
-    · have hne : 2 * i + 1 ≠ 2 * k + 1 := by omega
-      simp [hik, hne]
+    · simp [hik]
 
 theorem interleave_zero : interleave (0, 0) = 0 := by
   rw [Prod.mk_zero_zero, map_zero]

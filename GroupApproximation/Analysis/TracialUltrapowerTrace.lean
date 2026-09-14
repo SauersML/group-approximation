@@ -76,7 +76,7 @@ theorem seqUltratrace_add (a b : boundedSeq M) :
     ((tendsto_seqUltratrace τ ω a).add (tendsto_seqUltratrace τ ω b))
   show ⟪τ.vec, (a : ℕ → (H →L[ℂ] H)) n τ.vec⟫_ℂ + ⟪τ.vec, (b : ℕ → (H →L[ℂ] H)) n τ.vec⟫_ℂ =
     ⟪τ.vec, ((a : ℕ → (H →L[ℂ] H)) n + (b : ℕ → (H →L[ℂ] H)) n) τ.vec⟫_ℂ
-  rw [ContinuousLinearMap.add_apply, inner_add_right]
+  rw [add_apply, inner_add_right]
 
 theorem seqUltratrace_smul (c : ℂ) (a : boundedSeq M) :
     seqUltratrace τ ω (c • a) = c * seqUltratrace τ ω a := by
@@ -84,13 +84,13 @@ theorem seqUltratrace_smul (c : ℂ) (a : boundedSeq M) :
   refine Filter.Tendsto.congr (fun n ↦ ?_) ((tendsto_seqUltratrace τ ω a).const_mul c)
   show c * ⟪τ.vec, (a : ℕ → (H →L[ℂ] H)) n τ.vec⟫_ℂ =
     ⟪τ.vec, (c • (a : ℕ → (H →L[ℂ] H)) n) τ.vec⟫_ℂ
-  rw [ContinuousLinearMap.smul_apply, inner_smul_right]
+  rw [smul_apply, inner_smul_right]
 
 theorem seqUltratrace_one : seqUltratrace τ ω 1 = 1 := by
   apply UltrafilterLimit.ulim_eq
   refine Filter.Tendsto.congr (fun n ↦ ?_) (tendsto_const_nhds (x := (1 : ℂ)))
   show (1 : ℂ) = ⟪τ.vec, (1 : H →L[ℂ] H) τ.vec⟫_ℂ
-  rw [ContinuousLinearMap.one_apply, inner_self_eq_norm_sq_to_K, τ.norm_vec]
+  rw [one_apply_eq_self, inner_self_eq_norm_sq_to_K, τ.norm_vec]
   simp
 
 theorem seqUltratrace_mul_comm (a b : boundedSeq M) :
@@ -133,10 +133,12 @@ theorem seqUltratrace_star_mul_self_eq_zero_iff (a : boundedSeq M) :
   · intro ha
     apply UltrafilterLimit.ulim_eq
     have hsq : Tendsto (fun n ↦ ‖(a : ℕ → (H →L[ℂ] H)) n τ.vec‖ ^ 2) (ω : Filter ℕ) (nhds 0) := by
-      simpa using ha.pow 2
+      simpa [sq] using ha.mul ha
     have hc : Tendsto (fun n ↦ ((‖(a : ℕ → (H →L[ℂ] H)) n τ.vec‖ ^ 2 : ℝ) : ℂ)) (ω : Filter ℕ)
         (nhds 0) := by
-      simpa using (Complex.continuous_ofReal.tendsto 0).comp hsq
+      have h := (Complex.continuous_ofReal.tendsto 0).comp hsq
+      rw [Complex.ofReal_zero] at h
+      exact h
     exact Filter.Tendsto.congr (fun n ↦ (seqTrace_star_mul_self τ a n).symm) hc
 
 /-- The coordinate trace as an additive map on bounded sequences. -/
@@ -221,7 +223,8 @@ theorem diag_apply (T : ↥M.toStarSubalgebra) : diag τ ω T = mk τ ω (constS
 theorem ultratrace_diag (T : ↥M.toStarSubalgebra) :
     ultratrace τ ω (diag τ ω T) = ⟪τ.vec, (T : H →L[ℂ] H) τ.vec⟫_ℂ := by
   rw [diag_apply, ultratrace_mk]
-  exact UltrafilterLimit.ulim_const ω _
+  show UltrafilterLimit.ulim ω (fun _ : ℕ ↦ ⟪τ.vec, (T : H →L[ℂ] H) τ.vec⟫_ℂ) = _
+  exact UltrafilterLimit.ulim_const ω ⟪τ.vec, (T : H →L[ℂ] H) τ.vec⟫_ℂ
 
 /-- **The diagonal embedding is injective** when `Ω` separates `M`. -/
 theorem diag_injective (hsep : ∀ T ∈ M, T τ.vec = 0 → T = 0) :
