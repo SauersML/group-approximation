@@ -30,3 +30,5 @@ Scope:
   different entropy, so no argument through the unital ordered `K_0` alone gives more.
 - The unit caveat recorded in `subshift-elementary-group-isomorphism-forces-orbit-equivalence` (height-3 towers) does
   not arise: torsion-freeness forces the isomorphism to send `[1]` to `[1]`.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** (R1)–(R6) re-derived: the anti-automorphism, the idempotent cone equal to the HPS cone through faithful Ara–Claramunt rank functions, the Bauer maximum principle and Effros's criterion, torsion-freeness, and GPS. Wiring note: `subshift-crossed-product-k0-is-coinvariant-group` is displayed for `F_q`, but its proof works over every field. See `research/artifacts/sk-review-3-2026-09-13-part4.md` §2.

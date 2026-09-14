@@ -19,3 +19,5 @@ Scope:
 - `q` even is not covered, since Zel'manov assumes `1/2`.
 - The projective groups `S_X = EL_3(R_X)/Z` are not covered; see artifact §3, firewalls F-PE1 and F-PE2.
 - The conclusion is about `M_3`, so downstream `K_0` arguments see the order unit `3[1]`.
+
+**Review (sk-verify-3, 2026-09-13): PASS, conditional on the Zel'manov import as quoted.** `1/2` in both rings, `φ(G) = S* ⊇ φ(Σ)_S`, generation of `M_3(R_Y)` by `GL_3(R_Y)` (Lemma G1) and simplicity of `M_3(R)` re-derived. See `research/artifacts/sk-review-3-2026-09-13-part4.md` §3.
