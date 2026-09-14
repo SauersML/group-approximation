@@ -7,11 +7,20 @@ Lane oa-llp, launched ~20:15 by main. The brief is the `OA LANES 20:15` table in
 - CLAIM LLP definitions (Ozawa Def 3.5) and scalar calibration: `GroupApproximation/Analysis/LocalLiftingProperty.lean`
 - CLAIM LLP plus a trace-preserving matrix model gives the factorization property: `GroupApproximation/Analysis/LocalLiftingFactorization.lean`
 - CLAIM printed endpoint, tex l.175–177: `GroupApproximation/Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting.lean`
-- Not mine: Arveson extension from operator systems into matrices, owned by oa-ucp (roster 20:35). I consume it through a named statement.
+- CLAIM (23:15, absorbed from oa-ucp, which was not resumed): Krein extension from operator systems, `GroupApproximation/Analysis/OperatorSystemStateExtension.lean`
+- CLAIM (absorbed): Choi functional of a cp map on an operator system, `GroupApproximation/Analysis/OperatorSystemChoiFunctional.lean`
+- CLAIM (absorbed): Arveson extension into matrices, Ozawa Thm 2.2, ucp case, `GroupApproximation/Analysis/OperatorSystemMatrixArveson.lean`
+- oa-ucp's transcript has only an unlanded claim report (OperatorSystemBasic, OperatorSystemStateExtension, OperatorSystemMatrixArveson). It wrote no Lean file, and there is nothing of it in the shared tree, backup or attic.
 
 ## Printed sentence
 
-tex l.263–265 at 9047d0d3c (md5 274f1936…), section "Brown's formulation". Census row `1fe81fb1330c` in the census regenerated at d11e91f6e. At e80dcf20a the sentence was l.175–177:
+tex l.287–290 at 37551fd93 (md5 b55c0d23…), section "Brown's formulation". Census row `a63ff00e499b` in the census regenerated at 649cb1f80. At e80dcf20a the sentence was l.175–177, row `1fe81fb1330c`. The current text:
+
+> So $G$ does not have the factorization property, it is not a subgroup of the unitary group of $\mathcal R$, and $C^*(G)$ does not have the local lifting property~\cite[p.~527]{Ozawa}.
+
+This lane carries the LLP clause. The same claim appears in the introduction, `7f3b239e5f2a` (l.49–52): "noting that the full C*-algebra of such a group cannot have the local lifting property [p. 527]". The general theorem of this lane (simple, Kazhdan, hyperlinear ⇒ C*G fails the LLP) carries it too.
+
+The earlier text:
 
 > So $G$ does not have the factorization property, and $C^*(G)$ does not have the local lifting property~\cite[p.~527]{Ozawa}.
 
