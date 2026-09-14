@@ -61,6 +61,7 @@ theorem restrictFace_injective : Function.Injective (M.restrictFace S hα hσ) :
   exact ((M.restrict S hα hσ).faceOf_eq_iff a b).mpr
     ((M.restrict_sameCycle_iff S hα hσ a b).mpr ((M.faceOf_eq_iff a.1 b.1).mp h))
 
+include hα hσ in
 /-- Every dart on the face of a dart of `S` lies in `S`. -/
 theorem mem_of_faceOf_eq {x d : M.Dart} (hx : S x) (hd : M.faceOf d = M.faceOf x) : S d :=
   (iff_of_sameCycle M.facePerm S (M.facePerm_invariant S hα hσ)
