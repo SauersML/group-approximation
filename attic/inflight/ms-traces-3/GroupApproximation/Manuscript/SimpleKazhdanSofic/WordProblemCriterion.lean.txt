@@ -52,38 +52,44 @@ def window (x : ℤ → A) (K : ℕ) : List A :=
 theorem length_window (x : ℤ → A) (K : ℕ) : (window x K).length = 2 * K + 1 :=
   List.length_ofFn
 
+/-- The entries of a window, without dependent bounds. -/
+theorem window_getElem?_nat (x : ℤ → A) (K i : ℕ) :
+    (window x K)[i]? = if h : i < 2 * K + 1 then some (x ((i : ℤ) - (K : ℤ))) else none := by
+  unfold window
+  exact List.getElem?_ofFn
+
 theorem window_getElem? (x : ℤ → A) (K : ℕ) {i : ℤ} (hi : |i| ≤ K) :
     (window x K)[(i + (K : ℤ)).toNat]? = some (x i) := by
   obtain ⟨hi1, hi2⟩ := abs_le.1 hi
-  have h0 : 0 ≤ i + (K : ℤ) := by omega
-  have hlt : (i + (K : ℤ)).toNat < (window x K).length := by rw [length_window]; omega
-  rw [List.getElem?_eq_getElem hlt, window, List.getElem_ofFn]
-  show some (x ((((i + (K : ℤ)).toNat : ℕ) : ℤ) - (K : ℤ))) = some (x i)
-  rw [Int.toNat_of_nonneg h0, add_sub_cancel_right]
+  have hlt : (i + (K : ℤ)).toNat < 2 * K + 1 := by omega
+  rw [window_getElem?_nat, dif_pos hlt]
+  exact congrArg some (congrArg x (by omega))
 
 /-- **The window of a word of `L(X)`.** -/
 theorem exists_window_eq {X : Set (ℤ → A)} (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X) {K : ℕ}
     {v : List A} (hv : v ∈ listLanguage X) (hlen : v.length = 2 * K + 1) :
     ∃ x ∈ X, window x K = v := by
   obtain ⟨y, hy, h⟩ := hv
-  refine ⟨shift (K : ℤ) y, hX K hy,
-    List.ext_getElem (by rw [length_window, hlen]) fun i h1 h2 => ?_⟩
-  rw [window, List.getElem_ofFn]
-  show shift (K : ℤ) y (((i : ℕ) : ℤ) - (K : ℤ)) = v[i]
-  rw [shift_apply]
-  have e : (K : ℤ) + (((i : ℕ) : ℤ) - (K : ℤ)) = ((i : ℕ) : ℤ) := by ring
-  rw [e]
-  exact h ⟨i, h2⟩
+  refine ⟨shift (K : ℤ) y, hX K hy, List.ext_getElem? fun i => ?_⟩
+  rw [window_getElem?_nat]
+  by_cases hi : i < 2 * K + 1
+  · have hv' : i < v.length := by rw [hlen]; exact hi
+    have e : v[i]? = some (v.get ⟨i, hv'⟩) := List.getElem?_eq_getElem hv'
+    rw [dif_pos hi, e, ← h ⟨i, hv'⟩, shift_apply]
+    exact congrArg some (congrArg y (show (K : ℤ) + ((i : ℤ) - (K : ℤ)) = (i : ℤ) by ring))
+  · have hn : v.length ≤ i := by rw [hlen]; omega
+    rw [dif_neg hi, List.getElem?_eq_none hn]
 
 /-- **The window of a point of `X` is a word of `L(X)`.** -/
 theorem window_mem_listLanguage {X : Set (ℤ → A)} (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X)
     {x : ℤ → A} (hx : x ∈ X) (K : ℕ) : window x K ∈ listLanguage X := by
   refine ⟨shift (-(K : ℤ)) x, hX _ hx, fun t => ?_⟩
-  rw [shift_apply]
-  show x (-(K : ℤ) + ((t : ℕ) : ℤ)) = (window x K)[(t : ℕ)]
-  rw [window, List.getElem_ofFn]
-  show x (-(K : ℤ) + ((t : ℕ) : ℤ)) = x (((t : ℕ) : ℤ) - (K : ℤ))
-  rw [neg_add_eq_sub]
+  have ht : (t : ℕ) < 2 * K + 1 := by
+    have h := t.2
+    rwa [length_window] at h
+  have e : (window x K)[(t : ℕ)]? = some ((window x K).get t) := List.getElem?_eq_getElem t.2
+  rw [window_getElem?_nat, dif_pos ht] at e
+  rw [shift_apply, ← Option.some.inj e, neg_add_eq_sub]
 
 /-- All words of length `n` over the letters `L`. -/
 def allWords (L : List A) : ℕ → List (List A)
@@ -132,6 +138,7 @@ def cylRadius (c : Cyl A) : ℕ :=
 def tableRadius (l : Table A) : ℕ :=
   l.foldr (fun m r => max (cylRadius m.2) r) 0
 
+omit [DecidableEq A] in
 theorem cylMem_cons {p : ℤ × A} {c : Cyl A} {x : ℤ → A} :
     cylMem (p :: c) x ↔ x p.1 = p.2 ∧ cylMem c x := by
   simp [cylMem]
@@ -175,6 +182,7 @@ theorem coeffFun_apply_eq (l : Table A) (j : ℤ) (x : ↥X) {K : ℕ} (hK : tab
         zero_add]
       cases windowParity K l j (window x.1 K) <;> rfl
 
+omit [TopologicalSpace A] [DiscreteTopology A] in
 theorem windowParity_of_not_mem {K : ℕ} {l : Table A} {j : ℤ} (hj : j ∉ l.map Prod.fst)
     (v : List A) : windowParity K l j v = false := by
   induction l with
