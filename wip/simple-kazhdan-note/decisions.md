@@ -642,6 +642,16 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - The post-edit check failed on a PEER error (Kervaire id over 64 characters). The rerun with a stub is requested.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
+136. **Reboot recovery (09-14 ~08:20; new coordinator session 01R7qxskjwA1agYNpxSzGHkF).**
+    - The Mac rebooted overnight, and /private/tmp was wiped: sk/ infra, scratch drafts, and landing scripts. Main is unaffected: rev4.3 (696c4b602e, md5 0648e5f8…) equals the local copy, and drafts plus this log survive under wip/.
+    - Landings now go through a guarded private-index lander (pinned base per path, subset check, non-empty commit, per-path verification).
+    - USER ORDERS: "let's get it 100% perfect"; "never explode ram again, u have to fix that if it happens". RAM rules: at most 3 agents, no local polling loops, check memory pressure before launches.
+137. **USER ORDERS on the PDF** ("make sure pdf is on toplevel main"; "make sure outputs pdf dir is deleted on main"; "make sure gha makes the pdf for this manuscript"). LANDED 27342e8fdb:
+    - `.github/workflows/draft-simple-kazhdan-pdf.yml`, modeled on draft-recognition-pdf.yml: pdflatex in pinned TL2025, refuses unresolved references, qpdf normalization, publishes simple_kazhdan_sofic_group.pdf at top level via publish_pdf_commit.py; quarter-hour catch-up.
+    - The publish_pdf_commit.py allowlists gain the paper's tex and pdf.
+    - `output/pdf/non_mf_group_notes.pdf` deleted (a stale copy; the notes PDF is published at top level). No workflow or script references output/.
+    - Final whole-paper audits launched: sk-perfect-a (correctness, every line) and sk-perfect-b (credit, bibliography against Crossref/zbMATH, abstract).
+
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
 - The exact centre formula over F_q (it stays in Cairn).
