@@ -146,7 +146,7 @@ After:
 ```latex
 Jaikin-Zapirain~\cite{EJZ}. The finite models use periodic sequences
 with the same words of a given length as $X$, as in Grigorchuk and
-Medynets~\cite{GM}. For simplicity, a nontrivial normal
+Medynets~\cite{GM}. In the proof of simplicity, a nontrivial normal
 ...
 towers~\cite[Lemma~3.4 and Theorem~4.9]{Matui}. Thom constructed a
 finitely generated Kazhdan LEF group that is not residually
