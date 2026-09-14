@@ -14,6 +14,11 @@ Lane skf-cite, 2026-09-13 ~19:55 CDT, under the 19:45 protocol of ct/ROSTER-sk.m
   Stepanov remark, the five Questions sentences and the three authorship sentences. The 12 rows at bf961c128 are
   superseded (`metadata/SK_SENTENCE_SUPERSEDED.tsv`).
 
+## Claims
+
+- CLAIM tex l.164–166 "LEF groups are sofic, and sofic groups are hyperlinear" (Pestov): closed wrappers in
+  `GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFSoficHyperlinear.lean` (assigned by main, 20:3x).
+
 ## Citations used as proof steps
 
 | lines | cite | step | Lean carrier (origin/main) | verdict |
