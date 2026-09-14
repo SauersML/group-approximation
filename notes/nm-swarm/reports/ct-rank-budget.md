@@ -73,8 +73,35 @@ coordinator).  This file is written by ct-rank-budget only.
   deviations in the return transient ideal) and `DynamicRankBudgetReturnBridge` (`returnEmbeddingStatement_of_pieces`
   over `ReturnRingCrossedProductStatement`, `InvolutionLocalizationMatrixClause`, `CoreKernelElementaryStatement` and the
   J piece `θ⁻¹(p_C I p_C) ⊆ I_C`).
-- Open for this lane: `J = p_C I p_C` (the 0-th coefficient compatibility of the return ring iso), then the printed
-  saturation route for tex 1743–1750.
+- 09-13 18:12: DynamicRankBudgetReturnKernel LANDED c9899b2b6 (GREEN 0913-180852-10846): `glEmbedding_returnPlacement`,
+  `returnPlacement_sub_one_mem`, `units_map_mapMatrix_eq_one_of_forall_mem_ker`.
+- 09-13 18:27: DynamicRankBudgetReturnBridge LANDED 4cc9a1f20 (GREEN 0913-182431-19490):
+  `returnEmbeddingStatement_of_pieces (hring : ReturnRingCrossedProductStatement)
+  (hinv : ClopenCrossedProduct.InvolutionLocalizationMatrixClause) (hkerEL : ClopenCrossedProduct.CoreKernelElementaryStatement)
+  (hJ : ReturnTransientIdealStatement) : ReturnEmbeddingStatement`; `returnTowerUnits_a_zero/_b_zero`, `noShortPeriods_of_iterate`.
+- 09-13 19:02: DynamicRankBudgetReturnTransientIdeal LANDED e2d3c56f7 (GREEN 0913-185556-62721):
+  `returnTransientIdealStatement_holds : ReturnTransientIdealStatement` (closed). `theta_eq_returnRingHom` identifies the
+  printed θ with the landed `returnRingHom`, and the zeroth coefficient is read off `coeff_one_coe_returnRingHom`.
+  A first landing at 18:59 failed on a ref lock; its wire-queue line was retracted in place and re-queued at e2d3c56f7.
+- 09-13 19:06: DynamicRankBudgetAssembly LANDED b818e32b3 (GREEN 0913-190003-80821): `printedDynamicRankBudget_of_openPieces`,
+  `printedIntroductionAperiodicSentence_of_openPieces`.
+- 09-13 19:10: assembly edit LANDED 16937ecac (GREEN 0913-190738-27144), adding the closed endpoints `returnEmbeddingStatement_holds : ReturnEmbeddingStatement` and
+  `torsionDefectTransferStatement_holds : TorsionDefectTransferStatement`.
+
+## Remaining open inputs of cor:dynamic-rank-budget (exact names, in `DynamicRankBudget.lean`)
+
+| Prop | content | owner |
+|---|---|---|
+| `CoreRingReflectionStatement` | `R_X` DF ⟺ SF ⟺ `IsLEFRing` ⟺ `∀ x, x ∈ CR(T)` | chain-reflection, ct-return-tower |
+| `CoreModelsLEFStatement` | `IsLEFRing R_Y` | chain-itinerary |
+| `CoreMFRadicalKillStatement` | over `F_2`: `K_n(I) ≤ Rad_MF(GL_n)` (n ≥ 3), `EL_n ∩ K_n(I) ≤ Rad_MF(EL_n)` (n ≥ 4), `K_n(I)` locally finite (n ≥ 2) | chain-radical, ms-core-4, ms-core-5 |
+
+Closed by producers on main: `CountableCrossedProductStatement` (ms-core-4), `BilateralThreeTransferStatement` over
+`CoreModelsLEFStatement` (ct-bilateral-mf), `TorsionDefectTransferStatement`, `UnitKernelLocallyFiniteStatement`
+(ct-involution), `ReturnEmbeddingStatement` (this lane, over ct-return-tower, ct-involution, ct-bilateral-mf).
+
+- Open for this lane afterwards: nothing owned; the printed saturation route and the reverse inclusion for tex 1743–1750
+  went to ms-core-1.
   ct-return-tower's statements landed 4d2084188 (`ReturnTowerStatements`: `NoShortPeriods`, `IsReturnSection`,
   `ReturnGapsIn`, `returnTime`, `FirstReturnStatement`, `ReturnRingCrossedProductStatement`,
   `ReturnTowerUnitsStatement`; `τ.phi`, `τ.unitize`, `τ.unitizeGL`).  ct-involution's in-flight
