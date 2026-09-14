@@ -73,9 +73,10 @@ theorem isUniformlyRecurrentAt_of_minimal [TopologicalSpace A] [DiscreteTopology
   have hone : ∀ u ∈ language X n, ∃ B : ℕ, ∀ x ∈ X, ∃ m : ℤ, |m| ≤ B ∧ word x m n = u := by
     intro u hu
     obtain ⟨z, hz, hzu⟩ := hu
+    have hcont : ∀ m : ℤ, Continuous fun y : ℤ → A => word y m n := fun m =>
+      continuous_pi fun j : Fin n => continuous_apply (m + (j : ℕ))
     have hUo : ∀ m : ℤ, IsOpen ((fun y : ℤ → A => word y m n) ⁻¹' {u}) := fun m =>
-      (continuous_pi fun j : Fin n => continuous_apply (m + (j : ℕ))).isOpen_preimage {u}
-        (isOpen_discrete _)
+      (hcont m).isOpen_preimage ({u} : Set (Fin n → A)) (isOpen_discrete _)
     have hcov : X ⊆ ⋃ m : ℤ, (fun y : ℤ → A => word y m n) ⁻¹' {u} := by
       intro x hx
       obtain ⟨y, hyU, m, rfl⟩ :=
@@ -108,6 +109,47 @@ theorem isUniformlyRecurrentAt_of_minimal [TopologicalSpace A] [DiscreteTopology
   rw [show i + (((Bmax + m).toNat : ℕ) : ℤ) = i + Bmax + m by omega]
   exact hmw
 
+/-- **By minimality every word of `X` occurs in `x`** (tex 121–122), at a nonnegative position. -/
+theorem exists_nat_word_eq_of_minimal [TopologicalSpace A] [DiscreteTopology A] [Finite A]
+    {X : Set (ℤ → A)} (hXc : IsClosed X) (hX : ∀ m : ℤ, Set.MapsTo (shift m) X X)
+    (hmin : ∀ C : Set (ℤ → A), IsClosed C → C ⊆ X → (∀ g : ℤ, Set.MapsTo (shift g) C C) →
+      C = ∅ ∨ C = X) {x : ℤ → A} (hx : x ∈ X) {n : ℕ} {u : Fin n → A} (hu : u ∈ language X n) :
+    ∃ i : ℕ, word x i n = u := by
+  obtain ⟨ℓ, hℓ⟩ := isUniformlyRecurrentAt_of_minimal hXc hX hmin n
+  obtain ⟨i, -, hiu⟩ := hℓ x hx 0 u hu
+  exact ⟨i, by rw [← hiu, zero_add]⟩
+
+/-- **`x_{[0,2k)}` recurs at arbitrarily large positions** (tex 122). -/
+theorem exists_recurrence_of_minimal [TopologicalSpace A] [DiscreteTopology A] [Finite A]
+    {X : Set (ℤ → A)} (hXc : IsClosed X) (hX : ∀ m : ℤ, Set.MapsTo (shift m) X X)
+    (hmin : ∀ C : Set (ℤ → A), IsClosed C → C ⊆ X → (∀ g : ℤ, Set.MapsTo (shift g) C C) →
+      C = ∅ ∨ C = X) {x : ℤ → A} (hx : x ∈ X) (k M : ℕ) :
+    ∃ m : ℕ, M ≤ m ∧ word x m (2 * k) = word x 0 (2 * k) := by
+  obtain ⟨ℓ', hℓ'⟩ := isUniformlyRecurrentAt_of_minimal hXc hX hmin (2 * k)
+  obtain ⟨j, -, hjv⟩ := hℓ' x hx (M : ℤ) (word x 0 (2 * k)) (word_mem_language hX hx 0 (2 * k))
+  exact ⟨M + j, by omega, by rw [← hjv]; push_cast; rfl⟩
+
+/-- **Choose a recurrence position far enough** (tex 121–124): for a point `x` of `X`, the word
+`x_{[0,2k)}` occurs again at a position `N ≥ N0`, and every word of length `2k + 1` of `X` starts at a
+position of `[0, N)`. -/
+theorem exists_occurrences_of_mem [TopologicalSpace A] [DiscreteTopology A] [Finite A]
+    {X : Set (ℤ → A)} (hXc : IsClosed X) (hX : ∀ m : ℤ, Set.MapsTo (shift m) X X)
+    (hmin : ∀ C : Set (ℤ → A), IsClosed C → C ⊆ X → (∀ g : ℤ, Set.MapsTo (shift g) C C) →
+      C = ∅ ∨ C = X) {x : ℤ → A} (hx : x ∈ X) (k N0 : ℕ) :
+    ∃ N : ℕ, N0 ≤ N ∧ 2 * k + 1 ≤ N ∧ word x 0 (2 * k) = word x N (2 * k) ∧
+      ∀ u ∈ language X (2 * k + 1), ∃ i : ℕ, i + (2 * k + 1) ≤ N ∧ word x i (2 * k + 1) = u := by
+  obtain ⟨ℓ, hℓ⟩ := isUniformlyRecurrentAt_of_minimal hXc hX hmin (2 * k + 1)
+  obtain ⟨ℓ', hℓ'⟩ := isUniformlyRecurrentAt_of_minimal hXc hX hmin (2 * k)
+  obtain ⟨j, -, hjv⟩ := hℓ' x hx ((ℓ + N0 + 2 * k + 1 : ℕ) : ℤ) (word x 0 (2 * k))
+    (word_mem_language hX hx 0 (2 * k))
+  refine ⟨ℓ + N0 + 2 * k + 1 + j, by omega, by omega, ?_, fun u hu => ?_⟩
+  · rw [← hjv]
+    push_cast
+    rfl
+  · obtain ⟨i, hiℓ, hiu⟩ := hℓ x hx 0 u hu
+    refine ⟨i, by omega, ?_⟩
+    rw [← hiu, zero_add]
+
 /-- **Two occurrences of the same word, far apart** (tex 125–129): in a point `x` of `X`, the word of
 length `2k` at `0` occurs again at `N`, the segment `x[0, N)` contains every word of length
 `2k + 1` of `X`, and `N` is at least any prescribed `N0`. -/
@@ -119,18 +161,9 @@ theorem exists_occurrences [TopologicalSpace A] [DiscreteTopology A] [Finite A]
     ∃ (x : ℤ → A) (N : ℕ), x ∈ X ∧ N0 ≤ N ∧ 2 * k + 1 ≤ N ∧
       word x 0 (2 * k) = word x N (2 * k) ∧
       ∀ u ∈ language X (2 * k + 1), ∃ i : ℕ, i + (2 * k + 1) ≤ N ∧ word x i (2 * k + 1) = u := by
-  obtain ⟨ℓ, hℓ⟩ := isUniformlyRecurrentAt_of_minimal hXc hX hmin (2 * k + 1)
-  obtain ⟨ℓ', hℓ'⟩ := isUniformlyRecurrentAt_of_minimal hXc hX hmin (2 * k)
   obtain ⟨x, hx⟩ := hne
-  obtain ⟨j, -, hjv⟩ := hℓ' x hx ((ℓ + N0 + 2 * k + 1 : ℕ) : ℤ) (word x 0 (2 * k))
-    (word_mem_language hX hx 0 (2 * k))
-  refine ⟨x, ℓ + N0 + 2 * k + 1 + j, hx, by omega, by omega, ?_, fun u hu => ?_⟩
-  · rw [← hjv]
-    push_cast
-    rfl
-  · obtain ⟨i, hiℓ, hiu⟩ := hℓ x hx 0 u hu
-    refine ⟨i, by omega, ?_⟩
-    rw [← hiu, zero_add]
+  obtain ⟨N, hN0, hNk, hrep, hseg⟩ := exists_occurrences_of_mem hXc hX hmin hx k N0
+  exact ⟨x, N, hx, hN0, hNk, hrep, hseg⟩
 
 variable {x : ℤ → A} {k N : ℕ}
 
