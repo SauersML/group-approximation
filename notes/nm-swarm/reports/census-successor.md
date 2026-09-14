@@ -44,6 +44,14 @@ The tools are copied, not edited in place, to this session's scratchpad `ct/cens
   - chain-itinerary is down, and ms-compress-1 re-graded three of its rows at bd7b20b28, carrying each old residual.
   - DROP overrides remove chain-itinerary's rows on `fe2bd83087c0`, `ed348643e2ad` and `807793f12a5e`, so
     ms-compress-1's rows grade those sentences instead of a union with the stale partial rows.
+- **KEEPLATEST overrides** (new form, merge 2).
+  - `lane<TAB>given key<TAB>KEEPLATEST<TAB>reason` keeps only that lane's last row at that given key. It is for rows
+    their writer declared superseded without writing SUPERSEDES in the note.
+  - The union rule is otherwise unchanged: several rows of one lane at one key are united, and any partial row makes
+    the sentence partial.
+  - A scan of every row file at 19:3x found three such keys, all in ct-bilateral-mf: `LINE:1541`, `LINE:253` and
+    `LINE:1760`. ct-rank-budget regraded the latest rows at 2fb94570a on the lead's order, and the older 816a6b699 rows
+    stay in the file.
 
 ## Merges
 
@@ -51,6 +59,8 @@ The tools are copied, not edited in place, to this session's scratchpad `ct/cens
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 0913-183126 (trial) | e336f6734 | no land: REGISTER=3, 17 unclassified (chain-core tail residuals) | 299 | 51 | 51 | 193 | 86 | 717 |
 | 0913-185744 | da89370bf | **LANDED b75e5bbcd**, verified on origin | 299 | 53 | 51 | 197 | 80 | 717 |
+| 0913-195235 | fc77250a3 | **LANDED f78d19014** (20:02), verified on origin | 325 | 63 | 54 | 226 | 12 | 717 |
+| 0913-202315 | 484a4b651 | **LANDED 3f3f4c5c3**, verified on origin | 381 | 69 | 54 | 164 | 12 | 717 |
 
 Merge 0913-185744:
 - **Register:** 3 stale lines removed, 201 revised, 30 new registered, 0 unclassified.
@@ -63,10 +73,35 @@ Merge 0913-185744:
     them.
 - **Unassigned (80):** 77 in sec:chain-core, 3 in the Introduction.
 
+Merge 0913-195235 launched at 19:52 and landed at 20:02, just before the ~20:03 API outage.
+- **Base:** fc77250a3. It includes lead-wire ef5f85c15 (15 modules) and the rows of ms-compress-1 (bd7b20b28) and
+  ct-rank-budget (2fb94570a, 07a74132c).
+- **Register:** 17 stale lines removed, 0 revised, 0 new, 0 unclassified. `--verify-unconditional`: 410 accepted,
+  0 new.
+- **Partial (226):** 217 are partial only because a carrier module is outside the root closure. Partial rose from
+  197 mainly because formerly unassigned rows were assigned as partial.
+- **Overrides applied:** the three chain-itinerary DROPs and the three ct-bilateral-mf KEEPLATESTs. At `LINE:1760` the
+  union now holds one row each from ct-bilateral-mf and ct-rank-budget. ct-rank-budget's regraded rows stay partial
+  until `ChainCoreClosures` (b09de1dcf) and `CoreModelsLEFClosed` are wired.
+- **Skipped as BAD-KEY:**
+  - lix-descent's row keyed `LINE:none` (`metadata/nm-census-rows/lix-descent.tsv`);
+  - two sk-ms-core-3 rows keyed `LINE:131@2050a8eed` and `LINE:134@2050a8eed`. That file sits only in the census
+    lane's scratchpad rows directory and looks like a simple Kazhdan note row filed there by mistake.
+- **Next:** lead-wire 6425614c8 (36 modules, 20:02) landed after this export, so merge 0913-202315 (base 484a4b651)
+  was launched over it after the resume.
+
+Merge 0913-202315 launched at 20:23 and landed as 3f3f4c5c3.
+- **Base:** 484a4b651, which includes lead-wire 6425614c8 (36 modules).
+- **Register:** unchanged (0 stale, 0 revised, 0 new, 0 unclassified). `--verify-unconditional`: 410 accepted, 0 new.
+- **Restored by the wiring:** 56 rows went from partial to formalized and 6 from partial to definition. No row went
+  down.
+- **Partial (164):** 117 are partial only because a carrier module is outside the root closure.
+- **Next:** ct-rank-budget's `LINE:1743` row (8ec0cc7fb) landed after this export, so the next merge takes it. Its
+  carrier is `printedInducedCore_closed`, in DynamicRankBudgetInducedCoreClosed (2829a1eb9).
+
 ## Re-merge triggers
 
 - After each ROOT GREEN wiring wave by ms-core-5, the root-wire successor (`notes/nm-swarm/reports/root-wire-successor.md`).
   - A wave lands as a "Wire N landed non-MF campaign module(s) into the root" commit on `GroupApproximation.lean`.
-  - The last one was c0c1a8e3d (wave 16, 16:32). Wave 17 (15 ct/ms modules) was launched ~18:27 and is not on main at
-    19:10.
+  - Wave 16 was c0c1a8e3d (16:32). The next wave, 15 ct/ms modules, landed as ef5f85c15 at 19:27 and triggered merge 2.
 - Whenever lanes land rows, and at least every ~2 h.
