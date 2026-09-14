@@ -209,3 +209,39 @@ Route note on `ed348643e2ad`: ρ_lm(Y_l) ⊆ Y_m is proved from the cyclic-edge 
 - CLAIM small-face Euler budget GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean
 - **LANDED 0d3b600d9** (probe 0914-084522-79244 GREEN, BUILT, 0 sorryAx/error lines). `CombMap.six_mul_faceCount_le`: 6F ≤ 2E + 2t. `CombMap.two_mul_edgeCount_add_six_le`: 2E + 6 ≤ 3V + t on planar maps with every face of degree ≥ 4, where t counts the faces of degree < 6. Sharp on the square.
 - Next, B and T combined: the bipartite polygon–object map H (a predicate restriction of the dual, one dart per (polygon, object) pair) with all faces of degree ≥ 4 and the budget applied per component. Degree-4 faces either hold a cell (t ≤ n) or are empty two-gons, excluded by ContactBubble, `pinchSplitAbsorption` and a region merge. Open question: planarity per component, through an IsRestriction for `CombMap.restrict`.
+
+## Contact piece: Euler tooling for the polygon–object map (09-14 ~09:0x)
+
+- CLAIM component-wise Euler count GroupApproximation/GGT/VanKampen/CombMapEulerComponents.lean
+- **LANDED a26a040c1** (probe 0914-090041-19010 GREEN, BUILT, 0 sorryAx/error lines). Queued for wiring.
+  - `CombMap.restrict_isRestriction_subtype`: an invariant restriction is a restriction (reversal unchanged; vertex rotation returns in one step).
+  - `CombMap.eulerCharacteristic_eq_zero_of_dartEmpty`: renamed from ms-intro-2's unlanded `eulerCharacteristic_eq_zero_of_isEmpty` so the two names cannot collide when both are wired.
+  - `CombMap.two_le_eulerCharacteristic_of_isRestriction`: a nonempty restriction of a planar map has χ ≥ 2. Strong induction on darts: split off the component of one dart with `CombMap.restrict`; it is a connected restriction and so planar (`IsRestriction.planar`), and `eulerCharacteristic_restrict_add` adds.
+  - `CombMap.two_mul_edgeCount_add_six_le_of_isRestriction`: 2E + 6 ≤ 3V + t there, with `six_mul_faceCount_le`, which needs no planarity.
+- CLAIM bipartite face degree GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BipartiteFaceDegree.lean
+- **LANDED 6be93a5df** (probe 0914-092459-17882 GREEN, BUILT).
+  - `CombMap.colour_facePerm_pow`: along a face, the colour alternates.
+  - `CombMap.four_le_faceDegree_of_bipartite`: with a colouring flipped by `alpha` and kept by `sigma`, one dart per ordered vertex pair, and degree ≥ 2 on the true side, every face has degree ≥ 4. Odd faces fail by parity; a degree-2 face forces `φ x = α x` with both ends fixed by `sigma`.
+- Next: build H, the restriction of the dual of `S.diagram` keeping one dart per (polygon with d_f ≥ 2, object) pair. Discharge the four hypotheses of `four_le_faceDegree_of_bipartite`, then apply the budget. The degree-4 faces go to the T piece.
+
+- CLAIM contact map GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactMap.lean
+- **LANDED 6be93a5df** (probe 0914-092459-17882 GREEN, BUILT for BipartiteFaceDegree and ContactMap). Queued for wiring.
+  - `neighbours P k`: the objects across the cell and boundary sides of polygon k. `some j` is cell j, `none` the exterior.
+  - `objectFace`: injective (`cell_face_injective`, `face_ne_outer`) and never a polygon face.
+  - `rep P k o h`: the first dart of a side along o. `faceOf_rep` is the polygon face; `faceOf_alpha_rep` is the object face, from `cell_arc` / `boundary_arc`.
+  - `contactMap P := PredicateRestriction.toCombMap S.diagram.toCombMap.dual ContactKeep _`, keeping the reps of rich polygons (`2 ≤ card neighbours`) and their reverses. `contactMap_isRestriction`, `dual_planar_diagram`.
+  - `four_le_faceDegree_contactMap`, through `four_le_faceDegree_of_bipartite`:
+    - colour `contactColour`;
+    - flip `contactColour_alpha`;
+    - sigma `contactColour_sigma` (same vertex ⇒ same diagram face);
+    - simplicity `contactMap_simple`;
+    - degree `contactMap_sigma_ne`: two reps at one polygon share a first-return cycle.
+  - First probe of BipartiteFaceDegree red twice: a missing `FaceCycle` import, then `rw [← e]` rewrote the `x` inside `facePerm x`. Fixed with `conv_rhs`.
+- **Split with ms-intro-2 (09:3x).** ms-intro-2 offered to build H; H was already written, so ms-intro-2 takes `OsinLemma94ContactMapSmallFacesInput` instead: the degree < 6 faces of `contactMap P` number at most K n, by the cell count or the empty-two-gon region merge. I keep the counts E(H) = Σ d_f and V(H) ≤ #rich + n + 1, the per-polygon word bound, and the assembly.
+  - Contact map probe history: 0914-091804-73265 red, because `omega` ran before `Finset.exists_mem_ne` fixed its set. Fixed by stating `1 < card` first. One refusal: a registered path had no file yet. `OsinLemma94ContactMapSmallFacesInput` is stated in this module for ms-intro-2.
+- Next (ms-compress-1):
+  - `ListNoABABLength`: a word with no equal neighbours and no abab has length + 1 ≤ 2·card;
+  - the side-word translation of a polygon walk with J;
+  - the section-corner count;
+  - the counts E(H) = Σ d_f and V(H) ≤ #rich + n + 1;
+  - the assembly over `OsinLemma94ContactMapSmallFacesInput`.
