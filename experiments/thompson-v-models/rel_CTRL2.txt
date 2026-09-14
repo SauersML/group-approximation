@@ -1,0 +1,4 @@
+b^-1cbcb^-1ab^-1cab^-1abacacbababcabac
+ab^-1abcacb^-1abab^-1cb^-1abcacbab^-1abacb^-1c
+cabcabcb^-1ab^-1cbacabcb^-1abcb^-1acb^-1a
+cb^-1cabcacbcbcb^-1cb^-1ab^-1ababcab^-1cbabab^-1cabcb^-1cb

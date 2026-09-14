@@ -1,0 +1,130 @@
+k=48 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=31
+k=48 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=38
+k=48 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=34
+k=48 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=35
+== task 0 mode=CTRL k=48 heur=0 seed=1 seconds=138
+k=48 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=43
+k=48 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=34
+k=48 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=38
+k=48 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=45
+== task 1 mode=CTRL k=48 heur=0 seed=2 seconds=160
+k=48 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=48
+k=48 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=48
+k=48 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=46
+k=48 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=49
+== task 2 mode=CTRL k=48 heur=1 seed=1 seconds=191
+k=48 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=57
+k=48 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=53
+k=48 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=56
+k=48 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=54
+== task 3 mode=CTRL k=48 heur=1 seed=2 seconds=220
+k=48 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000022 viol=0 secs=59
+k=48 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000118 viol=0 secs=58
+k=48 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000078 viol=0 secs=59
+k=48 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000015 viol=0 secs=59
+== task 4 mode=CTRL k=48 heur=2 seed=1 seconds=235
+k=48 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000003 viol=0 secs=58
+k=48 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000008 viol=0 secs=57
+k=48 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000081 viol=0 secs=57
+k=48 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000021 viol=0 secs=57
+== task 5 mode=CTRL k=48 heur=2 seed=2 seconds=229
+k=72 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=31
+k=72 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=30
+k=72 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=43
+k=72 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=31
+== task 6 mode=CTRL k=72 heur=0 seed=1 seconds=135
+k=72 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=29
+k=72 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=28
+k=72 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=27
+k=72 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=32
+== task 7 mode=CTRL k=72 heur=0 seed=2 seconds=116
+k=72 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=46
+k=72 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=46
+k=72 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=49
+k=72 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=47
+== task 8 mode=CTRL k=72 heur=1 seed=1 seconds=188
+k=72 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=49
+k=72 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=45
+k=72 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=47
+k=72 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=45
+== task 9 mode=CTRL k=72 heur=1 seed=2 seconds=186
+k=72 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000027 viol=0 secs=56
+k=72 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000003 viol=0 secs=59
+k=72 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000057 viol=0 secs=56
+k=72 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000083 viol=0 secs=57
+== task 10 mode=CTRL k=72 heur=2 seed=1 seconds=228
+k=72 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000024 viol=0 secs=58
+k=72 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000189 viol=0 secs=56
+k=72 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000000 viol=0 secs=59
+k=72 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000052 viol=0 secs=56
+== task 11 mode=CTRL k=72 heur=2 seed=2 seconds=229
+k=96 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=42
+k=96 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=27
+k=96 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=45
+k=96 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=46
+== task 12 mode=CTRL k=96 heur=0 seed=1 seconds=161
+k=96 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=37
+k=96 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=36
+k=96 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=36
+k=96 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=41
+== task 13 mode=CTRL k=96 heur=0 seed=2 seconds=150
+k=96 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=47
+k=96 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=44
+k=96 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=45
+k=96 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=43
+== task 14 mode=CTRL k=96 heur=1 seed=1 seconds=179
+k=96 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=47
+k=96 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=43
+k=96 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=46
+k=96 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=45
+== task 15 mode=CTRL k=96 heur=1 seed=2 seconds=181
+k=96 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000050 viol=0 secs=56
+k=96 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000227 viol=0 secs=51
+k=96 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000008 viol=0 secs=54
+k=96 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000017 viol=0 secs=58
+== task 16 mode=CTRL k=96 heur=2 seed=1 seconds=219
+k=96 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000022 viol=0 secs=58
+k=96 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000015 viol=0 secs=57
+k=96 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000037 viol=0 secs=58
+k=96 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000037 viol=0 secs=55
+== task 17 mode=CTRL k=96 heur=2 seed=2 seconds=228
+k=120 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=31
+k=120 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=33
+k=120 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=42
+k=120 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=42
+== task 18 mode=CTRL k=120 heur=0 seed=1 seconds=148
+k=120 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=39
+k=120 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=27
+k=120 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=32
+k=120 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=44
+== task 19 mode=CTRL k=120 heur=0 seed=2 seconds=142
+k=120 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=42
+k=120 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=41
+k=120 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=42
+k=120 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=41
+== task 20 mode=CTRL k=120 heur=1 seed=1 seconds=166
+k=120 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=45
+k=120 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=45
+k=120 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=47
+k=120 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=1 result=LIMIT nodes=20000000 viol=0 secs=44
+== task 21 mode=CTRL k=120 heur=1 seed=2 seconds=181
+k=120 rel=rel_CTRL.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000087 viol=0 secs=56
+k=120 rel=rel_CTRL.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000061 viol=0 secs=56
+k=120 rel=rel_CTRL.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000256 viol=0 secs=50
+k=120 rel=rel_CTRL.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000228 viol=0 secs=57
+== task 22 mode=CTRL k=120 heur=2 seed=1 seconds=219
+k=120 rel=rel_CTRL.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000028 viol=0 secs=55
+k=120 rel=rel_CTRL.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000234 viol=0 secs=54
+k=120 rel=rel_CTRL.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000183 viol=0 secs=54
+k=120 rel=rel_CTRL.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=2 result=LIMIT nodes=20000349 viol=0 secs=54
+== task 23 mode=CTRL k=120 heur=2 seed=2 seconds=217
+k=48 rel=rel_V.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=30
+k=48 rel=rel_V.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=36
+k=48 rel=rel_V.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=29
+k=48 rel=rel_V.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=32
+== task 24 mode=V k=48 heur=0 seed=1 seconds=127
+k=48 rel=rel_V.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=33
+k=48 rel=rel_V.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=32
+k=48 rel=rel_V.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=29
+k=48 rel=rel_V.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=35
+== task 25 mode=V k=48 heur=0 seed=2 seconds=129

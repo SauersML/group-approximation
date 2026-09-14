@@ -82,3 +82,17 @@ It is necessary for `leavitt-steinberg-hs-unstable` and for
     not evidence against this claim. A usable search must first solve that
     control from generic starts.
   - **Artifact:** `research/artifacts/thompson-v-hs-probe-calibration-2026-09-12.md`.
+- **Calibrated gluing searches** (lane `hl-v-approximation`, 2026-09-13).
+  - **Setup:** unitary free gluings over `S4 *_C2 S3`
+    (`thompson-v-hyperlinear-iff-unitary-s4-s3-gluings-fix-long-words`), with an exact commutant
+    gradient. Plain descent, restarts and annealing were run at `N` up to 288.
+  - **Controls:** an `S_5` control, and a `PSL(2,17)` control whose exact gluings have no component
+    smaller than 144 points.
+  - **Result:** no method solves either control from generic starts. `V` plateaus at mean squared
+    defect 1.20--1.22, between the controls (1.18--1.20 and 1.27--1.28). Descent converges only from
+    within operator-norm distance about 0.3 of an exact solution. The permutation searches also fail
+    the `PSL(2,17)` control.
+  - **Reading:** the plateau is generic and says nothing about this claim. Any control with exact
+    gluings factors through a finite quotient, which `V` lacks, so a transferable calibration needs an
+    approximate-only control.
+  - **Artifact:** `research/artifacts/thompson-v-calibrated-gluing-search-2026-09-13.md`.

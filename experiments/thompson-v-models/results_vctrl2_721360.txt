@@ -1,0 +1,101 @@
+### vc2.721360_0.log
+k=144 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=1 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99306 best_avg=0.92361 per: 0.9028 0.8958 0.9375 0.9583 solved_at=-1 repairs=53228991 accepted=5866462 components=1 largest=144 secs=2227
+== task 0 vrepair mode=CTRL2 k=144 sched=P1 seed=1 seconds=2227
+ALLDONE
+### vc2.721360_1.log
+k=144 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=2 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99479 best_avg=0.90451 per: 0.9375 0.8333 0.9306 0.9167 solved_at=-1 repairs=52700844 accepted=5789833 components=2 largest=120 secs=2247
+== task 1 vrepair mode=CTRL2 k=144 sched=P1 seed=2 seconds=2247
+ALLDONE
+### vc2.721360_2.log
+k=144 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=3 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99653 best_avg=0.90278 per: 0.9167 0.8819 0.9167 0.8958 solved_at=-1 repairs=52695188 accepted=5817797 components=2 largest=120 secs=2259
+== task 2 vrepair mode=CTRL2 k=144 sched=P1 seed=3 seconds=2259
+ALLDONE
+### vc2.721360_3.log
+k=144 iters=60000000 T0=0.5 T1=0.5 noise=0.05 seed=1 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99306 best_avg=0.91840 per: 0.9097 0.8750 0.9236 0.9653 solved_at=-1 repairs=56218986 accepted=148065 components=1 largest=144 secs=2371
+== task 3 vrepair mode=CTRL2 k=144 sched=P2 seed=1 seconds=2371
+ALLDONE
+### vc2.721360_4.log
+k=144 iters=60000000 T0=0.5 T1=0.5 noise=0.05 seed=2 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99479 best_avg=0.90278 per: 0.9097 0.8333 0.9583 0.9097 solved_at=-1 repairs=55705873 accepted=127653 components=2 largest=120 secs=2421
+== task 4 vrepair mode=CTRL2 k=144 sched=P2 seed=2 seconds=2421
+ALLDONE
+### vc2.721360_5.log
+k=144 iters=60000000 T0=0.5 T1=0.5 noise=0.05 seed=3 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99653 best_avg=0.91146 per: 0.9375 0.8472 0.9236 0.9375 solved_at=-1 repairs=56200539 accepted=138533 components=1 largest=144 secs=2413
+== task 5 vrepair mode=CTRL2 k=144 sched=P2 seed=3 seconds=2413
+ALLDONE
+### vc2.721360_6.log
+k=288 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=1 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99653 best_avg=0.93576 per: 0.9062 0.9375 0.9549 0.9444 solved_at=-1 repairs=53640193 accepted=7769451 components=1 largest=288 secs=4587
+== task 6 vrepair mode=CTRL2 k=288 sched=P1 seed=1 seconds=4587
+ALLDONE
+### vc2.721360_7.log
+k=288 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=2 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99826 best_avg=0.93750 per: 0.9410 0.9028 0.9618 0.9444 solved_at=-1 repairs=53591239 accepted=7775029 components=1 largest=288 secs=4583
+== task 7 vrepair mode=CTRL2 k=288 sched=P1 seed=2 seconds=4583
+ALLDONE
+### vc2.721360_8.log
+k=288 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=3 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99740 best_avg=0.93056 per: 0.8993 0.9375 0.9444 0.9410 solved_at=-1 repairs=53638217 accepted=7768980 components=1 largest=288 secs=4620
+== task 8 vrepair mode=CTRL2 k=288 sched=P1 seed=3 seconds=4620
+ALLDONE
+### vc2.721360_9.log
+k=288 iters=60000000 T0=0.5 T1=0.5 noise=0.05 seed=1 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99653 best_avg=0.94010 per: 0.9340 0.8958 0.9618 0.9688 solved_at=-1 repairs=56601377 accepted=974771 components=1 largest=288 secs=4831
+== task 9 vrepair mode=CTRL2 k=288 sched=P2 seed=1 seconds=4831
+ALLDONE
+### vc2.721360_10.log
+k=288 iters=60000000 T0=0.5 T1=0.5 noise=0.05 seed=2 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99826 best_avg=0.94444 per: 0.9514 0.9479 0.9549 0.9236 solved_at=-1 repairs=56604376 accepted=968366 components=1 largest=288 secs=4599
+== task 10 vrepair mode=CTRL2 k=288 sched=P2 seed=2 seconds=4599
+ALLDONE
+### vc2.721360_11.log
+k=288 iters=60000000 T0=0.5 T1=0.5 noise=0.05 seed=3 rel=rel_CTRL2.txt short_bad=0 fpf=1 base_avg=0.99740 best_avg=0.94184 per: 0.9618 0.9236 0.9340 0.9479 solved_at=-1 repairs=56601405 accepted=967464 components=1 largest=288 secs=4583
+== task 11 vrepair mode=CTRL2 k=288 sched=P2 seed=3 seconds=4583
+ALLDONE
+### vc2.721360_12.log
+k=144 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=1 rel=rel_V.txt short_bad=0 fpf=1 base_avg=0.99132 best_avg=0.87326 per: 0.6111 0.9792 0.9444 0.9583 solved_at=-1 repairs=53203003 accepted=5246843 components=1 largest=144 secs=2317
+== task 12 vrepair mode=V k=144 sched=P1 seed=1 seconds=2317
+ALLDONE
+### vc2.721360_13.log
+k=144 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=2 rel=rel_V.txt short_bad=0 fpf=1 base_avg=0.99479 best_avg=0.89062 per: 0.7083 0.9653 0.9444 0.9444 solved_at=-1 repairs=53277595 accepted=5222184 components=1 largest=144 secs=2292
+== task 13 vrepair mode=V k=144 sched=P1 seed=2 seconds=2292
+ALLDONE
+### vc2.721360_14.log
+k=144 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=3 rel=rel_V.txt short_bad=0 fpf=1 base_avg=0.98785 best_avg=0.87674 per: 0.6528 0.9236 0.9583 0.9722 solved_at=-1 repairs=53154744 accepted=5221513 components=1 largest=144 secs=2294
+== task 14 vrepair mode=V k=144 sched=P1 seed=3 seconds=2294
+ALLDONE
+### vc2.721360_15.log
+k=144 iters=60000000 T0=0.5 T1=0.5 noise=0.05 seed=1 rel=rel_V.txt short_bad=0 fpf=1 base_avg=0.99132 best_avg=0.88542 per: 0.6597 0.9792 0.9375 0.9653 solved_at=-1 repairs=56247200 accepted=23419 components=1 largest=144 secs=2429
+== task 15 vrepair mode=V k=144 sched=P2 seed=1 seconds=2429
+ALLDONE
+### vc2.721360_16.log
+k=144 iters=60000000 T0=0.5 T1=0.5 noise=0.05 seed=2 rel=rel_V.txt short_bad=0 fpf=1 base_avg=0.99479 best_avg=0.87326 per: 0.6389 0.9583 0.9514 0.9444 solved_at=-1 repairs=56263834 accepted=21396 components=1 largest=144 secs=2451
+== task 16 vrepair mode=V k=144 sched=P2 seed=2 seconds=2451
+ALLDONE
+### vc2.721360_17.log
+k=144 iters=60000000 T0=0.5 T1=0.5 noise=0.05 seed=3 rel=rel_V.txt short_bad=0 fpf=1 base_avg=0.98785 best_avg=0.87500 per: 0.6111 0.9722 0.9653 0.9514 solved_at=-1 repairs=56080388 accepted=45564 components=1 largest=144 secs=2438
+== task 17 vrepair mode=V k=144 sched=P2 seed=3 seconds=2438
+ALLDONE
+### vc2.721360_18.log
+k=288 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=1 rel=rel_V.txt short_bad=0 fpf=1 base_avg=0.99826 best_avg=0.88976 per: 0.6944 0.9688 0.9514 0.9444 solved_at=-1 repairs=53578844 accepted=7041228 components=1 largest=288 secs=4516
+== task 18 vrepair mode=V k=288 sched=P1 seed=1 seconds=4516
+ALLDONE
+### vc2.721360_19.log
+k=288 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=2 rel=rel_V.txt short_bad=0 fpf=1 base_avg=0.99219 best_avg=0.89931 per: 0.6562 0.9792 0.9757 0.9861 solved_at=-1 repairs=53537382 accepted=7040562 components=1 largest=288 secs=4493
+== task 19 vrepair mode=V k=288 sched=P1 seed=2 seconds=4493
+ALLDONE
+### vc2.721360_20.log
+k=288 iters=60000000 T0=2 T1=0.05 noise=0.1 seed=3 rel=rel_V.txt short_bad=0 fpf=1 base_avg=0.99566 best_avg=0.90278 per: 0.7188 0.9514 0.9688 0.9722 solved_at=-1 repairs=53644379 accepted=7046577 components=1 largest=288 secs=4481
+== task 20 vrepair mode=V k=288 sched=P1 seed=3 seconds=4481
+ALLDONE
+### vc2.721360_21.log
+### vc2.721360_22.log
+### vc2.721360_23.log
+### vc2.721360_24.log
+k=144 rel=rel_CTRL2.txt seed=1 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=41
+k=144 rel=rel_CTRL2.txt seed=1 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=47
+k=144 rel=rel_CTRL2.txt seed=1 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=39
+k=144 rel=rel_CTRL2.txt seed=1 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=26
+== task 24 vtc mode=CTRL2 k=144 seed=1 seconds=153
+ALLDONE
+### vc2.721360_25.log
+k=144 rel=rel_CTRL2.txt seed=2 rep=0 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=35
+k=144 rel=rel_CTRL2.txt seed=2 rep=1 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=39
+k=144 rel=rel_CTRL2.txt seed=2 rep=2 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=33
+k=144 rel=rel_CTRL2.txt seed=2 rep=3 maxnodes=20000000 budget=0 transitive=1 sample=0 heur=0 result=LIMIT nodes=20000000 viol=0 secs=34
+== task 25 vtc mode=CTRL2 k=144 seed=2 seconds=141
+ALLDONE

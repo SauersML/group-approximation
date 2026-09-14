@@ -1,0 +1,12 @@
+a = (1, 0, 17, 4, 3, 14, 11, 16, 8, 12, 15, 6, 9, 13, 5, 10, 7, 2)
+b = (12, 15, 0, 16, 11, 9, 4, 3, 5, 8, 13, 6, 2, 17, 1, 14, 7, 10)
+c = (14, 17, 5, 3, 8, 2, 12, 13, 4, 10, 9, 15, 6, 7, 0, 11, 16, 1)
+|<a,b>| = 24 |<a,c>| = 6 |<a,b,c>| = 2448
+all involutions conjugate: True
+all elements of order 3 conjugate: True
+orders present: [1, 2, 3, 4, 8, 9, 17]
+CTRL2: b^-1cbcb^-1ab^-1cab^-1abacacbababcabac
+CTRL2: ab^-1abcacb^-1abab^-1cb^-1abcacbab^-1abacb^-1c
+CTRL2: cabcabcb^-1ab^-1cbacabcb^-1abcb^-1acb^-1a
+CTRL2: cb^-1cabcacbcbcb^-1cb^-1ab^-1ababcab^-1cbabab^-1cabcb^-1cb
+GENDONE
