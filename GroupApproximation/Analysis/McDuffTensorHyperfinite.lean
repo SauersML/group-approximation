@@ -69,13 +69,9 @@ def tensorHyperfiniteAbsorbs :
 /-- **`L(G) ⊗̄ 𝓡` is a McDuff factor** for an infinite ICC group `G`. -/
 theorem isMcDuffFactor_tensorHyperfinite [Infinite G] (hG : TwoSidedRegularCommutant.IsICC G) :
     IsMcDuffFactor (tensorHyperfinite (GroupVonNeumann.groupVonNeumannAlgebra G)) := by
-  refine ⟨isIIOneFactor_tensorHyperfinite G hG, ?_⟩
-  show Nonempty (↥(twistedTensor (GroupVonNeumann.groupVonNeumannAlgebra G)
-      Hyperfinite.pauliCocycle).toStarSubalgebra ≃⋆ₐ[ℂ]
-    ↥(twistedTensor (twistedTensor (GroupVonNeumann.groupVonNeumannAlgebra G)
-      Hyperfinite.pauliCocycle) Hyperfinite.pauliCocycle).toStarSubalgebra)
-  rw [groupVonNeumannAlgebra_eq_twisted_zero G]
-  exact ⟨tensorHyperfiniteAbsorbs G⟩
+  have hII := isIIOneFactor_tensorHyperfinite G hG
+  rw [groupVonNeumannAlgebra_eq_twisted_zero G] at hII ⊢
+  exact ⟨hII, ⟨tensorHyperfiniteAbsorbs G⟩⟩
 
 end
 

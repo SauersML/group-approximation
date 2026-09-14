@@ -1,6 +1,7 @@
 import GroupApproximation.Analysis.HyperlinearTraceVanishingProof
 import GroupApproximation.Analysis.MaximalGroupCStarTrace
 import GroupApproximation.Analysis.SoficHyperlinearTrace
+import GroupApproximation.Analysis.PrintedUltrafilterHyperlinearTrace
 import GroupApproximation.Analysis.TracialUltraproductCStar
 import GroupApproximation.Meta.AxiomGuard
 
@@ -71,6 +72,7 @@ theorem hsDistSq_map_one (n : ℕ) :
 
 variable (ω : Ultrafilter ℕ) (hω : (ω : Filter ℕ) ≤ Filter.cofinite)
 
+include hω in
 /-- **The multiplicativity defect is `‖·‖₂`-null along `ω`.** -/
 theorem isHilbertSchmidtNull_unitarySeq_mul (g h : G) :
     IsHilbertSchmidtNull (fun n ↦ S.model n) (ω : Filter ℕ)
@@ -85,6 +87,7 @@ theorem isHilbertSchmidtNull_unitarySeq_mul (g h : G) :
       ((S.map n h : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ)) < ε
   linarith [hN n hn]
 
+include hω in
 /-- **The identity defect is `‖·‖₂`-null along `ω`.** -/
 theorem isHilbertSchmidtNull_unitarySeq_one :
     IsHilbertSchmidtNull (fun n ↦ S.model n) (ω : Filter ℕ) (unitarySeq S 1 - 1) := by
@@ -151,6 +154,7 @@ theorem ultratraceCLM_unitaryHom_of_ne_one {g : G} (hg : g ≠ 1) :
   refine tendsto_nhds_unique (tendsto_seqUltratrace (fun n ↦ S.model n) ω (unitarySeq S g)) ?_
   exact (S.trace_tendsto_ne g hg).mono_left (coe_ultrafilter_le_atTop ω hω)
 
+include hω in
 /-- **The maximal group C⋆-algebra maps to the tracial ultraproduct**, sending `u_g` to the class of
 the models of `g`, with `tr_ω ∘ π` the canonical trace. -/
 theorem exists_maximalGroupCStar_hom :
