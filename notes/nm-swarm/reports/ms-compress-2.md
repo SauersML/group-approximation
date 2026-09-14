@@ -197,6 +197,28 @@ literal step missing.
 - CLAIM model test: `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean`
 - CLAIM producer of `EnclosedBridgeDoublingSuccStatement`: `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean`
 - Both paths are free on origin, in the shared tree and in every `lanes/*.files` (checked ~00:55).
+- 08:4x, after the laptop reboot: `/private/tmp` was wiped, including all green records. The infrastructure was rebuilt, and
+  both paths are re-registered.
+- Discharge of the cell-free branch: w1-binder-5 landed `sameCellPocketCellFreeValue : SameCellPocketCellFreeValueStatement`
+  (`Estimating/OsinUnboundSameCellPocketCellFree`) at dc9addc9d, over `BridgeComponentValue` (48c0972d3). So
+  `osinLemma94SameCellPocketInput_of_loopCut sameCellPocketCellFreeValue` leaves only `SameCellPocketLoopCutStatement`.
+- Model probe 0914-083001-21216 FAILED, fixed:
+  - `interval_cases` left `hi` in the `getElem` proofs, so `decide` saw free variables. Replaced by a closed
+    `∀ k (hk : k < 4)` lemma.
+  - `d : Fin 6` against `List M.Dart` found no `Decidable` instance. Replaced by `fin_cases d <;> decide`.
+  - Re-probing.
+- Proof module: ms-traces-2 wrote the induction offline and offered it to this lane.
+  - My `Write` at 08:34 overwrote its unread on-disk draft. It was restored unchanged from ms-traces-2's lane backup
+    (`…DoublingProof.lean.0832`), and ms-traces-2 was told.
+  - Adopted as is, with `DoublingOutput` and its cell correspondence kept for ms-traces-2's Ξ producer.
+  - It imports Step and `ClosedWalkEnclosedPocketRegion`, which ms-traces-2 is co-probing. This lane probes it once
+    both are on origin.
+- LANDED 347496ab5 `ClosedWalkEnclosedBridgeDoublingModel` (probe 0914-083617-81779 GREEN, BUILT), queued for wiring:
+  - `enclosedFaceSetSucc`: the island walk encloses `{Π, I}` and turns to its successor.
+  - `bridge_mem`: both darts of the bridge are on the walk.
+  - `faceOf_eq_outerFace`: every walk dart lies on the exterior face, so the exterior branch of the step is needed.
+- Waiting: a background loop polls origin for Run, Step and `ClosedWalkEnclosedPocketRegion`. It then probes the
+  adopted proof (bytes md5 2fe3f50d, ms-traces-2's 08:32 draft) and lands it on green.
 
 ## Progress log
 
