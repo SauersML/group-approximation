@@ -54,3 +54,24 @@ ambiguity, but not which `X`.
   - The cone still owes the Herman–Putnam–Skau fact that a strictly positive class has a nonnegative representative.
     Ara–Claramunt's faithful `rk_μ` (`cantor-z-crossed-product-embeds-in-continuous-factor`) gives only the inclusion
     of idempotent classes into the strictly positive classes.
+- **Intrinsic route (lane sk-rigidity-intrinsic, artifact `sk-rigidity-intrinsic-reconstruction-2026-09-13-part1.md`).**
+  - Diagonal-preserving rigidity is proved (unreviewed), for `q = 2`, in
+    `subshift-elementary-group-diagonal-iso-gives-flip-conjugacy`. An isomorphism `G_X → G_Y` carrying
+    `GL_3(LC(X,F_2))` onto `GL_3(LC(Y,F_2))` exists iff `X` and `Y` are flip conjugate.
+    - The maximal normal subgroups of the diagonal recover `X`.
+    - Its normalizer acts through a group between `[[T]]'` and `[[T]]`, with piecewise closure `[[T]]`.
+    - Then `topological-full-groups-determine-flip-conjugacy` applies.
+  - What remains for flip conjugacy under an arbitrary isomorphism `α`. Both steps are OPEN.
+    - (i) Recognize `α(L_X)` as `GL_3(A')` for a maximal commutative, idempotent-spanned subalgebra `A' ⊆ R_Y` whose
+      normalizing units generate `R_Y`.
+    - (ii) Cartan uniqueness: every such `A'` is `β(A_Y)` for a ring automorphism `β`.
+  - **Firewall F1.** `R_X ≅ R_Y` gives `G_X ≅ G_Y`. So flip rigidity of the groups implies that the algebraic crossed
+    product RING alone determines the subshift up to flip conjugacy.
+    - Every reconstruction theorem located assumes a diagonal-preserving or graded isomorphism: Renault; X. Li
+      arXiv:1503.01704 Thm 1.2; Ara–Bosa–Hazrat–Sims arXiv:1601.02872; Steinberg arXiv:1711.01903.
+    - The C*-crossed product alone determines only strong orbit equivalence (Giordano–Putnam–Skau 1995).
+    - Bounded check: three web searches plus the abstracts.
+  - **Heights cost nothing for flip conjugacy.** A clopen set with constant return time 3 is unique up to `T^j`, because
+    continuous eigenfunctions of a minimal system are unique up to scalars. So the height-3 towers over `X` and `Y` are
+    flip conjugate iff `X` and `Y` are. The unit-scaling issue of step 3 affects only the strong-orbit-equivalence
+    target.
