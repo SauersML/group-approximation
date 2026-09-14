@@ -73,21 +73,23 @@ theorem map_range_getD (l : List ℕ) (gt : ℕ → ℕ) :
   simp only [List.getElem_map, List.getElem_range]
   rw [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hi, Option.getD_some]
 
-/-- One step of the recursion, by definition. -/
-theorem rec_succ (z : Part ℕ) (s : ℕ → Part ℕ → Part ℕ) (k : ℕ) :
-    (Nat.rec (motive := fun _ => Part ℕ) z s (k + 1) : Part ℕ) = s k (Nat.rec z s k) :=
-  rfl
+/-- One step of the answer recursion: append the answer to the query at `(a, y)`. -/
+def answerStep (gt : ℕ → ℕ) (Q : ℕ → List ℕ) (a y : ℕ) (IH : Part ℕ) : Part ℕ :=
+  IH >>= fun i =>
+    Part.some (appendAnswer (Nat.pair (Nat.pair a (Nat.pair y i))
+      (gt (queryAt Q (Nat.pair a (Nat.pair y i))))))
 
 /-- **The primitive recursion collects the answers.** -/
 theorem rec_answers (gt : ℕ → ℕ) (Q : ℕ → List ℕ) (a k : ℕ) :
-    (Nat.rec (motive := fun _ => Part ℕ) (Part.some (encode ([] : List ℕ))) (fun y IH => IH >>= fun i =>
-        Part.some (appendAnswer (Nat.pair (Nat.pair a (Nat.pair y i))
-          (gt (queryAt Q (Nat.pair a (Nat.pair y i))))))) k : Part ℕ) =
+    (Nat.rec (motive := fun _ => Part ℕ) (Part.some (encode ([] : List ℕ)))
+        (answerStep gt Q a) k : Part ℕ) =
       Part.some (answersCode gt Q a k) := by
   induction k with
   | zero => simp [answersCode]
   | succ k ih =>
-    rw [rec_succ, ih, Part.bind_eq_bind, Part.bind_some]
+    show answerStep gt Q a k (Nat.rec (motive := fun _ => Part ℕ)
+      (Part.some (encode ([] : List ℕ))) (answerStep gt Q a) k) = _
+    rw [ih, answerStep, Part.bind_eq_bind, Part.bind_some]
     simp [answersCode, appendAnswer, queryAt, List.range_succ]
 
 /-- **Truth-table reductions are Turing reductions.**  If a total oracle `g = gt` answers the
@@ -103,7 +105,7 @@ theorem turingReducible_of_truthTable {f g : ℕ →. ℕ} {gt : ℕ → ℕ}
       (Nat.RecursiveIn.comp (recursiveIn_of_primrec primrec_appendAnswer)
         (Nat.RecursiveIn.pair (recursiveIn_of_primrec Primrec.id)
           (Nat.RecursiveIn.comp hor (recursiveIn_of_primrec (primrec_queryAt hQ))))) fun m => ?_
-    simp [hg]
+    simp [hg, seq_eq_bind_map, Part.bind_eq_bind, Part.map_eq_map]
   have hans : Nat.RecursiveIn {g}
       (fun p => Part.some (answersCode gt Q (Nat.unpair p).1 (Nat.unpair p).2)) := by
     refine Nat.RecursiveIn.of_eq (Nat.RecursiveIn.prec
@@ -119,7 +121,7 @@ theorem turingReducible_of_truthTable {f g : ℕ →. ℕ} {gt : ℕ → ℕ}
     rw [map_range_getD]
   refine Nat.RecursiveIn.of_eq (Nat.RecursiveIn.comp (recursiveIn_of_primrec (primrec_evalAt hD))
     (Nat.RecursiveIn.pair (recursiveIn_of_primrec Primrec.id) hA)) fun n => ?_
-  simp [hf, evalAt]
+  simp [hf, evalAt, seq_eq_bind_map, Part.bind_eq_bind, Part.map_eq_map]
 
 end OracleTruthTable
 end GroupApproximation

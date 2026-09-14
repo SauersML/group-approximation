@@ -13,15 +13,15 @@ import GroupApproximation.Meta.AxiomGuard
 > `I₃` vanish on `L(X)`, ...
 
 A cylinder is a finite list of constraints `x_i = a`; a table is a finite list of monomials
-`1_c · u^j`, read in `LC(X, F₂) ⋊ ℤ` by `eval`.  Products of cylinders are concatenations of their
-constraint lists, so no merging is needed: inconsistent constraints give the empty cylinder.  The
-conjugation `u^j 1_c u^{-j} = 1_c ∘ T^{-j}` translates the constraints by `-j` (`cylInd_mul_comap`).
+`1_c · u^j`.  A table does not depend on `X`: it is an element of `LC(A^ℤ, F₂) ⋊ ℤ` written in cylinder
+coordinates, and `eval` reads it in `LC(X, F₂) ⋊ ℤ` for any shift-invariant `X` on which `T` acts as
+the shift, which is the map onto `R`.  Products of cylinders are concatenations of their constraint
+lists, so inconsistent constraints give the empty cylinder.  The conjugation `u^j 1_c u^{-j}` translates
+the constraints by `-j` (`cylInd_mul_comap`).
 
 * `eval_tableMul`: the table product is the ring product;
 * `coeff_eval`: the coefficient of `u^j` is the sum of the cylinder indicators with exponent `j`;
 * `eval_eq_zero_iff`: a table vanishes in the crossed product iff these sums vanish at every point.
-
-`X` is any shift-invariant set of configurations and `T` acts on it as the shift.
 -/
 
 namespace GroupApproximation
@@ -94,7 +94,7 @@ end Cylinders
 
 section Eval
 
-variable {A : Type*} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A] {X : Set (ℤ → A)}
+variable {A : Type*} [TopologicalSpace A] [DiscreteTopology A] {X : Set (ℤ → A)}
 
 /-- A monomial `1_c · u^j`. -/
 abbrev Mono (A : Type*) : Type _ := ℤ × Cyl A
@@ -127,35 +127,42 @@ def tableMul (l₁ l₂ : Table A) : Table A :=
   l₁.flatMap fun m₁ => l₂.map (monoMul m₁)
 
 /-- **`uf = (f ∘ T⁻¹)u` on cylinders.** -/
-theorem cylInd_mul_comap (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1) (j : ℤ)
-    (c₁ c₂ : Cyl A) :
+theorem cylInd_mul_comap [DecidableEq A] (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1)
+    (j : ℤ) (c₁ c₂ : Cyl A) :
     cylInd X c₁ * LocallyConstant.comap ⟨⇑(T ^ (-j)), (T ^ (-j)).continuous⟩ (cylInd X c₂) =
       cylInd X (c₁ ++ cylShift (-j) c₂) := by
   ext x
   have hshift : cylMem c₂ ((T ^ (-j)) x).1 ↔ cylMem (cylShift (-j) c₂) x.1 := by
     rw [cylMem_cylShift]
     have hx : ((T ^ (-j)) x).1 = fun i => x.1 (i + -j) :=
-      funext fun m => by rw [zpow_apply_coord hT, add_comm]
+      funext fun m => by rw [WordGraph.zpow_apply_coord hT, add_comm]
     rw [hx]
-  rw [LocallyConstant.coe_mul, Pi.mul_apply, LocallyConstant.coe_comap, Function.comp_apply,
-    ContinuousMap.coe_mk, cylInd_apply, cylInd_apply, cylInd_apply]
-  by_cases h₁ : cylMem c₁ x.1 <;> by_cases h₂ : cylMem c₂ ((T ^ (-j)) x).1 <;>
-    simp [cylMem_append, h₁, h₂, ← hshift]
+  show cylInd X c₁ x * cylInd X c₂ ((T ^ (-j)) x) = cylInd X (c₁ ++ cylShift (-j) c₂) x
+  rw [cylInd_apply, cylInd_apply, cylInd_apply]
+  by_cases h₁ : cylMem c₁ x.1
+  · by_cases h₂ : cylMem c₂ ((T ^ (-j)) x).1
+    · rw [if_pos h₁, if_pos h₂, if_pos (cylMem_append.2 ⟨h₁, hshift.1 h₂⟩), mul_one]
+    · rw [if_pos h₁, if_neg h₂, if_neg fun h => h₂ (hshift.2 (cylMem_append.1 h).2), mul_zero]
+  · rw [if_neg h₁, if_neg fun h => h₁ (cylMem_append.1 h).1, zero_mul]
 
-theorem monoEval_mul (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1) (m₁ m₂ : Mono A) :
-    monoEval T m₁ * monoEval T m₂ = monoEval T (monoMul m₁ m₂) := by
-  rw [monoEval, monoEval, monoEval, monoMul, single_mul_single, ClopenCoeff.smul_of, ← map_mul,
+theorem monoEval_mul [DecidableEq A] (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1)
+    (m₁ m₂ : Mono A) : monoEval T m₁ * monoEval T m₂ = monoEval T (monoMul m₁ m₂) := by
+  show single (ofAdd m₁.1) (ClopenCoeff.of T (ZMod 2) (cylInd X m₁.2)) *
+      single (ofAdd m₂.1) (ClopenCoeff.of T (ZMod 2) (cylInd X m₂.2)) =
+    single (ofAdd (m₁.1 + m₂.1))
+      (ClopenCoeff.of T (ZMod 2) (cylInd X (m₁.2 ++ cylShift (-m₁.1) m₂.2)))
+  rw [single_mul_single, ClopenCoeff.smul_of, ← map_mul (ClopenCoeff.of T (ZMod 2)),
     cylInd_mul_comap T hT, ofAdd_add]
 
-theorem eval_map_monoMul (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1) (m₁ : Mono A)
-    (l₂ : Table A) : eval T (l₂.map (monoMul m₁)) = monoEval T m₁ * eval T l₂ := by
+theorem eval_map_monoMul [DecidableEq A] (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1)
+    (m₁ : Mono A) (l₂ : Table A) : eval T (l₂.map (monoMul m₁)) = monoEval T m₁ * eval T l₂ := by
   induction l₂ with
   | nil => simp [eval]
   | cons m₂ l₂ ih => rw [List.map_cons, eval_cons, eval_cons, ih, mul_add, monoEval_mul T hT]
 
 /-- **The table product is the ring product.** -/
-theorem eval_tableMul (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1) (l₁ l₂ : Table A) :
-    eval T (tableMul l₁ l₂) = eval T l₁ * eval T l₂ := by
+theorem eval_tableMul [DecidableEq A] (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1)
+    (l₁ l₂ : Table A) : eval T (tableMul l₁ l₂) = eval T l₁ * eval T l₂ := by
   simp only [tableMul]
   induction l₁ with
   | nil => simp [eval]
@@ -163,33 +170,45 @@ theorem eval_tableMul (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift
     rw [List.flatMap_cons, eval_append, eval_map_monoMul T hT, ih, eval_cons, add_mul]
 
 /-- The sum of the cylinder indicators with exponent `j`. -/
-noncomputable def coeffFun (X : Set (ℤ → A)) (l : Table A) (j : ℤ) : LocallyConstant ↥X (ZMod 2) :=
-  ((l.filter fun m => m.1 = j).map fun m => cylInd X m.2).sum
+noncomputable def coeffFun (X : Set (ℤ → A)) : Table A → ℤ → LocallyConstant ↥X (ZMod 2)
+  | [], _ => 0
+  | m :: l, j => (if m.1 = j then cylInd X m.2 else 0) + coeffFun X l j
+
+theorem coeff_monoEval (T : ↥X ≃ₜ ↥X) (m : Mono A) (j : ℤ) :
+    SkewMonoidAlgebra.coeff (monoEval T m) (ofAdd j) =
+      ClopenCoeff.of T (ZMod 2) (if m.1 = j then cylInd X m.2 else 0) := by
+  rw [monoEval, SkewMonoidAlgebra.coeff_single]
+  by_cases h : m.1 = j
+  · rw [if_pos h, h, Finsupp.single_eq_same]
+  · rw [if_neg h, map_zero,
+      Finsupp.single_eq_of_ne fun e => h (Multiplicative.ofAdd.injective e).symm]
 
 /-- **The coefficient of `u^j`.** -/
 theorem coeff_eval (T : ↥X ≃ₜ ↥X) (l : Table A) (j : ℤ) :
-    (eval T l).coeff (ofAdd j) = ClopenCoeff.of T (ZMod 2) (coeffFun X l j) := by
+    SkewMonoidAlgebra.coeff (eval T l) (ofAdd j) = ClopenCoeff.of T (ZMod 2) (coeffFun X l j) := by
   induction l with
-  | nil => simp [eval, coeffFun]
+  | nil => rfl
   | cons m l ih =>
-    rw [eval_cons, coeff_add, Finsupp.add_apply, ih]
-    by_cases h : m.1 = j
-    · simp [monoEval, coeffFun, coeff_single_apply, h]
-    · simp [monoEval, coeffFun, coeff_single_apply, h]
+    rw [eval_cons, SkewMonoidAlgebra.coeff_add, Finsupp.add_apply, ih, coeff_monoEval, coeffFun,
+      map_add]
 
 /-- **A table vanishes iff its coefficient sums vanish at every point of `X`.** -/
 theorem eval_eq_zero_iff (T : ↥X ≃ₜ ↥X) (l : Table A) :
     eval T l = 0 ↔ ∀ (j : ℤ) (x : ↥X), coeffFun X l j x = 0 := by
   constructor
   · intro h j x
-    have hc : ClopenCoeff.of T (ZMod 2) (coeffFun X l j) = 0 := by
-      rw [← coeff_eval, h, coeff_zero, Finsupp.zero_apply]
-    rw [map_eq_zero_iff _ (ClopenCoeff.of T (ZMod 2)).injective] at hc
-    rw [hc, LocallyConstant.coe_zero, Pi.zero_apply]
+    have hc := coeff_eval T l j
+    rw [h, SkewMonoidAlgebra.coeff_zero, Finsupp.zero_apply] at hc
+    have hf : coeffFun X l j = 0 :=
+      (ClopenCoeff.of T (ZMod 2)).injective
+        (hc.symm.trans (map_zero (ClopenCoeff.of T (ZMod 2))).symm)
+    simpa using congrArg (fun f : LocallyConstant ↥X (ZMod 2) => f x) hf
   · intro h
     refine SkewMonoidAlgebra.ext fun a => ?_
     have hj : coeffFun X l (toAdd a) = 0 := LocallyConstant.ext fun x => h (toAdd a) x
-    rw [coeff_zero, Finsupp.zero_apply, ← ofAdd_toAdd a, coeff_eval, hj, map_zero]
+    have e := coeff_eval T l (toAdd a)
+    rw [ofAdd_toAdd, hj, map_zero] at e
+    rw [e, SkewMonoidAlgebra.coeff_zero, Finsupp.zero_apply]
 
 end Eval
 
