@@ -116,7 +116,7 @@ theorem isIIOneFactor_tensorHyperfinite [Infinite G] (hG : TwoSidedRegularCommut
   exact isIIOneFactor_twistedVonNeumannAlgebra
     (prodCocycle Hyperfinite.pauliCocycle (fun _ _ : G ↦ (0 : ZMod 2)))
     (isSignCocycle_prodCocycle Hyperfinite.pauliCocycle_isSignCocycle (isSignCocycle_zero G))
-    (isTwistedICC_prodCocycle Hyperfinite.pauliCocycle_isSignCocycle (isSignCocycle_zero G)
+    (isTwistedICC_prodCocycle (isSignCocycle_zero G)
       Hyperfinite.pauliCocycle_isTwistedICC (isTwistedICC_zero_of_isICC hG))
 
 end Group

@@ -53,7 +53,7 @@ theorem isSignCocycle_prodCocycle {σ : Γ → Γ → ZMod 2} {ρ : A → A → 
 
 /-- **Twisted ICC passes to products** of normalized cocycles. -/
 theorem isTwistedICC_prodCocycle {σ : Γ → Γ → ZMod 2} {ρ : A → A → ZMod 2}
-    (hσs : IsSignCocycle σ) (hρs : IsSignCocycle ρ) (hσ : IsTwistedICC σ) (hρ : IsTwistedICC ρ) :
+    (hρs : IsSignCocycle ρ) (hσ : IsTwistedICC σ) (hρ : IsTwistedICC ρ) :
     IsTwistedICC (prodCocycle σ ρ) := by
   intro x hx
   by_cases hx1 : x.1 = 1
@@ -129,7 +129,9 @@ theorem groupVonNeumannAlgebra_eq_twisted_zero :
       rcases hm with ⟨g, rfl⟩ | ⟨g, rfl⟩
       · rw [twistedLeftOperator_zero]
         exact hT _ ⟨g, rfl⟩
-      · rw [twistedLeftOperator_zero, GroupVonNeumann.star_leftRegularOperator]
+      · show star (twistedLeftOperator (fun _ _ : G ↦ (0 : ZMod 2)) g) * T =
+          T * star (twistedLeftOperator (fun _ _ : G ↦ (0 : ZMod 2)) g)
+        rw [twistedLeftOperator_zero, GroupVonNeumann.star_leftRegularOperator]
         exact hT _ ⟨g⁻¹, rfl⟩
   apply VonNeumannAlgebra.ext
   intro T
@@ -177,10 +179,15 @@ def uncurryRow (F : lp (fun _ : Γ × A ↦ ℂ) 2) (γ : Γ) : lp (fun _ : A �
     simpa only [ENNReal.toReal_ofNat, Real.rpow_two] using
       ((summable_prod_of_nonneg (fun _ ↦ sq_nonneg _)).1 (summable_sq_row F)).1 γ⟩
 
+@[simp]
+theorem uncurryRow_apply (F : lp (fun _ : Γ × A ↦ ℂ) 2) (γ : Γ) (a : A) :
+    uncurryRow F γ a = F (γ, a) :=
+  rfl
+
 theorem norm_uncurryRow_sq (F : lp (fun _ : Γ × A ↦ ℂ) 2) (γ : Γ) :
     ‖uncurryRow F γ‖ ^ 2 = ∑' a, ‖F (γ, a)‖ ^ 2 := by
   have h := lp.norm_rpow_eq_tsum (by norm_num : 0 < (2 : ℝ≥0∞).toReal) (uncurryRow F γ)
-  simpa only [ENNReal.toReal_ofNat, Real.rpow_two] using h
+  simpa only [ENNReal.toReal_ofNat, Real.rpow_two, uncurryRow_apply] using h
 
 /-- The uncurried vector of `F ∈ ℓ²(Γ × A)`, in `ℓ²(Γ; ℓ²(A))`. -/
 def uncurryVec (F : lp (fun _ : Γ × A ↦ ℂ) 2) : VecHilbert Γ (lp (fun _ : A ↦ ℂ) 2) :=
