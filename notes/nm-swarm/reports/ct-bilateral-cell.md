@@ -239,6 +239,18 @@ Ruling: both special branches unsplit at class level (not B3). Model-tested on p
   `M ≥ B + 2κ + 12 (δ + 1)`.
 Shared foundation: a class-level four-windows lemma for gap-deleted class runs.
 
+## Item 11: class-level foundation and Case 2
+
+| module | content | state |
+|---|---|---|
+| Estimating/OsinLemma94ClassFourWindows | `flatMap_rotate_eq_rotate`, `OsinLemma94ClassPolygons.sideRun`, `classWalk`, `flatMap_sideRun`, `exists_rotate_eq_classWalk`, `classWalk_value`, `class_four_windows` (two windows of the side runs of two different classes on a rotation of the face walk `X ++ T ++ Y ++ P`) | LANDED a92a10a87 (probe 0914-085319-64137 GREEN, BUILT; audit [propext, Classical.choice, Quot.sound], no sorryAx) |
+| Estimating/OsinLemma94ClassRunPositions | `runPos` (class-word position to side-run position), `InGapRec`, `inGap_of_inGapRec`, `listVal_take_blocks`, `runPos_le`, `runPos_mono`, `runPos_singleton`, `runPos_le_sideRun`, `vertex_eq_classWalk_take` (off gaps, the class-word vertex is a prefix of `classWalk`) | LANDED a5ff1a05a (probe 0914-091255-74264 GREEN, BUILT) |
+| Estimating/OsinLemma94ClassCaseTwo | `osinLemma94ClassCaseTwo_false (hinsert) (heps : 3 ≤ ε) (hS) (P) (Q) (k) (C) (hback) (hcut : classKind target = cutting) (hnogap : ¬ GapEndpoint)`: the unsplit Case 2 on class words, over the gap-deleted source run | LANDED 6815cde61 (probe 0914-091835-92420 GREEN, BUILT; audit [propext, Classical.choice, Quot.sound], no sorryAx) |
+
+All three modules are queued for wiring. The run positions audit lines also read [propext, Classical.choice, Quot.sound], no
+sorryAx. So the cutting-target branch of `OsinLemma94ClassCaseGapSpanStatement` is closed at `ε ≥ 3` (with the closed
+`separatedCornerInsertionInput`).
+
 ## Residual statements
 
 In this lane's own modules, none. The W1 waist residuals are listed above (V2: six; V3: seven), with
