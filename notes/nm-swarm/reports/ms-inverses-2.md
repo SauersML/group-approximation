@@ -218,6 +218,26 @@ Ownership check 09-13 ~18:45: no walk-level cell kept cell on origin, in the sha
 
 Kept cell and wrapper landed. Nothing open in this lane's binder-5 share beyond naming the either-follows residual.
 
+## Item 5 (main, 09-13 ~19:05): prove `CellPocketWalkEitherFollowsStatement`, respelled for ms-cite-1's chosen order
+
+Tools named by main:
+- w1-binder-4's `BoundaryCycleFaceClass` (a19fd73b8) and its either-follows machinery (c5f2b7378, 704b70f2c);
+- ms-torsionfree's inner builder (2d0b61555);
+- hull-select's `firstTurnWalkPocketInputs`.
+The respelling waits for ms-cite-1's order-choice names.
+
+Model test first. The on-main calibrations disagree on which clause holds:
+- lake map (dgo-analytic): the inner cycle follows, the outer does not;
+- pinched two-gon (dgo-geometric): the outer cycle follows, the inner does not.
+
+By hand, a walk that touches both ways kills both clauses: an 8-dart planar map, walk `[0,2,4,6]`, with a monogon on the inner side
+across dart `0` and a monogon on the outer side across dart `4`. So the disjunction is not a map-level principle, and a proof must
+use the family data or the chosen order.
+
+- CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean: the two calibrations and the double-touch map
+  where neither boundary cycle of a noncrossing walk follows. Map level only; whether it arises as a cell pocket walk of two optimal
+  regions is not decided here.
+
 ## Progress log
 
 - 09-13 ~17:01: ledger landed (d5d320909).
