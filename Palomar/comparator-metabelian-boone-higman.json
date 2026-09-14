@@ -1,0 +1,9 @@
+{
+  "challenge_module": "Palomar.MetabelianBooneHigmanChallenge",
+  "solution_module": "Palomar.MetabelianBooneHigmanSolution",
+  "theorem_names": [
+    "MetabelianBooneHigman.finitely_presented_metabelian_embeds_in_finitely_presented_simple",
+    "MetabelianBooneHigman.finitely_generated_metabelian_embeds_in_finitely_presented_simple"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

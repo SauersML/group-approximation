@@ -256,3 +256,23 @@ roots = ["Palomar.BlanchardToeplitzSolution"]
 [[lean_lib]]
 name = "PalomarBlanchardToeplitzModelTests"
 roots = ["Palomar.BlanchardToeplitzModelTests"]
+
+# The Comparator configuration `Palomar/comparator-metabelian-boone-higman.json`:
+# item (7) of Problem 5.3 of Belk, Bleak, Matucci and Zaremsky (the Boone–Higman
+# conjecture for finitely presented metabelian groups), with the finitely
+# generated form.  `Palomar/MetabelianBooneHigmanChallenge.lean` imports Mathlib
+# only; `Palomar/MetabelianBooneHigmanSolution.lean` is still a skeleton whose
+# theorems carry the development endpoint as a hypothesis.
+[[lean_lib]]
+name = "PalomarMetabelianBooneHigmanChallenge"
+roots = ["Palomar.MetabelianBooneHigmanChallenge"]
+
+[[lean_lib]]
+name = "PalomarMetabelianBooneHigmanSolution"
+roots = ["Palomar.MetabelianBooneHigmanSolution"]
+
+# `PalomarMetabelianBooneHigmanModelTests` exercises both definitions of the
+# shared block on controls; it is not a submission library.
+[[lean_lib]]
+name = "PalomarMetabelianBooneHigmanModelTests"
+roots = ["Palomar.MetabelianBooneHigmanModelTests"]
