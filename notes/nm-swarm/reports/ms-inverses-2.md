@@ -304,6 +304,22 @@ hull-euler has no in-flight Euler file.
 - CLAIM GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean: calibrations.
   - The three-petal rose `threeRose` [0,2,4] is noncrossing with interleaving passages.
   - The lake and the double-touch walk have non-interleaving passages, through ms-inverses-4's chain lemma.
+- 21:36 LANDED 358515a30 `Estimating/OsinPocketWalkEulerNoninterleaving` (probe 0913-213002-3572 GREEN), unwired, queued.
+- 21:42 co-probe 0913-214214-80171 GREEN: `PassagesNoninterleaving` respelled on positions (`w.get i`, `finRotate`), with the Props
+  module on top. Landing after the 23:12 resume.
+
+## Item 7 (main, 23:12): absorb ms-inverses-4's non-interleaving leaf
+
+ms-inverses-4 is not resumed. Its claim (2647cc6ce, revised 3c646c697) passes to this lane.
+- GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean, from its unprobed draft (attic 9a60fa751).
+  - Rewritten for the positional spelling: `SectorFree`, `PassageSectorFree`, `sectorFree_of_sigma_eq`,
+    `not_rotationBetween_of_sectorFree`, `rotationBetween_of_sectorFree_rev`, `get_finRotate_of_isChain_closes`,
+    `passagesNoninterleaving_of_forall_get`, `passagesNoninterleaving_of_isChain`, `IsNoncrossingClosedWalk.passagesNoninterleaving`.
+  - Dropped the `w.next` helpers and the rotation lemma, which have no consumer.
+- CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean (ms-inverses-4's planned path, not written):
+  - every joint of the section pocket walk and of the cell pocket walk is a region boundary step (free sector) or a face step (free
+    stretch back);
+  - closed discharges of `SectionPocketWalkNoninterleavingStatement` and `CellPocketWalkNoninterleavingStatement`.
 
 ## Progress log
 
