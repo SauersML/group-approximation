@@ -263,13 +263,17 @@ theorem walkKeep_all (x : M.Dart) : walkKeep M outerWalk x := by
   unfold walkKeep
   fin_cases x <;> decide
 
+/-- At every dart of the exterior walk, one rotation from its reverse is again a walk dart. -/
+theorem sigma_alpha_mem (d : M.Dart) : d ∈ outerWalk → M.sigma (M.alpha d) ∈ outerWalk := by
+  fin_cases d <;> decide
+
 /-- **`{Π, I}` is enclosed by the exterior walk.** -/
 theorem enclosedFaceSet : EnclosedFaceSet diagram islandFaces outerWalk where
   outerFace_not_mem := by
     change M.faceOf (1 : M.Dart) ∉ islandFaces
     rw [mem_islandFaces]
     decide
-  ne_nil := by decide
+  ne_nil := List.cons_ne_nil _ _
   nodup := by decide
   chain := by
     change List.IsChain (fun d e => M.vertexOf (M.alpha d) = M.vertexOf e) outerWalk
@@ -287,17 +291,13 @@ theorem enclosedFaceSet : EnclosedFaceSet diagram islandFaces outerWalk where
     rcases Nat.lt_or_ge 1 m with h1 | h1
     · exact absurd (walkKeep_all _) (hmin 1 Nat.one_pos h1)
     · obtain rfl : m = 1 := by omega
-      change (M.sigma ^ 1) (M.alpha d) ∈ outerWalk
-      rw [pow_one]
-      revert hd
-      change d ∈ outerWalk → M.sigma (M.alpha d) ∈ outerWalk
-      fin_cases d <;> decide
+      simpa only [pow_one] using sigma_alpha_mem d hd
 
 open scoped Classical in
 /-- **Calibration.**  The clauses of `ClosedWalkEnclosedSubdiagramStatement` hold at `{Π, I}`,
 realized by the diagram itself, whose boundary traverses the bridge twice. -/
 theorem enclosedSubdiagram_realized :
-    ∃ Xi : DiscDiagram W,
+    ∃ Xi : DiscDiagram.{0, 0, 0} W,
       Xi.boundaryWord = Embedded.dartWord diagram (Embedded.invDarts diagram outerWalk) ∧
       Xi.rCellCount ≤ (diagram.relatorCells.filter fun C => C.face ∈ islandFaces).length ∧
       ((∃ C ∈ diagram.relatorCells, C.face ∈ islandFaces) → 0 < Xi.rCellCount) ∧
@@ -319,9 +319,10 @@ theorem enclosedSubdiagram_realized :
       simp [islandFaces]
   refine ⟨diagram, ?_, ?_, fun _ => Nat.zero_lt_two, ⟨Function.Embedding.refl _, ?_⟩, id⟩
   · rw [← hout, Embedded.dartWord_outerDarts]
-  · refine le_of_eq ?_
-    rw [List.filter_eq_self.mpr fun C hC => by simpa using hfaces C hC]
-    rfl
+  · have hfilter :
+        (diagram.relatorCells.filter fun C => C.face ∈ islandFaces) = diagram.relatorCells :=
+      List.filter_eq_self.mpr fun C hC => by simpa using hfaces C hC
+    exact (congrArg List.length hfilter).ge
   · intro j
     exact ⟨rfl, hfaces _ (Embedded.cell_mem diagram j)⟩
 

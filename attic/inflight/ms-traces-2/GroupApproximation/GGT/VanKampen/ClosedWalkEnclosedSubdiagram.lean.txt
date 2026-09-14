@@ -25,6 +25,11 @@ disc: the enclosed faces joined along `t`, with `t` a bridge on its boundary.
   inverse walk, carries relator cells with the words of the cells of `Δ` inside `faces`, at most
   as many, at least one when `faces` holds a cell, and is least area when `Δ` is.
 * `enclosedSubdiagram_leastAreaCut`: the three facts the loop cut consumes, from these clauses.
+* `EnclosedLeastAreaFilterStatement`: the singular form of `DiscDiagram.LeastArea.length_filter_mem_le`,
+  a filling of the inverse outside walk of a least-area diagram needs at least as many relators as
+  the enclosed face set holds cells.  The disc-region form needs `IsDiscRegion`, which a face set
+  joined along a bridge lacks.
+* `leastArea_of_enclosedLeastAreaFilter`: the least-area clause of the statement from that bound.
 
 For a simple walk the enclosed face set is a pocket region, and the clauses of the statement are
 those of `PocketRegion.diagram_boundaryWord`, `PocketRegion.diagram_rCellCount_le` and
