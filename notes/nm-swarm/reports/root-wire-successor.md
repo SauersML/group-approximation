@@ -303,6 +303,17 @@ Result: **never landed**. No root commit landed after daa821b00.
 - 4 nm tops verified from MSI records: `TorsionFreeResidualsV5`, `FinitelyPresentedInfiniteSimpleLeaves`,
   `BridgeComponentValue`, `OsinPocketCellPinchRefutation`.
 - Pre-flight at c9b9218d4: 17 newly reachable files (closure 6921 → 6938), 0 blocking lines.
+- Launcher gate at c60e39ee8: same numbers. Root build tag 0914-083344-47173 (base 1dacd6442); job 774854 was widened
+  at 08:34 and started at 08:35.
+- Evidence audit (per-module lines of each newest covering record's MSI output):
+  - fresh builds: `FinitelyPresentedInfiniteSimpleLeaves` (quant-collapse 0912-110242-42142),
+    `OsinPocketCellPinchRefutation` (lix-h 0913-234315-3209), `TorsionFreeResidualsV5` and `WaistV5` (ct-rank-two-limit
+    0914-082738-17083);
+  - cache restores only: 11 further files in `TorsionFreeResidualsV5`'s closure, 2 files covered by ms-traces-1's
+    0914-083551-61041, and `BridgeComponentValue` (w1-binder-5 0914-083201-34888).
+- Main's ruling (A), 09-14 ~08:45: a cache restore counts as wiring evidence for origin-identical files, as in waves
+  17–21. A restore is an earlier successful build at the same input hash, with warnings as errors and closed-axiom
+  audits. "Only BUILT counts" applies when a lane lands new bytes. The lexical scan of newly reachable files is clean.
 
 Result: pending.
 
