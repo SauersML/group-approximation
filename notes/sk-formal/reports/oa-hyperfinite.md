@@ -37,8 +37,13 @@ CLAIM θ: unital trace-preserving ⋆-homomorphism from the tracial matrix ultra
 | MatrixUnitHom | GREEN, bytes 050d866ab (0914-090830-4369), wire-queued |
 | PauliMatrixUnits | GREEN, bytes ee5d1f867 (0914-091311-84018), wire-queued |
 | DyadicCornerEmbedding | GREEN, bytes ee5d1f867 (0914-091311-84018), wire-queued |
-| HyperfiniteStageCorner | draft, probing |
-| θ (MatrixUltraproductToHyperfiniteUltrapower) | next |
+| HyperfiniteStageCorner | GREEN, bytes a9ef79561 (0914-092827-5037), wire-queued |
+| θ (MatrixUltraproductToHyperfiniteUltrapower) | draft a9ef79561; its proofs compiled and audit clean (probe 0914-092827-5037), only linter errors left, fixed, re-probing |
+| PauliHyperfiniteDensity | draft a01e2479c (approximate finiteness of R), probing |
+
+Tex check at tip 8b36733d7 (775 lines, md5 29d63f79…): "Brown's formulation" is l.274–284 and keeps "So L(G) embeds in
+R^ω" and "L(G)⊗̄R is a McDuff factor that embeds in R^ω and whose unitary group contains G". The Kirchberg, factorization and
+LLP sentences are gone from the section. This lane's modules still serve the two surviving sentences through oa-mcduff.
 
 ## Route
 - R := L_σ(Γ), Γ = Multiplicative (V × V), V = ℕ →₀ ZMod 2, σ((x,z),(x',z')) = Σᵢ zᵢ x'ᵢ. Twisted operators
