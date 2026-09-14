@@ -1,8 +1,10 @@
 import GroupApproximation.GGT.VanKampen.CactusBoundary
 import GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSubdiagram
+import GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSucc
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLakeModel
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFirstTurnWalk
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketSectionFaceSet
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellSection
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -24,11 +26,16 @@ diagram reads `c`.
 * `source_not_mem_sideFaces`, `kept_mem_sideFaces`, `outerFace_not_mem_sideFaces`: `Π` and the
   exterior are off the side of the walk, and `K` is on it.
 * `enclosedFaceSet`: the side is enclosed by the reversed walk `[3,1]` in the sense of
-  `EnclosedFaceSet`, with the turning condition from `IsNoncrossingClosedWalk.reverseMapAlpha`
-  and no following hypothesis.
-* `fullArcLake`: all of this, together with the failure of the outer cycle to follow its boundary
-  (`OsinPocketLakeModel.lakeCycle_outerCycle_not_followsBoundary`).  So neither the pocket region
-  builder with outer following nor a simple carrier applies here, and the enclosed subdiagram does.
+  `EnclosedFaceSet`, with the turning condition from `IsNoncrossingClosedWalk.reverseMapAlpha`.
+* `not_enclosedFaceSetSucc`: no outside walk of the side turns to its successor
+  (`EnclosedFaceSetSucc`).  Rotating from the reverse of the dart `3`, the first dart on a walk
+  edge is `3` itself, and an outside walk holds both `3` and `1`.  So the successor-form enclosed
+  subdiagram never applies to a full source arc in a lake.
+* `lakePocket`: the pocket region of the walk from the Euler equalities of its two reclosings
+  (`PocketRegion.ofNoncrossingClosedWalkEuler`, `OsinPocketKeptCellSection.lakeEulerBranch`).  It
+  is least area, holds one relator cell of the two, and its complement reads the pocket walk in the
+  four parts `s_1 t_1⁻¹ s_2 t_2` (`lakePocket_decomposition`).
+* `fullArcLake`: all of this, with the failure of the outer cycle to follow its boundary.
 
 ## Manuscript status
 
@@ -168,15 +175,19 @@ def iK : Fin diagram.rCellCount := ⟨1, by decide⟩
 
 /-- **A relator product of odd relators has the parity of its count.** -/
 theorem sign_of_isRelatorProduct {R : Set G} (hR : ∀ r ∈ R, Perm.sign r = -1) {n : ℕ} {w : G}
-    (h : RelatorDefectBudget.IsRelatorProduct R n w) : Perm.sign w = (-1) ^ n := by
+    (h : RelatorDefectBudget.IsRelatorProduct R n w) :
+    Perm.sign w = if n % 2 = 0 then 1 else -1 := by
   induction h with
   | one => simp
-  | base hr => rw [hR _ hr, pow_one]
+  | base hr => simp [hR _ hr]
   | inv _ ih => rw [Perm.sign_inv, ih]
   | conj c _ ih =>
       rw [Perm.sign_mul, Perm.sign_mul, Perm.sign_inv, ih, mul_right_comm, Int.units_mul_self,
         one_mul]
-  | mul _ _ iha ihb => rw [Perm.sign_mul, iha, ihb, pow_add]
+  | @mul m k a b _ _ iha ihb =>
+      rw [Perm.sign_mul, iha, ihb, Nat.add_mod]
+      rcases Nat.mod_two_eq_zero_or_one m with hm | hm <;>
+        rcases Nat.mod_two_eq_zero_or_one k with hk | hk <;> simp [hm, hk]
 
 theorem sign_ga : Perm.sign ga = -1 := Perm.sign_swap (by decide)
 
@@ -224,13 +235,13 @@ theorem outerDarts_eq : Embedded.outerDarts diagram = [2] := by
   decide
 
 /-- The arc `t_1`: all of `∂Π`. -/
-def fullSourceArc : Embedded.CyclicArc (Embedded.cellDarts diagram iP) where
+noncomputable def fullSourceArc : Embedded.CyclicArc (Embedded.cellDarts diagram iP) where
   start := ⟨0, Nat.succ_pos _⟩
   length := (Embedded.cellDarts diagram iP).length
   length_le := le_rfl
 
 /-- The arc `t_2`: all of `∂Δ`. -/
-def fullTargetArc : Embedded.CyclicArc (Embedded.outerDarts diagram) where
+noncomputable def fullTargetArc : Embedded.CyclicArc (Embedded.outerDarts diagram) where
   start := ⟨0, Nat.succ_pos _⟩
   length := (Embedded.outerDarts diagram).length
   length_le := le_rfl
@@ -248,7 +259,7 @@ theorem fullTargetArc_darts : fullTargetArc.darts = [2] := by
   rfl
 
 /-- **The pocket walk of the lake**: empty sides, `t_1 = ∂Π` and `t_2 = ∂Δ`. -/
-def pocketWalk (D : RelGenSet G Empty) (eps : ℕ) :
+noncomputable def pocketWalk (D : RelGenSet G Empty) (eps : ℕ) :
     PocketWalk D eps diagram 0 (Embedded.outerDarts diagram).length where
   source := iP
   sourceArc := fullSourceArc
@@ -318,6 +329,8 @@ theorem mem_invDarts_iff (d : M.Dart) :
 theorem reverse_isNoncrossing : IsNoncrossingClosedWalk M (lakeWalk.reverse.map M.alpha) :=
   isNoncrossingClosedWalk_lakeCycle.reverseMapAlpha planar
 
+/-! ## The enclosed face sets -/
+
 /-- **The side of the lake walk is enclosed by the reversed walk**, with no following hypothesis. -/
 theorem enclosedFaceSet :
     EnclosedFaceSet diagram (sideFaces diagram.toCombMap lakeWalk)
@@ -340,12 +353,80 @@ theorem enclosedFaceSet :
         exact absurd h.2 ha
   turn_mem := reverse_isNoncrossing.turn_mem
 
+/-- One rotation from the reverse of the dart `3` meets `3` again. -/
+theorem sigma_alpha_three :
+    diagram.toCombMap.sigma (diagram.toCombMap.alpha 3) = 3 := by decide
+
+/-- **No outside walk of the side of the lake walk turns to its successor.**  Every outside walk
+holds the darts `3` and `1`, and the first rotation from the reverse of `3` is `3` itself, which is
+not the next dart of a duplicate-free walk of length at least two. -/
+theorem not_enclosedFaceSetSucc (outerWalk : List diagram.toCombMap.Dart) :
+    ¬ EnclosedFaceSetSucc diagram (sideFaces diagram.toCombMap lakeWalk) outerWalk := by
+  intro E
+  have h3 : (3 : diagram.toCombMap.Dart) ∈ outerWalk :=
+    (E.mem_iff 3).mpr ⟨outerFace_not_mem_sideFaces, Or.inl OsinPocketLakeModel.faceOf_two_mem_sideFaces⟩
+  have h1 : (1 : diagram.toCombMap.Dart) ∈ outerWalk :=
+    (E.mem_iff 1).mpr ⟨source_not_mem_sideFaces, Or.inl kept_mem_sideFaces⟩
+  have hlen : 2 ≤ outerWalk.length := by
+    rw [← List.toFinset_card_of_nodup E.nodup]
+    have hsub : ({3, 1} : Finset diagram.toCombMap.Dart) ⊆ outerWalk.toFinset := by
+      intro x hx
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+      rcases hx with rfl | rfl
+      · exact List.mem_toFinset.mpr h3
+      · exact List.mem_toFinset.mpr h1
+    exact (Finset.card_pair (by decide)).symm.le.trans (Finset.card_le_card hsub)
+  obtain ⟨i, hi, hi3⟩ := List.getElem_of_mem h3
+  have hkeep : walkKeep diagram.toCombMap outerWalk
+      ((diagram.toCombMap.sigma ^ 1) (diagram.toCombMap.alpha outerWalk[i])) := by
+    rw [hi3, pow_one, sigma_alpha_three]
+    exact Or.inl h3
+  have hstep := E.turn_next i hi 1 Nat.one_pos hkeep fun k hk0 hk1 => absurd hk1 (by omega)
+  rw [hi3, pow_one, sigma_alpha_three] at hstep
+  have hidx : (i + 1) % outerWalk.length = i :=
+    (E.nodup.getElem_inj_iff).mp (hstep.symm.trans hi3.symm)
+  rcases Nat.lt_or_ge (i + 1) outerWalk.length with hlt | hge
+  · rw [Nat.mod_eq_of_lt hlt] at hidx
+    omega
+  · have heq : i + 1 = outerWalk.length := by omega
+    rw [heq, Nat.mod_self] at hidx
+    omega
+
+/-! ## The pocket region from the Euler equalities -/
+
+/-- **The pocket region of the lake walk**, from the Euler equalities of both reclosings. -/
+noncomputable def lakePocket : PocketRegion diagram :=
+  PocketRegion.ofNoncrossingClosedWalkEuler isNoncrossingClosedWalk_lakeCycle
+    outerFace_not_mem_sideFaces OsinPocketKeptCellSection.lakeEulerBranch.1
+    OsinPocketKeptCellSection.lakeEulerBranch.2.1
+
+theorem lakePocket_invDarts_outer : Embedded.invDarts diagram lakePocket.outer.cycle = lakeWalk :=
+  PocketRegion.invDarts_reverse_map_alpha lakeWalk
+
+/-- The complement of the pocket reads the pocket walk in its four parts `s_1 t_1⁻¹ s_2 t_2`. -/
+theorem lakePocket_decomposition (D : RelGenSet G Empty) (eps : ℕ) :
+    Embedded.invDarts diagram lakePocket.outer.cycle =
+      (pocketWalk D eps).firstSide ++ Embedded.invDarts diagram (pocketWalk D eps).sourceArc.darts ++
+        (pocketWalk D eps).secondSide ++ (pocketWalk D eps).targetArc.darts :=
+  lakePocket_invDarts_outer.trans (pocketWalk_walk D eps).symm
+
+theorem lakePocket_leastArea : lakePocket.diagram.LeastArea :=
+  lakePocket.diagram_leastArea leastArea
+
+theorem lakePocket_rCellCount_pos : 0 < lakePocket.diagram.rCellCount :=
+  lakePocket.diagram_rCellCount_pos (Embedded.cell_mem diagram iK) kept_mem_sideFaces
+
+theorem lakePocket_rCellCount_lt : lakePocket.diagram.rCellCount < diagram.rCellCount :=
+  lakePocket.diagram_rCellCount_lt (Embedded.cell_mem diagram iP) source_not_mem_sideFaces
+
 /-! ## The endpoint -/
 
 /-- **The full source arc in a lake** (model test).  A least-area diagram carries a pocket walk
 whose source arc is the whole boundary of the source cell.  The walk is noncrossing, the source
-cell and the exterior lie off its side, a relator cell lies on it, the side is enclosed by the
-reversed walk, and the outer cycle does not follow its boundary. -/
+cell and the exterior lie off its side, a relator cell lies on it, and the outer cycle does not
+follow its boundary.  The side is enclosed by the reversed walk, but by no outside walk turning to
+its successor.  The pocket region from the Euler equalities is a least-area cut: its complement
+reads the four parts of the walk, and it has at least one and fewer relator cells. -/
 def FullArcLakeStatement : Prop :=
   diagram.LeastArea ∧
     (∀ (D : RelGenSet G Empty) (eps : ℕ), (pocketWalk D eps).walk = lakeWalk ∧
@@ -355,14 +436,21 @@ def FullArcLakeStatement : Prop :=
     IsNoncrossingClosedWalk diagram.toCombMap lakeWalk ∧
     (Embedded.cell diagram iP).face ∉ sideFaces diagram.toCombMap lakeWalk ∧
     (Embedded.cell diagram iK).face ∈ sideFaces diagram.toCombMap lakeWalk ∧
+    ¬ (isNoncrossingClosedWalk_lakeCycle.outerCycle planar).FollowsBoundary ∧
     EnclosedFaceSet diagram (sideFaces diagram.toCombMap lakeWalk)
       (Embedded.invDarts diagram lakeWalk) ∧
-    ¬ (isNoncrossingClosedWalk_lakeCycle.outerCycle planar).FollowsBoundary
+    (∀ outerWalk : List diagram.toCombMap.Dart,
+      ¬ EnclosedFaceSetSucc diagram (sideFaces diagram.toCombMap lakeWalk) outerWalk) ∧
+    ∃ P : PocketRegion diagram, P.faces = sideFaces diagram.toCombMap lakeWalk ∧
+      Embedded.invDarts diagram P.outer.cycle = lakeWalk ∧ P.diagram.LeastArea ∧
+      0 < P.diagram.rCellCount ∧ P.diagram.rCellCount < diagram.rCellCount
 
 theorem fullArcLake : FullArcLakeStatement :=
   ⟨leastArea, fun D eps => ⟨pocketWalk_walk D eps, rfl, rfl, rfl⟩,
     isNoncrossingClosedWalk_lakeCycle, source_not_mem_sideFaces, kept_mem_sideFaces,
-    enclosedFaceSet, OsinPocketLakeModel.lakeCycle_outerCycle_not_followsBoundary⟩
+    OsinPocketLakeModel.lakeCycle_outerCycle_not_followsBoundary, enclosedFaceSet,
+    not_enclosedFaceSetSucc, lakePocket, rfl, lakePocket_invDarts_outer, lakePocket_leastArea,
+    lakePocket_rCellCount_pos, lakePocket_rCellCount_lt⟩
 
 end GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel
 
@@ -370,4 +458,6 @@ end GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.leastArea
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.pocketWalk_walk
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.enclosedFaceSet
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.not_enclosedFaceSetSucc
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.lakePocket_decomposition
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.fullArcLake
