@@ -821,6 +821,27 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
       - sk-usefulness: natural generality of Theorem 2, with proofs queued for review.
     - Constraints: every result kept, ≤ 9 pp, no unreviewed mathematics, credits factual. Main assembles rev5 from the proposals and compiles on MSI.
     - 12 lanes live, which is the cap.
+164. **USER ~10:45 "let's fucking gooooo", quoting and endorsing the missing example and picture ("A periodic word becomes a cyclic-shift matrix plus diagonal letter matrices, but the paper never shows one").**
+    - An example or picture that makes the finite models visible is IN for rev5, if correct.
+    - USER follow-up: "it doesnt have to, I dont know what is best. let it choose what is best / also isnt fibonacci arbitrary?" So the lane chooses the content: which subshift, if any; whether to display matrices; which figure. It must justify the choice and list the rejected alternatives. Up to about 0.6 page.
+    - Staged: $SK2/drafts/rev5-base.tex = rev4.5 (md5 29d63f79…). The MSI master is up.
+165. **sk-reader-grad (67819e1433): no math error; 24 stalls, 10 ranked fixes.**
+    - After page 1 the reader could explain (T), mostly simplicity, but NOT LEF. The ring, marked-group limits, towers and the finite models are undefined on page 1.
+    - The hardest proof is Cor 3–4 (l.412–438 θ/κ/ζ; l.338–346 powers of 2).
+    - ADOPTED in principle for rev5; merged at assembly with the design lanes:
+      - F1: concrete models, and the expander reason (quotients of EL_3 of a free algebra);
+      - F2: define the marked-group limit;
+      - F3: define a minimal subshift;
+      - F4: define the ring;
+      - F5: define a tower and give the minimality finish;
+      - F6: "coefficients at u_e";
+      - F7: a roadmap for the Cor 3–4 proof;
+      - F8: why the conjugates act only on level 0;
+      - F9: the coset count behind κ;
+      - F10: split "small".
+    - Extras, decided at assembly: rename the Cantor set Z; τ_1 → τ_s with s=1; define cylinders; define L(X) before Cor 4 uses it; move the Stepanov sentence; the unused "not residually finite" at l.282, which the Questions section does use.
+    - F1–F5 went to sk-design-page-one and F6–F10 to sk-design-structure.
+    - One lane slot is held for the rev5 editor once the design lanes report.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
