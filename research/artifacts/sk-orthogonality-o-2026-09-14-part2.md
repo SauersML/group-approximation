@@ -1,12 +1,16 @@
 # sk-orthogonality-o part 2: Frobenius bicommutants prove (O), (O′) and the Singer identities (2026-09-14)
 
-Lane sk-orthogonality-o. Notation as in `research/artifacts/sk-orthogonality-o-2026-09-14-part1.md` §0. Everything here
-is UNREVIEWED. Imports:
-- O1 = `subshift-gl3-index-kernel-is-elementary-group` (unreviewed), used for both `X` and `Y`: every element of
-  finite order of `GL_3(R)` lies in `EL_3(R)`;
+Lane sk-orthogonality-o. Notation as in `research/artifacts/sk-orthogonality-o-2026-09-14-part1.md` §0. This part is
+PASS-WITH-FIXES by sk-verify-25a and, independently, by sk-verify-25b (`research/artifacts/sk-verify-25a-2026-09-14.md`,
+`research/artifacts/sk-verify-25b-2026-09-14.md`). Their fixes C1–C4, W1 and W4 are merged below (sk-rigidity-merge,
+2026-09-14). Imports:
+- O1 = `subshift-gl3-index-kernel-is-elementary-group` (reviewed: sk-verify-18 part6 PASS; Fix C1), used for both `X`
+  and `Y`: every element of finite order of `GL_3(R)` lies in `EL_3(R)`;
 - C2 of `subshift-elementary-group-rigid-supports-are-mutual-centralizers` (PASS);
-- the first-return corner isomorphism `e_VR_Xe_V ≅ LC(V,F_2)⋊_{T_V}Z`, flagged in sk-normalizer-recognition part 1
-  (standard, not source-checked), so `Z(e_VR_Xe_V) = F_2e_V` and `e_VR_Xe_V` is simple.
+- (Fix C2) `R_V = e_VR_Xe_V` is simple with centre `F_2e_V`: a corner of the simple ring `R_X` is simple, and since `e_V`
+  is full, `Z(e_VR_Xe_V) = e_VZ(R_X) = F_2e_V`. The first-return corner isomorphism `e_VR_Xe_V ≅ LC(V,F_2)⋊_{T_V}Z`,
+  originally imported here, is not needed (it is also proved in `subshift-el-n-exactness-kakutani-invariance-proof`
+  Step 3, sk-verify-18 part11 PASS).
 
 **Lemma Z (square-zero commutants).** Let `S` be a simple ring with centre `F` and let `f` be an idempotent with
 `f ≠ 0, 1`. If `x ∈ S` commutes with `fS(1−f)` and `(1−f)Sf`, then `x ∈ F`.
@@ -30,7 +34,8 @@ is UNREVIEWED. Imports:
   - `x` commutes with `G_{X∖V} ⊆ C(F21_V)`, so `x ∈ G_V` by C2.
   - For orthogonal nonzero idempotents `f + f′ = e_V` of `R_V := e_VR_Xe_V` and `n ∈ fR_Vf′`, the element
     `(e_V + n)I_3 ⊕ I` has order 2. So it lies in `G_X` by O1, and it commutes with `F21_V`.
-  - So every entry of `x − I` commutes with `fR_Vf′` and `f′R_Vf`. By Lemma Z it lies in `F_2e_V`. So `x ∈ Q_V`. ∎
+  - So every entry of `x − I` commutes with `fR_Vf′` and `f′R_Vf`. By Lemma Z, applied to the simple ring `R_V` with
+    centre `F_2e_V` (Fix C2), it lies in `F_2e_V`. So `x ∈ Q_V`. ∎
 
 ## 2. Theorem C: the Y-side bicommutant is one natural block
 
@@ -49,8 +54,10 @@ Let `T_t` (`t ∈ {1,2,3,3*}`) be the isotypic idempotents of `K_V = α(F21_V)` 
   - On `M_3`, `x ∈ End_{F21⊗R_Y^op}(3⊗P_3) = id ⊗ End(P_3)`.
   - Likewise on `M_{3*}`, and on `M_2` it is `F_4`-linear.
 - So for `a ∈ GL_3(F_2)` the element `g_3(a) := (a ⊗ id)` on `M_3`, identity elsewhere, commutes with
-  `C_{G_Y}(K_V)`. It is `R_Y`-linear and of finite order, so it lies in `G_Y` (O1). So `g_3(a) ∈ CC_{G_Y}(K_V)`. The
-  same holds for `g_{3*}(a)`, and for `g_2(ω)`, which is multiplication by `ω ∈ F_4^×` on `M_2`.
+  `C_{G_Y}(K_V)`. (Fix C3: `g_t(a)` lies in `F_2I + span_{F_2}K_V`, since the `t`-component of `F_2[F21]` is `M_3(F_2)`,
+  or `F_4` for `t = 2`, so it commutes with `C_{G_Y}(K_V)`.) It is `R_Y`-linear and of finite order, so it lies in
+  `G_Y` (O1). So `g_3(a) ∈ CC_{G_Y}(K_V)`. The same holds for `g_{3*}(a)`, and for `g_2(ω)`, which is multiplication by
+  `ω ∈ F_4^×` on `M_2`.
 - `α(c_V) ≠ I` acts trivially on `M_1 ⊕ M_2`, so `M_3 ⊕ M_{3*} ≠ 0`. If both `M_3, M_{3*} ≠ 0`, or if `M_2 ≠ 0`, then
   `CC_{G_Y}(K_V)` contains `GL_3(2)²` or `GL_3(2) × C_3`, which has order greater than 168. So exactly one `t_V`
   occurs and `M_2 = 0`.
@@ -97,20 +104,23 @@ Let `T_t` (`t ∈ {1,2,3,3*}`) be the isotypic idempotents of `K_V = α(F21_V)` 
 
 ## 4. Theorem D
 
-**Theorem D.** Assume O1. Let `X, Y` be infinite minimal subshifts. Then every isomorphism `α: G_X → G_Y` is
-standard, possibly after composing with the graph automorphism `γ_X`. So `G_X ≅ G_Y` implies that `X` and `Y` are
-strongly orbit equivalent.
+**Theorem D.** Assume O1 (reviewed: sk-verify-18 part6 PASS). Let `X, Y` be infinite minimal subshifts. Then every
+isomorphism `α: G_X → G_Y` is standard, possibly after composing with the graph automorphism `γ_X`. So `G_X ≅ G_Y`
+implies that `X` and `Y` are strongly orbit equivalent.
 
 *Proof.*
-- If `t_X = 3*`, replace `α` by `α∘γ_X`. Then `ψ_V` is inner-type, so `K_V` has type `3` on `S_VM`.
+- (Fix W4.) If `t_X = 3*`, replace `α` by `α∘γ_X` and apply Theorem C and Corollaries O, O′ and T to it. Its orientation
+  is `3`, because `(α∘γ_X)(q_X) = α(γ(q)_X)` acts as `ψ_X(γ(q)) ⊗ id` and `3*∘γ ≅ 3`.
 - By Theorem C (no type 2) and Corollary T, `K_V` acts on `S_VM` with type `3` only. That is (Sing_V) (Lemma 0 of
   part 1), for every `V`.
 - (O′) is Corollary O′.
-- Theorem A (`singer-identities-make-subshift-el3-isos-standard`) gives standardness and strong orbit equivalence. ∎
+- Theorem A (`singer-identities-make-subshift-el3-isos-standard`) gives standardness and strong orbit equivalence. By
+  Fix W3 of part 1 Step 7, `inn(k^{-1})∘α = M_3(φ)|_{G_X}` for a ring isomorphism `φ: R_X → R_Y`. ∎
 
-This answers the question in `simple_kazhdan_sofic_group.tex` (§4, "Does `G_X ≅ G_Y` imply that `X` and `Y` are
-strongly orbit equivalent?"), conditional on O1. It proves `subshift-el3-isomorphisms-are-standard-over-f2` and (Rec′)
-under the same condition.
+(Fix C4.) This answers the second alternative of the question in `simple_kazhdan_sofic_group.tex` (Questions section):
+`G_X ≅ G_Y` implies strong orbit equivalence. Flip conjugacy stays open. It proves
+`subshift-el3-isomorphisms-are-standard-over-f2`, now established through `subshift-el3-isomorphisms-are-standard-over-f2-proof`,
+and (Rec′).
 
 **Model tests.**
 - `α = id`: `t_V = 3`, `P = e_VR`, `Fix(K_V) = e_{X∖V}M`.

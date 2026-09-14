@@ -6,7 +6,7 @@ title: Given the index kernel theorem, the double centralizer of the image of a 
 distinct_from:
   singer-identities-make-subshift-el3-isos-standard: that assumes the Singer identities and (O′); this proves them from bicommutants and the index kernel theorem
   frobenius-support-idempotents-give-boolean-realization: that assumes (O) and (O′); this proves both
-  subshift-el3-isomorphisms-are-standard-over-f2: that is the open question; this answers it modulo the unreviewed index kernel theorem
+  subshift-el3-isomorphisms-are-standard-over-f2: that is the standardness statement; this is the Frobenius-bicommutant argument that establishes it through subshift-el3-isomorphisms-are-standard-over-f2-proof
 artifacts:
   - research/artifacts/sk-orthogonality-o-2026-09-14-part2.md
   - research/artifacts/sk-orthogonality-o-2026-09-14-part1.md
@@ -14,7 +14,7 @@ artifacts:
 
 Let `X, Y` be infinite minimal subshifts, `G_X = EL_3(LC(X,F_2)⋊Z)`, `α: G_X → G_Y` an isomorphism, `Q = GL_3(F_2)`,
 `F21 ≤ Q` the Frobenius group of order 21, `K_V = α(F21_V)` and `S_V = I + Σ_{k∈K_V} k`. Assume the index kernel
-theorem `subshift-gl3-index-kernel-is-elementary-group` for `X` and `Y`. Then:
+theorem `subshift-gl3-index-kernel-is-elementary-group` for `X` and `Y` (reviewed, sk-verify-18 part6 PASS). Then:
 
 1. **(Lemma X)** `C_{G_X}C_{G_X}(F21_V) = Q_V`.
 2. **(Theorem C)** On `R_Y³`, `K_V` has exactly one of the types `3`, `3*` and no type `2`. `α(Q_V)` is trivial on
@@ -22,10 +22,20 @@ theorem `subshift-gl3-index-kernel-is-elementary-group` for `X` and `Y`. Then:
 3. `S_VS_W = 0` for disjoint `V, W`, and `S_X = I`.
 4. The orientation `t_V` does not depend on `V`.
 5. **(Theorem D)** `α`, or `α∘γ_X` with `γ_X` the graph automorphism, satisfies the Singer identities. So `α` is
-   standard, and `G_X ≅ G_Y` implies that `X` and `Y` are strongly orbit equivalent.
+   standard: `α = inn(k)∘M_3(φ)|_{G_X}`, possibly after `γ_X`, for some `k ∈ GL_3(R_Y)` and a ring isomorphism
+   `φ: R_X → R_Y`. So `G_X ≅ G_Y` implies `R_X ≅ R_Y`, and `X` and `Y` are strongly orbit equivalent.
 
-Status: proved in `frobenius-bicommutants-make-subshift-el3-isos-standard-proof`, unreviewed. It is conditional on
-the unreviewed index kernel theorem and on the flagged first-return corner isomorphism.
+Status: proved in `frobenius-bicommutants-make-subshift-el3-isos-standard-proof`; PASS-WITH-FIXES by sk-verify-25a. Its
+inputs are reviewed: the index kernel theorem (sk-verify-18 part6 PASS), the corner centre
+(`subshift-elementary-group-rigid-supports-are-mutual-centralizers` item 1, sk-verify-3 PASS), and the first-return
+corner isomorphism (`subshift-el-n-exactness-kakutani-invariance-proof` Step 3, sk-verify-18 part11 PASS). Also
+PASS-WITH-FIXES by sk-verify-25b, independently. By Fix C2 the corner isomorphism is not needed: `R_V = e_VR_Xe_V` is
+simple with centre `F_2e_V`, because a corner of the simple ring `R_X` is simple and, `e_V` being full,
+`Z(e_VR_Xe_V) = e_VZ(R_X) = F_2e_V`. The fixes are merged (sk-rigidity-merge, 2026-09-14).
+
+This answers the second alternative of the question in `simple_kazhdan_sofic_group.tex` (Questions section):
+`G_X ≅ G_Y` implies strong orbit equivalence. Flip conjugacy stays open
+(`subshift-el3-group-isomorphism-forces-flip-conjugacy`).
 
 Model tests:
 - the identity, `inn(diag(u,1,1))` and `γ_X` all fit the conclusions;
@@ -58,3 +68,4 @@ Model tests:
     - W4: for `t_X = 3*`, apply Theorem C and Corollaries O, O′, T to `α∘γ_X`, whose orientation is 3 since `3*∘γ ≅ 3`.
   - **Combined PASS, sharpened:** every isomorphism is `inn(k)∘M_3(φ)`, possibly after `γ_X`, for a ring isomorphism `φ: R_X → R_Y`. So `G_X ≅ G_Y ⇒ R_X ≅ R_Y ⇒` SOE; flip conjugacy stays open.
   - No FAIL, no GAP.
+- **Fixes merged (sk-rigidity-merge, 2026-09-14, `research/artifacts/sk-rigidity-merge-2026-09-14.md`):** C1 and W1 (status line), C2, C3 and W4 into the artifact part 2 and the route, C4 (scope sentence; the unused `requires` entry dropped from the route). The locator "§4" in C4's source text is the note's Questions section, which is §5 in rev4.5.

@@ -20,14 +20,19 @@ isomorphism. Let `c ∈ GL_3(F_2)` be a Singer cycle with `c³+c+I = 0`, `F21 = 
 Then:
 - `S_VS_W = 0` for disjoint `V, W`;
 - `α(GL_3(LC(X,F_2))) = k·GL_3(𝔅′)·k^{-1}` for some `k ∈ GL_3(R_Y)` and a Boolean subalgebra `𝔅′ ≅ LC(X,F_2)`;
-- `inn(k^{-1})∘α` maps every root subgroup onto the corresponding root subgroup.
+- `inn(k^{-1})∘α` maps every root subgroup onto the corresponding root subgroup, and equals `M_3(φ)|_{G_X}` for a
+  ring isomorphism `φ: R_X → R_Y`.
 
-So `α` is standard, and `X` and `Y` are strongly orbit equivalent.
+So `α` is standard, `R_X ≅ R_Y`, and `X` and `Y` are strongly orbit equivalent.
 
-Status: proved in `singer-identities-make-subshift-el3-isos-standard-proof`, unreviewed. The proof imports:
-- the unreviewed index kernel theorem `subshift-gl3-index-kernel-is-elementary-group`;
+Status: proved in `singer-identities-make-subshift-el3-isos-standard-proof`; PASS-WITH-FIXES by sk-verify-25a and,
+independently, by sk-verify-25b, with the fixes merged (sk-rigidity-merge, 2026-09-14). The proof imports:
+- the index kernel theorem `subshift-gl3-index-kernel-is-elementary-group` (sk-verify-18 part6 PASS);
 - a division step for clopen classes in `K^0(Y,T)`, which is Lemma 2.5 of H. Matui, arXiv:math/0404224, quoted in the
-  artifact.
+  artifact and read at source by both reviewers (e-print l.272–283).
+
+After Fix A2, Step 5 uses no first-return corner isomorphism. After Fix W3, Step 7 produces the ring isomorphism `φ`
+directly, so `peirce-root-homomorphisms-of-e3-are-standard` is no longer needed (it gives the same with `a_ij = E_ij`).
 
 Model tests: the identity and `inn(diag(u,1,1))` satisfy (Sing) and (O′). The graph automorphism has type `3*` and
 fails (Sing), so the theorem applies after composing with it. The natural ⊕ trivial fake fails (O′). The Steinberg
@@ -49,3 +54,4 @@ fake fails (Sing).
     - W3: Step 7 gives a ring isomorphism `φ: R_X → R_Y` directly. `φ_ij(1) = 1` and the commutator relations force all `φ_ij` equal, and `α′ = M_3(φ)|_{G_X}`. So `G_X ≅ G_Y ⇒ R_X ≅ R_Y`, and SOE follows with m = 1.
     - W5: Proposition F items 1–2 of the normalizer artifact are the node's item 3.
   - No FAIL, no GAP.
+- **Fixes merged (sk-rigidity-merge, 2026-09-14, `research/artifacts/sk-rigidity-merge-2026-09-14.md`):** A1 and W1 (this status line), A2, A3, W2, W3 and W5 into the artifact part 1 §3 and the route.

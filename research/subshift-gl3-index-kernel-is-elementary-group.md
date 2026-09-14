@@ -10,7 +10,7 @@ artifacts:
   - research/artifacts/sk-free-10-gl3-index-2026-09-14.md
 ---
 
-**ESTABLISHED (unreviewed)** by `subshift-gl3-index-kernel-is-elementary-group-proof`.
+**ESTABLISHED (reviewed: sk-verify-18 PASS, part6)** by `subshift-gl3-index-kernel-is-elementary-group-proof`.
 
 **Statement.** Let (X,T) be an infinite minimal Cantor system, R = LC(X,F_2) ⋊_T Z, G_X = EL_3(R), d = diag(u,1,1), and ind: GL_3(R) → Z the half-orbit Fredholm index. Then:
 - ind does not depend on the base point or the cut;
@@ -25,3 +25,4 @@ artifacts:
 
 ## Review
 - **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part6.md`):** re-derived: Lemma 1 (cut, translation, local constancy, minimality); the check that Theorem D's proof uses membership in G only through (T2) at the choice dim M = dim K in (T3), so every index-zero h ∈ GL_3(R) factors as H_1H_2 over tower algebras; and (a)–(c). Conditional on the reviewed inputs (I1) and (I2).
+- Consumed by the rigidity theorem `frobenius-bicommutants-make-subshift-el3-isos-standard`; its consumption was checked against this statement by sk-verify-25a and sk-verify-25b (2026-09-14). Status line updated by sk-rigidity-merge.

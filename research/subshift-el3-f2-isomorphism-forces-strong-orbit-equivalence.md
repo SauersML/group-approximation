@@ -8,15 +8,21 @@ distinct_from:
   root-preserving-subshift-el3-isos-force-orbit-equivalence: that assumes the isomorphism carries root subgroups to root subgroups; this asks it for every abstract isomorphism.
 ---
 
-**OPEN.** Let `X`, `Y` be infinite minimal subshifts and `G_X = EL_3(LC(X,F_2) ⋊ Z)`. If `G_X ≅ G_Y`, then `X` and
-`Y` are strongly orbit equivalent. This is the weaker half of the rigidity question in the note's "Questions"
-section; conjugacy or flip conjugacy gives an isomorphism.
+**ESTABLISHED** through `subshift-el3-f2-iso-soe-via-standard-isomorphisms` (sk-rigidity-merge, 2026-09-14). Let `X`,
+`Y` be infinite minimal subshifts and `G_X = EL_3(LC(X,F_2) ⋊ Z)`. If `G_X ≅ G_Y`, then `X` and `Y` are strongly orbit
+equivalent.
 
-The route `subshift-el3-f2-iso-soe-via-standard-isomorphisms` reduces it to one open step, standardness of the
-isomorphisms over `F_2`, by composing with the matrix-ring rigidity theorem.
+Precisely, every isomorphism `α: G_X → G_Y` is `inn(k)∘M_3(φ)|_{G_X}`, possibly after the graph automorphism, for a
+ring isomorphism `φ: R_X → R_Y` (`subshift-el3-isomorphisms-are-standard-over-f2`, Theorem D of sk-orthogonality-o;
+PASS-WITH-FIXES by sk-verify-25a and by sk-verify-25b, independently), and
+`cantor-crossed-product-matrix-ring-iso-forces-soe` turns `R_X ≅ R_Y` into strong orbit equivalence.
+
+This is the weaker half of the rigidity question in the note's "Questions" section; conjugacy or flip conjugacy gives
+an isomorphism. The stronger half, flip conjugacy, stays open (`subshift-el3-group-isomorphism-forces-flip-conjugacy`).
 
 ## Attempts
-- Standardness plus matrix-ring rigidity (route below): open at `subshift-el3-isomorphisms-are-standard-over-f2`.
+- Standardness plus matrix-ring rigidity (route below): open at `subshift-el3-isomorphisms-are-standard-over-f2` until
+  2026-09-14, when Theorem D (Frobenius bicommutants and Singer identities) established it.
   Over `F_2` at `n = 3` the Golubchik--Mikhalev and Zel'manov isomorphism theorems do not apply, and Petechuk's
   characteristic-2 exceptions are live (sk-rigidity-ring, sk-rigidity-f2).
 - Root subgroups: `root-preserving-subshift-el3-isos-force-orbit-equivalence` proves the conclusion for isomorphisms

@@ -29,6 +29,9 @@ requires:
   - subshift-group-factor-out-contains-z
   - bounded-generation-makes-el3-bi-interpretable-with-ring
   - singer-identities-make-subshift-el3-isos-standard
+  - frobenius-bicommutants-make-subshift-el3-isos-standard
+  - subshift-el3-isomorphisms-are-standard-over-f2
+  - subshift-el3-f2-isomorphism-forces-strong-orbit-equivalence
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
@@ -43,4 +46,11 @@ Members added by sk-cairn-steward-4 (2026-09-14, second pass): `subshift-group-i
 
 Members added by sk-cairn-steward-4 (2026-09-14, third pass): `frobenius-support-idempotents-give-boolean-realization`.
 
-Member added by sk-cairn-steward-5 (2026-09-14, final pass, sk landings to 11:04): `singer-identities-make-subshift-el3-isos-standard` (sk-orthogonality-o; unreviewed). It is a sufficient condition for standardness, and its proof imports the unreviewed `subshift-gl3-index-kernel-is-elementary-group` and a flagged Glasner–Weiss-type division step (Div). The recognition statement itself, `subshift-el3-isomorphisms-recognize-diagonals-up-to-normalizer`, stays among the open problems.
+Member added by sk-cairn-steward-5 (2026-09-14, final pass, sk landings to 11:04): `singer-identities-make-subshift-el3-isos-standard` (sk-orthogonality-o; unreviewed at the time). It is a sufficient condition for standardness, and its proof imports the index kernel theorem `subshift-gl3-index-kernel-is-elementary-group` and a Glasner–Weiss-type division step (Div). The recognition statement itself, `subshift-el3-isomorphisms-recognize-diagonals-up-to-normalizer`, stays among the open problems.
+
+Members added by sk-rigidity-merge (2026-09-14): `frobenius-bicommutants-make-subshift-el3-isos-standard`, `subshift-el3-isomorphisms-are-standard-over-f2` and `subshift-el3-f2-isomorphism-forces-strong-orbit-equivalence`.
+- The rigidity theorem: every isomorphism `G_X → G_Y` is `inn(k)∘M_3(φ)`, possibly after the graph automorphism, for a ring isomorphism `φ: R_X → R_Y`, so `G_X ≅ G_Y` implies strong orbit equivalence.
+- Both Theorem A (`singer-identities-make-subshift-el3-isos-standard`) and Theorem D (`frobenius-bicommutants-make-subshift-el3-isos-standard`) are PASS-WITH-FIXES by sk-verify-25a and sk-verify-25b independently, with fixes merged. The index kernel theorem is reviewed (sk-verify-18 part6), and (Div) is Matui's Lemma 2.5, read at source by both reviewers.
+- `subshift-el3-isomorphisms-are-standard-over-f2` was open and reachable only from the note's open-questions root; it is now established through `subshift-el3-isomorphisms-are-standard-over-f2-proof`.
+- Part 1 §4 of the sk-orthogonality-o artifact (Theorem B, Lemma N, Corollary B′) stays unreviewed; Theorem C supersedes it and it is off the chain.
+- Still open: flip conjugacy (`subshift-el3-group-isomorphism-forces-flip-conjugacy`) and `L(G_X) ≅ L(G_Y) ⇒ G_X ≅ G_Y` (`subshift-group-factors-determine-subshift-groups`), both in the open-problems conjunction.

@@ -2,20 +2,30 @@
 rg: 2
 id: subshift-el3-isomorphisms-are-standard-over-f2
 kind: claim
-title: Open - every isomorphism EL_3(LC(X,F_2)⋊Z) → EL_3(LC(Y,F_2)⋊Z) between the note's simple Kazhdan groups comes from a ring isomorphism or anti-isomorphism of 3x3 matrix rings
+title: Every isomorphism EL_3(LC(X,F_2)⋊Z) → EL_3(LC(Y,F_2)⋊Z) between the note's simple Kazhdan groups is standard - conjugation by GL_3 composed with M_3 of a ring isomorphism, possibly after the graph automorphism
 distinct_from:
   subshift-gl3-iso-gives-matrix-ring-iso-odd-q: that is the GL_3 statement for q odd, proved through Zel'manov, whose theorems need 1/2; this is the E_3 statement in characteristic 2, where no isomorphism theorem is available
-  subshift-elementary-group-isomorphism-forces-orbit-equivalence: that asks for strong orbit equivalence for every q; this is the group-to-ring step for q = 2, which together with cantor-crossed-product-matrix-ring-iso-forces-soe would settle that question for q = 2
+  subshift-elementary-group-isomorphism-forces-orbit-equivalence: that asks for strong orbit equivalence for every q; this is the group-to-ring step for q = 2, which together with cantor-crossed-product-matrix-ring-iso-forces-soe settles that question for q = 2
 ---
 
-**OPEN.** Let `X, Y` be infinite minimal subshifts and `R_X = LC(X,F_2) ⋊ Z`, so that `G_X = EL_3(R_X)` is the simple
-Kazhdan LEF group of `simple_kazhdan_sofic_group.tex` (its centre is trivial). Is every abstract isomorphism
-`θ: EL_3(R_X) → EL_3(R_Y)` standard? Standard means: there are a ring isomorphism or anti-isomorphism
-`ψ: M_3(R_X) → M_3(R_Y)` and `h ∈ GL_3(R_Y)` with `θ(g) = h ψ(g) h^(−1)` for isomorphisms, or
-`θ(g) = h ψ(g)^(−1) h^(−1)` for anti-isomorphisms.
+**ESTABLISHED** by `subshift-el3-isomorphisms-are-standard-over-f2-proof` (Theorem D of sk-orthogonality-o;
+PASS-WITH-FIXES by sk-verify-25a and, independently, by sk-verify-25b; fixes merged 2026-09-14). Let `X, Y` be infinite
+minimal subshifts and `R_X = LC(X,F_2) ⋊ Z`, so that `G_X = EL_3(R_X)` is the simple Kazhdan LEF group of
+`simple_kazhdan_sofic_group.tex` (its centre is trivial). Then every isomorphism `α: G_X → G_Y` satisfies
 
-A yes, with `cantor-crossed-product-matrix-ring-iso-forces-soe`, gives: `G_X ≅ G_Y` implies that `X` and `Y` are
-strongly orbit equivalent. The converse direction holds for flip conjugacy, since `R_X ≅ R_Y`.
+`α = inn(k)∘M_3(φ)|_{G_X}`, possibly after composing with the graph automorphism `γ_X(g) = (g*)^{-1}`,
+
+for some `k ∈ GL_3(R_Y)` and a ring isomorphism `φ: R_X → R_Y`. So `G_X ≅ G_Y` implies `R_X ≅ R_Y`, and
+`cantor-crossed-product-matrix-ring-iso-forces-soe` gives that `X` and `Y` are strongly orbit equivalent
+(`subshift-el3-f2-isomorphism-forces-strong-orbit-equivalence`).
+
+In the original formulation: every abstract isomorphism `θ: EL_3(R_X) → EL_3(R_Y)` is standard, meaning that there are
+a ring isomorphism or anti-isomorphism `ψ: M_3(R_X) → M_3(R_Y)` and `h ∈ GL_3(R_Y)` with `θ(g) = h ψ(g) h^(−1)` for
+isomorphisms, or `θ(g) = h ψ(g)^(−1) h^(−1)` for anti-isomorphisms. The case `ε = 1` of the graph automorphism is the
+anti-isomorphism case.
+
+The converse direction holds for flip conjugacy, since `R_X ≅ R_Y`. Whether `G_X ≅ G_Y` forces flip conjugacy stays
+open (`subshift-el3-group-isomorphism-forces-flip-conjugacy`).
 
 ## Attempts
 
@@ -79,16 +89,17 @@ strongly orbit equivalent. The converse direction holds for flip conjugacy, sinc
   - The locally mixed orientation is excluded because `R_Y` is simple. That orientation is the identity on one clopen
     piece and the graph automorphism on the other, which is Petechuk's non-standard pattern over product rings.
   - Left open: `subshift-el3-isomorphisms-recognize-diagonal-subgroups`.
-- **A conditional yes through Frobenius bicommutants (sk-orthogonality-o, 2026-09-14, unreviewed; artifacts
+- **The proof, through Frobenius bicommutants (sk-orthogonality-o, 2026-09-14; artifacts
   `research/artifacts/sk-orthogonality-o-2026-09-14-part1.md` and `-part2.md`).**
-  - `frobenius-bicommutants-make-subshift-el3-isos-standard`. Assume `subshift-gl3-index-kernel-is-elementary-group`
-    (unreviewed) for `X` and `Y`, which puts every torsion element of `GL_3(R)` in `EL_3(R)`. Then every isomorphism
-    `G_X → G_Y`, possibly composed with the graph automorphism, is standard. So `G_X ≅ G_Y` implies strong orbit
-    equivalence.
+  - `frobenius-bicommutants-make-subshift-el3-isos-standard`. Using `subshift-gl3-index-kernel-is-elementary-group`
+    (reviewed, sk-verify-18 part6 PASS) for `X` and `Y`, which puts every torsion element of `GL_3(R)` in `EL_3(R)`,
+    every isomorphism `G_X → G_Y`, possibly composed with the graph automorphism, is standard. So `G_X ≅ G_Y` implies
+    strong orbit equivalence.
   - Route:
     - the bicommutant of the constant Frobenius group `F21_V` in `G_X` is `GL_3(2)_V`;
     - on the Y-side its image has one isotypic block (order count 168);
     - `3⊗3` is not semisimple, which gives orthogonality of the support idempotents;
     - the trivial centralizer of the diagonal gives no fixed vectors;
     - `singer-identities-make-subshift-el3-isos-standard` finishes with bicommutants and generation.
-  - If the index kernel theorem passes review, this question becomes a theorem.
+  - Resolved 2026-09-14: sk-verify-25a and sk-verify-25b passed Theorems A and D independently, with fixes merged by
+    sk-rigidity-merge. By Fix W3 the ring map is an isomorphism `φ: R_X → R_Y`, which gives the statement above.

@@ -35,6 +35,8 @@ requires:
   - subshift-el3-isomorphisms-recognize-diagonals-up-to-normalizer
   - subshift-el-group-theory-computes-arithmetic-of-the-language
   - crossed-product-group-embeds-in-projective-elementary-group
+  - subshift-el3-group-isomorphism-forces-flip-conjugacy
+  - subshift-group-factors-determine-subshift-groups
 ---
 
 Assembly only: the root is the conjunction of the listed open claims. This route makes each of them reachable from a
@@ -57,3 +59,5 @@ Member added by sk-cairn-steward-5 (2026-09-14, wave-12 pass): `subshift-el-grou
 `property-t-factors-contain-weakly-dense-popa-algebras` moved to the approximation theme (sk-cairn-steward-5, 2026-09-14): Theorem P, `separable-ii1-factors-have-weakly-dense-popa-combs` (sk-popa-input2; sk-verify-20 PASS-WITH-FIXES), establishes it through `weakly-dense-popa-combs-exist-in-property-t-factors`.
 
 Member added by sk-cairn-steward-5 (2026-09-14, final pass): `crossed-product-group-embeds-in-projective-elementary-group`, the restated Whitehead embedding (abelian unit groups, and derived subgroups of unit groups, in `EL_N` modulo its centre). It is open as a node: sk-subgroups demoted it after its only route, which used the false multiplicativity of `diag(a, a^-1, 1)`, was invalidated, and it was unreachable before.
+
+Members added by sk-rigidity-merge (2026-09-14): `subshift-el3-group-isomorphism-forces-flip-conjugacy` and `subshift-group-factors-determine-subshift-groups`, the two rigidity questions left open once Theorem D established `subshift-el3-isomorphisms-are-standard-over-f2` (every isomorphism is standard, so `G_X ≅ G_Y` implies strong orbit equivalence). The flip-conjugacy node is new; the factor node was already reachable from the note's open-questions root and is listed here too. `subshift-el3-isomorphisms-are-standard-over-f2` was never listed here; it now sits in the rigidity theme.
