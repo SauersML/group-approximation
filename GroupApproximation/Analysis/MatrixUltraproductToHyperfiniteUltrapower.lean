@@ -67,6 +67,7 @@ theorem card_mul_stageMult_le (n : ℕ) :
   rw [mul_comm]
   exact Nat.div_mul_le_self _ _
 
+omit [∀ n, Nonempty (X n)] in
 theorem stageEmbedding_nonempty (n : ℕ) :
     Nonempty (X n × Fin (stageMult X n) ↪ StageIdx (stageLevel X n)) :=
   nonempty_cornerEmbedding (by rw [card_stageIdx]; exact card_mul_stageMult_le X n)
@@ -92,6 +93,7 @@ theorem stageFactor_nonneg (n : ℕ) : 0 ≤ stageFactor X n := by
   unfold stageFactor
   positivity
 
+omit [∀ n, Nonempty (X n)] in
 theorem stageFactor_le_one (n : ℕ) : stageFactor X n ≤ 1 := by
   have hpow : (0 : ℝ) < 2 ^ stageLevel X n := by positivity
   rw [stageFactor, div_le_one hpow]

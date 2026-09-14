@@ -122,9 +122,14 @@ theorem hyperfiniteFactor_approximatelyFinite
       ∑ g ∈ F, (lp.single 2 g (ξ g) : GroupHilbert PauliGroup) := by
     simp only [map_sum, map_smul, sum_apply, smul_apply]
     refine Finset.sum_congr rfl fun g hg ↦ ?_
-    rw [← stageOp_eq_stageHom, ← hxz g hg,
-      twistedLeftOperator_deltaOne pauliCocycle pauliCocycle_isSignCocycle, ← lp.single_smul,
-      smul_eq_mul, mul_one]
+    rw [← stageOp_eq_stageHom, ← hxz g hg]
+    have hδ := twistedLeftOperator_deltaOne pauliCocycle pauliCocycle_isSignCocycle g
+    have hsm : (lp.single 2 g (ξ g) : GroupHilbert PauliGroup) =
+        ξ g • (lp.single 2 g (1 : ℂ) : GroupHilbert PauliGroup) := by
+      rw [← lp.single_smul, smul_eq_mul, mul_one]
+    rw [hsm]
+    congr 1
+    convert hδ
   rw [sub_apply, hS, norm_sub_rev, ← dist_eq_norm]
   exact hF F le_rfl
 
