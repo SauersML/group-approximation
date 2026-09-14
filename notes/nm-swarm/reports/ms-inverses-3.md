@@ -282,3 +282,21 @@ Hand model tests (23:3x):
 CLAIM bridge from the two residuals to ms-binary's `OsinLemma94BadJunctionInput` (`osinLemma94BadJunctionInput_of_pieces`) `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionPieces.lean`
 - Imports ms-binary's `OsinLemma94ClassJoins` (`nonJoinPolygons`, definitionally the inline index set of the landed
   residuals) and ad307e323. The landed residual statements are not respelled, so ms-core-1's import target is unchanged.
+
+### Bridge landed (3b739a1ff, probe 0914-091636-15390 GREEN, verdict and BUILT lines checked)
+
+`GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionPieces.lean`, over ms-binary's `OsinLemma94ClassJoins`
+(efa471e68) and ad307e323.
+- `osinLemma94BadJunctionInput_of_pieces : OsinLemma94CellJunctionValueInput → OsinLemma94BoundaryJunctionBudgetInput →
+  OsinLemma94BadJunctionInput`, with ε₀ and ρ₀ the maxima of the two inputs and the boundary constant `K`.
+- `P.nonJoinPolygons` unfolds to the inline index set of the landed residuals, so the residual statements stay unchanged,
+  and so does ms-core-1's import target.
+- Consumer chain: ms-binary's `osinLemma94ClassEndLoopsBudgetInput_of_joins` takes `OsinLemma94BadJunctionInput`, so
+  clause (a) now waits on two things: ms-core-1's `OsinLemma94BoundaryJunctionBudgetInput` producer, and this lane's
+  `OsinLemma94CellJunctionValueInput` (loop-cut kill, face assembly, and the hole-polygon filter).
+- First bridge probe (0914-091249-70310) was red on a name collision:
+  `OsinLemma94RealizedPolygons.alpha_mem_cellDarts_of_mem_sideDarts` is declared both in ad307e323 and in ms-binary's
+  `OsinLemma94ClassJoinsCellArc`. This lane's copy is renamed `alpha_mem_cellDarts_of_mem_cellSideDarts` (declaration
+  and its two uses), so `OsinLemma94BadJunctionExclusion` lands again with that one change. No other declaration
+  collides (origin scan).
+- Queued for wiring at 3b739a1ff.
