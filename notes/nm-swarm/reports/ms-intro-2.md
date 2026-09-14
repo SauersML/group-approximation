@@ -183,6 +183,8 @@ CLAIM binder 6 variant `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFa
 
 CLAIM SK LEF part (iv) `GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFDiagonalCommutators.lean`: the diag
 identities, `ℓ ↦ diag(u_ℓ,1,1)`, `[L,L] → EL₃(R)`, and `Γ ≤ [Δ,Δ] ≤ [L,L]`. Ledger at `notes/sk-formal/reports/ms-intro-2.md`.
+- **LANDED a39853967** (23:5x), at tip c8b6021ca, tex 395–402. Probe 0913-234246-2153 GREEN; wire-queued.
+  `printedLEFDiagonalIdentities` and `printedLEFDiagonalEmbedding` hold over any ring with `u : Λ →* Rˣ`.
 
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.

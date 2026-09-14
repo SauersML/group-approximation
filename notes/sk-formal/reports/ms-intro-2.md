@@ -29,6 +29,9 @@ Carriers, all over a unital ring `R` with `u : Λ →* Rˣ`:
 
 | hash (9047d0d3c) | tex at c8b6021ca | sentence | status | carrier |
 |---|---|---|---|---|
-| 58f4e8dc5ed5 | 395–396 | the embedding `ξ ↦ diag(u_ξ,1,1)` (was "ℓ ↦ u_ℓ embeds L in GL_1(R)") | in flight | `lefDiagonalHom_injective`, `lefDiagonalHom_val` |
-| 36fec8cc638b | 396–401 | the two identities | in flight | `printedLEFDiagonalIdentities` |
-| 17c59a49b0ee | 396–402 | `[Λ,Λ]` into `G_Δ`, and `Γ ≤ [Δ,Δ] ≤ [Λ,Λ]` | in flight | `printedLEFDiagonalEmbedding` |
+| 58f4e8dc5ed5 | 395–396 | the embedding `ξ ↦ diag(u_ξ,1,1)` (was "ℓ ↦ u_ℓ embeds L in GL_1(R)") | formalized | `lefDiagonalHom_injective`, `lefDiagonalHom_val` |
+| 36fec8cc638b | 396–401 | the two identities | formalized | `printedLEFDiagonalIdentities` |
+| 17c59a49b0ee | 396–402 | `[Λ,Λ]` into `G_Δ`, and `Γ ≤ [Δ,Δ] ≤ [Λ,Λ]` | formalized | `printedLEFDiagonalEmbedding` |
+
+**LANDED a39853967** (23:5x): probe 0913-234246-2153 GREEN, `#audit_closed_axioms` on both endpoints, no sorryAx, and
+wire-queued. Census rows wait until skf-census regenerates the census at c8b6021ca.
