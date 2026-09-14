@@ -240,20 +240,51 @@ LEAF residual list (namespace `GGT.VanKampen`, `.{u, w, v}`; `.{v}` for the vert
 
 | # | leaf | reduces | owner lanes |
 |---|---|---|---|
-| 1 | `OsinLemma94ClassEndLoopsBudgetInput` | class end loops | ms-binary, ms-core-2, ms-compress-1 (LongTransitions `_of_pieces` and bad-junction reduction pending) |
+| 1 | `OsinLemma94ClassEndLoopsBudgetInput` | class end loops | ms-binary (ClassJoins), ms-core-1 (boundary-junction budget), ms-compress-1; ms-core-2 paused (LongTransitions `_of_pieces` and bad-junction reduction pending) |
 | 2 | `SameCellPocketCellFreeValueStatement` | same-cell pocket values | ms-compress-2, w1-binder-5 |
 | 3 | `SameCellPocketLoopCutStatement` | same-cell pocket values | ms-compress-2, w1-binder-5, ms-traces-2 |
-| 4 | `EnclosedSubdiagramLoopCutSuccStatement` | Case 1 relator cell (X, Y, spur) | w1-binder-8, ms-intro-1, ms-traces-2 |
-| 5 | `ClosedWalkEnclosedSubdiagramSuccStatement` | Case 1 spur | w1-binder-8, w1-binder-6, ms-traces-2 |
+| 4 | `EnclosedSubdiagramLoopCutSuccStatement` | Case 1 relator cell (X, Y, spur) | w1-binder-8, ms-traces-2 (Succ); ms-intro-1 paused |
+| 5 | `ClosedWalkEnclosedSubdiagramSuccStatement` | Case 1 spur | w1-binder-8, w1-binder-6, ms-traces-2 (Succ) |
 | 6 | `OsinLemma94CaseOneSpurEnclosureStatement` | Case 1 spur | w1-binder-8 |
 | 7 | `OsinLemma94ClassCaseGapSpanStatement` | class cases (R2) | ct-bilateral-cell, ct-return-tower |
 | 8 | `OsinTwoGonEulerWalkSectionStatement` (section form of `TwoGonEulerWalkInput`) | C6′ | w1-binder-1 |
 | 9 | `OsinTwoGonEulerGapSectionStatement` (section form of `TwoGonEulerGapInput`) | C6′ | w1-binder-1 |
-| 10 | `NoninterleavingVertexCountStatement` | cell walk Euler | ms-inverses-2, ms-inverses-4, w1-binder-6 |
-| 11 | `CellPocketWalkNoninterleavingStatement` | cell walk Euler | ms-inverses-2, ms-inverses-4 |
+| 10 | `NoninterleavingVertexCountStatement` | cell walk Euler | ms-inverses-2 (non-interleaving), w1-binder-6; ms-inverses-4 paused |
+| 11 | `CellPocketWalkNoninterleavingStatement` | cell walk Euler | ms-inverses-2 (non-interleaving); ms-inverses-4 paused |
 | 12 | `CellPocketOuterPinchStepSectionStatement` | section cell pinch | w1-binder-7 |
-| 13 | `CellPocketWalkProperArcsSectionStatement` | binder 5 proper arcs | ms-cite-1 (paused; unowned) |
+| 13 | `CellPocketWalkProperArcsSectionStatement` | binder 5 proper arcs | ms-cite-1 (live): the leaf as spelled needs `OsinLemma97Below`, so the chain is `CellPocketWalkProperArcsBelowInput` → binder-5 below variant → `MultipleEdgeCutBelowInput` → induction variant feeding `hbelow`; recompose when the names land |
 | 14 | `OsinSectionPocketFaceSetTwoArcSectionStatement` | binder 6 | w1-binder-7, ms-intro-2, ms-inverses-2, w1-binder-6 |
 | 15 | `PocketOuterPinchStepSectionStatement` | binder 7 | w1-binder-7, w1-binder-3 |
 
 LANDED 4fcbe5051 (probe 0914-083907-45210 GREEN: both modules BUILT on a real rebuild and COMPILED, 0 errors, 26 audits classical, no sorryAx; queued for wiring).  The 14 W1 rows cite the `_of_residualsV6` carriers with this leaf list, followed by the `_of_greendlinger` carriers; still `partial`.  Recompose as leaves land.
+
+## Item 8: V7, recomposed leaves (coordinator ~09:10 and w1-binder-1, 09-14)
+
+Changes against V6 (additive; V6 stays): leaf 6 closed by `osinLemma94CaseOneSpurEnclosure` (w1-binder-8, c23f6e753, `#audit_closed_axioms`,
+no sorry); leaf 11 closed by `cellPocketWalkNoninterleaving` (ms-inverses-2, a1091f0c8, `#audit_closed_axioms`, no sorry); C6′ from
+w1-binder-1's `osinTwoGonHoldsSection_of_copyCleanEuler` (9f29a234d), which needs no following cycle and covers pinch-type touches, instead
+of my Euler-walk and gap wrappers.  V7 composes over V5 directly.
+
+Modules: `GGT/VanKampen/Estimating/OsinGreendlingerWaistV7` (`relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV7`) and
+`Manuscript/NonMF/TorsionFreeResidualsV7` (22 endpoints `_of_residualsV7`).
+
+LEAF residual list of V7 (namespace `GGT.VanKampen`; `.{v}` for the vertex count), with owners:
+
+| # | leaf | owner lanes |
+|---|---|---|
+| 1 | `OsinLemma94ClassEndLoopsBudgetInput` | ms-binary (ClassJoins), ms-core-1 (boundary-junction budget), ms-compress-1 |
+| 2 | `SameCellPocketCellFreeValueStatement` | ms-compress-2, w1-binder-5 |
+| 3 | `SameCellPocketLoopCutStatement` | ms-compress-2, w1-binder-5, ms-traces-2 |
+| 4 | `EnclosedSubdiagramLoopCutSuccStatement` | w1-binder-8, ms-traces-2 (Succ) |
+| 5 | `ClosedWalkEnclosedSubdiagramSuccStatement` | w1-binder-8, w1-binder-6, ms-traces-2 (Succ) |
+| 6 | `OsinLemma94ClassCaseGapSpanStatement` | ct-bilateral-cell, ct-return-tower |
+| 7 | `OsinTwoGonCopyCleanSectionStatement` | w1-binder-1 (caveat: edge conditions on the given family; outer spurs or shared edges can break them) |
+| 8 | `OsinTwoGonDecompositionEulerSectionStatement` | w1-binder-1; intended producer ms-inverses-2's no-interleaving Euler lemma |
+| 9 | `NoninterleavingVertexCountStatement` | ms-inverses-2 (non-interleaving), w1-binder-6 |
+| 10 | `CellPocketOuterPinchStepSectionStatement` | w1-binder-7 |
+| 11 | `CellPocketWalkProperArcsSectionStatement` | ms-cite-1 (live; below chain via `OsinLemma97Below`) |
+| 12 | `OsinSectionPocketFaceSetTwoArcSectionStatement` | w1-binder-7, ms-intro-2, ms-inverses-2, w1-binder-6 |
+| 13 | `PocketOuterPinchStepSectionStatement` | w1-binder-7, w1-binder-3 |
+
+LANDED 44929efa6 (probe 0914-084716-64911 GREEN: both modules BUILT on a real rebuild and COMPILED, 0 errors, 23 audits classical, no sorryAx; queued for wiring).  The 14 W1 rows cite the `_of_residualsV7` carriers with this leaf list, followed by the `_of_greendlinger` carriers; still `partial`.  Leaf 11 is recomposed over ms-cite-1's below
+chain when its names land.
