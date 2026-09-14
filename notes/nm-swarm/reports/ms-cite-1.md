@@ -254,7 +254,44 @@ New statements in the same module:
 - `_of_residualsV2CopyOrder` is not landed yet. It waits on whether outer-off-side is proved at the original family or at
   the clean rebuild.
 
+## Order assembly over the Euler residual (main ~20:40 and 21:22; LANDED 7a45179c4)
+
+`Estimating/OsinPocketMultipleEdgeCopyOrderEuler` is additive; `OsinPocketMultipleEdgeCopyOrder` is unchanged, per main's
+Rule 22 ruling (no edits to ct-rank-two-limit's V4 files). It has four declarations: `copyRegion_of_offSideWalkEuler`,
+`multipleEdgePocketRegionCopyInput_of_pinchOrderEuler`, `osinMultipleEdgePocketRegionCopySection_of_pinchOrderEuler` and
+`relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopyOrderEuler`. They take ms-inverses-2's
+`CellPocketWalkEulerStatement`. Its two Euler equalities make `PocketRegion.ofNoncrossingClosedWalkEuler` a pocket region
+on the walk, and `exists_kept_of_cellPocketRegion_of_leastArea` then puts a relator cell on its side. Probe
+0913-203827-69476 GREEN. ct-rank-two-limit consumes it in `OsinGreendlingerWaistV4Euler`.
+
+## The positive cell pinch is false (main 23:12; LANDED e0a0776bb)
+
+**Verdict: `CellPocketPinchPosStatement` is false as stated.** `OsinPocketCellPinchRose.cellPocketPinchRoseRefutation :
+¬ CellPocketPinchPosStatement.{0, 0, 0}` is in `Estimating/OsinPocketCellPinchRefutation`. Probe 0913-234315-3209 is
+GREEN, and `#audit_closed_axioms` passes.
+- `CellPocketWrap.not_simple_of_monogon_first`: at every ε, a cell pocket face set whose first cell has one dart `x` is
+  not simple. The arc `t_1` is `[x]`, `x` is a loop, and the nonempty rest `s_2 t_2` starts where `alpha x` starts.
+- `no_simple_of_oEquivalent_monogons_pos` and `not_cellPocketPinchPosStatement_of_monogon_cells`: an O-equivalence keeps
+  word lengths, so a diagram on one-letter relators with a cell pocket in walk order at `0 < ε` refutes the Prop.
+- The carrying diagram is a four-petal one-vertex rose: `κ = [0,2,4,6]`, cells `[1]`, `[3]`, `[5]`, exterior `[7]`. The
+  face set `{κ, R}` has cycle `[0,6,2]` at ε = 1; the exterior-facing dart `6` is the second side. ms-intro-4's ε = 0
+  calibration (52eb75920) built no carrying diagram.
+- Replacement for V4 residual 8, sent to ct-rank-two-limit and w1-binder-7: `CellPocketPinchSectionStatement` (d3b0769b8),
+  via `copyRegion_of_pinchSection`. Threading it needs thresholds from the section statement, least area of the copy, and
+  a new named proper-arcs residual for the cell walk. That residual needs `OsinCCondition` and a model test; it fails on
+  monogon relators.
+
+## ε = 1 refutation of the positional pinch: state
+
+- Group half LANDED fa030acf6: `OsinPocketPinchPosModelsAlgebra` and `OsinPocketPinchPosModelsNoRescue`
+  (`noRescueKeptQ`/`noRescueKeptP`: no relation `α p⁻¹ β = g r^{±1} g⁻¹` with `|α|, |β| ≤ 1`, `p` a proper arc of one
+  relator, `r` the other).
+- Diagram half: `OsinPocketPinchPosModelsDiagram` (20 darts; `pinchDiagram`, `pinchK` at ε = 1 in walk order), probing.
+- Still to build: the universal module, which gives every simple copy a proper source arc and an empty target arc, and so a
+  van Kampen relation of the no-rescue shape. It ends in a closed `¬ PocketPinchLabelledPosStatement.{0, 0, 0}`.
+
 ## State
 
 Scope finished for tex 1–1337. The ledger and census correction landed at 09d4f6b3d, the audit module at c04133c00.
 The only still-assumed cited result is Hull's small cancellation theorem, through the W1 wall, which other lanes own.
+Current work: the diagram and universal halves of the ε = 1 refutation of `PocketPinchLabelledPosStatement`.
