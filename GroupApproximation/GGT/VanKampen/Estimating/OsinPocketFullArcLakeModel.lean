@@ -1,0 +1,464 @@
+import GroupApproximation.GGT.VanKampen.CactusBoundary
+import GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSubdiagram
+import GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSucc
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLakeModel
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFirstTurnWalk
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketSectionFaceSet
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketKeptCellSection
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The full source arc in a lake: a least-area diagram
+
+A model test for the singular pocket carrier of Osin's Lemma 9.7(b) (arXiv:math/0411039v3, §9),
+at the configuration where the arc `t_1` of the source cell `Π` is all of `∂Π`: `Π` lies alone in a
+lake, and the sides `s_1`, `s_2` meet at the touch vertex.
+
+The map is the two-petal rose of `OsinPocketLakeModel`: four darts, the edges `{0,1}` and `{2,3}`,
+one vertex, and the faces `K = [0,2]`, `Π = [1]` and the exterior `O = [3]`.  Over
+`Perm (Fin 3)`, `Π` reads the transposition `a` and `K` reads `a⁻¹ c` with `c` a 3-cycle, so the
+diagram reads `c`.
+
+* `leastArea`: the diagram has least area.  Every relator value is odd, and `c` is even and not
+  `1`, so no product of fewer than two relators reads `c` (`sign_of_isRelatorProduct`).
+* `pocketWalk`: the pocket walk with empty sides, `t_1 = ∂Π` in full and `t_2 = ∂Δ`.  Its walk
+  is `[0,2]` (`pocketWalk_walk`).
+* `source_not_mem_sideFaces`, `kept_mem_sideFaces`, `outerFace_not_mem_sideFaces`: `Π` and the
+  exterior are off the side of the walk, and `K` is on it.
+* `enclosedFaceSet`: the side is enclosed by the reversed walk `[3,1]` in the sense of
+  `EnclosedFaceSet`, with the turning condition from `IsNoncrossingClosedWalk.reverseMapAlpha`.
+* `not_enclosedFaceSetSucc`: no outside walk of the side turns to its successor
+  (`EnclosedFaceSetSucc`).  Rotating from the reverse of the dart `3`, the first dart on a walk
+  edge is `3` itself, and an outside walk holds both `3` and `1`.  So the successor-form enclosed
+  subdiagram never applies to a full source arc in a lake.
+* `lakePocket`: the pocket region of the walk from the Euler equalities of its two reclosings
+  (`PocketRegion.ofNoncrossingClosedWalkEuler`, `OsinPocketKeptCellSection.lakeEulerBranch`).  It
+  is least area, holds one relator cell of the two, and its complement reads the pocket walk in the
+  four parts `s_1 t_1⁻¹ s_2 t_2` (`lakePocket_decomposition`).
+* `fullArcLake`: all of this, with the failure of the outer cycle to follow its boundary.
+
+## Manuscript status
+
+Model test for infrastructure of `thm:hull` (tex 2121, "Hull's small cancellation theorem",
+through Osin's Lemma 9.7(b)); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel
+
+open Equiv GroupApproximation.HullSC GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides
+open OsinPocketLakeModel (M planar faceEquiv faceClass faceRep isNoncrossingClosedWalk_lakeCycle)
+
+/-! ## The faces -/
+
+def face (i : Fin 3) : M.Face := M.faceOf (faceRep i)
+
+@[simp] theorem faceEquiv_face (i : Fin 3) : faceEquiv (face i) = i := by
+  change faceClass (faceRep i) = i
+  fin_cases i <;> rfl
+
+theorem faceOf_eq_face (d : Fin 4) (i : Fin 3) :
+    M.faceOf d = face i ↔ faceClass d = i := by
+  rw [← faceEquiv.injective.eq_iff, faceEquiv_face]
+  rfl
+
+theorem face_eq_iff (i j : Fin 3) : face i = face j ↔ i = j := by
+  rw [← faceEquiv.injective.eq_iff, faceEquiv_face, faceEquiv_face]
+
+def faceDarts : Fin 3 → List (Fin 4) := ![[0, 2], [1], [3]]
+
+noncomputable def indexedBoundary (i : Fin 3) : FaceBoundary M (face i) where
+  darts := faceDarts i
+  nonempty := by change faceDarts i ≠ ([] : List (Fin 4)); fin_cases i <;> decide
+  nodup := by fin_cases i <;> decide
+  mem_iff := by
+    intro d
+    rw [faceOf_eq_face]
+    fin_cases i <;> fin_cases d <;> decide
+  chain := by fin_cases i <;> decide
+  closes := by fin_cases i <;> decide
+  length_eq_degree := by
+    have h := closedOrbitList.length_eq_orbitDegree M.facePerm (faceRep i)
+    have hd : closedOrbitList M.facePerm (faceRep i) = faceDarts i := by
+      fin_cases i <;> decide
+    rw [hd] at h
+    exact h
+
+noncomputable def boundary (f : M.Face) : FaceBoundary M f :=
+  (faceEquiv.left_inv f) ▸ indexedBoundary (faceEquiv f)
+
+@[simp] theorem boundary_face_darts (i : Fin 3) :
+    (boundary (face i)).darts = faceDarts i := by
+  have htransport {f g : M.Face} (h : f = g) (B : FaceBoundary M f) :
+      (h ▸ B).darts = B.darts := by cases h; rfl
+  unfold boundary
+  rw [htransport]
+  exact congrArg faceDarts (faceEquiv_face i)
+
+/-! ## The diagram -/
+
+abbrev G := Perm (Fin 3)
+
+/-- A transposition. -/
+def ga : G := Equiv.swap 0 1
+
+/-- A 3-cycle. -/
+def gc : G := Equiv.swap 0 1 * Equiv.swap 1 2
+
+/-- The petal of `Π` reads `a`, and the petal of the exterior reads `c`. -/
+def label (d : Fin 4) : RelLetter G Empty :=
+  .base ((![ga⁻¹, ga, gc, gc⁻¹] : Fin 4 → G) d)
+
+def W : Set (List (RelLetter G Empty)) := {[.base ga], [.base ga⁻¹, .base gc]}
+
+def cellP : RelatorCell M (face 2) W where
+  face := face 1
+  face_ne_outer := (face_eq_iff 1 2).not.mpr (by decide)
+  word := [.base ga]
+  word_mem := Or.inl rfl
+  conjugator := 1
+  reversed := false
+
+def cellK : RelatorCell M (face 2) W where
+  face := face 0
+  face_ne_outer := (face_eq_iff 0 2).not.mpr (by decide)
+  word := [.base ga⁻¹, .base gc]
+  word_mem := Or.inr rfl
+  conjugator := 1
+  reversed := false
+
+noncomputable def diagram : DiscDiagram W where
+  toCombMap := M
+  planar := planar
+  label := label
+  label_alpha := by
+    intro d
+    fin_cases d <;> exact congrArg RelLetter.base (by decide)
+  outerFace := face 2
+  faceBoundary := boundary
+  relatorCells := [cellP, cellK]
+  relatorCell_faces_nodup := by
+    change [face 1, face 0].Nodup
+    refine List.nodup_cons.mpr ⟨?_, List.nodup_singleton _⟩
+    rw [List.mem_singleton]
+    exact (face_eq_iff 1 0).not.mpr (by decide)
+  relatorCell_word := by
+    intro C hC
+    rcases List.mem_cons.mp hC with rfl | hC
+    · change [RelLetter.base ga] = (boundary (face 1)).darts.map label
+      rw [boundary_face_darts]
+      rfl
+    · obtain rfl := List.mem_singleton.mp hC
+      change [RelLetter.base ga⁻¹, RelLetter.base gc] = (boundary (face 0)).darts.map label
+      rw [boundary_face_darts]
+      rfl
+  inner_face := by
+    intro f hf
+    obtain ⟨i, rfl⟩ : ∃ i, face i = f := ⟨faceEquiv f, faceEquiv.left_inv f⟩
+    fin_cases i
+    · exact Or.inl ⟨cellK, by simp, rfl⟩
+    · exact Or.inl ⟨cellP, by simp, rfl⟩
+    · exact (hf rfl).elim
+  boundary_product := by
+    rw [boundary_face_darts]
+    decide
+
+instance (n : ℕ) : OfNat diagram.toCombMap.Dart n := inferInstanceAs (OfNat (Fin 4) n)
+instance : DecidableEq diagram.toCombMap.Dart := inferInstanceAs (DecidableEq (Fin 4))
+
+/-- The source cell `Π`. -/
+def iP : Fin diagram.rCellCount := ⟨0, by decide⟩
+
+/-- The kept cell `K`. -/
+def iK : Fin diagram.rCellCount := ⟨1, by decide⟩
+
+/-! ## Least area -/
+
+/-- **A relator product of odd relators has the parity of its count.** -/
+theorem sign_of_isRelatorProduct {R : Set G} (hR : ∀ r ∈ R, Perm.sign r = -1) {n : ℕ} {w : G}
+    (h : RelatorDefectBudget.IsRelatorProduct R n w) :
+    Perm.sign w = if n % 2 = 0 then 1 else -1 := by
+  induction h with
+  | one => simp
+  | base hr => simp [hR _ hr]
+  | inv _ ih => rw [Perm.sign_inv, ih]
+  | conj c _ ih =>
+      rw [Perm.sign_mul, Perm.sign_mul, Perm.sign_inv, ih, mul_right_comm, Int.units_mul_self,
+        one_mul]
+  | @mul m k a b _ _ iha ihb =>
+      rw [Perm.sign_mul, iha, ihb, Nat.add_mod]
+      rcases Nat.mod_two_eq_zero_or_one m with hm | hm <;>
+        rcases Nat.mod_two_eq_zero_or_one k with hk | hk <;> simp [hm, hk]
+
+theorem sign_ga : Perm.sign ga = -1 := Perm.sign_swap (by decide)
+
+theorem sign_gc : Perm.sign gc = 1 := by
+  show Perm.sign (Equiv.swap (0 : Fin 3) 1 * Equiv.swap 1 2) = 1
+  rw [Perm.sign_mul, Perm.sign_swap (by decide), Perm.sign_swap (by decide)]
+  decide
+
+theorem relator_signs : ∀ r ∈ RelLetter.listVal '' W, Perm.sign r = -1 := by
+  rintro r ⟨word, hword, rfl⟩
+  simp only [W, Set.mem_insert_iff, Set.mem_singleton_iff] at hword
+  rcases hword with rfl | rfl
+  · rw [show RelLetter.listVal ([.base ga] : List (RelLetter G Empty)) = ga by decide]
+    exact sign_ga
+  · rw [show RelLetter.listVal ([.base ga⁻¹, .base gc] : List (RelLetter G Empty)) = ga⁻¹ * gc by
+      decide, Perm.sign_mul, Perm.sign_inv, sign_ga, sign_gc, mul_one]
+
+theorem boundaryValue_eq : diagram.boundaryValue = gc := by
+  change RelLetter.listVal (RelWord.revInv ((boundary (face 2)).darts.map label)) = gc
+  rw [boundary_face_darts]
+  decide
+
+/-- **The lake diagram has least area.** -/
+theorem leastArea : diagram.LeastArea := by
+  intro m hm
+  rw [boundaryValue_eq] at hm
+  have hsign := sign_of_isRelatorProduct relator_signs hm
+  rw [sign_gc] at hsign
+  change 2 ≤ m
+  rcases m with _ | _ | m
+  · exact absurd hm.eq_one_of_index_zero (by decide)
+  · exact absurd hsign (by decide)
+  · omega
+
+/-! ## The pocket walk with a full source arc -/
+
+theorem cellDarts_iP : Embedded.cellDarts diagram iP = [1] := by
+  change (boundary (face 1)).darts = [1]
+  rw [boundary_face_darts]
+  rfl
+
+theorem outerDarts_eq : Embedded.outerDarts diagram = [2] := by
+  change (boundary (face 2)).darts.reverse.map M.alpha = [2]
+  rw [boundary_face_darts]
+  decide
+
+/-- The arc `t_1`: all of `∂Π`. -/
+noncomputable def fullSourceArc : Embedded.CyclicArc (Embedded.cellDarts diagram iP) where
+  start := ⟨0, Nat.succ_pos _⟩
+  length := (Embedded.cellDarts diagram iP).length
+  length_le := le_rfl
+
+/-- The arc `t_2`: all of `∂Δ`. -/
+noncomputable def fullTargetArc : Embedded.CyclicArc (Embedded.outerDarts diagram) where
+  start := ⟨0, Nat.succ_pos _⟩
+  length := (Embedded.outerDarts diagram).length
+  length_le := le_rfl
+
+theorem fullSourceArc_darts : fullSourceArc.darts = [1] := by
+  change ((Embedded.cellDarts diagram iP).drop 0 ++ (Embedded.cellDarts diagram iP).take 0).take
+    (Embedded.cellDarts diagram iP).length = [1]
+  rw [cellDarts_iP]
+  rfl
+
+theorem fullTargetArc_darts : fullTargetArc.darts = [2] := by
+  change ((Embedded.outerDarts diagram).drop 0 ++ (Embedded.outerDarts diagram).take 0).take
+    (Embedded.outerDarts diagram).length = [2]
+  rw [outerDarts_eq]
+  rfl
+
+/-- **The pocket walk of the lake**: empty sides, `t_1 = ∂Π` and `t_2 = ∂Δ`. -/
+noncomputable def pocketWalk (D : RelGenSet G Empty) (eps : ℕ) :
+    PocketWalk D eps diagram 0 (Embedded.outerDarts diagram).length where
+  source := iP
+  sourceArc := fullSourceArc
+  targetArc := fullTargetArc
+  firstSide := []
+  secondSide := []
+  sourceArc_pos := by
+    change 0 < (Embedded.cellDarts diagram iP).length
+    rw [cellDarts_iP]
+    exact Nat.one_pos
+  targetArc_pos := by
+    change 0 < (Embedded.outerDarts diagram).length
+    rw [outerDarts_eq]
+    exact Nat.one_pos
+  firstSide_length_le := Nat.zero_le _
+  secondSide_length_le := Nat.zero_le _
+  firstSide_norm_le := by
+    rw [show RelLetter.listVal (Embedded.dartWord diagram []) = 1 from rfl,
+      WordMetric.wordNorm_one]
+    exact Nat.zero_le _
+  secondSide_norm_le := by
+    rw [show RelLetter.listVal (Embedded.dartWord diagram []) = 1 from rfl,
+      WordMetric.wordNorm_one]
+    exact Nat.zero_le _
+  lo_le := Nat.zero_le _
+  le_hi := by
+    change 0 + (Embedded.outerDarts diagram).length ≤ (Embedded.outerDarts diagram).length
+    omega
+
+/-- The lake walk `[0,2]`. -/
+abbrev lakeWalk : List M.Dart := [0, 2]
+
+theorem pocketWalk_walk (D : RelGenSet G Empty) (eps : ℕ) : (pocketWalk D eps).walk = lakeWalk := by
+  change [] ++ Embedded.invDarts diagram fullSourceArc.darts ++ [] ++ fullTargetArc.darts = lakeWalk
+  rw [fullSourceArc_darts, fullTargetArc_darts]
+  decide
+
+/-! ## The sides of the walk -/
+
+theorem source_not_mem_sideFaces :
+    (Embedded.cell diagram iP).face ∉ sideFaces diagram.toCombMap lakeWalk := by
+  have h : M.faceOf 0 ∈ sideFaces M lakeWalk ∧ M.faceOf (M.alpha 0) ∉ sideFaces M lakeWalk :=
+    (isNoncrossingClosedWalk_lakeCycle.isBoundaryDart_sideFaces_iff planar 0).mpr (by decide)
+  rw [show M.alpha 0 = 1 by decide] at h
+  exact h.2
+
+theorem kept_mem_sideFaces :
+    (Embedded.cell diagram iK).face ∈ sideFaces diagram.toCombMap lakeWalk := by
+  have h : M.faceOf 0 ∈ sideFaces M lakeWalk ∧ M.faceOf (M.alpha 0) ∉ sideFaces M lakeWalk :=
+    (isNoncrossingClosedWalk_lakeCycle.isBoundaryDart_sideFaces_iff planar 0).mpr (by decide)
+  exact h.1
+
+theorem outerFace_not_mem_sideFaces :
+    diagram.outerFace ∉ sideFaces diagram.toCombMap lakeWalk := by
+  have h : M.faceOf 2 ∈ sideFaces M lakeWalk ∧ M.faceOf (M.alpha 2) ∉ sideFaces M lakeWalk :=
+    (isNoncrossingClosedWalk_lakeCycle.isBoundaryDart_sideFaces_iff planar 2).mpr (by decide)
+  rw [show M.alpha 2 = 3 by decide] at h
+  exact h.2
+
+theorem mem_invDarts_iff (d : M.Dart) :
+    d ∈ Embedded.invDarts diagram lakeWalk ↔
+      M.faceOf d ∉ sideFaces M lakeWalk ∧ M.faceOf (M.alpha d) ∈ sideFaces M lakeWalk :=
+  ((isNoncrossingClosedWalk_lakeCycle.outerCycle planar).cycle_mem_iff d).trans
+    (and_congr (mem_sideOutside_iff M lakeWalk (M.faceOf d))
+      ((not_congr (mem_sideOutside_iff M lakeWalk (M.faceOf (M.alpha d)))).trans not_not))
+
+theorem reverse_isNoncrossing : IsNoncrossingClosedWalk M (lakeWalk.reverse.map M.alpha) :=
+  isNoncrossingClosedWalk_lakeCycle.reverseMapAlpha planar
+
+/-! ## The enclosed face sets -/
+
+/-- **The side of the lake walk is enclosed by the reversed walk**, with no following hypothesis. -/
+theorem enclosedFaceSet :
+    EnclosedFaceSet diagram (sideFaces diagram.toCombMap lakeWalk)
+      (Embedded.invDarts diagram lakeWalk) where
+  outerFace_not_mem := outerFace_not_mem_sideFaces
+  ne_nil := reverse_isNoncrossing.ne_nil
+  nodup := reverse_isNoncrossing.nodup
+  chain := reverse_isNoncrossing.chain
+  closes := reverse_isNoncrossing.closes
+  mem_iff := by
+    intro d
+    constructor
+    · intro hd
+      obtain ⟨ha, hb⟩ := (mem_invDarts_iff d).mp hd
+      exact ⟨ha, Or.inl hb⟩
+    · rintro ⟨ha, hb | hb⟩
+      · exact (mem_invDarts_iff d).mpr ⟨ha, hb⟩
+      · have h := (mem_invDarts_iff (M.alpha d)).mp hb
+        rw [M.alpha_involutive d] at h
+        exact absurd h.2 ha
+  turn_mem := reverse_isNoncrossing.turn_mem
+
+/-- One rotation from the reverse of the dart `3` meets `3` again. -/
+theorem sigma_alpha_three :
+    diagram.toCombMap.sigma (diagram.toCombMap.alpha 3) = 3 := by decide
+
+/-- **No outside walk of the side of the lake walk turns to its successor.**  Every outside walk
+holds the darts `3` and `1`, and the first rotation from the reverse of `3` is `3` itself, which is
+not the next dart of a duplicate-free walk of length at least two. -/
+theorem not_enclosedFaceSetSucc (outerWalk : List diagram.toCombMap.Dart) :
+    ¬ EnclosedFaceSetSucc diagram (sideFaces diagram.toCombMap lakeWalk) outerWalk := by
+  intro E
+  have h3 : (3 : diagram.toCombMap.Dart) ∈ outerWalk :=
+    (E.mem_iff 3).mpr ⟨outerFace_not_mem_sideFaces, Or.inl OsinPocketLakeModel.faceOf_two_mem_sideFaces⟩
+  have h1 : (1 : diagram.toCombMap.Dart) ∈ outerWalk :=
+    (E.mem_iff 1).mpr ⟨source_not_mem_sideFaces, Or.inl kept_mem_sideFaces⟩
+  have hlen : 2 ≤ outerWalk.length := by
+    rw [← List.toFinset_card_of_nodup E.nodup]
+    have hsub : ({3, 1} : Finset diagram.toCombMap.Dart) ⊆ outerWalk.toFinset := by
+      intro x hx
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+      rcases hx with rfl | rfl
+      · exact List.mem_toFinset.mpr h3
+      · exact List.mem_toFinset.mpr h1
+    exact (Finset.card_pair (by decide)).symm.le.trans (Finset.card_le_card hsub)
+  obtain ⟨i, hi, hi3⟩ := List.getElem_of_mem h3
+  have hkeep : walkKeep diagram.toCombMap outerWalk
+      ((diagram.toCombMap.sigma ^ 1) (diagram.toCombMap.alpha outerWalk[i])) := by
+    rw [hi3, pow_one, sigma_alpha_three]
+    exact Or.inl h3
+  have hstep := E.turn_next i hi 1 Nat.one_pos hkeep fun k hk0 hk1 => absurd hk1 (by omega)
+  rw [hi3, pow_one, sigma_alpha_three] at hstep
+  have hidx : (i + 1) % outerWalk.length = i :=
+    (E.nodup.getElem_inj_iff).mp (hstep.symm.trans hi3.symm)
+  rcases Nat.lt_or_ge (i + 1) outerWalk.length with hlt | hge
+  · rw [Nat.mod_eq_of_lt hlt] at hidx
+    omega
+  · have heq : i + 1 = outerWalk.length := by omega
+    rw [heq, Nat.mod_self] at hidx
+    omega
+
+/-! ## The pocket region from the Euler equalities -/
+
+/-- **The pocket region of the lake walk**, from the Euler equalities of both reclosings. -/
+noncomputable def lakePocket : PocketRegion diagram :=
+  PocketRegion.ofNoncrossingClosedWalkEuler isNoncrossingClosedWalk_lakeCycle
+    outerFace_not_mem_sideFaces OsinPocketKeptCellSection.lakeEulerBranch.1
+    OsinPocketKeptCellSection.lakeEulerBranch.2.1
+
+theorem lakePocket_invDarts_outer : Embedded.invDarts diagram lakePocket.outer.cycle = lakeWalk := by
+  change Embedded.invDarts diagram (lakeWalk.reverse.map diagram.toCombMap.alpha) = lakeWalk
+  exact PocketRegion.invDarts_reverse_map_alpha (Delta := diagram) lakeWalk
+
+/-- The complement of the pocket reads the pocket walk in its four parts `s_1 t_1⁻¹ s_2 t_2`. -/
+theorem lakePocket_decomposition (D : RelGenSet G Empty) (eps : ℕ) :
+    Embedded.invDarts diagram lakePocket.outer.cycle =
+      (pocketWalk D eps).firstSide ++ Embedded.invDarts diagram (pocketWalk D eps).sourceArc.darts ++
+        (pocketWalk D eps).secondSide ++ (pocketWalk D eps).targetArc.darts :=
+  lakePocket_invDarts_outer.trans (pocketWalk_walk D eps).symm
+
+theorem lakePocket_leastArea : lakePocket.diagram.LeastArea :=
+  lakePocket.diagram_leastArea leastArea
+
+theorem lakePocket_rCellCount_pos : 0 < lakePocket.diagram.rCellCount :=
+  lakePocket.diagram_rCellCount_pos (Embedded.cell_mem diagram iK) kept_mem_sideFaces
+
+theorem lakePocket_rCellCount_lt : lakePocket.diagram.rCellCount < diagram.rCellCount :=
+  lakePocket.diagram_rCellCount_lt (Embedded.cell_mem diagram iP) source_not_mem_sideFaces
+
+/-! ## The endpoint -/
+
+/-- **The full source arc in a lake** (model test).  A least-area diagram carries a pocket walk
+whose source arc is the whole boundary of the source cell.  The walk is noncrossing, the source
+cell and the exterior lie off its side, a relator cell lies on it, and the outer cycle does not
+follow its boundary.  The side is enclosed by the reversed walk, but by no outside walk turning to
+its successor.  The pocket region from the Euler equalities is a least-area cut: its complement
+reads the four parts of the walk, and it has at least one and fewer relator cells. -/
+def FullArcLakeStatement : Prop :=
+  diagram.LeastArea ∧
+    (∀ (D : RelGenSet G Empty) (eps : ℕ), (pocketWalk D eps).walk = lakeWalk ∧
+      (pocketWalk D eps).sourceArc.length =
+        (Embedded.cellDarts diagram (pocketWalk D eps).source).length ∧
+      (pocketWalk D eps).firstSide = [] ∧ (pocketWalk D eps).secondSide = []) ∧
+    IsNoncrossingClosedWalk diagram.toCombMap lakeWalk ∧
+    (Embedded.cell diagram iP).face ∉ sideFaces diagram.toCombMap lakeWalk ∧
+    (Embedded.cell diagram iK).face ∈ sideFaces diagram.toCombMap lakeWalk ∧
+    ¬ (isNoncrossingClosedWalk_lakeCycle.outerCycle planar).FollowsBoundary ∧
+    EnclosedFaceSet diagram (sideFaces diagram.toCombMap lakeWalk)
+      (Embedded.invDarts diagram lakeWalk) ∧
+    (∀ outerWalk : List diagram.toCombMap.Dart,
+      ¬ EnclosedFaceSetSucc diagram (sideFaces diagram.toCombMap lakeWalk) outerWalk) ∧
+    ∃ P : PocketRegion diagram, P.faces = sideFaces diagram.toCombMap lakeWalk ∧
+      Embedded.invDarts diagram P.outer.cycle = lakeWalk ∧ P.diagram.LeastArea ∧
+      0 < P.diagram.rCellCount ∧ P.diagram.rCellCount < diagram.rCellCount
+
+theorem fullArcLake : FullArcLakeStatement :=
+  ⟨leastArea, fun D eps => ⟨pocketWalk_walk D eps, rfl, rfl, rfl⟩,
+    isNoncrossingClosedWalk_lakeCycle, source_not_mem_sideFaces, kept_mem_sideFaces,
+    OsinPocketLakeModel.lakeCycle_outerCycle_not_followsBoundary, enclosedFaceSet,
+    not_enclosedFaceSetSucc, lakePocket, rfl, lakePocket_invDarts_outer, lakePocket_leastArea,
+    lakePocket_rCellCount_pos, lakePocket_rCellCount_lt⟩
+
+end GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.sign_of_isRelatorProduct
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.leastArea
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.pocketWalk_walk
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.enclosedFaceSet
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.not_enclosedFaceSetSucc
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.lakePocket_decomposition
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeModel.fullArcLake

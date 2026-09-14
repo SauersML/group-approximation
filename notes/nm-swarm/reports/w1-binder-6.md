@@ -235,6 +235,28 @@ Design:
 | unconditional enclosed face set of a noncrossing walk | proposed to ms-intro-1 |
 | carrier and lake model | this lane |
 
+### Successor-form route (main, 21:22 / 23:12): does not cover the full `t_1`; pivot to the Euler pocket region
+
+- At the lake, rotating from `α 3 = 2` the first dart on a walk edge is `σ 2 = 3` itself.
+  - Every outside walk of the side holds `3` and `1`. A duplicate-free list of length ≥ 2 never has `3` as the successor
+    of `3`.
+  - So `EnclosedFaceSetSucc diagram (sideFaces lakeWalk) outerWalk` fails for every `outerWalk`
+    (`OsinPocketFullArcLakeModel.not_enclosedFaceSetSucc`).
+  - `turn_next` for the reversed pocket walk is the outer cycle following its boundary, which is what the lake breaks.
+    So `ClosedWalkEnclosedSubdiagramSuccStatement` never applies to a full `t_1` in a lake.
+  - The plain `EnclosedFaceSet` does hold there, but its least-area filter is refuted (ms-inverses-1).
+- The case is still carried, without the enclosed route. On the copy the pocket walk has no bridge (`CopyClean`), so it
+  is noncrossing.
+  - From both Euler equalities, `PocketRegion.ofNoncrossingClosedWalkEuler` (2c1a841e8) gives a pocket region.
+  - `PocketRegion.fourSectionCuts_leastAreaCut` then gives the least-area four-section cut with `0 < cells < Δ.cells`.
+  - At the lake: `lakePocket_leastArea`, `lakePocket_rCellCount_pos`, `lakePocket_rCellCount_lt` (1 of 2 cells) and
+    `lakePocket_decomposition`.
+  - The Euler equalities for the section walk are ms-inverses-2's (`SectionPocketWalkNoninterleavingStatement` plus
+    `NoninterleavingVertexCountStatement`).
+- What remains for `OsinSectionPocketCut`: the two transports. `PocketCellTransportStatement` and
+  `PocketOuterTransportStatement` assume `P.outer.FollowsBoundary`, which a full `t_1` breaks. The carrier needs
+  variants over the Euler pocket region.
+
 ## Plan for `side_outer`
 
 - Mirror ms-cite-2's cell-side statement for the exterior: `IsOuterSideDart Delta family x` holds when `faceOf x` is
