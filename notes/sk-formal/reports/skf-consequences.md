@@ -76,6 +76,8 @@ Census rows for all 27 Simplicity keys are drafted in `metadata/sk-census-rows/s
 - 95c3ebda0: GeneralRoot and GeneralCommutatorProducts (BUILT, probe 0914-084317-69202).
 - GeneralCommutatorSpan: `open scoped commutatorElement`, for the `⁅g, h⁆` notation (a missing `Bracket` instance).
 - 69643f441: GeneralCommutatorSpan (BUILT, probe 0914-084649-79491), after the `k − I`, `k⁻¹ − I` identities were rewritten with explicit `add_mul`/`mul_sub` steps plus `abel` (`noncomm_ring` left `-1 •` terms).
+- 9e63c6916: census rows for all 27 Simplicity keys (census aa6f988f4 at 696c4b602), carriers verified on origin (54 names).
+- 81ae4081d: GeneralSimplicityAssembly (BUILT, probe 0914-084834-66611), queued for wiring. **Closed endpoint**: `General.printedGeneralSimplicityClopenGroup`.
 - GeneralSimplicityAssembly adds `isSimpleGroup_clopenGroupCrossedProduct_of_isOpen` with ct-two-ended's printed hypotheses:
   - `MulAction.IsMinimal`;
   - "no nontrivial element fixes a nonempty open set" (`IsTopologicallyFreeAction`);
