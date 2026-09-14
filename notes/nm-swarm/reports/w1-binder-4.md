@@ -19,6 +19,12 @@ hs-vanishes and sec2-sentences. This lane never edits their files.
 - CLAIM L5b (`connected`, `outer_off`, `cell_off`) and the `TwoGonWalkHyp` assembly
   `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonWalkHypInner.lean`
 - CLAIM face-class connectivity of following boundary cycles `GroupApproximation/GGT/VanKampen/BoundaryCycleFaceClass.lean`
+- CLAIM (20:40, main: item (a) of ms-intro-4's open list for `CellPocketPinchSectionInput`) first-turn order of the cell pocket
+  `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean`
+  - Model test first, on the lake and double-touch configurations. ms-intro-4 keeps (b), restoring `GoodCorners` after
+    each doubling.
+  - Hand verdict, not yet in Lean: `CellPocketFaceSet.FirstTurns` is complement-side following. On a digon lake the
+    first-turn predecessor map has two orbits, so no ordering of the boundary cycle is in first-turn order.
 - CLAIM (18:55) the `hno`/`havoid` assembly for inner-following walks `GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonInnerAssembly.lean`
   - `TwoGonInnerFollowsWalkInput` and `twoGonHoldsInput_of_innerFollowsWalk`. It combines L4 and L5a (w1-binder-1, 47f5dcb22),
     L5b (20767e008), debt-conditional's `hno`/`havoid`, and `false_of_mergeDisc` with
