@@ -25,7 +25,7 @@ namespace CylinderTables
 
 open Encodable SymbolicDynamics.FullShift
 
-variable {A : Type*} [Primcodable A] [DecidableEq A] {ι : Type*} [Primcodable ι]
+variable {A : Type*} {ι : Type*}
 
 theorem tableRadius_le_matRadius (M : Mat A) (pq : Fin 3 × Fin 3) :
     tableRadius (diffTable M pq) ≤ matRadius M := by
@@ -44,7 +44,7 @@ theorem tableRadius_le_matRadius (M : Mat A) (pq : Fin 3 × Fin 3) :
   exact key positions (mem_positions pq)
 
 /-- **The window check.** -/
-theorem windowCheck_eq_true (K : ℕ) (M : Mat A) (v : List A) :
+theorem windowCheck_eq_true [DecidableEq A] (K : ℕ) (M : Mat A) (v : List A) :
     windowCheck K M v = true ↔
       ∀ pq : Fin 3 × Fin 3, ∀ j ∈ (diffTable M pq).map Prod.fst,
         windowParity K (diffTable M pq) j v = false := by
@@ -59,7 +59,7 @@ theorem windowCheck_eq_true (K : ℕ) (M : Mat A) (v : List A) :
     simp [h pq j hj]
 
 /-- **The decision reads the answers at the queried words.** -/
-theorem wordDecide_map_eq_true (L : List A) (tab : ι → (Fin 3 × Fin 3) × Table A)
+theorem wordDecide_map_eq_true [DecidableEq A] (L : List A) (tab : ι → (Fin 3 × Fin 3) × Table A)
     (w : List (ι × Bool)) (φ : List A → ℕ) :
     wordDecide L tab w ((wordWords L tab w).map φ) = true ↔
       ∀ v ∈ wordWords L tab w, φ v = 1 → windowCheck (wordK tab w) (wordM tab w) v = true := by
@@ -90,7 +90,8 @@ open Classical in
 /-- **`L(X)` computes the word problem.**  For letters `ι` with primitive recursive coefficient
 tables `tab`, if a word is trivial exactly when its multiplied-out matrix of tables evaluates to `I₃`
 in `LC(X, F₂) ⋊ ℤ`, then the word problem is Turing reducible to the language of `X`. -/
-theorem turingReducible_of_wordTables [TopologicalSpace A] [DiscreteTopology A] [Fintype A]
+theorem turingReducible_of_wordTables [Primcodable A] [DecidableEq A] [Primcodable ι]
+    [TopologicalSpace A] [DiscreteTopology A] [Fintype A]
     {X : Set (ℤ → A)} (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X) (T : ↥X ≃ₜ ↥X)
     {tab : ι → (Fin 3 × Fin 3) × Table A} (htab : Primrec tab)
     (P : List (ι × Bool) → Prop) (hP : ∀ w, P w ↔ matEval T (wordM tab w) = 1)
