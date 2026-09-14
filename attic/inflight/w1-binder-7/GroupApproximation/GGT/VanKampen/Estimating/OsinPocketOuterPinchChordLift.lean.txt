@@ -138,7 +138,8 @@ theorem exists_liftCount_of_sigma_pow_embed (x z : M.Dart) {t : ℕ}
   · rw [hnone] at h
     exact absurd h (by simp [embed])
   · rw [hsome] at h
-    exact absurd h fun h' => Option.noConfusion (Option.some.inj h')
+    have h' : (some none : Option (Option M.Dart)) = some (some z) := h
+    cases h'
 
 /-- **A run to the first hit of a dart lifts.** -/
 theorem minRun_embed (x y : M.Dart) {k : ℕ} (hk : (M.sigma ^ k) x = y)
