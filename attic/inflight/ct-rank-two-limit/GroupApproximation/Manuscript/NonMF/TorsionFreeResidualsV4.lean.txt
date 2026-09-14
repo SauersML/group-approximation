@@ -7,7 +7,7 @@ import GroupApproximation.Meta.AxiomGuard
 
 `non_mf_groups_exist.tex`, `sec:torsion-free`: the endpoints of `TorsionFreeResidualsV2Copy`, restated
 additively over the ten named residuals of
-`GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4Order`:
+`GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4`:
 `OsinLemma94ClassEndLoopsInput`, `OsinLemma94SameCellPocketInput`, `OsinLemma94ClassCasesInput`,
 `OsinTwoGonHoldsSectionStatement`, `CellPocketCopyCleanBothOrdersStatement`,
 `CellPocketWalkOuterOffSideSomeOrderStatement`, `CellPocketWalkEitherFollowsStatement`,
@@ -40,7 +40,7 @@ include hloops hpocket hcases htwogon hcopy hout hfollow hcellPinch hfaces hpinc
 
 /-- Osin's Lemma 4.4 at least-area diagrams, from the ten residuals of the V4 waist. -/
 theorem greendlinger_of_residualsV4 : RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0} :=
-  relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4Order hloops hpocket hcases htwogon hcopy
+  relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4 hloops hpocket hcases htwogon hcopy
     hout hfollow hcellPinch hfaces hpinch
 
 /-- **`thm:torsion-free`, exactly as printed** (tex line 284), and the abstract's torsion-free
