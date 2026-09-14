@@ -1,0 +1,474 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWrapRose
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeModel
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The whole-section wrap with a proper source arc: a least-area model
+
+A model test for the whole-section residual of the two-arc face set producer
+(`SectionPocketFaceSetWholeSectionTwoArcInput`, `Estimating/OsinPocketTwoArcSection.lean`), at the shape
+where the pocket's target arc `t_2` is all of `∂Δ`, its sides meet at the endpoint of `t_2`, and its
+source arc `t_1` is proper.  With one section (count `1`) the positions of the section are `0` and `|∂Δ|`,
+and a pocket running from a region whose target arc starts at `0` to one whose target arc ends at `|∂Δ|`
+has this shape.
+
+The map is a rose with three petals: six darts, the edges `{0,1}`, `{2,3}` and `{4,5}`, one vertex with
+rotation `0 ↦ 1 ↦ 2 ↦ 5 ↦ 4 ↦ 3 ↦ 0`.  Its faces are the relator cell `Π = [0,2]`, a `G`-face
+`F = [1]` behind the petal `{0,1}` of `Π`, the relator cell `K = [3,5]` and the exterior `O = [4]`.
+Over `Perm (Fin 3)`, `Π` reads `1 · a` with `a` a transposition, `F` reads `1`, `K` reads `a⁻¹ c⁻¹`
+with `c` a 3-cycle, and the diagram reads `c⁻¹`.
+
+* `leastArea`: the diagram has least area.  Both relator values are odd and `c⁻¹` is even and not `1`,
+  so no product of fewer than two relators reads it (`OsinPocketFullArcLakeModel.sign_of_isRelatorProduct`).
+* `letters`: every label is a letter of the symmetrized alphabet.
+* `boundaryWord_length`: `|∂Δ| = 1`, so the positions `0` and `1` are those of the one section.
+* `wrapK eps`: the face set `{K}`, a pocket face set between the positions `0` and `1` at every `ε`, with
+  source `Π`, kept cell `K`, empty sides, the proper arc `[2]` of `Π` read backwards and the arc `[5]`, all
+  of `∂Δ`.  It is in walk order (`wrapK_closedWalk`), its source arc is proper (`wrapK_sourceArc_lt`), its
+  target arc is full (`wrapK_targetArc_full`), and its two empty sides meet at the one vertex, the endpoint
+  of `t_2`.
+* `WholeSectionWrapModel`, `wholeSectionWrapModel`: all of this.
+
+So the whole-section wrap with a proper source arc occurs for a pocket face set in walk order in a
+least-area diagram with letter labels.  The model carries no section family, so it certifies the shape
+only.  It neither refutes the residual nor proves it: here `|∂Δ| = 1`, and at `ε ≥ 1` the same face set with
+the exterior dart read as a side has an empty, proper target arc.
+
+## Manuscript status
+
+Model test for infrastructure of `thm:hull` (Hull's small cancellation theorem, through Osin's
+Lemma 9.7(b)); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.OsinPocketWholeSectionWrapModel
+
+open Equiv GroupApproximation.HullSC
+open OsinPocketPinchedTwoGonModel (D)
+open OsinPocketFullArcLakeModel (ga gc sign_ga sign_gc sign_of_isRelatorProduct)
+open Surgery.MapCollapse (IsBoundaryDart BoundaryCycle)
+
+def roseAlpha : Perm (Fin 6) where
+  toFun := ![1, 0, 3, 2, 5, 4]
+  invFun := ![1, 0, 3, 2, 5, 4]
+  left_inv := by decide
+  right_inv := by decide
+
+def roseSigma : Perm (Fin 6) where
+  toFun := ![1, 2, 5, 0, 3, 4]
+  invFun := ![3, 0, 1, 4, 5, 2]
+  left_inv := by decide
+  right_inv := by decide
+
+/-- The rose with three petals and faces `[0,2]`, `[1]`, `[3,5]`, `[4]`. -/
+def M : CombMap where
+  Dart := Fin 6
+  dartFintype := inferInstance
+  alpha := roseAlpha
+  sigma := roseSigma
+  alpha_involutive := by intro d; fin_cases d <;> rfl
+  alpha_fixedPointFree := by decide
+
+instance : DecidableEq M.Dart := inferInstanceAs (DecidableEq (Fin 6))
+instance (n : ℕ) : OfNat M.Dart n := inferInstanceAs (OfNat (Fin 6) n)
+
+def faceClass : Fin 6 → Fin 4 := ![0, 1, 0, 2, 3, 2]
+def faceRep : Fin 4 → Fin 6 := ![0, 1, 3, 4]
+
+noncomputable def faceEquiv : M.Face ≃ Fin 4 :=
+  OrbitClassifier.orbitEquiv M.facePerm faceClass faceRep (by decide) (by decide) (by decide)
+
+def face (i : Fin 4) : M.Face := M.faceOf (faceRep i)
+
+@[simp] theorem faceEquiv_face (i : Fin 4) : faceEquiv (face i) = i := by
+  change faceClass (faceRep i) = i
+  fin_cases i <;> rfl
+
+theorem faceOf_eq_face (d : Fin 6) (i : Fin 4) :
+    M.faceOf d = face i ↔ faceClass d = i := by
+  rw [← faceEquiv.injective.eq_iff, faceEquiv_face]
+  rfl
+
+theorem face_eq_iff (i j : Fin 4) : face i = face j ↔ i = j := by
+  rw [← faceEquiv.injective.eq_iff, faceEquiv_face, faceEquiv_face]
+
+noncomputable def vertexEquiv : M.Vertex ≃ Fin 1 :=
+  OrbitClassifier.orbitEquiv M.sigma (![0, 0, 0, 0, 0, 0] : Fin 6 → Fin 1)
+    (![0] : Fin 1 → Fin 6) (by decide) (by decide) (by decide)
+
+/-- Every dart of the rose starts at its one vertex. -/
+theorem vertexOf_eq (d e : M.Dart) : M.vertexOf d = M.vertexOf e :=
+  vertexEquiv.injective (Subsingleton.elim _ _)
+
+theorem planar : M.IsPlanar := by
+  constructor
+  · have hstep : ∀ d : Fin 6, Relation.EqvGen M.Adjacent 0 d := by
+      have h01 : Relation.EqvGen M.Adjacent 0 1 := .rel _ _ (Or.inr rfl)
+      have h12 : Relation.EqvGen M.Adjacent 1 2 := .rel _ _ (Or.inr rfl)
+      have h25 : Relation.EqvGen M.Adjacent 2 5 := .rel _ _ (Or.inr rfl)
+      have h54 : Relation.EqvGen M.Adjacent 5 4 := .rel _ _ (Or.inr rfl)
+      have h43 : Relation.EqvGen M.Adjacent 4 3 := .rel _ _ (Or.inr rfl)
+      have h02 := Relation.EqvGen.trans _ _ _ h01 h12
+      have h05 := Relation.EqvGen.trans _ _ _ h02 h25
+      have h04 := Relation.EqvGen.trans _ _ _ h05 h54
+      have h03 := Relation.EqvGen.trans _ _ _ h04 h43
+      intro d
+      fin_cases d
+      · exact .refl _
+      · exact h01
+      · exact h02
+      · exact h03
+      · exact h04
+      · exact h05
+    intro d e
+    exact .trans _ _ _ (.symm _ _ (hstep d)) (hstep e)
+  · have hv : M.vertexCount = 1 := (Nat.card_congr vertexEquiv).trans (by simp)
+    have hf : M.faceCount = 4 := (Nat.card_congr faceEquiv).trans (by simp)
+    have hd : M.dartCount = 6 := by simp [CombMap.dartCount, M]
+    have he := M.dartCount_eq_two_mul_edgeCount
+    unfold CombMap.eulerCharacteristic
+    rw [hv, hf]
+    have heq : M.edgeCount = 3 := by omega
+    rw [heq]
+    norm_num
+
+def faceDarts : Fin 4 → List (Fin 6) := ![[0, 2], [1], [3, 5], [4]]
+
+noncomputable def indexedBoundary (i : Fin 4) : FaceBoundary M (face i) where
+  darts := faceDarts i
+  nonempty := by change faceDarts i ≠ ([] : List (Fin 6)); fin_cases i <;> decide
+  nodup := by fin_cases i <;> decide
+  mem_iff := by
+    intro d
+    rw [faceOf_eq_face]
+    fin_cases i <;> fin_cases d <;> decide
+  chain := by fin_cases i <;> decide
+  closes := by fin_cases i <;> decide
+  length_eq_degree := by
+    have h := closedOrbitList.length_eq_orbitDegree M.facePerm (faceRep i)
+    have hd : closedOrbitList M.facePerm (faceRep i) = faceDarts i := by
+      fin_cases i <;> decide
+    rw [hd] at h
+    exact h
+
+noncomputable def boundary (f : M.Face) : FaceBoundary M f :=
+  (faceEquiv.left_inv f) ▸ indexedBoundary (faceEquiv f)
+
+@[simp] theorem boundary_face_darts (i : Fin 4) :
+    (boundary (face i)).darts = faceDarts i := by
+  have htransport {f g : M.Face} (h : f = g) (B : FaceBoundary M f) :
+      (h ▸ B).darts = B.darts := by cases h; rfl
+  unfold boundary
+  rw [htransport]
+  exact congrArg faceDarts (faceEquiv_face i)
+
+/-! ## Labels and relator cells -/
+
+abbrev G := Perm (Fin 3)
+
+/-- `Π` reads `1 · a`, `F` reads `1`, `K` reads `a⁻¹ c⁻¹`, and the exterior reads `c`. -/
+def label (d : Fin 6) : RelLetter G Empty :=
+  .base ((![1, 1, ga, ga⁻¹, gc, gc⁻¹] : Fin 6 → G) d)
+
+def W : Set (List (RelLetter G Empty)) := {[.base 1, .base ga], [.base ga⁻¹, .base gc⁻¹]}
+
+def cellP : RelatorCell M (face 3) W where
+  face := face 0
+  face_ne_outer := (face_eq_iff 0 3).not.mpr (by decide)
+  word := [.base 1, .base ga]
+  word_mem := Or.inl rfl
+  conjugator := 1
+  reversed := false
+
+def cellK : RelatorCell M (face 3) W where
+  face := face 2
+  face_ne_outer := (face_eq_iff 2 3).not.mpr (by decide)
+  word := [.base ga⁻¹, .base gc⁻¹]
+  word_mem := Or.inr rfl
+  conjugator := 1
+  reversed := false
+
+/-- **The rose as a disc diagram**, with the relator cells `Π` and `K`. -/
+noncomputable def diagram : DiscDiagram W where
+  toCombMap := M
+  planar := planar
+  label := label
+  label_alpha := by
+    intro d
+    fin_cases d <;> exact congrArg RelLetter.base (by decide)
+  outerFace := face 3
+  faceBoundary := boundary
+  relatorCells := [cellP, cellK]
+  relatorCell_faces_nodup := by
+    change [face 0, face 2].Nodup
+    refine List.nodup_cons.mpr ⟨?_, List.nodup_singleton _⟩
+    rw [List.mem_singleton]
+    exact (face_eq_iff 0 2).not.mpr (by decide)
+  relatorCell_word := by
+    intro C hC
+    rcases List.mem_cons.mp hC with rfl | hC
+    · change [RelLetter.base (1 : G), RelLetter.base ga] = (boundary (face 0)).darts.map label
+      rw [boundary_face_darts]
+      rfl
+    · obtain rfl := List.mem_singleton.mp hC
+      change [RelLetter.base ga⁻¹, RelLetter.base gc⁻¹] = (boundary (face 2)).darts.map label
+      rw [boundary_face_darts]
+      rfl
+  inner_face := by
+    intro f hf
+    obtain ⟨i, rfl⟩ : ∃ i, face i = f := ⟨faceEquiv f, faceEquiv.left_inv f⟩
+    fin_cases i
+    · exact Or.inl ⟨cellP, by simp, rfl⟩
+    · right
+      rw [boundary_face_darts]
+      decide
+    · exact Or.inl ⟨cellK, by simp, rfl⟩
+    · exact (hf rfl).elim
+  boundary_product := by
+    rw [boundary_face_darts]
+    decide
+
+instance : NeZero diagram.rCellCount := ⟨by decide⟩
+instance (n : ℕ) : OfNat diagram.toCombMap.Dart n := inferInstanceAs (OfNat (Fin 6) n)
+instance : DecidableEq diagram.toCombMap.Dart := inferInstanceAs (DecidableEq (Fin 6))
+
+/-- The source cell `Π`. -/
+def iP : Fin diagram.rCellCount := ⟨0, by decide⟩
+
+/-- The kept cell `K`. -/
+def iK : Fin diagram.rCellCount := ⟨1, by decide⟩
+
+theorem letters : ∀ d, (symmetricLabelAlphabet D).IsLetter (diagram.label d) := fun _ =>
+  Or.inl (Set.mem_univ _)
+
+/-! ## Least area -/
+
+theorem relator_signs : ∀ r ∈ RelLetter.listVal '' W, Perm.sign r = -1 := by
+  rintro r ⟨word, hword, rfl⟩
+  simp only [W, Set.mem_insert_iff, Set.mem_singleton_iff] at hword
+  rcases hword with rfl | rfl
+  · rw [show RelLetter.listVal ([.base 1, .base ga] : List (RelLetter G Empty)) = ga by decide]
+    exact sign_ga
+  · rw [show RelLetter.listVal ([.base ga⁻¹, .base gc⁻¹] : List (RelLetter G Empty)) =
+        ga⁻¹ * gc⁻¹ by decide, Perm.sign_mul, Perm.sign_inv, Perm.sign_inv, sign_ga, sign_gc,
+      mul_one]
+
+theorem boundaryValue_eq : diagram.boundaryValue = gc⁻¹ := by
+  change RelLetter.listVal (RelWord.revInv ((boundary (face 3)).darts.map label)) = gc⁻¹
+  rw [boundary_face_darts]
+  decide
+
+/-- **The rose has least area.** -/
+theorem leastArea : diagram.LeastArea := by
+  intro m hm
+  rw [boundaryValue_eq] at hm
+  have hsign := sign_of_isRelatorProduct relator_signs hm
+  rw [Perm.sign_inv, sign_gc] at hsign
+  change 2 ≤ m
+  rcases m with _ | _ | m
+  · exact absurd hm.eq_one_of_index_zero (by decide)
+  · exact absurd hsign (by decide)
+  · omega
+
+/-! ## The pocket face set `{K}` -/
+
+theorem cellDarts_iP : Embedded.cellDarts diagram iP = [0, 2] := by
+  change (boundary (face 0)).darts = _
+  rw [boundary_face_darts]
+  rfl
+
+theorem outerDarts_eq : Embedded.outerDarts diagram = [5] := by
+  change ((boundary (face 3)).darts.reverse.map M.alpha) = _
+  rw [boundary_face_darts]
+  rfl
+
+theorem boundaryWord_length : diagram.boundaryWord.length = 1 := by
+  rw [← Embedded.dartWord_outerDarts, Embedded.dartWord, List.length_map, outerDarts_eq]
+  rfl
+
+/-- The face set `{K}`. -/
+def wrapFaces : Finset diagram.toCombMap.Face := {face 2}
+
+theorem face_mem_wrapFaces_iff (i : Fin 4) : face i ∈ wrapFaces ↔ i = 2 :=
+  Finset.mem_singleton.trans (face_eq_iff i 2)
+
+theorem wrapBoundaryDart_iff (d : Fin 6) :
+    IsBoundaryDart diagram.toCombMap wrapFaces d ↔ d ∈ ([3, 5] : List (Fin 6)) := by
+  change (M.faceOf d ∈ ({face 2} : Finset M.Face) ∧
+    M.faceOf (M.alpha d) ∉ ({face 2} : Finset M.Face)) ↔ _
+  simp only [Finset.mem_singleton, faceOf_eq_face]
+  fin_cases d <;> decide
+
+/-- The two boundary darts of `{K}`. -/
+def wrapCycle : BoundaryCycle diagram.toCombMap wrapFaces where
+  cycle := ([3, 5] : List (Fin 6))
+  cycle_nonempty := List.cons_ne_nil _ _
+  cycle_nodup := (by decide : ([3, 5] : List (Fin 6)).Nodup)
+  cycle_mem_iff := fun d => (wrapBoundaryDart_iff d).symm
+
+/-- The arc `[2]` of `Π`, one of its two darts. -/
+def wrapSourceArc : Embedded.CyclicArc (Embedded.cellDarts diagram iP) where
+  start := ⟨1, by rw [cellDarts_iP]; decide⟩
+  length := 1
+  length_le := by
+    rw [cellDarts_iP]
+    decide
+
+theorem wrapSourceArc_darts : wrapSourceArc.darts = [2] := by
+  change ((Embedded.cellDarts diagram iP).drop 1 ++
+    (Embedded.cellDarts diagram iP).take 1).take 1 = _
+  rw [cellDarts_iP]
+  rfl
+
+/-- The arc `[5]` of the exterior boundary, all of it. -/
+def wrapTargetArc : Embedded.CyclicArc (Embedded.outerDarts diagram) where
+  start := ⟨0, Nat.succ_pos _⟩
+  length := 1
+  length_le := by
+    rw [outerDarts_eq]
+    decide
+
+theorem wrapTargetArc_darts : wrapTargetArc.darts = [5] := by
+  change ((Embedded.outerDarts diagram).drop 0 ++
+    (Embedded.outerDarts diagram).take 0).take 1 = _
+  rw [outerDarts_eq]
+  rfl
+
+theorem wrap_decomposition :
+    (wrapCycle : BoundaryCycle diagram.toCombMap wrapFaces).cycle =
+      [] ++ Embedded.invDarts diagram wrapSourceArc.darts ++ [] ++ wrapTargetArc.darts := by
+  rw [wrapSourceArc_darts, wrapTargetArc_darts]
+  decide
+
+theorem empty_side_norm (eps : ℕ) :
+    WordMetric.wordNorm D.alphabet.carrier (RelLetter.listVal
+      (Embedded.dartWord diagram ([] : List diagram.toCombMap.Dart))) ≤ eps :=
+  (Nat.le_of_eq (WordMetric.wordNorm_one _)).trans (Nat.zero_le eps)
+
+/-- **The pocket face set `{K}`** at every `ε`, with source `Π`, kept cell `K`, empty sides, a proper
+source arc and a full target arc. -/
+noncomputable def wrapK (eps : ℕ) : PocketFaceSet D eps diagram 0 1 where
+  faces := wrapFaces
+  outerFace_not_mem := fun h => absurd ((face_mem_wrapFaces_iff 3).mp h) (by decide)
+  source := iP
+  source_not_mem := fun h => absurd ((face_mem_wrapFaces_iff 0).mp h) (by decide)
+  kept := iK
+  kept_mem := (face_mem_wrapFaces_iff 2).mpr rfl
+  sourceArc := wrapSourceArc
+  targetArc := wrapTargetArc
+  firstSide := []
+  secondSide := []
+  boundary := wrapCycle
+  decomposition := wrap_decomposition
+  firstSide_length_le := Nat.zero_le _
+  secondSide_length_le := Nat.zero_le _
+  firstSide_norm_le := empty_side_norm eps
+  secondSide_norm_le := empty_side_norm eps
+  lo_le := Nat.zero_le _
+  le_hi := by decide
+
+/-- The cycle `[3,5]` is a closed walk: the rose has one vertex. -/
+theorem wrapK_closedWalk (eps : ℕ) : (wrapK eps).ClosedWalk :=
+  And.intro (List.isChain_pair.mpr (vertexOf_eq _ _)) (vertexOf_eq _ _)
+
+/-- The source arc is proper: one dart of the two of `Π`. -/
+theorem wrapK_sourceArc_lt (eps : ℕ) :
+    (wrapK eps).sourceArc.length < (Embedded.cellDarts diagram (wrapK eps).source).length := by
+  change 1 < (Embedded.cellDarts diagram iP).length
+  rw [cellDarts_iP]
+  decide
+
+/-- The target arc is all of `∂Δ`. -/
+theorem wrapK_targetArc_full (eps : ℕ) :
+    (wrapK eps).targetArc.length = (Embedded.outerDarts diagram).length := by
+  change 1 = (Embedded.outerDarts diagram).length
+  rw [outerDarts_eq]
+  rfl
+
+/-! ## Calibration: at `ε ≥ 1` a proper target arc on the same diagram -/
+
+/-- The empty arc of the exterior boundary, at position `0`. -/
+def emptyTargetArc : Embedded.CyclicArc (Embedded.outerDarts diagram) where
+  start := ⟨0, Nat.succ_pos _⟩
+  length := 0
+  length_le := Nat.zero_le _
+
+theorem emptyTargetArc_darts : emptyTargetArc.darts = [] := by
+  change ((Embedded.outerDarts diagram).drop 0 ++ (Embedded.outerDarts diagram).take 0).take 0 = _
+  rfl
+
+theorem proper_decomposition :
+    (wrapCycle : BoundaryCycle diagram.toCombMap wrapFaces).cycle =
+      [] ++ Embedded.invDarts diagram wrapSourceArc.darts ++ ([5] : List diagram.toCombMap.Dart) ++
+        emptyTargetArc.darts := by
+  rw [wrapSourceArc_darts, emptyTargetArc_darts]
+  decide
+
+theorem exterior_side_norm (eps : ℕ) (heps : 1 ≤ eps) :
+    WordMetric.wordNorm D.alphabet.carrier (RelLetter.listVal
+      (Embedded.dartWord diagram ([5] : List diagram.toCombMap.Dart))) ≤ eps := by
+  have hmem : RelLetter.listVal (Embedded.dartWord diagram ([5] : List diagram.toCombMap.Dart)) ∈
+      D.alphabet.carrier := Or.inl (Set.mem_univ _)
+  exact (WordMetric.wordNorm_le_one_of_mem hmem).trans heps
+
+/-- **Calibration.**  At `ε ≥ 1` the face set `{K}`, with the exterior dart read as its second side, is a
+pocket face set with an empty, proper target arc. -/
+noncomputable def properK (eps : ℕ) (heps : 1 ≤ eps) : PocketFaceSet D eps diagram 0 1 where
+  faces := wrapFaces
+  outerFace_not_mem := fun h => absurd ((face_mem_wrapFaces_iff 3).mp h) (by decide)
+  source := iP
+  source_not_mem := fun h => absurd ((face_mem_wrapFaces_iff 0).mp h) (by decide)
+  kept := iK
+  kept_mem := (face_mem_wrapFaces_iff 2).mpr rfl
+  sourceArc := wrapSourceArc
+  targetArc := emptyTargetArc
+  firstSide := []
+  secondSide := [5]
+  boundary := wrapCycle
+  decomposition := proper_decomposition
+  firstSide_length_le := Nat.zero_le _
+  secondSide_length_le := heps
+  firstSide_norm_le := empty_side_norm eps
+  secondSide_norm_le := exterior_side_norm eps heps
+  lo_le := Nat.zero_le _
+  le_hi := by decide
+
+theorem properK_closedWalk (eps : ℕ) (heps : 1 ≤ eps) : (properK eps heps).ClosedWalk :=
+  And.intro (List.isChain_pair.mpr (vertexOf_eq _ _)) (vertexOf_eq _ _)
+
+theorem properK_sourceArc_lt (eps : ℕ) (heps : 1 ≤ eps) :
+    (properK eps heps).sourceArc.length <
+      (Embedded.cellDarts diagram (properK eps heps).source).length := by
+  change 1 < (Embedded.cellDarts diagram iP).length
+  rw [cellDarts_iP]
+  decide
+
+theorem properK_targetArc_lt (eps : ℕ) (heps : 1 ≤ eps) :
+    (properK eps heps).targetArc.length < (Embedded.outerDarts diagram).length := by
+  change 0 < (Embedded.outerDarts diagram).length
+  rw [outerDarts_eq]
+  decide
+
+/-- **The whole-section wrap with a proper source arc, on a least-area diagram**: least area, letter
+labels, one letter of boundary; at every `ε` a pocket face set between the positions `0` and `|∂Δ|` in
+walk order with empty sides, a proper source arc and a full target arc; and, as calibration, at every
+`ε ≥ 1` a pocket face set in walk order with proper source and target arcs. -/
+def WholeSectionWrapModel : Prop :=
+  diagram.LeastArea ∧ (∀ d, (symmetricLabelAlphabet D).IsLetter (diagram.label d)) ∧
+    diagram.boundaryWord.length = 1 ∧
+    (∀ eps : ℕ, ∃ K : PocketFaceSet D eps diagram 0 1,
+      K.ClosedWalk ∧ K.firstSide = [] ∧ K.secondSide = [] ∧
+        K.sourceArc.length < (Embedded.cellDarts diagram K.source).length ∧
+        K.targetArc.length = (Embedded.outerDarts diagram).length) ∧
+    ∀ eps : ℕ, 1 ≤ eps → ∃ K : PocketFaceSet D eps diagram 0 1,
+      K.ClosedWalk ∧ K.sourceArc.length < (Embedded.cellDarts diagram K.source).length ∧
+        K.targetArc.length < (Embedded.outerDarts diagram).length
+
+theorem wholeSectionWrapModel : WholeSectionWrapModel :=
+  ⟨leastArea, letters, boundaryWord_length, fun eps =>
+    ⟨wrapK eps, wrapK_closedWalk eps, rfl, rfl, wrapK_sourceArc_lt eps, wrapK_targetArc_full eps⟩,
+    fun eps heps => ⟨properK eps heps, properK_closedWalk eps heps, properK_sourceArc_lt eps heps,
+      properK_targetArc_lt eps heps⟩⟩
+
+end GroupApproximation.GGT.VanKampen.OsinPocketWholeSectionWrapModel
+
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.OsinPocketWholeSectionWrapModel.wholeSectionWrapModel
