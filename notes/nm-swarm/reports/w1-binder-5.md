@@ -280,3 +280,33 @@ Design:
   cell-to-cell face set and pinch Prop.
 - Assembly target: `hull-select`'s copy form of `MultipleEdgePocketRegionInput` (drafts r1), which takes
   `CellPocketWalk.walk` as the split.
+
+## Item (09-14 ~00:1x): `SameCellPocketCellFreeValueStatement` for ms-compress-2
+
+- **Target.** The Prop is ms-compress-2's named cell-free branch of `OsinLemma94SameCellPocketInput`.
+  - It is defined in `Estimating/OsinUnboundSameCellPocketAssembly.lean` (ms-compress-2, not on origin; its imports are
+    all on origin).
+  - It is w1-binder-2's `BridgeComponent.listVal_pocket_eq_one` verbatim, without the `DecidableEq` instance.
+- **Takeover of `GGT/VanKampen/BridgeComponentValue.lean`** from w1-binder-2, which has not resumed (main's order).
+  - The path was moved from `w1-binder-2.files` to this lane's `.files`.
+  - Backups: `backup/w1-binder-2/BridgeComponentValue.lean.takeover-by-w1-binder-5` and `backup/w1-binder-5/…v0`.
+  - The disk copy equalled w1-binder-2's attic c785f676d.
+- **Probe history.**
+  - w1-binder-2: 0913-195932-2136 failed (simp `unattach`); 0913-203707-58823 hit the MSI outage.
+  - This lane: 0914-00xx rc=4 (MSI connection down); 0914-003245-2343 **FAILED on Lean**.
+    - `rewrite` failed at lines 45, 247, 255, 287 and 298.
+    - Unsolved goals and a failed `rfl` at 156–157, plus two unused simp arguments.
+    - These gave `sorryAx` in both theorems.
+  - So the draft was not repaired as recorded.
+- **Diagnosis.** `component X.toCombMap a hface hstart` is `(EdgeDeletion.toCombMap …).restrict (Side …)`, and its
+  `Dart` is `{x // Side x}` only after unfolding.
+  - `Subtype.val` and the list lemmas (`getLast_map`, `head_map`, `map_map`, `length_map`, `getElem_map`,
+    `getElem_ofFn`, `mem_ofFn`) elaborate at `{x // Side x}`, while the lists are typed at `(component …).Dart`.
+  - `rw` and `simp` match at instances transparency and cannot see through the alias. Lean's note says so ("not
+    type-correct under the `instances` transparency level").
+  - Fix (probing): at each site keep the rewrites that fire, then finish in term mode with `exact`/`Eq.trans`, where
+    unification sees through the restriction. The `map_map` compositions pass their implicit arguments by name, and the
+    unused simp arguments are removed.
+- **Closure (claimed, attic f41dbe903).** New module `Estimating/OsinUnboundSameCellPocketCellFree.lean`:
+  `sameCellPocketCellFreeValue : SameCellPocketCellFreeValueStatement`, which is `listVal_pocket_eq_one` under
+  `classical`. It lands after both `BridgeComponentValue` and ms-compress-2's assembly are on origin.
