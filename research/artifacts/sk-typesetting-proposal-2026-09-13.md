@@ -122,7 +122,7 @@ Crossref (10.1007/BF01459798) gives the title string "Discrete groups with Kazhd
 - Every `\cite` is preceded by `~` (19 citations grepped; none without it).
 - "property~\textup{(T)}" is used consistently in running text. The subsection heading "The ring and property (T)" is a bold run-in heading, already upright.
 - No `\texorpdfstring` needed for `\section{Proof of Theorem~\ref{thm:main}}`: the bookmark reads "1. Proof of Theorem 1".
-- The bibliography is in alphabetical order; author initials use `~`; there are three authors with the serial comma (GPS).
+- CORRECTION (20:20): the bibliography is NOT fully alphabetical. Grigorchuk–Medynets (GM, GMpres) precede Giordano–Putnam–Skau (GPS), but "Gi" < "Gr". See part 2, P10. Author initials use `~`, and GPS (three authors) takes the serial comma.
 - Macros `\PSL`, `\SL`, `\doi` are all used; nothing defined is unused.
 - `\epsilon_{ab}` versus `\varepsilon_{ab}`: a neutral choice, so no change.
 - The benign microtype footnote warning (see §0).
