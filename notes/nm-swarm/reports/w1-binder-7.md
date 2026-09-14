@@ -116,6 +116,29 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     `I.x`.
   - Still open: the second split dart. It needs a G-corner outside the face set in the other gap at `p`, for the wrap shape
     with `t₂` full (the exterior corner, through kh-cckw's outer spur thickening), and the StretchAvoids chain.
+- **2026-09-13 ~19:05: the Pos binder is refuted at `ε = 1` (paper; ms-cite-1 is building the Lean model).**
+  - The model: F(a,b,d,e,x,y) with the letter `c = x·aab·x⁻¹·y·dde·y⁻¹`, cells `aab` and `dde`, boundary `[c]`.
+  - The hypothesis pocket has a full `t₁`, a full `t₂`, and sides `[x]` and `[x⁻¹]` at `ε`.
+  - In any copy, a simple `K′` has `t₂ = []` and a proper `t₁` (by FullArc). Van Kampen then gives `α·p⁻¹·β` conjugate to
+    `r^{±1}` with sides of norm ≤ 1, and exponent sums together with kill maps exclude every case. I checked this and found
+    no rescue.
+  - Correction: longer relators alone do not generalize the model to `ε ≥ 2`. Sides `[c, x]` and `[u⁻¹, x⁻¹]` rescue it
+    algebraically. The conjugator has to scale to `x^ε` (paper only).
+- **Binder 6 check (fe02830d0, `OsinPocketFaceSetOnCopy`).**
+  - Delivered: `SectionPocketFaceSetInput` carries only an O-equivalent copy, letter labels, and a pocket face set in walk order.
+    Internally, `PocketWalk` has `t₁ = x.arc ++ Gap ++ y.arc`, sides from region sides (`≤ ε` only), and nonempty arcs.
+  - Room is not supplied.
+  - A proper `t₁` is not supplied and does not follow from `a ≠ b`, because both region arcs lie inside `t₁`.
+  - A proper `t₂` is not supplied.
+  - Missing clause sent to main, to be done additively:
+    - `SectionPocketFaceSetProperInput`, whose conclusion adds `K.sourceArc.length < (cellDarts X′ K.source).length`;
+    - its producer residual `SectionPocketProperGapStatement`: `x.arc.length + Gap.length + y.arc.length` is below the cell
+      length.
+- **Proposed binder-7 spelling** (to be agreed with ms-cite-1, then main): `PocketPinchLabelledSectionStatement`.
+  - Premises: the OsinCCondition prefix, `X.LeastArea`, letter labels, `K.ClosedWalk`, and a proper source arc.
+  - Conclusion: `∃ X′ K′`, an O-equivalence and `K′.Simple`.
+  - It has no `t₂` premise.
+  - The Pos model is excluded, since its `t₁` is full.
 - ms-intro-4 (binder 5, `CellPocketPinchPosStatement`) imports ArcTrim and FullArc; their helper names stay fixed. There is
   no generic boundary-cycle layer, and `exists_trimDouble` is at `PocketFaceSet` level.
 - Where the step route sticks: a full arc with a nonempty remainder and both sides at length exactly `ε`. No trim has
