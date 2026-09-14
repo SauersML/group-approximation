@@ -70,4 +70,10 @@ Rows 88ecdc10f78b and a63ff00e499b (Kirchberg) belong to oa-kirchberg and oa-llp
 - CLOSED hyperlinearTracePreservingModelStatement_holds (probe 0914-085504-40251: BUILT HyperlinearOneSumModels ee792753d, HyperlinearTraceVanishingProof 24a27e527). oa-llp has the name.
 - CLOSED McDuff.printedTensorHyperfiniteUnitaryContainsGroup (probe 0914-090458-35874: BUILT McDuffFactor ee792753d, GroupVonNeumannUnitaryGroup cadf4bef4; the local instance is renamed to avoid an auto-name collision with GroupStandardFormInstance).
 - Rows: fc6e6384121b → partial; 97438886a277 carriers extended.
+- Landed as unverified drafts: TwistedGroupVonNeumannProduct (fcf0b37b3, now BUILT in probe 0914-093047-77283 and wire-queued), TwistedTensorProductAlgebra (ddb4b49ad), TensorHyperfiniteIIOneFactor, VonNeumannSpatialIsomorphism (fcf0b37b3), McDuffTensorHyperfinite (2455e32ac, L(G) ⊗̄ R ≅ (L(G) ⊗̄ R) ⊗̄ R through the Pauli interleaving).
+
+## 10:0x: after the ~09:36 outage
+- Reconciled: every oa-mcduff file on disk equals origin (landed.log 09:04–09:32), and nothing is half-landed.
+- Probe 0914-093047-77283: TwistedTensorProductAlgebra was red on an unused `[CompleteSpace H]` section variable, a failed `lp.single_apply_ne` rewrite and beta-unreduced star-range branches. Fixed, together with pre-emptive fixes in TensorHyperfiniteIIOneFactor (ComplexOrder scope, `haveI` for Module.Finite) and VonNeumannSpatialIsomorphism (Hilbert space annotations). Re-probing all four.
+- Tip 8b36733d7, census 9cb80166d: all four keys survive (d57f74d7384e l.275, fc6e6384121b l.277–279, 6e8db7db6717 l.279–281, 97438886a277 l.281–284), and the census carries these rows. The Kirchberg and LLP sentences left "Brown's formulation" at f34e9c0b1; those rows were oa-kirchberg's and oa-llp's.
 - CLAIM GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean: the sum cocycle, twisted ICC of products, L(G) = L_0(G), and the unitary ℓ²(Γ; ℓ²(A)) ≃ ℓ²(Γ × A). Next: Ad U carries M ⊗̄ L_σ(Γ) onto L_{σ⊕ρ}(Γ × A), which makes L(G) ⊗̄ R a II₁ factor through oa-hyperfinite's criterion.
