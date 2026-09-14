@@ -39,6 +39,7 @@ requires:
   - piecewise-dyadic-level-models-give-non-uniform-growth
   - matrix-decompositions-of-subshift-rings-need-divisible-unit
   - krieger-subshift-embedding-theorem
+  - dyadic-derived-full-groups-no-uniform-semifree-diameter
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
