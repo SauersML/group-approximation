@@ -1,0 +1,265 @@
+import GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSubdiagramPieces
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFirstTurnWalk
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# A bridge-free enclosed face set turning to its successor is a pocket region
+
+Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): the subdiagram `Γ_1` bounded by the walk.
+`EnclosedPocketRegionSuccStatement` (`ClosedWalkEnclosedSubdiagramPieces`) asks that an enclosed face
+set whose outside walk turns to its successor and uses no edge in both directions is the face set of
+a pocket region, with the outside walk as complement cycle, following its boundary.
+
+* `exists_first_kept`: rotating from the reverse of an outside dart meets an edge of the walk after
+  finitely many steps, since the reverse itself lies on an edge of the walk.
+* `firstTurn_getElem`, `isChain_firstTurn`, `firstTurn_close`: with the successor form, the outside
+  walk is a first-turn walk (`FirstTurn`, `Estimating/OsinPocketFirstTurnWalk.lean`).  So the pocket
+  walk `outerWalk.reverse.map alpha` is noncrossing and its outer cycle follows its boundary.
+* `sideFaces_subset`: the side of the pocket walk lies in the enclosed set; crossing an edge off the
+  walk does not change membership.
+* `subset_sideFaces`: the enclosed set lies in the side of the pocket walk.  A dart whose face, when
+  enclosed, lies on the side is kept so across every edge and every face step, since crossing into
+  the enclosed set over an edge of the walk lands on a dart of the pocket walk.  The map is connected.
+* `enclosedPocketRegionSucc`: the statement, through `PocketRegion.ofNoncrossingClosedWalk` and the
+  Euler lemma `IsNoncrossingClosedWalk.reclosed_euler`.
+* `length_filter_le_of_bridgeFree`: the singular least-area filter for bridge-free enclosed face sets
+  turning to their successors, with no doubling.
+* `enclosedLeastAreaFilterSucc_of_doubling`: the successor-form filter from the doubling piece alone.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, "Hull's small cancellation theorem", through Osin's
+Lemmas 9.4 and 9.7); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Equiv Surgery.MapCollapse SimpleClosedWalkSides Embedded
+
+namespace EnclosedPocketRegion
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {Delta : DiscDiagram.{u, w, v} W} {faces : Finset Delta.toCombMap.Face}
+  {outerWalk : List Delta.toCombMap.Dart}
+
+/-- **Rotating from the reverse of an outside dart meets an edge of the walk.**  There is a least
+positive rotation count reaching a dart on an edge of the walk. -/
+theorem exists_first_kept {x : Delta.toCombMap.Dart} (hx : x ∈ outerWalk) :
+    ∃ m, 0 < m ∧
+      walkKeep Delta.toCombMap outerWalk
+        ((Delta.toCombMap.sigma ^ m) (Delta.toCombMap.alpha x)) ∧
+      ∀ k, 0 < k → k < m → ¬ walkKeep Delta.toCombMap outerWalk
+        ((Delta.toCombMap.sigma ^ k) (Delta.toCombMap.alpha x)) := by
+  classical
+  have hex : ∃ m, 0 < m ∧ walkKeep Delta.toCombMap outerWalk
+      ((Delta.toCombMap.sigma ^ m) (Delta.toCombMap.alpha x)) := by
+    refine ⟨orderOf Delta.toCombMap.sigma, orderOf_pos _, ?_⟩
+    rw [pow_orderOf_eq_one, Perm.one_apply]
+    exact Or.inr (by rw [Delta.toCombMap.alpha_involutive x]; exact hx)
+  refine ⟨Nat.find hex, (Nat.find_spec hex).1, (Nat.find_spec hex).2, fun k hk hkm hkeep => ?_⟩
+  exact Nat.find_min hex hkm ⟨hk, hkeep⟩
+
+/-- **A first turn between consecutive outside darts.** -/
+theorem firstTurn_getElem (hE : EnclosedFaceSetSucc Delta faces outerWalk) {i : ℕ}
+    (hi : i < outerWalk.length) :
+    FirstTurn Delta.toCombMap outerWalk outerWalk[i]
+      (outerWalk[(i + 1) % outerWalk.length]'
+        (Nat.mod_lt _ (Nat.lt_of_le_of_lt (Nat.zero_le i) hi))) := by
+  obtain ⟨m, hm, hkeep, hfirst⟩ := exists_first_kept (List.getElem_mem hi)
+  exact ⟨m, hm, hE.turn_next i hi m hm hkeep hfirst, hfirst⟩
+
+/-- The outside walk is a chain of first turns. -/
+theorem isChain_firstTurn (hE : EnclosedFaceSetSucc Delta faces outerWalk) :
+    outerWalk.IsChain (FirstTurn Delta.toCombMap outerWalk) := by
+  refine List.isChain_iff_getElem.mpr fun i hi => ?_
+  have h := firstTurn_getElem hE (i := i) (by omega)
+  simpa [Nat.mod_eq_of_lt hi] using h
+
+/-- The last outside dart reaches the first by a first turn. -/
+theorem firstTurn_close (hE : EnclosedFaceSetSucc Delta faces outerWalk) :
+    FirstTurn Delta.toCombMap outerWalk (outerWalk.getLast hE.ne_nil)
+      (outerWalk.head hE.ne_nil) := by
+  have hlen : 0 < outerWalk.length := List.length_pos_of_ne_nil hE.ne_nil
+  have h := firstTurn_getElem hE (i := outerWalk.length - 1) (by omega)
+  simpa [List.getLast_eq_getElem, List.head_eq_getElem, Nat.sub_add_cancel hlen, Nat.mod_self]
+    using h
+
+/-- Across an edge off the walk, a face is enclosed exactly when the face across is. -/
+theorem mem_iff_mem_alpha_of_not_walkKeep (hE : EnclosedFaceSet Delta faces outerWalk)
+    {x : Delta.toCombMap.Dart} (hx : ¬ walkKeep Delta.toCombMap outerWalk x) :
+    Delta.toCombMap.faceOf x ∈ faces ↔
+      Delta.toCombMap.faceOf (Delta.toCombMap.alpha x) ∈ faces := by
+  constructor
+  · intro hin
+    by_contra hout
+    exact hx (Or.inr ((hE.mem_iff _).mpr
+      ⟨hout, Or.inl (by rwa [Delta.toCombMap.alpha_involutive x])⟩))
+  · intro hin
+    by_contra hout
+    exact hx (Or.inl ((hE.mem_iff x).mpr ⟨hout, Or.inl hin⟩))
+
+/-- A dart of the pocket walk has an enclosed face. -/
+theorem faceOf_mem_of_mem_reverse (hE : EnclosedFaceSet Delta faces outerWalk)
+    (hfree : ∀ d ∈ outerWalk, Delta.toCombMap.alpha d ∉ outerWalk) {d : Delta.toCombMap.Dart}
+    (hd : d ∈ outerWalk.reverse.map Delta.toCombMap.alpha) : Delta.toCombMap.faceOf d ∈ faces := by
+  have had : Delta.toCombMap.alpha d ∈ outerWalk := FirstTurnWalk.mem_reverse_map_alpha_iff.mp hd
+  obtain ⟨-, hin | hmem⟩ := (hE.mem_iff _).mp had
+  · rwa [Delta.toCombMap.alpha_involutive d] at hin
+  · rw [Delta.toCombMap.alpha_involutive d] at hmem
+    exact absurd had (hfree d hmem)
+
+/-- **The side of the pocket walk lies in the enclosed set.** -/
+theorem sideFaces_subset (hE : EnclosedFaceSet Delta faces outerWalk)
+    (hfree : ∀ d ∈ outerWalk, Delta.toCombMap.alpha d ∉ outerWalk) :
+    sideFaces Delta.toCombMap (outerWalk.reverse.map Delta.toCombMap.alpha) ⊆ faces := by
+  intro f hf
+  obtain ⟨x, rfl⟩ := Quotient.mk''_surjective f
+  change Delta.toCombMap.faceOf x ∈ _ at hf
+  change Delta.toCombMap.faceOf x ∈ faces
+  obtain ⟨d, hd, h⟩ := (mem_sideFaces_iff _ _ x).mp hf
+  have hinv : ∀ y z, Relation.EqvGen (CombMap.FaceClassStep Delta.toCombMap
+      (walkKeep Delta.toCombMap (outerWalk.reverse.map Delta.toCombMap.alpha))) y z →
+      (Delta.toCombMap.faceOf y ∈ faces ↔ Delta.toCombMap.faceOf z ∈ faces) := by
+    intro y z hyz
+    induction hyz with
+    | rel a b hab =>
+        rcases hab with rfl | ⟨hkeep, rfl⟩
+        · rw [Delta.toCombMap.faceOf_facePerm]
+        · rw [FirstTurnWalk.walkKeep_reverse_map_alpha] at hkeep
+          exact mem_iff_mem_alpha_of_not_walkKeep hE hkeep
+    | refl => exact Iff.rfl
+    | symm _ _ _ ih => exact ih.symm
+    | trans _ _ _ _ _ ih1 ih2 => exact ih1.trans ih2
+  exact (hinv d x h).mp (faceOf_mem_of_mem_reverse hE hfree hd)
+
+/-- A dart whose face, when enclosed, lies on the side of the pocket walk. -/
+def Good (Delta : DiscDiagram.{u, w, v} W) (faces : Finset Delta.toCombMap.Face)
+    (outerWalk : List Delta.toCombMap.Dart) (y : Delta.toCombMap.Dart) : Prop :=
+  Delta.toCombMap.faceOf y ∈ faces →
+    Delta.toCombMap.faceOf y ∈
+      sideFaces Delta.toCombMap (outerWalk.reverse.map Delta.toCombMap.alpha)
+
+theorem good_facePerm_iff (y : Delta.toCombMap.Dart) :
+    Good Delta faces outerWalk (Delta.toCombMap.facePerm y) ↔ Good Delta faces outerWalk y := by
+  unfold Good
+  rw [Delta.toCombMap.faceOf_facePerm]
+
+/-- Goodness passes across an edge. -/
+theorem good_alpha (hE : EnclosedFaceSet Delta faces outerWalk) {y : Delta.toCombMap.Dart}
+    (hy : Good Delta faces outerWalk y) : Good Delta faces outerWalk (Delta.toCombMap.alpha y) := by
+  intro hin
+  by_cases hkeep : walkKeep Delta.toCombMap outerWalk y
+  · rcases hkeep with hy' | hay
+    · refine FirstTurnWalk.faceOf_mem_sideFaces (FirstTurnWalk.mem_reverse_map_alpha_iff.mpr ?_)
+      rwa [Delta.toCombMap.alpha_involutive y]
+    · exact absurd hin ((hE.mem_iff _).mp hay).1
+  · have hyin : Delta.toCombMap.faceOf y ∈ faces :=
+      (mem_iff_mem_alpha_of_not_walkKeep hE hkeep).mpr hin
+    obtain ⟨d, hd, h⟩ := (mem_sideFaces_iff _ _ y).mp (hy hyin)
+    refine (mem_sideFaces_iff _ _ _).mpr ⟨d, hd, .trans _ _ _ h (.rel _ _ (Or.inr ⟨?_, rfl⟩))⟩
+    rw [FirstTurnWalk.walkKeep_reverse_map_alpha]
+    exact hkeep
+
+theorem good_alpha_iff (hE : EnclosedFaceSet Delta faces outerWalk) (y : Delta.toCombMap.Dart) :
+    Good Delta faces outerWalk (Delta.toCombMap.alpha y) ↔ Good Delta faces outerWalk y := by
+  refine ⟨fun h => ?_, good_alpha hE⟩
+  have h' := good_alpha hE h
+  rwa [Delta.toCombMap.alpha_involutive y] at h'
+
+theorem good_iff_of_adjacent (hE : EnclosedFaceSet Delta faces outerWalk)
+    {y z : Delta.toCombMap.Dart} (h : Delta.toCombMap.Adjacent y z) :
+    Good Delta faces outerWalk y ↔ Good Delta faces outerWalk z := by
+  rcases h with rfl | rfl
+  · exact (good_alpha_iff hE y).symm
+  · have hsig : Delta.toCombMap.sigma y = Delta.toCombMap.facePerm (Delta.toCombMap.alpha y) := by
+      show Delta.toCombMap.sigma y =
+        (Delta.toCombMap.sigma * Delta.toCombMap.alpha) (Delta.toCombMap.alpha y)
+      rw [Perm.mul_apply, Delta.toCombMap.alpha_involutive]
+    rw [hsig, good_facePerm_iff, good_alpha_iff hE]
+
+/-- **The enclosed set lies in the side of the pocket walk.** -/
+theorem subset_sideFaces (hE : EnclosedFaceSet Delta faces outerWalk) :
+    faces ⊆ sideFaces Delta.toCombMap (outerWalk.reverse.map Delta.toCombMap.alpha) := by
+  intro f hf
+  obtain ⟨z, rfl⟩ := Quotient.mk''_surjective f
+  change Delta.toCombMap.faceOf z ∈ faces at hf
+  change Delta.toCombMap.faceOf z ∈ _
+  have hinv : ∀ y y', Relation.EqvGen Delta.toCombMap.Adjacent y y' →
+      (Good Delta faces outerWalk y ↔ Good Delta faces outerWalk y') := by
+    intro y y' hyy'
+    induction hyy' with
+    | rel a b hab => exact good_iff_of_adjacent hE hab
+    | refl => exact Iff.rfl
+    | symm _ _ _ ih => exact ih.symm
+    | trans _ _ _ _ _ ih1 ih2 => exact ih1.trans ih2
+  have hbase : Good Delta faces outerWalk
+      (Delta.toCombMap.alpha (outerWalk.head hE.ne_nil)) := fun _ =>
+    FirstTurnWalk.faceOf_mem_sideFaces (FirstTurnWalk.mem_reverse_map_alpha_iff.mpr (by
+      rw [Delta.toCombMap.alpha_involutive]
+      exact List.head_mem hE.ne_nil))
+  exact (hinv _ z (Delta.planar.1 _ z)).mp hbase hf
+
+open scoped Classical in
+/-- **`EnclosedPocketRegionSuccStatement` holds.** -/
+theorem enclosedPocketRegionSucc : EnclosedPocketRegionSuccStatement.{u, w, v} := by
+  intro G _ Lambda W Delta faces outerWalk hE hfree
+  have hchain := isChain_firstTurn hE
+  have hclose := firstTurn_close hE
+  have hw := FirstTurnWalk.isNoncrossingClosedWalk_reverse Delta.planar hE.ne_nil hE.nodup hfree
+    hchain hclose
+  have hfollows :=
+    FirstTurnWalk.outerCycle_followsBoundary Delta.planar hchain hE.ne_nil hclose hw
+  have heq : sideFaces Delta.toCombMap (outerWalk.reverse.map Delta.toCombMap.alpha) = faces :=
+    Finset.Subset.antisymm (sideFaces_subset hE.toEnclosedFaceSet hfree)
+      (subset_sideFaces hE.toEnclosedFaceSet)
+  have hout : Delta.outerFace ∉
+      sideFaces Delta.toCombMap (outerWalk.reverse.map Delta.toCombMap.alpha) := by
+    rw [heq]
+    exact hE.outerFace_not_mem
+  exact ⟨PocketRegion.ofNoncrossingClosedWalk hw hout hfollows
+      (hw.reclosed_euler Delta.planar hfollows), heq,
+    FirstTurnWalk.reverse_map_alpha_involutive outerWalk, hfollows⟩
+
+open scoped Classical in
+/-- **The singular least-area filter without bridges.**  In a least-area diagram, a filling of the
+inverse outside walk of a bridge-free enclosed face set turning to its successor needs at least as
+many relators as the face set holds relator cells. -/
+theorem length_filter_le_of_bridgeFree (hlea : Delta.LeastArea)
+    (hE : EnclosedFaceSetSucc Delta faces outerWalk)
+    (hfree : ∀ d ∈ outerWalk, Delta.toCombMap.alpha d ∉ outerWalk) {m : ℕ}
+    (hm : RelatorDefectBudget.IsRelatorProduct (RelLetter.listVal '' W) m
+      (RelLetter.listVal (dartWord Delta (invDarts Delta outerWalk)))) :
+    (Delta.relatorCells.filter fun C => C.face ∈ faces).length ≤ m := by
+  obtain ⟨P, hPfaces, hPcycle, -⟩ := enclosedPocketRegionSucc Delta faces outerWalk hE hfree
+  have hm' : RelatorDefectBudget.IsRelatorProduct (RelLetter.listVal '' W) m
+      P.diagram.boundaryValue := by
+    show RelatorDefectBudget.IsRelatorProduct (RelLetter.listVal '' W) m
+      (RelLetter.listVal P.diagram.boundaryWord)
+    rw [P.diagram_boundaryWord, hPcycle]
+    exact hm
+  have hle := hlea.length_filter_mem_le P.faces P.inner P.outerFace_not_mem
+    (P.isRelatorProduct_inner_of_diagram hm')
+  rwa [hPfaces] at hle
+
+/-- **The successor-form filter from the doubling piece.** -/
+theorem enclosedLeastAreaFilterSucc_of_doubling
+    (hdouble : EnclosedBridgeDoublingSuccStatement.{u, w, v}) :
+    EnclosedLeastAreaFilterSuccStatement.{u, w, v} :=
+  enclosedLeastAreaFilterSucc_of_pieces hdouble enclosedPocketRegionSucc
+
+end EnclosedPocketRegion
+
+end GroupApproximation.GGT.VanKampen
+
+open GroupApproximation.GGT.VanKampen.EnclosedPocketRegion
+
+#audit_axioms exists_first_kept
+#audit_axioms isChain_firstTurn
+#audit_axioms firstTurn_close
+#audit_axioms sideFaces_subset
+#audit_axioms subset_sideFaces
+#audit_axioms enclosedPocketRegionSucc
+#audit_axioms length_filter_le_of_bridgeFree
+#audit_axioms enclosedLeastAreaFilterSucc_of_doubling
