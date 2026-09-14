@@ -130,7 +130,7 @@ theorem unitsToFinitaryShift_injective : Function.Injective unitsToFinitaryShift
     congrArg (fun x : FinitaryGL.FinitaryShift (ZMod 2) =>
       ((x.left : FinitaryGL.GLfin (ZMod 2)) : LinearMap.GeneralLinearGroup (ZMod 2) (ℤ →₀ ZMod 2)))
       hu
-  have he : tailExponent u = 0 := Multiplicative.ofAdd_eq_one.1 hr
+  have he : tailExponent u = 0 := congrArg toAdd hr
   rw [he, neg_zero, zpow_zero, mul_one] at hl
   refine Units.ext (rho_injective (ZMod 2) ?_)
   rw [Units.val_one, map_one]
@@ -194,9 +194,10 @@ def PrintedTwoEndedUnitsLEFGLThreeNotMF : Prop :=
 /-- The conclusion of the remark, from LEF of `GL_fin(ℤ, 𝔽₂) ⋊ ℤ` (tex 1786–1791) and
 `prop:bilateral-three` at `n = 3`, since `R_X` is not directly finite. -/
 theorem printedTwoEndedUnitsLEFGLThreeNotMF_of_pieces
-    (hLEF : IsLEF (FinitaryGL.FinitaryShift (ZMod 2))) (hB : PrintedBilateralThree) :
+    (hLEF : IsLEF (FinitaryGL.FinitaryShift (ZMod 2))) (hB : Manuscript.ChainCore.BilateralThree.PrintedBilateralThree) :
     PrintedTwoEndedUnitsLEFGLThreeNotMF := by
   haveI : Nonempty TwoEnded := ⟨posInf⟩
+  unfold Manuscript.ChainCore.BilateralThree.PrintedBilateralThree at hB
   refine ⟨isLEF_of_injective unitsEquivFinitaryShift.toMonoidHom
     unitsEquivFinitaryShift.injective hLEF, fun hMF => ?_⟩
   have h := hB TwoEnded shift (ZMod 2) 3 le_rfl
