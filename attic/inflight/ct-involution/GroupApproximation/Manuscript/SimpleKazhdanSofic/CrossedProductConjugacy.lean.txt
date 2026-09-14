@@ -83,12 +83,12 @@ noncomputable def conjRingEquiv (φ : X ≃ₜ Y) (hφ : ∀ x, φ (T x) = S (φ
 theorem conjRingEquiv_coeff (φ : X ≃ₜ Y) (hφ : ∀ x, φ (T x) = S (φ x)) (f : LocallyConstant X k) :
     conjRingEquiv k φ hφ (coeff T k f) =
       coeff S k (LocallyConstant.comap ⟨⇑φ.symm, φ.symm.continuous⟩ f) :=
-  comap_coeff k _ _ f
+  comap_coeff k ⟨⇑φ.symm, φ.symm.continuous⟩ (fun y => symm_conj φ hφ y) f
 
 theorem conjRingEquiv_unit_zpow (φ : X ≃ₜ Y) (hφ : ∀ x, φ (T x) = S (φ x)) (j : ℤ) :
     conjRingEquiv k φ hφ ((unit T k ^ j : (ClopenCrossedProduct T k)ˣ) : ClopenCrossedProduct T k) =
       ((unit S k ^ j : (ClopenCrossedProduct S k)ˣ) : ClopenCrossedProduct S k) :=
-  comap_unit_zpow k _ _ j
+  comap_unit_zpow k ⟨⇑φ.symm, φ.symm.continuous⟩ (fun y => symm_conj φ hφ y) j
 
 end Conjugacy
 
