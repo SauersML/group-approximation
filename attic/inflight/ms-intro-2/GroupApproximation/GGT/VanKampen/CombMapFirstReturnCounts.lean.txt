@@ -1,0 +1,176 @@
+import GroupApproximation.GGT.VanKampen.CombMapRestriction
+import GroupApproximation.GGT.VanKampen.PermFirstReturnOrbits
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Counting the cells of a first-return deletion
+
+`CombMap.PredicateRestriction.toCombMap M keep hkeep` deletes the darts outside `keep` and takes
+the first return of the vertex rotation.  With `X` the deleted darts and `v₀` the vertices all of
+whose darts are deleted:
+
+* `vertexCount_le`: `V ≤ V' + v₀`, since the first return neither splits nor joins retained
+  rotation orbits;
+* `dartCount_add`: `D' + |X| = D`;
+* `faceCount_le`: `F ≤ F'` when every deleted dart has the same face on both sides and every face
+  keeps a dart, since a first-return face stays inside one old face;
+* `two_mul_eulerCharacteristic_le`: `2 χ(M) + |X| ≤ 2 χ(M') + 2 v₀`.
+
+`CombMap.card_starts_add_two_mul_le`: if the rotation fixes no dart of `X`, the darts of `X`
+entered from outside `X` at their vertex, plus twice the vertices all of whose darts lie in `X`,
+number at most `|X|`.
+
+Infrastructure for the cutting transitions of Osin's Lemma 9.4 (arXiv:math/0411039v3, §9);
+certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.CombMap
+
+open Equiv
+open scoped Classical
+
+universe u
+
+namespace PredicateRestriction
+
+variable (M : CombMap.{u}) (keep : M.Dart → Prop) (hkeep : ∀ d, keep (M.alpha d) ↔ keep d)
+
+/-- `V ≤ V' + v₀`. -/
+theorem vertexCount_le :
+    M.vertexCount ≤ (toCombMap M keep hkeep).vertexCount +
+      Nat.card {v : M.Vertex // ∀ d, M.vertexOf d = v → ¬ keep d} := by
+  let f : (toCombMap M keep hkeep).Vertex ⊕ {v : M.Vertex // ∀ d, M.vertexOf d = v → ¬ keep d} →
+      M.Vertex :=
+    Sum.elim (PermFirstReturn.orbitMap M.sigma (sigma M keep) (Function.Embedding.subtype keep)
+      (sigma_firstReturn M keep)) Subtype.val
+  have hsurj : Function.Surjective f := by
+    intro v
+    by_cases h : ∃ d, M.vertexOf d = v ∧ keep d
+    · obtain ⟨d, rfl, hd⟩ := h
+      exact ⟨Sum.inl (Quotient.mk'' ⟨d, hd⟩), rfl⟩
+    · push_neg at h
+      exact ⟨Sum.inr ⟨v, h⟩, rfl⟩
+  change Nat.card M.Vertex ≤ Nat.card (toCombMap M keep hkeep).Vertex +
+    Nat.card {v : M.Vertex // ∀ d, M.vertexOf d = v → ¬ keep d}
+  rw [← Nat.card_sum]
+  exact Nat.card_le_card_of_surjective f hsurj
+
+/-- `D' + |X| = D`. -/
+theorem dartCount_add :
+    (toCombMap M keep hkeep).dartCount + Nat.card {d : M.Dart // ¬ keep d} = M.dartCount := by
+  change Nat.card {d : M.Dart // keep d} + Nat.card {d : M.Dart // ¬ keep d} = Nat.card M.Dart
+  rw [← Nat.card_sum]
+  exact Nat.card_congr (Equiv.sumCompl keep)
+
+/-- A first-return face step stays inside the old face, when every deleted dart has the same face
+on both sides. -/
+theorem faceOf_facePerm_eq (hdel : ∀ y, ¬ keep y → M.faceOf (M.alpha y) = M.faceOf y)
+    (b : (toCombMap M keep hkeep).Dart) :
+    M.faceOf ((toCombMap M keep hkeep).facePerm b).1 = M.faceOf b.1 := by
+  obtain ⟨m, hm, heq, hskip⟩ := sigma_firstReturn M keep (alpha M keep hkeep b)
+  have key : ∀ k, 0 < k → k ≤ m →
+      M.faceOf ((M.sigma ^ k) (M.alpha b.1)) = M.faceOf b.1 := by
+    intro k hk hkm
+    induction k with
+    | zero => omega
+    | succ k ih =>
+      rcases Nat.eq_zero_or_pos k with rfl | hkpos
+      · rw [zero_add, pow_one]
+        exact M.faceOf_facePerm b.1
+      · have hy : ¬ keep ((M.sigma ^ k) (M.alpha b.1)) := fun hk' =>
+          hskip k hkpos (by omega) ⟨⟨_, hk'⟩, rfl⟩
+        have h1 : M.faceOf (M.sigma ((M.sigma ^ k) (M.alpha b.1))) =
+            M.faceOf (M.alpha ((M.sigma ^ k) (M.alpha b.1))) := by
+          have h2 := M.faceOf_facePerm (M.alpha ((M.sigma ^ k) (M.alpha b.1)))
+          rwa [CombMap.facePerm, Perm.mul_apply, M.alpha_involutive] at h2
+        rw [pow_succ', Perm.mul_apply, h1, hdel _ hy, ih hkpos (by omega)]
+  have h3 := key m hm le_rfl
+  rw [heq] at h3
+  exact h3
+
+/-- `F ≤ F'`. -/
+theorem faceCount_le (hdel : ∀ y, ¬ keep y → M.faceOf (M.alpha y) = M.faceOf y)
+    (hface : ∀ d, ∃ d', keep d' ∧ M.faceOf d' = M.faceOf d) :
+    M.faceCount ≤ (toCombMap M keep hkeep).faceCount := by
+  have hinv : ∀ (n : ℕ) (b : (toCombMap M keep hkeep).Dart),
+      M.faceOf (((toCombMap M keep hkeep).facePerm ^ n) b).1 = M.faceOf b.1 := by
+    intro n
+    induction n with
+    | zero => intro b; rfl
+    | succ n ih =>
+      intro b
+      rw [pow_succ', Perm.mul_apply, faceOf_facePerm_eq M keep hkeep hdel, ih]
+  let g : (toCombMap M keep hkeep).Face → M.Face :=
+    Quotient.lift (fun b => M.faceOf b.1) fun b c hbc => by
+      obtain ⟨n, rfl⟩ := Equiv.Perm.SameCycle.exists_nat_pow_eq
+        (hbc : (toCombMap M keep hkeep).facePerm.SameCycle b c)
+      exact (hinv n b).symm
+  have hsurj : Function.Surjective g := by
+    intro F
+    obtain ⟨d, rfl⟩ := Quotient.exists_rep F
+    obtain ⟨d', hd', hdd⟩ := hface d
+    exact ⟨Quotient.mk'' ⟨d', hd'⟩, hdd⟩
+  exact Nat.card_le_card_of_surjective g hsurj
+
+/-- **`2 χ(M) + |X| ≤ 2 χ(M') + 2 v₀`.** -/
+theorem two_mul_eulerCharacteristic_le
+    (hdel : ∀ y, ¬ keep y → M.faceOf (M.alpha y) = M.faceOf y)
+    (hface : ∀ d, ∃ d', keep d' ∧ M.faceOf d' = M.faceOf d) :
+    2 * M.eulerCharacteristic + (Nat.card {d : M.Dart // ¬ keep d} : ℤ) ≤
+      2 * (toCombMap M keep hkeep).eulerCharacteristic +
+        2 * (Nat.card {v : M.Vertex // ∀ d, M.vertexOf d = v → ¬ keep d} : ℤ) := by
+  have hv := vertexCount_le M keep hkeep
+  have hd := dartCount_add M keep hkeep
+  have hf := faceCount_le M keep hkeep hdel hface
+  have hM := M.dartCount_eq_two_mul_edgeCount
+  have hN := (toCombMap M keep hkeep).dartCount_eq_two_mul_edgeCount
+  unfold CombMap.eulerCharacteristic
+  omega
+
+end PredicateRestriction
+
+/-- **Entries into `X` and interior vertices.**  If the rotation fixes no dart of `X`, the darts of
+`X` whose predecessor at their vertex is outside `X`, plus twice the vertices all of whose darts
+lie in `X`, number at most `|X|`. -/
+theorem card_starts_add_two_mul_le (M : CombMap.{u}) (X : Finset M.Dart)
+    (hfix : ∀ x ∈ X, M.sigma x ≠ x) :
+    (X.filter fun y => M.sigma.symm y ∉ X).card +
+        2 * Nat.card {v : M.Vertex // ∀ d, M.vertexOf d = v → d ∈ X} ≤ X.card := by
+  have hvs : ∀ y, M.vertexOf (M.sigma.symm y) = M.vertexOf y := fun y => by
+    have h := M.vertexOf_sigma (M.sigma.symm y)
+    rwa [Perm.apply_symm_apply] at h
+  let A := X.filter fun y => ∀ d, M.vertexOf d = M.vertexOf y → d ∈ X
+  let V₀ := Finset.univ.filter fun v : M.Vertex => ∀ d, M.vertexOf d = v → d ∈ X
+  have hdisj : Disjoint (X.filter fun y => M.sigma.symm y ∉ X) A := by
+    rw [Finset.disjoint_left]
+    intro y hy hyA
+    exact (Finset.mem_filter.mp hy).2 ((Finset.mem_filter.mp hyA).2 _ (hvs y))
+  have hunion : (X.filter fun y => M.sigma.symm y ∉ X) ∪ A ⊆ X :=
+    Finset.union_subset (Finset.filter_subset _ _) (Finset.filter_subset _ _)
+  have h1 := Finset.card_le_card hunion
+  rw [Finset.card_union_of_disjoint hdisj] at h1
+  have hmaps : ∀ y ∈ A, M.vertexOf y ∈ V₀ := fun y hy =>
+    Finset.mem_filter.mpr ⟨Finset.mem_univ _, (Finset.mem_filter.mp hy).2⟩
+  have hfib : ∀ v ∈ V₀, 2 ≤ (A.filter fun y => M.vertexOf y = v).card := by
+    intro v hv
+    obtain ⟨d, rfl⟩ := Quotient.exists_rep v
+    have hall := (Finset.mem_filter.mp hv).2
+    have hdX : d ∈ X := hall d rfl
+    have hdA : d ∈ A := Finset.mem_filter.mpr ⟨hdX, fun d' hd' => hall d' hd'⟩
+    have hsdA : M.sigma d ∈ A :=
+      Finset.mem_filter.mpr ⟨hall _ (M.vertexOf_sigma d), fun d' hd' =>
+        hall d' (hd'.trans (M.vertexOf_sigma d))⟩
+    exact Finset.one_lt_card.mpr ⟨d, Finset.mem_filter.mpr ⟨hdA, rfl⟩, M.sigma d,
+      Finset.mem_filter.mpr ⟨hsdA, M.vertexOf_sigma d⟩, (hfix d hdX).symm⟩
+  have h2 : V₀.card • 2 ≤ ∑ v ∈ V₀, (A.filter fun y => M.vertexOf y = v).card :=
+    Finset.card_nsmul_le_sum _ _ _ hfib
+  rw [← Finset.card_eq_sum_card_fiberwise hmaps, smul_eq_mul] at h2
+  have h3 : Nat.card {v : M.Vertex // ∀ d, M.vertexOf d = v → d ∈ X} = V₀.card := by
+    rw [Nat.card_eq_fintype_card, Fintype.card_subtype]
+  rw [h3]
+  omega
+
+end GroupApproximation.GGT.VanKampen.CombMap
+
+#audit_axioms GroupApproximation.GGT.VanKampen.CombMap.PredicateRestriction.two_mul_eulerCharacteristic_le
+#audit_axioms GroupApproximation.GGT.VanKampen.CombMap.card_starts_add_two_mul_le
