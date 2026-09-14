@@ -1,0 +1,119 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.MinimalSubshiftPeriodicWord
+import GroupApproximation.Dynamics.SubshiftFiniteWindow
+import GroupApproximation.Pestov91.LEFCrossedProduct
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The finite ring models along the periodic word
+
+`simple_kazhdan_sofic_group.tex` at bf961c128, "Finite models", tex 131–144:
+
+> Let $P\delta_n=\delta_{n+1}$ on $\F_2^{\Z/N\Z}$. If $f$ depends on a window $[-\rho,\rho]$,
+> evaluate its local table along $y$ to obtain a diagonal matrix $D_y(f)$. Send
+> $\sum_j f_ju^j \mapsto \sum_j D_y(f_j)P^j$. For any fixed finite list of sums and products in $R$,
+> choose $k$ larger than all windows involved, including those shifted in the products. The
+> relation $P^iD_y(f)P^{-i}=D_y(f\circ T^{-i})$ then preserves every listed operation. Nonzero
+> coefficients remain nonzero, since every allowed window occurs in $y$. Taking $N$ larger than
+> twice the largest absolute exponent makes the corresponding cyclic diagonals distinct; hence
+> nonzero differences also remain nonzero.
+
+The model `∑_j f_j u^j ↦ ∑_j D_y(f_j) P^j` is Pestov91's `periodicModel` (`single g a ↦
+diagonal (D a) * shiftMatrix K N (toAdd g)`).  Its three printed properties are the hypotheses of
+`Pestov91.isLEFRing_skewMonoidAlgebra_of_periodic`, supplied here by the periodic word `y` of
+`MinimalSubshiftPeriodicWord` (one `y` carrying every word of length `2k + 1`):
+
+* `D_y` evaluates a coefficient at points of `X` realizing the windows of `y`
+  (`WordGraph.evalFamily`), with `k` at least every radius (`WordGraph.exists_radius`) plus the
+  degree bound;
+* covariance `D_y(f ∘ T^{-i})(n) = D_y(f)(n - i)` from `WordGraph.zpow_apply_coord`;
+* nonzero coefficients stay nonzero, since the window of a witness point occurs in `y`;
+* `N ≥ 2B + 1`, so the distinct exponents give distinct cyclic diagonals.
+
+* `isLEFRing_clopenCrossedProduct_of_minimal`: `R_X = LC(X, k) ⋊_T ℤ` is an LEF ring for a minimal
+  subshift and every finite ring `k`.
+* `PrintedFiniteModelsRingLEF`, `printedFiniteModelsRingLEF`: the note's ring `R` over `F₂`, closed.
+-/
+
+namespace GroupApproximation
+namespace SimpleKazhdanSofic
+
+open SymbolicDynamics.FullShift WordGraph
+open Multiplicative (toAdd)
+
+/-- **The ring models of the note** (tex 131–144): for a minimal subshift over a finite alphabet,
+`LC(X, k) ⋊_T ℤ` is an LEF ring over every finite ring `k`. -/
+theorem isLEFRing_clopenCrossedProduct_of_minimal {A : Type} [TopologicalSpace A]
+    [DiscreteTopology A] [Finite A] {X : Set (ℤ → A)} (hXc : IsClosed X)
+    (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X) (hne : X.Nonempty) (hmin : IsMinimalSubshift X)
+    (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1) (k : Type) [Ring k] [Finite k] :
+    Pestov91.IsLEFRing (ClopenCrossedProduct T k) := by
+  classical
+  refine Pestov91.isLEFRing_skewMonoidAlgebra_of_periodic fun S B => ?_
+  choose r hr using fun a : ClopenCoeff T k => exists_radius hXc ((ClopenCoeff.of T k).symm a)
+  obtain ⟨ρ, hρr⟩ : ∃ ρ : ℕ, ∀ a ∈ S, r a + B ≤ ρ :=
+    ⟨S.sup r + B, fun a ha => by have h := Finset.le_sup (f := r) ha; omega⟩
+  obtain ⟨N, hNz, y, hN0, hyL, hyall⟩ :=
+    exists_periodic_sameWords hXc hX hne hmin ρ (2 * B + 1)
+  choose z hzX hzw using hyL
+  obtain ⟨w, hw⟩ : ∃ w : ZMod N → ↥X, ∀ (n : ZMod N) (i : ℤ), |i| ≤ ρ →
+      (w n).1 i = y (n + ((ρ + i : ℤ) : ZMod N)) := by
+    refine ⟨fun n => ⟨shift (ρ : ℤ) (z n), hX ρ (hzX n)⟩, fun n i hi => ?_⟩
+    obtain ⟨hi1, hi2⟩ := abs_le.mp hi
+    obtain ⟨j, hj⟩ : ∃ j : ℕ, (j : ℤ) = ρ + i := ⟨(ρ + i).toNat, Int.toNat_of_nonneg (by omega)⟩
+    have h := congrFun (hzw n) ⟨j, by omega⟩
+    simp only [word_apply, zero_add] at h
+    show z n (ρ + i) = _
+    rw [← hj, Int.cast_natCast]
+    exact h
+  refine ⟨Unit → k, inferInstance, inferInstance, N, hNz, evalFamily T k (fun _ : Unit => w),
+    by omega, fun a ha hne0 hD => ?_, fun a ha g hg n => ?_⟩
+  · obtain ⟨x0, hx0⟩ : ∃ x0 : ↥X, (ClopenCoeff.of T k).symm a x0 ≠ 0 := by
+      by_contra h
+      push Not at h
+      exact hne0 ((ClopenCoeff.of T k).symm.map_eq_zero_iff.mp
+        (LocallyConstant.ext h : (ClopenCoeff.of T k).symm a = 0))
+    obtain ⟨n0, hn0⟩ := hyall _ (word_mem_language hX x0.2 (-(ρ : ℤ)) (2 * ρ + 1))
+    refine hx0 ?_
+    have h0 : (ClopenCoeff.of T k).symm a (w n0) = 0 := congrFun (congrFun hD n0) ()
+    rw [← h0]
+    refine hr a _ _ fun i hi => ?_
+    have hra := hρr a ha
+    obtain ⟨hi1, hi2⟩ := abs_le.mp hi
+    obtain ⟨j, hj⟩ : ∃ j : ℕ, (j : ℤ) = ρ + i := ⟨(ρ + i).toNat, Int.toNat_of_nonneg (by omega)⟩
+    rw [hw n0 i (abs_le.mpr ⟨by omega, by omega⟩), ← hj, Int.cast_natCast]
+    have h := congrFun hn0 ⟨j, by omega⟩
+    simp only [word_apply] at h
+    rw [h]
+    exact congrArg _ (by omega)
+  · funext s
+    show (ClopenCoeff.of T k).symm a ((T ^ (-toAdd g)) (w n)) =
+      (ClopenCoeff.of T k).symm a (w (n - ((toAdd g : ℤ) : ZMod N)))
+    refine hr a _ _ fun i hi => ?_
+    have hra := hρr a ha
+    obtain ⟨hg1, hg2⟩ := abs_le.mp hg
+    obtain ⟨hi1, hi2⟩ := abs_le.mp hi
+    rw [zpow_apply_coord hT, hw n (-toAdd g + i) (abs_le.mpr ⟨by omega, by omega⟩),
+      hw (n - ((toAdd g : ℤ) : ZMod N)) i (abs_le.mpr ⟨by omega, by omega⟩)]
+    congr 1
+    push_cast
+    ring
+
+/-- **The note's ring is LEF** (tex 118–144): for an infinite minimal subshift `X` over a finite
+alphabet with shift `T`, the ring `R = LC(X, F₂) ⋊_T ℤ` is an LEF ring. -/
+def PrintedFiniteModelsRingLEF : Prop :=
+  ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Finite A] (X : Set (ℤ → A)),
+    IsClosed X → ∀ (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X), X.Infinite → IsMinimalSubshift X →
+      Pestov91.IsLEFRing (ClopenCrossedProduct (shiftHomeomorph hX) (ZMod 2))
+
+theorem printedFiniteModelsRingLEF : PrintedFiniteModelsRingLEF :=
+  fun _ _ _ _ _ hXc hX hinf hmin =>
+    isLEFRing_clopenCrossedProduct_of_minimal hXc hX hinf.nonempty hmin _ (shiftHomeomorph_apply hX)
+      (ZMod 2)
+
+end SimpleKazhdanSofic
+end GroupApproximation
+
+/-! ### Axiom audit -/
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.isLEFRing_clopenCrossedProduct_of_minimal
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedFiniteModelsRingLEF
