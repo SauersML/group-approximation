@@ -134,11 +134,25 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     - `SectionPocketFaceSetProperInput`, whose conclusion adds `K.sourceArc.length < (cellDarts X′ K.source).length`;
     - its producer residual `SectionPocketProperGapStatement`: `x.arc.length + Gap.length + y.arc.length` is below the cell
       length.
-- **Proposed binder-7 spelling** (to be agreed with ms-cite-1, then main): `PocketPinchLabelledSectionStatement`.
-  - Premises: the OsinCCondition prefix, `X.LeastArea`, letter labels, `K.ClosedWalk`, and a proper source arc.
-  - Conclusion: `∃ X′ K′`, an O-equivalence and `K′.Simple`.
-  - It has no `t₂` premise.
-  - The Pos model is excluded, since its `t₁` is full.
+- **LANDED d07c38405 `Estimating/OsinPocketPinchSection`** (probe 0913-192709-1953 GREEN; unwired, queued for wiring). This is the
+  spelling main ruled and agreed with ms-cite-1. ms-cite-1 had proposed the section-family context instead; it was declined
+  because it does not tie `K` to the regions.
+  - `SectionPocketFaceSetProperInput` (with `.toInput`) and `OsinSectionPocketFaceSetProperSectionStatement`: binder 6 with
+    `K.sourceArc.length < (cellDarts X′ K.source).length`.
+  - `PocketPinchLabelledSectionStatement`.
+    - Premises: the OsinCCondition prefix, `X.LeastArea`, letter labels, `K.ClosedWalk`, and a proper source arc.
+    - Conclusion: `∃ X′ K′`, an O-equivalence and `K′.Simple`.
+    - No `t₂` premise, since the producer cannot supply one; that is the open truth risk.
+    - The ε = 1 model is excluded, since its `t₁` is full.
+  - `pocketPinchLabelledSectionStatement_of_pos`: the Section form follows from the Pos form, at `ε₀ = ρ₀ = 1`.
+  - `sectionPocketCutInput_of_residualsSection` and `osinSectionPocketCutSection_of_residualsSection` (thresholds `max ε₀`,
+    `max ρ₀`).
+  - `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopyProper`: the V2Copy route with binders 6 and 7 in these forms.
+    The name was sent to ct-bilateral-cell for its v3 waist.
+  - Open:
+    - w1-binder-6's `SectionPocketProperGapStatement`;
+    - model tests of the Section spelling: non-full `t₁` with sides at `ε`, and long relators under OsinCCondition;
+    - `CellPocketPinchPosStatement` (binder 5) likely needs the same respelling.
 - ms-intro-4 (binder 5, `CellPocketPinchPosStatement`) imports ArcTrim and FullArc; their helper names stay fixed. There is
   no generic boundary-cycle layer, and `exists_trimDouble` is at `PocketFaceSet` level.
 - Where the step route sticks: a full arc with a nonempty remainder and both sides at length exactly `ε`. No trim has
