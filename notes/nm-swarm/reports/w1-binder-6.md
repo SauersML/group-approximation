@@ -241,6 +241,55 @@ enclosed Prop. This lane owns (i). The work is additive; no owner's file is edit
 - `CLAIM glue model GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeGlueModel.lean`, landed first:
   `lakePocket.diagram` glued back into the lake along `[3,1]`.
 
+### BLOCKER (00:2x, sent to main): planarity of the glued map from Euler is false at map level
+
+- Configuration: on the lake rose `M`, take seam faces {Π, O} with cycle `[3,1]` (the piece is planar by
+  `lakeEulerBranch`), and `X` = the rose with outer face K, traversal `[0,2]`.
+  - The glued α pairs `m3 ↔ x1` and `m1 ↔ x3`. All four glued faces are monogons, so σ has the cycles {m1, x3} and
+    {m3, x1}.
+  - The glued map has two components and χ = 4.
+- Criterion, permutations on the k seam positions: χ(glue) − 2 = cyc(τσ_X) + cyc(sh·σ_in) − cyc(τσ_in) − cyc(sh·σ_X).
+  - τ is the outside boundary step and `sh` the list shift.
+  - Following means τ = sh, and the defect vanishes for every copy. Without following it depends on how the copy's
+    outer corners are merged.
+- Diagram level: not refuted.
+  - A bad O-equivalent copy needs its cells split across two lobes, and gluing it leaves a spherical component.
+  - If that component holds a relator cell, removing it contradicts least area of Δ.
+  - So the transports need a component argument, not a swap of the planarity lemma. Ruling asked.
+
+### Ruling (a), component route (main, 02:xx and 08:2x); state after the 08:1x reboot
+
+- Infra outage: `/private/tmp` was wiped, taking `nm/` and my `nm/backup` copies. Per main, authoring is offline only.
+  - Drafts in the tree: `Estimating/OsinPocketFullArcLakeGlueModel.lean`. Probe 0914-020223-33055 was red on a `▸` motive
+    in `outerBoundary_get`; it is fixed locally with `Fin.cast (congrArg List.length (boundary_face_darts 0))`.
+    Not re-probed and not landed.
+  - Surviving attic copies on origin: glue model v1 0ab9c3abf, lake model v2 95d402617, kept-cell section 4c32eeef7.
+  - Local report edits since 420a7c7c4 are not landed.
+- Step 2 mechanism, hand argument:
+  - In the lake, a bad copy with the corners merged (two lobes) glues into two components. One is the source cell `Π`
+    with one lobe, which is a spherical subcomplex holding a relator cell.
+  - Removing that component leaves a filling of `∂Δ` with fewer relator cells, against least area.
+  - So a copy of the pocket of a least-area Δ is never bad in this way, whatever the group. The labelled-lake calibration
+    therefore has to use a Δ that is not least area.
+  - Planned calibration: the rose with a third loop `e` inside `K`, so the pocket holds `A = [x, e]` and `B = [y, e⁻¹]`,
+    with `Π = [x⁻¹]`. Over `Perm (Fin 3)`, take `x, y` transpositions and `e` a 3-cycle.
+    - The copy pinches the corners into two lobes, lobe 1 holding `A` and lobe 2 holding `B`. G-faces encode
+      `h (x e) h⁻¹ = x`.
+    - Expected: the glue splits, `{Π, A}` sit in the non-exterior sphere, and removing them fills `[y]` with one relator.
+      This is consistent with Δ not being least area, since `y` is conjugate to `x⁻¹`.
+- Step 3, the exterior component is planar: open, and the risky step.
+  - In corner permutations on the k seam positions, χ(glue) − 2 = k + cyc(σ_out σ_X) − cyc(σ_out sh) − cyc(sh σ_X).
+  - If the defect were negative with the glue connected, there would be a handle and no sphere to remove.
+  - Tried: k = 4, complement pinched at corners {0,2}, copy pinched at {1,3}. The glue is a ring of four digons, a sphere
+    (V = 2, E = 4, F = 4). No handle found yet.
+- Missing API for the route:
+  - components of a `CombMap`: `CombMapRestriction.toCombMap` with `keep` the `EqvGen Adjacent` class, where the first
+    return is σ itself;
+  - a `DiscDiagram` from a planar component carrying the cells on it (cf. `DiscDiagram.ofPlanar`).
+- Binder 6's two-arc producer (a proper `t_2` at section count ≥ 2) was queued here at 08:2x. ct-return-tower resumed
+  and took it back, so this lane stays on the component route.
+- Infra rebuilt (~09:xx) at the new `NM` path. Every green record was lost, so re-probe before landing.
+
 Design:
 - Γ₁ is the enclosed subdiagram Ξ of the pocket walk. Its faces are `sideFaces X K.walk`, with outside walk
   `invDarts X K.walk`, through ms-traces-2's `ClosedWalkEnclosedSubdiagramStatement` (named) and
