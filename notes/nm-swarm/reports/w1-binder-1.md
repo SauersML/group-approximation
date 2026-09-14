@@ -228,6 +228,24 @@ CLAIM two-gon copy route GroupApproximation/GGT/VanKampen/Estimating/OsinAppendi
   - `OsinTwoGonCleanCopySectionStatement`, `osinTwoGonHoldsSection_of_cleanCopyEuler : … → OsinTwoGonDecompositionEulerSectionStatement → OsinTwoGonHoldsSectionStatement`.
 - The respelled section leaf went to ct-rank-two-limit.
 
+## CLAIM 10 (main 09:1x: the producer of `TwoGonCleanCopyInput`)
+
+CLAIM two-gon doubling transport GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonDoublingTransport.lean
+CLAIM outer thickening invariant drivers GroupApproximation/GGT/VanKampen/SurgeryOuterThickeningInvariant.lean
+CLAIM clean copy producer GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCleanCopy.lean
+
+- Model test of one doubling step: derived against the definitions, no Lean model, no counterexample.
+  - `FaceEdgeDoubling.dartImage` sends `w_j` to the new dart and embeds every other dart. The doubled face reads its old traversal through `dartImage`, and every other face keeps its darts.
+  - In each thickening the doubled dart is a spur, outer-cell, outer-side, cell-edge, cell-side or region-pair dart: a side or boundary-edge dart, never the head of a source or target arc. So the retained darts of `phiMapO` (the crossings of the component) are carried by `embed`.
+  - The first return of the collapsed face permutation keeps its retained order around every face, and the digon holds no retained dart. So `phiMapO` is carried on retained darts with the same rotation: `IsTwoGon`, the labels and `¬GapAtOHoldsCorner` transport (target profiles are preserved).
+  - `¬HoldsCellO`: face classes gain only the digon's darts, a G-face; cells correspond through `cellMap`.
+  - `ExtPhiData` on the copy is free: `S.pairwise`, `innerGRegion.cells_avoid` under least area, `nondegenerate`, `noLoops`, then `mono`.
+  - To check: the region-pair step carries its holder through `Holding.holdingCandidate`, not along arcs. And `IsCellSideDart` needs cell faces of length > 1, so `side_cell` for a length-1 cell face is not covered by `cellSideThickening`. `cell_self` holds automatically for length-1 faces, since `alpha` is fixed-point-free.
+- Plan:
+  - (1) the per-step invariant `HasCleanTwoGon` and its transport through one doubling carried along arcs;
+  - (2) invariant drivers `exists_spurFree_of_invariant`, `exists_cellFree_of_invariant`, `exists_sideFree_of_invariant`, replicating the strong inductions of the landed drivers;
+  - (3) the composition, with `CopyCleanAt` from the freeness predicates, giving `twoGonCleanCopyInput`.
+
 ## Current C6′ leaves (binder 4)
 
 `osinTwoGonHoldsSection_of_cleanCopyEuler` consumes two named section Props:
