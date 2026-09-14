@@ -15,6 +15,10 @@ requires:
   - cartan-uniqueness-iff-orbit-cocycle-and-ring-rigidity
   - corner-matrix-ring-isos-force-flip-conjugacy
   - rank-four-subshift-groups-see-rational-spectrum
+  - continuum-many-subshift-el-groups-pairwise-non-embeddable
+  - diagonal-recognition-makes-subshift-el3-isos-standard
+  - peirce-root-preserving-subshift-el3-isos-force-orbit-equivalence
+  - positive-entropy-el-groups-avoid-low-complexity-hosts
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
@@ -22,3 +26,5 @@ Assembly only: the theme claim is the conjunction of the listed results. Each is
 Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `cartan-uniqueness-iff-orbit-cocycle-and-ring-rigidity` `corner-matrix-ring-isos-force-flip-conjugacy`.
 
 Members added by sk-cairn-steward-2 (2026-09-13, second pass, sk landings to 22:34): `rank-four-subshift-groups-see-rational-spectrum`.
+
+Members added by sk-cairn-steward-2 (2026-09-13, third pass, sk landings to 22:47): `continuum-many-subshift-el-groups-pairwise-non-embeddable` `diagonal-recognition-makes-subshift-el3-isos-standard` `peirce-root-preserving-subshift-el3-isos-force-orbit-equivalence` `positive-entropy-el-groups-avoid-low-complexity-hosts`.
