@@ -4,45 +4,44 @@ id: kl-counterexample-can-be-superperfect-quasisimple
 kind: claim
 title: Any Kervaire--Laudenbach counterexample can be taken two-generator superperfect and quasisimple
 distinct_from:
-  kl-counterexample-can-be-two-generator-simple: that reduces a failure to a simple coefficient group, whose Schur multiplier can be nonzero; this passes to its universal central extension, which has trivial first and second homology and is not simple when the multiplier is nonzero.
-  kl-counterexample-can-be-finitely-presented-simple: that asks for a finitely presented simple counterexample and is open; this proves only that finite presentation passes from a simple counterexample to its universal central extension.
-  universal-schur-injectivity-for-nonsingular-adjunctions: that is the universal degree-two injectivity statement; this shows that over the reduced coefficient groups every Schur kernel is zero for trivial reasons, so degree-two information of the coefficient group itself cannot certify a failure.
+  kl-counterexample-can-be-two-generator-simple: that reduces a failure to a simple coefficient group, whose Schur multiplier can be nonzero; this asks for a failure over a group with trivial first and second homology, which is not simple when that multiplier is nonzero.
+  kl-simple-failure-universal-cover-collapses-when-centralized: that is the established statement that the universal central extension of a simple counterexample collapses in the centralized adjunction; this asks for a failure in the plain adjunction.
+  universal-schur-injectivity-for-nonsingular-adjunctions: that is the universal degree-two injectivity statement; a witness for this would kill coefficients over a group whose every Schur kernel is zero for trivial reasons.
 ---
 
-If `kervaire-laudenbach-nonsingular-conjecture` fails, it fails over a
-two-generator group `S^` that is
+**OPEN.** If `kervaire-laudenbach-nonsingular-conjecture` fails, then it fails
+over a two-generator group `G` with `H_1(G; Z) = H_2(G; Z) = 0` and
+`G/Z(G)` nonabelian simple.
 
-* **superperfect:** `H_1(S^; Z) = H_2(S^; Z) = 0`;
-* **quasisimple:** perfect, with `S^/Z(S^)` nonabelian simple and
-  `Z(S^) = H_2(S^/Z(S^); Z)`;
+A witness would kill coefficients while its Schur kernel is zero, since the
+coefficient group has `H_2 = 0`.
 
-and the failure is total: for a nonsingular `w^ in S^ * <t>` of exponent sum
-`m`, all of `S^` dies in `(S^ * <t>)/<<w^>>`.
+**Correction (2026-09-13).** 667dfcf9d first landed this node as ESTABLISHED,
+via the universal central extension `S^` of a simple counterexample `S`. That
+derivation is wrong at its collapse step:
 
-Consequently the conjecture holds for all groups if and only if it holds for
-two-generator superperfect quasisimple groups.
+* The kernel of `S^ * <t> -> S * <t>` is the normal closure of `A = Z(S^)`.
+* So the image of `S^` in `(S^ * <t>)/<<w^>>` lies in the normal closure of the
+  image of `A`, not in that image itself, because `t` need not commute with
+  `A` there.
+* Only the centralized quotient `(S^ * <t>)/<<w^, [A, t]>>` is forced to
+  collapse. That is recorded in
+  `kl-simple-failure-universal-cover-collapses-when-centralized`, and the
+  route now targets that claim.
 
-**What the reduced counterexample must also satisfy.**
+## Attempts
 
-1. Every nontrivial quotient of `S^` is a central quotient `S^/N` with
-   `N <= Z(S^)`, and every one of them is again a total-collapse
-   counterexample. So `S^` has no nontrivial hyperlinear, MF or finite
-   quotient (`kervaire-laudenbach-holds-for-hyperlinear`,
-   `kervaire-laudenbach-holds-for-mf`).
-2. `K_2(S^, w^) <= H_2(S^) = 0`. Over the reduced coefficient group the
-   Schur kernel vanishes for trivial reasons, although the coefficient map
-   kills everything. So Schur injectivity *for the coefficient group itself*
-   does not imply coefficient injectivity. The implication
-   `kl-failure-yields-a-schur-kill` changes the coefficient group, to a torus
-   amalgam, before a killed class appears. `central-extension-kl-schur-criterion`
-   is vacuous here, since its quotient hypothesis fails for `S = S^/Z(S^)`.
-3. **Finite presentation passes up.** If the simple counterexample `S` is
-   finitely presented, so is `S^`. So a positive answer to
-   `kl-counterexample-can-be-finitely-presented-simple` gives a finitely
-   presented superperfect quasisimple counterexample.
-
-Novelty is not claimed. The universal central extension argument is
-elementary, and the route writes it out from Hopf's formula alone.
-
-DERIVATION
-kl-superperfect-quasisimple-counterexample-proof
+1. **Universal central extension.** Dies at the gap between the plain and the
+   centralized adjunction. This is the same gap as Attempt 1 of
+   `kl-implies-universal-schur-injectivity`: the extra relators `[a, t]` have
+   exponent sum zero, so the conjecture predicts nothing about the system.
+   Only one direction transfers: if all of `S^` dies in the plain adjunction,
+   all of `S` dies at `w`.
+2. **Acyclic overgroups.** Unclear.
+   * A failure passes to every overgroup of the coefficient group with the same
+     equation. If `a` lies in `<<w>>_(G * <t>)` and `G <= H`, then `a` lies in
+     `<<w>>_(H * <t>)`, and `a != 1` in `H`.
+   * So an embedding of every countable group in an acyclic group would give a
+     counterexample with `H_1 = H_2 = 0`. It would not be two-generated or
+     quasisimple.
+   * No such embedding theorem was pinned at source here.

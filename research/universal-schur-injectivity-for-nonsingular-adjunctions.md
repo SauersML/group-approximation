@@ -32,10 +32,14 @@ By `kl-failure-yields-a-schur-kill` this implies
    `aspherical-adjunction-has-zero-schur-kernel`. Not every adjunction is
    aspherical, so this is not a proof.
 3. **From the conjecture.** Open as `kl-implies-universal-schur-injectivity`.
-4. **Schur injectivity of the coefficient group alone is not enough.**
-   By `kl-counterexample-can-be-superperfect-quasisimple`, a failure exists
-   exactly when one exists over a two-generator superperfect quasisimple group.
-   There the Schur kernel is zero because `H_2 = 0`, while the coefficient
-   map kills everything. So any implication from degree-two injectivity to
-   coefficient injectivity must change the coefficient group, as the torus
-   amalgam of `kl-failure-yields-a-schur-kill` does.
+4. **Superperfect coefficient groups.** Unclear. Over a coefficient group
+   with `H_2 = 0` every Schur kernel is zero. So a failure there would show
+   that degree-two injectivity of the coefficient group itself cannot certify
+   coefficient injectivity, and any implication would have to change the
+   coefficient group, as the torus amalgam of `kl-failure-yields-a-schur-kill`
+   does. Whether failures can be moved to such groups is the OPEN
+   `kl-counterexample-can-be-superperfect-quasisimple`. The universal central
+   extension of a simple counterexample is only known to collapse in the
+   centralized adjunction
+   (`kl-simple-failure-universal-cover-collapses-when-centralized`). 667dfcf9d
+   had stated the plain collapse, which was not proved.
