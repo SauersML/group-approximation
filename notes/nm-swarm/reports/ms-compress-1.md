@@ -169,3 +169,23 @@ Route note on `ed348643e2ad`: ρ_lm(Y_l) ⊆ Y_m is proved from the cyclic-edge 
 - Open pieces, owner ms-compress-1:
   1. Contacts. Euler on the planar object graph; no empty two-gons by `false_of_avoided_singleton` (unpinched bubble) or `PinchSplit.pinchSplitAbsorption` (pinched). First sub-lemma in progress: a two-side cell–cell polygon with no internal dart contradicts maximality (`ContiguityGeometry.ofSingletonFace` with empty sides, `targetBoundaryDarts (some j) = reverseDarts`, `inner_face` for the value).
   2. Cutting transitions. An entry marks a hole of the polygon that holds an object. `OsinLemma94CuttingSidesCount` bounds sides by entries, not entries by n, so this is new.
+
+## Contact piece, first bricks (09-14 ~00:4x)
+
+- **Split with ms-intro-2 (00:5x, their message).** ms-intro-2 proves `OsinLemma94CuttingTransitionInput` (CLAIM 318cd7abe) in new modules `Estimating/OsinLemma94CuttingTransitions*`. Route:
+  - transitions ≤ same-face starts;
+  - starts ≤ 2(e − v₀);
+  - Euler on the first-return restriction with a hitting set, giving e − v₀ ≤ 2n;
+  - K = 4.
+  It publishes `CombMapEulerHittingSet` and `CombMapFirstReturnCounts`. I keep `OsinLemma94ContactTransitionInput`. Neither lane edits the other's modules.
+- CLAIM two-sided bubble exclusions GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactBubble.lean
+- **LANDED 92b271c3b** (probe 0914-012859-82927 GREEN, BUILT). Queued for wiring. It imports `OsinLemma94LongTransitions` and `SurgeryPinchSplitAbsorption`.
+  - `face_value`: the face of a polygon reads a word of value one, through `DiscDiagram.inner_face` and `face_not_cell`.
+  - `false_of_twoCellSides`: no polygon has exactly two sides, along two different relator cells. The face is a singleton contiguity region with empty sides (`ContiguityGeometry.ofSingletonFace`) that no selected region contains, so `false_of_avoided_singleton` applies.
+  - `false_of_cellBoundarySides`: the same with the second side along one section of `∂Δ`. The bounds from `boundary_arc` are exactly the bounds `TargetsSectionIndex` asks for.
+  - `false_of_boundaryCellSides`: the section side first, re-based by `List.rotate_rotate` and `List.rotate_append_length_eq`.
+- Probe history:
+  - 0914-00xx and ~00:45: MSI master down (infra); watcher probed once `ssh -O check` succeeded.
+  - 0914-003538-8619: red. In the two-cell `hwalk`, `targetBoundaryDarts (some j)` reads `arc.reverseDarts` over the cycle `targetDarts (some j)`, definitionally but not syntactically equal to `cellDarts j`, so `simp` left the goal. Fixed with `simp only [List.append_nil]; rfl`.
+- Still open for the contact count: the Euler count itself (candidate tooling: ms-intro-2's `CombMapEulerHittingSet`), and pinched bubbles through `PinchSplit.pinchSplitAbsorption`.
+- Design notes for the Euler count of piece 1 (object multigraph D; degenerate faces and their exclusions): lane scratch `contact-euler-design.md`.
