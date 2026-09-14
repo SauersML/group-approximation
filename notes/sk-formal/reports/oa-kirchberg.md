@@ -33,6 +33,16 @@ CLAIM printed rows 88ecdc10f78b (Theorem 1.1 and Corollary 1.2) and a63ff00e499b
   - finish with the dense-generator upgrade (`amenableTraceModel_of_dense_generators`).
 - This consumes oa-hyperfinite's Pauli model `Hyperfinite.hyperfiniteFactor`: its matrix stages and trace-preserving expectations are not on origin yet.
 
+## CLAIM 2 (main, 09-14 09:2x)
+
+CLAIM closed forms of the four Kirchberg-binder consumers of `FactorizationProperty.lean` (l.204, 245, 283, 303) GroupApproximation/Manuscript/NinetyNineProblems/FactorizationPropertyClosed.lean
+CLAIM tip l.95 row 660dd9b4b09f, "Thom … not residually finite and so lacks the factorization property", with the inference carried GroupApproximation/Manuscript/SimpleKazhdanSofic/ThomFactorizationSentence.lean
+
+Grading plan for 660dd9b4b09f:
+- The sentence cites Thom for the existence of his group (a finitely generated Kazhdan LEF group that is not residually finite) and for "his example is not simple". Nothing later in the note uses that group, so both are credit: `attribution`, as skf-cite graded the Thom sentence at e80dcf20a.
+- The sentence asserts the inference "not residually finite and Kazhdan, so it lacks the factorization property". That is carried by a closed endpoint over every group.
+- Thom's construction itself stays the typed input `ThomSoficKazhdanNonResiduallyFiniteInput`; it is not proved here.
+
 ## CLOSED (09-14 09:1x): Kirchberg's Theorem 1.1
 
 - LANDED 9df1daac4 (probe 0914-090640, BUILT; `#audit_closed_axioms` passes):
