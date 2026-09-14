@@ -68,6 +68,7 @@ section VecMap
 variable {H : Type u} {K : Type v} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
   [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K] {Γ : Type w}
 
+omit [CompleteSpace H] [CompleteSpace K] in
 theorem memℓp_vecMap (U : H ≃ₗᵢ[ℂ] K) (f : VecHilbert Γ H) : Memℓp (fun γ : Γ ↦ U (f γ)) 2 := by
   apply memℓp_gen
   have h := (memℓp_gen_iff (by norm_num)).1 (lp.memℓp f)
@@ -103,10 +104,12 @@ def vecMap (U : H ≃ₗᵢ[ℂ] K) : VecHilbert Γ H ≃ₗᵢ[ℂ] VecHilbert 
     rw [lp.inner_eq_tsum, lp.inner_eq_tsum]
     exact tsum_congr fun γ ↦ U.inner_map_map (f γ) (g γ))
 
+omit [CompleteSpace H] [CompleteSpace K] in
 @[simp]
 theorem vecMap_apply (U : H ≃ₗᵢ[ℂ] K) (f : VecHilbert Γ H) (γ : Γ) : vecMap U f γ = U (f γ) :=
   rfl
 
+omit [CompleteSpace H] [CompleteSpace K] in
 theorem vecMap_symm_apply (U : H ≃ₗᵢ[ℂ] K) (g : VecHilbert Γ K) (γ : Γ) :
     (vecMap U).symm g γ = U.symm (g γ) :=
   rfl
