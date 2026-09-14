@@ -22,6 +22,24 @@ route's missing inputs.
 Interfaces: skf-degrees' `wordProblemOracle` and `wordProblemOracle_comp_injective`; sk-lef-assembly's `IsLEFHost` and
 `PrintedRecursivelyPresentedLEFHost`; `Setting.G`, `ClopenCrossedProduct`.
 
+## OUTCOME (10:1x): the target paragraphs were removed from the note; the modules are off-note
+
+- f34e9c0b1 (09:05, "Shorten the simple Kazhdan note to its main results and apply the final audits") removed both
+  target paragraphs, together with the Osajda remark and the CFKP, KMS, OsajdaRF and Rauzy bibitems. At the tip
+  8b36733d7 (census 9cb80166d) none of the keys above exists. The rows are superseded, and the rows file was never
+  landed.
+- Main ruling ~10:1x:
+  - land `SLThreeIntNoEmbedding` only after a GREEN probe with a BUILT line;
+  - stop (A) and the named printed-route Props;
+  - take all three modules out of the wire queue, since no sentence uses them.
+- Off-note modules on origin. None is queued for wiring and none carries a census row:
+  - `CrossedProductSiteAction` at 2a7e2ea6a;
+  - `SiteDegreeFiniteOrder` at 3e627e581;
+  - `SLThreeIntNoEmbedding` at 4d3fbeb96, probe 0914-100903-45257: BUILT, compiled, audits classical for
+    `printedSLThreeIntInNoGX` and `printedHeisenbergDistortion`.
+  The mathematics is standalone and true: SL₃(ℤ) embeds in no GL_m(LC(X,F₂)⋊ℤ), and in particular in no G_X.
+- This lane returns to the non-MF audit (`notes/nm-swarm/reports/audit-nm-4.md`).
+
 ## Ruling (main, ~09:0x)
 
 1. (B) along the printed route first.
