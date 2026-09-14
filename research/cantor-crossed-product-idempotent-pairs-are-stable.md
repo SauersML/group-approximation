@@ -20,3 +20,5 @@ artifacts:
 **Proof outline** (artifact §5).
 1. With `ar + es = 1`, `α = (1−e)a` and `π = rα`: `π` is idempotent and `π ~ 1−e`. Internal cancellation gives `z ∈ eR(1−π)` and `z′ ∈ (1−π)Re` with `zz′ = e`, `z′z = 1−π`. Then `g = α + z = a + e(z−a)` is a unit with inverse `r(1−e) + z′e`.
 2. With `x = xax`: `ax ~ xa`. Internal cancellation gives `s ∈ (1−xa)R(1−ax)` and `t` with `st = 1−xa`, `ts = 1−ax`. Then `v = x + s` is a unit (inverse `a + t`) with `ava = a` (Ehrlich's argument).
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived: π = rα idempotent with π ~ 1−e; g = α + z = a + e(z−a) with the two-sided inverse r(1−e) + z′e; Ehrlich unit-regularity with v = x + s and inverse a + t. Item 3 is conditional on the Camillo–Yu import. See `research/artifacts/sk-verify-16-2026-09-13-part4.md` §3.

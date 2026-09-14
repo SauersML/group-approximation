@@ -17,3 +17,10 @@ artifacts:
 2. **Laplace step.** A Laplace expansion gives a coordinate subset `T` of the window basis with `span T ⊕ Ĩ′ = M` and `span(B∖T) ⊕ Ĩ = M`. This works over any field.
 3. **Split idempotent.** The projection onto `E_− ⊕ E_+ ⊕ span T` along `E′_− ⊕ E′_+ ⊕ span(B∖T)` splits at `c`, differs from `e` only in the window, and is conjugate to `e` by the invertible intertwiner `1 + Δ_c(2e−1)`.
 4. **All cuts.** Doing this at all cuts (local choices, disjoint windows) conjugates `e` into a tower algebra `∏_a M_{h_a}(F)`, where it is similar to a coordinate idempotent `e_W`.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived:
+- directness and local coordinate complements at one cut, and locality via eP_±m ∈ V_±;
+- M = Ĩ ⊕ Ĩ′, and the Laplace choice of split transversals over any field;
+- the split idempotent e_c with window-supported Δ_c, and the intertwiner 1 + Δ_c(2e−1) (bijective on E and on E′, local inverse);
+- all cuts via disjoint windows and eΔ_c + Δ_ce + Δ_c² = Δ_c; the reduction in the tower algebra.
+The model test e_V + e_Vu is correct. See `research/artifacts/sk-verify-16-2026-09-13-part4.md` §1.

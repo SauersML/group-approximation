@@ -22,3 +22,5 @@ artifacts:
 - Gottschalk–Hedlund gives a continuous, integer-valued transfer function.
 - Kakutani–Rokhlin towers over a clopen set where it is constant have equally many `W`- and `W′`-levels. A level permutation `γ ∈ [[T]]` sends `W` to `W′` and `X∖W` to `X∖W′`, and its unit `w_γ` conjugates `e_{X∖W}` to `e_{X∖W′}`.
 - General idempotents reduce to clopen ones by `cantor-crossed-product-idempotents-similar-to-clopen-ones`.
+
+**Review (sk-verify-16, 2026-09-13): PASS**, conditional on the Gottschalk–Hedlund import (secondary quotation). Re-derived: the Birkhoff bound 2w from an equivalence of propagation w; an integer-valued continuous transfer function; level matching over first-return towers; w_γ e_V w_γ⁻¹ = e_{γV}; cancellation via the idempotent classification. Wording: rename the base point (x_0) to avoid a clash with the equivalence element x. See `research/artifacts/sk-verify-16-2026-09-13-part4.md` §2.
