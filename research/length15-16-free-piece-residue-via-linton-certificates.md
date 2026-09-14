@@ -6,7 +6,8 @@ title: Run the graph-of-cyclic-stabilisers certificate on the length-15 and leng
 target: length15-16-free-piece-residue-classes-hyperbolic-special
 requires:
   - linton-graph-certificate-for-free-magnus-pieces
-- research/artifacts/one-relator-linton-graph-certificates-scripts/lintongraph.py
+artifacts:
+  - research/artifacts/one-relator-linton-graph-certificates-scripts/lintongraph.py
   - research/artifacts/one-relator-linton-graph-certificates-scripts/lg.sbatch
   - research/artifacts/one-relator-linton-graph-certificates-scripts/lg.720594.log
   - research/artifacts/one-relator-linton-graph-certificates-scripts/lg_l15.out

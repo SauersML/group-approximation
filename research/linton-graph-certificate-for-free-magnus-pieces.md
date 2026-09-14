@@ -6,7 +6,8 @@ title: A finite graph-of-cyclic-stabilisers certificate proves a two-generator o
 distinct_from:
   linton-z-stable-one-relator-hierarchy-theorem: that imports Linton's criterion as stated; this is a checkable sufficient condition for it, built from Stallings pullbacks over a superset of the graph of cyclic stabilisers.
   row29-one-relator-group-is-hyperbolic-and-virtually-special: that settles one group by a hand-built graph; this is the general certificate that reproduces it and runs on whole census families.
-- research/artifacts/one-relator-linton-graph-certificates-scripts/lintongraph.py
+artifacts:
+  - research/artifacts/one-relator-linton-graph-certificates-scripts/lintongraph.py
 ---
 
 **ESTABLISHED** through `linton-graph-certificate-soundness-proof` (not independently reviewed).

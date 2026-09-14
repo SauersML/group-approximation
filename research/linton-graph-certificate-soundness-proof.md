@@ -7,7 +7,8 @@ target: linton-graph-certificate-for-free-magnus-pieces
 requires:
   - linton-z-stable-one-relator-hierarchy-theorem
   - rank-two-free-subgroups-are-strongly-inert
-- research/artifacts/one-relator-linton-graph-certificates-scripts/lintongraph.py
+artifacts:
+  - research/artifacts/one-relator-linton-graph-certificates-scripts/lintongraph.py
 ---
 
 Notation as in the claim. Page numbers refer to Linton, arXiv:2202.11324v3 (PDF read locally,

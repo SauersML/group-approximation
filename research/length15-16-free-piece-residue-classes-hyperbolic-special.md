@@ -6,7 +6,8 @@ title: All 30 length-15 unpeelable one-relator classes and 70 of the 211 length-
 distinct_from:
   row29-one-relator-group-is-hyperbolic-and-virtually-special: that settles the single length-15 class row 29 by hand; this certifies every length-15 residue class and 70 length-16 classes by the general certificate.
   unpeelable-extreme-one-relator-groups-sofic: that is the open soficity claim for all unpeelable relators; this proves hyperbolicity and virtual specialness for an explicit finite list of them.
-- research/artifacts/one-relator-linton-graph-certificates-scripts/lintongraph.py
+artifacts:
+  - research/artifacts/one-relator-linton-graph-certificates-scripts/lintongraph.py
   - research/artifacts/one-relator-linton-graph-certificates-scripts/lg_l15.out
   - research/artifacts/one-relator-linton-graph-certificates-scripts/lg_seq16.out
   - research/artifacts/one-relator-linton-graph-certificates-scripts/lg_words16.out
