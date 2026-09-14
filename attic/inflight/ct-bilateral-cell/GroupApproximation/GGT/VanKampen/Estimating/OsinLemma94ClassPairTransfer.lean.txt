@@ -76,15 +76,34 @@ theorem exists_shift {D : RelGenSet G Lambda} {v v' : ℕ → G}
   rw [eB, eA, wordDist_left_invariant] at hlenS
   rw [eA', eB', mul_assoc] at hmulE
   rw [eA', eB', wordDist_left_invariant] at hlenE
-  refine ⟨{ source := s, target := t, source_lt := hs, target_lt := ht, source_mem := hsA,
-    target_mem := htB, distinct := hst, source_admissible := hsadm,
-    target_admissible := htadm, a := C.a - off, a' := C.a' - off, b := C.b - off',
-    b' := C.b' - off', a_le := by omega, a'_le := by omega, b_le := by omega,
-    b'_le := by omega, source_forward := by omega, source_long := hlong,
-    target_long := hlongT, startConnector := C.startConnector,
-    endConnector := C.endConnector, start_geodesic := ⟨hletS, mul_left_cancel hmulS, hlenS⟩,
-    end_geodesic := ⟨hletE, mul_left_cancel hmulE, hlenE⟩, start_short := C.start_short,
-    end_short := C.end_short }, fun hback => ?_⟩
+  let C' : WordConnectorPair D v' word' n' A' B' eps :=
+    { source := s
+      target := t
+      source_lt := hs
+      target_lt := ht
+      source_mem := hsA
+      target_mem := htB
+      distinct := hst
+      source_admissible := hsadm
+      target_admissible := htadm
+      a := C.a - off
+      a' := C.a' - off
+      b := C.b - off'
+      b' := C.b' - off'
+      a_le := by omega
+      a'_le := by omega
+      b_le := by omega
+      b'_le := by omega
+      source_forward := by omega
+      source_long := hlong
+      target_long := hlongT
+      startConnector := C.startConnector
+      endConnector := C.endConnector
+      start_geodesic := ⟨hletS, mul_left_cancel hmulS, hlenS⟩
+      end_geodesic := ⟨hletE, mul_left_cancel hmulE, hlenE⟩
+      start_short := C.start_short
+      end_short := C.end_short }
+  refine ⟨C', fun hback => ?_⟩
   show C.b' - off' < C.b - off'
   omega
 
@@ -128,7 +147,7 @@ theorem listVal_flatMap_take_rotate (P : OsinLemma94RealizedPolygons S) (k : Fin
           some ((m + r) % P.sideCount k) := by
         rw [List.getElem?_rotate (by rw [List.length_range]; omega), List.length_range,
           List.getElem?_range (Nat.mod_lt _ hn)]
-      rw [List.take_succ, hget, Option.toList_some, List.flatMap_append, List.flatMap_singleton,
+      rw [List.take_add_one, hget, Option.toList_some, List.flatMap_append, List.flatMap_singleton,
         HullSC.RelWord.listVal_append, ih (by omega), mul_assoc,
         P.corner_mul_listVal_eq_mod k (Nat.mod_lt _ hn), Nat.mod_add_mod, Nat.add_right_comm]
 
