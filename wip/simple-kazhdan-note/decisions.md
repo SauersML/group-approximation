@@ -975,6 +975,12 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
       - "all three forms" follows the Arzhantseva sentence.
     - Launched sk-rev5-locators (Ozawa p.527 at the journal, BHV printed Thm 1.3.1 and series, Arzhantseva series and page) and sk-rev5-referee (a hostile review of rev5b, then a one-pass check of rev5a if present).
     - Waiting for sk-editor-7a (≤ 9 pp) before the pick.
+180. **sk-editor-7a (merge log fbd054a727): rev5a is ALSO 11 pp** ($SK2/drafts/rev5a.tex, 950 lines, md5 fded1743…).
+    - It is built on main's 42a95d13d with the responsibility sentence gone. It has no P2, no P3 and no S2 sofic/hyperlinear sentence.
+    - Every permitted cut was tried. Margin 1in would give 10 pp; ≤ 9 pp is not reachable without dropping protected items (example ≈24 lines, lemmas ≈17, table ≈14, figure ≈12, definitions ≈12).
+    - DECISION: rev5 has 11 pp, with rev5b as the base. It has the same page count as rev5a, it carries P2, P3 and the S2 definitions, and it is under hostile review. Readability and usefulness outrank the old ≤ 9 pp target.
+    - At the final pass main ports rev5a's notation fixes (Lemma C radius vs ring element r; δ, m and x roles; 1 vs e; E_{t′t}) if the referee agrees. It also decides P2's placement (introduction vs a §2 remark) and any cut to 10 pp.
+    - Final assembly is by main: rev5b + the referee's REQUIRED fixes + locators, compiled on MSI, then landed onto main's blob d3a3fd6e….
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
