@@ -225,3 +225,17 @@ CLAIM, the cell trim–double (after w1-binder-7's `exists_trimDouble`, b2c347f6
   dart's edge in its cell. The result is an O-equivalent copy with letter labels, walk order kept, repeated visits unchanged,
   that arc one dart shorter, and a side dart whose across-face is a G-face off the exterior, off the relator cells and off
   the face set.
+
+### LANDED 4bda24f4d (probe 0913-192439-93971 GREEN, BUILT and COMPILED)
+
+`Estimating/OsinPocketCellTrimDouble` is new and unwired, and is queued for wiring.
+- `CellPocketFaceSet.faceEdgeDoubling_firstArc_darts`, `_secondArc_darts` (the carrier map and its equality are passed explicitly),
+  `_firstSide`, `_secondSide`, and `faceEdgeDoubling_firstTurnChain`.
+- `CellPocketFaceSet.exists_trimDoubleFirst K (hij : i ≠ j) hlabel hroom hlong hK` and `exists_trimDoubleSecond`: an O-equivalent
+  copy with letter labels, walk order kept, repeated visits unchanged, that arc one dart shorter, and a side dart whose
+  across-face is the new digon (off the exterior, the relator cells and the face set). This follows the pattern of w1-binder-7's
+  `exists_trimDouble` (b2c347f69).
+- The first probe (0913-191700-65740) failed on two placeholders in the arc lemmas; that is fixed.
+
+Residual (1) now: `CellPocketPinchStepPosStatement`, i.e. the split-dart choice at a repeated vertex (the cell analogue of
+hull-respell's unlanded good-corner step) and the full-arc case with both sides at ε (open for sections too, w1-binder-7).
