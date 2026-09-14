@@ -103,8 +103,6 @@ def degreeSetoid : Setoid (Set ℕ) where
   iseqv := ⟨fun _ => TuringEquivalent.refl _, fun h => TuringEquivalent.symm h,
     fun h₁ h₂ => TuringEquivalent.trans _ _ _ h₁ h₂⟩
 
-attribute [local instance] degreeSetoid
-
 /-- Every Turing class of sets is countable. -/
 theorem countable_fiber (q : Quotient degreeSetoid) :
     (Quotient.mk degreeSetoid ⁻¹' {q}).Countable := by
