@@ -154,3 +154,18 @@ representative cells.
 - **6baf73489057 (tex 1685–1686):** the matching is constant on the clopen cells `A j h`, a finite clopen partition of K.
   These are not the representative cells of lem:transient-matrices, since the printed "representative cell" of that
   construction does not exist on the Lean route.
+
+### Closed (6867e7460, probe 0913-194044-12893 GREEN, verdict and BUILT lines checked)
+
+ct-return-tower landed `ChainCore.CoreRingReflection.restrict_surjective_of_isClosed` at 17817cdac.
+`GroupApproximation/Manuscript/NonMFSentences/TransientMatricesClosed.lean` discharges the premise by name:
+
+- `restrictSurjectiveStatement_holds : RestrictSurjectiveStatement`;
+- `printedTransientMatrices_closed : PrintedTransientMatrices`, the printed lemma with all five clauses, closed;
+- `printedLaurentExactness`, exactness at both ends (tex 1481).
+
+It is a separate consumer module, so `TransientMatrices` does not import `DynamicRankBudget`.  No import cycle: nothing on
+origin imports `TransientMatrices`.
+
+Rows 7ff20576d4cf and 97e43ae93d14 are now formalized.  Every sentence of tex 1465–1508 has a row: 14 formalized,
+2 definition, 8 partial for route differences (reasons in the rows), and 2546c17d9884 carried by ms-core-4's row.
