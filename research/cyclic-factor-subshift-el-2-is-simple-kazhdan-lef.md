@@ -20,3 +20,12 @@ distinct_from:
 **Non-example.** Sturmian subshifts have no finite cyclic factor: their eigenvalues other than `1` are irrational rotations.
 
 **Use for the note.** A remark that "n = 2 loses (T)" would be false for these `X`. The note's `n = 3` is the range of Ershov–Jaikin-Zapirain and works for every `X`. Whether `n = 2` works for every `X` is `el-2-over-every-minimal-subshift-algebra-is-kazhdan`.
+
+**Review (sk-verify-5, 2026-09-13): PASS.** Re-derived:
+- The induced system `(U, T^m)` is minimal, infinite and expansive, hence a subshift.
+- The matrix units `u^i e_U u^(-j)` give `R_X ≅ M_m(e_U R_X e_U)`, with corner `LC(U,F_q) ⋊_(T^m) Z`, since `e_U u^j e_U = 0` unless `m | j`.
+- `EL_2(M_m(S)) = EL_(2m)(S)`: a transvection inside one block is `[t_xy, t_yz] = t_xz`, with `y` in the other block.
+- (T) for `EL_(2m)` needs only `2m ≥ 3`.
+- Simplicity comes from the Steinberg criterion; LEF over `F_2` from the LEF ring `R_Y`.
+
+The input `tower-subshift-elementary-group-is-el-3k-of-base` is PASS for items 1–3 (sk-verify-3, part 2 §5). See `research/artifacts/sk-review-5-2026-09-13-part1.md` §3.

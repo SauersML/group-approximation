@@ -19,3 +19,10 @@ If `X` is not minimal, or is a finite orbit, then `R_X` has a nonzero proper ide
 - `X` = the orbit closure of `…0001000…`: restriction to the fixed point `{0^∞}` gives `G → EL_n(k[u,u^(-1)])` with kernel containing `e_12(e_U)` for any clopen `U` avoiding `0^∞`.
 
 Related material on normal subgroups of non-minimal subshift groups (artifacts only, no claim): `research/artifacts/pestov91-cycle-core-exact-mf-reflection-2026-09-13.md`, `research/artifacts/pestov91-seam-normal-lattice-2026-09-13.md`.
+
+**Review (sk-verify-5, 2026-09-13): PASS.** If: the Steinberg criterion. Only if:
+- restriction to a proper closed invariant subset is a surjective ring homomorphism with `e_U` in the kernel;
+- a finite orbit gives `R → End_k(k^X)` with `u^p − 1` in the kernel;
+- the kernel of `EL_n(φ)` contains the noncentral `e_12(r)`, and `K Z(G) ≠ G` because `EL_n(S)` is nonabelian.
+
+See `research/artifacts/sk-review-5-2026-09-13-part1.md` §4.

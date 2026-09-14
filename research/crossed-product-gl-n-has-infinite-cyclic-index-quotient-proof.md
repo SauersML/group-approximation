@@ -32,6 +32,6 @@ With the rank estimate above, this gives `ind(gh) = ind(g) + ind(h)`, so `ind` i
 **Consequences.**
 - A Kazhdan group has finite abelianization, and `GL_n(R)` maps onto `Z`. So `GL_n(R)` has no property (T).
 - For `n ≥ 2`, `ker(ind)` is a proper normal subgroup containing the nontrivial group `EL_n(R)`.
-- If `X` is minimal, then `Z(R) = k`: a central element is invariant and locally constant, and it is constant by minimality, as in the note l.110–113. So `Z(GL_n(R)) = k^× I_n`. For `c ∈ k^×`, `P π(c I_n) P = c·1` is invertible, so it has index `0`. Then `ind` descends to `GL_n(R)/Z ↠ Z`.
+- If `X` is infinite and minimal, then `Z(R) = k`. `T` has no periodic points, so a central element has only a `u^0` coefficient, which is invariant and locally constant, hence constant by minimality, as in the note l.110–113. For a finite orbit of size `p`, `u^p` is central and has index `−np`, so this bullet needs "infinite". So `Z(GL_n(R)) = k^× I_n`. For `c ∈ k^×`, `P π(c I_n) P = c·1` is invertible, so it has index `0`. Then `ind` descends to `GL_n(R)/Z ↠ Z`.
 
 **Model test.** For `X = {a^∞}`, `R = k[u, u^(-1)]` and `ind(g)` is the winding number of `det g`. For example, `ind(diag(u,1)) = −1`, and `ind(e_12(r)) = 0`.
