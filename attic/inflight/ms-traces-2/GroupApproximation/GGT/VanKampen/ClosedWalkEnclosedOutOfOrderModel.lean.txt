@@ -268,7 +268,7 @@ theorem psi_gh : psi gh = -1 := by
 
 theorem psi_gc : psi gc = -1 := by
   rw [gc, map_mul, map_mul, map_inv, map_inv, psi_ga, psi_gb, psi_gh]
-  simp [Int.units_inv_eq_self]
+  simp
 
 theorem psi_boundary : psi (gc * gb * ga) = -1 := by
   rw [map_mul, map_mul, psi_ga, psi_gb, psi_gc]
@@ -294,7 +294,9 @@ theorem psi_of_isRelatorProduct {m : ℕ} {x : G}
   | inv _ ih => rw [map_inv, ih, Int.units_inv_eq_self]
   | conj c _ ih =>
       rw [map_mul, map_mul, map_inv, ih, mul_comm (psi c), mul_assoc, mul_inv_cancel, mul_one]
-  | mul _ _ iha ihb => rw [map_mul, iha, ihb, pow_add]
+  | mul _ _ iha ihb =>
+      rw [map_mul, iha, ihb]
+      exact (pow_add _ _ _).symm
 
 /-- A relator product with one factor is a signed conjugate of a relator. -/
 theorem exists_conj_of_index_one {R : Set G} {n : ℕ} {x : G}
@@ -354,21 +356,17 @@ theorem boundary_not_conj {r : G} (hr : r ∈ RelLetter.listVal '' W) (g : G) :
 theorem leastArea : diagram.LeastArea := by
   intro m hm
   rw [boundaryValue_eq] at hm
+  show 3 ≤ m
+  by_contra hlt
+  push_neg at hlt
   have hpar := psi_of_isRelatorProduct hm
   rw [psi_boundary] at hpar
-  have hodd : Odd m := by
-    by_contra hev
-    rw [Nat.not_odd_iff_even] at hev
-    rw [hev.neg_one_pow] at hpar
-    exact absurd hpar (by decide)
-  show 3 ≤ m
-  obtain ⟨k, rfl⟩ := hodd
-  rcases Nat.eq_zero_or_pos k with rfl | hk
-  · exfalso
-    obtain ⟨r, hr, g, hg | hg⟩ := exists_conj_of_index_one hm rfl
+  interval_cases m
+  · exact absurd hm.eq_one_of_index_zero (by decide)
+  · obtain ⟨r, hr, g, hg | hg⟩ := exists_conj_of_index_one hm rfl
     · exact (boundary_not_conj hr g).1 hg
     · exact (boundary_not_conj hr g).2 hg
-  · omega
+  · exact absurd hpar (by decide)
 
 /-! ## The out-of-order walk -/
 
@@ -426,27 +424,28 @@ theorem walkWord_relatorProduct :
   exact RelatorDefectBudget.IsRelatorProduct.conj conjugator
     (RelatorDefectBudget.IsRelatorProduct.base ⟨[.base ga], Or.inl rfl, by decide⟩)
 
-open scoped Classical in
-theorem filter_length : (diagram.relatorCells.filter fun C => C.face ∈ outFaces).length = 3 := by
-  have hfaces : ∀ C ∈ diagram.relatorCells, C.face ∈ outFaces := by
-    intro C hC
-    rcases List.mem_cons.mp hC with rfl | hC
-    · exact Finset.mem_erase.mpr ⟨(face_eq_iff 2 3).not.mpr (by decide), Finset.mem_univ _⟩
-    rcases List.mem_cons.mp hC with rfl | hC
-    · exact Finset.mem_erase.mpr ⟨(face_eq_iff 1 3).not.mpr (by decide), Finset.mem_univ _⟩
-    obtain rfl := List.mem_singleton.mp hC
-    exact Finset.mem_erase.mpr ⟨(face_eq_iff 0 3).not.mpr (by decide), Finset.mem_univ _⟩
-  have hfilter : (diagram.relatorCells.filter fun C => C.face ∈ outFaces) = diagram.relatorCells :=
-    List.filter_eq_self.mpr fun C hC => decide_eq_true (hfaces C hC)
-  rw [hfilter]
-  rfl
+theorem cells_mem_outFaces : ∀ C ∈ diagram.relatorCells, C.face ∈ outFaces := by
+  intro C hC
+  rcases List.mem_cons.mp hC with rfl | hC
+  · exact Finset.mem_erase.mpr ⟨(face_eq_iff 2 3).not.mpr (by decide), Finset.mem_univ _⟩
+  rcases List.mem_cons.mp hC with rfl | hC
+  · exact Finset.mem_erase.mpr ⟨(face_eq_iff 1 3).not.mpr (by decide), Finset.mem_univ _⟩
+  obtain rfl := List.mem_singleton.mp hC
+  exact Finset.mem_erase.mpr ⟨(face_eq_iff 0 3).not.mpr (by decide), Finset.mem_univ _⟩
+
+/-- A filter keeping every entry keeps the length, for any decision procedure. -/
+theorem length_filter_of_all {α : Type*} (l : List α) (p : α → Bool) (hp : ∀ a ∈ l, p a = true) :
+    (l.filter p).length = l.length := by
+  rw [List.filter_eq_self.mpr hp]
 
 /-- **The membership turning condition does not give the least-area filter.** -/
 theorem not_enclosedLeastAreaFilterStatement : ¬ EnclosedLeastAreaFilterStatement.{0, 0, 0} := by
   intro h
   have hle := h diagram leastArea outFaces outerWalk enclosedFaceSet walkWord_relatorProduct
-  rw [filter_length] at hle
-  omega
+  refine absurd (le_trans (le_of_eq (length_filter_of_all diagram.relatorCells _ ?_).symm) hle)
+    (by decide)
+  intro C hC
+  simpa only [decide_eq_true_eq] using cells_mem_outFaces C hC
 
 /-- **The walk does not turn to its successor**: from the dart `1` the first dart met is `3`, while
 the next dart of the walk is `5`. -/

@@ -112,7 +112,7 @@ theorem enclosedFaceSetSuccOfNoncrossing {G : Type u} [Group G] {Lambda : Type w
     (hfollows : (hw.outerCycle Delta.planar).FollowsBoundary) :
     EnclosedFaceSetSucc Delta (sideFaces Delta.toCombMap walk) (invDarts Delta walk) where
   toEnclosedFaceSet := enclosedFaceSetOfNoncrossing Delta walk hw hout hfollows
-  turn_next i hi m hm hkeep hfirst :=
+  turn_next _ hi _ hm hkeep hfirst :=
     EnclosedNoncrossingSucc.invDarts_getElem_succ_of_first_kept hw hfollows hi hm hkeep hfirst
 
 /-- `EnclosedFaceSetSuccOfNoncrossingStatement` holds. -/
