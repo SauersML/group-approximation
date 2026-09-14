@@ -16,3 +16,5 @@ and `G = EL_n(R)`. Then for all `i ≠ j`, every subgroup `H ≤ e_ij(R) = {I + 
 **Proof:** `root-subgroups-over-crossed-products-not-confined-proof`.
 
 **Review (sk-verify-13, 2026-09-13, `research/artifacts/sk-verify-13-2026-09-13-part1.md` §1):** PASS. Re-derived Lemma B (top and bottom exponents), the Steinberg commutator `[e_31(u^N), e_12(r)] = e_32(u^N r)`, the conjugate `I + u^N r E_32 + r E_12` (as `E_32E_12 = 0`), the entry comparison, the Weyl-element reduction to `e_12(R)`, and heredity to subgroups. No infiniteness or minimality of `X` is used.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part6.md`):** PASS (§1). Re-derived Lemma A, Lemma B (top and bottom exponents), the Steinberg commutator `[e_31(u^N), e_12(r)] = e_32(u^N r)` by multiplying out, the conjugate `I + u^N r E_32 + r E_12`, the entry comparison, and the Weyl-element reduction. It holds for every compact zero-dimensional `X` and every field `k`. Concurs with sk-verify-13.

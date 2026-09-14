@@ -26,3 +26,5 @@ Here `w_g = Σ_n u^n e_{n_g = n}`, and `g ↦ w_g` is injective.
 **Proof:** `topological-full-group-images-el3-not-confined-proof`.
 
 **Review (sk-verify-13, 2026-09-13, `research/artifacts/sk-verify-13-2026-09-13-part1.md` §3):** PASS for the general statement. Re-derived `k_N p k_N^{-1} = p + u^N(a−1)E_31`, the diagonal and `(3,1)` comparisons, and Lemma B. The Instances are conditional on `topological-full-group-embeds-in-subshift-elementary-group`, which is unreviewed (queued with sk-referee-2).
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part6.md`):** PASS (§3). Re-derived `k_N p k_N^{-1} = p + u^N(a−1)E_31` entry by entry, the diagonal and `(3,1)` comparisons, and Lemma B. The Instances hold: `topological-full-group-embeds-in-subshift-elementary-group` passed in `research/artifacts/sk-review-2-2026-09-13-part4.md` row 18, for both maps (A) and (B). That node's "unreviewed" header is stale. Concurs with sk-verify-13 and meets the Instances condition they raised.

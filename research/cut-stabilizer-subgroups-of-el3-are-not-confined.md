@@ -36,3 +36,5 @@ distinct_from:
 - the inclusion `GL_3(A(𝒫)) ∩ G ≤ S_y` (`t` and `t+a−b` lie in one return interval, and `0` is an endpoint).
 
 Wording: Lemma C uses that every `L+1` consecutive times contain a visit to `{r_{k_0} = 1}`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part6.md`):** PASS (§4). Re-derived the orbit representation and the group property of `S_y`, Lemma C (both cases, windows of `≥ L+1` times), Neumann's covering Lemma D, Lemma E (`lql^{-1} = q + (e_V b + a e_V)E_12 + (e_{V'} c + a e_{V'})E_13`, additive under `Δ`), Lemma F (point choice for `j ≠ 0` from the absence of periodic points, then the case `a = 1`), and the tower-cut argument. W11: `L_y` is a group when the partitions refine; otherwise read it as the generated subgroup, which still lies in `S_y`. Concurs with sk-verify-13.

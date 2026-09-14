@@ -23,3 +23,5 @@ products `∏_{C∈𝒫} GL_n(F_2)`.
 **Proof:** `locally-constant-gl-n-subgroup-not-confined-proof`.
 
 **Review (sk-verify-13, 2026-09-13, `research/artifacts/sk-verify-13-2026-09-13-part1.md` §2):** PASS. Re-derived Step 1 (`ψ_i` is multiplicative because the entries of `x` are scalars commuting with `e_{C_i}`), the factorization `c_N = ∏ d_i(u^{s_i N})`, the Whitehead identity `w(a)w(−1) = diag(a,a^{-1})` over a noncommutative ring, the entry formula `(g_ij∘T^{−ε_i N})u^{(ε_i−ε_j)N}`, exponent separation off the diagonal, and `LC(X,F_2)^× = {1}`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part6.md`):** PASS (§2). Re-derived Step 1 (`ψ_i` is multiplicative, the disjoint-support factors commute, and their product is `f`), `c_N = ∏ d_i(u^{s_i N})` with the Whitehead identity, the entry formula `(g_ij∘T^{−ε_i N})u^{(ε_i−ε_j)N}`, and that the units of `LC(X,F_2)` are `{1}`. W10 (wording): in the `F_3` model test the torus is normalized, not centralized, by `c_N`; the scope note stands. Concurs with sk-verify-13.
