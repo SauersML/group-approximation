@@ -3,6 +3,7 @@ rg: 2
 id: every-wp-group-embeds-in-fp-conjugacy-finite-group
 kind: claim
 title: Every finitely generated group with solvable word problem embeds in a finitely presented group with trivial center and finitely many conjugacy classes
+refuted_by: [thompson-v-embeds-in-no-conjugacy-finite-group]
 distinct_from:
   universal-fiber-product-data-for-word-problem-groups: that asks for a finitely presented overgroup together with a proper normal subgroup carrying four finiteness conditions; this is its N = T specialization, where the normal subgroup is the whole group, the quotient is trivial and the 1-2-3 theorem is not needed. This one strictly implies that one.
   boone-higman-conjecture: that asks for a finitely presented SIMPLE overgroup; this asks for a finitely presented overgroup with trivial center and finitely many conjugacy classes, which is neither implied by nor implies simplicity.
@@ -11,6 +12,13 @@ distinct_from:
 artifacts:
   - research/artifacts/boone-higman-fiber-product-and-shift-compiler-2026-08-24.md
 ---
+
+**REFUTED (2026-09-13)** by `thompson-v-embeds-in-no-conjugacy-finite-group`.
+A group with finitely many conjugacy classes has finitely many element orders,
+while Thompson's `V` is finitely generated, has solvable word problem and has
+elements of every finite order. So the statement below fails at `G = V`, and the
+route `fiber-product-data-from-conjugacy-finite-overgroup` is dead. The general
+data `universal-fiber-product-data-for-word-problem-groups` is not refuted.
 
 For every finitely generated group `G` with solvable word problem there is a
 finitely presented `T` with `G <= T`, `Z(T) = 1`, and finitely many
@@ -22,7 +30,8 @@ take `N = T`, so `Q = 1`, which is of type `F_infinity`; `N` is finitely
 generated because `T` is finitely presented; `C_T(N) = Z(T) = 1`; and the
 `T`-conjugacy classes of `N` are the conjugacy classes of `T`.
 
-It is the shortest sufficient condition for Boone--Higman this graph knows.
+It was the shortest sufficient condition for Boone--Higman this graph knew,
+before its refutation.
 It carries no auxiliary object at all: one group, two adjectives, one
 finiteness condition, and no simple group anywhere.
 
