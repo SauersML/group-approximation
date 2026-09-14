@@ -107,6 +107,17 @@ CLAIM L4 + L5a two-gon class and walk hypotheses GroupApproximation/GGT/VanKampe
   - `RegionCandidate.twoGonClassHyp_of_linkedComponent S P hcell hy hyf hnone h4 hb`, at `E = linkedComponentO S.family a₀`, with the hypotheses on `y` given by `exists_twoGonLabels`;
   - `RegionCandidate.twoGonWalk_left_side source target ht hsrc htgt`, `twoGonWalk_right_side …` and `twoGonWalk_base source target ht hnondeg htgt`, on `source.reverseDarts ++ a.rightSide ++ target.darts ++ b.leftSide`, with `hsrc : ∀ d ∈ a.sourceArc.darts, d ∈ source.darts` and `htgt : ∀ d ∈ a.targetArc.darts, d ∈ target.darts` (and the same for `b`).
 
+## CLAIM 4 (main ~19:05: binder 4, span inclusions and L2, the following clause on the copy walk)
+
+CLAIM span inclusions GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonSpans.lean
+CLAIM L2 model test (mixed touch) GroupApproximation/GGT/VanKampen/Estimating/OsinPocketMixedTouchModel.lean
+
+- Span inclusions: `twoGonSource_left/right` from the gap equation `source.darts = a.sourceArc.darts ++ gap ++ b.sourceArc.darts` (`CyclicArc.exists_spanArc`). `twoGonTarget_left` from the start equality and a length bound, `twoGonTarget_right` from the end equality without wrap. Both go through the carrier-transport lemmas `mem_darts_of_start_eq_of_eq_none` and `mem_darts_of_le_of_eq_none`. They discharge the four inclusion clauses of w1-binder-4's `TwoGonInnerFollowsWalkInput`.
+- L2 model test. At a touch vertex with two passes, a noncrossing walk turns either lake-type (inner follows there, outer fails; Configuration B) or pinch-type (the reverse; Configuration A). A walk with one touch of each type has neither cycle following. The model is a circle with an outside bubble at one vertex and an inside loop at the other (8 darts, 2 vertices, 4 faces, walk `[0,6,2,4]`). So "outer ∨ inner follows" is not provable from noncrossing alone, for `TwoGonEitherFollowsCopyInput` and for ms-inverses-2's `CellPocketWalkEitherFollowsStatement`. A producer must exclude mixed touches from the pocket geometry, or split the walk at a touch.
+- LANDED spans at 4b7ff30b3: `Estimating/OsinAppendixEulerTwoGonSpans`, probe 0913-191558-63004 GREEN, BUILT; on the wire queue. Declarations: `mem_darts_of_start_eq_of_eq_none`, `mem_darts_of_le_of_eq_none`, `twoGonSource_left/right`, `twoGonTarget_left/right`. They give clauses 2–5 of w1-binder-4's `TwoGonInnerFollowsWalkInput` (35e17a915).
+- LANDED model at 8c6883be3: `Estimating/OsinPocketMixedTouchModel`, probe 0913-192847-50147 GREEN, BUILT on the first try; the five `#audit_closed_axioms` show [propext, Classical.choice, Quot.sound], no sorryAx; on the wire queue. Endpoint: `noncrossingMixedTouchModel : NoncrossingMixedTouchModel`, a planar map with a noncrossing closed walk neither of whose boundary cycles follows.
+- L2 as stated needs a ruling from main: the disjunction is false at map level. The candidate routes, split at a touch or exclude mixed touches geometrically, went to main.
+
 ## State
 
 The cutting half of Osin (38) is CLOSED, at side level and at class level, with no open binder. For `ClassCountInput`, the cutting classes of `ClassBudget` are paid by `card_cuttingClasses_le_of_dartMinimal`. The rest of the class count (other classes ≤ K n) belongs to sec5-sentences (`OsinLemma94LongTransitionInput`), hull-count94 (the `ClassJoins` assembly) and hull-component (bubbles).
