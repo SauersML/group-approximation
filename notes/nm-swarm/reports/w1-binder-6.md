@@ -181,6 +181,27 @@ Binder 6 residuals after this module: `SectionPocketRegionsCopyStatement` (ms-in
 - Suggested: handle a full `t_1` at the pinch step. `OsinPocketArcTrim` trims when a side is shorter than ε, and the
   stuck case is both sides at exactly ε.
 
+## Full-`t_1` exclusion through `OsinLemma97Below` (main's item, 19:3x): FAILS the model test, nothing landed
+
+Binder: `OsinLemma97Below … n := ∀ Xi cutsXi, Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < n →
+∃ T, OsinLemma97bConclusion mu T`, where the conclusion is one cell with total contiguity to the sections > 1 − 13μ.
+
+1. **Counting.**
+   - D₁ = Γ₁ ∪ Π has fewer relator cells than Δ only if some relator cell lies outside Γ₁ ∪ Π.
+   - Configuration: the full-`t_1` lake, with every relator cell of Δ in the V bounded by `s_1`, `s_2` and `t_2`, and
+     only G-faces outside.
+   - Then `D₁.rCellCount = Δ.rCellCount`, and the binder does not apply.
+2. **No contradiction even with fewer cells.**
+   - 9.7(b) for D₁, with sections `s_1 s_2` (≤ 2ε) and `t_2`, holds through a cell running along the long
+     quasi-geodesic arc `t_2`.
+   - The short sides bound only the contiguity to themselves.
+3. **Diagnosis.**
+   - A full `t_1` is a genuine case in Osin. Γ₁ is a singular disc with four sections, passing `v` twice, and it has
+     fewer cells.
+   - The formal obstruction is the simple carrier (`PocketFaceSet.not_simple_of_full_sourceArc`).
+   - Options put to main: (a) a singular `DiscDiagram` carrier for the section pocket cut; (b) a separate full-`t_1`
+     piece of `SectionPocketCutInput`.
+
 ## Plan for `side_outer`
 
 - Mirror ms-cite-2's cell-side statement for the exterior: `IsOuterSideDart Delta family x` holds when `faceOf x` is
