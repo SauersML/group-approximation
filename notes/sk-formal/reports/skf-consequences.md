@@ -50,7 +50,16 @@ CLAIM LEF groups l.445–455: solvable word problem of Λ and of G_Δ GroupAppro
 
 Agreed with sk-lef-assembly (09-14 ~09:10). It drops the four rows at its next landing, and it combines my theorems with sk-lef-action's host theorem into `LEFLamplighterSolvableWordProblemStatement`. l.439–444 (Δ's word problem) belong to sk-lef-ultra (`LEFSecondDelta`).
 
-### Statements (probing): `LamplighterWordProblem`
+### Progress (09-14 ~10:10)
+- 04544e6d6: statements `PrintedLamplighterAffineSolvableWordProblem` and `PrintedLamplighterHostSolvableWordProblem` (LamplighterWordProblem).
+- d80dc37b4: Λ normal form (LamplighterAffineWordProblem): `lampGen`, `deltaWord`, `lampPrefixes`, `lampSum`, `wordValue_lampGen`, `wordValue_lampGen_eq_one_iff`.
+- Probing: LamplighterAffineWordProblemReduction, which defines the queries and decision and proves `affineOracle_eq` (Λ's oracle is the decision applied to Δ's answers). It was preserved at ab50d1d6b, and its first probe died in the ~09:36 outage.
+- Drafted (attic 6f9c87069): LamplighterAffineWordProblemPrimrec, with `primrec_affineQueries`, `primrec_affineDecide`, `hasSolvableWordProblem_lampAffine` and the closed `printedLamplighterAffineSolvableWordProblem`.
+- G_Δ split agreed with sk-stepanov (09:3x). sk-stepanov takes `PrintedLamplighterHostSolvableWordProblem` and rows 7bfa078c0bed, e3cd35e16e2f and 14148c1b4df0, consuming my Λ normal form by name. This lane keeps Λ and row 581584337a04 (drafted locally; it lands after the carriers).
+- sk-lef-assembly has dropped all four rows (checked on origin). l.439–444 belong to sk-lef-ultra.
+- Simplicity rows re-keyed at fee2f017e (f9d00128c766→18ac299bc474, fd2fdac50185→e503326bf5e2, db6d6604b3d3→5b3ad392ecb5, 18455b63420b→2b5ba855ed5c).
+
+### Statements (landed): `LamplighterWordProblem`
 - `Lamplighter.PrintedLamplighterAffineSolvableWordProblem`: `HasSolvableWordProblem Δ → HasSolvableWordProblem (LampAffine Δ)` (l.445–447).
 - `Lamplighter.PrintedLamplighterHostSolvableWordProblem`: `HasSolvableWordProblem Δ → HasSolvableWordProblem ↥(elementaryGroup (Fin 3) (LampRing Δ))` (l.448–455).
 
