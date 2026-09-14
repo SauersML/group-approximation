@@ -1,0 +1,278 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemCriterion
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.FreeAlgebraKazhdan
+import GroupApproximation.Dynamics.CoreKernelFTwo
+import GroupApproximation.Meta.AxiomGuard
+import Mathlib.Algebra.FreeAlgebra
+
+/-!
+# Different subshifts give different kernels (simple_kazhdan_sofic_group.tex, after cor:wp)
+
+`simple_kazhdan_sofic_group.tex` at origin/main 696c4b602, "Word problems and factors" (census key
+`bdd19b7d1e1f`, tex l.541–544):
+
+> For a fixed alphabet, every $G_X$ is a simple quotient of the Kazhdan group $\EL_3(F)$, and
+> $e_{12}(\prod_{t<m}\tau_-^t\tau_{v_t}\tau_+^t)$ lies in the kernel if and only if $v\notin L(X)$, so
+> different subshifts give different kernels.
+
+Here `F` is the free algebra over `F₂` on letters `τ_s`, `s ∈ S = {1, u, u⁻¹} ∪ {e_a : a ∈ A}` ("Finite
+simple models"); the letters depend only on the alphabet.  They are `Option (Coeff A)`: `none` is `τ_1`
+and `some c` is `τ_c`, over skf-degrees' landed `Coeff A`.
+
+* `freeAlgebraProj S : F →+* R`, `τ_s ↦ s`, through `FreeAlgebra.lift` with ms-units' `zmodTwoAlgebra`;
+* `freeAlgebraProj_surjective`, `elementaryGroupMap_freeAlgebraProj_surjective`: `π` is onto because `u^{±1}`
+  and the `e_a` generate `R` (`subring_closure_eq_top`), so `G_X` is a quotient of `EL_n(F)`;
+* `freeAlgebraProj_kernelWord`: `π(∏_{t<m} τ_-^t τ_{v_t} τ_+^t) = e_{[v]}`, the product of the coordinate
+  indicators `[x_t = v_t]`;
+* `e12_kernelWord_mem_ker_iff`: `e₁₂(∏ τ_-^t τ_{v_t} τ_+^t)` is in the kernel iff `v ∉ L(X)`;
+* `carrier_subset_of_listLanguage_subset`, `ker_ne_of_ne`: a subshift is determined by its language, so
+  different subshifts give different kernels;
+* `PrintedWordProblemKernels`, and its instance over the simplicity piece `PrintedSimplicityStatement` of
+  `thm:main` (MainAssembly).
+-/
+
+namespace GroupApproximation
+
+namespace SimpleKazhdanSofic
+
+open ClopenCrossedProduct SymbolicDynamics.FullShift
+
+instance instFiniteCoeff (A : Type) [Finite A] : Finite (Coeff A) :=
+  Finite.of_equiv _ (Coeff.equivOption A).symm
+
+/-- The free algebra `F = F₂⟨τ_s : s ∈ S⟩` on the printed generators, for a fixed alphabet. -/
+abbrev KernelFreeAlgebra (A : Type) : Type :=
+  FreeAlgebra (ZMod 2) (Option (Coeff A))
+
+/-- `τ_+`. -/
+noncomputable def tauPlus (A : Type) : KernelFreeAlgebra A :=
+  FreeAlgebra.ι (ZMod 2) (some .u)
+
+/-- `τ_-`. -/
+noncomputable def tauMinus (A : Type) : KernelFreeAlgebra A :=
+  FreeAlgebra.ι (ZMod 2) (some .uInv)
+
+/-- `τ_a`. -/
+noncomputable def tauLetter {A : Type} (a : A) : KernelFreeAlgebra A :=
+  FreeAlgebra.ι (ZMod 2) (some (.letter a))
+
+/-- The word `∏_{t<m} τ_-^t τ_{v_t} τ_+^t` of `F` (tex l.542). -/
+noncomputable def kernelWord {A : Type} (v : List A) : KernelFreeAlgebra A :=
+  ((List.finRange v.length).map fun t =>
+    tauMinus A ^ (t : ℕ) * tauLetter (v.get t) * tauPlus A ^ (t : ℕ)).prod
+
+/-- `e₁₂(r)` as an element of `EL₃(R)`. -/
+noncomputable def e12 {R : Type*} [Ring R] (r : R) : elementaryGroup (Fin 3) R :=
+  ⟨elementaryUnit 0 1 (by decide) r, elementaryUnit_mem _ _ _ r⟩
+
+theorem elementaryGroupMap_e12 {R R' : Type*} [Ring R] [Ring R'] (f : R →+* R') (r : R) :
+    elementaryGroupMap f (e12 r) = e12 (f r) := by
+  apply Subtype.ext
+  rw [elementaryGroupMap_apply]
+  exact elementaryMatrixUnitMap_elementaryUnit f 0 1 (by decide) r
+
+theorem e12_eq_one_iff {R : Type*} [Ring R] (r : R) : e12 r = 1 ↔ r = 0 := by
+  constructor
+  · intro h
+    have h' : elementaryUnit (0 : Fin 3) 1 (by decide) r =
+        elementaryUnit (0 : Fin 3) 1 (by decide) (0 : R) := by
+      rw [elementaryUnit_zero]
+      exact congrArg Subtype.val h
+    exact elementaryUnit_injective _ _ _ h'
+  · rintro rfl
+    exact Subtype.ext (elementaryUnit_zero _ _ _)
+
+variable {A : Type} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A]
+
+/-- The letter values `π(τ_s) = s`. -/
+noncomputable def letterValue (S : Subshift A ℤ) : Option (Coeff A) → R S
+  | none => 1
+  | some c => coeffValue S c
+
+/-- **`π : F → R`** with `π(τ_s) = s` ("Finite simple models"). -/
+noncomputable def freeAlgebraProj (S : Subshift A ℤ) : KernelFreeAlgebra A →+* R S :=
+  letI := zmodTwoAlgebra (subshiftHomeo S)
+  (FreeAlgebra.lift (ZMod 2) (letterValue S)).toRingHom
+
+theorem freeAlgebraProj_ι (S : Subshift A ℤ) (s : Option (Coeff A)) :
+    freeAlgebraProj S (FreeAlgebra.ι (ZMod 2) s) = letterValue S s := by
+  letI := zmodTwoAlgebra (subshiftHomeo S)
+  show FreeAlgebra.lift (ZMod 2) (letterValue S) (FreeAlgebra.ι (ZMod 2) s) = letterValue S s
+  exact FreeAlgebra.lift_ι_apply (ZMod 2) (letterValue S) s
+
+/-- **`π` is onto** ("Both are onto"): its range contains `u^{±1}` and the `e_a`, which generate `R`. -/
+theorem freeAlgebraProj_surjective [Finite A] (S : Subshift A ℤ) :
+    Function.Surjective (freeAlgebraProj S) := by
+  have hsub : ringGenerators S ⊆ ((freeAlgebraProj S).range : Set (R S)) := by
+    rintro x (hx | ⟨a, rfl⟩)
+    · rcases hx with rfl | rfl
+      · exact ⟨FreeAlgebra.ι (ZMod 2) (some .u), freeAlgebraProj_ι S _⟩
+      · exact ⟨FreeAlgebra.ι (ZMod 2) (some .uInv), freeAlgebraProj_ι S _⟩
+    · exact ⟨FreeAlgebra.ι (ZMod 2) (some (.letter a)), freeAlgebraProj_ι S _⟩
+  intro y
+  have h := Subring.closure_le.mpr hsub
+  rw [subring_closure_eq_top S] at h
+  exact RingHom.mem_range.mp (h (Subring.mem_top y))
+
+/-- **`G_X` is a quotient of `EL_n(F)`.** -/
+theorem elementaryGroupMap_freeAlgebraProj_surjective [Finite A] (S : Subshift A ℤ) (n : ℕ) :
+    Function.Surjective (elementaryGroupMap (ι := Fin n) (freeAlgebraProj S)) :=
+  elementaryGroupMap_surjective_of_surjective _ (freeAlgebraProj_surjective S)
+
+/-- **`π(∏_{t<m} τ_-^t τ_{v_t} τ_+^t) = e_{[v]}`**: `u^{-t} e_a u^t` is the coordinate indicator
+`[x_t = a]`. -/
+theorem freeAlgebraProj_kernelWord (S : Subshift A ℤ) (v : List A) :
+    freeAlgebraProj S (kernelWord v) =
+      coeff (subshiftHomeo S) (ZMod 2)
+        ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod := by
+  have hm : freeAlgebraProj S (tauMinus A) =
+      (((unit (subshiftHomeo S) (ZMod 2))⁻¹ : (R S)ˣ) : R S) :=
+    freeAlgebraProj_ι S (some .uInv)
+  have hp : freeAlgebraProj S (tauPlus A) = ((unit (subshiftHomeo S) (ZMod 2) : (R S)ˣ) : R S) :=
+    freeAlgebraProj_ι S (some .u)
+  have hl : ∀ a : A, freeAlgebraProj S (tauLetter a) =
+      coeff (subshiftHomeo S) (ZMod 2) (letterIndicator S a) :=
+    fun a => freeAlgebraProj_ι S (some (.letter a))
+  rw [kernelWord, map_list_prod, map_list_prod, List.map_map, List.map_map]
+  congr 1
+  refine List.map_congr_left fun t _ => ?_
+  simp only [Function.comp_apply, map_mul, map_pow]
+  have h1 : ((((unit (subshiftHomeo S) (ZMod 2))⁻¹ : (R S)ˣ) : R S)) ^ (t : ℕ) =
+      ((unit (subshiftHomeo S) (ZMod 2) ^ (-((t : ℕ) : ℤ)) : (R S)ˣ) : R S) := by
+    rw [← Units.val_pow_eq_pow_val, zpow_neg, zpow_natCast, inv_pow]
+  have h2 : ((unit (subshiftHomeo S) (ZMod 2) : (R S)ˣ) : R S) ^ (t : ℕ) =
+      (((unit (subshiftHomeo S) (ZMod 2) ^ (-((t : ℕ) : ℤ)))⁻¹ : (R S)ˣ) : R S) := by
+    rw [zpow_neg, inv_inv, zpow_natCast, Units.val_pow_eq_pow_val]
+  rw [hm, hp, hl, h1, h2, unit_zpow_mul_coeff_mul_inv, comap_letterIndicator, neg_neg]
+
+/-- The cylinder indicator `e_{[v]}` vanishes exactly when `v` is not a word of `X`. -/
+theorem coeff_prod_coordIndicator_eq_zero_iff (S : Subshift A ℤ) (v : List A) :
+    coeff (subshiftHomeo S) (ZMod 2)
+        ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod = 0 ↔
+      v ∉ CylinderTables.listLanguage S.carrier := by
+  have heval : ∀ x : S.carrier,
+      ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod x =
+        ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t) x).prod := by
+    intro x
+    change LocallyConstant.evalRingHom x
+        ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod = _
+    rw [map_list_prod, List.map_map]
+    rfl
+  constructor
+  · intro h0 hv
+    obtain ⟨x, hx, hxv⟩ := hv
+    have hz : coeff (subshiftHomeo S) (ZMod 2)
+        ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod =
+        coeff (subshiftHomeo S) (ZMod 2) 0 := by
+      rw [h0, map_zero]
+    have hf := coeff_injective (subshiftHomeo S) (ZMod 2) hz
+    have hval := LocallyConstant.congr_fun hf ⟨x, hx⟩
+    have h1 : ((List.finRange v.length).map fun t =>
+        coordIndicator S ((t : ℕ) : ℤ) (v.get t) ⟨x, hx⟩).prod = 1 := by
+      refine List.prod_eq_one fun c hc => ?_
+      obtain ⟨t, -, rfl⟩ := List.mem_map.1 hc
+      rw [coordIndicator_apply, if_pos (hxv t)]
+    rw [heval, h1, LocallyConstant.zero_apply] at hval
+    exact absurd hval (by decide)
+  · intro hv
+    have hprod : ((List.finRange v.length).map fun t =>
+        coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod = 0 := by
+      ext x
+      rw [heval, LocallyConstant.zero_apply]
+      obtain ⟨t, ht⟩ : ∃ t : Fin v.length, x.1 ((t : ℕ) : ℤ) ≠ v.get t := by
+        by_contra hno
+        push Not at hno
+        exact hv ⟨x.1, x.2, hno⟩
+      exact List.prod_eq_zero (List.mem_map.2 ⟨t, List.mem_finRange t, by
+        rw [coordIndicator_apply, if_neg ht]⟩)
+    rw [hprod, map_zero]
+
+/-- **The kernel criterion** (tex l.542–543): `e₁₂(∏_{t<m} τ_-^t τ_{v_t} τ_+^t)` lies in the kernel of
+`EL₃(F) → G_X` iff `v ∉ L(X)`. -/
+theorem e12_kernelWord_mem_ker_iff (S : Subshift A ℤ) (v : List A) :
+    e12 (kernelWord v) ∈ (elementaryGroupMap (ι := Fin 3) (freeAlgebraProj S)).ker ↔
+      v ∉ CylinderTables.listLanguage S.carrier := by
+  rw [MonoidHom.mem_ker, elementaryGroupMap_e12, e12_eq_one_iff, freeAlgebraProj_kernelWord,
+    coeff_prod_coordIndicator_eq_zero_iff]
+
+/-- **A subshift is determined by its language**: if every word of `X` is a word of `X'`, then
+`X ⊆ X'`, since `X'` is closed and a point is approximated by the points of `X'` with its windows. -/
+theorem carrier_subset_of_listLanguage_subset {S S' : Subshift A ℤ}
+    (h : CylinderTables.listLanguage S.carrier ⊆ CylinderTables.listLanguage S'.carrier) :
+    S.carrier ⊆ S'.carrier := by
+  intro x hx
+  by_contra hxS'
+  obtain ⟨I, U, hU, hIU⟩ := isOpen_pi_iff.mp S'.isClosed.isOpen_compl x hxS'
+  obtain ⟨K, hK⟩ : ∃ K : ℕ, ∀ i ∈ I, |i| ≤ (K : ℤ) := ⟨I.sup Int.natAbs, fun i hi => by
+    have hle := Finset.le_sup (f := Int.natAbs) hi
+    rw [Int.abs_eq_natAbs]
+    exact_mod_cast hle⟩
+  obtain ⟨y, hy, hyw⟩ := CylinderTables.exists_window_eq S'.mapsTo
+    (h (CylinderTables.window_mem_listLanguage S.mapsTo hx K)) (CylinderTables.length_window x K)
+  refine hIU (Set.mem_pi.mpr fun i hi => ?_) hy
+  have hxy : y i = x i := by
+    have e1 := CylinderTables.window_getElem? y K (hK i hi)
+    have e2 := CylinderTables.window_getElem? x K (hK i hi)
+    rw [hyw] at e1
+    exact Option.some.inj (e1.symm.trans e2)
+  rw [hxy]
+  exact (hU i hi).2
+
+theorem subshift_eq_of_carrier_eq {S S' : Subshift A ℤ} (h : S.carrier = S'.carrier) : S = S' := by
+  cases S
+  cases S'
+  cases h
+  rfl
+
+/-- **Different subshifts give different kernels** (tex l.543–544). -/
+theorem ker_ne_of_ne (S S' : Subshift A ℤ) (hne : S ≠ S') :
+    (elementaryGroupMap (ι := Fin 3) (freeAlgebraProj S)).ker ≠
+      (elementaryGroupMap (ι := Fin 3) (freeAlgebraProj S')).ker := by
+  intro hker
+  apply hne
+  have hlang : ∀ v : List A, v ∈ CylinderTables.listLanguage S.carrier ↔
+      v ∈ CylinderTables.listLanguage S'.carrier := by
+    intro v
+    have h := e12_kernelWord_mem_ker_iff S v
+    rw [hker, e12_kernelWord_mem_ker_iff S' v] at h
+    exact not_iff_not.mp h.symm
+  exact subshift_eq_of_carrier_eq (Set.Subset.antisymm
+    (carrier_subset_of_listLanguage_subset fun v hv => (hlang v).1 hv)
+    (carrier_subset_of_listLanguage_subset fun v hv => (hlang v).2 hv))
+
+/-- **"For a fixed alphabet, every $G_X$ is a simple quotient of the Kazhdan group $\EL_3(F)$, and
+$e_{12}(\prod_{t<m}\tau_-^t\tau_{v_t}\tau_+^t)$ lies in the kernel if and only if $v\notin L(X)$, so
+different subshifts give different kernels."** (tex l.541–544). -/
+def PrintedWordProblemKernels : Prop :=
+  ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A] [Finite A],
+    HasKazhdanPropertyT.{0, 0} (elementaryGroup (Fin 3) (KernelFreeAlgebra A)) ∧
+    (∀ S : Subshift A ℤ, Infinite S.carrier → IsMinimal S →
+      IsSimpleGroup (G S) ∧
+        Function.Surjective (elementaryGroupMap (ι := Fin 3) (freeAlgebraProj S))) ∧
+    (∀ (S : Subshift A ℤ) (v : List A),
+      e12 (kernelWord v) ∈ (elementaryGroupMap (ι := Fin 3) (freeAlgebraProj S)).ker ↔
+        v ∉ CylinderTables.listLanguage S.carrier) ∧
+    ∀ S S' : Subshift A ℤ, S ≠ S' →
+      (elementaryGroupMap (ι := Fin 3) (freeAlgebraProj S)).ker ≠
+        (elementaryGroupMap (ι := Fin 3) (freeAlgebraProj S')).ker
+
+/-- **The printed paragraph over the simplicity piece of `thm:main`.** -/
+theorem printedWordProblemKernels_of_simplicity (hsimple : PrintedSimplicityStatement) :
+    PrintedWordProblemKernels := by
+  intro A _ _ _ _
+  exact ⟨hasKazhdanPropertyT_elementaryGroup_freeAlgebra (Option (Coeff A)) 3 le_rfl,
+    fun S hinf hmin => ⟨hsimple A S hinf hmin 3 le_rfl, elementaryGroupMap_freeAlgebraProj_surjective S 3⟩,
+    e12_kernelWord_mem_ker_iff, ker_ne_of_ne⟩
+
+end SimpleKazhdanSofic
+
+end GroupApproximation
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.freeAlgebraProj_surjective
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.freeAlgebraProj_kernelWord
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.e12_kernelWord_mem_ker_iff
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.carrier_subset_of_listLanguage_subset
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ker_ne_of_ne
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.printedWordProblemKernels_of_simplicity
