@@ -32,3 +32,5 @@ artifacts:
 - **SL_3(Z):** by Margulis's normal subgroup theorem it has only countably many normal subgroups, so no uncountable family exists. The lemma is vacuous there, not contradicted.
 - **Simplicity:** it is used once, to get `N_i N_j = Λ`. For non-simple quotients the argument needs the image of `N_j` in `Λ/N_i` to be infinite.
 - **Witness family:** the subshift groups `G_X` over a fixed alphabet (`separable-factors-hold-countably-many-subshift-groups`).
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part5.md`):** PASS; every step re-derived (see the artifact).

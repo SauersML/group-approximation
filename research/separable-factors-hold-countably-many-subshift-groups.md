@@ -29,3 +29,5 @@ artifacts:
 
 ## Attempts
 - **Exact rigidity** (`L(G_X) ≅ L(G_Y) ⇒ X = Y` or flip conjugate) is not claimed. The separability argument gives only countable fibres. Deformation/rigidity (Popa) or an intrinsic reconstruction would be needed; see the open node `subshift-elementary-group-isomorphism-forces-orbit-equivalence` for the group-level question.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part5.md`):** PASS; every step re-derived (see the artifact).
