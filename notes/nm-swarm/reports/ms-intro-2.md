@@ -186,6 +186,15 @@ identities, `ℓ ↦ diag(u_ℓ,1,1)`, `[L,L] → EL₃(R)`, and `Γ ≤ [Δ,Δ]
 - **LANDED a39853967** (23:5x), at tip c8b6021ca, tex 395–402. Probe 0913-234246-2153 GREEN; wire-queued.
   `printedLEFDiagonalIdentities` and `printedLEFDiagonalEmbedding` hold over any ring with `u : Λ →* Rˣ`.
 
+## Item 5 (main, 00:0x 09-14): piece 2 of ms-compress-1's LongTransitions split (51687cf4b)
+
+CLAIM `OsinLemma94CuttingTransitionInput` (cutting transitions ≤ K n), in new modules
+`GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CuttingTransitions*.lean`. ms-compress-1 keeps piece 1,
+`OsinLemma94ContactTransitionInput`.
+- Route (the Prop's docstring): a dart-minimal family has no pendant cutting tree, so an entry into a cutting path marks
+  a hole of the polygon that holds an object. The entries are bounded by the holes, and the holes by n.
+- Model test first: a polygon around one cell joined to `∂Δ` by one bridge gives 2 cutting transitions and 1 hole.
+
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.
 - 17:06 probe 0913-170556-76424 GREEN, BUILT IntroCompressorSentences.
