@@ -159,6 +159,20 @@ theorem runPos_mono (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) :
     rw [runPos, runPos]
     split_ifs <;> omega
 
+/-- On a single side, the side-run position of a side position is the position. -/
+theorem runPos_singleton (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) {t x : ℕ}
+    (hx : x ≤ (P.word k t).length) : Q.runPos k [t] x = x := by
+  rw [runPos, if_pos hx]
+
+/-- The side-run position of class `i` lies in its side run. -/
+theorem runPos_le_sideRun (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) (i x : ℕ) :
+    Q.runPos k (Q.classSides k i) x ≤ (Q.sideRun k i).length := by
+  have h := runPos_le Q k (Q.classSides k i) x
+  have e : (Q.sideRun k i).length = ((Q.classSides k i).flatMap (P.word k)).length := by
+    simp only [sideRun, List.length_flatMap, OsinLemma94RealizedPolygons.word, Embedded.dartWord,
+      List.length_map]
+  omega
+
 theorem listVal_flatMap_congr (l : List ℕ) (f g : ℕ → List (RelLetter G Lambda))
     (h : ∀ x ∈ l, RelLetter.listVal (f x) = RelLetter.listVal (g x)) :
     RelLetter.listVal (l.flatMap f) = RelLetter.listVal (l.flatMap g) := by
@@ -193,8 +207,8 @@ theorem vertex_eq_classWalk_take (Q : OsinLemma94ClassPolygons P) (k : Fin P.cou
       RelLetter.listVal ((Q.word k i).take x) := by
     have e1 : dartWord S.diagram ((Q.sideRun k i).take (Q.runPos k (Q.classSides k i) x)) =
         ((Q.classSides k i).flatMap (P.word k)).take (Q.runPos k (Q.classSides k i) x) := by
-      simp only [Embedded.dartWord, List.map_take, sideRun, List.map_flatMap,
-        OsinLemma94RealizedPolygons.word]
+      simp only [Embedded.dartWord, List.map_take, sideRun, List.map_flatMap]
+      rfl
     rw [e1, Q.word_eq]
     exact (listVal_take_blocks Q k _ x hg hngRec).symm
   have hA : RelLetter.listVal (dartWord S.diagram
@@ -205,7 +219,8 @@ theorem vertex_eq_classWalk_take (Q : OsinLemma94ClassPolygons P) (k : Fin P.cou
     have hy' : y < Q.classCount k := lt_trans (List.mem_range.mp hy) hi
     rw [Q.word_eq, listVal_flatMap_append (Q.classSides k y) (P.word k)
       (fun s => Embedded.dartWord S.diagram (Q.gap k s)) (fun s hs => Q.gap_value k y hy' s hs)]
-    simp only [Embedded.dartWord, sideRun, List.map_flatMap, OsinLemma94RealizedPolygons.word]
+    simp only [Embedded.dartWord, sideRun, List.map_flatMap]
+    rfl
   obtain ⟨rest, hrest⟩ := rangeFlatMap_split (fun y => Q.sideRun k y) hi
   have hle : ((List.range i).flatMap (fun y => Q.sideRun k y)).length ≤
       ((List.range i).flatMap (fun y => Q.sideRun k y)).length +
