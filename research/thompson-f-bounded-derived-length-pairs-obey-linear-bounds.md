@@ -38,7 +38,9 @@ length, and `D = max_j d(R_j(A,B), 1)`.
 **Consequences.**
 - **Witnesses.** A family with `D/t → 0` must generate groups of unbounded derived length, or
   nonsolvable groups. It must also escape every law `v` with `V(F) ≠ 1`, and every bounded exponent.
-  The only pair on main below ratio `1/3` (`4/13`, 16 points) generates a nonsolvable group.
+- **Derived length three already helps.** The best pair on main, ratio `4/21` on 27 points, is a
+  `Sym(3)`-fibre skew product over the commuting `Z/3 × Z/3`, so of derived length at most 3 by item 4.
+  So `N_3 ≥ 21/4`, above `N_2 = 3`. The `4/13` pair on 16 points generates a nonsolvable group.
 - **Skew-product searches.** What can lower the ratio is the fibre group, not the cocycle pattern.
   Searches with abelian, or bounded-solvable, fibres over solvable bases are bounded below by
   `1/N_ℓ`, and with unrestricted fibres they are as general as all pairs.

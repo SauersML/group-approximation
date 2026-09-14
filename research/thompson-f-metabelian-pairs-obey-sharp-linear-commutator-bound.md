@@ -48,9 +48,13 @@ last letter first), `c = abAB`, and `d` is the normalized Hamming distance on `S
 - **The small-n minima are the metabelian barrier.** The exact minima over all of `Sym(n)` on main,
   `1/3` in max form at `n = 12` and `1/2` in sum form from `n = 10` on, are attained by metabelian
   groups and coincide with item 1.
-- **Going below 1/3 needs a non-metabelian group.** The only certificate on main below `1/3`, the
-  `4/13` pair on 16 points, generates a non-solvable group of order 38880 with an `A5` factor, and
-  `u_2` moves 11 of its 16 points.
+- **Going below 1/3 needs a non-metabelian group.** Both certificates on main below `1/3` are
+  non-metabelian, and `u_2` does the work in each:
+  - the `4/13` pair on 16 points generates a non-solvable group of order 38880 with an `A5` factor,
+    and `u_2` moves 11 of its 16 points;
+  - the `4/21` pair on 27 points (`hl-f-skew-product-rate`, a skew product with fibre `Sym(3)` over the
+    commuting `Z/3 × Z/3`, so of derived length at most 3) has `2 m_1 + m_2 = 12 < 21 = m_c`, and `u_2`
+    moves 24 of its 27 points.
 - **Metabelian models are no witnesses.** Affine maps `x ↦ αx + β`, lamplighter actions
   `Z/k wr Z/m`, and skew products with abelian fibres over commuting bases never go below `1/3`.
 - **Witnesses load an explicit second-derived word.** A family with `D_k/t_k → 0` has

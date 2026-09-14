@@ -137,9 +137,44 @@ product of relator conjugates times a value of `v`. So:
 - **`cyc` mode.** On the torus with `N = 3`, `k = 2` it finds `4/12`, matching the exhaustive metabelian
   minimum, and by §3 it can never go below `1/3`.
 
-**Results.** RUNNING at landing time; the table is appended when job 793408 finishes. The partial
-outputs seen at 11:1x were all above `1/3`, the best being `33/93 ≈ 0.355` on a 100-point torus product
-with fibre `Sym(4)`.
+**Results (job 793408, all 94 runs; full table in `skew-793408-results.txt`).** Best max ratio per
+configuration (all seeds and `frac` values):
+
+| base | fibre `k` | best `max(m_1,m_2)/m_c` | n |
+|---|---|---|---|
+| torus `N = 2` | 3 / 4 / 5 | `4/10` / `4/12` / `4/12` | 12 / 16 / 20 |
+| torus `N = 3` | 3 | **`4/21 ≈ 0.1905`** (all 6 runs) | 27 |
+| torus `N = 3` | 4 / 5 | `9/33 = 3/11 ≈ 0.2727` / `16/45 ≈ 0.356` | 36 / 45 |
+| torus `N = 4` | 3 / 4 / 5 | `11/38 ≈ 0.289` / `17/55 ≈ 0.309` / `27/73 ≈ 0.370` | 48 / 64 / 80 |
+| torus `N = 5` | 3 / 4 / 5 | `19/63 ≈ 0.302` / `33/93 ≈ 0.355` / `44/114 ≈ 0.386` | 75 / 100 / 125 |
+| `cert.x16` | 2 / 3 | `8/26` / `12/39` (= `4/13`, no gain) | 32 / 48 |
+| `cert.x12` | 2 / 3 | `1/3` (no gain) | 24 / 36 |
+| torus, `cyc` (abelian fibre) | 2–4 | `≥ 1/3`, as forced by §3 | ≤ 64 |
+
+**New certificates** (recounted by `analyze.py` on MSI and independently by a local script):
+- **`cert.torus3xS3-4over21.txt`.** `n = 27`, `m_1 = m_2 = 4`, `m_c = 21`, `u_2` moves 24 points. So
+  `ρ_F ≤ 4/21`, and every nonsoficity constant in the max form is at least `21/4 = 5.25`, improving
+  `13/4`.
+  - The pair is a skew product with fibre `Sym(3)` over the commuting `Z/3 × Z/3`, so by §4 its derived
+    length is at most 3; the structure is in `skewgroups.log` once GAP job 794552 reports.
+  - Consequence: the linear constant for derived length three satisfies `N_3 ≥ 21/4`, strictly above
+    the metabelian `N_2 = 3`.
+- **`cert.torus3xS4-3over11.txt`.** `n = 36`, `m_1 = m_2 = 9`, `m_c = 33`, `u_2` moves 24 points.
+
+**Reading.**
+- **Nonabelian fibres help.** Nonabelian fibres over a commuting base beat both the metabelian wall
+  and the previous best nonsolvable pair, and they do so reproducibly.
+- **No growing mechanism yet.** The anneal did worse on larger tori and larger fibres, which may be
+  search failure. By the closure theorem, unions and products of the `4/21` block stay at `4/21`.
+- **Iterated skew products and larger tori (job 794431, 28 runs, `iter-794431-results.txt`): no gain.**
+  - **Over the `4/21` pair, fibre `k = 2`.** Best `8/42 = 4/21`, only recovering the constant-cocycle
+    doubling; the other seeds give `12/54`.
+  - **Over the `4/21` pair, fibre `k = 3`.** Best `25/81 ≈ 0.309`.
+  - **Over the `3/11` pair.** `k = 2` gives `18/66 = 3/11` again, and `k = 3` gives `≈ 0.39`.
+  - **Tori with `Sym(3)` fibres.** `N = 6` gives `23/86 ≈ 0.267`, and `N = 9` gives `58/205 ≈ 0.283`.
+
+  So growing derived length by iterating skew products did not lower the ratio in this search. That is
+  search evidence only, and it decides nothing.
 
 ## 6. Exact gap
 

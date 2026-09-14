@@ -55,3 +55,16 @@ not sofic. It then makes `V` nonsofic too.
     (`research/artifacts/hl-f-sofic-relator-instability-2026-09-14.md`).
   - **Proved classes.** On pairs where a fixed nontrivial element of `F` is almost trivial, the inequality
     holds with linear constants (`thompson-f-almost-kernels-force-linear-commutator-bounds`).
+- **Metabelian wall and skew products (2026-09-14).**
+  - **Sharp metabelian case.** `c ≡ (a^2R_1a^-2)(aR_1a^-1)(a^2R_2a^-2)^-1` modulo `F_2''`, so pairs
+    generating a metabelian group satisfy `d(AB,BA) ≤ 2 d(R_1,1) + d(R_2,1)`, and the bound is attained
+    (`thompson-f-metabelian-pairs-obey-sharp-linear-commutator-bound`). The `n ≤ 12` minima above are
+    attained by metabelian groups and equal this bound.
+  - **Every bounded derived length.** Linear constants `N_ℓ` exist for each derived length and for every
+    law `F` escapes (`thompson-f-bounded-derived-length-pairs-obey-linear-bounds`). Skew products over
+    commuting bases with unrestricted fibres already contain every pair, so no barrier uniform over them
+    is weaker than this claim.
+  - **Constant.** Annealing over `Sym(3)`-fibre skew products on `Z/3 × Z/3` gives a 27-point pair with
+    `max(m_1,m_2)/m_c = 4/21`, of derived length at most 3. So any `C` is at least `21/4`, and
+    `N_3 ≥ 21/4 > N_2 = 3`. Iterated skew products and larger tori gave no further gain
+    (`research/artifacts/hl-f-skew-product-rate-2026-09-14.md`).
