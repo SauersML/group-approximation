@@ -46,8 +46,10 @@ theorem mem_of_zpow_nat_mem :
   | _ n ih =>
     intro z hz hnC
     rcases Nat.eq_zero_or_pos n with rfl | hn
-    · have h0 : (⟨(T ^ ((0 : ℕ) : ℤ)) (z : X), hnC⟩ : C) = z :=
-        Subtype.ext (by rw [Nat.cast_zero, zpow_zero, Homeomorph.one_apply])
+    · have h0 : (⟨(T ^ ((0 : ℕ) : ℤ)) (z : X), hnC⟩ : C) = z := by
+        refine Subtype.ext ?_
+        show (T ^ ((0 : ℕ) : ℤ)) (z : X) = (z : X)
+        rw [Nat.cast_zero, zpow_zero, Homeomorph.one_apply]
       rw [h0]
       exact hz
     · have hle : returnTime T C z ≤ n := returnTime_le_of_mem hC z hn hnC
@@ -74,8 +76,10 @@ theorem mem_of_zpow_neg_nat_mem :
   | _ n ih =>
     intro z hz hnC
     rcases Nat.eq_zero_or_pos n with rfl | hn
-    · have h0 : (⟨(T ^ (-((0 : ℕ) : ℤ))) (z : X), hnC⟩ : C) = z :=
-        Subtype.ext (by rw [Nat.cast_zero, neg_zero, zpow_zero, Homeomorph.one_apply])
+    · have h0 : (⟨(T ^ (-((0 : ℕ) : ℤ))) (z : X), hnC⟩ : C) = z := by
+        refine Subtype.ext ?_
+        show (T ^ (-((0 : ℕ) : ℤ))) (z : X) = (z : X)
+        rw [Nat.cast_zero, neg_zero, zpow_zero, Homeomorph.one_apply]
       rw [h0]
       exact hz
     · have hnC' : ((T⁻¹) ^ (n : ℤ)) (z : X) ∈ C := by
