@@ -30,30 +30,16 @@ coordinator).  This file is written by ct-rank-budget only.
    - `def PrintedDynamicRankBudget : Prop` (tex 1696–1705 as printed), `def PrintedIntroductionAperiodicSentence`;
    - `printedDynamicRankBudget_of_pieces` (the printed proof over the pieces below),
      `printedIntroductionAperiodicSentence_of_budget`.
-3. `GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetTorsionTransfer.lean` — authored.
-   `torsionDefectTransferStatement_of_countable` (from the closed `manuscriptTorsionComplementaryIdempotents`),
-   `printedDynamicRankBudget_of_residuals` (assembly without that piece).
+3. `GroupApproximation/Manuscript/NonMFSentences/DynamicRankBudgetTorsionTransfer.lean` — LANDED aadb514ad.
+   `torsionDefectTransferStatement_of_countable`, `printedDynamicRankBudget_of_residuals`.
+4. `DynamicRankBudgetPlacement` 14e45f292, `DynamicRankBudgetInducedCore` 0ff627d8e, `DynamicRankBudgetReturnKernel`
+   c9899b2b6, `DynamicRankBudgetReturnBridge` 4cc9a1f20, `DynamicRankBudgetReturnTransientIdeal` e2d3c56f7,
+   `DynamicRankBudgetAssembly` b818e32b3 / 16937ecac (see the log below).
 
-## Residual piece Props (exact names in `DynamicRankBudget.lean`; each quantifies over every nonempty compact
-## metrizable zero-dimensional `X`, `T : X ≃ₜ X`, finite field `k`)
-
-| Prop | content | owner |
-|---|---|---|
-| `CoreRingReflectionStatement` | `R_X` DF ⟺ SF ⟺ LEF ⟺ `∀ x, x ∈ CR(T)` | chain-reflection |
-| `CoreModelsLEFStatement` | `IsLEFRing R_Y` | chain-itinerary |
-| `CountableCrossedProductStatement` | `Countable R_X` | chain-core |
-| `CoreMFRadicalKillStatement` | over `F_2`: `K_n(I) ≤ Rad_MF(GL_n)` (n ≥ 3), `EL_n ∩ K_n(I) ≤ Rad_MF(EL_n)` (n ≥ 4), `K_n(I)` locally finite (n ≥ 2) | chain-radical |
-| `BilateralThreeTransferStatement` | `R_X` not DF ⇒ `∃ x ∈ Rad_MF(GL_n(R_X)), x ≠ 1` (n ≥ 3) | ct-bilateral-mf |
-| `TorsionDefectTransferStatement` | same for `EL_n`, n ≥ 4 | ct-rank-budget (module 3) |
-| `UnitKernelLocallyFiniteStatement` | `K_1(I)` locally finite over `F_2` | ct-involution |
-| `ReturnEmbeddingStatement` | no periods below `r` ⇒ a return system `(C, S)`: injective non-unital `R_X → M_m(R_C)`; injective `GL_{nr}(R_C) → GL_n(R_X)`, `EL_{nr}(R_C) → EL_n(R_X)` (n ≥ 2), `GL_r(R_C) → R_X^×`; over `F_2`, every element of the core kernel of `GL_n(R_X)` / `EL_n(R_X)` / `R_X^×` is conjugate into the image of the core kernel of the embedded group | ct-return-tower (tower), ct-involution (involution), ct-rank-budget (induced core, `J`, placement) |
-
-## Next
-
-- Land module 2 when green; probe and land module 3; census rows for tex 1696–1705, 1743–1766, 254–259 (partial over
-  the residuals above).
-- Then my share of `ReturnEmbeddingStatement`: the induced core `CR(S_C) = C ∩ CR(T)` and the phase-zero placement,
-  once ct-return-tower names the return system.
+The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStatement`, `CoreModelsLEFStatement`,
+`CountableCrossedProductStatement`, `CoreMFRadicalKillStatement`, `BilateralThreeTransferStatement`,
+`TorsionDefectTransferStatement`, `UnitKernelLocallyFiniteStatement`, `ReturnEmbeddingStatement`) are stated in
+`DynamicRankBudget.lean`; which of them are still open is in "Remaining open inputs" at the end.
 
 ## Progress log
 
