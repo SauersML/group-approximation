@@ -125,7 +125,6 @@ theorem twoGonHoldsInput_of_eulerSpan {D : RelGenSet G Lambda} {lambda c : ℝ} 
     rw [← hL]
     simp only [targetDarts, outerDarts, List.length_map, List.length_reverse]
   have hY : target.start.1 + target.length ≤ (targetDarts S.diagram none).length := by
-    rw [hLo]
     have h1 := hjb.2.2
     have h2 := cuts.cut_le_length j.succ
     omega
