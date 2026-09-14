@@ -47,6 +47,7 @@ there, so this lane rebuilt their core in a scratch tool (`rwprep.py`):
 | ~~`Manuscript.ChainCore.BilateralThreeClosures`, `Algebra.BilateralThreeCellZOrder`~~ released ~19:05 | reached `Dynamics/BilateralThreeCellClopen`, which redeclared `ClopenCrossedProduct.coeff_injective`; fixed at 131abe1b5, GREEN 0913-185912-77650 | ct-bilateral-cell |
 | `Dynamics.ClopenCrossedProductAlgebra` | global `ClopenCoeff.instAlgebra`, a second `Algebra (ZMod 2) R_X` beside ms-units' `zmodTwoAlgebra`; waits for main's ruling | ms-compress-3 |
 | `Estimating.OsinLemma94ClassCovers` | red since a25fe2383 (roster) | hull-component |
+| `Manuscript.SimpleKazhdanSofic.InfiniteSimpleICC` (and `Analysis.GroupVonNeumannIIOneFactor`, reached only through it) | red at origin: FAILED 0913-212821-73088 names it in `# mods` without an md5 line (rewrite found no occurrence at 50:6, type mismatch at 51:8, `sorry` in two printed endpoints) | oa-mcduff |
 | `Estimating.OsinLemma94ClassTransitions` | redeclares `OsinLemma94RealizedPolygons.cuttingSides` (l.68), identical to `Estimating/OsinLemma94CuttingSides.lean:48` (w1-binder-1, 3d2744463); fix: import `OsinLemma94CuttingSides` and delete the local def | sec5-sentences (ec3c531fc) |
 | ~~`Algebra.IntegerPolynomialUnisolvence`~~ released ~20:00 | was red at 122:80 (ℤ vs ℂ coefficients); fixed by ms-traces-1 at ad637cf5a, GREEN 0913-194043-12780 (BUILT fresh), md5 = origin 77ac966c5 | dgo-geometric → ms-traces-1 |
 | ~~`Dynamics.CoreKernelFTwo` and its importers~~ released ~20:00 | FAILED 0913-182039-93403 is ms-units' probe of `TransientTowerFamily`, where `CoreKernelFTwo` compiled; fresh GREEN 0913-194625-49937 covers `CoreKernelFTwo`, `InvolutionLocalizationClosed`, `TransientIdealLocallyMatricial`, `CoreKernelRelativeElementary`, md5 = origin 77ac966c5 | ms-units |
@@ -186,6 +187,35 @@ Holds and tool, 21:35–23:13:
   - A joint pre-flight of waves 20 and 21 had one false blocking line, `GroupApproximation.GGT.VanKampen.of`. It was
     docstring prose ("class of `y`. -/") in `OsinAppendixEulerTwoGonEulerAssembly` and `OsinLemma94CuttingSides`.
   - The launcher's name exception for top-level `of`/`by` covered only non-namespaced prose.
+
+## Wave 21, launched 09-13 ~23:19
+
+- Drafted from the listing at 0a77fefe9, the tip after wave 20: 70 tops, 33 OK, 35 NOEVID (LIX campaign files and the
+  held `InfiniteSimpleICC`), 1 HOLD (`ClassCovers`), 1 LEX.
+- The draft is `OsinLemma94ClassTransitions` (released), `OsinLemma94ClassGapHairModel` (its lexical hits are docstring
+  prose, "admit"), `FiniteModelsRing`, `BridgeComponentPlanar` and the OK tops: 34 modules.
+- Launcher gate at 96f7db6f6:
+  - 32 kept; `ClosedWalkIslandModel` and `OsinPocketCellWalkOrder` were dropped as no longer unwired tops;
+  - 59 newly reachable files (closure 6862 → 6921), 0 blocking lines;
+  - the one lexical hit is `ClassGapHairModel`'s prose, read by hand.
+- Root build tag 0913-231916-98260, base c57c5e178.
+- The two dropped modules are imported only by modules that landed at 23:17, after the listing:
+  - `ClosedWalkIslandModel` by `OsinUnboundSameCellPocketModel` (ms-compress-2, 96f7db6f6);
+  - `OsinPocketCellWalkOrder` by `OsinGreendlingerWaistV4Euler` (ct-rank-two-limit, 236898aed), whose unwired top is
+    `TorsionFreeResidualsV4Euler`.
+  Both tops are gate-OK and go into wave 22.
+- Wave 22 draft, 7 modules: `TorsionFreeResidualsV4Euler`, `OsinUnboundSameCellPocketModel`,
+  `ChainCoreItineraryClosed`, `CoreRingReflectionProofClosed`, `OsinPocketCellCopyClean`,
+  `OsinPocketPinchFirstTurnAssembly`, `OsinLemma94SameCellRCellEnclosed`. A joint pre-flight with wave 21 at 36b7126a2
+  is clean: 71 newly reachable files (closure 6862 → 6933), 0 blocking lines. It launches after wave 21 lands.
+- Queue: job 744525 sat PENDING on `msismall,amdsmall`.
+  - The background waiter used since wave 19 never widened anything: it waited for nmwire's "[dispatch] submitting"
+    line, which `nmwire.sh` prints only after the build ends.
+  - Waves 19 and 20 were scheduled without widening.
+  - At ~23:40 the job was widened directly with `scontrol update … partition=msismall,amdsmall,agsmall,sioux`.
+  - From wave 22 on, `widen-by-tag.sh` polls `squeue` for the job by tag and widens it while pending.
+
+Result: pending.
 
 ## Evidence and holds, 18:45–19:10
 
