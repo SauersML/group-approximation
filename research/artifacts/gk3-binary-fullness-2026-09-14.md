@@ -104,8 +104,21 @@ multiplication, so every edge is a bridge, and `B` is a three-regular tree. It c
 both sides of the edge `1` are infinite, and one of them carries the value `1` on infinitely many cosets,
 contradicting finite support. QED
 
-**Consequence.** A coset certificate in Proposition 2.1 needs `k >= 2`. The first live level is `k = 2`, with two to
-eight conjugates of `C_3² = ⟨g, D(g)⟩` translating the nine ternary cylinders.
+**Lemma 3.2 (general form).**
+- (a) The same holds for any two nontrivial finite subgroups of odd order.
+  - If `K_1 ∩ K_2` contains some `h != 1`, the edges `1` and `h` join the same two vertices `K_1` and `K_2`, and the
+    equations there demand both `φ(K_1) + φ(K_2) = 1` and `= 0`.
+  - Otherwise the bridge argument runs verbatim with degrees at least three.
+- (b) If `K_1, ..., K_r` are nontrivial finite subgroups of odd order generating their free product, `1` is not in
+  `Σ_j e_(K_j) F_2[G]`.
+  - The incidence graph between elements and cosets is a tree.
+  - Take a labelled coset `c` farthest from the element `1`, and an element `u` of `c` other than its parent.
+  - `u != 1` lies in no other labelled coset, so the sum at `u` is `1`, while `δ_1(u) = 0`.
+
+**Consequence.** A coset certificate in Proposition 2.1 needs `k >= 2`, `3 <= r < 3^k`, and relations among the
+conjugates `K_j` beyond their free product. The first live level is `k = 2`, with three to eight conjugates of
+`C_3² = ⟨g, D(g)⟩` translating the nine ternary cylinders. The census still runs `r = 2` as a solver cross-check,
+since Lemma 3.2(a) predicts infeasibility there.
 
 ## 4. Census design (linear, over Thompson's V)
 

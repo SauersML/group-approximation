@@ -34,3 +34,18 @@ Complete direct proof (artifact Section 3).
    - If `B` is infinite, removing an edge of a three-regular tree leaves two infinite components. `φ` is constant on
      each and the two values differ, so one component carries the value `1` on infinitely many vertices. Then `f_1`
      or `f_2` is not finitely supported, a contradiction.
+7. **General form (a): odd orders.** Step 1 only needs `|K| = 1` in `F_2`, that is `|K|` odd, and the subgroups are
+   nontrivial, so `|K_j| >= 3`.
+   - If `K_1 ∩ K_2` contains some `h != 1`, then `K_1 h = K_1` and `K_2 h = K_2`. The equations at `h` and at `1` give
+     `φ(K_1) + φ(K_2) = 0` and `= 1`, a contradiction.
+   - Otherwise steps 4–6 run verbatim with degrees `|K_1|, |K_2| >= 3`. A finite tree with minimum degree `>= 2` does
+     not exist, and in an infinite one both sides of an edge are infinite.
+8. **General form (b): free products.** Suppose `L = ⟨K_1, ..., K_r⟩` is the free product of the `K_j` and
+   `δ_1 = Σ_j f_j`. Normal forms in the free product make the bipartite incidence graph between elements `w` and
+   cosets `K_j w` a tree.
+   - Let `S` be the finite nonempty set of cosets where some `f_j` is `1`, and take `c` in `S` at maximal tree distance
+     from the element `1`.
+   - `c` has `|K_j| >= 3` elements, and at most one of them is closer to `1`. Pick another element `u` of `c`; then
+     `u != 1`.
+   - Every other coset through `u` is farther from `1` than `c`, so it is not in `S`. So `Σ_j f_j(u) = 1`, while
+     `δ_1(u) = 0`, a contradiction.

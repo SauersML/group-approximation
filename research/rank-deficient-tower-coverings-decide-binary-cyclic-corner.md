@@ -39,8 +39,9 @@ bounded instance has a checkable dual certificate.
   (artifact Section 2).
 - A coset certificate restricts to `L = ⟨K_1, ..., K_r⟩`, so `L` must be nonsofic: the rank function of a sofic
   approximation gives each `E^(K_j)` rank `3^(-k)`, and `r · 3^(-k) < 1`.
-- `two-order-three-coset-ideals-never-contain-one` kills the coset form at `k = 1`, so a coset certificate needs
-  `k >= 2`. At `k = 1` only left factors outside the group remain.
+- `two-order-three-coset-ideals-never-contain-one` excludes `r = 2` at every level and every free product of the
+  `K_j`. So a coset certificate needs `k >= 2`, `3 <= r < 3^k`, and relations among the `K_j`. At `k = 1` only left
+  factors outside the group remain.
 
 ## Attempts
 

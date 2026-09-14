@@ -16,12 +16,16 @@ re-derived yet).
 Let `G` be any group, `K_1`, `K_2` subgroups of order three, and `e_(K_j) = Σ_(h in K_j) [h]` in `A = F_2[G]`. Then
 `1` is not in `e_(K_1) A + e_(K_2) A`.
 
-**Consequence.** In `rank-deficient-tower-coverings-decide-binary-cyclic-corner`, a coset certificate at `k = 1` has
-`r <= 2`, and this claim excludes it. So every coset certificate uses `k >= 2`, with at least two and at most
-`3^k - 1` conjugates of `C_3^k`.
+**General form (same proof).**
+- (a) For any two nontrivial finite subgroups `K_1`, `K_2` of odd order, `1` is not in `e_(K_1) A + e_(K_2) A`.
+- (b) For nontrivial finite subgroups `K_1, ..., K_r` of odd order whose generated subgroup is their free product,
+  `1` is not in `Σ_j e_(K_j) A`.
 
-**Scope.** The proof is combinatorial and uses no soficity, no approximation and nothing about `G` beyond the two
-subgroups. Over `F_2` it only needs `|K_j| = 3` to be odd.
+**Consequence.** In `rank-deficient-tower-coverings-decide-binary-cyclic-corner`, a coset certificate needs
+`k >= 2`, `3 <= r < 3^k`, and conjugates `K_j` of `C_3^k` that satisfy relations beyond their free product.
+
+**Scope.** The proof is combinatorial and uses no soficity, no approximation and nothing about `G` beyond the
+subgroups. Over `F_2` it only needs the orders `|K_j|` to be odd.
 
 ## Attempts
 
