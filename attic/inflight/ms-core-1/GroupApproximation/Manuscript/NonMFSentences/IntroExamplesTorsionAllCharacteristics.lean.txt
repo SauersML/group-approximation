@@ -63,6 +63,28 @@ theorem weylUnit_pow_four (u v : ι) (huv : u ≠ v) : weylUnit (S := S) u v huv
   rw [Units.val_pow_eq_pow_val, Units.val_one, show (4 : ℕ) = 2 + 2 from rfl, pow_add, pow_two, hw2, hsq, hP]
   noncomm_ring
 
+/-- The Weyl element lies in `EL_n`: it is a product of three elementary units. -/
+theorem weylUnit_mem_elementaryGroup (u v : ι) (huv : u ≠ v) :
+    weylUnit (S := S) u v huv ∈ elementaryGroup ι S :=
+  (elementaryGroup ι S).mul_mem
+    ((elementaryGroup ι S).mul_mem (elementaryUnit_mem u v huv 1) (elementaryUnit_mem v u huv.symm (-1)))
+    (elementaryUnit_mem u v huv 1)
+
+/-- **`w ≠ 1`** over a nonzero ring: `w E_uu = -E_vu`, whose `(u,u)` entry is `0`, not `1`. -/
+theorem weylUnit_ne_one [Nontrivial S] (u v : ι) (huv : u ≠ v) : weylUnit (S := S) u v huv ≠ 1 := by
+  intro hw
+  have hm := weylUnit_val_mul_single_fst (S := S) u v huv u (1 : S)
+  rw [hw, Units.val_one, one_mul] at hm
+  have he : (Matrix.single u u (1 : S)) u u = (-Matrix.single v u (1 : S)) u u :=
+    congrArg (fun M : Matrix ι ι S => M u u) hm
+  rw [Matrix.single_apply_same, Matrix.neg_apply, Matrix.single_apply_of_row_ne huv.symm u u (1 : S),
+    neg_zero] at he
+  exact one_ne_zero he
+
+/-- The Weyl element has finite order. -/
+theorem isOfFinOrder_weylUnit (u v : ι) (huv : u ≠ v) : IsOfFinOrder (weylUnit (S := S) u v huv) :=
+  isOfFinOrder_iff_pow_eq_one.2 ⟨4, by norm_num, weylUnit_pow_four u v huv⟩
+
 /-- **Torsion in `EL_n(R)` over every nonzero ring**, `n ≥ 2`: the Weyl element. -/
 theorem exists_elementary_torsion_of_nontrivial (R : Type*) [Ring R] [Nontrivial R] (n : ℕ) (hn : 2 ≤ n) :
     ∃ g ∈ elementaryGroup (Fin n) R, g ≠ 1 ∧ IsOfFinOrder g := by
@@ -71,20 +93,8 @@ theorem exists_elementary_torsion_of_nontrivial (R : Type*) [Ring R] [Nontrivial
   have hne : (⟨0, h0⟩ : Fin n) ≠ ⟨1, h1⟩ := by
     intro hcon
     exact absurd (congrArg Fin.val hcon) (by norm_num)
-  have hmem : weylUnit (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne ∈ elementaryGroup (Fin n) R := by
-    rw [← weyl_val]
-    exact (weyl (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne).2
-  refine ⟨weylUnit (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne, hmem, ?_, ?_⟩
-  · intro hw
-    have hm := weylUnit_val_mul_single_fst (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne ⟨0, h0⟩ (1 : R)
-    rw [hw, Units.val_one, one_mul] at hm
-    have he : (Matrix.single (⟨0, h0⟩ : Fin n) ⟨0, h0⟩ (1 : R)) ⟨0, h0⟩ ⟨0, h0⟩ =
-        (-Matrix.single (⟨1, h1⟩ : Fin n) ⟨0, h0⟩ (1 : R)) ⟨0, h0⟩ ⟨0, h0⟩ :=
-      congrArg (fun M : Matrix (Fin n) (Fin n) R => M ⟨0, h0⟩ ⟨0, h0⟩) hm
-    rw [Matrix.single_apply_same, Matrix.neg_apply,
-      Matrix.single_apply_of_row_ne hne.symm ⟨0, h0⟩ ⟨0, h0⟩ (1 : R), neg_zero] at he
-    exact one_ne_zero he
-  · exact isOfFinOrder_iff_pow_eq_one.2 ⟨4, by norm_num, weylUnit_pow_four (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne⟩
+  exact ⟨weylUnit (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne, weylUnit_mem_elementaryGroup _ _ hne,
+    weylUnit_ne_one _ _ hne, isOfFinOrder_weylUnit _ _ hne⟩
 
 /-- **"Every example above has torsion, and in the lamp construction the obstruction is itself a torsion
 element"** (tex 292–293), with the elementary examples in every characteristic. -/
