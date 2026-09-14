@@ -5,7 +5,12 @@ Lane oa-mcduff, launched ~20:15 by main. Brief: `ct/ROSTER-sk.md`, "OA LANES 20:
 ## CLAIM
 CLAIM infinite simple ⇒ ICC and not RF (row 6e8db7db6717) GroupApproximation/Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean
 CLAIM the II₁-factor predicate, and L(G) is a II₁ factor for infinite ICC G (row 07ce3ce2146f, first clause) GroupApproximation/Analysis/GroupVonNeumannIIOneFactor.lean
-CLAIM spatial von Neumann tensor product, McDuff factors, L(G)⊗̄R McDuff, embeds in R^ω, G ⊆ U(L(G)⊗̄R) (row 07ce3ce2146f) GroupApproximation/Analysis/VonNeumannTensorProduct.lean GroupApproximation/Manuscript/SimpleKazhdanSofic/McDuffBrownFormulation.lean
+CLAIM the assembly "L(G)⊗̄R is a McDuff factor that embeds in R^ω and whose unitary group contains G" (row 07ce3ce2146f) GroupApproximation/Manuscript/SimpleKazhdanSofic/McDuffBrownFormulation.lean
+- WITHDRAWN (20:35 roster): `Analysis/VonNeumannTensorProduct.lean`. The ⊗̄ product, the tensor trace, factoriality and the McDuff property belong to oa-vn-tensor; the tracial ultrapower M^ω to oa-ultrapower; R (twisted Pauli group algebra) to oa-hyperfinite; L(G) ↪ R^ω to oa-ozawa71.
+
+## Landings
+- dabb25c0b: claim and ledger.
+- 7b57e5e7a: unverified drafts `Analysis/GroupVonNeumannIIOneFactor.lean` (predicate `IIOneFactor.IsIIOneFactor`, and L(G) is II₁ over an infinite ICC group) and `Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean` (infinite simple ⇒ ICC and not RF; "So L(G) is a II₁ factor"). Probe 1 is running.
 
 ## Ownership check (20:2x)
 - origin: no McDuff notion, no II₁-factor predicate, no von Neumann tensor product.
