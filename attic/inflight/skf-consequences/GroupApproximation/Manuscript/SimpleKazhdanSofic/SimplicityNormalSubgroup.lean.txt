@@ -143,7 +143,7 @@ theorem one_sub_map_prod_one_sub_mem {A S ι : Type*} [CommRing A] [Ring S] (f :
     1 - f (∏ i ∈ s, (1 - e i)) ∈ I := by
   classical
   induction s using Finset.induction_on with
-  | empty => simpa using I.zero_mem
+  | empty => simp
   | insert i s hi ih =>
     rw [Finset.prod_insert hi, map_mul, map_sub, map_one]
     have h : 1 - (1 - f (e i)) * f (∏ j ∈ s, (1 - e j)) =
@@ -278,6 +278,44 @@ theorem printedSimplicityThroughFiniteSimpleSubgroup :
   fun _ _ _ _ hmin _ hn hw N hN hne => eq_top_of_simplicityCommutatorWitness hn hw
     (fun _ hV hne' => exists_finset_cover_zpow_image hmin hV.isOpen hne') N hN hne
 
+/-- **`EL_n(R_X)` is simple** for `n ≥ 3`, over a nonempty compact space with dense orbits, from the
+commutator witness: it is nontrivial, and every nontrivial normal subgroup is everything. -/
+theorem isSimpleGroup_elementaryGroup_of_simplicityCommutatorWitness [CompactSpace X] [Nonempty X]
+    (hmin : ∀ x : X, Dense (Set.range fun j : ℤ => (T ^ j) x)) {n : ℕ} (hn : 3 ≤ n)
+    (hw : SimplicityCommutatorWitness T n) :
+    IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenCrossedProduct T (ZMod 2))) := by
+  haveI : Nontrivial (ZMod 2) := nontrivial_of_ne (0 : ZMod 2) 1 (by decide)
+  haveI : Nontrivial (LocallyConstant X (ZMod 2)) :=
+    nontrivial_of_ne 0 1 fun h => by simpa using DFunLike.congr_fun h (Classical.arbitrary X)
+  haveI : Nontrivial (ClopenCoeff T (ZMod 2)) :=
+    inferInstanceAs (Nontrivial (LocallyConstant X (ZMod 2)))
+  have h01 : (⟨0, by omega⟩ : Fin n) ≠ ⟨1, by omega⟩ := by simp [Fin.ext_iff]
+  have hne1 : elGen (R := ClopenCrossedProduct T (ZMod 2)) _ _ h01 1 ≠ 1 := by
+    intro h
+    have h' : elementaryUnit (R := ClopenCrossedProduct T (ZMod 2)) _ _ h01 1 =
+        elementaryUnit _ _ h01 0 := by
+      rw [elementaryUnit_zero]
+      exact congrArg Subtype.val h
+    exact one_ne_zero (elementaryUnit_injective _ _ h01 h')
+  refine ⟨⟨elGen _ _ h01 1, 1, hne1⟩, fun N hN => ?_⟩
+  by_cases hb : N = ⊥
+  · exact Or.inl hb
+  · exact Or.inr (eq_top_of_simplicityCommutatorWitness hn hw
+      (fun _ hV hne' => exists_finset_cover_zpow_image hmin hV.isOpen hne') N hN hb)
+
+/-- **Printed simplicity, group form**: `EL_n(R_X)` is a simple group for `n ≥ 3`, over a nonempty
+compact space with dense orbits, from the commutator witness of the first half of the proof. -/
+def PrintedSimplicityIsSimpleGroup : Prop :=
+  ∀ (X : Type) [TopologicalSpace X] [CompactSpace X] [Nonempty X] (T : X ≃ₜ X),
+    (∀ x : X, Dense (Set.range fun j : ℤ => (T ^ j) x)) →
+    ∀ n : ℕ, 3 ≤ n → SimplicityCommutatorWitness T n →
+      IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenCrossedProduct T (ZMod 2)))
+
+theorem printedSimplicityIsSimpleGroup : PrintedSimplicityIsSimpleGroup :=
+  fun _ _ _ _ _ hmin _ hn hw => isSimpleGroup_elementaryGroup_of_simplicityCommutatorWitness hmin hn hw
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.isSimpleGroup_elementaryGroup_of_simplicityCommutatorWitness
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.printedSimplicityIsSimpleGroup
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.exists_towerCopy_eq
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.one_mem_levelIdeal_of_cover
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.eq_top_of_simplicityCommutatorWitness
