@@ -35,6 +35,7 @@ theorem primrec_deltaWord : Primrec (deltaWord : List (Option ι × Bool) → Li
   (Primrec.list_flatMap Primrec.id (primrec_lettersOf.comp Primrec.snd).to₂).of_eq fun w =>
     (deltaWord_eq_flatMap w).symm
 
+omit [Primcodable ι] [Finite ι] in
 theorem lampPrefixes_eq_foldr_cond (w : List (Option ι × Bool)) :
     lampPrefixes w = w.foldr (fun x rest =>
       bif x.1.isSome then rest.map (fun p => lettersOf x ++ p) else [] :: rest) [] := by
@@ -64,6 +65,7 @@ theorem primrec_pairsIdx : Primrec pairsIdx :=
     (Primrec.list_map (Primrec.list_range.comp Primrec.fst)
       (Primrec.pair (Primrec.snd.comp Primrec.fst) Primrec.snd).to₂).to₂).of_eq fun _ => rfl
 
+omit [Finite ι] in
 theorem primrec_wordInv : Primrec (wordInv : List (ι × Bool) → List (ι × Bool)) :=
   (Primrec.list_reverse.comp (Primrec.list_map Primrec.id
     (Primrec.pair (Primrec.fst.comp Primrec.snd)
@@ -91,7 +93,7 @@ theorem length_filter_eq_foldr {α : Type*} (p : α → Bool) (l : List α) :
     (l.filter p).length = l.foldr (fun a s => bif p a then s + 1 else s) 0 := by
   induction l with
   | nil => rfl
-  | cons a l ih => cases h : p a <;> simp [List.filter_cons, h, ih]
+  | cons a l ih => cases h : p a <;> simp [h, ih]
 
 theorem primrec_pairCount : Primrec fun q : (ℕ × ℕ) × List ℕ => pairCount q.1.1 q.1.2 q.2 := by
   have hcond : Primrec fun r : ((ℕ × ℕ) × List ℕ) × (ℕ × ℕ) =>
@@ -109,12 +111,11 @@ theorem primrec_pairCount : Primrec fun q : (ℕ × ℕ) × List ℕ => pairCoun
     (Primrec.cond hcond (Primrec.succ.comp (Primrec.snd.comp Primrec.snd))
       (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun q => ?_
   simp only [pairCount, length_filter_eq_foldr]
-  rfl
 
 theorem primrec_affineDecide : Primrec₂ (affineDecide (ι := ι)) := by
   show Primrec fun a : ℕ × List ℕ => affineDecide (ι := ι) a.1 a.2
   have hw : Primrec fun a : ℕ × List ℕ => (decode (α := List (Option ι × Bool)) a.1).getD [] :=
-    Primrec.option_getD.comp (Primrec.decode.comp Primrec.fst) (Primrec.const [])
+    Primrec.option_getD.comp ((Primrec.decode (α := List (Option ι × Bool))).comp Primrec.fst) (Primrec.const [])
   have hm : Primrec fun a : ℕ × List ℕ =>
       (lampPrefixes ((decode (α := List (Option ι × Bool)) a.1).getD [])).length :=
     Primrec.list_length.comp (primrec_lampPrefixes.comp hw)
@@ -137,13 +138,13 @@ theorem primrec_affineDecide : Primrec₂ (affineDecide (ι := ι)) := by
           fun k => decide (pairCount
             (lampPrefixes ((decode (α := List (Option ι × Bool)) a.1).getD [])).length k a.2 % 2 = 0)) := by
     refine (Primrec.and.comp (Primrec.and.comp
-        (Primrec.option_isSome.comp (Primrec.decode.comp Primrec.fst))
+        (Primrec.option_isSome.comp ((Primrec.decode (α := List (Option ι × Bool))).comp Primrec.fst))
         ((Primrec.eq (α := ℕ)).decide.comp ((Primrec.list_getD 0).comp Primrec.snd (Primrec.const 0))
           (Primrec.const 1)))
       hall).of_eq fun a => ?_
     simp only [CylinderTables.all_eq_foldr]
   refine (Primrec.cond hc (Primrec.const 1) (Primrec.const 0)).of_eq fun a => ?_
-  rw [cond_eq_if]
+  rw [Bool.cond_eq_ite]
   rfl
 
 end Primrec
