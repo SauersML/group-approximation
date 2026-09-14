@@ -510,6 +510,30 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Recognizing GL_3(LC(X,F_2)) up to conjugacy makes isomorphisms standard, which gives SOE; flip conjugacy additionally needs Cartan uniqueness.
     - New open claim `subshift-el3-isomorphisms-recognize-diagonal-subgroups`. No note change.
 110. **Odifreddi locator** (sk-verify-6 part6, 2260a3a655): for sk-free-7's antichain credit use \cite[Chapter~V]{Odifreddi} (Vol. I, Studies in Logic 125, North-Holland 1989) or Sacks 1961. p. 462 rests only on Terwijn's citation.
+111. **sk-rev4-referee-c** (9e052f3f1f, on the landed md5 9144d853…). No correctness cuts are needed. DECIDED for rev4.1, applied in one pass together with referees a and b:
+    - ADOPT:
+      - K1: move the background paragraph after the idea paragraph, so the whole mechanism is on page 1;
+      - K2: cut the expander refinement for the marking without e_ij(1) (−3; nothing claims it);
+      - K3: fold G2 into the opening credit paragraph of §3 (−2);
+      - K4: cut the Thom repetition in Questions (−2);
+      - K5: shorten the roadmap (−3);
+      - K6: fix "The equality holds";
+      - K8: move Brown's formulation after the proof of Theorem 1.
+    - rev4.1 IN after a PASS:
+      - C3: solvable-word-problem clause for Cor 3, using the half-line overgroup C(Γ) for f.g. Γ; needs sk-verify-14 on sk-decidable-host, a Thompson 1980 bibitem checked at source, and a LaTeX review;
+      - C1: continuum many G_X, none a subgroup of another, in cor:wp; needs sk-verify-15 on sk-free-7, with \cite[Chapter~V]{Odifreddi} or Sacks.
+    - OUT: C2 (Thue–Morse non-uniform growth). The counting transfer is neither printed nor citable, it is off-theme, and it carries the Hull caution. Stays in Cairn.
+112. **sk-free-2 final** (f8a0145163, 11dda902f1, 11bc25f8b7, 626720669d, e552d9daf1; unreviewed → sk-verify-15).
+    - G_X acts 2-transitively on V_x^3∖0 through tower copies of GL_{3h}(F_2).
+    - Point stabilizers H_x are maximal of infinite index, and conjugate iff x and y lie in the same T-orbit, so there are continuum many classes of maximal subgroups. Parabolics are maximal.
+    - Generic marked limits: the infinite limits of the periodic models form a Cantor set; the simple ones (X minimal) are a dense G_δ; a generic limit is G_X over a regular Toeplitz subshift (Pavlov–Schmieding Thm 1.3).
+    - Proposal P1 (+3 text, +3 bibliography, generic limits): OUT for now on shortness grounds. Stays in Cairn; can be revisited after review if rev4.1 has room.
+113. **sk-free-6 final** (9da8bde14f, 0c2052988d, 4be0aebfdf, c35d936203, f048122bc6; unreviewed → sk-verify-15).
+    - A: invariant measures give conjugation-invariant rank lengths, so G_X is simple but NOT uniformly simple.
+    - B: normal generation numbers of transvections recover the invariant measures; B_fin: they survive in the SL_{3N}(F_2) models.
+    - D: every element of G_X is a product of at most 78 elementary matrices (tower compression, Fredholm index 0), with no stable-rank input.
+    - E: every conjugation-invariant norm on G_X is bounded, and every element is a product of 78 involutions.
+    - Proposal: a remark after §2 (+12 lines, or +4 with non-uniform simplicity only). DECIDED: OUT by default. D's proof is long, so it becomes a Cairn result. The +4-line version can be reconsidered after A PASSes, if rev4.1 has room.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
