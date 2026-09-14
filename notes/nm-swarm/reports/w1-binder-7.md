@@ -167,6 +167,30 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     fixed in term mode.
   - After the ~20:03 outage: the green probe finished at 20:01 on bytes identical to attic 9af998f39, and no import had
     changed since its base 74696702a, so it landed without a re-probe.
+- **In flight: `Estimating/OsinPocketPinchFirstTurnSection`** (attic 76331da9e, probing), the second split dart under the Section
+  premises.
+  - It uses ms-intro-4's landed `OsinPocketPinchFirstTurn` (5c9707cfe). For a turn `d₀ → e₀` the split is at `x = α d₀` and
+    `y = σ⁻¹ e₀`, inside `K`, and every turn survives. Their step hides `K′`, so this module rebuilds it from their
+    interface lemmas, keeping a proper source arc.
+  - `exists_firstTurnStepSection_of_turn` and `_of_goodCorners`.
+  - `pocketPinchGoodCornerStepSection`: the good-corner step with properness, closed.
+  - `PocketPinchLabelledFirstTurnSectionStatement`: `K.FirstTurns` in place of `K.ClosedWalk`. It is implied by the Section
+    binder.
+  - `PocketPinchStepFirstTurnSectionStatement` and the induction from it.
+- **CLAIM: the corner reduction**, a new module `Estimating/OsinPocketGoodCornersSection.lean`, after FirstTurnSection lands.
+  - Statement: under the Section premises, a pocket in first-turn order with a proper source arc has an O-equivalent copy with
+    letter labels and good corners, still in first-turn order, with the same repeated visits and a proper source arc.
+  - Route: `faceEdgeDoublingInside` (ghw-assembly) at each bad cycle dart, with first-turn order carried by ms-intro-4's
+    `faceEdgeDoublingInside_firstTurnChain`, then induction on the number of bad darts.
+  - Paper model test:
+    - A cycle dart `d` has its face inside `K`. Good corners fail only when that face is a relator face, or when it holds a
+      second cycle dart.
+    - In both cases the face has more than one dart: relator words have length at least `ρ ≥ ρ₀ ≥ 2` by `OsinCCondition.long`,
+      and two distinct darts give length two. So the doubling applies, and monogon faces never need one.
+    - After doubling at `d`, the dart `embed d` lies alone on the new digon (a G-face). Faces of the other cycle darts are
+      unchanged or shrink, so the number of bad darts strictly drops.
+    - Configuration A `lobeDiagram` (the calibration case): cycle `[5,3,4,6]`, with darts 3 and 4 on the relator cell `a`.
+      Doubling 3 and then 4 gives good corners.
 - ms-intro-4 (binder 5, `CellPocketPinchPosStatement`) imports ArcTrim and FullArc; their helper names stay fixed. There is
   no generic boundary-cycle layer, and `exists_trimDouble` is at `PocketFaceSet` level.
 - Where the step route sticks: a full arc with a nonempty remainder and both sides at length exactly `ε`. No trim has
