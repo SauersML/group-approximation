@@ -37,6 +37,7 @@ variable {Λ Z R : Type*} [Group Λ] [TopologicalSpace Z] [MulAction Λ Z] [Cont
 section CharTwo
 
 variable (coeff)
+include coeff
 
 theorem one_add_one_eq_zero : (1 : R) + 1 = 0 := by
   have h : (1 : LocallyConstant Z (ZMod 2)) + 1 = 0 := by
@@ -67,7 +68,7 @@ variable (hcov : IsCovariantPair coeff u)
 include hcov
 
 /-- **The printed product rule**: `ε_ab ε_a'b' = δ_{ba'} ε_ab'`. -/
-theorem epsilon_mul_epsilon {B : Finset Λ} {V : Set Z} (hV : IsClopen V)
+theorem epsilon_mul_epsilon [DecidableEq Λ] {B : Finset Λ} {V : Set Z} (hV : IsClopen V)
     (hdisj : TranslatesDisjoint B V) {a b a' b' : Λ} (hb : b ∈ B) (ha' : a' ∈ B) :
     epsilon coeff u hV a b * epsilon coeff u hV a' b' =
       if b = a' then epsilon coeff u hV a b' else 0 := by
@@ -98,7 +99,7 @@ theorem epsilon_ne_zero {V : Set Z} (hV : IsClopen V) (hne : V.Nonempty) (a b : 
   rw [LocallyConstant.zero_apply, LocallyConstant.charFn_eq_zero] at h4
   exact h4 (Set.smul_mem_smul_set hne.some_mem)
 
-variable [DecidableEq Λ] {B : Finset Λ} {V : Set Z}
+variable {B : Finset Λ} {V : Set Z}
 
 omit hcov in
 variable (coeff u) in
@@ -111,6 +112,8 @@ noncomputable def epsilonAddHom (B : Finset Λ) (hV : IsClopen V) : Matrix B B (
 omit hcov in
 theorem epsilonAddHom_apply (hV : IsClopen V) (M : Matrix B B (ZMod 2)) :
     epsilonAddHom coeff u B hV M = ∑ a : B, ∑ b : B, (M a b).val • epsilon coeff u hV a b := rfl
+
+variable [DecidableEq Λ]
 
 omit hcov in
 theorem epsilonAddHom_single (hV : IsClopen V) (a b : B) (x : ZMod 2) :
