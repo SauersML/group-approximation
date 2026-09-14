@@ -260,7 +260,7 @@ theorem printedLamplighterModelMatrices : PrintedLamplighterModelMatrices := fun
   ⟨fun n f => modelDiag_apply M n f, fun n ξ i j => modelPerm_apply M n ξ i j,
     fun n S f => modelMap_sum_coeff_mul_unit M n S f,
     fun f ξ => eventually_modelPerm_mul_modelDiag_mul_inv M hT ξ f,
-    fun r s => (eventually_modelMap_mul M hT r s).mono fun n hn => ⟨map_add _ r s, hn⟩,
+    fun r s => (eventually_modelMap_mul M hT r s).mono fun _ hn => ⟨map_add _ r s, hn⟩,
     fun n => modelMap_one M n⟩
 
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedLamplighterModelMatrices
