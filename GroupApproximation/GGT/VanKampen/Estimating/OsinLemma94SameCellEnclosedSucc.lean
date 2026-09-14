@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellSpurEnclosureProof
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketNoSpurSucc
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellRCellEnclosed
+import GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSubdiagramSuccAssembly
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -17,7 +18,9 @@ waist).  Split on a spur first (`osinLemma94CaseOneSameCell_of_noSpurPockets`):
   of the complement spellings (`osinLemma94CaseOneRCellSpur_of_enclosedSucc`).
 
 `osinLemma94CaseOneSameCell_of_enclosedSucc` proves binder 3 over two statements:
-`EnclosedSubdiagramLoopCutSuccStatement` and `ClosedWalkEnclosedSubdiagramSuccStatement`.
+`EnclosedSubdiagramLoopCutSuccStatement` and `ClosedWalkEnclosedSubdiagramSuccStatement`.  The second
+is closed (`closedWalkEnclosedSubdiagramSucc`), so `osinLemma94CaseOneSameCell_of_enclosedLoopCutSucc`
+proves binder 3 over the loop cut alone.
 
 ## Manuscript status
 
@@ -40,6 +43,13 @@ theorem osinLemma94CaseOneSameCell_of_enclosedSucc
     (osinLemma94CaseOneNoSpurYPocket_of_enclosedLoopCutSucc hloop)
     (osinLemma94CaseOneRCellSpur_of_enclosedSucc hloop hsub)
 
+/-- **Binder 3 over the successor-form loop cut alone**, with the enclosed subdiagram closed. -/
+theorem osinLemma94CaseOneSameCell_of_enclosedLoopCutSucc
+    (hloop : EnclosedSubdiagramLoopCutSuccStatement.{u, w, v}) :
+    OsinLemma94CaseOneSameCellStatement.{u, w, v} :=
+  osinLemma94CaseOneSameCell_of_enclosedSucc hloop closedWalkEnclosedSubdiagramSucc
+
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94CaseOneSameCell_of_enclosedSucc
+#audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94CaseOneSameCell_of_enclosedLoopCutSucc
