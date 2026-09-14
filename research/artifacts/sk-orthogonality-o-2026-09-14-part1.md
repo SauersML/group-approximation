@@ -93,8 +93,14 @@ So `α` is standard, `M_3(R_X) ≅ M_3(R_Y)`, and `X` and `Y` are strongly orbit
      which is torsion-free. So `[P] = [R_Y]`.
    - By Theorem DP (`cantor-crossed-product-idempotents-similar-to-clopen-ones`, PASS), `P ≅ ⊕_{i≤3} e_{W_i}R_Y` with
      `Σ_i[1_{W_i}] = [1_Y]`.
-   - **Import (Div), flagged:** such clopen sets can be moved by `[[T]]` to a partition of `Y` (Glasner–Weiss type,
-     not source-checked). With Theorem IC item 2 (PASS) this gives `P ≅ R_Y`.
+   - **Division (Div).** H. Matui, "Approximate conjugacy and full groups of Cantor minimal systems",
+     arXiv:math/0404224, Lemma 2.5, verbatim: "(1) [1_U] = [1_V] in K^0(X,α) if and only if there exists γ ∈ [[α]] such
+     that γ(U) = V. (2) [1_U] ≤ [1_V] in K^0(X,α) if and only if there exists γ ∈ [[α]] such that γ(U) ⊂ V." It is
+     stated there as a consequence of the Bratteli–Vershik model (Herman–Putnam–Skau); read on arXiv 2026-09-14.
+     - Put `W′_1 = W_1`. Since `[1_{Y∖W_1}] − [1_{W_2}] = [1_{W_3}] ≥ 0`, (2) gives `γ ∈ [[T]]` with
+       `W′_2 := γW_2 ⊆ Y∖W_1`.
+     - `W′_3 := Y∖(W′_1 ⊔ W′_2)` has class `[1_{W_3}]`, so (1) gives `W′_3 ~ W_3`.
+     - `e_WR_Y ≅ e_{γW}R_Y` through the unit of `γ`, so `P ≅ ⊕_i e_{W′_i}R_Y = R_Y`.
    - So `M ≅ F_2³ ⊗ R_Y = R_Y³`, intertwining `α(Q_X)` with the constants: there is `k ∈ GL_3(R_Y)` with
      `α′ := inn(k^{-1})∘α` satisfying `α′(q_X) = q`. By Lemma I, `α′` maps `G_X` onto `G_Y`.
 4. **Scalar supports.**

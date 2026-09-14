@@ -26,7 +26,8 @@ So `α` is standard, and `X` and `Y` are strongly orbit equivalent.
 
 Status: proved in `singer-identities-make-subshift-el3-isos-standard-proof`, unreviewed. The proof imports:
 - the unreviewed index kernel theorem `subshift-gl3-index-kernel-is-elementary-group`;
-- a flagged Glasner–Weiss-type division step (Div) for clopen classes in `K^0(Y,T)`.
+- a division step for clopen classes in `K^0(Y,T)`, which is Lemma 2.5 of H. Matui, arXiv:math/0404224, quoted in the
+  artifact.
 
 Model tests: the identity and `inn(diag(u,1,1))` satisfy (Sing) and (O′). The graph automorphism has type `3*` and
 fails (Sing), so the theorem applies after composing with it. The natural ⊕ trivial fake fails (O′). The Steinberg

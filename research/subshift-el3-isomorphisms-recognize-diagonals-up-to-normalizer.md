@@ -52,3 +52,24 @@ it fails the `G_Y`-conjugacy form.
     - (O′) against the trivial centralizer needs `K_1`-injectivity for `n = 3` (OPEN, sr ≤ 2).
     - The last step, from `α(L_X) ≤ C(𝔅)` to `k·GL_3(B)·k^{-1}`, needs the commutant to be pointwise `M_3(F_2)`.
   - Artifact `research/artifacts/sk-normalizer-recognition-2026-09-14-part1.md`.
+- **Singer identities (sk-orthogonality-o, 2026-09-14).**
+  - `G_Y = ker(ind)` (`subshift-gl3-index-kernel-is-elementary-group`, unreviewed). So `N_Y = GL_3(R_Y)`, and every
+    torsion element of `GL_3(R_Y)` lies in `G_Y`. This supplies the `K_1` input that attempt 2 above lacked.
+  - **Reduction** (`singer-identities-make-subshift-el3-isos-standard`, unreviewed). Let `c` be a Singer cycle with
+    `c³+c+I = 0`. Assume `α(c_V)³ + α(c_V) = S_V` for every clopen `V`, and (O′). Then:
+    - (O) holds;
+    - `α(L_X) = k·GL_3(𝔅′)·k^{-1}` with `k ∈ GL_3(R_Y)`;
+    - every root subgroup maps onto a root subgroup, so `α` is standard and `X, Y` are strongly orbit equivalent.
+
+    The proof uses `Ext¹_{F_2GL_3(2)}(3,3) = 0`. Maximal commutativity of `𝔅′` is not needed: bicommutants give
+    `α′(A_ij) ⊆ A_ij(R_Y)`, and generation gives equality.
+  - **Theorem B** (artifact part 1 §4). If `Fix(α(F21_V)) ≠ 0`, the type-2 part of `α(F21_V)` is a piece on which
+    `α(G_{X∖V})` acts trivially, so it shows up as a type-2 part of `α(F21_X)`.
+  - Two corrections to the sk-normalizer-recognition plan:
+    - the Steinberg module of `GL_3(2)` has no `F21`-fixed vector;
+    - `R_Y^×` contains `GL_3` of corners, so it is not amenable.
+  - Where it dies:
+    - the top level: no type 2 and no fixed vectors for `α(F21_X)`;
+    - proper `V` with `Fix(α(F21_V)) = 0`;
+    - the orientation mixture of `3` and `3*` pieces.
+  - Artifact `research/artifacts/sk-orthogonality-o-2026-09-14-part1.md`.
