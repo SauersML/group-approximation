@@ -210,6 +210,33 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
 - CLAIM (route-independent, while the ruling is pending) spur lobes and their conjugate values —
   `GroupApproximation/GGT/VanKampen/ClosedWalkSpurLobe.lean`.
 
+### Ruling (main ~18:50): island statement now, design of (a) after, not (c)
+
+- LANDED a2b068902 (probe 0913-191029-41233 GREEN; the lobe module was built in 0913-190306-208):
+  - `ClosedWalkLobeExcision.lean`: `IsClosedDartWalk.append_comm`, `rotate_at`, `lobe`, `excise`,
+    `listVal_dartWord_eq_mul_lobe`, `listVal_dartWord_excise_of_lobe_eq_one`.
+  - `Estimating/OsinLemma94SameCellPocketIsland.lean`, the walk-level X-pocket. The walk is `s ++ invDarts B`, with
+    `s <+ invDarts X` and `val s = val (invDarts X)`, closed, and the exterior face off its side. It states
+    `OsinLemma94CaseOneWalkSimpleStatement`, `OsinLemma94CaseOneIslandStatement` (a lobe of s reading ≠ 1),
+    `OsinLemma94CaseOneExcisionStatement` (a lobe of s reading 1), `...WalkCellPinchStatement` and
+    `...WalkTouchVertexStatement`, and proves `osinLemma94CaseOneXWalk_of_shapes` and
+    `osinLemma94CaseOneXPocket_of_walkShapes`.
+  - Exhaustiveness: when no touch, no repeat on b and no repeat on s, the walk repeats no vertex. A dart with its reverse
+    on such a walk forces `[d, alpha d]`, which reads 1 (`IsClosedDartWalk.listVal_eq_one_of_alpha_mem`), against `X B`
+    reading ≠ 1. So spurs and face bubbles need no statement.
+  - The bridge to fixed X uses w1-binder-8's `SameCellPocketWalk.isClosedDartWalk_X`.
+- INCIDENT (~18:40): I wrote this module over w1-binder-8's landed path `Estimating/OsinLemma94SameCellPocketWalk.lean`
+  in the shared tree, without the path check. Origin was unaffected. Restored at ~18:58 to origin blob fdc1bb2b (equal to
+  its `.v2` backup), the path was removed from my `.files`, and w1-binder-8 was told. Attic copy ec4bf8227 is text only.
+- Residuals I own: `OsinLemma94CaseOneExcisionStatement`, and the discharge of `OsinLemma94CaseOneWalkSimpleStatement` by
+  w1-binder-8's `false_of_simpleWalk_of_below`. Island: ms-traces-2 (enclosed singular subdiagram) and w1-binder-2
+  (bridge component map) are building (a).
+- Audit sent to ms-traces-2:
+  - `DiscDiagram.ofPlanar` gives Ξ; `exists_relatorCells_of_planar` gives the cells; `ofPlanar_rCellCount` gives the
+    counts; `isRelatorProduct_of_planar` gives the value.
+  - Missing: `Δ.LeastArea → Ξ.LeastArea` for a singular F. `LeastArea.length_filter_mem_le` needs `IsDiscRegion`.
+  - InnerDiscRegion and the zero-cell merge do not apply.
+
 ## State
 
 Every sentence of tex 1–165 is carried by a closed declaration or honestly classified. The exceptions:
