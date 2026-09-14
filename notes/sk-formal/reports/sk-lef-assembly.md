@@ -15,6 +15,17 @@ CLAIM cor:lef and cor:host statements and assemblies GroupApproximation/Manuscri
 - 23:15 ruling from main: sk-universal is not resumed and this lane absorbs its scope. There was nothing to absorb: its registration has an
   empty `.files`, and it has no report, no landing, no attic copy and no shared-tree draft. Its scope is the last statement of cor:host.
 
+CLAIM restricted direct sum (tex l.430–434) GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFRestrictedSum.lean
+
+CLAIM cor:lef second statement, solvable word problem, heredity (tex l.317–319, l.439–459) GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFSolvableWordProblem.lean
+
+CLAIM countably many recursive presentations (tex l.435–436) GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFRecursivePresentationClasses.lean
+
+- Interfaces agreed at 08:3x:
+  - skf-degrees: `HasSolvableWordProblem` over `wordProblemOracle` (landed 8be083fcd).
+  - oa-expanders: owns the second choice of Δ (`LevelShiftDelta.levelDelta`, `LEFSecondChoiceStatement`). This lane takes its word problem
+    over a family `levelGen t : Option ι → Equiv.Perm (Γ × ℤ)`.
+
 ## Split agreed with ms-intro-3 (~21:30, still valid)
 
 - This lane owns the statement Props and their closure. ms-intro-3 writes no Lean for the abstract's LEF sentence or the intro paragraph on
@@ -80,4 +91,34 @@ CLAIM cor:lef and cor:host statements and assemblies GroupApproximation/Manuscri
     (l.439–459), and the Osajda remark (l.462–465). Owners are for main to rule; these are in the ledger below once the census regenerates.
   - Of my 14 census rows, 11 sentences survive verbatim at the tip and are kept. 488b860770fb (Boone–Higman sentence, rewritten with Thompson),
     0ccc4462441b ("This proves ...", rewritten) and 6f1b3edd435b ("For the second, ...", rewritten) are dropped until the census is regenerated.
-- The remote axiom lines of probe 0914-002812-94212 are still unread: the MSI wrapper refuses auth during a cooldown after the master drop.
+- 01:3x: the remote axiom lines of probe 0914-002812-94212 were read. All 8 audits of LEFCharacterization are [propext, Classical.choice,
+  Quot.sound], and the log has 0 sorryAx.
+- 02:0x ruling from main at tip 696c4b602:
+  - this lane takes l.439–459 (the solvable word problem of Δ, Λ and G_Δ, heredity, and cor:lef's second statement), using the spelling agreed
+    with skf-degrees: `HasSolvableWordProblem Γ := ∃ (ι : Type) (_ : Primcodable ι) (_ : Finite ι) (s : ι → Γ), closure (range s) = ⊤ ∧
+    Partrec (wordProblemOracle s)`;
+  - l.358–382 (the second choice of Δ) goes to oa-expanders;
+  - l.419–437 (unsolvable word problem of the host; SL₃(ℤ) lies in no G_X) goes to audit-nm-4;
+  - the Osajda remark l.462–465 is graded by this lane.
+- Osajda remark grading (l.462–465): **partial, not attribution.** It asserts a new consequence: cor:lef applied to Osajda's finitely generated
+  residually finite non-exact groups gives infinite simple Kazhdan LEF groups that are not exact. Its step inputs:
+  - RF ⇒ LEF: `isLEF_of_residuallyFinite`, closed;
+  - cor:lef: partial, above;
+  - the existence of f.g. RF non-exact groups [OsajdaRF]: no carrier;
+  - property A passes to subgroups: `Analysis/ExactnessPermanence` defines `HasPropertyA` but proves no subgroup permanence.
+  The row lands once skf-census regenerates at the tip.
+- 08:4x: probe 0914-084048-4317 GREEN, both `LEFRestrictedSum` and `LEFSolvableWordProblem` BUILT on the first try, then landed and queued for
+  wiring.
+  - `restrictedSumLEFStatement : RestrictedSumLEFStatement` is closed. The restricted direct sum is the subgroup of finitely supported elements.
+    It is countable because each element is determined by its finite graph in `Σ j, H j`, and it is LEF because finite subsets lie in finite
+    products of finite models.
+  - `printedSolvableWordProblemHeredity` is closed: finitely generated subgroups of groups with solvable word problem have solvable word problem.
+    It goes through skf-degrees' `wordProblemOracle_comp_injective` and `turingReducible_wordProblemOracle_of_generates`, then
+    `partrec_iff_forall_turingReducible`.
+  - `printedLEFSolvableWordProblemCharacterization_of_pieces` assembles cor:lef's second statement over
+    `LEFSolvableWordProblemEmbeddingStatement` (oa-expanders' second choice of Δ, plus this lane's solvable WP of Δ) and
+    `LEFLamplighterSolvableWordProblemStatement` (the solvable WP of G_Δ, this lane over sk-lef-action's R_Δ).
+- 08:4x: sk-lef-ultra closed `lefUltraproductEmbeddingStatement` (LEFLevelEmbedding, 563dac8bc). cor:lef and the first statement of cor:host now
+  rest only on `LEFLamplighterStatement`.
+- 08:30: resumed after the laptop reboot wiped /private/tmp. New infra at `f907d0cb…/scratchpad/nm`. The path is re-registered; the green records
+  are lost, so the next landing re-probes. LEFCharacterization's local bytes equal origin's.
