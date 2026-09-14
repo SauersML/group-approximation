@@ -1,0 +1,215 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Setting
+import GroupApproximation.Dynamics.ClopenCrossedProductComap
+import GroupApproximation.Leavitt.AryEndpoints
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Conjugate and flip conjugate subshifts give isomorphic groups
+
+`simple_kazhdan_sofic_group.tex` at origin/main e80dcf20a, "Questions" (census key `26e9baa90d07`):
+
+> If `(X, T)` is conjugate to `(Y, S)` or to `(Y, S⁻¹)`, then `G_X ≅ G_Y`.
+
+The route is through the crossed-product ring.
+
+* `conjugacyRingEquiv`: a homeomorphism `h : X ≃ₜ Y` with `h ∘ T = S ∘ h` gives
+  `LC(Y, k) ⋊_S ℤ ≃+* LC(X, k) ⋊_T ℤ`, `C(f) ↦ C(f ∘ h)`, `u ↦ u`
+  (`ClopenCrossedProduct.comap` in both directions).
+* `flipRingEquiv`: `LC(Y, k) ⋊_S ℤ ≃+* LC(Y, k) ⋊_{S⁻¹} ℤ`, `C(f) ↦ C(f)`, `u ↦ u⁻¹`.
+* `elementaryGroupMulEquivOfRingEquiv`: a ring isomorphism induces `EL_n(R) ≃* EL_n(R')`.
+* `PrintedConjugacyIsomorphism` over any spaces, and `PrintedSubshiftConjugacyIsomorphism` at the
+  subshifts of `SimpleKazhdanSofic.Setting`.
+
+Two ring homomorphisms out of the crossed product agree once they agree on the coefficients and on
+the powers of `u`, by the normal form `∑_j C(c_j) u^j` (`crossedProduct_ringHom_ext`).
+-/
+
+namespace GroupApproximation
+namespace SimpleKazhdanSofic
+
+open SkewMonoidAlgebra (single)
+open Multiplicative (toAdd ofAdd)
+open SymbolicDynamics.FullShift
+
+/-! ## Ring maps out of the crossed product -/
+
+section Ext
+
+variable {X : Type*} [TopologicalSpace X] {T : X ≃ₜ X} {k : Type*} [Ring k]
+
+/-- Ring homomorphisms out of `LC(X, k) ⋊_T ℤ` agree once they agree on the coefficients and on the
+powers of `u`. -/
+theorem crossedProduct_ringHom_ext {B : Type*} [Semiring B]
+    {φ ψ : ClopenCrossedProduct T k →+* B}
+    (hC : ∀ a : ClopenCoeff T k,
+      φ (Pestov91.CrossedProduct.C a) = ψ (Pestov91.CrossedProduct.C a))
+    (hu : ∀ j : ℤ,
+      φ ((Pestov91.CrossedProduct.unit ^ j : (ClopenCrossedProduct T k)ˣ) :
+        ClopenCrossedProduct T k) =
+      ψ ((Pestov91.CrossedProduct.unit ^ j : (ClopenCrossedProduct T k)ˣ) :
+        ClopenCrossedProduct T k)) :
+    φ = ψ := by
+  refine RingHom.ext fun x => ?_
+  obtain ⟨s, c, rfl⟩ := Pestov91.CrossedProduct.exists_sum_C_mul_unit_zpow x
+  rw [map_sum, map_sum]
+  refine Finset.sum_congr rfl fun j _ => ?_
+  rw [map_mul, map_mul, hC, hu]
+
+end Ext
+
+/-! ## Conjugacy -/
+
+section Conjugacy
+
+variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] (k : Type*) [Ring k]
+
+/-- Pulling back along `h` and then along `h⁻¹` is the identity of `LC(Y, k) ⋊_S ℤ`. -/
+theorem comap_comp_comap_symm {T : X ≃ₜ X} {S : Y ≃ₜ Y} (h : X ≃ₜ Y)
+    (hh : ∀ x, h (T x) = S (h x)) (hh' : ∀ y, h.symm (S y) = T (h.symm y)) :
+    (ClopenCrossedProduct.comap k (h.symm : C(Y, X)) hh').comp
+        (ClopenCrossedProduct.comap k (h : C(X, Y)) hh) =
+      RingHom.id (ClopenCrossedProduct S k) := by
+  refine crossedProduct_ringHom_ext (fun a => ?_) (fun j => ?_)
+  · rw [RingHom.comp_apply, RingHom.id_apply]
+    change ClopenCrossedProduct.comap k (h.symm : C(Y, X)) hh'
+        (ClopenCrossedProduct.comap k (h : C(X, Y)) hh
+          (ClopenCrossedProduct.coeff S k ((ClopenCoeff.of S k).symm a))) =
+      ClopenCrossedProduct.coeff S k ((ClopenCoeff.of S k).symm a)
+    rw [ClopenCrossedProduct.comap_coeff, ClopenCrossedProduct.comap_coeff]
+    congr 1
+    exact LocallyConstant.ext fun y =>
+      congrArg ((ClopenCoeff.of S k).symm a) (h.apply_symm_apply y)
+  · rw [RingHom.comp_apply, RingHom.id_apply, ClopenCrossedProduct.comap_unit_zpow,
+      ClopenCrossedProduct.comap_unit_zpow]
+
+/-- **A conjugacy gives a ring isomorphism.**  For `h : X ≃ₜ Y` with `h ∘ T = S ∘ h`,
+`LC(Y, k) ⋊_S ℤ ≃+* LC(X, k) ⋊_T ℤ`, with `C(f) ↦ C(f ∘ h)` and `u ↦ u`. -/
+noncomputable def conjugacyRingEquiv {T : X ≃ₜ X} {S : Y ≃ₜ Y} (h : X ≃ₜ Y)
+    (hh : ∀ x, h (T x) = S (h x)) :
+    ClopenCrossedProduct S k ≃+* ClopenCrossedProduct T k :=
+  have hh' : ∀ y, h.symm (S y) = T (h.symm y) := fun y => by
+    apply h.injective
+    rw [Homeomorph.apply_symm_apply, hh, Homeomorph.apply_symm_apply]
+  RingEquiv.ofRingHom (ClopenCrossedProduct.comap k (h : C(X, Y)) hh)
+    (ClopenCrossedProduct.comap k (h.symm : C(Y, X)) hh')
+    (comap_comp_comap_symm k h.symm hh' hh) (comap_comp_comap_symm k h hh hh')
+
+end Conjugacy
+
+/-! ## The flip `u ↦ u⁻¹` -/
+
+section Flip
+
+variable {Y : Type*} [TopologicalSpace Y] (k : Type*) [Ring k]
+
+/-- The identity of `LC(Y, k)`, from the coefficients of `R_S` to those of `R_{S'}`. -/
+noncomputable def flipCoeff (S S' : Y ≃ₜ Y) : ClopenCoeff S k →+* ClopenCoeff S' k :=
+  (ClopenCoeff.of S' k).toRingHom.comp (ClopenCoeff.of S k).symm.toRingHom
+
+/-- If `S' = S⁻¹`, the action of `j` through `S` is the action of `j⁻¹` through `S'`. -/
+theorem flipCoeff_smul {S S' : Y ≃ₜ Y} (hS : ∀ y, S' (S y) = y) (j : Multiplicative ℤ)
+    (a : ClopenCoeff S k) : flipCoeff k S S' (j • a) = j⁻¹ • flipCoeff k S S' a := by
+  have hinv : S' = S⁻¹ := Homeomorph.ext fun y => by
+    rw [Homeomorph.inv_apply, ← hS (S.symm y), Homeomorph.apply_symm_apply]
+  subst hinv
+  refine LocallyConstant.ext fun z => ?_
+  show (ClopenCoeff.of S k).symm a ((S ^ (-toAdd j)) z) =
+    (ClopenCoeff.of S k).symm a ((S⁻¹ ^ (-toAdd j⁻¹)) z)
+  rw [toAdd_inv, neg_neg, inv_zpow, zpow_neg]
+
+/-- **The flip.**  For `S' = S⁻¹`, the ring homomorphism `LC(Y, k) ⋊_S ℤ → LC(Y, k) ⋊_{S'} ℤ` with
+`C(f) ↦ C(f)` and `u ↦ u⁻¹`. -/
+noncomputable def flipRingHom {S S' : Y ≃ₜ Y} (hS : ∀ y, S' (S y) = y) :
+    ClopenCrossedProduct S k →+* ClopenCrossedProduct S' k :=
+  SkewMonoidAlgebra.liftNCRingHom
+    ((SkewMonoidAlgebra.singleOneRingHom : ClopenCoeff S' k →+* ClopenCrossedProduct S' k).comp
+      (flipCoeff k S S'))
+    ((SkewMonoidAlgebra.of (ClopenCoeff S' k) (Multiplicative ℤ)).comp invMonoidHom)
+    fun {x y} => by
+      show single 1 (flipCoeff k S S' (y • x)) * single y⁻¹ 1 =
+        single y⁻¹ 1 * single 1 (flipCoeff k S S' x)
+      simp only [SkewMonoidAlgebra.single_mul_single, smul_one, one_mul, mul_one]
+      rw [flipCoeff_smul k hS]
+
+theorem flipRingHom_single {S S' : Y ≃ₜ Y} (hS : ∀ y, S' (S y) = y) (j : Multiplicative ℤ)
+    (a : ClopenCoeff S k) : flipRingHom k hS (single j a) = single j⁻¹ (flipCoeff k S S' a) := by
+  change SkewMonoidAlgebra.liftNC
+      (((SkewMonoidAlgebra.singleOneRingHom : ClopenCoeff S' k →+* ClopenCrossedProduct S' k).comp
+        (flipCoeff k S S') : ClopenCoeff S k →+* ClopenCrossedProduct S' k) :
+          ClopenCoeff S k →+ ClopenCrossedProduct S' k)
+      ((SkewMonoidAlgebra.of (ClopenCoeff S' k) (Multiplicative ℤ)).comp invMonoidHom)
+      (single j a) = _
+  rw [SkewMonoidAlgebra.liftNC_single]
+  change single 1 (flipCoeff k S S' a) * single j⁻¹ 1 = single j⁻¹ (flipCoeff k S S' a)
+  simp only [SkewMonoidAlgebra.single_mul_single, smul_one, mul_one, one_mul]
+
+/-- Flipping twice is the identity. -/
+theorem flipRingHom_comp {S S' : Y ≃ₜ Y} (hS : ∀ y, S' (S y) = y) (hS' : ∀ y, S (S' y) = y) :
+    (flipRingHom k hS').comp (flipRingHom k hS) = RingHom.id (ClopenCrossedProduct S k) := by
+  refine crossedProduct_ringHom_ext (fun a => ?_) (fun j => ?_)
+  · rw [RingHom.comp_apply, RingHom.id_apply, Pestov91.CrossedProduct.C_apply, flipRingHom_single,
+      flipRingHom_single, inv_inv]
+    rfl
+  · rw [RingHom.comp_apply, RingHom.id_apply, Pestov91.CrossedProduct.val_unit_zpow,
+      flipRingHom_single, flipRingHom_single, inv_inv]
+    rfl
+
+/-- **The flip as a ring isomorphism**: `LC(Y, k) ⋊_S ℤ ≃+* LC(Y, k) ⋊_{S'} ℤ` for `S' = S⁻¹`. -/
+noncomputable def flipRingEquiv {S S' : Y ≃ₜ Y} (hS : ∀ y, S' (S y) = y)
+    (hS' : ∀ y, S (S' y) = y) : ClopenCrossedProduct S k ≃+* ClopenCrossedProduct S' k :=
+  RingEquiv.ofRingHom (flipRingHom k hS) (flipRingHom k hS') (flipRingHom_comp k hS' hS)
+    (flipRingHom_comp k hS hS')
+
+end Flip
+
+/-! ## The elementary groups -/
+
+/-- A ring isomorphism induces an isomorphism of elementary groups. -/
+noncomputable def elementaryGroupMulEquivOfRingEquiv {n : ℕ} {R R' : Type*} [Ring R] [Ring R']
+    (e : R ≃+* R') : ↥(elementaryGroup (Fin n) R) ≃* ↥(elementaryGroup (Fin n) R') :=
+  MulEquiv.ofBijective (elementaryGroupMap (ι := Fin n) e.toRingHom)
+    ⟨elementaryGroupMap_injective e.toRingHom e.injective,
+      elementaryGroupMap_surjective_of_surjective e.toRingHom e.surjective⟩
+
+/-- **tex 289–290**: "If `(X, T)` is conjugate to `(Y, S)` or to `(Y, S⁻¹)`, then `G_X ≅ G_Y`", for
+all spaces `X`, `Y` and homeomorphisms `T`, `S`, with `G_X = EL_3(LC(X, F_2) ⋊_T ℤ)`. -/
+def PrintedConjugacyIsomorphism : Prop :=
+  ∀ (X Y : Type) [TopologicalSpace X] [TopologicalSpace Y] (T : X ≃ₜ X) (S : Y ≃ₜ Y),
+    ((∃ h : X ≃ₜ Y, ∀ x, h (T x) = S (h x)) ∨ ∃ h : X ≃ₜ Y, ∀ x, h (T x) = S⁻¹ (h x)) →
+      Nonempty (↥(elementaryGroup (Fin 3) (ClopenCrossedProduct T (ZMod 2))) ≃*
+        ↥(elementaryGroup (Fin 3) (ClopenCrossedProduct S (ZMod 2))))
+
+theorem printedConjugacyIsomorphism : PrintedConjugacyIsomorphism := by
+  intro X Y _ _ T S hconj
+  rcases hconj with ⟨h, hh⟩ | ⟨h, hh⟩
+  · exact ⟨elementaryGroupMulEquivOfRingEquiv (conjugacyRingEquiv (ZMod 2) h hh).symm⟩
+  · have hS : ∀ y, S⁻¹ (S y) = y := fun y => by
+      rw [Homeomorph.inv_apply, Homeomorph.symm_apply_apply]
+    have hS' : ∀ y, S (S⁻¹ y) = y := fun y => by
+      rw [Homeomorph.inv_apply, Homeomorph.apply_symm_apply]
+    exact ⟨elementaryGroupMulEquivOfRingEquiv
+      ((conjugacyRingEquiv (ZMod 2) h hh).symm.trans (flipRingEquiv (ZMod 2) hS hS').symm)⟩
+
+/-- **tex 289–290 at the subshifts of the note**: for subshifts `X ⊆ A^ℤ` and `Y ⊆ B^ℤ` with their
+shifts, a conjugacy or a flip conjugacy gives `G_X ≃* G_Y`. -/
+def PrintedSubshiftConjugacyIsomorphism : Prop :=
+  ∀ (A B : Type) [TopologicalSpace A] [TopologicalSpace B] (S : Subshift A ℤ)
+    (S' : Subshift B ℤ),
+    ((∃ h : S.carrier ≃ₜ S'.carrier, ∀ x, h (subshiftHomeo S x) = subshiftHomeo S' (h x)) ∨
+      ∃ h : S.carrier ≃ₜ S'.carrier, ∀ x, h (subshiftHomeo S x) = (subshiftHomeo S')⁻¹ (h x)) →
+      Nonempty (G S ≃* G S')
+
+theorem printedSubshiftConjugacyIsomorphism : PrintedSubshiftConjugacyIsomorphism :=
+  fun _ _ _ _ S S' hconj =>
+    printedConjugacyIsomorphism S.carrier S'.carrier (subshiftHomeo S) (subshiftHomeo S') hconj
+
+end SimpleKazhdanSofic
+end GroupApproximation
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.crossedProduct_ringHom_ext
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.comap_comp_comap_symm
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.flipCoeff_smul
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.flipRingHom_single
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.flipRingHom_comp
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedConjugacyIsomorphism
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedSubshiftConjugacyIsomorphism
