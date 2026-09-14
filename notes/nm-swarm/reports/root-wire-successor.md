@@ -314,6 +314,30 @@ Result: **never landed**. No root commit landed after daa821b00.
 - Main's ruling (A), 09-14 ~08:45: a cache restore counts as wiring evidence for origin-identical files, as in waves
   17–21. A restore is an earlier successful build at the same input hash, with warnings as errors and closed-axiom
   audits. "Only BUILT counts" applies when a lane lands new bytes. The lexical scan of newly reachable files is clean.
+- First build (tag 0914-083344-47173, acn30, 15593 jobs): **ROOT GREEN, but not landed**.
+  - `nmwire.sh` logged "push race 1–6" and exited 1.
+  - Auth was fine: a bash `git push --dry-run` of the tip through the same credential helper returned
+    "Everything up-to-date".
+  - The cause was contention: `landed.log` showed 8–16 landings a minute (16 in 08:51). Each of the six attempts
+    re-ran the full-tree landing `dupcheck.py` between fetch and push, so every push lost its race.
+- `nmwire.sh` landing loop patched at ~08:58; backup `nmwire.sh.orig-0914`:
+  - 40 attempts with 1–3 s jitter;
+  - the landing dupcheck re-runs only when `.lean` files changed since the last check and that check is more than
+    60 s old;
+  - push stderr is kept in `msgs/push-<tag>.err` and printed with each race;
+  - the commit attribution is appended once, before the loop, with the current session.
+- Relaunched ~09:00 through the patched tool.
+- Wave 23 draft (23 modules):
+  - 4 BUILT-fresh tops: `MatricialQuotientsExpanders`, `ClassGapCollapseModel`, `UnboundScaled`,
+    `UnboundScaledDecomposition`;
+  - N1's 5 restore tops;
+  - N3's 8 ours-nm tops (ms-traces-1 0914-084628-8117): `NoncrossingClosedWalkSectorNoninterleaving`,
+    `ClosedWalkEnclosedSubdiagramPieces`, `TorsionFreeResidualsV4Euler`, `ChainCoreOpeningSentence`,
+    `ChainCoreItineraryClosed`, `CoreRingReflectionProofClosed`, `DynamicRankBudgetInducedCoreSentences`,
+    `TransientCompactWanderingCover`;
+  - S2's 6 ours-sk tops (0914-085505-41638).
+  - Joint pre-flight with wave 22 at f3893f5b7: 47 newly reachable files, 0 blocking lines; the landing `dupcheck.py`
+    predicts 0 collisions.
 
 Result: pending.
 
