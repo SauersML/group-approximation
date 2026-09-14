@@ -166,6 +166,85 @@ def CellPocketWalkSideRelatorCellStatement : Prop :=
                   (cell S.diagram kept).face ∈
                     SimpleClosedWalkSides.sideFaces S.diagram.toCombMap K.walk
 
+section SomeOrder
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {lambda c : ℝ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+
+/-- **The clean cell pocket walk of the pair in the order `(a, b)` between `Π_i` and `Π_j`, with the
+exterior off its side.**  A predicate on the pair, in one chosen order, that the walk of
+`CellPocketWalk.exists_of_joinsCells` for that order is a nonempty closed walk with no repeated dart
+and no dart with its reverse, satisfying the cell edge conditions, whose side does not hold the
+exterior. -/
+def OuterOffSideForOrder (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+    (a b : RegionCandidate D eps S.diagram) (i j : Fin S.diagram.rCellCount) : Prop :=
+  CellPocketWalk.CopyClean a b i j →
+    ∀ K : CellPocketWalk D eps S.diagram i j,
+      K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+      (∃ G₁ : CyclicArc (cellDarts S.diagram i),
+        K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i) →
+      (∃ G₂ : CyclicArc (cellDarts S.diagram j),
+        K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j) →
+      ∀ hne : K.walk ≠ [],
+        (K.walk.IsChain fun d e => S.diagram.toCombMap.vertexOf
+          (S.diagram.toCombMap.alpha d) = S.diagram.toCombMap.vertexOf e) →
+        S.diagram.toCombMap.vertexOf (S.diagram.toCombMap.alpha (K.walk.getLast hne)) =
+          S.diagram.toCombMap.vertexOf (K.walk.head hne) →
+        K.walk.Nodup → (∀ d ∈ K.walk, S.diagram.toCombMap.alpha d ∉ K.walk) →
+          S.diagram.outerFace ∉ SimpleClosedWalkSides.sideFaces S.diagram.toCombMap K.walk
+
+/-- **A relator cell on the side of the clean cell pocket walk of the pair in the order `(a, b)`.**
+The same data as `OuterOffSideForOrder`, concluding that a relator cell is on the side. -/
+def SideRelatorCellForOrder (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+    (a b : RegionCandidate D eps S.diagram) (i j : Fin S.diagram.rCellCount) : Prop :=
+  CellPocketWalk.CopyClean a b i j →
+    ∀ K : CellPocketWalk D eps S.diagram i j,
+      K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+      (∃ G₁ : CyclicArc (cellDarts S.diagram i),
+        K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i) →
+      (∃ G₂ : CyclicArc (cellDarts S.diagram j),
+        K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j) →
+      ∀ hne : K.walk ≠ [],
+        (K.walk.IsChain fun d e => S.diagram.toCombMap.vertexOf
+          (S.diagram.toCombMap.alpha d) = S.diagram.toCombMap.vertexOf e) →
+        S.diagram.toCombMap.vertexOf (S.diagram.toCombMap.alpha (K.walk.getLast hne)) =
+          S.diagram.toCombMap.vertexOf (K.walk.head hne) →
+        K.walk.Nodup → (∀ d ∈ K.walk, S.diagram.toCombMap.alpha d ∉ K.walk) →
+          ∃ kept : Fin S.diagram.rCellCount,
+            (cell S.diagram kept).face ∈ SimpleClosedWalkSides.sideFaces S.diagram.toCombMap K.walk
+
+/-- **The exterior is off the side of the cell pocket walk in SOME order** (respelled residual of
+binder 5, owner `w1-binder-3`).  For a pair of distinct selected regions joining two distinct cells
+of an optimal least-area family, the exterior face lies in at most one of the two complementary
+pockets, so it is off the side of the walk of the order `(a, b, i, j)` or of the order `(b, a, j, i)`.
+The fixed-order `CellPocketWalkOuterOffSideStatement` is over-strong; this is its correct form. -/
+def CellPocketWalkOuterOffSideSomeOrderStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {eps : ℕ} {lambda c : ℝ} {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord},
+    Delta.LeastArea →
+      ∀ (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+        {i j : Fin S.diagram.rCellCount} {a b : RegionCandidate D eps S.diagram},
+        a ∈ S.family → b ∈ S.family → a ≠ b → i ≠ j → a.JoinsCells i j → b.JoinsCells i j →
+          OuterOffSideForOrder S a b i j ∨ OuterOffSideForOrder S b a j i
+
+/-- **A relator cell is on the side of the cell pocket walk in BOTH orders** (respelled residual of
+binder 5, owner `ms-inverses-2`).  The pocket between two cells always keeps a relator cell, in
+either order, so this is not order-sensitive; stating it for both orders lets the assembly consume it
+whichever order `CellPocketWalkOuterOffSideSomeOrderStatement` selects. -/
+def CellPocketWalkSideRelatorCellBothOrdersStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {eps : ℕ} {lambda c : ℝ} {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord},
+    Delta.LeastArea →
+      ∀ (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+        {i j : Fin S.diagram.rCellCount} {a b : RegionCandidate D eps S.diagram},
+        a ∈ S.family → b ∈ S.family → a ≠ b → i ≠ j → a.JoinsCells i j → b.JoinsCells i j →
+          SideRelatorCellForOrder S a b i j ∧ SideRelatorCellForOrder S b a j i
+
+end SomeOrder
+
 section Pinch
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
@@ -259,6 +338,10 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.multipleEdgeCutInput_of_copyPieces
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkOuterOffSideStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkSideRelatorCellStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.OuterOffSideForOrder
+#audit_axioms GroupApproximation.GGT.VanKampen.SideRelatorCellForOrder
+#audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkOuterOffSideSomeOrderStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkSideRelatorCellBothOrdersStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.multipleEdgePocketRegionCopyInput_of_pinch
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinMultipleEdgePocketRegionCopySectionStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinMultipleEdgePocketRegionSectionStatement.copySection
