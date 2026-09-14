@@ -44,3 +44,21 @@ OPEN. Let `k` be a finite field, `N >= 3` and `S_∂ = EL_N(LC(∂F_2, k) ⋊ F_
     defect at least `min(1/968, kappa^2/242)`. This covers the regular, quasi-regular and boundary orbit modules.
   - Any HS model must be neither permutational (nonsofic) nor spatial.
   - Artifact §3.
+- **Von Neumann-side shortcuts (start (b), sk-hyperlinear-boundary-b, 2026-09-13, unreviewed): dead.** Artifact
+  `research/artifacts/sk-hyperlinear-boundary-b-2026-09-13-part1.md` §2.
+  - (V1) Genuine tracial representations cannot obstruct. `λ : S_∂ -> U(L(S_∂))` is faithful with trace `δ_e`, and
+    the Kazhdan projection of every infinite (T) subgroup vanishes there. A refutation must use approximate
+    representations.
+  - (V2) The ring has no tracial shadow. A Leavitt family forces `τ(1) = d·τ(1)`, so `LC(∂F_d,Q) ⋊ F_d` and
+    `C(∂F_d) ⋊ F_d` have no traces. Over finite `k`, unitary models induce no ring map at all.
+  - (V3) The dynamics gives no tracial crossed product. `∂F_d` has no invariant probability measure:
+    `μ(C(x)) + μ(C(x^(-1))) = 1` for each letter `x`, and summing over the `d` pairs gives `1 = d`. So no II_1
+    crossed-product route starts from the boundary action.
+  - (V4) Closure operations cannot certify hyperlinearity.
+    - `H = L_(F_2)(1,2)^x` embeds in `S_∂(2,F_2)`, and it is infinite, simple, finitely presented and Kazhdan.
+    - Extensions (by simplicity), amalgams and HNN extensions (FA from (T)), directed unions and marked limits (by
+      isolation) contain `H` only if some input group already does.
+    - This extends `fp-simple-groups-escape-soft-hyperlinear-permanence`.
+- **Second route into the embedding.** `boundary-crossed-product-in-binary-leavitt-prefix-code-proof` builds the
+  unital embedding `LC(∂F_d,k) ⋊ F_d -> L_k(1,2)` directly by prefix codes. The generators act by Thompson `V` units.
+  It needs neither the Leavitt path algebra identification nor Brownlowe–Sørensen.
