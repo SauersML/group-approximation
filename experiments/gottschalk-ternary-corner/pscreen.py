@@ -34,6 +34,7 @@ class Eliminator(object):
 
     def __init__(self):
         self.piv = {}
+        self.order = []
 
     def _reduce(self, vec, combo):
         while True:
@@ -53,23 +54,79 @@ class Eliminator(object):
             pv = L.scale(rem, inv)
             pc = L.scale(L.add({j: 1}, coeffs, -1), inv)
             self.piv[k] = (pv, pc)
+            self.order.append(k)
 
     def solve(self, rhs):
         rem, coeffs = self._reduce(dict(rhs), {})
         return None if rem else coeffs
 
+    def dual_certificate(self, rhs):
+        """A functional phi with phi(column) = 0 for every inserted column and phi(rhs) = 1.
+
+        The remainder of rhs vanishes on every pivot coordinate; put phi = 1/rem[j0] at one
+        nonpivot j0 and fill pivots in reverse insertion order, since each pivot vector vanishes
+        on the pivots inserted before it.
+        """
+        rem, _ = self._reduce(dict(rhs), {})
+        if not rem:
+            return None
+        j0 = next(iter(rem))
+        phi = {j0: rem[j0]}  # 1/1 = 1, 1/2 = 2 over F_3
+        for k in reversed(self.order):
+            pv = self.piv[k][0]
+            s = sum(c * phi.get(j, 0) for j, c in pv.items() if j != k) % 3
+            if s:
+                phi[k] = (-s) % 3
+        return phi
+
+
+def verify_dual_certificate(family_keys, alpha, P_units, phi, sample_dual=150, rng=None,
+                            alpha_units=None):
+    """Recompute every column from a fresh registry and check phi . column = 0, phi(1) != 0."""
+    Sm2 = L.SMinus()
+    units = family_keys
+    alpha_units = alpha_units or units
+    one = Sm2.one()
+    (k1, c1), = one.items()
+    if phi.get(k1, 0) % 3 == 0:
+        return False, "phi(1) = 0"
+    alpha2 = {}
+    for k, c in alpha.items():
+        alpha2 = L.add(alpha2, Sm2.of_unit(alpha_units[k], c))
+    checked = 0
+    for k, u in units.items():
+        col = Sm2.mul(Sm2.of_unit(u), alpha2)
+        if sum(c * phi.get(kk, 0) for kk, c in col.items()) % 3:
+            return False, "phi does not kill column of a C unit"
+    for p in P_units:
+        col = L.add(Sm2.of_unit(p), one, -1)
+        if sum(c * phi.get(kk, 0) for kk, c in col.items()) % 3:
+            return False, "phi does not kill a correction column"
+    if rng is not None:
+        L.set_dual(True)
+        pool = list(units.values())
+        for _ in range(sample_dual):
+            x, y = rng.choice(pool), rng.choice(pool)
+            if L._maxbeta(x.val) + L._maxbeta(y.val) <= 13:
+                L.mul(x.val, y.val)
+                checked += 1
+        L.set_dual(False)
+    return True, "ok, %d sampled products dual-checked" % checked
+
 
 def family(name):
     tu = L.thompson_unit
     gens = {}
-    if name in ("v", "vwd"):
+    if name in ("v", "vwd", "mix"):
         gens["A"] = tu(["0", "10", "11"], ["00", "01", "1"])
         gens["B"] = tu(["0", "10", "110", "111"], ["0", "100", "101", "11"])
         gens["C"] = tu(["0", "10", "11"], ["11", "0", "10"])
         gens["P"] = tu(["0", "10", "11"], ["10", "0", "11"])
-    if name in ("vwd", "eld3"):
+    if name == "mix":
+        gens["A2"] = tu(["00", "01", "1"], ["00", "1", "01"])
+    if name in ("vwd", "eld3", "mix"):
         gens["W"], gens["D"] = L.W, L.D
-    if name == "eld3":
+    if name in ("eld3", "mix"):
         alpha = ["000", "001", "01"]
         ring = {"1": L.ONE, "s0": L.s0, "s1": L.s1, "t0": L.t0, "t1": L.t1}
         for i, j in itertools.permutations(range(3), 2):
@@ -124,6 +181,41 @@ def unitriangular(level):
     return list(group.values())
 
 
+def explicit_s0_lift(Sm):
+    """s0 = A q_0 + A' q_1 with q_0 = 2(1 + D), q_1 = 2(1 - D): support four in S_-."""
+    A = L.thompson_unit(["0", "10", "11"], ["00", "01", "1"])
+    A2 = L.thompson_unit(["00", "01", "1"], ["00", "1", "01"])
+    alpha = {}
+    for u, c in ((A, 2), (A * L.D, 2), (A2, 2), (A2 * L.D, 1)):
+        alpha = L.add(alpha, Sm.of_unit(u, c))
+    if Sm.evaluate(alpha) != L.s0:
+        raise AssertionError("explicit lift does not evaluate to s0")
+    return alpha
+
+
+def kernel_perturbations(Sm, base, keys, samples, rng):
+    """base + random combinations of ker(pi) vectors inside span(keys)."""
+    el2, kernel = Eliminator(), []
+    for j, k in enumerate(keys):
+        col = Sm.units[k].val
+        rem, coeffs = el2._reduce(dict(col), {})
+        if not rem:
+            kernel.append({keys[i]: c for i, c in L.add({j: 1}, coeffs, -1).items() if c})
+        else:
+            el2.insert(j, col)
+    out = []
+    for _ in range(samples if kernel else 0):
+        x = dict(base)
+        for vec in rng.sample(kernel, min(3, len(kernel))):
+            signed = {}
+            for k, c in vec.items():
+                signed = L.add(signed, {k: c})
+            x = L.add(x, signed, rng.choice((1, 2)))
+        assert Sm.evaluate(x) == L.s0
+        out.append(x)
+    return out, len(kernel)
+
+
 def lifts_of(Sm, keys, target, samples, rng):
     """Particular and randomly perturbed solutions of pi(sum lambda_g [g]) = target."""
     el = Eliminator()
@@ -167,9 +259,11 @@ def left_inverse_screen(Sm, alpha, C, P):
     rows = set()
     for vec in cols.values():
         rows.update(vec)
+    LAST_STATS.clear()
     LAST_STATS.update(columns=len(names), rows=len(rows), rank=len(el.piv))
     sol = el.solve(one)
     if sol is None:
+        LAST_STATS["phi"] = el.dual_certificate(one)
         return None
     return {names[j]: c for j, c in sol.items()}
 
@@ -204,7 +298,18 @@ def main():
     e_minus = L.scale(L.add(Sm.one(), Sm.of_unit(L.W)), 2)
     B2c = ball(Sm, family("vwd"), 2)
     report["controls"]["C3_e_minus_unsat"] = left_inverse_screen(Sm, e_minus, B2c, P) is None
+    phi3 = LAST_STATS.pop("phi", None)
     report["controls_stats_C3"] = dict(LAST_STATS)
+    ok3, _ = verify_dual_certificate({k: Sm.units[k] for k in B2c}, e_minus, P, phi3 or {},
+                                     alpha_units=Sm.units)
+    report["controls"]["C3_dual_certificate_verifies"] = bool(phi3) and ok3
+    if phi3:
+        bad = dict(phi3)
+        kbad = next(k for k in bad if k not in Sm.one())
+        bad[kbad] = (bad[kbad] + 1) % 3
+        okbad, _ = verify_dual_certificate({k: Sm.units[k] for k in B2c}, e_minus, P, bad,
+                                           alpha_units=Sm.units)
+        report["controls"]["C3_corrupted_certificate_rejected"] = not okbad
     p0 = Sm.of_unit(P[1])
     alpha5 = L.add(L.scale(Sm.one(), 2), p0, -1)  # 1 + (1 - [p0]), a unit needing the correction
     report["controls"]["C5_nilpotent_correction_found"] = left_inverse_screen(
@@ -217,13 +322,21 @@ def main():
         sys.exit(0 if all(report["controls"].values()) else 2)
     lift_keys = ball(Sm, gens, args.lift_radius)
     C = ball(Sm, gens, args.radius)
-    report["sizes"] = {"lift_ball": len(lift_keys), "C": len(C), "P": len(P)}
-    for alpha in lifts_of(Sm, lift_keys, L.s0, args.samples, rng):
+    alpha4 = explicit_s0_lift(Sm)
+    perturbed, kdim = kernel_perturbations(Sm, alpha4, lift_keys, args.samples, rng)
+    report["sizes"] = {"lift_ball": len(lift_keys), "C": len(C), "P": len(P),
+                       "kernel_vectors_in_lift_ball": kdim}
+    for alpha in [alpha4] + perturbed:
         assert Sm.evaluate(alpha) == L.s0
         t1 = time.time()
         sol = left_inverse_screen(Sm, alpha, C, P)
+        phi = LAST_STATS.pop("phi", None)
         inst = {"support": len(alpha), "sat": sol is not None, "seconds": round(time.time() - t1, 1),
                 "stats": dict(LAST_STATS)}
+        if phi is not None:
+            ok, why = verify_dual_certificate({k: Sm.units[k] for k in C}, alpha, P, phi, rng=rng,
+                                              alpha_units=Sm.units)
+            inst["dual_certificate"] = {"support": len(phi), "verified": ok, "note": why}
         if sol is not None:
             inst["alpha"] = [[list(map(list, k)), c] for k, c in alpha.items()]
             inst["solution"] = [[n[0], [list(map(list, n[1])) if n[0] == "c" else list(map(list, n[1]))], c]
