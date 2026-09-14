@@ -40,9 +40,9 @@ the question of Brown and Ozawa whether an infinite simple Kazhdan group
 can be hyperlinear, and Pestov's sofic version of it.
 A finitely generated group is LEF if and only if it is a subgroup of an
 infinite, finitely generated, simple Kazhdan group that is a limit of
-finite simple groups whose Cayley graphs form expanders, and it also has
-solvable word problem if and only if the host can be chosen with solvable
-word problem. One such host contains every recursively presented finitely
+finite simple groups whose Cayley graphs form expanders, and the host can
+be chosen with a word problem of the same Turing degree as that of the
+group. One such host contains every recursively presented finitely
 generated LEF group.
 \end{abstract}
 \maketitle
@@ -305,8 +305,8 @@ and compactness finitely many of these sets cover $C$, so
 $1=1-\prod_i(1-e_{\xi_iV})\in J$. Then $J=R$ and $K=G$. This proves~(a).
 
 For derived topological full groups, Matui showed by a similar argument
-that a nontrivial normal subgroup meets a simple union of alternating
-groups on towers~\cite[Lemma~3.4 and Theorem~4.9]{Matui}. For the ring
+that a nontrivial normal subgroup meets a simple union of products of
+alternating groups on towers~\cite[Lemma~3.4 and Theorem~4.9]{Matui}. For the ring
 $\LC(X,\F_2)\rtimes_T\Z$ of Theorem~\ref{thm:main}, simplicity also follows
 from Stepanov's theorem on the normal structure of
 $\GL_n$~\cite[Theorem~4.4]{Stepanov}: this ring is
@@ -329,14 +329,12 @@ length $\lambda$ or less in the $e_{ij}(\tau_s)$ has entries of degree at
 most $\lambda$ in $\mathcal A$, and $\varphi_k\circ\pi=\rho_k$ on the
 finitely many such entries for large $k$, where $\varphi_k(0)=0$ by
 additivity. So a word that is trivial in $G$ is trivial in
-$\SL_{3N_k}(\F_2)$ for large $k$. Conversely, for a nonprincipal
-ultrafilter $\omega$ on $\mathbb N$ the $\varphi_k$ define a unital ring
-homomorphism from $R$ to the algebraic ultraproduct
-$\prod_\omega M_{N_k}(\F_2)$. It maps $G$ to $\prod_\omega\SL_{3N_k}(\F_2)$,
-and its kernel on $G$ is a normal subgroup that does not contain
-$e_{12}(1)$, so it is trivial. As this holds for every $\omega$, each
-nontrivial word is nontrivial in $\SL_{3N_k}(\F_2)$ for all but finitely
-many $k$. Therefore these marked finite simple groups converge to $G$, so
+$\SL_{3N_k}(\F_2)$ for large $k$. Conversely, let $w$ be a word that is
+nontrivial in $G$. As $G$ is simple, $e_{12}(1)$ is a product of conjugates
+of $w$ and $w^{-1}$ in $G$. This relation holds in $\SL_{3N_k}(\F_2)$ for
+large $k$, where $e_{12}(1)$ maps to the transvection $e_{12}(I)\ne I$, so
+$w$ is nontrivial in $\SL_{3N_k}(\F_2)$ for large $k$. Therefore these
+marked finite simple groups converge to $G$, so
 $G$ is LEF, and $N_k\to\infty$ because $G$ is infinite. Since
 $\EL_3(\mathcal A)$ has property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}, the
 Cayley graphs of its finite quotients with respect to the images of its
@@ -455,9 +453,11 @@ group is finitely generated and has solvable word problem~\cite{Thompson80}.
 \begin{corollary}\label{cor:lef}
 A finitely generated group is LEF if and only if it is a subgroup of an
 infinite, finitely generated, simple Kazhdan group that is an expander
-limit of finite simple groups $\SL_N(\F_2)$. It is LEF with solvable word
-problem if and only if it is a subgroup of such a group with solvable word
-problem.
+limit of finite simple groups $\SL_N(\F_2)$. For every finitely generated
+LEF group $\Gamma$ there is such a group containing $\Gamma$ whose word
+problem has the Turing degree of the word problem of $\Gamma$. So $\Gamma$
+has solvable word problem if and only if it is a subgroup of such a group
+with solvable word problem.
 \end{corollary}
 
 \begin{corollary}\label{cor:host}
@@ -484,7 +484,7 @@ We embed a countable LEF group in the derived subgroup of a $2$-generated
 LEF group $\Delta$ (Lemma~\ref{lem:nn}), and then $[\Delta,\Delta]$ in a
 group of Theorem~\ref{thm:general}\textup{(b)} built from a lamplighter
 action of $\Delta$ (Lemma~\ref{lem:host}). Lemma~\ref{lem:halfline} keeps
-the word problem solvable in both steps.
+the Turing degree of the word problem in both steps.
 
 \begin{lemma}\label{lem:nn}
 Every countable LEF group is a subgroup of $[\Delta,\Delta]$ for an
@@ -506,9 +506,9 @@ $Q_k\times\Z/m_k\times\Z/4^{k+1}$ let $b_k$ add $1$ to the last
 coordinate, and let $a_k$ act on the level $i$, the set of points with last
 coordinate $i$, by $f_{jk}$ if $i=2^{2j-1}$ and by $t_k$ if $i=4^j$, for
 $j\le k$, and trivially on the other levels. Then $b_k^{-n}a_kb_k^n$ acts
-on the level $i$ as $a_k$ acts on the level $i+n$. As distinct pairs of
-powers of $2$ have distinct differences, all below a quarter of the
-modulus, the two conjugates in
+on the level $i$ as $a_k$ acts on the level $i+n$. As distinct ordered
+pairs of distinct powers of $2$ have distinct nonzero differences, all of
+absolute value below a quarter of the modulus, the two conjugates in
 $w_j=[b^{-2^{2j-1}}ab^{2^{2j-1}},\,b^{-4^j}ab^{4^j}]$, evaluated at
 $(a_k,b_k)$, cannot both act nontrivially on a level other than $0$. So
 $w_j(a_k,b_k)$ acts by $[f_{jk},t_k]$ on the level $0$ and trivially on
@@ -552,15 +552,18 @@ $\Lambda$, and the indicator $e_U$ of $U=\{x:x(e)=1\}$.
 Let $\sigma_n\colon\Delta\to Q'_n$ be finite models of $\Delta$ that are
 injective on the ball of radius $n$ and preserve the products that stay in
 it, with $\sigma_n(e)=e$ and $Q'_n$ generated by the images of the
-generators. Let $x\mapsto\delta x+c$ act on $Y_n=\F_2^{Q'_n}$ by
+generators. To $\xi\colon x\mapsto\delta x+c$ in $\Lambda$ assign the
+permutation $p_\xi$ of $Y_n=\F_2^{Q'_n}$ given by
 $y\mapsto\sigma_n(\delta)y+\sum_{\eta\in\operatorname{supp}c}1_{\sigma_n(\eta)}$,
 where $(qy)(q')=y(q^{-1}q')$, and attach to $y$ the point $y\circ\sigma_n$
-of $\Omega$. For fixed elements of $\Lambda$ and large $n$, these
-permutations multiply as in $\Lambda$ and, uniformly in $y$, move the
-attached points as $\Lambda$ moves the points of $\Omega$, on the
-coordinates near $e$. Let $D_n(f)$ be the diagonal matrix on
-$\F_2^{Y_n}$ with entry $f(y\circ\sigma_n)$ at $y$, let $P_\xi$ be the
-permutation matrix of $\xi\in\Lambda$, and put
+of $\Omega$. For fixed $\xi,\eta\in\Lambda$ and large $n$ we have
+$p_\xi p_\eta=p_{\xi\eta}$, and for every finite $W\subseteq\Delta$ and
+large $n$ the attached points satisfy
+$(p_\xi y)\circ\sigma_n=\xi(y\circ\sigma_n)$ on $W$ for all $y$, since
+$\sigma_n$ respects the finitely many products and inequalities involved.
+Let $D_n(f)$ be the diagonal matrix on $\F_2^{Y_n}$ with entry
+$f(y\circ\sigma_n)$ at $y$, let $P_\xi$ be the permutation matrix of
+$p_\xi$, and put
 $\varphi_n(\sum_\xi f_\xi u_\xi)=\sum_\xi D_n(f_\xi)P_\xi$. For fixed $f$
 and $\xi$ and large $n$,
 \[
@@ -600,15 +603,15 @@ presentations.
 \subsection*{Solvable word problem}
 
 \begin{lemma}\label{lem:halfline}
-\textup{(a)} Every finitely generated LEF group with solvable word problem
-is a subgroup of $[\Delta,\Delta]$ for an infinite finitely generated LEF
-group $\Delta$ with solvable word problem.
-\textup{(b)} If $\Delta$ has solvable word problem, then so does
-$G_\Delta$.
+\textup{(a)} Every finitely generated LEF group $\Gamma$ is a subgroup of
+$[\Delta,\Delta]$ for an infinite finitely generated LEF group $\Delta$
+whose word problem is Turing reducible to that of $\Gamma$.
+\textup{(b)} The word problem of $G_\Delta$ is Turing reducible to that of
+$\Delta$.
 \end{lemma}
 
 \begin{proof}
-Let $\Gamma$ be LEF with solvable word problem, generated by a finite set
+Let $\Gamma$ be a finitely generated LEF group, generated by a finite set
 $E$. We use a half-line form of the Neumann--Neumann construction, which
 Darbinyan used to preserve solvable word problems~\cite{Darbinyan15}. On
 $\Gamma\times\Z$, whose second coordinate is the level, let $\beta$ raise
@@ -616,8 +619,8 @@ the level by $1$, and let $h_\gamma$ multiply the first coordinate from the
 left by $\gamma$ on the levels $m\ge0$. Then $[\beta,h_\gamma]$ multiplies
 the level $0$ by $\gamma^{-1}$, so
 $\Delta=\langle\beta,h_\gamma:\gamma\in E\rangle$ is infinite and
-$\Gamma\le[\Delta,\Delta]$. An element of $\Delta$ of length at most
-$\lambda$ is $f\beta^\ell$ with $|\ell|\le\lambda$, where $f$ multiplies the
+$\Gamma\le[\Delta,\Delta]$. Let $\lambda\ge1$. An element of $\Delta$ of
+length at most $\lambda$ is $f\beta^\ell$ with $|\ell|\le\lambda$, where $f$ multiplies the
 level $m$ from the left by an element $f(m)$ of length at most $\lambda$,
 with $f(m)=1$ for $m<-\lambda$ and $f(m)=f(\lambda)$ for $m>\lambda$. Let
 $\psi$ map the ball of radius $2\lambda$ of $\Gamma$ injectively into a
@@ -625,10 +628,12 @@ finite group $Q$, preserving the products that stay in it, and let $\theta$
 be the isomorphism from $\{v\in Q^{[-3\lambda,3\lambda]}:v_{3\lambda-1}=v_{3\lambda}\}$
 onto $\{v\in Q^{[-3\lambda,3\lambda]}:v_{-3\lambda}=1\}$ given by
 $\theta(v)_{-3\lambda}=1$ and $\theta(v)_m=v_{m-1}$ for $m>-3\lambda$. The
-domain and the image of $\theta$ have equally many right cosets, so
-matching them through transversals gives a bijection $\kappa$ of
-$Q^{[-3\lambda,3\lambda]}$ with $\kappa(vx)=\theta(v)\kappa(x)$ for $v$ in
-the domain of $\theta$. Let each $v\in Q^{[-3\lambda,3\lambda]}$ act on
+bijection $\kappa$ of $Q^{[-3\lambda,3\lambda]}$ given by
+$\kappa(x)_{-3\lambda}=x_{3\lambda-1}^{-1}x_{3\lambda}$ and
+$\kappa(x)_m=x_{m-1}$ for $m>-3\lambda$ satisfies
+$\kappa(vx)=\theta(v)\kappa(x)$ for $v$ in the domain of $\theta$, as
+$v_{3\lambda-1}=v_{3\lambda}$ cancels in the coordinate $-3\lambda$. Let
+each $v\in Q^{[-3\lambda,3\lambda]}$ act on
 $Q^{[-3\lambda,3\lambda]}\times\Z/5\lambda$ by left multiplication on the
 first coordinate, and put $\zeta(x,i)=(\kappa(x),i+1)$, so that
 $\zeta v\zeta^{-1}=\theta(v)$ on the domain of $\theta$. As $f$ is trivial
@@ -643,12 +648,12 @@ From a word in the $\beta^{\pm1}$ and $h_\gamma^{\pm1}$ one computes the
 exponent sum $\ell$ of $\beta$, the levels where $f$ changes, namely the
 exponent sums of $\beta$ before the letters $h_\gamma^{\pm1}$, and the
 values of $f$ there as words in $E$. It is trivial if and only if $\ell=0$
-and these values are trivial, so $\Delta$ has solvable word problem. This
-proves~(a).
+and these values are trivial in $\Gamma$, so the word problem of $\Delta$
+is Turing reducible to that of $\Gamma$. This proves~(a).
 
 For~(b), an element $x\mapsto\delta x+c$ of $\Lambda$ is given by a word
 for $\delta$ and words for the points of $\operatorname{supp}c$, so an
-algorithm for the word problem of $\Delta$ decides equality in $\Lambda$
+oracle for the word problem of $\Delta$ decides equality in $\Lambda$
 and computes the values of $c$. A word in the generators of $G_\Delta$
 multiplies out to a matrix with entries $\sum_\xi p_\xi u_\xi$, where each
 $p_\xi$ is a polynomial over $\F_2$ in finitely many coordinates
@@ -657,15 +662,20 @@ $\{x:x(\delta)=1+c(\delta)\}$ for $\xi\colon x\mapsto\delta x+c$. After
 collecting equal $\xi$ and equal coordinates, the word is trivial if and
 only if every coefficient of its difference from $I_3$ vanishes at every
 assignment of its finitely many variables, as $\Omega$ is the full shift.
-So $G_\Delta$ has solvable word problem.
+So the word problem of $G_\Delta$ is Turing reducible to that of $\Delta$.
 \end{proof}
 
 \begin{proof}[Proof of the second statement of Corollary~\ref{cor:lef}]
-By Lemmas~\ref{lem:halfline} and~\ref{lem:host}, a finitely generated LEF
-group with solvable word problem is a subgroup of a group $G_\Delta$ as in
-Corollary~\ref{cor:lef} with solvable word problem. Conversely, finitely
-generated subgroups of groups with solvable word problem have solvable
-word problem, and LEF passes to subgroups.
+Let $\Gamma$ be a finitely generated LEF group. By
+Lemmas~\ref{lem:halfline} and~\ref{lem:host}, $\Gamma$ is a subgroup of a
+group $G_\Delta$ as in Corollary~\ref{cor:lef} whose word problem is Turing
+reducible to that of $\Gamma$. Conversely, a word in the generators of
+$\Gamma$ becomes a word in the generators of $G_\Delta$ by substitution,
+and it is trivial in $\Gamma$ if and only if its image is trivial in
+$G_\Delta$, so the word problem of $\Gamma$ reduces to that of $G_\Delta$.
+The last statement follows, as finitely generated subgroups of groups with
+solvable word problem have solvable word problem and LEF passes to
+subgroups.
 \end{proof}
 
 \section{Word problems}\label{sec:wp}
@@ -675,8 +685,8 @@ The word problem of $G_X$ has the Turing degree of the language $L(X)$ of
 $X$, the set of words occurring in points of $X$, so $G_X$ has solvable
 word problem if and only if $L(X)$ is recursive, as for the Fibonacci
 subshift $X_{(3-\sqrt5)/2}$ below. Every Turing degree is the degree of the
-word problem of some $G_X$, and there are continuum many groups $G_X$, none
-of which embeds in another.
+word problem of some $G_X$, and there is a family of continuum many groups
+$G_X$, none of which embeds in another.
 \end{corollary}
 
 \begin{proof}
@@ -721,10 +731,11 @@ recursive~\cite[Theorem~1.1(3)]{GMpres}.
 \item\label{q:fp} Is there an infinite finitely presented simple group
 with property~\textup{(T)} that is sofic, or at least hyperlinear?
 Infinite finitely presented simple Kazhdan groups
-exist~\cite{CapraceRemy}, while $G_X$ is not finitely presented: a
-finitely presented LEF group is residually
-finite~\cite{Stepin,VershikGordon}, and $G_X$ is not, as it is infinite
-and simple. A sofic example would not be LEF, and it would also answer
+exist~\cite{CapraceRemy}, while no group in
+Theorem~\ref{thm:general}\textup{(b)} is finitely presented: a finitely
+presented LEF group is residually finite~\cite{Stepin,VershikGordon}, and
+an infinite simple group is not. A sofic example would not be LEF, and it
+would also answer
 Open problem~6.1 of Alekseev and Thom~\cite{AlekseevThom}, which asks for
 finitely presented sofic groups with property~\textup{(T)} that are not
 residually finite.
@@ -736,9 +747,9 @@ gives this for LEF groups, with LEF hosts.
 \item If $(X,T)$ is flip conjugate to $(Y,T')$, that is, topologically
 conjugate to $(Y,T')$ or to $(Y,T'^{-1})$, then $G_X\cong G_Y$, and for
 topological full groups the converse holds~\cite{GPS99,BezuglyiMedynets}.
-Does $G_X\cong G_Y$ imply that $X$ and $Y$ are flip conjugate, or at least
-strongly orbit equivalent~\cite{GPS}? Does $L(G_X)\cong L(G_Y)$ imply
-$G_X\cong G_Y$?
+Does $G_X\cong G_Y$ imply that $X$ and $Y$ are flip conjugate? In a sequel
+we show that it implies that $X$ and $Y$ are strongly orbit
+equivalent~\cite{GPS}. Does $L(G_X)\cong L(G_Y)$ imply $G_X\cong G_Y$?
 \end{enumerate}
 
 \section*{Origin and authorship}
