@@ -1,7 +1,9 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitSpecialLinear
+import GroupApproximation.Algebra.FinitaryLinearBinarySimple
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
+import Mathlib.Tactic.Linarith
 
 /-!
 # Transport of marked limits and expanders, and `EL_n(M_N(F₂)) ≃* SL_{nN}(F₂)`
@@ -138,16 +140,34 @@ noncomputable def unitsEquivSLZModTwo (N : Type*) [Fintype N] [DecidableEq N] :
     ⟨Matrix.SpecialLinearGroup.toGL_injective,
       fun u => ⟨⟨(u : Matrix N N (ZMod 2)), det_units_zmodTwo' u⟩, Units.ext rfl⟩⟩).symm
 
+/-- **`EL_n(M_N(F₂)) ≃* GL_{n × N}(F₂)`** by block flattening, for `n ≥ 3` and `N ≥ 1` (tex l.221–224). -/
+noncomputable def elementaryBlockEquivUnits (n : ℕ) (hn : 3 ≤ n) (N : ℕ) (hN : 0 < N) :
+    ↥(elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))) ≃*
+      (Matrix (Fin n × Fin N) (Fin n × Fin N) (ZMod 2))ˣ :=
+  (((elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))).equivMapOfInjective
+      (elementaryBlockUnitEquiv (ι := Fin n) (κ := Fin N) (R := ZMod 2)).toMonoidHom
+      (elementaryBlockUnitEquiv (ι := Fin n) (κ := Fin N) (R := ZMod 2)).injective).trans
+    (MulEquiv.subgroupCongr ((printedBlockElementarySpecialLinear n hn N hN).trans
+      (ker_detUnits_zmodTwo (Fin n × Fin N))))).trans Subgroup.topEquiv
+
 /-- **`EL_n(M_N(F₂)) ≃* SL_{n × N}(F₂)`** by block flattening, for `n ≥ 3` and `N ≥ 1` (tex l.221–224). -/
 noncomputable def elementaryBlockEquivSL (n : ℕ) (hn : 3 ≤ n) (N : ℕ) (hN : 0 < N) :
     ↥(elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))) ≃*
       Matrix.SpecialLinearGroup (Fin n × Fin N) (ZMod 2) :=
-  ((((elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))).equivMapOfInjective
-      (elementaryBlockUnitEquiv (ι := Fin n) (κ := Fin N) (R := ZMod 2)).toMonoidHom
-      (elementaryBlockUnitEquiv (ι := Fin n) (κ := Fin N) (R := ZMod 2)).injective).trans
-    (MulEquiv.subgroupCongr ((printedBlockElementarySpecialLinear n hn N hN).trans
-      (ker_detUnits_zmodTwo (Fin n × Fin N))))).trans Subgroup.topEquiv).trans
-    (unitsEquivSLZModTwo (Fin n × Fin N))
+  (elementaryBlockEquivUnits n hn N hN).trans (unitsEquivSLZModTwo (Fin n × Fin N))
+
+/-- **`EL_n(M_N(F₂)) = SL_{nN}(F₂)` is simple** for `n ≥ 3` and `N ≥ 1`: `GL_d(F₂) = PSL_d(F₂)` is simple for
+`d ≥ 3` (`FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo`). -/
+theorem isSimpleGroup_elementaryBlock (n : ℕ) (hn : 3 ≤ n) (N : ℕ) (hN : 0 < N) :
+    IsSimpleGroup ↥(elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))) := by
+  have hcard : 3 ≤ Fintype.card (Fin n × Fin N) := by
+    rw [Fintype.card_prod, Fintype.card_fin, Fintype.card_fin]
+    nlinarith
+  haveI := FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo (Fin n × Fin N) hcard
+  haveI : Nontrivial ↥(elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))) :=
+    (elementaryBlockEquivUnits n hn N hN).symm.injective.nontrivial
+  exact IsSimpleGroup.isSimpleGroup_of_surjective (elementaryBlockEquivUnits n hn N hN).symm.toMonoidHom
+    (elementaryBlockEquivUnits n hn N hN).symm.surjective
 
 /-! ## Elementary groups along ring isomorphisms -/
 
@@ -175,4 +195,5 @@ end GroupApproximation
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.IsMarkedLimit.map_target
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.IsExpanderFamily.map_target
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.elementaryBlockEquivSL
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.isSimpleGroup_elementaryBlock
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.elementaryGroupEquivOfRingEquiv

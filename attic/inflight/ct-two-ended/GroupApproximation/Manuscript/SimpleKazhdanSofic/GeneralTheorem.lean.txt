@@ -1,9 +1,12 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitSpecialLinear
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.MatricialQuotientsExpanders
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralRingPropertyT
+import GroupApproximation.Dynamics.ClopenGroupCrossedProduct
 import GroupApproximation.Meta.AxiomGuard
-import Mathlib.Algebra.SkewMonoidAlgebra.Basic
-import Mathlib.Topology.LocallyConstant.Algebra
+import Mathlib.Dynamics.Minimal
 import Mathlib.Topology.Perfect
+import Mathlib.Topology.Separation.Profinite
 
 /-!
 # `thm:general` of `simple_kazhdan_sofic_group.tex`: statement and assembly
@@ -20,36 +23,33 @@ import Mathlib.Topology.Perfect
 > by the $e_{ij}(\varphi_k(s))$, whose Cayley graphs form a family of expanders.
 
 "An action on a Cantor set is topologically free if no nontrivial element fixes a nonempty open set"
-(tex l.105–106).  A Cantor set is a nonempty compact metrizable totally disconnected perfect space.
+(tex l.105–106).  A Cantor set is a nonempty compact metrizable totally disconnected perfect space.  The
+action is `[MulAction Λ Z] [ContinuousConstSMul Λ Z]`, and `R` is sk-lef-action's
+`ClopenGroupCrossedProduct Λ Z (ZMod 2)`, with `(f u_ξ)(f' u_η) = f (f' ∘ ξ⁻¹) u_{ξη}`.
 
 This module is additive.  `thm:main` keeps its statement and assembly in `SimpleKazhdanSofic.MainAssembly`.
 
 ## Definitions
 
-* `ActionCoeff α k`, `ActionCrossedProduct α k`: `LC(Z, k) ⋊ Λ` for `α : Λ →* (Z ≃ₜ Z)`, with
-  `ξ • f = f ∘ α(ξ)⁻¹`, so `(f u_ξ)(f' u_η) = f (f' ∘ ξ⁻¹) u_{ξη}` (tex l.135–137);
-* `IsMinimalAction α`, `IsTopologicallyFree α`;
-* `IsMatricialVia S N φ`: `R` is matricial via `φ_k : R → M_{N_k}(F₂)`;
+* `IsTopologicallyFree Λ Z`; minimality is Mathlib's `MulAction.IsMinimal Λ Z`;
+* `IsMatricialVia S N φ`: `R` is matricial via `φ_k : R → M_{N_k}(F₂)`, with `N_k ≥ 1`;
 * `elementaryMarking n S`, `matricialMarking n S N φ k`: the markings by the `e_ij(s)` and the `e_ij(φ_k(s))`;
 * `PrintedSimpleKazhdanGeneral`.  The finite groups are `EL_n(M_{N_k}(F₂))`.  Block flattening carries
   them onto `SL_{nN_k}(F₂)` (`printedBlockElementarySpecialLinear`, lane ms-core-3), and the statement
   records this.
 
-## Pieces (named propositions, with the owning lanes)
+## Pieces
 
-* `PrintedElementaryMarkingGeneration`: the `e_ij(s)`, `s ∈ S`, generate `EL_n(R)` (tex l.144–145; sk-lef-action);
-* `PrintedGeneralElementaryInfinite`: `EL_n(R)` is infinite (tex l.149–150; sk-lef-action);
 * `PrintedGeneralSimplicityStatement`: `EL_n(R)` is simple (section "Simplicity", tex l.151–210;
-  sk-lef-simplicity and skf-consequences);
+  skf-consequences);
 * `PrintedMatricialMarkedLimitStatement`: the marked limit, for a matricial ring with `EL_n(R)` simple
   (section "Finite simple models", tex l.211–233; ms-core-3);
-* `PrintedBlockElementarySimple`: `EL_n(M_N(F₂))` is simple for `N ≥ 1` (tex l.221–224; ms-core-3);
-* `PrintedMatricialExpandersStatement`: the markings `e_ij(φ_k(s))` give expanders once the orders tend to
-  infinity (tex l.235–236; oa-expanders).
+* `PrintedBlockElementarySimple`: `EL_n(M_N(F₂))` is simple for `N ≥ 1` (closed in
+  `SimpleKazhdanSofic.MainFromGeneral`);
+* `PrintedMatricialExpandersStatement`: closed here through oa-expanders' `isExpanderFamily_matricialMarking`.
 
-Property (T) is Ershov–Jaikin-Zapirain, proved in this repository.  Finite generation follows from (T).
+Property (T) and infiniteness at `Λ` generality are sk-lef-action's `printedGroupCrossedProductPropertyTInfinite`.
 "$N_k\to\infty$ as $G$ is infinite" (tex l.234–235) is `tendsto_card_of_isMarkedLimit`.
-`printedSimpleKazhdanGeneral_of_pieces` assembles the theorem.
 -/
 
 namespace GroupApproximation
@@ -57,73 +57,15 @@ namespace SimpleKazhdanSofic
 
 open Filter
 
-/-! ## The crossed product of an action -/
-
-/-- The coefficient ring `LC(Z, k)` of `LC(Z, k) ⋊ Λ`, carrying the action of `Λ` through `α`. -/
-def ActionCoeff {Λ Z : Type*} [Group Λ] [TopologicalSpace Z] (_α : Λ →* (Z ≃ₜ Z)) (k : Type*) :
-    Type _ :=
-  LocallyConstant Z k
-
-namespace ActionCoeff
-
-variable {Λ Z : Type*} [Group Λ] [TopologicalSpace Z] (α : Λ →* (Z ≃ₜ Z)) (k : Type*) [Ring k]
-
-instance instRing : Ring (ActionCoeff α k) :=
-  inferInstanceAs (Ring (LocallyConstant Z k))
-
-/-- The identity map `LC(Z, k) ≃+* ActionCoeff α k`. -/
-def of : LocallyConstant Z k ≃+* ActionCoeff α k where
-  toFun f := f
-  invFun f := f
-  left_inv _ := rfl
-  right_inv _ := rfl
-  map_mul' _ _ := rfl
-  map_add' _ _ := rfl
-
-/-- `Λ` acts by `ξ • f = f ∘ α(ξ)⁻¹`. -/
-noncomputable instance instMulSemiringAction : MulSemiringAction Λ (ActionCoeff α k) where
-  smul ξ f := of α k (LocallyConstant.comap ⟨⇑(α ξ⁻¹), (α ξ⁻¹).continuous⟩ ((of α k).symm f))
-  one_smul f := LocallyConstant.ext fun z => by
-    show (of α k).symm f ((α (1 : Λ)⁻¹) z) = (of α k).symm f z
-    rw [inv_one, map_one, Homeomorph.one_apply]
-  mul_smul ξ η f := LocallyConstant.ext fun z => by
-    show (of α k).symm f ((α (ξ * η)⁻¹) z) = (of α k).symm f ((α η⁻¹) ((α ξ⁻¹) z))
-    rw [mul_inv_rev, map_mul, Homeomorph.mul_apply]
-  smul_zero _ := LocallyConstant.ext fun _ => rfl
-  smul_add _ _ _ := LocallyConstant.ext fun _ => rfl
-  smul_one _ := LocallyConstant.ext fun _ => rfl
-  smul_mul _ _ _ := LocallyConstant.ext fun _ => rfl
-
-theorem smul_of (ξ : Λ) (f : LocallyConstant Z k) :
-    ξ • of α k f = of α k (LocallyConstant.comap ⟨⇑(α ξ⁻¹), (α ξ⁻¹).continuous⟩ f) :=
-  rfl
-
-end ActionCoeff
-
-/-- **The crossed product** `LC(Z, k) ⋊ Λ` of an action by homeomorphisms (tex l.135–137). -/
-abbrev ActionCrossedProduct {Λ Z : Type*} [Group Λ] [TopologicalSpace Z] (α : Λ →* (Z ≃ₜ Z))
-    (k : Type*) [Ring k] : Type _ :=
-  SkewMonoidAlgebra (ActionCoeff α k) Λ
-
-section Dynamics
-
-variable {Λ Z : Type*} [Group Λ] [TopologicalSpace Z]
-
-/-- The action is minimal: every orbit is dense. -/
-def IsMinimalAction (α : Λ →* (Z ≃ₜ Z)) : Prop :=
-  ∀ z : Z, Dense (Set.range fun ξ : Λ => α ξ z)
+/-! ## Topologically free actions, matricial rings and markings -/
 
 /-- The action is topologically free: no nontrivial element fixes a nonempty open set (tex l.105–106). -/
-def IsTopologicallyFree (α : Λ →* (Z ≃ₜ Z)) : Prop :=
-  ∀ ξ : Λ, ξ ≠ 1 → ∀ U : Set Z, IsOpen U → U.Nonempty → ∃ z ∈ U, α ξ z ≠ z
+def IsTopologicallyFree (Λ Z : Type*) [Group Λ] [TopologicalSpace Z] [MulAction Λ Z] : Prop :=
+  ∀ ξ : Λ, ξ ≠ 1 → ∀ U : Set Z, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z
 
-end Dynamics
-
-/-! ## Matricial rings and markings -/
-
-/-- **`R` is matricial via `φ_k`** (tex l.113–117), with `N_k ≥ 1`.  The statement speaks of the finite simple
-groups `SL_{nN_k}(F₂)`, so `M_{N_k}(F₂)` is a nonzero matrix algebra.  Size-zero models satisfy every other
-axiom, and infinitely many of them would break the marked convergence (lane ms-core-3). -/
+/-- **`R` is matricial via `φ_k`** (tex l.113–117), with `N_k ≥ 1`.  The statement speaks of the finite
+simple groups `SL_{nN_k}(F₂)`, so `M_{N_k}(F₂)` is a nonzero matrix algebra.  Size-zero models satisfy
+every other axiom, and infinitely many of them would break the marked convergence (lane ms-core-3). -/
 def IsMatricialVia {R : Type*} [Ring R] (S : Finset R) (N : ℕ → ℕ)
     (φ : ∀ k, R → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)) : Prop :=
   (∀ k, 0 < N k) ∧ (∀ k, φ k 1 = 1) ∧ (∀ k, Subring.closure (φ k '' (S : Set R)) = ⊤) ∧
@@ -150,15 +92,16 @@ noncomputable def matricialMarking (n : ℕ) {R : Type*} [Ring R] (S : Finset R)
 def PrintedSimpleKazhdanGeneral : Prop :=
   ∀ (Λ : Type) [Group Λ] [Group.FG Λ] (Z : Type) [TopologicalSpace Z] [CompactSpace Z]
     [TopologicalSpace.MetrizableSpace Z] [TotallyDisconnectedSpace Z] [PerfectSpace Z] [Nonempty Z]
-    (α : Λ →* (Z ≃ₜ Z)), IsMinimalAction α → IsTopologicallyFree α →
-    ∀ S : Finset (ActionCrossedProduct α (ZMod 2)), 1 ∈ S →
-      Subring.closure (S : Set (ActionCrossedProduct α (ZMod 2))) = ⊤ →
-    ∀ (N : ℕ → ℕ) (φ : ∀ k, ActionCrossedProduct α (ZMod 2) → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)),
+    [MulAction Λ Z] [ContinuousConstSMul Λ Z], MulAction.IsMinimal Λ Z → IsTopologicallyFree Λ Z →
+    ∀ S : Finset (ClopenGroupCrossedProduct Λ Z (ZMod 2)), 1 ∈ S →
+      Subring.closure (S : Set (ClopenGroupCrossedProduct Λ Z (ZMod 2))) = ⊤ →
+    ∀ (N : ℕ → ℕ)
+      (φ : ∀ k, ClopenGroupCrossedProduct Λ Z (ZMod 2) → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)),
       IsMatricialVia S N φ → ∀ n : ℕ, 3 ≤ n →
-        Infinite ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2))) ∧
-        Group.FG ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2))) ∧
-        IsSimpleGroup ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2))) ∧
-        HasKazhdanPropertyT.{0, 0} ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2))) ∧
+        Infinite ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))) ∧
+        Group.FG ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))) ∧
+        IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))) ∧
+        HasKazhdanPropertyT.{0, 0} ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))) ∧
         IsMarkedLimit (elementaryMarking n S) (matricialMarking n S N φ) ∧
         (∀ k, IsSimpleGroup ↥(elementaryGroup (Fin n) (Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)))) ∧
         (∀ k,
@@ -169,24 +112,12 @@ def PrintedSimpleKazhdanGeneral : Prop :=
 
 /-! ## Pieces -/
 
-/-- **Generation** (tex l.144–145): "So the $e_{ij}(s)$ with $s\in S$ generate $G$." -/
-def PrintedElementaryMarkingGeneration : Prop :=
-  ∀ (R : Type) [Ring R] (S : Finset R), 1 ∈ S → Subring.closure (S : Set R) = ⊤ →
-    ∀ n : ℕ, 3 ≤ n → Subgroup.closure (Set.range (elementaryMarking n S)) = ⊤
-
-/-- **Infinite** (tex l.149–150): "it is infinite because $e_{12}(\LC(Z,\F_2))$ is infinite". -/
-def PrintedGeneralElementaryInfinite : Prop :=
-  ∀ (Λ : Type) [Group Λ] (Z : Type) [TopologicalSpace Z] [CompactSpace Z]
-    [TopologicalSpace.MetrizableSpace Z] [TotallyDisconnectedSpace Z] [PerfectSpace Z] [Nonempty Z]
-    (α : Λ →* (Z ≃ₜ Z)) (n : ℕ), 3 ≤ n →
-      Infinite ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2)))
-
 /-- **Simplicity** (section "Simplicity", tex l.151–210). -/
 def PrintedGeneralSimplicityStatement : Prop :=
   ∀ (Λ : Type) [Group Λ] [Group.FG Λ] (Z : Type) [TopologicalSpace Z] [CompactSpace Z]
     [TopologicalSpace.MetrizableSpace Z] [TotallyDisconnectedSpace Z] [PerfectSpace Z] [Nonempty Z]
-    (α : Λ →* (Z ≃ₜ Z)), IsMinimalAction α → IsTopologicallyFree α → ∀ n : ℕ, 3 ≤ n →
-      IsSimpleGroup ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2)))
+    [MulAction Λ Z] [ContinuousConstSMul Λ Z], MulAction.IsMinimal Λ Z → IsTopologicallyFree Λ Z →
+    ∀ n : ℕ, 3 ≤ n → IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2)))
 
 /-- **The marked limit** (section "Finite simple models", tex l.211–233), for any unital ring generated
 by a finite `S ∋ 1` and matricial via `φ_k`, when `EL_n(R)` is simple. -/
@@ -211,7 +142,24 @@ def PrintedMatricialExpandersStatement : Prop :=
         atTop atTop →
       IsExpanderFamily (matricialMarking n S N φ)
 
-/-! ## Marked limits: orders and nontriviality -/
+/-- **The expander piece, closed** (tex l.235–236), by oa-expanders' `isExpanderFamily_matricialMarking`. -/
+theorem printedMatricialExpandersStatement : PrintedMatricialExpandersStatement := by
+  intro R _ S hS1 _ N φ hφ n hn hcard
+  obtain ⟨-, hone, hgen, -⟩ := hφ
+  exact isExpanderFamily_matricialMarking S hS1 N φ hone hgen n hn hcard
+
+/-! ## Glue -/
+
+/-- A nonempty perfect T₁ space is infinite. -/
+theorem infinite_of_perfectSpace (Z : Type*) [TopologicalSpace Z] [T1Space Z] [PerfectSpace Z]
+    [Nonempty Z] : Infinite Z := by
+  by_contra hfin
+  rw [not_infinite_iff_finite] at hfin
+  haveI := hfin
+  obtain ⟨x⟩ := ‹Nonempty Z›
+  have hopen : IsOpen ({x} : Set Z) := by
+    simpa using (Set.toFinite ({x}ᶜ : Set Z)).isClosed.isOpen_compl
+  exact not_isOpen_singleton x hopen
 
 section MarkedLimits
 
@@ -268,19 +216,17 @@ theorem finite_elementaryGroup_matrix (n N : ℕ) :
 
 /-! ## Assembly -/
 
-/-- **`thm:general` from its pieces.** -/
-theorem printedSimpleKazhdanGeneral_of_pieces (hinf : PrintedGeneralElementaryInfinite)
-    (hsimple : PrintedGeneralSimplicityStatement) (hmarked : PrintedMatricialMarkedLimitStatement)
-    (hsimpleM : PrintedBlockElementarySimple) (hexp : PrintedMatricialExpandersStatement) :
+/-- **`thm:general` from its pieces.**  Property (T) and infiniteness come from sk-lef-action's
+`printedGroupCrossedProductPropertyTInfinite`, and the expanders from `printedMatricialExpandersStatement`. -/
+theorem printedSimpleKazhdanGeneral_of_pieces (hsimple : PrintedGeneralSimplicityStatement)
+    (hmarked : PrintedMatricialMarkedLimitStatement) (hsimpleM : PrintedBlockElementarySimple) :
     PrintedSimpleKazhdanGeneral := by
-  intro Λ _ _ Z _ _ _ _ _ _ α hmin hfree S hS1 hS N φ hφ n hn
-  have hT : HasKazhdanPropertyT.{0, 0} ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2))) :=
-    Pestov91.elementary_hasKazhdanPropertyT
-      (Exists.intro S hS : IsFinitelyGeneratedRing (ActionCrossedProduct α (ZMod 2))) hn
-  have hG : IsSimpleGroup ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2))) :=
-    hsimple Λ Z α hmin hfree n hn
-  have hInf : Infinite ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2))) := hinf Λ Z α n hn
-  have hlim := hmarked (ActionCrossedProduct α (ZMod 2)) S hS1 hS N φ hφ n hn hG
+  intro Λ _ _ Z _ _ _ _ _ _ _ _ hmin hfree S hS1 hS N φ hφ n hn
+  haveI : Infinite Z := infinite_of_perfectSpace Z
+  obtain ⟨hT, hInf⟩ := printedGroupCrossedProductPropertyTInfinite Λ Z S hS n hn
+  have hG : IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))) :=
+    hsimple Λ Z hmin hfree n hn
+  have hlim := hmarked (ClopenGroupCrossedProduct Λ Z (ZMod 2)) S hS1 hS N φ hφ n hn hG
   have hcard : Tendsto
       (fun k => Nat.card ↥(elementaryGroup (Fin n) (Matrix (Fin (N k)) (Fin (N k)) (ZMod 2))))
       atTop atTop :=
@@ -290,12 +236,15 @@ theorem printedSimpleKazhdanGeneral_of_pieces (hinf : PrintedGeneralElementaryIn
   exact ⟨hInf, KazhdanFiniteGeneration.fg_of_hasKazhdanPropertyT _ hT, hG, hT, hlim,
     fun k => hsimpleM n hn (N k) (hpos k),
     fun k => printedBlockElementarySpecialLinear n hn (N k) (hpos k),
-    hexp (ActionCrossedProduct α (ZMod 2)) S hS1 hS N φ hφ n hn hcard⟩
+    printedMatricialExpandersStatement (ClopenGroupCrossedProduct Λ Z (ZMod 2)) S hS1 hS N φ hφ n hn
+      hcard⟩
 
 end SimpleKazhdanSofic
 end GroupApproximation
 
 /-! ### Axiom audit -/
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.infinite_of_perfectSpace
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.tendsto_card_of_isMarkedLimit
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedMatricialExpandersStatement
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanGeneral_of_pieces

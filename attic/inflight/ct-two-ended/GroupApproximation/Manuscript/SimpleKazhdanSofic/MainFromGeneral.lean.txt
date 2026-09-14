@@ -18,16 +18,16 @@ import Mathlib.Topology.Perfect
 > $S=\{1,u,u^{-1}\}\cup\{e_a:a\in A\}$ [...] So $\varphi_\ell(S)$ generates $M_{N_\ell}(\F_2)$, and
 > Theorem 2 applies.
 
-* `shiftAction S`, `ringEquiv S : R S ≃+* ActionCrossedProduct (shiftAction S) F₂`: `R` is the crossed product
-  of the action of `ℤ` by powers of `T`;
-* `isMinimalAction_shiftAction`, `isTopologicallyFree_shiftAction` (no periodic points, ct-involution's
-  `zpow_apply_ne_self`), `perfectSpace_carrier`: an infinite minimal subshift is a Cantor set with a minimal
-  topologically free action.  Perfectness is implicit in the note: an isolated point with dense orbits would
-  make the compact space discrete, hence finite;
-* `printedGenerators S = {1} ∪ ringGenerators S` and the piece `PrintedPeriodicMatricialStatement` (tex
-  l.244–271; lane ms-core-3);
-* `printedSimpleKazhdanSoficMain_of_general`: `PrintedSimpleKazhdanSoficMain` from `PrintedSimpleKazhdanGeneral`
-  and the periodic approximation.
+* `shiftMulAction S`, `shiftContinuousConstSMul S`: `ℤ` acts on `X` by powers of `T`;
+* `ringEquiv S : R S ≃+* ClopenGroupCrossedProduct (Multiplicative ℤ) X F₂`;
+* `isMinimal_shift`, `isTopologicallyFree_shift` (no periodic points, ct-involution's `zpow_apply_ne_self`),
+  `perfectSpace_carrier`: an infinite minimal subshift is a Cantor set with a minimal topologically free
+  action.  Perfectness is implicit in the note: an isolated point with dense orbits would make the compact
+  space discrete, hence finite;
+* `printedGenerators S = {1} ∪ ringGenerators S` and the piece `PrintedPeriodicMatricialStatement`
+  (tex l.244–271; lane ms-core-3);
+* `printedSimpleKazhdanSoficMain_of_general`, `printedBlockElementarySimple`, and the residual forms
+  `printedSimpleKazhdanGeneral_of_open_pieces` and `printedSimpleKazhdanSoficMain_of_open_pieces`.
 -/
 
 namespace GroupApproximation
@@ -40,18 +40,29 @@ section Ring
 
 variable {A : Type} [TopologicalSpace A]
 
-/-- The action of `ℤ` on `X` by powers of `T` (tex l.239). -/
-noncomputable def shiftAction (S : Subshift A ℤ) : Multiplicative ℤ →* (S.carrier ≃ₜ S.carrier) :=
-  zpowersHom _ (subshiftHomeo S)
+/-- `ℤ` acts on `X` by powers of `T` (tex l.239): `ξ • x = T^ξ x`. -/
+noncomputable instance shiftMulAction (S : Subshift A ℤ) : MulAction (Multiplicative ℤ) S.carrier where
+  smul ξ x := (subshiftHomeo S ^ toAdd ξ) x
+  one_smul x := by
+    show (subshiftHomeo S ^ toAdd (1 : Multiplicative ℤ)) x = x
+    rw [toAdd_one, zpow_zero, Homeomorph.one_apply]
+  mul_smul ξ η x := by
+    show (subshiftHomeo S ^ toAdd (ξ * η)) x = (subshiftHomeo S ^ toAdd ξ) ((subshiftHomeo S ^ toAdd η) x)
+    rw [toAdd_mul, zpow_add, Homeomorph.mul_apply]
 
-theorem shiftAction_apply (S : Subshift A ℤ) (ξ : Multiplicative ℤ) :
-    shiftAction S ξ = subshiftHomeo S ^ toAdd ξ :=
+theorem shift_smul_apply (S : Subshift A ℤ) (ξ : Multiplicative ℤ) (x : S.carrier) :
+    ξ • x = (subshiftHomeo S ^ toAdd ξ) x :=
   rfl
 
-/-- The identity on `LC(X, F₂)`, from the coefficients of `R` to those of the action crossed product. -/
+instance shiftContinuousConstSMul (S : Subshift A ℤ) :
+    ContinuousConstSMul (Multiplicative ℤ) S.carrier :=
+  ⟨fun ξ => (subshiftHomeo S ^ toAdd ξ).continuous⟩
+
+/-- The identity on `LC(X, F₂)`, from the coefficients of `R` to those of the group crossed product. -/
 def coeffEquiv (S : Subshift A ℤ) :
-    ClopenCoeff (subshiftHomeo S) (ZMod 2) ≃+* ActionCoeff (shiftAction S) (ZMod 2) :=
-  (ClopenCoeff.of (subshiftHomeo S) (ZMod 2)).symm.trans (ActionCoeff.of (shiftAction S) (ZMod 2))
+    ClopenCoeff (subshiftHomeo S) (ZMod 2) ≃+* ClopenGroupCoeff (Multiplicative ℤ) S.carrier (ZMod 2) :=
+  (ClopenCoeff.of (subshiftHomeo S) (ZMod 2)).symm.trans
+    (ClopenGroupCoeff.of (Multiplicative ℤ) S.carrier (ZMod 2))
 
 theorem coeffEquiv_smul (S : Subshift A ℤ) (g : Multiplicative ℤ)
     (a : ClopenCoeff (subshiftHomeo S) (ZMod 2)) :
@@ -59,7 +70,8 @@ theorem coeffEquiv_smul (S : Subshift A ℤ) (g : Multiplicative ℤ)
   LocallyConstant.ext fun _ => rfl
 
 /-- **`R = LC(X, F₂) ⋊_T ℤ` is the crossed product of the action by powers of `T`** (tex l.239–240). -/
-noncomputable def ringEquiv (S : Subshift A ℤ) : R S ≃+* ActionCrossedProduct (shiftAction S) (ZMod 2) :=
+noncomputable def ringEquiv (S : Subshift A ℤ) :
+    R S ≃+* ClopenGroupCrossedProduct (Multiplicative ℤ) S.carrier (ZMod 2) :=
   RingEquiv.ofBijective (Pestov91.CrossedProduct.coeffMap (coeffEquiv S).toRingHom (coeffEquiv_smul S))
     ⟨Pestov91.CrossedProduct.coeffMap_injective _ _ (coeffEquiv S).injective,
       Pestov91.CrossedProduct.coeffMap_surjective _ _ (coeffEquiv S).surjective⟩
@@ -111,15 +123,15 @@ section Dynamics
 
 variable {A : Type} [TopologicalSpace A] [DiscreteTopology A] [Finite A]
 
-theorem isMinimalAction_shiftAction (S : Subshift A ℤ) (hmin : IsMinimal S) :
-    IsMinimalAction (shiftAction S) := fun z =>
-  (minimalSubshift_dense_orbits S hmin z).mono (by
+theorem isMinimal_shift (S : Subshift A ℤ) (hmin : IsMinimal S) :
+    MulAction.IsMinimal (Multiplicative ℤ) S.carrier :=
+  ⟨fun z => (minimalSubshift_dense_orbits S hmin z).mono (by
     rintro _ ⟨j, rfl⟩
-    exact ⟨ofAdd j, rfl⟩)
+    exact ⟨ofAdd j, rfl⟩)⟩
 
 /-- **No periodic points, so the action is topologically free** (tex l.240–242). -/
-theorem isTopologicallyFree_shiftAction (S : Subshift A ℤ) (hinf : Infinite S.carrier)
-    (hmin : IsMinimal S) : IsTopologicallyFree (shiftAction S) := by
+theorem isTopologicallyFree_shift (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
+    IsTopologicallyFree (Multiplicative ℤ) S.carrier := by
   intro ξ hξ U _ hU
   obtain ⟨z, hz⟩ := hU
   have hj : toAdd ξ ≠ 0 := fun h => hξ (by rw [← ofAdd_toAdd ξ, h, ofAdd_zero])
@@ -162,14 +174,23 @@ theorem fg_multiplicative_int : Group.FG (Multiplicative ℤ) := by
 
 /-- The printed generators `S = {1, u, u⁻¹} ∪ {e_a : a ∈ A}` (tex l.243–244). -/
 noncomputable def printedGenerators {A : Type} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A]
-    [Finite A] (S : Subshift A ℤ) : Finset (R S) :=
-  insert 1 (ringGenerators_finite S).toFinset
+    [Finite A] (S : Subshift A ℤ) : Finset (R S) := by
+  classical
+  exact insert 1 (ringGenerators_finite S).toFinset
+
+theorem one_mem_printedGenerators {A : Type} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A]
+    [Finite A] (S : Subshift A ℤ) : (1 : R S) ∈ printedGenerators S := by
+  classical
+  unfold printedGenerators
+  exact Finset.mem_insert_self _ _
 
 theorem closure_printedGenerators {A : Type} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A]
-    [Finite A] (S : Subshift A ℤ) : Subring.closure (printedGenerators S : Set (R S)) = ⊤ :=
-  eq_top_iff.2 ((subring_closure_eq_top S).symm.le.trans (Subring.closure_mono fun x hx => by
-    rw [printedGenerators, Finset.coe_insert, Set.Finite.coe_toFinset]
-    exact Set.mem_insert_of_mem _ hx))
+    [Finite A] (S : Subshift A ℤ) : Subring.closure (printedGenerators S : Set (R S)) = ⊤ := by
+  classical
+  refine eq_top_iff.2 ((subring_closure_eq_top S).symm.le.trans (Subring.closure_mono fun x hx => ?_))
+  unfold printedGenerators
+  rw [Finset.coe_insert, Set.Finite.coe_toFinset]
+  exact Set.mem_insert_of_mem _ hx
 
 /-- **Periodic approximations make `R` matricial** (tex l.244–271; lane ms-core-3). -/
 def PrintedPeriodicMatricialStatement : Prop :=
@@ -192,9 +213,8 @@ theorem printedSimpleKazhdanSoficMain_of_general (hgen : PrintedSimpleKazhdanGen
   obtain ⟨N, φ, hφ⟩ := hper A S hinf hmin
   have hpos : ∀ k, 0 < N k := And.left hφ
   obtain ⟨-, -, hsimple', -, hlim', hsimpleM, -, hexp'⟩ :=
-    hgen (Multiplicative ℤ) S.carrier (shiftAction S) (isMinimalAction_shiftAction S hmin)
-      (isTopologicallyFree_shiftAction S hinf hmin) _
-      (one_mem_map_ringEquiv (ringEquiv S) (Finset.mem_insert_self _ _))
+    hgen (Multiplicative ℤ) S.carrier (isMinimal_shift S hmin) (isTopologicallyFree_shift S hinf hmin) _
+      (one_mem_map_ringEquiv (ringEquiv S) (one_mem_printedGenerators S))
       (closure_map_ringEquiv (ringEquiv S) (closure_printedGenerators S)) N _
       (isMatricialVia_ringEquiv (ringEquiv S) hφ) n hn
   set eG := (elementaryGroupEquivOfRingEquiv n (ringEquiv S)).symm with heG
@@ -204,7 +224,7 @@ theorem printedSimpleKazhdanSoficMain_of_general (hgen : PrintedSimpleKazhdanGen
     Pestov91.elementary_hasKazhdanPropertyT (printedSubshiftRingFGStatement A S) hn
   have hsimple : IsSimpleGroup ↥(elementaryGroup (Fin n) (R S)) := by
     haveI := hsimple'
-    haveI : Nontrivial ↥(elementaryGroup (Fin n) (R S)) := by haveI := hInf; infer_instance
+    haveI : Nontrivial ↥(elementaryGroup (Fin n) (R S)) := eG.injective.nontrivial
     exact IsSimpleGroup.isSimpleGroup_of_surjective eG.toMonoidHom eG.surjective
   have hlimSL := (hlim'.map_source eG).map_target eSL
   have hexpSL := hexp'.map_target eSL
@@ -219,6 +239,25 @@ theorem printedSimpleKazhdanSoficMain_of_general (hgen : PrintedSimpleKazhdanGen
   exact ⟨hInf, KazhdanFiniteGeneration.fg_of_hasKazhdanPropertyT _ hT, hsimple, hT, hML, hLEF,
     isSofic_of_isLEF hLEF, Pestov91.isHyperlinear_of_isLEF hLEF⟩
 
+/-! ## Discharged pieces and the open residual -/
+
+/-- The piece `PrintedBlockElementarySimple`, closed. -/
+theorem printedBlockElementarySimple : PrintedBlockElementarySimple :=
+  fun n hn N hN => isSimpleGroup_elementaryBlock n hn N hN
+
+/-- **`thm:general` from its two open pieces**: simplicity (skf-consequences) and the marked limit
+(ms-core-3). -/
+theorem printedSimpleKazhdanGeneral_of_open_pieces (hsimple : PrintedGeneralSimplicityStatement)
+    (hmarked : PrintedMatricialMarkedLimitStatement) : PrintedSimpleKazhdanGeneral :=
+  printedSimpleKazhdanGeneral_of_pieces hsimple hmarked printedBlockElementarySimple
+
+/-- **`thm:main` from the open pieces of `thm:general` and the periodic approximation.** -/
+theorem printedSimpleKazhdanSoficMain_of_open_pieces (hsimple : PrintedGeneralSimplicityStatement)
+    (hmarked : PrintedMatricialMarkedLimitStatement) (hper : PrintedPeriodicMatricialStatement) :
+    PrintedSimpleKazhdanSoficMain :=
+  printedSimpleKazhdanSoficMain_of_general (printedSimpleKazhdanGeneral_of_open_pieces hsimple hmarked)
+    hper
+
 end SimpleKazhdanSofic
 end GroupApproximation
 
@@ -227,3 +266,5 @@ end GroupApproximation
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ringEquiv
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.perfectSpace_carrier
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_general
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedBlockElementarySimple
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanSoficMain_of_open_pieces
