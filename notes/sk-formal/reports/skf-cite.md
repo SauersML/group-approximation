@@ -9,8 +9,10 @@ Lane skf-cite, 2026-09-13 ~19:55 CDT, under the 19:45 protocol of ct/ROSTER-sk.m
 - The earlier ledger (8e3549247) was at bf961c128 and is superseded; the note was rewritten three times since
   (5b1890ce6, 2050a8eed, e80dcf20a).
 - Line numbers below are at e80dcf20a. They are for reading only: rows key by hash.
-- `metadata/SK_SENTENCE_CENSUS.tsv` on origin is still at bf961c128 (77af1c5ea). skf-census has been asked to regenerate it
-  at the tip, and rows wait for it, except sentences verified verbatim at the tip.
+- skf-census regenerated `metadata/SK_SENTENCE_CENSUS.tsv` at e80dcf20a (09e580c38). All 16 rows in
+  `metadata/sk-census-rows/skf-cite.tsv` are keyed by 12-hex hash against it: eight credit-only citation sentences, the
+  Stepanov remark, the five Questions sentences and the three authorship sentences. The 12 rows at bf961c128 are
+  superseded (`metadata/SK_SENTENCE_SUPERSEDED.tsv`).
 
 ## Citations used as proof steps
 
