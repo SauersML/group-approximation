@@ -144,12 +144,13 @@ theorem lampSum_apply [DecidableEq Δ] (t : ι → Δ) (w : List (Option ι × B
   induction lampPrefixes w with
   | nil => simp
   | cons p l ih =>
-    rw [List.map_cons, List.sum_cons, Finsupp.add_apply, ih, List.filter_cons]
+    rw [List.map_cons, List.sum_cons, Finsupp.add_apply, ih]
     by_cases hp : wordValue t p = a
-    · simp only [hp, decide_true, List.length_cons, Nat.cast_add, Nat.cast_one,
+    · rw [List.filter_cons_of_pos (by simpa using hp), List.length_cons, Nat.cast_succ, hp,
         Finsupp.single_eq_same]
       ring
-    · simp only [hp, decide_false, Finsupp.single_eq_of_ne (Ne.symm hp), zero_add]
+    · rw [List.filter_cons_of_neg (by simpa using hp), Finsupp.single_eq_of_ne (Ne.symm hp),
+        zero_add]
 
 /-- **The lamps vanish** exactly when every lamp position occurs an even number of times. -/
 theorem lampSum_eq_zero_iff [DecidableEq Δ] (t : ι → Δ) (w : List (Option ι × Bool)) :
