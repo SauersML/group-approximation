@@ -1,0 +1,96 @@
+import Mathlib.Analysis.Complex.Basic
+import Mathlib.Data.Complex.BigOperators
+import Mathlib.LinearAlgebra.Matrix.Trace
+
+/-!
+# Realified Frobenius and trace identities
+
+Kirchberg's Theorem 1.1 is proved here with real Hilbert spaces, because the
+repository's property `(T)` is stated for orthogonal representations.  The
+complex matrix models `X` of an amenable trace enter through the real forms
+`Re ⟪β a, X β b⟫`, where `β` is the real basis `e_j, i e_j` of `ℂ^Y`.
+
+* `sum_sq_re_pairing`: `∑ₐ ∑_b (Re ⟪β a, X β b⟫)² = 2 ∑ₓ ∑ᵧ |X x y|²`;
+* `sum_re_pairing_diag`: `∑ₐ Re ⟪β a, X β a⟫ = 2 Re tr X`;
+* `re_pairing_one`: the basis is orthonormal for the real form;
+* `re_trace_conjTranspose_mul`: `Re tr (Xᴴ X) = ∑ₓ ∑ᵧ |X x y|²`.
+-/
+
+namespace GroupApproximation
+namespace KirchbergRealForms
+
+open Matrix ComplexConjugate
+
+variable {Y : Type*} [Fintype Y] [DecidableEq Y]
+
+/-- The sesquilinear pairing `∑ₓ ∑ᵧ conj (v x) X x y (w y)`. -/
+def pairing (A : Matrix Y Y ℂ) (v w : Y → ℂ) : ℂ :=
+  ∑ x : Y, ∑ y : Y, conj (v x) * A x y * w y
+
+/-- The real basis `e_j, i e_j` of `Y → ℂ`. -/
+def realBasis : Y ⊕ Y → (Y → ℂ)
+  | Sum.inl j => Pi.single j 1
+  | Sum.inr j => Pi.single j Complex.I
+
+theorem pairing_single (A : Matrix Y Y ℂ) (i j : Y) (c d : ℂ) :
+    pairing A (Pi.single i c) (Pi.single j d) = conj c * A i j * d := by
+  rw [pairing, Finset.sum_eq_single i, Finset.sum_eq_single j]
+  · simp
+  · intro y _ hy
+    simp [Pi.single_eq_of_ne hy]
+  · simp
+  · intro x _ hx
+    refine Finset.sum_eq_zero fun y _ ↦ ?_
+    simp [Pi.single_eq_of_ne hx]
+  · simp
+
+theorem re_sq_four (z : ℂ) :
+    z.re ^ 2 + (z * Complex.I).re ^ 2 + (conj Complex.I * z).re ^ 2
+      + (conj Complex.I * z * Complex.I).re ^ 2 = 2 * ‖z‖ ^ 2 := by
+  rw [Complex.sq_norm, Complex.normSq_apply, Complex.conj_I]
+  simp only [Complex.mul_re, Complex.mul_im, Complex.neg_re, Complex.neg_im, Complex.I_re,
+    Complex.I_im]
+  ring
+
+theorem sum_sq_re_pairing (A : Matrix Y Y ℂ) :
+    ∑ a : Y ⊕ Y, ∑ b : Y ⊕ Y, ((pairing A (realBasis a) (realBasis b)).re) ^ 2
+      = 2 * ∑ x : Y, ∑ y : Y, ‖A x y‖ ^ 2 := by
+  calc ∑ a : Y ⊕ Y, ∑ b : Y ⊕ Y, ((pairing A (realBasis a) (realBasis b)).re) ^ 2
+      = ∑ i : Y, ∑ j : Y, ((A i j).re ^ 2 + (A i j * Complex.I).re ^ 2
+          + (conj Complex.I * A i j).re ^ 2
+          + (conj Complex.I * A i j * Complex.I).re ^ 2) := by
+        simp only [Fintype.sum_sum_type, realBasis, pairing_single, map_one, one_mul, mul_one,
+          Finset.sum_add_distrib]
+        ring
+    _ = ∑ i : Y, ∑ j : Y, 2 * ‖A i j‖ ^ 2 := by
+        simp only [re_sq_four]
+    _ = 2 * ∑ x : Y, ∑ y : Y, ‖A x y‖ ^ 2 := by
+        simp only [Finset.mul_sum]
+
+theorem conj_I_mul_mul_I (z : ℂ) : conj Complex.I * z * Complex.I = z := by
+  rw [Complex.conj_I]
+  calc -Complex.I * z * Complex.I = -(Complex.I * Complex.I) * z := by ring
+    _ = z := by rw [Complex.I_mul_I]; ring
+
+theorem sum_re_pairing_diag (A : Matrix Y Y ℂ) :
+    ∑ a : Y ⊕ Y, (pairing A (realBasis a) (realBasis a)).re = 2 * (Matrix.trace A).re := by
+  simp only [Fintype.sum_sum_type, realBasis, pairing_single, map_one, one_mul, mul_one,
+    conj_I_mul_mul_I, Matrix.trace, Matrix.diag, Complex.re_sum]
+  ring
+
+theorem re_pairing_one (a b : Y ⊕ Y) :
+    (pairing (1 : Matrix Y Y ℂ) (realBasis a) (realBasis b)).re = if a = b then 1 else 0 := by
+  rcases a with i | i <;> rcases b with j | j <;> by_cases h : i = j <;>
+    simp [realBasis, pairing_single, h, Complex.conj_I]
+
+omit [DecidableEq Y] in
+theorem re_trace_conjTranspose_mul (A : Matrix Y Y ℂ) :
+    (Matrix.trace (Aᴴ * A)).re = ∑ x : Y, ∑ y : Y, ‖A x y‖ ^ 2 := by
+  simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, Matrix.conjTranspose_apply,
+    Complex.re_sum]
+  rw [Finset.sum_comm]
+  refine Finset.sum_congr rfl fun x _ ↦ Finset.sum_congr rfl fun y _ ↦ ?_
+  rw [Complex.star_def, ← Complex.normSq_eq_conj_mul_self, Complex.ofReal_re, Complex.sq_norm]
+
+end KirchbergRealForms
+end GroupApproximation

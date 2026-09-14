@@ -1,0 +1,95 @@
+import Mathlib.Analysis.InnerProductSpace.Completion
+import Mathlib.Topology.Algebra.LinearMapCompletion
+
+/-!
+# Orthogonal representations on completions
+
+A linear isometry equivalence of a real pre-inner-product space extends to one
+of its Hilbert completion, and a group homomorphism into the linear isometry
+equivalences extends to a homomorphism on the completion.
+
+Kirchberg's Theorem 1.1 uses this twice: for the dilation of a positive
+definite matrix function, and for the diagonal representation on the completed
+tensor square.
+-/
+
+namespace GroupApproximation
+namespace KirchbergCompletion
+
+open UniformSpace
+
+universe u v
+
+variable {E : Type v} [SeminormedAddCommGroup E] [InnerProductSpace ℝ E]
+
+/-- The continuous extension of a linear isometry equivalence to the
+completion. -/
+noncomputable def completionMap (e : E ≃ₗᵢ[ℝ] E) : Completion E →L[ℝ] Completion E :=
+  ContinuousLinearMap.completion (e.toContinuousLinearEquiv : E →L[ℝ] E)
+
+@[simp] theorem completionMap_coe (e : E ≃ₗᵢ[ℝ] E) (a : E) :
+    completionMap e (a : Completion E) = ((e a : E) : Completion E) :=
+  ContinuousLinearMap.completion_apply_coe _ a
+
+theorem norm_completionMap (e : E ≃ₗᵢ[ℝ] E) (x : Completion E) :
+    ‖completionMap e x‖ = ‖x‖ := by
+  induction x using Completion.induction_on with
+  | hp => exact isClosed_eq (continuous_norm.comp (completionMap e).continuous) continuous_norm
+  | ih a => rw [completionMap_coe, Completion.norm_coe, Completion.norm_coe,
+      LinearIsometryEquiv.norm_map]
+
+theorem completionMap_symm_apply (e : E ≃ₗᵢ[ℝ] E) (x : Completion E) :
+    completionMap e (completionMap e.symm x) = x := by
+  induction x using Completion.induction_on with
+  | hp =>
+    exact isClosed_eq
+      ((completionMap e).continuous.comp (completionMap e.symm).continuous) continuous_id
+  | ih a => rw [completionMap_coe, completionMap_coe, LinearIsometryEquiv.apply_symm_apply]
+
+theorem completionMap_apply_symm (e : E ≃ₗᵢ[ℝ] E) (x : Completion E) :
+    completionMap e.symm (completionMap e x) = x := by
+  induction x using Completion.induction_on with
+  | hp =>
+    exact isClosed_eq
+      ((completionMap e.symm).continuous.comp (completionMap e).continuous) continuous_id
+  | ih a => rw [completionMap_coe, completionMap_coe, LinearIsometryEquiv.symm_apply_apply]
+
+/-- The extension of a linear isometry equivalence to the completion. -/
+noncomputable def completionEquiv (e : E ≃ₗᵢ[ℝ] E) : Completion E ≃ₗᵢ[ℝ] Completion E where
+  toLinearEquiv := LinearEquiv.ofLinear (completionMap e : Completion E →ₗ[ℝ] Completion E)
+    (completionMap e.symm : Completion E →ₗ[ℝ] Completion E)
+    (LinearMap.ext fun x ↦ completionMap_symm_apply e x)
+    (LinearMap.ext fun x ↦ completionMap_apply_symm e x)
+  norm_map' := norm_completionMap e
+
+@[simp] theorem completionEquiv_coe (e : E ≃ₗᵢ[ℝ] E) (a : E) :
+    completionEquiv e (a : Completion E) = ((e a : E) : Completion E) :=
+  completionMap_coe e a
+
+variable {G : Type u} [Group G]
+
+/-- **An orthogonal representation extends to the completion.** -/
+noncomputable def completionRep (ρ : G →* (E ≃ₗᵢ[ℝ] E)) :
+    G →* (Completion E ≃ₗᵢ[ℝ] Completion E) where
+  toFun g := completionEquiv (ρ g)
+  map_one' := by
+    refine LinearIsometryEquiv.ext fun x ↦ ?_
+    induction x using Completion.induction_on with
+    | hp =>
+      exact isClosed_eq (completionEquiv (ρ 1)).continuous
+        (1 : Completion E ≃ₗᵢ[ℝ] Completion E).continuous
+    | ih a => simp
+  map_mul' g h := by
+    refine LinearIsometryEquiv.ext fun x ↦ ?_
+    induction x using Completion.induction_on with
+    | hp =>
+      exact isClosed_eq (completionEquiv (ρ (g * h))).continuous
+        (completionEquiv (ρ g) * completionEquiv (ρ h)).continuous
+    | ih a => simp [map_mul]
+
+@[simp] theorem completionRep_coe (ρ : G →* (E ≃ₗᵢ[ℝ] E)) (g : G) (a : E) :
+    completionRep ρ g (a : Completion E) = ((ρ g a : E) : Completion E) :=
+  completionEquiv_coe (ρ g) a
+
+end KirchbergCompletion
+end GroupApproximation
