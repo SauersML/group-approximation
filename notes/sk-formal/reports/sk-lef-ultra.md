@@ -133,3 +133,16 @@ CLAIM Δ has solvable word problem (tex l.439–444) GroupApproximation/Manuscri
 CLAIM `lefSolvableWordProblemEmbeddingStatement` and the printed endpoints GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFSecondDelta.lean
 
 The `HalfLineModels` and `HalfLineWordProblem` claims are renamed as above.
+
+## Progress 10:2x (second choice of Δ, note tip 8b36733d7, census 9cb80166d)
+
+- Outage reconcile (09:36): nothing landed twice. The two unlanded fix sets are now on origin.
+- GREEN with BUILT lines: `LevelShiftDelta` (0914-091613-65757, origin 0c4827f2d), `ShiftTransversalBijection` and
+  `LevelShiftDeltaWords` (0914-100452-31052, origin 20140a5a0). All three are wire-queued.
+- Rows landed for l.412–433 where the carriers are green: f4530e72badf, 6ca89f8e4ff1, c9ff6825e69d, 9f44cd00cd04 and
+  6d24375846b3, plus 4f76927e5215 (structural) and 759568036721 (attribution).
+- Probing: `LevelShiftDeltaModels` (ψ, the window conjugation, the models, Δ LEF), `LevelShiftDeltaWordProblem` (Δ has
+  solvable word problem) and `LEFSecondDelta` (`lefSolvableWordProblemEmbeddingStatement`). The rows 6b767019eab2,
+  f0f7ef8941cf, 902f025b4bf7, bb65ababe757 and the SWP rows follow once they are green.
+- The route at 8b36733d7 is unchanged from 696c4b602 apart from "from the left" and the new Neumann–Neumann/Darbinyan
+  attribution sentence.
