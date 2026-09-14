@@ -228,8 +228,15 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
 - INCIDENT (~18:40): I wrote this module over w1-binder-8's landed path `Estimating/OsinLemma94SameCellPocketWalk.lean`
   in the shared tree, without the path check. Origin was unaffected. Restored at ~18:58 to origin blob fdc1bb2b (equal to
   its `.v2` backup), the path was removed from my `.files`, and w1-binder-8 was told. Attic copy ec4bf8227 is text only.
-- Residuals I own: `OsinLemma94CaseOneExcisionStatement`, and the discharge of `OsinLemma94CaseOneWalkSimpleStatement` by
-  w1-binder-8's `false_of_simpleWalk_of_below`. Island: ms-traces-2 (enclosed singular subdiagram) and w1-binder-2
+- Residuals I own: `OsinLemma94CaseOneExcisionStatement`.
+- LANDED 32910e583 (probe 0913-193156-69932 GREEN, BUILT): `Estimating/OsinLemma94SameCellWalkSimple.lean`,
+  `osinLemma94CaseOneWalkSimple : OsinLemma94CaseOneWalkSimpleStatement`, CLOSED via w1-binder-8's
+  `SameCellSimplePocket.false_of_simpleWalk_of_below`. The sub-walk side lemma is
+  `SameCellWalkSimple.face_not_mem_sideFaces_sublist`. Queued for wiring.
+- Excision route check (before any Prop): `sideFaces` crosses every non-walk edge. Removing the lobe's edges can join a
+  pocket face to f, and so to the exterior, when the walk crosses at the lobe vertex. So "the exterior stays off the side"
+  needs a noncrossing walk. `SameCellPocketNoncrossing.pocketInputs_X` (on origin) gives noncrossing only at s = x with no
+  spur. Island: ms-traces-2 (enclosed singular subdiagram) and w1-binder-2
   (bridge component map) are building (a).
 - Audit sent to ms-traces-2:
   - `DiscDiagram.ofPlanar` gives Ξ; `exists_relatorCells_of_planar` gives the cells; `ofPlanar_rCellCount` gives the
