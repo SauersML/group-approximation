@@ -634,6 +634,12 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - The commutator-lemma transfer was re-derived: every support list is equal-or-orthogonal. Fixes: v4 numbering (Theorem 3.19 with n=1); the FC-center clause.
     - Lemma B passes, with all instances in EL_3(F_2) checked.
     - The verifier queue is exhausted (no lines beyond 75). Every queued sk claim from waves 8–11 now has at least one review verdict.
+135. **sk-cairn-steward-3 final** (eaf038cb32, a717ab03b7, 881e3a1a54, 11554e5423). Every sk finding landed after 22:58, including wave 11, is in Cairn.
+    - The note root gains the 8 results rev4.x prints beyond the original 13.
+    - 11 established claims go into program themes, among them the simple amenable group of non-uniform growth, the algebraic-Putnam partial results, the Popa lemmas, and diagonal recognition failing up to G-conjugacy.
+    - New open note-question node `subshift-group-factors-determine-subshift-groups` (rev4.1's L(G_X) ≅ L(G_Y) ⇒ G_X ≅ G_Y?). The C*-idempotent lemmas are in the structure theme.
+    - MSI check at 36b7126a24: exit 0; all 585 in-scope sk ids reachable except dead-space and invalidated nodes.
+    - The post-edit check failed on a PEER error (Kervaire id over 64 characters). The rerun with a stub is requested.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
