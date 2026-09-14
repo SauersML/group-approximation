@@ -1,76 +1,58 @@
-# Lane ms-intro-3: `simple_kazhdan_sofic_group.tex` 1–66 at bf961c128 (abstract, introduction, thm:main)
+# Lane ms-intro-3: `simple_kazhdan_sofic_group.tex`, abstract, introduction and thm:main statement
 
-Lead: session nonsofic-existence-49 (ROSTER-sk, re-scoped 18:58). Target text: origin/main bf961c128, 340 lines,
-md5 7b3dc4ec92b4581553bc0dc2b0edcb99. Rows are keyed `LINE:<l>@bf961c128`. Nothing here is keyed to b965d63ba.
+Lead: session nonsofic-existence-49 (ROSTER-sk, protocol 19:45). Target: the current origin/main tip of the note, e80dcf20a,
+386 lines, md5 4ad4921253626a4f858866c716a13385. Ranges are by section. Rows are keyed by the 12-hex sentence hash from
+`metadata/SK_SENTENCE_CENSUS.tsv`, and land only once skf-census has regenerated the census at this md5. At the time of writing
+the census on origin (77af1c5ea) is still at bf961c128.
 
-## Ledger v1
+## Ledger v2 (tip e80dcf20a)
 
 | l. | sentence (abridged) | grade | carrier / owner | verdict |
 |---|---|---|---|---|
-| 22 | title: An infinite simple Kazhdan sofic group | structural | — | title |
+| 22 | title: Infinite simple Kazhdan groups that are limits of finite simple groups | structural | — | title |
 | 25 | subjclass | structural | — | metadata |
-| 28–30 | For every infinite minimal subshift X, EL_3(LC(X,F_2)⋊Z) is infinite, simple, f.g., and has (T). | to be formalized | `PrintedSimpleKazhdanSoficMain` (this lane, CLAIM below) | GAP: see "Carriers on origin" |
-| 30–31 | It is LEF, hence sofic and hyperlinear. | to be formalized | same | GAP |
-| 31–32 | This answers the questions of Brown, Ozawa, and Pestov. | to be formalized | this lane: an existence statement through G_X; Palomar `exists_infinite_simple_propertyT_{hyperlinear,sofic}` answers them through the Toeplitz witness only | GAP for "these groups" |
-| 32–33 | The proof combines periodic approximation with a commutator supported on a finite tower. | structural | roadmap of 118–153 (ms-units) and 174–228 (ct-bilateral-mf) | roadmap |
-| 33–34 | Every Turing degree occurs as the word-problem degree of one of these groups. | partial until carried | skf-degrees' corollary (tex 231) | owner skf-degrees |
-| 38 | Can an infinite simple Kazhdan group be hyperlinear? | structural | — | question |
-| 38–40 | Brown asked this in its von Neumann algebra form in 2001, and Ozawa in the hyperlinear form in 2003. | attribution | Palomar/Pestov91Challenge.lean quotes both verbatim | attribution |
-| 41 | Pestov's Open question 9.1 adds the sofic version. | attribution | same | attribution |
-| 42 | The following construction answers both forms positively. | to be formalized | same carrier as 31–32 | GAP |
-| 45–52 | thm:main: X ⊆ A^Z infinite minimal subshift over a finite alphabet, shift T; G_X = EL_3(LC(X,F_2)⋊_T Z) is infinite, f.g., simple, Kazhdan, LEF; in particular sofic and hyperlinear. | to be formalized | `PrintedSimpleKazhdanSoficMain` | GAP |
-| 55 | The subshift algebra is classical; see Nekrashevych. | attribution | — | attribution |
-| 56 | Property (T) is supplied by Ershov–Jaikin-Zapirain. | attribution | the cited theorem is proved: `Pestov91.elementary_hasKazhdanPropertyT` via `IntegralColumnPlaneClosure.finitelyGeneratedRingGeneralRankElementaryPropertyT` | attribution, input proved |
-| 57–58 | Our finite models use the periodic-approximation mechanism of Grigorchuk–Medynets. | attribution | route carrier with ms-units (118–153) | attribution |
-| 58–61 | The new step is the simplicity argument: a nontrivial normal subgroup meets a finite simple matrix group supported on a clopen tower, and therefore contains an elementary matrix. | partial until carried | tower clause: ct-bilateral-mf (174–228); conclusion "contains an elementary matrix": this lane, from the tower carrier | owner ct-bilateral-mf for the tower |
-| 61–62 | This is an explicit elementary-matrix extraction argument, in the normal-structure tradition described by Stepanov. | attribution | — | attribution |
-| 63–65 | Thom had already constructed a f.g. Kazhdan LEF group that is not residually finite; his example is not simple. | attribution | — | prior work |
+| 28–30 | For every infinite minimal subshift X, G_X = EL_3(LC(X,F_2)⋊Z) is infinite, f.g., simple, with (T). | formalized once the endpoint lands | `PrintedSimpleKazhdanSoficMain`, ct-two-ended's `MainAssembly` | owner ct-two-ended |
+| 30–32 | It is a limit of finite simple SL_{3N}(F_2) in the space of marked groups, and their Cayley graphs form a family of expanders. | same | `PrintedMarkedLimitExpanders` (ct-two-ended statement; producers ms-units / ms-core-3) | owner ct-two-ended |
+| 32–33 | So G_X is LEF, sofic and hyperlinear. | same | same endpoint | owner ct-two-ended |
+| 33–35 | This answers the question of Brown and Ozawa whether an infinite simple Kazhdan group can be hyperlinear, and Pestov's sofic version of it. | to be formalized | this lane: the existence statements of `Palomar/Pestov91Challenge.lean`, through G_X at a concrete infinite minimal subshift, from the thm:main endpoint | GAP (this lane) |
+| 35–36 | Every Turing degree is the word-problem degree of some G_X. | formalized once carried | skf-degrees' corollary | owner skf-degrees |
+| 40 | Can an infinite simple group with (T) be hyperlinear? | structural | — | question |
+| 41–43 | Brown asked this in 2001 as a question about embeddings into unitary groups of McDuff factors that embed in R^ω. | attribution | quoted verbatim in `Palomar/Pestov91Challenge.lean` | attribution |
+| 44–45 | Ozawa stated the hyperlinear form in 2003, and Pestov's Open question 9.1 adds the sofic form. | attribution | same | attribution |
+| 45–46 | The groups below answer all three forms positively. | to be formalized | same carrier as 33–35 | GAP (this lane) |
+| 48–62 | thm:main (every n ≥ 3: infinite, f.g., simple, (T), marked limit of SL_{nN}(F_2) with expander Cayley graphs, LEF, sofic, hyperlinear) | formalized once the endpoint lands | ct-two-ended's `PrintedSimpleKazhdanSoficMain` and closed theorem | owner ct-two-ended; census rows here |
+| 64–65 | Property (T) follows from the theorem of Ershov and Jaikin-Zapirain. | attribution | cited theorem proved: `Pestov91.elementary_hasKazhdanPropertyT` | attribution, input proved |
+| 65–68 | The finite models use periodic approximation, as in Grigorchuk–Medynets [Theorem 2.6], and the expanders arise as in Kassabov's construction. | attribution | route carriers with ms-units / ms-core-3 | attribution |
+| 69–72 | Simplicity also follows from Stepanov's theorem [Theorem 4.4], since the ring is simple and any two of its elements p,q satisfy pr+qs=0 with (r,s)≠0, by a dimension count on one cylinder. | to be formalized | this lane: the cylinder dimension count for R; the consequence "simplicity follows from Stepanov" needs Stepanov 4.4 proved or is graded partial | GAP (this lane) |
+| 72–75 | Our proof is direct: a nontrivial normal subgroup contains a nontrivial commutator lying in a copy of GL_d(F_2) over a clopen tower, so it contains this group and with it an elementary matrix. | partial until carried | the Simplicity section (ct-bilateral-mf, skf-consequences) | owner ct-bilateral-mf |
+| 75–77 | For derived topological full groups, Matui showed in the same way that a nontrivial normal subgroup meets a simple union of alternating groups on towers. | attribution | — | prior work |
+| 77–79 | Thom constructed a f.g. Kazhdan LEF group that is not residually finite, but his example is not simple. | attribution | — | prior work |
 
-## Carriers on origin (checked at origin ~19:05)
+## Split of thm:main (final, agreed with ct-two-ended ~20:00)
 
-- The Palomar Pestov 9.1 endpoint (`Pestov91.exists_infinite_simple_kazhdan_lef`, WitnessAssembly) is the Toeplitz subshift
-  only, and its group is EL_3(A)/Z; it does not state thm:main at every infinite minimal subshift.
-- General pieces that exist for any compact totally separated X with a free minimal Z-action:
-  - `Pestov91.isSimpleGroup_elementaryModCentre_of_minimal_free` and `Pestov91.isSimpleRing_of_minimal_free`, for any ring R
-    with `φ : LC(X,K) →+* R`, a unit `u`, conjugation and spanning;
-  - `Pestov91.central_zero_or_one_of_free_minimal` (over F_2) and `Pestov91.center_elementaryGroup_eq_bot_of_central_zero_or_one`,
-    so Z(G) = 1 and EL_3 itself is simple;
-  - `Pestov91.elementary_hasKazhdanPropertyT` (EJZ, proved), `Sofic.isSofic_of_isLEF`, `Pestov91.isHyperlinear_of_isLEF`,
-    `Pestov91.isLEF_elementaryGroup`.
-- Chain-core ring: `ClopenCrossedProduct T k` has `u f u⁻¹ = f ∘ T⁻¹`, the printed convention.
-- Missing for every infinite minimal subshift: the subshift and minimality vocabulary on A^Z, freeness from minimal plus
-  infinite (tex 78, ct-involution's range), finite generation by u^{±1} and the letter indicators (tex 84–86, ct-involution),
-  and LEF of R_X (tex 118–153, ms-units).
+- This lane owns the statement: `Manuscript/SimpleKazhdanSofic/MainStatement.lean`.
+  - `PrintedSimpleKazhdanSoficMain`: for every n ≥ 3, over `↥(elementaryGroup (Fin n) (R S))`.
+  - Named pieces: `PrintedMarkedLimitExpanders S n` (spelled with ms-core-3), `PrintedTowerSimplicity` (ct-bilateral-mf /
+    skf-consequences, printed tower route), `PrintedSubshiftRingFinitelyGenerated` (ct-involution),
+    `PrintedMinimalSubshiftRingLEF` (ms-units / ms-core-3).
+- ct-two-ended owns `Manuscript/SimpleKazhdanSofic/MainAssembly.lean`: `printedSimpleKazhdanSoficMain_of_pieces` and the
+  closed theorem.
+- This lane also owns the census rows of the abstract, introduction and thm:main statement, the answer sentences 33–35 and
+  45–46, and the cylinder dimension count at 69–72.
+- My n = 3 draft `MainTheorem.lean` (Pestov91 free-minimal route) is retired. It was never landed; its text is at attic
+  681714c37, and ct-two-ended may reuse pieces.
 
-## Claims
+## Landed and in flight
 
-- CLAIM the thm:main statement and its assembly over named piece statements —
-  `GroupApproximation/Manuscript/SimpleKazhdanSofic/MainTheorem.lean`. The path is free on origin, in the shared tree and in
-  every `lanes/*.files` (checked ~19:05). The pieces owned by other lanes are consumed as named Props, and their owners are
-  recorded here.
-
-- CLAIM the shared setting — `GroupApproximation/Manuscript/SimpleKazhdanSofic/Setting.lean`: `subshiftHomeo`, `IsMinimal`,
-  `letterIndicator`, `R`, `G`, over Mathlib's `Subshift A ℤ`. These are skf-degrees' definitions and names, moved out of its
-  unlanded `WordProblemDegreeStatements` so that thm:main and the corollary share one spelling. skf-degrees was asked once
-  (~19:25) to import Setting and drop its copies. ct-involution adopts whichever spelling lands; its results are for any
-  `T : Y ≃ₜ Y` and instantiate at `subshiftHomeo S`.
-
-## thm:main endpoint (in flight, `Manuscript/SimpleKazhdanSofic/MainTheorem.lean`)
-
-- `PrintedSimpleKazhdanSoficMain`: for `A` finite discrete, `S : Subshift A ℤ`, `Infinite S.carrier`, `IsMinimal S`:
-  `Infinite (G S) ∧ Group.FG (G S) ∧ IsSimpleGroup (G S) ∧ HasKazhdanPropertyT (G S) ∧ IsLEF (G S) ∧ IsSofic (G S) ∧
-  IsHyperlinear (G S)`.
-- Named pieces at the printed generality, with owners:
-  - `PrintedSubshiftShiftFree` (tex l.78, ct-involution);
-  - `PrintedMinimalSubshiftDenseOrbits` (minimality gives dense orbits, this lane);
-  - `PrintedSubshiftRingFinitelyGenerated` (tex l.84–86, ct-involution);
-  - `PrintedSubshiftRingCentre` (tex l.110–113, ct-involution);
-  - `PrintedMinimalSubshiftRingLEF` (tex l.118–149, ms-units with ms-core-3).
-- `printedSimpleKazhdanSoficMain_of_pieces`: property (T) by the proved EJZ theorem, finite generation from (T), infinitude
-  from `R`, simplicity of `EL₃/Z` by `Pestov91.isSimpleGroup_elementaryModCentre_of_minimal_free` at `u`, `coeff` and
-  `τ j = T^(-j)`, `Z(EL₃) = 1` by `Pestov91.elementaryModCentreEquiv`, and LEF, sofic, hyperlinear.
+- LANDED f61392374: `Manuscript/SimpleKazhdanSofic/Setting.lean`, queued for wiring. It holds `subshiftHomeo`, `IsMinimal`,
+  `letterIndicator`, `R`, `G` over Mathlib's `Subshift A ℤ`, which is skf-degrees' spelling, adopted by ct-involution and
+  ct-two-ended.
+- In flight: `Manuscript/SimpleKazhdanSofic/MinimalDenseOrbits.lean`, with `subshiftHomeo_zpow_apply` and
+  `minimalSubshift_dense_orbits : IsMinimal S → Dense (range fun j => (subshiftHomeo S ^ j) x)`.
 
 ## Progress log
 
-- 19:05 ledger v1 at bf961c128.
-- 19:25 spelling settled on skf-degrees' `Subshift` vocabulary; Setting and MainTheorem written, probing.
+- 19:05 ledger v1 at bf961c128 (superseded).
+- 19:25 spelling settled on skf-degrees' `Subshift` vocabulary.
+- 19:45 note at e80dcf20a; protocol by section and 12-hex keys.
+- 19:55 split with ct-two-ended; Setting landed; ledger v2 at the tip.
