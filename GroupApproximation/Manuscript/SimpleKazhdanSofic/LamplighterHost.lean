@@ -45,7 +45,8 @@ variable (Δ : Type) [Group Δ]
 /-- A finitely generated group is countable: it is a quotient of a free group on finitely many
 generators. -/
 theorem countable_of_fg (hΔ : Group.FG Δ) : Countable Δ := by
-  obtain ⟨T, hT, -⟩ := Group.fg_iff.1 hΔ
+  obtain ⟨T, hT, hTfin⟩ := Group.fg_iff.1 hΔ
+  haveI : Countable T := hTfin.countable.to_subtype
   have hsurj : Function.Surjective (FreeGroup.lift (Subtype.val : T → Δ)) := by
     intro δ
     have hδ : δ ∈ (FreeGroup.lift (Subtype.val : T → Δ)).range := by
@@ -57,6 +58,7 @@ theorem countable_of_fg (hΔ : Group.FG Δ) : Countable Δ := by
 
 /-- `Ω = F_2^Δ` has no isolated points when `Δ` is infinite. -/
 instance perfectSpace_lampSpace [Infinite Δ] : PerfectSpace (LampSpace Δ) := by
+  classical
   refine ⟨preperfect_iff_nhds.2 fun x _ U hU => ?_⟩
   obtain ⟨V, hVU, hV, hxV⟩ := mem_nhds_iff.1 hU
   obtain ⟨I, u, hu, hIU⟩ := isOpen_pi_iff.1 hV x hxV
@@ -132,17 +134,15 @@ theorem unitHom_injective :
 /-- **`[Δ,Δ] ≤ [Λ,Λ]` embeds in `G_Δ`** (tex 424–430), through `ξ ↦ diag(u_ξ,1,1)`. -/
 theorem exists_commutator_embedding :
     ∃ f : ↥(commutator Δ) →* ↥(elementaryGroup (Fin 3) (LampRing Δ)), Function.Injective f := by
+  have hle : (commutator Δ).map (SemidirectProduct.inr : Δ →* LampAffine Δ) ≤
+      commutator (LampAffine Δ) := by
+    rw [commutator_def, commutator_def, Subgroup.map_commutator]
+    exact Subgroup.commutator_mono le_top le_top
   have hmem : ∀ x : ↥(commutator Δ),
       lefDiagonalHom (ClopenGroupCrossedProduct.unitHom (LampAffine Δ) (LampSpace Δ) (ZMod 2))
-          (SemidirectProduct.inr (x : Δ)) ∈ elementaryGroup (Fin 3) (LampRing Δ) := by
-    intro x
-    refine lefDiagonalHom_commutator_le _ ⟨SemidirectProduct.inr (x : Δ), ?_, rfl⟩
-    have hx : (SemidirectProduct.inr (x : Δ) : LampAffine Δ) ∈
-        (commutator Δ).map SemidirectProduct.inr :=
-      Subgroup.mem_map_of_mem _ x.2
-    rw [commutator_def, Subgroup.map_commutator] at hx
-    rw [commutator_def]
-    exact Subgroup.commutator_mono le_top le_top hx
+          (SemidirectProduct.inr (x : Δ)) ∈ elementaryGroup (Fin 3) (LampRing Δ) := fun x =>
+    lefDiagonalHom_commutator_le _
+      ⟨SemidirectProduct.inr (x : Δ), hle (Subgroup.mem_map_of_mem _ x.2), rfl⟩
   refine ⟨{ toFun := fun x => ⟨lefDiagonalHom
               (ClopenGroupCrossedProduct.unitHom (LampAffine Δ) (LampSpace Δ) (ZMod 2))
               (SemidirectProduct.inr (x : Δ)), hmem x⟩
