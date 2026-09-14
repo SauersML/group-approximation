@@ -288,11 +288,14 @@ review:
     Full build, definition model checks, elaborated statement comparison, axiom audit,
     and Comparator with Lean and NanoDa are recorded in GitHub Actions run https://github.com/SauersML/group-approximation/actions/runs/34806058250
     for source revision 2a0aa5c952325f633690c0d0531cbc81f3b5456b. The final package workflow
-    requires that run to have succeeded and verifies byte-for-byte identity of every Lean
-    file, build configuration, dependency pin, Comparator configuration, and full verification
-    workflow with that revision. The final changes preserve exact upstream license texts
-    and update explanatory and verification material. Repository checks do not constitute
-    Palomar editorial acceptance; Palomar verifies the exact submitted revision independently.
+    requires that run to have succeeded and verifies every Lean file against that revision:
+    each copied topology file has only a fixed provenance comment prefixed, and all remaining
+    bytes are identical; all other Lean files are byte-for-byte identical. Build configuration,
+    dependency pins, Comparator configuration, and the full verification workflow are also
+    byte-for-byte identical. The final changes preserve exact upstream license texts, add
+    per-file adaptation notices, and update explanatory and verification material. Repository
+    checks do not constitute Palomar editorial acceptance; Palomar verifies the exact submitted
+    revision independently.
 repository:
   role: substantive-development
 status:
