@@ -1,0 +1,200 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonGapFaces
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonEulerAssembly
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonSpans
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# C6′ for a two-gon pocket from an Euler walk with its spans
+
+Osin, arXiv:math/0411039v3, Appendix, the assumption before Lemma 9.3: "inside every 2-gon of
+`Φ′_M`, there is a vertex of `Φ_M`".
+
+`twoGonHoldsInput_of_eulerWalk` (`Estimating/OsinAppendixEulerTwoGonEulerAssembly`) takes the gap
+darts of the pocket walk as a named residual.  Here the source span is given by the gap equation of
+`PocketWalk.exists_of_exteriorAt`, and the target span by its start and end, so the gap darts come
+from the first return of the rotation of `phiMapO` (`Estimating/OsinAppendixEulerTwoGonGapFaces`).
+
+* `TwoGonEulerSpanInput`: for the labels of a two-gon, a noncrossing walk equal to the
+  decomposition, whose two reclosings keep the Euler characteristic, with the source span the source
+  arc of `a`, a gap arc and the source arc of `b`, and the target span from the start of the target
+  arc of `a` to the end of that of `b`.
+* `twoGonHoldsInput_of_eulerSpan`: `TwoGonHoldsInput` from `TwoGonEulerSpanInput` alone.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121 at origin/main 68481e4d7, through Osin's Lemma 9.7(a));
+certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded SimpleClosedWalkSides Surgery.MapCollapse
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+
+/-- **The two-gon pocket walk with Euler equalities and spans.**  For the labels of a two-gon of
+`phiMapO` with no corner in its gap and no relator cell, exterior regions `a ≠ b` of one cell `i` to
+one section `j`, target arc of `a` first: the walk
+`source.reverseDarts ++ a.rightSide ++ target.darts ++ b.leftSide` is noncrossing and both of its
+reclosings keep the Euler characteristic; the source span is the source arc of `a`, a gap arc and
+the source arc of `b`; the target span runs from the start of the target arc of `a` to the end of
+that of `b`. -/
+def TwoGonEulerSpanInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) : Prop :=
+  ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
+    Delta.LeastArea →
+      ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+        S.NoLoops → S.NoMultipleEdges →
+          ∀ a₀ ∈ S.family, a₀.2.target = none →
+            ∀ (P : RegionCandidate.ExtPhiData S.family
+                (RegionCandidate.linkedComponentO S.family a₀))
+              (f : (RegionCandidate.phiMapO S.family
+                (RegionCandidate.linkedComponentO S.family a₀)).Face),
+              (RegionCandidate.phiSubdividedMultigraphO P).IsTwoGon f →
+              ¬RegionCandidate.GapAtOHoldsCorner cuts S.family
+                (RegionCandidate.linkedComponentO S.family a₀) f →
+              ¬RegionCandidate.HoldsCellO S.family
+                (RegionCandidate.linkedComponentO S.family a₀) f →
+              ∀ (i : Fin S.diagram.rCellCount) (j : Fin cuts.count),
+                ∀ a ∈ RegionCandidate.exteriorAt S.family i,
+                  ∀ b ∈ RegionCandidate.exteriorAt S.family i, a ≠ b →
+                    RegionCandidate.TargetsSectionIndex cuts j a →
+                      RegionCandidate.TargetsSectionIndex cuts j b →
+                        a.2.targetArc.start.1 + a.2.targetArc.length ≤
+                          b.2.targetArc.start.1 →
+                          ∃ (source : CyclicArc (cellDarts S.diagram i))
+                            (target : CyclicArc (targetDarts S.diagram none))
+                            (hw : IsNoncrossingClosedWalk S.diagram.toCombMap
+                              (source.reverseDarts ++ a.2.rightSide ++ target.darts ++
+                                b.2.leftSide)),
+                            ((reclosedMap S.diagram.toCombMap
+                                (sideFaces S.diagram.toCombMap
+                                  (source.reverseDarts ++ a.2.rightSide ++ target.darts ++
+                                    b.2.leftSide))
+                                (hw.innerCycle S.diagram.planar)).eulerCharacteristic =
+                                S.diagram.toCombMap.eulerCharacteristic ∧
+                              (reclosedMap S.diagram.toCombMap
+                                  (sideOutside S.diagram.toCombMap
+                                    (source.reverseDarts ++ a.2.rightSide ++ target.darts ++
+                                      b.2.leftSide))
+                                  (hw.outerCycle S.diagram.planar)).eulerCharacteristic =
+                                S.diagram.toCombMap.eulerCharacteristic) ∧
+                              (∃ gap : CyclicArc (cellDarts S.diagram i),
+                                source.darts = a.2.sourceArc.darts ++ gap.darts ++
+                                  b.2.sourceArc.darts) ∧
+                              target.start.1 = a.2.targetArc.start.1 ∧
+                              target.start.1 + target.length =
+                                b.2.targetArc.start.1 + b.2.targetArc.length
+
+/-- **C6′ from an Euler walk with its spans.**  The labels of the two-gon come with its outer cell
+dart `y`.  The gap equation and the target bounds give the span inclusions and the printed bounds.
+Every walk dart lies on a face of the pocket: the sides and arcs of `a` and `b` directly, the gap
+darts by the first return of the rotation of `phiMapO` (`twoGonPocketFace_of_cellGap`,
+`twoGonPocketFace_of_targetSpan`).  So `hno` and `havoid` hold without `connected`, the side is the
+inner disc region of `PocketRegion.ofNoncrossingClosedWalkEuler`, and `false_of_mergeDisc` gives the
+contradiction. -/
+theorem twoGonHoldsInput_of_eulerSpan {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+    {W : Set (List (RelLetter G Lambda))}
+    (hspan : TwoGonEulerSpanInput.{u, w, v} D lambda c eps W) :
+    TwoGonHoldsInput.{u, w, v} D lambda c eps W := by
+  intro Delta cuts hlea S hloops hmulti a₀ ha₀ hat P f hf hcorner hcell
+  obtain ⟨y, hy, hyf, hnone, h4, j, hya, hyb, hab, hja, hjb, horder⟩ :=
+    RegionCandidate.exists_twoGonLabels S hmulti P hf hcorner
+  obtain ⟨source, target, hw, heuler, ⟨gap, hgap⟩, hstart, hend⟩ :=
+    hspan Delta cuts hlea S hloops hmulti a₀ ha₀ hat P f hf hcorner hcell _ j _ hya _ hyb hab
+      hja hjb horder
+  have H := RegionCandidate.twoGonClassHyp_of_linkedComponent S P hcell hy hyf hnone h4 hyb
+  have hnondegA := S.nondegenerate _ (Finset.mem_filter.mp (Finset.mem_filter.mp hya).1).1
+  have hnondegB := S.nondegenerate _ (Finset.mem_filter.mp (Finset.mem_filter.mp hyb).1).1
+  have hlen := congrArg List.length hgap
+  simp only [List.length_append, CyclicArc.darts_length] at hlen
+  have hL : (S.diagram.faceBoundary S.diagram.outerFace).darts.length =
+      Delta.boundaryWord.length := by
+    rw [← S.equiv.boundaryWord_eq, ← dartWord_outerDarts S.diagram, dartWord, List.length_map,
+      outerDarts, List.length_map, List.length_reverse]
+  have hbound : ∀ x ∈ RegionCandidate.linkedComponentO S.family a₀, x.2.target = none →
+      x.2.targetArc.start.1 + x.2.targetArc.length ≤
+        (S.diagram.faceBoundary S.diagram.outerFace).darts.length := by
+    intro x hx hxt
+    obtain ⟨j', -, -, hj'⟩ := (S.respects x (P.subset hx)).2 hxt
+    rw [hL]
+    exact hj'.trans (cuts.cut_le_length j'.succ)
+  have hLo : (targetDarts S.diagram none).length = Delta.boundaryWord.length := by
+    rw [← hL]
+    simp only [targetDarts, outerDarts, List.length_map, List.length_reverse]
+  have hY : target.start.1 + target.length ≤ (targetDarts S.diagram none).length := by
+    have h1 := hjb.2.2
+    have h2 := cuts.cut_le_length j.succ
+    omega
+  have hposS : 0 < source.length := by omega
+  have hposT : 0 < target.length := by omega
+  have hsrcA := RegionCandidate.twoGonSource_left source hgap
+  have hsrcB := RegionCandidate.twoGonSource_right source hgap
+  have htgtA := RegionCandidate.twoGonTarget_left H.target_left target hstart (by omega)
+  have htgtB := RegionCandidate.twoGonTarget_right H.target_right target (by omega) hend hY
+  have hsubS : ∀ d ∈ source.reverseDarts, d ∈
+      source.reverseDarts ++ (RegionCandidate.phiRegionO y).2.rightSide ++ target.darts ++
+        (RegionCandidate.phiRegionO ((RegionCandidate.phiMapO S.family
+          (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+            ((RegionCandidate.phiMapO S.family
+              (RegionCandidate.linkedComponentO S.family a₀)).facePerm y))).2.leftSide :=
+    fun _ hd => List.mem_append_left _ (List.mem_append_left _ (List.mem_append_left _ hd))
+  have hsubT : ∀ d ∈ target.darts, d ∈
+      source.reverseDarts ++ (RegionCandidate.phiRegionO y).2.rightSide ++ target.darts ++
+        (RegionCandidate.phiRegionO ((RegionCandidate.phiMapO S.family
+          (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+            ((RegionCandidate.phiMapO S.family
+              (RegionCandidate.linkedComponentO S.family a₀)).facePerm y))).2.leftSide :=
+    fun _ hd => List.mem_append_left _ (List.mem_append_right _ hd)
+  have hout := outerFace_not_mem_sideFaces_of_target_mem hw target hposT hsubT
+  have hcoff := cellFace_not_mem_sideFaces_of_source_mem hw source hposS hsubS
+  have Hs := RegionCandidate.TwoGonWalkSideHyp.mk
+    (RegionCandidate.twoGonWalk_left_side source target H.target_left hsrcA htgtA)
+    (RegionCandidate.twoGonWalk_right_side source target H.target_right hsrcB htgtB)
+    hout hcoff
+  have hbase := RegionCandidate.twoGonPocketFace_of_mem_decomposition (family := S.family)
+    (E := RegionCandidate.linkedComponentO S.family a₀) (x := y.1) source target
+    H.target_left H.target_right
+    (fun p hp hpa hpb => by
+      have hαp : S.diagram.toCombMap.alpha p ∈ source.reverseDarts := by
+        simp only [CyclicArc.reverseDarts, List.mem_map, List.mem_reverse]
+        exact ⟨p, hp, rfl⟩
+      have hmem := (mem_sideFaces_iff _ _ _).mpr ⟨_, hsubS _ hαp, Relation.EqvGen.refl _⟩
+      have hp' := hp
+      rw [hgap, List.mem_append, List.mem_append] at hp'
+      rcases hp' with (h | h) | h
+      · exact absurd h hpa
+      · exact RegionCandidate.twoGonPocketFace_of_cellGap P hy hnone H source hgap h
+          (fun hh => hout (hh ▸ hmem)) (fun hh => hcoff (hh ▸ hmem))
+      · exact absurd h hpb)
+    (RegionCandidate.twoGonPocketFace_of_targetSpan P hbound hy hnone h4 H target hstart hend hY
+      (fun d hd =>
+        ⟨fun hh => hout (hh ▸ (mem_sideFaces_iff _ _ d).mpr ⟨d, hsubT d hd, Relation.EqvGen.refl _⟩),
+          fun hh => hcoff
+            (hh ▸ (mem_sideFaces_iff _ _ d).mpr ⟨d, hsubT d hd, Relation.EqvGen.refl _⟩)⟩))
+  have hno := P.cell_face_not_mem_sideFaces_of_twoGon_of_base H Hs hbase
+    (fun k v hv hface => by
+      by_contra hk
+      exact hcell ⟨k, hk, y, hyf, v, hv, hface⟩)
+  have hcells : ∀ C ∈ S.diagram.relatorCells, C.face ∉ sideFaces S.diagram.toCombMap
+      (source.reverseDarts ++ (RegionCandidate.phiRegionO y).2.rightSide ++ target.darts ++
+        (RegionCandidate.phiRegionO ((RegionCandidate.phiMapO S.family
+          (RegionCandidate.linkedComponentO S.family a₀)).facePerm
+            ((RegionCandidate.phiMapO S.family
+              (RegionCandidate.linkedComponentO S.family a₀)).facePerm y))).2.leftSide) := by
+    intro C hC
+    obtain ⟨n, rfl⟩ := List.mem_iff_get.mp hC
+    exact hno n
+  exact S.false_of_mergeDisc hya hyb hab hja hjb
+    (Surgery.InnerDiscRegion.ofPocketRegion
+      (PocketRegion.ofNoncrossingClosedWalkEuler hw hout heuler.1 heuler.2) hcells)
+    source target (k := 0) (List.rotate_zero _)
+    (fun _ hx hxa hxb => P.disjoint_sideFaces_of_twoGon_of_base H Hs hbase hx hxa hxb)
+    (by omega) hstart hend (by omega)
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.TwoGonEulerSpanInput
+#audit_axioms GroupApproximation.GGT.VanKampen.twoGonHoldsInput_of_eulerSpan
