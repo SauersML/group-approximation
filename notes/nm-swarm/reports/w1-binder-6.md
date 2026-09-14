@@ -228,6 +228,19 @@ Binder: `OsinLemma97Below … n := ∀ Xi cutsXi, Xi.LeastArea → 0 < Xi.rCellC
   - ms-traces-2's `enclosedFaceSetSuccOfNoncrossing` assumes `hfollows` too, so it does not reach a full `t_1`
     (bda10ebe8 `not_enclosedFaceSetSucc`).
 
+## CLAIM (00:1x, main): (i) the pocket transports over a non-following Euler pocket region
+
+main accepted the pivot: Γ₁ is `(ofNoncrossingClosedWalkEuler …).diagram`, then `fourSectionCuts_leastAreaCut`, with no
+enclosed Prop. This lane owns (i). The work is additive; no owner's file is edited.
+- `CLAIM glue planarity from Euler GroupApproximation/GGT/VanKampen/SurgeryPocketGlueEuler.lean`: `Seam.glueMap_planar`
+  and connectivity, with the complement's Euler equality in place of `S.boundary.FollowsBoundary`, plus the vertex
+  count.
+- `CLAIM transports GroupApproximation/GGT/VanKampen/Estimating/OsinPocketGlueTransportEuler.lean`: the variants of
+  `PocketCellTransportStatement` and `PocketOuterTransportStatement` without `P.outer.FollowsBoundary`, and their
+  proofs.
+- `CLAIM glue model GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeGlueModel.lean`, landed first:
+  `lakePocket.diagram` glued back into the lake along `[3,1]`.
+
 Design:
 - Γ₁ is the enclosed subdiagram Ξ of the pocket walk. Its faces are `sideFaces X K.walk`, with outside walk
   `invDarts X K.walk`, through ms-traces-2's `ClosedWalkEnclosedSubdiagramStatement` (named) and
