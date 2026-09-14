@@ -96,7 +96,8 @@ theorem four_le_faceDegree_of_bipartite (M : CombMap.{v}) (c : M.Dart → Bool)
     exact M.vertexOf_sigma _
   have hvay : M.vertexOf (M.alpha (M.facePerm x)) = M.vertexOf x := by
     have e : M.sigma (M.alpha (M.facePerm x)) = x := hper2
-    rw [← e, M.vertexOf_sigma]
+    conv_rhs => rw [← e]
+    exact (M.vertexOf_sigma _).symm
   have hxy : x = M.alpha (M.facePerm x) :=
     hsimple x (M.alpha (M.facePerm x)) hvay.symm (by rw [M.alpha_involutive]; exact hvy.symm)
   have hya : M.facePerm x = M.alpha x := by
