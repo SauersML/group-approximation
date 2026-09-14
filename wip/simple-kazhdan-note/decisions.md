@@ -981,6 +981,31 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - DECISION: rev5 has 11 pp, with rev5b as the base. It has the same page count as rev5a, it carries P2, P3 and the S2 definitions, and it is under hostile review. Readability and usefulness outrank the old ≤ 9 pp target.
     - At the final pass main ports rev5a's notation fixes (Lemma C radius vs ring element r; δ, m and x roles; 1 vs e; E_{t′t}) if the referee agrees. It also decides P2's placement (introduction vs a §2 remark) and any cut to 10 pp.
     - Final assembly is by main: rev5b + the referee's REQUIRED fixes + locators, compiled on MSI, then landed onto main's blob d3a3fd6e….
+181. **sk-verify-26 (b310a54e08): `gap-sofic-approximations-are-local-embeddings` PASS, a second independent review; the unproved lamplighter "iff" is fixed.**
+    - Re-derived both directions, gap (A) as a coset in the holomorph, gap (P) by eigenspace count and convexity, and Corollaries 1–2.
+    - Brute-force MSI model tests matched the route's bounds: holomorphs of Z/2, Z/3, Z/4, Z/5, Z/2², Z/2×Z/4, S_3; PGL_m(F_p) for (2,2), (2,3), (2,5), (3,2), (3,3).
+    - Bookkeeping: the node already had sk-verify-3 PASS, but its status line said "unreviewed". Fixed, and a correction was appended to Theorem O's node.
+    - The only occurrence of "G_Δ LEF iff Δ LEF" was sk-sofic-host-hamming part1 §3.4(3). It now says: Δ LEF ⇒ G_Δ LEF; G_Δ LEF ⇒ [Δ,Δ] LEF; whether Δ must be LEF is not established.
+    - Theorem O now rests on reviewed inputs only.
+182. **sk-verify-25b (5affb84500), adversarial: the rigidity theorem PASSES. Every isomorphism G_X → G_Y is standard, so G_X ≅ G_Y ⇒ X, Y strongly orbit equivalent.**
+    - The combined statement is PASS: α = inn(k)∘Θ∘γ_X^ε, with Θ a ring isomorphism M_3(R_X) → M_3(R_Y), k ∈ GL_3(R_Y) and ε ∈ {0,1}.
+    - Theorem A (Singer): PASS-WITH-FIXES A1–A3. Theorem D (Frobenius bicommutants; Lemma X, Theorem C, Lemma S3): PASS-WITH-FIXES C1–C4. No gap in either.
+    - All imports are reviewed: the index kernel theorem (verify-18 part6), C2, Proposition F, bicommutant closedness, Peirce roots, matrix ring ⇒ SOE, DP, torsion-free K_0. Matui Lemma 2.5 was read at source.
+    - The first-return corner isomorphism is not needed:
+      - C2 uses simplicity of the corner ring with centre F_2e_V;
+      - A2 replaces Proposition F item 2 with simplicity of α(Q_V).
+    - Computed on MSI:
+      - Ext¹_{F_2GL_3(2)}(3,3) = 0;
+      - 8|F21 = 2⊕3⊕3*;
+      - 3⊗3 is not semisimple;
+      - in the finite M_4(F_2) model, CC(F21_V) has 168 units.
+    - Adversarial hunt found no counterexample: outer inn(diag(u^k,1,1)), anti-automorphisms, flips, central and index twists, mixed orientation, mixed or type-2 images.
+    - Scope: this answers the "at least strongly orbit equivalent" alternative of Questions item 4. Flip conjugacy, and L(G_X) ≅ L(G_Y) ⇒ G_X ≅ G_Y, stay open.
+    - Plan:
+      - wait for sk-verify-25a (line by line);
+      - if it PASSES, one lane merges A1–A3 and C1–C4, moves `subshift-el3-isomorphisms-are-standard-over-f2` to ESTABLISHED, and drafts a condensed rigidity section with a page cost;
+      - main then decides between rev5.1 (in the note) and a separate short paper.
+    - Rev5 lands first, without rigidity.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
