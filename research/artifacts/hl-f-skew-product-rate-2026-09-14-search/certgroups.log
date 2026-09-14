@@ -1,0 +1,16 @@
+cert.s10 (sum ratio 1/2, n=10) | order 80 | solvable true | derived length 
+2 | metabelian true | structure (C2 x C2 x C2 x C2) : C5
+cert.x12 (max ratio 1/3, n=12) | order 648 | solvable true | derived length 
+2 | metabelian true | structure (C3 x C3 x C3 x C3) : C8
+cert.x16 (max ratio 4/13, n=16) | order 
+38880
+  | solvable false | derived length not solvable | metabelian false | structur\
+e ((((C3 x C3 x C3) : (C2 x C2)) : C3) : C2) x A5
+cert.10 (4/10) | order 
+720
+  | solvable false | derived length not solvable | metabelian false | structur\
+e A4 x A5
+cert.12 (4/11) | order 
+518400
+  | solvable false | derived length not solvable | metabelian false | structur\
+e (A6 x A6) : C4
