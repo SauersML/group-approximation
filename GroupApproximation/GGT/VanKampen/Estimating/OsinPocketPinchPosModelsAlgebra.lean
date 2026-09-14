@@ -145,13 +145,13 @@ theorem killP_gQ : killP gQ = 1 := by simp [gQ, gd, ge]
 theorem killQ_gP : killQ gP = 1 := by simp [gP, ga, gb]
 
 theorem expD_gQ : Multiplicative.toAdd (expD gQ) = 2 := by
-  simp [gQ, gd, ge]; rfl
+  simp [gQ, gd, ge]
 theorem expE_gQ : Multiplicative.toAdd (expE gQ) = 1 := by
-  simp [gQ, gd, ge]; rfl
+  simp [gQ, gd, ge]
 theorem expA_gP : Multiplicative.toAdd (expA gP) = 2 := by
-  simp [gP, ga, gb]; rfl
+  simp [gP, ga, gb]
 theorem expB_gP : Multiplicative.toAdd (expB gP) = 1 := by
-  simp [gP, ga, gb]; rfl
+  simp [gP, ga, gb]
 
 theorem tau_inv : tau⁻¹ = tau := by decide
 
