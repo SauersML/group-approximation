@@ -1,0 +1,80 @@
+import GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkSectorNoninterleaving
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Two kinds of passage cannot meet at one reversal
+
+Osin, arXiv:math/0411039v3, proof of Lemma 9.7(b): "Let us consider the subdiagram `Γ_1` of `Δ`
+such that: (i) `∂Γ_1 = s_1 t_1 s_2 t_2` ... (ii) `Γ_1` contains all `Γ_{i,1}`'s."
+
+The vertex bound for walks whose passages have free sectors (`SectorFreeVertexCountStatement`) needs
+that the passages at a vertex are all of one kind: all turn the short way (the sector from `alpha d`
+to `next d` is free), or all turn the long way (the stretch from `next d` back to `alpha d` is free).
+The step that rules out a change of kind is an injectivity: two darts on edges of the walk whose free
+stretches both end at one dart `x` are equal.  Rotating from `x`, each would lie strictly before the
+other.
+
+* `RotationBetween.not_both`: rotating from `x`, the darts `y` and `z` cannot each come before the
+  other.
+* `SectorNoninterleaving.SectorFree.vertexOf_eq`: a free stretch stays at one vertex.
+* `SectorNoninterleaving.eq_of_sectorFree_rev_both`: two darts on edges of the walk whose free stretches
+  end at `x`, other than `x`, are equal.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121,
+`\begin{theorem}[Hull's small cancellation theorem]\label{thm:hull}`), through Osin's Lemma 9.7(b);
+certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+open Equiv SimpleClosedWalkSides
+
+universe u
+
+namespace RotationBetween
+
+variable {M : CombMap.{u}} {x y z : M.Dart}
+
+/-- **Two darts cannot each come before the other** in the rotation from `x`. -/
+theorem not_both (h₁ : RotationBetween M x y z) (h₂ : RotationBetween M x z y) : False := by
+  obtain ⟨a, ha, haz, hay⟩ := h₁
+  obtain ⟨b, hb, hby, hbz⟩ := h₂
+  rcases Nat.lt_or_ge a b with hab | hab
+  · exact hbz a ha hab.le haz
+  · exact hay b hb hab hby
+
+end RotationBetween
+
+namespace SectorNoninterleaving
+
+variable {M : CombMap.{u}} {w : List M.Dart}
+
+/-- **A free stretch stays at one vertex.** -/
+theorem SectorFree.vertexOf_eq {x y : M.Dart} (h : SectorFree M w x y) :
+    M.vertexOf y = M.vertexOf x := by
+  obtain ⟨m, hm, -⟩ := h
+  subst hm
+  induction m with
+  | zero => rw [pow_zero, Perm.one_apply]
+  | succ n ih => rw [pow_succ', Perm.mul_apply, M.vertexOf_sigma, ih]
+
+/-- **Two darts on edges of the walk whose free stretches end at one dart are equal.**  If the
+stretches from `e₁` and from `e₂` to `x` are free of the walk, and `e₁`, `e₂` lie on edges of the walk
+and differ from `x`, then `e₁ = e₂`. -/
+theorem eq_of_sectorFree_rev_both {x e₁ e₂ : M.Dart} (h₁ : SectorFree M w e₁ x)
+    (h₂ : SectorFree M w e₂ x) (he₁ : walkKeep M w e₁) (he₂ : walkKeep M w e₂) (hx₁ : e₁ ≠ x)
+    (hx₂ : e₂ ≠ x) : e₁ = e₂ := by
+  by_contra hne
+  exact RotationBetween.not_both
+    (rotationBetween_of_sectorFree_rev h₂ h₁.vertexOf_eq.symm he₁ hx₁ hne)
+    (rotationBetween_of_sectorFree_rev h₁ h₂.vertexOf_eq.symm he₂ hx₂ (Ne.symm hne))
+
+end SectorNoninterleaving
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.RotationBetween.not_both
+#audit_axioms GroupApproximation.GGT.VanKampen.SectorNoninterleaving.SectorFree.vertexOf_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.SectorNoninterleaving.eq_of_sectorFree_rev_both
