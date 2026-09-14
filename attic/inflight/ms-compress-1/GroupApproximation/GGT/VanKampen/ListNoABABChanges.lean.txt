@@ -1,0 +1,74 @@
+import GroupApproximation.GGT.VanKampen.ListNoABABLength
+import Mathlib.Data.List.Destutter
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Letter changes of a word with no `a b a b`
+
+A word with repeats, read along a polygon, changes letter at some positions.  Merging equal
+neighbours (`List.destutter (· ≠ ·)`) keeps one letter per maximal run, so the number of changes
+is the length of the merged word minus one.  The merged word is a sublist, so it inherits the
+absence of `a b a b`, and it has no equal neighbours.  With `ListNoABAB.length_add_one_le_two_mul_card`
+a nonempty word with no `a b a b` changes letter at most `2 d − 2` times.
+
+* `ListNoABAB.adjChanges`: the number of positions where the next letter differs.
+* `ListNoABAB.adjChanges_cons_add_one`: `adjChanges (a :: l) + 1 = |destutter' (· ≠ ·) a l|`.
+* `ListNoABAB.adjChanges_add_two_le_two_mul_card`: `adjChanges w + 2 ≤ 2 d`.
+
+Model tests (hand).
+* `a a b b a`: two changes, `d = 2`, `2 + 2 ≤ 4`.
+* `a b c b a`: four changes, `d = 3`, `4 + 2 ≤ 6`, sharp.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (through the contact count of Osin's Lemma 9.4,
+arXiv:math/0411039v3, §9); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.ListNoABAB
+
+open List
+
+variable {α : Type*} [DecidableEq α]
+
+/-- The number of positions where the next letter differs. -/
+def adjChanges : List α → ℕ
+  | a :: b :: l => (if a ≠ b then 1 else 0) + adjChanges (b :: l)
+  | _ => 0
+
+theorem adjChanges_cons_cons (a b : α) (l : List α) :
+    adjChanges (a :: b :: l) = (if a ≠ b then 1 else 0) + adjChanges (b :: l) := rfl
+
+/-- **The changes are the merged length minus one.** -/
+theorem adjChanges_cons_add_one : ∀ (l : List α) (a : α),
+    adjChanges (a :: l) + 1 = (l.destutter' (· ≠ ·) a).length
+  | [], a => by simp [adjChanges, List.destutter'_nil]
+  | b :: l, a => by
+    by_cases hab : a ≠ b
+    · rw [adjChanges_cons_cons, if_pos hab, List.destutter'_cons_pos (R := (· ≠ ·)) l hab,
+        List.length_cons, ← adjChanges_cons_add_one l b]
+      omega
+    · have hb : a = b := not_not.mp hab
+      subst hb
+      rw [adjChanges_cons_cons, if_neg hab, List.destutter'_cons_neg (R := (· ≠ ·)) l hab,
+        ← adjChanges_cons_add_one l a]
+      omega
+
+/-- **A nonempty word with no `a b a b` changes letter at most `2 d − 2` times.** -/
+theorem adjChanges_add_two_le_two_mul_card {w : List α} (hne : w ≠ []) (hno : NoABAB w) :
+    adjChanges w + 2 ≤ 2 * w.toFinset.card := by
+  obtain ⟨a, l, rfl⟩ := List.exists_cons_of_ne_nil hne
+  set m := l.destutter' (· ≠ ·) a with hm
+  have hlen : adjChanges (a :: l) + 1 = m.length := adjChanges_cons_add_one l a
+  have hsub : m <+ a :: l := List.destutter'_sublist (R := (· ≠ ·)) a
+  have hchain : m.IsChain (· ≠ ·) := List.isChain_destutter' (R := (· ≠ ·)) l a
+  have hmne : m ≠ [] := List.destutter'_ne_nil
+  have hbound := length_add_one_le_two_mul_card m.length m rfl hmne hchain (hno.sublist hsub)
+  have hcard : m.toFinset.card ≤ (a :: l).toFinset.card :=
+    Finset.card_le_card fun x hx => List.mem_toFinset.mpr (hsub.subset (List.mem_toFinset.mp hx))
+  omega
+
+end GroupApproximation.GGT.VanKampen.ListNoABAB
+
+#audit_axioms GroupApproximation.GGT.VanKampen.ListNoABAB.adjChanges_cons_add_one
+#audit_axioms GroupApproximation.GGT.VanKampen.ListNoABAB.adjChanges_add_two_le_two_mul_card
