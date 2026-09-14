@@ -238,6 +238,22 @@ CLAIM `OsinLemma94ContactMapSmallFacesInput` (under the binders of `OsinLemma94L
 - The route, per face (every face has degree ≥ 4, so small faces have degree 4):
   - the face holds a relator cell, which gives at most n such faces;
   - otherwise it is an empty two-gon, excluded by a region merge, `pinchSplitAbsorption`, or ContactBubble.
+- Decomposition (09:4x), for a degree-4 face (x, φx, φ²x, φ³x) of `contactMap` through a representative dart x at a
+  polygon:
+  1. **Degenerate faces.** In a simple bipartite map whose polygon side has degree ≥ 2, v(φx) ≠ v(φ³x) always, and
+     v(x) = v(φ²x) forces σ(αx) = αx, a pendant object. Each pendant object dart lies on one face, so there are at most
+     n + 1 degenerate faces. This part is pure CombMap and comes first.
+  2. **Nondegenerate faces holding a cell or the exterior in their face class** (`CombMapRestrictionFaceClasses`).
+     Distinct faces hold disjoint objects, so there are at most n + 1.
+  3. **Empty nondegenerate faces**: the residual.
+- Risk in part 3. The existing merges collapse whole G-faces:
+  - `false_of_avoided_singleton` (0 absorbed regions);
+  - `false_of_collapse_singleton` and `false_of_disc_collapse_singleton` (≥ 2 absorbed).
+
+  An empty two-gon is bounded by sectors of the polygon faces f and f′. When d_f = d_f′ = 2 with single a- and b-blocks
+  and one region between them, f ∪ region ∪ f′ is a heavier contiguity region, since its sides are the neighbouring
+  regions' short sides. For d_f ≥ 3, or a block with several short sides in a row, the merge needs a sector surgery or a
+  different argument; nothing on main does that yet. Part 3 gets its own named Prop and a model test before it is built.
 - The earlier H outline, kept for reference:
 - H = `PredicateRestriction.toCombMap (S.diagram.toCombMap.dual)`, keeping one dart pair per (polygon f with d_f ≥ 2,
   object o), where o is a relator cell or the exterior.
