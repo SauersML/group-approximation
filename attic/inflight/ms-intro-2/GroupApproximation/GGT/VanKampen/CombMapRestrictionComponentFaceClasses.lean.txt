@@ -1,0 +1,74 @@
+import GroupApproximation.GGT.VanKampen.CombMapRestrictionFaceClasses
+import GroupApproximation.GGT.VanKampen.CombMapComponents
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Face classes inside one component of a restriction
+
+`CombMap.IsRestriction.faceOf_eq_of_faceClass` separates the faces of a *connected* restriction `N`
+of a planar map `M`.  Advancing around the faces of `M` and crossing edges of `M` that `N` does not
+retain never joins two darts of `N` on different faces of `N`.  A restriction need not be
+connected, and this module gives the separation inside one component.
+
+* `PredicateRestriction.faceOf_eq_of_faceClass_of_componentOf`: let `N` be the first-return
+  restriction `PredicateRestriction.toCombMap M keep hkeep` of a planar map, and `d, d′` darts of one
+  component of `N`.  A face-class path of `M` off the edges of `N` from `d` to `d′` gives
+  `N.faceOf d = N.faceOf d′`.
+  - The component is a connected restriction of `M` (`restrict_isRestriction`,
+    `IsRestriction.trans`, `component_connected`).
+  - Crossing an edge off `N` is crossing an edge off the component, so the path is a face-class path
+    of the component (`Relation.EqvGen.mono`).
+  - The faces of the component are those of `N` (`restrict_facePerm_eq`,
+    `Equiv.Perm.sameCycle_subtypePerm`).
+
+Calibration (hand).  Take two disjoint squares in a planar map as the restriction.  The face class
+of the region between them joins the outer faces of both squares, and these are different faces of
+the restriction.  So the lemma needs the two darts in one component.
+
+Infrastructure for the contact count of Osin's Lemma 9.4 (arXiv:math/0411039v3, §9); certifies no
+printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.CombMap
+
+universe u
+
+namespace PredicateRestriction
+
+variable (M : CombMap.{u}) (keep : M.Dart → Prop) (hkeep : ∀ d, keep (M.alpha d) ↔ keep d)
+
+/-- **Inside one component, face classes of the ambient map separate the faces of a restriction.** -/
+theorem faceOf_eq_of_faceClass_of_componentOf (hM : M.IsPlanar)
+    {d d' : (toCombMap M keep hkeep).Dart}
+    (hcomp : (toCombMap M keep hkeep).componentOf d d')
+    (hp : Relation.EqvGen (FaceClassStep M keep) d.1 d'.1) :
+    (toCombMap M keep hkeep).faceOf d = (toCombMap M keep hkeep).faceOf d' := by
+  let N := toCombMap M keep hkeep
+  have hNK : N.IsRestriction (N.component d)
+      (Function.Embedding.subtype (N.componentOf d)) :=
+    N.restrict_isRestriction (N.componentOf d) (N.componentOf_alpha d) (N.componentOf_sigma d)
+  have hMK := (isRestriction M keep hkeep).trans hNK
+  have hmono : FaceClassStep M keep ≤
+      FaceClassStep M (· ∈ Set.range ((Function.Embedding.subtype (N.componentOf d)).trans
+        (Function.Embedding.subtype keep))) := by
+    intro x y hxy
+    rcases hxy with h | ⟨hnk, h⟩
+    · exact Or.inl h
+    · refine Or.inr ⟨?_, h⟩
+      rintro ⟨z, rfl⟩
+      exact hnk z.1.2
+  have hface := hMK.faceOf_eq_of_faceClass hM (N.component_connected d)
+    (d := ⟨d, N.componentOf_self d⟩) (d' := ⟨d', hcomp⟩) (Relation.EqvGen.mono hmono hp)
+  have hsc := ((N.component d).faceOf_eq_iff _ _).mp hface
+  have hperm : (N.component d).facePerm =
+      N.facePerm.subtypePerm (N.facePerm_invariant (N.componentOf d) (N.componentOf_alpha d)
+        (N.componentOf_sigma d)) :=
+    N.restrict_facePerm_eq (N.componentOf d) (N.componentOf_alpha d) (N.componentOf_sigma d)
+  rw [hperm] at hsc
+  exact (N.faceOf_eq_iff d d').mpr (Equiv.Perm.sameCycle_subtypePerm.mp hsc)
+
+end PredicateRestriction
+
+end GroupApproximation.GGT.VanKampen.CombMap
+
+#audit_axioms GroupApproximation.GGT.VanKampen.CombMap.PredicateRestriction.faceOf_eq_of_faceClass_of_componentOf
