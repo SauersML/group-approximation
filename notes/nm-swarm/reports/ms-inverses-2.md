@@ -253,6 +253,26 @@ use the family data or the chosen order.
   `SideRelatorCellForOrder`). `cellPocketKeptCellNoncrossing` is order-generic, so each order needs its own outer-off-side and
   either-follows inputs. Reply sent to ms-cite-1.
 
+## Item 6 (main, 09-13 ~19:40): the Euler residual, per order, and the generic non-interleaving Euler lemma
+
+Main's ruling: following is the wrong residual (0f270c624, and w1-binder-1's 8c6883be3). w1-binder-6's
+`PocketRegion.ofNoncrossingClosedWalkEuler` (2c1a841e8) builds the pocket region from the two reclosing Euler equalities.
+
+Ownership check 09-13 ~19:45: no `CellPocketWalkEulerStatement`, and no non-interleaving Euler lemma, on origin or in the shared tree.
+hull-euler has no in-flight Euler file.
+
+- CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellSideRelatorCellEuler.lean:
+  - `CellPocketWalkEulerStatement` per order (both reclosings of the noncrossing cell walk keep χ);
+  - the side relator cell per order, `SideRelatorCellForOrder`, from the exterior off the side in that order and the Euler
+    equalities, through `ofNoncrossingClosedWalkEuler` and step 5.
+  - The builder needs the exterior face off the side, so each order uses its own outer-off-side input.
+- CLAIM GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleaving.lean: for a noncrossing closed walk whose passages do
+  not interleave, both reclosings keep χ.
+  - This is `vertexCount_add` without `hout`; `edgeCount_add` and `faceCount_add` already need no following cycle.
+  - It discharges w1-binder-6's `SectionPocketWalkEulerStatement` and the cell version.
+  - Model test first: the double-touch map (non-interleaving, both χ = 2 expected) and the three-petal rose of
+    `NoncrossingClosedWalkEuler` (interleaving, torus).
+
 ## Progress log
 
 - 09-13 ~17:01: ledger landed (d5d320909).
