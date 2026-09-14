@@ -43,3 +43,18 @@ minimality; non-periodic codings, hence infinite. Every endpoint carries `#audit
   `{w | ∃ θ, WordGraph.word (sturmianCoding α θ) 0 n = w}` (`language_sturmianSubshift`).
 - Membership through the endpoints: `sturmianCoding_eq_true_iff` and `sturmianCoding_word_eq_of_endpoints`. Counting:
   `count_word_sturmianCoding`, giving ⌊θ+nα⌋ − ⌊θ⌋ ones.
+
+## Item 3 (main, ~20:35): computability half of the Sturmian material
+Split with skf-degrees:
+- mine: 031aa6399d94 ("so α computes L(X_α)"), and the clause "so L(X_α) computes α" of 6f639125d339 (my row goes to
+  `formalized` when it closes);
+- skf-degrees': cf009a26e807 (continued-fraction representative) and 34a4980e33db (continuum many degrees, isomorphism
+  invariance).
+
+CLAIM SturmianLanguageCriterion `GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguageCriterion.lean`: with
+prefix sums s_k of v, v ∈ L_n(X_α) iff (s_k − s_l − 1)/(k − l) < α for all l < k ≤ n and α < (s_l − s_k + 1)/(l − k) for
+all k < l ≤ n. That's finitely many strict comparisons of α with rationals. Also: ⌊nα⌋ is the least number of ones of a word
+of length n of X_α.
+CLAIM SturmianComputability `GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianComputability.lean`: for irrational
+α ∈ (0,1), truth-table reductions in both directions between L(X_α) and α (as an oracle, the spelling agreed with
+skf-degrees), over `Nat.RecursiveIn` / `TuringReducible`.
