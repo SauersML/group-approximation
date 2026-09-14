@@ -159,3 +159,21 @@ of the one-coincidence or four-sign-change exceptions. A violation over
   - **Other small orders.** The node lists the open set of each shape.
   - **Not tried.** Relative asphericity with a Freiheitssatz for the two-pair
     shapes. Edjvet--Juhász and Bogley--Pride were not read at source.
+- **Hyperlinear coefficient fence (2026-09-13, lane `hl-kl-short-equations`; see
+  `kl-length-six-residue-words-with-hyperlinear-coefficients-inject`).**
+  - Localize to `A = <g, x, y>` and apply the hyperlinear theorem. Every residue
+    word whose label and loops generate a hyperlinear group injects, for every
+    shape.
+  - With involution loops and `g in <x, y>`, `A` is dihedral. This settles the
+    relations `g = x`, `g = y` and `g = y x` that the one-sided curvature node
+    left open for the three-equal shapes, and every two-pair `+++++-` and
+    `++++--` word with `g in <x, y>`.
+  - **Still open with involution loops.**
+    - The four three-equal `+++++-` shapes: only `g x g^(-1) = y` with `g`
+      outside `<x, y>`.
+    - The three two-pair `+++++-` shapes and all six `++++--` shapes: only `g`
+      outside `<x, y>`.
+    - In each case `A` must be neither hyperlinear nor MF.
+  - **Checked dead end.** `t -> s g^(-1)` sends `(1,1,1,g)` with
+    `y = g x g^(-1)` to an equal-loop word, and `s -> r g` sends it back to the
+    original, so the conjugate relation is not a substitution reduction.
