@@ -25,3 +25,8 @@ distinct_from:
 Route: `dyadic-substitution-derived-full-groups-non-uniform-growth-proof`.
 
 **Review (sk-verify-16, 2026-09-13): PASS.** An independent re-derivation of the tower model, the shift pairs [s_y, L_(y y′)], and generation W_n = [[T]]′: the fibre and linking steps, the Boolean closure of 𝔅 with [(1 2 3),(3 4 5)] = (1 4 3), twisted 3-cycles, and good σ_U via the Cornulier Lemme eng_cb. Also the commuting-conjugates lemma, the normal form and counting, and ω = 1. The inputs are checked at source: Cornulier arXiv:2002.09342 l.166/216/576–583/780 and Sauer–Schesler arXiv:2605.30163 lem:separation, lem:commuting-conjugates, lem:normal-form, lem:count-p1..p4 and l.1392. Conditional on the imports named in the route. See `research/artifacts/sk-verify-16-2026-09-13-part3.md` §§1–2.
+
+**Review (sk-verify-17, 2026-09-13): PASS.** This is an independent adversarial re-derivation; sk-verify-16 was not read first. Checked:
+- the tower model, T_n ⊂ [[T]]′, Steps 1–3 of W_n = [[T]]′ (recomputing σ_(y,y′) = [s_y, L_(y y′)] and [(1 2 3),(3 4 5)] = (1 4 3)), and σ_U = ∏_y σ_(W_y);
+- the counting transfer line by line against Sauer–Schesler arXiv:2605.30163 `not:T_n` l.893, `lem:commuting-conjugates` l.920, `lem:normal-form` l.969 and `lem:count-p1..p4` l.1038–1192. The double transposition δ_n counts as one permutation of X_n, and the per-point group (Z/3)^|A|×Z gives (3^|A|(2ℓ+1))^(Cℓ^α).
+Model test: Sturmian subshifts have no dyadic towers. Scope: Thue–Morse holds unconditionally (elementary tower proof, sk-verify-14 part4 §4); the general dyadic statement is conditional on `mosse-bilateral-recognizability`. See `research/artifacts/sk-verify-17-2026-09-13.md`.

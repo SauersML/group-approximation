@@ -12,3 +12,5 @@ Source: Matui (Cornulier's reference [Ma2]), as stated and proved in Y. Cornulie
 Route: `minimal-subshift-derived-full-group-exponential-growth-citation`.
 
 **Review (sk-verify-16, 2026-09-13): PASS.** l.166 and l.780 of bou1064.tex are verbatim. An infinite minimal subshift is expansive, hence not an odometer, as Théorème expo requires. See `research/artifacts/sk-verify-16-2026-09-13-part3.md` §5.
+
+**Review (sk-verify-17, 2026-09-13): PASS at source.** Théorème `expo` at bou1064.tex l.781–784 was re-read ("n'est pas un odomètre"; every subgroup containing [[φ]]′ contains a lamplighter group), together with the proof l.785–796 and the lamplighter free-semigroup remark l.773. See `research/artifacts/sk-verify-17-2026-09-13.md` §§1, 4.

@@ -18,3 +18,5 @@ Source: Y. Cornulier, "Groupes pleins-topologiques [d'après Matui, Juschenko, M
 Route: `derived-full-group-generated-by-good-three-cycles-citation`.
 
 **Review (sk-verify-16, 2026-09-13): PASS-WITH-FIXES.** Définition d_bon and Lemme eng_cb checked against bou1064.tex l.576–583. Fix: the arrow display U →φ φ(U) →φ^{−2} φ^{−1}(U) →φ U is rendered as an inline paraphrase, so read the quotation as verbatim up to the typesetting of that display. See `research/artifacts/sk-verify-16-2026-09-13-part3.md` §4.
+
+**Review (sk-verify-17, 2026-09-13): PASS at source.** bou1064.tex l.577–583 was re-read, and the hypothesis "sous-décalage minimal infini sur Z" matches. The proof at l.585 was read: generation by order-3 elements through simplicity, special elements on J-good refinements, and Matui 2006 Lemma 5.1 (not opened; an elementary fact about alternating groups on intervals). See `research/artifacts/sk-verify-17-2026-09-13.md` §§1, 4.

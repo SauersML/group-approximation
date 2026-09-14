@@ -19,3 +19,5 @@ distinct_from:
 Route: `simple-amenable-non-uniform-growth-from-thue-morse`.
 
 **Review (sk-verify-16, 2026-09-13): PASS**, conditional on `dyadic-substitution-derived-full-groups-non-uniform-growth` (PASS, same review) and the Matui and Juschenko–Monod imports. Thue–Morse satisfies the hypotheses, and the example is simple, f.g., amenable and infinite. See `research/artifacts/sk-verify-16-2026-09-13-part3.md` §3.
+
+**Review (sk-verify-17, 2026-09-13): PASS**, independent of sk-verify-16. For Thue–Morse the tower partition needs no Mossé import, and [[T]]′ is infinite, f.g., simple (Matui), amenable (Juschenko–Monod), of exponential growth (Cornulier Théorème `expo`, l.781–784), with ω = 1. Novelty wording: keep "not found in a bounded search". The bound was 4 web searches, the Kourovka 21.117 printed answer (V only), and greps of both Sauer–Schesler e-prints (the only amenable reference is Osin). Brieussel's amenable non-uniform examples are not simple. See `research/artifacts/sk-verify-17-2026-09-13.md` §§4–5.
