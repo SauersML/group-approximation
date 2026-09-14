@@ -22,3 +22,5 @@ Consequences:
 - **Invariant random subgroups.** An IRS `ν` with `ν{H : e_12(e_P) ∈ H} → 1` as `‖P‖ → 0` equals `δ_G`.
 
 The same holds for `EL_n(LC(X,F_q) ⋊ Z)/Z` with `n ≥ 3`. Proof: route `subshift-elementary-root-continuous-characters-proof`.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** Kakutani–Rokhlin pieces, the copy of `GL_(3K)(F_2)` through `v_ij`, restriction of scalars, Carderi–Thom Lemma 1.4 (import, quoted verbatim by the lane), the remainder inequality, simplicity through the GNS kernel, and Corollaries B, C and D re-derived. The F_q remark checked in outline only. See `research/artifacts/sk-review-3-2026-09-13-part5.md`.
