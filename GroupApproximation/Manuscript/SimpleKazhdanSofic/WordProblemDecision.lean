@@ -1,0 +1,205 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordTablePrimrec
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemCriterion
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The decision procedure on normal forms
+
+`simple_kazhdan_sofic_group.tex`, corollary `cor:wp`: "The word is trivial in `G_X` if and only if the
+tables of its difference from `I₃` vanish on `L(X)`, so `L(X)` computes the word problem."
+
+For a word `w` in letters `ι` with coefficient tables `tab`:
+* `wordM tab w` multiplies the word out;
+* `wordK` bounds the coordinates of the tables of its difference from `I₃`;
+* `wordWords L tab w` lists all words of length `2K + 1`.
+
+The procedure asks the language oracle about each of these words (`wordQueries`), and accepts iff
+every table parity vanishes at every answered word (`wordDecide`).  Everything is primitive recursive.
+-/
+
+namespace GroupApproximation
+namespace CylinderTables
+
+open Primrec Encodable
+
+variable {A : Type*}
+
+/-- The nine positions of a `3 × 3` matrix. -/
+def positions : List (Fin 3 × Fin 3) :=
+  [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
+
+theorem mem_positions (pq : Fin 3 × Fin 3) : pq ∈ positions := by
+  revert pq
+  decide
+
+/-- The table of the difference from `I₃` at a position. -/
+def diffTable (M : Mat A) (pq : Fin 3 × Fin 3) : Table A :=
+  M pq.1 pq.2 ++ matOne pq.1 pq.2
+
+/-- A bound for the coordinates of the tables of the difference from `I₃`. -/
+def matRadius (M : Mat A) : ℕ :=
+  positions.foldr (fun pq r => max (tableRadius (diffTable M pq)) r) 0
+
+/-- Every table parity of the difference from `I₃` vanishes at the word `v`. -/
+def windowCheck [DecidableEq A] (K : ℕ) (M : Mat A) (v : List A) : Bool :=
+  positions.all fun pq =>
+    ((diffTable M pq).map Prod.fst).all fun j => !windowParity K (diffTable M pq) j v
+
+/-- Multiplying out a word. -/
+def wordM {ι : Type*} (tab : ι → (Fin 3 × Fin 3) × Table A) (w : List (ι × Bool)) : Mat A :=
+  wordMat (w.map fun x => tab x.1)
+
+/-- The coordinate bound of a word. -/
+def wordK {ι : Type*} (tab : ι → (Fin 3 × Fin 3) × Table A) (w : List (ι × Bool)) : ℕ :=
+  matRadius (wordM tab w)
+
+/-- The words of length `2K + 1` about which the procedure asks. -/
+def wordWords {ι : Type*} (L : List A) (tab : ι → (Fin 3 × Fin 3) × Table A)
+    (w : List (ι × Bool)) : List (List A) :=
+  allWords L (2 * wordK tab w + 1)
+
+/-- The codes of the queried words. -/
+def wordQueries [Primcodable A] {ι : Type*} (L : List A) (tab : ι → (Fin 3 × Fin 3) × Table A)
+    (w : List (ι × Bool)) : List ℕ :=
+  (wordWords L tab w).map encode
+
+/-- Accept iff every table parity vanishes at every word answered `1`. -/
+def wordDecide [DecidableEq A] {ι : Type*} (L : List A) (tab : ι → (Fin 3 × Fin 3) × Table A)
+    (w : List (ι × Bool)) (answers : List ℕ) : Bool :=
+  (List.range (wordWords L tab w).length).all fun k =>
+    !decide (answers.getD k 0 = 1) ||
+      windowCheck (wordK tab w) (wordM tab w) ((wordWords L tab w).getD k [])
+
+theorem all_eq_foldr {β : Type*} (l : List β) (p : β → Bool) :
+    l.all p = l.foldr (fun b s => p b && s) true := by
+  induction l with
+  | nil => rfl
+  | cons b l ih => rw [List.all_cons, ih, List.foldr_cons]
+
+theorem allWords_eq_rec (L : List A) (n : ℕ) :
+    allWords L n = Nat.rec (motive := fun _ => List (List A)) [[]]
+      (fun _ ws => ws.flatMap fun v => L.map fun a => v ++ [a]) n := by
+  induction n with
+  | zero => rfl
+  | succ n ih =>
+    show (allWords L n).flatMap (fun v => L.map fun a => v ++ [a]) =
+      (Nat.rec (motive := fun _ => List (List A)) [[]]
+        (fun _ ws => ws.flatMap fun v => L.map fun a => v ++ [a]) n).flatMap
+          (fun v => L.map fun a => v ++ [a])
+    rw [ih]
+
+theorem primrec_allWords [Primcodable A] (L : List A) : Primrec (allWords L) :=
+  (Primrec.nat_rec₁ [[]]
+    (Primrec.list_flatMap Primrec.snd
+      (Primrec.list_map (Primrec.const L)
+        (Primrec.list_append.comp (Primrec.snd.comp Primrec.fst)
+          (Primrec.list_cons.comp Primrec.snd (Primrec.const []))).to₂).to₂).to₂).of_eq
+    fun n => (allWords_eq_rec L n).symm
+
+theorem primrec_cylRadius [Primcodable A] : Primrec (cylRadius : Cyl A → ℕ) :=
+  (Primrec.list_foldr Primrec.id (Primrec.const 0)
+    (Primrec.nat_max.comp (primrec_int_natAbs.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.snd)))
+      (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun _ => rfl
+
+theorem primrec_tableRadius [Primcodable A] : Primrec (tableRadius : Table A → ℕ) :=
+  (Primrec.list_foldr Primrec.id (Primrec.const 0)
+    (Primrec.nat_max.comp (primrec_cylRadius.comp (Primrec.snd.comp (Primrec.fst.comp Primrec.snd)))
+      (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun _ => rfl
+
+theorem primrec_cylAt [Primcodable A] [DecidableEq A] :
+    Primrec fun a : (ℕ × List A) × Cyl A => cylAt a.1.1 a.1.2 a.2 :=
+  (Primrec.list_foldr Primrec.snd (Primrec.const true)
+    (Primrec.and.comp ((Primrec.eq (α := Option A)).decide.comp
+      (Primrec.list_getElem?.comp (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))
+        (primrec_int_toNat.comp (Higman.primrec2_int_add.comp
+          (Primrec.fst.comp (Primrec.fst.comp Primrec.snd))
+          (Higman.primrec_int_natCast.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))))
+      (Primrec.option_some.comp (Primrec.snd.comp (Primrec.fst.comp Primrec.snd))))
+      (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun _ => rfl
+
+theorem primrec_windowParity [Primcodable A] [DecidableEq A] :
+    Primrec fun a : ((ℕ × List A) × Table A) × ℤ => windowParity a.1.1.1 a.1.2 a.2 a.1.1.2 :=
+  (Primrec.list_foldr (Primrec.snd.comp Primrec.fst) (Primrec.const false)
+    ((Primrec.dom_bool₂ xor).comp
+      (Primrec.and.comp ((Primrec.eq (α := ℤ)).decide.comp
+          (Primrec.fst.comp (Primrec.fst.comp Primrec.snd)) (Primrec.snd.comp Primrec.fst))
+        (primrec_cylAt.comp (Primrec.pair (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))
+          (Primrec.snd.comp (Primrec.fst.comp Primrec.snd)))))
+      (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun _ => rfl
+
+theorem primrec_diffTable [Primcodable A] :
+    Primrec fun a : Mat A × (Fin 3 × Fin 3) => diffTable a.1 a.2 :=
+  (Primrec.list_append.comp
+    (primrec_fin_app (primrec_fin_app Primrec.fst (Primrec.fst.comp Primrec.snd))
+      (Primrec.snd.comp Primrec.snd))
+    (primrec_fin_app (primrec_fin_app (Primrec.const (matOne : Mat A)) (Primrec.fst.comp Primrec.snd))
+      (Primrec.snd.comp Primrec.snd))).of_eq fun _ => rfl
+
+theorem primrec_matRadius [Primcodable A] : Primrec (matRadius : Mat A → ℕ) :=
+  (Primrec.list_foldr (Primrec.const positions) (Primrec.const 0)
+    (Primrec.nat_max.comp (primrec_tableRadius.comp (primrec_diffTable.comp
+        (Primrec.pair Primrec.fst (Primrec.fst.comp Primrec.snd))))
+      (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun _ => rfl
+
+theorem primrec_windowCheck [Primcodable A] [DecidableEq A] :
+    Primrec fun a : (ℕ × List A) × Mat A => windowCheck a.1.1 a.2 a.1.2 := by
+  have hdiff : Primrec fun q : ((ℕ × List A) × Mat A) × ((Fin 3 × Fin 3) × Bool) =>
+      diffTable q.1.2 q.2.1 :=
+    primrec_diffTable.comp (Primrec.pair (Primrec.snd.comp Primrec.fst)
+      (Primrec.fst.comp Primrec.snd))
+  have hinner : Primrec fun q : ((ℕ × List A) × Mat A) × ((Fin 3 × Fin 3) × Bool) =>
+      ((diffTable q.1.2 q.2.1).map Prod.fst).foldr
+        (fun j s => !windowParity q.1.1.1 (diffTable q.1.2 q.2.1) j q.1.1.2 && s) true :=
+    (Primrec.list_foldr (Primrec.list_map hdiff (Primrec.fst.comp Primrec.snd).to₂)
+      (Primrec.const true)
+      (Primrec.and.comp (Primrec.not.comp (primrec_windowParity.comp
+          (Primrec.pair (Primrec.pair (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))
+            (hdiff.comp Primrec.fst)) (Primrec.fst.comp Primrec.snd))))
+        (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun _ => rfl
+  refine (Primrec.list_foldr (Primrec.const positions) (Primrec.const true)
+    (Primrec.and.comp hinner (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun a => ?_
+  simp only [windowCheck, all_eq_foldr]
+
+theorem primrec_wordM [Primcodable A] {ι : Type*} [Primcodable ι]
+    {tab : ι → (Fin 3 × Fin 3) × Table A} (htab : Primrec tab) :
+    Primrec (wordM tab : List (ι × Bool) → Mat A) :=
+  primrec_wordMat.comp
+    ((Primrec.list_map Primrec.id (htab.comp (Primrec.fst.comp Primrec.snd)).to₂).of_eq fun _ => rfl)
+
+theorem primrec_wordWords [Primcodable A] {ι : Type*} [Primcodable ι] (L : List A)
+    {tab : ι → (Fin 3 × Fin 3) × Table A} (htab : Primrec tab) :
+    Primrec (wordWords L tab : List (ι × Bool) → List (List A)) :=
+  (primrec_allWords L).comp (Primrec.nat_double_succ.comp (primrec_matRadius.comp (primrec_wordM htab)))
+
+theorem primrec_wordQueries [Primcodable A] {ι : Type*} [Primcodable ι] (L : List A)
+    {tab : ι → (Fin 3 × Fin 3) × Table A} (htab : Primrec tab) :
+    Primrec (wordQueries L tab : List (ι × Bool) → List ℕ) :=
+  (Primrec.list_map (primrec_wordWords L htab) (Primrec.encode.comp Primrec.snd).to₂).of_eq
+    fun _ => rfl
+
+theorem primrec_wordDecide [Primcodable A] [DecidableEq A] {ι : Type*} [Primcodable ι] (L : List A)
+    {tab : ι → (Fin 3 × Fin 3) × Table A} (htab : Primrec tab) :
+    Primrec₂ (wordDecide L tab : List (ι × Bool) → List ℕ → Bool) := by
+  show Primrec fun a : List (ι × Bool) × List ℕ => wordDecide L tab a.1 a.2
+  have hW : Primrec fun q : (List (ι × Bool) × List ℕ) × (ℕ × Bool) => wordWords L tab q.1.1 :=
+    (primrec_wordWords L htab).comp (Primrec.fst.comp Primrec.fst)
+  refine (Primrec.list_foldr (Primrec.list_range.comp (Primrec.list_length.comp
+      ((primrec_wordWords L htab).comp Primrec.fst))) (Primrec.const true)
+    (Primrec.and.comp (Primrec.or.comp (Primrec.not.comp ((Primrec.eq (α := ℕ)).decide.comp
+        ((Primrec.list_getD 0).comp (Primrec.snd.comp Primrec.fst) (Primrec.fst.comp Primrec.snd))
+        (Primrec.const 1)))
+      (primrec_windowCheck.comp (Primrec.pair
+        (Primrec.pair ((primrec_matRadius.comp (primrec_wordM htab)).comp (Primrec.fst.comp Primrec.fst))
+          ((Primrec.list_getD []).comp hW (Primrec.fst.comp Primrec.snd)))
+        ((primrec_wordM htab).comp (Primrec.fst.comp Primrec.fst)))))
+      (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun a => ?_
+  simp only [wordDecide, all_eq_foldr]
+  rfl
+
+end CylinderTables
+end GroupApproximation
+
+#audit_axioms GroupApproximation.CylinderTables.primrec_allWords
+#audit_axioms GroupApproximation.CylinderTables.primrec_windowCheck
+#audit_axioms GroupApproximation.CylinderTables.primrec_wordQueries
+#audit_axioms GroupApproximation.CylinderTables.primrec_wordDecide
