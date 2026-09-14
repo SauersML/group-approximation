@@ -51,3 +51,12 @@ Route changes at the tip, with carriers:
 - CLAIM 129–132: least period N_ℓ ≥ #words, and "a subshift with boundedly many words of each length is finite", so N_ℓ → ∞.  Module `GroupApproximation/Manuscript/SimpleKazhdanSofic/FiniteModelsLeastPeriod.lean`.
 - CLAIM 134–145: D_ℓ(f)δ_t = f(T^t y_ℓ)δ_t on F₂^{Z/N_ℓ}, φ_ℓ = Σ D_ℓ(f_j)P^j, covariance, identities for large ℓ, φ_ℓ(r) ≠ 0 for large ℓ.  Module `GroupApproximation/Manuscript/SimpleKazhdanSofic/FiniteModelsAsymptotic.lean`, exposing the named Prop ms-core-3 consumes.
 - Kept: `FiniteModelsRing` (`exists_matrixModel_clopenCrossedProduct`), which carries the injective finite ring models that ms-core-3's landed `FiniteModelsGroup` (3d1ce154d) consumes.
+
+## 21:22 resume: note at 9047d0d3c, census d11e91f6e
+
+- "Finite models" is l.130–187. My sentences l.131–160 survive except for two rewritten sentences (new keys):
+  - 22c3d767c235: "the forward orbit of x is dense", carried by the new `FiniteModelsForwardOrbit.lean` (in probe);
+  - b4a7a870ce39: the finiteness now cites MorseHedlund38; `finite_of_ncard_language_le` proves it.
+- LANDED b2293f3cc `FiniteModelsLeastPeriod.lean` (probe 0913-212639-54754, module BUILT; blob md5 equals the green record): `periodicExt`, `language_periodicExt`, `word_periodicExt_emod`, `leastPeriod`, `ncard_language_le_leastPeriod`, `finite_of_ncard_language_le`, `tendsto_ncard_language`. Queued for wiring.
+- `FiniteModelsAsymptotic.lean`: first probe red (binder types, being fixed). `FiniteModelsForwardOrbit.lean`: authored.
+- Rows re-keyed at d11e91f6e (tip 9047d0d3c verified): 2 definition, 1 structural, 5 formalized, 6 partial.
