@@ -1,7 +1,7 @@
 import Mathlib.Computability.TuringDegree
 import Mathlib.Dynamics.SymbolicDynamics.Basic
 import Mathlib.SetTheory.Cardinal.Continuum
-import Mathlib.Data.Real.Irrational
+import Mathlib.NumberTheory.Real.Irrational
 import Mathlib.GroupTheory.Subgroup.Simple
 import GroupApproximation.Dynamics.ClopenCrossedProduct
 import GroupApproximation.Leavitt.ElementaryGroup
@@ -50,17 +50,13 @@ def subshiftHomeo (S : Subshift A ℤ) : S.carrier ≃ₜ S.carrier where
   left_inv x := by
     apply Subtype.ext
     funext n
-    show shift (-1) (shift 1 x.1) n = x.1 n
-    simp only [shift_apply]
-    congr 1
-    omega
+    show x.1 (1 + (-1 + n)) = x.1 n
+    exact congrArg x.1 (by omega)
   right_inv x := by
     apply Subtype.ext
     funext n
-    show shift 1 (shift (-1) x.1) n = x.1 n
-    simp only [shift_apply]
-    congr 1
-    omega
+    show x.1 (-1 + (1 + n)) = x.1 n
+    exact congrArg x.1 (by omega)
   continuous_toFun :=
     ((continuous_shift 1 : Continuous (shift (1 : ℤ) : (ℤ → A) → ℤ → A)).comp
       continuous_subtype_val).subtype_mk fun x => S.mapsTo 1 x.2
