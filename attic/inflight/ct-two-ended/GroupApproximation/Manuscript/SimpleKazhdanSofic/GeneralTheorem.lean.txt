@@ -121,10 +121,12 @@ end Dynamics
 
 /-! ## Matricial rings and markings -/
 
-/-- **`R` is matricial via `φ_k`** (tex l.113–117). -/
+/-- **`R` is matricial via `φ_k`** (tex l.113–117), with `N_k ≥ 1`.  The statement speaks of the finite simple
+groups `SL_{nN_k}(F₂)`, so `M_{N_k}(F₂)` is a nonzero matrix algebra.  Size-zero models satisfy every other
+axiom, and infinitely many of them would break the marked convergence (lane ms-core-3). -/
 def IsMatricialVia {R : Type*} [Ring R] (S : Finset R) (N : ℕ → ℕ)
     (φ : ∀ k, R → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)) : Prop :=
-  (∀ k, φ k 1 = 1) ∧ (∀ k, Subring.closure (φ k '' (S : Set R)) = ⊤) ∧
+  (∀ k, 0 < N k) ∧ (∀ k, φ k 1 = 1) ∧ (∀ k, Subring.closure (φ k '' (S : Set R)) = ⊤) ∧
     ∀ r s : R, ∀ᶠ k in atTop, φ k (r + s) = φ k r + φ k s ∧ φ k (r * s) = φ k r * φ k s
 
 /-- The markings are indexed by pairs `i ≠ j` and elements `s ∈ S`. -/
@@ -158,9 +160,8 @@ def PrintedSimpleKazhdanGeneral : Prop :=
         IsSimpleGroup ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2))) ∧
         HasKazhdanPropertyT.{0, 0} ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2))) ∧
         IsMarkedLimit (elementaryMarking n S) (matricialMarking n S N φ) ∧
-        (∀ᶠ k in atTop, 0 < N k ∧
-          IsSimpleGroup ↥(elementaryGroup (Fin n) (Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)))) ∧
-        (∀ k, 0 < N k →
+        (∀ k, IsSimpleGroup ↥(elementaryGroup (Fin n) (Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)))) ∧
+        (∀ k,
           (elementaryGroup (Fin n) (Matrix (Fin (N k)) (Fin (N k)) (ZMod 2))).map
               (elementaryBlockUnitEquiv (ι := Fin n) (κ := Fin (N k)) (R := ZMod 2)).toMonoidHom =
             (AlgebraicK.detUnits (ι := Fin n × Fin (N k)) (k := ZMod 2)).ker) ∧
@@ -254,17 +255,6 @@ theorem tendsto_card_of_isMarkedLimit [Infinite G] (hfin : ∀ ℓ, Finite (H �
     _ ≤ Fintype.card (H ℓ) := Fintype.card_le_of_injective _ hinj
     _ = Nat.card (H ℓ) := Nat.card_eq_fintype_card.symm
 
-/-- The finite groups of a marked limit converging to a nontrivial group are eventually nontrivial. -/
-theorem eventually_nontrivial_of_isMarkedLimit [Nontrivial G] (hlim : IsMarkedLimit s σ) :
-    ∀ᶠ ℓ in atTop, Nontrivial (H ℓ) := by
-  obtain ⟨g, hg⟩ := exists_ne (1 : G)
-  obtain ⟨w, hw⟩ := exists_word_of_isMarkedLimit hlim g
-  obtain ⟨-, -, hwl⟩ := hlim
-  refine (hwl w).mono fun ℓ hℓ => ?_
-  by_contra hnt
-  rw [not_nontrivial_iff_subsingleton] at hnt
-  exact hg (by rw [← hw]; exact hℓ.mp (@Subsingleton.elim _ hnt _ _))
-
 end MarkedLimits
 
 theorem finite_elementaryGroup_matrix (n N : ℕ) :
@@ -296,21 +286,10 @@ theorem printedSimpleKazhdanGeneral_of_pieces (hinf : PrintedGeneralElementaryIn
       atTop atTop :=
     @tendsto_card_of_isMarkedLimit _ _ _ _ _ _ _ hInf (fun k => finite_elementaryGroup_matrix n (N k))
       hlim
-  have hev : ∀ᶠ k in atTop, 0 < N k ∧
-      IsSimpleGroup ↥(elementaryGroup (Fin n) (Matrix (Fin (N k)) (Fin (N k)) (ZMod 2))) := by
-    haveI : Nontrivial ↥(elementaryGroup (Fin n) (ActionCrossedProduct α (ZMod 2))) := hG.toNontrivial
-    refine (eventually_nontrivial_of_isMarkedLimit hlim).mono fun k hk => ?_
-    have hpos : 0 < N k := by
-      by_contra h0
-      have hN : N k = 0 := by omega
-      haveI : IsEmpty (Fin (N k)) := by rw [hN]; infer_instance
-      have hsub : Subsingleton
-          ↥(elementaryGroup (Fin n) (Matrix (Fin (N k)) (Fin (N k)) (ZMod 2))) :=
-        ⟨fun x y => Subtype.ext (Units.ext (Matrix.ext fun _ _ => Matrix.ext fun a _ => isEmptyElim a))⟩
-      exact (not_nontrivial_iff_subsingleton.mpr hsub) hk
-    exact ⟨hpos, hsimpleM n hn (N k) hpos⟩
-  exact ⟨hInf, KazhdanFiniteGeneration.fg_of_hasKazhdanPropertyT _ hT, hG, hT, hlim, hev,
-    fun k hk => printedBlockElementarySpecialLinear n hn (N k) hk,
+  have hpos : ∀ k, 0 < N k := And.left hφ
+  exact ⟨hInf, KazhdanFiniteGeneration.fg_of_hasKazhdanPropertyT _ hT, hG, hT, hlim,
+    fun k => hsimpleM n hn (N k) (hpos k),
+    fun k => printedBlockElementarySpecialLinear n hn (N k) (hpos k),
     hexp (ActionCrossedProduct α (ZMod 2)) S hS1 hS N φ hφ n hn hcard⟩
 
 end SimpleKazhdanSofic
@@ -319,5 +298,4 @@ end GroupApproximation
 /-! ### Axiom audit -/
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.tendsto_card_of_isMarkedLimit
-#audit_axioms GroupApproximation.SimpleKazhdanSofic.eventually_nontrivial_of_isMarkedLimit
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.printedSimpleKazhdanGeneral_of_pieces
