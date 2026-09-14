@@ -203,6 +203,20 @@ Ownership check 09-13 ~18:45: no walk-level cell kept cell on origin, in the sha
     follows);
   - `cellPocketWalkSideRelatorCell_of_eitherFollows : CellPocketWalkOuterOffSideStatement → CellPocketWalkEitherFollowsStatement →
     CellPocketWalkSideRelatorCellStatement`.
+- LANDED 384e67136 (probe 0913-185241-49157 GREEN, BUILT, first try), unwired, queued after `OsinPocketCellKeptCellNoncrossing`
+  and `OsinPocketMultipleEdgeCopy`:
+  - `CellPocketWalkEitherFollowsStatement`: with the clean walk data, the outer or the inner cycle of the noncrossing walk follows
+    its boundary (new named residual, no owner yet).
+  - `cellPocketWalkSideRelatorCell_of_eitherFollows`: orientation (`walk_orient`, `isNoncrossingClosedWalk_of_orient`),
+    `leastArea_of_oEquivalent S.equiv`, the outer-off-side residual and the either-follows residual, then
+    `exists_kept_of_noncrossingCellWalk_of_leastArea`.
+- Residuals of `CellPocketWalkSideRelatorCellStatement`: `CellPocketWalkOuterOffSideStatement` (w1-binder-3, per main) and
+  `CellPocketWalkEitherFollowsStatement` (unowned). A configuration where neither boundary cycle follows would need a builder that
+  does not use following; none is known on main.
+
+### Item 4 status
+
+Kept cell and wrapper landed. Nothing open in this lane's binder-5 share beyond naming the either-follows residual.
 
 ## Progress log
 
