@@ -40,6 +40,8 @@ requires:
   - orthogonal-popa-corners-for-kazhdan-approximants-small-trace
   - finite-dimensional-combs-generate-popa-algebras
   - comb-tooth-tree-stages-are-residually-finite-dimensional
+  - cyclic-factor-subshift-groups-have-ring-type-shadows
+  - stable-finite-actions-extension-sofic-iff-class-norm-vanishes
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
@@ -53,3 +55,5 @@ Members added by sk-cairn-steward-2 (2026-09-13, third pass, sk landings to 22:4
 Members added by sk-cairn-steward-2 (2026-09-13, fourth pass, sk landings to 22:56): `generic-limit-of-subshift-sl-models-is-simple-kazhdan`.
 
 Members added by sk-cairn-steward-4 (2026-09-14, wave-12 sk landings): `comb-tooth-tree-stages-are-residually-finite-dimensional`.
+
+Members added by sk-cairn-steward-4 (2026-09-14, second pass): `cyclic-factor-subshift-groups-have-ring-type-shadows` `stable-finite-actions-extension-sofic-iff-class-norm-vanishes`.

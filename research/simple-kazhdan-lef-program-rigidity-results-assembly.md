@@ -20,6 +20,7 @@ requires:
   - peirce-root-preserving-subshift-el3-isos-force-orbit-equivalence
   - positive-entropy-el-groups-avoid-low-complexity-hosts
   - subshift-el3-diagonal-recognition-fails-up-to-g-conjugacy
+  - subshift-group-isomorphism-preserves-rational-spectrum
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
@@ -29,3 +30,5 @@ Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `ca
 Members added by sk-cairn-steward-2 (2026-09-13, second pass, sk landings to 22:34): `rank-four-subshift-groups-see-rational-spectrum`.
 
 Members added by sk-cairn-steward-2 (2026-09-13, third pass, sk landings to 22:47): `continuum-many-subshift-el-groups-pairwise-non-embeddable` `diagonal-recognition-makes-subshift-el3-isos-standard` `peirce-root-preserving-subshift-el3-isos-force-orbit-equivalence` `positive-entropy-el-groups-avoid-low-complexity-hosts`.
+
+Members added by sk-cairn-steward-4 (2026-09-14, second pass): `subshift-group-isomorphism-preserves-rational-spectrum`.
