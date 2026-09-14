@@ -1,0 +1,158 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMapSmallFaces
+import GroupApproximation.GGT.VanKampen.CombMapRestrictionFaceClasses
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4: the nondegenerate small faces of the contact map, in two pieces
+
+`OsinLemma94ContactMapNondegenerateSmallFacesInput` (`OsinLemma94ContactMapSmallFaces.lean`) bounds
+the faces of degree less than six of `contactMap P` whose representatives `x` and `φ²x` start at
+different polygons.  Such a face is a two-gon `(f, a, f′, b)`, and it either holds an object or is
+empty.
+
+* `HoldsObject P F`: from a dart of `F`, advancing around the faces of the dual of the diagram and
+  crossing dual edges that the contact map does not retain (`CombMap.FaceClassStep`) reaches a dart
+  based at the face of an object, a relator cell or the exterior, that is no vertex of `F`.
+  - The corners of the boundary objects of `F` lie in its class, and they are excluded.
+  - A component of the contact map nested inside `F` always has an object vertex, so it is held.
+* `OsinLemma94ContactMapHoldingSmallFacesInput` (part 1, ms-intro-2): the nondegenerate small faces
+  holding an object number at most `K n`.  This is a nesting charge over the components.
+* `OsinLemma94ContactMapEmptyTwoGonInput` (part 2, ms-traces-1): a nondegenerate small face holding
+  no object contradicts the choice of the family.  The merge runs through sectors of the two polygon
+  faces.
+* `osinLemma94ContactMapNondegenerateSmallFacesInput_of_pieces`: the nondegenerate count from the
+  two pieces, with the constant of part 1.  **This is a reduction: both pieces are open.**
+
+Model tests (hand).
+* The square `a – f – b – f′` of two rich polygons around a relator cell `c` that no rich polygon
+  runs along.  The inner face holds `c`, since its class reaches a dart of `c` and `c` is no vertex
+  of the face.  The outer face holds the exterior when the exterior is no vertex.
+* The same square with a nested component `c – g – d` inside the inner face.  The inner face holds
+  `c`, through the class across the non-retained edges up to the corners of `c`.
+* The same square with only `G`-faces and selected regions inside.  The inner face holds no object:
+  its class reaches only corners of `a` and `b` and darts of `G`-faces.  This is the empty two-gon of
+  part 2.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (through the contact count of Osin's Lemma 9.4,
+arXiv:math/0411039v3, §9); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open GroupApproximation.GGT.VanKampen.UnboundEstimate
+open scoped Classical
+
+namespace OsinLemma94RealizedPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+/-- **A face of the contact map holds an object**: its face class in the dual of the diagram, off the
+retained edges, reaches a dart based at the face of an object that is no vertex of the face. -/
+def HoldsObject (P : OsinLemma94RealizedPolygons S) (F : P.contactMap.Face) : Prop :=
+  ∃ x : P.contactMap.Dart, P.contactMap.faceOf x = F ∧
+    ∃ y : S.diagram.toCombMap.dual.Dart,
+      Relation.EqvGen (CombMap.FaceClassStep S.diagram.toCombMap.dual P.ContactKeep) x.1 y ∧
+        ∃ o : Option (Fin S.diagram.rCellCount), S.diagram.toCombMap.faceOf y = objectFace S o ∧
+          ∀ z : P.contactMap.Dart, P.contactMap.faceOf z = F →
+            S.diagram.toCombMap.faceOf z.1 ≠ objectFace S o
+
+/-- A nondegenerate small face: degree less than six, representatives at different polygons. -/
+def NondegenerateSmallFace (P : OsinLemma94RealizedPolygons S) (F : P.contactMap.Face) : Prop :=
+  P.contactMap.faceDegree F < 6 ∧
+    ∀ x, P.contactMap.faceOf x = F → P.contactColour x = true →
+      P.contactMap.vertexOf x ≠
+        P.contactMap.vertexOf (P.contactMap.facePerm (P.contactMap.facePerm x))
+
+end OsinLemma94RealizedPolygons
+
+/-- **Part 1: the nondegenerate small faces holding an object** (open).  Under the binders of
+`OsinLemma94LongTransitionInput`, they number at most `K n`. -/
+def OsinLemma94ContactMapHoldingSmallFacesInput : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ K : ℕ, ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
+                    (Finset.univ.filter fun F : P.contactMap.Face =>
+                      P.NondegenerateSmallFace F ∧ P.HoldsObject F).card ≤ K * Delta.rCellCount
+
+/-- **Part 2: an empty nondegenerate small face contradicts the choice of the family** (open).
+Under the binders of `OsinLemma94LongTransitionInput`, a nondegenerate face of degree less than six
+of `contactMap P` that holds no object gives a contradiction. -/
+def OsinLemma94ContactMapEmptyTwoGonInput : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
+                    ∀ F : P.contactMap.Face, P.NondegenerateSmallFace F → ¬ P.HoldsObject F →
+                      False
+
+/-- **The nondegenerate small faces from the two pieces**, with the constant of part 1, threshold
+`max ε₁ ε₂` and `ρ₀ = max ρ₁ ρ₂`. -/
+theorem osinLemma94ContactMapNondegenerateSmallFacesInput_of_pieces
+    (hhold : OsinLemma94ContactMapHoldingSmallFacesInput.{u, w, v})
+    (hempty : OsinLemma94ContactMapEmptyTwoGonInput.{u, w, v}) :
+    OsinLemma94ContactMapNondegenerateSmallFacesInput.{u, w, v} := by
+  intro _ _ _ D hhyper lambda c mu h1 h2 h3 h4 h5
+  obtain ⟨e1, he1⟩ := hhold D hhyper lambda c mu h1 h2 h3 h4 h5
+  obtain ⟨e2, he2⟩ := hempty D hhyper lambda c mu h1 h2 h3 h4 h5
+  refine ⟨max e1 e2, fun eps heps => ?_⟩
+  obtain ⟨K, r1, hr1, hK⟩ := he1 eps ((le_max_left _ _).trans heps)
+  obtain ⟨r2, _, hE⟩ := he2 eps ((le_max_right _ _).trans heps)
+  refine ⟨K, max r1 r2, lt_of_lt_of_le hr1 (le_max_left _ _),
+    fun rho hrho W hW Delta cuts hleast hcells hbelow S hcard hminimal P hmax => ?_⟩
+  have hhold' := hK rho ((le_max_left _ _).trans hrho) W hW Delta cuts hleast hcells hbelow S hcard
+    hminimal P hmax
+  have hsub : (Finset.univ.filter fun F : P.contactMap.Face =>
+      P.contactMap.faceDegree F < 6 ∧
+        ∀ x, P.contactMap.faceOf x = F → P.contactColour x = true →
+          P.contactMap.vertexOf x ≠
+            P.contactMap.vertexOf (P.contactMap.facePerm (P.contactMap.facePerm x))) ⊆
+      (Finset.univ.filter fun F : P.contactMap.Face =>
+        P.NondegenerateSmallFace F ∧ P.HoldsObject F) := by
+    intro F hF
+    have hnd : P.NondegenerateSmallFace F := (Finset.mem_filter.mp hF).2
+    by_cases hh : P.HoldsObject F
+    · exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, hnd, hh⟩
+    · exact (hE rho ((le_max_right _ _).trans hrho) W hW Delta cuts hleast hcells hbelow S hcard
+        hminimal P hmax F hnd hh).elim
+  exact (Finset.card_le_card hsub).trans hhold'
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94ContactMapNondegenerateSmallFacesInput_of_pieces
