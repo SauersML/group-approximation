@@ -273,7 +273,7 @@ def FaceSetBoundary.glue {F₁ F₂ : Finset Delta.toCombMap.Face}
       have hstep₁ : BoundaryStep Delta F₁ (P.getLast hPne) s :=
         hj₁ (P.getLast hPne) hx s (by simp)
       have hstep₂ : BoundaryStep Delta F₂ (Delta.toCombMap.alpha s) y :=
-        hj₂ (Delta.toCombMap.alpha s) (by simp [List.getLast?_map, List.getLast?_reverse]) y hy
+        hj₂ (Delta.toCombMap.alpha s) (by simp [List.getLast?_reverse]) y hy
       have hmove : InternalBoundaryMove Delta (F₁ ∪ F₂) s
           (Delta.toCombMap.facePerm (Delta.toCombMap.alpha s)) :=
         ⟨Finset.mem_union_left F₂ hstep₁.2.1.1, Finset.mem_union_right F₁ hstep₂.1.1, rfl⟩
