@@ -1,0 +1,396 @@
+{
+ "lane": "gk3-ternary-bilinear",
+ "controls_job_792088": {
+  "K1_planted_lambda1_sat": true,
+  "K1_relaxation_sat": true,
+  "K2_every_slice_unsat_verified": true,
+  "K2_relaxation_unsat_verified": true
+ },
+ "exhaust": {
+  "mix2_lift2_C3": {
+   "job": 792373,
+   "sizes": {
+    "lift_ball": 38,
+    "C": 147,
+    "P": 729,
+    "d": 9,
+    "image_feasible_alpha0": true
+   },
+   "totals": {
+    "sat": 0,
+    "unsat_verified": 19683,
+    "unsat_unverified": 0
+   },
+   "cover_contiguous": true,
+   "shards": [
+    {
+     "file": "exh-r3-s0.json",
+     "lo": 0,
+     "hi": 1231,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 275.8,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s1.json",
+     "lo": 1231,
+     "hi": 2462,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 387.2,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s2.json",
+     "lo": 2462,
+     "hi": 3693,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 394.4,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s3.json",
+     "lo": 3693,
+     "hi": 4924,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 426.8,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s4.json",
+     "lo": 4924,
+     "hi": 6155,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 715.9,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s5.json",
+     "lo": 6155,
+     "hi": 7386,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 398.8,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s6.json",
+     "lo": 7386,
+     "hi": 8617,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 519.7,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s7.json",
+     "lo": 8617,
+     "hi": 9848,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 424.7,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s8.json",
+     "lo": 9848,
+     "hi": 11079,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 538.6,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s9.json",
+     "lo": 11079,
+     "hi": 12310,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 792.0,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s10.json",
+     "lo": 12310,
+     "hi": 13541,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 570.8,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s11.json",
+     "lo": 13541,
+     "hi": 14772,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 549.3,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s12.json",
+     "lo": 14772,
+     "hi": 16003,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 335.5,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s13.json",
+     "lo": 16003,
+     "hi": 17234,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 486.9,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s14.json",
+     "lo": 17234,
+     "hi": 18465,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1231,
+      "unsat_unverified": 0
+     },
+     "seconds": 574.6,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    },
+    {
+     "file": "exh-r3-s15.json",
+     "lo": 18465,
+     "hi": 19683,
+     "counts": {
+      "sat": 0,
+      "unsat_verified": 1218,
+      "unsat_unverified": 0
+     },
+     "seconds": 881.3,
+     "controls": {
+      "K1_planted_lambda1_sat": true,
+      "K1_relaxation_sat": true,
+      "K2_every_slice_unsat_verified": true,
+      "K2_relaxation_unsat_verified": true
+     },
+     "unverified": 0
+    }
+   ]
+  }
+ },
+ "relaxations": {
+  "rel-0.json": {
+   "job": 792374,
+   "args": {
+    "family": "mix2",
+    "lift_radius": 2,
+    "radius": 4
+   },
+   "sizes": {
+    "lift_ball": 38,
+    "C": 516,
+    "P": 729,
+    "d": 9,
+    "image_feasible_alpha0": true
+   },
+   "relaxation": {
+    "sat": true,
+    "stats": {
+     "columns": 5888,
+     "rows": 4884,
+     "rank": 2777
+    },
+    "seconds": 0.8
+   }
+  },
+  "rel-1.json": {
+   "job": 792374,
+   "args": {
+    "family": "mix2",
+    "lift_radius": 3,
+    "radius": 3
+   },
+   "sizes": {
+    "lift_ball": 147,
+    "C": 147,
+    "P": 729,
+    "d": 65,
+    "image_feasible_alpha0": true
+   },
+   "relaxation": {
+    "sat": true,
+    "stats": {
+     "columns": 10430,
+     "rows": 5495,
+     "rank": 3835
+    },
+    "seconds": 1.3
+   }
+  },
+  "rel-2.json": {
+   "job": 792374,
+   "args": {
+    "family": "mix",
+    "lift_radius": 1,
+    "radius": 1
+   },
+   "sizes": {
+    "lift_ball": 75,
+    "C": 75,
+    "P": 729,
+    "d": 30,
+    "image_feasible_alpha0": false
+   },
+   "relaxation": {
+    "sat": false,
+    "stats": {
+     "columns": 3053,
+     "rows": 4498,
+     "rank": 2771
+    },
+    "seconds": 0.2,
+    "certificate": {
+     "support": 1439,
+     "verified": true,
+     "note": "ok"
+    }
+   }
+  }
+ }
+}
