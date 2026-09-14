@@ -123,12 +123,12 @@ theorem sign_conj_of_commute (hσ : IsSignCocycle σ) {t a : Γ} (hta : t * a = 
     σ t (t⁻¹ * a) + σ (t⁻¹ * a * t) t⁻¹ = σ t t⁻¹ + (σ t a + σ a t) := by
   have hc1 : t⁻¹ * a = a * t⁻¹ := by
     rw [eq_mul_inv_iff_mul_eq, mul_assoc, ← hta, inv_mul_cancel_left]
-  have hc2 : t⁻¹ * a * t = a := by rw [mul_assoc, hta, inv_mul_cancel_left]
+  have hc2 : t⁻¹ * a * t = a := by rw [mul_assoc, ← hta, inv_mul_cancel_left]
   have h1 := hσ.cocycle t a t⁻¹
   have h2 := hσ.cocycle a t t⁻¹
   rw [mul_inv_cancel, hσ.map_one_right] at h2
   rw [hta] at h1
-  rw [hc1, hc2]
+  rw [hc2, hc1]
   exact zmod_two_conj_aux h1 h2
 
 /-- A coefficient at a commuting element with differing cocycle values vanishes. -/
@@ -138,8 +138,8 @@ theorem coefficient_eq_zero_of_commute (hσ : IsSignCocycle σ)
     (hr : twistedRightOperator σ t⁻¹ * T = T * twistedRightOperator σ t⁻¹)
     (hta : t * a = a * t) (hne : σ t a ≠ σ a t) : T (deltaOne Γ) a = 0 := by
   have hrel := coefficient_conj σ hσ t hl hr a
-  have hc2 : t⁻¹ * a * t = a := by rw [mul_assoc, hta, inv_mul_cancel_left]
-  rw [hc2, zsign_mul_zsign_mul, hc2.symm ▸ sign_conj_of_commute σ hσ hta,
+  have hc2 : t⁻¹ * a * t = a := by rw [mul_assoc, ← hta, inv_mul_cancel_left]
+  rw [zsign_mul_zsign_mul, sign_conj_of_commute σ hσ hta, hc2,
     zmod_two_add_eq_one_of_ne hne, zsign_add, zsign_one] at hrel
   have hs := zsign_mul_self (σ t t⁻¹)
   set s := zsign (σ t t⁻¹)

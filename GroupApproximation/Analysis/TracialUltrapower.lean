@@ -62,6 +62,7 @@ theorem inner_star_mul_self (T : H →L[ℂ] H) :
   show ⟪τ.vec, star T (T τ.vec)⟫_ℂ = _
   rw [ContinuousLinearMap.star_eq_adjoint, ContinuousLinearMap.adjoint_inner_right,
     inner_self_eq_norm_sq_to_K, Complex.ofReal_pow]
+  rfl
 
 theorem norm_apply_eq_of_inner_eq {T S : H →L[ℂ] H}
     (h : ⟪τ.vec, (star T * T) τ.vec⟫_ℂ = ⟪τ.vec, (star S * S) τ.vec⟫_ℂ) :
@@ -89,7 +90,9 @@ theorem norm_mul_apply_le {T S : H →L[ℂ] H} (hT : T ∈ M) (hS : S ∈ M) :
   rw [h1]
   calc ‖(star S * star T) τ.vec‖ = ‖star S (star T τ.vec)‖ := rfl
     _ ≤ ‖star S‖ * ‖star T τ.vec‖ := (star S).le_opNorm _
-    _ = ‖S‖ * ‖T τ.vec‖ := by rw [norm_star, τ.norm_star_apply hT]
+    _ = ‖S‖ * ‖T τ.vec‖ := by
+      rw [τ.norm_star_apply hT]
+      exact congrArg (· * ‖T τ.vec‖) (norm_star S)
 
 end TracialVector
 
@@ -114,17 +117,12 @@ def boundedSeq : StarSubalgebra ℂ (ℕ → (H →L[ℂ] H)) where
     exact ⟨fun n ↦ add_mem (ha n) (hb n), Ca + Cb,
       fun n ↦ (norm_add_le (a n) (b n)).trans (add_le_add (hCa n) (hCb n))⟩
   zero_mem' := ⟨fun _ ↦ zero_mem M, 0, fun _ ↦ by simp⟩
-  algebraMap_mem' c := by
-    refine ⟨fun _ ↦ M.toStarSubalgebra.algebraMap_mem c, ‖c‖, fun _ ↦ ?_⟩
-    show ‖algebraMap ℂ (H →L[ℂ] H) c‖ ≤ ‖c‖
-    rw [Algebra.algebraMap_eq_smul_one]
-    calc ‖c • (1 : H →L[ℂ] H)‖ ≤ ‖c‖ * ‖(1 : H →L[ℂ] H)‖ := norm_smul_le _ _
-      _ ≤ ‖c‖ * 1 := mul_le_mul_of_nonneg_left ContinuousLinearMap.norm_id_le (norm_nonneg c)
-      _ = ‖c‖ := mul_one _
+  algebraMap_mem' c :=
+    ⟨fun _ ↦ M.toStarSubalgebra.algebraMap_mem c, ‖algebraMap ℂ (H →L[ℂ] H) c‖, fun _ ↦ le_rfl⟩
   star_mem' := by
     intro a ha
     obtain ⟨ha, C, hC⟩ := ha
-    exact ⟨fun n ↦ star_mem (ha n), C, fun n ↦ by rw [Pi.star_apply, norm_star]; exact hC n⟩
+    exact ⟨fun n ↦ star_mem (ha n), C, fun n ↦ (le_of_eq (norm_star (a n))).trans (hC n)⟩
 
 theorem mem_boundedSeq_iff {a : ℕ → (H →L[ℂ] H)} :
     a ∈ boundedSeq M ↔ (∀ n, a n ∈ M) ∧ ∃ C : ℝ, ∀ n, ‖a n‖ ≤ C :=
@@ -146,7 +144,7 @@ def IsNull (a : boundedSeq M) : Prop :=
 
 theorem isNull_zero : IsNull τ ω 0 := by
   show Tendsto (fun n ↦ ‖((0 : boundedSeq M) : ℕ → (H →L[ℂ] H)) n τ.vec‖) (ω : Filter ℕ) (nhds 0)
-  simp only [ZeroMemClass.coe_zero, Pi.zero_apply, ContinuousLinearMap.zero_apply, norm_zero]
+  simp only [ZeroMemClass.coe_zero, Pi.zero_apply, zero_apply, norm_zero]
   exact tendsto_const_nhds
 
 theorem isNull_add {a b : boundedSeq M} (ha : IsNull τ ω a) (hb : IsNull τ ω b) :
