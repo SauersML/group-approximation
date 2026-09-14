@@ -174,3 +174,18 @@ Rows 7ff20576d4cf and 97e43ae93d14 are now formalized.  Every sentence of tex 14
 
 CLAIM partial-shift graph decomposition, union of sources and ranges, freeness => unique arrow (rows 34e1eeff13be, cd20a742dd3c, a3598c08b42c) `GroupApproximation/Dynamics/TransientPartialShiftGraphs.lean`
 CLAIM separating partition, first-occupied-atom representative, clopen representative set, refinement by occupied atoms, loop erasure (rows 1d0f9a56866c, fd026a61f84f, 46f3810145ee, 5079b22a3633, ff376e50f433) `GroupApproximation/Dynamics/TransientAtomRepresentatives.lean`
+
+### Result (23:2x): route-difference rows of tex 1485-1503
+
+- LANDED 1684652bd `GroupApproximation/Dynamics/TransientPartialShiftGraphs.lean` (probe 0913-213245-30245 GREEN, BUILT).
+  The first probe 0913-203849-76048 was red (DecidableEq k, a section binder); its `.green.` record is the mixed-record artifact.
+  - `printedPartialShiftGraphExpansion` (tex 1487-1489): every x in I is sum_g sum_{c ne 0} c 1_{D_{g,c}} u^g, domains compact clopen off CR(T).
+  - `printedSourceRangeUnion` (tex 1489-1490): C is the union of the sources and ranges of the graphs and their inverses; clopen, compact, off CR(T), carries every coefficient.
+  - `transientCellsStatement_sourceRangeUnion`, `transientIdealLocallyMatricialStatement_sourceRangeUnion`: the cells and local matriciality over that C, closed.
+  - `Dynamics.printedFreenessUniqueArrow` (tex 1492-1493).
+- Finding: `exists_clopen_support` on main already builds its K as exactly this union, inside the proof. The old reason on cd20a742dd3c (not their union) described the statement, not the construction.
+- Flipped to formalized: 34e1eeff13be, cd20a742dd3c, a3598c08b42c.
+- Kept partial, reasons tightened in the rows:
+  - ff376e50f433: loop erasure needs a path representation of reachableExponents, not on main;
+  - 1d0f9a56866c, fd026a61f84f, 46f3810145ee, 5079b22a3633: the atom route needs the tower rebuilt over atom representatives, since TransientTowerFamily and TransientTowerExpansion are keyed to least-exponent ones.
+- Queued for wiring at 1684652bd.
