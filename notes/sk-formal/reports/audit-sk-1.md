@@ -146,3 +146,130 @@ The superseded formalized and definition rows in `SK_SENTENCE_SUPERSEDED.tsv` at
 - **Re-keys:** after c8b6021ca and 37551fd93, to census 649cb1f80; after 4eee46fb3 and 696c4b602, held for a new census.
 - **09-14 after the reboot:** resumed and re-keyed to census aa6f988f4 (5 formalized, 3 definition), then audited the 4 new rows.
 - Nothing is keyed to an older census.
+
+## Audit at census 9cb80166d (note 8b36733d7, md5 29d63f7944bccccbf9a91b0b2714c0b4)
+
+Ordered by main 09-14: every formalized or definition row. main split the 70 rows, and oa-expanders took 8: c85748f7d742, c1c1f14f5a22, 452e0cc9a605 and five skf-degrees rows. This section covers the other 62: 59 new rows, plus 3 audited at aa6f988f4 whose sentences are unchanged.
+
+Census d91e3fbac (10:17) re-merged the rows at the same note: no sentence hash changed, and none of these 62 rows changed status. It grades 35 more rows formalized or definition. 17 fall in this lane's ranges (tex 179–242 and 336–403), and a follow-up section will audit them. The other 18 are in oa-expanders' ranges.
+
+- **Method:**
+  - Census decls resolved to modules on origin (188 references; 1 unresolved, in oa-expanders' row 452e0cc9a605).
+  - Each printed sentence read against the displayed statements of its named carriers (`Printed…` bodies included).
+  - Root reachability from the import closure of `GroupApproximation.lean` at the tip.
+- **Axioms and compile evidence:** one probe-only module (not landed) imported all 53 carrier modules and ran `#audit_axioms` on all 177 resolvable decls.
+  - Probe 0914-100437-30085 on the census clone at base 20140a5a0: PROBE GREEN, BUILT, 0 errors.
+  - `#audit_axioms` throws on any axiom outside propext, Classical.choice and Quot.sound, so every carrier module compiles at origin bytes and depends on classical axioms only.
+  - No carrier file changed between the probe base and the tip 4e0c613ce.
+
+| key | tex | status | owner | verdict | root |
+|---|---|---|---|---|---|
+| 789a7c930456 | 133-133 | definition | ct-involution | PASS | unwired |
+| c402b5701867 | 133-136 | formalized | ct-involution | PASS (note) | unwired |
+| 55e4d3a287b9 | 136-138 | definition | ct-involution | PASS | unwired |
+| 8effae5524d5 | 138-139 | definition | ct-involution | PASS | reachable |
+| 173f18fa77ce | 139-140 | formalized | ct-involution | PASS | unwired |
+| 0e584234f12d | 141-143 | formalized | ct-involution | PASS | unwired |
+| 47723a292327 | 144-144 | formalized | ct-involution | PASS | unwired |
+| 9212b6e18210 | 144-146 | formalized | ct-involution | PASS (note) | unwired |
+| becd7a8e2072 | 147-148 | formalized | ct-involution | PASS | unwired |
+| a90478fb4258 | 151-153 | formalized | skf-consequences | PASS | unwired |
+| ac63c30b67dd | 153-155 | definition | skf-consequences | PASS | unwired |
+| f759c1db71a3 | 156-158 | formalized | skf-consequences | PASS | unwired |
+| 54ceec15a5e0 | 160-160 | formalized | skf-consequences | PASS | unwired |
+| 9c94086f2a8c | 160-162 | formalized | skf-consequences | PASS | unwired |
+| f7fd3c8f31ea | 162-164 | formalized | skf-consequences | PASS | unwired |
+| f7414546517d | 164-166 | formalized | skf-consequences | PASS | unwired |
+| 128014aac9d0 | 166-167 | formalized | skf-consequences | PASS | unwired |
+| d0c1d6b200d3 | 167-170 | formalized | skf-consequences | PASS | unwired |
+| 94e633f6ef6d | 170-171 | formalized | skf-consequences | PASS | unwired |
+| 01c951f8d2f2 | 171-173 | formalized | skf-consequences | PASS | unwired |
+| 96d063dce333 | 175-176 | definition | skf-consequences | PASS | unwired |
+| 5ce2f653f637 | 176-179 | formalized | skf-consequences | PASS | unwired |
+| 16fd7b95d922 | 182-185 | formalized | skf-consequences | PASS | unwired |
+| 224922eb8e98 | 189-192 | formalized | skf-consequences | FAIL | unwired |
+| a5ac663b1706 | 193-193 | formalized | skf-consequences | PASS (note) | unwired |
+| ebd3562205bb | 198-200 | formalized | skf-consequences | PASS | unwired |
+| 2cfda59ab817 | 202-205 | formalized | skf-consequences | PASS | reachable |
+| 8269b12fdd2c | 205-206 | formalized | skf-consequences | PASS | unwired |
+| 5a6ac852aa57 | 206-207 | formalized | skf-consequences | PASS | unwired |
+| 46368870a699 | 207-208 | formalized | skf-consequences | PASS | unwired |
+| 25fefb1e2ac1 | 211-214 | definition | ms-core-3 | PASS | unwired |
+| e4fd510a51c5 | 215-218 | formalized | ms-core-3 | PASS | reachable |
+| a339b883c9d3 | 223-224 | formalized | ms-core-3 | PASS | unwired |
+| db0ff25cc298 | 224-227 | formalized | ms-core-3 | PASS | unwired |
+| 3d7e4722fef8 | 227-229 | formalized | ms-core-3 | PASS (note) | unwired |
+| 9a9aa9313dca | 229-231 | formalized | ms-core-3 | PASS | unwired |
+| 879174153d4e | 239-240 | formalized | ms-core-3 | PASS | unwired |
+| 1dd960096ceb | 242-246 | formalized | ms-core-3 | PASS | unwired |
+| 46b4acb4ea4f | 246-247 | definition | ms-core-3 | PASS | unwired |
+| c1b8b83f890d | 257-258 | definition | ms-units | PASS | unwired |
+| a62656a98556 | 258-261 | formalized | ms-units | PASS | unwired |
+| fca8bece2919 | 261-263 | definition | ms-core-3 | PASS | unwired |
+| 6c900cb94747 | 263-268 | formalized | ms-core-3 | PASS | unwired |
+| 769f446cc3f5 | 268-270 | formalized | ms-core-3 | PASS | unwired |
+| 6e8db7db6717 | 279-281 | formalized | oa-mcduff | PASS | unwired |
+| 79e6fe57addb | 329-330 | formalized | sk-lef-ultra | PASS | unwired |
+| 8b9c8012260d | 331-333 | formalized | sk-lef-ultra | PASS | unwired |
+| 6af812c5b7d3 | 333-336 | formalized | sk-lef-ultra | PASS | unwired |
+| 3d1d910e3d9f | 338-341 | definition | sk-lef-ultra | PASS | unwired |
+| e4fdf594781d | 341-342 | formalized | sk-lef-ultra | PASS | unwired |
+| 8dce702e17be | 342-346 | formalized | sk-lef-ultra | PASS | unwired |
+| ef91849e35eb | 346-350 | formalized | sk-lef-ultra | PASS | unwired |
+| 2c6ae3ce7655 | 350-352 | formalized | sk-lef-ultra | PASS | unwired |
+| 11a7360569b8 | 353-354 | formalized | sk-lef-ultra | PASS | unwired |
+| 9b414612d181 | 359-360 | formalized | sk-lef-action | PASS | unwired |
+| 2bcb951d302e | 365-366 | formalized | sk-lef-action | PASS | unwired |
+| ee8c6f26a1da | 366-369 | formalized | sk-lef-action | PASS | unwired |
+| bd0a4c539428 | 371-374 | formalized | sk-lef-action | PASS | unwired |
+| e6ac216a5107 | 405-408 | formalized | sk-lef-assembly | PASS | unwired |
+| 95230f46af22 | 233-235 | formalized | oa-expanders | PASS (audited at aa6f988f4; sentence verbatim) | unwired |
+| 89a5cc12fe75 | 275-277 | formalized | skf-cite | PASS (audited at aa6f988f4; sentence verbatim) | reachable |
+| 61dddc00d418 | 328-329 | formalized | sk-lef-assembly | PASS (audited at aa6f988f4; sentence verbatim) | unwired |
+
+**Totals:** 62 rows, 61 PASS, 1 FAIL. Of the PASS rows, 56 of the 59 new rows have a carrier that is not root-reachable; see the wiring list below.
+
+### FAIL 224922eb8e98 (skf-consequences), display tex 189–192
+- **Printed:** `f u_a e_V f' u_b = f e_{aV} (f'∘a⁻¹) u_{ab} ∈ {0, ε_{a,b⁻¹}}`.
+- **Named carrier:** `General.single_mul_charFn_mul_single_mem` (GeneralCommutatorProducts l.122).
+  - It concludes only `single a f * single 1 (charFn V) * single b f' ∈ epsilonSpan B hV`, membership in the additive subgroup generated by all ε_{a'b'}, a', b' ∈ B.
+  - Neither the equality nor membership in {0, ε_{a,b⁻¹}} is stated, and no other declaration in the module states them (theorems: `mul_single_mul_apply`, `smul_charFn`, `isCovariantPair`, `charFn_mem_epsilonSpan`, `single_mul_charFn_mul_single_mem`, `mul_charFn_mul_mem`).
+  - The membership suffices for the printed argument (k − I_3 has entries in the span), so the route holds, but the row's carrier is weaker than the sentence.
+
+### Notes on PASS rows
+- **c402b5701867:** uniqueness of the finite sum is stated for two sums over a common index set. The printed uniqueness follows by padding with zero coefficients.
+- **9212b6e18210:** `FinitelyGeneratedRingGeneralRankElementaryPropertyT` quantifies rings in `Type` and uses `HasKazhdanPropertyT.{0,0}`.
+- **3d7e4722fef8:** `eq_one_of_ultraMap_eq_one` proves the kernel on G trivial, given simplicity of EL_n(R). The map's codomain is EL_n of the algebraic ultraproduct ring; its identification with ∏_ω SL_{3N_k}(F₂) is not stated.
+- **Simplicity rows:** the per-sentence carriers take the action law `hact` and freeness `hfree` as hypotheses. The closed endpoint `printedGeneralSimplicityStatement` (GeneralTheoremClosure) discharges them for `ClopenGroupCrossedProduct` with the printed freeness hypothesis.
+
+### Carrier modules of the 59 new rows that are not root-reachable at the tip
+wire-queue lines in `$NM/wire-queue.txt`, rebuilt 09-14:
+
+- `Dynamics.ClopenGroupCrossedProduct`: queue 1
+- `GroupTheory.AlgebraicUltraproductLEF`: queue 1
+- `GroupTheory.LevelCommutatorWords`: queue 1
+- `GroupTheory.LevelCommutatorWordsLevels`: queue 1
+- `Manuscript.SimpleKazhdanSofic.FiniteModelsAsymptotic`: queue 2
+- `Manuscript.SimpleKazhdanSofic.FiniteModelsLeastPeriod`: queue 2
+- `Manuscript.SimpleKazhdanSofic.GeneralCommutatorProducts`: queue 0
+- `Manuscript.SimpleKazhdanSofic.GeneralCommutatorSpan`: queue 0
+- `Manuscript.SimpleKazhdanSofic.GeneralRingPropertyT`: queue 1
+- `Manuscript.SimpleKazhdanSofic.GeneralRoot`: queue 0
+- `Manuscript.SimpleKazhdanSofic.GeneralRootCoefficients`: queue 0
+- `Manuscript.SimpleKazhdanSofic.GeneralSimplicityNormalSubgroup`: queue 1
+- `Manuscript.SimpleKazhdanSofic.GeneralSimplicityStatement`: queue 0
+- `Manuscript.SimpleKazhdanSofic.GeneralSmallSets`: queue 0
+- `Manuscript.SimpleKazhdanSofic.GeneralTowerCopy`: queue 0
+- `Manuscript.SimpleKazhdanSofic.GeneralTowerUnits`: queue 0
+- `Manuscript.SimpleKazhdanSofic.InfiniteSimpleICC`: queue 1
+- `Manuscript.SimpleKazhdanSofic.LamplighterAction`: queue 1
+- `Manuscript.SimpleKazhdanSofic.LamplighterModelSequence`: queue 1
+- `Manuscript.SimpleKazhdanSofic.LamplighterRing`: queue 1
+- `Manuscript.SimpleKazhdanSofic.LEFCharacterization`: queue 0
+- `Manuscript.SimpleKazhdanSofic.LEFLevelEmbedding`: queue 1
+- `Manuscript.SimpleKazhdanSofic.LEFRestrictedSum`: queue 1
+- `Manuscript.SimpleKazhdanSofic.MainFromGeneral`: queue 1
+- `Manuscript.SimpleKazhdanSofic.MatricialMarkedLimit`: queue 2
+- `Manuscript.SimpleKazhdanSofic.MatricialMarkedLimitWords`: queue 2
+- `Manuscript.SimpleKazhdanSofic.PeriodicMatrixUnits`: queue 2
+- `Manuscript.SimpleKazhdanSofic.SubshiftMatricial`: queue 2
