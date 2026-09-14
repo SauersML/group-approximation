@@ -186,6 +186,15 @@ CLAIM Euler span C6′ assembly GroupApproximation/GGT/VanKampen/Estimating/Osin
   - `TwoGonEulerGapInput` (c109573e3) is superseded: its content is proved in the gap-equation spelling.
 - 08:4x: after the reboot the rebuilt wire queue had lost five of my modules; re-queued (CuttingSides, CuttingSidesCount, CuttingClasses, CuttingClassesClosed, ClassHyp, EulerWalk, PocketFacesEuler).
 
+## CLAIM 8 (main 08:5x: reduce `TwoGonEulerSpanInput` to the edge conditions and the Euler pair)
+
+CLAIM span input from copy-clean GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonSpanOfCopyClean.lean
+
+- `PocketWalk.exists_noncrossing_decomposition_gap_of_copyCleanAt`: ms-inverses-2's decomposition with the gap equation kept (additive; their files untouched).
+- `TwoGonCopyCleanInput`, `TwoGonDecompositionEulerInput` (named residuals); `twoGonEulerSpanInput_of_copyCleanAt`, `twoGonHoldsInput_of_copyCleanEuler`.
+- Planned next: section-level forms with the `OsinTwoGonHoldsSectionStatement` preamble, and `osinTwoGonHoldsSection_of_copyCleanEuler`, for ct-rank-two-limit's V6 composition.
+- The Euler-pair spelling went to ms-inverses-2 in one message.
+
 ## State of C6′ on the Euler route
 
 `TwoGonHoldsInput` follows from `TwoGonEulerSpanInput` alone. Its producers:
