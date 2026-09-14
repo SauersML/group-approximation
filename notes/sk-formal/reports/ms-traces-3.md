@@ -55,3 +55,15 @@ All twelve modules are LANDED and queued in `wire-queue.txt`, about 2000 lines i
   - The tables handle 1 as `[(0, [])]`.
 - `OracleUse.OCode` duplicates the oracle codes in skf-degrees' unlanded `ContinuumManyDegrees`. It has the same constructors and semantics, and is now on origin; `ContinuumManyDegrees` can consume it.
 - Key `540fcf55264f` covers two clauses. This lane carries only the first (the antichain); the second ("the groups G_{X_α} … are as claimed") is skf-degrees' corollary assembly. Graded `partial` accordingly.
+
+## Item 3 (main, 09-14 ~09:30): the Questions block
+- Census 9cb80166d at tip 8b36733d7 (md5 29d63f7944bccccbf9a91b0b2714c0b4), l.510–529. Keys `25f820cbd165`, `1c40d21401f6`, `dc73886fdc13`, `85fe62a789f3`, `60be9d39afa5`, `7d13cf4208bc`, `7f61e23f0bee`.
+- Existing carriers (ct-involution, at retired keys `44b4aa4489ab` and `3606856b9a07`):
+  - `printedFinitelyPresentedLEFResiduallyFinite` and `printedNotFinitelyPresentedOfLEFSimpleInfinite`, closed (`QuestionsNotFinitelyPresented`, 04ba48c58);
+  - `printedGXNotFinitelyPresented_of_main`, conditional on `PrintedSimpleKazhdanSoficMain`;
+  - `printedConjugacyIsomorphism`, closed (`CrossedProductConjugacy`, 730da5240).
+- `printedSimpleKazhdanSoficMain` is closed on origin (b972efc71).
+- CLAIM `GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsClosed.lean`:
+  - the closed discharge `printedGXNotFinitelyPresented`;
+  - `PrintedSoficKazhdanExampleNotLEF`: a finitely presented infinite simple group is not LEF, and a finitely presented infinite simple sofic Kazhdan group is a finitely presented sofic Kazhdan group that is not residually finite (the printed reason: finitely presented LEF groups are residually finite, infinite simple groups are not).
+- CLAIM the seven new rows, naming ct-involution's carriers with credit. The split was sent to ct-involution in one message.
