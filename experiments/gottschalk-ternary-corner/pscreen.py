@@ -122,8 +122,13 @@ def family(name):
         gens["B"] = tu(["0", "10", "110", "111"], ["0", "100", "101", "11"])
         gens["C"] = tu(["0", "10", "11"], ["11", "0", "10"])
         gens["P"] = tu(["0", "10", "11"], ["10", "0", "11"])
-    if name == "mix":
+    if name in ("mix", "mix2"):
         gens["A2"] = tu(["00", "01", "1"], ["00", "1", "01"])
+    if name == "mix2":
+        gens["A"] = tu(["0", "10", "11"], ["00", "01", "1"])
+        gens["W"], gens["D"] = L.W, L.D
+        gens["sig00"] = L.diagonal_unit(["00", "01", "1"], [2, 1, 1])
+        gens["sig01"] = L.diagonal_unit(["00", "01", "1"], [1, 2, 1])
     if name in ("vwd", "eld3", "mix"):
         gens["W"], gens["D"] = L.W, L.D
     if name in ("eld3", "mix"):
@@ -242,6 +247,20 @@ def lifts_of(Sm, keys, target, samples, rng):
     return out
 
 
+def image_feasible(Sm, alpha, C, P):
+    """The same system after pi: beta' in pi(span C), n' in span{p - 1}, beta' pi(alpha) = 1 + n'.
+
+    If this fails, UNSAT upstairs is vacuous: the supports cannot even carry a left inverse of s0 in R.
+    """
+    a = Sm.evaluate(alpha)
+    el = Eliminator()
+    cols = [L.mul(Sm.units[k].val, a) for k in C]
+    cols += [L.add(p.val, L.ONE, -1) for p in P if not L.is_one(p.val)]
+    for j, col in enumerate(cols):
+        el.insert(j, col)
+    return el.solve(L.ONE) is not None
+
+
 def left_inverse_screen(Sm, alpha, C, P):
     one = Sm.one()
     el = Eliminator()
@@ -332,7 +351,7 @@ def main():
         sol = left_inverse_screen(Sm, alpha, C, P)
         phi = LAST_STATS.pop("phi", None)
         inst = {"support": len(alpha), "sat": sol is not None, "seconds": round(time.time() - t1, 1),
-                "stats": dict(LAST_STATS)}
+                "stats": dict(LAST_STATS), "image_feasible": image_feasible(Sm, alpha, C, P)}
         if phi is not None:
             ok, why = verify_dual_certificate({k: Sm.units[k] for k in C}, alpha, P, phi, rng=rng,
                                               alpha_units=Sm.units)
