@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: kervaire-laudenbach-holds-for-characteristic-zero-linear-sofic-groups
+id: kl-holds-for-char-zero-linear-sofic-groups
 kind: claim
 title: The Kervaire--Laudenbach conjecture holds for groups that are linear sofic over a field of characteristic zero
 distinct_from:

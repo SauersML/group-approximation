@@ -28,6 +28,6 @@ the matrix statement `amplified-algebraic-roots-for-nonsingular-equations`.
    odd characteristic* (2026-09-14): that premise is refuted by
    `amplified-roots-fail-in-odd-characteristic`, and every extension of an
    odd-characteristic field has the same characteristic. The characteristic-zero
-   case survives as `kervaire-laudenbach-holds-for-characteristic-zero-linear-sofic-groups`,
+   case survives as `kl-holds-for-char-zero-linear-sofic-groups`,
    through `amplified-algebraic-roots-in-characteristic-zero`. Characteristic 2
    is undecided.

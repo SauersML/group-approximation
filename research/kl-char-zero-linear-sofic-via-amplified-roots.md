@@ -3,7 +3,7 @@ rg: 2
 id: kl-char-zero-linear-sofic-via-amplified-roots
 kind: route
 title: Apply the rank-ultraproduct transfer over the algebraic closure of a characteristic-zero base field
-target: kervaire-laudenbach-holds-for-characteristic-zero-linear-sofic-groups
+target: kl-holds-for-char-zero-linear-sofic-groups
 requires: [linear-sofic-kl-from-amplified-algebraic-roots, amplified-algebraic-roots-in-characteristic-zero]
 artifacts:
   - research/artifacts/ideas-nonhyperlinear-2026-09-13.md
