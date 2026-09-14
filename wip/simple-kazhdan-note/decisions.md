@@ -589,6 +589,11 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Also PASS: iso-rigidity Peirce claims; diagonal recognition (F3); maximal subgroups and orbit stabilizers; QD unitary groups; bounded norms; generic limits (Pavlov–Schmieding checked word for word); the recursive non-exact groups (F1 base vertices, F2 girth → ∞).
     - F_q port: the mathematics is correct; printed-text fixes F1 (S_V placement) and F2 (write Z(G)).
     - DECIDED: rev4.2 = rev4.1 + C3 + C1 + S. sk-editor-5 builds a second variant with F_q; main picks after the compile (page budget).
+124. **sk-diagonal-recognition** (e5d6c6aeb8; unreviewed → sk-verify-16).
+    - REFUTED the open recognition claim as stated. The Fredholm index of half-orbit compressions is a homomorphism GL_3(R) → Z vanishing on E_3(R), and ind(diag(u,1,1)) = −1. So inn(diag(u,1,1)) is an OUTER automorphism of G_X that carries GL_3(LC(X,F_2)) to a subgroup not G_X-conjugate to any standard diagonal. ind mod 3 separates three conjugacy classes.
+    - Corrected open claim: recognition up to the normalizer N_Y. Theorem R′ (standardness with k ∈ N_Y) still gives SOE. One-group reformulation (H1)–(H3).
+    - The program open-problems conjunction is repaired.
+    - No note change: the rigidity Question is unaffected.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
