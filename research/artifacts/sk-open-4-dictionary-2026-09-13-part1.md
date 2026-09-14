@@ -75,7 +75,9 @@ Fix x ∈ X and V = F_2^{(Z)} with basis δ_n. Put π(f)δ_n = f(T^n x)δ_n and 
   - γ ∈ [[T]] with γ = T^{n_γ} has the unit a_γ = Σ_k u^k χ_{\{n_γ = k\}}, and π(a_γ)δ_n = δ_{σ(n)} with σ(n) = n + n_γ(T^n x).
   - For a bijection of Z with bounded displacement, T_{a_γ} has kernel span{δ_n : n ≥ 0, σ(n) < 0} and cokernel span{δ_m : m ≥ 0, σ^{-1}(m) < 0}. So ind(a_γ) = −φ(σ), where φ(σ) is the flux across 0.
   - The flux is the same across every cut, so Σ_{n=a}^{b} (σ(n) − n) = φ·(b − a) + O(w²). By Birkhoff at a μ-generic point, φ = ∫ n_γ dμ = I(γ), the Giordano–Putnam–Skau index.
-  - So **ind(a_γ) = −I(γ)**, and diag(a_γ,1,1) ∉ G_X whenever I(γ) ≠ 0. The embedding γ ↦ diag(a_γ, a_γ^{-1}, 1) (Whitehead) avoids this; sk-subgroups owns that embedding.
+  - So **ind(a_γ) = −I(γ)**, and diag(a_γ,1,1) ∉ G_X whenever I(γ) ≠ 0.
+  - ind kills commutators, so the derived group [[T]]' has index 0. It embeds in G_X through a ↦ diag(a,1,1), because diag(aba^{-1}b^{-1},1) is a product of Whitehead elements diag(c,c^{-1}); sk-subgroups owns that embedding.
+  - a ↦ diag(a, a^{-1}, 1) is not a homomorphism on noncommuting units.
 
 ## 3. Theorem S (the stable elementary group), q = 2
 For EVERY homeomorphism T of a Cantor set X (minimality not needed):
