@@ -1,4 +1,6 @@
 import GroupApproximation.Dynamics.ClopenGroupCrossedProduct
+import Mathlib.Topology.Separation.Profinite
+import Mathlib.Topology.Metrizable.Basic
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralCommutatorSpan
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralSimplicityNormalSubgroup
 
@@ -50,6 +52,22 @@ theorem isSimpleGroup_clopenGroupCrossedProduct {Λ Z : Type*} [Group Λ] [Topol
   exact isSimpleGroup_of_generalCommutatorWitness (isCovariantPair hact) hn
     (generalCommutatorWitness hact hfree (by omega))
 
+/-- **The printed hypotheses**: minimality as a hypothesis, topological freeness as "no nontrivial
+element fixes a nonempty open set", and a compact metrizable totally disconnected nonempty space
+(totally separated by Mathlib's instance for compact Hausdorff spaces). -/
+theorem isSimpleGroup_clopenGroupCrossedProduct_of_isOpen {Λ Z : Type*} [Group Λ]
+    [TopologicalSpace Z] [MulAction Λ Z] [ContinuousConstSMul Λ Z] [CompactSpace Z]
+    [TopologicalSpace.MetrizableSpace Z] [TotallyDisconnectedSpace Z] [Nonempty Z]
+    (hmin : MulAction.IsMinimal Λ Z)
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → ∀ U : Set Z, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z)
+    {n : ℕ} (hn : 3 ≤ n) :
+    IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))) := by
+  haveI := hmin
+  refine isSimpleGroup_clopenGroupCrossedProduct (fun ξ hξ => ?_) hn
+  by_contra hne
+  obtain ⟨z, hz, hmove⟩ := hfree ξ hξ _ isOpen_interior (Set.nonempty_iff_ne_empty.2 hne)
+  exact hmove (interior_subset hz)
+
 /-- **Printed simplicity for group actions** (`thm:general`, simplicity clause, and "Simplicity",
 tex l.151–210), over `ClopenGroupCrossedProduct Λ Z (ZMod 2)`. -/
 def PrintedGeneralSimplicityClopenGroup : Prop :=
@@ -64,6 +82,7 @@ theorem printedGeneralSimplicityClopenGroup : PrintedGeneralSimplicityClopenGrou
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.General.isSimpleGroup_clopenGroupCrossedProduct
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.General.printedGeneralSimplicityClopenGroup
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.General.isSimpleGroup_clopenGroupCrossedProduct_of_isOpen
 
 end General
 end SimpleKazhdanSofic

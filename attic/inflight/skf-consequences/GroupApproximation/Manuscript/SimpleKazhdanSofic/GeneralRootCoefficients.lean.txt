@@ -153,6 +153,7 @@ theorem exists_forall_coeff_mul_charFn_ne_zero [ContinuousConstSMul Λ Z]
     rw [h2] at h1
     exact absurd h1.symm (by decide)
 
+omit [MulAction Λ Z] in
 /-- **tex l.166–167, `e_V c`**: if `c_ξ ≠ 0`, it equals `1` on a nonempty clopen set `U`, and every
 nonempty clopen `V ⊆ U` gives a nonzero coefficient of `e_V c` at `u_ξ`. -/
 theorem exists_forall_coeff_charFn_mul_ne_zero
