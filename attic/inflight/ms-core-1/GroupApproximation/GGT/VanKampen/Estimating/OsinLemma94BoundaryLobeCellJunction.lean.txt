@@ -1,0 +1,293 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryLobeCell
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryJunctionBudget
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassJoinsBoundaryArc
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonKinds
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4: every value failure at a boundary junction encloses a relator cell
+
+Osin (math/0411039v3, §9), proof of Lemma 9.4.  A value failure at a boundary junction of polygon `k`
+(`OsinLemma94RealizedPolygons.valueFailureJunctions`) joins sides `s` and `s + 1` along one section, and its gap is
+the stretch of the oriented outer darts strictly between the last dart `e` of side `s` and the first dart `e'` of
+side `s + 1`, reading a value other than `1`.  This module shows that a relator cell lies on the side of the gap,
+when no dart of the gap has its reverse on the gap.
+
+The complement spelling of the gap is `c = gap.reverse.map alpha`, the stretch of exterior face darts behind it.
+* Consecutive darts of `c` follow the face permutation (`outerDarts_isChain`), so they reach each other by first turns.
+* The last dart of `c` reaches the first by a first turn of three rotation steps at the pinch vertex.  From the first
+  dart of the gap, rotation meets `alpha e` (the outer boundary step before the gap), then `e'` (the polygon face step
+  `facePerm e = e'`), then the reverse of the last dart of the gap (the outer boundary step after it).  The two
+  intermediate darts lie on the polygon face, not on the exterior face, and outside the window of the gap, so they
+  are off the edges of `c`.
+* The exterior face lies on the side of `c`.
+Then `exists_relatorCell_of_firstTurnWalk_listVal_ne_one` (`Estimating/OsinLemma94BoundaryLobeCell`) gives the cell.
+
+* `BoundaryLobe.getElem_not_mem_window`, `BoundaryLobe.firstTurnInputs_of_window`: the first-turn inputs of a gap
+  window of a duplicate-free chain.
+* `OsinLemma94RealizedPolygons.mem_outerDarts_iff_faceOf_alpha`.
+* `OsinLemma94RealizedPolygons.exists_relatorCell_of_mem_valueFailureJunctions`.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (Hull's small cancellation theorem, through Osin's Lemma 9.4 inside the proof of
+Lemma 4.4); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open SimpleClosedWalkSides
+open scoped Classical
+
+namespace BoundaryLobe
+
+variable {M : CombMap.{v}}
+
+/-- An entry of a duplicate-free list outside a window is not in the window. -/
+theorem getElem_not_mem_window {O : List M.Dart} (hO : O.Nodup) {a n i : ℕ} (hi : i < O.length)
+    (hia : i < a ∨ a + n ≤ i) : O[i] ∉ (O.drop a).take n := by
+  intro hmem
+  obtain ⟨t, ht, hte⟩ := List.mem_iff_getElem.mp hmem
+  rw [List.length_take, List.length_drop] at ht
+  rw [List.getElem_take, List.getElem_drop] at hte
+  have h := hO.getElem_inj_iff.mp hte
+  omega
+
+/-- **The first-turn inputs of a gap window.**  Let `O` be a duplicate-free list whose consecutive entries `x, y`
+satisfy `facePerm (alpha y) = alpha x`, and let `gap` be the window strictly between positions `i` and `j`.  If
+`facePerm O[i] = O[j]`, the reverses of `O[i]` and `O[j]` are off `O`, and no dart of the gap has its reverse on the
+gap, then `c = gap.reverse.map alpha` is a list of distinct darts with no dart and its reverse, each dart reaching
+the next and the last reaching the first by a first turn along `c`. -/
+theorem firstTurnInputs_of_window {O gap c : List M.Dart} (hO : O.Nodup)
+    (hchain : O.IsChain fun x y => M.facePerm (M.alpha y) = M.alpha x)
+    {i j : ℕ} (hij : i + 1 < j) (hj : j < O.length)
+    (hgap : gap = (O.drop (i + 1)).take (j - (i + 1))) (hc : c = gap.reverse.map M.alpha)
+    (hjunction : M.facePerm O[i] = O[j])
+    (hi_off : M.alpha O[i] ∉ O) (hj_off : M.alpha O[j] ∉ O)
+    (hhair : ∀ x ∈ gap, M.alpha x ∉ gap) :
+    ∃ hne : c ≠ [], c.Nodup ∧ (∀ x ∈ c, M.alpha x ∉ c) ∧ c.IsChain (FirstTurn M c) ∧
+      FirstTurn M c (c.getLast hne) (c.head hne) := by
+  obtain ⟨j', rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
+  have hlen : gap.length = j' - i := by
+    rw [hgap, List.length_take, List.length_drop]
+    omega
+  have hgne : gap ≠ [] := by
+    intro h
+    rw [h, List.length_nil] at hlen
+    omega
+  have hne : c ≠ [] := by
+    rw [hc]
+    simpa using hgne
+  have hmemO : ∀ x ∈ gap, x ∈ O := fun x hx => by
+    rw [hgap] at hx
+    exact List.mem_of_mem_drop (List.mem_of_mem_take hx)
+  have hmemc : ∀ d, d ∈ c ↔ M.alpha d ∈ gap := fun d => by
+    rw [hc]
+    exact FirstTurnWalk.mem_reverse_map_alpha_iff
+  refine ⟨hne, ?_, ?_, ?_, ?_⟩
+  · rw [hc]
+    have hgnd : gap.Nodup := by
+      rw [hgap]
+      exact (hO.sublist (List.drop_sublist _ _)).sublist (List.take_sublist _ _)
+    exact List.Nodup.map M.alpha_involutive.injective (List.nodup_reverse.mpr hgnd)
+  · intro x hx hax
+    exact hhair _ ((hmemc x).mp hx) ((hmemc _).mp hax)
+  · rw [hc]
+    have hgchain : gap.IsChain fun x y => M.facePerm (M.alpha y) = M.alpha x := by
+      rw [hgap]
+      exact (hchain.drop _).take _
+    have hrev : gap.reverse.IsChain fun x y => M.facePerm (M.alpha x) = M.alpha y :=
+      List.isChain_reverse.mpr hgchain
+    have hmap : (gap.reverse.map M.alpha).IsChain fun a b => M.facePerm a = b :=
+      (List.isChain_map M.alpha).mpr hrev
+    exact hmap.imp fun a b h => FirstTurn.of_facePerm h
+  · have hhead : gap.head hgne = O[i + 1] := by
+      have h0 : gap[0]? = some O[i + 1] := by
+        rw [hgap, List.getElem?_take_of_lt (by omega), List.getElem?_drop, Nat.add_zero,
+          List.getElem?_eq_getElem (by omega)]
+      have h1 := List.head?_eq_getElem? (l := gap)
+      rw [List.head?_eq_some_head hgne, h0] at h1
+      exact Option.some_inj.mp h1
+    have hlast : gap.getLast hgne = O[j'] := by
+      have h0 : gap[j' - i - 1]? = some O[j'] := by
+        rw [hgap, List.getElem?_take_of_lt (by omega), List.getElem?_drop,
+          show i + 1 + (j' - i - 1) = j' by omega, List.getElem?_eq_getElem (by omega)]
+      have h1 := List.getLast?_eq_getElem? (l := gap)
+      rw [List.getLast?_eq_some_getLast hgne, hlen, h0] at h1
+      exact Option.some_inj.mp h1
+    have hcl : c.getLast hne = M.alpha O[i + 1] := by
+      subst hc
+      rw [List.getLast_map, List.getLast_reverse, hhead]
+    have hch : c.head hne = M.alpha O[j'] := by
+      subst hc
+      rw [List.head_map, List.head_reverse, hlast]
+    have hc1 : M.sigma O[i + 1] = M.alpha O[i] := by
+      have h := List.isChain_iff_getElem.mp hchain i (by omega)
+      have hs : M.facePerm (M.alpha O[i + 1]) = M.sigma O[i + 1] := by
+        show M.sigma (M.alpha (M.alpha O[i + 1])) = M.sigma O[i + 1]
+        rw [M.alpha_involutive]
+      rw [hs] at h
+      exact h
+    have hc3 : M.sigma O[j' + 1] = M.alpha O[j'] := by
+      have h := List.isChain_iff_getElem.mp hchain j' (by omega)
+      have hs : M.facePerm (M.alpha O[j' + 1]) = M.sigma O[j' + 1] := by
+        show M.sigma (M.alpha (M.alpha O[j' + 1])) = M.sigma O[j' + 1]
+        rw [M.alpha_involutive]
+      rw [hs] at h
+      exact h
+    have hc2 : M.sigma (M.alpha O[i]) = O[j' + 1] := hjunction
+    have hoff1 : ¬ walkKeep M c (M.alpha O[i]) := by
+      rintro (h | h)
+      · have h' : O[i] ∈ gap := by
+          have h'' := (hmemc _).mp h
+          rwa [M.alpha_involutive] at h''
+        rw [hgap] at h'
+        exact getElem_not_mem_window hO (by omega) (Or.inl (by omega)) h'
+      · have h' : M.alpha O[i] ∈ gap := by
+          have h'' := (hmemc _).mp h
+          rwa [M.alpha_involutive] at h''
+        exact hi_off (hmemO _ h')
+    have hoff2 : ¬ walkKeep M c O[j' + 1] := by
+      rintro (h | h)
+      · exact hj_off (hmemO _ ((hmemc _).mp h))
+      · have h' : O[j' + 1] ∈ gap := by
+          have h'' := (hmemc _).mp h
+          rwa [M.alpha_involutive] at h''
+        rw [hgap] at h'
+        exact getElem_not_mem_window hO (by omega) (Or.inr (by omega)) h'
+    refine ⟨3, by norm_num, ?_, ?_⟩
+    · rw [hcl, M.alpha_involutive, hch, pow_three, Equiv.Perm.mul_apply, Equiv.Perm.mul_apply, hc1, hc2,
+        hc3]
+    · intro t ht0 ht3
+      rw [hcl, M.alpha_involutive]
+      interval_cases t
+      · rw [pow_one, hc1]
+        exact hoff1
+      · rw [pow_two, Equiv.Perm.mul_apply, hc1, hc2]
+        exact hoff2
+
+end BoundaryLobe
+
+namespace OsinLemma94RealizedPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+/-- A dart is an oriented outer dart exactly when its reverse lies on the exterior face. -/
+theorem mem_outerDarts_iff_faceOf_alpha (_P : OsinLemma94RealizedPolygons S) {d : S.diagram.toCombMap.Dart} :
+    d ∈ outerDarts S.diagram ↔
+      S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) = S.diagram.outerFace := by
+  constructor
+  · intro hd
+    obtain ⟨x, hx, rfl⟩ := List.mem_map.mp hd
+    rw [S.diagram.toCombMap.alpha_involutive x]
+    exact ((S.diagram.faceBoundary S.diagram.outerFace).mem_iff x).mp (List.mem_reverse.mp hx)
+  · intro h
+    exact List.mem_map.mpr ⟨S.diagram.toCombMap.alpha d,
+      List.mem_reverse.mpr (((S.diagram.faceBoundary S.diagram.outerFace).mem_iff _).mpr h),
+      S.diagram.toCombMap.alpha_involutive d⟩
+
+/-- **A value failure at a boundary junction encloses a relator cell**, when no dart of the gap has its reverse on
+the gap. -/
+theorem exists_relatorCell_of_mem_valueFailureJunctions (P : OsinLemma94RealizedPolygons S)
+    {k : Fin P.count} {s : ℕ} (hs : s ∈ P.valueFailureJunctions k)
+    (hhair : ∀ x ∈ P.junctionGap k s, S.diagram.toCombMap.alpha x ∉ P.junctionGap k s) :
+    ∃ C ∈ S.diagram.relatorCells,
+      C.face ∈ sideFaces S.diagram.toCombMap (P.junctionGap k s) := by
+  obtain ⟨hbad, hval⟩ := Finset.mem_filter.mp hs
+  obtain ⟨hbad', j, hj⟩ := Finset.mem_filter.mp hbad
+  obtain ⟨hsr, hjoin, -⟩ := Finset.mem_filter.mp hbad'
+  have hs' : s < P.sideCount k := Finset.mem_range.mp hsr
+  have hpos : 0 < P.sideCount k := by omega
+  have hs2 : (s + 1) % P.sideCount k < P.sideCount k := Nat.mod_lt _ hpos
+  have hj2 : P.kind k ((s + 1) % P.sideCount k) = .boundary j := by
+    rw [← hjoin.1]
+    exact hj
+  obtain ⟨-, p1, q1, -, hpq1, hq1, hside1⟩ := P.sideDarts_window hs' hj
+  obtain ⟨-, p2, q2, -, hpq2, hq2, hside2⟩ := P.sideDarts_window hs2 hj2
+  have hO : (outerDarts S.diagram).Nodup := P.outerDarts_nodup'
+  have hq1len : q1 ≤ (outerDarts S.diagram).length := le_trans hq1 (P.cut_le_length_outer _)
+  have hq2len : q2 ≤ (outerDarts S.diagram).length := le_trans hq2 (P.cut_le_length_outer _)
+  have he : (P.sideDarts k s).getLast? = some (outerDarts S.diagram)[q1 - 1] := by
+    have hlen : (((outerDarts S.diagram).drop p1).take (q1 - p1)).length = q1 - p1 := by
+      rw [List.length_take, List.length_drop]
+      omega
+    rw [hside1, List.getLast?_eq_getElem?, hlen, List.getElem?_take_of_lt (by omega),
+      List.getElem?_drop, show p1 + (q1 - p1 - 1) = q1 - 1 by omega,
+      List.getElem?_eq_getElem (by omega)]
+  have he' : (P.sideDarts k ((s + 1) % P.sideCount k)).head? = some (outerDarts S.diagram)[p2] := by
+    rw [hside2, List.head?_eq_getElem?, List.getElem?_take_of_lt (by omega), List.getElem?_drop,
+      Nat.add_zero, List.getElem?_eq_getElem (by omega)]
+  have hq1pos : 1 ≤ q1 := by omega
+  have hgap : P.junctionGap k s = ((outerDarts S.diagram).drop q1).take (p2 - q1) := by
+    rw [P.junctionGap_boundary he he' hj, ClassProducer.boundaryGapOf,
+      PolygonList.idxOf_getElem_of_nodup hO (q1 - 1) (by omega),
+      PolygonList.idxOf_getElem_of_nodup hO p2 (by omega), Nat.sub_add_cancel hq1pos]
+  have hgne : P.junctionGap k s ≠ [] := by
+    intro h
+    apply hval
+    rw [h]
+    simp [dartWord, RelLetter.listVal]
+  have hlt : q1 < p2 := by
+    by_contra hge
+    apply hgne
+    rw [hgap, show p2 - q1 = 0 by omega, List.take_zero]
+  have hjunction : S.diagram.toCombMap.facePerm (outerDarts S.diagram)[q1 - 1] = (outerDarts S.diagram)[p2] :=
+    P.facePerm_getLast_eq_head_mod hs' (Option.mem_def.mpr he) (Option.mem_def.mpr he')
+  have hface_side : ∀ {i : ℕ}, i < P.sideCount k → ∀ {d : S.diagram.toCombMap.Dart},
+      d ∈ P.sideDarts k i → S.diagram.toCombMap.faceOf d = P.face k := by
+    intro i hi d hd
+    have hmem : d ∈ (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) := by
+      rw [P.walk k]
+      exact List.mem_flatMap.mpr ⟨i, List.mem_range.mpr hi, hd⟩
+    exact ((S.diagram.faceBoundary (P.face k)).mem_iff d).mp (List.mem_rotate.mp hmem)
+  have hoff : ∀ {i : ℕ}, i < P.sideCount k → ∀ {d : S.diagram.toCombMap.Dart},
+      d ∈ P.sideDarts k i → S.diagram.toCombMap.alpha d ∉ outerDarts S.diagram := by
+    intro i hi d hd hmem
+    have h := P.mem_outerDarts_iff_faceOf_alpha.mp hmem
+    rw [S.diagram.toCombMap.alpha_involutive, hface_side hi hd] at h
+    exact P.face_ne_outer k h
+  have hi_off : S.diagram.toCombMap.alpha (outerDarts S.diagram)[q1 - 1] ∉ outerDarts S.diagram :=
+    hoff hs' (List.mem_of_getLast? (Option.mem_def.mpr he))
+  have hj_off : S.diagram.toCombMap.alpha (outerDarts S.diagram)[p2] ∉ outerDarts S.diagram :=
+    hoff hs2 (List.mem_of_mem_head? (Option.mem_def.mpr he'))
+  obtain ⟨hne, hnd, halpha, hch, hcl⟩ :=
+    BoundaryLobe.firstTurnInputs_of_window (M := S.diagram.toCombMap) hO S.outerDarts_isChain
+      (i := q1 - 1) (j := p2) (by omega) (by omega)
+      (gap := P.junctionGap k s) (c := (P.junctionGap k s).reverse.map S.diagram.toCombMap.alpha)
+      (by rw [hgap, Nat.sub_add_cancel hq1pos]) rfl hjunction hi_off hj_off hhair
+  have hsub : ∀ x ∈ P.junctionGap k s, x ∈ outerDarts S.diagram := by
+    intro x hx
+    rw [hgap] at hx
+    exact List.mem_of_mem_drop (List.mem_of_mem_take hx)
+  have hout : S.diagram.outerFace ∈
+      sideFaces S.diagram.toCombMap ((P.junctionGap k s).reverse.map S.diagram.toCombMap.alpha) := by
+    have hmem := FirstTurnWalk.faceOf_mem_sideFaces (List.head_mem hne)
+    have hfo := P.mem_outerDarts_iff_faceOf_alpha.mp (hsub _ (List.getLast_mem hgne))
+    have hhead : ((P.junctionGap k s).reverse.map S.diagram.toCombMap.alpha).head hne =
+        S.diagram.toCombMap.alpha ((P.junctionGap k s).getLast hgne) := by
+      rw [List.head_map, List.head_reverse]
+    rw [hhead, hfo] at hmem
+    exact hmem
+  have hval' : RelLetter.listVal (dartWord S.diagram
+      (((P.junctionGap k s).reverse.map S.diagram.toCombMap.alpha).reverse.map
+        S.diagram.toCombMap.alpha)) ≠ 1 := by
+    rw [FirstTurnWalk.reverse_map_alpha_involutive]
+    exact hval
+  obtain ⟨C, hC, hface⟩ :=
+    exists_relatorCell_of_firstTurnWalk_listVal_ne_one hne hnd halpha hch hcl hout hval'
+  rw [FirstTurnWalk.reverse_map_alpha_involutive] at hface
+  exact ⟨C, hC, hface⟩
+
+end OsinLemma94RealizedPolygons
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.BoundaryLobe.firstTurnInputs_of_window
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.exists_relatorCell_of_mem_valueFailureJunctions
