@@ -1,0 +1,130 @@
+import GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedNoncrossing
+import GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSucc
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# A noncrossing walk turns to its successor
+
+`EnclosedFaceSet.turn_mem` asks that the first dart on an edge of the outside walk, rotating from
+the reverse of a walk dart, lie on the walk.  That turning condition allows the walk to visit its
+turns out of rotation order (lane ms-inverses-1's model), and the successor form asks for the next
+dart of the walk itself.  A following boundary cycle turns to its successor, so the outside walk of
+a noncrossing walk whose complement cycle follows its boundary walk satisfies the successor form.
+
+* `EnclosedNoncrossingSucc.eq_next_of_first_kept`: for a following boundary cycle, the first dart
+  on an edge of the cycle, rotating from the reverse of a cycle dart, is the next dart of the cycle.
+* `EnclosedNoncrossingSucc.getElem_succ_of_first_kept`: the same at list positions,
+  `σᵐ (α cycle[i]) = cycle[(i + 1) % length]`.
+* `EnclosedNoncrossingSucc.invDarts_getElem_succ_of_first_kept`: the successor form for the reversed
+  walk of a noncrossing walk whose complement cycle follows its boundary walk.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, Hull's small cancellation theorem, through Osin's
+Lemmas 9.4 and 9.7).  It certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Equiv Surgery.MapCollapse SimpleClosedWalkSides Embedded
+
+namespace EnclosedNoncrossingSucc
+
+variable {M : CombMap.{v}}
+
+/-- An internal dart of a face set lies on no edge of a boundary cycle of that face set. -/
+theorem not_walkKeep_of_internalDart {faces : Finset M.Face} (boundary : BoundaryCycle M faces)
+    {x : M.Dart} (hx : InternalDart M faces x) : ¬ walkKeep M boundary.cycle x := by
+  rintro (hmem | hmem)
+  · exact ((boundary.cycle_mem_iff x).mp hmem).2 hx.2
+  · have hb : M.faceOf (M.alpha (M.alpha x)) ∉ faces :=
+      ((boundary.cycle_mem_iff _).mp hmem).2
+    rw [M.alpha_involutive x] at hb
+    exact hb hx.1
+
+/-- **A following boundary cycle turns to its successor.**  Rotating from the reverse of a cycle
+dart, the first dart on an edge of the cycle is the next dart of the cycle. -/
+theorem eq_next_of_first_kept [DecidableEq M.Dart] {faces : Finset M.Face}
+    (boundary : BoundaryCycle M faces) (hfollows : boundary.FollowsBoundary) {d : M.Dart}
+    (hd : d ∈ boundary.cycle) {m : ℕ} (hm : 0 < m)
+    (hkeep : walkKeep M boundary.cycle ((M.sigma ^ m) (M.alpha d)))
+    (hfirst : ∀ k, 0 < k → k < m →
+      ¬ walkKeep M boundary.cycle ((M.sigma ^ k) (M.alpha d))) :
+    (M.sigma ^ m) (M.alpha d) = boundary.cycle.next d hd := by
+  obtain ⟨m₀, hm₀, hme, hint⟩ := EnclosedNoncrossing.exists_sigma_pow_of_boundaryWalk
+    (boundary.boundaryWalk_next hfollows hd)
+  rcases lt_trichotomy m m₀ with hlt | heq | hgt
+  · exact absurd hkeep (not_walkKeep_of_internalDart boundary (hint m hm hlt))
+  · subst heq
+    exact hme
+  · refine absurd ?_ (hfirst m₀ hm₀ hgt)
+    rw [hme]
+    exact Or.inl (List.next_mem _ _ hd)
+
+/-- **The successor form at list positions.** -/
+theorem getElem_succ_of_first_kept {faces : Finset M.Face} (boundary : BoundaryCycle M faces)
+    (hfollows : boundary.FollowsBoundary) {i : ℕ} (hi : i < boundary.cycle.length) {m : ℕ}
+    (hm : 0 < m) (hkeep : walkKeep M boundary.cycle ((M.sigma ^ m) (M.alpha boundary.cycle[i])))
+    (hfirst : ∀ k, 0 < k → k < m →
+      ¬ walkKeep M boundary.cycle ((M.sigma ^ k) (M.alpha boundary.cycle[i]))) :
+    (M.sigma ^ m) (M.alpha boundary.cycle[i]) =
+      boundary.cycle[(i + 1) % boundary.cycle.length]'(Nat.mod_lt _ (by omega)) := by
+  classical
+  rw [eq_next_of_first_kept boundary hfollows (List.getElem_mem hi) hm hkeep hfirst]
+  exact List.next_getElem boundary.cycle boundary.cycle_nodup i hi
+
+/-- **The reversed walk of a noncrossing walk turns to its successor**, when the complement cycle of
+the walk follows its boundary walk. -/
+theorem invDarts_getElem_succ_of_first_kept {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {Delta : DiscDiagram.{u, w, v} W}
+    {walk : List Delta.toCombMap.Dart} (hw : IsNoncrossingClosedWalk Delta.toCombMap walk)
+    (hfollows : (hw.outerCycle Delta.planar).FollowsBoundary) {i : ℕ}
+    (hi : i < (invDarts Delta walk).length) {m : ℕ} (hm : 0 < m)
+    (hkeep : walkKeep Delta.toCombMap (invDarts Delta walk)
+      ((Delta.toCombMap.sigma ^ m) (Delta.toCombMap.alpha (invDarts Delta walk)[i])))
+    (hfirst : ∀ k, 0 < k → k < m → ¬ walkKeep Delta.toCombMap (invDarts Delta walk)
+      ((Delta.toCombMap.sigma ^ k) (Delta.toCombMap.alpha (invDarts Delta walk)[i]))) :
+    (Delta.toCombMap.sigma ^ m) (Delta.toCombMap.alpha (invDarts Delta walk)[i]) =
+      (invDarts Delta walk)[(i + 1) % (invDarts Delta walk).length]'(Nat.mod_lt _ (by omega)) :=
+  getElem_succ_of_first_kept (hw.outerCycle Delta.planar) hfollows (i := i) hi hm hkeep hfirst
+
+end EnclosedNoncrossingSucc
+
+/-- **A noncrossing walk encloses the faces on its side, turning to its successor.**  If a
+noncrossing closed walk has the exterior face off its side and its complement cycle follows its
+boundary walk, the faces on its side form an enclosed face set whose outside walk, the reversed
+walk, turns to its successor. -/
+def EnclosedFaceSetSuccOfNoncrossingStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) (walk : List Delta.toCombMap.Dart)
+    (hw : IsNoncrossingClosedWalk Delta.toCombMap walk),
+    Delta.outerFace ∉ sideFaces Delta.toCombMap walk →
+    (hw.outerCycle Delta.planar).FollowsBoundary →
+    EnclosedFaceSetSucc Delta (sideFaces Delta.toCombMap walk) (invDarts Delta walk)
+
+/-- **The enclosed face set of a noncrossing walk turns to its successor.** -/
+theorem enclosedFaceSetSuccOfNoncrossing {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {Delta : DiscDiagram.{u, w, v} W}
+    {walk : List Delta.toCombMap.Dart} (hw : IsNoncrossingClosedWalk Delta.toCombMap walk)
+    (hout : Delta.outerFace ∉ sideFaces Delta.toCombMap walk)
+    (hfollows : (hw.outerCycle Delta.planar).FollowsBoundary) :
+    EnclosedFaceSetSucc Delta (sideFaces Delta.toCombMap walk) (invDarts Delta walk) where
+  toEnclosedFaceSet := enclosedFaceSetOfNoncrossing Delta walk hw hout hfollows
+  turn_next i hi m hm hkeep hfirst :=
+    EnclosedNoncrossingSucc.invDarts_getElem_succ_of_first_kept hw hfollows hi hm hkeep hfirst
+
+/-- `EnclosedFaceSetSuccOfNoncrossingStatement` holds. -/
+theorem enclosedFaceSetSuccOfNoncrossing_statement :
+    EnclosedFaceSetSuccOfNoncrossingStatement.{u, w, v} := by
+  intro G _ Lambda W Delta walk hw hout hfollows
+  exact enclosedFaceSetSuccOfNoncrossing hw hout hfollows
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.EnclosedNoncrossingSucc.not_walkKeep_of_internalDart
+#audit_axioms GroupApproximation.GGT.VanKampen.EnclosedNoncrossingSucc.eq_next_of_first_kept
+#audit_axioms GroupApproximation.GGT.VanKampen.EnclosedNoncrossingSucc.getElem_succ_of_first_kept
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.EnclosedNoncrossingSucc.invDarts_getElem_succ_of_first_kept
