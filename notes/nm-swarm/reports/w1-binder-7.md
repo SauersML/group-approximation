@@ -153,6 +153,20 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     - w1-binder-6's `SectionPocketProperGapStatement`;
     - model tests of the Section spelling: non-full `t₁` with sides at `ε`, and long relators under OsinCCondition;
     - `CellPocketPinchPosStatement` (binder 5) likely needs the same respelling.
+- **LANDED b4856b5c3 `Estimating/OsinPocketPinchStepSection`** (probe 0913-195943-3764 GREEN, BUILT and COMPILED; unwired, queued
+  for wiring).
+  - `PocketPinchStepSectionStatement`: one step of the section pinch. Under the Section premises, a pinched pocket in walk order
+    with a proper source arc has an O-equivalent copy with letter labels, walk order, a proper source arc and fewer repeated
+    visits.
+  - `pocketPinchLabelledSectionStatement_of_stepSection`: the step gives `PocketPinchLabelledSectionStatement` by strong
+    induction. Least area passes to each copy through `OEquivalentDiscDiagram.leastArea`.
+  - `PocketFaceSet.pinchSplit_source_proper` and `pinchSplitInside_source_proper`: a vertex split keeps a proper source arc.
+  - `PocketFaceSet.exists_pinchStepSection_of_avoids` and `exists_pinchStepSection_of_inside`: both splits on main package
+    into the step, given their turn and stretch hypotheses.
+  - The first probe (0913-194551-47288) was red: lengths across the split were rewritten at mismatched dart types. It was
+    fixed in term mode.
+  - After the ~20:03 outage: the green probe finished at 20:01 on bytes identical to attic 9af998f39, and no import had
+    changed since its base 74696702a, so it landed without a re-probe.
 - ms-intro-4 (binder 5, `CellPocketPinchPosStatement`) imports ArcTrim and FullArc; their helper names stay fixed. There is
   no generic boundary-cycle layer, and `exists_trimDouble` is at `PocketFaceSet` level.
 - Where the step route sticks: a full arc with a nonempty remainder and both sides at length exactly `ε`. No trim has
