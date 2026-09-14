@@ -23,3 +23,6 @@ normal tracial state.
 
 So up to a trivial summand, every homomorphism of `G_X` into a finite von Neumann algebra is the left regular
 representation.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part8.md`):** re-derived: τ∘ι is a character, hence c·1 + (1−c)δ_e; the GNS space L²(N,τ) = π_0 ⊕ λ, disjoint; the central isotypic projection z; trace scaling τ(1−z) = c; the converse λ ⊕ 1; the corner count via the reviewed separable-factors node; all three model tests.

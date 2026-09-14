@@ -23,3 +23,6 @@ Connes proved that `Out` of a II_1 factor with property (T) is countable. So `Ou
 Context: Jones's question whether `Out(L(G)) ≅ Char(G) ⋊ Out(G)` for ICC property (T) groups is confirmed for a large class
 by Chifan–Ioana–Osin–Sun (arXiv:2304.07457). For `G_X` the character group is trivial, since `G_X` is perfect, and
 `Out(G_X)` is not computed. A full computation of `Out(L(G_X))` is open and would be a factor invariant of `X`.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part8.md`):** re-derived: d_k conjugation preserves G; Z(R) = F_2 and a trivial centralizer; outerness from ind(d_k) = −k; ICC from simplicity; Out(G) ↪ Out(L(G)) via CIOS `inj`, read at source. Connes countability recalled, not used for (1)–(2).
