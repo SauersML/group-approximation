@@ -283,7 +283,10 @@ theorem contactMap_simple (P : OsinLemma94RealizedPolygons S) (x y : P.contactMa
 theorem contactMap_sigma_ne (P : OsinLemma94RealizedPolygons S) (x : P.contactMap.Dart)
     (hx : P.contactColour x = true) : P.contactMap.sigma x ≠ x := by
   obtain ⟨k, o, h, hrich, hxk⟩ := (P.contactColour_eq_true_iff x).mp hx
-  obtain ⟨o', ho', hne⟩ := Finset.exists_mem_ne (by unfold Rich at hrich; omega) o
+  have hcard : 1 < (P.neighbours k).card := by
+    unfold Rich at hrich
+    omega
+  obtain ⟨o', ho', hne⟩ := Finset.exists_mem_ne hcard o
   let y : P.contactMap.Dart := ⟨P.rep k o' ho', Or.inl ⟨k, o', ho', hrich, rfl⟩⟩
   have hyx : y ≠ x := by
     intro hyx
@@ -315,6 +318,41 @@ theorem dual_planar_diagram (S : GloballyDistinguishedSectionFamily D lambda c e
   CombMap.dual_planar _ S.diagram.planar
 
 end OsinLemma94RealizedPolygons
+
+/-- **The small faces of the contact map.**  Under the binders of `OsinLemma94LongTransitionInput`,
+the faces of degree less than six of `contactMap P` number at most `K n`.  Every face has degree
+at least four (`four_le_faceDegree_contactMap`), so these are the faces of degree four: two rich
+polygons and two objects around one face.
+
+Model tests (hand).
+* No rich polygon: the contact map has no darts and no faces, so the count is zero.
+* Two polygons both running along cells `a` and `b`, with a third relator cell between them: one
+  face of degree four holds that cell, so at most `n` such faces.
+* The same two polygons with nothing between them but `G`-faces and selected regions: an empty
+  two-gon.  Merging the faces between the arcs of `a` and `b` into one region gives a heavier
+  family (`false_of_avoided_singleton`, `PinchSplit.pinchSplitAbsorption` at a pinch), so it does
+  not occur on a globally distinguished family. -/
+def OsinLemma94ContactMapSmallFacesInput : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ K : ℕ, ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
+                    (Finset.univ.filter fun f : P.contactMap.Face =>
+                      P.contactMap.faceDegree f < 6).card ≤ K * Delta.rCellCount
 
 end GroupApproximation.GGT.VanKampen
 
