@@ -245,6 +245,19 @@ CLAIM clean copy producer GroupApproximation/GGT/VanKampen/Estimating/OsinAppend
   - (1) the per-step invariant `HasCleanTwoGon` and its transport through one doubling carried along arcs;
   - (2) invariant drivers `exists_spurFree_of_invariant`, `exists_cellFree_of_invariant`, `exists_sideFree_of_invariant`, replicating the strong inductions of the landed drivers;
   - (3) the composition, with `CopyCleanAt` from the freeness predicates, giving `twoGonCleanCopyInput`.
+- LANDED (1) statements at a7e2c216e: `Estimating/OsinAppendixEulerTwoGonDoublingTransport`, probe 0914-092347-35905 GREEN on the first try; seven audits [propext, Classical.choice, Quot.sound], no sorryAx; on the wire queue.
+  - `HasCleanTwoGon`;
+  - named step residuals `TwoGonSpurStepStatement`, `TwoGonOuterCellStepStatement`, `TwoGonOuterSideStepStatement`, `TwoGonCellSideStepStatement`, `TwoGonCellHairStepStatement`, `TwoGonRegionPairStepStatement`.
+  - Each takes `Delta.LeastArea`, the surgery's own step precondition and `HasCleanTwoGon S`, and returns `HasCleanTwoGon` of that surgery's step family.
+- (2) drivers: `SurgeryOuterThickeningInvariant` (`exists_spurFree_of_invariant`, `exists_cellFree_of_invariant`, `exists_sideFree_of_invariant`, `exists_cellHairFree_of_invariant`) is written and probing.
+- Composition order planned for (3):
+  - spur → outer cell → outer side, each keeping `HasCleanTwoGon`;
+  - cell side, keeping `OuterClean ∧ HasCleanTwoGon` via `outerClean_of_step`;
+  - cell hair, also keeping no outer-side and no cell-side dart;
+  - region pair, keeping the outer conditions, no cell-side dart and no cell hair, via `noOuterSpur_of_step`, `noOuterCellDart_of_step`, `noOuterSideDart_step`, `noCellSideDart_step`, `noCellHair_step`.
+  - Then `CopyCleanAt` for every label pair from the six global freeness predicates. `1 < Delta.boundaryWord.length` comes from the two disjoint nonempty target arcs.
+- ~09:3x split with ms-inverses-2 (main's item): ms-inverses-2 proves the six step Props verbatim, in new modules `OsinAppendixEulerPhiMapTransport*`, `OsinAppendixEulerTwoGonDoublingInner*` and `OsinAppendixEulerTwoGonDoublingOuter*`. This lane keeps the drivers and the composition `twoGonCleanCopyInput_of_steps`, which takes the six Props as hypotheses.
+- `side_cell` needs `1 < length` of cell `i`'s face for `IsCellSideDart`. For distinct exterior regions `a`, `b` of `i` it holds: on a one-dart face both source arcs would be that dart, so the face across it would lie in both regions, and `eq_of_face_mem_of_face_mem` gives `a = b`.
 
 ## Current C6′ leaves (binder 4)
 
