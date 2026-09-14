@@ -158,8 +158,10 @@ Partial census rows before tex 1541:
   - `printedItineraryIntersectionCycleCondition` (tex 1439–1441, `hcore` discharged by `cycleCondition_coreSubshift`).
 - Census rows LANDED 04240efed: `f6962254d259`, `715cbd0f3410`, `30a44485e5e8`, `f2baa4a46f78`, `b180421b55ab`, `c99bf0bdb029`,
   `ded9e9646e4b`, `f7c8d8aab016` (all formalized over closed or origin-defined carriers).
-- In probe: `Manuscript/NonMFSentences/ChainCoreOpeningClosed`, `printedWholeRadicalProperDefectIdeal`, for the unassigned key
-  `d59fc0887768` (tex 1341). It carries the proper defect ideal plus Rad_MF(GL_n(R_X)) = EL_n(R_X, I).
+- WITHDRAWN (09-14 ~00:10): `Manuscript/NonMFSentences/ChainCoreOpeningClosed` for key `d59fc0887768` (tex 1341). The
+  coordinator reassigned the key to ct-rank-budget. The draft was never compiled: both probes failed on infrastructure (DNS, then
+  MSI down). It is kept in the lane backup and offered to ct-rank-budget. It holds `one_notMem_coreTransientIdeal`, which says
+  the defect ideal is proper, and `PrintedWholeRadicalProperDefectIdeal`.
 - 19 DROP lines, in `overrides.tsv` form, are at `$NM/census/drop-lines-ms-core-1.tsv` and quoted in full in the message to
   ms-cite-2:
   - chain-reflection: 10 keys (1518–1527)
