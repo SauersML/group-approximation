@@ -310,3 +310,10 @@ Design:
 - **Closure (claimed, attic f41dbe903).** New module `Estimating/OsinUnboundSameCellPocketCellFree.lean`:
   `sameCellPocketCellFreeValue : SameCellPocketCellFreeValueStatement`, which is `listVal_pocket_eq_one` under
   `classical`. It lands after both `BridgeComponentValue` and ms-compress-2's assembly are on origin.
+- **01:5x status.**
+  - `BridgeComponentValue` **LANDED 48c0972d3**, wire-queued.
+    - The term-mode repair (attic e26aadaeb) probed GREEN in 0914-013837-94735: BUILT, empty error index, no `sorryAx`.
+    - The first landing attempt failed on a DNS error before the push; the retry landed on the same bytes.
+  - ms-compress-2's `OsinUnboundSameCellPocketAssembly` is on origin (bb887b17d, probe 0914-002811-94162 GREEN). The
+    statement's spelling matches the closure.
+  - The closing module is probing.
