@@ -42,6 +42,12 @@ CLAIM l.176–186, 197–208 GroupApproximation/Manuscript/SimpleKazhdanSofic/{G
 - New, offline: `GeneralSimplicityAssembly`, which proves ct-two-ended's `PrintedGeneralSimplicityStatement` (local GeneralTheorem). It builds the action from α, minimality, topological freeness and total separation, then applies `generalCommutatorWitness` and `isSimpleGroup_of_generalCommutatorWitness`. The ring spelling is still to confirm with ct-two-ended: its `ActionCrossedProduct α` versus sk-lef-action's landed `ClopenGroupCrossedProduct`.
 - The census at 37551fd93 matches the tip 696c4b602 on all 27 Simplicity rows (verbatim check).
 
+## NEW ITEM 09-14 ~09:05: `LEFLamplighterSolvableWordProblemStatement` (LEF groups, tex l.445–455 at 696c4b602)
+
+Taken over from sk-lef-assembly by agreement: the solvable word problem of Λ (words for δ and the lamps of c) and of G_Δ (entries Σ p_ξ u_ξ with polynomial coefficients in finitely many coordinates, checked on all assignments because Ω is the full shift). It is stated over sk-lef-action's `LampRing` and skf-degrees' `wordProblemOracle` / `HasSolvableWordProblem`. The census keys moving here are 581584337a04, 7bfa078c0bed, e3cd35e16e2f and 14148c1b4df0. The heredity key 452e0cc9a605 and "This proves" 6c271814690e stay with sk-lef-assembly.
+
+CLAIM LEF groups l.445–455: solvable word problem of Λ and of G_Δ GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterWordProblem.lean
+
 ## NEW ITEM 09-14 ~08:55: simplicity half of `LEFLamplighterStatement` (cor:lef, cor:host)
 
 The host G_Δ = EL₃(LC(Z,F₂) ⋊ L) must be simple, through the general theorem (`General.isSimpleGroup_clopenGroupCrossedProduct`). This lane takes the simplicity half:
