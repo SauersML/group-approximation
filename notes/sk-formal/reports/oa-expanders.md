@@ -122,3 +122,26 @@ Staging:
 - S2: the Hilbert core, with no von Neumann algebra.
 - S3: the standard-form instantiation, R_w = J w* J.
 - S4: condensation ⇒ countable, then the endpoint over the "different kernels" sentence `bdd19b7d1e1f`.
+
+Status (09-14 09:3x):
+- S2 `GroupApproximation/Kazhdan/KazhdanBimoduleRigidity.lean`: probe 0914-092202-81249 BUILT. The origin bytes equal the green md5
+  725004bf…, and the module is wire-queued. `bimodule_rigidity`: commuting L₁ and R₂ with R₂(g)Ω = L₂(g⁻¹)Ω, equal kernels, maximal
+  distinct kernels, and ‖L₁(s)Ω − L₂(s)Ω‖ < εδ on the Kazhdan set give ‖L₁(g)Ω − Ω‖ < 2δ for every g.
+- S3 `GroupApproximation/Analysis/TracialStandardFormBimodule.lean`: probe 0914-092556-41787 BUILT, origin bytes = green md5 d3e52d…,
+  wire-queued. It provides `leftRep`, `rightRep c u = J u J`, `leftRep_mul_rightRep_comm`, `rightRep_omega`, `ker_rightRep`, `ker_leftRep`,
+  `eq_one_of_leftRep_omega`.
+- S4 `GroupApproximation/Manuscript/SimpleKazhdanSofic/OzawaUnitaryCountability.lean` (`exists_nonisolated`,
+  `countable_kernels_of_unitary`): the first probe was red on a rewrite motive and a namespace, now fixed and re-probing.
+- S5 `GroupApproximation/Manuscript/SimpleKazhdanSofic/OzawaUnitaryCountabilityPrinted.lean`: the closed endpoint
+  `printedUnitaryGroupContainsCountablyMany`. It consumes `printedWordProblemKernels_of_simplicity printedSimplicityStatement_stepanov`
+  (row `bdd19b7d1e1f`, `WordProblemKernels`) and `countable_kernels_of_unitary`. Probing.
+- 09-14 10:0x, after the API/DNS outage: the note was shortened at f34e9c0b1 (09:05) and is now 8b36733d7 (775 lines, md5 29d63f79…).
+  The whole paragraph is gone: "For a fixed alphabet, every G_X is a simple quotient ..., the proof of [OzawaUniversal, Theorem 2] then
+  shows ...", together with the L(G_X) isomorphism-class remark. The section is now just "Word problems", and the regenerated census
+  (9cb80166d at 8b36733d7) has none of the keys `5c3fdfb60aaf`, `bdd19b7d1e1f`, `71621aaa37e7`. There is no row to key, and item 3 has no
+  printed sentence at the tip.
+- Carrier state:
+  - S2 and S3 are green on origin and wire-queued.
+  - S4 and S5 are on origin as unverified copies (b38eae2c4). Their first re-probe failed on infrastructure (MSI overlay upload during
+    the outage), and they are re-probing.
+- Next step is main's ruling: finish and land the carriers, which prove a correct general theorem, or withdraw.
