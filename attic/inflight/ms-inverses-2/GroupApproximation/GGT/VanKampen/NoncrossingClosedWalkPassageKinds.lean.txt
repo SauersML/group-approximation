@@ -55,8 +55,10 @@ variable {M : CombMap.{u}} {w : List M.Dart}
 theorem SectorFree.vertexOf_eq {x y : M.Dart} (h : SectorFree M w x y) :
     M.vertexOf y = M.vertexOf x := by
   obtain ⟨m, hm, -⟩ := h
-  rw [← hm]
-  exact (M.vertexOf_eq_iff _ _).mpr ⟨-(m : ℤ), by rw [zpow_neg, zpow_natCast, Perm.inv_apply_self]⟩
+  subst hm
+  induction m with
+  | zero => rw [pow_zero, Perm.one_apply]
+  | succ n ih => rw [pow_succ', Perm.mul_apply, M.vertexOf_sigma, ih]
 
 /-- **Two darts on edges of the walk whose free stretches end at one dart are equal.**  If the
 stretches from `e₁` and from `e₂` to `x` are free of the walk, and `e₁`, `e₂` lie on edges of the walk
