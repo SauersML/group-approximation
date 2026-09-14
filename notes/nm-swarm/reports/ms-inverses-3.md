@@ -169,3 +169,8 @@ origin imports `TransientMatrices`.
 
 Rows 7ff20576d4cf and 97e43ae93d14 are now formalized.  Every sentence of tex 1465–1508 has a row: 14 formalized,
 2 definition, 8 partial for route differences (reasons in the rows), and 2546c17d9884 carried by ms-core-4's row.
+
+## Item 3: printed-route carriers for the route-difference rows of tex 1485-1505
+
+CLAIM partial-shift graph decomposition, union of sources and ranges, freeness => unique arrow (rows 34e1eeff13be, cd20a742dd3c, a3598c08b42c) `GroupApproximation/Dynamics/TransientPartialShiftGraphs.lean`
+CLAIM separating partition, first-occupied-atom representative, clopen representative set, refinement by occupied atoms, loop erasure (rows 1d0f9a56866c, fd026a61f84f, 46f3810145ee, 5079b22a3633, ff376e50f433) `GroupApproximation/Dynamics/TransientAtomRepresentatives.lean`
