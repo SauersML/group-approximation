@@ -308,6 +308,19 @@ State at 23:2x:
     the side word through `dartWord_invDarts_diagram` / `_spurDiagram`.
   - `enclosedBridgeDoublingSideArcSucc`, and `enclosedSubdiagramLoopCutSuccLong` (`#audit_closed_axioms`).
   - Unprobed until A2 lands. Its local draft's signatures match the calls.
+- ~10:4x ms-compress-2 landed A2 at eaa153c9e (`darts_map_image_cellArc`, `_spur`, `arcDoublingOutput`).
+- 11:16 probe 0914-111621-29887 GREEN (BUILT, base d67b2d46a with A2): `ClosedWalkEnclosedBridgeDoublingSideArc`,
+  landing with this report.
+  - **LEAF 3 CLOSED** in its restricted form: `enclosedSubdiagramLoopCutSuccLong :
+    EnclosedSubdiagramLoopCutSuccLongStatement` (`#audit_closed_axioms`).
+  - Also `enclosedBridgeDoublingSideArcSucc`, `EnclosedBridgeDoubling.sideArcOutput`, `walk_eq_arc_append`,
+    `invDarts_invDarts_side`, `invDarts_append_side`.
+  - The unrestricted `EnclosedSubdiagramLoopCutSuccStatement` (relator words of any length) stays open. Binder 3 does
+    not need it: `osinLemma94CaseOneSameCell_of_sideArcDoubling` (b1dc617a8) consumes the restricted form at
+    `max 2 ρ₁`.
+- Next: the named closed endpoint `Estimating/OsinLemma94SameCellClosed` (`osinLemma94CaseOneSameCell :
+  OsinLemma94CaseOneSameCellStatement`), probed after this lands. Its consumers on origin: `hsameOne` in
+  `OsinGreendlingerOpenResiduals` and `hsame` in `OsinUnboundCaseOneRun`.
 
 ## Progress log
 
