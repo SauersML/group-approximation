@@ -215,3 +215,13 @@ Status of residual (1): `CellPocketPinchPosStatement` reduces to `CellPocketPinc
 (keeping first-turn order) and both splits. What remains open is the step itself: choosing the split darts at a repeated
 vertex, and the trim–double move when the corner lies in a cell (the cell analogue of w1-binder-7's `exists_trimDouble`, in
 flight at the section level).
+
+CLAIM, the cell trim–double (after w1-binder-7's `exists_trimDouble`, b2c347f69):
+`GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellTrimDouble.lean`.
+- `CellPocketFaceSet.faceEdgeDoubling_firstArc_darts` and `_secondArc_darts`: the arcs map by the embedding when they avoid the
+  doubled dart.
+- `CellPocketFaceSet.faceEdgeDoubling_firstTurnChain`: first-turn order across the cell doubling, from `EdgeInsertion.firstTurnChain_map_embed`.
+- `CellPocketFaceSet.exists_trimDoubleFirst` and `exists_trimDoubleSecond`, for `i ≠ j`: trim an arc, then double the trimmed
+  dart's edge in its cell. The result is an O-equivalent copy with letter labels, walk order kept, repeated visits unchanged,
+  that arc one dart shorter, and a side dart whose across-face is a G-face off the exterior, off the relator cells and off
+  the face set.
