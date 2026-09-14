@@ -28,17 +28,13 @@ the census on origin (77af1c5ea) is still at bf961c128.
 | 75–77 | For derived topological full groups, Matui showed in the same way that a nontrivial normal subgroup meets a simple union of alternating groups on towers. | attribution | — | prior work |
 | 77–79 | Thom constructed a f.g. Kazhdan LEF group that is not residually finite, but his example is not simple. | attribution | — | prior work |
 
-## Split of thm:main (final, agreed with ct-two-ended ~20:00)
+## Split of thm:main (settled with ct-two-ended ~20:05, after three crossed messages)
 
-- This lane owns the statement: `Manuscript/SimpleKazhdanSofic/MainStatement.lean`.
-  - `PrintedSimpleKazhdanSoficMain`: for every n ≥ 3, over `↥(elementaryGroup (Fin n) (R S))`.
-  - Named pieces: `PrintedMarkedLimitExpanders S n` (spelled with ms-core-3), `PrintedTowerSimplicity` (ct-bilateral-mf /
-    skf-consequences, printed tower route), `PrintedSubshiftRingFinitelyGenerated` (ct-involution),
-    `PrintedMinimalSubshiftRingLEF` (ms-units / ms-core-3).
-- ct-two-ended owns `Manuscript/SimpleKazhdanSofic/MainAssembly.lean`: `printedSimpleKazhdanSoficMain_of_pieces` and the
-  closed theorem.
-- This lane also owns the census rows of the abstract, introduction and thm:main statement, the answer sentences 33–35 and
-  45–46, and the cylinder dimension count at 69–72.
+- ct-two-ended owns the statement `PrintedSimpleKazhdanSoficMain` (every n ≥ 3, with the marked-limit and expander clause)
+  and its closed theorem, both in `Manuscript/SimpleKazhdanSofic/MainAssembly.lean`, along the printed tower route. This lane
+  writes no MainStatement module.
+- This lane owns the census rows of the abstract, introduction and thm:main statement (citing ct-two-ended's endpoint once it
+  lands), the answer sentences 33–35 and 45–46, the cylinder dimension count at 69–72, Setting and MinimalDenseOrbits.
 - My n = 3 draft `MainTheorem.lean` (Pestov91 free-minimal route) is retired. It was never landed; its text is at attic
   681714c37, and ct-two-ended may reuse pieces.
 
