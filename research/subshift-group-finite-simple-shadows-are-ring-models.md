@@ -1,0 +1,35 @@
+---
+rg: 2
+id: subshift-group-finite-simple-shadows-are-ring-models
+kind: claim
+title: Every sequence of finite simple groups converging to G_X eventually consists of PSL_3d(F_2^f) coming from ring maps of the free algebra
+distinct_from:
+  simple-lef-groups-are-limits-of-finite-simple-groups: that shows finite simple approximants exist and have unbounded rank; this asks whether their type is forced (projective special linear in characteristic 2, induced by ring maps) for the subshift groups.
+  subshift-group-model-sizes-see-rational-spectrum: that settles the sizes for ring-type approximants; this asks whether every approximant is ring type, which would make those sizes, and so the rational spectrum of X, invariants of the abstract group G_X.
+artifacts:
+  - research/artifacts/sk-free-4-finite-simple-shadows-2026-09-13-part3.md
+---
+
+**OPEN.** Let `X` be an infinite minimal subshift and `G_X = EL_3(LC(X,F_2) ⋊ Z)`. Question: if
+`(Q_k, T_k) → (G_X, T)` in the space of marked groups with `Q_k` finite simple (for any finite generating set `T`),
+are the `Q_k` eventually `PSL_(3d_k)(F_(2^(f_k)))`, with markings induced by ring maps `F → M_(d_k)(F_(2^(f_k)))`?
+
+Consequence of a yes: by `subshift-group-model-sizes-see-rational-spectrum`, the orders of the finite cyclic factors of
+`X` would divide the sizes of all finite simple shadows. So the rational spectrum of `X` would be an isomorphism
+invariant of `G_X`.
+
+## Attempts
+
+- **Full Steinberg relations suffice (sk-free-4, artifact part 3 §3).** Suppose the approximant satisfies all Steinberg
+  relations over the free algebra `F`.
+  - The root kernels coincide with a two-sided ideal `I`, and `A = F/I` is finite.
+  - `Q_k` is a quotient of `St_3(A)`, which is a central extension of `E_3(A)` (stable rank 1).
+  - The congruence kernel to `A/J(A)` is a 2-group, so `Q_k = PSL_(3d)(F_(2^f))`.
+- **Where it dies.**
+  - Marked convergence gives the Steinberg relations only up to bounded degree.
+  - The partial quotient has dimension `≤ log_2|Q_k| = O(N_k^2)`, while `R_X` keeps growing, so no stabilization occurs
+    inside the convergence radius.
+  - A finite presentation of the Steinberg group over `F` with elementary generators would close the gap, by the
+    argument of `kazhdan-marked-limits-eventually-uniform-expanders`. For rank 3 this is doubtful: the analogous groups
+    over `F_q[t]` are not finitely presented (Behr; Rehmann–Soulé; recalled, not checked). Rank `≥ 4` is untested.
+- **Next test case.** `EL_4(LC(X,F_2) ⋊ Z)` with a finite presentation of `St_4` over free algebras, checked at source.
