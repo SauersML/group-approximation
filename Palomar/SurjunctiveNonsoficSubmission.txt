@@ -1,5 +1,8 @@
 A SURJUNCTIVE GROUP THAT IS NOT SOFIC
-Verified submission details. Nothing has been resubmitted to Palomar.
+Submitted to Palomar on September 14, 2026 at 01:02:12 UTC.
+Submission ID: e8sd7sbrpcxh
+Palomar automated verification:
+https://github.com/PalomarRegistry/PalomarSubmission/actions/runs/34794577299
 
 Repository: https://github.com/SauersML/group-approximation
 Commit: 232c77f169ec66b27fd480d5c19474f519d359b7
@@ -32,5 +35,5 @@ The question is documented in 2010; its first proposer remains unconfirmed.
 
 Use the specified immutable commit when submitting. Later commits to main
 may contain unrelated work and are not covered by these verification runs.
-The former submission remains withdrawn. These repository checks are not
-Palomar acceptance or human expert review.
+The former submission remains withdrawn. The new submission is undergoing
+Palomar's automated verification and review; registration is a later step.

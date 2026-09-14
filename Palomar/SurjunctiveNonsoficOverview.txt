@@ -1,8 +1,10 @@
 A SURJUNCTIVE GROUP THAT IS NOT SOFIC
 
 Author: Sauers. Maintainer: SauersML.
-Status: the former Palomar submission is withdrawn. These revised materials
-are retained on main for review; they have not been resubmitted.
+Status: submitted to Palomar as e8sd7sbrpcxh on September 14, 2026 UTC,
+at commit 232c77f169ec66b27fd480d5c19474f519d359b7. The earlier submission
+remains withdrawn. Palomar's automated verification:
+https://github.com/PalomarRegistry/PalomarSubmission/actions/runs/34794577299
 
 RESULT
 
@@ -73,8 +75,8 @@ and axiom audit at acfbb7877804a60efc08f3c26f79919dfcb32f1e:
 https://github.com/SauersML/group-approximation/actions/runs/34790950434
 The selected candidate must also pass Comparator with NanoDa; its verification
 is recorded in the GitHub Actions runs for that exact revision.
-These recorded verification runs do not constitute
-Palomar acceptance or human expert review.
+These are repository verification runs; Palomar processes the submitted
+revision separately.
 
 Astra developed the original argument using a custom proof tool under
 the author's direction. Claude (Anthropic) produced the Lean development

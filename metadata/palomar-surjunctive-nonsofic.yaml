@@ -253,8 +253,10 @@ review:
     audit. Verification for a selected revision is recorded separately in
     that revision's GitHub Actions runs; earlier runs certify only their
     named revisions.
-    The previous Palomar submission was withdrawn; this revision has not
-    been submitted.
+    The previous Palomar submission was withdrawn. The prepared revision
+    232c77f169ec66b27fd480d5c19474f519d359b7 was submitted to Palomar as
+    e8sd7sbrpcxh on September 14, 2026 UTC, for automated verification
+    and review. Its submission record identifies the exact verification runs.
 
 repository:
   role: substantive-development
