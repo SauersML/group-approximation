@@ -57,6 +57,7 @@ variable {ι : Type*} [Primcodable ι]
 def shiftStep (x : Option ι × Bool) (acc : ℕ × ℕ) : ℕ × ℕ :=
   Option.casesOn x.1 (cond x.2 (acc.1 + 1, acc.2) (acc.1, acc.2 + 1)) fun _ => acc
 
+omit [Primcodable ι] in
 theorem shiftPair_eq_foldr (w : List (Option ι × Bool)) : shiftPair w = w.foldr shiftStep (0, 0) := by
   induction w with
   | nil => rfl
@@ -87,6 +88,7 @@ def lettersStep (x : Option ι × Bool) (acc : List ((ℕ × ℕ) × (ι × Bool
     (cond x.2 (acc.map fun p => ((p.1.1 + 1, p.1.2), p.2)) (acc.map fun p => ((p.1.1, p.1.2 + 1), p.2)))
     fun i => ((0, 0), (i, x.2)) :: acc
 
+omit [Primcodable ι] in
 theorem hLetters_eq_foldr (w : List (Option ι × Bool)) : hLetters w = w.foldr lettersStep [] := by
   induction w with
   | nil => rfl
@@ -126,6 +128,7 @@ theorem primrec_hLetters : Primrec (hLetters : List (Option ι × Bool) → List
 def valueWordAt (w : List (Option ι × Bool)) (p : (ℕ × ℕ) × (ι × Bool)) : List (ι × Bool) :=
   (hLetters w).filterMap fun q => if q.1.1 + p.1.2 ≤ p.1.1 + q.1.2 then some q.2 else none
 
+omit [Primcodable ι] in
 theorem valueWordAt_eq (w : List (Option ι × Bool)) (p : (ℕ × ℕ) × (ι × Bool)) :
     valueWordAt w p = valueWord w (tagLevel p.1) := by
   unfold valueWordAt valueWord
@@ -250,7 +253,7 @@ theorem oracleAnswer_encode (u : List (ι × Bool)) :
     rw [encodek, Option.some_inj] at hw
     subst hw
     simp [hv]
-  · simp only [zero_ne_one, false_iff]
+  · simp only [false_iff]
     intro hv
     exact hex ⟨u, encodek u, hv⟩
 
@@ -263,7 +266,7 @@ theorem wordProblemOracle_levelGen_eq :
   congr 1
   cases hd : (decode n : Option (List (Option ι × Bool))) with
   | none =>
-    rw [if_neg (by rintro ⟨w, hw, -⟩; exact Option.noConfusion hw)]
+    rw [if_neg (by rintro ⟨w, hw, -⟩; cases hw)]
     rfl
   | some w =>
     have key : wordValue (levelGen s) w = 1 ↔ decideWord (oracleAnswer s) w = true := by

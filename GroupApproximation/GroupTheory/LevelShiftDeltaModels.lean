@@ -194,8 +194,7 @@ theorem zeta_inv_snd (z : (Fin (6 * s + 5 + 2) → Q) × ZMod L) :
     ((zeta Q (6 * s + 5) L)⁻¹ z).2 = z.2 - 1 := by
   have h := zeta_apply Q (6 * s + 5) L ((zeta Q (6 * s + 5) L)⁻¹ z)
   have hz : zeta Q (6 * s + 5) L ((zeta Q (6 * s + 5) L)⁻¹ z) = z := by
-    simpa using congrArg (fun σ : Perm ((Fin (6 * s + 5 + 2) → Q) × ZMod L) => σ z)
-      (mul_inv_cancel (zeta Q (6 * s + 5) L))
+    simp
   rw [hz] at h
   rw [eq_sub_iff_add_eq]
   exact (congrArg Prod.snd h).symm
