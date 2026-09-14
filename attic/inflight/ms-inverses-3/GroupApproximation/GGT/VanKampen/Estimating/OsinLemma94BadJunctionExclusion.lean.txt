@@ -112,7 +112,7 @@ theorem facePerm_getLast_eq_head_mod (P : OsinLemma94RealizedPolygons S) {k : Fi
     exact P.facePerm_getLast_last_eq_head_zero (by omega) he he'
 
 /-- The reverse of a dart on a side of kind `cell j` is a dart of the `j`-th relator cell. -/
-theorem alpha_mem_cellDarts_of_mem_sideDarts (P : OsinLemma94RealizedPolygons S) {k : Fin P.count}
+theorem alpha_mem_cellDarts_of_mem_cellSideDarts (P : OsinLemma94RealizedPolygons S) {k : Fin P.count}
     {i : ℕ} (hi : i < P.sideCount k) {j : Fin S.diagram.rCellCount} (hj : P.kind k i = .cell j)
     {d : S.diagram.toCombMap.Dart} (hd : d ∈ P.sideDarts k i) :
     S.diagram.toCombMap.alpha d ∈ cellDarts S.diagram j := by
@@ -145,8 +145,8 @@ theorem junctionGap_faceOf_ne_face (P : OsinLemma94RealizedPolygons S) {k : Fin 
       S.diagram.toCombMap.alpha (S.diagram.toCombMap.alpha e') := by
     rw [S.diagram.toCombMap.alpha_involutive e']
     exact P.facePerm_getLast_eq_head_mod hs (Option.mem_def.mpr he) (Option.mem_def.mpr he')
-  have hbcell := P.alpha_mem_cellDarts_of_mem_sideDarts hs hj hemem
-  have hacell := P.alpha_mem_cellDarts_of_mem_sideDarts hs' hj' hemem'
+  have hbcell := P.alpha_mem_cellDarts_of_mem_cellSideDarts hs hj hemem
+  have hacell := P.alpha_mem_cellDarts_of_mem_cellSideDarts hs' hj' hemem'
   have hsame : S.diagram.toCombMap.facePerm.SameCycle
       (S.diagram.toCombMap.facePerm (S.diagram.toCombMap.alpha e'))
       (S.diagram.toCombMap.alpha e) := by
