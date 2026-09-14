@@ -412,6 +412,19 @@ CLAIM seam glue component planarity:
     non-crossing structures on opposite sides of the seam circle. Neither the repo nor the pinned Mathlib has it.
   - Scale estimate: 1000+ lines over several modules.
 
+- **Split accepted by main (10:0x).**
+  - ct-rank-two-limit takes the pure permutation core, in a proposed module `GGT/VanKampen/PermNonCrossingCount.lean`.
+    Exact statements were sent in one message before any proof:
+    - `PermNonCrossing.card_orbit_add_card_orbit_le (π : Perm (Fin k)) : #Orbit π + #Orbit (π⁻¹ * finRotate k) ≤ k + 1`
+    - `PermNonCrossing.superposition_le (π ρ) (hπ : #Orbit π + #Orbit (π⁻¹ * finRotate k) = k + 1)
+      (hρ : #Orbit ρ + #Orbit (ρ⁻¹ * (finRotate k)⁻¹) = k + 1) :
+      k + 2 * #Quot (π i = j ∨ ρ i = j) ≤ #Orbit (π * ρ) + #Orbit π + #Orbit ρ`
+  - This lane takes the map side and the assembly, in modules under ~300 lines each:
+    - the seam edge maps of the reclosing `R` and of the copy `X`, planar by `IsRestriction.planar`, whose counts give
+      `hπ` and `hρ`;
+    - the seam skeleton of the glued map and its identification with the glued map up to disc fillings;
+    - the per-component count and `seamGlueComponentPlanar`.
+
 Counting facts on origin that the proof builds on: `Seam.glue_edgeCount` and `glue_faceCount` hold unconditionally, while
 `glue_vertexCount` needs `FollowsBoundary`, which a full t₁ breaks. So the glued vertices along the seam must be counted
 directly, as the cycles of σ_X σ_C.
