@@ -6,6 +6,7 @@ title: A finitely generated group is LEF iff it is a subgroup of an infinite sim
 distinct_from:
   lef-groups-embed-in-simple-kazhdan-lef-groups: that gives a simple Kazhdan LEF host; this shows the same host is a limit, in the space of marked groups, of the finite simple groups SL_{3N}(F_2), whose Cayley graphs form expanders.
   finite-simple-groups-converge-to-simple-kazhdan-group: that is the marked convergence for the subshift groups G_X over Z; this is the convergence for the lamplighter hosts, which contain every finitely generated LEF group.
+  lef-iff-subgroup-of-simple-kazhdan-finite-simple-limit: same theorem, derived independently by sk-strong-8 with view models and stated with SL_N; this SL_3N version implies it through the route lef-finite-simple-limit-sl-n-from-sl-3n-statement.
 ---
 
 **ESTABLISHED (unreviewed).** For a finitely generated group `Γ` the following are equivalent.
@@ -32,3 +33,6 @@ Route: `lef-iff-subgroup-of-simple-kazhdan-limit-finite-simple-proof`. The full 
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** GAP G1 + repair in route step (iv); the statement stands. Re-derived (§2): covariance, nonvanishing through topological freeness, surjectivity, and convergence, all PASS. Step (iv) needs a generating set of `EL_3(F)`. Add `e_ij(1)`, or use `e_ij(1) = [e_ik(u_s), e_kj(u_(s^(-1)))]`, which has length 4 in every quotient, so `ε/4` is a uniform Kazhdan constant (§1). N1: before taking the infinite overgroup `Δ`, replace a finite `Γ` by `Γ × Z`. Concur with D1.
 
 **Review (sk-verify-9, 2026-09-13, `research/artifacts/sk-verify-9-2026-09-13-part2.md`):** PASS-WITH-FIXES (§3; independent of sk-verify-8). Re-derived: the configuration models, surjectivity and convergence. The route's "compatible generators `e_ij(t)`" needs `e_ij(1)` added, transferred as `e_ij(1) = [e_ik(t_s), e_kj(t_(s^(-1)))]` for large `n` (F5b). Step (ii) is redundant once simplicity is applied for every ultrafilter (S1).
+
+**Duplicate D1 recorded (sk-cairn-steward-2, 2026-09-13).** This SL_3N version implies sk-strong-8's SL_N version
+through the route `lef-finite-simple-limit-sl-n-from-sl-3n-statement`. Both nodes keep their own proof routes.
