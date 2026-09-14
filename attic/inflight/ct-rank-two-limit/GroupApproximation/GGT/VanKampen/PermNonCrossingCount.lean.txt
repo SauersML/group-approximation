@@ -23,7 +23,7 @@ of `π * τ`.
 * `card_vertex_walsh`: `Nat.card (walsh π τ).Vertex = Nat.card (Orbit π) + Nat.card (Orbit τ)`;
 * `card_edge_walsh`: `Nat.card (walsh π τ).Edge = k`;
 * `card_face_walsh`: `Nat.card (walsh π τ).Face = Nat.card (Orbit (π * τ))`, since two steps of the face
-  permutation act as `π * τ` on the `false` copy (`walshFacePerm_sq`);
+  permutation act as `π * τ` on the `false` copy (`walshFacePerm_mul_self`);
 * `walsh_connected`: the Walsh map is connected when `π * τ` has a single cycle, as `finRotate k` does
   (`finRotate_sameCycle`).
 -/
@@ -177,31 +177,28 @@ theorem walshFacePerm_true (π τ : Perm (Fin k)) (i : Fin k) :
 
 /-- Two steps of the face permutation act as `π * τ` on the `false` copy and `τ * π` on the `true`
 copy. -/
-theorem walshFacePerm_sq (π τ : Perm (Fin k)) :
-    (walsh π τ).facePerm ^ 2 = walshSigma (π * τ) (τ * π) := by
+theorem walshFacePerm_mul_self (π τ : Perm (Fin k)) :
+    (walsh π τ).facePerm * (walsh π τ).facePerm = walshSigma (π * τ) (τ * π) := by
   refine Equiv.ext fun d => ?_
-  rcases d with ⟨i, _ | _⟩
-  · rw [pow_two, Perm.mul_apply, walshFacePerm_false, walshFacePerm_true, walshSigma_apply]
-    rfl
-  · rw [pow_two, Perm.mul_apply, walshFacePerm_true, walshFacePerm_false, walshSigma_apply]
-    rfl
+  rcases d with ⟨i, _ | _⟩ <;> rfl
 
-theorem walshFacePerm_zpow_two_mul (π τ : Perm (Fin k)) (m : ℤ) (i : Fin k) :
-    ((walsh π τ).facePerm ^ (2 * m)) (i, false) = (((π * τ) ^ m) i, false) := by
-  rw [zpow_mul, zpow_ofNat, walshFacePerm_sq, walshSigma_zpow_apply]
-  rfl
+theorem walshFacePerm_zpow_two_mul (π τ : Perm (Fin k)) (m : ℤ) (i : Fin k) (b : Bool) :
+    ((walsh π τ).facePerm ^ (2 * m)) (i, b) = ((cond b (τ * π) (π * τ) ^ m) i, b) := by
+  rw [zpow_mul, zpow_two, walshFacePerm_mul_self, walshSigma_zpow_apply]
 
 theorem sameCycle_walshFacePerm_false_iff (π τ : Perm (Fin k)) (i j : Fin k) :
     (walsh π τ).facePerm.SameCycle (i, false) (j, false) ↔ (π * τ).SameCycle i j := by
   constructor
   · rintro ⟨n, hn⟩
     rcases Int.even_or_odd' n with ⟨m, rfl | rfl⟩
-    · rw [walshFacePerm_zpow_two_mul, Prod.mk.injEq] at hn
-      exact ⟨m, hn.1⟩
-    · rw [zpow_add_one, Perm.mul_apply, walshFacePerm_zpow_two_mul, walshFacePerm_false] at hn
-      exact absurd (congrArg Prod.snd hn) Bool.true_eq_false
+    · rw [walshFacePerm_zpow_two_mul] at hn
+      exact ⟨m, congrArg Prod.fst
+        (show ((((π * τ) ^ m) i, false) : Fin k × Bool) = (j, false) from hn)⟩
+    · rw [zpow_add_one, Perm.mul_apply, walshFacePerm_false, walshFacePerm_zpow_two_mul] at hn
+      exact absurd (congrArg Prod.snd
+        (show ((((τ * π) ^ m) (τ i), true) : Fin k × Bool) = (j, false) from hn)) Bool.true_eq_false
   · rintro ⟨m, hm⟩
-    exact ⟨2 * m, by rw [walshFacePerm_zpow_two_mul, hm]⟩
+    exact ⟨2 * m, by rw [walshFacePerm_zpow_two_mul, ← hm]; rfl⟩
 
 /-- The point of `Fin k` whose `false` dart shares the face orbit of a dart. -/
 def faceBase (π : Perm (Fin k)) (d : Fin k × Bool) : Fin k :=
@@ -274,7 +271,8 @@ theorem walsh_connected (π τ : Perm (Fin k)) (h : ∀ i j : Fin k, (π * τ).S
 theorem finRotate_sameCycle (i j : Fin k) : (finRotate k).SameCycle i j := by
   rcases k with _ | _ | n
   · exact i.elim0
-  · rw [Subsingleton.elim i j]
+  · have hij : i = j := Fin.ext (by have := i.isLt; have := j.isLt; omega)
+    rw [hij]
     exact Perm.SameCycle.refl _ _
   · have hsupp := support_finRotate (n := n)
     exact isCycle_finRotate.sameCycle (Perm.mem_support.mp (by rw [hsupp]; exact Finset.mem_univ i))
