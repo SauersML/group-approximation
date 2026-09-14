@@ -90,7 +90,7 @@ wiring.  Census: the 14 W1 rows add the V4 carriers and the V4 residual list, st
 Module `GGT/VanKampen/Estimating/OsinGreendlingerWaistV4Split`: `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4Split`,
 12 residuals.  `OsinLemma94ClassCasesInput` comes from ct-bilateral-cell's `osinLemma94ClassCases_of_residuals` (6ba28eb0e), over
 the closed `osinLemma94CaseOneWalk` and `osinLemma94CaseTwoInput`, from `OsinLemma94CaseOneRCellStatement`,
-`OsinLemma94ClassCaseGapEndpointStatement` and `OsinLemma94ClassCaseGapSpanStatement`.  Status: probing.
+`OsinLemma94ClassCaseGapEndpointStatement` and `OsinLemma94ClassCaseGapSpanStatement`.  LANDED 3877f8b63.
 
 V4 residual owners (coordinator ~20:30):
 
@@ -357,3 +357,49 @@ Refutation scan over all 13 on origin (`¬ X`): none.  Pending, not composed: w1
   ms-compress-2's `enclosedBridgeDoublingSucc` and `enclosedLeastAreaFilterSucc` (c2fa6eed0) produce `EnclosedLeastAreaFilterSuccStatement`,
   which no producer on origin turns into leaf 3 (`EnclosedSubdiagramLoopCutSuccStatement`) or leaf 4 (`ClosedWalkEnclosedSubdiagramSuccStatement`).
 - The previous V8 draft (13 leaves) probed GREEN at 0914-091156-5879; the recomposed 12-leaf V8 LANDED c891e1be3 (probe 0914-091700-833 GREEN: both modules BUILT on a real rebuild and COMPILED, 0 errors, 23 audits classical, no sorryAx; queued for wiring).  The 14 W1 rows cite the `_of_residualsV8` carriers with the twelve leaves, followed by the `_of_greendlinger` carriers; still `partial`.
+
+## Item 10: V9, budget and enclosed pieces pushed down (ms-inverses-2 and origin scan, 09-14 ~09:30)
+
+Changes against V8 (c891e1be3, stays):
+- Leaf `OsinTwoGonDecompositionEulerSectionStatement` CLOSED by `osinTwoGonDecompositionEulerSection` (ms-inverses-2, ac902a9c1,
+  `OsinAppendixEulerTwoGonDecompositionEuler`, `#audit_closed_axioms`, no sorry).
+- Leaf `OsinLemma94ClassEndLoopsBudgetInput` pushed through `osinLemma94ClassEndLoopsBudgetInput_of_joins` (efa471e68), with
+  `osinLemma94LongTransitionInput_of_pieces` over the proved `osinLemma94CuttingTransitionInput` (59a5e1718, closed audit, no sorry),
+  `osinLemma94BadJunctionInput_of_pieces`, and `osinLemma94BoundaryJunctionBudgetInput_of_pieces` (1bc1874ba).
+- Leaf `ClosedWalkEnclosedSubdiagramSuccStatement` CLOSED by `closedWalkEnclosedSubdiagramSucc` (c6ca441fe, `ClosedWalkEnclosedSubdiagramSuccAssembly`,
+  `#audit_closed_axioms`, no sorry).
+
+Modules: `GGT/VanKampen/Estimating/OsinGreendlingerWaistV9` (`relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV9`) and
+`Manuscript/NonMF/TorsionFreeResidualsV9` (22 endpoints `_of_residualsV9`).
+
+LEAF residual list of V9 (namespace `GGT.VanKampen`), with owners:
+
+| # | leaf | owner lanes |
+|---|---|---|
+| 1 | `OsinLemma94ContactTransitionInput` | ms-compress-1, ms-intro-2 |
+| 2 | `OsinLemma94CellJunctionValueInput` | ms-core-1, ms-inverses-3 |
+| 3 | `OsinLemma94BackwardJunctionCountInput` | ms-core-1, ms-inverses-3 |
+| 4 | `OsinLemma94BoundaryValueFailureCountInput` | ms-core-1, ms-inverses-3 |
+| 5 | `OsinLemma94ClassJoinsEndLoopsInput` | ms-binary |
+| 6 | `SameCellPocketLoopCutStatement` | ms-compress-2, w1-binder-5, ms-traces-2 |
+| 7 | `EnclosedSubdiagramLoopCutSuccStatement` | w1-binder-8, ms-traces-2 (Succ) |
+| 9 | `OsinLemma94ClassCaseGapSpanStatement` | ct-bilateral-cell, ct-return-tower |
+| 10 | `OsinTwoGonCleanCopySectionStatement` | w1-binder-1 (face-edge doubling step unowned) |
+| 11 | `CellPocketOuterPinchStepSectionDistinctStatement` | w1-binder-7 |
+| 12 | `CellPocketWalkProperArcsBelowSectionStatement` | ms-cite-1 |
+| 13 | `OsinSectionPocketFaceSetProperSectionStatement` | w1-binder-6, w1-binder-3, ms-intro-2 |
+| 14 | `OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement` | ct-return-tower (respelling via `OsinPocketInnerWalk` pending) |
+| 15 | `PocketOuterPinchStepSectionStatement` | w1-binder-7, w1-binder-3 |
+
+Numbering skips 8 (closed).  Refutation scan over all fourteen on origin (`¬ X`): none.  LANDED 07560f516 (probe 0914-100320-24260 GREEN, both modules BUILT and COMPILED, errors section empty; queued for wiring; the first try failed on infrastructure during the ~09:36 outage).
+
+Rows NOT re-pointed to V9 (main's rule, 09-14 ~10:05): against V8, leaves 4 and 7 are closed, but leaf 1 `OsinLemma94ClassEndLoopsBudgetInput` is only reduced to five pieces (contact transitions, cell junction value, backward junction count, boundary value failure count, class joins end loops), and nothing on origin derives any piece from the budget, so no added leaf is shown strictly weaker.  The rows stay on V8 (3c874d98d).  Proposed instead: `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8Closures` (V8 with only the two closures, ten leaves, none added), probing.
+
+## Item 11: the pure permutation core of `SeamGlueComponentPlanarStatement` (coordinator ~09:40), CLAIMED
+
+Scope, with no maps, over `Fin k` with γ = `finRotate k` and cycle counts `Nat.card (CombMap.Orbit p)` (fixed points included):
+1. the non-crossing criterion `card_orbit_add_card_orbit_le`: cyc(π) + cyc(π⁻¹γ) ≤ k + 1;
+2. the superposition count `superposition_le`: for π non-crossing for γ and ρ non-crossing for γ⁻¹,
+   k + 2·#orbits⟨π, ρ⟩ ≤ cyc(πρ) + cyc(π) + cyc(ρ).
+Statements from w1-binder-5 (map side and assembly owner), under agreement before any proof.  Planned modules under
+`GGT/VanKampen/`: cycle count change under a transposition, the criterion, and the superposition.  V9 recomposition keeps priority.
