@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellCycle
+import GroupApproximation.GGT.VanKampen.FaceCycle
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
