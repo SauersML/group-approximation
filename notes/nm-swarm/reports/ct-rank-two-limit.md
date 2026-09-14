@@ -177,3 +177,48 @@ sentences).  Rows are appended once the carriers land.
   `CellPocketFaceSet.copyRegion_of_pinchSection`, which needs proper arcs on the cell walk.  No producer on origin; it would be a new
   residual, false on monogon relators without `OsinCCondition`, so it needs a model test.  When an additive
   `osinMultipleEdgePocketRegionCopySection_of_pinchSectionOrderEuler` lands, this lane adds a waist and torsion-free variant over it.
+
+## Item 5: the two-threshold waist (ruling R2, coordinator 23:12; names from ct-return-tower and ct-bilateral-cell)
+
+Dependencies on origin: `OsinLemma94ClassCornerMove` (9133128ae, ct-return-tower), `OsinLemma94ClassSectionTwoThreshold`
+(34ca875e8) and `OsinLemma94ClassCasesTwoThreshold` (9bae10a9d), ct-bilateral-cell.
+
+Module `GGT/VanKampen/Estimating/OsinGreendlingerWaistV4TwoThreshold`:
+`relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4TwoThreshold`, 8 residuals: `OsinLemma94ClassEndLoopsInput`,
+`OsinLemma94SameCellPocketInput`, `OsinLemma94CaseOneRCellStatement`, `OsinLemma94ClassCaseGapSpanStatement`,
+`OsinTwoGonHoldsSectionStatement`, `OsinMultipleEdgePocketRegionCopySectionStatement`,
+`OsinSectionPocketFaceSetProperSectionStatement`, `PocketPinchLabelledSectionStatement`.
+- Lemma 9.4 from `osinLemma94Section_of_classCountTwoThreshold` over `osinLemma94ClassCasesTwoThreshold_of_residuals`, with the
+  closed Case 1 face walk and Case 2; `OsinLemma94ClassCaseGapEndpointStatement` leaves the waist.
+- Binder 5 whole, so the refuted `CellPocketPinchPosStatement` is not bound.
+
+Module `Manuscript/NonMF/TorsionFreeResidualsV4TwoThreshold`: the 22 endpoints `_of_residualsV4TwoThreshold` over the 8
+residuals.  Status: probing (attic c7b171240).  On GREEN the 14 W1 rows add these carriers next to the `_of_greendlinger` ones.
+
+## Item 6: the live waist V5 (coordinator 08:2x, 09-14), authored OFFLINE
+
+The laptop reboot wiped /private/tmp, including the nm infra and this lane's records (`.files`, green records, `landed.log`,
+backups).  Origin is intact.  Per main: author offline only; no probe or landing until the infra is rebuilt.  My earlier landings
+and the last row state (1507cedb4) are on origin.
+
+Drafts (in the shared tree, not on origin):
+- `GGT/VanKampen/Estimating/OsinGreendlingerWaistV5`: `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV5`, 10 residuals:
+  `OsinLemma94ClassEndLoopsInput`, `OsinLemma94SameCellPocketInput`, `OsinLemma94CaseOneRCellStatement`,
+  `OsinLemma94ClassCaseGapSpanStatement`, `OsinTwoGonHoldsSectionStatement`, `CellPocketWalkEulerStatement`,
+  `CellPocketPinchSectionStatement`, `CellPocketWalkProperArcsSectionStatement`, `OsinSectionPocketFaceSetTwoArcSectionStatement`,
+  `PocketPinchLabelledSectionTwoArcStatement`.
+  - h94 from ct-bilateral-cell's R2 section (34ca875e8, 9bae10a9d), with the closed Case 1 face walk and Case 2.
+  - Binder 5 from ms-cite-1's landed `osinMultipleEdgePocketRegionCopySection_of_pinchSectionOrderEuler` (`OsinPocketMultipleEdgeCopyOrderSection`),
+    with `hcopy := cellPocketCopyCleanBothOrders` (bd7e16201, closed audit) and `hout := cellPocketWalkOuterOffSideSomeOrder` (7d1f00831).
+    The proper-arc residual is model-tested on paper in that module (fails without `OsinCCondition` on one-letter relators; no known
+    counterexample under it).
+  - Binders 6 and 7 in the walk-order two-arc forms through `osinSectionPocketCutSection_of_residualsTwoArc` (w1-binder-7, f81311dc9).
+  - No refuted binder: `CellPocketPinchPosStatement` is not bound.
+- `Manuscript/NonMF/TorsionFreeResidualsV5`: the 22 endpoints `_of_residualsV5` over those 10 residuals.
+- Earlier drafts kept: `OsinGreendlingerWaistV4TwoThreshold` and `TorsionFreeResidualsV4TwoThreshold` (binder 5 whole, 8 residuals;
+  attic c7b171240).  Their probe failed on infrastructure (github fetch), not on Lean.
+
+When probe and land work again: probe V5, land, re-point the 14 W1 rows to the `_of_residualsV5` carriers with this residual list, and
+report to main.
+
+LANDED 8c3fc5f4a (probe 0914-082738-17083 GREEN: both modules BUILT on a real rebuild and COMPILED, 0 errors, 23 audits classical, no sorryAx; queued for wiring).  The 14 W1 rows cite the `_of_residualsV5` carriers with the ten live residuals, followed by the `_of_greendlinger` carriers; still `partial`.  The two-threshold drafts (binder 5 whole) stay unlanded.
