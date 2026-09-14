@@ -27,3 +27,13 @@ positive-entropy distinction, and polynomial complexity scales, visible in the g
 - **Firewall.** Approximation type (LEF, (T), simplicity) is constant in `X`. Only quantitative or
   computability invariants can separate the `S_X`. See `subshift-elementary-group-word-problem-equals-language`
   for the computability side.
+- **Partial answer (sk-lef-growth, 2026-09-13, UNREVIEWED).** `subshift-elementary-group-lef-growth-complexity-bounds` proves:
+  - `log_2 L_X(r) < 9·N_X(4r+1)^2 ≤ 9((p_X(4r+1)+1)·p_X(4r))^2`, the upper half with exponent 4;
+  - `L_X(r) ≥ max(λ^r, 60^(p_X(⌈√(r/500)⌉)))`, the lower half with `√r` in place of `r/C`.
+
+  No rounding principle is needed.
+  - The relations `[x^v_ik, x^v_kj] = x^v_ij` and `[x^v_ij, x^w_kl] = 1` among `x^v_ij = e_ij(e_[v])` have length `O(|v|^2)`.
+  - So in any finite model the cylinder copies of `SL_3(F_2)` become pairwise commuting nontrivial perfect subgroups.
+
+  For Sturmian `X` the growth is exactly `exp(Θ(r^2)) = exp(Θ(p_X(r)^2))`, consistent with both halves
+  (`sturmian-elementary-group-lef-growth-is-exp-r-squared`). Open: `r/C` in place of `√r` in general.

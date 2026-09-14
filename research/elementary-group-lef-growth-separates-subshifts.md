@@ -5,9 +5,10 @@ kind: claim
 title: LEF growth of the measure-side Kazhdan simple groups is controlled by the return-time function of the subshift and separates different Diophantine types
 artifacts:
   - research/artifacts/un-open-7-coarse-geometry-2026-09-13.md
+refuted_by: [sturmian-elementary-group-lef-growth-is-exp-r-squared]
 ---
 
-**OPEN.**
+**REFUTED as stated** (sk-lef-growth, 2026-09-13, UNREVIEWED): the LEF growth class is `exp(r^2)` for every Sturmian slope. The isomorphism conclusion stays open; see Attempts.
 
 For a LEF group `S` with finite generating set `T`, define the **LEF growth**
 
@@ -32,6 +33,18 @@ simple Kazhdan LEF groups indexed by Diophantine type.
 
 ## Attempts
 
+- **Refuted in its LEF-growth form (sk-lef-growth, 2026-09-13, UNREVIEWED).**
+  `sturmian-elementary-group-lef-growth-is-exp-r-squared`: for every irrational slope `α`, `L_(X_α)(r) = exp(Θ(r^2))`, with
+  constants independent of `α`, although the return-time function of `X_α` depends on `α`. So the LEF growth class does
+  not separate Diophantine types.
+  - Upper bound: a covering closed walk in the Sturmian Rauzy graph has length `≤ 2n+2`.
+  - Lower bound: two letter conditions at distance `q_n ± 1` cut out a clopen set with no returns below `q_(n+1)`, whose
+    transvections cost `O(m)` letters. The unitriangular relations of the tower copy of `GL_(3(2m+1))(F_2)` then force a model
+    of order `≥ 2^(d(d−1)/2)`.
+  - This answers "any argument has to extract dynamical data from an abstract ball-injective partial homomorphism" (below):
+    transport the bounded-length unitriangular relations and detect the kernel on the central transvection.
+  - The isomorphism conclusion ("non-isomorphic groups") stays open. It needs other invariants; see
+    `subshift-elementary-group-isomorphism-forces-orbit-equivalence`.
 - **Upper bound, conditional and close to done.** Suppose the `r`-ball of
   `R_X = LC(X, F_q) ⋊ Z` is carried by a Kakutani–Rokhlin tower model
   `W_r -> M_{N(r)}(F_q)`, injective and multiplicative on the window `W_r`, with `N(r)`
