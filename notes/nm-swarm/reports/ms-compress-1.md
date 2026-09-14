@@ -189,3 +189,23 @@ Route note on `ed348643e2ad`: ρ_lm(Y_l) ⊆ Y_m is proved from the cyclic-edge 
   - 0914-003538-8619: red. In the two-cell `hwalk`, `targetBoundaryDarts (some j)` reads `arc.reverseDarts` over the cycle `targetDarts (some j)`, definitionally but not syntactically equal to `cellDarts j`, so `simp` left the goal. Fixed with `simp only [List.append_nil]; rfl`.
 - Still open for the contact count: the Euler count itself (candidate tooling: ms-intro-2's `CombMapEulerHittingSet`), and pinched bubbles through `PinchSplit.pinchSplitAbsorption`.
 - Design notes for the Euler count of piece 1 (object multigraph D; degenerate faces and their exclusions): lane scratch `contact-euler-design.md`.
+
+## Contact piece: Route C and piece J (09-14 08:4x–, after the reboot)
+
+- Resume checks at origin f338faeb5: ContactBubble, LongTransitions and the report on disk equal origin. `.files` re-registered (clone lix-b). Nothing in flight.
+- **Route C for `OsinLemma94ContactTransitionInput`.** On the walk of a relator polygon f, collapse the cell and boundary sides into letters (one letter per cell, one letter O for ∂Δ). A contact transition is a letter change. The count has four parts.
+  1. **J.** No a…b…a…b along one face of a planar map. A cyclic word with no equal neighbours and no abab over d letters has length ≤ 2d − 2, so #changes_f ≤ 2d_f − 2.
+  2. **Section corners.** Boundary j → j′ sits at a cut position, at most 5.
+  3. **B.** Polygons with d_f ≥ 3: planar bipartite bound against {cells, O}, so Σ d_f ≤ 6(n + 1).
+  4. **T.** Polygons with d_f = 2: planar multigraph on n + 1 vertices, no empty two-gon. An empty two-gon is a bubble, possibly with regions or pinches inside, excluded by ContactBubble, `pinchSplitAbsorption`, and a region merge still to write.
+  - Total ≤ 36n. Regions, lobes and hairs need nothing: a letter never follows itself.
+- CLAIM piece J GroupApproximation/GGT/VanKampen/CombMapNeighbourFacesNoninterleaving.lean
+- **LANDED 1fd377b90** (probe 0914-084859-90205 GREEN, BUILT).
+  - `NeighbourFaces.false_of_interleave`: interleaving neighbour faces a, b ≠ f, a ≠ b contradict planarity.
+  - Proof: split the vertex at x₀ (`PinchSplit`, planar, all darts kept), merging a into f. The edge of the second a side is then a same-face edge, hence a bridge (`AvoidEdgeStep.not_eqvGen_alpha_of_sameFace`). Its two darts are joined avoiding it: along f, through the split into a, and across b.
+  - Closed endpoint `neighbourFacesNoninterleaving : NeighbourFacesNoninterleavingStatement`, with position 0 the first a side. Rebasing to general positions is a corollary to add when the consumer needs it.
+- Open: B (planar bipartite bound), T (empty two-gons), and the assembly into `OsinLemma94ContactTransitionInput`.
+  - First probe 0914-084206-68298 red: `Equiv.Perm.inv_apply_self` is not at the pin, and a `← pow_add` rewrite missed after `simp only`. Fixed with the existing `faceOf_facePerm_pow` and `facePerm_pow_apply_pow`.
+- CLAIM small-face Euler budget GroupApproximation/GGT/VanKampen/CombMapEulerSmallFaceBudget.lean
+- **LANDED 0d3b600d9** (probe 0914-084522-79244 GREEN, BUILT, 0 sorryAx/error lines). `CombMap.six_mul_faceCount_le`: 6F ≤ 2E + 2t. `CombMap.two_mul_edgeCount_add_six_le`: 2E + 6 ≤ 3V + t on planar maps with every face of degree ≥ 4, where t counts the faces of degree < 6. Sharp on the square.
+- Next, B and T combined: the bipartite polygon–object map H (a predicate restriction of the dual, one dart per (polygon, object) pair) with all faces of degree ≥ 4 and the budget applied per component. Degree-4 faces either hold a cell (t ≤ n) or are empty two-gons, excluded by ContactBubble, `pinchSplitAbsorption` and a region merge. Open question: planarity per component, through an IsRestriction for `CombMap.restrict`.
