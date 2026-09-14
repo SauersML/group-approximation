@@ -32,4 +32,18 @@ invariant of `G_X`.
   - A finite presentation of the Steinberg group over `F` with elementary generators would close the gap, by the
     argument of `kazhdan-marked-limits-eventually-uniform-expanders`. For rank 3 this is doubtful: the analogous groups
     over `F_q[t]` are not finitely presented (Behr; Rehmann–Soulé; recalled, not checked). Rank `≥ 4` is untested.
-- **Next test case.** `EL_4(LC(X,F_2) ⋊ Z)` with a finite presentation of `St_4` over free algebras, checked at source.
+- **Rank at least four: settled (sk-free-4, artifact part 4).** `el-rank-four-finite-simple-shadows-are-ring-models`:
+  - for `N >= 4` and every f.g. ring `R`, every finite simple approximant of `EL_N(R)` is eventually
+    `PSL_(Nd)(F_q)`, induced by a surjective ring model;
+  - the inputs are the finitely presented `St_N` (Krstić–McCool Theorem 3, via EJZ l.2496–2497, read at source)
+    and central `K_2` over finite rings (`semilocal-steinberg-groups-have-central-k2`);
+  - consequence: `rank-four-subshift-groups-see-rational-spectrum`.
+
+  The same proof works in rank three EXCEPT step 1: `St_3` over a free ring surjecting onto `F[t]` is not finitely
+  presented (Krstić–McCool Corollary 2, quoted by EJZ l.2501). So the question below is exactly whether
+  approximants of `G_X` satisfy the Steinberg relations beyond the convergence radius.
+- **Remaining rank-three routes.**
+  - A finitely presented cover of `EL_3(R_X)` whose finite quotients still carry full root-subgroup structure. EJZ's
+    cover (D1 ∪ D2, for algebras over `F_q` with `q >= 5`) has only degree-two commutator relations and does not
+    help over `F_2`.
+  - Or an intrinsic group-theoretic recovery of the rational spectrum of `X` from `G_X` (see sk-iso-rigidity).
