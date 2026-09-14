@@ -147,9 +147,39 @@ What a pocket region actually needs:
 - So option (iv) is the precise residual: both reclosings of the pocket walk preserve the Euler characteristic.
 - Passages at a vertex do not interleave, so both sides are discs (hand argument).
 
-Planned: `PocketRegion.ofNoncrossingClosedWalkEuler` (both Euler equalities, no following),
-`IsNoncrossingClosedWalk.eulers_of_eitherFollows` (partial producer), `PocketWalk.noncrossing_of_copyClean`, the residual
-`SectionPocketWalkEulerStatement`, `sectionPocketKeptCell_of_euler`, and a lake-map model test.
+LANDED 2c1a841e8 (probe 0913-191427-58413 GREEN, md5 checked; wire-queued). Module `Estimating/OsinPocketKeptCellSection`:
+- `IsNoncrossingClosedWalk.eulers_of_eitherFollows`: one following cycle gives both Euler equalities.
+- `PocketRegion.ofNoncrossingClosedWalkEuler` (with `_faces` and `_inner_cycle`, both `rfl`): the pocket region from the two
+  Euler equalities.
+- `PocketWalk.noncrossing_of_copyClean`: the pocket walk under the edge conditions is noncrossing.
+- `GloballyDistinguishedSectionFamily.exists_kept_of_noncrossingPocketWalk_of_eulers`.
+- Named residual `SectionPocketWalkEulerStatement` (option (iv)); `sectionPocketKeptCell_of_euler`;
+  `osinSectionPocketFaceSetSection_of_regions_euler`.
+- Model `OsinPocketKeptCellSection.lakeEulerBranch` (closed): on the lake map the outer cycle does not follow, and both
+  Euler equalities hold.
+
+Binder 6 residuals after this module: `SectionPocketRegionsCopyStatement` (ms-intro-2) and
+`SectionPocketWalkEulerStatement` (no owner).
+
+## `SectionPocketProperGapStatement` (main's item, 19:1x): BLOCKED, not refuted
+
+- Checked: `toPocketFaceSetOfNoncrossing` keeps the source arc (`PocketFaceSet.ofBoundaryCycle` sets
+  `sourceArc := sourceArc`, so `rfl`).
+- The route through `OsinCCondition` does not apply.
+  - The condition bounds published pieces between relator words, measured in `G`, where relator words have value ≠ 1.
+  - The pocket contains a relator cell, so its boundary value in `G` is a product of relator conjugates. So `t_1` is
+    not ε-close to `t_2` in `G`.
+- The enclosed lake breaks the bound.
+  - Take `y`'s source arc ending where `x`'s begins, at a vertex `v` of `∂Π`. Then `x.arc ++ Gap ++ y.arc = ∂Π`, the
+    sides `s_1` and `s_2` meet at `v`, and `Π` borders the pocket along all its edges and touches the outside only at
+    `v`.
+  - This is Configuration B with `Π` alone in the lake. In `OsinPocketLakeModel`, `t_1 = [0]` is all of `∂Π`.
+  - The edge conditions do not exclude vertex touches.
+- The only exclusion I see is global.
+  - Gluing `Π` into the pocket gives a subdiagram with boundary `s_1 s_2 t_2` that contains a relator of length ≥ ρ.
+  - Ruling that out is Greendlinger / Lemma 9.7 for that subdiagram, which need not have fewer cells than `Δ`.
+- Suggested: handle a full `t_1` at the pinch step. `OsinPocketArcTrim` trims when a side is shorter than ε, and the
+  stuck case is both sides at exactly ε.
 
 ## Plan for `side_outer`
 
