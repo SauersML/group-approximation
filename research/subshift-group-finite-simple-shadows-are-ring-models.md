@@ -42,6 +42,16 @@ invariant of `G_X`.
   The same proof works in rank three EXCEPT step 1: `St_3` over a free ring surjecting onto `F[t]` is not finitely
   presented (Krstić–McCool Corollary 2, quoted by EJZ l.2501). So the question below is exactly whether
   approximants of `G_X` satisfy the Steinberg relations beyond the convergence radius.
+- **Settled with a cyclic factor, and the consequence obtained anyway (sk-rank3-shadows, 2026-09-14,
+  `research/artifacts/sk-rank3-shadows-2026-09-14.md`; unreviewed).**
+  - `cyclic-factor-subshift-groups-have-ring-type-shadows`: if `X` has a finite cyclic factor of order `m ≥ 2`, then
+    `G_X = EL_(3m)(R_(X_1))` over the induced subshift, and rank-four type rigidity gives every approximant ring type
+    `PSL_(3md)(F_(2^f))`. So this question is OPEN only for totally minimal `X`.
+  - `subshift-group-isomorphism-preserves-rational-spectrum`: the intended consequence holds in rank three with no
+    answer to this question. For `m ∈ Cyc(Y)`, `m` puts `3m` in `Div(G_Y)` by type rigidity of `EL_(3m)(R_(Y_1))`. If
+    `m ∉ Cyc(X)`, periodic models of sizes `g_r p` avoid `3m`. So `G_X ≅ G_Y` forces `Cyc(X) = Cyc(Y)`.
+  - Sharpest remaining target (artifact §4): a local-to-global lemma. Ring-type corner subgroups `PSL_(3hd)` over the
+    pieces of a clopen partition should force the whole finite simple approximant to be ring type.
 - **Remaining rank-three routes.**
   - A finitely presented cover of `EL_3(R_X)` whose finite quotients still carry full root-subgroup structure. EJZ's
     cover (D1 ∪ D2, for algebras over `F_q` with `q >= 5`) has only degree-two commutator relations and does not
