@@ -1,0 +1,100 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketGoodCornersSection
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchSection
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The section pinch in walk order, by dispatch on first-turn order
+
+Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): the subdiagram `Γ_1` with
+`∂Γ_1 = s_1 t_1 s_2 t_2`.  A pocket in first-turn order has a copy with a simple pocket face set
+(`PocketFaceSet.exists_simple_of_firstTurns`, `Estimating/OsinPocketGoodCornersSection.lean`).  First-turn
+order of a pocket in walk order is the following of the outer cycle
+(`PocketFaceSet.firstTurns_iff_outerFollows`, `Estimating/OsinPocketFirstTurnsOfOuterFollows.lean`), and on
+a lake with the source cell inside it fails at map level, so the face set producer cannot deliver it.
+
+So the section pinch takes walk order.  A pinched pocket that is not in first-turn order has a lake
+touching its walk from outside, and a step splits that outer pinch.  This module states the step and
+dispatches: in first-turn order the pinch closes outright, an unpinched pocket is simple, and
+otherwise the outer step lowers the repeated visits.
+
+* `PocketOuterPinchStepSectionStatement`: one step at an outer pinch, under the section premises.
+* `pocketPinchLabelledSectionStatement_of_outerPinchStep`: the section pinch in walk order,
+  `PocketPinchLabelledSectionStatement`, from that step, by strong induction on the repeated visits.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (Hull's small cancellation theorem, through Osin's Lemma 9.7(b));
+certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded Surgery.MapCollapse
+
+/-- **One step of the section pinch at an outer pinch.**  Beyond thresholds for `ε` and `ρ`, for a
+family satisfying Osin's condition, a pinched pocket face set in walk order but not in first-turn
+order, of a least-area diagram with letter labels, with a proper source arc, has an O-equivalent copy
+with letter labels and a pocket face set in walk order in the same positions, with a proper source
+arc and fewer repeated visits. -/
+def PocketOuterPinchStepSectionStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+              ∀ (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+                (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+                ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+                  K.sourceArc.length < (cellDarts X K.source).length →
+                  ¬Unpinched X.toCombMap K.faces →
+                    ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
+                      Nonempty (OEquivalentDiscDiagram X X') ∧
+                        (∀ d, (symmetricLabelAlphabet D).IsLetter (X'.label d)) ∧
+                        K'.ClosedWalk ∧ K'.sourceArc.length < (cellDarts X' K'.source).length ∧
+                        K'.repeatedVisits < K.repeatedVisits
+
+/-- **The section pinch in walk order, from the outer-pinch step.**  In first-turn order the pinch
+closes outright; an unpinched pocket in walk order is simple; otherwise the outer step lowers the
+repeated visits, least area passes to the copy, and O-equivalences compose.  The threshold for `ρ`
+is at least two, so relator words are longer than one letter. -/
+theorem pocketPinchLabelledSectionStatement_of_outerPinchStep
+    (h : PocketOuterPinchStepSectionStatement.{u, w, v}) :
+    PocketPinchLabelledSectionStatement.{u, w, v} := by
+  intro G _ Lambda D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16
+  obtain ⟨eps0, heps0⟩ := h D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16
+  refine ⟨eps0, fun eps heps => ?_⟩
+  obtain ⟨rho0, hrho0, hrho⟩ := heps0 eps heps
+  refine ⟨max rho0 2, lt_of_lt_of_le hrho0 (le_max_left rho0 2),
+    fun rho hrho' W hcondition X₀ lo hi hlea₀ hlabel₀ K₀ hK₀ hprop₀ => ?_⟩
+  have hstep := hrho rho ((le_max_left rho0 2).trans hrho') W hcondition
+  have hW : ∀ word ∈ W, 1 < word.length := fun word hword =>
+    lt_of_lt_of_le Nat.one_lt_two
+      (((le_max_right rho0 2).trans hrho').trans (hcondition.long word hword))
+  have H : ∀ (n : ℕ) (X : DiscDiagram.{u, w, v} W), X.LeastArea →
+      (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+      ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk →
+        K.sourceArc.length < (cellDarts X K.source).length → K.repeatedVisits = n →
+          ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
+            Nonempty (OEquivalentDiscDiagram X X') ∧ K'.Simple := by
+    intro n
+    refine Nat.strong_induction_on n ?_
+    intro n ih X hlea hlabel K hK hprop hn
+    by_cases hturns : K.FirstTurns
+    · exact K.exists_simple_of_firstTurns hW hlabel hturns
+    by_cases hpinch : Unpinched X.toCombMap K.faces
+    · exact ⟨X, K, ⟨OEquivalentDiscDiagram.refl X⟩, K.simple_of_closedWalk_of_unpinched hK hpinch⟩
+    obtain ⟨X₁, K₁, ⟨e₁⟩, hlabel₁, hK₁, hprop₁, hlt⟩ :=
+      hstep X lo hi hlea hlabel K hK hturns hprop hpinch
+    obtain ⟨X₂, K₂, ⟨e₂⟩, hK₂⟩ :=
+      ih K₁.repeatedVisits (lt_of_lt_of_eq hlt hn) X₁ (e₁.leastArea hlea) hlabel₁ K₁ hK₁ hprop₁ rfl
+    exact ⟨X₂, K₂, ⟨OEquivalentDiscDiagram.trans e₁ e₂⟩, hK₂⟩
+  exact H _ X₀ hlea₀ hlabel₀ K₀ hK₀ hprop₀ rfl
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketOuterPinchStepSectionStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.pocketPinchLabelledSectionStatement_of_outerPinchStep
