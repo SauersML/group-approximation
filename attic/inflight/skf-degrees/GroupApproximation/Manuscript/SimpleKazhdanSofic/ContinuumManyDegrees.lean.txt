@@ -5,8 +5,8 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Continuum many Turing degrees
 
-Section "Every word-problem degree" of `simple_kazhdan_sofic_group.tex` at origin/main bf961c128,
-tex l.259–260:
+Section "Word problems" of `simple_kazhdan_sofic_group.tex` (origin tip e80dcf20a), proof, last
+sentence:
 
 > There are continuum many degrees, ...
 
@@ -93,15 +93,17 @@ theorem countable_reducible (g : ℕ →. ℕ) :
   have hsub : {B : Set ℕ | TuringReducible (charOracle B) g} ⊆
       charOracle ⁻¹' Set.range (fun c : OCode => c.eval g) := by
     intro B hB
-    obtain ⟨c, hc⟩ := exists_eval_eq (show Nat.RecursiveIn {g} (charOracle B) from hB)
+    obtain ⟨c, hc⟩ := exists_eval_eq (RecursiveIn.iff_nat.1 hB)
     exact ⟨c, hc⟩
   exact ((Set.countable_range _).preimage charOracle_injective).mono hsub
 
 /-- Turing equivalence of characteristic functions, as a setoid on sets of naturals. -/
 def degreeSetoid : Setoid (Set ℕ) where
   r B C := TuringEquivalent (charOracle B) (charOracle C)
-  iseqv := ⟨fun B => TuringEquivalent.refl _, fun h => TuringEquivalent.symm h,
+  iseqv := ⟨fun _ => TuringEquivalent.refl _, fun h => TuringEquivalent.symm h,
     fun h₁ h₂ => TuringEquivalent.trans _ _ _ h₁ h₂⟩
+
+attribute [local instance] degreeSetoid
 
 /-- Every Turing class of sets is countable. -/
 theorem countable_fiber (q : Quotient degreeSetoid) :
@@ -127,13 +129,13 @@ theorem mk_quotient_degreeSetoid : Cardinal.mk (Quotient degreeSetoid) = Cardina
     exact absurd hmul (not_le.2 (Cardinal.mul_lt_of_lt Cardinal.aleph0_le_continuum hlt
       Cardinal.aleph0_lt_continuum))
 
-/-- **tex l.259.**  There are continuum many Turing degrees of sets of naturals. -/
+/-- **Proof, last sentence.**  There are continuum many Turing degrees of sets of naturals. -/
 theorem printedContinuumManyDegrees : PrintedContinuumManyDegrees := by
   refine ⟨Set.range (Quotient.out : Quotient degreeSetoid → Set ℕ), ?_, ?_⟩
   · rw [Cardinal.mk_range_eq _ Quotient.out_injective, mk_quotient_degreeSetoid]
   · rintro _ ⟨q₁, rfl⟩ _ ⟨q₂, rfl⟩ h
     have hq : Quotient.mk degreeSetoid q₁.out = Quotient.mk degreeSetoid q₂.out :=
-      Quotient.sound (show q₁.out ≈ q₂.out from h)
+      Quotient.sound h
     rw [Quotient.out_eq, Quotient.out_eq] at hq
     rw [hq]
 

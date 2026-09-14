@@ -1,34 +1,31 @@
 import Mathlib.Computability.TuringDegree
-import Mathlib.Dynamics.SymbolicDynamics.Basic
 import Mathlib.SetTheory.Cardinal.Continuum
 import Mathlib.NumberTheory.Real.Irrational
 import Mathlib.Algebra.ContinuedFractions.Computation.Basic
-import GroupApproximation.Dynamics.ClopenCrossedProduct
-import GroupApproximation.Leavitt.ElementaryGroup
-import GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshift
+import GroupApproximation.Dynamics.SubshiftWordGraph
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Setting
 
 /-!
 # Statements for the section "Word problems" of `simple_kazhdan_sofic_group.tex`
 
-The note at origin/main e80dcf20a, section "Word problems":
+The note at the origin tip e80dcf20a, section "Word problems":
 
 > The word problem of `G_X` has the Turing degree of the language `L(X)` of `X`. Every Turing
 > degree occurs, so there are continuum many pairwise nonisomorphic groups `G_X`.
 
-This module fixes the objects and states the printed propositions as named `Prop`s:
+The objects `subshiftHomeo`, `IsMinimal`, `letterIndicator`, `R` and `G` come from the shared
+`Setting` module. This module adds:
 
-* `subshiftHomeo S`: the shift `(T x)_t = x_{t+1}` of a subshift `S`, over Mathlib's
-  `SymbolicDynamics.FullShift.Subshift`; minimality is `IsMinimalSubshift` from
-  `SturmianSubshift`;
-* `R S = LC(X, F₂) ⋊_T ℤ` and `G S = EL₃(R S)`;
+* `language S`: the language `L(X)` as finite lists, through `WordGraph.language`;
 * `genValue S`: the generators `e_ij(s)` for `s ∈ {u, u⁻¹} ∪ {e_a : a ∈ A}` (section "The ring and
   property (T)");
 * `wordProblemOracle`, `languageOracle`, `charOracle` and `slopeOracle`: the characteristic functions
   whose Turing degrees the section compares, as partial functions `ℕ →. ℕ` for Mathlib's
-  `TuringEquivalent`.
+  `TuringEquivalent`, over `Primcodable` codes;
+* the printed propositions, as named `Prop`s.
 
-"Every Turing degree" is spelled over sets of naturals, the degrees the proof represents by
-continued fractions. The proofs are built in separate modules.
+"Every Turing degree" is spelled over sets of naturals, which the proof represents by continued
+fractions. The proofs are built in separate modules.
 -/
 
 namespace GroupApproximation
@@ -36,45 +33,9 @@ namespace SimpleKazhdanSofic
 
 open SymbolicDynamics.FullShift Set
 
-section Subshift
-
-variable {A : Type} [TopologicalSpace A]
-
-/-- The shift homeomorphism of a subshift, `(T x)_t = x_{t+1}`. -/
-def subshiftHomeo (S : Subshift A ℤ) : S.carrier ≃ₜ S.carrier where
-  toFun x := ⟨shift 1 x.1, S.mapsTo 1 x.2⟩
-  invFun x := ⟨shift (-1) x.1, S.mapsTo (-1) x.2⟩
-  left_inv x := by
-    apply Subtype.ext
-    funext n
-    show x.1 (1 + (-1 + n)) = x.1 n
-    exact congrArg x.1 (by omega)
-  right_inv x := by
-    apply Subtype.ext
-    funext n
-    show x.1 (-1 + (1 + n)) = x.1 n
-    exact congrArg x.1 (by omega)
-  continuous_toFun :=
-    ((continuous_shift 1 : Continuous (shift (1 : ℤ) : (ℤ → A) → ℤ → A)).comp
-      continuous_subtype_val).subtype_mk fun x => S.mapsTo 1 x.2
-  continuous_invFun :=
-    ((continuous_shift (-1) : Continuous (shift (-1 : ℤ) : (ℤ → A) → ℤ → A)).comp
-      continuous_subtype_val).subtype_mk fun x => S.mapsTo (-1) x.2
-
 /-- The language `L(X)`, as finite lists of letters, through `WordGraph.language`. -/
-def language (S : Subshift A ℤ) : Set (List A) :=
+def language {A : Type} [TopologicalSpace A] (S : Subshift A ℤ) : Set (List A) :=
   {v | (fun j : Fin v.length => v.get j) ∈ WordGraph.language S.carrier v.length}
-
-/-- The letter indicator `e_a` of the cylinder `{x : x_0 = a}`. -/
-noncomputable def letterIndicator [DiscreteTopology A] [DecidableEq A] (S : Subshift A ℤ) (a : A) :
-    LocallyConstant S.carrier (ZMod 2) where
-  toFun x := if x.1 0 = a then 1 else 0
-  isLocallyConstant :=
-    ((IsLocallyConstant.iff_continuous (fun x : S.carrier => x.1 0)).2
-      ((continuous_apply (0 : ℤ)).comp continuous_subtype_val)).comp
-      fun b => if b = a then (1 : ZMod 2) else 0
-
-end Subshift
 
 /-- The coefficient symbols `{u, u⁻¹} ∪ {e_a : a ∈ A}` of the generators. -/
 inductive Coeff (A : Type) where
@@ -99,21 +60,22 @@ def Coeff.equivOption (A : Type) : Coeff A ≃ Option (Option A) where
     | some none => rfl
     | some (some _) => rfl
 
-instance (A : Type) [Encodable A] : Encodable (Coeff A) :=
-  Encodable.ofEquiv _ (Coeff.equivOption A)
+instance (A : Type) [Primcodable A] : Primcodable (Coeff A) :=
+  Primcodable.ofEquiv _ (Coeff.equivOption A)
 
-/-- The generator symbols: an off-diagonal position of `M₃` and a coefficient symbol. -/
-abbrev Gen (A : Type) : Type := {p : Fin 3 × Fin 3 // p.1 ≠ p.2} × Coeff A
+/-- The off-diagonal positions of `M₃`. -/
+abbrev OffDiag : Type := {p : Fin 3 × Fin 3 // p.1 ≠ p.2}
+
+instance : Primcodable OffDiag :=
+  Primcodable.subtype
+    (PrimrecPred.of_eq ((PrimrecRel.not Primrec.eq).comp Primrec.fst Primrec.snd) fun _ => Iff.rfl)
+
+/-- The generator symbols: an off-diagonal position and a coefficient symbol. -/
+abbrev Gen (A : Type) : Type := OffDiag × Coeff A
 
 section Group
 
 variable {A : Type} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A]
-
-/-- The ring `R = LC(X, F₂) ⋊_T ℤ`. -/
-abbrev R (S : Subshift A ℤ) : Type := ClopenCrossedProduct (subshiftHomeo S) (ZMod 2)
-
-/-- The group `G_X = EL₃(R)`. -/
-abbrev G (S : Subshift A ℤ) : Type := ↥(elementaryGroup (Fin 3) (R S))
 
 /-- The value of a coefficient symbol in `R`. -/
 noncomputable def coeffValue (S : Subshift A ℤ) : Coeff A → R S
@@ -136,7 +98,7 @@ def wordValue {ι H : Type*} [Group H] (s : ι → H) : List (ι × Bool) → H
 
 open Classical in
 /-- The characteristic function of the word problem in the generators `s`, on codes of words. -/
-noncomputable def wordProblemOracle {ι H : Type*} [Group H] [Encodable ι] (s : ι → H) :
+noncomputable def wordProblemOracle {ι H : Type*} [Group H] [Primcodable ι] (s : ι → H) :
     ℕ →. ℕ :=
   fun n => Part.some
     (if ∃ w : List (ι × Bool), Encodable.decode n = some w ∧ wordValue s w = 1 then 1 else 0)
@@ -148,7 +110,7 @@ noncomputable def charOracle (B : Set ℕ) : ℕ →. ℕ :=
 
 open Classical in
 /-- The characteristic function of the language `L(X)`, on codes of words. -/
-noncomputable def languageOracle {A : Type} [TopologicalSpace A] [Encodable A]
+noncomputable def languageOracle {A : Type} [TopologicalSpace A] [Primcodable A]
     (S : Subshift A ℤ) : ℕ →. ℕ :=
   fun n => Part.some
     (if ∃ v : List A, Encodable.decode n = some v ∧ v ∈ language S then 1 else 0)
@@ -164,32 +126,32 @@ def IsContinuedFractionOf (α : ℝ) (a : ℕ → ℕ) : Prop :=
 
 end Oracles
 
-/-- **(b), proof paragraph 1.**  A word for `e_12(∏_{t<n} u^{-t} e_{v_t} u^t)` is computable from
-`v`, and it is trivial if and only if `v ∉ L(X)`; so the word problem computes the language. -/
-def PrintedLanguageReducibleToWordProblem : Prop :=
+/-- **(c), proof, first paragraph.**  Multiplying out a word gives coefficient tables; the word is
+trivial in `G_X` if and only if the tables of its difference from `I_3` vanish on `L(X)`; so `L(X)`
+computes the word problem. -/
+def PrintedWordProblemReducesToLanguage : Prop :=
   ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Fintype A] [DecidableEq A]
-    [Encodable A] (S : Subshift A ℤ), S.carrier.Infinite → IsMinimalSubshift S →
-      TuringReducible (languageOracle S) (wordProblemOracle (genValue S))
-
-/-- **(c), proof paragraph 1.**  Multiplying out a word gives coefficient tables; the word is
-trivial in `G_X` if and only if the tables of its difference from `I_3` vanish on `L(X)`; so the
-language computes the word problem. -/
-def PrintedWordProblemReducibleToLanguage : Prop :=
-  ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Fintype A] [DecidableEq A]
-    [Encodable A] (S : Subshift A ℤ), S.carrier.Infinite → IsMinimalSubshift S →
+    [Primcodable A] (S : Subshift A ℤ),
       TuringReducible (wordProblemOracle (genValue S)) (languageOracle S)
+
+/-- **(b), proof, first paragraph.**  A word for `e_12(∏_{t<n} u^{-t} e_{v_t} u^t)` is computable
+from `v`, and it is trivial if and only if `v ∉ L(X)`; so the word problem computes `L(X)`. -/
+def PrintedLanguageReducesToWordProblem : Prop :=
+  ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Fintype A] [DecidableEq A]
+    [Primcodable A] (S : Subshift A ℤ),
+      TuringReducible (languageOracle S) (wordProblemOracle (genValue S))
 
 /-- **The corollary, first sentence.**  The word problem of `G_X` has the Turing degree of
 `L(X)`. -/
 def PrintedWordProblemDegreeEqLanguage : Prop :=
   ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Fintype A] [DecidableEq A]
-    [Encodable A] (S : Subshift A ℤ), S.carrier.Infinite → IsMinimalSubshift S →
+    [Primcodable A] (S : Subshift A ℤ), Infinite S.carrier → IsMinimal S →
       TuringEquivalent (wordProblemOracle (genValue S)) (languageOracle S)
 
 /-- **(a), proof, last sentence.**  The word-problem degree of a finitely generated group does not
 depend on the finite generating family, and is an isomorphism invariant. -/
 def PrintedWordProblemDegreeIsomorphismInvariant : Prop :=
-  ∀ (H K : Type) [Group H] [Group K] (ι κ : Type) [Encodable ι] [Encodable κ] [Finite ι]
+  ∀ (H K : Type) [Group H] [Group K] (ι κ : Type) [Primcodable ι] [Primcodable κ] [Finite ι]
     [Finite κ] (s : ι → H) (t : κ → K), Subgroup.closure (range s) = ⊤ →
       Subgroup.closure (range t) = ⊤ → Nonempty (H ≃* K) →
         TuringEquivalent (wordProblemOracle s) (wordProblemOracle t)
@@ -201,7 +163,7 @@ def PrintedContinuedFractionRepresentative : Prop :=
   ∀ B : Set ℕ, ∃ α : ℝ, IsContinuedFractionOf α (fun k => 1 + if k ∈ B then 1 else 0) ∧
     Irrational α ∧ TuringEquivalent (slopeOracle α) (charOracle B)
 
-/-- **(f), proof.**  There are continuum many Turing degrees of sets of naturals. -/
+/-- **(f), proof, last sentence.**  There are continuum many Turing degrees of sets of naturals. -/
 def PrintedContinuumManyDegrees : Prop :=
   ∃ F : Set (Set ℕ), Cardinal.mk F = Cardinal.continuum ∧
     ∀ B ∈ F, ∀ C ∈ F, TuringEquivalent (charOracle B) (charOracle C) → B = C
@@ -210,10 +172,10 @@ def PrintedContinuumManyDegrees : Prop :=
 degree occurs; so there are continuum many pairwise nonisomorphic groups `G_X`. -/
 def PrintedWordProblemsCorollary : Prop :=
   PrintedWordProblemDegreeEqLanguage ∧
-    (∀ B : Set ℕ, ∃ S : Subshift Bool ℤ, S.carrier.Infinite ∧ IsMinimalSubshift S ∧
+    (∀ B : Set ℕ, ∃ S : Subshift Bool ℤ, Infinite S.carrier ∧ IsMinimal S ∧
       TuringEquivalent (wordProblemOracle (genValue S)) (charOracle B)) ∧
     ∃ F : Set (Subshift Bool ℤ), Cardinal.mk F = Cardinal.continuum ∧
-      (∀ S ∈ F, S.carrier.Infinite ∧ IsMinimalSubshift S) ∧
+      (∀ S ∈ F, Infinite S.carrier ∧ IsMinimal S) ∧
       ∀ S ∈ F, ∀ S' ∈ F, Nonempty (G S ≃* G S') → S = S'
 
 end SimpleKazhdanSofic
