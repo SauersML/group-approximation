@@ -38,3 +38,16 @@ prescribed ball of `Γ` then exist.
     It is implied by the congruence subgroup property and weaker in form.
   - So the open part of this claim is exactly the alternating and
     unbounded-rank images of the lattice.
+- **Bounded finite images (2026-09-13, lane hl-gromov-sp21-quotient; unreviewed).**
+  - Forcing every finite quotient of `Γ/M` to factor through one fixed finite
+    group is not a weaker target. By
+    `hyperbolic-bounded-finite-quotients-iff-quotientless-hyperbolic`, bounded
+    finite images of an infinite hyperbolic group give a finite-index subgroup
+    without finite quotients.
+  - `Γ` is residually finite, so no such bound can come from `Γ` itself. The
+    relators in `M` have to create it.
+  - An infinite chain of Olshanskii quotients killing larger and larger simple
+    images never has a hyperbolic limit (see the remark in that node's proof).
+    So a witness needs one finitely normally generated `M` that kills the
+    alternating and unbounded-rank images at once, which is the content of
+    `sp21-lattice-few-alternating-and-large-rank-quotients`.
