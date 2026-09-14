@@ -97,6 +97,26 @@ abbrev ClopenGroupCrossedProduct (Λ : Type*) [Group Λ] (Z : Type*) [Topologica
     [MulAction Λ Z] [ContinuousConstSMul Λ Z] (k : Type*) [Ring k] : Type _ :=
   SkewMonoidAlgebra (ClopenGroupCoeff Λ Z k) Λ
 
+/-- The coefficient of a finite sum of monomials of a skew monoid algebra. -/
+theorem skewMonoidAlgebra_coeff_sum_single {M G : Type*} [AddCommMonoid M] [DecidableEq G]
+    (S : Finset G) (a : G → M) (η : G) :
+    SkewMonoidAlgebra.coeff (∑ ξ ∈ S, SkewMonoidAlgebra.single ξ (a ξ)) η =
+      if η ∈ S then a η else 0 := by
+  induction S using Finset.induction_on with
+  | empty =>
+    rw [Finset.sum_empty, SkewMonoidAlgebra.coeff_zero, Finsupp.zero_apply,
+      if_neg (Finset.notMem_empty η)]
+  | insert ξ S hξ ih =>
+    rw [Finset.sum_insert hξ, SkewMonoidAlgebra.coeff_add, Finsupp.add_apply, ih,
+      SkewMonoidAlgebra.coeff_single, Finsupp.single_apply]
+    by_cases hηξ : η = ξ
+    · subst hηξ
+      rw [if_pos rfl, if_neg hξ, add_zero, if_pos (Finset.mem_insert_self _ _)]
+    · rw [if_neg (Ne.symm hηξ), zero_add]
+      by_cases hηS : η ∈ S
+      · rw [if_pos hηS, if_pos (Finset.mem_insert_of_mem hηS)]
+      · rw [if_neg hηS, if_neg (by simp [hηξ, hηS])]
+
 namespace ClopenGroupCrossedProduct
 
 open SkewMonoidAlgebra (single)
@@ -229,26 +249,6 @@ theorem exists_sum_coeff_mul_unit (r : ClopenGroupCrossedProduct Λ Z k) :
       refine Finset.sum_congr rfl fun ξ _ => ?_
       rw [← single_eq_coeff_mul_unit, RingEquiv.apply_symm_apply]
 
-/-- The coefficient of a finite sum of monomials. -/
-theorem coeff_sum_single [DecidableEq Λ] (S : Finset Λ) (a : Λ → ClopenGroupCoeff Λ Z k)
-    (η : Λ) :
-    SkewMonoidAlgebra.coeff (∑ ξ ∈ S, (single ξ (a ξ) : ClopenGroupCrossedProduct Λ Z k)) η =
-      if η ∈ S then a η else 0 := by
-  induction S using Finset.induction_on with
-  | empty =>
-    rw [Finset.sum_empty, SkewMonoidAlgebra.coeff_zero, Finsupp.zero_apply,
-      if_neg (Finset.notMem_empty η)]
-  | insert ξ S hξ ih =>
-    rw [Finset.sum_insert hξ, SkewMonoidAlgebra.coeff_add, Finsupp.add_apply, ih,
-      SkewMonoidAlgebra.coeff_single, Finsupp.single_apply]
-    by_cases hηξ : η = ξ
-    · subst hηξ
-      rw [if_pos rfl, if_neg hξ, add_zero, if_pos (Finset.mem_insert_self _ _)]
-    · rw [if_neg (Ne.symm hηξ), zero_add]
-      by_cases hηS : η ∈ S
-      · rw [if_pos hηS, if_pos (Finset.mem_insert_of_mem hηS)]
-      · rw [if_neg hηS, if_neg (by simp [hηξ, hηS])]
-
 /-- **Uniqueness of the expansion** (tex 135): the coefficient of `∑_{ξ ∈ S} f_ξ u_ξ` at `η` is
 `f_η` for `η ∈ S` and `0` otherwise. -/
 theorem coeff_sum_coeff_mul_unit [DecidableEq Λ] (S : Finset Λ) (f : Λ → LocallyConstant Z k)
@@ -257,7 +257,7 @@ theorem coeff_sum_coeff_mul_unit [DecidableEq Λ] (S : Finset Λ) (f : Λ → Lo
         (∑ ξ ∈ S, coeff Λ Z k (f ξ) * (unit Λ Z k ξ : ClopenGroupCrossedProduct Λ Z k)) η =
       if η ∈ S then ClopenGroupCoeff.of Λ Z k (f η) else 0 := by
   simp only [← single_eq_coeff_mul_unit]
-  exact coeff_sum_single Λ Z k S (fun ξ => ClopenGroupCoeff.of Λ Z k (f ξ)) η
+  exact skewMonoidAlgebra_coeff_sum_single S (fun ξ => ClopenGroupCoeff.of Λ Z k (f ξ)) η
 
 /-- Two expansions over the same finite set agree coefficientwise. -/
 theorem eq_of_sum_coeff_mul_unit_eq (S : Finset Λ) (f g : Λ → LocallyConstant Z k)
