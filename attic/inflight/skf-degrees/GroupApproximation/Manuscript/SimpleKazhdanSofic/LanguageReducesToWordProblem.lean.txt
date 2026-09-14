@@ -75,9 +75,10 @@ section Values
 variable {A : Type} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A] (S : Subshift A ℤ)
 
 /-- `e_ij(a)` as an element of `G_X`. -/
-def elemG (i j : Fin 3) (h : i ≠ j) (a : R S) : G S :=
+noncomputable def elemG (i j : Fin 3) (h : i ≠ j) (a : R S) : G S :=
   ⟨elementaryUnit i j h a, elementaryUnit_mem _ _ _ _⟩
 
+omit [DiscreteTopology A] [DecidableEq A] in
 theorem elemG_eq_one_iff (i j : Fin 3) (h : i ≠ j) (a : R S) : elemG S i j h a = 1 ↔ a = 0 := by
   constructor
   · intro ha
@@ -88,6 +89,7 @@ theorem elemG_eq_one_iff (i j : Fin 3) (h : i ≠ j) (a : R S) : elemG S i j h a
   · rintro rfl
     exact Subtype.ext (elementaryUnit_zero i j h)
 
+omit [DiscreteTopology A] [DecidableEq A] in
 theorem elemG_comm {i j k : Fin 3} (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k) (a b : R S) :
     elemG S i j hij a * elemG S j k hjk b * (elemG S i j hij a)⁻¹ * (elemG S j k hjk b)⁻¹ =
       elemG S i k hik (a * b) := by
@@ -135,10 +137,12 @@ noncomputable def cylinderIndicator : List A → LocallyConstant S.carrier (ZMod
   | [] => 1
   | a :: v => letterIndicator S a * shiftComap S (cylinderIndicator v)
 
+omit [DiscreteTopology A] [DecidableEq A] in
 theorem shiftComap_apply (f : LocallyConstant S.carrier (ZMod 2)) (x : S.carrier) :
     shiftComap S f x = f ((subshiftHomeo S) x) := by
   simp [shiftComap, LocallyConstant.coe_comap]
 
+omit [DiscreteTopology A] [DecidableEq A] in
 theorem subshiftHomeo_apply_val (x : S.carrier) (n : ℤ) : ((subshiftHomeo S) x).1 n = x.1 (1 + n) :=
   rfl
 
@@ -219,7 +223,8 @@ theorem cylinderIndicator_eq_zero_iff (v : List A) :
     ext x
     have hn : ¬ ∀ t : Fin v.length, x.1 ((t : ℕ) : ℤ) = v.get t := fun hall =>
       h ⟨x.1, x.2, funext fun t => by simpa [WordGraph.word] using hall t⟩
-    simp [cylinderIndicator_apply, hn]
+    rw [cylinderIndicator_apply, if_neg hn]
+    rfl
 
 /-- The word for `e_12(e_[v])` is trivial exactly when `v ∉ L(X)`. -/
 theorem wordValue_cylinderWord_eq_one_iff (v : List A) :

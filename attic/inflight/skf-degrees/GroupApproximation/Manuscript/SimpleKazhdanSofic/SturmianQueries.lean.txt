@@ -90,7 +90,7 @@ def pairsUpTo (m : ℕ) : List (ℕ × ℕ) :=
 
 theorem mem_pairsUpTo {m : ℕ} {p : ℕ × ℕ} : p ∈ pairsUpTo m ↔ p.1 ≤ m ∧ p.2 ≤ m := by
   obtain ⟨k, l⟩ := p
-  simp [pairsUpTo, List.mem_flatMap, Nat.lt_succ_iff]
+  simp [pairsUpTo, List.mem_flatMap]
 
 /-- A left fold that pairs each element with the next answer computes `List.all`. -/
 theorem foldl_answers {β : Type*} (P : β → ℕ → Bool) (g : β → ℕ) (l : List β) (acc : Bool)
@@ -102,6 +102,12 @@ theorem foldl_answers {β : Type*} (P : β → ℕ → Bool) (g : β → ℕ) (l
   | cons p l ih =>
     simp only [List.foldl_cons, List.map_cons, List.cons_append, List.head?_cons,
       Option.getD_some, List.tail_cons, ih, List.all_cons, Bool.and_assoc]
+
+/-- The prefix counts of the word read off a list are the prefix counts of the list. -/
+theorem wordOnes_get_eq_prefixOnes (v : List Bool) (k : ℕ) :
+    wordOnes (fun j : Fin v.length => v.get j) k = (prefixOnes v k : ℤ) :=
+  wordOnes_eq_prefixOnes (fun j : Fin v.length => v.get j) v (fun j h => getD_eq_getElem' v h)
+    rfl k
 
 /-- **Criterion for the slope, over lists.**  For irrational `α ∈ (0,1)` and `b ≥ 1`, `a < bα`
 exactly when every word of length `b` of `X_α` has at least `a` ones. -/
@@ -115,18 +121,18 @@ theorem natCast_lt_mul_iff_allWords (α : ℝ) (hα : Irrational α) (hα0 : 0 <
   constructor
   · intro h w hw hwl
     rw [mem_allWords] at hw
-    obtain ⟨x, hx, hxw⟩ := (mem_language_iff _ w).1 hwl
-    have hmem : (fun j : Fin b => w[j.1]'(hw ▸ j.2)) ∈
-        WordGraph.language (sturmianSubshift α).carrier b :=
-      (mem_wordGraph_language_iff _ _).2 ⟨x, hx, fun j h => hxw j (hw ▸ h)⟩
-    have h1 := h _ hmem
-    rw [wordOnes_eq_prefixOnes _ w (fun j h => getD_eq_getElem' w (hw ▸ h)) hw] at h1
+    subst hw
+    have hwl' : (fun j : Fin w.length => w.get j) ∈
+        WordGraph.language (sturmianSubshift α).carrier w.length := hwl
+    have h1 := h _ hwl'
+    rw [wordOnes_get_eq_prefixOnes] at h1
     exact_mod_cast h1
   · intro h w' hw'
     obtain ⟨x, hx, hxw⟩ := (mem_wordGraph_language_iff _ _).1 hw'
     have hlen : (List.ofFn w').length = b := List.length_ofFn
     have hget : ∀ j (hj : j < b), (List.ofFn w').getD j false = w' ⟨j, hj⟩ := fun j hj => by
-      rw [getD_eq_getElem' _ (hlen ▸ hj), List.getElem_ofFn]
+      rw [getD_eq_getElem' (List.ofFn w') (by rw [List.length_ofFn]; exact hj),
+        List.getElem_ofFn]
     have hmem : List.ofFn w' ∈ language (sturmianSubshift α) :=
       (mem_language_iff _ _).2 ⟨x, hx, fun j hj => by
         rw [List.getElem_ofFn]
