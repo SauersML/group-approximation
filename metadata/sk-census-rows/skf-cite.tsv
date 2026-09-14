@@ -1,0 +1,16 @@
+LINE:39@bf961c128	attribution		Brown's question (\S11 Question 7); credit only
+LINE:40@bf961c128	attribution		Ozawa's hyperlinear form (p. 527); credit only
+LINE:41@bf961c128	attribution		Pestov Open question 9.1, sofic form; credit only
+LINE:55@bf961c128	attribution		Nekrashevych: subshift algebra classical; credit only
+LINE:56@bf961c128	attribution		EJZ credited in introduction; the step is LINE:97
+LINE:57@bf961c128	attribution		Grigorchuk-Medynets credited for the periodic-approximation mechanism; finite models proved directly at tex 118-149
+LINE:62@bf961c128	attribution		Stepanov: normal-structure tradition; credit only
+LINE:63@bf961c128	attribution		Thom Theorem 1.4: context, his example not simple
+LINE:97@bf961c128	formalized	GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.ejz GroupApproximation.PropertyT.IntegralColumnPlaneClosure.finitelyGeneratedRingGeneralRankElementaryPropertyT	EJZ Theorem 1.1 proved; #audit_closed_axioms ejz; root-direct; statement-level only, the application to R belongs to the range lane for tex 69-116
+LINE:103@bf961c128	attribution		BCFS, Clark-Edie-Michell, Steinberg credited; the direct argument at tex 104-116 belongs to the range lane
+LINE:150@bf961c128	partial	GroupApproximation.isSofic_of_isLEF GroupApproximation.isHyperlinear_of_isSofic GroupApproximation.Pestov91.isHyperlinear_of_isLEF	LEF => sofic => hyperlinear (Pestov guide) carried by root-direct lemmas; no #audit line in Sofic/LEFSofic, Sofic/Hyperlinear or Pestov91/LEFHyperlinear, so the axiom audit and the printed-route check are owed
+LINE:251@bf961c128	open		Morse-Hedlund Sturmian subshift properties used as a step; no Sturmian carrier on origin; owner: range lane for tex 229-262
+LINE:264@bf961c128	attribution		Origin: Claude found the construction and wrote the original manuscript
+LINE:266@bf961c128	attribution		Codex shortened and edited this version
+LINE:268@bf961c128	attribution		Author responsible; repository pointer
+LINE:271@bf961c128	structural		bibliography: 13 entries (Brown, BCFS, ClarkEdie, EJZ, GM, MorseHedlund, Nekrashevych, Ozawa, Pestov, Steinberg, Stepanov, Thom); no sentence content
