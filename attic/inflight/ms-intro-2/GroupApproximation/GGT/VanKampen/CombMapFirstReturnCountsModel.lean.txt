@@ -20,6 +20,7 @@ certifies no printed sentence on its own.
 namespace GroupApproximation.GGT.VanKampen.CombMap.FirstReturnCountsModel
 
 open Equiv
+open scoped Classical
 
 /-- One edge, both darts fixed by the rotation. -/
 def oneEdge : CombMap.{0} where
@@ -36,8 +37,8 @@ theorem card_vertex_oneEdge : Nat.card oneEdge.Vertex = 2 := by
     exact Equiv.Perm.sameCycle_one.mp (Quotient.exact h : Equiv.Perm.SameCycle (1 : Perm (Fin 2)) a b)
   have hsurj : Function.Surjective (Quotient.mk'' : Fin 2 → oneEdge.Vertex) := fun q =>
     Quotient.inductionOn' q fun a => ⟨a, rfl⟩
-  rw [← Nat.card_congr (Equiv.ofBijective _ ⟨hinj, hsurj⟩)]
-  simp
+  have h := Nat.card_congr (Equiv.ofBijective _ ⟨hinj, hsurj⟩)
+  exact h.symm.trans (by simp)
 
 /-- **The start count fails without the fixed-point hypothesis.** -/
 theorem not_card_starts_add_two_mul_le_oneEdge :

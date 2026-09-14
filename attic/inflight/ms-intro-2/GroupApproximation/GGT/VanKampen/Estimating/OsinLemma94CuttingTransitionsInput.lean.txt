@@ -169,13 +169,13 @@ theorem joined_of_internalMoves {a : RegionCandidate D eps S.diagram} (ha : a �
   induction h with
   | refl => exact Joined.refl (not_mem_forestDarts_of_mem_region ha hy)
   | @tail b c _ hbc ih =>
-    obtain ⟨-, hαface, rfl⟩ := hbc
+    obtain ⟨hbface, hαface, rfl⟩ := hbc
+    have hb : b ∉ S.forestDarts := not_mem_forestDarts_of_mem_region ha hbface
     have hα : S.diagram.toCombMap.alpha b ∉ S.forestDarts :=
       not_mem_forestDarts_of_mem_region ha hαface
     have hfp : S.diagram.toCombMap.facePerm (S.diagram.toCombMap.alpha b) ∉ S.forestDarts :=
       not_mem_forestDarts_of_mem_region ha
         (by rw [S.diagram.toCombMap.faceOf_facePerm]; exact hαface)
-    obtain ⟨-, hb, -⟩ := ih
     exact ih.trans ((S.joined_alpha hb).trans ⟨hα, hfp, eqvGen_facePerm ⟨_, hα⟩ hfp⟩)
 
 /-- A boundary step of a selected region is a path of the deleted map. -/
@@ -209,7 +209,9 @@ theorem joined_of_isChain {R : S.diagram.toCombMap.Dart → S.diagram.toCombMap.
     have hjb := hR _ _ hyb
     rcases List.mem_cons.mp hz with rfl | hz'
     · exact Joined.refl hy
-    · obtain ⟨-, hb, -⟩ := hjb
+    · have hb : b ∉ S.forestDarts := by
+        obtain ⟨-, hb, -⟩ := hjb
+        exact hb
       exact hjb.trans (ih b hrest hb z hz')
 
 /-- The exterior dart of the hitting set. -/
@@ -231,9 +233,9 @@ theorem exists_joined_cell_of_region {a : RegionCandidate D eps S.diagram} (ha :
       S.diagram.toCombMap.faceOf z' = S.diagram.toCombMap.faceOf z → S.Joined z z' := by
     intro z z' hz hz'
     have hzk := not_mem_forestDarts_of_mem_region ha hz
-    have hz'k := not_mem_forestDarts_of_mem_region ha (hz'.symm ▸ hz)
+    have hz'k := not_mem_forestDarts_of_mem_region ha (by rw [hz']; exact hz)
     exact ⟨hzk, hz'k, eqvGen_of_faceOf_eq ⟨z, hzk⟩
-      (fun w hw => not_mem_forestDarts_of_mem_region ha (hw.symm ▸ hz)) ⟨z', hz'k⟩ hz'⟩
+      (fun w hw => not_mem_forestDarts_of_mem_region ha (by rw [hw]; exact hz)) ⟨z', hz'k⟩ hz'⟩
   by_cases hbd : ∃ z, S.diagram.toCombMap.faceOf z ∈ a.1 ∧
       S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha z) ∉ a.1 ∧ S.Joined x z
   · obtain ⟨z, hz1, hz2, hxz⟩ := hbd
@@ -249,15 +251,17 @@ theorem exists_joined_cell_of_region {a : RegionCandidate D eps S.diagram} (ha :
       simp only [Embedded.CyclicArc.reverseDarts, List.mem_map, List.mem_reverse]
       exact ⟨e, he, rfl⟩
     obtain ⟨h0, t, hcyc⟩ := List.exists_cons_of_ne_nil a.2.boundary.cycle_nonempty
-    have hchain : (h0 :: t).IsChain (BoundaryStep S.diagram a.1) :=
-      hcyc ▸ a.2.boundary.cycle_chain
+    have hchain : (h0 :: t).IsChain (BoundaryStep S.diagram a.1) := by
+      rw [← hcyc]
+      exact a.2.boundary.cycle_chain
     have hh0 : S.diagram.toCombMap.faceOf h0 ∈ a.1 :=
-      ((a.2.boundary.cycle_mem_iff h0).mp (hcyc ▸ List.mem_cons_self)).1
+      ((a.2.boundary.cycle_mem_iff h0).mp (by rw [hcyc]; simp)).1
     have hall := joined_of_isChain (fun _ _ hyy' => joined_of_boundaryStep ha hyy') h0 t hchain
       (not_mem_forestDarts_of_mem_region ha hh0)
-    have hz' := hall z (hcyc ▸ hzc)
-    have hs' := hall _ (hcyc ▸ hs)
-    obtain ⟨-, hk, -⟩ := hs'
+    have hz' := hall z (by rw [← hcyc]; exact hzc)
+    have hs' := hall _ (by rw [← hcyc]; exact hs)
+    have hk : S.diagram.toCombMap.alpha e ∉ S.forestDarts :=
+      not_mem_forestDarts_of_mem_region ha ((a.2.boundary.cycle_mem_iff _).mp hs).1
     have hαe : S.Joined (S.diagram.toCombMap.alpha e) e := by
       have h := S.joined_alpha hk
       rwa [S.diagram.toCombMap.alpha_involutive] at h
@@ -272,11 +276,11 @@ theorem exists_joined_cell_of_region {a : RegionCandidate D eps S.diagram} (ha :
     have hQα : ∀ y, Q y → Q (S.diagram.toCombMap.alpha y) := by
       intro y hy
       obtain ⟨hy1, z, hz1, hz2⟩ := hy
-      have hxy : S.Joined x y := hz2.trans (hjoinface z y (hz1 ▸ hy1) hz1.symm)
+      have hxy : S.Joined x y := hz2.trans (hjoinface z y (by rw [hz1]; exact hy1) hz1.symm)
       have hαy : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha y) ∈ a.1 := by
         by_contra hnot
         exact hbd y hy1 hnot hxy
-      obtain ⟨-, hyk, -⟩ := hxy
+      have hyk : y ∉ S.forestDarts := not_mem_forestDarts_of_mem_region ha hy1
       exact ⟨hαy, _, rfl, hxy.trans (S.joined_alpha hyk)⟩
     have hQiff : ∀ y, Q (S.diagram.toCombMap.alpha y) ↔ Q y := fun y =>
       ⟨fun h => by

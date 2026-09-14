@@ -104,7 +104,7 @@ theorem card_cuttingTransitions_le_sameFaceStarts (P : OsinLemma94RealizedPolygo
         ⟨P.faceOf_of_mem_sideDarts htn hymem, P.cutting_internal k _ htn hcut _ hymem⟩
     · obtain ⟨x, hx⟩ : ∃ x, x ∈ (P.sideDarts k s).getLast? :=
         ⟨(P.sideDarts k s).getLast (P.side_ne_nil k s hsn),
-          List.getLast?_eq_getLast (P.side_ne_nil k s hsn)⟩
+          List.getLast?_eq_some_getLast (P.side_ne_nil k s hsn)⟩
       have hfp := P.facePerm_getLast_eq_head_mod hsn hx hy
       have hsymm : S.diagram.toCombMap.sigma.symm
           ((P.sideDarts k ((s + 1) % P.sideCount k)).headD x0) =
@@ -230,9 +230,14 @@ theorem card_forestStarts_add_four_le (hS : S.DartMinimal) (T : Finset S.forestD
       4 * T.card := by
   have h1 := CombMap.card_starts_add_two_mul_le S.diagram.toCombMap S.forestDarts
     fun x hx => sigma_ne_of_mem_forestDarts hS hx
-  have h2 := CombMap.PredicateRestriction.two_mul_eulerCharacteristic_le S.diagram.toCombMap
-    (fun d => d ∉ S.forestDarts) (fun d => not_congr (alpha_mem_forestDarts_iff d))
-    (fun y hy => (mem_forestDarts.mp (not_not.mp hy)).1) exists_keep_faceOf_eq
+  have h2 : 2 * S.diagram.toCombMap.eulerCharacteristic +
+      (Nat.card {d : S.diagram.toCombMap.Dart // ¬ (d ∉ S.forestDarts)} : ℤ) ≤
+        2 * S.forestDeleted.eulerCharacteristic +
+          2 * (Nat.card {v : S.diagram.toCombMap.Vertex //
+            ∀ d, S.diagram.toCombMap.vertexOf d = v → ¬ (d ∉ S.forestDarts)} : ℤ) :=
+    CombMap.PredicateRestriction.two_mul_eulerCharacteristic_le S.diagram.toCombMap
+      (fun d => d ∉ S.forestDarts) (fun d => not_congr (alpha_mem_forestDarts_iff d))
+      (fun y hy => (mem_forestDarts.mp (not_not.mp hy)).1) exists_keep_faceOf_eq
   have h3 := CombMap.eulerCharacteristic_le_two_mul_card_of_hitting S.forestDeleted T hT
   have hchi : S.diagram.toCombMap.eulerCharacteristic = 2 := S.diagram.planar.2
   simp only [not_not] at h2
