@@ -119,20 +119,21 @@ theorem finite_bounded_on_grid (t : Fin d → ℕ → ℂ) (ht : ∀ i, Function
       ∀ w, T w = g w := ⟨LinearMap.toContinuousLinearMap g, fun _ ↦ rfl⟩
   obtain ⟨c, hc⟩ : ∃ c : ℤ, ‖T‖ * max R 0 ≤ c := ⟨⌈‖T‖ * max R 0⌉, Int.le_ceil _⟩
   have hmap : ∀ G : MvPolynomial (Fin d) ℤ, G.totalDegree ≤ D →
-      MvPolynomial.map (Int.castRingHom ℂ) G = polyOf fun m ↦ (coeff (expVec m) G : ℂ) := by
+      MvPolynomial.map (Int.castRingHom ℂ) G =
+        polyOf fun m : Fin d → Fin (D + 1) ↦ ((coeff (expVec m) G : ℤ) : ℂ) := by
     intro G hG
     ext s
     rw [coeff_map]
     by_cases h : ∃ m : Fin d → Fin (D + 1), expVec m = s
     · obtain ⟨m, rfl⟩ := h
-      exact (coeff_polyOf (fun m ↦ (coeff (expVec m) G : ℂ)) m).symm
+      exact (coeff_polyOf (fun m : Fin d → Fin (D + 1) ↦ ((coeff (expVec m) G : ℤ) : ℂ)) m).symm
     · have hs : s ∉ G.support := fun hs ↦ h (exists_expVec_eq hG hs)
       rw [coeff_polyOf_eq_zero _ fun m hm ↦ h ⟨m, hm⟩, notMem_support_iff.mp hs, map_zero]
   have hbound : ∀ G : MvPolynomial (Fin d) ℤ, G.totalDegree ≤ D →
       (∀ j : Fin d → ℕ, (∀ i, j i ≤ D) → ‖aeval (fun i ↦ t i (j i)) G‖ ≤ R) →
-      ∀ m, coeff (expVec m) G ∈ Set.Icc (-c) c := by
+      ∀ m : Fin d → Fin (D + 1), coeff (expVec m) G ∈ Set.Icc (-c) c := by
     intro G hG hval m
-    obtain ⟨v, hv⟩ : ∃ v : (Fin d → Fin (D + 1)) → ℂ, v = fun m ↦ (coeff (expVec m) G : ℂ) :=
+    obtain ⟨v, hv⟩ : ∃ v : (Fin d → Fin (D + 1)) → ℂ, v = fun m ↦ ((coeff (expVec m) G : ℤ) : ℂ) :=
       ⟨_, rfl⟩
     have hMv : ‖gridMatrix t D *ᵥ v‖ ≤ max R 0 := by
       refine (pi_norm_le_iff_of_nonneg (le_max_right R 0)).mpr fun g' ↦ ?_
@@ -141,8 +142,8 @@ theorem finite_bounded_on_grid (t : Fin d → ℕ → ℂ) (ht : ∀ i, Function
     have hvT : T (gridMatrix t D *ᵥ v) = v := by
       rw [hT]
       exact LinearMap.congr_fun hg v
-    have hnorm : ‖(coeff (expVec m) G : ℂ)‖ ≤ c :=
-      calc ‖(coeff (expVec m) G : ℂ)‖ = ‖v m‖ := by rw [hv]
+    have hnorm : ‖((coeff (expVec m) G : ℤ) : ℂ)‖ ≤ c :=
+      calc ‖((coeff (expVec m) G : ℤ) : ℂ)‖ = ‖v m‖ := by rw [hv]
         _ ≤ ‖v‖ := (pi_norm_le_iff_of_nonneg (norm_nonneg v)).mp le_rfl m
         _ = ‖T (gridMatrix t D *ᵥ v)‖ := by rw [hvT]
         _ ≤ ‖T‖ * ‖gridMatrix t D *ᵥ v‖ := T.le_opNorm _
