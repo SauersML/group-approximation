@@ -22,6 +22,10 @@ Carriers, all over a unital ring `R` with `u : Λ →* Rˣ`:
 - Consumes `Leavitt/ElementaryGroup` and `KOne/BlockWhitehead` (`diagAtHom`, `diagPairAt_mul`,
   `diagAt_commutatorElement_mem`).
 - For tex 412–417, apply the same theorem with `Λ` the topological full group and `u = w`.
+- Signed counterpart, already on main: `Leavitt/DiagonalElementary` has `w u = e_12(u)e_21(-u^{-1})e_12(u)`,
+  `balanced u = w u · w(-1) = diag(u,u^{-1},1)` and `firstDiagonalUnit_commutator`, the same product for `a`, `b`,
+  `(ba)^{-1}`. The printed char-2 form with `e_21(v^{-1})` and `e_12(1)e_21(1)e_12(1)` is not there, and neither are the
+  embedding of `Λ` and `Γ ≤ [Δ,Δ] ≤ [Λ,Λ]`.
 
 | hash (9047d0d3c) | tex at c8b6021ca | sentence | status | carrier |
 |---|---|---|---|---|
