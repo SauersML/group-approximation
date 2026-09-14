@@ -34,3 +34,19 @@ Ownership check, 2026-09-13 20:2x:
    - At I = 0, simplicity of R takes the role of Lemma 4.3: β_p ≠ 0 and β_p R c'_{im} = 0 force c'_{im} = 0.
    - The transvection case uses `Pestov91.SimpleModCentre.normal_eq_top_of_elGen_mem` on `PreusserNormalizedBy.elementaryPart`.
 4. **Simplicity.** `isSimpleGroup_of_preusser_sandwich` (CongruenceSubgroups) with the sandwich above, Z(R) = F₂ (RingSimpleCentre) and G infinite (ElementaryGroupFacts).
+
+## RESUME 2026-09-13 23:30 (coordinator restart): tip 37551fd93, census 649cb1f80
+- The note was restructured at c8b6021ca (one general theorem, thm:general). The Stepanov sentence survives at l.81–85 of 37551fd93, rewritten:
+  - ring simplicity now cites [ClarkEdie, Cor. 4.6];
+  - the count is "on a tower over one small cylinder".
+- New census hash `9424f59fd820`, which supersedes `bf137432ddb7`.
+- Printed generality: G_X for an infinite minimal subshift (a ℤ-action), stated right after thm:main, not the Λ-actions of thm:general.
+
+## Modules (in probe)
+| module | content |
+|---|---|
+| `Algebra/StepanovNormalStructure` | Theorem 4.4 over a simple ring. Column transvections in `H` are trivial (`colMatrix_eq_zero_of_mem`), a unit row forces `g = 1` (`eq_one_of_row_eq_one`), Lemma 4.1 at unit columns (`mem_congruenceSubgroup_bot_of_entry_eq_zero`), then the p. 2152 step with `d = [c, t_{*i}(αλ)]` and simplicity in place of Lemma 4.3 (`mem_congruenceSubgroup_bot_of_conditionB`). Also `sandwich_of_conditionB`, `PrintedStepanovTheorem44SimpleRing` and `isSimpleGroup_elementaryGroup_of_conditionB` |
+| `Dynamics/ClopenCrossedProductPairDependence` | The tower dimension count for every nonempty `X`, homeomorphism `T` and field `k` (`exists_pair_dependence`, `PrintedPairDependenceClopenCrossedProduct`). Tower `τ_m = u^m e_U`, `0 ≤ m ≤ 2w`; `p τ_m ∈ span{τ_n : -w ≤ n ≤ 3w}`; `2(2w+1) > 4w+1` |
+| `Manuscript/SimpleKazhdanSofic/StepanovSimplicity` | Condition (b) from pair dependence (`b = 1`, `α = e_i r + e_j s`), `PrintedSubshiftRingPairDependence`, `PrintedStepanovRouteSimplicity` (ring simple, condition (b), `EL_n` simple for n ≥ 3), `printedSimplicityStatement_stepanov` (discharges MainAssembly's piece) |
+
+Route note: "small" in the section "Simplicity" also asks for disjoint translates. The count uses only the constancy of the coefficients along the tower.
