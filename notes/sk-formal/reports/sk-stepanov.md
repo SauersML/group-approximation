@@ -50,3 +50,14 @@ Ownership check, 2026-09-13 20:2x:
 | `Manuscript/SimpleKazhdanSofic/StepanovSimplicity` | Condition (b) from pair dependence (`b = 1`, `α = e_i r + e_j s`), `PrintedSubshiftRingPairDependence`, `PrintedStepanovRouteSimplicity` (ring simple, condition (b), `EL_n` simple for n ≥ 3), `printedSimplicityStatement_stepanov` (discharges MainAssembly's piece) |
 
 Route note: "small" in the section "Simplicity" also asks for disjoint translates. The count uses only the constancy of the coefficients along the tower.
+
+## LANDED 74d702d7a (after the 09-14 reboot): row `9424f59fd820` graded formalized
+- Modules, each GREEN in the post-reboot co-probe with BUILT lines:
+  - `GroupApproximation/Algebra/StepanovNormalStructure.lean`: `PrintedStepanovTheorem44SimpleRing`, `isSimpleGroup_elementaryGroup_of_conditionB`.
+  - `GroupApproximation/Dynamics/ClopenCrossedProductPairDependence.lean`: `PrintedPairDependenceClopenCrossedProduct`, for every nonempty `X`, every homeomorphism and every field.
+  - `GroupApproximation/Manuscript/SimpleKazhdanSofic/StepanovSimplicity.lean`:
+    - `PrintedSubshiftRingPairDependence`;
+    - `PrintedStepanovRouteSimplicity`: the ring is simple, condition (b) holds, and `EL_n(R)` is simple for n ≥ 3;
+    - `printedSimplicityStatement_stepanov`: MainAssembly's simplicity piece, discharged by this route.
+- Sentence verified verbatim at origin 151ed1151, sha256 `9424f59fd820`.
+- The modules are queued for wiring.
