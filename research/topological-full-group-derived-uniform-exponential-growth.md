@@ -15,6 +15,11 @@ A negative answer for some `φ` would give a finitely generated simple AMENABLE 
 - **NEGATIVE for dyadic substitution subshifts** (sk-cornulier-q7, 2026-09-13, unreviewed): `dyadic-substitution-derived-full-groups-non-uniform-growth`.
   - Statement: for every primitive substitution of constant length 2 with a non-periodic fixed point (Thue–Morse, period doubling), `[[φ]]′` has non-uniform exponential growth.
   - So there is a finitely generated infinite simple amenable group of non-uniform exponential growth (`simple-amenable-group-of-non-uniform-exponential-growth`).
+- **NEGATIVE whenever constant dyadic towers have bounded induced alphabets** (sk-sturmian-growth, 2026-09-14, unreviewed): `dyadic-tower-subshift-full-group-non-uniform-growth`.
+  - The reviewed dyadic proof uses only (H1) and (H2) at infinitely many scales `m`:
+    - (H1) `X = ⊔_(i<2^m) T^iV_m` with `T^(2^m)V_m = V_m`;
+    - (H2) a clopen partition of `V_m` of bounded size generating its clopen algebra under `T^(2^m)`.
+  - The dyadic substitution theorem is the instance `V_m = ζ^m(X)`.
 - **Still OPEN:** the question for general infinite minimal subshifts (e.g. Sturmian), and the clauses on "diamètre semi-libre / sans torsion uniforme".
 
 ## Attempts
@@ -28,3 +33,11 @@ A negative answer for some `φ` would give a finitely generated simple AMENABLE 
   - Complements, commutators `[(1 2 3),(3 4 5)] = (1 4 3)` and shift-pair conjugation give every clopen 3-cycle. Cornulier's Lemme `eng_cb` then gives the whole `[[φ]]′`.
   - **Succeeds** when `X` is a tower of constant height `2^m` over a clopen copy of itself with a bounded alphabet (dyadic substitutions).
   - **Dies** for Sturmian and other systems without constant dyadic towers: the Grigorchuk-level identification needs `2^m` levels, and bounded-size letter partitions of the induced systems.
+- **Why Sturmian subshifts escape** (sk-sturmian-growth, `research/artifacts/sk-sturmian-growth-plan-2026-09-14.md` §2).
+  - A constant tower `X = ⊔_(i<N) T^iV`, `T^NV = V`, gives the continuous eigenfunction `Σ_j e^(2πij/N) 1_(T^jV)`. So every subshift with (H1) has rational continuous spectrum, and totally minimal subshifts (Sturmian, weakly mixing) never do.
+  - What Sturmian `X_α` do have is Rauzy renormalization: two towers of heights `q_n, q_(n−1)`, with first-return system again Sturmian with a two-letter partition. So (H2) holds with `K = 2`, but on two heights.
+  - Routes, recorded in the plan artifact §3:
+    - (R1) a level model of intermediate growth on the hierarchical level sets `A_(n+1) = A_n^(a_(n+1)) B_n`;
+    - (R2) Grigorchuk levels on a dyadic block inside each tower, with remainder levels absorbed by the base structure;
+    - (R3) a uniform-growth proof when partial quotients grow fast.
+  - Not yet attempted beyond the obstruction.
