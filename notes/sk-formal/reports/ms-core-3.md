@@ -33,3 +33,13 @@ Landed carrier (3d1ce154d, `Manuscript/SimpleKazhdanSofic/FiniteModelsGroup`): e
 closed endpoints printedFiniteModelsGeneralLinear and printedFiniteModelsLEFSoficHyperlinear. The injective-map sentence it
 carried at bf961c128 and 2050a8eed does not survive at e80dcf20a; "G is LEF" is now printed through marked limits. It stays
 valid as a general carrier, but it is no longer the printed route.
+
+## Sub-leaf claims at e80dcf20a (ownership checked 2026-09-13 ~19:55: no module in Manuscript/SimpleKazhdanSofic covers them)
+
+CLAIM L1, tex 153–157: EL_3(M_{N}(F₂)) = SL_{3N}(F₂), because transvections generate SL and in-block transvections are commutators between blocks → GroupApproximation/Manuscript/SimpleKazhdanSofic/MarkedLimitSpecialLinear.lean
+CLAIM L2, tex 147–150 and 163: the free algebra F = F₂⟨t_±, t_a⟩ is a finitely generated ring, so EL_3(F) has (T) through `ejz` → GroupApproximation/Manuscript/SimpleKazhdanSofic/FreeAlgebraKazhdan.lean
+
+Carriers to reuse: `AlgebraicK.ker_detUnits`, `elementaryBlockGroup_map` / `elementaryBlockEquiv`, `ejz`,
+`isFinitelyGeneratedRing_iff_finiteType_int` (the UniversalOneSidedPairRing idiom), and ms-intro-3's `Setting` (R, G,
+letterIndicator). The next leaves are ρ_ℓ onto, words of length L, marked convergence and expanders; they will be claimed
+after ms-units' `FiniteModelsRing` names land.
