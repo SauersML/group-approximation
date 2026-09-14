@@ -442,6 +442,21 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - So simple Kazhdan hosts for every countable group are KNOWN. Higman plus CFF gives one 2-generated simple Kazhdan group containing every f.g. recursively presented group.
     - What the note adds: (T) and LEF together (and finite simple limits), which is exactly what the LEF characterization needs.
     - DECIDED: MUST fix in rev4. Add the CFF clause after Kionke–Schesler, and reword "The next corollary adds property (T)" to "gives property (T) and LEF together". Sent to sk-editor-4.
+94. **sk-prior-art-2 final** (df990655c6). Seven claims graded:
+    - NOT FOUND: an infinite f.g. simple Kazhdan LEF group; the finite-simple limit; the no-distortion result for these rings.
+    - PARTLY KNOWN: LEF iff (RF inputs by Kionke–Schesler); (T) hosts (CFF); the universal host (each property alone); the separable factors (Ozawa's argument, NPS).
+    - ADOPT: G2 (≤ 2 lines: each property alone is known, both at once is new); G3–G5 (no "answers Ozawa's question", no "first obstruction", no "first" anywhere).
+95. **sk-verify-12** (bf33d33868): no distortion + SL_3(Z) PASS (F1: w ≥ 1; F2: a periodic-point caveat applied to the node); EL_2 over every F_q PASS (F4: the expander clause holds only for n ≥ 3); rank-3 converse PASS (M_2(Z/4) model test). Credit checks: CFKP doi confirmed; Callard–Salo is ETDS 44 (2024).
+96. **SCOPE DECISION after sk-referee-significance** (50a21ebdd1). This REVERSES item 85.
+    - IN: intro S1 (the one idea on page 1), S6 (the theorem within 10 lines), Theorem 2 (define "matricial"), 71(c), 71(d), Brown + P2, Questions, P1 (replacing the continuum clause), SL_3(Z) ≤ 6 lines, abstract S7.
+    - OPTIONAL: rank-3 converse sentence.
+    - GATED: S2, [[T]]′ ≤ G_X (Juschenko–Monod groups inside G_X), pending sk-verify-13.
+    - OUT (stay in Cairn): character rigidity (+45 lines), EL_2 (+33), all F_q (+12).
+    - CUTS: K1 (Sturmian proof −5), K2, K4. ADOPT E1, E3; E2 after sk-verify-6.
+    - Why characters is out: RULES §1 says a great theorem with a long proof becomes a Cairn result. The note cannot cite Cairn, so it prints no sentence without the proof. The theorem could anchor a separate short paper, but that is the user's call (the standing decision is two papers).
+97. **S2 gate OPEN.** `topological-full-group-embeds-in-subshift-elementary-group` already PASSed in sk-review-2 part4 row 18 (43d31d65e), map (B) included. sk-verify-7 part6 (3742d451b4) confirms it and PASSes the four C*-simplicity test-subgroup claims, agreeing with sk-verify-13.
+    - The node header still says "unreviewed". sk-verify-13's review line will fix that.
+    - S2 goes into rev4: [[T]]′ ≤ G_X via diag(w_g,1,1), so the Juschenko–Monod groups are subgroups of G_X.
 
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
