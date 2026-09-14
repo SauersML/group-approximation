@@ -14,7 +14,7 @@
 
   Apply this text once. The other lanes' proof-level credits are compatible and stay separate: Margulis at l.163–164, Elek–Szabó at l.164–166, the Gorjuškin/Schupp sentence opening §2.
 - **Compile probe:** MSI, texlive/2025, 3 passes, rev2 preamble plus the text below plus the bibliography: 0 errors, 0 overfull, 0 undefined. The two underfull boxes are rev2's own Brown and Ozawa bibitems.
-- **Length:** the intro including Theorem 1 runs from 194pt on page 1 to 166pt on page 2, about 571pt against a 628.75pt page (0.91 page).
+- **Length:** the intro including Theorem 1 runs from 194pt on page 1 to 140pt on page 2, about 545pt against a 628.75pt page (0.87 page).
 - **Probe file:** `sk/lanes/sk-intro-writer/probe-intro.tex`.
 
 ## 1. (a) Current text: rev2 l.40–79
@@ -159,7 +159,7 @@ Math. Z. \textbf{174} (1980), 149--157.
 
 ## 4. (c) Length
 - **Variant I:** 67 source lines against rev2's 40 (l.40–46 plus l.64–79), so +27. Bibliography +45 lines (10 items).
-- **Printed:** 0.91 page including Theorem 1, under the one-page cap.
+- **Printed:** 0.87 page including Theorem 1, under the one-page cap.
 - **Variant II:** about +18 source lines and +35 bibliography lines.
 
 ## 5. (d) Reader-facing trade-off
