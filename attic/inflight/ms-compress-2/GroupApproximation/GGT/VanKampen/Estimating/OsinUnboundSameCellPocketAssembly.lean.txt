@@ -120,7 +120,7 @@ theorem osinLemma94SameCellPocketInput_of_loopCut
     exact hvalue Delta _ (hdface.trans hface.symm)
       (fun h => (cell Delta i).face_ne_outer (hdface.symm.trans h)) hor m hmpos hstep hne_a
       hne_alpha hfree
-  · push_neg at hfree
+  · push Not at hfree
     obtain ⟨C, hC, hne, x, hx, hch⟩ := hfree
     obtain ⟨cut⟩ := hcut D lambda c mu eps rho W hW Delta hleast i d hd hface hor C hC
       (fun h => hne (h.trans hdface.symm)) x hx hch
