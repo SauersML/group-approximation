@@ -525,3 +525,28 @@ CLAIM class producer boundary arcs GroupApproximation/GGT/VanKampen/Estimating/O
   through `osinLemma94KindTransitionInput_of_longTransitions`, with constant `24 ε + K₁ + K₂`.
 - Next: the end loops for `joinQ` (model M4: a lobe or flower at a class end next to a different kind, with length at most
   `⌈(c + 2)/λ⌉₊`).
+
+### Landings 09-14 (probes on the rebuilt infra)
+
+| module | SHA | probe | fixes that cleared the red probes |
+|---|---|---|---|
+| `Estimating/OsinLemma94ClassProducerGaps` (adopted from ms-core-2) | 0011fcb93 | 0914-083131-31449 GREEN, BUILT | classical scope for the `Nat.find` statements; pinned `pow_succ'` exponents |
+| `Estimating/OsinLemma94ClassJoinsCellArc` | 6fc4f92b0 | 0914-084538-15511 BUILT | renamed deprecated names (`getLast?_eq_some_getLast`, `head?_eq_some_head`, `length_pos_iff.mpr`); a one-turn bound by `Nat.not_le` and `simp only` instead of `push_neg` and a dependent `rw`; `← List.map_dropLast`; `List.dropLast_append_of_ne_nil hneR` |
+| `Estimating/OsinLemma94ClassJoinsBoundaryArc` | 86bb55bd1 | 0914-085033-78741 BUILT | a named section witness `_hj` (the `-` pattern cleared the window bounds that depend on it); an unused simp argument dropped; `_P` on the two `P`-free lemmas |
+
+All three are queued for wiring.
+- The report landing after the reboot was refused by the clobber guard: `landed.log` had lost this lane's eab51bbf6. It
+  landed at 86eeda0e2 with `NM_BASE=origin/main`, because the local copy already contains that change.
+- **`Estimating/OsinLemma94ClassJoins` LANDED at efa471e68** (probe 0914-090532-31868 GREEN, BUILT, 10225 jobs; attic
+  b66aefb90; queued for wiring).
+  - The first probe of this module was red only on linter errors (unused binders, now named `_`) and a `▸` cast, which is
+    now a rewrite with the explicit equation.
+  - Its declarations are listed above:
+    - `classPolygonsOfJoins`, `joinQ`;
+    - `joinCount_le`, `card_otherClasses_le`, `budgetPolygons_subset_nonJoinPolygons`, `sum_card_otherClasses_le`;
+    - the residuals `OsinLemma94BadJunctionInput` (ms-inverses-3) and `OsinLemma94ClassJoinsEndLoopsInput` (this lane,
+      next);
+    - `osinLemma94ClassEndLoopsBudgetInput_of_joins`.
+  - The SHA went to ms-inverses-3.
+- ms-inverses-3's planar bad-junction exclusion is on main at ad307e323, over the Gaps module. It waits for `ClassJoins` to
+  respell its two residuals over `P.nonJoinPolygons` and prove `OsinLemma94BadJunctionInput` from them.
