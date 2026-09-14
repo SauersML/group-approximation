@@ -83,6 +83,7 @@ theorem isLevelForm_levelShift_inv : IsLevelForm (levelShift Γ)⁻¹ (fun _ => 
 theorem isLevelForm_levelMul (γ : Γ) : IsLevelForm (levelMul γ) (fun n => if 0 ≤ n then γ else 1) 0 := by
   intro x m
   rw [levelMul_apply, add_zero]
+  show (if 0 ≤ m then (γ * x, m) else (x, m)) = ((if 0 ≤ m then γ else 1) * x, m)
   by_cases hm : 0 ≤ m
   · rw [if_pos hm, if_pos hm]
   · rw [if_neg hm, if_neg hm, one_mul]
@@ -111,7 +112,7 @@ theorem isLevelForm_gValue :
     · rw [one_mul]
       simp only [valueWord, hLetters, List.filterMap_map]
       congr 1
-      funext p
+      refine List.filterMap_congr fun p _ => ?_
       simp only [Function.comp_apply, tagLevel_succ_left]
       by_cases hp : tagLevel p.1 ≤ n - 1
       · rw [if_pos hp, if_pos (by linarith)]
@@ -124,7 +125,7 @@ theorem isLevelForm_gValue :
     · rw [one_mul]
       simp only [valueWord, hLetters, List.filterMap_map]
       congr 1
-      funext p
+      refine List.filterMap_congr fun p _ => ?_
       simp only [Function.comp_apply, tagLevel_succ_right]
       by_cases hp : tagLevel p.1 ≤ n - -1
       · rw [if_pos hp, if_pos (by linarith)]
@@ -139,6 +140,7 @@ theorem isLevelForm_gValue :
       · rw [if_pos hn, if_pos hn, lValue_cons]
         rfl
       · rw [if_neg hn, if_neg hn, one_mul]
+        rfl
     · simp [shiftPair]
   | (some i, false) :: w => by
     have hinv : gValue s ((some i, false) :: w) = levelMul (s i)⁻¹ * gValue s w := by
@@ -151,6 +153,7 @@ theorem isLevelForm_gValue :
       · rw [if_pos hn, if_pos hn, lValue_cons]
         rfl
       · rw [if_neg hn, if_neg hn, one_mul]
+        rfl
     · simp [shiftPair]
 
 /-- A word is trivial if and only if `ℓ = 0` and every value of `f` is trivial. -/
@@ -189,7 +192,7 @@ theorem forall_valueWord_iff (w : List (Option ι × Bool)) :
       · rw [if_neg hqn, if_neg (by intro hq'; exact hqn (hq'.trans hpn))]
     rw [hsame]
     exact h p hp.1
-  · push_neg at hT
+  · push Not at hT
     have hnil : valueWord w n = [] := by
       unfold valueWord
       rw [List.filterMap_eq_nil_iff]

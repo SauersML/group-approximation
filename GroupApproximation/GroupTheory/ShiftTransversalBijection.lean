@@ -91,12 +91,13 @@ def theta : (Fin (M + 2) → Q) →* (Fin (M + 2) → Q) where
     | succ k => simp
 
 @[simp] theorem theta_zero (v : Fin (M + 2) → Q) : theta Q M v 0 = 1 := by
-  show Fin.cons (1 : Q) (fun k : Fin (M + 1) => v (Fin.castSucc k)) 0 = 1
+  show Fin.cons (α := fun _ : Fin (M + 2) => Q) (1 : Q) (fun k : Fin (M + 1) => v (Fin.castSucc k)) 0 = 1
   exact Fin.cons_zero _ _
 
 @[simp] theorem theta_succ (v : Fin (M + 2) → Q) (k : Fin (M + 1)) :
     theta Q M v k.succ = v (Fin.castSucc k) := by
-  show Fin.cons (1 : Q) (fun k : Fin (M + 1) => v (Fin.castSucc k)) k.succ = v (Fin.castSucc k)
+  show Fin.cons (α := fun _ : Fin (M + 2) => Q) (1 : Q) (fun k : Fin (M + 1) => v (Fin.castSucc k)) k.succ =
+    v (Fin.castSucc k)
   exact Fin.cons_succ _ _ _
 
 theorem theta_mem_ran (v : Fin (M + 2) → Q) : theta Q M v ∈ ran Q M :=
