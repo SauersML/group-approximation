@@ -288,6 +288,22 @@ hull-euler has no in-flight Euler file.
   - Stage 2: the per-vertex count. At a vertex, k non-crossing chords `(α e, next e)` cut the rotation into k + 1 sectors, shared
     between the two reclosings. Summed over vertices this gives `V_in + V_out = V + |w|`.
   - Separately: non-interleaving for the section and cell pocket walks, from the joint structure (sec2-sentences' hand argument).
+- 09-13 ~20:03: API outage mid-turn. Stage 1 had probed green before it (0913-195537-82662).
+- Stage 1 LANDED a660c5856 after resume (bytes = green record), unwired, queued for wiring: `RotationBetween`,
+  `PassagesNoninterleaving` (spelled with `w.next`), `eulers_of_vertexCount_le`, `NoninterleavingVertexCountStatement`,
+  `eulers_of_noninterleaving`.
+- Agreement with ms-inverses-4 (main 20:15). ms-inverses-4 proves `PassagesNoninterleaving` for the pocket walks (CLAIM 2647cc6ce):
+  `NoncrossingClosedWalkSectorNoninterleaving` (`SectorFree`, `passagesNoninterleaving_of_isChain`) and
+  `Estimating/OsinPocketWalkNoninterleaving`.
+  - This lane keeps the vertex count, the calibrations and the Euler wiring.
+  - My planned generic passages lemma is dropped, because ms-inverses-4's chain lemma covers it.
+- CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkEulerNoninterleaving.lean:
+  - `SectionPocketWalkNoninterleavingStatement` and `CellPocketWalkNoninterleavingStatement` (the named targets for ms-inverses-4);
+  - `sectionPocketWalkEuler_of_noninterleaving`, `cellPocketWalkEuler_of_noninterleaving` and
+    `sectionPocketKeptCell_of_noninterleaving`.
+- CLAIM GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkEulerNoninterleavingModels.lean: calibrations.
+  - The three-petal rose `threeRose` [0,2,4] is noncrossing with interleaving passages.
+  - The lake and the double-touch walk have non-interleaving passages, through ms-inverses-4's chain lemma.
 
 ## Progress log
 
