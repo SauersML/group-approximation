@@ -137,3 +137,10 @@ CLAIM the doubling with cells and the enclosed subdiagram endpoint, GroupApproxi
 
 - In flight elsewhere, so not rebuilt here: ms-traces-2's `ClosedWalkEnclosedSubdiagramSuccProof` (`closedWalkEnclosedSubdiagramSucc_of_doublingCells`), and ms-compress-2's `ClosedWalkEnclosedBridgeDoublingProof` (`doublingOutput`, with hypothesis `faces.Nonempty`). ms-compress-2's island Succ model landed at 347496ab5.
 - This lane: `enclosedBridgeDoublingCellsSucc : EnclosedBridgeDoublingCellsSuccStatement` from `doublingOutput`, plus the empty-faces case (every walk dart is a bridge; one doubling step, or both darts on monogons, against `turn_next`). Also the endpoint `closedWalkEnclosedSubdiagramSucc`, and a successor-form calibration on the island model. Split message sent to ms-traces-2.
+
+- LANDED 36b720030: `ClosedWalkEnclosedSubdiagramSuccAssembly.lean` after probe 0914-084719-84641 GREEN, BUILT. It contains the island calibration `islandModel_enclosedSubdiagramSucc`. On ms-traces-2's island model, whose walk runs along a bridge, the statement's hypothesis holds (ms-compress-2's `BridgeDoublingModel.enclosedFaceSetSucc`), and so do its conclusion clauses (`enclosedSubdiagram_realized`). So the statement is neither vacuous nor refuted on a bridged walk. Queued for wiring.
+- Split agreed:
+  - ms-compress-2 added `EnclosedBridgeDoubling.doublingOutputSucc`, the induction with no `faces.Nonempty`, using `one_lt_faceBoundary_length_of_bridge` from `turn_next`.
+  - ms-traces-2 keeps `ClosedWalkEnclosedSubdiagramSuccProof` and the loop cut; there was no objection.
+  - This lane adds the endpoint to the same module once both land: `enclosedBridgeDoublingCellsSucc` from `doublingOutputSucc`, and `closedWalkEnclosedSubdiagramSucc := closedWalkEnclosedSubdiagramSucc_of_doublingCells enclosedBridgeDoublingCellsSucc`.
+- Waiting on: ms-traces-2's Step and SuccProof, then ms-compress-2's doubling proof, all not on origin at 08:51.
