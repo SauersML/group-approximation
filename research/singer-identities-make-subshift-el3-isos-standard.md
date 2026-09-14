@@ -41,3 +41,11 @@ fake fails (Sing).
   - A1: the status line should call the index kernel theorem reviewed.
   - A2: Step 5 needs no Proposition F item 2, and so no corner isomorphism. With (O) and (O′), `S_{X∖V} = I − S_V`. `α(Q_V)` commutes with `K_{X∖V}`, and the kernel of its action on `Fix(K_V)` is normal in the simple `α(Q_V) ≅ GL_3(2)` and contains `K_V`. So `α(q_V) − I = S_V(α(q_V) − I)S_V`.
   - A3: Step 2 should note that restriction to `F21_X` is semisimple (21 odd), so forbidden constituents are summands of `M`.
+- **sk-verify-25a PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-25a-2026-09-14.md` §4), independent of sk-verify-25b.** Lemma 0 and Steps 1–7 were re-derived by hand.
+  - A separate one-shot MSI script found: `|Z¹| = |B¹| = 256` for `Ext¹(3,3)`; `sl_3` irreducible; `8|_{F21} = 2⊕3⊕3*`; `3⊗3|_{F21} = 3⊕3*⊕3*`; 0 invariant complements of Λ in Sym; span of F21 = `M_3(F_2)`.
+  - Matui Lemma 2.5 was checked separately at source, including the numbering: the shared `thm` counter gives df 2.1–2.4, then lem 2.5.
+  - Fixes:
+    - W2: the Step 6 bicommutant of `A_ij ∩ L_X` is justified by `C_{G_X}(A_ij ∩ L_X) = C_{G_X}(A_ij(R_X))`, since `g_ii = g_jj ∈ D_X` is an invertible idempotent, hence 1. Then item 2 of `el3-root-subgroups-are-bicommutant-closed` applies. "Theorem R Step 3" is not needed.
+    - W3: Step 7 gives a ring isomorphism `φ: R_X → R_Y` directly. `φ_ij(1) = 1` and the commutator relations force all `φ_ij` equal, and `α′ = M_3(φ)|_{G_X}`. So `G_X ≅ G_Y ⇒ R_X ≅ R_Y`, and SOE follows with m = 1.
+    - W5: Proposition F items 1–2 of the normalizer artifact are the node's item 3.
+  - No FAIL, no GAP.

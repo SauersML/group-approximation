@@ -50,3 +50,11 @@ Model tests:
     - C2: drop the first-return corner isomorphism import. Lemma X needs only that `R_V = e_VR_Xe_V` is simple with centre `F_2e_V`, and this follows because a corner of the simple ring `R_X` is simple and, `e_V` being full, `Z(e_VR_Xe_V) = e_VZ(R_X)`. With Fix A2 on `singer-identities-make-subshift-el3-isos-standard`, Theorem D uses only reviewed imports and Matui Lemma 2.5, which was read at source.
     - C3: in Theorem C, `g_t(a) ∈ F_2I + span_{F_2}K_V`, since the t-component of `F_2[F21]` is `M_3(F_2)` (`F_4` for t = 2). So it commutes with `C_{G_Y}(K_V)`.
     - C4: scope. This answers the "at least strongly orbit equivalent" alternative of the note's question; flip conjugacy stays open. The route's `requires` entry `diagonal-recognition-makes-subshift-el3-isos-standard` is unused.
+- **sk-verify-25a PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-25a-2026-09-14.md` §3), independent of sk-verify-25b.**
+  - Re-derived by hand: Lemma Z (Peirce components, fullness, `Z(fSf) = Ff`), Lemma X (C2 puts `x ∈ G_V`; `I+nI_3` is torsion, so in `G_X`), Theorem C (`GL_3(2)²` and `GL_3(2)×C_3` exceed 168), Lemma S3, Corollaries O, O′ (`C_{G_X}(L_X) = 1`), T, and Theorem D.
+  - The corner centre is also item 1 of `subshift-elementary-group-rigid-supports-are-mutual-centralizers` (sk-verify-3 PASS). The corner isomorphism is proved in `subshift-el-n-exactness-kakutani-invariance-proof` Step 3 (sk-verify-18 part11 PASS).
+  - Fixes:
+    - W1: status line;
+    - W4: for `t_X = 3*`, apply Theorem C and Corollaries O, O′, T to `α∘γ_X`, whose orientation is 3 since `3*∘γ ≅ 3`.
+  - **Combined PASS, sharpened:** every isomorphism is `inn(k)∘M_3(φ)`, possibly after `γ_X`, for a ring isomorphism `φ: R_X → R_Y`. So `G_X ≅ G_Y ⇒ R_X ≅ R_Y ⇒` SOE; flip conjugacy stays open.
+  - No FAIL, no GAP.
