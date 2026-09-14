@@ -474,3 +474,15 @@ Interface agreed with ms-inverses-3 (23:3x): `OsinLemma94BadJunctionInput` sums 
 - The filter contains `Q.budgetPolygons`, since `classCount ≤ max 1 #¬ClassJoins`, so (a) loses nothing.
 - ms-inverses-3's module is `Estimating/OsinLemma94BadJunctionExclusion.lean` (claimed at ddd310d78). Its value clause for
   G-face-only pockets may keep `RegionFaceAssemblyStatement` as a named binder.
+
+CLAIM class producer cell arcs GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassJoinsCellArc.lean
+
+- `ClassProducer.nodup_of_head_not_mem_tail`: a chain of a functional relation inside a closed duplicate-free chain, whose
+  first entry does not recur, has no repeated entry.
+- `ClassProducer.exists_arc_of_backward`: a backward walk across one face whose last dart does not recur is
+  `arc.reverseDarts` of one arc, through `PolygonList.exists_cyclicArc_of_isChain`.
+- `ClassProducer.isChain_backward_reverseDarts`.
+- Next in this module: the class-level `cell_arc` for a joined run of cell sides.
+  - Sides are backward walks, and gaps link them (`isChain_append_cellGapOf`, with `SameCycle.exists_pow_eq''` for the
+    power).
+  - The last side dart does not recur: sides are disjoint pieces of the face walk, and gap darts avoid the polygon face.
