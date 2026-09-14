@@ -42,6 +42,17 @@ CLAIM l.176–186, 197–208 GroupApproximation/Manuscript/SimpleKazhdanSofic/{G
 - New, offline: `GeneralSimplicityAssembly`, which proves ct-two-ended's `PrintedGeneralSimplicityStatement` (local GeneralTheorem). It builds the action from α, minimality, topological freeness and total separation, then applies `generalCommutatorWitness` and `isSimpleGroup_of_generalCommutatorWitness`. The ring spelling is still to confirm with ct-two-ended: its `ActionCrossedProduct α` versus sk-lef-action's landed `ClopenGroupCrossedProduct`.
 - The census at 37551fd93 matches the tip 696c4b602 on all 27 Simplicity rows (verbatim check).
 
+## NEW ITEM 09-14 ~08:55: simplicity half of `LEFLamplighterStatement` (cor:lef, cor:host)
+
+The host G_Δ = EL₃(LC(Z,F₂) ⋊ L) must be simple, through the general theorem (`General.isSimpleGroup_clopenGroupCrossedProduct`). This lane takes the simplicity half:
+- the lamplighter action of L on Z = F₂^Δ is minimal;
+- it is topologically free, and every nonempty clopen set contains a small one (general `exists_isSmall_subset`);
+- EL_n of the lamplighter crossed product is simple for n ≥ 3.
+
+sk-lef-action keeps the crossed product, the generation and the finite models.
+
+CLAIM LEF section, proof of cor:lef/cor:host: lamplighter minimality, topological freeness, simplicity of G_Δ GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterSimplicity.lean
+
 ## INFRA READY 09-14 (new NM at this session's scratchpad; clone ring-b-end)
 
 - Main's rulings:
