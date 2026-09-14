@@ -32,3 +32,29 @@ No such quotient is known. Steenbock records that the Rips--Segev relators
 "can have long common parts" (arXiv:1307.0981, introduction), which is exactly
 what the classical condition forbids, so the presentation defining `G` itself
 does not qualify.
+
+## Attempts
+
+Both attempts are from lane hl-rips-segev-limits, 2026-09-14; see
+`research/artifacts/hl-rips-segev-limits-2026-09-14.md`.
+
+1. **Truncations fail at the classical small cancellation hypothesis.**
+   - A quotient `G/<<S>>` is presented by the defining relators together with
+     `S`, so it keeps the long common parts. A classical `C'(1/6)` presentation
+     of such a quotient would have to be an unrelated presentation, and none is
+     known.
+   - The other Martin--Steenbock hypotheses (finitely many cubulable factors,
+     here `<a>` and `<b>`) are harmless. The failing one is classical `C'(1/6)`.
+   - The malnormal special quotient theorem needs the ambient group to be
+     virtually compact special already, so it is circular for this premise.
+     Wise's statement was not pinned in this lane.
+2. **The direct route reduces to wallspaces on graph cones.**
+   - If `G` itself is virtually compact special, the constant sequence gives the
+     premise. So `rips-segev-groups-are-cocompactly-cubulated` plus Agol
+     suffices.
+   - The cubical small cancellation route is
+     `rips-segev-cubulation-via-b8-graph-cone-wallspaces`. Its open inputs are
+     `rips-segev-graph-cones-admit-b8-wallspaces` and
+     `b8-hyperbolic-cubical-presentations-cocompactly-cubulated`.
+   - Any such wallspace must have the shape given by
+     `b8-graph-cone-wall-classes-are-sparse-edge-cuts`.
