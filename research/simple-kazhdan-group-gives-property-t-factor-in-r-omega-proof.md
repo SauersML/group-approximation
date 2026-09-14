@@ -18,6 +18,10 @@ Neumann algebras*, Bull. London Math. Soc. 17 (1985), 57--62).
 
 Hyperlinearity of `G_X` means `G_X ⊂ U(R^ω)`; for any group `Γ`, `Γ` is hyperlinear
 iff `L(Γ)` is isomorphic to a von Neumann subalgebra of `R^ω` (Ozawa, *About the
-QWEP conjecture*, Prop. 7.1). So `L(G_X)` embeds in `R^ω`. Finally `R^ω` is McDuff
-and trivially R^ω-embeddable, and `G_X ⊂ U(R^ω)`, which is Brown's von Neumann
-formulation.
+QWEP conjecture*, Prop. 7.1). So `L(G_X)` embeds in `R^ω`.
+
+Brown's von Neumann formulation asks for a separable McDuff factor. The witness is
+`L(G_X) ⊗̄ R` (`brown-mcduff-witness-for-simple-kazhdan-lef-group`).
+
+Repair (2026-09-13, sk-operator-algebras): the earlier closing sentence ("`R^ω` is
+McDuff") used a non-separable algebra and is withdrawn. The target claim does not use it.
