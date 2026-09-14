@@ -9,8 +9,11 @@ distinct_from:
   hyperlinear-fp-infinite-simple-kazhdan-group: that is the finite-presentation question itself; this is the program root that also carries the other questions from the same section of the note.
 ---
 
-**OPEN (program root, sk swarm, 2026-09-13).** Section "Questions" of
-`simple_kazhdan_sofic_group.tex` asks the following, and this claim is their conjunction:
+**OPEN (program root, sk swarm, 2026-09-13).** The questions raised by
+`simple_kazhdan_sofic_group.tex`, and this claim is their conjunction. From revision 5.3
+(main 6493524c09, 2026-09-14) the note prints only the first of them, in its closing section
+"The finitely presented case"; the user asked that the note not pose questions of its own, so
+questions 2–4 are program questions recorded here and not in the paper:
 
 1. Is there a finitely presented infinite simple group with property (T) that is sofic, or at
    least hyperlinear (`hyperlinear-fp-infinite-simple-kazhdan-group`)? No `G_X` is finitely
@@ -20,8 +23,8 @@ distinct_from:
    (`subshift-el3-group-isomorphism-forces-flip-conjugacy`)? Flip conjugacy gives an isomorphism.
    The weaker alternative the note asked until revision 5, strong orbit equivalence, is now a
    theorem (`subshift-el3-f2-isomorphism-forces-strong-orbit-equivalence`, established
-   2026-09-14 through the standardness of every isomorphism); revision 5.1 says it is shown in a
-   sequel.
+   2026-09-14 through the standardness of every isomorphism), drafted as a separate manuscript
+   in `wip/simple-kazhdan-note/sequel/`.
 3. Is every finitely generated sofic group a subgroup of an infinite finitely generated simple
    Kazhdan sofic group (`sofic-groups-embed-in-simple-kazhdan-sofic-groups`)? This is the sofic
    analogue of the note's LEF characterization. The revision 4 draft (sk-editor-4) poses it.

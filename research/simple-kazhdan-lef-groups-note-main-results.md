@@ -57,4 +57,6 @@ derived topological full group in `G_X`. Revision 5 (main 911b7b3f4a, 11 pages) 
 sharpness statement (item 8) and revision 5.1 (main 37ebf96798) the Turing-degree form of the
 host theorem (item 5), both now members of the assembly. The rigidity theorem
 `subshift-el3-f2-isomorphism-forces-strong-orbit-equivalence` is established but is not printed in
-the note; it is reserved for a sequel, and the note's question 4 says so.
+the note. Revision 5.3 (main 6493524c09) dropped the note's self-posed questions at the user's
+request; the note ends with the finitely presented case only, and the program questions below
+stay in this graph under `simple-kazhdan-lef-groups-note-open-questions`.

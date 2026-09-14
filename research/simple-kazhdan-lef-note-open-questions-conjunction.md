@@ -14,7 +14,7 @@ requires:
 
 Assembly only: the root claim `simple-kazhdan-lef-groups-note-open-questions` is the conjunction of the listed open
 claims.
-- The second is the flip-conjugacy question the note prints for `G_X` over `F_2` from revision 5.1 on. Its former
+- The second is the flip-conjugacy question for `G_X` over `F_2` (printed in revisions 5.1–5.2, a program question from 5.3 on). Its former
   member `subshift-el3-f2-isomorphism-forces-strong-orbit-equivalence` was established on 2026-09-14 and moved to the
   rigidity theme of the program.
 - The third is the sofic host question of the revision 4 draft.
