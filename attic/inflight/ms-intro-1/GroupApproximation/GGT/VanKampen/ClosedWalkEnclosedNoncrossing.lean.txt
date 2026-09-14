@@ -119,9 +119,10 @@ theorem enclosedFaceSetOfNoncrossing : EnclosedFaceSetOfNoncrossingStatement.{u,
         Delta.toCombMap.faceOf d ∉ sideFaces Delta.toCombMap walk ∧
           Delta.toCombMap.faceOf (Delta.toCombMap.alpha d) ∈
             sideFaces Delta.toCombMap walk := by
-      have h := (hw.outerCycle Delta.planar).cycle_mem_iff d
-      simp only [IsBoundaryDart, mem_sideOutside_iff, not_not] at h
-      exact h
+      refine ((hw.outerCycle Delta.planar).cycle_mem_iff d).trans ?_
+      show Delta.toCombMap.faceOf d ∈ sideOutside Delta.toCombMap walk ∧
+          Delta.toCombMap.faceOf (Delta.toCombMap.alpha d) ∉ sideOutside Delta.toCombMap walk ↔ _
+      rw [mem_sideOutside_iff, mem_sideOutside_iff, not_not]
     have h2 : Delta.toCombMap.alpha d ∈ invDarts Delta walk →
         Delta.toCombMap.faceOf d ∈ sideFaces Delta.toCombMap walk := by
       intro hmem
