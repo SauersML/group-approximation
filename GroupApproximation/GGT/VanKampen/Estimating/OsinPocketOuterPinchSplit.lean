@@ -1,0 +1,130 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchStepSection
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The pinch step at an isolated turn outside the face set
+
+Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): the subdiagram `Γ_1` with
+`∂Γ_1 = s_1 t_1 s_2 t_2`.  A pinched pocket face set in walk order passes twice through a vertex.
+When the pocket is not in first-turn order, its outer cycle does not follow its boundary
+(`PocketFaceSet.firstTurns_iff_outerFollows`): the complement is pinched at a vertex of the walk, and
+the step splits that vertex outside the face set (`PocketFaceSet.pinchSplit`).
+
+`PocketFaceSet.exists_pinchStepSection_of_avoids` packages that split when every turn of the cycle
+runs along vertex rotation, from the reversal of its first dart to its second dart, without meeting
+a split dart.  At a vertex visited three times with turns of both kinds this fails for some turn,
+while walk order survives the split at an isolated turn `d₀ → e₀`.  The cut runs from the corner
+after `e₀` to the corner before `alpha d₀`, so every other dart of the cycle at the vertex runs into
+`y` without passing `x`, and a turn whose two ends do so stays on the new vertex of `y`.
+
+* `PinchSplit.Input.TurnKept`: the stretch from `a` to `b` avoids the split darts, or both `a` and
+  `b` run into `y` without passing `x`.
+* `PinchSplit.Input.vertexOf_eq_of_turnKept`: such a turn stays on one new vertex.
+* `PocketFaceSet.pinchSplit_target_proper`: a split avoiding the face set keeps a proper target arc.
+* `PocketFaceSet.pinchSplit_closedWalk_of_isolated`: walk order when every turn is kept.
+* `PocketFaceSet.exists_pinchStepSection_of_isolated`: the conclusion of the section pinch step, with
+  a proper target arc as well.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, Hull's small cancellation theorem, through Osin's
+Lemma 9.7(b)); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded Surgery.MapCollapse
+open scoped Classical
+
+namespace PinchSplit.Input
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {Delta : DiscDiagram.{u, w, v} W} (I : Input Delta)
+
+/-- **A turn kept at the split**: the stretch of vertex rotation from `a` to `b` meets neither split
+dart before its end, or both `a` and `b` run into `y` without passing `x`. -/
+def TurnKept (a b : Delta.toCombMap.Dart) : Prop :=
+  I.StretchAvoids a b ∨
+    ((∃ n : ℕ, (Delta.toCombMap.sigma ^ n) a = I.y ∧
+        ∀ i ≤ n, (Delta.toCombMap.sigma ^ i) a ≠ I.x) ∧
+      ∃ n : ℕ, (Delta.toCombMap.sigma ^ n) b = I.y ∧
+        ∀ i ≤ n, (Delta.toCombMap.sigma ^ i) b ≠ I.x)
+
+/-- **A kept turn stays on one new vertex.** -/
+theorem vertexOf_eq_of_turnKept {a b : Delta.toCombMap.Dart} (h : I.TurnKept a b) :
+    I.diagram.toCombMap.vertexOf a = I.diagram.toCombMap.vertexOf b := by
+  rcases h with h | ⟨⟨n₁, hn₁, hx₁⟩, n₂, hn₂, hx₂⟩
+  · exact I.vertexOf_eq_of_stretchAvoids h
+  · exact ((I.diagram.toCombMap.vertexOf_eq_iff a I.y).mpr (I.sameCycle_y_of_stretch hn₁ hx₁)).trans
+      ((I.diagram.toCombMap.vertexOf_eq_iff b I.y).mpr (I.sameCycle_y_of_stretch hn₂ hx₂)).symm
+
+end PinchSplit.Input
+
+namespace PocketFaceSet
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **A split avoiding the face set keeps a proper target arc.** -/
+theorem pinchSplit_target_proper (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Input X)
+    (hs : I.Avoids K.faces) (htgt : K.targetArc.length < (outerDarts X).length) :
+    (K.pinchSplit I hs).targetArc.length < (outerDarts I.diagram).length := by
+  have h1 : (K.pinchSplit I hs).targetArc.length = K.targetArc.length :=
+    K.targetArc.mapTo_length id I.outerDarts_eq
+  have h2 : (outerDarts I.diagram).length = (outerDarts X).length :=
+    (congrArg List.length I.outerDarts_eq).trans (List.length_map _)
+  exact lt_of_eq_of_lt h1 (lt_of_lt_of_eq htgt h2.symm)
+
+/-- **Walk order across a split at an isolated turn**: every turn of the cycle, and the closing
+turn, is kept at the split. -/
+theorem pinchSplit_closedWalk_of_isolated (K : PocketFaceSet D eps X lo hi)
+    (I : PinchSplit.Input X) (hs : I.Avoids K.faces)
+    (hchain : K.boundary.cycle.IsChain fun d e => I.TurnKept (X.toCombMap.alpha d) e)
+    (hcloses : I.TurnKept
+      (X.toCombMap.alpha (K.boundary.cycle.getLast K.boundary.cycle_nonempty))
+      (K.boundary.cycle.head K.boundary.cycle_nonempty)) :
+    (K.pinchSplit I hs).ClosedWalk :=
+  ⟨hchain.imp fun _ _ h => I.vertexOf_eq_of_turnKept h, I.vertexOf_eq_of_turnKept hcloses⟩
+
+/-- **One step of the section pinch at an isolated turn outside the face set.**  The merged faces
+lie off the face set, every turn of the cycle is kept at the split, one cycle dart runs into `x`
+without passing `y` and another into `y` without passing `x`.  The split (`PocketFaceSet.pinchSplit`) keeps letter labels, walk
+order and both proper arcs, and lowers the repeated visits. -/
+theorem exists_pinchStepSection_of_isolated
+    (hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d))
+    (K : PocketFaceSet D eps X lo hi)
+    (hprop : K.sourceArc.length < (cellDarts X K.source).length)
+    (htgt : K.targetArc.length < (outerDarts X).length)
+    (I : PinchSplit.Input X) (hs : I.Avoids K.faces)
+    (hchain : K.boundary.cycle.IsChain fun d e => I.TurnKept (X.toCombMap.alpha d) e)
+    (hcloses : I.TurnKept
+      (X.toCombMap.alpha (K.boundary.cycle.getLast K.boundary.cycle_nonempty))
+      (K.boundary.cycle.head K.boundary.cycle_nonempty))
+    {e₁ e₂ : X.toCombMap.Dart} (he₁ : e₁ ∈ K.boundary.cycle) (he₂ : e₂ ∈ K.boundary.cycle)
+    {n₁ n₂ : ℕ} (hn₁ : (X.toCombMap.sigma ^ n₁) e₁ = I.x)
+    (hy₁ : ∀ i ≤ n₁, (X.toCombMap.sigma ^ i) e₁ ≠ I.y)
+    (hn₂ : (X.toCombMap.sigma ^ n₂) e₂ = I.y)
+    (hx₂ : ∀ i ≤ n₂, (X.toCombMap.sigma ^ i) e₂ ≠ I.x) :
+    ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
+      Nonempty (OEquivalentDiscDiagram X X') ∧
+        (∀ d, (symmetricLabelAlphabet D).IsLetter (X'.label d)) ∧
+        K'.ClosedWalk ∧ K'.sourceArc.length < (cellDarts X' K'.source).length ∧
+        K'.targetArc.length < (outerDarts X').length ∧
+        K'.repeatedVisits < K.repeatedVisits :=
+  ⟨I.diagram, K.pinchSplit I hs, ⟨I.oEquivalent⟩,
+    I.label_isLetter (symmetricLabelAlphabet D) hlabel,
+    K.pinchSplit_closedWalk_of_isolated I hs hchain hcloses, K.pinchSplit_source_proper I hs hprop,
+    K.pinchSplit_target_proper I hs htgt,
+    K.pinchSplit_repeatedVisits_lt_of_stretch I hs he₁ he₂ hn₁ hy₁ hn₂ hx₂⟩
+
+end PocketFaceSet
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.TurnKept
+#audit_axioms GroupApproximation.GGT.VanKampen.PinchSplit.Input.vertexOf_eq_of_turnKept
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_target_proper
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.pinchSplit_closedWalk_of_isolated
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStepSection_of_isolated

@@ -335,3 +335,26 @@ CLAIM the outer split and its invariants: GroupApproximation/GGT/VanKampen/Estim
 - the selection of an inner-adjacent failing turn, the split at the isolated chord, walk order, a proper source arc and
   fewer repeated visits (`exists_pinchStepSection_of_isolated`).
 CLAIM the corner fixes and the pull-back across them: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchCorners.lean
+- 08:5x: `OsinPocketOuterPinchSplit` and `OsinPocketOuterPinchIsolated` are green in probe 0914-084708-44355, re-probed
+  after the /tmp wipe.
+  - The isolation module BUILT. The split module replayed from the same source (md5 a8c9a3a3), which BUILT in probe
+    0914-083202-35147, and the remote log replays its audits.
+  - All 15 `#audit_axioms` are within `[propext, Classical.choice, Quot.sound]`, and neither file has warnings.
+  - Both modules land in the same commit as this entry. They are unwired and queued for wiring.
+  - `PinchSplit.Input.TurnKept` and `vertexOf_eq_of_turnKept`: a turn whose stretch avoids the split darts, or whose ends
+    both run into `y` without passing `x`, stays on one new vertex.
+  - `PocketFaceSet.pinchSplit_target_proper`: a split avoiding the face set keeps a proper target arc.
+  - `PocketFaceSet.pinchSplit_closedWalk_of_isolated` and `exists_pinchStepSection_of_isolated`: walk order and the step
+    conclusion with both proper arcs, under the kept-turn chain.
+  - `OuterPinchIsolated.isolated_positions`: at an isolated turn `d₀ → e₀`, with `x` reached from `e₀` and `alpha d₀`
+    reached from `y` past darts off the edges of the cycle, every other keep dart at the vertex lies after `x` and no
+    later than `y` on the rotation cycle.
+    - The statements are list-level (a list `c` with no repeated dart, no dart with its reverse, in walk order), so
+      w1-binder-7's cell step consumes them as well.
+  - `OuterPinchIsolated.turnKept_of_isolated` gives every turn kept at such a split, and
+    `PocketFaceSet.exists_pinchStepSection_of_isolatedTurn` gives the step conclusion from that data.
+  - Left for `PocketOuterPinchStepSectionStatement`, in the claimed corners module:
+    - the existence of an isolated turn;
+    - split darts whose corners are G-digons off the face set, made by doubling or thickening;
+    - the transport of the turn data across those insertions.
+    - The interleaving rose stays a named residual.
