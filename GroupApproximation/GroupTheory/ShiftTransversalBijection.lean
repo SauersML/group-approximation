@@ -2,7 +2,7 @@ import Mathlib.GroupTheory.Complement
 import Mathlib.GroupTheory.Perm.Basic
 import Mathlib.Data.Fin.Tuple.Basic
 import Mathlib.Data.ZMod.Defs
-import Mathlib.Data.Finite.Card
+import Mathlib.SetTheory.Cardinal.NatCard
 import Mathlib.SetTheory.Cardinal.Finite
 import Mathlib.Algebra.Group.Pi.Basic
 import Mathlib.Tactic.Group
@@ -90,12 +90,14 @@ def theta : (Fin (M + 2) → Q) →* (Fin (M + 2) → Q) where
     | zero => simp
     | succ k => simp
 
-@[simp] theorem theta_zero (v : Fin (M + 2) → Q) : theta Q M v 0 = 1 :=
-  Fin.cons_zero _ _
+@[simp] theorem theta_zero (v : Fin (M + 2) → Q) : theta Q M v 0 = 1 := by
+  show Fin.cons (1 : Q) (fun k : Fin (M + 1) => v (Fin.castSucc k)) 0 = 1
+  exact Fin.cons_zero _ _
 
 @[simp] theorem theta_succ (v : Fin (M + 2) → Q) (k : Fin (M + 1)) :
-    theta Q M v k.succ = v (Fin.castSucc k) :=
-  Fin.cons_succ _ _ _
+    theta Q M v k.succ = v (Fin.castSucc k) := by
+  show Fin.cons (1 : Q) (fun k : Fin (M + 1) => v (Fin.castSucc k)) k.succ = v (Fin.castSucc k)
+  exact Fin.cons_succ _ _ _
 
 theorem theta_mem_ran (v : Fin (M + 2) → Q) : theta Q M v ∈ ran Q M :=
   theta_zero Q M v
@@ -133,6 +135,7 @@ variable (Q : Type*) [Group Q] [Finite Q] (M : ℕ)
 noncomputable def domComplement : Set (Fin (M + 2) → Q) :=
   (exists_isComplement_right (dom Q M) 1).choose
 
+omit [Finite Q] in
 theorem isComplement_dom : IsComplement (dom Q M : Set (Fin (M + 2) → Q)) (domComplement Q M) :=
   (exists_isComplement_right (dom Q M) 1).choose_spec.1
 
@@ -140,6 +143,7 @@ theorem isComplement_dom : IsComplement (dom Q M : Set (Fin (M + 2) → Q)) (dom
 noncomputable def ranComplement : Set (Fin (M + 2) → Q) :=
   (exists_isComplement_right (ran Q M) 1).choose
 
+omit [Finite Q] in
 theorem isComplement_ran : IsComplement (ran Q M : Set (Fin (M + 2) → Q)) (ranComplement Q M) :=
   (exists_isComplement_right (ran Q M) 1).choose_spec.1
 
@@ -174,7 +178,8 @@ noncomputable def kappaFun (x : Fin (M + 2) → Q) : Fin (M + 2) → Q :=
 theorem kappaFun_mul_left {v : Fin (M + 2) → Q} (hv : v ∈ dom Q M) (x : Fin (M + 2) → Q) :
     kappaFun Q M (v * x) = theta Q M v * kappaFun Q M x := by
   rw [kappaFun, kappaFun, IsComplement.equiv_mul_left_of_mem (isComplement_dom Q M) hv]
-  simp only [Subgroup.coe_mul, map_mul, mul_assoc]
+  show theta Q M (v * ((isComplement_dom Q M).equiv x).1) * _ = _
+  rw [map_mul, mul_assoc]
 
 theorem kappaFun_injective : Function.Injective (kappaFun Q M) := by
   intro x y h
