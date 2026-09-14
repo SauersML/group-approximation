@@ -11,24 +11,27 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # The Sturmian subshift of an irrational slope
 
-`simple_kazhdan_sofic_group.tex` (origin/main bf961c128), section "Every word-problem degree",
-tex l.250–256:
+`simple_kazhdan_sofic_group.tex` (origin/main e80dcf20a), section "Word problems", proof of the
+corollary, tex l.261–270:
 
-> Now use the infinite minimal Sturmian subshift of an irrational slope $\alpha\in(0,1)$
-> [MorseHedlund]. Its language is computable from $\alpha$: words of length $n$ are determined by
-> the cyclic order of the distinct rotation endpoints $-j\alpha \bmod 1$, $0\le j\le n$.
-> Conversely, the minimum number of $1$'s in a word of length $n$ is $\lfloor n\alpha\rfloor$, so
-> the language computes $\alpha$.
+> For irrational $\alpha\in(0,1)$ let $X_\alpha$ be the infinite minimal Sturmian subshift, the
+> closure of the codings $c(\theta)$, $\theta\in[0,1)$, with $c(\theta)_t=1$ if and only if
+> $\theta+t\alpha\bmod1\ge1-\alpha$ [MorseHedlund]. So $c(\theta)_t=1$ if and only if $\theta$
+> lies in the arc $[-(t+1)\alpha,-t\alpha)$ modulo $1$, and the words of length $n$ of
+> $X_\alpha$ are the constant values of $c(\theta)_{[0,n)}$ on the arcs between the points
+> $-j\alpha\bmod1$, $0\le j\le n$. [...] Since
+> $c(\theta)_t=\lfloor\theta+(t+1)\alpha\rfloor-\lfloor\theta+t\alpha\rfloor$, the word
+> $c(\theta)_{[0,n)}$ has $\lfloor\theta+n\alpha\rfloor$ ones, within $1$ of $n\alpha$.
 
-This module fixes the objects and states the three printed facts as named propositions.
-* `sturmianCoding α θ`: the coding of the rotation by `α` from `θ`. Position `n` reads `1`
-  exactly when `θ + nα` lies in `[1 - α, 1)` modulo `1`, which is
-  `⌊θ + (n + 1)α⌋ - ⌊θ + nα⌋` (`sturmianCoding_eq_floor_sub`).
+This module fixes the objects and states the printed facts as named propositions.
+* `sturmianCoding α θ`: the coding `c(θ)`. Position `t` reads `1` exactly when
+  `θ + tα mod 1 ≥ 1 - α`; it equals `⌊θ + (t + 1)α⌋ - ⌊θ + tα⌋` (`sturmianCoding_eq_floor_sub`).
 * `sturmianSubshift α : Subshift Bool ℤ`: the configurations all of whose central windows are
-  windows of codings. That is the closure of the codings.
-* `PrintedSturmianSubshiftInfiniteMinimal` (tex l.250–251),
-  `PrintedSturmianEndpointsDetermineWords` (tex l.251–253, the combinatorial content; computability
-  is lane skf-degrees'), `PrintedSturmianMinimumOnes` (tex l.254–255).
+  windows of codings.
+* `PrintedSturmianSubshiftInfiniteMinimal`, `PrintedSturmianSubshiftClosureOfCodings`
+  (tex l.261–264), `PrintedSturmianCodingArc` (l.264–265),
+  `PrintedSturmianEndpointsDetermineWords` (l.265–267), `PrintedSturmianOnesWithinOne`
+  (l.268–270). The computability sentences between them belong to lane skf-degrees.
 
 Morse–Hedlund is not assumed anywhere: the propositions are proved in
 `SturmianSubshiftMinimal` and `SturmianLanguage`.
@@ -160,15 +163,26 @@ def IsMinimalSubshift {A : Type*} [TopologicalSpace A] (S : Subshift A ℤ) : Pr
   ∀ Y : Set (ℤ → A), Y ⊆ S.carrier → IsClosed Y → (∀ n : ℤ, Set.MapsTo (shift n) Y Y) →
     Y.Nonempty → Y = S.carrier
 
-/-- Tex l.250–251: for irrational `α ∈ (0,1)`, the Sturmian subshift is infinite and minimal. -/
+/-- Tex l.261–262: for irrational `α ∈ (0,1)`, the Sturmian subshift is infinite and minimal. -/
 def PrintedSturmianSubshiftInfiniteMinimal : Prop :=
   ∀ α : ℝ, Irrational α → 0 < α → α < 1 →
     (sturmianSubshift α).carrier.Infinite ∧ IsMinimalSubshift (sturmianSubshift α)
 
-/-- Tex l.251–253, combinatorial content: the rotation endpoints `-jα mod 1`, `0 ≤ j ≤ n`, are
-distinct; the word of length `n` read from a coding depends only on the position of the starting
-point relative to these endpoints; and these are exactly the words of length `n` of the
-subshift. -/
+/-- Tex l.262–264: `X_α` is the closure of the codings `c(θ)`, `θ ∈ [0,1)`. -/
+def PrintedSturmianSubshiftClosureOfCodings : Prop :=
+  ∀ α : ℝ, (sturmianSubshift α).carrier =
+    closure (Set.range fun θ : Set.Ico (0 : ℝ) 1 => sturmianCoding α (θ : ℝ))
+
+/-- Tex l.264–265: `c(θ)_t = 1` if and only if `θ` lies in the arc `[-(t+1)α, -tα)` modulo `1`. -/
+def PrintedSturmianCodingArc : Prop :=
+  ∀ α : ℝ, 0 < α → α < 1 → ∀ (θ : ℝ) (t : ℤ),
+    sturmianCoding α θ t = true ↔
+      ∃ z : ℤ, -(((t : ℝ) + 1) * α) + (z : ℝ) ≤ θ ∧ θ < -((t : ℝ) * α) + (z : ℝ)
+
+/-- Tex l.265–267: the words of length `n` of `X_α` are the constant values of `c(θ)_{[0,n)}` on
+the arcs between the points `-jα mod 1`, `0 ≤ j ≤ n`. As formalized: the points are distinct,
+the word read from a coding depends only on the position of `θ mod 1` relative to them, and the
+words of length `n` of the subshift are exactly these words. -/
 def PrintedSturmianEndpointsDetermineWords : Prop :=
   ∀ α : ℝ, Irrational α → 0 < α → α < 1 → ∀ n : ℕ,
     (∀ i j : ℕ, i ≤ n → j ≤ n → i ≠ j →
@@ -179,13 +193,15 @@ def PrintedSturmianEndpointsDetermineWords : Prop :=
     WordGraph.language (sturmianSubshift α).carrier n =
       {w | ∃ θ : ℝ, WordGraph.word (sturmianCoding α θ) 0 n = w}
 
-/-- Tex l.254–255: the minimum number of `1`'s in a word of length `n` is `⌊nα⌋`. -/
-def PrintedSturmianMinimumOnes : Prop :=
-  ∀ α : ℝ, Irrational α → 0 < α → α < 1 → ∀ n : ℕ,
-    (∀ w ∈ WordGraph.language (sturmianSubshift α).carrier n,
-        ⌊(n : ℝ) * α⌋ ≤ ∑ j : Fin n, (if w j then (1 : ℤ) else 0)) ∧
-      ∃ w ∈ WordGraph.language (sturmianSubshift α).carrier n,
-        ∑ j : Fin n, (if w j then (1 : ℤ) else 0) = ⌊(n : ℝ) * α⌋
+/-- Tex l.268–270: `c(θ)_t = ⌊θ + (t+1)α⌋ - ⌊θ + tα⌋`, so for `θ ∈ [0,1)` the word `c(θ)_{[0,n)}`
+has `⌊θ + nα⌋` ones, within `1` of `nα`. -/
+def PrintedSturmianOnesWithinOne : Prop :=
+  ∀ α : ℝ, 0 < α → α < 1 → ∀ θ : ℝ, 0 ≤ θ → θ < 1 → ∀ n : ℕ,
+    (∀ t : ℤ, (if sturmianCoding α θ t then (1 : ℤ) else 0) =
+        ⌊θ + ((t : ℝ) + 1) * α⌋ - ⌊θ + (t : ℝ) * α⌋) ∧
+      ∑ j : Fin n, (if WordGraph.word (sturmianCoding α θ) 0 n j then (1 : ℤ) else 0) =
+        ⌊θ + (n : ℝ) * α⌋ ∧
+      (n : ℝ) * α - 1 < (⌊θ + (n : ℝ) * α⌋ : ℝ) ∧ (⌊θ + (n : ℝ) * α⌋ : ℝ) < (n : ℝ) * α + 1
 
 #audit_axioms shift_sturmianCoding
 #audit_axioms sturmianCoding_add_intCast

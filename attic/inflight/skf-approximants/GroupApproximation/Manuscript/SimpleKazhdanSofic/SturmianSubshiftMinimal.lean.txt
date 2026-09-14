@@ -1,13 +1,15 @@
 import Mathlib.Algebra.Order.Floor.Semiring
 import Mathlib.NumberTheory.DiophantineApproximation.Basic
+import Mathlib.Tactic.LinearCombination
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshift
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# The Sturmian subshift is infinite and minimal
+# The Sturmian subshift is infinite, minimal, and the closure of the codings
 
-`simple_kazhdan_sofic_group.tex` (origin/main bf961c128), tex l.250–251: "the infinite minimal
-Sturmian subshift of an irrational slope $\alpha\in(0,1)$ [MorseHedlund]".
+`simple_kazhdan_sofic_group.tex` (origin/main e80dcf20a), tex l.261–264: "let $X_\alpha$ be the
+infinite minimal Sturmian subshift, the closure of the codings $c(\theta)$, $\theta\in[0,1)$
+[MorseHedlund]".
 
 The cited input is proved here, not assumed:
 * `exists_bounded_return`: an irrational rotation returns to `[0, ε)` modulo `1` within a bounded
@@ -16,7 +18,8 @@ The cited input is proved here, not assumed:
   moves slightly to the right;
 * `exists_occurrence_of_mem_carrier`: every word of a coding occurs in every point of the subshift;
 * `sturmianSubshift_isMinimal`, `sturmianSubshift_infinite` (a coding is not periodic, since
-  `α` is irrational), and the closed endpoint `printedSturmianSubshiftInfiniteMinimal`.
+  `α` is irrational), and the closed endpoints `printedSturmianSubshiftInfiniteMinimal` and
+  `printedSturmianSubshiftClosureOfCodings`.
 -/
 
 namespace GroupApproximation
@@ -79,11 +82,12 @@ theorem exists_bounded_return (α : ℝ) (hα : Irrational α) {ε : ℝ} (hε :
       have h2 : s / |δ| < (⌊s / |δ|⌋₊ : ℝ) + 1 := Nat.lt_floor_add_one _
       have h1' : (⌊s / |δ|⌋₊ : ℝ) * |δ| ≤ s := (le_div_iff₀ hδpos).mp h1
       have h2' : s < ((⌊s / |δ|⌋₊ : ℝ) + 1) * |δ| := (div_lt_iff₀ hδpos).mp h2
-      have hval : Int.fract (s + (⌊s / |δ|⌋₊ : ℝ) * δ) = s + (⌊s / |δ|⌋₊ : ℝ) * δ := by
+      generalize (⌊s / |δ|⌋₊ : ℝ) = F at h1' h2' ⊢
+      rw [habs] at h1' h2' hδε hδ1
+      have hval : Int.fract (s + F * δ) = s + F * δ := by
         rw [Int.fract_eq_iff]
-        refine ⟨by rw [habs] at h1'; linarith, by rw [habs] at h2'; linarith, 0, by simp⟩
+        exact ⟨by linarith, by linarith, 0, by simp⟩
       rw [hval]
-      rw [habs] at h2' hδε
       linarith
   · -- positive step: go up from `s` past `1` in steps `δ`
     have habs : |δ| = δ := abs_of_pos hpos
@@ -206,7 +210,7 @@ theorem sturmianSubshift_isMinimal (α : ℝ) (hα : Irrational α) (hα0 : 0 < 
     have hjn : (((i + N).toNat : ℕ) : ℤ) = i + N := Int.toNat_of_nonneg (by omega)
     have hlt : (i + N).toNat < 2 * N + 1 := by omega
     have h1 := congrFun hq ⟨(i + N).toNat, hlt⟩
-    simp only [WordGraph.word_apply, Fin.val_mk, zero_add] at h1
+    simp only [WordGraph.word_apply, zero_add] at h1
     rw [← shift_sturmianCoding, shift_apply, hjn] at h1
     rw [shift_apply, hφ i hi1 hi2]
     have e1 : q + (N : ℤ) + i = q + (i + N) := by ring
@@ -313,11 +317,43 @@ theorem sturmianSubshift_infinite (α : ℝ) (hα : Irrational α) (hα0 : 0 < �
   · intro k
     exact mapsTo_shift_sturmianCarrier α k (sturmianCoding_mem_carrier α 0)
 
-/-- Tex l.250–251, closed: for irrational `α ∈ (0,1)` the Sturmian subshift is infinite and
+/-- Tex l.261–262, closed: for irrational `α ∈ (0,1)` the Sturmian subshift is infinite and
 minimal. -/
 theorem printedSturmianSubshiftInfiniteMinimal : PrintedSturmianSubshiftInfiniteMinimal :=
   fun α hα hα0 hα1 =>
     ⟨sturmianSubshift_infinite α hα hα0 hα1, sturmianSubshift_isMinimal α hα hα0⟩
+
+/-- Tex l.262–264, closed: the Sturmian subshift is the closure of the codings `c(θ)`,
+`θ ∈ [0,1)`. -/
+theorem printedSturmianSubshiftClosureOfCodings : PrintedSturmianSubshiftClosureOfCodings := by
+  intro α
+  apply Set.Subset.antisymm
+  · intro x hx
+    by_contra hxC
+    obtain ⟨I, u, hu, hIU⟩ := isOpen_pi_iff.mp isClosed_closure.isOpen_compl x hxC
+    obtain ⟨N, hN⟩ := exists_bound_of_finset I
+    have hx' : ∀ N : ℕ, ∃ θ : ℝ, ∀ i : ℤ, -(N : ℤ) ≤ i → i ≤ N → x i = sturmianCoding α θ i := hx
+    obtain ⟨θ, hθ⟩ := hx' N
+    have hrep : sturmianCoding α (Int.fract θ) = sturmianCoding α θ := by
+      have e : Int.fract θ = θ + ((-⌊θ⌋ : ℤ) : ℝ) := by
+        push_cast
+        linarith [Int.self_sub_floor θ]
+      rw [e, sturmianCoding_add_intCast]
+    have hmemR : sturmianCoding α θ ∈
+        closure (Set.range fun θ : Set.Ico (0 : ℝ) 1 => sturmianCoding α (θ : ℝ)) := by
+      apply subset_closure
+      exact Set.mem_range.mpr
+        ⟨⟨Int.fract θ, Set.mem_Ico.mpr ⟨Int.fract_nonneg θ, Int.fract_lt_one θ⟩⟩, hrep⟩
+    have hmem : sturmianCoding α θ ∈ (↑I : Set ℤ).pi u := by
+      rw [Set.mem_pi]
+      intro i hi
+      have hi' : i ∈ I := Finset.mem_coe.mp hi
+      rw [← hθ i (hN i hi').1 (hN i hi').2]
+      exact (hu i hi').2
+    exact absurd hmemR (hIU hmem)
+  · refine closure_minimal ?_ (sturmianSubshift α).isClosed
+    rintro _ ⟨θ, rfl⟩
+    exact sturmianCoding_mem_carrier α θ
 
 #audit_axioms exists_bounded_return
 #audit_axioms exists_right_window
@@ -325,6 +361,7 @@ theorem printedSturmianSubshiftInfiniteMinimal : PrintedSturmianSubshiftInfinite
 #audit_axioms sturmianSubshift_isMinimal
 #audit_axioms sturmianSubshift_infinite
 #audit_closed_axioms printedSturmianSubshiftInfiniteMinimal
+#audit_closed_axioms printedSturmianSubshiftClosureOfCodings
 
 end SimpleKazhdanSofic
 end GroupApproximation

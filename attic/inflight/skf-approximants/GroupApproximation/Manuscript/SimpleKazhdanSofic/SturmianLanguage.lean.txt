@@ -5,29 +5,49 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Words of the Sturmian subshift
 
-`simple_kazhdan_sofic_group.tex` (origin/main bf961c128), tex l.251–255:
+`simple_kazhdan_sofic_group.tex` (origin/main e80dcf20a), tex l.264–270:
 
-> words of length $n$ are determined by the cyclic order of the distinct rotation endpoints
-> $-j\alpha\bmod1$, $0\le j\le n$. Conversely, the minimum number of $1$'s in a word of length $n$
-> is $\lfloor n\alpha\rfloor$.
+> So $c(\theta)_t=1$ if and only if $\theta$ lies in the arc $[-(t+1)\alpha,-t\alpha)$ modulo
+> $1$, and the words of length $n$ of $X_\alpha$ are the constant values of $c(\theta)_{[0,n)}$ on
+> the arcs between the points $-j\alpha\bmod1$, $0\le j\le n$. [...] Since
+> $c(\theta)_t=\lfloor\theta+(t+1)\alpha\rfloor-\lfloor\theta+t\alpha\rfloor$, the word
+> $c(\theta)_{[0,n)}$ has $\lfloor\theta+n\alpha\rfloor$ ones, within $1$ of $n\alpha$.
 
-* `language_sturmianSubshift`: the words of length `n` of the subshift are the words read from
-  codings.
+* `sturmianCoding_eq_true_iff_arc`: the arc description of a letter.
+* `language_sturmianSubshift`: the words of length `n` of the subshift are the words of codings.
 * `fract_neg_mul_ne`: the endpoints `-jα mod 1` are distinct.
-* `sturmianCoding_eq_true_iff`: a letter of a coding is read off from the position of the
-  starting point relative to two consecutive endpoints.
-* `sturmianCoding_word_eq_of_endpoints`: so the word depends only on those positions.
-* `count_word_sturmianCoding`: the number of `1`'s in a word telescopes.
-* Closed endpoints `printedSturmianEndpointsDetermineWords` and `printedSturmianMinimumOnes`.
+* `sturmianCoding_eq_true_iff`: a letter is read off from the position of `θ mod 1` relative to
+  two consecutive endpoints; `sturmianCoding_word_eq_of_endpoints`: so the word is constant
+  between the endpoints.
+* `count_word_sturmianCoding`: the number of ones telescopes.
+* Closed endpoints `printedSturmianCodingArc`, `printedSturmianEndpointsDetermineWords`,
+  `printedSturmianOnesWithinOne`.
 
-The computability statements ("computable from α", "the language computes α") are lane
-skf-degrees'.
+The computability sentences ("α computes L(X_α)", "L(X_α) computes α") are lane skf-degrees'.
 -/
 
 namespace GroupApproximation
 namespace SimpleKazhdanSofic
 
 open SymbolicDynamics SymbolicDynamics.FullShift
+
+/-- `c(θ)_t = 1` exactly on the arc `[-(t+1)α, -tα)` modulo `1`. -/
+theorem sturmianCoding_eq_true_iff_arc (α θ : ℝ) (hα0 : 0 < α) (hα1 : α < 1) (t : ℤ) :
+    sturmianCoding α θ t = true ↔
+      ∃ z : ℤ, -(((t : ℝ) + 1) * α) + (z : ℝ) ≤ θ ∧ θ < -((t : ℝ) * α) + (z : ℝ) := by
+  rw [sturmianCoding_apply, decide_eq_true_eq]
+  have hsplit := Int.floor_add_fract (θ + (t : ℝ) * α)
+  have hlt := Int.fract_lt_one (θ + (t : ℝ) * α)
+  constructor
+  · intro h
+    refine ⟨⌊θ + (t : ℝ) * α⌋ + 1, ?_, ?_⟩ <;> push_cast <;> linarith
+  · rintro ⟨z, hz1, hz2⟩
+    have hv : Int.fract (θ + (t : ℝ) * α) = θ + (t : ℝ) * α - ((z - 1 : ℤ) : ℝ) := by
+      rw [Int.fract_eq_iff]
+      refine ⟨by push_cast; linarith, by push_cast; linarith, z - 1, by ring⟩
+    rw [hv]
+    push_cast
+    linarith
 
 /-- The words of length `n` of the Sturmian subshift are the words read from codings. -/
 theorem language_sturmianSubshift (α : ℝ) (n : ℕ) :
@@ -60,8 +80,8 @@ theorem fract_neg_mul_ne (α : ℝ) (hα : Irrational α) (i j : ℕ) (hij : i �
   push_cast
   linarith
 
-/-- A letter of a coding, read from the position of the starting point `Int.fract θ` relative to
-the endpoints `a = -tα mod 1` and `b = -(t+1)α mod 1`. -/
+/-- A letter of a coding, read from the position of `Int.fract θ` relative to the endpoints
+`a = -tα mod 1` and `b = -(t+1)α mod 1`. -/
 theorem sturmianCoding_eq_true_iff (α θ : ℝ) (hα0 : 0 < α) (hα1 : α < 1) (t : ℕ) :
     sturmianCoding α θ (t : ℤ) = true ↔
       (α ≤ Int.fract (-((t : ℝ) * α)) ∧ Int.fract (-(((t + 1 : ℕ) : ℝ) * α)) ≤ Int.fract θ ∧
@@ -150,8 +170,8 @@ theorem sturmianCoding_eq_true_iff (α θ : ℝ) (hα0 : 0 < α) (hα1 : α < 1)
       · intro _
         linarith
 
-/-- The word of length `n` read from a coding depends only on the position of the starting point
-relative to the endpoints `-jα mod 1`, `0 ≤ j ≤ n`. -/
+/-- The word of length `n` read from a coding is constant between the endpoints `-jα mod 1`,
+`0 ≤ j ≤ n`: it depends only on the position of `θ mod 1` relative to them. -/
 theorem sturmianCoding_word_eq_of_endpoints (α : ℝ) (hα0 : 0 < α) (hα1 : α < 1) (n : ℕ)
     (θ θ' : ℝ)
     (h : ∀ j : ℕ, j ≤ n →
@@ -168,7 +188,7 @@ theorem sturmianCoding_word_eq_of_endpoints (α : ℝ) (hα0 : 0 < α) (hα1 : �
     rw [← not_le, ← not_le, ht1]
   rw [hlt, ht2]
 
-/-- The number of `1`'s in the word of length `n` read from a coding telescopes. -/
+/-- The number of ones in the word of length `n` read from a coding telescopes. -/
 theorem count_word_sturmianCoding (α θ : ℝ) (hα0 : 0 < α) (hα1 : α < 1) (n : ℕ) :
     ∑ j : Fin n, (if WordGraph.word (sturmianCoding α θ) 0 n j then (1 : ℤ) else 0) =
       ⌊θ + (n : ℝ) * α⌋ - ⌊θ⌋ := by
@@ -176,38 +196,40 @@ theorem count_word_sturmianCoding (α θ : ℝ) (hα0 : 0 < α) (hα1 : α < 1) 
   rw [Fin.sum_univ_eq_sum_range (fun i : ℕ => if sturmianCoding α θ (i : ℤ) then (1 : ℤ) else 0) n]
   exact sum_sturmianCoding α θ hα0 hα1 n
 
-/-- Tex l.251–253, closed: the endpoints are distinct, they determine the words, and the words of
-the subshift are the words of codings. -/
+/-- Tex l.264–265, closed. -/
+theorem printedSturmianCodingArc : PrintedSturmianCodingArc :=
+  fun α hα0 hα1 θ t => sturmianCoding_eq_true_iff_arc α θ hα0 hα1 t
+
+/-- Tex l.265–267, closed. -/
 theorem printedSturmianEndpointsDetermineWords : PrintedSturmianEndpointsDetermineWords :=
   fun α hα hα0 hα1 n =>
     ⟨fun i j _ _ hij => fract_neg_mul_ne α hα i j hij,
       fun θ θ' h => sturmianCoding_word_eq_of_endpoints α hα0 hα1 n θ θ' h,
       language_sturmianSubshift α n⟩
 
-/-- Tex l.254–255, closed: the minimum number of `1`'s in a word of length `n` is `⌊nα⌋`. -/
-theorem printedSturmianMinimumOnes : PrintedSturmianMinimumOnes := by
-  intro α _ hα0 hα1 n
-  rw [language_sturmianSubshift]
-  refine ⟨?_, ?_⟩
-  · rintro w ⟨θ, rfl⟩
-    rw [count_word_sturmianCoding α θ hα0 hα1 n]
-    have hθ := Int.floor_add_fract θ
-    have e : θ + (n : ℝ) * α = (⌊θ⌋ : ℝ) + (Int.fract θ + (n : ℝ) * α) := by linarith
-    rw [e, Int.floor_intCast_add, add_sub_cancel_left]
-    exact Int.floor_mono (by linarith [Int.fract_nonneg θ])
-  · refine ⟨WordGraph.word (sturmianCoding α 0) 0 n, ?_, ?_⟩
-    · show ∃ θ : ℝ, WordGraph.word (sturmianCoding α θ) 0 n = WordGraph.word (sturmianCoding α 0) 0 n
-      exact ⟨0, rfl⟩
-    · rw [count_word_sturmianCoding α 0 hα0 hα1 n]
-      simp
+/-- Tex l.268–270, closed. -/
+theorem printedSturmianOnesWithinOne : PrintedSturmianOnesWithinOne := by
+  intro α hα0 hα1 θ hθ0 hθ1 n
+  have hfl : ⌊θ⌋ = 0 := by
+    rw [Int.floor_eq_iff]
+    push_cast
+    exact ⟨hθ0, by linarith⟩
+  refine ⟨fun t => sturmianCoding_eq_floor_sub α θ hα0 hα1 t, ?_, ?_, ?_⟩
+  · rw [count_word_sturmianCoding α θ hα0 hα1 n, hfl, sub_zero]
+  · have := Int.sub_one_lt_floor (θ + (n : ℝ) * α)
+    linarith
+  · have := Int.floor_le (θ + (n : ℝ) * α)
+    linarith
 
+#audit_axioms sturmianCoding_eq_true_iff_arc
 #audit_axioms language_sturmianSubshift
 #audit_axioms fract_neg_mul_ne
 #audit_axioms sturmianCoding_eq_true_iff
 #audit_axioms sturmianCoding_word_eq_of_endpoints
 #audit_axioms count_word_sturmianCoding
+#audit_closed_axioms printedSturmianCodingArc
 #audit_closed_axioms printedSturmianEndpointsDetermineWords
-#audit_closed_axioms printedSturmianMinimumOnes
+#audit_closed_axioms printedSturmianOnesWithinOne
 
 end SimpleKazhdanSofic
 end GroupApproximation
