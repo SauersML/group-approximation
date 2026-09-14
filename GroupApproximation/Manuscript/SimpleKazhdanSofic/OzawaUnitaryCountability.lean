@@ -49,7 +49,7 @@ theorem exists_nonisolated {X : Type*} [PseudoMetricSpace X] [TopologicalSpace.S
     refine ⟨η, hη, fun y hy ↦ ?_⟩
     obtain ⟨_, j, hj, rfl⟩ := y
     by_contra hne
-    have hji : j ≠ i := fun h ↦ hne (Subtype.ext (by rw [h]))
+    have hji : j ≠ i := fun h ↦ hne (Subtype.ext (congrArg T h))
     have h1 := hsep j hj hji
     have h2 : dist (T j) (T i) < η := hy
     rw [dist_comm] at h2
@@ -85,7 +85,8 @@ theorem countable_kernels_of_unitary {Γ : Type} [Group Γ] (hT : HasKazhdanProp
     (hproper : ∀ i, N i ≠ ⊤) :
     {i | ∃ u : Γ →* unitary ↥M.toStarSubalgebra, u.ker = N i}.Countable := by
   classical
-  obtain ⟨S, ε, -, -, hgen, hε, -, hS⟩ := HasKazhdanPropertyT.exists_symmetric_generating_pair hT
+  obtain ⟨S, ε, -, -, hgen, hε, -, hS⟩ :=
+    KazhdanProjection.HasKazhdanPropertyT.exists_symmetric_generating_pair hT
   let c := tracialConjugation hsf
   by_contra hcnt
   let A : Set I := {i | ∃ u : Γ →* unitary ↥M.toStarSubalgebra, u.ker = N i}
