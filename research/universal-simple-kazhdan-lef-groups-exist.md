@@ -3,6 +3,8 @@ rg: 2
 id: universal-simple-kazhdan-lef-groups-exist
 kind: claim
 title: One infinite finitely generated simple Kazhdan LEF group contains every recursively presented finitely generated residually finite group
+distinct_from:
+  simple-kazhdan-lef-host-for-countably-many-rf-groups: that is the host theorem for a countable family of finitely generated residually finite groups, landed independently by sk-strong-3 through the direct sum; this states it for countable families of countable residually finite groups and names the recursively presented class, which contains every finitely presented residually finite group and every finitely generated linear group.
 ---
 
 (a) For every countable set `𝒞` of countable residually finite groups, one infinite, finitely generated, simple

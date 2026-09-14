@@ -5,6 +5,7 @@ kind: claim
 title: Every countable residually finite group is a subgroup of an infinite finitely generated simple Kazhdan LEF group
 distinct_from:
   rf-groups-embed-in-simple-kazhdan-lef-groups: that is the finitely generated case; this is the countable case, which reduces to it through Wilson's 2-generator embedding.
+  simple-kazhdan-lef-host-for-countably-many-rf-groups: that is one host for a countable family of finitely generated residually finite groups, landed independently by sk-strong-3; this embeds one countable residually finite group, and that host follows by applying it to the direct sum of the family.
 ---
 
 Every countable residually finite group `G` is a subgroup of an infinite, finitely generated, simple group with

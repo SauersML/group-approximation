@@ -18,3 +18,8 @@ groups answers a question proposed by B. Hartley at the Symposium on Infinite Gr
 of Warwick in 1978".
 
 Secondary confirmation: M. Valiunas, arXiv:2002.11683, Theorem 1.5, quotes the same statement "[Theorem A]".
+
+Independent read (merged duplicate, sk-cairn-steward 2026-09-13): sk-strong-3 fetched the Springer PDF on MSI
+(514076 bytes, md5 41609fc70228ee57a682d6ac692acbeb), read pages 149–150 from the page images, and landed the same
+theorem as a second import (landed 19:32, f222686f87). That import is retired; its consumer
+`simple-kazhdan-lef-host-for-countably-many-rf-groups-proof` now requires this claim.
