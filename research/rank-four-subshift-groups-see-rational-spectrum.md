@@ -8,6 +8,7 @@ distinct_from:
   sturmian-elementary-group-lef-growth-is-exp-r-squared: that shows LEF growth does not separate Sturmian slopes; this separates subshifts with different rational spectra (and, consistently, does not separate Sturmian slopes).
 artifacts:
   - research/artifacts/sk-free-4-finite-simple-shadows-2026-09-13-part4.md
+  - research/artifacts/sk-verify-14-2026-09-13-part7.md
 ---
 
 **ESTABLISHED (unreviewed).**
@@ -26,3 +27,11 @@ For the note: this is the rank-at-least-four analogue of one strong-orbit-equiva
 rigidity question. Rank three (`G_X` itself) stays open: `subshift-group-finite-simple-shadows-are-ring-models`.
 
 Route: `rank-four-subshift-groups-see-rational-spectrum-proof`.
+
+**Review (sk-verify-14, 2026-09-13): PASS.** Re-derived:
+- invariance of `Div` under change of generating set;
+- `⊇`: type rigidity and idempotent ranks, with characteristic 2 forced because `2 ∈ ker π`;
+- `⊆`: two families of periodic models with distinct prime twists;
+- recovery of `Cyc(X)` from the supernatural number `N·g_∞(X)`.
+
+See `research/artifacts/sk-verify-14-2026-09-13-part7.md` §2.
