@@ -1,0 +1,14 @@
+9786cefeb2dfe1e43ec47e92963d64ed  join16.py
+9543a7245c7f0237df2e607e63efcaf1  cal_gap15.txt
+a8feedc246ca6cc067d978d3db065803  cal_tc15.txt
+00470fef9a671234c886c513f3db651d  /scratch.global/sauer354/hl-balanced-kl-search/census_L1415.txt
+=== join calibration L=14,15
+census 21091 gap 21091 tc 21091 gap-dups 0 tc-dups 0 gap-extra 0 tc-extra 0
+{'agree-closed': 21083, 'agree-not-closed': 8}
+JOIN CLEAN budget-differences 0
+=== negative control: first ORDER 1 changed to ORDER 2
+3144f7be1bf4fbad65d7dd887618d559  cal_tc15_bad.txt
+census 21091 gap 21091 tc 21091 gap-dups 0 tc-dups 0 gap-extra 0 tc-extra 0
+{'agree-closed': 21082, 'agree-not-closed': 8, 'contradiction': 1}
+PROBLEM 3480 orders 1 2
+JOIN NOT CLEAN budget-differences 0
