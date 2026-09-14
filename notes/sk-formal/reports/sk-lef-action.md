@@ -17,7 +17,7 @@ matricial spelling is ms-core-3's `IsMatricialLEFRing` (FiniteModelsGroup), not 
 Not mine: tex 396–402 (diag(u_ξ,1,1), ms-intro-2's `LEFDiagonalCommutators`), the application of
 thm:general (sk-lef-assembly, ct-two-ended).
 
-## State 10:20 (tip 8b36733d7, md5 29d63f79…, census 9cb80166d)
+## State 10:45 (tip 8b36733d7, md5 29d63f79…, census 9cb80166d)
 
 Scope: the group-action crossed product, the lamplighter action and ring, the absorbed finite models
 (sk-lef-models left no drafts), and the concrete host `LamplighterHostStatement` (sk-lef-assembly, 0da57c90d).
@@ -32,7 +32,7 @@ ct-involution took module B (`GeneralRingPropertyT`) and its rows at 20:35.
 | `SimpleKazhdanSofic/LamplighterModelAction` | 374–379 | GREEN 0914-091346-7548, a780741a0, wire-queued |
 | `SimpleKazhdanSofic/LamplighterModelMatrices` | 379–389 | GREEN 0914-092100-55675, eaeed6d23, wire-queued |
 | `SimpleKazhdanSofic/LamplighterModelGeneration` | 389–392 | GREEN 0914-100806-41365, 7709d7bfe, wire-queued |
-| `SimpleKazhdanSofic/LamplighterHost` | 392–403 | fixes landed unverified 4e0c613ce; probe pending (the 10:14 probe lost its MSI hop) |
+| `SimpleKazhdanSofic/LamplighterHost` | 392–403 | GREEN with BUILT 0914-104032-16395, 4d9f3c157, wire-queued; `printedLamplighterHost` closed |
 
 `LamplighterHost` proves `isMatricialVia_lampRing` (the reindexed `φ_n` on the printed generators), applies
 ct-two-ended's closed `printedSimpleKazhdanGeneral` (`isLEFHost_lampRing`, with block flattening to
@@ -55,4 +55,8 @@ states `PrintedLamplighterHost`, which is `LamplighterHostStatement` word for wo
 | 096f124abe31 | 377–379 | `printedLamplighterModelAction` | formalized |
 | c78a4854489a, cdb7675d1521, ba51377f43f6, 472c3d5ac00b | 379–389 | `printedLamplighterModelMatrices` | formalized |
 | 814c69fe374e | 389–392 | `printedLamplighterMatricial` | formalized |
-| 358e51e6a815 | 392–395 | `isLEFHost_lampRing`, `printedLamplighterHost` | held by skf-consequences (partial); carrier to be sent after the host is green |
+| 358e51e6a815 | 392–395 | `isLEFHost_lampRing`, `printedLamplighterHost` | held by skf-consequences (partial); carrier sent at 4d9f3c157 for regrade |
+
+Note (main's ruling, 10:3x): only bytes a probe built GREEN with BUILT lines may land at a real module path;
+drafts stay in `.files` and the attic. 7c8024160, 4e0c613ce and 4d9f3c157 had put LamplighterHost at the real path
+unverified; 4d9f3c157 is now covered by probe 0914-104032-16395.
