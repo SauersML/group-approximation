@@ -1,0 +1,5 @@
+SIEVE {'mixed|equal|equal': 166, 'mixed|equal|solved': 26376, 'mixed|solved|equal': 292, 'mixed|solved|solved': 67495}
+CORE_levels {}
+EXAMPLES []
+L1_vs_L0_nonmonomial_pairs {'solved': 124}
+DONE
