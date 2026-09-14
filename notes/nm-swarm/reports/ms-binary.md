@@ -486,3 +486,42 @@ CLAIM class producer cell arcs GroupApproximation/GGT/VanKampen/Estimating/OsinL
   - Sides are backward walks, and gaps link them (`isChain_append_cellGapOf`, with `SameCycle.exists_pow_eq''` for the
     power).
   - The last side dart does not recur: sides are disjoint pieces of the face walk, and gap darts avoid the polygon face.
+
+### Progress 09-14 (after the 01:4x probes, the reboot and the 08:2x restart)
+
+- **Probe 0914-014257-2356 of `ClassProducerGaps` was RED.** One more `pow_succ'` rewrite in `isChain_append_cellGapOf`
+  was ambiguous. The exponent is pinned now: `pow_succ' M.facePerm (m + 1)`.
+  - Probe 0914-014335-4541 of `ClassJoinsCellArc` failed only through that import.
+  - The attic copies on origin are 3f4fe3617 (Gaps, before this fix), ad284eb8c and fba0c1afa (CellArc).
+- **The reboot wiped `/private/tmp`**: the nm infra, every green record, and this lane's scratchpad.
+  - The `ClassJoinsBoundaryArc` draft lived only there. It was rewritten into its repo path.
+  - The three repo files survive: Gaps md5 6e53e6e4 (with the fix), CellArc equal to fba0c1afa, BoundaryArc rewritten.
+- **Infra is back (08:4x).** The Gaps definitions module is re-probing alone first, because ms-inverses-3's parked
+  bad-junction draft (attic 070c50ea4) imports it.
+
+CLAIM class producer boundary arcs GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassJoinsBoundaryArc.lean
+- `ClassProducer.darts_eq_window`, `window_append`, `idxOf_head_window`, `idxOf_getLast_window`.
+- `OsinLemma94RealizedPolygons.sideDarts_window`: a boundary side is a window of `outerDarts` inside its section.
+- `runDarts_window_facts`, `exists_boundaryArc_of_run`: a joined run of boundary sides is one arc inside the section.
+  A forward class join makes the windows abut.
+
+**`Estimating/OsinLemma94ClassJoins.lean`, authored offline (not yet probed).**
+- The producer:
+  - `joinCount`, `joinBase`, `joinSides`: the runs of `exists_cyclicRuns` under `ClassJoins`;
+  - `joinGap`: the junction gap after a joined side that is not the last side of its run, and `[]` otherwise;
+  - `classPolygonsOfJoins hcell hbd : OsinLemma94ClassPolygons P`, and `joinQ hW hc` with the arc premises discharged by
+    `osinLemma94CellArcsInput_holds` and `osinLemma94BoundaryArcsInput`.
+- Counts:
+  - `joinCount_le`: `classCount ≤ max 1 #classNonJoins`;
+  - `card_otherClasses_le`: at least two classes implies `#otherClasses ≤ #short + #runEnds + #badJunctions`, through
+    the last side of each class;
+  - `budgetPolygons_subset_nonJoinPolygons`;
+  - `sum_card_otherClasses_le`: clause (a), `≤ 24 ε n + ∑_{relatorPolygons} #runEnds + ∑_{nonJoinPolygons} #badJunctions`.
+- Residuals:
+  - `OsinLemma94BadJunctionInput` (ms-inverses-3): `∑ k ∈ P.nonJoinPolygons, #badJunctions ≤ K n`, where
+    `nonJoinPolygons = relatorPolygons.filter (2 ≤ #classNonJoins)` is the agreed index set;
+  - `OsinLemma94ClassJoinsEndLoopsInput`: clauses (c) and (d) for `joinQ`.
+- Composition: `osinLemma94ClassEndLoopsBudgetInput_of_joins hlong hbad hloops : OsinLemma94ClassEndLoopsBudgetInput`,
+  through `osinLemma94KindTransitionInput_of_longTransitions`, with constant `24 ε + K₁ + K₂`.
+- Next: the end loops for `joinQ` (model M4: a lobe or flower at a class end next to a different kind, with length at most
+  `⌈(c + 2)/λ⌉₊`).
