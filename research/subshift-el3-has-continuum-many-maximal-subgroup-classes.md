@@ -5,6 +5,7 @@ kind: claim
 title: EL_3(LC(X,F_2)⋊Z) has continuum many conjugacy classes of maximal subgroups of infinite index, the point stabilizers of its orbit-module actions
 artifacts:
   - research/artifacts/sk-free-2-maximal-subgroups-2026-09-13-part1.md
+  - research/artifacts/sk-free-2-maximal-subgroups-2026-09-13-part2.md
 ---
 
 **ESTABLISHED (unreviewed)** via `subshift-el3-has-continuum-many-maximal-subgroup-classes-proof`.
@@ -17,4 +18,4 @@ Consequences:
 - `G` has continuum many conjugacy classes of maximal subgroups;
 - `G` has continuum many pairwise non-isomorphic faithful 2-transitive actions on countable sets.
 
-Open: whether `H_x` and `H_y` are conjugate only when `x` and `y` lie in one orbit. `H_x` and `H_{Tx}` are conjugate.
+The conjugacy classes are classified by `subshift-el3-orbit-stabilizers-conjugate-iff-same-orbit`: `H_x ∼ H_y` iff `x` and `y` lie in one `T`-orbit.
