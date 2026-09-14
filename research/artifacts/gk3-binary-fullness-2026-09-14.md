@@ -162,8 +162,21 @@ since Lemma 3.2(a) predicts infeasibility there.
   - families generating their free product, at every `r` (Lemma 3.2(b)).
 
 ### 5.2 Census over V
-MSI job `785769` (smoke test of controls and one `r = 3` instance) was submitted at 09:3x. The MSI master then dropped,
-so the results are not yet recorded. The full census (`run_census.sbatch`) waits on the smoke test.
+**Smoke test (MSI job `785769`, budget 300–600).** Every control behaved as expected (`controls_failed: 0`), with the
+peeling and dense solvers agreeing on every instance.
+
+| Instance | Result |
+|---|---|
+| Self-tests: associativity, inverses, `D` a homomorphism commuting with `g`, tower orders 3, 9, 27 | PASS |
+| Positive control: the four order-three subgroups of `C_3²` at `k = 1` (`r = 4 > 3`) | feasible, as expected |
+| Two `r = 2` samples at `k = 1` | infeasible, as Lemma 3.2(a) predicts |
+| Finite control: eight cylinder-permutation conjugates of `C_3²` (`r = 8 < 9`) | infeasible |
+| One census instance at `k = 2`, `r = 3`, ball 600 | infeasible |
+
+**Full census (MSI job `790624`, `run_census.sbatch`).**
+- Levels `k = 2` and `r` in 2–8, with random conjugators of 2–6 leaves.
+- Balls up to 20,000 elements, and a dense cross-check at budget 3,000.
+- Results land here when the job finishes.
 
 ### 5.3 Exact gap
 1. **Existence over any group.** No group is known to carry a coset certificate, that is `r < 3^k` subgroups of order
