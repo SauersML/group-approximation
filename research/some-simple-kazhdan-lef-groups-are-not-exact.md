@@ -6,6 +6,7 @@ title: Some infinite finitely generated simple Kazhdan LEF groups are not exact
 distinct_from:
   subshift-elementary-groups-are-exact: that asks whether the Z-subshift groups G_X are exact; this shows that some lamplighter hosts are not.
   lef-groups-embed-in-simple-kazhdan-lef-groups: that embeds every f.g. LEF group in a simple Kazhdan LEF host; this applies it to Osajda's groups to get non-exact hosts.
+  universal-recursive-lef-host-is-not-exact: that shows that the one universal host for recursively presented LEF groups is not exact; this is the existence statement from Osajda's published theorem alone.
 artifacts:
   - research/artifacts/sk-free-1-exactness-2026-09-13-part1.md
 ---
@@ -16,4 +17,8 @@ There is an infinite, finitely generated, simple group G with property (T) that 
 - So G has no property A, and C*_r(G) is not an exact C*-algebra.
 - At the same time, L(G) embeds in R^ω.
 
-Without (T), simple LEF non-exact groups already follow from Kionke–Schesler (arXiv:2304.09307, abstract: every f.g. residually finite group embeds in a f.g. LEF simple group) together with Osajda's theorem.
+**Scope.**
+- Without (T), simple LEF non-exact groups already follow from Kionke–Schesler (arXiv:2304.09307, abstract: every f.g. residually finite group embeds in a f.g. LEF simple group) together with Osajda's theorem. The new ingredient is (T).
+- **Not claimed:** failure of Baum–Connes with coefficients, or of coarse embeddability into Hilbert space.
+  - Osajda's residually finite relators are not expanders (`osajda-rf-relator-covers-are-not-expanders`).
+  - No residually finite or LEF finitely generated group is known to fail coarse embeddability. Arzhantseva–Tessera's non-embeddable extension (IMRN 2019, arXiv:1605.01192) is a permutational wreath product over monster groups. This was a bounded web search.
