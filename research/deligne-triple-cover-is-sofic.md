@@ -7,6 +7,7 @@ distinct_from:
   deligne-sector-gap-is-exactly-nonhyperlinearity: that characterizes non-hyperlinearity of the triple cover; soficity implies hyperlinearity, so a non-hyperlinearity proof would refute this claim, while hyperlinearity alone would not prove it.
 artifacts:
   - research/artifacts/deligne-triple-cover-surjunctivity-2026-09-12.md
+  - research/artifacts/sk-deligne-sofic-2026-09-14-part1.md
 ---
 
 **OPEN.** Deligne's connected triple cover `E_3` of `Sp_4(Z)` is sofic.
@@ -20,6 +21,11 @@ artifacts:
 - **Payoff.** Soficity makes `E_3` surjunctive (`deligne-triple-cover-surjunctive-from-soficity`).
 - **Permanence.** No permanence theorem on main covers finite central extensions whose kernel lies in the
   finite residual. This is the natural test case.
+- **Finite-action criterion (sk-deligne-sofic, 2026-09-14, unreviewed).**
+  - Route `deligne-triple-cover-sofic-from-vanishing-finite-norms`: `E_3` is sofic if the Deligne class has vanishing
+    normalized Hamming norm along finite `Sp_4(Z)`-actions (`deligne-class-finite-action-norms-vanish`, OPEN).
+  - If `Sp_4(Z)` is stable in finite actions, that vanishing is equivalent to soficity
+    (`stable-finite-actions-extension-sofic-iff-class-norm-vanishes`).
 
 ## Attempts
 
@@ -36,3 +42,7 @@ artifacts:
   Property (T) forces a finite orbit, whose line character separates `z` in a finite quotient
   (`deligne-monomial-twisted-modules-have-no-folner-truncations`). Sofic approximations of `E_3`, if they
   exist, must vary intrinsically with the ball.
+- **Torsors over exact finite actions (sk-deligne-sofic, 2026-09-14).** The known dead ends fix one exact module.
+  Varying small-defect torsor cochains over exact finite actions is not excluded, and it suffices: artifact
+  `research/artifacts/sk-deligne-sofic-2026-09-14-part1.md` §2–§4. The open input is the vanishing of the Deligne-class
+  cosystole along a cofinal congruence chain.
