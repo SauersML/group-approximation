@@ -30,3 +30,10 @@ and the isomorphism `inn(d)`. The corrected form allows `h` in the normalizer of
 (`subshift-el3-isomorphisms-recognize-diagonals-up-to-normalizer`).
 
 Status: proved in `subshift-el3-diagonal-recognition-fails-up-to-g-conjugacy-proof`, unreviewed.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived:
+- the half-orbit index is a homomorphism vanishing on E_3(R), with ind(d) = −1;
+- Lemma 2: pointwise matrix units give c ∈ GL_3(B) ⊆ E_3(R) and k = c·wI, so ind(k) ∈ 3Z;
+- inn(d) is not inner (the centralizer of the root elements is {I});
+- span transport of GL_3(F_2) and the mod-3 invariant.
+See `research/artifacts/sk-verify-16-2026-09-13-part2.md` §4.

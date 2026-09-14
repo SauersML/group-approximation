@@ -47,3 +47,9 @@ So on every Popa corner, the relative 2-norm error of the approximants is bounde
   - the bound says their defect on `Σ_{j≥m} q_j` has squared 2-norm at least `ε²τ(Σ_{j≥m}q_j)/2`, which is `O(2^{-m})`.
 
   This is consistent.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived:
+- the exact transfer ‖aζ‖ = ‖ap‖_2 and ‖ζa‖ = ‖pa‖_2 (orthogonal tensor factors and k_rτ(e_ii) = τ(p_r));
+- the one-corner badness (ε−4η)τ(p)^{1/2} ≤ ‖a_sp‖_2 + ‖pa_s‖_2;
+- summation over orthogonal corners by normality.
+See `research/artifacts/sk-verify-16-2026-09-13-part2.md` §3.

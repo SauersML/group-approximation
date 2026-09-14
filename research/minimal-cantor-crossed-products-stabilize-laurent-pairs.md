@@ -21,3 +21,9 @@ The unit can be chosen in `GL_1(A_𝒫)` for a Kakutani–Rokhlin tower algebra 
 - Residues `ρ_q∘a∘r = ρ_q` show that the block columns of `a` already span `F[u]/(q_0)`.
 - On each tower block, an invertible `G` with the same residues as `a` exists and depends only on local data.
 - `g = ⊕G` is a unit of `A_𝒫`. The columns of `g − a` lie in `qV`, so `g − a = qc` by `laurent-right-ideals-of-cantor-crossed-products-columnwise`.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived:
+- ρ_q∘a∘r = ρ_q, and ψ_0 is onto from ≥ d interior positions (h ≥ 2w_r+d+2);
+- G ∈ GL_h(F) with φ_0∘G = ψ_0;
+- g = ⊕G ∈ GL_1(A_𝒫) with columns of g−a in qV.
+The (1+u, Φ_5) model test is correct. See `research/artifacts/sk-verify-16-2026-09-13-part2.md` §5.

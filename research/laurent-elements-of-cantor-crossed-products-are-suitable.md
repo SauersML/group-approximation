@@ -20,3 +20,5 @@ The idempotent can be chosen in a tower algebra `A_𝒫 ≅ ∏_a M_{h_a}(F)` of
 - The projection `E_h` onto the preimage of `0 × F[u]/(r_0)`, along the kernel plus the preimage of the first factor, kills the first residue and fixes the second.
 - Glued over tower occurrences, `e = ⊕E_h` satisfies `ρ_p∘e = 0` and `ρ_{1−p}∘(1−e) = 0`, because the residues are covariant under translation by the unit `ū^b`.
 - `laurent-right-ideals-of-cantor-crossed-products-columnwise` turns these into `e ∈ pR` and `1−e ∈ (1−p)R`.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived: the CRT quotient on blocks of height ≥ D, the projection E_h killing ρ_p and fixing ρ_{1−p}, translation covariance, and Lemma C. The model test u+u² over F_2 is correct. See `research/artifacts/sk-verify-16-2026-09-13-part2.md` §5.

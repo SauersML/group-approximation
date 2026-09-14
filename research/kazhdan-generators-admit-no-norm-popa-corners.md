@@ -34,3 +34,10 @@ Proof of the corollary:
 - **Finite `Γ`:** `p = 1` and `B = M = L(Γ)` give commutators `0`, so the statement fails. The proof uses that the conjugation representation on `ℓ²(Γ×Γ)` has no invariant vectors, which needs `Γ` infinite.
 - **`Γ = Z`, no Kazhdan pair:** `L(Z) = L^∞(T)`, and `λ_1 = z` is within any `η` in norm of a step function spanning a finite-dimensional subalgebra, with `p = 1`. The conclusion fails, as it should.
 - **`Γ = SL_3(Z)`:** residually finite with property (T). The statement forbids norm Popa corners for `λ(S)` although `Γ` has many finite quotients. Finite quotients give finite-dimensional representations of `C*(Γ)`, not of subalgebras of `L(Γ)`, so there is no conflict.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived:
+- the conjugation representation on the coarse bimodule is a multiple of the regular one (free action (h,k) ↦ (gh,kg⁻¹));
+- the canonical vector commutes with B, with ‖ζ‖² = τ(p);
+- (A) ‖yζ − ζy‖ ≤ 2(d + ‖[y,p]‖)‖ζ‖, giving the ε/2 bound;
+- the corollary θ ≥ ε/6.
+See `research/artifacts/sk-verify-16-2026-09-13-part2.md` §2.
