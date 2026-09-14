@@ -117,7 +117,6 @@ theorem turingReducible_of_wordTables [Primcodable A] [DecidableEq A] [Primcodab
         (Primrec.const 1) (Primrec.const 0)).to₂) (Primrec.const 0)
   rw [hf n]
   congr 1
-  dsimp only
   cases hd : (decode n : Option (List (ι × Bool))) with
   | none => simp
   | some w =>
