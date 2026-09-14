@@ -255,3 +255,7 @@ landed carriers `perfectSpace_carrier`, `isTopologicallyFree_shift` (ct-two-ende
   - `cbc0b3980a99` over `printedFreeMarkingGeneration`;
   - `d228d6575111` over `printedWordEntriesDegreeAgreement`.
   **All seven route-difference partial rows are now formalized along the printed route.**
+- 11:59 CLAIM the two remaining partial rows:
+  - `995620260311` (tex 231–233: convergence, "G is LEF", N_k → ∞);
+  - `b596b717a720` (tex 270–271: "φ_ℓ(S) generates M_{N_ℓ}(F₂), and Theorem thm:general applies").
+  For each, name the open binder or the landed carrier that closes it, then flip the row or build the missing piece along the printed route.
