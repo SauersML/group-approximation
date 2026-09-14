@@ -1,4 +1,4 @@
 # Census-owner overrides for the simple Kazhdan note census; edited by skf-census only.
 # drop<TAB>lane<TAB>key<TAB>reason -- that lane's row for key is not merged. The row stays in the lane's file and is listed in SK_SENTENCE_CENSUS.md.
 # A drop is not a verdict on the surviving row; grading and audit stay with the lanes and audit-sk-*.
-drop	skf-cite	3606856b9a07	placeholder `partial` row with no decls whose note names ct-involution as the owner; it conflicts with ct-involution's own row for the same sentence (landed b3b8de919). Dropped at ct-involution's request 09-14; skf-cite was unreachable after the restart.
+drop	skf-cite	3606856b9a07	resolved: keeps ct-involution's graded row and drops skf-cite's placeholder `partial` row (no decls; its note names ct-involution as the owner). Requested by ct-involution and confirmed by main 09-14; skf-cite is not running.
