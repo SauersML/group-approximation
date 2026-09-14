@@ -123,6 +123,21 @@ CLAIM L2 model test (mixed touch) GroupApproximation/GGT/VanKampen/Estimating/Os
   - Outside reclosing: {0,5,4,3}, {1,6}, {2,7}; E' = 4; F' = 3.
   - So route (c) holds on the mixed touch.
 - Hazard: `TwoGonWalkHyp.connected` fails at pinch-type touches (walk darts 0 and 4 of 8c6883be3 lie on different faces with every edge on the walk). The Euler route therefore needs `hno`/`havoid` without `connected`: per walk dart, the face is a pocket face. Plan: (i) `TwoGonEulerWalkInput`, (ii) the per-dart pocket-face variant, (iii) `twoGonHoldsInput_of_eulerWalk`.
+- LANDED (i) at eeddf1c9e: `Estimating/OsinAppendixEulerTwoGonEulerWalk`, probe 0913-194656-56158 GREEN, BUILT; audits [propext, Classical.choice, Quot.sound], no sorryAx; on the wire queue.
+  - `TwoGonEulerWalkInput`: `TwoGonInnerFollowsWalkInput` with clause 1 replaced by the Euler pair, spelled as the `hinner`/`houter` of `PocketRegion.ofNoncrossingClosedWalkEuler`. ms-inverses-2 agreed to the spelling.
+  - `twoGonEulerWalkInput_of_innerFollowsWalk`: the Euler form is weaker, via `eulers_of_eitherFollows`.
+- ms-inverses-2 (~19:50): its generic Euler lemma (`NoncrossingClosedWalkEulerNoninterleaving`, unlanded) needs a named no-interleaving hypothesis beyond `IsNoncrossingClosedWalk` and planarity.
+  - Counterexample from hull-euler's docstring: the rose with sigma 1↦0↦3↦2↦5↦4↦1 and walk `[0,2,4]` is noncrossing, but reclosing its side gives a torus.
+  - So clause 1 of `TwoGonEulerWalkInput` will be discharged by that lemma plus a no-interleaving Prop for pocket walks; sec2-sentences has a hand argument from the joint structure.
+
+## CLAIM 5 (main 20:15: (ii) the pocket faces without `connected`, then (iii) the Euler assembly)
+
+CLAIM pocket faces without connected GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonPocketFacesEuler.lean
+CLAIM Euler C6′ assembly GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerAssembly.lean
+
+- (ii) `TwoGonWalkSideHyp` (the side, outer and cell fields). debt-conditional's transport restated over it, `hno`/`havoid` from a per-walk-dart base, and the base on the decomposition walk for every dart outside the span gaps.
+- (iii) `twoGonHoldsInput_of_eulerWalk`, over `TwoGonEulerWalkInput` and a named residual for the span-gap darts. Route: `PocketRegion.ofNoncrossingClosedWalkEuler` → `InnerDiscRegion.ofPocketRegion` → `false_of_mergeDisc`.
+- 20:26 resume check after the outage: no records lost, nothing to re-probe, eeddf1c9e on main.
 
 ## State
 
