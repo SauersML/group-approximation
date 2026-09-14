@@ -238,3 +238,19 @@ before landing, and each endpoint has `#audit_closed_axioms`.
   - Otherwise the owner of a maximal sub-lobe has its cell side in L minus all maximal sub-lobes.
   - Either way each failure lobe gets a private relator cell.
 - Total ≤ 2n + 1 ≤ 3n, since 0 < n.
+
+### Landed: the budget reduction (1bc1874ba, probe 0914-085214-93262 GREEN, BUILT)
+
+- `Estimating/OsinLemma94BoundaryJunctionBudget`, queued for wiring.
+  - `JunctionBackward`, `backwardJunctions`, `valueFailureJunctions`, `boundaryBadJunctions_subset_union`,
+    `card_boundaryBadJunctions_le`.
+  - Residual pieces `OsinLemma94BackwardJunctionCountInput` (≤ n + 1) and `OsinLemma94BoundaryValueFailureCountInput` (≤ n),
+    with the binders of `OsinLemma94BoundaryJunctionBudgetInput` and its inline index set.
+  - `osinLemma94BoundaryJunctionBudgetInput_of_pieces` with K = 3.
+- ms-inverses-3 agreed the split. Its bridge `osinLemma94BadJunctionInput_of_pieces` consumes the landed budget statement
+  unchanged, and its report records the n + 1 correction.
+- Next, production of the two counts:
+  - Charge each value-failure lobe to a relator cell on its side through the pocket-region route under
+    `exists_kept_of_noncrossing_of_value`, which uses a noncrossing walk that follows its boundary. This avoids the unproved
+    `RegionFaceAssemblyStatement`.
+  - Backward junctions by nesting levels.
