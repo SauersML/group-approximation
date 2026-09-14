@@ -2,17 +2,19 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordOracle
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# The word-problem degree is an isomorphism invariant
+# Word problems reduce along embeddings
 
-Section "Word problems" of `simple_kazhdan_sofic_group.tex` (origin tip e80dcf20a), proof, last
-sentence:
+Section "Word problems and factors" of `simple_kazhdan_sofic_group.tex` (origin tip 696c4b602),
+proof of `cor:wp`, second paragraph:
 
-> ... and the degree of the word problem is an isomorphism invariant.
+> If a finitely generated group `H` embeds in a finitely generated group `G`, a word for `H` becomes
+> a word for `G` by substituting for its generators, so the word problem of `H` reduces to that of
+> `G`.
 
-This module proves `PrintedWordProblemDegreeIsomorphismInvariant`. Each generator of the second
-family is the value of a word in the first, since the first family generates; substituting these
-words is a primitive recursive translation of words, so one word problem reduces to the other. An
-isomorphism transports a generating family without changing its word problem.
+This module proves `PrintedWordProblemReducesUnderEmbedding` along that route. Each image of a
+generator of `H` is the value of a word in the generators of `G`. Substituting these words is a
+primitive recursive translation of words, and an injective homomorphism does not change the word
+problem of a family.
 -/
 
 namespace GroupApproximation
@@ -56,8 +58,8 @@ theorem wordValue_translate (s : ι → H) (t : κ → H) (table : κ → List (
     rw [wordValue_append, ih, wordValue_cons]
     cases b <;> simp [htable, wordValue_wordInv]
 
-/-- **Change of generators.**  If `s` generates `H` and `κ` is finite, the word problem of any
-family `t : κ → H` reduces to the word problem of `s`. -/
+/-- **Substitution.**  If `s` generates `H` and `κ` is finite, the word problem of any family
+`t : κ → H` reduces to the word problem of `s`. -/
 theorem turingReducible_wordProblemOracle_of_generates [Primcodable ι] [Primcodable κ] [Finite κ]
     {s : ι → H} (hs : Subgroup.closure (range s) = ⊤) (t : κ → H) :
     TuringReducible (wordProblemOracle t) (wordProblemOracle s) := by
@@ -85,22 +87,14 @@ theorem turingReducible_wordProblemOracle_of_generates [Primcodable ι] [Primcod
     · simp [wordProblemOracle, hd, wordValue_translate s t table htable, hw]
     · simp [wordProblemOracle, hd, wordValue_translate s t table htable, hw]
 
-/-- **Proof, last sentence.**  The word-problem degree of a finitely generated group does not
-depend on the finite generating family, and is an isomorphism invariant. -/
-theorem printedWordProblemDegreeIsomorphismInvariant :
-    PrintedWordProblemDegreeIsomorphismInvariant := by
-  intro H K _ _ ι κ _ _ _ _ s t hs ht ⟨φ⟩
-  have e₁ : wordProblemOracle t = wordProblemOracle (φ.symm.toMonoidHom ∘ t) :=
-    (wordProblemOracle_comp_injective t φ.symm.toMonoidHom φ.symm.injective).symm
-  have e₂ : wordProblemOracle s = wordProblemOracle (φ.toMonoidHom ∘ s) :=
-    (wordProblemOracle_comp_injective s φ.toMonoidHom φ.injective).symm
-  refine ⟨?_, ?_⟩
-  · rw [e₂]
-    exact turingReducible_wordProblemOracle_of_generates ht _
-  · rw [e₁]
-    exact turingReducible_wordProblemOracle_of_generates hs _
+/-- **Proof of `cor:wp`, second paragraph.**  If a finitely generated group `H` embeds in a finitely
+generated group `G`, the word problem of `H` reduces to that of `G`. -/
+theorem printedWordProblemReducesUnderEmbedding : PrintedWordProblemReducesUnderEmbedding := by
+  intro H G _ _ ι κ _ _ _ _ s t ψ hψ hs _
+  rw [← wordProblemOracle_comp_injective t ψ hψ]
+  exact turingReducible_wordProblemOracle_of_generates hs _
 
-#audit_closed_axioms printedWordProblemDegreeIsomorphismInvariant
+#audit_closed_axioms printedWordProblemReducesUnderEmbedding
 
 end SimpleKazhdanSofic
 end GroupApproximation

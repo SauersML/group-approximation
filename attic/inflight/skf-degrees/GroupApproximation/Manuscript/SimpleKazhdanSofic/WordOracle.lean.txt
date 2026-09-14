@@ -76,9 +76,13 @@ theorem wordProblemOracle_comp_injective [Primcodable ι] {K : Type*} [Group K] 
     rw [← map_one φ]
     exact hφ.eq_iff
   funext n
+  have hiff : (∃ w : List (ι × Bool), Encodable.decode n = some w ∧ wordValue (φ ∘ s) w = 1) ↔
+      ∃ w : List (ι × Bool), Encodable.decode n = some w ∧ wordValue s w = 1 := by
+    simp only [wordValue_map, key]
   simp only [wordProblemOracle]
-  congr 1
-  exact if_congr (by simp only [wordValue_map, key]) rfl rfl
+  by_cases h₁ : ∃ w : List (ι × Bool), Encodable.decode n = some w ∧ wordValue (φ ∘ s) w = 1
+  · rw [if_pos h₁, if_pos (hiff.1 h₁)]
+  · rw [if_neg h₁, if_neg fun h => h₁ (hiff.2 h)]
 
 end Words
 
