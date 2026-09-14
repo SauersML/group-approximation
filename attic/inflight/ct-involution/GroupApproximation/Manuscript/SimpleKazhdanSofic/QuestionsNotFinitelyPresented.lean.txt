@@ -11,7 +11,7 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # `G_X` is not finitely presented
 
-`simple_kazhdan_sofic_group.tex` at origin/main 37551fd93, "Questions" (census key `44b4aa4489ab`):
+`simple_kazhdan_sofic_group.tex` at origin/main 696c4b602, "Questions" (census key `44b4aa4489ab`, tex l.556–558):
 
 > A finitely presented LEF group is residually finite [Stepin, VershikGordon], and the infinite simple group
 > `G_X` is not, so `G_X` is not finitely presented.
