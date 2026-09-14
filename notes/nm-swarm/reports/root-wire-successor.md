@@ -272,7 +272,39 @@ Result: **ROOT GREEN, landed lead-wire daa821b00** at 23:41.
   - it treats rc 1, 4 and 255 as infra, with at most two retries after a fresh window and a 3-hour cap;
   - it never retries a gate stop or a real red, and stops if a root commit lands since daa821b00.
 
-Result: pending a stable network window.
+Result: **never landed**. No root commit landed after daa821b00.
+- The stability-gated task's local logs were lost in the 09-14 08:14 reboot.
+- The ROOT GREEN build 0914-024246-75334 in the lead clone (base f607305eb) has 0 wired lines: a plain warm-up, not
+  wave 22.
+
+## Reboot recovery, 09-14 08:14–09:xx
+
+- The laptop rebooted at 08:14 and `/private/tmp` was wiped: `nmprobe.sh`, `nmland.sh`, `nmwire.sh`, `landed.log`,
+  `lanes/*.green.*`, `wire-queue.txt`, the `rw-wave*.mods` files and this lane's scratch tools.
+- Main rebuilt the infra from origin's `tools/nm-swarm` at `$NM=…/f907d0cb…/scratchpad/nm`, with an empty
+  `landed.log` and wire queue.
+- This lane's tools were restored under `$NM/rw/`:
+  - `rwprep.py`: holds `OsinLemma94ClassCovers` and `InfiniteSimpleICC` explicitly, because ICC's FAILED record was
+    lost. `list --since <date>` takes candidates from origin commits.
+  - `launch-wave.sh`: also stops if any root commit landed after the previous root sha.
+  - `widen-by-tag.sh`.
+- Evidence (`msi-records.py`):
+  - 1,647 MSI probe outputs `cc_clones/*/.nm/out-*.txt` gave 1,578 records in `$NM/rw/msi-records/` (65 without a
+    base line, 4 without a verdict).
+  - The records carry no md5 lines, because the outputs do not record overlay bytes. A record covers a file only when
+    its blob at the probe base equals its blob at the tip; a FAILED output holds all of its targets.
+- Unwired tops since 09-12 at d5d1b9db7: 123 (20 OK, 4 HOLD, 99 NOEVID).
+  - Of the OK tops, 14 are LIX campaign files (held in flight) and one belongs to another campaign.
+  - Of the NOEVID tops, 22 are clearly non-MF campaign modules. They were overlays when probed and need fresh probes
+    at the tip; the list went to main.
+
+## Wave 22 (after the reboot), launched 09-14 ~09:xx
+
+- 4 nm tops verified from MSI records: `TorsionFreeResidualsV5`, `FinitelyPresentedInfiniteSimpleLeaves`,
+  `BridgeComponentValue`, `OsinPocketCellPinchRefutation`.
+- Pre-flight at c9b9218d4: 17 newly reachable files (closure 6921 → 6938), 0 blocking lines.
+
+Result: pending.
 
 ## Evidence and holds, 18:45–19:10
 
