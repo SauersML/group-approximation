@@ -278,6 +278,19 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     - One spelling agreed with ms-cite-1 in one message. The dispatch concludes exactly `CellPocketPinchSectionStatement`,
       which ms-cite-1's consumer `…_of_pinchSectionOrderEuler` reads. Its cell-walk proper-arc residual delivers the two
       premises of `CellPocketPinchSectionInput`: `firstArc.length < (cellDarts X i).length` and the same for `secondArc`.
+    - **LANDED 117d5d3c3** (02:06; probe 0914-014352-5149 GREEN, BUILT; unwired). `cellPocketPinchSectionStatement_of_outerPinchStep`
+      closes V5 residual 7 over w1-binder-3's cell outer step.
+- **Resume 2026-09-14 08:4x, after the laptop reboot wiped /private/tmp.** The rebuilt infra is at `f907d0cb…/scratchpad/nm`.
+  - Every w1-binder-7 SHA was already on origin, so there was nothing to re-probe. The lost green records only matter for
+    future landings.
+  - Re-added this lane's 16 module paths to `.files`.
+  - Re-queued wiring for the 14 unwired landed modules, in import order. `OsinPocketTrimDouble` and
+    `OsinPocketPinchStepSection` are already wired.
+  - State:
+    - binder 7 in first-turn form: closed (4a52b36f1);
+    - walk-order binders 7 and 5: depend only on w1-binder-3's two outer steps (`PocketOuterPinchStepSectionStatement`,
+      `CellPocketOuterPinchStepSectionStatement`) and the proper-arc producers.
+  - No current item; waiting for main.
 - **Noted:** ms-cite-1's `cellPocketPinchRoseRefutation` (e0a0776bb) refutes `CellPocketPinchPosStatement`, so V4 endpoints over
   it are vacuous. The replacement is `CellPocketPinchSectionStatement`.
 - **Landed above (was in flight): `Estimating/OsinPocketGoodCornersSection`** (attic 12585faa5), the section mirror.
