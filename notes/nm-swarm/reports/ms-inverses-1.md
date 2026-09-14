@@ -91,6 +91,17 @@ builds the two-arc loop cut for (2b).
 
 CLAIM the lobe inputs of the (2a) kill (arc, simplicity, Π off the side, exterior off the side): GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean
 
+- LANDED f894ff686 `…CellLobeSides` and `…CellLobeValue` (probe 0913-192851-53151 GREEN).
+  - `SameCellCellLobe.eqvGen_faceClass_of_agree`, `sideFaces_subset_of_agree`: the side of a sub-walk lies in the side of
+    the walk when its face classes meet no edge of the walk off the sub-walk.
+  - `exists_arc_of_lobe`, `isSimpleClosedWalk_lobe`, `cell_not_mem_sideFaces_lobe`, `outerFace_not_mem_sideFaces_lobe`.
+  - Closed `osinLemma94CaseOneCellLobeValue : OsinLemma94CaseOneCellLobeValueStatement` (fixed X).
+- Relay (main ~19:35): ms-intro-1's island reduction (a2b068902) consumes walk-level shapes over `s ++ invDarts B`.
+- LANDED 79fbbbbd5 `…CellLobeWalk` (probe 0913-194038-12273 GREEN): `osinLemma94CaseOneWalkCellPinch_of_lobes`,
+  `outerFace_not_mem_sideFaces_lobe_of_walk`, and closed `osinLemma94CaseOneWalkCellLobeValue`.
+
+CLAIM the excision case at walk level (arcs, sides and value of the excised walk; the simple excision refuted by the two-arc loop cut; the residual): GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean, GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean
+
 ## Progress log
 - 16:56: ledger landed at 1193c722d; two gaps (rows 2 and 9) claimed.
 - 17:0x: both gaps closed at 88180a8b8.
