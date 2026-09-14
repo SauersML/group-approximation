@@ -1,0 +1,96 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerWaistV7
+import GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketCellFree
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoArcSection
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionInductionBelow
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopyBelow
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellPinchSectionDistinct
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonCopyRoute
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkEulerSectorFree
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The leaf-level Greendlinger waist below the inductive bound
+
+Osin, arXiv:math/0411039v3, §9 and Appendix, Lemmas 9.4, 9.7 and 4.4.  An additive waist through
+`relativeGreendlingerQuasiGeodesicLeastArea_of_pocketPartsBelow` (`OsinAppendixSectionInductionBelow`),
+which reads the multiple-edge cut below the inductive bound of Lemma 9.7.  Against
+`relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV7`:
+
+* binder 5 below the bound, `osinMultipleEdgePocketRegionCopyBelowSection_of_pinchSectionOrderEuler`
+  (`OsinPocketMultipleEdgeCopyBelow`), over the proper arcs of the cell pocket walk below the bound
+  `CellPocketWalkProperArcsBelowSectionStatement` (clause (b) of Lemma 9.7 below `Δ` is available there)
+  and the section cell pinch for distinct cells, from its outer pinch step
+  (`cellPocketPinchSectionDistinctStatement_of_outerPinchStep`);
+* the cell-free value of same-cell pockets is proved, `sameCellPocketCellFreeValue`;
+* the two-arc face set producer is split into the proper producer and the whole-section case,
+  `osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection`;
+* C6′ comes from a clean copy and the decomposition Euler equalities,
+  `osinTwoGonHoldsSection_of_cleanCopyEuler` (`OsinAppendixEulerTwoGonCopyRoute`), replacing the
+  given-family edge conditions, whose global clauses no producer can derive.
+
+The class route of Lemma 9.4, the Case 1 relator-cell branch over the successor-form enclosed pieces
+with the proved spur enclosure, and the two-arc section pinch from its outer pinch step are as in V7.
+The Euler equalities of the cell pocket walk are proved outright, `cellPocketWalkEuler`
+(`OsinPocketWalkEulerSectorFree`), so the vertex count leaf of V7 is gone.
+
+* `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8`: twelve named leaf residual Props.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 1636, "Hull's small cancellation theorem", through Osin's
+Lemmas 9.7 and 4.4); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+/-- **Osin's Lemma 4.4 at least-area diagrams from twelve leaf residuals, below the inductive
+bound**: Lemma 9.4 along the two-threshold class route, the multiple-edge cut below the bound from
+binder 5 below the bound, loops, C6′ from a clean copy, and the section pocket cut from the split
+two-arc face set producer and the two-arc pinch. -/
+theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8
+    (hbudget : OsinLemma94ClassEndLoopsBudgetInput.{u, w, v})
+    (hcut : SameCellPocketLoopCutStatement.{u, w, v})
+    (hloop : EnclosedSubdiagramLoopCutSuccStatement.{u, w, v})
+    (hsub : ClosedWalkEnclosedSubdiagramSuccStatement.{u, w, v})
+    (hspan : OsinLemma94ClassCaseGapSpanStatement.{u, w, v})
+    (htwocopy : OsinTwoGonCleanCopySectionStatement.{u, w, v})
+    (htwoeuler : OsinTwoGonDecompositionEulerSectionStatement.{u, w, v})
+    (hcellStep : CellPocketOuterPinchStepSectionDistinctStatement.{u, w, v})
+    (hproper : CellPocketWalkProperArcsBelowSectionStatement.{u, w, v})
+    (hfaces : OsinSectionPocketFaceSetProperSectionStatement.{u, w, v})
+    (hwhole : OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement.{u, w, v})
+    (hstep : PocketOuterPinchStepSectionStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  relativeGreendlingerQuasiGeodesicLeastArea_of_pocketPartsBelow
+    (osinLemma94Section_of_classCountTwoThreshold
+      (osinLemma94ClassCountInput_of_endLoops (osinLemma94ClassEndLoopsInput_of_budget hbudget)
+        (osinLemma94SameCellFactorInput_of_scan
+          (osinLemma94SameCellScanInput_of_pocket
+            (osinLemma94SameCellPocketInput_of_loopCut sameCellPocketCellFreeValue hcut))))
+      (osinLemma94ClassCasesTwoThreshold_of_residuals
+        (osinLemma94CaseOneInput_of_walk osinLemma94CaseOneWalk
+          (osinLemma94CaseOneSameCell_of_rCell
+            (osinLemma94CaseOneRCell_of_noSpurPockets
+              (osinLemma94CaseOneNoSpurXPocket_of_enclosedLoopCutSucc hloop)
+              (osinLemma94CaseOneNoSpurYPocket_of_enclosedLoopCutSucc hloop)
+              (osinLemma94CaseOneRCellSpur_of_enclosure hloop hsub osinLemma94CaseOneSpurEnclosure))))
+        osinLemma94CaseTwoInput hspan))
+    (osinMultipleEdgeCutBelowSection_of_copyPieces
+      (osinMultipleEdgePocketRegionCopyBelowSection_of_pinchSectionOrderEuler
+        cellPocketCopyCleanBothOrders cellPocketWalkOuterOffSideSomeOrder
+        cellPocketWalkEuler
+        (cellPocketPinchSectionDistinctStatement_of_outerPinchStep hcellStep) hproper)
+      GeodesicCollar.StripStep.geodesicCollarStatement_holds pocketCellTransport)
+    osinLoopCutSection
+    (osinPhiPrimeCountSection_of_pieces osinCornerTwoGonSection
+      (osinTwoGonHoldsSection_of_cleanCopyEuler htwocopy htwoeuler))
+    (osinSectionPocketCutSection_of_residualsTwoArc
+      (osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection hfaces hwhole)
+      (pocketPinchLabelledSectionTwoArcStatement_of_outerPinchStep hstep)
+      GeodesicCollar.StripStep.geodesicCollarStatement_holds)
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8
