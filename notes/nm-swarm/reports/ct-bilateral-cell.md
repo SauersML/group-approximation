@@ -189,9 +189,12 @@ Interface agreed with ct-return-tower (one message each way). ct-return-tower ow
 
 | module | content | state |
 |---|---|---|
-| Estimating/OsinLemma94AntiparallelMetricTwoThreshold | `UnboundEstimate.OrientedWordSidePairTwo`, `…exists_connectors`, `OsinUnboundScale.orientedWordSidePairTwo_of_parameters`, `…_of_orientedClassPair`, `unboundOrientedWordPolygonMonotoneTwo`, `OsinLemma94DensePolygonsAntiparallelTwo`, `osinLemma94AntiparallelMetricTwo` | attic 0a0b61900; probe 0913-234721-12791 lost (MSI hop died, auth breaker set) |
-| Estimating/OsinLemma94ClassSectionTwoThreshold | `OsinLemma94DensePolygonsAntiparallelTwo.exists_of_budget_on`, `OsinLemma94ClassPolygons.unbound_lt_of_classesTwo`, `OsinLemma94ClassCasesTwoThresholdInput`, `osinLemma94Section_of_classCountTwoThreshold` | local and lane backup only (github DNS down) |
-| Estimating/OsinLemma94ClassCasesTwoThreshold | `osinLemma94ClassCasesTwoThreshold_of_residuals (hone) (htwo) (hspan)` | local and lane backup only; imports the corner move |
+| Estimating/OsinLemma94AntiparallelMetricTwoThreshold | `UnboundEstimate.OrientedWordSidePairTwo`, `…exists_connectors`, `OsinUnboundScale.orientedWordSidePairTwo_of_parameters`, `…_of_orientedClassPair`, `unboundOrientedWordPolygonMonotoneTwo`, `OsinLemma94DensePolygonsAntiparallelTwo`, closed `osinLemma94AntiparallelMetricTwo` | LANDED 34ca875e8 (probe 0914-005607-41773 GREEN, replayed from the successful lost job 0913-234721-12791) |
+| Estimating/OsinLemma94ClassSectionTwoThreshold | `OsinLemma94DensePolygonsAntiparallelTwo.exists_of_budget_on`, `OsinLemma94ClassPolygons.unbound_lt_of_classesTwo`, `OsinLemma94ClassCasesTwoThresholdInput`, `osinLemma94Section_of_classCountTwoThreshold` | LANDED 34ca875e8 (same probe, BUILT) |
+| Estimating/OsinLemma94ClassCasesTwoThreshold | `osinLemma94ClassCasesTwoThreshold_of_residuals (hone) (htwo) (hspan)` | LANDED 9bae10a9d (probe 0914-012829-82415 GREEN, BUILT); imports ct-return-tower's corner move 9133128ae |
+
+All three are queued for wiring. MSI dropped before the audit lines could be read; each module ends in audit commands
+that error on non-classical axioms, and each build completed successfully.
 
 The two thresholds come from reading `nearby_endpoints_keep_shortening_margin` twice on the same endpoints: at `epsC`
 through the gate `c₁ + 2κ < epsC`, and at `epsL` through a scale at `epsL`. Finding reported to main: corner moves do
