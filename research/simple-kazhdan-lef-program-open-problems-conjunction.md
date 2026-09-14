@@ -34,6 +34,7 @@ requires:
   - subshift-elementary-groups-are-exact
   - subshift-el3-isomorphisms-recognize-diagonals-up-to-normalizer
   - subshift-el-group-theory-computes-arithmetic-of-the-language
+  - crossed-product-group-embeds-in-projective-elementary-group
 ---
 
 Assembly only: the root is the conjunction of the listed open claims. This route makes each of them reachable from a
@@ -54,3 +55,5 @@ Members added by sk-cairn-steward-2 (2026-09-13, fourth pass, sk landings to 22:
 Member added by sk-cairn-steward-5 (2026-09-14, wave-12 pass): `subshift-el-group-theory-computes-arithmetic-of-the-language`.
 
 `property-t-factors-contain-weakly-dense-popa-algebras` moved to the approximation theme (sk-cairn-steward-5, 2026-09-14): Theorem P, `separable-ii1-factors-have-weakly-dense-popa-combs` (sk-popa-input2; sk-verify-20 PASS-WITH-FIXES), establishes it through `weakly-dense-popa-combs-exist-in-property-t-factors`.
+
+Member added by sk-cairn-steward-5 (2026-09-14, final pass): `crossed-product-group-embeds-in-projective-elementary-group`, the restated Whitehead embedding (abelian unit groups, and derived subgroups of unit groups, in `EL_N` modulo its centre). It is open as a node: sk-subgroups demoted it after its only route, which used the false multiplicativity of `diag(a, a^-1, 1)`, was invalidated, and it was unreachable before.

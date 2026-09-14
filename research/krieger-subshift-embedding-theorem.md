@@ -9,7 +9,7 @@ artifacts:
 
 **IMPORT (literature; secondary statement read at source, primary paper not opened).**
 
-**Statement, verbatim from the secondary source.** "Theorem 1 (W. Krieger). Let Z be a subshift and Y a mixing SFT such that h(Z)<h(Y). Then Z embeds into Y iff q_n(Z)≤q_n(Y) for all n∈ℕ." Here `q_n` counts points of least period `n`, and "embeds" means there is an injective continuous shift-commuting map `Z → Y`.
+**Statement, verbatim from the secondary source.** "Theorem 1 (W. Krieger). Let Z be a subshift and Y a mixing SFT such that h(Z)<h(Y). Then Z embeds into Y if and only if q_n(Z)≤q_n(Y) for all n∈ℕ." Here `q_n` counts points of least period `n`, and "embeds" means there is an injective continuous shift-commuting map `Z → Y`.
 
 **Consequence used on main.** If `Z` is an aperiodic subshift of topological entropy `0`, then `q_n(Z) = 0` for all `n` and `h(Z) = 0 < log 2 = h({0,1}^Z)`. So `Z` is conjugate to a subshift of `{0,1}^Z`, and some clopen `U ⊆ Z` has translates separating points.
 
@@ -26,3 +26,4 @@ Route: `krieger-subshift-embedding-theorem-citation`.
   - The consequence is re-derived: `q_n(Z) = 0`, `h(Z) = 0 < log 2`, and the full 2-shift is a mixing SFT. Fixes:
   - (K1) In the verbatim quote, the source reads "if and only if", not "iff".
   - (K2) In `krieger-subshift-embedding-theorem-citation`, credit the restatement: after "arXiv:2606.25475," insert "B. Marcus and T. Meyerovitch,".
+  - K1 and K2 are merged (sk-cairn-steward-5, 2026-09-14).
