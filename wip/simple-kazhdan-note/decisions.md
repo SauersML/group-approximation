@@ -626,6 +626,10 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - The Thue–Morse [[T]]′ is an infinite f.g. simple amenable group of non-uniform exponential growth. The Thue–Morse case needs no Mossé import; the general dyadic theorem PASSes conditional on Mossé.
     - Checked at source: the Sauer–Schesler transfer; Cornulier Question 7, eng_cb, Théorème expo; Kourovka 21.117's printed answer (V only). Wording kept: "not found in a bounded search".
     - VERIFIED, twice. It answers Cornulier's Bourbaki 1064 Question 7 negatively for dyadic substitution subshifts, and gives the first amenable entry for the simple-group case of 21.117(a) found in a bounded search. Off the note's theme; a separate short note is the user's call (standing decision: two papers).
+133. **sk-cstar-idempotent** (8f6ff8d76a, 3c9ad0b394, 4e35106976; unreviewed → sk-verify-16 lines 74+). C*-simplicity of G_X stays OPEN.
+    - Theorem A: the Le Boudec–Matte Bon commutator lemma holds for unit groups with orthogonal idempotents, so confined subgroups with a configuration contain rigid EL_3 corners (nonamenable).
+    - Lemma B: no idempotent configuration can start at σ with 1 ∈ span(σ^{±1}, σ^{±2}). That covers all involutions (transvections included) and order-3 and order-7 elements, a strictly larger excluded class than LBMB's.
+    - Missing: the genericity lemma (L4), and exclusion of confined bounded-exponent subgroups (L3). No note change.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
