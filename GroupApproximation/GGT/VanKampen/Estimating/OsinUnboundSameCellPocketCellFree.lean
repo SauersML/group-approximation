@@ -1,0 +1,38 @@
+import GroupApproximation.GGT.VanKampen.BridgeComponentValue
+import GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocketAssembly
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The cell-free same-cell pocket reads one
+
+Osin (math/0411039v3, §9), proof of Lemma 9.4.  `SameCellPocketCellFreeValueStatement`
+(`Estimating/OsinUnboundSameCellPocketAssembly.lean`) is the cell-free branch of
+`OsinLemma94SameCellPocketInput`: a dart off the exterior, oriented toward the exterior, whose
+reverse lies on its own face, with no relator cell other than that face on the far side of the edge,
+bounds a face walk reading one.  It is `BridgeComponent.listVal_pocket_eq_one`
+(`BridgeComponentValue.lean`), with the decidable equality on darts supplied classically.
+
+* `sameCellPocketCellFreeValue : SameCellPocketCellFreeValueStatement`.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, Hull's small cancellation theorem, through Osin's
+Lemma 9.4); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+/-- **A cell-free same-cell pocket reads one, proved.**  It discharges the `hvalue` binder of
+`osinLemma94SameCellPocketInput_of_loopCut`, so `OsinLemma94SameCellPocketInput` rests only on
+`SameCellPocketLoopCutStatement`. -/
+theorem sameCellPocketCellFreeValue : SameCellPocketCellFreeValueStatement.{u, w, v} := by
+  unfold SameCellPocketCellFreeValueStatement
+  intro G _ Lambda W X a hface hout hor m hm hstep hne_a hne_alpha hfree
+  classical
+  exact BridgeComponent.listVal_pocket_eq_one X hface hout hor hm hstep hne_a hne_alpha hfree
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.sameCellPocketCellFreeValue
