@@ -79,3 +79,15 @@ support (`rational-units-rescale-to-integral-units`).
   and 3 and embeds in `C`. So an argument whose only inputs are mod-2, mod-3
   and complex reductions proves a statement that is false for `Z[zeta_8]`
   (Tabei, Section 6.1). A proof has to use `Z^x = {+-1}`.
+* **Definite shadows and global lifting.** Every unit of `Z[P]` agrees with
+  some `+-g` modulo each of the ideals `I_C = (x+1, y+1)`, `I_A = (y+1, z+1)`
+  and `I_B = (x+1, z+1)`. The quotients are definite quaternion-type rings
+  where the norm of a unit has a sum of squares as constant term
+  (`promislow-integral-units-have-monomial-definite-line-shadows`). This uses
+  positivity together with `Z^x = {+-1}`, as the previous bullet requires, and
+  it fails over `Z[zeta_8]`. It closes Case B for Gardam's residue, the 52
+  radius-four census residues and Murray's residues for `d = 3, 5, 7`, at every
+  support and height (`promislow-classical-nontrivial-units-have-no-integral-lifts`).
+  The attack dies at the kernels: normalized Case A units lie in
+  `+-1 + (I_A cap I_B cap I_C)` and are not constrained further, and a nontrivial
+  residue whose three shadows are monomials is not excluded.

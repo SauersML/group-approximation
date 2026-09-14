@@ -62,3 +62,15 @@ The route `integral-unit-conjecture-from-rational-proof` derives
 * **Tester group.** By `kaplansky-three-properties-fixed-fp-torsion-free-tester`
   it is enough to decide `Q[U]` for one finitely presented torsion-free group
   `U`. That reformulates the problem without deciding it.
+* **Definite shadows (positivity).** Every unit of `Z[P]`, and after rescaling
+  every unit of `Q[P]`, maps to a signed monomial in the three quotients
+  `Z[P]/(x+1, y+1)`, `Z[P]/(y+1, z+1)` and `Z[P]/(x+1, z+1)`. Each is a definite
+  quaternion-type ring whose norm has a sum of squares as constant term
+  (`promislow-integral-units-have-monomial-definite-line-shadows`). This fails
+  over `Z[zeta_8]`: Gardam's complex unit has non-monomial shadows of norm 1.
+  As a consequence no unit of `Z[P]` reduces to Gardam's unit, to a radius-four
+  census unit, or to Murray's units for `d = 3, 5, 7`, at any support or height
+  (`promislow-classical-nontrivial-units-have-no-integral-lifts`). The attack
+  dies at the kernels: it says nothing about units in
+  `+-g + (I_A cap I_B cap I_C)`, and every normalized Case A unit already lies
+  in `+-1 + (I_A cap I_B cap I_C)`.

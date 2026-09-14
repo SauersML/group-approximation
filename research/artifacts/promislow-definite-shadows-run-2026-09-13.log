@@ -1,0 +1,172 @@
+== host ahl02 2026-09-13 21:38 CDT /usr/bin/python3.12
+1debc5ec75d10b1b92b6e688a385f916  gardam-support-pair-gsp.py
+6b83bca2dea80535e46b636faa5de8b6  promislow-definite-shadows-census.py
+6d55ed6877c1c9ff683316897e2bae16  promislow-definite-shadows-gardam-complex.py
+03ce7a6e0d5cf47b0a5f9780796cfaf4  promislow-definite-shadows-residues.py
+== promislow-definite-shadows-gardam-complex.py
+part1 |supp alpha| = 21 |supp beta| = 21
+part1 alpha*beta == 1: True  beta*alpha == 1: True
+part1 supp(alpha) == S: True  supp(beta) == T: True
+part1 coefficients are signed monomials: True
+part2 products K = 121 identity index 0 reps at identity 17 odd-count products [0]
+part2 trivial pairs (g_i h_j = 1): 17
+line C | phi(alpha)phi(beta)=1: True | terms in shadow: 7
+   l0 = {-3: (2, 0, 0, 0), -1: (-2, 0, 0, 0), 0: (1, 0, 0, 0)}
+   l1 = {0: (0, 1, 0, 1), 1: (0, -1, 0, -1), 2: (0, -1, 0, -1), 3: (0, 1, 0, 1)}
+   N = l0 l0bar + l1 l1bar = {0: (1, 0, 0, 0)}
+line A | phi(alpha)phi(beta)=1: True | terms in shadow: 10
+   l0 = {-2: (0, 0, 1, 0), -1: (0, -1, 0, -1), 0: (1, 0, 0, 0), 1: (0, 1, 0, 1), 2: (0, 0, -1, 0)}
+   l1 = {-2: (0, 1, 0, 0), -1: (-2, 0, 0, 0), 0: (0, -1, 0, -1), 1: (2, 0, 0, 0), 2: (0, 0, 0, 1)}
+   N = l0 l0bar + l1 l1bar = {0: (1, 0, 0, 0)}
+line B | phi(alpha)phi(beta)=1: True | terms in shadow: 10
+   l0 = {-2: (0, 0, -1, 0), -1: (0, 1, 0, 1), 0: (1, 0, 0, 0), 1: (0, -1, 0, -1), 2: (0, 0, 1, 0)}
+   l1 = {-2: (0, -1, 0, 0), -1: (2, 0, 0, 0), 0: (0, 1, 0, 1), 1: (-2, 0, 0, 0), 2: (0, 0, 0, -1)}
+   N = l0 l0bar + l1 l1bar = {0: (1, 0, 0, 0)}
+trivial units of S and T have one-term shadows on all three lines: ok
+DONE
+== promislow-definite-shadows-residues.py
+part1 |supp alpha| = 21 |supp beta| = 21
+part1 alpha*beta == 1: True  beta*alpha == 1: True
+part1 supp(alpha) == S: True  supp(beta) == T: True
+part1 coefficients are signed monomials: True
+part2 products K = 121 identity index 0 reps at identity 17 odd-count products [0]
+part2 trivial pairs (g_i h_j = 1): 17
+Gardam F_2 unit (support 21):
+  gardam line C: l0={0: 1} l1={} | N={0: 1} | signed monomial: True | shadow(u)shadow(u^-1)=1: True
+  gardam line A: l0={-2: 1, 0: 1, 2: 1} l1={-2: 1, 2: 1} | N={0: 1} | signed monomial: False | shadow(u)shadow(u^-1)=1: True
+  gardam line B: l0={-2: 1, 0: 1, 2: 1} l1={-2: 1, 2: 1} | N={0: 1} | signed monomial: False | shadow(u)shadow(u^-1)=1: True
+  gardam -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 3, t = -1, w = 0:
+  murray line C: l0={-5: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 2, 3: 1} l1={-1: 2, 3: 2} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 2, 3: 1} l1={-3: 2, 1: 2} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 3, t = -1, w = 1:
+  murray line C: l0={-5: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 1, 3: 2} l1={-1: 2, 3: 2} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 1, 3: 2} l1={-3: 2, 1: 2} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 3, t = 0, w = 0:
+  murray line C: l0={-1: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 2, 3: 1} l1={-1: 2, 3: 2} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 1, 3: 2} l1={-3: 2, 1: 2} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 3, t = 0, w = 1:
+  murray line C: l0={-1: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 1, 3: 2} l1={-1: 2, 3: 2} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 2, 3: 1} l1={-3: 2, 1: 2} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 3, t = 1, w = 0:
+  murray line C: l0={3: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 2, 3: 1} l1={-1: 2, 3: 2} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 2, 3: 1} l1={-3: 2, 1: 2} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 3, t = 1, w = 1:
+  murray line C: l0={3: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 1, 3: 2} l1={-1: 2, 3: 2} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 1, 3: 2} l1={-3: 2, 1: 2} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 3, t = 2, w = 0:
+  murray line C: l0={7: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 2, 3: 1} l1={-1: 2, 3: 2} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 1, 3: 2} l1={-3: 2, 1: 2} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 3, t = 2, w = 1:
+  murray line C: l0={7: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 1, 3: 2} l1={-1: 2, 3: 2} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 2, 3: 1} l1={-3: 2, 1: 2} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 5, t = -1, w = 0:
+  murray line C: l0={-5: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 3, 3: 2} l1={-1: 3, 3: 3} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 3, 3: 2} l1={-3: 3, 1: 3} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 5, t = -1, w = 1:
+  murray line C: l0={-5: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 2, 3: 3} l1={-1: 3, 3: 3} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 2, 3: 3} l1={-3: 3, 1: 3} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 5, t = 0, w = 0:
+  murray line C: l0={-1: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 3, 3: 2} l1={-1: 3, 3: 3} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 2, 3: 3} l1={-3: 3, 1: 3} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 5, t = 0, w = 1:
+  murray line C: l0={-1: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 2, 3: 3} l1={-1: 3, 3: 3} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 3, 3: 2} l1={-3: 3, 1: 3} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 5, t = 1, w = 0:
+  murray line C: l0={3: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 3, 3: 2} l1={-1: 3, 3: 3} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 3, 3: 2} l1={-3: 3, 1: 3} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 5, t = 1, w = 1:
+  murray line C: l0={3: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 2, 3: 3} l1={-1: 3, 3: 3} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 2, 3: 3} l1={-3: 3, 1: 3} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 5, t = 2, w = 0:
+  murray line C: l0={7: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 3, 3: 2} l1={-1: 3, 3: 3} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 2, 3: 3} l1={-3: 3, 1: 3} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 5, t = 2, w = 1:
+  murray line C: l0={7: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 2, 3: 3} l1={-1: 3, 3: 3} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 3, 3: 2} l1={-3: 3, 1: 3} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 7, t = -1, w = 0:
+  murray line C: l0={-5: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 4, 3: 3} l1={-1: 4, 3: 4} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 4, 3: 3} l1={-3: 4, 1: 4} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 7, t = -1, w = 1:
+  murray line C: l0={-5: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 3, 3: 4} l1={-1: 4, 3: 4} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 3, 3: 4} l1={-3: 4, 1: 4} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 7, t = 0, w = 0:
+  murray line C: l0={-1: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 4, 3: 3} l1={-1: 4, 3: 4} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 3, 3: 4} l1={-3: 4, 1: 4} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 7, t = 0, w = 1:
+  murray line C: l0={-1: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 3, 3: 4} l1={-1: 4, 3: 4} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 4, 3: 3} l1={-3: 4, 1: 4} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 7, t = 1, w = 0:
+  murray line C: l0={3: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 4, 3: 3} l1={-1: 4, 3: 4} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 4, 3: 3} l1={-3: 4, 1: 4} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 7, t = 1, w = 1:
+  murray line C: l0={3: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 3, 3: 4} l1={-1: 4, 3: 4} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 3, 3: 4} l1={-3: 4, 1: 4} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 7, t = 2, w = 0:
+  murray line C: l0={7: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 4, 3: 3} l1={-1: 4, 3: 4} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 3, 3: 4} l1={-3: 4, 1: 4} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+Murray Theorem 3, d = 7, t = 2, w = 1:
+  murray line C: l0={7: 1} l1={} | N={0: 1} | signed monomial: True
+  murray line A: l0={-1: 3, 3: 4} l1={-1: 4, 3: 4} | N={0: 1} | signed monomial: False
+  murray line B: l0={-1: 4, 3: 3} l1={-3: 4, 1: 4} | N={0: 1} | signed monomial: False
+  murray -> non-monomial shadow on lines ['A', 'B']
+DONE
+== promislow-definite-shadows-census.py
+md5 /scratch.global/sauer354/uc0/t00103/anc/census52.json 8f51cffbea19199424772e315aae0a94
+md5 /scratch.global/sauer354/uc0/t00103/anc/census_pairs.json 88d50831522fe612ef9412f27237bfb3
+rep 0 (orbit size 8): shadows {'C': 'monomial', 'A': 'NOT monomial', 'B': 'NOT monomial'}
+rep 1 (orbit size 8): shadows {'C': 'monomial', 'A': 'NOT monomial', 'B': 'NOT monomial'}
+rep 2 (orbit size 8): shadows {'C': 'monomial', 'A': 'NOT monomial', 'B': 'NOT monomial'}
+rep 3 (orbit size 8): shadows {'C': 'monomial', 'A': 'NOT monomial', 'B': 'NOT monomial'}
+rep 4 (orbit size 8): shadows {'C': 'monomial', 'A': 'NOT monomial', 'B': 'NOT monomial'}
+rep 5 (orbit size 8): shadows {'C': 'monomial', 'A': 'NOT monomial', 'B': 'NOT monomial'}
+rep 6 (orbit size 4): shadows {'C': 'monomial', 'A': 'NOT monomial', 'B': 'NOT monomial'}
+52 census units: non-monomial line patterns {('A', 'B'): 52}
+units with a non-monomial shadow on some definite line: 52 of 52
+DONE
