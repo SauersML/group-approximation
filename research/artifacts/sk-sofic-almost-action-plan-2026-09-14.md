@@ -78,9 +78,15 @@ transitive on nonzero vectors**. This holds, for example, when the generated alg
 - So the model is exact on balls, which is the gap regime (LEF).
 - **Not checked:** whether Theorem A's models on `2^V × V` have transitive image. Symmetries of `V_k` commuting with
   the `σ_k(s)` give proper subalgebras, as in the LEF case where `V = Q` is a group.
-- **Open piece (T5):** without transitivity, the argument gives only nested subspaces `T_r = span(Z ∩ P_r)`, where
-  `P_r` is the common fixed space of `K ∩ B_r`. For `|h| ≤ s`, `hT_(r+2s) ⊆ T_r`, and the relators of length `≤ r`
-  are exact on `T_r`. This is a partial action, not yet a local embedding.
+- **Transitivity removed for semisimple images (update, same day).** `orbitwise-gap-sofic-approximations-are-local-embeddings`
+  has three parts:
+  - *Theorem O:* orbitwise fixed-point gaps suffice for LEF.
+  - *Family (E):* `EL_n(𝒜)` and `GL_n(𝒜)` on `W^n`, with `𝒜` finite semisimple, have orbitwise gap `1/2`.
+  - *Corollary C:* Kazhdan cut-downs of such models certify only LEF groups.
+- **Open piece (T5), narrowed to image algebras with a radical.** Without semisimplicity the argument gives only
+  nested subspaces `T_r = span(Z ∩ P_r)`, where `P_r` is the common fixed space of `K ∩ B_r`. For `|h| ≤ s`,
+  `hT_(r+2s) ⊆ T_r`, and the relators of length `≤ r` are exact on `T_r`. This is a partial action, not yet a local
+  embedding.
 
 ## 3. Firewalls recorded
 
@@ -118,7 +124,16 @@ By R2′ and R2″, a sofic approximation of a non-LEF `G_Δ`, or of `EL_3(F_2[�
 
 ## 6. Credit and checks
 
-- R1 uses Whitehead's lemma and the half-line overgroup (sk-perfect-overgroup).
+- R1 item 2, including the product formula, is already on main as item 3 of
+  `perfect-groups-embed-in-crossed-product-elementary-groups`. R1 adds only item 1 and the consequence. The overgroup
+  is sk-perfect-overgroup's.
+- **Read at source on MSI (2026-09-14).**
+  - Arzhantseva–Păunescu, arXiv:1212.6780, `Lsofic_arxiv.tex`, verbatim: "Are all linear sofic groups indeed sofic?"
+  - Alekseev–Thom, arXiv:2608.05362v1, `main_final.tex` lines 121–127, verbatim: "Let G be a Kazhdan group. Suppose
+    that G admits a sofic embedding π:G→S_U such that the centralizer C(π(G)) acts ergodically on the associated
+    Loeb probability space. Then G is locally embeddable into finite groups."
+  - Their Open problems 6.1–6.2 (lines 1731–1760) do not ask for a finitely generated sofic non-LEF Kazhdan group.
+  - So T4 is partly done: no example was found in these sources.
 - R2 is the standard "almost invariant sets of Kazhdan actions are near invariant" argument (Cheeger form of (T)); no
   novelty is claimed. R2″ adds only the combination with transitivity and the gap theorem.
 - Not read at source: Ershov–Jaikin, Liebeck–Saxl, Kassabov (symmetric groups as expanders), Arzhantseva–Păunescu.
