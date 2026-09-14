@@ -40,6 +40,7 @@ theorem coord_apply (h : Δ) (x : LampSpace Δ) : coord Δ h x = x h :=
 on the coordinates in a finite set. -/
 theorem exists_finset_dependsOn {Y : Type*} (f : LocallyConstant (LampSpace Δ) Y) :
     ∃ I : Finset Δ, ∀ x y : LampSpace Δ, (∀ i ∈ I, x i = y i) → f x = f y := by
+  classical
   have hloc : ∀ x : LampSpace Δ, ∃ I : Finset Δ,
       ∀ y : LampSpace Δ, (∀ i ∈ I, y i = x i) → f y = f x := by
     intro x
