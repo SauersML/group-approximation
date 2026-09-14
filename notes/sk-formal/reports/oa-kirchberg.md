@@ -43,6 +43,18 @@ Grading plan for 660dd9b4b09f:
 - The sentence asserts the inference "not residually finite and Kazhdan, so it lacks the factorization property". That is carried by a closed endpoint over every group.
 - Thom's construction itself stays the typed input `ThomSoficKazhdanNonResiduallyFiniteInput`; it is not proved here.
 
+## CLOSED (09-14 09:2x): claim 2
+
+- LANDED 18e9583b4 (probe 0914-091945-38960, BUILT, 0 errors), wire-queued:
+  - `Manuscript/NinetyNineProblems/FactorizationPropertyClosed`:
+    - `not_hasFactorizationProperty_of_simple_infinite_kazhdan_closed`;
+    - `rankTwelveLeavitt_not_hasFactorizationProperty_closed` (closed, `#audit_closed_axioms`);
+    - `not_forall_sofic_hasFactorizationProperty_of_thom` and `not_forall_hyperlinear_hasFactorizationProperty_of_thom`, over Thom's input only.
+  - `Manuscript/SimpleKazhdanSofic/ThomFactorizationSentence`: `printedKazhdanNotResiduallyFiniteLacksFactorizationProperty` (closed, audited).
+- Row 660dd9b4b09f is landed as `attribution` with the carrier: Thom's construction is credit, and the asserted inference is carried.
+- All three rows are keyed by hash at census 649cb1f80/aa6f988f4; re-key when skf-census regenerates at f34e9c0b1.
+- Found, not built: `KazhdanQuasidiagonalTraces.KirchbergKazhdanQuasidiagonalInput` (Kazhdan + amenable canonical trace ⇒ quasidiagonal canonical trace) would close from Theorem 1.1 plus "residually finite ⇒ the canonical trace is a limit of finite permutation-representation traces", which is exactly multiplicative models.
+
 ## CLOSED (09-14 09:1x): Kirchberg's Theorem 1.1
 
 - LANDED 9df1daac4 (probe 0914-090640, BUILT; `#audit_closed_axioms` passes):
