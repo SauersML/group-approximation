@@ -75,6 +75,24 @@ merge; this lane owns A–C below.
 
 Ownership check (~18:50): the paths and names are free on origin, in the shared tree and in every `lanes/*.files`.
 
+## Item 3 (main ~20:15): `EnclosedLeastAreaFilterStatement`, with ms-inverses-1 helping
+
+The disc form `DiscDiagram.LeastArea.length_filter_mem_le` collapses the region through `IsDiscRegion`. A face set
+joined along a bridge has no disc region, and splitting along the bridge does not help: a filling of `X₁ t X₂ t⁻¹ X₃`
+does not split into fillings of the pieces with budgets that add, so the far-component route gives no bound.
+
+Route: thicken every bridge edge into a digon G-face. Use `FaceEdgeDoubling.diagram` on an inner face and
+`OuterSpurThickening.diagram` on the exterior; both are O-equivalent, keep the walk word and keep the enclosed cells.
+The bridge-free enclosed set is a pocket region, via `PocketRegion.ofNoncrossingClosedWalk` with hull-euler's
+`reclosed_euler`, and the disc form applies there.
+
+- CLAIM pieces and assembly `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedSubdiagramPieces.lean`:
+  `EnclosedBridgeDoublingStatement`, `EnclosedPocketRegionStatement`, `enclosedLeastAreaFilter_of_pieces`.
+- CLAIM bridge doubling `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoubling.lean`: the producer of
+  `EnclosedBridgeDoublingStatement`, by induction on bridge darts.
+- Proposed to ms-inverses-1 (~20:35, one message): `EnclosedPocketRegionStatement` (suggested path
+  `ClosedWalkEnclosedPocketRegion.lean`): noncrossing pocket walk, outer cycle follows, `sideFaces = faces`.
+
 ## Progress log
 
 - 17:16: ledger landed (677b7cf09).
@@ -130,6 +148,15 @@ Ownership check (~18:50): the paths and names are free on origin, in the shared 
 - Sent w1-binder-2 the landed names (its shared-construction proposal: `BridgeComponentMap`, the far component of a
   same-face bridge). For binder 2's pocket the far side is Ξ itself. For binder 3's island, deleting t isolates only the
   island, so the component serves `EnclosedLeastAreaFilterStatement` rather than Ξ.
+- **C LANDED 690bf92f2** (probe 0913-194445-40364 GREEN, BUILT; wire queued): `ClosedWalkIslandModel` (`planar`,
+  `diagram`, `pocketWalk_isClosedDartWalk`, `pocketWalk_not_isSimpleClosedWalk`, `invDarts_outerWalk`,
+  `islandFaces_no_common_edge`, `enclosedFaceSet`, `enclosedSubdiagram_realized`).
+- **B's two-part loop cut LANDED e783c654c** (probe 0913-195515-81283 GREEN, BUILT; the module was already queued):
+  `twoPartSectionCuts`, `twoPartSectionCuts_count`, `twoPartSectionCuts_side_short`, `OsinLoopCut.ofTwoPartBoundary`.
+- 20:15 resume after the API outage. The next item from main: this lane owns `EnclosedLeastAreaFilterStatement`, with
+  ms-inverses-1 helping by agreement; binder 3's enclosed route and w1-binder-6's Γ₁ carrier need it.
+- Heads-up from main (~19:55): w1-binder-6 builds the singular Γ₁ carrier for a full t₁ on the `EnclosedFaceSet`
+  modules; ms-inverses-1 may consume the loop cut for its excision rest.
 - Residual Props of item 2 (unowned producers): `ClosedWalkEnclosedSubdiagramStatement` (construction over a planar map
   along the walk; w1-binder-2's component map covers the far-side case), `EnclosedLeastAreaFilterStatement` (singular
   least-area bound), and the transport of regions to the arc (named once the component map lands).
