@@ -68,3 +68,19 @@ claim.
   - What `(DCM1)` needs in the language of `kazhdan-commutant-compression-stability-is-finitary`
     is rounding to genuine representations inside the nontrivial sector. Malcev replaces
     localization. See `research/artifacts/deligne-hs-metric-ladder-2026-09-13.md`, Section 3.
+- **Relocation to Mod(S_2) (2026-09-13, lane hl-nh-deligne-torus).**
+  - `deligne-triple-cover-is-a-torelli-scalar-quotient-of-mod-s2`: `H^2(Mod(S_2); Z/3) = 0`, so the
+    pullback of `E_3` to `Mod(S_2)` splits.
+  - This gives `E_3 = (Mod(S_2) x Z/3) / L_c` for an invariant Torelli character `c : I_2 -> Z/3`
+    that is nonzero on every finite-index part of `I_2`.
+  - `(DCM1)` fails iff `Mod(S_2)` has vanishing-defect almost representations in which finitely many
+    Torelli normal generators are almost scalar, with phases `zeta^(c(k_i))`.
+  - No finite-dimensional representation of `Mod(S_2)` does this exactly.
+  - The reformulation adds no rigidity by itself: a uniform lower bound on the Torelli-scalar defect
+    is the same terminal problem.
+- **Seeded descents, all relators (2026-09-13).**
+  - `research/artifacts/sp4-twist-descent-all-relator-evaluation-2026-09-13.md`: the `d = 20, 30, 40`
+    minima reach `0.3221`, `0.3249` and `0.3400` on all `304,412` relators.
+  - All three are above the exact abelian bar `0.306783`, so the sub-bar working-set values were
+    sampling artifacts.
+  - The instrument stays blind to large-block countermodels (`maslov-bounded-block-sector-gap`).
