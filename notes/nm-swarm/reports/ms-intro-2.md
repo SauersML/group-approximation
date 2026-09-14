@@ -314,6 +314,20 @@ CLAIM `OsinLemma94ContactMapSmallFacesInput` (under the binders of `OsinLemma94L
   - Total ≤ 3n + O(1).
   - Crux: the class-count lemma for a restriction of a connected planar map, proved by growth
     (`CombMapRestrictionGrowth`, as for `faceOf_eq_of_faceClass`).
+- **Refined crux (11:3x): Euler's formula with face classes.** For a nonempty first-return restriction N of a connected
+  planar map, V(N) − E(N) + R(N) = c(N) + 1. Here R(N) counts the face classes (`FaceClassStep`) meeting retained darts,
+  and c(N) counts the components. Each component is planar, so F_comb(N) = 2c − V + E, hence F_comb − R = c − 1 exactly:
+  the faces sharing classes are counted with no topology and no outer faces.
+  - Hand test, nested example: C₁ is the square (V 4, E 4, faces 2) and C₂ the path c–g–d (V 3, E 2, face 1). V − E = 1,
+    R = 2 (Γ_in, Γ_out), c = 2, and 1 + 2 = 3 = c + 1 ✓. F_comb − R = 3 − 2 = 1 = c − 1 ✓.
+  - Proof plan: downward induction on missing darts, as in `faceOf_eq_of_faceClass_aux`, growing N at a frontier vertex
+    (`exists_sigma_frontier`, `RestrictionGrowth.toCombMap`). V − E + R − c is unchanged in every case:
+    - a pendant new edge: V + 1, E + 1;
+    - an edge joining two components: E + 1, c − 1, and R is unchanged because the region's faces merge;
+    - an edge inside one component: E + 1 and R + 1, by separation (`faceOf_eq_of_grown`).
+  - At M itself V − E + F = 2, R = F (`facePerm_sameCycle_of_faceClass`) and c = 1.
+  - Planned modules: `CombMapRestrictionClassEuler` (general), then `Estimating/OsinLemma94ContactMapHoldingSmallFaces`
+    (part 1 from it).
 - Part 1, first brick: `CombMapRestrictionComponentFaceClasses` (attic, probing), with
   `PredicateRestriction.faceOf_eq_of_faceClass_of_componentOf`. Face classes of a planar map separate the faces of a
   first-return restriction inside one component.
