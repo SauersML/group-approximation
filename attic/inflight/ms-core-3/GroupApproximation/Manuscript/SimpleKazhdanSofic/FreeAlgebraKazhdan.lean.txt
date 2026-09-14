@@ -38,7 +38,8 @@ theorem isFinitelyGeneratedRing_freeAlgebra (ι : Type*) [Finite ι] :
     IsFinitelyGeneratedRing (FreeAlgebra (ZMod 2) ι) := by
   classical
   refine ⟨(Set.finite_range (FreeAlgebra.ι (ZMod 2) : ι → FreeAlgebra (ZMod 2) ι)).toFinset, ?_⟩
-  refine eq_top_iff.2 fun x _ => ?_
+  rw [eq_top_iff]
+  rintro x -
   induction x using FreeAlgebra.induction with
   | grade0 r =>
       rw [← ZMod.natCast_zmod_val r, map_natCast]
