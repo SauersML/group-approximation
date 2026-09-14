@@ -32,3 +32,24 @@ The easy direction holds: `G_X ≅ G_Y` gives `L(G_X) ≅ L(G_Y)`.
   this subalgebra intrinsically. Not attempted beyond this observation.
 - **Deformation/rigidity (Popa).** Named as the needed tool in `separable-factors-hold-countably-many-subshift-groups`.
   Not attempted.
+- **Outer automorphisms and corner embeddings (sk-vn-rigidity, 2026-09-14): partial invariants, unreviewed.**
+  - `subshift-group-factor-out-contains-z`: `Z ≤ Out(G_X) ≤ Out(L(G_X))`, via `diag(u^k,1,1)`, the half-orbit index, the
+    trivial centralizer of `G_X`, and Chifan–Ioana–Osin–Sun's ICC injectivity. `Out(L(G_X))` is an isomorphism invariant, and
+    computing it (`= Out(G_X)`?) would be the natural next invariant. Dies at the computation.
+  - `subshift-group-unitary-embeddings-are-corner-subfactors`: by character rigidity every homomorphism of `G_X` into a finite
+    von Neumann algebra is trivial plus regular, so `G_Y ≤ U(M)` iff `L(G_Y)` sits unitally in a corner of `M`. The countable-fibre
+    count then applies to corner subfactors. Dies at the same place as separability counting: it bounds fibres, it does not
+    identify groups.
+- **Commensurability degenerates for this family (sk-vn-rigidity).** An infinite simple group has no proper finite-index
+  subgroup, so two of the groups `G_X` are commensurable iff they are isomorphic, and a counterexample within the family
+  cannot come from commensurable non-isomorphic groups.
+  - Context: Zhou, arXiv:2608.02327 (abstract read at source 2026-09-14), constructs two non-isomorphic ICC property (T)
+    groups with isomorphic group von Neumann algebras, "a counterexample to Connes' rigidity conjecture for ICC property (T)
+    groups". Whether his groups are commensurable was not read at source.
+- **Deformation/rigidity has no entry point (sk-vn-rigidity, recalled, not read at source).**
+  - `G_X` is simple, so not SQ-universal and not acylindrically hyperbolic (Dahmani–Guirardel–Osin).
+  - It has property (T), so `H^1(G_X, π) = 0` for all `π`, and all its ℓ²-Betti numbers vanish
+    (`subshift-el-groups-vanishing-l2-betti-and-bounded-cohomology`, reviewed).
+  - It is not a wreath-like product, since those have a nontrivial abelian normal base, so the W*-superrigidity theorems of
+    Chifan–Ioana–Osin–Sun do not apply.
+  - Free entropy dimension is 1 for every property (T) factor (Jung–Shlyakhtenko), so it cannot separate the `L(G_X)`.
