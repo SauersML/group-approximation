@@ -247,6 +247,22 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
       `PocketRegion.listVal_outer_eq_one`; w1-binder-2's BridgeComponentValue is the component form);
     - then `OsinLoopCut.false_of_below`.
   - So no `sideFaces` monotonicity Prop is needed for Excision.
+- LANDED bbe90003a (probe 0913-194940-66027 GREEN, BUILT): `Estimating/OsinLemma94SameCellPocketEnclosed.lean`,
+  `osinLemma94CaseOneXPocket_of_enclosed (hloop : EnclosedSubdiagramLoopCutStatement) (hface :
+  EnclosedFaceSetOfNoncrossingStatement) (hspur : OsinLemma94CaseOneSpurStatement) : OsinLemma94CaseOneXPocketStatement`.
+  - A spur walk goes to `hspur`.
+  - Otherwise `pocketInputs_X` makes the walk noncrossing with a following complement cycle. A relator cell is inside
+    by `listVal_outer_eq_one` on `ofNoncrossingClosedWalk`, Π is off the side, B is a carrier arc and `invDarts X` is
+    short.
+  - The enclosed loop cut and `false_of_below` finish.
+  - This covers face bubbles, cell pinches, touches and simple walks at once. Under `hout`, cutting-path islands are
+    spur walks.
+- CLAIM `EnclosedFaceSetOfNoncrossingStatement` (combinatorial):
+  - nodup, chain and closes by reversing the walk;
+  - mem_iff from `IsNoncrossingClosedWalk.outerCycle` `cycle_mem_iff`;
+  - turn_mem from `BoundaryCycle.boundaryWalk_next` on the following outer cycle, where internal darts are off the walk
+    edges.
+  - Module: `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedNoncrossing.lean`.
 - Excision route check (before any Prop): `sideFaces` crosses every non-walk edge. Removing the lobe's edges can join a
   pocket face to f, and so to the exterior, when the walk crosses at the lobe vertex. So "the exterior stays off the side"
   needs a noncrossing walk. `SameCellPocketNoncrossing.pocketInputs_X` (on origin) gives noncrossing only at s = x with no
