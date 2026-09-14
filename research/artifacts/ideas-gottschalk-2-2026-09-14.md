@@ -189,6 +189,23 @@ Each entry gives the mechanism, the kill test, and the verdict.
   - Soficity of locally-finite-by-sofic extensions is open in general.
   - So a decision needs structure specific to `Γ_5`.
 - **Verdict. SURVIVES.** It decides the team's top lead either way.
+- **Update after landing (main `df573f076`).** Lane `gk3-transvections` landed 2253e8c8d.
+  - `five-transvection-group-acts-on-jacobson-half-line`: all of `Γ_5` acts on `V = span{σ 0^n 1^∞}` through
+    `Γ_V <= GL_2(J_(F_3))`, keeping the eight defect elements distinct.
+  - The OPEN refuter `jacobson-image-of-five-transvection-group-is-sofic`, with route
+    `weakly-finite-nonzero-defect-via-sofic-jacobson-image`.
+  - So I15 is now that claim. Two shortcuts I checked fail:
+    - **Stable finiteness from extension theorems.** `Γ_V` is locally finite by a finitely generated linear, hence
+      residually finite, group. The route only consumes stable finiteness of `F_3[Γ_V]`. But the only extension
+      theorem recorded on main in the right direction is Berlai, arXiv:1501.02893: {finitely generated residually
+      finite}-by-sofic, taken from the abstract in `direct-finiteness-charp-census-2026-09-13.md`. That needs a
+      finitely generated kernel, and `Γ_V ∩ (I + M_2(M_∞(F_3)))` is locally finite and not finitely generated. Nothing
+      on main covers locally-finite-by-residually-finite.
+    - **Rank-metric compressions.** Compress each generator to `[0, M)` in both copies. Relations of length `ℓ` then
+      fail only on `O(ℓ)` dimensions, so the rank ultraproduct `∏_ω M_(2M)(F_3) / (rank-null)` receives a genuine
+      homomorphism of `Γ_5` with `z -> -1`, and that ring is stably finite. But `x_23(1) - 1 = diag(0, S e)` has rank 1,
+      so its image is 0 and the defect dies. Any model built from finite-propagation compressions kills the finitary
+      kernel. A refuter needs models where the corner `e = E_00` recurs at a positive fraction of sites.
 
 ## 3. Executed survivors
 
@@ -228,11 +245,19 @@ Each entry gives the mechanism, the kill test, and the verdict.
 
 ## 4. Ranked survivors and the next deep lane
 
-1. **I15:** decide soficity of `Γ_4` and `Γ_5`. This is on the critical path of the ternary Leavitt root, which would
-   refute Gottschalk.
+1. **I15:** `jacobson-image-of-five-transvection-group-is-sofic` (gk3-transvections, 2253e8c8d). This is on the
+   critical path of the ternary Leavitt root, which would refute Gottschalk.
+   - Needed: approximations in which the corner `E_00` of the half-line recurs at a positive fraction of sites.
+     Compressions fail (Section 2, I15 update).
+   - Or an extension theorem for locally-finite-by-residually-finite groups, over `F_3`.
 2. **I5:** the nonlinear relation between Gottschalk and dual surjunctivity. Does a strict pair yield a post-surjective,
    non-pre-injective automaton on the same group or on `G × Z`?
 3. **I4:** hotel synthesis on the Leavitt hosts and on V. Compute arrow fields from data along the Cantor action, and
    find where the defects can be absorbed.
 
-**Single best next deep lane: I15.** Its answer either refutes the team's top lead or feeds it.
+Overlap notes from later landings:
+- `gk3-rokhlin-tester` (c76d0e0d3) lands `rokhlin-permanence-toolkit-certifies-only-sofic-groups`, which also subsumes I3.
+- `gk3-nonrf-hosts` (66d66e575) kills the linear route on Higman's group.
+
+**Single best next deep lane: I15.** Coordinate with gk3-transvections, which owns the claim. The best independent
+lane from this list is I5.
