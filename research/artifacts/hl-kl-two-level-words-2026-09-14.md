@@ -224,8 +224,11 @@ No tool here reaches them. Next handles, not run:
 - apply the theorem to `w` substituted by `t -> x t y`. This conjugates
   sign-change coefficients but moves same-sign coefficients, and can destroy
   inverse palindromes whose middle is a same-sign coefficient;
-- compare the canonical cuts of `w` and of its time-reversed conjugate
-  `(w(t^(-1)))^(-1)`, which exempt different bottom runs.
+- apply the theorem to the time reversal `(w(t^(-1)))^(-1)`, which has the
+  same normal closure up to the automorphism `t -> t^(-1)`. Its heights are
+  `h_n - h_j` in reversed order, so its bottom marks are the top marks of `w`
+  and vice versa. Its exempt final run is therefore a run of top marks of `w`,
+  not a bottom run. How the two cuts combine was not worked out.
 
 **G2.** Beyond two levels, the general square system of `hl-howie-systems`
 remains, but the theorem applies to any word directly, whatever its level
