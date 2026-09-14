@@ -1,0 +1,22 @@
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+1eaa621c896b73cee8a4b2294b820deb  certs.g
+6205eddb1300a32cfab5a284a88891da  open16_targets.g
+86266fbc645ab4ebcfdc58cb94cbacc3  tc_verify.py
+67ce40e2058a4a1625e7b67085afaa7c  verify_certs.py
+ac4c3b73a89c33307e3f3ffd2f638d9b  joinlines.py
+OPEN classes: 1
+796dbcab5923580199cef79a545b8663  open16_in.txt
+=== GAP follow-up verdicts
+      1 FINITE
+137426 17 XXYXYxxy XYYYYXyXy FINITE n=5322240 ms=881135
+=== second enumerator
+      1 OVERFLOW
+=== certificates
+nontrivial verdicts: 1
+certificate lines: 1, FAIL lines: 0
+PASS 1 FAIL 0
+verify exit 0
+c9c0b48bf8eeb6a9fb3e88a19e8dcbb1  open16_out.txt
+a8f795ebed80773e6a6d06c1b12b7f54  open16_tc.txt
+571d7c02d04b2767939d7c17cff70fc7  open16_certs_joined.txt
+DONE

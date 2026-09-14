@@ -1,0 +1,67 @@
+9786cefeb2dfe1e43ec47e92963d64ed  join16.py
+ac4c3b73a89c33307e3f3ffd2f638d9b  joinlines.py
+1eaa621c896b73cee8a4b2294b820deb  certs.g
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+67ce40e2058a4a1625e7b67085afaa7c  verify_certs.py
+513a2eade167acfdf730d51631b51139  census_L1617.txt
+part_00 in=3932 gap=3932 tc=3932
+part_01 in=3932 gap=3932 tc=3932
+part_02 in=3932 gap=3932 tc=3932
+part_03 in=3932 gap=3932 tc=3932
+part_04 in=3932 gap=3932 tc=3932
+part_05 in=3932 gap=3932 tc=3932
+part_06 in=3932 gap=3932 tc=3932
+part_07 in=3932 gap=3932 tc=3932
+part_08 in=3932 gap=3932 tc=3932
+part_09 in=3932 gap=3932 tc=3932
+part_10 in=3932 gap=3932 tc=3932
+part_11 in=3932 gap=3932 tc=3932
+part_12 in=3932 gap=3932 tc=3932
+part_13 in=3932 gap=3932 tc=3932
+part_14 in=3932 gap=3932 tc=3932
+part_15 in=3932 gap=3932 tc=3932
+part_16 in=3932 gap=3932 tc=3932
+part_17 in=3932 gap=3932 tc=3932
+part_18 in=3932 gap=3932 tc=3932
+part_19 in=3932 gap=3932 tc=3932
+part_20 in=3932 gap=3932 tc=3932
+part_21 in=3932 gap=3932 tc=3932
+part_22 in=3932 gap=3932 tc=3932
+part_23 in=3932 gap=3932 tc=3932
+part_24 in=3932 gap=3932 tc=3932
+part_25 in=3932 gap=3932 tc=3932
+part_26 in=3932 gap=3932 tc=3932
+part_27 in=3932 gap=3932 tc=3932
+part_28 in=3932 gap=3932 tc=3932
+part_29 in=3932 gap=3932 tc=3932
+part_30 in=3932 gap=3932 tc=3932
+part_31 in=3931 gap=3931 tc=3931
+part_32 in=3931 gap=3931 tc=3931
+part_33 in=3931 gap=3931 tc=3931
+part_34 in=3931 gap=3931 tc=3931
+part_35 in=3931 gap=3931 tc=3931
+part_36 in=3931 gap=3931 tc=3931
+part_37 in=3931 gap=3931 tc=3931
+part_38 in=3931 gap=3931 tc=3931
+part_39 in=3931 gap=3931 tc=3931
+=== GAP verdicts
+    174 FINITE
+      1 OPEN
+     20 QUOTIENT
+ 157076 TRIVIAL
+=== tc verdicts
+ 157250 ORDER
+     21 OVERFLOW
+=== join
+census 157271 gap 157271 tc 157271 gap-dups 0 tc-dups 0 gap-extra 0 tc-extra 0
+{'agree-closed': 157250, 'agree-not-closed': 21}
+JOIN CLEAN budget-differences 0
+=== certificates
+nontrivial verdicts: 194
+certificate lines: 194, FAIL lines: 0
+PASS 194 FAIL 0
+verify exit 0
+b4ff71db443a86de48eea945d8019edb  results16_all.txt
+6d14311bda90c44a11a85575ab0fce18  tc16_all.txt
+e37e2952c7378d1ebb7cb915c3daf26b  certs16_joined.txt
+DONE

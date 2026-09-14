@@ -7,9 +7,11 @@ Lane hl-balanced-census-16. Extends `research/artifacts/balanced-kervaire-search
 `deficiency-zero-kervaire-failure-yields-whitehead-counterexample`, a witness would also give a
 finite Whitehead counterexample.
 
-**Status: IN PROGRESS.** This version records the pipeline, the new recount and both calibrations.
-The L = 16, 17 census and classification jobs are still running (section 4). No new claim is made
-here yet, and `two-generator-balanced-kervaire-failures-need-length-16` is unchanged.
+**Status: COMPLETE, unreviewed.** Every class of total length 16 or 17 is trivial or has a verified
+nontrivial finite quotient, so there is no survivor and no candidate. This lands
+`two-generator-balanced-kervaire-failures-need-length-18` (ESTABLISHED, unreviewed) through
+`two-generator-balanced-kervaire-census-to-length-17-proof`.
+`two-generator-balanced-kervaire-failures-need-length-16` is unchanged.
 
 ## 1. Pipeline
 
@@ -164,22 +166,79 @@ of index 7 or 8 exists.
 
 **The one `OPEN` class.** 137426, L = 17, `r1 = XXYXYxxy`, `r2 = XYYYYXyXy`. The exponent sums
 are (-1,-1) and (-3,-2), so `det = -1`. The first pass could not decide it: 200000 cosets, index
-at most 8 and 15 simple targets all failed. The follow-up `open16.sbatch` (MSI job 781682) is
-running on it.
+at most 8 and 15 simple targets all failed. The follow-up of section 7 finds it finite of order
+5322240.
 
-These verdicts come from the first enumerator only. The second enumerator (array 778225), the join
-and the certificate check (job 778226) are still running.
+## 6. Second enumerator and join (array 778225, job 778226; `tc16.778225.logs.txt`, `cert16.778226.log`)
 
-## 6. Jobs in flight (MSI, `/scratch.global/sauer354/hl-balanced-census-16/`)
+- `tc_verify.py` (unchanged), limit 200000, on all 157271 classes: 157250 `ORDER` and 21
+  `OVERFLOW`.
+- `join16.py`:
+  - 157271 ids in each output, 0 duplicates, 0 extra;
+  - agree-closed 157250: the 157076 trivial and 174 finite classes, with equal orders;
+  - agree-not-closed 21: the 20 `QUOTIENT` classes and class 137426;
+  - 0 contradictions, 0 budget differences, `JOIN CLEAN`.
+- Merged outputs stay on MSI, not landed: `results16_all.txt` `b4ff71db443a86de48eea945d8019edb`,
+  `tc16_all.txt` `6d14311bda90c44a11a85575ab0fce18`.
 
-A dependency chain, one modest job or a 4-task-throttled array at a time:
-1. 775702 `census17.sbatch`: done (section 4).
-2. 778223 `prep16.sbatch`: done (section 4).
-3. 778224 `classify16.sbatch`: done (section 5).
-4. 778225 `tc16.sbatch` (array, after 778224): `tc_verify.py` on every L = 16, 17 class.
-5. 778226 `cert16.sbatch` (after 778225): merge, join, certificate export and letter-by-letter
-   verification.
-6. 781682 `open16.sbatch` (after 778224): the follow-up on class 137426.
+## 7. Follow-up on class 137426 (MSI job 781682, 30 min 57 s; `open16.781682.log`)
 
-Results, any certified extension of the length bound, and any `OPEN` candidates will be added in
-the next version of this artifact.
+- GAP `Classify` (unchanged) with 20000000 cosets returns `FINITE n=5322240` in 881 s. So
+  `<x, y | XXYXYxxy, XYYYYXyXy>` presents a perfect group of order 5322240.
+- `tc_verify.py` with limit 5000000 returns `OVERFLOW`, as it must: the order exceeds the limit.
+  Only GAP closed this table, so for this class the conclusion rests on the certificate of section 8,
+  not on agreement between enumerators.
+- Observation, not a claim: `5322240 = 2^9 * 3^3 * 5 * 7 * 11 = 12 * 443520`, and 443520 is the order
+  of the Mathieu group M22. The group was not identified here.
+- Files: `open16_in.txt` `796dbcab5923580199cef79a545b8663`, `open16_out.txt`
+  `c9c0b48bf8eeb6a9fb3e88a19e8dcbb1` and `open16_tc.txt` `a8f795ebed80773e6a6d06c1b12b7f54`
+  are landed. The degree-5322240 certificate `open16_certs_joined.txt` (83 MB, md5
+  `571d7c02d04b2767939d7c17cff70fc7`) stays on MSI and is reproducible with `open16.sbatch`.
+
+## 8. Certificates
+
+`certs.g` (unchanged) exports a permutation representation for each nontrivial class: the regular
+action for the finite ones, and the action on the cosets of the low-index subgroup for the
+`QUOTIENT` ones. `verify_certs.py` (unchanged) evaluates both relators letter by letter at every
+point and checks that some generator moves a point.
+- First pass, L = 16 and 17 (job 778226): 194 nontrivial verdicts, 194 certificate lines, 0 `FAIL`,
+  `PASS 194 FAIL 0`. The degrees are 7 (9 classes), 8 (11), 120 (168) and 336 (6).
+  `certs16_joined.txt` (md5 `e37e2952c7378d1ebb7cb915c3daf26b`) is landed.
+- Class 137426 (job 781682): one certificate of degree 5322240, `PASS 1 FAIL 0`.
+
+## 9. Conclusion and exact gap
+
+All 157271 classes of total length 16 or 17 are settled:
+- 157076 trivial, with both enumerators agreeing;
+- 195 with a verified nontrivial permutation representation: 168 of order 120, 6 of order 336, one
+  of order 5322240, and 20 with a quotient of degree 7 or 8.
+
+With the certified L <= 15 census that makes 181842 classes. No class survives, so there is no
+candidate and no killing test to run. This lands `two-generator-balanced-kervaire-failures-need-length-18`.
+
+Exact gap:
+- **Two generators, total length 18 and up.** The counts grow about 7.4-fold every two lengths
+  (4070 → 29929, 17021 → 127342), so expect about 220000 classes at L = 18 and 950000 at L = 19.
+  - L = 18 is within reach of these scripts; the census keeps all words of length 17, about 12 GB.
+  - L = 19 needs a streaming census.
+  - Undecided classes will increasingly need large budgets, as class 137426 needed 5322240 cosets.
+- **Three or more generators.** Not touched.
+- **Where a witness must live.** Up to total length 17 in two generators, trivial abelianization
+  always forces the group to be trivial, finite, or to have a subgroup of index at most 8. A
+  witness needs a superperfect group with no finite quotient, which these lengths do not produce.
+- **No certified candidate** exists anywhere yet.
+
+## 10. Jobs (MSI, `/scratch.global/sauer354/hl-balanced-census-16/`)
+
+All completed:
+- 775702 census;
+- 777175 recount calibration;
+- 778223 prep and recount;
+- 778224 GAP array;
+- 778225 HLT array;
+- 778226 join and certificates;
+- 779885 target check;
+- 781682 follow-up on 137426.
+
+A second follow-up (`open2.g`, cyclic-subgroup enumeration) was written but never submitted: its
+upload failed during an MSI drop, and the first follow-up already settled the class.
