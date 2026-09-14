@@ -58,3 +58,10 @@ after amplification? Unitary tuples have roots by Gerstenhaber--Rothaus
 (`kervaire-laudenbach-holds-for-hyperlinear`), but whether some root is etale
 is not known here. The approximate, rank-metric premise is not reduced by
 this argument.
+
+**Update (2026-09-14).** The question above has answer no.
+`etale-roots-lie-in-the-bicommutant-of-the-constants` shows that an etale root
+commutes with the commutant of the constants, so etale roots never need
+amplification. It also shows that the semisimple tuple `(diag(2, 1), 1)` with the
+caution word has no etale root at any amplification, while the caution tuple
+itself does have one.
