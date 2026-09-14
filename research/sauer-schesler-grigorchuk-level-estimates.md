@@ -19,3 +19,9 @@ Then:
 5. `𝒢_n` acts transitively on `X_n`.
 
 Route: `sauer-schesler-grigorchuk-level-estimates-citation`. Consumer: `el-small-ball-generating-sets-from-grigorchuk-levels`.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14.md`):**
+  - All five items match arXiv:2605.30163 §2 (l.567–711, proof of `thm: the W group is V`, l.488) and arXiv:2606.15945 (l.341–463), read at source on MSI.
+  - The transfer steps are re-derived by hand: ball criterion, fixation transfer for n ≥ 6, St(ρ_n) = St(η_n), the separation 2^{n−3} for n ≥ 4, and level transitivity.
+  - Still imports: Grigorchuk 1984, Bartholdi–Erschler Prop 4.4 / Lemma 4.9, BGŠ Cor 2.5 (nucleus), BHG Appendix A2 (two-point homogeneity).
