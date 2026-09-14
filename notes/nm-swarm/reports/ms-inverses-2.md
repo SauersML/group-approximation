@@ -320,6 +320,41 @@ ms-inverses-4 is not resumed. Its claim (2647cc6ce, revised 3c646c697) passes to
   - every joint of the section pocket walk and of the cell pocket walk is a region boundary step (free sector) or a face step (free
     stretch back);
   - closed discharges of `SectionPocketWalkNoninterleavingStatement` and `CellPocketWalkNoninterleavingStatement`.
+- CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkNoninterleavingJoints.lean: the cell half, split off so a failure
+  in one proof does not block the other. The section half stays in `OsinPocketWalkNoninterleavingJoints`.
+- 23:2x LANDED 2816ef630: `PassagesNoninterleaving` on positions (probe 0913-214214-80171 GREEN).
+- 23:3x LANDED 418b3c026: `NoncrossingClosedWalkSectorNoninterleaving` (probe 0913-232715-30986 GREEN), unwired, queued.
+- Calibrations `NoncrossingClosedWalkEulerNoninterleavingModels`: the first probe 0913-231926-98884 was RED.
+  - Cause: `decide` saw free `Fin` proofs after `interval_cases`.
+  - Fixed with `fin_cases`; re-probing.
+- 23:45 re-probe 0913-234547-8879 RED on the linter: two one-case `interval_cases b <;> decide`. Fixed with `obtain rfl : b = 1`.
+- 23:5x the joints co-probe did not run: the probe's `git fetch` failed on DNS. From ~23:55 github.com does not resolve and the MSI master
+  socket is gone. A watcher lands and probes once both return.
+
+### Stage 2 design (authored during the outage)
+
+The vertex count at a vertex `v` reduces to chord combinatorics.
+- Rotation at `v` meets the passage endpoints alternately: after a reversed walk dart `α d` comes an arc of darts internal to the inner
+  side, then a walk dart, then an arc internal to the outer side.
+  - Reason: `faceOf (σ x) = faceOf (α x)`, and faces change side only across walk edges.
+- The inner reclosing's rotation follows `σ`, except that at `α d` it jumps to `next d`. The outer reclosing's rotation follows `σ`,
+  except that at a walk dart `e` it jumps to `α (prev e)`. Both preserve the old vertex.
+- Label the endpoints `α_1 e_1 … α_k e_k` in rotation order and let the passages match `α_j` with `e_{m(j)}`.
+  - Inner orbits at `v` are the cycles of `m ∘ ρ`; outer orbits are the cycles of `m⁻¹`; here `ρ` is `j ↦ j+1`.
+  - The count needed is `c(m ∘ ρ) + c(m⁻¹) ≥ k + 1`. It holds with equality exactly when the chords do not cross. The rose `[0,2,4]` has
+    k = 3 and a count of 2, which is the torus.
+
+Narrowed residual, enough for both pocket walks:
+- `SectorFreeVertexCountStatement`: every passage has a free sector (`PassageSectorFree w[i] w[i+1]`) ⇒ `V + |w| ≤ V_in + V_out`. It
+  is weaker than `NoninterleavingVertexCountStatement`, and the joints modules produce its hypothesis directly.
+- Under that hypothesis every passage is short (`m(j) = j`) or adjacent (`m(j) = j − 1`). Since `m` is a bijection, all passages at `v`
+  are of one kind.
+  - All short: 1 inner orbit, and k outer orbits, each {α_j, inner arc, e_j} with one walk dart.
+  - All adjacent: k inner orbits, each {e_j, outer arc, α_{j+1}}, and 1 outer orbit.
+  - Untouched vertex: one orbit, on the reclosing of the side it does not lie in.
+- Lean route: classifiers by first hit of rotation, as in hull-euler's `innerVertexClass`, restricted by vertex kind through
+  `CombMap.card_orbit_subtypePerm_add`. At short vertices the inner rotation is the first return of `σ`, and at adjacent vertices the outer
+  rotation is (`PermFirstReturn`). The other side is classified by the unique walk dart in each orbit.
 
 ## Progress log
 
