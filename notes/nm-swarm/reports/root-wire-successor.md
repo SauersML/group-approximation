@@ -378,6 +378,19 @@ Main's ruling on the 24 ambiguous green tops:
 Wave 24 draft, 24 modules: the 8 confirmed tops, the 15 restore-tree tops, and `FaceSetBoundaryGlue`. That file was a
 restore-tree file with no owner, so ms-traces-1's successor fix at bf1aeff09 makes it ours. It launches after wave 23
 lands.
+- The joint pre-flight of waves 23 and 24 at 82916080d found a landing hazard: the infra `dupcheck.py`, which
+  `nmwire.sh` runs before each push, predicted a collision named `of`.
+  - It was docstring prose in `Analysis/CStarMaxTensorExact` ("structure of the *maximal* completion").
+  - Unfixed, wave 24 would have built ROOT GREEN and then been REFUSED at landing.
+- `dupcheck.py` patched at ~09:25, backup `dupcheck.py.orig-0914`: lines inside `/- … -/` block comments and `--`
+  line comments are skipped, as in `rwprep.py`.
+  - The patched file was compile-checked and swapped in with an atomic rename, so a landing check by wave 23's
+    `nmwire.sh` cannot read a half-written file.
+- `BridgeComponentValue`'s unwired importers, `GGT.VanKampen.DiscDiagramOfPlanarRestrict` and
+  `Estimating.OsinUnboundSameCellPocketCellFree` (w1-binder-5 BUILT 0914-083201-34888), are gate-OK and join wave 24:
+  26 modules.
+- Joint pre-flight with wave 23 at fffd77d7e: 84 newly reachable files (closure 6937 → 7021), 0 blocking lines;
+  patched landing dupcheck: 0 collisions; `BridgeComponentValue` reached.
 
 ## Wave 23, launched 09-14 ~09:17
 
