@@ -26,3 +26,16 @@ to finite input changes.
 **Consequence.** With the conversion claim this gives
 `dual-surjunctive-groups-are-surjunctive`. Over any dual surjunctive group,
 including every sofic group, no strict pair has a post-surjective decoder.
+
+**Reduction (2026-09-14, gk3-post-surjective-decoders).**
+- **Where the difficulty really is.** `decoders-lift-changes-away-from-infinite-defect-chains` narrows
+  it further. Every decoder is a retraction onto `Y` read through the encoder, and every retraction
+  lifts a finite change by overwriting the finite defect components touching it. So only changes
+  adjacent to an infinite adjacency component of the defect set need the free rule. The sparse
+  configurations of (e) are not an obstruction by themselves.
+- **Two routes are dead.**
+  - Conjugate full shifts of unequal size would give a post-surjective decoder, but they never exist
+    (`full-shifts-with-different-alphabets-are-not-conjugate`).
+  - Affine decoders exist exactly when direct finiteness fails
+    (`disjoint-footprint-decoders-force-kaplansky-failure`).
+- **Artifact.** `research/artifacts/gk3-post-surjective-decoders-2026-09-14.md`.
