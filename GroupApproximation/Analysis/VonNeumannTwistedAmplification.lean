@@ -170,9 +170,9 @@ theorem twistedShiftOperator_apply (g : Γ) (f : VecHilbert Γ H) (h : Γ) :
 /-- The adjoint of a twisted translation is its inverse. -/
 theorem star_twistedShiftOperator [CompleteSpace H] (g : Γ) :
     star (twistedShiftOperator (H := H) σ g) =
-      ((twistedShift σ g).symm : VecHilbert Γ H →L[ℂ] VecHilbert Γ H) := by
+      ((twistedShift (H := H) σ g).symm : VecHilbert Γ H →L[ℂ] VecHilbert Γ H) := by
   rw [ContinuousLinearMap.star_eq_adjoint]
-  exact LinearIsometryEquiv.adjoint_eq_symm (twistedShift σ g)
+  exact LinearIsometryEquiv.adjoint_eq_symm (twistedShift (H := H) σ g)
 
 end Shift
 
@@ -376,7 +376,7 @@ theorem unitaryAmp_injective (M : VonNeumannAlgebra H) (σ : Γ → Γ → ZMod 
   intro U V hUV
   apply Subtype.ext
   apply Subtype.ext
-  apply ampOperator_injective (H := H) Γ
+  apply ampOperator_injective (H := H) (α := Γ)
   rw [← coe_unitaryAmp M σ U, ← coe_unitaryAmp M σ V, hUV]
 
 end Tensor
