@@ -1,0 +1,21 @@
+(1) relator signs of the four twisted models
+   class (e1,e2)=(0,0): r1~ = +1, r2~ = +1
+   class (e1,e2)=(0,1): r1~ = +1, r2~ = -1
+   class (e1,e2)=(1,0): r1~ = -1, r2~ = +1
+   class (e1,e2)=(1,1): r1~ = -1, r2~ = -1
+(2) homomorphisms P -> D(Z)^x on the box |m| <= 3
+   solutions per family: {'RR': 4, 'RF': 196, 'FR': 196, 'FF': 196} - all RF/FR/FF are e o shadow; RR images are +-1
+(3) rigidity of D(Z)^x
+   no h, k with |m| <= 4 satisfy k h^2 k^-1 = -h^-2
+(4) zeta_8 witnesses in D(Z[zeta_8])
+   class (0,0): a -> zeta^0 u, b -> -zeta^0 t^-1 u gives r1~ = zeta^0, r2~ = zeta^0
+   class (0,1): a -> zeta^0 u, b -> -zeta^1 t^-1 u gives r1~ = zeta^0, r2~ = zeta^4
+   class (1,0): a -> zeta^1 u, b -> -zeta^0 t^-1 u gives r1~ = zeta^4, r2~ = zeta^0
+   class (1,1): a -> zeta^1 u, b -> -zeta^1 t^-1 u gives r1~ = zeta^4, r2~ = zeta^4
+   h = zeta_8 u: h^2 = -h^-2, so k = 1 solves k h^2 k^-1 = -h^-2
+(5) 1 + (1-a)b(1+a) is a unit of Z[D_inf] with support 5
+DONE
+
+real	0m0.356s
+user	0m0.308s
+sys	0m0.005s
