@@ -198,3 +198,17 @@ out of `MatricialEndpoints`, which now holds only `printedPeriodicMatricialState
 Probe after step 2 finishes.
 - Step 2 re-probe after two fixes: `RingHom.map_closure`, and dropping the unused "eventually nonzero" clause from
   `AsymptoticModels`, since the tip's route gets nontriviality from the ultraproduct kernel.
+- 09:0x step 2 LANDED on real BUILT lines, with clean axioms:
+  - FiniteModelsAsymptotic 53bc26431 (probe 0914-084921-6784);
+  - PeriodicMatrixUnits + MatricialMarkedLimitEndpoint 4d1ec38cf (probe 0914-085418-11178);
+  - SubshiftMatricial 88e392873 (probe 0914-090006-2838).
+- 09:1x step 3 LANDED MatricialEndpoints a1c4c8ca5 (probe 0914-090512-83787). **Both residual pieces of thm:general and thm:main are closed:**
+  `printedMatricialMarkedLimitStatement` (4d1ec38cf) and `printedPeriodicMatricialStatement` (a1c4c8ca5). Every module is queued for
+  wiring; ct-two-ended and main were told.
+- The note moved to f34e9c0b1 (09:05); the census is still at 696c4b602. Rows were keyed only for sentences verified at the tip.
+  - Proof of thm:main rows added: 879174153d4e, 1dd960096ceb, 6c900cb94747, 769f446cc3f5 formalized; 46b4acb4ea4f, fca8bece2919 definition;
+    b596b717a720 partial. The absorbed a62656a98556 is upgraded to formalized.
+  - Changed at the tip, to re-key at the next census:
+    - skipped: ;
+    - my landed rows: ;
+    - absorbed rows: .
