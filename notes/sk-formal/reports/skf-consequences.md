@@ -53,6 +53,11 @@ sk-lef-action keeps the crossed product, the generation and the finite models.
 
 CLAIM LEF section, proof of cor:lef/cor:host: lamplighter minimality, topological freeness, simplicity of G_Δ GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterSimplicity.lean
 
+Split sent to sk-lef-action (one message, 09-14 ~08:56). It keeps the crossed product, LamplighterAction (`isMinimal` and `isTopologicallyFree` were already landed at 407f74f33), LamplighterRing, the finite models, and the host's other IsLEFHost clauses.
+
+- 31f62584d: LamplighterSimplicity (BUILT, probe 0914-085834-30680), queued for wiring. It proves `Lamplighter.isSimpleGroup_lampRing`: EL_n(LampRing Δ) is simple for infinite Δ and n ≥ 3, by `General.isSimpleGroup_clopenGroupCrossedProduct` with `isMinimal`, `isTopologicallyFree`, and Mathlib's instances on Δ → ZMod 2. The closed endpoint is `printedLamplighterHostSimple`.
+- Census row 358e51e6a815 (l.419, the simplicity clause of "By Theorem thm:general, G_Δ … is … simple"), status partial: the other clauses are sk-lef-action's.
+
 ## INFRA READY 09-14 (new NM at this session's scratchpad; clone ring-b-end)
 
 - Main's rulings:
