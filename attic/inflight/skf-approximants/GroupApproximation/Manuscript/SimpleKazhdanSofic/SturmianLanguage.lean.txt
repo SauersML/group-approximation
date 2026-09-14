@@ -32,7 +32,7 @@ namespace SimpleKazhdanSofic
 open SymbolicDynamics SymbolicDynamics.FullShift
 
 /-- `c(θ)_t = 1` exactly on the arc `[-(t+1)α, -tα)` modulo `1`. -/
-theorem sturmianCoding_eq_true_iff_arc (α θ : ℝ) (hα0 : 0 < α) (hα1 : α < 1) (t : ℤ) :
+theorem sturmianCoding_eq_true_iff_arc (α θ : ℝ) (_hα0 : 0 < α) (hα1 : α < 1) (t : ℤ) :
     sturmianCoding α θ t = true ↔
       ∃ z : ℤ, -(((t : ℝ) + 1) * α) + (z : ℝ) ≤ θ ∧ θ < -((t : ℝ) * α) + (z : ℝ) := by
   rw [sturmianCoding_apply, decide_eq_true_eq]
