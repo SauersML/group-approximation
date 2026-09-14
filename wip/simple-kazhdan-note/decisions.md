@@ -470,6 +470,13 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - ADOPT P2: Rauzy IJAC 35 (2025) Prop 26 credit for the no-decidable-host argument.
     - CAUTION: continuum many nonisomorphic (T) group factors are known (Chifan–Ioana–Osin–Sun Cor 2.7). The new part of P1 is R^ω-embeddability; cite CIOS only after a source check.
     - Not answered: Alekseev–Thom 6.1, CFKP Questions 5.1–5.3, Bishop–Schesler 1.1.
+102. **sk-verify-11** (5b71e3c10c, fc12f5d90e): second independent PASS of 71(d).
+    - Covered: host a+b, A1, A2 (quotient doubling is unnecessary), and no-decidable-host, now unconditional because the KMS inputs were read in the journal PDF.
+    - Journal locators are Thm 4.21/4.22, not the arXiv 4.19.
+    - Rev4-partC fixes: l.46–50 (the injectivity reason) and l.134–138 ("as hard as the membership problem of any recursive set~\cite[Theorem~4.21]{KMS}"). Sent to sk-editor-4.
+103. **sk-lef-proof-compress** (9b7ce20215, unreviewed; sk-verify-13 lines 8–9). Variant A is a 49-line Corollary 2 proof (rev3: 66 lines).
+    - Ore-free overgroup: q = [f,t] in Q_n^{Z/m_n}⋊Z/m_n. Exact covariant models on F_2^{Λ_n}. Whitehead identities inline. The Ore bibitem goes. Net −22 lines.
+    - ADOPT after a PASS; if rev4 is already done, it becomes rev4.1.
 
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
