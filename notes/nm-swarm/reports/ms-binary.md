@@ -222,3 +222,17 @@ Spelling agreed with ms-inverses-1 (~18:5x):
 - In ms-inverses-1's excision, `A₁` is the `B₃` arc, `A₂` is the `B₁` arc, and `s = invDarts X`. Either arc may be empty,
   and no `0 < A.length` hypothesis is needed: the multiple-edge producer takes arbitrary arcs, and nondegeneracy comes
   from `ne_or_of_leastArea` and the relator cell inside.
+
+### LANDED 6672828c1: `GGT/VanKampen/Estimating/OsinPocketLoopCutTwoArcs.lean`
+
+Probe 0913-185400-52429 was GREEN with BUILT (10164 jobs). The attic copy is 8d5d4cf69. The module is unwired and queued
+for wiring. It is additive: it imports `OsinLemma94OneCellSameCell` and edits no jacobson file. Namespace
+`GroupApproximation.GGT.VanKampen`.
+
+| declaration | content |
+|---|---|
+| `nonempty_osinLoopCut_of_pocketRegion_twoArcs` | jacobson's pocket hypotheses, with `A₁ A₂ : CyclicArc (cellDarts X i)` and `invDarts X P.outer.cycle = s ++ invDarts X A₁.darts ++ invDarts X A₂.darts`, give `Nonempty (OsinMultipleEdgeCut D lambda c eps Delta)`: `nonempty_osinMultipleEdgeCut_of_pocketRegion` at `j = i`, `s₂ = []` |
+| `false_of_pocketRegion_of_below_twoArcs` | every binder of `false_of_pocketRegion_of_below` verbatim, with the two arcs: `False`, through `pocketCellTransport`, `o52LeastArea` and `OsinMultipleEdgeCut.false_of_below` |
+
+Both carry `#audit_axioms`. No false-as-stated Prop. The (2b) budget is the multiple-edge budget already proved on main:
+`μ/2 + μ + μ/2 + μ = 3μ`, against `1 − 13μ` for `μ ≤ 1/16`.
