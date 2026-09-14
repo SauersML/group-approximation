@@ -220,3 +220,26 @@ Hand model tests (23:3x):
   - Value clause: the gap is a lobe of `∂Δ` at a pinch vertex. It is bad only when the lobe carries a relator cell. Nested lobes seen
     by relator polygons use distinct cells between levels, and disjoint lobes seen by one polygon use distinct cells, so at most 2n.
 - Spelling proposal sent to ms-binary (one message): same definitions, index set filtered to at least two class non-joins.
+
+### audit-nm-4 generality finding on f5264e48f943 (01:2x), fixed
+
+- Finding (audit-nm-4, merge 0e622f840): the printed step covers a compact C ⊂ U, but the carrier
+  `exists_wandering_clopen_cover` covers a clopen K only.
+- LANDED 297e2dfc0 `GroupApproximation/Dynamics/TransientCompactWanderingCover.lean` (probe 0914-014300-2597 GREEN, BUILT).
+  - `exists_isClopen_superset_subset_of_isCompact`: a compact C inside an open U of a compact zero-dimensional Hausdorff
+    space lies in a clopen K ⊆ U.
+  - `exists_wandering_clopen_cover_of_isCompact`, closed endpoint `printedCompactWanderingCover`: the wandering clopen
+    cover and `ExponentBound T C m` for every compact C off CR(T).
+- Row f5264e48f943 stays formalized, now naming these carriers. It supersedes audit-nm-4's proposed `partial` override.
+- Queued for wiring at 297e2dfc0.
+
+### Bad-junction exclusion: state at 02:0x
+
+- Spelling agreed with ms-binary: `OsinLemma94BadJunctionInput` sums over `relatorPolygons.filter (2 ≤ #¬ClassJoins)`.
+- Draft attic 81a7ace3a, `Estimating/OsinLemma94BadJunctionExclusion.lean`:
+  - planar cell face clause `junctionGap_faceOf_ne_face`, closed endpoint `osinLemma94JunctionFaceClause`;
+  - bad same-cell junctions = value failures (`listVal_junctionGap_ne_one_of_mem_badJunctions`);
+  - reduction to boundary bad junctions (`sum_card_badJunctions_le_sum_boundaryBad`);
+  - residual Props `OsinLemma94CellJunctionValueInput` and `OsinLemma94BoundaryJunctionBudgetInput`.
+- Unprobed: it imports ms-binary's adopted `ClassProducerGaps`, not on origin at 02:02 (last attic 3f4fe3617). The
+  overlay rule bars peer files, so the probe waits for that landing.
