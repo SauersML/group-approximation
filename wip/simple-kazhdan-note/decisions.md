@@ -611,6 +611,12 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - sk-exact-gx (4730b5efe7, 402538b48a): subgroups of GL_m over LC(X,F_q)⋊Z with bounded u-band are locally finite; stabilizers of two-ended lattice pairs are locally finite. The missing step for exactness is an amenable action on a compactification of 𝓛₊×𝓛₋. The G_X-exactness claim stays OPEN.
     - sk-popa-lgx (f096ec1658, 9f1da3e36f, 2e8c1a8352): Kazhdan generators admit no norm Popa corners; orthogonal corners carry small total trace; weakly dense combs give Popa algebras. Brown's basic construction cannot reach (T) (it forces Gamma). The Popa clause stays OPEN; next input: RFD of full amalgamated free products over C².
     - All claims unreviewed → verifier queue. sk-cairn-steward-3 landed Unit A (note-root membership for rev4.1, eaf038cb32) and wires wave 11 in a second pass.
+128. **sk-rev42-referee** (841182b95b): NO ERROR, NO GAP in the rev4.1→4.2 changes.
+    - Credits PASS: Thompson80 content via BBMZ l.145; Odifreddi Ch. V at chapter level; Osajda.
+    - Main applied U1 (κ identity for v in the domain of θ), U2 (Cor 3: "if and only if it is a subgroup of such a group with solvable word problem"), U3 (rename S, h_s → E, h_γ), and U4 ("which are LEF") as rev4.3.
+129. **sk-algebraic-putnam** (fee751bff2, 900a04677c, 36bf7a2b55; unreviewed).
+    - Laurent elements are exchange elements; Laurent unimodular pairs complete; idempotents of M_n(R) are similar to clopen diagonals; internal cancellation; idempotent pairs stable; regular ⇒ unit-regular.
+    - So exchange ⇒ sr(R)=1 (Camillo–Yu). The exchange property stays OPEN. No note change.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
