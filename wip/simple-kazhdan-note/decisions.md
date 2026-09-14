@@ -411,6 +411,37 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - text: sk-general-statement, sk-questions-section;
     - 8 free lanes, sk-free-1..8.
     - The rev4 referees a/b/c launch when rev4 is ready.
+88. **sk-verify-8 parts 1–3** (fdb4e54acb, 304ae4fefe, e1509412c1). All eight items PASS: finite-simple-limit LEF iff, universal host a+b (host-a iff now reviewed), character rigidity (second PASS), EL_2 over F_q, Theorem 2, rank-3 converse, wp-host, no distortion. ALL rev4 gates are open; Theorem 2 becomes the engine.
+    - G1, a real gap missed by sk-verify-7: the marking {e_ij(t)} does not generate EL_3(F) over the lamplighter ring, since Σe_a = 1 has no counterpart. REPAIR: e_ij(1) = [e_ik(u_a), e_kj(u_a)] since u_a² = 1, a length-4 word, Kazhdan constant ε/4. Every claim stands. Rev3's G_X text was already fixed (item 58).
+    - G1′: sk-simpler-unify §2 LaTeX dropped rev3's e_ij(1) clause; restore it.
+    - N1: finite Γ → Γ×Z. N2/N3: character wording. N4/N5: model-test corrections (M_2(Z/4); compact second countable unit space). N6: w ≥ 1.
+    - Sent to sk-editor-4 (repairs) and sk-cairn-steward-2 (D1 duplicate, RF-host subsumption, N4/N5).
+    - Lesson: two independent verifiers catch different gaps. Keep a second review on every paper-gating item (sk-verify-9/11/12 continue).
+89. **sk-verify-10** (27504fb525, 93eedeaba2). PASS for both sk-strong-7 claims, re-derived from Ozawa arXiv v2.
+    - (T) enters only at Step 3; F_∞ with [[T_X]]′ ⊂ U(R) is a counterexample without it. Distinct kernels enter at Step 4.
+    - NPS read at source: Theorem 0.1 covers twisted relative-(T) factors L_α(Z²⋊Γ). What G_X adds is untwisted group factors of infinite simple Kazhdan groups inside R^ω.
+    - Ozawa's printed remark is about the Gromov–Olshanskii groups, so the note must NOT claim to answer it.
+    - DECIDED: P1 verbatim with fixes F1 (one alphabet) and F2 (the NPS sentence). P2 ADOPTED as the verified replacement of the Kirchberg sentence: Cor 1.2 (ii)⇒(i) holds in full generality, and Thom's correction concerns only (v)⇒(i). Both sent to sk-editor-4.
+90. **sk-cairn-steward final** (0aeefbbba1, 5e2d7164cc, f7b3e47799). Every sk claim first landed before 20:00 is wired.
+    - Roots: `simple-kazhdan-lef-groups-note-main-results` (established; 13 headline claims), `simple-kazhdan-lef-groups-note-open-questions`, `simple-kazhdan-lef-program-results` (six themes), `simple-kazhdan-lef-program-open-problems`.
+    - The Wilson duplicate is merged. The refuted Z-family universality was removed from the open conjunction. Firewalls are verified: 5 invalidated routes.
+    - cairn check 0 errors with workspace stubs.
+    - Peer issues (not sk): a missing a2-kernel-removal node, absent bowen-chapman Lean artifacts, and the UN root lacking `root: true`.
+    - The about 60 post-20:00 claims belong to sk-cairn-steward-2.
+91. **Mal'cev bibitem PASS** (sk-verify-6 part4): Mat. Sb. N.S. 8(50), no. 3 (1940), 405–422. «Об изоморфном представлении бесконечных групп матрицами»; English résumé title "On isomorphic matrix representations of infinite groups". Mathnet sm6037. Main adds "no. 3" at the rev4 read-through.
+    - Main also adds `root: true` to the UN program claim `kazhdan-elementary-approximation-type-mirrors-ring-type`, whose title already says it is the root, so its region becomes reachable.
+92. **sk-verify-9** (bb5308dd55, 17083fc73d), independent of sk-verify-8.
+    - Theorem 2 PASS. Each hypothesis is needed: minimality only in the covering; topological freeness only in the density patch (Z×Z/2 counterexample); the ring map only for LEF (the F_d boundary action fails it). n ≥ 3 is used in three places, so FIREWALL: no "same proof" for n = 2.
+    - Headline PASS-WITH-FIXES:
+      - F5 = G1 (the same gap, found independently);
+      - rev3's F_2^{Q'}×Q' models give LEF only, while the headline needs the configuration-space models onto full matrix algebras;
+      - F6: left, not right, translation.
+    - S1 ADOPTED: prove simplicity first. Injectivity into ∏_ω for every ω gives marked convergence and N_k → ∞, so the nonvanishing lemmas drop.
+    - All sent to sk-editor-4.
+93. **CREDIT GAP (sk-prior-art-2).** Coulon–Fournier-Facio arXiv:2312.11684 Thm 1.5: every countable group lies in a 2-generated simple quotient of a torsion-free non-elementary hyperbolic group. Take Γ Kazhdan (a torsion-free cocompact lattice in Sp(n,1)); Hull GGD 10 (2016) Cor 1.6 via their Rem 4.5.
+    - So simple Kazhdan hosts for every countable group are KNOWN. Higman plus CFF gives one 2-generated simple Kazhdan group containing every f.g. recursively presented group.
+    - What the note adds: (T) and LEF together (and finite simple limits), which is exactly what the LEF characterization needs.
+    - DECIDED: MUST fix in rev4. Add the CFF clause after Kionke–Schesler, and reword "The next corollary adds property (T)" to "gives property (T) and LEF together". Sent to sk-editor-4.
 
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
