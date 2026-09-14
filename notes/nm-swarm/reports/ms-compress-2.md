@@ -98,6 +98,14 @@ literal step missing.
   rotation clause: `σ′ (e d) = e (σ d)` unless `d = alpha in_k` or `σ d = in_k`.
 - CLAIM side transport across the doubling: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerSides.lean`
 - CLAIM the closed proof of `OsinPocketTouchCornerStatement`: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerProof.lean`
+- CLAIM one doubling at a walk dart (rotation clause, exterior and cell off the side, carrier transport):
+  `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerStep.lean`
+- LANDED 9d4f00779 `OsinPocketTouchCornerThickening` (probe 0913-192658-884 GREEN): non-loop ⇒ face length ≥ 2, dart index,
+  and the doubled dart on a G-cell digon off the exterior. Queued for wiring.
+- LANDED a266c9a3d `OsinPocketTouchCornerSides` (probe 0913-193719-89977 GREEN): the dart projection of the doubled map,
+  face-class chains projected, and faces off the side staying off it. Queued for wiring.
+- In flight: `OsinPocketTouchCornerStep` (probe running) and `OsinPocketTouchCornerProof` (`exists_doubling`, then
+  `osinPocketTouchCorner : OsinPocketTouchCornerStatement` from two doublings); attic copies 91d01f63f.
 
 ## Progress log
 
