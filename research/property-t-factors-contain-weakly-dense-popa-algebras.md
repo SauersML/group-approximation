@@ -32,3 +32,10 @@ artifacts:
 - **Tower structure of `G_X` (idea, not attempted).** `G_X = ⟨L_y, L_{y′}⟩`, with `L_y = ⋃_n GL_3(A(𝒫_n))` (route of `subshift-elementary-groups-are-character-rigid`).
   - Brown–Dykema's route uses the free product structure of `L(F_s)` and residual finite-dimensionality of full amalgamated free products of matrix algebras.
   - An analogue for `L(G_X)` would need the two hyperfinite algebras in a position whose full C*-hull keeps finite-dimensional representations on vanishing corners while becoming simple.
+- **Coarse-bimodule rigidity, combs and a dead mechanism (sk-popa-lgx, 2026-09-13; artifact `research/artifacts/sk-popa-lgx-2026-09-13-part1.md`).**
+  - *Scale-free constraints:*
+    - `kazhdan-generators-admit-no-norm-popa-corners`: no Popa corner serves exact Kazhdan generators below tolerance `ε/4`, and every Popa algebra `A ⊆ L(Γ)` has `max_s dist(λ_s,A) ≥ ε/6`;
+    - `orthogonal-popa-corners-for-kazhdan-approximants-small-trace`: orthogonal Popa corners for approximants carry total trace `O(defect²)`, and the defect concentrates on every corner.
+  - *Reduction:* `finite-dimensional-combs-generate-popa-algebras` (full commuting finite-dimensional teeth that separate points give a Popa algebra), with the open `weakly-dense-popa-combs-exist-in-property-t-factors` and route `property-t-factor-popa-algebras-via-weakly-dense-combs`.
+  - *Dead:* Brown's basic construction and all its unitary twists always give property Gamma weak closures (artifact §2), so they cannot reach property (T).
+  - *Open:* the tooth-tree construction (artifact §3). It dies nowhere yet, and residual finite-dimensionality of the amalgamated stages is missing.
