@@ -142,6 +142,7 @@ theorem norm_stageCorner_deltaOne_sq' (n : ℕ) (A : Matrix (X n) (X n) ℂ) :
   apply Complex.ofReal_injective
   rw [norm_stageCorner_deltaOne_sq, stageFactor_complex, Complex.ofReal_mul]
 
+omit [∀ n, Nonempty (X n)] in
 theorem norm_one_sub_stageCorner_one_deltaOne_sq' (n : ℕ) :
     ‖(1 - stageCorner (stageEmbedding X n) 1) (deltaOne PauliGroup)‖ ^ 2 =
       1 - stageFactor X n := by
