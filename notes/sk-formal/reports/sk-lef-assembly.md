@@ -1,47 +1,67 @@
-# Lane sk-lef-assembly: `simple_kazhdan_sofic_group.tex`, section "LEF groups", cor:lef statement and assembly
+# Lane sk-lef-assembly: `simple_kazhdan_sofic_group.tex`, section "LEF groups", cor:lef and cor:host statements and assemblies
 
-Lead: session nonsofic-existence-49 (ROSTER-sk, "LEF LANES 21:22"). Target: origin/main tip of the note, 9047d0d3c (20:31),
-618 lines, md5 274f19367f7f706b05c017af721c3884. Census rows are keyed by 12-hex hash once skf-census regenerates at this md5.
+Lead: session nonsofic-existence-49 (ROSTER-sk, "LEF LANES 21:22"; resumed 23:15 after the coordinator restart). Target: the origin/main tip of
+the note, 37551fd93 (23:16), 767 lines, md5 b55c0d23b8c59e66d36df004a1df608b. The census on origin is 649cb1f80, regenerated at this md5.
+Rows are keyed by its 12-hex hashes.
 
 ## CLAIM
 
-CLAIM cor:lef statement and assembly GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFCharacterization.lean
+CLAIM cor:lef and cor:host statements and assemblies GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFCharacterization.lean
 
-Ownership check at 21:3x: no declaration on origin, on the shared tree or in `lanes/*.files` names a LEF characterization,
-`PrintedLEFSubgroupCharacterization`, or a module `LEFCharacterization`. `isLEF_of_injective` (`Sofic/LEF.lean`) is the landed
-heredity lemma and is consumed by name.
+- Ownership check at 21:3x and again at 23:3x: no declaration on origin, in the shared tree or in `lanes/*.files` names a LEF host,
+  `PrintedLEFSubgroupCharacterization`, a `cor:host` statement, or a module `LEFCharacterization`.
+- `isLEF_of_injective` (`Sofic/LEF`), ct-two-ended's `printedMarkedLimitLEFStatement` (`MarkedLimitLEF`), `countable_of_fg` and
+  `countable_fg_subgroups` (`Sofic/ContinuumMultiplicityCore`), and `Higman.RecursivePresentation` (`Higman/Program`) are consumed by name.
+- 23:15 ruling from main: sk-universal is not resumed and this lane absorbs its scope. There was nothing to absorb: its registration has an
+  empty `.files`, and it has no report, no landing, no attic copy and no shared-tree draft. Its scope is the last statement of cor:host.
 
-## Split agreed with ms-intro-3 (its message, ~21:30)
+## Split agreed with ms-intro-3 (~21:30, still valid)
 
-- This lane owns the statement Props and their closure. ms-intro-3 writes no Lean for abstract l.37–40 or intro l.89–93.
-- ms-intro-3 lands the census rows for abstract l.37–40, intro l.89–90 (structural, roadmap to Part (ii)) and intro l.90–93 (the
-  conjunction of this lane's cor:lef endpoint with sk-universal's second corollary).
-- Names adopted verbatim from ms-intro-3's proposal: `PrintedLEFSubgroupCharacterization` and, once closed,
-  `printedLEFSubgroupCharacterization`.
+- This lane owns the statement Props and their closure. ms-intro-3 writes no Lean for the abstract's LEF sentence or the intro paragraph on
+  lamplighter actions, and lands their census rows over this lane's endpoints.
 
-## Ledger (tip 9047d0d3c, section "LEF groups", l.267–279 and the proof's architecture)
+## Ledger (tip 37551fd93, section "LEF groups", l.295–437)
 
-| l. | sentence (abridged) | grade (planned) | carrier / owner |
-|---|---|---|---|
-| 269–270 | Every countable group embeds in a finitely generated simple group [Gorjuskin, Schupp]. | attribution | prior work, not used as a step |
-| 270–272 | Kionke and Schesler proved that every f.g. RF group embeds in a f.g. simple LEF group [Theorem 1.2]. | attribution | prior work, not used as a step |
-| 272–273 | The next corollary adds property (T) and applies to every LEF group. | structural | roadmap, carried by cor:lef |
-| 273–274 | Since LEF passes to subgroups, it characterizes LEF groups. | formalized (heredity) + partial (characterization) | `printedSubgroupsOfLEFAreLEF`; `PrintedLEFSubgroupCharacterization` below |
-| 276–279 | cor:lef: A f.g. group is LEF iff it is a subgroup of an infinite f.g. simple Kazhdan LEF group. | partial | `PrintedLEFSubgroupCharacterization`, `printedLEFSubgroupCharacterization_of_pieces` over the two piece Props below |
-| 282 | Subgroups of LEF groups are LEF. | formalized | `printedSubgroupsOfLEFAreLEF` (closed, over `isLEF_of_injective`) |
-| 282–292 | Part (i): Γ ↪ Δ = Δ₀ × ℤ, infinite f.g. LEF, Γ ≤ [Δ,Δ] | owner sk-lef-ultra (with sk-ore) | piece Prop `LEFUltraproductEmbeddingStatement` |
-| 294–346 | Parts (ii)–(iv): G = EL₃(LC(Z,F₂) ⋊ L) is infinite, f.g., simple, Kazhdan, LEF, and [Δ,Δ] ↪ G | owners sk-lef-action, sk-lef-simplicity, sk-lef-models, ms-intro-2 | piece Prop `LEFLamplighterStatement` |
+| key | l. | sentence (abridged) | grade | carrier / owner |
+|---|---|---|---|---|
+| 197333c03a92 | 297–301 | Every countable group embeds in a f.g. simple group [Gorjuskin, Schupp], even in a simple quotient of a torsion-free hyperbolic Kazhdan group [CFF 1.5], so one simple Kazhdan group contains Higman's universal f.p. group [Higman]. | attribution | prior work, not a step |
+| 8b4f6b0857f1 | 301–305 | Kionke–Schesler [1.2] with Wilson: one simple LEF group contains every f.p. RF group. | attribution | prior work, not a step |
+| 42f4246af4ac | 305–306 | They raised the question which groups embed in f.g. simple amenable groups. | attribution | prior work |
+| 3670fa959e0e | 306–307 | For LEF groups the next corollary answers the analogous question, with a Kazhdan host. | structural | roadmap to cor:lef |
+| 488b860770fb | 307–310 | It parallels the theorem of Boone and Higman ... | attribution | prior work |
+| 19d10ddcbec2 | 313–316 | cor:lef | partial | `PrintedLEFSubgroupCharacterization`, `printedLEFSubgroupCharacterization_of_pieces` |
+| cc439ae277d4 | 320 | Every countable LEF group is a subgroup of such a group. | partial | `PrintedCountableLEFHost`, `printedCountableLEFHost_of_pieces` |
+| 9cdf19db0ef4 | 320–322 | A set of f.g. groups lies in one such group iff its members are LEF and represent countably many isomorphism classes. | partial | `PrintedLEFFamilyHost`, `printedLEFFamilyHost_of_pieces` |
+| 31ffcc3c38e6 | 322–325 | So one such group contains every recursively presented f.g. LEF group, for instance every f.p. RF group and every G_Y whose language is recursive. | partial | `PrintedRecursivelyPresentedLEFHost`, `printedRecursivelyPresentedLEFHost_of_pieces`; the two instances wait on sk-malcev/Vershik–Gordon names and skf-degrees' WP ≤_T L(Y) |
+| 61dddc00d418 | 329–330 | Limits of finite groups in the space of marked groups are LEF, and so are their subgroups. | formalized (planned) | `printedMarkedLimitSubgroupsLEF` over `printedMarkedLimitLEFStatement` |
+| 79e6fe57addb … 11a7360569b8 | 330–354 | Part (i): the words w_j, the algebraic ultraproduct, Δ = ⟨a,b⟩ with Γ ≤ [Δ,Δ] | owner sk-lef-ultra | piece `LEFUltraproductEmbeddingStatement` |
+| ed367be4322a … 358e51e6a815 | 356–394 | Parts (ii)–(iii): the lamplighter action, R_Δ matricial, then thm:general | owner sk-lef-action (with sk-lef-models, sk-lef-simplicity) | piece `LEFLamplighterStatement` |
+| 66cb283340f3, 816030a10c14, cbce9a479de2 | 396–402 | Part (iv): diag(u_ξ,1,1), [Λ,Λ] ↪ G_Δ | owner ms-intro-2 (`LEFDiagonalCommutators`, attic) | feeds `LEFLamplighterStatement` |
+| 0ccc4462441b | 402–404 | This proves cor:lef and the first statement of cor:host. | structural | the two assemblies |
+| 6f1b3edd435b | 404–407 | For the second, apply the first to the restricted direct sum ..., a countable LEF group, as finite subsets lie in finite products. | partial | this lane; piece `RestrictedSumLEFStatement` (to be proved here) |
+| 4d817ab1caf8 | 407–408 | Conversely, a countable group has countably many f.g. subgroups. | formalized (planned) | `countable_fg_subgroups`, inside `lefFamily_countableClasses_of_host` |
+| b88e89d11935 | 408–409 | There are countably many recursive presentations. | partial | this lane; piece `RecursivePresentationClassesStatement` (to be proved here) |
+| 3bb068935fc5, 32a05a9577a8 | 412–417 | w_g for the topological full group, its derived subgroup in G_X | owner ms-intro-2 (same identities) | not this lane |
+| f5bd2ed413cf | 419–426 | Every group as in the last statement of cor:host has unsolvable word problem [KMS 4.21; Rauzy]. | open | unowned at 23:3x, for main to rule |
+| 46e5c2778909 … 5d1cbe7da012 | 428–437 | The groups G_X do not suffice: SL_3(ℤ) lies in no G_X (distortion argument; CFKP attribution). | open | unowned at 23:3x, for main to rule |
 
-## Piece Props (the interface the piece lanes produce)
+## Statement Props and pieces (module `Manuscript/SimpleKazhdanSofic/LEFCharacterization`)
 
-- `LEFUltraproductEmbeddingStatement` (Part (i), l.282–292): every f.g. LEF group `Γ : Type` admits an injective homomorphism into
-  an infinite f.g. LEF group `Δ : Type` whose image lies in `commutator Δ`.
-- `LEFLamplighterStatement` (Parts (ii)–(iv), l.294–346): every infinite f.g. LEF group `Δ : Type` has an infinite f.g. simple
-  Kazhdan LEF group `E : Type` and an injective homomorphism `commutator Δ →* E`.
-- The finer split for the concrete `E = EL₃(LC(Z,F₂) ⋊ L)` (FG, (T) and infinite; simple; LEF; `[L,L] → E` with Δ ≤ L) is
-  assembled into `LEFLamplighterStatement` over sk-lef-action's construction once its definitions land. Until then the piece
-  lanes keep their own named Props for the concrete group.
+- `IsLEFHost E`: "such a group". E is infinite, f.g., simple, `HasKazhdanPropertyT.{0,0}`, and a limit in the space of marked groups of simple
+  `SL (κ ℓ) F₂` whose Cayley graphs form expanders, in MainAssembly's `IsMarkedLimit`/`IsExpanderFamily`. "SL_N(F₂)" is read up to reindexing by
+  a finite type, so thm:general's `Fin 3 × Fin N` plugs in directly.
+- `PrintedLEFSubgroupCharacterization` (cor:lef). "Subgroup of" means an injective homomorphism into the host.
+- `PrintedCountableLEFHost`, `PrintedLEFFamilyHost.{u}` and `PrintedRecursivelyPresentedLEFHost` (cor:host's three statements).
+  - "Represent countably many isomorphism classes" means some countable family of groups contains an isomorphic copy of every member.
+  - "Recursively presented f.g." means `Group.FG` plus `Nonempty (Higman.RecursivePresentation Γ)`, which is equivalent by the Tietze argument
+    in that structure's docstring.
+- Pieces:
+  - `LEFUltraproductEmbeddingStatement` (sk-lef-ultra, sent 23:3x);
+  - `LEFLamplighterStatement` (sk-lef-action, sent 23:3x);
+  - `RestrictedSumLEFStatement` and `RecursivePresentationClassesStatement` (this lane).
 
-## Status
+## Log
 
-- 21:3x: claim landed; module written, probing.
+- 21:49: claim landed (e75bb3f65), spelled at 9047d0d3c.
+- 22:00: first draft written, spelled at 9047d0d3c, never probed. Superseded by the restructure at c8b6021ca.
+- 23:32: resumed. Re-ledgered at 37551fd93, sent the piece spellings to sk-lef-ultra and sk-lef-action, reported to main.
