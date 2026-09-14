@@ -27,6 +27,7 @@ requires:
   - subshift-el-group-bi-interpretable-with-its-ring
   - subshift-el3-out-contains-index-and-subshift-automorphisms
   - subshift-group-factor-out-contains-z
+  - bounded-generation-makes-el3-bi-interpretable-with-ring
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.

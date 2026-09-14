@@ -34,6 +34,7 @@ requires:
   - property-t-factors-contain-weakly-dense-popa-algebras
   - subshift-elementary-groups-are-exact
   - subshift-el3-isomorphisms-recognize-diagonals-up-to-normalizer
+  - subshift-el-group-theory-computes-arithmetic-of-the-language
 ---
 
 Assembly only: the root is the conjunction of the listed open claims. This route makes each of them reachable from a

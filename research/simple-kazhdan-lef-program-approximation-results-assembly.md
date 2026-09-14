@@ -47,6 +47,8 @@ requires:
   - laurent-sl4-block-sl2-norm-four-off-full-unipotent-spectrum
   - subshift-el-n-exactness-is-kakutani-invariant
   - subshift-group-unitary-embeddings-are-corner-subfactors
+  - subshift-elementary-group-lef-growth-complexity-bounds
+  - subshift-gl-exactness-reduces-to-limit-subsystem
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
