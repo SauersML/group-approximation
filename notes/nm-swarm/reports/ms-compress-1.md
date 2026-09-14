@@ -123,3 +123,11 @@ Route note on `ed348643e2ad`: ρ_lm(Y_l) ⊆ Y_m is proved from the cyclic-edge 
 
 - When the new carriers land, 629f562df6bc, 630db09c6f46 and daecb970c06a gain them. 5e9b44d1c0bb gains one if G4 finds a route gap.
 - daecb970c06a should name the theorem `sentence_36cd63cf2803_isomorphism`, not the Prop.
+
+## CLAIM (main's item 09-13 ~19:10): tex 1456 `042966c81c7e`
+
+- CLAIM pulled-back symbolic defects cover X∖Y, along the printed route GroupApproximation/Dynamics/ChainCoreDefectPullback.lean
+  - `pulledBackDefect T S r b = π_S⁻¹(reachableCylinderUnion X_S r b)`: clopen, T(Q) ⊆ Q; a noncyclic window at position i of π_S(x) gives T^{i+1}x ∈ Q∖T(Q).
+  - Covering: x ∉ Y_* gives a noncyclic window (`mem_coreSubshift_iff`), and Y_* ⊆ Y (`generalCore_subset_chainRecurrentSet`, ms-core-2 0bdeb7074) covers X∖Y.
+  - Printed-route carrier also for statement key `0ae6fc9e199c` (hull-euler's carrier is the direct atom-graph covering).
+  - Ownership check at origin 2f116d20d: no chain-itinerary draft (its .files hold landed bytes only), no shared-tree draft, no lane holds the path.
