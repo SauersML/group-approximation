@@ -149,10 +149,10 @@ theorem eq_one_of_commute_elGen_charFn [TotallySeparatedSpace X]
   have hginv : ∀ (V : Set X) (hV : IsClopen V) (i j : Fin 3) (hij : i ≠ j),
       Commute g⁻¹ (elGen i j hij (coeff T (ZMod 2) (LocallyConstant.charFn (ZMod 2) hV))) :=
     fun V hV i j hij => (hg V hV i j hij).inv_left
-  obtain ⟨c, hc⟩ := scalar_of_commute_elGen_one fun i j hij => by
-    simpa [hone] using hg Set.univ isClopen_univ i j hij
-  obtain ⟨d, hd⟩ := scalar_of_commute_elGen_one fun i j hij => by
-    simpa [hone] using hginv Set.univ isClopen_univ i j hij
+  obtain ⟨c, hc⟩ := scalar_of_commute_elGen_one (g := g) fun i j hij => by
+    simpa only [hone] using hg Set.univ isClopen_univ i j hij
+  obtain ⟨d, hd⟩ := scalar_of_commute_elGen_one (g := g⁻¹) fun i j hij => by
+    simpa only [hone] using hginv Set.univ isClopen_univ i j hij
   -- `c, d ∈ LC(X, F₂)`
   have hc0 := eq_coeff_of_coeff_eq_zero T (ZMod 2) fun g' hg' =>
     coeff_eq_zero_of_commute_charFn T (ZMod 2) hfree (commute_charFn_of_scalar T hc hg) hg'
@@ -174,7 +174,7 @@ theorem eq_one_of_commute_elGen_charFn [TotallySeparatedSpace X]
   have hff : f * f' = 1 := by
     have h := hcd
     rw [hc0, hd0, ← map_mul] at h
-    exact coeff_injective T (ZMod 2) (h.trans (map_one _).symm)
+    exact coeff_injective T (ZMod 2) (h.trans (map_one (coeff T (ZMod 2))).symm)
   have hf1 : f = 1 := by
     ext x
     have hx := LocallyConstant.congr_fun hff x
@@ -183,7 +183,7 @@ theorem eq_one_of_commute_elGen_charFn [TotallySeparatedSpace X]
     have hvals : ∀ a b : ZMod 2, a * b = 1 → a = 1 := by decide
     exact hvals _ _ hx
   have hc1 : c = 1 := by
-    rw [hc0, ← hf, hf1, map_one]
+    rw [hc0, hf1, map_one]
   apply Subtype.ext
   apply Units.ext
   rw [hc, hc1]
