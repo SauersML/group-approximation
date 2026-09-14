@@ -78,3 +78,11 @@ Preferred strengthenings, in order: `S` torsion-free; `S` sofic.
     (arXiv:2509.05524, line 3362) expects full groups of such shift-invariant
     groupoids to be "rarely finitely presented"; that is a heuristic, and no
     obstruction is known.
+- **Davis-complex lattices (sk-fp-sofic-d, 2026-09-13).** Recorded candidates, status unknown.
+  Amir--Lazarovich, arXiv:2605.09493 (abstract), construct simple uniform lattices in products of
+  trees and two-dimensional Davis complexes of right-angled Coxeter groups whose defining graph is
+  an odd graph. They extend Burger--Mozes.
+  - Their proper cocompact actions on contractible complexes make them finitely presented.
+  - They have the Haagerup property, so none is Kazhdan.
+  - The abstract says nothing about soficity. Like the Burger--Mozes groups, they are live
+    candidates here only.

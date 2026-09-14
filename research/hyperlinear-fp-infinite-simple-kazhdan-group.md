@@ -108,3 +108,22 @@ hyperlinear half is open. The trivial group is not infinite.
     therefore needs a mechanism not yet recorded.
 - **Leavitt unit group, hyperlinear half.** Live: `binary-leavitt-unit-group-hyperlinear`, via
   `hyperlinear-fp-kazhdan-via-leavitt-unit-group`.
+- **Candidate scan beyond the recorded families (sk-fp-sofic-d, 2026-09-13; bounded).** No new
+  family.
+  - López Neumann, arXiv:2101.09071v2, Theorem 1.1 (read from the PDF): "There are infinitely many
+    measure equivalence classes containing finitely presented, Kazhdan, simple groups. These groups
+    are Kac-Moody lattices over finite fields with well-chosen non-affine Weyl groups."
+    - His introduction lists the known infinite finitely presented simple groups as Burger--Mozes
+      groups, non-affine Kac--Moody lattices and variants of Thompson groups.
+    - For the measure-equivalence route this means the donor search splits into infinitely many
+      classes. A donor must be Kazhdan, since (T) is a measure equivalence invariant, and must have
+      the lattice's ℓ²-Betti profile up to proportionality (Gaboriau).
+  - Amir--Lazarovich, arXiv:2605.09493 (abstract): simple uniform lattices in products of trees
+    and two-dimensional Davis complexes of right-angled Coxeter groups. These complexes are CAT(0)
+    cube complexes, so the lattices have the Haagerup property (Niblo--Reeves) and are not Kazhdan.
+    They belong to `hyperlinear-fp-infinite-simple-group` only.
+  - Chatterji--Kassabov, arXiv:2601.22907 (abstract): finitely presented Kazhdan groups with strong
+    fixed-point properties, where "property (T) is added at the expense of weakening the simplicity
+    requirement". So they are not candidates.
+  - Search bound: two web queries and four arXiv abstract pages.
+  - Details: `research/artifacts/sk-fp-sofic-d-candidates-and-interpolation-2026-09-13.md`.

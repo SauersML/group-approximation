@@ -77,3 +77,25 @@ below, are almost actions of `Lambda_q` of the required kind.
   `km-246-lattice-is-character-rigid`. It leaves this permutation gate unchanged, since IRS
   rigidity already gave it. It adds the parallel unitary gate: `S_q` is hyperlinear iff some
   asymptotic representation does not collapse (`km-246-lattice-stability-dictionary`).
+- **Interpolating two affine developments (sk-fp-sofic-d, 2026-09-13).** Dead.
+  - *Idea.* Types `(2,4,4)` and `(2,3,6)` have exact finite developments, the congruence quotients
+    of `Sp_4(F_q[t,t^(-1)])` and `G_2(F_q[t,t^(-1)])`. Each shares two vertex groups with `(2,4,6)`.
+    The idea is to take the `(12,13)`-part of one development and the `(12,23)`-part of the other,
+    glued along `L_12`.
+  - *Why it dies.* `L_2 <= L_12` and `L_3 <= L_13`, so exact actions of `L_12` and `L_13` fix the
+    action of `L_2 *_T L_3`. Suppose that action factors through a finite group `H` on a proportion
+    `c > 0` of points, where no quotient of `H` contains `G_2(q)`. For the `(2,4,4)`-part,
+    `H = T'.Sp_4(q)`, and `G_2(q)` is larger than `Sp_4(q)`.
+    - Any `T.G_2(q)`-structure agreeing with `L_2, L_3` off `o(d_n)` points makes the relators of both
+      `H` and `T.G_2(q)` hold on those points, up to `o(d_n)`.
+    - The pushout of `H` and `T.G_2(q)` under `L_2 *_T L_3` is abelian: its image of `G_2(q)` is
+      simple and not a section of `H`. So each element of the perfect group `SL_2(q) <= L_2` is a
+      bounded product of conjugates of those relators.
+    - So `SL_2(q)` acts trivially on all but `o(d_n)` of the `c d_n` points. That contradicts free
+      charts (`almost-actions-of-irs-rigid-simple-groups-are-free-or-trivial`) unless those points
+      lie in `Fix_n`.
+  - *What remains.* The `(12,13)`-part of a sofic model must satisfy the `G_2`-relations in
+    `L_2 u L_3` approximately on almost every point. No exact development of another triangle
+    supplies that; the one-stable-letter form above is the same constraint seen from the affine
+    side.
+  - Details: `research/artifacts/sk-fp-sofic-d-candidates-and-interpolation-2026-09-13.md`.
