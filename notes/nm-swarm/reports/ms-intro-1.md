@@ -233,6 +233,20 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
   `osinLemma94CaseOneWalkSimple : OsinLemma94CaseOneWalkSimpleStatement`, CLOSED via w1-binder-8's
   `SameCellSimplePocket.false_of_simpleWalk_of_below`. The sub-walk side lemma is
   `SameCellWalkSimple.face_not_mem_sideFaces_sublist`. Queued for wiring.
+- DESIGN (~19:45, after reading ms-traces-2's unlanded `ClosedWalkEnclosedSubdiagram` and
+  `OsinEnclosedSubdiagramLoopCut`): Island and Excision share ONE consumer, applied to the whole pocket walk. No excision
+  is needed.
+  - `EnclosedSubdiagramLoopCutStatement` takes `EnclosedFaceSet X faces outerWalk` with `invDarts X outerWalk = s ++
+    invDarts X A.darts`. Take `outerWalk := invDarts (s ++ invDarts B) = B ++ invDarts s`, `A.darts = B`, `faces :=
+    sideFaces (s ++ invDarts B)`. This works for any shape, and bridges (cutting paths) are allowed.
+  - The consumer module (mine, after their statement modules land):
+    - (i) the producer `EnclosedFaceSet X (sideFaces w) (invDarts w)` for the Case 1 X-walk w, with the exterior face off
+      its side;
+    - (ii) `(cell j).face ∉ sideFaces w` for walks with spurs, where the landed sublist lemma needs noncrossing;
+    - (iii) a cell-free enclosed face set reads 1, giving a relator cell inside from `val w ≠ 1` (the singular form of
+      `PocketRegion.listVal_outer_eq_one`; w1-binder-2's BridgeComponentValue is the component form);
+    - then `OsinLoopCut.false_of_below`.
+  - So no `sideFaces` monotonicity Prop is needed for Excision.
 - Excision route check (before any Prop): `sideFaces` crosses every non-walk edge. Removing the lobe's edges can join a
   pocket face to f, and so to the exterior, when the walk crosses at the lobe vertex. So "the exterior stays off the side"
   needs a noncrossing walk. `SameCellPocketNoncrossing.pocketInputs_X` (on origin) gives noncrossing only at s = x with no
