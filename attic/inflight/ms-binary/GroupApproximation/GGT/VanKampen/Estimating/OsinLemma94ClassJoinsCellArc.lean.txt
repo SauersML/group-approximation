@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassProducerGaps
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonLists
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkChain
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94JunctionPocket
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -18,6 +19,9 @@ shows that such a walk is one cyclic arc of the cell, once its last dart does no
 * `ClassProducer.exists_arc_of_backward`: a backward walk of darts across one face, whose last
   dart does not recur, is `arc.reverseDarts` for one cyclic arc of the face.
 * `ClassProducer.isChain_backward_reverseDarts`: the reverse darts of an arc are a backward walk.
+* `OsinLemma94RealizedPolygons.exists_cellArc_of_run`: a run of sides along one cell, joined across
+  their junction gaps and ending with an empty gap, reads one arc of the cell backwards.  Its last
+  dart lies on a side, and a side dart occurs once on the sides and never on a gap.
 
 ## Manuscript status
 
@@ -148,12 +152,214 @@ theorem exists_arc_of_backward {O : List M.Dart} (hne : O ≠ []) (hnodup : O.No
   conv_lhs => rw [← List.map_id D]
   exact List.map_congr_left fun d _ => (hinv d).symm
 
+/-- A dart of a same-cell gap is a reversed dart of the face, some face steps after `a`. -/
+theorem exists_of_mem_cellGapOf {a b d : M.Dart} (hd : d ∈ cellGapOf M a b) :
+    ∃ t : ℕ, d = M.alpha ((M.facePerm ^ (t + 1)) a) := by
+  unfold cellGapOf at hd
+  split_ifs at hd with h
+  · rw [List.mem_reverse, List.mem_map] at hd
+    obtain ⟨t, -, rfl⟩ := hd
+    exact ⟨t, rfl⟩
+  · exact absurd hd List.not_mem_nil
+
+/-- Two darts of one face: the second is reached from the first after a positive number of face
+steps. -/
+theorem exists_pow_succ_of_faceOf_eq {a b : M.Dart} (h : M.faceOf a = M.faceOf b) :
+    ∃ m : ℕ, (M.facePerm ^ (m + 1)) a = b := by
+  obtain ⟨i, hi, -, hab⟩ := ((M.faceOf_eq_iff a b).mp h).exists_pow_eq''
+  exact ⟨i - 1, by rwa [Nat.sub_add_cancel hi]⟩
+
 end Face
 
 end ClassProducer
+
+namespace OsinLemma94RealizedPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+/-- The darts of a run of sides of polygon `k`, each side followed by its gap. -/
+def runDarts (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (g : ℕ → List S.diagram.toCombMap.Dart) (l : List ℕ) : List S.diagram.toCombMap.Dart :=
+  l.flatMap fun s => P.sideDarts k s ++ g s
+
+theorem runDarts_cons (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (g : ℕ → List S.diagram.toCombMap.Dart) (s : ℕ) (l : List ℕ) :
+    P.runDarts k g (s :: l) = P.sideDarts k s ++ g s ++ P.runDarts k g l := by
+  simp only [runDarts, List.flatMap_cons]
+
+theorem runDarts_singleton_of_nil (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (g : ℕ → List S.diagram.toCombMap.Dart) (s : ℕ) (hg : g s = []) :
+    P.runDarts k g [s] = P.sideDarts k s := by
+  simp only [runDarts, List.flatMap_cons, List.flatMap_nil, hg, List.append_nil]
+
+theorem runDarts_ne_nil (P : OsinLemma94RealizedPolygons S) {k : Fin P.count}
+    (g : ℕ → List S.diagram.toCombMap.Dart) {s : ℕ} (hs : s < P.sideCount k) (l : List ℕ) :
+    P.runDarts k g (s :: l) ≠ [] := by
+  obtain ⟨x, xs, hx⟩ := List.exists_cons_of_ne_nil (P.side_ne_nil k s hs)
+  rw [runDarts_cons, hx]
+  exact List.cons_ne_nil _ _
+
+theorem head?_runDarts_cons (P : OsinLemma94RealizedPolygons S) {k : Fin P.count}
+    (g : ℕ → List S.diagram.toCombMap.Dart) {s : ℕ} (hs : s < P.sideCount k) (l : List ℕ) :
+    (P.runDarts k g (s :: l)).head? = (P.sideDarts k s).head? := by
+  obtain ⟨x, xs, hx⟩ := List.exists_cons_of_ne_nil (P.side_ne_nil k s hs)
+  rw [runDarts_cons, hx]
+  rfl
+
+/-- A side along a cell is a backward walk. -/
+theorem isChain_backward_sideDarts (P : OsinLemma94RealizedPolygons S) {k : Fin P.count} {s : ℕ}
+    {j : Fin S.diagram.rCellCount} (hs : s < P.sideCount k) (hj : P.kind k s = .cell j) :
+    (P.sideDarts k s).IsChain (ClassProducer.Backward S.diagram.toCombMap) := by
+  obtain ⟨arc, harc⟩ := P.cell_arc k s j hs hj
+  rw [harc]
+  exact ClassProducer.isChain_backward_reverseDarts
+    (S.diagram.faceBoundary (cell S.diagram j).face).nonempty
+    (S.diagram.faceBoundary (cell S.diagram j).face).chain
+    (S.diagram.faceBoundary (cell S.diagram j).face).closes arc
+
+/-- The reverse of a dart of a side along a cell lies on the cell. -/
+theorem alpha_mem_cellDarts_of_mem_sideDarts (P : OsinLemma94RealizedPolygons S)
+    {k : Fin P.count} {s : ℕ} {j : Fin S.diagram.rCellCount} (hs : s < P.sideCount k)
+    (hj : P.kind k s = .cell j) {d : S.diagram.toCombMap.Dart} (hd : d ∈ P.sideDarts k s) :
+    S.diagram.toCombMap.alpha d ∈ cellDarts S.diagram j := by
+  obtain ⟨arc, harc⟩ := P.cell_arc k s j hs hj
+  have hd' : d ∈ arc.reverseDarts := harc ▸ hd
+  obtain ⟨x, hx, rfl⟩ := List.mem_map.mp hd'
+  rw [S.diagram.toCombMap.alpha_involutive x]
+  exact CyclicArc.mem_cycle_of_mem_darts arc (List.mem_reverse.mp hx)
+
+/-- A side along a cell has no repeated dart. -/
+theorem sideDarts_nodup_of_cell (P : OsinLemma94RealizedPolygons S) {k : Fin P.count} {s : ℕ}
+    {j : Fin S.diagram.rCellCount} (hs : s < P.sideCount k) (hj : P.kind k s = .cell j) :
+    (P.sideDarts k s).Nodup := by
+  obtain ⟨arc, harc⟩ := P.cell_arc k s j hs hj
+  rw [harc]
+  exact List.Nodup.map S.diagram.toCombMap.alpha_involutive.injective
+    (List.nodup_reverse.mpr
+      (CyclicArc.darts_nodup arc (S.diagram.faceBoundary (cell S.diagram j).face).nodup))
+
+/-- The reverse of a dart of a same-cell gap lies on the cell. -/
+theorem alpha_mem_cellDarts_of_mem_cellGapOf {j : Fin S.diagram.rCellCount}
+    {a b d : S.diagram.toCombMap.Dart} (ha : a ∈ cellDarts S.diagram j)
+    (hd : d ∈ ClassProducer.cellGapOf S.diagram.toCombMap a b) :
+    S.diagram.toCombMap.alpha d ∈ cellDarts S.diagram j := by
+  obtain ⟨t, rfl⟩ := ClassProducer.exists_of_mem_cellGapOf hd
+  rw [S.diagram.toCombMap.alpha_involutive ((S.diagram.toCombMap.facePerm ^ (t + 1)) a)]
+  refine ((S.diagram.faceBoundary (cell S.diagram j).face).mem_iff _).mpr ?_
+  rw [JunctionPocket.faceOf_pow_apply]
+  exact ((S.diagram.faceBoundary (cell S.diagram j).face).mem_iff a).mp ha
+
+/-- The last entry of a duplicate-free list does not occur before it. -/
+theorem getLast_not_mem_dropLast {α : Type*} {l : List α} (hl : l.Nodup) {x : α}
+    (hx : x ∈ l.getLast?) : x ∉ l.dropLast := by
+  intro hmem
+  have hne : l ≠ [] := by
+    rintro rfl
+    exact absurd hx (by simp)
+  have hx' : l.getLast hne = x := Option.some_inj.mp ((List.getLast?_eq_getLast hne).symm.trans hx)
+  rw [← List.dropLast_append_getLast hne, List.nodup_append] at hl
+  exact hl.2.2 x hmem (l.getLast hne) (List.mem_singleton_self _) hx'.symm
+
+/-- **The walk of a joined run of cell sides.**  It is a backward walk, every reversed dart lies on
+the cell, and its last dart lies on the last side and does not occur before. -/
+theorem runDarts_backward_facts (P : OsinLemma94RealizedPolygons S) {k : Fin P.count}
+    {j : Fin S.diagram.rCellCount} {g : ℕ → List S.diagram.toCombMap.Dart} :
+    ∀ (l : List ℕ), l ≠ [] → (∀ s ∈ l, s < P.sideCount k ∧ P.kind k s = .cell j) → l.Nodup →
+      l.IsChain (fun s s' => s' = (s + 1) % P.sideCount k ∧ P.ClassJoins k s ∧
+        g s = P.junctionGap k s) →
+      (∀ s ∈ l.getLast?, g s = []) →
+      (P.runDarts k g l).IsChain (ClassProducer.Backward S.diagram.toCombMap) ∧
+        (∀ d ∈ P.runDarts k g l, S.diagram.toCombMap.alpha d ∈ cellDarts S.diagram j) ∧
+        ∀ x ∈ (P.runDarts k g l).getLast?, x ∉ (P.runDarts k g l).dropLast ∧
+          ∃ t ∈ l.getLast?, x ∈ P.sideDarts k t
+  | [], hne, _, _, _, _ => absurd rfl hne
+  | [s], _, hl, _, _, hlast => by
+    have hs := hl s (List.mem_singleton_self s)
+    rw [runDarts_singleton_of_nil P k g s (hlast s rfl)]
+    exact ⟨P.isChain_backward_sideDarts hs.1 hs.2,
+      fun d hd => P.alpha_mem_cellDarts_of_mem_sideDarts hs.1 hs.2 hd,
+      fun x hx => ⟨getLast_not_mem_dropLast (P.sideDarts_nodup_of_cell hs.1 hs.2) hx, s, rfl,
+        List.mem_of_getLast? hx⟩⟩
+  | s :: s' :: rest, _, hl, hnodup, hchain, hlast => by
+    have hs := hl s (List.mem_cons_self ..)
+    have hsR := hl s' (List.mem_cons_of_mem _ (List.mem_cons_self ..))
+    obtain ⟨⟨hs', hjoin, hgs⟩, hchain'⟩ := List.isChain_cons_cons.mp hchain
+    obtain ⟨hchainR, hsubR, hlastR⟩ := runDarts_backward_facts P (s' :: rest) (List.cons_ne_nil _ _)
+      (fun t ht => hl t (List.mem_cons_of_mem _ ht)) (List.nodup_cons.mp hnodup).2 hchain'
+      (by simpa only [List.getLast?_cons_cons] using hlast)
+    obtain ⟨e, he⟩ : ∃ e, (P.sideDarts k s).getLast? = some e :=
+      ⟨_, List.getLast?_eq_getLast (P.side_ne_nil k s hs.1)⟩
+    obtain ⟨e', he'⟩ : ∃ e', (P.sideDarts k s').head? = some e' :=
+      ⟨_, List.head?_eq_head (P.side_ne_nil k s' hsR.1)⟩
+    have he'' : (P.sideDarts k ((s + 1) % P.sideCount k)).head? = some e' := by
+      rw [← hs']
+      exact he'
+    have hgap : g s = ClassProducer.cellGapOf S.diagram.toCombMap
+        (S.diagram.toCombMap.alpha e') (S.diagram.toCombMap.alpha e) :=
+      hgs.trans (P.junctionGap_cell he he'' hs.2)
+    have hae : S.diagram.toCombMap.alpha e ∈ cellDarts S.diagram j :=
+      P.alpha_mem_cellDarts_of_mem_sideDarts hs.1 hs.2 (List.mem_of_getLast? he)
+    have hae' : S.diagram.toCombMap.alpha e' ∈ cellDarts S.diagram j :=
+      P.alpha_mem_cellDarts_of_mem_sideDarts hsR.1 hsR.2 (List.mem_of_mem_head? he')
+    have hexists := ClassProducer.exists_pow_succ_of_faceOf_eq
+      ((((S.diagram.faceBoundary (cell S.diagram j).face).mem_iff _).mp hae').trans
+        (((S.diagram.faceBoundary (cell S.diagram j).face).mem_iff _).mp hae).symm)
+    have hheadR : (P.runDarts k g (s' :: rest)).head? = some e' :=
+      (P.head?_runDarts_cons g hsR.1 rest).trans he'
+    have hneR := P.runDarts_ne_nil g hsR.1 rest
+    rw [runDarts_cons, hgap]
+    refine ⟨ClassProducer.isChain_append_cellGapOf (P.isChain_backward_sideDarts hs.1 hs.2)
+      hchainR he hheadR hexists, ?_, ?_⟩
+    · intro d hd
+      rcases List.mem_append.mp hd with hd | hd
+      · rcases List.mem_append.mp hd with hd | hd
+        · exact P.alpha_mem_cellDarts_of_mem_sideDarts hs.1 hs.2 hd
+        · exact alpha_mem_cellDarts_of_mem_cellGapOf hae' hd
+      · exact hsubR d hd
+    · intro x hx
+      rw [List.getLast?_append_of_ne_nil _ hneR] at hx
+      obtain ⟨hnotR, t, ht, hxt⟩ := hlastR x hx
+      have htmem : t ∈ s' :: rest := List.mem_of_getLast? ht
+      refine ⟨?_, t, by simpa only [List.getLast?_cons_cons] using ht, hxt⟩
+      rw [List.dropLast_append_of_ne_nil _ hneR]
+      intro hmem
+      rcases List.mem_append.mp hmem with hmem | hmem
+      · rcases List.mem_append.mp hmem with hmem | hmem
+        · have htne : s ≠ t := fun h => (List.nodup_cons.mp hnodup).1 (h ▸ htmem)
+          exact P.sideDarts_disjoint k hs.1 (hl t (List.mem_cons_of_mem _ htmem)).1 htne hmem hxt
+        · have hface := P.faceOf_of_mem_sideDarts (hl t (List.mem_cons_of_mem _ htmem)).1 hxt
+          have hmem' : x ∈ P.junctionGap k s := by
+            rw [← hgs, hgap]
+            exact hmem
+          exact hjoin.2.2.1 j hs.2 x hmem' hface
+      · exact hnotR hmem
+
+/-- **A joined run of sides along one cell reads one arc backwards.** -/
+theorem exists_cellArc_of_run (P : OsinLemma94RealizedPolygons S) {k : Fin P.count}
+    {j : Fin S.diagram.rCellCount} {g : ℕ → List S.diagram.toCombMap.Dart} {l : List ℕ}
+    (hne : l ≠ []) (hl : ∀ s ∈ l, s < P.sideCount k ∧ P.kind k s = .cell j) (hnodup : l.Nodup)
+    (hchain : l.IsChain fun s s' => s' = (s + 1) % P.sideCount k ∧ P.ClassJoins k s ∧
+      g s = P.junctionGap k s)
+    (hlast : ∀ s ∈ l.getLast?, g s = []) :
+    ∃ arc : CyclicArc (cellDarts S.diagram j), P.runDarts k g l = arc.reverseDarts := by
+  obtain ⟨hD, hsub, hlastD⟩ := P.runDarts_backward_facts l hne hl hnodup hchain hlast
+  exact ClassProducer.exists_arc_of_backward
+    (S.diagram.faceBoundary (cell S.diagram j).face).nonempty
+    (S.diagram.faceBoundary (cell S.diagram j).face).nodup
+    (S.diagram.faceBoundary (cell S.diagram j).face).chain
+    (S.diagram.faceBoundary (cell S.diagram j).face).closes hD hsub fun x hx => (hlastD x hx).1
+
+end OsinLemma94RealizedPolygons
 
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.ClassProducer.nodup_of_head_not_mem_tail
 #audit_axioms GroupApproximation.GGT.VanKampen.ClassProducer.isChain_backward_reverseDarts
 #audit_axioms GroupApproximation.GGT.VanKampen.ClassProducer.exists_arc_of_backward
+#audit_axioms GroupApproximation.GGT.VanKampen.ClassProducer.exists_of_mem_cellGapOf
+#audit_axioms GroupApproximation.GGT.VanKampen.ClassProducer.exists_pow_succ_of_faceOf_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.runDarts_backward_facts
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.exists_cellArc_of_run
