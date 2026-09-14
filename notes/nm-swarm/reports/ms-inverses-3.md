@@ -189,3 +189,34 @@ CLAIM separating partition, first-occupied-atom representative, clopen represent
   - ff376e50f433: loop erasure needs a path representation of reachableExponents, not on main;
   - 1d0f9a56866c, fd026a61f84f, 46f3810145ee, 5079b22a3633: the atom route needs the tower rebuilt over atom representatives, since TransientTowerFamily and TransientTowerExpansion are keyed to least-exponent ones.
 - Queued for wiring at 1684652bd.
+
+## Item 4: polygon-level bad-junction exclusion (main's item 23:12)
+
+CLAIM polygon-level bad-junction exclusion for ms-binary's class producer (`OsinLemma94BadJunctionInput`, Estimating/OsinLemma94ClassJoins) `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean`
+
+Definitions, as ms-binary adopts them unchanged from ms-core-2's draft `Estimating/OsinLemma94ClassProducerGaps.lean`:
+`junctionGap`, `ClassJoins := KindJoins ∧ value one ∧ (cell: gap misses the polygon face) ∧ (boundary: idxOf e < idxOf e')`,
+`badJunctions := KindJoins ∧ ¬ClassJoins`.
+
+Hand model tests (23:3x):
+- **Cell face clause, always true on a planar map.** The gap darts are `α (facePerm^(t+1) a)`, `t < m`, and the polygon face is
+  `faceOf (α b)`, so `JunctionPocket.gap_alpha_faceOf_ne` gives it. `hface` is `face_not_cell`, and `m = 0` leaves the gap empty.
+- **Cell value clause.** The gap is a closed walk at the corner.
+  - (i) Pocket side off the exterior with G-faces only: value one, but `closedWalk_value_eq_one_of_gCells` needs a `FaceAssembly`
+    (general `RegionFaceAssemblyStatement` is an unproved binder).
+  - (ii) Pocket with a relator cell: the loop-cut kill `false_of_pocketRegion_of_below` (binder `GeodesicCollarStatement`).
+  - (iii) Exterior on the gap side: the polygon lies in a hole of cell j and the gap runs the long way, with value conj(val r_j) ≠ 1.
+    A genuine bad junction, at most one per face (`reach_face_or_reach_face`, C1).
+- **Lobe model for (iii), against summing over all `relatorPolygons`.** Take n = 1 and a cell carrying L G-triangle lobes, each next
+  to an unselected polygon.
+  - ms-binary's scope finding: the un-pinch does not raise the weight there, so the lobes stay polygons.
+  - Each lobe is a one-side polygon of kind `cell j`. Its self-junction has gap = the rest of r_j, value ≠ 1 (`cell_listVal_ne_one`).
+  - So Σ over `relatorPolygons` of `#badJunctions` ≥ L, unbounded at n = 1.
+  - Lobes are single-class, not budget polygons. With the index set restricted to polygons with at least two class non-joins
+    (⊇ `Q.budgetPolygons`, since `classCount ≤ max 1 #¬ClassJoins`), the lobes drop out.
+  - hull-component's spur-in-a-bubble counter-example to that filter needs a pendant spur, removed under `S.DartMinimal`.
+- **Boundary clauses.**
+  - Backward junction (`idxOf e' ≤ idxOf e`): only at the base corner of `outerDarts` with one section (`count = 1`), so at most one.
+  - Value clause: the gap is a lobe of `∂Δ` at a pinch vertex. It is bad only when the lobe carries a relator cell. Nested lobes seen
+    by relator polygons use distinct cells between levels, and disjoint lobes seen by one polygon use distinct cells, so at most 2n.
+- Spelling proposal sent to ms-binary (one message): same definitions, index set filtered to at least two class non-joins.
