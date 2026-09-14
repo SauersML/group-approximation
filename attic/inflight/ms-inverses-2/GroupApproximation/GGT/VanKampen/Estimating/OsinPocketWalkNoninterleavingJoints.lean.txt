@@ -77,6 +77,14 @@ private theorem getLast_head_of_closes' {l : List α} (hne : l ≠ [])
 
 end Lists
 
+private theorem targetBoundaryDarts_none_eq' {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} (Delta : DiscDiagram.{u, w, v} W)
+    {target : Option (Fin Delta.rCellCount)} (ht : target = none)
+    (arc : CyclicArc (targetDarts Delta target)) :
+    targetBoundaryDarts Delta target arc = arc.darts := by
+  subst ht
+  rfl
+
 namespace SectorNoninterleaving
 
 /-- **A face traversal read backwards turns by face steps**: consecutive darts `d`, `e` of the
@@ -126,12 +134,14 @@ theorem sectorFree_of_boundaryStep {G : Type u} [Group G] {Lambda : Type w}
       (fun a b => (Delta.toCombMap.faceOf a ∈ faces ∧
         Delta.toCombMap.faceOf (Delta.toCombMap.alpha a) ∈ faces) ∧ Delta.toCombMap.sigma a = b)
       (Delta.toCombMap.facePerm d) e := by
-    refine Relation.ReflTransGen.mono (fun a b hab => ?_) hpath
-    obtain ⟨ha1, ha2, rfl⟩ := hab
-    refine ⟨⟨ha1, ha2⟩, ?_⟩
-    show Delta.toCombMap.sigma a =
-      Delta.toCombMap.sigma (Delta.toCombMap.alpha (Delta.toCombMap.alpha a))
-    rw [Delta.toCombMap.alpha_involutive a]
+    induction hpath with
+    | refl => exact Relation.ReflTransGen.refl
+    | @tail b _ _ hmove ih =>
+      obtain ⟨hb1, hb2, rfl⟩ := hmove
+      refine Relation.ReflTransGen.tail ih ⟨⟨hb1, hb2⟩, ?_⟩
+      show Delta.toCombMap.sigma b =
+        Delta.toCombMap.sigma (Delta.toCombMap.alpha (Delta.toCombMap.alpha b))
+      rw [Delta.toCombMap.alpha_involutive b]
   obtain ⟨n, hn, hskip⟩ := PermFirstReturn.exists_pow_of_skip_walk Delta.toCombMap.sigma _ hpath'
   refine ⟨n + 1, ?_, fun k hk0 hk => ?_⟩
   · rw [pow_succ, Equiv.Perm.mul_apply]
@@ -218,20 +228,8 @@ theorem walk_isChain_closes_of_rel (K : PocketWalk D eps X lo hi) (x y : RegionC
   have hCy := y.2.boundary.cycle_chain.imp hRy
   have hCyc := closes_of_getLast_head' y.2.boundary.cycle_nonempty
     (hRy _ _ y.2.boundary.cycle_closes)
-  have htx : targetBoundaryDarts X x.2.target x.2.targetArc = x.2.targetArc.darts := by
-    revert hxt
-    generalize x.2.targetArc = arc
-    intro hxt
-    subst hxt
-    rfl
-  have hty : targetBoundaryDarts X y.2.target y.2.targetArc = y.2.targetArc.darts := by
-    revert hyt
-    generalize y.2.targetArc = arc
-    intro hyt
-    subst hyt
-    rfl
-  rw [x.2.boundary_decomposition, htx] at hCx
-  rw [y.2.boundary_decomposition, hty] at hCy hCyc
+  rw [x.2.boundary_decomposition, targetBoundaryDarts_none_eq' X hxt] at hCx
+  rw [y.2.boundary_decomposition, targetBoundaryDarts_none_eq' X hyt] at hCy hCyc
   have hinv : (invDarts X K.sourceArc.darts).IsChain R :=
     (isChain_sigma_invDarts (K.sourceArc.isChain_darts
       (X.faceBoundary (cell X K.source).face).chain
