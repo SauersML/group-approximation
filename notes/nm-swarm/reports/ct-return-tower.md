@@ -77,6 +77,30 @@ All four tower Props of cor:dynamic-rank-budget are closed.
   `Dynamics/ReturnRingCrossedProduct` (`returnRingHom_surjective` via `surjective_of_generators`, `returnRingEquiv`,
   closed `returnRingCrossedProductStatement_holds`).
 
+## thm:core-ring-reflection (tex 1516–1540): printed assembly — LANDED 17817cdac
+
+Module `GroupApproximation.Manuscript.NonMFSentences.CoreRingReflection` (chain-reflection's planned module 3;
+probe 0913-185808-72846 GREEN, BUILT line checked, 0 errors, queued for wiring), namespace
+`GroupApproximation.ChainCore.CoreRingReflection`:
+- closed (`#audit_closed_axioms`, axioms ⊆ {propext, Classical.choice, Quot.sound}):
+  - `printedCoreKillsDefectsAndI : PrintedCoreKillsDefectsAndI` (tex 1527–1528, "A unital homomorphism to a directly
+    finite ring kills every d ..., hence all of I"), via `killsKernelOfDirectlyFinite_restrict`
+    (`transientIdeal_chainRecurrentSet_eq_span` + `map_defectD_eq_zero`);
+  - `printedCoreIZeroIff : PrintedCoreIZeroIff` (tex 1538, "I = 0 exactly when X = Y"), via `transientIdeal_eq_bot_iff`;
+  - `restrict_surjective_of_isClosed` (restriction to a closed invariant set is onto; extension of LC functions).
+- over the named `DynamicRankBudget.CoreModelsLEFStatement` ("R_Y is LEF", building: ms-core-2, ms-traces-3):
+  - `printedCoreRingReflection_of_coreModels : PrintedCoreRingReflection` (tex 1516–1523, one conjunct per printed
+    sentence: the universal directly finite / stably finite / LEF quotients, the `M_m` amplification, and
+    DF ⇔ SF ⇔ LEF ⇔ every point chain recurrent), through chain-reflection's `isUniversalQuotients_of_surjective`,
+    `isUniversalQuotients_mapMatrix`, `directlyFinite_iff_stablyFinite_iff_lef_iff_injective` and `restrict_injective_iff`;
+  - `coreRingReflectionStatement_of_coreModels : DynamicRankBudget.CoreRingReflectionStatement` (ct-rank-budget's piece).
+- Agreed with ct-bilateral-mf (one message): its DF ⇒ LEF and nonzero-defect wrappers stay in
+  `Manuscript/ChainCore/BilateralThreeCoreModels` (511dec7d2); this module defines neither.
+- Unowned duplicate on disk: `GroupApproximation/Dynamics/ClopenCoreReflection.lean` (unlanded since 17:25, no `.files`
+  owner, interface Props and model tests only; noted by ms-core-5). Not touched.
+- Census rows (keys from ms-core-4's ledger adbf70b62): `42c043ef7ab5`, `8981cd70915a`, `43afa4ee3f10`, `cfbacaa0fffa`,
+  `400dde0dbd9d` partial over CoreModelsLEFStatement; `9dae685e37b9`, `b23e0f5197b5` formalized.
+
 ## Census rows
 
 `metadata/nm-census-rows/ct-return-tower.tsv` LANDED 988ae81b2: tex 1710, 1716, 1717, 1719, 1721, 1722, 1727, 1731, 1732,
