@@ -220,6 +220,19 @@ CLAIM two-gon copy route GroupApproximation/GGT/VanKampen/Estimating/OsinAppendi
   - `TwoGonCleanCopyInput`: for a two-gon on `S`, some `S'` over the same `Delta` and `cuts` with `NoLoops`, `NoMultipleEdges` and a two-gon whose label pairs all satisfy the edge conditions.
   - `twoGonHoldsInput_of_cleanCopy`, and the section leaf `osinTwoGonHoldsSection_of_cleanCopyEuler`.
   - Producer of `TwoGonCleanCopyInput` (not started): w1-binder-5's `cellPocketCopyCleanBothOrders` pattern composes the outer, cell-edge, cell-side and region-pair thickenings with an invariant transported per step. The open step is carrying the two-gon of `Φ'_M`, with no corner and no cell, through a face-edge doubling.
+- LANDED at 7ec4e6fe2: `Estimating/OsinAppendixEulerTwoGonCopyRoute`, probe 0914-085027-63014 GREEN on the first try; eight audits [propext, Classical.choice, Quot.sound], no sorryAx; on the wire queue.
+  - `TwoGonHoldsCleanInput`;
+  - `twoGonHoldsCleanInput_of_decompositionEuler`, generated from `twoGonHoldsInput_of_eulerSpan`'s body at a fixed family;
+  - `TwoGonCleanCopyInput`, `twoGonCleanCopyInput_of_copyCleanInput` (the given-family form implies it);
+  - `twoGonHoldsInput_of_cleanCopy`, `twoGonHoldsInput_of_cleanCopyEuler`;
+  - `OsinTwoGonCleanCopySectionStatement`, `osinTwoGonHoldsSection_of_cleanCopyEuler : … → OsinTwoGonDecompositionEulerSectionStatement → OsinTwoGonHoldsSectionStatement`.
+- The respelled section leaf went to ct-rank-two-limit.
+
+## Current C6′ leaves (binder 4)
+
+`osinTwoGonHoldsSection_of_cleanCopyEuler` consumes two named section Props:
+1. `OsinTwoGonCleanCopySectionStatement`: a two-gon on a clean copy. The producer composes the closed thickenings; carrying the two-gon of `Φ'_M` through face-edge doubling is open and unowned.
+2. `OsinTwoGonDecompositionEulerSectionStatement`: the Euler pair of the decomposition walk. ms-inverses-2's no-interleaving lemma plus a no-interleaving Prop for pocket walks.
 
 ## State of C6′ on the Euler route
 
