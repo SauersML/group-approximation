@@ -3,6 +3,7 @@ rg: 2
 id: wreath-products-keep-the-abelianization-of-the-base
 kind: claim
 title: A permutational wreath product never puts a non-perfect base group into its derived subgroup
+invalidates: [double-swap-embeds-group-in-derived-subgroup-proof]
 distinct_from:
   rf-groups-lie-in-derived-subgroups-of-rf-groups: that builds an overgroup for residually finite groups through Ore's theorem in finite permutation groups; this says the cheap wreath-product substitute for that step cannot work for any group.
   whitehead-diagonal-map-is-not-multiplicative: that is the failure of `diag(a, a^{-1}, 1)` on noncommuting units; this is the group-theoretic obstruction behind the analogous wreath-product map.
@@ -36,3 +37,5 @@ they preserve amenability, soficity and local embeddability, but this claim rule
 The known substitutes use finite permutation groups and Ore's theorem, so they need residual finiteness.
 
 Route: `wreath-products-keep-the-abelianization-of-the-base-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Coinvariants of a transitive action give `Δ^ab = Γ^ab × Λ^ab`, so `Γ_ω ∩ [Δ,Δ] = [Γ,Γ]_ω`; the order reversal in the second coordinate re-derived. Wired as invalidator of `double-swap-embeds-group-in-derived-subgroup-proof`. See `research/artifacts/sk-review-4-2026-09-13-part4.md` §1.

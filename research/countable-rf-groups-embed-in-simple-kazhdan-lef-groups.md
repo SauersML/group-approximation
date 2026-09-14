@@ -10,3 +10,5 @@ distinct_from:
 Every countable residually finite group `G` is a subgroup of an infinite, finitely generated, simple group with
 property (T) that is LEF, so sofic and hyperlinear. Established through the `-proof` route. The route inherits the
 review status of `rf-groups-embed-in-simple-kazhdan-lef-groups`, which was unreviewed when this node landed.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Wilson Theorem A composed with Theorem E. See `research/artifacts/sk-review-4-2026-09-13-part4.md` §3.

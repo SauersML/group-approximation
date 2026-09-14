@@ -3,11 +3,12 @@ rg: 2
 id: double-swap-embeds-group-in-derived-subgroup
 kind: claim
 title: Every group embeds in the derived subgroup of its double extended by the swap, inside one commutator
+refuted_by: [wreath-products-keep-the-abelianization-of-the-base]
 distinct_from:
   rf-groups-lie-in-derived-subgroups-of-rf-groups: that is the residually finite statement proved through Ore's commutator theorem and a doubling of the finite quotients; this is a two-line construction valid for every group, and it transports along any class closed under finite direct products and index-two extensions, so it also covers sofic, hyperlinear, LEF and amenable inputs.
 ---
 
-**ESTABLISHED (unreviewed).** Let `Γ` be a group, `Δ = (Γ × Γ) ⋊ C_2` with `C_2 = ⟨s⟩` acting by
+**FALSE for nonabelian `Γ`** (refuted by `wreath-products-keep-the-abelianization-of-the-base`; its route is invalidated). What survives: each `ι(γ) = [(γ,1), s]` is a single commutator, and `ι` is an injective homomorphism when `Γ` is abelian. The original statement, kept for the record: Let `Γ` be a group, `Δ = (Γ × Γ) ⋊ C_2` with `C_2 = ⟨s⟩` acting by
 the swap `s(a,b)s^(-1) = (b,a)`. Then
 
     ι : Γ -> Δ,   ι(γ) = (γ, γ^(-1)) = [(γ,1), s]
@@ -34,3 +35,5 @@ commutator form above is the point: it is what makes a single position of the di
 2026-09-13 for derived-subgroup embeddings, which found only the residually finite route above.
 
 Route: `double-swap-embeds-group-in-derived-subgroup-proof`.
+
+**Review (sk-verify-4, 2026-09-13): FAIL.** `ι(γ)ι(δ) = (γδ, γ^(-1)δ^(-1))` while `ι(γδ) = (γδ, δ^(-1)γ^(-1))`. The route's `Γ^op` reading turns `ι` into the diagonal `γ ↦ (γ,γ)`, which maps to `2γ̄` in `Δ^ab = Γ^ab × C_2`. Demoted through `wreath-products-keep-the-abelianization-of-the-base`. See `research/artifacts/sk-review-4-2026-09-13-part4.md` §1.

@@ -39,3 +39,5 @@ generated group has countably many finitely generated subgroups, and there are u
 residually finite groups up to isomorphism (Chong–Wise, arXiv:2207.00410, abstract). Every subgroup of `S` is LEF.
 
 Route: `simple-kazhdan-lef-host-for-countably-many-rf-groups-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Direct sum, Wilson, Theorem E. It duplicates `universal-simple-kazhdan-lef-groups-exist` (a), and its Wilson import duplicates `wilson-countable-rf-into-two-generator-rf-groups`; the owners should keep one canonical pair. See `research/artifacts/sk-review-4-2026-09-13-part4.md` §3.

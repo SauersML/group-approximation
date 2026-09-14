@@ -24,3 +24,5 @@ models cannot produce it: through `GL_N(F_q)` acting on vectors, on affine space
 sofic approximation is automatically a local embedding.
 
 Route: `sofic-universal-envelope-forces-non-lef-simple-kazhdan-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** LEF passes to subgroups; `BS(2,3)` is finitely presented, sofic and not residually finite; finitely presented LEF groups are residually finite. It does not use the swap double. See `research/artifacts/sk-review-4-2026-09-13-part4.md` §1.

@@ -33,3 +33,5 @@ of `X` into `F`-free sets need exist; they cover the dense open set
 Route: `clopen-towers-at-every-scale-iff-topologically-free-proof`.
 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part1.md`):** PASS. Both directions and Lemmas 2 and 2' re-derived.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Both directions and Lemmas 2 and 2' re-derived. See `research/artifacts/sk-review-4-2026-09-13-part4.md` §2.

@@ -7,6 +7,8 @@ target: double-swap-embeds-group-in-derived-subgroup
 requires: []
 ---
 
+**Invalidated** by `wreath-products-keep-the-abelianization-of-the-base` (sk-verify-4, 2026-09-13): step 1 is false for nonabelian `Γ`, and the `Γ^op` reading gives the diagonal, not the commutator.
+
 Write `Δ = (Γ × Γ) ⋊ C_2`, `C_2 = ⟨s⟩`, `s(a,b)s^(-1) = (b,a)`.
 
 **1. `ι` is a homomorphism and injective.** `Γ × Γ` is a direct product, so

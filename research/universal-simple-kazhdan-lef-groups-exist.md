@@ -13,3 +13,5 @@ includes every finitely presented residually finite group and every finitely gen
 
 The countability hypothesis is sharp: `no-finitely-generated-group-contains-all-fg-rf-groups`. Established through
 the `-proof` route, which inherits the review status of `countable-rf-groups-embed-in-simple-kazhdan-lef-groups`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Restricted direct sum is countable and residually finite; recursively presented f.g. groups are countably many; f.g. linear groups are recursively presented. See `research/artifacts/sk-review-4-2026-09-13-part4.md` §3.

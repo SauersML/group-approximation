@@ -49,3 +49,5 @@ repairs agree: small sets cover a dense open set, and a locally constant functio
 Route: `tower-simplicity-topologically-free-proof`.
 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part1.md`):** PASS with scope repair R1: finite generation of `EL_n(R)` needs `R` finitely generated (the odometer is a counterexample), so the statement now says "finitely generated when `R` is"; the downstream lamplighter use is unaffected.
+
+**Review (sk-verify-4, 2026-09-13): PASS after a scope repair.** Route steps 1–5 re-derived (dense small sets, the entrywise commuting criterion, agreement on a dense set, tower, commutator, covering). The "finitely generated" scope was already restricted on main when I merged. See `research/artifacts/sk-review-4-2026-09-13-part4.md` §2.

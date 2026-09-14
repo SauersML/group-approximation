@@ -4,16 +4,16 @@ id: rf-groups-have-free-minimal-subshifts-with-finite-models
 kind: claim
 title: Every finitely generated infinite residually finite group acts freely and minimally on a three-letter Toeplitz subshift that is a limit of finite subshifts
 distinct_from:
-  rf-toeplitz-subshifts-over-residually-finite-groups: that builds a binary Toeplitz array with moving holes, large successive indices and a union bound; this uses nested holes K_m containing the identity, index at least 3 and three letters, so a window meets the hole at most once and freeness at every point follows from two unique cosets per level.
+  rf-toeplitz-subshifts-over-residually-finite-groups: that builds a binary Toeplitz array with moving holes, large successive indices and a union bound; this uses nested holes K_m containing the identity, index at least 4 and three letters, so a window meets the hole at most once and freeness at every point follows from two unique cosets per level.
 artifacts:
   - research/artifacts/sk-general-actions-a-finite-subshift-limits-2026-09-13.md
 ---
 
-**ESTABLISHED (unreviewed).** Let `Γ` be finitely generated, infinite and residually finite, acting on `{0,1,2}^Γ` by `(γx)(h) = x(hγ)`. Choose normal subgroups `Γ = K_0 > K_1 > ⋯` of finite index with `∩ K_m = {e}` and `[K_m : K_(m+1)] ≥ 3`. Let `x` satisfy:
+**ESTABLISHED (unreviewed).** Let `Γ` be finitely generated, infinite and residually finite, acting on `{0,1,2}^Γ` by `(γx)(h) = x(hγ)`. Choose normal subgroups `Γ = K_0 > K_1 > ⋯` of finite index with `∩ K_m = {e}` and `[K_m : K_(m+1)] ≥ 4`. Let `x` satisfy:
 - `x(e) = 1`;
 - on `K_m \ K_(m+1)` it is constant on `K_(m+1)`-cosets, with the values `1` and `2` each on exactly one coset and `0` on the rest.
 
-Then the orbit closure `X` of `x` is infinite and minimal, `Γ` acts freely at every point, and `X` has finite models. For every finite `F` there is `n` such that the configurations equal to `x` off `K_n` and constant on `K_n` generate a finite subshift with the `F`-patterns of `X`.
+Then the orbit closure `X` of `x` is infinite and minimal, `Γ` acts freely at every point, and `X` has finite models. For every finite `F` there is `n` such that the configurations equal to `x` off `K_n` and constant on `K_n` generate a finite subshift with the `F`-patterns of `X`. (Index `≥ 4` makes all three letters occur in every `K_n`. At index 3 the letter `0` never occurs, and the construction still works with the constants restricted to `x(K_n)`, as in the route.)
 
 **Proof** (artifact §3).
 - `x(hk) = x(h)` for `h ∉ K_n` and `k ∈ K_n`.
@@ -28,3 +28,5 @@ Credit: Toeplitz arrays over residually finite groups are due to Krieger and to 
 Route: `rf-groups-have-free-minimal-subshifts-with-finite-models-proof`.
 
 **Review (sk-verify-4, 2026-09-13): PASS.** Key identity x(hk) = x(h), finite models y_b, syndetic return sets, and freeness through the special level cosets (m = ℓ(γ) by normality; K_n ⊆ K_(m+1)) re-derived. See `research/artifacts/sk-review-4-2026-09-13-part1.md` §8.
+
+**Review (sk-verify-4, 2026-09-13): defect repaired.** At index 3 the letter `0` never occurs, so the constant configuration `0` has patterns outside `X` and the claim sentence was false; the route (values in `x(K_n)`) was correct. The index is now `≥ 4`. This corrects my part 1 §8 PASS, which checked only the route. See `research/artifacts/sk-review-4-2026-09-13-part4.md` §4.
