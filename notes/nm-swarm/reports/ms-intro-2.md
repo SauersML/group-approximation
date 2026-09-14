@@ -275,6 +275,23 @@ CLAIM `OsinLemma94ContactMapSmallFacesInput` (under the binders of `OsinLemma94L
      component, to its innermost face. Nothing on main provides that.
   2. **Empty nondegenerate two-gons.** The pocket is bounded by sectors of polygon faces and object arcs, while
      `EmptyTwoGonInput` (Φ′_M) needs region sides. The sector merge is new.
+- **Split confirmed by main (10:3x).** ms-traces-1 takes part 2, the empty-two-gon sector merge, and will agree the
+  statement with me. I keep part 1: per-component face classes and the nesting charge.
+- Part 1, first brick: `CombMapRestrictionComponentFaceClasses` (attic, probing), with
+  `PredicateRestriction.faceOf_eq_of_faceClass_of_componentOf`. Face classes of a planar map separate the faces of a
+  first-return restriction inside one component.
+- **Hand model test of the nesting charge (before stating it):**
+  - Setup: an outer component C₁, the square a–f–b–f′, has faces F_in and F_out. Nested inside F_in is C₂, the path
+    c–g–d, whose single face G is degenerate. The reference dart r is on the exterior object.
+  - F_in and G share one face class of `contactMap` but are faces of different components. So distinct faces do not
+    hold distinct things globally (the calibration).
+  - Charge. Each component has one *outer* face, the face whose own class contains r: F_out for C₁ and G for C₂. At
+    most c such faces are small. A *non-outer* holding face (F_in) is charged to what it encloses (C₂). Degenerate
+    faces (G) are counted separately, at most n + 1.
+  - Count: small faces F_in, F_out, G. That is 3 ≤ (outer faces ≤ c = 2) + (enclosed things ≥ 1) + degenerate ✓.
+  - The crux to formalize: two non-outer faces of *different* components never share a face class (two discs whose
+    boundaries lie in each other's interiors would cover the sphere and put r inside one of them). Proof route:
+    `faceOf_eq_of_faceClass` per component, plus a separation argument on the union of the two components.
 - Reuse plan for the nondegenerate residual (10:1x), modelled on the proved count for Lemma 9.7(a), Φ′_M:
   - `OsinAppendixEulerSmallFaces` splits small faces into C4 corners, C5 faces holding a cell, and C6′ two-gons holding
     a cell or with a corner.
