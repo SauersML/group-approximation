@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ShortSides
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingSides
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -19,7 +20,7 @@ relator cell or both run along one section of `∂Δ`.  This module counts the s
   `j`, or kind `boundary j` for one `j`.
 * `kindNonJoins P k`: the sides `s < k_i` that do not join the next side at kind level.
 * `runEnds P k`: the (A1) and (A2) sides that do not join the next side, the ends of the runs.
-* `cuttingSides P k`: the sides of kind `cutting`.
+* `cuttingSides P k`: the sides of kind `cutting`, from `OsinLemma94CuttingSides`.
 * `relatorPolygons P`: the polygons with an (A1) side.
 * `longTransitions P k`: the run ends where the next side is not short.
 * `card_kindNonJoins_le`: a kind non-join is short, cutting or a run end.
@@ -63,11 +64,6 @@ noncomputable def kindNonJoins (P : OsinLemma94RealizedPolygons S) (k : Fin P.co
 noncomputable def runEnds (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) : Finset ℕ :=
   (Finset.range (P.sideCount k)).filter fun s =>
     ((∃ j, P.kind k s = .cell j) ∨ ∃ j, P.kind k s = .boundary j) ∧ ¬ P.KindJoins k s
-
-/-- The cutting sides of polygon `k`. -/
-noncomputable def cuttingSides (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) :
-    Finset ℕ :=
-  (Finset.range (P.sideCount k)).filter fun s => P.kind k s = .cutting
 
 /-- The polygons with an (A1) side. -/
 noncomputable def relatorPolygons (P : OsinLemma94RealizedPolygons S) : Finset (Fin P.count) :=
