@@ -866,6 +866,48 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
       - S7: "where φ_k(0)=0 by additivity".
     - R3 (database novelty search: zbMATH, forward citations of EJZ 2010, GM 2014 and Kionke–Schesler) was launched as sk-novelty-db.
     - The referee items are held for the rev5 editor rather than sent to the running design lanes, to avoid rework.
+168. **USER ~11:10: "there are branches, on github. I dont like that. dleete or incorperate into main or something idk but no branche".**
+    - GitHub had one extra branch, `palomar-stw-xxii-submit-20260913` (7 commits ahead, 1475 behind main). It is another session's stripped STW XXII submission snapshot, whose tip a4eea122… is cited by SHA in the unsent submission payload. Merging it would have gutted main.
+    - Main re-read the tip, archived it as the non-branch ref `refs/archive/palomar-stw-xxii-submit-20260913`, verified the ref, and deleted the branch.
+    - GitHub now has only `main`; the commit stays reachable by SHA. No open PRs; Pages serves from main.
+    - The two nonsofic peer sessions were notified.
+169. **Wave 14 design proposals are in. Each compiles clean on MSI and is 9 pp on its own.**
+    - sk-design-page-one (da52a337a4): +14 source lines.
+    - sk-design-statements (61098579db): the "expander limit" definition, Thm 2(a)/(b), Table 1, numbered Questions.
+    - sk-design-structure (75841e9b4c): Steps 1–3, Lemmas A/B/C, Brown's formulation moved to the end of §1, Z→C.
+    - sk-design-example-figure (55867150a0):
+      - Figure 1, a 5-cycle 01001 and a tower, plus the example subsection;
+      - Fibonacci is justified as the paper's own subshift with the fewest words; least period 5, unique up to rotation (MSI).
+    - sk-prose-polish (9940281ba7): top 15 at +0 lines.
+    - Two competing assemblies launched:
+      - sk-editor-7a: tight, ≤ 9 pp;
+      - sk-editor-7b: generous, ≤ 11 pp.
+    - Main picks one; then a rev5 referee checks the new statements (definition quantifiers, the Theorem 2(b) fixes, Lemmas A/B/C) before landing.
+170. **sk-sofic-almost-action final (e97dac40d6, bd6a6303d5, e118ba468d): target still OPEN; unreviewed partial results in Cairn.**
+    - Theorem O: a group is LEF iff it has a sofic approximation with an orbitwise fixed-point gap.
+    - Family (E): orbitwise gap 1/2 for semisimple targets.
+    - A Kazhdan cutting lemma.
+    - Corollary C: cutting a Kazhdan cover's genuine actions down to almost invariant subsets of semisimple linear models certifies only LEF groups.
+    - Soficity of EL_3(F_2[Δ]) ≤ G_Δ is an instance of Arzhantseva–Păunescu's question "Are all linear sofic groups indeed sofic?".
+    - Next targets: T5 (the radical case), T1 (EL_3(F_2[C(BS(2,3))])), T3. The claim is queued for verification.
+171. **sk-cairn-steward-5 final (tip 8659057757): every sk finding is wired; root reachability is NOT yet confirmed.**
+    - The MSI cairn check at 85fdee4bbf failed to compile (EXIT=4). A peer lane's node `leavitt-rooted-defect-window-carries-no-strict-design` had `requires` on a claim; it was fixed on main at 0b43ab3fc.
+    - Local scan: all 59 sk claims landed 08:34–11:05 are required by some route or assembly, with 0 orphans. This checks direct requirement only.
+    - Dead space from the last completed check (09:07): 4 refuted firewalls, 3 invalidated routes, 4 stale ids.
+    - Merged:
+      - Theorem P F1–F4;
+      - the two property-(T) Popa nodes, established through Theorem P;
+      - the fidelity reason;
+      - banded W1/W2;
+      - divisible unit F1/F2;
+      - Krieger K1/K2;
+      - N1, X1, S1 and both false remarks;
+      - the note root updated to the five results of rev4.4/4.5.
+    - Caught a wrong verifier fix: sk-verify-22's X2 used diag(g,g⁻¹), which is not a homomorphism. The steward merged diag(g,1) on the commutator subgroup instead (unreviewed, queued).
+    - Still open: `finite-dimensional-combs-generate-popa-algebras` has no node review, and the X2 replacement is unreviewed.
+    - Launched:
+      - sk-cairn-steward-6: one MSI check at the current tip, fixing wiring only;
+      - sk-verify-24: the X2 replacement, the comb criterion, and Theorem O.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
