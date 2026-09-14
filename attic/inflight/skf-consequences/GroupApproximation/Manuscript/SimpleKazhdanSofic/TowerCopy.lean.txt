@@ -85,7 +85,7 @@ theorem towerAddHom_single (hW : IsClopen W) (a b : Fin (2 * m + 1)) (x : ZMod 2
   have h2 : ∀ b' : Fin (2 * m + 1), b' ≠ b →
       (Matrix.single a b x a b').val • towerE T (ZMod 2) m hW a b' = 0 := by
     intro b' hb'
-    rw [Matrix.single_apply_of_col_ne hb'.symm, ZMod.val_zero, zero_nsmul]
+    rw [Matrix.single_apply_of_col_ne a a hb'.symm x, ZMod.val_zero, zero_nsmul]
   rw [towerAddHom_apply, Fintype.sum_eq_single a h1, Fintype.sum_eq_single b h2,
     Matrix.single_apply_same]
 
@@ -99,7 +99,20 @@ theorem towerAddHom_single_mul_single (hlev : LevelsDisjoint T m U) (hWU : W ⊆
   · subst hbc
     rw [Matrix.single_mul_single_same, towerAddHom_single, if_pos rfl, towerE_inter_self,
       val_mul_nsmul, smul_smul]
-  · rw [Matrix.single_mul_single_of_ne a b c hbc y, map_zero, if_neg hbc, smul_zero]
+  · rw [Matrix.single_mul_single_of_ne (h := hbc), map_zero, if_neg hbc, smul_zero]
+
+/-- `ψ` is multiplicative: both sides are biadditive, and they agree on matrix units. -/
+theorem towerAddHom_mul (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W)
+    (M N : Matrix (Fin (2 * m + 1)) (Fin (2 * m + 1)) (ZMod 2)) :
+    towerAddHom (T := T) hW (M * N) = towerAddHom hW M * towerAddHom hW N := by
+  induction M using Matrix.induction_on' with
+  | h_zero => rw [zero_mul, map_zero, zero_mul]
+  | h_add p q hp hq => rw [add_mul, map_add, map_add, add_mul, hp, hq]
+  | h_std_basis a b x =>
+    induction N using Matrix.induction_on' with
+    | h_zero => rw [mul_zero, map_zero, mul_zero]
+    | h_add p q hp hq => rw [mul_add, map_add, map_add, mul_add, hp, hq]
+    | h_std_basis c d y => exact towerAddHom_single_mul_single hlev hWU hW a b c d x y
 
 /-- **The tower copy** `M_{2m+1}(F_2) →ₙ+* R_X`, `M ↦ ∑_{a,b} M_{ab} ε_{ab}`. -/
 noncomputable def towerHom (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W) :
@@ -107,12 +120,7 @@ noncomputable def towerHom (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : I
   toFun := towerAddHom hW
   map_zero' := map_zero _
   map_add' := map_add _
-  map_mul' M N := by
-    rw [Matrix.matrix_eq_sum_single M, Matrix.matrix_eq_sum_single N]
-    simp only [Finset.sum_mul, Finset.mul_sum, map_sum]
-    exact Finset.sum_congr rfl fun a _ => Finset.sum_congr rfl fun b _ =>
-      Finset.sum_congr rfl fun c _ => Finset.sum_congr rfl fun d _ =>
-        towerAddHom_single_mul_single hlev hWU hW a b c d _ _
+  map_mul' := towerAddHom_mul hlev hWU hW
 
 theorem towerHom_apply (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W)
     (M : Matrix (Fin (2 * m + 1)) (Fin (2 * m + 1)) (ZMod 2)) :

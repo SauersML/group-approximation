@@ -1,125 +1,162 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerCopy
 import GroupApproximation.Leavitt.CornerUnitHom
-import GroupApproximation.Leavitt.ElementaryFTwoMatrixProduct
 import GroupApproximation.Algebra.FinitaryLinearBinarySimple
 import Mathlib.Data.Matrix.Composition
 
 /-!
-# The copy `H_W` of `GL_d(F_2)` on the tower over `W`
+# The copy `H` of `GL_d(F_2)` on the tower over `V`
 
-`simple_kazhdan_sofic_group.tex` at bf961c128, tex 205–218:
+`simple_kazhdan_sofic_group.tex` (origin/main tip), subsection "Simplicity":
 
-> Let $H_W$ be the copy of $\GL_d(\F_2)$ acting on the tower over $W$ and as the identity elsewhere.
-> It lies in $G$.  Indeed, index its coordinates by $(p,a)$, where $1\le p\le3$ and $|a|\le m$.
-> A transvection between $(p,a)$ and $(q,b)$ with $p\ne q$ is $e_{pq}(E_{ab}(W))$.  For $p=q$ and
-> $a\ne b$, take $q\ne p$ and use
-> $[e_{pq}(E_{ab}(W)),e_{qp}(E_{bb}(W))]=I_3+E_{ab}(W)E_{pp}$.
-> This follows from $E_{ab}E_{bb}=E_{ab}$ and $E_{bb}E_{ab}=0$.
-> These transvections generate $H_W$.
-> Over $\F_2$, the group $\GL_d(\F_2)=\SL_d(\F_2)=\PSL_d(\F_2)$ is simple and centerless for $d\ge3$.
+> Index the coordinates of $\F_2^d$ by pairs $(p,a)$ with $1\le p\le3$ and $|a|\le w$. Then
+> $\psi(E_{(p,a),(q,b)})=\epsilon_{ab}E_{pq}$ defines an injective multiplicative linear map
+> $\psi\colon M_d(\F_2)\to M_3(R)$, and $M\mapsto I_3-\psi(I_d)+\psi(M)$ embeds $\GL_d(\F_2)$ in
+> $\GL_3(R)$. Its image $H$ lies in $G$. Indeed, transvections generate $\GL_d(\F_2)$. The
+> transvection between $(p,a)$ and $(q,b)$ maps to $e_{pq}(\epsilon_{ab})$ if $p\ne q$. If $p=q$,
+> it is the commutator of the transvections between $(p,a)$ and $(p',a)$ and between $(p',a)$ and
+> $(p,b)$, where $p'\ne p$.
+> … $H\cong\GL_d(\F_2)=\PSL_d(\F_2)$, which is simple as $d\ge3$.
 
-* `towerCopy hlev hWU hW : GL_{3(2m+1)}(F_2) →* GL_3(R_X)`: flatten `(p,a)` coordinates
-  (`Matrix.compRingEquiv`), then apply the corner map `h ↦ (1 - e) I_3 + h` of `towerHom`;
-* `towerCopy_elementaryUnit`: a transvection between `(p,a)` and `(q,b)`, `p ≠ q`, goes to
-  `e_{pq}(E_{ab}(W))`;
-* `elementaryUnit_commutator_eq_one_add_single`: the printed commutator identity, for `x y` with
-  `x y = x`, `y x = 0`, `x x = 0`;
-* `towerCopy_mem_elementaryGroup`: `H_W ≤ G`;
+The index set `ι` of the outer matrices is arbitrary (printed `ι = {1,2,3}`; `thm:main` covers every
+`EL_n`, `n ≥ 3`), and `d = #ι · (2m+1)`.
+
+* `flatEquiv ι m : GL_{ι × (2m+1)}(F_2) ≃* GL_ι(M_{2m+1}(F_2))`, block flattening;
+* `towerCopy ι hlev hWU hW`: `M ↦ I - ψ(I_d) + ψ(M)` on units, the corner map of `towerHom`;
+* `towerCopy_transvection`: the transvection between `(p,a)` and `(q,b)`, `p ≠ q`, goes to
+  `e_{pq}(ε_{ab})`;
+* `towerCopy_mem_elementaryGroup`: `H ≤ EL_ι(R_X)`, through transvections and, for `p = q`, the
+  printed commutator;
 * `towerCopy_injective` for nonempty `W`;
-* `center_units_matrix_zmodTwo_eq_bot`: `GL_d(F_2)` is centerless for `d ≥ 3`.
+* `det_units_matrix_zmodTwo`, `center_units_matrix_zmodTwo_eq_bot`: `GL_d(F_2) = SL_d(F_2)` and its
+  centre is trivial for `d ≥ 3`, so `GL_d(F_2) = PSL_d(F_2)`; it is simple
+  (`FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo`).
 -/
 
 namespace GroupApproximation
 namespace SimpleKazhdanSofic
 
-open ClopenCrossedProduct Matrix ChainRadical
+open ClopenCrossedProduct ChainRadical
 
 variable {X : Type*} [TopologicalSpace X] {T : X ≃ₜ X} {m : ℕ} {U W : Set X}
 
-/-- Flattening block coordinates: `GL_{3(2m+1)}(F_2) ≃* GL_3(M_{2m+1}(F_2))`. -/
-noncomputable def flatEquiv (m : ℕ) :
-    (Matrix (Fin 3 × Fin (2 * m + 1)) (Fin 3 × Fin (2 * m + 1)) (ZMod 2))ˣ ≃*
-      (Matrix (Fin 3) (Fin 3) (Matrix (Fin (2 * m + 1)) (Fin (2 * m + 1)) (ZMod 2)))ˣ :=
-  Units.mapEquiv (Matrix.compRingEquiv (Fin 3) (Fin (2 * m + 1)) (ZMod 2)).symm.toMulEquiv
+/-- Flattening block coordinates: `GL_{ι × (2m+1)}(F_2) ≃* GL_ι(M_{2m+1}(F_2))`. -/
+noncomputable def flatEquiv (ι : Type*) [Fintype ι] [DecidableEq ι] (m : ℕ) :
+    (Matrix (ι × Fin (2 * m + 1)) (ι × Fin (2 * m + 1)) (ZMod 2))ˣ ≃*
+      (Matrix ι ι (Matrix (Fin (2 * m + 1)) (Fin (2 * m + 1)) (ZMod 2)))ˣ :=
+  Units.mapEquiv (Matrix.compRingEquiv ι (Fin (2 * m + 1)) (ZMod 2)).symm.toMulEquiv
 
-/-- **The copy `H_W`** of `GL_{3(2m+1)}(F_2)` acting on the tower over `W`. -/
-noncomputable def towerCopy (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W) :
-    (Matrix (Fin 3 × Fin (2 * m + 1)) (Fin 3 × Fin (2 * m + 1)) (ZMod 2))ˣ →*
-      (Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2)))ˣ :=
-  (cornerUnitHom (ι := Fin 3) (towerHom hlev hWU hW)).comp (flatEquiv m).toMonoidHom
+/-- **The copy `H`** of `GL_{ι × (2m+1)}(F_2)` acting on the tower over `W`:
+`M ↦ I - ψ(I_d) + ψ(M)`. -/
+noncomputable def towerCopy (ι : Type*) [Fintype ι] [DecidableEq ι] (hlev : LevelsDisjoint T m U)
+    (hWU : W ⊆ U) (hW : IsClopen W) :
+    (Matrix (ι × Fin (2 * m + 1)) (ι × Fin (2 * m + 1)) (ZMod 2))ˣ →*
+      (Matrix ι ι (ClopenCrossedProduct T (ZMod 2)))ˣ :=
+  (cornerUnitHom (ι := ι) (towerHom hlev hWU hW)).comp (flatEquiv ι m).toMonoidHom
 
-theorem flatEquiv_elementaryUnit {p q : Fin 3} (hpq : p ≠ q) (a b : Fin (2 * m + 1)) (c : ZMod 2) :
-    flatEquiv m (elementaryUnit (p, a) (q, b) (by simp [hpq]) c) =
+theorem flatEquiv_elementaryUnit {ι : Type*} [Fintype ι] [DecidableEq ι] {p q : ι} (hpq : p ≠ q)
+    (a b : Fin (2 * m + 1)) (c : ZMod 2) (h : (p, a) ≠ (q, b)) :
+    flatEquiv ι m (elementaryUnit (p, a) (q, b) h c) =
       elementaryUnit p q hpq (Matrix.single a b c) := by
   apply Units.ext
-  change (Matrix.compRingEquiv (Fin 3) (Fin (2 * m + 1)) (ZMod 2)).symm
+  change (Matrix.compRingEquiv ι (Fin (2 * m + 1)) (ZMod 2)).symm
       (1 + Matrix.single (p, a) (q, b) c) = 1 + Matrix.single p q (Matrix.single a b c)
   rw [map_add, map_one, ← Matrix.comp_single_single, Matrix.compRingEquiv_symm_apply,
     Equiv.symm_apply_apply]
 
-/-- A transvection between `(p,a)` and `(q,b)` with `p ≠ q` is `e_{pq}(E_{ab}(W))`. -/
-theorem towerCopy_elementaryUnit (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W)
-    {p q : Fin 3} (hpq : p ≠ q) (a b : Fin (2 * m + 1)) :
-    towerCopy hlev hWU hW (elementaryUnit (p, a) (q, b) (by simp [hpq]) 1) =
+theorem towerCopy_elementaryUnit {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W) {p q : ι} (hpq : p ≠ q)
+    (a b : Fin (2 * m + 1)) (c : ZMod 2) (h : (p, a) ≠ (q, b)) :
+    towerCopy ι hlev hWU hW (elementaryUnit (p, a) (q, b) h c) =
+      elementaryUnit p q hpq (towerHom hlev hWU hW (Matrix.single a b c)) := by
+  rw [towerCopy, MonoidHom.comp_apply, MulEquiv.coe_toMonoidHom,
+    flatEquiv_elementaryUnit hpq a b c h, cornerUnitHom_elementaryUnit]
+
+/-- **The transvection between `(p,a)` and `(q,b)` maps to `e_{pq}(ε_{ab})`** if `p ≠ q`. -/
+theorem towerCopy_transvection {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W) {p q : ι} (hpq : p ≠ q)
+    (a b : Fin (2 * m + 1)) (h : (p, a) ≠ (q, b)) :
+    towerCopy ι hlev hWU hW (elementaryUnit (p, a) (q, b) h 1) =
       elementaryUnit p q hpq (towerE T (ZMod 2) m hW a b) := by
-  rw [towerCopy, MonoidHom.comp_apply, MulEquiv.coe_toMonoidHom, flatEquiv_elementaryUnit hpq,
-    cornerUnitHom_elementaryUnit]
-  congr 1
-  rw [towerHom_apply]
-  simp only [Matrix.single_apply, apply_ite ZMod.val, ZMod.val_one, ZMod.val_zero, ite_nsmul,
-    one_nsmul, zero_nsmul]
-  simp [Finset.sum_ite, Finset.filter_eq', Finset.filter_eq]
+  rw [towerCopy_elementaryUnit hlev hWU hW hpq a b 1 h, towerHom_single]
 
-/-- **The printed commutator identity** (tex 211–213):
-`[e_{pq}(x), e_{qp}(y)] = I + x E_{pp}` when `x y = x`, `y x = 0` and `x x = 0`. -/
-theorem elementaryUnit_commutator_eq_one_add_single {S : Type*} [Ring S] {ι : Type*} [Fintype ι]
-    [DecidableEq ι] {p q : ι} (hpq : p ≠ q) {x y : S} (hxy : x * y = x) (hyx : y * x = 0)
-    (hxx : x * x = 0) :
-    ((elementaryUnit p q hpq x * elementaryUnit q p hpq.symm y * (elementaryUnit p q hpq x)⁻¹ *
-        (elementaryUnit q p hpq.symm y)⁻¹ : (Matrix ι ι S)ˣ) : Matrix ι ι S) =
-      1 + Matrix.single p p x := by
-  have hyy : y * x * y = 0 := by rw [hyx, zero_mul]
-  simp only [Units.val_mul, elementaryUnit, Units.inv_mk]
-  simp only [add_mul, mul_add, one_mul, mul_one, sub_eq_add_neg, neg_mul, mul_neg,
-    Matrix.single_mul_single_same, Matrix.single_mul_single_of_ne _ _ _ hpq,
-    Matrix.single_mul_single_of_ne _ _ _ hpq.symm, hxy, hyx, hxx, hyy, Matrix.single_zero,
-    neg_zero, add_zero, zero_add, mul_assoc]
-  abel
-
-/-- **`H_W` lies in `G = EL_3(R_X)`.** -/
-theorem towerCopy_mem_elementaryGroup (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W)
-    (x : (Matrix (Fin 3 × Fin (2 * m + 1)) (Fin 3 × Fin (2 * m + 1)) (ZMod 2))ˣ) :
-    towerCopy hlev hWU hW x ∈ elementaryGroup (Fin 3) (ClopenCrossedProduct T (ZMod 2)) := by
-  have hmap : (elementaryGroup (Fin 3) (Matrix (Fin (2 * m + 1)) (Fin (2 * m + 1)) (ZMod 2))).map
-      (cornerUnitHom (ι := Fin 3) (towerHom hlev hWU hW)) ≤
-        elementaryGroup (Fin 3) (ClopenCrossedProduct T (ZMod 2)) := by
-    refine Subgroup.map_le_iff_le_comap.2 ((Subgroup.closure_le (K := _)).2 ?_)
-    rintro _ ⟨i, j, hij, c, rfl⟩
-    refine Subgroup.mem_comap.2 ?_
-    rw [cornerUnitHom_elementaryUnit]
+/-- **`H` lies in `G`** (tex, "Its image $H$ lies in $G$"): transvections generate `GL_d(F_2)`; a
+transvection with `p ≠ q` maps to a root, and one with `p = q` is a commutator of two such. -/
+theorem towerCopy_mem_elementaryGroup {ι : Type*} [Fintype ι] [DecidableEq ι] [Nontrivial ι]
+    (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W)
+    (x : (Matrix (ι × Fin (2 * m + 1)) (ι × Fin (2 * m + 1)) (ZMod 2))ˣ) :
+    towerCopy ι hlev hWU hW x ∈ elementaryGroup ι (ClopenCrossedProduct T (ZMod 2)) := by
+  have hx : x ∈ elementaryGroup (ι × Fin (2 * m + 1)) (ZMod 2) := by
+    rw [FinitaryLinear.elementaryGroup_zmodTwo_eq_top]
+    exact Subgroup.mem_top x
+  have hroot : ∀ {p q : ι} (hpq : p ≠ q) (a b : Fin (2 * m + 1)) (c : ZMod 2)
+      (h : (p, a) ≠ (q, b)), towerCopy ι hlev hWU hW (elementaryUnit (p, a) (q, b) h c) ∈
+        elementaryGroup ι (ClopenCrossedProduct T (ZMod 2)) := by
+    intro p q hpq a b c h
+    rw [towerCopy_elementaryUnit hlev hWU hW hpq a b c h]
     exact elementaryUnit_mem _ _ _ _
-  refine hmap ⟨flatEquiv m x, ?_, rfl⟩
-  rw [elementaryGroup_matrix_zmodTwo_eq_top (ι := Fin 3) (Fin (2 * m + 1))]
-  exact Subgroup.mem_top _
+  induction hx using Subgroup.closure_induction with
+  | mem y hy =>
+    obtain ⟨⟨p, a⟩, ⟨q, b⟩, hne, c, rfl⟩ := hy
+    by_cases hpq : p = q
+    · subst hpq
+      obtain ⟨p', hp'⟩ := exists_ne p
+      have h1 : ((p, a) : ι × Fin (2 * m + 1)) ≠ (p', a) := by simp [hp'.symm]
+      have h2 : ((p', a) : ι × Fin (2 * m + 1)) ≠ (p, b) := by simp [hp']
+      have hcomm := elementaryUnit_commutator (R := ZMod 2) ((p, a) : ι × Fin (2 * m + 1))
+        (p', a) (p, b) h1 h2 hne c 1
+      rw [mul_one] at hcomm
+      rw [← hcomm, commutatorElement_def, map_mul, map_mul, map_mul, map_inv, map_inv]
+      exact Subgroup.mul_mem _ (Subgroup.mul_mem _ (Subgroup.mul_mem _
+        (hroot hp'.symm a a c h1) (hroot hp' a b 1 h2))
+        (Subgroup.inv_mem _ (hroot hp'.symm a a c h1))) (Subgroup.inv_mem _ (hroot hp' a b 1 h2))
+    · exact hroot hpq a b c hne
+  | one => rw [map_one]; exact Subgroup.one_mem _
+  | mul y z _ _ hy hz => rw [map_mul]; exact Subgroup.mul_mem _ hy hz
+  | inv y _ hy => rw [map_inv]; exact Subgroup.inv_mem _ hy
 
-theorem towerCopy_injective (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W)
-    (hne : W.Nonempty) : Function.Injective (towerCopy hlev hWU hW) :=
-  (cornerUnitHom_injective _ (towerHom_injective hlev hWU hW hne)).comp (flatEquiv m).injective
+/-- **The copy is injective** for nonempty `W` (printed "embeds $\GL_d(\F_2)$"). -/
+theorem towerCopy_injective {ι : Type*} [Fintype ι] [DecidableEq ι] (hlev : LevelsDisjoint T m U)
+    (hWU : W ⊆ U) (hW : IsClopen W) (hne : W.Nonempty) :
+    Function.Injective (towerCopy ι hlev hWU hW) := by
+  intro x y h
+  have h' : cornerUnitHom (ι := ι) (towerHom hlev hWU hW) (flatEquiv ι m x) =
+      cornerUnitHom (ι := ι) (towerHom hlev hWU hW) (flatEquiv ι m y) := h
+  exact (flatEquiv ι m).injective (cornerUnitHom_injective _ (towerHom_injective hlev hWU hW hne) h')
 
-/-- **`GL_d(F_2)` is centerless** for `d ≥ 3`: it is simple and not commutative. -/
+/-- **`GL_d(F_2) = SL_d(F_2)`**: every invertible matrix over `F_2` has determinant `1`. -/
+theorem det_units_matrix_zmodTwo {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (u : (Matrix ι ι (ZMod 2))ˣ) : (u : Matrix ι ι (ZMod 2)).det = 1 := by
+  have hdet : (u : Matrix ι ι (ZMod 2)).det ≠ 0 :=
+    Matrix.det_ne_zero_of_right_inverse
+      (B := ((u⁻¹ : (Matrix ι ι (ZMod 2))ˣ) : Matrix ι ι (ZMod 2))) u.mul_inv
+  have h2 : ∀ x : ZMod 2, x ≠ 0 → x = 1 := by decide
+  exact h2 _ hdet
+
+/-- **`GL_d(F_2)` is centerless** for `d ≥ 3`, so `GL_d(F_2) = PSL_d(F_2)`. -/
 theorem center_units_matrix_zmodTwo_eq_bot (ι : Type*) [Fintype ι] [DecidableEq ι]
     (hcard : 3 ≤ Fintype.card ι) : Subgroup.center (Matrix ι ι (ZMod 2))ˣ = ⊥ := by
   haveI := FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo ι hcard
-  refine (IsSimpleGroup.eq_bot_or_eq_top_of_normal _ inferInstance).resolve_right fun htop => ?_
-  obtain ⟨i, j, hij⟩ : ∃ i j : ι, i ≠ j :=
-    Fintype.one_lt_card_iff_nontrivial.1 (by omega) |>.exists_pair_ne
+  refine (Subgroup.Normal.eq_bot_or_eq_top
+    (inferInstance : (Subgroup.center (Matrix ι ι (ZMod 2))ˣ).Normal)).resolve_right fun htop => ?_
+  obtain ⟨i, j, hij⟩ : ∃ i j : ι, i ≠ j := Fintype.exists_pair_of_one_lt_card (by omega)
   have hc : elementaryUnit i j hij (1 : ZMod 2) ∈ Subgroup.center (Matrix ι ι (ZMod 2))ˣ := by
     rw [htop]
     exact Subgroup.mem_top _
-  have hcomm := (Subgroup.mem_center_iff.1 hc (elementaryUnit j i hij.symm 1)).symm
-  have hii := congrArg (fun u : (Matrix ι ι (ZMod 2))ˣ => (u : Matrix ι ι (ZMod 2)) i i) hcomm
-  simp [elementaryUnit, Matrix.mul_apply, Matrix.single_apply, Matrix.one_apply, hij,
-    hij.symm] at hii
+  have hcomm := Subgroup.mem_center_iff.1 hc (elementaryUnit j i hij.symm 1)
+  have hval : ((1 + Matrix.single j i (1 : ZMod 2)) * (1 + Matrix.single i j 1) :
+        Matrix ι ι (ZMod 2)) i i =
+      ((1 + Matrix.single i j (1 : ZMod 2)) * (1 + Matrix.single j i 1) : Matrix ι ι (ZMod 2)) i i :=
+    congrArg (fun u : (Matrix ι ι (ZMod 2))ˣ => (u : Matrix ι ι (ZMod 2)) i i) hcomm
+  simp only [add_mul, mul_add, one_mul, mul_one, Matrix.single_mul_single_same, Matrix.add_apply,
+    Matrix.one_apply_eq, Matrix.single_apply_same, Matrix.single_apply_of_row_ne hij.symm,
+    Matrix.single_apply_of_col_ne _ _ hij.symm, add_zero, zero_add] at hval
+  revert hval
+  decide
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.towerCopy_transvection
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.towerCopy_mem_elementaryGroup
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.towerCopy_injective
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.center_units_matrix_zmodTwo_eq_bot
 
 end SimpleKazhdanSofic
 end GroupApproximation
