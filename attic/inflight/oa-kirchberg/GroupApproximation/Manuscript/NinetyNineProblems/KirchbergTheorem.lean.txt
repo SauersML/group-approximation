@@ -139,5 +139,141 @@ end Frame
 
 theorem re_normTrace (Y : FiniteModel) (A : Matrix Y Y ℂ) :
     (normTrace Y A).re = (Matrix.trace A).re / (Fintype.card Y : ℝ) := by
-  rw [normTrace, div_eq_mul_inv, ← Complex.ofReal_natCast, ← Complex.ofReal_inv,
-    Complex.re_mul_ofReal, div_eq_mul_inv]
+  have hc : ((Fintype.card Y : ℕ) : ℂ) = ((Fintype.card Y : ℝ) : ℂ) := by norm_cast
+  rw [normTrace, hc, Complex.div_ofReal_re]
+
+/-! ## The theorem -/
+
+/-- **A nontrivial element acts nontrivially in a finite-dimensional orthogonal
+representation**, for a Kazhdan group with the factorization property. -/
+theorem exists_moving_representation (G : Type u) [Group G]
+    (hT : HasKazhdanPropertyT.{u, u} G) (hfp : HasFactorizationProperty G) (h : G)
+    (hh : h ≠ 1) :
+    ∃ (W : Type u) (_ : NormedAddCommGroup W) (_ : InnerProductSpace ℝ W)
+      (_ : FiniteDimensional ℝ W) (ρ : G →* (W ≃ₗᵢ[ℝ] W)), ρ h ≠ 1 := by
+  classical
+  obtain ⟨Q, ε, hQ⟩ := hT
+  obtain ⟨M⟩ := hfp
+  have hε : 0 < ε := hQ.1
+  have hδpos : 0 < min (ε ^ 2 / 32) (1 / 4 : ℝ) := lt_min (by positivity) (by norm_num)
+  obtain ⟨n, hcard, hgram, htr⟩ := KirchbergTraceModels.exists_index M Q hh hδpos
+  have hone : modelMatrix M n 1 = 1 := KirchbergTraceModels.modelMatrix_one M n
+  have hX : IsPositiveDefinite (modelMatrix M n) :=
+    ⟨fun g ↦ modelMatrix_conjTranspose M n g,
+      fun m g w ↦ KirchbergTraceModels.modelMatrix_kernel_nonneg M n m g w⟩
+  have hδ1 : min (ε ^ 2 / 32) (1 / 4 : ℝ) ≤ ε ^ 2 / 32 := min_le_left _ _
+  have hδ2 : min (ε ^ 2 / 32) (1 / 4 : ℝ) ≤ 1 / 4 := min_le_right _ _
+  have hnorm1 : ‖eta (modelMatrix M n) hX‖ = 1 := by
+    rw [norm_eq_sqrt_real_inner, inner_eta_eta _ hX hone hcard, Real.sqrt_one]
+  have hmove : ∀ q ∈ Q, ‖diag (rep (modelMatrix M n) hX) q (eta (modelMatrix M n) hX)
+      - eta (modelMatrix M n) hX‖ < ε * (1 / 4) := by
+    intro q hq
+    have hre : (∑ x, ∑ y, ‖modelMatrix M n q x y‖ ^ 2) / (Fintype.card (M.space n) : ℝ)
+        = (normTrace (M.space n) ((modelMatrix M n q)ᴴ * modelMatrix M n q)).re := by
+      rw [re_normTrace, re_trace_conjTranspose_mul]
+    have hsq : ‖diag (rep (modelMatrix M n) hX) q (eta (modelMatrix M n) hX)
+        - eta (modelMatrix M n) hX‖ ^ 2
+        = 2 - 2 * (normTrace (M.space n) ((modelMatrix M n q)ᴴ * modelMatrix M n q)).re := by
+      rw [norm_sub_sq_real, LinearIsometryEquiv.norm_map, hnorm1,
+        inner_diag_eta_eta _ hX hcard q, hre]
+      ring
+    have hlt := (abs_lt.mp (hgram q hq)).1
+    have hsmall : ‖diag (rep (modelMatrix M n) hX) q (eta (modelMatrix M n) hX)
+        - eta (modelMatrix M n) hX‖ ^ 2 < (ε * (1 / 4)) ^ 2 := by
+      rw [hsq]
+      nlinarith
+    by_contra hge
+    push_neg at hge
+    have := mul_le_mul hge hge (by positivity) (norm_nonneg _)
+    nlinarith
+  obtain ⟨ζ, hζinv, hζnear⟩ := KazhdanNearInvariantVector.exists_invariant_near hQ
+    (diag (rep (modelMatrix M n) hX)) (eta (modelMatrix M n) hX)
+    (by norm_num : (0 : ℝ) < 1 / 4) hmove
+  by_contra hall
+  push_neg at hall
+  have hfd : ∀ W : Submodule ℝ (Space (modelMatrix M n) hX), FiniteDimensional ℝ W →
+      IsInvariant (rep (modelMatrix M n) hX) W →
+        ∀ v ∈ W, rep (modelMatrix M n) hX h v = v := by
+    intro W hWfd hWinv v hv
+    have h1 := hall W inferInstance inferInstance hWfd
+      (KazhdanFixedSpace.restrictToInvariantSubspace (rep (modelMatrix M n) hX) W hWinv)
+    have h2 := congrArg
+      (fun e : W ≃ₗᵢ[ℝ] W ↦ ((e ⟨v, hv⟩ : W) : Space (modelMatrix M n) hX)) h1
+    simpa using h2
+  have hid := inner_tmulC_of_forall_fixed (rep (modelMatrix M n) hX) ζ hζinv h hfd
+  have hsame : ⟪ζ, etaMoved (modelMatrix M n) hX (rep (modelMatrix M n) hX h)⟫
+      = ⟪ζ, eta (modelMatrix M n) hX⟫ := by
+    rw [etaMoved, eta, real_inner_smul_right, real_inner_smul_right, inner_sum, inner_sum]
+    simp only [hid]
+  have hnormA : ‖etaMoved (modelMatrix M n) hX (rep (modelMatrix M n) hX h)‖ = 1 := by
+    rw [norm_eq_sqrt_real_inner, inner_etaMoved_self _ hX hone hcard, Real.sqrt_one]
+  have hlow : 3 / 4 < ⟪ζ, eta (modelMatrix M n) hX⟫ := by
+    have h1 : ⟪ζ, eta (modelMatrix M n) hX⟫
+        = ⟪eta (modelMatrix M n) hX, eta (modelMatrix M n) hX⟫
+          - ⟪eta (modelMatrix M n) hX - ζ, eta (modelMatrix M n) hX⟫ := by
+      rw [inner_sub_left]
+      ring
+    have h2 := abs_real_inner_le_norm (eta (modelMatrix M n) hX - ζ) (eta (modelMatrix M n) hX)
+    rw [hnorm1, mul_one] at h2
+    rw [h1, inner_eta_eta _ hX hone hcard]
+    have h3 := (abs_le.mp h2).2
+    linarith
+  have hdiag : ⟪eta (modelMatrix M n) hX,
+      etaMoved (modelMatrix M n) hX (rep (modelMatrix M n) hX h)⟫
+      = (normTrace (M.space n) (modelMatrix M n h)).re := by
+    have hk : (0 : ℝ) < Fintype.card (M.space n) := Nat.cast_pos.mpr hcard
+    rw [inner_eta_etaMoved _ hX hone hcard]
+    simp only [inner_frame_rep]
+    rw [sum_re_pairing_diag, re_normTrace]
+    field_simp
+  have hhigh : ⟪ζ, etaMoved (modelMatrix M n) hX (rep (modelMatrix M n) hX h)⟫ < 1 / 2 := by
+    have h1 : ⟪ζ, etaMoved (modelMatrix M n) hX (rep (modelMatrix M n) hX h)⟫
+        = ⟪eta (modelMatrix M n) hX, etaMoved (modelMatrix M n) hX (rep (modelMatrix M n) hX h)⟫
+          - ⟪eta (modelMatrix M n) hX - ζ,
+              etaMoved (modelMatrix M n) hX (rep (modelMatrix M n) hX h)⟫ := by
+      rw [inner_sub_left]
+      ring
+    have h2 := abs_real_inner_le_norm (eta (modelMatrix M n) hX - ζ)
+      (etaMoved (modelMatrix M n) hX (rep (modelMatrix M n) hX h))
+    rw [hnormA, mul_one] at h2
+    rw [h1, hdiag]
+    have h3 := (abs_lt.mp htr).2
+    have h4 := (abs_le.mp h2).1
+    linarith
+  linarith
+
+/-- **Kirchberg's Theorem 1.1**, at the trace side of the factorization property:
+the inhabitant of the typed input, with no assumption. -/
+theorem kirchbergKazhdanFactorizationInput : KirchbergKazhdanFactorizationInput.{u} where
+  residuallyFinite := fun G _ _ hT hfp ↦ by
+    haveI : Group.FG G := KazhdanFiniteGeneration.fg_of_hasKazhdanPropertyT G hT
+    exact OrthogonalRepresentationResiduallyFinite.isResiduallyFinite_of_forall_ne_one
+      (fun x hx ↦ exists_moving_representation G hT hfp x hx)
+
+/-- The printed theorem as a named proposition: a Kazhdan group with the
+factorization property is residually finite.  No countability is needed. -/
+def PrintedKirchbergTheorem : Prop :=
+  ∀ (G : Type u) [Group G], HasKazhdanPropertyT.{u, u} G → HasFactorizationProperty G →
+    IsResiduallyFinite G
+
+theorem printedKirchbergTheorem : PrintedKirchbergTheorem.{u} := fun G _ hT hfp ↦ by
+  haveI : Group.FG G := KazhdanFiniteGeneration.fg_of_hasKazhdanPropertyT G hT
+  exact OrthogonalRepresentationResiduallyFinite.isResiduallyFinite_of_forall_ne_one
+    (fun x hx ↦ exists_moving_representation G hT hfp x hx)
+
+/-- **An infinite simple Kazhdan group lacks the factorization property**, with
+Kirchberg's theorem proved. -/
+theorem not_hasFactorizationProperty_of_simple_infinite_kazhdan (G : Type u) [Group G]
+    [Countable G] [IsSimpleGroup G] [Infinite G] (hT : HasKazhdanPropertyT.{u, u} G) :
+    ¬ HasFactorizationProperty G :=
+  not_hasFactorizationProperty_of_isSimpleGroup_of_infinite_of_kazhdan
+    kirchbergKazhdanFactorizationInput G hT
+
+end KirchbergTheorem
+end NinetyNineProblems
+end GroupApproximation
+
+open GroupApproximation.NinetyNineProblems.KirchbergTheorem
+
+#audit_closed_axioms kirchbergKazhdanFactorizationInput
+#audit_closed_axioms printedKirchbergTheorem

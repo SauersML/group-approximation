@@ -5,16 +5,16 @@ import Mathlib.Analysis.InnerProductSpace.TensorProduct
 /-!
 # The completed tensor square and its slice operators
 
-For a complete real Hilbert space `K`, `TensorSquare K` is the completion of
-`K ⊗[ℝ] K`.  An orthogonal representation `σ` of `G` on `K` gives the diagonal
-representation `σ ⊗ σ` on it (`diag`).
+For a real Hilbert space `K`, `TensorSquare K` is the completion of `K ⊗[ℝ] K`.
+An orthogonal representation `σ` of `G` on `K` gives the diagonal representation
+`σ ⊗ σ` on it (`diag`).
 
-Every `ζ ∈ K ⊗̂ K` defines the slice operator `slice ζ : K →L K` by
-`⟪slice ζ y, x⟫ = ⟪ζ, x ⊗ y⟫`.  It is compact: algebraic tensors give finite-rank
-slices, `‖slice ζ‖ ≤ ‖ζ‖`, and compact operators are closed.  If `ζ` is
-diagonally invariant, `slice ζ` commutes with `σ`.
+When `K` is complete, every `ζ ∈ K ⊗̂ K` defines the slice operator
+`slice ζ : K →L K` by `⟪slice ζ y, x⟫ = ⟪ζ, x ⊗ y⟫`.  It is compact: algebraic
+tensors give finite-rank slices, `‖slice ζ‖ ≤ ‖ζ‖`, and compact operators are
+closed.  If `ζ` is diagonally invariant, `slice ζ` commutes with `σ`.
 
-Through `KirchbergCompactExtraction.apply_eq_of_forall_finiteDimensional_fixed`,
+Through `KirchbergCompactExtraction.apply_eq_of_forall_finiteDimensional_fixed`:
 if `h` fixes every finite-dimensional invariant subspace pointwise, then
 `⟪ζ, σ(h)x ⊗ y⟫ = ⟪ζ, x ⊗ y⟫` for all `x, y` (`inner_tmulC_of_forall_fixed`).
 That identity is the contradiction step of Kirchberg's Theorem 1.1.
@@ -27,7 +27,7 @@ open UniformSpace TensorProduct KirchbergCompactExtraction
 
 universe u v
 
-variable {K : Type v} [NormedAddCommGroup K] [InnerProductSpace ℝ K] [CompleteSpace K]
+variable {K : Type v} [NormedAddCommGroup K] [InnerProductSpace ℝ K]
 
 local notation "⟪" x ", " y "⟫" => inner ℝ x y
 
@@ -44,8 +44,14 @@ theorem inner_tmulC (a b c d : K) : ⟪tmulC a b, tmulC c d⟫ = ⟪a, c⟫ * �
 theorem norm_tmulC (x y : K) : ‖tmulC x y‖ = ‖x‖ * ‖y‖ := by
   rw [tmulC, Completion.norm_coe, TensorProduct.norm_tmul]
 
+theorem tmulC_add_left (x x' y : K) : tmulC (x + x') y = tmulC x y + tmulC x' y := by
+  rw [tmulC, tmulC, tmulC, TensorProduct.add_tmul, Completion.coe_add]
+
 theorem tmulC_add_right (x y y' : K) : tmulC x (y + y') = tmulC x y + tmulC x y' := by
   rw [tmulC, tmulC, tmulC, TensorProduct.tmul_add, Completion.coe_add]
+
+theorem tmulC_smul_left (r : ℝ) (x y : K) : tmulC (r • x) y = r • tmulC x y := by
+  rw [tmulC, tmulC, ← TensorProduct.smul_tmul', Completion.coe_smul]
 
 theorem tmulC_smul_right (r : ℝ) (x y : K) : tmulC x (r • y) = r • tmulC x y := by
   rw [tmulC, tmulC, TensorProduct.tmul_smul, Completion.coe_smul]
@@ -53,6 +59,7 @@ theorem tmulC_smul_right (r : ℝ) (x y : K) : tmulC x (r • y) = r • tmulC x
 theorem inner_sum_tmulC {ι : Type*} [Fintype ι] (u v w z : ι → K) :
     ⟪∑ a, tmulC (u a) (v a), ∑ b, tmulC (w b) (z b)⟫ = ∑ a, ∑ b, ⟪u a, w b⟫ * ⟪v a, z b⟫ := by
   simp only [sum_inner, inner_sum, inner_tmulC]
+  exact Finset.sum_comm
 
 /-! ## The diagonal representation -/
 
@@ -64,12 +71,16 @@ noncomputable def diagPre (σ : G →* (K ≃ₗᵢ[ℝ] K)) : G →* (K ⊗[ℝ
   map_one' := LinearIsometryEquiv.ext fun t ↦ by
     induction t using TensorProduct.induction_on with
     | zero => simp
-    | tmul a b => simp
+    | tmul a b =>
+      show (σ 1) a ⊗ₜ[ℝ] (σ 1) b = a ⊗ₜ[ℝ] b
+      simp only [map_one, LinearIsometryEquiv.coe_one, id_eq]
     | add a b ha hb => rw [map_add, ha, hb, map_add]
   map_mul' g h := LinearIsometryEquiv.ext fun t ↦ by
     induction t using TensorProduct.induction_on with
     | zero => simp
-    | tmul a b => simp [map_mul]
+    | tmul a b =>
+      show (σ (g * h)) a ⊗ₜ[ℝ] (σ (g * h)) b = (σ g) ((σ h) a) ⊗ₜ[ℝ] (σ g) ((σ h) b)
+      simp only [map_mul, LinearIsometryEquiv.coe_mul, Function.comp_apply]
     | add a b ha hb => rw [map_add, ha, hb, map_add]
 
 /-- **The diagonal representation `σ ⊗ σ` on the completed tensor square.** -/
@@ -81,16 +92,25 @@ theorem diag_tmulC (σ : G →* (K ≃ₗᵢ[ℝ] K)) (g : G) (a b : K) :
     diag σ g (tmulC a b) = tmulC (σ g a) (σ g b) := by
   rw [diag, tmulC, KirchbergCompletion.completionRep_coe, tmulC]
   congr 1
-  simp [diagPre]
 
 /-! ## Slice operators -/
 
 /-- The functional `x ↦ ⟪ζ, x ⊗ y⟫`. -/
 noncomputable def sliceFunctional (ζ : TensorSquare K) (y : K) : StrongDual ℝ K :=
-  (innerSL ℝ ζ).comp (Completion.toComplL.comp ((TensorProduct.mkL ℝ K K).flip y))
+  LinearMap.mkContinuous
+    { toFun := fun x ↦ ⟪ζ, tmulC x y⟫
+      map_add' := fun x x' ↦ by rw [tmulC_add_left, inner_add_right]
+      map_smul' := fun r x ↦ by
+        rw [tmulC_smul_left, real_inner_smul_right, RingHom.id_apply, smul_eq_mul] }
+    (‖ζ‖ * ‖y‖) (fun x ↦ by
+      rw [Real.norm_eq_abs]
+      calc |⟪ζ, tmulC x y⟫| ≤ ‖ζ‖ * ‖tmulC x y‖ := abs_real_inner_le_norm _ _
+        _ = ‖ζ‖ * ‖y‖ * ‖x‖ := by rw [norm_tmulC]; ring)
 
 theorem sliceFunctional_apply (ζ : TensorSquare K) (y x : K) :
     sliceFunctional ζ y x = ⟪ζ, tmulC x y⟫ := rfl
+
+variable [CompleteSpace K]
 
 /-- The slice of `ζ` at `y`. -/
 noncomputable def sliceFun (ζ : TensorSquare K) (y : K) : K :=
@@ -134,17 +154,18 @@ theorem norm_slice_le (ζ : TensorSquare K) : ‖slice ζ‖ ≤ ‖ζ‖ :=
 
 theorem slice_add (ζ ζ' : TensorSquare K) : slice (ζ + ζ') = slice ζ + slice ζ' :=
   ContinuousLinearMap.ext fun y ↦ ext_inner_right ℝ fun x ↦ by
-    rw [ContinuousLinearMap.add_apply, inner_add_left, inner_slice, inner_slice, inner_slice,
-      inner_add_left]
+    change ⟪slice (ζ + ζ') y, x⟫ = ⟪slice ζ y + slice ζ' y, x⟫
+    rw [inner_add_left, inner_slice, inner_slice, inner_slice, inner_add_left]
 
 theorem slice_smul (r : ℝ) (ζ : TensorSquare K) : slice (r • ζ) = r • slice ζ :=
   ContinuousLinearMap.ext fun y ↦ ext_inner_right ℝ fun x ↦ by
-    rw [ContinuousLinearMap.smul_apply, real_inner_smul_left, inner_slice, inner_slice,
-      real_inner_smul_left]
+    change ⟪slice (r • ζ) y, x⟫ = ⟪r • slice ζ y, x⟫
+    rw [real_inner_smul_left, inner_slice, inner_slice, real_inner_smul_left]
 
 theorem slice_zero : slice (0 : TensorSquare K) = 0 :=
   ContinuousLinearMap.ext fun y ↦ ext_inner_right ℝ fun x ↦ by
-    rw [inner_slice, inner_zero_left, ContinuousLinearMap.zero_apply, inner_zero_left]
+    change ⟪slice 0 y, x⟫ = ⟪(0 : K), x⟫
+    rw [inner_slice, inner_zero_left, inner_zero_left]
 
 /-- The slice map as a continuous linear map. -/
 noncomputable def sliceL : TensorSquare K →L[ℝ] (K →L[ℝ] K) :=
@@ -163,7 +184,8 @@ theorem slice_coe_finiteRank (t : K ⊗[ℝ] K) :
   induction t using TensorProduct.induction_on with
   | zero =>
     refine ⟨⊥, inferInstance, fun y ↦ ?_⟩
-    rw [Completion.coe_zero, slice_zero, ContinuousLinearMap.zero_apply]
+    have h0 : ((0 : K ⊗[ℝ] K) : TensorSquare K) = 0 := Completion.coe_zero
+    rw [h0, slice_zero]
     exact Submodule.zero_mem _
   | tmul a b =>
     refine ⟨ℝ ∙ a, inferInstance, fun y ↦ ?_⟩
@@ -176,13 +198,14 @@ theorem slice_coe_finiteRank (t : K ⊗[ℝ] K) :
     haveI := hW
     haveI := hW'
     refine ⟨W ⊔ W', inferInstance, fun y ↦ ?_⟩
-    rw [Completion.coe_add, slice_add, ContinuousLinearMap.add_apply]
+    rw [Completion.coe_add, slice_add]
+    change slice (t : TensorSquare K) y + slice (t' : TensorSquare K) y ∈ W ⊔ W'
     exact Submodule.add_mem _ (Submodule.mem_sup_left (hy y)) (Submodule.mem_sup_right (hy' y))
 
 /-- **Slice operators are compact.** -/
 theorem isCompactOperator_slice (ζ : TensorSquare K) : IsCompactOperator (slice ζ) := by
   have hclosed : IsClosed {ζ : TensorSquare K | IsCompactOperator (slice ζ)} :=
-    isClosed_setOfPred_isCompactOperator.preimage (sliceL (K := K)).continuous
+    IsClosed.preimage (sliceL (K := K)).continuous isClosed_setOf_isCompactOperator
   induction ζ using Completion.induction_on with
   | hp => exact hclosed
   | ih t =>
