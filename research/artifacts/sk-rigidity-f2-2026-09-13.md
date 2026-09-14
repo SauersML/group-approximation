@@ -19,8 +19,8 @@ Notation. `X, Y` infinite minimal subshifts, `A = LC(X,F_2)`, `R = R_X = A ⋊_T
 - **Firewall FW-MAXAB and the reformulation (§5).** The root subgroups are not maximal abelian: the six "row" and
   "column" subgroups `Row_i`, `Col_j` are abelian and self-centralizing, and `A_ij = Row_i ∩ Col_j`. So "maximal
   abelian and bicommutant closed" does not pick out root subgroups, but it does reduce the whole problem to one
-  statement about a single group: **(†) every maximal abelian bicommutant-closed subgroup of `G` is a `Row_i` or a
-  `Col_j`**.
+  statement about a single group: **(†) every maximal abelian bicommutant-closed subgroup of `G` is conjugate to a
+  `Row_i` or a `Col_j`**, plus an alignment step for the intersection pattern.
 - §6 records the literature check and why `n = 3` in characteristic 2 is the exceptional zone.
 
 ## 2. Preliminaries used
@@ -134,10 +134,16 @@ elementary abelian 2-subgroups.
 
 So root-subgroup preservation, which by Theorem 2 is the whole problem, follows from:
 
-  (†) every maximal abelian bicommutant-closed subgroup of `G` is some `Row_i` or `Col_j`.
+  (†) every maximal abelian bicommutant-closed subgroup of `G` is conjugate in `G` to some `Row_i` or `Col_j`.
 
-That is the sharpest formulation this lane reached, and it is not proved here. It is a statement about one group,
-with no reference to a second subshift, so it is a better target than standardness itself.
+The words "conjugate in `G`" are needed: `gRow_1g^{-1}` is again abelian and self-centralizing and is not one of the
+six. A first version of this artifact stated (†) without them and was wrong.
+
+(†) is a statement about one group, with no reference to a second subshift, so it is a better target than
+standardness itself. It is not proved here, and it does not by itself finish the job: from (†) one still has to
+show that an isomorphism matches up the intersection pattern, that is, that the root subgroups are recovered as the
+intersections `Row_i ∩ Col_j` inside the class rather than as intersections of unrelated conjugates. That alignment
+step was not verified by this lane.
 
 ## 6. Literature check (bounded: three web searches, one secondary source read)
 

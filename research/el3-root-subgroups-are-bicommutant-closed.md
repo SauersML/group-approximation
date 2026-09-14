@@ -17,7 +17,8 @@ the root subgroups, `Row_i = {I + Σ_{j≠i} E_ij b_j}` and `Col_j = {I + Σ_{i�
 4. `A_ij = Row_i ∩ Col_j`.
 
 By (3) and (4), root subgroups are never maximal abelian, so the maximal members of the family of
-bicommutant-closed abelian subgroups of `G` are not the root subgroups. This is a firewall against the natural
+bicommutant-closed abelian subgroups of `G` are not the root subgroups. Conjugates `gRow_ig^{-1}` are again abelian
+and self-centralizing, so that family is closed under conjugation and is larger than the six subgroups listed. This is a firewall against the natural
 lattice-theoretic characterization of root subgroups, and it complements firewall F-EA of
 `subshift-el3-isomorphisms-are-standard-over-f2`.
 

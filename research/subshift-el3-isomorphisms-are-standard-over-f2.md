@@ -59,9 +59,11 @@ strongly orbit equivalent. The converse direction holds for flip conjugacy, sinc
 - **Firewall FW-MAXAB and the one-group reformulation (sk-rigidity-f2).**
   `el3-root-subgroups-are-bicommutant-closed` shows `C_G(C_G(A_ij)) = A_ij`, but also that the six row and column
   subgroups `Row_i`, `Col_j` are abelian and self-centralizing with `A_ij = Row_i ∩ Col_j`. So root subgroups are
-  not maximal abelian, and "maximal abelian and bicommutant closed" does not pick them out. What would suffice:
-  every maximal abelian bicommutant-closed subgroup of `EL_3(R_X)` is a `Row_i` or a `Col_j`. That statement
-  mentions one group and no second subshift, so it is a better target than standardness itself.
+  not maximal abelian, and "maximal abelian and bicommutant closed" does not pick them out. A natural route: show that every
+  maximal abelian bicommutant-closed subgroup of `EL_3(R_X)` is conjugate to a `Row_i` or a `Col_j` (conjugates are
+  again abelian and self-centralizing, so the family is closed under conjugation), and then that an isomorphism
+  matches the intersection pattern `A_ij = Row_i ∩ Col_j`. Neither step is proved. The first mentions one group and
+  no second subshift, so it is a better target than standardness itself.
 - **Literature, second reading (sk-rigidity-f2, bounded to the same secondary source).** The Bunina–Vladykina
   introduction dates the arbitrary-ring `n, m ≥ 4` result to "In 1997 I.Z Golubchik [24]", where the Attempts entry
   above says 1992, Contemp. Math. 131. Neither primary was read, so the year is unsettled here.

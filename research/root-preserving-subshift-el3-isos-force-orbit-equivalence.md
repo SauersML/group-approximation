@@ -20,5 +20,6 @@ onto `LC(Y,F_2)`, which is the Cartan-uniqueness question and also firewall F1 o
 route.
 
 Root-subgroup preservation is the only remaining hypothesis, so it is now the whole content of
-`subshift-el3-isomorphisms-are-standard-over-f2`. By `el3-root-subgroups-are-bicommutant-closed` it would follow
-from: every maximal abelian bicommutant-closed subgroup of `G_X` is one of the six row or column subgroups.
+`subshift-el3-isomorphisms-are-standard-over-f2`. By `el3-root-subgroups-are-bicommutant-closed` a natural route to it is to show that every maximal abelian
+bicommutant-closed subgroup of `G_X` is conjugate to one of the six row or column subgroups, and then that an
+isomorphism matches the intersection pattern `A_ij = Row_i ∩ Col_j`. Neither step is proved.
