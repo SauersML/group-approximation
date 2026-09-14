@@ -74,6 +74,51 @@ Every carrier module is reachable from `GroupApproximation.lean` (import closure
   - `CompressionSentencesA.lean:179` says `V_n(1) = 1` is "built into the unitaryGroup coercion". It is not; see `normalizeOne`.
   - `StableFinitenessSentences.sentence_9b9e5b396d6f` quotes "a stably finite algebra"; the printed proof now says "a finite algebra".
 
+## Census successor: sec:chain-core rows for down lanes (main's item, 09-13 ~18:45)
+
+Keys and owners come from the ms-core-2 ledger (4130c32d3, tex 1371–1458) and the ms-core-4 ledger (adbf70b62, tex 1516–1540). Carriers were read at origin 65c39f1d6 against the printed text (tex byte-identical to 68481e4d7). The down lanes are chain-words, chain-subshift, chain-itinerary, chain-reflection, hull-euler (S2) and chain-core (S1).
+
+### Rows appended (`metadata/nm-census-rows/ms-compress-1.tsv`)
+
+| key | tex | status | carriers | module state |
+|---|---|---|---|---|
+| `53fd5ea7d3d0` | 1380 | structural | setup; subshift hypotheses as ordinary hypotheses | SubshiftWordGraph (root) |
+| `9bc3873fb872` | 1380–1382 | definition | `WordGraph.word`, `language`, `wordEdge`, `wordGraph` | root |
+| `078684fc2a60` | 1383–1384 | definition | `WordGraph.IsCyclicEdge`, `CycleCondition` | root |
+| `4bb19e581840` | 1432–1433 | formalized | `isCyclicEdge_comp`, `cycleCondition_image_comp`, `cycleCondition_oneBlock_image` | OneBlockCycleCondition dd08aab94, unwired |
+| `b180421b55ab` | 1439–1441 | partial | `cycleCondition_iInter_of_antitone`, `cycleCondition_iInter_oneBlock_image`, `cycleCondition_itinerary_image_generalCore` | ItineraryCoreCycleCondition dd08aab94, unwired; residual `hcore : ∀ l, CycleCondition (itineraryCore T (S l))` = tex 1411 `647f44a95b8a` (ms-traces-3) |
+| `fe2bd83087c0` | 1429–1432 | formalized (re-grade of chain-itinerary partial) | `itinerary`, `itinerarySubshift`, `oneBlock` (d616d6bcb), `itineraryCore` (dd08aab94) | unwired |
+| `ed348643e2ad` | 1433–1438 | formalized (re-grade) | `oneBlock_image_itineraryCore_subset`, `generalCore`, `itinerary_image_generalCore` | unwired |
+| `807793f12a5e` | 1439 | formalized (re-grade) | `itinerary_image_inverseLimitCore`, `itinerary_image_generalCore` | unwired |
+
+Route note on `ed348643e2ad`: ρ_lm(Y_l) ⊆ Y_m is proved from the cyclic-edge characterization of the core (tex 1412) plus "cycles map to closed walks". It does not need the cycle condition of Y_l (tex 1411).
+
+### Skipped: owned by live lanes (they keep their own rows)
+
+- **ms-traces-3** took the symbolic LEF proof and cycle conditions that chain-words and chain-subshift left unlanded; the boundary is recorded in ms-core-2.md.
+  - Keys: `dfc6d4510272`, `8bf7f40918d5`, `56b6a80cc911`, `2ed7f807a3a6`, `57cd1b63930c`, `0941296cf395`, `4aede6d48b4d`, `b94a006ee638`, `533771f4f22d`, `cbf45b0e1c51`, `1d52a79f1fef`, `647f44a95b8a`.
+  - `2ed7f807a3a6` already has a landed chain-words carrier, `exists_periodic_of_isCyclicEdge` (6078315b6, unwired). `0941296cf395` consumes `Pestov91.periodicModel` and `shiftMatrix` on main. Both are steps inside the adopted SubshiftCycleLEF proof.
+  - chain-subshift's partial rows `f7c8d8aab016` and `ded9e9646e4b` (residual: nonemptiness) wait on the same lane.
+- **ms-core-2** (general-X LEF, `Y_* = Y`, factor pullback): `c825bc73828a`, `2df08eeac3cb`, `e6626f95fede`, `2583cbd0c0f2`, `3b218f92cd81`, `fb195144e5c2`, `8921296d639a`, `c99bf0bdb029`, `d8e1a694d87c`. Its modules ChainCoreGeneral{Factor,LEF,Recurrent} and CoreModelsLEF are not on origin yet.
+- **ct-return-tower** owns the printed assembly of thm:core-ring-reflection (`Manuscript/NonMFSentences/CoreRingReflection.lean` in its `.files`, attic e8daa265e). That covers all 12 chain-reflection keys: `42c043ef7ab5`, `8981cd70915a`, `43afa4ee3f10`, `cfbacaa0fffa`, `9dae685e37b9`, `400dde0dbd9d`, `5a62e295ac1a`, `d74779471003`, `715cbd0f3410`, `30a44485e5e8`, `f2baa4a46f78`, `b23e0f5197b5`.
+  - Stale residuals on chain-reflection's rows, already discharged on origin:
+    - `LEFStablyFiniteInterface` by `lefStablyFiniteInterface` (5932d213f);
+    - `I = 0 ⇔ X = Y` by `transientIdeal_eq_bot_iff` and `restrict_injective_iff` (TransientIdealExact 4af014f74);
+    - defect generation by `transientIdeal_chainRecurrentSet_eq_span` (784fe34ad).
+  - `R_Y` LEF is still open (`CoreModelsLEFStatement`, ms-core-2).
+  - All of these modules are unwired.
+
+### Skipped: no carrier on origin
+
+- `042966c81c7e` (tex 1456), "Pull back the symbolic defects to cover X∖Y by their translates". chain-itinerary planned `exists_defect_translate_of_not_mem_chainRecurrentSet`, which is not on origin, and no live lane records a claim on it. Unowned: needs an owner from main.
+
+### Already rowed by down lanes, verified unchanged
+
+- hull-euler: `0ae6fc9e199c`, `73bd8ac910aa`, `3ef2a7cdb9bd` (ChainRecurrenceCovering 5b63c946c, unwired).
+- chain-subshift: the definition and formalized rows.
+- chain-itinerary: `3d8a2204752a`.
+- chain-core: `549aa93e832f`.
+
 ## For the census lane
 
 - When the new carriers land, 629f562df6bc, 630db09c6f46 and daecb970c06a gain them. 5e9b44d1c0bb gains one if G4 finds a route gap.
