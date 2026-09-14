@@ -104,8 +104,16 @@ literal step missing.
   and the doubled dart on a G-cell digon off the exterior. Queued for wiring.
 - LANDED a266c9a3d `OsinPocketTouchCornerSides` (probe 0913-193719-89977 GREEN): the dart projection of the doubled map,
   face-class chains projected, and faces off the side staying off it. Queued for wiring.
-- In flight: `OsinPocketTouchCornerStep` (probe running) and `OsinPocketTouchCornerProof` (`exists_doubling`, then
-  `osinPocketTouchCorner : OsinPocketTouchCornerStatement` from two doublings); attic copies 91d01f63f.
+- LANDED f0e234f93 `OsinPocketTouchCornerStep` and `OsinPocketTouchCornerProof` (probe 0913-195503-80720 GREEN, both modules
+  BUILT), queued for wiring.
+  - `exists_doubling`: one doubling at a walk dart that is not a loop.
+  - `osinPocketTouchCorner : OsinPocketTouchCornerStatement`, closed (`#audit_closed_axioms`): double along `in₁`, then
+    along the image of `in₂`.
+  - Two probe fixes before green: `EdgeInsertion.sigma_embed_apply` needs the `OsinPocketEdgeDoublingFirstTurns` import;
+    its hypotheses are read at the insertion corners.
+- Status ~20:15: the lead ruled that ms-intro-1's bbe90003a (`osinLemma94CaseOneXPocket_of_enclosed`, the X-pocket from the
+  enclosed loop cut) makes the walk-level shape route unnecessary. Nothing new is started on it. Every claim of this item has
+  landed, and the lane is free.
 
 ## Progress log
 
