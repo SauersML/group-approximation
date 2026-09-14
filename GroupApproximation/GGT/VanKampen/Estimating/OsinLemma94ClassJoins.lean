@@ -1,0 +1,531 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassJoinsBoundaryArc
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassRuns
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingClasses
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonRealization
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CellArcs
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryArcs
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassEndLoopsSide
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4: the class producer from the class joins
+
+Osin (math/0411039v3, §9), proof of Lemma 9.4: "The boundary of `Δ̃_i` decomposes into `k_i`
+subpaths, each of which is either `t_j^{±1}` for some `j = 1, …, l`, or an arc".  In a realized
+polygon the walk can leave a relator cell through a lobe and come back, so one arc of Osin is several
+sides.  This module joins consecutive sides into classes along the class-level join
+`OsinLemma94RealizedPolygons.ClassJoins` (`Estimating/OsinLemma94ClassProducerGaps`) and builds
+`OsinLemma94ClassPolygons` from the runs.
+
+* `joinCount`, `joinBase`, `joinSides`: the runs of `exists_cyclicRuns` under `ClassJoins`.
+* `joinGap`: the junction gap after a joined side that is not the last of its run, and nothing
+  otherwise.
+* `classPolygonsOfJoins`: the class polygons, with the arcs from `exists_cellArc_of_run` and
+  `exists_boundaryArc_of_run`, and the words quasi-geodesic by `CellArcsQuasiGeodesic` and
+  `BoundaryArcsQuasiGeodesic`.
+* `joinCount_le`: `classCount ≤ max 1 #classNonJoins`.
+* `card_otherClasses_le`: on a polygon with at least two classes, the classes other than cutting
+  classes number at most `#short + #runEnds + #badJunctions`, through the last side of each class.
+* `budgetPolygons_subset_nonJoinPolygons`, `sum_card_otherClasses_le`: clause (a) of
+  `OsinLemma94ClassEndLoopsBudgetInput` from the short sides, the run ends and the bad junctions.
+* `OsinLemma94BadJunctionInput` (residual, lane ms-inverses-3): the bad junctions over the
+  polygons with an (A1) side and at least two class non-joins number at most `K n`.
+* `OsinLemma94ClassJoinsEndLoopsInput` (residual): the end loops and the bubble clause for this
+  producer.
+* `osinLemma94ClassEndLoopsBudgetInput_of_joins`: the budget input from the long transitions
+  (lane ms-compress-1), the bad junctions and the end loops.
+
+The join rule is model-tested in `notes/nm-swarm/reports/ms-binary.md` on simple and nested lobes,
+a loop around a relator cell, a boundary pearl and a full-cell class.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, "Hull's small cancellation theorem", through Osin's
+Lemma 9.4); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open scoped Classical
+
+namespace OsinLemma94RealizedPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+  (P : OsinLemma94RealizedPolygons S)
+
+/-! ### The runs -/
+
+/-- The runs of the sides of polygon `k` under the class-level join. -/
+theorem exists_joinRuns (k : Fin P.count) :
+    ∃ (count base : ℕ) (sides : ℕ → List ℕ),
+      (List.range count).flatMap sides = (List.range (P.sideCount k)).rotate base ∧
+      (∀ i < count, sides i ≠ []) ∧
+      (∀ i < count, ∀ t (ht : t + 1 < (sides i).length),
+        (sides i)[t + 1] = ((sides i)[t] + 1) % P.sideCount k ∧ P.ClassJoins k (sides i)[t]) ∧
+      ((∃ s < P.sideCount k, ¬ P.ClassJoins k s) →
+        ∀ i < count, ∀ s ∈ (sides i).getLast?, ¬ P.ClassJoins k s) ∧
+      count ≤ max 1 ((Finset.range (P.sideCount k)).filter fun s => ¬ P.ClassJoins k s).card :=
+  exists_cyclicRuns (P.sideCount k) (fun s => P.ClassJoins k s)
+
+/-- The number of classes of polygon `k`. -/
+noncomputable def joinCount (k : Fin P.count) : ℕ :=
+  Classical.choose (P.exists_joinRuns k)
+
+/-- The side where the first class of polygon `k` starts. -/
+noncomputable def joinBase (k : Fin P.count) : ℕ :=
+  Classical.choose (Classical.choose_spec (P.exists_joinRuns k))
+
+/-- The sides of each class of polygon `k`. -/
+noncomputable def joinSides (k : Fin P.count) : ℕ → List ℕ :=
+  Classical.choose (Classical.choose_spec (Classical.choose_spec (P.exists_joinRuns k)))
+
+theorem joinRuns_spec (k : Fin P.count) :
+    (List.range (P.joinCount k)).flatMap (P.joinSides k) =
+        (List.range (P.sideCount k)).rotate (P.joinBase k) ∧
+      (∀ i < P.joinCount k, P.joinSides k i ≠ []) ∧
+      (∀ i < P.joinCount k, ∀ t (ht : t + 1 < (P.joinSides k i).length),
+        (P.joinSides k i)[t + 1] = ((P.joinSides k i)[t] + 1) % P.sideCount k ∧
+          P.ClassJoins k (P.joinSides k i)[t]) ∧
+      ((∃ s < P.sideCount k, ¬ P.ClassJoins k s) →
+        ∀ i < P.joinCount k, ∀ s ∈ (P.joinSides k i).getLast?, ¬ P.ClassJoins k s) ∧
+      P.joinCount k ≤
+        max 1 ((Finset.range (P.sideCount k)).filter fun s => ¬ P.ClassJoins k s).card :=
+  Classical.choose_spec (Classical.choose_spec (Classical.choose_spec (P.exists_joinRuns k)))
+
+theorem joinSides_flatMap_nodup (k : Fin P.count) :
+    ((List.range (P.joinCount k)).flatMap (P.joinSides k)).Nodup := by
+  rw [(P.joinRuns_spec k).1]
+  exact List.nodup_rotate.mpr List.nodup_range
+
+theorem lt_sideCount_of_mem_joinSides {k : Fin P.count} {i s : ℕ} (hi : i < P.joinCount k)
+    (hs : s ∈ P.joinSides k i) : s < P.sideCount k := by
+  have hmem : s ∈ (List.range (P.joinCount k)).flatMap (P.joinSides k) :=
+    List.mem_flatMap.mpr ⟨i, List.mem_range.mpr hi, hs⟩
+  rw [(P.joinRuns_spec k).1, List.mem_rotate] at hmem
+  exact List.mem_range.mp hmem
+
+theorem joinSides_nodup {k : Fin P.count} {i : ℕ} (hi : i < P.joinCount k) :
+    (P.joinSides k i).Nodup :=
+  (List.nodup_flatMap.mp (P.joinSides_flatMap_nodup k)).1 i (List.mem_range.mpr hi)
+
+/-- A side lies in one class only. -/
+theorem eq_of_mem_joinSides {k : Fin P.count} {i i' s : ℕ} (hi : i < P.joinCount k)
+    (hi' : i' < P.joinCount k) (hs : s ∈ P.joinSides k i) (hs' : s ∈ P.joinSides k i') :
+    i = i' := by
+  by_contra hne
+  have hpair :=
+    List.pairwise_iff_getElem.mp (List.nodup_flatMap.mp (P.joinSides_flatMap_nodup k)).2
+  have key : ∀ a b, a < b → b < P.joinCount k →
+      List.Disjoint (P.joinSides k a) (P.joinSides k b) := by
+    intro a b hab hb
+    have h := hpair a b (by rw [List.length_range]; omega) (by rw [List.length_range]; omega)
+      hab
+    simpa only [Function.onFun, List.getElem_range] using h
+  rcases Nat.lt_or_gt_of_ne hne with h | h
+  · exact key i i' h hi' hs hs'
+  · exact key i' i h hi hs' hs
+
+/-! ### The gaps -/
+
+/-- Side `s` is the last side of its run. -/
+def IsJoinRunLast (k : Fin P.count) (s : ℕ) : Prop :=
+  ∃ i < P.joinCount k, s ∈ (P.joinSides k i).getLast?
+
+/-- The gap after side `s` of polygon `k`: the junction gap when the side joins the next one and
+is not the last side of its run, and nothing otherwise. -/
+noncomputable def joinGap (k : Fin P.count) (s : ℕ) : List S.diagram.toCombMap.Dart :=
+  if P.ClassJoins k s ∧ ¬ P.IsJoinRunLast k s then P.junctionGap k s else []
+
+theorem joinGap_of_last {k : Fin P.count} {i s : ℕ} (hi : i < P.joinCount k)
+    (hs : s ∈ (P.joinSides k i).getLast?) : P.joinGap k s = [] := by
+  rw [joinGap, if_neg]
+  exact fun h => h.2 ⟨i, hi, hs⟩
+
+theorem joinGap_value (k : Fin P.count) (s : ℕ) :
+    RelLetter.listVal (dartWord S.diagram (P.joinGap k s)) = 1 := by
+  unfold joinGap
+  split_ifs with h
+  · exact h.1.2.1
+  · rw [dartWord, List.map_nil, RelLetter.listVal_nil]
+
+/-- A side followed by another side of its run is not the last side of any run. -/
+theorem not_isJoinRunLast {k : Fin P.count} {i t : ℕ} (hi : i < P.joinCount k)
+    (ht : t + 1 < (P.joinSides k i).length) :
+    ¬ P.IsJoinRunLast k (P.joinSides k i)[t] := by
+  rintro ⟨i', hi', hlast⟩
+  have hmem' : (P.joinSides k i)[t] ∈ P.joinSides k i' := List.mem_of_getLast? hlast
+  have hii' := P.eq_of_mem_joinSides hi hi' (List.getElem_mem _) hmem'
+  subst hii'
+  have hne : P.joinSides k i ≠ [] := (P.joinRuns_spec k).2.1 i hi
+  rw [List.getLast?_eq_some_getLast hne, Option.mem_def, Option.some_inj,
+    List.getLast_eq_getElem] at hlast
+  have hinj := (List.Nodup.getElem_inj_iff (P.joinSides_nodup hi)).mp hlast
+  omega
+
+/-! ### The kinds -/
+
+theorem kind_joinSides_eq {k : Fin P.count} {i : ℕ} (hi : i < P.joinCount k) :
+    ∀ (t : ℕ) (ht : t < (P.joinSides k i).length),
+      P.kind k (P.joinSides k i)[t] = P.kind k ((P.joinSides k i)[0]'(by omega))
+  | 0, _ => rfl
+  | t + 1, ht => by
+    obtain ⟨hnext, hjoin⟩ := (P.joinRuns_spec k).2.2.1 i hi t ht
+    rw [hnext, ← hjoin.1.1]
+    exact kind_joinSides_eq hi t (by omega)
+
+/-- Every side of a class has the kind of its first side. -/
+theorem kind_eq_joinKind {k : Fin P.count} {i : ℕ} (hi : i < P.joinCount k) :
+    ∀ s ∈ P.joinSides k i, P.kind k s = P.kind k ((P.joinSides k i).headD 0) := by
+  intro s hs
+  obtain ⟨t, ht, rfl⟩ := List.getElem_of_mem hs
+  have h0 : (P.joinSides k i).headD 0 = (P.joinSides k i)[0]'(by omega) := by
+    obtain ⟨x, xs, hx⟩ := List.exists_cons_of_ne_nil ((P.joinRuns_spec k).2.1 i hi)
+    simp only [hx, List.headD_cons, List.getElem_cons_zero]
+  rw [h0]
+  exact P.kind_joinSides_eq hi t ht
+
+/-- A class of cutting or short sides is a single side: a join needs a cell or a section. -/
+theorem joinSides_length_eq_one {k : Fin P.count} {i : ℕ} (hi : i < P.joinCount k)
+    (hkind : P.kind k ((P.joinSides k i).headD 0) = .cutting ∨
+      P.kind k ((P.joinSides k i).headD 0) = .short) :
+    (P.joinSides k i).length = 1 := by
+  have hpos := List.length_pos_iff.mpr ((P.joinRuns_spec k).2.1 i hi)
+  by_contra hlen
+  have h1 : 0 + 1 < (P.joinSides k i).length := by omega
+  obtain ⟨-, hjoin⟩ := (P.joinRuns_spec k).2.2.1 i hi 0 h1
+  have hkind0 := P.kind_eq_joinKind hi _ (List.getElem_mem (show 0 < (P.joinSides k i).length by
+    omega))
+  rcases hjoin.1.2 with ⟨j, hj⟩ | ⟨j, hj⟩ <;> rcases hkind with hk | hk <;>
+    rw [hkind0, hk] at hj <;> cases hj
+
+/-! ### The arcs and the words -/
+
+theorem joinSides_isChain {k : Fin P.count} {i : ℕ} (hi : i < P.joinCount k) :
+    (P.joinSides k i).IsChain fun s s' => s' = (s + 1) % P.sideCount k ∧ P.ClassJoins k s ∧
+      P.joinGap k s = P.junctionGap k s := by
+  rw [List.isChain_iff_getElem]
+  intro t ht
+  obtain ⟨hnext, hjoin⟩ := (P.joinRuns_spec k).2.2.1 i hi t ht
+  refine ⟨hnext, hjoin, ?_⟩
+  rw [joinGap, if_pos ⟨hjoin, P.not_isJoinRunLast hi ht⟩]
+
+theorem joinSides_cellArc {k : Fin P.count} {i : ℕ} {j : Fin S.diagram.rCellCount}
+    (hi : i < P.joinCount k) (hj : P.kind k ((P.joinSides k i).headD 0) = .cell j) :
+    ∃ arc : CyclicArc (cellDarts S.diagram j),
+      ((P.joinSides k i).flatMap fun s => P.sideDarts k s ++ P.joinGap k s) =
+        arc.reverseDarts :=
+  P.exists_cellArc_of_run (g := P.joinGap k) ((P.joinRuns_spec k).2.1 i hi)
+    (fun s hs => ⟨P.lt_sideCount_of_mem_joinSides hi hs, (P.kind_eq_joinKind hi s hs).trans hj⟩)
+    (P.joinSides_nodup hi) (P.joinSides_isChain hi) (fun _ hs => P.joinGap_of_last hi hs)
+
+theorem joinSides_boundaryArc {k : Fin P.count} {i jc : ℕ} (hi : i < P.joinCount k)
+    (hj : P.kind k ((P.joinSides k i).headD 0) = .boundary jc) :
+    ∃ hjc : jc < cuts.count, ∃ arc : CyclicArc (targetDarts S.diagram none),
+      ((P.joinSides k i).flatMap fun s => P.sideDarts k s ++ P.joinGap k s) = arc.darts ∧
+        cuts.cut ⟨jc, by omega⟩ ≤ arc.start.1 ∧
+          arc.start.1 + arc.length ≤ cuts.cut ⟨jc + 1, by omega⟩ :=
+  P.exists_boundaryArc_of_run (g := P.joinGap k) ((P.joinRuns_spec k).2.1 i hi)
+    (fun s hs => ⟨P.lt_sideCount_of_mem_joinSides hi hs, (P.kind_eq_joinKind hi s hs).trans hj⟩)
+    (P.joinSides_isChain hi) (fun _ hs => P.joinGap_of_last hi hs)
+
+theorem joinSides_quasiGeodesic (hcell : S.CellArcsQuasiGeodesic)
+    (hbd : S.BoundaryArcsQuasiGeodesic) {k : Fin P.count} {i : ℕ} (hi : i < P.joinCount k)
+    (hshort : P.kind k ((P.joinSides k i).headD 0) ≠ .short) :
+    IsLambdaCQuasiGeodesicWord (symmetricLabelAlphabet D) lambda (c + 2)
+      (dartWord S.diagram
+        ((P.joinSides k i).flatMap fun s => P.sideDarts k s ++ P.joinGap k s)) := by
+  cases hkind : P.kind k ((P.joinSides k i).headD 0) with
+  | cell j =>
+    obtain ⟨arc, harc⟩ := P.joinSides_cellArc hi hkind
+    rw [harc]
+    exact hcell j arc
+  | boundary jc =>
+    obtain ⟨hjc, arc, harc, hlo, hhi⟩ := P.joinSides_boundaryArc hi hkind
+    rw [harc]
+    exact hbd jc hjc arc hlo hhi
+  | cutting =>
+    have hlen := P.joinSides_length_eq_one hi (Or.inl hkind)
+    obtain ⟨x, xs, hx⟩ := List.exists_cons_of_ne_nil ((P.joinRuns_spec k).2.1 i hi)
+    have hxs : xs = [] := by
+      rw [hx, List.length_cons] at hlen
+      exact List.eq_nil_of_length_eq_zero (by omega)
+    subst hxs
+    have hxlast : x ∈ (P.joinSides k i).getLast? := by
+      rw [hx]
+      rfl
+    have hxmem : x ∈ P.joinSides k i := by
+      rw [hx]
+      exact List.mem_singleton_self x
+    rw [hx, List.flatMap_singleton, P.joinGap_of_last hi hxlast, List.append_nil]
+    refine P.quasiGeodesic k x (P.lt_sideCount_of_mem_joinSides hi hxmem) ?_
+    rw [P.kind_eq_joinKind hi x hxmem, hkind]
+    exact fun h => by cases h
+  | short => exact absurd hkind hshort
+
+/-! ### The producer -/
+
+/-- **The class polygons of the class joins.** -/
+noncomputable def classPolygonsOfJoins (hcell : S.CellArcsQuasiGeodesic)
+    (hbd : S.BoundaryArcsQuasiGeodesic) : OsinLemma94ClassPolygons P where
+  classCount := P.joinCount
+  classBase := P.joinBase
+  classSides := P.joinSides
+  sides_eq k := (P.joinRuns_spec k).1
+  classSides_ne_nil k i hi := (P.joinRuns_spec k).2.1 i hi
+  classKind k i := P.kind k ((P.joinSides k i).headD 0)
+  kind_eq _ _ hi s hs := P.kind_eq_joinKind hi s hs
+  single _ _ hi hkind := P.joinSides_length_eq_one hi hkind
+  gap := P.joinGap
+  gap_value k _ _ s _ := P.joinGap_value k s
+  gap_last _ _ hi _ hs := P.joinGap_of_last hi hs
+  cell_arc _ _ _ hi hj := P.joinSides_cellArc hi hj
+  boundary_arc _ _ _ hi hj := P.joinSides_boundaryArc hi hj
+  quasiGeodesic _ _ hi hne := P.joinSides_quasiGeodesic hcell hbd hi hne
+
+/-- The producer at the parameters of Lemma 9.4, with the arc premises discharged. -/
+noncomputable abbrev joinQ {mu : ℝ} {rho : ℕ} (hW : OsinCCondition D W eps mu lambda c rho)
+    (hc : 0 ≤ c) : OsinLemma94ClassPolygons P :=
+  P.classPolygonsOfJoins (osinLemma94CellArcsInput_holds S hW hc) (osinLemma94BoundaryArcsInput S hc)
+
+/-! ### The counts -/
+
+/-- The sides of polygon `k` that do not join the next side at class level. -/
+noncomputable def classNonJoins (k : Fin P.count) : Finset ℕ :=
+  (Finset.range (P.sideCount k)).filter fun s => ¬ P.ClassJoins k s
+
+/-- The polygons with an (A1) side and at least two class-level non-joins. -/
+noncomputable def nonJoinPolygons : Finset (Fin P.count) :=
+  P.relatorPolygons.filter fun k => 2 ≤ (P.classNonJoins k).card
+
+theorem joinCount_le (k : Fin P.count) : P.joinCount k ≤ max 1 (P.classNonJoins k).card :=
+  (P.joinRuns_spec k).2.2.2.2
+
+theorem budgetPolygons_subset_nonJoinPolygons (hcell : S.CellArcsQuasiGeodesic)
+    (hbd : S.BoundaryArcsQuasiGeodesic) :
+    (P.classPolygonsOfJoins hcell hbd).budgetPolygons ⊆ P.nonJoinPolygons := by
+  intro k hk
+  obtain ⟨h2, i, hi, j, hj⟩ := (Finset.mem_filter.mp hk).2
+  have h2' : 2 ≤ P.joinCount k := h2
+  have hi' : i < P.joinCount k := hi
+  refine Finset.mem_filter.mpr ⟨?_, ?_⟩
+  · obtain ⟨x, xs, hx⟩ := List.exists_cons_of_ne_nil ((P.joinRuns_spec k).2.1 i hi')
+    have hxmem : x ∈ P.joinSides k i := by
+      rw [hx]
+      exact List.mem_cons_self ..
+    exact Finset.mem_filter.mpr ⟨Finset.mem_univ k, x, P.lt_sideCount_of_mem_joinSides hi' hxmem,
+      j, (P.kind_eq_joinKind hi' x hxmem).trans hj⟩
+  · rcases le_max_iff.mp (h2'.trans (P.joinCount_le k)) with h | h
+    · omega
+    · exact h
+
+/-- **The other classes against the short sides, the run ends and the bad junctions.**  On a
+polygon with at least two classes, every class ends with a side that does not join the next one.
+A class that is not a cutting class ends with a short side, a run end, or a bad junction, and
+different classes end with different sides. -/
+theorem card_otherClasses_le (hcell : S.CellArcsQuasiGeodesic)
+    (hbd : S.BoundaryArcsQuasiGeodesic) {k : Fin P.count}
+    (h2 : 2 ≤ (P.classPolygonsOfJoins hcell hbd).classCount k) :
+    ((P.classPolygonsOfJoins hcell hbd).otherClasses k).card ≤
+      (P.shortSides k).card + (P.runEnds k).card + (P.badJunctions k).card := by
+  have h2' : 2 ≤ P.joinCount k := h2
+  have hexists : ∃ s < P.sideCount k, ¬ P.ClassJoins k s := by
+    have hcard : 1 ≤ (P.classNonJoins k).card := by
+      rcases le_max_iff.mp (h2'.trans (P.joinCount_le k)) with h | h <;> omega
+    obtain ⟨s, hs⟩ := Finset.card_pos.mp (by omega : 0 < (P.classNonJoins k).card)
+    obtain ⟨hr, hn⟩ := Finset.mem_filter.mp hs
+    exact ⟨s, Finset.mem_range.mp hr, hn⟩
+  have hlast_mem : ∀ i < P.joinCount k,
+      ((P.joinSides k i).getLast?).getD 0 ∈ (P.joinSides k i).getLast? := by
+    intro i hi
+    rw [List.getLast?_eq_some_getLast ((P.joinRuns_spec k).2.1 i hi)]
+    rfl
+  refine (Finset.card_le_card_of_injOn (fun i => ((P.joinSides k i).getLast?).getD 0) ?_ ?_).trans
+    ((Finset.card_union_le _ _).trans (Nat.add_le_add_right (Finset.card_union_le _ _) _))
+  · intro i hi
+    obtain ⟨hir, hother⟩ := Finset.mem_filter.mp (Finset.mem_coe.mp hi)
+    have hi' : i < P.joinCount k := Finset.mem_range.mp hir
+    have hsl := hlast_mem i hi'
+    have hsmem : ((P.joinSides k i).getLast?).getD 0 ∈ P.joinSides k i := List.mem_of_getLast? hsl
+    have hslt := P.lt_sideCount_of_mem_joinSides hi' hsmem
+    have hnj := (P.joinRuns_spec k).2.2.2.1 hexists i hi' _ hsl
+    apply Finset.mem_coe.mpr
+    by_cases hkj : P.KindJoins k (((P.joinSides k i).getLast?).getD 0)
+    · exact Finset.mem_union_right _ (Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hslt, hkj, hnj⟩)
+    · apply Finset.mem_union_left
+      have hkind := P.kind_eq_joinKind hi' _ hsmem
+      cases hk : P.kind k (((P.joinSides k i).getLast?).getD 0) with
+      | cell j =>
+        exact Finset.mem_union_right _
+          (Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hslt, Or.inl ⟨j, hk⟩, hkj⟩)
+      | boundary j =>
+        exact Finset.mem_union_right _
+          (Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hslt, Or.inr ⟨j, hk⟩, hkj⟩)
+      | short =>
+        exact Finset.mem_union_left _ (Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hslt, hk⟩)
+      | cutting => exact absurd (hkind.symm.trans hk) hother
+  · intro i hi i' hi' heq
+    have hir := Finset.mem_range.mp (Finset.mem_filter.mp (Finset.mem_coe.mp hi)).1
+    have hir' := Finset.mem_range.mp (Finset.mem_filter.mp (Finset.mem_coe.mp hi')).1
+    have hm : ((P.joinSides k i).getLast?).getD 0 ∈ P.joinSides k i :=
+      List.mem_of_getLast? (hlast_mem i hir)
+    have hm' : ((P.joinSides k i).getLast?).getD 0 ∈ P.joinSides k i' := by
+      have h := List.mem_of_getLast? (hlast_mem i' hir')
+      rw [show ((P.joinSides k i).getLast?).getD 0 = ((P.joinSides k i').getLast?).getD 0 from heq]
+      exact h
+    exact P.eq_of_mem_joinSides hir hir' hm hm'
+
+/-- **Clause (a) for the producer.**  Over the budget polygons, the other classes number at most
+`24 ε n` plus the run ends over the polygons with an (A1) side plus the bad junctions over the
+polygons with at least two class non-joins. -/
+theorem sum_card_otherClasses_le (hcell : S.CellArcsQuasiGeodesic)
+    (hbd : S.BoundaryArcsQuasiGeodesic) (hcells : 0 < Delta.rCellCount)
+    (hcard : S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)) :
+    ∑ k ∈ (P.classPolygonsOfJoins hcell hbd).budgetPolygons,
+        ((P.classPolygonsOfJoins hcell hbd).otherClasses k).card ≤
+      24 * eps * Delta.rCellCount + ∑ k ∈ P.relatorPolygons, (P.runEnds k).card +
+        ∑ k ∈ P.nonJoinPolygons, (P.badJunctions k).card := by
+  have hsub := P.budgetPolygons_subset_nonJoinPolygons hcell hbd
+  have hsubR : P.nonJoinPolygons ⊆ P.relatorPolygons := Finset.filter_subset _ _
+  calc ∑ k ∈ (P.classPolygonsOfJoins hcell hbd).budgetPolygons,
+        ((P.classPolygonsOfJoins hcell hbd).otherClasses k).card
+      ≤ ∑ k ∈ (P.classPolygonsOfJoins hcell hbd).budgetPolygons,
+          ((P.shortSides k).card + (P.runEnds k).card + (P.badJunctions k).card) :=
+        Finset.sum_le_sum fun k hk =>
+          P.card_otherClasses_le hcell hbd (Finset.mem_filter.mp hk).2.1
+    _ = ∑ k ∈ (P.classPolygonsOfJoins hcell hbd).budgetPolygons, (P.shortSides k).card +
+          ∑ k ∈ (P.classPolygonsOfJoins hcell hbd).budgetPolygons, (P.runEnds k).card +
+            ∑ k ∈ (P.classPolygonsOfJoins hcell hbd).budgetPolygons, (P.badJunctions k).card := by
+        rw [Finset.sum_add_distrib, Finset.sum_add_distrib]
+    _ ≤ 24 * eps * Delta.rCellCount + ∑ k ∈ P.relatorPolygons, (P.runEnds k).card +
+          ∑ k ∈ P.nonJoinPolygons, (P.badJunctions k).card :=
+        Nat.add_le_add (Nat.add_le_add
+          ((Finset.sum_le_sum_of_subset (Finset.subset_univ _)).trans
+            (P.sum_card_shortSides_le_mul hcells hcard))
+          (Finset.sum_le_sum_of_subset (hsub.trans hsubR)))
+          (Finset.sum_le_sum_of_subset hsub)
+
+end OsinLemma94RealizedPolygons
+
+/-! ### The residual inputs and the budget input -/
+
+/-- **The bad junctions (residual, lane ms-inverses-3).**  The hypotheses and quantifiers of
+`OsinLemma94LongTransitionInput`; over the polygons with an (A1) side and at least two class-level
+non-joins, the kind-level joins that are not class-level joins number at most `K n`.  A polygon
+with one side has a self-junction whose gap is the rest of the relator, so the index set excludes
+the polygons with at most one non-join. -/
+def OsinLemma94BadJunctionInput : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ K : ℕ, ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
+                    ∑ k ∈ P.nonJoinPolygons, (P.badJunctions k).card ≤ K * Delta.rCellCount
+
+/-- **The end loops of the class producer (residual).**  At the parameters of Lemma 9.4, with `B`
+chosen after `ε`, the producer `joinQ` carries end loops of at most `B` darts that cover the
+reverses of the unbound darts across the single-class polygons, as clauses (c) and (d) of
+`OsinLemma94ClassEndLoopsBudgetInput`. -/
+def OsinLemma94ClassJoinsEndLoopsInput : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → ∀ hc : 0 ≤ c, 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ B : ℕ, ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))) (hW : OsinCCondition D W eps mu lambda c rho),
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
+                    ∃ (classEnd : Fin P.count → ℕ → Bool → List S.diagram.toCombMap.Dart)
+                      (regionEnd : RegionCandidate D eps S.diagram → Fin 4 →
+                        List S.diagram.toCombMap.Dart),
+                      (∀ k ∈ (P.joinQ hW hc).budgetPolygons, ∀ i < (P.joinQ hW hc).classCount k,
+                        ∀ b, (classEnd k i b).length ≤ B) ∧
+                      (∀ a ∈ S.family, ∀ t, (regionEnd a t).length ≤ B) ∧
+                      ∀ (i : Fin S.diagram.rCellCount) (d : S.diagram.toCombMap.Dart),
+                        d ∈ S.unboundOffRegions i →
+                          (cell S.diagram i).face ≠
+                              S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) →
+                            ∀ k s, (P.joinQ hW hc).classCount k = 1 → s < P.sideCount k →
+                              s ∈ P.relatorSides k →
+                              S.diagram.toCombMap.alpha d ∈ P.sideDarts k s →
+                                (∃ k' i', i' < (P.joinQ hW hc).classCount k' ∧
+                                    i' ∈ (P.joinQ hW hc).relatorClasses k' ∧
+                                    S.diagram.toCombMap.alpha d ∈
+                                      (P.joinQ hW hc).classDarts k' i') ∨
+                                  (∃ k' ∈ (P.joinQ hW hc).budgetPolygons,
+                                    ∃ i' < (P.joinQ hW hc).classCount k', ∃ b,
+                                    S.diagram.toCombMap.alpha d ∈ classEnd k' i' b) ∨
+                                  ∃ a ∈ S.family, ∃ t,
+                                    S.diagram.toCombMap.alpha d ∈ regionEnd a t
+
+/-- **The budget input from the class joins.**  The long transitions (lane ms-compress-1), the bad
+junctions (lane ms-inverses-3) and the end loops give `OsinLemma94ClassEndLoopsBudgetInput`, with
+the producer `joinQ` and the other-class constant `24 ε + K₁ + K₂`. -/
+theorem osinLemma94ClassEndLoopsBudgetInput_of_joins
+    (hlong : OsinLemma94LongTransitionInput.{u, w, v})
+    (hbad : OsinLemma94BadJunctionInput.{u, w, v})
+    (hloops : OsinLemma94ClassJoinsEndLoopsInput.{u, w, v}) :
+    OsinLemma94ClassEndLoopsBudgetInput.{u, w, v} := by
+  intro G _ Lambda D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
+  obtain ⟨e1, h1⟩ := osinLemma94KindTransitionInput_of_longTransitions hlong D hhyper lambda c mu
+    hlambda hlambda1 hc hmu hmu16
+  obtain ⟨e2, h2⟩ := hbad D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
+  obtain ⟨e3, h3⟩ := hloops D hhyper lambda c mu hlambda hlambda1 hc hmu hmu16
+  refine ⟨max e1 (max e2 e3), fun eps heps => ?_⟩
+  simp only [max_le_iff] at heps
+  obtain ⟨he1, he2, he3⟩ := heps
+  obtain ⟨K1, r1, hr1, H1⟩ := h1 eps he1
+  obtain ⟨K2, r2, hr2, H2⟩ := h2 eps he2
+  obtain ⟨B, r3, hr3, H3⟩ := h3 eps he3
+  refine ⟨24 * eps + K1 + K2, B, max r1 (max r2 r3), lt_of_lt_of_le hr1 (le_max_left _ _),
+    fun rho hrho => ?_⟩
+  simp only [max_le_iff] at hrho
+  obtain ⟨hrr1, hrr2, hrr3⟩ := hrho
+  intro W hW Delta cuts hleast hcells hbelow S hcard hmin P hmax
+  have hQ := P.sum_card_otherClasses_le (osinLemma94CellArcsInput_holds S hW hc)
+    (osinLemma94BoundaryArcsInput S hc) hcells hcard
+  have hK1 := H1 rho hrr1 W hW Delta cuts hleast hcells hbelow S hcard hmin P hmax
+  have hK2 := H2 rho hrr2 W hW Delta cuts hleast hcells hbelow S hcard hmin P hmax
+  obtain ⟨classEnd, regionEnd, hclassEnd, hregionEnd, hbubble⟩ :=
+    H3 rho hrr3 W hW Delta cuts hleast hcells hbelow S hcard hmin P hmax
+  refine ⟨P.joinQ hW hc, ?_, classEnd, regionEnd, hclassEnd, hregionEnd, hbubble⟩
+  calc ∑ k ∈ (P.joinQ hW hc).budgetPolygons, ((P.joinQ hW hc).otherClasses k).card
+      ≤ 24 * eps * Delta.rCellCount + ∑ k ∈ P.relatorPolygons, (P.runEnds k).card +
+          ∑ k ∈ P.nonJoinPolygons, (P.badJunctions k).card := hQ
+    _ ≤ 24 * eps * Delta.rCellCount + K1 * Delta.rCellCount + K2 * Delta.rCellCount :=
+        Nat.add_le_add (Nat.add_le_add le_rfl hK1) hK2
+    _ = (24 * eps + K1 + K2) * Delta.rCellCount := by ring
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.classPolygonsOfJoins
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.card_otherClasses_le
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_otherClasses_le
+#audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94ClassEndLoopsBudgetInput_of_joins
