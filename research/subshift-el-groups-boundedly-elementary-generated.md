@@ -22,3 +22,5 @@ artifacts:
 - **Finite algebras.** Both factors live in finite products of `M_h(F_2)`, where block Gauss reduction, Whitehead diagonals and Thompson's commutator theorem give at most 39 elementary matrices.
 
 **Status: established** by `subshift-el-groups-boundedly-elementary-generated-proof`. UNREVIEWED; queued with sk-verify-13.
+
+**Review (sk-verify-15, 2026-09-13): PASS-WITH-FIXES.** (T1) block Gauss reduction (39, fixed pattern), (T2) vanishing index on G, (T3) end corrections with localized inverse, (T4) two-end inverse and the assembly h = H_1H_2 re-derived; no gap. W1: refine atoms to fix h along the whole tower occurrence plus 4W margins. W2: justify the single-coordinate stable range step componentwise (ker a_2 argument). See `research/artifacts/sk-verify-15-2026-09-13-part3.md` §1.

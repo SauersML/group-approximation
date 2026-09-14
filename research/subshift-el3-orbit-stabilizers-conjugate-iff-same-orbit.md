@@ -18,3 +18,5 @@ For `x, y ∈ X` the following are equivalent:
 - `x` and `y` lie in one `T`-orbit.
 
 So these conjugacy classes of maximal subgroups are parametrized exactly by the orbit space `X/Z`.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** Additivity via Fix(G_{v,w}) = {v,w,v+w}, diagonality via root-subgroup fixed sets, R-linearity, and the eigencharacter argument (3)⇒(4) re-derived. See `research/artifacts/sk-verify-15-2026-09-13-part3.md` §3.

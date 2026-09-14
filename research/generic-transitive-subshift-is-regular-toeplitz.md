@@ -15,3 +15,5 @@ Source: R. Pavlov and S. Schmieding, *On the structure of generic subshifts*, ar
   (2) X has topological rank two (Corollary 5.29).
   (3) X is strong orbit equivalent to the universal odometer, and in particular, the dimension group of X has rank one and hence no nontrivial infinitesimals (Corollary 5.32)."
 - **Clopen restriction (p. 3).** "For any nonempty shift of finite type X, the subshifts contained in X form a clopen subset of S (see Lemma 2.3)". So for a fixed finite alphabet `A`, `T̄′ ∩ S[A]` is open in `T̄′`, and a generic property in `T̄′` is generic in `T̄′ ∩ S[A]`.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** Theorem 1.3 (source label maintrans, e-print l.234–240), the clopen restriction (l.197) and perfectness of the infinite transitive subshifts (l.154) checked verbatim in arXiv:2203.15159v1. See `research/artifacts/sk-verify-15-2026-09-13-part3.md` §5.

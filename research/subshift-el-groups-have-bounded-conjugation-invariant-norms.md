@@ -20,3 +20,5 @@ Kept for the record; the question was open until part 3.
 - **Cut lemma with cyclic corrections (part 1 §4, part 2 §2.2).** Corrections by cyclic shifts inside each component wrap around blocks and leave a degree-1 remainder over an induced system; iterating does not terminate. Part 3 replaces them with end-local Fredholm corrections, whose inverses are banded.
 - **Odometer test case (part 2 §2.1).** Block Gauss reduction over `M_k(F_2[t^{±1}])` stops at stable rank 2. Cutting along towers avoids matrix blocks.
 - **Via stable rank one (part 2 §2.3).** Not needed; `sr(R_X) = 1` stays open.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** Boundedness (‖h‖ ≤ 156‖e_12(1)‖), bounded normal generation and the width bound 312(⌊1/inf_μ μ(V)⌋+1) re-derived from bounded elementary generation, Corollary C and Theorem B; the lower bound is Theorem A. See `research/artifacts/sk-verify-15-2026-09-13-part3.md` §2.

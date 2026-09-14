@@ -18,3 +18,5 @@ Fix a finite alphabet `A` with `|A| ≥ 2`. The note's finite models are the mar
 - a generic limit has unsolvable word problem.
 
 So the generic infinite limit of this expander family of finite simple groups is an infinite simple Kazhdan LEF group.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** Boundary of the models (no aliasing for N > 2λ, Euler walks, isolation), Lemma 1 (admissible = closure of infinite transitive), Lemma 2 (Cantor, minimal G_δ dense with dense complement, not F_σ) and the three conclusions re-derived; Pavlov–Schmieding checked at source. See `research/artifacts/sk-verify-15-2026-09-13-part3.md` §4.
