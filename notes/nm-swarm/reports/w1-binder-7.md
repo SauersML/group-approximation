@@ -244,8 +244,22 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
       pinched), under the Section premises. w1-binder-3 proves it; the interface was proposed to it in one message.
     - `pocketPinchLabelledSectionStatement_of_outerPinchStep`: the walk-order Section binder, by induction. In first-turn
       order it closes outright, an unpinched pocket is simple, and otherwise the outer step applies.
-  - `OsinPocketFirstTurnsProperArc` (`sourceArc_lt_of_firstTurns`, attic 695f89621) is still unprobed. One attempt failed
-    at git fetch (the DNS outage) and one on "msi connection down".
+  - **Interface agreed with w1-binder-3 (00:3x), with its amendment 1: a proper target arc.** At an endpoint of a target arc
+    that holds the whole exterior boundary, the outer corner is the exterior. No O-equivalent split merges it with a G-face,
+    and `outerSpurThickening` needs the target arc to avoid `α w_j`. Splits and corner fixes keep both arcs.
+    - Rewritten dispatch module (attic f9a3d8af1, md5 b9a428ad):
+      - `PocketOuterPinchStepSectionStatement`, which now takes and returns `K.targetArc.length < (outerDarts X).length`;
+      - `PocketPinchLabelledSectionTwoArcStatement`, the walk-order Section binder with proper `t₁` and `t₂`, with
+        `_of_section` from the landed `t₁`-only binder;
+      - `pocketPinchLabelledSectionTwoArcStatement_of_outerPinchStep`, the dispatch;
+      - `SectionPocketFaceSetTwoArcInput`, `OsinSectionPocketFaceSetTwoArcSectionStatement` and
+        `osinSectionPocketCutSection_of_residualsTwoArc`. Proper `t₂` has to come from the top: section count ≥ 2 gives
+        it, and main's route-1 test covers count = 1.
+    - w1-binder-3 proves the step. It packages it with `exists_pinchStepSection_of_avoids`, adds its own variant
+      `exists_pinchStepSection_of_isolated` for three or more visits with mixed turns, and reports fully crossing vertices as
+      a residual.
+  - `OsinPocketFirstTurnsProperArc` (`sourceArc_lt_of_firstTurns`, attic 695f89621) is co-probing with the dispatch in a
+    retry loop. Attempts so far failed on infra only: git fetch during the DNS outage, then "msi connection down".
 - **Noted:** ms-cite-1's `cellPocketPinchRoseRefutation` (e0a0776bb) refutes `CellPocketPinchPosStatement`, so V4 endpoints over
   it are vacuous. The replacement is `CellPocketPinchSectionStatement`.
 - **Landed above (was in flight): `Estimating/OsinPocketGoodCornersSection`** (attic 12585faa5), the section mirror.
