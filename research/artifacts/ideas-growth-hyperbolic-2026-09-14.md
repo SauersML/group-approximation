@@ -209,11 +209,13 @@ the six orientable certificates:
 
 All checks passed (`verify-genus2.log`).
 
-**Exact counts.** These come from an uncapped rerun (`sol24-all.log` on MSI), which stopped after
-class 65 when MSI went down.
-- Orientable classes: 25 has 5,184 labellings, 29 has 1,944, 31 has 3,456, 43 has 6,912 and 65 has
-  116,640. Classes 42 and 51 have none.
-- Non-orientable classes: 17 has 216, 36 has 2,592 and 53 has 432.
+**Exact counts.** These are uncapped counts for all 72 classes, with limit `10^7`, recorded in
+`experiments/ghb7-girth-surfaces/counts-t24.log`. Classes 0–65 were counted by
+`ghb7_girth_surfaces.py solve`; classes 66–71 by `count_range.py`.
+- Orientable classes: 25 has 5,184 labellings, 29 has 1,944, 31 has 3,456, 43 has 6,912, 65 has
+  116,640 and 67 has 8,751,456. Classes 42 and 51 have none.
+- Non-orientable classes: 17 has 216, 36 has 2,592, 53 has 432 and 66 has 95,904. The other 60
+  non-orientable classes have none.
 
 Every count is a multiple of `216 = 6^3`. The torus scalings of S2 map labellings to labellings,
 and they act freely because every exponent is nonzero. So labellings come in free orbits of size 216.
@@ -222,7 +224,7 @@ and they act freely because every exponent is nonzero. So labellings come in fre
 - The naive independence estimate for `T = 24` is `6^{−36} · 180^4 · 936^6 ≈ 0.07` per surface.
 - On an oriented surface each exponent enters the abelianized vertex conditions of its two endpoints
   with opposite signs. That gives three linear dependencies and raises the estimate to about 23.
-- The observed orientable counts, from 0 to 116,640, are far from Poisson with mean 23. So the
+- The observed orientable counts, from 0 to 8,751,456, are far from Poisson with mean 23. So the
   heuristic misses structure: the torus orbits, and whatever obstructs classes 42 and 51 (not
   identified here).
 
