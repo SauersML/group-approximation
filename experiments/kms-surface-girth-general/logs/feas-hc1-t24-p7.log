@@ -1,0 +1,6 @@
+family HC2_1 T 24 p 7 girth surfaces 5 sec 0.0
+surface 0 orientable False feasible False status done nodes 52261 first []
+surface 1 orientable False feasible False status done nodes 40897 first []
+surface 2 orientable False feasible False status done nodes 10483 first []
+surface 3 orientable False feasible False status done nodes 67231 first []
+surface 4 orientable False feasible False status done nodes 25363 first []

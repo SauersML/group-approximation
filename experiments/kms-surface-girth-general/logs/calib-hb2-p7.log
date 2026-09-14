@@ -1,0 +1,10 @@
+family HB2_2 T 24 p 7 girth surfaces 72 sec 0.4
+calib surface 17 orientable False count 216 nodes 191575 status done sec 2.4
+calib surface 29 orientable True count 1944 nodes 1157875 status done sec 12.4
+calib surface 53 orientable False count 432 nodes 159847 status done sec 13.8
+calib surface 42 orientable True count 0 nodes 1493563 status done sec 26.5
+calib surface 51 orientable True count 0 nodes 1151155 status done sec 34.1
+calib surface 25 orientable True count 5184 nodes 4031359 status done sec 60.8
+calib surface 31 orientable True count 3456 nodes 1650415 status done sec 74.1
+calib surface 43 orientable True count 6912 nodes 1681579 status done sec 84.0
+done sec 84.0

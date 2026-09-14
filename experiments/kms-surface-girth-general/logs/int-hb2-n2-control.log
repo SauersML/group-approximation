@@ -1,0 +1,6 @@
+type 0 ('U3',) closed words with |exp| <= 2 : 12
+type 1 ('U4', 0) closed words with |exp| <= 2 : 64
+type 2 ('U4', 0) closed words with |exp| <= 2 : 64
+surface 67 orientable True integer labelling found True sec 0.5
+surface 42 orientable True integer labelling found False sec 0.5
+done sec 0.5

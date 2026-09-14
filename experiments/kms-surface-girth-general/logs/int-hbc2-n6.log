@@ -1,0 +1,8 @@
+type 0 ('U3',) closed words with |exp| <= 6 : 300
+type 1 ('U4', 2) closed words with |exp| <= 6 : 2368
+type 2 ('U4', 0) closed words with |exp| <= 6 : 2368
+surface 67 orientable True integer labelling found True sec 0.6
+surface 65 orientable True integer labelling found False sec 4.8
+surface 71 orientable False integer labelling found True sec 6.9
+surface 5 orientable False integer labelling found False sec 8.5
+done sec 8.6

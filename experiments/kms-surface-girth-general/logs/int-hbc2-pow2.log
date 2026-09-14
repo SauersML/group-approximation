@@ -1,0 +1,8 @@
+girth surfaces 72 allowed abs [1, 2, 4, 8]
+type 0 ('U3',) closed words with |exp| <= 8 : 108
+type 1 ('U4', 2) closed words with |exp| <= 8 : 608
+type 2 ('U4', 0) closed words with |exp| <= 8 : 608
+surface 67 orientable True integer labelling found False sec 0.6
+surface 71 orientable False integer labelling found False sec 7.3
+surface 65 orientable True integer labelling found False sec 7.3
+done sec 7.3

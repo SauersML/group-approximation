@@ -1,0 +1,3 @@
+matrix models satisfy the U3 and U4 relators over Z: True
+HC2_1 T 48 surface 190 orientable True chi -2 labels [-4, -3, -2, -1, 1, 2, 3, 4] label primes [2, 3] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+certificates checked: 1 | ALL PASS
