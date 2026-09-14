@@ -1,49 +1,64 @@
-# Lane ct-bilateral-mf: simple_kazhdan_sofic_group.tex l.174–204 at bf961c128
+# Lane ct-bilateral-mf: simple_kazhdan_sofic_group.tex, subsection "Simplicity"
 
-Target: origin/main `simple_kazhdan_sofic_group.tex` at bf961c128 (340 lines, md5 7b3dc4ec92b4581553bc0dc2b0edcb99),
-subsection "A finite tower detects every normal subgroup". Rows keyed `LINE:<l>@bf961c128`.
+Target: the CURRENT origin/main tip of the note (ROSTER-sk protocol 19:45). At e80dcf20a (386 lines, md5
+4ad4921253626a4f858866c716a13385) the subsection "Simplicity" is tex ≈179–238. Rows are keyed by the 12-hex sentence hash
+of `metadata/SK_SENTENCE_CENSUS.tsv`, once skf-census regenerates the census at the tip. On origin it is still at bf961c128.
 
-Split agreed with skf-consequences:
-- ct-bilateral-mf: l.174–204, root detection up to κ₀ ≠ I on W.
-- skf-consequences: l.205–228 (H_W, simplicity of GL_d(F₂), conjugation by κ₀, I_N, N = G).
+History:
+- b965d63ba l.574–683 (thm:root, cor:simple);
+- bf961c128 l.174–204 (tower detection);
+- e80dcf20a Simplicity. The tower route (B_m(U), κ, W) was removed from the note, so earlier carriers are superseded.
 
-Interface: `TowerCornerWitnessStatement`, landed by skf-consequences. It is exactly the output of l.204, in coordinates:
-- U, W clopen, W ⊆ U nonempty, tower levels T^aU (|a| ≤ m) disjoint;
-- k ∈ N, k ≠ 1, entries of k − I₃ and k⁻¹ − I₃ in B_m(U);
-- κ₀ ≠ 1 over Fin 3 × Fin (2m+1), with E_aa(W)·k_pq·E_bb(W) = κ₀((p,a),(q,b))·E_ab(W).
-I produce it.
+## Split (agreed with skf-consequences, 09-13 ~19:50)
 
-Neighbouring owners (ROSTER-sk 18:58): ct-involution l.67–86, 102–113, 154–173 (clopen partitions l.79–82, ring
-generators l.84–86, E_ab(W), B_m(U), eq:absorb); ms-compress-4 l.86–101, 114–117 (eq:elementary, Z(G) = {1}).
+- ct-bilateral-mf: l.180–196 and 210–221. The bound w; small V; no periodic points; small neighbourhoods; finite disjoint
+  unions; some h = e_ij(e_V), V small, not commuting with g; k = [g,h] ∈ N∖{1}; fu^a e_V f′u^b ∈ {0, ε_{a,−b}}; the entries
+  of ghg⁻¹ − I₃; h⁻¹ = h; k − I₃ = (ghg⁻¹ − h)h and k⁻¹ − I₃ = h(ghg⁻¹ − h) in the ε-span.
+- skf-consequences: l.197–209 and 222–238. ε_ab nonzero and products; ψ; the embedding of GL_d(F₂) and H ≤ G; k ∈ H;
+  simplicity of GL_d(F₂) = PSL_d(F₂); H ≤ N; the ideal J; N = G.
+- Interface: `SimplicityCommutatorWitness T` (skf-consequences, module `Manuscript/SimpleKazhdanSofic/SimplicityStatement`). For
+  N ⊴ EL₃(R_X), N ≠ ⊥: a nonempty clopen V with `LevelsDisjoint T w V`, and k ∈ N, k ≠ 1, with the entries of k − 1 and
+  k⁻¹ − 1 in `towerSpanOf T (ZMod 2) w hV` (ε_ab = `towerE T (ZMod 2) w hV a b`). I produce it.
 
 ## Route verdict
 
-The printed route (localized non-commuting root, then the tower corner) is not the route of any Pestov91 simplicity
-carrier. `SplitSimplicity` goes through row annihilators and `hsplit`; `SimpleModCentre` and `SimpleModCentreCrossed` go
-through local annihilation and a column matrix. Those are statement-level carriers of "N = G" only. The only step whose
-route coincides with an existing carrier is l.185–187: the commuting coefficients form a subring.
+The printed route: a small set V, a non-commuting e_ij(e_V) via the scalar argument, the finite copy of GL_d(F₂), k ∈ H.
+It is not the route of Pestov91 `SplitSimplicity` or `SimpleModCentre`.
 
-## Sentence ledger
+Reusable carriers:
+- ct-involution `Manuscript/SimpleKazhdanSofic/RingPartitions` (2f481625d): `IsMinimalSystem`, `zpow_apply_ne_self` (no
+  periodic points, tex 185), `exists_clopen_nbhd_disjoint_translates`, `exists_clopen_partition_disjoint_translates`, `eU`.
+- Pestov91 `SimpleModCentre.commutingSubring` (the coefficients commuting with g are additive).
+- Mathlib `Matrix.mem_range_scalar_of_commute_single` (a matrix commuting with all E_ij is scalar).
+
+## Sentence ledger (tex lines at e80dcf20a; hashes pending the census)
 
 | l. | sentence (abridged) | carrier | status |
 |---|---|---|---|
-| 175 | Let 1 ≠ N ⊴ G, choose 1 ≠ g ∈ N | binder of the producer | structural |
-| 176–177 | w ≥ 0 bounds the exponents of all entries of g, g⁻¹ | to build: exponent bound from `SkewMonoidAlgebra.support` / `ClopenCrossedProduct.exists_sum_coeff_mul_unit_zpow` | open |
-| 178–180 | finite clopen partition 𝒫 refining the letter partition, C ∩ T^jC = ∅, 0<l\|j\|≤2w+3 | existence is l.79–82 (ct-involution); tools `Dynamics.exists_separated_clopen_cover`; consumed through a named Prop until it lands | open |
-| 180–184 | some h = e_ij(s), s ∈ {e_C, e_C u, e_C u⁻¹}, does not commute with g | to build in TowerRootDetection | open |
-| 185–187 | otherwise the commuting coefficients form a subring containing the generators, so g ∈ Z(G) = {1} | `Pestov91.SimpleModCentre.commutingSubring`, `mem_center_of_commute_elGen`; generators l.84–86 (ct-involution; tool `Pestov91.CrossedProductFG.eq_top_of_unit_mem`); Z(G) = {1} (ms-compress-4; tools `Pestov91.center_elementaryGroup_eq_bot_of_central_zero_or_one`, `Pestov91.central_zero_or_one_of_free_minimal`) | partial |
-| 189–193 | each s lies in B_1(U), U a translate of C: e_C = E_00(C), e_C u = E_10(T⁻¹C), e_C u⁻¹ = E_{-1,0}(TC) | to build (ring identities in ClopenCrossedProduct) | open |
-| 194 | k = [g,h] ∈ N ∖ {1}, m = w+1 | normality (`SimpleModCentre.normal_comm_mem_left`); k ≠ 1 from non-commuting | open |
-| 195–196 | by eq:absorb, k − I₃ and k⁻¹ − I₃ ∈ M₃(B_m(U)) | eq:absorb is ct-involution's (l.166–173); to build over its named Prop | open |
-| 196–197 | k = (1−e)I₃ + eke, e the unit of B_m(U) | to build in TowerCornerLocalization | open |
-| 197–201 | the corner part is invertible, so a locally constant κ : U → GL_d(F₂), d = 3(2m+1) ≥ 9 | to build (coordinate form of B_m(U) ≅ M_{2m+1}(LC(U,F₂)), l.162–165, ct-involution) | open |
-| 202–203 | a nonempty clopen W ⊆ U on which κ is a constant κ₀ ≠ I_d | to build; produces `TowerCornerWitnessStatement` | open |
+| 180 | let 1 ≠ N ⊴ G and 1 ≠ g ∈ N | binder of the producer | structural |
+| 180–181 | w ≥ 0 bounds the exponents of the entries of g, g⁻¹ | `SimpleKazhdanSofic.exists_matrix_exponent_bound` (TowerRootDetection, probing) | open |
+| 182–184 | V small: V ∩ T^jV = ∅ for 0<\|j\|≤2w and every f∘T^i (\|i\|≤w, f a coefficient of an entry of g, g⁻¹) constant on V | to build, SimplicitySmallSets | definition |
+| 185–186 | no periodic points, so every point has a small clopen neighbourhood | `RingPartitions.zpow_apply_ne_self`, `exists_clopen_nbhd_disjoint_translates`; the constancy clause to build | open |
+| 186–187 | every clopen set is a finite disjoint union of small ones | to build (compactness), SimplicitySmallSets | open |
+| 189 | some h = e_ij(e_V) with V small does not commute with g | to build, SimplicityNonCommutingRoot | open |
+| 190–191 | otherwise g commutes with e_ij(e_V) for every clopen V, by eq:elementary | `commutingSubring` additivity plus the disjoint union | open |
+| 191 | V = X gives g = cI₃, c = Σ c_j u^j | `Matrix.mem_range_scalar_of_commute_single` | open |
+| 192–194 | e_V c − c e_V = Σ c_j (e_V − e_{T^jV}) u^j vanishes; separating z from T^{−j}z gives c_j = 0, j ≠ 0 | to build (indicator-only form of the argument in ct-involution's `mem_center_iff`) | open |
+| 195–196 | c ∈ LC(X,F₂), and cc⁻¹ = 1 gives c = 1 and g = 1 | to build | open |
+| 213 | k = [g,h] ∈ N ∖ {1} | `SimpleKazhdanSofic.commutatorElement_mem_ne_one` (TowerRootDetection, probing) | open |
+| 214–219 | fu^a e_V f′u^b = f e_{T^aV}(f′∘T^{−a})u^{a+b} ∈ {0, ε_{a,−b}} | to build, SimplicityCommutatorSpan | open |
+| 219–221 | the entries of ghg⁻¹ − I₃ = g e_V E_ij g⁻¹ are sums of such products; h⁻¹ = h = I₃ + ε_00 E_ij | to build | open |
+| 223–224 | k − I₃ = (ghg⁻¹ − h)h, k⁻¹ − I₃ = h(ghg⁻¹ − h) lie in the ε-span | to build (span closed under products: skf-consequences' products); produces `SimplicityCommutatorWitness` | open |
 
 ## Modules (claimed)
 
-- CLAIM l.175–194 GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerRootDetection.lean
-- CLAIM l.195–203 GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerCornerLocalization.lean
+- CLAIM l.180–181, 213 GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerRootDetection.lean (trimmed to the tip)
+- CLAIM l.182–187 GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicitySmallSets.lean
+- CLAIM l.189–196 GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityNonCommutingRoot.lean
+- CLAIM l.213–224 GroupApproximation/Manuscript/SimpleKazhdanSofic/SimplicityCommutatorSpan.lean
+- Withdrawn, never landed: TowerPartitionGenerators (the bf961c128 generators route), TowerCornerLocalization.
 
 ## Progress log
 
-- 09-13 19:1x: re-keyed from b965d63ba (old l.574–683) to bf961c128; split agreed; ledger landed.
+- 09-13 19:1x: ledger at bf961c128 (7bfa51cf8).
+- 09-13 19:5x: re-keyed to the tip e80dcf20a; split re-agreed; TowerRootDetection trimmed and re-probing.
