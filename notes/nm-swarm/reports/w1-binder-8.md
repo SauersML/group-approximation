@@ -144,3 +144,7 @@ CLAIM the doubling with cells and the enclosed subdiagram endpoint, GroupApproxi
   - ms-traces-2 keeps `ClosedWalkEnclosedSubdiagramSuccProof` and the loop cut; there was no objection.
   - This lane adds the endpoint to the same module once both land: `enclosedBridgeDoublingCellsSucc` from `doublingOutputSucc`, and `closedWalkEnclosedSubdiagramSucc := closedWalkEnclosedSubdiagramSucc_of_doublingCells enclosedBridgeDoublingCellsSucc`.
 - Waiting on: ms-traces-2's Step and SuccProof, then ms-compress-2's doubling proof, all not on origin at 08:51.
+
+- LANDED c6ca441fe: `ClosedWalkEnclosedSubdiagramSuccAssembly.lean`, probe 0914-091108-32664 GREEN, BUILT. Declarations: `enclosedBridgeDoublingCellsSucc : EnclosedBridgeDoublingCellsSuccStatement`, from ms-compress-2's `doublingOutputSucc` (c2fa6eed0), and `closedWalkEnclosedSubdiagramSucc : ClosedWalkEnclosedSubdiagramSuccStatement`, from ms-traces-2's `closedWalkEnclosedSubdiagramSucc_of_doublingCells` (da17060f7). Both are closed: `#audit_closed_axioms` = [propext, Classical.choice, Quot.sound]. The island calibration is unchanged. Queued for wiring.
+- So `osinLemma94CaseOneSameCell_of_enclosedSucc hloop closedWalkEnclosedSubdiagramSucc` gives binder 3 from `EnclosedSubdiagramLoopCutSuccStatement` alone (ms-traces-2).
+- Residual statements owned by this lane: none.
