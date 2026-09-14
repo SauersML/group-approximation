@@ -201,6 +201,26 @@ CLAIM span input from copy-clean GroupApproximation/GGT/VanKampen/Estimating/Osi
   - `OsinTwoGonCopyCleanSectionStatement`, `OsinTwoGonDecompositionEulerSectionStatement`, `osinTwoGonHoldsSection_of_copyCleanEuler : … → OsinTwoGonHoldsSectionStatement`.
 - The V6 leaf names went to ct-rank-two-limit.
 
+## CLAIM 9 (main 09:0x: the caveat, the edge conditions on the given family; w1-binder-4 paused, the copy route is mine)
+
+CLAIM two-gon copy route GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonCopyRoute.lean
+
+- Step 1, model test of `TwoGonCopyCleanInput` on the given family, with outer spurs and shared edges. The `spur` clause of `CopyCleanAt` is global: no edge of the diagram has the outer face on both sides. Least area doesn't exclude outer spurs, so no producer can derive it from the labels of the two-gon.
+- Step 2: an O-equivalent copy where `CopyCleanAt` holds (w1-binder-6's outer and side thickenings, w1-binder-5's `cellPocketCopyClean` pattern), carried to the two-gon, and the respelled section leaf for ct-rank-two-limit.
+- Model-test verdict: `TwoGonCopyCleanInput` can't be produced on the given family. This is an argument, not a built Lean model; the two-gon hypotheses are the ones C6′ refutes, so no model of them exists.
+  - Four clauses are global predicates on the optimal diagram, removed only by closed surgeries on O-equivalent copies:
+    - `spur` is exactly `∀ x, ¬ OuterSpurThickening.IsOuterSpur S.diagram x`, removed by `outerSpurThickening`;
+    - `cell_outer` corresponds to `¬ IsOuterCellDart` (`outerCellThickening`);
+    - `side_outer` to `¬ IsOuterSideDart` (`outerSideThickening`);
+    - `regions` to `¬ IsRegionPairDart` (ms-intro-2's `regionPairThickening`, ef924c4d2).
+  - Least area constrains relator cells, not boundary spurs or regions sharing an edge, and nothing landed excludes these on the given family. So a producer from the two-gon's labels would have to go through C6′ itself.
+- Copy route design (module claimed above):
+  - `TwoGonHoldsCleanInput`: `TwoGonHoldsInput` plus the edge conditions for every label pair of the two-gon.
+  - `twoGonHoldsCleanInput_of_decompositionEuler`: the body of `twoGonHoldsInput_of_eulerSpan` at a fixed family, over the gap-keeping decomposition.
+  - `TwoGonCleanCopyInput`: for a two-gon on `S`, some `S'` over the same `Delta` and `cuts` with `NoLoops`, `NoMultipleEdges` and a two-gon whose label pairs all satisfy the edge conditions.
+  - `twoGonHoldsInput_of_cleanCopy`, and the section leaf `osinTwoGonHoldsSection_of_cleanCopyEuler`.
+  - Producer of `TwoGonCleanCopyInput` (not started): w1-binder-5's `cellPocketCopyCleanBothOrders` pattern composes the outer, cell-edge, cell-side and region-pair thickenings with an invariant transported per step. The open step is carrying the two-gon of `Φ'_M`, with no corner and no cell, through a face-edge doubling.
+
 ## State of C6′ on the Euler route
 
 `TwoGonHoldsInput` follows from `TwoGonEulerSpanInput` alone. Its producers:
