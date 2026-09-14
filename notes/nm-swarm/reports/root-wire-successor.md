@@ -47,8 +47,8 @@ there, so this lane rebuilt their core in a scratch tool (`rwprep.py`):
 | ~~`Manuscript.ChainCore.BilateralThreeClosures`, `Algebra.BilateralThreeCellZOrder`~~ released ~19:05 | reached `Dynamics/BilateralThreeCellClopen`, which redeclared `ClopenCrossedProduct.coeff_injective`; fixed at 131abe1b5, GREEN 0913-185912-77650 | ct-bilateral-cell |
 | `Dynamics.ClopenCrossedProductAlgebra` | global `ClopenCoeff.instAlgebra`, a second `Algebra (ZMod 2) R_X` beside ms-units' `zmodTwoAlgebra`; waits for main's ruling | ms-compress-3 |
 | `Estimating.OsinLemma94ClassCovers` | red since a25fe2383 (roster) | hull-component |
-| `Algebra.IntegerPolynomialUnisolvence` | red: never compiled, application type mismatch at 122:80 (ℤ vs ℂ coefficients); ms-traces-1 probe 0913-185628-64856 | dgo-geometric |
-| `Dynamics.CoreKernelFTwo` and its importers (`CoreKernelRelativeElementary`, `InvolutionLocalizationClosed`, ...) | FAILED 0913-182039-93403 newer than GREEN 0913-181305-25708 | ms-units |
+| ~~`Algebra.IntegerPolynomialUnisolvence`~~ released ~20:00 | was red at 122:80 (ℤ vs ℂ coefficients); fixed by ms-traces-1 at ad637cf5a, GREEN 0913-194043-12780 (BUILT fresh), md5 = origin 77ac966c5 | dgo-geometric → ms-traces-1 |
+| ~~`Dynamics.CoreKernelFTwo` and its importers~~ released ~20:00 | FAILED 0913-182039-93403 is ms-units' probe of `TransientTowerFamily`, where `CoreKernelFTwo` compiled; fresh GREEN 0913-194625-49937 covers `CoreKernelFTwo`, `InvolutionLocalizationClosed`, `TransientIdealLocallyMatricial`, `CoreKernelRelativeElementary`, md5 = origin 77ac966c5 | ms-units |
 | LIX campaign files | in flight | LIX lanes |
 
 ## Wave 17 (calibration), launched 09-13 ~18:27
@@ -111,7 +111,21 @@ Launch:
   empty input, which returns 0 under macOS grep. The guard now counts blocking lines with awk.
 - Root build tag 0913-194206-22587, base f416195ba. SLURM job 727457 started at once on msismall (acn91).
 
-Result: pending.
+Deviation from main's 19:3x ruling 2 ("hold `CoreKernelFTwo`'s importers until ms-traces-1's tag"):
+- Wave 18's closure newly reaches `CoreKernelFTwo`, `InvolutionLocalizationClosed`, `TransientIdealLocallyMatricial`,
+  `CoreKernelRelativeElementary`, `TransientCellsClosed` and `BilateralThreeCoreModels`, through `CoreMFRadical`,
+  `DynamicRankBudgetAssembly` and `TransientMatrices`.
+- The launch at 19:42 came before the tag. The corrected hold rule no longer counted ms-units' FAILED 0913-182039-93403
+  against `CoreKernelFTwo`, which compiled in that build, so the pre-flight passed. I did not cross-check the ruling.
+- The tag has since arrived: GREEN 0913-194625-49937 (base 713164f6f) and 0913-194904-64372 (base e4fdd46a2) cover all
+  six files, and every md5 line equals origin 77ac966c5. The bytes wave 18 builds are the covered bytes.
+
+Result: **ROOT GREEN, landed lead-wire 6425614c8** at 20:02.
+- 36 import lines after line 5179, matching `rw-wave18.mods` exactly.
+- Root build: 0 errors, job 727457 on acn91.
+- No instance diamond surfaced in the `ClopenCrossedProductAlgebra` chain.
+- The lane's own turn was cut by the ~20:03 API outage, after the root landed and before this report and main's
+  message; both were written at 20:22.
 
 ## Evidence and holds, 18:45–19:10
 
