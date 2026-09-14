@@ -96,6 +96,22 @@ Hygiene only: `CentralCoronaCornerPrintedRoute.lean`'s module docstring quotes a
 - The 12 unassigned rows went to ct-rank-budget (main, 20:28). All 12 were in other lanes' ranges: the Introduction
   chain-core paragraph, ms-core-1's opening, ct-bilateral-cell, ct-rank-budget and ct-two-ended.
 
+## Item 4 (main, 20:30): V4 residual 3b, GapEndpoint piece (v)
+
+- Scope: backwards class-word pairs with `Q.GapEndpoint k C` whose target class is a cutting path
+  (`Q.classKind k C.target = .cutting`), refuted against `DartMinimal`. This is the class-word analog of
+  `osinLemma94CaseTwoInput`.
+  - ct-return-tower owns `OsinLemma94ClassCaseGapEndpointStatement` and states the piece Props. This lane produces
+    (v) over its (v) statement; agreed by message at 20:3x (suggested name
+    `OsinLemma94ClassCaseGapEndpointCuttingStatement`).
+- CLAIM `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointCuttingModel.lean` (model tests):
+  - a gap position needs a class with at least two sides, so cutting and short classes have none;
+  - under a cutting target, `GapEndpoint ↔ InGap k C.source C.a ∨ InGap k C.source C.a'` (source-side gaps only);
+  - the cost of moving a source endpoint to its gap corner, against the single threshold of `WordConnectorPair`
+    (ct-return-tower's model: moved connector `< ε + B`, target only `> ε`).
+- CLAIM `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointCutting.lean` (producer, route chosen
+  after the model tests).
+
 ## Range status
 Every sentence of tex 583–657 is carried by a closed, root-reachable declaration or is honestly structural (hypothesis,
 notation, commentary). The new module still needs wiring into the root (queued). Remaining note: the word "only" in
