@@ -218,7 +218,26 @@ literal step missing.
   - `bridge_mem`: both darts of the bridge are on the walk.
   - `faceOf_eq_outerFace`: every walk dart lies on the exterior face, so the exterior branch of the step is needed.
 - Waiting: a background loop polls origin for Run, Step and `ClosedWalkEnclosedPocketRegion`. It then probes the
-  adopted proof (bytes md5 2fe3f50d, ms-traces-2's 08:32 draft) and lands it on green.
+  adopted proof and lands it on green.
+- ~09:0x, w1-binder-8's proposal, adopted additively: ms-traces-2's names and `DoublingOutput` are unchanged.
+  - Why: w1-binder-8 owns the `ClosedWalkEnclosedSubdiagramSuccStatement` composition. ms-traces-2's
+    `EnclosedBridgeDoublingCellsSuccStatement` has no `faces.Nonempty`, and the one-edge tree walk `[e, ē]` encloses
+    no face.
+  - New `one_lt_faceBoundary_length_of_bridge`: under `turn_next`, every bridge dart lies on a face with at least two
+    darts.
+  - New `doublingOutputSucc`: the induction without `faces.Nonempty`.
+  - `doublingOutput` is kept as a wrapper, and `enclosedBridgeDoublingSucc` goes through `doublingOutputSucc`.
+  - `enclosedBridgeDoublingCellsSucc` is not hosted here, since the statement's module is unlanded. In w1-binder-8's
+    assembly it is `fun Δ faces w E => doublingOutputSucc _ Δ faces w rfl E`.
+  - Run and `ClosedWalkEnclosedPocketRegion` are on origin; Step is not yet.
+- LANDED c2fa6eed0 `ClosedWalkEnclosedBridgeDoublingProof` (probe 0914-085854-56059 GREEN, BUILT; md5 e6fe67cc), after
+  Step reached origin (da17060f7). Queued for wiring.
+  - Theorems: `enclosedBridgeDoublingSucc : EnclosedBridgeDoublingSuccStatement` and `enclosedLeastAreaFilterSucc :
+    EnclosedLeastAreaFilterSuccStatement`.
+  - Also exported: `doublingOutputSucc`, `DoublingOutput`, `cellCorrespondence_map`,
+    `one_lt_faceBoundary_length_of_bridge`.
+  - The induction draft is ms-traces-2's, credited in the commit, with the nonempty-free form added here.
+  - The lane's in-flight file list is empty.
 
 ## Progress log
 
