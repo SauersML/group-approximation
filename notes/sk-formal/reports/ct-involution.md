@@ -76,3 +76,5 @@ kernel iff v ∉ L(X), so different subshifts give different kernels"), taken ov
 `coeffValue S`, EL₃(π_X) onto G_X, the kernel criterion through `listLanguage`, and a subshift is determined by its language.
 
 The ℤ ↔ Λ bridge was cancelled by main: ct-two-ended's `MainFromGeneral` already has `ringEquiv`; nothing was drafted here.
+
+LANDED 5fd9ba19b (probe 0914-085641-48806 GREEN, BUILT): `PrintedWordProblemKernels`, `printedWordProblemKernels_of_simplicity`, over MainAssembly's open `PrintedSimplicityStatement`. Row bdd19b7d1e1f `partial`. Spelling choice: the kernel criterion is proved over `CylinderTables.listLanguage` with a coordinate-indicator product; skf-degrees' landed `LanguageReduction.cylinderIndicator_eq_zero_iff` (99dc0e949) is over the WordGraph `language S` with a recursive indicator, so it was not consumed.
