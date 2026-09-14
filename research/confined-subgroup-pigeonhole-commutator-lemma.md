@@ -16,3 +16,6 @@ distinct_from:
 - (R″) With `[p, g_ig_j^{-1}]^e ≠ 1` instead, no nontrivial subgroup of exponent dividing `e` is confined.
 
 **Why it matters.** It reduces (L3) of the idempotent route to C*-simplicity of `G_X` (excluding confined subgroups inside `B_4 ∪ {1}`, of exponent dividing 420 by `polynomially-small-units-have-order-dividing-420`) to single-element statements about commutators.
+
+## Review
+- **sk-verify-19 PASS (2026-09-14, `research/artifacts/sk-verify-19-2026-09-14-part3.md` §3):** re-derived: pigeonhole on the confining witnesses p_i; h_ih_j^{-1} = g_i^{-1}[p, g_ig_j^{-1}]g_i ∈ H; R′ with n = r+1; R″ (nontriviality not needed).

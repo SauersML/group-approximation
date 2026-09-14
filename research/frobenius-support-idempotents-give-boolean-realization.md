@@ -29,3 +29,11 @@ For `α = inn(diag(u,1,1))`, `S_V = diag(e_{TV}, e_V, e_V)` is not scalar, and (
 
 Status: proved in `frobenius-support-idempotents-boolean-realization-proof`, unreviewed. Item 2(⇐) imports that the
 corner ring of `U` is the crossed product of the induced system, so `E3_U` is simple.
+
+## Review
+- **sk-verify-19 PASS (2026-09-14, `research/artifacts/sk-verify-19-2026-09-14-part3.md` §4):** re-derived:
+  - Lemma S (P_V idempotent because |F21| = 21 is odd; S_V = e_VI on the X-side because Σ_{q∈F21}q = 0 on F_2³);
+  - Lemma D (four joint pieces; Fix(K′) ∩ [M,K′] = 0; simplicity of E3_U for (⇐));
+  - Proposition F (additivity from the piece decomposition under (O); complements under (O′); meets; corner form g−I = S_V(g−I)S_V; α(L_X) commutes with 𝔅).
+  - Model tests are consistent (id, inn(diag(u,1,1)), the fake natural ⊕ trivial).
+  - Conditional on the flagged first-return corner isomorphism and on the hypotheses (O) and (O′), as stated.
