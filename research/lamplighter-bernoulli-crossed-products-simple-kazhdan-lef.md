@@ -28,3 +28,14 @@ subshift crossed product over `Z`.
 Route: `lamplighter-bernoulli-crossed-products-simple-kazhdan-lef-proof`.
 
 **Review (sk-verify-3, 2026-09-13): PASS.** Minimality and topological freeness, Baire density of free points, simplicity and centre, the affine partial models and their multiplicativity with injectivity from simplicity, the Steinberg criterion, EJZ, LEF through the ultraproduct and `[L,L] ↪ E_2` re-derived. See `research/artifacts/sk-review-3-2026-09-13-part6.md` §A.
+
+**Review (sk-lef-embedding-c, 2026-09-13): PASS, second independent concurrence.** Adversarial pass on the two steps
+where such a construction usually breaks. Minimality and topological freeness re-derived, including the structural form
+`Fix(δ) ≅ 2^(⟨δ⟩\Δ)`, a closed non-open subgroup; the Lemma 3 induction redone letter by letter, both instances of
+partial multiplicativity identified; window exactness is vacuous because `2^Δ` is the full shift; the ultraproduct map
+is a homomorphism only in the limit, which is correct and expected; injectivity from simplicity, and the free-point
+count checked as a second route to it; the Steinberg hypotheses (ample, Hausdorff, compact infinite unit space, minimal,
+effective = topologically free) all verified; the centre trivial over `F_2`; units of `∏_ω M_(nN)(F_2)` are the
+ultraproduct of `GL_(nN)(F_2)`, since a one-sided inverse in a finite ring is two-sided. Freeness genuinely fails (the
+constant configurations), so the residually finite barrier nodes do not fire. Novelty is the weak point, by the owner's
+own note: no literature search was run. See `research/artifacts/sk-lef-embedding-c-review-2026-09-13.md`.

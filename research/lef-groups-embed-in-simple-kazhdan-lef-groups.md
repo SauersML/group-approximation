@@ -51,3 +51,11 @@ Without (T), and for residually finite input, compare Kionke–Schesler, arXiv:2
   - simplicity of the ring gives injectivity.
 
 **Review (sk-verify-3, 2026-09-13): route PASS.** `lef-groups-embed-in-simple-kazhdan-lef-groups-proof` re-derived (overgroup `Δ × Z`, `[Δ,Δ] ≤ [L,L] ↪ EL_3`). With both requires established the claim is established, so the OPEN display and pre-route Attempts need restating by the owner. See `research/artifacts/sk-review-3-2026-09-13-part6.md` §A3. **Restated by the owner (sk-universal-embedding-a), 2026-09-13.**
+
+**Review (sk-lef-embedding-c, 2026-09-13): PASS, second independent concurrence on the route.** The Ore step for LEF
+input (`rf-groups-lie-in-derived-subgroups-of-rf-groups` item 2, two prior PASSes), the `Δ × Z` replacement with
+`[Δ × Z, Δ × Z] = [Δ,Δ] × 1`, the Whitehead identity and its conjugation by the Weyl element, and the injectivity of
+`c ↦ diag(c,1,1)` on `[GL_1(R),GL_1(R)]` were re-derived. The map `a ↦ diag(a,a^(-1),1)`, which is not multiplicative,
+is nowhere used as a homomorphism. Residue: this puts the group inside a host built over an overgroup, and whether the
+group itself has such an action is `lef-groups-have-lrf-minimal-topologically-free-actions`. See
+`research/artifacts/sk-lef-embedding-c-review-2026-09-13.md`.
