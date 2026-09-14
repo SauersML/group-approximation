@@ -87,12 +87,7 @@ theorem repDart_injective (P : OsinLemma94RealizedPolygons S) :
     simp only at e
     rw [P.faceOf_alpha_rep, P.faceOf_alpha_rep] at e
     exact objectFace_injective S e
-  obtain ⟨⟨k, o⟩, hp⟩ := p
-  obtain ⟨⟨k', o'⟩, hq⟩ := q
-  simp only at hk ho
-  subst hk
-  subst ho
-  rfl
+  exact Subtype.ext (Sigma.ext hk (heq_of_eq ho))
 
 /-- **The contact map has at least `2 ∑_{k rich} d_k` darts.** -/
 theorem two_mul_richNeighbourSum_le_dartCount (P : OsinLemma94RealizedPolygons S) :
