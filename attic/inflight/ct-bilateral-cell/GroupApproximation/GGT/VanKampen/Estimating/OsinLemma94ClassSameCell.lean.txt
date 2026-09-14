@@ -1,0 +1,360 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassCaseTwo
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94OneCellSameCell
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The same-cell branch of GapSpan, and GapSpan from two residuals
+
+Osin (math/0411039v3, §9), Lemma 9.4, Case 1, for a backwards class-word pair whose source and target classes lie
+across one relator cell `Π`, with no endpoint strictly inside a gap.  The class windows `[a, a']` and `[b', b]`, gaps
+included, are reversed arcs `p` and `q` of `Π`, and the face walk reads `X T Y S`, where `S` and `T` are the side runs
+of the windows, without the gaps (`OsinLemma94ClassPolygons.exists_sameCellWalk`).
+
+* `OsinLemma94ClassPolygons.classWindow`, `runWindow`, `class_segment_value`.
+* `false_of_classSameCell_value_one_X` and `_Y`: if a rotation of `∂Π` reads `q B p A` and `X B` (or `Y A`) reads `1`,
+  then `q B p` (or `p A q`) is a quasi-geodesic hairpin with long ends and a value of word norm less than `ε`.  Only the
+  corner relations of the four windows are used, not the value of the face walk, so the gaps do not enter.
+* `OsinLemma94ClassCaseOneRCellStatement`: the remaining branch, a named residual.  Unlike the side-level
+  `OsinLemma94CaseOneRCellStatement` it does not assume a rotation `q B p A`: gap darts are not on the face walk, so the
+  face walk does not show that `p` and `q` share no dart, and pairs with overlapping windows stay in the residual.
+* `OsinLemma94ClassCaseGapSpanDiffKindStatement`: the branch of different kinds with a non-cutting target (route B1).
+* `osinLemma94ClassCaseGapSpan_of_residuals`: `OsinLemma94ClassCaseGapSpanStatement` from the two residuals, with
+  cutting targets refuted by `osinLemma94ClassCaseTwo_false`.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 1636, "Hull's small cancellation theorem", through Osin's
+Lemma 9.4 inside the proof of Lemma 4.4); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open GroupApproximation.GGT.VanKampen.UnboundEstimate
+open GroupApproximation.GGT.OsinComponents
+open CaseOneWalk
+
+namespace OsinLemma94ClassPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+  {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+  {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+  {P : OsinLemma94RealizedPolygons S}
+
+/-- **The window `[x, y]` of class `i`**, gaps included. -/
+def classWindow (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) (i x y : ℕ) :
+    List S.diagram.toCombMap.Dart :=
+  ((Q.classDarts k i).drop x).take (y - x)
+
+/-- **The side run of the window `[x, y]` of class `i`**: the darts the face walk passes, without the gaps. -/
+def runWindow (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) (i x y : ℕ) :
+    List S.diagram.toCombMap.Dart :=
+  ((Q.sideRun k i).drop (Q.runPos k (Q.classSides k i) x)).take
+    (Q.runPos k (Q.classSides k i) y - Q.runPos k (Q.classSides k i) x)
+
+/-- A class window carries the value from the corner at its start to the corner at its end. -/
+theorem class_segment_value (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) (i : ℕ) {a a' : ℕ}
+    (h : a ≤ a') :
+    vertex (Q.corner k i) (Q.word k i) a *
+        RelLetter.listVal (dartWord S.diagram (Q.classWindow k i a a')) =
+      vertex (Q.corner k i) (Q.word k i) a' := by
+  have hw : ∀ t, (Q.word k i).take t = dartWord S.diagram ((Q.classDarts k i).take t) := by
+    intro t
+    simp only [OsinLemma94ClassPolygons.word, dartWord, List.map_take]
+  rw [OsinComponents.vertex_eq_mul_listVal_take, OsinComponents.vertex_eq_mul_listVal_take, hw,
+    hw, mul_assoc, classWindow, walkValue_take_window (Q.classDarts k i) h]
+
+/-- **The face walk around a backwards class pair on one relator cell.**  The class windows are reversed arcs `p`
+and `q` of cell `j`, the face walk reads `X T Y S` with `S` and `T` the side runs of the windows, and `X`, `Y` join
+the corners of the windows. -/
+theorem exists_sameCellWalk (Q : OsinLemma94ClassPolygons P) (k : Fin P.count)
+    (C : WordConnectorPair (symmetricLabelAlphabet D) (Q.corner k) (Q.word k) (Q.classCount k)
+      (Q.relatorClasses k) (Q.longClasses k) eps)
+    (hback : C.b' < C.b) (hkind : Q.classKind k C.source = Q.classKind k C.target)
+    (hnogap : ¬ Q.GapEndpoint k C) :
+    ∃ (j : Fin S.diagram.rCellCount) (sourceArc targetArc : CyclicArc (cellDarts S.diagram j))
+      (X Y : List S.diagram.toCombMap.Dart) (r : ℕ),
+      Q.classKind k C.source = .cell j ∧
+        (S.diagram.faceBoundary (P.face k)).darts.rotate r =
+          X ++ Q.runWindow k C.target C.b' C.b ++ Y ++ Q.runWindow k C.source C.a C.a' ∧
+        sourceArc.reverseDarts = Q.classWindow k C.source C.a C.a' ∧
+        targetArc.reverseDarts = Q.classWindow k C.target C.b' C.b ∧
+        0 < sourceArc.length ∧ 0 < targetArc.length ∧
+        vertex (Q.corner k C.source) (Q.word k C.source) C.a *
+            RelLetter.listVal (dartWord S.diagram sourceArc.reverseDarts) =
+          vertex (Q.corner k C.source) (Q.word k C.source) C.a' ∧
+        vertex (Q.corner k C.target) (Q.word k C.target) C.b' *
+            RelLetter.listVal (dartWord S.diagram targetArc.reverseDarts) =
+          vertex (Q.corner k C.target) (Q.word k C.target) C.b ∧
+        vertex (Q.corner k C.source) (Q.word k C.source) C.a' *
+            RelLetter.listVal (dartWord S.diagram X) =
+          vertex (Q.corner k C.target) (Q.word k C.target) C.b' ∧
+        vertex (Q.corner k C.target) (Q.word k C.target) C.b *
+            RelLetter.listVal (dartWord S.diagram Y) =
+          vertex (Q.corner k C.source) (Q.word k C.source) C.a := by
+  obtain ⟨-, j, hj⟩ : 2 ≤ Q.classCount k ∧ ∃ j, Q.classKind k C.source = .cell j := C.source_mem
+  have hi := C.source_lt
+  have hi' := C.target_lt
+  have hfwd := C.source_forward
+  have ha' := C.a'_le
+  have hb := C.b_le
+  have hngA : ¬ Q.InGap k C.source C.a := fun h => hnogap (Or.inl h)
+  have hngA' : ¬ Q.InGap k C.source C.a' := fun h => hnogap (Or.inr (Or.inl h))
+  have hngB : ¬ Q.InGap k C.target C.b := fun h => hnogap (Or.inr (Or.inr (Or.inl h)))
+  have hngB' : ¬ Q.InGap k C.target C.b' := fun h => hnogap (Or.inr (Or.inr (Or.inr h)))
+  have hvA := Q.vertex_eq_classWalk_take k hi hngA
+  have hvA' := Q.vertex_eq_classWalk_take k hi hngA'
+  have hvB := Q.vertex_eq_classWalk_take k hi' hngB
+  have hvB' := Q.vertex_eq_classWalk_take k hi' hngB'
+  obtain ⟨X, Y, r, hwalk, hX, hY⟩ := Q.class_four_windows k hi hi' C.distinct
+    (Q.runPos_mono k (Q.classSides k C.source) hfwd.le) (Q.runPos_le_sideRun k C.source C.a')
+    (Q.runPos_mono k (Q.classSides k C.target) hback.le) (Q.runPos_le_sideRun k C.target C.b)
+  have hX' : vertex (Q.corner k C.source) (Q.word k C.source) C.a' *
+      RelLetter.listVal (dartWord S.diagram X) =
+        vertex (Q.corner k C.target) (Q.word k C.target) C.b' := by
+    rw [hvA', hvB']
+    exact hX
+  have hY' : vertex (Q.corner k C.target) (Q.word k C.target) C.b *
+      RelLetter.listVal (dartWord S.diagram Y) =
+        vertex (Q.corner k C.source) (Q.word k C.source) C.a := by
+    rw [hvB, hvA]
+    exact hY
+  obtain ⟨sarc, hsarc⟩ := Q.cell_arc k C.source j hi hj
+  obtain ⟨tarc, htarc⟩ := Q.cell_arc k C.target j hi' (hkind.symm.trans hj)
+  have hsarc' : Q.classDarts k C.source = sarc.reverseDarts := hsarc
+  have htarc' : Q.classDarts k C.target = tarc.reverseDarts := htarc
+  have hsl : (Q.word k C.source).length = sarc.length := by
+    rw [← cyclicArc_length_reverseDarts sarc, ← hsarc']
+    simp only [OsinLemma94ClassPolygons.word, dartWord, List.length_map]
+  have htl : (Q.word k C.target).length = tarc.length := by
+    rw [← cyclicArc_length_reverseDarts tarc, ← htarc']
+    simp only [OsinLemma94ClassPolygons.word, dartWord, List.length_map]
+  obtain ⟨sarc', hslen, hsdarts⟩ :=
+    cyclicArc_exists_sub_reverse sarc C.a (C.a' - C.a) (by omega)
+  obtain ⟨tarc', htlen, htdarts⟩ :=
+    cyclicArc_exists_sub_reverse tarc C.b' (C.b - C.b') (by omega)
+  have hsw : sarc'.reverseDarts = Q.classWindow k C.source C.a C.a' := by
+    rw [hsdarts, classWindow, hsarc']
+  have htw : tarc'.reverseDarts = Q.classWindow k C.target C.b' C.b := by
+    rw [htdarts, classWindow, htarc']
+  have hsv := Q.class_segment_value k C.source hfwd.le
+  have htv := Q.class_segment_value k C.target hback.le
+  rw [← hsw] at hsv
+  rw [← htw] at htv
+  exact ⟨j, sarc', tarc', X, Y, r, hj, hwalk, hsw, htw, by omega, by omega, hsv, htv, hX', hY'⟩
+
+end OsinLemma94ClassPolygons
+
+/-- **The value-one kill across `X`, from the corners.**  If `T = q B p` is an arc of the cell and `X B` reads `1`,
+then `T` carries the corner at `b` to the corner at `a`, so its value has word norm less than `ε`, while `q` and `p`
+read elements of word norm more than `ε`.  So `T` is a hairpin and `λ ε - c < 2κ`. -/
+theorem false_of_classSameCell_value_one_X {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda} {eps rho : ℕ}
+    {mu lambda c kappa : ℝ} (hW : OsinCCondition D W eps mu lambda c rho) (hlambda : 0 ≤ lambda)
+    (hmorse : UnboundEstimate.IsWordMorseRadius D lambda c kappa)
+    (hthreshold : 2 * kappa + c ≤ lambda * eps)
+    {Delta : DiscDiagram.{u, w, v} W} {vs : ℕ → G} {words : ℕ → List (RelLetter G Lambda)} {n : ℕ}
+    {As Bs : Set ℕ} (C : WordConnectorPair (symmetricLabelAlphabet D) vs words n As Bs eps)
+    {j : Fin Delta.rCellCount} (sourceArc targetArc : CyclicArc (cellDarts Delta j))
+    {X Mid : List Delta.toCombMap.Dart}
+    (hsource : vertex (vs C.source) (words C.source) C.a *
+        RelLetter.listVal (dartWord Delta sourceArc.reverseDarts) =
+      vertex (vs C.source) (words C.source) C.a')
+    (htarget : vertex (vs C.target) (words C.target) C.b' *
+        RelLetter.listVal (dartWord Delta targetArc.reverseDarts) =
+      vertex (vs C.target) (words C.target) C.b)
+    (hX : vertex (vs C.source) (words C.source) C.a' * RelLetter.listVal (dartWord Delta X) =
+      vertex (vs C.target) (words C.target) C.b')
+    (T : CyclicArc (cellDarts Delta j)) (hT : T.darts = targetArc.darts ++ Mid ++ sourceArc.darts)
+    (hXB : RelLetter.listVal (dartWord Delta (X ++ Mid)) = 1) : False := by
+  have hp := lt_wordNorm_of_source_segment C hsource
+  have hq := lt_wordNorm_of_target_segment C htarget
+  rw [listVal_dartWord_reverseDarts_inv] at hp hq
+  have hword := Embedded.CyclicArc.isLambdaCQuasiGeodesicWord_darts_cellDarts hW T
+  rw [hT, Embedded.dartWord_append, Embedded.dartWord_append] at hword
+  rw [Embedded.dartWord_append, HullSC.RelWord.listVal_append] at hXB
+  have hMid := eq_inv_of_mul_eq_one_right hXB
+  have hval : vertex (vs C.target) (words C.target) C.b *
+      RelLetter.listVal (dartWord Delta targetArc.darts ++ dartWord Delta Mid ++
+        dartWord Delta sourceArc.darts) =
+        vertex (vs C.source) (words C.source) C.a := by
+    rw [HullSC.RelWord.listVal_append, HullSC.RelWord.listVal_append,
+      ← listVal_dartWord_reverseDarts_inv targetArc, ← listVal_dartWord_reverseDarts_inv sourceArc,
+      hMid, eq_inv_mul_of_mul_eq htarget, eq_inv_mul_of_mul_eq hsource, eq_inv_mul_of_mul_eq hX]
+    group
+  have hbound := hword.lambda_eps_lt_of_hairpin hmorse hlambda
+    (wordNorm_lt_of_start_connector C hval) hq hp
+  linarith
+
+/-- **The value-one kill across `Y`, from the corners.**  As `false_of_classSameCell_value_one_X`, with `T = p A q`
+carrying the corner at `a'` to the corner at `b'` when `Y A` reads `1`. -/
+theorem false_of_classSameCell_value_one_Y {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {D : RelGenSet G Lambda} {eps rho : ℕ}
+    {mu lambda c kappa : ℝ} (hW : OsinCCondition D W eps mu lambda c rho) (hlambda : 0 ≤ lambda)
+    (hmorse : UnboundEstimate.IsWordMorseRadius D lambda c kappa)
+    (hthreshold : 2 * kappa + c ≤ lambda * eps)
+    {Delta : DiscDiagram.{u, w, v} W} {vs : ℕ → G} {words : ℕ → List (RelLetter G Lambda)} {n : ℕ}
+    {As Bs : Set ℕ} (C : WordConnectorPair (symmetricLabelAlphabet D) vs words n As Bs eps)
+    {j : Fin Delta.rCellCount} (sourceArc targetArc : CyclicArc (cellDarts Delta j))
+    {Y Mid : List Delta.toCombMap.Dart}
+    (hsource : vertex (vs C.source) (words C.source) C.a *
+        RelLetter.listVal (dartWord Delta sourceArc.reverseDarts) =
+      vertex (vs C.source) (words C.source) C.a')
+    (htarget : vertex (vs C.target) (words C.target) C.b' *
+        RelLetter.listVal (dartWord Delta targetArc.reverseDarts) =
+      vertex (vs C.target) (words C.target) C.b)
+    (hY : vertex (vs C.target) (words C.target) C.b * RelLetter.listVal (dartWord Delta Y) =
+      vertex (vs C.source) (words C.source) C.a)
+    (T : CyclicArc (cellDarts Delta j)) (hT : T.darts = sourceArc.darts ++ Mid ++ targetArc.darts)
+    (hYA : RelLetter.listVal (dartWord Delta (Y ++ Mid)) = 1) : False := by
+  have hp := lt_wordNorm_of_source_segment C hsource
+  have hq := lt_wordNorm_of_target_segment C htarget
+  rw [listVal_dartWord_reverseDarts_inv] at hp hq
+  have hword := Embedded.CyclicArc.isLambdaCQuasiGeodesicWord_darts_cellDarts hW T
+  rw [hT, Embedded.dartWord_append, Embedded.dartWord_append] at hword
+  rw [Embedded.dartWord_append, HullSC.RelWord.listVal_append] at hYA
+  have hMid := eq_inv_of_mul_eq_one_right hYA
+  have hval : vertex (vs C.source) (words C.source) C.a' *
+      RelLetter.listVal (dartWord Delta sourceArc.darts ++ dartWord Delta Mid ++
+        dartWord Delta targetArc.darts) =
+        vertex (vs C.target) (words C.target) C.b' := by
+    rw [HullSC.RelWord.listVal_append, HullSC.RelWord.listVal_append,
+      ← listVal_dartWord_reverseDarts_inv sourceArc, ← listVal_dartWord_reverseDarts_inv targetArc,
+      hMid, eq_inv_mul_of_mul_eq hsource, eq_inv_mul_of_mul_eq htarget, eq_inv_mul_of_mul_eq hY]
+    group
+  have hbound := hword.lambda_eps_lt_of_hairpin hmorse hlambda
+    (wordNorm_lt_of_end_connector C hval) hp hq
+  linarith
+
+/-- **The same-cell branch of GapSpan: the relator-cell residual.**  A backwards class-word pair of one relator cell
+`j`, with no endpoint strictly inside a gap and not single-side, with the face walk of
+`OsinLemma94ClassPolygons.exists_sameCellWalk`, such that no rotation `q B p A` of the carrier of `j` has `X B` or
+`Y A` reading `1`.  When one does, `false_of_classSameCell_value_one_X` or `_Y` refutes the pair. -/
+def OsinLemma94ClassCaseOneRCellStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
+                    ∀ (Q : OsinLemma94ClassPolygons P) (k : Fin P.count)
+                      (C : WordConnectorPair (symmetricLabelAlphabet D) (Q.corner k) (Q.word k)
+                        (Q.classCount k) (Q.relatorClasses k) (Q.longClasses k) eps),
+                      C.b' < C.b → ¬ Q.GapEndpoint k C → ¬ Q.SingleSidePair k C →
+                      ∀ (j : Fin S.diagram.rCellCount)
+                        (sourceArc targetArc : CyclicArc (cellDarts S.diagram j))
+                        (X Y : List S.diagram.toCombMap.Dart) (r : ℕ),
+                        Q.classKind k C.source = .cell j → Q.classKind k C.target = .cell j →
+                        (S.diagram.faceBoundary (P.face k)).darts.rotate r =
+                          X ++ Q.runWindow k C.target C.b' C.b ++ Y ++
+                            Q.runWindow k C.source C.a C.a' →
+                        sourceArc.reverseDarts = Q.classWindow k C.source C.a C.a' →
+                        targetArc.reverseDarts = Q.classWindow k C.target C.b' C.b →
+                        vertex (Q.corner k C.source) (Q.word k C.source) C.a' *
+                            RelLetter.listVal (dartWord S.diagram X) =
+                          vertex (Q.corner k C.target) (Q.word k C.target) C.b' →
+                        vertex (Q.corner k C.target) (Q.word k C.target) C.b *
+                            RelLetter.listVal (dartWord S.diagram Y) =
+                          vertex (Q.corner k C.source) (Q.word k C.source) C.a →
+                        (∀ (n : ℕ) (B A : List S.diagram.toCombMap.Dart),
+                          (cellDarts S.diagram j).rotate n =
+                              targetArc.darts ++ B ++ sourceArc.darts ++ A →
+                            RelLetter.listVal (dartWord S.diagram (X ++ B)) ≠ 1 ∧
+                              RelLetter.listVal (dartWord S.diagram (Y ++ A)) ≠ 1) →
+                        False
+
+/-- **The different-kind branch of GapSpan** (route B1): a backwards class-word pair with no endpoint strictly inside
+a gap, not single-side, whose classes have different kinds and whose target is not a cutting path. -/
+def OsinLemma94ClassCaseGapSpanDiffKindStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
+                    ∀ (Q : OsinLemma94ClassPolygons P) (k : Fin P.count)
+                      (C : WordConnectorPair (symmetricLabelAlphabet D) (Q.corner k) (Q.word k)
+                        (Q.classCount k) (Q.relatorClasses k) (Q.longClasses k) eps),
+                      C.b' < C.b → ¬ Q.GapEndpoint k C → ¬ Q.SingleSidePair k C →
+                        Q.classKind k C.target ≠ .cutting →
+                        Q.classKind k C.source ≠ Q.classKind k C.target → False
+
+/-- **GapSpan from the relator-cell and different-kind residuals.**  Cutting targets are refuted by Case 2 on class
+words at `ε ≥ 3`; pairs of one relator cell by the value-one kills or the relator-cell residual, at the Morse
+threshold; the rest is the different-kind residual. -/
+theorem osinLemma94ClassCaseGapSpan_of_residuals
+    (hrcell : OsinLemma94ClassCaseOneRCellStatement.{u, w, v})
+    (hdiff : OsinLemma94ClassCaseGapSpanDiffKindStatement.{u, w, v}) :
+    OsinLemma94ClassCaseGapSpanStatement.{u, w, v} := by
+  intro G _ Lambda D hhyper lambda c mu hlambda hlambda1 hc hmu hmu1
+  obtain ⟨kappa, hmorse, eps1, heps1⟩ :=
+    exists_morse_threshold_of_fourPoint D hhyper lambda c hlambda
+  obtain ⟨eps2, heps2⟩ := hrcell D hhyper lambda c mu hlambda hlambda1 hc hmu hmu1
+  obtain ⟨eps3, heps3⟩ := hdiff D hhyper lambda c mu hlambda hlambda1 hc hmu hmu1
+  refine ⟨max 3 (max eps1 (max eps2 eps3)), fun eps heps => ?_⟩
+  have h3 : 3 ≤ eps := le_of_max_le_left heps
+  have h1 : eps1 ≤ eps := le_of_max_le_left (le_of_max_le_right heps)
+  have h2 : eps2 ≤ eps := le_of_max_le_left (le_of_max_le_right (le_of_max_le_right heps))
+  have h3' : eps3 ≤ eps := le_of_max_le_right (le_of_max_le_right (le_of_max_le_right heps))
+  obtain ⟨rho2, hrho2, hrho2'⟩ := heps2 eps h2
+  obtain ⟨rho3, -, hrho3'⟩ := heps3 eps h3'
+  refine ⟨max rho2 rho3, lt_of_lt_of_le hrho2 (le_max_left _ _), fun rho hrho => ?_⟩
+  intro W hW Delta cuts hleast hpos hbelow S hcard hmin P hmax Q k C hback hnogap hnotsingle
+  by_cases hcut : Q.classKind k C.target = .cutting
+  · exact osinLemma94ClassCaseTwo_false
+      GloballyDistinguishedSectionFamily.separatedCornerInsertionInput h3 hmin P Q k C hback hcut
+      hnogap
+  by_cases hkind : Q.classKind k C.source = Q.classKind k C.target
+  · obtain ⟨j, sourceArc, targetArc, X, Y, r, hj, htrav, hsw, htw, -, -, hsource, htarget, hX, hY⟩ :=
+      Q.exists_sameCellWalk k C hback hkind hnogap
+    have hthreshold := heps1 eps h1
+    refine hrho2' rho (le_of_max_le_left hrho) W hW Delta cuts hleast hpos hbelow S hcard hmin P
+      hmax Q k C hback hnogap hnotsingle j sourceArc targetArc X Y r hj (hkind.symm.trans hj) htrav
+      hsw htw hX hY ?_
+    intro n B A hPi
+    refine ⟨fun hXB => ?_, fun hYA => ?_⟩
+    · obtain ⟨T, hT⟩ := CyclicArc.exists_darts_eq_of_rotate_eq hPi
+      exact false_of_classSameCell_value_one_X hW hlambda.le hmorse hthreshold C sourceArc
+        targetArc hsource htarget hX T hT hXB
+    · obtain ⟨T, hT⟩ := CaseOneSameCell.exists_arc_darts_eq_rotate_four hPi
+      exact false_of_classSameCell_value_one_Y hW hlambda.le hmorse hthreshold C sourceArc
+        targetArc hsource htarget hY T hT hYA
+  exact hrho3' rho (le_of_max_le_right hrho) W hW Delta cuts hleast hpos hbelow S hcard hmin P hmax Q
+    k C hback hnogap hnotsingle hcut hkind
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.class_segment_value
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.exists_sameCellWalk
+#audit_axioms GroupApproximation.GGT.VanKampen.false_of_classSameCell_value_one_X
+#audit_axioms GroupApproximation.GGT.VanKampen.false_of_classSameCell_value_one_Y
+#audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94ClassCaseGapSpan_of_residuals
