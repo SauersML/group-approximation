@@ -148,6 +148,17 @@ literal step missing.
   - Cell-free pocket: `hvalue`, with its side conditions from `OsinUnboundSameCellCycle.pow_inj`.
   - Far-side relator cell: `hcut` (`SameCellPocketLoopCutStatement`), then `OsinLoopCut.false_of_below` fed by the
     induction hypothesis, with `ρ` from `SameCellSimplePocket.exists_rho_large`.
+- Probe fixes (bytes md5 8db1a498, attic copy pending):
+  - 0913-232200-9064 FAILED: `have hrho : 0 < rho` shadowed the binder `hrho : max 1 rho1 ≤ rho`. Renamed to `hrho0`.
+  - 0913-233848-93991 FAILED: `push_neg` is deprecated at the pin, and the warning is an error. Replaced by `push Not`.
+  - The next two re-probes hit infrastructure: GitHub DNS failure, then the MSI connection down (rc=4, not Lean). A
+    background loop waits for GitHub, saves the attic copy, and retries the probe until it stops failing on
+    infrastructure.
+- Routing from main (~00:0x 09-14):
+  - `SameCellPocketCellFreeValueStatement`: w1-binder-5 takes over w1-binder-2's `BridgeComponentValue` and will send
+    the names.
+  - `SameCellPocketLoopCutStatement`: ms-traces-2 owns the successor-form enclosed route end to end. It has the exact
+    statement text in one message, with an offer to respell before landing if its route needs more binders.
 
 ## Progress log
 
