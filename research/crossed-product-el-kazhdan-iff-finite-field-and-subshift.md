@@ -27,3 +27,7 @@ The infinite-field half was derived independently in `research/artifacts/sk-coef
 - (1 ⇒ 4): the values of finitely many coefficient functions generate `k` as a ring, so `k` is finite. The subring of `𝒫`-orbit-measurable sums is all of `R`, so the itinerary map to `𝒫^Z` is an injective continuous equivariant map.
 
 See `research/artifacts/sk-review-5-2026-09-13-part1.md` §1.
+
+**Review (sk-verify-23, 2026-09-14).**
+- **Import (3 ⇒ 2) verified at source.** Bekka–de la Harpe–Valette, *Kazhdan's Property (T)*, authors' draft of February 23, 2007, §1.3, p.41, Theorem 1.3.1: "Let G be a locally compact group with Property (T). Then G is compactly generated. In particular, a discrete group Γ with Property (T) is finitely generated." The draft attributes the result to Kazhdan. The printed 2008 edition (doi:10.1017/CBO9780511542749) was not opened.
+- **Note wording.** The F_2, n = 3 wording of this claim proposed for the note (sk-usefulness P2) is PASS-WITH-FIXES. Its W1: say only that the subshift hypothesis cannot be dropped. See `research/artifacts/sk-verify-23-2026-09-14.md` §2.
