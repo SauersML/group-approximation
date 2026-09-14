@@ -1,5 +1,7 @@
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Algebra.BigOperators.Finsupp.Basic
+import Mathlib.Data.Finsupp.Basic
+import Mathlib.Data.Finsupp.SMulWithZero
 import Mathlib.Algebra.Group.Subgroup.Finite
 import Mathlib.Data.Finsupp.Indicator
 import Mathlib.Data.ZMod.Basic
@@ -8,6 +10,7 @@ import Mathlib.GroupTheory.Finiteness
 import Mathlib.GroupTheory.SemidirectProduct
 import Mathlib.Topology.Algebra.ConstMulAction
 import Mathlib.Topology.Instances.ZMod
+import Mathlib.Tactic.Ring
 
 /-!
 # The lamplighter action of the LEF groups section
@@ -49,6 +52,9 @@ namespace Lamplighter
 abbrev LampSpace (Δ : Type*) : Type _ :=
   Δ → ZMod 2
 
+theorem zmod_two_eq_zero_or_one : ∀ a : ZMod 2, a = 0 ∨ a = 1 := by
+  decide
+
 variable (Δ : Type*) [Group Δ]
 
 /-- Left multiplication by `δ`, as an equivalence of `Δ`. -/
@@ -59,7 +65,7 @@ def leftMulEquiv (δ : Δ) : Δ ≃ Δ where
   right_inv h := mul_inv_cancel_left δ h
 
 /-- `δ` translates finitely supported configurations: `(δ f)(h) = f(δ⁻¹ h)`. -/
-def translate (δ : Δ) : (Δ →₀ ZMod 2) ≃+ (Δ →₀ ZMod 2) :=
+noncomputable def translate (δ : Δ) : (Δ →₀ ZMod 2) ≃+ (Δ →₀ ZMod 2) :=
   Finsupp.domCongr (leftMulEquiv Δ δ)
 
 theorem translate_apply (δ : Δ) (f : Δ →₀ ZMod 2) (h : Δ) :
@@ -72,7 +78,7 @@ theorem translate_single (δ a : Δ) (b : ZMod 2) :
 
 /-- The translations as automorphisms of the multiplicative group of finitely supported
 configurations. -/
-def lampAut : Δ →* MulAut (Multiplicative (Δ →₀ ZMod 2)) where
+noncomputable def lampAut : Δ →* MulAut (Multiplicative (Δ →₀ ZMod 2)) where
   toFun δ := AddEquiv.toMultiplicative (translate Δ δ)
   map_one' := MulEquiv.ext fun f => by
     show Multiplicative.ofAdd (translate Δ 1 (Multiplicative.toAdd f)) =
@@ -131,22 +137,21 @@ theorem smul_left_injective :
     congrFun (congrFun hξη x) h
   have hleft : ξ.left = η.left := by
     refine Multiplicative.toAdd.injective (Finsupp.ext fun h => ?_)
-    have h0 := hx (fun _ => 0) h
-    rw [smul_apply, smul_apply, zero_add, zero_add] at h0
+    have h0 := hx 0 h
+    rw [smul_apply, smul_apply, Pi.zero_apply, Pi.zero_apply, zero_add, zero_add] at h0
     exact h0
   have hright : ξ.right = η.right := by
     by_contra hne
-    have h1 := hx (fun g => if g = 1 then (1 : ZMod 2) else 0) ξ.right
-    rw [smul_apply, smul_apply, inv_mul_cancel, hleft, if_pos rfl] at h1
-    have hne' : η.right⁻¹ * ξ.right ≠ 1 := fun he => hne (inv_mul_eq_one.1 he).symm
-    rw [if_neg hne'] at h1
-    simp at h1
+    have h1 := hx (Pi.single (1 : Δ) (1 : ZMod 2)) ξ.right
+    rw [smul_apply, smul_apply, inv_mul_cancel, hleft, add_left_inj, Pi.single_eq_same,
+      Pi.single_eq_of_ne (fun he => hne (inv_mul_eq_one.1 he).symm)] at h1
+    exact one_ne_zero h1
   exact SemidirectProduct.ext hleft hright
 
 /-! ## Generation -/
 
 /-- **The map `z`** (tex 359): adding `1` at the coordinate `e`. -/
-def lampAdd : LampAffine Δ :=
+noncomputable def lampAdd : LampAffine Δ :=
   SemidirectProduct.inl (Multiplicative.ofAdd (Finsupp.single 1 (1 : ZMod 2)))
 
 theorem lampAdd_smul_apply (x : LampSpace Δ) (h : Δ) :
@@ -184,10 +189,11 @@ theorem closure_insert_lampAdd_range_inr :
       exact congrArg Multiplicative.ofAdd (Finsupp.sum_single f).symm
     rw [hf]
     refine Subgroup.prod_mem _ fun a _ => ?_
-    have hb : Finsupp.single a (f a) = (f a).val • Finsupp.single a (1 : ZMod 2) := by
-      rw [Finsupp.smul_single, nsmul_eq_mul, mul_one, ZMod.natCast_zmod_val]
-    rw [hb, ofAdd_nsmul]
-    exact Subgroup.pow_mem _ (hsingle a) _
+    rcases zmod_two_eq_zero_or_one (f a) with h0 | h1
+    · rw [h0, Finsupp.single_zero, ofAdd_zero]
+      exact Subgroup.one_mem _
+    · rw [h1]
+      exact hsingle a
   refine eq_top_iff.2 fun ξ _ => ?_
   rw [← SemidirectProduct.inl_left_mul_inr_right ξ]
   exact H.mul_mem (hleft (Multiplicative.toAdd ξ.left)) (hinr ξ.right)
@@ -227,7 +233,7 @@ theorem dense_add_finsupp (x : LampSpace Δ) :
   classical
   refine dense_iff_inter_open.2 fun U hU ⟨y, hyU⟩ => ?_
   obtain ⟨I, u, hu, hIU⟩ := isOpen_pi_iff.1 hU y hyU
-  refine ⟨fun h => x h + Finsupp.indicator I (fun g _ => y g - x g) h, hIU fun a ha => ?_,
+  refine ⟨fun h => x h + Finsupp.indicator I (fun g _ => y g - x g) h, hIU (Set.mem_pi.mpr fun a ha => ?_),
     Finsupp.indicator I (fun g _ => y g - x g), fun _ => rfl⟩
   have ha' : a ∈ I := Finset.mem_coe.1 ha
   show x a + Finsupp.indicator I (fun g _ => y g - x g) a ∈ u a
@@ -237,10 +243,11 @@ theorem dense_add_finsupp (x : LampSpace Δ) :
   exact (hu a ha').2
 
 /-- **Minimality** (tex 364–365): every orbit contains a dense set. -/
-instance isMinimal : MulAction.IsMinimal (LampAffine Δ) (LampSpace Δ) where
-  dense_orbit x := (dense_add_finsupp Δ x).mono fun y ⟨f, hf⟩ => by
-    rw [show y = fun h => x h + f h from funext hf]
-    exact mem_orbit_add Δ x f
+instance isMinimal : MulAction.IsMinimal (LampAffine Δ) (LampSpace Δ) := by
+  refine ⟨fun x => Dense.mono ?_ (dense_add_finsupp Δ x)⟩
+  rintro y ⟨f, hf⟩
+  rw [show y = fun h => x h + f h from funext hf]
+  exact mem_orbit_add Δ x f
 
 /-! ## Topological freeness -/
 
@@ -258,7 +265,7 @@ theorem exists_moved_of_cylinder [Infinite Δ] (ξ : LampAffine Δ) (hξ : ξ �
   classical
   by_cases hδ : ξ.right = 1
   · have hn : Multiplicative.toAdd ξ.left ≠ 0 := fun h0 =>
-      hξ (SemidirectProduct.ext (Multiplicative.ofAdd_eq_one.2 h0) hδ)
+      hξ (SemidirectProduct.ext (ofAdd_eq_one.2 h0) hδ)
     obtain ⟨h, hh⟩ := DFunLike.ne_iff.1 hn
     refine ⟨y, fun _ _ => rfl, fun hfix => hh ?_⟩
     have hy := (smul_eq_self_iff Δ ξ y).1 hfix h
@@ -271,7 +278,8 @@ theorem exists_moved_of_cylinder [Infinite Δ] (ξ : LampAffine Δ) (hξ : ξ �
       Finsupp.notMem_support_iff.1 fun hs => hh (Finset.mem_union_right _ hs)
     have hne : ξ.right⁻¹ * h ≠ h := fun he => hδ (inv_eq_one.1 (mul_eq_right.1 he))
     refine ⟨Function.update y h (y (ξ.right⁻¹ * h) + 1),
-      fun a ha => Function.update_of_ne (fun hah => hhW (hah ▸ ha)) _ _, fun hfix => ?_⟩
+      fun a ha => Function.update_of_ne (fun hah : a = h => hhW (by rw [← hah]; exact ha)) _ _,
+      fun hfix => ?_⟩
     have hx := (smul_eq_self_iff Δ ξ _).1 hfix h
     rw [Function.update_self, Function.update_of_ne hne, hf, add_zero] at hx
     simp at hx
@@ -282,7 +290,7 @@ theorem isTopologicallyFree [Infinite Δ] :
   intro ξ hξ U hU ⟨y, hyU⟩
   obtain ⟨I, u, hu, hIU⟩ := isOpen_pi_iff.1 hU y hyU
   obtain ⟨x, hxy, hx⟩ := exists_moved_of_cylinder Δ ξ hξ y I
-  refine ⟨x, hIU fun a ha => ?_, hx⟩
+  refine ⟨x, hIU (Set.mem_pi.mpr fun a ha => ?_), hx⟩
   have ha' : a ∈ I := Finset.mem_coe.1 ha
   rw [hxy a ha']
   exact (hu a ha').2

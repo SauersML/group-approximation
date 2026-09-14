@@ -27,9 +27,6 @@ namespace GroupApproximation
 namespace SimpleKazhdanSofic
 namespace Lamplighter
 
-theorem zmod_two_eq_zero_or_one : ∀ a : ZMod 2, a = 0 ∨ a = 1 := by
-  decide
-
 variable (Δ : Type*)
 
 /-- The coordinate function `x ↦ x(h)` on `Ω`. -/
@@ -142,9 +139,8 @@ theorem comap_smulMap_inr_inv_coord (h : Δ) :
       coord Δ h := by
   ext x
   rw [LocallyConstant.coe_comap_apply, ClopenGroupCoeff.smulMap_apply, coord_apply, coord_apply,
-    ← map_inv, smul_apply]
-  show x ((h⁻¹)⁻¹ * 1) + Multiplicative.toAdd (1 : Multiplicative (Δ →₀ ZMod 2)) 1 = x h
-  rw [inv_inv, mul_one, toAdd_one, Finsupp.coe_zero, Pi.zero_apply, add_zero]
+    ← map_inv, smul_apply, SemidirectProduct.right_inr, SemidirectProduct.left_inr, inv_inv, mul_one,
+    toAdd_one, Finsupp.coe_zero, Pi.zero_apply, add_zero]
 
 /-- The printed generators of `R_Δ` for a generating set `T` of `Λ`: `1`, the `u_s^{±1}` with
 `s ∈ T`, and `e_U`. -/
@@ -186,13 +182,16 @@ theorem closure_generators_eq_top {T : Set (LampAffine Δ)} (hT : Subgroup.closu
         refine ⟨ha.2, ?_⟩
         rw [inv_inv]
         exact ha.1 }
-  have hK : T ⊆ K := fun s hs =>
-    ⟨Subring.subset_closure (Set.mem_insert_of_mem _
-        (Set.mem_union_left _ (Set.mem_union_left _ ⟨s, hs, rfl⟩))),
-      by
-        rw [← ClopenGroupCrossedProduct.unit_inv]
-        exact Subring.subset_closure (Set.mem_insert_of_mem _
-          (Set.mem_union_left _ (Set.mem_union_right _ ⟨s, hs, rfl⟩)))⟩
+  have hK : T ⊆ K := by
+    intro s hs
+    show (ClopenGroupCrossedProduct.unit (LampAffine Δ) (LampSpace Δ) (ZMod 2) s :
+        LampRing Δ) ∈ A ∧
+      (ClopenGroupCrossedProduct.unit (LampAffine Δ) (LampSpace Δ) (ZMod 2) s⁻¹ : LampRing Δ) ∈ A
+    refine ⟨Subring.subset_closure (Set.mem_insert_of_mem _
+        (Set.mem_union_left _ (Set.mem_union_left _ ⟨s, hs, rfl⟩))), ?_⟩
+    rw [← ClopenGroupCrossedProduct.unit_inv]
+    exact Subring.subset_closure (Set.mem_insert_of_mem _
+      (Set.mem_union_left _ (Set.mem_union_right _ ⟨s, hs, rfl⟩)))
   have hall : ∀ ξ : LampAffine Δ,
       (ClopenGroupCrossedProduct.unit (LampAffine Δ) (LampSpace Δ) (ZMod 2) ξ : LampRing Δ) ∈ A ∧
         (ClopenGroupCrossedProduct.unit (LampAffine Δ) (LampSpace Δ) (ZMod 2) ξ⁻¹ :
