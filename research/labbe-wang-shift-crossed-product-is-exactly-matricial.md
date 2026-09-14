@@ -58,6 +58,18 @@ ultraproduct `∏_ω M_(d_k)(F_k)` of matrix algebras over fields?
     family.
   - The proof is one-dimensional: column patterns commute, and an ordered product over a long run of columns kills
     every term. It says nothing about tori that are long in both directions, which is where row 7 now lives.
+- **Narrow strips must be contextual (sk-labbe-2d, unreviewed).** `strip-commutative-tiling-families-force-periodic-points`
+  and `aperiodic-sft-torus-modules-are-contextual-in-every-direction`:
+  - The thin-cylinder mechanism needs only that sites commute inside narrow strips along a rational direction. The
+    width is `2r(|p|+|q|)+1` in `ℓ_e(z) = q z_1 − p z_2`, independent of `D`, and any period is allowed.
+  - So every witness, at every scale, has noncommuting site idempotents inside vertical and horizontal strips of width
+    `3`, and inside a narrow strip along every rational direction, each pair at sup-distance `> 2D`. Covariant
+    witnesses over `F_q` have such pairs in every strip.
+  - This does not decide the claim. A single narrow annulus can carry a noncommutative family, because the ordered
+    product around it leaves exactly the legal linear words. Deciding needs an interaction between annuli in
+    different directions.
+  - Strip determinism would decide it negatively, but the four boundary directions of `P_U` make extensions
+    non-unique. Details: `research/artifacts/sk-labbe-2d-strip-contextuality-2026-09-13.md` §5.
 - **Rank model is unconditional (un-labbe-ring, unreviewed).** `labbe-wang-shift-has-polynomial-pattern-complexity`
   with `subexponential-complexity-zd-subshift-rings-have-rank-models` gives `R` a unital rank model over `F_q`. So the
   "no" polarity would realize the middle rung with no extra input.
