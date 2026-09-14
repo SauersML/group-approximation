@@ -99,3 +99,21 @@ Ownership check (~18:50): the paths and names are free on origin, in the shared 
 - Range state: every sentence of tex 1859–1976 is carried by a closed declaration along the printed route, or is honestly
   `structural` (d47b613bb096, 4cbf47e489a6) or a `definition`. The new carriers become root-reachable once root-wire
   wires b593627ca.
+- 19:15 (item 2): A, B and C written; claim landed 6017fd1a7, attic copies 782b0019f; probe 0913-191818-69417 running.
+  - A `ClosedWalkEnclosedSubdiagram`: `EnclosedFaceSet Δ faces outerWalk` (the outside walk lists the reverses of the
+    boundary darts of `faces` plus bridge darts both ways; closed dart walk; the turning condition of
+    `IsNoncrossingClosedWalk` without `alpha_not_mem`); `ClosedWalkEnclosedSubdiagramStatement` (∃ Ξ reading
+    `invDarts outerWalk`, at most the enclosed cells, a cell when the set holds one, a word-preserving index
+    embedding, least area inherited); `enclosedSubdiagram_leastAreaCut`.
+  - B `Estimating/OsinEnclosedSubdiagramLoopCut`: `EnclosedSubdiagramLoopCutStatement`, the hypotheses of
+    `nonempty_osinLoopCut_of_pocketRegion` over an enclosed face set. It is the Prop ms-intro-1's
+    `OsinLemma94CaseOneIslandStatement` reduction consumes.
+  - C `ClosedWalkIslandModel`: six darts, relator loops Π and I, bridge t. The pocket walk `[2,4,3,0]` is a closed dart
+    walk and not simple; `{Π, I}` shares no edge; `EnclosedFaceSet diagram {Π, I} [1,2,5,3]`; calibration: the clauses
+    of the construction statement hold, realized by the diagram itself.
+- 19:20: ms-intro-1's audit. `DiscDiagram.ofPlanar` (+ `ofPlanar_boundaryWord`, `ofPlanar_rCellCount`),
+  `exists_relatorCells_of_planar` and the proofs of `PocketRegion.diagram_rCellCount_pos` and `_lt` supply Ξ and its
+  counts over a planar map along the walk. w1-binder-2 is building that map (`BridgeComponentMap`, the far component of
+  an edge deletion). The missing piece is least area: `length_filter_mem_le` needs `IsDiscRegion`. Named in A as
+  `EnclosedLeastAreaFilterStatement`, with `leastArea_of_enclosedLeastAreaFilter` giving the least-area clause from it.
+  `InnerDiscRegion` and the zero-cell merge do not apply (they need disc regions or FollowsBoundary).
