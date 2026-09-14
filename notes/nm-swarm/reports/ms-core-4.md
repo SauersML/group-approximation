@@ -139,6 +139,19 @@ wiring. Namespace `GroupApproximation.ClopenCrossedProduct`:
 
 Census rows: `2546c17d9884` formalized, `f0c16e5c8519` partial (the locally matricial clause is ms-units').
 
+## Next item (lead ruling 09-13 ~18:40): close thm:core-mf-radical (tex 1609–1656)
+
+Ownership check at origin 4128d4ca7:
+- chain-radical has been down since 17:56. Its modules 1–3 match on disk and origin; modules 4–6 have no drafts anywhere.
+- ms-core-5's CoreMFRadicalGLKill and CoreKernelRelativeElementary are consumed, never edited.
+- Restriction surjectivity is only in ct-return-tower's unlanded CoreRingReflection; it is used here as a local proof
+  over landed primitives, with no competing declaration name.
+
+CLAIM core-mf-radical-assembly GroupApproximation/Manuscript/ChainCore/CoreMFRadical.lean
+- Closed: `CoreKernelLeRelativeElementaryStatement`, `CoreKernelLocallyFiniteStatement`, `CoreMFRadicalKillELStatement`,
+  and the closed endpoint `printedCoreKernelAndELKill`.
+- `printedCoreMFRadical_of_coreModels`, over the one premise `CoreModelsLEFStatement`.
+
 Module `GroupApproximation.Manuscript.ChainCore.TransientIdealDefectSpanConsumers`, LANDED 706db7e82 (probe GREEN
 0913-181936-83858), queued for wiring:
 - `defectIdeal_eq_transientIdeal_chainRecurrentSet` (BilateralThree's `defectIdeal` = the kernel at `CR(T)`);
