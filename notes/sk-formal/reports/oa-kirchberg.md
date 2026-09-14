@@ -33,6 +33,30 @@ CLAIM printed rows 88ecdc10f78b (Theorem 1.1 and Corollary 1.2) and a63ff00e499b
   - finish with the dense-generator upgrade (`amenableTraceModel_of_dense_generators`).
 - This consumes oa-hyperfinite's Pauli model `Hyperfinite.hyperfiniteFactor`: its matrix stages and trace-preserving expectations are not on origin yet.
 
+## Corollary 1.2 design (09-14 ~09:00)
+
+Printed claim: every subgroup of U(R) has the factorization property. At the trace side this means: for an injective π : G → U(R), the canonical trace δ₁ of C*(G) is amenable.
+
+Printed route, all steps elementary:
+1. **Compression models of τ_R∘π.**
+   - Let V_n = M_{2^n}·1̂ ⊂ L²(R) be the Pauli stages, with projection P_n, and φ_n(a) = P_n ρ(a) P_n.
+   - These are ucp and contractive on C*_max(G), because ρ is the *-hom extending π.
+   - For u ∈ U(R): ‖(1−P_n) u P_n‖₂² / d_n² = ‖u − E_n u‖₂² → 0, and tr(P_n u P_n) / d_n² = τ(u).
+   - So τ_R∘π is amenable.
+   - Needs from oa-hyperfinite: the stages and their 2-norm density.
+2. **Powers.** The k-fold tensor representation π^{⊗k} on L²(R)^{⊗k}, compressed to V_n^{⊗k}, gives models of g ↦ τ(π g)^k.
+3. **Averages.** Amplify blocks to a common size and take direct sums: models of τ_N(g) = (1/N) Σ_{k≤N} τ(π g)^k.
+4. **Limit.**
+   - For g ≠ 1, π(g) ≠ 1.
+   - If π(g) is not a scalar, |τ(π g)| < 1 by faithfulness and Cauchy–Schwarz.
+   - If π(g) = λ ≠ 1 is a scalar, Cesàro gives (1/N) Σ λ^k → 0.
+   - So τ_N → δ₁ on generators. A diagonal choice of models plus `amenableTraceModel_of_dense_generators` finishes.
+
+Shortcut for the clause "G is not a subgroup of U(R)":
+- Faithfulness gives Re τ_R(π h) < 1 for π(h) ≠ 1.
+- The Theorem 1.1 argument then works with Re tr X(h)/k ≈ Re τ_R(π h) < 1 instead of ≈ 0: take δ below (1 − Re τ_R(π h))/2.
+- So a Kazhdan subgroup of U(R) is residually finite, which is the needed contradiction for the note's G. It needs only step 1.
+
 01:30 status:
 - All eight infrastructure modules plus the assembly are drafted (attic copies on main), with a co-probe running.
 - Endpoints planned in `Manuscript/NinetyNineProblems/KirchbergTheorem`: `kirchbergKazhdanFactorizationInput`, `printedKirchbergTheorem`, `not_hasFactorizationProperty_of_simple_infinite_kazhdan`.
