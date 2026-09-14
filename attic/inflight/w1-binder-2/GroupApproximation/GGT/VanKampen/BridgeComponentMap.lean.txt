@@ -131,12 +131,14 @@ theorem eqvGen_avoid_of_eqvGen {x y : EdgeDeletion.Dart M a}
   | symm x y _ ih => exact Relation.EqvGen.symm _ _ ih
   | trans x y z _ _ ih₁ ih₂ => exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
 
+omit [DecidableEq M.Dart] in
 /-- The successor of `a` on its face is not `a`. -/
 theorem sigma_alpha_ne (hface : M.faceOf a = M.faceOf (M.alpha a)) : M.sigma (M.alpha a) ≠ a := by
   intro h
   have hfix : Function.IsFixedPt M.facePerm a := h
   exact M.alpha_fixedPointFree a (((M.faceOf_eq_iff _ _).mp hface).eq_of_left hfix).symm
 
+omit [DecidableEq M.Dart] in
 /-- The successor of `α a` on its face is not `α a`. -/
 theorem sigma_ne_alpha (hface : M.faceOf a = M.faceOf (M.alpha a)) : M.sigma a ≠ M.alpha a := by
   intro h

@@ -134,6 +134,7 @@ theorem reach_or (hM : M.IsConnected) (x : EdgeDeletion.Dart M a) :
   exact (hkey a (EdgeDeletion.value M a x) (hM a _)).mp hPa (EdgeDeletion.value_ne M a x)
     (EdgeDeletion.value_ne_reverse M a x)
 
+include hface hstart htail in
 /-- **The deleted map has Euler characteristic four.** -/
 theorem euler_four (hM : M.IsPlanar) :
     (EdgeDeletion.toCombMap M a).eulerCharacteristic = 4 := by
@@ -143,12 +144,10 @@ theorem euler_four (hM : M.IsPlanar) :
   have h2 := hM.2
   linarith
 
-omit htail in
 /-- The far side: the darts of the deleted map joined to `σ (α a)`. -/
 def Side (x : EdgeDeletion.Dart M a) : Prop :=
   Relation.EqvGen (EdgeDeletion.toCombMap M a).Adjacent (near0 M a hface hstart) x
 
-omit htail in
 theorem side_alpha (x : EdgeDeletion.Dart M a) :
     Side M a hface hstart ((EdgeDeletion.toCombMap M a).alpha x) ↔ Side M a hface hstart x := by
   have h : Relation.EqvGen (EdgeDeletion.toCombMap M a).Adjacent x
@@ -156,7 +155,6 @@ theorem side_alpha (x : EdgeDeletion.Dart M a) :
   exact ⟨fun hs => Relation.EqvGen.trans _ _ _ hs (Relation.EqvGen.symm _ _ h),
     fun hs => Relation.EqvGen.trans _ _ _ hs h⟩
 
-omit htail in
 theorem side_sigma (x : EdgeDeletion.Dart M a) :
     Side M a hface hstart ((EdgeDeletion.toCombMap M a).sigma x) ↔ Side M a hface hstart x := by
   have h : Relation.EqvGen (EdgeDeletion.toCombMap M a).Adjacent x
@@ -164,7 +162,6 @@ theorem side_sigma (x : EdgeDeletion.Dart M a) :
   exact ⟨fun hs => Relation.EqvGen.trans _ _ _ hs (Relation.EqvGen.symm _ _ h),
     fun hs => Relation.EqvGen.trans _ _ _ hs h⟩
 
-omit htail in
 /-- **The map on the far side.** -/
 noncomputable def component : CombMap.{u} :=
   (EdgeDeletion.toCombMap M a).restrict (Side M a hface hstart) (side_alpha M a hface hstart)
@@ -184,6 +181,7 @@ theorem near1_not_side (hM : M.IsPlanar) :
   have h4 := euler_four M a hface hstart htail hM
   omega
 
+include htail in
 /-- **The far component is planar.** -/
 theorem component_planar (hM : M.IsPlanar) : (component M a hface hstart).IsPlanar := by
   refine (EdgeDeletion.toCombMap M a).restrict_planar_of_euler_four (Side M a hface hstart)
