@@ -8,6 +8,7 @@ distinct_from:
 artifacts:
   - research/artifacts/sk-free-1-exactness-2026-09-13-part1.md
   - research/artifacts/sk-exact-banded-2026-09-14-part1.md
+  - research/artifacts/sk-exact-banded-2026-09-14-part2.md
 ---
 
 **OPEN.** Let X ⊆ A^Z be an infinite minimal subshift and G_X = EL_3(LC(X,F_2) ⋊ Z).
@@ -54,5 +55,9 @@ Search bounds: web searches for exactness or property A of topological full grou
   - EL_n(M_k(S)) = EL_{nk}(S); the k-tower system gives G_{X^{(k)}} ≅ EL_{3k}(R_X); and EL_n(R_{X_V}) ≤ EL_n(R_X) ≤ EL_{nk}(R_{X_V}) for induced systems.
   - So exactness in every rank is a Kakutani-equivalence invariant, and "every G_X is exact" is equivalent to "every EL_n(R_X) is exact". A proof may pass to induced systems with long towers; a counterexample may be sought in any rank over any minimal X.
   - Literature bound (two web searches, one fetch): no exactness or property A theorem found for finitely generated subgroups of W(Z), or for unit groups of algebraic uniform Roe algebras over finite fields.
+- **Reduction to the limit subsystem (sk-exact-banded, 2026-09-14).** `subshift-gl-exactness-reduces-to-limit-subsystem`:
+  - If every orbit of a subshift Y outside a closed invariant Z has both limit sets in Z, a finitely generated subgroup of GL_m(LC(Y,F_2)⋊Z) is exact whenever its image over Z is. The congruence kernel is locally finite because the complement ideal is ultramatricial, and exact groups are closed under extensions (Kirchberg–Wassermann).
+  - So filtrations ending in periodic orbits give exact groups (Guentner–Tessera–Yu), including every banded matrix group over F_2 with coefficients eventually periodic in both directions.
+  - The open question is concentrated in minimal aperiodic subsystems, where it is this node in rank m.
 - **Weakly embedded expanders through tower copies, dies.** The matrix units of tower copies GL_{3h}(F_2) involve level indicators of return time ≥ h, which depend on ≳ h/2 coordinates for Sturmian X. So every non-constant generator has G_X-length ≳ h/2, and homomorphic tower copies are not uniformly Lipschitz.
 - **Sup-metric copies through full-group cocycles, dies.** Commuting first-return maps on k disjoint pieces need 2^k masks, and balls grow at most exponentially, so some masks cost ≳ k/C. The induced metric is not uniformly ℓ^∞ on Z^k.
