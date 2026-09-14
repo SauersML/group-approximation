@@ -36,6 +36,9 @@ requires:
   - some-simple-kazhdan-lef-groups-are-not-exact
   - universal-recursive-lef-host-is-not-exact
   - generic-limit-of-subshift-sl-models-is-simple-kazhdan
+  - kazhdan-generators-admit-no-norm-popa-corners
+  - orthogonal-popa-corners-for-kazhdan-approximants-small-trace
+  - finite-dimensional-combs-generate-popa-algebras
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.

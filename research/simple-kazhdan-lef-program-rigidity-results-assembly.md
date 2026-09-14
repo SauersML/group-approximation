@@ -19,6 +19,7 @@ requires:
   - diagonal-recognition-makes-subshift-el3-isos-standard
   - peirce-root-preserving-subshift-el3-isos-force-orbit-equivalence
   - positive-entropy-el-groups-avoid-low-complexity-hosts
+  - subshift-el3-diagonal-recognition-fails-up-to-g-conjugacy
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.

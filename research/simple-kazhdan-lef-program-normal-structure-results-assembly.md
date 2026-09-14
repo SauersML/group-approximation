@@ -22,6 +22,11 @@ requires:
   - finitely-many-minimal-sets-el-normal-subgroups-are-kernels
   - recurrent-orbit-closure-with-unique-sturmian-minimal-set
   - subshift-el-2-simple-modulo-centre-every-finite-field
+  - laurent-elements-of-cantor-crossed-products-are-suitable
+  - minimal-cantor-crossed-products-stabilize-laurent-pairs
+  - cantor-crossed-product-idempotents-similar-to-clopen-ones
+  - minimal-cantor-crossed-products-have-internal-cancellation
+  - cantor-crossed-product-idempotent-pairs-are-stable
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.

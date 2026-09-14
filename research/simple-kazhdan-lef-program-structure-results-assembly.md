@@ -28,6 +28,8 @@ requires:
   - subshift-el3-parabolic-subgroups-are-maximal
   - subshift-el3-orbit-stabilizers-conjugate-iff-same-orbit
   - subshift-el-groups-have-bounded-conjugation-invariant-norms
+  - simple-amenable-group-of-non-uniform-exponential-growth
+  - subshift-el3-two-ended-lattice-stabilizers-locally-finite
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
