@@ -3,7 +3,9 @@
 ## Item 2 (from 19:5x): the claims in "Questions" at the tip e80dcf20a (census 09e580c38)
 
 CLAIM 32a9f96774bd residuals (Group.IsFinitelyPresented → PresentedGroup transfer; G_X LEF and infinite simple ⇒ G_X not fp) GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean
-CLAIM 26e9baa90d07 (conjugate or flip conjugate ⇒ G_X ≅ G_Y, through the crossed-product ring isomorphism) GroupApproximation/Manuscript/SimpleKazhdanSofic/ConjugacyIsomorphism.lean
+- 26e9baa90d07 (conjugate or flip conjugate ⇒ G_X ≅ G_Y) was MOVED to ct-involution (main, 20:3x; its module is
+  `CrossedProductConjugacy.lean`). This lane's unprobed draft `ConjugacyIsomorphism.lean` went to the attic and ct-involution
+  was sent its path. The claim is dropped.
 
 - Revised 20:15 (main, per skf-cite bb79d09bf). Vershik–Gordon is already proved as `finitelyPresented_isLEF_residuallyFinite`
   (Sofic/FinitelyPresentedLEF, over `PresentedGroup` of finitely many relators). Infinite simple ⇒ not RF is
@@ -13,6 +15,23 @@ CLAIM 26e9baa90d07 (conjugate or flip conjugate ⇒ G_X ≅ G_Y, through the cro
   (skf-cite ledgers the citations).
 - 20:2x resumed after the ~20:03 outage. Nothing of this item had landed. The claim lines above were unlanded edits; no
   Questions module draft and no probe was outstanding.
+- 21:2x resumed after the session limit. The Questions probe 0913-203959-89285 was GREEN (BUILT). The disk bytes equal the green
+  attic e77f1ad7f.
+
+### Ledger at the tip 9047d0d3c (618 lines, md5 274f1936…; Questions now at l.406+)
+
+| tip l. | sentence | status | carrier | key |
+|---|---|---|---|---|
+| 408–410 | "A finitely presented LEF group is residually finite [VershikGordon], and the infinite simple group `G_X` is not, so `G_X` is not finitely presented." | partial | LANDED 16d890864: `printedFinitelyPresentedLEFResiduallyFinite` (transfer `exists_presentedGroup_mulEquiv` from Mathlib's `Group.IsFinitelyPresented` to `PresentedGroup` of a finite relator set, then `finitelyPresented_isLEF_residuallyFinite`), `printedNotFinitelyPresentedOfLEFSimpleInfinite` (with `NinetyNineProblems.not_isResiduallyFinite_of_isSimpleGroup_of_infinite`); instance `printedGXNotFinitelyPresented_of_main : PrintedSimpleKazhdanSoficMain → PrintedGXNotFinitelyPresented`. Residual: the thm:main assembly (ct-two-ended) | `32a9f96774bd` (text verbatim at the tip) |
+
+- The census on origin is still at e80dcf20a (09e580c38). The tip rewrote three sentences of "The ring and property (T)":
+  - the eq:elementary display (`[e_il(r), e_lj(s)] = e_ij(rs)`, index `k` → `l`), which makes my row `d96b6930fe6d` stale;
+  - the EJZ sentence ("`EL_n` of every finitely generated associative unital ring …");
+  - the definition "`G = G_X = EL_3(R)`".
+  They wait for skf-census to regenerate. The carriers stand; the index names are bound variables.
+- "So `G` has property (T)." (`9f871b8dd9fa`, verbatim at the tip, unkeyed by any lane): instance `printedGXPropertyT`, from
+  ct-involution's closed `printedSubshiftRingFinitelyGenerated` (22b15ce5e) and `printedElementaryPropertyT`. Added to
+  `ElementaryGroupFacts`; probing.
 
 # Range "The ring and property (T)" (first item; originally tex 86–101 and 114–117 at bf961c128)
 
