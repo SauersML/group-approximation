@@ -258,8 +258,19 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     - w1-binder-3 proves the step. It packages it with `exists_pinchStepSection_of_avoids`, adds its own variant
       `exists_pinchStepSection_of_isolated` for three or more visits with mixed turns, and reports fully crossing vertices as
       a residual.
-  - `OsinPocketFirstTurnsProperArc` (`sourceArc_lt_of_firstTurns`, attic 695f89621) is co-probing with the dispatch in a
-    retry loop. Attempts so far failed on infra only: git fetch during the DNS outage, then "msi connection down".
+  - **LANDED f81311dc9** (probe 0914-005613-42051 GREEN, BUILT for both modules; unwired, queued for wiring). Before the
+    green attempt, five failed on MSI infra and two pushes on github DNS.
+    - `Estimating/OsinPocketFirstTurnsProperArc`: `PocketFullArc.rel_of_isChain_append` and
+      `PocketFaceSet.sourceArc_lt_of_firstTurns K hK hrest`.
+    - `Estimating/OsinPocketPinchOuterDispatch`, the two-arc interface above:
+      - `PocketOuterPinchStepSectionStatement`;
+      - `PocketPinchLabelledSectionTwoArcStatement` with `_of_section` and `_of_outerPinchStep`;
+      - `SectionPocketFaceSetTwoArcInput` with `.toProperInput`, and `OsinSectionPocketFaceSetTwoArcSectionStatement`;
+      - `sectionPocketCutInput_of_residualsTwoArc` and `osinSectionPocketCutSection_of_residualsTwoArc`.
+  - Binder 7 in walk order now rests on two open statements: w1-binder-3's `PocketOuterPinchStepSectionStatement` and the
+    two-arc producer `OsinSectionPocketFaceSetTwoArcSectionStatement`.
+  - Next for this lane, from ms-intro-4's absorbed cell items: the cell mirror. `CellPocketOuterPinchStepSectionStatement`
+    and a dispatch to ms-intro-4's `CellPocketPinchSectionInput`, through `cellPocketPinchFirstTurns`.
 - **Noted:** ms-cite-1's `cellPocketPinchRoseRefutation` (e0a0776bb) refutes `CellPocketPinchPosStatement`, so V4 endpoints over
   it are vacuous. The replacement is `CellPocketPinchSectionStatement`.
 - **Landed above (was in flight): `Estimating/OsinPocketGoodCornersSection`** (attic 12585faa5), the section mirror.
