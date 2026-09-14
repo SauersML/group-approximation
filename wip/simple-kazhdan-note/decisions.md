@@ -617,6 +617,11 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
 129. **sk-algebraic-putnam** (fee751bff2, 900a04677c, 36bf7a2b55; unreviewed).
     - Laurent elements are exchange elements; Laurent unimodular pairs complete; idempotents of M_n(R) are similar to clopen diagonals; internal cancellation; idempotent pairs stable; regular ⇒ unit-regular.
     - So exchange ⇒ sr(R)=1 (Camillo–Yu). The exchange property stays OPEN. No note change.
+130. **REV4.3 LANDED 696c4b602e** (841 lines, 9 pp, md5 0648e5f8…; record 8b4e69771d).
+131. **sk-verify-16 final** (ef1fc58e49, 5e191c8f65, 90dbf1ae91, 69ba691c6a; review lines e25fdf8d06, 544733d295, b3556e93e0, c06afb7000). Queue lines 52–73 plus sk-free-6 A–E: no FAIL, no GAP.
+    - Theorem D (78 elementary matrices): second PASS-WITH-FIXES; band 7W, route fix applied; L ≥ max(32W,3). The note decision stays OUT (the proof is long).
+    - Cornulier Q7 (dyadic [[T]]′ non-uniform growth; simple amenable example): PASS, conditional on the Sauer–Schesler import, whose node has no review line yet. The dedicated adversarial sk-verify-17 continues.
+    - Also PASS: algebraic-putnam (all six); diagonal-recognition negation; Popa-corner and comb lemmas; two-ended lattice stabilizers; generic limits (Pavlov–Schmieding now with Nonlinearity 36(9) (2023) 4904–4953); F_q port (MUST text fix; stays OUT of the note at 9 pp).
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
