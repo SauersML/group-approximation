@@ -14,3 +14,5 @@ and `G = EL_n(R)`. Then for all `i ≠ j`, every subgroup `H ≤ e_ij(R) = {I + 
 (`cstar-simple-iff-amenable-subgroups-not-confined`, `subshift-elementary-groups-are-cstar-simple`).
 
 **Proof:** `root-subgroups-over-crossed-products-not-confined-proof`.
+
+**Review (sk-verify-13, 2026-09-13, `research/artifacts/sk-verify-13-2026-09-13-part1.md` §1):** PASS. Re-derived Lemma B (top and bottom exponents), the Steinberg commutator `[e_31(u^N), e_12(r)] = e_32(u^N r)`, the conjugate `I + u^N r E_32 + r E_12` (as `E_32E_12 = 0`), the entry comparison, the Weyl-element reduction to `e_12(R)`, and heredity to subgroups. No infiniteness or minimality of `X` is used.

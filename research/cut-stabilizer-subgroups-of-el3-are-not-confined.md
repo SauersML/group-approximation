@@ -27,3 +27,12 @@ distinct_from:
   `subshift-elementary-groups-are-cstar-simple` is an obstruction to C*-simplicity (`cstar-simple-iff-amenable-subgroups-not-confined`).
 
 **Proof:** `cut-stabilizer-subgroups-el3-not-confined-proof`.
+
+**Review (sk-verify-13, 2026-09-13, `research/artifacts/sk-verify-13-2026-09-13-part1.md` §4):** PASS. Re-derived:
+- the representation identity for `π_y`, and that `S_y` is a subgroup (the two subspaces are complementary);
+- both cases of Lemma C, with window counts `|N_i − N_j| − w ≥ L+1`;
+- Lemma D (B. H. Neumann's covering lemma), the conjugation formula of Lemma E, and the coset structure of the bad pairs;
+- both cases of Lemma F, and the assembly `g = lc`;
+- the inclusion `GL_3(A(𝒫)) ∩ G ≤ S_y` (`t` and `t+a−b` lie in one return interval, and `0` is an endpoint).
+
+Wording: Lemma C uses that every `L+1` consecutive times contain a visit to `{r_{k_0} = 1}`.
