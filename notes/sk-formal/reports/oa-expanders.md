@@ -1,38 +1,59 @@
 # oa-expanders ledger
 
-Lane oa-expanders (launched ~20:15 by main). Target: `simple_kazhdan_sofic_group.tex` at e80dcf20a
-(386 lines, md5 4ad4921253626a4f858866c716a13385), section "Finite models", l.163–164:
+Lane oa-expanders (launched ~20:15 by main). Target: the expander sentences of `simple_kazhdan_sofic_group.tex`.
+The note moved repeatedly: e80dcf20a, then 9047d0d3c, then c8b6021ca (restructured around `thm:general`), and now
+37551fd93 (767 lines, md5 b55c0d23b8c59e66d36df004a1df608b; census 649cb1f80 at this tip).
 
-> Since $\EL_3(F)$ has property~\textup{(T)}, their Cayley graphs form a family of expanders~\cite{Kassabov}.
+## Sentences at 37551fd93
 
-"their" = the finite simple groups $\SL_{3N_\ell}(\F_2)=\EL_3(M_{N_\ell}(\F_2))$, quotients of $\EL_3(F)$
-with compatible generators (l.151–160).
+| key | tex | sentence | carrier | status |
+|---|---|---|---|---|
+| `95230f46af22` | 235–236 | "Since $\EL_3(F)$ has property (T) [EJZ], its finite quotients form a family of expanders [Margulis, Kassabov]." | `SimpleKazhdanSofic.printedMatricialQuotientsExpanders : PrintedMatricialQuotientsExpanders` (MatricialQuotientsExpanders), printed route | formalized once green and landed |
+| `8bd3ab27271c` | 119–121 | thm:general: "... it is the limit of the finite simple groups $\SL_{nN_k}(\F_2)$ marked by the $e_{ij}(\varphi_k(s))$, whose Cayley graphs form a family of expanders." | expander half: the same endpoint, in the marking `matricialMarking n S N φ`; the marked limit belongs to ms-core-3 and the assembly to ct-two-ended | partial |
+| `f5bd94aeffeb` | 76–78 | "So $G_X$ is a limit of the groups $\SL_{3N}(\F_2)$, which form expanders as in Kassabov's construction." | through thm:general (ct-two-ended's assembly) | not keyed by this lane |
 
 ## Claims
 
-CLAIM Cayley-graph expander families and the Kazhdan quotient theorem GroupApproximation/Analysis/KazhdanQuotientExpanders.lean
-CLAIM printed endpoint for tex l.163–164 GroupApproximation/Manuscript/SimpleKazhdanSofic/FiniteModelsExpanders.lean
+CLAIM Cayley-graph expander estimate for Kazhdan quotients GroupApproximation/Analysis/KazhdanQuotientCheeger.lean
+CLAIM Kazhdan quotients form expanders in `IsExpanderFamily` spelling GroupApproximation/Manuscript/SimpleKazhdanSofic/KazhdanQuotientExpanders.lean
+CLAIM thm:general expander step over matricial φ_k GroupApproximation/Manuscript/SimpleKazhdanSofic/MatricialQuotientsExpanders.lean
 
-Ownership check (20:2x): no expander-family carrier on origin, in the shared tree or in `lanes/*.files`.
-Kun's `ExpanderDecomposition` concerns sofic models, and Matching's `HasCheegerLowerBound` concerns
-multigraphs and permutation models; neither states the Cayley graphs of finite quotients. landed.log
-has no expander landing.
+Ownership check (23:4x): no other lane has an expander carrier. ms-core-3's report assigns "its finite quotients form a family
+of expanders" to oa-expanders. ct-two-ended's in-flight `GeneralTheorem` (attic 3ea243dda) states the piece
+`PrintedMatricialExpandersStatement` and consumes it. It does not prove it.
 
-## Route (the printed one: property (T) of EL_3(F) gives expanders for its finite quotients)
+## Route (printed)
 
-1. Definitions: the right Cayley-graph edge boundary `#{(a,t) ∈ A × T : a t ∉ A}`, and
-   `IsExpanderFamily`: generating sets of bounded size, vertex counts tending to infinity, and one
-   positive Cheeger constant for every set of at most half the vertices.
-2. Every finite generating set of a group with a Kazhdan pair carries a Kazhdan constant
-   (word-length transfer through `Subgroup.closure_induction`).
-3. For a surjection π : Γ → Q onto a finite group, right translation on real ℓ²(Q):
-   - invariant vectors are constant, so the centred indicator v = 1_A − (|A|/|Q|)·1 is orthogonal to them;
-   - ‖v‖² = |A|(1 − |A|/|Q|) ≥ |A|/2 when 2|A| ≤ |Q|;
-   - ‖ρ(s)v − v‖² = 2·#{a ∈ A : a π(s) ∉ A};
-   - `exists_moved_mul_norm_of_mem_orthogonal` gives boundary ≥ (δ²/4)|A|.
-4. Printed endpoint: consume ms-core-3's L1 (EL_3(M_N(F₂)) = SL_{3N}(F₂)) and L2 ((T) for EL_3(F)) by name
-   once they land.
+1. `KazhdanQuotientCheeger`, general, no literature input:
+   - displacement is subadditive along words, so every finite generating set of a Kazhdan group is a Kazhdan set
+     (`exists_isKazhdanPair_of_closure_eq_top`);
+   - left translation through `π : Γ →* Q` on real `ℓ²(Q)`; invariant vectors are constant when `π` is onto;
+   - the centred indicator `1_A − (|A|/|Q|)·1` is orthogonal to them, with `‖v‖²·|Q| = |A|(|Q|−|A|)` and
+     `‖g·v − v‖² = 2·#{a ∈ A : π(g)a ∉ A}`;
+   - so some Kazhdan generator moves at least `(δ²/4)|A|` elements of `A` out of `A` (`kazhdanPair_quotient_boundary`).
+2. `KazhdanQuotientExpanders`: the quotient Cayley graphs with image generators form an `IsExpanderFamily`
+   (ct-two-ended's spelling in `MainAssembly`), with closed endpoint `printedKazhdanQuotientsExpanders`.
+3. `MatricialQuotientsExpanders`, as printed in "Finite simple models":
+   - the Kazhdan theorem with a marking: `π_ℓ(t_j) = σ_ℓ(f j)`;
+   - `EL_n(F₂⟨τ_s⟩)`, `n ≥ 3`, is generated by `e_ij(1)` and `e_ij(τ_s)`, via `elementaryCoefficientSubalgebra`;
+   - `ρ_k = lift φ_k` is onto when `φ_k(S)` generates `M_{N_k}(F₂)`, so `EL_n(ρ_k)` is onto;
+   - `e_ij(1)` maps to `e_ij(φ_k(1))` because `1 ∈ S` and `φ_k(1) = 1`;
+   - (T) of `EL_n(F)` is ms-core-3's `hasKazhdanPropertyT_elementaryGroup_freeAlgebra`, through the proved EJZ theorem;
+   - endpoint `printedMatricialQuotientsExpanders`.
+
+ct-two-ended can close its piece in one line, since the marking is spelled definitionally as `matricialMarking n S N φ`:
+`fun R _ S hS1 _ N φ hφ n hn hcard ↦ isExpanderFamily_matricialMarking S hS1 N φ hφ.1 hφ.2.1 n hn hcard`.
 
 ## Status
 
-- 20:2x: claim landed; general module in progress.
+- 20:34: claim landed.
+- 22:02: `KazhdanQuotientCheeger` and `KazhdanQuotientExpanders` landed at d979328f0. Probe 0913-220210-41687 GREEN, both
+  BUILT, no errors; the origin bytes equal the green record md5. Both are wire-queued.
+- 00:37: `MatricialQuotientsExpanders` landed at 41de120e8. Probe 0914-003718-12656 GREEN: BUILT, rebuilt 1 module, no
+  errors, and the audit block passed (propext, Classical.choice, Quot.sound). The origin bytes equal the green record md5.
+  It is wire-queued after `KazhdanQuotientExpanders`, `KazhdanQuotientCheeger` and `FreeAlgebraKazhdan`.
+- Rows: `95230f46af22` formalized, `8bd3ab27271c` partial (`metadata/sk-census-rows/oa-expanders.tsv`). The census is at
+  37551fd93, and the note tip is 696c4b602 (23:51). Both sentences are verbatim at the tip, since the diff touches only
+  l.291 onward.
+- Remaining in this lane's scope: nothing at the tip. The SL_{nN_k}(F₂) spelling of the marking is ms-core-3's L1
+  equality `EL_n(M_N(F₂)) = SL_{nN}(F₂)`, and thm:general keeps the marking in `EL_n(M_{N_k}(F₂))`.
