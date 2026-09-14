@@ -21,3 +21,8 @@ artifacts:
 - **Scope:** Le Boudec–Matte Bon's configurations for homeomorphisms exist whenever `σ^2 ≠ 1`. For unit groups the excluded class `B_4 = {σ : 1 ∈ span_{F_2}(σ^{±1}, σ^{±2})}` is strictly larger than the involutions.
 
 **Proof:** `idempotent-displacement-obstruction-proof`.
+
+**Review (sk-verify-16, 2026-09-14): PASS.** Re-derived:
+- E·1·E = Σc_kEσ^kE; displacement ⟺ EσE = Eσ⁻¹E = 0; (C4) at α = σ gives Eσ^{±2}E = 0.
+- Instances: σ² = 1; (I+N) with N = E_12+E_23 satisfies σ+σ⁻¹+σ² = I; Singer α³ = α+1 gives 1 = α⁻¹+α²; no order-3 σ in GL_3(F_2) has σ²+σ+1 = 0 (odd dimension over F_4).
+Optional wording: the relation has integer coefficients, so it holds in any unital ring containing σ. See `research/artifacts/sk-verify-16-2026-09-13-part5.md` §3.
