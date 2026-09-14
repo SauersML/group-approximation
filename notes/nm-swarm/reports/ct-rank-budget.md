@@ -210,6 +210,23 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   - Offered ms-compress-1 (one message) the cyclic corollary J states (`head ≠ getLast` → `|w| + 2 ≤ 2·card`, by appending the
     head) plus Lean tightness tests, in a new module `GGT/VanKampen/ListNoABABCyclic.lean` after theirs lands; awaiting their answer.
 
+## CLAIM (main's item 09-14 ~10:4x): `OsinLemma94ClassCaseGapSpanDiffKindStatement` (W1 leaf 5 residual; statement owner ct-bilateral-cell)
+
+- CLAIM partner selection restricted to allowed positions GroupApproximation/GGT/VanKampen/Estimating/UnboundAntitonePartnersAllowed.lean
+- CLAIM class-word side letters, gap steps, split point GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassSideSteps.lean
+- CLAIM proof of the different-kind GapSpan branch GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassCaseGapSpanDiffKind.lean
+  - Statement agreed with ct-bilateral-cell (one message each way), amended in their unlanded ClassSameCell:
+    `∃ K, ∃ eps0, ∀ eps ≥ eps0, …`, with `25 * C.startConnector.length + K < eps` and
+    `25 * C.endConnector.length + K < eps` before `C.b' < C.b`.
+  - Why the amendment: with the family's eps, B1 side connectors are about 25B, and the short Case 1 needs them < eps.
+  - Route:
+    - B1 on class words, with partners at positions not strictly inside a gap. A gap moves no vertex, so the partner
+      function is constant across gaps and some side letter has a strict decrease.
+    - Split again with the roles swapped. Target partners inside gaps move to gap corners, costing Γ.
+    - The side-level `ShortWordConnectorPair` follows from `vertex_eq_of_sideAt`, refuted by `osinLemma94ShortCaseOne_false`.
+  - Delivered as a theorem over the literal Prop body, since ClassSameCell is unlanded; the `_closed` wrapper follows its
+    landing.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
