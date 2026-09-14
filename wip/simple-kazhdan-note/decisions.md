@@ -842,6 +842,30 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Extras, decided at assembly: rename the Cantor set Z; τ_1 → τ_s with s=1; define cylinders; define L(X) before Cor 4 uses it; move the Stepanov sentence; the unused "not residually finite" at l.282, which the Questions section does use.
     - F1–F5 went to sk-design-page-one and F6–F10 to sk-design-structure.
     - One lane slot is held for the rev5 editor once the design lanes report.
+166. **sk-usefulness (98a552942b): four proposals.**
+    - P1 ADOPTED, pending sk-verify-23's word check: split Theorem 2 into (a) minimal topologically free with a f.g. ring ⇒ EL_n(R) infinite, f.g., simple, Kazhdan; and (b) with the φ_k ⇒ the expander limit. Main checked that l.132–208 never use φ_k. About +1 line. It gives simple Kazhdan groups from every minimal topologically free subshift over every f.g. group.
+    - P2 CANDIDATE if the budget allows (+5 lines, +1 bibitem): over Z, (T) forces a subshift, so Theorem 1 is at its natural generality. Reviewed in Cairn (sk-verify-5); the "(T) ⇒ f.g." locator (Kazhdan 1967 / BHV Thm 1.3.1) is pending at source.
+    - P3 UNREVIEWED (+3 lines): finite models over any f.g. Λ give the maps φ_k. It needs sk-verify-23 PASS before entering.
+    - P4 = sk-design-structure's Lemmas A/C; the lamplighter host is to be citable as Lemma B.
+    - Launched sk-verify-23 (P1 words, P2 proof and locator, P3 lemma). Told sk-design-statements (P1, P2 slot) and sk-design-structure (P4, host label).
+    - RAM: level 2, swap 4.5/6.1 GB, free 32%; disk 17 GiB free.
+167. **sk-referee-top on rev4.5: MAJOR REVISION, presentation only; no mathematical error or gap.**
+    - Everything was re-derived by hand, including the tacit φ_k(0)=0.
+    - No overclaiming. The report checked Brown v1 §11 Q7 p.33, Ozawa math/0306067v2 p.26, Pestov 9.1 v8 p.21 and Pestov–Kwiatkowska v4 p.28. For countable groups Brown's form is equivalent to hyperlinearity, so the abstract is fair.
+    - Editorial risk: "a combination of known theorems". The answer is the unification plus the "iff" of Cor 3.
+    - The harness refused the report file; main lands it from the lane's final message.
+    - ADOPTED for the rev5 editor:
+      - R1 (l.42–43): "with this property" reads as "solvable word problem". NEW: "…group that is locally embeddable into finite groups."
+      - R2: a page-1 sentence giving Brown's form. At l.283 add ", as R^ω⊗̄R embeds in (R⊗̄R)^ω≅R^ω,".
+      - S1: the abstract opens "Infinite simple groups with property (T) can be limits of finite simple groups."
+      - S2: one-sentence definitions (marked-group convergence, expanders, sofic, hyperlinear), merged with reader-grad F2.
+      - S3: a simplicity roadmap, merged with sk-design-structure's steps.
+      - S4: `\subsection*{Solvable word problem}`.
+      - S5: move the Stepanov sentence.
+      - S6: cut the n≥3 repeat from Theorem 1 (−2).
+      - S7: "where φ_k(0)=0 by additivity".
+    - R3 (database novelty search: zbMATH, forward citations of EJZ 2010, GM 2014 and Kionke–Schesler) was launched as sk-novelty-db.
+    - The referee items are held for the rev5 editor rather than sent to the running design lanes, to avoid rework.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
