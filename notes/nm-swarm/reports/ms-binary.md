@@ -458,3 +458,19 @@ Plan:
 - **Handoff.** Clause (a) for this `Q` is assembled from ms-compress-1's `osinLemma94KindTransitionInput_of_longTransitions`,
   `card_filter_not_le_kindNonJoins_add`, ms-inverses-3's bad-junction input, and ct-bilateral-cell's
   `classBudget_of_otherClasses` for the cutting classes.
+
+Progress (23:3x):
+- Claim landed at fa1f24c08. The adopted draft's attic copy is 5801a5272.
+- The first probe refused, because `ms-binary.files` listed the two unwritten producer paths. They were dropped from the
+  file until they are written.
+- Probe 0913-233548-81701 of the adopted `ClassProducerGaps` was RED on two defects, so its bytes change. Both were fixed:
+  - the theorems use `Nat.find h` without the classical scope of `cellGapOf` (57, 62, 69, 94, 95);
+  - `pow_succ'` had the wrong index in `isChain_cellGapOf` (83).
+
+Interface agreed with ms-inverses-3 (23:3x): `OsinLemma94BadJunctionInput` sums `#badJunctions` over
+`P.relatorPolygons.filter (2 ≤ #¬ClassJoins)`, not over all `relatorPolygons`.
+- A one-side lobe polygon has a self-junction (`(0 + 1) % 1 = 0`) whose gap is the rest of the relator, with value not
+  one, so each lobe would be one bad junction and the unfiltered sum would be unbounded.
+- The filter contains `Q.budgetPolygons`, since `classCount ≤ max 1 #¬ClassJoins`, so (a) loses nothing.
+- ms-inverses-3's module is `Estimating/OsinLemma94BadJunctionExclusion.lean` (claimed at ddd310d78). Its value clause for
+  G-face-only pockets may keep `RegionFaceAssemblyStatement` as a named binder.
