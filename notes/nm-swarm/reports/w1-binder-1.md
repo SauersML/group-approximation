@@ -260,7 +260,19 @@ CLAIM clean copy producer GroupApproximation/GGT/VanKampen/Estimating/OsinAppend
 - (2) drivers `SurgeryOuterThickeningInvariant`: probe 0914-093020-64478 BUILT; the MSI hop died before the summary came back (rc=255), but the remote log shows four audits [propext, Classical.choice, Quot.sound] and no sorryAx. Re-probe 0914-101108-54760 GREEN for local evidence; landing now.
 - LANDED drivers at 0f4475355 (`SurgeryOuterThickeningInvariant`), on the wire queue.
 - LANDED (3) at 73835dd09: `Estimating/OsinAppendixEulerTwoGonCleanCopy`, probe 0914-102626-36239 GREEN, BUILT on the first try; four audits [propext, Classical.choice, Quot.sound], no sorryAx; on the wire queue.
-- Leaf 6 now reduces to the six step Props, through `osinTwoGonCleanCopySection_of_steps`. With the Euler section Prop, `osinTwoGonHoldsSection_of_stepsEuler` gives `OsinTwoGonHoldsSectionStatement`. ms-inverses-2 is proving the six step Props and the Euler section Prop.
+- Leaf 6 now reduces to the six step Props, through `osinTwoGonCleanCopySection_of_steps`. With the Euler section Prop, `osinTwoGonHoldsSection_of_stepsEuler` gives `OsinTwoGonHoldsSectionStatement`.
+- Correction (main ~10:4x): `OsinTwoGonDecompositionEulerSectionStatement` is closed at ac902a9c1 (ms-inverses-2's `osinTwoGonDecompositionEulerSection`). C6′ waits only on the six step Props.
+
+## CLAIM 11 (main 10:4x: split the six step Props with ms-inverses-2)
+
+CLAIM outer step transports GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonOuterStepTransport.lean
+CLAIM cell hair step transport GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonHairStepTransport.lean
+
+- Proposed split, sent to ms-inverses-2 in one message; awaiting objection or rename.
+  - This lane: `TwoGonSpurStepStatement`, `TwoGonOuterCellStepStatement`, `TwoGonOuterSideStepStatement`, `TwoGonCellHairStepStatement`.
+  - ms-inverses-2: `TwoGonCellSideStepStatement`, `TwoGonRegionPairStepStatement`, and the generic `phiMapO` transport (`OsinAppendixEulerPhiMapTransport*`).
+- Route: the per-surgery embedding facts for the outer insertion (`OuterSpurThickening.diagram` with its region families) and for `HairOpening.sectionFamily`: `alpha` commutes, every region's `crossO` is carried, and the first-return rotation matches on crossings. Then ms-inverses-2's generic lemma gives `HasCleanTwoGon`.
+- When the six close, tell ct-rank-two-limit that leaf 5 of V8Closures closes.
 - (3) composition `Estimating/OsinAppendixEulerTwoGonCleanCopy`:
   - `twoGonCopyCleanAt_of_free`;
   - `twoGonCleanCopyInput_of_steps` over the six step Props;
