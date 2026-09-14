@@ -216,6 +216,19 @@ Residuals of binder 5 now:
 
 This lane claims none of them.
 
+**Some-order respelling (LANDED bdd0000bb, probe 0913-191314-53572 GREEN).** w1-binder-3 showed the fixed-order
+outer-off-side statement is over-strong (042fb1881): the exterior lies in at most one of the two complementary pockets.
+New statements in the same module:
+- `OuterOffSideForOrder S a b i j` and `SideRelatorCellForOrder S a b i j` (per-order predicates);
+- `CellPocketWalkOuterOffSideSomeOrderStatement` (the exterior is off the side in order `(a,b,i,j)` or `(b,a,j,i)`;
+  owner w1-binder-3);
+- `CellPocketWalkSideRelatorCellBothOrdersStatement` (owner ms-inverses-2). This is probably over-strong: per order,
+  `cellPocketKeptCellNoncrossing` needs the exterior off that side and one cycle following its boundary, and the latter
+  fails on an 8-dart model (ms-inverses-2). The assembly should consume `OuterOffSideForOrder → SideRelatorCellForOrder`
+  for the chosen order.
+- `_of_residualsV2CopyOrder` is not landed yet. It waits on whether outer-off-side is proved at the original family or at
+  the clean rebuild.
+
 ## State
 
 Scope finished for tex 1–1337. The ledger and census correction landed at 09d4f6b3d, the audit module at c04133c00.
