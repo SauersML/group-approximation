@@ -90,7 +90,7 @@ theorem pinchSplit_closedWalk_of_isolated (K : PocketFaceSet D eps X lo hi)
 
 /-- **One step of the section pinch at an isolated turn outside the face set.**  The merged faces
 lie off the face set, every turn of the cycle is kept at the split, one cycle dart runs into `x`
-without passing `y` and another into `y` without passing `x`.  The split keeps letter labels, walk
+without passing `y` and another into `y` without passing `x`.  The split (`PocketFaceSet.pinchSplit`) keeps letter labels, walk
 order and both proper arcs, and lowers the repeated visits. -/
 theorem exists_pinchStepSection_of_isolated
     (hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d))

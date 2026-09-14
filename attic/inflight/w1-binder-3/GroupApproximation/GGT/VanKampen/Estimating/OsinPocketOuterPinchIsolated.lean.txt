@@ -203,7 +203,7 @@ theorem isolated_positions (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Inp
   -- `y` is a period of rotation, and it sits at position `N - q`.
   have hyper : (X.toCombMap.sigma ^ N) I.y = I.y := by
     apply (X.toCombMap.sigma ^ q).injective
-    rw [← Equiv.Perm.mul_apply, pow_mul_comm, Equiv.Perm.mul_apply, hq, hper, hq]
+    rw [← Equiv.Perm.mul_apply, pow_mul_comm, Equiv.Perm.mul_apply, hq, hper]
   have hqN : q ≤ N := by
     by_contra hlt
     push Not at hlt
