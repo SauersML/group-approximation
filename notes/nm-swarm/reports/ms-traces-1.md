@@ -69,3 +69,28 @@ Keys are from `metadata/NON_MF_SENTENCE_CENSUS.tsv`, matched by text; its line n
 Every sentence of tex 1808–1858 is carried by a closed declaration or classified honestly: two attribution rows, five
 definition rows, and six formalized rows (the theorem row covers two sentences). The only item outstanding is the root
 wiring of 360f72771.
+
+## Item (main, 09-14 ~10:50): contact-map part (2), empty nondegenerate small faces
+
+Split off from ms-intro-2's `OsinLemma94ContactMapNondegenerateSmallFacesInput` (8677b0dcd). The statement agreed with
+ms-intro-2 is `OsinLemma94ContactMapEmptyTwoGonInput` in `Estimating/OsinLemma94ContactMapHolds` (9e45690bc):
+the faces that are nondegenerate, small and hold no object number at most `K * Delta.rCellCount`.
+
+Hand model tests (before any Lean):
+- Configuration C refutes the earlier False form. A region x runs from a to b, flanked by polygons f and f′ with a third
+  neighbour each. The face (f, a, f′, b) is empty and nondegenerate, and no merge applies: every chord of f from its
+  a-arc to its b-arc is longer than ε.
+- Charge to regions. An empty face holds a selected region, or its polygon f makes a direct step from a to b. Regions
+  number at most 12n: the binder `S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1)` with
+  `SectionCuts.count_le`. The charge is injective by face classes (`faceOf_eq_of_faceClass_of_componentOf`); on C and
+  its mirror, one face holds one region.
+- b the exterior, with regions to several sections: charge to any region inside. The Φ′_M corner count is not needed.
+- No region inside: f's sector has no short side, so there is a direct object step inside F. That step is charged to
+  the named input `OsinLemma94ObjectTouchComponentsInput` (ms-traces-3 proves it). Routing through
+  `OsinLemma94ContactTransitionInput` would be circular.
+
+CLAIM `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ObjectTouchComponents.lean`
+- the statement only: `OsinLemma94RealizedPolygons.IsDirectStep`, `directSteps`, and `OsinLemma94ObjectTouchComponentsInput`.
+
+CLAIM `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactEmptyTwoGon.lean`
+- `osinLemma94ContactMapEmptyTwoGonInput_of_objectTouch` proves ms-intro-2's count form from the touch input.
