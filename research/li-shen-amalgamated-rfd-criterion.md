@@ -12,3 +12,8 @@ Source: Q. Li and J. Shen, "A note on unital full amalgamated free products of R
 - The same paper, Example 1 (p. 650): `M_2(C) *_{C⊕C} M_3(C)`, with `1⊕0` of rank 1 in both, is not MF, so it is not RFD. This is the model test showing a rank-ratio condition is necessary.
 
 Route: `li-shen-amalgamated-rfd-criterion-citation`.
+
+## Review
+- **sk-verify-18 PASS at source (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part2.md`):**
+  - Theorem 2 (p. 657), Lemma 6 (p. 657), the proof reduction (p. 658), Example 1 and Remark 2 (p. 650) read verbatim in the journal PDF, doi 10.1215/ijm/1385129969 (Crossref-confirmed).
+  - The same criterion appears as Theorem 4.1 of the arXiv preprint 1006.2447.

@@ -12,3 +12,9 @@ distinct_from:
 Source: R. Exel and T. Loring, "Finite-dimensional representations of free product C*-algebras", Internat. J. Math. 3 (1992), no. 4, 469–476, Theorem 3.2. Statement quoted as Lemma 1 in Li–Shen, Illinois J. Math. 56 (2012), p. 649, read at source. Exel–Loring's own paper was not opened.
 
 Route: `exel-loring-free-products-of-rfd-algebras-are-rfd-citation`.
+
+## Review
+- **sk-verify-18 PASS on printed restatements (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part2.md`):**
+  - Li–Shen journal PDF p. 649, Lemma 1, verbatim; Armstrong–Dykema–Exel–Li arXiv:math/0210448 l.735–739; Li–Shen arXiv:1006.2447 l.90–92.
+  - The "only if" half is elementary: RFD passes to C*-subalgebras.
+  - The primary Exel–Loring paper (Internat. J. Math. 3 (1992)) is still unopened.

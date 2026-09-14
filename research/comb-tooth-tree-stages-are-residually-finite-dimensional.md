@@ -27,3 +27,8 @@ Route: `comb-tooth-tree-stages-rfd-via-li-shen`.
 ## Scope
 - This does not produce the comb and says nothing about property (T) factors by itself. Missing inputs 2 (scheduling tail representations across stages inside the factor) and 3 (exact translate relations in `M`) stay open.
 - Model test: Li–Shen Example 1, `M_2 *_{C²} M_3` with rank-one projections, is not RFD. There each factor has a single irreducible representation, which forces the ratios 1/2 and 1/3. In `V = U ⊕ M_d` the two summands carry independent multiplicities, so the ratio `1/r` is always reachable.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part2.md`):**
+  - Re-derived by hand: every hypothesis of Li–Shen Theorem 2, read verbatim in the journal PDF p. 657; the multiplicity bookkeeping k_n = r·d·D_n with ranks dD_n : (r−1)dD_n; the Exel–Loring step for the free unitary; the rank ratio; the extension lemma; both model tests.
+  - Optional wording: say "unital" or "nonzero" finite-dimensional representation in items 2–3.
