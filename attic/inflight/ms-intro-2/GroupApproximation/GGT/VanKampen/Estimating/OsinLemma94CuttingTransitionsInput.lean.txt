@@ -69,8 +69,8 @@ theorem Joined.symm {y y' : S.diagram.toCombMap.Dart} (h : S.Joined y y') : S.Jo
 
 theorem Joined.trans {y y' y'' : S.diagram.toCombMap.Dart} (h1 : S.Joined y y')
     (h2 : S.Joined y' y'') : S.Joined y y'' := by
-  obtain ⟨hy, -, p1⟩ := h1
-  obtain ⟨-, hy'', p2⟩ := h2
+  obtain ⟨hy, _, p1⟩ := h1
+  obtain ⟨_, hy'', p2⟩ := h2
   exact ⟨hy, hy'', Relation.EqvGen.trans _ _ _ p1 p2⟩
 
 theorem not_mem_forestDarts_alpha {d : S.diagram.toCombMap.Dart} (hd : d ∉ S.forestDarts) :
@@ -187,7 +187,8 @@ theorem joined_of_boundaryStep {a : RegionCandidate D eps S.diagram} (ha : a ∈
     rw [S.diagram.toCombMap.faceOf_facePerm]
     exact hyb.1
   have hfk := not_mem_forestDarts_of_mem_region ha hfy
-  exact (⟨hy, hfk, eqvGen_facePerm ⟨y, hy⟩ hfk⟩ : S.Joined y _).trans
+  exact Joined.trans (⟨hy, hfk, eqvGen_facePerm ⟨y, hy⟩ hfk⟩ :
+      S.Joined y (S.diagram.toCombMap.facePerm y))
     (joined_of_internalMoves ha hfy hmoves)
 
 /-- Every dart of a chain of joining steps is joined to its head. -/
@@ -210,7 +211,7 @@ theorem joined_of_isChain {R : S.diagram.toCombMap.Dart → S.diagram.toCombMap.
     rcases List.mem_cons.mp hz with rfl | hz'
     · exact Joined.refl hy
     · have hb : b ∉ S.forestDarts := by
-        obtain ⟨-, hb, -⟩ := hjb
+        obtain ⟨_, hb, _⟩ := hjb
         exact hb
       exact hjb.trans (ih b hrest hb z hz')
 
@@ -389,7 +390,7 @@ theorem hittingSet_hits (P : OsinLemma94RealizedPolygons S) (b : S.forestDeleted
         eqvGen_of_faceOf_eq ⟨y, hyk⟩
           (fun z hz => not_mem_forestDarts_of_cell hC (hCy.trans hz.symm)) _
           ((faceOf_cellDart j).trans hCy)⟩
-    obtain ⟨-, -, p⟩ := hby.trans hjoin
+    obtain ⟨_, _, p⟩ := hby.trans hjoin
     exact ⟨_, Finset.mem_insert_of_mem (Finset.mem_image_of_mem _ (Finset.mem_univ j)), p⟩
   · have hyk := not_mem_forestDarts_of_faceOf_eq_outer hout
     have hjoin : S.Joined y S.outerDart :=
@@ -397,7 +398,7 @@ theorem hittingSet_hits (P : OsinLemma94RealizedPolygons S) (b : S.forestDeleted
         eqvGen_of_faceOf_eq ⟨y, hyk⟩
           (fun z hz => not_mem_forestDarts_of_faceOf_eq_outer (hz.trans hout)) _
           (faceOf_outerDart.trans hout.symm)⟩
-    obtain ⟨-, -, p⟩ := hby.trans hjoin
+    obtain ⟨_, _, p⟩ := hby.trans hjoin
     exact ⟨_, Finset.mem_insert_self _ _, p⟩
 
 end GloballyDistinguishedSectionFamily
