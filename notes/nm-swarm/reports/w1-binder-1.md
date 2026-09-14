@@ -163,6 +163,13 @@ CLAIM two-gon gap faces GroupApproximation/GGT/VanKampen/Estimating/OsinAppendix
 - Finding: `TwoGonEulerGapInput` as spelled (inclusions only) doesn't locate the source gap, so its producer is stated with the gap equation of `PocketWalk.exists_of_exteriorAt`. ms-inverses-2's L1a drops that equation, so the respelled span input needs a variant of L1a that keeps it.
 - 00:38 probe 0914-003836-16332: the MSI hop died (rc=255) before the summary came back, but the remote log shows the module BUILT: `faceClassO_pow_of_firstReturn` and `twoGonPocketFace_of_outerGap`, both [propext, Classical.choice, Quot.sound]. There is no local record, so the whole module is being re-probed with the cell-side lemma added.
 - 00:36 probe 0914-003538: MSI connection down (infra); retried.
+- 01:1x: GitHub DNS down (`Could not resolve host`), so the attic landing, the report landing and the probe fetch failed; nothing reached origin. A background job retries once GitHub answers.
+- Added `twoGonPocketFace_of_targetSpan` to GapFaces: a target span from `a`'s start to `b`'s end without wrap puts its non-arc darts in the outer gap.
+
+CLAIM Euler span C6′ assembly GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonEulerSpan.lean
+
+- `TwoGonEulerSpanInput`: `TwoGonEulerWalkInput` with the inclusions replaced by the gap equation and the target start/end equalities, as `PocketWalk.exists_of_exteriorAt` gives them.
+- `twoGonHoldsInput_of_eulerSpan : TwoGonEulerSpanInput → TwoGonHoldsInput`, with no gap residual: the gap darts come from GapFaces, and the inclusions and bounds from `OsinAppendixEulerTwoGonSpans`.
 
 ## Residuals of the Euler C6′ route
 
