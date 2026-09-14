@@ -1,0 +1,22 @@
+MSI array job 731699 (agsmall, 14 tasks, all COMPLETED exit 0), script compsearch.py
+(md5 9d85ba6e651e2888c3acfbd57aca5238). One summary line per task, verbatim from comp.731699_<i>.log.
+
+task 0  config INV 3 2 2  CASE INV K 3 M 2 L 2 tested 887808 found 24   (all 24 are the controls --111ctrl, --1g1ctrl and inverses)
+task 1  config INV 2 3 2  CASE INV K 2 M 3 L 2 tested 924800 found 0
+task 2  config INV 4 2 2  CASE INV K 4 M 2 L 2 tested 20123648 found 0
+task 3  config INV 2 4 1  CASE INV K 2 M 4 L 1 tested 36000 found 0
+task 4  config INV 3 4 1  CASE INV K 3 M 4 L 1 tested 465600 found 0
+task 5  config INV 4 3 1  CASE INV K 4 M 3 L 1 tested 498400 found 0
+task 6  config INV 2 5 1  CASE INV K 2 M 5 L 1 tested 373600 found 0
+task 7  config INV 5 2 1  CASE INV K 5 M 2 L 1 tested 328000 found 0
+task 8  config INV 4 4 1  CASE INV K 4 M 4 L 1 tested 2304000 found 0
+task 9  config REL 4 2 2  CASE REL K 4 M 2 L 2 tested 1296000 found 0
+task 10 config REL 2 4 1  CASE REL K 2 M 4 L 1 tested 10752 found 0
+task 11 config REL 3 4 1  CASE REL K 3 M 4 L 1 tested 27648 found 0
+task 12 config REL 4 3 1  CASE REL K 4 M 3 L 1 tested 33792 found 0
+task 13 config REL 4 4 1  CASE REL K 4 M 4 L 1 tested 387072 found 0
+
+Calibration run on the login node before submission (INV 3 2 1): tested 4800 found 24, all controls, e.g.
+FOUND --111ctrl v= [-9, 4, 9, 3, -9] u= [-1, -1]
+FOUND --1g1ctrl v= [-9, 4, 9, 3, -9, 2] u= [-1, -1]
+Letter code: 1 = t, 2 = g, 3 = x, 4 = y, 9 = z, negatives are inverses; x and y are involutions.

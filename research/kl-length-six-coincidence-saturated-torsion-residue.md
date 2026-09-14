@@ -177,3 +177,13 @@ of the one-coincidence or four-sign-change exceptions. A violation over
   - **Checked dead end.** `t -> s g^(-1)` sends `(1,1,1,g)` with
     `y = g x g^(-1)` to an equal-loop word, and `s -> r g` sends it back to the
     original, so the conjugate relation is not a substitution reduction.
+- **Composition census (2026-09-13, lane `hl-kl-short-equations`, MSI job
+  731699; see `research/artifacts/kl-length-six-composition-census-2026-09-13.md`).**
+  - Searched identities `w ~ sigma_u(v)^(+-1)` in the free models `Z * C_2 * C_2`
+    (involution loops) and `Z * C_2` (`y = g x g^(-1)`).
+  - Bounds: outer `z`-length at most 5, inner `t`-length at most 5, coefficient
+    words of length at most 2 (at most 1 once the inner length is 4 or more).
+  - Only the settled `++++--` controls `(1,1,1)` and `(1,g,1)` turn up, with
+    `u = t^(+-2)`. So short-inner-word substitution certifies none of the open
+    involution shapes at those sizes. What is left is a picture argument with `g`
+    outside `<x, y>`, or a certificate that uses relations beyond the free model.
