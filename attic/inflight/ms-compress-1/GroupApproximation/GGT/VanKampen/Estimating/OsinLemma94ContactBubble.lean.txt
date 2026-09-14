@@ -79,7 +79,8 @@ theorem false_of_twoCellSides (P : OsinLemma94RealizedPolygons S) (k : Fin P.cou
   have hwalk : (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) =
       arc0.reverseDarts ++ [] ++ targetBoundaryDarts S.diagram (some j) arc1 ++ [] := by
     rw [hsides]
-    simp [targetBoundaryDarts]
+    simp only [List.append_nil]
+    rfl
   -- no dart of the polygon has the polygon's face on both sides
   have hno : Surgery.MapCollapse.NoInternalFaceDart S.diagram.toCombMap (P.face k) := by
     intro d hd
