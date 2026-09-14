@@ -26,3 +26,11 @@ Conditional route: `subshift-el-reduced-not-mf-from-laurent-sl4-stability`, whic
 - **What a counterexample needs.** An MF embedding restricts to asymptotic homomorphisms of `SL_4(F_q[t^{±1}])` that
   are far from every genuine representation on the block `SL_2`, since genuine ones all have block-`SL_2` norm 4
   (`laurent-sl-n-representations-have-sl2-invariant-vectors`).
+- **A weaker crux than stability (sk-mf-laurent, 2026-09-14).**
+  - Route `subshift-el-reduced-not-mf-from-laurent-corona-norm-four` needs only
+    `laurent-sl4-corona-representations-have-block-sl2-norm-four`: every corona representation of `Λ` gives
+    block-`SL_2` norm 4. Stability implies it (`laurent-corona-norm-four-from-matricial-stability`).
+  - By `laurent-sl4-block-sl2-norm-four-off-full-unipotent-spectrum` (unreviewed) the crux holds off the full-spectrum
+    case.
+  - What remains is exactly the Haar-spectrum case, which contains every MF embedding. This is the positive-characteristic
+    form of the `SL_4(Z)` wall.

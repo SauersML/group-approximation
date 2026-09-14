@@ -66,3 +66,18 @@ artifacts:
   - Generic characters have infinite orbits, and an MF embedding of `C*_r(Λ)` has Haar spectrum.
   - So the question reduces to the full-spectrum case, exactly as in `sl4z-corona-representations-have-block-sl2-norm-four`.
   - The analogue of `sl4z-block-sl2-norm-four-unless-unipotent-spectrum-is-full` for `Λ` is expected but not written out.
+- **The analogue is now written out (sk-mf-laurent, 2026-09-14, unreviewed).**
+  - `laurent-unipotent-spectra-are-finite-or-full`: every closed `E_3(A)`-invariant subset of `Â^3` is finite (bounded
+    level) or all of `Â^3`. It is proved by a window-density argument, with no dynamics on tori. So a representation with
+    non-full column unipotent spectrum factors through `SL_4(A/J)`.
+  - `laurent-sl4-block-sl2-norm-four-off-full-unipotent-spectrum`: such representations have block-`SL_2` norm 4.
+  - The weaker crux `laurent-sl4-corona-representations-have-block-sl2-norm-four` (implied by this claim, and implying
+    non-MF of `C*_r(G_X)`) is therefore equivalent to its full-spectrum case. Every MF embedding lies in that case.
+- **Rational cohomology, purity step made precise (sketch, not established; artifact
+  `research/artifacts/sk-mf-laurent-2026-09-14-part1.md` §6).**
+  - A cuspidal `St_0 ⊗ St_∞` form would give, by Lafforgue, a pure lisse sheaf on `G_m`, tame at `0` and `∞`, with
+    unipotent inertia `N ≠ 0` at `0`.
+  - Pure sheaves are geometrically semisimple (Deligne, Weil II 3.4.1(iii)). A semisimple representation of the abelian
+    tame geometric `π_1(G_m)` has semisimple inertia, so `N = 0`. Contradiction.
+  - Residual representations of `GL_4` (Mœglin–Waldspurger) have non-generic local components, never Steinberg.
+  - So `H^6(Λ;Q) = 0`: `Λ` is `Q`-acyclic and Dadarlat's even-cohomology obstruction is void. Imports not read at source.
