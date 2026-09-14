@@ -202,6 +202,31 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
   - A fact for the step: a split can merge the faces of two cycle darts, so good corners do not survive a step. The reduction
     runs again before every step. `PocketPinchStepFirstTurnSectionStatement` takes first-turn order and a proper source arc,
     not good corners.
+- **LANDED 096d9219c** (probe 0913-213157-25846 GREEN; unwired, queued for wiring). After the 23:12 resume, the tree md5 was
+  checked against the probed bytes and no import had changed.
+  - `Estimating/OsinPocketPinchFirstTurnSection` contains:
+    - `exists_firstTurnStepSection_of_turn` and `_of_goodCorners`;
+    - `pocketPinchGoodCornerStepSection`, which is closed;
+    - `PocketPinchLabelledFirstTurnSectionStatement` (implied by the walk-order Section binder, by `_of_section`), and
+      `PocketPinchStepFirstTurnSectionStatement` with the induction `_of_step`.
+  - `Estimating/OsinPocketPinchFirstTurnAssembly` contains:
+    - `SectionPocketFaceSetFirstTurnInput` and `OsinSectionPocketFaceSetFirstTurnSectionStatement`, with `.toProperInput` and
+      `.toProper`;
+    - `sectionPocketCutInput_of_residualsFirstTurnSection` and `osinSectionPocketCutSection_of_residualsFirstTurnSection`.
+    - This is the FirstTurns producer target of w1-binder-3, per main's ruling (b).
+- **Absorbed ms-intro-4's item (b)** (coordinator, 23:12).
+  - Moved `GGT/VanKampen/SurgeryFaceEdgeDoublingFaces.lean` and `Estimating/OsinPocketCellGoodCorners.lean` into this lane's .files.
+    Both lists are backed up under `backup/w1-binder-7/*.absorb-by-w1-binder-7.*` and `*.pre-absorb.*`.
+  - Both drafts were GREEN under ms-intro-4's record 0913-214617-61792 at the same md5 (e0fcb186 and a06a9eae), with attic
+    1bd896ef4. They are re-probing under this lane.
+  - The cell endpoint `cellPocketPinchFirstTurns : CellPocketPinchFirstTurnsStatement` needs only first-turn order, letter labels
+    and relator words longer than one letter.
+- **Next: `Estimating/OsinPocketGoodCornersSection`**, the section mirror of the cell module.
+  - `BadCorner`, `badCorners` and the count lemmas across `faceEdgeDoublingInside`, which also keeps a proper source arc.
+  - `exists_goodCorners`.
+  - `pocketPinchStepFirstTurnSection`, which should prove `PocketPinchStepFirstTurnSectionStatement` at `ρ₀ = 2`.
+  - `PocketFaceSet.sourceArc_lt_of_firstTurns`: FirstTurns forces a proper source arc. This is ms-intro-4's paper finding,
+    which this lane checked.
 - **Resume 21:22 (after the session limit).**
   - The FirstTurnSection probe 0913-203127-13291 lost its msi hop (rc 255), so no record was written. Its SLURM job built
     successfully (log: `Build completed successfully (10285 jobs)`).
