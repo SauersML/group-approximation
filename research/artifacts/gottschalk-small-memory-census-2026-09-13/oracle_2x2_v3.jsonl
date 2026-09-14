@@ -1,0 +1,4 @@
+{"id": 0, "fwd_classes": [["1|1", "s1|m1"], ["1|m1", "s1|1"]], "rev_classes": [["1|1", "m1|s1"], ["m1|1", "1|s1"]], "labels_distinct": true, "resolved": true, "undecided": [], "nreps": 118}
+{"id": 1, "fwd_classes": [["1|1"], ["1|m1", "s1|1"], ["s1|m1"]], "rev_classes": [["1|1"], ["m1|1", "1|s1"], ["m1|s1"]], "labels_distinct": true, "resolved": true, "undecided": [], "nreps": 869}
+{"id": 2, "fwd_classes": [["1|1", "s1|m1"], ["1|m1"], ["s1|1"]], "rev_classes": [["1|1", "m1|s1"], ["m1|1"], ["1|s1"]], "labels_distinct": true, "resolved": true, "undecided": [], "nreps": 870}
+{"id": 3, "fwd_classes": [["1|1"], ["1|m1"], ["s1|1"], ["s1|m1"]], "rev_classes": [["1|1"], ["m1|1"], ["1|s1"], ["m1|s1"]], "labels_distinct": true, "resolved": true, "undecided": [], "nreps": 8132}

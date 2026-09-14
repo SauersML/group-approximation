@@ -125,5 +125,7 @@ venv holding numpy 2.5.3:
    | `enum_tables.py` | `bd32a62a` |
 
    Its outputs are `cert4_*.out`, `census4_q2_*.out` and `census4b_q2_*.out`. The same job writes the
-   certificate records `cert4_*.jsonl` (about 1.4 MB) and the partitions `oracle_*_v3.jsonl` that the
-   censuses read.
+   certificate records `cert4_*.jsonl` (about 1.4 MB), the partitions `oracle_*_v3.jsonl` that the
+   censuses read, and the Tietze decisions `tietze2_*.jsonl`. All three sets are in this directory,
+   so each certificate can be re-checked without rerunning the searches. `cert4_2x2_0.jsonl` is
+   empty because Tietze decides every `2x2` table.
