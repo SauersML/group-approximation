@@ -298,10 +298,10 @@ theorem closure_modelMap_lampGenerators_eq_top :
         · have hne : ¬(a = b + (i - j)) := fun h' => hb (by
             rw [ha] at h'
             rw [eq_sub_of_add_eq h'.symm, sub_sub_cancel])
-          rw [Matrix.single_apply_of_ne (fun h' : i = a ∧ j = b => hb h'.2.symm), if_pos ha,
-            if_neg hne, mul_zero]
-      · rw [Matrix.single_apply_of_ne (fun h' : i = a ∧ j = b => ha h'.1.symm), if_neg ha,
-          zero_mul]
+          rw [Matrix.single_apply_of_ne i j (1 : ZMod 2) a b
+              (fun h' : i = a ∧ j = b => hb h'.2.symm), if_pos ha, if_neg hne, mul_zero]
+      · rw [Matrix.single_apply_of_ne i j (1 : ZMod 2) a b
+            (fun h' : i = a ∧ j = b => ha h'.1.symm), if_neg ha, zero_mul]
     rw [h]
     exact A.mul_mem (hdiag i) (htrans _)
   refine (Subring.eq_top_iff' A).2 fun x => ?_
