@@ -88,3 +88,37 @@ Route, as printed:
 5. ψ is a finite model of the ball of radius 2r, and θ the shift isomorphism between {v_{3r−1} = v_{3r}} and {v_{−3r} = 1}.
 6. κ comes from transversals, with ζ(x,i) = (κ x, i+1) on Q^{[−3r,3r]} × ℤ/5r, and ζ^ℓ V ζ^{−ℓ} is the shifted V.
 7. The map fβ^ℓ ↦ (ψ f(m))_m ζ^ℓ preserves the products that stay in the ball and is injective as 5r > 2r, so Δ is LEF.
+
+## Item 3 (main, 09-14 09:0x, from oa-mcduff's queue): cor:wp, the Ozawa step (tex l.544–546 at 696c4b602, key `5c3fdfb60aaf`)
+
+> For a fixed alphabet, every $G_X$ is a simple quotient of the Kazhdan group $\EL_3(F)$, and [...] different subshifts give
+> different kernels. The proof of~\cite[Theorem~2]{OzawaUniversal} then shows that the unitary group of a separable
+> $\mathrm{II}_1$ factor contains $G_X$ for only countably many $X$.
+
+The census is at 696c4b602 (md5 0648e5f876e4…), so rows key by hash.
+
+CLAIM the Hilbert rigidity core for Kazhdan groups (commuting left and right actions, the near-invariant vector, normal closure and simplicity) GroupApproximation/Kazhdan/KazhdanBimoduleRigidity.lean
+CLAIM right multiplication by unitaries in a tracial standard form, and the bimodule representations u ξ w* GroupApproximation/Analysis/TracialStandardFormBimodule.lean
+CLAIM countably many simple quotients with distinct kernels in U(M), and the printed endpoint GroupApproximation/Manuscript/SimpleKazhdanSofic/OzawaUnitaryCountability.lean
+
+Ownership check (09-14 09:0x):
+- Main moved the item here from oa-mcduff's queue, and oa-mcduff has been told.
+- No declaration on origin, in the shared tree, in `lanes/*.files` or in any report proves Ozawa's rigidity or the countability.
+- Consumed: `KazhdanNearInvariantVector.exists_invariant_near`, `IsIIOneFactor`, `IsTracialStandardForm`, `TracialConjugation`
+  (`TracialConjugationExists`), and oa-mcduff's containment spelling `G →* unitary ↥M.toStarSubalgebra`, injective.
+
+Model test of the printed claim, read as abstract containment G_X ↪ U(M) with no trace condition:
+- A representation concentrated on a small corner is close to trivial but not trivial, so "close to trivial" alone gives no
+  contradiction.
+- The claim is still true, by a condensation point. Distinct kernels make the generator tuples (u(s)Ω)_s distinct, since Ω is
+  separating, and uncountably many of them in the separable space H^S have a non-isolated point X.
+- For each δ there is Y ≠ X within δ. (T) gives v with u_X(g) v u_Y(g)* = v and ‖v − Ω‖ ≤ δ/ε.
+- The kernels differ, so simplicity of G_X or of G_Y makes u_X(Γ) fix v. Hence ‖u_X(g)Ω − Ω‖ ≤ 2δ/ε for every δ, u_X is
+  trivial, and that contradicts injectivity.
+- The argument uses only a tracial standard form on a separable H and simplicity of the quotients. Factoriality is not needed.
+
+Staging:
+- S1: statement Props.
+- S2: the Hilbert core, with no von Neumann algebra.
+- S3: the standard-form instantiation, R_w = J w* J.
+- S4: condensation ⇒ countable, then the endpoint over the "different kernels" sentence `bdd19b7d1e1f`.
