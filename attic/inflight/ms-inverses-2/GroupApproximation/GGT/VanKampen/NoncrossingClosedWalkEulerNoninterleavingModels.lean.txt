@@ -81,10 +81,8 @@ theorem roseCycle_not_passagesNoninterleaving :
 /-- **The passages of the lake do not interleave**: both are one rotation step. -/
 theorem lakeCycle_passagesNoninterleaving :
     PassagesNoninterleaving OsinPocketLakeModel.M ([0, 2] : List (Fin 4)) := by
-  rintro ⟨i, hi⟩ ⟨j, hj⟩ hij -
-  have hi' : i < 2 := hi
-  have hj' : j < 2 := hj
-  interval_cases i <;> interval_cases j
+  intro i j hij _
+  fin_cases i <;> fin_cases j
   · exact absurd rfl hij
   · exact iff_of_false (not_rotationBetween_of_sigma_eq (by decide))
       (not_rotationBetween_of_sigma_eq (by decide))
@@ -96,10 +94,8 @@ theorem lakeCycle_passagesNoninterleaving :
 step; at `A` each of the two passages holds both endpoints of the other. -/
 theorem walk_passagesNoninterleaving :
     PassagesNoninterleaving OsinPocketCellWalkFollowsModel.M ([0, 2, 4, 6] : List (Fin 8)) := by
-  rintro ⟨i, hi⟩ ⟨j, hj⟩ hij hv
-  have hi' : i < 4 := hi
-  have hj' : j < 4 := hj
-  interval_cases i <;> interval_cases j
+  intro i j hij hv
+  fin_cases i <;> fin_cases j
   · exact absurd rfl hij
   · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
   · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
