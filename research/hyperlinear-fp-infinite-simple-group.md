@@ -86,3 +86,15 @@ Preferred strengthenings, in order: `S` torsion-free; `S` sofic.
   - They have the Haagerup property, so none is Kazhdan.
   - The abstract says nothing about soficity. Like the Burger--Mozes groups, they are live
     candidates here only.
+- **Finite-group models: template reduction (sk-trace-template, 2026-09-13, unreviewed).**
+  Every hyperlinear or sofic model through finite groups concentrates, with weight at least
+  `η²/4`, on large irreducible constituents in which some relator is non-scalar and every
+  relator is nearly scalar (`fp-simple-models-concentrate-on-template-constituents`). Consequences:
+  - There are no models through quotients of arbitrarily long direct products of quasisimple
+    classical and abelian groups, over bounded-depth derived towers. Products of general linear
+    groups are included (`fp-simple-groups-have-no-models-through-classical-products`).
+  - Induced constituents and template orbits push down to primitive permutation groups whose
+    relative minimal degree tends to `0` (`template-constituents-primitive-or-small-minimal-degree`).
+
+  The remaining room is alternating type (`fp-simple-finite-group-models-reduce-to-alternating-constituents`,
+  open).
