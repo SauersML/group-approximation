@@ -1,0 +1,19 @@
+PASS C1 I-test fails on the trefoil circle
+PASS C1 weight test fails on the trefoil circle
+PASS C2 I-test fails on a repeated relator
+PASS C2 weight test fails on a repeated relator
+PASS C3 I-test passes on x^3yxy
+PASS C3 weight test fails on x^3yxy
+PASS C4 weight matrix row x matches the paper
+PASS C4 paper orderings verify
+PASS C4 greedy I-test passes
+PASS C5 Figure 1 LOT is reduced
+PASS C5 Figure 1 LOT is injective
+PASS C5 weight test fails on all 64 orientations (passes: 0)
+PASS C6 compress [a,a,b] to one vertex
+PASS C6 path with both leaves as labels is already reduced
+PASS C6 boundary reduction removes leaf 3
+PASS C6 interior reduction folds 1 and 2
+INFO C6 survey Figure 2 LOT: reduced (3, [(0, 2, 1), (2, 0, 1)]) first test diam {"diam": 2}
+PASS C7 some orientation has cyclic I and T and passes the I-test: [(0, 1, 0, 0), (0, 1, 0, 1), (0, 1, 1, 1), (1, 0, 0, 0), (1, 0, 1, 0), (1, 0, 1, 1)]
+CONTROLS ALL_PASS 17/17

@@ -1,0 +1,1 @@
+{"n": 6, "shape": 5, "tree": [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5]], "diam": 2, "auts": 120, "labellings": 16384, "reduced": 704, "classes": 10, "first_test": {"diam": 10}, "survivors": 0, "seconds": 0.2}
