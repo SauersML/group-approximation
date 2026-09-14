@@ -59,6 +59,20 @@ groups.
   sofic group is available at once. But a finitely generated simple subring with local annihilation
   containing it must still be produced. Paradoxical rings such as Leavitt algebras are excluded,
   because the rank function is stably finite, so this route returns to crossed products.
+- **Permanence closure: dead for the hosts (sk-sofic-host-hamming, 2026-09-13, unreviewed).**
+  - Start from amenable and LEF groups and close under subgroups, directed unions, finite products, amenable
+    extensions, graphs of groups, and marked limits. That closure holds amalgams over amenable subgroups, graph
+    products and wreath products with amenable top. Every finitely generated Kazhdan group in it is LEF
+    (`kazhdan-groups-in-sofic-permanence-closure-are-lef`). The finitely presented case, with residual finiteness, is
+    `lea-permanence-closure-fp-kazhdan-groups-are-residually-finite` (sk-fp-sofic-host). The hosts are not finitely
+    presented, so they need the finitely generated form.
+  - So the host of a non-LEF input (for example `BS(2,3)`) needs soficity from a source that is not a permanence
+    operation.
+  - **Orbit full groups.** If the action has exactly equivariant finite models (profinite actions, Bernoulli shifts of
+    LEF groups, the dual actions of the LEF hosts), every finitely generated subgroup of its full group is LEF
+    (`research/artifacts/sk-sofic-host-hamming-2026-09-13-part1.md` §4). With
+    `kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf`, the only live full-group seeds are non-amenable, non-LEF
+    sofic actions with inexact models.
 - **What would settle it.** Either a sofic approximation of some `EL_n(R)/Z` that is not a local
   embedding, which by the barrier above must avoid all algebraic targets; or a proof that sofic
   infinite simple Kazhdan groups are LEF, which would refute the statement for every non-LEF sofic
