@@ -22,7 +22,8 @@ WP(G)  ≡_T  WP(Δ) ⊕ L(X).
 Over `Δ = Z` the first summand is decidable, and this is
 `subshift-elementary-group-word-problem-degree`, the formula the manuscript's corollary uses.
 
-The same holds for `G/Z(G)`, since the centre is the finite group of central scalars and its membership is decided
-by the same data.
+The same holds for `G/Z(G)`. Membership in `Z(G)` is decided with `WP(G)` by testing commutation with the finitely many generators, and `e_12(a)` is central only for `a = 0` (it must commute with `e_21(1)`), so both lower-bound reductions pass to the quotient. (For a general subshift the centre need not be finite: over a point with the Heisenberg group acting, `u_z I_3` for central `z = [x,y]` is central of infinite order.)
 
 Route: `crossed-product-el-word-problem-is-group-wp-plus-language-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Normal form with the `WP(Δ)` oracle, pattern tests with `L(X)`, and both many-one reductions re-derived. The `G/Z(G)` sentence justified itself by "the centre is the finite group of central scalars", which fails for general subshifts; the conclusion is true, and the sentence now gives the correct reason. See `research/artifacts/sk-review-4-2026-09-13-part5.md` §4.

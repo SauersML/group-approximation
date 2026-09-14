@@ -30,3 +30,5 @@ problem. It need not be residually finite: `[[T]]'` of a computable minimal subs
 by Rauzy's Theorem 2, imported in `rf-higman-embedding-for-decidable-groups-fails`, the two are different.
 
 Route: `perfect-erf-groups-have-decidable-simple-kazhdan-hosts-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Computable chain, computable Toeplitz subshift, Corollary T, the `[Δ,Δ]` embedding and the degree formula composed; the `SL_n(Z)` corollary and the converse checked. See `research/artifacts/sk-review-4-2026-09-13-part5.md` §4.

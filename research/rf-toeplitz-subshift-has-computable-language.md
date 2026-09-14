@@ -24,3 +24,5 @@ the level at which a position leaves the hole, the other a level `M` at which th
 `Δ_M`-cosets, so that at most one position of any translate of `W` is still undetermined and that position is free.
 
 Route: `rf-toeplitz-subshift-has-computable-language-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS, two wording notes.** Values at the first level leaving the hole, distinct-coset level by normality, fixed determined positions and both letters at the hole position re-derived. Notes: identify words of `W` equal in `Δ` (via `WP(Δ)`) before searching for `M`; and make every choice of Theorem T the least admissible one in a computable enumeration. See `research/artifacts/sk-review-4-2026-09-13-part5.md` §4.

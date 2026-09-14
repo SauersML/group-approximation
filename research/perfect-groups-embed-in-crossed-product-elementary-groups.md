@@ -29,3 +29,5 @@ In particular, if `Δ` is perfect then `Δ` embeds in `EL_3(R)`.
 (`shift-unit-of-subshift-crossed-product-is-not-elementary`), matching `[Z,Z] = 1`.
 
 Route: `perfect-groups-embed-in-crossed-product-elementary-groups-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Injectivity of `u`, the `K_1` class criterion for the stable `E(R)`, and the three-factor Whitehead identity landing `[Δ,Δ]` in `EL_3(R)` re-derived. The title's "only obstruction" concerns the stable elementary group. See `research/artifacts/sk-review-4-2026-09-13-part5.md` §1.

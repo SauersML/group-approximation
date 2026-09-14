@@ -27,3 +27,5 @@ full groups of measure-preserving systems. Gal–Gismatullin (uniform simplicity
 be checked before any claim of novelty.
 
 Route: `subshift-elementary-groups-are-not-uniformly-simple-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Survival of a fixed conjugate expression in the finite models, rank subadditivity, the no-return window argument bounding the rank by `m_ℓ/(2w+1)`, and the count `M ≥ 2w+1` re-derived. See `research/artifacts/sk-review-4-2026-09-13-part5.md` §6.

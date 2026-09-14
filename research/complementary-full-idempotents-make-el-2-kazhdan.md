@@ -24,3 +24,5 @@ distinct_from:
 - *R = M_2(S).* `e = E_11` gives `EL_4(S)`, which has (T) by Ershov–Jaikin-Zapirain.
 - *New case.* The subshift algebras `LC(X,F_q) ⋊ Z`, with `e` the indicator of a nonempty proper clopen set, satisfy the hypothesis
   (`subshift-el-2-is-simple-kazhdan-lef`).
+
+**Review (sk-verify-4, 2026-09-13): PASS.** The A_2 Peirce grading (Lemmas 1–2), strongness by fullness, finite generation of `eRe`, relative (T) of column roots through `EL_2(S)⋉M_2(L)`, row roots through `R^op`, the `Y_12` bounded products, and the assembly re-derived, conditional on the EJZK and Kassabov imports. See `research/artifacts/sk-review-4-2026-09-13-part5.md` §5.

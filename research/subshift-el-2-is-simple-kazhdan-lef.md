@@ -18,3 +18,5 @@ So the note's theorem (main tip, l.53: "for every $n\ge3$") holds for every `n �
 `el-2-over-every-minimal-subshift-algebra-is-kazhdan`.
 
 **Scope.** Simplicity modulo the centre for `q > 2` is NOT claimed. The binary unit trick `LC(X,F_2)^× = {1}` fails over `F_q`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Fullness of `e_W` and `e_(X∖W)`, (T), LEF, and simplicity over `F_2` (binary scalar step, the tower copy `GL_d(F_2)` with `d = 2(2w+1)`, and the six-step level propagation through three Peirce blocks) re-derived. See `research/artifacts/sk-review-4-2026-09-13-part5.md` §5.

@@ -24,3 +24,5 @@ approximations live in the rank metric, and the only algebraic way to make permu
 information. It is the quantitative half of `gap-sofic-approximations-are-local-embeddings`.
 
 Route: `rank-models-give-no-hamming-models-through-vector-actions-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Fixed set `ker(g−1)`, rank of the defect under invertible multiplication, and the exactness dichotomy re-derived. See `research/artifacts/sk-review-4-2026-09-13-part5.md` §3.

@@ -13,7 +13,7 @@ artifacts:
 
 **ESTABLISHED (unreviewed).** Let `Γ` be a finitely generated perfect amenable group. Then `Γ` is a subgroup of a group
 `G` that is infinite, finitely generated, simple, has Kazhdan's property (T), and is `F_2`-linear sofic. One may take
-`G = EL_3(LC(X,F_2) ⋊ Γ)` for a free minimal subflow `X ⊆ 2^Γ`.
+`G = EL_3(LC(X,F_2) ⋊ Γ)` for a free minimal subflow `X ⊆ 2^Γ` when `Γ` is infinite. A finite `Γ` lies in a tower copy of `GL_d(F_2)` inside any `G_X` (an infinite minimal `Z`-subshift), which is LEF and hence `F_2`-linear sofic.
 
 The hypotheses are used as follows: perfect for the embedding, amenable for the rank models, finitely generated for
 property (T) and for finite generation of `G`.
@@ -34,3 +34,5 @@ finitely generated amenable `Γ` lies in the derived subgroup of a finitely gene
 `amenable-groups-embed-in-kazhdan-linear-sofic-via-half-line`.
 
 Route: `amenable-perfect-groups-embed-in-kazhdan-linear-sofic-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS after a scope repair.** Free minimal subflow, finite generation, Steinberg simplicity with trivial centre, EJZ, rank models and the perfect-group embedding re-derived. The claim sentence allowed finite `Γ`, where the free minimal subflow is finite; it now restricts the displayed envelope to infinite `Γ` and records the finite case. See `research/artifacts/sk-review-4-2026-09-13-part5.md` §2.

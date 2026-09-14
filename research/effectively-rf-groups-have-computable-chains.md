@@ -26,3 +26,5 @@ chain.
 Used by `rf-toeplitz-subshift-has-computable-language` and `perfect-erf-groups-have-decidable-simple-kazhdan-hosts`.
 
 Route: `effectively-rf-groups-have-computable-chains-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Finite intersections of returned kernels, trivial intersection, decidable membership, computable quotients and the converse re-derived. See `research/artifacts/sk-review-4-2026-09-13-part5.md` §4.
