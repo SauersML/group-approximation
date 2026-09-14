@@ -64,7 +64,7 @@ theorem eqvGen_facePerm_run (N : CombMap.{u}) (d : N.Dart) (g : ℕ → N.Dart) 
 
 theorem faceOf_pow (M : CombMap.{u}) (x : M.Dart) (j : ℕ) :
     M.faceOf ((M.facePerm ^ j) x) = M.faceOf x :=
-  (M.faceOf_eq_iff _ _).mpr ⟨-(j : ℤ), by rw [zpow_neg, zpow_natCast, Equiv.Perm.inv_apply_self]⟩
+  faceOf_facePerm_pow M x j
 
 theorem facePerm_pow_succ_apply (M : CombMap.{u}) (x : M.Dart) (i : ℕ) :
     M.facePerm ((M.facePerm ^ i) x) = (M.facePerm ^ (i + 1)) x := by
@@ -162,9 +162,9 @@ theorem false_of_interleave (M : CombMap.{u}) (hM : M.IsPlanar) (x₀ : M.Dart) 
     rw [← hjq]
     show (M.facePerm ^ (jq - t)) (M.alpha x₀) = (M.facePerm ^ jq) (M.alpha x₀)
     have e : (M.facePerm ^ jq) (M.alpha x₀) = (M.facePerm ^ (jq - t)) (W t) := by
-      rw [hW]
-      simp only
-      rw [← Equiv.Perm.mul_apply, ← pow_add, show jq - t + t = jq by omega]
+      show (M.facePerm ^ jq) (M.alpha x₀) =
+        (M.facePerm ^ (jq - t)) ((M.facePerm ^ t) (M.alpha x₀))
+      rw [facePerm_pow_apply_pow, show jq - t + t = jq by omega]
     rw [e, hWt]
   -- (b) `X s` reaches `α (X q)`
   have hb1 : Relation.EqvGen (AvoidEdgeStep M1 dq) (X s) z := by
