@@ -28,6 +28,7 @@ requires:
   - subshift-el3-out-contains-index-and-subshift-automorphisms
   - subshift-group-factor-out-contains-z
   - bounded-generation-makes-el3-bi-interpretable-with-ring
+  - singer-identities-make-subshift-el3-isos-standard
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
@@ -41,3 +42,5 @@ Members added by sk-cairn-steward-2 (2026-09-13, third pass, sk landings to 22:4
 Members added by sk-cairn-steward-4 (2026-09-14, second pass): `subshift-group-isomorphism-preserves-rational-spectrum`.
 
 Members added by sk-cairn-steward-4 (2026-09-14, third pass): `frobenius-support-idempotents-give-boolean-realization`.
+
+Member added by sk-cairn-steward-5 (2026-09-14, final pass, sk landings to 11:04): `singer-identities-make-subshift-el3-isos-standard` (sk-orthogonality-o; unreviewed). It is a sufficient condition for standardness, and its proof imports the unreviewed `subshift-gl3-index-kernel-is-elementary-group` and a flagged Glasner–Weiss-type division step (Div). The recognition statement itself, `subshift-el3-isomorphisms-recognize-diagonals-up-to-normalizer`, stays among the open problems.
