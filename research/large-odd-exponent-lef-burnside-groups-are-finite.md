@@ -35,6 +35,23 @@ this is equivalent to `large-odd-exponent-local-restricted-burnside` at the same
    approximants are eventually non-nilpotent, of unbounded derived length, and of
    unbounded linear degree. By clause 3 of the equivalence, when the principle
    fails a counterexample can be taken to be a quotient of `B(m,N)`.
-4. **Literature.** Not searched. Whether infinite finitely generated LEF (or
-   amenable, or sofic) groups of bounded exponent exist was not checked against a
-   source.
+4. **Literature (2026-09-13).** TeX read on MSI; verbatim pins in
+   `research/artifacts/hl-lef-burnside-literature-2026-09-13.md`.
+   - Bradford (arXiv:2104.07111, l.1676): "it is not known whether infinite free
+     Burnside groups are LEF". He records that either free Burnside groups of
+     large odd exponent locally embed into nonabelian finite simple groups, or a
+     non-residually-finite hyperbolic group exists, citing Caprace §5.4.
+   - Caprace (arXiv:1709.05949, Problem `prob:limits`(ii), l.1299): "Can an
+     infinite group of finite exponent be a limit of non-abelian finite simple
+     groups?" His Corollary `cor:Olsh5` and the remark after it (l.1344–1348)
+     say that residual finiteness of all hyperbolic groups would make Burnside
+     groups such limits.
+5. **Equivalence with Caprace's limit problem.** By
+   `lef-burnside-groups-iff-finite-simple-limits`, infinite finitely generated
+   LEF groups of exponent dividing `N` exist exactly when some infinite finitely
+   generated group of exponent dividing `N` is a limit of nonabelian finite
+   simple groups. Such a limit can be taken perfect, without nontrivial finite
+   quotients, with simple approximants of unbounded linear degree. Route
+   `large-odd-exponent-lef-burnside-via-no-simple-limits` derives this claim
+   from `large-odd-exponent-no-finite-simple-limits`, the negative answer to
+   Caprace's problem at one large odd exponent.
