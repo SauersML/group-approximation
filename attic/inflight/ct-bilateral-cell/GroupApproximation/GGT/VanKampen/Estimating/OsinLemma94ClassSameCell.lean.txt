@@ -11,6 +11,8 @@ included, are reversed arcs `p` and `q` of `Π`, and the face walk reads `X T Y 
 of the windows, without the gaps (`OsinLemma94ClassPolygons.exists_sameCellWalk`).
 
 * `OsinLemma94ClassPolygons.classWindow`, `runWindow`, `class_segment_value`.
+* `OsinLemma94ClassPolygons.exists_sameCellWalk`: the face walk `X T Y S`, the reversed arcs `p` and `q` equal to the
+  class windows, and the corner relations of the four windows.
 * `false_of_classSameCell_value_one_X` and `_Y`: if a rotation of `∂Π` reads `q B p A` and `X B` (or `Y A`) reads `1`,
   then `q B p` (or `p A q`) is a quasi-geodesic hairpin with long ends and a value of word norm less than `ε`.  Only the
   corner relations of the four windows are used, not the value of the face walk, so the gaps do not enter.
