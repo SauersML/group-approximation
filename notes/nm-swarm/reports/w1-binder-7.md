@@ -339,9 +339,13 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
       - `CellPocketPinchSectionDistinctStatement`, with `_of_section`;
       - `CellPocketOuterPinchStepSectionDistinctStatement` and `cellPocketPinchSectionDistinctStatement_of_outerPinchStep`;
       - `CellPocketFaceSet.copyRegion_of_pinchSectionDistinct`.
-  - Draft, unprobed: `Estimating/OsinPocketCellOuterPinchStep` (attic f1b0e738c).
+  - Draft, unprobed: `Estimating/OsinPocketCellOuterPinchStep` (attic c9d76ed5d, md5 d2d7bffa; earlier attic f1b0e738c).
     - Contents: `pinchSplit_first_proper`, `pinchSplit_second_proper`, `pinchSplit_closedWalk_of_isolated`, and
       `exists_cellPinchStepDistinct_of_isolated`.
+    - `exists_cellPinchStepDistinct_of_isolatedTurn` instantiates w1-binder-3's list-level `OuterPinchIsolated`
+      lemmas at `c := K.boundary.cycle`: `isChain_of_rel_next`, `turnKept_of_isolated`, `runsIntoY_of_isolated` and
+      `runsIntoX_of_isolated`. It mirrors the section version `PocketFaceSet.exists_pinchStepSection_of_isolatedTurn`.
+    - A background watcher probes it once w1-binder-3's `OsinPocketOuterPinchSplit` and `…Isolated` land.
     - It imports w1-binder-3's unlanded `OsinPocketOuterPinchSplit`, so it waits for that landing. The list-level isolated-turn
       step and the corner selection will follow w1-binder-3's `…Isolated` and `…Corners`.
     - Exterior corners need a cell transport of `outerSpurThickening`, which this lane builds.
