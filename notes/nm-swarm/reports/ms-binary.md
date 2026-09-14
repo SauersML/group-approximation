@@ -385,3 +385,76 @@ Verdict:
   down. It is not a consequence of the absorption.
 - `pinchSplitAbsorption` enters (a), through `OsinLemma94LongTransitionInput` (ms-compress-1), not (c) or (d).
 - No false Prop found. Sent to main as a blocker, with options.
+
+## The class producer `Q` (main's ruling 23:12, option 2)
+
+Ruling: this lane takes `OsinLemma94ClassJoins`, the producer of `Q`, with gaps and end loops together, proving (c) and
+(d) of `OsinLemma94ClassEndLoopsBudgetInput`.
+- Clause (a)'s long-transition count goes to ms-compress-1 (`OsinLemma94LongTransitionInput`, as declared at 013a2dc59).
+  The interface arrived by message at 23:1x; no reply was needed.
+- ms-inverses-3 does the bad-junction exclusion.
+- ms-core-2 is not resumed, and its plan is taken from its report.
+
+**State at origin 37551fd93 (23:16).**
+- The absorption, `ClassEndLoopsSide` and `LoopCutTwoArcs` are all root-wired.
+- No `ClassJoins` or `badJunctions` declaration exists on origin.
+- ms-core-2 left one unlanded draft, `Estimating/OsinLemma94ClassProducerGaps.lean` (183 lines, 21:45, no green record,
+  no backup, no attic copy). It holds `ClassProducer.cellGapOf`, `boundaryGapOf`, `Backward`, `isChain_append_cellGapOf`,
+  `OsinLemma94RealizedPolygons.junctionGap`, `ClassJoins` and `badJunctions`.
+- Its other three planned files (`ClassProducer`, `…CellArc`, `…BoundaryArc`) were never written.
+
+**The join rule** is ms-core-2's `ClassJoins P k s`. All four conditions must hold:
+- `KindJoins k s`;
+- the junction gap reads a word of value one;
+- a same-cell gap has no dart on the polygon face;
+- a same-section junction moves forward along `∂Δ`.
+
+The cell gap is `α (facePerm^m a), …, α (facePerm a)` along the cell from `a = α e'` to `b = α e`, with `m` least.
+
+**Hand model tests of the join rule on the lobe models.**
+- **M1, a simple lobe `h h' (hh')⁻¹` at `v`, enclosing a G-triangle `g`, with a polygon `f` along `Π` on both sides.**
+  - The gap is `g`'s darts. Its value is one, and none of its darts lies on `f`, so the sides join.
+  - The lobe darts lie in `f`'s class darts, and (d) holds by its first option when `f` has at least two classes.
+  - (a) is not charged.
+- **M2, nested lobes: a big lobe `L` containing a one-class polygon `f₀`, itself carrying a small lobe `g` at `v`.**
+  - The outer polygon's gap across `L` holds the darts of `f₀` and `g`, with value one, so it joins and covers both.
+  - Inside `L`, every junction of `f₀` joins, so `f₀` has one class (`exists_cyclicRuns`: count ≤ max 1 0).
+- **M3, a loop of `∂Π` at `v` enclosing another relator cell `Π'`.**
+  - The gap value is the product of the enclosed cell values, generally not one, so the junction is refused and counted
+    in `badJunctions`.
+  - The exclusion is a loop-cut kill of a pocket with a relator cell inside (`false_of_pocketRegion_of_below`, or the
+    two-arc form 6672828c1), which is ms-inverses-3's item.
+  - If the product happens to be one, the junction joins and `cell_arc` still holds, because the gap is a run of `Π` darts.
+- **M5, a value-one pearl on `∂Δ` (a hair `x x⁻¹` or one G-face), sec5-sentences' model.** `boundaryGapOf` reads the pearl,
+  with value one, moving forward, so the sides join and (a) is not charged.
+- **M6, a class of a polygon that runs all around one cell.** With no gap dart on the face walk, a first dart that recurs
+  would occur twice on the sides or on a gap, which is impossible. So the class is one arc of length at most
+  `|cellDarts j|` (hull-count94's argument).
+- **M4, a lobe or a flower of lobes at a class end next to a different kind** (short, cutting, boundary or another cell).
+  - This is not a gap, so it needs an end loop.
+  - The returns of `∂Π` to the end vertex read one value-one subword of the relator, of length at most
+    `⌈(c + 2)/λ⌉₊`, so (c) holds for that end loop.
+  - Defining `classEnd` from the rotation at the end vertex is the hard design item of this item.
+
+Verdict: the join rule passes M1, M2, M3, M5 and M6. M4 is a design item for the end loops, not a defect of the rule.
+
+CLAIM class producer from ClassJoins GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassJoins.lean
+CLAIM class producer end loops GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassJoinsEndLoops.lean
+ADOPT (credited to ms-core-2; probed and landed by this lane, file unchanged unless red)
+GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassProducerGaps.lean
+
+Plan:
+- **`ClassProducerGaps`, adopted.** The file is unchanged unless it is red.
+- **`ClassJoins` module, producer.**
+  - `classPolygonsOfJoins P …`, with classes the runs of `exists_cyclicRuns` under `ClassJoins`, gaps
+    `junctionGap` on joined sides and `[]` on run ends.
+  - `cell_arc` and `boundary_arc` through `isChain_append_cellGapOf` and `exists_appendArc`
+    (`OsinLemma94SameCellSpan`); `quasiGeodesic` from `OsinCCondition`.
+  - The counts: `classCount k ≤ max 1 #¬ClassJoins`, and on polygons with at least two classes
+    `#otherClasses k ≤ #short + #runEnds + #badJunctions`.
+  - The residual `OsinLemma94BadJunctionInput` (`∑_{relatorPolygons} #badJunctions ≤ K n`, under the binders of
+    `ClassCountInput`) is stated for ms-inverses-3.
+- **`ClassJoinsEndLoops` module.** `classEnd`, `regionEnd` and clauses (c) and (d) for `classPolygonsOfJoins`.
+- **Handoff.** Clause (a) for this `Q` is assembled from ms-compress-1's `osinLemma94KindTransitionInput_of_longTransitions`,
+  `card_filter_not_le_kindNonJoins_add`, ms-inverses-3's bad-junction input, and ct-bilateral-cell's
+  `classBudget_of_otherClasses` for the cutting classes.
