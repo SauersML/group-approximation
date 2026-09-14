@@ -1,5 +1,4 @@
 import Mathlib.Data.Nat.Find
-import Mathlib.Order.Monotone.Basic
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -13,19 +12,20 @@ the source.  This module is the combinatorial core, independent of the metric es
 * `latestPartner near a' b g`: the largest target index `h ≤ b` that is a partner (`near g'' h`) of some source index
   `g'' ∈ [g, a']`.  It is antitone in `g` (`latestPartner_antitone`) for any relation `near`, and it is a partner of
   some later source point (`exists_later_partner`).  The metric half bounds the distance from `g` to that later point.
-* `exists_step_lt_of_lt`: along any breakpoints `g₀ < … < g_m` an antitone partner function that decreases strictly
-  overall decreases strictly at some step: the split point with a strictly positive target arc.
+* `exists_step_lt_of_lt`, `exists_positive_split`: along any breakpoints `g₀ < … < g_m` an antitone partner function
+  that decreases strictly overall decreases strictly at some step: the split point with a strictly positive target
+  arc.
 * Model tests: `antiparallelPartners` (source `sⁿ`, target `(s⁻¹)ⁿ`, partner `n - g`) is antitone with the right
-  endpoints, and every breakpoint list of it has a strict step.
+  endpoints, the latest partner recovers it, and a breakpoint list of it has a strict step.
 -/
 
 namespace GroupApproximation.GGT.VanKampen.UnboundEstimate
 
 open Classical in
 /-- **The latest partner** of source index `g`: the largest `h ≤ b` partnered (`near g'' h`) with some source index
-`g'' ∈ [g, a']`, or `0` if there is none. -/
+`g''` with `g ≤ g'' ≤ a'`, or `0` if there is none. -/
 noncomputable def latestPartner (near : ℕ → ℕ → Prop) (a' b g : ℕ) : ℕ :=
-  Nat.findGreatest (fun h => ∃ g'' ∈ Finset.Icc g a', near g'' h) b
+  Nat.findGreatest (fun h => ∃ g'', g ≤ g'' ∧ g'' ≤ a' ∧ near g'' h) b
 
 theorem latestPartner_le (near : ℕ → ℕ → Prop) (a' b g : ℕ) : latestPartner near a' b g ≤ b := by
   classical
@@ -36,25 +36,24 @@ theorem latestPartner_antitone (near : ℕ → ℕ → Prop) (a' b : ℕ) {g g' 
     latestPartner near a' b g' ≤ latestPartner near a' b g := by
   classical
   unfold latestPartner
-  refine Nat.findGreatest_mono (fun h ⟨g'', hg'', hnear⟩ => ⟨g'', ?_, hnear⟩) le_rfl
-  rw [Finset.mem_Icc] at hg'' ⊢
-  exact ⟨le_trans hgg' hg''.1, hg''.2⟩
+  exact Nat.findGreatest_mono
+    (fun h ⟨g'', hg1, hg2, hnear⟩ => ⟨g'', le_trans hgg' hg1, hg2, hnear⟩) le_rfl
 
 /-- A partner of `g` itself bounds the latest partner from below. -/
 theorem le_latestPartner (near : ℕ → ℕ → Prop) {a' b g h : ℕ} (hga' : g ≤ a') (hhb : h ≤ b)
     (hnear : near g h) : h ≤ latestPartner near a' b g := by
   classical
   unfold latestPartner
-  exact Nat.le_findGreatest hhb ⟨g, Finset.mem_Icc.mpr ⟨le_rfl, hga'⟩, hnear⟩
+  exact Nat.le_findGreatest hhb ⟨g, le_rfl, hga', hnear⟩
 
 /-- **The latest partner is a partner of a later source point**, as soon as `g` has some partner `≤ b`. -/
 theorem exists_later_partner (near : ℕ → ℕ → Prop) {a' b g h : ℕ} (hga' : g ≤ a') (hhb : h ≤ b)
     (hnear : near g h) :
-    ∃ g'' ∈ Finset.Icc g a', near g'' (latestPartner near a' b g) := by
+    ∃ g'', g ≤ g'' ∧ g'' ≤ a' ∧ near g'' (latestPartner near a' b g) := by
   classical
   unfold latestPartner
-  exact Nat.findGreatest_spec (P := fun h => ∃ g'' ∈ Finset.Icc g a', near g'' h) hhb
-    ⟨g, Finset.mem_Icc.mpr ⟨le_rfl, hga'⟩, hnear⟩
+  exact Nat.findGreatest_spec (P := fun h => ∃ g'', g ≤ g'' ∧ g'' ≤ a' ∧ near g'' h) hhb
+    ⟨g, le_rfl, hga', hnear⟩
 
 /-- **The split point.**  A function that decreases strictly from index `0` to index `m` decreases strictly at some
 step `i < m`. -/
@@ -91,11 +90,12 @@ theorem antiparallelPartners_endpoints (n : ℕ) :
 /-- In the antiparallel model, the latest partner for "same vertex" is the antiparallel partner. -/
 theorem latestPartner_antiparallel (n g : ℕ) (hg : g ≤ n) :
     latestPartner (fun g'' h => g'' + h = n) n n g = antiparallelPartners n g := by
-  refine le_antisymm ?_ (le_latestPartner _ hg (by unfold antiparallelPartners; omega)
-    (by unfold antiparallelPartners; omega))
-  obtain ⟨g'', hg'', hnear⟩ := exists_later_partner (fun g'' h => g'' + h = n) (a' := n) (b := n)
+  refine le_antisymm ?_ (le_latestPartner (fun g'' h => g'' + h = n) hg
+    (show antiparallelPartners n g ≤ n by unfold antiparallelPartners; omega)
+    (show g + antiparallelPartners n g = n by unfold antiparallelPartners; omega))
+  obtain ⟨g'', hg1, hg2, hnear⟩ := exists_later_partner (fun g'' h => g'' + h = n) (a' := n) (b := n)
     hg (Nat.sub_le n g) (show g + (n - g) = n by omega)
-  rw [Finset.mem_Icc] at hg''
+  have hnear' : g'' + latestPartner (fun g'' h => g'' + h = n) n n g = n := hnear
   unfold antiparallelPartners
   omega
 
