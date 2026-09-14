@@ -259,3 +259,38 @@ CLAIM the bridge from outer following: GroupApproximation/GGT/VanKampen/Estimati
 - `PocketFaceSet.firstTurns_of_outerFollows` and `CellPocketFaceSet.firstTurns_of_outerFollows`.
 - Any producer that changes the face set until the outer cycle follows consumes it, for example lake absorption or a
   vertex split outside.
+- 23:37: probe 0913-233416-59339 GREEN.
+  - `OsinPocketFirstTurnsOfOuterFollows` built with 0 warnings. All 7 `#audit_axioms` are within
+    `[propext, Classical.choice, Quot.sound]`.
+  - `OsinPocketCellFirstTurnsLakeModel` was restored from cache with the md5 it had when built in w1-binder-4's probe
+    0913-214335-23508. That log shows 14 standard audits and 0 warnings, and its direct imports are unchanged since
+    that base.
+  - Both modules land in the same commit as this entry.
+  - `Estimating/OsinPocketFirstTurnsOfOuterFollows` (this lane):
+    - `FirstTurnWalk.firstTurn_prev_of_outerFollows`: on a noncrossing closed walk whose outer cycle follows its
+      boundary, the first turn from `alpha e` lands on the reversal of the walk dart before `e`
+      (`IsNoncrossingClosedWalk.outerCycle_boundaryPerm_val` with `FirstTurn.of_boundaryWalk`);
+    - `FirstTurnWalk.firstTurnChain_of_outerFollows` and `outerFollows_of_firstTurnChain`: the chain condition of
+      `FirstTurns` on `w`, and back through `FirstTurnWalk.outerCycle_followsBoundary`;
+    - `PocketFaceSet.firstTurns_of_outerFollows` and `firstTurns_iff_outerFollows`, and the same for
+      `CellPocketFaceSet`.
+  - `Estimating/OsinPocketCellFirstTurnsLakeModel` (w1-binder-4's bytes, attic 8dea85688, taken over on main's 23:12
+    order; not edited here):
+    - `FirstTurnOrder`, `FirstTurn.eq_of_walkKeep`, `FirstTurnOrder.all_or_none`;
+    - the monogon calibrations `multipleEdgeLake_not_firstTurnOrder` and `doubleTouch_not_firstTurnOrder`;
+    - the proper-arc lake `properLake_not_firstTurnOrder`.
+- Status of the producer: BLOCKED on a choice, not refuted.
+  - For a noncrossing walk-order pocket, first-turn order ⟺ outer following (proved here).
+  - Outer following fails at map level on the proper-arc lake, where the source cell lies in the lake. So route (a),
+    first-turn order of the orientation producer's pocket, fails for section and cell pockets alike. `absorb` needs the
+    source in the exterior piece.
+  - Candidate routes, for main to choose:
+    1. Exclude lakes from least area and the optimal family, as a named statement that is model-tested first.
+    2. Change the face set.
+       - A lake holding a cell: in the cell case, absorbing the lake with the cell leaves a short side and an arc of the
+         other cell, which is a loop cut with fewer cells and is killed by `OsinLoopCut.false_of_below`.
+       - A lake holding no cell: `absorb`, then a Jordan-type lemma that the absorbed cycle follows.
+       - A lake holding the source, section case: no kill known.
+    3. Allow the pinch step to take walk order at outer pinches.
+  - w1-binder-7 is formalizing `PocketFaceSet.sourceArc_lt_of_firstTurns` (first-turn order forces a proper source
+    arc). Once it lands, a producer needs only `K.FirstTurns`.
