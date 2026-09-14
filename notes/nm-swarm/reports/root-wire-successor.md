@@ -47,6 +47,7 @@ there, so this lane rebuilt their core in a scratch tool (`rwprep.py`):
 | `Manuscript.ChainCore.BilateralThreeClosures`, `Algebra.BilateralThreeCellZOrder` | both reach `Dynamics/BilateralThreeCellClopen`, which redeclares `ClopenCrossedProduct.coeff_injective` (also in `Dynamics/ClopenCrossedProductComap`, chain-core) | ct-bilateral-cell |
 | `Dynamics.ClopenCrossedProductAlgebra` | global `ClopenCoeff.instAlgebra`, a second `Algebra (ZMod 2) R_X` beside ms-units' `zmodTwoAlgebra`; waits for main's ruling | ms-compress-3 |
 | `Estimating.OsinLemma94ClassCovers` | red since a25fe2383 (roster) | hull-component |
+| `Algebra.IntegerPolynomialUnisolvence` | red: never compiled, application type mismatch at 122:80 (ℤ vs ℂ coefficients); ms-traces-1 probe 0913-185628-64856 | dgo-geometric |
 | `Dynamics.CoreKernelFTwo` and its importers (`CoreKernelRelativeElementary`, `InvolutionLocalizationClosed`, ...) | FAILED 0913-182039-93403 newer than GREEN 0913-181305-25708 | ms-units |
 | LIX campaign files | in flight | LIX lanes |
 
@@ -79,3 +80,19 @@ Pre-flight at 172725674:
   reachable files, 0 held, 0 without green evidence.
 
 Result: pending.
+
+## Evidence and holds, 18:45–19:10
+
+- `coeff_injective` collision fixed by ct-bilateral-cell at 131abe1b5.
+  - GREEN record 0913-185912-77650 at abcbd8c9c covers the four bilateral modules.
+  - `BilateralThreeClosures` and `BilateralThreeCellZOrder` join the wave 18 draft.
+- ms-traces-1 GREEN record 0913-190411-7498 covers seven unevidenced tops: `LaurentMonomialUnits`, `SupportedCodimension`,
+  `SurgeryGCellCollapse`, `LeavittKOnePowerColimit`, `LeavittKOneRankTwo`, `DynamicRankBudgetInducedCoreReverse`,
+  `AmenableTraceAnswersProblemX`. They join the wave 19 draft.
+  - All seven were restored from the artifact cache, and that probe job predates the re-elaboration fix 7d41d1a16.
+  - This lane's lexical scan finds no `sorry`/`admit`/`axiom`/`native_decide` in any newly reachable file.
+- Tool fix: `covering_green` now returns the newest covering GREEN record under either rule.
+  - Before, an older md5 match could shadow a newer transitive cover, so a released module still read as held.
+- Joint pre-flight of waves 17–19 at 2f116d20d: 84 modules, closure 6531 → 6701, no hold, no missing evidence, no
+  dangling import, no cycle. The only duplicate-name hits are docstring prose (`theorem of both modules`,
+  `structure by unfolding`, `class by class`).
