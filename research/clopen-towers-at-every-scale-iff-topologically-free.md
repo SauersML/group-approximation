@@ -31,3 +31,5 @@ of `X` into `F`-free sets need exist; they cover the dense open set
 `X \ ⋃_{γ ∈ F\{e}} Fix(γ)`, and a locally constant function is determined there.
 
 Route: `clopen-towers-at-every-scale-iff-topologically-free-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part1.md`):** PASS. Both directions and Lemmas 2 and 2' re-derived.

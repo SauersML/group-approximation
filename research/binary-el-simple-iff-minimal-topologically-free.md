@@ -33,3 +33,5 @@ small clopen sets, is replaced by the density statement of
   roots `e_{ij}(e_V u_γ)` are needed there; this claim is over `F_2` only.
 
 Route: `binary-el-simple-iff-minimal-topologically-free-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part1.md`):** PASS. Propositions 3-5 and Theorems 6-7 re-derived. The backward direction is conditional only on the reviewed Steinberg criterion and the transformation-groupoid identification.

@@ -11,8 +11,8 @@ distinct_from:
 ---
 
 **ESTABLISHED (unreviewed).** Let `L` be a finitely generated group acting minimally and topologically freely on a
-Cantor set `Z`, and let `R = LC(Z,F_2) ⋊ L` and `n ≥ 3`. Then `EL_n(R)` is an infinite, finitely generated simple
-group, by the tower argument of `simple_kazhdan_sofic_group.tex` (main, rev1 5b1890ce6c) with one step replaced.
+Cantor set `Z`, and let `R = LC(Z,F_2) ⋊ L` and `n ≥ 3`. Then `EL_n(R)` is an infinite simple group, finitely generated
+when `R` is (for example when `Z` is a subshift over `L`), by the tower argument of `simple_kazhdan_sofic_group.tex` (main, rev1 5b1890ce6c) with one step replaced.
 
 The manuscript's proof calls a clopen `V` *small* (for a fixed `g`, with `w` bounding the word length of the group
 elements in the entries of `g` and `g^(-1)`) when `V ∩ ℓV = ∅` for every `ℓ ≠ 1` in the ball `B_(2w)`, and every
@@ -47,3 +47,5 @@ changes, l.143-144 of main `5b1890ce6c`, and its route gives the replacement tex
 repairs agree: small sets cover a dense open set, and a locally constant function vanishing on a dense set is zero.
 
 Route: `tower-simplicity-topologically-free-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part1.md`):** PASS with scope repair R1: finite generation of `EL_n(R)` needs `R` finitely generated (the odometer is a counterexample), so the statement now says "finitely generated when `R` is"; the downstream lamplighter use is unaffected.

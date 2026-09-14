@@ -39,7 +39,7 @@ Suppose `g` commutes with every `e_(ij)(e_V)`, `V` small, `i ≠ j`.
 - So `g = cI` with `c ∈ LC(Z,F_2)` invertible. Over `F_2` the only such `c` is `1`, so `g = 1`, a contradiction.
 
 **3. The tower.** Fix such `h = e_(ij)(e_V)`, put `d = n|B_w|`, and for `a, b ∈ B_w` put `ε_(ab) = e_(aV) u_(ab^(-1))`.
-Then `ε_(ab) ε_(a'b') = e_(aV) e_(ab^(-1)a'V) u_(ab'^(-1))`, which is `ε_(ab')` when `b = a'` and `0` otherwise, since
+Then `ε_(ab) ε_(a'b') = e_(aV) e_(ab^(-1)a'V) u_(ab^(-1)a'b'^(-1))`, which is `ε_(ab')` when `b = a'` and `0` otherwise, since
 `b^(-1)a' ∈ B_(2w)` and `V` is small. Indexing `F_2^d` by pairs `(p,a)`, `1 ≤ p ≤ n`, `a ∈ B_w`, the map
 `ψ(E_((p,a),(q,b))) = ε_(ab) E_(pq)` is linear, injective and multiplicative, and `A ↦ I - ψ(I_d) + ψ(A)` embeds
 `GL_d(F_2)` into `GL_n(R)`. Its image `H` lies in `G`: transvections generate `GL_d(F_2)`, one between `(p,a)` and
@@ -67,3 +67,5 @@ cover `Z`, so `1 = 1 - Π_i(1 - e_(ℓ_iV)) ∈ J` and `N = G`.
   and the covering step in 5 fails, as it must.
 - Non-topologically-free action, for example `L` acting through a proper quotient with a global fixed clopen set: step
   1 fails, and simplicity is false, since the kernel of the restriction gives a proper normal subgroup.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part1.md`):** PASS; steps 1-5 re-derived. Repair R2: the product formula in step 3 had the group index `ab'^(-1)` where it should be `ab^(-1)a'b'^(-1)`; this is corrected, and the verdict is unchanged.
