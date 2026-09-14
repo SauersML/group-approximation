@@ -104,7 +104,26 @@ four coordinates in `G_R`.
 
 ## 6. Results so far (INTERIM)
 
-First triage pass (job 790868), before graph products and cyclic-by-cyclic groups were recognized:
+**Second triage pass** (job 792117 stage one, `analyze3.json`), with graph products and cyclic-by-cyclic groups
+recognized:
+- **199 of the 394 rule classes are excluded over every group, and 195 survive.**
+- The 969 minimal failing partitions decide as follows.
+
+  | table group | amenable | non-amenable | undecided |
+  |---|---|---|---|
+  | free products of cyclics | 624 | 131 | |
+  | graph products of cyclics | 85 | 13 | |
+  | cyclic-by-cyclic | 61 | | |
+  | finite | 36 | | |
+  | `Z^2` | 3 | | |
+  | other | | | 16 |
+
+- **Survivors.** 160 distinct partitions block the 195 surviving rules: 131 non-amenable free products of
+  cyclics, 13 non-amenable graph products and 16 undecided. They have between 7 and 11 quotient classes, so at
+  most five coincidences among the twelve memory quotients.
+- Only 3 surviving rules are blocked solely by undecided groups.
+
+**First triage pass** (job 790868), before graph products and cyclic-by-cyclic groups were recognized:
 - 183 of the 394 rule classes excluded over every group, 211 surviving;
 - of the 969 minimal failing partitions:
   - amenable: 121 finite, 638 free products of cyclics, 3 `Z^2`;
