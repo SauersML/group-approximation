@@ -102,10 +102,9 @@ theorem card_cuttingTransitions_le_sameFaceStarts (P : OsinLemma94RealizedPolygo
     refine Finset.mem_coe.mpr (S.diagram.toCombMap.mem_sameFaceStarts.mpr ⟨?_, ?_⟩)
     · exact (S.diagram.toCombMap.mem_sameFaceDarts _ _).mpr
         ⟨P.faceOf_of_mem_sideDarts htn hymem, P.cutting_internal k _ htn hcut _ hymem⟩
-    · obtain ⟨x, hx⟩ : ∃ x, x ∈ (P.sideDarts k s).getLast? := by
-        obtain ⟨a, l, hal⟩ := List.exists_cons_of_ne_nil (P.side_ne_nil k s hsn)
-        exact ⟨(P.sideDarts k s).getLast (P.side_ne_nil k s hsn),
-          List.getLast?_eq_getLast (P.side_ne_nil k s hsn) ▸ rfl⟩
+    · obtain ⟨x, hx⟩ : ∃ x, x ∈ (P.sideDarts k s).getLast? :=
+        ⟨(P.sideDarts k s).getLast (P.side_ne_nil k s hsn),
+          List.getLast?_eq_getLast (P.side_ne_nil k s hsn)⟩
       have hfp := P.facePerm_getLast_eq_head_mod hsn hx hy
       have hsymm : S.diagram.toCombMap.sigma.symm
           ((P.sideDarts k ((s + 1) % P.sideCount k)).headD x0) =
@@ -114,11 +113,8 @@ theorem card_cuttingTransitions_le_sameFaceStarts (P : OsinLemma94RealizedPolygo
         exact hfp.symm
       rw [hsymm]
       intro hmem
-      have halpha := ((S.diagram.toCombMap.mem_sameFaceDarts _ _).mp hmem).1
       exact P.faceOf_alpha_ne_of_cell_or_boundary hsn hkind (List.mem_of_mem_getLast? hx)
-        (by rw [S.diagram.toCombMap.alpha_involutive]; exact
-          (P.faceOf_of_mem_sideDarts hsn (List.mem_of_mem_getLast? hx)).symm.trans
-            (by rw [← halpha]))
+        ((S.diagram.toCombMap.mem_sameFaceDarts _ _).mp hmem).1
   · intro s1 hs1 s2 hs2 h12
     obtain ⟨hs1n, -, -⟩ := P.kinds_of_mem_cuttingTransitions (Finset.mem_coe.mp hs1)
     obtain ⟨hs2n, -, -⟩ := P.kinds_of_mem_cuttingTransitions (Finset.mem_coe.mp hs2)
@@ -167,9 +163,9 @@ theorem alpha_mem_forestDarts_iff (d : S.diagram.toCombMap.Dart) :
   rw [mem_forestDarts, mem_forestDarts, S.diagram.toCombMap.alpha_involutive d]
   constructor
   · rintro ⟨h1, h2⟩
-    exact ⟨h1.symm, h1 ▸ h2⟩
+    exact ⟨h1.symm, by rw [h1]; exact h2⟩
   · rintro ⟨h1, h2⟩
-    exact ⟨h1.symm, h1.symm ▸ h2⟩
+    exact ⟨h1.symm, by rw [h1]; exact h2⟩
 
 /-- A dart-minimal family has no forest dart fixed by the rotation. -/
 theorem sigma_ne_of_mem_forestDarts (hS : S.DartMinimal) {x : S.diagram.toCombMap.Dart}
@@ -187,7 +183,7 @@ closed under reversal and rotation, so every dart would lie on it, the exterior 
 theorem exists_keep_faceOf_eq (d : S.diagram.toCombMap.Dart) :
     ∃ d', d' ∉ S.forestDarts ∧ S.diagram.toCombMap.faceOf d' = S.diagram.toCombMap.faceOf d := by
   by_contra hno
-  push_neg at hno
+  push Not at hno
   let f := S.diagram.toCombMap.faceOf d
   have hX : ∀ y, S.diagram.toCombMap.faceOf y = f → y ∈ S.forestDarts := fun y hy => by
     by_contra hy'
@@ -211,11 +207,10 @@ theorem exists_keep_faceOf_eq (d : S.diagram.toCombMap.Dart) :
       rwa [CombMap.facePerm, Equiv.Perm.mul_apply, S.diagram.toCombMap.alpha_involutive] at h
     rw [hfp]
     exact hα y
-  obtain ⟨o, -⟩ := List.exists_mem_of_ne_nil _
+  obtain ⟨o, hom⟩ := List.exists_mem_of_ne_nil _
     (S.diagram.faceBoundary S.diagram.outerFace).nonempty
   have ho : S.diagram.toCombMap.faceOf o = S.diagram.outerFace :=
-    ((S.diagram.faceBoundary S.diagram.outerFace).mem_iff o).mp
-      (List.mem_of_ne_nil_of_mem (S.diagram.faceBoundary S.diagram.outerFace).nonempty ‹_›)
+    ((S.diagram.faceBoundary S.diagram.outerFace).mem_iff o).mp hom
   have hof : S.diagram.toCombMap.faceOf o = f :=
     (S.diagram.toCombMap.iff_of_eqvGen (fun y => S.diagram.toCombMap.faceOf y = f) hα hσ
       (S.diagram.planar.1 d o)).mp rfl
