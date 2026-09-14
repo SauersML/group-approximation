@@ -130,9 +130,9 @@ theorem class_four_windows (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) {i
     rw [hlen]
     rcases Nat.lt_or_gt_of_ne hne with h | h
     · have := rangeFlatMap_length_le (fun x => Q.sideRun k x) h
-      exact Or.inl ⟨by simp only at this ha'; omega, by simp only at hlt hb; omega⟩
+      exact Or.inl ⟨by omega, by omega⟩
     · have := rangeFlatMap_length_le (fun x => Q.sideRun k x) h
-      exact Or.inr ⟨by simp only at this hb; omega, by simp only at hls ha'; omega⟩
+      exact Or.inr ⟨by omega, by omega⟩
   obtain ⟨X, Y, r, hrot, hX, hY⟩ := walk_four_windows _ _ r0 hr0 (Q.classWalk_value k)
     (Nat.add_le_add_left haa _) (Nat.add_le_add_left hbb _) horder
   refine ⟨X, Y, r, ?_, hX, hY⟩
@@ -140,8 +140,8 @@ theorem class_four_windows (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) {i
       (((List.range i').flatMap (fun x => Q.sideRun k x)).length + pb') = pb - pb' := by omega
   have e2 : ((List.range i).flatMap (fun x => Q.sideRun k x)).length + pa' -
       (((List.range i).flatMap (fun x => Q.sideRun k x)).length + pa) = pa' - pa := by omega
-  rw [hrot, e1, e2, hF, rangeFlatMap_drop_take (fun x => Q.sideRun k x) hi' (by simp only; omega),
-    rangeFlatMap_drop_take (fun x => Q.sideRun k x) hi (by simp only; omega)]
+  rw [hrot, e1, e2, hF, rangeFlatMap_drop_take (fun x => Q.sideRun k x) hi' (by omega),
+    rangeFlatMap_drop_take (fun x => Q.sideRun k x) hi (by omega)]
 
 end OsinLemma94ClassPolygons
 
