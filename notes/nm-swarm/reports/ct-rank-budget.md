@@ -124,6 +124,15 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   Row appended.  ms-core-1 dropped the key and withdrew its uncompiled draft.  Merge 5 (a4f8d4b82) had this as the only
   unassigned sentence.
 
+- 09-14 01:00: CLAIM (coordinator item 3, merge-5 partial triage, a4f8d4b82). Of the 49 non-waist partial rows, those
+  with no active owner are 12.  Nine are already fixed by ms-core-1's DROP overrides, effective at merge 6:
+  d8e1a694d87c, c99bf0bdb029, 2df08eeac3cb, c825bc73828a, b180421b55ab, f0c16e5c8519, 30a44485e5e8, 715cbd0f3410,
+  f2baa4a46f78.  ct-rank-budget takes the other three, all owned only by ct-bilateral-mf, which was not resumed:
+  `cd7908a482b5` ("Hence z ∈ D_B(L)"), `3550126258fb` ("thm:compression-criterion kills z …, hence from GL_3(R_X)"),
+  `e94a87793eb1` ("⟨z⟩ is a nontrivial finite central subgroup of B, of order char(k)").  Plan: named closed Props at R_X
+  over the closed cell statement for the first two; for the third, ms-inverses-4's formalized row already carries it,
+  so only a supersede override of ct-bilateral-mf's stale partial `LINE:1583` rows is needed (request to ms-cite-2).
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
