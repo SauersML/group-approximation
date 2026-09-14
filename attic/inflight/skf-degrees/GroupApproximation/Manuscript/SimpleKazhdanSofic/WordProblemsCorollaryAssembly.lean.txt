@@ -1,8 +1,12 @@
+import Mathlib.Algebra.ContinuedFractions.Computation.Translations
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemSolvability
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeInvariant
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.ElementaryGroupFacts
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftSetting
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemReducesToLanguageInstance
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.ContinuedFractionRepresentative
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.TuringAntichain
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -113,8 +117,34 @@ theorem printedWordProblemsCorollary_of (hc : PrintedWordProblemReducesToLanguag
     have hBC : B = C := hanti B hB C hC ((hWP B).2.trans (hred.trans (hWP C).1))
     rw [hBC]
 
+/-- **`cor:wp`, first sentence.**  The word problem of `G_X` has the Turing degree of `L(X)`. -/
+theorem printedWordProblemDegreeEqLanguage : PrintedWordProblemDegreeEqLanguage :=
+  printedWordProblemDegreeEqLanguage_of printedWordProblemReducesToLanguage
+
+/-- **`cor:wp`, second sentence.**  `G_X` has solvable word problem if and only if `L(X)` is
+recursive. -/
+theorem printedSolvableWordProblemIffRecursiveLanguage :
+    PrintedSolvableWordProblemIffRecursiveLanguage :=
+  printedSolvableWordProblemIffRecursiveLanguage_of printedWordProblemReducesToLanguage
+
+/-- **`cor:wp`, second sentence, "as for the Fibonacci subshift `X_{(3-√5)/2}`".** -/
+theorem printedFibonacciSolvableWordProblem : PrintedFibonacciSolvableWordProblem :=
+  printedFibonacciSolvableWordProblem_of printedWordProblemReducesToLanguage
+
+/-- **Corollary `cor:wp`.**  The word problem of `G_X` has the Turing degree of `L(X)`; `G_X` has
+solvable word problem if and only if `L(X)` is recursive, as for the Fibonacci subshift; every
+Turing degree occurs; and there are continuum many groups `G_X`, none of which is isomorphic to a
+subgroup of another. -/
+theorem printedWordProblemsCorollary : PrintedWordProblemsCorollary :=
+  printedWordProblemsCorollary_of printedWordProblemReducesToLanguage
+    printedContinuedFractionRepresentative printedTuringAntichainContinuum
+
 #audit_axioms closure_range_genValue
 #audit_axioms printedWordProblemsCorollary_of
+#audit_closed_axioms printedWordProblemDegreeEqLanguage
+#audit_closed_axioms printedSolvableWordProblemIffRecursiveLanguage
+#audit_closed_axioms printedFibonacciSolvableWordProblem
+#audit_closed_axioms printedWordProblemsCorollary
 
 end SimpleKazhdanSofic
 end GroupApproximation
