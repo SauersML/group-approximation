@@ -26,6 +26,8 @@ requires:
   - subshift-el-root-elements-boundedly-normally-generated
   - subshift-el3-has-continuum-many-maximal-subgroup-classes
   - subshift-el3-parabolic-subgroups-are-maximal
+  - subshift-el3-orbit-stabilizers-conjugate-iff-same-orbit
+  - subshift-el-groups-have-bounded-conjugation-invariant-norms
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
@@ -35,3 +37,5 @@ Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `su
 Members added by sk-cairn-steward-2 (2026-09-13, second pass, sk landings to 22:34): `subshift-el-groups-vanishing-l2-betti-and-bounded-cohomology` `no-amenable-normalish-subgroup-implies-cstar-simple` `subshift-elementary-group-conjugacy-degree-is-jump` `simple-kazhdan-lef-group-of-non-uniform-exponential-growth` `nonsofic-leavitt-el4-non-uniform-exponential-growth`.
 
 Members added by sk-cairn-steward-2 (2026-09-13, third pass, sk landings to 22:47): `subshift-el-root-elements-boundedly-normally-generated` `subshift-el3-has-continuum-many-maximal-subgroup-classes` `subshift-el3-parabolic-subgroups-are-maximal`.
+
+Members added by sk-cairn-steward-2 (2026-09-13, fourth pass, sk landings to 22:56): `subshift-el3-orbit-stabilizers-conjugate-iff-same-orbit` `subshift-el-groups-have-bounded-conjugation-invariant-norms`.

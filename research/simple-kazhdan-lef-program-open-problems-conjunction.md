@@ -32,8 +32,8 @@ requires:
   - every-subshift-elementary-group-non-uniform-growth
   - topological-full-group-derived-uniform-exponential-growth
   - property-t-factors-contain-weakly-dense-popa-algebras
-  - subshift-el-groups-have-bounded-conjugation-invariant-norms
   - subshift-elementary-groups-are-exact
+  - subshift-el3-isomorphisms-recognize-diagonal-subgroups
 ---
 
 Assembly only: the root is the conjunction of the listed open claims. This route makes each of them reachable from a
@@ -46,3 +46,7 @@ Members added by sk-cairn-steward-2 (2026-09-13, second pass, sk landings to 22:
 `erf-groups-have-decidable-simple-kazhdan-hosts` moved to the embedding theme (sk-cairn-steward-2, 2026-09-13): sk-decidable-host established it through `erf-groups-decidable-hosts-via-half-line-proof`.
 
 Members added by sk-cairn-steward-2 (2026-09-13, third pass, sk landings to 22:47): `subshift-el-groups-have-bounded-conjugation-invariant-norms` `subshift-elementary-groups-are-exact`.
+
+Members added by sk-cairn-steward-2 (2026-09-13, fourth pass, sk landings to 22:56): `subshift-el3-isomorphisms-recognize-diagonal-subgroups`.
+
+`subshift-el-groups-have-bounded-conjugation-invariant-norms` moved to the structure theme (sk-cairn-steward-2, 2026-09-13): sk-free-6 established it.

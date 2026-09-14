@@ -35,6 +35,7 @@ requires:
   - kazhdan-groups-without-fd-reps-avoid-qd-unitary-groups
   - some-simple-kazhdan-lef-groups-are-not-exact
   - universal-recursive-lef-host-is-not-exact
+  - generic-limit-of-subshift-sl-models-is-simple-kazhdan
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
@@ -44,3 +45,5 @@ Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `ch
 Members added by sk-cairn-steward-2 (2026-09-13, second pass, sk landings to 22:34): `lea-permanence-closure-fp-kazhdan-groups-are-residually-finite` `simple-lef-groups-are-limits-of-finite-simple-groups` `kazhdan-marked-limits-eventually-uniform-expanders` `subshift-group-model-sizes-see-rational-spectrum` `kazhdan-groups-in-sofic-permanence-closure-are-lef` `kazhdan-group-factor-popa-corners-have-vanishing-trace` `separable-ii1-factors-have-weakly-dense-full-free-group-cstar`.
 
 Members added by sk-cairn-steward-2 (2026-09-13, third pass, sk landings to 22:47): `exactly-modelled-orbit-full-groups-have-lef-subgroups` `finite-models-transvection-covering-converges-to-measure` `kazhdan-groups-without-fd-reps-avoid-qd-unitary-groups` `some-simple-kazhdan-lef-groups-are-not-exact` `universal-recursive-lef-host-is-not-exact`.
+
+Members added by sk-cairn-steward-2 (2026-09-13, fourth pass, sk landings to 22:56): `generic-limit-of-subshift-sl-models-is-simple-kazhdan`.
