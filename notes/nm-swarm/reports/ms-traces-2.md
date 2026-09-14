@@ -117,3 +117,19 @@ Ownership check (~18:50): the paths and names are free on origin, in the shared 
   an edge deletion). The missing piece is least area: `length_filter_mem_le` needs `IsDiscRegion`. Named in A as
   `EnclosedLeastAreaFilterStatement`, with `leastArea_of_enclosedLeastAreaFilter` giving the least-area clause from it.
   `InnerDiscRegion` and the zero-cell merge do not apply (they need disc regions or FollowsBoundary).
+- 19:28 probe 0913-191818-69417: A and B BUILT; C red (three elaboration errors). 19:40 co-probe 0913-194037-12185: A
+  and B BUILT again at their current bytes, C red (two `simpa` steps compared `diagram.toCombMap` terms with `M` terms
+  at reducible transparency; replaced by `exact`).
+- **A and B LANDED a5dc9e6b0** (wire queued): `ClosedWalkEnclosedSubdiagram` (`EnclosedFaceSet`,
+  `ClosedWalkEnclosedSubdiagramStatement`, `enclosedSubdiagram_leastAreaCut`, `EnclosedLeastAreaFilterStatement`,
+  `leastArea_of_enclosedLeastAreaFilter`) and `Estimating/OsinEnclosedSubdiagramLoopCut`
+  (`EnclosedSubdiagramLoopCutStatement`).
+- 19:45: C re-probing alone (0913-194445-40364). B gains `twoPartSectionCuts`, `twoPartSectionCuts_count`,
+  `twoPartSectionCuts_side_short` and `OsinLoopCut.ofTwoPartBoundary`, the loop cut from any least-area diagram whose
+  boundary word is a short quasi-geodesic side followed by a quasi-geodesic arc (attic copy 66d2418a6; probe after C).
+- Sent w1-binder-2 the landed names (its shared-construction proposal: `BridgeComponentMap`, the far component of a
+  same-face bridge). For binder 2's pocket the far side is Ξ itself. For binder 3's island, deleting t isolates only the
+  island, so the component serves `EnclosedLeastAreaFilterStatement` rather than Ξ.
+- Residual Props of item 2 (unowned producers): `ClosedWalkEnclosedSubdiagramStatement` (construction over a planar map
+  along the walk; w1-binder-2's component map covers the far-side case), `EnclosedLeastAreaFilterStatement` (singular
+  least-area bound), and the transport of regions to the arc (named once the component map lands).
