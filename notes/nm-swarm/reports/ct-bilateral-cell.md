@@ -161,6 +161,26 @@ The split-target shape is not a separate Prop: every pair is single-side, gap-en
 `GapSpanStatement` covers the third case. The V4 waist is ct-rank-two-limit's (`Estimating/OsinGreendlingerWaistV4`); my
 V4 draft was deleted unlanded.
 
+## Item 7: model test of `OsinLemma94ClassCaseGapSpanStatement`
+
+LANDED 22ec98b46 (probe 0913-203229-21527 GREEN; axioms [propext, Classical.choice, Quot.sound], no sorryAx), module
+`Estimating/OsinLemma94ClassGapSpanModel`, queued for wiring.
+
+Verdict: not refuted as spelled, and not proved.
+
+| declaration | content |
+|---|---|
+| `OsinLemma94ClassPolygons.vertex_gap_end_eq` | the class-word vertex at the end of a gap equals the vertex at its start (gap value one), so spanning pairs have the endpoints of the gap-deleted face-walk reading |
+| `ofSides_sideAt`, `ofSides_singleSidePair`, `ofSides_not_span` | calibration: on singleton classes every pair is single-side, so the residual holds vacuously (uninformative) |
+
+Hand model of a producer (not formalized): across a gap the polygon walk passes straight from side `s` to `s+1` at one
+vertex `x`, while the cell boundary runs round the gap loop. A backwards spanning pair bounds a quadrilateral inside the
+polygon face whose darts across the cell are two arcs separated by the loop, not one `CyclicArc`, so the side-level
+insertion lemma does not apply, and splitting at `x` needs a connector of length at most `ε` from `x`. A producer builds the
+region pinched at `x` (with the faces behind the gap, gaps at most `⌈(c + 2) / λ⌉₊` long), or runs the cases with two
+thresholds. Hazard: `OsinCCondition` does not visibly forbid a backtrack in a relator word, so a gap can be a hair inside
+the cell; untested on a model.
+
 ## Residual statements
 
 In this lane's own modules, none. The W1 waist residuals are listed above (V2: six; V3: seven), with
