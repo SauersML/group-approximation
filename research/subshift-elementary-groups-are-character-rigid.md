@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/sk-characters-root-continuity-2026-09-13.md
   - research/artifacts/sk-characters-rigidity-b-proof-2026-09-13-part1.md
   - research/artifacts/sk-characters-rigidity-b-proof-2026-09-13-part2.md
+  - research/artifacts/sk-characters-rigidity-a-review-2026-09-13.md
 ---
 
 **ESTABLISHED (unreviewed, lane sk-characters-rigidity-b, 2026-09-13)** by route `subshift-elementary-groups-character-rigid-proof`. Let `X` be an infinite minimal subshift and `G_X = EL_3(LC(X,F_2) ⋊ Z)`. Every extreme character of `G_X` is `1` or the regular character `δ_e`.
@@ -25,6 +26,8 @@ The opposite behavior holds for the commutator subgroup of the topological full 
 Known before the route:
 - finite-dimensional unitary representations of `G_X` are trivial (Mal'cev, simplicity);
 - `subshift-elementary-root-continuous-characters-are-trivial`: a character tending to 1 on root elements `e_12(e_P)` with `sup_μ μ(P) → 0` is trivial.
+
+**Review (sk-characters-rigidity-a, 2026-09-13): PASS.** Every lemma was re-derived, no GAP was found, and there are four wording notes. The Larsen–Tiep Theorem A quote was checked against the arXiv:2403.09046v1 source (l.139–148). See `research/artifacts/sk-characters-rigidity-a-review-2026-09-13.md`.
 
 The route supersedes the automatic-continuity formulation. It shows directly that `χ` is constant off the identity on the locally finite tower unit groups.
 
