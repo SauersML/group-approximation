@@ -1,0 +1,159 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassProducerGaps
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonLists
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkChain
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4: a joined run of sides along one cell is one arc
+
+Osin (math/0411039v3, §9), proof of Lemma 9.4: "The boundary of `Δ̃_i` decomposes into `k_i`
+subpaths, each of which is either `t_j^{±1}` for some `j = 1, …, l`, or an arc".  A class of the
+class producer is a run of sides along one relator cell joined across value-one gaps.  Read
+backwards and reversed, its darts follow the cell face (`ClassProducer.Backward`).  This module
+shows that such a walk is one cyclic arc of the cell, once its last dart does not recur.
+
+* `ClassProducer.nodup_of_head_not_mem_tail`: a chain of a functional relation inside a closed
+  duplicate-free chain, whose first entry does not recur, has no repeated entry.  A longer chain
+  would come back to its first entry after one turn.
+* `ClassProducer.exists_arc_of_backward`: a backward walk of darts across one face, whose last
+  dart does not recur, is `arc.reverseDarts` for one cyclic arc of the face.
+* `ClassProducer.isChain_backward_reverseDarts`: the reverse darts of an arc are a backward walk.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, "Hull's small cancellation theorem", through Osin's
+Lemma 9.4); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+
+namespace ClassProducer
+
+section Lists
+
+variable {α : Type*}
+
+/-- Positions along a closed chain, one turn at most. -/
+private theorem add_mod_eq_ite {n s k : ℕ} (hs : s < n) (hk : k < n) :
+    (s + k) % n = if s + k < n then s + k else s + k - n := by
+  split_ifs with h
+  · exact Nat.mod_eq_of_lt h
+  · rw [Nat.mod_eq_sub_mod (by omega), Nat.mod_eq_of_lt (by omega)]
+
+/-- **A chain inside a closed duplicate-free chain, with a first entry that does not recur, has no
+repeated entry.**  Its entries are the entries of the closed chain from one position on, so an
+entry after one full turn would be the first entry again. -/
+theorem nodup_of_head_not_mem_tail {r : α → α → Prop} {O : List α} (hne : O ≠ [])
+    (hnodup : O.Nodup) (hchain : O.IsChain r) (hclose : r (O.getLast hne) (O.head hne))
+    (hfun : ∀ a b b', r a b → r a b' → b = b') {t : List α} (ht : t.IsChain r) (hsub : t ⊆ O)
+    (hfirst : ∀ x ∈ t.head?, x ∉ t.tail) : t.Nodup := by
+  rcases t with _ | ⟨x, t'⟩
+  · exact List.nodup_nil
+  · have hx : x ∈ O := hsub (List.mem_cons_self ..)
+    obtain ⟨s, hs, hxs⟩ := List.getElem_of_mem hx
+    have hpos := PolygonList.getElem_of_isChain_closed hne hchain hclose hfun ht hs
+      (by rw [List.head?_cons, hxs])
+    have hn : 0 < O.length := List.length_pos_of_ne_nil hne
+    -- The chain takes at most one turn.
+    have hlen : (x :: t').length ≤ O.length := by
+      by_contra hlt
+      push_neg at hlt
+      have h1 := hpos O.length hlt
+      rw [Nat.add_mod_right, Nat.mod_eq_of_lt hs, hxs] at h1
+      apply hfirst x (by simp)
+      have hmem : (x :: t')[O.length] ∈ (x :: t').tail := by
+        rw [List.tail_cons]
+        obtain ⟨m, hm⟩ : ∃ m, O.length = m + 1 := ⟨O.length - 1, by omega⟩
+        simp only [hm, List.getElem_cons_succ]
+        exact List.getElem_mem _
+      rwa [h1] at hmem
+    refine List.nodup_iff_injective_get.mpr fun i j hij => ?_
+    have hi := hpos i.1 i.2
+    have hj := hpos j.1 j.2
+    have hget : (x :: t')[i.1] = (x :: t')[j.1] := hij
+    rw [hi, hj] at hget
+    have hmodij := (List.Nodup.getElem_inj_iff hnodup).mp hget
+    have hi' : i.1 < O.length := lt_of_lt_of_le i.2 hlen
+    have hj' : j.1 < O.length := lt_of_lt_of_le j.2 hlen
+    rw [add_mod_eq_ite hs hi', add_mod_eq_ite hs hj'] at hmodij
+    apply Fin.ext
+    split_ifs at hmodij <;> omega
+
+end Lists
+
+section Face
+
+variable {M : CombMap.{v}}
+
+/-- **The reverse darts of an arc of a face are a backward walk.** -/
+theorem isChain_backward_reverseDarts {O : List M.Dart} (hne : O ≠ [])
+    (hchain : O.IsChain fun d e => M.facePerm d = e)
+    (hclose : M.facePerm (O.getLast hne) = O.head hne) (arc : CyclicArc O) :
+    arc.reverseDarts.IsChain (Backward M) := by
+  have hinv : ∀ x, M.alpha (M.alpha x) = x := M.alpha_involutive
+  have hdarts : arc.darts.IsChain fun d e => M.facePerm d = e := by
+    refine CyclicArc.isChain_darts arc hchain fun a ha b hb => ?_
+    rw [List.getLast?_eq_getLast hne, Option.mem_def, Option.some_inj] at ha
+    rw [List.head?_eq_head hne, Option.mem_def, Option.some_inj] at hb
+    rw [← ha, ← hb]
+    exact hclose
+  show (arc.darts.reverse.map M.alpha).IsChain (Backward M)
+  rw [List.isChain_map, List.isChain_reverse]
+  refine hdarts.imp fun a b hab => ?_
+  show M.facePerm (M.alpha (M.alpha a)) = M.alpha (M.alpha b)
+  rw [hinv, hinv]
+  exact hab
+
+/-- **A backward walk across one face, with a last dart that does not recur, is one arc read
+backwards.**  Let `O` be a closed duplicate-free walk of the face permutation.  If every reversed
+dart of `D` lies on `O`, `D` is a backward walk, and the last dart of `D` does not occur earlier,
+then `D` is the reverse darts of one cyclic arc of `O`. -/
+theorem exists_arc_of_backward {O : List M.Dart} (hne : O ≠ []) (hnodup : O.Nodup)
+    (hchain : O.IsChain fun d e => M.facePerm d = e)
+    (hclose : M.facePerm (O.getLast hne) = O.head hne) {D : List M.Dart}
+    (hD : D.IsChain (Backward M)) (hsub : ∀ d ∈ D, M.alpha d ∈ O)
+    (hlast : ∀ x ∈ D.getLast?, x ∉ D.dropLast) :
+    ∃ arc : CyclicArc O, D = arc.reverseDarts := by
+  have hinv : ∀ x, M.alpha (M.alpha x) = x := M.alpha_involutive
+  have hfun : ∀ a b b' : M.Dart, M.facePerm a = b → M.facePerm a = b' → b = b' :=
+    fun _ _ _ h h' => h.symm.trans h'
+  set t := (D.map M.alpha).reverse with ht
+  have htchain : t.IsChain fun d e => M.facePerm d = e := by
+    rw [ht, List.isChain_reverse, List.isChain_map]
+    exact hD
+  have htsub : t ⊆ O := by
+    intro y hy
+    rw [ht, List.mem_reverse, List.mem_map] at hy
+    obtain ⟨d, hd, rfl⟩ := hy
+    exact hsub d hd
+  have htfirst : ∀ x ∈ t.head?, x ∉ t.tail := by
+    intro y hy hmem
+    rw [ht, List.head?_reverse, List.getLast?_map, Option.mem_def, Option.map_eq_some_iff] at hy
+    obtain ⟨z, hz, rfl⟩ := hy
+    rw [ht, List.tail_reverse, List.mem_reverse, List.map_dropLast, List.mem_map] at hmem
+    obtain ⟨d, hd, hdz⟩ := hmem
+    have hdz' : d = z := M.alpha_involutive.injective hdz
+    exact hlast z hz (hdz' ▸ hd)
+  have htnodup := nodup_of_head_not_mem_tail hne hnodup hchain
+    (show M.facePerm (O.getLast hne) = O.head hne from hclose) hfun htchain htsub htfirst
+  obtain ⟨arc, harc⟩ := PolygonList.exists_cyclicArc_of_isChain hne hchain
+    (show M.facePerm (O.getLast hne) = O.head hne from hclose) hfun htchain htnodup htsub
+  refine ⟨arc, ?_⟩
+  show D = arc.darts.reverse.map M.alpha
+  rw [harc, ht, List.reverse_reverse, List.map_map]
+  conv_lhs => rw [← List.map_id D]
+  exact List.map_congr_left fun d _ => (hinv d).symm
+
+end Face
+
+end ClassProducer
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.ClassProducer.nodup_of_head_not_mem_tail
+#audit_axioms GroupApproximation.GGT.VanKampen.ClassProducer.isChain_backward_reverseDarts
+#audit_axioms GroupApproximation.GGT.VanKampen.ClassProducer.exists_arc_of_backward
