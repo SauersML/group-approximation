@@ -9,6 +9,7 @@ distinct_from:
   balanced-kervaire-failure-refutes-stable-ac-or-lot-torsion-free: that is the implication showing why this matters for Kervaire--Laudenbach; this is the open group-theoretic input.
 artifacts:
   - research/artifacts/ideas-bridges-2-2026-09-14.md
+  - research/artifacts/hl-lot-torsion-2026-09-14.md
 ---
 
 **OPEN.** For every labelled oriented tree `Gamma`, the LOT group
@@ -34,4 +35,26 @@ groups are torsion-free."
 
 **Implies.** With `stable-andrews-curtis-conjecture`, the killing form of
 Kervaire--Laudenbach over nonnegative deficiency, through the route
-`kervaire-killing-form-via-stable-ac-and-torsion-free-lots`.
+`kervaire-killing-form-via-stable-ac-and-torsion-free-lots`. It also implies that no
+LOT group other than `Z` splits as `H * Z` (`lot-group-free-splittings-force-torsion`).
+
+## Attempts
+
+- **Second source for the open status** (2026-09-14, lane hl-lot-torsion). S. Rosebrock,
+  *The Whitehead conjecture – an overview*, Siberian Electron. Math. Rep. 4 (2007), p. 445,
+  verbatim: "Is there a LOT-group with a nontrivial element of finite order? This also is
+  still open." Just before: if `g ∈ π_1(K)` has finite order, `g^k = 1` and `g^k` is
+  trivialized by `r`, then `(1 − g)[r]` is nontrivial in `π_2(K)`.
+- **Proved classes.**
+  - `crossing-pair-two-cycle-lot-groups-are-locally-indicable` (2026-09-14): locally
+    indicable, hence torsion-free, when `T(Γ)` (or `I(Γ)`) has cyclomatic number two and a
+    separated crossing pair. It goes beyond Corollary 3.1 of Barreto--Minian when both graphs
+    have at least two cycles.
+  - LOTs with at most seven vertices are torsion-free, because their complexes are aspherical
+    (`lot-complexes-with-at-most-seven-vertices-are-aspherical`).
+- **Open route.** `lot-torsion-free-via-concatenable-tietze-presentations` waits on
+  `reduced-lots-have-concatenable-tietze-presentations`.
+- **Where torsion could still live.**
+  - A reduced LOT on at least eight vertices, not injective, with both `T(Γ)` and `I(Γ)` having
+    at least two independent cycles.
+  - No side of cyclomatic number two may carry a separated crossing pair.

@@ -1,0 +1,4 @@
+run 2026-09-14T15:51Z
+hard seven-vertex classes passing criterion (T or I side): 12 of 13
+stats {'pairs': 16902, 'reduced': 4409}
+coverage among reduced samples {'not_cor31': 124, 'some_side_c2': 124, 'criterion': 65}
