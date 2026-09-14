@@ -87,8 +87,13 @@ literal step missing.
   `alpha b_in`. The f-corner (`σ x_out = alpha x_in`) and the Π-corner are the corners kept. Those pocket-side faces can be
   relator cells or one face twice, so the thickening (edge doubling) goes on the pocket side.
 - CLAIM pocket-side corner thickening at a touch vertex: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerThickening.lean`
-- CLAIM the vertex split at a touch and the walk transport (one fewer touch): `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchVertexSplit.lean`
-- Both paths are free on origin, in the shared tree and in every `lanes/*.files` (checked ~18:45).
+- ~~CLAIM the vertex split at a touch and the walk transport~~: dropped at ~19:00. The lead ruled the split, and
+  ms-inverses-4 took it (its `Estimating/OsinPocketWalkSplit.lean`, `Estimating/OsinLemma94SameCellTouchSplit.lean`).
+- Agreed ~19:00: this lane proves ms-inverses-4's `OsinPocketTouchCornerStatement` in `OsinPocketTouchCornerThickening.lean`
+  (inputs 1–2 of the leaf). Both pocket corners are doubled with `FaceEdgeDoubling`, so each in-dart lies on a new G-digon.
+  The corners are then distinct faces, not relator cells, and off the exterior, with no planarity lemma needed.
+  - Delivered: an O-equivalent labelled copy and a dart map compatible with alpha, labels and vertices.
+  - Also delivered: the exterior and the cell off the side of the transported walk, and the cell darts transported.
 
 ## Progress log
 
