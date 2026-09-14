@@ -19,3 +19,5 @@ artifacts:
 **For the note** (landed rev3, l.368–369): "Every Turing degree occurs, so there are continuum many pairwise nonisomorphic groups $G_X$" can become "…so there are continuum many groups $G_X$, none of which is isomorphic to a subgroup of another". See `research/artifacts/sk-free-7-proposal-2026-09-13.md`.
 
 Route: `continuum-many-subshift-el-groups-pairwise-non-embeddable-proof`.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** Steps 1–4 re-derived: word problems reduce many-one along embeddings of f.g. groups; α_x = 0.(x⊕c) has α_x ≡_T x and is irrational; WP(G_{X_α}) ≡_T α; an embedding would give x ≤_T y. Optional wiring W1: add `topologically-free-matricial-crossed-el-simple-kazhdan-lef` (PASS twice) to `requires`, since `finite-model-subshift-elementary-groups-simple-kazhdan-lef` carries no review line. See `research/artifacts/sk-verify-15-2026-09-13-part1.md` §1.

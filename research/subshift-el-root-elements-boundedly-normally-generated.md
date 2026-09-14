@@ -13,3 +13,5 @@ artifacts:
 3. So `G` is bounded in the sense of Burago–Ivanov–Polterovich (every conjugation-invariant norm is bounded) iff `λ^c` is bounded. That holds: `λ^c ≤ 78` by `subshift-el-groups-boundedly-elementary-generated`, which gives `subshift-el-groups-have-bounded-conjugation-invariant-norms`.
 
 **Status: established** by `subshift-el-root-elements-boundedly-normally-generated-proof`. UNREVIEWED; queued with sk-verify-13.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** Commutator in the tower copy of GL_d(F_2), finite simplicity, Theorem B with U = X and ρ_min ≥ 1, and the permutation-conjugate step re-derived. See `research/artifacts/sk-verify-15-2026-09-13-part2.md` §3.

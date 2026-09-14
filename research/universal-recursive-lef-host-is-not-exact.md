@@ -12,3 +12,5 @@ artifacts:
 **ESTABLISHED (unreviewed).** Route: `universal-recursive-lef-host-is-not-exact-proof`.
 
 The infinite, finitely generated, simple Kazhdan LEF group of `simple-kazhdan-lef-host-for-recursive-lef-groups` has no property A, so it is not exact and its reduced C*-algebra is not exact. Its group von Neumann algebra embeds in R^ω.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** The recursive host carries PASS review lines; the recursively presented RF non-exact group lies in it, and the coarse and property-A steps are as for the existence node. See `research/artifacts/sk-verify-15-2026-09-13-part1.md` §2.

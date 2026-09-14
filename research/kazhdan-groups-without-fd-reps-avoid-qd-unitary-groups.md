@@ -24,3 +24,5 @@ Let `Γ` be a countable group with property (T) whose only finite-dimensional un
 - For residually finite Kazhdan groups such as `SL_3(Z)` the hypothesis fails, and those groups do embed in `U(∏_n M_n)`.
 
 **Novelty (bounded).** Checked: grep of main; the Carrión–Dadarlat–Eckhardt source (arXiv:1210.4050, which treats amenable groups and wreath products); two web searches. The statement was not found. The ingredients are standard (Kazhdan projection, Voiculescu's theorem, Bekka–Valette), so it may be folklore.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** Kazhdan projection, central corner, Voiculescu projections, hypertrace estimate, Bekka-amenability and the Bekka–Valette step re-derived; for infinite simple Kazhdan groups finite-dimensional images are trivial by Mal'cev. See `research/artifacts/sk-verify-15-2026-09-13-part2.md` §2.

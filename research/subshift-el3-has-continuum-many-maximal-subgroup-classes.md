@@ -19,3 +19,5 @@ Consequences:
 - `G` has continuum many pairwise non-isomorphic faithful 2-transitive actions on countable sets.
 
 The conjugacy classes are classified by `subshift-el3-orbit-stabilizers-conjugate-iff-same-orbit`: `H_x ∼ H_y` iff `x` and `y` lie in one `T`-orbit.
+
+**Review (sk-verify-15, 2026-09-13): PASS** for maximality, infinite index, injectivity of x ↦ H_x and continuum many classes. The classification sentence citing `subshift-el3-orbit-stabilizers-conjugate-iff-same-orbit` is not reviewed here. See `research/artifacts/sk-verify-15-2026-09-13-part2.md` §1.

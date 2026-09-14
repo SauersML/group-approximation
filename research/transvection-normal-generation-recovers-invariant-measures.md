@@ -18,3 +18,5 @@ artifacts:
   So the invariant measure is read off from normal generation numbers in the group.
 
 **Status: established** by `transvection-normal-generation-recovers-invariant-measures-proof`. UNREVIEWED; queued with sk-verify-13.
+
+**Review (sk-verify-15, 2026-09-13): PASS, conditional.** Lower bound, uniform ratios, the δ-choice (s ≥ ⌈ρ_min⌉−1, T ≤ ⌊ρ_max⌋+1), level-permutation units, D_t ∈ G, the two-conjugate remainder step and recovery of μ re-derived. Conditional on the rank-function import of `cantor-z-crossed-product-embeds-in-continuous-factor` (no review line) and on Theorem A (line owned by sk-verify-14). See `research/artifacts/sk-verify-15-2026-09-13-part2.md` §3.

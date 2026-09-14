@@ -18,3 +18,5 @@ Every limit point of `m_ℓ/N_ℓ` is `μ(V)` for a `T`-invariant `μ`. So for u
 - So these normal generation numbers pass to the marked limit `G_X = lim SL_{3N_ℓ}(F_2)`, although they involve conjugators of unbounded length.
 
 **Status: established** by `finite-models-transvection-covering-converges-to-measure-proof`. UNREVIEWED; queued with sk-verify-13.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** Rank lower bound, block conjugations in SL_{3N}(F_2), the remainder commutator, and weak* limits of periodic-orbit measures re-derived. See `research/artifacts/sk-verify-15-2026-09-13-part2.md` §3.

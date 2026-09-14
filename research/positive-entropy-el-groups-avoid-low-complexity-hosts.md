@@ -24,3 +24,5 @@ Let X, Y ⊆ A^Z be infinite minimal subshifts. Put G_X = EL_3(LC(X,F_2) ⋊ Z),
 - **Strict inclusions.** When Y is a factor of X, G_Y ≤ G_X (`lef-growth-of-subshift-el-groups-is-monotone-under-factors`). If moreover X has positive entropy and Y polynomial complexity, the reverse embedding fails.
 
 The derivation is route `positive-entropy-el-groups-avoid-low-complexity-hosts-proof`.
+
+**Review (sk-verify-15, 2026-09-13): PASS, conditional.** Subgroup monotonicity L_X(r) ≤ L_Y(Cr), N_Y ≤ 2p_Y², the arithmetic at r = 500k² and all three corollaries re-derived. Conditional on both bounds of `subshift-elementary-group-lef-growth-complexity-bounds`, which is unreviewed and not re-derived here. See `research/artifacts/sk-verify-15-2026-09-13-part1.md` §1.

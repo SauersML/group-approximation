@@ -29,3 +29,5 @@ Consequences:
 - Only the Steinberg relations `[e_ik(r), e_kj(s)] = e_ij(rs)` are used, so the same holds for `St_3(R)`.
 
 Status: proved in `peirce-root-homomorphisms-of-e3-are-standard-proof`, unreviewed.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** Peirce commutator identity, Step 1 (fullness gives a_ik a_ki = E_i), matrix units, multiplicativity of θ via a_23a_31 = a_21, Θ, and all six index pairs of Step 5 re-derived. See `research/artifacts/sk-verify-15-2026-09-13-part1.md` §3.

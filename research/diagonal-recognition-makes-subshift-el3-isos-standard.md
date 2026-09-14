@@ -32,3 +32,5 @@ With Cartan uniqueness at `Y` (`subshift-crossed-product-algebraic-cartans-are-c
 improves to flip conjugacy (`subshift-ring-cartan-uniqueness-iff-groupoid-model-rigidity`, item 5).
 
 Status: proved in `diagonal-recognition-makes-subshift-el3-isos-standard-proof`, unreviewed.
+
+**Review (sk-verify-15, 2026-09-13): PASS-WITH-FIXES.** Pointwise form, normalization, double centralizers, and the exclusion of mixed orientation (W-conjugation identities, X_0² = Z_0² = 0, (1,2)-entry psq of the commutator, zero (1,2)-entries in M_13) re-derived. F3: give the reason c is a unit (row 2 of g is (0,c,0) and column 1 is (c,0,0)^T). Imports: `locally-constant-simple-group-normal-subgroups-are-open-sets` has no review line; Out(L_3(2)) = 2 recalled. See `research/artifacts/sk-verify-15-2026-09-13-part1.md` §3.

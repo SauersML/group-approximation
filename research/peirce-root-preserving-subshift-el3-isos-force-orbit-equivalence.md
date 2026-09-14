@@ -26,3 +26,5 @@ Conversely, every standard isomorphism satisfies the hypothesis. So "every isomo
 equivalent to "every isomorphism carries root subgroups onto Peirce root groups".
 
 Status: proved in `peirce-root-preserving-subshift-el3-isos-soe-proof`, unreviewed.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** Fullness from simplicity of M_3(R_Y), the Peirce commuting hexagon (all non-commuting cases), Aut(C_6) = S_3 × reversal, the graph automorphism γ, Theorem P and the PASSed SOE import with m = 3 re-derived. See `research/artifacts/sk-verify-15-2026-09-13-part1.md` §3.

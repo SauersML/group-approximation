@@ -19,3 +19,5 @@ Mechanism:
 1. A commutator of `g ∉ P` with a small-support root element of `P` lands in a tower copy of `GL_d(F_2)` and outside `P`.
 2. Stabilizers of subspaces are maximal in `GL_d(F_2)`.
 3. The level ideal `{r : e_21(r) ∈ H}` covers `X`.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** Lemma C1 (all three constructions of C), support alignment, the commutator column formula, the finite maximality step and the level ideals for P and P′ re-derived. See `research/artifacts/sk-verify-15-2026-09-13-part2.md` §1.

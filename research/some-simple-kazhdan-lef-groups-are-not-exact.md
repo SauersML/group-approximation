@@ -22,3 +22,5 @@ There is an infinite, finitely generated, simple group G with property (T) that 
 - **Not claimed:** failure of Baum–Connes with coefficients, or of coarse embeddability into Hilbert space.
   - Osajda's residually finite relators are not expanders (`osajda-rf-relator-covers-are-not-expanders`).
   - No residually finite or LEF finitely generated group is known to fail coarse embeddability. Arzhantseva–Tessera's non-embeddable extension (IMRN 2019, arXiv:1605.01192) is a permutational wreath product over monster groups. This was a bounded web search.
+
+**Review (sk-verify-15, 2026-09-13): PASS.** RF ⇒ LEF, the reviewed host, the coarse-embedding step, property A passing to subspaces and the Guentner–Kaminker–Ozawa equivalence re-derived. Osajda's Main Theorem checked at source (arXiv:1703.03791 e-print l.119–128). See `research/artifacts/sk-verify-15-2026-09-13-part1.md` §2.
