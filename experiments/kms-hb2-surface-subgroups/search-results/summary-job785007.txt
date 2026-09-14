@@ -1,0 +1,18 @@
+hb2-t24 exit 0 :: HB2_2 T=24: 72 girth surfaces (0.4s) :: done 41.5s, surfaces with solutions 1
+hc2-t24 exit 0 :: HC2_2 T=24: 72 girth surfaces (0.3s) :: done 38.4s, surfaces with solutions 1
+hbc2-t24 exit 0 :: HBC2_2 T=24: 72 girth surfaces (0.3s) :: done 38.7s, surfaces with solutions 0
+hc1-t24 exit 0 :: HC2_1 T=24: 5 girth surfaces (0.0s) :: done 1.5s, surfaces with solutions 0
+hb3-t16 exit 0 :: HB2_3 T=16: 61 girth surfaces (0.1s) :: done 32.2s, surfaces with solutions 1
+hbc3-t16 exit 0 :: HBC2_3 T=16: 61 girth surfaces (0.1s) :: done 32.3s, surfaces with solutions 2
+hb3-t8-l3 exit 0 :: HB2_3 T=8: 4 girth surfaces (0.0s) :: done 27.3s, surfaces with solutions 0
+hbc3-t8-l3 exit 0 :: HBC2_3 T=8: 4 girth surfaces (0.0s) :: done 28.3s, surfaces with solutions 0
+58b6c4fc9b35c2bb2ef2dacdd5a6af38  hb2-t24.json
+f124f0829e4bf418dd656cb93512520d  hb3-t16.json
+d17af35c2988b23bf3954e6e623a6a07  hb3-t8.json
+3a5aa3828676a0d736ce418f8f5fb8bd  hb3-t8-l3.json
+dc82022ef6ee1bf76d3516532159d85a  hbc2-t24.json
+07a69032a8bf1e2598ebde7382d0aa47  hbc3-t16.json
+b46f8b1da7ee94d623c8ad92bb430516  hbc3-t8.json
+cd12c00e4c6358d4696072a360afbeda  hbc3-t8-l3.json
+9734e5d8735ced23251ac81a798a276b  hc1-t24.json
+c5cd18c15e5c18d0a8fc74e044d81555  hc2-t24.json

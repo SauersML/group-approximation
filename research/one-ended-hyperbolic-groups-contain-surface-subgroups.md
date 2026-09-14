@@ -41,10 +41,14 @@ contain the fundamental group of a closed surface with `chi < 0`?
    Most such groups are not hyperbolic, so this is evidence rather than coverage.
 6. Second-hand only, not read at source: Coxeter groups (Gordon--Long--Reid);
    Hamenstädt for rank-one groups except `SO(2n,1)`.
-7. The Kac--Moody--Steinberg groups `G_HB2(p)` of Caprace--Conder--Kaluba--Witzel, for
-   every odd prime `p`. For `p >= 7` these are hyperbolic with property (T), so rigid.
-   Proved here, computer-certified: `kms-hb2-groups-contain-genus-two-surface-subgroups`
-   (and `ghb7-contains-a-genus-two-surface-subgroup` for `p = 7`).
+7. Four of the six hyperbolic Kac--Moody--Steinberg families of
+   Caprace--Conder--Kaluba--Witzel, `G_HB2(2)(p)`, `G_HC2(2)(p)`, `G_HB2(3)(p)` and
+   `G_HBC2(3)(p)`, for every odd prime `p`. For `p >= 7` (respectively `p >= 11`) these are
+   hyperbolic with property (T), so rigid. Proved here, computer-certified:
+   `kms-hb2-groups-contain-genus-two-surface-subgroups`,
+   `kms-hc2-hb3-hbc3-contain-genus-two-surface-subgroups`, via the criterion
+   `kms-girth-surfaces-give-surface-subgroups` (and `ghb7-contains-a-genus-two-surface-subgroup`
+   for `p = 7`). The families `G_HC2(1)(p)` and `G_HBC2(2)(p)` are not covered yet.
 
 ## First uncovered natural classes
 

@@ -171,10 +171,27 @@ Let `c` be a geodesic in `S̃` from `P` to `Q`. By Step 5, `F∘c` is a local ge
 
 - *Injectivity.* If `φ(σ) = 1`, then `F(σD_0) = F(D_0)`, so `σD_0 = D_0` because `F` is injective, and
   `σ = 1` because deck transformations act freely.
-- *Quasiconvexity.*
-  - `F(S̃)` is convex, since geodesics in `Y` are unique and `F` sends geodesics to geodesics.
-  - `φ(π_1 S)` acts cocompactly on `F(S̃)`.
-  - `G` acts properly and cocompactly on the locally finite complex `Y`.
-  - So an orbit of `φ(π_1 S)` is coarsely dense in a convex subset, and `φ(π_1 S)` is quasiconvex.
+- *Quasiconvexity.* Put `H = φ(π_1 S)` and `x_0 = F(w_0)` for a point `w_0 ∈ D_0`. The BH items used here
+  are those checked at source for `ghb7-girth-surfaces-give-surface-subgroups-proof` (commit 31d5884ac).
+  - `F(S̃)` is convex. Geodesics in `Y` are unique (BH Proposition II.1.4(1)), and by Step 6 `F` sends
+    the geodesic between two points of `S̃` to a geodesic between their images.
+  - `F(S̃)` lies in the `D`-neighbourhood of `H·x_0`, where `D` is the diameter of the compact surface `S`,
+    because `F(σx) = φ(σ)F(x)`.
+  - `G` acts by isometries on the length space `Y`.
+    - The action is proper: stabilizers are finite, and `Y` is locally finite, with `|X_i|` chambers at a
+      vertex and `p` chambers at an edge by Step 1(c).
+    - The action is cocompact, with compact fundamental domain `C`.
+    - By the Švarc–Milnor lemma (BH Proposition I.8.19), `g ↦ g·x_0` is a quasi-isometry from `G`, with a
+      word metric, to `Y`.
+  - `G` is hyperbolic (Theorem 3.1(v)). So `Y` is hyperbolic (BH Theorem III.H.1.9).
+
+  Let `h, h' ∈ H`, and let `γ` be a geodesic in the Cayley graph from `h` to `h'`.
+  1. The orbit map sends `γ` to a `(λ,ε)`-quasi-geodesic. By BH Theorem III.H.1.7, it lies within
+     Hausdorff distance `R` of `[h x_0, h' x_0]`, with `R` independent of `h` and `h'`.
+  2. That geodesic lies in `F(S̃)`, hence within `D` of `H·x_0`.
+  3. So every vertex `g` of `γ` has some `h'' ∈ H` with `d_Y(g x_0, h'' x_0) ≤ R + D`. The orbit map is a
+     quasi-isometry, so `d_G(g, h'')` is bounded independently of `h` and `h'`.
+
+  So `H` is quasiconvex in `G`.
 - *Genus.* `π_1(S)` is a closed surface group with `χ = −T/12 < 0`. If `S` is orientable its genus is
   `1 + T/24`. An orientable connected double cover gives genus `1 + T/12` in either case.

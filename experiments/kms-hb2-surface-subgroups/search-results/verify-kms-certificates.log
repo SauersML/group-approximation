@@ -1,0 +1,11 @@
+matrix models satisfy the U3 and U4 relators over Z: True
+HB2_2 T 24 surface 67 orientable True chi -2 labels [-2, -1, 1, 2] label primes [2] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+HC2_2 T 24 surface 67 orientable True chi -2 labels [-2, -1, 1, 2] label primes [2] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+HC2_2 T 24 surface 67 orientable True chi -2 labels [-2, -1, 1, 2] label primes [2] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+HB2_3 T 16 surface 29 orientable True chi -2 labels [-2, 2] label primes [2] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+HB2_3 T 16 surface 29 orientable True chi -2 labels [-2, -1, 2] label primes [2] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+HBC2_3 T 16 surface 18 orientable False chi -2 labels [-2, 2] label primes [2] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+HBC2_3 T 16 surface 18 orientable False chi -2 labels [-2, -1, 1, 2] label primes [2] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+HBC2_3 T 16 surface 28 orientable True chi -2 labels [-2, 2] label primes [2] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+HBC2_3 T 16 surface 28 orientable True chi -2 labels [-2, -1, 2] label primes [2] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+certificates checked: 9 | ALL PASS
