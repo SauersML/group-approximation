@@ -51,7 +51,7 @@ compressor `u`, or a lattice as in Bowen–Burton.
   load-bearing in an established node.
 - Becker–Lubotzky, arXiv:1809.00632: (T) obstructs permutation stability for infinite residually finite groups, and
   they introduce flexible stability.
-- Bowen–Burton, arXiv:1906.02034: flexible stability of `PSL_d(Z)`, `d >= 5`, would yield a nonsofic group.
+- Bowen–Burton, arXiv:1906.02172: flexible stability of `PSL_d(Z)`, `d >= 5`, would yield a nonsofic group.
 - Arzhantseva–Păunescu, arXiv:1502.00805: presentation-based stability for finitely presented groups.
 
 **F4. What is already on main, so this lane does not repeat it.**
