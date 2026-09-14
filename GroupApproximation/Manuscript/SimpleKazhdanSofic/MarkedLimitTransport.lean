@@ -1,0 +1,199 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitSpecialLinear
+import GroupApproximation.Algebra.FinitaryLinearBinarySimple
+import GroupApproximation.Meta.AxiomGuard
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
+import Mathlib.Tactic.Linarith
+
+/-!
+# Transport of marked limits and expanders, and `EL_n(M_N(F₂)) ≃* SL_{nN}(F₂)`
+
+`simple_kazhdan_sofic_group.tex` at 37551fd93: the proof of `thm:main` (tex l.238–271) applies `thm:general`
+to `LC(X, F₂) ⋊_T ℤ`.  Carrying its conclusions over to the spelling of `PrintedSimpleKazhdanSoficMain` uses
+facts the note leaves implicit:
+
+* `IsMarkedLimit.map_source`, `IsMarkedLimit.map_target`: marked limits survive isomorphisms of the limit
+  group and of the finite groups;
+* `IsExpanderFamily.map_target`: expander families survive isomorphisms of the finite groups;
+* `elementaryBlockEquivSL`: block flattening gives `EL_n(M_N(F₂)) ≃* SL_{n × N}(F₂)` for `n ≥ 3` and `N ≥ 1`.
+  This is ms-core-3's `printedBlockElementarySpecialLinear` (tex l.221–224) together with `det = 1` on
+  `GL(F₂)`;
+* `elementaryGroupEquivOfRingEquiv`: a ring isomorphism induces an isomorphism of elementary groups.
+-/
+
+namespace GroupApproximation
+namespace SimpleKazhdanSofic
+
+open Filter
+
+/-! ## Words and generation along isomorphisms -/
+
+theorem lift_mulEquiv_comp {ι K K' : Type*} [Group K] [Group K'] (e : K ≃* K') (t : ι → K)
+    (w : FreeGroup ι) : FreeGroup.lift (fun i => e (t i)) w = e (FreeGroup.lift t w) := by
+  have h : FreeGroup.lift (fun i => e (t i)) = e.toMonoidHom.comp (FreeGroup.lift t) :=
+    FreeGroup.ext_hom _ _ fun i => by
+      rw [FreeGroup.lift_apply_of, MonoidHom.comp_apply, FreeGroup.lift_apply_of]
+      rfl
+  rw [h]
+  rfl
+
+theorem closure_range_mulEquiv {ι K K' : Type*} [Group K] [Group K'] (e : K ≃* K') {t : ι → K}
+    (ht : Subgroup.closure (Set.range t) = ⊤) : Subgroup.closure (Set.range fun i => e (t i)) = ⊤ := by
+  have hr : (Set.range fun i => e (t i)) = e.toMonoidHom '' Set.range t := Set.range_comp _ _
+  rw [hr, ← MonoidHom.map_closure, ht]
+  exact Subgroup.map_top_of_surjective _ e.surjective
+
+/-! ## Marked limits and expanders along isomorphisms -/
+
+section Transport
+
+variable {ι G G' : Type*} [Group G] [Group G'] {s : ι → G} {H H' : ℕ → Type*} [∀ ℓ, Group (H ℓ)]
+  [∀ ℓ, Group (H' ℓ)] {σ : ∀ ℓ, ι → H ℓ}
+
+/-- A marked limit survives an isomorphism of the limit group. -/
+theorem IsMarkedLimit.map_source (hlim : IsMarkedLimit s σ) (e : G ≃* G') :
+    IsMarkedLimit (fun i => e (s i)) σ := by
+  obtain ⟨hs, hσ, hw⟩ := hlim
+  refine ⟨closure_range_mulEquiv e hs, hσ, fun w => (hw w).mono fun ℓ hℓ => ?_⟩
+  rw [lift_mulEquiv_comp, MulEquiv.map_eq_one_iff]
+  exact hℓ
+
+/-- A marked limit survives isomorphisms of the finite groups. -/
+theorem IsMarkedLimit.map_target (hlim : IsMarkedLimit s σ) (e : ∀ ℓ, H ℓ ≃* H' ℓ) :
+    IsMarkedLimit s (fun ℓ i => e ℓ (σ ℓ i)) := by
+  obtain ⟨hs, hσ, hw⟩ := hlim
+  refine ⟨hs, fun ℓ => closure_range_mulEquiv (e ℓ) (hσ ℓ), fun w => (hw w).mono fun ℓ hℓ => ?_⟩
+  rw [lift_mulEquiv_comp, MulEquiv.map_eq_one_iff]
+  exact hℓ
+
+omit [Group G] in
+/-- An expander family survives isomorphisms of the finite groups. -/
+theorem IsExpanderFamily.map_target (hexp : IsExpanderFamily σ) (e : ∀ ℓ, H ℓ ≃* H' ℓ) :
+    IsExpanderFamily (fun ℓ i => e ℓ (σ ℓ i)) := by
+  obtain ⟨hι, hfin, hcard, ε, hε, hbd⟩ := hexp
+  have hc : ∀ ℓ, Nat.card (H ℓ) = Nat.card (H' ℓ) := fun ℓ => Nat.card_congr (e ℓ).toEquiv
+  refine ⟨hι, fun ℓ => by haveI := hfin ℓ; exact Finite.of_equiv _ (e ℓ).toEquiv, ?_, ε, hε,
+    fun ℓ S hSle => ?_⟩
+  · have hfun : (fun ℓ => Nat.card (H' ℓ)) = fun ℓ => Nat.card (H ℓ) := funext fun ℓ => (hc ℓ).symm
+    rw [hfun]
+    exact hcard
+  · set S₀ : Set (H ℓ) := (e ℓ) ⁻¹' S with hS₀
+    have hSS₀ : S = (e ℓ) '' S₀ := (Set.image_preimage_eq S (e ℓ).surjective).symm
+    have hcardS : S.ncard = S₀.ncard := by
+      rw [hSS₀]
+      exact Set.ncard_image_of_injective _ (e ℓ).injective
+    have hinjP : Function.Injective (Prod.map (e ℓ) (id : ι → ι)) := by
+      intro a b h
+      simp only [Prod.map, Prod.mk.injEq, id] at h
+      exact Prod.ext ((e ℓ).injective h.1) h.2
+    have hE : {p : H' ℓ × ι | p.1 ∈ S ∧ e ℓ (σ ℓ p.2) * p.1 ∉ S} =
+        Prod.map (e ℓ) id '' {p : H ℓ × ι | p.1 ∈ S₀ ∧ σ ℓ p.2 * p.1 ∉ S₀} := by
+      ext ⟨x, i⟩
+      constructor
+      · rintro ⟨hx, hmove⟩
+        refine ⟨((e ℓ).symm x, i), ⟨?_, ?_⟩, ?_⟩
+        · show e ℓ ((e ℓ).symm x) ∈ S
+          rw [MulEquiv.apply_symm_apply]
+          exact hx
+        · show e ℓ (σ ℓ i * (e ℓ).symm x) ∉ S
+          rw [map_mul, MulEquiv.apply_symm_apply]
+          exact hmove
+        · show (e ℓ ((e ℓ).symm x), i) = (x, i)
+          rw [MulEquiv.apply_symm_apply]
+      · rintro ⟨⟨y, j⟩, ⟨hy, hmove⟩, hyx⟩
+        have hx : e ℓ y = x := congrArg Prod.fst hyx
+        have hi : j = i := congrArg Prod.snd hyx
+        subst hx hi
+        refine ⟨hy, ?_⟩
+        show e ℓ (σ ℓ j) * e ℓ y ∉ S
+        rw [← map_mul]
+        exact hmove
+    have h2 : 2 * S₀.ncard ≤ Nat.card (H ℓ) := by
+      rw [← hcardS, hc ℓ]
+      exact hSle
+    have h3 := hbd ℓ S₀ h2
+    show (ε : ℝ) * S.ncard ≤
+      ({p : H' ℓ × ι | p.1 ∈ S ∧ e ℓ (σ ℓ p.2) * p.1 ∉ S} : Set (H' ℓ × ι)).ncard
+    rw [hE, Set.ncard_image_of_injective _ hinjP, hcardS]
+    exact h3
+
+end Transport
+
+/-! ## `EL_n(M_N(F₂)) ≃* SL_{n × N}(F₂)` -/
+
+/-- Over `F₂` every invertible matrix has determinant one. -/
+theorem det_units_zmodTwo' {N : Type*} [Fintype N] [DecidableEq N] (u : (Matrix N N (ZMod 2))ˣ) :
+    (u : Matrix N N (ZMod 2)).det = 1 := by
+  have key : ∀ x : ZMod 2, x ≠ 0 → x = 1 := by decide
+  exact key _ (Matrix.isUnits_det_units u).ne_zero
+
+theorem ker_detUnits_zmodTwo (N : Type*) [Fintype N] [DecidableEq N] :
+    (AlgebraicK.detUnits (ι := N) (k := ZMod 2)).ker = ⊤ :=
+  eq_top_iff.mpr fun u _ => MonoidHom.mem_ker.mpr (Units.ext (by
+    rw [AlgebraicK.detUnits_val, Units.val_one]
+    exact det_units_zmodTwo' u))
+
+/-- `GL_N(F₂) ≃* SL_N(F₂)`. -/
+noncomputable def unitsEquivSLZModTwo (N : Type*) [Fintype N] [DecidableEq N] :
+    (Matrix N N (ZMod 2))ˣ ≃* Matrix.SpecialLinearGroup N (ZMod 2) :=
+  (MulEquiv.ofBijective (Matrix.SpecialLinearGroup.toGL (n := N) (R := ZMod 2))
+    ⟨Matrix.SpecialLinearGroup.toGL_injective,
+      fun u => ⟨⟨(u : Matrix N N (ZMod 2)), det_units_zmodTwo' u⟩, Units.ext rfl⟩⟩).symm
+
+/-- **`EL_n(M_N(F₂)) ≃* GL_{n × N}(F₂)`** by block flattening, for `n ≥ 3` and `N ≥ 1` (tex l.221–224). -/
+noncomputable def elementaryBlockEquivUnits (n : ℕ) (hn : 3 ≤ n) (N : ℕ) (hN : 0 < N) :
+    ↥(elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))) ≃*
+      (Matrix (Fin n × Fin N) (Fin n × Fin N) (ZMod 2))ˣ :=
+  (((elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))).equivMapOfInjective
+      (elementaryBlockUnitEquiv (ι := Fin n) (κ := Fin N) (R := ZMod 2)).toMonoidHom
+      (elementaryBlockUnitEquiv (ι := Fin n) (κ := Fin N) (R := ZMod 2)).injective).trans
+    (MulEquiv.subgroupCongr ((printedBlockElementarySpecialLinear n hn N hN).trans
+      (ker_detUnits_zmodTwo (Fin n × Fin N))))).trans Subgroup.topEquiv
+
+/-- **`EL_n(M_N(F₂)) ≃* SL_{n × N}(F₂)`** by block flattening, for `n ≥ 3` and `N ≥ 1` (tex l.221–224). -/
+noncomputable def elementaryBlockEquivSL (n : ℕ) (hn : 3 ≤ n) (N : ℕ) (hN : 0 < N) :
+    ↥(elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))) ≃*
+      Matrix.SpecialLinearGroup (Fin n × Fin N) (ZMod 2) :=
+  (elementaryBlockEquivUnits n hn N hN).trans (unitsEquivSLZModTwo (Fin n × Fin N))
+
+/-- **`EL_n(M_N(F₂)) = SL_{nN}(F₂)` is simple** for `n ≥ 3` and `N ≥ 1`: `GL_d(F₂) = PSL_d(F₂)` is simple for
+`d ≥ 3` (`FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo`). -/
+theorem isSimpleGroup_elementaryBlock (n : ℕ) (hn : 3 ≤ n) (N : ℕ) (hN : 0 < N) :
+    IsSimpleGroup ↥(elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))) := by
+  have hcard : 3 ≤ Fintype.card (Fin n × Fin N) := by
+    rw [Fintype.card_prod, Fintype.card_fin, Fintype.card_fin]
+    nlinarith
+  haveI := FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo (Fin n × Fin N) hcard
+  haveI : Nontrivial ↥(elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))) :=
+    (elementaryBlockEquivUnits n hn N hN).symm.injective.nontrivial
+  exact IsSimpleGroup.isSimpleGroup_of_surjective (elementaryBlockEquivUnits n hn N hN).symm.toMonoidHom
+    (elementaryBlockEquivUnits n hn N hN).symm.surjective
+
+/-! ## Elementary groups along ring isomorphisms -/
+
+theorem elementaryGroupMap_symm_apply_apply (n : ℕ) {R R' : Type*} [Ring R] [Ring R'] (e : R ≃+* R')
+    (x : ↥(elementaryGroup (Fin n) R)) :
+    elementaryGroupMap e.symm.toRingHom (elementaryGroupMap e.toRingHom x) = x :=
+  Subtype.ext (Units.ext (Matrix.ext fun i j => by
+    show e.symm (e (((x : (Matrix (Fin n) (Fin n) R)ˣ) : Matrix (Fin n) (Fin n) R) i j)) = _
+    exact e.symm_apply_apply _))
+
+/-- **A ring isomorphism induces an isomorphism of elementary groups.** -/
+noncomputable def elementaryGroupEquivOfRingEquiv (n : ℕ) {R R' : Type*} [Ring R] [Ring R']
+    (e : R ≃+* R') : ↥(elementaryGroup (Fin n) R) ≃* ↥(elementaryGroup (Fin n) R') :=
+  MulEquiv.ofBijective (elementaryGroupMap e.toRingHom)
+    ⟨Function.LeftInverse.injective (g := elementaryGroupMap e.symm.toRingHom)
+        (elementaryGroupMap_symm_apply_apply n e),
+      elementaryGroupMap_surjective_of_surjective e.toRingHom e.surjective⟩
+
+end SimpleKazhdanSofic
+end GroupApproximation
+
+/-! ### Axiom audit -/
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.IsMarkedLimit.map_source
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.IsMarkedLimit.map_target
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.IsExpanderFamily.map_target
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.elementaryBlockEquivSL
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.isSimpleGroup_elementaryBlock
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.elementaryGroupEquivOfRingEquiv
