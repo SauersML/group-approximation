@@ -222,8 +222,10 @@ CLAIM `OsinLemma94CuttingTransitionInput` (cutting transitions ≤ K n), in new 
 - **LANDED ca2bb2fce** `CombMapFirstReturnCounts` (probe 0914-084627-6800 BUILT; audit clean; wire-queued).
 - **LANDED ebb6f5faa** `Estimating/OsinLemma94CuttingTransitions` + `CombMapFirstReturnCountsModel` (probe
   0914-085318-62936 BUILT both; audit clean; wire-queued).
-- In flight: `Estimating/OsinLemma94CuttingTransitionsInput` (attic 77f72a972). The dependent `obtain` patterns and the
-  `Joined.trans` step are repaired; re-probe 0914-09:0x is running.
+- **LANDED 59a5e1718** `Estimating/OsinLemma94CuttingTransitionsInput` (probe 0914-090436-62166 GREEN;
+  `#audit_closed_axioms` propext, Classical.choice, Quot.sound; no sorryAx; wire-queued).
+  **`OsinLemma94CuttingTransitionInput` is proved** (`osinLemma94CuttingTransitionInput`, K = 4, ε₀ = 0, ρ₀ = 1), which closes
+  item 5. The contact piece stays with ms-compress-1.
 
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.
