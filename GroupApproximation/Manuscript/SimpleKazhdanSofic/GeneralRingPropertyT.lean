@@ -1,12 +1,13 @@
 import GroupApproximation.Dynamics.ClopenGroupCrossedProduct
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.ElementaryGroupFacts
+import GroupApproximation.PropertyT.IntegralColumnPlaneClosure
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The ring and property (T) for a group action
 
-`simple_kazhdan_sofic_group.tex` at origin/main 37551fd93 (md5 b55c0d23…), "The ring and property
-(T)", tex 131–149, the proof of `\label{thm:general}`:
+`simple_kazhdan_sofic_group.tex` at origin/main 696c4b602 (md5 0648e5f8…), "The ring and property
+(T)", tex 131–149, the proof of `\label{thm:general}` (adopted by ct-involution from sk-lef-action):
 
 > We write the proof for `n = 3`; for `n ≥ 3` replace `3` by `n` throughout.
 > Write `e_U` for the indicator of a clopen set `U ⊆ Z`.  The ring `R = ⊕_{ξ∈Λ} LC(Z,F_2) u_ξ` has

@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Setting
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.FiniteModelsGroup
 import GroupApproximation.Sofic.FinitelyPresentedLEF
 import GroupApproximation.Algebra.FiniteResidual
@@ -10,9 +11,9 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # `G_X` is not finitely presented
 
-`simple_kazhdan_sofic_group.tex` at origin/main e80dcf20a, "Questions" (census key `32a9f96774bd`):
+`simple_kazhdan_sofic_group.tex` at origin/main 696c4b602, "Questions" (census key `44b4aa4489ab`, tex l.556–558):
 
-> A finitely presented LEF group is residually finite [VershikGordon], and the infinite simple group
+> A finitely presented LEF group is residually finite [Stepin, VershikGordon], and the infinite simple group
 > `G_X` is not, so `G_X` is not finitely presented.
 
 The two inputs are already proved in this repository:
@@ -59,7 +60,7 @@ theorem exists_presentedGroup_mulEquiv {G : Type u} [Group G] (hfp : Group.IsFin
   exact (QuotientGroup.quotientMulEquivOfEq hker).trans
     (QuotientGroup.quotientKerEquivOfSurjective φ hφ)
 
-/-- **A finitely presented LEF group is residually finite** (tex 281, [VershikGordon]). -/
+/-- **A finitely presented LEF group is residually finite** (tex 496, [Stepin, VershikGordon]). -/
 def PrintedFinitelyPresentedLEFResiduallyFinite : Prop :=
   ∀ (G : Type u) [Group G], Group.IsFinitelyPresented G → IsLEF G → IsResiduallyFinite G
 
@@ -75,7 +76,7 @@ theorem printedFinitelyPresentedLEFResiduallyFinite :
   refine ⟨(ψ.comp e.symm.toMonoidHom).ker, inferInstance, fun hmem => hψ ?_⟩
   exact MonoidHom.mem_ker.mp hmem
 
-/-- **An infinite simple LEF group is not finitely presented** (tex 281–283): it is not residually
+/-- **An infinite simple LEF group is not finitely presented** (tex 496–498): it is not residually
 finite, and a finitely presented LEF group is. -/
 def PrintedNotFinitelyPresentedOfLEFSimpleInfinite : Prop :=
   ∀ (G : Type u) [Group G] [IsSimpleGroup G] [Infinite G], IsLEF G → ¬ Group.IsFinitelyPresented G
@@ -86,7 +87,7 @@ theorem printedNotFinitelyPresentedOfLEFSimpleInfinite :
   exact NinetyNineProblems.not_isResiduallyFinite_of_isSimpleGroup_of_infinite G
     (printedFinitelyPresentedLEFResiduallyFinite G hfp hLEF)
 
-/-- **`G_X` is not finitely presented** (tex 281–283), for every infinite minimal subshift `X ⊆ A^ℤ`
+/-- **`G_X` is not finitely presented** (tex 496–498), for every infinite minimal subshift `X ⊆ A^ℤ`
 over a finite alphabet. -/
 def PrintedGXNotFinitelyPresented : Prop :=
   ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Finite A] (S : Subshift A ℤ),
@@ -113,10 +114,22 @@ theorem printedGXNotFinitelyPresented_of_pieces
   exact printedNotFinitelyPresentedOfLEFSimpleInfinite (G S)
     (printedFiniteModelsLEFSoficHyperlinear (ZMod 2) (R S) (hlef A S hinf hmin)).1
 
+/-- **The instance at `G_X` from `thm:main`.**  The theorem of the note makes `G_X` infinite, simple
+and LEF, so `G_X` is not finitely presented.  This closes when the assembly
+`printedSimpleKazhdanSoficMain_of_pieces` closes. -/
+theorem printedGXNotFinitelyPresented_of_main (hmain : PrintedSimpleKazhdanSoficMain) :
+    PrintedGXNotFinitelyPresented := by
+  intro A _ _ _ S hinf hmin
+  obtain ⟨hinfG, -, hsimple, -, -, hLEF, -, -⟩ := hmain A S hinf hmin 3 le_rfl
+  haveI := hinfG
+  haveI := hsimple
+  exact printedNotFinitelyPresentedOfLEFSimpleInfinite (G S) hLEF
+
 end SimpleKazhdanSofic
 end GroupApproximation
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.exists_presentedGroup_mulEquiv
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.printedGXNotFinitelyPresented_of_pieces
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.printedGXNotFinitelyPresented_of_main
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedFinitelyPresentedLEFResiduallyFinite
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedNotFinitelyPresentedOfLEFSimpleInfinite
