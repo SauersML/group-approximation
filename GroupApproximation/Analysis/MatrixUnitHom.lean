@@ -1,4 +1,5 @@
 import Mathlib.Algebra.Star.StarAlgHom
+import Mathlib.Data.Complex.Basic
 import Mathlib.LinearAlgebra.Matrix.ConjTranspose
 import Mathlib.LinearAlgebra.Matrix.Trace
 import GroupApproximation.Meta.AxiomGuard
