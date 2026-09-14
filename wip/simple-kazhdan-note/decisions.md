@@ -380,6 +380,15 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - The measured free minimal subshift question stays open (Kerr–Li, Bernshteyn and Elek 2021 read at source).
     - No note change: linear soficity answers no printed question here. The note gets the sofic-host question of item 79.
 82. **Ops, 20:40–21:20.** A session rate limit stopped 13 lanes. All resumed by raw id at 21:20; MSI re-authenticated at 21:20.
+83. **sk-strong-7 operator algebras** (fd87db53f7 nodes + artifact; 993aa0cde1 proposal; unreviewed; sk-verify-10 launched to verify).
+    - Result: a separable II_1 factor contains G_X in its unitary group for only countably many X. Ozawa, PAMS 132 (2004), Thm 2, applied with Λ = EL_3(F) (EJZ), simple quotients G_X, and distinct kernels via cylinder words.
+    - So there are continuum many isomorphism classes of the R^ω-embeddable (T) factors L(G_X), each class countable, inside the Connes-embeddable world where Ozawa asked for embeddable witnesses.
+    - Credit: Nicoara–Popa–Sasyk (2007) already give "no separable universal R^ω-embeddable factor"; what the lane adds is the witness family.
+    - P1 (+10 text, +4 bibliography, after the Grigorchuk–Medynets remark): ADOPT after a PASS from sk-verify-10, with the verified novelty wording.
+    - P2 (+1 line, "no faithful representation into U(R)" via Kirchberg Cor 1.2): ADOPT only if sk-verify-10 confirms that the item used is not the one Thom corrected (item 76).
+    - P3 (the trace simplex [trivial, τ_λ]): only together with a PASS for character rigidity.
+    - Not in the note, recorded: C*(G_X) is not QWEP; L(G_X) is QWEP; G_X fails AP (recalled, not re-read).
+    - Sharpest open target: vN rigidity L(G_X) ≅ L(G_Y) ⇒ flip conjugate or SOE. Famous-hard, and it does not gate the note.
 
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
