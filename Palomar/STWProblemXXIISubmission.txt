@@ -26,6 +26,18 @@ mathematical sources, precise statement alignment, scope, production credits,
 the HamSandwich source-port credit, and the actual antipodal proof account.
 An identical per-result copy is retained in metadata/palomar-stw-xxii.yaml.
 
+Literature and credit audit:
+  research/artifacts/stw-xxii-literature-and-credit-audit.md
+It credits the classical Pedersen-Petersen, Bice-Farah and Robert obstruction,
+Ozawa's completion, and the essential HamSandwich formalization. The earliest
+public asking located is Tikuisis's May 25, 2020 talk, 37:40-38:58; the earliest
+verified paper formulation is the seven-author CCEGSTW Question 1.1,
+October 31, 2023. The presenter is not asserted to be the sole originator.
+Recording: https://www.youtube.com/watch?v=qrtLAOC3ZIU&t=2260s
+
+The verification record is maintained after the immutable candidate is cut:
+https://github.com/SauersML/group-approximation/blob/main/research/artifacts/palomar-stw-xxii-submission-readiness-2026-09-13.md
+
 PREPARATION AND VERIFICATION
 
 Use the immutable full commit SHA recorded in the accompanying readiness
