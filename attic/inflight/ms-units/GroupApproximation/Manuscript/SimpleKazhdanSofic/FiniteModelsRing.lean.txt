@@ -59,17 +59,19 @@ theorem exists_matrixModel_clopenCrossedProduct {A : Type} [TopologicalSpace A]
       Set.InjOn φ (t : Set (ClopenCrossedProduct T k)) ∧ φ 0 = 0 ∧ φ 1 = 1 ∧
         ∀ a ∈ t, ∀ b ∈ t, φ (a + b) = φ a + φ b ∧ φ (a * b) = φ a * φ b := by
   classical
-  obtain ⟨B, hbd⟩ : ∃ B : ℕ, ∀ x ∈ t, ∀ g ∈ x.support, |toAdd g| ≤ B :=
+  obtain ⟨B, hbd⟩ : ∃ B : ℕ, ∀ x ∈ t, ∀ g ∈ SkewMonoidAlgebra.support x, |toAdd g| ≤ B :=
     ⟨(t.biUnion SkewMonoidAlgebra.support).sup fun g ↦ (toAdd g).natAbs,
       fun x hx g hg ↦ by
         rw [Int.abs_eq_natAbs]
         exact_mod_cast Finset.le_sup (f := fun g : Multiplicative ℤ ↦ (toAdd g).natAbs)
           (Finset.mem_biUnion.mpr ⟨x, hx, hg⟩)⟩
   obtain ⟨S, hSdiff, hScoeff⟩ : ∃ S : Finset (ClopenCoeff T k),
-      (∀ x ∈ t, ∀ y ∈ t, ∀ g ∈ x.support ∪ y.support, x.coeff g - y.coeff g ∈ S) ∧
-      (∀ x ∈ t, ∀ g ∈ x.support, x.coeff g ∈ S) :=
-    ⟨(t ×ˢ t).biUnion (fun p ↦ (p.1.support ∪ p.2.support).image fun g ↦ p.1.coeff g - p.2.coeff g)
-        ∪ t.biUnion (fun x ↦ x.support.image x.coeff),
+      (∀ x ∈ t, ∀ y ∈ t, ∀ g ∈ SkewMonoidAlgebra.support x ∪ SkewMonoidAlgebra.support y,
+        SkewMonoidAlgebra.coeff x g - SkewMonoidAlgebra.coeff y g ∈ S) ∧
+      (∀ x ∈ t, ∀ g ∈ SkewMonoidAlgebra.support x, SkewMonoidAlgebra.coeff x g ∈ S) :=
+    ⟨(t ×ˢ t).biUnion (fun p ↦ (SkewMonoidAlgebra.support p.1 ∪ SkewMonoidAlgebra.support p.2).image
+          fun g ↦ SkewMonoidAlgebra.coeff p.1 g - SkewMonoidAlgebra.coeff p.2 g)
+        ∪ t.biUnion (fun x ↦ (SkewMonoidAlgebra.support x).image (SkewMonoidAlgebra.coeff x)),
       fun x hx y hy g hg ↦ Finset.mem_union_left _ (Finset.mem_biUnion.mpr
         ⟨(x, y), Finset.mem_product.mpr ⟨hx, hy⟩, Finset.mem_image.mpr ⟨g, hg, rfl⟩⟩),
       fun x hx g hg ↦ Finset.mem_union_right _ (Finset.mem_biUnion.mpr
