@@ -35,6 +35,22 @@ CLAIM (09-13 ~18:30, main's item: `CoreModelsLEFStatement`, "R_Y is LEF"; succes
   SubshiftFiniteWindow (md5 97ff5d23) and SubshiftCycleLEF (md5 dbc679f8), unlanded with no green record; they go to
   ms-traces-3.
 
+CLAIM (09-13 ~20:30, main's item after the outage: the class producer `Q`, hull-count94's planned
+`OsinLemma94ClassJoins`, never written; owner down) GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassProducer.lean
+- For realized polygons `P`, the join predicate `ClassJoins P k s`, which refines sec5-sentences' `KindJoins`:
+  - two sides of one cell `j` whose junction gap (the reversed, `α`-mapped `facePerm` chain between them) has no dart on the
+    polygon face walk;
+  - or two sides of one section `j` whose outer-boundary positions increase.
+- Junction gaps, and the producer `classPolygonsOfJoins P : OsinLemma94ClassPolygons P`, whose classes are the runs of
+  `exists_cyclicRuns`.
+- Count lemmas: `classCount k ≤ max 1 #¬ClassJoins`, and, on polygons with at least two classes,
+  `#otherClasses k ≤ #short + #runEnds + #badJunctions` with `badJunctions := KindJoins ∧ ¬ClassJoins`.
+- Then clause (a) of ms-binary's `OsinLemma94ClassEndLoopsBudgetInput` (68b6b0e96) for this `Q`, over sec5-sentences'
+  transition input and a named bad-junction residual (planar exclusion via hull-component's `JunctionPocket`), in
+  `OsinLemma94ClassProducerBudget.lean`.
+- Not duplicated: ct-bilateral-cell's `osinLemma94ClassCountInput_of_endLoops` consumes the end-loops input; this lane only
+  supplies its `Q` and clause (a).
+
 ## Ledger
 
 Status: `landed` means a carrier is on origin (unwired unless noted); `planned` means named in the owner's report only.
