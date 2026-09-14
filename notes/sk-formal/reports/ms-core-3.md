@@ -43,3 +43,26 @@ Carriers to reuse: `AlgebraicK.ker_detUnits`, `elementaryBlockGroup_map` / `elem
 `isFinitelyGeneratedRing_iff_finiteType_int` (the UniversalOneSidedPairRing idiom), and ms-intro-3's `Setting` (R, G,
 letterIndicator). The next leaves are ρ_ℓ onto, words of length L, marked convergence and expanders; they will be claimed
 after ms-units' `FiniteModelsRing` names land.
+
+## Keys at e80dcf20a (census 09e580c38, hash-keyed rows)
+
+| key | tex | sentence (abridged) | carrier | status |
+|---|---|---|---|---|
+| `20e867674c81` | 147–150 | free algebra F = F₂⟨t_±, t_a⟩, ring homomorphisms π : F → R and ρ_ℓ : F → M_{N_ℓ}(F₂) | L2 `FreeAlgebraKazhdan` (F finitely generated, in probe); π, ρ_ℓ not built | open (rowed after L2 lands) |
+| `3736b79d29b0` | 150 | "Both are onto." | none | open |
+| `8928299f8375` | 151–153 | rotations distinct ⇒ every diagonal matrix unit, with P every matrix unit | none | open |
+| `6860e6b8a6ad` | 153–155 | G and EL_3(M_{N_ℓ}(F₂)) = SL_{3N_ℓ}(F₂) are quotients of EL_3(F) with compatible generators | L1 `printedBlockElementarySpecialLinear` (the equality) | partial (rowed) |
+| `13bf024677ad` | 155–157 | the equality holds since transvections generate SL and in-block ones are commutators between blocks | L1 `printedBlockElementarySpecialLinear`, `AlgebraicK.ker_detUnits`, `elementaryBlockGroup_map` | formalized (rowed) |
+| `5600d3017a0c` | 157–159 | words of length L have entries of degree ≤ L; φ_ℓ∘π = ρ_ℓ on them | none (needs ms-units' φ_ℓ) | open |
+| `8166a301ad3d` | 159–161 | a word is trivial in G iff trivial in SL_{3N_ℓ}(F₂) for large ℓ | none | open |
+| `60605fdb5e61` | 162–163 | convergence in the space of marked groups; G is LEF | none | open |
+| `5538b733c423` | 163–164 | EL_3(F) has (T), so the Cayley graphs are expanders [Kassabov] | L2 gives (T) for EL_3(F) | **oa-expanders** (main, 20:15), over L1/L2 |
+| `b565e2b44061` | 164–166 | LEF ⇒ sofic ⇒ hyperlinear [Pestov] | `isSofic_of_isLEF`, `isHyperlinear_of_isSofic` | formalized (rowed) |
+| `b55725a40939` … `1fe81fb1330c` | 168–177 | L(G) ↪ R^ω, ICC and not RF, II₁ and McDuff, Brown's formulation, Kirchberg, no factorization property, no LLP | to check | open |
+
+- 09-13 ~20:03: an API outage killed the lane mid-turn. Resumed 20:15.
+- 09-13 20:2x: **LANDED 8c266ff3d**, `Manuscript/SimpleKazhdanSofic/MarkedLimitSpecialLinear.lean`; probe 0913-195736-89868 GREEN
+  with a BUILT line, 0 axiom-allowlist violations and no sorry. Queued for wiring.
+  `elementaryBlockGroup_map_eq_ker_detUnits` (any field, N ≥ 1) and the closed `printedBlockElementarySpecialLinear` (F₂).
+- L2 `FreeAlgebraKazhdan` (attic ea16f9222): the first probe (0913-202426-56850) is red in the scalar case of the free-algebra
+  induction; fixing. Its `.green.` record lists only the already-landed L1 and is not evidence for L2.
