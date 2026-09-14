@@ -129,6 +129,28 @@ Design:
   - `one_lt_boundaryWord_length` gets the length hypothesis from two distinct regions to the boundary.
   - `osinSectionPocketFaceSetSection_of_residuals` then gives waist residual 5 with `eps0 = 0`, `rho0 = 1`.
 
+## CLAIM (19:0x, main's item): binder 6 residual 2, `SectionPocketKeptCellStatement`
+
+`CLAIM kept cell of the section pocket walk GroupApproximation/GGT/VanKampen/Estimating/OsinPocketKeptCellSection.lean`.
+Ownership check: no in-flight drafts on non-interleaving walks or on Euler without following.
+
+The problem:
+- Kind (i) joints (inside a side, and the four corners): the inner sector holds only darts internal to the region,
+  so the inner cycle follows there. A touch there breaks only the outer cycle, which is the lake.
+- Kind (ii) joints (inside `t_1`, `t_2`): the outer sector is one corner, but the inner sector is uncontrolled. A
+  touch there breaks the inner cycle.
+- A walk with touches of both kinds breaks both cycles, so "either cycle follows" is not the residual (hand argument).
+
+What a pocket region actually needs:
+- `IsDiscRegion` is a boundary cycle plus the Euler equality of its reclosing; connectivity comes free
+  (`toDiscRegion_of_euler`).
+- So option (iv) is the precise residual: both reclosings of the pocket walk preserve the Euler characteristic.
+- Passages at a vertex do not interleave, so both sides are discs (hand argument).
+
+Planned: `PocketRegion.ofNoncrossingClosedWalkEuler` (both Euler equalities, no following),
+`IsNoncrossingClosedWalk.eulers_of_eitherFollows` (partial producer), `PocketWalk.noncrossing_of_copyClean`, the residual
+`SectionPocketWalkEulerStatement`, `sectionPocketKeptCell_of_euler`, and a lake-map model test.
+
 ## Plan for `side_outer`
 
 - Mirror ms-cite-2's cell-side statement for the exterior: `IsOuterSideDart Delta family x` holds when `faceOf x` is
