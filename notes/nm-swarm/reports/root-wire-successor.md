@@ -44,7 +44,7 @@ there, so this lane rebuilt their core in a scratch tool (`rwprep.py`):
 
 | module | reason | owner |
 |---|---|---|
-| `Manuscript.ChainCore.BilateralThreeClosures`, `Algebra.BilateralThreeCellZOrder` | both reach `Dynamics/BilateralThreeCellClopen`, which redeclares `ClopenCrossedProduct.coeff_injective` (also in `Dynamics/ClopenCrossedProductComap`, chain-core) | ct-bilateral-cell |
+| ~~`Manuscript.ChainCore.BilateralThreeClosures`, `Algebra.BilateralThreeCellZOrder`~~ released ~19:05 | reached `Dynamics/BilateralThreeCellClopen`, which redeclared `ClopenCrossedProduct.coeff_injective`; fixed at 131abe1b5, GREEN 0913-185912-77650 | ct-bilateral-cell |
 | `Dynamics.ClopenCrossedProductAlgebra` | global `ClopenCoeff.instAlgebra`, a second `Algebra (ZMod 2) R_X` beside ms-units' `zmodTwoAlgebra`; waits for main's ruling | ms-compress-3 |
 | `Estimating.OsinLemma94ClassCovers` | red since a25fe2383 (roster) | hull-component |
 | `Algebra.IntegerPolynomialUnisolvence` | red: never compiled, application type mismatch at 122:80 (ℤ vs ℂ coefficients); ms-traces-1 probe 0913-185628-64856 | dgo-geometric |
@@ -79,7 +79,12 @@ Pre-flight at 172725674:
 - The wave 18 draft (30 gate-OK tops, not launched) pre-flights clean together with wave 17 at def464f1b: 86 newly
   reachable files, 0 held, 0 without green evidence.
 
-Result: pending.
+- Later `scontrol update` calls added `sioux` and shortened the time limit to 1h30m. The job started at 19:08 on acl42
+  (sioux, 32 CPUs).
+
+Result: **ROOT GREEN, landed ef5f85c15** (15 import lines after line 5164).
+- Build: 15222 jobs; `Built GroupApproximation` took 387s.
+- 1 GroupApproximation module was rebuilt and the rest were restored from the artifact cache.
 
 ## Evidence and holds, 18:45–19:10
 
