@@ -106,24 +106,21 @@ theorem pinchSplit_source_proper (K : PocketFaceSet D eps X lo hi) (I : PinchSpl
   have h1 : (K.pinchSplit I hs).sourceArc.length = K.sourceArc.length :=
     K.sourceArc.mapTo_length id (I.cellDarts_eq K.source)
   have h2 : (cellDarts I.diagram (K.pinchSplit I hs).source).length =
-      (cellDarts X K.source).length := by
-    rw [pinchSplit_source, I.cellDarts_eq K.source, List.length_map]
-  rw [h1, h2]
-  exact hprop
+      (cellDarts X K.source).length :=
+    (congrArg List.length (I.cellDarts_eq K.source)).trans (List.length_map _)
+  exact lt_of_eq_of_lt h1 (lt_of_lt_of_eq hprop h2.symm)
 
 /-- **A split inside the face set keeps a proper source arc.** -/
 theorem pinchSplitInside_source_proper (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Input X)
     (hs : I.Inside K.faces) (hprop : K.sourceArc.length < (cellDarts X K.source).length) :
     (K.pinchSplitInside I hs).sourceArc.length <
       (cellDarts I.diagram (K.pinchSplitInside I hs).source).length := by
-  have h1 : (K.pinchSplitInside I hs).sourceArc.length = K.sourceArc.length := by
-    have h := congrArg List.length (K.pinchSplitInside_sourceArc_darts I hs)
-    rwa [CyclicArc.darts_length, CyclicArc.darts_length] at h
+  have h1 : (K.pinchSplitInside I hs).sourceArc.length = K.sourceArc.length :=
+    K.sourceArc.mapTo_length id (I.cellDarts_eq K.source)
   have h2 : (cellDarts I.diagram (K.pinchSplitInside I hs).source).length =
-      (cellDarts X K.source).length := by
-    rw [pinchSplitInside_source, I.cellDarts_eq K.source, List.length_map]
-  rw [h1, h2]
-  exact hprop
+      (cellDarts X K.source).length :=
+    (congrArg List.length (I.cellDarts_eq K.source)).trans (List.length_map _)
+  exact lt_of_eq_of_lt h1 (lt_of_lt_of_eq hprop h2.symm)
 
 /-- **One step of the section pinch at a split avoiding the face set.**  The merged faces lie off
 the face set, every turn of the cycle runs along vertex rotation without meeting a split dart, and
