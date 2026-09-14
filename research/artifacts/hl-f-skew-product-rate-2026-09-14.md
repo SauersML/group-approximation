@@ -156,7 +156,9 @@ configuration (all seeds and `frac` values):
   `ρ_F ≤ 4/21`, and every nonsoficity constant in the max form is at least `21/4 = 5.25`, improving
   `13/4`.
   - The pair is a skew product with fibre `Sym(3)` over the commuting `Z/3 × Z/3`, so by §4 its derived
-    length is at most 3; the structure is in `skewgroups.log` once GAP job 794552 reports.
+    length is at most 3. GAP job 794552 (`skewgroups.log`) gives a solvable group of order 22,674,816
+    and derived length exactly 3, structure `((C3^9 : C2^7) : C3) : C3`.
+  - The `3/11` pair on 36 points is also solvable of derived length exactly 3, order 191,102,976.
   - Consequence: the linear constant for derived length three satisfies `N_3 ≥ 21/4`, strictly above
     the metabelian `N_2 = 3`.
 - **`cert.torus3xS4-3over11.txt`.** `n = 36`, `m_1 = m_2 = 9`, `m_c = 33`, `u_2` moves 24 points.

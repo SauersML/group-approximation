@@ -1,0 +1,11 @@
+4/21 torus3 x Sym3 fibre, n=27 | order 
+22674816 | solvable true | derived length 
+3
+  | structure (((C3 x C3 x C3 x C3 x C3 x C3 x C3 x C3 x C3) : (C2 x C2 x C2 x \
+C2 x C2 x C2 x C2)) : C3) : C3
+3/11 torus3 x Sym4 fibre, n=36 | order 
+191102976 | solvable true | derived length 
+3
+  | structure (C2 x C2 x C2 x C2 x C2 x C2 x C2 x C2 x C2 x C2 x C2 x C2 x C2 x\
+ C2 x C2 x C2 x C2 x C2) : ((((C9 x C3) : C3) : C3) : C3)
+ls: cannot access 'repo': No such file or directory
