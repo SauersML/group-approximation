@@ -170,6 +170,28 @@ CLAIM Euler span C6′ assembly GroupApproximation/GGT/VanKampen/Estimating/Osin
 
 - `TwoGonEulerSpanInput`: `TwoGonEulerWalkInput` with the inclusions replaced by the gap equation and the target start/end equalities, as `PocketWalk.exists_of_exteriorAt` gives them.
 - `twoGonHoldsInput_of_eulerSpan : TwoGonEulerSpanInput → TwoGonHoldsInput`, with no gap residual: the gap darts come from GapFaces, and the inclusions and bounds from `OsinAppendixEulerTwoGonSpans`.
+- 02:00 probe 0914-015912 RED:
+  - `hpow` was typed on the `FaceBoundary` carrier spelling, so `omega` and `rw` saw a different `source.darts`; fixed by typing it against `source.darts`;
+  - `getElem_darts_of_le` is not imported; its proof is inlined.
+- 08:30: the laptop reboot wiped `/private/tmp`. NM was rebuilt, the overlay list re-added, and the green records lost, so both modules were re-probed.
+- LANDED GapFaces at 15dd6c29b: `Estimating/OsinAppendixEulerTwoGonGapFaces`, probe 0914-083056-26600 BUILT; five audits [propext, Classical.choice, Quot.sound], no sorryAx; on the wire queue.
+  - `faceClassO_pow_of_firstReturn`;
+  - `twoGonPocketFace_of_outerGap` (consumes hull-euler's `exists_sigma_eq_of_twoGon` and `outer_collapsed_facePerm_pow`);
+  - `twoGonPocketFace_of_targetSpan`;
+  - `getElem?_darts_facePerm_pow`, `twoGonPocketFace_of_cellGap`.
+- EulerSpan in the same probe: one red, `rw [hLo]` against the dependent `Fin` in `target.start`; `omega` now uses `hLo` as a hypothesis.
+- LANDED EulerSpan at e660b8b53: `Estimating/OsinAppendixEulerTwoGonEulerSpan`, probe 0914-083320-44815 GREEN; audits [propext, Classical.choice, Quot.sound], no sorryAx; on the wire queue.
+  - `TwoGonEulerSpanInput`: the noncrossing decomposition walk, the Euler pair, the source gap equation, and the target start/end equalities.
+  - `twoGonHoldsInput_of_eulerSpan : TwoGonEulerSpanInput → TwoGonHoldsInput`, with no other residual.
+  - `TwoGonEulerGapInput` (c109573e3) is superseded: its content is proved in the gap-equation spelling.
+- 08:4x: after the reboot the rebuilt wire queue had lost five of my modules; re-queued (CuttingSides, CuttingSidesCount, CuttingClasses, CuttingClassesClosed, ClassHyp, EulerWalk, PocketFacesEuler).
+
+## State of C6′ on the Euler route
+
+`TwoGonHoldsInput` follows from `TwoGonEulerSpanInput` alone. Its producers:
+- the noncrossing decomposition walk with the gap equation: ms-inverses-2's `PocketWalk.exists_noncrossing_decomposition_of_copyCleanAt` builds it but drops the gap equation, so it needs a variant that keeps `⟨Gap, hsrc⟩`;
+- the edge conditions `CopyCleanAt`: the clause producers of w1-binder-6, ms-binary, ms-cite-2 and ms-intro-2;
+- the Euler pair: ms-inverses-2's no-interleaving lemma plus a no-interleaving Prop for pocket walks.
 
 ## Residuals of the Euler C6′ route
 
