@@ -1,0 +1,120 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemSolvability
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeInvariant
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.ElementaryGroupFacts
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshiftSetting
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Assembly of corollary `cor:wp`
+
+`simple_kazhdan_sofic_group.tex` (origin tip 696c4b602), corollary `cor:wp`:
+
+> The word problem of `G_X` has the Turing degree of the language `L(X)` of `X`. In particular `G_X`
+> has solvable word problem if and only if `L(X)` is recursive, as for the Fibonacci subshift
+> `X_{(3-√5)/2}` below. Every Turing degree occurs, and there are continuum many groups `G_X`, none
+> of which is isomorphic to a subgroup of another.
+
+`printedWordProblemsCorollary_of` proves `PrintedWordProblemsCorollary` from the three open pieces
+of the printed proof, each a named `Prop` owned by another lane:
+* `PrintedWordProblemReducesToLanguage`: `L(X)` computes the word problem (ms-traces-3);
+* `PrintedContinuedFractionRepresentative`: every set has the degree of `[0; 1 + χ_S(0), …]`
+  (sk-stepanov);
+* `PrintedTuringAntichainContinuum`: the Turing degrees contain an antichain of size continuum
+  (ms-traces-3).
+All other steps are proved: the reductions between the word problem, the language, and the slope;
+the Sturmian subshifts; the substitution reduction along embeddings; and `closure_range_genValue`,
+which says the printed generators generate `G_X`.
+-/
+
+namespace GroupApproximation
+namespace SimpleKazhdanSofic
+
+open SymbolicDynamics.FullShift Set SturmianComputability
+open scoped commutatorElement
+
+/-- The generators `e_ij(s)`, `s ∈ {u, u⁻¹} ∪ {e_a : a ∈ A}`, generate `G_X`. -/
+theorem closure_range_genValue {A : Type} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A]
+    [Finite A] (S : Subshift A ℤ) : Subgroup.closure (range (genValue S)) = ⊤ := by
+  set K : Subgroup (G S) := Subgroup.closure (range (genValue S)) with hK
+  set H : Subgroup (Matrix (Fin 3) (Fin 3) (R S))ˣ := K.map (elementaryGroup (Fin 3) (R S)).subtype
+    with hH
+  have hgen : ∀ (i j : Fin 3) (h : i ≠ j) (c : Coeff A), elementaryUnit i j h (coeffValue S c) ∈ H :=
+    fun i j h c => ⟨genValue S (⟨(i, j), h⟩, c), Subgroup.subset_closure ⟨_, rfl⟩, rfl⟩
+  have hthird : ∀ i j : Fin 3, i ≠ j → ∃ k : Fin 3, i ≠ k ∧ k ≠ j := by decide
+  have hle : elementaryGroup (Fin 3) (R S) ≤ H := by
+    rw [printedElementaryGeneration (R S) (ringGenerators S) (subring_closure_eq_top S),
+      Subgroup.closure_le]
+    rintro _ ⟨i, j, h, s, hs, rfl⟩
+    rcases hs with rfl | hs
+    · obtain ⟨k, hik, hkj⟩ := hthird i j h
+      have e := elementaryUnit_commutator i k j hik hkj h
+        (coeffValue S .u) (coeffValue S .uInv)
+      have hu : coeffValue S .u * coeffValue S .uInv = 1 := Units.mul_inv _
+      rw [hu, commutatorElement_def] at e
+      rw [← e]
+      exact H.mul_mem (H.mul_mem (H.mul_mem (hgen i k hik .u) (hgen k j hkj .uInv))
+        (H.inv_mem (hgen i k hik .u))) (H.inv_mem (hgen k j hkj .uInv))
+    · rcases hs with (rfl | rfl) | ⟨a, rfl⟩
+      · exact hgen i j h .u
+      · exact hgen i j h .uInv
+      · exact hgen i j h (.letter a)
+  rw [eq_top_iff]
+  rintro x -
+  obtain ⟨y, hy, hyx⟩ := Subgroup.mem_map.1 (hle x.2)
+  have hxy : y = x := Subtype.ext hyx
+  exact hxy ▸ hy
+
+/-- **Corollary `cor:wp`**, from the three open pieces of its printed proof. -/
+theorem printedWordProblemsCorollary_of (hc : PrintedWordProblemReducesToLanguage)
+    (he : PrintedContinuedFractionRepresentative) (ha : PrintedTuringAntichainContinuum) :
+    PrintedWordProblemsCorollary := by
+  classical
+  haveI : Finite (Coeff Bool) := Finite.of_equiv _ (Coeff.equivOption Bool).symm
+  have hdeg : ∀ B : Set ℕ, ∃ α : ℝ, Irrational α ∧ 0 < α ∧ α < 1 ∧
+      TuringEquivalent (slopeOracle α) (charOracle B) := fun B => by
+    obtain ⟨α, hcf, hirr, heq⟩ := he B
+    have hfl : ⌊α⌋ = 0 := by
+      have h := hcf.1
+      rw [GenContFract.of_h_eq_floor] at h
+      exact_mod_cast h
+    obtain ⟨h0, h1⟩ := Int.floor_eq_zero_iff.1 hfl
+    exact ⟨α, hirr, lt_of_le_of_ne h0 (Ne.symm hirr.ne_zero), h1, heq⟩
+  choose α hirr hpos hlt hχ using hdeg
+  have hmin : ∀ B, (sturmianSubshift (α B)).carrier.Infinite ∧ IsMinimal (sturmianSubshift (α B)) :=
+    fun B => printedSturmianSubshiftInfiniteIsMinimal (α B) (hirr B) (hpos B) (hlt B)
+  have hWP : ∀ B, TuringEquivalent (wordProblemOracle (genValue (sturmianSubshift (α B))))
+      (charOracle B) := fun B => by
+    have hWL := printedWordProblemDegreeEqLanguage_of hc Bool (sturmianSubshift (α B))
+      (hmin B).1.to_subtype (hmin B).2
+    have hLα : TuringEquivalent (languageOracle (sturmianSubshift (α B))) (slopeOracle (α B)) :=
+      ⟨printedSlopeComputesSturmianLanguage (α B) (hirr B) (hpos B) (hlt B),
+        printedSturmianLanguageComputesSlope (α B) (hirr B) (hpos B) (hlt B)⟩
+    exact TuringEquivalent.trans _ _ _ (TuringEquivalent.trans _ _ _ hWL hLα) (hχ B)
+  refine ⟨printedWordProblemDegreeEqLanguage_of hc,
+    printedSolvableWordProblemIffRecursiveLanguage_of hc, printedFibonacciSolvableWordProblem_of hc,
+    fun B => ⟨sturmianSubshift (α B), (hmin B).1.to_subtype, (hmin B).2, hWP B⟩, ?_⟩
+  obtain ⟨F₀, hF₀, hanti⟩ := ha
+  have hinj : InjOn (fun B => sturmianSubshift (α B)) F₀ := by
+    intro B hB C hC hBC
+    have hBC' : sturmianSubshift (α B) = sturmianSubshift (α C) := hBC
+    have e : wordProblemOracle (genValue (sturmianSubshift (α B))) =
+        wordProblemOracle (genValue (sturmianSubshift (α C))) :=
+      congrArg (fun S : Subshift Bool ℤ => wordProblemOracle (genValue S)) hBC'
+    exact hanti B hB C hC ((hWP B).2.trans (by rw [e]; exact (hWP C).1))
+  refine ⟨(fun B => sturmianSubshift (α B)) '' F₀, ?_, ?_, ?_⟩
+  · rw [Cardinal.mk_image_eq_of_injOn _ _ hinj, hF₀]
+  · rintro _ ⟨B, -, rfl⟩
+    exact ⟨(hmin B).1.to_subtype, (hmin B).2⟩
+  · rintro _ ⟨B, hB, rfl⟩ _ ⟨C, hC, rfl⟩ ⟨ψ, hψ⟩
+    have hred := printedWordProblemReducesUnderEmbedding (G (sturmianSubshift (α B)))
+      (G (sturmianSubshift (α C))) (Gen Bool) (Gen Bool) (genValue (sturmianSubshift (α C)))
+      (genValue (sturmianSubshift (α B))) ψ hψ (closure_range_genValue _) (closure_range_genValue _)
+    have hBC : B = C := hanti B hB C hC ((hWP B).2.trans (hred.trans (hWP C).1))
+    rw [hBC]
+
+#audit_axioms closure_range_genValue
+#audit_axioms printedWordProblemsCorollary_of
+
+end SimpleKazhdanSofic
+end GroupApproximation
