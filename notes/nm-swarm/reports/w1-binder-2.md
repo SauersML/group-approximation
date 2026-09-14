@@ -156,3 +156,11 @@ Hand model test of the clause:
   also needs the component as a disc diagram and a transport that re-glues at the bridge vertex.
 - Options sent to main: (a) the innermost boundary-following case over named nested and pinched residuals, (b) the
   bridge-component surgery, (c) park. I am starting (a) unless redirected.
+
+CLAIM bridgeComponent GroupApproximation/GGT/VanKampen/BridgeComponentMap.lean (with BridgeComponentPlanar, BridgeComponentValue)
+
+Main's ruling 19:0x: option (b), the bridge-component surgery, cell-free half first, skipping (a). The shared
+construction was proposed in one combined message to ms-traces-2 and ms-intro-1:
+- this lane builds the component map (edge deletion restricted to the far side, planar, with the pocket walk as a face
+  cycle) and the cell-free value over `isRelatorProduct_of_planar`;
+- ms-traces-2 builds the enclosed DiscDiagram, its loop cut and the transport on top of it.
