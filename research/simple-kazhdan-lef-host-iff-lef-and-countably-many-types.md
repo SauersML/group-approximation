@@ -21,3 +21,5 @@ in one such group. The set of all finitely generated LEF groups does not, becaus
 many isomorphism types.
 
 Route: `simple-kazhdan-lef-host-iff-lef-and-countably-many-types-proof`.
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** PASS (§3). Re-derived: (1)⇒(2)⇒(3)⇒(1), and both examples (f.g. fields have countably many isomorphism types; solvable word problem gives countably many relator sets).

@@ -61,3 +61,5 @@ fixed `r, s ∈ R`, `ψ_n(r+s) = ψ_n(r)+ψ_n(s)` and `ψ_n(rs) = ψ_n(r)ψ_n(s)
   `SL_(3N_n)(F_2)` for large `n`.
 - So the finite simple groups `SL_(3N_n)(F_2)` converge to `G` as marked groups. The uniform Kazhdan constant of
   `EL_3(F)` makes their Cayley graphs a family of expanders.
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** (i)–(iii) PASS. GAP G1 in "Convergence and expansion": `{e_ij(t)}` does not generate `EL_3(F)`, because the augmentation map kills it but not `e_12(1)`. Repair: `e_ij(1) = [e_ik(t_s), e_kj(t_(s^(-1)))]` has length 4 in `G` and in every `SL_(3N_n)(F_2)`, so the Kazhdan constant `ε` of `EL_3(F)` for `{e_ij(1), e_ij(t)}` gives `ε/4` for the marking.

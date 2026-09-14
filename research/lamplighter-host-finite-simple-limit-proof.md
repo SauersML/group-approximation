@@ -21,3 +21,5 @@ Full derivation: artifact §1–§3.
 - **Theorem.**
   - `EL_3(M_N(F_2)) = SL_(3N)(F_2)`. A word is trivial in `H` iff it is trivial in the approximant for large `n`, by Lemmas 2 and 3, so the marked groups converge.
   - `EL_3` over the free algebra has (T), so the marked finite quotients form expanders (Margulis; compare Kassabov 2007).
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** Lemmas 1–3 and convergence PASS. GAP G1 in Theorem A, steps 1 and 3 (artifact §3), with a repair. The phrases "marked quotients of `Λ = EL_3(F)`" and "a Kazhdan pair `(Σ, ε)` with `Σ` the marking" fail, because `Σ = {e_ij(t)}` does not generate `EL_3(F)`. Use `Σ⁺ = Σ ∪ {e_ij(1)}`, a generating set of the Kazhdan group `EL_3(F)`. In every quotient `e_ij(1) = [e_ik(t_s), e_kj(t_s′)]` has length 4, so `(Σ, ε/4)` is a uniform Kazhdan pair.

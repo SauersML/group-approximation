@@ -14,3 +14,5 @@ particular no countable group contains every finitely generated LEF group. So th
 `simple-kazhdan-lef-host-for-recursive-lef-groups` cannot be dropped.
 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** PASS, independent second review (§3). The Turing degree of the word problem is an isomorphism invariant of f.g. groups, so the `G_X` realize continuum many types.

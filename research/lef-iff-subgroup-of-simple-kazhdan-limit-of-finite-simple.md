@@ -28,3 +28,5 @@ Route: `lef-iff-subgroup-of-simple-kazhdan-limit-finite-simple-proof`. The full 
 `research/artifacts/sk-strong-6-envelope-table-2026-09-13.md` §2.
 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS: view models, covariance, nonvanishing, surjectivity, marked limit and expansion re-derived (§1). Duplicate D1: sk-strong-6's `lef-iff-subgroup-of-simple-kazhdan-limit-of-finite-simple` and sk-strong-8's `lef-iff-subgroup-of-simple-kazhdan-finite-simple-limit` state the same theorem, so one should subsume the other.
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** GAP G1 + repair in route step (iv); the statement stands. Re-derived (§2): covariance, nonvanishing through topological freeness, surjectivity, and convergence, all PASS. Step (iv) needs a generating set of `EL_3(F)`. Add `e_ij(1)`, or use `e_ij(1) = [e_ik(u_s), e_kj(u_(s^(-1)))]`, which has length 4 in every quotient, so `ε/4` is a uniform Kazhdan constant (§1). N1: before taking the infinite overgroup `Δ`, replace a finite `Γ` by `Γ × Z`. Concur with D1.

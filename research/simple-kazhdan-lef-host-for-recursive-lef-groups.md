@@ -29,3 +29,5 @@ artifacts:
 (`no-countable-group-contains-all-fg-lef-groups`). So (b) needs its countability restriction.
 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS (§3). Note N6: the linear-group example relies on solvable word problem for f.g. linear groups (Rabin, Malcev), which is recalled and not re-read.
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** PASS, independent second review (§3). Restricted direct sums are LEF, and there are countably many recursive presentations. The examples rest on recalled inputs (N6).

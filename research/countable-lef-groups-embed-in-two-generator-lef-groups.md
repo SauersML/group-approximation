@@ -35,3 +35,5 @@ gives the same conclusion: `research/artifacts/sk-universal-lef-host-a-2026-09-1
 nodes. The isolation trick is classical, in the style of Hall and B. H. and H. Neumann.
 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** PASS, independent second review. Re-derived (§3): evenness and the Ore data; the level conjugation; isolation (the congruence is an equality below `4^k`, then the 2-adic valuation of `s − s′`); and LEF of subgroups of the ultraproduct.

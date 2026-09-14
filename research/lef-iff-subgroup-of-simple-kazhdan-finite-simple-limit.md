@@ -18,3 +18,5 @@ For a finitely generated group Γ the following are equivalent:
 The case `Γ = 1` is the existence of an infinite simple Kazhdan group that is a limit of finite simple groups, which answers the questions of Brown, Ozawa and Pestov.
 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS: view models, covariance, nonvanishing, surjectivity, marked limit and expansion re-derived (§1). Duplicate D1: sk-strong-6's `lef-iff-subgroup-of-simple-kazhdan-limit-of-finite-simple` and sk-strong-8's `lef-iff-subgroup-of-simple-kazhdan-finite-simple-limit` state the same theorem, so one should subsume the other.
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** PASS, given the G1 repair on `lamplighter-host-is-limit-of-finite-simple-expanders` (the length-4 expression of `e_ij(1)` in the marking). Re-derived (§2): finite `Γ` replaced by `Γ × Z`, the Ore overgroup, `[L,L] ↪ H` through `diag(u_ℓ,1,1)`, and marked limits of finite groups are LEF. Concur with D1.
