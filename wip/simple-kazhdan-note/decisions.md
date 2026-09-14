@@ -931,6 +931,29 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Memory rule: never write statements on the author's behalf.
     - SK census: no workflow gates on it. It is regenerated once, when rev5 lands, on MSI.
     - Archival drafts under wip/ stay as history. The similar line in `Palomar/SurjunctiveNonsoficOverview.txt:84` belongs to another lane; it was raised with the user.
+175. **sk-novelty-db (9f70ff4c44), sk-referee-top's R3: database novelty search found NO PRIOR.**
+    - Sources:
+      - MathSciNet through MSI's institutional IP, 25 queries;
+      - zbMATH Open, 15 queries;
+      - arXiv search;
+      - Semantic Scholar forward citations of EJZ 2010 (97), GM 2014 (24), Kionke–Schesler, Thom 2010, CFF and Alekseev–Thom.
+    - None is prior for (i) an infinite simple Kazhdan sofic, hyperlinear or LEF group, (ii) LEF iff subgroup of a simple Kazhdan LEF group, or (iii) EL_n over subshift crossed products being simple and Kazhdan.
+    - RELATED:
+      - Thomas–Williams 2016 (MR3490909): bi-embeddability on f.g. simple groups is not smooth. Cor 5's antichain inside simple Kazhdan LEF groups is stronger.
+      - Thomas 2013 (MR3289549): isomorphism of f.g. simple groups is not smooth, via flip-conjugacy rigidity of TF(X)′ for Toeplitz subshifts. Bears on Questions item 4.
+    - No change to the paper is required. A 2-line Thomas/Thomas–Williams credit is deferred to the rev5 referee.
+    - Remaining bound: no Google Scholar or Web of Science forward-citation run.
+176. **sk-orthogonality-o final: (O), (O′) and (A2) proved, so G_X ≅ G_Y ⇒ X and Y are strongly orbit equivalent. UNREVIEWED.**
+    - Landings: plan e67da83ad0; part1 e7bf2c8174 and 2cc3778759 (Theorem A, `singer-identities-make-subshift-el3-isos-standard`); part2 ba59af46d8 (Theorem D, `frobenius-bicommutants-make-subshift-el3-isos-standard`); Attempts entries 5dc06bc55d.
+    - The lane called its two inputs unreviewed, but main checked on main that both are reviewed:
+      - the index kernel theorem is PASS by sk-verify-18 part6, though its status line still says "unreviewed";
+      - the corner isomorphism is proved inside the Kakutani route, PASS by sk-verify-18 part11.
+    - Corrections to the sk-normalizer-recognition plan:
+      - 8|_{F21} = 2⊕3⊕3* has no F21-fixed vectors;
+      - the unit group of R_Y is not amenable.
+    - If verified, the rigidity question in the note (l.527) becomes a theorem, a candidate for rev5.1.
+    - Launched independent verifiers: sk-verify-25a (line by line) and sk-verify-25b (adversarial, with MSI representation-theory computations).
+    - RAM: swap 83%, level 2. Launched anyway on value; this session is ~0.6 GB and peer sessions carry the load.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
