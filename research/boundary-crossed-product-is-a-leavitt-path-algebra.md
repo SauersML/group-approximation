@@ -25,3 +25,5 @@ extends to a unital ring isomorphism `rho : L_k(E_d) -> R_∂`.
 
 This is the algebraic counterpart of Spielberg's Cuntz–Krieger description of `C(∂F_d) ⋊ F_d`. Here the
 isomorphism is written down directly, over any field, with no groupoid machinery.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Cuntz–Krieger relations, strong connectivity (a → c → a^{-1}), exits, the Abrams–Aranda Pino simplicity import, and onto-ness through ghost edges were re-derived.** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §2.

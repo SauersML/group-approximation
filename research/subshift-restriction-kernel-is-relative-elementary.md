@@ -20,3 +20,5 @@ Conclusions:
 - For n ≥ 3, K_2(n,R_X) → K_2(n,R_Y) is onto. For any ring, ideal I and n ≥ 3, (EL_n(R) ∩ GL_n(R,I))/E_n(R,I) ≅ coker(K_2(n,R) → K_2(n,R/I)).
 
 Y and Z may be minimal subshifts. Nothing about their unstable K_2 is used.
+
+**Review (sk-verify-5, 2026-09-13): PASS. It gives ker π_Y = E_n(I_Y), the generated subgroup. In Lemma A the cokernel is a group without centrality of K_2(n,·), since the image of K_2(n,R) is normal as an image under a surjection.** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §1.

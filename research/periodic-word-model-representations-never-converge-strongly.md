@@ -31,3 +31,5 @@ This closes the heuristic route "cuspidal-type irreducibles of the finite models
 `directly-finite-subshift-el-n-reduced-cstar-is-mf`.
 
 Proof: route `periodic-word-model-representations-no-strong-convergence-proof`.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Free pair, Kesten norm 2√3, and invariant vector giving norm 4. Wording note: in item 2, the finite groups should contain σ_ℓ(e_ij(1)), σ_ℓ(e_ij(u_V^{±1})) and the matrix units, which is all the proof uses.** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §3.

@@ -20,3 +20,5 @@ Conclusions:
 - (b) The kernel K onto M_1 ∪ … ∪ M_s is locally finite, and G/K ≅ ∏_i EL_n(R_{M_i}). So G is an extension of a locally finite group by a finite product of infinite simple Kazhdan LEF groups.
 
 Example: a Sturmian subshift plus one orbit asymptotic to it on both sides gives exactly three normal subgroups.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Aperiodicity, the choice of Z, collapse of the sandwich, and local finiteness of K were re-derived. Injectivity of Y ↦ ker π_Y does not even need the ideal classification.** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §1.

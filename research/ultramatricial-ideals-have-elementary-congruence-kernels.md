@@ -16,3 +16,5 @@ Let R be a ring, I a two-sided ideal and n ≥ 2. Suppose every finite subset of
 - GL_n(R,I) is locally finite.
 
 The hypothesis over F_2 is used: over F_q with q > 2 determinants obstruct.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Localization into one finite matrix subring, E_n(B) = GL_n(B) over F_2 and the corner embedding z ↦ (1−e_B)I + z were re-derived.** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §1.

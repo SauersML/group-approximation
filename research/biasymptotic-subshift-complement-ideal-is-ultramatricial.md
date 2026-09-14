@@ -16,3 +16,5 @@ Setting:
 Conclusion: every finite subset of I_Y = {Σ f_j u^j : supp f_j ∩ Y = ∅} lies in a subring with a unit e_V that is isomorphic to a finite product of matrix rings M_k(F_2). So `ultramatricial-ideals-have-elementary-congruence-kernels` applies to I_Y.
 
 The limit-set hypothesis is what makes this work: a corner e_V R e_V whose V meets a recurrent orbit outside Y is not locally finite.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Compactness bound on J-chains, transitivity of ~, closure under products, matrix units from distinct class members, and the finite subrings ⊕M_k(F_2)^c ⊆ I_Y were re-derived.** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §1.

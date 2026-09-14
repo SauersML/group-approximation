@@ -22,3 +22,5 @@ lattice in `SL_n(F_q((t))) × SL_n(F_q((t^{-1})))` and has property (T) for `n �
 So `directly-finite-subshift-el-n-reduced-cstar-is-mf`, at the note's group, contains the MF question for positive-characteristic higher-rank lattices. No source in the bounded search of `research/artifacts/mf-kazhdan-cstar-literature-status-2026-09-12.md` (and none found here) decides it.
 
 Proof: route `subshift-elementary-groups-contain-laurent-sl-n-lattices-proof`.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Tower matrix units, the first-return unit and its inverse, injectivity of F_q[t^{±1}] → e_V R e_V, and SL = EL over Laurent polynomials were re-derived.** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §3.

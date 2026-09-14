@@ -21,3 +21,5 @@ ring anti-automorphism, by the graph automorphism `g ↦ (τ(g)^t)^{-1}`, which 
 
 Direct finiteness of `S` is used exactly once and cannot be dropped from this argument: it is what turns the
 one-sided inverses produced by surjectivity into units.
+
+**Review (sk-verify-5, 2026-09-13): PASS. The relation φ_ij(rs) = φ_ik(r)φ_kj(s), units from direct finiteness, ψ = a^{-1}φ_12, and the 12-element hexagon count were re-derived.** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §4.

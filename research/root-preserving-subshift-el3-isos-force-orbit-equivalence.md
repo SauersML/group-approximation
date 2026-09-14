@@ -23,3 +23,5 @@ Root-subgroup preservation is the only remaining hypothesis, so it is now the wh
 `subshift-el3-isomorphisms-are-standard-over-f2`. By `el3-root-subgroups-are-bicommutant-closed` a natural route to it is to show that every maximal abelian
 bicommutant-closed subgroup of `G_X` is conjugate to one of the six row or column subgroups, and then that an
 isomorphism matches the intersection pattern `A_ij = Row_i ∩ Col_j`. Neither step is proved.
+
+**Review (sk-verify-5, 2026-09-13): PASS. The anti-automorphism τ, direct finiteness of R_Y through Łoś, and Theorem R with m = 1 (two PASSes) were checked.** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §4.

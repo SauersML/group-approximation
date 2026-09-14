@@ -28,3 +28,5 @@ without invariant vectors satisfies the hypothesis.
 Examples: the regular representation, `ℓ^2(Gamma/H)` for `H` of infinite index, and the permutation representations on
 boundary orbits and on orbit modules. Hilbert–Schmidt models of such a group are therefore never compressions of one
 fixed representation. For `S_∂` they must moreover be non-permutational, since `S_∂` is nonsofic.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Re-derived the compression defect bound Tr Y_s ≤ εd, the commutator estimate, and the input corner lemma (lazy Kazhdan averages, spectral cut, rank bound). This is the first located review of that lemma.** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §2.

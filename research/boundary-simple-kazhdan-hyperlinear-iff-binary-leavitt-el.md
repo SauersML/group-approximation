@@ -24,3 +24,5 @@ hyperlinear nonsofic group they are not new: their hyperlinearity is exactly the
 `binary-leavitt-unit-group-hyperlinear`, in its elementary-group form, in each characteristic. An attack on either
 question transfers to the other in both directions. In particular a hyperlinear `EL_3(L_(F_2)(1,2))` would make
 `S_∂` over `F_2` a hyperlinear nonsofic infinite simple Kazhdan group.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Checked: rank independence; the finite central quotient q L(G) ≅ L(G/F) with corners of R^ω; the corner copy meeting no scalars; the 2d−2 orthonormal words giving a unital L_p ↪ fRf.** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §2.

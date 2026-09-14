@@ -25,3 +25,5 @@ Frobenius, so `ψ` exists. The step-by-step transfer is in the route and in
 There the rings are `F_q[Q]` for permutation matrices `Q`, i.e. quotients of `F_q[t]`.
 
 Proof: route `sl4-over-finite-chain-rings-has-sl2-invariant-vectors-proof`.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Steps 0–3 were re-derived directly over a finite chain ring: layer G′ ≅ sl_4, the E_21-conjugation contradiction, the Heisenberg character, and induction with distinct characters ψ(dy+cz).** See `research/artifacts/sk-review-5-2026-09-13-part2.md` §3.
