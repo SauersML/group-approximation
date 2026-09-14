@@ -131,3 +131,15 @@ Route note on `ed348643e2ad`: ρ_lm(Y_l) ⊆ Y_m is proved from the cyclic-edge 
   - Covering: x ∉ Y_* gives a noncyclic window (`mem_coreSubshift_iff`), and Y_* ⊆ Y (`generalCore_subset_chainRecurrentSet`, ms-core-2 0bdeb7074) covers X∖Y.
   - Printed-route carrier also for statement key `0ae6fc9e199c` (hull-euler's carrier is the direct atom-graph covering).
   - Ownership check at origin 2f116d20d: no chain-itinerary draft (its .files hold landed bytes only), no shared-tree draft, no lane holds the path.
+- **CLOSED: 51734ad4c** (`Dynamics/ChainCoreDefectPullback`; probe 0913-193823-99328 GREEN with a BUILT line; the log has no error, warning or sorryAx line). Queued for wiring. It imports ms-core-2's `ChainCoreGeneralRecurrent`, which is also unwired.
+  - `pulledBackDefect T S r b := itinerary T S ⁻¹' reachableCylinderUnion (itinerarySubshift T S) r b`.
+  - `isClopen_pulledBackDefect`: the preimage of a word cylinder under the continuous itinerary map.
+  - `mapsTo_pulledBackDefect`: `T(Q) ⊆ Q`, via `itinerary_apply_self` and `mapsTo_shift_reachableCylinderUnion`.
+  - `zpow_succ_mem_pulledBackDefect_diff`: a noncyclic window of `π_S(x)` at position `i` gives `T^{i+1} x ∈ Q ∖ T(Q)`, through chain-subshift's `shift_mem_diff_of_not_isCyclicEdge`.
+  - `exists_mem_zpow_image_pulledBackDefect_diff`: `x ∉ Y_*` gives a noncyclic window (`mem_coreSubshift_iff`) and lies in `T^{-(i+1)}(Q ∖ T(Q))`.
+  - `compl_chainRecurrentSet_subset_pulledBackDefects`: X∖CR(T) is covered for refining partitions, via `generalCore_subset_chainRecurrentSet`.
+  - Closed endpoints:
+    - `printedPulledBackDefectsCover : PrintedPulledBackDefectsCover` (tex 1456, plus clopenness, invariance and wandering of the pulled-back sets);
+    - `printedChainCoreCoveringPrintedRoute : PrintedChainCoreCoveringPrintedRoute` (tex 1373–1374, in the format of hull-euler's `PrintedChainCoreCovering`, for compact totally disconnected metric X).
+  - Census rows: `042966c81c7e` formalized. `0ae6fc9e199c` is formalized with the printed-route carrier added; hull-euler's direct covering stays as a second carrier.
+  - First probe 0913-192858-57085 was red: a membership goal was written with `∈ _`, and the stuck instance cascaded to sorryAx. Fixed by naming the set.
