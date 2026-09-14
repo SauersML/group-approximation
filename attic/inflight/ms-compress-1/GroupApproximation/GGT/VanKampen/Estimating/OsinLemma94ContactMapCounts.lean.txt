@@ -83,8 +83,7 @@ theorem repDart_injective (P : OsinLemma94RealizedPolygons S) :
     rw [P.faceOf_rep, P.faceOf_rep] at e
     exact P.face_injective e
   have ho : p.1.2 = q.1.2 := by
-    have e := congrArg (fun d => S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d)) hv
-    simp only at e
+    have e := congrArg S.diagram.toCombMap.faceOf (congrArg S.diagram.toCombMap.alpha hv)
     rw [P.faceOf_alpha_rep, P.faceOf_alpha_rep] at e
     exact objectFace_injective S e
   exact Subtype.ext (Sigma.ext hk (heq_of_eq ho))
