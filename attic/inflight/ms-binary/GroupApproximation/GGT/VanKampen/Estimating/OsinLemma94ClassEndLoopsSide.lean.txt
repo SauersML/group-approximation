@@ -38,6 +38,7 @@ namespace GroupApproximation.GGT.VanKampen
 universe u w v
 
 open GroupApproximation.GGT.VanKampen.Embedded
+open scoped Classical
 
 namespace GloballyDistinguishedSectionFamily
 
