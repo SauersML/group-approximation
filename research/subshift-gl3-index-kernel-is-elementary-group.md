@@ -22,3 +22,6 @@ artifacts:
 **Model tests.** diag(u,u,1) has index −2 and lies outside G_X; diag(u,u^{-1},1) has index 0 and lies in G_X (Whitehead); uI_3 has index −3.
 
 **Scope.** Minimality and infiniteness enter the constancy of the index and the Kakutani–Rokhlin towers of Theorem D. The periodic case is not claimed.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part6.md`):** re-derived: Lemma 1 (cut, translation, local constancy, minimality); the check that Theorem D's proof uses membership in G only through (T2) at the choice dim M = dim K in (T3), so every index-zero h ∈ GL_3(R) factors as H_1H_2 over tower algebras; and (a)–(c). Conditional on the reviewed inputs (I1) and (I2).

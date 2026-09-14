@@ -18,3 +18,6 @@ artifacts:
 - for the automorphism group Aut(X,T) of homeomorphisms commuting with T, the homomorphism Z × Aut(X,T) → Out(G_X), (m,φ) ↦ [inn(d^m)∘α_φ] with α_φ(Σ f_n u^n) = Σ (f_n∘φ^{-1}) u^n, has kernel {(−3n, T^n)}. So Aut(X,T) embeds in Out(G_X), and [α_T] = [inn(d)]^3.
 
 **Firewall.** This is a lower bound only. That these, with flips and transpose-inverse, generate Out(G_X) needs the open standardness claim.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part6.md`):** re-derived: Z(R) = F_2 and C_{GL_3}(G) = 1; the embedding of GL_3/G; α_φ a ring automorphism commuting with inn(d); the kernel {(−3n, T^n)} via C_R(u) = F_2[u^{±1}] and ind(u^n I_3) = −3n; [α_T] = [inn(d)]^3.

@@ -15,3 +15,6 @@ artifacts:
 **Statement.** Let (X,T) be an infinite minimal Cantor system, R = LC(X,F_2) ⋊_T Z, and G_X = EL_3(R). Every subgroup K ≤ GL_3(R) normalized by G_X is trivial or contains G_X. So the normal subgroups of GL_3(R) are exactly 1 and ind^{-1}(mZ) = G_X⟨diag(u,1,1)^m⟩, m ≥ 0.
 
 **Model test.** ind^{-1}(2Z) contains diag(u,u,1) and not diag(u,1,1). The center of GL_3(R) is trivial (Z(R) = F_2), so no central alternative occurs.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part6.md`):** re-derived: the paper's simplicity steps use only the entries of g ∈ GL_3(R); k = [g,h] ∈ K ∩ H_V; the level ideal from conjugation by G; the classification through O1(a); the trivial center.
