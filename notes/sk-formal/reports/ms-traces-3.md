@@ -66,4 +66,10 @@ All twelve modules are LANDED and queued in `wire-queue.txt`, about 2000 lines i
 - CLAIM `GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsClosed.lean`:
   - the closed discharge `printedGXNotFinitelyPresented`;
   - `PrintedSoficKazhdanExampleNotLEF`: a finitely presented infinite simple group is not LEF, and a finitely presented infinite simple sofic Kazhdan group is a finitely presented sofic Kazhdan group that is not residually finite (the printed reason: finitely presented LEF groups are residually finite, infinite simple groups are not).
-- CLAIM the seven new rows, naming ct-involution's carriers with credit. The split was sent to ct-involution in one message.
+- Split by main (09-14 ~09:45):
+  - ms-traces-3 keys `1c40d21401f6` and `dc73886fdc13`.
+  - ms-traces-1 keys `7d13cf4208bc` (carried by ct-involution's `printedConjugacyIsomorphism`).
+  - The questions themselves and the Caprace–Rémy, Alekseev–Thom 6.1, GPS99 and Bezuglyi–Medynets clauses are structural or attribution.
+  - An earlier split message to ct-involution proposed this lane key all seven rows; main's split supersedes it.
+- The shared lemma "a finitely presented LEF group is residually finite" is already proved in Lean with no literature input: `finitelyPresented_isLEF_residuallyFinite` (Sofic/FinitelyPresentedLEF, root-imported), with ct-involution's closed `printedFinitelyPresentedLEFResiduallyFinite` at `Group.IsFinitelyPresented`.
+- LANDED e579226f8 (QuestionsClosed, probe 0914-100936-48734 BUILT, closed audits): `printedGXNotFinitelyPresented` and `printedSoficKazhdanExampleNotLEF`. Rows `1c40d21401f6` and `dc73886fdc13` are formalized.
