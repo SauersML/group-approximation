@@ -141,7 +141,7 @@ Agreements with w1-binder-5 (18:3x):
   family on `FaceEdgeDoubling.diagram` with `target := H.target.map indexEquiv`. This follows the shape of
   `CellSideThickening.exists_cellSideFree_of_invariant`, so `JoinsCells` is carried along.
 
-In flight: `SurgeryFaceEdgeDoublingHoldingRegion` (M3 part 1, probing; attic copy made):
+**LANDED bac6c5722** `SurgeryFaceEdgeDoublingHoldingRegion` (M3 part 1; probe 0913-190359-6379, BUILT/COMPILED; wire-queued):
 - `facePerm_dartImage`: face rotation commutes with `dartImage` everywhere, by the two `insertBefore` corners `w_j` and
   `facePerm w_j`.
 - `faceOf_dartImage`, `alpha_dartImage_of_ne`, `holdingFaceSet` (images of the faces, without the digon), boundary darts
