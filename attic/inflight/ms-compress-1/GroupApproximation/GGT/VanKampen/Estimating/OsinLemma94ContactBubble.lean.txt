@@ -1,0 +1,122 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94LongTransitions
+import GroupApproximation.GGT.VanKampen.SurgeryPinchSplitAbsorption
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4: an unpinched bubble between two relator cells
+
+`OsinLemma94ContactTransitionInput` (`OsinLemma94LongTransitions.lean`) counts the contacts of
+distinct objects around the polygons.  Euler's count bounds them once no two-gon of the object
+graph is empty, and the smallest empty two-gon is a bubble: a polygon whose walk reads one arc of
+a relator cell `i` and one arc of a different relator cell `j`, and nothing else.
+
+On a globally distinguished family such a polygon does not exist.  Its face has value one, no
+dart with the face on both sides (both sides run along cells), and its walk reads the reversed
+arc of `i` followed by the reversed arc of `j`.  So it is a singleton `ε`-contiguity region from
+`i` to `j` with empty sides (`ContiguityGeometry.ofSingletonFace`).  No selected region contains
+the polygon's face, so adjoining the region gives a heavier legal family, against
+`weight_maximal` (`GloballyDistinguishedSectionFamily.false_of_avoided_singleton`).
+
+* `OsinLemma94RealizedPolygons.face_value`: the face of a polygon reads a word of value one.
+* `OsinLemma94RealizedPolygons.flatMap_range_two`.
+* `OsinLemma94RealizedPolygons.false_of_twoCellSides`: no polygon has exactly two sides, along two
+  different relator cells.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (through Osin's Lemma 9.4, arXiv:math/0411039v3, §9); certifies no
+printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open scoped Classical
+
+namespace OsinLemma94RealizedPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+/-- **The face of a polygon reads a word of value one**: it is an inner face and no relator
+cell. -/
+theorem face_value (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) :
+    RelLetter.listVal (S.diagram.faceWord (P.face k)) = 1 := by
+  rcases S.diagram.inner_face (P.face k) (P.face_ne_outer k) with ⟨C, hC, hface⟩ | h
+  · obtain ⟨i, hi⟩ := List.get_of_mem hC
+    exfalso
+    refine P.face_not_cell k i ?_
+    change (S.diagram.relatorCells.get i).face = P.face k
+    rw [hi]
+    exact hface
+  · exact h
+
+theorem flatMap_range_two {α : Type*} (f : ℕ → List α) :
+    (List.range 2).flatMap f = f 0 ++ f 1 := by
+  rw [show List.range 2 = [0, 1] from rfl]
+  simp
+
+/-- **No unpinched bubble between two relator cells.**  A polygon with exactly two sides, along
+two different relator cells, is a singleton contiguity region that no selected region contains,
+against the maximality of the family. -/
+theorem false_of_twoCellSides (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (h2 : P.sideCount k = 2) {i j : Fin S.diagram.rCellCount} (hij : i ≠ j)
+    (h0 : P.kind k 0 = .cell i) (h1 : P.kind k 1 = .cell j) : False := by
+  obtain ⟨arc0, harc0⟩ := P.cell_arc k 0 i (by omega) h0
+  obtain ⟨arc1, harc1⟩ := P.cell_arc k 1 j (by omega) h1
+  have hsides : (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) =
+      arc0.reverseDarts ++ arc1.reverseDarts := by
+    rw [P.walk k, h2, flatMap_range_two, harc0, harc1]
+  have hwalk : (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) =
+      arc0.reverseDarts ++ [] ++ targetBoundaryDarts S.diagram (some j) arc1 ++ [] := by
+    rw [hsides]
+    simp [targetBoundaryDarts]
+  -- no dart of the polygon has the polygon's face on both sides
+  have hno : Surgery.MapCollapse.NoInternalFaceDart S.diagram.toCombMap (P.face k) := by
+    intro d hd
+    have hmem : d ∈ (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) :=
+      List.mem_rotate.mpr (((S.diagram.faceBoundary (P.face k)).mem_iff d).mpr hd)
+    rw [hsides] at hmem
+    simp only [List.mem_append, CyclicArc.reverseDarts, List.mem_map, List.mem_reverse] at hmem
+    rcases hmem with ⟨e, he, rfl⟩ | ⟨e, he, rfl⟩
+    · rw [S.diagram.toCombMap.alpha_involutive e,
+        ((S.diagram.faceBoundary (cell S.diagram i).face).mem_iff e).mp
+          (arc0.mem_cycle_of_mem_darts he)]
+      exact P.face_not_cell k i
+    · rw [S.diagram.toCombMap.alpha_involutive e,
+        ((S.diagram.faceBoundary (cell S.diagram j).face).mem_iff e).mp
+          (arc1.mem_cycle_of_mem_darts he)]
+      exact P.face_not_cell k j
+  -- both arcs are nonempty, since the sides are
+  have hlen : ∀ (s : ℕ) (hs : s < P.sideCount k) (l : Fin S.diagram.rCellCount)
+      (arc : CyclicArc (cellDarts S.diagram l)), P.sideDarts k s = arc.reverseDarts →
+      0 < arc.length := by
+    intro s hs l arc harc
+    have hne := P.side_ne_nil k s hs
+    rw [harc, CyclicArc.reverseDarts] at hne
+    have hne' : arc.darts ≠ [] := by simpa using hne
+    rw [← arc.darts_length]
+    exact List.length_pos_of_ne_nil hne'
+  let H : ContiguityGeometry D eps S.diagram ({P.face k} : Finset S.diagram.toCombMap.Face) :=
+    ContiguityGeometry.ofSingletonFace (P.face k) (P.face_ne_outer k) (P.face_value k) hno
+      (P.base k) i (some j) arc0 arc1 [] [] hwalk (by simp) (by simp)
+      (by simp [dartWord, RelLetter.listVal, WordMetric.wordNorm_one])
+      (by simp [dartWord, RelLetter.listVal, WordMetric.wordNorm_one])
+  have hresp : RegionCandidate.RespectsSections cuts
+      (⟨{P.face k}, H⟩ : RegionCandidate D eps S.diagram) := by
+    refine ⟨fun h => hij ?_, fun h => absurd h (Option.some_ne_none j)⟩
+    exact (Option.some_injective _ h).symm
+  exact S.false_of_avoided_singleton S.toRealizedSectionFamily S.label_admissible le_rfl
+    (f := P.face k) H (fun a ha => P.face_unselected k a ha) hresp
+    (hlen 0 (by omega) i arc0 harc0) (hlen 1 (by omega) j arc1 harc1)
+
+end OsinLemma94RealizedPolygons
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.face_value
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.false_of_twoCellSides
