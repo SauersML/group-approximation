@@ -130,6 +130,36 @@ cases to classes whose gap darts lie on G-faces, with the count piece producing 
 on the metric half's pairs (segments above ε + B, connectors below ε − B), which moves gap endpoints to corners and
 makes this residual unnecessary.
 
+### Ruling 23:12: R2 (two thresholds); GapEndpoint leaves the waist, GapSpan stays
+
+Gate (checked before building): the metric half's pairs come from `unboundOrientedWordPolygonMonotone` through
+`OsinUnboundScale.orientedWordSidePair_of_orientedClassPair`.  The cross distances are bounded through
+`OsinUnboundScale.epsilon_large`, `12 ((δ + 6) + 1) + 2 κ < ε`, with the Morse radius `κ` of
+`exists_word_replacement_morse_monotone` depending on `δ, λ, c` only.  The segments are bounded through
+`shortcut_shortens`, `ε < β − 2 κ` with `β = (λ √ρ / 240 − c) / 1000`, and `ρ` is chosen after `ε`
+(`exists_osinUnboundScale_after_epsilon`).  So `ε₀ > 12 ((δ + 6) + 1) + 2 κ + B` and a scale at `ε + B` deliver
+connectors below `ε − B` and segments above `ε + B`, in the order of Osin's (36).  R2 passes the gate.
+
+Interface agreed with ct-bilateral-cell (one message each way): ct-bilateral-cell owns
+`Estimating/UnboundOrientedWordPolygonTwoThreshold` (`OrientedWordSidePairTwo`, `unboundOrientedWordPolygonMonotoneTwo`),
+`Estimating/OsinLemma94ClassSectionTwoThreshold` (`OsinLemma94DensePolygonsAntiparallelTwo`,
+`osinLemma94AntiparallelMetricTwo`, `OsinLemma94ClassCasesTwoThresholdInput` over pairs at `ε − B` with segments above
+`ε + B`, `osinLemma94Section_of_classCountTwoThreshold`) and `osinLemma94ClassCasesTwoThreshold_of_residuals`.  This lane
+owns the corner move:
+
+- LANDED 9133128ae `Estimating/OsinLemma94ClassCornerMove` (probe 0914-005607-41763 GREEN, BUILT line checked, 0 errors;
+  queued for wiring): `SideAt.eq_or_block_le` (two sides of one class
+  are equal with equal offsets, or one block ends before the other starts), `not_inGap_corner`, `wordDist_vertex_le_of_near`,
+  `exists_cornerMove` (a position moves to a position inside no gap by ≤ ⌊B/2⌋), and
+  `OsinLemma94ClassPolygons.exists_cornerPair_of_twoThreshold (Q) (hlambda : 0 < lambda) (k) (C : WordConnectorPair …
+  (eps - ⌈(c + 2) / lambda⌉₊)) (hlongS) (hlongT) (hback) : ∃ C' : WordConnectorPair … eps, C'.b' < C'.b ∧
+  ¬ Q.GapEndpoint k C' ∧ C'.source = C.source ∧ C'.target = C.target`.
+
+Correction 23:2x (main, from ct-bilateral-cell): corner moves do not reduce GapSpan to single-side pairs (a backwards pair
+spanning a hair gap between two short sides; linearly many backtracks when λ < 1).  `OsinLemma94ClassCaseGapSpanStatement`
+stays a residual with a geometric producer (ct-bilateral-cell: `SurgeryCellHairThickening`, `InnerGRegion`,
+`exists_quadrilateral_region_rotate`).  ms-compress-3's piece-(v) model (d2a74aca5) stays as calibration.
+
 ## Census rows
 
 `metadata/nm-census-rows/ct-return-tower.tsv` LANDED 988ae81b2: tex 1710, 1716, 1717, 1719, 1721, 1722, 1727, 1731, 1732,
