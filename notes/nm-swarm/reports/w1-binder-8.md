@@ -88,3 +88,12 @@ CLAIM noncrossing, outer FollowsBoundary and Euler for the Case 1 pocket walks w
 CLAIM the binder-3 assembly of OsinLemma94CaseOneRCellStatement over the walk-level shape leaves plus a spur residual, GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellRCellAssembly.lean
 
 - Assigned by main at ~19:40. Interface message sent to ms-intro-1. Consumes `osinLemma94CaseOneXPocket_of_walkShapes`, `osinLemma94CaseOneYPocketOf_of_xPocketOf`, `SameCellPocketNoncrossing.pocketInputs_X` and `_Y`, `SameCellPocketSides.not_mem_sideFaces_or` and `osinLemma94CaseOneSameCell_of_rCell`. New residual: `OsinLemma94CaseOneRCellSpurStatement`.
+
+- LANDED eb8e67fd4: `Estimating/OsinLemma94SameCellRCellAssembly.lean`, probe 0913-195034-67980 GREEN, BUILT. Queued for wiring. Declarations: `OsinLemma94CaseOneRCellSpurStatement` (the relator-cell branch where a pocket walk meets a dart together with its reversal), `osinLemma94CaseOneRCell_of_walkShapes`, `osinLemma94CaseOneSameCell_of_walkShapes`, `osinLemma94CaseOneRCell_of_residuals`, `osinLemma94CaseOneSameCell_of_residuals`, `SameCellRCellAssembly.append_ne_nil_of_listVal_ne_one`. Route: without a spur both pocket walks are noncrossing (`pocketInputs_X` and `_Y`), `not_mem_sideFaces_or` puts the exterior off one side, then the X-pocket (`osinLemma94CaseOneXPocket_of_walkShapes`) or the Y-pocket (`osinLemma94CaseOneYPocketOf_of_xPocketOf`) at shape True. The simple walk-level shape is closed by `osinLemma94CaseOneWalkSimple` (ms-intro-1, 32910e583).
+- Model test of the new residual: `OsinLemma94CaseOneRCellSpurStatement` has the binders of `OsinLemma94CaseOneRCellStatement` plus one more hypothesis, and that statement is equivalent to binder 3 (docstring of `osinLemma94CaseOneSameCell_of_rCell`). So the residual follows from binder 3 and adds no falsity risk.
+- EXACT residual list of binder 3 (`osinLemma94CaseOneSameCell_of_residuals`):
+  1. `OsinLemma94CaseOneIslandStatement` (main list: ms-intro-1, ms-traces-2, w1-binder-2);
+  2. `OsinLemma94CaseOneExcisionStatement` (ms-intro-1);
+  3. `OsinLemma94CaseOneWalkCellPinchStatement` (ms-inverses-1); by `osinLemma94CaseOneWalkCellPinch_of_lobes` (79fbbbbd5) with the closed `osinLemma94CaseOneWalkCellLobeValue` it reduces to `OsinLemma94CaseOneWalkCellLobeExcisionStatement`;
+  4. `OsinLemma94CaseOneWalkTouchVertexStatement` (ms-inverses-4);
+  5. `OsinLemma94CaseOneRCellSpurStatement` (this lane; ms-intro-1 confirmed its shapes produce no hout for spur walks).
