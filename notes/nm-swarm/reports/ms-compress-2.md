@@ -115,6 +115,27 @@ literal step missing.
   enclosed loop cut) makes the walk-level shape route unnecessary. Nothing new is started on it. Every claim of this item has
   landed, and the lane is free.
 
+## Item 3 (main ~20:30): `OsinLemma94SameCellPocketInput` (hpocket of `_of_residualsV4CopySection`)
+
+- Checked with w1-binder-2 in one message. It released its unwritten `Estimating/OsinUnboundSameCellPocketProof.lean`
+  claim; nothing else of its touches the input. It keeps `BridgeComponentPlanar` (landed dc949da1e) and `BridgeComponentValue`
+  (`listVal_pocket_eq_one`, the cell-free branch, re-probing).
+- ms-traces-2 landed `EnclosedFaceSet` and `EnclosedSubdiagramLoopCutStatement` (a5dc9e6b0, e783c654c). The loop cut is
+  stated, not proved.
+- Route:
+  - Cell-free branch: `BridgeComponent.listVal_pocket_eq_one`.
+  - Relator branch (a relator cell other than cell `i` with a dart on the far side): the far-side faces enclosed by the
+    pocket walk, then the enclosed loop cut with `s = []` and the pocket arc of cell `i`, then `OsinLoopCut.false_of_below`.
+    The residuals get named statements.
+- Model test first: a variant of ms-traces-2's `ClosedWalkIslandModel`, with exterior `[0]` and relator cells on `[4]` and
+  `[1,2,5,3]`. The bridge has cell `i = [1,2,5,3]` on both sides.
+  - At `d = 2`: every combinatorial clause holds, and the pocket `[5]` reads `gb⁻¹ ≠ 1`, so least area, the C-condition
+    and the induction hypothesis carry the statement.
+  - At `d = 3`: the orientation clause fails, and the pocket `[1]` reads `ga⁻¹ ≠ 1` with only the exterior on that side.
+- CLAIM model test: `GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketModel.lean`
+- CLAIM assembly of the pocket input over named residuals: `GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.lean`
+- Both paths are free on origin, in the shared tree and in every `lanes/*.files` (checked ~20:35).
+
 ## Progress log
 
 - 2026-09-13 ~17:05: ledger and claims.
