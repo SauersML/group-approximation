@@ -72,5 +72,26 @@ The inputs to (EM) are genuine representations of three finite 7-groups, of orde
   - **So:** a Newton-type existence scheme for `G` still meets nonzero degree-two classes on
     properly non-amenable limits (`kazhdan-hs-instability-lives-on-properly-nonamenable-limits`).
     Removing `b_2` on the trivial summand does not remove the obstruction.
+- **Invariant-fraction counts cannot refute (EM) (2026-09-13, same lane).**
+  - **The candidate obstruction.** For a genuine finite-dimensional `π`, the count above gives
+    `1 − Σ_e f_e + Σ_i f_i ≥ 0`, where `f_X` is the fraction of `X`-invariant vectors. The fractions
+    `f_X` are continuous under normalized-HS closeness and `o(d_n)` padding. So data with
+    `Σ_e f_e − Σ_i f_i > 1 + c` would be an instability witness.
+  - **Genuine vertex data can violate the count.** Take sums of linear characters of the
+    abelianizations `Z_7²`, placing half the mass on characters trivial on `a` and half on
+    characters trivial on `b`. This gives `f_a = f_b = 1/2` and `f_{X_0} = 0`. Exact edge agreement
+    rules the violation out.
+  - **Every asymptotic representation satisfies the count in the limit.**
+    - Let `σ^ω : G → U(M)` be the limit in the tracial ultraproduct, and let `G` act on `W = L²(M)`
+      on the left.
+    - The equivariant cochain complex `⊕_i W^{X_i} → ⊕_e W^{A_e} → W` consists of Hilbert right
+      `M`-modules and computes `H^*(G;W)`.
+    - Property (T) makes `H^1(G;W) = 0`.
+    - Additivity of von Neumann dimension (Lück) then gives
+      `1 − Σ_e τ(E_{A_e}) + Σ_i τ(E_{X_i}) = τ(E_G) + dim_M H̄^2 ≥ 0`, with `E_X` the averaging
+      projections.
+    - Standard facts, not re-read at source: Delorme–Guichardet and Lück additivity.
+  - **So** no linear count of invariant fractions separates (EM) from its failure. An instability
+    witness must be detected by finer data than the traces of the averaging projections.
 - **Exact gap.** (EM) for `U_3(7), U_4(7), U_4(7)`: a gluing statement for almost-matching genuine
   representations, uniform in the dimension.
