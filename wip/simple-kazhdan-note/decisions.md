@@ -350,6 +350,37 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Corollary: H_3(Z), SL_n(Z) for n ≥ 3, and BS(1,2) lie in no G_X. The Z-family is NOT universal for LEF groups (refutes `every-lef-group-embeds-in-a-z-subshift-elementary-group`).
     - REV4 candidate after a PASS: the 6-line trimmed paragraph after Corollary 2, explaining why the lamplighter hosts are necessary. A sharp boundary at small cost; credit Cyr–Franks–Kra–Petite as the nearest prior. Main's lean: ADOPT (trimmed).
 
+79. **Rev3 referee reports (on the landed text 9047d0d3c9).** Correctness: sk-rev3-referee-a, 45161f4f98. Credit and exposition: sk-rev3-referee-b, da7a808e92. Neither found an ERROR, and every claim of the abstract and Theorem 1 is proved or correctly cited. Decisions sent to sk-editor-4 for rev4:
+    - MUST:
+      - a-U9: "A sofic example would also answer Open problem 6.1". A hyperlinear nonsofic example would not.
+      - b-B2 = a-U8: `\cite{Malcev}` plus the countability reason (GL_n over a f.g. field). zbMATH confirms Mat. Sb. N.S. 8(50), 1940, Zbl 0025.00804; the pages 405–422 are recalled.
+      - b-B1: "the ring is simple~\cite[Corollary~4.6]{ClarkEdie}". Crossref confirms Algebr. Represent. Theory 18(4) (2015) 907–916, doi 10.1007/s10468-015-9522-2.
+    - ADOPT:
+      - a-U1: the covariance radius (f of radius ≤ ℓ−1);
+      - a-U2 = b-U1: uniform quantifiers in the marked limit;
+      - a-U3 = b-U6: "the lamplighter group F_2≀Δ acting on F_2^Δ"; only the simplicity proof transfers;
+      - a-U7: display the §2 covariance identity;
+      - b-U3: Fibonacci = X_{(3−√5)/2};
+      - b-D1–D3;
+      - b-C6: the published Rădulescu volume;
+      - b-C5: the Boone–Higman parallel (≤ 2 lines).
+    - CONDITIONAL:
+      - a-U4 = b-U4 renames (R_Δ, G_Δ, Ω, σ_n, ξ, Π, ω) and b-U2 = a-U6′: moot if Theorem 2 (item 71a) replaces the substitution list;
+      - C4 (Camm) only if checked at source;
+      - S1 (every recursively presented RF group) is superseded by item 71(d) if it PASSes.
+    - VERIFIED by referee (b): Caprace–Rémy's existence sentence ("infinitely many isomorphism classes of finitely presented infinite simple groups with Kazhdan's property (T)", via Dymara–Januszkiewicz) is correctly credited.
+    - NEW QUESTION for rev4 (≤ 2 lines, no partial result claimed): is every sofic group a subgroup of an infinite finitely generated simple Kazhdan sofic group? This is the sofic analogue of Corollary 2.
+80. **sk-matricial-stability** (cc3d14e230, unreviewed; queued with sk-verify-7).
+    - For n ≥ 3, every finite-dimensional unitary representation of SL_n(F_q[t^{±1}]) has finite image; for n ≥ 4 it has vectors invariant under the block SL_2, so the group is not purely matricial field.
+    - If SL_4(F_q[t^{±1}]) is point-norm matricially stable, then C*_r(Γ) is not MF for every countable Γ containing it, including every G_X.
+    - Stability itself is OPEN (the corona full-spectrum case). No note change (decision 18).
+81. **sk-measured-subshift** (db789b76bb, 38c836f9a6, unreviewed; queued with sk-verify-7).
+    - LC(2^Δ,k)⋊(Z/2≀Δ) has faithful rank models for every f.g. infinite sofic Δ (Bernoulli counting over colorings of sofic approximations).
+    - So every f.g. sofic group is a subgroup of an infinite f.g. simple Kazhdan F_2-linear-sofic group.
+    - The measured free minimal subshift question stays open (Kerr–Li, Bernshteyn and Elek 2021 read at source).
+    - No note change: linear soficity answers no printed question here. The note gets the sofic-host question of item 79.
+82. **Ops, 20:40–21:20.** A session rate limit stopped 13 lanes. All resumed by raw id at 21:20; MSI re-authenticated at 21:20.
+
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
 - The exact centre formula over F_q (it stays in Cairn).
