@@ -71,18 +71,23 @@ theorem map_range_getD (l : List ℕ) (gt : ℕ → ℕ) :
   refine List.ext_getElem (by simp) fun i h1 _ => ?_
   have hi : i < l.length := by simpa using h1
   simp only [List.getElem_map, List.getElem_range]
-  rw [List.getD_eq_getElem _ _ hi]
+  rw [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hi, Option.getD_some]
+
+/-- One step of the recursion, by definition. -/
+theorem rec_succ (z : Part ℕ) (s : ℕ → Part ℕ → Part ℕ) (k : ℕ) :
+    (Nat.rec (motive := fun _ => Part ℕ) z s (k + 1) : Part ℕ) = s k (Nat.rec z s k) :=
+  rfl
 
 /-- **The primitive recursion collects the answers.** -/
 theorem rec_answers (gt : ℕ → ℕ) (Q : ℕ → List ℕ) (a k : ℕ) :
-    (Nat.rec (Part.some (encode ([] : List ℕ))) (fun y IH => IH >>= fun i =>
+    (Nat.rec (motive := fun _ => Part ℕ) (Part.some (encode ([] : List ℕ))) (fun y IH => IH >>= fun i =>
         Part.some (appendAnswer (Nat.pair (Nat.pair a (Nat.pair y i))
           (gt (queryAt Q (Nat.pair a (Nat.pair y i))))))) k : Part ℕ) =
       Part.some (answersCode gt Q a k) := by
   induction k with
   | zero => simp [answersCode]
   | succ k ih =>
-    rw [Nat.rec_add_one, ih, Part.bind_some]
+    rw [rec_succ, ih, Part.bind_eq_bind, Part.bind_some]
     simp [answersCode, appendAnswer, queryAt, List.range_succ]
 
 /-- **Truth-table reductions are Turing reductions.**  If a total oracle `g = gt` answers the
@@ -90,7 +95,7 @@ queries `Q n` and a primitive recursive `D` computes `f n` from the answers, the
 theorem turingReducible_of_truthTable {f g : ℕ →. ℕ} {gt : ℕ → ℕ}
     (hg : ∀ n, g n = Part.some (gt n)) {Q : ℕ → List ℕ} (hQ : Primrec Q) {D : ℕ → List ℕ → ℕ}
     (hD : Primrec₂ D) (hf : ∀ n, f n = Part.some (D n ((Q n).map gt))) : TuringReducible f g := by
-  show Nat.RecursiveIn {g} f
+  refine RecursiveIn.iff_nat.2 ?_
   have hor : Nat.RecursiveIn {g} g := Nat.RecursiveIn.oracle g (Set.mem_singleton g)
   have hstep : Nat.RecursiveIn {g}
       (fun m => Part.some (appendAnswer (Nat.pair m (gt (queryAt Q m))))) := by
@@ -103,13 +108,14 @@ theorem turingReducible_of_truthTable {f g : ℕ →. ℕ} {gt : ℕ → ℕ}
       (fun p => Part.some (answersCode gt Q (Nat.unpair p).1 (Nat.unpair p).2)) := by
     refine Nat.RecursiveIn.of_eq (Nat.RecursiveIn.prec
       (recursiveIn_of_primrec (Primrec.const (encode ([] : List ℕ)))) hstep) fun p => ?_
-    rw [← rec_answers gt Q]
-    rfl
+    rw [← Nat.pair_unpair p]
+    simp only [Nat.unpair_pair]
+    exact rec_answers gt Q _ _
   have hlen : Nat.RecursiveIn {g} (fun n => Part.some (Nat.pair n (Q n).length)) :=
     recursiveIn_of_primrec (Primrec₂.natPair.comp Primrec.id (Primrec.list_length.comp hQ))
   have hA : Nat.RecursiveIn {g} (fun n => Part.some (encode ((Q n).map gt))) := by
     refine Nat.RecursiveIn.of_eq (Nat.RecursiveIn.comp hans hlen) fun n => ?_
-    simp only [Part.bind_some, Nat.unpair_pair, answersCode, query]
+    simp only [Part.bind_eq_bind, Part.bind_some, Nat.unpair_pair, answersCode, query]
     rw [map_range_getD]
   refine Nat.RecursiveIn.of_eq (Nat.RecursiveIn.comp (recursiveIn_of_primrec (primrec_evalAt hD))
     (Nat.RecursiveIn.pair (recursiveIn_of_primrec Primrec.id) hA)) fun n => ?_
