@@ -58,6 +58,10 @@ Agreed with sk-lef-assembly (09-14 ~09:10). It drops the four rows at its next l
 - G_Δ split agreed with sk-stepanov (09:3x). sk-stepanov takes `PrintedLamplighterHostSolvableWordProblem` and rows 7bfa078c0bed, e3cd35e16e2f and 14148c1b4df0, consuming my Λ normal form by name. This lane keeps Λ and row 581584337a04 (drafted locally; it lands after the carriers).
 - sk-lef-assembly has dropped all four rows (checked on origin). l.439–444 belong to sk-lef-ultra.
 - Simplicity rows re-keyed at fee2f017e (f9d00128c766→18ac299bc474, fd2fdac50185→e503326bf5e2, db6d6604b3d3→5b3ad392ecb5, 18455b63420b→2b5ba855ed5c).
+- 141605858: LamplighterAffineWordProblemReduction (BUILT, probe 0914-104014-15076), with `affineQueryWords`, `affineQueries`, `pairCount`, `affineDecide`, `deltaAnswer` and `affineOracle_eq`.
+- 2d0eec409: LamplighterAffineWordProblemPrimrec (BUILT, probe 0914-105111-49407), queued for wiring. It proves `primrec_affineQueries`, `primrec_affineDecide`, `hasSolvableWordProblem_lampAffine` and the **closed** `printedLamplighterAffineSolvableWordProblem`, and it carries row 581584337a04.
+- 4842f898d: GeneralCommutatorDisplay (BUILT, probe 0914-102610-35246). It proves the display equality `single_mul_charFn_mul_single_eq` and the {0, ε_{a,b⁻¹}} dichotomy `single_mul_charFn_mul_single_eq_zero_or_epsilon`, after audit-sk-1 FAIL 224922eb8e98 (the row named only membership). Row corrected at 67a3eb80a.
+- 93dc96900: row 358e51e6a815 dropped. sk-lef-action's LamplighterHost (`isLEFHost_lampRing`, `printedLamplighterHost`) carries the whole sentence, and sk-lef-action lands the formalized row.
 
 ### Statements (landed): `LamplighterWordProblem`
 - `Lamplighter.PrintedLamplighterAffineSolvableWordProblem`: `HasSolvableWordProblem Δ → HasSolvableWordProblem (LampAffine Δ)` (l.445–447).
