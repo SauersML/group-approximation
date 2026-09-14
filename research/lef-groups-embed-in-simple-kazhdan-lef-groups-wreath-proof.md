@@ -46,3 +46,15 @@ Corollary 2 of the note: 45 source lines against 66 in rev3 at 9047d0d3c9 l.281�
    So the injective homomorphism `ℓ ↦ diag(u_ℓ,1,1)` maps `[L,L]` into `G`, and `Γ ≤ [Δ,Δ] ≤ [L,L]`.
 
 Converse: subgroups of LEF groups are LEF.
+
+**Review (sk-verify-13, 2026-09-13, `research/artifacts/sk-verify-13-2026-09-13-part3.md` §2):** PASS. Re-derived:
+- the group law `ℓℓ′ = (δδ′, f+δf′)` and generation by `Δ` and `a`;
+- minimality;
+- topological freeness from the fixed-point equation; the δ≠e case uses the free coordinates `h ≠ δ^{-1}h` outside `W`;
+- ring generation;
+- exact multiplicativity of `σ_n` ω-a.e. (`κ_n(δ)1_p = 1_{κ_n(δ)p}`, with F_2 cancellation on `supp f ∩ δ supp f′` by injectivity);
+- covariance on finite coordinate sets, uniformly in `y`, and `σ_n(ℓ)^{-1} = σ_n(ℓ^{-1})` ω-a.e.;
+- `U_nD_n(f)U_n^{-1} = D_n(f∘ℓ^{-1})`, and the unital ring homomorphism into `∏_ω M_{|Y_n|}(F_2)`;
+- both Whitehead identities over F_2.
+
+Conditional only on `topologically-free-matricial-crossed-el-simple-kazhdan-lef` (PASS by sk-verify-8 and sk-verify-9), whose hypotheses are all checked here.

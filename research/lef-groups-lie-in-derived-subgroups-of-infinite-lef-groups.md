@@ -28,3 +28,11 @@ elements and an injective homomorphism `Γ → Δ` with image in `[Δ,Δ]`, mapp
 - `diag(a,a^(-1),1)` is not used as a homomorphism.
 - The copy of `Γ` is the diagonal of constant functions, which is a homomorphism. The witnesses `f_s` are only
   elements, not images of a homomorphism.
+
+**Review (sk-verify-13, 2026-09-13, `research/artifacts/sk-verify-13-2026-09-13-part3.md` §1):** PASS. Re-derived:
+- the ultraproduct embedding, since `φ_n(e) = e` and the φ_n are injective on balls;
+- `f_q(i) = q^i` is well defined on `Z/m_n`, since the order of `q` divides `|Q_n|`, which divides `m_n`;
+- `[f_q,t](i) = f_q(i)·(t f_q^{-1} t^{-1})(i) = q^i q^{-(i-1)} = q`, computed coordinatewise in the ultraproduct;
+- `Γ ≤ [Δ,Δ]` with `|S|+1` generators;
+- `t` has infinite order, since `m_n ≥ n`;
+- LEF for subgroups of algebraic ultraproducts of finite groups.
