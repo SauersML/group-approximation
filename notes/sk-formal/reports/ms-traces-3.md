@@ -73,3 +73,4 @@ All twelve modules are LANDED and queued in `wire-queue.txt`, about 2000 lines i
   - An earlier split message to ct-involution proposed this lane key all seven rows; main's split supersedes it.
 - The shared lemma "a finitely presented LEF group is residually finite" is already proved in Lean with no literature input: `finitelyPresented_isLEF_residuallyFinite` (Sofic/FinitelyPresentedLEF, root-imported), with ct-involution's closed `printedFinitelyPresentedLEFResiduallyFinite` at `Group.IsFinitelyPresented`.
 - LANDED e579226f8 (QuestionsClosed, probe 0914-100936-48734 BUILT, closed audits): `printedGXNotFinitelyPresented` and `printedSoficKazhdanExampleNotLEF`. Rows `1c40d21401f6` and `dc73886fdc13` are formalized.
+- Rows `25f820cbd165`, `85fe62a789f3`, `60be9d39afa5` and `7f61e23f0bee` (the four questions) are graded structural, on main's approval 09-14.
