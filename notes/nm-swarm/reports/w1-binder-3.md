@@ -403,3 +403,27 @@ CLAIM the corner fixes at the split corners: GroupApproximation/GGT/VanKampen/Es
     then give `σ e₀ = alpha d₀`, a first turn.
 - Residual, a restriction of the target statement: the step for pockets where every non-first turn is crossed (the
   rose), or whose boundary word has at most one letter (no thickening of an exterior monogon).
+- 09:4x: after the API/DNS outage I reconciled origin, `landed.log`, the wire queue and my probe logs.
+  - c268a0066, 205801d4d and d1c4d4235 are each on origin once and queued for wiring once.
+  - The report on origin matches the tree.
+- 10:2x: `OsinPocketOuterPinchCornerFix` (corner options) built in probe 0914-102149-16523. All 20 `#audit_axioms` are
+  within `[propext, Classical.choice, Quot.sound]`, and there are no warnings. It lands in the same commit as this entry,
+  unwired and queued for wiring.
+  - `OuterPinchCornerFix.next_eq_of_infix`, `infix_of_getElem`, `infix_of_next_of_mem`: two darts consecutive in the
+    carrier of a proper cyclic arc, and both in it, are consecutive in the arc and in the boundary cycle.
+  - `next_faceBoundary_darts`, `next_reverse_map_alpha`: successors on the source and exterior carriers.
+  - `PocketFaceSet.cycle_next_of_sourceArc`, `cycle_next_of_targetArc`: if both options fail, `alpha (σ u)` is followed
+    by `u` in the boundary cycle.
+  - `PocketFaceSet.not_sourceArc_options_e₀`, `not_targetArc_options_e₀`, `not_sourceArc_options_y₀`,
+    `not_targetArc_options_y₀`: at a non-first turn one option is available at each corner.
+  - `faceOf_alpha_e₀_not_mem`, `faceOf_alpha_y₀_not_mem`: both corners lie off the face set.
+- Design of the fix loop, checked on paper:
+  - Fix the x-corner first, then the y-corner in the new diagram. There, prefer option A (double `alpha y₁`). It never
+    touches the first digon, because `x₁ ≠ y₁` at a non-first turn.
+  - Use option B only when A fails. Then `y₁`'s corner is not the first digon, since A is always available on a digon,
+    so the x-corner stays off the second digon.
+  - Corners on inner monogons are left as they are. At `ρ₀ = 2` they are G-faces, and they are distinct from each other
+    and from every digon.
+- Dependency: the transport of the chord data across an insertion is w1-binder-7's `OsinPocketOuterPinchChordLift`.
+  - Its tree file is attic 2bff93a7b; its third probe had not finished when its lane stopped in the 09:36 outage.
+  - I author the loop against its API and can only land once it is on origin.
