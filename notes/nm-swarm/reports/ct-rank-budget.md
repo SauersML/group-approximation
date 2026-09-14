@@ -203,6 +203,13 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
     margin is necessary: `h a = b`, so the first step's target arc can be empty, and (2) chooses the step.
   - Wiring queued.
 
+- 09-14 10:1x: main's item "linear no-abab word bound" is **NOT TAKEN: already in flight with the owner.**
+  - ms-compress-1's draft `GGT/VanKampen/ListNoABABLength.lean` (`.files`, attic 10:06, probe 0914-100636-36149 pending) proves
+    `ListNoABAB.length_add_one_le_two_mul_card` (`|w| + 1 ≤ 2·card`), with tightness on `a b a`, `a b c b a` in its docstring.
+  - Nothing built, nothing claimed.
+  - Offered ms-compress-1 (one message) the cyclic corollary J states (`head ≠ getLast` → `|w| + 2 ≤ 2·card`, by appending the
+    head) plus Lean tightness tests, in a new module `GGT/VanKampen/ListNoABABCyclic.lean` after theirs lands; awaiting their answer.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
