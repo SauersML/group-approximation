@@ -288,3 +288,72 @@ LEAF residual list of V7 (namespace `GGT.VanKampen`; `.{v}` for the vertex count
 
 LANDED 44929efa6 (probe 0914-084716-64911 GREEN: both modules BUILT on a real rebuild and COMPILED, 0 errors, 23 audits classical, no sorryAx; queued for wiring).  The 14 W1 rows cite the `_of_residualsV7` carriers with this leaf list, followed by the `_of_greendlinger` carriers; still `partial`.  Leaf 11 is recomposed over ms-cite-1's below
 chain when its names land.
+
+## Item 9: V8 draft (coordinator ~09:00, 09-14), held for leaf 11
+
+Changes against V7 (additive; V7 stays):
+- V7 leaf 2 closed by `sameCellPocketCellFreeValue` (w1-binder-5, dc9addc9d, `OsinUnboundSameCellPocketCellFree`, `#audit_closed_axioms`,
+  no sorry).  My V7-era scan searched only `GroupApproximation/GGT` with an exact-conclusion match and missed it; scans now cover the whole tree.
+- V7 leaf 12 split by `osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection` (2a4d58ae6, `OsinPocketTwoArcSection`) into
+  `OsinSectionPocketFaceSetProperSectionStatement` and `OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement` (only a section spanning
+  all of `∂Δ`).  Not pushed further through `OsinSectionPocketFaceSetFirstTurnSectionStatement.toProper`: first-turn order fails on lakes at
+  map level (docstring of `OsinPocketPinchOuterDispatch`).
+
+Drafts `GGT/VanKampen/Estimating/OsinGreendlingerWaistV8` (`relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8`, 13 leaves) and
+`Manuscript/NonMF/TorsionFreeResidualsV8` (22 endpoints), attic-saved and probing.  Leaves: `OsinLemma94ClassEndLoopsBudgetInput`,
+`SameCellPocketLoopCutStatement`, `EnclosedSubdiagramLoopCutSuccStatement`, `ClosedWalkEnclosedSubdiagramSuccStatement`,
+`OsinLemma94ClassCaseGapSpanStatement`, `OsinTwoGonCopyCleanSectionStatement`, `OsinTwoGonDecompositionEulerSectionStatement`,
+`NoninterleavingVertexCountStatement`, `CellPocketOuterPinchStepSectionStatement`, `CellPocketWalkProperArcsSectionStatement`,
+`OsinSectionPocketFaceSetProperSectionStatement`, `OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement`,
+`PocketOuterPinchStepSectionStatement`.
+
+Held: per main, the next landed variant also recomposes `CellPocketWalkProperArcsSectionStatement` over ms-cite-1's below chain
+(`CellPocketWalkProperArcsBelowInput` → binder-5 below variant → `MultipleEdgeCutBelowInput` → induction variant feeding `hbelow`) once
+those names arrive.  The 14 W1 rows stay on the V7 carriers (b9ea4161f) until then.
+
+### Item 9 update: V8 rewritten over the below route (09-14 ~09:10)
+
+ms-cite-1's below chain landed (75284d0c0 `OsinAppendixSectionInductionBelow`, 84799a1c5 `OsinPocketMultipleEdgeCopyBelow`), and w1-binder-1
+retracted `OsinTwoGonCopyCleanSectionStatement`: four of its clauses are global facts about the optimal diagram (outer spurs, cell–exterior
+edges, exterior side darts, region-pair edges) that only surgeries on O-equivalent copies remove, so no producer can derive it on the given
+family.  The unlanded V8 draft above is replaced (the earlier bytes are in attic 4c1986a07).
+
+V8 now composes through `relativeGreendlingerQuasiGeodesicLeastArea_of_pocketPartsBelow`:
+- binder 5 below the bound, `osinMultipleEdgeCutBelowSection_of_copyPieces` over `osinMultipleEdgePocketRegionCopyBelowSection_of_pinchSectionOrderEuler`,
+  with the distinct-cells section pinch from `cellPocketPinchSectionDistinctStatement_of_outerPinchStep` (28caa3d7f) and the below proper arcs;
+- C6′ from `osinTwoGonHoldsSection_of_cleanCopyEuler` (7ec4e6fe2);
+- the cell-free value proved and the two-arc face set producer split, as above.
+
+LEAF residual list of V8 (namespace `GGT.VanKampen`; `.{v}` for the vertex count), with owners:
+
+| # | leaf | owner lanes |
+|---|---|---|
+| 1 | `OsinLemma94ClassEndLoopsBudgetInput` | ms-binary (ClassJoins), ms-core-1 (boundary-junction budget), ms-compress-1 |
+| 2 | `SameCellPocketLoopCutStatement` | ms-compress-2, w1-binder-5, ms-traces-2 |
+| 3 | `EnclosedSubdiagramLoopCutSuccStatement` | w1-binder-8, ms-traces-2 (Succ) |
+| 4 | `ClosedWalkEnclosedSubdiagramSuccStatement` | w1-binder-8, w1-binder-6, ms-traces-2 (Succ) |
+| 5 | `OsinLemma94ClassCaseGapSpanStatement` | ct-bilateral-cell, ct-return-tower |
+| 6 | `OsinTwoGonCleanCopySectionStatement` | w1-binder-1 (compose the closed thickenings; the face-edge doubling step is unowned) |
+| 7 | `OsinTwoGonDecompositionEulerSectionStatement` | w1-binder-1; ms-inverses-2's no-interleaving Euler lemma |
+| 8 | `NoninterleavingVertexCountStatement` | ms-inverses-2, w1-binder-6 |
+| 9 | `CellPocketOuterPinchStepSectionDistinctStatement` | w1-binder-7 |
+| 10 | `CellPocketWalkProperArcsBelowSectionStatement` | ms-cite-1 |
+| 11 | `OsinSectionPocketFaceSetProperSectionStatement` | w1-binder-6, w1-binder-3 (first-turn route), ms-intro-2 |
+| 12 | `OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement` | ct-return-tower (inner-pocket producer; calibration model 1478083b7) |
+| 13 | `PocketOuterPinchStepSectionStatement` | w1-binder-7, w1-binder-3 |
+
+Refutation scan over all 13 on origin (`¬ X`): none.  Pending, not composed: w1-binder-6's `PocketGlueComponentPlanarStatement`
+(`OsinPocketGlueComponents`, drafted, not on origin), the leaf of the Euler variants of the pocket cell and outer transports.  The closed
+`pocketCellTransport` stays in V8 until those variants land.
+
+### Item 9 update 2: closures folded in (coordinator ~09:12)
+
+- Leaf 8 `NoninterleavingVertexCountStatement` DROPPED: ms-inverses-2's `cellPocketWalkEuler : CellPocketWalkEulerStatement` (0bd28eecc,
+  `OsinPocketWalkEulerSectorFree`, `#audit_closed_axioms`, no sorry) replaces `cellPocketWalkEuler_of_noninterleaving hcount …` in binder 5.
+  V8 now has TWELVE leaves (the table above minus row 8).
+- Checked, no leaf removed: `sectionPocketWalkEuler` and `sectionPocketKeptCell` (0bd28eecc) produce `OsinSectionPocketFaceSetSectionStatement`
+  (`osinSectionPocketFaceSetSection_of_euler`, `_of_keptCell`), not the proper form `OsinSectionPocketFaceSetProperSectionStatement` that the
+  two-arc split needs; `sectorFreeVertexCount` (68838eeae) feeds `eulers_of_sectorFree` inside the cell walk Euler proof;
+  ms-compress-2's `enclosedBridgeDoublingSucc` and `enclosedLeastAreaFilterSucc` (c2fa6eed0) produce `EnclosedLeastAreaFilterSuccStatement`,
+  which no producer on origin turns into leaf 3 (`EnclosedSubdiagramLoopCutSuccStatement`) or leaf 4 (`ClosedWalkEnclosedSubdiagramSuccStatement`).
+- The previous V8 draft (13 leaves) probed GREEN at 0914-091156-5879; the recomposed 12-leaf V8 LANDED c891e1be3 (probe 0914-091700-833 GREEN: both modules BUILT on a real rebuild and COMPILED, 0 errors, 23 audits classical, no sorryAx; queued for wiring).  The 14 W1 rows cite the `_of_residualsV8` carriers with the twelve leaves, followed by the `_of_greendlinger` carriers; still `partial`.
