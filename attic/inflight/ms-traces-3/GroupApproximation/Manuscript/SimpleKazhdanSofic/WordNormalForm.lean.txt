@@ -88,23 +88,28 @@ theorem val_elementaryUnit {R : Type*} [Ring R] {i j : Fin 3} (h : i ≠ j) (a :
       1 + Matrix.single i j a :=
   rfl
 
+omit [DiscreteTopology A] in
+/-- The entries of `1 + a E_ij`. -/
+theorem one_add_single_apply {R : Type*} [Ring R] (i j p q : Fin 3) (a : R) :
+    (1 + Matrix.single i j a : Matrix (Fin 3) (Fin 3) R) p q =
+      (if p = q then 1 else 0) + (if i = p ∧ j = q then a else 0) :=
+  rfl
+
 /-- **The letter `(i, j, s)` evaluates to `x_ij(eval s)`.** -/
 theorem matEval_elemMat (T : ↥X ≃ₜ ↥X) {i j : Fin 3} (h : i ≠ j) (s : Table A) :
     matEval T (elemMat i j s) =
       ((elementaryUnit i j h (eval T s) : (Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2)))ˣ) :
         Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2))) := by
   rw [val_elementaryUnit]
-  refine Matrix.ext fun p q => ?_
-  rw [matEval_apply, Matrix.add_apply, Matrix.one_apply, elemMat]
+  refine Matrix.ext fun p q => Eq.trans ?_ (one_add_single_apply i j p q (eval T s)).symm
+  rw [matEval_apply, elemMat]
   by_cases hpq : p = q
   · rw [if_pos hpq, if_pos hpq, eval_unitTable,
-      Matrix.single_apply_of_ne fun e : i = p ∧ j = q => h (e.1.trans (hpq.trans e.2.symm)),
-      add_zero]
+      if_neg fun e : i = p ∧ j = q => h (e.1.trans (hpq.trans e.2.symm)), add_zero]
   · rw [if_neg hpq, if_neg hpq, zero_add]
     by_cases hij : p = i ∧ q = j
-    · rw [if_pos hij, hij.1, hij.2, Matrix.single_apply_same]
-    · rw [if_neg hij, eval_nil,
-        Matrix.single_apply_of_ne fun e : i = p ∧ j = q => hij ⟨e.1.symm, e.2.symm⟩]
+    · rw [if_pos hij, if_pos (⟨hij.1.symm, hij.2.symm⟩ : i = p ∧ j = q)]
+    · rw [if_neg hij, eval_nil, if_neg fun e : i = p ∧ j = q => hij ⟨e.1.symm, e.2.symm⟩]
 
 /-- Multiplying out a word of letters `(i, j, s)`. -/
 def wordMat : List ((Fin 3 × Fin 3) × Table A) → Mat A
