@@ -165,6 +165,12 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   - `cd7908a482b5`, `3550126258fb`, `e94a87793eb1`: ms-cite-2 DROPped ct-bilateral-mf `LINE:1583`/`LINE:1587`
     declarations (effective merge 7).
 
+- 09-14 08:50: CLAIM (coordinator item: waist leaf 7 GapSpan, step 4 of ct-bilateral-cell's build order).  ct-rank-budget
+  takes the B1 split lemma: monotone partner selection on the target of a backwards pair of (λ, c+2)-quasi-geodesic class
+  words, with connectors ≤ ε at every breakpoint, margin M ≥ B + 2κ + 12(δ+1), giving the split point where both target
+  arcs are strictly positive.  It is a thin-quadrilateral lemma in the style of `index_lt_of_prefix_near`.  Plan: agree the
+  statement with ct-bilateral-cell in one message, model-test it, then build it.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
