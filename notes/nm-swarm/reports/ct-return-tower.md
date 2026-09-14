@@ -160,6 +160,35 @@ spanning a hair gap between two short sides; linearly many backtracks when λ < 
 stays a residual with a geometric producer (ct-bilateral-cell: `SurgeryCellHairThickening`, `InnerGRegion`,
 `exists_quadrilateral_region_rotate`).  ms-compress-3's piece-(v) model (d2a74aca5) stays as calibration.
 
+## V5 residual 9: binder 6's two-arc producer `OsinSectionPocketFaceSetTwoArcSectionStatement` (coordinator 01:4x / 08:4x)
+
+For w1-binder-7's route 3 (f81311dc9).  Statement split agreed with w1-binder-6 (owner of binder 6's full-t₁ case) in one
+message each way.
+
+- LANDED 2a4d58ae6 `Estimating/OsinPocketTwoArcSection` (probe 0914-084029-91682 GREEN, BUILT line checked, 0 errors; queued
+  for wiring):
+  - `SectionCuts.SpansWhole cuts j` (`cut j = 0 ∧ cut (j+1) = |∂Δ|`), `SectionCuts.cut_sub_lt_of_not_spansWhole`,
+    `SectionCuts.not_spansWhole_of_ne` (a nonempty other section: the count ≥ 2 case), `SectionCuts.spansWhole_of_count_eq_one`.
+  - Residual `SectionPocketFaceSetWholeSectionTwoArcInput` / `OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement`: the
+    two-arc producer at a section spanning the whole boundary.
+  - `sectionPocketFaceSetTwoArcInput_of_proper_of_wholeSection (hproper) (hwhole)` and
+    `osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection (hproper : OsinSectionPocketFaceSetProperSectionStatement)
+    (hwhole : OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement) : OsinSectionPocketFaceSetTwoArcSectionStatement`.
+    Outside whole sections `t₂.length ≤ cut (j+1) − cut j < |∂Δ|` (`lo_le`, `le_hi`, O-equivalence keeps `|∂Δ|`).
+- Why the whole section is the residual: `PocketWalk.exists_of_exteriorAt` runs `t₂` from the start of the first region's target
+  arc to the end of the second's; at a whole section that is all of `∂Δ` when those arcs touch positions `0` and `|∂Δ|`, the two
+  sides meeting at the base vertex.  `PocketFaceSet` positions are linear (`start + length ≤ hi`), so the short pocket across the
+  base vertex is not expressible.
+- Model LANDED 1478083b7 (probe 0914-085400-96548 GREEN, BUILT line checked, 0 errors, `#audit_closed_axioms`; queued for
+  wiring): `Estimating/OsinPocketWholeSectionWrapModel`, a least-area labelled three-petal rose over `Perm (Fin 3)`
+  (faces `Π = [0,2]`, `F = [1]`, `K = [3,5]`, exterior `[4]`; `|∂Δ| = 1`).  `wrapK eps`: at every `ε` a pocket face set in walk
+  order with empty sides, proper `t₁ = [2]` and `t₂ = ∂Δ` (`wholeSectionWrapModel`).  So the whole-section wrap with a proper
+  source arc occurs.  Calibration (`properK`): at `ε ≥ 1` the same face set with the exterior dart read as a side has an empty,
+  proper `t₂`, so the model neither refutes nor proves the residual; it carries no section family.
+- Candidate producer route for the residual (not built): the inner pocket between the two regions, excluding them (sides
+  `x.leftSide`, `y.rightSide`, `t₁` the gap arc, `t₂ = [end x, start y]`), has proper arcs because the regions' arcs are nonempty;
+  it needs the same kept-cell and noncrossing pieces as the landed walk producer.
+
 ## Census rows
 
 `metadata/nm-census-rows/ct-return-tower.tsv` LANDED 988ae81b2: tex 1710, 1716, 1717, 1719, 1721, 1722, 1727, 1731, 1732,
