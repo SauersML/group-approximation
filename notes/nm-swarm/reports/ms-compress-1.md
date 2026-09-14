@@ -157,3 +157,15 @@ Route note on `ed348643e2ad`: ρ_lm(Y_l) ⊆ Y_m is proved from the cyclic-edge 
 - `OsinLemma94ClassTransitions` (sec5-sentences, down) and `OsinLemma94CuttingSides` both declared `OsinLemma94RealizedPolygons.cuttingSides` with the same body, so no root build could import both.
 - Fix: ClassTransitions imports `OsinLemma94CuttingSides`, and the local copy is deleted; no statement changed.
 - **LANDED 013a2dc59** (probe 0913-213117-20108 GREEN, BUILT, 0 sorryAx/error lines). The attic copy is ff0f63e83. The tag and SHA went to ms-core-5.
+
+## Resumed 21:22 and 23:12: ClassTransitions fix, long-transition split
+
+- **Duplicate `cuttingSides` fixed, LANDED 013a2dc59** (probe 0913-213117-20108 GREEN, BUILT, 0 sorryAx/error lines). `OsinLemma94ClassTransitions` imports `OsinLemma94CuttingSides` and drops its identical local copy. The tag went to ms-core-5.
+- **Interface agreed with ms-binary (23:1x)**, who now owns `OsinLemma94ClassJoins`. I deliver `OsinLemma94LongTransitionInput` as declared. ms-binary consumes `osinLemma94KindTransitionInput_of_longTransitions` and keeps the bad junctions, cutting classes and budget ⊆ relator. Extra premises of my proof go into my producer theorem; the Prop does not change.
+- **LANDED 51687cf4b, `Estimating/OsinLemma94LongTransitions`** (probe 0913-232345-17681 GREEN, BUILT, 0 sorryAx/error lines). Queued for wiring.
+  - `contactTransitions` (next side a cell or boundary side) and `cuttingTransitions` (next side cutting); `kind_ne_next_of_mem_longTransitions`, `next_kind_of_mem_contactTransitions`, `card_longTransitions_le`, `sum_card_longTransitions_le`.
+  - Named pieces `OsinLemma94ContactTransitionInput` and `OsinLemma94CuttingTransitionInput` (binders of the Prop), with hand model tests in their docstrings.
+  - `osinLemma94LongTransitionInput_of_pieces` (constant K₁ + K₂). **This is a reduction, not a discharge. Both pieces are open.**
+- Open pieces, owner ms-compress-1:
+  1. Contacts. Euler on the planar object graph; no empty two-gons by `false_of_avoided_singleton` (unpinched bubble) or `PinchSplit.pinchSplitAbsorption` (pinched). First sub-lemma in progress: a two-side cell–cell polygon with no internal dart contradicts maximality (`ContiguityGeometry.ofSingletonFace` with empty sides, `targetBoundaryDarts (some j) = reverseDarts`, `inner_face` for the value).
+  2. Cutting transitions. An entry marks a hole of the polygon that holds an object. `OsinLemma94CuttingSidesCount` bounds sides by entries, not entries by n, so this is new.
