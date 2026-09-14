@@ -141,6 +141,28 @@ Consequence: `OsinLemma94ClassCasesInput` needs its own class-word Case 1/2, a q
 cell and section arcs that include bubble gaps.  Reported to main with the options (a) land the partial transfer
 and narrow the residual to gap-spanning and gap-endpoint pairs, or (b) another item.
 
+## Item 6: partial class→side transfer (main ruling (a))
+
+LANDED 55d5916c7 (statements; probe 0913-193908-4867 GREEN) and 6ba28eb0e (transfer; probe 0913-195859-98891 GREEN,
+axioms [propext, Classical.choice, Quot.sound], no sorryAx). Both are queued for wiring.
+
+| declaration | module | content |
+|---|---|---|
+| `OsinLemma94ClassPolygons.SideAt`, `InGap`, `GapEndpoint`, `SingleSidePair` | Estimating/OsinLemma94ClassPairShapes | side position in a class word, gap-interior positions, and the pair shapes |
+| `OsinLemma94ClassCaseGapEndpointStatement` | same | residual: no backwards class-word pair has an endpoint strictly inside a gap (ct-return-tower models and builds it) |
+| `OsinLemma94ClassCaseGapSpanStatement` | same | residual: no backwards class-word pair that is not single-side and has no gap endpoint (spanning or split); NOT model-tested |
+| `UnboundEstimate.WordConnectorPair.exists_shift` | Estimating/OsinLemma94ClassPairTransfer | a connector pair moves to shifted words under one left factor |
+| `OsinLemma94RealizedPolygons.corner_mul_listVal_eq_mod`, `listVal_flatMap_take_rotate` | same | the polygon corners read cyclically from any side |
+| `OsinLemma94ClassPolygons.corner_mul_prefix`, `vertex_eq_of_sideAt` | same | class-word vertices inside side `s` are side vertices up to `(P.corner k (classBase k % k_i))⁻¹` |
+| `OsinLemma94ClassPolygons.exists_sidePair_of_singleSide` | same | a single-side class pair gives a side-level pair, backwards when the class pair is |
+| `osinLemma94ClassCases_of_residuals` | same | `OsinLemma94ClassCasesInput` from side Case 1, side Case 2 and the two residual shapes |
+
+The split-target shape is not a separate Prop: every pair is single-side, gap-endpoint, or neither, and
+`GapSpanStatement` covers the third case. The V4 waist is ct-rank-two-limit's (`Estimating/OsinGreendlingerWaistV4`); my
+V4 draft was deleted unlanded.
+
 ## Residual statements
 
-In this lane's own modules, none. The W1 waist residuals are listed above (V2: six; V3: seven).
+In this lane's own modules, none. The W1 waist residuals are listed above (V2: six; V3: seven), with
+`OsinLemma94ClassCasesInput` reducible to `OsinLemma94CaseOneRCellStatement`, `OsinLemma94ClassCaseGapEndpointStatement`
+and `OsinLemma94ClassCaseGapSpanStatement`.
