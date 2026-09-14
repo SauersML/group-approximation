@@ -236,3 +236,51 @@ for wiring. It is additive: it imports `OsinLemma94OneCellSameCell` and edits no
 
 Both carry `#audit_axioms`. No false-as-stated Prop. The (2b) budget is the multiple-edge budget already proved on main:
 `μ/2 + μ + μ/2 + μ = 3μ`, against `1 − 13μ` for `μ ≤ 1/16`.
+
+## V3 waist residual 1: `OsinLemma94ClassEndLoopsInput` (main's item, ~19:0x)
+
+The residual is ct-bilateral-cell's, from `Estimating/OsinLemma94ClassSection` (2b2af4479). Its clauses:
+- (a) `∑_{budget polygons} #otherClasses ≤ K n`;
+- (b) `hside`;
+- (c) `classEnd` and `regionEnd` lengths at most `B`;
+- (d) `hbubble`.
+
+**Owners' drafts (checked ~19:0x).** The owners have been down since 17:56, and nothing is left to land under their
+evidence:
+- sec5-sentences: every `.files` entry equals origin. The kind-transition layer is landed (`OsinLemma94ClassTransitions`,
+  ec3c531fc); its residual is `OsinLemma94LongTransitionInput`.
+- hull-component: the `ClassCovers` and `JunctionPocket` modules are landed and the backups match origin. The
+  polygon-level bad-junction exclusion is unwritten.
+- hull-count94: the planned producer of `Q`, `OsinLemma94ClassJoins`, was never written. It is not in the shared tree,
+  the backups, the attic, or any green record.
+
+**Hand model tests of (a) and (d).**
+- **Model: one relator cell (`n = 1`) with many value-one lobes.** Take `r = g₁ t₁ g₂ t₂ …` with value-one triples
+  `t = h h' (hh')⁻¹` over a finite `H` of order at least 3, separated by aperiodic geodesic pieces.
+  - Every subword has `λ|u| − c ≤ |val u|` at lobe density up to `(1 − λ)/λ`, so quasi-geodesic relators can carry
+    `Θ(|r|)` lobes.
+  - The lobes are drawn as G-triangles attached inside the cell's walk.
+  - Each triangle is a one-class polygon of kind `cell i`, and its three reversed darts are unbound and other-facing. No
+    class of another polygon holds them, because faces are distinct, so only end loops can cover them. There are at most
+    `2·#classes + 4|M|` end loops of at most `B` darts each.
+- **Verdict: not a refutation.**
+  - On this pinched copy the family is not globally distinguished. Un-pinching the lobes (an O-equivalence) lets a region
+    to the section absorb them, and that family is heavier (`weight_maximal`).
+  - On a globally distinguished family the lobe darts are bound, so (d) is vacuous there. (a) passes on the model
+    because the triangles are not budget polygons.
+  - So (a) and (d) hold through `weight_maximal` only together with the bubble un-pinch surgery (roster l.850, owner
+    leavitt-units, gated and unbuilt). This agrees with sec5-sentences' pinched-bubble finding.
+  - A Lean refutation or proof needs that surgery. It is a dependency, not a false Prop.
+
+**Clause (b) is closed on main.** `hside` is a composition of landed lemmas in `OsinLemma94PolygonCovers`:
+- `alpha_faceOf_not_cell_of_unbound`: no relator cell and no exterior across, through `weight_maximal` and a digon region;
+- `exists_relatorSide_of_unbound`: the dart across lies on an (A1) side of the polygon of that face;
+- the premises `hvalue` and `hlen`, from `cell_listVal_ne_one` (`c < λρ`) and `one_lt_cellDarts_length` (`1 < ρ`).
+
+CLAIM class end-loops side clause and budget residual GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassEndLoopsSide.lean
+
+The module will state and prove:
+- `classEndLoops_side`: clause (b) for any globally distinguished family and realized polygons under `C(ε, μ, λ, c, ρ)`
+  with `0 < λ`, `c < λρ` and `1 < ρ`.
+- `OsinLemma94ClassEndLoopsBudgetInput`: the residual with clause (b) removed, so only (a), (c) and (d) remain.
+- `osinLemma94ClassEndLoopsInput_of_budget`: the residual back, with `ρ₀` raised to `max ρ₀ (⌈c/λ⌉₊ + 2)`.
