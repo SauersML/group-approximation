@@ -56,16 +56,20 @@ variable (K : CellPocketFaceSet D eps X i j) (f : X.toCombMap.Face)
 theorem faceEdgeDoubling_firstArc_darts :
     (K.faceEdgeDoubling f k hlen hf hs hfirst hsecond).firstArc.darts =
       K.firstArc.darts.map (FaceEdgeDoubling.embedding X f k hlen hf).darts :=
-  FaceEdgeDoubling.mapTo_darts_of_avoid X f k hlen hf K.firstArc _
+  FaceEdgeDoubling.mapTo_darts_of_avoid X f k hlen hf K.firstArc
+    (FaceEdgeDoubling.carrierImage X f k hlen hf (Embedded.cell X i).face)
     (fun _ hd => FaceEdgeDoubling.carrierImage_of_ne_dart X f k hlen hf
-      (Embedded.cell X i).face hd) _ hfirst
+      (Embedded.cell X i).face hd)
+    (FaceEdgeDoubling.cellDarts_eq X f k hlen hf i) hfirst
 
 theorem faceEdgeDoubling_secondArc_darts :
     (K.faceEdgeDoubling f k hlen hf hs hfirst hsecond).secondArc.darts =
       K.secondArc.darts.map (FaceEdgeDoubling.embedding X f k hlen hf).darts :=
-  FaceEdgeDoubling.mapTo_darts_of_avoid X f k hlen hf K.secondArc _
+  FaceEdgeDoubling.mapTo_darts_of_avoid X f k hlen hf K.secondArc
+    (FaceEdgeDoubling.carrierImage X f k hlen hf (Embedded.cell X j).face)
     (fun _ hd => FaceEdgeDoubling.carrierImage_of_ne_dart X f k hlen hf
-      (Embedded.cell X j).face hd) _ hsecond
+      (Embedded.cell X j).face hd)
+    (FaceEdgeDoubling.cellDarts_eq X f k hlen hf j) hsecond
 
 theorem faceEdgeDoubling_firstSide :
     (K.faceEdgeDoubling f k hlen hf hs hfirst hsecond).firstSide =
