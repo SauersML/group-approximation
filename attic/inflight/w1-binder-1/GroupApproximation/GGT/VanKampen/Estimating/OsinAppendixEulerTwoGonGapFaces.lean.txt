@@ -289,8 +289,10 @@ theorem twoGonPocketFace_of_cellGap (P : ExtPhiData family E)
     rw [hgap, List.append_assoc, List.getElem?_append_right (by omega), Nat.add_sub_cancel_left,
       List.getElem?_append_right (le_refl _), Nat.sub_self, ← List.head?_eq_getElem?]
     exact hqB
-  have hpow := getElem?_darts_facePerm_pow
-    (Delta.faceBoundary (cell Delta (phiRegionO y).2.source).face) source h0
+  have hpow : ∀ k, k < source.darts.length →
+      source.darts[k]? = some ((Delta.toCombMap.facePerm ^ k) z.1.1) :=
+    getElem?_darts_facePerm_pow
+      (Delta.faceBoundary (cell Delta (phiRegionO y).2.source).face) source h0
   have hF : ∀ r ∈ family, Delta.toCombMap.faceOf z.1.1 ∉ r.1 := by
     intro r hr
     have hmem : z.1.1 ∈ cellDarts Delta (phiRegionO y).2.source :=
@@ -387,8 +389,14 @@ theorem twoGonPocketFace_of_targetSpan (P : ExtPhiData family E)
   have hLo : (outerDarts Delta).length = (Delta.faceBoundary Delta.outerFace).darts.length := by
     simp only [outerDarts, List.length_map, List.length_reverse]
   have hYo : target.start.1 + target.length ≤ (outerDarts Delta).length := hY
-  have hget : target.darts[k] = (outerDarts Delta)[target.start.1 + k]'(by omega) :=
-    Embedded.CyclicArc.getElem_darts_of_le target hY hk
+  have hget' : target.darts[k] =
+      (targetDarts Delta none)[target.start.1 + k]'(by omega) := by
+    have hdrop : k < ((targetDarts Delta none).drop target.start.1).length := by
+      rw [List.length_drop]
+      omega
+    simp only [CyclicArc.darts, CyclicArc.rotated, List.getElem_take]
+    rw [List.getElem_append_left hdrop, List.getElem_drop]
+  have hget : target.darts[k] = (outerDarts Delta)[target.start.1 + k]'(by omega) := hget'
   have hA := H.target_left
   have hB := H.target_right
   have hya := hbound _ (phiRegionO_mem y) hA
