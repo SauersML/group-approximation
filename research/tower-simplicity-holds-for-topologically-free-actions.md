@@ -7,6 +7,7 @@ distinct_from:
   finite-model-subshift-elementary-groups-simple-kazhdan-lef: that runs the tower proof for free minimal subshifts that have finite models, which forces a residually finite acting group; this weakens freeness to topological freeness and assumes nothing about models.
   steinberg-elementary-groups-are-simple-mod-centre: that is the groupoid criterion through local annihilation, stated for Steinberg algebras modulo the centre; this is the manuscript's own tower argument with one step replaced, and over `F_2` it gives simplicity on the nose.
   lamplighter-bernoulli-crossed-products-simple-kazhdan-lef: that is one family of hosts, and it takes simplicity from the Steinberg criterion; this is the general statement about the tower argument, and it makes that family self-contained.
+  binary-el-simple-iff-minimal-topologically-free: that is the general mathematical statement, an equivalence over any countable acting group with the centre computed; this is the manuscript-facing form, which names the single sentence of the published proof that has to change and gives the replacement the note would print.
 ---
 
 **ESTABLISHED (unreviewed).** Let `L` be a finitely generated group acting minimally and topologically freely on a
@@ -37,5 +38,12 @@ Consequences.
   machinery.
 - Freeness is used nowhere in the manuscript's simplicity proof. For a minimal `Z`-subshift the two hypotheses agree,
   since an infinite minimal subshift has no periodic points.
+
+**Canonical form.** `binary-el-simple-iff-minimal-topologically-free` (sk-strong-4, landed concurrently) states the
+mathematics in its strongest form: over `F_2` and for any countable acting group on a compact zero-dimensional space,
+`EL_n` is simple exactly when the action is minimal and topologically free, with trivial centre. Cite that claim for
+the mathematics. This node is kept for the manuscript: it identifies the one sentence of the published proof that
+changes, l.143-144 of main `5b1890ce6c`, and its route gives the replacement text in the note's own notation. The two
+repairs agree: small sets cover a dense open set, and a locally constant function vanishing on a dense set is zero.
 
 Route: `tower-simplicity-topologically-free-proof`.
