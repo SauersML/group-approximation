@@ -20,3 +20,9 @@ Definition 3.7). Let `A` be finite abelian and `alpha` the class of `Gamma~`. Th
 Consequence: over such a base, a non-residually-finite `Gamma~` is either sofic or supports a uniform positive Hamming
 lower bound for its class on all finite actions. Gohla--Thom Theorem 3.13 is the second alternative forced by a
 cosystolic inequality.
+
+## Review
+- **sk-verify-19 PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-19-2026-09-14-part2.md` §3):** ⇐ is Theorem 1. For ⇒:
+  - the quotient V_n/A is a sofic approximation of Γ with limit Q^A (A acts almost freely; lifts of g ≠ 1 move most A-orbits);
+  - Gohla–Thom Theorem 3.4, stability, and Lemma 2.13/Cor 2.14 in the import's direction give inf_X |||θ^X(α)||| = 0.
+  - Fixes: (F1) the comparability |||θ^X(α)||| ~ ν_X(α) appeals to Gohla–Thom §2.2, which is not in the import node. Add it to the citation import, or fix the presentation-complex model with uniform weights, where equality holds by definition. (F2) State the one-line reason that V_n/A is a sofic approximation of Γ with limit P = Q^A.

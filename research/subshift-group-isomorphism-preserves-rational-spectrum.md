@@ -29,3 +29,11 @@ not separated.
 **Bearing on the note.** It is a rank-three necessary condition for the note's rigidity Question, "does `G_X ≅ G_Y` force
 flip conjugacy or strong orbit equivalence?", since the rational spectrum is an SOE invariant (recalled). Cairn result;
 a paper remark would need the proof of rank-four type rigidity.
+
+## Review
+- **sk-verify-19 PASS (2026-09-14, `research/artifacts/sk-verify-19-2026-09-14-part2.md` §2):** re-derived:
+  - the cyclic partition U = f^{-1}(0) and EL_n(R_Y) = EL_{nm}(R_{Y_1}) through [T];
+  - nm ∈ Div by [E] with c = 1, and its isomorphism invariance;
+  - m ∉ Cyc(X) ⇒ m ∤ g_r for all r (by [C1], divisibility propagates upward);
+  - primitive periodic models of length g_{r_k}p_k give SL_{n g_{r_k} p_k}(F_2) → EL_n(R_X) ([C2]), with nm ∤ n g_{r_k}p_k since gcd(m,p_k)=1.
+  - Model tests are consistent. The SOE-invariance remark is recalled and not used.

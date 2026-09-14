@@ -22,3 +22,11 @@ Model tests:
 - For a split extension `b = 0` has no defect.
 - A residually finite `Gamma~` has `nu_X = 0` on a finite quotient.
 - For a non-residually-finite `Gamma~`, `nu_X > 0` for every `X`, so only the infimum can vanish.
+
+## Review
+- **sk-verify-19 PASS (2026-09-14, `research/artifacts/sk-verify-19-2026-09-14-part2.md` §4):** every step re-derived:
+  - amplification by X_n×Γ/N_n (defect fraction unchanged; normality makes g ∉ N_n move every point);
+  - exact A-relations and commutators, with r = a_r at (v,t) iff the cell (v,r) is not defective;
+  - discrete Stokes on van Kampen diagrams of radius C_w (A abelian), bad fraction ≤ |B_{C_w}||R|ν_n;
+  - nontrivial central a moves the good points.
+  - Model tests (split, residually finite, non-residually-finite) are consistent.

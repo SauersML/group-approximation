@@ -22,3 +22,11 @@ Then for all large `k`:
 
 **Scope.** This covers Thue–Morse, period doubling and every Toeplitz subshift. The totally minimal case (Sturmian,
 Fibonacci) stays open.
+
+## Review
+- **sk-verify-19 PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-19-2026-09-14-part2.md` §1):** re-derived:
+  - the cyclic partition; the induced system is first-return, hence minimal, and a subshift by m-block coding;
+  - G_X = EL_{3m}(R_{X_1});
+  - change of marking preserves convergence, so [D] with N = 3m ≥ 6 applies; d_k → ∞; characteristic 2;
+  - divisibility by [E].
+  - Fixes: (F1) "for each c ∈ Cyc(X_1), eventually 3m·c divides the natural dimension" (the "large k" depends on c); (F2) the artifact's "Cyc(X) = m·Cyc(X_1)" is unused; use "contains".
