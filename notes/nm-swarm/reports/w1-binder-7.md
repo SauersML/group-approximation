@@ -355,6 +355,16 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     - `outerSpurThickening` (28caa3d7f) for exterior corners.
     This waits for w1-binder-3's list-level `…Corners` core: the successor lemma, and the transport of the isolated-turn data
     across one insertion.
+- **Noted (ct-return-tower, 2a4d58ae6 `Estimating/OsinPocketTwoArcSection`):** the two-arc producer consumed by this lane's
+  `osinSectionPocketCutSection_of_residualsTwoArc` (f81311dc9) is reduced to two statements. The theorem is
+  `osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection hproper hwhole`.
+  - `hproper : OsinSectionPocketFaceSetProperSectionStatement`.
+  - `hwhole`: the two-arc producer at a section spanning the whole boundary (`SectionCuts.SpansWhole`, including count 1).
+  - The wrap model 1478083b7 shows that proper `t₁`, `t₂ = ∂Δ` and sides meeting at its endpoint occur in walk order.
+  So binder 7 in walk order rests on:
+  - w1-binder-3's `PocketOuterPinchStepSectionStatement`;
+  - `hproper`;
+  - `hwhole`.
     - It imports w1-binder-3's unlanded `OsinPocketOuterPinchSplit`, so it waits for that landing. The list-level isolated-turn
       step and the corner selection will follow w1-binder-3's `…Isolated` and `…Corners`.
     - Exterior corners need a cell transport of `outerSpurThickening`, which this lane builds.
