@@ -275,6 +275,13 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
   `osinLemma94CaseOneNoSpurXPocket_of_enclosedLoopCut` and `...NoSpurYPocket...` over `hloop` alone, plus
   `osinLemma94CaseOneXPocket_of_enclosedLoopCut` and `...YPocket...` over `hloop` and `hspur`. The interface was sent to
   w1-binder-8, whose `_of_enclosed` assembly is its own.
+- LANDED 18226656e (co-probe 0913-203207-18793 GREEN, both modules BUILT; queued for wiring):
+  - `ClosedWalkEnclosedNoncrossing.lean`: `enclosedFaceSetOfNoncrossing : EnclosedFaceSetOfNoncrossingStatement`, CLOSED.
+  - `Estimating/OsinLemma94SameCellPocketNoSpur.lean`: `osinLemma94CaseOneNoSpurXPocket_of_enclosedLoopCut`,
+    `osinLemma94CaseOneNoSpurYPocket_of_enclosedLoopCut` (the Y twin), `osinLemma94CaseOneXPocket_of_enclosedLoopCut`,
+    `osinLemma94CaseOneYPocket_of_enclosedLoopCut`.
+  - Enclosed route residuals, not this lane's: (1) `EnclosedSubdiagramLoopCutStatement` (ms-traces-2, ms-inverses-1)
+    and (3) `OsinLemma94CaseOneRCellSpurStatement` (w1-binder-8). Residuals owned by ms-intro-1: none.
 - Excision route check (before any Prop): `sideFaces` crosses every non-walk edge. Removing the lobe's edges can join a
   pocket face to f, and so to the exterior, when the walk crosses at the lobe vertex. So "the exterior stays off the side"
   needs a noncrossing walk. `SameCellPocketNoncrossing.pocketInputs_X` (on origin) gives noncrossing only at s = x with no
