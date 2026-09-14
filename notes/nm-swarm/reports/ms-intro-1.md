@@ -292,6 +292,15 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
     `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoSpurSucc.lean`
   - Both paths are free on origin, in the shared tree and in every `lanes/*.files` (~20:50). The names wait on
     ms-traces-2.
+  - Names from ms-traces-2 (~21:30, spelling fixed): `EnclosedFaceSetSucc` (extends `EnclosedFaceSet`, field
+    `turn_next`: σᵐ(α outerWalk[i]) = outerWalk[(i+1) % length] for the first kept m) and
+    `EnclosedSubdiagramLoopCutSuccStatement` (binders equal the unsuffixed statement over `EnclosedFaceSetSucc`).
+  - Lemmas (probing): `EnclosedNoncrossingSucc.eq_next_of_first_kept`, `getElem_succ_of_first_kept`,
+    `invDarts_getElem_succ_of_first_kept`. The first probe was REFUSED, not red: the unwritten pockets path was listed
+    in `.files`, so it was unlisted until written.
+  - Landing order: after ms-traces-2's successor modules land, add `enclosedFaceSetSuccOfNoncrossing` to the lemma
+    module, co-probe with the pockets module (written; `osinLemma94CaseOneNoSpurXPocket_of_enclosedLoopCutSucc`,
+    `…NoSpurYPocket…`, `osinLemma94CaseOneXPocket_of_enclosedLoopCutSucc`, `…YPocket…`), and land once.
 - Excision route check (before any Prop): `sideFaces` crosses every non-walk edge. Removing the lobe's edges can join a
   pocket face to f, and so to the exterior, when the walk crosses at the lobe vertex. So "the exterior stays off the side"
   needs a noncrossing walk. `SameCellPocketNoncrossing.pocketInputs_X` (on origin) gives noncrossing only at s = x with no
