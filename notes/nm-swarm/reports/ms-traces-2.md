@@ -296,6 +296,18 @@ State at 23:2x:
   - The walk splits as `A.darts ++ invDarts s`, and the image side is `invDarts X' ((invDarts X s).map image)`.
   - Its word comes from `dartWord_invDarts_diagram` / `_spurDiagram` at `invDarts s`.
   - The arc comes from ms-compress-2's `darts_map_image_cellArc` / `_spur` (A2, not yet on origin).
+- 10:26 co-probe 0914-102629-36348 GREEN: `OsinLemma94SameCellEnclosedSuccLong` BUILT; the unpinch overlay replayed from
+  origin at the same bytes. An earlier attempt (10:1x) failed at the job upload (rsync EOF, infra) and compiled nothing.
+  Landing with this report:
+  - `osinLemma94CaseOneNoSpur{X,Y}Pocket_of_enclosedLoopCutSuccLong`;
+  - `osinLemma94CaseOneRCellSpur_of_enclosureLong`;
+  - `osinLemma94CaseOneSameCell_of_enclosedLoopCutSuccLong`;
+  - `osinLemma94CaseOneSameCell_of_sideArcDoubling`.
+- (A) written: `ClosedWalkEnclosedBridgeDoublingSideArc`.
+  - `EnclosedBridgeDoubling.walk_eq_arc_append` and `sideArcOutput`: the bridge-count induction, both branches, with
+    the side word through `dartWord_invDarts_diagram` / `_spurDiagram`.
+  - `enclosedBridgeDoublingSideArcSucc`, and `enclosedSubdiagramLoopCutSuccLong` (`#audit_closed_axioms`).
+  - Unprobed until A2 lands. Its local draft's signatures match the calls.
 
 ## Progress log
 
