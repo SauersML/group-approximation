@@ -106,8 +106,8 @@ sources:
       trivial-bundle cases. The Fields event record, linked in the audit,
       supplies the date and speaker; the official video was uploaded on
       June 4, 2020. The unrelated Quantum Graphs title in its description
-      is a metadata error; its actual title, speaker and content agree. This credits Tikuisis as presenter, not sole
-      originator; at 35:23-35:56 he credits the seven-author collaboration.
+      is a metadata error; its actual title, speaker and content agree.
+      This credits Tikuisis as presenter, not sole originator; at 35:23-35:56 he credits the seven-author collaboration.
       Transcript provenance and its automated-transcription errors are
       documented in the literature audit.
 
@@ -248,8 +248,12 @@ related_formalizations:
       upstream Apache-2.0 license. Local realification proves the
       complex-coordinate common-zero interface. This is an essential
       existing formal ingredient, not a claim to have originated the
-      topology formalization. The present repository supplies the
-      operator-algebraic counterexample and submission bridge.
+      topology formalization. The pinned upstream README credits
+      Aristotle (Harmonic) for formalization and proof engineering, and
+      ChatGPT for prompts, audit strategy, and publication checks. These
+      are upstream production credits, distinct from the local automation
+      account below. The present repository supplies the operator-algebraic
+      counterexample and submission bridge.
 
 automation:
   methods:

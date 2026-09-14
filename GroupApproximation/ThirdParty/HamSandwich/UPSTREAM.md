@@ -11,6 +11,13 @@ transitive source slice needed for the Borsuk--Ulam endpoint from
 - Upstream license: Apache License 2.0
 - Local namespace: `GroupApproximation.ThirdParty.HamSandwich`
 
+The [README at the pinned upstream commit](https://github.com/akopjan/HamSandwich/blob/76202dbbb6610ffcebbccfbf7a56f833a4c2a376/README.md)
+credits Aristotle (Harmonic) for Lean formalization, proof engineering, and
+repository iteration, and ChatGPT for prompts, audit strategy, and publication
+checks. These are the upstream project's disclosed production credits;
+the local counterexample and port have their own contribution account in
+[`formalization.yaml`](../../../../formalization.yaml).
+
 The repository root [`LICENSE`](../../../../LICENSE) contains the same Apache
 License 2.0 text. Porting changes are recorded in each source file. No theorem
 is weakened and no placeholder or additional axiom is permitted in this tree.

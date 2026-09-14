@@ -174,7 +174,11 @@ actual Lean theorem is built on the vendored **HamSandwich** development,
 pinned at commit `76202dbbb6610ffcebbccfbf7a56f833a4c2a376`. That is a real
 formal dependency, not just a citation to a mathematical idea. Its
 namespace-isolated Lean 4.28-to-4.32 port and Apache-2.0 provenance are
-recorded in [`UPSTREAM.md`](../../GroupApproximation/ThirdParty/HamSandwich/UPSTREAM.md).[^17]
+recorded in [`UPSTREAM.md`](../../GroupApproximation/ThirdParty/HamSandwich/UPSTREAM.md).
+The pinned upstream README credits Aristotle (Harmonic) for formalization
+and proof engineering, and ChatGPT for prompts, audit strategy, and
+publication checks. Those upstream production credits are preserved
+separately from the local Astra/Claude/Codex account.[^17]
 
 The source metadata consequently uses `related_formalizations` with
 `relationship: builds-on` for HamSandwich. Pedersen–Petersen, Bice–Farah,
