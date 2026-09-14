@@ -111,6 +111,24 @@ Hygiene only: `CentralCoronaCornerPrintedRoute.lean`'s module docstring quotes a
     (ct-return-tower's model: moved connector `< ε + B`, target only `> ε`).
 - CLAIM `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ClassGapEndpointCutting.lean` (producer, route chosen
   after the model tests).
+- 20:3x ct-return-tower: no objection, and this lane defines the (v) Prop in its own module.
+- **LANDED d2a74aca5** (probe 0913-213255-31186 GREEN, BUILT line checked; queued for wiring):
+  `Estimating/OsinLemma94ClassGapEndpointCuttingModel.lean`.
+  - `OsinLemma94ClassCaseGapEndpointCuttingStatement` (residual): the quantifiers of
+    `OsinLemma94ClassCaseGapEndpointStatement` plus `Q.classKind k C.target = .cutting`.
+    `osinLemma94ClassCaseGapEndpointCutting_of_gapEndpoint` checks the spelling: the whole residual implies it.
+  - `two_le_length_classSides_of_inGap`, `not_inGap_of_single`, `gapEndpoint_iff_of_target_cutting`,
+    `source_cell_two_le_of_target_cutting`: at a cutting target the gap endpoint is a source endpoint, in a multi-side
+    (A1) class.
+  - `vertex_after_gap_eq`, `two_mul_wordDist_gapCorner_le`: a gap closes, and twice the distance from a gap position to
+    its corner is at most the gap length.
+  - `two_mul_wordDist_target_gapCorner_lt`: for a source position inside a gap, `2 d(b, corner) < 2ε + ⌈(c+2)/λ⌉₊`.
+- Finding: the side-level Case 2 (`osinLemma94CaseTwo_false`) closes its dart count only with `|connector| < b − b'`.
+  - Moving a source gap endpoint to its corner costs up to half the gap, while the target segment is only known to be
+    longer than `ε`, so one threshold does not close.
+  - Hair gaps are not reachable by region surgery (ct-return-tower's `OsinLemma94ClassGapHairModel`, 2fc90db55).
+  - The producer is held for main's ruling on hair gaps (R1 bubble-gap classes only, or R2 two thresholds on the metric
+    half), which ct-return-tower reported. The producer file is not yet in `.files`.
 
 ## Range status
 Every sentence of tex 583–657 is carried by a closed, root-reachable declaration or is honestly structural (hypothesis,
