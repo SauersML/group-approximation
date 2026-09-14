@@ -374,6 +374,16 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     - (b4) `RotationBetween M (α d₀) e₀ z ↔ RotationBetween M' (embed (α d₀)) (embed e₀) (embed z)`.
   - Tools: `EdgeInsertion.exists_sigma_pow_lift`, `walkKeep_map_embed_iff`, and `not_walkKeep_map_embed_none` /
     `_some_none` (c2927f84f).
+  - In flight: `Estimating/OsinPocketOuterPinchChordLift` (attic ae772f9ff, md5 3d45e3da, probing).
+    - `EdgeInsertion.liftCount`: a strictly increasing count of new steps, realizing the old run by `sigma_pow_liftCount`.
+    - `sigma_pow_embed_cases` and `exists_liftCount_of_sigma_pow_embed`: every new power from an old dart is an image at a
+      lifted count, or a new dart.
+    - `minRun_embed` (b1), `nonKeepRun_embed` (b2) and `nonKeepRunStrict_embed` (b3), each at count `liftCount`, with
+      `liftCount_pos` for `0 < q'`.
+    - `rotationBetween_embed_iff` (b4).
+- **Noted (ms-cite-1, 09332718c):** `OsinPocketPinchPosModels.pocketPinchPosRefutation : ¬ PocketPinchLabelledPosStatement.{0,0,0}`,
+  probe 0914-091613-62601 GREEN with `#audit_closed_axioms`. It is the ε = 1 model, where both arcs are full. The Section
+  forms of this lane are untouched: their proper-arc premise excludes the model.
 - **Noted (ct-return-tower, 2a4d58ae6 `Estimating/OsinPocketTwoArcSection`):** the two-arc producer consumed by this lane's
   `osinSectionPocketCutSection_of_residualsTwoArc` (f81311dc9) is reduced to two statements. The theorem is
   `osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection hproper hwhole`.
