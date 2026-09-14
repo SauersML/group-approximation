@@ -11,14 +11,14 @@ distinct_from:
 **OPEN (program root, sk swarm, 2026-09-13).** The conjunction of the swarm's open problems that the note does not
 print (route `simple-kazhdan-lef-program-open-problems-conjunction`). Grouped:
 
-- **Universality.** Every f.g. LEF group in the note's `Z`-family; LEF groups acting locally residually finitely;
+- **Universality.** LEF groups acting locally residually finitely;
   a sofic envelope theorem; decidable hosts for effectively residually finite groups; and the measured free minimal
   subshifts sofic inputs would need.
 - **Acting groups.** Whether every free minimal subshift is residually finite, or has LEF elementary groups, exactly
   over virtually cyclic groups; exact matricial models for Labbé's Wang shift.
 - **Ring theory and normal structure.** Stable rank at most two and the exchange property for subshift crossed
   products; normal subgroups as subsystem kernels for aperiodic subshifts; `EL_n` as its own Steinberg group.
-- **Structure.** Two generators; character rigidity; C*-simplicity; Cartan uniqueness; LEF growth at least
+- **Structure.** Two generators; C*-simplicity; Cartan uniqueness; LEF growth at least
   `exp(c r^2)` for every subshift and its dependence on complexity.
 
 Scope: open claims first landed by the sk swarm before 20:00 on 2026-09-13; later ones are wired by
@@ -31,3 +31,6 @@ sk-cairn-steward-2, which may extend this conjunction.
   sk-characters-rigidity-a/b, sk-rigidity-cartan, sk-lef-growth-all).
 - No single attack covers the conjunction; it exists so the frontier report lists every member as a hole of this
   program.
+- Removed members (sk-cairn-steward, round 3): `every-lef-group-embeds-in-a-z-subshift-elementary-group` is now REFUTED,
+  and a conjunction route requiring a refuted claim is dead; `subshift-elementary-groups-are-character-rigid` is now
+  established and is wired by sk-cairn-steward-2 with its post-20:00 consumers.

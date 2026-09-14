@@ -5,7 +5,6 @@ kind: route
 title: The program's open problems, as a conjunction
 target: simple-kazhdan-lef-program-open-problems
 requires:
-  - every-lef-group-embeds-in-a-z-subshift-elementary-group
   - lef-groups-have-lrf-minimal-topologically-free-actions
   - sofic-groups-embed-in-simple-kazhdan-sofic-groups
   - erf-groups-have-decidable-simple-kazhdan-hosts
@@ -18,7 +17,6 @@ requires:
   - elementary-group-normal-subgroups-are-subsystem-kernels
   - subshift-elementary-groups-are-steinberg-groups-in-finite-rank
   - binary-subshift-elementary-groups-are-two-generated
-  - subshift-elementary-groups-are-character-rigid
   - subshift-elementary-groups-are-cstar-simple
   - subshift-crossed-product-algebraic-cartans-are-conjugate
   - subshift-elementary-group-lef-growth-at-least-exp-r-squared

@@ -13,6 +13,8 @@ requires:
   - thin-cylinder-sft-tiling-families-force-periodic-points
   - subshift-algebra-groups-embed-in-marked-groups
   - boundary-simple-kazhdan-hyperlinear-iff-binary-leavitt-el
+  - simple-kazhdan-linear-sofic-non-lef-group-exists
+  - rank-modelled-simple-algebra-with-non-lef-kazhdan-el-group
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
