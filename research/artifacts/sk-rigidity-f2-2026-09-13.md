@@ -13,8 +13,9 @@ Notation. `X, Y` infinite minimal subshifts, `A = LC(X,F_2)`, `R = R_X = A ⋊_T
 
 - **Theorem 1 (§3).** Each `A_ij` is bicommutant closed: `C_G(C_G(A_ij)) = A_ij`.
 - **Theorem 2 (§4), the main one.** If `α` carries the six root subgroups of `G_X` onto the six root subgroups of
-  `G_Y`, then there is a ring isomorphism `ψ: R_X → R_Y` with `α(e_ij(r)) = e_ij(a_i ψ(r) a_j^{-1})` after an inner
-  and a graph correction. So `R_X ≅ R_Y`, and `X`, `Y` are strongly orbit equivalent.
+  `G_Y`, then after an inner and a graph correction there is a ring isomorphism `ψ: R_X → R_Y` and a unit `a` with
+  `α(e_12(r)) = e_12(aψ(r))`. So `R_X ≅ R_Y`, and `X`, `Y` are strongly orbit equivalent. (The diagonal form
+  `α(e_ij(r)) = e_ij(d_iψ(r)d_j^{-1})` follows the same way, and §4 writes it out only for `φ_12`.)
   The proof needs `R_Y` to be **directly finite**, which is exactly what the note's finite models give.
 - **Firewall FW-MAXAB and the reformulation (§5).** The root subgroups are not maximal abelian: the six "row" and
   "column" subgroups `Row_i`, `Col_j` are abelian and self-centralizing, and `A_ij = Row_i ∩ Col_j`. So "maximal
