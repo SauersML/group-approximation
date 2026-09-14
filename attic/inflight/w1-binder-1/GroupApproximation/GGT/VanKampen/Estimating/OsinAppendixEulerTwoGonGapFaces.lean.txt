@@ -1,0 +1,182 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonClassHyp
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerCornerTwoGonCount
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The gaps of a two-gon lie on faces of its pocket
+
+Osin, arXiv:math/0411039v3, Appendix, proof of Lemma 9.3.  A two-gon of `phiMapO` with no corner
+in its gap bounds a pocket between exterior regions `a` and `b` of one cell.  Its face runs from
+the dart `y` of `a` at the outer vertex `O`, through the source crossing of `b` at the cell, and
+back.  The rotation of `phiMapO` is the first return of the collapsed face rotation, so between two
+consecutive darts of the face at a vertex no dart is retained.
+
+Around `O` the collapsed rotation walks back along `∂Δ`, from the crossing of `b` to that of `a`.
+Every dart it passes on the way is not retained, so the face class of `y` holds it and its reverse.
+Those reverses are the darts of `∂Δ` in the gap between the target arcs of `a` and `b`, which then
+lie on faces of the pocket.
+
+* `faceClassO_pow_of_firstReturn`: a face class holding the end of a run of the collapsed face
+  rotation through darts that are not retained holds the whole run.
+* `twoGonPocketFace_of_outerGap`: a dart of `∂Δ` after the target arc of `a` and before that of
+  `b` lies on a face of the pocket.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121 at origin/main 68481e4d7, through Osin's Lemma 9.7(a));
+certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded
+
+namespace Embedded.RegionCandidate
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {family E : Finset (RegionCandidate D eps Delta)}
+
+private theorem gapIndex_eq_of_getElem?_eq {α : Type*} {l : List α} (hl : l.Nodup) {i j : ℕ}
+    {a : α} (hi : l[i]? = some a) (hj : l[j]? = some a) : i = j := by
+  obtain ⟨hi', rfl⟩ := List.getElem?_eq_some_iff.mp hi
+  obtain ⟨hj', hj''⟩ := List.getElem?_eq_some_iff.mp hj
+  exact (hl.getElem_inj_iff).mp hj''.symm
+
+/-- **A face class runs back along a first return.**  If the class holds the dart `m` steps along
+the collapsed face rotation from `u`, and no dart strictly in between is retained, then it holds
+every dart of the run after `u`. -/
+theorem faceClassO_pow_of_firstReturn {x u : (collapsedMap family).Dart} {m : ℕ}
+    (hm : FaceClassO family E x (((collapsedMap family).facePerm ^ m) u))
+    (hnot : ∀ k, 0 < k → k < m →
+      ¬ PhiKeepO family E (((collapsedMap family).facePerm ^ k) u)) :
+    ∀ k, 0 < k → k ≤ m → FaceClassO family E x (((collapsedMap family).facePerm ^ k) u) := by
+  have key : ∀ d, d < m →
+      FaceClassO family E x (((collapsedMap family).facePerm ^ (m - d)) u) := by
+    intro d
+    induction d with
+    | zero =>
+      intro _
+      rw [Nat.sub_zero]
+      exact hm
+    | succ d ih =>
+      intro hd
+      have h1 := ih (by omega)
+      have hk : ¬ PhiKeepO family E (((collapsedMap family).facePerm ^ (m - (d + 1))) u) :=
+        hnot _ (by omega) (by omega)
+      have hstep := eqvGen_facePerm_of_not_keep (M := collapsedMap family)
+        (keep := PhiKeepO family E) hk
+      have hpow : ((collapsedMap family).facePerm ^ (m - d)) u =
+          (collapsedMap family).facePerm
+            (((collapsedMap family).facePerm ^ (m - (d + 1))) u) := by
+        rw [show m - d = m - (d + 1) + 1 by omega, pow_succ', Equiv.Perm.mul_apply]
+      rw [hpow] at h1
+      exact Relation.EqvGen.trans _ _ _ h1 (Relation.EqvGen.symm _ _ hstep)
+  intro k hk0 hkm
+  have h := key (m - k) (by omega)
+  rwa [show m - (m - k) = k by omega] at h
+
+/-- **The outer gap of a two-gon lies on faces of its pocket.**  Let `y` be the dart at `O` of a
+two-gon of `phiMapO`, with region `a`, and let `b` be the region two steps on.  A dart of `∂Δ` at
+a position after the target arc of `a` and before the start of that of `b`, whose face is neither
+the outer face nor cell `i`, lies on a face of the pocket of the face class of `y`. -/
+theorem twoGonPocketFace_of_outerGap (P : ExtPhiData family E)
+    (hbound : ∀ x ∈ E, x.2.target = none → x.2.targetArc.start.1 + x.2.targetArc.length ≤
+      (Delta.faceBoundary Delta.outerFace).darts.length)
+    {y : (phiMapO family E).Dart} (hy : phiCellSideO y = true)
+    (hO : sideCellO (phiRegionO y) (phiSideO y) = none)
+    (h4 : (phiMapO family E).facePerm ((phiMapO family E).facePerm
+      ((phiMapO family E).facePerm ((phiMapO family E).facePerm y))) = y)
+    {i : Fin Delta.rCellCount}
+    (H : TwoGonClassHyp family E y.1 (phiRegionO y)
+      (phiRegionO ((phiMapO family E).facePerm ((phiMapO family E).facePerm y))) i)
+    {p : ℕ}
+    (hp1 : (phiRegionO y).2.targetArc.start.1 + (phiRegionO y).2.targetArc.length ≤ p)
+    (hp2 : p < (phiRegionO ((phiMapO family E).facePerm
+      ((phiMapO family E).facePerm y))).2.targetArc.start.1)
+    (hpL : p < (outerDarts Delta).length)
+    (hout : Delta.toCombMap.faceOf ((outerDarts Delta)[p]) ≠ Delta.outerFace)
+    (hcell : Delta.toCombMap.faceOf ((outerDarts Delta)[p]) ≠ (cell Delta i).face) :
+    TwoGonPocketFace family E y.1 (phiRegionO y)
+      (phiRegionO ((phiMapO family E).facePerm ((phiMapO family E).facePerm y)))
+      (Delta.toCombMap.faceOf ((outerDarts Delta)[p])) := by
+  obtain ⟨hsy, hty⟩ := side_eq_false_of_sideCellO_eq_none hO
+  obtain ⟨z, hsz, hz, hzO, hzr⟩ := exists_sigma_eq_of_twoGon P y hy hO h4
+  obtain ⟨hszs, htz⟩ := side_eq_false_of_sideCellO_eq_none hzO
+  rw [← hzr] at hp2
+  have hya := hbound _ (phiRegionO_mem y) hty
+  have hyl := (P.nondegenerate _ (phiRegionO_mem y)).2
+  have hza := hbound _ (phiRegionO_mem z) htz
+  have hzl := (P.nondegenerate _ (phiRegionO_mem z)).2
+  have hyB : (Delta.faceBoundary Delta.outerFace).darts[
+      (Delta.faceBoundary Delta.outerFace).darts.length - 1 -
+        (phiRegionO y).2.targetArc.start.1]? = some y.1.1 := by
+    have h := phiO_cross y
+    rw [hsy, hy, crossO_false_true_of_eq_none _ hty hyl (by omega)] at h
+    exact h
+  have hzB : (Delta.faceBoundary Delta.outerFace).darts[
+      (Delta.faceBoundary Delta.outerFace).darts.length - 1 -
+        (phiRegionO z).2.targetArc.start.1]? = some z.1.1 := by
+    have h := phiO_cross z
+    rw [hszs, hz, crossO_false_true_of_eq_none _ htz hzl (by omega)] at h
+    exact h
+  obtain ⟨m, hm0, hmret, hmnot⟩ := (phiMapO_isRestriction family E).sigma_firstReturn z
+  rw [hsz] at hmret
+  change ((collapsedMap family).facePerm ^ m) z.1 = y.1 at hmret
+  have hnk : ∀ k, 0 < k → k < m →
+      ¬ PhiKeepO family E (((collapsedMap family).facePerm ^ k) z.1) :=
+    fun k hk0 hkm hk => hmnot k hk0 hkm ⟨⟨((collapsedMap family).facePerm ^ k) z.1, hk⟩, rfl⟩
+  have hcls := faceClassO_pow_of_firstReturn (family := family) (E := E) (x := y.1) (u := z.1)
+    (m := m) (by rw [hmret]; exact Relation.EqvGen.refl _) hnk
+  have hpow := outer_collapsed_facePerm_pow P hzB
+  have hmk : (phiRegionO z).2.targetArc.start.1 - p < m := by
+    by_contra hge
+    have hmod := hpow m
+    rw [hmret] at hmod
+    have hlt : (Delta.faceBoundary Delta.outerFace).darts.length - 1 -
+        (phiRegionO z).2.targetArc.start.1 + m <
+        (Delta.faceBoundary Delta.outerFace).darts.length := by omega
+    rw [Nat.mod_eq_of_lt hlt] at hmod
+    have heq := gapIndex_eq_of_getElem?_eq (Delta.faceBoundary Delta.outerFace).nodup hmod hyB
+    omega
+  have hk0 : 0 < (phiRegionO z).2.targetArc.start.1 - p := by omega
+  have hx := hcls _ hk0 hmk.le
+  have hkk := hnk _ hk0 hmk
+  have hidx := hpow ((phiRegionO z).2.targetArc.start.1 - p)
+  have hlt2 : (Delta.faceBoundary Delta.outerFace).darts.length - 1 -
+      (phiRegionO z).2.targetArc.start.1 + ((phiRegionO z).2.targetArc.start.1 - p) <
+      (Delta.faceBoundary Delta.outerFace).darts.length := by omega
+  rw [Nat.mod_eq_of_lt hlt2, show (Delta.faceBoundary Delta.outerFace).darts.length - 1 -
+      (phiRegionO z).2.targetArc.start.1 + ((phiRegionO z).2.targetArc.start.1 - p) =
+      (Delta.faceBoundary Delta.outerFace).darts.length - 1 - p by omega] at hidx
+  obtain ⟨hlt3, hu⟩ := List.getElem?_eq_some_iff.mp hidx
+  have hod : (outerDarts Delta)[p] = Delta.toCombMap.alpha
+      ((Delta.faceBoundary Delta.outerFace).darts[
+        (Delta.faceBoundary Delta.outerFace).darts.length - 1 - p]'hlt3) := by
+    simp only [outerDarts, List.getElem_map, List.getElem_reverse]
+  have hZ : FaceClassO family E y.1
+      ((collapsedMap family).alpha (((collapsedMap family).facePerm ^
+        ((phiRegionO z).2.targetArc.start.1 - p)) z.1)) :=
+    Relation.EqvGen.trans _ _ _ hx (Relation.EqvGen.rel _ _ (Or.inr ⟨hkk, rfl⟩))
+  have hval : ((collapsedMap family).alpha (((collapsedMap family).facePerm ^
+      ((phiRegionO z).2.targetArc.start.1 - p)) z.1)).1 =
+      Delta.toCombMap.alpha (((collapsedMap family).facePerm ^
+        ((phiRegionO z).2.targetArc.start.1 - p)) z.1).1 :=
+    (collapsedMap_isRestriction family).alpha_map _
+  have hface : Delta.toCombMap.faceOf ((collapsedMap family).alpha
+      (((collapsedMap family).facePerm ^ ((phiRegionO z).2.targetArc.start.1 - p)) z.1)).1 =
+      Delta.toCombMap.faceOf ((outerDarts Delta)[p]) := by
+    rw [hval, hod, ← hu]
+  have h := P.twoGonPocketFace_of_faceClassO H.mem_left H.mem_right i H.kept_faces
+    H.selected_of_source H.nondegenerate hZ (by rw [hface]; exact hout)
+    (by rw [hface]; exact hcell)
+  rwa [hface] at h
+
+end Embedded.RegionCandidate
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.faceClassO_pow_of_firstReturn
+#audit_axioms GroupApproximation.GGT.VanKampen.Embedded.RegionCandidate.twoGonPocketFace_of_outerGap
