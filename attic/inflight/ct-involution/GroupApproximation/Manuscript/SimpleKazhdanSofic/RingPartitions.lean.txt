@@ -2,6 +2,7 @@ import GroupApproximation.Dynamics.ClopenCrossedProduct
 import GroupApproximation.Dynamics.ReturnPlacement
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Algebra.Order.Group.Unbundled.Int
+import Mathlib.Data.Int.Interval
 import Mathlib.Topology.Separation.Profinite
 
 /-!
@@ -59,7 +60,7 @@ theorem zpow_mul_apply_eq_self {j : ℤ} {y : Y} (hy : (T ^ j) y = y) (q : ℤ) 
 
 theorem zpow_apply_eq_zpow_emod {j : ℤ} {y : Y} (hy : (T ^ j) y = y) (i : ℤ) :
     (T ^ i) y = (T ^ (i % j)) y := by
-  conv_lhs => rw [← Int.emod_add_ediv i j]
+  conv_lhs => rw [← Int.emod_add_mul_ediv i j]
   rw [zpow_add, Homeomorph.mul_apply, zpow_mul_apply_eq_self T hy]
 
 /-- **No periodic points** (tex 78): "Minimality and infiniteness imply that $T$ has no periodic
@@ -72,6 +73,7 @@ theorem zpow_apply_ne_self [T2Space Y] [Infinite Y] (hmin : IsMinimalSystem T) {
       S = (Finset.range j.natAbs).image fun n : ℕ => (T ^ (n : ℤ)) y := ⟨_, rfl⟩
   have hsub : Set.range (fun i : ℤ => (T ^ i) y) ⊆ (S : Set Y) := by
     rintro _ ⟨i, rfl⟩
+    show (T ^ i) y ∈ (S : Set Y)
     rw [zpow_apply_eq_zpow_emod T hy i, hSdef]
     have h0 : 0 ≤ i % j := Int.emod_nonneg i hj
     have h1 : i % j < |j| := Int.emod_lt_abs i hj
