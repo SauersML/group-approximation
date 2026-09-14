@@ -43,10 +43,25 @@ theorem coeff_sum_coeff_mul_unit_zpow (S : Finset ℤ) (f : ℤ → LocallyConst
         ((unit T k ^ i : (ClopenCrossedProduct T k)ˣ) : ClopenCrossedProduct T k)) (ofAdd j) =
       ClopenCoeff.of T k (f j) := by
   classical
-  simp only [coeff_mul_unit_zpow_eq_single, SkewMonoidAlgebra.coeff_sum,
-    SkewMonoidAlgebra.coeff_single_apply]
-  rw [Finset.sum_eq_single_of_mem j hj fun i _ hij => by rw [if_neg]; exact fun h => hij (ofAdd.injective h)]
-  rw [if_pos rfl]
+  have hs : ∑ i ∈ S, coeff T k (f i) *
+        ((unit T k ^ i : (ClopenCrossedProduct T k)ˣ) : ClopenCrossedProduct T k) =
+      ∑ i ∈ S, (SkewMonoidAlgebra.single (ofAdd i) (ClopenCoeff.of T k (f i)) :
+        ClopenCrossedProduct T k) :=
+    Finset.sum_congr rfl fun i _ => coeff_mul_unit_zpow_eq_single T k (f i) i
+  have hsum : ∀ (s : Finset ℤ) (g : Multiplicative ℤ),
+      SkewMonoidAlgebra.coeff (∑ i ∈ s, (SkewMonoidAlgebra.single (ofAdd i)
+        (ClopenCoeff.of T k (f i)) : ClopenCrossedProduct T k)) g =
+        ∑ i ∈ s, SkewMonoidAlgebra.coeff (SkewMonoidAlgebra.single (ofAdd i)
+          (ClopenCoeff.of T k (f i)) : ClopenCrossedProduct T k) g := by
+    intro s g
+    induction s using Finset.induction_on with
+    | empty => rw [Finset.sum_empty, Finset.sum_empty, SkewMonoidAlgebra.coeff_zero, Finsupp.zero_apply]
+    | insert i s hi ih =>
+      rw [Finset.sum_insert hi, Finset.sum_insert hi, SkewMonoidAlgebra.coeff_add, Finsupp.add_apply,
+        ih]
+  rw [hs, hsum, Finset.sum_eq_single_of_mem j hj fun i _ hij => by
+    rw [SkewMonoidAlgebra.coeff_single_apply, if_neg fun h => hij (ofAdd.injective h)]]
+  rw [SkewMonoidAlgebra.coeff_single_apply, if_pos rfl]
 
 /-- **Uniqueness of the Laurent form** (tex 93): two finite sums over the same exponents agree only
 if their coefficients agree. -/
@@ -56,8 +71,11 @@ theorem eq_of_sum_coeff_mul_unit_zpow_eq (S : Finset ℤ) (f g : ℤ → Locally
       ∑ i ∈ S, coeff T k (g i) *
         ((unit T k ^ i : (ClopenCrossedProduct T k)ˣ) : ClopenCrossedProduct T k)) :
     ∀ j ∈ S, f j = g j := fun j hj => by
-  have hc := congrArg (fun r => SkewMonoidAlgebra.coeff r (ofAdd j)) h
-  simp only at hc
+  have hc : SkewMonoidAlgebra.coeff (∑ i ∈ S, coeff T k (f i) *
+        ((unit T k ^ i : (ClopenCrossedProduct T k)ˣ) : ClopenCrossedProduct T k)) (ofAdd j) =
+      SkewMonoidAlgebra.coeff (∑ i ∈ S, coeff T k (g i) *
+        ((unit T k ^ i : (ClopenCrossedProduct T k)ˣ) : ClopenCrossedProduct T k)) (ofAdd j) :=
+    congrArg (fun r => SkewMonoidAlgebra.coeff r (ofAdd j)) h
   rw [coeff_sum_coeff_mul_unit_zpow T k S f hj, coeff_sum_coeff_mul_unit_zpow T k S g hj] at hc
   exact (ClopenCoeff.of T k).injective hc
 
