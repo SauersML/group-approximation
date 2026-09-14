@@ -247,10 +247,15 @@ review:
     and the prior literature. No human expert review or Palomar editorial
     acceptance is claimed. Comparator with NanoDa and the statement/axiom
     checks passed for commit 6738ce3d092e23a5976f6d45042f4d92c12bf5b0 in
-    GitHub Actions runs 34785942633 and 34785945798. This revision renames the modules and declarations to SurjunctiveNonsofic
-    and revises their documentation. The renamed declarations have not been
-    rechecked by Lean or NanoDa during this pass and have not been submitted. The previous Palomar
-    submission was withdrawn.
+    GitHub Actions runs 34785942633 and 34785945798. After the descriptive
+    rename, run 34790950434 at acfbb7877804a60efc08f3c26f79919dfcb32f1e
+    passed the build, definition checks, statement comparison and axiom
+    audit. Final Comparator and NanoDa replay is pending for this revision.
+    The previous Palomar submission was withdrawn; this revision has not
+    been submitted.
+
+repository:
+  role: substantive-development
 
 status:
   scope: >-
@@ -299,4 +304,3 @@ alignment:
       status: proved
 
 acknowledgements: Built on Lean 4 and Mathlib; the mathematical ingredients are credited in sources.
-

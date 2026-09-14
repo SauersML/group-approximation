@@ -36,7 +36,7 @@ The group is supplied by `GroupApproximation.SurjunctiveNonsofic.exists_fg_surju
 in `GroupApproximation/SurjunctiveNonsofic/Endpoint.lean`: the symmetric double
 `G *_Γ G` of `Γ = EL₃(𝔽₂[x₁, x₂, x₃]) ≤ G = EL₃(𝔽₂[x₁^±¹, x₂^±¹, x₃^±¹]) ⋊ EL₃(ℤ)`.
 
-The prose of this module was written by Claude (Anthropic).
+Original prose: Claude (Anthropic). Literature and editorial revisions: Codex (OpenAI).
 -/
 
 namespace SurjunctiveNonsofic
@@ -162,7 +162,7 @@ theorem exists_finitelyGenerated_surjunctive_not_sofic_of
   exact ⟨E, inferInstance, closure_eq_top_of_fg hfg, isSurjunctive_of_surjunctive hsurj,
     fun hs => hns (isSofic_of_isSoficGroup hs)⟩
 
-/-- **Problem 1.1 has a negative answer**: not every surjunctive group is
+/-- **The converse fails**: not every surjunctive group is
 sofic. -/
 theorem not_all_surjunctive_groups_sofic :
     ¬ ∀ (G : Type) [Group G], IsSurjunctive G → IsSoficGroup G :=

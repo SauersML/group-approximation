@@ -11,7 +11,7 @@ echo "tip=$T files=$(wc -l < "$W.all")"
 for r in GroupApproximation.lean lake-manifest.json lakefile.toml; do
   grep -qxF "$r" "$W.all" && echo "present $r" || echo "ABSENT $r"
 done
-grep -E '^Palomar/SurjunctiveNonsofic.*\.lean "$W.all" | while IFS= read -r f; do git -C "$M" show "$T:$f"; done \
+grep -E '^Palomar/SurjunctiveNonsofic.*\.lean$' "$W.all" | while IFS= read -r f; do git -C "$M" show "$T:$f"; done \
   | sed -n 's/^import \(GroupApproximation\.[A-Za-z0-9_.]*\).*/\1/p' | LC_ALL=C sort -u | tr . / | sed 's/$/.lean/' > "$W.imp"
 {
   grep -E '^GroupApproximation/(SurjunctiveNonsofic|Dynamics)/.*\.lean$' "$W.all"
@@ -25,26 +25,6 @@ for lib in SurjunctiveNonsoficChallenge SurjunctiveNonsoficSolution; do
   fi
 done
 echo "palomar_imports_resolved=$(grep -cxFf "$W.imp" "$W.all" 2>/dev/null || echo 0) of $(wc -l < "$W.imp")"
-grep -vxFf "$W.all" "$W.imp" | sed 's/^/unresolved_import /' | head -10
-echo "targets=$(wc -l < "$W.targets")"
-tr '\n' ' ' < "$W.targets"; echo
-cp "$W.targets" "$P/bc/base-targets.txt"; echo "$T" > "$P/bc/base-targets.sha"
-rm -f "$W.all" "$W.imp" "$W.targets"
-echo SENTINEL=0
- "$W.all" | while IFS= read -r f; do git -C "$M" show "$T:$f"; done \
-  | sed -n 's/^import \(GroupApproximation\.[A-Za-z0-9_.]*\).*/\1/p' | LC_ALL=C sort -u | tr . / | sed 's/$/.lean/' > "$W.imp"
-{
-  grep -E '^GroupApproximation/(SurjunctiveNonsofic|Dynamics)/.*\.lean$' "$W.all"
-  grep -E '^GroupApproximation/KunThom/(CentralizerNormalization|NormalizationFromCriterion|FixedPointNormalization|ComponentCountingNormalization)[^/]*\.lean$' "$W.all"
-  grep -E '^GroupApproximation/(Kazhdan/SemidirectProductKazhdan|Sofic/WreathCentralizerNormalization)[^/]*\.lean$' "$W.all"
-  [ -s "$W.imp" ] && grep -xFf "$W.imp" "$W.all"
-} | LC_ALL=C sort -u | sed 's/\.lean$//' | tr / . > "$W.targets"
-for lib in SurjunctiveNonsoficChallenge SurjunctiveNonsoficSolution; do
-  if grep -qxF "Palomar/$lib.lean" "$W.all" && git -C "$M" show "$T:lakefile.toml" | grep -qF "\"Palomar.$lib\""; then
-    echo "Palomar.$lib" >> "$W.targets"
-  fi
-done
-echo "wip_imports_resolved=$(grep -cxFf "$W.imp" "$W.all" 2>/dev/null || echo 0) of $(wc -l < "$W.imp")"
 grep -vxFf "$W.all" "$W.imp" | sed 's/^/unresolved_import /' | head -10
 echo "targets=$(wc -l < "$W.targets")"
 tr '\n' ' ' < "$W.targets"; echo
