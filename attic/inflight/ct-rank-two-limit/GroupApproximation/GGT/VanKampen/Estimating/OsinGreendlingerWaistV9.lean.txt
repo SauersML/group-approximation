@@ -4,7 +4,7 @@ import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94LongTransitions
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitionsInput
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BadJunctionPieces
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryJunctionBudget
-import GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSubdiagramSuccProof
+import GroupApproximation.GGT.VanKampen.ClosedWalkEnclosedSubdiagramSuccAssembly
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonDecompositionEuler
 import GroupApproximation.Meta.AxiomGuard
 
@@ -21,12 +21,12 @@ Osin, arXiv:math/0411039v3, §9 and Appendix, Lemmas 9.4, 9.7 and 4.4.  An addit
   junction budget (`osinLemma94BadJunctionInput_of_pieces`), the boundary junction budget from the
   backward junction count and the boundary value failure count
   (`osinLemma94BoundaryJunctionBudgetInput_of_pieces`), and the end loops of the class joins;
-* the successor-form enclosed subdiagram from the doubling cells,
-  `closedWalkEnclosedSubdiagramSucc_of_doublingCells` (`ClosedWalkEnclosedSubdiagramSuccProof`);
+* the successor-form enclosed subdiagram is proved, `closedWalkEnclosedSubdiagramSucc`
+  (`ClosedWalkEnclosedSubdiagramSuccAssembly`);
 * the Euler equalities of the two-gon decomposition walk are proved, `osinTwoGonDecompositionEulerSection`
   (`OsinAppendixEulerTwoGonDecompositionEuler`).
 
-* `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV9`: fifteen named leaf residual Props.
+* `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV9`: fourteen named leaf residual Props.
 
 ## Manuscript status
 
@@ -38,10 +38,10 @@ namespace GroupApproximation.GGT.VanKampen
 
 universe u w v
 
-/-- **Osin's Lemma 4.4 at least-area diagrams from fifteen leaf residuals**: the waist
+/-- **Osin's Lemma 4.4 at least-area diagrams from fourteen leaf residuals**: the waist
 `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8` with the class end loop budget produced
-from the class joins and their pieces, the successor-form enclosed subdiagram from the doubling cells,
-and the two-gon decomposition Euler equalities supplied by their proof. -/
+from the class joins and their pieces, and the successor-form enclosed subdiagram and the two-gon
+decomposition Euler equalities supplied by their proofs. -/
 theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV9
     (hcontact : OsinLemma94ContactTransitionInput.{u, w, v})
     (hval : OsinLemma94CellJunctionValueInput.{u, w, v})
@@ -50,7 +50,6 @@ theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV9
     (hjoins : OsinLemma94ClassJoinsEndLoopsInput.{u, w, v})
     (hcut : SameCellPocketLoopCutStatement.{u, w, v})
     (hloop : EnclosedSubdiagramLoopCutSuccStatement.{u, w, v})
-    (hcells : EnclosedBridgeDoublingCellsSuccStatement.{u, w, v})
     (hspan : OsinLemma94ClassCaseGapSpanStatement.{u, w, v})
     (htwocopy : OsinTwoGonCleanCopySectionStatement.{u, w, v})
     (hcellStep : CellPocketOuterPinchStepSectionDistinctStatement.{u, w, v})
@@ -65,7 +64,7 @@ theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV9
       (osinLemma94BadJunctionInput_of_pieces hval
         (osinLemma94BoundaryJunctionBudgetInput_of_pieces hback hfail))
       hjoins)
-    hcut hloop (closedWalkEnclosedSubdiagramSucc_of_doublingCells hcells) hspan htwocopy
+    hcut hloop closedWalkEnclosedSubdiagramSucc hspan htwocopy
     osinTwoGonDecompositionEulerSection hcellStep hproper hfaces hwhole hstep
 
 end GroupApproximation.GGT.VanKampen
