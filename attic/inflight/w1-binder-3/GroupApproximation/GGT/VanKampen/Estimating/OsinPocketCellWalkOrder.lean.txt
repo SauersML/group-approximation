@@ -2,7 +2,7 @@ import GroupApproximation.GGT.VanKampen.CyclicArcComplement
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketSides
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkColour
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhi
-import GroupApproximation.GGT.VanKampen.ClosedWalkFaceColouring
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketColourNoncrossing
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
