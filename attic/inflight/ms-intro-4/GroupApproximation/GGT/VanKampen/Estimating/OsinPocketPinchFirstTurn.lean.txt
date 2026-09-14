@@ -164,7 +164,7 @@ theorem exists_turn_of_not_unpinched (K : PocketFaceSet D eps X lo hi) (hK : K.F
         FirstTurn X.toCombMap (K.boundary.cycle.reverse.map X.toCombMap.alpha)
           (X.toCombMap.alpha e₀) (X.toCombMap.alpha d₀) := by
   unfold Unpinched at hpinch
-  push_neg at hpinch
+  push Not at hpinch
   obtain ⟨a, b, ha, hb, hv, hab⟩ := hpinch
   have ha' := (K.boundary.cycle_mem_iff a).mpr ha
   have hb' := (K.boundary.cycle_mem_iff b).mpr hb
