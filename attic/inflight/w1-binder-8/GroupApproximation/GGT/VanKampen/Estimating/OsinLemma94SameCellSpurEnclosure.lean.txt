@@ -1,0 +1,171 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellRCellEnclosed
+import GroupApproximation.GGT.VanKampen.Estimating.OsinEnclosedSubdiagramLoopCutSucc
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The spur branch of the one-cell pairs of Lemma 9.4, Case 1, from the enclosed loop cut
+
+Osin (math/0411039v3, §9), Lemma 9.4, Case 1, across one relator cell `Π`, relator-cell branch: the
+face walk of the polygon face `f` reads `X q⁻¹ Y p⁻¹`, the carrier of `Π` reads `q B p A`, and
+neither `X B` nor `Y A` reads `1`.  A pocket walk that meets a dart together with its reversal runs
+along a bridge: a cutting path of `f` around an island, or an edge between `f` and `Π` in the
+windows `X` and `B`.  Its side (`sideFaces`) then holds `f` or `Π`, so neither a pocket region nor
+the noncrossing enclosure applies.  An enclosed face set allows bridges, and its outside walk can be
+the complement spelling `B ++ X` (or `A ++ Y`), which lies on `f` and `Π` and turns to its successor.
+
+* `OsinLemma94CaseOneSpurEnclosureStatement`: when a pocket walk has a spur, one complement spelling
+  encloses a face set in the successor form (`EnclosedFaceSetSucc`), with `Π` outside.  This is the
+  combinatorial leaf.
+* `SameCellSpurEnclosure.listVal_eq_one_of_enclosedSucc`: a cell-free enclosed face set reads `1`,
+  through the enclosed subdiagram (`ClosedWalkEnclosedSubdiagramSuccStatement`).
+* `osinLemma94CaseOneRCellSpur_of_enclosure`: the spur branch
+  (`OsinLemma94CaseOneRCellSpurStatement`) from the loop cut over the successor form
+  (`EnclosedSubdiagramLoopCutSuccStatement`).  The enclosing spelling reads an element other than
+  `1`, so the face set holds a relator cell.  `Π` is outside, its window is an arc of its carrier,
+  and the side along `f` has the word norm of the end connector (for `X`) or of the start connector
+  (for `Y`).
+
+Residual statements of `osinLemma94CaseOneRCellSpur_of_enclosure`:
+`EnclosedSubdiagramLoopCutSuccStatement` and `ClosedWalkEnclosedSubdiagramSuccStatement`
+(ms-traces-2), and `OsinLemma94CaseOneSpurEnclosureStatement` (this module).
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, Hull's small cancellation theorem, through Osin's
+Lemma 9.4, Case 1); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open GroupApproximation.GGT.VanKampen.UnboundEstimate
+open GroupApproximation.GGT.OsinComponents
+open GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides
+open GroupApproximation.GGT.VanKampen.CaseOneWalk
+
+/-- **The enclosure of a Case 1 one-cell pocket with a spur.**  Let the face walk of a face `f`
+other than the exterior read `X q⁻¹ Y p⁻¹`, and the carrier of a relator cell `Π ≠ f` read
+`q B p A`, with `p` and `q` nonempty and both complement spellings `B ++ X`, `A ++ Y` nonempty.  If
+one of the pocket walks `invDarts X ++ invDarts B`, `invDarts Y ++ invDarts A` meets a dart together
+with its reversal, then one of the complement spellings encloses a face set that avoids `Π`, with
+an outside walk that turns to its successor. -/
+def OsinLemma94CaseOneSpurEnclosureStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (Delta : DiscDiagram.{u, w, v} W) {f : Delta.toCombMap.Face} {j : Fin Delta.rCellCount},
+    f ≠ Delta.outerFace → (cell Delta j).face ≠ f →
+    ∀ (sourceArc targetArc : CyclicArc (cellDarts Delta j)) {X Y : List Delta.toCombMap.Dart}
+      {r : ℕ}, (Delta.faceBoundary f).darts.rotate r =
+        X ++ targetArc.reverseDarts ++ Y ++ sourceArc.reverseDarts →
+    ∀ {B A : List Delta.toCombMap.Dart} {n : ℕ},
+      (cellDarts Delta j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A →
+      0 < sourceArc.length → 0 < targetArc.length → X ++ B ≠ [] → Y ++ A ≠ [] →
+      ((∃ d ∈ invDarts Delta X ++ invDarts Delta B,
+          Delta.toCombMap.alpha d ∈ invDarts Delta X ++ invDarts Delta B) ∨
+        ∃ d ∈ invDarts Delta Y ++ invDarts Delta A,
+          Delta.toCombMap.alpha d ∈ invDarts Delta Y ++ invDarts Delta A) →
+      (∃ F : Finset Delta.toCombMap.Face,
+          EnclosedFaceSetSucc Delta F (B ++ X) ∧ (cell Delta j).face ∉ F) ∨
+        ∃ F : Finset Delta.toCombMap.Face,
+          EnclosedFaceSetSucc Delta F (A ++ Y) ∧ (cell Delta j).face ∉ F
+
+namespace SameCellSpurEnclosure
+
+/-- **A cell-free enclosed face set reads `1`.**  The enclosed subdiagram reads the inverse outside
+walk and has no more relator cells than the face set holds, so none. -/
+theorem listVal_eq_one_of_enclosedSucc (hsub : ClosedWalkEnclosedSubdiagramSuccStatement.{u, w, v})
+    {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    {Delta : DiscDiagram.{u, w, v} W} {faces : Finset Delta.toCombMap.Face}
+    {outerWalk : List Delta.toCombMap.Dart} (hencl : EnclosedFaceSetSucc Delta faces outerWalk)
+    (hcells : ∀ C ∈ Delta.relatorCells, C.face ∉ faces) :
+    RelLetter.listVal (dartWord Delta (invDarts Delta outerWalk)) = 1 := by
+  obtain ⟨Xi, hword, hcount, -, -, -⟩ := hsub Delta faces outerWalk hencl
+  have hzero : Xi.rCellCount = 0 := by
+    refine Nat.eq_zero_of_le_zero (hcount.trans (le_of_eq ?_))
+    rw [List.length_eq_zero_iff, List.filter_eq_nil_iff]
+    intro C hC
+    simpa using hcells C hC
+  have hnil : Xi.relatorCells = [] := List.eq_nil_of_length_eq_zero (l := Xi.relatorCells) hzero
+  have hprod := Xi.relatorValues_prod_eq_boundaryValue
+  rw [hnil, List.map_nil, List.prod_nil] at hprod
+  rw [← hword]
+  exact hprod.symm
+
+end SameCellSpurEnclosure
+
+open SameCellRCellEnclosed SameCellSpurEnclosure in
+/-- **The spur branch from the enclosed loop cut.**  The enclosing complement spelling reads an
+element other than `1`, so the enclosed face set holds a relator cell.  `Π` is outside, its window
+is an arc of its carrier, and the side along `f` has the word norm of a connector, so the enclosed
+loop cut refutes the pair below `Δ`. -/
+theorem osinLemma94CaseOneRCellSpur_of_enclosure
+    (hloop : EnclosedSubdiagramLoopCutSuccStatement.{u, w, v})
+    (hsub : ClosedWalkEnclosedSubdiagramSuccStatement.{u, w, v})
+    (hencl : OsinLemma94CaseOneSpurEnclosureStatement.{u, w, v}) :
+    OsinLemma94CaseOneRCellSpurStatement.{u, w, v} := by
+  intro G _ Lambda D _hhyper lambda c mu hlambda hlambda1 hc hmu hmu1
+  refine ⟨0, fun eps _ => ?_⟩
+  obtain ⟨rho1, hrho1⟩ := SameCellSimplePocket.exists_rho_large lambda c hmu eps
+  refine ⟨max 1 rho1, by omega, fun rho hrho => ?_⟩
+  intro W hW Delta cuts hleast _hpos hbelow S _hcard _hmin P _hmax k C _hback _hcut _hkind j
+    sourceArc targetArc X Y r _hj htrav hs ht _hsource _htarget hX hY n B A hPi hXB hYA hsp
+  have hlarge := hrho1 rho (le_of_max_le_right hrho)
+  have hrho0 : 0 < rho := by omega
+  rcases hencl S.diagram (P.face_ne_outer k) (P.face_not_cell k j) sourceArc targetArc htrav hPi
+      hs ht (SameCellRCellAssembly.append_ne_nil_of_listVal_ne_one hXB)
+      (SameCellRCellAssembly.append_ne_nil_of_listVal_ne_one hYA) hsp with
+    ⟨F, hF, hΠ⟩ | ⟨F, hF, hΠ⟩
+  · obtain ⟨C₀, hC₀, hCf⟩ : ∃ C ∈ S.diagram.relatorCells, C.face ∈ F := by
+      by_contra hno
+      exact listVal_invDarts_append_ne_one hXB
+        (listVal_eq_one_of_enclosedSucc hsub hF fun C hC hmem => hno ⟨C, hC, hmem⟩)
+    obtain ⟨Barc, hBarc⟩ : ∃ arc : CyclicArc (cellDarts S.diagram j), arc.darts = B := by
+      have hrot : (cellDarts S.diagram j).rotate (n + targetArc.darts.length) =
+          B ++ (sourceArc.darts ++ A ++ targetArc.darts) := by
+        rw [← List.rotate_rotate, hPi]
+        simp only [List.append_assoc]
+        rw [List.rotate_append_length_eq]
+        simp only [List.append_assoc]
+      exact CyclicArc.exists_darts_eq_of_rotate_eq hrot
+    have hnorm : WordMetric.wordNorm D.alphabet.carrier
+        (RelLetter.listVal (dartWord S.diagram (invDarts S.diagram X))) ≤ eps := by
+      rw [listVal_dartWord_invDarts, WordMetric.wordNorm_inv D.alphabet.symmetricGenerating]
+      exact (wordNorm_lt_of_end_connector C hX).le
+    have hdecomposition : invDarts S.diagram (B ++ X) =
+        invDarts S.diagram X ++ invDarts S.diagram Barc.darts := by
+      rw [hBarc]
+      exact invDarts_append B X
+    obtain ⟨cut⟩ := hloop D eps rho mu lambda c hW hlambda1 hc Delta S.diagram hleast S.equiv
+      S.label_admissible F (B ++ X) hF C₀ hC₀ hCf j hΠ Barc (invDarts S.diagram X)
+      hdecomposition hnorm
+    exact cut.false_of_below o52LeastArea hW hlambda hmu hmu1 hrho0 hlarge hleast
+      (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos cut.rCellCount_lt)
+  · obtain ⟨C₀, hC₀, hCf⟩ : ∃ C ∈ S.diagram.relatorCells, C.face ∈ F := by
+      by_contra hno
+      exact listVal_invDarts_append_ne_one hYA
+        (listVal_eq_one_of_enclosedSucc hsub hF fun C hC hmem => hno ⟨C, hC, hmem⟩)
+    obtain ⟨Aarc, hAarc⟩ : ∃ arc : CyclicArc (cellDarts S.diagram j), arc.darts = A := by
+      have hrot : (cellDarts S.diagram j).rotate
+          (n + (targetArc.darts ++ B ++ sourceArc.darts).length) =
+            A ++ (targetArc.darts ++ B ++ sourceArc.darts) := by
+        rw [← List.rotate_rotate, hPi, List.rotate_append_length_eq]
+      exact CyclicArc.exists_darts_eq_of_rotate_eq hrot
+    have hnorm : WordMetric.wordNorm D.alphabet.carrier
+        (RelLetter.listVal (dartWord S.diagram (invDarts S.diagram Y))) ≤ eps := by
+      rw [listVal_dartWord_invDarts, WordMetric.wordNorm_inv D.alphabet.symmetricGenerating]
+      exact (wordNorm_lt_of_start_connector C hY).le
+    have hdecomposition : invDarts S.diagram (A ++ Y) =
+        invDarts S.diagram Y ++ invDarts S.diagram Aarc.darts := by
+      rw [hAarc]
+      exact invDarts_append A Y
+    obtain ⟨cut⟩ := hloop D eps rho mu lambda c hW hlambda1 hc Delta S.diagram hleast S.equiv
+      S.label_admissible F (A ++ Y) hF C₀ hC₀ hCf j hΠ Aarc (invDarts S.diagram Y)
+      hdecomposition hnorm
+    exact cut.false_of_below o52LeastArea hW hlambda hmu hmu1 hrho0 hlarge hleast
+      (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos cut.rCellCount_lt)
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.SameCellSpurEnclosure.listVal_eq_one_of_enclosedSucc
+#audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94CaseOneRCellSpur_of_enclosure
