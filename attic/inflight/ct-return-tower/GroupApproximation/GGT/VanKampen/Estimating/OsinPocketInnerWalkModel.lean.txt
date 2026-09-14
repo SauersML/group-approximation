@@ -1,0 +1,290 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalkModelMap
+import GroupApproximation.GGT.VanKampen.Estimating.SingletonFaceRegion
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Two exterior regions at a whole section: the outer and the inner pocket
+
+A model test for the inner-pocket route of the whole-section two-arc face set producer
+(`SectionPocketFaceSetWholeSectionTwoArcInput`, `Estimating/OsinPocketTwoArcSection.lean`), on the least-area
+diagram of `Estimating/OsinPocketInnerWalkModelMap.lean`, whose boundary has three letters.
+
+* `x eps`, `y eps`: the digons `R_x = [1,8]` and `R_y = [5,12]`, contiguity regions of `Π` to the exterior
+  with empty sides (`ContiguityGeometry.ofSingletonFace`).  Their source arcs are `[0]` and `[4]` of `Π`, and
+  their target arcs are `[8]` at position `0` and `[12]` ending at position `3 = |∂Δ|`: the whole-section wrap.
+* `outerK eps`: the face set `{R_x, K, R_y}`, the pocket of the landed walk
+  (`PocketWalk.exists_of_exteriorAt`).  Its sides are `y`'s left side and `x`'s right side, its source arc
+  `[0,2,4]` spans the two source arcs and the gap `[2]`, and its target arc is all of `∂Δ`.  It is in walk
+  order and its source arc is proper, but its target arc is full.
+* `innerK eps`: the face set `{K}` between the two regions.  Its sides are the reversed sides
+  `invDarts y.rightSide` and `invDarts x.leftSide`, its source arc is the gap `[2]`, and its target arc `[10]`
+  runs from the end of `x`'s target arc to the start of `y`'s.  It is in walk order and both arcs are proper.
+* `InnerWalkModel`, `innerWalkModel`: all of this.
+
+So at a whole-section wrap with two regions the inner pocket has linear positions inside the section and
+proper arcs, with the reversed region sides.  The model carries no section family.
+
+## Manuscript status
+
+Model test for infrastructure of `thm:hull` (Hull's small cancellation theorem, through Osin's
+Lemma 9.7(b)); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.OsinPocketInnerWalkModel
+
+open Equiv GroupApproximation.HullSC GroupApproximation.GGT.VanKampen.Embedded
+open OsinPocketPinchedTwoGonModel (D)
+open Surgery.MapCollapse (IsBoundaryDart BoundaryCycle)
+
+theorem empty_norm (eps : ℕ) :
+    WordMetric.wordNorm D.alphabet.carrier (RelLetter.listVal
+      (dartWord diagram ([] : List diagram.toCombMap.Dart))) ≤ eps :=
+  (Nat.le_of_eq (WordMetric.wordNorm_one _)).trans (Nat.zero_le eps)
+
+theorem noInternalFaceDart_face (i : Fin 6) (hi : i = 1 ∨ i = 2 ∨ i = 3) :
+    Surgery.MapCollapse.NoInternalFaceDart diagram.toCombMap (face i) := by
+  intro d hd
+  change M.faceOf d = face i at hd
+  change M.faceOf (M.alpha d) ≠ face i
+  rw [faceOf_eq_face] at hd
+  rw [Ne, faceOf_eq_face]
+  rcases hi with rfl | rfl | rfl <;> fin_cases d <;> revert hd <;> decide
+
+theorem faceWord_value (i : Fin 6) (hi : i = 1 ∨ i = 3) :
+    RelLetter.listVal (diagram.faceWord (face i)) = 1 := by
+  change RelLetter.listVal ((boundary (face i)).darts.map label) = 1
+  rw [boundary_face_darts]
+  rcases hi with rfl | rfl <;> decide
+
+/-! ## The two regions -/
+
+/-- An arc of `Π` of one dart, at position `k`. -/
+def piArc (k : ℕ) (hk : k < 4) (n : ℕ) (hn : n ≤ 4) : CyclicArc (cellDarts diagram iP) where
+  start := ⟨k, by rw [cellDarts_iP]; simp only [List.length_cons, List.length_nil]; omega⟩
+  length := n
+  length_le := by rw [cellDarts_iP]; simpa using hn
+
+/-- An arc of the exterior boundary, at position `k`. -/
+def outerArc (k : ℕ) (hk : k < 3) (n : ℕ) (hn : n ≤ 3) : CyclicArc (targetDarts diagram none) where
+  start := ⟨k, by show k < (outerDarts diagram).length + 1; rw [outerDarts_eq]; simp only
+    [List.length_cons, List.length_nil]; omega⟩
+  length := n
+  length_le := by show n ≤ (outerDarts diagram).length; rw [outerDarts_eq]; simpa using hn
+
+theorem piArc_darts_zero : (piArc 0 (by decide) 1 (by decide)).darts = [0] := by
+  change ((cellDarts diagram iP).drop 0 ++ (cellDarts diagram iP).take 0).take 1 = _
+  rw [cellDarts_iP]
+  rfl
+
+theorem piArc_darts_two : (piArc 2 (by decide) 1 (by decide)).darts = [4] := by
+  change ((cellDarts diagram iP).drop 2 ++ (cellDarts diagram iP).take 2).take 1 = _
+  rw [cellDarts_iP]
+  rfl
+
+theorem outerArc_darts_zero : (outerArc 0 (by decide) 1 (by decide)).darts = [8] := by
+  change ((outerDarts diagram).drop 0 ++ (outerDarts diagram).take 0).take 1 = _
+  rw [outerDarts_eq]
+  rfl
+
+theorem outerArc_darts_two : (outerArc 2 (by decide) 1 (by decide)).darts = [12] := by
+  change ((outerDarts diagram).drop 2 ++ (outerDarts diagram).take 2).take 1 = _
+  rw [outerDarts_eq]
+  rfl
+
+theorem x_decomposition :
+    (diagram.faceBoundary (face 1)).darts.rotate 0 =
+      (piArc 0 (by decide) 1 (by decide)).reverseDarts ++ [] ++
+        targetBoundaryDarts diagram none (outerArc 0 (by decide) 1 (by decide)) ++ [] := by
+  change (boundary (face 1)).darts.rotate 0 =
+    (piArc 0 (by decide) 1 (by decide)).darts.reverse.map M.alpha ++ [] ++
+      (outerArc 0 (by decide) 1 (by decide)).darts ++ []
+  rw [boundary_face_darts, piArc_darts_zero, outerArc_darts_zero]
+  decide
+
+theorem y_decomposition :
+    (diagram.faceBoundary (face 3)).darts.rotate 0 =
+      (piArc 2 (by decide) 1 (by decide)).reverseDarts ++ [] ++
+        targetBoundaryDarts diagram none (outerArc 2 (by decide) 1 (by decide)) ++ [] := by
+  change (boundary (face 3)).darts.rotate 0 =
+    (piArc 2 (by decide) 1 (by decide)).darts.reverse.map M.alpha ++ [] ++
+      (outerArc 2 (by decide) 1 (by decide)).darts ++ []
+  rw [boundary_face_darts, piArc_darts_two, outerArc_darts_two]
+  decide
+
+/-- **The region `R_x`**: its source arc `[0]` of `Π`, its target arc `[8]` at position `0`. -/
+noncomputable def x (eps : ℕ) : RegionCandidate D eps diagram :=
+  ⟨{face 1}, ContiguityGeometry.ofSingletonFace (face 1) ((face_eq_iff 1 5).not.mpr (by decide))
+    (faceWord_value 1 (Or.inl rfl)) (noInternalFaceDart_face 1 (Or.inl rfl)) 0 iP none
+    (piArc 0 (by decide) 1 (by decide)) (outerArc 0 (by decide) 1 (by decide)) [] []
+    x_decomposition (Nat.zero_le _) (Nat.zero_le _) (empty_norm eps) (empty_norm eps)⟩
+
+/-- **The region `R_y`**: its source arc `[4]` of `Π`, its target arc `[12]` ending at position `3`. -/
+noncomputable def y (eps : ℕ) : RegionCandidate D eps diagram :=
+  ⟨{face 3}, ContiguityGeometry.ofSingletonFace (face 3) ((face_eq_iff 3 5).not.mpr (by decide))
+    (faceWord_value 3 (Or.inr rfl)) (noInternalFaceDart_face 3 (Or.inr (Or.inr rfl))) 0 iP none
+    (piArc 2 (by decide) 1 (by decide)) (outerArc 2 (by decide) 1 (by decide)) [] []
+    y_decomposition (Nat.zero_le _) (Nat.zero_le _) (empty_norm eps) (empty_norm eps)⟩
+
+/-! ## The outer pocket `{R_x, K, R_y}` -/
+
+def outerFaces : Finset diagram.toCombMap.Face := {face 1, face 2, face 3}
+
+theorem outerBoundaryDart_iff (d : Fin 14) :
+    IsBoundaryDart diagram.toCombMap outerFaces d ↔ d ∈ ([5, 3, 1, 8, 10, 12] : List (Fin 14)) := by
+  change (M.faceOf d ∈ ({face 1, face 2, face 3} : Finset M.Face) ∧
+    M.faceOf (M.alpha d) ∉ ({face 1, face 2, face 3} : Finset M.Face)) ↔ _
+  simp only [Finset.mem_insert, Finset.mem_singleton, faceOf_eq_face]
+  fin_cases d <;> decide
+
+def outerCycle : BoundaryCycle diagram.toCombMap outerFaces where
+  cycle := ([5, 3, 1, 8, 10, 12] : List (Fin 14))
+  cycle_nonempty := List.cons_ne_nil _ _
+  cycle_nodup := (by decide : ([5, 3, 1, 8, 10, 12] : List (Fin 14)).Nodup)
+  cycle_mem_iff := fun d => (outerBoundaryDart_iff d).symm
+
+theorem outer_decomposition :
+    (outerCycle : BoundaryCycle diagram.toCombMap outerFaces).cycle =
+      [] ++ invDarts diagram (piArc 0 (by decide) 3 (by decide)).darts ++ [] ++
+        (outerArc 0 (by decide) 3 (by decide)).darts := by
+  change ([5, 3, 1, 8, 10, 12] : List (Fin 14)) =
+    [] ++ ((cellDarts diagram iP).drop 0 ++ (cellDarts diagram iP).take 0).take 3 |>.reverse.map M.alpha
+      ++ [] ++ ((outerDarts diagram).drop 0 ++ (outerDarts diagram).take 0).take 3
+  rw [cellDarts_iP, outerDarts_eq]
+  decide
+
+/-- **The outer pocket**, the pocket of the landed walk: a full target arc. -/
+noncomputable def outerK (eps : ℕ) : PocketFaceSet D eps diagram 0 3 where
+  faces := outerFaces
+  outerFace_not_mem := by
+    change face 5 ∉ ({face 1, face 2, face 3} : Finset M.Face)
+    simp only [Finset.mem_insert, Finset.mem_singleton, face_eq_iff]
+    decide
+  source := iP
+  source_not_mem := by
+    change face 0 ∉ ({face 1, face 2, face 3} : Finset M.Face)
+    simp only [Finset.mem_insert, Finset.mem_singleton, face_eq_iff]
+    decide
+  kept := iK
+  kept_mem := by
+    change face 2 ∈ ({face 1, face 2, face 3} : Finset M.Face)
+    simp only [Finset.mem_insert, Finset.mem_singleton, face_eq_iff]
+    decide
+  sourceArc := piArc 0 (by decide) 3 (by decide)
+  targetArc := outerArc 0 (by decide) 3 (by decide)
+  firstSide := []
+  secondSide := []
+  boundary := outerCycle
+  decomposition := outer_decomposition
+  firstSide_length_le := Nat.zero_le _
+  secondSide_length_le := Nat.zero_le _
+  firstSide_norm_le := empty_norm eps
+  secondSide_norm_le := empty_norm eps
+  lo_le := Nat.zero_le _
+  le_hi := by decide
+
+theorem outerK_closedWalk (eps : ℕ) : (outerK eps).ClosedWalk := by
+  refine ⟨?_, ?_⟩
+  · change ([5, 3, 1, 8, 10, 12] : List M.Dart).IsChain
+      (fun d e => M.vertexOf (M.alpha d) = M.vertexOf e)
+    refine List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff _ _).mpr (by decide),
+      List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff _ _).mpr (by decide),
+        List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff _ _).mpr (by decide),
+          List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff _ _).mpr (by decide),
+            List.isChain_pair.mpr ((vertexOf_eq_iff _ _).mpr (by decide))⟩⟩⟩⟩
+  · exact (vertexOf_eq_iff (M.alpha 12) 5).mpr (by decide)
+
+/-! ## The inner pocket `{K}` -/
+
+def innerFaces : Finset diagram.toCombMap.Face := {face 2}
+
+theorem innerBoundaryDart_iff (d : Fin 14) :
+    IsBoundaryDart diagram.toCombMap innerFaces d ↔ d ∈ ([3, 10] : List (Fin 14)) := by
+  change (M.faceOf d ∈ ({face 2} : Finset M.Face) ∧
+    M.faceOf (M.alpha d) ∉ ({face 2} : Finset M.Face)) ↔ _
+  simp only [Finset.mem_singleton, faceOf_eq_face]
+  fin_cases d <;> decide
+
+def innerCycle : BoundaryCycle diagram.toCombMap innerFaces where
+  cycle := ([3, 10] : List (Fin 14))
+  cycle_nonempty := List.cons_ne_nil _ _
+  cycle_nodup := (by decide : ([3, 10] : List (Fin 14)).Nodup)
+  cycle_mem_iff := fun d => (innerBoundaryDart_iff d).symm
+
+theorem inner_decomposition :
+    (innerCycle : BoundaryCycle diagram.toCombMap innerFaces).cycle =
+      [] ++ invDarts diagram (piArc 1 (by decide) 1 (by decide)).darts ++ [] ++
+        (outerArc 1 (by decide) 1 (by decide)).darts := by
+  change ([3, 10] : List (Fin 14)) =
+    [] ++ ((cellDarts diagram iP).drop 1 ++ (cellDarts diagram iP).take 1).take 1 |>.reverse.map M.alpha
+      ++ [] ++ ((outerDarts diagram).drop 1 ++ (outerDarts diagram).take 1).take 1
+  rw [cellDarts_iP, outerDarts_eq]
+  decide
+
+/-- **The inner pocket** between the two regions: reversed sides and proper arcs. -/
+noncomputable def innerK (eps : ℕ) : PocketFaceSet D eps diagram 0 3 where
+  faces := innerFaces
+  outerFace_not_mem := fun h => absurd ((face_eq_iff 5 2).mp (Finset.mem_singleton.mp h)) (by decide)
+  source := iP
+  source_not_mem := fun h => absurd ((face_eq_iff 0 2).mp (Finset.mem_singleton.mp h)) (by decide)
+  kept := iK
+  kept_mem := Finset.mem_singleton.mpr rfl
+  sourceArc := piArc 1 (by decide) 1 (by decide)
+  targetArc := outerArc 1 (by decide) 1 (by decide)
+  firstSide := []
+  secondSide := []
+  boundary := innerCycle
+  decomposition := inner_decomposition
+  firstSide_length_le := Nat.zero_le _
+  secondSide_length_le := Nat.zero_le _
+  firstSide_norm_le := empty_norm eps
+  secondSide_norm_le := empty_norm eps
+  lo_le := Nat.zero_le _
+  le_hi := by decide
+
+theorem innerK_closedWalk (eps : ℕ) : (innerK eps).ClosedWalk :=
+  ⟨List.isChain_pair.mpr ((vertexOf_eq_iff (M.alpha 3) 10).mpr (by decide)),
+    (vertexOf_eq_iff (M.alpha 10) 3).mpr (by decide)⟩
+
+/-! ## The model -/
+
+/-- **Two regions at a whole section**: least area, letter labels, three letters of boundary, and at every
+`ε` two exterior regions of `Π` at the two ends of the section, the outer pocket of the landed walk with a
+full target arc, and the inner pocket with the reversed sides and proper arcs between the regions. -/
+def InnerWalkModel : Prop :=
+  diagram.LeastArea ∧ (∀ d, (symmetricLabelAlphabet D).IsLetter (diagram.label d)) ∧
+    diagram.boundaryWord.length = 3 ∧
+    ∀ eps : ℕ, ∃ (xr yr : RegionCandidate D eps diagram) (outer inner : PocketFaceSet D eps diagram 0 3),
+      Disjoint xr.1 yr.1 ∧ xr.2.source = iP ∧ yr.2.source = iP ∧ xr.2.target = none ∧
+      yr.2.target = none ∧ xr.2.targetArc.start.1 = 0 ∧
+      yr.2.targetArc.start.1 + yr.2.targetArc.length = 3 ∧
+      outer.ClosedWalk ∧ outer.firstSide = yr.2.leftSide ∧ outer.secondSide = xr.2.rightSide ∧
+      outer.sourceArc.length < (cellDarts diagram outer.source).length ∧
+      outer.targetArc.length = (outerDarts diagram).length ∧
+      inner.ClosedWalk ∧ inner.firstSide = invDarts diagram yr.2.rightSide ∧
+      inner.secondSide = invDarts diagram xr.2.leftSide ∧
+      inner.sourceArc.length < (cellDarts diagram inner.source).length ∧
+      inner.targetArc.length < (outerDarts diagram).length ∧
+      inner.targetArc.start.1 = xr.2.targetArc.start.1 + xr.2.targetArc.length ∧
+      inner.targetArc.start.1 + inner.targetArc.length = yr.2.targetArc.start.1
+
+theorem innerWalkModel : InnerWalkModel := by
+  refine ⟨leastArea, letters, boundaryWord_length, fun eps => ⟨x eps, y eps, outerK eps, innerK eps,
+    ?_, rfl, rfl, rfl, rfl, rfl, rfl, outerK_closedWalk eps, rfl, rfl, ?_, ?_, innerK_closedWalk eps,
+    rfl, rfl, ?_, ?_, rfl, rfl⟩⟩
+  · exact Finset.disjoint_singleton.mpr ((face_eq_iff 1 3).not.mpr (by decide))
+  · change 3 < (cellDarts diagram iP).length
+    rw [cellDarts_iP]
+    decide
+  · change 3 = (outerDarts diagram).length
+    rw [outerDarts_eq]
+    rfl
+  · change 1 < (cellDarts diagram iP).length
+    rw [cellDarts_iP]
+    decide
+  · change 1 < (outerDarts diagram).length
+    rw [outerDarts_eq]
+    decide
+
+end GroupApproximation.GGT.VanKampen.OsinPocketInnerWalkModel
+
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.OsinPocketInnerWalkModel.innerWalkModel
