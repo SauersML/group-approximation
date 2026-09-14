@@ -28,3 +28,5 @@ Route: `subshift-tower-unit-group-characters-are-constant-proof`.
 - So `χ(h)` equals the limit of the trivial-representation weights.
 
 Contrast: for the natural limit `GL_∞(F_q)` the support of a fixed element stays bounded along the limit, and the Thoma–Skudlarek characters `q^{−m·rank(g−1)}` survive.
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part2.md`):** PASS (§1). Re-derived: tower matrix units and nesting; passages `≥ ⌊H_{C′}/L⌋` (Lemma 1(iii)); Lemma 1′, support `≥ ⌊H_{C′}/L⌋`, because `h[C_0] − λ ≠ 0` for every `λ ∈ F̄_2`; generation by two points; the Larsen–Tiep application, with class size `≤ 2^{N(N − supp x)}`, `|GL_N(F_2)| ≥ 2^{N²}/4` and degree `≥ ⌊N²/4⌋`; constancy with `α = 1/(4L)`.

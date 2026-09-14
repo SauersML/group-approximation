@@ -29,3 +29,5 @@ The full proof is in the artifact, §1–§3. Outline:
 5. **Constancy.**
    - `χ|_{L_n}` is a convex combination of normalized irreducible characters of `∏_C GL_{3h_C}(F_2)`. Each nontrivial one is at most the bound of step 4 at `h ∈ L_m ∖ 1`, with `α = 1/(4L)`.
    - So `|χ(h) − c_n| → 0`, where `c_n = τ(p_{L_n})` is the trivial weight. The weights decrease to `c`.
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part2.md`):** PASS (§1). N2 (display): step 2 "If `h_{C_0} ≠ 1`" should read "If `h[C_0] ≠ 1`", the component of `h` in the tower `C_0`, not the height.

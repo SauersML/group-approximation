@@ -34,3 +34,5 @@ every finite field and every rank n ≥ 2.
 
 **Scope.** Property (T) and finite generation rest on `complementary-full-idempotents-make-el-2-kazhdan`, which is
 unreviewed. The simplicity statement (items 1–2) uses no (T).
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part2.md`):** PASS (§4). Re-derived: Lemma C; the noncommuting root among `e_ij(e_V)` and `e_ij(e_Vu)`; the product formula with shift `c`, second index in `[−m, w]`; the untouched top level `b = m`, so `κ` is not scalar; the quasisimple extraction; and the sign-free Peirce propagation over `F_q`, including `Y_AB ⊆ G` and generation. Items 1–2 are unconditional. Item 3 rests on `complementary-full-idempotents-make-el-2-kazhdan` (sk-verify-4 PASS) for (T) and f.g., and on `minimal-subshift-algebra-is-simple-lef-ring` item 3 for LEF.

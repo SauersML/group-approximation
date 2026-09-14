@@ -15,3 +15,5 @@ artifacts:
 So every probability-preserving action of `G_X` is essentially free off its set of global fixed points.
 
 Route: `subshift-elementary-groups-have-trivial-irs-proof`.
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part2.md`):** PASS (§3). The character-simplex principle is re-derived with a lazy fully supported random walk: `∫ν^{*n}(H)dμ → μ({G})`, return probabilities vanish on infinite Schreier graphs, and `G_X` has no proper finite-index subgroup. So `μ({G}) = b`, and countability gives `μ = bδ_G + (1−b)δ_1`.
