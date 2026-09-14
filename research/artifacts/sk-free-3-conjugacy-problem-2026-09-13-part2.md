@@ -99,3 +99,5 @@ Let f_e = 1_{A_e} − 1_{B_e}. For m ≥ e+1 and c ∈ Σ_m, let d_m(c) be the n
   - A finitely generated branch group with solvable word problem and unsolvable conjugacy problem answers a question of Bartholdi–Grigorchuk–Šunić: arXiv:2509.12161, IMRN 2026.
   - Automaton groups with unsolvable conjugacy problem exist: Šunić–Ventura, arXiv:1010.1993.
   - No simple or Kazhdan example turned up. Novelty checks at source are left to a verifier.
+  - **Contrast, from search snippets only (locators not read, VERIFY).** For finitely generated subgroups of topological full groups of subshifts with decidable language (trivial germ stabilizers), the conjugacy problem is reported decidable; our G_X with decidable language can have undecidable conjugacy.
+  - **Search bound.** Two further searches (2026-09-13) found no published undecidability of the coboundary or [[T]]-equivalence problem for computable minimal subshifts. Decidable invariants are reported for substitutive and finite-rank S-adic classes (Host letter-coboundaries; flip conjugacy of constant-length primitive substitutions). Our construction has unbounded alphabet rank, which is consistent with those results.
