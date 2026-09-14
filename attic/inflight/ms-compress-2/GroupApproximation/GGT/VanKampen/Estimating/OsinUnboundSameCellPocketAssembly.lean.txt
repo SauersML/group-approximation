@@ -90,7 +90,7 @@ theorem osinLemma94SameCellPocketInput_of_loopCut
   refine ⟨max 1 rho1, lt_of_lt_of_le Nat.one_pos (le_max_left _ _), fun rho hrho => ?_⟩
   intro W hW Delta hleast hbelow i d hd hface hor m hm hstep
   classical
-  have hrho : 0 < rho := lt_of_lt_of_le Nat.one_pos (le_trans (le_max_left _ _) hrho)
+  have hrho0 : 0 < rho := lt_of_lt_of_le Nat.one_pos (le_trans (le_max_left _ _) hrho)
   have hlarge := hrho1 rho (le_trans (le_max_right _ _) hrho)
   have hdface : Delta.toCombMap.faceOf d = (cell Delta i).face :=
     ((Delta.faceBoundary (cell Delta i).face).mem_iff d).mp hd
@@ -124,7 +124,7 @@ theorem osinLemma94SameCellPocketInput_of_loopCut
     obtain ⟨C, hC, hne, x, hx, hch⟩ := hfree
     obtain ⟨cut⟩ := hcut D lambda c mu eps rho W hW Delta hleast i d hd hface hor C hC
       (fun h => hne (h.trans hdface.symm)) x hx hch
-    exact (cut.false_of_below o52LeastArea hW hlambda hmu hmu1 hrho hlarge hleast
+    exact (cut.false_of_below o52LeastArea hW hlambda hmu hmu1 hrho0 hlarge hleast
       (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos cut.rCellCount_lt)).elim
 
 end GroupApproximation.GGT.VanKampen
