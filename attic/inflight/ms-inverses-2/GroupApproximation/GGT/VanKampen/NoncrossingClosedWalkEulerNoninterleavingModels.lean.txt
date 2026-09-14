@@ -1,0 +1,149 @@
+import GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleaving
+import GroupApproximation.GGT.VanKampen.SurgeryNoncrossingCollarStripModels
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkFollowsModel
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Model tests for non-interleaving passages
+
+Model tests for the hypothesis `PassagesNoninterleaving` of the vertex bound
+`NoninterleavingVertexCountStatement` (`NoncrossingClosedWalkEulerNoninterleaving`), run before its
+proof.  The passage at position `i` of a closed walk `w` is the chord from `alpha w[i]` to `w[i+1]`,
+and the hypothesis asks that two passages at one vertex do not cross in rotation order.
+
+* The three-petal rose `NoncrossingCollarStripModels.threeRose` with rotation
+  `1 ↦ 0 ↦ 3 ↦ 2 ↦ 5 ↦ 4 ↦ 1` and the walk `[0,2,4]`.
+  - The walk is noncrossing (`NoncrossingCollarStripModels.isNoncrossingClosedWalk_roseCycle`), and
+    reclosing its side gives a torus (`NoncrossingClosedWalkEuler`).
+  - Its passages interleave (`roseCycle_not_passagesNoninterleaving`).  Rotating from `1`, the reversal
+    `3` of the dart `2` comes after two steps, before the end `2` of the first passage.  The end `4` of
+    the second passage comes only after `2`.
+  So the hypothesis excludes the rose, as it must.
+* The lake `OsinPocketLakeModel.M` with the walk `[0,2]`.  Both passages are one rotation step, so no
+  endpoint lies inside a sector (`lakeCycle_passagesNoninterleaving`).  The outer cycle of the walk
+  does not follow its boundary.
+* The double touch `OsinPocketCellWalkFollowsModel.M` with the walk `[0,2,4,6]`.
+  - At the vertex `B` both passages are one rotation step.
+  - At the vertex `A` the passage of `0` runs from `1` past `0` and `7` to `2`.  It holds both
+    endpoints `7` and `0` of the passage of `6`, and that passage holds both endpoints `1` and `2`.
+  - So the passages do not interleave (`walk_passagesNoninterleaving`), while neither boundary cycle
+    of the walk follows its boundary (`OsinPocketCellWalkFollowsModel.walk_innerCycle_not_followsBoundary`,
+    `walk_outerCycle_not_followsBoundary`).
+  So non-interleaving is strictly weaker than following either cycle.
+* `NoninterleavingCalibration`, `noninterleavingCalibration`: the three findings.
+
+## Manuscript status
+
+Model test for infrastructure of `thm:hull` (tex 2121,
+`\begin{theorem}[Hull's small cancellation theorem]\label{thm:hull}`); certifies no printed
+sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+
+open Equiv
+
+universe u
+
+section Rotation
+
+variable {M : CombMap.{u}} {x y z : M.Dart}
+
+/-- **An empty sector.**  If one rotation step from `x` reaches `y`, no dart lies between them. -/
+theorem not_rotationBetween_of_sigma_eq (h : M.sigma x = y) : ¬ RotationBetween M x y z := by
+  rintro ⟨a, ha, -, hb⟩
+  exact hb 1 Nat.one_pos ha (by rw [pow_one]; exact h)
+
+/-- **A dart outside a sector.**  If rotating from `x` reaches `y` after `a₀` steps and meets `z` at
+no earlier step, then `z` is not inside the sector from `x` to `y`. -/
+theorem not_rotationBetween_of_first {a₀ : ℕ} (ha₀ : 0 < a₀) (h : (M.sigma ^ a₀) x = y)
+    (hz : ∀ b, 0 < b → b < a₀ → (M.sigma ^ b) x ≠ z) : ¬ RotationBetween M x y z := by
+  rintro ⟨a, ha, hza, hb⟩
+  rcases Nat.lt_or_ge a a₀ with hlt | hge
+  · exact hz a ha hlt hza
+  · exact hb a₀ ha₀ hge h
+
+end Rotation
+
+/-- **The passages of the three-petal walk interleave.** -/
+theorem roseCycle_not_passagesNoninterleaving :
+    ¬ PassagesNoninterleaving NoncrossingCollarStripModels.threeRose ([0, 2, 4] : List (Fin 6)) := by
+  intro h
+  have hiff := h ⟨0, by decide⟩ ⟨1, by decide⟩ (by decide)
+    (NoncrossingCollarStripModels.threeRoseVertexEquiv.injective (Subsingleton.elim _ _))
+  refine absurd (hiff.mp ⟨2, by decide, by decide, ?_⟩)
+    (not_rotationBetween_of_first (a₀ := 3) (by decide) (by decide) ?_)
+  · intro b hb0 hb2
+    interval_cases b <;> decide
+  · intro b hb0 hb3
+    interval_cases b <;> decide
+
+/-- **The passages of the lake do not interleave**: both are one rotation step. -/
+theorem lakeCycle_passagesNoninterleaving :
+    PassagesNoninterleaving OsinPocketLakeModel.M ([0, 2] : List (Fin 4)) := by
+  rintro ⟨i, hi⟩ ⟨j, hj⟩ hij -
+  have hi' : i < 2 := hi
+  have hj' : j < 2 := hj
+  interval_cases i <;> interval_cases j
+  · exact absurd rfl hij
+  · exact iff_of_false (not_rotationBetween_of_sigma_eq (by decide))
+      (not_rotationBetween_of_sigma_eq (by decide))
+  · exact iff_of_false (not_rotationBetween_of_sigma_eq (by decide))
+      (not_rotationBetween_of_sigma_eq (by decide))
+  · exact absurd rfl hij
+
+/-- **The passages of the double touch do not interleave.**  At `B` both passages are one rotation
+step; at `A` each of the two passages holds both endpoints of the other. -/
+theorem walk_passagesNoninterleaving :
+    PassagesNoninterleaving OsinPocketCellWalkFollowsModel.M ([0, 2, 4, 6] : List (Fin 8)) := by
+  rintro ⟨i, hi⟩ ⟨j, hj⟩ hij hv
+  have hi' : i < 4 := hi
+  have hj' : j < 4 := hj
+  interval_cases i <;> interval_cases j
+  · exact absurd rfl hij
+  · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
+  · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
+  · exact iff_of_true ⟨2, by decide, by decide, fun b hb0 hb2 => by interval_cases b <;> decide⟩
+      ⟨1, by decide, by decide, fun b hb0 hb1 => by interval_cases b <;> decide⟩
+  · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
+  · exact absurd rfl hij
+  · exact iff_of_false (not_rotationBetween_of_sigma_eq (by decide))
+      (not_rotationBetween_of_sigma_eq (by decide))
+  · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
+  · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
+  · exact iff_of_false (not_rotationBetween_of_sigma_eq (by decide))
+      (not_rotationBetween_of_sigma_eq (by decide))
+  · exact absurd rfl hij
+  · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
+  · exact iff_of_true ⟨2, by decide, by decide, fun b hb0 hb2 => by interval_cases b <;> decide⟩
+      ⟨1, by decide, by decide, fun b hb0 hb1 => by interval_cases b <;> decide⟩
+  · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
+  · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
+  · exact absurd rfl hij
+
+/-- **Calibration of non-interleaving** (model test).  The noncrossing three-petal walk, whose side
+recloses to a torus, has interleaving passages.  The lake has non-interleaving passages.  The double
+touch has non-interleaving passages, and neither of its boundary cycles follows its boundary. -/
+def NoninterleavingCalibration : Prop :=
+  ¬ PassagesNoninterleaving NoncrossingCollarStripModels.threeRose ([0, 2, 4] : List (Fin 6)) ∧
+    PassagesNoninterleaving OsinPocketLakeModel.M ([0, 2] : List (Fin 4)) ∧
+    PassagesNoninterleaving OsinPocketCellWalkFollowsModel.M ([0, 2, 4, 6] : List (Fin 8)) ∧
+    ¬ (OsinPocketCellWalkFollowsModel.isNoncrossingClosedWalk_walk.innerCycle
+      OsinPocketCellWalkFollowsModel.planar).FollowsBoundary ∧
+    ¬ (OsinPocketCellWalkFollowsModel.isNoncrossingClosedWalk_walk.outerCycle
+      OsinPocketCellWalkFollowsModel.planar).FollowsBoundary
+
+theorem noninterleavingCalibration : NoninterleavingCalibration :=
+  ⟨roseCycle_not_passagesNoninterleaving, lakeCycle_passagesNoninterleaving,
+    walk_passagesNoninterleaving,
+    OsinPocketCellWalkFollowsModel.walk_innerCycle_not_followsBoundary,
+    OsinPocketCellWalkFollowsModel.walk_outerCycle_not_followsBoundary⟩
+
+end GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.not_rotationBetween_of_sigma_eq
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.not_rotationBetween_of_first
+#audit_closed_axioms
+  GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleavingModels.noninterleavingCalibration
