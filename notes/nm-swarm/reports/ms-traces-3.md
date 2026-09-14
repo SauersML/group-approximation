@@ -9,6 +9,17 @@ Wave-2 range lane of session nonsofic-existence-49. Manuscript at origin/main 5b
   - `Algebra/FinitaryShiftWindow`: copies window-supported operators into ℤ/N as `windowCopy`. Includes `windowLift_cyclePush`, `one_add_windowCopy_mul`, `cycleShift_zpow_mul_windowCopy`, `SupportedIn.conj` and `intCast_injOn_Icc`.
   - `Algebra/FinitaryShiftLEF`: `cycleModel_mul` (products agree), `cycleModel_eq_imp` (separation), `isLEF_finitaryShift k` (every finite nontrivial commutative ring), and the closed endpoint `printedFinitaryShiftLEF`.
   - Census rows c8c11f6bb25a and dba179ef6f13. Key fb84c069f1fe ("R_X^× is LEF although GL_3(R_X) is not MF") stays with ct-two-ended, which consumes the endpoint.
+- CLAIM (main's reassignment 09-13 ~18:20): the symbolic half of `CoreModelsLEFStatement` (lem:chain-core-models, tex 1380–1411).
+  - Adopted from chain-words, which had stopped: `Dynamics/SubshiftFiniteWindow` and `Dynamics/SubshiftCycleLEF`. Neither had compiled; their last probe failed on `omega` goals.
+  - Built new, as chain-subshift's planned module 6: `Dynamics/RetainedSubshiftPeriodic` and `Dynamics/CoreSubshiftCycle`.
+  - LANDED 178808d0a, probe 0913-185523-59976 GREEN. Every audited declaration depends on at most propext, Classical.choice and Quot.sound.
+  - `WordGraph.isLEFRing_clopenCrossedProduct_of_cycleCondition`: a closed shift-invariant X over a finite alphabet with the cycle condition has an LEF crossed product over every finite ring. The closed endpoint is `printedSubshiftCycleConditionLEF` (finite fields).
+  - `ChainCore.exists_periodic_extension` and `exists_periodic_agree_retainedSubshift`: periodic extension inside Z_r.
+  - `ChainCore.cycleCondition_retainedSubshift` (every X, r) and `retainedSubshift_nonempty` (nonempty subshift, finite alphabet).
+  - `ChainCore.coreSubshift_nonempty` and `cycleCondition_coreSubshift`, over language stabilization.
+  - `WordGraph.reflTransGen_word` moved from the SubshiftCycleLEF draft into RetainedSubshiftPeriodic.
+  - Census rows cover 17 keys: chain-words' 12 (53fd5ea7d3d0 … 533771f4f22d) and chain-subshift's cbf45b0e1c51, 1d52a79f1fef, 647f44a95b8a, f7c8d8aab016 and ded9e9646e4b. The last two were chain-subshift's partial rows and are now graded formalized with the new nonemptiness carriers.
+  - Boundary with ms-core-2: general X (itineraries, inverse limit, `CoreModelsLEFStatement`) is ms-core-2's. It consumes `isLEFRing_clopenCrossedProduct_of_cycleCondition` and `cycleCondition_coreSubshift`.
 
 ## Method
 - Rows come from `metadata/NON_MF_SENTENCE_CENSUS.tsv`, matched by text. The census lines are at the pre-chain-core hash; current tex line = census line + 485.
