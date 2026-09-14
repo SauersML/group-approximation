@@ -1,4 +1,5 @@
 import GroupApproximation.Pestov91.SimpleModCentre
+import Mathlib.Algebra.SkewMonoidAlgebra.Basic
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
