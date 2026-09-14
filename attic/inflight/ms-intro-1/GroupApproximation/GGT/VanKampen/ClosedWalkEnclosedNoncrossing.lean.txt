@@ -1,0 +1,147 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketEnclosed
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketRegionVertexSimple
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# A noncrossing walk encloses the faces on its side
+
+`EnclosedFaceSet` (`ClosedWalkEnclosedSubdiagram`) records a face set together with an outside walk
+that lists the reverses of its boundary darts and turns like a noncrossing walk.  This module proves
+`EnclosedFaceSetOfNoncrossingStatement`.  A noncrossing closed walk whose complement cycle follows
+its boundary walk encloses the faces on its side, with the reversed walk as the outside walk.
+
+* The reversed walk is the complement cycle of the walk (`IsNoncrossingClosedWalk.outerCycle`), so
+  it is nonempty and repeats no dart, and its darts are exactly the boundary darts of the other side.
+* It chains and closes because the walk does.
+* Turning: rotating from the reverse of an outside dart, the boundary walk to the next outside dart
+  passes only internal darts of the other side (`exists_sigma_pow_of_boundaryWalk`), and an internal
+  dart lies on no edge of the walk.  So the first dart on an edge of the walk is the next outside dart
+  (`EnclosedNoncrossing.mem_of_first_kept`).
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, Hull's small cancellation theorem, through Osin's
+Lemmas 9.4 and 9.7).  It certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Equiv Surgery.MapCollapse SimpleClosedWalkSides Embedded
+
+namespace EnclosedNoncrossing
+
+variable {M : CombMap.{v}}
+
+/-- **A boundary walk is a rotation through internal darts.**  A boundary walk from `d` to `e`
+reaches `e` as `σᵐ (α d)` with `0 < m`, and every intermediate rotation is an internal dart. -/
+theorem exists_sigma_pow_of_boundaryWalk {faces : Finset M.Face} {d e : M.Dart}
+    (h : BoundaryWalk M faces d e) :
+    ∃ m, 0 < m ∧ (M.sigma ^ m) (M.alpha d) = e ∧
+      ∀ k, 0 < k → k < m → InternalDart M faces ((M.sigma ^ k) (M.alpha d)) := by
+  unfold BoundaryWalk at h
+  induction h with
+  | refl =>
+      refine ⟨1, Nat.one_pos, ?_, fun k hk hk1 => absurd hk1 (by omega)⟩
+      rw [pow_one]
+      rfl
+  | tail _ hstep ih =>
+      obtain ⟨m, hm, hme, hint⟩ := ih
+      refine ⟨m + 1, Nat.succ_pos m, ?_, fun k hk hkm => ?_⟩
+      · rw [pow_succ', Perm.mul_apply, hme]
+        exact hstep.2
+      · by_cases hkm' : k < m
+        · exact hint k hk hkm'
+        · have hk' : k = m := by omega
+          subst hk'
+          rw [hme]
+          exact hstep.1
+
+/-- **The first dart on an edge of a following boundary cycle is on the cycle.**  Rotating from the
+reverse of a cycle dart, the first dart met on an edge of the cycle is a cycle dart. -/
+theorem mem_of_first_kept {faces : Finset M.Face} (boundary : BoundaryCycle M faces)
+    (hfollows : boundary.FollowsBoundary) {d : M.Dart} (hd : d ∈ boundary.cycle) {m : ℕ}
+    (hm : 0 < m) (hkeep : walkKeep M boundary.cycle ((M.sigma ^ m) (M.alpha d)))
+    (hfirst : ∀ k, 0 < k → k < m →
+      ¬ walkKeep M boundary.cycle ((M.sigma ^ k) (M.alpha d))) :
+    (M.sigma ^ m) (M.alpha d) ∈ boundary.cycle := by
+  classical
+  obtain ⟨m₀, hm₀, hme, hint⟩ :=
+    exists_sigma_pow_of_boundaryWalk (boundary.boundaryWalk_next hfollows hd)
+  have hnotkeep : ∀ x, InternalDart M faces x → ¬ walkKeep M boundary.cycle x := by
+    intro x hx hk
+    rcases hk with hmem | hmem
+    · exact ((boundary.cycle_mem_iff x).mp hmem).2 hx.2
+    · have hb : M.faceOf (M.alpha (M.alpha x)) ∉ faces :=
+        ((boundary.cycle_mem_iff _).mp hmem).2
+      rw [M.alpha_involutive x] at hb
+      exact hb hx.1
+  rcases lt_trichotomy m m₀ with hlt | heq | hgt
+  · exact absurd hkeep (hnotkeep _ (hint m hm hlt))
+  · subst heq
+    rw [hme]
+    exact List.next_mem _ _ hd
+  · refine absurd ?_ (hfirst m₀ hm₀ hgt)
+    rw [hme]
+    exact Or.inl (List.next_mem _ _ hd)
+
+end EnclosedNoncrossing
+
+open EnclosedNoncrossing in
+/-- **A noncrossing walk encloses the faces on its side**, closed. -/
+theorem enclosedFaceSetOfNoncrossing : EnclosedFaceSetOfNoncrossingStatement.{u, w, v} := by
+  intro G _ Lambda W Delta walk hw hout hfollows
+  refine
+    { outerFace_not_mem := hout
+      ne_nil := (hw.outerCycle Delta.planar).cycle_nonempty
+      nodup := (hw.outerCycle Delta.planar).cycle_nodup
+      chain := ?_
+      closes := ?_
+      mem_iff := ?_
+      turn_mem := ?_ }
+  · show (walk.reverse.map Delta.toCombMap.alpha).IsChain fun d e =>
+      Delta.toCombMap.vertexOf (Delta.toCombMap.alpha d) = Delta.toCombMap.vertexOf e
+    rw [List.isChain_map, List.isChain_reverse]
+    refine hw.chain.imp fun a b hab => ?_
+    show Delta.toCombMap.vertexOf (Delta.toCombMap.alpha (Delta.toCombMap.alpha b)) =
+      Delta.toCombMap.vertexOf (Delta.toCombMap.alpha a)
+    rw [Delta.toCombMap.alpha_involutive b]
+    exact hab.symm
+  · show Delta.toCombMap.vertexOf
+        (Delta.toCombMap.alpha ((walk.reverse.map Delta.toCombMap.alpha).getLast _)) =
+      Delta.toCombMap.vertexOf ((walk.reverse.map Delta.toCombMap.alpha).head _)
+    simp only [List.getLast_map, List.getLast_reverse, List.head_map, List.head_reverse]
+    rw [Delta.toCombMap.alpha_involutive]
+    exact hw.closes.symm
+  · intro d
+    have h1 : d ∈ invDarts Delta walk ↔
+        Delta.toCombMap.faceOf d ∉ sideFaces Delta.toCombMap walk ∧
+          Delta.toCombMap.faceOf (Delta.toCombMap.alpha d) ∈
+            sideFaces Delta.toCombMap walk := by
+      have h := (hw.outerCycle Delta.planar).cycle_mem_iff d
+      simp only [IsBoundaryDart, mem_sideOutside_iff, not_not] at h
+      exact h
+    have h2 : Delta.toCombMap.alpha d ∈ invDarts Delta walk →
+        Delta.toCombMap.faceOf d ∈ sideFaces Delta.toCombMap walk := by
+      intro hmem
+      have h := ((hw.outerCycle Delta.planar).cycle_mem_iff (Delta.toCombMap.alpha d)).mp hmem
+      have h' : Delta.toCombMap.faceOf (Delta.toCombMap.alpha (Delta.toCombMap.alpha d)) ∉
+          sideOutside Delta.toCombMap walk := h.2
+      rw [Delta.toCombMap.alpha_involutive d, mem_sideOutside_iff, not_not] at h'
+      exact h'
+    constructor
+    · intro hd
+      obtain ⟨ha, hb⟩ := h1.mp hd
+      exact ⟨ha, Or.inl hb⟩
+    · rintro ⟨ha, hb | hb⟩
+      · exact h1.mpr ⟨ha, hb⟩
+      · exact absurd (h2 hb) ha
+  · intro d hd m hm hkeep hfirst
+    exact mem_of_first_kept (hw.outerCycle Delta.planar) hfollows hd hm hkeep hfirst
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.EnclosedNoncrossing.exists_sigma_pow_of_boundaryWalk
+#audit_axioms GroupApproximation.GGT.VanKampen.EnclosedNoncrossing.mem_of_first_kept
+#audit_axioms GroupApproximation.GGT.VanKampen.enclosedFaceSetOfNoncrossing
