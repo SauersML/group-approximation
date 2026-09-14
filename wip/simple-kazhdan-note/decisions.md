@@ -652,6 +652,24 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - `output/pdf/non_mf_group_notes.pdf` deleted (a stale copy; the notes PDF is published at top level). No workflow or script references output/.
     - Final whole-paper audits launched: sk-perfect-a (correctness, every line) and sk-perfect-b (credit, bibliography against Crossref/zbMATH, abstract).
 
+138. **PDF on main.** GHA run 34849078567 succeeded; github-actions[bot] commit cc5dc9168 puts `simple_kazhdan_sofic_group.pdf` (489,990 bytes, 9 pp) at top level. sk-pdf-visual confirmed it equals the MSI build (same fonts, identical text).
+139. **Wave 12 (user: "u have barely any agents, go create way more" / "do full number of agents, not 8 lol"; RAM cap ~12 on the 8 GB Mac, launched in batches with pressure checks).**
+    - Paper audits: sk-perfect-a/b/c/d, sk-prior-art-3, sk-pdf-visual, sk-shorten, sk-free-9.
+    - Research: sk-normalizer-recognition, sk-sturmian-growth, sk-exchange, sk-cstar-genericity, sk-rfd-amalgam, sk-deligne-sofic, sk-rank3-shadows, sk-free-10, sk-vn-rigidity.
+    - Verifier: sk-verify-18.
+140. **Final audits of rev4.3: NO ERROR, NO GAP anywhere.**
+    - sk-perfect-a and sk-perfect-c: independent whole-paper correctness, every step re-derived.
+    - sk-perfect-b: no false credit.
+    - sk-pdf-visual: no typesetting defect.
+    - sk-prior-art-3: nothing overclaims, but two MUST credits: Neumann–Neumann 1959 for the wreath-commutator step, and Darbinyan 2015 for the half-line overgroup.
+    - sk-perfect-d: §3 reorder, LEF defined at first use, [[T]]′ ≤ G_X moved to §2, letter renames.
+    - The fixes are collected in sk2/rev44-fixes-*.md with main's notation resolutions: 1_V, commutator x, C ⊆ ℕ, (Y,T′), W, η, lamps c.
+    - sk-verify-18 passed the Sauer–Schesler import node, the last gate on the dyadic growth results.
+141. **REV4.4 PLAN.** sk-editor-6 applies all audit fixes (pass 1) and a fuller abstract (the solvable-WP analogue and the continuum result).
+    - Pass 2: the shortening tier chosen from sk-shorten (user: "how can we simplify? make it shorter?"), plus sk-free-9 P1 (the simple limits of the paper's finite models are exactly the G_X; its mathematics passed twice, the text is with sk-verify-18).
+    - OUT: free-9 P2 (Shalom expanders for any marking).
+    - sk-rfd-amalgam settled input 1 of the Popa comb plan (Li–Shen); unreviewed, queued.
+
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
 - The exact centre formula over F_q (it stays in Cairn).
