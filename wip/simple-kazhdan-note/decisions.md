@@ -1053,6 +1053,21 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Part 1 §4–5 is marked superseded.
     - Left for main: the note root and the note open-questions conjunction (it still lists the SOE node). Update after rev5.1.
     - No MSI cairn check yet; sk-cairn-steward-6's run covers it.
+188. **~13:40 the waffle weekly limit killed the last three lanes (census regen, rigidity section, Cairn check). USER: "No agents, do everything yourself now"; model switched to Fable 5.1; `/goal get everything perfect and astonishingly good. do everything needed yourself. you make decisions.`** Main does the remaining work itself, sequentially, with computation on MSI.
+189. **Outside referee report on rev4.5 (user-supplied, 14 Sep): no fatal error; presentation and three proof improvements.** Main's disposition:
+    - Already in rev5: C1, C5, C8, C9, the Theorem 2 split, the roadmap, steps and lemmas, the example, separated credits.
+    - ADOPTED in rev5.1, each re-derived by main:
+      - the explicit κ formula κ(x)_{−3λ}=x_{3λ−1}^{−1}x_{3λ}, κ(x)_m=x_{m−1}, replacing the transversal sentence;
+      - Turing-degree preservation: WP(Γ) ≤_m WP(G_Δ) ≤_T WP(Δ) ≤_T WP(Γ); Lemma C restated without solvability, Cor 3's second statement strengthened, abstract clause replaced;
+      - marked convergence from simplicity (e_12(1) is a product of conjugates of any nontrivial word) replacing the ultraproduct;
+      - assigned permutations p_ξ with an exact compatibility on finite W (C2); ordered pairs of distinct powers of 2 (C3); λ ≥ 1 (C4); "a family of continuum many" (C6); no group of Theorem 2(b) is f.p.; "products of alternating groups" in the Matui credit (checked at Matui Lemma 3.4: D(G) = ∪H_m with H_m a sum of alternating summands).
+    - NOT NEEDED: C7 (a word of length 2ℓ+1 in x_{[0,m)} forces m ≥ 2ℓ+1); the uniform-gap computation; the 42-involution bound; its §13.1 observation is sk-free-4's result already in Cairn; the title stays.
+    - REJECTED: §15.3's "The author is responsible for …" (user order); its 9-sentence abstract.
+    - OUTDATED: §12.4 (rigidity as a question) predates the two-pass theorem.
+    - Stepanov: the report's worry is moot; `stepanov-linear-dependence-standard-normal-structure-citation` quotes Lemma 4.1, Lemma 4.3 and Theorem 4.4 from the page images (pp. 2151–2152), and main re-read Theorem 4.4 on MSI today. Odifreddi stays at Chapter V (ScienceDirect blocked the chapter PDF).
+    - DECISION: the rigidity theorem goes into a separate short sequel, not the note (its toolkit is modular representations of GL_3(2), bicommutants and K_0, about 3–4 pages). Questions item 4 now asks only about flip conjugacy and says the SOE implication is shown in a sequel.
+190. **REV5.1 LANDED 37ebf96798** (1009 lines, 11 pp, md5 685a0da96344a284f70b7244a8fa7ddf). MSI TL2025 ×3: 0 errors, 0 overfull, 2 underfull (bibitems), 0 undefined. Every \cite has a bibitem, every bibitem is cited, every \ref a label; no forbidden strings. Local copy updated.
+191. **Cairn reachability CONFIRMED at tip 4dd5129738 (12:27).** sk-cairn-steward-6's MSI check had completed before the lane died: EXIT=0 in 809 s, 12311 claims and 12466 routes compiled. Of the 710 sk ids in scope, the only unreachable ones are the known dead space: 4 refuted firewalls (`double-swap-…`, `subshift-el3-isomorphisms-recognize-diagonal-subgroups`, `elementary-group-lef-growth-separates-subshifts`, `every-lef-group-embeds-in-a-z-subshift-elementary-group`), 3 invalidated routes, and 4 stale ids with no file. Every other sk finding reaches a root. A re-check at the current tip, covering the rigidity merge and the later landings, is running on MSI (steward7, 710 + today's ids).
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
