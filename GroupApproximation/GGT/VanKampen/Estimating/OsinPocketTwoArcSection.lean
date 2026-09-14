@@ -1,0 +1,176 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchOuterDispatch
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The two-arc face set producer: a proper target arc outside whole sections
+
+Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): the subdiagram `Γ_1` with
+`∂Γ_1 = s_1 t_1 s_2 t_2`, where `t_2` is a subpath of the section `q_1` of `∂Δ`.  The section pinch in walk
+order (`Estimating/OsinPocketPinchOuterDispatch.lean`) asks the face set producer for a proper target
+arc as well as a proper source arc (`OsinSectionPocketFaceSetTwoArcSectionStatement`).
+
+A pocket face set between two exterior regions of one cell to section `j` holds its target arc between
+the positions `cut j` and `cut (j + 1)` of `∂Δ` (`PocketFaceSet.lo_le`, `le_hi`).  So the target arc is
+proper as soon as the section does not span the whole boundary, and the proper producer
+`OsinSectionPocketFaceSetProperSectionStatement` then gives the two-arc producer.
+
+* `SectionCuts.SpansWhole cuts j`: `cut j = 0` and `cut (j + 1) = |∂Δ|`.
+* `SectionCuts.cut_sub_lt_of_not_spansWhole`: otherwise section `j` is shorter than `∂Δ`.
+* `SectionCuts.not_spansWhole_of_ne`: a nonempty other section keeps section `j` from spanning the whole
+  boundary, the case of at least two sections.  `SectionCuts.spansWhole_of_count_eq_one`: with one section
+  it always does.
+* `SectionPocketFaceSetWholeSectionTwoArcInput` and `OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement`
+  (residual): the two-arc producer for a section spanning the whole boundary.  There the landed walk
+  (`PocketWalk.exists_of_exteriorAt`) runs `t_2` from the start of the first region's target arc to the end
+  of the second's, which is all of `∂Δ` when those arcs touch the positions `0` and `|∂Δ|`, with the two
+  sides meeting at the base vertex.
+* `sectionPocketFaceSetTwoArcInput_of_proper_of_wholeSection` and
+  `osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection`: the two-arc producer from the proper
+  producer and the whole-section residual.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (Hull's small cancellation theorem, through Osin's Lemma 9.7(b));
+certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded
+
+section Sections
+
+variable {G : Type u} [Group G] {Lambda : Type w} {D : RelGenSet G Lambda} {lambda c : ℝ}
+  {word : List (RelLetter G Lambda)}
+
+/-- **Section `j` spans the whole boundary**: it starts at position `0` and ends at `|∂Δ|`. -/
+def SectionCuts.SpansWhole (cuts : SectionCuts D lambda c word) (j : Fin cuts.count) : Prop :=
+  cuts.cut j.castSucc = 0 ∧ cuts.cut j.succ = word.length
+
+/-- **A section that does not span the whole boundary is shorter than it.** -/
+theorem SectionCuts.cut_sub_lt_of_not_spansWhole (cuts : SectionCuts D lambda c word)
+    (j : Fin cuts.count) (h : ¬ cuts.SpansWhole j) :
+    cuts.cut j.succ - cuts.cut j.castSucc < word.length := by
+  have h1 := cuts.cut_mono (Fin.castSucc_le_succ j)
+  have h2 := cuts.cut_mono (Fin.le_last j.succ)
+  rw [cuts.cut_last] at h2
+  unfold SectionCuts.SpansWhole at h
+  rw [not_and_or] at h
+  rcases h with h | h <;> omega
+
+/-- **With a nonempty other section, section `j` does not span the whole boundary.** -/
+theorem SectionCuts.not_spansWhole_of_ne (cuts : SectionCuts D lambda c word) {j j' : Fin cuts.count}
+    (hne : j' ≠ j) (hpos : cuts.cut j'.castSucc < cuts.cut j'.succ) : ¬ cuts.SpansWhole j := by
+  rintro ⟨h0, hlen⟩
+  rcases lt_or_gt_of_ne (Fin.val_ne_of_ne hne) with hlt | hgt
+  · have hm : cuts.cut j'.succ ≤ cuts.cut j.castSucc :=
+      cuts.cut_mono (Fin.le_iff_val_le_val.2 (by simp only [Fin.val_succ, Fin.val_castSucc]; omega))
+    omega
+  · have hm : cuts.cut j.succ ≤ cuts.cut j'.castSucc :=
+      cuts.cut_mono (Fin.le_iff_val_le_val.2 (by simp only [Fin.val_succ, Fin.val_castSucc]; omega))
+    have h2 := cuts.cut_mono (Fin.le_last j'.succ)
+    rw [cuts.cut_last] at h2
+    omega
+
+/-- **With one section, the section spans the whole boundary.** -/
+theorem SectionCuts.spansWhole_of_count_eq_one (cuts : SectionCuts D lambda c word)
+    (hcount : cuts.count = 1) (j : Fin cuts.count) : cuts.SpansWhole j := by
+  have hj : j.val = 0 := by
+    have := j.isLt
+    omega
+  refine ⟨?_, ?_⟩
+  · rw [show j.castSucc = 0 from Fin.ext (by simp [hj]), cuts.cut_zero]
+  · rw [show j.succ = Fin.last cuts.count from Fin.ext (by simp [hj, hcount]), cuts.cut_last]
+
+end Sections
+
+section FaceSetInput
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+
+/-- **The two-arc face set producer at a whole section (residual).**  The premises of
+`SectionPocketFaceSetTwoArcInput` for a section spanning the whole boundary give an O-equivalent copy
+with letter labels and a pocket face set in walk order with proper source and target arcs. -/
+def SectionPocketFaceSetWholeSectionTwoArcInput (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) : Prop :=
+  ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
+    Delta.LeastArea →
+      ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+        ∀ (i : Fin S.diagram.rCellCount) (j : Fin cuts.count),
+          ∀ a ∈ RegionCandidate.exteriorAt S.family i,
+            ∀ b ∈ RegionCandidate.exteriorAt S.family i, a ≠ b →
+              RegionCandidate.TargetsSectionIndex cuts j a →
+                RegionCandidate.TargetsSectionIndex cuts j b →
+                  cuts.SpansWhole j →
+                    ∃ X' : DiscDiagram.{u, w, v} W,
+                      Nonempty (OEquivalentDiscDiagram S.diagram X') ∧
+                        (∀ d, (symmetricLabelAlphabet D).IsLetter (X'.label d)) ∧
+                        ∃ K : PocketFaceSet D eps X' (cuts.cut j.castSucc) (cuts.cut j.succ),
+                          K.ClosedWalk ∧ K.sourceArc.length < (cellDarts X' K.source).length ∧
+                            K.targetArc.length < (outerDarts X').length
+
+/-- **The two-arc producer from the proper producer and the whole-section residual.**  Outside a
+whole section the target arc of the proper producer's face set lies in a section shorter than `∂Δ`,
+and O-equivalence keeps the length of `∂Δ`. -/
+theorem sectionPocketFaceSetTwoArcInput_of_proper_of_wholeSection {D : RelGenSet G Lambda}
+    {lambda c : ℝ} {eps : ℕ} {W : Set (List (RelLetter G Lambda))}
+    (hproper : SectionPocketFaceSetProperInput.{u, w, v} D lambda c eps W)
+    (hwhole : SectionPocketFaceSetWholeSectionTwoArcInput.{u, w, v} D lambda c eps W) :
+    SectionPocketFaceSetTwoArcInput.{u, w, v} D lambda c eps W := by
+  intro Delta cuts hlea S i j a ha b hb hne hja hjb
+  by_cases hwholej : cuts.SpansWhole j
+  · exact hwhole Delta cuts hlea S i j a ha b hb hne hja hjb hwholej
+  · obtain ⟨X', ⟨E⟩, hlabel, K, hK, hprop⟩ := hproper Delta cuts hlea S i j a ha b hb hne hja hjb
+    refine ⟨X', ⟨E⟩, hlabel, K, hK, hprop, ?_⟩
+    have h1 : (outerDarts X').length = X'.boundaryWord.length := by
+      rw [← dartWord_outerDarts X', dartWord, List.length_map]
+    have hlen : (outerDarts X').length = Delta.boundaryWord.length := by
+      rw [h1, (S.equiv.trans E).boundaryWord_eq]
+    have hlo := K.lo_le
+    have hhi := K.le_hi
+    have hsub := cuts.cut_sub_lt_of_not_spansWhole j hwholej
+    omega
+
+end FaceSetInput
+
+/-- **The two-arc producer at a whole section, uniformly in the parameters (residual)**, with the
+quantifier prefix of `OsinSectionPocketFaceSetSectionStatement`. -/
+def OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+              SectionPocketFaceSetWholeSectionTwoArcInput.{u, w, v} D lambda c eps W
+
+/-- **The two-arc face set producer from the proper producer and the whole-section residual,
+uniformly in the parameters**, at the larger of the two thresholds for `ε` and for `ρ`. -/
+theorem osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection
+    (hproper : OsinSectionPocketFaceSetProperSectionStatement.{u, w, v})
+    (hwhole : OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement.{u, w, v}) :
+    OsinSectionPocketFaceSetTwoArcSectionStatement.{u, w, v} := by
+  intro G _ Lambda D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16
+  obtain ⟨eps0, heps0⟩ := hproper D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16
+  obtain ⟨eps1, heps1⟩ := hwhole D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16
+  refine ⟨max eps0 eps1, fun eps heps => ?_⟩
+  obtain ⟨rho0, hrho0, hrho⟩ := heps0 eps ((le_max_left eps0 eps1).trans heps)
+  obtain ⟨rho1, -, hrho1⟩ := heps1 eps ((le_max_right eps0 eps1).trans heps)
+  refine ⟨max rho0 rho1, lt_of_lt_of_le hrho0 (le_max_left rho0 rho1),
+    fun rho hrho' W hcondition => ?_⟩
+  exact sectionPocketFaceSetTwoArcInput_of_proper_of_wholeSection
+    (hrho rho ((le_max_left rho0 rho1).trans hrho') W hcondition)
+    (hrho1 rho ((le_max_right rho0 rho1).trans hrho') W hcondition)
+
+end GroupApproximation.GGT.VanKampen
+
+open GroupApproximation.GGT.VanKampen
+
+#audit_axioms SectionCuts.cut_sub_lt_of_not_spansWhole
+#audit_axioms SectionCuts.not_spansWhole_of_ne
+#audit_axioms SectionCuts.spansWhole_of_count_eq_one
+#audit_axioms sectionPocketFaceSetTwoArcInput_of_proper_of_wholeSection
+#audit_axioms osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection
