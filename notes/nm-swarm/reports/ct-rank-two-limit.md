@@ -31,7 +31,43 @@ covers every field `K` and every countable subgroup of `GL_2(K)`.  `GL_2(k[z,z^{
 
 | `Dynamics/RankTwoRestrictionImageFinite` | `finite_map_of_kazhdan_of_haagerup`; closed endpoints `printedFixedCoreRestrictionImageFinite`, `printedPeriodTwoCoreUnitRestrictionImageFinite` (restriction images finite, no kernel hypothesis) | LANDED 11c23415f |
 
-All seven modules are queued for wiring in `$NM/wire-queue.txt`.
+| `Dynamics/RankTwoKazhdanLimitClosed` | closed `coreRestrictionLocallyFiniteKernel` (over ct-involution's `transientIdealLocallyMatricialStatement_holds` and ms-compress-3's glue), `printedFixedCoreGLTwoKazhdanFinite`, `printedPeriodTwoCoreUnitsKazhdanFinite`, `printedRankTwoCompressionDefectsTrivial` | LANDED 3bbabdc89 |
+
+All eight modules are queued for wiring in `$NM/wire-queue.txt`.
+
+**09-13 ~19:00: the remark tex 1794–1807 is CLOSED.**  All four census rows are `formalized` (0f0126ac0).
+
+## Item 2: the top of sec:torsion-free over the copy waist residuals (coordinator ~18:40)
+
+Module `Manuscript/NonMF/TorsionFreeResidualsV2Copy` (namespace `GroupApproximation.Manuscript.NonMF.TorsionFreeResidualsV2Copy`):
+every printed endpoint of the section stated `_of_residuals` over exactly the nine named residuals of
+`GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2Copy` (ms-cite-1, eb678c70a), with the closed
+bridge, Kotowski–Ollivier, Hyde–Lodha group, DGO 2.35 and Gerasimova–Osin 1.1 applied.
+LANDED b05937611 (probe 0913-190707-24160 GREEN, BUILT and COMPILED, 22 axiom audits classical); queued for wiring.
+
+Residuals, identical for every endpoint (namespace `GGT.VanKampen`, all `.{0, 0, 0}`):
+`OsinLemma94PolygonCountInput`, `OsinLemma94CaseOneRCellStatement`, `OsinTwoGonHoldsSectionStatement`,
+`CellPocketCopyCleanStatement`, `CellPocketWalkOuterOffSideStatement`, `CellPocketWalkSideRelatorCellStatement`,
+`CellPocketPinchPosStatement`, `OsinSectionPocketFaceSetSectionStatement`, `PocketPinchLabelledPosStatement`.
+None has a binder-free producer on main at 19:09 (scan calibrated on the closed bridge).
+
+| endpoint(s) | rows |
+|---|---|
+| `manuscriptTorsionFreeTheorem_of_residuals`, `…FullMFRadical…`, `…TheoremOsin…`, `printedTorsionFreeTheoremLimitSet_of_residuals` | 0f22bdbc4184, a16637da7249 |
+| `printedHullTheorem_of_residuals`, `…Osin…`, `…LimitSet…`, `hullSmallCancellationTorsionFreePrinted_of_residuals` | 8aead549f1fe, 4895f03fdf5f |
+| `printedHullProofParagraph_of_residuals` | bcc99703f838 |
+| `printedSaturation_of_residuals`, `…Osin…`, `…LimitSet…` | 2f55113239ce |
+| `printedSaturationPairAndHullAgain_of_residuals` | 2d1cd22e5f49 |
+| `printedSaturationApplyHull_of_residuals` | 2f997e5af4e6 |
+| `fournierFacioParagraph_of_residuals` | 8097c371f35d |
+| `hullCommonQuotientPrinted_of_residuals`, `printedHullCorollary74_of_residuals` | dab2f2bfe084 |
+| `printedTheoremApplySaturation_of_residuals` | 721da4c14d11 |
+| `manuscriptRegularNonMFAlgebra_of_residuals`, `…Osin…`, `printedRegularNonMFAlgebraLimitSet_of_residuals` | 7b1fa3182135, 8b1ec28a0e73, dce7a9ff4e83 |
+
+Not covered: `a9dd4b90e479` (Hull 3.12 generating set) is not W1-bound; ms-torsionfree proposes it `formalized`.
+A later waist exists: `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV3` (2b2af4479, class route, seven binders).  Its
+binder 5 is `OsinMultipleEdgePocketRegionSectionStatement` on the optimal diagram, the form the V2Copy docstring calls
+circular, so this module stays on V2Copy.
 
 Census: `2d5721555dfe` (tex 1796–1798) is `formalized`; `f31fa0413ffd`, `dd5ef3eafd48` and `5e4354e1556b` are `partial`
 over `CoreRestrictionLocallyFiniteKernelStatement` alone.  They flip to closed when chain-matricial's
