@@ -22,7 +22,7 @@ Claim `subshift-gl-exactness-reduces-to-limit-subsystem`, route `subshift-gl-exa
 - Together with part 1, exactness of finitely generated groups of banded matrices over `F_2` reduces, along any filtration by limit sets, to the bottom subsystem.
 - When the bottom is a finite union of periodic orbits, the answer is yes. When it is an infinite minimal subshift, the question is exactly the open one for `GL_m(R_X)`.
 - So the open problem is concentrated in minimal aperiodic dynamics, as expected. By part 1 it is invariant under Kakutani equivalence and rank.
-- **Not covered:** subshifts whose non-minimal orbits accumulate on recurrent non-minimal sets without a filtration of this kind. There the complement ideal of the natural subsystem need not be ultramatricial: `biasymptotic-subshift-complement-ideal-is-ultramatricial` notes that corners meeting recurrent orbits outside the subsystem are not locally finite.
+- **Not covered (corrected per sk-verify-22 §2, 2026-09-14).** This paragraph said that for subshifts whose non-minimal orbits accumulate on recurrent non-minimal sets, the complement ideal of the natural subsystem need not be ultramatricial. That is false when the subsystem contains every minimal subset: by `minimal-set-complement-ideal-is-ultramatricial` the ideal is then ultramatricial, and the theorem holds under that weaker hypothesis (Strengthening S1 on `subshift-gl-exactness-reduces-to-limit-subsystem`). A corner fails to be locally finite only when it meets a minimal set outside the subsystem.
 
 ## 4. Next targets
 - **(P-b)** Property A of the bounded-width fibres `Q_r` in `G_X` for minimal `X`. The obstruction to a direct asdim-0 argument is recorded in part 1 §4.

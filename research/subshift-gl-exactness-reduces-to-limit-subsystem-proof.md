@@ -47,12 +47,13 @@ Notation as in the target.
   - The coding point of `banded-matrix-groups-are-subshift-crossed-product-groups`, Step 2, is a tuple of the coefficient sequences. If all of them are eventually periodic in both directions, so is the coding point.
   - The orbit representation there identifies `Γ` with a finitely generated subgroup of `GL_m(R_Y)` for this `Y`.
 
-**Step 6 (Corollary (c)).** A filtration as in (a) whose bottom `Y_d` is an infinite minimal subshift `X` reduces, by Steps 3–4 with the base case removed, exactness of `Γ` to exactness of its image in `GL_m(R_X)`. That is the open question in rank `m`. ∎
+**Step 6 (Corollary (c)).** A filtration as in (a) whose bottom `Y_d` is an infinite minimal subshift `X` reduces, by Steps 3–4 with the base case removed, exactness of `Γ` to exactness of its image in `GL_m(R_X)`. The commutator subgroup of that image embeds in `EL_{max(2m,3)}(R_X)` by `g ↦ diag(g, 1_m)` and Whitehead's lemma, and its abelianization is amenable. So by `exact-groups-are-closed-under-extensions` the image is exact if `EL_{max(2m,3)}(R_X)` is. That holds for every such `X` if the open node `subshift-elementary-groups-are-exact` has a positive answer for every such `X`, by `subshift-el-n-exactness-is-kakutani-invariant` (d). (sk-verify-22 X2, with the embedding corrected; unreviewed.) ∎
 
 **Model tests.**
 - **Full shift.** The limit-set hypothesis forces `Z = Y`, so the theorem says nothing there ✓. The full shift carries every behaviour, and nothing is claimed.
 - **Infinite minimal `Y`.** The only closed invariant subsets are `∅` and `Y`. `Z = ∅` fails the hypothesis, and `Z = Y` is vacuous ✓.
-- **Lamplighter `⟨u, 1 + e_{[1]}⟩`** over the orbit closure of `…0001000…`:
+- **Lamplighter `⟨diag(u,u), e_12(e_{[1]})⟩ ≤ GL_2(R_Y)`** over the orbit closure of `…0001000…`:
+  - (sk-verify-22 X1) `[1] = {y}`, so the conjugates of `e_12(e_[1])` are the involutions `e_12(δ_(T^k y))`. They commute and are independent, since `e_12(a) e_12(b) = e_12(a+b)`, so the kernel is `⊕_Z F_2`. `ρ` sends `diag(u,u)` to `diag(t,t)`, of infinite order. The earlier generator `1 + e_[1] = e_[0]` is an idempotent over `F_2`, not a unit.
   - `Z = {0^∞}`, `R_Z = F_2[t^{±1}]`, and the kernel is the finitely supported lamp group.
   - The image is `⟨t⟩ ≅ Z`, and the group is `F_2 ≀ Z`, which is exact ✓.
 - **A recurrent point outside `Z`** (for example a Sturmian orbit closure plus one point asymptotic to it): the hypothesis fails for that orbit unless `Z` contains the Sturmian subsystem, which is then the bottom subsystem, as in (c) ✓.
