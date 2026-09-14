@@ -156,7 +156,8 @@ theorem leftRep_eq_one_iff (u : Γ →* unitary ↥M.toStarSubalgebra) (g : Γ) 
     exact congrArg (fun e : H ≃ₗᵢ[ℂ] H ↦ e x) h
   · intro h
     refine LinearIsometryEquiv.ext fun x ↦ ?_
-    calc leftRep u g x = ((1 : unitary ↥M.toStarSubalgebra) : ↥M.toStarSubalgebra) x := by
+    calc leftRep u g x =
+          (((1 : unitary ↥M.toStarSubalgebra) : ↥M.toStarSubalgebra) : H →L[ℂ] H) x := by
           rw [leftRep_apply, h]
       _ = x := rfl
 
