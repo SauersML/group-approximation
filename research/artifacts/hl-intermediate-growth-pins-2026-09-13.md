@@ -80,3 +80,30 @@ lane lives in `/scratch.global/sauer354/solve-fp-intermediate-growth/src/1111.05
 3. Synthesis `fp-intermediate-growth-witness-exclusions`.
 
 No novelty claimed.
+
+## Addendum: the Gupta–Sidki 3-group
+
+- Grigorchuk–Sidki PDF p. 1: "G(3), the 2-generated infinite 3-group constructed by him and Gupta";
+  "The groups G(2),G(3) have trivial centers"; "The main result of [?] is that the group of
+  automorphisms of G(3) is a {2,3}-torsion group which splits as AutG(3) = (InnG(3))(VD), where V is
+  an elementary abelian 3-group of infinite rank and D is elementary abelian of order four which
+  normalizes V."
+- BGŠ `spinal.tex` l.710–730: Gupta–Sidki groups are GGS groups with $E=(1,-1,0,\dots,0)$; defining
+  vectors satisfying the congruence condition give "just-infinite, not finitely presented branch"
+  $p$-groups (Vovkivsky, per BGŠ).
+- Landed `gupta-sidki-3-group-is-a-normal-subgroup-of-no-fp-group`.
+
+## Construction attempts and why they fail (summary)
+
+1. Ascending HNN envelopes along non-surjective endomorphisms: free subsemigroups
+   (`ascending-hnn-non-surjective-contains-free-subsemigroup`).
+2. Finitely presented covers of contracting self-replicating groups: BGdlH Theorem 1.9 transfers free
+   subgroups from a standard contracting cover; for $\mathfrak G$, $G_\omega$ and $\mathfrak B$ all
+   finitely presented covers contain free subgroups.
+3. Normal embeddings: centerless infinitely presented groups with locally finite `Out` (the first
+   Grigorchuk group, the Gupta–Sidki 3-group) are normal subgroups of no finitely presented group.
+   Remaining normal-subgroup candidates need non-locally-finite `Out` or a center.
+4. Indicable witnesses are $H \rtimes \mathbb Z$ with $H$ finitely generated of intermediate growth
+   with an ascending finite endomorphic presentation (Benli), so the question for them is whether some
+   such $H$ has an automorphism $\alpha$ making $H \rtimes_\alpha \mathbb Z$ finitely presented while
+   keeping subexponential growth. Not analysed further.
