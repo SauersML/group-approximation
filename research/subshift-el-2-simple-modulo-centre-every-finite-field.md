@@ -20,8 +20,10 @@ artifacts:
 3. G/Z(G) is an infinite, finitely generated, simple group with property (T), and it is LEF, hence sofic and
    hyperlinear.
 
-Together with `subshift-elementary-group-is-simple-modulo-centre`, the note's theorem holds modulo the centre for
-every finite field and every rank n ≥ 2.
+Together with `subshift-elementary-group-is-simple-modulo-centre`: for every finite field and every rank n ≥ 2,
+EL_n(LC(X,F_q)⋊Z) modulo its centre is an infinite, finitely generated, simple Kazhdan LEF group. The note's
+marked-limit and expander clause is proved only for n ≥ 3, through (T) of EL_n over the free algebra, which fails
+for n = 2.
 
 **Mechanism.**
 - A noncentral g fails to commute with a root e_ij(e_V) or e_ij(e_V u) over a small clopen V. Scalars λI_2 are the
@@ -32,7 +34,17 @@ every finite field and every rank n ≥ 2.
 - The level propagates through the Peirce blocks e_VE_11, e_VE_22 and (1−e_V)I_2 of M_2(R), which are full by
   minimality, so N = G.
 
-**Scope.** Property (T) and finite generation rest on `complementary-full-idempotents-make-el-2-kazhdan`, which is
-unreviewed. The simplicity statement (items 1–2) uses no (T).
+**Scope.** Property (T) and finite generation rest on `complementary-full-idempotents-make-el-2-kazhdan`, which
+sk-verify-4 passed, conditional on its EJZK and relative-(T) imports. The simplicity statement (items 1–2) uses no (T).
 
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part2.md`):** PASS (§4). Re-derived: Lemma C; the noncommuting root among `e_ij(e_V)` and `e_ij(e_Vu)`; the product formula with shift `c`, second index in `[−m, w]`; the untouched top level `b = m`, so `κ` is not scalar; the quasisimple extraction; and the sign-free Peirce propagation over `F_q`, including `Y_AB ⊆ G` and generation. Items 1–2 are unconditional. Item 3 rests on `complementary-full-idempotents-make-el-2-kazhdan` (sk-verify-4 PASS) for (T) and f.g., and on `minimal-subshift-algebra-is-simple-lef-ring` item 3 for LEF.
+
+**Review (sk-verify-12, 2026-09-13, `research/artifacts/sk-verify-12-2026-09-13.md`):** PASS, independent (§2). Re-derived:
+- Lemma C, and the need for the roots `e_ij(e_Vu)` (a nonconstant unit `c` makes `cI_2` commute with every `e_ij(e_V)`);
+- the tower units, the embedding `ψ`, and `S ⊆ G`;
+- the product formula with shift `c`, and the indices of `X`, `Y`, `XY`, `YX`; `κ ∈ GL_d(F_q)` is not scalar;
+- the quasisimple extraction;
+- Lemma 1, the Peirce propagation, and a characteristic-free proof of `Y_AB ⊆ G` and `⟨Y⟩ = G`;
+- LEF of `G/Z(G)` through `PGL`.
+
+Display fixes applied above: the scope sentence no longer claims the expander clause for n = 2, and the (T) import's review status is updated.

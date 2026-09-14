@@ -35,7 +35,12 @@ equivalence for these rings: LEF `EL_N` ⟺ LEF ring ⟺ exactly matricial.
 nonzero 2x2 matrix units has no LEF elementary group of any rank `N >= 2`. For example, if a free minimal
 `Z^2`-SFT crossed product `LC(X,F_q) ⋊ Z^2` is finitely presented, then its `EL_2` and `EL_3` are not LEF.
 
-**Model test.** `M_2(F_2 × F_2)` satisfies (1), (2) and (4). Its unital maps onto one matrix factor are not
-injective, so simplicity is used only in (2) ⇒ (3).
+**Model test.**
+- Simplicity is used twice: in (1) ⇒ (2) to make `ε_11` full, and in (2) ⇒ (3).
+- `M_2(Z/4)` has full matrix units and is finite, so (1), (2) and (4) hold. (3) fails: any unital map into matrices
+  over fields kills `2 != 0`.
+- `M_2(F_2 × F_2)` is no test of simplicity, since it embeds unitally in `M_4(F_2)` block-diagonally.
 
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS (§3). (1)⇒(2)⇒(3)⇒(4)⇒(1), and the Steinberg bisection argument, re-derived. N4: the model test fails as stated. `M_2(F_2 × F_2)` satisfies (3) through the diagonal embedding into `M_4(F_2)`, and simplicity is also used in (1)⇒(2). A test that simplicity is needed in (2)⇒(3) is `M_2(Z/4)`: it has full matrix units and is finite, but `4 = 0` has no unital image in matrices over fields. N5: the Steinberg bullet needs a compact, second countable unit space, so that `R` is unital and countable.
+
+**Review (sk-verify-12, 2026-09-13, `research/artifacts/sk-verify-12-2026-09-13.md`):** PASS, independent (§3). The iff chain and the imports were re-derived: `simple-lef-rings-are-exactly-matricial` (countable), `exactly-matricial-rings-have-lef-general-linear-groups`, and the topologically free matrix units. I confirm N4: `M_2(F_2×F_2) ⊆ M_4(F_2)` block-diagonally. The model test is replaced by `M_2(Z/4)`, and 2 ↦ 0 in every field of characteristic 2, as above. The Consequence rests on `lef-simple-rings-are-not-finitely-presented`, which has no review line on main.

@@ -40,3 +40,5 @@ available: `St_3(A)` of a free ring `A` is not finitely presented, since `A` map
   holds, and both sides hold (`minimal-subshift-algebra-is-simple-lef-ring`). Consistent.
 
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS (§3). Re-derived: the corner isomorphism `eRe ≅ M_2(S)`; `EL_N(M_2(S)) = EL_(2N)(S)` inside `EL_N(R)` for `N ≥ 2`; LEF of matrix rings, through partial sums of products; the fullness isomorphism `R ≅ fM_m(S)f`; and LEF of unital corners.
+
+**Review (sk-verify-12, 2026-09-13, `research/artifacts/sk-verify-12-2026-09-13.md`):** PASS, independent (§3). Re-derived: `Φ`, `Ψ` and `eRe ≅ M_2(S)`; rank doubling, with within-block transvections as commutators through another block; the LEF import for arbitrary unital rings; the partial-sum induction for `M_m(S)`; `vu = 1` and `R ≅ fM_m(S)f`; and LEF of the corner `Φ′(f)Q′Φ′(f)`. Checked the subshift matrix units `ue_V`, `e_Vu^{-1}`.

@@ -19,7 +19,7 @@ Setting:
 
 **Consequences.**
 - Every infinite-order element of G_X = EL_3(LC(X,F_2)⋊Z) has stable length at least 1/6 for the note's generators.
-- Finitely generated subgroups of topological full groups of Cantor systems have no distorted elements of infinite order.
+- Finitely generated subgroups of topological full groups of Cantor systems have no distorted elements of infinite order. For aperiodic T the proof goes through the embedding into GL_1(R). With periodic points the cocycle is not unique; use the orbit module ⊕_x F_q[T^Z x] with the same Krylov count.
 
 **Proof idea.** M_m(R) acts faithfully on ⊕_{x}⊕_{t∈Z} F_q^m, and a word of length k moves the coordinate t by at most wk. If |z^n| = o(n), the Krylov spaces of one-slot vectors have dimension o(N). So the local minimal polynomials have bounded degree, one polynomial over F_q annihilates z, and z has finite order.
 
@@ -28,3 +28,5 @@ Route: `subshift-crossed-product-gl-has-no-distorted-elements-proof`. Artifact: 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).
 
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS (§5). Re-derived: the faithful slot module; subadditive propagation; the Krylov bound with uniform `N_0`; the lcm polynomial and finite order through `F_q[t]/(Q)`; and C1, the multiplicative embedding of `[[T]]` in `GL_1(R)`. N6: the bound `1/(2wm)` assumes `w ≥ 1`; for `w = 0`, `Γ` is finite.
+
+**Review (sk-verify-12, 2026-09-13, `research/artifacts/sk-verify-12-2026-09-13.md`):** PASS, independent (§1). Re-derived: the representation and faithfulness; the uniform Fekete bound with `N_0` independent of the slot; the lcm polynomial; finite order, since a non-zero-divisor of the finite ring `F_q[z]` is a unit; and the stable length `≥ 1/6` in `G_X`. Display fixes: `w ≥ 1`, and the full-group consequence for Cantor systems with periodic points needs the orbit module, applied above.
