@@ -161,6 +161,9 @@ def conflicts(inst, sol):
     for k, _ in ctx:
         for f in flipw:
             rels.add(A.cyc_reduce(A.mul(A.inv(words[k]), f)))
+    # two flipped sites merging turns the perturbation into no change at all
+    for f1, f2 in itertools.combinations(flipw, 2):
+        rels.add(A.cyc_reduce(A.mul(A.inv(f1), f2)))
     outw = list(inst["outs"].values())
     for o1, o2 in itertools.combinations(outw, 2):
         rels.add(A.cyc_reduce(A.mul(A.inv(o1), o2)))

@@ -102,6 +102,21 @@ four coordinates in `G_R`.
   - 864 of 864 verdicts agree with `flip1.py` on the realized partition.
   - Every realized partition occurs in the admissible list.
 
+### 5b. Consistency control of the table-group triage
+
+`control2.py` (MSI job 792968, `control2.out`) re-derives the triage of `analyze3.json` through a second entry point
+(`dflip.make_nf`), which runs its own Nielsen search.
+- **Substitution tracking.** For all 826 partitions with a normal form on both paths, every original relator of
+  `G_P` is trivial in the recognized normal form. So the tracked substitution really defines a homomorphism from
+  `G_P`.
+- **Flags.** On those 826 partitions the amenable flag and the memory-distinct flag agree between the two paths.
+- **Cyclic-by-cyclic.** On 27 partitions the second path reached cyclic-by-cyclic form, and `analyze3` also marks
+  them amenable. No contradiction.
+- **Finite groups.** All 36 finite orders are re-derived by both coset-enumeration strategies.
+
+The two paths share the elimination and recognition code. So this checks consistency and substitution tracking, not
+independent group theory.
+
 ## 6. Results so far (INTERIM)
 
 **Second triage pass** (job 792117 stage one, `analyze3.json`), with graph products and cyclic-by-cyclic groups
