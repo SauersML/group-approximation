@@ -1,0 +1,22 @@
+---
+rg: 2
+id: simple-kazhdan-lef-program-normal-structure-results-assembly
+kind: route
+title: The normal-structure theme is the conjunction of its member results
+target: simple-kazhdan-lef-program-normal-structure-results
+requires:
+  - binary-subshift-normal-subgroups-contain-tower-gl-copy
+  - root-localization-commutator-is-never-scalar
+  - amenable-crossed-product-gl-normal-structure-is-standard
+  - standard-normal-structure-makes-simple-ring-el-simple
+  - finite-limit-type-el-normal-subgroups-are-subsystem-kernels
+  - subshift-el-group-centre-detects-rational-eigenvalues
+  - rational-eigenvalue-iff-subshift-ring-is-matrix-ring
+  - subshift-f2-ring-indicator-ideals-and-centreless-el3
+  - crossed-product-gl-n-has-infinite-cyclic-index-quotient
+  - sequence-el3-simple-iff-uniformly-recurrent-aperiodic
+  - cyclic-factor-subshift-el-2-is-simple-kazhdan-lef
+  - el-2-over-every-minimal-subshift-algebra-is-kazhdan
+---
+
+Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.

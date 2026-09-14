@@ -1,0 +1,17 @@
+---
+rg: 2
+id: simple-kazhdan-lef-program-rigidity-results-assembly
+kind: route
+title: The rigidity theme is the conjunction of its member results
+target: simple-kazhdan-lef-program-rigidity-results
+requires:
+  - root-preserving-subshift-el3-isos-force-orbit-equivalence
+  - el3-root-subgroups-are-bicommutant-closed
+  - subshift-gl3-iso-forces-strong-orbit-equivalence-odd-q
+  - subshift-ring-isomorphism-preserves-soe-class-and-growth
+  - subshift-ring-cartan-uniqueness-iff-groupoid-model-rigidity
+  - binary-subshift-ring-k1-is-half-orbit-index
+  - binary-cantor-ring-stable-steinberg-group-centrally-closed
+---
+
+Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
