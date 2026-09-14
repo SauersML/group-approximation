@@ -1,0 +1,65 @@
+A COUNTEREXAMPLE TO THE TRACE PROBLEM FOR UNIFORM TRACIAL COMPLETIONS
+
+Prepared for Sauers / SauersML. NOT SUBMITTED.
+
+Repository: https://github.com/SauersML/group-approximation
+Project path: repository root (leave blank)
+Metadata: formalization.yaml
+Comparator configuration: Palomar/comparator-stw-xxii.json
+Challenge: Palomar/STWProblemXXIIChallenge.lean
+Solution: Palomar/STWProblemXXIISolution.lean
+Lean: leanprover/lean4:v4.32.0
+License: Apache-2.0
+
+Selected declarations:
+STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace
+STWProblemXXII.exists_factorial_traciallyComplete_with_discontinuous_trace
+
+The first theorem supplies a separable unital base algebra and its uniform
+tracial completion with an additional, uniform-two-discontinuous trace.
+The second supplies a factorial tracially complete pair with the same failure.
+Both identify the continuous traces with the designated traces. Nuclearity
+and type I are not assertions of these selected declarations.
+
+The formalization.yaml abstract is ready for the registry. It includes the
+mathematical sources, precise statement alignment, scope, production credits,
+the HamSandwich source-port credit, and the actual antipodal proof account.
+An identical per-result copy is retained in metadata/palomar-stw-xxii.yaml.
+
+PREPARATION AND VERIFICATION
+
+Use the immutable full commit SHA recorded in the accompanying readiness
+record, never a moving main branch. The repository's GitHub Actions checks
+must show success for that exact SHA:
+
+1. Palomar check: metadata and source checks, definition-model builds,
+   elaborated statement comparison, and solution axiom closure.
+2. Palomar Comparator: config=Palomar/comparator-stw-xxii.json, nanoda=true.
+   Inspect the log for both compared declarations, successful Lean and
+   NanoDa kernel replay, and only propext, Classical.choice, Quot.sound.
+
+The Challenge intentionally has one sorry per selected statement. The
+Solution and each selected proof closure must have no sorryAx. This is the
+registry's challenge/solution protocol, not a missing solution proof.
+
+Local source checks:
+  python3 scripts/check_palomar_submission.py --self-test
+  python3 scripts/check_palomar_submission.py
+
+Lean checks in a built environment:
+  lake build PalomarSTWProblemXXIIChallenge PalomarSTWProblemXXIISolution PalomarSTWProblemXXIIModelTests
+  lake env lean scripts/PalomarSTWProblemXXIIAxioms.lean
+  bash scripts/check_palomar_statement_match.sh
+
+FUTURE SUBMISSION
+
+No Palomar intake, verification challenge, gist, submission, or registration
+has been initiated for this package. The user explicitly requested
+preparation only. The separate readiness record supplies the immutable SHA
+and verification links for review before any future submission.
+
+The current intake instructions are at:
+https://submit.palomar-registry.org/llms.txt
+They require agreement on repository, commit, configuration and the user's
+authorization relationship before the agent-driven gh submission flow.
+This document does not authorize those future actions.

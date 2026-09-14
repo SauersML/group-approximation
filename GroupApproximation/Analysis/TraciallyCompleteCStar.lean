@@ -4,9 +4,10 @@ import GroupApproximation.Analysis.TracialStateWeakStarTopology
 /-!
 # Tracially complete C-star algebras, factoriality, and the trace problem
 
-STW Problem XXII is a question about **factorial tracially complete C-star
-algebras**.  This file supplies the two words, so that a purported
-counterexample can be made to say what the problem asks.
+CCEGSTW Question 1.1 concerns **factorial tracially complete C-star
+algebras**. STW Problem XXII is its instance given by completing a base
+algebra at all its traces. This file supplies the vocabulary for the general
+pair formulation.
 
 The definitions are those of Carrion--Castillejos--Evington--Gabe--Schafhauser
 --Tikuisis--White, *Tracially complete C\*-algebras*, arXiv:2310.20594.

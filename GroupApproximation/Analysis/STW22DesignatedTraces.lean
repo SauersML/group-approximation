@@ -5,8 +5,10 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # The designated trace set of the antipodal completion
 
-STW Problem XXII is a question about a *pair* `(M, X)`: a tracially complete
-C-star algebra together with its designated compact convex set of traces.  The
+STW Problem XXII concerns the uniform tracial completion of a base algebra.
+Its natural *pair* `(M, X)` consists of that completion and the canonical
+extensions of all base traces; CCEGSTW Question 1.1 generalizes this to
+factorial tracially complete pairs. The
 counterexample's `M` is the bounded uniform-two completion of the antipodal
 base algebra and its `X` is the set of canonical extensions of the base traces,
 named here.

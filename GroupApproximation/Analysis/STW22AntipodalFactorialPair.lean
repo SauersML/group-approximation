@@ -12,14 +12,12 @@ against the pinned gauge.  `Analysis/STW22DesignatedTraces` names the same set
 as `antipodalDesignatedTraces`.  This file identifies the two and restates the
 results in that vocabulary, so that the XXII endpoint can quote them directly.
 
-The endpoint asserts unitality, separability, nuclearity, Type I, the gauge
-identity, Bauer-ness of the trace simplex, compact metrizability of its
-boundary, and injectivity but not surjectivity of the canonical extension.  What
-it did not assert is the hypothesis of the problem it refutes: that the pair
-`(M, X)` is factorial tracially complete.  Dropping a hypothesis makes a
-counterexample weaker, so without it the endpoint refutes a weaker statement
-than STW Problem XXII.  `antipodal_isFactorialTraciallyCompletePair` is the
-missing conjunct.
+The broader endpoint also asserts regularity of the base algebra, identifies
+the all-traces gauge, and proves that canonical extension is injective but not
+surjective. Printed STW Problem XXII concerns that uniform tracial completion;
+factoriality follows from completion at the full trace space (CCEGSTW
+Proposition 3.23(iv)). The factoriality conjunct recorded here also makes the
+pair an explicit counterexample to the more general CCEGSTW Question 1.1.
 -/
 
 namespace GroupApproximation
@@ -49,10 +47,10 @@ theorem antipodal_isTraciallyCompletePair :
   exact antipodalGauge_isTraciallyCompletePair
 
 /-- **The antipodal pair is factorial tracially complete**, CCEGSTW Definitions
-3.4 and 3.13: `X` is a closed face of `T(M)`.  This is the hypothesis of STW
-Problem XXII, and it is a theorem here rather than an assumption, because `X` is
-the whole of `T(A)` and a set is a face of itself (CCEGSTW Proposition
-3.23(iv)). -/
+3.4 and 3.13: `X` is a closed face of `T(M)`. This is the hypothesis of
+CCEGSTW Question 1.1 and a consequence of completing at the full base trace
+space in printed STW Problem XXII (CCEGSTW Proposition 3.23(iv)). Here `X`
+is the set of canonical extensions of all base traces, not all traces of `M`. -/
 theorem antipodal_isFactorialTraciallyCompletePair :
     IsFactorialTraciallyCompletePair antipodalDesignatedTraces := by
   rw [antipodalDesignatedTraces_eq_gauge]
@@ -76,14 +74,14 @@ theorem antipodal_not_allTracesUniformTwoContinuous_of_borsukUlam
   exact antipodalGauge_not_allTracesUniformTwoContinuous
     (antipodalCanonicalExtension_not_surjective_of_borsukUlam hBU)
 
-/-- **STW Problem XXII, refuted as stated.**  The pair `(M, X)` is a *factorial
+/-- **The factorial-pair trace problem, CCEGSTW Question 1.1, refuted.**  The pair `(M, X)` is a *factorial
 tracially complete* C-star algebra; its designated traces are exactly the
 `‖·‖_{2,X}`-continuous traces on `M`; and not every trace on `M` is
 `‖·‖_{2,X}`-continuous -- equivalently `X ⊊ T(M)`.
 
-The first conjunct is the hypothesis of the problem.  Without it the remaining
-conjuncts refute a strictly weaker statement, which is why the endpoint needs
-it.
+The first conjunct supplies the factorial-pair hypothesis of CCEGSTW
+Question 1.1. For printed STW Problem XXII, the completion presentation is
+also needed; the Palomar bridge proves that presentation for this witness.
 
 The second conjunct is not decoration.  `X` is *defined* as the range of the
 canonical extension, so a conjunct saying so would be `rfl` and would certify
@@ -103,7 +101,7 @@ theorem antipodalFactorialNegativeSolutionToProblemXXII_of_borsukUlam
     antipodal_not_allTracesUniformTwoContinuous_of_borsukUlam hBU,
     not_designatedTracesAreAllTraces_antipodal hBU⟩
 
-/-- **STW Problem XXII, refuted as stated, with no hypotheses.**  The
+/-- **The factorial-pair counterexample, with no hypotheses.**  The
 Borsuk--Ulam input is discharged by `complexOddMapCommonZero_unconditional`, so
 this is a closed proposition and is gated as one. -/
 theorem antipodalFactorialNegativeSolutionToProblemXXII :

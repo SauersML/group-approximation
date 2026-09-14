@@ -3,31 +3,19 @@ import GroupApproximation.Analysis.STW22NegativeSolution
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# STW Problem XXII, refuted with the problem's own hypothesis in the statement
+# STW Problem XXII and the factorial-pair trace problem
 
-`Analysis/STW22NegativeSolution` and `Analysis/STW22UnconditionalCore` carry the
-two published endpoints of the antipodal counterexample.  Between them they say
-that the base algebra is unital, separable, nuclear and Type I, that its
-pointwise weak-star trace simplex is Bauer with compact metrizable boundary,
-that the completion gauge is the supremum over all base traces, and that
-canonical extension from base traces to completion traces is injective but not
-surjective.
+`Analysis/STW22NegativeSolution` identifies the base algebra, its full trace
+space, the uniform tracial completion and the injective but non-surjective
+canonical extension map. This refutes printed STW Problem XXII. The companion
+`Analysis/STW22UnconditionalCore` records the concrete counterexample assembly.
 
-Neither of them says that the pair `(M, X)` is **factorial tracially complete**.
-That is the hypothesis of the printed problem, and a counterexample which omits
-a hypothesis refutes a weaker statement than the one that was asked.  Here the
-hypothesis is a theorem rather than an assumption --
-`antipodal_isFactorialTraciallyCompletePair`, proved in
-`Analysis/STW22AntipodalFactorialPair` from the closed-face argument of
-`Analysis/STW22FactorialCore` -- so this file conjoins it to each published
-endpoint.
-
-No mathematics is done here.  Every conjunct below is an existing theorem, and
-what the file adds is the *shape* of the two statements: a reader who quotes one
-of them quotes the printed problem's hypothesis together with its refutation,
-and cannot quote the refutation on its own.  In particular the two statements do
-not strengthen the counterexample; they stop it from being weaker than the
-problem.
+This file adds the proved factoriality of the designated trace pair and the
+characterization of its continuous traces. These conjuncts also exhibit a
+counterexample to CCEGSTW Question 1.1, whose hypothesis is a factorial
+tracially complete pair. In printed XXII, factoriality is a consequence of
+completion at the whole base trace space, not an additional hypothesis.
+The new conjunctions assemble existing theorems about the same witness.
 
 ## Why re-typing the conjuncts is safe here
 
@@ -83,7 +71,7 @@ universe v
 
 /-- **STW Problem XXII, refuted as posed.**
 
-The first four conjuncts are the problem: the pair `(M, X)` *is* a factorial
+The first four conjuncts answer CCEGSTW Question 1.1: the pair `(M, X)` *is* a factorial
 tracially complete C-star algebra, `X` *is* exactly the set of
 `‖·‖_{2,X}`-continuous traces on `M`, and the trace problem nevertheless fails
 for it, in both of the forms CCEGSTW Question 1.1 is asked in.  The remaining
@@ -148,8 +136,7 @@ open Filter PolarLiftingGeneralCStar
 open UniformTracialSequenceCompletion UniformTracialTwoNullIdeal
 open CuntzPedersenCoronaObstruction CuntzPedersenTraceZero STW22Assembly
 
-/-- **The antipodal counterexample assembly, with the problem's hypothesis
-attached.**
+/-- **The antipodal counterexample assembly, with proved factoriality.**
 
 The second conjunct is `GroupApproximation.STW22.antipodal_stw22_trace_problem_counterexample`
 verbatim, with the block-data abbreviation `B` expanded: the identification of
@@ -162,7 +149,7 @@ Those clauses are the machinery of the counterexample rather than the printed
 problem's own words -- for the printed statement see
 `factorialNegativeSolutionToProblemXXII` above -- but they are what the
 `Analysis/STW22UnconditionalCore` endpoint asserts, and they too were asserted
-without the factoriality hypothesis. -/
+without explicitly conjoining the proved factoriality. -/
 theorem factorialAntipodalTraceProblemCounterexample :
     IsFactorialTraciallyCompletePair antipodalDesignatedTraces ∧
       scalarPlusJ antipodalAllTracesGauge =

@@ -208,7 +208,7 @@ PALOMAR_PENDING_CONFIGS = (
 # any other configuration may.  To submit another configuration, rewrite the
 # metadata for it and move it here.
 PALOMAR_METADATA_CONFIGS = (
-    "Palomar/comparator-surjunctive-nonsofic.json",
+    "Palomar/comparator-stw-xxii.json",
 )
 
 # The files `copy_surface` copies and `--self-test` plants defects into.  The
@@ -939,16 +939,16 @@ CALIBRATION: tuple[tuple[str, str], ...] = (
     ("tracked compiled artifact", "is a compiled artifact"),
     ("nine arXiv classes", "one to eight distinct official arXiv"),
     ("original result with a substantive source", "the two alternatives are exclusive"),
-    ("surjunctive nonsofic result dropped from the metadata",
-     "SurjunctiveNonsofic.exists_finitelyGenerated_surjunctive_not_sofic is not listed in status.main_results"),
+    ("stw-xxii result dropped from the metadata",
+     "STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace is not listed in status.main_results"),
     ("foreign result published in the metadata",
-     "but the metadata describes Palomar/comparator-surjunctive-nonsofic.json only"),
+     "but the metadata describes Palomar/comparator-stw-xxii.json only"),
 )
 
 YAML_CALIBRATIONS = {
     "nine arXiv classes",
     "original result with a substantive source",
-    "surjunctive nonsofic result dropped from the metadata",
+    "stw-xxii result dropped from the metadata",
     "foreign result published in the metadata",
 }
 
@@ -1114,20 +1114,20 @@ def plant(name: str, root: Path) -> None:
     elif name == "stw-x1 comparator permitting a fourth axiom":
         _edit_config(root, "Palomar/comparator-stw-x1.json",
                      lambda c: c["permitted_axioms"].append("sorryAx"))
-    elif name == "surjunctive nonsofic result dropped from the metadata":
+    elif name == "stw-xxii result dropped from the metadata":
         _edit_metadata(root,
-                       "    - declaration: SurjunctiveNonsofic.exists_finitelyGenerated_surjunctive_not_sofic",
-                       "    - declaration: SurjunctiveNonsofic.renamed_and_not_republished")
+                       "    - declaration: STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace",
+                       "    - declaration: STWProblemXXII.renamed_and_not_republished")
     elif name == "foreign result published in the metadata":
         _edit_metadata(root,
-                       "    - declaration: SurjunctiveNonsofic.not_all_surjunctive_groups_sofic\n",
+                       "    - declaration: STWProblemXXII.exists_factorial_traciallyComplete_with_discontinuous_trace\n",
                        "    - declaration: Pestov91.exists_infinite_simple_propertyT_sofic\n"
                        "      file: Palomar/Pestov91Solution.lean\n"
                        "      sorry_count: 0\n"
                        "      axioms: [propext, Classical.choice, Quot.sound]\n"
                        "      comparator_config: Palomar/comparator-pestov91.json\n"
                        "\n"
-                       "    - declaration: SurjunctiveNonsofic.not_all_surjunctive_groups_sofic\n")
+                       "    - declaration: STWProblemXXII.exists_factorial_traciallyComplete_with_discontinuous_trace\n")
     elif name == "stw-xxii challenge with a project-local import":
         path = root / "Palomar" / "STWProblemXXIIChallenge.lean"
         path.write_text(
