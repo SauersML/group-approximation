@@ -297,7 +297,9 @@ theorem isSimpleGroup_elementaryGroup_of_simplicityCommutatorWitness [CompactSpa
       rw [elementaryUnit_zero]
       exact congrArg Subtype.val h
     exact one_ne_zero (elementaryUnit_injective _ _ h01 h')
-  refine ⟨⟨elGen _ _ h01 1, 1, hne1⟩, fun N hN => ?_⟩
+  haveI : Nontrivial ↥(elementaryGroup (Fin n) (ClopenCrossedProduct T (ZMod 2))) :=
+    nontrivial_of_ne _ _ hne1
+  refine ⟨fun N hN => ?_⟩
   by_cases hb : N = ⊥
   · exact Or.inl hb
   · exact Or.inr (eq_top_of_simplicityCommutatorWitness hn hw
