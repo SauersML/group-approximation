@@ -6,7 +6,9 @@ Lane `hl-f-kernel-profiles`, 2026-09-14. Executes idea 3 of `research/artifacts/
 
 Nodes landed with this artifact:
 - `thompson-f-ore-window-kernel-profiles-monotone-binomial-floor` and route
-  `thompson-f-ore-window-kernel-profiles-proof`.
+  `thompson-f-ore-window-kernel-profiles-proof`;
+- `thompson-f-p22-over-f2-exhaustive-census-through-degree-nine` and route
+  `thompson-f-p22-over-f2-census-through-degree-nine-proof`.
 
 ## 1. What a profile is, and the verdict on idea 3
 
@@ -75,13 +77,80 @@ without normal forms: `certificates_checked: 1, ALL_OK: true` in every task. Ter
 334, 80, 1025, 3366. Certificates: `cert8_out_{0..3}.json.gz`; log excerpts `cert8_log_{0..3}.txt`.
 So these four pairs have `δ = 8` over `F_2` (degree `<= 7` excluded by the landed census).
 
-## 4. Census extension
+## 4. Census through degree nine
 
-(Filled in when MSI job 751674 finishes: all 130305 pairs, degrees 0..10, 16 shards; the reproduction of the
-landed degree-7 histogram and unsettled list; the per-degree settled counts for D = 8, 9, 10.)
+Node: `thompson-f-p22-over-f2-exhaustive-census-through-degree-nine`, route
+`thompson-f-p22-over-f2-census-through-degree-nine-proof`.
+
+**Run.**
+- **Job.** MSI job 753122, 16 tasks, using `census.sbatch`, `census_shard.sh` and `kprof.c` (md5
+  `0da7e074b9a437956da486660044e6dc`). It covers all 130305 pairs, with degrees `0..10` requested on windows
+  `N = D + 3`.
+- **Snapshot at 2026-09-14 08:30 CDT** (`census_sacct_snapshot.txt`, `census_progress_snapshot.txt`):
+  - every task had finished degree 9;
+  - tasks 0 and 4 had also finished degree 10;
+  - the other 14 were still in degree 10.
+- **Merge.** `census_compare.py` (md5 `efe947172e87967d64b7100d169f01bf`, run by `compare_pull.sh`) counts only
+  degrees finished in all tasks.
+- **Discarded run.** An earlier submission, job 751674, tested no pairs, because `kprof` then read pairs only from
+  its arguments. It was discarded, and `census_shard.sh` now aborts on any missing output.
+
+**Reproduction.** `census_compare.json` reports `hist_matches_landed_through_7: true` and
+`unsolved_after_7_matches_landed_list: true`.
+
+**Per-degree counts.**
+
+| D | settled at D | unsettled before D | fraction settled | planes settled |
+|---|---|---|---|---|
+| 1 | 357 | 130305 | 0.27% | 119 |
+| 2 | 3804 | 129948 | 2.93% | 1268 |
+| 3 | 3399 | 126144 | 2.69% | 1133 |
+| 4 | 6951 | 122745 | 5.66% | 2317 |
+| 5 | 5799 | 115794 | 5.01% | 1933 |
+| 6 | 7629 | 109995 | 6.94% | 2543 |
+| 7 | 8037 | 102366 | 7.85% | 2679 |
+| 8 | 8880 | 94329 | 9.41% | 2960 |
+| 9 | 8619 | 85449 | 10.09% | 2873 |
+
+After degree 9, 76830 pairs (25610 planes) survive (`s35_unsolved_after_k9.json.gz`).
+
+**Plane symmetry.** `k_D(a, b)` depends only on the plane `{0, a, b, a + b}` (route, Step 5). The program never uses
+this, and the data satisfy it:
+- the survivor lists after degrees 7 and 9 are closed under `{a, b} -> {a, a + b}`;
+- every count above is divisible by 3;
+- the planes add up to 43435.
+
+**Kernel dimension at the first positive degree** (`kernel_at_first_degree_hist`).
+- **Usually one-dimensional.** At `D = 9`, 3510 of the 8619 pairs settle with kernel dimension 1.
+- **Sometimes many at once.** Some pairs settle with many independent minimal multiples: `k_8 = 409` for 18 pairs,
+  and `k_9 = 1140` for 6 pairs.
+- **Symmetry.** Every multiplicity is divisible by 3.
+
+**Degree 10 (partial, not counted).**
+- Task 0 went from 2207 to 1771 survivors in 20228 s.
+- Task 4 went from 3591 to 3216 survivors in 25359 s.
+- Degree-9 wall time per task ranged from 439 s to 18594 s.
+
+**Reading.**
+- **No saturating core yet.** Since degree 5, the fraction of survivors settling in the next degree has risen every
+  time: 5.01%, 6.94%, 7.85%, 9.41%, 10.09%. Through degree 9 there is no sign of a core of pairs that stops
+  settling.
+- **Evidence, not proof.** A pair with `δ = ∞` leaves the same finite record as a pair with a huge finite `δ`.
+- **Tower bound doesn't apply.** The tower bound `thompson-f-cardinality-certificates-need-tower-degree` concerns
+  cardinality certificates, not these linear-algebra degrees.
 
 ## 5. Exact gap
 
-- A non-Ore pair of `P_(2,2)` can only be certified by an argument valid in every degree; no finite profile or
-  census does it (claim item 3; `thompson-f-ore-obstructions-must-see-finite-support`).
-- The census extension measures how fast survivors settle. It is evidence either way, not proof.
+- **No certificate from finite data.** A non-Ore pair of `P_(2,2)` needs an argument valid in every degree, and no
+  finite profile or census gives one. See claim item 3 of
+  `thompson-f-ore-window-kernel-profiles-monotone-binomial-floor`, and
+  `thompson-f-ore-obstructions-must-see-finite-support`. The live formulations are the harmonic-splitting and
+  private-pivot routes of `research/artifacts/hl-f-p22-invariant-2026-09-13.md`.
+- **Candidates.** Over `F_2`, 76830 pairs (25610 planes) have `δ > 9`.
+- **Next computation.**
+  - **Target:** degree 10 on the survivors, one pair per plane. That saves a factor of 3, which the current run
+    doesn't use.
+  - **Cost:** the two finished tasks took about 7–9 s per pair at degree 10, so the 25610 planes need roughly 50–65
+    CPU hours.
+- **Job 753122.** Fourteen tasks were still in degree 10 at the snapshot and are not counted. Some may hit the
+  12 h limit.

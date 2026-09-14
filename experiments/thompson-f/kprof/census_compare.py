@@ -18,6 +18,8 @@ for sh in sorted(glob.glob("census/sh*")):
             len(open(f"{sh}/out_{k}.jsonl").read().splitlines())]
     kmax_done[sh] = max(done) if done else -1
 kfull = min(kmax_done.values())
+# only degrees complete in every shard count; a shard ahead of the others must not leak partial degrees
+first = {p: v for p, v in first.items() if v[0] <= kfull}
 allpairs = [(a, b) for a in range(1, 512) for b in range(a + 1, 512)]
 hist = collections.Counter(k for (k, _) in first.values())
 ours_unsolved_7 = sorted(p for p in allpairs if not (p in first and first[p][0] <= 7))
