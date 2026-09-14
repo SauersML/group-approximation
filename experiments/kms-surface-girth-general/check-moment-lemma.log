@@ -1,0 +1,10 @@
+m 3 p 3 words with zero exponent sums 4 law 4 moment 4 classify 4 formula 4 all agree True PASS
+m 3 p 5 words with zero exponent sums 144 law 48 moment 48 classify 48 formula 48 all agree True PASS
+m 3 p 7 words with zero exponent sums 900 law 180 moment 180 classify 180 formula 180 all agree True PASS
+m 3 p 11 words with zero exponent sums 8100 law 900 moment 900 classify 900 formula 900 all agree True PASS
+m 3 p 13 words with zero exponent sums 17424 law 1584 moment 1584 classify 1584 formula 1584 all agree True PASS
+m 4 p 5 words with zero exponent sums 2704 law 160 moment 160 classify 160 formula 160 all agree True PASS
+m 4 p 7 words with zero exponent sums 34596 law 936 moment 936 classify 936 formula 936 all agree True PASS
+m 4 p 11 words with zero exponent sums 828100 law 8200 moment 8200 classify 8200 formula 8200 all agree True PASS
+m 4 p 13 words with zero exponent sums 2547216 law 17568 moment 17568 classify 17568 formula 17568 all agree True PASS
+moment lemma checks: ALL PASS
