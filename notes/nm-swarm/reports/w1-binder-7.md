@@ -331,6 +331,19 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
       - ms-cite-1 was asked, in one message, to point its consumer at the Distinct form.
     - CLAIM `Estimating/OsinPocketCellOuterSpur.lean`: `CellPocketFaceSet.outerSpurThickening`, the cell transport for
       exterior corners. It needs no avoid hypothesis, since a cell pocket has no target arc.
+  - **LANDED 28caa3d7f** (probe 0914-084317-69232 GREEN, both modules BUILT; unwired, queued for wiring).
+    - `Estimating/OsinPocketCellOuterSpur`: `CellPocketFaceSet.outerSpurThickening`, with `_boundary_cycle`, `_closedWalk`,
+      `_repeatedVisits`, `_first_proper` and `_second_proper`.
+    - `Estimating/OsinPocketCellPinchSectionDistinct`:
+      - `CellPocketPinchSectionDistinctInput` (with `CellPocketPinchSectionInput.toDistinct`);
+      - `CellPocketPinchSectionDistinctStatement`, with `_of_section`;
+      - `CellPocketOuterPinchStepSectionDistinctStatement` and `cellPocketPinchSectionDistinctStatement_of_outerPinchStep`;
+      - `CellPocketFaceSet.copyRegion_of_pinchSectionDistinct`.
+  - Draft, unprobed: `Estimating/OsinPocketCellOuterPinchStep` (attic f1b0e738c).
+    - Contents: `pinchSplit_first_proper`, `pinchSplit_second_proper`, `pinchSplit_closedWalk_of_isolated`, and
+      `exists_cellPinchStepDistinct_of_isolated`.
+    - It imports w1-binder-3's unlanded `OsinPocketOuterPinchSplit`, so it waits for that landing. The list-level isolated-turn
+      step and the corner selection will follow w1-binder-3's `…Isolated` and `…Corners`.
     - Exterior corners need a cell transport of `outerSpurThickening`, which this lane builds.
   - No current item otherwise.
 - **Noted:** ms-cite-1's `cellPocketPinchRoseRefutation` (e0a0776bb) refutes `CellPocketPinchPosStatement`, so V4 endpoints over
