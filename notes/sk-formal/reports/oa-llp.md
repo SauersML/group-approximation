@@ -55,11 +55,13 @@ Formal route:
   - `Analysis/OperatorSystemChoiFunctional`: the Choi functional of a cp map on an operator system is nonnegative on ambient positives.
   - `Analysis/OperatorSystemMatrixArveson`: `operatorSystemMatrixArvesonStatement_holds` (closed), Arveson extension into matrices, Ozawa Thm 2.2, ucp case.
 
-## In probe
+- **f118b8057**, probe 0914-085956-97005 GREEN, wire-queued:
+  - `Analysis/MatrixModelFormPositivity`: cp operator models pulled back to `M_Y` are form-positive.
+  - `Analysis/LocalLiftingFactorization`: `localLiftingFactorizationStatement_holds` (closed). For countable G, the LLP of C*(G) plus `HasTracePreservingMatrixModel G` gives `HasFactorizationProperty G`, along Ozawa's p. 24 route.
 
-- `Analysis/MatrixModelFormPositivity`: cp operator models pulled back to `M_Y` are form-positive.
-- `Analysis/LocalLiftingFactorization`: `localLiftingFactorizationStatement_holds`. For countable G, the LLP of C*(G) plus `HasTracePreservingMatrixModel G` gives `HasFactorizationProperty G`, along Ozawa's p. 24 route.
-- Next: the printed endpoint `Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting`. It contraposes the theorem above with oa-kirchberg's ¬(F) and oa-mcduff's producer `HyperlinearTracePreservingModelStatement` (statement on origin at bf8ea9f9e).
+## Next
+
+- the printed endpoint `Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting`. It contraposes the theorem above with oa-kirchberg's ¬(F) and oa-mcduff's producer `HyperlinearTracePreservingModelStatement` (statement on origin at bf8ea9f9e).
 
 ## Status
 
