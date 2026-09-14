@@ -1,0 +1,33 @@
+mask 1 ['complementary'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 1] VERIFIED
+mask 2 ['disjoint'] K 2 family(depth3 cones) ['11111110', '00000001'] v [1, 1] VERIFIED
+mask 3 ['complementary', 'disjoint'] K 2 family(depth3 cones) ['11111110', '00000001'] v [1, 1] VERIFIED
+mask 4 ['nested'] K 2 family(depth3 cones) ['11111110', '00000001'] v [1, 1] VERIFIED
+mask 5 ['complementary', 'nested'] K 2 family(depth3 cones) ['11111110', '00000001'] v [1, 1] VERIFIED
+mask 6 ['disjoint', 'nested'] K 3 family(depth3 cones) ['11111100', '00000010', '11111101'] v [0, 0, 1] VERIFIED
+mask 7 ['complementary', 'disjoint', 'nested'] K 3 family(depth3 cones) ['11111100', '00000010', '11111101'] v [0, 0, 1] VERIFIED
+mask 8 ['covering-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [1, 1] VERIFIED
+mask 9 ['complementary', 'covering-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [1, 1] VERIFIED
+mask 10 ['disjoint', 'covering-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [1, 1] VERIFIED
+mask 11 ['complementary', 'disjoint', 'covering-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [1, 1] VERIFIED
+mask 12 ['nested', 'covering-overlap'] K 3 family(depth3 cones) ['11111100', '00000010', '11111110'] v [1, 1, 0] VERIFIED
+mask 13 ['complementary', 'nested', 'covering-overlap'] K 3 family(depth3 cones) ['11111100', '00000010', '11111110'] v [1, 1, 0] VERIFIED
+mask 14 ['disjoint', 'nested', 'covering-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 1] VERIFIED
+mask 15 ['complementary', 'disjoint', 'nested', 'covering-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 1] VERIFIED
+mask 16 ['generic-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 1] VERIFIED
+mask 17 ['complementary', 'generic-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 1] VERIFIED
+mask 18 ['disjoint', 'generic-overlap'] K 3 family(depth3 cones) ['11111100', '00000010', '11111110'] v [0, 0, 1] VERIFIED
+mask 19 ['complementary', 'disjoint', 'generic-overlap'] K 3 family(depth3 cones) ['11111100', '00000010', '11111110'] v [0, 0, 1] VERIFIED
+mask 20 ['nested', 'generic-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 0] VERIFIED
+mask 21 ['complementary', 'nested', 'generic-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 0] VERIFIED
+mask 22 ['disjoint', 'nested', 'generic-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 0] VERIFIED
+mask 23 ['complementary', 'disjoint', 'nested', 'generic-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 0] VERIFIED
+mask 24 ['covering-overlap', 'generic-overlap'] K 3 family(depth3 cones) ['11111100', '00000010', '11111101'] v [1, 1, 0] VERIFIED
+mask 25 ['complementary', 'covering-overlap', 'generic-overlap'] K 3 family(depth3 cones) ['11111100', '00000010', '11111101'] v [1, 1, 0] VERIFIED
+mask 26 ['disjoint', 'covering-overlap', 'generic-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 0] VERIFIED
+mask 27 ['complementary', 'disjoint', 'covering-overlap', 'generic-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 0] VERIFIED
+mask 28 ['nested', 'covering-overlap', 'generic-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 0] VERIFIED
+mask 29 ['complementary', 'nested', 'covering-overlap', 'generic-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 0] VERIFIED
+mask 30 ['disjoint', 'nested', 'covering-overlap', 'generic-overlap'] K 2 family(depth3 cones) ['11111110', '00000001'] v [0, 0] VERIFIED
+CERTS 30 VERIFIED 30
+POSITIVE CONTROL (K=2 survivors pass 2-point extension): PASS survivors [6, 7, 12, 13, 18, 19, 24, 25]
+NEGATIVE CONTROL (corrupted certificate rejected): PASS
