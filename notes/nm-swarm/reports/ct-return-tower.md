@@ -189,6 +189,22 @@ message each way.
   `x.leftSide`, `y.rightSide`, `t₁` the gap arc, `t₂ = [end x, start y]`), has proper arcs because the regions' arcs are nonempty;
   it needs the same kept-cell and noncrossing pieces as the landed walk producer.
 
+### Inner-pocket route for the whole-section residual (coordinator ~09:0x): claimed, BLOCKER reported
+
+Claimed `Estimating/OsinPocketInnerWalk.lean` and `Estimating/OsinPocketInnerWalkModel.lean` (nothing landed, nothing in flight).
+Findings, checked against origin:
+- The wrap model (`OsinPocketWholeSectionWrapModel`, |∂Δ| = 1) has no room for two exterior regions with disjoint nonempty target
+  arcs, so it cannot test the route; a two-region labelled model with |∂Δ| ≥ 2 is needed.
+- Inner pocket cycle, with orientations from the region decomposition `sourceArc.reverseDarts ++ rightSide ++ target ++ leftSide`:
+  `invDarts y.rightSide ++ invDarts Gap ++ invDarts x.leftSide ++ [end x, start y]` (reversed sides; norms by
+  `listVal_dartWord_invDarts`, `wordNorm_inv`).
+- The Gap of `CyclicArc.exists_spanArc` is unconstrained and can be empty; `[end x, start y]` can be empty.  Every landed section
+  pocket constructor needs both arcs positive (`PocketFaceSet.ofSimpleClosedWalk`, `ofBoundaryCycle`, `ofNoncrossingClosedWalk`,
+  `PocketWalk.sourceArc_pos`/`targetArc_pos`), so the inner pocket goes through none of them.
+- `SectionPocketKeptCellStatement` and `SectionPocketWalkEulerStatement` are stated for the outer walk data only.
+Options sent to main: (a) inner-walk kept-cell and Euler residuals plus a positivity-free `PocketFaceSet` constructor, model first;
+(b) keep the whole-section residual named and move on.
+
 ## Census rows
 
 `metadata/nm-census-rows/ct-return-tower.tsv` LANDED 988ae81b2: tex 1710, 1716, 1717, 1719, 1721, 1722, 1727, 1731, 1732,
