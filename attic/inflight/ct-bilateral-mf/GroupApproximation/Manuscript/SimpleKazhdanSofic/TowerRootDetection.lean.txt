@@ -101,6 +101,7 @@ theorem exists_exponent_bound {A : Type*} [Ring A]
 /-- **tex l.176–177**: `w ≥ 0` bounds the absolute values of the exponents in all entries of `g`
 and `g⁻¹`. -/
 theorem exists_matrix_exponent_bound {ι A : Type*} [Fintype ι] [DecidableEq ι] [Ring A]
+    [MulSemiringAction (Multiplicative ℤ) A]
     (g : (Matrix ι ι (SkewMonoidAlgebra A (Multiplicative ℤ)))ˣ) :
     ∃ w : ℕ, ∀ (p q : ι) (j : Multiplicative ℤ),
       (j ∈ ((g : Matrix ι ι _) p q).support ∨ j ∈ ((↑g⁻¹ : Matrix ι ι _) p q).support) →
