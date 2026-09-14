@@ -73,5 +73,11 @@ contrapositively: if all hyperbolic groups are hyperlinear, this claim is false.
 - **No known example.** No source read for this node exhibits a flexibly HS-stable
   infinite property (T) group.
 
+- **`GHB(7)` kernel reduced to the triangle group (2026-09-13).** Route
+  `ghb7-kernel-stability-via-ghb7-stability` makes stability of `G_{HB_2}(7)` itself
+  (`ghb7-flexibly-hs-stable`) sufficient, and `triangle-of-finite-groups-hs-stability-is-edge-matching`
+  turns that into a dimension-uniform gluing statement for genuine representations of three finite
+  7-groups.
+
 The candidate-by-candidate record is
 `research/artifacts/kazhdan-hyperbolic-hs-candidates-2026-09-12.md`.

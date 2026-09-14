@@ -61,3 +61,12 @@ non-residually-finite hyperbolic group.
     summand. A stability proof for `H` must show that defect cocycles avoid the nonzero
     classes, or use a non-cohomological mechanism.
   - **Artifact:** `research/artifacts/ghb7-kernel-stability-criterion-2026-09-12.md`.
+- **Reduced to the ambient triangle group (2026-09-13, lane `hl-nh-flexible-stability`).**
+  - Route `ghb7-kernel-stability-via-ghb7-stability`: flexible stability of `G_{HB_2}(7)` itself
+    (`ghb7-flexibly-hs-stable`) implies that of `H`, by
+    `flexible-hs-stability-descends-to-retracts-finite-index`.
+  - By `triangle-of-finite-groups-hs-stability-is-edge-matching`, stability of `G` is a gluing
+    statement for almost-matching genuine representations of `U_3(7)`, `U_4(7)`, `U_4(7)` along
+    three cyclic groups of order 7, with no infinite group left.
+  - For `G` the trivial-summand block of item 1 of `ghb7-kernel-blocks-degree-two-newton-stability`
+    is absent, since `H^2(G;C) = 0`; regular-type summands still carry degree-two density `1381/2401`.
