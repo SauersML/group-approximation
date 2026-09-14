@@ -138,7 +138,7 @@ theorem exists_liftCount_of_sigma_pow_embed (x z : M.Dart) {t : ℕ}
   · rw [hnone] at h
     exact absurd h (by simp [embed])
   · rw [hsome] at h
-    exact absurd h (by simp [embed])
+    exact absurd h fun h' => Option.noConfusion (Option.some.inj h')
 
 /-- **A run to the first hit of a dart lifts.** -/
 theorem minRun_embed (x y : M.Dart) {k : ℕ} (hk : (M.sigma ^ k) x = y)
@@ -185,6 +185,7 @@ theorem nonKeepRunStrict_embed (c : List M.Dart) (y z : M.Dart) {q : ℕ} (hq : 
   · rw [hsome]
     exact not_walkKeep_map_embed_some_none a b c
 
+include hab in
 /-- **The sector relation on old darts is unchanged by the insertion.** -/
 theorem rotationBetween_embed_iff (x y z : M.Dart) :
     RotationBetween (toCombMap M a b) (embed M x) (embed M y) (embed M z) ↔
