@@ -74,3 +74,16 @@ CLAIM B computes alpha (rfind over the nested intervals F_n([1/3,3/4])) GroupApp
 CLAIM assembly of PrintedContinuedFractionRepresentative GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuedFractionRepresentative.lean
 
 Ownership check 09-14 08:4x: no reduction draft on origin, in the shared tree or in any `.files` (skf-degrees holds only `ContinuedFractionExpansion`, `SturmianComputability`, `SturmianQueries` and `LanguageReducesToWordProblem`).
+
+## LANDED 39e0a0b10: item 2, row `a686ac809830` graded formalized
+- The note was shortened at f34e9c0b1 (09:05).
+  - The continued-fraction sentence survives with S renamed D: sha256 `a686ac809830`, formerly `7badee43dd9d`.
+  - The Stepanov remark was rewritten; row `8cb86180e7d9` now carries it over the landed carriers (2441ef50e; supersedes `9424f59fd820`).
+- Split agreed with skf-degrees.
+  - skf-degrees: `ContinuedFractionExpansion` (99dc0e949), `ContinuedFractionConvergents` (824bd3166), `OracleRecursion` (aecf7efff).
+  - This lane:
+    - `ContinuedFractionIntervals` (3bb91638e): the nested intervals and `exists_sep`.
+    - `ContinuedFractionDigitOracle`: `charOracle_turingReducible_slopeOracle`, α computes D along the printed route (one strict comparison per digit).
+    - `ContinuedFractionCutOracle`: `slopeOracle_turingReducible_charOracle`, D computes α by rfind.
+    - `ContinuedFractionRepresentative`: `printedContinuedFractionRepresentative : PrintedContinuedFractionRepresentative`.
+- All modules are queued for wiring.
