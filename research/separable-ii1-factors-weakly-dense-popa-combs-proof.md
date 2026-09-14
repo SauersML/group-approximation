@@ -24,6 +24,7 @@ Complete derivation in the artifact, §§1–5. Summary:
 5. **Weak density.** `‖z_k − y'_k‖_2 ≤ 4τ(1−g_k)^{1/2} ≤ 4(Σ_{i'≥k}1/r_{i'})^{1/2} → 0`.
 6. **`W_i`.** In `A_i`, `z_k = f_k + v_k` with `f_k ∈ M_{D_i}` and `v_k` a unitary on `b_k = ∏_{k≤i'<i}(1−p_{i'})`. `W_i := C*⟨M_{D_i}, v_k : v_k^*v_k = v_kv_k^* = b_k⟩` is an iterated amalgamated free product over `C²`. It is RFD by Li–Shen with compatible multiplicity embeddings, and by Exel–Loring when `b_k = 1`.
 7. **(C2).** Schedule `m ↦ (i,n)` with `i ≤ m` and `∏_{i≤i'<m}(r_{i'}−1) ≥ t^{(i)}_n`. Put the `n`-th separating representation of `W_i` into `c_k^{(m)} = (ρ(v_k) ⊕ 1) ⊗ 1` on `b_kC^{D_i} ⊗ E_m`.
+   - **F1, schedule** (sk-verify-20 §3, verbatim; π is this schedule). π cannot be total. At `m = 1`, `i = 1` and the bound is the empty product 1, so `π(1)` exists only if some `t^{(1)}_n = 1`. Fix: make π a partial map onto `{(i,n)}` and put `c_k^{(m)} := R_{k,m}` at idle steps. Surjectivity still holds, since each pair is admissible for all large `m`. Lemmas 1, 2, 4 and 6 are unchanged.
    - The compression to `Q = ∏_{i≤i'<m}(1−p_{i'})p_m ≤ e_m` contains `ρ^{(i)}_n` as a subrepresentation.
    - So `‖w‖_{W_i} ≤ sup_{m≥i}‖q(w)e_m‖`. Hence `A_i ≅ W_i` and the teeth separate points.
 8. **Conclusion.** (C1)–(C3) hold and `A'' = M`.

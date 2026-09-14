@@ -49,6 +49,9 @@ requires:
   - subshift-group-unitary-embeddings-are-corner-subfactors
   - subshift-elementary-group-lef-growth-complexity-bounds
   - subshift-gl-exactness-reduces-to-limit-subsystem
+  - separable-ii1-factors-have-weakly-dense-popa-combs
+  - weakly-dense-popa-combs-exist-in-property-t-factors
+  - property-t-factors-contain-weakly-dense-popa-algebras
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
@@ -64,3 +67,5 @@ Members added by sk-cairn-steward-2 (2026-09-13, fourth pass, sk landings to 22:
 Members added by sk-cairn-steward-4 (2026-09-14, wave-12 sk landings): `comb-tooth-tree-stages-are-residually-finite-dimensional`.
 
 Members added by sk-cairn-steward-4 (2026-09-14, second pass): `cyclic-factor-subshift-groups-have-ring-type-shadows` `stable-finite-actions-extension-sofic-iff-class-norm-vanishes`.
+
+Members added by sk-cairn-steward-5 (2026-09-14, wave-12 pass): `simple-kazhdan-group-lacks-factorization-property` and `simple-kazhdan-lef-group-c-star-fails-llp`, which revision 4.4 of the note no longer prints; `laurent-sl4-block-sl2-norm-four-off-full-unipotent-spectrum` `subshift-el-n-exactness-is-kakutani-invariant` `subshift-group-unitary-embeddings-are-corner-subfactors` `subshift-elementary-group-lef-growth-complexity-bounds` `subshift-gl-exactness-reduces-to-limit-subsystem`; and Theorem P with its two consequences, `separable-ii1-factors-have-weakly-dense-popa-combs` `weakly-dense-popa-combs-exist-in-property-t-factors` `property-t-factors-contain-weakly-dense-popa-algebras`, the last moved from the open problems.

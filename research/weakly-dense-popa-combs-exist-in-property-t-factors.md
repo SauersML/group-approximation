@@ -10,7 +10,9 @@ artifacts:
   - research/artifacts/sk-popa-lgx-2026-09-13-part1.md
 ---
 
-**OPEN (sk-popa-lgx, 2026-09-13).** In the notation of `finite-dimensional-combs-generate-popa-algebras`, the claim is: there are a II_1 factor `M` with property (T) and a weakly dense unital C*-subalgebra `A = closure ⋃A_i ⊆ M` with a comb `(e_i)`.
+**ESTABLISHED (2026-09-14)** by route `weakly-dense-popa-combs-in-t-factors-from-separable-factors`, through Theorem P, `separable-ii1-factors-have-weakly-dense-popa-combs` (sk-popa-input2; sk-verify-20 PASS-WITH-FIXES, fixes merged). Posed as open by sk-popa-lgx, 2026-09-13. In the notation of `finite-dimensional-combs-generate-popa-algebras`, the claim is: there are a II_1 factor `M` with property (T) and a weakly dense unital C*-subalgebra `A = closure ⋃A_i ⊆ M` with a comb `(e_i)`. Theorem P gives such a comb in every separable II_1 factor, for instance `L(SL_3(Z))` and `L(G_X)`.
+
+**Scope** (sk-verify-20 §3, F2). This answers the question as printed. Brown–Dykema's extra property (II), WEP of `M` relative to `A`, is not claimed. For weakly dense `A` it is equivalent to amenability of `τ|_A`, which embeds `M` in `R^ω`, so it fails in every separable II_1 factor not embeddable in `R^ω`.
 
 **Necessary scale conditions** (established, unreviewed; see the artifact):
 - in `M = L(Γ)` with Kazhdan pair `(S,ε)`, `τ(e_j) ≤ 4|S|ε^{-2}dist_2(λ(S),A_j)²` (`orthogonal-popa-corners-for-kazhdan-approximants-small-trace`), so the teeth vanish;
@@ -40,4 +42,4 @@ artifacts:
   - *Inputs 2–3 are bypassed, not scheduled inside universal stages.* The teeth `e_i = p_i` are rank-one tensor projections of `R = (⊗N_i)'' ⊆ M` with `Σ1/r_i < ∞`, and the fullness witnesses are the matrix units of `N_i`.
   - *Approximants.* `z_k` is a unitary on the no-tooth region `g_k = ∏_{i≥k}(1−p_i)` approximating a generating sequence, plus finite blocks `c_k^{(m)}` on the first-tooth regions `R_{k,m}`. So `z_k` commutes with every later tooth, and `e_jA_je_j = (⊗_{i<j}N_i)p_j`.
   - *Separation.* It goes through the universal RFD algebra `W_i = C*⟨M_{D_i}, v_k corner unitaries⟩` (Li–Shen, Exel–Loring). Scheduled blocks carry a separating family of its finite-dimensional representations, so `A_i ≅ W_i`.
-  - *Status.* If this passes review, the claim holds for every separable II_1 factor, and this node can be marked established.
+  - *Status.* It passed review (sk-verify-20 PASS-WITH-FIXES, `research/artifacts/sk-verify-20-2026-09-14-part1.md`), so the claim holds for every separable II_1 factor and this node is established.

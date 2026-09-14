@@ -16,4 +16,4 @@ Reduction (sk-popa-lgx, 2026-09-13).
 - By `finite-dimensional-combs-generate-popa-algebras`, `A` is a Popa algebra.
 - So `M` contains a weakly dense Popa algebra, which is the target.
 
-The second requirement is open, so this route does not fire.
+Both requirements are established: the comb criterion (unreviewed as a node; sk-verify-20 re-derived its simplicity and local quantization steps), and the comb in property (T) factors through `weakly-dense-popa-combs-in-t-factors-from-separable-factors` and Theorem P, `separable-ii1-factors-have-weakly-dense-popa-combs` (sk-verify-20 PASS-WITH-FIXES). So this route fires (2026-09-14).

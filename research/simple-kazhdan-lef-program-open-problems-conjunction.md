@@ -31,7 +31,6 @@ requires:
   - subshift-group-finite-simple-shadows-are-ring-models
   - every-subshift-elementary-group-non-uniform-growth
   - topological-full-group-derived-uniform-exponential-growth
-  - property-t-factors-contain-weakly-dense-popa-algebras
   - subshift-elementary-groups-are-exact
   - subshift-el3-isomorphisms-recognize-diagonals-up-to-normalizer
   - subshift-el-group-theory-computes-arithmetic-of-the-language
@@ -51,3 +50,7 @@ Members added by sk-cairn-steward-2 (2026-09-13, third pass, sk landings to 22:4
 Members added by sk-cairn-steward-2 (2026-09-13, fourth pass, sk landings to 22:56): `subshift-el3-isomorphisms-recognize-diagonal-subgroups`.
 
 `subshift-el-groups-have-bounded-conjugation-invariant-norms` moved to the structure theme (sk-cairn-steward-2, 2026-09-13): sk-free-6 established it.
+
+Member added by sk-cairn-steward-5 (2026-09-14, wave-12 pass): `subshift-el-group-theory-computes-arithmetic-of-the-language`.
+
+`property-t-factors-contain-weakly-dense-popa-algebras` moved to the approximation theme (sk-cairn-steward-5, 2026-09-14): Theorem P, `separable-ii1-factors-have-weakly-dense-popa-combs` (sk-popa-input2; sk-verify-20 PASS-WITH-FIXES), establishes it through `weakly-dense-popa-combs-exist-in-property-t-factors`.
