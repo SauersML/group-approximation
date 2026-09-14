@@ -56,3 +56,19 @@ error.
   - **Gap.** Is there a mean-free amenable action of `F`? Residually finite groups have one through
     finite quotients, and `F` has only abelian ones. Orbits must have stabilizers shrinking to `{e}`,
     e.g. configuration spaces with unboundedly many points.
+- **Mean-free amenable actions are not disguised amenability (2026-09-13).**
+  - **General facts.** Residually amenable groups, `F_2` among them, admit mean-free amenable actions.
+    The property passes to subgroups and implies soficity, and invariant means of a nonamenable group
+    are null on points with amenable stabilizers (`mean-free-amenable-actions-residually-amenable-and-sofic`).
+    Under a Kazhdan pair it is equivalent to residual finiteness
+    (`kazhdan-groups-mean-free-amenable-iff-residually-finite`).
+  - **Consequence.** "F admits a mean-free amenable action ⇔ F is amenable" has no general proof and has to
+    use the structure of `F`. If `F` is nonamenable, then in such an action mean-almost every stabilizer is
+    nonamenable, yet contains no element of any fixed finite subset of `F \ {e}`.
+  - **Configuration candidate.** On finite sets of dyadic rationals, mean-freeness forces almost every
+    configuration to meet every open interval, since an element supported in an interval fixes every
+    configuration missing it. So configurations have unboundedly many points. The pushing argument behind
+    item 4 of `thompson-f-following-models-separate-iff-mean-charges-commutator` makes the mean fraction of
+    configuration points in any slab `[y,z] ⊂ (0,1)` zero. Existence is undecided.
+  - **Gap.** An invariant mean on some `F`-set charging `Moved(c)`, whose stabilizers are nonamenable and
+    avoid every finite subset of `F \ {e}`; equivalently, following-model soficity of `F`.
