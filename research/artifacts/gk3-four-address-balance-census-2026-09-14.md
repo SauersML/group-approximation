@@ -5,11 +5,12 @@
 four memory elements should have a balanced rule. An unbalanced injective rule over any group refutes Gottschalk's
 conjecture.
 
-**Status of this artifact: INTERIM.**
-- The single-flip census and its independent control are complete.
-- The exact triage of table groups, and the perturbation refinement for the rules that survive single flips,
-  are running on MSI (job 792117). Section 6 will be replaced with the final counts.
-- No claim node has landed yet.
+**Status.**
+- **Final:** the single-flip census, the exact table-group triage, and their controls. They give the claim
+  `binary-four-address-single-flip-balance-census` (664 of 859 unbalanced classes excluded over every group).
+  Cairn `why` shows it ESTABLISHED, and no error names this lane's ids.
+- **Not controlled:** the perturbation refinement (Section 7). Its 63 extra closures are recorded here only, not in
+  the claim.
 
 Code and data: `experiments/gottschalk-four-address-balance/`.
 
@@ -154,3 +155,43 @@ recognized:
   - several partitions give `D_infinity`, and one gives `Z x Z/2`.
 
 Final counts, survivor list and refinement outcome: pending job 792117.
+
+## 7. Perturbation refinement of the 195 survivors (MSI job 792622, `dflip3.json`; NOT controlled)
+
+`dflip.py` runs as in Section 4, with invisible flips of `F = {1}` or `F = {1, g}`, with `g` among the first 60 short
+words. It branches on every merge that can break a solution: context sites carrying different bits, a context site
+with a flipped site, two output sites, or the two flipped sites. The depth is at most three.
+
+- **Result.** 63 of the 195 survivor classes close: every branch reaches an amenable or memory-collapsing group.
+  The other 132 stay open.
+- **Open leaves** (7056 states):
+  - 3775 end at an extended relator set that the recognizer cannot decide;
+  - 332 end at a recognized non-amenable group with no invisible perturbation of this shape;
+  - 190 hit the depth limit.
+- **The first flip-merge fix.** An earlier run (job 792117, cancelled) omitted the flip-merge branch. Its closures
+  were discarded.
+- **Why not in the claim.** No independent check of the perturbation certificates has been run.
+
+**Strongest candidates.** At depth zero, 11 blocking table groups have no invisible single or two-site perturbation.
+They involve 26 rule classes, among them:
+- `P1094`, with rule `7913`, which outputs 1 on the patterns
+  `0000 1100 1010 0110 1110 1001 0101 1101 0011` of `(x_1, x_a, x_b, x_c)`. The only coincidence is `c = ba`, so
+  the placement is `{1, a, b, ba}` and the table group is `F_2`.
+- `P1084` and `P485`, whose table groups are `Z * Z/3`.
+- `P1036` and `P877`, whose table groups are `Z * Z/2`.
+
+A Gottschalk counterexample on four binary addresses must use one of the 132 open rules. On these candidate
+placements it must also defeat perturbations with three or more sites.
+
+## 8. Exact gap
+
+1. **Uncontrolled closures.** Verify the 63 refinement closures independently: replay each recorded perturbation in
+   its table group by direct evaluation.
+2. **Larger perturbations.** Extend to three- and four-site perturbations and longer `g`, and recognize more groups
+   (the `Z`-by-`D_infinity` form and HNN or amalgam forms), for the 132 open rules.
+3. **The candidates.** For the 26 rules at depth zero, decide pre-injectivity over the free-product table group
+   itself, e.g. by a finite-state search for collision patterns in `F_2` or `Z * Z/3`.
+   - These groups are sofic, so an unbalanced rule is never injective there. A collision certainly exists, but it
+     may need infinite support.
+   - A proof of balance must use the coincidences of a nonsofic quotient, or find finite collisions that survive
+     every quotient keeping the realized partition.
