@@ -1,0 +1,60 @@
+Error, Variable: 'a' must have a value
+not in any function at cckw334_yes.g:3
+Error, Variable: 'CCKWYES' must have a value
+not in any function at smoke.g:2
+Syntax warning: Unbound global variable in lins_vtf.g:34
+  gens := List(GeneratorsOfGroup(Gfp), g -> Image(iso, g));
+                                                  ^^^
+Syntax warning: Unbound global variable in lins_vtf.g:43
+    img := List(gens, g -> Image(hom, g));
+                                 ^^^
+Syntax warning: Unbound global variable in lins_vtf.g:57
+    if ForAll([1 .. 3], k -> vs[k] = Size(V[k].X)) then
+                             ^^
+Syntax warning: Unbound global variable in lins_vtf.g:57
+    if ForAll([1 .. 3], k -> vs[k] = Size(V[k].X)) then
+                                          ^
+Syntax warning: Unbound global variable in lins_vtf.g:63
+  ikers := List([1 .. 3], k -> Size(Intersection(Concatenation([V[k].X], kers[\
+k]))));
+                                                                ^
+Syntax warning: Unbound global variable in lins_vtf.g:63
+  ikers := List([1 .. 3], k -> Size(Intersection(Concatenation([V[k].X], kers[\
+k]))));
+                                                                         ^^^^
+GROUP G_0^{14,14,40} |V|=[ 21, 21, 60 ] bound=3000
+  Q index=2520 vertex images=[ 21, 21, 60 ] A7
+  SINGLE_INJ_CERT index=2520 degree=7 a=(1,2,5)(4,7,6) b=(2,3,4)(5,7,6) c=
+(1,5,4)(2,7,6)
+SUMMARY G_0^{14,14,40} quotients=1 SINGLE_INJ=
+[ 2520 ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true time=1231ms
+GROUP G_4^{14,14,40} |V|=[ 21, 21, 60 ] bound=3000
+  Q index=2520 vertex images=[ 21, 21, 60 ] A7
+  SINGLE_INJ_CERT index=2520 degree=7 a=(1,4,7)(2,5,6) b=(2,4,3)(5,6,7) c=
+(1,5,4)(2,7,6)
+  Q index=2520 vertex images=[ 21, 21, 60 ] A7
+  SINGLE_INJ_CERT index=2520 degree=7 a=(1,4,6)(2,7,5) b=(2,4,3)(5,6,7) c=
+(1,5,4)(2,7,6)
+SUMMARY G_4^{14,14,40} quotients=2 SINGLE_INJ=
+[ 2520, 2520 ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true time=
+994ms
+GROUP G_0^{14,18,40} |V|=[ 21, 27, 60 ] bound=3000
+SUMMARY G_0^{14,18,40} quotients=0 SINGLE_INJ=[  ] kernel-intersection sizes=
+[ 21, 27, 60 ] PRODUCT_INJ=false time=886ms
+GROUP G_0^{14,18,48} |V|=[ 21, 27, 72 ] bound=3000
+  Q index=3 vertex images=[ 1, 3, 3 ] C3
+  Q index=3 vertex images=[ 3, 3, 3 ] C3
+  Q index=3 vertex images=[ 3, 3, 3 ] C3
+  Q index=3 vertex images=[ 3, 3, 3 ] C3
+  Q index=9 vertex images=[ 3, 9, 9 ] C3 x C3
+  Q index=21 vertex images=[ 21, 3, 3 ] C7 : C3
+  Q index=63 vertex images=[ 21, 9, 9 ] C3 x (C7 : C3)
+SUMMARY G_0^{14,18,48} quotients=7 SINGLE_INJ=[  ] kernel-intersection sizes=
+[ 1, 3, 8 ] PRODUCT_INJ=false time=1861ms
+GROUP G_0^{14,24,40} |V|=[ 21, 36, 60 ] bound=3000
+  Q index=2520 vertex images=[ 21, 36, 60 ] A7
+  SINGLE_INJ_CERT index=2520 degree=7 a=(1,5,2)(4,6,7) b=(2,6,7)(3,4,5) c=
+(1,5,4)(2,7,6)
+SUMMARY G_0^{14,24,40} quotients=1 SINGLE_INJ=
+[ 2520 ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true time=982ms
+GROUP G_1^{14,24,48} |V|=[ 21, 36, 72 ] bound=3000

@@ -1,0 +1,325 @@
+# summary.txt -- lane hl-hyperbolic-rf-2, 2026-09-14. Extracted verbatim from out/*.out on MSI (backslash line continuations removed).
+## gq_vtf.g SUMMARY lines (epimorphisms onto listed simple quotients)
+gq_q_10: GROUP G_0^{14,16,54} |V|=[ 21, 24, 81 ] | SUMMARY G_0^{14,16,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 24, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_11: GROUP G_2^{14,16,54} |V|=[ 21, 24, 81 ] | SUMMARY G_2^{14,16,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 24, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_12: GROUP G_0^{14,18,54} |V|=[ 21, 27, 81 ] | SUMMARY G_0^{14,18,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 27, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_13: GROUP G_2^{14,18,54} |V|=[ 21, 27, 81 ] | SUMMARY G_2^{14,18,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 27, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_14: GROUP G_0^{14,24,48} |V|=[ 21, 36, 72 ] | SUMMARY G_0^{14,24,48} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 36, 72 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_15: GROUP G_0^{14,24,54} |V|=[ 21, 36, 81 ] | SUMMARY G_0^{14,24,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 36, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_16: GROUP G_0^{14,26,40} |V|=[ 21, 39, 60 ] | SUMMARY G_0^{14,26,40} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 60 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_17: GROUP G_4^{14,26,40} |V|=[ 21, 39, 60 ] | SUMMARY G_4^{14,26,40} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 60 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_18: GROUP G_0^{14,26,48} |V|=[ 21, 39, 72 ] | SUMMARY G_0^{14,26,48} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 72 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_19: GROUP G_1^{14,26,48} |V|=[ 21, 39, 72 ] | SUMMARY G_1^{14,26,48} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 72 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_1: GROUP G_0^{14,14,48} |V|=[ 21, 21, 72 ] | SUMMARY G_0^{14,14,48} epimorphisms=3 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 2 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_20: GROUP G_4^{14,26,48} |V|=[ 21, 39, 72 ] | SUMMARY G_4^{14,26,48} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 72 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_21: GROUP G_5^{14,26,48} |V|=[ 21, 39, 72 ] | SUMMARY G_5^{14,26,48} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 72 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_22: GROUP G_0^{14,26,54} |V|=[ 21, 39, 81 ] | SUMMARY G_0^{14,26,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_23: GROUP G_2^{14,26,54} |V|=[ 21, 39, 81 ] | SUMMARY G_2^{14,26,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_24: GROUP G_4^{14,26,54} |V|=[ 21, 39, 81 ] | SUMMARY G_4^{14,26,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_25: GROUP G_6^{14,26,54} |V|=[ 21, 39, 81 ] | SUMMARY G_6^{14,26,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_26: GROUP G_0^{16,16,48} |V|=[ 24, 24, 72 ] | NO SUMMARY | memlimit=1 tits_unconstructible=0
+gq_q_27: GROUP G_0^{16,16,54} |V|=[ 24, 24, 81 ] | SUMMARY G_0^{16,16,54} epimorphisms=6 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_q_28: GROUP G_0^{16,18,48} |V|=[ 24, 27, 72 ] | SUMMARY G_0^{16,18,48} epimorphisms=6 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_q_29: GROUP G_0^{16,18,54} |V|=[ 24, 27, 81 ] | SUMMARY G_0^{16,18,54} epimorphisms=7 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_2: GROUP G_1^{14,14,48} |V|=[ 21, 21, 72 ] | SUMMARY G_1^{14,14,48} epimorphisms=2 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_30: GROUP G_2^{16,18,54} |V|=[ 24, 27, 81 ] | SUMMARY G_2^{16,18,54} epimorphisms=7 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_31: GROUP G_0^{16,24,48} |V|=[ 24, 36, 72 ] | SUMMARY G_0^{16,24,48} epimorphisms=7 SINGLE_INJ=[ "PSp(6,2)" ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_q_32: GROUP G_2^{16,24,54} |V|=[ 24, 36, 81 ] | SUMMARY G_2^{16,24,54} epimorphisms=4 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_q_33: GROUP G_0^{16,26,40} |V|=[ 24, 39, 60 ] | NO SUMMARY | memlimit=0 tits_unconstructible=1
+gq_q_34: GROUP G_0^{16,26,48} |V|=[ 24, 39, 72 ] | SUMMARY G_0^{16,26,48} epimorphisms=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 2, 1, 6 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_35: GROUP G_1^{16,26,48} |V|=[ 24, 39, 72 ] | SUMMARY G_1^{16,26,48} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 24, 39, 72 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_36: GROUP G_0^{16,26,54} |V|=[ 24, 39, 81 ] | SUMMARY G_0^{16,26,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 24, 39, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_37: GROUP G_2^{16,26,54} |V|=[ 24, 39, 81 ] | SUMMARY G_2^{16,26,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 24, 39, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_38: GROUP G_0^{18,18,48} |V|=[ 27, 27, 72 ] | NO SUMMARY | memlimit=0 tits_unconstructible=0
+gq_q_39: GROUP G_0^{18,18,54} |V|=[ 27, 27, 81 ] | SUMMARY G_0^{18,18,54} epimorphisms=5 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_3: GROUP G_4^{14,14,48} |V|=[ 21, 21, 72 ] | SUMMARY G_4^{14,14,48} epimorphisms=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 2 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_40: GROUP G_0^{18,26,40} |V|=[ 27, 39, 60 ] | SUMMARY G_0^{18,26,40} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 27, 39, 60 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_41: GROUP G_0^{18,26,54} |V|=[ 27, 39, 81 ] | SUMMARY G_0^{18,26,54} epimorphisms=5 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_42: GROUP G_2^{18,26,54} |V|=[ 27, 39, 81 ] | SUMMARY G_2^{18,26,54} epimorphisms=5 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_43: GROUP G_0^{24,26,40} |V|=[ 36, 39, 60 ] | SUMMARY G_0^{24,26,40} epimorphisms=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 3, 1, 1 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_44: GROUP G_0^{24,26,48} |V|=[ 36, 39, 72 ] | SUMMARY G_0^{24,26,48} epimorphisms=2 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 2 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_45: GROUP G_1^{24,26,48} |V|=[ 36, 39, 72 ] | SUMMARY G_1^{24,26,48} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 36, 39, 72 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_46: GROUP G_2^{24,26,54} |V|=[ 36, 39, 81 ] | SUMMARY G_2^{24,26,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 36, 39, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_47: GROUP G_0^{26,26,40} |V|=[ 39, 39, 60 ] | SUMMARY G_0^{26,26,40} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 39, 39, 60 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_48: GROUP G_0^{26,26,48} |V|=[ 39, 39, 72 ] | SUMMARY G_0^{26,26,48} epimorphisms=3 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_49: GROUP G_1^{26,26,48} |V|=[ 39, 39, 72 ] | SUMMARY G_1^{26,26,48} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 39, 39, 72 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_4: GROUP G_5^{14,14,48} |V|=[ 21, 21, 72 ] | SUMMARY G_5^{14,14,48} epimorphisms=2 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 2 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_50: GROUP G_4^{26,26,48} |V|=[ 39, 39, 72 ] | SUMMARY G_4^{26,26,48} epimorphisms=5 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_q_51: GROUP G_5^{26,26,48} |V|=[ 39, 39, 72 ] | SUMMARY G_5^{26,26,48} epimorphisms=4 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 2 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_52: GROUP G_0^{26,26,54} |V|=[ 39, 39, 81 ] | SUMMARY G_0^{26,26,54} epimorphisms=2 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_53: GROUP G_4^{26,26,54} |V|=[ 39, 39, 81 ] | SUMMARY G_4^{26,26,54} epimorphisms=3 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_5: GROUP G_0^{14,14,54} |V|=[ 21, 21, 81 ] | SUMMARY G_0^{14,14,54} epimorphisms=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_6: GROUP G_4^{14,14,54} |V|=[ 21, 21, 81 ] | SUMMARY G_4^{14,14,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 21, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_7: GROUP G_0^{14,16,40} |V|=[ 21, 24, 60 ] | SUMMARY G_0^{14,16,40} epimorphisms=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 2, 1 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_8: GROUP G_0^{14,16,48} |V|=[ 21, 24, 72 ] | SUMMARY G_0^{14,16,48} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 24, 72 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_q_9: GROUP G_1^{14,16,48} |V|=[ 21, 24, 72 ] | SUMMARY G_1^{14,16,48} epimorphisms=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 2, 6 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_344_10: GROUP G_0^{24,54,54} |V|=[ 36, 81, 81 ] | SUMMARY G_0^{24,54,54} epimorphisms=22 SINGLE_INJ=[ "AlternatingGroup(9)", "AlternatingGroup(9)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)" ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_344_11: GROUP G_2^{24,54,54} |V|=[ 36, 81, 81 ] | SUMMARY G_2^{24,54,54} epimorphisms=97 SINGLE_INJ=[ "AlternatingGroup(9)", "AlternatingGroup(9)", "AlternatingGroup(9)",   "AlternatingGroup(9)", "AlternatingGroup(9)", "PSp(6,2)", "PSp(6,2)",   "AlternatingGroup(10)", "AlternatingGroup(10)", "AlternatingGroup(10)",   "AlternatingGroup(10)", "AlternatingGroup(10)", "AlternatingGroup(10)",   "AlternatingGroup(10)", "PSU(4,3)", "PSU(4,3)", "PSU(4,3)", "PSU(4,3)",   "PSU(4,3)", "PSU(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)",   "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)",   "PSL(4,3)", "PSL(4,3)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "AlternatingGroup(11)", "AlternatingGroup(11)", "AlternatingGroup(11)",   "AlternatingGroup(11)", "AlternatingGroup(11)" ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_344_12: GROUP G_0^{26,40,48} |V|=[ 39, 60, 72 ] | NO SUMMARY | memlimit=0 tits_unconstructible=1
+gq_344_13: GROUP G_2^{26,40,54} |V|=[ 39, 60, 81 ] | SUMMARY G_2^{26,40,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 39, 60, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_344_14: GROUP G_0^{26,48,54} |V|=[ 39, 72, 81 ] | SUMMARY G_0^{26,48,54} epimorphisms=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_344_15: GROUP G_2^{26,48,54} |V|=[ 39, 72, 81 ] | SUMMARY G_2^{26,48,54} epimorphisms=2 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_344_16: GROUP G_0^{26,54,54} |V|=[ 39, 81, 81 ] | SUMMARY G_0^{26,54,54} epimorphisms=5 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 3, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_344_1: GROUP G_0^{14,40,48} |V|=[ 21, 60, 72 ] | SUMMARY G_0^{14,40,48} epimorphisms=4 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 2 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_344_2: GROUP G_1^{14,48,48} |V|=[ 21, 72, 72 ] | SUMMARY G_1^{14,48,48} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 72, 72 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_344_3: GROUP G_0^{14,48,54} |V|=[ 21, 72, 81 ] | SUMMARY G_0^{14,48,54} epimorphisms=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_344_4: GROUP G_0^{14,54,54} |V|=[ 21, 81, 81 ] | SUMMARY G_0^{14,54,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 81, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_344_5: GROUP G_8^{14,54,54} |V|=[ 21, 81, 81 ] | SUMMARY G_8^{14,54,54} epimorphisms=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 81, 81 ] PRODUCT_INJ=false | memlimit=0 tits_unconstructible=0
+gq_344_6: GROUP G_0^{16,40,48} |V|=[ 24, 60, 72 ] | SUMMARY G_0^{16,40,48} epimorphisms=18 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_344_7: GROUP G_0^{18,40,54} |V|=[ 27, 60, 81 ] | SUMMARY G_0^{18,40,54} epimorphisms=25 SINGLE_INJ=[ "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)",   "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSU(5,2)", "PSU(5,2)"  ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_344_8: GROUP G_0^{18,54,54} |V|=[ 27, 81, 81 ] | SUMMARY G_0^{18,54,54} epimorphisms=9 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_344_9: GROUP G_2^{24,48,54} |V|=[ 36, 72, 81 ] | SUMMARY G_2^{24,48,54} epimorphisms=42 SINGLE_INJ=[ "PSp(6,2)", "PSU(4,3)", "PSU(4,3)", "PSU(4,3)", "PSL(4,3)", "PSL(4,3)",   "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)" ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_444_1: GROUP G_0^{48,48,48} |V|=[ 72, 72, 72 ] | NO SUMMARY | memlimit=1 tits_unconstructible=0
+gq_444_2: GROUP G_0^{48,54,54} |V|=[ 72, 81, 81 ] | SUMMARY G_0^{48,54,54} epimorphisms=72 SINGLE_INJ=[ "PSp(4,3)", "PSp(4,3)", "PSp(4,3)", "PSp(4,3)", "PSU(4,3)", "PSU(4,3)",   "PSU(4,3)", "PSU(4,3)", "PSU(4,3)", "PSU(4,3)", "PSL(4,3)", "PSL(4,3)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)"  ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_444_3: GROUP G_8^{48,54,54} |V|=[ 72, 81, 81 ] | SUMMARY G_8^{48,54,54} epimorphisms=127 SINGLE_INJ=[ "PSp(4,3)", "PSp(4,3)", "PSp(4,3)", "PSp(4,3)", "PSp(4,3)", "PSp(4,3)",   "PSp(4,3)", "PSp(4,3)", "PSU(4,3)", "PSU(4,3)", "PSU(4,3)", "PSU(4,3)",   "PSU(4,3)", "PSU(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)",   "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)", "PSL(4,3)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)" ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_444_4: GROUP G_0^{54,54,54} |V|=[ 81, 81, 81 ] | SUMMARY G_0^{54,54,54} epimorphisms=21 SINGLE_INJ=[ "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)" ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+gq_444_5: GROUP G_2^{54,54,54} |V|=[ 81, 81, 81 ] | SUMMARY G_2^{54,54,54} epimorphisms=100 SINGLE_INJ=[ "PSp(4,3)", "PSp(4,3)", "PSp(4,3)", "PSp(4,3)", "AlternatingGroup(9)",   "AlternatingGroup(9)", "AlternatingGroup(9)", "AlternatingGroup(9)",   "PSU(4,3)", "PSU(4,3)", "PSU(4,3)", "PSU(4,3)", "PSU(4,3)", "PSU(4,3)",   "PSL(4,3)", "PSL(4,3)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)",   "PSU(5,2)", "PSU(5,2)", "PSU(5,2)", "PSU(5,2)" ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true | memlimit=0 tits_unconstructible=0
+## lins_vtf.g SUMMARY lines (normal subgroups of index <= 10000)
+lins_q_10000_10: SUMMARY G_0^{14,16,54} quotients=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 7, 8, 27 ] PRODUCT_INJ=false time=4293ms EXIT=0
+lins_q_10000_11: SUMMARY G_2^{14,16,54} quotients=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 7, 8, 27 ] PRODUCT_INJ=false time=4263ms EXIT=0
+lins_q_10000_12: SUMMARY G_0^{14,18,54} quotients=9 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false time=6388ms EXIT=0
+lins_q_10000_13: SUMMARY G_2^{14,18,54} quotients=9 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false time=6601ms EXIT=0
+lins_q_10000_14: NO SUMMARY (running or unfinished) 
+lins_q_10000_15: SUMMARY G_0^{14,24,54} quotients=7 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 4, 9 ] PRODUCT_INJ=false time=5994ms EXIT=0
+lins_q_10000_16: SUMMARY G_0^{14,26,40} quotients=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 60 ] PRODUCT_INJ=false time=28792ms EXIT=0
+lins_q_10000_17: SUMMARY G_4^{14,26,40} quotients=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 39, 60 ] PRODUCT_INJ=false time=29227ms EXIT=0
+lins_q_10000_18: SUMMARY G_0^{14,26,48} quotients=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 7, 13, 24 ] PRODUCT_INJ=false time=4161ms EXIT=0
+lins_q_10000_19: SUMMARY G_1^{14,26,48} quotients=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 7, 13, 24 ] PRODUCT_INJ=false time=4153ms EXIT=0
+lins_q_10000_1: NO SUMMARY (running or unfinished) 
+lins_q_10000_20: SUMMARY G_4^{14,26,48} quotients=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 7, 13, 24 ] PRODUCT_INJ=false time=3967ms EXIT=0
+lins_q_10000_21: SUMMARY G_5^{14,26,48} quotients=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 7, 13, 24 ] PRODUCT_INJ=false time=4089ms EXIT=0
+lins_q_10000_22: SUMMARY G_0^{14,26,54} quotients=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 7, 13, 27 ] PRODUCT_INJ=false time=4217ms EXIT=0
+lins_q_10000_23: SUMMARY G_2^{14,26,54} quotients=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 7, 13, 27 ] PRODUCT_INJ=false time=4108ms EXIT=0
+lins_q_10000_24: SUMMARY G_4^{14,26,54} quotients=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 7, 13, 27 ] PRODUCT_INJ=false time=4636ms EXIT=0
+lins_q_10000_25: SUMMARY G_6^{14,26,54} quotients=1 SINGLE_INJ=[  ] kernel-intersection sizes=[ 7, 13, 27 ] PRODUCT_INJ=false time=4620ms EXIT=0
+lins_q_10000_26: NO SUMMARY (running or unfinished) 
+lins_q_10000_27: SUMMARY G_0^{16,16,54} quotients=12 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false time=2152823ms EXIT=0
+lins_q_10000_28: NO SUMMARY (running or unfinished) 
+lins_q_10000_29: NO SUMMARY (running or unfinished) 
+lins_q_10000_2: SUMMARY G_1^{14,14,48} quotients=9 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false time=2369195ms EXIT=0
+lins_q_10000_3: SUMMARY G_4^{14,14,48} quotients=9 SINGLE_INJ=[ 5040 ] kernel-intersection sizes=[ 1, 1, 1 ] PRODUCT_INJ=true time=454963ms EXIT=0
+lins_q_10000_4: SUMMARY G_5^{14,14,48} quotients=2 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 24 ] PRODUCT_INJ=false time=4405ms EXIT=0
+lins_q_10000_5: SUMMARY G_0^{14,14,54} quotients=2 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false time=4443ms EXIT=0
+lins_q_10000_6: SUMMARY G_4^{14,14,54} quotients=2 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 27 ] PRODUCT_INJ=false time=4294ms EXIT=0
+lins_q_10000_7: SUMMARY G_0^{14,16,40} quotients=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 24, 60 ] PRODUCT_INJ=false time=3802ms EXIT=0
+lins_q_10000_8: SUMMARY G_0^{14,16,48} quotients=5 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false time=7832ms EXIT=0
+lins_q_10000_9: NO SUMMARY (running or unfinished) 
+## calibration on VTF Yes groups (smoke.out, bound 3000)
+## certificate exports and verifier outputs
+== cert_ctl_g0_14_24_40.out
+== cert_g4_14_14_48.out
+CERT G_4^{14,14,48} index=5040 |Q|=5040 degree=240 struct=C2 . A7 perfect=true
+GAP relator check: true
+GAP vertex image orders: [ 21, 21, 72 ] abstract vertex orders: [ 21, 21, 72 ]
+CERT_WRITTEN certs/g4_14_14_48.cert
+== certp_g0_16_16_54.out
+  kept epimorphism onto PSL(3,3) (degree 13); kernel intersections now 
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+CERT G_0^{16,16,54} targets=[ "PSL(3,3)", "PSp(4,3)" ] degree=53
+GAP relator check: true
+GAP vertex image orders: [ 24, 24, 81 ] abstract vertex orders: [ 24, 24, 81 ]
+CERT_WRITTEN certs/g0_16_16_54.cert
+== certp_g0_16_18_48.out
+  kept epimorphism onto PSL(3,3) (degree 13); kernel intersections now 
+  kept epimorphism onto AlternatingGroup(10) (degree 
+CERT G_0^{16,18,48} targets=[ "PSL(3,3)", "AlternatingGroup(10)" ] degree=23
+GAP relator check: true
+GAP vertex image orders: [ 24, 27, 72 ] abstract vertex orders: [ 24, 27, 72 ]
+CERT_WRITTEN certs/g0_16_18_48.cert
+== certp_g0_16_24_48.out
+  kept epimorphism onto AlternatingGroup(9) (degree 
+  kept epimorphism onto PSp(6,2) (degree 63); kernel intersections now 
+CERT G_0^{16,24,48} targets=[ "AlternatingGroup(9)", "PSp(6,2)" ] degree=72
+GAP relator check: true
+GAP vertex image orders: [ 24, 36, 72 ] abstract vertex orders: [ 24, 36, 72 ]
+CERT_WRITTEN certs/g0_16_24_48.cert
+== certp_g0_16_40_48.out
+  kept epimorphism onto PSL(2,9) (degree 10); kernel intersections now 
+  kept epimorphism onto MathieuGroup(11) (degree 
+CERT G_0^{16,40,48} targets=[ "PSL(2,9)", "MathieuGroup(11)" ] degree=21
+GAP relator check: true
+GAP vertex image orders: [ 24, 60, 72 ] abstract vertex orders: [ 24, 60, 72 ]
+CERT_WRITTEN certs/g0_16_40_48.cert
+== certp_g0_18_40_54.out
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+  kept epimorphism onto MathieuGroup(12) (degree 
+CERT G_0^{18,40,54} targets=[ "PSp(4,3)", "MathieuGroup(12)" ] degree=52
+GAP relator check: true
+GAP vertex image orders: [ 27, 60, 81 ] abstract vertex orders: [ 27, 60, 81 ]
+CERT_WRITTEN certs/g0_18_40_54.cert
+== certp_g0_18_54_54.out
+  kept epimorphism onto PSL(3,3) (degree 13); kernel intersections now 
+  kept epimorphism onto AlternatingGroup(9) (degree 
+CERT G_0^{18,54,54} targets=[ "PSL(3,3)", "AlternatingGroup(9)" ] degree=22
+GAP relator check: true
+GAP vertex image orders: [ 27, 81, 81 ] abstract vertex orders: [ 27, 81, 81 ]
+CERT_WRITTEN certs/g0_18_54_54.cert
+== certp_g0_24_54_54.out
+  kept epimorphism onto AlternatingGroup(9) (degree 
+  kept epimorphism onto AlternatingGroup(9) (degree 
+CERT G_0^{24,54,54} targets=[ "AlternatingGroup(9)", "AlternatingGroup(9)" 
+GAP relator check: true
+GAP vertex image orders: [ 36, 81, 81 ] abstract vertex orders: [ 36, 81, 81 ]
+CERT_WRITTEN certs/g0_24_54_54.cert
+== certp_g0_48_54_54.out
+  kept epimorphism onto PSL(3,3) (degree 13); kernel intersections now 
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+CERT G_0^{48,54,54} targets=[ "PSL(3,3)", "PSp(4,3)", "PSp(4,3)" ] degree=93
+GAP relator check: true
+GAP vertex image orders: [ 72, 81, 81 ] abstract vertex orders: [ 72, 81, 81 ]
+CERT_WRITTEN certs/g0_48_54_54.cert
+== certp_g0_54_54_54.out
+  kept epimorphism onto PSL(3,3) (degree 13); kernel intersections now 
+  kept epimorphism onto AlternatingGroup(9) (degree 
+  kept epimorphism onto AlternatingGroup(9) (degree 
+CERT G_0^{54,54,54} targets=[ "PSL(3,3)", "AlternatingGroup(9)", 
+GAP relator check: true
+GAP vertex image orders: [ 81, 81, 81 ] abstract vertex orders: [ 81, 81, 81 ]
+CERT_WRITTEN certs/g0_54_54_54.cert
+== certp_g2_16_24_54.out
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+  kept epimorphism onto AlternatingGroup(10) (degree 
+CERT G_2^{16,24,54} targets=[ "PSp(4,3)", "AlternatingGroup(10)" ] degree=50
+GAP relator check: true
+GAP vertex image orders: [ 24, 36, 81 ] abstract vertex orders: [ 24, 36, 81 ]
+CERT_WRITTEN certs/g2_16_24_54.cert
+== certp_g2_24_48_54.out
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+  kept epimorphism onto AlternatingGroup(9) (degree 
+CERT G_2^{24,48,54} targets=[ "PSp(4,3)", "AlternatingGroup(9)" ] degree=49
+GAP relator check: true
+GAP vertex image orders: [ 36, 72, 81 ] abstract vertex orders: [ 36, 72, 81 ]
+CERT_WRITTEN certs/g2_24_48_54.cert
+== certp_g2_24_54_54.out
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+  kept epimorphism onto AlternatingGroup(9) (degree 
+CERT G_2^{24,54,54} targets=[ "PSp(4,3)", "AlternatingGroup(9)" ] degree=49
+GAP relator check: true
+GAP vertex image orders: [ 36, 81, 81 ] abstract vertex orders: [ 36, 81, 81 ]
+CERT_WRITTEN certs/g2_24_54_54.cert
+== certp_g2_26_48_54.out
+  kept epimorphism onto SimpleGroup("G2(3)") (degree 
+  kept epimorphism onto PSL(4,3) (degree 40); kernel intersections now 
+CERT G_2^{26,48,54} targets=[ "SimpleGroup("G2(3)")", "PSL(4,3)" ] degree=
+GAP relator check: true
+GAP vertex image orders: [ 39, 72, 81 ] abstract vertex orders: [ 39, 72, 81 ]
+CERT_WRITTEN certs/g2_26_48_54.cert
+== certp_g2_54_54_54.out
+  kept epimorphism onto PSL(3,3) (degree 13); kernel intersections now 
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+CERT G_2^{54,54,54} targets=[ "PSL(3,3)", "PSp(4,3)" ] degree=53
+GAP relator check: true
+GAP vertex image orders: [ 81, 81, 81 ] abstract vertex orders: [ 81, 81, 81 ]
+CERT_WRITTEN certs/g2_54_54_54.cert
+== certp_g4_26_26_48.out
+  kept epimorphism onto PSL(2,13) (degree 14); kernel intersections now 
+  kept epimorphism onto PSL(3,3) (degree 13); kernel intersections now 
+  kept epimorphism onto SimpleGroup("G2(3)") (degree 
+CERT G_4^{26,26,48} targets=
+GAP relator check: true
+GAP vertex image orders: [ 39, 39, 72 ] abstract vertex orders: [ 39, 39, 72 ]
+CERT_WRITTEN certs/g4_26_26_48.cert
+== certp_g8_48_54_54.out
+  kept epimorphism onto PSL(3,3) (degree 13); kernel intersections now 
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+CERT G_8^{48,54,54} targets=[ "PSL(3,3)", "PSp(4,3)", "PSp(4,3)" ] degree=93
+GAP relator check: true
+GAP vertex image orders: [ 72, 81, 81 ] abstract vertex orders: [ 72, 81, 81 ]
+CERT_WRITTEN certs/g8_48_54_54.cert
+== verify_ctl_g0_14_24_40.out
+Traceback (most recent call last):
+  File "/scratch.global/sauer354/hl-hyperbolic-rf-2/verify_vtf_cert.py", line 102, in <module>
+    f, rels = load(sys.argv[1])
+              ^^^^^^^^^^^^^^^^^
+  File "/scratch.global/sauer354/hl-hyperbolic-rf-2/verify_vtf_cert.py", line 16, in load
+    for line in open(path):
+                ^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'certs/ctl_g0_14_24_40.cert'
+EXIT=1
+== verify_g0_16_16_54.out
+name G_0^{16,16,54} degree 53 relators 7 failing []
+vertex image orders [24, 24, 81] expected [24, 24, 81] link girths [6, 6, 8] sum 1/r_i 11/12
+CERTIFICATE VALID
+EXIT=0
+== verify_g0_16_18_48.out
+name G_0^{16,18,48} degree 23 relators 7 failing []
+vertex image orders [24, 27, 72] expected [24, 27, 72] link girths [6, 6, 8] sum 1/r_i 11/12
+CERTIFICATE VALID
+EXIT=0
+== verify_g0_16_24_48.out
+name G_0^{16,24,48} degree 72 relators 7 failing []
+vertex image orders [24, 36, 72] expected [24, 36, 72] link girths [6, 6, 8] sum 1/r_i 11/12
+CERTIFICATE VALID
+EXIT=0
+== verify_g0_16_40_48.out
+name G_0^{16,40,48} degree 21 relators 7 failing []
+vertex image orders [24, 60, 72] expected [24, 60, 72] link girths [6, 8, 8] sum 1/r_i 5/6
+CERTIFICATE VALID
+EXIT=0
+== verify_g0_18_40_54.out
+name G_0^{18,40,54} degree 52 relators 9 failing []
+vertex image orders [27, 60, 81] expected [27, 60, 81] link girths [6, 8, 8] sum 1/r_i 5/6
+CERTIFICATE VALID
+EXIT=0
+== verify_g0_18_54_54.out
+name G_0^{18,54,54} degree 22 relators 9 failing []
+vertex image orders [27, 81, 81] expected [27, 81, 81] link girths [6, 8, 8] sum 1/r_i 5/6
+CERTIFICATE VALID
+EXIT=0
+== verify_g0_24_54_54.out
+name G_0^{24,54,54} degree 18 relators 9 failing []
+vertex image orders [36, 81, 81] expected [36, 81, 81] link girths [6, 8, 8] sum 1/r_i 5/6
+CERTIFICATE VALID
+EXIT=0
+== verify_g0_48_54_54.out
+name G_0^{48,54,54} degree 93 relators 8 failing []
+vertex image orders [72, 81, 81] expected [72, 81, 81] link girths [8, 8, 8] sum 1/r_i 3/4
+CERTIFICATE VALID
+EXIT=0
+== verify_g0_54_54_54.out
+name G_0^{54,54,54} degree 31 relators 9 failing []
+vertex image orders [81, 81, 81] expected [81, 81, 81] link girths [8, 8, 8] sum 1/r_i 3/4
+CERTIFICATE VALID
+EXIT=0
+== verify_g2_16_24_54.out
+name G_2^{16,24,54} degree 50 relators 8 failing []
+vertex image orders [24, 36, 81] expected [24, 36, 81] link girths [6, 6, 8] sum 1/r_i 11/12
+CERTIFICATE VALID
+EXIT=0
+== verify_g2_24_48_54.out
+name G_2^{24,48,54} degree 49 relators 8 failing []
+vertex image orders [36, 72, 81] expected [36, 72, 81] link girths [6, 8, 8] sum 1/r_i 5/6
+CERTIFICATE VALID
+EXIT=0
+== verify_g2_24_54_54.out
+name G_2^{24,54,54} degree 49 relators 9 failing []
+vertex image orders [36, 81, 81] expected [36, 81, 81] link girths [6, 8, 8] sum 1/r_i 5/6
+CERTIFICATE VALID
+EXIT=0
+== verify_g2_26_48_54.out
+name G_2^{26,48,54} degree 391 relators 8 failing []
+vertex image orders [39, 72, 81] expected [39, 72, 81] link girths [6, 8, 8] sum 1/r_i 5/6
+CERTIFICATE VALID
+EXIT=0
+== verify_g2_54_54_54.out
+name G_2^{54,54,54} degree 53 relators 9 failing []
+vertex image orders [81, 81, 81] expected [81, 81, 81] link girths [8, 8, 8] sum 1/r_i 3/4
+CERTIFICATE VALID
+EXIT=0
+== verify_g4_14_14_48.out
+name G_4^{14,14,48} degree 240 relators 6 failing []
+vertex image orders [21, 21, 72] expected [21, 21, 72] link girths [6, 6, 8] sum 1/r_i 11/12
+CERTIFICATE VALID
+EXIT=0
+== verify_g4_26_26_48.out
+name G_4^{26,26,48} degree 378 relators 8 failing []
+vertex image orders [39, 39, 72] expected [39, 39, 72] link girths [6, 6, 8] sum 1/r_i 11/12
+CERTIFICATE VALID
+EXIT=0
+== verify_g8_48_54_54.out
+name G_8^{48,54,54} degree 93 relators 8 failing []
+vertex image orders [72, 81, 81] expected [72, 81, 81] link girths [8, 8, 8] sum 1/r_i 3/4
+CERTIFICATE VALID
+EXIT=0
