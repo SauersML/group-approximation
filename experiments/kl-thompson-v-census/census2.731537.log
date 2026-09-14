@@ -1,0 +1,10 @@
+6e13dc01071bcfcbc4618ecb85f09b66  census2.py
+(6, 2) {'classes': 10006, 'finite': 4382, 'r>=4': 756, 'kept': 4868}
+(6, 4) {'classes': 5050, 'finite': 2332, 'r>=4': 744, 'kept': 1974}
+(7, 1) {'classes': 83606, 'finite': 27872, 'r>=4': 960, 'kept': 54774}
+(7, 3) {'classes': 57390, 'finite': 19802, 'r>=4': 960, 'kept': 36628}
+(7, 5) {'classes': 25150, 'finite': 9290, 'r>=4': 960, 'kept': 14900}
+total kept 113144
+113144 survivors67.txt
+40
+DONE

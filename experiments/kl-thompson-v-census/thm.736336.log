@@ -1,0 +1,36 @@
+abd5af532788e5316b312e9101dd8707  certify.py
+5a57c59b59c97fe27ba02d9774f1d135  vgroup.py
+57b19f07f9f077fcd90d22c18b0e9f53  survivors67.txt
+ball radius -1 size 0 candidates {} setup_s 0.0
+stats {'FRONTIER': 97934, 'POWER': 6, 'CORNER3': 15204} words 113144 loop_s 64.2
+113144 theorems_out.txt
+    652 n=6 m=2 r=0 FRONTIER
+      6 n=6 m=2 r=0 POWER
+    220 n=6 m=2 r=1 FRONTIER
+   3990 n=6 m=2 r=2 FRONTIER
+    170 n=6 m=4 r=0 FRONTIER
+    216 n=6 m=4 r=1 FRONTIER
+   1588 n=6 m=4 r=2 FRONTIER
+   1508 n=7 m=1 r=0 FRONTIER
+  25934 n=7 m=1 r=1 FRONTIER
+   2644 n=7 m=1 r=2 FRONTIER
+   7236 n=7 m=1 r=3 CORNER3
+  17452 n=7 m=1 r=3 FRONTIER
+   1194 n=7 m=3 r=0 FRONTIER
+  13822 n=7 m=3 r=1 FRONTIER
+   2644 n=7 m=3 r=2 FRONTIER
+   5616 n=7 m=3 r=3 CORNER3
+  13352 n=7 m=3 r=3 FRONTIER
+    550 n=7 m=5 r=0 FRONTIER
+   4242 n=7 m=5 r=1 FRONTIER
+   2644 n=7 m=5 r=2 FRONTIER
+   2352 n=7 m=5 r=3 CORNER3
+   5112 n=7 m=5 r=3 FRONTIER
+97934 frontier.txt
+6891 BtatttaTctbt CORNER3
+6892 BtatttaTatct CORNER3
+6893 BtatttaTBtct CORNER3
+6322 BtaTctBtaTct POWER
+6458 BtcTatBtcTat POWER
+6538 BtctaTBtctaT POWER
+DONE

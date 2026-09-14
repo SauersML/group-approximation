@@ -1,0 +1,8 @@
+99e3e3a43a4819dca465d0a1bf18efaf  klcx.g
+72ae14ef60b6349458e6c945f61acdc4  calib.g
+C1 word=taTB result=1 expect=1 ms=1
+C2 word=taTcBc result=1 expect=1 ms=1
+C3 word=atbTatBt result=overflow expect=overflow ms=168
+C4 word=atcTatct result=overflow expect=overflow ms=216
+C5 word=atbTctatBTctcT result=overflow expect=overflow ms=158
+DONE

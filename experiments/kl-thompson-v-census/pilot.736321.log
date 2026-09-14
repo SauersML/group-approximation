@@ -1,0 +1,17 @@
+abd5af532788e5316b312e9101dd8707  certify.py
+5a57c59b59c97fe27ba02d9774f1d135  vgroup.py
+400 pilot_in.txt
+ball radius 4 size 98 candidates {1: 98, 2: 166, 3: 522, 4: 648} setup_s 0.0
+stats {'FRONTIER': 335, 'RETRACT': 8, 'CORNER3': 57} words 400 loop_s 5.1
+     57 CORNER3
+    335 FRONTIER
+      8 RETRACT
+2547 BTaTatbtctct RETRACT k=1 t0=[('','')]
+29432 BTaTcttbttt RETRACT k=1 t0=[('00','01'),('01','1'),('1','00')]
+31130 BTTctatbtctat RETRACT k=1 t0=[('00','01'),('01','1'),('1','00')]
+32545 BTaTctbtcttct RETRACT k=1 t0=[('00','1'),('01','00'),('1','01')]
+41035 BtcTctbTatctt RETRACT k=3 t0=[('0','10'),('10','11'),('1100','01'),('1101','000'),('111','001')]
+73863 BtaTatbTcTatt RETRACT k=1 t0=[('00','1'),('01','00'),('1','01')]
+75561 BTatcTTatbtt RETRACT k=1 t0=[('00','1'),('01','01'),('1','00')]
+100748 BTbTctataTctt RETRACT k=1 t0=[('','')]
+DONE

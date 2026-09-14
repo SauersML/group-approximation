@@ -1,0 +1,14 @@
+KL collapse run over Thompson V, job array 731591 (40 tasks, coset budget 200000)
+99e3e3a43a4819dca465d0a1bf18efaf  klcx.g
+57b19f07f9f077fcd90d22c18b0e9f53  survivors67.txt
+== sacct states
+     40 COMPLETED
+== logs without DONE
+0
+== verdicts
+113144
+ 113144 overflow
+== per-word ms
+n=113144 min=272 median=298 p99=2158 max=2774 total_s=43276
+== md5 of concatenated results
+eef38dc09b7e91c566cc4e55ac3b5c34  -

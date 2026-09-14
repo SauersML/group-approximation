@@ -1,0 +1,7 @@
+99e3e3a43a4819dca465d0a1bf18efaf  klcx.g
+be5735a048f17236fa540f43b80344ac  calib2.g
+C6 word=tabTc result=1 expect=1 maxc=2000000 ms=1
+C7 word=tababTB result=1 expect=1 maxc=2000000 ms=1
+C8 word=tbcTa result=1 expect=record maxc=2000000 ms=1
+C9 word=atbTctatBTctcT result=overflow expect=overflow maxc=200000 ms=362
+DONE

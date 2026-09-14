@@ -44,3 +44,23 @@ such that `a` dies in `(V * <t>)/<<w>>`.
 2. **Structured candidates.** Deferred. No candidate family over V has been
    proposed. Any surviving word must evade every fence in item 1 with
    coefficients drawn from V.
+3. **Exhaustive generator census at variable length six and seven (2026-09-13).** No violation found.
+   - **Census:** every `t`-exponent is `+-1` and coefficients are in `{1, a, b, b^(-1), c}`.
+     That gives `181202` classes up to rotation and `w -> sigma(w^(-1))`.
+   - **Certified injective:** `85432` classes, by
+     `kl-thompson-v-short-generator-words-certified-injective`:
+     - finite coefficient subgroup: `63678`;
+     - four light corners: `4380`;
+     - proper powers: `6`;
+     - three light corners with (D4) and (A2): `15204`;
+     - exact retractions onto V: `2164`.
+   - **Collapse test.** The `113144` words left after the first two filters were each run
+     through Todd--Coxeter enumeration over `<t>`, using the nine Bleak--Quick relators
+     plus `w`, at `200000` cosets. All `113144` overflowed and none collapsed (MSI job array 731591).
+     - V is simple, so a violation shows up exactly as index 1.
+     - An overflow certifies nothing.
+   - **Frontier:** `95770` words, by class in
+     `research/artifacts/kl-thompson-v-generator-census-2026-09-13.md`.
+   - **What a violation needs.** A violation of variable length at most seven with generator
+     coefficients lies in the frontier and needs a coset budget above `200000`. Longer words
+     or coefficients beyond the generators are untouched.
