@@ -222,3 +222,38 @@ When probe and land work again: probe V5, land, re-point the 14 W1 rows to the `
 report to main.
 
 LANDED 8c3fc5f4a (probe 0914-082738-17083 GREEN: both modules BUILT on a real rebuild and COMPILED, 0 errors, 23 audits classical, no sorryAx; queued for wiring).  The 14 W1 rows cite the `_of_residualsV5` carriers with the ten live residuals, followed by the `_of_greendlinger` carriers; still `partial`.  The two-threshold drafts (binder 5 whole) stay unlanded.
+
+## Item 7: waist V6 at leaf level (coordinator ~09:00, 09-14)
+
+Module `GGT/VanKampen/Estimating/OsinGreendlingerWaistV6` (additive, over V5):
+`relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV6`, plus the section wrappers `OsinTwoGonEulerWalkSectionStatement`,
+`OsinTwoGonEulerGapSectionStatement` and `osinTwoGonHoldsSection_of_eulerWalk` (max thresholds over w1-binder-1's
+`twoGonHoldsInput_of_eulerWalk`).  Module `Manuscript/NonMF/TorsionFreeResidualsV6`: the 22 endpoints `_of_residualsV6`.
+
+Reductions applied (all on origin): `osinLemma94ClassEndLoopsInput_of_budget` (68b6b0e96), `osinLemma94SameCellPocketInput_of_loopCut`
+(bb887b17d), `osinLemma94CaseOneRCell_of_noSpurPockets` with `osinLemma94CaseOneNoSpurXPocket_of_enclosedLoopCutSucc`, its `Y` form and
+`osinLemma94CaseOneRCellSpur_of_enclosure` (w1-binder-8), `twoGonHoldsInput_of_eulerWalk` (c109573e3), `cellPocketWalkEuler_of_noninterleaving`
+(358515a30), `cellPocketPinchSectionStatement_of_outerPinchStep` (117d5d3c3), `pocketPinchLabelledSectionTwoArcStatement_of_outerPinchStep`
+(f81311dc9).  Refutation scan on origin (`¬ X` for every V5 residual and leaf): none.
+
+LEAF residual list (namespace `GGT.VanKampen`, `.{u, w, v}`; `.{v}` for the vertex count) with owner lanes:
+
+| # | leaf | reduces | owner lanes |
+|---|---|---|---|
+| 1 | `OsinLemma94ClassEndLoopsBudgetInput` | class end loops | ms-binary, ms-core-2, ms-compress-1 (LongTransitions `_of_pieces` and bad-junction reduction pending) |
+| 2 | `SameCellPocketCellFreeValueStatement` | same-cell pocket values | ms-compress-2, w1-binder-5 |
+| 3 | `SameCellPocketLoopCutStatement` | same-cell pocket values | ms-compress-2, w1-binder-5, ms-traces-2 |
+| 4 | `EnclosedSubdiagramLoopCutSuccStatement` | Case 1 relator cell (X, Y, spur) | w1-binder-8, ms-intro-1, ms-traces-2 |
+| 5 | `ClosedWalkEnclosedSubdiagramSuccStatement` | Case 1 spur | w1-binder-8, w1-binder-6, ms-traces-2 |
+| 6 | `OsinLemma94CaseOneSpurEnclosureStatement` | Case 1 spur | w1-binder-8 |
+| 7 | `OsinLemma94ClassCaseGapSpanStatement` | class cases (R2) | ct-bilateral-cell, ct-return-tower |
+| 8 | `OsinTwoGonEulerWalkSectionStatement` (section form of `TwoGonEulerWalkInput`) | C6′ | w1-binder-1 |
+| 9 | `OsinTwoGonEulerGapSectionStatement` (section form of `TwoGonEulerGapInput`) | C6′ | w1-binder-1 |
+| 10 | `NoninterleavingVertexCountStatement` | cell walk Euler | ms-inverses-2, ms-inverses-4, w1-binder-6 |
+| 11 | `CellPocketWalkNoninterleavingStatement` | cell walk Euler | ms-inverses-2, ms-inverses-4 |
+| 12 | `CellPocketOuterPinchStepSectionStatement` | section cell pinch | w1-binder-7 |
+| 13 | `CellPocketWalkProperArcsSectionStatement` | binder 5 proper arcs | ms-cite-1 (paused; unowned) |
+| 14 | `OsinSectionPocketFaceSetTwoArcSectionStatement` | binder 6 | w1-binder-7, ms-intro-2, ms-inverses-2, w1-binder-6 |
+| 15 | `PocketOuterPinchStepSectionStatement` | binder 7 | w1-binder-7, w1-binder-3 |
+
+LANDED 4fcbe5051 (probe 0914-083907-45210 GREEN: both modules BUILT on a real rebuild and COMPILED, 0 errors, 26 audits classical, no sorryAx; queued for wiring).  The 14 W1 rows cite the `_of_residualsV6` carriers with this leaf list, followed by the `_of_greendlinger` carriers; still `partial`.  Recompose as leaves land.
