@@ -22,7 +22,7 @@ artifacts:
 **Scope.**
 - `Γ = Z`: every infinite minimal subshift qualifies (return words), giving `infinite-simple-kazhdan-hyperlinear-group`.
 - By `free-subshift-with-finite-models-forces-rf-group` only residually finite `Γ` admit such `X`, and by `rf-groups-have-free-minimal-subshifts-with-finite-models` every infinite finitely generated residually finite `Γ` does.
-- Topological freeness is not enough for the tower partition; for that case use `steinberg-elementary-groups-are-simple-mod-centre`.
+- Topological freeness is not enough for the tower partition, but the partition is avoidable. By `binary-el-simple-iff-minimal-topologically-free` the same tower argument runs over `F_2` under topological freeness alone: the small clopen sets then cover a dense open set instead of partitioning `X`, and the vanishing statements the argument extracts are about locally constant functions, which a dense set decides. So freeness is needed here only for the LEF half. For a statement over any field, at groupoid level, use `steinberg-elementary-groups-are-simple-mod-centre`.
 
 Route: `finite-model-subshift-elementary-groups-simple-kazhdan-lef-proof`.
 
