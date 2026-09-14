@@ -289,6 +289,27 @@ enclosed Prop. This lane owns (i). The work is additive; no owner's file is edit
 - Binder 6's two-arc producer (a proper `t_2` at section count ≥ 2) was queued here at 08:2x. ct-return-tower resumed
   and took it back, so this lane stays on the component route.
 - Infra rebuilt (~09:xx) at the new `NM` path. Every green record was lost, so re-probe before landing.
+- **LANDED e7ba8abf8** `Estimating/OsinPocketFullArcLakeGlueModel` (probe 0914-083058-26818 GREEN, BUILT and COMPILED; md5
+  checked). Closed `lakeGlueSplits`. My eight landed modules are re-queued in the rebuilt `wire-queue.txt`; none is
+  imported by `GroupApproximation.lean`.
+- `CLAIM lobe lake model GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLobeModel.lean` (step-2 calibration,
+  first half): the rose with three loops, cells `Π = [x⁻¹]`, `A = [x, z]`, `B = [y, z⁻¹]` over `Perm (Fin 3)`, not of least
+  area, with the pocket region of `[0,2]` holding `A` and `B`.
+- `CLAIM lobe copy model GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLobeCopyModel.lean` (second half): a
+  copy of the pocket pinched into two lobes, with G-faces for `h (x z) h⁻¹ = x`, and the glued components carrying relator
+  cells.
+  - The copy has 16 darts. Its exterior is `[8,0]` (reading `[y⁻¹, x⁻¹]`, boundary word `[x, y]`). Lobe x holds the loop
+    `0/1`, the bridge `2/3` (`z⁻¹`) and the cell `A' = [4,6]`; lobe y is the same with darts `8–15` and `B' = [12,14]`.
+    - G-faces `[1,2,7,5,3]` and `[9,10,15,13,11]`, both of value 1.
+    - Five vertices, χ = 5 − 8 + 5 = 2.
+  - Seam: position 0 ↔ Δ-dart 3 ↔ copy dart 8; position 1 ↔ Δ-dart 1 ↔ copy dart 0.
+  - `side` separates the lobes. It is constant along the glued α and the face permutation, the latter off the exterior,
+    since `[8,0]` crosses the pinch. So the component of the exterior dart 3 misses Π (dart 1) and `A'` (dart 4).
+  - Probe history:
+    - 0914-084133-13161 red: `reclosedMap` not opened, and an unused simp argument (lobe model).
+    - 0914-084835-69392: the lobe model COMPILED; the copy model was red because `copy_facePerm_lobe` was false as stated
+      (facePerm 0 = 8). It is now restricted to darts off the exterior.
+    - Re-probing.
 
 Design:
 - Γ₁ is the enclosed subdiagram Ξ of the pocket walk. Its faces are `sideFaces X K.walk`, with outside walk
