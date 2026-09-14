@@ -45,6 +45,7 @@ variable {α : Type*} [DecidableEq α]
 def NoABAB (w : List α) : Prop :=
   ∀ a b : α, a ≠ b → ¬ [a, b, a, b] <+ w
 
+omit [DecidableEq α] in
 theorem NoABAB.sublist {w w' : List α} (h : NoABAB w) (hs : w' <+ w) : NoABAB w' :=
   fun a b hab habab => h a b hab (habab.trans hs)
 
