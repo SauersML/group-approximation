@@ -106,7 +106,7 @@ theorem foldl_answers {β : Type*} (P : β → ℕ → Bool) (g : β → ℕ) (l
 /-- The prefix counts of the word read off a list are the prefix counts of the list. -/
 theorem wordOnes_get_eq_prefixOnes (v : List Bool) (k : ℕ) :
     wordOnes (fun j : Fin v.length => v.get j) k = (prefixOnes v k : ℤ) :=
-  wordOnes_eq_prefixOnes (fun j : Fin v.length => v.get j) v (fun j h => getD_eq_getElem' v h)
+  wordOnes_eq_prefixOnes (fun j : Fin v.length => v.get j) v (fun _ h => getD_eq_getElem' v h)
     rfl k
 
 /-- **Criterion for the slope, over lists.**  For irrational `α ∈ (0,1)` and `b ≥ 1`, `a < bα`

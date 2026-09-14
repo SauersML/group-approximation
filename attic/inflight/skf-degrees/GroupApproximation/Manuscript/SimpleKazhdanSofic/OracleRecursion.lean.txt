@@ -1,0 +1,99 @@
+import Mathlib.Computability.TuringDegree
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Adaptive oracle recursion
+
+Support for `simple_kazhdan_sofic_group.tex` (origin tip 696c4b602), proof of `cor:wp`, second
+paragraph: "each digit is decided by one strict comparison with a rational computed from earlier
+digits".
+
+The queries there depend on the answers to earlier queries, so a truth table with a fixed list of
+queries does not cover them. `turingReducible_of_oracleRec` covers one query per step of a primitive
+recursion: the state after step `j` is `step n j s (o (query n j s))`, where `s` is the state before
+it, and the output is a primitive recursive function of the final state. The proof is one
+`Nat.RecursiveIn.prec` whose step makes a single oracle call.
+-/
+
+namespace GroupApproximation
+namespace SimpleKazhdanSofic
+
+/-- The states of an adaptive oracle recursion on the input `n`. -/
+def oracleRecState (o : ℕ → ℕ) (init : ℕ → ℕ) (query : ℕ → ℕ → ℕ → ℕ)
+    (step : ℕ → ℕ → ℕ → ℕ → ℕ) (n : ℕ) : ℕ → ℕ
+  | 0 => init n
+  | j + 1 => step n j (oracleRecState o init query step n j)
+      (o (query n j (oracleRecState o init query step n j)))
+
+theorem oracleRecState_succ (o : ℕ → ℕ) (init : ℕ → ℕ) (query : ℕ → ℕ → ℕ → ℕ)
+    (step : ℕ → ℕ → ℕ → ℕ → ℕ) (n j : ℕ) :
+    oracleRecState o init query step n (j + 1) =
+      step n j (oracleRecState o init query step n j)
+        (o (query n j (oracleRecState o init query step n j))) :=
+  rfl
+
+/-- **Adaptive oracle recursion.**  If `F n` is a primitive recursive function of the state after
+`len n` steps, and each step makes one query at a primitive recursive position, then `F ≤_T O`. -/
+theorem turingReducible_of_oracleRec {F O : ℕ →. ℕ} (o : ℕ → ℕ) (hO : ∀ n, O n = Part.some (o n))
+    (init : ℕ → ℕ) (query : ℕ → ℕ → ℕ → ℕ) (step : ℕ → ℕ → ℕ → ℕ → ℕ) (len : ℕ → ℕ)
+    (out : ℕ → ℕ → ℕ) (hinit : Primrec init)
+    (hquery : Primrec fun p : ℕ × ℕ × ℕ => query p.1 p.2.1 p.2.2)
+    (hstep : Primrec fun p : (ℕ × ℕ × ℕ) × ℕ => step p.1.1 p.1.2.1 p.1.2.2 p.2)
+    (hlen : Primrec len) (hout : Primrec₂ out)
+    (hF : ∀ n, F n = Part.some (out n (oracleRecState o init query step n (len n)))) :
+    TuringReducible F O := by
+  obtain rfl : O = fun n => Part.some (o n) := funext hO
+  set Or : Set (ℕ →. ℕ) := {fun n => Part.some (o n)} with hOr
+  have prim : ∀ {c : ℕ → ℕ}, Primrec c → Nat.RecursiveIn Or (fun n => Part.some (c n)) :=
+    fun hc => Nat.Primrec.recursiveIn (Primrec.nat_iff.1 hc)
+  have horacle : Nat.RecursiveIn Or (fun n => Part.some (o n)) :=
+    Nat.RecursiveIn.oracle _ (Set.mem_singleton _)
+  -- the triple `(a, y, i)` coded by `Nat.pair a (Nat.pair y i)`
+  have htriple : Primrec fun c : ℕ => ((Nat.unpair c).1, Nat.unpair (Nat.unpair c).2) :=
+    Primrec.pair (Primrec.fst.comp Primrec.unpair) (Primrec.unpair.comp (Primrec.snd.comp Primrec.unpair))
+  let q' : ℕ → ℕ := fun c =>
+    query (Nat.unpair c).1 (Nat.unpair (Nat.unpair c).2).1 (Nat.unpair (Nat.unpair c).2).2
+  have hq' : Primrec q' := hquery.comp htriple
+  have hask : Nat.RecursiveIn Or (fun c => Part.some (o (q' c))) :=
+    Nat.RecursiveIn.of_eq (Nat.RecursiveIn.comp horacle (prim hq')) fun c => by
+      simp only [Part.bind_eq_bind, Part.bind_some]
+  let st' : ℕ → ℕ := fun d =>
+    step (Nat.unpair (Nat.unpair d).1).1 (Nat.unpair (Nat.unpair (Nat.unpair d).1).2).1
+      (Nat.unpair (Nat.unpair (Nat.unpair d).1).2).2 (Nat.unpair d).2
+  have hst' : Primrec st' :=
+    hstep.comp (Primrec.pair (htriple.comp (Primrec.fst.comp Primrec.unpair))
+      (Primrec.snd.comp Primrec.unpair))
+  have hh : Nat.RecursiveIn Or fun c => Part.some
+      (step (Nat.unpair c).1 (Nat.unpair (Nat.unpair c).2).1 (Nat.unpair (Nat.unpair c).2).2
+        (o (q' c))) :=
+    Nat.RecursiveIn.of_eq (Nat.RecursiveIn.comp (prim hst')
+      (Nat.RecursiveIn.pair (prim Primrec.id) hask)) fun c => by
+        simp only [seq_eq_bind_map, Part.bind_eq_bind, Part.map_eq_map, Part.map_some,
+          Part.bind_some, Nat.unpair_pair, id]
+  have hG : Nat.RecursiveIn Or fun p =>
+      Part.some (oracleRecState o init query step (Nat.unpair p).1 (Nat.unpair p).2) := by
+    refine Nat.RecursiveIn.of_eq (Nat.RecursiveIn.prec (prim hinit) hh) fun p => ?_
+    rcases hp : Nat.unpair p with ⟨a, n⟩
+    simp only [hp]
+    induction n with
+    | zero => rfl
+    | succ y ih =>
+      simp only [Nat.rec_add_one, ih, Part.bind_eq_bind, Part.bind_some, Nat.unpair_pair, q',
+        oracleRecState_succ]
+  have hlen' : Nat.RecursiveIn Or fun n => Part.some
+      (oracleRecState o init query step n (len n)) :=
+    Nat.RecursiveIn.of_eq (Nat.RecursiveIn.comp hG
+      (prim (Primrec₂.natPair.comp Primrec.id hlen))) fun n => by
+        simp only [Part.bind_eq_bind, Part.bind_some, Nat.unpair_pair, id]
+  have hout' : Primrec fun d => out (Nat.unpair d).1 (Nat.unpair d).2 :=
+    hout.comp (Primrec.fst.comp Primrec.unpair) (Primrec.snd.comp Primrec.unpair)
+  refine RecursiveIn.iff_nat.2 (Nat.RecursiveIn.of_eq (Nat.RecursiveIn.comp (prim hout')
+    (Nat.RecursiveIn.pair (prim Primrec.id) hlen')) fun n => ?_)
+  rw [hF n]
+  simp only [seq_eq_bind_map, Part.bind_eq_bind, Part.map_eq_map, Part.map_some, Part.bind_some,
+    Nat.unpair_pair, id]
+
+#audit_axioms turingReducible_of_oracleRec
+
+end SimpleKazhdanSofic
+end GroupApproximation
