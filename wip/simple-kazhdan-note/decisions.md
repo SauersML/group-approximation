@@ -583,6 +583,12 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - sk-free-4: rank-four shadows and the rational-spectrum invariant; Voronetsky.
     - sk-free-6 A (rank lengths ⇒ not uniformly simple).
     - Note status unchanged: C2 (growth) stays OUT (the proof is long and not citable); everything else is Cairn-only.
+123. **sk-verify-15 final** (9b301bef72, f40d098bb8, 867eb089d0): queue lines 35–57 all PASS, with no FAIL.
+    - Gates opened for rev4.2: C1 (non-embeddable continuum, Sacks antichain) and S (Osajda non-exact hosts).
+    - Theorem D (78 elementary matrices): PASS-WITH-FIXES W1/W2. sk-verify-16's independent review continues.
+    - Also PASS: iso-rigidity Peirce claims; diagonal recognition (F3); maximal subgroups and orbit stabilizers; QD unitary groups; bounded norms; generic limits (Pavlov–Schmieding checked word for word); the recursive non-exact groups (F1 base vertices, F2 girth → ∞).
+    - F_q port: the mathematics is correct; printed-text fixes F1 (S_V placement) and F2 (write Z(G)).
+    - DECIDED: rev4.2 = rev4.1 + C3 + C1 + S. sk-editor-5 builds a second variant with F_q; main picks after the compile (page budget).
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
