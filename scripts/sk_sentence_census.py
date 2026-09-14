@@ -35,6 +35,10 @@ still exists at the tip (same hash) is applied.  A row whose sentence was
 reworded or removed is **superseded**: it is listed in
 `metadata/SK_SENTENCE_SUPERSEDED.tsv` with its old text and the closest new
 sentence as a hint, and it is never applied by guess.
+
+`metadata/SK_SENTENCE_OVERRIDES.tsv`, edited by the census owner, settles a
+conflict between two lanes' rows for one sentence: `drop<TAB>lane<TAB>key<TAB>reason`
+removes that lane's row before merging and lists it in the census.
 """
 
 from __future__ import annotations
@@ -58,6 +62,7 @@ MAP = os.path.join(ROOT, "metadata", "SK_SENTENCE_MAP.tsv")
 OUT = os.path.join(ROOT, "metadata", "SK_SENTENCE_CENSUS.tsv")
 OUT_MD = os.path.join(ROOT, "metadata", "SK_SENTENCE_CENSUS.md")
 SUPERSEDED = os.path.join(ROOT, "metadata", "SK_SENTENCE_SUPERSEDED.tsv")
+OVERRIDES = os.path.join(ROOT, "metadata", "SK_SENTENCE_OVERRIDES.tsv")
 ROWS_DIR = os.path.join(ROOT, "metadata", "sk-census-rows")
 
 MATH_DISPLAY_ENVS = {
@@ -74,6 +79,7 @@ HEX_KEY = re.compile(r"^[0-9a-f]{12}$")
 COMMIT_IN_HEADER = re.compile(r"at commit ([0-9a-f]{7,40})")
 DISPLAY_RE = re.compile(r"\\\[(.*?)\\\]|\$\$(.*?)\$\$", re.S)
 LABEL_RE = re.compile(r"\\label\{([^}]*)\}")
+OVERRIDE_LINE = re.compile(r"^drop\t([A-Za-z0-9_.-]+)\t(\S+)\t(.*\S.*)$")
 
 
 def protect(text: str) -> str:
@@ -354,12 +360,39 @@ def nearest(sentence: str, records: list[dict]) -> tuple[str, float]:
     return best, score
 
 
+def load_overrides(path: str) -> tuple[dict[tuple[str, str], str], list[str]]:
+    """Rows the census owner has ruled out: `drop<TAB>lane<TAB>key<TAB>reason`.
+
+    A drop settles a conflict between two lanes without editing either lane's
+    file, so the losing row stays on record where its author left it.  The
+    reason is required, and a drop that matches no row is a merge error, so an
+    override cannot linger to silence a row landed later under the same key.
+    """
+    drops: dict[tuple[str, str], str] = {}
+    problems: list[str] = []
+    if not os.path.exists(path):
+        return drops, problems
+    with open(path, encoding="utf-8") as fh:
+        for n, raw in enumerate(fh, start=1):
+            line = raw.rstrip("\n")
+            if not line.strip() or line.startswith("#"):
+                continue
+            m = OVERRIDE_LINE.match(line)
+            if not m:
+                problems.append(f"overrides:{n}: not `drop<TAB>lane<TAB>key<TAB>reason`")
+                continue
+            drops[(m.group(1), m.group(2))] = m.group(3).strip()
+    return drops, problems
+
+
 def load_rows(rows_dir: str, records: list[dict], tex_commit: str,
-              tex_lines: list[str], prevs: list[dict]
-              ) -> tuple[dict[str, dict], list[str], list[dict]]:
+              tex_lines: list[str], prevs: list[dict],
+              drops: dict[tuple[str, str], str] | None = None
+              ) -> tuple[dict[str, dict], list[str], list[dict], list[dict]]:
     """Derive the overlay from the lanes' row files.
 
-    Returns the overlay, the merge errors, and the superseded rows.
+    Returns the overlay, the merge errors, the superseded rows, and the rows
+    dropped by override.
     """
     resolve_now = Resolver([(r["line"], r["end"], r["key"]) for r in records], tex_lines)
     known = {r["key"] for r in records}
@@ -367,6 +400,9 @@ def load_rows(rows_dir: str, records: list[dict], tex_commit: str,
     owner: dict[str, str] = {}
     errors: list[str] = []
     superseded: list[dict] = []
+    dropped: list[dict] = []
+    drops = drops or {}
+    used: set[tuple[str, str]] = set()
 
     def supersede(lane: str, where: str, old_key: str, status: str, decls: str,
                   note: str) -> None:
@@ -391,6 +427,11 @@ def load_rows(rows_dir: str, records: list[dict], tex_commit: str,
                 key, status = cols[0].strip(), cols[1].strip()
                 decls, note = cols[2].strip(), cols[3].replace("\t", " ").strip()
                 where = f"rows/{lane}.tsv:{n}"
+                if (lane, key) in drops:
+                    used.add((lane, key))
+                    dropped.append({"where": where, "key": key, "status": status,
+                                    "reason": drops[(lane, key)]})
+                    continue
                 if status not in VALID_STATUSES:
                     errors.append(f"{where}: invalid status {status!r}")
                     continue
@@ -432,7 +473,9 @@ def load_rows(rows_dir: str, records: list[dict], tex_commit: str,
                 merged[key] = {"status": status, "decls": decls,
                                "note": f"{note} {tag}".strip()}
                 owner[key] = lane
-    return merged, errors, superseded
+    for lane, key in sorted(set(drops) - used):
+        errors.append(f"override drop {lane} {key} matches no row; delete the override")
+    return merged, errors, superseded, dropped
 
 
 def write_map(path: str, records: list[dict], merged: dict[str, dict]) -> None:
@@ -495,7 +538,8 @@ def key_table(records: list[dict]) -> str:
 
 
 def write_md(records: list[dict], path: str, sha256: str, md5: str, commit: str,
-             merge_errors: list[str], superseded: list[dict]) -> None:
+             merge_errors: list[str], superseded: list[dict],
+             dropped: list[dict] | None = None) -> None:
     c = sc.counts(records)
     total = len(records)
     done = c.get("formalized", 0) + c.get("definition", 0)
@@ -522,6 +566,11 @@ def write_md(records: list[dict], path: str, sha256: str, md5: str, commit: str,
                          f"{e['old_lines']} @{e['old_commit'][:9]}){hint} --- "
                          f"{md_cell(e['old_sentence'], 200)}\n")
             fh.write("\n")
+        if dropped:
+            fh.write("## Rows dropped by override (metadata/SK_SENTENCE_OVERRIDES.tsv)\n\n")
+            for e in dropped:
+                fh.write(f"* {e['where']} `{e['key']}` ({e['status']}) --- {e['reason']}\n")
+            fh.write("\n")
         if merge_errors:
             fh.write("## Rows not merged\n\n")
             for e in merge_errors:
@@ -547,6 +596,8 @@ def main() -> int:
     ap.add_argument("--out", default=OUT)
     ap.add_argument("--out-md", default=OUT_MD)
     ap.add_argument("--superseded", default=SUPERSEDED)
+    ap.add_argument("--overrides", default=OVERRIDES,
+                    help="drop<TAB>lane<TAB>key<TAB>reason lines settling row conflicts")
     ap.add_argument("--key-table", default="",
                     help="also write the section -> key table to this markdown file")
     ap.add_argument("--tex-commit", default="",
@@ -590,9 +641,12 @@ def main() -> int:
 
     merge_errors: list[str] = []
     superseded: list[dict] = []
+    dropped: list[dict] = []
     if args.merge:
-        overlay, merge_errors, superseded = load_rows(args.rows_dir, records, args.tex_commit,
-                                                      tex_lines, prevs)
+        drops, override_problems = load_overrides(args.overrides)
+        overlay, merge_errors, superseded, dropped = load_rows(
+            args.rows_dir, records, args.tex_commit, tex_lines, prevs, drops)
+        merge_errors = override_problems + merge_errors
         if not args.summary:
             write_map(args.map_path, records, overlay)
             write_superseded(args.superseded, superseded, commit)
@@ -614,7 +668,7 @@ def main() -> int:
 
     if not args.summary:
         write_tsv(records, args.out, sha256, md5, commit)
-        write_md(records, args.out_md, sha256, md5, commit, merge_errors, superseded)
+        write_md(records, args.out_md, sha256, md5, commit, merge_errors, superseded, dropped)
         if args.key_table:
             with open(args.key_table, "w", encoding="utf-8") as fh:
                 fh.write(f"Keys at manuscript commit `{commit[:9]}` (md5 `{md5}`).\n")
@@ -625,6 +679,7 @@ def main() -> int:
         print(f"{k:14s} {c[k]:5d}")
     print(f"{'total':14s} {len(records):5d}")
     print(f"superseded     {len(superseded):5d}")
+    print(f"dropped        {len(dropped):5d}")
     for e in merge_errors:
         print("MERGE ERROR: " + e)
     for e in overlay_errors:
