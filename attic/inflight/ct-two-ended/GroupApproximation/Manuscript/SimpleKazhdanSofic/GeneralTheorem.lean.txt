@@ -2,6 +2,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitSpecialLinear
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.MatricialQuotientsExpanders
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralRingPropertyT
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.LamplighterAction
 import GroupApproximation.Dynamics.ClopenGroupCrossedProduct
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Dynamics.Minimal
@@ -31,7 +32,8 @@ This module is additive.  `thm:main` keeps its statement and assembly in `Simple
 
 ## Definitions
 
-* `IsTopologicallyFree Λ Z`; minimality is Mathlib's `MulAction.IsMinimal Λ Z`;
+* topological freeness is sk-lef-action's `IsTopologicallyFreeAction Λ Z` (`LamplighterAction`); minimality is
+  Mathlib's `MulAction.IsMinimal Λ Z`;
 * `IsMatricialVia S N φ`: `R` is matricial via `φ_k : R → M_{N_k}(F₂)`, with `N_k ≥ 1`;
 * `elementaryMarking n S`, `matricialMarking n S N φ k`: the markings by the `e_ij(s)` and the `e_ij(φ_k(s))`;
 * `PrintedSimpleKazhdanGeneral`.  The finite groups are `EL_n(M_{N_k}(F₂))`.  Block flattening carries
@@ -57,11 +59,7 @@ namespace SimpleKazhdanSofic
 
 open Filter
 
-/-! ## Topologically free actions, matricial rings and markings -/
-
-/-- The action is topologically free: no nontrivial element fixes a nonempty open set (tex l.105–106). -/
-def IsTopologicallyFree (Λ Z : Type*) [Group Λ] [TopologicalSpace Z] [MulAction Λ Z] : Prop :=
-  ∀ ξ : Λ, ξ ≠ 1 → ∀ U : Set Z, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z
+/-! ## Matricial rings and markings -/
 
 /-- **`R` is matricial via `φ_k`** (tex l.113–117), with `N_k ≥ 1`.  The statement speaks of the finite
 simple groups `SL_{nN_k}(F₂)`, so `M_{N_k}(F₂)` is a nonzero matrix algebra.  Size-zero models satisfy
@@ -92,7 +90,7 @@ noncomputable def matricialMarking (n : ℕ) {R : Type*} [Ring R] (S : Finset R)
 def PrintedSimpleKazhdanGeneral : Prop :=
   ∀ (Λ : Type) [Group Λ] [Group.FG Λ] (Z : Type) [TopologicalSpace Z] [CompactSpace Z]
     [TopologicalSpace.MetrizableSpace Z] [TotallyDisconnectedSpace Z] [PerfectSpace Z] [Nonempty Z]
-    [MulAction Λ Z] [ContinuousConstSMul Λ Z], MulAction.IsMinimal Λ Z → IsTopologicallyFree Λ Z →
+    [MulAction Λ Z] [ContinuousConstSMul Λ Z], MulAction.IsMinimal Λ Z → IsTopologicallyFreeAction Λ Z →
     ∀ S : Finset (ClopenGroupCrossedProduct Λ Z (ZMod 2)), 1 ∈ S →
       Subring.closure (S : Set (ClopenGroupCrossedProduct Λ Z (ZMod 2))) = ⊤ →
     ∀ (N : ℕ → ℕ)
@@ -116,7 +114,7 @@ def PrintedSimpleKazhdanGeneral : Prop :=
 def PrintedGeneralSimplicityStatement : Prop :=
   ∀ (Λ : Type) [Group Λ] [Group.FG Λ] (Z : Type) [TopologicalSpace Z] [CompactSpace Z]
     [TopologicalSpace.MetrizableSpace Z] [TotallyDisconnectedSpace Z] [PerfectSpace Z] [Nonempty Z]
-    [MulAction Λ Z] [ContinuousConstSMul Λ Z], MulAction.IsMinimal Λ Z → IsTopologicallyFree Λ Z →
+    [MulAction Λ Z] [ContinuousConstSMul Λ Z], MulAction.IsMinimal Λ Z → IsTopologicallyFreeAction Λ Z →
     ∀ n : ℕ, 3 ≤ n → IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2)))
 
 /-- **The marked limit** (section "Finite simple models", tex l.211–233), for any unital ring generated
@@ -158,7 +156,8 @@ theorem infinite_of_perfectSpace (Z : Type*) [TopologicalSpace Z] [T1Space Z] [P
   haveI := hfin
   obtain ⟨x⟩ := ‹Nonempty Z›
   have hopen : IsOpen ({x} : Set Z) := by
-    simpa using (Set.toFinite ({x}ᶜ : Set Z)).isClosed.isOpen_compl
+    have h := (Set.toFinite ({x}ᶜ : Set Z)).isClosed.isOpen_compl
+    rwa [compl_compl] at h
   exact not_isOpen_singleton x hopen
 
 section MarkedLimits
