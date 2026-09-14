@@ -194,3 +194,37 @@ CLAIM the walk-level split transport — `GroupApproximation/GGT/VanKampen/Estim
 - side projection: the darts reached from the walk are closed under the split's face steps, since the two changed face steps join
   the faces of `in₁` and `in₂`, which are faces of walk darts. So the exterior and the cell stay off the side.
 Path free on origin, in the shared tree and in every `lanes/*.files` (checked 19:2x).
+
+### LANDED 82bd275f7 (probe 0913-194210-22941 GREEN, BUILT, first try; queued for wiring)
+
+`Estimating/OsinPocketWalkSplit.lean`, namespace `WalkSplit`:
+- **Definitions:** `TightTurn`, `IsTightClosedWalk` (with `alpha_not_mem`), `Reach`, `repeatedVisits`, and
+  `IsTightClosedWalk.isClosedDartWalk`.
+- **Across `PinchSplit.Input.diagram`:**
+  - `sigma_diagram_apply` and `sigma_pow_diagram_apply`;
+  - `tightTurn_diagram` and `isTightClosedWalk_diagram`, when both split darts are reverses of walk darts;
+  - `vertexOf_diagram_ne` and `repeatedVisits_diagram_lt`;
+  - `nodup_map_vertexOf_diagram`;
+  - `mem_sideFaces_of_diagram` (the side projects back when both merged faces lie on the side), `outerFace_not_mem_sideFaces_diagram`,
+    `cell_not_mem_sideFaces_diagram`;
+  - `dartWord_diagram` and `cellDarts_diagram`.
+
+### In flight
+
+- `Estimating/OsinPocketWalkTightNoncrossing.lean`: `IsTightClosedWalk.exists_successor` and
+  `IsTightClosedWalk.isNoncrossingClosedWalk` (a tight closed walk with no repeated dart is noncrossing). So
+  `SameCellWalkSimple.face_not_mem_sideFaces_sublist` supplies `hi` at the start of the induction.
+- Next:
+  - the Case 1 walk is tight: internal turns satisfy `σ (alpha X_i) = X_{i+1}`, and the junction turns pass `p.head` or
+    `alpha q.last`;
+  - transport through ms-compress-2's dart map `e`: `hsigma` covers every tight stretch;
+  - the induction on `repeatedVisits`, finishing through `SameCellCellLobeSides.isSimpleClosedWalk_lobe` and
+    `SameCellSimplePocket.false_of_simpleWalk_of_below`.
+
+### Spelling note for the walk-level leaf (ms-intro-1, a2b068902)
+
+- `OsinLemma94CaseOneWalkTouchVertexStatement` also asks only for a touch, and `osinLemma94CaseOneXWalk_of_shapes` tests the touch
+  first. So the walk-level touch leaf covers touch walks with island lobes on `s` or pinches on `b`, the same defect as the
+  X-level leaf before f30f8c4fb.
+- This lane's route covers contiguous `s = invDarts X` with a touch, no spur and both parts vertex-nodup
+  (`OsinLemma94CaseOneTouchOnlyStatement`). An excised `s` needs tightness at the excision junctions, which is not built here.
