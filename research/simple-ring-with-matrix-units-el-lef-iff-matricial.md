@@ -37,3 +37,5 @@ nonzero 2x2 matrix units has no LEF elementary group of any rank `N >= 2`. For e
 
 **Model test.** `M_2(F_2 × F_2)` satisfies (1), (2) and (4). Its unital maps onto one matrix factor are not
 injective, so simplicity is used only in (2) ⇒ (3).
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS (§3). (1)⇒(2)⇒(3)⇒(4)⇒(1), and the Steinberg bisection argument, re-derived. N4: the model test fails as stated. `M_2(F_2 × F_2)` satisfies (3) through the diagonal embedding into `M_4(F_2)`, and simplicity is also used in (1)⇒(2). A test that simplicity is needed in (2)⇒(3) is `M_2(Z/4)`: it has full matrix units and is finite, but `4 = 0` has no unital image in matrices over fields. N5: the Steinberg bullet needs a compact, second countable unit space, so that `R` is unital and countable.

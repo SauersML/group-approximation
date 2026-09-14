@@ -34,3 +34,5 @@ DERIVATION
 recursive-lef-growth-hosts-miss-some-fp-rf-group-proof
 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS: Steps 1-6 re-derived; conditional on the KMS Theorem 4.19 import (§4).
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS, independent concurrence (§4), conditional on the KMS Theorem 4.19 import. Steps 1–6 re-derived, including extension of partial models past the relator length and `ρ_Γ(n) ≤ L_Γ(n) ≤ L_U(Cn) ≤ h(n²)`, with a fixed generating set.

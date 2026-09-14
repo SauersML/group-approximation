@@ -38,3 +38,5 @@ available: `St_3(A)` of a free ring `A` is not finitely presented, since `A` map
 - `LC(X,F_q) ⋊ Z` over an infinite minimal subshift, with a clopen `V != ∅`, `V ∩ TV = ∅`, and
   `ε_12 = u e_V`, `ε_21 = e_V u^{-1}`, `ε_11 = e_(TV)`, `ε_22 = e_V`: the ring is simple, so the hypothesis
   holds, and both sides hold (`minimal-subshift-algebra-is-simple-lef-ring`). Consistent.
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS (§3). Re-derived: the corner isomorphism `eRe ≅ M_2(S)`; `EL_N(M_2(S)) = EL_(2N)(S)` inside `EL_N(R)` for `N ≥ 2`; LEF of matrix rings, through partial sums of products; the fullness isomorphism `R ≅ fM_m(S)f`; and LEF of unital corners.

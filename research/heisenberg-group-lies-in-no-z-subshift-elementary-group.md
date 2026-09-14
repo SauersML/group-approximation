@@ -19,3 +19,5 @@ H is finitely generated and residually finite, hence LEF. So the note's Z-family
 Route: `heisenberg-group-lies-in-no-z-subshift-elementary-group-proof`. Artifact: `research/artifacts/sk-sl3z-bandwidth-distortion-obstruction-2026-09-13.md`.
 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS (§5). Re-derived: `c^(n²) = [a^n,b^n]` and `|c^N| ≤ 12√N`; `a^(2^k) = t^k a t^(-k)` in `BS(1,2)`; and distortion passing to f.g. overgroups. The refutation of `every-lef-group-embeds-in-a-z-subshift-elementary-group` stands.

@@ -26,3 +26,5 @@ Setting:
 Route: `subshift-crossed-product-gl-has-no-distorted-elements-proof`. Artifact: `research/artifacts/sk-sl3z-bandwidth-distortion-obstruction-2026-09-13.md`.
 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS (§5). Re-derived: the faithful slot module; subadditive propagation; the Krylov bound with uniform `N_0`; the lcm polynomial and finite order through `F_q[t]/(Q)`; and C1, the multiplicative embedding of `[[T]]` in `GL_1(R)`. N6: the bound `1/(2wm)` assumes `w ≥ 1`; for `w = 0`, `Γ` is finite.

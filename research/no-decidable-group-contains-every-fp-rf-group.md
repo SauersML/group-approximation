@@ -26,3 +26,5 @@ DERIVATION
 no-decidable-group-contains-every-fp-rf-group-proof
 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS, conditional on `uniform-wp-bound-excludes-bh-universal-targets` (§4).
+
+**Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS, independent concurrence (§4), conditional on `uniform-wp-bound-excludes-bh-universal-targets`. `t(n)` is recursive and `WP(U) ∈ F(t)` with `C = 1`.
