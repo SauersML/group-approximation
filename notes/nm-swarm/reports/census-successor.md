@@ -23,8 +23,14 @@ red on partial and unassigned rows, which is the true state.
 
 ## Successor changes
 
-The tools are copied, not edited in place, to this session's scratchpad `ct/census/`, with the originals kept as
-`*.orig`. Rows, evidence records, `landed.log` and `nmland.sh` stay in the census lane's scratchpad.
+The successor tools live in `$NM/census/`, in this session's scratchpad `nm/`. Origin's 09-12 originals are kept in
+`$NM/census/orig-0912/`.
+- The laptop reboot of 09-14 ~08:2x wiped `/private/tmp`, including the first copies in `ct/census/` and the census
+  lane's scratchpad.
+- `merge_rows.py`, `register.py`, `worklist.py`, `census_linemap.py`, `overrides.tsv` and `run.sh` were restored from
+  MSI `cc-in` of merge 0914-015152, with the same md5 as before the wipe.
+- `census_merge.sh` and `partial_triage.sh` were recreated. The `run.sh` that the recreated script writes matches the
+  restored `run.sh` byte for byte.
 
 - **LINE keys of the new lanes.** `census_linemap.py` carries `LINE:<n>` from the tex at a8cc132c8 (before
   45483f699). The lanes launched by session nonsofic-existence-49 (`ct-*`, `ms-*`, `w1-*`) number LINE keys at the
@@ -78,7 +84,7 @@ The tools are copied, not edited in place, to this session's scratchpad `ct/cens
   - `merge_rows.py` also accepts a re-key to several space-separated sentence keys, for a row whose note quotes each of
     them. No entry uses it now.
 - **Fetch retry.** `census_merge.sh` retries its opening `git fetch` up to six times.
-- **Partial triage** (`ct/census/partial_triage.sh`, from merge 5 on).
+- **Partial triage** (`$NM/census/partial_triage.sh`, from merge 5 on).
   - A partial sentence is wiring-only when the merge DOWNGRADED it from formalized or definition for root reachability,
     the verifier has no conditional finding for it, and no named declaration is undefined or uncompiled.
   - Every other partial sentence is listed with its residual and owner lanes.
@@ -105,6 +111,7 @@ The tools are copied, not edited in place, to this session's scratchpad `ct/cens
 | 0913-202315 | 484a4b651 | **LANDED 3f3f4c5c3**, verified on origin | 381 | 69 | 54 | 164 | 12 | 717 |
 | 0913-212820 | 16d890864 | **LANDED 0e622f840**, verified on origin | 473 | 72 | 55 | 75 | 5 | 717 |
 | 0913-233549 | 8d833d5fd | **LANDED a4f8d4b82**, verified on origin | 482 | 72 | 55 | 70 | 1 | 717 |
+| 0914-015152 | 4c3d9dd02 | **LANDED 5d8014be4** (02:00), verified on origin | 495 | 73 | 55 | 57 | 0 | 717 |
 
 Merge 0913-185744:
 - **Register:** 3 stale lines removed, 201 revised, 30 new registered, 0 unclassified.
@@ -168,11 +175,56 @@ Merge 0913-233549 launched at 23:35 and landed as a4f8d4b82.
     partial. Their carrier module, DynamicRankBudgetInducedCoreSentences, is queued for wiring.
 - **Next:** lead-wire daa821b00 (32 modules, 23:41) landed after this export, so merge 6 was launched right after.
 
-Merge 6 did not start.
+Merge 6 took six attempts: the first five failed on the network, and the sixth landed (below).
 - At ~23:5x its opening fetch failed six times with `Could not resolve host: github.com`.
-- At 00:00 the MSI master socket `/tmp/msi-login.sock` was gone, so no pass can run on the node.
-- Nothing was exported or installed, and the census on origin stays at a4f8d4b82.
+- At 00:19 the script stopped at its own check, because the MSI master was down.
+- At 00:37 (tag 0914-003758, base a0c769367) the master dropped during the sync, with "Broken pipe" and an ssh timeout.
+  The script exited 4 before launching anything on the node.
+- Nothing was exported or installed, and the census on origin stays at a4f8d4b82. At 01:00 github.com again did not
+  resolve and the master socket was gone.
 - Merge 6 runs once github.com resolves and the MSI master is back. It applies ms-core-1's DROPs over daa821b00.
+- **audit-nm-1's rows for tex 1–1337** come from its fidelity audit of 0e622f840 (ledger a0c769367). They are written as
+  `metadata/nm-census-rows/audit-nm-1.tsv` and land on audit-nm-1's behalf as soon as github.com resolves, so merge 6
+  takes them.
+  - Four grade a sentence partial for a generality or route gap:
+    - `d4c878a7ac22`: no `Countable W`;
+    - `2a97fb901bad`: a different route;
+    - `80279f06992b`: the `EL_n` clause needs a prime characteristic;
+    - `2ff745dd7064`: 4 ≤ n and no nontriviality.
+  - Spot checks against the Lean source agree with the ledger for `d4c878a7ac22` and `80279f06992b`. For
+    `2ff745dd7064`, the prime-characteristic form of the statement also quantifies 4 ≤ n.
+  - Three add a closed carrier for an uncovered clause: `c890294ad9b0`, `2d6ab84875e0` and `8d0b87a46a51`.
+- **audit-nm-4's row for tex 1338–2507** comes from its fidelity audit of 0e622f840: 232 rows, 231 PASS, 0 false green.
+  It is written as `metadata/nm-census-rows/audit-nm-4.tsv`.
+  - It grades `f5264e48f943` (tex 1489) partial. `exists_wandering_clopen_cover` takes `IsClopen K`
+    (Dynamics/TransientSupport.lean:212), where the manuscript prints "A compact subset $C\subset U$".
+  - The owner ms-inverses-3 is told and may add a compact-to-clopen lemma instead.
+  - audit-nm-4's other notes are for owner lanes, not overrides:
+    - rows `1baaaaa0fb29` and `69ef136d809a` could name `defectIdeal_eq_transientIdeal_chainRecurrentSet`;
+    - `8cde0b44b52f` could name `manuscriptSentence_reassociation`;
+    - the map note of `c650b0a20b89` quotes the next sentence.
+- **Landing chain.** github.com failed to resolve again at 01:19. Neither row file reached origin, and merge 6's fourth
+  attempt exited 1 at its fetch.
+  - `ct/census/chain-s6.sh` waits until github and the MSI master are both up on two checks 60 s apart.
+  - It then lands both row files, confirms each on origin, and runs merge 6, retrying on network exits.
+  - The chain landed audit-nm-1's rows at 0be73ce26 (01:44) and audit-nm-4's row at 4c3d9dd02 (01:45).
+  - Its first merge attempt (tag 0914-014629) failed in the sync, when the master dropped with "Permission denied".
+    The second landed.
+
+Merge 0914-015152 launched at 01:51 and landed as 5d8014be4 at 02:00.
+- **Base:** 4c3d9dd02. It includes lead-wire daa821b00 (32 modules), ms-core-1's DROPs, audit-nm-1's rows and
+  audit-nm-4's row.
+- **Master drops:** the poll found the MSI master down on 7 checks. The detached passes finished on the node.
+- **Register:** 1 stale line removed, 0 revised, 0 new, 0 unclassified. `--verify-unconditional`: 407 accepted, 0 new.
+- **Grades:**
+  - 18 rows went from partial to formalized, and 1 from partial to definition.
+  - 5 went from formalized to partial, all by audit rows: `d4c878a7ac22`, `2a97fb901bad`, `80279f06992b` and
+    `2ff745dd7064` (audit-nm-1), and `f5264e48f943` (audit-nm-4).
+- **ms-core-1's DROPs:** 15 of the 19 target sentences grade formalized. The other 4 (`30a44485e5e8`, `715cbd0f3410`,
+  `f2baa4a46f78`, `b180421b55ab`) are wiring-only, because a carrier module is outside the root closure.
+- **Unassigned:** none. ct-rank-budget's `d59fc0887768` row (a407d436d) grades partial until ChainCoreOpeningSentence is
+  wired.
+- **Partial (57):** by `partial_triage.sh`, 9 are wiring-only and 48 are listed in the triage section below.
 
 ## Re-merge triggers
 
@@ -181,41 +233,28 @@ Merge 6 did not start.
   - Wave 16 was c0c1a8e3d (16:32). The next wave, 15 ct/ms modules, landed as ef5f85c15 at 19:27 and triggered merge 2.
 - Whenever lanes land rows, and at least every ~2 h.
 
-## Partial rows that are not wiring-only (merge 0913-233549, a4f8d4b82)
+## Partial rows that are not wiring-only (merge 0914-015152, 5d8014be4)
 
-From `ct/census/partial_triage.sh`: 70 partial, 9 wiring-only, 61 listed. The residual is the open premises named by
-the key's conditional findings, or the row's own note when no finding exists. Owner lanes are the lanes whose rows the
-map row unites. This section is replaced at each merge.
+From `partial_triage.sh`: 57 partial, 9 wiring-only, 48 listed. The residual is the open premises named by the key's
+conditional findings, or the row's own note when there is no finding. Owner lanes are the lanes whose rows the map row
+unites. This section is replaced at each merge.
 
 | key | tex | residual | owner lanes |
 | --- | --- | --- | --- |
 | `a16637da7249` | 66 | open premises: RelativeGreendlingerQuasiGeodesicLeastAreaStatement  | ct-rank-two-limit fff-periodic nm-endpoints |
+| `d4c878a7ac22` | 263 | graded partial by its row, no conditional finding: audit-nm-1: PrintedAmenableNonquasidiagonalTrace binds ∃ W … ¬IsOperatorMF W without Countable W; MF is printed only for countable groups (tex 87 | audit-nm-1 |
+| `2a97fb901bad` | 270 | graded partial by its row, no conditional finding: audit-nm-1: printed route "direct limit of RF groups ⇒ MF [Korchagin Cor 10, Prop 13]"; the carrier goes locally RF ⇒ LEF ⇒ MF; no MF direct-lim | audit-nm-1 |
+| `80279f06992b` | 292 | graded partial by its row, no conditional finding: audit-nm-1: the EL_n clause needs (p:R)=0 with 0<p, but the examples above include EL₄(𝒞) with 𝒞=ℤ⟨s,t⟩/(tᵢsⱼ−δᵢⱼ) and every  | audit-nm-1 ms-intro-3 |
 | `abb56744db26` | 292 | open premises: RelativeGreendlingerQuasiGeodesicLeastAreaStatement PrintedTorsionFreeTheorem  | ms-intro-3 sec5-sentences |
 | `0f22bdbc4184` | 297 | open premises: RelativeGreendlingerQuasiGeodesicLeastAreaStatement PrintedTorsionFreeTheorem FournierFacioParagraph PrintedTorsionFreeTheoremOsin  | ct-rank-two-limit fff-periodic hull-bridge nm-endpoints sec5-sentences theoremc-retire |
 | `dce7a9ff4e83` | 303 | open premises: RelativeGreendlingerQuasiGeodesicLeastAreaStatement FournierFacioParagraph  | ct-rank-two-limit fff-periodic nm-endpoints sec5-sentences |
-| `d8e1a694d87c` | 1372 | graded partial by its row, no conditional finding: hull-euler: lem:chain-core-models "The set $Y$ is nonempty, closed and invariant, and $R_Y$ is LEF." Covers the closed and invariant parts. By the lea | hull-euler ms-core-2 |
-| `ded9e9646e4b` | 1402 | graded partial by its row, no conditional finding: chain-subshift: tex 1402 (proof of lem:chain-core-models), "Compactness makes $Y_0$ nonempty, and all its words belong to $X$, so $Y_0\subseteq X$." c | chain-subshift ms-traces-3 |
-| `f7c8d8aab016` | 1402 | graded partial by its row, no conditional finding: chain-subshift: tex 1402 (proof of lem:chain-core-models), "It is nonempty, and $Z_{r+1}\subseteq Z_r$, since a higher-level cycle projects to a close | chain-subshift ms-traces-3 |
-| `2df08eeac3cb` | 1439 | graded partial by its row, no conditional finding: chain-itinerary: tex lines 1442–1444 "Coefficient pullback gives injective unital maps of crossed products, and every locally constant function is c | chain-itinerary ms-core-2 |
-| `b180421b55ab` | 1439 | graded partial by its row, no conditional finding: ms-compress-1 (census successor for chain-itinerary, down): tex 1439-1441, "The sets on its right decrease and satisfy the cycle condition; finite lan | ms-compress-1 |
-| `c825bc73828a` | 1439 | graded partial by its row, no conditional finding: chain-itinerary: tex lines 1444–1445 "Thus R_{Y_*} is an increasing union of LEF rings and is LEF." Ring half carried: a ring whose finite subsets e | chain-itinerary ms-core-2 |
-| `c99bf0bdb029` | 1447 | graded partial by its row, no conditional finding: hull-euler: proof of lem:chain-core-models "Chain recurrence passes to factors, so $Y\subseteq Y_*$." Covers the first clause, for a continuous semico | hull-euler |
-| `f0c16e5c8519` | 1476 | graded partial by its row, no conditional finding: ct-bilateral-mf: tex 1476-1478 over F_2, "The ideal I ... is generated by the indicators 1_{P-T(P)} of the defects": closed CoreMFRadicalGLKill.CoreTr | ct-bilateral-mf ms-core-4 ms-inverses-3 ms-units |
+| `2ff745dd7064` | 1072 | graded partial by its row, no conditional finding: audit-nm-1: PrintedElementaryGroupNotMF quantifies 4≤n and displays no nontriviality; printed at the corollary's n≥2 with "countable and nontrivia | audit-nm-1 audit-sec3 |
+| `f5264e48f943` | 1489 | graded partial by its row, no conditional finding: audit-nm-4 GENERALITY-GAP (fidelity audit of tex 1338-2507 at merge 0e622f840: 232 rows, 231 PASS, 0 FALSE-GREEN): exists_wandering_clopen_cover needs | audit-nm-4 ms-inverses-3 |
 | `ff376e50f433` | 1489 | graded partial by its row, no conditional finding: ms-inverses-3: tex 1491-1492, "Erasing loops shortens any path between related points to at most m-1 steps"; the conclusion is proved by stabilization | ms-inverses-3 |
 | `1d0f9a56866c` | 1502 | graded partial by its row, no conditional finding: ms-inverses-3: tex 1497-1499, "Choose a finite clopen partition of C separating distinct points in each class ... compactness gives such a partition"; | ms-inverses-3 |
 | `46f3810145ee` | 1502 | graded partial by its row, no conditional finding: ms-inverses-3: tex 1500-1502, "The representative set is clopen, because presence of a related point in an earlier atom is a finite clopen test"; the  | ms-inverses-3 |
 | `5079b22a3633` | 1502 | graded partial by its row, no conditional finding: ms-inverses-3: tex 1502-1503, "Refine it according to the occupied atoms, the shift exponents to each level, and all original coefficient values"; exi | ms-inverses-3 |
 | `fd026a61f84f` | 1502 | graded partial by its row, no conditional finding: ms-inverses-3: tex 1499-1500, "Order its atoms and select the point in the first occupied atom as the class representative"; the representative is the | ms-inverses-3 |
-| `42c043ef7ab5` | 1518 | graded partial by its row, no conditional finding: chain-reflection: tex 1518-1519, "Every unital homomorphism from R_X to a directly finite ring factors uniquely through restriction R_X -> R_Y"; first | chain-reflection ct-return-tower |
-| `43afa4ee3f10` | 1518 | graded partial by its row, no conditional finding: chain-reflection: tex 1520-1521, "The same assertions hold for M_m(R_X) -> M_m(R_Y) for every m>=1"; all three universal properties for f.mapMatrix on | chain-reflection ct-return-tower |
-| `8981cd70915a` | 1518 | graded partial by its row, no conditional finding: chain-reflection: tex 1519-1520, "This is also the universal stably finite and LEF ring quotient"; second and third conjuncts, abstract surjection. Pa | chain-reflection ct-return-tower |
-| `cfbacaa0fffa` | 1518 | graded partial by its row, no conditional finding: chain-reflection: tex 1521-1523, "R_X is directly finite if and only if it is stably finite, if and only if it is LEF, if and only if every point of X | chain-reflection ct-return-tower |
-| `30a44485e5e8` | 1527 | graded partial by its row, no conditional finding: chain-reflection: tex 1535-1536, "Multiplication by the other matrix units shows that phi kills M_m(I)"; single i j x = single i i x * single i j 1, s | chain-reflection |
-| `400dde0dbd9d` | 1527 | graded partial by its row, no conditional finding: chain-reflection: tex 1529-1530, "Since R_Y itself is LEF and therefore stably finite, all three universal properties follow"; proved for any surjecti | chain-reflection ct-return-tower |
-| `715cbd0f3410` | 1527 | graded partial by its row, no conditional finding: chain-reflection: tex 1534-1535, "Apply the preceding argument to the unital map r -> phi(rE_11) into this corner"; the corner map is a unital ring ho | chain-reflection |
-| `9dae685e37b9` | 1527 | graded partial by its row, no conditional finding: chain-reflection: tex 1527-1528, "A unital homomorphism to a directly finite ring kills every d in eq:clopen-defect-pair, hence all of I by Lemma lem: | chain-reflection ct-return-tower |
-| `b23e0f5197b5` | 1527 | graded partial by its row, no conditional finding: chain-reflection: tex 1538, "Finally, I=0 exactly when X=Y, giving the stated equivalences"; the deduction from I = 0 (f injective) is formalized abst | chain-reflection ct-return-tower |
-| `f2baa4a46f78` | 1527 | graded partial by its row, no conditional finding: chain-reflection: tex 1536-1537, "Its quotient M_m(R_Y) is LEF, as follows entrywise from finite ring tables"; IsLEFRing.matrix (on main) gives M_m(S) | chain-reflection |
 | `30e2f83b735e` | 1550 | graded partial by its row, no conditional finding: ct-bilateral-cell: tex 1552-1553, "Wandering gives f_ab f_ce = delta_bc f_ae", for every cell of every ring. LANDED 923231b3c/5d90422ea; closed, pendi | ct-bilateral-cell |
 | `331807e9e898` | 1550 | graded partial by its row, no conditional finding: ct-bilateral-cell: tex 1550-1552 (proof of prop:bilateral-three), "Take a clopen P with T(P) in P and nonempty D=P minus T(P). Put p=1_P, d=1_D, and f | ct-bilateral-cell |
 | `7753d17ede98` | 1550 | graded partial by its row, no conditional finding: ct-bilateral-cell: tex 1554-1555, "The unital subalgebra S in pR_Xp generated by s=up, t=pu^-1 and kp satisfies ts=p, st=p-d": S = cellRing (the subri | ct-bilateral-cell |
