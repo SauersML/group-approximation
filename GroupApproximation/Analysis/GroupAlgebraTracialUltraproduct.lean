@@ -78,27 +78,46 @@ theorem isHilbertSchmidtNull_unitarySeq_mul (g h : G) :
     IsHilbertSchmidtNull (fun n ↦ S.model n) (ω : Filter ℕ)
       (unitarySeq S (g * h) - unitarySeq S g * unitarySeq S h) := by
   rw [isHilbertSchmidtNull_iff_sq]
-  refine Tendsto.mono_left ?_ (coe_ultrafilter_le_atTop ω hω)
-  refine tendsto_zero_of_forall_eventually_lt (fun n ↦ hsNormSq_nonneg _ _) fun ε hε ↦ ?_
-  obtain ⟨N, hN⟩ := S.asymptoticallyMultiplicative g h (ε / 2) (by positivity)
-  refine Filter.eventually_atTop.mpr ⟨N, fun n hn ↦ ?_⟩
-  change hsDistSq (S.model n) ((S.map n (g * h) : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ)
-    (((S.map n g : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ) *
-      ((S.map n h : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ)) < ε
-  linarith [hN n hn]
+  have hkey : ∀ n, hsNormSq (S.model n)
+      ((unitarySeq S (g * h) - unitarySeq S g * unitarySeq S h) n) =
+        hsDistSq (S.model n) ((S.map n (g * h) : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ)
+          (((S.map n g : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ) *
+            ((S.map n h : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ)) := by
+    intro n
+    rw [modelSeq_sub_apply, modelSeq_mul_apply, unitarySeq_apply, unitarySeq_apply,
+      unitarySeq_apply]
+    rfl
+  have hlim : Tendsto (fun n ↦ hsDistSq (S.model n)
+      ((S.map n (g * h) : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ)
+      (((S.map n g : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ) *
+        ((S.map n h : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ))) atTop (nhds 0) := by
+    refine tendsto_zero_of_forall_eventually_lt (fun n ↦ ?_) fun ε hε ↦ ?_
+    · rw [← hkey n]
+      exact hsNormSq_nonneg _ _
+    · obtain ⟨N, hN⟩ := S.asymptoticallyMultiplicative g h (ε / 2) (by positivity)
+      exact Filter.eventually_atTop.mpr ⟨N, fun n hn ↦ by linarith [hN n hn]⟩
+  exact (hlim.congr fun n ↦ (hkey n).symm).mono_left (coe_ultrafilter_le_atTop ω hω)
 
 include hω in
 /-- **The identity defect is `‖·‖₂`-null along `ω`.** -/
 theorem isHilbertSchmidtNull_unitarySeq_one :
     IsHilbertSchmidtNull (fun n ↦ S.model n) (ω : Filter ℕ) (unitarySeq S 1 - 1) := by
   rw [isHilbertSchmidtNull_iff_sq]
-  refine Tendsto.mono_left ?_ (coe_ultrafilter_le_atTop ω hω)
-  refine tendsto_zero_of_forall_eventually_lt (fun n ↦ hsNormSq_nonneg _ _) fun ε hε ↦ ?_
-  obtain ⟨N, hN⟩ := S.asymptoticallyMultiplicative 1 1 (ε / 2) (by positivity)
-  refine Filter.eventually_atTop.mpr ⟨N, fun n hn ↦ ?_⟩
-  change hsDistSq (S.model n) ((S.map n 1 : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ) 1 < ε
-  rw [hsDistSq_map_one S n]
-  linarith [hN n hn]
+  have hkey : ∀ n, hsNormSq (S.model n) ((unitarySeq S 1 - 1) n) =
+      hsDistSq (S.model n) ((S.map n 1 : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ) 1 := by
+    intro n
+    rw [modelSeq_sub_apply, modelSeq_one_apply, unitarySeq_apply]
+    rfl
+  have hlim : Tendsto (fun n ↦ hsDistSq (S.model n)
+      ((S.map n 1 : Matrix.unitaryGroup (S.model n) ℂ) : Matrix _ _ ℂ) 1) atTop (nhds 0) := by
+    refine tendsto_zero_of_forall_eventually_lt (fun n ↦ ?_) fun ε hε ↦ ?_
+    · rw [← hkey n]
+      exact hsNormSq_nonneg _ _
+    · obtain ⟨N, hN⟩ := S.asymptoticallyMultiplicative 1 1 (ε / 2) (by positivity)
+      refine Filter.eventually_atTop.mpr ⟨N, fun n hn ↦ ?_⟩
+      rw [hsDistSq_map_one S n]
+      linarith [hN n hn]
+  exact (hlim.congr fun n ↦ (hkey n).symm).mono_left (coe_ultrafilter_le_atTop ω hω)
 
 /-- The class of the models of `g` is unitary: each coordinate is exactly unitary. -/
 theorem mk_unitarySeq_mem_unitary (g : G) :
