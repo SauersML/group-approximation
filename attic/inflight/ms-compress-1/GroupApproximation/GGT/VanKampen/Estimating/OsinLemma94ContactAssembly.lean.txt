@@ -75,7 +75,8 @@ theorem richNeighbourSum_le (P : OsinLemma94RealizedPolygons S) :
     omega
   · have h0 : P.contactMap.dartCount = 0 := by
       unfold CombMap.dartCount
-      exact Nat.card_of_isEmpty (α := P.contactMap.Dart) (by simpa using hne)
+      haveI : IsEmpty P.contactMap.Dart := not_nonempty_iff.mp hne
+      exact Nat.card_of_isEmpty
     omega
 
 end OsinLemma94RealizedPolygons
