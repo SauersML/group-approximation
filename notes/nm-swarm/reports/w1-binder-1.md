@@ -138,6 +138,28 @@ CLAIM Euler C6′ assembly GroupApproximation/GGT/VanKampen/Estimating/OsinAppen
 - (ii) `TwoGonWalkSideHyp` (the side, outer and cell fields). debt-conditional's transport restated over it, `hno`/`havoid` from a per-walk-dart base, and the base on the decomposition walk for every dart outside the span gaps.
 - (iii) `twoGonHoldsInput_of_eulerWalk`, over `TwoGonEulerWalkInput` and a named residual for the span-gap darts. Route: `PocketRegion.ofNoncrossingClosedWalkEuler` → `InnerDiscRegion.ofPocketRegion` → `false_of_mergeDisc`.
 - 20:26 resume check after the outage: no records lost, nothing to re-probe, eeddf1c9e on main.
+- LANDED (ii) at 55f2bec39: `Estimating/OsinAppendixEulerTwoGonPocketFacesEuler`, probe 0913-203340-29734 GREEN, BUILT on the first try; all seven audits [propext, Classical.choice, Quot.sound], no sorryAx; on the wire queue.
+  - `TwoGonWalkSideHyp`, `TwoGonWalkHyp.toSideHyp`.
+  - `ExtPhiData.twoGonPocketFace_alpha_of_sideHyp`, `_iff_of_eqvGen_of_sideHyp`, `_of_mem_sideFaces_of_base`.
+  - `ExtPhiData.cell_face_not_mem_sideFaces_of_twoGon_of_base` (`hno`) and `ExtPhiData.disjoint_sideFaces_of_twoGon_of_base` (`havoid`).
+  - `twoGonPocketFace_of_mem_decomposition` and its six side and arc helpers.
+- LANDED (iii) at c109573e3: `Estimating/OsinAppendixEulerTwoGonEulerAssembly`, probe 0913-203855-77139 GREEN, BUILT on the first try; audits clean; on the wire queue.
+  - `twoGonHoldsInput_of_eulerWalk : TwoGonEulerWalkInput → TwoGonEulerGapInput → TwoGonHoldsInput`.
+  - Route: `PocketRegion.ofNoncrossingClosedWalkEuler` → `Surgery.InnerDiscRegion.ofPocketRegion` → `false_of_mergeDisc`, with `hno`/`havoid` from (ii).
+  - It needs neither a following cycle nor `connected`, so it covers Configuration A and mixed touches.
+- 21:26 resume check after the session limit: probe 13 green, nothing lost, (iii)'s bytes match the attic copy 53963b72a.
+
+## Residuals of the Euler C6′ route
+
+- `TwoGonEulerWalkInput` (eeddf1c9e):
+  - the noncrossing decomposition walk: ms-inverses-2's L1a plus the `CopyCleanAt` clause producers;
+  - the Euler pair: ms-inverses-2's `NoncrossingClosedWalkEulerNoninterleaving` plus a no-interleaving Prop for pocket walks;
+  - clauses 2–5: `OsinAppendixEulerTwoGonSpans` from `PocketWalk.exists_of_exteriorAt`;
+  - the arc bounds.
+- `TwoGonEulerGapInput` (c109573e3), named, unowned. Hand argument, not model-tested in Lean:
+  - the gap darts are not retained, since the two-gon face turns at cell `i` and at the outer vertex with no other component region in its corner;
+  - so the face class runs along the gaps from the first source dart of `b` and the reversed first target dart of `a` (`faceClassO_of_isChain`);
+  - then `ExtPhiData.twoGonPocketFace_of_faceClassO` applies.
 
 ## State
 
