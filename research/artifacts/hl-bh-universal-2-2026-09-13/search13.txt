@@ -1,0 +1,2 @@
+{"NWIN": 1, "MAXLEN": 3, "letters": 16, "found": {"e1": null, "e2": null}}
+DONE
