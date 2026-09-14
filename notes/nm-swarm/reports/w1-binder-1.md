@@ -149,6 +149,13 @@ CLAIM Euler C6′ assembly GroupApproximation/GGT/VanKampen/Estimating/OsinAppen
   - It needs neither a following cycle nor `connected`, so it covers Configuration A and mixed touches.
 - 21:26 resume check after the session limit: probe 13 green, nothing lost, (iii)'s bytes match the attic copy 53963b72a.
 
+## CLAIM 6 (main 23:12: the producer of `TwoGonEulerGapInput`)
+
+CLAIM two-gon gap faces GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonGapFaces.lean
+
+- Step 1, the model test. Check the non-retention claim against the definitions: from the first cell dart of `a`, the rotation of `phiMapO` at cell `i` returns first to the first cell dart of `b`, and the darts in between are exactly `a`'s later source darts and the gap. Do the same at the outer vertex.
+- Step 2: the class chain along both gaps, then `twoGonPocketFace_of_faceClassO`.
+
 ## Residuals of the Euler C6′ route
 
 - `TwoGonEulerWalkInput` (eeddf1c9e):
