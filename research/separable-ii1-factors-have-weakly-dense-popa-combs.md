@@ -32,3 +32,19 @@ By `finite-dimensional-combs-generate-popa-algebras`, `A` is a Popa algebra.
 - with `Σ1/r_i = ∞` the approximants collapse into `R`;
 - with trivial blocks separation fails;
 - the Gamma firewall of sk-popa-lgx §2 and the Kazhdan corner constraints are not violated.
+
+## Review
+- **sk-verify-20 PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-20-2026-09-14-part1.md`).**
+  - **Re-derived by hand:**
+    - the commutation lemma, (C1) and (C3);
+    - the bound `‖z_k − y'_k‖_2 ≤ 4τ(1−g_k)^{1/2}`, from `g_k − x_k^*x_k = |(1−g_k)y'_kg_k|²` and `(1−t)² ≤ 1−t²`;
+    - the splitting `1−b_k = Σ_{k≤m<i}R_{k,m}`;
+    - the Li–Shen and Exel–Loring induction for `W_i`: the universal property of the amalgam, `0 < τ(b_k) < 1`, and compatible unital embeddings;
+    - the reducing subspace `ℂ^{D_i}⊗ℂ^t` of the separation lemma and the norm chain that makes `q` isometric;
+    - the comb criterion: simplicity and local quantization.
+  - **Fixes:**
+    - (F1) the schedule of §4 must be a partial map, with `c_k^{(m)} = R_{k,m}` at idle steps (at `m = 1` the dimension bound is 1);
+    - (F2) scope: Brown–Dykema's relative WEP is not claimed, and it cannot hold in factors not embeddable in `R^ω`;
+    - (F3) cite Brown's question as arXiv:math/0111286v3, §Questions, item 3;
+    - (F4) the novelty wording stays "not found in a bounded search".
+  - Consistent with firewall G and the corner lemmas O and S′.
