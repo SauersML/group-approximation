@@ -1,5 +1,6 @@
 import GroupApproximation.GroupTheory.AlgebraicUltraproductLEF
 import GroupApproximation.GroupTheory.LevelCommutatorWordsLevels
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.LEFCharacterization
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Order.Filter.Ultrafilter.Basic
 import Mathlib.Order.Filter.Cofinite
@@ -9,7 +10,7 @@ import Mathlib.Data.Countable.Defs
 /-!
 # A countable LEF group lies in the commutator subgroup of a finitely generated LEF group
 
-`simple_kazhdan_sofic_group.tex` at origin/main 37551fd93 (md5 b55c0d23…), section "LEF groups", the proof of `cor:lef`
+`simple_kazhdan_sofic_group.tex` at origin/main 696c4b602 (md5 0648e5f8…), section "LEF groups", the proof of `cor:lef`
 and `cor:host`, tex l.332–356:
 
 > Conversely, let Γ = {γ_1, γ_2, …} be a countable LEF group, replaced by Γ × ℤ so that it is infinite. There are finite
@@ -132,8 +133,7 @@ noncomputable def embedding (hω : (ω : Filter ℕ) ≤ cofinite) : Γ →* Ult
     obtain ⟨j₂, hj₂, rfl⟩ := M.surj y
     obtain ⟨j₃, hj₃, h₃⟩ := M.surj (M.γ j₁ * M.γ j₂)
     show (QuotientGroup.mk (embedSeq M (M.γ j₁ * M.γ j₂)) : Ultraproduct ω (SymX M)) =
-      QuotientGroup.mk (embedSeq M (M.γ j₁)) * QuotientGroup.mk (embedSeq M (M.γ j₂))
-    rw [← QuotientGroup.mk_mul]
+      QuotientGroup.mk (embedSeq M (M.γ j₁) * embedSeq M (M.γ j₂))
     refine (mk_eq_mk_iff ω (SymX M)).2 ((eventually_ge hω (j₁ + j₂ + j₃)).mono fun k hk => ?_)
     show levelZeroMul (M.Q k) k (M.μ k (M.γ j₁ * M.γ j₂)) =
       levelZeroMul (M.Q k) k (M.μ k (M.γ j₁)) * levelZeroMul (M.Q k) k (M.μ k (M.γ j₂))
@@ -302,12 +302,18 @@ def PrintedLEFLevelEmbeddingParagraph : Prop :=
 theorem printedLEFLevelEmbeddingParagraph : PrintedLEFLevelEmbeddingParagraph :=
   fun Γ _ hc hΓ => LEFLevelEmbedding.exists_levelCommutatorEmbedding Γ hc hΓ
 
+/-- **The piece `LEFUltraproductEmbeddingStatement`** of `cor:lef` and `cor:host` (declared by sk-lef-assembly in
+`LEFCharacterization`), proved along tex l.332–356. -/
+theorem lefUltraproductEmbeddingStatement : LEFUltraproductEmbeddingStatement :=
+  fun Γ _ hc hΓ => LEFLevelEmbedding.exists_levelCommutatorEmbedding Γ hc hΓ
+
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedCommutatorMultipliesFirstCoordinate
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedConjugateMovesLevels
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedDistinctPowerOfTwoDifferences
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedWordActsOnLevelZero
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedUltraproductSubgroupsLEF
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedLEFLevelEmbeddingParagraph
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.lefUltraproductEmbeddingStatement
 
 end SimpleKazhdanSofic
 end GroupApproximation

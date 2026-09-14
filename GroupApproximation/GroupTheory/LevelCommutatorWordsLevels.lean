@@ -3,7 +3,7 @@ import GroupApproximation.GroupTheory.LevelCommutatorWords
 /-!
 # The levels of `a_k` and the words `w_j` at level `0`
 
-`simple_kazhdan_sofic_group.tex` at origin/main 37551fd93, proof of `cor:lef` and `cor:host`, tex l.340–348:
+`simple_kazhdan_sofic_group.tex` at origin/main 696c4b602, proof of `cor:lef` and `cor:host`, tex l.340–348:
 
 > On Q_k × ℤ/m_k × ℤ/4^{k+1} let b_k add 1 to the last coordinate, and let a_k act on the level i by f_jk if i = 2^{2j−1}
 > and by t_k if i = 4^j, for j ≤ k, and trivially on the other levels. Then b_k^{−n} a_k b_k^n acts on the level i as a_k
@@ -130,11 +130,15 @@ def levelZeroMul (x : Q) : Perm ((Q × ZMod (Fintype.card Q)) × ZMod (4 ^ (k + 
 theorem levelZeroMul_mul (x y : Q) :
     levelZeroMul Q k (x * y) = levelZeroMul Q k x * levelZeroMul Q k y := by
   refine Equiv.ext fun z => ?_
-  by_cases hi : z.2 = 0 <;> simp [levelZeroMul, hi, mul_assoc, Equiv.coe_mulLeft]
+  by_cases hi : z.2 = 0 <;> simp [levelZeroMul, hi, Equiv.coe_mulLeft]
 
 theorem levelZeroMul_one : levelZeroMul Q k 1 = 1 := by
   refine Equiv.ext fun z => ?_
-  by_cases hi : z.2 = 0 <;> simp [levelZeroMul, hi, Equiv.coe_mulLeft]
+  obtain ⟨y, i⟩ := z
+  by_cases hi : i = 0
+  · subst hi
+    simp [levelZeroMul]
+  · simp [levelZeroMul, hi]
 
 theorem eq_one_of_levelZeroMul_eq_one {x : Q} (h : levelZeroMul Q k x = 1) : x = 1 := by
   have h1 := Equiv.congr_fun h ((1, 0), 0)
