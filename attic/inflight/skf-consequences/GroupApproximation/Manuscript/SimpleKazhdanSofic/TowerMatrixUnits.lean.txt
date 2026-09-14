@@ -41,7 +41,7 @@ theorem charFn_mul_charFn_inter {U V : Set X} (hU : IsClopen U) (hV : IsClopen V
       LocallyConstant.charFn k (hU.inter hV) := by
   ext x
   simp only [LocallyConstant.mul_apply, LocallyConstant.coe_charFn]
-  by_cases hxU : x ∈ U <;> by_cases hxV : x ∈ V <;> simp [Set.indicator_apply, hxU, hxV]
+  by_cases hxU : x ∈ U <;> by_cases hxV : x ∈ V <;> simp [hxU, hxV]
 
 variable (T k)
 

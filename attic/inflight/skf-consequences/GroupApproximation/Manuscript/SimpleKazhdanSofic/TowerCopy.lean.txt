@@ -1,0 +1,132 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.TowerMatrixUnits
+
+/-!
+# The tower copy of `M_{2m+1}(F_2)`
+
+`simple_kazhdan_sofic_group.tex` at bf961c128, tex 157–166 and 205–206:
+
+> These satisfy $E_{ab}(W)E_{cd}(W')=\delta_{bc}E_{ad}(W\cap W')$.  Their span is a subring
+> $B_m(U)\cong M_{2m+1}(\LC(U,\F_2))$ … Let $H_W$ be the copy of $\GL_d(\F_2)$ acting on the tower
+> over $W$ and as the identity elsewhere.
+
+Over `F_2` the constant matrices over `W` form a copy of `M_{2m+1}(F_2)` inside `R_X`:
+
+* `towerHom hlev hWU hW : M_{2m+1}(F_2) →ₙ+* R_X`, `M ↦ ∑_{a,b} M_{ab} E_{ab}(W)`, with the coefficient
+  `M_{ab} ∈ F_2` acting through `ZMod.val`;
+* `towerHom_one`: its local identity is the tower unit `levelSum W = ∑_a E_{aa}(W)`;
+* `towerHom_injective`: it is injective for nonempty `W`;
+* `levelSum_mul_towerHom_mul_levelSum`: `E_{aa}(W) x E_{bb}(W)` reads off the `(a,b)` coefficient.
+-/
+
+namespace GroupApproximation
+namespace SimpleKazhdanSofic
+
+open ClopenCrossedProduct
+
+variable {X : Type*} [TopologicalSpace X] {T : X ≃ₜ X}
+
+/-- `1 + 1 = 0` in `R_X` over `F_2`. -/
+theorem one_add_one_eq_zero : (1 : ClopenCrossedProduct T (ZMod 2)) + 1 = 0 := by
+  have h : (1 : LocallyConstant X (ZMod 2)) + 1 = 0 := by
+    ext x
+    simp only [LocallyConstant.add_apply, LocallyConstant.one_apply, LocallyConstant.zero_apply]
+    decide
+  rw [← map_one (coeff T (ZMod 2)), ← map_add, h, map_zero]
+
+theorem two_nsmul_eq_zero (y : ClopenCrossedProduct T (ZMod 2)) : 2 • y = 0 := by
+  rw [two_nsmul, ← one_mul y, ← add_mul, one_add_one_eq_zero, zero_mul]
+
+theorem mod_two_nsmul (n : ℕ) (y : ClopenCrossedProduct T (ZMod 2)) : (n % 2) • y = n • y := by
+  conv_rhs => rw [← Nat.mod_add_div n 2]
+  rw [add_nsmul, mul_nsmul', two_nsmul_eq_zero, nsmul_zero, add_zero]
+
+theorem val_add_nsmul (x x' : ZMod 2) (y : ClopenCrossedProduct T (ZMod 2)) :
+    (x + x').val • y = x.val • y + x'.val • y := by
+  rw [ZMod.val_add, mod_two_nsmul, add_nsmul]
+
+theorem val_mul_nsmul (x x' : ZMod 2) (y : ClopenCrossedProduct T (ZMod 2)) :
+    (x * x').val • y = x.val • x'.val • y := by
+  rw [ZMod.val_mul, mod_two_nsmul, mul_nsmul']
+
+/-- `x ↦ x.val • y` as an additive map `F_2 →+ R_X`. -/
+noncomputable def valSMul (y : ClopenCrossedProduct T (ZMod 2)) :
+    ZMod 2 →+ ClopenCrossedProduct T (ZMod 2) where
+  toFun x := x.val • y
+  map_zero' := by rw [ZMod.val_zero, zero_nsmul]
+  map_add' x x' := val_add_nsmul x x' y
+
+theorem valSMul_apply (y : ClopenCrossedProduct T (ZMod 2)) (x : ZMod 2) :
+    valSMul y x = x.val • y := rfl
+
+variable {m : ℕ} {U W : Set X}
+
+/-- **The tower copy** `M_{2m+1}(F_2) →ₙ+* R_X`, `M ↦ ∑_{a,b} M_{ab} E_{ab}(W)`. -/
+noncomputable def towerHom (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W) :
+    Matrix (Fin (2 * m + 1)) (Fin (2 * m + 1)) (ZMod 2) →ₙ+* ClopenCrossedProduct T (ZMod 2) where
+  toFun M := ∑ a, ∑ b, (M a b).val • towerE T (ZMod 2) m hW a b
+  map_zero' := by simp only [Matrix.zero_apply, ZMod.val_zero, zero_nsmul, Finset.sum_const_zero]
+  map_add' M N := by
+    simp only [Matrix.add_apply, val_add_nsmul, Finset.sum_add_distrib]
+  map_mul' M N := by
+    have hWW : towerE T (ZMod 2) m (hW.inter hW) = towerE T (ZMod 2) m hW := by
+      funext a b
+      unfold towerE
+      congr 2
+      exact charFn_congr _ _ (by rw [Set.inter_self])
+    simp only [Matrix.mul_apply, Finset.sum_mul, Finset.mul_sum, smul_mul_smul_comm,
+      towerE_mul_towerE hlev hWU hWU hW hW, hWW, smul_ite, smul_zero]
+    simp only [Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+    refine Finset.sum_congr rfl fun a _ => ?_
+    refine Finset.sum_congr rfl fun d _ => ?_
+    rw [← valSMul_apply, map_sum]
+    refine Finset.sum_congr rfl fun b _ => ?_
+    rw [valSMul_apply, val_mul_nsmul, mul_nsmul']
+
+theorem towerHom_apply (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W)
+    (M : Matrix (Fin (2 * m + 1)) (Fin (2 * m + 1)) (ZMod 2)) :
+    towerHom hlev hWU hW M = ∑ a, ∑ b, (M a b).val • towerE T (ZMod 2) m hW a b := rfl
+
+/-- The local identity of the tower copy is the tower unit `∑_a E_{aa}(W)`. -/
+theorem towerHom_one (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W) :
+    towerHom hlev hWU hW 1 = levelSum (T := T) (k := ZMod 2) m hW := by
+  rw [towerHom_apply, levelSum]
+  refine Finset.sum_congr rfl fun a _ => ?_
+  simp only [Matrix.one_apply, apply_ite ZMod.val, ZMod.val_one, ZMod.val_zero, ite_nsmul,
+    one_nsmul, zero_nsmul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+
+/-- **Reading off a coefficient**: `E_{aa}(W) M E_{bb}(W) = M_{ab} E_{ab}(W)`. -/
+theorem towerE_mul_towerHom_mul_towerE (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U)
+    (hW : IsClopen W) (M : Matrix (Fin (2 * m + 1)) (Fin (2 * m + 1)) (ZMod 2))
+    (a b : Fin (2 * m + 1)) :
+    towerE T (ZMod 2) m hW a a * towerHom hlev hWU hW M * towerE T (ZMod 2) m hW b b =
+      (M a b).val • towerE T (ZMod 2) m hW a b := by
+  have hWW : towerE T (ZMod 2) m (hW.inter hW) = towerE T (ZMod 2) m hW := by
+    funext a b
+    unfold towerE
+    congr 2
+    exact charFn_congr _ _ (by rw [Set.inter_self])
+  simp only [towerHom_apply, Finset.mul_sum, Finset.sum_mul, mul_smul_comm, smul_mul_assoc,
+    towerE_mul_towerE hlev hWU hWU hW hW, hWW, smul_ite, smul_zero]
+  simp only [Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+
+/-- **The tower copy is injective** for nonempty `W`. -/
+theorem towerHom_injective (hlev : LevelsDisjoint T m U) (hWU : W ⊆ U) (hW : IsClopen W)
+    (hne : W.Nonempty) : Function.Injective (towerHom hlev hWU hW) := by
+  intro M N h
+  ext a b
+  have h1 := towerE_mul_towerHom_mul_towerE hlev hWU hW M a b
+  have h2 := towerE_mul_towerHom_mul_towerE hlev hWU hW N a b
+  rw [h, h2] at h1
+  have hne0 := towerE_ne_zero (k := ZMod 2) (T := T) hW hne a b
+  revert h1
+  generalize M a b = x
+  generalize N a b = y
+  intro h1
+  fin_cases x <;> fin_cases y <;> simp_all
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.towerHom_one
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.towerE_mul_towerHom_mul_towerE
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.towerHom_injective
+
+end SimpleKazhdanSofic
+end GroupApproximation
