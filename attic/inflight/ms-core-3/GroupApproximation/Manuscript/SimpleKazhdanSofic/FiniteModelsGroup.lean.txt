@@ -87,8 +87,7 @@ theorem IsMatricialLEFRing.matrix {K A : Type} [Ring K] [Ring A] (hA : IsMatrici
   refine ⟨N, fun M ↦ Matrix.compRingEquiv (Fin n) (Fin N) K (M.map φ), ?_, ?_, ?_, ?_⟩
   · intro M hM M' hM' hMM'
     have h : M.map φ = M'.map φ := (Matrix.compRingEquiv (Fin n) (Fin N) K).injective hMM'
-    ext i j
-    exact hinj (hE M hM i j) (hE M' hM' i j) (congrFun (congrFun h i) j)
+    exact Matrix.ext fun i j => hinj (hE M hM i j) (hE M' hM' i j) (congrFun (congrFun h i) j)
   · show Matrix.compRingEquiv (Fin n) (Fin N) K ((0 : Matrix (Fin n) (Fin n) A).map φ) = 0
     rw [Matrix.map_zero φ h0, map_zero]
   · show Matrix.compRingEquiv (Fin n) (Fin N) K ((1 : Matrix (Fin n) (Fin n) A).map φ) = 1
@@ -100,14 +99,13 @@ theorem IsMatricialLEFRing.matrix {K A : Type} [Ring K] [Ring A] (hA : IsMatrici
           Matrix.compRingEquiv (Fin n) (Fin N) K (M'.map φ)
       rw [← map_add]
       congr 1
-      ext i j
-      exact (hφ _ (hE M hM i j) _ (hE M' hM' i j)).1
+      exact Matrix.ext fun i j => (hφ _ (hE M hM i j) _ (hE M' hM' i j)).1
     · show Matrix.compRingEquiv (Fin n) (Fin N) K ((M * M').map φ) =
         Matrix.compRingEquiv (Fin n) (Fin N) K (M.map φ) *
           Matrix.compRingEquiv (Fin n) (Fin N) K (M'.map φ)
       rw [← map_mul]
       congr 1
-      ext i j
+      refine Matrix.ext fun i j => ?_
       simp only [Matrix.map_apply, Matrix.mul_apply]
       exact hsum M hM M' hM' i j Finset.univ
 
@@ -162,13 +160,16 @@ theorem IsMatricialLEFRing.exists_generalLinear_model {K A : Type} [Ring K] [Rin
       Set.InjOn g (s : Set (Matrix (Fin n) (Fin n) A)ˣ) ∧
         ∀ u ∈ s, ∀ v ∈ s, g (u * v) = g u * g v := by
   classical
-  obtain ⟨N, ψ, hinj, -, h1, hψ⟩ := hA.matrix n
-    (s.image (fun u : (Matrix (Fin n) (Fin n) A)ˣ => (u : Matrix (Fin n) (Fin n) A)) ∪
-      s.image (fun u : (Matrix (Fin n) (Fin n) A)ˣ =>
-        ((u⁻¹ : (Matrix (Fin n) (Fin n) A)ˣ) : Matrix (Fin n) (Fin n) A)))
-  exact ⟨N, exists_units_model s _
-    (fun u hu => Finset.mem_union_left _ (Finset.mem_image_of_mem _ hu))
-    (fun u hu => Finset.mem_union_right _ (Finset.mem_image_of_mem _ hu)) ψ hinj h1 hψ⟩
+  obtain ⟨t, hv, hi⟩ : ∃ t : Finset (Matrix (Fin n) (Fin n) A),
+      (∀ u ∈ s, (u : Matrix (Fin n) (Fin n) A) ∈ t) ∧
+        ∀ u ∈ s, ((u⁻¹ : (Matrix (Fin n) (Fin n) A)ˣ) : Matrix (Fin n) (Fin n) A) ∈ t :=
+    ⟨s.image (fun u : (Matrix (Fin n) (Fin n) A)ˣ ↦ (u : Matrix (Fin n) (Fin n) A)) ∪
+        s.image (fun u : (Matrix (Fin n) (Fin n) A)ˣ ↦
+          ((u⁻¹ : (Matrix (Fin n) (Fin n) A)ˣ) : Matrix (Fin n) (Fin n) A)),
+      fun u hu ↦ Finset.mem_union_left _ (Finset.mem_image_of_mem _ hu),
+      fun u hu ↦ Finset.mem_union_right _ (Finset.mem_image_of_mem _ hu)⟩
+  obtain ⟨N, ψ, hinj, -, h1, hψ⟩ := hA.matrix n t
+  exact ⟨N, exists_units_model s t hv hi ψ hinj h1 hψ⟩
 
 /-- "Thus $G$ is LEF" (tex 149): `EL_n(A)` is LEF when `A` has matricial finite models over a finite
 ring `K`, through the partial homomorphisms into `GL_{n × N}(K)`. -/
