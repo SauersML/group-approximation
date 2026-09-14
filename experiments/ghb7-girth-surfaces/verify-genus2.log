@@ -1,0 +1,8 @@
+relators hold for psi(a),psi(b),psi(c): True 
+surface 25 {'involutions': True, 'transitive': True, 'free orbits 6,8,8': True, 'orientable': True, 'labels 1..6 on all 3T/2 edges': True, 'chi': -2, 'all vertex words trivial': True} genus 2 PASS
+surface 29 {'involutions': True, 'transitive': True, 'free orbits 6,8,8': True, 'orientable': True, 'labels 1..6 on all 3T/2 edges': True, 'chi': -2, 'all vertex words trivial': True} genus 2 PASS
+surface 31 {'involutions': True, 'transitive': True, 'free orbits 6,8,8': True, 'orientable': True, 'labels 1..6 on all 3T/2 edges': True, 'chi': -2, 'all vertex words trivial': True} genus 2 PASS
+surface 43 {'involutions': True, 'transitive': True, 'free orbits 6,8,8': True, 'orientable': True, 'labels 1..6 on all 3T/2 edges': True, 'chi': -2, 'all vertex words trivial': True} genus 2 PASS
+surface 65 {'involutions': True, 'transitive': True, 'free orbits 6,8,8': True, 'orientable': True, 'labels 1..6 on all 3T/2 edges': True, 'chi': -2, 'all vertex words trivial': True} genus 2 PASS
+surface 67 {'involutions': True, 'transitive': True, 'free orbits 6,8,8': True, 'orientable': True, 'labels 1..6 on all 3T/2 edges': True, 'chi': -2, 'all vertex words trivial': True} genus 2 PASS
+ALL PASS
