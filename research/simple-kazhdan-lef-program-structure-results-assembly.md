@@ -35,6 +35,10 @@ requires:
   - idempotent-displacement-fails-for-polynomially-small-units
   - polynomially-small-units-have-order-dividing-420
   - laurent-linear-confining-sets-force-infinite-order-elements
+  - banded-matrix-groups-are-subshift-crossed-product-groups
+  - piecewise-dyadic-level-models-give-non-uniform-growth
+  - matrix-decompositions-of-subshift-rings-need-divisible-unit
+  - krieger-subshift-embedding-theorem
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.

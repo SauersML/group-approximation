@@ -9,8 +9,6 @@ requires:
   - infinite-simple-kazhdan-hyperlinear-group
   - finite-simple-groups-converge-to-simple-kazhdan-group
   - brown-mcduff-witness-for-simple-kazhdan-lef-group
-  - simple-kazhdan-group-lacks-factorization-property
-  - simple-kazhdan-lef-group-c-star-fails-llp
   - every-turing-degree-is-a-simple-kazhdan-lef-word-problem
   - rf-groups-embed-in-simple-kazhdan-lef-groups
   - lef-groups-embed-in-simple-kazhdan-lef-groups
@@ -22,10 +20,8 @@ requires:
   - lef-iff-subgroup-of-simple-kazhdan-finite-simple-limit
   - simple-kazhdan-lef-host-iff-lef-and-countably-many-types
   - simple-kazhdan-lef-host-for-recursive-lef-groups
-  - topological-full-group-embeds-in-subshift-elementary-group
-  - no-decidable-group-contains-every-fp-rf-group
-  - heisenberg-group-lies-in-no-z-subshift-elementary-group
-  - separable-factors-hold-countably-many-subshift-groups
+  - lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts
+  - continuum-many-subshift-el-groups-pairwise-non-embeddable
 ---
 
 Assembly only: the root claim `simple-kazhdan-lef-groups-note-main-results` is, by definition, the
@@ -33,12 +29,23 @@ conjunction of the listed claims, so it holds exactly when each of them does. No
 derived here beyond that conjunction; each derivation lives on the listed claim's own proof or
 citation route.
 
-The last eight members are the results revision 4.1 of `simple_kazhdan_sofic_group.tex`
-(main 37551fd939) prints beyond the first thirteen:
-- Theorem 2, the general engine for minimal topologically free actions with matricial crossed products;
-- Corollary 3, the characterization of LEF groups as subgroups of simple Kazhdan limits of finite simple expanders;
-- Corollary 4, one host per countable set of LEF groups, and the host for all recursively presented ones;
-- the embedding of the derived topological full group in G_X;
-- no host with solvable word problem contains every finitely presented residually finite group;
-- SL_3(Z) lies in no G_X, through the Heisenberg group;
-- a separable II_1 factor contains G_X for only countably many X.
+Revision 4.4 of `simple_kazhdan_sofic_group.tex` (main f34e9c0b1c, 8 pages) prints exactly the
+members listed above:
+- Theorem 1 on `G_X`, which answers `infinite-simple-kazhdan-hyperlinear-group`, and Theorem 2, the
+  general engine for minimal topologically free actions with matrix models;
+- Brown's formulation through the McDuff factor;
+- Corollary 3, the characterization of LEF groups as subgroups of simple Kazhdan limits of finite
+  simple expanders, together with its solvable word problem analogue
+  (`lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts`);
+- Corollary 4, one host per countable set of LEF groups and the host for all recursively presented
+  ones;
+- Corollary 5, every Turing degree as a word problem degree and continuum many `G_X` none of which
+  is isomorphic to a subgroup of another
+  (`continuum-many-subshift-el-groups-pairwise-non-embeddable`).
+
+Revision 4.4 dropped six results that revision 4.1 printed, to keep the paper short. They remain
+established and reachable through the program themes, not through this root: the separable factor
+count and the failure of the factorization property and of the LLP (structure and approximation
+themes), `SL_3(Z)` lying in no `G_X` and no host with solvable word problem containing every
+finitely presented residually finite group (embedding theme), and the embedding of the derived
+topological full group in `G_X` (embedding theme).

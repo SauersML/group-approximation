@@ -22,6 +22,11 @@ requires:
   - subshift-el3-diagonal-recognition-fails-up-to-g-conjugacy
   - subshift-group-isomorphism-preserves-rational-spectrum
   - frobenius-support-idempotents-give-boolean-realization
+  - lamplighter-host-elementary-groups-are-character-rigid
+  - lamplighter-host-elementary-groups-have-trivial-irs
+  - subshift-el-group-bi-interpretable-with-its-ring
+  - subshift-el3-out-contains-index-and-subshift-automorphisms
+  - subshift-group-factor-out-contains-z
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.

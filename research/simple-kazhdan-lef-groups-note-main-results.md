@@ -19,17 +19,19 @@ simple groups"). For every infinite minimal subshift `X`, `G_X = EL_3(LC(X,F_2) 
    `infinite-simple-kazhdan-hyperlinear-group`;
 2. is the marked limit of the finite simple groups `SL_{3N}(F_2)`, whose Cayley graphs form
    expanders (`finite-simple-groups-converge-to-simple-kazhdan-group`);
-3. sits in the unitary group of a McDuff factor embeddable in `R^ω`, lacks the factorization
-   property, and `C*(G_X)` lacks the LLP (`brown-mcduff-witness-for-simple-kazhdan-lef-group`,
-   `simple-kazhdan-group-lacks-factorization-property`, `simple-kazhdan-lef-group-c-star-fails-llp`);
+3. sits in the unitary group of a McDuff factor embeddable in `R^ω`, which is Brown's form of the
+   question (`brown-mcduff-witness-for-simple-kazhdan-lef-group`);
 4. realizes every Turing degree as a word-problem degree
-   (`every-turing-degree-is-a-simple-kazhdan-lef-word-problem`).
+   (`every-turing-degree-is-a-simple-kazhdan-lef-word-problem`), and continuum many `G_X` are
+   pairwise non-embeddable (`continuum-many-subshift-el-groups-pairwise-non-embeddable`).
 
 Embedding theorems built on the same tower argument:
 
 5. every finitely generated residually finite group, and every finitely generated LEF group, is
    a subgroup of an infinite finitely generated simple Kazhdan LEF group
-   (`rf-groups-embed-in-simple-kazhdan-lef-groups`, `lef-groups-embed-in-simple-kazhdan-lef-groups`);
+   (`rf-groups-embed-in-simple-kazhdan-lef-groups`, `lef-groups-embed-in-simple-kazhdan-lef-groups`),
+   and the host can be chosen with solvable word problem exactly when the input has one
+   (`lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts`);
 6. one such group contains every group of a countable family of f.g. residually finite groups,
    for example every f.g. linear group (`simple-kazhdan-lef-host-for-countably-many-rf-groups`,
    `universal-simple-kazhdan-lef-groups-exist`);
@@ -40,3 +42,10 @@ Embedding theorems built on the same tower argument:
 The status of this root is the conjunction of these claims; see the assembly route
 `simple-kazhdan-lef-note-main-results-assembly`. Review state of each item lives on its own node
 and in `research/artifacts/sk-review-*-2026-09-13-part*.md`.
+
+**Scope, 2026-09-14.** This root tracks what the manuscript prints. Revision 4.4 (main f34e9c0b1c,
+8 pages) shortened the paper to its main results, so six results it no longer prints left this
+root and stay established under the program themes: the separable factor count, the failure of the
+factorization property and of the LLP, `SL_3(Z)` lying in no `G_X`, no host with solvable word
+problem containing every finitely presented residually finite group, and the embedding of the
+derived topological full group in `G_X`.

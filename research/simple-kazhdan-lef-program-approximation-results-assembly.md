@@ -42,6 +42,11 @@ requires:
   - comb-tooth-tree-stages-are-residually-finite-dimensional
   - cyclic-factor-subshift-groups-have-ring-type-shadows
   - stable-finite-actions-extension-sofic-iff-class-norm-vanishes
+  - simple-kazhdan-group-lacks-factorization-property
+  - simple-kazhdan-lef-group-c-star-fails-llp
+  - laurent-sl4-block-sl2-norm-four-off-full-unipotent-spectrum
+  - subshift-el-n-exactness-is-kakutani-invariant
+  - subshift-group-unitary-embeddings-are-corner-subfactors
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.

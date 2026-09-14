@@ -26,6 +26,7 @@ requires:
   - wreath-products-keep-the-abelianization-of-the-base
   - lef-iff-subgroup-of-simple-kazhdan-all-approximants-expand
   - erf-groups-have-decidable-simple-kazhdan-hosts
+  - topological-full-group-embeds-in-subshift-elementary-group
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.

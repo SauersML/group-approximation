@@ -27,6 +27,8 @@ requires:
   - cantor-crossed-product-idempotents-similar-to-clopen-ones
   - minimal-cantor-crossed-products-have-internal-cancellation
   - cantor-crossed-product-idempotent-pairs-are-stable
+  - cantor-crossed-product-right-ideal-membership-is-local
+  - subshift-gl3-normal-subgroups-are-index-preimages
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
