@@ -269,8 +269,15 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
       - `sectionPocketCutInput_of_residualsTwoArc` and `osinSectionPocketCutSection_of_residualsTwoArc`.
   - Binder 7 in walk order now rests on two open statements: w1-binder-3's `PocketOuterPinchStepSectionStatement` and the
     two-arc producer `OsinSectionPocketFaceSetTwoArcSectionStatement`.
-  - Next for this lane, from ms-intro-4's absorbed cell items: the cell mirror. `CellPocketOuterPinchStepSectionStatement`
-    and a dispatch to ms-intro-4's `CellPocketPinchSectionInput`, through `cellPocketPinchFirstTurns`.
+  - Cell mirror (main approved, ~01:3x). In flight: `Estimating/OsinPocketCellPinchOuterDispatch` (attic 8f985e533, md5
+    2ece7c80, probing in a retry loop).
+    - `CellPocketOuterPinchStepSectionStatement`: one step at an outer pinch of a cell pocket (walk order, `¬ K.FirstTurns`,
+      both arcs proper, pinched), under the Section premises. w1-binder-3 proves it.
+    - `cellPocketPinchSectionStatement_of_outerPinchStep`: `CellPocketPinchSectionStatement` from it. The first-turn case
+      goes through `CellPocketFaceSet.exists_simple_of_firstTurns`.
+    - One spelling agreed with ms-cite-1 in one message. The dispatch concludes exactly `CellPocketPinchSectionStatement`,
+      which ms-cite-1's consumer `…_of_pinchSectionOrderEuler` reads. Its cell-walk proper-arc residual delivers the two
+      premises of `CellPocketPinchSectionInput`: `firstArc.length < (cellDarts X i).length` and the same for `secondArc`.
 - **Noted:** ms-cite-1's `cellPocketPinchRoseRefutation` (e0a0776bb) refutes `CellPocketPinchPosStatement`, so V4 endpoints over
   it are vacuous. The replacement is `CellPocketPinchSectionStatement`.
 - **Landed above (was in flight): `Estimating/OsinPocketGoodCornersSection`** (attic 12585faa5), the section mirror.
