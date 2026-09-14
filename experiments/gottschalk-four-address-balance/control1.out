@@ -1,0 +1,10 @@
+group Z7 order 7 checked so far 96 agree 96
+group Z12 order 12 checked so far 192 agree 192
+group D5 order 10 checked so far 288 agree 288
+group D8 order 16 checked so far 384 agree 384
+group A4 order 12 checked so far 480 agree 480
+group S4 order 24 checked so far 576 agree 576
+group A5 order 60 checked so far 672 agree 672
+group Q8 order 8 checked so far 768 agree 768
+group S3xS3 order 36 checked so far 864 agree 864
+{"checked": 864, "agree": 864, "missing_partitions": 0}
