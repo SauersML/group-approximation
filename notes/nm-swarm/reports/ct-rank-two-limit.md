@@ -159,3 +159,21 @@ sentences).  Rows are appended once the carriers land.
 ## Progress log
 
 - 09-13 16:45: plan; GHW check passed; four modules probing.
+
+## Refutation of V4 residual `CellPocketPinchPosStatement` (ms-cite-1, 09-14 ~00:05)
+
+- `GGT.VanKampen.OsinPocketCellPinchRose.cellPocketPinchRoseRefutation : CellPocketPinchRoseRefutation`, where
+  `CellPocketPinchRoseRefutation := ¬ CellPocketPinchPosStatement.{0, 0, 0}` (`Estimating/OsinPocketCellPinchRefutation`,
+  on origin at e0a0776bb).  Checked here: `#audit_closed_axioms`, and ms-cite-1's probe 0913-234315-3209 is GREEN on the origin bytes.
+  Witness: a four-petal rose on one-letter relators at ε = 1; a cell pocket face set whose first cell has one dart is not simple,
+  and O-equivalence keeps word lengths.
+- So every endpoint of this lane binding `hcellPinch` at `.{0, 0, 0}` is vacuous: `TorsionFreeResidualsV2Copy` (b05937611),
+  `TorsionFreeResidualsV4` (4091f7433) and `TorsionFreeResidualsV4Euler` (236898aed), and the waists `_of_residualsV2Copy`,
+  `_of_residualsV4`, `_of_residualsV4Split`, `_of_residualsV4Euler`, `_of_residualsV4EulerSplit` at those universes.
+  `_of_residualsV4CopySection` (binder 5 whole) is not affected.
+- Census: the 14 W1 rows now cite the `TorsionFreeGreendlingerLeaf.…_of_greendlinger` carriers over the open waist statement and
+  record the vacuity; still `partial`.
+- Replacement route (ms-cite-1, awaiting assignment): ms-intro-4's `CellPocketPinchSectionStatement` (d3b0769b8), consumed by
+  `CellPocketFaceSet.copyRegion_of_pinchSection`, which needs proper arcs on the cell walk.  No producer on origin; it would be a new
+  residual, false on monogon relators without `OsinCCondition`, so it needs a model test.  When an additive
+  `osinMultipleEdgePocketRegionCopySection_of_pinchSectionOrderEuler` lands, this lane adds a waist and torsion-free variant over it.
