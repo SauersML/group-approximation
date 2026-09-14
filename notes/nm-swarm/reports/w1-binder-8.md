@@ -110,3 +110,12 @@ CLAIM OsinLemma94CaseOneRCellSpurStatement (ms-intro-1's leaf (3)) and binder 3 
 CLAIM the spur branch from the successor-form enclosed loop cut, and the combinatorial leaf `OsinLemma94CaseOneSpurEnclosureStatement`, GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosure.lean
 
 - `osinLemma94CaseOneRCellSpur_of_enclosure (hloop : EnclosedSubdiagramLoopCutSuccStatement) (hsub : ClosedWalkEnclosedSubdiagramSuccStatement) (hencl : OsinLemma94CaseOneSpurEnclosureStatement)`. The leaf: with a spur on a pocket walk, one complement spelling (`B ++ X` or `A ++ Y`) encloses an `EnclosedFaceSetSucc` avoiding Π. Its `turn_next` field is the landed first-turn chain of 0484be5e5; `mem_iff` and the exterior dichotomy are the open part.
+
+- LANDED d3281c3b9: `Estimating/OsinLemma94SameCellSpurEnclosure.lean`. The module BUILT in probe 0913-234701-11663; the general module co-probed with it was red. Declarations: `OsinLemma94CaseOneSpurEnclosureStatement` (successor form) and `osinLemma94CaseOneRCellSpur_of_enclosure (hloop : EnclosedSubdiagramLoopCutSuccStatement) (hsub : ClosedWalkEnclosedSubdiagramSuccStatement) (hencl)`. Queued for wiring.
+
+CLAIM the faces enclosed by a first-turn walk with bridges, GroupApproximation/GGT/VanKampen/ClosedWalkFirstTurnEnclosure.lean
+
+CLAIM `osinLemma94CaseOneSpurEnclosure : OsinLemma94CaseOneSpurEnclosureStatement` and `osinLemma94CaseOneRCellSpur_of_enclosedSucc`, GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellSpurEnclosureProof.lean
+
+- Route: the walk-map separation of `IsNoncrossingClosedWalk` (`walkMap_facePerm_mem`, `walkMap_connected`, `not_faceClass_alpha`) uses only the chain and `turn_mem`. So a closed walk chained by first turns, bridges allowed, encloses `enclosedFaces` (the class of its non-bridge reversals off its edges) with the field `mem_iff` of `EnclosedFaceSet`. For Case 1: `turn_next` from the first-turn chain of 0484be5e5; f and Π off the enclosure, since one holds a walk dart and the first dart of p joins them off the walk; the two enclosures disjoint, since a chain in one never meets f or Π; so the exterior is off one of them.
+- Both modules are written and wait for a probe. The MSI master has been absent since about 00:05 and the auth breaker is set.
