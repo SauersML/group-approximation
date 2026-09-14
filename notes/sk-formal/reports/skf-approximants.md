@@ -1,50 +1,45 @@
-# skf-approximants — ledger for tex 459–514 of simple_kazhdan_sofic_group.tex
+# skf-approximants: ledger
 
-Lane brief: `ct/ROSTER-sk.md` (session nonsofic-existence-49), range tex 459–514 at origin/main b965d63ba (subsec:approximants:
-prop:marked, rem:fibonacci).
+Lane brief: `ct/ROSTER-sk.md` (session nonsofic-existence-49). Only skf-approximants writes this file.
 
-## Blocker: the committed note changed underneath the range
+## History
+- Item 1 was tex 459–514 of b965d63ba (subsec:approximants: prop:marked, rem:fibonacci). At bf961c128 the note was replaced
+  by its shortened version, and that range has no counterpart. No Lean was built for it and no rows were landed.
+- Item 2 (main, ~19:05, re-scoped 19:45 and 20:15): help skf-degrees on "Word problems", covering the Sturmian subshift and
+  the Morse–Hedlund input. skf-degrees keeps the computability and Turing-degree sentences; ms-traces-3 has (c)
+  WP ≤_T L(X).
 
-- At 18:54 origin/main landed bf961c128, "Replace the sofic simple Kazhdan note with its shortened version". The committed
-  `simple_kazhdan_sofic_group.tex` is now 340 lines, md5 7b3dc4ec92b4581553bc0dc2b0edcb99. The roster target b965d63ba was
-  970 lines, md5 3a11a03d23cb580bd629d313a6b7a1c1.
-- The new text has no subsection "Finite simple approximants", no `prop:marked` and no `rem:fibonacci`. The
-  PSL_{3N}(F_q) → S marked-group convergence and the Fibonacci first model (SL_15(F_p)) are not in the committed note.
-- Nothing in the current note corresponds to tex 459–514:
-  - its "Finite models" subsection (current tex 118–153) carries the LEF models, which were b965d63ba's sec:lef material;
-  - Morse–Hedlund is cited only in the word-problem section (current tex 252), for Sturmian complexity.
-- So there is no sentence to formalize in this range at the current tip. I built no Lean and appended no census rows.
+## Target
+- `simple_kazhdan_sofic_group.tex` at origin/main e80dcf20a (386 lines, md5 4ad4921253626a4f858866c716a13385); census
+  09e580c38. Rows are keyed by 12-hex hash and live in `metadata/sk-census-rows/skf-approximants.tsv`.
 
-## Structure of the committed note (bf961c128, 340 lines), for a re-split
+## Sentences (proof of the corollary, "Word problems")
+| key | tex | sentence | status | carriers |
+|---|---|---|---|---|
+| 35b84b78c130 | 261–264 | X_α is the infinite minimal Sturmian subshift, the closure of the codings c(θ), θ ∈ [0,1), with c(θ)_t = 1 iff θ+tα mod 1 ≥ 1−α [MorseHedlund] | formalized | `sturmianCoding`, `sturmianSubshift`, `printedSturmianSubshiftInfiniteIsMinimal` (through `Setting.IsMinimal`), `printedSturmianSubshiftClosureOfCodings` |
+| 11d7d47b8ab0 | 264–268 | c(θ)_t = 1 iff θ ∈ [−(t+1)α, −tα) mod 1; words of length n are the constant values on the arcs between −jα mod 1 | formalized | `printedSturmianCodingArc`, `printedSturmianEndpointsDetermineWords` |
+| 031aa6399d94 | 268 | so α computes L(X_α) | skf-degrees | — |
+| 6f639125d339 | 268–271 | c(θ)_t = ⌊θ+(t+1)α⌋ − ⌊θ+tα⌋; c(θ)_{[0,n)} has ⌊θ+nα⌋ ones, within 1 of nα, so L(X_α) computes α | partial | `printedSturmianOnesWithinOne`; the "computes α" clause is skf-degrees' |
 
-| current tex | content |
-|---|---|
-| 1–66 | title, abstract, introduction, `thm:main` (l.44) |
-| 67–117 | "Proof of Theorem 1": the ring and property (T), `eq:elementary` (l.88) |
-| 118–153 | "Finite models": LEF models over F_2, entrywise; sofic and hyperlinear models |
-| 154–228 | "A finite tower detects every normal subgroup", `eq:absorb` (l.168); includes GL_d(F_2) = SL_d(F_2) = PSL_d(F_2) (l.217) |
-| 229–263 | "Every word-problem degree", the corollary (l.231); Morse–Hedlund for Sturmian complexity (l.252) |
-| 264–340 | "Origin and authorship", bibliography |
+The Morse–Hedlund input is proved, not cited. The proof goes: bounded returns of an irrational rotation, from Mathlib's
+Dirichlet approximation (`exists_bounded_return`); right windows of codings; every coding word occurs in every point;
+minimality; non-periodic codings, hence infinite. Every endpoint carries `#audit_closed_axioms`.
 
-The roster's label table (thm:degrees, lem:subshift, prop:simple-ring, lem:windows, prop:ultraproduct, lem:level, thm:root,
-cor:consequences, prop:degree, ...) refers to b965d63ba and is obsolete at the tip.
-
-## Item 2 (main, ~19:05): help skf-degrees on tex 229–263 at bf961c128
-
-Split proposed to skf-degrees in one message:
-- mine: the Morse–Hedlund input and the Sturmian combinatorics, rows l.250–256;
-- skf-degrees': WP(G_X) ≡_T L(X), computability wrappers, Turing representatives, continuum many, isomorphism invariance.
-
-Sentences (keys `LINE:<l>@bf961c128`):
-| key | sentence | owner |
+## Modules (`GroupApproximation/Manuscript/SimpleKazhdanSofic/`)
+| module | content | state |
 |---|---|---|
-| LINE:250–251 | "the infinite minimal Sturmian subshift of an irrational slope α ∈ (0,1)" [MorseHedlund] | skf-approximants |
-| LINE:251–253 | "words of length n are determined by the cyclic order of the distinct rotation endpoints −jα mod 1, 0 ≤ j ≤ n" (combinatorics; "computable from α" is skf-degrees') | skf-approximants |
-| LINE:254–255 | "the minimum number of 1's in a word of length n is ⌊nα⌋" ("so the language computes α" is skf-degrees') | skf-approximants |
+| `SturmianSubshift` | codings, `sturmianSubshift α : Subshift Bool ℤ`, floor telescoping, printed statement Props | LANDED c04293088, wire-queued |
+| `SturmianSubshiftMinimal` | bounded returns, occurrence, minimality, infinite, closure of codings | LANDED c04293088, wire-queued |
+| `SturmianLanguage` | arc lemma, distinct endpoints, words constant between endpoints, language = coding words, count of ones | LANDED 5d4049163, wire-queued |
+| `SturmianSubshiftSetting` | `isMinimalSubshift_iff_isMinimal`; the printed infinite-and-minimal Prop through `Setting.IsMinimal` | GREEN 0913-202452-61135; landed with this ledger |
 
-CLAIM SturmianSubshift `GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean` (definitions of the codings
-and X_α, named statement Props M1–M3)
-CLAIM SturmianSubshiftMinimal `GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean` (M1: X_α
-closed, shift-invariant, infinite, minimal; proved by bounded-gap density of irrational rotation, no literature input)
-CLAIM SturmianLanguage `GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean` (M2: words are constant
-between consecutive endpoints, and the endpoints are distinct; M3: the minimum number of 1's is ⌊nα⌋)
+## For skf-degrees (consume these names)
+- Census: the row for 6f639125d339 is mine, as `partial`, for the combinatorial clause. `sk_sentence_census.py --merge` rejects
+  a second lane's row on the same key if its status differs, and keeps the first. When your "so L(X_α) computes α" carrier
+  lands, message skf-approximants: I'll drop my row, and you land one row with both sets of decls.
+- `SimpleKazhdanSofic.sturmianSubshift α : Subshift Bool ℤ` instantiates thm:main's X, through
+  `printedSturmianSubshiftInfiniteIsMinimal`.
+- Words of length n: `WordGraph.language (sturmianSubshift α).carrier n : Set (Fin n → Bool)` equals
+  `{w | ∃ θ, WordGraph.word (sturmianCoding α θ) 0 n = w}` (`language_sturmianSubshift`).
+- Membership through the endpoints: `sturmianCoding_eq_true_iff` and `sturmianCoding_word_eq_of_endpoints`. Counting:
+  `count_word_sturmianCoding`, giving ⌊θ+nα⌋ − ⌊θ⌋ ones.
