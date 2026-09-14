@@ -1,0 +1,108 @@
+import GroupApproximation.GGT.VanKampen.CombMapComponents
+import GroupApproximation.GGT.VanKampen.CombMapEulerHittingSet
+import GroupApproximation.GGT.VanKampen.CombMapEulerUpperBound
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Components are planar when the Euler characteristic reaches twice a hitting set
+
+A map every component of which meets a finite set `T` of darts has Euler characteristic at most
+`2 |T|` (`eulerCharacteristic_le_two_mul_card_of_hitting`).  When equality, or more, holds, every
+component is planar: the component of a dart is connected, so its Euler characteristic is at most
+two, and the rest of the map is met by the darts of `T` off the component, of which there are fewer,
+so the component carries at least two.
+
+This is the per-component step of w1-binder-6's component route (Osin, arXiv:math/0411039v3, §9,
+proof of Lemma 9.7(b)): a glued map whose Euler characteristic is twice its number of components has
+only spheres as components (`SeamGlueComponentPlanarStatement`).
+
+* `componentCompl_hitting`, `card_subtype_compl_lt`: the rest of a component is met by fewer darts.
+* `component_planar_of_two_mul_card_le`: every component is planar.
+* `exists_hitting_card_le`: a hitting set with at most as many darts as the classes of a relation on
+  an index type whose values connect along the relation and meet every component.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, "Hull's small cancellation theorem", through Osin's
+Lemma 9.7(b)); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.CombMap
+
+open scoped Classical
+
+universe u
+
+variable (N : CombMap.{u})
+
+/-- **The darts of a hitting set off a component meet the rest of the map.** -/
+theorem componentCompl_hitting (T : Finset N.Dart)
+    (hT : ∀ x, ∃ t ∈ T, Relation.EqvGen N.Adjacent x t) (x : N.Dart) :
+    ∀ y : (N.componentCompl x).Dart, ∃ t ∈ T.subtype (fun z => ¬ N.componentOf x z),
+      Relation.EqvGen (N.componentCompl x).Adjacent y t := by
+  intro y
+  obtain ⟨t, ht, hyt⟩ := hT y.1
+  have htx : ¬ N.componentOf x t := fun h =>
+    y.2 (Relation.EqvGen.trans _ _ _ h (Relation.EqvGen.symm _ _ hyt))
+  obtain ⟨_, hk⟩ := N.exists_eqvGen_restrict (fun z => ¬ N.componentOf x z)
+    (N.compl_alpha (N.componentOf x) (N.componentOf_alpha x))
+    (N.compl_sigma (N.componentOf x) (N.componentOf_sigma x)) hyt y.2
+  exact ⟨⟨t, htx⟩, Finset.mem_subtype.mpr ht, hk⟩
+
+/-- **Fewer darts of a hitting set lie off a component**: some dart of the set meets it. -/
+theorem card_subtype_compl_lt (T : Finset N.Dart)
+    (hT : ∀ x, ∃ t ∈ T, Relation.EqvGen N.Adjacent x t) (x : N.Dart) :
+    (T.subtype fun z => ¬ N.componentOf x z).card < T.card := by
+  obtain ⟨t, ht, hxt⟩ := hT x
+  rw [Finset.card_subtype]
+  exact Finset.card_lt_card
+    ⟨Finset.filter_subset _ _, fun h => (Finset.mem_filter.mp (h ht)).2 hxt⟩
+
+/-- **Every component is planar when the Euler characteristic reaches twice a hitting set.** -/
+theorem component_planar_of_two_mul_card_le (T : Finset N.Dart)
+    (hT : ∀ x, ∃ t ∈ T, Relation.EqvGen N.Adjacent x t)
+    (hχ : 2 * (T.card : ℤ) ≤ N.eulerCharacteristic) (x : N.Dart) :
+    (N.component x).IsPlanar := by
+  refine ⟨N.component_connected x,
+    le_antisymm ((N.component x).eulerCharacteristic_le_two (N.component_connected x)) ?_⟩
+  have hadd := N.eulerCharacteristic_component_add x
+  obtain ⟨T', hT'⟩ : ∃ T' : Finset (N.componentCompl x).Dart,
+      T' = T.subtype fun z => ¬ N.componentOf x z := ⟨_, rfl⟩
+  have hrest : (N.componentCompl x).eulerCharacteristic ≤ 2 * (T'.card : ℤ) := by
+    subst hT'
+    exact (N.componentCompl x).eulerCharacteristic_le_two_mul_card_of_hitting _
+      (N.componentCompl_hitting T hT x)
+  have hlt : (T'.card : ℤ) + 1 ≤ T.card := by
+    subst hT'
+    exact_mod_cast N.card_subtype_compl_lt T hT x
+  linarith
+
+/-- **A hitting set from the classes of a relation.**  If the values of `f` along the relation are
+joined in the map, and every dart is joined to some value, then some hitting set has at most as many
+darts as the relation has classes. -/
+theorem exists_hitting_card_le {ι : Type*} [Finite ι] (r : ι → ι → Prop) (f : ι → N.Dart)
+    (hf : ∀ i j, r i j → Relation.EqvGen N.Adjacent (f i) (f j))
+    (hsurj : ∀ x, ∃ i, Relation.EqvGen N.Adjacent x (f i)) :
+    ∃ T : Finset N.Dart, (∀ x, ∃ t ∈ T, Relation.EqvGen N.Adjacent x t) ∧
+      T.card ≤ Nat.card (Quot r) := by
+  have hlift : ∀ i j, Relation.EqvGen r i j → Relation.EqvGen N.Adjacent (f i) (f j) := by
+    intro i j h
+    induction h with
+    | rel a b h => exact hf a b h
+    | refl a => exact Relation.EqvGen.refl _
+    | symm a b _ ih => exact Relation.EqvGen.symm _ _ ih
+    | trans a b c _ _ ih₁ ih₂ => exact Relation.EqvGen.trans _ _ _ ih₁ ih₂
+  haveI : Fintype (Quot r) := Fintype.ofFinite _
+  refine ⟨Finset.univ.image fun q : Quot r => f q.out, fun x => ?_, ?_⟩
+  · obtain ⟨i, hi⟩ := hsurj x
+    refine ⟨f (Quot.mk r i).out, Finset.mem_image_of_mem _ (Finset.mem_univ _),
+      Relation.EqvGen.trans _ _ _ hi (hlift _ _ ?_)⟩
+    exact Relation.EqvGen.symm _ _ (Quot.eqvGen_exact (Quot.out_eq (Quot.mk r i)))
+  · exact Finset.card_image_le.trans (Nat.card_eq_fintype_card (α := Quot r)).symm.le
+
+end GroupApproximation.GGT.VanKampen.CombMap
+
+#audit_axioms GroupApproximation.GGT.VanKampen.CombMap.componentCompl_hitting
+#audit_axioms GroupApproximation.GGT.VanKampen.CombMap.card_subtype_compl_lt
+#audit_axioms GroupApproximation.GGT.VanKampen.CombMap.component_planar_of_two_mul_card_le
+#audit_axioms GroupApproximation.GGT.VanKampen.CombMap.exists_hitting_card_le
