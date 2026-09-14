@@ -1,0 +1,108 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassGapEndpointModel
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The gap-endpoint shape at a cutting target: model tests
+
+Osin (math/0411039v3, §9), proof of Lemma 9.4, Case 2, on class words.  Piece (v) of
+`OsinLemma94ClassCaseGapEndpointStatement` (module `OsinLemma94ClassPairShapes`): a backwards
+class-word connector pair with an endpoint strictly inside a gap, whose target class is a cutting
+path.  It is to be refuted against `DartMinimal`, as the side-level Case 2 is
+(`osinLemma94CaseTwoInput`).
+
+Model tests of the shape, before any producer:
+
+* `two_le_length_classSides_of_inGap`: a gap position needs a class with at least two sides, since a
+  class ends with a side (`gap_last`).
+* `not_inGap_of_single`: cutting and short classes are single sides (`single`), so they have no gap
+  positions.
+* `gapEndpoint_iff_of_target_cutting`: when the target class is a cutting path, the gap endpoint is
+  a source endpoint, `GapEndpoint ↔ InGap at a ∨ InGap at a'`.  This is why piece (v) has
+  source-side gaps only.
+* `source_cell_two_le_of_target_cutting`: in that case the source class is an (A1) class of a
+  polygon with at least two classes, and it has at least two sides.
+
+## Manuscript status
+
+Model test for infrastructure of `thm:hull` (tex 1636, "Hull's small cancellation theorem", through
+Osin's Lemma 9.4 inside the proof of Lemma 4.4); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open GroupApproximation.GGT.VanKampen.UnboundEstimate
+
+namespace OsinLemma94ClassPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+  {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+  {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+  {P : OsinLemma94RealizedPolygons S}
+
+/-- **A gap position needs two sides.**  A class ends with a side, not with a gap (`gap_last`), so a
+position strictly inside a gap lies after a side that is not the last. -/
+theorem two_le_length_classSides_of_inGap (Q : OsinLemma94ClassPolygons P) {k : Fin P.count}
+    {i x : ℕ} (hi : i < Q.classCount k) (h : Q.InGap k i x) :
+    2 ≤ (Q.classSides k i).length := by
+  obtain ⟨s, off, ⟨L1, L2, hL, -⟩, h1, h2⟩ := h
+  by_contra hlt
+  have hlen : (L1 ++ s :: L2).length ≤ 1 := by rw [← hL]; omega
+  rw [List.length_append, List.length_cons] at hlen
+  obtain rfl : L1 = [] := List.eq_nil_of_length_eq_zero (by omega)
+  obtain rfl : L2 = [] := List.eq_nil_of_length_eq_zero (by omega)
+  have hgap : Q.gap k s = [] := Q.gap_last k i hi s (by rw [hL]; simp)
+  rw [hgap] at h2
+  simp only [Embedded.dartWord, List.map_nil, List.length_nil, add_zero] at h2
+  omega
+
+/-- **Single-side classes have no gap positions**: cutting and short classes are single sides. -/
+theorem not_inGap_of_single (Q : OsinLemma94ClassPolygons P) {k : Fin P.count} {i x : ℕ}
+    (hi : i < Q.classCount k)
+    (hsingle : Q.classKind k i = .cutting ∨ Q.classKind k i = .short) : ¬ Q.InGap k i x := by
+  intro h
+  have h2 := Q.two_le_length_classSides_of_inGap hi h
+  rw [Q.single k i hi hsingle] at h2
+  omega
+
+/-- **At a cutting target the gap endpoint is a source endpoint.** -/
+theorem gapEndpoint_iff_of_target_cutting (Q : OsinLemma94ClassPolygons P) (k : Fin P.count)
+    (C : WordConnectorPair (symmetricLabelAlphabet D) (Q.corner k) (Q.word k) (Q.classCount k)
+      (Q.relatorClasses k) (Q.longClasses k) eps)
+    (hcut : Q.classKind k C.target = .cutting) :
+    Q.GapEndpoint k C ↔ Q.InGap k C.source C.a ∨ Q.InGap k C.source C.a' := by
+  have hb : ¬ Q.InGap k C.target C.b := Q.not_inGap_of_single C.target_lt (Or.inl hcut)
+  have hb' : ¬ Q.InGap k C.target C.b' := Q.not_inGap_of_single C.target_lt (Or.inl hcut)
+  simp only [GapEndpoint]
+  tauto
+
+/-- **The source class of a gap-endpoint pair at a cutting target** is an (A1) class of a polygon
+with at least two classes, and it has at least two sides. -/
+theorem source_cell_two_le_of_target_cutting (Q : OsinLemma94ClassPolygons P) (k : Fin P.count)
+    (C : WordConnectorPair (symmetricLabelAlphabet D) (Q.corner k) (Q.word k) (Q.classCount k)
+      (Q.relatorClasses k) (Q.longClasses k) eps)
+    (hcut : Q.classKind k C.target = .cutting) (hgap : Q.GapEndpoint k C) :
+    (∃ j, Q.classKind k C.source = .cell j) ∧ 2 ≤ Q.classCount k ∧
+      2 ≤ (Q.classSides k C.source).length := by
+  have hsrc : 2 ≤ Q.classCount k ∧ ∃ j, Q.classKind k C.source = .cell j := C.source_mem
+  obtain ⟨hcount, j, hj⟩ := hsrc
+  refine ⟨⟨j, hj⟩, hcount, ?_⟩
+  rcases (Q.gapEndpoint_iff_of_target_cutting k C hcut).mp hgap with h | h
+  · exact Q.two_le_length_classSides_of_inGap C.source_lt h
+  · exact Q.two_le_length_classSides_of_inGap C.source_lt h
+
+end OsinLemma94ClassPolygons
+
+end GroupApproximation.GGT.VanKampen
+
+open GroupApproximation.GGT.VanKampen
+
+#audit_axioms OsinLemma94ClassPolygons.two_le_length_classSides_of_inGap
+#audit_axioms OsinLemma94ClassPolygons.not_inGap_of_single
+#audit_axioms OsinLemma94ClassPolygons.gapEndpoint_iff_of_target_cutting
+#audit_axioms OsinLemma94ClassPolygons.source_cell_two_le_of_target_cutting
