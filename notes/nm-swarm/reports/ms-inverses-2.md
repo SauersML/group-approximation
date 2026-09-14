@@ -446,6 +446,27 @@ Narrowed residual, enough for both pocket walks:
   - `heuler : SectionPocketWalkEulerStatement` or `hkept : SectionPocketKeptCellStatement`: `osinSectionPocketFaceSetSection_of_euler`,
     `…_of_keptCell`, `sectionPocketFaceSetInput_of_keptCell`, `…_of_residuals`.
 
+## Item 8 (main, 09-14 ~09:15): V7 leaf 8, `OsinTwoGonDecompositionEulerSectionStatement`
+
+The residual comes from w1-binder-1's `Estimating/OsinAppendixEulerTwoGonSpanOfCopyClean` (9f29a234d, consumed by 7ec4e6fe2).
+- Target: `TwoGonDecompositionEulerInput`, the Euler pair of a noncrossing walk
+  `source.reverseDarts ++ a.rightSide ++ target.darts ++ b.leftSide` with the gap equation and the target ends.
+- Told w1-binder-1 once when claiming the item.
+- CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonDecompositionEuler.lean.
+- Route.
+  - Build a `PocketWalk` from the given arcs and sides. The span equations give `sourceArc_pos`, `targetArc_pos`, `lo_le` and `le_hi`;
+    the region fields give the side bounds.
+  - `walk_isChain_closes_of_rel` gives the joint relation (vertex step ∧ `PassageSectorFree`) on `K.walk`.
+  - The decomposition walk is `K.walk` with its halves swapped. `closedChain_append_comm` moves the relation, and walk membership does
+    not change.
+  - `eulers_of_passageSectorFree` gives both equalities. `CopyCleanAt` is not used.
+- Probe GREEN on the first try (BUILT). LANDED ac902a9c1 and queued for wiring.
+- **CLOSED** `OsinTwoGonDecompositionEulerSectionStatement` (`osinTwoGonDecompositionEulerSection`, closed-axiom audit), and
+  `twoGonDecompositionEulerInput` for all parameters.
+- Consumers: `osinTwoGonHoldsSection_of_copyCleanEuler`, `osinTwoGonHoldsSection_of_cleanCopyEuler`,
+  `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV7`, `TorsionFreeResidualsV7`.
+- Sent ct-rank-two-limit all the closures: two-gon Euler, cell and section pocket Euler, kept cell, sector-free count.
+
 ## Progress log
 
 - 09-13 ~17:01: ledger landed (d5d320909).
