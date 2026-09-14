@@ -216,6 +216,31 @@ Residuals of binder 5 now:
 
 This lane claims none of them.
 
+**Order assembly (LANDED da5b1466e, probe 0913-193950-9332 GREEN; supersedes the bdd0000bb spelling below).**
+- `CellPocketWalkOuterOffSideSomeOrderStatement` is respelled in place to w1-binder-3's two-walk shape. It ranges over
+  `RealizedSectionFamily`, with `K₁` for the order `(a,b)` and `K₂` for `(b,a)` between the same cells, and no
+  CopyClean. The earlier `(b,a,j,i)` disjunct is the same walk as `(a,b,i,j)`, rotated.
+- New: `CellPocketCopyCleanBothOrdersStatement`. It is needed because CopyClean's side fields differ between the two
+  orders.
+- Removed: `CellPocketWalkSideRelatorCellBothOrdersStatement` (over-strong, no users). The side relator cell of the
+  chosen walk comes from ms-inverses-2's proved `cellPocketKeptCellNoncrossing`.
+- `Estimating/OsinPocketMultipleEdgeCopyOrder`:
+  - `copyRegion_of_offSideWalk` and `multipleEdgePocketRegionCopyInput_of_pinchOrder` build the region data from the
+    walk with the exterior off its side;
+  - `osinMultipleEdgePocketRegionCopySection_of_pinchOrder`, and the waist
+    `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopyOrder`.
+  - Residuals: CopyCleanBothOrders, the some-order outer statement, `CellPocketWalkEitherFollowsStatement`,
+    `CellPocketPinchPosStatement`.
+
+**Section spelling model test (paper, 2026-09-13 ~19:45).** `PocketPinchLabelledSectionStatement` (d07c38405,
+w1-binder-7): no counterexample.
+- The x^ε family has a full t₁, so the proper-t₁ premise excludes it.
+- Proper t₁ at ε = 1 with a one-letter boundary gives three shapes:
+  - (a) conjugator separation `c = xPx⁻¹yQy⁻¹`: no proper-t₁ K exists (`xPx⁻¹ = β⁻¹pα⁻¹` is too short);
+  - (b) no separation `c = PxQx⁻¹`: K exists, and K′ = (z⁻¹, P minus its last letter, c) with t₂ = [] rescues it;
+  - (c) non-adjacent side letters: no two-cell X exists, by conjugacy.
+- Untested: extra relator cells supplying non-adjacent side letters.
+
 **Some-order respelling (LANDED bdd0000bb, probe 0913-191314-53572 GREEN).** w1-binder-3 showed the fixed-order
 outer-off-side statement is over-strong (042fb1881): the exterior lies in at most one of the two complementary pockets.
 New statements in the same module:
