@@ -66,9 +66,14 @@ theorem component_planar_of_two_mul_card_le (T : Finset N.Dart)
   refine ⟨N.component_connected x,
     le_antisymm ((N.component x).eulerCharacteristic_le_two (N.component_connected x)) ?_⟩
   have hadd := N.eulerCharacteristic_component_add x
-  have hrest := (N.componentCompl x).eulerCharacteristic_le_two_mul_card_of_hitting _
-    (N.componentCompl_hitting T hT x)
-  have hlt : ((T.subtype fun z => ¬ N.componentOf x z).card : ℤ) + 1 ≤ T.card := by
+  obtain ⟨T', hT'⟩ : ∃ T' : Finset (N.componentCompl x).Dart,
+      T' = T.subtype fun z => ¬ N.componentOf x z := ⟨_, rfl⟩
+  have hrest : (N.componentCompl x).eulerCharacteristic ≤ 2 * (T'.card : ℤ) := by
+    subst hT'
+    exact (N.componentCompl x).eulerCharacteristic_le_two_mul_card_of_hitting _
+      (N.componentCompl_hitting T hT x)
+  have hlt : (T'.card : ℤ) + 1 ≤ T.card := by
+    subst hT'
     exact_mod_cast N.card_subtype_compl_lt T hT x
   linarith
 
