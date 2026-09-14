@@ -294,3 +294,44 @@ CLAIM the bridge from outer following: GroupApproximation/GGT/VanKampen/Estimati
     3. Allow the pinch step to take walk order at outer pinches.
   - w1-binder-7 is formalizing `PocketFaceSet.sourceArc_lt_of_firstTurns` (first-turn order forces a proper source
     arc). Once it lands, a producer needs only `K.FirstTurns`.
+
+## Item 6: the outer-pinch half of the pinch step (main's ruling 00:0x: route 3, change the consumer)
+
+w1-binder-7 lands `PocketOuterPinchStepSectionStatement` and the dispatch in `Estimating/OsinPocketPinchOuterDispatch`.
+The premises are walk order, `¬K.FirstTurns`, a proper source arc and a pinch. This lane proves the statement.
+
+Gate: can the corners at an outer pinch be made G-digons? By hand, from the landed APIs.
+- The split.
+  - Take a turn `d₀ → e₀` whose chord is inner-adjacent: rotating from `alpha d₀`, the first keep dart is `e₀`. It
+    fails its first turn once the vertex has at least two visits.
+  - Cut at `x` in the outer sector after `e₀` and `y = σ⁻¹(alpha d₀)`. The corners are the faces across `e₀` and across
+    `d₀`.
+  - A boundary cycle in walk order is noncrossing (`BoundaryCycle.isNoncrossingClosedWalk`), so its keep darts alternate
+    at a vertex.
+- Corner fixes.
+  - `e₀` on the source arc: double `σ e₀` (`faceEdgeDoubling`, which needs the doubled dart off the source arc).
+    - If `σ e₀` were a source-arc reversal, it would be the next visit's arrival, consecutive with `alpha e₀` in the arc.
+    - With a proper arc that forces `p(e₀) ≠ d₀`, a contradiction.
+  - `e₀` on the target arc: thicken `σ e₀` (`outerSpurThickening`, which needs the target arc to avoid `α w_j`). This
+    works by the same argument, since `outerDarts` is the exterior traversal reversed, unless the target arc is the whole
+    boundary.
+  - `e₀` a side dart: double or thicken `alpha e₀`, which lies off both arcs because the walk has no repeated dart.
+  - Equal G-face corners: double one of them.
+- Exception 1, the wrap.
+  - The target arc is all of `∂Δ` and the sides meet at its endpoint vertex.
+  - Both exterior darts at that corner reverse target-arc darts. No O-equivalent split exists, because merging with the
+    exterior changes the boundary word.
+  - Route 1's labelled test goes to main. The premise `K.targetArc.length < (outerDarts X).length`, or a named residual,
+    was asked of w1-binder-7.
+- Gap 2, packaging.
+  - `exists_pinchStepSection_of_avoids` needs `StretchAvoids (alpha d) e` for every turn, that is, inner following at the
+    split vertex. With two visits a failing turn gives it.
+  - At a mixed vertex with three or more visits, an isolated-chord variant is needed. The isolated side holds no other
+    keep dart, so every other turn has both endpoints on one side of the cut.
+  - Vertices where all passages cross (the rose of the noninterleaving module) have no walk-order split. They stay a
+    residual.
+
+CLAIM the outer split and its invariants: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchSplit.lean
+- the selection of an inner-adjacent failing turn, the split at the isolated chord, walk order, a proper source arc and
+  fewer repeated visits (`exists_pinchStepSection_of_isolated`).
+CLAIM the corner fixes and the pull-back across them: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchCorners.lean
