@@ -132,7 +132,7 @@ theorem elementaryGroupMap_coreRestrict_surjective (n : ℕ) :
   exact ⟨ClopenCoeff.of T (ZMod 2) g, by rw [coeffComap_of, hg, RingEquiv.apply_symm_apply]⟩
 
 /-- `K_n = EL_n(R_X, I)` in both forms, for `n ≥ 2`. -/
-theorem coreKernel_eq_relativeElementary {n : ℕ} (hn : 2 ≤ n) :
+theorem coreKernel_eq_relativeElementary [Nonempty X] {n : ℕ} (hn : 2 ≤ n) :
     glCoreKernel T (ZMod 2) n =
         (relativeElementary (Fin n) (coreTransientIdeal T (ZMod 2))).map
           (elementaryGroup (Fin n) (ClopenCrossedProduct T (ZMod 2))).subtype ∧
