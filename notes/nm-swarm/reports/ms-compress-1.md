@@ -151,3 +151,9 @@ Route note on `ed348643e2ad`: ρ_lm(Y_l) ⊆ Y_m is proved from the cyclic-edge 
   - Feeds clause (a) of `OsinLemma94ClassEndLoopsInput` through ms-binary's `OsinLemma94ClassEndLoopsBudgetInput` (68b6b0e96). The class count from end loops is ct-bilateral-cell's and is not duplicated here.
   - Every new Prop is model-tested before it is consumed.
   - Ownership check at origin bbe90003a: the only user is `osinLemma94KindTransitionInput_of_longTransitions`; no shared-tree draft; sec5-sentences' .files equal origin.
+
+## Duplicate `cuttingSides` in OsinLemma94ClassTransitions (main's item, 21:22)
+
+- `OsinLemma94ClassTransitions` (sec5-sentences, down) and `OsinLemma94CuttingSides` both declared `OsinLemma94RealizedPolygons.cuttingSides` with the same body, so no root build could import both.
+- Fix: ClassTransitions imports `OsinLemma94CuttingSides`, and the local copy is deleted; no statement changed.
+- **LANDED 013a2dc59** (probe 0913-213117-20108 GREEN, BUILT, 0 sorryAx/error lines). The attic copy is ff0f63e83. The tag and SHA went to ms-core-5.
