@@ -29,3 +29,13 @@ The same holds modulo the finite centre of `G`.
 - The criterion `no-amenable-normalish-subgroup-implies-cstar-simple` cannot decide `subshift-elementary-groups-are-cstar-simple`.
 
 **Proof:** `cut-stabilizers-el-n-locally-finite-normalish-proof`.
+
+**Review (sk-verify-13, 2026-09-13, `research/artifacts/sk-verify-13-2026-09-13-part5.md` §1):** PASS. Re-derived:
+- `g ∈ S_y` iff every entry lies in the cut ring `R_y`, and `S_y` is a subgroup;
+- the crossing conditions for `f_ku^k`;
+- the tower absorption (both no-crossing cases) with `e_{T^aW}u^k = u^ke_{T^{a−k}W}`;
+- `A ⊆ R_y`, because `0` is a return time;
+- the window lemma: `V^{≥W_0} ⊆ π(t)V^{≥0} ⊆ V^{≥−W_0}` gives the splitting;
+- `K_Z ⊆ G` pointwise through `SL_n(F_q) = E_n(F_q)`;
+- `K_Z ⊆ ⋂_i t_iS_yt_i^{-1}`, and `K_Z` is infinite (`X∖Z` infinite);
+- the passage modulo the centre.
