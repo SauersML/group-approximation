@@ -37,6 +37,11 @@ CLAIM LEF passes to subgroups, named closed endpoint (tex l.456–457) GroupAppr
   - Attic copy of the closed module: 3aaf35ae8.
   - sk-lef-action fixed `LamplighterHost` at 4e0c613ce/4d9f3c157 (its probe 0914-104032-16395 GREEN). `LEFCharacterizationClosed` is re-probing on
     top of it.
+- 11:2x: LANDED 83164235d `LEFCharacterizationClosed` (probe 0914-105042-47370 GREEN; 7 audits classical; 0 sorryAx) and 856d72e62 `LEFSubgroupHeredity`
+  (probe 0914-112409-48823 GREEN). Rows flipped: 022271399cfb, cc439ae277d4 and 9cdf19db0ef4 at fb473481a; 9b1a6e7489a1 (over ct-involution's closed
+  `printedRecursivelyPresentedLEFHostInstances`, d67b2d46a) and 452e0cc9a605 (over `printedSubgroupsOfLEFAreLEF`) in this landing.
+  01a45cdd9370 stays partial: it rests only on `Lamplighter.PrintedLamplighterHostSolvableWordProblem` (sk-stepanov), since sk-lef-ultra's
+  `lefSolvableWordProblemEmbeddingStatement` (74152ac1c) is proved.
 - oa-expanders' fidelity audit (census d91e3fbac) flagged row 452e0cc9a605, which cited the nonexistent `printedSubgroupsOfLEFAreLEF`.
   - 5dd91f0d2 already cites `isLEF_of_injective` instead.
   - `LEFSubgroupHeredity` adds the named closed endpoint `PrintedSubgroupsOfLEFAreLEF`, and the row moves to it after landing.
