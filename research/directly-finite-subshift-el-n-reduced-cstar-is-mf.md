@@ -60,5 +60,15 @@ infinite minimal). Is C*_r(EL_n(R_X)) an MF algebra, i.e. does it embed in a nor
     matricial window model.
   - The cuspidal-type heuristic above is dead. An MF embedding of C*_r(EL_n(R_X)) needs asymptotic
     representations that are not genuine on any embedded SL_4(F_q[t^{±1}]).
+- **Dichotomy with stability of the Laurent lattice (2026-09-13, sk-matricial-stability, unreviewed).**
+  - Every finite-dimensional unitary representation of `SL_n(F_q[t^{±1}])`, `n ≥ 4`, is congruence and fixes a
+    block-`SL_2` vector. The proof uses torsion root subgroups, a level ideal and Bass–Milnor–Serre Corollary 4.3, with
+    no superrigidity (`laurent-sl-n-representations-have-sl2-invariant-vectors`).
+  - `R_X ⊇ F_q[u^{±1}]`, so `EL_n(R_X) ⊇ SL_4(F_q[t^{±1}])`. An MF embedding of `C*_r(EL_n(R_X))` therefore forces
+    `SL_4(F_q[t^{±1}])` to be NOT point-norm matricially stable
+    (`laurent-sl4-stability-makes-overgroups-reduced-non-mf`).
+  - Conversely, stability of that lattice decides this claim negatively. The crux is the open
+    `laurent-sl4-matricially-stable`, and the negative root at the note's group is
+    `subshift-elementary-group-reduced-cstar-is-not-mf`.
 
 **Review (un-verify-measure, 2026-09-13): display checked (OPEN node).** The GKMP clause is corrected. See `research/artifacts/un-review-measure-2026-09-13-part2.md` §T6.
