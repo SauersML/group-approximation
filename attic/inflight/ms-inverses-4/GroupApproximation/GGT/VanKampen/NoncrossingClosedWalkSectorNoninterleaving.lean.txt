@@ -1,0 +1,222 @@
+import GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEulerNoninterleaving
+import Mathlib.Data.List.Cycle
+import Mathlib.Data.List.Rotate
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Passages with a free rotation sector do not interleave
+
+Osin, arXiv:math/0411039v3, proof of Lemma 9.7(b): "Let us consider the subdiagram `Γ_1` of `Δ`
+such that: (i) `∂Γ_1 = s_1 t_1 s_2 t_2` ... (ii) `Γ_1` contains all `Γ_{i,1}`'s."
+
+`IsNoncrossingClosedWalk.eulers_of_noninterleaving` (`NoncrossingClosedWalkEulerNoninterleaving`)
+keeps both Euler characteristics once the passages of a noncrossing closed walk do not interleave
+(`PassagesNoninterleaving`).  The passage of a walk dart `d` is the chord from `alpha d` to its cyclic
+successor `next d`, and its sector is the stretch of vertex rotation from `alpha d` to `next d`.
+
+The pocket walks `s_1 t_1 s_2 t_2` turn in two ways (sec2-sentences' hand argument).
+* Along a side of a region, and at the four corners, the turn is a boundary step of the region: rotating
+  from `alpha d` passes only internal darts of the region before `next d`.  So the sector holds no dart
+  of the walk and no reverse of one.
+* Along an arc of a cell or of the exterior, the turn is a face step, `σ (next d) = alpha d`, and the
+  complementary stretch from `next d` to `alpha d` is empty.
+
+A passage with a free sector cannot interleave with another one.
+* `SectorFree M w x y`: rotating from `x` reaches `y`, with no dart of `w`, and no reverse of one,
+  strictly in between.  `PassageSectorFree M w d e`: the sector from `alpha d` to `e` or the one from `e`
+  to `alpha d` is free.
+* `not_rotationBetween_of_sectorFree`: when the sector from `x` to `y` is free, no dart on an edge of the
+  walk lies inside it.
+* `rotationBetween_of_sectorFree_rev`: when the stretch from `y` to `x` is free, every other dart at the
+  vertex on an edge of the walk lies inside the sector from `x` to `y`.
+* `passagesNoninterleaving_of_forall_next`, `passagesNoninterleaving_of_isChain`: if every passage has a
+  free sector, the passages do not interleave.  For a free inner sector both endpoints of any other
+  passage are outside; for a free outer sector both are inside.
+* `IsNoncrossingClosedWalk.passagesNoninterleaving` and `passagesNoninterleaving_rotate`.
+
+The hypothesis is needed.  In the rose with darts `0, …, 5`, `alpha = (0 1)(2 3)(4 5)` and
+`sigma : 1 ↦ 0 ↦ 3 ↦ 2 ↦ 5 ↦ 4 ↦ 1`, the passage of `0` runs from `1` to `2`: its sector holds the
+walk dart `0`, and the stretch back from `2` holds the walk dart `4`.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121,
+`\begin{theorem}[Hull's small cancellation theorem]\label{thm:hull}`), through Osin's Lemma 9.7(b);
+certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+open Equiv SimpleClosedWalkSides
+
+universe u
+
+namespace SectorNoninterleaving
+
+/-- **A rotation sector free of the walk.**  Rotating from `x` reaches `y`, and no dart strictly in
+between is a dart of `w` or the reverse of one. -/
+def SectorFree (M : CombMap.{u}) (w : List M.Dart) (x y : M.Dart) : Prop :=
+  ∃ m : ℕ, (M.sigma ^ m) x = y ∧ ∀ k, 0 < k → k < m → ¬ walkKeep M w ((M.sigma ^ k) x)
+
+/-- **A passage with a free sector.**  The sector from `alpha d` to `e`, or the stretch from `e` back
+to `alpha d`, is free of the walk. -/
+def PassageSectorFree (M : CombMap.{u}) (w : List M.Dart) (d e : M.Dart) : Prop :=
+  SectorFree M w (M.alpha d) e ∨ SectorFree M w e (M.alpha d)
+
+variable {M : CombMap.{u}} {w : List M.Dart}
+
+/-- **A face step has a free outer sector**: if rotation takes `y` to `x`, nothing lies strictly in
+between. -/
+theorem sectorFree_of_sigma_eq {x y : M.Dart} (h : M.sigma y = x) : SectorFree M w y x :=
+  ⟨1, by rw [pow_one]; exact h, fun k hk hk1 => absurd hk1 (by omega)⟩
+
+/-- **No dart on an edge of the walk inside a free sector.** -/
+theorem not_rotationBetween_of_sectorFree {x y z : M.Dart} (h : SectorFree M w x y) (hxy : x ≠ y)
+    (hz : walkKeep M w z) : ¬ RotationBetween M x y z := by
+  rintro ⟨a, ha, haz, hay⟩
+  obtain ⟨m, hm, hfree⟩ := h
+  rcases Nat.eq_zero_or_pos m with hm0 | hm0
+  · rw [hm0, pow_zero, Equiv.Perm.one_apply] at hm
+    exact hxy hm
+  · rcases Nat.lt_or_ge a m with hlt | hge
+    · exact hfree a ha hlt (by rw [haz]; exact hz)
+    · exact hay m hm0 hge hm
+
+/-- **Every other dart on an edge of the walk inside the sector, when the stretch back is free.**  If
+the stretch from `y` to `x` is free of the walk, a dart `z` at the vertex of `x`, on an edge of the walk
+and other than `x` and `y`, is reached from `x` before `y`. -/
+theorem rotationBetween_of_sectorFree_rev {x y z : M.Dart} (h : SectorFree M w y x)
+    (hv : M.vertexOf z = M.vertexOf x) (hz : walkKeep M w z) (hzx : z ≠ x) (hzy : z ≠ y) :
+    RotationBetween M x y z := by
+  classical
+  obtain ⟨n, hn, hfree⟩ := h
+  have hex : ∃ a : ℕ, (M.sigma ^ a) x = z :=
+    ((M.vertexOf_eq_iff x z).mp hv.symm).exists_nat_pow_eq
+  obtain ⟨a, haz, hmin⟩ : ∃ a : ℕ, (M.sigma ^ a) x = z ∧ ∀ a' < a, (M.sigma ^ a') x ≠ z :=
+    ⟨Nat.find hex, Nat.find_spec hex, fun a' ha' => Nat.find_min hex ha'⟩
+  have ha : 0 < a := by
+    rcases Nat.eq_zero_or_pos a with h0 | h0
+    · rw [h0, pow_zero, Equiv.Perm.one_apply] at haz
+      exact absurd haz.symm hzx
+    · exact h0
+  refine ⟨a, ha, haz, fun b hb hba hby => ?_⟩
+  rcases Nat.lt_or_ge b a with hlt | hge
+  · obtain ⟨c, rfl⟩ := Nat.exists_eq_add_of_le hlt.le
+    have hc : (M.sigma ^ c) y = z := by
+      rw [add_comm, pow_add, Equiv.Perm.mul_apply, hby] at haz
+      exact haz
+    rcases Nat.lt_trichotomy c n with hcn | hcn | hcn
+    · exact hfree c (by omega) hcn (by rw [hc]; exact hz)
+    · rw [hcn, hn] at hc
+      exact hzx hc.symm
+    · obtain ⟨e, rfl⟩ := Nat.exists_eq_add_of_lt hcn
+      have he : (M.sigma ^ (e + 1)) x = z := by
+        rw [show n + e + 1 = e + 1 + n by omega, pow_add, Equiv.Perm.mul_apply, hn] at hc
+        exact hc
+      exact hmin (e + 1) (by omega) he
+  · have hab : b = a := le_antisymm hba hge
+    rw [hab, haz] at hby
+    exact hzy hby
+
+/-- **Cyclic successors in a duplicate-free list are injective.** -/
+theorem next_injective_of_nodup {α : Type*} [DecidableEq α] {l : List α} (hl : l.Nodup)
+    {x y : α} (hx : x ∈ l) (hy : y ∈ l) (h : l.next x hx = l.next y hy) : x = y := by
+  have key : ∀ (a : α) (ha : a ∈ l) (b : α) (hb : b ∈ l), a = b → l.prev a ha = l.prev b hb := by
+    rintro a ha b hb rfl
+    rfl
+  calc x = l.prev (l.next x hx) (List.next_mem hx) := (List.prev_next l hl x hx).symm
+    _ = l.prev (l.next y hy) (List.next_mem hy) := key _ _ _ _ h
+    _ = y := List.prev_next l hl y hy
+
+/-- **A closing chain relates every element to its cyclic successor.** -/
+theorem forall_next_of_isChain_closes {α : Type*} [DecidableEq α] {R : α → α → Prop}
+    {l : List α} (hne : l ≠ []) (hl : l.Nodup) (hchain : l.IsChain R)
+    (hcloses : R (l.getLast hne) (l.head hne)) {d : α} (hd : d ∈ l) : R d (l.next d hd) := by
+  obtain ⟨i, hi, rfl⟩ := List.getElem_of_mem hd
+  rw [List.next_getElem l hl i hi]
+  by_cases hlast : i + 1 < l.length
+  · simp only [Nat.mod_eq_of_lt hlast]
+    exact List.isChain_iff_getElem.mp hchain i hlast
+  · have h := hcloses
+    simp only [List.getLast_eq_getElem, List.head_eq_getElem] at h
+    simp only [show i + 1 = l.length by omega, Nat.mod_self]
+    obtain rfl : i = l.length - 1 := by omega
+    exact h
+
+open Classical in
+/-- **Passages with a free sector do not interleave.**  Let `w` be a duplicate-free walk using no edge
+in both directions, each dart ending where its cyclic successor starts.  If every passage has a free
+sector, the passages of `w` do not interleave. -/
+theorem passagesNoninterleaving_of_forall_next (hnodup : w.Nodup)
+    (halpha : ∀ d ∈ w, M.alpha d ∉ w)
+    (hnext : ∀ d (hd : d ∈ w), M.vertexOf (M.alpha d) = M.vertexOf (w.next d hd))
+    (hsector : ∀ d (hd : d ∈ w), PassageSectorFree M w d (w.next d hd)) :
+    PassagesNoninterleaving M w := by
+  intro d hd d' hd' hdd' hv
+  have hxy : M.alpha d ≠ w.next d hd := fun h => halpha d hd (by rw [h]; exact List.next_mem hd)
+  have hk₁ : walkKeep M w (M.alpha d') := Or.inr (by rw [M.alpha_involutive]; exact hd')
+  have hk₂ : walkKeep M w (w.next d' hd') := Or.inl (List.next_mem hd')
+  rcases hsector d hd with hin | hout
+  · exact iff_of_false (not_rotationBetween_of_sectorFree hin hxy hk₁)
+      (not_rotationBetween_of_sectorFree hin hxy hk₂)
+  · refine iff_of_true (rotationBetween_of_sectorFree_rev hout hv.symm hk₁ ?_ ?_)
+      (rotationBetween_of_sectorFree_rev hout ((hnext d' hd').symm.trans hv.symm) hk₂ ?_ ?_)
+    · exact fun h => hdd' (M.alpha.injective h).symm
+    · exact fun h => halpha d' hd' (by rw [h]; exact List.next_mem hd)
+    · exact fun h => halpha d hd (by rw [← h]; exact List.next_mem hd')
+    · exact fun h => hdd' (next_injective_of_nodup hnodup hd hd' h.symm)
+
+open Classical in
+/-- **Passages with a free sector do not interleave, from a closing chain.** -/
+theorem passagesNoninterleaving_of_isChain (hne : w ≠ []) (hnodup : w.Nodup)
+    (halpha : ∀ d ∈ w, M.alpha d ∉ w)
+    (hchain : w.IsChain fun d e =>
+      M.vertexOf (M.alpha d) = M.vertexOf e ∧ PassageSectorFree M w d e)
+    (hcloses : M.vertexOf (M.alpha (w.getLast hne)) = M.vertexOf (w.head hne) ∧
+      PassageSectorFree M w (w.getLast hne) (w.head hne)) :
+    PassagesNoninterleaving M w :=
+  passagesNoninterleaving_of_forall_next hnodup halpha
+    (fun _ hd => (forall_next_of_isChain_closes hne hnodup hchain hcloses hd).1)
+    (fun _ hd => (forall_next_of_isChain_closes hne hnodup hchain hcloses hd).2)
+
+open Classical in
+/-- **Non-interleaving passages survive a rotation of the walk.** -/
+theorem passagesNoninterleaving_rotate (hnodup : w.Nodup) (h : PassagesNoninterleaving M w)
+    (k : ℕ) : PassagesNoninterleaving M (w.rotate k) := by
+  have hrot : w ~r w.rotate k := ⟨k, rfl⟩
+  intro d hd d' hd' hdd' hv
+  have hd₀ : d ∈ w := List.mem_rotate.mp hd
+  have hd₀' : d' ∈ w := List.mem_rotate.mp hd'
+  have e₁ : (w.rotate k).next d hd = w.next d hd₀ :=
+    (List.isRotated_next_eq hrot hnodup hd₀).symm
+  have e₂ : (w.rotate k).next d' hd' = w.next d' hd₀' :=
+    (List.isRotated_next_eq hrot hnodup hd₀').symm
+  rw [e₁, e₂]
+  exact h d hd₀ d' hd₀' hdd' hv
+
+end SectorNoninterleaving
+
+namespace IsNoncrossingClosedWalk
+
+open SectorNoninterleaving
+
+variable {M : CombMap.{u}} {w : List M.Dart}
+
+open Classical in
+/-- **A noncrossing closed walk whose passages have free sectors has non-interleaving passages.** -/
+theorem passagesNoninterleaving (hw : IsNoncrossingClosedWalk M w)
+    (hsector : ∀ d (hd : d ∈ w), PassageSectorFree M w d (w.next d hd)) :
+    PassagesNoninterleaving M w :=
+  passagesNoninterleaving_of_forall_next hw.nodup hw.alpha_not_mem
+    (fun _ hd => forall_next_of_isChain_closes hw.ne_nil hw.nodup hw.chain hw.closes hd) hsector
+
+end IsNoncrossingClosedWalk
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.SectorNoninterleaving.not_rotationBetween_of_sectorFree
+#audit_axioms GroupApproximation.GGT.VanKampen.SectorNoninterleaving.rotationBetween_of_sectorFree_rev
+#audit_axioms GroupApproximation.GGT.VanKampen.SectorNoninterleaving.passagesNoninterleaving_of_forall_next
+#audit_axioms GroupApproximation.GGT.VanKampen.SectorNoninterleaving.passagesNoninterleaving_of_isChain
+#audit_axioms GroupApproximation.GGT.VanKampen.SectorNoninterleaving.passagesNoninterleaving_rotate
+#audit_axioms GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.passagesNoninterleaving
