@@ -91,8 +91,14 @@ with Guba's Theorem `xmy`(b), which bounds the degree by `3`.
   order of `SETS["S35"]`: `x_0^2, x_0x_1, x_0x_2, x_0x_3, x_1^2, x_1x_2, x_1x_3, x_2^2, x_2x_3`. Summary
   file: `census_over_f2.json` (md5 `6895a5e8e420e7e51d3942f9e244dbad`).
 - **Per-shard wall time (max seconds):** `k = 5`: 15.1; `k = 6`: 45.6; `k = 7`: 414.7.
-- **PL spot-check:** job 739191 samples 72 settled pairs (24 of degree `<= 5`, 24 of degree 6, 24 of
-  degree 7). See §6.
+- **PL spot-check (job 739191, 8 tasks, all COMPLETED exit 0):**
+  - `ore_sample.py` drew a deterministic sample (seed `20260913`): 24 settled pairs of degree `<= 5`, 24 of
+    degree 6 and 24 of degree 7.
+  - For each pair it produced explicit `u, v` at the census degree. For the first group it used the least
+    `k <= 5` that yields a certificate; those degrees came out `{2: 4, 3: 6, 4: 9, 5: 5}`.
+  - `ore_verify.py cert` recomputed `a u = b v ≠ 0` for all 72 by composing PL maps, without normal forms.
+    Result: `certificates_checked` totals 72, and all 8 tasks report `ALL_OK`. The largest certificate has
+    1632 terms in `u` and `v` together.
 
 **Contrast.** `P_(2,1)` is fully settled by degree 7. For `P_(2,2)`, the per-degree settled counts don't
 decay through degree 7, and 72% of pairs are still unsettled.
@@ -116,5 +122,4 @@ decay through degree 7, and 72% of pairs are still unsettled.
 - 737901: `S_(3,5)` to degree 5, 32 shards.
 - 738303: normal-form and PL certificate verification for `S_(2,4)`.
 - 738304: `S_(3,5)` degrees 6–7 on the 109995 survivors, 64 shards.
-- 739191: PL spot-check of `S_(3,5)` certificates, 8 tasks. Result: pending when this file was first
-  landed; recorded in a later landing of this artifact.
+- 739191: PL spot-check of `S_(3,5)` certificates, 8 tasks: 72 certificates, all `ALL_OK` (§4).
