@@ -48,6 +48,36 @@ Taken over from sk-lef-assembly by agreement: the solvable word problem of Λ (w
 
 CLAIM LEF groups l.445–455: solvable word problem of Λ and of G_Δ GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterWordProblem.lean
 
+Agreed with sk-lef-assembly (09-14 ~09:10). It drops the four rows at its next landing, and it combines my theorems with sk-lef-action's host theorem into `LEFLamplighterSolvableWordProblemStatement`. l.439–444 (Δ's word problem) belong to sk-lef-ultra (`LEFSecondDelta`).
+
+### Statements (probing): `LamplighterWordProblem`
+- `Lamplighter.PrintedLamplighterAffineSolvableWordProblem`: `HasSolvableWordProblem Δ → HasSolvableWordProblem (LampAffine Δ)` (l.445–447).
+- `Lamplighter.PrintedLamplighterHostSolvableWordProblem`: `HasSolvableWordProblem Δ → HasSolvableWordProblem ↥(elementaryGroup (Fin 3) (LampRing Δ))` (l.448–455).
+
+### Gap report and route
+
+Nothing on origin decides a word problem relative to another group's word problem, apart from translation between generating sets. The route reuses:
+- `Computability/OracleTruthTable.turingReducible_of_truthTable`: primrec queries plus a primrec decision on the answers;
+- `partrec_iff_forall_turingReducible` (as in `printedSolvableWordProblemHeredity`);
+- ms-traces-3's pattern (`WordNormalForm`, `WordTablePrimrec`, `WordProblemDecision`).
+
+**Λ (l.445–447)**, est. ~400 lines, module `LamplighterAffineWordProblem`.
+1. Letters are `Option ι`: `none ↦ z` and `some i ↦ inr (t i)`.
+2. Semantics: `wordValue` of w is `(Σ_k 1_{value p_k}, value (deltaWord w))`, where the p_k are the Δ-prefixes before the z letters. This follows by induction, from `z⁻¹ = z` and `inr δ · inl F = inl (δ·F) · inr δ`.
+3. Triviality ⇔ `deltaWord w` is trivial and every position occurs an even number of times. So the queries are `deltaWord w` and all `p_j⁻¹ p_k`, and the decision is parity counting.
+4. Primrec of the queries and the decision: list_flatMap/list_map/list_range combinators.
+
+**G_Δ (l.448–455)**, est. ~1500 lines over 5–6 modules.
+1. Syntactic tables. An entry is a list of monomials (Λ-word ξ, list of (Δ-word δ, shift bit)), for coefficient products `Π (x(δ) + 1 + c(δ))` from `u_ξ e_U u_ξ⁻¹ = 1_{x(δ) = 1 + c(δ)}`.
+2. `matEval` into `LampRing Δ`, by multiplication rules in `ClopenGroupCrossedProduct`. The letters are `e_ij(s)` with s ∈ {1, u_{z}, u_{t_i}^±, e_U}.
+3. Criterion: `M = I₃` iff every coefficient polynomial of M − I₃ vanishes on all assignments. It uses:
+   - injectivity of the coefficient map;
+   - Ω being the full shift `Δ → ZMod 2`, so a polynomial function in finitely many distinct coordinates is zero iff it vanishes at every assignment;
+   - collecting equal ξ and equal coordinates through Δ-word equality queries.
+4. Truth-table reduction:
+   - queries: all pairwise comparisons among the finitely many Δ-words in the tables, plus Λ-equality via the Λ reduction;
+   - decision: partition coordinates, collect coefficients, evaluate every assignment, all primrec.
+
 ## NEW ITEM 09-14 ~08:55: simplicity half of `LEFLamplighterStatement` (cor:lef, cor:host)
 
 The host G_Δ = EL₃(LC(Z,F₂) ⋊ L) must be simple, through the general theorem (`General.isSimpleGroup_clopenGroupCrossedProduct`). This lane takes the simplicity half:
