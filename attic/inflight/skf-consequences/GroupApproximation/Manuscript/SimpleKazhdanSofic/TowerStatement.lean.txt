@@ -44,7 +44,7 @@ noncomputable def towerE (m : ℕ) {W : Set X} (hW : IsClopen W) (a b : Fin (2 *
       ClopenCrossedProduct T k)
 
 /-- The printed `B_m(U)`: the additive span of the `E_{ab}(W')` over clopen `W' ⊆ U`. -/
-def towerSpan (m : ℕ) (U : Set X) : AddSubgroup (ClopenCrossedProduct T k) :=
+noncomputable def towerSpan (m : ℕ) (U : Set X) : AddSubgroup (ClopenCrossedProduct T k) :=
   AddSubgroup.closure
     {x | ∃ (W' : Set X) (hW' : IsClopen W'), W' ⊆ U ∧
       ∃ a b : Fin (2 * m + 1), x = towerE T k m hW' a b}
@@ -59,9 +59,9 @@ def LevelsDisjoint (m : ℕ) (U : Set X) : Prop :=
 `W ⊆ U` its coordinates are a constant matrix `κ₀ ≠ I_{3(2m+1)}`. -/
 def TowerCornerWitness : Prop :=
   ∀ (N : Subgroup (elementaryGroup (Fin 3) (ClopenCrossedProduct T (ZMod 2)))), N.Normal → N ≠ ⊥ →
-    ∃ (U W : Set X) (hU : IsClopen U) (hW : IsClopen W) (m : ℕ)
+    ∃ (U W : Set X) (hW : IsClopen W) (m : ℕ)
       (g : elementaryGroup (Fin 3) (ClopenCrossedProduct T (ZMod 2))),
-      g ∈ N ∧ W ⊆ U ∧ W.Nonempty ∧ LevelsDisjoint T m U ∧ g ≠ 1 ∧
+      IsClopen U ∧ g ∈ N ∧ W ⊆ U ∧ W.Nonempty ∧ LevelsDisjoint T m U ∧ g ≠ 1 ∧
       (∀ p q : Fin 3,
         (((g : (Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2)))ˣ) :
             Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2))) - 1) p q ∈
