@@ -38,7 +38,11 @@ CLAIM θ: unital trace-preserving ⋆-homomorphism from the tracial matrix ultra
 | PauliMatrixUnits | GREEN, bytes ee5d1f867 (0914-091311-84018), wire-queued |
 | DyadicCornerEmbedding | GREEN, bytes ee5d1f867 (0914-091311-84018), wire-queued |
 | HyperfiniteStageCorner | GREEN, bytes a9ef79561 (0914-092827-5037), wire-queued |
-| θ (MatrixUltraproductToHyperfiniteUltrapower) | proofs compile with clean audits (probes 0914-092827-5037, 0914-100702-37379, 0914-102138-15685); the linter surfaced unused-instance omissions one declaration at a time, last one fixed, re-probing |
+| θ (MatrixUltraproductToHyperfiniteUltrapower) | GREEN, bytes bf00643d4 (0914-104009-14753), wire-queued: `matrixUltraproductToHyperfiniteUltrapower X ω hω : TracialMatrixQuotient X ω →⋆ₐ[ℂ] HyperfiniteUltrapower ω` and `ultratrace_matrixUltraproductToHyperfiniteUltrapower` |
+
+All claimed modules are GREEN (records 0914-084210-79932 through 0914-104009-14753) and queued for wiring. The lane's scope is
+closed. What this lane does not claim: Murray–von Neumann uniqueness of the hyperfinite II₁ factor, and R ⊗̄ M_n ≅ R (not
+needed by any consumer; oa-mcduff builds its spatial tensor isomorphisms itself).
 | PauliHyperfiniteDensity | GREEN, bytes 9bd2b6027 (0914-102138-15685), wire-queued: `hyperfiniteFactor_approximatelyFinite`, every T ∈ R is a 2-norm limit of finite Pauli stages |
 
 Tex check at tip 8b36733d7 (775 lines, md5 29d63f79…): "Brown's formulation" is l.274–284 and keeps "So L(G) embeds in
