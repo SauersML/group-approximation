@@ -1006,6 +1006,17 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
       - if it PASSES, one lane merges A1–A3 and C1–C4, moves `subshift-el3-isomorphisms-are-standard-over-f2` to ESTABLISHED, and drafts a condensed rigidity section with a page cost;
       - main then decides between rev5.1 (in the note) and a separate short paper.
     - Rev5 lands first, without rigidity.
+183. **sk-verify-25a (248bd5cc91), line by line: PASS. The rigidity theorem has TWO independent PASSes.**
+    - Every isomorphism α: G_X → G_Y equals inn(k)∘M_3(φ)|_{G_X}, possibly after γ_X, with φ: R_X → R_Y a RING isomorphism. So G_X ≅ G_Y ⇒ R_X ≅ R_Y ⇒ SOE. Flip conjugacy stays open.
+    - Fixes W1–W5:
+      - W3 is a zero-cost strengthening: α′ = M_3(φ), so Theorem P is not needed;
+      - W2 justifies the bicommutant in Step 6;
+      - W4 covers the 3* orientation through α∘γ_X.
+    - Representation facts were checked by hand and on MSI. Matui Lemma 2.5 was read verbatim, and its numbering checked.
+    - DECISION: the theorem is established.
+    - Launched:
+      - sk-rigidity-merge: merge A1–A3, C1–C4 and W1–W5; mark `subshift-el3-isomorphisms-are-standard-over-f2` ESTABLISHED; keep flip conjugacy and L(G_X) as open nodes;
+      - sk-rigidity-section: Option N, a complete condensed proof section in the note, compiled with measured cost; Option P, a separate short paper outline; with a recommendation.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
