@@ -358,3 +358,28 @@ CLAIM the corner fixes and the pull-back across them: GroupApproximation/GGT/Van
     - split darts whose corners are G-digons off the face set, made by doubling or thickening;
     - the transport of the turn data across those insertions.
     - The interleaving rose stays a named residual.
+
+CLAIM the split at an uncrossed turn: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchChord.lean
+- 09:1x: an isolated non-first turn need not exist, even when no passages cross, so the corners route now splits at an
+  uncrossed turn.
+  - The example is the rotation `o₁ i₁ o₂ i₂ o₃ i₃ o₄ i₄` (`i = alpha d`, `o = e`) with the turns `i₁→o₁`, `i₃→o₃`,
+    `i₂→o₄`, `i₄→o₂`. It is not in first-turn order, and no turn is isolated. So "an isolated turn exists" would be a
+    false residual.
+  - With one repeated vertex, uncrossed passages force first-turn order at that vertex. An uncrossed non-first turn
+    therefore needs repeated visits elsewhere, and the rose (every non-first turn crossed) is the residual case.
+- `OsinPocketOuterPinchChord` built in probe 0914-091425-14140, with all 9 `#audit_axioms` within
+  `[propext, Classical.choice, Quot.sound]` and no warnings. It lands in the same commit as this entry, unwired and queued
+  for wiring.
+  - `PinchSplit.Input.ChordKept`: a kept turn, or both ends run into `x` without passing `y`.
+    `vertexOf_eq_of_chordKept` puts such a turn on one new vertex.
+  - `OuterPinchChord.chord_positions` and `chordKept_of_uncrossed`: at a non-first turn `d₀ → e₀` that no other passage
+    crosses (`RotationBetween` on both ends), with `x` after `e₀` and `y` before `alpha d₀`, every turn is kept.
+    - The statements are list-level.
+  - `PocketFaceSet.exists_pinchStepSection_of_uncrossedTurn`: the step conclusion with both proper arcs.
+- Split agreed with w1-binder-7 (the coordinator allowed agreeing splits directly):
+  - w1-binder-7 transports the chord data across one `EdgeInsertion.toCombMap` insertion;
+  - I keep the selection, the corner loop with the arc-successor lemma, and the assembly, in
+    `OsinPocketOuterPinchCorners`.
+  - Correction to the corner analysis above: the cycle holds `invDarts X sourceArc.darts`, so `alpha e₀` can be a
+    source-arc dart. The source-cell corner then needs the same two options as the exterior corner (double `alpha e₀`
+    or `σ e₀`). If both fail, the turn would be a first turn.
