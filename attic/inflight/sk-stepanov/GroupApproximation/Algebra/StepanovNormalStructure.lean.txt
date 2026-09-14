@@ -1,0 +1,497 @@
+import GroupApproximation.Leavitt.PreusserNormalizedBy
+import GroupApproximation.Pestov91.SimpleModCentre
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Stepanov's Theorem 4.4 over a simple ring
+
+`simple_kazhdan_sofic_group.tex` at origin/main 37551fd93, tex l.81–85:
+
+> Simplicity of $G_X$ also follows from Stepanov's theorem on the normal structure of $\GL_n$
+> [Stepanov, Theorem 4.4], since the ring is simple [ClarkEdie, Corollary 4.6] and any two of its
+> elements $p,q$ satisfy $pr+qs=0$ with $(r,s)\ne0$, by a dimension count on a tower over one
+> small cylinder.
+
+Stepanov, *On the normal structure of the general linear group over a ring*, J. Math. Sci. 95
+(1999), Theorem 4.4 (pp. 2151–2152): if for every proper two-sided ideal `I` (a)
+`[GL(n,R,I), E(n,R)] = E(n,R,I)` and (b) every `a ∈ GL(n,R)` has `b ∈ E(n,R/I)` and `α ≠ 0` with
+`α_i = (u^b α)_j = 0`, then every subgroup `H` normalized by `E(n,R)` satisfies
+`E(n,R,I) ≤ H ≤ C(n,R,I)` for a unique ideal `I`.
+
+The note applies it to a simple ring.  There the only proper ideal is `0`, condition (a) reads
+`[1, E(n,R)] = 1`, and (b) is `StepanovConditionB` (with `u^b = b⁻¹ u b`).  This module proves the
+theorem at that generality along the proof on p. 2152, with nothing assumed:
+
+* `colMatrix_eq_zero_of_mem`: a column transvection in a subgroup without nontrivial
+  transvections is trivial, from `[1 + W, e_{pq}(1)] = e_{pj}(-w_q)`;
+* `eq_one_of_row_eq_one`: an element of such a subgroup whose row `j` is the unit row is trivial;
+* `mem_congruenceSubgroup_bot_of_entry_eq_zero`: **Lemma 4.1 at a unit column**, a zero
+  off-diagonal entry makes the element central;
+* `commute_colMatrix_of_row_annihilated` and `mem_congruenceSubgroup_bot_of_conditionB`: for
+  `c = a^b` and `d = [c, t_{*i}(αλ)]`, row `j` of `d` is the unit row off column `i`, so `d` is
+  central and then `d = 1`; hence `α_p λ c_{iq} = 0` for all `λ`, and simplicity of `R` takes the
+  place of Lemma 4.3 at `I = 0`: `c_{iq} = 0` for `q ≠ i`, and `c` is central;
+* `sandwich_of_conditionB`: the transvection case is `Pestov91.SimpleModCentre.normal_eq_top_of_elGen_mem`
+  on the elementary part of `H`; uniqueness is `PreusserNormalizedBy.eq_of_sandwich`;
+* `PrintedStepanovTheorem44SimpleRing`: the closed statement;
+* `isSimpleGroup_elementaryGroup_of_conditionB`: `EL_ι(R)` is simple when `1` is the only central
+  unit.
+-/
+
+namespace GroupApproximation
+namespace StepanovNormalStructure
+
+open scoped commutatorElement
+
+variable {ι R : Type*} [Fintype ι] [DecidableEq ι] [Ring R]
+
+/-! ### Matrix identities -/
+
+theorem colMatrix_mul_apply (q : ι) (y : ι → R) (N : Matrix ι ι R) (a b : ι) :
+    (ElementarySimplicity.colMatrix q y * N) a b = y a * N q b := by
+  rw [Matrix.mul_apply, Finset.sum_eq_single q]
+  · rw [ElementarySimplicity.colMatrix_apply, if_pos rfl]
+  · intro c _ hc
+    rw [ElementarySimplicity.colMatrix_apply, if_neg hc, zero_mul]
+  · intro hq
+    exact absurd (Finset.mem_univ q) hq
+
+/-- A left factor whose row `j` is the unit row leaves row `j` of the product unchanged. -/
+theorem mul_apply_of_row_eq_one {M N : Matrix ι ι R} {j : ι}
+    (h : ∀ b, M j b = (1 : Matrix ι ι R) j b) (b : ι) : (M * N) j b = N j b := by
+  rw [Matrix.mul_apply, Finset.sum_eq_single j]
+  · rw [h j, Matrix.one_apply_eq, one_mul]
+  · intro c _ hc
+    rw [h c, Matrix.one_apply_ne (Ne.symm hc), zero_mul]
+  · intro hj
+    exact absurd (Finset.mem_univ j) hj
+
+theorem colDefect_eq_colMatrix {i : ι} {y : ι → R} (hyi : y i = 0) :
+    RowAnnihilator.colDefect i y = ElementarySimplicity.colMatrix i y := by
+  ext p q
+  rw [RowAnnihilator.colDefect_apply, ElementarySimplicity.colMatrix_apply]
+  by_cases hq : q = i
+  · rw [if_pos hq, if_pos hq]
+    by_cases hp : p = i
+    · rw [if_pos hp, hp, hyi]
+    · rw [if_neg hp]
+  · rw [if_neg hq, if_neg hq]
+
+/-- The commutator of two square-zero perturbations of `1`. -/
+theorem one_add_mul_one_add_mul_one_sub_mul_one_sub {A : Type*} [Ring A] (W S : A)
+    (hWW : W * W = 0) (hWS : W * S = 0) (hSS : S * S = 0) (hSWS : S * W * S = 0) :
+    (1 + W) * (1 + S) * (1 - W) * (1 - S) = 1 - S * W := by
+  have e : (1 + W) * (1 + S) * (1 - W) * (1 - S) =
+      1 + W * S - S * W - W * W - W * S * W - S * S - W * S * S + S * W * S + W * W * S +
+        W * S * W * S := by
+    noncomm_ring
+  rw [e, hWS, hWW, hSS, hSWS]
+  simp only [zero_mul, add_zero, sub_zero]
+
+theorem one_add_colMatrix_mul_one_sub_single (j l : ι) (hlj : l ≠ j) (y : ι → R) :
+    (1 + ElementarySimplicity.colMatrix j y) * (1 - Matrix.single l j (1 : R)) =
+      1 + ElementarySimplicity.colMatrix j (fun a => y a - (1 : Matrix ι ι R) a l) := by
+  have hVS : ElementarySimplicity.colMatrix j y * Matrix.single l j (1 : R) = 0 :=
+    ElementarySimplicity.colMatrix_mul_single_of_ne j y l j 1 hlj
+  have e : (1 + ElementarySimplicity.colMatrix j y) * (1 - Matrix.single l j (1 : R)) =
+      1 + (ElementarySimplicity.colMatrix j y - Matrix.single l j (1 : R)) -
+        ElementarySimplicity.colMatrix j y * Matrix.single l j (1 : R) := by
+    noncomm_ring
+  rw [e, hVS, sub_zero]
+  clear e hVS
+  congr 1
+  ext a b
+  rw [Matrix.sub_apply, ElementarySimplicity.colMatrix_apply, ElementarySimplicity.colMatrix_apply,
+    Matrix.single_apply]
+  by_cases hb : b = j
+  · rw [if_pos hb, if_pos hb]
+    by_cases ha : a = l
+    · rw [if_pos (show l = a ∧ j = b from ⟨ha.symm, hb.symm⟩), ha, Matrix.one_apply_eq]
+    · rw [if_neg (show ¬(l = a ∧ j = b) from fun h => ha h.1.symm), Matrix.one_apply_ne ha]
+  · rw [if_neg hb, if_neg hb, if_neg (show ¬(l = a ∧ j = b) from fun h => hb h.2.symm), sub_zero]
+
+/-! ### Subgroups without nontrivial transvections -/
+
+/-- `H` contains no nontrivial elementary transvection. -/
+def NoTransvection (H : Subgroup (Matrix ι ι R)ˣ) : Prop :=
+  ∀ (i j : ι) (hij : i ≠ j) (a : R), elementaryUnit i j hij a ∈ H → a = 0
+
+variable {H : Subgroup (Matrix ι ι R)ˣ}
+
+/-- **A column transvection in `H` is trivial.** -/
+theorem colMatrix_eq_zero_of_mem (hnorm : PreusserNormalizedBy.NormalizedBy H (elementaryGroup ι R))
+    (hno : NoTransvection H) (hcard : 3 ≤ Fintype.card ι) {g : (Matrix ι ι R)ˣ} (hg : g ∈ H)
+    {j : ι} {w : ι → R} (hwj : w j = 0)
+    (hval : (g : Matrix ι ι R) = 1 + ElementarySimplicity.colMatrix j w) : ∀ q, w q = 0 := by
+  intro q
+  by_cases hqj : q = j
+  · rw [hqj, hwj]
+  obtain ⟨p, hpq, hpj⟩ := exists_third_index hcard q j
+  have hWW : ElementarySimplicity.colMatrix j w * ElementarySimplicity.colMatrix j w = 0 := by
+    rw [ElementarySimplicity.colMatrix_mul_colMatrix, hwj]
+    exact ElementarySimplicity.colMatrix_eq_zero j _ fun x => mul_zero (w x)
+  have hWS : ElementarySimplicity.colMatrix j w * Matrix.single p q (1 : R) = 0 :=
+    ElementarySimplicity.colMatrix_mul_single_of_ne j w p q 1 hpj
+  have hSW : Matrix.single p q (1 : R) * ElementarySimplicity.colMatrix j w =
+      Matrix.single p j (1 * w q) :=
+    ElementarySimplicity.single_mul_colMatrix p q 1 j w
+  have hSS : Matrix.single p q (1 : R) * Matrix.single p q (1 : R) = 0 :=
+    single_mul_self_eq_zero p q hpq 1
+  have hSWS : Matrix.single p q (1 : R) * ElementarySimplicity.colMatrix j w *
+      Matrix.single p q (1 : R) = 0 := by
+    rw [hSW]
+    exact Matrix.single_mul_single_of_ne (c := 1 * w q) p j p hpj.symm (1 : R)
+  have hinv : ((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) = 1 - ElementarySimplicity.colMatrix j w := by
+    have h1 : (1 - ElementarySimplicity.colMatrix j w) * (1 + ElementarySimplicity.colMatrix j w) =
+        1 := by
+      have e : (1 - ElementarySimplicity.colMatrix j w) * (1 + ElementarySimplicity.colMatrix j w) =
+          1 - ElementarySimplicity.colMatrix j w * ElementarySimplicity.colMatrix j w := by
+        noncomm_ring
+      rw [e, hWW, sub_zero]
+    calc ((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R)
+        = (1 - ElementarySimplicity.colMatrix j w) * (1 + ElementarySimplicity.colMatrix j w) *
+            ((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) := by rw [h1, one_mul]
+      _ = (1 - ElementarySimplicity.colMatrix j w) *
+            ((g : Matrix ι ι R) * ((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R)) := by
+          rw [hval, mul_assoc]
+      _ = 1 - ElementarySimplicity.colMatrix j w := by rw [Units.mul_inv, mul_one]
+  have hk : ⁅g, elementaryUnit p q hpq 1⁆ ∈ H :=
+    hnorm.commutator_mem_left hg (elementaryUnit_mem p q hpq 1)
+  have hkval : ⁅g, elementaryUnit p q hpq 1⁆ = (elementaryUnit p j hpj (1 * w q))⁻¹ := by
+    apply Units.ext
+    rw [commutatorElement_def, Units.val_mul, Units.val_mul, Units.val_mul, hval, hinv]
+    show (1 + ElementarySimplicity.colMatrix j w) * (1 + Matrix.single p q (1 : R)) *
+        (1 - ElementarySimplicity.colMatrix j w) * (1 - Matrix.single p q (1 : R)) =
+      1 - Matrix.single p j (1 * w q)
+    rw [one_add_mul_one_add_mul_one_sub_mul_one_sub _ _ hWW hWS hSS hSWS, hSW]
+  have hmem : elementaryUnit p j hpj (1 * w q) ∈ H := by
+    have h := H.inv_mem hk
+    rwa [hkval, inv_inv] at h
+  have h0 := hno p j hpj (1 * w q) hmem
+  rwa [one_mul] at h0
+
+/-- **An element of `H` with a unit row is trivial.** -/
+theorem eq_one_of_row_eq_one (hnorm : PreusserNormalizedBy.NormalizedBy H (elementaryGroup ι R))
+    (hno : NoTransvection H) (hcard : 3 ≤ Fintype.card ι) {g : (Matrix ι ι R)ˣ} (hg : g ∈ H)
+    {j : ι} (hrow : ∀ b, (g : Matrix ι ι R) j b = (1 : Matrix ι ι R) j b) : g = 1 := by
+  have hrowinv : ∀ b, ((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) j b = (1 : Matrix ι ι R) j b := by
+    intro b
+    have h := mul_apply_of_row_eq_one (N := ((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R)) hrow b
+    rw [Units.mul_inv] at h
+    exact h.symm
+  -- the columns off `j`
+  have hcol : ∀ l, l ≠ j → ∀ a, (g : Matrix ι ι R) a l = (1 : Matrix ι ι R) a l := by
+    intro l hlj
+    have hk : ⁅g, elementaryUnit l j hlj 1⁆ ∈ H :=
+      hnorm.commutator_mem_left hg (elementaryUnit_mem l j hlj 1)
+    have hV : (g : Matrix ι ι R) * Matrix.single l j (1 : R) *
+        ((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) =
+          ElementarySimplicity.colMatrix j (fun a => (g : Matrix ι ι R) a l * 1) := by
+      rw [ElementarySimplicity.mul_single_eq]
+      ext a b
+      rw [colMatrix_mul_apply, hrowinv b, ElementarySimplicity.colMatrix_apply, Matrix.one_apply]
+      by_cases hb : b = j
+      · subst hb
+        simp
+      · rw [if_neg (Ne.symm hb), if_neg hb, mul_zero]
+    have hval : ((⁅g, elementaryUnit l j hlj 1⁆ : (Matrix ι ι R)ˣ) : Matrix ι ι R) =
+        1 + ElementarySimplicity.colMatrix j
+          (fun a => (g : Matrix ι ι R) a l * 1 - (1 : Matrix ι ι R) a l) := by
+      rw [commutatorElement_def, Units.val_mul, Units.val_mul, Units.val_mul]
+      show (g : Matrix ι ι R) * (1 + Matrix.single l j (1 : R)) *
+          ((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) * (1 - Matrix.single l j (1 : R)) = _
+      rw [RowAnnihilator.conj_val_eq _ _ _ (Units.mul_inv g), hV,
+        one_add_colMatrix_mul_one_sub_single j l hlj]
+    have hw := colMatrix_eq_zero_of_mem hnorm hno hcard hk
+      (w := fun a => (g : Matrix ι ι R) a l * 1 - (1 : Matrix ι ι R) a l)
+      (by simp only [hrow l, mul_one, sub_self]) hval
+    intro a
+    have ha : (g : Matrix ι ι R) a l * 1 - (1 : Matrix ι ι R) a l = 0 := hw a
+    rwa [mul_one, sub_eq_zero] at ha
+  -- column `j`
+  have hval : (g : Matrix ι ι R) = 1 + ElementarySimplicity.colMatrix j
+      (fun a => (g : Matrix ι ι R) a j - (1 : Matrix ι ι R) a j) := by
+    ext a b
+    rw [Matrix.add_apply, ElementarySimplicity.colMatrix_apply]
+    by_cases hb : b = j
+    · rw [if_pos hb, hb]
+      abel
+    · rw [if_neg hb, add_zero, hcol b hb a]
+  have hw := colMatrix_eq_zero_of_mem hnorm hno hcard hg
+    (w := fun a => (g : Matrix ι ι R) a j - (1 : Matrix ι ι R) a j)
+    (by simp only [hrow j, sub_self]) hval
+  apply Units.ext
+  ext a b
+  rw [Units.val_one]
+  by_cases hb : b = j
+  · rw [hb]
+    exact sub_eq_zero.mp (hw a)
+  · exact hcol b hb a
+
+/-- A zero entry at `(j, k)` makes an element of `H` commute with every `e_{km}(x)`. -/
+theorem commute_single_of_entry_eq_zero
+    (hnorm : PreusserNormalizedBy.NormalizedBy H (elementaryGroup ι R)) (hno : NoTransvection H)
+    (hcard : 3 ≤ Fintype.card ι) {g : (Matrix ι ι R)ˣ} (hg : g ∈ H) {j k : ι} (hjk : j ≠ k)
+    (hzero : (g : Matrix ι ι R) j k = 0) (m : ι) (hkm : k ≠ m) (x : R) :
+    (g : Matrix ι ι R) * Matrix.single k m x = Matrix.single k m x * (g : Matrix ι ι R) := by
+  have hk : ⁅g, elementaryUnit k m hkm x⁆ ∈ H :=
+    hnorm.commutator_mem_left hg (elementaryUnit_mem k m hkm x)
+  have hval : ((⁅g, elementaryUnit k m hkm x⁆ : (Matrix ι ι R)ˣ) : Matrix ι ι R) =
+      (1 + (g : Matrix ι ι R) * Matrix.single k m x * ((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R)) *
+        (1 - Matrix.single k m x) := by
+    rw [commutatorElement_def, Units.val_mul, Units.val_mul, Units.val_mul]
+    show (g : Matrix ι ι R) * (1 + Matrix.single k m x) * ((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) *
+        (1 - Matrix.single k m x) = _
+    rw [RowAnnihilator.conj_val_eq _ _ _ (Units.mul_inv g)]
+  have hrow : ∀ b, ((⁅g, elementaryUnit k m hkm x⁆ : (Matrix ι ι R)ˣ) : Matrix ι ι R) j b =
+      (1 : Matrix ι ι R) j b := by
+    intro b
+    have hr : ∀ c, (1 + (g : Matrix ι ι R) * Matrix.single k m x *
+        ((g⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R)) j c = (1 : Matrix ι ι R) j c := by
+      intro c
+      rw [Matrix.add_apply, RowAnnihilator.triple_single_apply, hzero, zero_mul, zero_mul, add_zero]
+    rw [hval, mul_apply_of_row_eq_one hr b, Matrix.sub_apply,
+      Matrix.single_apply_of_row_ne hjk.symm, sub_zero]
+  have h1 := eq_one_of_row_eq_one hnorm hno hcard hk hrow
+  rw [commutatorElement_eq_one_iff_mul_comm] at h1
+  have h2 := congrArg (fun u : (Matrix ι ι R)ˣ => (u : Matrix ι ι R)) h1
+  simp only [Units.val_mul] at h2
+  change (g : Matrix ι ι R) * (1 + Matrix.single k m x) =
+    (1 + Matrix.single k m x) * (g : Matrix ι ι R) at h2
+  rw [mul_add, add_mul, mul_one, one_mul] at h2
+  exact add_left_cancel h2
+
+/-- **Lemma 4.1 at a unit column**: a zero off-diagonal entry makes an element of `H` central. -/
+theorem mem_congruenceSubgroup_bot_of_entry_eq_zero
+    (hnorm : PreusserNormalizedBy.NormalizedBy H (elementaryGroup ι R)) (hno : NoTransvection H)
+    (hcard : 3 ≤ Fintype.card ι) {g : (Matrix ι ι R)ˣ} (hg : g ∈ H) {j k : ι} (hjk : j ≠ k)
+    (hzero : (g : Matrix ι ι R) j k = 0) : g ∈ congruenceSubgroup ι (⊥ : TwoSidedIdeal R) := by
+  have hall : ∀ (q m : ι) (hqm : q ≠ m) (x : R),
+      (g : Matrix ι ι R) * Matrix.single q m x = Matrix.single q m x * (g : Matrix ι ι R) := by
+    intro q m hqm x
+    by_cases hqk : q = k
+    · subst hqk
+      exact commute_single_of_entry_eq_zero hnorm hno hcard hg hjk hzero m hqm x
+    · obtain ⟨p, hpk, hpq⟩ := exists_third_index hcard k q
+      have hc := commute_single_of_entry_eq_zero hnorm hno hcard hg hjk hzero p (Ne.symm hpk) 1
+      have hpq0 : (g : Matrix ι ι R) p q = 0 := by
+        have h := congrFun (congrFun hc k) q
+        rw [ElementarySimplicity.mul_single_apply, ElementarySimplicity.single_mul_apply,
+          if_neg (Ne.symm hpq), if_pos rfl, one_mul] at h
+        exact h.symm
+      exact commute_single_of_entry_eq_zero hnorm hno hcard hg hpq hpq0 m hqm x
+  have hcard1 : 1 < Fintype.card ι := by omega
+  obtain ⟨i₀⟩ : Nonempty ι := Fintype.card_pos_iff.mp (by omega)
+  have hdiag := eq_diagonal_of_commute_single hcard1 i₀ (g : Matrix ι ι R)
+    fun i j hij => hall i j hij 1
+  refine mem_congruenceSubgroup.mpr ⟨(g : Matrix ι ι R) i₀ i₀, mem_relativeCenter_bot.mpr ?_,
+    fun a b => ?_⟩
+  · intro x
+    refine commute_of_commute_single hcard1 _ (fun i j a hij => ?_) x
+    rw [← hdiag]
+    exact hall i j hij a
+  · rw [← hdiag, sub_self, Matrix.zero_apply]
+    exact TwoSidedIdeal.zero_mem _
+
+/-- For a column `y` with `y_i = 0` annihilated by row `j` of `c ∈ H`, `c` commutes with the
+column matrix: the commutator `[c, t_{*i}(y)]` has row `j` equal to the unit row off column `i`, so
+it is central, and its `(j, j)` entry is `1`. -/
+theorem commute_colMatrix_of_row_annihilated
+    (hnorm : PreusserNormalizedBy.NormalizedBy H (elementaryGroup ι R)) (hno : NoTransvection H)
+    (hcard : 3 ≤ Fintype.card ι) {c : (Matrix ι ι R)ˣ} (hc : c ∈ H) {i j : ι} {y : ι → R}
+    (hyi : y i = 0) (hsum : ∑ t, (c : Matrix ι ι R) j t * y t = 0) :
+    (c : Matrix ι ι R) * ElementarySimplicity.colMatrix i y =
+      ElementarySimplicity.colMatrix i y * (c : Matrix ι ι R) := by
+  have hA : RowAnnihilator.colDefect i y = ElementarySimplicity.colMatrix i y :=
+    colDefect_eq_colMatrix hyi
+  have hd : ⁅c, RowAnnihilator.colUnitMat i y⁆ ∈ H :=
+    hnorm.commutator_mem_left hc (RowAnnihilator.colUnitMat_mem i y)
+  have hval : ((⁅c, RowAnnihilator.colUnitMat i y⁆ : (Matrix ι ι R)ˣ) : Matrix ι ι R) =
+      (1 + (c : Matrix ι ι R) * ElementarySimplicity.colMatrix i y *
+        ((c⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R)) * (1 - ElementarySimplicity.colMatrix i y) := by
+    rw [commutatorElement_def, Units.val_mul, Units.val_mul, Units.val_mul]
+    show (c : Matrix ι ι R) * (1 + RowAnnihilator.colDefect i y) *
+        ((c⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) * (1 - RowAnnihilator.colDefect i y) = _
+    rw [hA, RowAnnihilator.conj_val_eq _ _ _ (Units.mul_inv c)]
+  have hrow1 : ∀ b, (1 + (c : Matrix ι ι R) * ElementarySimplicity.colMatrix i y *
+      ((c⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R)) j b = (1 : Matrix ι ι R) j b := by
+    intro b
+    rw [Matrix.add_apply, ElementarySimplicity.mul_colMatrix, colMatrix_mul_apply]
+    show (1 : Matrix ι ι R) j b + (∑ t, (c : Matrix ι ι R) j t * y t) *
+      ((c⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) i b = _
+    rw [hsum, zero_mul, add_zero]
+  have hdrow : ∀ b, ((⁅c, RowAnnihilator.colUnitMat i y⁆ : (Matrix ι ι R)ˣ) : Matrix ι ι R) j b =
+      (1 : Matrix ι ι R) j b - ElementarySimplicity.colMatrix i y j b := by
+    intro b
+    rw [hval, mul_apply_of_row_eq_one hrow1 b, Matrix.sub_apply]
+  obtain ⟨k, hki, hkj⟩ := exists_third_index hcard i j
+  have hdjk : ((⁅c, RowAnnihilator.colUnitMat i y⁆ : (Matrix ι ι R)ˣ) : Matrix ι ι R) j k = 0 := by
+    rw [hdrow, Matrix.one_apply_ne (Ne.symm hkj), ElementarySimplicity.colMatrix_apply,
+      if_neg hki, sub_zero]
+  have hdC := mem_congruenceSubgroup_bot_of_entry_eq_zero hnorm hno hcard hd (Ne.symm hkj) hdjk
+  have hd1 : ⁅c, RowAnnihilator.colUnitMat i y⁆ = 1 := by
+    obtain ⟨lam, -, hent⟩ := mem_congruenceSubgroup.mp hdC
+    have hentry : ∀ a b,
+        ((⁅c, RowAnnihilator.colUnitMat i y⁆ : (Matrix ι ι R)ˣ) : Matrix ι ι R) a b =
+          (Matrix.diagonal fun _ : ι => lam) a b := by
+      intro a b
+      have h := hent a b
+      rwa [TwoSidedIdeal.mem_bot, Matrix.sub_apply, sub_eq_zero] at h
+    have hjj : ((⁅c, RowAnnihilator.colUnitMat i y⁆ : (Matrix ι ι R)ˣ) : Matrix ι ι R) j j = 1 := by
+      rw [hdrow, Matrix.one_apply_eq, ElementarySimplicity.colMatrix_apply]
+      by_cases hji : j = i
+      · rw [if_pos hji, hji, hyi, sub_zero]
+      · rw [if_neg hji, sub_zero]
+    have hlam : lam = 1 := by
+      rw [← hjj, hentry j j, Matrix.diagonal_apply_eq]
+    apply Units.ext
+    ext a b
+    rw [hentry a b, hlam, Units.val_one, Matrix.diagonal_one]
+  rw [commutatorElement_eq_one_iff_mul_comm] at hd1
+  have h2 := congrArg (fun u : (Matrix ι ι R)ˣ => (u : Matrix ι ι R)) hd1
+  simp only [Units.val_mul] at h2
+  change (c : Matrix ι ι R) * (1 + RowAnnihilator.colDefect i y) =
+    (1 + RowAnnihilator.colDefect i y) * (c : Matrix ι ι R) at h2
+  rw [hA, mul_add, add_mul, mul_one, one_mul] at h2
+  exact add_left_cancel h2
+
+/-- **The no-transvection case of Theorem 4.4** (p. 2152), over a simple ring: if `c ∈ H` has a
+nonzero column `α` with `α_i = 0` and `(cα)_j = 0`, then `c` is central.  Simplicity of `R` takes
+the place of Lemma 4.3 at `I = 0`. -/
+theorem mem_congruenceSubgroup_bot_of_conditionB [IsSimpleRing R]
+    (hnorm : PreusserNormalizedBy.NormalizedBy H (elementaryGroup ι R)) (hno : NoTransvection H)
+    (hcard : 3 ≤ Fintype.card ι) {c : (Matrix ι ι R)ˣ} (hc : c ∈ H) {α : ι → R} (hα : α ≠ 0)
+    {i j : ι} (hαi : α i = 0) (hβj : ((c : Matrix ι ι R) *ᵥ α) j = 0) :
+    c ∈ congruenceSubgroup ι (⊥ : TwoSidedIdeal R) := by
+  obtain ⟨p, hp⟩ := Function.ne_iff.mp hα
+  have hβ : ∑ t, (c : Matrix ι ι R) j t * α t = 0 := hβj
+  have hzero : ∀ q, q ≠ i → (c : Matrix ι ι R) i q = 0 := by
+    intro q hqi
+    by_contra hne
+    obtain ⟨lam, hlam⟩ := Pestov91.SimpleModCentre.exists_mul_mul_ne_zero hp hne
+    apply hlam
+    have e1 : ∑ t, (c : Matrix ι ι R) j t * (α t * lam) =
+        (∑ t, (c : Matrix ι ι R) j t * α t) * lam := by
+      rw [Finset.sum_mul]
+      exact Finset.sum_congr rfl fun t _ => (mul_assoc _ _ _).symm
+    have hsum : ∑ t, (c : Matrix ι ι R) j t * (α t * lam) = 0 := by
+      rw [e1, hβ, zero_mul]
+    have hcomm := commute_colMatrix_of_row_annihilated hnorm hno hcard hc
+      (y := fun t => α t * lam) (by simp only [hαi, zero_mul]) hsum
+    have h := congrFun (congrFun hcomm p) q
+    rw [ElementarySimplicity.mul_colMatrix, ElementarySimplicity.colMatrix_apply, if_neg hqi,
+      colMatrix_mul_apply] at h
+    exact h.symm
+  obtain ⟨q, hqi, -⟩ := exists_third_index hcard i i
+  exact mem_congruenceSubgroup_bot_of_entry_eq_zero hnorm hno hcard hc (Ne.symm hqi) (hzero q hqi)
+
+/-! ### Theorem 4.4 over a simple ring -/
+
+/-- **Stepanov's condition (b) at the ideal `0`**: every `a ∈ GL_ι(R)` has `b ∈ E(ι, R)` and a
+nonzero column `α` with `α_i = (a^b α)_j = 0` for some `i, j`, where `a^b = b⁻¹ a b`. -/
+def StepanovConditionB (ι R : Type*) [Fintype ι] [DecidableEq ι] [Ring R] : Prop :=
+  ∀ a : (Matrix ι ι R)ˣ, ∃ b ∈ elementaryGroup ι R, ∃ α : ι → R, α ≠ 0 ∧
+    ∃ i j : ι, α i = 0 ∧ (((b⁻¹ * a * b : (Matrix ι ι R)ˣ) : Matrix ι ι R) *ᵥ α) j = 0
+
+/-- **Stepanov's Theorem 4.4 over a simple ring**: under condition (b), every subgroup `H` of
+`GL_ι(R)` normalized by `E(ι, R)` satisfies `E(ι, R, I) ≤ H ≤ C(ι, R, I)` for a unique ideal `I`. -/
+theorem sandwich_of_conditionB [IsSimpleRing R] (hcard : 3 ≤ Fintype.card ι)
+    (hb : StepanovConditionB ι R) (H : Subgroup (Matrix ι ι R)ˣ)
+    (hnorm : PreusserNormalizedBy.NormalizedBy H (elementaryGroup ι R)) :
+    ∃! I : TwoSidedIdeal R,
+      (relativeElementary ι I).map (elementaryGroup ι R).subtype ≤ H ∧
+        H ≤ congruenceSubgroup ι I := by
+  have hex : ∃ I : TwoSidedIdeal R,
+      (relativeElementary ι I).map (elementaryGroup ι R).subtype ≤ H ∧
+        H ≤ congruenceSubgroup ι I := by
+    by_cases hno : NoTransvection H
+    · refine ⟨⊥, ?_, ?_⟩
+      · rintro _ ⟨g, hg, rfl⟩
+        have hbot : relativeElementary ι (⊥ : TwoSidedIdeal R) ≤ ⊥ := by
+          refine Subgroup.normalClosure_le_normal ?_
+          rintro _ ⟨i, j, hij, a, ha, rfl⟩
+          rw [TwoSidedIdeal.mem_bot] at ha
+          rw [ha, elGen_zero]
+          exact Subgroup.one_mem _
+        rw [Subgroup.mem_bot.mp (hbot hg), map_one]
+        exact H.one_mem
+      · intro a ha
+        obtain ⟨b, hbE, α, hα, i, j, hαi, hβ⟩ := hb a
+        have hc : b⁻¹ * a * b ∈ H := hnorm.conj_mem' hbE ha
+        have hcC := mem_congruenceSubgroup_bot_of_conditionB hnorm hno hcard hc hα hαi hβ
+        rw [congruenceSubgroup_bot (by omega) i] at hcC ⊢
+        have key : a = b⁻¹ * a * b := by
+          have h := Subgroup.mem_center_iff.mp hcC b
+          calc a = b * (b⁻¹ * a * b) * b⁻¹ := by group
+            _ = b⁻¹ * a * b * b * b⁻¹ := by rw [h]
+            _ = b⁻¹ * a * b := by group
+        rw [key]
+        exact hcC
+    · simp only [NoTransvection, not_forall, not_imp] at hno
+      obtain ⟨i, j, hij, a, hmem, hne⟩ := hno
+      haveI : (PreusserNormalizedBy.elementaryPart H).Normal :=
+        PreusserNormalizedBy.elementaryPart_normal hnorm
+      have htop := Pestov91.SimpleModCentre.normal_eq_top_of_elGen_mem hcard
+        (PreusserNormalizedBy.elementaryPart H) hij hne
+        (PreusserNormalizedBy.mem_elementaryPart.mpr hmem)
+      have hEH : ∀ e ∈ elementaryGroup ι R, e ∈ H := by
+        intro e he
+        have h : (⟨e, he⟩ : elementaryGroup ι R) ∈ PreusserNormalizedBy.elementaryPart H := by
+          rw [htop]
+          exact Subgroup.mem_top _
+        exact PreusserNormalizedBy.mem_elementaryPart.mp h
+      refine ⟨⊤, ?_, ?_⟩
+      · rintro _ ⟨g, -, rfl⟩
+        exact hEH _ g.2
+      · intro u _
+        exact mem_congruenceSubgroup.mpr
+          ⟨1, one_mem_relativeCenter _, fun _ _ => TwoSidedIdeal.mem_top⟩
+  obtain ⟨I, hIl, hIu⟩ := hex
+  exact ⟨I, ⟨hIl, hIu⟩, fun J hJ => PreusserNormalizedBy.eq_of_sandwich hcard hJ.1 hJ.2 hIl hIu⟩
+
+/-- **Printed:** Stepanov's Theorem 4.4 at the generality the note uses, a simple ring, where
+condition (a) is vacuous and condition (b) is `StepanovConditionB`. -/
+def PrintedStepanovTheorem44SimpleRing : Prop :=
+  ∀ (ι R : Type) [Fintype ι] [DecidableEq ι] [Ring R] [IsSimpleRing R], 3 ≤ Fintype.card ι →
+    StepanovConditionB ι R → ∀ H : Subgroup (Matrix ι ι R)ˣ,
+      PreusserNormalizedBy.NormalizedBy H (elementaryGroup ι R) →
+        ∃! I : TwoSidedIdeal R,
+          (relativeElementary ι I).map (elementaryGroup ι R).subtype ≤ H ∧
+            H ≤ congruenceSubgroup ι I
+
+theorem printedStepanovTheorem44SimpleRing : PrintedStepanovTheorem44SimpleRing :=
+  fun _ _ _ _ _ _ hcard hb H hnorm => sandwich_of_conditionB hcard hb H hnorm
+
+/-- **Simplicity along the Stepanov route**: over a simple ring satisfying condition (b), whose
+only central unit is `1`, `EL_ι(R)` is simple for `|ι| ≥ 3`. -/
+theorem isSimpleGroup_elementaryGroup_of_conditionB [IsSimpleRing R] (hcard : 3 ≤ Fintype.card ι)
+    (hb : StepanovConditionB ι R)
+    (hcentral : ∀ u : Rˣ, (∀ x : R, Commute (u : R) x) → (u : R) = 1) :
+    IsSimpleGroup (elementaryGroup ι R) := by
+  obtain ⟨i, j, hij⟩ := Fintype.exists_pair_of_one_lt_card (by omega : 1 < Fintype.card ι)
+  have hne1 : elGen (R := R) i j hij 1 ≠ 1 := by
+    intro h
+    have h' : elementaryUnit (R := R) i j hij 1 = elementaryUnit i j hij 0 := by
+      rw [elementaryUnit_zero]
+      exact congrArg Subtype.val h
+    exact one_ne_zero (elementaryUnit_injective i j hij h')
+  refine isSimpleGroup_of_preusser_sandwich hcard hcentral (fun N hN => ?_)
+    (nontrivial_of_ne _ _ hne1)
+  have hnorm : PreusserNormalizedBy.NormalizedBy (N.map (elementaryGroup ι R).subtype)
+      (elementaryGroup ι R) := by
+    intro e he h hh
+    obtain ⟨n, hn, rfl⟩ := hh
+    exact ⟨⟨e, he⟩ * n * ⟨e, he⟩⁻¹, hN.conj_mem n hn ⟨e, he⟩, rfl⟩
+  obtain ⟨I, ⟨hIl, hIu⟩, -⟩ := sandwich_of_conditionB hcard hb _ hnorm
+  exact ⟨I, (Subgroup.map_le_map_iff_of_injective (Subgroup.subtype_injective _)).mp hIl, hIu⟩
+
+end StepanovNormalStructure
+end GroupApproximation
+
+#audit_axioms GroupApproximation.StepanovNormalStructure.colMatrix_eq_zero_of_mem
+#audit_axioms GroupApproximation.StepanovNormalStructure.eq_one_of_row_eq_one
+#audit_axioms GroupApproximation.StepanovNormalStructure.mem_congruenceSubgroup_bot_of_entry_eq_zero
+#audit_axioms GroupApproximation.StepanovNormalStructure.mem_congruenceSubgroup_bot_of_conditionB
+#audit_axioms GroupApproximation.StepanovNormalStructure.sandwich_of_conditionB
+#audit_axioms GroupApproximation.StepanovNormalStructure.isSimpleGroup_elementaryGroup_of_conditionB
+#audit_closed_axioms GroupApproximation.StepanovNormalStructure.printedStepanovTheorem44SimpleRing
