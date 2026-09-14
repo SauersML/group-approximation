@@ -56,7 +56,7 @@ theorem exists_common_tail_exponent (u : (ClopenCrossedProduct shift (ZMod 2))ˣ
       rho (ZMod 2) (u : ClopenCrossedProduct shift (ZMod 2)) (single i 1) = single (i + a) 1 := by
   obtain ⟨ap, Np, hp⟩ := exists_tail_translation_pos u
   obtain ⟨am, Nm, hm⟩ := exists_tail_translation_neg u
-  obtain ⟨N, hN1, hN2, hN3, hN4⟩ : ∃ N : ℤ, Np ≤ N ∧ -N ≤ Nm ∧ -N + am < N + ap ∧ 0 ≤ N :=
+  obtain ⟨N, hN1, hN2, hN3, hN4⟩ : ∃ N : ℤ, Np ≤ N ∧ -N ≤ Nm ∧ -N + am < N + ap ∧ 0 < N :=
     ⟨(Np.natAbs + Nm.natAbs + ap.natAbs + am.natAbs + 1 : ℕ), by omega, by omega, by omega,
       by omega⟩
   have hmap : (supported (ZMod 2) (ZMod 2) (Set.Ioo (-N) N)ᶜ).map
@@ -85,7 +85,7 @@ theorem exists_common_tail_exponent (u : (ClopenCrossedProduct shift (ZMod 2))ˣ
   have ha : ap = am := by
     rw [hcard] at h1
     omega
-  refine ⟨ap, N, hN4, fun i hi => ?_⟩
+  refine ⟨ap, N, hN4.le, fun i hi => ?_⟩
   rcases hi with hi | hi
   · exact hp i (by omega)
   · rw [ha]
