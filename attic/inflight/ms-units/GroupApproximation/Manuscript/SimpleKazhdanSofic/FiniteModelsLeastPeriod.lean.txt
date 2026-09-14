@@ -3,6 +3,8 @@ import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Data.Set.Card
 import Mathlib.Dynamics.PeriodicPts.Defs
 import Mathlib.Order.Filter.AtTopBot.Basic
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Ring
 
 /-!
 # The periodic sequences `y_ℓ` and their least periods
@@ -64,7 +66,7 @@ theorem injOn_init_of_ncard_eq [Finite A] (X : Set (ℤ → A)) {n : ℕ}
       exact init_mem_language hw
     · rintro ⟨x, hx, rfl⟩
       exact ⟨word x 0 (n + 1), ⟨x, hx, rfl⟩, init_word x 0 n⟩
-  exact Set.ncard_image_iff.1 (by rw [himg, heq])
+  exact (Set.ncard_image_iff (Set.toFinite _)).1 (by rw [himg, heq])
 
 theorem injOn_tail_of_ncard_eq [Finite A] {X : Set (ℤ → A)}
     (hX : ∀ g : ℤ, Set.MapsTo (shift g) X X) {n : ℕ}
@@ -79,7 +81,7 @@ theorem injOn_tail_of_ncard_eq [Finite A] {X : Set (ℤ → A)}
       refine ⟨word x (-1) (n + 1), word_mem_language hX hx _ _, ?_⟩
       show Fin.tail (word x (-1) (n + 1)) = word x 0 n
       rw [tail_word, neg_add_cancel]
-  exact Set.ncard_image_iff.1 (by rw [himg, heq])
+  exact (Set.ncard_image_iff (Set.toFinite _)).1 (by rw [himg, heq])
 
 /-- **A subshift with boundedly many words of each length is finite** (tex 131–132). -/
 theorem finite_of_ncard_language_le [Finite A] {X : Set (ℤ → A)}
@@ -159,7 +161,7 @@ theorem word_periodicExt_emod (x : ℤ → A) (m : ℕ) (t : ℤ) (n : ℕ) :
     word (periodicExt x m) t n = word (periodicExt x m) (t % m) n := by
   funext j
   simp only [word_apply]
-  have h := Int.emod_add_ediv t m
+  have h := Int.emod_add_mul_ediv t (m : ℤ)
   rw [show t + ((j : ℕ) : ℤ) = t % m + ((j : ℕ) : ℤ) + m * (t / m) by linarith]
   exact periodicExt_add_mul x m _ _
 
@@ -239,7 +241,8 @@ theorem ncard_language_le_leastPeriod [Finite A] [NeZero m] {X : Set (ℤ → A)
   have hN : 0 < leastPeriod (periodicExt x m) := leastPeriod_periodicExt_pos x
   have hsub : language X (2 * k + 1) ⊆
       ((Finset.univ : Finset (Fin (leastPeriod (periodicExt x m)))).image
-        fun t => word (periodicExt x m) ((t : ℕ) : ℤ) (2 * k + 1) : Set (Fin (2 * k + 1) → A)) := by
+        fun t : Fin (leastPeriod (periodicExt x m)) =>
+          word (periodicExt x m) ((t : ℕ) : ℤ) (2 * k + 1) : Set (Fin (2 * k + 1) → A)) := by
     intro w hw
     rw [← language_periodicExt hX hx hrep hmk hseg] at hw
     obtain ⟨t, rfl⟩ := hw
@@ -258,14 +261,16 @@ theorem ncard_language_le_leastPeriod [Finite A] [NeZero m] {X : Set (ℤ → A)
       (t % (leastPeriod (periodicExt x m) : ℤ) + ((j : ℕ) : ℤ)) (t / (leastPeriod (periodicExt x m) : ℤ))
     rw [← h]
     congr 1
-    have := Int.emod_add_ediv t (leastPeriod (periodicExt x m) : ℤ)
+    have := Int.emod_add_mul_ediv t (leastPeriod (periodicExt x m) : ℤ)
     linarith
   calc (language X (2 * k + 1)).ncard
       ≤ (((Finset.univ : Finset (Fin (leastPeriod (periodicExt x m)))).image
-          fun t => word (periodicExt x m) ((t : ℕ) : ℤ) (2 * k + 1) : Finset _) : Set _).ncard :=
+          fun t : Fin (leastPeriod (periodicExt x m)) =>
+            word (periodicExt x m) ((t : ℕ) : ℤ) (2 * k + 1) : Finset _) : Set _).ncard :=
         Set.ncard_le_ncard hsub
     _ = ((Finset.univ : Finset (Fin (leastPeriod (periodicExt x m)))).image
-          fun t => word (periodicExt x m) ((t : ℕ) : ℤ) (2 * k + 1)).card :=
+          fun t : Fin (leastPeriod (periodicExt x m)) =>
+            word (periodicExt x m) ((t : ℕ) : ℤ) (2 * k + 1)).card :=
         Set.ncard_coe_finset _
     _ ≤ (Finset.univ : Finset (Fin (leastPeriod (periodicExt x m)))).card := Finset.card_image_le
     _ = leastPeriod (periodicExt x m) := by rw [Finset.card_univ, Fintype.card_fin]
