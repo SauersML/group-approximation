@@ -81,5 +81,4 @@ revision separately.
 Astra developed the original argument using a custom proof tool under
 the author's direction. Claude (Anthropic) produced the Lean development
 and original exposition. Codex (OpenAI) reviewed the proof, literature,
-and credits and prepared these materials. The human author is responsible
-for the work. License: Apache-2.0.
+and credits and prepared these materials. License: Apache-2.0.
