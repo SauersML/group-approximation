@@ -279,3 +279,26 @@ What remains for `CellPocketPinchSectionInput` (proper-arc case only; w1-binder-
 1. First-turn order of the cell pocket produced by `exists_cellPocketFaceSet_closedWalk_of_orient`. Walk order alone is not enough (the rose shape).
 2. Re-establishing `GoodCorners` after each step by corner doublings, which keep first-turn order: `faceEdgeDoubling_firstTurnChain` for cells (4bda24f4d), and
    `EdgeInsertion.firstTurnChain_map_embed` through `faceEdgeDoublingInside_boundary_cycle`. Corners in the cells use trim–double (4bda24f4d) when a side has room.
+
+## Item 5: (b), restoring GoodCorners after each step (main's 20:4x assignment; (a) is w1-binder-4's)
+
+Ownership check at 21:2x, after the session-limit resume: origin still holds d3b0769b8, e577feeff, 2b1192b3d and 5c9707cfe; the paths and names
+below are free. w1-binder-7 has claimed the section version, `Estimating/OsinPocketGoodCornersSection` (in its report), not the cell version.
+
+CLAIM:
+- `GroupApproximation/GGT/VanKampen/SurgeryFaceEdgeDoublingFaces.lean`, a shared map-level module for the cell and section versions:
+  - faces of embedded darts in the doubled diagram: `FaceEdgeDoubling.faceOf_diagram_embed_dart` and `faceOf_diagram_embed_of_ne`;
+  - relator cells of the doubled diagram: `exists_relatorCell_of_mem_diagram`;
+  - `one_lt_length_of_relatorCell`, from relator words longer than one letter;
+  - `CornerCount.countP_lt_countP_of_imp` and `CornerCount.one_lt_length_of_mem_ne`.
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellGoodCorners.lean`:
+  - `CellPocketFaceSet.BadCorner` and `badCorners`, and `faceEdgeDoublingInside_firstTurns`;
+  - the doubling at a bad dart lowers `badCorners`;
+  - `exists_goodCorners`: from FirstTurns, letter labels and long relator words, an O-equivalent copy with GoodCorners, FirstTurns and
+    the same repeated visits;
+  - the iteration with `cellPocketPinchGoodCornerStep`, into `CellPocketPinchFirstTurnsStatement` and `copyRegion_of_firstTurns`.
+
+Route finding (paper):
+- GoodCorners concerns only the faces of cycle darts, and those lie inside K. So doubling inside K at each bad dart restores it, and
+  trim–double is not needed for the good-corner step.
+- Trim–double matters only for a face-side split, whose corners lie outside K.
