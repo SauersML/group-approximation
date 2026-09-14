@@ -1,63 +1,70 @@
 # sk-rev3-referee-b: referee report on revision 3 (credit, exposition, claims proved)
 
-Lane sk-rev3-referee-b (ROSTER-G), 2026-09-13 ~20:40 CDT. Referee (b): credit, exposition, and whether every claim in the abstract and theorem is proved in the text. Referee (a) owns correctness in depth.
+Lane sk-rev3-referee-b (ROSTER-G), 2026-09-13, second landing after the 21:20 resume. Referee (b) covers credit, exposition, and whether every claim in the abstract and theorem is proved in the text. Referee (a) owns correctness in depth.
 
-- **Subject:** `sk/drafts/rev3.tex`, assembled 20:24, 614 lines, md5 2a0264d7ec918ea5b8ad7fc198a97c3d, identical to partA+partB+partC. Line numbers below refer to it.
-- **My compile:** MSI texlive/2025, pdflatex 3 passes: 0 errors, 0 overfull, 0 undefined, 3 underfull (bibitems), 7 pages.
-- **Mechanical checks:** every `\cite` key has a bibitem and every bibitem is cited (35 keys); labels `thm:main`, `cor:lef`, `eq:elementary` resolve; no Codex, OpenAI or Astra anywhere.
-- **Read for context:** rev3-changelog.md; sk-panel-referee-4/5/6 part1; sk-lit-credit-audit proposal; sk-lit-novelty-2; sk-lit-background part1.
+## Subject
+- **Refereed:** main's `simple_kazhdan_sofic_group.tex` as landed at 9047d0d3c9 (tip a1f1820bd9), md5 274f19367f7f706b05c017af721c3884, 618 lines. **Line numbers below refer to this blob.**
+- **Predecessor:** the first landing (2e9f7b8b29) refereed the draft `sk/drafts/rev3.tex` (md5 2a0264d7…).
+  - The landed text differs from that draft only in typesetting: `\arxiv` macro, keywords and pdfkeywords, MSC 22D10→22D55, `\qed`, `\section*{Origin and authorship}`, bibitem formatting, the Stepanov journal name.
+  - So every finding carries over; body line numbers shift by +2.
+- **My compile of the landed blob:** MSI texlive/2025, pdflatex 3 passes: 0 errors, 0 overfull, 0 undefined, 1 underfull, 7 pages.
+- **Mechanical checks** (draft, unchanged by the diff): every `\cite` key has a bibitem and every bibitem is cited (35 keys); `thm:main`, `cor:lef` and `eq:elementary` resolve; no Codex, OpenAI or Astra. MSC 22D55 (property (T) and generalizations) is the right secondary class.
+- **Read for context:** the rev3 changelog; sk-panel-referee-4/5/6 part1; the sk-lit-credit-audit proposal; sk-lit-novelty-2; sk-lit-background part1.
 
 ## 0. Verdict
 - **No ERROR in scope.** Every claim of the abstract and of Theorem 1 has a proof or a correct citation in the text (§1).
-- **Two credit GAPs, each a one-line fix:**
-  - B1: the introduction asserts "the ring is simple" (l.76) with no proof and no citation. Rev1 removed the ring-simplicity proof and its citations, because the direct proof no longer needs it; the Stepanov sentence still does.
-  - B2: Mal'cev's theorem is used by name (l.352) with no citation.
+- **Two credit GAPs, each a one-line fix for rev4:**
+  - B1: the introduction asserts "the ring is simple" (l.78) with no proof and no citation. Rev1 removed the ring-simplicity paragraph and its citations; the direct proof no longer needs it, but the Stepanov sentence does.
+  - B2: Mal'cev's theorem is used by name (l.354) with no citation.
 - **UNCLEAR, short fixes:**
-  - U1: quantifiers in the marked-limit step (l.171–178).
-  - U2: §2's "word for word" replacement list omits the index set and d (l.305–310).
-  - U3: "as for the Fibonacci subshift" (l.365) refers to an object never defined.
-  - U4: letter clashes in §2 (R, G, Z, ψ, ℓ, P, ω).
-  - U5: the countability of f.g. linear groups is asserted without its one-clause reason (l.353).
-- **Credit items outside the text, low risk:** C1 Caprace–Rémy existence sentence; C2 Ozawa's journal page; C3 Kionke–Schesler numbering; optional background C4–C6.
-- **Doctrine:** D1 "hence" (l.206); D2 "This is Brown's formulation." (l.259); D3 "The next corollary adds" (l.270).
-- **Recommendation:** land rev3 after B1, B2, U1–U3 and D1–D3, about +5 text lines and +7 bibliography lines, once referee (a) has also reported. U4 is strongly recommended but can go to rev4.
+  - U1: quantifiers in the marked-limit step (l.173–180);
+  - U2: §2's "word for word" substitution list omits the index set and d (l.307–312);
+  - U3: "as for the Fibonacci subshift" (l.367) names an object that is never defined;
+  - U4: letter clashes in §2 (R, G, Z, ψ, ℓ, P, ω);
+  - U5: the countability of f.g. linear groups has no reason given (l.355);
+  - U6: "the lamplighter action of a group Δ" (l.89).
+- **Credit precision:**
+  - C1, Caprace–Rémy: VERIFIED OK (§4).
+  - C2, Ozawa's journal p. 527: unseen, low risk.
+  - C3, Kionke–Schesler numbering: arXiv v1 verified.
+  - C4–C6: optional background.
+- **Doctrine:** D1 "hence" (l.208); D2 "This is Brown's formulation." (l.261); D3 "The next corollary adds" (l.272).
+- **For rev4:** B1, B2, U1–U3, U6 and D1–D3, about +5 text lines and +7 bibliography lines. U4 strongly recommended.
 
 ## 1. Claims of the abstract and of Theorem 1, and where they are proved
 
 | claim | location | verdict |
 |---|---|---|
-| G_X infinite | l.125–126 | proved |
-| finitely generated | l.109–122 | proved |
-| property (T) | l.122–125 | cited, EJZ Thm 1.1 |
-| simple | l.186–250 | proved |
-| marked limit of finite simple SL_{3N}(F_2) | l.160–178 | proved; U1 quantifiers |
-| expanders with respect to the images of a fixed generating set | l.178–183 | proved. (T) of EL_3(F) plus Margulis/Kassabov, then the transfer through e_ij(1)=∏_a e_ij(τ_a) in both quotients. N_ℓ→∞ at l.142–145 |
-| LEF | l.178 | proved, as a marked limit of finite groups |
-| sofic, hyperlinear | l.183–184 | cited (Pestov Ex. 4.5; Elek–Szabó Thm 2) |
-| the same for EL_n, n≥3, with SL_{nN} | l.95–96 | substitution stated; every n-dependent step checked (see below) |
-| answers Brown, Ozawa, Pestov | l.43–51, l.252–263 | proved; Brown's printed form through L(G)⊗̄𝓡 |
-| LEF iff subgroup of an infinite f.g. simple Kazhdan LEF group | §2, l.274–343 | proved; U2, U4 |
-| one such group contains every f.g. linear group | l.345–358 | proved; B2, U5 |
-| every Turing degree is the word-problem degree of some G_X | §3, l.362–397 | proved |
-| solvable WP iff L(X) recursive, "as for the Fibonacci subshift" | l.364–365 | the iff is proved; the example needs U3 |
-| G_X not finitely presented (Questions) | l.405–407 | cited (Vershik–Gordon) |
+| G_X infinite | l.127–128 | proved |
+| finitely generated | l.111–124 | proved |
+| property (T) | l.124–127 | cited (EJZ Thm 1.1) |
+| simple | l.188–252 | proved |
+| marked limit of finite simple SL_{3N}(F_2) | l.162–180 | proved; U1 quantifiers |
+| expanders w.r.t. images of a fixed generating set | l.180–185 | proved: (T) of EL_3(F) with Margulis/Kassabov, transfer through e_ij(1)=∏_a e_ij(τ_a) in both quotients; N_ℓ→∞ at l.144–147 |
+| LEF | l.180 | proved (marked limit of finite groups) |
+| sofic, hyperlinear | l.185–186 | cited (Pestov Ex. 4.5; Elek–Szabó Thm 2) |
+| same for EL_n, n≥3, with SL_{nN} | l.97–98 | substitution stated; each n-dependent step checked below |
+| answers Brown, Ozawa, Pestov | l.45–53, l.254–265 | proved; Brown's printed form through L(G)⊗̄𝓡 |
+| LEF iff subgroup of an infinite f.g. simple Kazhdan LEF group | §2, l.276–345 | proved; U2, U4 |
+| one such group contains every f.g. linear group | l.347–360 | proved; B2, U5 |
+| every Turing degree is the word-problem degree of some G_X | §3, l.364–399 | proved |
+| solvable WP iff L(X) recursive, "as for the Fibonacci subshift" | l.366–367 | iff proved; example needs U3 |
+| G_X not finitely presented (Questions) | l.407–409 | cited (Vershik–Gordon) |
 
-**n-dependent steps for "EL_n, n≥3":**
+**n-dependent steps for EL_n:** each survives the substitution.
 - EJZ holds for n≥3.
-- The generation identities (1) need three distinct indices.
+- Identities (1) need three distinct indices.
 - EL_n(M_N(F_2)) = SL_{nN}(F_2).
 - The criterion for commuting with e_ij(r) holds for every n.
 - d = n(2w+1).
 - The in-block transvection uses p′≠p, and the level ideal uses l∉{p,q}.
 
-All survive the substitution.
-
 ## 2. Findings with verbatim fixes
 
-### B1 (GAP, credit): "the ring is simple" is unsupported (l.74–77)
-Rev3 keeps main's decision 44, that simplicity also follows from Stepanov's Theorem 4.4. For a simple ring that theorem applies at level I=0, so the sentence needs R simple. The note no longer proves this: rev1 deleted the ring-simplicity paragraph, and with it the Clark–Edie-Michell, Steinberg and BCFS citations. So the intro states an unsupported fact.
+### B1 (GAP, credit): "the ring is simple" has no source (l.76–79)
+Rev3 keeps main's decision 44 that simplicity also follows from Stepanov's Theorem 4.4. For a simple ring that theorem applies at level I=0, so the sentence needs R simple. The note no longer proves it: rev1 deleted the ring-simplicity paragraph together with the Clark–Edie-Michell, Steinberg and BCFS citations.
 
-Before (l.74–77):
+Before (l.76–79):
 ```latex
 construction~\cite{Kassabov}. Simplicity also follows from Stepanov's
 theorem on the normal structure of $\GL_n$~\cite[Theorem~4.4]{Stepanov},
@@ -72,7 +79,7 @@ since the ring is simple~\cite[Corollary~4.6]{ClarkEdie} and any two of
 its elements $p,q$ satisfy $pr+qs=0$ with $(r,s)\ne0$, by a dimension
 count on one cylinder. Our
 ```
-Bibitem (VERIFY-PENDING, see §4):
+Bibitem (Crossref-verified, §4):
 ```latex
 \bibitem{ClarkEdie}
 L.~O. Clark and C.~Edie-Michell, \emph{Uniqueness theorems for Steinberg
@@ -80,11 +87,10 @@ algebras}, Algebr. Represent. Theory \textbf{18} (2015), 907--916.
 \doi{10.1007/s10468-015-9522-2}.
 ```
 - Cost: +1 text line, +4 bibliography lines.
-- Trade-off: the alternative proof gets a source for its one outside fact.
-- Status: sk-citations (6b259b4463) checked Cor 4.6 against arXiv v1 (simple over any field for minimal effective Hausdorff ample groupoids); the journal numbering was not opened. The metadata came from the disk version's bibitem (arXiv:1403.4684), which sk-citations verified, plus the DOI from its P8.
-- Alternative with 0 net lines: delete "since the ring is simple and" and keep only the dimension count. Then the Stepanov route is a sketch with a hidden input, which is worse for the reader.
+- Trade-off: the alternative proof now has a source for its one outside fact.
+- Locator: Cor 4.6 (simplicity over any field for minimal effective Hausdorff ample groupoids) is checked in arXiv v1 by sk-citations (6b259b4463); the journal numbering is unseen.
 
-### B2 (GAP, credit): Mal'cev's theorem uncited (l.351–354)
+### B2 (GAP, credit): Mal'cev uncited (l.353–356)
 Before:
 ```latex
 Finitely generated linear groups are residually finite by Malcev's
@@ -98,18 +104,17 @@ to isomorphism there are countably many groups of either kind, since a
 finitely generated linear group lies in $\GL_n$ over a finitely generated
 field. So their direct sum is a countable residually finite group. Wilson
 ```
-Bibitem (VERIFY-PENDING, see §4):
+Bibitem (zbMATH-confirmed title, journal, volume, year; §4):
 ```latex
 \bibitem{Malcev}
 A.~I. Mal'cev, \emph{On isomorphic matrix representations of infinite
-groups}, Mat. Sb. \textbf{8(50)} (1940), 405--422.
+groups}, Mat. Sb. (N.S.) \textbf{8(50)} (1940), 405--422.
 ```
 - Cost: +1 text line (it also fixes U5), +3 bibliography lines.
-- Trade-off: every theorem the proof uses gets a source; countability gets its reason.
-- Checked: a f.g. linear group lies in GL_n(K) with K generated by the entries of its generators. There are countably many f.g. fields up to isomorphism, and countably many f.g. subgroups of GL_n(K) for countable K.
+- Countability check: a f.g. linear group lies in GL_n(K) with K generated by the entries of its generators; there are countably many f.g. fields up to isomorphism, and countably many f.g. subgroups of GL_n(K) for countable K.
 
-### U1 (UNCLEAR): quantifiers in the marked limit (l.171–178)
-Marked convergence needs, for every λ, agreement on all words of length ≤ λ for all large ℓ. The text states it one word at a time. sk-panel-referee-6 §2.2 flagged the same wording in rev2.
+### U1 (UNCLEAR): marked-limit quantifiers (l.173–180)
+Marked convergence needs: for every λ, all words of length ≤ λ agree for all large ℓ. The text states it one word at a time. sk-panel-referee-6 §2.2 flagged this in rev2.
 
 Before:
 ```latex
@@ -130,12 +135,16 @@ previous paragraph shows that for every $\lambda$ and all large $\ell$,
 each word of length at most $\lambda$ is trivial in $G$ if and only if
 it is trivial in $\SL_{3N_\ell}(\F_2)$. So these finite simple groups
 ```
-Cost: +1 line. Trade-off: the definition of marked convergence is visibly met.
++1 line.
 
-### U2 (UNCLEAR): the "word for word" replacement list (l.305–310)
-The list replaces u^t, T^tV, sums of exponents and |t|, but not the index range of ε_ab or the value of d. Over L the indices a,b run over the ball B_w, ε_ab = e_{aV}u_{ab^{-1}}, and d = 3|B_w|. I re-derived the product rule ε_abε_{a′b′} = δ_{ba′}ε_{ab′}, which uses V ∩ ξV = ∅ for ξ ∈ B_{2w}∖{e}, and the product formula fu_a e_V f′u_b ∈ {0, ε_{a,b^{-1}}}. The sk-rev3-referee-a/sk-editor-3 flag that this LaTeX has never been reviewed is correct; with this sentence the substitution is complete.
+### U2 (UNCLEAR): the §2 substitution list (l.307–312)
+The list replaces u^t, T^tV, sums of exponents and |t|, but not the index range of ε_ab or the value of d.
+- Over L the indices a,b run over the ball B_w, ε_ab = e_{aV}u_{ab^{-1}}, and d = 3|B_w|.
+- I re-derived ε_abε_{a′b′} = δ_{ba′}ε_{ab′}, using V∩ξV = ∅ for ξ∈B_{2w}∖{e}.
+- I re-derived fu_a e_V f′u_b ∈ {0, ε_{a,b^{-1}}}.
+- With this sentence the "word for word" claim is complete.
 
-Before (l.305–310):
+Before (l.307–312):
 ```latex
 property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}, and it is infinite. Points
 with trivial stabilizer in a given ball are dense, so every nonempty
@@ -144,7 +153,7 @@ for $u^t$, $\ell V$ for $T^tV$, products in $L$ for sums of exponents,
 and word length for $|t|$. With these replacements the proof of
 simplicity in Section~1 applies word for word, so $G$ is simple.
 ```
-After (it also takes the §2 renames of U4):
+After (includes the §2 renames of U4):
 ```latex
 property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}, and it is infinite. As the
 action is topologically free, points with trivial stabilizer in a given
@@ -155,89 +164,97 @@ $\epsilon_{ab}=e_{aV}u_{ab^{-1}}$ then run over the ball of radius $w$,
 and $d=3|B_w|$. With these replacements the proof of simplicity in
 Section~1 applies word for word, so $G_\Delta$ is simple.
 ```
-Cost: +2 lines.
++2 lines.
 
-### U3 (UNCLEAR): the Fibonacci example (l.364–365)
-The Fibonacci subshift is never defined. §3's proof defines X_α; the Fibonacci subshift is X_α with α = (3−√5)/2 (the frequency of 1's), and α computes L(X_α) by that proof.
+### U3 (UNCLEAR): the Fibonacci example (l.366–367)
+The Fibonacci subshift is never defined. It is X_α for α = (3−√5)/2, the frequency of 1's, and §3's proof shows that α computes L(X_α).
+- Before: `$L(X)$ is recursive, as for the Fibonacci subshift. Every Turing degree`
+- After: `$L(X)$ is recursive, as for the Fibonacci subshift $X_{(3-\sqrt5)/2}$ below. Every Turing degree`
+- 0 lines.
 
-Before: `$L(X)$ is recursive, as for the Fibonacci subshift. Every Turing degree`
-After: `$L(X)$ is recursive, as for the Fibonacci subshift $X_{(3-\sqrt5)/2}$ below. Every Turing degree`
+### U4 (UNCLEAR): letter clashes in §2
+- **R, G:** reused for the lamplighter ring and group (l.304), while §1 and §3 mean G_X. Use R_Δ, G_Δ.
+- **Z:** the space F_2^Δ (l.295) against \Z in Δ_0×\Z (l.291). Use Ω.
+- **ψ_n** (l.314): clashes with ψ: M_d(F_2)→M_3(R) of §1. Use σ_n.
+- **ℓ:** elements of L (l.309, 324, 331, 340) against the window radius ℓ of §1 and φ_ℓ, D_ℓ. Use ξ.
+- **P:** the ultraproduct group (l.287) against the shift matrix P (l.149) and the permutation matrices P_ℓ (l.324). Use Π.
+- **ω:** an ultrafilter never introduced (l.286, 292, 326), while 𝓡^ω already appears. Add "for a nonprincipal ultrafilter ω on ℕ" at l.285.
 
-Cost: 0 lines. Trade-off: the example is checked by the proof that follows.
-
-### U4 (UNCLEAR): letter clashes in §2 (recommended, can wait for rev4)
-- **R, G** reused for the lamplighter ring and group (l.302), while §1 and §3 mean G_X. Use R_Δ, G_Δ.
-- **Z** for the space F_2^Δ (l.293) against \Z in Δ_0×\Z (l.289). Use Ω.
-- **ψ_n** (l.312) against ψ: M_d(F_2)→M_3(R) in §1. Use σ_n.
-- **ℓ** for elements of L (l.307, 322, 329, 338) against the window radius ℓ in §1 and φ_ℓ, D_ℓ. Use ξ.
-- **P** for the ultraproduct group (l.285) against the shift matrix P (l.147) and the permutation matrices P_ℓ (l.322). Use Π.
-- **ω** used as an index set of ultraproducts (l.284, 290, 324) but never introduced, while 𝓡^ω already appears. Add "for a nonprincipal ultrafilter ω on ℕ" at l.283.
+### U6 (exposition): the intro sentence on §2 (l.89–91)
+The group Δ does not do the acting here; L = F_2≀Δ does.
+- Before: `The same proof applies to the lamplighter action of a group $\Delta$ on` / `$\F_2^{\Delta}$. It shows that a finitely generated group is LEF if and`
+- After: `The same proof works for the lamplighter group $\F_2\wr\Delta$ acting on` / `$\F_2^{\Delta}$, so a finitely generated group is LEF if and`
+- 0 lines.
 
 ### D1–D3 (doctrine, 0 lines each)
-- D1, l.206: `everywhere, since every nonempty clopen set contains a small one.` — change "hence everywhere" (l.206) to "so everywhere".
-- D2, l.257–259. Before: `that embeds in $\mathcal R^\omega$ and whose unitary group contains $G$.` / `This is Brown's formulation. Kirchberg proved that ...`. After: `that embeds in $\mathcal R^\omega$ and whose unitary group contains $G$, as in Brown's question. Kirchberg proved that ...`
-- D3, l.270–272. Before: `The next corollary` / `adds property~\textup{(T)} and applies to every LEF group. Since LEF` / `passes to subgroups, it characterizes LEF groups.` After: `In the next corollary the host also has property~\textup{(T)}, and the input can be any LEF group. Since LEF passes to subgroups, this characterizes LEF groups.`
+- **D1, l.208:** "hence everywhere" → "so everywhere".
+- **D2, l.259–261.**
+  - Before: `that embeds in $\mathcal R^\omega$ and whose unitary group contains $G$.` / `This is Brown's formulation. Kirchberg proved that ...`
+  - After: `that embeds in $\mathcal R^\omega$ and whose unitary group contains $G$, as in Brown's question. Kirchberg proved that ...`
+- **D3, l.272–274.**
+  - Before: `The next corollary` / `adds property~\textup{(T)} and applies to every LEF group. Since LEF` / `passes to subgroups, it characterizes LEF groups.`
+  - After: `In the next corollary the host also has property~\textup{(T)}, and the input can be any LEF group. Since LEF passes to subgroups, this characterizes LEF groups.`
 
-### U6 (exposition, 0 lines): the intro sentence on §2 (l.87–91)
-"the lamplighter action of a group Δ" is imprecise: Δ does not act; L = F_2≀Δ does.
-Before: `The same proof applies to the lamplighter action of a group $\Delta$ on` / `$\F_2^{\Delta}$. It shows that a finitely generated group is LEF if and`
-After: `The same proof works for the lamplighter group $\F_2\wr\Delta$ acting on` / `$\F_2^{\Delta}$, so a finitely generated group is LEF if and`
+## 3. Credit audit, sentence by sentence
 
-## 3. Credit audit of rev3, sentence by sentence (my verdicts)
-
-| l. | credit sentence | verdict |
+| l. | credit | verdict |
 |---|---|---|
-| 43–51 | Brown 2001 §11 Q7; Ozawa 2003 p. 527; Pestov 9.1; Rădulescu, Gromov, Weiss | OK. Lineage wording follows the user's decisions. Ozawa's journal p. 527 is unseen (C2) |
-| 69–70 | Kazhdan 1967; EJZ | OK |
-| 70–73 | periodic approximation as in GM Thm 2.6 | OK (sk-citations P1 wording) |
-| 73–74 | expanders as in Kassabov | OK |
-| 74–77 | Stepanov Thm 4.4 route | needs B1 |
-| 81–83 | Matui Lemma 3.4, Thm 4.9 "in the same way" | acceptable. "by a similar argument" would be safer; sk-draft-minimal flagged "in the same way" as possibly overstating |
-| 83–85 | Thom | OK |
-| 129 | LEF, Vershik–Gordon | OK |
-| 145 | bounded complexity ⇒ finite, Morse–Hedlund 1938 | OK |
-| 177–180 | marked groups (Grigorchuk, Champetier); (T) of EL_3(F) (EJZ); expanders (Margulis, Kassabov) | OK |
-| 183–184 | LEF ⇒ sofic (Pestov Ex. 4.5); sofic ⇒ hyperlinear (Elek–Szabó Thm 2) | OK |
-| 253–263 | Ozawa Prop 7.1; McDuff; Kirchberg Thm 1.1; LLP (Ozawa p. 527) | OK. Prop 7.1 checked in arXiv numbering by sk-verify-6; p. 527 unseen (C2) |
-| 267–270 | Gorjuškin, Schupp; Kionke–Schesler Thm 1.2 | OK. KS Thm 1.2 verbatim from arXiv v1 p. 2 (sk-lit-novelty-2); journal numbering unseen (C3) |
-| 287 | Ore Thm 1 | OK |
-| 352 | Mal'cev | B2 |
-| 355–356 | Wilson Thm A | OK (verbatim from the PDF, sk-strong-3) |
-| 382–383 | Morse–Hedlund 1940, Hedlund 1944, Lothaire ch. 2 | OK |
-| 399–401 | GMpres Thm 1.1(3) | OK |
-| 405 | f.p. LEF ⇒ RF, Vershik–Gordon | acceptable; attributed through Kionke–Schesler and Pestov v8, VG itself not opened |
-| 407–408 | f.p. infinite simple (T) groups exist, Caprace–Rémy | C1 |
-| 414–417 | GPS99, Bezuglyi–Medynets; GPS95 | OK (sk-panel-referee-4 B3) |
+| 45–53 | Brown 2001 §11 Q7; Ozawa 2003 p. 527; Pestov 9.1; Rădulescu, Gromov, Weiss | OK; lineage wording as decided. p. 527 unseen (C2) |
+| 71–72 | Kazhdan 1967; EJZ | OK |
+| 72–75 | periodic approximation as in GM Thm 2.6 | OK |
+| 75–76 | expanders as in Kassabov | OK |
+| 76–79 | Stepanov Thm 4.4 route | B1 |
+| 83–85 | Matui Lemma 3.4, Thm 4.9, "in the same way" | acceptable; "by a similar argument" is safer |
+| 85–87 | Thom | OK |
+| 131 | LEF, Vershik–Gordon | OK |
+| 147 | bounded complexity ⇒ finite, Morse–Hedlund 1938 | OK |
+| 179–182 | marked groups (Grigorchuk, Champetier); (T) of EL_3(F) (EJZ); expanders (Margulis, Kassabov) | OK |
+| 185–186 | LEF ⇒ sofic (Pestov Ex. 4.5); sofic ⇒ hyperlinear (Elek–Szabó Thm 2) | OK |
+| 255–265 | Ozawa Prop 7.1; McDuff; Kirchberg Thm 1.1; LLP (Ozawa p. 527) | OK; Prop 7.1 checked in arXiv numbering by sk-verify-6; p. 527 unseen (C2) |
+| 269–272 | Gorjuškin, Schupp; Kionke–Schesler Thm 1.2 | OK; KS Thm 1.2 verbatim from arXiv v1 p. 2 (sk-lit-novelty-2) (C3) |
+| 289 | Ore Thm 1 | OK |
+| 354 | Mal'cev | B2 |
+| 357–358 | Wilson Thm A | OK (verbatim from the PDF, sk-strong-3) |
+| 384–385 | Morse–Hedlund 1940, Hedlund 1944, Lothaire ch. 2 | OK |
+| 401–403 | GMpres Thm 1.1(3) | OK |
+| 407 | f.p. LEF ⇒ RF, Vershik–Gordon | acceptable (attributed through Kionke–Schesler and Pestov v8) |
+| 409–410 | f.p. infinite simple (T) groups exist, Caprace–Rémy | VERIFIED (C1, §4) |
+| 416–419 | GPS99, Bezuglyi–Medynets; GPS95 | OK |
 
-**C1 (Caprace–Rémy).** One citation carries finite presentation, simplicity and property (T). Caprace–Rémy prove simplicity of twin building lattices. Whether their paper itself states that some of these lattices are finitely presented with property (T), or cites that to others, is VERIFY-PENDING (§4). If it cites others, the fix is to add that source, not to drop the sentence.
+**Credit precision:**
+- **C2:** every lane read the arXiv version of Ozawa. Journal page 527 is confirmed only through Thom's citation of that page. Low risk; no change.
+- **C3:** Crossref has no journal volume or pages for Kionke–Schesler, so the bibitem with DOI plus arXiv is right.
 
-**C2 (Ozawa p. 527).** Every lane read the arXiv version only; the journal page is confirmed only indirectly, through Thom's citation of that page. Low risk. A version-independent locator is `\cite[\S7]{Ozawa}`, but the journal's section numbering is unseen too, so I recommend no change.
+**Optional background (a reader-merits call for main):**
+- **C4 (§3):** Camm 1953, continuum many f.g. simple groups (J. LMS s1-28 (1953) 66–76, doi 10.1112/jlms/s1-28.1.66), and Clapham 1964, word-problem degrees of f.p. groups (Proc. LMS s3-14 (1964) 633–676, doi 10.1112/plms/s3-14.4.633). Both Crossref-verified today; statements recalled by sk-panel-referee-5. +2 text lines, +8 bibliography lines. The reader sees which part of the corollary is classical.
+- **C5 (§2):** the Boone–Higman parallel (sk-panel-referee-5 F7). +2 text lines, +4 bibliography lines.
+- **C6:** the published Rădulescu volume (Theta Ser. Adv. Math. 9, 2008, 173–185; zbMATH 1199.46137). +1 bibliography line.
 
-**C3 (Kionke–Schesler Theorem 1.2).** The arXiv v1 numbering is verified. Crossref has no volume or pages for the journal version, so the bibitem with DOI plus arXiv is right.
-
-**Optional background (C4–C6), a reader-merits call for main:**
-- C4, §3: continuum many f.g. simple groups (Camm 1953) and word-problem degrees of f.p. groups (Clapham 1964). Bibitems are Crossref-verified in sk-panel-referee-5 §3 F5; the statements there are recalled. +2 text lines, +8 bibliography lines. It tells the reader which part of the corollary is classical.
-- C5, §2: the Boone–Higman parallel (sk-panel-referee-5 F7), +2 text lines, +4 bibliography lines. It makes Corollary 2 memorable.
-- C6: the published Rădulescu volume (Theta Ser. Adv. Math. 9, 2008, 173–185; zbMATH 1199.46137), +1 bibliography line.
-
-## 4. Verification this lane ran, and pending checks
-- **Crossref on MSI, ~20:21 (13 DOIs).** All agree with rev3's bibitems:
-  - Wilson (Math. Z. 174(2) 149–157, 1980);
-  - Ore (PAMS 2(2) 307–314, 1951);
-  - Bezuglyi–Medynets (Colloq. Math. 110(2) 409–429, 2008);
-  - GPS99 (Israel J. Math. 111(1) 285–320, 1999);
-  - Champetier (Topology 39(4) 657–680, 2000);
-  - Grigorchuk (Math. USSR-Izv. 25(2) 259–300, 1985);
-  - Elek–Szabó (Math. Ann. 332(2) 421–441, 2005);
-  - Kazhdan (Funct. Anal. Appl. 1(1) 63–65, 1967);
-  - Gromov (JEMS 1(2) 109–197, 1999);
-  - Kionke–Schesler (J. Comb. Algebra, 2024, no volume or pages);
-  - Morse–Hedlund 1938 and Hedlund 1944: first pages 815 and 605 only.
-- **Caprace–Rémy.** Crossref gives 176(1) 169–221 with online year 2008; rev3 prints 2009, the print year of volume 176. OK.
-- **Mal'cev.** No Crossref record (query 20:21).
-- **Pending (MSI master down at ~20:38):** the C1 wording in the Caprace–Rémy source; the Clark–Edie-Michell DOI and Cor 4.6; Mal'cev's pages. Results are appended below when checked.
+## 4. Verification run by this lane
+- **Crossref on MSI, 20:21 and 20:40**:
+  - Wilson: Math. Z. 174(2) 149–157 (1980)
+  - Ore: PAMS 2(2) 307–314 (1951)
+  - Bezuglyi–Medynets: Colloq. Math. 110(2) 409–429 (2008)
+  - GPS99: Israel J. Math. 111(1) 285–320 (1999)
+  - Champetier: Topology 39(4) 657–680 (2000)
+  - Grigorchuk: Math. USSR-Izv. 25(2) 259–300 (1985)
+  - Elek–Szabó: Math. Ann. 332(2) 421–441 (2005)
+  - Kazhdan: Funct. Anal. Appl. 1(1) 63–65 (1967)
+  - Gromov: JEMS 1(2) 109–197 (1999)
+  - Kionke–Schesler: J. Comb. Algebra (2024), no volume or pages
+  - Caprace–Rémy: Invent. Math. 176(1) 169–221; online 2008, printed volume 2009
+  - Morse–Hedlund 1938 and Hedlund 1944: first pages 815 and 605 only
+  - Clark–Edie-Michell: Algebr. Represent. Theory 18(4) 907–916 (2015), doi 10.1007/s10468-015-9522-2, authors Clark, Edie-Michell
+  - Dymara–Januszkiewicz: Invent. Math. 150 (2002) 579–627, doi 10.1007/s00222-002-0242-y
+- **C1, Caprace–Rémy, VERIFIED** from the arXiv e-print source `SimplSuperrigid.tex` (math/0607664), extracted on MSI:
+  - Abstract (l.57–58): "In fact, many of them are finitely presented and enjoy property (T)."
+  - l.153–154: "As pointed out to us by Y.~Shalom, we obtain the first infinite {\it finitely presented} discrete groups to be both simple and Kazhdan."
+  - l.1813–1815, the corollary on property (T): "If $q_{\rm min} > 1764^{|S|}$, then $\Lambda$ has Kazhdan's property (T). In particular there exist infinitely many isomorphism classes of finitely presented infinite simple groups with Kazhdan's property (T)."
+  - l.1806–1807 and l.1820 say its proof uses Dymara–Januszkiewicz and Abramenko–Mühlherr.
+  - So rev3's "Finitely presented infinite simple groups with property (T) exist [CapraceRemy]" is correctly credited. Optionally add Dymara–Januszkiewicz as the source of (T).
+- **Mal'cev:** no Crossref record. zbMATH has "On isomorphic matrix representations of infinite groups", Rec. Math. Moscou, n. Ser. (Mat. Sb. N.S.) 8 (1940), Zbl 0025.00804, JFM 66.0088.03. The page range 405–422 is recalled: the zbMATH API returned no pages, and the zbMATH web page returned 403 to WebFetch. Check the pages before print.
 
 ## 5. Length and exposition (non-blocking)
-- **Length.** Rev3 is 7 pages against rev2's 5. The growth is §2 (about 80 lines) and 12 new bibitems. Every addition in this report is ≤1 line except C4 and C5.
-- **The intro paragraph at l.69–85** is 17 lines holding eight credit sentences. Optional split into two paragraphs, after "a clopen tower, so it contains this group and with it an elementary matrix." (l.80–81).
-- **Hard-coded "Section~1" (l.307, 310).** Optional: `\label{sec:proof}` with `\ref`.
+- **Length:** 7 pages against rev2's 5. The growth is §2 (about 80 lines) and 12 new bibitems. Every fix above is at most +2 lines except the optional C4 and C5.
+- **The intro paragraph at l.71–87** holds eight credit sentences in 17 lines. Optionally split it after "an elementary matrix." (l.82–83).
+- **Hard-coded "Section~1" at l.309 and l.312:** optionally `\label{sec:proof}` with `\ref`.
