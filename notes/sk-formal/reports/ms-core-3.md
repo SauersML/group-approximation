@@ -186,3 +186,15 @@ producer). It holds the closed `printedMatricialMarkedLimitStatement` and `print
   - definition: 25fefb1e2ac1;
   - partial: 2e17cbfab2b6, cbc0b3980a99, d228d6575111, 995620260311.
 - Step 2 probing: FiniteModelsAsymptotic + PeriodicMatrixUnits + SubshiftMatricial.
+- 08:5x absorbed ms-units rows re-keyed and landed at 5474eded0 (`metadata/sk-census-rows/ms-units.tsv`): 3 kept, 11 stale keys
+  dropped, 5 added. Of those, `2ffe206d32dd`, `63b955601626`, `e0aae9c0b4eb` and `72e70d46a29f` are partial (uncentered carriers against
+  the printed centered windows), and `c1b8b83f890d` is a definition.
+- ct-two-ended's `GeneralTheorem` is on origin at 40cf3ae5b; its spellings of `IsMatricialVia` (with `0 < N k`), the markings and
+  `PrintedMatricialMarkedLimitStatement` are verified unchanged. `MainFromGeneral` is not yet on origin.
+
+CLAIM GroupApproximation/Manuscript/SimpleKazhdanSofic/MatricialMarkedLimitEndpoint.lean (path free on disk and origin; no other
+producer): the closed `printedMatricialMarkedLimitStatement`, imports GeneralTheorem + MatricialMarkedLimitWords. It is split
+out of `MatricialEndpoints`, which now holds only `printedPeriodicMatricialStatement` (waiting on MainFromGeneral and step 2).
+Probe after step 2 finishes.
+- Step 2 re-probe after two fixes: `RingHom.map_closure`, and dropping the unused "eventually nonzero" clause from
+  `AsymptoticModels`, since the tip's route gets nontriviality from the ultraproduct kernel.
