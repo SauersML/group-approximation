@@ -127,6 +127,7 @@ theorem groupTrace_isFaithfulNormalTracialState :
     rw [groupTrace_eq_coefficient] at h
     exact eq_zero_of_mem_of_coefficient_star_mul_self_eq_zero G hT h
 
+omit [Group G] in
 /-- The point masses of `ℓ²(G)` are orthonormal. -/
 theorem orthonormal_groupHilbert_single :
     Orthonormal ℂ (fun g : G ↦ (lp.single 2 g (1 : ℂ) : GroupHilbert G)) := by
@@ -135,8 +136,8 @@ theorem orthonormal_groupHilbert_single :
   rw [lp.inner_single_left, lp.single_apply]
   by_cases hgh : g = h
   · subst hgh
-    simp [Pi.single_apply]
-  · simp [Pi.single_apply, hgh]
+    simp
+  · simp [hgh]
 
 /-- **The left translations are linearly independent in `L(G)`.** -/
 theorem linearIndependent_leftRegularOperator :
