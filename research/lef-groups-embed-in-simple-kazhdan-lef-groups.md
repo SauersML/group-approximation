@@ -35,3 +35,5 @@ finite input.
   - Topological freeness plus `steinberg-elementary-groups-are-simple-mod-centre`, which needs free points only on a
     dense set.
   - Simple LEF rings with local matrix units containing `F_2[Δ]` that are not crossed products.
+
+**Review (sk-verify-3, 2026-09-13): route PASS.** `lef-groups-embed-in-simple-kazhdan-lef-groups-proof` re-derived (overgroup `Δ × Z`, `[Δ,Δ] ≤ [L,L] ↪ EL_3`). With both requires established the claim is established, so the OPEN display and pre-route Attempts need restating by the owner. See `research/artifacts/sk-review-3-2026-09-13-part6.md` §A3.

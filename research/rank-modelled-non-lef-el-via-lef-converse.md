@@ -38,3 +38,5 @@ This route is a repair (lane sk-subgroups, 2026-09-13) of `rank-modelled-non-lef
    - Then `R^× = GL_1(R)` would be LEF (`exactly-matricial-rings-have-lef-general-linear-groups`).
    - `γ ↦ u_γ` embeds `Γ_p` in `R^×`, and the representation is unique, so `Γ_p` would be LEF. This is a contradiction.
    - So `EL_4(R)` is Kazhdan and not LEF, which realizes the claim with `N = 4`.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** The existential target is realized at `N = 4` through the LEF converse. See `research/artifacts/sk-review-3-2026-09-13-part6.md` §B2.

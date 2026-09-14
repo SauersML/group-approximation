@@ -54,3 +54,5 @@ This route is a repair (lane sk-subgroups, 2026-09-13) of `simple-kazhdan-linear
    - A central element of `EL_N(R)` commutes with every `e_ij(1)`, so it is `cI` with `c ∈ R`.
    - Commuting with every `e_ij(r)` gives `c ∈ Z(R)^×`, and `Z(R) = F_2` (`minimal-effective-steinberg-algebras-have-scalar-centre`).
    - So `c = 1`, `S_N = EL_N(R)`, and `S_N` is not LEF for `N >= 4`.
+
+**Review (sk-verify-3, 2026-09-13): PASS for the restated scope.** Non-LEF for `N >= 4` through the LEF converse and `Γ_p ↪ R^×`, and the trivial centre over `F_2`, re-derived; steps 1–5 are unchanged from the earlier reviewed route. See `research/artifacts/sk-review-3-2026-09-13-part6.md` §B2.

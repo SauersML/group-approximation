@@ -52,3 +52,5 @@ injective `θ : Γ -> R^×`. That fails whenever `Γ` is nonabelian.
   - The repaired routes are `simple-kazhdan-linear-sofic-non-lef-via-lef-converse` and `rank-modelled-non-lef-el-via-lef-converse`.
   - Rank `N = 3` is open.
 - Details: `research/artifacts/sk-subgroups-full-group-inside-2026-09-13-part2.md` §4.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** Block comparison, the [[T]] witness and the three new invalidations re-derived; the surviving derived-subgroup map is correct. See `research/artifacts/sk-review-3-2026-09-13-part6.md` §B1.

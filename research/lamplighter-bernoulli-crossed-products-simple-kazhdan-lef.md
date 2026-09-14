@@ -26,3 +26,5 @@ Case `Δ = Z`: the lamplighter group gives a witness for `infinite-simple-kazhda
 subshift crossed product over `Z`.
 
 Route: `lamplighter-bernoulli-crossed-products-simple-kazhdan-lef-proof`.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** Minimality and topological freeness, Baire density of free points, simplicity and centre, the affine partial models and their multiplicativity with injectivity from simplicity, the Steinberg criterion, EJZ, LEF through the ultraproduct and `[L,L] ↪ E_2` re-derived. See `research/artifacts/sk-review-3-2026-09-13-part6.md` §A.
