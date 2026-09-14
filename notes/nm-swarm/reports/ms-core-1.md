@@ -189,3 +189,25 @@ Partial census rows before tex 1541:
   3. `c890294ad9b0`, tex 253–255: cite `ChainCoreClosures.printedCoreRingReflection_closed` for the first clause.
   4. `80279f06992b`, tex 292: the EL_n torsion clause over ℤ, via e₁₂(1)e₂₁(−1)e₁₂(1), of order 4.
   5. `2ff745dd7064`, tex 1060–1062: not MF for n ≥ 2, with nontriviality.
+
+### audit-nm-1 fix results (09-14 ~08:50)
+
+After the laptop reboot the infra was rebuilt at the new NM and every green record was lost. Each module below was re-probed
+before landing, and each endpoint has `#audit_closed_axioms`.
+
+| key | tex | fix | landed |
+|---|---|---|---|
+| `d4c878a7ac22` | 263 | `printedAmenableNonquasidiagonalTraceCountable`: thm:amenable-trace with `Countable W` displayed | c8cedf5d2 |
+| `2a97fb901bad` | 284–286 | `Sofic/NormApproximableDirectLimit` (`isNormApproximable_of_forall_finset_subgroup`, direct-limit permanence, Korchagin Prop 13; `isWeakMF_of_forall_finset_residuallyFinite_subgroup` with Cor 10) and `printedShiftKernelDirectLimitMF` | c8cedf5d2 |
+| `c890294ad9b0` | 253–255 | row naming `ChainCoreClosures.printedCoreRingReflection_closed` for the universal-quotient clause | row only |
+| `80279f06992b` | 292–293 | `IntroExamplesTorsionAllCharacteristics`: Weyl element `w⁴ = 1`, `w ≠ 1` in `EL_n` over every nonzero ring; `printedIntroExamplesTorsionAllCharacteristics` | 798b31a8a |
+| `2ff745dd7064` | 1060–1062 | `ElementaryGroupNotMFRankTwoClosed`: `EL_n(R)` countable, nontrivial and not MF at `n ≥ 2`; `printedElementaryGroupNotMFRankTwo` | 89a4948c0 |
+
+- Census rows LANDED 55f458945 and 1ffa5a05d, and sent to ms-cite-2. No DROP is needed, because the union adds the
+  complete carriers.
+- Lean traps:
+  - a parenthesized `letI … := …` inside a Prop fails to parse; name the instance with `@IsCDEOperatorMF G _ inst`.
+  - `(weyl u v huv).2` against `weylUnit u v huv ∈ elementaryGroup` times out in `whnf`, because it unfolds `Subgroup.closure`
+    membership. Build membership from `elementaryUnit_mem` and `mul_mem`.
+  - After the NM rebuild, the clobber guard no longer recognises pre-reboot landings. Pass `NM_BASE` only after checking
+    that the origin blob equals the local copy.
