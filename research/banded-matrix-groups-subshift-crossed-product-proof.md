@@ -43,5 +43,5 @@ Notation as in the target. In `LC(Y,F_q) ⋊ Z` the convention is `ufu^{-1} = f�
 
 **Model tests.**
 - `Γ = ⟨u⟩` (`m = 1`): all coefficients are constant, so `Y` is a single point and `LC(Y,F_q) ⋊ Z = F_q[u^{±1}]` ✓.
-- The lamplighter `⟨u, I + δ_0⟩` (the flip at site `0`): `y = …0001000…`, so `Y = orbit ∪ {0^∞}`, which is transitive and not minimal ✓. Transitivity is all (b) needs.
+- The lamplighter `⟨u, s_0⟩` with `m = 2`, where `s_0` swaps the two coordinates at site `0`: `y = …0001000…`, so `Y = orbit ∪ {0^∞}`, which is transitive and not minimal ✓. Transitivity is all (b) needs. (sk-verify-18 W1: the earlier generator `I + δ_0` with `m = 1` is singular over `F_2`, since `I + E_00` kills `δ_0`.)
 - A banded operator without a banded inverse (the one-sided shift on `F_q^{N}` extended by zero) is not a unit, and none is claimed.

@@ -9,7 +9,7 @@ artifacts:
   - research/artifacts/sk-exact-banded-2026-09-14-part1.md
 ---
 
-**ESTABLISHED (unreviewed).**
+**ESTABLISHED (sk-verify-18 PASS, wording fixes W1–W2 merged).**
 
 **Setting.**
 - `F_q` is a finite field and `m ≥ 1`.
@@ -34,9 +34,9 @@ artifacts:
   - for every transitive subshift `Y` and `m ≥ 1`, every finitely generated subgroup of `GL_m(LC(Y,F_q) ⋊ Z)` is exact.
 
   Either implies that every `G_X` is exact (open node `subshift-elementary-groups-are-exact`).
-- Contrast with permutations: the wobbling group of `Z` has no infinite Kazhdan subgroups (open node, Attempts), but `GL^band(Z;F_2)` contains the infinite simple Kazhdan groups `G_X`.
+- Contrast with permutations: the wobbling group of `Z` has no infinite countable property (T) subgroup, but `GL^band(Z;F_2)` contains the infinite simple Kazhdan groups `G_X`. The first fact is Juschenko–de la Salle, *Invariant means for the wobbling group*, arXiv:1301.4736, Theorem 4.1, for `W(Y)` with `Y` of uniform subexponential growth, which `Z` has; it is quoted on main in `elek-monod-near-hit-has-torsion-no-kazhdan-subgroup-proof`.
 
 **Proof:** `banded-matrix-groups-subshift-crossed-product-proof`.
 
 ## Review
-- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part11.md`):** re-derived (a) the banded operators as the algebraic crossed product, with ℓ^∞(Z,F_q) = LC(βZ,F_q); (b) coding the coefficient functions as a point, faithfulness of π_y on a dense orbit, lifted inverses; (c) and the consequences. Wording W1: the m = 1 model test I + δ_0 is singular over F_2, so use a coordinate swap at site 0 with m = 2. W2: the wobbling-group contrast is a theorem, Juschenko–de la Salle arXiv:1301.4736 Theorem 4.1, as quoted on main in `elek-monod-near-hit-has-torsion-no-kazhdan-subgroup-proof`; cite it rather than the open node.
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part11.md`):** re-derived (a) the banded operators as the algebraic crossed product, with ℓ^∞(Z,F_q) = LC(βZ,F_q); (b) coding the coefficient functions as a point, faithfulness of π_y on a dense orbit, lifted inverses; (c) and the consequences. Wording W1: the m = 1 model test I + δ_0 is singular over F_2, so use a coordinate swap at site 0 with m = 2. W2: the wobbling-group contrast is a theorem, Juschenko–de la Salle arXiv:1301.4736 Theorem 4.1, as quoted on main in `elek-monod-near-hit-has-torsion-no-kazhdan-subgroup-proof`; cite it rather than the open node. Both merged (sk-cairn-steward-5, 2026-09-14).
