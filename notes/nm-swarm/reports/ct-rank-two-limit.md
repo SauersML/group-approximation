@@ -403,3 +403,18 @@ Scope, with no maps, over `Fin k` with γ = `finRotate k` and cycle counts `Nat.
    k + 2·#orbits⟨π, ρ⟩ ≤ cyc(πρ) + cyc(π) + cyc(ρ).
 Statements from w1-binder-5 (map side and assembly owner), under agreement before any proof.  Planned modules under
 `GGT/VanKampen/`: cycle count change under a transposition, the criterion, and the superposition.  V9 recomposition keeps priority.
+
+## Item 12: V8Closures, approved (main ~10:10, 09-14)
+
+Rule from main, for this lane from now on: fold in CLOSURES only, never reductions that add inputs; split a leaf only after one of its pieces
+is produced.  V9 (07560f516) stays as a side module and no row points at it.
+
+`GGT/VanKampen/Estimating/OsinGreendlingerWaistV8Closures` (`relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8Closures`) and
+`Manuscript/NonMF/TorsionFreeResidualsV8Closures` (22 endpoints): V8 with `closedWalkEnclosedSubdiagramSucc` (c6ca441fe) and
+`osinTwoGonDecompositionEulerSection` (ac902a9c1) applied.  TEN leaves, all V8 leaves, none added:
+`OsinLemma94ClassEndLoopsBudgetInput` (ms-binary, ms-core-1, ms-compress-1), `SameCellPocketLoopCutStatement` (ms-compress-2, w1-binder-5,
+ms-traces-2), `EnclosedSubdiagramLoopCutSuccStatement` (w1-binder-8, ms-traces-2), `OsinLemma94ClassCaseGapSpanStatement` (ct-bilateral-cell,
+ct-return-tower), `OsinTwoGonCleanCopySectionStatement` (w1-binder-1), `CellPocketOuterPinchStepSectionDistinctStatement` (w1-binder-7),
+`CellPocketWalkProperArcsBelowSectionStatement` (ms-cite-1), `OsinSectionPocketFaceSetProperSectionStatement` (w1-binder-6, w1-binder-3,
+ms-intro-2), `OsinSectionPocketFaceSetWholeSectionTwoArcSectionStatement` (ct-return-tower), `PocketOuterPinchStepSectionStatement`
+(w1-binder-7, w1-binder-3).  LANDED 311551c56 (probe 0914-103349-70155 GREEN, both modules BUILT and COMPILED, errors section empty; queued for wiring).  The 14 W1 rows now cite the `_of_residualsV8Closures` carriers with these ten leaves, followed by the `_of_greendlinger` carriers; still `partial`.
