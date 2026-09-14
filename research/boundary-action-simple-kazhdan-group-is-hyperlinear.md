@@ -30,3 +30,17 @@ OPEN. Let `k` be a finite field, `N >= 3` and `S_∂ = EL_N(LC(∂F_2, k) ⋊ F_
   hyperlinear. This direction is no easier than `binary-leavitt-unit-group-hyperlinear` (artifact §4).
 - **Characteristic 0.** Over `Q` the Lean nonsoficity theorem does not apply. Reduction mod `p` gives only quotient
   maps, which transfer nothing, so soficity over `Q` is also undecided.
+- **Equivalence with the binary Leavitt question (sk-hyperlinear-boundary-a, 2026-09-13, unreviewed).**
+  `boundary-simple-kazhdan-hyperlinear-iff-binary-leavitt-el`: for finite `k` of characteristic `p`, every `d >= 2`
+  and `N >= 3`, `S_∂(d,k)` is hyperlinear iff `EL_3(L_(F_p)(1,2))` is.
+  - The new direction goes through `LC(∂F_d,k) ⋊ F_d ≅ L_k(E_d)` and Brownlowe–Sørensen, so `EL_N(R_∂)` lies in some
+    `EL_M(L_(F_p)(1,2))`.
+  - So this claim is not a separate candidate. It is `binary-leavitt-unit-group-hyperlinear` in its elementary form,
+    and every attack on either transfers.
+  - Artifact `research/artifacts/sk-hyperlinear-boundary-a-reduction-2026-09-13.md` §2.
+- **Compression models of the boundary representations (start (a)): dead.**
+  `kazhdan-representations-have-no-hs-compression-models` applies.
+  - Finite-rank compressions of any unitary representation of `S_∂` without invariant vectors have normalized HS
+    defect at least `min(1/968, kappa^2/242)`. This covers the regular, quasi-regular and boundary orbit modules.
+  - Any HS model must be neither permutational (nonsofic) nor spatial.
+  - Artifact §3.
