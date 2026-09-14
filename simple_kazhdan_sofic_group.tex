@@ -68,18 +68,6 @@ hyperlinear. The same holds for $\EL_n\bigl(\LC(X,\F_2)\rtimes_T\Z\bigr)$
 for every $n\ge3$, with $\SL_{nN}(\F_2)$ in place of $\SL_{3N}(\F_2)$.
 \end{theorem}
 
-Hyperlinear groups were named by R\u{a}dulescu~\cite{Radulescu}, and sofic
-groups were introduced by Gromov~\cite{Gromov99} and named by
-Weiss~\cite{Weiss}. Infinite simple Kazhdan groups arise as quotients of
-hyperbolic Kazhdan groups~\cite{Gromov87} and as Kac--Moody lattices, some
-of which are finitely presented~\cite{CapraceRemy}. Thom constructed a
-finitely generated Kazhdan LEF group that is not residually finite and so
-lacks the factorization property~\cite{Thom}, but his example is not
-simple. Pestov and Kwiatkowska then wrote that a hope of constructing
-groups that are not hyperlinear from property~\textup{(T)} remained, as it
-was unknown whether finitely generated simple Kazhdan groups can be
-hyperlinear~\cite{PestovKwiatkowska}.
-
 The ring $\LC(X,\F_2)\rtimes_T\Z$ is finitely generated, so $G_X$ has
 property~\textup{(T)}, introduced by Kazhdan~\cite{Kazhdan}, by the theorem
 of Ershov and Jaikin-Zapirain~\cite{EJZ}. Periodic sequences approximating
@@ -90,17 +78,29 @@ limit of the groups $\SL_{3N}(\F_2)$, which form expanders as in
 Kassabov's construction~\cite{Kassabov}. The derived subgroup of the
 topological full group of $X$ is infinite, finitely generated and
 simple~\cite{Matui}, and it is amenable~\cite{JuschenkoMonod}. It is also a
-subgroup of $G_X$. Simplicity of $G_X$ also follows from Stepanov's
+subgroup of $G_X$ (Section~\ref{sec:lef}). Simplicity of $G_X$ also follows from Stepanov's
 theorem on the normal structure of $\GL_n$~\cite[Theorem~4.4]{Stepanov},
 since the ring is simple~\cite[Corollary~4.6]{ClarkEdie} and any two of
 its elements $p,q$ satisfy $pr+qs=0$ with $(r,s)\ne0$, by a dimension
-count on one cylinder. Our proof is direct: a nontrivial normal subgroup
-contains a nontrivial commutator lying in a copy of the finite simple
-group $\GL_d(\F_2)$ over a clopen tower, so it contains this group and
-with it an elementary matrix. For derived topological full groups, Matui
-showed in the same way that a nontrivial normal subgroup meets a simple
-union of alternating groups on towers~\cite[Lemma~3.4 and
-Theorem~4.9]{Matui}.
+count on a tower over one small cylinder. Our proof is direct: a
+nontrivial normal subgroup contains a nontrivial commutator lying in a
+copy of the finite simple group $\GL_d(\F_2)$ over a clopen tower, so it
+contains this group and with it an elementary matrix. For derived
+topological full groups, Matui showed by a similar argument that a nontrivial
+normal subgroup meets a simple union of alternating groups on
+towers~\cite[Lemma~3.4 and Theorem~4.9]{Matui}.
+
+Hyperlinear groups were named by R\u{a}dulescu~\cite{Radulescu}, and sofic
+groups were introduced by Gromov~\cite{Gromov99} and named by
+Weiss~\cite{Weiss}. Infinite simple Kazhdan groups arise as quotients of
+hyperbolic Kazhdan groups~\cite{Gromov87},~\cite[Theorem~1.5]{CoulonFournierFacio} and as Kac--Moody lattices, some
+of which are finitely presented~\cite{CapraceRemy}. Thom constructed a
+finitely generated Kazhdan LEF group that is not residually finite and so
+lacks the factorization property~\cite{Thom}, but his example is not
+simple. Pestov and Kwiatkowska then wrote that a hope of constructing
+groups that are not hyperlinear from property~\textup{(T)} remained, as it
+was unknown whether finitely generated simple Kazhdan groups can be
+hyperlinear~\cite{PestovKwiatkowska}.
 
 The proof works for other actions. An action on a Cantor set is
 topologically free if no nontrivial element fixes a nonempty open set,
@@ -117,17 +117,14 @@ $\varphi_k(r+s)=\varphi_k(r)+\varphi_k(s)$ and
 $\varphi_k(rs)=\varphi_k(r)\varphi_k(s)$ for large $k$. Then for every
 $n\ge3$, $\EL_n(R)$ is an infinite, finitely generated, simple Kazhdan
 group. Marked by the $e_{ij}(s)$ with $s\in S$, it is the limit of the
-finite simple groups $\SL_{nN_k}(\F_2)$, whose Cayley graphs form a
-family of expanders.
+finite simple groups $\SL_{nN_k}(\F_2)$ marked by the
+$e_{ij}(\varphi_k(s))$, whose Cayley graphs form a family of expanders.
 \end{theorem}
 
-The periodic approximations make $\LC(X,\F_2)\rtimes_T\Z$ matricial, which
-gives Theorem~\ref{thm:main}. The lamplighter group $\F_2\wr\Delta$ acting
-on $\F_2^{\Delta}$ shows that the countable subgroups of the groups in
-Theorem~\ref{thm:general} are exactly the countable LEF groups
-(Corollaries~\ref{cor:lef} and~\ref{cor:host}). The word problems of the
-groups $G_X$ realize every Turing degree, and the factors $L(G_X)$ fall
-into continuum many isomorphism classes (Section~\ref{sec:wp}).
+Periodic approximations make $\LC(X,\F_2)\rtimes_T\Z$ matricial, which
+gives Theorem~\ref{thm:main}, and lamplighter actions show that the
+countable subgroups of the groups in Theorem~\ref{thm:general} are exactly
+the countable LEF groups (Corollary~\ref{cor:host}).
 
 \section{Proof of Theorem~\ref{thm:general}}\label{sec:proof}
 
@@ -218,11 +215,12 @@ that subset. Let $F$ be the free algebra over $\F_2$ on letters $\tau_s$,
 $s\in S$, and let $\pi\colon F\to R$ and $\rho_k\colon F\to M_{N_k}(\F_2)$
 be the ring homomorphisms with $\pi(\tau_s)=s$ and
 $\rho_k(\tau_s)=\varphi_k(s)$. Both are onto, so $G$ and
-$\EL_3(M_{N_k}(\F_2))=\SL_{3N_k}(\F_2)$ are quotients of $\EL_3(F)$, which
-is generated by the $e_{ij}(1)$ and $e_{ij}(\tau_s)$; in both quotients
-$e_{ij}(1)$ and $e_{ij}(\tau_1)$ have the same image. The equality holds
-as transvections generate $\SL_{3N_k}(\F_2)$ and those inside one block are
-commutators of those between blocks. A word of length $\lambda$ or less in
+$\EL_3(M_{N_k}(\F_2))$ are quotients of $\EL_3(F)$. Here
+$\EL_3(M_{N_k}(\F_2))=\SL_{3N_k}(\F_2)$, as transvections generate
+$\SL_{3N_k}(\F_2)$ and those inside one block are commutators of those
+between blocks. The group $\EL_3(F)$ is generated by the $e_{ij}(1)$ and
+$e_{ij}(\tau_s)$, and in both quotients $e_{ij}(1)$ and $e_{ij}(\tau_1)$
+have the same image. A word of length $\lambda$ or less in
 the $e_{ij}(\tau_s)$ has entries of degree at most $\lambda$ in $F$, and $\varphi_k\circ\pi=\rho_k$ on the finitely many such entries for
 large $k$. So a word that is trivial in $G$ is trivial in
 $\SL_{3N_k}(\F_2)$ for large $k$. Conversely, for a nonprincipal
@@ -234,26 +232,8 @@ $e_{12}(1)$, so it is trivial. As this holds for every $\omega$, each
 nontrivial word is nontrivial in $\SL_{3N_k}(\F_2)$ for all but finitely
 many $k$. So these finite simple groups converge to $G$ in the space of
 marked groups~\cite{Grigorchuk,Champetier}, $G$ is LEF, and
-$N_k\to\infty$. Since $\EL_3(F)$ has property~\textup{(T)}~\cite[Theorem~1.1]{EJZ},
+$N_k\to\infty$ as $G$ is infinite. Since $\EL_3(F)$ has property~\textup{(T)}~\cite[Theorem~1.1]{EJZ},
 its finite quotients form a family of expanders~\cite{Margulis,Kassabov}.\qed
-
-\subsection*{Brown's formulation}
-LEF groups are sofic~\cite[Example~4.5]{Pestov}, and sofic groups are
-hyperlinear~\cite[Theorem~2]{ElekSzabo}. So $L(G)$ embeds in
-$\mathcal R^\omega$~\cite{Kirchberg,Radulescu},
-\cite[Proposition~7.1]{Ozawa}. Since $G$ is infinite and simple, its
-nontrivial conjugacy classes are infinite and $G$ is not residually
-finite. So $L(G)$ is a $\mathrm{II}_1$ factor, and
-$L(G)\mathbin{\bar\otimes}\mathcal R$ is a McDuff factor~\cite{McDuff}
-that embeds in $\mathcal R^\omega$ and whose unitary group contains $G$,
-as in Brown's question. Kirchberg proved that a Kazhdan group with the
-factorization property is residually
-finite~\cite[Theorem~1.1]{Kirchberg}, and that every subgroup of the
-unitary group of $\mathcal R$ has the factorization
-property~\cite[Corollary~1.2]{Kirchberg}. So $G$ does not have the
-factorization property, it is not a subgroup of the unitary group of
-$\mathcal R$, and $C^*(G)$ does not have the local lifting
-property~\cite[p.~527]{Ozawa}.
 
 \section{Proof of Theorem~\ref{thm:main}}\label{sec:main}
 
@@ -288,10 +268,26 @@ $\varphi_\ell(rs)=\varphi_\ell(r)\varphi_\ell(s)$ hold for large $\ell$, and
 $\varphi_\ell(1)=I$. The shifts $T^ty_\ell$, $0\le t<N_\ell$, are distinct,
 so products of the $P^iD_\ell(e_a)P^{-i}$ give every diagonal matrix unit,
 and with $P$ every matrix unit. So $\varphi_\ell(S)$ generates
-$M_{N_\ell}(\F_2)$, and Theorem~\ref{thm:general} applies. In both
-quotients of $\EL_3(F)$, $e_{ij}(1)$ is the image of
-$\prod_ae_{ij}(\tau_a)$, as $\sum_ae_a=1$ and $\sum_aD_\ell(e_a)=I$, so the
-$e_{ij}(s)$ with $s\ne1$ also give expanders.\qed
+$M_{N_\ell}(\F_2)$, and Theorem~\ref{thm:general} applies.\qed
+
+\subsection*{Brown's formulation}
+Let $G$ be a group as in Theorem~\ref{thm:general}. LEF groups are
+sofic~\cite[Example~4.5]{Pestov}, and sofic groups are
+hyperlinear~\cite[Theorem~2]{ElekSzabo}. So $L(G)$ embeds in
+$\mathcal R^\omega$~\cite{Kirchberg,Radulescu},
+\cite[Proposition~7.1]{Ozawa}. Since $G$ is infinite and simple, its
+nontrivial conjugacy classes are infinite and $G$ is not residually
+finite. So $L(G)$ is a $\mathrm{II}_1$ factor, and
+$L(G)\mathbin{\bar\otimes}\mathcal R$ is a McDuff factor~\cite{McDuff}
+that embeds in $\mathcal R^\omega$ and whose unitary group contains $G$,
+as in Brown's question. Kirchberg proved that a Kazhdan group with the
+factorization property is residually
+finite~\cite[Theorem~1.1]{Kirchberg}, and that every subgroup of the
+unitary group of $\mathcal R$ has the factorization
+property~\cite[Corollary~1.2]{Kirchberg}. So $G$ does not have the
+factorization property, it is not a subgroup of the unitary group of
+$\mathcal R$, and $C^*(G)$ does not have the local lifting
+property~\cite[p.~527]{Ozawa}.
 
 % rev4.1 SLOT (gated on sk-verify-13 PASS of the LaTeX): every finite field,
 % n>=3 variant of sk-general-statement (d7ef2a68fd).
@@ -300,10 +296,13 @@ $e_{ij}(s)$ with $s\ne1$ also give expanders.\qed
 
 Every countable group embeds in a finitely generated simple
 group~\cite{Gorjuskin,Schupp}, and even in a simple quotient of a
-torsion-free hyperbolic Kazhdan group~\cite[Theorem~1.5]{CoulonFournierFacio}.
-Kionke and Schesler proved that every finitely generated residually finite
-group embeds in a finitely generated simple LEF
-group~\cite[Theorem~1.2]{KionkeSchesler}, and raised the question which
+torsion-free hyperbolic Kazhdan group~\cite[Theorem~1.5]{CoulonFournierFacio},
+so one simple Kazhdan group contains Higman's universal finitely presented
+group~\cite{Higman}. Kionke and Schesler proved that every finitely
+generated residually finite group embeds in a finitely generated simple
+LEF group~\cite[Theorem~1.2]{KionkeSchesler}, so with Wilson's
+theorem~\cite{Wilson} one simple LEF group contains every finitely
+presented residually finite group. They raised the question which
 groups embed in finitely generated simple amenable groups. For LEF groups
 the next corollary answers the analogous question, with a Kazhdan host. It
 parallels the theorem of Boone and Higman that a finitely generated group
@@ -375,8 +374,9 @@ generators. Let $x\mapsto\delta x+f$ act on $Y_n=\F_2^{Q'_n}$ by
 $y\mapsto\sigma_n(\delta)y+\sum_{h\in\operatorname{supp}f}1_{\sigma_n(h)}$,
 where $(qy)(q')=y(q^{-1}q')$, and attach to $y$ the point $y\circ\sigma_n$
 of $\Omega$. For fixed elements of $\Lambda$ and large $n$, these
-permutations multiply as in $\Lambda$ and move the attached points near
-$e$ as $\Lambda$ moves the points of $\Omega$. Let $D_n(f)$ be the diagonal
+permutations multiply as in $\Lambda$ and, uniformly in $y$, move the
+attached points near $e$ as $\Lambda$ moves the points of $\Omega$. Let
+$D_n(f)$ be the diagonal
 matrix on $\F_2^{Y_n}$ with entry $f(y\circ\sigma_n)$ at $y$, let $P_\xi$ be
 the permutation matrix of $\xi\in\Lambda$, and put
 $\varphi_n(\sum_\xi f_\xi u_\xi)=\sum_\xi D_n(f_\xi)P_\xi$. For fixed $f$ and
@@ -416,12 +416,8 @@ $g\mapsto\operatorname{diag}(w_g,1,1)$ is an injective homomorphism, and by
 the same identities it embeds the derived subgroup, which is generated by
 commutators, in $G_X$.
 
-Without property~\textup{(T)}, Wilson's theorem~\cite{Wilson} and
-\cite[Theorem~1.2]{KionkeSchesler} give a simple LEF group containing
-every finitely presented residually finite group; without LEF, Higman's
-universal finitely presented group~\cite{Higman} lies in a simple Kazhdan
-group~\cite[Theorem~1.5]{CoulonFournierFacio}. Every group as in the last
-statement of Corollary~\ref{cor:host} has unsolvable word problem: a
+Every group as in the last statement of Corollary~\ref{cor:host} has
+unsolvable word problem: a
 recursive bound on the running time of an algorithm for it would bound,
 up to a linear change of word length, the time complexity of the word
 problems of all finitely presented residually finite groups, and these
@@ -435,8 +431,10 @@ $\bigoplus_{x\in X,\,t\in\Z}\F_2^m$ by $f\delta_{x,t}=f(T^tx)\delta_{x,t}$
 and $u\delta_{x,t}=\delta_{x,t+1}$. If the generators of a subgroup of
 $\GL_m$ involve only $u^j$ with $|j|\le w$, where $w\ge1$, and
 $|g^n|/n\to0$, then for $v$ supported at one $(x,t)$ the $g^nv$, $n<N$,
-span fewer than $N$ dimensions for large $N$, uniformly in $v$. So one
-polynomial over $\F_2$ kills $g$, and $g$ has finite order. In the
+span fewer than $N$ dimensions for large $N$, uniformly in $v$. So each
+such $v$ is killed by a polynomial over $\F_2$ of degree below $N$; there
+are finitely many of these, their product kills $g$, and $g$ has finite
+order. In the
 Heisenberg subgroup of $\SL_3(\Z)$, $[a,b]$ has infinite order and
 $[a,b]^{n^2}=[a^n,b^n]$. Cyr, Franks, Kra and Petite use distortion
 similarly for automorphism groups of shifts~\cite{CFKP}.
@@ -502,9 +500,7 @@ simple groups with property~\textup{(T)} exist~\cite{CapraceRemy}. Is
 there one that is sofic, or at least hyperlinear? A sofic example would
 not be LEF, and it would also answer Open problem~6.1 of Alekseev and
 Thom~\cite{AlekseevThom}, which asks for finitely presented sofic groups
-with property~\textup{(T)} that are not residually finite. The groups
-$G_X$ are sofic Kazhdan groups that are not residually finite, as is
-Thom's group~\cite[\S5]{AlekseevThom}, but they are also simple. Is every
+with property~\textup{(T)} that are not residually finite. Is every
 sofic infinite simple Kazhdan group LEF?
 
 Is every finitely generated sofic group a subgroup of an infinite finitely
