@@ -27,3 +27,5 @@ finite group lies both in an amenable simple LEF group (Kionke–Schesler) and i
 Route: `rf-groups-embed-in-simple-kazhdan-lef-groups-proof`.
 
 **Review (sk-verify-3, 2026-09-13): PASS.** Reduction to infinite Γ, the overgroup, Corollary T with q = 2 and trivial centre, Whitehead's lemma with `diag([a,b],1,1) ∈ E_3`, and injectivity of `γ ↦ diag(u_ρ(γ),1,1)` re-derived; the self-contained tower proof over Δ (artifact Proposition 5) also PASS. The Kionke–Schesler quote was not read at source. See `research/artifacts/sk-review-3-2026-09-13-part3.md` §A.
+
+**Review (sk-verify-4, 2026-09-13): PASS, independent concurrence.** Reduction to infinite Γ, Corollary T over Δ, trivial centre via Z(R) = F_2, Whitehead products multiplied out, and the embedding re-derived. See `research/artifacts/sk-review-4-2026-09-13-part1.md` §5.

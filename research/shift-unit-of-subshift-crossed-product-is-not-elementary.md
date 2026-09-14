@@ -21,3 +21,5 @@ products of commutators of units.
 Route: `shift-unit-of-subshift-crossed-product-is-not-elementary-proof`.
 
 **Review (sk-verify-3, 2026-09-13): PASS.** Orbit representation, the algebraic Fredholm index as a homomorphism, its vanishing on elementary matrices (`N² = 0`) and index −1 for the shift re-derived. See `research/artifacts/sk-review-3-2026-09-13-part3.md` §A1.
+
+**Review (sk-verify-4, 2026-09-13): PASS, independent concurrence.** Orbit representation, the Fredholm property of PaP, additivity of the algebraic index, zero index of elementary matrices, and index −1 of the shift re-derived. See `research/artifacts/sk-review-4-2026-09-13-part1.md` §1.

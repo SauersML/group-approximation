@@ -25,3 +25,5 @@ artifacts:
 - Topological freeness is not enough for the tower partition; for that case use `steinberg-elementary-groups-are-simple-mod-centre`.
 
 Route: `finite-model-subshift-elementary-groups-simple-kazhdan-lef-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Steps 1–5 re-derived: generation, simplicity and centre of R, the finite models with the compactness fact, the tower product rule and absorption, and extraction with the B_(2w+2) partition and d = n|B_(w+1)|. See `research/artifacts/sk-review-4-2026-09-13-part1.md` §6.

@@ -26,3 +26,5 @@ Uses: `finite-model-subshift-elementary-groups-simple-kazhdan-lef` (e.g. `Γ = S
 Credit: Toeplitz arrays over residually finite groups are due to Krieger and to Cortez–Petite. The nested-hole design is elementary; no literature check was run beyond the repository graph.
 
 Route: `rf-groups-have-free-minimal-subshifts-with-finite-models-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Key identity x(hk) = x(h), finite models y_b, syndetic return sets, and freeness through the special level cosets (m = ℓ(γ) by normality; K_n ⊆ K_(m+1)) re-derived. See `research/artifacts/sk-review-4-2026-09-13-part1.md` §8.

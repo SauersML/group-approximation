@@ -17,3 +17,5 @@ inside each hole).
 Route: `rf-toeplitz-subshifts-act-freely-proof`.
 
 **Review (sk-verify-3, 2026-09-13): PASS.** The unique non-constant coset at every level for every limit point, nesting, equivariance and freeness re-derived. See `research/artifacts/sk-review-3-2026-09-13-part3.md` §A3.
+
+**Review (sk-verify-4, 2026-09-13): PASS, independent concurrence.** (F1)/(F2) from the Theorem T construction, the fixed residue along a subsequence, and uniqueness, nesting, equivariance and freeness re-derived. See `research/artifacts/sk-review-4-2026-09-13-part1.md` §4.

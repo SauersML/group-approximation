@@ -21,3 +21,5 @@ artifacts:
 **Consequence.** `finite-model-subshift-elementary-groups-simple-kazhdan-lef` reaches exactly the residually finite acting groups (with `rf-groups-have-free-minimal-subshifts-with-finite-models`).
 
 Route: `free-subshift-with-finite-models-forces-rf-group-proof`.
+
+**Review (sk-verify-4, 2026-09-13): PASS.** Compactness cover, pattern agreement on F ∪ Fγ, and the nontrivial permutation action re-derived. See `research/artifacts/sk-review-4-2026-09-13-part1.md` §7.
