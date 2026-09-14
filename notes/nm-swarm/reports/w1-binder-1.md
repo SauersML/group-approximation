@@ -117,6 +117,12 @@ CLAIM L2 model test (mixed touch) GroupApproximation/GGT/VanKampen/Estimating/Os
 - LANDED spans at 4b7ff30b3: `Estimating/OsinAppendixEulerTwoGonSpans`, probe 0913-191558-63004 GREEN, BUILT; on the wire queue. Declarations: `mem_darts_of_start_eq_of_eq_none`, `mem_darts_of_le_of_eq_none`, `twoGonSource_left/right`, `twoGonTarget_left/right`. They give clauses 2–5 of w1-binder-4's `TwoGonInnerFollowsWalkInput` (35e17a915).
 - LANDED model at 8c6883be3: `Estimating/OsinPocketMixedTouchModel`, probe 0913-192847-50147 GREEN, BUILT on the first try; the five `#audit_closed_axioms` show [propext, Classical.choice, Quot.sound], no sorryAx; on the wire queue. Endpoint: `noncrossingMixedTouchModel : NoncrossingMixedTouchModel`, a planar map with a noncrossing closed walk neither of whose boundary cycles follows.
 - L2 as stated needs a ruling from main: the disjunction is false at map level. The candidate routes, split at a touch or exclude mixed touches geometrically, went to main.
+- Main ruled ~19:40: route (c), Euler equalities (w1-binder-6's `PocketRegion.ofNoncrossingClosedWalkEuler`, 2c1a841e8; ms-inverses-2 owns the generic lemma), with (a) as fallback.
+- Euler verdict on the mixed model, by hand against `reclosedMap`, not built: both reclosings keep χ = 2.
+  - Side reclosing: vertex orbits {0,5}, {1,6,7,2}, {3,4}; E' = 4; F' = 3.
+  - Outside reclosing: {0,5,4,3}, {1,6}, {2,7}; E' = 4; F' = 3.
+  - So route (c) holds on the mixed touch.
+- Hazard: `TwoGonWalkHyp.connected` fails at pinch-type touches (walk darts 0 and 4 of 8c6883be3 lie on different faces with every edge on the walk). The Euler route therefore needs `hno`/`havoid` without `connected`: per walk dart, the face is a pocket face. Plan: (i) `TwoGonEulerWalkInput`, (ii) the per-dart pocket-face variant, (iii) `twoGonHoldsInput_of_eulerWalk`.
 
 ## State
 
