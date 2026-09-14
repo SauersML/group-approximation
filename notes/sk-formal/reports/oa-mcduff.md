@@ -6,6 +6,7 @@ Lane oa-mcduff, launched ~20:15 by main. Brief: `ct/ROSTER-sk.md`, "OA LANES 20:
 CLAIM infinite simple ⇒ ICC and not RF (row 6e8db7db6717) GroupApproximation/Manuscript/SimpleKazhdanSofic/InfiniteSimpleICC.lean
 CLAIM the II₁-factor predicate, and L(G) is a II₁ factor for infinite ICC G (row 07ce3ce2146f, first clause) GroupApproximation/Analysis/GroupVonNeumannIIOneFactor.lean
 CLAIM the assembly "L(G)⊗̄R is a McDuff factor that embeds in R^ω and whose unitary group contains G" (row 07ce3ce2146f) GroupApproximation/Manuscript/SimpleKazhdanSofic/McDuffBrownFormulation.lean
+CLAIM the left regular representation as an injective group homomorphism G → U(L(G)), the first half of "whose unitary group contains G" (row 07ce3ce2146f) GroupApproximation/Analysis/GroupVonNeumannUnitaryGroup.lean
 - WITHDRAWN (20:35 roster): `Analysis/VonNeumannTensorProduct.lean`. The ⊗̄ product, the tensor trace, factoriality and the McDuff property belong to oa-vn-tensor; the tracial ultrapower M^ω to oa-ultrapower; R (twisted Pauli group algebra) to oa-hyperfinite; L(G) ↪ R^ω to oa-ozawa71.
 
 ## Landings
