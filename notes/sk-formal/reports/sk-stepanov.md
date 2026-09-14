@@ -87,3 +87,18 @@ Ownership check 09-14 08:4x: no reduction draft on origin, in the shared tree or
     - `ContinuedFractionCutOracle`: `slopeOracle_turingReducible_charOracle`, D computes α by rfind.
     - `ContinuedFractionRepresentative`: `printedContinuedFractionRepresentative : PrintedContinuedFractionRepresentative`.
 - All modules are queued for wiring.
+
+## ITEM 3 (main, 09-14 ~09:25): the word problem of G_Δ = EL₃(LampRing Δ), split off skf-consequences
+- Target: `Lamplighter.PrintedLamplighterHostSolvableWordProblem`, tex l.447–455 at 8b36733d7. Rows: `7bfa078c0bed`, `e3cd35e16e2f`, `14148c1b4df0`; all survive in the census regenerated at 8b36733d7.
+- Split proposed to skf-consequences (one message): it keeps Λ (row `581584337a04`, `LamplighterAffineWordProblem`); this lane consumes its Λ normal form by name.
+- Route:
+  - A factor `(d, b, P)` means `1 + x(val d) + b + #{p ∈ P : val p = val d}`, and conjugating by a Λ-word `w` gives `(deltaWord w ++ d, b, P.map (deltaWord w ++ ·) ++ lampPrefixes w)`.
+  - Monomials, tables and `matEval`.
+  - The coefficient-vanishing criterion over consistent assignments (Ω is the full shift).
+  - A truth-table reduction on Δ-word equality queries.
+
+CLAIM syntactic tables and matEval for G_Δ GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterHostTables.lean
+CLAIM coefficient-vanishing criterion for G_Δ GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterHostCriterion.lean
+CLAIM truth-table decision and PrintedLamplighterHostSolvableWordProblem GroupApproximation/Manuscript/SimpleKazhdanSofic/LamplighterHostDecision.lean
+
+Ownership check 09-14 09:2x: no host draft on origin, in the shared tree or in any `.files` (skf-consequences holds `LamplighterWordProblem` and `LamplighterAffineWordProblem`).
