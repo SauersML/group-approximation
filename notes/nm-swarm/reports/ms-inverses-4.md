@@ -166,3 +166,31 @@ every `lanes/*.files` (checked 18:5x).
      `f` from `Π`, which share the arc `p`. No lemma on origin states this.
   3. The side of the walk and `hi` transport across splits that merge corners on the side. The `Avoids` lemmas cover only face sets
      off the merged faces; go-lemma42's `pinchSplitInside` is the `PocketFaceSet` analogue.
+
+### Ruling (main ~19:00) and the split with ms-compress-2
+
+- Main: the spelling at f30f8c4fb is accepted. Input 3 (walk-level split, transporting the side and `hi`) is this lane's. Inputs 1–2
+  (G-face corners, distinct faces) are ms-compress-2's. The finish is w1-binder-8's `false_of_simpleWalk_of_below`, which is on origin
+  at `Estimating/OsinLemma94SameCellSimplePocket.lean:75`.
+- Agreed with ms-compress-2:
+  - it doubles both pocket corners (edges along `in₁`, `in₂` inside `faceOf in₁`, `faceOf in₂`), so the in-darts lie on distinct new
+    G-digons with no planarity lemma needed. It builds `Estimating/OsinPocketTouchCornerThickening.lean`.
+  - Geometry: the cut corners are the pocket-side corners `faceOf in₁`, `faceOf in₂`. Cutting at off-pocket corners separates each
+    passage's in-dart from its out-dart.
+
+### LANDED d1d4d90da (probe 0913-191209-47041 GREEN, BUILT; the first push hit fleet contention; queued for wiring)
+
+- `Estimating/OsinPocketTouchSplitStatements.lean`: `OsinPocketTouchCornerStatement`, ms-compress-2's target. It gives an O-equivalent
+  labelled copy and a dart map `e`:
+  - `e` is injective, commutes with alpha, keeps labels, reflects vertices, and keeps σ away from the four corners of `in₁`, `in₂`;
+  - `e in₁` and `e in₂` lie on distinct G-faces off the exterior;
+  - the exterior and cell `i'` stay off the side of `walk.map e`;
+  - `cellDarts X' i' = (cellDarts X i).map e`.
+
+CLAIM the walk-level split transport — `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkSplit.lean` (new module):
+- a tight closed walk: every consecutive pair `(d, e)` rotates from `e` to `alpha d` without meeting a walk dart or a reversed walk dart;
+- across `PinchSplit.Input.diagram` at `alpha in₁`, `alpha in₂`: tightness, closedness, no spur, part nodups, values, labels and
+  O-equivalence are kept, and one repeated visit is dropped (`vertexOf_x_ne_y`);
+- side projection: the darts reached from the walk are closed under the split's face steps, since the two changed face steps join
+  the faces of `in₁` and `in₂`, which are faces of walk darts. So the exterior and the cell stay off the side.
+Path free on origin, in the shared tree and in every `lanes/*.files` (checked 19:2x).
