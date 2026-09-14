@@ -277,6 +277,18 @@ CLAIM `OsinLemma94ContactMapSmallFacesInput` (under the binders of `OsinLemma94L
      `EmptyTwoGonInput` (Φ′_M) needs region sides. The sector merge is new.
 - **Split confirmed by main (10:3x).** ms-traces-1 takes part 2, the empty-two-gon sector merge, and will agree the
   statement with me. I keep part 1: per-component face classes and the nesting charge.
+- **Interface agreed with ms-traces-1 (10:4x, one message each way)**, in the new statement module
+  `Estimating/OsinLemma94ContactMapHolds.lean` (mine, probing):
+  - `OsinLemma94RealizedPolygons.HoldsObject P F`: the `FaceClassStep` class of F in the dual, off the `ContactKeep`
+    edges, reaches a dart at `objectFace S o` for an object o that is no vertex of F. This definition is global, not per
+    component.
+  - `NondegenerateSmallFace P F`: degree < 6, and representatives x and φ²x at different polygons.
+  - `OsinLemma94ContactMapHoldingSmallFacesInput`, part 1 (mine): the nondegenerate small faces holding an object number
+    at most K·n.
+  - `OsinLemma94ContactMapEmptyTwoGonInput`, part 2 (ms-traces-1, proved in their
+    `Estimating/OsinLemma94ContactEmptyTwoGon.lean`): a nondegenerate small face holding no object gives False.
+  - `osinLemma94ContactMapNondegenerateSmallFacesInput_of_pieces`: the residual from the two pieces.
+  - The diagram-level two-gon data (rep, f, f′, a, b) is extracted by ms-traces-1 inside part 2.
 - Part 1, first brick: `CombMapRestrictionComponentFaceClasses` (attic, probing), with
   `PredicateRestriction.faceOf_eq_of_faceClass_of_componentOf`. Face classes of a planar map separate the faces of a
   first-return restriction inside one component.
