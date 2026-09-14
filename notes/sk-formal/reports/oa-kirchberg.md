@@ -33,7 +33,20 @@ CLAIM printed rows 88ecdc10f78b (Theorem 1.1 and Corollary 1.2) and a63ff00e499b
   - finish with the dense-generator upgrade (`amenableTraceModel_of_dense_generators`).
 - This consumes oa-hyperfinite's Pauli model `Hyperfinite.hyperfiniteFactor`: its matrix stages and trace-preserving expectations are not on origin yet.
 
-## Corollary 1.2 design (09-14 ~09:00)
+## CLOSED (09-14 09:1x): Kirchberg's Theorem 1.1
+
+- LANDED 9df1daac4 (probe 0914-090640, BUILT; `#audit_closed_axioms` passes):
+  - `Manuscript/NinetyNineProblems/KirchbergTheorem`: `kirchbergKazhdanFactorizationInput : KirchbergKazhdanFactorizationInput.{u}`, `printedKirchbergTheorem` (no countability) and `not_hasFactorizationProperty_of_simple_infinite_kazhdan`.
+  - `Manuscript/SimpleKazhdanSofic/KirchbergFactorizationSentences`: `printedKirchbergTheoremOneOne`, `printedGLacksFactorizationProperty`.
+- Infrastructure, all landed and wire-queued: 2aea5d2b5, 0432a7d3a, f00b45b30, and the real dilation plus tensor square.
+- Census rows 88ecdc10f78b and a63ff00e499b landed at census 649cb1f80/aa6f988f4 (text verified at 696c4b602).
+
+The note at f34e9c0b1 (09:05) deleted the Kirchberg sentences of "Brown's formulation": Theorem 1.1, Corollary 1.2, "G lacks the factorization property", "G is not a subgroup of U(R)", and the LLP clause. So:
+- Both rows will be superseded at the next census regeneration.
+- Corollary 1.2 and "not a subgroup of U(R)" are no longer printed. The design below is kept only as a note and is not being built.
+- The printed sentence at tip l.95, "Thom constructed … not residually finite and so lacks the factorization property", uses Theorem 1.1's contrapositive, which `printedKirchbergTheorem` carries.
+
+## Corollary 1.2 design (09-14 ~09:00; no longer printed at f34e9c0b1)
 
 Printed claim: every subgroup of U(R) has the factorization property. At the trace side this means: for an injective π : G → U(R), the canonical trace δ₁ of C*(G) is amenable.
 
