@@ -176,6 +176,11 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Suspected FALSE node `double-swap-embeds-group-in-derived-subgroup` (sk-sofic-embedding-b): γ ↦ (γ,γ^{-1}) is not a homomorphism; sent to sk-verify-4 as priority 1.
 51. **No note change from:** sk-cstar-mf (strong-convergence firewall through SL_{3k}(F_q[t^{±1}]) ⊂ G_X), sk-fp-sofic-d (gluing-developments firewall), sk-rigidity-f2 (root-preserving isomorphisms ⇒ ring isomorphism over F_2; standardness still open), sk-sofic-embedding-b (linear-sofic amenable envelopes).
 
+52. **Wave 8 launched** (ROSTER-F.md, 25 forks): literature and credit, stronger results, simpler text, paper-level lanes.
+53. **sk-el2** (3e5a0ff303, unreviewed): EL_2(LC(X,F_2)⋊Z) is infinite, f.g., simple, Kazhdan and LEF for every infinite minimal subshift, via complementary full idempotents plus the EJZK A_2-grading. REV4 candidate: "for every n ≥ 2" in the theorem plus a short rank-two subsection (+33 lines, EJZK bibitem), after review. The expander clause stays n ≥ 3.
+54. **sk-panel-referee-2 part2**: rev2 stands; the Stepanov application checked. Apply in rev3: `\cite[Theorem~1.1]{EJZ}` at the expanders sentence, and MSC 46L10.
+55. **No note change:** sk-rigidity-cartan (Cartan uniqueness reduced to groupoid-model rigidity; ring isomorphism preserves the SOE class and the complexity growth class), sk-hyperlinear-boundary-b (the von Neumann side has no shortcut), sk-k2-subsystems (the normal subgroup dictionary for finite limit types), sk-wp-embedding (solvable WP hosts for perfect ERF groups).
+
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
 - The exact centre formula over F_q (it stays in Cairn).
