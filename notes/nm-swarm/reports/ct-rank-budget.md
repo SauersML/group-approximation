@@ -133,6 +133,16 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   over the closed cell statement for the first two; for the third, ms-inverses-4's formalized row already carries it,
   so only a supersede override of ct-bilateral-mf's stale partial `LINE:1583` rows is needed (request to ms-cite-2).
 
+- 09-14 08:5x: BilateralThreeZSentences LANDED 62c3a256f (GREEN 0914-083504-56752; re-probed after the reboot wiped the green records).
+  Namespace `GroupApproximation.Manuscript.ChainCore.BilateralThree`, each endpoint with `#audit_closed_axioms`:
+  - `printedBilateralThreeZInDefect_closed : PrintedBilateralThreeZInDefect` (key cd7908a482b5, tex 1583, "Hence
+    z ∈ D_B(L)"), at R_X for every clopen P with T(P) ⊆ P and every finite field, via the cell-level
+    `cell_z_mem_printedDefect`;
+  - `printedBilateralThreeCompressionKillsZ_closed : PrintedBilateralThreeCompressionKillsZ` (key 3550126258fb, tex
+    1587–1588): every MF homomorphism from B kills z, hence every one from GL_3(R_X).
+  Rows appended.  e94a87793eb1 already has ms-inverses-4's formalized row; ct-bilateral-mf's stale partial rows
+  `LINE:1583` and `LINE:1587` need supersede overrides, requested from ms-cite-2.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
