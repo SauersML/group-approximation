@@ -1,0 +1,273 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordNormalForm
+import GroupApproximation.Dynamics.SubshiftWordGraph
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The tables of a word vanish on `L(X)`
+
+`simple_kazhdan_sofic_group.tex`, section "Word problems", first paragraph of the proof:
+
+> The word is trivial in `G_X` if and only if the tables of its difference from `I₃` vanish on
+> `L(X)`, so `L(X)` computes the word problem.
+
+A table of cylinder monomials sees only the coordinates in a window `[-K, K]`, where `K` bounds the
+coordinates of its constraints.  The windows `x_{-K}, …, x_K` of the points of a shift-invariant `X`
+are exactly the words of length `2K + 1` of `L(X)`, and a table vanishes in `LC(X, F₂) ⋊ ℤ` iff the
+parity of each of its coefficients vanishes at each of these words.
+
+* `exists_window_eq`, `window_mem_listLanguage`: the windows of `X` are the words of `L(X)`;
+* `coeffFun_apply_eq`: the coefficient sum at `x` is the parity at the window of `x`;
+* `eval_eq_zero_iff_language`: a table vanishes iff its parities vanish on the words of `L(X)`;
+* `matEval_eq_one_iff_language`: a matrix of tables evaluates to `I₃` iff the tables of its
+  difference from `I₃` vanish on `L(X)`, characteristic `2` making the difference a sum.
+-/
+
+namespace GroupApproximation
+namespace CylinderTables
+
+open SymbolicDynamics.FullShift
+
+section Windows
+
+variable {A : Type*}
+
+/-- The language of `X`, as finite lists occurring at position `0` of a point of `X`. -/
+def listLanguage (X : Set (ℤ → A)) : Set (List A) :=
+  {v | ∃ x ∈ X, ∀ t : Fin v.length, x ((t : ℕ) : ℤ) = v.get t}
+
+theorem mem_listLanguage_iff {X : Set (ℤ → A)} {v : List A} :
+    v ∈ listLanguage X ↔ (fun j : Fin v.length => v.get j) ∈ WordGraph.language X v.length := by
+  constructor
+  · rintro ⟨x, hx, h⟩
+    exact ⟨x, hx, funext fun j => by rw [WordGraph.word_apply, zero_add]; exact h j⟩
+  · rintro ⟨x, hx, h⟩
+    refine ⟨x, hx, fun t => ?_⟩
+    have ht := congrFun h t
+    rwa [WordGraph.word_apply, zero_add] at ht
+
+/-- The window `x_{-K}, …, x_K`, as a list. -/
+def window (x : ℤ → A) (K : ℕ) : List A :=
+  List.ofFn fun t : Fin (2 * K + 1) => x (((t : ℕ) : ℤ) - (K : ℤ))
+
+theorem length_window (x : ℤ → A) (K : ℕ) : (window x K).length = 2 * K + 1 :=
+  List.length_ofFn
+
+/-- The entries of a window, without dependent bounds. -/
+theorem window_getElem?_nat (x : ℤ → A) (K i : ℕ) :
+    (window x K)[i]? = if _h : i < 2 * K + 1 then some (x ((i : ℤ) - (K : ℤ))) else none := by
+  unfold window
+  exact List.getElem?_ofFn
+
+theorem window_getElem? (x : ℤ → A) (K : ℕ) {i : ℤ} (hi : |i| ≤ K) :
+    (window x K)[(i + (K : ℤ)).toNat]? = some (x i) := by
+  obtain ⟨hi1, hi2⟩ := abs_le.1 hi
+  have hlt : (i + (K : ℤ)).toNat < 2 * K + 1 := by omega
+  rw [window_getElem?_nat, dif_pos hlt]
+  exact congrArg some (congrArg x (by omega))
+
+/-- **The window of a word of `L(X)`.** -/
+theorem exists_window_eq {X : Set (ℤ → A)} (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X) {K : ℕ}
+    {v : List A} (hv : v ∈ listLanguage X) (hlen : v.length = 2 * K + 1) :
+    ∃ x ∈ X, window x K = v := by
+  obtain ⟨y, hy, h⟩ := hv
+  refine ⟨shift (K : ℤ) y, hX K hy, List.ext_getElem? fun i => ?_⟩
+  rw [window_getElem?_nat]
+  by_cases hi : i < 2 * K + 1
+  · have hv' : i < v.length := by rw [hlen]; exact hi
+    have e : v[i]? = some (v.get ⟨i, hv'⟩) := List.getElem?_eq_getElem hv'
+    rw [dif_pos hi, e, ← h ⟨i, hv'⟩, shift_apply]
+    exact congrArg some (congrArg y (show (K : ℤ) + ((i : ℤ) - (K : ℤ)) = (i : ℤ) by ring))
+  · have hn : v.length ≤ i := by rw [hlen]; omega
+    rw [dif_neg hi, List.getElem?_eq_none hn]
+
+/-- **The window of a point of `X` is a word of `L(X)`.** -/
+theorem window_mem_listLanguage {X : Set (ℤ → A)} (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X)
+    {x : ℤ → A} (hx : x ∈ X) (K : ℕ) : window x K ∈ listLanguage X := by
+  refine ⟨shift (-(K : ℤ)) x, hX _ hx, fun t => ?_⟩
+  have ht : (t : ℕ) < 2 * K + 1 := lt_of_lt_of_eq t.2 (length_window x K)
+  have e : (window x K)[(t : ℕ)]? = some ((window x K).get t) := List.getElem?_eq_getElem t.2
+  rw [window_getElem?_nat, dif_pos ht] at e
+  rw [shift_apply, ← Option.some.inj e, neg_add_eq_sub]
+
+/-- All words of length `n` over the letters `L`. -/
+def allWords (L : List A) : ℕ → List (List A)
+  | 0 => [[]]
+  | n + 1 => (allWords L n).flatMap fun v => L.map fun a => v ++ [a]
+
+theorem mem_allWords {L : List A} (hL : ∀ a, a ∈ L) {n : ℕ} {v : List A} :
+    v ∈ allWords L n ↔ v.length = n := by
+  induction n generalizing v with
+  | zero =>
+    simp only [allWords, List.mem_singleton]
+    exact List.length_eq_zero_iff.symm
+  | succ n ih =>
+    simp only [allWords, List.mem_flatMap, List.mem_map]
+    constructor
+    · rintro ⟨u, hu, a, -, rfl⟩
+      rw [List.length_append, ih.1 hu, List.length_singleton]
+    · intro hv
+      have hne : v ≠ [] := fun e => by rw [e, List.length_nil] at hv; omega
+      refine ⟨v.dropLast, ih.2 (by rw [List.length_dropLast, hv]; rfl), v.getLast hne, hL _,
+        List.dropLast_append_getLast hne⟩
+
+end Windows
+
+section Parity
+
+variable {A : Type*} [DecidableEq A]
+
+/-- The constraint list `c` holds at the window word `v` read at offset `K`. -/
+def cylAt (K : ℕ) (v : List A) (c : Cyl A) : Bool :=
+  c.foldr (fun p b => decide (v[(p.1 + (K : ℤ)).toNat]? = some p.2) && b) true
+
+/-- The parity of the coefficient of `u^j` of the table `l` at the window word `v`. -/
+def windowParity (K : ℕ) (l : Table A) (j : ℤ) (v : List A) : Bool :=
+  l.foldr (fun m b => xor (decide (m.1 = j) && cylAt K v m.2) b) false
+
+theorem windowParity_cons (K : ℕ) (m : Mono A) (l : Table A) (j : ℤ) (v : List A) :
+    windowParity K (m :: l) j v = xor (decide (m.1 = j) && cylAt K v m.2) (windowParity K l j v) :=
+  rfl
+
+/-- The largest coordinate of a constraint list. -/
+def cylRadius (c : Cyl A) : ℕ :=
+  c.foldr (fun p r => max p.1.natAbs r) 0
+
+/-- The largest coordinate of a table. -/
+def tableRadius (l : Table A) : ℕ :=
+  l.foldr (fun m r => max (cylRadius m.2) r) 0
+
+omit [DecidableEq A] in
+theorem cylMem_cons {p : ℤ × A} {c : Cyl A} {x : ℤ → A} :
+    cylMem (p :: c) x ↔ x p.1 = p.2 ∧ cylMem c x := by
+  simp [cylMem]
+
+theorem cylAt_window {x : ℤ → A} {K : ℕ} {c : Cyl A} (hc : cylRadius c ≤ K) :
+    cylAt K (window x K) c = decide (cylMem c x) := by
+  induction c with
+  | nil => simp [cylAt, cylMem]
+  | cons p c ih =>
+    have hp : p.1.natAbs ≤ K := (le_max_left _ _).trans hc
+    have hc' : cylRadius c ≤ K := (le_max_right _ _).trans hc
+    have hp' : |p.1| ≤ K := abs_le.2 ⟨by omega, by omega⟩
+    show (decide ((window x K)[(p.1 + (K : ℤ)).toNat]? = some p.2) && cylAt K (window x K) c) = _
+    rw [ih hc', window_getElem? x K hp']
+    simp [cylMem_cons]
+
+theorem zmod_two_ite_add (a b : Bool) :
+    ((if a = true then 1 else 0 : ZMod 2) + if b = true then 1 else 0) =
+      if xor a b = true then 1 else 0 := by
+  cases a <;> cases b <;> decide
+
+variable [TopologicalSpace A] [DiscreteTopology A] {X : Set (ℤ → A)}
+
+theorem cylInd_apply_decide (c : Cyl A) (x : ↥X) :
+    cylInd X c x = if decide (cylMem c x.1) = true then 1 else 0 := by
+  by_cases h : cylMem c x.1 <;> simp [cylInd_apply, h]
+
+/-- **The coefficient sum at `x` is the parity at the window of `x`.** -/
+theorem coeffFun_apply_eq (l : Table A) (j : ℤ) (x : ↥X) {K : ℕ} (hK : tableRadius l ≤ K) :
+    coeffFun X l j x = if windowParity K l j (window x.1 K) = true then 1 else 0 := by
+  induction l with
+  | nil => simp [coeffFun, windowParity]
+  | cons m l ih =>
+    have hm : cylRadius m.2 ≤ K := (le_max_left _ _).trans hK
+    have hl : tableRadius l ≤ K := (le_max_right _ _).trans hK
+    show (if m.1 = j then cylInd X m.2 else 0) x + coeffFun X l j x = _
+    rw [ih hl, windowParity_cons, cylAt_window hm]
+    by_cases hj : m.1 = j
+    · rw [if_pos hj, cylInd_apply_decide, decide_eq_true hj, Bool.true_and, zmod_two_ite_add]
+    · rw [if_neg hj, decide_eq_false hj, Bool.false_and, LocallyConstant.coe_zero, Pi.zero_apply,
+        zero_add]
+      cases windowParity K l j (window x.1 K) <;> rfl
+
+omit [TopologicalSpace A] [DiscreteTopology A] in
+theorem windowParity_of_not_mem {K : ℕ} {l : Table A} {j : ℤ} (hj : j ∉ l.map Prod.fst)
+    (v : List A) : windowParity K l j v = false := by
+  induction l with
+  | nil => rfl
+  | cons m l ih =>
+    have hm : m.1 ≠ j := fun e => hj (List.mem_cons.2 (Or.inl e.symm))
+    have hj' : j ∉ l.map Prod.fst := fun h => hj (List.mem_cons.2 (Or.inr h))
+    rw [windowParity_cons, ih hj', decide_eq_false hm, Bool.false_and]
+    rfl
+
+/-- **A table vanishes iff its parities vanish on the words of `L(X)`.** -/
+theorem eval_eq_zero_iff_language (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X) (T : ↥X ≃ₜ ↥X)
+    {L : List A} (hL : ∀ a, a ∈ L) (l : Table A) {K : ℕ} (hK : tableRadius l ≤ K) :
+    eval T l = 0 ↔ ∀ j ∈ l.map Prod.fst, ∀ v ∈ allWords L (2 * K + 1), v ∈ listLanguage X →
+      windowParity K l j v = false := by
+  rw [eval_eq_zero_iff]
+  constructor
+  · intro h j _ v hv hvL
+    obtain ⟨x, hx, rfl⟩ := exists_window_eq hX hvL ((mem_allWords hL).1 hv)
+    have h0 := h j ⟨x, hx⟩
+    rw [coeffFun_apply_eq l j ⟨x, hx⟩ hK] at h0
+    cases hb : windowParity K l j (window x K) with
+    | false => rfl
+    | true =>
+      rw [hb] at h0
+      exact absurd h0 (by decide)
+  · intro h j x
+    rw [coeffFun_apply_eq l j x hK]
+    by_cases hj : j ∈ l.map Prod.fst
+    · rw [h j hj _ ((mem_allWords hL).2 (length_window _ _)) (window_mem_listLanguage hX x.2 K)]
+      rfl
+    · rw [windowParity_of_not_mem hj]
+      rfl
+
+omit [DecidableEq A] [DiscreteTopology A] in
+theorem add_self (T : ↥X ≃ₜ ↥X) (a : ClopenCrossedProduct T (ZMod 2)) : a + a = 0 := by
+  have h2 : ∀ z : ZMod 2, z + z = 0 := by decide
+  refine SkewMonoidAlgebra.ext fun g => ?_
+  rw [SkewMonoidAlgebra.coeff_add, Finsupp.add_apply, SkewMonoidAlgebra.coeff_zero,
+    Finsupp.zero_apply]
+  apply (ClopenCoeff.of T (ZMod 2)).symm.injective
+  rw [map_add, map_zero]
+  ext x
+  simp only [LocallyConstant.coe_add, Pi.add_apply, LocallyConstant.coe_zero, Pi.zero_apply]
+  exact h2 _
+
+omit [DecidableEq A] [DiscreteTopology A] in
+theorem eq_iff_add_eq_zero (T : ↥X ≃ₜ ↥X) (a b : ClopenCrossedProduct T (ZMod 2)) :
+    a = b ↔ a + b = 0 := by
+  constructor
+  · rintro rfl
+    exact add_self T a
+  · intro h
+    calc a = a + (b + b) := by rw [add_self, add_zero]
+      _ = (a + b) + b := by rw [add_assoc]
+      _ = b := by rw [h, zero_add]
+
+omit [DecidableEq A] in
+theorem matEval_eq_one_iff (T : ↥X ≃ₜ ↥X) (M : Mat A) :
+    matEval T M = 1 ↔ ∀ p q : Fin 3, eval T (M p q ++ matOne p q) = 0 := by
+  constructor
+  · intro h p q
+    have hpq : eval T (M p q) = eval T (matOne p q) := by
+      rw [← matEval_apply T M, h, ← matEval_apply T matOne, matEval_matOne]
+    rw [eval_append, hpq, add_self]
+  · intro h
+    refine Matrix.ext fun p q => ?_
+    rw [matEval_apply, ← matEval_matOne T, matEval_apply]
+    exact (eq_iff_add_eq_zero T _ _).2 (by rw [← eval_append]; exact h p q)
+
+/-- **A matrix of tables is `I₃` iff the tables of its difference from `I₃` vanish on `L(X)`.** -/
+theorem matEval_eq_one_iff_language (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X) (T : ↥X ≃ₜ ↥X)
+    {L : List A} (hL : ∀ a, a ∈ L) (M : Mat A) {K : ℕ}
+    (hK : ∀ p q : Fin 3, tableRadius (M p q ++ matOne p q) ≤ K) :
+    matEval T M = 1 ↔ ∀ p q : Fin 3, ∀ j ∈ (M p q ++ matOne p q).map Prod.fst,
+      ∀ v ∈ allWords L (2 * K + 1), v ∈ listLanguage X →
+        windowParity K (M p q ++ matOne p q) j v = false := by
+  rw [matEval_eq_one_iff]
+  exact forall_congr' fun p => forall_congr' fun q =>
+    eval_eq_zero_iff_language hX T hL _ (hK p q)
+
+end Parity
+
+end CylinderTables
+end GroupApproximation
+
+#audit_axioms GroupApproximation.CylinderTables.exists_window_eq
+#audit_axioms GroupApproximation.CylinderTables.coeffFun_apply_eq
+#audit_axioms GroupApproximation.CylinderTables.eval_eq_zero_iff_language
+#audit_axioms GroupApproximation.CylinderTables.matEval_eq_one_iff_language
