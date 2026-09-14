@@ -1,0 +1,157 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDecision
+import GroupApproximation.Computability.OracleTruthTable
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# `L(X)` computes the word problem
+
+`simple_kazhdan_sofic_group.tex`, section "Word problems", corollary `cor:wp`, first paragraph of the
+proof:
+
+> Multiplying out a word in the generators in `LC(A^ℤ, F₂) ⋊ ℤ`, which maps onto `R`, gives a matrix
+> with entries `∑_j f_j u^j`, each `f_j` given by a table on the words of some length, using
+> `uf = (f∘T⁻¹)u`.  The word is trivial in `G_X` if and only if the tables of its difference from
+> `I₃` vanish on `L(X)`, so `L(X)` computes the word problem.
+
+`turingReducible_of_wordTables` is this reduction for any letters with primitive recursive
+coefficient tables: if a word `w` is trivial exactly when its multiplied-out matrix of tables
+evaluates to `I₃`, then the word problem is Turing reducible to the language of `X`.  The reduction
+is a truth-table reduction (`OracleTruthTable.turingReducible_of_truthTable`): the queries are the
+words of length `2K + 1`, and the answer is read off the table parities at the words in `L(X)`.
+-/
+
+namespace GroupApproximation
+namespace CylinderTables
+
+open Encodable SymbolicDynamics.FullShift
+
+variable {A : Type*} [Primcodable A] [DecidableEq A] {ι : Type*} [Primcodable ι]
+
+theorem tableRadius_le_matRadius (M : Mat A) (pq : Fin 3 × Fin 3) :
+    tableRadius (diffTable M pq) ≤ matRadius M := by
+  have key : ∀ l : List (Fin 3 × Fin 3), pq ∈ l →
+      tableRadius (diffTable M pq) ≤
+        l.foldr (fun pq' r => max (tableRadius (diffTable M pq')) r) 0 := by
+    intro l hl
+    induction l with
+    | nil => exact nomatch hl
+    | cons a l ih =>
+      rw [List.foldr_cons]
+      rcases List.mem_cons.1 hl with h | h
+      · rw [← h]
+        exact le_max_left _ _
+      · exact (ih h).trans (le_max_right _ _)
+  exact key positions (mem_positions pq)
+
+/-- **The window check.** -/
+theorem windowCheck_eq_true (K : ℕ) (M : Mat A) (v : List A) :
+    windowCheck K M v = true ↔
+      ∀ pq : Fin 3 × Fin 3, ∀ j ∈ (diffTable M pq).map Prod.fst,
+        windowParity K (diffTable M pq) j v = false := by
+  unfold windowCheck
+  rw [List.all_eq_true]
+  constructor
+  · intro h pq j hj
+    have h1 := List.all_eq_true.1 (h pq (mem_positions pq)) j hj
+    simpa using h1
+  · intro h pq _
+    refine List.all_eq_true.2 fun j hj => ?_
+    simp [h pq j hj]
+
+/-- **The decision reads the answers at the queried words.** -/
+theorem wordDecide_map_eq_true (L : List A) (tab : ι → (Fin 3 × Fin 3) × Table A)
+    (w : List (ι × Bool)) (φ : List A → ℕ) :
+    wordDecide L tab w ((wordWords L tab w).map φ) = true ↔
+      ∀ v ∈ wordWords L tab w, φ v = 1 → windowCheck (wordK tab w) (wordM tab w) v = true := by
+  unfold wordDecide
+  rw [List.all_eq_true]
+  constructor
+  · intro h v hv h1
+    obtain ⟨k, hk, hkv⟩ := List.getElem_of_mem hv
+    have h2 := h k (List.mem_range.2 hk)
+    have e1 : ((wordWords L tab w).map φ).getD k 0 = φ v := by
+      simp [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hk, hkv]
+    have e2 : (wordWords L tab w).getD k [] = v := by
+      simp [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hk, hkv]
+    rw [e1, e2, h1] at h2
+    simpa using h2
+  · intro h k hk
+    have hk' := List.mem_range.1 hk
+    have e1 : ((wordWords L tab w).map φ).getD k 0 = φ (wordWords L tab w)[k] := by
+      simp [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hk']
+    have e2 : (wordWords L tab w).getD k [] = (wordWords L tab w)[k] := by
+      simp [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hk']
+    rw [e1, e2]
+    by_cases h1 : φ (wordWords L tab w)[k] = 1
+    · simp [h (wordWords L tab w)[k] (List.getElem_mem hk') h1]
+    · simp [h1]
+
+open Classical in
+/-- **`L(X)` computes the word problem.**  For letters `ι` with primitive recursive coefficient
+tables `tab`, if a word is trivial exactly when its multiplied-out matrix of tables evaluates to `I₃`
+in `LC(X, F₂) ⋊ ℤ`, then the word problem is Turing reducible to the language of `X`. -/
+theorem turingReducible_of_wordTables [TopologicalSpace A] [DiscreteTopology A] [Fintype A]
+    {X : Set (ℤ → A)} (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X) (T : ↥X ≃ₜ ↥X)
+    {tab : ι → (Fin 3 × Fin 3) × Table A} (htab : Primrec tab)
+    (P : List (ι × Bool) → Prop) (hP : ∀ w, P w ↔ matEval T (wordM tab w) = 1)
+    {f g : ℕ →. ℕ}
+    (hf : ∀ n, f n = Part.some
+      (if ∃ w : List (ι × Bool), decode n = some w ∧ P w then 1 else 0))
+    (hg : ∀ n, g n = Part.some
+      (if ∃ v : List A, decode n = some v ∧ v ∈ listLanguage X then 1 else 0)) :
+    TuringReducible f g := by
+  obtain ⟨L, hL⟩ : ∃ L : List A, ∀ a, a ∈ L :=
+    ⟨Finset.univ.toList, fun a => Finset.mem_toList.2 (Finset.mem_univ a)⟩
+  let gt : ℕ → ℕ := fun n =>
+    if ∃ v : List A, decode n = some v ∧ v ∈ listLanguage X then 1 else 0
+  refine OracleTruthTable.turingReducible_of_truthTable (gt := gt) hg
+    (Q := fun n => ((decode n : Option (List (ι × Bool))).map (wordQueries L tab)).getD [])
+    (Primrec.option_getD.comp (Primrec.option_map Primrec.decode
+      ((primrec_wordQueries L htab).comp Primrec.snd).to₂) (Primrec.const []))
+    (D := fun n answers => ((decode n : Option (List (ι × Bool))).map
+      fun w => bif wordDecide L tab w answers then 1 else 0).getD 0)
+    ?_ fun n => ?_
+  · exact Primrec.option_getD.comp (Primrec.option_map (Primrec.decode.comp Primrec.fst)
+      (Primrec.cond ((primrec_wordDecide L htab).comp Primrec.snd (Primrec.snd.comp Primrec.fst))
+        (Primrec.const 1) (Primrec.const 0)).to₂) (Primrec.const 0)
+  rw [hf n]
+  congr 1
+  dsimp only
+  cases hd : (decode n : Option (List (ι × Bool))) with
+  | none => simp
+  | some w =>
+    show (if ∃ w' : List (ι × Bool), some w = some w' ∧ P w' then 1 else 0) =
+      (bif wordDecide L tab w ((wordQueries L tab w).map gt) then 1 else 0)
+    have hex : (∃ w' : List (ι × Bool), some w = some w' ∧ P w') ↔ P w :=
+      ⟨fun ⟨_, e, h⟩ => Option.some.inj e ▸ h, fun h => ⟨w, rfl, h⟩⟩
+    have hans : (wordQueries L tab w).map gt =
+        (wordWords L tab w).map fun v => if v ∈ listLanguage X then 1 else 0 := by
+      rw [wordQueries, List.map_map]
+      refine List.map_congr_left fun v _ => ?_
+      simp [gt, Encodable.encodek]
+    have hdec : wordDecide L tab w ((wordQueries L tab w).map gt) = true ↔ P w := by
+      rw [hans, wordDecide_map_eq_true, hP,
+        matEval_eq_one_iff_language hX T hL (wordM tab w)
+          (fun p q => tableRadius_le_matRadius (wordM tab w) (p, q))]
+      constructor
+      · intro h p q j hj v hv hvL
+        exact (windowCheck_eq_true _ _ v).1 (h v hv (by simp [hvL])) (p, q) j hj
+      · intro h v hv hvL
+        refine (windowCheck_eq_true _ _ v).2 fun pq j hj => h pq.1 pq.2 j hj v hv ?_
+        by_contra hn
+        simp [hn] at hvL
+    by_cases hw : P w
+    · rw [if_pos (hex.2 hw)]
+      simp [hdec.2 hw]
+    · rw [if_neg fun h => hw (hex.1 h)]
+      have hfalse : wordDecide L tab w ((wordQueries L tab w).map gt) = false := by
+        by_contra h
+        exact hw (hdec.1 (by simpa using h))
+      simp [hfalse]
+
+end CylinderTables
+end GroupApproximation
+
+#audit_axioms GroupApproximation.CylinderTables.windowCheck_eq_true
+#audit_axioms GroupApproximation.CylinderTables.wordDecide_map_eq_true
+#audit_axioms GroupApproximation.CylinderTables.turingReducible_of_wordTables
