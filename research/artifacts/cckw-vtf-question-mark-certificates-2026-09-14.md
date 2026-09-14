@@ -92,13 +92,14 @@ Lane `hl-hyperbolic-rf-2`. Computer-assisted, unreviewed.
 
 ## 5. Results
 
-### 5.1 Seventeen `?` groups are virtually torsion-free (certificates verified)
+### 5.1 Eighteen `?` groups are virtually torsion-free (certificates verified)
 
 All certificates print `CERTIFICATE VALID` with exit code 0 (`summary.txt`, section "verifier outputs").
 
 | type | group | quotients used | degree | md5 of certificate |
 |---|---|---|---|---|
 | (3,3,4) | `G_4^{14,14,48}` | LINS normal subgroup of index 5040; quotient `2.A_7` (GAP: `C2 . A7`) | 240 | `c8993d5290d10b063cdba611e3fe4971` |
+| (3,3,4) | `G_0^{16,16,48}` | `PSL(3,3)`, `A_9` (found by the 44 GB rerun) | 22 | `cd6bb7ad138297eee0d57a613a51b011` |
 | (3,3,4) | `G_0^{16,16,54}` | `PSL(3,3)`, `PSp(4,3)` | 53 | `e2c95f95f0a672e9ed14697eb9d23367` |
 | (3,3,4) | `G_0^{16,18,48}` | `PSL(3,3)`, `A_10` | 23 | `bc6c5da70abad18c3f69175f43aa8439` |
 | (3,3,4) | `G_0^{16,24,48}` | `A_9`, `PSp(6,2)` (one `PSp(6,2)` is injective alone) | 72 | `dea2d01734f56b5828e3d2bebf87000a` |
@@ -123,7 +124,7 @@ All certificates print `CERTIFICATE VALID` with exit code 0 (`summary.txt`, sect
 - **Most `?` entries decided here need no search beyond CCKW's own list.** A product of two or three of the
   simple quotients they list is already injective.
 
-### 5.2 The 57 undecided `?` groups (as of this version)
+### 5.2 The 56 undecided `?` groups (as of this version)
 
 `e` is the number of epimorphism classes onto listed simple quotients, and `K` the kernel-intersection
 orders from §3.2. When `e = 0`, `K` is the vertex orders.
@@ -131,7 +132,7 @@ orders from §3.2. When `e = 0`, `K` is the vertex orders.
 - **LINS column.** It gives the number `q` of nontrivial normal subgroups of index `<= 10^4` and their `K`.
   The LINS array covers only the (3,3,4) table, and `pending` means the task had not finished at this version.
 - **Incomplete rows.** The listed quotients were not all tested for four groups:
-  - `G_0^{16,16,48}` and `G_0^{48,48,48}` stopped at GAP's 12 GB workspace limit, and 44 GB reruns are queued;
+  - `G_0^{48,48,48}` stopped at GAP's 12 GB workspace limit, and a 44 GB rerun is queued (the 44 GB rerun of `G_0^{16,16,48}` decided it, §5.1);
   - `G_0^{16,26,40}` and `G_0^{26,40,48}` list `2F4(2)'`, which GAP's `SimpleGroup` cannot construct;
   - `G_0^{18,18,48}` was still running.
 
@@ -152,7 +153,6 @@ orders from §3.2. When `e = 0`, `K` is the vertex orders.
 | (3,3,4) | `G_0^{14,26,40}`, `G_4^{14,26,40}` | 0 | `[21,39,60]` | `q=0` |
 | (3,3,4) | `G_0^{14,26,48}`, `G_1^{14,26,48}`, `G_4^{14,26,48}`, `G_5^{14,26,48}` | 0 | `[21,39,72]` | `q=1`, `[7,13,24]` |
 | (3,3,4) | `G_0^{14,26,54}`, `G_2^{14,26,54}`, `G_4^{14,26,54}`, `G_6^{14,26,54}` | 0 | `[21,39,81]` | `q=1`, `[7,13,27]` |
-| (3,3,4) | `G_0^{16,16,48}` | incomplete | — | pending |
 | (3,3,4) | `G_0^{16,18,54}`, `G_2^{16,18,54}` | 7 | `[1,1,3]` | pending |
 | (3,3,4) | `G_0^{16,26,40}` | 1 (`PSL(2,169)`; `2F4(2)'` untested) | `[2,1,1]` | pending |
 | (3,3,4) | `G_0^{16,26,48}` | 1 | `[2,1,6]` | pending |

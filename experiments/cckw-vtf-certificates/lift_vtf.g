@@ -40,12 +40,12 @@ for cs in SPEC.covers do
   pi := NaturalHomomorphismByNormalSubgroup(H, ZH);
   if not IsPermGroup(Image(pi)) then pi := pi * IsomorphismPermGroup(Image(pi)); fi;
   S := Image(pi);
-  Print("  cover ", cs.name, " |H|=", Size(H), " |Z|=", Size(Z), " |H/Z|=", Size(S),
+  Print("  cover ", cs.name, " |H|=", Size(H), " |Z|=", Size(ZH), " |H/Z|=", Size(S),
         " setup time=", Runtime() - t0, "ms\n");
   t0 := Runtime();
   epis := GQuotients(Gfp, S);
   Print("    epimorphism classes onto H/Z: ", Length(epis), " time=", Runtime() - t0, "ms\n");
-  zs := Elements(Z);
+  zs := Elements(ZH);
   nlift := 0;
   for e in epis do
     img := List(GeneratorsOfGroup(Gfp), g -> Image(e, g));
