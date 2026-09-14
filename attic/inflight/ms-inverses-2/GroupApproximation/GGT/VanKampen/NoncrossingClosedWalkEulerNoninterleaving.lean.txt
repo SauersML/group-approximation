@@ -29,10 +29,11 @@ and reclosing its side gives a torus (`NoncrossingClosedWalkEuler`).  Its passag
 the reversal `alpha d` of a walk dart to its successor `next d`, are `{1,2}`, `{3,4}` and `{5,0}` at
 the one vertex, and they interleave in rotation order.
 
-* `RotationBetween M x y u`: rotating from `x`, the dart `u` comes before `y`.
-* `PassagesNoninterleaving M w`: for two distinct walk darts `d`, `d'` at one vertex, the endpoints
-  `alpha d'` and `next d'` of the second passage are both inside the sector of the first passage, or
-  both outside it.
+* `RotationBetween M x y z`: rotating from `x`, the dart `z` comes before `y`.
+* `PassagesNoninterleaving M w`: for two distinct positions `i`, `j` of the walk at one vertex, the
+  endpoints `alpha w[j]` and `w[j+1]` of the second passage are both inside the sector of the first
+  passage, or both outside it.  Positions are stated with `finRotate`, so no decidable equality on
+  darts is needed.
 * `IsNoncrossingClosedWalk.eulers_of_vertexCount_le`: the Euler equalities from the vertex bound.
 * `NoninterleavingVertexCountStatement` (named residual, not proved here): a noncrossing closed walk
   whose passages do not interleave has the vertex bound.  At a vertex, `k` non-crossing chords cut the
@@ -52,21 +53,21 @@ open Equiv Surgery.MapCollapse SimpleClosedWalkSides
 
 universe u
 
-/-- **A dart inside a rotation sector.**  Rotating from `x`, the dart `u` is reached after at least
+/-- **A dart inside a rotation sector.**  Rotating from `x`, the dart `z` is reached after at least
 one step and before `y`. -/
 def RotationBetween (M : CombMap.{u}) (x y z : M.Dart) : Prop :=
   ∃ a : ℕ, 0 < a ∧ (M.sigma ^ a) x = z ∧ ∀ b, 0 < b → b ≤ a → (M.sigma ^ b) x ≠ y
 
-open Classical in
-/-- **The passages of a walk do not interleave.**  The passage of a walk dart `d` is the chord from
-its reversal `alpha d` to its cyclic successor `next d`, at the vertex where `d` ends.  For distinct
-walk darts `d`, `d'` at one vertex, the endpoints of the passage of `d'` lie both inside the sector of
-the passage of `d` or both outside it. -/
+/-- **The passages of a walk do not interleave.**  The passage at position `i` is the chord from the
+reversal `alpha w[i]` of the walk dart to the walk dart `w[i+1]` after it (cyclically), at the vertex
+where `w[i]` ends.  For distinct positions `i`, `j` at one vertex, the endpoints of the passage at `j`
+lie both inside the sector of the passage at `i` or both outside it. -/
 def PassagesNoninterleaving (M : CombMap.{u}) (w : List M.Dart) : Prop :=
-  ∀ d (hd : d ∈ w) d' (hd' : d' ∈ w), d ≠ d' →
-    M.vertexOf (M.alpha d) = M.vertexOf (M.alpha d') →
-      (RotationBetween M (M.alpha d) (w.next d hd) (M.alpha d') ↔
-        RotationBetween M (M.alpha d) (w.next d hd) (w.next d' hd'))
+  ∀ i j : Fin w.length, i ≠ j →
+    M.vertexOf (M.alpha (w.get i)) = M.vertexOf (M.alpha (w.get j)) →
+      (RotationBetween M (M.alpha (w.get i)) (w.get (finRotate w.length i)) (M.alpha (w.get j)) ↔
+        RotationBetween M (M.alpha (w.get i)) (w.get (finRotate w.length i))
+          (w.get (finRotate w.length j)))
 
 namespace IsNoncrossingClosedWalk
 
