@@ -18,8 +18,15 @@ requires:
   - topological-full-group-images-in-el3-are-not-confined
   - cstar-simple-iff-amenable-subgroups-not-confined
   - nonamenable-rigid-stabilizers-give-cstar-simplicity
+  - subshift-el-groups-vanishing-l2-betti-and-bounded-cohomology
+  - no-amenable-normalish-subgroup-implies-cstar-simple
+  - subshift-elementary-group-conjugacy-degree-is-jump
+  - simple-kazhdan-lef-group-of-non-uniform-exponential-growth
+  - nonsofic-leavitt-el4-non-uniform-exponential-growth
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
 
 Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `subshift-elementary-groups-are-character-rigid` `subshift-elementary-groups-have-trivial-irs` `separable-factors-hold-countably-many-subshift-groups` `cut-stabilizer-subgroups-of-el3-are-not-confined` `elementary-root-subgroups-over-crossed-products-are-not-confined` `locally-constant-gl-n-subgroup-is-not-confined` `topological-full-group-images-in-el3-are-not-confined` `cstar-simple-iff-amenable-subgroups-not-confined` `nonamenable-rigid-stabilizers-give-cstar-simplicity`.
+
+Members added by sk-cairn-steward-2 (2026-09-13, second pass, sk landings to 22:34): `subshift-el-groups-vanishing-l2-betti-and-bounded-cohomology` `no-amenable-normalish-subgroup-implies-cstar-simple` `subshift-elementary-group-conjugacy-degree-is-jump` `simple-kazhdan-lef-group-of-non-uniform-exponential-growth` `nonsofic-leavitt-el4-non-uniform-exponential-growth`.

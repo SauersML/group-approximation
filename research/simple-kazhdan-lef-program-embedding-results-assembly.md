@@ -24,8 +24,12 @@ requires:
   - sofic-groups-embed-in-simple-kazhdan-linear-sofic-groups
   - lef-iff-subgroup-of-simple-kazhdan-finite-simple-limit
   - wreath-products-keep-the-abelianization-of-the-base
+  - lef-iff-subgroup-of-simple-kazhdan-all-approximants-expand
+  - erf-groups-have-decidable-simple-kazhdan-hosts
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
 
 Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `approximation-classes-without-simple-kazhdan-members` `simple-kazhdan-envelope-theorems-force-non-lef-hosts` `simple-kazhdan-lef-host-iff-lef-and-countably-many-types` `no-decidable-group-contains-every-fp-rf-group` `recursive-lef-growth-hosts-miss-some-fp-rf-group` `heisenberg-group-lies-in-no-z-subshift-elementary-group` `sofic-groups-embed-in-simple-kazhdan-linear-sofic-groups` `lef-iff-subgroup-of-simple-kazhdan-finite-simple-limit` `wreath-products-keep-the-abelianization-of-the-base`.
+
+Members added by sk-cairn-steward-2 (2026-09-13, second pass, sk landings to 22:34): `lef-iff-subgroup-of-simple-kazhdan-all-approximants-expand` `erf-groups-have-decidable-simple-kazhdan-hosts`.

@@ -7,7 +7,6 @@ target: simple-kazhdan-lef-program-open-problems
 requires:
   - lef-groups-have-lrf-minimal-topologically-free-actions
   - sofic-groups-embed-in-simple-kazhdan-sofic-groups
-  - erf-groups-have-decidable-simple-kazhdan-hosts
   - sofic-groups-have-measured-free-minimal-subshifts
   - free-minimal-subshifts-all-rf-iff-virtually-cyclic
   - free-minimal-subshift-el-groups-all-lef-iff-virtually-cyclic
@@ -27,9 +26,19 @@ requires:
   - operator-mf-groups-embed-in-simple-kazhdan-mf-groups
   - simple-ring-el3-lef-forces-lef-ring
   - subshift-elementary-group-reduced-cstar-is-not-mf
+  - fp-sofic-kazhdan-group-not-residually-finite
+  - infinite-simple-kazhdan-limit-of-alternating-groups
+  - subshift-group-finite-simple-shadows-are-ring-models
+  - every-subshift-elementary-group-non-uniform-growth
+  - topological-full-group-derived-uniform-exponential-growth
+  - property-t-factors-contain-weakly-dense-popa-algebras
 ---
 
 Assembly only: the root is the conjunction of the listed open claims. This route makes each of them reachable from a
 root, so the frontier report lists them as holes of this program.
 
 Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `accumulating-minimal-sets-el-restriction-kernel-elementary` `fp-simple-finite-group-models-reduce-to-alternating-constituents` `hyperlinear-groups-embed-in-simple-kazhdan-hyperlinear-groups` `operator-mf-groups-embed-in-simple-kazhdan-mf-groups` `simple-ring-el3-lef-forces-lef-ring` `subshift-elementary-group-reduced-cstar-is-not-mf`.
+
+Members added by sk-cairn-steward-2 (2026-09-13, second pass, sk landings to 22:34): `fp-sofic-kazhdan-group-not-residually-finite` `infinite-simple-kazhdan-limit-of-alternating-groups` `subshift-group-finite-simple-shadows-are-ring-models` `every-subshift-elementary-group-non-uniform-growth` `topological-full-group-derived-uniform-exponential-growth` `property-t-factors-contain-weakly-dense-popa-algebras`.
+
+`erf-groups-have-decidable-simple-kazhdan-hosts` moved to the embedding theme (sk-cairn-steward-2, 2026-09-13): sk-decidable-host established it through `erf-groups-decidable-hosts-via-half-line-proof`.

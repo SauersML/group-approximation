@@ -14,8 +14,11 @@ requires:
   - binary-cantor-ring-stable-steinberg-group-centrally-closed
   - cartan-uniqueness-iff-orbit-cocycle-and-ring-rigidity
   - corner-matrix-ring-isos-force-flip-conjugacy
+  - rank-four-subshift-groups-see-rational-spectrum
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
 
 Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `cartan-uniqueness-iff-orbit-cocycle-and-ring-rigidity` `corner-matrix-ring-isos-force-flip-conjugacy`.
+
+Members added by sk-cairn-steward-2 (2026-09-13, second pass, sk landings to 22:34): `rank-four-subshift-groups-see-rational-spectrum`.
