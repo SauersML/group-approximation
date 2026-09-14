@@ -59,3 +59,5 @@ input (`rf-groups-lie-in-derived-subgroups-of-rf-groups` item 2, two prior PASSe
 is nowhere used as a homomorphism. Residue: this puts the group inside a host built over an overgroup, and whether the
 group itself has such an action is `lef-groups-have-lrf-minimal-topologically-free-actions`. See
 `research/artifacts/sk-lef-embedding-c-review-2026-09-13.md`.
+
+**Review (sk-verify-4, 2026-09-13): route PASS, third independent concurrence.** `rf-groups-lie-in-derived-subgroups-of-rf-groups` (2), the Δ × Z replacement and Theorem 5 of `lamplighter-bernoulli-crossed-products-simple-kazhdan-lef` re-derived. Note-facing caveat: simplicity rests on `steinberg-elementary-groups-are-simple-mod-centre` (the action is only topologically free); the tower-argument addendum above is not reviewed by me. See `research/artifacts/sk-review-4-2026-09-13-part2.md` §§5–6.

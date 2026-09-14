@@ -39,3 +39,5 @@ effective = topologically free) all verified; the centre trivial over `F_2`; uni
 ultraproduct of `GL_(nN)(F_2)`, since a one-sided inverse in a finite ring is two-sided. Freeness genuinely fails (the
 constant configurations), so the residually finite barrier nodes do not fire. Novelty is the weak point, by the owner's
 own note: no literature search was run. See `research/artifacts/sk-lef-embedding-c-review-2026-09-13.md`.
+
+**Review (sk-verify-4, 2026-09-13): PASS, third independent concurrence.** Minimality, topological freeness and generation; ring simplicity and centre via dense free points; the affine model formula checked by left induction for the letters s and a; the conjugation relation and multiplicativity of π_n; (T), Steinberg simplicity, LEF through the ultraproduct, and the commutator embedding re-derived. See `research/artifacts/sk-review-4-2026-09-13-part2.md` §§1–4.
