@@ -1,0 +1,102 @@
+[
+ {
+  "vertex": "X_0=<a,b>",
+  "order": 343,
+  "edge_generators": [
+   "a",
+   "b"
+  ],
+  "order_of_generators": [
+   7,
+   7
+  ],
+  "derived_subgroup_order": 7,
+  "abelianization_order": 49,
+  "edge_generators_basis_of_abelianization": true,
+  "conjugacy_classes": 55,
+  "centralizer_orders_a": [
+   49,
+   49,
+   49,
+   49,
+   49,
+   49
+  ],
+  "centralizer_orders_b": [
+   49,
+   49,
+   49,
+   49,
+   49,
+   49
+  ],
+  "nonlinear_irreps_vanish_on_edge_powers": true
+ },
+ {
+  "vertex": "X_1=<c,b>",
+  "order": 2401,
+  "edge_generators": [
+   "c",
+   "b"
+  ],
+  "order_of_generators": [
+   7,
+   7
+  ],
+  "derived_subgroup_order": 49,
+  "abelianization_order": 49,
+  "edge_generators_basis_of_abelianization": true,
+  "conjugacy_classes": 97,
+  "centralizer_orders_c": [
+   343,
+   343,
+   343,
+   343,
+   343,
+   343
+  ],
+  "centralizer_orders_b": [
+   49,
+   49,
+   49,
+   49,
+   49,
+   49
+  ],
+  "nonlinear_irreps_vanish_on_edge_powers": false
+ },
+ {
+  "vertex": "X_2=<c,a>",
+  "order": 2401,
+  "edge_generators": [
+   "c",
+   "a"
+  ],
+  "order_of_generators": [
+   7,
+   7
+  ],
+  "derived_subgroup_order": 49,
+  "abelianization_order": 49,
+  "edge_generators_basis_of_abelianization": true,
+  "conjugacy_classes": 97,
+  "centralizer_orders_c": [
+   343,
+   343,
+   343,
+   343,
+   343,
+   343
+  ],
+  "centralizer_orders_a": [
+   49,
+   49,
+   49,
+   49,
+   49,
+   49
+  ],
+  "nonlinear_irreps_vanish_on_edge_powers": false
+ }
+]
+DONE

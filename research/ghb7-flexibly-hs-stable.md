@@ -93,5 +93,31 @@ The inputs to (EM) are genuine representations of three finite 7-groups, of orde
     - Standard facts, not re-read at source: Delorme–Guichardet and Lück additivity.
   - **So** no linear count of invariant fractions separates (EM) from its failure. An instability
     witness must be detected by finer data than the traces of the averaging projections.
-- **Exact gap.** (EM) for `U_3(7), U_4(7), U_4(7)`: a gluing statement for almost-matching genuine
-  representations, uniform in the dimension.
+- **One-edge reduction (2026-09-13, lane `hl-ghb7-edge-matching`).**
+  - **Vertex data** (`ghb7-triangle-vertex-groups-split-abelianizations`, exact computation through
+    `ψ`): `X_0` has order 343 with derived subgroup of order 7; `X_1, X_2` have order 2401 with
+    derived subgroups of order 49. Every abelianization is `(Z/7)^2` with the two edge generators as
+    a basis. Edge centralizers have order 49, except `c` in `X_1` and `X_2` (order 343).
+  - **Reduction** (`triangle-edge-matching-reduces-to-one-edge-holonomy`). Padding with `O(εd)`
+    linear characters equalizes the edge eigenvalue counts, and near-identity intertwiners then make
+    `b` and `a` agree exactly. So (EM) is equivalent to (HA): only the mismatch on `c` must be
+    absorbed. Recorded as OPEN `ghb7-one-edge-holonomy-absorption`, with route
+    `ghb7-stability-via-one-edge-holonomy` into this claim.
+  - **Direct-sum padding absorbs no first-order obstruction (heuristic, not landed as a claim).** The
+    equivariant cochain complex of a direct sum of `G`-modules is block diagonal. So a defect class
+    that is nonzero in `H^2(G; End ρ)` stays nonzero after adding a genuine summand. Absorption in
+    (HA), if it happens, must use the mixing that flexible compression allows, at scale
+    `((D−d)/d)^{1/2}`, rather than direct summands.
+  - **Twisted counts do not help either (standard facts, not re-read at source).** `G^ab = (Z/7)^3`,
+    the colimit of the vertex abelianizations. The invariant-fraction fence above applies verbatim to
+    `W ⊗ λ` for each of the 343 linear characters `λ`. So no linear count of isotypic fractions of
+    vertex and edge groups separates (EM) from its failure.
+  - **A refutation route (hypotheses not checked for `H`).** If some real degree-two class of the
+    congruence kernel `H` is realized by finite-dimensional projective representations whose
+    cocycles tend to `1`, the Ioana–Spaas–Wiersma mechanism used in
+    `rf-kazhdan-group-not-flexibly-hs-stable` would make `H` not flexibly stable. By descent `G`
+    would not be stable, and (HA) would fail. Whether such projective representations exist for `H`
+    is a profinite question about its degree-two classes.
+- **Exact gap.** (HA) for `GHB_2(7)` (`ghb7-one-edge-holonomy-absorption`): after `b` and `a` agree
+  exactly, remove the `c`-mismatch using the commutants of `ρ_0(b)` and `ρ_0(a)` plus `o(d)` flexible
+  padding, uniformly in the dimension.
