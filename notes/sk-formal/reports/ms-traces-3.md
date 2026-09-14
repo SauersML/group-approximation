@@ -1,48 +1,57 @@
-# ms-traces-3: the word-problem reduction WP(G_X) ≤_T L(X) in simple_kazhdan_sofic_group.tex
+# ms-traces-3: word-problem reduction and Turing antichain in simple_kazhdan_sofic_group.tex
 
-Lane `ms-traces-3`, reassigned by main (09-13 ~19:40). This file is written by ms-traces-3 only.
+Lane `ms-traces-3`, reassigned by main (09-13 ~19:40; antichain item added 09-14). This file is written by ms-traces-3 only.
 
-## Target
-- The piece (c) of corollary `cor:wp` in section "Word problems and factors" (origin tip 37551fd93, md5 b55c0d23b8c59e66d36df004a1df608b, cor:wp at l.444, proof at l.453+): "Multiplying out a word in the generators in LC(A^ℤ,F₂)⋊ℤ, which maps onto R, gives a matrix with entries Σ_j f_j u^j, each f_j given by a table on the words of some length, using uf = (f∘T⁻¹)u. The word is trivial in G_X if and only if the tables of its difference from I₃ vanish on L(X), so L(X) computes the word problem."
-- Census key of the second sentence: `5092adf162d8` (l.455, unassigned in `metadata/SK_SENTENCE_CENSUS.tsv`). I key rows only once the endpoint closes the Prop, and only after checking that the tip md5 equals the census's recorded md5.
-- Owner of the section and of the Prop spellings: skf-degrees (statements module `SimpleKazhdanSofic/WordProblemDegreeStatements`). Agreed spelling (09-13 ~19:45, skf-degrees reply): `PrintedWordProblemReducesToLanguage := ∀ A [TopologicalSpace A] [DiscreteTopology A] [Fintype A] [DecidableEq A] [Primcodable A] (S : Subshift A ℤ), TuringReducible (wordProblemOracle (genValue S)) (languageOracle S)`, with oracles over `Primcodable` codes.
+## Target at the tip
+- Census `metadata/SK_SENTENCE_CENSUS.tsv` is recorded at 696c4b602 (md5 0648e5f876e467e21ebf475e08b8ee92). The keys below are from it.
+- The tip moved to f34e9c0b1 (09-14 09:05, md5 c909343ec38f3d3e7976342073509639). The section is now "Word problems" and `cor:wp` is at l.461.
+- The (c) sentences survive at the tip. The antichain sentence was rewritten: "By a construction of Sacks, the Turing degrees contain an antichain of size continuum [Odifreddi, Chapter V], and the groups G_{X_α} with α of these degrees are as claimed."
+  - Its row waits for skf-census to regenerate at the tip.
+  - The carried content is unchanged; "By a construction of Sacks" is attribution, and the route is the perfect-tree finite-extension construction.
+- (c), l.507–512, keys `427203e368c1` and `5092adf162d8`:
+  > Multiplying out a word in the generators in LC(A^ℤ,F₂)⋊ℤ, which maps onto R, gives a matrix with entries Σ_j f_j u^j, each f_j given by a table on the words of some length, using uf = (f∘T⁻¹)u. The word is trivial in G_X if and only if the tables of its difference from I₃ vanish on L(X), so L(X) computes the word problem.
+- Antichain, l.532–534, key `540fcf55264f`:
+  > The Turing degrees contain an antichain of size continuum [Odifreddi, Chapter V], and the groups G_{X_α} with α of these degrees are as claimed.
+- Prop spellings are owned by skf-degrees, in `SimpleKazhdanSofic/WordProblemDegreeStatements` (on origin at 8be083fcd): `PrintedWordProblemReducesToLanguage` and `PrintedTuringAntichainContinuum`.
 
 ## Route
-- The printed route. A table is a finite list of cylinder monomials `1_c·u^j`, a syntactic element of LC(A^ℤ,F₂)⋊ℤ. `eval` reads it in LC(X,F₂)⋊ℤ for any shift-invariant X on which T acts as the shift, and that is the map onto R.
-- A word multiplies out to a 3×3 matrix of tables. It is trivial iff, for each position, the parities of the table of M − I₃ vanish at every word of length 2K+1 of L(X), where K bounds the table coordinates.
-- The reduction is a truth-table reduction. It queries the language oracle on all words of length 2K+1 and decides primitive recursively from the answers.
+- (c):
+  - A table is a finite list of cylinder monomials `1_c·u^j`. It is an element of LC(A^ℤ,F₂)⋊ℤ in cylinder coordinates, and `eval` reads it in LC(X,F₂)⋊ℤ, which is the map onto R.
+  - Table products are ring products, through uf = (f∘T⁻¹)u on cylinders.
+  - A word multiplies out to a 3×3 matrix of tables. In characteristic 2, e_ij(s)⁻¹ = e_ij(s).
+  - The word is trivial iff, at every position, the coefficient parities of the table of M − I₃ vanish at every word of L(X) of length 2K+1, where K bounds the table coordinates.
+  - The reduction is a truth-table reduction: it queries those words and decides primitive recursively.
+- Antichain, proved with no literature input:
+  - oracle programs mirroring `Nat.RecursiveIn`, and the use principle;
+  - the Kleene–Post finite-extension step;
+  - a perfect tree whose stages apply the step to every requirement (ρ, ρ', e) with ρ ≠ ρ' and e ≤ s;
+  - distinct branches give Turing-incomparable sets, and branches indexed by Set ℕ give continuum many.
 
 ## Modules
 | module | content | state |
 |---|---|---|
-| `Computability/OracleTruthTable` | `turingReducible_of_truthTable`: primrec queries plus primrec evaluation of total answers give `f ≤ᵀ g` | LANDED cc80bf23b (probe 0913-204151-7939 GREEN); consumed by skf-approximants |
-| `SimpleKazhdanSofic/CylinderTables` | cylinders, tables, `eval_tableMul`, `coeff_eval`, `eval_eq_zero_iff` | LANDED cc80bf23b (same probe) |
-| `SimpleKazhdanSofic/WordNormalForm` | matrices of tables, `matEval_matMul`, `matEval_elemMat` (the letter evaluates to `elementaryUnit`), `matEval_wordMat` | LANDED e2d31c60a (probe 0914-000334-50149 BUILT) |
-| `SimpleKazhdanSofic/WordProblemCriterion` | windows of X are the words of L(X); `eval_eq_zero_iff_language`, `matEval_eq_one_iff_language` | fixed, in co-probe |
-| `SimpleKazhdanSofic/WordTablePrimrec` | primrec integer `natAbs`/`toNat`, monomial, table and matrix products, `elemMat`, `wordMat` | in co-probe |
-| `SimpleKazhdanSofic/WordProblemDecision` | `wordQueries`, `wordDecide` and their primrec proofs | in co-probe |
-| `SimpleKazhdanSofic/WordProblemReducesToLanguage` | correctness and the general `turingReducible_of_wordTables` over any primrec letter tables | in co-probe |
-| `SimpleKazhdanSofic/WordProblemReducesToLanguageInstance` (planned) | `printedWordProblemReducesToLanguage : PrintedWordProblemReducesToLanguage`: coefficient tables of skf-degrees' `Coeff`, and `wordValue (genValue S) w = 1 ↔ matEval (wordM tab w) = 1` via `matEval_wordMat` and `e_ij(s)⁻¹ = e_ij(s)` in characteristic 2 | waits for the statements module on origin |
+| `Computability/OracleTruthTable` | `turingReducible_of_truthTable` | LANDED cc80bf23b |
+| `SimpleKazhdanSofic/CylinderTables` | `eval_tableMul`, `cylInd_mul_comap`, `coeff_eval`, `eval_eq_zero_iff` | LANDED cc80bf23b |
+| `SimpleKazhdanSofic/WordNormalForm` | `matEval_matMul`, `matEval_elemMat`, `matEval_wordMat` | LANDED e2d31c60a |
+| `SimpleKazhdanSofic/WordProblemCriterion` | windows of X are the words of L(X); `eval_eq_zero_iff_language`, `matEval_eq_one_iff_language` | LANDED e81f21d8c |
+| `SimpleKazhdanSofic/WordTablePrimrec` | primrec integer `natAbs`/`toNat`, table and matrix products, `wordMat` | LANDED 42d83a366 |
+| `SimpleKazhdanSofic/WordProblemDecision` | `wordQueries`, `wordDecide`, `allWords` and their primrec proofs | LANDED 723c0e2b7 |
+| `SimpleKazhdanSofic/WordProblemReducesToLanguage` | `turingReducible_of_wordTables` over any primrec letter tables | LANDED b3c6724cf |
+| `SimpleKazhdanSofic/WordProblemReducesToLanguageInstance` | `printedWordProblemReducesToLanguage : PrintedWordProblemReducesToLanguage` | LANDED 4e8b0ae09 (probe 0914-091446-34286 BUILT, closed audit) |
+| `Computability/OracleUse` | `OCode`, `exists_eval_eq`, `setOracle`, `mem_eval_of_agreeBelow` (the use principle) | LANDED 7a4df2737 |
+| `Computability/FiniteExtensionStep` | `Extends`, `Diag`, `Diag.mono`, `exists_diag` | LANDED 7a4df2737 |
+| `Computability/PerfectTreeAntichain` | `stage_diag`, `extends_branchSet`, `not_turingReducible_branchSet`, `branchSet_injective`, `exists_turing_antichain_continuum` | LANDED ca619e4d8 (same probe) |
+| `SimpleKazhdanSofic/TuringAntichain` | `printedTuringAntichainContinuum : PrintedTuringAntichainContinuum` | LANDED ca619e4d8 (same probe, closed audit) |
 
-Size so far is about 1150 lines over seven modules, within the estimate.
+All twelve modules are LANDED and queued in `wire-queue.txt`, about 2000 lines in total, within the estimate.
+
+## Census rows (`metadata/sk-census-rows/ms-traces-3.tsv`)
+- `427203e368c1` and `5092adf162d8` are formalized. Both sentences are verbatim at the tip f34e9c0b1.
+- `540fcf55264f` (antichain) waits: the tip rewrote the sentence, so its key is stale. The row lands once skf-census regenerates at the tip.
 
 ## Notes for the owner of the statements
-- At the tip, the generating set is S = {1, u, u⁻¹} ∪ {e_a : a ∈ A} ("The ring R = LC(X,F₂)⋊_T ℤ is generated by S = ..." and "So the e_ij(s) with s ∈ S generate G"). The statements draft on disk (md5 e91a35d5…) has `Coeff` = {u, u⁻¹, e_a} without 1.
-  - The degree of the word problem does not depend on the finite generating set, so this is a fidelity choice for skf-degrees.
-  - The tables handle 1 as `[(0, [])]` either way.
-
-## Status
-- Landed: OracleTruthTable, CylinderTables, WordNormalForm. Queued for wiring.
-- Open: the four modules in the co-probe, and the instantiation once the statements module is on origin.
-- 09-14 ~01:10: the co-probe did not run. GitHub DNS was down ("Could not resolve host: github.com"), and a job is waiting for it.
-
-## Next item (queued by main, 09-14): a continuum antichain of Turing degrees
-- Sentence, cor:wp proof at tip 696c4b602 (md5 0648e5f876e467e21ebf475e08b8ee92), l.532–534: "The Turing degrees contain an antichain of size continuum [Odifreddi, Chapter V], and the groups G_{X_α} with α of these degrees are as claimed." No literature input.
-- Prop: skf-degrees' `PrintedTuringAntichainContinuum := ∃ F : Set (Set ℕ), #F = 𝔠 ∧ ∀ B ∈ F, ∀ C ∈ F, charOracle B ≤ᵀ charOracle C → B = C`. It is in their statements module, and they own the spelling.
-- Ownership check (origin, shared tree, all lane `.files`, sk ledgers): no antichain, use principle or perfect-tree construction exists. skf-degrees' unlanded `ContinuumManyDegrees` has oracle codes `OCode` with `exists_eval_eq` and countable lower cones, and none of those three.
-- CLAIM, built after (c):
-  - S1 `GroupApproximation/Computability/OracleUse.lean`: oracle programs evaluated against total 0/1 oracles, and the use principle. A convergent computation queries finitely many oracle values, so every oracle agreeing on an initial segment gives the same value. It consumes skf-degrees' `OCode` once that lands, if its semantics fits; otherwise S1 carries its own codes with `Nat.RecursiveIn {g} f → ∃ c, eval c g = f`.
-  - S2 `GroupApproximation/Computability/FiniteExtensionStep.lean`: for a program e and incomparable strings σ ⊥ τ, there are extensions σ' ⊇ σ and τ' ⊇ τ such that program e with any oracle extending τ' fails to compute any set extending σ'. Either some input diverges on every extension, or a converged value disagrees. This is classical existence, not effective.
-  - S3 `GroupApproximation/Computability/PerfectTreeAntichain.lean`: a perfect tree built stage by stage over all pairs of nodes and programs. Distinct branches give sets that are Turing incomparable, and the injective branch map gives continuum many.
-  - S4 `GroupApproximation/Manuscript/SimpleKazhdanSofic/TuringAntichain.lean`: `printedTuringAntichainContinuum : PrintedTuringAntichainContinuum`, once the statements module is on origin.
-- Size estimate: 1500–2500 lines (skf-degrees' figure), each module ≤ ~600 lines. Main hears about it only on landing, a size blowup or a blocker.
+- The tip's generating set is S = {1, u, u⁻¹} ∪ {e_a} (l.243 at 37551fd93, unchanged in wording at the tip). The statements' `Coeff` omits 1.
+  - The degree of the word problem does not depend on the finite generating set.
+  - The tables handle 1 as `[(0, [])]`.
+- `OracleUse.OCode` duplicates the oracle codes in skf-degrees' unlanded `ContinuumManyDegrees`. It has the same constructors and semantics, and is now on origin; `ContinuumManyDegrees` can consume it.
+- Key `540fcf55264f` covers two clauses. This lane carries only the first (the antichain); the second ("the groups G_{X_α} … are as claimed") is skf-degrees' corollary assembly. Graded `partial` accordingly.
