@@ -135,6 +135,19 @@ literal step missing.
 - CLAIM model test: `GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketModel.lean`
 - CLAIM assembly of the pocket input over named residuals: `GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketAssembly.lean`
 - Both paths are free on origin, in the shared tree and in every `lanes/*.files` (checked ~20:35).
+- LANDED 96f7db6f6 `OsinUnboundSameCellPocketModel` (probe 0913-213347-38965 GREEN, BUILT), queued for wiring:
+  `not_pocketValue`, `not_oriented_three`, `free_three`, `pocket_three_value`.
+- 23:1x, after the coordinator restart: w1-binder-2's `BridgeComponentValue` is still not on origin.
+  - Its re-probe 0913-203707-58823 failed; the `.green` record says PROBE FAILED.
+  - The next re-probe hit the MSI outage, and w1-binder-2 has landed nothing since 20:42.
+  - So the assembly takes the cell-free branch as the named statement `SameCellPocketCellFreeValueStatement`, which is
+    `BridgeComponent.listVal_pocket_eq_one` verbatim, and imports origin modules only.
+  - Once that module lands, discharging the statement takes one line.
+- Assembly: `osinLemma94SameCellPocketInput_of_loopCut (hvalue) (hcut) : OsinLemma94SameCellPocketInput`.
+  - The empty pocket is trivial.
+  - Cell-free pocket: `hvalue`, with its side conditions from `OsinUnboundSameCellCycle.pow_inj`.
+  - Far-side relator cell: `hcut` (`SameCellPocketLoopCutStatement`), then `OsinLoopCut.false_of_below` fed by the
+    induction hypothesis, with `ρ` from `SameCellSimplePocket.exists_rho_large`.
 
 ## Progress log
 
