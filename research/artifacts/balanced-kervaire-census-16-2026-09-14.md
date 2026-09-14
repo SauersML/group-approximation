@@ -124,15 +124,62 @@ with `det = +-1` at total length at most 17:
 - The L = 16, 17 classes (`census_L1617.txt`, 157271 lines, md5
   `513a2eade167acfdf730d51631b51139`) are split into 40 round-robin chunks, 157271 lines in total.
 
-## 5. Jobs in flight (MSI, `/scratch.global/sauer354/hl-balanced-census-16/`)
+## 5. First enumerator on total lengths 16 and 17 (GAP `bal.g`, MSI array 778224; `classify16.778224.logs.txt`)
+
+All 40 tasks COMPLETED, and the results cover 157271 of 157271 classes. The slowest class took
+2050 ms (a `QUOTIENT`), the slowest `TRIVIAL` class 477 ms.
+
+| L | TRIVIAL | FINITE | QUOTIENT | OPEN | total |
+|---|---|---|---|---|---|
+| 16 | 29894 | 32, all of order 120 | 3 | 0 | 29929 |
+| 17 | 127182 | 142: 136 of order 120, 6 of order 336 | 17 | 1 | 127342 |
+
+There are no `SIMPLE` verdicts: every non-trivial class either closed or had a low-index
+subgroup first.
+
+**Order 336, L = 17 (six classes).**
+- 118818 `XXXXYYY XYXYXyxYxy`
+- 126302 `XXXYxYxY XYYXyxYxy`
+- 135712 `XXYXXyxy XYYYXyyyy`
+- 146063 `XXYxyxY XXXYYYxYxy`
+- 146102 `XXYxyxY XXXyxyyyxy`
+- 181306 `XYXyxy XXXXyyXyXyy`
+
+Since `H_1 = 0`, each is a perfect group of order 336. Observation, not a claim: presumably
+SL(2,7); none was identified.
+
+**`QUOTIENT` classes.** In each, coset enumeration overflowed 200000 cosets, but a proper subgroup
+of index 7 or 8 exists.
+- L = 16, 3 classes:
+  - index 7: 53164 `XXYxY XYXYxyyyyxY`;
+  - index 8: 54361 `XXYxyxY XXXXyxxxy`, 54445 `XXYxyxY XXyxYXYxy`.
+- L = 17, 17 classes:
+  - index 7: 126265 `XXXYxYxY XXYYYYYYY`, 142745 `XXYxY XXYxxYxyyyyy`,
+    142757 `XXYxY XXYxyxYxyyyy`, 142762 `XXYxY XXYxyyxYxyyy`, 142765 `XXYxY XXYxyyyxYxyy`,
+    142766 `XXYxY XXYxyyyyxYxy`, 142822 `XXYxY XYXYXYxyyyxY`, 142992 `XXYxY XYYYYYYxyXyy`;
+  - index 8: 123974 `XXXYXyXY XXXyxYYxy`, 127209 `XXXYxyxY XXXXYxxxY`,
+    127336 `XXXYxyxY XXYxyXyxY`, 137770 `XXYXyXY XXXXXXYYxy`, 146318 `XXYxyxY XYXYxyXyxY`,
+    179343 `XYXYXy XXXXXXYxYxy`, 179344 `XYXYXy XXXXXXYxyxY`, 181189 `XYXyxy XXXXXXyxyxy`,
+    181191 `XYXyxy XXXXXXyyxyy`.
+
+**The one `OPEN` class.** 137426, L = 17, `r1 = XXYXYxxy`, `r2 = XYYYYXyXy`. The exponent sums
+are (-1,-1) and (-3,-2), so `det = -1`. The first pass could not decide it: 200000 cosets, index
+at most 8 and 15 simple targets all failed. The follow-up `open16.sbatch` (MSI job 781682) is
+running on it.
+
+These verdicts come from the first enumerator only. The second enumerator (array 778225), the join
+and the certificate check (job 778226) are still running.
+
+## 6. Jobs in flight (MSI, `/scratch.global/sauer354/hl-balanced-census-16/`)
 
 A dependency chain, one modest job or a 4-task-throttled array at a time:
 1. 775702 `census17.sbatch`: done (section 4).
 2. 778223 `prep16.sbatch`: done (section 4).
-3. 778224 `classify16.sbatch` (array, after 778223): GAP `bal.g` on every L = 16, 17 class.
+3. 778224 `classify16.sbatch`: done (section 5).
 4. 778225 `tc16.sbatch` (array, after 778224): `tc_verify.py` on every L = 16, 17 class.
 5. 778226 `cert16.sbatch` (after 778225): merge, join, certificate export and letter-by-letter
    verification.
+6. 781682 `open16.sbatch` (after 778224): the follow-up on class 137426.
 
 Results, any certified extension of the length bound, and any `OPEN` candidates will be added in
 the next version of this artifact.

@@ -1,0 +1,200 @@
+=== logs/classify16.778224_0.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+29686f4cdd5d80685b7588a09491c584  chunks16/part_00
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_1.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+160756842c1bb97721ab7bd520d58738  chunks16/part_01
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_2.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+1c02c6c2cbd68e0a4013b18ac6a731fe  chunks16/part_02
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_3.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+dbd2634035e3142890879205c88215ea  chunks16/part_03
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_4.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+dcd727001e208b1f40edeff3b21a1fa7  chunks16/part_04
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_5.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+88cc49e13fb16ddd28f9a4be846b2af7  chunks16/part_05
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_6.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+5d84b6df93e3d8c8dae569d1bd034834  chunks16/part_06
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_7.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+8a4be92bb1b94a467293079e2518ef35  chunks16/part_07
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_8.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+426fa9d227b3ddefe3dfee10164e73dc  chunks16/part_08
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_9.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+1c6c3dfb3186ecbf026c8e60f54898a8  chunks16/part_09
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_10.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+c7c6f0e563733eff943c74feb14bcfe7  chunks16/part_10
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_11.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+5ee262f9ca7a5c78fc52749acc278181  chunks16/part_11
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_12.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+a61061cc5f23e450902d3fea77b941b0  chunks16/part_12
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_13.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+2ec108fe192584ef7258edba07d5ba00  chunks16/part_13
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_14.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+bb08c36fcc083a7f3b392e6b928da2f5  chunks16/part_14
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_15.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+8568cb71fff37004247aa4b8692d8d2e  chunks16/part_15
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_16.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+9a606e0779265b6f269bf3c29b26db6e  chunks16/part_16
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_17.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+bd589bc3653a631a5cc23b9525525925  chunks16/part_17
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_18.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+a529a90152a63e0752a1c34a8ca57dd6  chunks16/part_18
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_19.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+adfd083bebd65b30738135f293ec1771  chunks16/part_19
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_20.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+865cb3869d88a767199340b029abb7fd  chunks16/part_20
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_21.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+64e3d4b551997304ca88b195b7c962ed  chunks16/part_21
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_22.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+afd859ca799ecd79ef8b32bfcb47edc0  chunks16/part_22
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_23.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+e44e3b707f0fd550ac95ab9fdbe59d9f  chunks16/part_23
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_24.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+9db64a9997c224b9b8582e58bcd7d70d  chunks16/part_24
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_25.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+a1ecfab4ebc69856e07677b3091b592b  chunks16/part_25
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_26.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+85a7d4d5d75f4f910beb1a71dca7b9e2  chunks16/part_26
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_27.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+c941e6438d8b77eb646ab737eb6106c5  chunks16/part_27
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_28.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+60e9d3e95ea4f884c6eab36ceb9311c7  chunks16/part_28
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_29.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+b8c80e3519d1ee7b30751f49bc6b760b  chunks16/part_29
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_30.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+3fb284f19aac90d93651e076d6f4cae8  chunks16/part_30
+lines in results: 3932 / 3932
+DONE
+=== logs/classify16.778224_31.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+d51a40d74f42a9e1e17fa60dd1a9688c  chunks16/part_31
+lines in results: 3931 / 3931
+DONE
+=== logs/classify16.778224_32.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+c952287b9bfc5f5d6023fdebd364cf90  chunks16/part_32
+lines in results: 3931 / 3931
+DONE
+=== logs/classify16.778224_33.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+de0beb4ef9833d67c74c88f0df7b1e45  chunks16/part_33
+lines in results: 3931 / 3931
+DONE
+=== logs/classify16.778224_34.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+7989c4657467900fbba59476ae7c6308  chunks16/part_34
+lines in results: 3931 / 3931
+DONE
+=== logs/classify16.778224_35.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+4c0749aabd8b49572c84aeb61dec1ea2  chunks16/part_35
+lines in results: 3931 / 3931
+DONE
+=== logs/classify16.778224_36.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+7424753f41b72bcc00ac867052f59768  chunks16/part_36
+lines in results: 3931 / 3931
+DONE
+=== logs/classify16.778224_37.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+7db08df8d590ae409bdcfee99527a1fc  chunks16/part_37
+lines in results: 3931 / 3931
+DONE
+=== logs/classify16.778224_38.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+8b9ad54db17b2c0687cc86df9407d42e  chunks16/part_38
+lines in results: 3931 / 3931
+DONE
+=== logs/classify16.778224_39.log
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+6423558cd07f6df9cb4f60a8919b92ec  chunks16/part_39
+lines in results: 3931 / 3931
+DONE
