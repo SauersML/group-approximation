@@ -622,6 +622,10 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Theorem D (78 elementary matrices): second PASS-WITH-FIXES; band 7W, route fix applied; L ≥ max(32W,3). The note decision stays OUT (the proof is long).
     - Cornulier Q7 (dyadic [[T]]′ non-uniform growth; simple amenable example): PASS, conditional on the Sauer–Schesler import, whose node has no review line yet. The dedicated adversarial sk-verify-17 continues.
     - Also PASS: algebraic-putnam (all six); diagonal-recognition negation; Popa-corner and comb lemmas; two-ended lattice stabilizers; generic limits (Pavlov–Schmieding now with Nonlinearity 36(9) (2023) 4904–4953); F_q port (MUST text fix; stays OUT of the note at 9 pp).
+132. **sk-verify-17: SECOND INDEPENDENT PASS** for `simple-amenable-group-of-non-uniform-exponential-growth`, re-derived by hand.
+    - The Thue–Morse [[T]]′ is an infinite f.g. simple amenable group of non-uniform exponential growth. The Thue–Morse case needs no Mossé import; the general dyadic theorem PASSes conditional on Mossé.
+    - Checked at source: the Sauer–Schesler transfer; Cornulier Question 7, eng_cb, Théorème expo; Kourovka 21.117's printed answer (V only). Wording kept: "not found in a bounded search".
+    - VERIFIED, twice. It answers Cornulier's Bourbaki 1064 Question 7 negatively for dyadic substitution subshifts, and gives the first amenable entry for the simple-group case of 21.117(a) found in a bounded search. Off the note's theme; a separate short note is the user's call (standing decision: two papers).
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
