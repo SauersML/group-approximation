@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinGreendlingerResidualsV2Copy
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellSideRelatorCell
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellSideRelatorCellEuler
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -18,13 +19,14 @@ On the clean optimal family of `CellPocketCopyCleanBothOrdersStatement`:
 * `CellPocketWalkOuterOffSideSomeOrderStatement` selects a walk with the exterior off its side;
 * that walk is noncrossing by its orientation (`CellPocketWalkColour.walk_orient`,
   `ClosedWalkFaceColouring.isNoncrossingClosedWalk_of_orient`);
-* `CellPocketWalkEitherFollowsStatement` gives a following cycle, and the proved
-  `cellPocketKeptCellNoncrossing` puts a relator cell on its side;
+* `CellPocketWalkEulerStatement` gives the Euler equalities of its two reclosings, so
+  `PocketRegion.ofNoncrossingClosedWalkEuler` is a pocket region with that cycle, and
+  `exists_kept_of_cellPocketRegion_of_leastArea` puts a relator cell on its side;
 * `CellPocket.exists_cellPocketFaceSet_closedWalk_of_orient` and `CellPocketFaceSet.copyRegion_of_pinch`
   give the region data on a copy.
 
 The named residuals are `CellPocketCopyCleanBothOrdersStatement`,
-`CellPocketWalkOuterOffSideSomeOrderStatement`, `CellPocketWalkEitherFollowsStatement` and
+`CellPocketWalkOuterOffSideSomeOrderStatement`, `CellPocketWalkEulerStatement` and
 `CellPocketPinchPosStatement`.
 
 ## Manuscript status
@@ -48,7 +50,7 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
 pocket walk with the walk data of the order `(a, b)` and the closed-walk facts, whose side does not
 hold the exterior, gives the region data of the copy form at `0 < ε`. -/
 theorem copyRegion_of_offSideWalk
-    (hfollow : CellPocketWalkEitherFollowsStatement.{u, w, v})
+    (heuler : CellPocketWalkEulerStatement.{u, w, v})
     (hpinch : CellPocketPinchPosStatement.{u, w, v})
     {D : RelGenSet G Lambda} {eps : ℕ} {lambda c : ℝ} (heps : 0 < eps)
     {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
@@ -92,8 +94,11 @@ theorem copyRegion_of_offSideWalk
     ClosedWalkFaceColouring.isNoncrossingClosedWalk_of_orient S.diagram.planar hne hnodup halpha
       hchain hcloses horient
   have hlea' : S.diagram.LeastArea := S.equiv.leastArea hlea
-  have hkept := cellPocketKeptCellNoncrossing S ha hb hab hij hai hbi K hfirst hsecond h₁ hlea' hw
-    hoff (hfollow hlea S ha hb hab hij hai hbi hclean K hfirst hsecond h₁ h₂ hw)
+  obtain ⟨hinner, houter⟩ := heuler hlea S ha hb hab hij hai hbi hclean K hfirst hsecond h₁ h₂ hw
+  have hkept : ∃ kept : Fin S.diagram.rCellCount,
+      (cell S.diagram kept).face ∈ sideFaces S.diagram.toCombMap K.walk :=
+    S.exists_kept_of_cellPocketRegion_of_leastArea ha hb hab hij hai hbi K hfirst hsecond h₁ hlea'
+      (PocketRegion.ofNoncrossingClosedWalkEuler hw hoff hinner houter) rfl
   obtain ⟨F, -, hF⟩ := K.exists_cellPocketFaceSet_closedWalk_of_orient hne hnodup halpha hchain
     hcloses horient hoff hkept
   obtain ⟨X, ⟨E⟩, hlabel, hrest⟩ :=
@@ -106,7 +111,7 @@ side, and the region data from that walk. -/
 theorem multipleEdgePocketRegionCopyInput_of_pinchOrder
     (hcopy : CellPocketCopyCleanBothOrdersStatement.{u, w, v})
     (hout : CellPocketWalkOuterOffSideSomeOrderStatement.{u, w, v})
-    (hfollow : CellPocketWalkEitherFollowsStatement.{u, w, v})
+    (heuler : CellPocketWalkEulerStatement.{u, w, v})
     (hpinch : CellPocketPinchPosStatement.{u, w, v})
     {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} (heps : 0 < eps) :
     MultipleEdgePocketRegionCopyInput.{u, w, v} D lambda c eps W := by
@@ -126,9 +131,9 @@ theorem multipleEdgePocketRegionCopyInput_of_pinchOrder
     (S'.pairwise b' hb' a' ha' hab'.symm) hclean₂
   rcases hout S'.toRealizedSectionFamily ha' hb' hab' hij' hai' hbi' K₁ K₂ hf₁ hs₁ hA₁ hB₁ hne₁
       hch₁ hcl₁ hnd₁ hal₁ hf₂ hs₂ hA₂ hB₂ hne₂ hch₂ hcl₂ hnd₂ hal₂ with hoff | hoff
-  · exact copyRegion_of_offSideWalk hfollow hpinch heps hlea S' ha' hb' hab' hij' hai' hbi'
+  · exact copyRegion_of_offSideWalk heuler hpinch heps hlea S' ha' hb' hab' hij' hai' hbi'
       hclean₁ K₁ hf₁ hs₁ hA₁ hB₁ hne₁ hch₁ hcl₁ hnd₁ hal₁ hoff
-  · exact copyRegion_of_offSideWalk hfollow hpinch heps hlea S' hb' ha' hab'.symm hij' hbi' hai'
+  · exact copyRegion_of_offSideWalk heuler hpinch heps hlea S' hb' ha' hab'.symm hij' hbi' hai'
       hclean₂ K₂ hf₂ hs₂ hA₂ hB₂ hne₂ hch₂ hcl₂ hnd₂ hal₂ hoff
 
 end Order
@@ -137,12 +142,12 @@ end Order
 theorem osinMultipleEdgePocketRegionCopySection_of_pinchOrder
     (hcopy : CellPocketCopyCleanBothOrdersStatement.{u, w, v})
     (hout : CellPocketWalkOuterOffSideSomeOrderStatement.{u, w, v})
-    (hfollow : CellPocketWalkEitherFollowsStatement.{u, w, v})
+    (heuler : CellPocketWalkEulerStatement.{u, w, v})
     (hpinch : CellPocketPinchPosStatement.{u, w, v}) :
     OsinMultipleEdgePocketRegionCopySectionStatement.{u, w, v} := by
   intro _ _ _ _ _ _ _ _ _ _ _ _ _
   exact ⟨1, fun _ heps => ⟨1, Nat.one_pos, fun _ _ _ _ =>
-    multipleEdgePocketRegionCopyInput_of_pinchOrder hcopy hout hfollow hpinch heps⟩⟩
+    multipleEdgePocketRegionCopyInput_of_pinchOrder hcopy hout heuler hpinch heps⟩⟩
 
 /-- **Osin's Lemma 4.4 at least-area diagrams, with binder 5 through the chosen order**: the waist of
 `_of_residualsV2CopySection`, with binder 5 from four named residuals through
@@ -153,13 +158,13 @@ theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopyOrder
     (htwogon : OsinTwoGonHoldsSectionStatement.{u, w, v})
     (hcopy : CellPocketCopyCleanBothOrdersStatement.{u, w, v})
     (hout : CellPocketWalkOuterOffSideSomeOrderStatement.{u, w, v})
-    (hfollow : CellPocketWalkEitherFollowsStatement.{u, w, v})
+    (heuler : CellPocketWalkEulerStatement.{u, w, v})
     (hcellPinch : CellPocketPinchPosStatement.{u, w, v})
     (hfaces : OsinSectionPocketFaceSetSectionStatement.{u, w, v})
     (hpinch : PocketPinchLabelledPosStatement.{u, w, v}) :
     RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
   relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopySection hcount hrcell htwogon
-    (osinMultipleEdgePocketRegionCopySection_of_pinchOrder hcopy hout hfollow hcellPinch) hfaces
+    (osinMultipleEdgePocketRegionCopySection_of_pinchOrder hcopy hout heuler hcellPinch) hfaces
     hpinch
 
 end GroupApproximation.GGT.VanKampen
