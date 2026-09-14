@@ -3,12 +3,19 @@ rg: 2
 id: higman-group-algebra-not-stably-finite
 kind: claim
 title: Some matrix ring over a modular group algebra of Higman's group has a one-sided inverse that is not two-sided
+refuted_by:
+  - higman-group-algebras-embed-in-division-rings
 artifacts:
   - research/artifacts/higman-group-gottschalk-host-2026-09-12.md
+  - research/artifacts/gk3-nonrf-hosts-2026-09-14.md
 ---
 
-**OPEN.** Let `H = <a,b,c,d | b^a=b^2, c^b=c^2, d^c=d^2, a^d=a^2>`. For some prime `p` and some `n >= 1`
-there are `A, B in M_n(F_p[H])` with `BA = I_n != AB`.
+**REFUTED** by `higman-group-algebras-embed-in-division-rings` (gk3-nonrf-hosts, 2026-09-14), which is not yet
+independently re-derived. For every prime `p` and `n >= 1`, `M_n(F_p[H])` lies in a matrix ring over a division
+ring, so it is directly finite.
+
+The statement was: let `H = <a,b,c,d | b^a=b^2, c^b=c^2, d^c=d^2, a^d=a^2>`; for some prime `p` and some
+`n >= 1` there are `A, B in M_n(F_p[H])` with `BA = I_n != AB`.
 
 By `higman-stable-finiteness-failure-gives-nonsurjunctivity` this refutes Gottschalk's conjecture on `H`.
 
@@ -31,3 +38,10 @@ By `higman-stable-finiteness-failure-gives-nonsurjunctivity` this refutes Gottsc
   `D_1, D_2` here. The known division embedding of `k[H]` (Fisher--Sanchez-Peralta 3.14) is in characteristic
   zero only. `H` is perfect, so it is not locally indicable, and the Hughes-free theory does not apply to `H`
   itself.
+* **The uniqueness half, resolved (gk3-nonrf-hosts, 2026-09-14).**
+  - `higman-bs-amalgam-has-hughes-free-division-rings`: `G_1 = K ⋊ BS(1,2)`, where `K` is the kernel of `c -> 1`
+    and is locally free. So `K` has a Hughes-free division ring over every division ring, and by
+    Fisher--Sanchez-Peralta `cor:HF_fi` so does `G_1`, in every characteristic.
+  - Both closures of `F_p[F]` are then Hughes-free, hence equal. The characteristic-free graph-of-rings corollary
+    (`fsp-graph-of-rings-and-linnell-extension-imports`, item 6) embeds `F_p[H]` in a division ring.
+  - Artifact: `research/artifacts/gk3-nonrf-hosts-2026-09-14.md`.

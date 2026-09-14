@@ -39,9 +39,12 @@ close up in the cycle `a -> b -> c -> d -> a` that kills finite quotients.
   single copying map gives a strict automaton.
 * **Linear case (artifact Section 3).** Over one track, unique products (imported from left-orderability, not
   re-read) make `F_p[H]` a domain, so linear automata are surjunctive. Over several tracks the question is
-  `higman-group-algebra-not-stably-finite` (route `higman-stable-finiteness-failure-gives-nonsurjunctivity`),
-  which is open. The known division-ring embedding is in characteristic zero only; a characteristic-`p` embedding
-  through a Cohn coproduct of vertex skew fields stops at identifying the two division closures of `F_p[<a,c>]`.
+  `higman-group-algebra-not-stably-finite` (route `higman-stable-finiteness-failure-gives-nonsurjunctivity`).
+  The earlier characteristic-`p` attempt stopped at identifying the two division closures of `F_p[<a,c>]`.
+  - **Dead in every characteristic (gk3-nonrf-hosts, 2026-09-14).** `higman-group-algebras-embed-in-division-rings`
+    embeds `k[H]` in a division ring for every division ring `k`. So every injective linear automaton over a
+    finite-field alphabet `(F_q^n)^H` is surjective, and a strict automaton on `H` must be nonlinear.
+  - Artifact: `research/artifacts/gk3-nonrf-hosts-2026-09-14.md`.
 * **Girth and Sidon memories (artifact Section 5).** `higman-group-has-girth-five-in-its-standard-generators`:
   no nontrivial relation of length at most 4, so every subset of `{1,a,b,c,d}` is Sidon, and binary unbalanced
   rules on it are never injective (`binary-unbalanced-rules-on-sidon-memory-are-not-pre-injective`). The natural
