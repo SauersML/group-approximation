@@ -1038,6 +1038,21 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Arzhantseva: VERIFIED in the Springer chapter PDF. The question is on p.11 §3; Def. 9 and Thm 11 are on pp.12–13. Bibitem fix → "Trends Math. \textbf{1}", cited as `\cite[\S3]{Arzhantseva}`.
     - Ozawa p.527: UNVERIFIABLE at the journal (World Scientific PDF blocked by Cloudflare from MSI). The remark is in e-print §7 after Theorem 7.4, so `\cite[p.~527]{Ozawa}` → `\cite[\S7]{Ozawa}`. Proposition 7.1 is kept.
     - All three went to sk-editor-8 for rev5c.
+186. **REV5 LANDED 911b7b3f4a** (998 lines, 11 pp, md5 f85f6a3a5386ab7fecc52faa835ae1b1), onto 42a95d13d's blob.
+    - Compiled by main on MSI (TL2025, pdflatex ×3): 0 errors, 0 overfull, 2 underfull (bibitems), 0 undefined; PDF md5 556b1ba5…. The local copy is updated.
+    - Main reviewed the full rev5b→rev5c diff and changed one sentence: "is exactly right" → "cannot be dropped", per sk-verify-23 W1.
+    - Printed results:
+      - every rev4.5 result;
+      - the new Sharpness over Z iff (reviewed: sk-verify-23 P2, Cairn `crossed-product-el-kazhdan-iff-finite-field-and-subshift`);
+      - Lemmas A/B/C as citable statements.
+    - Questions item 4 still asks "at least strongly orbit equivalent?", which is now answered in Cairn. It is fixed in rev5.1 once sk-rigidity-section reports.
+    - The SK census is regenerated once on MSI (launched sk-census-regen).
+187. **sk-rigidity-merge (82694a2809): the rigidity theorem is ESTABLISHED in Cairn.**
+    - `subshift-el3-isomorphisms-are-standard-over-f2` and `subshift-el3-f2-isomorphism-forces-strong-orbit-equivalence` are established. Fixes A1–A3, C1–C4 and W1–W5 are merged verbatim.
+    - New open node: `subshift-el3-group-isomorphism-forces-flip-conjugacy`. `subshift-group-factors-determine-subshift-groups` is wired to the program open problems.
+    - Part 1 §4–5 is marked superseded.
+    - Left for main: the note root and the note open-questions conjunction (it still lists the SOE node). Update after rev5.1.
+    - No MSI cairn check yet; sk-cairn-steward-6's run covers it.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
