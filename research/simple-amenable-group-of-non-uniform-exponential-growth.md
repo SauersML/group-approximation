@@ -17,3 +17,5 @@ distinct_from:
 **Novelty (bounded).** Three web searches and a grep of main found no amenable simple example and no growth-rate result for derived full groups.
 
 Route: `simple-amenable-non-uniform-growth-from-thue-morse`.
+
+**Review (sk-verify-16, 2026-09-13): PASS**, conditional on `dyadic-substitution-derived-full-groups-non-uniform-growth` (PASS, same review) and the Matui and Juschenko–Monod imports. Thue–Morse satisfies the hypotheses, and the example is simple, f.g., amenable and infinite. See `research/artifacts/sk-verify-16-2026-09-13-part3.md` §3.

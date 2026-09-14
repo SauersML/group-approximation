@@ -23,3 +23,5 @@ artifacts:
 - The cyclic case recovers finite order for elements all of whose powers have bounded width. The no-distortion theorem proves more for single elements.
 
 **Proof:** `bounded-width-subgroups-of-subshift-gl-locally-finite-proof`.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived: the faithful banded representation, invariant windows U_t of dimension ≤ m(2p+1), the embedding in ∏GL(U_t), and finitely many normal subgroups of bounded index in F_k. The model tests are correct. See `research/artifacts/sk-verify-16-2026-09-13-part3.md` §6.

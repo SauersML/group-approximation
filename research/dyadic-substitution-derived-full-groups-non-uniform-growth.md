@@ -23,3 +23,5 @@ distinct_from:
 - **Growth.** Balls of radius `≤ 2^⌊n/2⌋/3` have `≤ exp(Cℓ^β)` elements, `β < 1`.
 
 Route: `dyadic-substitution-derived-full-groups-non-uniform-growth-proof`.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** An independent re-derivation of the tower model, the shift pairs [s_y, L_(y y′)], and generation W_n = [[T]]′: the fibre and linking steps, the Boolean closure of 𝔅 with [(1 2 3),(3 4 5)] = (1 4 3), twisted 3-cycles, and good σ_U via the Cornulier Lemme eng_cb. Also the commuting-conjugates lemma, the normal form and counting, and ω = 1. The inputs are checked at source: Cornulier arXiv:2002.09342 l.166/216/576–583/780 and Sauer–Schesler arXiv:2605.30163 lem:separation, lem:commuting-conjugates, lem:normal-form, lem:count-p1..p4 and l.1392. Conditional on the imports named in the route. See `research/artifacts/sk-verify-16-2026-09-13-part3.md` §§1–2.

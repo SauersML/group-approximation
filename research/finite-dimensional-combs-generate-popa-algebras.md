@@ -29,3 +29,5 @@ Two constraints apply in a property (T) group factor `L(Γ)` with Kazhdan pair `
 - **UHF `M_{2^∞}`:** take `A_i = M_{2^i}` and `e_i = 1_{M_{2^i}} ⊗ f ∈ M_{2^i} ⊗ M_2 = A_{i+1}`, with `f` a rank-one projection. `e_iA_ie_i ≅ M_{2^i}`, `e_j(x⊗1)e_j = x ⊗ f′ ≠ 0` for `x ≠ 0`, and `e_i` is full. `A` is a Popa algebra, as expected.
 - **T1's algebra fails:** the corners `q_j` of `separable-ii1-factors-have-weakly-dense-full-free-group-cstar` reduce the generators exactly but are not in the algebra. Adding them would make them central, not full, so there is no comb. That algebra is not simple, consistent with the criterion.
 - **`A = C ⊕ C`,** with `A_i = A` and `e_i = (1,0)`: (C1) holds, but (C2) fails for `x = (0,1)` (`e_jxe_j = 0`) and (C3) fails too. `A` is not simple. Step 3 of the proof uses both hypotheses.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived: e_jxe_j is a unital *-homomorphism on A_i (RFD, hence QD, passing to the limit); local quantization with B = e_iA_ie_i; simplicity via J ∩ A_i ≠ 0, the simple tooth algebra and fullness. The model tests are correct. See `research/artifacts/sk-verify-16-2026-09-13-part3.md` §8.

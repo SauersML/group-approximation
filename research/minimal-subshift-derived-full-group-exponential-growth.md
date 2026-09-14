@@ -10,3 +10,5 @@ title: "Matui: for an infinite minimal subshift, every subgroup of [[φ]] contai
 Source: Matui (Cornulier's reference [Ma2]), as stated and proved in Y. Cornulier, Séminaire Bourbaki 1064, arXiv:2002.09342, §`sgl`.
 
 Route: `minimal-subshift-derived-full-group-exponential-growth-citation`.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** l.166 and l.780 of bou1064.tex are verbatim. An infinite minimal subshift is expansive, hence not an odometer, as Théorème expo requires. See `research/artifacts/sk-verify-16-2026-09-13-part3.md` §5.

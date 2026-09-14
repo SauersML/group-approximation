@@ -24,3 +24,5 @@ artifacts:
 **What it changes.** The single-end Tate lattice space of `subshift-elementary-groups-are-exact` has non-amenable stabilizers. Using both ends at once makes all stabilizers amenable, as for `SL_3(F_2[u^{±1}])` acting on two Bruhat–Tits buildings. The residue ring `B` is infinite, so these lattice spaces have infinite valence. Exactness of `G_X` still needs an amenable action on a compactification, or finite decomposition complexity of a fibering over them; that part is open.
 
 **Proof:** `subshift-el3-two-ended-lattice-stabilizers-proof`.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived: the right action on lattices, one-end stabilizer GL_3(B[u;α]) ⊇ SL_3(F_2[u]) (non-amenable), and width ≤ 2n from both ends, so local finiteness follows by the bounded-width theorem. See `research/artifacts/sk-verify-16-2026-09-13-part3.md` §7.
