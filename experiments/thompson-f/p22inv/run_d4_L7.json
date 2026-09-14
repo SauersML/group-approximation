@@ -1,0 +1,104 @@
+{
+ "formula_check": true,
+ "formula_counterexample": null,
+ "orders": {
+  "lex": {
+   "first_fail": {
+    "m": [
+     0
+    ],
+    "private": 1
+   },
+   "min_private": [
+    1,
+    [
+     0
+    ]
+   ]
+  },
+  "revlex": {
+   "first_fail": {
+    "m": [
+     0
+    ],
+    "private": 1
+   },
+   "min_private": [
+    1,
+    [
+     0
+    ]
+   ]
+  },
+  "sum_lex": {
+   "first_fail": {
+    "m": [
+     0
+    ],
+    "private": 1
+   },
+   "min_private": [
+    1,
+    [
+     0
+    ]
+   ]
+  },
+  "sum_revlex": {
+   "first_fail": {
+    "m": [
+     0
+    ],
+    "private": 1
+   },
+   "min_private": [
+    1,
+    [
+     0
+    ]
+   ]
+  },
+  "colex_neg": {
+   "first_fail": {
+    "m": [
+     4
+    ],
+    "private": 1
+   },
+   "min_private": [
+    1,
+    [
+     4
+    ]
+   ]
+  },
+  "lex_neg": {
+   "first_fail": {
+    "m": [
+     4
+    ],
+    "private": 1
+   },
+   "min_private": [
+    1,
+    [
+     4
+    ]
+   ]
+  },
+  "sum_neg_lex": {
+   "first_fail": {
+    "m": [
+     4
+    ],
+    "private": 1
+   },
+   "min_private": [
+    1,
+    [
+     4
+    ]
+   ]
+  }
+ }
+}
