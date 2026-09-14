@@ -410,6 +410,7 @@ if __name__ == "__main__":
                 stats["ok"] += 1; out.write(json.dumps({"t": t, "g": gi, "code": code, "rels": rels, "cert": cert})+"\n")
             else:
                 stats["stuck"] += 1; out.write(json.dumps({"t": t, "g": gi, "code": code, "rels": rels, "status": "stuck"})+"\n")
+        out.close()
         print(json.dumps(stats))
     elif mode == "rescue":              # rescue <stuck jsonl glob> <out jsonl>: other trees, then A_5 images
         import glob
@@ -436,6 +437,7 @@ if __name__ == "__main__":
                         out.write(json.dumps({"t": t, "g": gi, "code": code, "rels": rels, "status": "open"})+"\n")
                         stats["open"] += 1
                 out.flush()
+        out.close()
         print(json.dumps(stats))
     elif mode == "rescue2":             # rescue2 <open jsonl glob> <out jsonl>: backtracking on every tree, then coset enumeration
         import glob
@@ -461,4 +463,5 @@ if __name__ == "__main__":
                                    "perm": {str(k): v for k, v in res[1].items()}}; stats["pi1_finite_nontrivial"] += 1
                     else: rec_out = dict(d, status="tc-check-failed"); stats["tc_check_failed"] += 1
                 out.write(json.dumps(rec_out) + "\n"); out.flush()
+        out.close()
         print(json.dumps(stats))
