@@ -10,6 +10,7 @@ distinct_from:
   sofic-universal-envelope-forces-non-lef-simple-kazhdan: that says a universal sofic host theorem costs a non-LEF sofic simple Kazhdan group; this says no such group comes from the permanence closure.
 artifacts:
   - research/artifacts/sk-sofic-host-hamming-2026-09-13-part1.md
+  - research/artifacts/sk-verify-14-2026-09-13-part6.md
 ---
 
 **ESTABLISHED (unreviewed).** Let `𝒫` be the smallest class of groups that contains every amenable group and every LEF
@@ -51,3 +52,10 @@ Then every finitely generated Kazhdan subgroup of a member of `𝒫` is LEF.
   approximations, and amenable-by-sofic extensions. The artifact §4–§5 treats these.
 
 Route: `kazhdan-groups-in-sofic-permanence-closure-are-lef-proof`.
+
+**Review (sk-verify-14, 2026-09-13): PASS.** Re-derived the induction over the closure:
+- finite extensions of LEF groups, through the Kaloujnine–Krasner embedding;
+- property FA for (O5);
+- openness of (T) plus closedness of LEF for (O6).
+
+The model test `BS(2,3)` shows the Kazhdan hypothesis is necessary. See `research/artifacts/sk-verify-14-2026-09-13-part6.md` §3.

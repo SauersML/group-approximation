@@ -9,6 +9,7 @@ distinct_from:
   fp-sofic-kazhdan-group-not-residually-finite: that is the open existence question of Alekseev--Thom Open problem 6.1; this shows its witnesses lie outside every permanence closure of this shape.
 artifacts:
   - research/artifacts/sk-fp-sofic-host-status-2026-09-13.md
+  - research/artifacts/sk-verify-14-2026-09-13-part6.md
 ---
 
 **ESTABLISHED (unreviewed).** Let `𝒫` be the smallest class of groups that contains every group
@@ -70,3 +71,10 @@ initially subamenable Kazhdan group is necessarily residually finite."
 - No novelty beyond assembling it is claimed. The bounded literature check is in the artifact.
 
 Proof: `lea-permanence-closure-fp-kazhdan-rf-proof`.
+
+**Review (sk-verify-14, 2026-09-13): PASS.** Re-derived:
+- the base case: a finite presentation turns an LEA local embedding into an amenable quotient, which (T) makes finite;
+- the lexicographic induction on `(α, k)` over finite product families, through (P1)–(P5);
+- the Sharpness example: Deligne's triple cover in the finite-central closure.
+
+See `research/artifacts/sk-verify-14-2026-09-13-part6.md` §1.

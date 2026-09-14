@@ -6,6 +6,8 @@ title: A finitely presented simple sofic elementary group over a simple ring ans
 target: fp-sofic-kazhdan-group-not-residually-finite
 requires:
   - sofic-fp-simple-kazhdan-group-from-fp-simple-ring
+artifacts:
+  - research/artifacts/sk-verify-14-2026-09-13-part6.md
 ---
 
 The required claim gives `S = EL_n(R)/Z(EL_n(R))` finitely presented, simple and sofic, for a
@@ -15,3 +17,5 @@ finitely presented infinite simple unital ring `R` and `n >= 3`.
 - An infinite simple group is not residually finite.
 
 So `S` witnesses the target.
+
+**Review (sk-verify-14, 2026-09-13): PASS as a one-step implication.** `S` is infinite because `e_12(r)` is central only for `r = 0`, and Kazhdan as a quotient of `EL_n(R)`. See `research/artifacts/sk-verify-14-2026-09-13-part6.md` §2.

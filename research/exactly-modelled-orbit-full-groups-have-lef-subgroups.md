@@ -11,6 +11,7 @@ distinct_from:
   residually-finite-minimal-actions-have-lef-full-groups: that imports Xin Ma's topological theorem for minimal topologically free actions of residually finite groups; this is a measure-theoretic criterion through exact models, with LEF acting groups and measurable pieces allowed.
 artifacts:
   - research/artifacts/sk-sofic-host-hamming-2026-09-13-part1.md
+  - research/artifacts/sk-verify-14-2026-09-13-part6.md
 ---
 
 **ESTABLISHED (unreviewed).**
@@ -49,3 +50,12 @@ Kazhdan group obtained this way needs a non-amenable, non-LEF sofic acting group
 - **Essential freeness is used.** The injectivity step reads `{c_g ≠ e}` as the moved set.
 
 Route: `exactly-modelled-orbit-full-groups-have-lef-subgroups-proof`.
+
+**Review (sk-verify-14, 2026-09-13): PASS.** Re-derived:
+- `W_𝒜` is a group, by the cocycle identity;
+- `ĝ` is a permutation;
+- exact multiplicativity on `B_r`;
+- injectivity, from essential freeness and the fixed-point bound;
+- instance 1 (profinite actions) and instance 2 (Bernoulli shifts of LEF groups, with exact counts `|A|^(−|W|)`).
+
+Instance 3 (dual actions of `G_X`) was checked in outline. See `research/artifacts/sk-verify-14-2026-09-13-part6.md` §4.
