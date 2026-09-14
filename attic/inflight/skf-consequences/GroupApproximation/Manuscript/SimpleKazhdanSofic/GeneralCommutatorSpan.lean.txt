@@ -199,8 +199,8 @@ theorem generalCommutatorWitness
           mat g⁻¹ *
           (1 - Matrix.single i j (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV))) -
         1 = _
-    rw [h2]
-    noncomm_ring
+    rw [h2, add_mul, one_mul, mul_sub, mul_one]
+    abel
   have hk' : mat ⁅g, elGen i j hij
         (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV))⁆⁻¹ - 1 =
       Matrix.single i j (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV)) -
@@ -231,8 +231,8 @@ theorem generalCommutatorWitness
             (1 - Matrix.single i j (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV))) *
             mat g⁻¹) := by
       noncomm_ring
-    rw [h3, h1]
-    noncomm_ring
+    rw [h3, h1, add_mul, one_mul, mul_sub, mul_one]
+    abel
   refine ⟨V, hV, B,
     ⁅g, elGen i j hij (SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV))⁆, hVne, hB1,
     hdisj, hkK, hk1, fun p q => ⟨?_, ?_⟩⟩
