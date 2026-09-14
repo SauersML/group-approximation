@@ -317,3 +317,16 @@ Design:
   - ms-compress-2's `OsinUnboundSameCellPocketAssembly` is on origin (bb887b17d, probe 0914-002811-94162 GREEN). The
     statement's spelling matches the closure.
   - The closing module is probing.
+- **CLOSED 09-14 08:3x: `SameCellPocketCellFreeValueStatement`**, by `sameCellPocketCellFreeValue` in the new module
+  `Estimating/OsinUnboundSameCellPocketCellFree.lean`, **LANDED dc9addc9d**, wire-queued.
+  - Probe 0914-083201-34888 GREEN: BUILT, empty error index, no `sorryAx`, standard axioms.
+  - The first post-reboot probe (0914-083024-22420) only replayed a cached artifact, with no BUILT line and so no
+    evidence. A docstring edit that names the discharged binder forced a real build.
+  - The endpoint discharges the `hvalue` binder of ms-compress-2's `osinLemma94SameCellPocketInput_of_loopCut`, so
+    `OsinLemma94SameCellPocketInput` rests only on `SameCellPocketLoopCutStatement`.
+- **Reboot recovery (08:3x).** `/private/tmp` was wiped and the infra rebuilt; this lane's clone is now `lix-j`.
+  - All lane paths were re-registered in `.files`.
+  - `BridgeComponentValue` was already on origin (48c0972d3, landed on green evidence before the reboot), so it was not
+    re-landed.
+  - Six landed modules not imported from the root were re-queued: `OsinPocketCellWalkChain`, `OsinPocketCellCopyWalk`,
+    `SurgeryCellEdgeThickening`, `SurgeryCellEdgeSideThickening`, `OsinPocketCellCopyClean`, `BridgeComponentValue`.
