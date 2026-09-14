@@ -1,0 +1,194 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDegreeStatements
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianLanguageCriterion
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Queries for the Sturmian reductions
+
+Support for `simple_kazhdan_sofic_group.tex` (origin tip 696c4b602), proof of `cor:wp`, second
+paragraph: "... and `α` computes `L(X_α)`. Such a word has `⌊θ + mα⌋` ones, within `1` of `mα`, so
+`L(X_α)` computes `α`."
+
+The criteria of `SturmianLanguageCriterion` speak of words `Fin n → Bool`; the oracles of
+`WordProblemDegreeStatements` speak of codes of lists. This module restates both criteria for
+lists, and provides the primitive recursive objects the truth-table reductions query over:
+* `prefixOnes v k`: the number of ones among the first `k` letters of `v`;
+* `allWords b`: all words of length `b`;
+* `pairsUpTo m`: all pairs `(k, l)` with `k, l ≤ m`;
+* `foldl_answers`: a left fold over a list and its answers computes `List.all`.
+-/
+
+namespace GroupApproximation
+namespace SimpleKazhdanSofic
+namespace SturmianQueries
+
+open SymbolicDynamics.FullShift
+
+/-- The number of ones among the first `k` letters of a list. -/
+def prefixOnes (v : List Bool) (k : ℕ) : ℕ :=
+  ((List.range k).map fun j => cond (v.getD j false) 1 0).sum
+
+theorem prefixOnes_succ (v : List Bool) (k : ℕ) :
+    prefixOnes v (k + 1) = prefixOnes v k + cond (v.getD k false) 1 0 := by
+  simp [prefixOnes, List.range_succ, List.sum_append]
+
+theorem prefixOnes_mono (v : List Bool) : Monotone (prefixOnes v) :=
+  monotone_nat_of_le_succ fun k => by
+    rw [prefixOnes_succ]
+    exact Nat.le_add_right _ _
+
+theorem getD_eq_getElem' (v : List Bool) {j : ℕ} (h : j < v.length) : v.getD j false = v[j] := by
+  simp [List.getD, List.getElem?_eq_getElem h]
+
+/-- The prefix counts of a word agree with those of any list carrying the same letters. -/
+theorem wordOnes_eq_prefixOnes {n : ℕ} (w : Fin n → Bool) (v : List Bool)
+    (hv : ∀ j (h : j < n), v.getD j false = w ⟨j, h⟩) (hlen : v.length = n) (k : ℕ) :
+    wordOnes w k = (prefixOnes v k : ℤ) := by
+  induction k with
+  | zero => simp [wordOnes, prefixOnes]
+  | succ k ih =>
+    rw [prefixOnes_succ, Nat.cast_add, ← ih]
+    unfold wordOnes
+    rw [Finset.sum_range_succ]
+    congr 1
+    by_cases h : k < n
+    · rw [dif_pos h, hv k h]
+      cases w ⟨k, h⟩ <;> simp
+    · rw [dif_neg h]
+      simp [List.getD, show v.length ≤ k by omega]
+
+theorem mem_wordGraph_language_iff {A : Type} (X : Set (ℤ → A)) {n : ℕ} (w : Fin n → A) :
+    w ∈ WordGraph.language X n ↔ ∃ x ∈ X, ∀ j (h : j < n), x j = w ⟨j, h⟩ := by
+  simp [WordGraph.language, WordGraph.word, funext_iff, Fin.forall_iff]
+
+theorem mem_language_iff {A : Type} [TopologicalSpace A] (S : Subshift A ℤ) (v : List A) :
+    v ∈ language S ↔ ∃ x ∈ S.carrier, ∀ j (h : j < v.length), x j = v[j] :=
+  mem_wordGraph_language_iff S.carrier (fun j : Fin v.length => v.get j)
+
+/-- All words of length `b`. -/
+def allWords : ℕ → List (List Bool)
+  | 0 => [[]]
+  | b + 1 => (allWords b).flatMap fun w => [false :: w, true :: w]
+
+theorem mem_allWords {b : ℕ} {w : List Bool} : w ∈ allWords b ↔ w.length = b := by
+  induction b generalizing w with
+  | zero => cases w <;> simp [allWords]
+  | succ b ih =>
+    cases w with
+    | nil => simp [allWords]
+    | cons x w =>
+      simp only [allWords, List.mem_flatMap, List.mem_cons, List.mem_nil_iff, or_false,
+        List.cons.injEq, List.length_cons, Nat.add_right_cancel_iff]
+      constructor
+      · rintro ⟨u, hu, ⟨-, rfl⟩ | ⟨-, rfl⟩⟩ <;> exact ih.1 hu
+      · intro h
+        exact ⟨w, ih.2 h, by cases x <;> simp⟩
+
+/-- All pairs `(k, l)` with `k, l ≤ m`. -/
+def pairsUpTo (m : ℕ) : List (ℕ × ℕ) :=
+  (List.range (m + 1)).flatMap fun k => (List.range (m + 1)).map fun l => (k, l)
+
+theorem mem_pairsUpTo {m : ℕ} {p : ℕ × ℕ} : p ∈ pairsUpTo m ↔ p.1 ≤ m ∧ p.2 ≤ m := by
+  obtain ⟨k, l⟩ := p
+  simp [pairsUpTo, List.mem_flatMap, Nat.lt_succ_iff]
+
+/-- A left fold that pairs each element with the next answer computes `List.all`. -/
+theorem foldl_answers {β : Type*} (P : β → ℕ → Bool) (g : β → ℕ) (l : List β) (acc : Bool)
+    (rest : List ℕ) :
+    l.foldl (fun s p => (s.1 && P p (s.2.head?.getD 0), s.2.tail)) (acc, l.map g ++ rest) =
+      (acc && l.all fun p => P p (g p), rest) := by
+  induction l generalizing acc with
+  | nil => simp
+  | cons p l ih =>
+    simp only [List.foldl_cons, List.map_cons, List.cons_append, List.head?_cons,
+      Option.getD_some, List.tail_cons, ih, List.all_cons, Bool.and_assoc]
+
+/-- **Criterion for the slope, over lists.**  For irrational `α ∈ (0,1)` and `b ≥ 1`, `a < bα`
+exactly when every word of length `b` of `X_α` has at least `a` ones. -/
+theorem natCast_lt_mul_iff_allWords (α : ℝ) (hα : Irrational α) (hα0 : 0 < α) (hα1 : α < 1)
+    (a : ℕ) {b : ℕ} (hb : 0 < b) :
+    (a : ℝ) < (b : ℝ) * α ↔
+      ∀ w ∈ allWords b, w ∈ language (sturmianSubshift α) → a ≤ prefixOnes w b := by
+  have key := intCast_lt_mul_iff_forall_mem_language α hα hα0 hα1 (a : ℤ) hb
+  rw [Int.cast_natCast] at key
+  rw [key]
+  constructor
+  · intro h w hw hwl
+    rw [mem_allWords] at hw
+    obtain ⟨x, hx, hxw⟩ := (mem_language_iff _ w).1 hwl
+    have hmem : (fun j : Fin b => w[j.1]'(hw ▸ j.2)) ∈
+        WordGraph.language (sturmianSubshift α).carrier b :=
+      (mem_wordGraph_language_iff _ _).2 ⟨x, hx, fun j h => hxw j (hw ▸ h)⟩
+    have h1 := h _ hmem
+    rw [wordOnes_eq_prefixOnes _ w (fun j h => getD_eq_getElem' w (hw ▸ h)) hw] at h1
+    exact_mod_cast h1
+  · intro h w' hw'
+    obtain ⟨x, hx, hxw⟩ := (mem_wordGraph_language_iff _ _).1 hw'
+    have hlen : (List.ofFn w').length = b := List.length_ofFn
+    have hget : ∀ j (hj : j < b), (List.ofFn w').getD j false = w' ⟨j, hj⟩ := fun j hj => by
+      rw [getD_eq_getElem' _ (hlen ▸ hj), List.getElem_ofFn]
+    have hmem : List.ofFn w' ∈ language (sturmianSubshift α) :=
+      (mem_language_iff _ _).2 ⟨x, hx, fun j hj => by
+        rw [List.getElem_ofFn]
+        exact hxw j (hlen ▸ hj)⟩
+    have h1 := h _ (mem_allWords.2 hlen) hmem
+    rw [wordOnes_eq_prefixOnes w' (List.ofFn w') hget hlen]
+    exact_mod_cast h1
+
+/-- **Criterion for the language, over lists.**  For `α ∈ (0,1)`, a list `v` is a word of `X_α`
+exactly when `s_k - s_l - 1 < (k - l)α` for all `k, l ≤ |v|`, with `s` the prefix counts. -/
+theorem mem_language_sturmian_iff_pairs (α : ℝ) (hα0 : 0 < α) (hα1 : α < 1) (v : List Bool) :
+    v ∈ language (sturmianSubshift α) ↔
+      ∀ k l : ℕ, k ≤ v.length → l ≤ v.length →
+        (prefixOnes v k : ℝ) - prefixOnes v l - 1 < ((k : ℝ) - l) * α := by
+  have key := mem_language_sturmianSubshift_iff_compare α hα0 hα1
+    (fun j : Fin v.length => v.get j)
+  have hb : ∀ k, wordOnes (fun j : Fin v.length => v.get j) k = (prefixOnes v k : ℤ) :=
+    wordOnes_eq_prefixOnes _ v (fun j h => getD_eq_getElem' v h) rfl
+  simp only [hb, Int.cast_natCast] at key
+  exact key
+
+theorem primrec_prefixOnes : Primrec₂ prefixOnes := by
+  have hg : Primrec₂ fun (p : List Bool × ℕ) (j : ℕ) => cond (p.1.getD j false) 1 0 :=
+    Primrec.cond ((Primrec.list_getD false).comp (Primrec.fst.comp Primrec.fst) Primrec.snd)
+      (Primrec.const 1) (Primrec.const 0)
+  have hsum : Primrec₂ fun (_ : List Bool × ℕ) (q : ℕ × ℕ) => q.1 + q.2 :=
+    Primrec.nat_add.comp (Primrec.fst.comp Primrec.snd) (Primrec.snd.comp Primrec.snd)
+  exact (Primrec.list_foldr (Primrec.list_map (Primrec.list_range.comp Primrec.snd) hg)
+    (Primrec.const 0) hsum).of_eq fun _ => rfl
+
+theorem allWords_eq_rec (b : ℕ) :
+    allWords b = Nat.rec (motive := fun _ => List (List Bool)) [[]]
+      (fun _ IH => IH.flatMap fun w => [false :: w, true :: w]) b := by
+  induction b with
+  | zero => rfl
+  | succ b ih => exact congrArg (fun s : List (List Bool) => s.flatMap
+      fun w => [false :: w, true :: w]) ih
+
+theorem primrec_allWords : Primrec allWords := by
+  have hstep : Primrec₂ fun (_ : ℕ × (ℕ × List (List Bool))) (w : List Bool) =>
+      [false :: w, true :: w] :=
+    Primrec.list_cons.comp (Primrec.list_cons.comp (Primrec.const false) Primrec.snd)
+      (Primrec.list_cons.comp (Primrec.list_cons.comp (Primrec.const true) Primrec.snd)
+        (Primrec.const []))
+  have hh : Primrec₂ fun (_ : ℕ) (q : ℕ × List (List Bool)) =>
+      q.2.flatMap fun w => [false :: w, true :: w] :=
+    Primrec.list_flatMap (Primrec.snd.comp Primrec.snd) hstep
+  exact (Primrec.nat_rec' Primrec.id (Primrec.const [[]]) hh).of_eq fun b =>
+    (allWords_eq_rec b).symm
+
+theorem primrec_pairsUpTo : Primrec pairsUpTo := by
+  have hin : Primrec₂ fun (m : ℕ) (k : ℕ) => (List.range (m + 1)).map fun l => (k, l) :=
+    Primrec.list_map (Primrec.list_range.comp (Primrec.succ.comp Primrec.fst))
+      (Primrec.pair (Primrec.snd.comp Primrec.fst) Primrec.snd)
+  exact (Primrec.list_flatMap (Primrec.list_range.comp Primrec.succ) hin).of_eq fun _ => rfl
+
+#audit_axioms natCast_lt_mul_iff_allWords
+#audit_axioms mem_language_sturmian_iff_pairs
+#audit_axioms primrec_prefixOnes
+#audit_axioms primrec_allWords
+#audit_axioms primrec_pairsUpTo
+
+end SturmianQueries
+end SimpleKazhdanSofic
+end GroupApproximation
