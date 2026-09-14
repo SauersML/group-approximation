@@ -1,0 +1,132 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellSides
+import GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellPocket
+import GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundSameCellCycle
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellSimplePocket
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixO52LeastArea
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The same-cell pocket value clause from the cell-free value and the pocket loop cut
+
+Osin (math/0411039v3, §9), proof of Lemma 9.4.  `OsinLemma94SameCellPocketInput` takes a dart `d` of
+a relator cell `i` whose reverse also lies on cell `i`, oriented so that its start reaches the
+exterior without crossing its edge, and concludes that the cell word strictly between `d` and
+`α d` reads `1`.  This module proves it from two named statements.
+
+* An empty pocket (`m = 0`) reads `1`.
+* If no relator cell other than cell `i` has a dart on the far side of the edge, the pocket is
+  cell-free and reads `1` (`SameCellPocketCellFreeValueStatement`).  That is the statement of
+  w1-binder-2's `BridgeComponent.listVal_pocket_eq_one` (`BridgeComponentValue`, not yet on origin).
+* Otherwise `SameCellPocketLoopCutStatement` gives a loop cut of `Δ`: the far component is a
+  least-area diagram `Ξ` with fewer relator cells, whose boundary word is the pocket word of cell
+  `i` (`OsinLoopCut.ofTwoPartBoundary`, with an empty side).  Clause (b) of Lemma 9.7 below `Δ`
+  refutes it (`OsinLoopCut.false_of_below`), once `ρ` meets the width budget
+  (`SameCellSimplePocket.exists_rho_large`).
+
+The side conditions of the cell-free statement come from the traversal of cell `i`: fewer than `n`
+face steps are distinct (`OsinUnboundSameCellCycle.pow_inj`), so no step before `m + 1` returns to
+`d` or reaches `α d`.
+
+`Estimating/OsinUnboundSameCellPocketModel.lean` is the model test.  The combinatorial clauses force
+nothing, and the orientation clause is load-bearing.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, Hull's small cancellation theorem, through Osin's
+Lemma 9.4); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded
+
+/-- **A cell-free same-cell pocket reads one.**  The statement of
+`BridgeComponent.listVal_pocket_eq_one`.  Let `a` be a dart off the exterior, oriented toward the
+exterior, with its reverse on its own face at `m + 1` face steps (`m > 0`) and at no earlier step.  If
+no relator cell other than the face of `a` has a dart joined to `α a` by moves that avoid the edge,
+the face walk `f a, …, fᵐ a` reads one. -/
+def SameCellPocketCellFreeValueStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (X : DiscDiagram.{u, w, v} W) (a : X.toCombMap.Dart),
+    X.toCombMap.faceOf a = X.toCombMap.faceOf (X.toCombMap.alpha a) →
+    X.toCombMap.faceOf a ≠ X.outerFace →
+    AvoidEdgeStep.Oriented X.toCombMap X.outerFace a →
+    ∀ m : ℕ, 0 < m → (X.toCombMap.facePerm ^ (m + 1)) a = X.toCombMap.alpha a →
+      (∀ t, t < m + 1 → (X.toCombMap.facePerm ^ (t + 1)) a ≠ a) →
+      (∀ t, t < m → (X.toCombMap.facePerm ^ (t + 1)) a ≠ X.toCombMap.alpha a) →
+      (∀ C ∈ X.relatorCells, C.face ≠ X.toCombMap.faceOf a →
+        ∀ x, X.toCombMap.faceOf x = C.face →
+          ¬ Relation.EqvGen (AvoidEdgeStep X.toCombMap a) x (X.toCombMap.alpha a)) →
+      RelLetter.listVal (dartWord X
+        ((List.range m).map fun t => (X.toCombMap.facePerm ^ (t + 1)) a)) = 1
+
+/-- **The loop cut of a same-cell pocket holding a relator cell.**  Under `C(ε, μ, λ, c, ρ)`, let `Δ`
+be least area and `d` a dart of cell `i` whose reverse lies on cell `i`, oriented toward the
+exterior.  If a relator cell other than cell `i` has a dart joined to `α d` by moves that avoid the
+edge of `d`, then `Δ` has a loop cut: the far component, bounded by the pocket word. -/
+def SameCellPocketLoopCutStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda)
+    (lambda c mu : ℝ) (eps rho : ℕ) (W : Set (List (RelLetter G Lambda))),
+    OsinCCondition D W eps mu lambda c rho →
+    ∀ Delta : DiscDiagram.{u, w, v} W, Delta.LeastArea →
+      ∀ (i : Fin Delta.rCellCount) (d : Delta.toCombMap.Dart),
+        d ∈ cellDarts Delta i →
+        Delta.toCombMap.faceOf (Delta.toCombMap.alpha d) = (cell Delta i).face →
+        AvoidEdgeStep.Oriented Delta.toCombMap Delta.outerFace d →
+        ∀ C ∈ Delta.relatorCells, C.face ≠ (cell Delta i).face →
+          ∀ x, Delta.toCombMap.faceOf x = C.face →
+            Relation.EqvGen (AvoidEdgeStep Delta.toCombMap d) x (Delta.toCombMap.alpha d) →
+              Nonempty (OsinLoopCut D lambda c eps Delta)
+
+/-- **The pocket value clause from the cell-free value and the pocket loop cut.** -/
+theorem osinLemma94SameCellPocketInput_of_loopCut
+    (hvalue : SameCellPocketCellFreeValueStatement.{u, w, v})
+    (hcut : SameCellPocketLoopCutStatement.{u, w, v}) :
+    OsinLemma94SameCellPocketInput.{u, w, v} := by
+  intro G _ Lambda D _hhyper lambda c mu hlambda _hlambda1 _hc hmu hmu1 eps
+  obtain ⟨rho1, hrho1⟩ := SameCellSimplePocket.exists_rho_large lambda c hmu eps
+  refine ⟨max 1 rho1, lt_of_lt_of_le Nat.one_pos (le_max_left _ _), fun rho hrho => ?_⟩
+  intro W hW Delta hleast hbelow i d hd hface hor m hm hstep
+  classical
+  have hrho0 : 0 < rho := lt_of_lt_of_le Nat.one_pos (le_trans (le_max_left _ _) hrho)
+  have hlarge := hrho1 rho (le_trans (le_max_right _ _) hrho)
+  have hdface : Delta.toCombMap.faceOf d = (cell Delta i).face :=
+    ((Delta.faceBoundary (cell Delta i).face).mem_iff d).mp hd
+  rcases Nat.eq_zero_or_pos m with rfl | hmpos
+  · simp only [List.range_zero, List.map_nil, dartWord, RelLetter.listVal_nil]
+  by_cases hfree : ∀ C ∈ Delta.relatorCells, C.face ≠ Delta.toCombMap.faceOf d →
+      ∀ x, Delta.toCombMap.faceOf x = C.face →
+        ¬ Relation.EqvGen (AvoidEdgeStep Delta.toCombMap d) x (Delta.toCombMap.alpha d)
+  · have hd' : d ∈ (Delta.faceBoundary (cell Delta i).face).darts := hd
+    have hm' : m + 1 < (Delta.faceBoundary (cell Delta i).face).darts.length := hm
+    obtain ⟨k, hk, rfl⟩ := List.mem_iff_getElem.mp hd'
+    have hne_a : ∀ t, t < m + 1 →
+        (Delta.toCombMap.facePerm ^ (t + 1)) (Delta.faceBoundary (cell Delta i).face).darts[k] ≠
+          (Delta.faceBoundary (cell Delta i).face).darts[k] := by
+      intro t ht heq
+      have h := OsinUnboundSameCellCycle.pow_inj (Delta.faceBoundary (cell Delta i).face) hk
+        (a := t + 1) (b := 0) (by omega) (by omega)
+        (by rw [pow_zero, Equiv.Perm.one_apply]; exact heq)
+      omega
+    have hne_alpha : ∀ t, t < m →
+        (Delta.toCombMap.facePerm ^ (t + 1)) (Delta.faceBoundary (cell Delta i).face).darts[k] ≠
+          Delta.toCombMap.alpha (Delta.faceBoundary (cell Delta i).face).darts[k] := by
+      intro t ht heq
+      have h := OsinUnboundSameCellCycle.pow_inj (Delta.faceBoundary (cell Delta i).face) hk
+        (a := t + 1) (b := m + 1) (by omega) hm' (heq.trans hstep.symm)
+      omega
+    exact hvalue Delta _ (hdface.trans hface.symm)
+      (fun h => (cell Delta i).face_ne_outer (hdface.symm.trans h)) hor m hmpos hstep hne_a
+      hne_alpha hfree
+  · push Not at hfree
+    obtain ⟨C, hC, hne, x, hx, hch⟩ := hfree
+    obtain ⟨cut⟩ := hcut D lambda c mu eps rho W hW Delta hleast i d hd hface hor C hC
+      (fun h => hne (h.trans hdface.symm)) x hx hch
+    exact (cut.false_of_below o52LeastArea hW hlambda hmu hmu1 hrho0 hlarge hleast
+      (hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos cut.rCellCount_lt)).elim
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.osinLemma94SameCellPocketInput_of_loopCut
