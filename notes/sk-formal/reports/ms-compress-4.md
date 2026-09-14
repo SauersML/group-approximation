@@ -1,4 +1,20 @@
-# Lane ms-compress-4: `simple_kazhdan_sofic_group.tex` 86–101 and 114–117 at bf961c128
+# Lane ms-compress-4: `simple_kazhdan_sofic_group.tex`
+
+## Item 2 (from 19:5x): the claims in "Questions" at the tip e80dcf20a (census 09e580c38)
+
+CLAIM 32a9f96774bd residuals (Group.IsFinitelyPresented → PresentedGroup transfer; G_X LEF and infinite simple ⇒ G_X not fp) GroupApproximation/Manuscript/SimpleKazhdanSofic/QuestionsNotFinitelyPresented.lean
+CLAIM 26e9baa90d07 (conjugate or flip conjugate ⇒ G_X ≅ G_Y, through the crossed-product ring isomorphism) GroupApproximation/Manuscript/SimpleKazhdanSofic/ConjugacyIsomorphism.lean
+
+- Revised 20:15 (main, per skf-cite bb79d09bf). Vershik–Gordon is already proved as `finitelyPresented_isLEF_residuallyFinite`
+  (Sofic/FinitelyPresentedLEF, over `PresentedGroup` of finitely many relators). Infinite simple ⇒ not RF is
+  `not_isResiduallyFinite_of_isSimpleGroup_of_infinite` (NinetyNineProblems/FactorizationProperty). This lane rebuilds
+  neither.
+- The questions 25a54a9f1b31 and 34f8479b8e45, and the Alekseev–Thom remark 3c8de4b91fec, are structural or attribution
+  (skf-cite ledgers the citations).
+- 20:2x resumed after the ~20:03 outage. Nothing of this item had landed. The claim lines above were unlanded edits; no
+  Questions module draft and no probe was outstanding.
+
+# Range "The ring and property (T)" (first item; originally tex 86–101 and 114–117 at bf961c128)
 
 Lead: session nonsofic-existence-49 (ROSTER-sk, re-scoped 18:58). Target text: origin/main bf961c128, 340 lines,
 md5 7b3dc4ec92b4581553bc0dc2b0edcb99 (re-checked 19:10). Rows are keyed `LINE:<l>@bf961c128`.
