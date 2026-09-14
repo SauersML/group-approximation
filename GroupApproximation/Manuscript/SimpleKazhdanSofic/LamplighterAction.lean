@@ -264,8 +264,10 @@ theorem exists_moved_of_cylinder [Infinite Δ] (ξ : LampAffine Δ) (hξ : ξ �
     (W : Finset Δ) : ∃ x : LampSpace Δ, (∀ a ∈ W, x a = y a) ∧ ξ • x ≠ x := by
   classical
   by_cases hδ : ξ.right = 1
-  · have hn : Multiplicative.toAdd ξ.left ≠ 0 := fun h0 =>
-      hξ (SemidirectProduct.ext (ofAdd_eq_one.2 h0) hδ)
+  · have hn : Multiplicative.toAdd ξ.left ≠ 0 := fun h0 => by
+      have hl : ξ.left = 1 := by
+        rw [← ofAdd_toAdd ξ.left, h0, ofAdd_zero]
+      exact hξ (SemidirectProduct.ext hl hδ)
     obtain ⟨h, hh⟩ := DFunLike.ne_iff.1 hn
     refine ⟨y, fun _ _ => rfl, fun hfix => hh ?_⟩
     have hy := (smul_eq_self_iff Δ ξ y).1 hfix h
