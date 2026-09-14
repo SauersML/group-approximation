@@ -39,6 +39,7 @@ requires:
   - kazhdan-generators-admit-no-norm-popa-corners
   - orthogonal-popa-corners-for-kazhdan-approximants-small-trace
   - finite-dimensional-combs-generate-popa-algebras
+  - comb-tooth-tree-stages-are-residually-finite-dimensional
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
@@ -50,3 +51,5 @@ Members added by sk-cairn-steward-2 (2026-09-13, second pass, sk landings to 22:
 Members added by sk-cairn-steward-2 (2026-09-13, third pass, sk landings to 22:47): `exactly-modelled-orbit-full-groups-have-lef-subgroups` `finite-models-transvection-covering-converges-to-measure` `kazhdan-groups-without-fd-reps-avoid-qd-unitary-groups` `some-simple-kazhdan-lef-groups-are-not-exact` `universal-recursive-lef-host-is-not-exact`.
 
 Members added by sk-cairn-steward-2 (2026-09-13, fourth pass, sk landings to 22:56): `generic-limit-of-subshift-sl-models-is-simple-kazhdan`.
+
+Members added by sk-cairn-steward-4 (2026-09-14, wave-12 sk landings): `comb-tooth-tree-stages-are-residually-finite-dimensional`.

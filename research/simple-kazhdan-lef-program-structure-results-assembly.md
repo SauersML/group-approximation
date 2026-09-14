@@ -29,6 +29,7 @@ requires:
   - subshift-el3-orbit-stabilizers-conjugate-iff-same-orbit
   - subshift-el-groups-have-bounded-conjugation-invariant-norms
   - simple-amenable-group-of-non-uniform-exponential-growth
+  - dyadic-tower-subshift-full-group-non-uniform-growth
   - subshift-el3-two-ended-lattice-stabilizers-locally-finite
   - unit-group-confined-subgroups-idempotent-commutator-lemma
   - idempotent-displacement-fails-for-polynomially-small-units
@@ -43,3 +44,5 @@ Members added by sk-cairn-steward-2 (2026-09-13, second pass, sk landings to 22:
 Members added by sk-cairn-steward-2 (2026-09-13, third pass, sk landings to 22:47): `subshift-el-root-elements-boundedly-normally-generated` `subshift-el3-has-continuum-many-maximal-subgroup-classes` `subshift-el3-parabolic-subgroups-are-maximal`.
 
 Members added by sk-cairn-steward-2 (2026-09-13, fourth pass, sk landings to 22:56): `subshift-el3-orbit-stabilizers-conjugate-iff-same-orbit` `subshift-el-groups-have-bounded-conjugation-invariant-norms`.
+
+Members added by sk-cairn-steward-4 (2026-09-14, wave-12 sk landings): `dyadic-tower-subshift-full-group-non-uniform-growth`.
