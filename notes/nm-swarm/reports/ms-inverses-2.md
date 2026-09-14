@@ -272,6 +272,22 @@ hull-euler has no in-flight Euler file.
   - It discharges w1-binder-6's `SectionPocketWalkEulerStatement` and the cell version.
   - Model test first: the double-touch map (non-interleaving, both χ = 2 expected) and the three-petal rose of
     `NoncrossingClosedWalkEuler` (interleaving, torus).
+- LANDED eb8811c3c (probe 0913-194438-39906 GREEN, BUILT, first try), unwired, queued for wiring:
+  - `CellPocketEulerForOrder`;
+  - `CellPocketWalkEulerStatement`;
+  - `sideRelatorCellForOrder_of_euler` and `_of_eulerStatement`.
+  - ms-cite-1 removed the over-strong both-orders statement (da5b1466e). Its order assembly `copyRegion_of_offSideWalk` still takes
+    EitherFollows; asked to respell it to `CellPocketWalkEulerStatement`, with the one-line kept cell through
+    `ofNoncrossingClosedWalkEuler`.
+- Generic lemma, staged:
+  - Stage 1 (writing now): `RotationBetween`, `PassagesNoninterleaving`, and `eulers_of_vertexCount_le`, which gives both Euler
+    equalities from `V + |w| ≤ V_in + V_out` by `edgeCount_add`, `faceCount_add`, `reclosedMap_connected` and
+    `eulerCharacteristic_le_two`. Named residual `NoninterleavingVertexCountStatement`.
+  - Stage 1b: formal calibrations. The rose interleaves; the double-touch and lake passages do not. Hand counts so far: w1-binder-1's
+    mixed-touch map has χ = 2 on both sides; the double-touch map needs 3 + 3 vertices, which equals V + |w|.
+  - Stage 2: the per-vertex count. At a vertex, k non-crossing chords `(α e, next e)` cut the rotation into k + 1 sectors, shared
+    between the two reclosings. Summed over vertices this gives `V_in + V_out = V + |w|`.
+  - Separately: non-interleaving for the section and cell pocket walks, from the joint structure (sec2-sentences' hand argument).
 
 ## Progress log
 
