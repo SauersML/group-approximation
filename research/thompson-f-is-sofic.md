@@ -72,3 +72,18 @@ error.
     configuration points in any slab `[y,z] ⊂ (0,1)` zero. Existence is undecided.
   - **Gap.** An invariant mean on some `F`-set charging `Moved(c)`, whose stabilizers are nonamenable and
     avoid every finite subset of `F \ {e}`; equivalently, following-model soficity of `F`.
+- **Mean-free actions split into two shapes (2026-09-14).**
+  - **Prior work.** Mean-free amenable actions are Elek–Szabó's essentially free amenable actions
+    (`elek-szabo-essentially-free-amenable-actions`). Confined subgroups of `F` lie between
+    `St⁰_(F')(S)` and `St_F(S)` for a finite `S` (`thompson-f-confined-subgroups-fix-finite-sets`).
+  - **Split.** `F` has a mean-free amenable action exactly when (I) or (II) holds
+    (`thompson-f-mean-free-actions-dense-configurations-or-unconfined`):
+    - (I) finite subsets of `(0,1)` carry an invariant mean meeting every interval;
+    - (II) an `F`-set with only non-confined stabilizers carries a mean-free mean.
+
+    Every bounded configuration type, and every transitive `F/H` with `H` confined, has `t = 0`.
+  - **Barrier.** Amenability of `F` gives both shapes, and both give soficity. So any refutation of
+    following-model soficity proves `F` nonamenable. The obstruction subgroup `N_F` is `1` or `F'`.
+  - **Gap.** Dense configurations whose points concentrate at the ends of every interval at every scale,
+    or orbits whose stabilizers approach the trivial subgroup
+    (`research/artifacts/hl-f-mean-free-actions-2026-09-14.md`).

@@ -31,4 +31,7 @@ distinct_from:
 **Trust surface.** Elementary Hilbert-space arguments. The Kazhdan pair is taken as the definition of
 property (T), with no external input. No novelty is claimed.
 
+**Prior work.** Item 2 is Proposition 4.4 of Elek–Szabó, Math. Ann. 332 (2005), where these actions are
+called essentially free amenable actions (`elek-szabo-essentially-free-amenable-actions`).
+
 **ROUTES:** `kazhdan-mean-free-amenable-residually-finite-proof`.

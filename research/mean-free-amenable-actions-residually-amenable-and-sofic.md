@@ -48,4 +48,10 @@ distinct_from:
 (Hahn–Banach), Mazur's lemma, and the layer-cake formula. The argument is close to folklore and no
 novelty is claimed.
 
+**Prior work.** Elek–Szabó (Math. Ann. 332 (2005)) introduced these actions as *essentially free
+amenable actions* (`elek-szabo-essentially-free-amenable-actions`). Their Proposition 4.3 gives item 1
+for amenable and residually finite groups. Their Theorem 3 gives the Følner form of item 3, and their
+Corollary 4.2 relates almost-actions of this kind to soficity. For Thompson's `F`, see
+`thompson-f-mean-free-actions-dense-configurations-or-unconfined`.
+
 **ROUTES:** `mean-free-amenable-actions-residually-amenable-and-sofic-proof`.
