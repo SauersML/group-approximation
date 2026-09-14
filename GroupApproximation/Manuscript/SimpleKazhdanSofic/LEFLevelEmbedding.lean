@@ -125,7 +125,7 @@ noncomputable def embedding (hω : (ω : Filter ℕ) ≤ cofinite) : Γ →* Ult
   toFun x := QuotientGroup.mk (embedSeq M x)
   map_one' := by
     refine ((mk_eq_mk_iff ω (SymX M)).2 (Filter.Eventually.of_forall fun k => ?_)).trans
-      QuotientGroup.mk_one
+      (QuotientGroup.mk_one (AlgebraicUltraproduct.nullSubgroup ω (SymX M)))
     show levelZeroMul (M.Q k) k (M.μ k 1) = 1
     rw [M.μ_one, levelZeroMul_one]
   map_mul' x y := by
@@ -150,7 +150,7 @@ theorem embedding_injective (hω : (ω : Filter ℕ) ≤ cofinite) :
   obtain ⟨j, hj, rfl⟩ := M.surj x
   have h' : (QuotientGroup.mk (embedSeq M (M.γ j)) : Ultraproduct ω (SymX M)) =
       QuotientGroup.mk 1 :=
-    hx.trans QuotientGroup.mk_one.symm
+    hx.trans (QuotientGroup.mk_one (AlgebraicUltraproduct.nullSubgroup ω (SymX M))).symm
   have h : ∀ᶠ k in (ω : Filter ℕ), levelZeroMul (M.Q k) k (M.μ k (M.γ j)) = 1 :=
     (mk_eq_mk_iff ω (SymX M)).1 h'
   obtain ⟨k, hk, hk1⟩ := ((eventually_ge hω j).and h).exists
@@ -164,7 +164,7 @@ theorem embedding_γ (hω : (ω : Filter ℕ) ≤ cofinite) {j : ℕ} (hj : 1 �
       word j (QuotientGroup.mk (aSeq M) : Ultraproduct ω (SymX M)) (QuotientGroup.mk (bSeq M)) := by
   have hw : word j (QuotientGroup.mk (aSeq M) : Ultraproduct ω (SymX M)) (QuotientGroup.mk (bSeq M)) =
       QuotientGroup.mk (word j (aSeq M) (bSeq M)) :=
-    (map_word (QuotientGroup.mk' (nullSubgroup ω (SymX M))) j (aSeq M) (bSeq M)).symm
+    (map_word (QuotientGroup.mk' (AlgebraicUltraproduct.nullSubgroup ω (SymX M))) j (aSeq M) (bSeq M)).symm
   rw [hw]
   refine (mk_eq_mk_iff ω (SymX M)).2 ((eventually_ge hω j).mono fun k hk => ?_)
   have hk' : word j (aSeq M) (bSeq M) k = word j (aSeq M k) (bSeq M k) :=
