@@ -53,6 +53,8 @@ noncomputable def boundaryGapOf {α : Type*} (l : List α) (e e' : α) : List α
 def Backward (M : CombMap.{v}) (x y : M.Dart) : Prop :=
   M.facePerm (M.alpha y) = M.alpha x
 
+open scoped Classical
+
 theorem cellGapOf_eq_nil {a b : M.Dart} (h : ∃ m, (M.facePerm ^ (m + 1)) a = b)
     (hm : Nat.find h = 0) : cellGapOf M a b = [] := by
   rw [cellGapOf, dif_pos h, hm]
@@ -80,7 +82,7 @@ theorem isChain_cellGapOf (a b : M.Dart) : (cellGapOf M a b).IsChain (Backward M
     intro i hi
     rw [List.getElem_range, List.getElem_range]
     show M.facePerm (M.alpha (M.alpha _)) = M.alpha (M.alpha _)
-    rw [hinv, hinv, pow_succ' M.facePerm (i + 1 + 1), Equiv.Perm.mul_apply]
+    rw [hinv, hinv, pow_succ' M.facePerm (i + 1), Equiv.Perm.mul_apply]
   · exact List.IsChain.nil
 
 /-- **A gap links two reversed cell walks.**  If `l₁` ends with `e`, `l₂` starts with `e'`, and
