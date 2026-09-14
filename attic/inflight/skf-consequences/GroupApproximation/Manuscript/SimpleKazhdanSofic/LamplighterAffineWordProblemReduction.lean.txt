@@ -197,7 +197,7 @@ theorem affineDecide_answers [DecidableEq Δ] (t : ι → Δ) {n : ℕ} {w : Lis
   by_cases hδ : wordValue t (deltaWord w) = 1
   · by_cases hc : ∀ p ∈ lampPrefixes w,
         ((lampPrefixes w).filter fun q => wordValue t q = wordValue t p).length % 2 = 0
-    · simp [hδ, hc, hall.2 hc]
+    · simpa [hδ, hall.2 hc] using hc
     · have hc' : ((List.range (lampPrefixes w).length).all fun k =>
           decide (pairCount (lampPrefixes w).length k
             ((affineQueryWords w).map fun v => deltaAnswer t (encode v)) % 2 = 0)) = false := by
