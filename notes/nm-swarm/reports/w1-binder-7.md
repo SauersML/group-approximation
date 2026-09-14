@@ -232,7 +232,23 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
       `exists_goodCorners`;
     - `exists_simple_of_firstTurns`, `copyRegion_of_firstTurns`, and `cellPocketPinchFirstTurns :
       CellPocketPinchFirstTurnsStatement` (closed).
-- **In flight: `Estimating/OsinPocketGoodCornersSection`** (attic 12585faa5, probing), the section mirror.
+- **2026-09-14 ~00:10: binder 7 CLOSED in first-turn form.** LANDED 4a52b36f1 `Estimating/OsinPocketGoodCornersSection`
+  (probe 0913-233843-93828 GREEN, BUILT; unwired, queued for wiring). The first push failed while github DNS was down, so it
+  was landed after connectivity returned.
+  - `pocketPinchFirstTurns : PocketPinchFirstTurnsStatement` and
+    `pocketPinchLabelledFirstTurnSection : PocketPinchLabelledFirstTurnSectionStatement`. Both pass `#audit_closed_axioms`.
+- **Route 3 (main, 00:0x).** w1-binder-3 proved first-turn order ⇔ outer following, and the proper-arc lake admits no
+  first-turn order (e6f869a04), so the FirstTurns producer is blocked at map level. The pinch therefore takes walk order.
+  - In flight: `Estimating/OsinPocketPinchOuterDispatch`.
+    - `PocketOuterPinchStepSectionStatement`: one step at an outer pinch (walk order, `¬ K.FirstTurns`, a proper source arc,
+      pinched), under the Section premises. w1-binder-3 proves it; the interface was proposed to it in one message.
+    - `pocketPinchLabelledSectionStatement_of_outerPinchStep`: the walk-order Section binder, by induction. In first-turn
+      order it closes outright, an unpinched pocket is simple, and otherwise the outer step applies.
+  - `OsinPocketFirstTurnsProperArc` (`sourceArc_lt_of_firstTurns`, attic 695f89621) is still unprobed. One attempt failed
+    at git fetch (the DNS outage) and one on "msi connection down".
+- **Noted:** ms-cite-1's `cellPocketPinchRoseRefutation` (e0a0776bb) refutes `CellPocketPinchPosStatement`, so V4 endpoints over
+  it are vacuous. The replacement is `CellPocketPinchSectionStatement`.
+- **Landed above (was in flight): `Estimating/OsinPocketGoodCornersSection`** (attic 12585faa5), the section mirror.
   - `PocketFaceSet.BadCorner`, `badCorners`, the count lemmas, `exists_goodCorners` and `exists_simple_of_firstTurns`.
   - `pocketPinchFirstTurns : PocketPinchFirstTurnsStatement`: over relator words longer than one letter, a pocket in first-turn
     order with letter labels has a copy with a simple pocket face set. It needs neither least area nor a proper source arc.
