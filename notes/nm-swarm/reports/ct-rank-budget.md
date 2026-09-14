@@ -117,6 +117,13 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   ms-core-1.  Plan: a named closed Prop over `printedCoreMFRadical_closed`, adding that the defect ideal is proper, and
   a hex-keyed row.
 
+- 09-14 00:32: ChainCoreOpeningSentence LANDED 10faf76cf (GREEN 0914-002813-94264): `printedChainCoreOpening_closed :
+  PrintedChainCoreOpening` (key d59fc0887768, tex 1341), with `#audit_closed_axioms`.  Over every finite field the defect
+  ideal equals I (`defectIdeal_eq_transientIdeal_chainRecurrentSet`) and is proper (CR(T) nonempty, so 1 ∉ I).  Over F_2,
+  Rad_MF(GL_n) = K_n = EL_n(R_X, I) for n ≥ 3 and Rad_MF(EL_n) = EL_n(R_X, I) for n ≥ 4 (`printedCoreMFRadical_closed`).
+  Row appended.  ms-core-1 dropped the key and withdrew its uncompiled draft.  Merge 5 (a4f8d4b82) had this as the only
+  unassigned sentence.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
