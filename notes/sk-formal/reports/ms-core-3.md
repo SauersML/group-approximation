@@ -179,3 +179,10 @@ producer). It holds the closed `printedMatricialMarkedLimitStatement` and `print
 - Rows re-keyed: `e4fd510a51c5` formalized (printedBlockElementarySpecialLinear). Dropped `13bf024677ad` and `414df07890f1`, which are
   gone from the census.
 - Step 1: co-probe MatricialMarkedLimit + MatricialMarkedLimitWords, running.
+- 08:4x step 1 LANDED on real BUILT lines, with clean axioms: MatricialMarkedLimit 8e8cd3c9b (probe 0914-084124-91576) and
+  MatricialMarkedLimitWords 77d39b591 (probe 0914-084424-82738). Both are queued for wiring.
+- Rows added (Finite simple models):
+  - formalized: a339b883c9d3, db0ff25cc298, 3d7e4722fef8, 9a9aa9313dca;
+  - definition: 25fefb1e2ac1;
+  - partial: 2e17cbfab2b6, cbc0b3980a99, d228d6575111, 995620260311.
+- Step 2 probing: FiniteModelsAsymptotic + PeriodicMatrixUnits + SubshiftMatricial.
