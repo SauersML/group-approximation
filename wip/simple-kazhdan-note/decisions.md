@@ -703,6 +703,21 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - sk-exchange (f4e45bfe10): right-ideal membership in R is local (Lemma L); a square-zero correction across cuts; the block lemma fails for scalar compressions. The exchange property stays open.
     - sk-verify-19: lines 2–11 PASS, some with fixes (Theorem Q′, Deligne criteria, rank-3 rational spectrum, Frobenius idempotents, the C*-lemmas, LEF-growth bounds). free-9 P1 text fixes are recorded (P1 not in rev4.4).
     - sk-verify-20 launched for queue lines ≥ 12. sk-cairn-steward-5 launched for post-08:52 wiring and the note-root update for rev4.4.
+149. **PDF for rev4.4 on main:** GHA run 34853339002 succeeded; github-actions[bot] 3d4a9b8d8 "build: update simple Kazhdan PDF".
+150. **Research finals (unreviewed, queued).**
+    - sk-popa-input2 (c32e108f15): Theorem P, every separable II_1 factor contains a weakly dense Popa algebra, via a comb construction with RFD stages (Li–Shen, Exel–Loring). If it holds, it settles Brown 2001 Q3's Popa clause, (T) factors included. CAUTION: elementary; it could be known. sk-verify-20 now takes it FIRST (adversarial + bounded novelty search).
+    - sk-growth-gx-sturmian (342494433e, 52555a3af4): G1, piecewise dyadic level models give G_X non-uniform exponential growth (zero entropy, Krieger recoding); M1, Sturmian X admits no dyadic matrix decomposition, so the matrix engine is closed there; Krieger import checked at secondary level.
+    - sk-cairn-steward-4 final: MSI cairn check at c95771958a exit 0; all 633 in-scope ids reachable except known dead space. Later units are with sk-cairn-steward-5.
+151. **sk-first-order** (6f5e149bfa, 3f85116790, 8a868c1f3d, 05e2e0d8aa; unreviewed).
+    - Lemma Z: Z(R_X) = F_2.
+    - T1: root subgroups are centralizers of finite sets, so R_X is interpretable in G_X.
+    - T2: G_X is bi-interpretable with R_X (parameters), via Theorem D's bounded elementary generation (78 matrices).
+    - General form for E_3(R) with trivial central units plus bounded generation.
+    - Open: Th(G_X) ≡_T Th(N,+,·,L(X)) and QFA for recursive L(X). No note change.
+152. **sk-rev44-referee: NO ERROR, NO GAP** on the rev4.3→4.4 changes (every changed proof sentence re-derived; dropped material fully absent).
+    - Fixes, applied as rev4.5: U1 (abstract names the host explicitly, since "such a group" could be misread as some G_X); U2 ("keeps the word problem solvable"); U3 ("Simple hosts with only one of property (T) and LEF were known"); U4 (the fuller Stepanov sentence).
+    - rev4.5: 775 lines, 8 pp, md5 29d63f79…, MSI 0/0/0; the diff is exactly the four fixes.
+    - The audit reports that could not land themselves (sk-perfect-a, sk-perfect-b, sk-perfect-c, sk-rev44-referee) are landed by main as artifacts.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
