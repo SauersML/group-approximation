@@ -36,8 +36,8 @@ for cs in SPEC.covers do
   else
     H := DerivedSubgroup(Group(BasicSpinRepresentationOfSymmetricGroup(cs.n, cs.p, 1)));
   fi;
-  Z := Centre(H);
-  pi := NaturalHomomorphismByNormalSubgroup(H, Z);
+  ZH := Centre(H);
+  pi := NaturalHomomorphismByNormalSubgroup(H, ZH);
   if not IsPermGroup(Image(pi)) then pi := pi * IsomorphismPermGroup(Image(pi)); fi;
   S := Image(pi);
   Print("  cover ", cs.name, " |H|=", Size(H), " |Z|=", Size(Z), " |H/Z|=", Size(S),
