@@ -1,0 +1,422 @@
+import GroupApproximation.Analysis.OperatorSystemStateExtension
+import GroupApproximation.Analysis.OperatorSystemChoiFunctional
+import GroupApproximation.Analysis.LanceMatrixArveson
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Arveson's extension theorem for matrix targets, from operator systems
+
+Ozawa, *About the QWEP conjecture*, Theorem 2.2, the ucp case, into `B(ℂᵏ)`:
+a unital completely positive map from an operator system `E` of a unital
+C⋆-algebra `A` into `B(ℂᵏ)` extends to a unital completely positive map on all
+of `A`.
+
+The route is Choi's.
+1. The Choi functional on matrices over `E`
+   (`Analysis/OperatorSystemChoiFunctional`) is nonnegative on ambient
+   positives.
+2. The Krein theorem for operator systems
+   (`Analysis/OperatorSystemStateExtension`) extends it to a positive
+   functional `s` on `Mₖ(A)`, which is hermitian.
+3. The extended map is read off single-entry matrices,
+   `Ψ(x)_{pq} = s(E_{pq}(x))`.
+4. Its complete positivity is the block-operator computation of
+   `Analysis/LanceMatrixArveson.lean`.
+
+The reconstruction is transcribed from that file, whose theorem covers closed
+star subalgebras in `Type`.  Here the domain is any operator system and the
+algebra lives in any universe, which is what the maximal group C⋆-algebra of a
+group in `Type` (itself in `Type 1`) needs.
+-/
+
+namespace GroupApproximation
+namespace LocalLifting
+
+open CStarExactness
+open scoped InnerProductSpace
+
+noncomputable section
+
+universe u
+
+variable {A : Type u} [CStarAlgebra A]
+
+/-- The single-entry embedding `A → Mₖ(A)` as a linear map. -/
+def singleEntryLinearMap (k : ℕ) (p q : Fin k) :
+    A →ₗ[ℂ] CStarMatrix (Fin k) (Fin k) A where
+  toFun x := (Matrix.single p q x : CStarMatrix (Fin k) (Fin k) A)
+  map_add' x y := Matrix.single_add p q x y
+  map_smul' z x := (Matrix.smul_single z p q x).symm
+
+theorem star_single_entry {k : ℕ} (x : A) (p q : Fin k) :
+    star (Matrix.single p q x) = Matrix.single q p (star x) := by
+  classical
+  funext p' q'
+  show star ((Matrix.single p q x) q' p') = (Matrix.single q p (star x)) p' q'
+  rw [Matrix.single_apply, Matrix.single_apply]
+  by_cases h1 : p = q' <;> by_cases h2 : q = p' <;>
+    simp [h1, h2, and_comm, star_zero]
+
+/-- **Arveson extension from an operator system into matrices.** -/
+theorem exists_ucp_extension_of_system [PartialOrder A] [StarOrderedRing A]
+    {E : Submodule ℂ A} (hE : IsOperatorSystem E) {k : ℕ}
+    (ψ : E →ₗ[ℂ] (EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)))
+    (hψ : IsCompletelyPositiveOn E ψ)
+    (hψ1 : ∀ x : E, (x : A) = 1 → ψ x = 1) :
+    ∃ Ψ : A →ₗ[ℂ] (EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)),
+      IsCompletelyPositive Ψ ∧ Ψ 1 = 1 ∧ ∀ x : E, Ψ (x : A) = ψ x := by
+  classical
+  obtain ⟨sExt, hext, hpos⟩ :=
+    exists_positive_extension_of_system (B := matrixSystem E k)
+      (one_mem_matrixSystem hE k) (fun _ hM ↦ star_mem_matrixSystem hE hM)
+      (φ := systemChoiFunctional E ψ)
+      (fun b hb ↦ systemChoiFunctional_nonneg E ψ hψ b hb)
+  have hherm : ∀ y : CStarMatrix (Fin k) (Fin k) A,
+      sExt (star y) = (starRingEnd ℂ) (sExt y) :=
+    StateExtension.hermitian_of_nonneg sExt hpos
+  -- the single-entry values of the extension, as linear functionals on `A`
+  set sEL : Fin k → Fin k → (A →ₗ[ℂ] ℂ) := fun p q ↦
+    sExt ∘ₗ singleEntryLinearMap (A := A) k p q with hsEL_def
+  have hsEL_apply : ∀ (p q : Fin k) (x : A), sEL p q x
+      = sExt ((Matrix.single p q x : CStarMatrix (Fin k) (Fin k) A)) := by
+    intro p q x
+    rw [hsEL_def]
+    rfl
+  -- the reconstructed matrix of entry values
+  set Ψmat : A → Matrix (Fin k) (Fin k) ℂ := fun x ↦
+    Matrix.of fun p q ↦ sEL p q x with hΨmat_def
+  have hΨmat_apply : ∀ (x : A) (p q : Fin k), Ψmat x p q = sEL p q x := by
+    intro x p q
+    rw [hΨmat_def]
+    rfl
+  have hΨmat_add : ∀ x y : A, Ψmat (x + y) = Ψmat x + Ψmat y := by
+    intro x y
+    funext p q
+    rw [hΨmat_def]
+    exact (sEL p q).map_add x y
+  have hΨmat_smul : ∀ (z : ℂ) (x : A), Ψmat (z • x) = z • Ψmat x := by
+    intro z x
+    funext p q
+    rw [hΨmat_def]
+    exact (sEL p q).map_smul z x
+  -- the reconstructed map
+  set Ψ : A →ₗ[ℂ]
+      (EuclideanSpace ℂ (Fin k) →L[ℂ] EuclideanSpace ℂ (Fin k)) :=
+    { toFun := fun x ↦ Matrix.toEuclideanCLM (𝕜 := ℂ) (Ψmat x)
+      map_add' := fun x y ↦ by rw [hΨmat_add, map_add]
+      map_smul' := fun z x ↦ by
+        rw [hΨmat_smul, map_smul, RingHom.id_apply] } with hΨ_def
+  have hΨ_apply : ∀ x : A, Ψ x = Matrix.toEuclideanCLM (𝕜 := ℂ) (Ψmat x) := by
+    intro x
+    rw [hΨ_def]
+    rfl
+  -- extension property
+  have hextend : ∀ c : E, Ψ (c : A) = ψ c := by
+    intro c
+    rw [hΨ_apply]
+    have hmat : Ψmat (c : A)
+        = (Matrix.toEuclideanCLM (𝕜 := ℂ)).symm (ψ c) := by
+      funext p q
+      have h2 := inner_single_toEuclideanCLM
+        ((Matrix.toEuclideanCLM (𝕜 := ℂ)).symm (ψ c)) p q
+      rw [StarAlgEquiv.apply_symm_apply] at h2
+      calc Ψmat (c : A) p q
+          = sEL p q (c : A) := hΨmat_apply _ p q
+        _ = sExt ((Matrix.single p q ((c : A)) :
+              CStarMatrix (Fin k) (Fin k) A)) := hsEL_apply p q _
+        _ = systemChoiFunctional E ψ
+              ⟨(Matrix.single p q ((c : A)) :
+                  CStarMatrix (Fin k) (Fin k) A),
+                single_mem_matrixSystem E c p q⟩ :=
+            hext ⟨_, single_mem_matrixSystem E c p q⟩
+        _ = ⟪EuclideanSpace.single p (1 : ℂ),
+              ψ c (EuclideanSpace.single q (1 : ℂ))⟫_ℂ :=
+            systemChoiFunctional_single E ψ c p q
+        _ = (Matrix.toEuclideanCLM (𝕜 := ℂ)).symm (ψ c) p q := h2
+    rw [hmat, StarAlgEquiv.apply_symm_apply]
+  -- unitality
+  have hunit : Ψ 1 = 1 := by
+    calc Ψ 1 = Ψ ((⟨1, hE.1⟩ : E) : A) := rfl
+      _ = ψ ⟨1, hE.1⟩ := hextend ⟨1, hE.1⟩
+      _ = 1 := hψ1 ⟨1, hE.1⟩ rfl
+  -- the star is preserved
+  have hΨstar : ∀ x : A, star (Ψ x) = Ψ (star x) := by
+    intro x
+    rw [hΨ_apply, hΨ_apply, ← map_star]
+    congr 1
+    funext p q
+    calc star (Ψmat x) p q
+        = (starRingEnd ℂ) (Ψmat x q p) := Matrix.star_apply _ _ _
+      _ = (starRingEnd ℂ) (sEL q p x) := by rw [hΨmat_apply]
+      _ = (starRingEnd ℂ) (sExt ((Matrix.single q p x :
+            CStarMatrix (Fin k) (Fin k) A))) := by rw [hsEL_apply]
+      _ = sExt (star ((Matrix.single q p x :
+            CStarMatrix (Fin k) (Fin k) A))) := (hherm _).symm
+      _ = sExt ((Matrix.single p q (star x) :
+            CStarMatrix (Fin k) (Fin k) A)) :=
+          congrArg sExt (star_single_entry x q p)
+      _ = sEL p q (star x) := (hsEL_apply p q _).symm
+      _ = Ψmat (star x) p q := (hΨmat_apply _ p q).symm
+  -- complete positivity
+  refine ⟨Ψ, ?_, hunit, hextend⟩
+  intro m M hM
+  obtain ⟨N, hN⟩ := hM
+  have hMsa : star M = M := by
+    rw [hN, star_mul, star_star]
+  have hMentry : ∀ i j : Fin m, M i j
+      = ∑ r : Fin m, star (N r i) * N r j := by
+    intro i j
+    calc M i j = (star N * N) i j :=
+          congrArg (fun T : CStarMatrix (Fin m) (Fin m) A ↦ T i j) hN
+      _ = ∑ r : Fin m, (star N) i r * N r j := Matrix.mul_apply
+      _ = ∑ r : Fin m, star (N r i) * N r j :=
+          Finset.sum_congr rfl fun r _ ↦ rfl
+  have hXsa : star (M.map ⇑Ψ) = M.map ⇑Ψ := by
+    funext i j
+    calc star (M.map ⇑Ψ) i j
+        = star ((M.map ⇑Ψ) j i) := Matrix.star_apply _ _ _
+      _ = star (Ψ (M j i)) := rfl
+      _ = Ψ (star (M j i)) := hΨstar _
+      _ = Ψ ((star M) i j) := rfl
+      _ = Ψ (M i j) := by rw [hMsa]
+      _ = (M.map ⇑Ψ) i j := rfl
+  have hformX : ∀ v : PiLp 2 (fun _ : Fin m ↦ EuclideanSpace ℂ (Fin k)),
+      0 ≤ (⟪v, blockOp (M.map ⇑Ψ) v⟫_ℂ).re := by
+    intro v
+    rw [inner_blockOp]
+    rcases Nat.eq_zero_or_pos k with hk | hk
+    · have hzero : ∀ i j : Fin m,
+          ⟪v i, (M.map ⇑Ψ) i j (v j)⟫_ℂ = 0 := by
+        intro i j
+        have hvi : v i = 0 := by
+          ext z
+          exact absurd (hk ▸ z.2) (Nat.not_lt_zero z.1)
+        rw [hvi, inner_zero_left]
+      rw [Finset.sum_congr rfl fun i _ ↦
+        Finset.sum_congr rfl fun j _ ↦ hzero i j]
+      simp
+    · set p0 : Fin k := ⟨0, hk⟩ with hp0_def
+      set d : Fin m → Fin k → A := fun r s ↦
+        ∑ i : Fin m, ((v i) s) • N r i with hd_def
+      have hd_apply : ∀ r s, d r s = ∑ i : Fin m, ((v i) s) • N r i := by
+        intro r s
+        rw [hd_def]
+      set R : Fin m → CStarMatrix (Fin k) (Fin k) A := fun r ↦
+        ((Matrix.of fun p q ↦ if p = p0 then d r q else 0 :
+          Matrix (Fin k) (Fin k) A) : CStarMatrix (Fin k) (Fin k) A)
+        with hR_def
+      have hR_apply : ∀ r p q, R r p q = if p = p0 then d r q else 0 := by
+        intro r p q
+        rw [hR_def]
+        rfl
+      have hRentry_same : ∀ r q, R r p0 q = d r q := by
+        intro r q
+        rw [hR_apply r p0 q, if_pos rfl]
+      have hRentry_ne : ∀ r t q, t ≠ p0 → R r t q = 0 := by
+        intro r t q ht
+        rw [hR_apply r t q, if_neg ht]
+      have hRR : ∀ (r : Fin m) (p q : Fin k),
+          (star (R r) * R r) p q = star (d r p) * d r q := by
+        intro r p q
+        calc (star (R r) * R r) p q
+            = ∑ t : Fin k, (star (R r)) p t * R r t q := Matrix.mul_apply
+          _ = (star (R r)) p p0 * R r p0 q := by
+              refine Finset.sum_eq_single p0 (fun t _ ht ↦ ?_)
+                (fun h ↦ absurd (Finset.mem_univ p0) h)
+              rw [hRentry_ne r t q ht, mul_zero]
+          _ = star (d r p) * d r q := by
+              have h1 : (star (R r)) p p0 = star (R r p0 p) :=
+                Matrix.star_apply _ _ _
+              rw [h1, hRentry_same r p, hRentry_same r q]
+      have hd_star : ∀ r p, star (d r p)
+          = ∑ i : Fin m, (starRingEnd ℂ) ((v i) p) • star (N r i) := by
+        intro r p
+        rw [hd_apply r p, star_sum]
+        exact Finset.sum_congr rfl fun i _ ↦ star_smul _ _
+      have hd2 : ∀ (r : Fin m) (p q : Fin k), star (d r p) * d r q
+          = ∑ i : Fin m, ∑ j : Fin m,
+              (((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                (star (N r i) * N r j) : A) := by
+        intro r p q
+        rw [hd_star r p, hd_apply r q, Finset.sum_mul_sum]
+        exact Finset.sum_congr rfl fun i _ ↦
+          Finset.sum_congr rfl fun j _ ↦ smul_mul_smul_comm _ _ _ _
+      -- each term of the block form through the functional
+      have hterm : ∀ i j : Fin m,
+          ⟪v i, (M.map ⇑Ψ) i j (v j)⟫_ℂ
+          = ∑ p : Fin k, ∑ q : Fin k,
+              sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                M i j : A)) := by
+        intro i j
+        have h0 : (M.map ⇑Ψ) i j
+            = Matrix.toEuclideanCLM (𝕜 := ℂ) (Ψmat (M i j)) := by
+          have h1 : (M.map ⇑Ψ) i j = Ψ (M i j) := rfl
+          rw [h1, hΨ_apply]
+        rw [h0, inner_toEuclideanCLM_expand]
+        refine Finset.sum_congr rfl fun p _ ↦ ?_
+        refine Finset.sum_congr rfl fun q _ ↦ ?_
+        calc (starRingEnd ℂ) ((v i) p) * (Ψmat (M i j) p q * ((v j) q))
+            = ((starRingEnd ℂ) ((v i) p) * ((v j) q)) * sEL p q (M i j) := by
+              rw [hΨmat_apply]
+              ring
+          _ = sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                M i j : A)) := ((sEL p q).map_smul _ _).symm
+      -- reorder the four sums
+      have hswap : (∑ i : Fin m, ∑ j : Fin m, ∑ p : Fin k, ∑ q : Fin k,
+            sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+              M i j : A)))
+          = ∑ p : Fin k, ∑ q : Fin k, ∑ i : Fin m, ∑ j : Fin m,
+              sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                M i j : A)) :=
+        calc (∑ i : Fin m, ∑ j : Fin m, ∑ p : Fin k, ∑ q : Fin k,
+              sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                M i j : A)))
+            = ∑ i : Fin m, ∑ p : Fin k, ∑ j : Fin m, ∑ q : Fin k,
+                sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                  M i j : A)) :=
+              Finset.sum_congr rfl fun i _ ↦ Finset.sum_comm
+          _ = ∑ p : Fin k, ∑ i : Fin m, ∑ j : Fin m, ∑ q : Fin k,
+                sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                  M i j : A)) := Finset.sum_comm
+          _ = ∑ p : Fin k, ∑ i : Fin m, ∑ q : Fin k, ∑ j : Fin m,
+                sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                  M i j : A)) :=
+              Finset.sum_congr rfl fun p _ ↦
+                Finset.sum_congr rfl fun i _ ↦ Finset.sum_comm
+          _ = ∑ p : Fin k, ∑ q : Fin k, ∑ i : Fin m, ∑ j : Fin m,
+                sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                  M i j : A)) :=
+              Finset.sum_congr rfl fun p _ ↦ Finset.sum_comm
+      -- pull the sums inside the functional
+      have hlin : ∀ p q : Fin k,
+          (∑ i : Fin m, ∑ j : Fin m,
+            sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+              M i j : A)))
+          = sEL p q (∑ i : Fin m, ∑ j : Fin m,
+              (((starRingEnd ℂ) ((v i) p) * ((v j) q)) • M i j : A)) := by
+        intro p q
+        calc (∑ i : Fin m, ∑ j : Fin m,
+              sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                M i j : A)))
+            = ∑ i : Fin m, sEL p q (∑ j : Fin m,
+                (((starRingEnd ℂ) ((v i) p) * ((v j) q)) • M i j : A)) :=
+              Finset.sum_congr rfl fun i _ ↦ (map_sum (sEL p q) _ _).symm
+          _ = sEL p q (∑ i : Fin m, ∑ j : Fin m,
+                (((starRingEnd ℂ) ((v i) p) * ((v j) q)) • M i j : A)) :=
+              (map_sum (sEL p q) _ _).symm
+      -- identify the inner sums with the entries of the sum of squares
+      have hinner : ∀ p q : Fin k,
+          (∑ i : Fin m, ∑ j : Fin m,
+            (((starRingEnd ℂ) ((v i) p) * ((v j) q)) • M i j : A))
+          = (∑ r : Fin m, star (R r) * R r) p q := by
+        intro p q
+        have hRHS1 : (∑ r : Fin m, star (R r) * R r) p
+            = ∑ r : Fin m, (star (R r) * R r) p :=
+          Finset.sum_apply p Finset.univ _
+        have hRHS : (∑ r : Fin m, star (R r) * R r) p q
+            = ∑ r : Fin m, (star (R r) * R r) p q :=
+          (congrArg (fun f ↦ f q) hRHS1).trans
+            (Finset.sum_apply q Finset.univ _)
+        calc (∑ i : Fin m, ∑ j : Fin m,
+              (((starRingEnd ℂ) ((v i) p) * ((v j) q)) • M i j : A))
+            = ∑ i : Fin m, ∑ j : Fin m, ∑ r : Fin m,
+                (((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                  (star (N r i) * N r j) : A) := by
+              refine Finset.sum_congr rfl fun i _ ↦
+                Finset.sum_congr rfl fun j _ ↦ ?_
+              rw [hMentry i j, Finset.smul_sum]
+          _ = ∑ i : Fin m, ∑ r : Fin m, ∑ j : Fin m,
+                (((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                  (star (N r i) * N r j) : A) :=
+              Finset.sum_congr rfl fun i _ ↦ Finset.sum_comm
+          _ = ∑ r : Fin m, ∑ i : Fin m, ∑ j : Fin m,
+                (((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                  (star (N r i) * N r j) : A) := Finset.sum_comm
+          _ = ∑ r : Fin m, star (d r p) * d r q :=
+              Finset.sum_congr rfl fun r _ ↦ (hd2 r p q).symm
+          _ = ∑ r : Fin m, (star (R r) * R r) p q :=
+              Finset.sum_congr rfl fun r _ ↦ (hRR r p q).symm
+          _ = (∑ r : Fin m, star (R r) * R r) p q := hRHS.symm
+      -- the value is the functional at the sum of squares
+      have hcollect : (∑ p : Fin k, ∑ q : Fin k,
+            sEL p q ((∑ r : Fin m, star (R r) * R r) p q))
+          = sExt (∑ r : Fin m, star (R r) * R r) := by
+        have hW0 : (∑ r : Fin m, star (R r) * R r)
+            = ∑ p : Fin k, ∑ q : Fin k,
+                ((Matrix.single p q
+                    ((∑ r : Fin m, star (R r) * R r) p q) :
+                  CStarMatrix (Fin k) (Fin k) A)) :=
+          Matrix.matrix_eq_sum_single _
+        calc (∑ p : Fin k, ∑ q : Fin k,
+              sEL p q ((∑ r : Fin m, star (R r) * R r) p q))
+            = ∑ p : Fin k, ∑ q : Fin k,
+                sExt ((Matrix.single p q
+                    ((∑ r : Fin m, star (R r) * R r) p q) :
+                  CStarMatrix (Fin k) (Fin k) A)) :=
+              Finset.sum_congr rfl fun p _ ↦
+                Finset.sum_congr rfl fun q _ ↦ hsEL_apply p q _
+          _ = ∑ p : Fin k, sExt (∑ q : Fin k,
+                ((Matrix.single p q
+                    ((∑ r : Fin m, star (R r) * R r) p q) :
+                  CStarMatrix (Fin k) (Fin k) A))) :=
+              Finset.sum_congr rfl fun p _ ↦ (map_sum sExt _ _).symm
+          _ = sExt (∑ p : Fin k, ∑ q : Fin k,
+                ((Matrix.single p q
+                    ((∑ r : Fin m, star (R r) * R r) p q) :
+                  CStarMatrix (Fin k) (Fin k) A))) :=
+              (map_sum sExt _ _).symm
+          _ = sExt (∑ r : Fin m, star (R r) * R r) :=
+              (congrArg sExt hW0).symm
+      -- assemble
+      have hchain : (∑ i : Fin m, ∑ j : Fin m,
+            ⟪v i, (M.map ⇑Ψ) i j (v j)⟫_ℂ)
+          = sExt (∑ r : Fin m, star (R r) * R r) :=
+        calc (∑ i : Fin m, ∑ j : Fin m, ⟪v i, (M.map ⇑Ψ) i j (v j)⟫_ℂ)
+            = ∑ i : Fin m, ∑ j : Fin m, ∑ p : Fin k, ∑ q : Fin k,
+                sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                  M i j : A)) :=
+              Finset.sum_congr rfl fun i _ ↦
+                Finset.sum_congr rfl fun j _ ↦ hterm i j
+          _ = ∑ p : Fin k, ∑ q : Fin k, ∑ i : Fin m, ∑ j : Fin m,
+                sEL p q ((((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                  M i j : A)) := hswap
+          _ = ∑ p : Fin k, ∑ q : Fin k,
+                sEL p q (∑ i : Fin m, ∑ j : Fin m,
+                  (((starRingEnd ℂ) ((v i) p) * ((v j) q)) •
+                    M i j : A)) :=
+              Finset.sum_congr rfl fun p _ ↦
+                Finset.sum_congr rfl fun q _ ↦ hlin p q
+          _ = ∑ p : Fin k, ∑ q : Fin k,
+                sEL p q ((∑ r : Fin m, star (R r) * R r) p q) :=
+              Finset.sum_congr rfl fun p _ ↦
+                Finset.sum_congr rfl fun q _ ↦
+                  congrArg (sEL p q) (hinner p q)
+          _ = sExt (∑ r : Fin m, star (R r) * R r) := hcollect
+      have hWpos : (0 : CStarMatrix (Fin k) (Fin k) A)
+          ≤ ∑ r : Fin m, star (R r) * R r :=
+        Finset.sum_nonneg fun r _ ↦ star_mul_self_nonneg (R r)
+      obtain ⟨t, ht0, htv⟩ := hpos _ hWpos
+      rw [hchain, htv]
+      simpa using ht0
+  obtain ⟨P, hP⟩ := exists_factor_of_blockOp_form_nonneg hXsa hformX
+  exact ⟨P, hP⟩
+
+end
+
+/-- **Arveson's extension theorem for matrix targets** (Ozawa, *About the QWEP
+conjecture*, Theorem 2.2, the ucp case), proved: every unital completely
+positive map from an operator system into `B(ℂᵏ)` extends to a unital
+completely positive map on the whole algebra. -/
+theorem operatorSystemMatrixArvesonStatement_holds :
+    OperatorSystemMatrixArvesonStatement.{u} := by
+  intro B _ E hE k ψ hψ hψ1
+  letI : PartialOrder B := CStarAlgebra.spectralOrder B
+  letI : StarOrderedRing B := CStarAlgebra.spectralOrderedRing B
+  exact exists_ucp_extension_of_system hE ψ hψ hψ1
+
+end LocalLifting
+end GroupApproximation
+
+open GroupApproximation.LocalLifting
+
+#audit_closed_axioms operatorSystemMatrixArvesonStatement_holds
