@@ -50,6 +50,11 @@ such that the order of the image of `z` in finite quotients of `K~` is unbounded
   - `ghb7-centre-survival-iff-unbounded-orbit-cycle-indices`: those indices agree, up to a factor 7,
     with `[Z : ω(p_* Z_2(N\Y;Z))]` for an integer cochain `ω` on `K\Y`. So the premise is a
     statement about finite orbit complexes and integer linear algebra.
+  - `degree-two-inflation-onto-makes-z-extension-centres-survive`: if some finite-index `K` with
+    `b_2 >= 1` has every class in `H^2(K;Z/n)` inflated from a finite quotient, the premise holds
+    (route `ghb7-centre-survival-via-degree-two-goodness`). So stability of `G` would make every such
+    `K` fail degree-two goodness, and `every-hyperbolic-group-is-good` would refute stability
+    (route `ghb7-degree-two-inflation-via-hyperbolic-goodness`).
 - **Not done.** No finite quotient of any `K~` was computed, and no finite-index `K` smaller than `H`
   with a real degree-two class was exhibited. By `ghb7-congruence-kernel-hyperbolic-kazhdan-with-large-b2`,
   a torsion-free `K` of index `m` has `χ(K) = 1381·m/2401 > 0`, so every torsion-free finite-index
