@@ -152,6 +152,28 @@ CLAIM core-mf-radical-assembly GroupApproximation/Manuscript/ChainCore/CoreMFRad
   and the closed endpoint `printedCoreKernelAndELKill`.
 - `printedCoreMFRadical_of_coreModels`, over the one premise `CoreModelsLEFStatement`.
 
+### Landed: thm:core-mf-radical
+
+Module `GroupApproximation.Manuscript.ChainCore.CoreMFRadical`, LANDED 49354624f (probe GREEN 0913-190449-10686), queued for
+wiring. Namespace `GroupApproximation.ChainCore.CoreMFRadical`.
+
+Closed, audited [propext, Classical.choice, Quot.sound]:
+- `coreKernelLeRelativeElementaryStatement_holds`, from ms-core-5's `_of_pieces` over ct-involution's
+  `transientIdealLocallyMatricialFTwoStatement_holds` and ct-bilateral-mf's `coreTransientIdealLeDefectIdealStatement_holds`;
+- `coreKernelLocallyFiniteStatement_holds`, from chain-radical's `isLocallyFiniteGroup_ker_elementaryMatrixUnitMap`;
+- `relativeElementary_defectIdeal_le_mfHomKernel` and `coreMFRadicalKillELStatement_holds`, which apply prop:torsion-defect-ring
+  per defect (`2 • d = 0`, `R_X` countable), then pass `normalLevel` of the MF radical through `relativeElementary_normalLevel_le`;
+- `elementaryGroupMap_coreRestrict_surjective`, `coreKernel_eq_relativeElementary` (the GL and EL kernels both equal `EL_n(R_X, I)`);
+- closed endpoint `printedCoreKernelAndELKill`.
+
+Over "`R_Y` is LEF":
+- `coreMFRadicalKillGL_of_coreModels`, `coreMFRadicalKillStatement_of_coreModels`;
+- `printedCoreMFRadical_of_coreModels : CoreModelsLEFStatement → PrintedCoreMFRadical`, the printed theorem.
+
+Exact residual list: `DynamicRankBudget.CoreModelsLEFStatement` (lem:chain-core-models, "R_Y is LEF"; chain-itinerary). It enters
+twice: through prop:bilateral-three (`printedBilateralThree_of_coreModels`) for the GL kill, and as the MF/LEF target for the upper
+bounds and the LEF quotients.
+
 Module `GroupApproximation.Manuscript.ChainCore.TransientIdealDefectSpanConsumers`, LANDED 706db7e82 (probe GREEN
 0913-181936-83858), queued for wiring:
 - `defectIdeal_eq_transientIdeal_chainRecurrentSet` (BilateralThree's `defectIdeal` = the kernel at `CR(T)`);
