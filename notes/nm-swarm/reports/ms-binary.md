@@ -550,3 +550,69 @@ All three are queued for wiring.
   - The SHA went to ms-inverses-3.
 - ms-inverses-3's planar bad-junction exclusion is on main at ad307e323, over the Gaps module. It waits for `ClassJoins` to
   respell its two residuals over `P.nonJoinPolygons` and prove `OsinLemma94BadJunctionInput` from them.
+  - Update 09:4x: it landed the bridge `osinLemma94BadJunctionInput_of_pieces` at 3b739a1ff and renamed its copy of
+    `alpha_mem_cellDarts_of_mem_sideDarts` to `…_of_mem_cellSideDarts`.
+
+## End loops for `joinQ` (09:4x): design and model tests
+
+Reading the definitions changed the target:
+- `relatorClasses k` requires `2 ≤ classCount k`, so option 1 of (d) never covers a dart through its own one-class
+  polygon.
+- A one-class polygon `k` whose sides are arcs of `Π` has all its sides of kind `cell Π`.
+  - Its gaps have value one, except the gap at its single non-join (at least one non-join, because `val r ≠ 1`).
+  - So its run reads a **pocket** `I(k)` of `Π`: an arc of `Π` that starts and ends at one vertex, is proper and has value
+    one.
+
+**The slots.** `pocketBefore x` is the longest pocket of `Π` that ends just before the cell dart `x`. It has at most
+`⌈(c + 2)/λ⌉₊` darts, from `CellArcsQuasiGeodesic` and `le_ceil_of_listVal_eq_one`, so (c) holds by construction.
+- `classEnd k i true` is `pocketBefore p`, with `p = α` of the last dart of class `i`; `false` gives `[]`.
+- `regionEnd a 0` and `regionEnd a 1` take `pocketBefore (α y)` for every dart `y` of the right side and of the left side.
+  `regionEnd a 2` and `regionEnd a 3` take the pocket before the first dart of the source arc and of the target arc.
+- `B = (ε + 2)⌈(c + 2)/λ⌉₊`.
+
+**(d).** Take a dart `d` across a one-class polygon `k`, and let `J*` be a longest pocket containing `d`; `I(k)` is one.
+Let `p` be the cell dart after `J*` and `F` the face of `α p`.
+- `F` is the exterior or a relator cell `≠ Π`.
+  - An unbound `p` contradicts `alpha_faceOf_not_cell_of_unbound`.
+  - A bound `p` puts `F` in a region, whose faces are G-faces.
+- `F = Π` (`p` is on an edge with `Π` on both sides). The walk reads `J* p P αp Q`, with `P` and `Q` closed.
+  - One of `P` and `Q` has value one, by the residual below.
+  - So `J* p P αp` or `Q J*` is a longer pocket.
+- `F` in a region `a`. `α p` lies on the cycle of `a`.
+  - If `α p` is interior to the source (or target) portion, the next cycle dart is `α x_v`. The internal moves from `σ p`
+    would pass the cell dart `x_u`, which is impossible.
+  - Otherwise `α p` is a side dart or the portion's end, and `regionEnd` holds `pocketBefore p ⊇ J*`.
+- `F` a polygon `k'`. `α p` ends an (A1) side `s'` (`exists_relatorSide_of_unbound`).
+  - **Corner lemma (P′), from `JunctionPocket.junction_not_reach`:** if `F ≠ Π` spans the corner `σ p = α x_s`, every cell
+    dart leaving that vertex other than `p` lies in the gap `[s+1, v]`. After the join, the vertex splits into
+    `{p, α x_s}` and the rest, and the rest is on the gap side. So the gap contains `J*`.
+  - With at least two classes:
+    - if `s'` joins, the gap is a pocket `⊇ J*`, so it equals `J*`, and option 1 holds;
+    - otherwise `s'` ends its class, and `classEnd` holds `pocketBefore p ⊇ J*`.
+  - With one class:
+    - if `s'` joins, `I(k') ⊋ J*`;
+    - otherwise `J* ++ I(k')` is a pocket;
+    - both contradict maximality.
+
+**Residual `OsinLemma94CellTwoPocketsInput`:** two disjoint closed proper arcs of one cell, at the Lemma 9.4 binders; one
+of them has value one.
+- Their sides are disjoint, so at most one holds the exterior.
+- The other is exterior-free and holds no relator cell, by Osin's loop argument (a pocket with side `s = []`), so it has
+  value one by `PocketRegion.listVal_inner_eq_one`.
+- It is the same exclusion as ms-inverses-3's `OsinLemma94CellJunctionValueInput`, in arc form. It is used only when `F = Π`.
+
+Model tests, by hand:
+- M1 (lobe, spanning polygon with two classes): `J*` is the lobe, and option 1 holds.
+- M2 (nested lobes): `J*` is the outer lobe, and option 1 holds.
+- M3 (a relator cell in a lobe): no one-class polygon is across it. Together with the exterior pocket, it is exactly
+  what the residual excludes.
+- M4 (a flower at a class end): `J*` is the flower, and `classEnd` or `regionEnd` covers it.
+- The barbell, with hairs `E₁`, `E₂`, a hole at `w*` and blobs `Q` and `P`, the exterior in `P`:
+  - `J* = αE₂ αE₁ Q E₁ L E₂`, closed at `w₂`, with value `val Q = 1`;
+  - `F` lies in the blob `P`, so it is a polygon or a region face, as required.
+- Found no false Prop.
+
+CLAIM cell pocket arcs GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94CellPocketArcs.lean
+CLAIM one-class pocket GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94OneClassPocket.lean
+CLAIM pocket corner lemma GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94PocketCornerPlanar.lean
+(`OsinLemma94ClassJoinsEndLoops.lean` stays claimed above.)
