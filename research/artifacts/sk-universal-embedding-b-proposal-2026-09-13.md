@@ -1,9 +1,19 @@
 # sk-universal-embedding-b proposal: LEF groups are exactly the subgroups of simple Kazhdan LEF groups
 
-Lane `sk-universal-embedding-b`, 2026-09-13. Line numbers refer to `$SK/manuscript-disk-1646.tex` (340 lines).
-Status: `lamplighter-bernoulli-crossed-products-simple-kazhdan-lef` and route
-`lef-groups-embed-in-simple-kazhdan-lef-groups-proof` landed at 22e2749154. They are UNREVIEWED and queued with sk-verify-3.
-The artifact is `research/artifacts/sk-universal-embedding-b-lamplighter-2026-09-13.md`.
+Lane `sk-universal-embedding-b`, 2026-09-13; revised after sk-verify-3's review (parts 6 and 7). Line numbers refer to
+`$SK/manuscript-disk-1646.tex` (340 lines).
+
+Status:
+- `lamplighter-bernoulli-crossed-products-simple-kazhdan-lef` (22e2749154): review PASS (sk-verify-3,
+  `research/artifacts/sk-review-3-2026-09-13-part6.md`).
+- Route `lef-groups-embed-in-simple-kazhdan-lef-groups-proof` (22e2749154): review PASS (same part). The claim now reads
+  ESTABLISHED (owner merge 375b89de95).
+- The density step of the first version of this proposal was graded GAP, with a correct repair
+  (`research/artifacts/sk-review-3-2026-09-13-part7.md` §2). The LaTeX below uses the reviewer's replacement sentence
+  (§4 there) and fixes the three UNCLEAR points of §3 there.
+- Artifact: `research/artifacts/sk-universal-embedding-b-lamplighter-2026-09-13.md`.
+- sk-universal-embedding-a's addendum "Version L" (00c09d7c2a) proposes the same corollary. Main should pick one text;
+  this one is the shorter.
 
 ## (a) The change
 
@@ -33,28 +43,42 @@ Let $Z=\{0,1\}^\Delta$ with $(\delta x)(h)=x(\delta^{-1}h)$, and let $a$ flip
 the coordinate at $e$. The group $L=\langle\Delta,a\rangle\cong
 \Z/2\wr\Delta$ acts by $x\mapsto\delta x+f$ with $f$ finitely supported. The
 orbit of $x$ contains $x+\bigoplus_\Delta\Z/2$, so the action is minimal. It is
-topologically free: if $\delta\ne e$, a cylinder contains points with
+topologically free: for $\delta=e$ and $f\ne0$ there is no fixed point, and
+for $\delta\ne e$ every cylinder contains points with
 $x(h)\ne x(\delta^{-1}h)$ for some $h$ outside its window and outside
 $\operatorname{supp}f$. Put $R=\LC(Z,\F_2)\rtimes L$ and
 $G=\EL_3(R)$. As in Section~1, $G$ is finitely generated with
-property~(T), $R$ is simple with $Z(R)=\F_2$ (use a point with trivial
-stabilizer in the relevant ball, which exists by Baire), and $G$ is simple.
-For the last step choose $h=e_{ij}(e_Cu_t)$ with $C$ small; if $g$ commuted
-with all such $h$, then $s\mapsto gsE_{ij}-sE_{ij}g$ would vanish on
-$e_Vu_t$ for every clopen $V$, since its coefficients vanish on a dense open
-set.
+property~(T), and $R$ is simple with $Z(R)=\F_2$, using a point with trivial
+stabilizer in the relevant ball, which exists by Baire. The proof of
+simplicity of $G$ in Section~1 applies once we call a clopen set small if it
+is disjoint from its translates by the nontrivial elements of a large ball.
+For the step at l.185--187: if $g$ commutes with every $e_{ij}(e_Cu_t)$ with
+$C$ small, the coefficients of $ge_Vu_tE_{ij}-e_Vu_tE_{ij}g$ at a point $x$
+depend on $1_V$ only at finitely many translates of $x$. For $x$ with trivial
+stabilizer in a larger ball, cut $V$ along small disjoint neighborhoods of
+these translates; linearity shows that the coefficients vanish at $x$. Such
+points form a dense open set, so $g$ commutes with every $e_{ij}(e_Vu_t)$ and
+is central.
 
-For LEF, let $E_n=\{0,1\}^{Q_n}\times Q_n$. Generators $s$ of $\Delta$ act by
-$(c,q)\mapsto(c,q\varphi_n(s)^{-1})$, and $a$ acts by
-$(c,q)\mapsto(c+1_q,q)$. A function depending on coordinates in $B_\rho$
-becomes the diagonal matrix of its values on $h\mapsto c(q\varphi_n(h))$;
-every configuration is legal. As in Section~1, this is multiplicative on any
-fixed finite list for large $n$. So it defines a unital homomorphism
+For LEF, let $E_n=\{0,1\}^{Q_n}\times Q_n$, and attach to $(c,q)$ the partial
+configuration $h\mapsto c(q\varphi_n(h))$. An element $x\mapsto\delta x+f$ of
+a fixed ball of $L$ acts by
+$(c,q)\mapsto\bigl(c+\sum_{h\in\operatorname{supp}f}1_{q'\varphi_n(h)},\,q'\bigr)$
+with $q'=q\varphi_n(\delta^{-1})$, and these permutations multiply as in $L$
+for large $n$. A function depending on coordinates in $B_\rho$ becomes the
+diagonal matrix of its values on the attached configurations; every
+configuration is legal. So $\sum f_\ell u_\ell$ maps to
+$\sum D_n(f_\ell)P_\ell$, which is multiplicative on any fixed finite list for
+large $n$. It defines a unital homomorphism
 $R\to\prod_\omega M_{|E_n|}(\F_2)$, injective since $R$ is simple, and $G$ is
-LEF. Finally $L\le\GL_1(R)$, and
+LEF. Finally $L\le\GL_1(R)$. We have
+$\operatorname{diag}(c,c^{-1})=e_{12}(c)e_{21}(-c^{-1})e_{12}(c)\,
+e_{12}(-1)e_{21}(1)e_{12}(-1)$ and
 $\operatorname{diag}(a,a^{-1})\operatorname{diag}(b,b^{-1})
-\operatorname{diag}((ab)^{-1},ab)=\operatorname{diag}(1,a^{-1}b^{-1}ab)$, so
-$c\mapsto\operatorname{diag}(c,1,1)$ embeds $[L,L]\supseteq\Gamma$ in $G$.
+\operatorname{diag}((ab)^{-1},ab)=\operatorname{diag}(1,a^{-1}b^{-1}ab)$.
+Swapping the two coordinates by $e_{12}(1)e_{21}(1)e_{12}(1)$ gives
+$\operatorname{diag}([x,y],1)\in G$, so $c\mapsto\operatorname{diag}(c,1,1)$
+embeds $[L,L]\supseteq\Gamma$ in $G$.
 \end{proof}
 ```
 
@@ -67,44 +91,43 @@ Proc. Amer. Math. Soc. \textbf{2} (1951), 307--314.
 \doi{10.1090/S0002-9939-1951-0040298-4}.
 ```
 
-(DOI to be checked through Crossref by sk-citations; I have not verified it.)
+(DOI to be checked through Crossref by sk-citations; I have not verified it. sk-universal-embedding-a read Ore's
+Theorem 1 from the scan.)
 
 ## (b) Proof text
 
-Given in (a). It uses only Section 1 of the note, Ore's theorem, Baire, and Whitehead's lemma. Whitehead's lemma is
-displayed inline as the diag identity plus the standard fact `diag(c,c^{-1}) ∈ E_2`. To make the note self-contained, add
-one clause: `diag(c,c^{-1}) = e_{12}(c)e_{21}(-c^{-1})e_{12}(c)e_{12}(-1)e_{21}(1)e_{12}(-1)`.
+Given in (a). It uses only Section 1 of the note, Ore's theorem, Baire, and Whitehead's factorization, which is
+displayed inline.
 
 ## (c) Length
 
-About +45 lines of LaTeX (+33 for the proof, +4 for the statement, +4 for the bibitem, +4 of section overhead).
-The note grows from 340 to about 385 lines, roughly 0.8 page.
+About +55 lines of LaTeX: +43 for the proof, +4 for the statement, +4 for the bibitem, +4 of section overhead.
+The note grows from 340 to about 395 lines, roughly one page. sk-universal-embedding-a's Version L is about +62.
 
 ## (d) Reader-facing trade-off
 
 It is stronger: it turns the note from one family of examples into a characterization of LEF groups as the subgroups of
-infinite simple Kazhdan LEF groups. The reader must accept a second acting group (the lamplighter) and a density
-adaptation of the tower argument to topologically free actions. The finite models are simpler than the periodic words of
-Section 1. Nothing unpublished is cited.
+infinite simple Kazhdan LEF groups. The reader must accept a second acting group (the lamplighter) and one paragraph
+adapting the tower argument to topologically free actions. The finite models are simpler than the periodic words of
+Section 1, and nothing unpublished is cited.
 
 ## (e) Status and cautions
 
-- The Cairn chain is established but unreviewed:
-  - `lamplighter-bernoulli-crossed-products-simple-kazhdan-lef` (simplicity via
-    `steinberg-elementary-groups-are-simple-mod-centre`, reviewed PASS; (T) via EJZ);
-  - `rf-groups-lie-in-derived-subgroups-of-rf-groups` (peer, unreviewed);
-  - `lef-groups-embed-in-simple-kazhdan-lef-groups-proof`.
-- **The density step in (a) is new text.** The note's l.178-187 needs a clopen partition with disjoint translates,
-  which exists only for free actions. My Cairn route uses the Steinberg theorem instead. The patch argument:
-  - For `x` in the dense open set of points with trivial stabilizer in `B_(2w+3)`, a small clopen `C` contains the
-    finitely many points that the coefficients of `g sE_ij - sE_ij g` read at `x`.
-  - That expression is linear and local in `s = e_V u_t`, so it agrees near `x` with the expression for `e_(V∩C)u_t`,
-    which vanishes.
-  - A locally constant function vanishing on a dense open set is `0`.
-
-  This step needs review before it enters the note (queue: sk-verify-3). The route itself does not depend on it.
-- **Novelty.** The check was bounded to a Cairn grep. Kionke–Schesler (arXiv:2304.09307, Thm 1.2) take residually finite
-  input and give no (T). No literature search was done here; sk-novelty should check "every LEF group embeds in a simple
-  LEF group" and lamplighter crossed products.
-- **Placement alternative (shorter).** Keep the note as is and add one sentence to the introduction, citing the
-  corollary as a remark with a two-sentence proof sketch. That costs about 6 lines but gives the reader no proof.
+- **Cairn chain.**
+  - `lamplighter-bernoulli-crossed-products-simple-kazhdan-lef` (PASS).
+  - `lef-groups-embed-in-simple-kazhdan-lef-groups-proof` (PASS).
+  - `rf-groups-lie-in-derived-subgroups-of-rf-groups` (peer; its own review status applies).
+  - Simplicity in Cairn goes through `steinberg-elementary-groups-are-simple-mod-centre` (PASS), so the Cairn result does not
+    depend on the density paragraph.
+- **Density paragraph.**
+  - The first version said a small clopen set contains all read points. That is false: two translates of `x` in one set
+    make it meet its own translate.
+  - The reviewer's repair takes `x` free in `B_(4w+2)`, cuts `V` along pairwise disjoint small neighborhoods of the read
+    points, and uses additivity. The part `V∖N` reads zero at `x`.
+  - (a) now carries the reviewer's sentence (part 7 §4). Its text has been reviewed; re-check once it is spliced into
+    the note.
+- **Novelty.** sk-universal-embedding-a checked Kionke–Schesler (arXiv:2304.09307, Thm 1.2: residually finite input, no
+  (T)), with two web queries plus sk-questions-ggt's literature pass. The (T) version and the LEF iff appear new at that
+  bound.
+- **Placement alternative (shorter).** Keep the note as is, and add one sentence and a two-sentence sketch to the
+  introduction. That costs about 6 lines but gives the reader no proof.
