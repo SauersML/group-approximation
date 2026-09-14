@@ -239,3 +239,13 @@ CLAIM, the cell trim–double (after w1-binder-7's `exists_trimDouble`, b2c347f6
 
 Residual (1) now: `CellPocketPinchStepPosStatement`, i.e. the split-dart choice at a repeated vertex (the cell analogue of
 hull-respell's unlanded good-corner step) and the full-arc case with both sides at ε (open for sections too, w1-binder-7).
+
+## Adoption (lead ruling a′, 19:3x): hull-respell's `Estimating/OsinPocketPinchFirstTurn.lean`
+
+- No hull-respell green record matched the draft's md5, 4fc02916. Its only record for this module, 0913-175217-45308, was FAILED.
+- Adopted: the path was moved from `hull-respell.files` into this lane's `.files`. The old list is backed up under `nm/backup/hull-respell.files.adopt-by-ms-intro-4.*`, and a text copy is in the attic (4a92cb8f2).
+- Probe 0913-194147-19826 was red on one warning-as-error (`push_neg` deprecated). `push Not` fixed it, and no statement changed.
+- LANDED 5c9707cfe (probe 0913-195222-72875 GREEN, BUILT and COMPILED). The module is unwired and queued for wiring. Names kept as hull-respell wrote them:
+  `PocketFaceSet.FirstTurns`, `firstTurns_iff`, `FirstTurns.closedWalk`, `exists_turn_of_not_unpinched`, `avoids_of_turn`, `exists_turnInput`,
+  `firstTurn_pinchSplitInside`, `firstTurns_pinchSplitInside`, `pinchSplitInside_repeatedVisits_lt_of_turn`, `exists_firstTurnStep_of_turn`,
+  `GoodCorners`, `exists_firstTurnStep_of_goodCorners`, `PocketPinchGoodCornerStepStatement` and `pocketPinchGoodCornerStep`.
