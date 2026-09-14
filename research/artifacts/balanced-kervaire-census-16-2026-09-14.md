@@ -113,14 +113,22 @@ with `det = +-1` at total length at most 17:
   - `census17.txt` `4f1e1b00eeedc9cd119b3e4c96d47bb8`;
   - `census_L16.txt` (29929 lines) `6325dfc89685703c6ca6e8848d86e9a2`;
   - `census_L17.txt` (127342 lines) `81dfe75cc13bbf5a3725b87df89cec03`.
-- The recount of section 2 on the whole L <= 17 census runs in job 778223.
+- **Recount (MSI job 778223, 49 s; `prep16.778223.log`, `rc17.txt` md5
+  `73e8f0373c12719ca7e0ea1dc287d79b`).** `rc_orbit.py` on `census17.txt` gives OK on every block.
+  The per-length counts equal the census, 181842 in total, with 0 bad representatives and `MATCH`.
+  - L = 16 blocks: (1,15) 23130, (3,13) 2911, (5,11) 2049, (7,9) 1839. Blocks with both lengths
+    even are empty, since then `det` is even.
+  - L = 17 blocks: (1,16) 62832, (2,15) 32932, (3,14) 7770, (4,13) 4123, (5,12) 5364,
+    (6,11) 5283, (7,10) 4731, (8,9) 4307.
+  - Example: block (1,16) has orbit sum 64111104 = ordered-pair count 64111104.
+- The L = 16, 17 classes (`census_L1617.txt`, 157271 lines, md5
+  `513a2eade167acfdf730d51631b51139`) are split into 40 round-robin chunks, 157271 lines in total.
 
 ## 5. Jobs in flight (MSI, `/scratch.global/sauer354/hl-balanced-census-16/`)
 
 A dependency chain, one modest job or a 4-task-throttled array at a time:
 1. 775702 `census17.sbatch`: done (section 4).
-2. 778223 `prep16.sbatch` (after 775702): 40 round-robin chunks, then `rc_orbit.py` on the whole
-   L <= 17 census.
+2. 778223 `prep16.sbatch`: done (section 4).
 3. 778224 `classify16.sbatch` (array, after 778223): GAP `bal.g` on every L = 16, 17 class.
 4. 778225 `tc16.sbatch` (array, after 778224): `tc_verify.py` on every L = 16, 17 class.
 5. 778226 `cert16.sbatch` (after 778225): merge, join, certificate export and letter-by-letter

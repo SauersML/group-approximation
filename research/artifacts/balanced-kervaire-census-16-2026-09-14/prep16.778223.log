@@ -1,0 +1,29 @@
+4f1e1b00eeedc9cd119b3e4c96d47bb8  census17.txt
+6325dfc89685703c6ca6e8848d86e9a2  census_L16.txt
+81dfe75cc13bbf5a3725b87df89cec03  census_L17.txt
+954e630e7b9a530253ecebfd170f6afb  rc_orbit.py
+classes L=16,17: 157271
+lines in chunks: 157271
+513a2eade167acfdf730d51631b51139  census_L1617.txt
+block 1 15 reps 23130 orbit_sum 21990240 ordered_pairs 21990240 OK
+block 2 14 reps 0 orbit_sum 0 ordered_pairs 0 OK
+block 3 13 reps 2911 orbit_sum 7141056 ordered_pairs 7141056 OK
+block 4 12 reps 0 orbit_sum 0 ordered_pairs 0 OK
+block 5 11 reps 2049 orbit_sum 7043520 ordered_pairs 7043520 OK
+block 6 10 reps 0 orbit_sum 0 ordered_pairs 0 OK
+block 7 9 reps 1839 orbit_sum 7201152 ordered_pairs 7201152 OK
+block 8 8 reps 0 orbit_sum 0 ordered_pairs 0 OK
+block 1 16 reps 62832 orbit_sum 64111104 ordered_pairs 64111104 OK
+block 2 15 reps 32932 orbit_sum 62827200 ordered_pairs 62827200 OK
+block 3 14 reps 7770 orbit_sum 20689536 ordered_pairs 20689536 OK
+block 4 13 reps 4123 orbit_sum 13486720 ordered_pairs 13486720 OK
+block 5 12 reps 5364 orbit_sum 20317440 ordered_pairs 20317440 OK
+block 6 11 reps 5283 orbit_sum 22040832 ordered_pairs 22040832 OK
+block 7 10 reps 4731 orbit_sum 20861120 ordered_pairs 20861120 OK
+block 8 9 reps 4307 orbit_sum 19542528 ordered_pairs 19542528 OK
+0
+reps per L: [(2, 1), (3, 1), (4, 1), (5, 2), (6, 3), (7, 11), (8, 17), (9, 54), (10, 91), (11, 349), (12, 591), (13, 2359), (14, 4070), (15, 17021), (16, 29929), (17, 127342)] total 181842
+bad representatives: 0 []
+MATCH
+73e8f0373c12719ca7e0ea1dc287d79b  rc17.txt
+DONE
