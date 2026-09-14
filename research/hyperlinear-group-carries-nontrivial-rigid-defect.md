@@ -52,3 +52,17 @@ counterexample may be trace-preserving or not.
   - Commutant no-growth then gives equality at each finite stage.
   - So a witness needs representations of `G` that are not flexibly
     exactifiable.
+- **Ultraproducts of genuine representations of Kazhdan covers
+  (hl-nh-el3-compressor, 2026-09-14).** Normalization still holds for models
+  pulled back from genuine finite-dimensional representations of a cover of
+  `G`, with kernel two-norm trivial, in which a Kazhdan lift of `Gamma` is
+  compressed by lifted compressors
+  (`kazhdan-cover-actor-models-normalize-vertex-commutants`). The vertex need
+  not round, and the commutant may be diffuse.
+  - At the Theorem E pair this covers the Steinberg actor
+    `St_r(L) ⋊ SL_d(Z)` for every `r, d >= 3`, including `r = 3`, where the
+    Steinberg kernel is outside stability
+    (`steinberg-actor-models-carry-no-rigid-wall`).
+  - So a witness must also avoid every such cover. Every model is pulled
+    back from a free cover, where no Kazhdan lift exists. Artifact
+    `research/artifacts/hl-nh-el3-compressor-2026-09-14.md`.
