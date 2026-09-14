@@ -229,8 +229,16 @@ CLAIM `OsinLemma94CuttingTransitionInput` (cutting transitions ≤ K n), in new 
 
 ## Item 6 (main, 09:2x 09-14): help ms-compress-1 close `OsinLemma94ContactTransitionInput`
 
-CLAIM building H `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactObjectMap.lean`. The split was proposed
-to ms-compress-1 in one message (09:2x). They keep the region-merge exclusion for empty two-gons and the assembly.
+~~CLAIM building H~~ WITHDRAWN (09:3x): ms-compress-1 had already written H, as `Estimating/OsinLemma94ContactMap`. By
+agreement (their reply, 09:3x) I take the small faces instead.
+
+CLAIM `OsinLemma94ContactMapSmallFacesInput` (under the binders of `OsinLemma94LongTransitionInput`, the faces of
+`P.contactMap` of degree < 6 number ≤ K·n), in new modules `Estimating/OsinLemma94ContactMapSmallFaces*.lean`.
+- ms-compress-1 states the Prop with H, and keeps the counts and the assembly.
+- The route, per face (every face has degree ≥ 4, so small faces have degree 4):
+  - the face holds a relator cell, which gives at most n such faces;
+  - otherwise it is an empty two-gon, excluded by a region merge, `pinchSplitAbsorption`, or ContactBubble.
+- The earlier H outline, kept for reference:
 - H = `PredicateRestriction.toCombMap (S.diagram.toCombMap.dual)`, keeping one dart pair per (polygon f with d_f ≥ 2,
   object o), where o is a relator cell or the exterior.
 - Outputs:
