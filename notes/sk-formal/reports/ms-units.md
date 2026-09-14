@@ -37,3 +37,17 @@ infinite, minimal (dense orbits in X); `R = ClopenCrossedProduct (WordGraph.shif
   recurrence from minimality and the periodic word y with the same (2k+1)-words and arbitrarily large N.
 - CLAIM tex 131–144 and the ring endpoint: `GroupApproximation/Manuscript/SimpleKazhdanSofic/FiniteModelsRing.lean`, which proves
   D_y, covariance, nonzero coefficients, distinct diagonals and `IsLEFRing R`.
+
+## Re-scope 19:45 (PROTOCOL: current tip, ranges by section, rows by 12-hex hash)
+
+The note is at e80dcf20a (386 lines, md5 4ad49212…). "Finite models" is ≈116–177.  Split agreed with ms-core-3:
+- ms-units: 117–145;
+- ms-core-3: 147–177 (marked limits, SL_{3N_ℓ}(F₂), expanders, sofic, hyperlinear, operator-algebra consequences).
+Rows wait for skf-census to regenerate `metadata/SK_SENTENCE_CENSUS.tsv` at the tip; the census on origin is still at bf961c128.
+
+Route changes at the tip, with carriers:
+- 121–124: "Fix x ∈ X … every word of X occurs in x, and x_{[0,2ℓ)} recurs at arbitrarily large positions.  Choose such a position m …".  Carriers: `exists_nat_word_eq_of_minimal`, `exists_recurrence_of_minimal`, `exists_occurrences_of_mem`.
+- 124–129: the m-periodic y_ℓ agrees with x on [0, m+2ℓ); windows are translates of windows starting in [0,m); same words.  Carriers: `periodicWord_natCast_eq`, `periodicWord_window_eq`, `periodicWord_exists_window_eq`.
+- CLAIM 129–132: least period N_ℓ ≥ #words, and "a subshift with boundedly many words of each length is finite", so N_ℓ → ∞.  Module `GroupApproximation/Manuscript/SimpleKazhdanSofic/FiniteModelsLeastPeriod.lean`.
+- CLAIM 134–145: D_ℓ(f)δ_t = f(T^t y_ℓ)δ_t on F₂^{Z/N_ℓ}, φ_ℓ = Σ D_ℓ(f_j)P^j, covariance, identities for large ℓ, φ_ℓ(r) ≠ 0 for large ℓ.  Module `GroupApproximation/Manuscript/SimpleKazhdanSofic/FiniteModelsAsymptotic.lean`, exposing the named Prop ms-core-3 consumes.
+- Kept: `FiniteModelsRing` (`exists_matrixModel_clopenCrossedProduct`), which carries the injective finite ring models that ms-core-3's landed `FiniteModelsGroup` (3d1ce154d) consumes.
