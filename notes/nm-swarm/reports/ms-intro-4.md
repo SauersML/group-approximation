@@ -200,3 +200,18 @@ Then the pinch splits and the trim–double step at the cells.
 - First-turn order across both is carried by `EdgeInsertion.firstTurnChain_map_embed` (c2927f84f), through `_boundary_cycle`.
 
 Next: `Estimating/OsinPocketCellPinchSplit`, the cell pockets across both pinch splits and the two step theorems.
+
+### LANDED d59d06734 (probe 0913-190218-95517 GREEN, BUILT and COMPILED)
+
+`Estimating/OsinPocketCellPinchSplit` is new and unwired, and is queued for wiring.
+- `CellPocketFaceSet.pinchSplit K I (hs : I.Avoids K.faces)` and `pinchSplitInside K I (hs : I.Inside K.faces)`: the cells move
+  through `I.cellMap`, and the cycle, arcs and sides are unchanged (`_boundary_cycle` is rfl).
+- `_closedWalk` (every turn a stretch avoiding the split darts), `_repeatedVisits_lt` and `pinchSplit_repeatedVisits_lt_of_stretch`.
+- `exists_cellPinchStep_of_avoids` and `exists_cellPinchStep_of_inside`: the conclusion of `CellPocketPinchStepPosStatement` at
+  such a split.
+
+Status of residual (1): `CellPocketPinchPosStatement` reduces to `CellPocketPinchStepPosStatement`
+(`cellPocketPinchPosStatement_of_stepPos`), and every transport the step uses exists for cell pockets: trims, both doublings
+(keeping first-turn order) and both splits. What remains open is the step itself: choosing the split darts at a repeated
+vertex, and the trim–double move when the corner lies in a cell (the cell analogue of w1-binder-7's `exists_trimDouble`, in
+flight at the section level).
