@@ -1,0 +1,173 @@
+[
+ {
+  "vertex": "X_0=<a,b>",
+  "x": "a",
+  "y": "b",
+  "order": 343,
+  "abelian_normal_rank": 2,
+  "linear_characters": 49,
+  "degree7_irreducibles": 6,
+  "classes": 55,
+  "irreducible_count_ok": true,
+  "sum_of_squares_ok": true,
+  "x_multiplicity_patterns_in_degree7": {
+   "(1, 1, 1, 1, 1, 1, 1)": 6
+  },
+  "column_orthogonality_x_powers": [
+   [
+    49.0,
+    49
+   ],
+   [
+    49.0,
+    49
+   ],
+   [
+    49.0,
+    49
+   ],
+   [
+    49.0,
+    49
+   ],
+   [
+    49.0,
+    49
+   ],
+   [
+    49.0,
+    49
+   ]
+  ],
+  "y_regular_in_degree7": true
+ },
+ {
+  "vertex": "X_0=<a,b>",
+  "x": "b",
+  "y": "a",
+  "order": 343,
+  "abelian_normal_rank": 2,
+  "linear_characters": 49,
+  "degree7_irreducibles": 6,
+  "classes": 55,
+  "irreducible_count_ok": true,
+  "sum_of_squares_ok": true,
+  "x_multiplicity_patterns_in_degree7": {
+   "(1, 1, 1, 1, 1, 1, 1)": 6
+  },
+  "column_orthogonality_x_powers": [
+   [
+    49.0,
+    49
+   ],
+   [
+    49.0,
+    49
+   ],
+   [
+    49.0,
+    49
+   ],
+   [
+    49.0,
+    49
+   ],
+   [
+    49.0,
+    49
+   ],
+   [
+    49.0,
+    49
+   ]
+  ],
+  "y_regular_in_degree7": true
+ },
+ {
+  "vertex": "X_1=<c,b>",
+  "x": "c",
+  "y": "b",
+  "order": 2401,
+  "abelian_normal_rank": 3,
+  "linear_characters": 49,
+  "degree7_irreducibles": 48,
+  "classes": 97,
+  "irreducible_count_ok": true,
+  "sum_of_squares_ok": true,
+  "x_multiplicity_patterns_in_degree7": {
+   "(2, 2, 2, 1, 0, 0, 0)": 42,
+   "(1, 1, 1, 1, 1, 1, 1)": 6
+  },
+  "column_orthogonality_x_powers": [
+   [
+    343.0,
+    343
+   ],
+   [
+    343.0,
+    343
+   ],
+   [
+    343.0,
+    343
+   ],
+   [
+    343.0,
+    343
+   ],
+   [
+    343.0,
+    343
+   ],
+   [
+    343.0,
+    343
+   ]
+  ],
+  "y_regular_in_degree7": true
+ },
+ {
+  "vertex": "X_2=<c,a>",
+  "x": "c",
+  "y": "a",
+  "order": 2401,
+  "abelian_normal_rank": 3,
+  "linear_characters": 49,
+  "degree7_irreducibles": 48,
+  "classes": 97,
+  "irreducible_count_ok": true,
+  "sum_of_squares_ok": true,
+  "x_multiplicity_patterns_in_degree7": {
+   "(1, 1, 1, 1, 1, 1, 1)": 6,
+   "(2, 2, 2, 1, 0, 0, 0)": 42
+  },
+  "column_orthogonality_x_powers": [
+   [
+    343.0,
+    343
+   ],
+   [
+    343.0,
+    343
+   ],
+   [
+    343.0,
+    343
+   ],
+   [
+    343.0,
+    343
+   ],
+   [
+    343.0,
+    343
+   ],
+   [
+    343.0,
+    343
+   ]
+  ],
+  "y_regular_in_degree7": true
+ }
+]
+DONE

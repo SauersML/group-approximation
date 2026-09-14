@@ -112,12 +112,13 @@ The inputs to (EM) are genuine representations of three finite 7-groups, of orde
     the colimit of the vertex abelianizations. The invariant-fraction fence above applies verbatim to
     `W ⊗ λ` for each of the 343 linear characters `λ`. So no linear count of isotypic fractions of
     vertex and edge groups separates (EM) from its failure.
-  - **A refutation route (hypotheses not checked for `H`).** If some real degree-two class of the
-    congruence kernel `H` is realized by finite-dimensional projective representations whose
-    cocycles tend to `1`, the Ioana–Spaas–Wiersma mechanism used in
-    `rf-kazhdan-group-not-flexibly-hs-stable` would make `H` not flexibly stable. By descent `G`
-    would not be stable, and (HA) would fail. Whether such projective representations exist for `H`
-    is a profinite question about its degree-two classes.
+  - **A refutation route (sharpened 2026-09-13, same lane).** The earlier wording named the
+    Ioana–Spaas–Wiersma mechanism. The criterion that applies to a hyperbolic group, with no `Z^2`
+    subgroup, is `kazhdan-cover-models-round-iff-kernel-fixed-mass-one` with a central kernel. It is
+    recorded as OPEN premise `ghb7-finite-index-z-extension-center-survives` (some finite-index
+    subgroup has a Kazhdan central `Z`-extension whose centre survives at unbounded orders in finite
+    quotients), with route `ghb7-instability-via-visible-central-extension` into OPEN
+    `ghb7-is-not-flexibly-hs-stable`. Real classes exist at `H`; survival of the centre is open.
 - **Exact gap.** (HA) for `GHB_2(7)` (`ghb7-one-edge-holonomy-absorption`): after `b` and `a` agree
   exactly, remove the `c`-mismatch using the commutants of `ρ_0(b)` and `ρ_0(a)` plus `o(d)` flexible
   padding, uniformly in the dimension.

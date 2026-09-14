@@ -35,5 +35,35 @@ every vertex group containing them, while `c` has centralizers of order 343 in `
 **Stakes.** Through `ghb7-flexibly-hs-stable`, Cairn cascades (HA) to `non-hyperlinear-group`,
 `nonsofic-hyperbolic-group` and `non-residually-finite-hyperbolic-group`.
 
+## Attempts
+
+- **Where non-regular edge data sit (2026-09-13, lane `hl-ghb7-edge-matching`).** By
+  `ghb7-vertex-irreducibles-edge-restriction-table`, every irreducible of every vertex group
+  restricts to `⟨a⟩` and `⟨b⟩` as a linear character or as the regular representation. The only
+  non-regular restrictions of nonlinear irreducibles are on `c`, in 42 degree-7 irreducibles of `X_1`
+  and 42 of `X_2`, with multiplicities `(2,2,2,1,0,0,0)`. No gluing consequence is proved: the data
+  record where the relative position of `ρ_1(c)` and `ρ_2(c)` can differ from a multiplicity count.
+- **Plancherel-moment counts cannot refute (HA) (standard facts not re-read at source: Delorme–Guichardet,
+  Lück additivity).**
+  - For `k, l >= 0` and a vertex or edge group `X`, put
+    `f_X^(k,l)(ρ) = (1/|X|) Σ_(x∈X) (tr ρ(x))^k · conj(tr ρ(x))^l`, with `tr` normalized. This is the
+    normalized dimension of the `X`-invariants of `ρ^(⊗k) ⊗ ρ̄^(⊗l)`.
+  - For a genuine `G`-representation, the count `1 − Σ_e f_e^(k,l) + Σ_i f_i^(k,l) >= 0` follows from
+    property (T) and the cochain complex of `Y` with coefficients in `ρ^(⊗k) ⊗ ρ̄^(⊗l)`, exactly as in
+    the fence on `ghb7-flexibly-hs-stable` (the case `k = 1, l = 0`).
+  - Every asymptotic representation satisfies the same count in the limit. Replace `L^2(M)` by
+    `L^2(N)`, `N = M^(⊗̄k) ⊗̄ (M^op)^(⊗̄l)`, with `G` acting on the left through
+    `σ^ω(g)^(⊗k) ⊗ (σ^ω(g)*)^op⊗l`. The cochain complex consists of Hilbert right `N`-modules, (T)
+    gives `H^1 = 0`, and additivity gives the count with `f^(k,l)` as `τ_N` of the averaging
+    projections.
+  - So no count of invariant fractions of any tensor power separates (HA) from its failure. A
+    witness must be seen by the relative position of the vertex operators, not by characters.
+- **Refutation side.** See `ghb7-finite-index-z-extension-center-survives` and route
+  `ghb7-instability-via-visible-central-extension`.
+- **Exact gap.** After `b` and `a` agree exactly, remove the `c`-mismatch with corrections tending to
+  `0` in normalized HS norm plus `o(d)` flexible padding, uniformly in the dimension. Or exhibit a
+  finite-index subgroup whose Kazhdan central `Z`-extension keeps its centre at unbounded orders in
+  finite quotients.
+
 ROUTES
 ghb7-stability-via-one-edge-holonomy
