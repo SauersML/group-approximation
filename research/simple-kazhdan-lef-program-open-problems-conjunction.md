@@ -21,7 +21,15 @@ requires:
   - subshift-crossed-product-algebraic-cartans-are-conjugate
   - subshift-elementary-group-lef-growth-at-least-exp-r-squared
   - subshift-elementary-group-lef-growth-tracks-complexity
+  - accumulating-minimal-sets-el-restriction-kernel-elementary
+  - fp-simple-finite-group-models-reduce-to-alternating-constituents
+  - hyperlinear-groups-embed-in-simple-kazhdan-hyperlinear-groups
+  - operator-mf-groups-embed-in-simple-kazhdan-mf-groups
+  - simple-ring-el3-lef-forces-lef-ring
+  - subshift-elementary-group-reduced-cstar-is-not-mf
 ---
 
 Assembly only: the root is the conjunction of the listed open claims. This route makes each of them reachable from a
 root, so the frontier report lists them as holes of this program.
+
+Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `accumulating-minimal-sets-el-restriction-kernel-elementary` `fp-simple-finite-group-models-reduce-to-alternating-constituents` `hyperlinear-groups-embed-in-simple-kazhdan-hyperlinear-groups` `operator-mf-groups-embed-in-simple-kazhdan-mf-groups` `simple-ring-el3-lef-forces-lef-ring` `subshift-elementary-group-reduced-cstar-is-not-mf`.

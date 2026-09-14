@@ -15,6 +15,16 @@ requires:
   - rank-models-give-no-hamming-models-through-vector-actions
   - kazhdan-representations-have-no-hs-compression-models
   - fp-simple-groups-have-no-classical-group-unitary-models
+  - chacon-elementary-group-lef-growth-is-exp-r-squared
+  - thue-morse-elementary-group-lef-growth-is-exp-r-squared
+  - fp-simple-groups-have-no-models-through-classical-products
+  - template-constituents-primitive-or-small-minimal-degree
+  - laurent-sl4-stability-makes-overgroups-reduced-non-mf
+  - simple-ring-with-matrix-units-el-lef-iff-matricial
+  - lef-el-groups-force-exactly-matricial-simple-ring
+  - finite-simple-kazhdan-limits-need-not-be-simple
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
+
+Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `chacon-elementary-group-lef-growth-is-exp-r-squared` `thue-morse-elementary-group-lef-growth-is-exp-r-squared` `fp-simple-groups-have-no-models-through-classical-products` `template-constituents-primitive-or-small-minimal-degree` `laurent-sl4-stability-makes-overgroups-reduced-non-mf` `simple-ring-with-matrix-units-el-lef-iff-matricial` `lef-el-groups-force-exactly-matricial-simple-ring` `finite-simple-kazhdan-limits-need-not-be-simple`.

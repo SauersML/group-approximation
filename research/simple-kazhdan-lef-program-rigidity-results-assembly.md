@@ -12,6 +12,10 @@ requires:
   - subshift-ring-cartan-uniqueness-iff-groupoid-model-rigidity
   - binary-subshift-ring-k1-is-half-orbit-index
   - binary-cantor-ring-stable-steinberg-group-centrally-closed
+  - cartan-uniqueness-iff-orbit-cocycle-and-ring-rigidity
+  - corner-matrix-ring-isos-force-flip-conjugacy
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
+
+Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `cartan-uniqueness-iff-orbit-cocycle-and-ring-rigidity` `corner-matrix-ring-isos-force-flip-conjugacy`.

@@ -17,6 +17,13 @@ requires:
   - sequence-el3-simple-iff-uniformly-recurrent-aperiodic
   - cyclic-factor-subshift-el-2-is-simple-kazhdan-lef
   - el-2-over-every-minimal-subshift-algebra-is-kazhdan
+  - clopen-invariant-complement-el-kernel-is-elementary
+  - equivariant-retract-splits-subshift-el-restriction
+  - finitely-many-minimal-sets-el-normal-subgroups-are-kernels
+  - recurrent-orbit-closure-with-unique-sturmian-minimal-set
+  - subshift-el-2-simple-modulo-centre-every-finite-field
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
+
+Members added by sk-cairn-steward-2 (2026-09-13, sk landings from 20:00 on): `clopen-invariant-complement-el-kernel-is-elementary` `equivariant-retract-splits-subshift-el-restriction` `finitely-many-minimal-sets-el-normal-subgroups-are-kernels` `recurrent-orbit-closure-with-unique-sturmian-minimal-set` `subshift-el-2-simple-modulo-centre-every-finite-field`.
