@@ -457,6 +457,13 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
 97. **S2 gate OPEN.** `topological-full-group-embeds-in-subshift-elementary-group` already PASSed in sk-review-2 part4 row 18 (43d31d65e), map (B) included. sk-verify-7 part6 (3742d451b4) confirms it and PASSes the four C*-simplicity test-subgroup claims, agreeing with sk-verify-13.
     - The node header still says "unreviewed". sk-verify-13's review line will fix that.
     - S2 goes into rev4: [[T]]′ ≤ G_X via diag(w_g,1,1), so the Juschenko–Monod groups are subgroups of G_X.
+98. **Questions** (sk-questions-section, f7ca66b1b1).
+    - ADOPT: "A sofic example would not be LEF … Is every sofic infinite simple Kazhdan group LEF?", at no extra length. A f.p. LEF group is RF, so both the f.p. question and the sofic-host question turn on a sofic non-LEF simple Kazhdan group.
+    - ADOPT O1 (+1 line): "Does L(G_X) ≅ L(G_Y) imply G_X ≅ G_Y?", with no Connes-conjecture naming.
+    - REJECTED: a C*-simplicity question.
+    - Cairn: new open claim `sofic-non-lef-infinite-simple-kazhdan-group-exists`, wired into the note's open-questions root.
+99. **Every finite field** (sk-general-statement, d7ef2a68fd; +20 lines, compiles). Include the n ≥ 3 variant only if the finished rev4 stays ≤ 8 pp and sk-verify-13 PASSes the LaTeX (queue line 7). Otherwise it becomes rev4.1 or stays out.
+100. **E2 HOLDS** (sk-verify-6 part5): Alekseev–Thom §5 lists Thom's group as the sofic Kazhdan non-RF example; de Cornulier's groups are only hyperlinear-related; Kar–Nikolov's lack (T). ADOPT E2 with \cite[\S5]{AlekseevThom}. Never "only known example".
 
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
