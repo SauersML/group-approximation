@@ -178,6 +178,26 @@ literal step missing.
     - `SameCellPocketLoopCutStatement`: ms-traces-2's successor-form enclosed route, which targets the statement
       unchanged.
 
+## Item 4 (main ~00:5x 09-14): help ms-traces-2 with `EnclosedBridgeDoublingSuccStatement`
+
+- Split agreed with ms-traces-2 in one message.
+  - ms-traces-2 keeps `ClosedWalkEnclosedBridgeDoublingRun` (first turns across one doubling, attic d47ea5766) and
+    `ClosedWalkEnclosedBridgeDoublingStep` (one doubling at a bridge dart, inner-face and exterior-face branches,
+    `newFaces`, `bridgeCount_image_lt`, attic 832396b7d). Both are probing.
+  - It released its unwritten `ClosedWalkEnclosedBridgeDoubling.lean` claim.
+  - The enclosed `PocketCellTransport` analogue stays with ms-traces-2 or w1-binder-6.
+- This lane:
+  - the model test: the island map, whose successor-form walk has both bridge darts on the exterior, so an inner-face
+    doubling cannot reach them;
+  - the proof: side selection, strong induction on `bridgeCount`, and `enclosedBridgeDoublingSucc`.
+- Side selection needs no connectivity argument.
+  - Under `turn_next`, a bridge dart `d` on a monogon face has `σ (α d) = d`, so the walk successor of `d` is `d`.
+  - The walk has no repeated dart, so it is `[d]`, which contradicts `α d` being on the walk.
+  - So every bridge dart lies on a face with at least two darts.
+- CLAIM model test: `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingModel.lean`
+- CLAIM producer of `EnclosedBridgeDoublingSuccStatement`: `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingProof.lean`
+- Both paths are free on origin, in the shared tree and in every `lanes/*.files` (checked ~00:55).
+
 ## Progress log
 
 - 2026-09-13 ~17:05: ledger and claims.
