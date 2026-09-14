@@ -67,7 +67,7 @@ Formal route:
 
 - f34e9c0b1 (09:05) removed the Brown's formulation clause "and C*(G) does not have the local lifting property [p. 527]", so row `a63ff00e499b` is superseded.
 - The LLP claim that remains is in the introduction, l.51–54 at 8b36733d7 (row `7f3b239e5f2a`, verbatim): "Ozawa stated the hyperlinear form in 2003, noting that the full C*-algebra of such a group cannot have the local lifting property [p. 527]". Such a group is an infinite simple Kazhdan hyperlinear group.
-- Carrier `Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting`, in probe:
+- Carrier `Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting`, LANDED 0e6bc6f50 (probe 0914-092033-22441 GREEN, wire-queued). Census row `7f3b239e5f2a` is formalized in `metadata/sk-census-rows/oa-llp.tsv`.
   - `PrintedOzawaNoLocalLiftingGeneral` states it at printed generality; countability comes from (T) ⇒ f.g.
   - `printedOzawaNoLocalLiftingGeneral` is the closed endpoint. It goes through oa-kirchberg's inhabitant `KirchbergTheorem.kirchbergKazhdanFactorizationInput` (9df1daac4) and oa-mcduff's producer `hyperlinearTracePreservingModelStatement_holds` (24a27e527).
 - Census rows wait for a census regenerated at the tip; the census on origin is at 696c4b602.
