@@ -92,8 +92,8 @@ the space of marked groups, of finite simple groups `SL_{nN}(F₂)` whose Cayley
 to the images of a fixed generating set, form a family of expanders. -/
 def PrintedMarkedLimitExpanders (S : Subshift A ℤ) (n : ℕ) : Prop :=
   ∃ (ι : Type) (s : ι → ↥(elementaryGroup (Fin n) (R S))) (N : ℕ → ℕ)
-    (σ : ∀ ℓ, ι → Matrix.SpecialLinearGroup (Fin (n * N ℓ)) (ZMod 2)),
-    (∀ ℓ, IsSimpleGroup (Matrix.SpecialLinearGroup (Fin (n * N ℓ)) (ZMod 2))) ∧
+    (σ : ∀ ℓ, ι → Matrix.SpecialLinearGroup (Fin n × Fin (N ℓ)) (ZMod 2)),
+    (∀ ℓ, IsSimpleGroup (Matrix.SpecialLinearGroup (Fin n × Fin (N ℓ)) (ZMod 2))) ∧
       IsMarkedLimit s σ ∧ IsExpanderFamily σ
 
 end Statement
@@ -143,6 +143,7 @@ variable {A : Type} [TopologicalSpace A]
 theorem nontrivial_clopenCoeff (S : Subshift A ℤ) [Nonempty S.carrier] :
     Nontrivial (ClopenCoeff (subshiftHomeo S) (ZMod 2)) := by
   haveI : Nontrivial (ZMod 2) := nontrivial_of_ne (0 : ZMod 2) 1 (by decide)
+  haveI : Nontrivial (LocallyConstant S.carrier (ZMod 2)) := Pestov91.locallyConstant_nontrivial
   exact inferInstanceAs (Nontrivial (LocallyConstant S.carrier (ZMod 2)))
 
 theorem infinite_ring (S : Subshift A ℤ) [Nonempty S.carrier] : Infinite (R S) := by
@@ -170,8 +171,8 @@ theorem printedSimpleKazhdanSoficMain_of_pieces (hfg : PrintedSubshiftRingFGStat
   have hML : PrintedMarkedLimitExpanders S n := hmarked A S hinf hmin n hn
   obtain ⟨ι, s, N, σ, _, hlim, hexp⟩ := hML
   have hLEF : IsLEF ↥(elementaryGroup (Fin n) (R S)) :=
-    hlef ι _ s (fun ℓ => Matrix.SpecialLinearGroup (Fin (n * N ℓ)) (ZMod 2)) σ hexp.2.1 hlim
-  exact ⟨infinite_elementaryGroup S hinf hn, KazhdanFiniteGeneration.fg_of_hasKazhdanPropertyT hT,
+    hlef ι _ s (fun ℓ => Matrix.SpecialLinearGroup (Fin n × Fin (N ℓ)) (ZMod 2)) σ hexp.2.1 hlim
+  exact ⟨infinite_elementaryGroup S hinf hn, KazhdanFiniteGeneration.fg_of_hasKazhdanPropertyT _ hT,
     hsimple A S hinf hmin n hn, hT, hmarked A S hinf hmin n hn, hLEF, isSofic_of_isLEF hLEF,
     Pestov91.isHyperlinear_of_isLEF hLEF⟩
 
