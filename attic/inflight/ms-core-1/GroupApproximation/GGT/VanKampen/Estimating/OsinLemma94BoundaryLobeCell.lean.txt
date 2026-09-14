@@ -51,12 +51,9 @@ theorem exists_relatorCell_of_firstTurnWalk_listVal_ne_one {c : List Delta.toCom
     ∃ C ∈ Delta.relatorCells,
       C.face ∈ sideFaces Delta.toCombMap (c.reverse.map Delta.toCombMap.alpha) := by
   by_contra hno
-  push_neg at hno
   refine hval ?_
   have h := (PocketRegion.ofFirstTurnWalk hne hnodup halpha hchain hclose hout).listVal_inner_eq_one
-    fun C hC => by
-      rw [PocketRegion.ofFirstTurnWalk_faces]
-      exact hno C hC
+    fun C hC hmem => hno ⟨C, hC, by rwa [PocketRegion.ofFirstTurnWalk_faces] at hmem⟩
   rwa [PocketRegion.ofFirstTurnWalk_inner_cycle] at h
 
 end GroupApproximation.GGT.VanKampen
