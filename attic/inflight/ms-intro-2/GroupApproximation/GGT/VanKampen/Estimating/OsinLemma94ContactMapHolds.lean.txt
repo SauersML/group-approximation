@@ -17,11 +17,12 @@ empty.
   - A component of the contact map nested inside `F` always has an object vertex, so it is held.
 * `OsinLemma94ContactMapHoldingSmallFacesInput` (part 1, ms-intro-2): the nondegenerate small faces
   holding an object number at most `K n`.  This is a nesting charge over the components.
-* `OsinLemma94ContactMapEmptyTwoGonInput` (part 2, ms-traces-1): a nondegenerate small face holding
-  no object contradicts the choice of the family.  The merge runs through sectors of the two polygon
-  faces.
+* `OsinLemma94ContactMapEmptyTwoGonInput` (part 2, ms-traces-1): the nondegenerate small faces
+  holding no object number at most `K n`.  An empty two-gon need not contradict the choice of the
+  family: when its polygons are rich through other cells, no sector merge is heavier (configuration C
+  of ms-traces-1), so the piece is a count.
 * `osinLemma94ContactMapNondegenerateSmallFacesInput_of_pieces`: the nondegenerate count from the
-  two pieces, with the constant of part 1.  **This is a reduction: both pieces are open.**
+  two pieces, with constant `K₁ + K₂`.  **This is a reduction: both pieces are open.**
 
 Model tests (hand).
 * The square `a – f – b – f′` of two rich polygons around a relator cell `c` that no rich polygon
@@ -97,15 +98,15 @@ def OsinLemma94ContactMapHoldingSmallFacesInput : Prop :=
                     (Finset.univ.filter fun F : P.contactMap.Face =>
                       P.NondegenerateSmallFace F ∧ P.HoldsObject F).card ≤ K * Delta.rCellCount
 
-/-- **Part 2: an empty nondegenerate small face contradicts the choice of the family** (open).
-Under the binders of `OsinLemma94LongTransitionInput`, a nondegenerate face of degree less than six
-of `contactMap P` that holds no object gives a contradiction. -/
+/-- **Part 2: the empty nondegenerate small faces** (open).  Under the binders of
+`OsinLemma94LongTransitionInput`, the nondegenerate faces of degree less than six of `contactMap P`
+that hold no object number at most `K n`. -/
 def OsinLemma94ContactMapEmptyTwoGonInput : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
     (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
     ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
       ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
-        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+        ∃ K : ℕ, ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
           ∀ (W : Set (List (RelLetter G Lambda))),
             OsinCCondition D W eps mu lambda c rho →
             ∀ (Delta : DiscDiagram.{u, w, v} W)
@@ -119,10 +120,10 @@ def OsinLemma94ContactMapEmptyTwoGonInput : Prop :=
               ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
                 S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
                   ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
-                    ∀ F : P.contactMap.Face, P.NondegenerateSmallFace F → ¬ P.HoldsObject F →
-                      False
+                    (Finset.univ.filter fun F : P.contactMap.Face =>
+                      P.NondegenerateSmallFace F ∧ ¬ P.HoldsObject F).card ≤ K * Delta.rCellCount
 
-/-- **The nondegenerate small faces from the two pieces**, with the constant of part 1, threshold
+/-- **The nondegenerate small faces from the two pieces**, with constant `K₁ + K₂`, threshold
 `max ε₁ ε₂` and `ρ₀ = max ρ₁ ρ₂`. -/
 theorem osinLemma94ContactMapNondegenerateSmallFacesInput_of_pieces
     (hhold : OsinLemma94ContactMapHoldingSmallFacesInput.{u, w, v})
@@ -132,11 +133,13 @@ theorem osinLemma94ContactMapNondegenerateSmallFacesInput_of_pieces
   obtain ⟨e1, he1⟩ := hhold D hhyper lambda c mu h1 h2 h3 h4 h5
   obtain ⟨e2, he2⟩ := hempty D hhyper lambda c mu h1 h2 h3 h4 h5
   refine ⟨max e1 e2, fun eps heps => ?_⟩
-  obtain ⟨K, r1, hr1, hK⟩ := he1 eps ((le_max_left _ _).trans heps)
-  obtain ⟨r2, _, hE⟩ := he2 eps ((le_max_right _ _).trans heps)
-  refine ⟨K, max r1 r2, lt_of_lt_of_le hr1 (le_max_left _ _),
+  obtain ⟨K1, r1, hr1, hK1⟩ := he1 eps ((le_max_left _ _).trans heps)
+  obtain ⟨K2, r2, _, hK2⟩ := he2 eps ((le_max_right _ _).trans heps)
+  refine ⟨K1 + K2, max r1 r2, lt_of_lt_of_le hr1 (le_max_left _ _),
     fun rho hrho W hW Delta cuts hleast hcells hbelow S hcard hminimal P hmax => ?_⟩
-  have hhold' := hK rho ((le_max_left _ _).trans hrho) W hW Delta cuts hleast hcells hbelow S hcard
+  have ha := hK1 rho ((le_max_left _ _).trans hrho) W hW Delta cuts hleast hcells hbelow S hcard
+    hminimal P hmax
+  have hb := hK2 rho ((le_max_right _ _).trans hrho) W hW Delta cuts hleast hcells hbelow S hcard
     hminimal P hmax
   have hsub : (Finset.univ.filter fun F : P.contactMap.Face =>
       P.contactMap.faceDegree F < 6 ∧
@@ -144,14 +147,18 @@ theorem osinLemma94ContactMapNondegenerateSmallFacesInput_of_pieces
           P.contactMap.vertexOf x ≠
             P.contactMap.vertexOf (P.contactMap.facePerm (P.contactMap.facePerm x))) ⊆
       (Finset.univ.filter fun F : P.contactMap.Face =>
-        P.NondegenerateSmallFace F ∧ P.HoldsObject F) := by
+        P.NondegenerateSmallFace F ∧ P.HoldsObject F) ∪
+      (Finset.univ.filter fun F : P.contactMap.Face =>
+        P.NondegenerateSmallFace F ∧ ¬ P.HoldsObject F) := by
     intro F hF
     have hnd : P.NondegenerateSmallFace F := (Finset.mem_filter.mp hF).2
     by_cases hh : P.HoldsObject F
-    · exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, hnd, hh⟩
-    · exact (hE rho ((le_max_right _ _).trans hrho) W hW Delta cuts hleast hcells hbelow S hcard
-        hminimal P hmax F hnd hh).elim
-  exact (Finset.card_le_card hsub).trans hhold'
+    · exact Finset.mem_union_left _ (Finset.mem_filter.mpr ⟨Finset.mem_univ _, hnd, hh⟩)
+    · exact Finset.mem_union_right _ (Finset.mem_filter.mpr ⟨Finset.mem_univ _, hnd, hh⟩)
+  have hunion := (Finset.card_le_card hsub).trans (Finset.card_union_le _ _)
+  have hmul : (K1 + K2) * Delta.rCellCount = K1 * Delta.rCellCount + K2 * Delta.rCellCount := by
+    ring
+  omega
 
 end GroupApproximation.GGT.VanKampen
 
