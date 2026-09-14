@@ -85,7 +85,8 @@ theorem smul_charFn
   refine LocallyConstant.ext fun z => ?_
   rw [hact, LocallyConstant.coe_charFn, LocallyConstant.coe_charFn]
   by_cases hz : ξ⁻¹ • z ∈ U
-  · rw [Set.indicator_of_mem hz, Set.indicator_of_mem (Set.mem_smul_set_iff_inv_smul_mem.mpr hz)]
+  · simp only [Set.indicator_of_mem hz, Set.indicator_of_mem (Set.mem_smul_set_iff_inv_smul_mem.mpr hz),
+      Pi.one_apply]
   · rw [Set.indicator_of_notMem hz,
       Set.indicator_of_notMem fun h => hz (Set.mem_smul_set_iff_inv_smul_mem.mp h)]
 
@@ -109,7 +110,7 @@ theorem charFn_mem_epsilonSpan {B : Finset Λ} (hB1 : (1 : Λ) ∈ B) {V : Set Z
       SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV) := by
     show SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) (isClopen_smul (1 : Λ) hV)) *
         SkewMonoidAlgebra.single (1 * (1 : Λ)⁻¹) 1 = _
-    rw [SkewMonoidAlgebra.single_mul_single, mul_inv_cancel, mul_one, one_smul, mul_one]
+    rw [SkewMonoidAlgebra.single_mul_single, mul_inv_cancel, mul_one, smul_one, mul_one]
     congr 1
     refine LocallyConstant.ext fun z => ?_
     simp only [LocallyConstant.coe_charFn, one_smul]

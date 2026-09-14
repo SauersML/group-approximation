@@ -195,7 +195,8 @@ theorem eq_one_of_commute_elGen_small
     have h2 : SkewMonoidAlgebra.coeff (mat g i₀ i₀ * mat g⁻¹ i₀ i₀) 1 =
         SkewMonoidAlgebra.coeff (1 : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ) 1 := by
       rw [hinv]
-    rw [hc0, SkewMonoidAlgebra.coeff_single_one_mul, SkewMonoidAlgebra.coeff_one_one] at h2
+    rw [hc0, SkewMonoidAlgebra.coeff_single_one_mul, SkewMonoidAlgebra.coeff_one,
+      Finsupp.single_eq_same] at h2
     refine LocallyConstant.ext fun y => ?_
     have hy := LocallyConstant.congr_fun h2 y
     rw [LocallyConstant.mul_apply, LocallyConstant.one_apply] at hy
