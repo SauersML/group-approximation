@@ -237,6 +237,21 @@ use the family data or the chosen order.
 - CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkFollowsModel.lean: the two calibrations and the double-touch map
   where neither boundary cycle of a noncrossing walk follows. Map level only; whether it arises as a cell pocket walk of two optimal
   regions is not decided here.
+- LANDED 0f270c624 (probe 0913-191819-69537 GREEN, BUILT, first try), unwired, queued for wiring:
+  - `calibration_opposite_clauses`: on the lake map only the inner cycle follows; on the pinched two-gon only the outer cycle
+    follows.
+  - The double-touch map `M`: darts `0..7`, rotations `(1 0 7 2)` at `A` and `(3 4 5 6)` at `B`, faces `{0}`, `[2,4,6]`, `{5}`,
+    `[1,7,3]`, planar.
+    - `isNoncrossingClosedWalk_walk`: `[0,2,4,6]` is noncrossing.
+    - `walk_innerCycle_not_followsBoundary`, `walk_outerCycle_not_followsBoundary`: `not_followsBoundary_of_monogon` at `0` inside
+      and at `5` outside.
+  - `doubleTouchNeitherFollows : DoubleTouchNeitherFollows`, audited closed.
+- Consequence: `CellPocketWalkEitherFollowsStatement` is not a principle of noncrossing walks. A proof has to use the regions, the edge
+  conditions or least area, for example that a monogon on either side of a walk dart cannot be a region face or a pocket face at least
+  area. Not attempted before main rules.
+- Order: ms-cite-1 respelled the side-relator target as `CellPocketWalkSideRelatorCellBothOrdersStatement` (per-order
+  `SideRelatorCellForOrder`). `cellPocketKeptCellNoncrossing` is order-generic, so each order needs its own outer-off-side and
+  either-follows inputs. Reply sent to ms-cite-1.
 
 ## Progress log
 
