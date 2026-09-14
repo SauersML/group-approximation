@@ -1,0 +1,270 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLakeModel
+import GroupApproximation.GGT.VanKampen.SurgeryPocketGluePlanar
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Gluing along the lake: a non-following seam can split the glued map
+
+A model test for the transports of the section pocket cut at a full source arc (Osin,
+arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): regions of copies of `Γ_1` glue back into
+regions of copies of `Δ`).
+
+`Seam.glueMap_planar` (`SurgeryPocketGluePlanar`) glues a disc into the boundary cycle of a face
+set and proves the result planar when the cycle follows its boundary.  At a full source arc in a
+lake the complement cycle does not follow (`OsinPocketLakeModel.lakeCycle_outerCycle_not_followsBoundary`),
+while both reclosings keep the Euler characteristic (`OsinPocketKeptCellSection.lakeEulerBranch`).
+This file shows that the Euler equality of the complement does not replace following.
+
+The map `M` is the two-petal rose of `OsinPocketLakeModel`: faces `K = [0,2]`, `Π = [1]`, `O = [3]`.
+The seam keeps the faces `{Π, O}` off the side of the lake walk, with the reversed walk `[3,1]` as
+boundary cycle, and glues in the same rose `X = M` along its face `K`, traversed `[0,2]`.
+
+* `piece_planar`: reclosing `{Π, O}` along `[3,1]` gives a planar map.
+* `glueAlpha_m1`, `glueAlpha_m3`: the dart `1` of `Π` is glued at position `1` to the dart `2` of `X`,
+  and takes its reversal `3`; the dart `3` of `O` is glued at position `0` to the dart `0` of `X`,
+  and takes its reversal `1`.
+* Every glued face is a monogon, so the glued vertex rotation fixes the pairs `{1 of Π, 3 of X}` and
+  `{3 of O, 1 of X}` (`sigma_m1`, `sigma_m3`).
+* `glueMap_not_connected`, `glueMap_not_planar`: the glued map has two components.
+* `lakeGlueSplits`: `M`, `X` and the reclosed piece are planar, the boundary cycle does not follow, and
+  the glued map is not planar.
+
+So a planar glued map needs more than the Euler equality of the complement: the corners of the
+glued disc along its outer face must merge the way the corners of the reclosed piece do.  At the
+level of diagrams a bad copy leaves a spherical component, which the transports handle through least
+area rather than through planarity of the whole glued map.
+
+## Manuscript status
+
+Model test for infrastructure of `thm:hull` (tex 2121, "Hull's small cancellation theorem",
+through Osin's Lemma 9.7(b)); certifies no printed sentence on its own.
+-/
+
+noncomputable section
+
+namespace GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeGlueModel
+
+open Equiv Surgery.MapCollapse Surgery.PocketGlue SimpleClosedWalkSides
+open OsinPocketLakeModel (M planar isNoncrossingClosedWalk_lakeCycle)
+open OsinPocketFullArcLakeModel (face boundary_face_darts lakeWalk faceOf_eq_face)
+
+/-! ## The sides of the lake walk -/
+
+theorem side_iff (d : M.Dart) (hd : d ∈ lakeWalk) :
+    M.faceOf d ∈ sideFaces M lakeWalk ∧ M.faceOf (M.alpha d) ∉ sideFaces M lakeWalk :=
+  (isNoncrossingClosedWalk_lakeCycle.isBoundaryDart_sideFaces_iff planar d).mpr hd
+
+theorem faceOf_zero_mem_side : M.faceOf 0 ∈ sideFaces M lakeWalk := (side_iff 0 (by decide)).1
+
+theorem faceOf_two_mem_side : M.faceOf 2 ∈ sideFaces M lakeWalk := (side_iff 2 (by decide)).1
+
+theorem faceOf_one_not_mem_side : M.faceOf 1 ∉ sideFaces M lakeWalk := by
+  have h := (side_iff 0 (by decide)).2
+  rwa [show M.alpha 0 = 1 by decide] at h
+
+theorem faceOf_three_not_mem_side : M.faceOf 3 ∉ sideFaces M lakeWalk := by
+  have h := (side_iff 2 (by decide)).2
+  rwa [show M.alpha 2 = 3 by decide] at h
+
+/-! ## The seam -/
+
+/-- **The seam of the lake**: the faces `{Π, O}` with the reversed lake walk `[3,1]`, glued to the
+rose along its face `K`. -/
+def lakeSeam : Seam M M where
+  faces := sideOutside M lakeWalk
+  boundary := isNoncrossingClosedWalk_lakeCycle.outerCycle planar
+  outer := face 0
+  outerBoundary := OsinPocketFullArcLakeModel.boundary (face 0)
+  length_eq := by
+    change (lakeWalk.reverse.map M.alpha).length =
+      (OsinPocketFullArcLakeModel.boundary (face 0)).darts.length
+    rw [boundary_face_darts]
+    rfl
+
+/-- **The reclosed piece is planar**, from the Euler equality of the complement. -/
+theorem piece_planar : lakeSeam.piece.IsPlanar :=
+  ⟨reclosedMap_connected M lakeSeam.faces lakeSeam.boundary planar.1,
+    OsinPocketKeptCellSection.lakeEulerBranch.2.1.trans planar.2⟩
+
+theorem one_mem_faces : M.faceOf 1 ∈ lakeSeam.faces :=
+  (mem_sideOutside_iff M lakeWalk _).mpr faceOf_one_not_mem_side
+
+theorem three_mem_faces : M.faceOf 3 ∈ lakeSeam.faces :=
+  (mem_sideOutside_iff M lakeWalk _).mpr faceOf_three_not_mem_side
+
+theorem zero_not_mem_faces : M.faceOf 0 ∉ lakeSeam.faces :=
+  fun h => (mem_sideOutside_iff M lakeWalk _).mp h faceOf_zero_mem_side
+
+theorem two_not_mem_faces : M.faceOf 2 ∉ lakeSeam.faces :=
+  fun h => (mem_sideOutside_iff M lakeWalk _).mp h faceOf_two_mem_side
+
+theorem one_ne_outer : M.faceOf 1 ≠ lakeSeam.outer := (faceOf_eq_face 1 0).not.mpr (by decide)
+
+theorem three_ne_outer : M.faceOf 3 ≠ lakeSeam.outer := (faceOf_eq_face 3 0).not.mpr (by decide)
+
+theorem zero_eq_outer : M.faceOf 0 = lakeSeam.outer := (faceOf_eq_face 0 0).mpr rfl
+
+theorem two_eq_outer : M.faceOf 2 = lakeSeam.outer := (faceOf_eq_face 2 0).mpr rfl
+
+/-! ## The glued darts -/
+
+/-- The dart `1` of `Π`. -/
+def m1 : lakeSeam.GlueDart := Sum.inl ⟨1, one_mem_faces⟩
+
+/-- The dart `3` of `O`. -/
+def m3 : lakeSeam.GlueDart := Sum.inl ⟨3, three_mem_faces⟩
+
+/-- The dart `1` of `X`. -/
+def x1 : lakeSeam.GlueDart := Sum.inr ⟨1, one_ne_outer⟩
+
+/-- The dart `3` of `X`. -/
+def x3 : lakeSeam.GlueDart := Sum.inr ⟨3, three_ne_outer⟩
+
+/-- Every glued dart is one of the four. -/
+theorem glueDart_cases (g : lakeSeam.GlueDart) : g = m1 ∨ g = m3 ∨ g = x1 ∨ g = x3 := by
+  rcases g with ⟨⟨_ | _ | _ | _ | n, hn⟩, hd⟩ | ⟨⟨_ | _ | _ | _ | n, hn⟩, hx⟩
+  · exact absurd hd zero_not_mem_faces
+  · exact Or.inl rfl
+  · exact absurd hd two_not_mem_faces
+  · exact Or.inr (Or.inl rfl)
+  · exact absurd hn (by omega)
+  · exact absurd zero_eq_outer hx
+  · exact Or.inr (Or.inr (Or.inl rfl))
+  · exact absurd two_eq_outer hx
+  · exact Or.inr (Or.inr (Or.inr rfl))
+  · exact absurd hn (by omega)
+
+/-! ## The glued edges -/
+
+/-- A boundary dart of `{Π, O}` takes the reversal of the dart of `X` at its position. -/
+theorem glueAlpha_inl_positionEquiv (i : Fin lakeSeam.boundary.cycle.length) :
+    lakeSeam.glueAlpha (Sum.inl ⟨(lakeSeam.boundary.positionEquiv i).1,
+        (lakeSeam.boundary.positionEquiv i).2.1⟩) =
+      lakeSeam.glueEmbedding (M.alpha (lakeSeam.outerBoundary.darts.get (lakeSeam.positionCast i))) := by
+  rw [← lakeSeam.glueEmbedding_seam (lakeSeam.boundary.positionEquiv i),
+    lakeSeam.glueAlpha_glueEmbedding, lakeSeam.seamEquiv_positionEquiv,
+    lakeSeam.outerPosition_val]
+
+theorem outerBoundary_get (i : Fin lakeSeam.outerBoundary.darts.length) :
+    lakeSeam.outerBoundary.darts.get i =
+      (OsinPocketFullArcLakeModel.faceDarts 0).get ⟨i.1, by
+        have h := congrArg List.length (boundary_face_darts 0)
+        exact h ▸ i.2⟩ :=
+  List.get_of_eq (boundary_face_darts 0) i
+
+theorem glueAlpha_m3 : lakeSeam.glueAlpha m3 = x1 := by
+  have h := glueAlpha_inl_positionEquiv ⟨0, by decide⟩
+  have hd : M.alpha (lakeSeam.outerBoundary.darts.get (lakeSeam.positionCast ⟨0, by decide⟩)) = 1 := by
+    rw [outerBoundary_get]
+    decide
+  rw [hd, lakeSeam.glueEmbedding_of_ne 1 one_ne_outer] at h
+  exact h
+
+theorem glueAlpha_m1 : lakeSeam.glueAlpha m1 = x3 := by
+  have h := glueAlpha_inl_positionEquiv ⟨1, by decide⟩
+  have hd : M.alpha (lakeSeam.outerBoundary.darts.get (lakeSeam.positionCast ⟨1, by decide⟩)) = 3 := by
+    rw [outerBoundary_get]
+    decide
+  rw [hd, lakeSeam.glueEmbedding_of_ne 3 three_ne_outer] at h
+  exact h
+
+theorem glueAlpha_x1 : lakeSeam.glueAlpha x1 = m3 := by
+  rw [← glueAlpha_m3]
+  exact lakeSeam.glueAlpha_involutive m3
+
+theorem glueAlpha_x3 : lakeSeam.glueAlpha x3 = m1 := by
+  rw [← glueAlpha_m1]
+  exact lakeSeam.glueAlpha_involutive m1
+
+/-! ## The glued faces and vertices -/
+
+theorem glueFacePerm_m1 : lakeSeam.glueFacePerm m1 = m1 :=
+  congrArg Sum.inl (Subtype.ext (by decide))
+
+theorem glueFacePerm_m3 : lakeSeam.glueFacePerm m3 = m3 :=
+  congrArg Sum.inl (Subtype.ext (by decide))
+
+theorem glueFacePerm_x1 : lakeSeam.glueFacePerm x1 = x1 :=
+  congrArg Sum.inr (Subtype.ext (by decide))
+
+theorem glueFacePerm_x3 : lakeSeam.glueFacePerm x3 = x3 :=
+  congrArg Sum.inr (Subtype.ext (by decide))
+
+theorem sigma_m1 : lakeSeam.glueMap.sigma m1 = x3 := by
+  change lakeSeam.glueFacePerm (lakeSeam.glueAlpha m1) = x3
+  rw [glueAlpha_m1, glueFacePerm_x3]
+
+theorem sigma_m3 : lakeSeam.glueMap.sigma m3 = x1 := by
+  change lakeSeam.glueFacePerm (lakeSeam.glueAlpha m3) = x1
+  rw [glueAlpha_m3, glueFacePerm_x1]
+
+theorem sigma_x1 : lakeSeam.glueMap.sigma x1 = m3 := by
+  change lakeSeam.glueFacePerm (lakeSeam.glueAlpha x1) = m3
+  rw [glueAlpha_x1, glueFacePerm_m3]
+
+theorem sigma_x3 : lakeSeam.glueMap.sigma x3 = m1 := by
+  change lakeSeam.glueFacePerm (lakeSeam.glueAlpha x3) = m1
+  rw [glueAlpha_x3, glueFacePerm_m1]
+
+/-! ## Two components -/
+
+/-- The component of `{1 of Π, 3 of X}`. -/
+def side : lakeSeam.GlueDart → Bool
+  | Sum.inl d => decide (d.1 = 1)
+  | Sum.inr x => decide (x.1 = 3)
+
+theorem side_alpha (g : lakeSeam.GlueDart) : side (lakeSeam.glueMap.alpha g) = side g := by
+  change side (lakeSeam.glueAlpha g) = side g
+  rcases glueDart_cases g with rfl | rfl | rfl | rfl
+  · rw [glueAlpha_m1]; rfl
+  · rw [glueAlpha_m3]; rfl
+  · rw [glueAlpha_x1]; rfl
+  · rw [glueAlpha_x3]; rfl
+
+theorem side_sigma (g : lakeSeam.GlueDart) : side (lakeSeam.glueMap.sigma g) = side g := by
+  rcases glueDart_cases g with rfl | rfl | rfl | rfl
+  · rw [sigma_m1]; rfl
+  · rw [sigma_m3]; rfl
+  · rw [sigma_x1]; rfl
+  · rw [sigma_x3]; rfl
+
+theorem side_eq_of_eqvGen {g h : lakeSeam.glueMap.Dart}
+    (hgh : Relation.EqvGen lakeSeam.glueMap.Adjacent g h) : side g = side h := by
+  induction hgh with
+  | rel x y hxy =>
+      rcases hxy with rfl | rfl
+      · exact (side_alpha x).symm
+      · exact (side_sigma x).symm
+  | refl x => rfl
+  | symm x y _ ih => exact ih.symm
+  | trans x y z _ _ ih1 ih2 => exact ih1.trans ih2
+
+/-- **The glued map of the lake seam has two components.** -/
+theorem glueMap_not_connected : ¬ lakeSeam.glueMap.IsConnected := by
+  intro h
+  exact absurd (side_eq_of_eqvGen (h m1 m3)) (by decide)
+
+theorem glueMap_not_planar : ¬ lakeSeam.glueMap.IsPlanar :=
+  fun h => glueMap_not_connected h.1
+
+/-! ## The endpoint -/
+
+/-- **Planarity of the glued map needs following** (model test).  The rose, the glued rose and the
+reclosed piece of `{Π, O}` along `[3,1]` are planar, the cycle `[3,1]` does not follow its boundary,
+and the glued map is not planar. -/
+def LakeGlueSplitsStatement : Prop :=
+  M.IsPlanar ∧ lakeSeam.piece.IsPlanar ∧ ¬ lakeSeam.boundary.FollowsBoundary ∧
+    ¬ lakeSeam.glueMap.IsPlanar
+
+theorem lakeGlueSplits : LakeGlueSplitsStatement :=
+  ⟨planar, piece_planar, OsinPocketLakeModel.lakeCycle_outerCycle_not_followsBoundary,
+    glueMap_not_planar⟩
+
+end GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeGlueModel
+
+end
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeGlueModel.piece_planar
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeGlueModel.glueAlpha_m1
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeGlueModel.glueMap_not_connected
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLakeGlueModel.lakeGlueSplits
