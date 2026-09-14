@@ -17,38 +17,42 @@ matricial spelling is ms-core-3's `IsMatricialLEFRing` (FiniteModelsGroup), not 
 Not mine: tex 396–402 (diag(u_ξ,1,1), ms-intro-2's `LEFDiagonalCommutators`), the application of
 thm:general (sk-lef-assembly, ct-two-ended).
 
-## State 09:05 (after the 08:28 reboot; tip 696c4b602, md5 0648e5f8…, census aa6f988f4)
+## State 10:20 (tip 8b36733d7, md5 29d63f79…, census 9cb80166d)
 
-Scope after the coordinator's 20:35 split: ct-involution took module B (`GeneralRingPropertyT`) and its rows. This
-lane keeps the group-action crossed product, the lamplighter action and ring, and the absorbed finite models
-(sk-lef-models left no drafts), aiming at `LEFLamplighterStatement` (sk-lef-assembly's LEFCharacterization).
+Scope: the group-action crossed product, the lamplighter action and ring, the absorbed finite models
+(sk-lef-models left no drafts), and the concrete host `LamplighterHostStatement` (sk-lef-assembly, 0da57c90d).
+ct-involution took module B (`GeneralRingPropertyT`) and its rows at 20:35.
 
-| module | tex | state |
+| module | tex (8b36733d7) | state |
 |---|---|---|
 | `Dynamics/ClopenGroupCrossedProduct` | 134–137 | GREEN 0914-083028-22533, on origin 1fda53034, wire-queued |
-| `Manuscript/SimpleKazhdanSofic/LamplighterAction` | 105–106, 384–393 | GREEN 0914-084237-64298, LANDED 407f74f33, wire-queued |
-| `Manuscript/SimpleKazhdanSofic/LamplighterRing` | 393–396 | GREEN 0914-085103-16892, on origin ecfb81908, wire-queued |
-| `Manuscript/SimpleKazhdanSofic/LamplighterModelSequence` | 398–401 | GREEN 0914-085103-16892, on origin ecfb81908, wire-queued |
-| `Manuscript/SimpleKazhdanSofic/LamplighterModelAction` | 401–406 | probing |
-| `Manuscript/SimpleKazhdanSofic/LamplighterModelMatrices` | 406–416 | written, unverified |
-| generation of `M_{2^{|Q'_n|}}(F₂)` and `IsMatricialVia` | 416–419 | next |
-| application of thm:general, `LEFLamplighterStatement` | 419–422 | over ct-two-ended's `PrintedSimpleKazhdanGeneral` (40cf3ae5b) and skf-consequences' LamplighterSimplicity |
+| `SimpleKazhdanSofic/LamplighterAction` | 105–106, 356–366 | GREEN 0914-084237-64298, 407f74f33, wire-queued |
+| `SimpleKazhdanSofic/LamplighterRing` | 366–369 | GREEN 0914-085103-16892, ecfb81908, wire-queued |
+| `SimpleKazhdanSofic/LamplighterModelSequence` | 371–374 | GREEN 0914-085103-16892, ecfb81908, wire-queued |
+| `SimpleKazhdanSofic/LamplighterModelAction` | 374–379 | GREEN 0914-091346-7548, a780741a0, wire-queued |
+| `SimpleKazhdanSofic/LamplighterModelMatrices` | 379–389 | GREEN 0914-092100-55675, eaeed6d23, wire-queued |
+| `SimpleKazhdanSofic/LamplighterModelGeneration` | 389–392 | GREEN 0914-100806-41365, 7709d7bfe, wire-queued |
+| `SimpleKazhdanSofic/LamplighterHost` | 392–403 | fixes landed unverified 4e0c613ce; probe pending (the 10:14 probe lost its MSI hop) |
 
-Spelling agreements: ct-two-ended states thm:general over `ClopenGroupCrossedProduct` with `MulAction`,
-`MulAction.IsMinimal` and inline freeness (definitionally `IsTopologicallyFreeAction`); skf-consequences proves
-simplicity of `EL_n(LampRing Δ)` in `LamplighterSimplicity`.
+`LamplighterHost` proves `isMatricialVia_lampRing` (the reindexed `φ_n` on the printed generators), applies
+ct-two-ended's closed `printedSimpleKazhdanGeneral` (`isLEFHost_lampRing`, with block flattening to
+`SL_{3N}(F₂)`), embeds `[Δ,Δ]` through ms-intro-2's `lefDiagonalHom` (`exists_commutator_embedding`), and
+states `PrintedLamplighterHost`, which is `LamplighterHostStatement` word for word. sk-lef-assembly's
+`LEFCharacterizationClosed` consumes it as `lamplighterHostStatement := printedLamplighterHost`.
 
-## Rows (metadata/sk-census-rows/sk-lef-action.tsv, landed 088a229c9)
+## Rows (metadata/sk-census-rows/sk-lef-action.tsv)
 
 | key | tex | carrier | status |
 |---|---|---|---|
-| ed367be4322a | 384–386 | `printedLamplighterAffineGroup` | formalized |
-| 9b414612d181 | 386–388 | `printedLamplighterAffineGroup`, `printedLamplighterMinimalTopologicallyFree` | formalized |
-| d93c07e63a40 | 388–389 | `printedLamplighterMinimalTopologicallyFree` | formalized |
-| 4337251611d4 | 389–392 | `printedLamplighterMinimalTopologicallyFree` | formalized |
-| 2bcb951d302e | 392–393 | `printedLamplighterMinimalTopologicallyFree` | formalized |
-| ee8c6f26a1da | 393–396 | `printedLamplighterRingGeneration` | formalized |
-| bd0a4c539428 | 398–401 | `printedLamplighterBallModels` | formalized |
-| dccd78f118a7, 096f124abe31 | 401–406 | `printedLamplighterModelAction` | pending probe |
-| c78a4854489a, cdb7675d1521, ba51377f43f6, 472c3d5ac00b | 406–416 | `printedLamplighterModelMatrices` | pending probe |
-| 814c69fe374e, 358e51e6a815 | 416–422 | generation, thm:general application | open |
+| fb6f6f03c19a | 356–359 | `printedLamplighterAffineGroup` | formalized (re-keyed from ed367be4322a) |
+| 9b414612d181 | 359–360 | `printedLamplighterAffineGroup`, `printedLamplighterMinimalTopologicallyFree` | formalized |
+| ac91c158ed24 | 360–362 | `printedLamplighterMinimalTopologicallyFree` | formalized (re-keyed from d93c07e63a40) |
+| a8760ee6d3af | 362–365 | `printedLamplighterMinimalTopologicallyFree` | formalized (re-keyed from 4337251611d4) |
+| 2bcb951d302e | 365–366 | `printedLamplighterMinimalTopologicallyFree` | formalized |
+| ee8c6f26a1da | 366–369 | `printedLamplighterRingGeneration` | formalized |
+| bd0a4c539428 | 371–374 | `printedLamplighterBallModels` | formalized |
+| e1aa5c966b58 | 374–377 | `printedLamplighterModelAction` | formalized (re-keyed from dccd78f118a7) |
+| 096f124abe31 | 377–379 | `printedLamplighterModelAction` | formalized |
+| c78a4854489a, cdb7675d1521, ba51377f43f6, 472c3d5ac00b | 379–389 | `printedLamplighterModelMatrices` | formalized |
+| 814c69fe374e | 389–392 | `printedLamplighterMatricial` | formalized |
+| 358e51e6a815 | 392–395 | `isLEFHost_lampRing`, `printedLamplighterHost` | held by skf-consequences (partial); carrier to be sent after the host is green |
