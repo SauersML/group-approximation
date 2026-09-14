@@ -33,7 +33,7 @@ requires:
   - topological-full-group-derived-uniform-exponential-growth
   - property-t-factors-contain-weakly-dense-popa-algebras
   - subshift-elementary-groups-are-exact
-  - subshift-el3-isomorphisms-recognize-diagonal-subgroups
+  - subshift-el3-isomorphisms-recognize-diagonals-up-to-normalizer
 ---
 
 Assembly only: the root is the conjunction of the listed open claims. This route makes each of them reachable from a

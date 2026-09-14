@@ -3,8 +3,11 @@ rg: 2
 id: subshift-el3-isomorphisms-recognize-diagonal-subgroups
 kind: claim
 title: Open - every isomorphism G_X → G_Y between the note's simple Kazhdan groups carries GL_3(LC(X,F_2)) to a conjugate of GL_3(B) for a maximal commutative idempotent-spanned subalgebra B of R_Y
+refuted_by:
+  - subshift-el3-diagonal-recognition-fails-up-to-g-conjugacy
 artifacts:
   - research/artifacts/sk-iso-rigidity-2026-09-13-part2.md
+  - research/artifacts/sk-diagonal-recognition-2026-09-13-part1.md
 distinct_from:
   diagonal-recognition-makes-subshift-el3-isos-standard: that proves what this recognition statement gives, namely standardness and strong orbit equivalence; this is the recognition statement itself
   subshift-el3-isomorphisms-are-standard-over-f2: that asks for standardness of every isomorphism; this is a sufficient condition for it, stated as a property of one subgroup
