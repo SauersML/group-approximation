@@ -89,6 +89,7 @@ variable {Γ Q : Type*} [Group Γ] [Group Q] (ψ : Γ → Q) (s : ℕ)
 def window (F : ℤ → Γ) : Fin (6 * s + 5 + 2) → Q :=
   fun k => ψ (F ((k : ℕ) - (3 * s + 3 : ℤ)))
 
+omit [Group Γ] in
 theorem window_mem_dom {F : ℤ → Γ} (hF : F (3 * s + 2) = F (3 * s + 3)) :
     window ψ s F ∈ dom Q (6 * s + 5) := by
   rw [mem_dom]
@@ -110,7 +111,7 @@ theorem theta_window {F : ℤ → Γ} (hψ : ψ 1 = 1) (hF : F (-(3 * s + 3) - 1
     rw [theta_succ]
     show ψ (F ((((Fin.castSucc k : Fin (6 * s + 5 + 2)) : ℕ) : ℤ) - (3 * s + 3))) =
       ψ (F (((((Fin.succ k : Fin (6 * s + 5 + 2)) : ℕ) : ℤ) - (3 * s + 3)) - 1))
-    rw [Fin.coe_castSucc, Fin.val_succ]
+    rw [Fin.val_castSucc, Fin.val_succ]
     congr 2
     push_cast
     ring
@@ -131,7 +132,7 @@ theorem zeta_pow_conj (hψ : ψ 1 = 1) :
     have hth : theta Q (6 * s + 5) (window ψ s F) = window ψ s fun m => F (m - 1) :=
       theta_window ψ s hψ (hT.1 (-(3 * s + 3) - 1) (by linarith))
     rw [pow_succ, conj_mul_conj, zeta_mul_lmul_mul_zeta_inv Q (6 * s + 5) L hdom, hth,
-      zeta_pow_conj n (hT.shift_sub 1) (by linarith) (by linarith)]
+      zeta_pow_conj hψ n (hT.shift_sub 1) (by linarith) (by linarith)]
     congr 2
     funext m
     show F (m - n - 1) = F (m - ((n + 1 : ℕ) : ℤ))
@@ -158,7 +159,7 @@ theorem zeta_pow_conj_inv (hψ : ψ 1 = 1) :
       show F (m - 1 + 1) = F m
       rw [sub_add_cancel]
     rw [pow_succ', conj_inv_mul_conj, ← hth, zeta_inv_mul_lmul_theta_mul_zeta Q (6 * s + 5) L hdom,
-      zeta_pow_conj_inv n (hT.shift_add 1) (by linarith) (by linarith)]
+      zeta_pow_conj_inv hψ n (hT.shift_add 1) (by linarith) (by linarith)]
     congr 2
     funext m
     show F (m + n + 1) = F (m + ((n + 1 : ℕ) : ℤ))
@@ -192,7 +193,10 @@ theorem lmul_apply' (v : Fin (6 * s + 5 + 2) → Q) (z : (Fin (6 * s + 5 + 2) �
 theorem zeta_inv_snd (z : (Fin (6 * s + 5 + 2) → Q) × ZMod L) :
     ((zeta Q (6 * s + 5) L)⁻¹ z).2 = z.2 - 1 := by
   have h := zeta_apply Q (6 * s + 5) L ((zeta Q (6 * s + 5) L)⁻¹ z)
-  rw [Perm.apply_inv_self] at h
+  have hz : zeta Q (6 * s + 5) L ((zeta Q (6 * s + 5) L)⁻¹ z) = z := by
+    simpa using congrArg (fun σ : Perm ((Fin (6 * s + 5 + 2) → Q) × ZMod L) => σ z)
+      (mul_inv_cancel (zeta Q (6 * s + 5) L))
+  rw [hz] at h
   rw [eq_sub_iff_add_eq]
   exact (congrArg Prod.snd h).symm
 
