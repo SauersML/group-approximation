@@ -284,3 +284,23 @@ The module will state and prove:
   with `0 < λ`, `c < λρ` and `1 < ρ`.
 - `OsinLemma94ClassEndLoopsBudgetInput`: the residual with clause (b) removed, so only (a), (c) and (d) remain.
 - `osinLemma94ClassEndLoopsInput_of_budget`: the residual back, with `ρ₀` raised to `max ρ₀ (⌈c/λ⌉₊ + 2)`.
+
+### LANDED 68b6b0e96: `GGT/VanKampen/Estimating/OsinLemma94ClassEndLoopsSide.lean`
+
+Probe 0913-194233-25873 was GREEN with BUILT (10159 jobs). The attic copy is 1e9544191. The module is unwired and queued
+for wiring. It imports only `OsinLemma94ClassSection`.
+
+| declaration | content |
+|---|---|
+| `GloballyDistinguishedSectionFamily.classEndLoops_side S P hW hlambda hrhoc hrho` | clause (b) of `OsinLemma94ClassEndLoopsInput`, under `C(ε, μ, λ, c, ρ)` with `0 < λ`, `c < λρ` and `1 < ρ`: every dart of `S.unboundOffRegions i` not facing its own cell lies across an (A1) side of `P` |
+| `OsinLemma94ClassEndLoopsBudgetInput` (residual) | the same hypotheses and conclusion without clause (b): the other-class budget, the end loops of at most `B` darts, and `hbubble` |
+| `osinLemma94ClassEndLoopsInput_of_budget` | `OsinLemma94ClassEndLoopsInput` from the residual |
+
+- Rejected route: without `open scoped Classical`, `Finset.mem_filter` on `unboundOffRegions` cannot synthesize
+  `DecidablePred`, and `Finset.mem_sdiff` cannot synthesize `DecidableEq Dart`. The defining module opens that scope.
+- What remains of residual 1 is `OsinLemma94ClassEndLoopsBudgetInput`:
+  - (a) needs the class producer `Q` (`OsinLemma94ClassJoins`, unwritten), sec5-sentences'
+    `OsinLemma94LongTransitionInput`, and the bad-junction exclusion;
+  - (c) and (d) need the end-loop assignment for one-class bubbles.
+  - The model tests above show that (a) and (d) are true only through `weight_maximal` together with the bubble un-pinch
+    surgery (roster l.850).
