@@ -80,8 +80,11 @@ Kazhdan LEF group. It separates these groups from the non-C*-simple simple group
      - This is no evidence against C*-simplicity: `BS(m,n)` is C*-simple with an amenable normalish subgroup.
    - **Per-element Powers averaging** (Haagerup, arXiv:1509.05880, Theorem B(iv)). It is equivalent to unique trace, which is
      already known. Simplicity needs simultaneous averaging over finite sets (Theorem C(v)).
+   - **Only countably many amenable subgroups** (BKKO, arXiv:1410.2518, `thm:few-amenable-subgroups`). DEAD for `G_X`:
+     `LC(X,GL_3(F_2))` contains `⊕_{n∈N} Z/2` on disjoint clopen sets, which has continuum many subgroups.
    - **Still open, with the plan in the artifact §6:**
-     - a Powers partition for finite sets on `G/S_y`, which has amenable stabilizers;
+     - a de la Harpe–Powers partition for finite sets on some `G`-set, pulled back along an orbit map. Norms in `λ_{G/S_y}` do
+       NOT bound norms in `λ_G`, since `λ_{G/H} ≺ λ_G` for amenable `H`;
      - a topologically free boundary action;
      - ping-pong for conjugates. For each finite `P ⊆ G ∖ {1}`, find `g_1, g_2, g_3` such that every choice `p_i ∈ P` makes
        `⟨g_i^{-1}p_ig_i⟩` non-amenable. Then no amenable subgroup is confined.

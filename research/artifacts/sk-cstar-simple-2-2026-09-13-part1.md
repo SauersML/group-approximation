@@ -162,6 +162,7 @@ subgroup. By BKKO Proposition `betti` (Bader–Furman–Sauer) and Proposition `
 | simultaneous averaging (Haagerup Thm C(v)) | open | this is C*-simplicity |
 | no amenable normalish subgroup (BKKO) | NO | Theorem 1 |
 | property (CS) (BKKO §8) | NO | Theorem 1, §4.2 |
+| only countably many amenable subgroups (BKKO `thm:few-amenable-subgroups`, l.749–751) | NO | `LC(X,GL_3(F_2)) ≤ G_X` contains `⊕_{n∈N} Z/2`, one involution on each of infinitely many disjoint clopen sets, so there are continuum many locally finite subgroups |
 | linear-group argument (BKKO `thm:linear-groups-non-amenability-normalish`) | NO | `G_X` is not linear (f.g., infinite, simple, so not residually finite), and Theorem 1 |
 | rigid stabilizers of a micro-supported action (Le Boudec–Matte Bon) | not known | no micro-supported action known (open node, Attempt 1) |
 | Kennedy: no amenable confined subgroup | open | sk-cstar-simple's route |
@@ -177,12 +178,14 @@ subgroup. By BKKO Proposition `betti` (Bader–Furman–Sauer) and Proposition `
   normalish concerns finite intersections of conjugates; confinement concerns finite sets meeting all conjugates.
 
 ## 6. Plan for part 2
-- **Simultaneous Powers averaging on a G-set with amenable stabilizers.**
-  - `Ω = G/S_y` has locally finite stabilizers, so `‖λ_G(x)‖ ≤ ‖λ_{G/S_y}(x)‖` for `x ∈ C[G]`, since `λ_G ≺ λ_{G/H}` for
-    amenable `H`.
-  - A Powers partition for finite `F ⊆ G ∖ {e}` on `Ω` (`fD ∩ D = ∅` and `N` disjoint translates of the complement) would
-    give simultaneous averaging.
-  - The difficulty: transvections with small support fix many cuts.
+- **Powers partitions pulled back from a G-set.**
+  - CORRECTION to an earlier version of this bullet: for amenable `H` the weak containment goes the other way, `λ_{G/H} ≺ λ_G`.
+    So norms in `λ_{G/S_y}` do NOT bound norms in `λ_G`.
+  - What does transfer: a de la Harpe–Powers partition for a finite `F ⊆ G ∖ {e}` on any `G`-set `Y` pulls back to `G` along an
+    orbit map `g ↦ g·y_0`. The conditions are `f(A) ∩ A = ∅` for `f ∈ F` and `N` pairwise disjoint translates of `Y ∖ A`. So
+    `G` would be a Powers group, hence C*-simple.
+  - The difficulty: every `f ∈ F` must move all of `A` off itself. Transvections with small support fix large subsets
+    (half of all row-sheared cuts) of every natural `G`-set.
 - **A topologically free boundary action.** Candidates: closures of `G·V^{≥0}` in `Sub(M)`, with the row shears
   `diag(u^{N_1},u^{N_2},u^{N_3})` as contracting elements.
 - **Ping-pong for conjugates.** For finite `P ⊆ G ∖ {e}`, find `g_1,g_2,g_3` such that every choice of `p_i ∈ P` makes
