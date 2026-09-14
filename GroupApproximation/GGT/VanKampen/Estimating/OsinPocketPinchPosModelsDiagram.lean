@@ -396,7 +396,7 @@ theorem pinchK_closedWalk : pinchK.ClosedWalk := by
 
 #audit_axioms pinchDiagram
 #audit_axioms pinchK
-#audit_closed_axioms pinchDiagram_letters
+#audit_axioms pinchDiagram_letters
 #audit_closed_axioms pinchK_closedWalk
 #audit_closed_axioms pinchDiagram_boundaryWord
 
