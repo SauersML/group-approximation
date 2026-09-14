@@ -22,6 +22,17 @@ CLAIM printed rows 88ecdc10f78b (Theorem 1.1 and Corollary 1.2) and a63ff00e499b
 
 00:0x: main widened the scope to Corollary 1.2 and "G is not a subgroup of U(R)". The tensor-form equivalence is not needed.
 
+09-14 08:5x after the reboot (infra rebuilt; all green records lost):
+- LANDED 2aea5d2b5 (probe 0914-014232-348, BUILT): `Kazhdan/KazhdanNearInvariantVector`, `Algebra/OrthogonalRepresentationResiduallyFinite`, `Analysis/KirchbergTraceModels`.
+- LANDED 0432a7d3a (probe 0914-083157-34192, BUILT): `Analysis/KirchbergCompletionRepresentation`, `Analysis/KirchbergRealForms`.
+- All five are wire-queued.
+- Fixing and re-probing: `KirchbergCompactExtraction` (lint only), `KirchbergRealDilation` (a missing `open Matrix` cascaded). After those: `KirchbergTensorSquare` and the assembly `Manuscript/NinetyNineProblems/KirchbergTheorem`.
+- Corollary 1.2 plan, trace side:
+  - pull the amenable models of R's matrix stages back along G → U(R) (`PalomarBridges/X1.isAmenableTrace_comp`);
+  - tensor powers and Cesàro averages kill the traces of non-scalar and of scalar elements;
+  - finish with the dense-generator upgrade (`amenableTraceModel_of_dense_generators`).
+- This consumes oa-hyperfinite's Pauli model `Hyperfinite.hyperfiniteFactor`: its matrix stages and trace-preserving expectations are not on origin yet.
+
 01:30 status:
 - All eight infrastructure modules plus the assembly are drafted (attic copies on main), with a co-probe running.
 - Endpoints planned in `Manuscript/NinetyNineProblems/KirchbergTheorem`: `kirchbergKazhdanFactorizationInput`, `printedKirchbergTheorem`, `not_hasFactorizationProperty_of_simple_infinite_kazhdan`.
