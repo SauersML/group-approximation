@@ -302,9 +302,36 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     - a relator corner: `CellPocketFaceSet.faceEdgeDoubling` on a dart off both arcs, which properness gives, or
       `exists_trimDoubleFirst/Second` when a side has room;
     - an exterior corner: a cell transport of `outerSpurThickening`. None exists; a cell pocket has no target arc.
-  - Model test (next): the full-boundary wrap on the cell side. At an endpoint of a whole-boundary arc the outer corner is the
-    cell face. The proper-arc premises exclude that case; to be checked on a cell rose, where monogon cells are excluded by
-    `ρ ≥ 2`.
+  - **Model test (paper, 09:0x): the full-boundary wrap on the cell side is excluded by properness, and no other obstruction
+    was found.**
+    - Conventions:
+      - The corner after `z` belongs to `faceOf (α z) = faceOf (σ z)`.
+      - Doubling `w` puts the digon next to `w` at both ends: the corner after `α w`, and the corner before `w`.
+      - A corner after a cycle dart lies outside `K`; a corner after the reversal of a cycle dart lies inside `K`.
+    - At an isolated turn `d₀ → e₀` the merged corners lie after `x` (in the sector after `e₀`) and after `y` (in the sector
+      before `α d₀`). Both are outside `K`.
+    - A relator corner there:
+      - Corner after `e₀`, when `e₀ = α a_n` ends the reversed first arc: it lies on cell `i` between `a_n` and `a_{n+1}`.
+        Doubling `σ e₀ = a_{n+1}` fills it, and `a_{n+1}` is off the arc exactly when the arc is proper.
+      - Corner after `y`, when `σ y = α d₀ = a_1` starts the arc: doubling `α y = a_0` fills it, and `a_0` is off the arc
+        by properness.
+      - A corner of another relator cell: doubling `σ e₀` or `α y`, with no arc condition.
+    - Interior arc vertices never host the cell corner of an isolated turn. The cell corner there is the one-step sector
+      `α a_k → a_{k+1}`; its turn `α a_{k+1} → α a_k` sweeps the long way round, past every other cycle edge at a pinched
+      vertex, so it is not isolated.
+    - The wrap: when an arc is the whole cell boundary, `a_{n+1} = a_1` lies on the arc and the doubling is blocked. This is
+      the cell form of w1-binder-3's amendment 1, and the proper-arc premises exclude it. Relator words have at least
+      `ρ ≥ 2` letters, so no doubled face is a monogon.
+    - **`i ≠ j` (checked 09:1x): the producer supplies it.** When both arcs lie on one cell, `σ e₀` can lie on the other arc
+      and block the doubling. binder 5's producer `exists_of_joinsCells_closedWalk` takes `hij : i ≠ j`. So the cell step is
+      stated additively with `i ≠ j`:
+      - `CellPocketPinchSectionDistinctInput` and `CellPocketPinchSectionDistinctStatement`, with `_of_section`;
+      - `CellPocketOuterPinchStepSectionDistinctStatement` and its dispatch;
+      - `copyRegion_of_pinchSectionDistinct`.
+      - ms-cite-1 was asked, in one message, to point its consumer at the Distinct form.
+    - CLAIM `Estimating/OsinPocketCellOuterSpur.lean`: `CellPocketFaceSet.outerSpurThickening`, the cell transport for
+      exterior corners. It needs no avoid hypothesis, since a cell pocket has no target arc.
+    - Exterior corners need a cell transport of `outerSpurThickening`, which this lane builds.
   - No current item otherwise.
 - **Noted:** ms-cite-1's `cellPocketPinchRoseRefutation` (e0a0776bb) refutes `CellPocketPinchPosStatement`, so V4 endpoints over
   it are vacuous. The replacement is `CellPocketPinchSectionStatement`.
