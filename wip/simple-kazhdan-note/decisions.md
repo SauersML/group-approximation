@@ -504,6 +504,12 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - sk-decidable-host: LEF with solvable WP iff subgroup of a simple Kazhdan LEF host with solvable WP.
     - Every finite field (port needed).
     - Cairn only: sk-free-5 (Brown Q3 QD clause via weakly dense C*(F_∞); C*(G_X) not QD), sk-fp-sofic-host (LEA permanence firewall for 6.1), sk-sofic-host-hamming (Theorem K, Lemma E), sk-two-generators (open), sk-free-4 rank ≥ 4 rational spectrum.
+109. **sk-iso-rigidity** (4d0b26deca, 85b0a8a035, 90065c43fb, 575d82abc6, 8f209be85d; unreviewed → sk-verify-15). Rigidity stays OPEN.
+    - Peirce-root homomorphisms of E_3 are standard, with no direct-finiteness hypothesis.
+    - A root-preserving isomorphism G_X ≅ G_Y forces SOE.
+    - Recognizing GL_3(LC(X,F_2)) up to conjugacy makes isomorphisms standard, which gives SOE; flip conjugacy additionally needs Cartan uniqueness.
+    - New open claim `subshift-el3-isomorphisms-recognize-diagonal-subgroups`. No note change.
+110. **Odifreddi locator** (sk-verify-6 part6, 2260a3a655): for sk-free-7's antichain credit use \cite[Chapter~V]{Odifreddi} (Vol. I, Studies in Logic 125, North-Holland 1989) or Sacks 1961. p. 462 rests only on Terwijn's citation.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
