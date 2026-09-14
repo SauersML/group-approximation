@@ -11,11 +11,13 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): the subdiagram `Γ_1` wi
 complement pinched at a vertex of its boundary cycle.  There the step splits the vertex outside the
 face set, at a turn `d₀ → e₀` that is isolated: rotating from `alpha d₀`, the first dart on an edge of
 the cycle is `e₀`.  The split darts are `x`, reached from `e₀` past darts off the edges of the cycle,
-and `y`, the dart before `alpha d₀`, and another dart of the cycle lies at the same vertex.
+and `y`, which reaches `alpha d₀` past such darts, and another dart of the cycle lies at the same
+vertex.  Corner fixes insert new darts, which are never on the edges of the cycle, so both reaches
+may take more than one step.
 
 Measured along the rotation cycle of `alpha d₀` below its minimal period `N`, the dart `e₀` sits at
-position `k₀`, `x` at `m + k₀` and `y` at `N - 1`, and every other dart on an edge of the cycle sits
-strictly between `x` and `y`.  So:
+position `k₀`, `x` at `m + k₀` and `y` at `N - q`, and every other dart on an edge of the cycle sits
+after `x` and no later than `y`.  So:
 * the stretch from `alpha d₀` to `e₀` meets neither split dart (`stretchAvoids_of_isolated`);
 * every other dart on an edge of the cycle at that vertex runs into `y` without passing `x`
   (`runsIntoY_of_isolated`), and `e₀` runs into `x` without passing `y` (`runsIntoX_of_isolated`);
@@ -48,7 +50,8 @@ section Orbit
 variable {α : Type*}
 
 /-- The minimal period of a point under a permutation of a finite type is positive. -/
-theorem minimalPeriod_pos [Finite α] (σ : Equiv.Perm α) (a : α) : 0 < Function.minimalPeriod σ a :=
+theorem minimalPeriod_pos [Finite α] (σ : Equiv.Perm α) (a : α) :
+    0 < Function.minimalPeriod σ a :=
   Function.minimalPeriod_pos_of_mem_periodicPts (σ.injective.mem_periodicPts a)
 
 /-- Rotating a point by its minimal period returns to it. -/
@@ -65,8 +68,8 @@ theorem pow_eq_pow_below {σ : Equiv.Perm α} {a : α} {i j : ℕ}
   exact Function.iterate_injOn_Iio_minimalPeriod hi hj h
 
 /-- **A point on the rotation cycle sits at a position below the minimal period.** -/
-theorem exists_pow_lt_of_sameCycle [Finite α] {σ : Equiv.Perm α} {a z : α} (h : σ.SameCycle a z) :
-    ∃ p < Function.minimalPeriod σ a, (σ ^ p) a = z := by
+theorem exists_pow_lt_of_sameCycle [Finite α] {σ : Equiv.Perm α} {a z : α}
+    (h : σ.SameCycle a z) : ∃ p < Function.minimalPeriod σ a, (σ ^ p) a = z := by
   obtain ⟨n, hn⟩ := h.exists_nat_pow_eq
   refine ⟨n % Function.minimalPeriod σ a, Nat.mod_lt _ (minimalPeriod_pos σ a), ?_⟩
   rw [← Equiv.Perm.iterate_eq_pow, Function.iterate_mod_minimalPeriod_eq,
@@ -135,29 +138,31 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
   {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
 
 /-- **Positions at an isolated turn.**  Along the rotation cycle of `alpha d₀`, below its minimal
-period `N`: `e₀` at `k₀`, `x` at `m + k₀`, `y` at `N - 1`, with `m + k₀ < N - 1`, and every other dart
-on an edge of the cycle at the vertex strictly after `x`. -/
+period `N`: `e₀` at `k₀`, `x` at `m + k₀`, `y` at `N - q`, with `m + k₀ < N - q`, and every other dart
+on an edge of the cycle at the vertex after `x` and no later than `y`. -/
 theorem isolated_positions (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Input X)
     {d₀ e₀ : X.toCombMap.Dart} (hd₀ : d₀ ∈ K.boundary.cycle) (he₀ : e₀ ∈ K.boundary.cycle)
-    {k₀ m : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
+    {k₀ m q : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
     (hkeep₀ : ∀ t, 0 < t → t < k₀ →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) (X.toCombMap.alpha d₀)))
     (hm : (X.toCombMap.sigma ^ m) e₀ = I.x)
     (hkeepm : ∀ t, 0 < t → t ≤ m →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) e₀))
-    (hy : X.toCombMap.sigma I.y = X.toCombMap.alpha d₀)
+    (hq0 : 0 < q) (hq : (X.toCombMap.sigma ^ q) I.y = X.toCombMap.alpha d₀)
+    (hkeepq : ∀ t, 0 < t → t < q →
+      ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) I.y))
     {z₀ : X.toCombMap.Dart} (hz₀ : walkKeep X.toCombMap K.boundary.cycle z₀)
     (hz₀v : X.toCombMap.sigma.SameCycle (X.toCombMap.alpha d₀) z₀)
     (hz₀a : z₀ ≠ X.toCombMap.alpha d₀) (hz₀e : z₀ ≠ e₀) :
-    ∃ N : ℕ, 0 < N ∧ k₀ < N ∧ m + k₀ < N - 1 ∧
+    ∃ N : ℕ, 0 < N ∧ k₀ < N ∧ q ≤ N ∧ m + k₀ < N - q ∧
       (X.toCombMap.sigma ^ (m + k₀)) (X.toCombMap.alpha d₀) = I.x ∧
-      (X.toCombMap.sigma ^ (N - 1)) (X.toCombMap.alpha d₀) = I.y ∧
+      (X.toCombMap.sigma ^ (N - q)) (X.toCombMap.alpha d₀) = I.y ∧
       (∀ i j, i < N → j < N → (X.toCombMap.sigma ^ i) (X.toCombMap.alpha d₀) =
         (X.toCombMap.sigma ^ j) (X.toCombMap.alpha d₀) → i = j) ∧
       ∀ z, walkKeep X.toCombMap K.boundary.cycle z →
         X.toCombMap.sigma.SameCycle (X.toCombMap.alpha d₀) z →
           z ≠ X.toCombMap.alpha d₀ → z ≠ e₀ →
-            ∃ p, m + k₀ < p ∧ p < N ∧ (X.toCombMap.sigma ^ p) (X.toCombMap.alpha d₀) = z := by
+            ∃ p, m + k₀ < p ∧ p ≤ N - q ∧ (X.toCombMap.sigma ^ p) (X.toCombMap.alpha d₀) = z := by
   obtain ⟨N, hN⟩ : ∃ N, Function.minimalPeriod X.toCombMap.sigma (X.toCombMap.alpha d₀) = N :=
     ⟨_, rfl⟩
   have hpos : 0 < N := by
@@ -171,7 +176,7 @@ theorem isolated_positions (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Inp
     pow_eq_pow_below (by rw [hN]; exact hi) (by rw [hN]; exact hj) h
   have hkeepα : walkKeep X.toCombMap K.boundary.cycle (X.toCombMap.alpha d₀) :=
     Or.inr (by rw [X.toCombMap.alpha_involutive]; exact hd₀)
-  -- `e₀` comes before the minimal period.
+  -- `e₀` comes before the minimal period, at a positive position.
   have hk₀N : k₀ < N := by
     by_contra hge
     push Not at hge
@@ -179,6 +184,11 @@ theorem isolated_positions (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Inp
     · exact hkeep₀ N hpos hlt (by rw [hper]; exact hkeepα)
     · rw [← heq, hper] at hk₀
       exact K.boundary_alpha_not_mem hd₀ (by rw [hk₀]; exact he₀)
+  have hk₀pos : 0 < k₀ := by
+    rcases Nat.eq_zero_or_pos k₀ with h0 | h0
+    · rw [h0, pow_zero, Equiv.Perm.one_apply] at hk₀
+      exact absurd (by rw [hk₀]; exact he₀) (K.boundary_alpha_not_mem hd₀)
+    · exact h0
   -- `x` comes before the minimal period.
   have hxpos : (X.toCombMap.sigma ^ (m + k₀)) (X.toCombMap.alpha d₀) = I.x := by
     rw [pow_add_apply, hk₀, hm]
@@ -190,69 +200,95 @@ theorem isolated_positions (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Inp
       rw [← hk₀, ← pow_add_apply, Nat.sub_add_cancel hk₀N.le, hper]
     rw [h1]
     exact hkeepα
-  -- `y` is the last position.
-  have hypos : (X.toCombMap.sigma ^ (N - 1)) (X.toCombMap.alpha d₀) = I.y := by
-    apply X.toCombMap.sigma.injective
-    rw [hy, ← Equiv.Perm.mul_apply, ← pow_succ', Nat.sub_add_cancel (Nat.succ_le_of_lt hpos),
-      hper]
-  -- Every other keep dart comes after `x`.
+  -- `y` is a period of rotation, and it sits at position `N - q`.
+  have hyper : (X.toCombMap.sigma ^ N) I.y = I.y := by
+    apply (X.toCombMap.sigma ^ q).injective
+    rw [← Equiv.Perm.mul_apply, pow_mul_comm, Equiv.Perm.mul_apply, hq, hper, hq]
+  have hqN : q ≤ N := by
+    by_contra hlt
+    push Not at hlt
+    refine hkeepq (q - N) (Nat.sub_pos_of_lt hlt) (by omega) ?_
+    have h1 : (X.toCombMap.sigma ^ (q - N)) I.y = X.toCombMap.alpha d₀ := by
+      rw [← hyper, ← pow_add_apply, Nat.sub_add_cancel hlt.le, hq]
+    rw [h1]
+    exact hkeepα
+  have hypos : (X.toCombMap.sigma ^ (N - q)) (X.toCombMap.alpha d₀) = I.y := by
+    rw [← hq, ← pow_add_apply, Nat.sub_add_cancel hqN, hyper]
+  -- Positions after `y` hold no dart on an edge of the cycle.
+  have hbeyond : ∀ p, N - q < p → p < N →
+      ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ p) (X.toCombMap.alpha d₀)) := by
+    intro p hp hpN hk
+    refine hkeepq (p - (N - q)) (Nat.sub_pos_of_lt hp) (by omega) ?_
+    have h1 : (X.toCombMap.sigma ^ (p - (N - q))) I.y =
+        (X.toCombMap.sigma ^ p) (X.toCombMap.alpha d₀) := by
+      rw [← hypos, ← pow_add_apply, Nat.sub_add_cancel hp.le]
+    rw [h1]
+    exact hk
+  -- Every other keep dart comes after `x` and no later than `y`.
   have hafter : ∀ z, walkKeep X.toCombMap K.boundary.cycle z →
       X.toCombMap.sigma.SameCycle (X.toCombMap.alpha d₀) z →
         z ≠ X.toCombMap.alpha d₀ → z ≠ e₀ →
-          ∃ p, m + k₀ < p ∧ p < N ∧ (X.toCombMap.sigma ^ p) (X.toCombMap.alpha d₀) = z := by
+          ∃ p, m + k₀ < p ∧ p ≤ N - q ∧ (X.toCombMap.sigma ^ p) (X.toCombMap.alpha d₀) = z := by
     intro z hz hzv hza hze
     obtain ⟨p, hpN, hp⟩ := exists_pow_lt_of_sameCycle hzv
     rw [hN] at hpN
-    refine ⟨p, ?_, hpN, hp⟩
-    by_contra hle
-    push Not at hle
-    rcases Nat.lt_trichotomy p k₀ with hlt | heq | hgt
-    · rcases Nat.eq_zero_or_pos p with rfl | hp0
-      · rw [pow_zero, Equiv.Perm.one_apply] at hp
-        exact hza hp.symm
-      · exact hkeep₀ p hp0 hlt (by rw [hp]; exact hz)
-    · rw [heq, hk₀] at hp
-      exact hze hp.symm
-    · refine hkeepm (p - k₀) (Nat.sub_pos_of_lt hgt) (by omega) ?_
-      have h1 : (X.toCombMap.sigma ^ (p - k₀)) e₀ = z := by
-        rw [← hk₀, ← pow_add_apply, Nat.sub_add_cancel hgt.le, hp]
-      rw [h1]
-      exact hz
+    refine ⟨p, ?_, ?_, hp⟩
+    · by_contra hle
+      push Not at hle
+      rcases Nat.lt_trichotomy p k₀ with hlt | heq | hgt
+      · rcases Nat.eq_zero_or_pos p with h0 | hp0
+        · rw [h0, pow_zero, Equiv.Perm.one_apply] at hp
+          exact hza hp.symm
+        · exact hkeep₀ p hp0 hlt (by rw [hp]; exact hz)
+      · rw [heq, hk₀] at hp
+        exact hze hp.symm
+      · refine hkeepm (p - k₀) (Nat.sub_pos_of_lt hgt) (by omega) ?_
+        have h1 : (X.toCombMap.sigma ^ (p - k₀)) e₀ = z := by
+          rw [← hk₀, ← pow_add_apply, Nat.sub_add_cancel hgt.le, hp]
+        rw [h1]
+        exact hz
+    · by_contra hgt
+      push Not at hgt
+      exact hbeyond p hgt hpN (by rw [hp]; exact hz)
   obtain ⟨p₀, hp₀, hp₀N, -⟩ := hafter z₀ hz₀ hz₀v hz₀a hz₀e
-  exact ⟨N, hpos, hk₀N, by omega, hxpos, hypos, hinj, hafter⟩
+  exact ⟨N, hpos, hk₀N, hqN, by omega, hxpos, hypos, hinj, hafter⟩
 
 /-- **The isolated turn avoids the split darts.** -/
 theorem stretchAvoids_of_isolated (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Input X)
     {d₀ e₀ : X.toCombMap.Dart} (hd₀ : d₀ ∈ K.boundary.cycle) (he₀ : e₀ ∈ K.boundary.cycle)
-    {k₀ m : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
+    {k₀ m q : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
     (hkeep₀ : ∀ t, 0 < t → t < k₀ →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) (X.toCombMap.alpha d₀)))
     (hm : (X.toCombMap.sigma ^ m) e₀ = I.x)
     (hkeepm : ∀ t, 0 < t → t ≤ m →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) e₀))
-    (hy : X.toCombMap.sigma I.y = X.toCombMap.alpha d₀)
+    (hq0 : 0 < q) (hq : (X.toCombMap.sigma ^ q) I.y = X.toCombMap.alpha d₀)
+    (hkeepq : ∀ t, 0 < t → t < q →
+      ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) I.y))
     {z₀ : X.toCombMap.Dart} (hz₀ : walkKeep X.toCombMap K.boundary.cycle z₀)
     (hz₀v : X.toCombMap.sigma.SameCycle (X.toCombMap.alpha d₀) z₀)
     (hz₀a : z₀ ≠ X.toCombMap.alpha d₀) (hz₀e : z₀ ≠ e₀) :
     I.StretchAvoids (X.toCombMap.alpha d₀) e₀ := by
-  obtain ⟨N, -, hk₀N, hmk, hxpos, hypos, hinj, -⟩ := K.isolated_positions I hd₀ he₀ hk₀ hkeep₀
-    hm hkeepm hy hz₀ hz₀v hz₀a hz₀e
+  obtain ⟨N, -, hk₀N, -, hmk, hxpos, hypos, hinj, -⟩ := K.isolated_positions I hd₀ he₀ hk₀
+    hkeep₀ hm hkeepm hq0 hq hkeepq hz₀ hz₀v hz₀a hz₀e
   refine ⟨k₀, hk₀, fun i hi => ⟨fun hx => ?_, fun hy' => ?_⟩⟩
   · have := hinj i (m + k₀) (by omega) (by omega) (hx.trans hxpos.symm)
     omega
-  · have := hinj i (N - 1) (by omega) (by omega) (hy'.trans hypos.symm)
+  · have := hinj i (N - q) (by omega) (by omega) (hy'.trans hypos.symm)
     omega
 
 /-- **Every other dart on an edge of the cycle at the vertex runs into `y` without passing `x`.** -/
 theorem runsIntoY_of_isolated (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Input X)
     {d₀ e₀ : X.toCombMap.Dart} (hd₀ : d₀ ∈ K.boundary.cycle) (he₀ : e₀ ∈ K.boundary.cycle)
-    {k₀ m : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
+    {k₀ m q : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
     (hkeep₀ : ∀ t, 0 < t → t < k₀ →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) (X.toCombMap.alpha d₀)))
     (hm : (X.toCombMap.sigma ^ m) e₀ = I.x)
     (hkeepm : ∀ t, 0 < t → t ≤ m →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) e₀))
-    (hy : X.toCombMap.sigma I.y = X.toCombMap.alpha d₀)
+    (hq0 : 0 < q) (hq : (X.toCombMap.sigma ^ q) I.y = X.toCombMap.alpha d₀)
+    (hkeepq : ∀ t, 0 < t → t < q →
+      ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) I.y))
     {z₀ : X.toCombMap.Dart} (hz₀ : walkKeep X.toCombMap K.boundary.cycle z₀)
     (hz₀v : X.toCombMap.sigma.SameCycle (X.toCombMap.alpha d₀) z₀)
     (hz₀a : z₀ ≠ X.toCombMap.alpha d₀) (hz₀e : z₀ ≠ e₀)
@@ -260,11 +296,11 @@ theorem runsIntoY_of_isolated (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.
     (hzv : X.toCombMap.sigma.SameCycle (X.toCombMap.alpha d₀) z)
     (hza : z ≠ X.toCombMap.alpha d₀) (hze : z ≠ e₀) :
     ∃ n : ℕ, (X.toCombMap.sigma ^ n) z = I.y ∧ ∀ i ≤ n, (X.toCombMap.sigma ^ i) z ≠ I.x := by
-  obtain ⟨N, hpos, -, -, hxpos, hypos, hinj, hafter⟩ := K.isolated_positions I hd₀ he₀ hk₀
-    hkeep₀ hm hkeepm hy hz₀ hz₀v hz₀a hz₀e
+  obtain ⟨N, -, -, -, -, hxpos, hypos, hinj, hafter⟩ := K.isolated_positions I hd₀ he₀ hk₀
+    hkeep₀ hm hkeepm hq0 hq hkeepq hz₀ hz₀v hz₀a hz₀e
   obtain ⟨p, hp, hpN, hpz⟩ := hafter z hz hzv hza hze
-  refine ⟨N - 1 - p, ?_, fun i hi hx => ?_⟩
-  · rw [← hpz, ← pow_add_apply, show N - 1 - p + p = N - 1 by omega, hypos]
+  refine ⟨N - q - p, ?_, fun i hi hx => ?_⟩
+  · rw [← hpz, ← pow_add_apply, show N - q - p + p = N - q by omega, hypos]
   · have h1 : (X.toCombMap.sigma ^ (i + p)) (X.toCombMap.alpha d₀) = I.x := by
       rw [pow_add_apply, hpz]
       exact hx
@@ -274,24 +310,26 @@ theorem runsIntoY_of_isolated (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.
 /-- **`e₀` runs into `x` without passing `y`.** -/
 theorem runsIntoX_of_isolated (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Input X)
     {d₀ e₀ : X.toCombMap.Dart} (hd₀ : d₀ ∈ K.boundary.cycle) (he₀ : e₀ ∈ K.boundary.cycle)
-    {k₀ m : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
+    {k₀ m q : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
     (hkeep₀ : ∀ t, 0 < t → t < k₀ →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) (X.toCombMap.alpha d₀)))
     (hm : (X.toCombMap.sigma ^ m) e₀ = I.x)
     (hkeepm : ∀ t, 0 < t → t ≤ m →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) e₀))
-    (hy : X.toCombMap.sigma I.y = X.toCombMap.alpha d₀)
+    (hq0 : 0 < q) (hq : (X.toCombMap.sigma ^ q) I.y = X.toCombMap.alpha d₀)
+    (hkeepq : ∀ t, 0 < t → t < q →
+      ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) I.y))
     {z₀ : X.toCombMap.Dart} (hz₀ : walkKeep X.toCombMap K.boundary.cycle z₀)
     (hz₀v : X.toCombMap.sigma.SameCycle (X.toCombMap.alpha d₀) z₀)
     (hz₀a : z₀ ≠ X.toCombMap.alpha d₀) (hz₀e : z₀ ≠ e₀) :
     ∀ i ≤ m, (X.toCombMap.sigma ^ i) e₀ ≠ I.y := by
-  obtain ⟨N, -, hk₀N, hmk, -, hypos, hinj, -⟩ := K.isolated_positions I hd₀ he₀ hk₀ hkeep₀ hm
-    hkeepm hy hz₀ hz₀v hz₀a hz₀e
+  obtain ⟨N, -, hk₀N, -, hmk, -, hypos, hinj, -⟩ := K.isolated_positions I hd₀ he₀ hk₀ hkeep₀
+    hm hkeepm hq0 hq hkeepq hz₀ hz₀v hz₀a hz₀e
   intro i hi hy'
   have h1 : (X.toCombMap.sigma ^ (i + k₀)) (X.toCombMap.alpha d₀) = I.y := by
     rw [pow_add_apply, hk₀]
     exact hy'
-  have := hinj (i + k₀) (N - 1) (by omega) (by omega) (h1.trans hypos.symm)
+  have := hinj (i + k₀) (N - q) (by omega) (by omega) (h1.trans hypos.symm)
   omega
 
 /-- **Every turn is kept at the split of an isolated turn.**  The isolated turn avoids the split
@@ -300,13 +338,15 @@ another vertex never meets the split darts. -/
 theorem turnKept_of_isolated (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.Input X)
     (hK : K.ClosedWalk) {d₀ e₀ : X.toCombMap.Dart} (hd₀ : d₀ ∈ K.boundary.cycle)
     (hnext₀ : K.boundary.cycle.next d₀ hd₀ = e₀)
-    {k₀ m : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
+    {k₀ m q : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
     (hkeep₀ : ∀ t, 0 < t → t < k₀ →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) (X.toCombMap.alpha d₀)))
     (hm : (X.toCombMap.sigma ^ m) e₀ = I.x)
     (hkeepm : ∀ t, 0 < t → t ≤ m →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) e₀))
-    (hy : X.toCombMap.sigma I.y = X.toCombMap.alpha d₀)
+    (hq0 : 0 < q) (hq : (X.toCombMap.sigma ^ q) I.y = X.toCombMap.alpha d₀)
+    (hkeepq : ∀ t, 0 < t → t < q →
+      ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) I.y))
     {z₀ : X.toCombMap.Dart} (hz₀ : z₀ ∈ K.boundary.cycle)
     (hz₀v : X.toCombMap.sigma.SameCycle (X.toCombMap.alpha d₀) z₀) (hz₀e : z₀ ≠ e₀)
     {d : X.toCombMap.Dart} (hd : d ∈ K.boundary.cycle) :
@@ -323,9 +363,9 @@ theorem turnKept_of_isolated (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.I
     rfl
   by_cases hdd : d = d₀
   · subst hdd
-    have h1 : K.boundary.cycle.next d hd = e₀ := hnext₀
-    rw [h1]
-    exact Or.inl (K.stretchAvoids_of_isolated I hd he₀ hk₀ hkeep₀ hm hkeepm hy hz₀k hz₀v hz₀a hz₀e)
+    rw [hnext₀]
+    exact Or.inl (K.stretchAvoids_of_isolated I hd he₀ hk₀ hkeep₀ hm hkeepm hq0 hq hkeepq hz₀k
+      hz₀v hz₀a hz₀e)
   · have hemem : K.boundary.cycle.next d hd ∈ K.boundary.cycle := List.next_mem ..
     have hvert : X.toCombMap.vertexOf (X.toCombMap.alpha d) =
         X.toCombMap.vertexOf (K.boundary.cycle.next d hd) :=
@@ -341,26 +381,24 @@ theorem turnKept_of_isolated (K : PocketFaceSet D eps X lo hi) (I : PinchSplit.I
         K.boundary_alpha_not_mem hd (by rw [h]; exact he₀)
       have hnα : K.boundary.cycle.next d hd ≠ X.toCombMap.alpha d₀ := fun h =>
         K.boundary_alpha_not_mem hd₀ (by rw [← h]; exact hemem)
-      have hne₀ : K.boundary.cycle.next d hd ≠ e₀ := fun h => by
-        refine hdd ?_
-        have h1 := List.prev_next K.boundary.cycle K.boundary.cycle_nodup d hd
-        have h2 := List.prev_next K.boundary.cycle K.boundary.cycle_nodup d₀ hd₀
-        rw [← h1, ← h2]
-        exact hprev _ _ _ _ (h.trans hnext₀.symm)
-      exact Or.inr ⟨K.runsIntoY_of_isolated I hd₀ he₀ hk₀ hkeep₀ hm hkeepm hy hz₀k hz₀v hz₀a hz₀e
-          hαd hv hαne₀ hαe₀,
-        K.runsIntoY_of_isolated I hd₀ he₀ hk₀ hkeep₀ hm hkeepm hy hz₀k hz₀v hz₀a hz₀e
+      have hne₀ : K.boundary.cycle.next d hd ≠ e₀ := fun h =>
+        hdd (((List.prev_next K.boundary.cycle K.boundary.cycle_nodup d hd).symm.trans
+          (hprev _ _ _ _ (h.trans hnext₀.symm))).trans
+            (List.prev_next K.boundary.cycle K.boundary.cycle_nodup d₀ hd₀))
+      exact Or.inr ⟨K.runsIntoY_of_isolated I hd₀ he₀ hk₀ hkeep₀ hm hkeepm hq0 hq hkeepq hz₀k
+          hz₀v hz₀a hz₀e hαd hv hαne₀ hαe₀,
+        K.runsIntoY_of_isolated I hd₀ he₀ hk₀ hkeep₀ hm hkeepm hq0 hq hkeepq hz₀k hz₀v hz₀a hz₀e
           (Or.inl hemem) (hv.trans hsame) hnα hne₀⟩
     · obtain ⟨n, hn⟩ := hsame.exists_nat_pow_eq
-      obtain ⟨N, -, -, -, hxpos, hypos, -, -⟩ := K.isolated_positions I hd₀ he₀ hk₀ hkeep₀ hm
-        hkeepm hy hz₀k hz₀v hz₀a hz₀e
+      obtain ⟨N, -, -, -, -, hxpos, hypos, -, -⟩ := K.isolated_positions I hd₀ he₀ hk₀ hkeep₀ hm
+        hkeepm hq0 hq hkeepq hz₀k hz₀v hz₀a hz₀e
       refine Or.inl ⟨n, hn, fun i _ => ⟨fun hx => hv ?_, fun hy' => hv ?_⟩⟩
       · exact (sameCycle_of_pow_eq hxpos).trans (sameCycle_of_pow_eq hx).symm
       · exact (sameCycle_of_pow_eq hypos).trans (sameCycle_of_pow_eq hy').symm
 
 /-- **One step of the section pinch at an isolated turn.**  For a pocket in walk order with both
 arcs proper, a split outside the face set at an isolated turn `d₀ → e₀`, with `x` reached from `e₀`
-past darts off the edges of the cycle, `y` the dart before `alpha d₀`, and another dart `z₀` of the
+and `alpha d₀` reached from `y` past darts off the edges of the cycle, and another dart `z₀` of the
 cycle at the vertex, gives the conclusion of the step with both proper arcs. -/
 theorem exists_pinchStepSection_of_isolatedTurn
     (hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d))
@@ -370,13 +408,15 @@ theorem exists_pinchStepSection_of_isolatedTurn
     (I : PinchSplit.Input X) (hs : I.Avoids K.faces)
     {d₀ e₀ : X.toCombMap.Dart} (hd₀ : d₀ ∈ K.boundary.cycle)
     (hnext₀ : K.boundary.cycle.next d₀ hd₀ = e₀)
-    {k₀ m : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
+    {k₀ m q : ℕ} (hk₀ : (X.toCombMap.sigma ^ k₀) (X.toCombMap.alpha d₀) = e₀)
     (hkeep₀ : ∀ t, 0 < t → t < k₀ →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) (X.toCombMap.alpha d₀)))
     (hm : (X.toCombMap.sigma ^ m) e₀ = I.x)
     (hkeepm : ∀ t, 0 < t → t ≤ m →
       ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) e₀))
-    (hy : X.toCombMap.sigma I.y = X.toCombMap.alpha d₀)
+    (hq0 : 0 < q) (hq : (X.toCombMap.sigma ^ q) I.y = X.toCombMap.alpha d₀)
+    (hkeepq : ∀ t, 0 < t → t < q →
+      ¬ walkKeep X.toCombMap K.boundary.cycle ((X.toCombMap.sigma ^ t) I.y))
     {z₀ : X.toCombMap.Dart} (hz₀ : z₀ ∈ K.boundary.cycle)
     (hz₀v : X.toCombMap.sigma.SameCycle (X.toCombMap.alpha d₀) z₀) (hz₀e : z₀ ≠ e₀) :
     ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
@@ -393,11 +433,13 @@ theorem exists_pinchStepSection_of_isolatedTurn
     K.boundary_alpha_not_mem hd₀ (by rw [← h]; exact hz₀)
   obtain ⟨hchain, hcloses⟩ := isChain_of_rel_next K.boundary.cycle_nonempty K.boundary.cycle_nodup
     (R := fun d e => I.TurnKept (X.toCombMap.alpha d) e)
-    fun d hd => K.turnKept_of_isolated I hK hd₀ hnext₀ hk₀ hkeep₀ hm hkeepm hy hz₀ hz₀v hz₀e hd
-  obtain ⟨n₂, hn₂, hx₂⟩ := K.runsIntoY_of_isolated I hd₀ he₀ hk₀ hkeep₀ hm hkeepm hy hz₀k hz₀v
-    hz₀a hz₀e hz₀k hz₀v hz₀a hz₀e
+    fun d hd => K.turnKept_of_isolated I hK hd₀ hnext₀ hk₀ hkeep₀ hm hkeepm hq0 hq hkeepq hz₀ hz₀v
+      hz₀e hd
+  obtain ⟨n₂, hn₂, hx₂⟩ := K.runsIntoY_of_isolated I hd₀ he₀ hk₀ hkeep₀ hm hkeepm hq0 hq hkeepq
+    hz₀k hz₀v hz₀a hz₀e hz₀k hz₀v hz₀a hz₀e
   exact K.exists_pinchStepSection_of_isolated hlabel hprop htgt I hs hchain hcloses he₀ hz₀ hm
-    (K.runsIntoX_of_isolated I hd₀ he₀ hk₀ hkeep₀ hm hkeepm hy hz₀k hz₀v hz₀a hz₀e) hn₂ hx₂
+    (K.runsIntoX_of_isolated I hd₀ he₀ hk₀ hkeep₀ hm hkeepm hq0 hq hkeepq hz₀k hz₀v hz₀a hz₀e)
+    hn₂ hx₂
 
 end PocketFaceSet
 
