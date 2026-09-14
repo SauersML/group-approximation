@@ -114,7 +114,7 @@ theorem mem_rec_of_agreeBelow (c d : OCode) (B : Set ℕ)
       ∃ N, ∀ C : Set ℕ, AgreeBelow N B C → x ∈ c.eval (setOracle C) n)
     (ihd : ∀ n x, x ∈ d.eval (setOracle B) n →
       ∃ N, ∀ C : Set ℕ, AgreeBelow N B C → x ∈ d.eval (setOracle C) n)
-    (a : ℕ) : ∀ k x, x ∈ (k.rec (motive := fun _ => Part ℕ) (c.eval (setOracle B) a)
+    (a : ℕ) : ∀ (k x : ℕ), x ∈ (k.rec (motive := fun _ => Part ℕ) (c.eval (setOracle B) a)
         fun y IH => IH >>= fun i => d.eval (setOracle B) (Nat.pair a (Nat.pair y i))) →
       ∃ N, ∀ C : Set ℕ, AgreeBelow N B C →
         x ∈ (k.rec (motive := fun _ => Part ℕ) (c.eval (setOracle C) a)
@@ -136,6 +136,7 @@ theorem mem_rec_of_agreeBelow (c d : OCode) (B : Set ℕ)
           fun i => d.eval (setOracle C) (Nat.pair a (Nat.pair k i)))
     exact mem_bind_iff'.2 ⟨i, h₁ C (hC.mono (le_max_left _ _)), h₂ C (hC.mono (le_max_right _ _))⟩
 
+open Classical in
 /-- **The use principle.** -/
 theorem mem_eval_of_agreeBelow (c : OCode) (B : Set ℕ) :
     ∀ n x, x ∈ c.eval (setOracle B) n →
