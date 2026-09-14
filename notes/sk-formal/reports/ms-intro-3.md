@@ -49,6 +49,28 @@ md5 7b3dc4ec92b4581553bc0dc2b0edcb99. Rows are keyed `LINE:<l>@bf961c128`. Nothi
   every `lanes/*.files` (checked ~19:05). The pieces owned by other lanes are consumed as named Props, and their owners are
   recorded here.
 
+- CLAIM the shared setting — `GroupApproximation/Manuscript/SimpleKazhdanSofic/Setting.lean`: `subshiftHomeo`, `IsMinimal`,
+  `letterIndicator`, `R`, `G`, over Mathlib's `Subshift A ℤ`. These are skf-degrees' definitions and names, moved out of its
+  unlanded `WordProblemDegreeStatements` so that thm:main and the corollary share one spelling. skf-degrees was asked once
+  (~19:25) to import Setting and drop its copies. ct-involution adopts whichever spelling lands; its results are for any
+  `T : Y ≃ₜ Y` and instantiate at `subshiftHomeo S`.
+
+## thm:main endpoint (in flight, `Manuscript/SimpleKazhdanSofic/MainTheorem.lean`)
+
+- `PrintedSimpleKazhdanSoficMain`: for `A` finite discrete, `S : Subshift A ℤ`, `Infinite S.carrier`, `IsMinimal S`:
+  `Infinite (G S) ∧ Group.FG (G S) ∧ IsSimpleGroup (G S) ∧ HasKazhdanPropertyT (G S) ∧ IsLEF (G S) ∧ IsSofic (G S) ∧
+  IsHyperlinear (G S)`.
+- Named pieces at the printed generality, with owners:
+  - `PrintedSubshiftShiftFree` (tex l.78, ct-involution);
+  - `PrintedMinimalSubshiftDenseOrbits` (minimality gives dense orbits, this lane);
+  - `PrintedSubshiftRingFinitelyGenerated` (tex l.84–86, ct-involution);
+  - `PrintedSubshiftRingCentre` (tex l.110–113, ct-involution);
+  - `PrintedMinimalSubshiftRingLEF` (tex l.118–149, ms-units with ms-core-3).
+- `printedSimpleKazhdanSoficMain_of_pieces`: property (T) by the proved EJZ theorem, finite generation from (T), infinitude
+  from `R`, simplicity of `EL₃/Z` by `Pestov91.isSimpleGroup_elementaryModCentre_of_minimal_free` at `u`, `coeff` and
+  `τ j = T^(-j)`, `Z(EL₃) = 1` by `Pestov91.elementaryModCentreEquiv`, and LEF, sofic, hyperlinear.
+
 ## Progress log
 
 - 19:05 ledger v1 at bf961c128.
+- 19:25 spelling settled on skf-degrees' `Subshift` vocabulary; Setting and MainTheorem written, probing.
