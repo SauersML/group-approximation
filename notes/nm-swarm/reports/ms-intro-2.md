@@ -217,7 +217,13 @@ CLAIM `OsinLemma94CuttingTransitionInput` (cutting transitions ≤ K n), in new 
     source arc, or a closure contradiction), `exists_joined_cellOrOuter`, `hittingSet` (card ≤ n + 1),
     `sum_card_sameFaceStarts_le`, and `osinLemma94CuttingTransitionInput` (K = 4).
 - Probe 0914-083104: a stale base (BadJunctionExclusion landed at 08:40), two `rw` pattern misses, one unknown name and a
-  `push_neg` lint. All fixed; re-probe 0914-08:4x is running.
+  `push_neg` lint. All fixed.
+- **LANDED 496779d1f** `CombMapEulerHittingSet` (probe 0914-084203-62907 BUILT; audit clean; wire-queued).
+- **LANDED ca2bb2fce** `CombMapFirstReturnCounts` (probe 0914-084627-6800 BUILT; audit clean; wire-queued).
+- **LANDED ebb6f5faa** `Estimating/OsinLemma94CuttingTransitions` + `CombMapFirstReturnCountsModel` (probe
+  0914-085318-62936 BUILT both; audit clean; wire-queued).
+- In flight: `Estimating/OsinLemma94CuttingTransitionsInput` (attic 77f72a972). The dependent `obtain` patterns and the
+  `Joined.trans` step are repaired; re-probe 0914-09:0x is running.
 
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.
