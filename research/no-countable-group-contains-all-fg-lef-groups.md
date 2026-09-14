@@ -12,3 +12,5 @@ distinct_from:
 No countable group contains a copy of every group `G_X = EL_3(LC(X,F_2)⋊Z)`, with `X` an infinite minimal subshift. In
 particular no countable group contains every finitely generated LEF group. So the countability restriction in
 `simple-kazhdan-lef-host-for-recursive-lef-groups` cannot be dropped.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

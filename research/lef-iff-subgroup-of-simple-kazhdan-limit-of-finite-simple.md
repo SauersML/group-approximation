@@ -26,3 +26,5 @@ is the choice of finite models. They live on the configuration spaces `2^(Q_n)` 
 
 Route: `lef-iff-subgroup-of-simple-kazhdan-limit-finite-simple-proof`. The full derivation is in
 `research/artifacts/sk-strong-6-envelope-table-2026-09-13.md` §2.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS: view models, covariance, nonvanishing, surjectivity, marked limit and expansion re-derived (§1). Duplicate D1: sk-strong-6's `lef-iff-subgroup-of-simple-kazhdan-limit-of-finite-simple` and sk-strong-8's `lef-iff-subgroup-of-simple-kazhdan-finite-simple-limit` state the same theorem, so one should subsume the other.

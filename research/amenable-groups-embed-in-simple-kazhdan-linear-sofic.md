@@ -49,3 +49,5 @@ Routes: `amenable-groups-embed-in-kazhdan-linear-sofic-via-half-line` (fires, un
   `diag(u_(δ_0(γ)),1,1)` (item 3 of `perfect-groups-embed-in-crossed-product-elementary-groups`).
 
 **Review (sk-verify-4, 2026-09-13): route does not fire.** Steps 1 and 7 use the refuted swap double; steps 2–6 were not re-reviewed. See `research/artifacts/sk-review-4-2026-09-13-part4.md` §1.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS for the half-line overgroup step of route `amenable-groups-embed-in-kazhdan-linear-sofic-via-half-line` (§5). The other inputs keep their own review status.

@@ -44,3 +44,5 @@ derived-subgroup overgroups, which found the Ore route, the swap double and the 
 
 Route: `groups-embed-in-derived-subgroup-of-half-line-overgroup-proof`.
 Artifact: `research/artifacts/sk-perfect-overgroup-2026-09-13.md`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

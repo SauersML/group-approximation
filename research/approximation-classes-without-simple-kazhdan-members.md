@@ -18,3 +18,5 @@ finite class. Every residually finite input has a host (`rf-groups-embed-in-simp
 LEF and never residually finite.
 
 Route: `approximation-classes-without-simple-kazhdan-members-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

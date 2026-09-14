@@ -27,3 +27,5 @@ LEF. The one exception is linear soficity over finite fields: `simple-kazhdan-li
 finite field. So the cost statement does not obstruct that class, although the envelope theorem there is still open.
 
 Route: `simple-kazhdan-envelope-theorems-force-non-lef-hosts-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS, conditional on the imports `abels-prufer-quotient-is-fp-sofic-with-fd-invisible-center`, `finitely-presented-lef-groups-are-residually-finite` and `amenable-implies-operator-mf` (§2).

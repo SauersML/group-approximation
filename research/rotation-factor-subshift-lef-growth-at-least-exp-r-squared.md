@@ -14,3 +14,5 @@ where L_X is the LEF growth of EL_3(LC(X,F_2)⋊Z).
 Adding `rauzy-walk-bounds-lef-growth-by-special-factors` gives L_X ≃ exp(r²) whenever s_X(n) = p_X(n+1) − p_X(n) is bounded. This includes every coding of an irrational rotation by finitely many intervals, given Cassaigne's theorem (recalled).
 
 **Status: established** by `rotation-factor-subshift-lef-growth-at-least-exp-r-squared-proof`. UNREVIEWED; queued with sk-referee-2.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

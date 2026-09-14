@@ -17,3 +17,5 @@ Examples: period doubling and regular paperfolding (p_k = 2^k).
 **Statement.** W_k = {y ∈ X : y_0 ≠ y_{p_k}} is nonempty and clopen, W_k ∩ T^tW_k = ∅ for 0 < |t| < p_k, and |e_ij(e_{W_k})| ≤ |A|(5 + 48p_k) in EL_3(LC(X,F_2)⋊Z).
 
 **Status: established** by `one-hole-toeplitz-subshifts-have-linear-cost-towers-proof`. UNREVIEWED; queued with sk-referee-2.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

@@ -32,3 +32,5 @@ for large `n`, because partial models of a large ball of a finitely presented gr
 
 DERIVATION
 recursive-lef-growth-hosts-miss-some-fp-rf-group-proof
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS: Steps 1-6 re-derived; conditional on the KMS Theorem 4.19 import (§4).

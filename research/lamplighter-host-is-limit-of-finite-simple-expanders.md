@@ -20,3 +20,5 @@ Then:
 3. `H` and all approximants are marked quotients of the Kazhdan group `EL_3` over the free algebra, so the approximants' Cayley graphs form an expander family.
 
 With `lamplighter-bernoulli-crossed-products-simple-kazhdan-lef`, `H` is infinite, finitely generated, simple and Kazhdan.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

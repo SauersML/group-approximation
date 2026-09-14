@@ -24,3 +24,5 @@ What survives is one host per group, or per family with a uniform complexity bou
 
 DERIVATION
 no-decidable-group-contains-every-fp-rf-group-proof
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS, conditional on `uniform-wp-bound-excludes-bh-universal-targets` (§4).

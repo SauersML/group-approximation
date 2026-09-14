@@ -25,3 +25,5 @@ Credit: folklore. The C*-analogue, `C(2^Z) ⋊ ⊕_Z Z/2 ≅` the CAR algebra wi
 novelty check was a grep of main only.
 
 Route: `car-bernoulli-crossed-product-is-lamplighter-ring-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

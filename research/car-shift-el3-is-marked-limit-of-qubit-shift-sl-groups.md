@@ -30,3 +30,5 @@ Credit: EJZ for (T). The idea of approximating the tensor shift by cyclic permut
 power is folklore-level; the novelty check was a grep of main only.
 
 Route: `car-shift-el3-qubit-shift-models-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

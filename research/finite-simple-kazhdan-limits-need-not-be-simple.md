@@ -17,3 +17,5 @@ Use: this firewalls every attempt to obtain simplicity of a Kazhdan group from i
 shortcuts for the note's groups. Without (T), `Z` as the marked limit of `Z/p` already shows the phenomenon.
 
 Route: `finite-simple-kazhdan-limits-need-not-be-simple-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

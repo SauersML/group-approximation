@@ -33,3 +33,5 @@ gives the same conclusion: `research/artifacts/sk-universal-lef-host-a-2026-09-1
 
 **Novelty (bounded).** I found no printed source: two web searches, and a grep of main for LEF 2-generator embedding
 nodes. The isolation trick is classical, in the style of Hall and B. H. and H. Neumann.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

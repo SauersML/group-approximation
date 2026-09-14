@@ -27,3 +27,5 @@ artifacts:
 
 **Sharpness.** No countable group contains every finitely generated LEF group
 (`no-countable-group-contains-all-fg-lef-groups`). So (b) needs its countability restriction.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS (§3). Note N6: the linear-group example relies on solvable word problem for f.g. linear groups (Rabin, Malcev), which is recalled and not re-read.

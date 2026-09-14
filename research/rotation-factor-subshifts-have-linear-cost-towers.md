@@ -24,3 +24,5 @@ This covers Sturmian subshifts and every coding of an irrational rotation by fin
 - Cost: e_W = e_a + e_a u^{-q} e_a u^q, a single commutator.
 
 **Status: established** by `rotation-factor-subshifts-have-linear-cost-towers-proof`. UNREVIEWED; queued with sk-referee-2.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

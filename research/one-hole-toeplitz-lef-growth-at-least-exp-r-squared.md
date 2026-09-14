@@ -14,3 +14,5 @@ where L_X is the LEF growth of EL_3(LC(X,F_2)⋊Z).
 For the period-doubling subshift: L_X(r) ≥ 2^{18((r − 200)/8160 − 1)²}.
 
 **Status: established** by `one-hole-toeplitz-lef-growth-at-least-exp-r-squared-proof`. UNREVIEWED; queued with sk-referee-2.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

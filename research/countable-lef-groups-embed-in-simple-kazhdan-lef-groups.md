@@ -21,3 +21,5 @@ that is LEF, and so sofic and hyperlinear.
   (`lef-groups-embed-in-simple-kazhdan-lef-groups`).
 
 This extends the reviewed f.g. characterization to countable groups at the cost of one lemma.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).

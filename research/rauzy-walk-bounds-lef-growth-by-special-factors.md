@@ -16,3 +16,5 @@ s_X is bounded for linear complexity (Cassaigne; RECALLED, source not re-read). 
 This improves the Rauzy-walk bound (p_X(n)+1)·p_X(n−1) of Theorem A(d), which only gives exp(O(r⁴)) for linear complexity.
 
 **Status: established** by `rauzy-walk-bounds-lef-growth-by-special-factors-proof`. UNREVIEWED; queued with sk-referee-2.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS: ear-decomposition walk bound re-derived (§6); Corollary U1 is conditional on Cassaigne's theorem (recalled).
