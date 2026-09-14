@@ -289,6 +289,29 @@ enclosed Prop. This lane owns (i). The work is additive; no owner's file is edit
 - Binder 6's two-arc producer (a proper `t_2` at section count ≥ 2) was queued here at 08:2x. ct-return-tower resumed
   and took it back, so this lane stays on the component route.
 - Infra rebuilt (~09:xx) at the new `NM` path. Every green record was lost, so re-probe before landing.
+- **LANDED e1f0ebfee** `Estimating/OsinPocketFullArcLobeModel` and `Estimating/OsinPocketFullArcLobeCopyModel` (probe
+  0914-085229-11825 GREEN, BUILT and COMPILED; md5 checked; wire-queued). Closed `lobeLake` and `lobeCopySplits`.
+
+### Ruling (a) (main, 09:1x): step 3 as a named residual, transports over it
+
+- **Hand analysis, the route for the owed proof (b):**
+  - Label the k seam positions with corner permutations: σ_C for the kept complement, σ_P for the pocket, σ_X for the
+    copy, and `sh` for list order.
+  - M's vertices along the seam are the cycles of σ_P∘σ_C; the piece's are σ_P∘sh; the inner reclosing's are sh∘σ_C; the
+    copy's are σ_X∘sh; the glued map's are σ_X∘σ_C.
+  - The inner-reclosing Euler equality and planarity of X make σ_C and σ_X non-crossing with respect to `sh`. They lie on
+    opposite sides of one circle, so their superposition is planar and every glued component is a sphere.
+  - Instances checked: the lake good copy (one sphere), the lake bad copy (two components), crossing pinches {0,2}/{1,3}
+    (a ring of four digons, a sphere), and the lobe copy (two components).
+- **Plan:**
+  1. `Estimating/OsinPocketGlueComponents`: the map-level `SeamGlueComponentPlanarStatement` (M, X and the inner
+     reclosing planar ⇒ every `S.glueMap.component x` planar) and its pocket-region form
+     `PocketGlueComponentPlanarStatement`, derived from it.
+  2. Calibrations: on the lake seam, χ(glue) = 4 via dart, face and vertex classifiers, then
+     `component_planar_of_euler_four` and the complement; the exterior piece of the lobe seam the same way.
+  3. The Euler transports over (1), using w1-binder-5's `component` / `ofPlanarRestrict` (b5c0d1129, 11b0109d9) and least
+     area.
+- ct-rank-two-limit was sent the new leaf.
 - **LANDED e7ba8abf8** `Estimating/OsinPocketFullArcLakeGlueModel` (probe 0914-083058-26818 GREEN, BUILT and COMPILED; md5
   checked). Closed `lakeGlueSplits`. My eight landed modules are re-queued in the rebuilt `wire-queue.txt`; none is
   imported by `GroupApproximation.lean`.
@@ -310,6 +333,38 @@ enclosed Prop. This lane owns (i). The work is additive; no owner's file is edit
     - 0914-084835-69392: the lobe model COMPILED; the copy model was red because `copy_facePerm_lobe` was false as stated
       (facePerm 0 = 8). It is now restricted to darts off the exterior.
     - Re-probing.
+
+#### State at 11:3x
+
+- **LANDED 53a33bef9** `Estimating/OsinPocketGlueComponents` (probe 0914-092026-9618 GREEN, BUILT; md5 checked;
+  wire-queued), defining `SeamGlueComponentPlanarStatement.{v}`, `PocketGlueComponentPlanarStatement.{u, w, v}` and
+  `pocketGlueComponentPlanar_of_seam`.
+  - main moved the proof of the seam form (owed item (b)) to w1-binder-5, together with the calibrations on the lake glue
+    and lobe copy models. Their modules: `SurgeryPocketGlueComponentPlanar`, `Estimating/OsinPocketGlueComponentPlanar`.
+  - The hand analysis above is the route. `M.IsPlanar` plays no role in the count: the glue is R∖N ∪ X∖outer, with R the
+    pocket reclosing and N its new face. `BoundaryCycle` puts no order on the seam, and the order enters only through
+    B and planarity of R. A bridge on the outer face of X folds two seam darts together.
+- **LANDED 56893e141** `Estimating/DiscEmbeddingOn` and `Estimating/OsinPocketGlueComponentDiagram` (probe
+  0914-102906-43391 GREEN, BUILT both; md5 checked; wire-queued).
+  - `DiscEmbeddingOn`: a map faithful on a domain containing a face set, with `boundary`, `shelling` and
+    `retargetGeometry`.
+  - `componentDiagram`: the exterior component as a disc diagram, with `componentDiagram_boundaryWord`.
+  - `card_glueRelFaces_le`, then at least area `exists_componentOf_of_mem_glueRelFaces` and `componentOEquivalent`.
+    This is step 2: every relator face lies on the exterior component.
+- **LANDED df5b9144c** `Estimating/OsinPocketGlueComponentEmbedding` (probe 0914-112300-46222, BUILT; md5 checked;
+  wire-queued).
+  - `FaceSetBoundary.forall_of_mem_cycle`, and `componentEmbedding`, `componentOf_of_region` (a region with a nonempty
+    source arc lies on the component), `exists_componentCell`.
+- In probe: `Estimating/OsinPocketGlueComponentCarriers` (left cells, the cell window, the outer window) and
+  `Estimating/OsinPocketGlueComponentTransport`, which states and proves:
+  - `PocketCellTransportEulerStatement` and `PocketOuterTransportEulerStatement`: the landed transports with
+    `X.LeastArea` in place of `P.outer.FollowsBoundary`, plus `a.2.sourceArc.length ≠ 0`;
+  - `pocketCellTransportEuler`, `pocketOuterTransportEuler : PocketGlueComponentPlanarStatement → …`.
+- Why the source-arc hypothesis: a region whose source and target arcs are both empty touches nothing but its sides. It
+  can sit on a lobe of Ξ glued into a non-exterior component, and I have no degree-0 region between two cells in Y.
+  `false_of_below` only bounds degrees from above, so a cut variant can skip degree-0 regions.
+- ms-cite-1 states the Euler collar step (`exists_twoCollars_of_ne_or` without following) in its own lane. The final
+  transport names go to ms-cite-1 and ct-rank-two-limit when the module lands.
 
 Design:
 - Γ₁ is the enclosed subdiagram Ξ of the pocket walk. Its faces are `sideFaces X K.walk`, with outside walk

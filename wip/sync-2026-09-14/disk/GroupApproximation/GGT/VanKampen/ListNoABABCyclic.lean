@@ -1,0 +1,131 @@
+import GroupApproximation.GGT.VanKampen.ListNoABABLength
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Cyclic words with no `a b a b` are short
+
+A word with no two equal neighbours, whose first and last letters differ, and with no subsequence `a b a b` with
+`a ≠ b`, has at most `2 d − 2` letters, where `d` is the number of distinct letters.  Read cyclically it has no two
+equal neighbours, and this is the bound that piece J of the contact count uses along one face: `#changes_f ≤ 2 d_f − 2`.
+
+Append the first letter at the end.  No two neighbours become equal, since the last letter differs from the first,
+and the number of letters stays the same.  No `a b a b` appears either.  One ending in the appended letter `b` would
+come from `a b a` in the word with `b` its first letter, and then `b a b a` is already in the word.  So
+`ListNoABAB.length_add_one_le_two_mul_card` applies to the longer word.
+
+* `ListNoABAB.NoABAB.append_head`: appending the first letter keeps `NoABAB`.
+* `ListNoABAB.length_add_two_le_two_mul_card`: `|w| + 2 ≤ 2 d`.
+
+Model tests, closed below.
+* Linear, sharp: `0 1 0` (`3 + 1 = 2 · 2`) and `0 1 0 2 0` (`5 + 1 = 2 · 3`).
+* Cyclic, sharp: `0 1` (`2 + 2 = 2 · 2`) and `0 1 0 2` (`4 + 2 = 2 · 3`).
+* The hypotheses are needed.  `0 1 0 1` contains `a b a b`, and there `4 + 1 ≤ 4` fails.  In `0 1 0` the first and
+  last letters agree, and there `3 + 2 ≤ 4` fails.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (through the contact count of Osin's Lemma 9.4, arXiv:math/0411039v3, §9); certifies no
+printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.ListNoABAB
+
+open List
+
+variable {α : Type*} [DecidableEq α]
+
+/-- **Appending the first letter keeps `NoABAB`.** -/
+theorem NoABAB.append_head {x : α} {t : List α} (hno : NoABAB (x :: t)) :
+    NoABAB (x :: t ++ [x]) := by
+  intro a b hab hsub
+  obtain ⟨l₁, l₂, hl, h₁, h₂⟩ := List.sublist_append_iff.mp hsub
+  rcases l₂ with _ | ⟨y, _ | ⟨z, l⟩⟩
+  · rw [List.append_nil] at hl
+    exact hno a b hab (hl ▸ h₁)
+  · have hy : y = x := List.mem_singleton.mp (h₂.subset List.mem_cons_self)
+    have hsplit := List.append_inj' (show [a, b, a] ++ [b] = l₁ ++ [y] from hl) rfl
+    obtain ⟨hl₁, hby⟩ := hsplit
+    have hbx : b = x := (List.cons.inj hby).1.trans hy
+    rw [← hl₁] at h₁
+    have hax : a ≠ x := fun h => hab (h.trans hbx.symm)
+    rcases List.sublist_cons_iff.mp h₁ with ht | ⟨r, hr, -⟩
+    · refine hno x a (fun h => hax h.symm) ?_
+      rw [hbx] at ht
+      exact List.cons_sublist_cons.mpr ht
+    · exact hax (List.cons.inj hr).1
+  · have hlen := h₂.length_le
+    simp only [List.length_cons, List.length_singleton] at hlen
+    omega
+
+/-- **A cyclic word with no equal neighbours and no `a b a b` has at most `2 d − 2` letters.** -/
+theorem length_add_two_le_two_mul_card {w : List α} (hne : w ≠ []) (hchain : w.IsChain (· ≠ ·))
+    (hcyc : w.head hne ≠ w.getLast hne) (hno : NoABAB w) :
+    w.length + 2 ≤ 2 * w.toFinset.card := by
+  obtain ⟨x, t, rfl⟩ := List.exists_cons_of_ne_nil hne
+  have hchain' : (x :: t ++ [x]).IsChain (· ≠ ·) := by
+    refine hchain.append (List.isChain_singleton x) ?_
+    intro y hy z hz
+    rw [List.getLast?_eq_getLast hne, Option.mem_def, Option.some.injEq] at hy
+    rw [List.head?_cons, Option.mem_def, Option.some.injEq] at hz
+    rw [← hy, ← hz]
+    exact fun h => hcyc h.symm
+  have hcard : (x :: t ++ [x]).toFinset = (x :: t).toFinset := by
+    rw [List.toFinset_append, Finset.union_eq_left]
+    intro y hy
+    rw [List.mem_toFinset, List.mem_singleton] at hy
+    rw [hy, List.mem_toFinset]
+    exact List.mem_cons_self
+  have h := length_add_one_le_two_mul_card _ (x :: t ++ [x]) rfl (by simp) hchain' hno.append_head
+  rw [hcard] at h
+  simp only [List.length_append, List.length_singleton] at h
+  omega
+
+/-! ## Model tests -/
+
+/-- Linear, sharp at `d = 2`: `0 1 0`. -/
+theorem linear_sharp_two :
+    ([0, 1, 0] : List ℕ).IsChain (· ≠ ·) ∧ NoABAB ([0, 1, 0] : List ℕ) ∧
+      ([0, 1, 0] : List ℕ).length + 1 = 2 * ([0, 1, 0] : List ℕ).toFinset.card := by
+  refine ⟨by simp [List.isChain_cons_cons], fun a b _ h => ?_, by decide⟩
+  have := h.length_le
+  simp at this
+
+/-- Linear, sharp at `d = 3`: `0 1 0 2 0`. -/
+theorem linear_sharp_three :
+    ([0, 1, 0, 2, 0] : List (Fin 3)).IsChain (· ≠ ·) ∧ NoABAB ([0, 1, 0, 2, 0] : List (Fin 3)) ∧
+      ([0, 1, 0, 2, 0] : List (Fin 3)).length + 1 = 2 * ([0, 1, 0, 2, 0] : List (Fin 3)).toFinset.card := by
+  refine ⟨by simp [List.isChain_cons_cons], ?_, by decide⟩
+  unfold NoABAB
+  decide
+
+/-- Cyclic, sharp at `d = 2`: `0 1`. -/
+theorem cyclic_sharp_two :
+    ([0, 1] : List ℕ).length + 2 = 2 * ([0, 1] : List ℕ).toFinset.card := by
+  decide
+
+/-- Cyclic, sharp at `d = 3`: `0 1 0 2`, first letter `0`, last letter `2`. -/
+theorem cyclic_sharp_three :
+    ([0, 1, 0, 2] : List ℕ).IsChain (· ≠ ·) ∧ NoABAB ([0, 1, 0, 2] : List ℕ) ∧
+      ([0, 1, 0, 2] : List ℕ).length + 2 = 2 * ([0, 1, 0, 2] : List ℕ).toFinset.card := by
+  refine ⟨by simp [List.isChain_cons_cons], fun a b hab h => ?_, by decide⟩
+  have he := h.eq_of_length rfl
+  simp only [List.cons.injEq] at he
+  exact absurd (he.2.2.2.1.symm.trans he.2.1) (by decide)
+
+/-- `NoABAB` is needed: `0 1 0 1` contains `a b a b`, and the bound fails there. -/
+theorem noABAB_needed :
+    ¬ NoABAB ([0, 1, 0, 1] : List ℕ) ∧
+      ¬ ([0, 1, 0, 1] : List ℕ).length + 1 ≤ 2 * ([0, 1, 0, 1] : List ℕ).toFinset.card :=
+  ⟨fun h => h 0 1 (by decide) (List.Sublist.refl _), by decide⟩
+
+/-- Distinct first and last letters are needed: in `0 1 0` they agree, and the cyclic bound fails. -/
+theorem head_ne_getLast_needed :
+    ¬ ([0, 1, 0] : List ℕ).length + 2 ≤ 2 * ([0, 1, 0] : List ℕ).toFinset.card := by
+  decide
+
+end GroupApproximation.GGT.VanKampen.ListNoABAB
+
+#audit_axioms GroupApproximation.GGT.VanKampen.ListNoABAB.NoABAB.append_head
+#audit_axioms GroupApproximation.GGT.VanKampen.ListNoABAB.length_add_two_le_two_mul_card
+#audit_axioms GroupApproximation.GGT.VanKampen.ListNoABAB.linear_sharp_three
+#audit_axioms GroupApproximation.GGT.VanKampen.ListNoABAB.cyclic_sharp_three

@@ -285,6 +285,34 @@ literal step missing.
   - On origin: separation is `AvoidEdgeStep.not_eqvGen_alpha_of_sameFace`, and the sigma-fixed side is
     `AvoidEdgeStep.eq_iff_of_sigma_fixed`.
 - Not written yet: A1b and A3 (the assembly).
+- ~10:1x: A1b and A3 written.
+  - A1b: `SameCellPocketEnclosed.enclosedFaceSetSucc_pocketWalk`, `pocketArc_darts` and `exists_enclosedPocket`. A far
+    relator cell forces a nonempty walk, via `AvoidEdgeStep.eq_iff_of_sigma_fixed`.
+  - A3: `sameCellPocketLoopCut : SameCellPocketLoopCutStatement`, over `exists_enclosedPocket`, `arcDoublingOutput`,
+    `enclosedPocketRegionSucc`, `OsinLoopCut.ofPocketRegion` with `s = []` (`0 ≤ c` from the quasi-geodesic arc) and
+    `twoSectionCuts_cellTransport pocketCellTransport`.
+- Co-probe 0914-103952-13558 of all four modules:
+  - A2 and the side module BUILT.
+  - A1b failed: a `rw` of `getElem_darts` had its arc over `CyclicArc (faceBoundary …).darts`, not over
+    `CyclicArc (cellDarts Delta i)`. Fixed with `(cycle := cellDarts Delta i)` and a `change`.
+  - A3 was not reached.
+- LANDED eaa153c9e `ClosedWalkEnclosedBridgeDoublingArc` (A2) and d1d4a4173 `OsinUnboundSameCellPocketEnclosedSides`,
+  both on that probe's BUILT evidence with matching bytes. Queued for wiring.
+  - ms-traces-2 was sent the A2 SHA and names, which its step (A) needs.
+  - My pre-landing collision gate first refused both on bare-name hits. The hits were in other namespaces, and a
+    namespace-aware check found no real collision.
+- A1b and A3 are re-probing.
+- LANDED 01a30b5f8 `OsinUnboundSameCellPocketEnclosed` (A1b) and 58f7cc400 `OsinUnboundSameCellPocketLoopCut` (A3),
+  probe 0914-110944-12900 GREEN, both BUILT, bytes matching. Queued for wiring.
+  - `sameCellPocketLoopCut : SameCellPocketLoopCutStatement` is closed (`#audit_closed_axioms`).
+  - With w1-binder-5's `sameCellPocketCellFreeValue` (dc9addc9d), `osinLemma94SameCellPocketInput_of_loopCut
+    sameCellPocketCellFreeValue sameCellPocketLoopCut` proves `OsinLemma94SameCellPocketInput` with no hypothesis.
+  - The lane's in-flight file list is empty.
+- The collision scan's two candidates (`faceOf_pow`, `vertexOf_alpha_eq_facePerm`) are `NeighbourFaces.*` and
+  `PocketFullArc.*` on origin, distinct from `SameCellPocketEnclosed.*`.
+- CLAIM the closed endpoint `osinLemma94SameCellPocketInput : OsinLemma94SameCellPocketInput`:
+  `GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketClosed.lean`. No such endpoint exists on origin or
+  in the shared tree, and the path is free everywhere (checked ~11:2x).
 
 ## Progress log
 

@@ -618,11 +618,101 @@ Pre-flight at bec8c0538, after (A), and recheck at the build base ed724988b:
 The earlier pre-flight at 991380d00, before (A), had 9 modules and 9 gated files, with the same result.  Queue line
 692 came in after (A) and joined on its own clean pre-flight at bec8c0538.
 
+## Wave 16 (launched 09-13 16:13, root build 0913-161309-41278, base ddde33648): building
+
+31 modules and 41 newly reachable files, from queue lines 694–757.  Pre-flight at db9a29cbf, after wave 15's
+landing 074e7a200.  The record is the newest GREEN covering the landed bytes at the build base, and each record's
+`# PROBE` line reads GREEN.
+
+| module | line | record at ddde33648 | owner |
+|---|---|---|---|
+| `Estimating.OsinLemma94OneCellFace` | 694 | 0913-145215-56485 (ko-closed) | ko-closed |
+| `SurgeryNoncrossingCollarWalkSides` | 699 | 0913-153039-58042 (fff-quotient) | fff-quotient |
+| `Estimating.OsinLemma94ClassRuns` | 701 | 0913-145849-94334 (audit-intro) | audit-intro |
+| `Estimating.OsinPocketKeptCellUnpinched` | 703 | 0913-150326-35154 (baseline-debt) | baseline-debt |
+| `NoncrossingClosedWalkEuler` | 706 | 0913-155924-73125 (sec2-sentences) | hull-euler |
+| `Estimating.OsinPocketPinchSplitWalk` | 709 | 0913-153737-1399 (go-lemma42) | kh-cckw |
+| `SurgeryGeodesicCollarDouble` | 711 | 0913-155533-35125 (simple-group) | kh-torsion |
+| `Estimating.OsinLemma94OneCellWindow` | 713 | 0913-150725-78874 (ko-closed) | ko-closed |
+| `SurgeryGeodesicCollarInsert` | 714 | 0913-155611-43423 (hull-bridge) | hull-bridge |
+| `SurgeryNoncrossingCollarStrip`, `…CollarStripModels` | 717, 718 | 0913-153039-58042 (fff-quotient) | fff-quotient |
+| `Estimating.OsinPocketKeptCellAbsorbed` | 720 | 0913-155924-73125 (sec2-sentences) | sec2-sentences |
+| `Estimating.OsinLemma94GapFreeWords` | 723 | 0913-150235-20084 (hull-unbound) | hull-unbound |
+| `Dynamics.ClopenCrossedProduct`, `…ClopenDefectPair` | 726, 727 | 0913-154019-19595 (chain-core) | chain-core |
+| `Estimating.OsinPocketMultipleEdgeLakeModel` | 729 | 0913-154539-52051 (dgo-analytic) | dgo-analytic |
+| `Estimating.OsinUnboundSameCell`, `…SameCellSegments` | 680, 730, 732 | 0913-155114-84940 (fff-periodic) | fff-periodic |
+| `Algebra.DirectlyFiniteCorner` | 735 | 0913-160055-80827 (chain-reflection) | chain-reflection |
+| `Estimating.OsinPocketCopyWalk` | 737 | 0913-153809-4154 (leavitt-units) | leavitt-units |
+| `Dynamics.SubshiftLanguageStabilization` | 738 | 0913-155918-72707 (chain-subshift) | chain-subshift |
+| `Estimating.OsinPocketLakeLabelledModel` | 740 | 0913-155026-81505 (audit-sec3) | audit-sec3 |
+| `Algebra.LEFRingDirectedUnion` | 742 | 0913-160055-80827 (chain-reflection) | chain-itinerary |
+| `Dynamics.SubshiftWordGraph` | 745 | 0913-155918-72707 (chain-subshift) | chain-words |
+| `Estimating.OsinPocketKeptCellNoncrossing` | 747 | 0913-155924-73125 (sec2-sentences) | sec2-sentences |
+| `SurgeryGeodesicCollarReduction` | 748 | 0913-155611-43423 (hull-bridge) | hull-bridge |
+| `Algebra.SkewMonoidAlgebraCoefficientMap` | 749 | 0913-155549-37754 (chain-itinerary) | chain-itinerary |
+| `Estimating.OsinLemma94PinchedQuadrilateral` | 751 | 0913-160048-79943 (hull-unbound) | hull-unbound |
+| `Algebra.DirectlyFiniteReflection` | 753 | 0913-160055-80827 (chain-reflection) | chain-reflection |
+| `Dynamics.ChainRecurrence` | 755 | 0913-160538-94022 (hull-euler) | hull-euler |
+| `Estimating.OsinPocketOuterSpur` | 757 | 0913-160514-92421 (kh-cckw) | kh-cckw |
+
+Skipped:
+- line 707, hull-component's `OsinLemma94ClassCovers` (13cf15e1a), held on main's 15:50 order.  It is red against
+  hull-count94's `PolygonClasses` respell a25fe2383, where `ClassCovers` takes `M L`, and it waits for a GREEN
+  record of the fixed bytes.  At ddde33648 no module imports it, and it is the only importer of `PolygonClasses`;
+- lines 678 and 689, fff-periodic's `OsinUnboundSameCellPocket` and `OsinUnboundSameCellBridge`, which have no
+  GREEN probe yet;
+- lines 758–765 (chain-subshift's `RetainedSubshift`, `NoncyclicEdgeDefect` and `CoreSubshift`, sec5-sentences'
+  `OsinLemma94ClassTransitions`, fff-periodic's `OsinUnboundSameCellSides`), which arrived after the pre-flight.
+
+Three covers need a word:
+- `OsinUnboundSameCell` and `…Segments`: queue lines 731 and 733 still say "probe pending".  fff-periodic's GREEN
+  0913-155114-84940 covers the main bytes and is newer than its FAILED probes 0913-150904-97612 and
+  0913-152931-54308.
+- The gate's newest cover for `OsinGreendlingerOpenResiduals` and `OsinUnboundCaseOneRun` is theoremc-retire's S5
+  co-probe 0913-153647-93989.  That record is GREEN, but queue line 724 withdraws its bytes.  Older GREEN records
+  cover the same bytes by md5.  ghw-assembly 0913-145357-69970 covers the waist 5f031e3a6.  theoremc-retire's
+  T-window probe 0913-145812-91168 covers `CaseOneRun`, and also `CaseOneFace`, `Pieces` and `PlanarPieces`.
+- `OsinLemma94PolygonClasses` (a25fe2383): hull-count94's GREEN 0913-152533-28063 matches the main bytes.  The
+  gate's newest cover is hull-unbound 0913-160048-79943.
+
+Order holds, from the import closure at db9a29cbf and again at ddde33648.  Every in-wave import of a module comes
+before it:
+- `SurgeryNoncrossingCollarStrip` comes after `CollarWalkSides` and `GeodesicCollarDouble`, and `CollarStripModels`
+  after `CollarWalkSides`;
+- `ClopenDefectPair` comes after `ClopenCrossedProduct`, and `SameCellSegments` after `SameCell`;
+- `KeptCellNoncrossing` comes after `NoncrossingClosedWalkEuler` and `KeptCellAbsorbed`, and
+  `GeodesicCollarReduction` after `GeodesicCollarInsert`;
+- `DirectlyFiniteReflection` comes after `DirectlyFiniteCorner` and `LEFRingDirectedUnion`.
+
+Pre-flight at db9a29cbf, and recheck at the build base ddde33648:
+- no dangling import, no lexical sorry and no cycle;
+- dupcheck predicts no collision (closure 6489 → 6530);
+- the gate needs evidence for 52 files, and a GREEN record covers every one:
+  - the 41 newly reachable files: the 31 modules and 10 files they bring in (`OsinPocketEdgeDoubling`,
+    `…LakeAbsorption`, `…LakeModel`, `…PinchStep`, five `OsinPocketPinchedTwoGon*` files and
+    `SurgeryGeodesicCollarWalk`);
+  - `OsinUnboundCaseOneRun`, which is root-reachable at the build base but was not compiled by wave 15's build;
+  - 10 rooted files changed since wave 15's build base ed724988b: five `OsinAppendix*` files,
+    `OsinGreendlingerOpenResiduals`, `OsinLemma94{Pieces, PlanarPieces, PolygonClasses}` and
+    `OsinUnboundCaseOneFace`;
+- 0 held;
+- the lexical scan over the 52 gated files finds nothing.
+
+Recheck at the build base ddde33648 agrees with the pre-flight.  db9a29cbf is an ancestor.  The only
+GroupApproximation changes in between add `Dynamics.{RetainedSubshift, NoncyclicEdgeDefect, CoreSubshift}` and
+`OsinUnboundSameCellSides`, all outside the new closure.  The wave checks and dupcheck match.  The gate's evidence
+lines match except for two newer covers: chain-subshift 0913-155918-72707 now covers `SubshiftLanguageStabilization`
+and `SubshiftWordGraph`, and fff-periodic 0913-161159-35900 covers `OsinAppendixSections`.
+
+The earlier pass at 6b494013f took the 20 lines through 737 and gave the same result (closure 6489 → 6517, 39 gated
+files, 0 held).
+
 ### Held
 
 | module | reason | owner |
 |---|---|---|
 | `CharClass.*`, `Analysis.LIX*`, `ProblemLIXStrongAssemblyHalves` | LIX campaign files, in flight in the shared tree | LIX lanes |
+| `Estimating.OsinLemma94ClassCovers` | red against `PolygonClasses` a25fe2383 (`ClassCovers` takes `M L`); main's 15:50 hold until the fixed bytes have a GREEN record | hull-component |
 
 Released in wave 14 by closure identity: `Estimating.OsinAppendixEulerTwoGonFaceClass`,
 `…OsinPocketGlueOuterArc`, `…OsinPocketGlueOuterTransport`, `…OsinLemma94ShortSides`, and the root line

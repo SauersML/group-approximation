@@ -1,0 +1,33 @@
+c5b8cc3eaa3a5924c9236a6d5912d261  eval_descent_all.py
+3b6b79835437ee157005e7fa65cd3671  pres6.json
+da7d9eb2d9ada1eefad991df4ab90e30  seed_theta_d10.json
+-rw-r--r--. 1 sauer354 hsiehph  51328 Sep 13 17:14 best7_m3_seed_seed_theta_x2_d20_abmin.json_d20_p30.0_pin0_eps0.1_seed62.npy
+-rw-r--r--. 1 sauer354 hsiehph 115328 Sep 13 17:52 best7_m3_seed_seed_theta_x3_d30_abmin.json_d30_p30.0_pin0_eps0.1_seed63.npy
+-rw-r--r--. 1 sauer354 hsiehph 204928 Sep 13 18:29 best7_m3_seed_seed_theta_x4_d40_abmin.json_d40_p30.0_pin0_eps0.1_seed64.npy
+-rw-r--r--. 1 sauer354 hsiehph  43517 Sep 13 16:28 seed_theta_x2_d20_abmin.json
+-rw-r--r--. 1 sauer354 hsiehph  94069 Sep 13 16:28 seed_theta_x3_d30_abmin.json
+-rw-r--r--. 1 sauer354 hsiehph 163823 Sep 13 16:28 seed_theta_x4_d40_abmin.json
+convention check on seed_theta_d10.json: order left: max ||rho(r) - (-1)^k I||_2,d = 0.000e+00 (3s)
+convention check on seed_theta_d10.json: order right: max ||rho(r) - (-1)^k I||_2,d = 1.549e+00 (3s)
+using order left
+== seed_theta_x2_d20_abmin.json: d=20 unitarity 4.4e-16; ALL 304412 relators: max unlifted 0.3091 max lifted 0.3071 max 0.3091 mean sq 0.006382 quantiles(0.5,0.99,0.999) [0.0603, 0.187, 0.2469] above bar 0.306783: 30, above 0.3: 66 (13s)
+   worst (index, length, lift, defect): [(298260, 12, 0, 0.3091), (298262, 12, 0, 0.3091), (56126, 12, 0, 0.3085), (34480, 12, 0, 0.3085), (81124, 12, 0, 0.3079)]
+   phases vs stacked seed /2pi [-0.0098, -0.0098, -0.0003, 0.0002, 0.0098, 0.0098, 0.0004, 0.0]; residual per generator (no unitary alignment) [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; pure coboundary with these phases: max 0.3091
+== best7_m3_seed_seed_theta_x2_d20_abmin.json_d20_p30.0_pin0_eps0.1_seed62.npy: d=20 unitarity 2.0e-15; ALL 304412 relators: max unlifted 0.3221 max lifted 0.3204 max 0.3221 mean sq 0.006387 quantiles(0.5,0.99,0.999) [0.0598, 0.194, 0.2548] above bar 0.306783: 24, above 0.3: 55 (13s)
+   worst (index, length, lift, defect): [(301599, 12, 0, 0.3221), (299523, 12, 0, 0.3221), (298543, 12, 0, 0.3221), (299716, 12, 0, 0.3206), (299642, 12, 0, 0.3206)]
+   phases vs stacked seed /2pi [-0.00958, -0.0094, -0.00023, 0.00056, 0.01005, 0.01028, -0.00054, -1e-05]; residual per generator (no unitary alignment) [0.0173, 0.0186, 0.0192, 0.0189, 0.0194, 0.0173, 0.0188, 0.0185]; pure coboundary with these phases: max 0.3221
+== seed_theta_x3_d30_abmin.json: d=30 unitarity 4.4e-16; ALL 304412 relators: max unlifted 0.3091 max lifted 0.3071 max 0.3091 mean sq 0.006382 quantiles(0.5,0.99,0.999) [0.0603, 0.187, 0.2469] above bar 0.306783: 30, above 0.3: 66 (35s)
+   worst (index, length, lift, defect): [(298260, 12, 0, 0.3091), (298262, 12, 0, 0.3091), (34480, 12, 0, 0.3085), (56126, 12, 0, 0.3085), (35975, 12, 0, 0.3079)]
+   phases vs stacked seed /2pi [-0.0098, -0.0098, -0.0003, 0.0002, 0.0098, 0.0098, 0.0004, 0.0]; residual per generator (no unitary alignment) [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; pure coboundary with these phases: max 0.3091
+== best7_m3_seed_seed_theta_x3_d30_abmin.json_d30_p30.0_pin0_eps0.1_seed63.npy: d=30 unitarity 1.3e-15; ALL 304412 relators: max unlifted 0.3249 max lifted 0.2793 max 0.3249 mean sq 0.006917 quantiles(0.5,0.99,0.999) [0.0629, 0.1961, 0.2594] above bar 0.306783: 46, above 0.3: 46 (35s)
+   worst (index, length, lift, defect): [(300587, 12, 0, 0.3249), (299642, 12, 0, 0.3249), (299716, 12, 0, 0.3249), (244864, 12, 0, 0.3242), (244866, 12, 0, 0.3242)]
+   phases vs stacked seed /2pi [-0.01011, -0.01021, -0.00029, 0.00019, 0.01037, 0.01021, -0.00039, 0.00027]; residual per generator (no unitary alignment) [0.0184, 0.0188, 0.0186, 0.0197, 0.0189, 0.019, 0.0187, 0.0189]; pure coboundary with these phases: max 0.3249
+== seed_theta_x4_d40_abmin.json: d=40 unitarity 4.4e-16; ALL 304412 relators: max unlifted 0.3091 max lifted 0.3071 max 0.3091 mean sq 0.006382 quantiles(0.5,0.99,0.999) [0.0603, 0.187, 0.2469] above bar 0.306783: 30, above 0.3: 66 (98s)
+   worst (index, length, lift, defect): [(298262, 12, 0, 0.3091), (298260, 12, 0, 0.3091), (34480, 12, 0, 0.3085), (56126, 12, 0, 0.3085), (35970, 12, 0, 0.3079)]
+   phases vs stacked seed /2pi [-0.0098, -0.0098, -0.0003, 0.0002, 0.0098, 0.0098, 0.0004, 0.0]; residual per generator (no unitary alignment) [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; pure coboundary with these phases: max 0.3091
+== best7_m3_seed_seed_theta_x4_d40_abmin.json_d40_p30.0_pin0_eps0.1_seed64.npy: d=40 unitarity 1.7e-15; ALL 304412 relators: max unlifted 0.3400 max lifted 0.2621 max 0.3400 mean sq 0.007399 quantiles(0.5,0.99,0.999) [0.0652, 0.2061, 0.272] above bar 0.306783: 46, above 0.3: 46 (83s)
+   worst (index, length, lift, defect): [(300587, 12, 0, 0.34), (299716, 12, 0, 0.34), (299642, 12, 0, 0.34), (282143, 12, 0, 0.3382), (272550, 12, 0, 0.3382)]
+   phases vs stacked seed /2pi [-0.01021, -0.01059, -0.00017, 0.00075, 0.01097, 0.01056, -0.00036, -1e-05]; residual per generator (no unitary alignment) [0.0173, 0.0184, 0.0178, 0.0187, 0.0178, 0.0179, 0.018, 0.0178]; pure coboundary with these phases: max 0.3400
+DONE
+== rc=0
+ALLDONE

@@ -100,6 +100,36 @@ The successor tools live in `$NM/census/`, in this session's scratchpad `nm/`. O
     (`b180421b55ab`) and ms-core-4 (`f0c16e5c8519`).
   - leavitt-units `f6962254d259` drops only the helper `elementary_le_commutator_of_trivial` from a formalized row, which
     keeps its other two declarations. This retires the register's tex-1321 inlined-statement finding.
+- **DROP overrides for ct-bilateral-mf's stale cell rows** (ct-rank-budget's request of 09-14, effective at merge 7).
+  - ct-bilateral-mf `LINE:1583` (two rows) and `LINE:1587` name `killed_of_finite_central_defect` and
+    `commute_of_mem_bilateralB`, over the cell piece that was open then. It is now closed
+    (`bilateralThreeCellStatement`).
+  - Dropping all their declarations skips the three rows. Each sentence grades from a live lane's formalized row:
+    `cd7908a482b5` and `3550126258fb` from ct-rank-budget's rows at 4238c9b1d, and `e94a87793eb1` from ms-inverses-4's.
+  - ct-rank-budget asked for SUPERSEDE entries. DROP gives the same grade, because the replacement rows already exist.
+- **DROP overrides retiring audit-nm-1's partial rows** (effective at merge 7).
+  - ms-core-1 landed complete endpoints for audit-nm-1's flagged sentences (rows 55f458945 and 1ffa5a05d). Main routed
+    them to the census while the owners are down.
+  - Each audit row's own condition is met, and the census successor spot-checked the statements:
+    - `d4c878a7ac22`: `printedAmenableNonquasidiagonalTraceCountable` displays `Countable W` (c8cedf5d2);
+    - `2a97fb901bad`: `printedShiftKernelDirectLimitMF` follows the printed direct-limit route (c8cedf5d2);
+    - `80279f06992b`: `printedIntroExamplesTorsionAllCharacteristics` has torsion in `EL_n(R)` for every nonzero ring,
+      n ≥ 2 (798b31a8a);
+    - `2ff745dd7064`: `printedElementaryGroupNotMFRankTwo` has countable, nontrivial and not MF at every n ≥ 2
+      (89a4948c0).
+  - Dropping each audit row's one declaration skips it. Under the union rule, a remaining partial audit row would keep
+    its sentence partial whatever the other rows say.
+  - The four new modules are queued for wiring, so these sentences grade partial, waiting only on wiring, until ms-core-5
+    wires them.
+- **DROP overrides for ct-bilateral-mf's stale return-tower rows** (ct-rank-budget's request of 09-14, effective at
+  merge 7).
+  - ct-bilateral-mf `LINE:1732`, `LINE:1739` and `LINE:1740` (tex 1731–1741) are partial over the identification theta,
+    `ReturnRingCrossedProductStatement`. It is now closed by `returnRingCrossedProductStatement_holds`
+    (Dynamics/ReturnRingCrossedProduct).
+  - Each DROP lists every declaration of its row, so all three rows are skipped. The sentences `60708f733247`,
+    `9e22ceae062f` and `f1769ba5e51c` then grade from ct-return-tower's formalized rows at the same keys.
+  - At merge 6 these sentences had no reachability or compile flag. The only partial grade came from the stale rows, so
+    merge 7 should grade them formalized.
 
 ## Merges
 

@@ -1,0 +1,51 @@
+STW Problem XXII — Palomar submission
+
+Submission ID: 76jkcqxtajfg
+Submitted: 2026-09-14 05:07:12 UTC
+Status at intake: verifying
+
+Repository: SauersML/group-approximation
+Source commit: a4eea122897265caab10088c303451049bdd797f
+Comparator configuration: Palomar/comparator-stw-xxii.json
+Authorization relationship: maintainer
+
+Source snapshot:
+https://github.com/SauersML/group-approximation/tree/a4eea122897265caab10088c303451049bdd797f
+
+Selected declarations:
+STWProblemXXII.exists_uniformTracialCompletion_with_discontinuous_trace
+STWProblemXXII.exists_factorial_traciallyComplete_with_discontinuous_trace
+
+Full verification passed: Lean build, definition model checks, elaborated
+statement/definition comparison, axiom closure checks, Comparator, Lean's
+kernel, and the independent NanoDa kernel.
+https://github.com/SauersML/group-approximation/actions/runs/34806058250
+Both selected axiom closures: propext, Classical.choice, Quot.sound.
+
+Final package verification passed on the exact submitted commit:
+https://github.com/SauersML/group-approximation/actions/runs/34808299106
+It validates the metadata and every source file, and verifies that only fixed
+provenance comments were added to the topology sources after full verification;
+all proof bodies and other Lean sources remain byte-for-byte identical.
+
+Codex (OpenAI) wrote the submission prose. The metadata discloses this directly,
+distinguishes the earlier Astra and Claude contributions, and credits the
+HamSandwich and Tau Ceti sources and their disclosed AI contributors.
+Exact upstream license texts and source attribution notices are included.
+
+The earliest public asking located is Aaron Tikuisis's May 25, 2020 talk.
+This credits him as presenter without claiming he was the sole originator.
+The first paper formulation verified is Question 1.1 of the seven-author
+Tracially complete C*-algebras preprint, version 1, October 31, 2023.
+
+Palomar accepted the ordinary submission and queued its own verification.
+Temporary repository-write and account-identity proof artifacts were removed.
+
+Palomar mechanical verification: PASSED on the exact submitted commit.
+https://github.com/PalomarRegistry/PalomarSubmission/actions/runs/34808454735
+Current status: awaiting-review.
+
+Registry mechanical report: pass, zero errors, zero warnings.
+Challenge provenance: high trust; no untrusted sources.
+Both the Lean default kernel and NanoDa accepted the exact submitted solution.
+Submission control credentials are retained privately outside the repository.

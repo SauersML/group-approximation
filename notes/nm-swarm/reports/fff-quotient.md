@@ -113,6 +113,29 @@ Residual:
 - `WalkOutput` and `geodesicCollarOutput_of_walkOutput` build the pocket region with
   `ofSimpleClosedWalk`, and need a noncrossing version.
 
+Corner join over a noncrossing walk (stage 3).  kh-torsion's `Strip.join_walk` gets simplicity of the
+rest `r` in `CornerJoin` at `x = α (q.getLast)`, `y = α (p.getLast)` from `vertex_nodup`.
+- `GGT/VanKampen/SurgeryNoncrossingCollarJoinModels` (e6d788879, probe 0913-162158-84746 GREEN, queued
+  for wiring): `PinchedJoinModel`.  A planar one-vertex map, strip face `[0, 2]`, face set bounded by the
+  noncrossing walk `[0, 4]` whose outer cycle follows its boundary, and join corners `α 2`, `α 0` in one
+  rotation cycle.  So `CornerJoin`'s `not_same_vertex` can fail under R2.
+- `GGT/VanKampen/SurgeryNoncrossingCollarJoin` (landed with this report, probe 0913-174832-37533 GREEN,
+  queued for wiring): when the corners lie at distinct
+  vertices, `r` is a noncrossing closed walk of `VertexJoin.toCombMap Δ x y` whose outer cycle follows its
+  boundary (`NoncrossingStrip.join_walk`, planarity `join_planar`).  The proof carries `OuterTurn` over to
+  `r` (`outerTurn_vertexJoin_rest`) and reads no `vertex_nodup`.  Its turn step
+  (`exists_first_mem_vertexJoin_rest`) uses that `x` and `σ y` lie on no edge of the walk, that `p` runs
+  along one face, and that `x`, `y` are not in one rotation cycle.
+- Corners at one vertex: set `z = σ⁻¹ (r.head)`, pinch-split at `(x, z)`, then corner-join at `(y, z)`.
+  The `p`-face leaves `S`, and `q` merges into `faceOf (r.head)`, which must be a relator face, else
+  double `r.head` first.  Not in Lean.
+
+Residual for the strip over R2:
+- `NoncrossingStripStatement` for sides of two or more darts;
+- the join with corners at one vertex (above);
+- `Strip.insert_walk` (Insert:224) reads `vertex_nodup`;
+- a noncrossing `WalkOutput` builder.
+
 ## Census
 No row: these modules prove the cited group consumed at tex 1679 and do not carry a sentence (same
 grading as simple-group).

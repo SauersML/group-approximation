@@ -381,6 +381,17 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     - `minRun_embed` (b1), `nonKeepRun_embed` (b2) and `nonKeepRunStrict_embed` (b3), each at count `liftCount`, with
       `liftCount_pos` for `0 < q'`.
     - `rotationBetween_embed_iff` (b4).
+- **w1-binder-3 landed (~09:3x)** the chord core 205801d4d `Estimating/OsinPocketOuterPinchChord` and the selection d1c4d4235
+  `Estimating/OsinPocketOuterPinchCorners`.
+  - Chord core: `PinchSplit.Input.ChordKept`, `OuterPinchChord.chordKept_of_uncrossed` / `chord_positions`, and the section
+    packaging `exists_pinchStepSection_of_uncrossedTurn`.
+  - Selection: `OuterPinchCorners.exists_firstArrival`, `exists_outside_of_not_firstTurn`, and `PocketFaceSet.exists_not_firstTurn`.
+  - It claims `Estimating/OsinPocketOuterPinchCornerFix` (the arc successor and per-corner options). That assembly consumes
+    this lane's chord lift lemmas as they are.
+- **CLAIM: `Estimating/OsinPocketCellOuterPinchChord.lean`**, the cell mirror of the chord packaging and selection:
+  - `CellPocketFaceSet.pinchSplit_closedWalk_of_chordKept`;
+  - `exists_cellPinchStepDistinct_of_chordKept` and `exists_cellPinchStepDistinct_of_uncrossedTurn`;
+  - `CellPocketFaceSet.exists_not_firstTurn`.
 - **Noted (ms-cite-1, 09332718c):** `OsinPocketPinchPosModels.pocketPinchPosRefutation : ¬ PocketPinchLabelledPosStatement.{0,0,0}`,
   probe 0914-091613-62601 GREEN with `#audit_closed_axioms`. It is the ε = 1 model, where both arcs are full. The Section
   forms of this lane are untouched: their proper-arc premise excludes the model.

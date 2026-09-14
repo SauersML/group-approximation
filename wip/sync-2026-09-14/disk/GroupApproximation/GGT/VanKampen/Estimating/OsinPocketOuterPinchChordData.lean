@@ -1,0 +1,170 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchCornerFix
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketOuterPinchChordLift
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The chord data of an outer pinch, across edge insertions
+
+Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): the subdiagram `Γ_1` with
+`∂Γ_1 = s_1 t_1 s_2 t_2`.  The section pinch step at an outer pinch splits a vertex at a turn
+`d₀ → e₀` of the boundary cycle that no other passage crosses and that is not a first turn, with `x`
+reached from `e₀` and `alpha d₀` reached from `y` past darts off the edges of the cycle
+(`OuterPinchTransport.ChordData`).  Before the split, the corners of `x` and `y` are turned into
+G-digons by edge insertions (`Estimating/OsinPocketOuterPinchCornerFix.lean`).  This module carries
+the chord data across one insertion `EdgeInsertion.toCombMap M a b` onto the embedded darts, through
+the count of new rotation steps `EdgeInsertion.liftCount`
+(`Estimating/OsinPocketOuterPinchChordLift.lean`, lane w1-binder-7).  A first turn after the
+insertion descends to a first turn before it, since every new power from an old dart onto an old dart
+is a lifted count.
+
+* `OuterPinchTransport.ChordData`: the chord data on a list.
+* `OuterPinchTransport.ChordData.x_ne_y`: the split darts are distinct.
+* `OuterPinchTransport.ChordData.embed`: the chord data across one insertion.
+* `PocketFaceSet.exists_pinchStepSection_of_chordData`: the conclusion of the section pinch step from
+  chord data at a split avoiding the face set, with both proper arcs.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, Hull's small cancellation theorem, through Osin's
+Lemma 9.7(b)); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded Surgery.MapCollapse SimpleClosedWalkSides
+open scoped Classical
+
+namespace OuterPinchTransport
+
+open OuterPinchIsolated OuterPinchCorners OuterPinchCornerFix
+
+/-- **The chord data of an outer pinch** on a list `c`: a turn `d₀ → e₀` of `c` that no other passage
+at its vertex crosses and that is not a first turn, a dart `x` reached from `e₀` past darts off the
+edges of `c`, and a dart `y` from which `alpha d₀` is reached past such darts. -/
+structure ChordData (M : CombMap.{u}) (c : List M.Dart) (d₀ e₀ x y : M.Dart) : Prop where
+  mem : d₀ ∈ c
+  next_eq : c.next d₀ mem = e₀
+  uncrossed : ∀ d (hd : d ∈ c), d ≠ d₀ → M.sigma.SameCycle (M.alpha d₀) (M.alpha d) →
+    (RotationBetween M (M.alpha d₀) e₀ (M.alpha d) ↔
+      RotationBetween M (M.alpha d₀) e₀ (c.next d hd))
+  not_firstTurn : ¬ FirstTurn M (c.reverse.map M.alpha) (M.alpha e₀) (M.alpha d₀)
+  run_x : ∃ m, (M.sigma ^ m) e₀ = x ∧ ∀ t, 0 < t → t ≤ m → ¬ walkKeep M c ((M.sigma ^ t) e₀)
+  run_y : ∃ q, 0 < q ∧ (M.sigma ^ q) y = M.alpha d₀ ∧
+    ∀ t, 0 < t → t < q → ¬ walkKeep M c ((M.sigma ^ t) y)
+
+variable {M : CombMap.{u}}
+
+/-- **The split darts are distinct**: otherwise `alpha d₀` is the first dart on an edge of the list
+after `e₀`. -/
+theorem ChordData.x_ne_y {c : List M.Dart} {d₀ e₀ x y : M.Dart} (H : ChordData M c d₀ e₀ x y) :
+    x ≠ y := by
+  rintro rfl
+  obtain ⟨m, hm, hkeepm⟩ := H.run_x
+  obtain ⟨q, hq0, hq, hkeepq⟩ := H.run_y
+  refine H.not_firstTurn
+    (FirstTurn.reverse_map_alpha_iff.mpr ⟨q + m, by omega, ?_, fun t ht0 htk => ?_⟩)
+  · rw [pow_add_apply, hm, hq]
+  · by_cases htm : t ≤ m
+    · exact hkeepm t ht0 htm
+    · have h1 : (M.sigma ^ t) e₀ = (M.sigma ^ (t - m)) ((M.sigma ^ m) e₀) := by
+        rw [← pow_add_apply, Nat.sub_add_cancel (by omega)]
+      rw [h1, hm]
+      exact hkeepq (t - m) (by omega) (by omega)
+
+/-- **The chord data across one edge insertion**, on the embedded darts and the image list. -/
+theorem ChordData.embed {c : List M.Dart} (hnodup : c.Nodup) {d₀ e₀ x y : M.Dart}
+    (H : ChordData M c d₀ e₀ x y) {a b : M.Dart} (hab : a ≠ b) :
+    ChordData (EdgeInsertion.toCombMap M a b) (c.map (EdgeInsertion.embed M))
+      (EdgeInsertion.embed M d₀) (EdgeInsertion.embed M e₀) (EdgeInsertion.embed M x)
+      (EdgeInsertion.embed M y) where
+  mem := List.mem_map.mpr ⟨d₀, H.mem, rfl⟩
+  next_eq := (next_map_of_injective (EdgeInsertion.embed_injective M) hnodup H.mem _).trans
+    (congrArg (EdgeInsertion.embed M) H.next_eq)
+  uncrossed := by
+    intro d' hd' hne hsame
+    obtain ⟨d, hd, rfl⟩ := List.mem_map.mp hd'
+    have hdne : d ≠ d₀ := fun h => hne (by rw [h])
+    have hsame' : M.sigma.SameCycle (M.alpha d₀) (M.alpha d) := by
+      have h := ((EdgeInsertion.toCombMap M a b).vertexOf_eq_iff _ _).mpr hsame
+      exact (M.vertexOf_eq_iff _ _).mp
+        ((GeodesicCollar.edgeInsertion_vertexOf_embed_iff M a b (M.alpha d₀) (M.alpha d)).mp h)
+    exact (EdgeInsertion.rotationBetween_embed_iff hab (M.alpha d₀) e₀ (M.alpha d)).trans
+      ((H.uncrossed d hd hdne hsame').trans
+        ((EdgeInsertion.rotationBetween_embed_iff hab (M.alpha d₀) e₀ (c.next d hd)).symm.trans
+          (Iff.of_eq (congrArg (RotationBetween (EdgeInsertion.toCombMap M a b)
+            (EdgeInsertion.embed M (M.alpha d₀)) (EdgeInsertion.embed M e₀))
+            (next_map_of_injective (EdgeInsertion.embed_injective M) hnodup hd hd').symm))))
+  not_firstTurn := by
+    intro hft
+    obtain ⟨k', hk'0, hk', hkeep'⟩ := FirstTurn.reverse_map_alpha_iff.mp hft
+    obtain ⟨k, rfl, hk⟩ := EdgeInsertion.exists_liftCount_of_sigma_pow_embed hab e₀ (M.alpha d₀) hk'
+    refine H.not_firstTurn (FirstTurn.reverse_map_alpha_iff.mpr
+      ⟨k, EdgeInsertion.pos_of_liftCount_pos hab e₀ hk'0, hk, fun t ht0 htk hkeep => ?_⟩)
+    refine hkeep' (EdgeInsertion.liftCount hab e₀ t) (EdgeInsertion.liftCount_pos hab e₀ ht0)
+      (EdgeInsertion.liftCount_strictMono hab e₀ htk) ?_
+    rw [EdgeInsertion.sigma_pow_liftCount hab e₀ t]
+    exact (EdgeInsertion.walkKeep_map_embed_iff a b c _).mpr hkeep
+  run_x := by
+    obtain ⟨m, hm, hkeep⟩ := H.run_x
+    obtain ⟨hm', hkeep'⟩ := EdgeInsertion.nonKeepRun_embed hab c e₀ x hm hkeep
+    exact ⟨_, hm', hkeep'⟩
+  run_y := by
+    obtain ⟨q, hq0, hq, hkeep⟩ := H.run_y
+    obtain ⟨hq', hkeep'⟩ := EdgeInsertion.nonKeepRunStrict_embed hab c y (M.alpha d₀) hq hkeep
+    exact ⟨_, EdgeInsertion.liftCount_pos hab y hq0, hq', hkeep'⟩
+
+end OuterPinchTransport
+
+open OuterPinchIsolated OuterPinchCorners OuterPinchTransport
+
+namespace PocketFaceSet
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **One step of the section pinch from chord data.**  For a pocket in walk order with both arcs
+proper, a split outside the face set whose darts carry chord data on the boundary cycle gives the
+conclusion of the step with both proper arcs.  The first arrival at `e₀` and the cycle dart outside
+the stretch are recovered from the data. -/
+theorem exists_pinchStepSection_of_chordData
+    (hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d))
+    (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    (hprop : K.sourceArc.length < (cellDarts X K.source).length)
+    (htgt : K.targetArc.length < (outerDarts X).length)
+    (I : PinchSplit.Input X) (hs : I.Avoids K.faces) {d₀ e₀ : X.toCombMap.Dart}
+    (H : ChordData X.toCombMap K.boundary.cycle d₀ e₀ I.x I.y) :
+    ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
+      Nonempty (OEquivalentDiscDiagram X X') ∧
+        (∀ d, (symmetricLabelAlphabet D).IsLetter (X'.label d)) ∧
+        K'.ClosedWalk ∧ K'.sourceArc.length < (cellDarts X' K'.source).length ∧
+        K'.targetArc.length < (outerDarts X').length ∧
+        K'.repeatedVisits < K.repeatedVisits := by
+  have hc : ∀ d ∈ K.boundary.cycle, X.toCombMap.alpha d ∉ K.boundary.cycle :=
+    fun d hd => K.boundary_alpha_not_mem hd
+  have he₀ : e₀ ∈ K.boundary.cycle := by
+    rw [← H.next_eq]
+    exact List.next_mem ..
+  have hαe : X.toCombMap.alpha d₀ ≠ e₀ := fun h => hc d₀ H.mem (by rw [h]; exact he₀)
+  have hvert : X.toCombMap.vertexOf (X.toCombMap.alpha d₀) = X.toCombMap.vertexOf e₀ := by
+    have h := rel_next_of_isChain K.boundary.cycle_nonempty K.boundary.cycle_nodup hK.1 hK.2 H.mem
+    rwa [H.next_eq] at h
+  obtain ⟨k₀, -, hk₀, hk₀min⟩ :=
+    exists_firstArrival ((X.toCombMap.vertexOf_eq_iff _ _).mp hvert) hαe
+  obtain ⟨z₀, hz₀, hz₀v, hz₀e, hz₀out⟩ := exists_outside_of_not_firstTurn
+    K.boundary.cycle_nonempty K.boundary.cycle_nodup hc hK.1 hK.2 H.mem H.next_eq H.uncrossed hk₀
+    hk₀min H.not_firstTurn
+  obtain ⟨m, hm, hkeepm⟩ := H.run_x
+  obtain ⟨q, hq0, hq, hkeepq⟩ := H.run_y
+  exact K.exists_pinchStepSection_of_uncrossedTurn hlabel hK hprop htgt I hs H.mem H.next_eq
+    H.uncrossed hk₀ hk₀min hm hkeepm hq0 hq hkeepq hz₀ hz₀v hz₀e hz₀out
+
+end PocketFaceSet
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OuterPinchTransport.ChordData
+#audit_axioms GroupApproximation.GGT.VanKampen.OuterPinchTransport.ChordData.x_ne_y
+#audit_axioms GroupApproximation.GGT.VanKampen.OuterPinchTransport.ChordData.embed
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketFaceSet.exists_pinchStepSection_of_chordData

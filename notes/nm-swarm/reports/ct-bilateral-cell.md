@@ -251,6 +251,39 @@ All three modules are queued for wiring. The run positions audit lines also read
 sorryAx. So the cutting-target branch of `OsinLemma94ClassCaseGapSpanStatement` is closed at `ε ≥ 3` (with the closed
 `separatedCornerInsertionInput`).
 
+## Item 12: GapSpan (V8 leaf 5), the same-cell branch and the pinched collapse
+
+Module `Estimating/OsinLemma94ClassSameCell`, LANDED 9b4f28781 (probe 0914-104505-31010 GREEN, BUILT on a real rebuild), queued
+for wiring:
+
+| declaration | content |
+|---|---|
+| `OsinLemma94ClassPolygons.classWindow`, `runWindow`, `class_segment_value` | class windows, gaps included, and their side runs |
+| `OsinLemma94ClassPolygons.exists_sameCellWalk` | the face walk `X T Y S` around a backwards same-cell class pair, with the windows as reversed arcs of the cell |
+| `false_of_classSameCell_value_one_X`, `_Y` | the hairpin kills from the corners only (no face value), so the gaps do not enter |
+| `OsinLemma94ClassCaseOneRCellStatement` | residual, owned here: the relator-cell branch, with no rotation `q B p A` of the cell making `X B` or `Y A` read `1` |
+| `OsinLemma94ClassCaseGapSpanDiffKindStatement` | residual, owned by ct-rank-budget (route B1): different kinds, non-cutting target, with `∃ K` and `25 |connector| + K < ε` |
+| `OsinLemma94ClassCaseGapSpanSmallStatement`, `osinLemma94ClassCaseGapSpanSmall_of_residuals` | GapSpan with the same short connectors, from the two residuals; cutting targets by `osinLemma94ClassCaseTwo_false` |
+
+The connector bound is ct-rank-budget's: two splits of `exists_antitonePartners` give side connectors of length at most
+`25 B + K`, and the short Case 1 needs them shorter than `ε`. The landed `OsinLemma94ClassCaseGapSpanStatement` is not produced.
+Leaf 5 moves to the Small form once the two-threshold assembly supplies `25 (ε_C + B) + K ≤ ε` through a corner move that exposes
+connector growth at most `B = ⌈(c + 2) / λ⌉₊` (owned here, not started).
+
+Pinched collapse (main's leaf-5 model test): polygon face plus the faces behind one gap, collapsed by
+`Surgery.InnerDiscRegion.ofPocketRegion`.
+
+* Hair gap, after doubling the hair into a digon: PASS. The pocket `{F, digon}` meets at one vertex and is a pocket region; reclosing
+  splits the pinch vertex, so Euler is preserved on both sides, and the merged face reads the class arc, gaps included, as one stretch.
+* Gap along `∂Δ` (the face behind the gap is the exterior): the collapse fails (`outer_not_mem`; after `OuterCellThickening`, every
+  closed-walk listing of the pocket puts the exterior-side darts inside the arc). Out of scope: the other side of the gap loop holds
+  `Π` and reads `1` (`gap_value`), so `DiscDiagram.LeastArea.length_filter_mem_le` with `IsRelatorProduct.one` contradicts
+  `Delta.LeastArea`. The missing formal piece is the pocket instance of a gap walk, `PocketRegion.ofFirstTurnWalk` on the gap darts
+  (next step in `OsinLemma94BoundaryLobeCell`'s docstring). The same lemma on the behind side of an interior gap gives `cells_avoid`.
+* Calibration module `Estimating/OsinLemma94ClassGapPinchModels`: one 12-dart map with both diagrams. `hairDiagram` gives
+  `pocket`, `innerMap_euler`, `outerMap_euler` and `merged_darts`; `boundaryDiagram` gives `gap_face_not_mem` and `not_leastArea`.
+  Probing.
+
 ## Residual statements
 
 In this lane's own modules, none. The W1 waist residuals are listed above (V2: six; V3: seven), with

@@ -511,6 +511,78 @@ edited.
   - Under (b), the rose calibrates nothing about the step, because its `pinchedK` is outside the
     hypothesis. Configuration A is the calibration case.
 
+### Revision after the lead's 16:35 additions (17:20)
+
+The lead made three additions:
+- a column (c), `IsNoncrossingClosedWalk`;
+- sec2-sentences' finding that (b) fails for `exists_of_exteriorAt` walks;
+- the instruction to classify under the provisional repair `0 < eps`.
+
+Base origin/main at 17:18.
+
+- Corrections to the table above.
+  - "The planned producer certifies (b)" is wrong in general. sec2-sentences' obstruction
+    (`d0c0519f6`, report item "Lead item 16:20") is a lake:
+    - `x.rightSide` and `y.leftSide` pass through one vertex;
+    - the first turn on `c = invDarts K.walk` reaches a dart of `c` before its target;
+    - so (b) fails, and so does the outer-follows `hfollows`;
+    - nothing in `exists_of_exteriorAt` excludes the touch.
+  - "`wrapK` refutes (a) and (a) ∨ (b)" holds only at `eps = 0`.
+    - w1-binder-7's `OsinPocketWrapRoseRescue.wrapRoseRescue` (`1b4736bcb`, l.118-125) gives the
+      conclusion at every `eps ≥ 1`, with `rescueK = {R}` and first side `[5]`.
+    - Probe `0913-170902-87292` reads `# PROBE GREEN` and holds main's bytes: `OsinPocketPinchPositive`
+      md5 `833a6ff6`, `OsinPocketWrapRoseRescue` md5 `7e19c460`.
+- Column (c) is automatic.
+  - `PocketFaceSet.ClosedWalk.isNoncrossingClosedWalk` (hull-respell `24ff94312`,
+    `OsinPocketClosedWalkNoncrossing` l.130-134) proves
+    `IsNoncrossingClosedWalk X.toCombMap K.boundary.cycle` from `K.ClosedWalk`, at every eps.
+  - So restricting a pinch Prop to (c) changes nothing. The module docstring says the turning
+    condition "does not choose how the walk pairs its darts".
+  - The property the lead describes, a noncrossing chord diagram at each vertex, is a different
+    predicate, (c'): the passages `(alpha x, next x)` at a vertex do not interleave in the rotation.
+  - By hand, (a) ⇒ (c') and (b) ⇒ (c'), since a passage whose sector on one side is empty cannot be
+    interleaved.
+- Rows under `0 < eps`.
+  - The classes depend only on the map and the cycle. Every model here has empty sides, so by hand
+    it is a pocket face set at every eps.
+  - Users: `OsinPocketPieces`, `OsinPocketCutResiduals`, `OsinDescentResiduals`,
+    `OsinGreendlingerOpenResiduals`, and the repaired route
+    `sectionPocketCutInput_of_residualsPos` / `osinSectionPocketCutSection_of_residualsPos`
+    (`OsinPocketPinchPositive`, threshold `max eps0 1`). K still comes from
+    `SectionPocketFaceSetInput`.
+    - (a): not certified by any producer on main.
+    - (b): not certified, and fails in the lake (sec2-sentences).
+    - (c): yes, formal.
+    - (c'): by hand, when the sides meet only at vertices (sec2-sentences' argument).
+  - Rose `pinchedK`:
+    - (a) yes, formal at map level;
+    - (b) no, formal;
+    - (c) yes, formal (`pinchedK_closedWalk` with `24ff94312`);
+    - (c') yes, by hand: the passages `{1,2}` and `{3,0}` do not interleave.
+  - Configuration A `pinchedK`:
+    - (a) no, formal;
+    - (b) yes, formal;
+    - (c) yes, by composing `FirstTurnWalk.isNoncrossingClosedWalk_reverse` (l.220) with
+      `pinch_isChain` and `pinch_close`;
+    - (c') yes, since (b) implies it.
+  - `wrapK`:
+    - (a) yes, formal;
+    - (b) no, by hand;
+    - (c) yes, formal (`wrapK_closedWalk` with `24ff94312`);
+    - (c') yes, by hand.
+    - At `eps ≥ 1` its conclusion holds (`wrapRoseRescue`).
+- Consequences.
+  - At the interface, the users' walks carry only (c), which is free.
+    - The planned producer gives no (b) in the lake, and no producer on main certifies (a).
+    - So no producer on main supplies a restriction to (a), (b) or (a) ∨ (b).
+  - The lake walk is (a) and not (b). A (b)-only step excludes it, and a disjunction covers it.
+  - Under `0 < eps` I know of no model on main that refutes `PocketPinchLabelledPosStatement` or
+    `PocketPinchStepPosStatement`, restricted or not.
+  - sec2-sentences' `hfollows` is `(hw.outerCycle _).FollowsBoundary`, which is the (b) side. In the
+    lake, (a) holds (`lakeCycle_innerCycle_followsBoundary`).
+  - The candidate the producer side can plausibly certify is (c'), sec2-sentences' option (iv). By
+    hand it contains both (a) and (b).
+
 ## Open (owned by other lanes)
 
 - `b6d1590be7ab` (L1145, partial, ghw-charp2): the GHW wall, reported to the lead.

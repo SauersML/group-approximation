@@ -99,7 +99,7 @@ Lane `hull-select` of the non-MF every-line swarm (09-13).
   - Producers: `FirstTurn.of_facePerm`, `of_sigma_alpha`, `of_sigma_sigma_alpha`,
     `of_boundaryWalk`, `mono`, and `FirstTurnWalk.faceOf_mem_sideFaces` (for `hout`).
   - Sent to jacobson and fff-periodic (15:50).
-- `Estimating/OsinPocketFirstTurnWalkModel.lean` (green 0913-161209-37045; axioms propext,
+- b8c0033c0, `Estimating/OsinPocketFirstTurnWalkModel.lean` (green 0913-161209-37045; axioms propext,
   Classical.choice, Quot.sound; unwired), model tests, closed endpoint
   `FirstTurnWalkModelStatement` / `firstTurnWalkModel`:
   - Configuration A: the complement spelling `[9,8,0,1]` satisfies every hypothesis and its side
@@ -119,12 +119,13 @@ Lane `hull-select` of the non-MF every-line swarm (09-13).
 3. `PocketCellTransportStatement`, from go-lemma42.
 
 Notes for the producers:
-- If `MultipleEdgePocketRegionInput` moves to an O-equivalent copy (ROSTER ruling B), the core
-  lemma already covers it. The restated Input must also give label legality on the copy,
-  `∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)`, and `Nonempty (OEquivalentDiscDiagram
-  Δ X)`, so the assembly only changes its final `exact`.
-- The side-length bounds `s₁.length ≤ ε`, `s₂.length ≤ ε` of `MultipleEdgePocketRegionInput`
-  are unused: the collar words have length `wordNorm ≤ ε`. The Input can drop them.
+- `MultipleEdgePocketRegionInput` is on an O-equivalent copy (ruling B, copy form, green 0913-173001-68048). The
+  producer gives the copy `X`, `Nonempty (OEquivalentDiscDiagram Δ X)`, label legality
+  `∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)`, and the pocket data on `X`. The
+  side-length bounds are gone, since the collar words have length `wordNorm ≤ ε`.
+- Both `FollowsBoundary` conditions stay (R1), so the pocket is simple. In audit-sec5's
+  configuration (b′) the gap pocket on the copy is pinched, so the producer needs the
+  cell-to-cell pinch Prop that audit-sec5 owns.
 
 ## Holds and next
 
@@ -140,20 +141,20 @@ Notes for the producers:
   (`OsinPocketPieces`). The cell transport `hcell` is still go-lemma42's.
 - Now: item 2, the O-equivalent-copy restatement of `MultipleEdgePocketRegionInput`. Main's
   15:45 ruling, after audit-sec5's truth audit: on `S.diagram`, configuration (b′) has no `P`, so
-  that form holds only through Lemma 9.7(b) itself. Land the R1 copy forms through the Rule 22
-  co-probe of `OsinPocketRegionSide`, `OsinPocketMultipleEdgeAssembly`, `OsinDescentResiduals` and
-  `OsinGreendlingerOpenResiduals` (probing). audit-sec5 owns the cell-to-cell pinch Prop that the
-  producer needs, since the (b′) pocket on the copy is pinched.
-  - Drafts, R1 form: `$NM/drafts/hull-select-RegionSide-copy-r1.lean` (the whole module) and
-    `$NM/drafts/hull-select-MultipleEdgeAssembly-copy-r1.lean` (the new
-    `multipleEdgeCutInput_of_pieces`).
+  that form holds only through Lemma 9.7(b) itself. The R1 copy forms land through the Rule 22
+  co-probe of `OsinPocketRegionSide`, `OsinPocketMultipleEdgeAssembly`, `OsinDescentResiduals`,
+  `OsinDescentResidualsPos`, `OsinGreendlingerOpenResiduals` and `OsinPocketLoopCut` (green
+  0913-173001-68048 on base c55730449; 0913-162107-78743 missed LoopCut and 0913-170231-58844
+  missed `OsinDescentResidualsPos`). audit-sec5 owns the
+  cell-to-cell pinch Prop that the producer needs, since the (b′) pocket on the copy is pinched.
   - Form: `∃ X, Nonempty (OEquivalentDiscDiagram Δ X) ∧ (∀ d, legal label) ∧ ∃ P C i' j' s₁ s₂
-    A₁ A₂, …`. It drops the side-length bounds and keeps inner `FollowsBoundary` (R1).
-  - Sent to kh-ejz and, as the target form, to jacobson (14:10).
-  - Rule 22: the assembly is the only code user on origin/main.
-  - Under R2 the inner `FollowsBoundary` leaves the Input, but
-    `nonempty_osinMultipleEdgeCut_of_pocketRegion` still passes `hin` to
-    `exists_twoCollars_of_ne_or` and `GeodesicCollarStatement`. So R2 also needs kh-torsion's
-    collar restated without it.
+    A₁ A₂, …`, with both `FollowsBoundary` conditions (R1) and no side-length bounds. Sent to
+    kh-ejz and, as the target form, to jacobson (14:10). kh-ejz was told before the edit (16:20).
+  - Rule 22 users on origin/main: the assembly, and the pass-throughs `OsinDescentResiduals`
+    (:44, :59), `OsinGreendlingerOpenResiduals` (:57) and `OsinDescentResidualsPos` (:35, :50;
+    4db9c6729, landed after the first re-grep), plus jacobson's `OsinPocketLoopCut` (:219,
+    `ne_or_of_leastArea`, statement unchanged). `OsinPocketCellWalk` and
+    `OsinPocketMultipleEdgeLakeModel` mention it only in docstrings. Re-grepped on 46a9d16ff.
+  - Backups of the pre-copy files: `$NM/backup/hull-select/*.pre-copy-0913`.
 - The assembly modules are infrastructure for `thm:hull` (tex 1636, through Osin's Lemma 9.7)
   and certify no printed sentence on their own, so there are no census rows.

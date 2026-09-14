@@ -292,6 +292,14 @@ New with the ruled order:
 * A 0-refinement that makes the pocket boundary vertex-simple must keep the boundary word of `X` (O-equivalence) and the side lengths.
 * Splitting a vertex across inner corners, with a 0-edge between `G`-faces, does both.
 * The collar under `Nondegenerate`: with empty arcs and only one side of value `≠ 1`, the collared boundary is that side's geodesic word alone.
+  * Tested (dgo-geometric, ~16:50, on paper, no Lean): no refutation, and the case occurs.
+    * `pocketCollarStatement_of_geodesicCollar` through `exists_twoCollars_of_ne_or`: both `hne` hypotheses hold, and the collared carrier reads the one nonempty geodesic word. An empty second collar costs nothing downstream.
+    * The weight is on `GeodesicCollarStatement` (kh-torsion) in its removal sub-case: `s` nonempty of value 1, `g = []`, `rest ≠ []`. The new cycle `rest.map ι` is closed, so the copy has to identify the endpoints of `s`. The output allows this, because `ι` keeps `alpha`, the labels, `outerDarts`, the darts of the outside cells and the cell sides, but not the rotation.
+    * The model: `G = Multiplicative ℤ`, 6 darts, kept `[d1,e1]`, source `[αd1,c]`, exterior `[αe1,αc]`. `s_1 = [d1]` has value 1 and distinct endpoints, `s_2 = [e1]` has value `≠ 1`, and both arcs are empty.
+    * The copy has one vertex and the faces kept `[d,e]`, source `[f,c]`, exterior `[αe,αc]`, plus the monogon `G`-faces `[αd]` and `[αf]`. `P'' = {kept, [αd]}` has cycles `[e]` and `[αe]`.
+    * `ι` sends `d1 ↦ αf`, `αd1 ↦ f`, `e1 ↦ e` and `c ↦ c`. So the source face `[f,c]` is the image of `[αd1,c]`.
+    * Checked here: the face permutations and both Euler counts (2−3+3 and 1−4+5), that both cycles of `P''` follow the boundary, and that `invDarts P''.outer.cycle = [ι e1]`.
+    * Not checked by dgo-geometric: a side that repeats a vertex.
 
 ### Residual Props of `DescentInput` on this route
 
