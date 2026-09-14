@@ -38,7 +38,9 @@ permutations.
 `e_ij` of the letters. `G_Δ` is LEF iff `Δ` is. So for sofic non-LEF `Δ`:
 - no almost-invariant set of vectors, in any sequence of semisimple `F_2`-linear models, carries an almost action
   certifying soficity of `G_Δ`;
-- the same holds for `EL_3(F_2[Δ])`.
+- the same holds for `EL_3(F_2[Δ])` whenever `[Δ,Δ]` is not LEF, since `[Δ,Δ] ≤ EL_3(F_2[Δ])`
+  (`perfect-groups-embed-in-crossed-product-elementary-groups`). With the half-line overgroup `Δ = C(Γ)`, this covers
+  every non-LEF sofic `Γ`.
 
 This covers every `ρ_N` whose image algebra is semisimple, for instance a full matrix algebra. Whether the image
 algebras of the Theorem A models (`sofic-lamplighter-bernoulli-crossed-products-have-rank-models`) are semisimple is
