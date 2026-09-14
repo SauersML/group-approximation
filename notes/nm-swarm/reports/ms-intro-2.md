@@ -194,6 +194,16 @@ CLAIM `OsinLemma94CuttingTransitionInput` (cutting transitions ≤ K n), in new 
 - Route (the Prop's docstring): a dart-minimal family has no pendant cutting tree, so an entry into a cutting path marks
   a hole of the polygon that holds an object. The entries are bounded by the holes, and the holes by n.
 - Model test first: a polygon around one cell joined to `∂Δ` by one bridge gives 2 cutting transitions and 1 hole.
+- CLAIM landed 318cd7abe. Split and tooling agreed with ms-compress-1 in one message (00:1x).
+- Formal route, K = 4:
+  1. Transitions ≤ `sameFaceStarts`.
+  2. starts ≤ 2(e − v₀) on X, the same-face darts of unselected G-faces, using `σ x ≠ x` from `DartMinimal`.
+  3. The first-return deletion M′ of X has V′ = V − v₀, E′ = E − e and F′ ≥ F, so χ(M′) ≥ 2 + e − v₀.
+  4. χ(M′) ≤ 2|T| for a component hitting set T: one dart per relator cell plus one outer dart. So e − v₀ ≤ 2n.
+- Planned modules:
+  - general: `CombMapEulerHittingSet` and `CombMapFirstReturnCounts`;
+  - `Estimating/OsinLemma94CuttingTransitions*`: starts, hitting set and assembly, plus a decide model. Calibration: a
+    pendant edge breaks step 2.
 
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.
