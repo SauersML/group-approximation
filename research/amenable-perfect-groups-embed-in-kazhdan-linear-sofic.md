@@ -27,4 +27,10 @@ overgroup, and `wreath-products-keep-the-abelianization-of-the-base` rules out t
 the Ore overgroup of `rf-groups-lie-in-derived-subgroups-of-rf-groups` needs residual finiteness. The envelope is linear
 sofic and not sofic: see `rank-models-give-no-hamming-models-through-vector-actions`.
 
+**Update (sk-perfect-overgroup, 2026-09-13).** The non-perfect case no longer needs a perfect overgroup. Every
+finitely generated amenable `Γ` lies in the derived subgroup of a finitely generated amenable group
+(`groups-embed-in-derived-subgroup-of-half-line-overgroup`), and item 3 of
+`perfect-groups-embed-in-crossed-product-elementary-groups` only needs `Γ ≤ [Δ,Δ]`. See
+`amenable-groups-embed-in-kazhdan-linear-sofic-via-half-line`.
+
 Route: `amenable-perfect-groups-embed-in-kazhdan-linear-sofic-proof`.

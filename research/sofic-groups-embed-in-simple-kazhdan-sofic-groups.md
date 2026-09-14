@@ -27,6 +27,11 @@ groups.
     (`wreath-products-keep-the-abelianization-of-the-base`).
   - **What remains:** for non-perfect `Γ`, an overgroup `Δ` in the same class with `Γ ⊆ [Δ,Δ]`
     is needed. Ore's theorem gives one only for residually finite groups.
+  - **Overgroup found (sk-perfect-overgroup, 2026-09-13, unreviewed).** The half-line overgroup
+    `C(Γ) = E ⋊ Z ≤ Sym(Γ × Z)` is sofic when `Γ` is (`E` is a directed union of finite powers, and Elek–Szabó give
+    permanence), and `Γ ≤ [C(Γ), C(Γ)]` (`groups-embed-in-derived-subgroup-of-half-line-overgroup`). So this gate is
+    closed for every finitely generated sofic `Γ`. What still remains: Hamming soficity of a non-LEF envelope, and for
+    non-amenable `Γ` a measured free minimal subshift over `C(Γ)`.
 - **Perfect amenable inputs, rank metric.** A free minimal subshift and the Folner rank model give a
   simple Kazhdan linearly sofic envelope (`amenable-perfect-groups-embed-in-kazhdan-linear-sofic`).
   The envelope is not LEF when the input is not, so the gap between the rank and Hamming metrics is
