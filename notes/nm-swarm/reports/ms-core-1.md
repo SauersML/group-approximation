@@ -139,3 +139,40 @@ Lean traps:
   - Endpoints land in new `*Closed` modules; nobody else's modules are edited.
 - Lane state at resume: every module in `ms-core-1.files` is landed with origin == local. The list is cleared, and no probes
   are pending.
+
+### Sweep results (origin 096d9219c, census 0e622f840)
+
+Register findings before tex 1541:
+- 36 torsion-free findings (tex 66–303) wait on `RelativeGreendlingerQuasiGeodesicLeastAreaStatement`, which has no producer. The
+  chain-core closures do not touch them, so nothing is built.
+- Tex 1321 `inlined-statement LeavittMFQuotientBothInclusions.elementary_le_commutator_of_trivial` gets a closed endpoint:
+  `Manuscript/NonMFSentences/LeavittBothInclusionsClosed`, LANDED 141dfab7d (probe 0913-203527-46733 GREEN).
+  - Declarations: `PrintedElementaryLeCommutator`, `printedElementaryLeCommutator_closed`.
+  - The finding clears once the helper leaves leavitt-units' row (DROP below).
+
+Partial census rows before tex 1541:
+- LANDED `Manuscript/NonMFSentences/CoreRingReflectionProofClosed` and `ChainCoreItineraryClosed`, 348c26736 (probe
+  0913-213440-42896 GREEN). Each endpoint has `#audit_closed_axioms`:
+  - `printedCoreCornerMapKillsKernel` (tex 1534–1535), `printedCoreMatrixKillsKernel` (tex 1535–1536),
+    `printedCoreMatrixQuotientLEF` (tex 1536–1537);
+  - `printedItineraryIntersectionCycleCondition` (tex 1439–1441, `hcore` discharged by `cycleCondition_coreSubshift`).
+- Census rows LANDED 04240efed: `f6962254d259`, `715cbd0f3410`, `30a44485e5e8`, `f2baa4a46f78`, `b180421b55ab`, `c99bf0bdb029`,
+  `ded9e9646e4b`, `f7c8d8aab016` (all formalized over closed or origin-defined carriers).
+- In probe: `Manuscript/NonMFSentences/ChainCoreOpeningClosed`, `printedWholeRadicalProperDefectIdeal`, for the unassigned key
+  `d59fc0887768` (tex 1341). It carries the proper defect ideal plus Rad_MF(GL_n(R_X)) = EL_n(R_X, I).
+- 19 DROP lines, in `overrides.tsv` form, are at `$NM/census/drop-lines-ms-core-1.tsv` and quoted in full in the message to
+  ms-cite-2:
+  - chain-reflection: 10 keys (1518–1527)
+  - chain-itinerary: `2df08eeac3cb`, `c825bc73828a`
+  - chain-subshift: `ded9e9646e4b`, `f7c8d8aab016`
+  - hull-euler: `c99bf0bdb029`, `d8e1a694d87c`
+  - ms-compress-1: `b180421b55ab`
+  - ms-core-4: `f0c16e5c8519`
+  - leavitt-units: `f6962254d259` (only `elementary_le_commutator_of_trivial`)
+  - Every skipped row's key keeps a formalized row from a successor lane or from ms-core-1.
+- Left as they are:
+  - ms-inverses-3's five rows (tex 1489–1502): partial because the Lean proof takes a different route from the printed one, not
+    because a binder is open.
+  - About 25 keys are partial only through a root downgrade and restore once their carriers are wired: `ChainCoreClosures`,
+    `CoreRingReflection`, `ChainCoreGeneralRecurrent`, `CoreSubshiftCycle`, `RetainedSubshiftPeriodic`, and ms-traces-3's
+    modules.
