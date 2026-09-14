@@ -282,6 +282,16 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
     `osinLemma94CaseOneYPocket_of_enclosedLoopCut`.
   - Enclosed route residuals, not this lane's: (1) `EnclosedSubdiagramLoopCutStatement` (ms-traces-2, ms-inverses-1)
     and (3) `OsinLemma94CaseOneRCellSpurStatement` (w1-binder-8). Residuals owned by ms-intro-1: none.
+- New item (main ~20:45): ms-inverses-1 refuted `EnclosedLeastAreaFilterStatement` (`turn_mem` allows first kept darts
+  out of rotation order). ms-traces-2 is landing additive successor-form variants. Mine: strengthen the producer to the
+  successor form, which the FollowsBoundary hypothesis gives, and restate the pockets over the Succ loop cut. Landed
+  modules stay untouched.
+  - CLAIM producer of the successor form of the enclosed face set of a noncrossing walk —
+    `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedNoncrossingSucc.lean`
+  - CLAIM the X- and Y-pockets over the successor-form loop cut —
+    `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoSpurSucc.lean`
+  - Both paths are free on origin, in the shared tree and in every `lanes/*.files` (~20:50). The names wait on
+    ms-traces-2.
 - Excision route check (before any Prop): `sideFaces` crosses every non-walk edge. Removing the lobe's edges can join a
   pocket face to f, and so to the exterior, when the walk crosses at the lobe vertex. So "the exterior stays off the side"
   needs a noncrossing walk. `SameCellPocketNoncrossing.pocketInputs_X` (on origin) gives noncrossing only at s = x with no
