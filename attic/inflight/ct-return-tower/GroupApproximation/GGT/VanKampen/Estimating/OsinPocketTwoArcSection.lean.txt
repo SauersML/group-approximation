@@ -66,10 +66,10 @@ theorem SectionCuts.not_spansWhole_of_ne (cuts : SectionCuts D lambda c word) {j
   rintro ⟨h0, hlen⟩
   rcases lt_or_gt_of_ne (Fin.val_ne_of_ne hne) with hlt | hgt
   · have hm : cuts.cut j'.succ ≤ cuts.cut j.castSucc :=
-      cuts.cut_mono (Fin.le_iff_val_le_val.2 (by simp only [Fin.val_succ, Fin.coe_castSucc]; omega))
+      cuts.cut_mono (Fin.le_iff_val_le_val.2 (by simp only [Fin.val_succ, Fin.val_castSucc]; omega))
     omega
   · have hm : cuts.cut j.succ ≤ cuts.cut j'.castSucc :=
-      cuts.cut_mono (Fin.le_iff_val_le_val.2 (by simp only [Fin.val_succ, Fin.coe_castSucc]; omega))
+      cuts.cut_mono (Fin.le_iff_val_le_val.2 (by simp only [Fin.val_succ, Fin.val_castSucc]; omega))
     have h2 := cuts.cut_mono (Fin.le_last j'.succ)
     rw [cuts.cut_last] at h2
     omega
