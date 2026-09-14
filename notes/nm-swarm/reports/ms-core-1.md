@@ -127,3 +127,15 @@ Lean traps:
 - hull-bridge:
   - Item 3 is a short composition of `IsLEFRing.matrix` with direct finiteness of finite rings. Its producer of `LEFStablyFiniteInterface` unblocks chain-reflection.
   - Item 4 composes `IsLEFRing.matrix` with `IsLEFRing.isLEF_units`.
+
+## Conditional-baseline sweep (assigned by main 09-13 20:15, after the ~20:03 outage)
+
+- CLAIM: rows before tex 1541 of `metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt` (census f78d19014).
+  - Rule: wherever an `_of_*` theorem's binders are now all proved, turn it into a closed named endpoint along the printed
+    route with `#audit_closed_axioms`, and flip its row.
+  - Newly proved producers: ChainCoreClosures b09de1dcf, TransientMatricesClosed 6867e7460, ChainCoreModelsStatement
+    a28419dba, CoreModelsLEF b7e521e57.
+  - ms-core-4 takes tex 1541 onward.
+  - Endpoints land in new `*Closed` modules; nobody else's modules are edited.
+- Lane state at resume: every module in `ms-core-1.files` is landed with origin == local. The list is cleared, and no probes
+  are pending.
