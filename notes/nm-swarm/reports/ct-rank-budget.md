@@ -143,6 +143,15 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   Rows appended.  e94a87793eb1 already has ms-inverses-4's formalized row; ct-bilateral-mf's stale partial rows
   `LINE:1583` and `LINE:1587` need supersede overrides, requested from ms-cite-2.
 
+- 09-14 08:45: CLAIM (coordinator item: merge-6 triage, census-successor 8ca9332d4).  Skipped: the 15 waist rows
+  (RelativeGreendlingerQuasiGeodesicLeastAreaStatement) and rows whose owners are live (ct-bilateral-cell, ct-involution,
+  ms-inverses-3, audit-nm-4).  ct-rank-budget takes the non-waist rows whose owner lanes are not live:
+  - ct-bilateral-mf at tex 1731–1741: `60708f733247`, `9e22ceae062f`, `f1769ba5e51c` (co-owned with ct-return-tower);
+  - audit-nm-1 fidelity findings: `d4c878a7ac22` (tex 263), `2a97fb901bad` (270), `80279f06992b` (292, with
+    ms-intro-3), `2ff745dd7064` (1072, with audit-sec3);
+  - already in hand: `cd7908a482b5`, `3550126258fb`, `e94a87793eb1` (supersede requested).
+  Plan: a closed printed-route carrier wherever the inputs are closed, otherwise a stale-row override via ms-cite-2.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
