@@ -101,6 +101,17 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   the printed generality (every finite field), hex-keyed rows.  Handed off: `d59fc0887768` (tex 1341) to ms-core-1;
   the seven ct-block keys already graded by ct-sentences at ba2a9baf2 (after merge 3's base) need no handoff.
 
+- 09-13 23:25: DynamicRankBudgetInducedCoreSentences LANDED 6387112a8 (GREEN 0913-214345-31217; import closure unchanged
+  since the probe base).  Closed endpoints, each with `#audit_closed_axioms`, namespace
+  `GroupApproximation.ChainCore.DynamicRankBudget`, at the printed generality (every return section, every finite field):
+  - `printedInducedCoreCorner_closed : PrintedInducedCoreCorner` (key 7da9f1c6076f)
+  - `printedCoreSaturationLEF_closed : PrintedCoreSaturationLEF` (key 8f8f0c7b59fa), via
+    `exists_corner_matrix_returnSaturation`
+  - `printedCoreSaturationRecurrent_closed : PrintedCoreSaturationRecurrent` (key d5dcf496d149)
+  - `printedReturnTransientIdeal_closed : PrintedReturnTransientIdeal` (key e7f732e9cb78): both directions of J = p_C I p_C
+  Census rows appended (formalized, queued for wiring).  Of the merge-3 unassigned keys: ct-sentences' seven resolved at
+  merge 4 (0e622f840); `d59fc0887768` (tex 1341) re-sent to ms-core-1 after the restart.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
