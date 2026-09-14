@@ -31,6 +31,33 @@ annihilation) is not the printed tower route, so the printed proof needs new car
 | every matrix over F_2 is elementary (generation, l.215) | `FinitaryLinear.elementaryGroup_zmodTwo_eq_top`, `ChainRadical.elementaryGroup_matrix_zmodTwo_eq_top` | fits |
 | I_N two-sided ideal, R simple ⇒ N = G (l.224–228) | `Pestov91.levelIdeal`, `normal_eq_top_of_elGen_mem` (SimpleModCentre) | statement fits; Lean moves roots by commutators, while the printed sentence uses permutation matrices plus eq:elementary |
 
+## RE-SCOPED 19:45 to the tip e80dcf20a (386 lines, md5 4ad4921253626a4f858866c716a13385)
+
+The "Simplicity" subsection (≈ tex 179–238) was rewritten to go through one finite simple subgroup, with no κ₀
+conjugation. Rows are keyed by 12-hex sentence hash from `metadata/SK_SENTENCE_CENSUS.tsv`, once skf-census has
+regenerated it at the tip.
+
+Split re-proposed to ct-bilateral-mf (19:5x); it replies only if it objects:
+- ct-bilateral-mf: small V, the noncommuting root h = e_ij(e_V), k = [g,h], and the entries of k − I₃ and k⁻¹ − I₃
+  lying in the ε-span (≈ l.180–196, 210–221).
+- skf-consequences: ε_ab products and nonvanishing, ψ injective and multiplicative, the embedding of GL_d(F₂), H ≤ G,
+  k ∈ H, H ≤ N, e_pq(e_V) ∈ N, the ideal J, the cover, N = G (≈ l.197–209, 222–238).
+- Interface: `SimplicityCommutatorWitness` in the new module `Manuscript/SimpleKazhdanSofic/SimplicityStatement`.
+
+CLAIM ≈ l.197–209, 222–238 GroupApproximation/Manuscript/SimpleKazhdanSofic/{SimplicityStatement,TowerMatrixUnits,TowerCopy,TowerCopyGroup,SimplicityNormalSubgroup}.lean
+
 ## Ledger
 
-(filled as carriers land)
+| printed step (tip e80dcf20a) | carrier | state |
+|---|---|---|
+| ε_ab = e_{T^aV}u^{a−b} | `SimpleKazhdanSofic.towerE` (TowerStatement, 94f396a4f) | landed |
+| ε_ab ε_{a′b′} = δ_{ba′} ε_{ab′} (V ∩ T^jV = ∅, 0<\|j\|≤2w) | `towerE_mul_towerE` (TowerMatrixUnits) | probing |
+| ε_ab ≠ 0 as V ≠ ∅ | `towerE_ne_zero` (TowerMatrixUnits) | probing |
+| ψ injective, multiplicative, linear | `towerHom`, `towerHom_injective` (TowerCopy; blockwise ψ) | probing |
+| A ↦ I₃ − ψ(I_d) + ψ(A) embeds GL_d(F₂) | `towerCopy`, `towerCopy_injective` (TowerCopyGroup) | probing |
+| H ≤ G through transvections | `towerCopy_mem_elementaryGroup`, `towerCopy_elementaryUnit` | probing |
+| GL_d(F₂) simple (d ≥ 3) | `FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo` (on main) | fits |
+| k ∈ H, N ∩ H nontrivial normal, H ≤ N, e_pq(e_V) ∈ N; the ideal J, the cover, N = G | SimplicityNormalSubgroup (to write) | open |
+
+Superseded: `TowerCornerWitness` (94f396a4f) was the interface for the bf961c128 text. It is landed, unwired, and not
+consumed.
