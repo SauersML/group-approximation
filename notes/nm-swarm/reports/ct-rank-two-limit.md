@@ -101,13 +101,17 @@ V4 residual owners (coordinator ~20:30):
 | 3 | `OsinLemma94ClassCasesInput` | ct-bilateral-cell with ct-return-tower; binder 3 lanes for the RCell part |
 | 4 | `OsinTwoGonHoldsSectionStatement` | w1-binder-1 with ms-inverses-2, ms-inverses-4 |
 | 5 | `CellPocketCopyCleanBothOrdersStatement` | ms-torsionfree |
-| 6 | `CellPocketWalkOuterOffSideSomeOrderStatement` | w1-binder-3 |
+| 6 | `CellPocketWalkOuterOffSideSomeOrderStatement` | CLOSED: w1-binder-3's `cellPocketWalkOuterOffSideSomeOrder` (7d1f00831, `Estimating/OsinPocketCellWalkOrder`; probe 0913-202753-83639 GREEN, 12 audits classical, file hash matches origin) |
 | 7 | `CellPocketWalkEitherFollowsStatement` | IN FLUX: ms-cite-1 respells the order assembly over ms-inverses-2's `CellPocketWalkEulerStatement` (eb8811c3c); either-follows fails at pinch-type touches |
 | 8 | `CellPocketPinchPosStatement` | IN FLUX: ms-cite-1 ε = 1 refutation test |
 | 9 | `OsinSectionPocketFaceSetProperSectionStatement` | ms-intro-2, ms-inverses-2, w1-binder-6 |
 | 10 | `PocketPinchLabelledSectionStatement` | w1-binder-7, ms-intro-4 |
 
 When ms-cite-1 lands either change, this lane adds a V4 variant over the new spelling; the landed V4 is not edited in place.
+
+Plan (coordinator ~20:35): ms-cite-1 lands additive `…_of_pinchOrderEuler` taking `CellPocketWalkEulerStatement` (eb8811c3c).
+The V4 variant over it applies the closed `cellPocketWalkOuterOffSideSomeOrder`, so residual 6 drops and residual 7 becomes the
+Euler statement.  The 14 W1 rows are then re-pointed to that variant.  Waiting on ms-cite-1's names (not on origin at 20:35).
 A later waist exists: `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV3` (2b2af4479, class route, seven binders).  Its
 binder 5 is `OsinMultipleEdgePocketRegionSectionStatement` on the optimal diagram, the form the V2Copy docstring calls
 circular, so this module stays on V2Copy.
