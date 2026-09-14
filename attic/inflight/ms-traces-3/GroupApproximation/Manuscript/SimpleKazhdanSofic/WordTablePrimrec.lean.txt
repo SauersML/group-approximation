@@ -29,7 +29,6 @@ theorem primrec_int_natAbs : Primrec Int.natAbs := by
       (Primrec.const 0))
     (Primrec.nat_div.comp Primrec.id (Primrec.const 2))
     (Primrec.succ.comp (Primrec.nat_div.comp Primrec.id (Primrec.const 2)))).of_eq fun m => ?_)
-  dsimp only
   rw [Higman.ofNat_int_eq]
   by_cases h : m % 2 = 0
   · rw [if_pos h, decide_eq_true h, cond_true]
@@ -43,7 +42,6 @@ theorem primrec_int_toNat : Primrec Int.toNat := by
     ((Primrec.eq (α := ℕ)).decide.comp (Primrec.nat_mod.comp Primrec.id (Primrec.const 2))
       (Primrec.const 0))
     (Primrec.nat_div.comp Primrec.id (Primrec.const 2)) (Primrec.const 0)).of_eq fun m => ?_)
-  dsimp only
   rw [Higman.ofNat_int_eq]
   by_cases h : m % 2 = 0
   · rw [if_pos h, decide_eq_true h, cond_true]
@@ -118,7 +116,6 @@ theorem primrec_elemMat :
   refine (Primrec.cond hpq (Primrec.const ([(0, [])] : Table A))
     (Primrec.cond (Primrec.and.comp hi hj) (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))
       (Primrec.const ([] : Table A)))).of_eq fun r => ?_
-  dsimp only
   unfold elemMat
   by_cases h1 : r.1.2 = r.2
   · rw [if_pos h1, decide_eq_true h1, cond_true]
@@ -129,6 +126,7 @@ theorem primrec_elemMat :
       · rw [if_neg fun e => h3 e.2, decide_eq_false h3, Bool.and_false, cond_false]
     · rw [if_neg fun e => h2 e.1, decide_eq_false h2, Bool.false_and, cond_false]
 
+omit [Primcodable A] in
 theorem wordMat_eq_foldr (w : List ((Fin 3 × Fin 3) × Table A)) :
     wordMat w = w.foldr (fun g M => matMul (elemMat g.1.1 g.1.2 g.2) M) matOne := by
   induction w with

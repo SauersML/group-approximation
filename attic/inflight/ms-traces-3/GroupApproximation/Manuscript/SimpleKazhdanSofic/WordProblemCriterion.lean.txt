@@ -54,7 +54,7 @@ theorem length_window (x : ℤ → A) (K : ℕ) : (window x K).length = 2 * K + 
 
 /-- The entries of a window, without dependent bounds. -/
 theorem window_getElem?_nat (x : ℤ → A) (K i : ℕ) :
-    (window x K)[i]? = if h : i < 2 * K + 1 then some (x ((i : ℤ) - (K : ℤ))) else none := by
+    (window x K)[i]? = if _h : i < 2 * K + 1 then some (x ((i : ℤ) - (K : ℤ))) else none := by
   unfold window
   exact List.getElem?_ofFn
 
@@ -84,9 +84,7 @@ theorem exists_window_eq {X : Set (ℤ → A)} (hX : ∀ n : ℤ, Set.MapsTo (sh
 theorem window_mem_listLanguage {X : Set (ℤ → A)} (hX : ∀ n : ℤ, Set.MapsTo (shift n) X X)
     {x : ℤ → A} (hx : x ∈ X) (K : ℕ) : window x K ∈ listLanguage X := by
   refine ⟨shift (-(K : ℤ)) x, hX _ hx, fun t => ?_⟩
-  have ht : (t : ℕ) < 2 * K + 1 := by
-    have h := t.2
-    rwa [length_window] at h
+  have ht : (t : ℕ) < 2 * K + 1 := lt_of_lt_of_eq t.2 (length_window x K)
   have e : (window x K)[(t : ℕ)]? = some ((window x K).get t) := List.getElem?_eq_getElem t.2
   rw [window_getElem?_nat, dif_pos ht] at e
   rw [shift_apply, ← Option.some.inj e, neg_add_eq_sub]
