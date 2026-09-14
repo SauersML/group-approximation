@@ -8,6 +8,7 @@ distinct_from:
   four-regular-simple-expander-limits-encode-word-graphs: that describes which marked groups are limits of the family as periods grow; this describes along which sequences of sizes N_k a fixed G_X is a limit, through the rational spectrum of X.
 artifacts:
   - research/artifacts/sk-free-4-finite-simple-shadows-2026-09-13-part2.md
+  - research/artifacts/sk-verify-14-2026-09-13-part2.md
 ---
 
 **ESTABLISHED (unreviewed).** Let `X` be an infinite subshift with strongly connected word graphs (e.g. minimal),
@@ -16,7 +17,7 @@ lengths) of the word graph at level `r`.
 
 1. `g_r | g_(r+1)`, and `m | g_r` for large `r` iff `X` has a cyclic factor of order `m`, i.e. iff `e^(2πi/m)` is a
    continuous eigenvalue.
-2. **Necessity.** A ring model `F → M_N(F_2)` of `R_X` through degree `2r+1`, with `r` large enough that a cyclic
+2. **Necessity.** A ring model `F → M_N(F_2)` of `R_X` through degree `6r−4`, with `r` large enough that a cyclic
    factor of order `m` is visible at level `r`, forces `m | N`: conjugate orthogonal idempotents have equal rank.
 3. **Sufficiency.** For all large `N ≡ 0 mod g_r` there is a primitive cyclic word of length `N` with the same
    `(r+1)`-language as `X`. The proof is a covering closed walk plus a Perron–Frobenius count against proper powers.
@@ -34,3 +35,5 @@ Open: whether arbitrary markings force the same divisibility. See
 of `G_X`.
 
 Route: `subshift-group-model-sizes-see-rational-spectrum-proof`.
+
+**Review (sk-verify-14, 2026-09-13): PASS WITH FIXES.** Lemma C1, Theorem C and Corollary C2 re-derived, including the two model facts the route imports from the four-regular artifact: the models are onto for primitive words, and faithful through degree `d` when `N > 2d`. Fix F1 applied in item 2. The factor idempotents are cylinder polynomials of degree `3r−2`, and the relations used have degree `≤ 6r−4`, so necessity needs models through degree `6r−4`; the artifact's bounds `2r−1` and `2r+1` fail for `r ≥ 2`. Corollary C2 is unaffected. See `research/artifacts/sk-verify-14-2026-09-13-part2.md` §1.

@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/sk-free-3-conjugacy-problem-2026-09-13-part1.md
   - research/artifacts/sk-free-3-conjugacy-problem-2026-09-13-part2.md
+  - research/artifacts/sk-verify-14-2026-09-13-part2.md
 ---
 
 **ESTABLISHED (unreviewed).** For every set `S ⊆ N` there is an infinite minimal subshift `X ⊆ {s,t,w}^Z` with `WP(G_X) ≡_T S` and `CP(G_X) ≡_T S′`, where `G_X = EL_3(LC(X,F_2)⋊Z)`.
@@ -36,3 +37,5 @@ With `S` computable, `G_X` is an infinite, finitely generated, simple Kazhdan LE
 With `subshift-el-transvection-conjugacy-full-group-equivalence`, `e ↦ (e_13(1_{A_e}), e_13(1_{B_e}))` reduces `S′` to `CP(G_X)`.
 
 **Firewall.** This does NOT say that `CP(G_X) ≡_T L(X)′` for every `X`. Sturmian subshifts with computable slope have a decidable coboundary problem on cylinders (`K^0 = Z + αZ`).
+
+**Review (sk-verify-14, 2026-09-13): PASS.** Re-derived: recognizability (P1), minimality and aperiodicity (P2), `L(X) ≡_T S` (P3, P4), the counting claim and the coboundary dichotomy (P5–P7), and the reduction `S′ ≤_T CP(G_X) ≤_T L(X)′`. The payload lengths `p_m` should be a fixed computable sequence (e.g. `p_m = 5`). Novelty not checked. See `research/artifacts/sk-verify-14-2026-09-13-part2.md` §3.

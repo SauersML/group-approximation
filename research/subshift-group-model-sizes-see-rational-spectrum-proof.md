@@ -14,7 +14,7 @@ Full proof in the artifact.
   graph this is a cyclic factor depending on `x_[0,r)`. Conversely a cyclic factor depending on `x_[−s,s]`, shifted by
   `T^s`, grades the word graph at level `2s+1`.
 - **Necessity (§2(1)).**
-  - The factor idempotents `E_i` are cylinder polynomials of degree `≤ 2r−1` satisfying `E_iE_j = δ_ij E_i`, `ΣE_i = 1`
+  - The factor idempotents `E_i` are cylinder polynomials of degree `≤ 3r−2` (sk-verify-14 F1; the relations used then have degree `≤ 6r−4`) satisfying `E_iE_j = δ_ij E_i`, `ΣE_i = 1`
     and `u E_i u^(-1) = E_(i±1)`.
   - A ring model keeps these relations, so the images are conjugate orthogonal idempotents with sum `I`, and `m | N`.
   - On the group side these relations are finitely many relators `e_12(p) = 1` of bounded length (cylinder words of
