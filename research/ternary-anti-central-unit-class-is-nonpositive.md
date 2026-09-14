@@ -99,3 +99,17 @@ that is, `k[eps_-] <= 0` in `K_0(S_-)`. Equivalent forms:
   - The complement `X` has negative rational lifted trace. By Kaplansky positivity it has no finite-support
     idempotent lift over `Z_3[G]`.
   - Where it stops: no positivity principle is known for traces of infinite-support `Z_3` idempotent lifts.
+- *Torsion shortcut excluded* (lane hl-gottschalk-k0, 2026-09-13). One proposed shortcut: if `[eps_-]`
+  were a torsion class in `K_0(S_-)`, no state could exist and this claim would follow. It is not torsion.
+  - `eps_-` is an idempotent of `F_3[<z>]` with `<z>` finite, so its class has infinite order by (LFT1) of
+    `lifted-trace-detects-finite-subgroup-projectives`; concretely `s_3([eps_-]) = 1` and `s_3` is additive
+    with values in the torsion-free group `Z_3` (`anti-central-state-exists-iff-lifted-trace-relatively-positive`,
+    item 2).
+  - Graph-algebra `K_0` computations describe the Leavitt algebra `R = L_(F_3)(1,2)`, not `S_-`. There
+    `R ~= R (+) R` as right modules gives `[1_R] = 0`, so `R` has no state; this is the quotient side, which
+    supplies nothing by `direct-finiteness-not-inherited-by-quotients`.
+  - States pull back only along unital maps `S_- -> B` into rings with states. Any `B` receiving a unital
+    binary Leavitt family has `[1_B] = 2[1_B] = 0`, so representations factoring through `R` (natural
+    module, Chen modules) are no source. A state source must be a homomorphism `G -> B^x` that does not
+    extend to `R`, as in the rank-model gate `ternary-leavitt-units-have-a-nontrivial-char-three-rank-model`.
+  - So the live content is unchanged: nonpositivity of `[eps_-]` versus relative positivity of `s_3`.
