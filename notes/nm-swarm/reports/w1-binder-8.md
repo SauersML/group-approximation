@@ -97,3 +97,10 @@ CLAIM the binder-3 assembly of OsinLemma94CaseOneRCellStatement over the walk-le
   3. `OsinLemma94CaseOneWalkCellPinchStatement` (ms-inverses-1); by `osinLemma94CaseOneWalkCellPinch_of_lobes` (79fbbbbd5) with the closed `osinLemma94CaseOneWalkCellLobeValue` it reduces to `OsinLemma94CaseOneWalkCellLobeExcisionStatement`;
   4. `OsinLemma94CaseOneWalkTouchVertexStatement` (ms-inverses-4);
   5. `OsinLemma94CaseOneRCellSpurStatement` (this lane; ms-intro-1 confirmed its shapes produce no hout for spur walks).
+
+## Residual 5 (main ~20:15): `OsinLemma94CaseOneRCellSpurStatement`, and the `_of_enclosed` variant
+
+CLAIM OsinLemma94CaseOneRCellSpurStatement (ms-intro-1's leaf (3)) and binder 3 over the leaves of `osinLemma94CaseOneXPocket_of_enclosed`, GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellRCellEnclosed.lean
+
+- Planned declarations: `osinLemma94CaseOneSpur_of_rCellSpur : OsinLemma94CaseOneRCellSpurStatement -> OsinLemma94CaseOneSpurStatement` (the value-one kill when `Y A` reads 1), and `osinLemma94CaseOneSameCell_of_enclosed` over the enclosed loop cut, `EnclosedFaceSetOfNoncrossingStatement` and the spur statement.
+- Spur route: a spur walk is a bridged walk. Its complement spelling `B ++ X` is a first-turn walk (the chain of 0484be5e5 never uses `alpha_not_mem`), so `EnclosedFaceSet` (bridges allowed) with the enclosed loop cut applies, once the faces enclosed by the non-bridge darts avoid f and Π and one pocket avoids the exterior.
