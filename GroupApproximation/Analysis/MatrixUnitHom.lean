@@ -1,3 +1,4 @@
+import Mathlib.Algebra.Module.BigOperators
 import Mathlib.Algebra.Star.StarAlgHom
 import Mathlib.Data.Complex.Basic
 import Mathlib.LinearAlgebra.Matrix.ConjTranspose
@@ -17,7 +18,8 @@ For a complex star algebra `A` and a family `E : n → n → A` with `E a b * E 
 
 * `matrixUnitSum E A := Σ_{a,b} A a b • E a b`.
 * `matrixUnitSum_mul`, `matrixUnitSum_star`, `matrixUnitSum_add`, `matrixUnitSum_smul`: it is
-  multiplicative, star-preserving and linear.
+  multiplicative, star-preserving and linear, so `matrixUnitNonUnitalHom` is a non-unital star
+  algebra homomorphism.
 * `matrixUnitHom`: when `Σ_a E a a = 1` it is a unital star algebra homomorphism
   `Matrix n n ℂ →⋆ₐ[ℂ] A`.
 * `trace_matrixUnitSum`: a linear functional with `τ (E a b) = [a = b] c` sends `matrixUnitSum E A`
@@ -43,50 +45,78 @@ structure IsMatrixUnits (E : n → n → A) : Prop where
 def matrixUnitSum (E : n → n → A) (M : Matrix n n ℂ) : A :=
   ∑ a, ∑ b, M a b • E a b
 
+omit [DecidableEq n] [StarRing A] [StarModule ℂ A] in
 theorem matrixUnitSum_add (E : n → n → A) (M N : Matrix n n ℂ) :
     matrixUnitSum E (M + N) = matrixUnitSum E M + matrixUnitSum E N := by
   simp only [matrixUnitSum, Matrix.add_apply, add_smul, Finset.sum_add_distrib]
 
+omit [DecidableEq n] [StarRing A] [StarModule ℂ A] in
 theorem matrixUnitSum_smul (E : n → n → A) (c : ℂ) (M : Matrix n n ℂ) :
     matrixUnitSum E (c • M) = c • matrixUnitSum E M := by
   simp only [matrixUnitSum, Matrix.smul_apply, smul_eq_mul, mul_smul, Finset.smul_sum]
 
+omit [DecidableEq n] [StarRing A] [StarModule ℂ A] in
 theorem matrixUnitSum_zero (E : n → n → A) : matrixUnitSum E (0 : Matrix n n ℂ) = 0 := by
   simp [matrixUnitSum]
 
+omit [StarModule ℂ A] in
 theorem matrixUnitSum_mul {E : n → n → A} (hE : IsMatrixUnits E) (M N : Matrix n n ℂ) :
     matrixUnitSum E (M * N) = matrixUnitSum E M * matrixUnitSum E N := by
-  have hprod : matrixUnitSum E M * matrixUnitSum E N =
-      ∑ a, ∑ b, ∑ c, ∑ d, (M a b * N c d) • (E a b * E c d) := by
-    simp only [matrixUnitSum, Finset.sum_mul, Finset.mul_sum, smul_mul_smul_comm]
-  rw [hprod]
-  simp only [hE.mul, smul_ite, smul_zero]
-  have hinner : ∀ a b, (∑ c, ∑ d, if b = c then (M a b * N c d) • E a d else 0) =
-      ∑ d, (M a b * N b d) • E a d := by
-    intro a b
-    rw [Finset.sum_comm]
-    refine Finset.sum_congr rfl fun d _ ↦ ?_
-    rw [Finset.sum_ite_eq]
-    simp
-  simp only [hinner]
-  rw [matrixUnitSum]
-  refine Finset.sum_congr rfl fun a _ ↦ ?_
-  rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun d _ ↦ ?_
-  rw [Matrix.mul_apply, Finset.sum_smul]
+  symm
+  calc matrixUnitSum E M * matrixUnitSum E N
+      = ∑ a, ∑ b, ∑ c, ∑ d, (M a b * N c d) • (E a b * E c d) := by
+        rw [matrixUnitSum, matrixUnitSum, Finset.sum_mul]
+        refine Finset.sum_congr rfl fun a _ ↦ ?_
+        rw [Finset.sum_mul]
+        refine Finset.sum_congr rfl fun b _ ↦ ?_
+        rw [Finset.mul_sum]
+        refine Finset.sum_congr rfl fun c _ ↦ ?_
+        rw [Finset.mul_sum]
+        refine Finset.sum_congr rfl fun d _ ↦ ?_
+        rw [smul_mul_smul_comm]
+    _ = ∑ a, ∑ b, ∑ d, (M a b * N b d) • E a d := by
+        refine Finset.sum_congr rfl fun a _ ↦ Finset.sum_congr rfl fun b _ ↦ ?_
+        simp only [hE.mul, smul_ite, smul_zero]
+        rw [Finset.sum_comm]
+        refine Finset.sum_congr rfl fun d _ ↦ ?_
+        simp only [Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    _ = ∑ a, ∑ d, ∑ b, (M a b * N b d) • E a d := by
+        refine Finset.sum_congr rfl fun a _ ↦ ?_
+        rw [Finset.sum_comm]
+    _ = matrixUnitSum E (M * N) := by
+        rw [matrixUnitSum]
+        refine Finset.sum_congr rfl fun a _ ↦ Finset.sum_congr rfl fun d _ ↦ ?_
+        rw [Matrix.mul_apply, Finset.sum_smul]
 
 theorem matrixUnitSum_star {E : n → n → A} (hE : IsMatrixUnits E) (M : Matrix n n ℂ) :
     matrixUnitSum E (star M) = star (matrixUnitSum E M) := by
-  simp only [matrixUnitSum, star_sum, star_smul, hE.star, Matrix.star_apply]
-  rw [Finset.sum_comm]
+  rw [matrixUnitSum, matrixUnitSum, star_sum, Finset.sum_comm]
+  refine Finset.sum_congr rfl fun b _ ↦ ?_
+  rw [star_sum]
+  refine Finset.sum_congr rfl fun a _ ↦ ?_
+  rw [star_smul, hE.star, Matrix.star_apply]
 
+omit [StarRing A] [StarModule ℂ A] in
 theorem matrixUnitSum_one {E : n → n → A} (hsum : ∑ a, E a a = 1) :
     matrixUnitSum E (1 : Matrix n n ℂ) = 1 := by
-  simp only [matrixUnitSum, Matrix.one_apply, ite_smul, one_smul, zero_smul]
-  rw [← hsum]
+  rw [matrixUnitSum, ← hsum]
   refine Finset.sum_congr rfl fun a _ ↦ ?_
-  rw [Finset.sum_ite_eq]
-  simp
+  simp only [Matrix.one_apply, ite_smul, one_smul, zero_smul, Finset.sum_ite_eq,
+    Finset.mem_univ, if_true]
+
+/-- **The non-unital star algebra homomorphism of a system of matrix units.** -/
+def matrixUnitNonUnitalHom {E : n → n → A} (hE : IsMatrixUnits E) :
+    Matrix n n ℂ →⋆ₙₐ[ℂ] A where
+  toFun := matrixUnitSum E
+  map_smul' := matrixUnitSum_smul E
+  map_zero' := matrixUnitSum_zero E
+  map_add' := matrixUnitSum_add E
+  map_mul' := matrixUnitSum_mul hE
+  map_star' := matrixUnitSum_star hE
+
+theorem matrixUnitNonUnitalHom_apply {E : n → n → A} (hE : IsMatrixUnits E) (M : Matrix n n ℂ) :
+    matrixUnitNonUnitalHom hE M = matrixUnitSum E M :=
+  rfl
 
 /-- **The star algebra homomorphism of a unital system of matrix units.** -/
 def matrixUnitHom {E : n → n → A} (hE : IsMatrixUnits E) (hsum : ∑ a, E a a = 1) :
@@ -105,6 +135,7 @@ theorem matrixUnitHom_apply {E : n → n → A} (hE : IsMatrixUnits E) (hsum : �
     (M : Matrix n n ℂ) : matrixUnitHom hE hsum M = ∑ a, ∑ b, M a b • E a b :=
   rfl
 
+omit [StarRing A] [StarModule ℂ A] in
 /-- **Trace transfer.**  A linear functional taking the value `[a = b] c` on the matrix units takes
 `c · trace M` on `matrixUnitSum E M`. -/
 theorem trace_matrixUnitSum (E : n → n → A) (τ : A →ₗ[ℂ] ℂ) (c : ℂ)
@@ -119,6 +150,7 @@ theorem trace_matrixUnitSum (E : n → n → A) (τ : A →ₗ[ℂ] ℂ) (c : �
 end
 
 #audit_axioms matrixUnitSum_mul
+#audit_axioms matrixUnitSum_star
 #audit_axioms trace_matrixUnitSum
 
 end MatrixUnits
