@@ -263,6 +263,32 @@ CLAIM `OsinLemma94ContactMapSmallFacesInput` (under the binders of `OsinLemma94L
     `vertexOf_eq_of_faceOf_eq`, `card_fixed_colour_false_le` (≤ n + 1), `card_degenerateFaces_le`, the residual
     `OsinLemma94ContactMapNondegenerateSmallFacesInput`, and `osinLemma94ContactMapSmallFacesInput_of_nondegenerate`
     (K + 2). This is a reduction, and the nondegenerate count stays open.
+- **LANDED 8677b0dcd** `CombMapBipartiteSmallFaces` + `Estimating/OsinLemma94ContactMapSmallFaces` (probe
+  0914-100802-40974 GREEN, BUILT both; 5 audit lines clean, no sorryAx; wire-queued).
+  - Degenerate small faces are at most n + 1.
+  - `osinLemma94ContactMapSmallFacesInput_of_nondegenerate` is a reduction with constant K + 2.
+  - **Open:** `OsinLemma94ContactMapNondegenerateSmallFacesInput`.
+- Scope of the residual (10:2x). Two parts are substantial new geometry.
+  1. **Faces holding an object.** `contactMap` can be disconnected, and `IsRestriction.faceOf_eq_of_faceClass` separates
+     faces only within a connected component (C5 of Φ′_M works on one linked component). Faces of different components
+     can hold the same object, so charging to objects needs the nesting of components: charge each object, or nested
+     component, to its innermost face. Nothing on main provides that.
+  2. **Empty nondegenerate two-gons.** The pocket is bounded by sectors of polygon faces and object arcs, while
+     `EmptyTwoGonInput` (Φ′_M) needs region sides. The sector merge is new.
+- Reuse plan for the nondegenerate residual (10:1x), modelled on the proved count for Lemma 9.7(a), Φ′_M:
+  - `OsinAppendixEulerSmallFaces` splits small faces into C4 corners, C5 faces holding a cell, and C6′ two-gons holding
+    a cell or with a corner.
+  - C5: `CellFaceCountInput`, proved in `OsinAppendixEulerExteriorCellFaces`.
+    - `HoldsCellO` is defined by `FaceClassStep` in the dual of the collapsed map.
+    - `eq_of_holdsCellAtO` shows distinct faces hold distinct cells, by `IsRestriction.faceOf_eq_of_faceClass` on a
+      connected linked component.
+  - C6: `EmptyTwoGonInput`, proved in `OsinPocketDiscEmptyTwoGon`. It merges two regions of one cell to one section
+    through a `PocketRegion` holding no relator cell.
+  - For the contact map, the analogues are:
+    - `HoldsCell` by `FaceClassStep` in `S.diagram.toCombMap.dual` with `ContactKeep`, per component of `contactMap`
+      (`CombMapComponents`);
+    - an empty-two-gon Prop for (f, a, f′, b). Its pocket is bounded by polygon sectors and object arcs, not region sides,
+      so the merge is new work.
 - The earlier H outline, kept for reference:
 - H = `PredicateRestriction.toCombMap (S.diagram.toCombMap.dual)`, keeping one dart pair per (polygon f with d_f ≥ 2,
   object o), where o is a relator cell or the exterior.
