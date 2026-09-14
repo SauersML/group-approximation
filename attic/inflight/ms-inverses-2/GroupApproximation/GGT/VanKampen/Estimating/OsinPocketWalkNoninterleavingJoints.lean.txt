@@ -1,0 +1,356 @@
+import GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkSectorNoninterleaving
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkEulerNoninterleaving
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkChain
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCopyWalk
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkColour
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The passages of the section pocket walk do not interleave
+
+Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): "Let us consider the subdiagram `Γ_1` of `Δ`
+such that: (i) `∂Γ_1 = s_1 t_1 s_2 t_2`, where `s_1, s_2` are side arcs of some of `Γ_{i,1}`'s and
+`t_1, t_2` are subpaths of `∂Π` and the section `q_1` of `∂Δ`, respectively; (ii) `Γ_1` contains all
+`Γ_{i,1}`'s."
+
+`SectionPocketWalkNoninterleavingStatement` (`Estimating/OsinPocketWalkEulerNoninterleaving`) asks
+that the passages of the noncrossing pocket walk `s_1 t_1 s_2 t_2` of two exterior regions `x`, `y`
+do not interleave.  Every joint `d → e` of the walk is of one of two kinds.
+* A boundary step of `x` or of `y` (`Embedded.BoundaryStep`): the joints inside a side, and the four
+  corners.  Rotating from `alpha d`, every dart met before `e` is internal to the region, and at least
+  area no dart internal to either region lies on an edge of the walk.  So the sector from `alpha d`
+  to `e` is free (`SectorNoninterleaving.sectorFree_of_boundaryStep`).
+* A face step read backwards, `sigma e = alpha d`: the joints inside the arc of the source cell and
+  inside the outer arc.  The stretch from `e` back to `alpha d` is empty.
+`PocketWalk.walk_isChain_closes` (`Estimating/OsinPocketWalkChain`) splits the walk into these joints
+for the vertex relation.  This module runs the same split for any relation that holds on both kinds
+(`PocketWalk.walk_isChain_closes_of_rel`), and applies it to "the joint keeps the vertex and its
+passage has a free sector".
+
+* `SectorNoninterleaving.isChain_sigma_invDarts`, `closes_sigma_invDarts`: a face traversal read
+  backwards turns by face steps.
+* `SectorNoninterleaving.vertexOf_alpha_eq_of_sigma`, `sectorFree_of_boundaryStep`: the two kinds of
+  joint.
+* `PocketWalk.internal_not_walkKeep`: at least area, no dart internal to `x` or to `y` lies on an edge
+  of the pocket walk.
+* `PocketWalk.walk_isChain_closes_of_rel`: the joint split of the walk, for any relation.
+* `sectionPocketWalkNoninterleaving : SectionPocketWalkNoninterleavingStatement`.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121,
+`\begin{theorem}[Hull's small cancellation theorem]\label{thm:hull}`), through Osin's Lemma 9.7(b);
+certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded SimpleClosedWalkSides SectorNoninterleaving
+
+section Lists
+
+variable {α : Type*} {R : α → α → Prop}
+
+private theorem head?_append_left' {l₁ l₂ : List α} (h : l₁ ≠ []) :
+    (l₁ ++ l₂).head? = l₁.head? := by
+  rw [List.head?_append, List.head?_eq_some_head h, Option.some_or]
+
+private theorem getLast?_append_right' {l₁ l₂ : List α} (h : l₂ ≠ []) :
+    (l₁ ++ l₂).getLast? = l₂.getLast? := by
+  rw [List.getLast?_append, List.getLast?_eq_some_getLast h, Option.some_or]
+
+private theorem closes_of_getLast_head' {l : List α} (hne : l ≠ [])
+    (h : R (l.getLast hne) (l.head hne)) : ∀ a ∈ l.getLast?, ∀ b ∈ l.head?, R a b := by
+  intro a ha b hb
+  obtain rfl := Option.some.inj
+    ((List.getLast?_eq_some_getLast hne).symm.trans (Option.mem_def.mp ha))
+  obtain rfl := Option.some.inj
+    ((List.head?_eq_some_head hne).symm.trans (Option.mem_def.mp hb))
+  exact h
+
+private theorem getLast_head_of_closes' {l : List α} (hne : l ≠ [])
+    (h : ∀ a ∈ l.getLast?, ∀ b ∈ l.head?, R a b) : R (l.getLast hne) (l.head hne) :=
+  h _ (Option.mem_def.mpr (List.getLast?_eq_some_getLast hne)) _
+    (Option.mem_def.mpr (List.head?_eq_some_head hne))
+
+end Lists
+
+namespace SectorNoninterleaving
+
+/-- **A face traversal read backwards turns by face steps**: consecutive darts `d`, `e` of the
+reversed traversal satisfy `sigma e = alpha d`. -/
+theorem isChain_sigma_invDarts {M : CombMap.{v}} {l : List M.Dart}
+    (h : l.IsChain fun d e => M.facePerm d = e) :
+    (l.reverse.map M.alpha).IsChain fun d e => M.sigma e = M.alpha d := by
+  rw [List.isChain_map, List.isChain_reverse]
+  refine h.imp fun a b hab => ?_
+  show M.sigma (M.alpha a) = M.alpha (M.alpha b)
+  rw [M.alpha_involutive b, ← hab]
+  rfl
+
+/-- **A closed face traversal read backwards closes by a face step.** -/
+theorem closes_sigma_invDarts {M : CombMap.{v}} {l : List M.Dart} (hne : l ≠ [])
+    (h : M.facePerm (l.getLast hne) = l.head hne) :
+    ∀ a ∈ (l.reverse.map M.alpha).getLast?, ∀ b ∈ (l.reverse.map M.alpha).head?,
+      M.sigma b = M.alpha a := by
+  intro a ha b hb
+  rw [List.getLast?_map, List.getLast?_reverse, Option.mem_def, Option.map_eq_some_iff] at ha
+  rw [List.head?_map, List.head?_reverse, Option.mem_def, Option.map_eq_some_iff] at hb
+  obtain ⟨a', ha', rfl⟩ := ha
+  obtain ⟨b', hb', rfl⟩ := hb
+  obtain rfl := Option.some.inj ((List.head?_eq_some_head hne).symm.trans ha')
+  obtain rfl := Option.some.inj ((List.getLast?_eq_some_getLast hne).symm.trans hb')
+  show M.sigma (M.alpha (l.getLast hne)) = M.alpha (M.alpha (l.head hne))
+  rw [M.alpha_involutive (l.head hne), ← h]
+  rfl
+
+/-- **A face step read backwards keeps the vertex.** -/
+theorem vertexOf_alpha_eq_of_sigma {M : CombMap.{v}} {d e : M.Dart}
+    (h : M.sigma e = M.alpha d) : M.vertexOf (M.alpha d) = M.vertexOf e := by
+  rw [← h, M.vertexOf_sigma]
+
+/-- **A boundary step of a face set whose internal darts avoid the walk has a free sector.**
+Rotating from `alpha d`, the darts met before `e` are internal to the face set. -/
+theorem sectorFree_of_boundaryStep {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {Delta : DiscDiagram.{u, w, v} W}
+    {faces : Finset Delta.toCombMap.Face} {walk : List Delta.toCombMap.Dart}
+    {d e : Delta.toCombMap.Dart} (h : BoundaryStep Delta faces d e)
+    (hint : ∀ t, Delta.toCombMap.faceOf t ∈ faces →
+      Delta.toCombMap.faceOf (Delta.toCombMap.alpha t) ∈ faces →
+        ¬ walkKeep Delta.toCombMap walk t) :
+    SectorFree Delta.toCombMap walk (Delta.toCombMap.alpha d) e := by
+  obtain ⟨-, -, hpath⟩ := h
+  have hpath' : Relation.ReflTransGen
+      (fun a b => (Delta.toCombMap.faceOf a ∈ faces ∧
+        Delta.toCombMap.faceOf (Delta.toCombMap.alpha a) ∈ faces) ∧ Delta.toCombMap.sigma a = b)
+      (Delta.toCombMap.facePerm d) e := by
+    refine Relation.ReflTransGen.mono (fun a b hab => ?_) hpath
+    obtain ⟨ha1, ha2, rfl⟩ := hab
+    refine ⟨⟨ha1, ha2⟩, ?_⟩
+    show Delta.toCombMap.sigma a =
+      Delta.toCombMap.sigma (Delta.toCombMap.alpha (Delta.toCombMap.alpha a))
+    rw [Delta.toCombMap.alpha_involutive a]
+  obtain ⟨n, hn, hskip⟩ := PermFirstReturn.exists_pow_of_skip_walk Delta.toCombMap.sigma _ hpath'
+  refine ⟨n + 1, ?_, fun k hk0 hk => ?_⟩
+  · rw [pow_succ, Equiv.Perm.mul_apply]
+    exact hn
+  · obtain ⟨k', rfl⟩ : ∃ k', k = k' + 1 := ⟨k - 1, by omega⟩
+    have hk' := hskip k' (by omega)
+    rw [pow_succ, Equiv.Perm.mul_apply]
+    exact hint _ hk'.1 hk'.2
+
+end SectorNoninterleaving
+
+namespace PocketWalk
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ}
+
+section Diagram
+
+variable {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **No dart internal to either region lies on an edge of the pocket walk**, at least area.  A walk
+dart is a side dart of one region, with its face in that region and the face across outside it and
+off the other, disjoint, region; or it has the source cell or the exterior face across it, and no
+region holds either. -/
+theorem internal_not_walkKeep (K : PocketWalk D eps X lo hi) {x y : RegionCandidate D eps X}
+    (hlea : X.LeastArea) (hfirst : K.firstSide = y.2.leftSide)
+    (hsecond : K.secondSide = x.2.rightSide) (hxy : Disjoint x.1 y.1) :
+    (∀ t, X.toCombMap.faceOf t ∈ x.1 → X.toCombMap.faceOf (X.toCombMap.alpha t) ∈ x.1 →
+        ¬ walkKeep X.toCombMap K.walk t) ∧
+      (∀ t, X.toCombMap.faceOf t ∈ y.1 → X.toCombMap.faceOf (X.toCombMap.alpha t) ∈ y.1 →
+        ¬ walkKeep X.toCombMap K.walk t) := by
+  have avoid : ∀ z : RegionCandidate D eps X, (cell X K.source).face ∉ z.1 := fun z =>
+    (z.2.innerGRegion hlea).cells_avoid (cell X K.source) (cell_mem X K.source)
+  have gcell : ∀ z : RegionCandidate D eps X, ∀ f ∈ z.1, f ≠ X.outerFace := fun z f hf =>
+    (z.2.boundary.all_gCells f hf).1
+  have key : ∀ z : RegionCandidate D eps X, (z = x ∨ z = y) → ∀ u ∈ K.walk,
+      X.toCombMap.faceOf u ∈ z.1 → X.toCombMap.faceOf (X.toCombMap.alpha u) ∉ z.1 := by
+    intro z hz u hu hu1 hu2
+    rcases K.mem_walk_cases hu with h | h | h | h
+    · have hb := mem_leftSide_boundary y (by rwa [hfirst] at h)
+      rcases hz with hzx | hzy
+      · rw [hzx] at hu1
+        exact Finset.disjoint_left.mp hxy hu1 hb.1
+      · rw [hzy] at hu2
+        exact hb.2 hu2
+    · exact avoid z (by rw [← faceOf_alpha_of_mem_invDarts_sourceArc K h]; exact hu2)
+    · have hb := mem_rightSide_boundary x (by rwa [hsecond] at h)
+      rcases hz with hzx | hzy
+      · rw [hzx] at hu2
+        exact hb.2 hu2
+      · rw [hzy] at hu1
+        exact Finset.disjoint_left.mp hxy hb.1 hu1
+    · exact gcell z _ hu2 (faceOf_alpha_of_mem_targetArc K h)
+  have fromKey : ∀ z : RegionCandidate D eps X, (z = x ∨ z = y) → ∀ t,
+      X.toCombMap.faceOf t ∈ z.1 → X.toCombMap.faceOf (X.toCombMap.alpha t) ∈ z.1 →
+        ¬ walkKeep X.toCombMap K.walk t := by
+    intro z hz t ht1 ht2 hk
+    rcases hk with hk | hk
+    · exact key z hz t hk ht1 ht2
+    · exact key z hz _ hk ht2 (by rw [X.toCombMap.alpha_involutive t]; exact ht1)
+  exact ⟨fromKey x (Or.inl rfl), fromKey y (Or.inr rfl)⟩
+
+/-- **The joint split of the pocket walk, for any relation.**  With the data of
+`walk_isChain_closes`, if a relation holds on every boundary step of `x` and of `y`, and on every
+face step read backwards, it holds on consecutive darts of the pocket walk and on its last and first
+darts. -/
+theorem walk_isChain_closes_of_rel (K : PocketWalk D eps X lo hi) (x y : RegionCandidate D eps X)
+    {R : X.toCombMap.Dart → X.toCombMap.Dart → Prop}
+    (hRx : ∀ d e, BoundaryStep X x.1 d e → R d e)
+    (hRy : ∀ d e, BoundaryStep X y.1 d e → R d e)
+    (hRface : ∀ d e, X.toCombMap.sigma e = X.toCombMap.alpha d → R d e)
+    (hxt : x.2.target = none) (hyt : y.2.target = none)
+    (hxs : 0 < x.2.sourceArc.length) (hys : 0 < y.2.sourceArc.length)
+    (hxtgt : 0 < x.2.targetArc.length) (hytgt : 0 < y.2.targetArc.length)
+    (hfirst : K.firstSide = y.2.leftSide) (hsecond : K.secondSide = x.2.rightSide)
+    (Gap : List X.toCombMap.Dart)
+    (hsrc : K.sourceArc.darts = x.2.sourceArc.darts ++ Gap ++ y.2.sourceArc.darts)
+    (hstart : K.targetArc.start.1 = x.2.targetArc.start.1)
+    (hend : K.targetArc.start.1 + K.targetArc.length =
+      y.2.targetArc.start.1 + y.2.targetArc.length)
+    (hyend : y.2.targetArc.start.1 + y.2.targetArc.length ≤ (outerDarts X).length) :
+    K.walk.IsChain R ∧ ∀ a ∈ K.walk.getLast?, ∀ b ∈ K.walk.head?, R a b := by
+  have hCx := x.2.boundary.cycle_chain.imp hRx
+  have hCy := y.2.boundary.cycle_chain.imp hRy
+  have hCyc := closes_of_getLast_head' y.2.boundary.cycle_nonempty
+    (hRy _ _ y.2.boundary.cycle_closes)
+  have htx : targetBoundaryDarts X x.2.target x.2.targetArc = x.2.targetArc.darts := by
+    revert hxt
+    generalize x.2.targetArc = arc
+    intro hxt
+    subst hxt
+    rfl
+  have hty : targetBoundaryDarts X y.2.target y.2.targetArc = y.2.targetArc.darts := by
+    revert hyt
+    generalize y.2.targetArc = arc
+    intro hyt
+    subst hyt
+    rfl
+  rw [x.2.boundary_decomposition, htx] at hCx
+  rw [y.2.boundary_decomposition, hty] at hCy hCyc
+  have hinv : (invDarts X K.sourceArc.darts).IsChain R :=
+    (isChain_sigma_invDarts (K.sourceArc.isChain_darts
+      (X.faceBoundary (cell X K.source).face).chain
+      (closes_of_getLast_head' (X.faceBoundary (cell X K.source).face).nonempty
+        (X.faceBoundary (cell X K.source).face).closes))).imp hRface
+  have ht₂ : K.targetArc.darts.IsChain R :=
+    (K.targetArc.isChain_darts (isChain_sigma_invDarts (X.faceBoundary X.outerFace).chain)
+      (closes_sigma_invDarts (X.faceBoundary X.outerFace).nonempty
+        (X.faceBoundary X.outerFace).closes)).imp hRface
+  have hxne : x.2.sourceArc.darts ≠ [] :=
+    List.ne_nil_of_length_pos (by rw [x.2.sourceArc.darts_length]; exact hxs)
+  have hyne : y.2.sourceArc.darts ≠ [] :=
+    List.ne_nil_of_length_pos (by rw [y.2.sourceArc.darts_length]; exact hys)
+  have hKtne : K.targetArc.darts ≠ [] :=
+    List.ne_nil_of_length_pos (by rw [K.targetArc.darts_length]; exact K.targetArc_pos)
+  have hinvne : invDarts X K.sourceArc.darts ≠ [] := by
+    rw [hsrc]
+    intro h
+    have hlen := congrArg List.length h
+    simp only [invDarts, List.length_map, List.length_reverse, List.length_append,
+      x.2.sourceArc.darts_length, List.length_nil] at hlen
+    omega
+  have hinvhead : (invDarts X K.sourceArc.darts).head? =
+      (invDarts X y.2.sourceArc.darts).head? := by
+    rw [head?_invDarts, head?_invDarts, hsrc, getLast?_append_right' hyne]
+  have hinvlast : (invDarts X K.sourceArc.darts).getLast? =
+      (invDarts X x.2.sourceArc.darts).getLast? := by
+    rw [getLast?_invDarts, getLast?_invDarts, hsrc,
+      head?_append_left' (List.append_ne_nil_of_left_ne_nil hxne _), head?_append_left' hxne]
+  obtain ⟨xt, hxts, hxtl, hxtd⟩ : ∃ arc : CyclicArc (outerDarts X),
+      arc.start.1 = x.2.targetArc.start.1 ∧ arc.length = x.2.targetArc.length ∧
+        arc.darts = x.2.targetArc.darts :=
+    CyclicArc.exists_transport (targetDarts X) hxt x.2.targetArc
+  obtain ⟨yt, hyts, hytl, hytd⟩ : ∃ arc : CyclicArc (outerDarts X),
+      arc.start.1 = y.2.targetArc.start.1 ∧ arc.length = y.2.targetArc.length ∧
+        arc.darts = y.2.targetArc.darts :=
+    CyclicArc.exists_transport (targetDarts X) hyt y.2.targetArc
+  have hKthead : K.targetArc.darts.head? = x.2.targetArc.darts.head? := by
+    rw [← hxtd]
+    exact CyclicArc.head?_darts_eq K.targetArc xt K.targetArc_pos (by omega) (by omega)
+  have hKtlast : K.targetArc.darts.getLast? = y.2.targetArc.darts.getLast? := by
+    rw [← hytd]
+    exact CyclicArc.getLast?_darts_eq K.targetArc yt K.targetArc_pos (by omega) (by omega)
+      (by omega)
+  have J1 : ∀ a ∈ y.2.leftSide.getLast?, ∀ b ∈ (invDarts X K.sourceArc.darts).head?, R a b := by
+    intro a ha b hb
+    rw [hinvhead] at hb
+    exact hCyc a (List.mem_getLast?_append_of_mem_getLast? ha) b
+      (List.mem_head?_append_of_mem_head? (List.mem_head?_append_of_mem_head?
+        (List.mem_head?_append_of_mem_head? hb)))
+  have J3 : ∀ a ∈ (y.2.leftSide ++ invDarts X K.sourceArc.darts).getLast?,
+      ∀ b ∈ x.2.rightSide.head?, R a b := by
+    intro a ha b hb
+    rw [getLast?_append_right' hinvne, hinvlast] at ha
+    exact (List.isChain_append.mp hCx.left_of_append.left_of_append).2.2 a ha b hb
+  have hlast : (y.2.leftSide ++ invDarts X K.sourceArc.darts ++ x.2.rightSide).getLast? =
+      (invDarts X x.2.sourceArc.darts ++ x.2.rightSide).getLast? := by
+    rw [List.getLast?_append, List.getLast?_append (l := invDarts X x.2.sourceArc.darts),
+      getLast?_append_right' hinvne, hinvlast]
+  have J4 : ∀ a ∈ (y.2.leftSide ++ invDarts X K.sourceArc.darts ++ x.2.rightSide).getLast?,
+      ∀ b ∈ K.targetArc.darts.head?, R a b := by
+    intro a ha b hb
+    rw [hlast] at ha
+    rw [hKthead] at hb
+    exact (List.isChain_append.mp hCx.left_of_append).2.2 a ha b hb
+  have hwalk : K.walk =
+      y.2.leftSide ++ invDarts X K.sourceArc.darts ++ x.2.rightSide ++ K.targetArc.darts := by
+    rw [walk, hfirst, hsecond]
+  rw [hwalk]
+  refine ⟨List.isChain_append.mpr ⟨List.isChain_append.mpr ⟨List.isChain_append.mpr
+    ⟨hCy.right_of_append, hinv, J1⟩, hCx.left_of_append.left_of_append.right_of_append, J3⟩,
+    ht₂, J4⟩, ?_⟩
+  intro a ha b hb
+  rw [getLast?_append_right' hKtne, hKtlast] at ha
+  by_cases hyl : y.2.leftSide = []
+  · rw [hyl, List.nil_append, head?_append_left' (List.append_ne_nil_of_left_ne_nil hinvne _),
+      head?_append_left' hinvne, hinvhead] at hb
+    rw [hyl, List.append_nil] at hCyc
+    exact hCyc a (List.mem_getLast?_append_of_mem_getLast? ha) b
+      (List.mem_head?_append_of_mem_head? (List.mem_head?_append_of_mem_head? hb))
+  · rw [head?_append_left'
+        (List.append_ne_nil_of_left_ne_nil (List.append_ne_nil_of_left_ne_nil hyl _) _),
+      head?_append_left' (List.append_ne_nil_of_left_ne_nil hyl _), head?_append_left' hyl] at hb
+    exact (List.isChain_append.mp hCy).2.2 a (List.mem_getLast?_append_of_mem_getLast? ha) b hb
+
+end Diagram
+
+end PocketWalk
+
+/-- **The passages of the section pocket walk do not interleave.** -/
+theorem sectionPocketWalkNoninterleaving : SectionPocketWalkNoninterleavingStatement.{u, w, v} := by
+  intro G _ Lambda D lambda c eps W Delta cuts S hlea i j x y hx hy hxy hjx hjy K hsource hfirst
+    hsecond hgap hstart hend hclean hw
+  obtain ⟨hxS, -, hxt⟩ := PocketWalkColour.mem_exteriorAt S.toRealizedSectionFamily hx
+  obtain ⟨hyS, -, hyt⟩ := PocketWalkColour.mem_exteriorAt S.toRealizedSectionFamily hy
+  obtain ⟨hxs, hxtgt⟩ := S.nondegenerate x hxS
+  obtain ⟨hys, hytgt⟩ := S.nondegenerate y hyS
+  obtain ⟨-, -, hyhi⟩ := hjy
+  have hyend : y.2.targetArc.start.1 + y.2.targetArc.length ≤ (outerDarts S.diagram).length :=
+    Nat.le_trans hyhi (PocketWalk.cut_le_length_outerDarts S.toRealizedSectionFamily j.succ)
+  obtain ⟨Gap, hsrc⟩ := hgap
+  have hint := K.internal_not_walkKeep hlea hfirst hsecond (S.pairwise x hxS y hyS hxy)
+  obtain ⟨hchain, hcloses⟩ := K.walk_isChain_closes_of_rel x y
+    (R := fun d e => S.diagram.toCombMap.vertexOf (S.diagram.toCombMap.alpha d) =
+      S.diagram.toCombMap.vertexOf e ∧ PassageSectorFree S.diagram.toCombMap K.walk d e)
+    (fun _ _ h => ⟨vertexOf_alpha_eq_of_boundaryStep h,
+      Or.inl (sectorFree_of_boundaryStep h hint.1)⟩)
+    (fun _ _ h => ⟨vertexOf_alpha_eq_of_boundaryStep h,
+      Or.inl (sectorFree_of_boundaryStep h hint.2)⟩)
+    (fun _ _ h => ⟨vertexOf_alpha_eq_of_sigma h, Or.inr (sectorFree_of_sigma_eq h)⟩)
+    hxt hyt hxs hys hxtgt hytgt hfirst hsecond Gap.darts hsrc hstart hend hyend
+  exact passagesNoninterleaving_of_isChain hw.ne_nil hw.nodup hw.alpha_not_mem hchain
+    (getLast_head_of_closes' hw.ne_nil hcloses)
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.SectorNoninterleaving.isChain_sigma_invDarts
+#audit_axioms GroupApproximation.GGT.VanKampen.SectorNoninterleaving.closes_sigma_invDarts
+#audit_axioms GroupApproximation.GGT.VanKampen.SectorNoninterleaving.sectorFree_of_boundaryStep
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketWalk.internal_not_walkKeep
+#audit_axioms GroupApproximation.GGT.VanKampen.PocketWalk.walk_isChain_closes_of_rel
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.sectionPocketWalkNoninterleaving

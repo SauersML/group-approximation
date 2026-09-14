@@ -100,7 +100,9 @@ theorem walk_passagesNoninterleaving :
   · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
   · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
   · exact iff_of_true ⟨2, by decide, by decide, fun b hb0 hb2 => by interval_cases b <;> decide⟩
-      ⟨1, by decide, by decide, fun b hb0 hb1 => by interval_cases b <;> decide⟩
+      ⟨1, by decide, by decide, fun b hb0 hb1 => by
+        obtain rfl : b = 1 := by omega
+        decide⟩
   · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
   · exact absurd rfl hij
   · exact iff_of_false (not_rotationBetween_of_sigma_eq (by decide))
@@ -112,7 +114,9 @@ theorem walk_passagesNoninterleaving :
   · exact absurd rfl hij
   · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
   · exact iff_of_true ⟨2, by decide, by decide, fun b hb0 hb2 => by interval_cases b <;> decide⟩
-      ⟨1, by decide, by decide, fun b hb0 hb1 => by interval_cases b <;> decide⟩
+      ⟨1, by decide, by decide, fun b hb0 hb1 => by
+        obtain rfl : b = 1 := by omega
+        decide⟩
   · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
   · exact absurd (congrArg OsinPocketCellWalkFollowsModel.vertexEquiv hv) (by decide)
   · exact absurd rfl hij
