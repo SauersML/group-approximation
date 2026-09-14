@@ -1,141 +1,70 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.RingPartitions
-import Mathlib.Topology.Sets.Closeds
+import GroupApproximation.Leavitt.ElementaryGroup
 import Mathlib.Data.ZMod.Basic
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Small clopen sets
 
-`simple_kazhdan_sofic_group.tex` at e80dcf20a, subsection "Simplicity", tex l.182–187:
+`simple_kazhdan_sofic_group.tex` at 9047d0d3c, subsection "Simplicity", tex l.189–195 (the proof
+is written for `n = 3`, "for `n ≥ 3` replace `3` by `n` throughout", tex l.97–98):
 
-> Call a clopen set $V$ small if $V\cap T^jV=\varnothing$ for $0<|j|\le2w$ and every $f\circ T^i$,
-> with $|i|\le w$ and $f$ a coefficient of an entry of $g$ or $g^{-1}$, is constant on $V$.
-> Minimality and infiniteness imply that $T$ has no periodic points, so every point has a small
-> clopen neighborhood. By compactness every clopen set is a finite disjoint union of small ones.
+> Let $1\ne K\trianglelefteq G$ and $1\ne g\in K$, and let $w\ge0$ bound the absolute values of
+> the exponents in the entries of $g$ and $g^{-1}$. Call a clopen set $V$ small if
+> $V\cap T^tV=\varnothing$ for $0<|t|\le2w$ and every $f\circ T^t$, with $|t|\le w$ and $f$ a
+> coefficient of an entry of $g$ or $g^{-1}$, is constant on $V$. Minimality and infiniteness imply
+> that $T$ has no periodic points, so every nonempty clopen set contains a small one.
 
 * `IsSmallSet T w F V`: the printed "small", for a finite set `F` of coefficient functions;
-  `entryCoefficients T g`: the coefficients of the entries of `g` and `g⁻¹`;
+  `entryCoefficients T n g`: the coefficients of the entries of `g` and `g⁻¹` in `GL_n(R)`;
 * `IsSmallSet.mono`: subsets of small sets are small;
-* `exists_isSmallSet_nbhd`, `exists_isSmallSet_nbhd_of_minimal`: every point has a small clopen
-  neighbourhood (no periodic points by `SimpleKazhdanSofic.zpow_apply_ne_self`);
-* `exists_finset_pairwiseDisjoint_of_hereditary`: in a compact space, a hereditary property with
-  clopen point neighbourhoods decomposes every clopen set into finitely many disjoint pieces;
-* `exists_isSmallSet_disjoint_union`: every clopen set is a finite disjoint union of small ones;
-* `charFn_eq_sum_of_pairwiseDisjoint`: the indicator of a finite disjoint union is the sum.
+* `exists_isSmallSet_nbhd`: every point has a small clopen neighbourhood;
+* `exists_isSmallSet_subset`, `exists_isSmallSet_subset_of_minimal`: every nonempty clopen set
+  contains a small one (no periodic points by `SimpleKazhdanSofic.zpow_apply_ne_self`).
 -/
 
 namespace GroupApproximation
 namespace Manuscript
 namespace SimpleKazhdanSofic
 
-open GroupApproximation.ClopenCrossedProduct TopologicalSpace
+open GroupApproximation.ClopenCrossedProduct
 
-variable {X : Type*} [TopologicalSpace X]
+variable {X : Type*} [TopologicalSpace X] (T : X ≃ₜ X)
 
-/-! ## Finite disjoint unions -/
-
-/-- **A hereditary property with clopen point neighbourhoods decomposes every clopen set** into
-finitely many pairwise disjoint clopen pieces with the property. -/
-theorem exists_finset_pairwiseDisjoint_of_hereditary [CompactSpace X] (P : Set X → Prop)
-    (hher : ∀ U V : Set X, V ⊆ U → P U → P V)
-    (hnbhd : ∀ x : X, ∃ U : Set X, IsClopen U ∧ x ∈ U ∧ P U) {A : Set X} (hA : IsClopen A) :
-    ∃ s : Finset (Clopens X), (∀ C ∈ s, P (C : Set X)) ∧
-      (s : Set (Clopens X)).PairwiseDisjoint (fun C => (C : Set X)) ∧
-      (⋃ C ∈ s, (C : Set X)) = A := by
-  classical
-  choose U hUc hxU hUP using hnbhd
-  obtain ⟨t, ht⟩ := hA.isClosed.isCompact.elim_finite_subcover U (fun x => (hUc x).isOpen)
-    fun x _ => Set.mem_iUnion.2 ⟨x, hxU x⟩
-  have key : ∀ t : Finset X, ∃ s : Finset (Clopens X), (∀ C ∈ s, P (C : Set X)) ∧
-      (s : Set (Clopens X)).PairwiseDisjoint (fun C => (C : Set X)) ∧
-      (⋃ C ∈ s, (C : Set X)) = A ∩ ⋃ x ∈ t, U x := by
-    intro t
-    induction t using Finset.induction_on with
-    | empty => exact ⟨∅, by simp, by simp, by simp⟩
-    | insert x t _ ih =>
-      obtain ⟨s, hsP, hsd, hsu⟩ := ih
-      let C : Clopens X := ⟨(A ∩ U x) \ ⋃ D ∈ s, (D : Set X),
-        (hA.inter (hUc x)).diff (isClopen_biUnion_finset fun D _ => D.isClopen)⟩
-      have hCset : (C : Set X) = (A ∩ U x) \ (A ∩ ⋃ y ∈ t, U y) := by
-        rw [← hsu]
-        rfl
-      refine ⟨insert C s, ?_, ?_, ?_⟩
-      · intro D hD
-        rcases Finset.mem_insert.mp hD with rfl | hD
-        · exact hher _ _ (fun y hy => hy.1.2) (hUP x)
-        · exact hsP D hD
-      · rw [Finset.coe_insert]
-        refine hsd.insert fun D hD _ => Set.disjoint_left.mpr fun y hyC hyD => ?_
-        exact hyC.2 (Set.mem_biUnion hD hyD)
-      · ext y
-        rw [Finset.set_biUnion_insert, Finset.set_biUnion_insert, Set.mem_union, hCset, hsu]
-        simp only [Set.mem_diff, Set.mem_inter_iff, Set.mem_union]
-        tauto
-  obtain ⟨s, hsP, hsd, hsu⟩ := key t
-  exact ⟨s, hsP, hsd, by rw [hsu, Set.inter_eq_left.mpr ht]⟩
-
-/-- **The indicator of a finite disjoint union is the sum of the indicators.** -/
-theorem charFn_eq_sum_of_pairwiseDisjoint (k : Type*) [Ring k] (s : Finset (Clopens X))
-    (hsd : (s : Set (Clopens X)).PairwiseDisjoint (fun C => (C : Set X))) {A : Set X}
-    (hA : IsClopen A) (hsu : (⋃ C ∈ s, (C : Set X)) = A) :
-    LocallyConstant.charFn k hA = ∑ C ∈ s, LocallyConstant.charFn k C.isClopen := by
-  classical
-  ext x
-  have hsum : (∑ C ∈ s, LocallyConstant.charFn k C.isClopen) x =
-      ∑ C ∈ s, (LocallyConstant.charFn k C.isClopen) x :=
-    map_sum (LocallyConstant.evalAddMonoidHom (Y := k) x) _ s
-  rw [hsum]
-  simp only [LocallyConstant.coe_charFn]
-  by_cases hxA : x ∈ A
-  · obtain ⟨C₀, hC₀, hxC₀⟩ : ∃ C₀ ∈ s, x ∈ (C₀ : Set X) := by
-      rw [← hsu] at hxA
-      simpa only [Set.mem_iUnion, exists_prop] using hxA
-    rw [Set.indicator_of_mem hxA,
-      Finset.sum_eq_single_of_mem C₀ hC₀ fun C hC hne => Set.indicator_of_notMem
-        (fun hxC => Set.disjoint_left.mp (hsd hC hC₀ hne) hxC hxC₀) _,
-      Set.indicator_of_mem hxC₀]
-  · rw [Set.indicator_of_notMem hxA, Finset.sum_eq_zero fun C hC => Set.indicator_of_notMem
-      (fun hxC => hxA (hsu ▸ Set.mem_biUnion hC hxC)) _]
-
-/-! ## Small sets -/
-
-section Small
-
-variable (T : X ≃ₜ X)
-
-/-- **Small** (tex l.182–184): `V ∩ T^jV = ∅` for `0 < |j| ≤ 2w`, and every `f ∘ T^i`, `|i| ≤ w`,
+/-- **Small** (tex l.191–193): `V ∩ T^tV = ∅` for `0 < |t| ≤ 2w`, and every `f ∘ T^t`, `|t| ≤ w`,
 `f ∈ F`, is constant on `V`. -/
 def IsSmallSet (w : ℕ) (F : Finset (LocallyConstant X (ZMod 2))) (V : Set X) : Prop :=
-  (∀ j : ℤ, j ≠ 0 → |j| ≤ ((2 * w : ℕ) : ℤ) → Disjoint V (⇑(T ^ j) '' V)) ∧
-    ∀ f ∈ F, ∀ i : ℤ, |i| ≤ (w : ℤ) → ∀ x ∈ V, ∀ y ∈ V, f ((T ^ i) x) = f ((T ^ i) y)
+  (∀ t : ℤ, t ≠ 0 → |t| ≤ ((2 * w : ℕ) : ℤ) → Disjoint V (⇑(T ^ t) '' V)) ∧
+    ∀ f ∈ F, ∀ t : ℤ, |t| ≤ (w : ℤ) → ∀ x ∈ V, ∀ y ∈ V, f ((T ^ t) x) = f ((T ^ t) y)
 
 open Classical in
-/-- The coefficients of the entries of `g` and `g⁻¹` (tex l.183–184): the Laurent coefficients
-`f_j`, `j` in the support, of every entry. -/
-noncomputable def entryCoefficients (g : (Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2)))ˣ) :
+/-- The coefficients of the entries of `g` and `g⁻¹` (tex l.192–193): the Laurent coefficients
+`f_t`, `t` in the support, of every entry of `g, g⁻¹ ∈ GL_n(R)`. -/
+noncomputable def entryCoefficients (n : ℕ)
+    (g : (Matrix (Fin n) (Fin n) (ClopenCrossedProduct T (ZMod 2)))ˣ) :
     Finset (LocallyConstant X (ZMod 2)) :=
-  (Finset.univ : Finset (Fin 3 × Fin 3)).biUnion fun pq =>
-    (SkewMonoidAlgebra.support ((g : Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2)))
-        pq.1 pq.2)).image (fun j => (ClopenCoeff.of T (ZMod 2)).symm (SkewMonoidAlgebra.coeff
-          ((g : Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2))) pq.1 pq.2) j)) ∪
-    (SkewMonoidAlgebra.support (((g⁻¹ : (Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2)))ˣ) :
-        Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2))) pq.1 pq.2)).image
-      (fun j => (ClopenCoeff.of T (ZMod 2)).symm (SkewMonoidAlgebra.coeff
-        (((g⁻¹ : (Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2)))ˣ) :
-          Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2))) pq.1 pq.2) j))
+  (Finset.univ : Finset (Fin n × Fin n)).biUnion fun pq =>
+    (SkewMonoidAlgebra.support ((g : Matrix (Fin n) (Fin n) (ClopenCrossedProduct T (ZMod 2)))
+        pq.1 pq.2)).image (fun t => (ClopenCoeff.of T (ZMod 2)).symm (SkewMonoidAlgebra.coeff
+          ((g : Matrix (Fin n) (Fin n) (ClopenCrossedProduct T (ZMod 2))) pq.1 pq.2) t)) ∪
+    (SkewMonoidAlgebra.support
+        (((g⁻¹ : (Matrix (Fin n) (Fin n) (ClopenCrossedProduct T (ZMod 2)))ˣ) :
+          Matrix (Fin n) (Fin n) (ClopenCrossedProduct T (ZMod 2))) pq.1 pq.2)).image
+      (fun t => (ClopenCoeff.of T (ZMod 2)).symm (SkewMonoidAlgebra.coeff
+        (((g⁻¹ : (Matrix (Fin n) (Fin n) (ClopenCrossedProduct T (ZMod 2)))ˣ) :
+          Matrix (Fin n) (Fin n) (ClopenCrossedProduct T (ZMod 2))) pq.1 pq.2) t))
 
 variable {T}
 
 /-- Subsets of small sets are small. -/
 theorem IsSmallSet.mono {w : ℕ} {F : Finset (LocallyConstant X (ZMod 2))} {U V : Set X}
     (hVU : V ⊆ U) (hU : IsSmallSet T w F U) : IsSmallSet T w F V :=
-  ⟨fun j hj hjw => (hU.1 j hj hjw).mono hVU (Set.image_mono hVU),
-    fun f hf i hi x hx y hy => hU.2 f hf i hi x (hVU hx) y (hVU hy)⟩
+  ⟨fun t ht htw => (hU.1 t ht htw).mono hVU (Set.image_mono hVU),
+    fun f hf t ht x hx y hy => hU.2 f hf t ht x (hVU hx) y (hVU hy)⟩
 
 variable (T)
 
-/-- **Every point has a small clopen neighbourhood** (tex l.185–186), for a system without periodic
-points. -/
+/-- **Every point has a small clopen neighbourhood**, for a system without periodic points. -/
 theorem exists_isSmallSet_nbhd [TotallySeparatedSpace X]
     (hfree : ∀ j : ℤ, j ≠ 0 → ∀ y : X, (T ^ j) y ≠ y) (w : ℕ)
     (F : Finset (LocallyConstant X (ZMod 2))) (x : X) :
@@ -148,34 +77,33 @@ theorem exists_isSmallSet_nbhd [TotallySeparatedSpace X]
     hU₀c.inter (isClopen_biInter_finset fun p _ =>
       (p.1.isLocallyConstant.isClopen_fiber _).preimage (T ^ p.2).continuous),
     ⟨hxU₀, Set.mem_iInter₂.mpr fun p _ => rfl⟩,
-    fun j hj hjw => (hU₀d j hj hjw).mono Set.inter_subset_left
+    fun t ht htw => (hU₀d t ht htw).mono Set.inter_subset_left
       (Set.image_mono Set.inter_subset_left), ?_⟩
-  intro f hf i hi y hy z hz
-  have hmem : (f, i) ∈ F ×ˢ I := Finset.mem_product.mpr ⟨hf, Finset.mem_Icc.mpr (abs_le.mp hi)⟩
-  have h1 : f ((T ^ i) y) = f ((T ^ i) x) := Set.mem_iInter₂.mp hy.2 (f, i) hmem
-  have h2 : f ((T ^ i) z) = f ((T ^ i) x) := Set.mem_iInter₂.mp hz.2 (f, i) hmem
+  intro f hf t ht y hy z hz
+  have hmem : (f, t) ∈ F ×ˢ I := Finset.mem_product.mpr ⟨hf, Finset.mem_Icc.mpr (abs_le.mp ht)⟩
+  have h1 : f ((T ^ t) y) = f ((T ^ t) x) := Set.mem_iInter₂.mp hy.2 (f, t) hmem
+  have h2 : f ((T ^ t) z) = f ((T ^ t) x) := Set.mem_iInter₂.mp hz.2 (f, t) hmem
   exact h1.trans h2.symm
 
-/-- **tex l.185–186 as printed**: minimality and infiniteness give no periodic points, so every
-point has a small clopen neighbourhood. -/
-theorem exists_isSmallSet_nbhd_of_minimal [T2Space X] [Infinite X] [TotallySeparatedSpace X]
-    (hmin : GroupApproximation.SimpleKazhdanSofic.IsMinimalSystem T) (w : ℕ)
-    (F : Finset (LocallyConstant X (ZMod 2))) (x : X) :
-    ∃ U : Set X, IsClopen U ∧ x ∈ U ∧ IsSmallSet T w F U :=
-  exists_isSmallSet_nbhd T
-    (fun _ hj y => GroupApproximation.SimpleKazhdanSofic.zpow_apply_ne_self T hmin hj y) w F x
-
-/-- **Every clopen set is a finite disjoint union of small ones** (tex l.186–187). -/
-theorem exists_isSmallSet_disjoint_union [CompactSpace X] [TotallySeparatedSpace X]
+/-- **Every nonempty clopen set contains a small one** (tex l.194–195), for a system without
+periodic points. -/
+theorem exists_isSmallSet_subset [TotallySeparatedSpace X]
     (hfree : ∀ j : ℤ, j ≠ 0 → ∀ y : X, (T ^ j) y ≠ y) (w : ℕ)
-    (F : Finset (LocallyConstant X (ZMod 2))) {A : Set X} (hA : IsClopen A) :
-    ∃ s : Finset (Clopens X), (∀ C ∈ s, IsSmallSet T w F (C : Set X)) ∧
-      (s : Set (Clopens X)).PairwiseDisjoint (fun C => (C : Set X)) ∧
-      (⋃ C ∈ s, (C : Set X)) = A :=
-  exists_finset_pairwiseDisjoint_of_hereditary (IsSmallSet T w F)
-    (fun _ _ hVU hU => hU.mono hVU) (exists_isSmallSet_nbhd T hfree w F) hA
+    (F : Finset (LocallyConstant X (ZMod 2))) {A : Set X} (hA : IsClopen A) (hne : A.Nonempty) :
+    ∃ V : Set X, IsClopen V ∧ V.Nonempty ∧ V ⊆ A ∧ IsSmallSet T w F V := by
+  obtain ⟨x, hx⟩ := hne
+  obtain ⟨U, hUc, hxU, hU⟩ := exists_isSmallSet_nbhd T hfree w F x
+  exact ⟨U ∩ A, hUc.inter hA, ⟨x, hxU, hx⟩, Set.inter_subset_right,
+    hU.mono Set.inter_subset_left⟩
 
-end Small
+/-- **tex l.194–195 as printed**: minimality and infiniteness give no periodic points, so every
+nonempty clopen set contains a small one. -/
+theorem exists_isSmallSet_subset_of_minimal [T2Space X] [Infinite X] [TotallySeparatedSpace X]
+    (hmin : GroupApproximation.SimpleKazhdanSofic.IsMinimalSystem T) (w : ℕ)
+    (F : Finset (LocallyConstant X (ZMod 2))) {A : Set X} (hA : IsClopen A) (hne : A.Nonempty) :
+    ∃ V : Set X, IsClopen V ∧ V.Nonempty ∧ V ⊆ A ∧ IsSmallSet T w F V :=
+  exists_isSmallSet_subset T
+    (fun _ hj y => GroupApproximation.SimpleKazhdanSofic.zpow_apply_ne_self T hmin hj y) w F hA hne
 
 end SimpleKazhdanSofic
 end Manuscript
@@ -183,8 +111,6 @@ end GroupApproximation
 
 open GroupApproximation
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.exists_finset_pairwiseDisjoint_of_hereditary
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.charFn_eq_sum_of_pairwiseDisjoint
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.exists_isSmallSet_nbhd
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.exists_isSmallSet_nbhd_of_minimal
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.exists_isSmallSet_disjoint_union
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.exists_isSmallSet_subset
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.exists_isSmallSet_subset_of_minimal
