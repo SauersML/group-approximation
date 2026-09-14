@@ -1,6 +1,7 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Setting
 import GroupApproximation.Dynamics.SubshiftFiniteWindow
 import GroupApproximation.Meta.AxiomGuard
+import Mathlib.Data.Int.Interval
 import Mathlib.Data.ZMod.Basic
 
 /-!
@@ -130,7 +131,7 @@ theorem mem_closure_coeff (S : Subshift A ℤ) (f : LocallyConstant S.carrier (Z
       obtain ⟨t, ht⟩ : ∃ t : I, x.1 t ≠ w t := by
         by_contra h
         push Not at h
-        exact hw (funext h)
+        exact hw (funext fun t => (h t).symm)
       rw [map_mul, map_prod, Finset.prod_eq_zero (Finset.mem_univ t) (by
         show coordIndicator S t (w t) x = 0
         rw [coordIndicator_apply, if_neg ht]), mul_zero]
@@ -142,8 +143,12 @@ theorem mem_closure_coeff (S : Subshift A ℤ) (f : LocallyConstant S.carrier (Z
   rcases h01 (c w) with h0 | h1
   · rw [h0, show LocallyConstant.const S.carrier (0 : ZMod 2) = 0 from rfl, zero_mul, map_zero]
     exact Subring.zero_mem _
-  · rw [h1, show LocallyConstant.const S.carrier (1 : ZMod 2) = 1 from rfl, one_mul, map_prod]
-    exact Subring.prod_mem _ fun t _ => coeff_coordIndicator_mem_closure S t (w t)
+  · rw [h1, show LocallyConstant.const S.carrier (1 : ZMod 2) = 1 from rfl, one_mul]
+    exact Finset.prod_induction _
+      (fun g => coeff (subshiftHomeo S) (ZMod 2) g ∈ Subring.closure (ringGenerators S))
+      (fun a b ha hb => by rw [map_mul]; exact Subring.mul_mem _ ha hb)
+      (by rw [map_one]; exact Subring.one_mem _)
+      fun t _ => coeff_coordIndicator_mem_closure S (t : ℤ) (w t)
 
 /-- **Generation of `R`** (tex 97–99): `R` is generated as a ring by `u^{±1}` and the letter
 indicators `e_a`. -/
@@ -161,6 +166,20 @@ def PrintedRingGeneration : Prop :=
 
 theorem printedRingGeneration : PrintedRingGeneration := fun _ _ _ _ _ S =>
   subring_closure_eq_top S
+
+theorem ringGenerators_finite (S : Subshift A ℤ) : (ringGenerators S).Finite :=
+  (((Set.finite_singleton _).insert _)).union (Set.finite_range _)
+
+/-- **`R` is a finitely generated ring** (tex 97–99): a finite set of ring generators, the form
+consumed by `PrintedElementaryPropertyT` (ms-compress-4) for "So $G$ has property (T)". -/
+def PrintedSubshiftRingFinitelyGenerated : Prop :=
+  ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A] [Finite A]
+    (S : Subshift A ℤ), ∃ gens : Finset (R S), Subring.closure (gens : Set (R S)) = ⊤
+
+theorem printedSubshiftRingFinitelyGenerated : PrintedSubshiftRingFinitelyGenerated :=
+  fun _ _ _ _ _ S => ⟨(ringGenerators_finite S).toFinset, by
+    rw [Set.Finite.coe_toFinset]
+    exact subring_closure_eq_top S⟩
 
 end SimpleKazhdanSofic
 
