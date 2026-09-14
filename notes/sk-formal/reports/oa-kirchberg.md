@@ -49,6 +49,11 @@ CLAIM closed `printedGXAnswersBrownOzawaPestov`, the G_X answer to Brown–Ozawa
 
 - **Defect:** row 6866200f2d46 named only the conditional `printedGXAnswersBrownOzawaPestov_of_main` for "G_X answers the question". The closed `printedBrownOzawaPestovAnswer` is about the Pestov91 group, which is a different route.
 - **Fix:** close the G_X form from the closed `printedSimpleKazhdanSoficMain`, then re-cite the row.
+- LANDED 17af31bea (probe 0914-105742-68430, BUILT, 0 errors), wire-queued. Row 6866200f2d46 now cites the closed `printedGXAnswersBrownOzawaPestov`.
+- Main's re-check after sk-lef-assembly's `LEFCharacterizationClosed` landed (83164235d), wrapping sk-lef-action's `printedLamplighterHost`:
+  - f8766b1da9e1 flipped partial → formalized, via `printedRecursivelyPresentedLEFHost`.
+  - 199438e96aee stays partial. Its first statement is closed (`printedLEFSubgroupCharacterization`); the solvable word problem form waits on `LEFSolvableWordProblemEmbeddingStatement` and `Lamplighter.PrintedLamplighterHostSolvableWordProblem`.
+- ms-intro-3's rows 93bcebbc8293 and ca70bdd27b0c (graded partial) still cite the conditional `_of_main`. They could cite the closed form now; that is ms-intro-3's call.
 
 ## Item 3 (main, 09-14 ~09:40): SK census rows l.30–88 at census 9cb80166d (tip 8b36733d7, md5 29d63f79)
 
