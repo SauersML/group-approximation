@@ -27,7 +27,7 @@ Rows live in `metadata/sk-census-rows/<lane>.tsv` as
 `key<TAB>status<TAB>decls<TAB>note`.  The key should be a 12-hex sentence hash
 from `metadata/SK_SENTENCE_CENSUS.tsv`: hashes survive line moves and edits
 elsewhere in the paragraph.  `LINE:<n>@<commit>` is accepted at the current
-commit, and at the previous census's commit when `--prev-census` is given.
+commit, and at the commit of any census passed as `--prev-census`.
 
 `--merge` derives `metadata/SK_SENTENCE_MAP.tsv` from the row files alone, so
 the map is a function of the rows and the manuscript.  A row whose sentence
@@ -239,11 +239,11 @@ def extract(path: str) -> list[dict]:
 
         mb = re.match(r"\s*\\begin\{([^}]*)\}", line)
         me = re.match(r"\s*\\end\{([^}]*)\}", line)
-        ms = re.match(r"\s*\\(sub)*section\*?\{(.*?)\}", line)
+        ms = re.match(r"\s*\\(?:sub)*section\*?\{((?:[^{}]|\{[^{}]*\})*)\}", line)
 
         if ms:
             flush()
-            section = ms.group(2)
+            section = ms.group(1)
             mlab = LABEL_RE.search(line)
             label = mlab.group(1) if mlab else ""
             continue
@@ -319,8 +319,8 @@ class Resolver:
 
 
 def load_prev(census_path: str, tex_path: str) -> dict:
-    """The previous census: its commit, key -> (line, end, sentence), a resolver."""
-    commit, rows = "", {}
+    """A previous census: its commit, key -> (line, end, sentence), a resolver."""
+    commit, rows, header = "", {}, []
     with open(census_path, encoding="utf-8") as fh:
         for raw_row in fh:
             row = raw_row.rstrip("\n")
@@ -329,9 +329,14 @@ def load_prev(census_path: str, tex_path: str) -> dict:
                 commit = m.group(1) if m else commit
                 continue
             cols = row.split("\t")
-            if len(cols) < 9 or cols[0] == "key":
+            if cols[0] == "key":
+                header = cols
                 continue
-            rows[cols[0]] = (int(cols[1]), int(cols[2]), cols[8])
+            if not header or len(cols) < len(header):
+                continue
+            at = dict(zip(header, cols))
+            line = int(at["line"])
+            rows[cols[0]] = (line, int(at.get("end", line)), at["sentence"])
     tex_lines: list[str] = []
     if tex_path and os.path.exists(tex_path):
         with open(tex_path, encoding="utf-8") as fh:
@@ -350,7 +355,7 @@ def nearest(sentence: str, records: list[dict]) -> tuple[str, float]:
 
 
 def load_rows(rows_dir: str, records: list[dict], tex_commit: str,
-              tex_lines: list[str], prev: dict | None
+              tex_lines: list[str], prevs: list[dict]
               ) -> tuple[dict[str, dict], list[str], list[dict]]:
     """Derive the overlay from the lanes' row files.
 
@@ -365,7 +370,8 @@ def load_rows(rows_dir: str, records: list[dict], tex_commit: str,
 
     def supersede(lane: str, where: str, old_key: str, status: str, decls: str,
                   note: str) -> None:
-        line, end, text = prev["rows"].get(old_key, (0, 0, ""))
+        prev = next(p for p in prevs if old_key in p["rows"])
+        line, end, text = prev["rows"][old_key]
         hint, score = nearest(text, records) if text else ("", 0.0)
         superseded.append({"where": where, "lane": lane, "old_key": old_key,
                            "old_commit": prev["commit"], "old_lines": f"{line}-{end}",
@@ -394,13 +400,14 @@ def load_rows(rows_dir: str, records: list[dict], tex_commit: str,
                     commit = m.group(2) or ""
                     if commit and tex_commit.startswith(commit):
                         hit, why = resolve_now(int(m.group(1)))
-                    elif commit and prev and prev["commit"].startswith(commit):
+                    elif commit and any(p["commit"].startswith(commit) for p in prevs):
+                        prev = next(p for p in prevs if p["commit"].startswith(commit))
                         hit, why = prev["resolve"](int(m.group(1)))
                         carried = prev["commit"][:9]
                     else:
                         errors.append(f"{where}: {key} is keyed at no known manuscript "
-                                      f"commit (current {tex_commit[:9]}"
-                                      + (f", previous {prev['commit'][:9]}" if prev else "")
+                                      f"commit (current {tex_commit[:9]}, previous "
+                                      + (" ".join(p["commit"][:9] for p in prevs) or "none")
                                       + ")")
                         continue
                     if hit is None:
@@ -411,7 +418,7 @@ def load_rows(rows_dir: str, records: list[dict], tex_commit: str,
                     errors.append(f"{where}: malformed key {key!r}")
                     continue
                 if key not in known:
-                    if prev and key in prev["rows"]:
+                    if any(key in p["rows"] for p in prevs):
                         supersede(lane, where, key, status, decls, note)
                     else:
                         errors.append(f"{where}: unknown sentence key {key!r}")
@@ -544,9 +551,11 @@ def main() -> int:
                     help="also write the section -> key table to this markdown file")
     ap.add_argument("--tex-commit", default="",
                     help="commit of --tex; LINE:<n>@<commit> rows must match it")
-    ap.add_argument("--prev-census", default="",
-                    help="the previous generated census tsv, to carry rows across a manuscript edit")
-    ap.add_argument("--prev-tex", default="", help="the manuscript at the previous census's commit")
+    ap.add_argument("--prev-census", action="append", default=[],
+                    help=("a previous generated census tsv, newest first; repeat for each "
+                          "landed census, to carry rows across manuscript edits"))
+    ap.add_argument("--prev-tex", action="append", default=[],
+                    help="the manuscript at each --prev-census's commit, in the same order")
     ap.add_argument("--merge", action="store_true")
     ap.add_argument("--summary", action="store_true")
     ap.add_argument("--check", action="store_true")
@@ -573,13 +582,17 @@ def main() -> int:
     commit = args.tex_commit or "(unrecorded)"
     records = extract(args.tex)
     sc.attach_anchors(records, args.tex, [])
-    prev = load_prev(args.prev_census, args.prev_tex) if args.prev_census else None
+    if len(args.prev_tex) not in (0, len(args.prev_census)):
+        print("--prev-tex must be given once per --prev-census", file=sys.stderr)
+        return 2
+    prevs = [load_prev(c, args.prev_tex[i] if args.prev_tex else "")
+             for i, c in enumerate(args.prev_census)]
 
     merge_errors: list[str] = []
     superseded: list[dict] = []
     if args.merge:
         overlay, merge_errors, superseded = load_rows(args.rows_dir, records, args.tex_commit,
-                                                      tex_lines, prev)
+                                                      tex_lines, prevs)
         if not args.summary:
             write_map(args.map_path, records, overlay)
             write_superseded(args.superseded, superseded, commit)
