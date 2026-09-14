@@ -53,7 +53,7 @@ You OWN your problem.
   - Exit codes: 0 landed; 1 error or gave up (rerun); 2 refused (merge); 3 lint failed (fix the node); 4 halted; 64 usage error or path refused.
 - The message file: the first line says what the landing says mathematically, then a blank line, the details, and the two trailers:
   `Co-Authored-By: Claude Code <noreply@anthropic.com>`
-  `Claude-Session: https://claude.ai/code/session_016ezg7WzTbbrpxNTgd7bYKy`
+  `Claude-Session: https://claude.ai/code/session_01C8EAEnJQU9sDZyoBLZvMKY`. This is the coordinator's session since the 20:10 restart; the older id session_016ezg7WzTbbrpxNTgd7bYKy is also fine on lanes launched before it.
 - Land something within your first ~30 minutes (an open claim with Attempts or a plan artifact is fine), then at least every ~30 minutes. One coherent unit per landing.
 - Artifacts: `research/artifacts/sk-<lane>-<topic>-2026-09-13[-partK].md`.
 - Before authoring any node, grep main, reuse peers' nodes and never duplicate: `T=$($SK/sktip.sh); git grep -l -i -E '<terms>' $T -- 'research/*.md'`.

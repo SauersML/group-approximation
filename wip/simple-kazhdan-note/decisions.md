@@ -181,6 +181,67 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
 54. **sk-panel-referee-2 part2**: rev2 stands; the Stepanov application checked. Apply in rev3: `\cite[Theorem~1.1]{EJZ}` at the expanders sentence, and MSC 46L10.
 55. **No note change:** sk-rigidity-cartan (Cartan uniqueness reduced to groupoid-model rigidity; ring isomorphism preserves the SOE class and the complexity growth class), sk-hyperlinear-boundary-b (the von Neumann side has no shortcut), sk-k2-subsystems (the normal subgroup dictionary for finite limit types), sk-wp-embedding (solvable WP hosts for perfect ERF groups).
 
+56. **sk-verify-4 parts 2–4** (~19:55). All rev3 mathematical inputs now PASS:
+    - LEF iff (lamplighter host + Corollary 6): PASS, the third independent review after sk-verify-3 and sk-lef-embedding-c.
+    - Density patch `tower-simplicity-holds-for-topologically-free-actions`: PASS with a scope repair (f.g. only for expansive actions, i.e. subshifts). Also PASS: sk-strong-4's two equivalences.
+    - Universal host (sk-strong-1/3, Wilson route): PASS. There are duplicate Wilson import nodes for sk-cairn-steward to merge.
+    - `double-swap-embeds-group-in-derived-subgroup`: FAIL (nonabelian Γ). Demotion in progress; its consumer `amenable-groups-embed-in-simple-kazhdan-linear-sofic` loses its route.
+    - Toeplitz index defect: confirmed in the summary sentence only; repaired to index ≥ 4.
+
+57. **sk-panel-referee-4 (dynamics), 123fe1e35a.** Sent to sk-editor-3 for rev3:
+    - B1: cite Morse–Hedlund 1938 for "boundedly many words ⇒ finite".
+    - B2: every word of X occurs in x_{[0,∞)}.
+    - B3: Q3 mentions the Giordano–Putnam–Skau 1999 / Bezuglyi–Medynets 2008 converse for topological full groups.
+    - C1: Hedlund 1944; wording fixes.
+    - Also panel-2's EJZ locator and MSC 46L10.
+
+    Optional A2, [[T]]′ ⊂ G_X via diag(w_g,1,1), reviewed PASS by referee-2 part3: +4 text and +5 bibliography lines. Decide on the rev3 read-through; main's lean is ADOPT as one sentence in the intro, if the budget allows.
+
+58. **REV2 GAP** (sk-panel-referee-5 B1): e_ij(t) for the free-algebra generators do not generate EL_3(F), because constants are missing, so the expanders sentence is unsupported as written. Fix in rev3: add e_ij(1) to the generators; in the quotients e_ij(1) = ∏ e_ij(e_a).
+    - Also sent to sk-editor-3:
+      - Margulis credit; Caprace–Rémy existence in Q1;
+      - F4 (solvable WP iff L(X) recursive) and B4 (Sturmian clauses);
+      - sk-verify-7 W1–W5;
+      - sk-simpler-notation N1, N2, N4, N7–N11. N9 moves the OA paragraph after the simplicity proof.
+    - sk-verify-6: the Kirchberg/Ozawa/Pestov/Brown citations PASS against primary sources; only the journal pages are unseen.
+    - No note change from sk-labbe-matricial (thin-cylinder firewall).
+
+59. **Credit and background batch sent to sk-editor-3** (user order: "all credit and background lit properly attributed and mentioned").
+    - sk-lit-credit-audit (98e268fe22), P1–P7:
+      - Kazhdan 1967;
+      - Rădulescu ("hyperlinear"); Gromov / Weiss (sofic);
+      - Elek–Szabó Thm 2;
+      - Grigorchuk 1985 / Champetier 2000 (marked groups);
+      - Margulis 1973;
+      - McDuff 1970;
+      - Hedlund 1944 + Lothaire ch. 2.
+
+      Cost: about +4 text lines, +45 bibliography lines.
+    - sk-lit-novelty-2 (da70113d45):
+      - a 4-line §2 opening (Gorjuškin 1974, Schupp 1976, Kionke–Schesler Thm 1.2, then "adds property (T), applies to every LEF group");
+      - the Wilson credit clause;
+      - no "first" wordings.
+    - All three rev3 results are new within the bounded search. Residual risk R1: the Ol'shanskii–Osin small-cancellation embeddings into simple Kazhdan groups, not read.
+
+60. **Universal LEF host** (sk-universal-lef-host-b, a303f6663a, unreviewed; queued with sk-verify-7).
+    - Lemma A: every countable LEF group embeds in a 2-generated LEF group (ultraproduct of symmetric groups, Ore data, isolation words).
+    - Theorem B: a countable group is LEF iff it is a subgroup of an infinite f.g. simple Kazhdan LEF group.
+    - Theorem C: one such host contains every recursively presented f.g. LEF group, in particular every f.p. RF group, every f.g. linear group, and every G_Y with recursive language.
+    - Proposition D: no countable group contains every G_X.
+    - DECISION for rev4, after a PASS: replace rev3's Wilson universal-host paragraph with Theorem C (about +20 net lines; no Wilson import; strictly stronger). Theorem B upgrades §2's statement from f.g. to countable groups at no extra cost.
+
+61. **sk-lit-background** (98d07f2f07, 1db46142dd, proposal e8715ae5de). Apply in rev3's read-through or in rev4:
+    - BG1 (+4 text, +8 bibliography lines): "Infinite simple Kazhdan groups arise as quotients of hyperbolic Kazhdan groups [Gromov] and as Kac–Moody lattices, which gave the first finitely presented examples [Caprace–Rémy], but none was known to be hyperlinear [Ozawa, Pestov]." The Thom sentence becomes "... not residually finite and so lacks the factorization property [Thom], but his example is not simple."
+    - BG2: `\cite{Kirchberg,Radulescu}, \cite[Proposition~7.1]{Ozawa}` for hyperlinear ⟺ L(G) ⊂ R^ω, with Rădulescu cited without a locator.
+    - DO NOT PRINT: "Caprace–Rémy gave the first finitely GENERATED simple Kazhdan groups"; "every hyperbolic group surjects onto a Tarski monster".
+    - Verified bibitems for about 50 references are in part1.
+
+62. **sk-wp-host** (39a1b8550b, unreviewed; queued with sk-verify-7).
+    - Theorem A: no f.g. group with solvable word problem contains every f.p. RF group (via the reviewed KMS-hardness node).
+    - Theorem B: a LEF host with recursively bounded LEF growth misses some f.p. RF group (KMS Thm 4.19 depth).
+    - So universal hosts (item 60) necessarily have unsolvable word problem and non-recursive LEF growth. Every Sturmian G_X misses some f.p. RF group.
+    - For rev4, only with item 60's host: an optional one-sentence sharpness clause, "such a host has unsolvable word problem [KMS]". Main's lean: ADOPT if item 60 goes in; it makes the countability and complexity limits visible.
+
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
 - The exact centre formula over F_q (it stays in Cairn).
