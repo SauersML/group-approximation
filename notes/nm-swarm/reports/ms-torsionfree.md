@@ -162,7 +162,57 @@ Residual for C6′ outside this leaf: the producer of `hw` and `hin`, or of oute
 (L1 and L2 of w1-binder-4's report), and `hno`/`havoid` (debt-conditional's `TwoGonWalkHyp`). No census rows: the
 modules certify no printed sentence on their own.
 
+## V4 waist leaf: `CellPocketCopyCleanBothOrdersStatement` (main's item, 09-13 20:30): NOT TAKEN, held by w1-binder-5
+
+This is one of the four residuals of ms-cite-1's order assembly (da5b1466e). Its docstring names w1-binder-5 as owner, and
+ms-cite-1 authored it.
+- One message went to each of them (20:30), asking for a reply only if they hold it.
+- Ownership check (20:30): nothing on origin, in the shared tree, in `$NM/drafts` or in any `.files` produced it.
+- w1-binder-5 replied (20:3x) that it holds the statement.
+  - It is the same producer as its current `cellPocketCopyClean`, retargeted to both orders, with the one-order form as
+    a projection.
+  - `hasCellPair_regionPairStep` has just probed in its `OsinPocketCellCopyProducer`.
+  - The only external blocker is ms-intro-2's `exists_regionPairFree_of_invariant` (agreed, not landed).
+  - A named residual standing in for that induction would only reshape the statement, so none is stated.
+- This lane landed no claim and wrote no module. The notes below are left for the owner.
+
+Correction to the stage list:
+- The cell pocket `CellPocketWalk.CopyClean` has no outer field. Its fields are `cell_self_first`/`_second`, `cell_cell`,
+  `regions` and `side_first`/`_second`.
+- So w1-binder-6's outer, spur and side_outer stages and ms-binary's cell-hair `cell_self` belong to the section pocket's
+  `PocketWalk.CopyClean` and are not used here.
+- The relator-cell fields come from w1-binder-5's landed `CellEdgeSideThickening.copyClean_of_noDarts` (a426c4f1b):
+  - no cell-edge dart gives `cell_self` and `cell_cell`;
+  - no cell-side dart (ms-cite-2's `CellSideThickening`) gives the side fields.
+
+Route (agreed step for step with w1-binder-5's):
+- `S.diagram` is least area, from `Δ` through `S.equiv` (`OuterCellThickening.leastArea_of_oEquivalent`), so no
+  relator word has value one;
+- `exists_cellEdgeSideFree_pair`, then the region-pair thickening carrying the invariants;
+- `regions_of_noRegionPairDart` for (a′, b′) and for (b′, a′), with `hmono := one_lt_length_or_of_regions`
+  (ms-intro-2, 9e31aea90);
+- `copyClean_of_noDarts` in both orders.
+
+Model test (paper, done before the reply):
+- (a) The reduction.
+  - `copyClean_of_noDarts` has only one premise that depends on the order, `regions`, and `regions` for (b′, a′)
+    follows from (a′, b′) by applying α to the dart.
+  - The side fields of the two orders list different darts (`b′.sideFrom j′ ++ a′.sideFrom i′` against
+    `a′.sideFrom j′ ++ b′.sideFrom i′`). So a copy clean in one order need not be clean in the other; only the
+    family-wide invariants give both.
+- (b) The region-pair step with the carried invariants, on the smallest configuration: two relator cells, and regions
+  `a`, `b` joining them that share one side edge `w_j` between the G-faces `f ⊆ a` and `g ⊆ b`.
+  - Doubling inside `f` adds a G-digon, so no relator face gains an edge. Cell-edge darts and relator values are
+    unchanged.
+  - The side dart of `a` becomes the new dart, and `α w_j` on `b` now faces the digon, so no cell-side dart is created.
+  - Source and target indices move through `indexEquiv`, which keeps `HasCellPair`.
+  - `w_j` disappears (`regionPairCount_lt`).
+  - No counterexample found.
+
 ## Progress
 
 - 09-13 ~17:15: ledger landed; regrade row for `a9dd4b90e479` landed. No carrier gap outside W1 in range.
 - 09-13 ~17:55: C6′ leaf claimed (above).
+- 09-13 ~18:17: C6′ leaf landed (2d0b61555).
+- 09-13 20:30: resumed after the API outage. main assigned the V4 leaf `CellPocketCopyCleanBothOrdersStatement`.
+- 09-13 20:3x: that leaf is held by w1-binder-5 (above). No claim, no module. Lane free.
