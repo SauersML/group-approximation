@@ -48,6 +48,27 @@ What is established (`subshift-ring-cartan-uniqueness-iff-groupoid-model-rigidit
     maps (sk-rigidity-intrinsic artifact §5 F3).
   - The tower identity `R_{X^(k)} ≅ M_k(R_X)` sends diagonal to diagonal.
   - So corners and matrix amplifications give no non-conjugate Cartan.
-- **Sharpest decider.** Either find a ring isomorphism `R_X ≅ R_Y` between strongly orbit equivalent, non-flip-conjugate
-  subshifts of equal complexity growth, or show that every effective groupoid model of `R_X` carries a continuous
-  `Z`-cocycle whose kernel is a principal AF subgroupoid, which would identify it with a transformation groupoid.
+  - Quantitative form, established (sk-cartan-counterexample, unreviewed):
+    `corner-matrix-ring-isos-force-flip-conjugacy`. If `[1_X] = n[1_U]`, `[1_Y] = n[1_V]`, and
+    `e_U R_X e_U ≅ e_V R_Y e_V` preserves diagonals, then `X` and `Y` are flip conjugate. The proof goes through
+    `cohomologous-roofs-give-conjugate-cantor-towers`. So route (a) of the decider below needs a ring isomorphism that is
+    non-spatial on EVERY clopen corner.
+- **Sturmian candidates: dead.** Their unital ordered `K^0` is `Z + αZ`, which determines `α` up to `α ↦ 1 − α`, and
+  `X_{1−α}` is `X_α` with the letters exchanged. So strong orbit equivalence among Sturmian subshifts is flip conjugacy,
+  and they give no candidate pair.
+- **Recognition and reduction (sk-cartan-counterexample, unreviewed).**
+  - `orbit-bijective-cocycle-gives-z-action-groupoid`: a continuous cocycle `G → Z`, bijective on every source fibre,
+    identifies `G` with a `Z`-action groupoid. This replaces the "principal AF kernel" formulation below.
+  - `cartan-uniqueness-iff-orbit-cocycle-and-ring-rigidity`: this claim holds iff (D1) every Cartan model carries such
+    a cocycle and (D2) `R_Y ≅ R_X` forces flip conjugacy among subshifts.
+- **Test object for (D1).** Take the dihedral Sturmian groupoid: `D_∞ = ⟨T′, s⟩` acting on `X_α × Z/2` by
+  `T′(x,e) = (Tx, e+1)` and `s(x,e) = (Rx, e+1)`, with `R` the reversal.
+  - It is effective and minimal, with `Z/2` isotropy at the palindromic points, so it fails (D1).
+  - Open: is `LC(X_α × Z/2, F_2) ⋊ D_∞` isomorphic to some `R_Y`? A yes refutes this claim at `Y`.
+  - Details: artifact `research/artifacts/sk-cartan-counterexample-2026-09-13-part1.md` §5.
+- **Sharpest decider.**
+  - (a) find a ring isomorphism `R_X ≅ R_Y` between strongly orbit equivalent, non-flip-conjugate subshifts of equal
+    complexity growth that is non-spatial on every corner. The standing candidates are proper orderings on one
+    stationary Bratteli diagram.
+  - (b) prove (D1) and (D2).
+  - (c) settle the dihedral test object.
