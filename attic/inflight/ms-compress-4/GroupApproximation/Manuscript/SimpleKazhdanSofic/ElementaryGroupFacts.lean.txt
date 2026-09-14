@@ -39,6 +39,8 @@ indicators (tex 84–86) from its owner lane.
 namespace GroupApproximation
 namespace SimpleKazhdanSofic
 
+open scoped commutatorElement
+
 /-- Two indices of `Fin 3` leave a third. -/
 theorem exists_third_index_fin_three : ∀ i j : Fin 3, ∃ k : Fin 3, k ≠ i ∧ k ≠ j := by
   decide
@@ -168,7 +170,7 @@ theorem infinite_elementaryGroup_fin_three_of_injective {K R : Type*} [Ring K] [
   intro a b hab
   have hval := congrArg (fun z : ↥(elementaryGroup (Fin 3) R) =>
     ((z : (Matrix (Fin 3) (Fin 3) R)ˣ) : Matrix (Fin 3) (Fin 3) R) 0 1) hab
-  simp only [Subgroup.coe_mk, elementaryUnit, Matrix.add_apply,
+  simp only [elementaryUnit, Matrix.add_apply,
     Matrix.one_apply_ne (show (0 : Fin 3) ≠ 1 by decide), Matrix.single_apply_same,
     zero_add] at hval
   exact hφ hval
