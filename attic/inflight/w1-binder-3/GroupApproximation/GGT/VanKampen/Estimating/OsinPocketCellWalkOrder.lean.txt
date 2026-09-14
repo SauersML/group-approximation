@@ -1,8 +1,10 @@
 import GroupApproximation.GGT.VanKampen.CyclicArcComplement
+import GroupApproximation.GGT.VanKampen.FaceSetBoundaryWalk
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94SameCellPocketSides
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellWalkColour
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhi
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketColourNoncrossing
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopy
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -36,6 +38,9 @@ Faces of regions are never the exterior face (`FaceSetBoundary.all_gCells`).
 * `CellPocketWalkOrder.outerFace_not_mem_sideFaces_or_of_walks`: the same from the data of
   `CellPocketWalk.exists_of_joinsCells` for both orders and the closed-walk facts, with noncrossing
   derived through `CellPocketWalkColour.walk_orient`.
+* `cellPocketWalkOuterOffSideSomeOrder`: `CellPocketWalkOuterOffSideSomeOrderStatement`
+  (`Estimating/OsinPocketMultipleEdgeCopy.lean`), the residual consumed by
+  `multipleEdgePocketRegionCopyInput_of_pinchOrder`.
 
 No `CellPocketWalk.CopyClean` condition is used.
 
@@ -76,20 +81,6 @@ section Walk
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
   {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W}
-
-/-- A dart of `invDarts l` is the reversal of a dart of `l`. -/
-theorem mem_invDarts_iff (l : List X.toCombMap.Dart) (d : X.toCombMap.Dart) :
-    d ∈ invDarts X l ↔ X.toCombMap.alpha d ∈ l := by
-  constructor
-  · intro h
-    change d ∈ l.reverse.map X.toCombMap.alpha at h
-    obtain ⟨y, hy, rfl⟩ := List.mem_map.mp h
-    rw [X.toCombMap.alpha_involutive y]
-    exact List.mem_reverse.mp hy
-  · intro h
-    change d ∈ l.reverse.map X.toCombMap.alpha
-    exact List.mem_map.mpr ⟨X.toCombMap.alpha d, List.mem_reverse.mpr h,
-      X.toCombMap.alpha_involutive d⟩
 
 /-- **The darts of a pocket walk**: the first side, the reversed first arc, the second side and the
 reversed second arc. -/
@@ -195,7 +186,7 @@ theorem mem_regions_of_mem_sideFaces_both (S : RealizedSectionFamily D lambda c 
     (RegionCandidate.cellArcList_length_pos (S.nondegenerate a ha) j)
   have hbj_ne : b.cellArcList j ≠ [] := List.ne_nil_of_length_pos
     (RegionCandidate.cellArcList_length_pos (S.nondegenerate b hb) j)
-  have hΠ : (cell S.diagram i).face ≠ (cell S.diagram j).face :=
+  have hcells : (cell S.diagram i).face ≠ (cell S.diagram j).face :=
     fun h => hij (cell_face_injective S.diagram h)
   -- Both cells are off both sides.
   obtain ⟨ci, hci⟩ := List.exists_mem_of_ne_nil _ hai_ne
@@ -212,22 +203,22 @@ theorem mem_regions_of_mem_sideFaces_both (S : RealizedSectionFamily D lambda c 
   have hcj₂ : cj ∈ K₂.secondArc.darts := by
     rw [harc₂']
     simp [hcj]
-  have hΠi₁ : (cell S.diagram i).face ∉ sideFaces S.diagram.toCombMap K₁.walk := by
+  have hoffi₁ : (cell S.diagram i).face ∉ sideFaces S.diagram.toCombMap K₁.walk := by
     have hmem : S.diagram.toCombMap.alpha ci ∈ K₁.walk := (mem_walk_iff K₁ _).mpr
       (Or.inr (Or.inl (by rw [S.diagram.toCombMap.alpha_involutive]; exact hci₁)))
     have h := faceOf_alpha_not_mem_sideFaces S.diagram.planar hw₁ hmem
     rwa [S.diagram.toCombMap.alpha_involutive, faceOf_of_mem_firstArc K₁ hci₁] at h
-  have hΠi₂ : (cell S.diagram i).face ∉ sideFaces S.diagram.toCombMap K₂.walk := by
+  have hoffi₂ : (cell S.diagram i).face ∉ sideFaces S.diagram.toCombMap K₂.walk := by
     have hmem : S.diagram.toCombMap.alpha ci ∈ K₂.walk := (mem_walk_iff K₂ _).mpr
       (Or.inr (Or.inl (by rw [S.diagram.toCombMap.alpha_involutive]; exact hci₂)))
     have h := faceOf_alpha_not_mem_sideFaces S.diagram.planar hw₂ hmem
     rwa [S.diagram.toCombMap.alpha_involutive, faceOf_of_mem_firstArc K₂ hci₂] at h
-  have hΠj₁ : (cell S.diagram j).face ∉ sideFaces S.diagram.toCombMap K₁.walk := by
+  have hoffj₁ : (cell S.diagram j).face ∉ sideFaces S.diagram.toCombMap K₁.walk := by
     have hmem : S.diagram.toCombMap.alpha cj ∈ K₁.walk := (mem_walk_iff K₁ _).mpr
       (Or.inr (Or.inr (Or.inr (by rw [S.diagram.toCombMap.alpha_involutive]; exact hcj₁))))
     have h := faceOf_alpha_not_mem_sideFaces S.diagram.planar hw₁ hmem
     rwa [S.diagram.toCombMap.alpha_involutive, faceOf_of_mem_secondArc K₁ hcj₁] at h
-  have hΠj₂ : (cell S.diagram j).face ∉ sideFaces S.diagram.toCombMap K₂.walk := by
+  have hoffj₂ : (cell S.diagram j).face ∉ sideFaces S.diagram.toCombMap K₂.walk := by
     have hmem : S.diagram.toCombMap.alpha cj ∈ K₂.walk := (mem_walk_iff K₂ _).mpr
       (Or.inr (Or.inr (Or.inr (by rw [S.diagram.toCombMap.alpha_involutive]; exact hcj₂))))
     have h := faceOf_alpha_not_mem_sideFaces S.diagram.planar hw₂ hmem
@@ -298,11 +289,11 @@ theorem mem_regions_of_mem_sideFaces_both (S : RealizedSectionFamily D lambda c 
                   rfl).elim
             · rw [hsecond₂] at h'
               exact Or.inr (faceOf_mem_of_mem_sideFrom hij hbi (Or.inl h'))
-            · exact (hΠ (hcell.symm.trans (faceOf_of_mem_secondArc K₂ h'))).elim
-          · exact (hΠi₂ (hcell ▸ faceOf_mem_sideFaces_of_mem hk)).elim
+            · exact (hcells (hcell.symm.trans (faceOf_of_mem_secondArc K₂ h'))).elim
+          · exact (hoffi₂ (by rw [← hcell]; exact faceOf_mem_sideFaces_of_mem hk)).elim
         · have h' := (mem_sideFaces_iff_of_not_walkKeep K₂.walk hk).mp hd₂
           rw [hcell] at h'
-          exact (hΠi₂ h').elim
+          exact (hoffi₂ h').elim
       · right
         have h' := RegionCandidate.faceOf_alpha_mem_of_mem_cellArcList hbi h
         rwa [S.diagram.toCombMap.alpha_involutive] at h'
@@ -320,7 +311,7 @@ theorem mem_regions_of_mem_sideFaces_both (S : RealizedSectionFamily D lambda c 
           · rcases (mem_walk_iff K₂ d).mp hk with h' | h' | h' | h'
             · rw [hfirst₂] at h'
               exact Or.inl (faceOf_mem_of_mem_sideFrom hij hai (Or.inr h'))
-            · exact (hΠ ((faceOf_of_mem_firstArc K₂ h').symm.trans hcell)).elim
+            · exact (hcells ((faceOf_of_mem_firstArc K₂ h').symm.trans hcell)).elim
             · rw [hsecond₂] at h'
               exact Or.inr (faceOf_mem_of_mem_sideFrom hij hbi (Or.inl h'))
             · rw [harc₂'] at h'
@@ -332,10 +323,10 @@ theorem mem_regions_of_mem_sideFaces_both (S : RealizedSectionFamily D lambda c 
                   K₁.secondArc K₂.secondArc hbj_ne haj_ne harc₂ harc₂' _ h h').elim
               · exact ((List.nodup_append.mp (List.nodup_append.mp hnd₂).1).2.2 _ h' _ h
                   rfl).elim
-          · exact (hΠj₂ (hcell ▸ faceOf_mem_sideFaces_of_mem hk)).elim
+          · exact (hoffj₂ (by rw [← hcell]; exact faceOf_mem_sideFaces_of_mem hk)).elim
         · have h' := (mem_sideFaces_iff_of_not_walkKeep K₂.walk hk).mp hd₂
           rw [hcell] at h'
-          exact (hΠj₂ h').elim
+          exact (hoffj₂ h').elim
       · left
         have h' := RegionCandidate.faceOf_alpha_mem_of_mem_cellArcList hai h
         rwa [S.diagram.toCombMap.alpha_involutive] at h'
@@ -363,7 +354,7 @@ theorem mem_regions_of_mem_sideFaces_both (S : RealizedSectionFamily D lambda c 
               rcases h with (h | h) | h
               · exact (hk₁ (hkeep₁ y (by rw [harc₁]; simp [h]))).elim
               · rw [hcell] at hα₁
-                exact (hΠi₁ hα₁).elim
+                exact (hoffi₁ hα₁).elim
               · exact (hk₁ (hkeep₁ y (by rw [harc₁]; simp [h]))).elim
             · rw [hsecond₂] at h
               exact Or.inr (faceOf_mem_of_mem_sideFrom hij hbi (Or.inl h))
@@ -373,7 +364,7 @@ theorem mem_regions_of_mem_sideFaces_both (S : RealizedSectionFamily D lambda c 
               rcases h with (h | h) | h
               · exact (hk₁ (hkeep₂ y (by rw [harc₂]; simp [h]))).elim
               · rw [hcell] at hα₁
-                exact (hΠj₁ hα₁).elim
+                exact (hoffj₁ hα₁).elim
               · exact (hk₁ (hkeep₂ y (by rw [harc₂]; simp [h]))).elim
           constructor
           · intro _ h
@@ -393,7 +384,7 @@ theorem mem_regions_of_mem_sideFaces_both (S : RealizedSectionFamily D lambda c 
               · exact (hk₁ (Or.inr ((mem_walk_iff K₁ _).mpr (Or.inr (Or.inl
                   (by rw [S.diagram.toCombMap.alpha_involutive, harc₁]; simp [h])))))).elim
               · rw [hcell] at hy₁
-                exact (hΠi₁ hy₁).elim
+                exact (hoffi₁ hy₁).elim
               · exact (hk₁ (Or.inr ((mem_walk_iff K₁ _).mpr (Or.inr (Or.inl
                   (by rw [S.diagram.toCombMap.alpha_involutive, harc₁]; simp [h])))))).elim
             · rw [hsecond₂] at h
@@ -406,7 +397,7 @@ theorem mem_regions_of_mem_sideFaces_both (S : RealizedSectionFamily D lambda c 
               · exact (hk₁ (Or.inr ((mem_walk_iff K₁ _).mpr (Or.inr (Or.inr (Or.inr
                   (by rw [S.diagram.toCombMap.alpha_involutive, harc₂]; simp [h]))))))).elim
               · rw [hcell] at hy₁
-                exact (hΠj₁ hy₁).elim
+                exact (hoffj₁ hy₁).elim
               · exact (hk₁ (Or.inr ((mem_walk_iff K₁ _).mpr (Or.inr (Or.inr (Or.inr
                   (by rw [S.diagram.toCombMap.alpha_involutive, harc₂]; simp [h]))))))).elim
           have hnot : S.diagram.toCombMap.faceOf y ∉ sideFaces S.diagram.toCombMap K₂.walk := by
@@ -520,11 +511,21 @@ theorem outerFace_not_mem_sideFaces_or_of_walks
 
 end CellPocketWalkOrder
 
+/-- **`CellPocketWalkOuterOffSideSomeOrderStatement` holds** (binder 5): the exterior face is off the
+side of the pocket walk of the order `(a, b)` or of the order `(b, a)`. -/
+theorem cellPocketWalkOuterOffSideSomeOrder :
+    CellPocketWalkOuterOffSideSomeOrderStatement.{u, w, v} := by
+  intro G _ Lambda W D eps lambda c Delta cuts S i j a b ha hb hab hij hai hbi K₁ K₂ hfirst₁
+    hsecond₁ harc₁ harc₂ hne₁ hchain₁ hcloses₁ hnodup₁ halpha₁ hfirst₂ hsecond₂ harc₁' harc₂' hne₂
+    hchain₂ hcloses₂ hnodup₂ halpha₂
+  exact CellPocketWalkOrder.outerFace_not_mem_sideFaces_or_of_walks S ha hb hab hij hai hbi K₁ K₂
+    hfirst₁ hsecond₁ harc₁ harc₂ hne₁ hchain₁ hcloses₁ hnodup₁ halpha₁ hfirst₂ hsecond₂ harc₁' harc₂'
+    hne₂ hchain₂ hcloses₂ hnodup₂ halpha₂
+
 end GroupApproximation.GGT.VanKampen
 
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.faceOf_mem_sideFaces_of_mem
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.faceOf_alpha_not_mem_sideFaces
-#audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.mem_invDarts_iff
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.mem_walk_iff
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.faceOf_of_mem_firstArc
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.faceOf_of_mem_secondArc
@@ -536,3 +537,4 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.outerFace_not_mem_sideFaces_or
 #audit_axioms
   GroupApproximation.GGT.VanKampen.CellPocketWalkOrder.outerFace_not_mem_sideFaces_or_of_walks
+#audit_axioms GroupApproximation.GGT.VanKampen.cellPocketWalkOuterOffSideSomeOrder
