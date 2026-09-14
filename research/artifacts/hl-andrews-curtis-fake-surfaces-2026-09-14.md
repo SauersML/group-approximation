@@ -131,9 +131,21 @@ composite of (AC1)–(AC5). Replay must end with the empty presentation.
 
 ## 7. Complexity 6 and reproduction
 
-- **Complexity 6.** 97 graphs; enumeration job 780533 (48 threads). The certification
-  pipeline, job 785018, runs certify → rescue → rescue2 → acverify → coverage.
-  Results are pending at the time of writing.
+- **Complexity 6 enumeration.** 97 graphs; job 780533, 48 threads, 48:40 wall.
+  - 2,967,338 acyclic classes, 7762 of them without small disks.
+  - The t = 3, 4, 5 regression reruns matched byte for byte.
+- **Complexity 6 certification.** Job 788925 ran certify → rescue → rescue2 → acverify
+  → coverage.
+  - First pass: 2,952,729 certified, 14,609 stuck, 0 model disagreements.
+  - Rescue: 14,426 on another tree, 5 with an A₅ image, 178 open.
+  - Rescue2: all 178 by backtracking with the product search.
+  - Standalone `acverify`: 2,967,333 stably AC-trivial, 5 π₁-nontrivial, 0 failures.
+  - Coverage: 0 uncovered.
+- **π₁-nontrivial classes at t = 6** (graph, code): (78, 1366823383), (88, 704843050),
+  (95, 520477952), (95, 1366799766), (97, 748582661).
+- **Claim:** `fake-surfaces-of-complexity-six-are-stably-ac-trivial`.
+- **Discarded run.** Job 785018 wrote truncated gzip shards and is discarded: the
+  producer did not close its streams, fixed in c4df83a50.
 - **Jobs.**
   - calibration 779877;
   - certification 780529;
