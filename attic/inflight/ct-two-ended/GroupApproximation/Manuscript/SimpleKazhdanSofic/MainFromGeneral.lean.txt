@@ -123,12 +123,14 @@ section Dynamics
 
 variable {A : Type} [TopologicalSpace A] [DiscreteTopology A] [Finite A]
 
+omit [DiscreteTopology A] [Finite A] in
 theorem isMinimal_shift (S : Subshift A ℤ) (hmin : IsMinimal S) :
     MulAction.IsMinimal (Multiplicative ℤ) S.carrier :=
   ⟨fun z => (minimalSubshift_dense_orbits S hmin z).mono (by
     rintro _ ⟨j, rfl⟩
     exact ⟨ofAdd j, rfl⟩)⟩
 
+omit [Finite A] in
 /-- **No periodic points, so the action is topologically free** (tex l.240–242). -/
 theorem isTopologicallyFree_shift (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
     ∀ ξ : Multiplicative ℤ, ξ ≠ 1 → ∀ U : Set S.carrier, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z := by
@@ -138,12 +140,15 @@ theorem isTopologicallyFree_shift (S : Subshift A ℤ) (hinf : Infinite S.carrie
   haveI := hinf
   exact ⟨z, hz, zpow_apply_ne_self (subshiftHomeo S) (fun y => minimalSubshift_dense_orbits S hmin y) hj z⟩
 
+omit [DiscreteTopology A] in
 /-- **An infinite minimal subshift has no isolated points.** -/
 theorem perfectSpace_carrier (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
     PerfectSpace S.carrier := by
   refine ⟨preperfect_iff_nhds.2 fun x _ U hU => ?_⟩
-  by_contra hno
-  push_neg at hno
+  by_contra hno'
+  have hno : ∀ y ∈ U ∩ Set.univ, y = x := fun y hy => by
+    by_contra hne
+    exact hno' ⟨y, hy, hne⟩
   obtain ⟨t, htU, htopen, hxt⟩ := mem_nhds_iff.1 hU
   have hsingle : IsOpen ({x} : Set S.carrier) := by
     have heq : t = {x} := Set.Subset.antisymm (fun y hy => hno y ⟨htU hy, Set.mem_univ y⟩)
