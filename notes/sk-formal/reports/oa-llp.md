@@ -72,6 +72,21 @@ Formal route:
   - `printedOzawaNoLocalLiftingGeneral` is the closed endpoint. It goes through oa-kirchberg's inhabitant `KirchbergTheorem.kirchbergKazhdanFactorizationInput` (9df1daac4) and oa-mcduff's producer `hyperlinearTracePreservingModelStatement_holds` (24a27e527).
 - Census rows wait for a census regenerated at the tip; the census on origin is at 696c4b602.
 
+## ITEM 2 (main, 09-14 ~10:00): census rows l.89–107 at 8b36733d7 (census 9cb80166d, md5 29d63f79)
+
+CLAIM census rows 54e33325e875 7596c2d69c76 c0c91102c8a7 f27d6a0083cf e3e973d598a3 in metadata/sk-census-rows/oa-llp.tsv
+
+| key | tex | grade | carrier |
+|---|---|---|---|
+| `0efbce019168` | 89–92, Stepanov route | already formalized by sk-stepanov (`metadata/sk-census-rows/sk-stepanov.tsv`) | `printedStepanovRouteSimplicity`; not duplicated |
+| `54e33325e875` | 94–96, naming credit | attribution | — |
+| `7596c2d69c76` | 99–102, Pestov–Kwiatkowska | attribution | — |
+| `c0c91102c8a7` | 104, "The proof works for other actions" | formalized | `printedSimpleKazhdanGeneral` (closed), `printedSimpleKazhdanSoficMain_of_general` |
+| `f27d6a0083cf` | 104–105, topologically free | definition | `IsTopologicallyFreeAction`, the inline clause of `PrintedSimpleKazhdanGeneral` |
+| `e3e973d598a3` | 105–107, `e_ij(r)` | definition | `elementaryUnit` (value `1 + Matrix.single i j r`), `elementaryGroup` |
+
+oa-kirchberg holds l.30–88.
+
 ## Status
 
 - 21:3x: claim landed at the current tip. `LocalLiftingProperty.lean` is in progress: definitions, the Arveson statement, and the calibration that ℂ has the LLP.
