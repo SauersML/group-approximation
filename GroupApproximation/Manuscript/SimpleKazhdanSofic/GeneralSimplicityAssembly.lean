@@ -1,0 +1,90 @@
+import GroupApproximation.Dynamics.ClopenGroupCrossedProduct
+import Mathlib.Topology.Separation.Profinite
+import Mathlib.Topology.Metrizable.Basic
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralCommutatorSpan
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralSimplicityNormalSubgroup
+
+/-!
+# Simplicity for group actions: the printed statement over `LC(Z, F_2) ⋊ Λ`
+
+`simple_kazhdan_sofic_group.tex` at 696c4b602, `thm:general` (simplicity clause) and subsection
+"Simplicity" (l.151–210):
+
+> Let a finitely generated group $\Lambda$ act minimally and topologically freely on a Cantor set
+> $Z$, and let $R=\LC(Z,\F_2)\rtimes\Lambda$ … Then for every $n\ge3$, $\EL_n(R)$ is … simple …
+
+The ring is sk-lef-action's `ClopenGroupCrossedProduct Λ Z (ZMod 2)`
+(`Dynamics/ClopenGroupCrossedProduct`). The two halves of the printed proof combine:
+
+* `General.generalCommutatorWitness` (l.152–197): every nontrivial normal subgroup of `EL_n(R)`
+  contains the commutator witness;
+* `General.isSimpleGroup_of_generalCommutatorWitness` (l.176–208): the witness gives `K = G`.
+
+The action of `Λ` on the coefficients is `ClopenGroupCoeff.instMulSemiringAction`,
+`ξ • f = f ∘ ξ⁻¹`. The hypotheses:
+
+* minimality is Mathlib's `MulAction.IsMinimal Λ Z`;
+* topological freeness is `interior {z | ξ • z = z} = ∅` for `ξ ≠ 1`: no nontrivial element fixes a
+  nonempty open set;
+* a Cantor set is compact, totally separated and nonempty.
+
+The theorem holds without finite generation of `Λ` and without metrizability or perfectness of `Z`.
+
+* `isSimpleGroup_clopenGroupCrossedProduct`;
+* the closed endpoint `printedGeneralSimplicityClopenGroup`.
+-/
+
+namespace GroupApproximation
+namespace SimpleKazhdanSofic
+namespace General
+
+/-- **`EL_n(LC(Z, F_2) ⋊ Λ)` is simple** for a minimal, topologically free action by homeomorphisms
+on a nonempty compact totally separated space, and every `n ≥ 3`. -/
+theorem isSimpleGroup_clopenGroupCrossedProduct {Λ Z : Type*} [Group Λ] [TopologicalSpace Z]
+    [MulAction Λ Z] [ContinuousConstSMul Λ Z] [CompactSpace Z] [TotallySeparatedSpace Z]
+    [Nonempty Z] [MulAction.IsMinimal Λ Z]
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) {n : ℕ} (hn : 3 ≤ n) :
+    IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))) := by
+  letI : MulSemiringAction Λ (LocallyConstant Z (ZMod 2)) :=
+    ClopenGroupCoeff.instMulSemiringAction Λ Z (ZMod 2)
+  have hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z) :=
+    fun _ _ _ => rfl
+  exact isSimpleGroup_of_generalCommutatorWitness (isCovariantPair hact) hn
+    (generalCommutatorWitness hact hfree (by omega))
+
+/-- **The printed hypotheses**: minimality as a hypothesis, topological freeness as "no nontrivial
+element fixes a nonempty open set", and a compact metrizable totally disconnected nonempty space
+(totally separated by Mathlib's instance for compact Hausdorff spaces). -/
+theorem isSimpleGroup_clopenGroupCrossedProduct_of_isOpen {Λ Z : Type*} [Group Λ]
+    [TopologicalSpace Z] [MulAction Λ Z] [ContinuousConstSMul Λ Z] [CompactSpace Z]
+    [TopologicalSpace.MetrizableSpace Z] [TotallyDisconnectedSpace Z] [Nonempty Z]
+    (hmin : MulAction.IsMinimal Λ Z)
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → ∀ U : Set Z, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z)
+    {n : ℕ} (hn : 3 ≤ n) :
+    IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))) := by
+  haveI := hmin
+  refine isSimpleGroup_clopenGroupCrossedProduct (fun ξ hξ => ?_) hn
+  by_contra hne
+  obtain ⟨z, hz, hmove⟩ := hfree ξ hξ _ isOpen_interior (Set.nonempty_iff_ne_empty.2 hne)
+  have hfix : z ∈ {z : Z | ξ • z = z} := interior_subset hz
+  exact hmove hfix
+
+/-- **Printed simplicity for group actions** (`thm:general`, simplicity clause, and "Simplicity",
+tex l.151–210), over `ClopenGroupCrossedProduct Λ Z (ZMod 2)`. -/
+def PrintedGeneralSimplicityClopenGroup : Prop :=
+  ∀ (Λ Z : Type) [Group Λ] [TopologicalSpace Z] [MulAction Λ Z] [ContinuousConstSMul Λ Z]
+    [CompactSpace Z] [TotallySeparatedSpace Z] [Nonempty Z] [MulAction.IsMinimal Λ Z],
+    (∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) →
+    ∀ n : ℕ, 3 ≤ n →
+      IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2)))
+
+theorem printedGeneralSimplicityClopenGroup : PrintedGeneralSimplicityClopenGroup :=
+  fun _ _ _ _ _ _ _ _ _ _ hfree _ hn => isSimpleGroup_clopenGroupCrossedProduct hfree hn
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.General.isSimpleGroup_clopenGroupCrossedProduct
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.General.printedGeneralSimplicityClopenGroup
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.General.isSimpleGroup_clopenGroupCrossedProduct_of_isOpen
+
+end General
+end SimpleKazhdanSofic
+end GroupApproximation
