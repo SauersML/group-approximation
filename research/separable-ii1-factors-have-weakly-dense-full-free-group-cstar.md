@@ -19,6 +19,15 @@ Let `M` be a II_1 factor with separable predual. There is an injective unital *-
 - **First clause:** settled for every separable II_1 factor, including the property (T) factors `L(G_X)` and `L(SL_3(Z))`, the free group factors, and factors that do not embed in `R^ω`.
 - **Popa-algebra clause:** `property-t-factors-contain-weakly-dense-popa-algebras`, open for property (T).
 
+**Statement fidelity** (checked against the source, math/0111286 v3, 2026-09-13):
+- **No further condition.** The printed question adds none. Brown's following remark is only about where a Popa algebra can hide (McDuff room) and why non-amenability is no obstruction.
+- **No trace condition can be meant.** An amenable (for instance quasidiagonal) trace on a weakly dense subalgebra forces the factor to be `R` (Brown's memoir, arXiv:math/0304009, l.4636 context). Yet Brown–Dykema answer the free group factor case positively, with no such condition.
+- **Brown's six properties.** The Corollary after Theorem `arbitraryMcDuff` lists six properties of Brown's weakly dense subalgebras of McDuff factors; the memoir version says all but one follow from quasidiagonality. The algebra here has all six:
+  - (1) the 2-norm local finite-dimensional approximation relative to `‖e‖_2`: the corners `q_j` reduce finite sets of polynomials exactly, with finite-dimensional compressions;
+  - (2) finite-rank projections almost commuting in norm, (3) a centralizing state on `B(L²M)`, (5) normal ucp maps to matrices that are asymptotically multiplicative on `A`, and (6) a liftable ucp map to `R^ω` injective on `A`: all from quasidiagonality;
+  - (4) hyperfinite `R_n ⊆ B(L²M)` approximating `A` in norm: the same construction inside `R` embeds `C*(F_∞)` in `R`, and Voiculescu's theorem does the rest.
+- **What is missing** is simplicity, which is exactly the second clause of the question.
+
 **Mechanism.**
 - Put a norming sequence of finite-dimensional representations `ρ_j` of `F_∞` on corners `q_j` of trace `2^{-j-1}`, each representation repeated infinitely often.
 - Generator `a_i` acts by `ρ_j(a_i)` on every corner `q_j` with `j ≥ i`. On the complementary projection `e_i` (trace `1 − 2^{-i}`) it is a unitary 2-norm-close to the `κ(i)`-th member of a generating sequence of unitaries of `M`.

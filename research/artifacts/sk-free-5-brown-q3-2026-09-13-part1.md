@@ -54,6 +54,32 @@ The GNS representations there are quotient maps of `C*(F_∞)`. The McDuff tenso
 - "every McDuff factor contains a weakly dense Popa algebra (Theorem 5.3.3)";
 - "all the (interpolated) free group factors L(F_n) (1<n<∞) contain finitely generated, weakly dense Popa algebras".
 
+**Brown, same paper, the Corollary after Theorem `arbitraryMcDuff`, items (4)–(6) (source l.2772–2785):**
+> "\item There exists a sequence of II$_1$ factors, $R_n \subset
+> B(L^2(M))$, such that $R_n \cong R$ for all $n$ and for each $a \in A$
+> we can find $x_n \in R_n$ such that $\| a - x_n \| \to 0$.
+> \item There exists a sequence of normal, u.c.p. maps $\varphi_n : M
+> \to M_{k(n)} ({\mathbb C})$ such that $\| \varphi_n (ab) - \varphi_n
+> (a) \varphi_n (b) \|_2 \to 0$ for all $a,b \in A$.
+> \item There exists a completely positively liftable u.c.p. map $\Phi :
+> M \to R^{\omega}$ such that $\Phi|_A$ is a $*$-monomorphism."
+
+Items (1)–(3) of the same Corollary:
+- (1) is a 2-norm local finite-dimensional approximation, `‖E_B(exe) − (x − e^⊥xe^⊥)‖_2 < ε‖e‖_2`;
+- (2) is finite-rank projections almost commuting in norm;
+- (3) is a state on `B(L²(M))` whose centralizer contains `A`.
+
+The memoir version (math/0304009, l.4715ff) says: "With the exception of statement (3), all assertions above follow from the quasidiagonality of $A$ (identified with a weakly dense subalgebra of $M$)."
+
+## 1b. Statement fidelity
+- **The question has no further condition.**
+- **No trace condition can be meant.** An amenable trace on a weakly dense subalgebra forces injectivity (memoir, l.4636: "Since $A$ is quasidiagonal $\tau$ must be a quasidiagonal trace. In particular, it must be an amenable trace and hence ... produce the hyperfinite II$_1$-factor in the GNS construction", in the unique-trace, locally reflexive case). Yet Brown–Dykema answer the free group factor case positively with a QD algebra.
+- **T1's algebra has all six listed properties:**
+  - (1) exactly on polynomials, through the corners `q_j` (errors scale with `‖e‖_2` under norm approximation);
+  - (2), (3), (5), (6) from quasidiagonality;
+  - (4) because T1 applied inside `R` embeds `C*(F_∞)` in `R`, and Voiculescu's theorem gives approximate unitary equivalence of the two essential faithful representations.
+- **What T1's algebra lacks is simplicity**, which is the second clause.
+
 ## 2. Theorem T1
 **Statement.** `M` is a II_1 factor with separable predual. There is an injective unital *-homomorphism `π : C*(F_∞) → M` with `π(C*(F_∞))'' = M`.
 
