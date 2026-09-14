@@ -67,7 +67,6 @@ theorem extTree_prefix (T : List Bool → List Bool) (r : Req) (ρ : List Bool) 
     · rw [if_pos h1, h1]
       exact (diagPair_spec _ _ _).1
     · rw [if_neg h1]
-      exact List.prefix_refl _
 
 theorem extTree_diag (T : List Bool → List Bool) (r : Req) (h : r.1 ≠ r.2.1) :
     Diag (codeEnum r.2.2) (extTree T r r.1) (extTree T r r.2.1) := by
@@ -186,14 +185,12 @@ theorem stage_path_prefix (f : ℕ → Bool) {s t : ℕ} (h : s ≤ t) :
   induction t with
   | zero =>
     rw [Nat.le_zero.1 h]
-    exact List.prefix_refl _
   | succ t ih =>
     rcases lt_or_eq_of_le h with h' | h'
     · have hs := stage_prefix_succ t (path f (t + 1))
       rw [path_dropLast] at hs
       exact (ih (Nat.lt_succ_iff.1 h')).trans hs
     · rw [h']
-      exact List.prefix_refl _
 
 theorem getElem?_eq_of_prefix {σ σ' : List Bool} (hp : σ <+: σ') {m : ℕ} (hm : m < σ.length) :
     σ[m]? = σ'[m]? := by

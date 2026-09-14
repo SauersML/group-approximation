@@ -78,14 +78,16 @@ theorem eval_coeffTable (S : Subshift A ℤ) (c : Coeff A) :
       ((Pestov91.CrossedProduct.unitOf (ofAdd (1 : ℤ)) :
         (ClopenCrossedProduct (subshiftHomeo S) (ZMod 2))ˣ) :
           ClopenCrossedProduct (subshiftHomeo S) (ZMod 2))
-    rw [cylInd_nil, map_one, Pestov91.CrossedProduct.val_unitOf]
+    rw [cylInd_nil, map_one (ClopenCoeff.of (subshiftHomeo S) (ZMod 2)),
+      Pestov91.CrossedProduct.val_unitOf]
   | uInv =>
     rw [coeffTable, eval_cons, eval_nil, add_zero]
     show single (ofAdd (-1 : ℤ)) (ClopenCoeff.of (subshiftHomeo S) (ZMod 2) (cylInd S.carrier [])) =
       (((Pestov91.CrossedProduct.unitOf (ofAdd (1 : ℤ)))⁻¹ :
         (ClopenCrossedProduct (subshiftHomeo S) (ZMod 2))ˣ) :
           ClopenCrossedProduct (subshiftHomeo S) (ZMod 2))
-    rw [cylInd_nil, map_one, Pestov91.CrossedProduct.val_inv_unitOf, ofAdd_neg]
+    rw [cylInd_nil, map_one (ClopenCoeff.of (subshiftHomeo S) (ZMod 2)),
+      Pestov91.CrossedProduct.val_inv_unitOf, ofAdd_neg]
   | letter a =>
     rw [coeffTable, eval_cons, eval_nil, add_zero]
     show single (ofAdd (0 : ℤ))
@@ -136,6 +138,7 @@ theorem wordValue_eq_one_iff (S : Subshift A ℤ) (w : List (Gen A × Bool)) :
   · intro hw
     exact Subtype.ext (Units.ext hw)
 
+open Classical in
 /-- **cor:wp, proof, first paragraph: `L(X)` computes the word problem.** -/
 theorem printedWordProblemReducesToLanguage : PrintedWordProblemReducesToLanguage := by
   intro A _ _ _ _ _ S
