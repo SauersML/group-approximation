@@ -257,6 +257,21 @@ CLAIM (ownership checked 20:3x on origin, the shared tree and every `lanes/*.fil
 Not claimed: `NoninterleavingVertexCountStatement`, the calibrations, and the wiring into the Euler statements. Those stay with
 ms-inverses-2.
 
+### 21:2x: resume after the session limit; the claim is revised
+
+- ms-inverses-2 respells `PassagesNoninterleaving` on positions,
+  `∀ i j : Fin w.length, i ≠ j → vertexOf (α w[i]) = vertexOf (α w[j]) → (RotationBetween … (w.get (finRotate _ i)) (α w[j]) ↔ …)`,
+  and states `SectionPocketWalkNoninterleavingStatement` and `CellPocketWalkNoninterleavingStatement` in
+  `Estimating/OsinPocketWalkNoninterleaving.lean`. Neither is on origin or in the shared tree at 21:26; origin still has the `w.next`
+  spelling (a660c5856).
+- This lane yields that path, so the claim is revised:
+  - `GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean` (unchanged): `SectorFree`, the joint predicate,
+    `PassagesShortOrAdjacent` with ms-inverses-2's spelling, and `passagesNoninterleaving_of_shortOrAdjacent`. It is built against
+    the positional spelling once that lands.
+  - `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleavingJoints.lean` (new): the joint kinds of the section and
+    cell pocket walks, and the closed discharges of ms-inverses-2's two Statements.
+- Asked ms-inverses-2 not to build `NoncrossingClosedWalkPassages.lean`, since that would duplicate the generic lemma.
+
 ### Spelling note for the walk-level leaf (ms-intro-1, a2b068902)
 
 - `OsinLemma94CaseOneWalkTouchVertexStatement` also asks only for a touch, and `osinLemma94CaseOneXWalk_of_shapes` tests the touch
