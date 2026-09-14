@@ -206,7 +206,7 @@ end CellPocketWalk
 theorem cellPocketWalkNoninterleaving : CellPocketWalkNoninterleavingStatement.{u, w, v} := by
   intro G _ Lambda W D eps lambda c Delta cuts hlea S i j a b ha hb hab hij hai hbi hclean K hfirst
     hsecond h₁ h₂ hw
-  have hlea' := OuterCellThickening.leastArea_of_oEquivalent S.equiv hlea
+  have hlea' : S.diagram.LeastArea := OuterCellThickening.leastArea_of_oEquivalent S.equiv hlea
   obtain ⟨G₁, hG₁⟩ := h₁
   obtain ⟨G₂, hG₂⟩ := h₂
   have hint := K.internal_not_walkKeep hlea' hfirst hsecond (S.pairwise a ha b hb hab)

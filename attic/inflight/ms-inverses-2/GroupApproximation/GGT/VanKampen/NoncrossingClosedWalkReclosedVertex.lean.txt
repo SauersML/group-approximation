@@ -1,0 +1,76 @@
+import GroupApproximation.GGT.VanKampen.NoncrossingClosedWalkEuler
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonCopyCleanWalk
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The rotations of both reclosings stay at the old vertex
+
+Osin, arXiv:math/0411039v3, proof of Lemma 9.7(b): "Let us consider the subdiagram `Γ_1` of `Δ`
+such that: (i) `∂Γ_1 = s_1 t_1 s_2 t_2` ... (ii) `Γ_1` contains all `Γ_{i,1}`'s."
+
+The vertex bound `SectorFreeVertexCountStatement` (`NoncrossingClosedWalkEulerSectorFree`) counts the
+vertices of the two reclosings of a noncrossing closed walk `w` vertex by vertex of the old map.
+Both reclosed rotations keep the old vertex of a retained dart.
+* In the inner reclosing a retained dart `x` whose reversal is a walk dart turns to the successor
+  `next (alpha x)` of that walk dart, which starts where `alpha x` ends, at the vertex of `x`; every
+  other retained dart turns by old rotation.
+* In the outer reclosing a retained dart `x` whose reversal lies on the other side is a walk dart, and
+  it turns to `alpha (prev x)`, the reversal of the walk dart before it, which ends at the vertex of
+  `x`; every other retained dart turns by old rotation.
+
+* `IsNoncrossingClosedWalk.vertexOf_innerSigma`, `IsNoncrossingClosedWalk.vertexOf_outerSigma`.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121,
+`\begin{theorem}[Hull's small cancellation theorem]\label{thm:hull}`), through Osin's Lemma 9.7(b);
+certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+open Equiv Surgery.MapCollapse SimpleClosedWalkSides NoncrossingClosedWalkEuler
+
+universe u
+
+namespace IsNoncrossingClosedWalk
+
+variable {M : CombMap.{u}} {w : List M.Dart}
+
+/-- **The inner reclosed rotation stays at the old vertex.** -/
+theorem vertexOf_innerSigma (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
+    (x : KeptDart M (sideFaces M w)) :
+    M.vertexOf ((reclosedMap M (sideFaces M w) (hw.innerCycle hM)).sigma x).1 =
+      M.vertexOf x.1 := by
+  classical
+  by_cases ha : M.alpha x.1 ∈ w
+  · have hx : M.faceOf (M.alpha x.1) ∈ sideFaces M w := (hw.faceOf_alpha_mem_iff hM x.2).mpr ha
+    rw [reclosed_sigma_val_of_mem (hw.innerCycle hM) x hx, hw.innerCycle_boundaryPerm_val hM]
+    have hp := hw.vertexOf_alpha_eq_next ha
+    rw [M.alpha_involutive x.1] at hp
+    exact hp.symm
+  · rw [reclosed_sigma_val_of_notMem (hw.innerCycle hM) x
+      (fun h => ha ((hw.faceOf_alpha_mem_iff hM x.2).mp h)), M.vertexOf_sigma]
+
+/-- **The outer reclosed rotation stays at the old vertex.** -/
+theorem vertexOf_outerSigma (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
+    (x : KeptDart M (sideOutside M w)) :
+    M.vertexOf ((reclosedMap M (sideOutside M w) (hw.outerCycle hM)).sigma x).1 =
+      M.vertexOf x.1 := by
+  classical
+  by_cases hx : M.faceOf (M.alpha x.1) ∈ sideOutside M w
+  · have he : M.alpha (M.alpha x.1) ∈ w := (hw.isBoundaryDart_sideOutside_iff hM _).mp
+      (isBoundaryDart_of_mem M (sideOutside M w) (keptAlpha M (sideOutside M w) x) hx)
+    rw [reclosed_sigma_val_of_mem (hw.outerCycle hM) x hx, hw.outerCycle_boundaryPerm_val hM]
+    conv_rhs => rw [← M.alpha_involutive x.1]
+    have hp := hw.vertexOf_alpha_eq_next (List.prev_mem w _ he)
+    rw [List.next_prev w hw.nodup _ he] at hp
+    exact hp
+  · rw [reclosed_sigma_val_of_notMem (hw.outerCycle hM) x hx, M.vertexOf_sigma]
+
+end IsNoncrossingClosedWalk
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.vertexOf_innerSigma
+#audit_axioms GroupApproximation.GGT.VanKampen.IsNoncrossingClosedWalk.vertexOf_outerSigma
