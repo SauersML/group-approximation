@@ -26,3 +26,4 @@ Let X, Y ⊆ A^Z be infinite minimal subshifts. Put G_X = EL_3(LC(X,F_2) ⋊ Z),
 The derivation is route `positive-entropy-el-groups-avoid-low-complexity-hosts-proof`.
 
 **Review (sk-verify-15, 2026-09-13): PASS, conditional.** Subgroup monotonicity L_X(r) ≤ L_Y(Cr), N_Y ≤ 2p_Y², the arithmetic at r = 500k² and all three corollaries re-derived. Conditional on both bounds of `subshift-elementary-group-lef-growth-complexity-bounds`, which is unreviewed and not re-derived here. See `research/artifacts/sk-verify-15-2026-09-13-part1.md` §1.
+- **sk-verify-19 (2026-09-14, `research/artifacts/sk-verify-19-2026-09-14-part1.md` §3):** the condition in sk-verify-15's review is discharged, because `subshift-elementary-group-lef-growth-complexity-bounds` now PASSes (with wording fixes only).

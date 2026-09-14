@@ -24,3 +24,9 @@ distinct_from:
 - If `p_X(n) ≥ n^(4+ε)` for infinitely many `n`, then `G_X` is not isomorphic to `G_Y` for any linearly recurrent `Y`.
 
 **Status: established** by `subshift-elementary-group-lef-growth-complexity-bounds-proof`. The proofs are written out and UNREVIEWED; they are queued with sk-referee-2.
+
+## Review
+- **sk-verify-19 PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-19-2026-09-14-part1.md` §3):** Theorem A (windows, the ball-multiplicative periodic model with no aliasing for N ≥ 4r+2, N_X ≤ 2R_X, the covering walk), Corollary A1, Lemmas 0–2 (including T(h) ≤ 25·4^h), (B1), (B2) and Lemma 3 / Theorem C were all re-derived by hand, together with consequence (D2) at r = 500n². Details:
+  - (B2): the kernel lies in ∏Z(P_v), and h maximal with 125·4^h ≤ r gives 2^h ≥ ⌈√(r/500)⌉, the correct direction.
+  - Theorem C: relation lengths ≤ 5λ = 20κ+480m, and the kernel meets the centre.
+  - Fixes: (W1) "doubly exponential" for positive entropy means between exp(exp(c√r)) and exp(exp(Cr)); (W2) the Sturmian Rauzy graph is a cycle plus E−V = 1 further ear; (W3) the status line "queued with sk-referee-2" is superseded by this review.

@@ -23,3 +23,13 @@ distinct_from:
   - The odometer is not a subshift and fails (H2).
 
 Route: `dyadic-tower-subshift-full-group-non-uniform-growth-proof`.
+
+## Review
+- **sk-verify-19 PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-19-2026-09-14-part1.md` §1):** every use of the substitution in the reviewed dyadic proof (parts 1–2) is replaced correctly:
+  - (M1) in the tower model becomes (H1);
+  - the letter cylinders and the Boolean closure of Step 2(b) become (H2);
+  - the count 3^{|A|} becomes 3^K.
+  - Step 3, Lemma 5.1 and the level combinatorics use only (H1).
+  - The induced system (V_m,S_m) is automatically minimal, since first return is exactly 2^m.
+  - ω([[T]]′)=1 follows along infinitely many good scales by submultiplicativity. The eigenvalue firewall (Lemma O) and "the odometer fails (H2)" were re-derived: (H2) codes (V_m,S_m) as a subshift.
+  - Fixes: (F1) read (H2) as "the S_m-translates of 𝒫_m generate all clopen subsets of V_m as a Boolean algebra"; (F2) good scales need m ≥ 8 (n = m−3 ≥ 5).
