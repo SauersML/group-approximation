@@ -11,7 +11,7 @@ import Mathlib.Topology.Perfect
 /-!
 # The lamplighter host `G_Δ = EL_3(R_Δ)`
 
-`simple_kazhdan_sofic_group.tex` at origin/main 696c4b602 (md5 0648e5f8…), tex 419–430, in the
+`simple_kazhdan_sofic_group.tex` at origin/main 8b36733d7 (md5 29d63f79…), tex 392–403, in the
 proof of `cor:lef` and `cor:host`:
 
 > By Theorem `thm:general`, `G_Δ = EL_3(R_Δ)` is an infinite finitely generated simple Kazhdan group,
@@ -74,7 +74,7 @@ instance perfectSpace_lampSpace [Infinite Δ] : PerfectSpace (LampSpace Δ) := b
 
 variable {Δ}
 
-/-- **`R_Δ` is matricial** (tex 416–419, the hypothesis of `thm:general`): the reindexed `φ_n` of the
+/-- **`R_Δ` is matricial** (tex 389–392, the hypothesis of `thm:general`): the reindexed `φ_n` of the
 finite models on balls, on the printed generators. -/
 theorem isMatricialVia_lampRing {T : Set Δ} (hTfin : T.Finite) (hT : Subgroup.closure T = ⊤)
     (M : BallModelSequence Δ T) :
@@ -86,7 +86,7 @@ theorem isMatricialVia_lampRing {T : Set Δ} (hTfin : T.Finite) (hT : Subgroup.c
 
 variable (Δ)
 
-/-- **The host** (tex 419–422): for an infinite finitely generated LEF group `Δ`, `G_Δ = EL_3(R_Δ)` is an
+/-- **The host** (tex 392–395): for an infinite finitely generated LEF group `Δ`, `G_Δ = EL_3(R_Δ)` is an
 infinite finitely generated simple Kazhdan group, the limit of finite simple groups `SL_{3N}(F_2)`
 whose Cayley graphs form expanders. -/
 theorem isLEFHost_lampRing [Infinite Δ] (hΔ : Group.FG Δ) (hLEF : IsLEF Δ) :
@@ -131,7 +131,7 @@ theorem unitHom_injective :
     (fun g => (ClopenGroupCoeff.of (LampAffine Δ) (LampSpace Δ) (ZMod 2)).symm g (fun _ => 0)) h1
   exact (one_ne_zero : (1 : ZMod 2) ≠ 0) h2
 
-/-- **`[Δ,Δ] ≤ [Λ,Λ]` embeds in `G_Δ`** (tex 424–430), through `ξ ↦ diag(u_ξ,1,1)`. -/
+/-- **`[Δ,Δ] ≤ [Λ,Λ]` embeds in `G_Δ`** (tex 397–403), through `ξ ↦ diag(u_ξ,1,1)`. -/
 theorem exists_commutator_embedding :
     ∃ f : ↥(commutator Δ) →* ↥(elementaryGroup (Fin 3) (LampRing Δ)), Function.Injective f := by
   have hle : (commutator Δ).map (SemidirectProduct.inr : Δ →* LampAffine Δ) ≤
@@ -157,7 +157,7 @@ end Lamplighter
 
 open Lamplighter
 
-/-- **The lamplighter host** (tex 419–430): for an infinite finitely generated LEF group `Δ`,
+/-- **The lamplighter host** (tex 392–403): for an infinite finitely generated LEF group `Δ`,
 `G_Δ = EL_3(LC(Ω, F_2) ⋊ Λ)` is an infinite finitely generated simple Kazhdan group that is a limit of
 finite simple groups `SL_{3N}(F_2)` with expander Cayley graphs, and `[Δ,Δ]` embeds in it. -/
 def PrintedLamplighterHost : Prop :=
