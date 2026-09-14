@@ -39,3 +39,16 @@ it fails the `G_Y`-conjugacy form.
 - **Block idempotents of `F_2[GL_3(F_2)]` (sk-iso-rigidity).** Where it dies: the group algebra is not semisimple.
 - **Orbit modules (sk-free-2's 2-transitive stabilizers `H_x`).** Where it dies: classifying the maximal subgroups of
   `G_Y` with 2-transitive coset actions of linear type.
+- **Frobenius support idempotents (sk-normalizer-recognition, 2026-09-14).**
+  - `S_V := I + Σ_{k∈α(F21_V)} k` is an idempotent of `M_3(R_Y)`, since `F21 = C_7⋊C_3` has odd order. It equals `e_VI`
+    on the X-side.
+  - Unconditional dichotomy: `α(E_3(e_UR_Xe_U))` acts trivially off `S_U` iff `S_US_{X∖U} = 0`.
+  - Under (O), `S_VS_W = 0` for disjoint `V, W`, and (O′), `S_X = I`, the `S_V` form a Boolean algebra
+    `𝔅 ≅ LC(X,F_2)` of commuting idempotents. Each corner group sits in its `S_V`-corner, and `α(L_X)` centralizes `𝔅`
+    (`frobenius-support-idempotents-give-boolean-realization`). That is the "companions from idempotents" step, modulo
+    (O) and (O′).
+  - Where it dies:
+    - (O) is a ring identity, not a group identity. Swapping symmetries from `[[T]]′` preserve the mixed piece.
+    - (O′) against the trivial centralizer needs `K_1`-injectivity for `n = 3` (OPEN, sr ≤ 2).
+    - The last step, from `α(L_X) ≤ C(𝔅)` to `k·GL_3(B)·k^{-1}`, needs the commutant to be pointwise `M_3(F_2)`.
+  - Artifact `research/artifacts/sk-normalizer-recognition-2026-09-14-part1.md`.
