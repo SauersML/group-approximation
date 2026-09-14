@@ -534,6 +534,16 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - D: every element of G_X is a product of at most 78 elementary matrices (tower compression, Fredholm index 0), with no stable-rank input.
     - E: every conjugation-invariant norm on G_X is bounded, and every element is a product of 78 involutions.
     - Proposal: a remark after §2 (+12 lines, or +4 with non-uniform simplicity only). DECIDED: OUT by default. D's proof is long, so it becomes a Cairn result. The +4-line version can be reconsidered after A PASSes, if rev4.1 has room.
+114. **sk-rev4-referee-a** (955daef270, on the landed md5 9144d853…): NO ERROR, NO GAP; every mathematical sentence re-derived.
+    - The previously unreviewed note text PASSes: the isolation step with wreath commutators; Theorem 2 in S1 form and §1.
+    - It also confirmed the intro's Stepanov condition pr+qs=0 by a tower dimension count.
+    - ADOPT for rev4.1:
+      - U1: +1 line, why one polynomial kills g (finitely many degree-<N polynomials, take their product);
+      - U2: reorder so the EL_3(M_N)=SL_{3N} sentence comes first (merges with referee-c K6);
+      - U3: covariance "uniformly in y";
+      - U4: approximants marked by e_ij(φ_k(s));
+      - U5: "a tower over one small cylinder".
+    - SKIP U6 (Γ×Z is harmless; keep it for clarity).
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
