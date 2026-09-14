@@ -242,6 +242,40 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - So universal hosts (item 60) necessarily have unsolvable word problem and non-recursive LEF growth. Every Sturmian G_X misses some f.p. RF group.
     - For rev4, only with item 60's host: an optional one-sentence sharpness clause, "such a host has unsolvable word problem [KMS]". Main's lean: ADOPT if item 60 goes in; it makes the countability and complexity limits visible.
 
+63. **sk-simpler-onepage** (1cc9b24d1f, unreviewed; queued with sk-verify-7). Candidate §1 on the rev3 parts: 163 → 140 source lines, same proof, compile clean (6 pp).
+    - Changes:
+      - seam condition x_{[p−ℓ,p+ℓ]} = x_{[−ℓ,ℓ]};
+      - H = (1−e)I_3 + GL_3(A) with A = span ε_ab ≅ M_{2w+1}(F_2), which replaces ψ;
+      - the OA paragraph moved after simplicity;
+      - shorter prose.
+    - Kept: small sets, the density patch, least period.
+    - Rejected: the partition h-step (needs freeness), omitting expanders, sk-open-6's sequence-language proof.
+    - DECISION for rev4 after a PASS: adopt the candidate §1 if its compile holds on the final rev3 base. Optional: sk-open-6's 3-line remark that R is an operator ring on F_2[Z].
+    - Warning: `sk/drafts/rev3.tex` (19:55) is stale against the parts, so rev3 must be re-assembled from partA/B/C before it lands.
+
+64. **sk-strong-8** (7e6f60b572, unreviewed; queued with sk-verify-7). A f.g. group is LEF iff it is a subgroup of an infinite f.g. simple Kazhdan group that is a marked limit of finite simple SL_N(F_2) whose Cayley graphs form expanders.
+    - The lamplighter host gets surjective "view models" on F_2^{Q_n}: conjugating one coordinate indicator gives all diagonal units, and the flip conjugates give translations, so the models map onto M_{2^{|Q_n|}}(F_2).
+    - So §2's hosts have the title's property, and so does the universal host.
+    - DECISION for rev4 after a PASS: adopt (+9 lines, no new references). The abstract then reads: "a finitely generated group is LEF if and only if it is a subgroup of an infinite simple Kazhdan group that is a limit of finite simple groups". That is the unified headline, and it matches the title.
+
+65. **DECIDED: typesetting at rev3 landing** (sk-typesetting, 067c1208f9, bf695e78ca). After rev3 is re-assembled and both referees report, run `perl sk/lanes/sk-typesetting/patch3.pl < rev3.tex | perl sk/lanes/sk-typesetting/order.pl > rev3-typeset.tex` and compile once.
+    - The patches:
+      - P1: `\arxiv` macro, so arXiv ids can break (removes both underfull boxes);
+      - P2: Ozawa bibitem order;
+      - P3: MSC 22D55 in place of 22D10, add 46L10;
+      - P4, P5: keywords and pdfkeywords;
+      - P6: `\qed`;
+      - P7: `\section*` for Origin;
+      - P9: AMS abbreviation for Stepanov;
+      - P10: a truly alphabetical bibliography.
+    - Also: Kionke–Schesler journal data (J. Comb. Algebra 2024, doi 10.4171/jca/103), per sk-rev3-referee-b.
+
+66. **sk-verify-6 part2** (0a08547105): PASS for the credit-audit P1–P7, novelty-2 and intro-writer texts.
+    - One data fix: the Margulis bibitem title must read "Explicit construction of a concentrator" (zbMATH record).
+    - Closed: Murray–von Neumann pp. 716–808; Hedlund 1944 pp. 605–620.
+    - Precision option from intro-writer: Pestov–Kwiatkowska printed "finitely generated simple Kazhdan groups".
+    - Still open for sk-lit-locators: Rădulescu volume/series, Lothaire series number, Milnor locator, Kionke–Schesler volume/pages.
+
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
 - The exact centre formula over F_q (it stays in Cairn).
