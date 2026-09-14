@@ -21,8 +21,11 @@ The full account is in `research/artifacts/cckw-vtf-question-mark-certificates-2
      `summary.txt`; `experiments/hyperbolic-triangle-search/cckw_vertex.out`).
    - The half-girths `(r_0, r_1, r_2)` are of type (3,3,4), (3,4,4) or (4,4,4), with `Σ 1/r_i < 1`.
 3. **Certificate.** For each group, a file in `experiments/cckw-vtf-certificates/certs/` gives
-   permutations `a, b, c` of degree `d`. They come from a LINS normal subgroup (`cert_vtf.g`), or from
-   epimorphisms onto CCKW's listed simple quotients concatenated on disjoint points (`cert_product.g`).
+   permutations `a, b, c` of degree `d`. There are three sources:
+   - a LINS normal subgroup (`cert_vtf.g`);
+   - epimorphisms onto CCKW's listed simple quotients, concatenated on disjoint points (`cert_product.g`);
+   - a lift of such an epimorphism to a quasisimple cover, in a smaller-degree permutation representation
+     (`lift_vtf.g`).
 4. **Homomorphism.** `verify_vtf_cert.py` uses no GAP. It evaluates every relator on `a, b, c` and gets
    the identity, so `a, b, c` define `ψ: G -> S_d`.
 5. **Injective on vertex groups.** The script computes `|<a,b>|, |<b,c>|, |<c,a>|` by closure and gets

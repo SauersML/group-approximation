@@ -106,6 +106,20 @@ lins_q_10000_6: SUMMARY G_4^{14,14,54} quotients=2 SINGLE_INJ=[  ] kernel-inters
 lins_q_10000_7: SUMMARY G_0^{14,16,40} quotients=0 SINGLE_INJ=[  ] kernel-intersection sizes=[ 21, 24, 60 ] PRODUCT_INJ=false time=3802ms EXIT=0
 lins_q_10000_8: SUMMARY G_0^{14,16,48} quotients=5 SINGLE_INJ=[  ] kernel-intersection sizes=[ 1, 1, 3 ] PRODUCT_INJ=false time=7832ms EXIT=0
 lins_q_10000_9: NO SUMMARY (running or unfinished) 
+## lift_vtf.g (lifts to quasisimple covers; specs lift_specs.g)
+lift_1: GROUP G_0^{14,14,48} cover SL(2,7) |H|=336 |Z|=2 epimorphism classes onto H/Z: 1 lift 1: vertex images=[ 21, 21, 24 ] cover 2.A7 |H|=5040 |Z|=2 epimorphism classes onto H/Z: 1 lift 1: vertex images=[ 21, 21, 72 ] VERTEX_INJECTIVE_LIFT cover=2.A7 |image|=5040 export degree=240 CERT_WRITTEN certs/g0_14_14_48_lift1.cert LIFT_SUMMARY G_0^{14,14,48} vertex-injective lifts=1 EXIT=0 
+lift_2: GROUP G_1^{14,14,48} cover SL(2,7) |H|=336 |Z|=2 epimorphism classes onto H/Z: 1 lift 1: vertex images=[ 21, 21, 24 ] cover SL(3,4) |H|=60480 |Z|=3 epimorphism classes onto H/Z: 0 LIFT_SUMMARY G_1^{14,14,48} vertex-injective lifts=0 EXIT=0 
+lift_3: GROUP G_5^{14,14,48} cover 2.A8 |H|=40320 |Z|=2 epimorphism classes onto H/Z: 1 lift 1: vertex images=[ 21, 21, 72 ] VERTEX_INJECTIVE_LIFT cover=2.A8 |image|=40320 export degree=240 CERT_WRITTEN certs/g5_14_14_48_lift1.cert LIFT_SUMMARY G_5^{14,14,48} vertex-injective lifts=1 EXIT=0 
+lift_4: GROUP G_0^{14,16,40} cover SL(2,49) |H|=117600 |Z|=2 epimorphism classes onto H/Z: 1 LIFT_SUMMARY G_0^{14,16,40} vertex-injective lifts=0 EXIT=0 
+lift_5: GROUP G_1^{14,16,48} cover SL(2,7) |H|=336 |Z|=2 epimorphism classes onto H/Z: 1 lift 1: vertex images=[ 21, 24, 24 ] LIFT_SUMMARY G_1^{14,16,48} vertex-injective lifts=0 EXIT=0 
+lift_6: GROUP G_0^{16,26,48} cover SL(2,13) |H|=2184 |Z|=2 epimorphism classes onto H/Z: 1 lift 1: vertex images=[ 24, 39, 24 ] LIFT_SUMMARY G_0^{16,26,48} vertex-injective lifts=0 EXIT=0 
+lift_7: GROUP G_0^{16,18,54} cover SU(3,8) |H|=16547328 |Z|=3 epimorphism classes onto H/Z: 2 LIFT_SUMMARY G_0^{16,18,54} vertex-injective lifts=0 EXIT=0 
+lift_8: GROUP G_2^{16,18,54} cover SU(3,8) |H|=16547328 |Z|=3 epimorphism classes onto H/Z: 2 LIFT_SUMMARY G_2^{16,18,54} vertex-injective lifts=0 EXIT=0 
+lift_9: GROUP G_0^{24,26,48} cover SL(2,13) |H|=2184 |Z|=2 epimorphism classes onto H/Z: 1 cover SL(4,3) |H|=12130560 |Z|=2 epimorphism classes onto H/Z: 1 LIFT_SUMMARY G_0^{24,26,48} vertex-injective lifts=0 EXIT=0 
+lift_10: GROUP G_5^{26,26,48} cover SL(2,13) |H|=2184 |Z|=2 epimorphism classes onto H/Z: 1 lift 1: vertex images=[ 39, 39, 24 ] cover SL(4,3) |H|=12130560 |Z|=2 epimorphism classes onto H/Z: 1 lift 1: vertex images=[ 39, 39, 72 ] VERTEX_INJECTIVE_LIFT cover=SL(4,3) |image|=12130560 export degree=80 CERT_WRITTEN certs/g5_26_26_48_lift1.cert LIFT_SUMMARY G_5^{26,26,48} vertex-injective lifts=1 EXIT=0 
+lift_11: GROUP G_0^{14,40,48} cover SL(2,49) |H|=117600 |Z|=2 epimorphism classes onto H/Z: 1 cover 2.A7 |H|=5040 |Z|=2 epimorphism classes onto H/Z: 1 LIFT_SUMMARY G_0^{14,40,48} vertex-injective lifts=0 EXIT=0 
+lift_12: GROUP G_0^{16,26,40} cover SL(2,169) |H|=4826640 |Z|=2 epimorphism classes onto H/Z: 1 LIFT_SUMMARY G_0^{16,26,40} vertex-injective lifts=0 EXIT=0 
+lift_13: GROUP G_0^{26,40,48} cover SL(2,169) |H|=4826640 |Z|=2 epimorphism classes onto H/Z: 1 LIFT_SUMMARY G_0^{26,40,48} vertex-injective lifts=0 EXIT=0 
 ## calibration on VTF Yes groups (smoke.out, bound 3000)
 ## certificate exports and verifier outputs
 == cert_ctl_g0_14_24_40.out
@@ -149,6 +163,13 @@ CERT G_0^{16,40,48} targets=[ "PSL(2,9)", "MathieuGroup(11)" ] degree=21
 GAP relator check: true
 GAP vertex image orders: [ 24, 60, 72 ] abstract vertex orders: [ 24, 60, 72 ]
 CERT_WRITTEN certs/g0_16_40_48.cert
+== certp_g0_18_18_48.out
+  kept epimorphism onto PSL(3,3) (degree 13); kernel intersections now 
+  kept epimorphism onto AlternatingGroup(10) (degree 
+CERT G_0^{18,18,48} targets=[ "PSL(3,3)", "AlternatingGroup(10)" ] degree=23
+GAP relator check: true
+GAP vertex image orders: [ 27, 27, 72 ] abstract vertex orders: [ 27, 27, 72 ]
+CERT_WRITTEN certs/g0_18_18_48.cert
 == certp_g0_18_40_54.out
   kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
   kept epimorphism onto MathieuGroup(12) (degree 
@@ -170,6 +191,14 @@ CERT G_0^{24,54,54} targets=[ "AlternatingGroup(9)", "AlternatingGroup(9)"
 GAP relator check: true
 GAP vertex image orders: [ 36, 81, 81 ] abstract vertex orders: [ 36, 81, 81 ]
 CERT_WRITTEN certs/g0_24_54_54.cert
+== certp_g0_48_48_48.out
+  kept epimorphism onto PSL(3,3) (degree 13); kernel intersections now 
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+  kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
+CERT G_0^{48,48,48} targets=[ "PSL(3,3)", "PSp(4,3)", "PSp(4,3)" ] degree=93
+GAP relator check: true
+GAP vertex image orders: [ 72, 72, 72 ] abstract vertex orders: [ 72, 72, 72 ]
+CERT_WRITTEN certs/g0_48_48_48.cert
 == certp_g0_48_54_54.out
   kept epimorphism onto PSL(3,3) (degree 13); kernel intersections now 
   kept epimorphism onto PSp(4,3) (degree 40); kernel intersections now 
@@ -272,6 +301,11 @@ name G_0^{16,40,48} degree 21 relators 7 failing []
 vertex image orders [24, 60, 72] expected [24, 60, 72] link girths [6, 8, 8] sum 1/r_i 5/6
 CERTIFICATE VALID
 EXIT=0
+== verify_g0_18_18_48.out
+name G_0^{18,18,48} degree 23 relators 8 failing []
+vertex image orders [27, 27, 72] expected [27, 27, 72] link girths [6, 6, 8] sum 1/r_i 11/12
+CERTIFICATE VALID
+EXIT=0
 == verify_g0_18_40_54.out
 name G_0^{18,40,54} degree 52 relators 9 failing []
 vertex image orders [27, 60, 81] expected [27, 60, 81] link girths [6, 8, 8] sum 1/r_i 5/6
@@ -285,6 +319,11 @@ EXIT=0
 == verify_g0_24_54_54.out
 name G_0^{24,54,54} degree 18 relators 9 failing []
 vertex image orders [36, 81, 81] expected [36, 81, 81] link girths [6, 8, 8] sum 1/r_i 5/6
+CERTIFICATE VALID
+EXIT=0
+== verify_g0_48_48_48.out
+name G_0^{48,48,48} degree 93 relators 6 failing []
+vertex image orders [72, 72, 72] expected [72, 72, 72] link girths [8, 8, 8] sum 1/r_i 3/4
 CERTIFICATE VALID
 EXIT=0
 == verify_g0_48_54_54.out
@@ -337,3 +376,44 @@ name G_8^{48,54,54} degree 93 relators 8 failing []
 vertex image orders [72, 81, 81] expected [72, 81, 81] link girths [8, 8, 8] sum 1/r_i 3/4
 CERTIFICATE VALID
 EXIT=0
+== lift_verify_10.out
+name G_5^{26,26,48} degree 80 relators 8 failing []
+vertex image orders [39, 39, 72] expected [39, 39, 72] link girths [6, 6, 8] sum 1/r_i 11/12
+CERTIFICATE VALID
+EXIT=0 certs/g5_26_26_48_lift1.cert
+e3acc333fa08cf3086387681e61fb51e  certs/g5_26_26_48_lift1.cert
+LIFT_JOB_DONE
+== lift_verify_11.out
+LIFT_JOB_DONE
+== lift_verify_12.out
+LIFT_JOB_DONE
+== lift_verify_13.out
+LIFT_JOB_DONE
+== lift_verify_1.out
+name G_0^{14,14,48} degree 240 relators 6 failing []
+vertex image orders [21, 21, 72] expected [21, 21, 72] link girths [6, 6, 8] sum 1/r_i 11/12
+CERTIFICATE VALID
+EXIT=0 certs/g0_14_14_48_lift1.cert
+6de6e6bdd1786192ebb1fc93656cd7d0  certs/g0_14_14_48_lift1.cert
+LIFT_JOB_DONE
+== lift_verify_2.out
+LIFT_JOB_DONE
+== lift_verify_3.out
+name G_5^{14,14,48} degree 240 relators 6 failing []
+vertex image orders [21, 21, 72] expected [21, 21, 72] link girths [6, 6, 8] sum 1/r_i 11/12
+CERTIFICATE VALID
+EXIT=0 certs/g5_14_14_48_lift1.cert
+5bd0bde2969fe5dfa7cb89614cea8206  certs/g5_14_14_48_lift1.cert
+LIFT_JOB_DONE
+== lift_verify_4.out
+LIFT_JOB_DONE
+== lift_verify_5.out
+LIFT_JOB_DONE
+== lift_verify_6.out
+LIFT_JOB_DONE
+== lift_verify_7.out
+LIFT_JOB_DONE
+== lift_verify_8.out
+LIFT_JOB_DONE
+== lift_verify_9.out
+LIFT_JOB_DONE
