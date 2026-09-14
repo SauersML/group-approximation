@@ -69,17 +69,18 @@ theorem turingReducible_of_oracleRec {F O : ℕ →. ℕ} (o : ℕ → ℕ) (hO 
     Nat.RecursiveIn.of_eq (Nat.RecursiveIn.comp (prim hst')
       (Nat.RecursiveIn.pair (prim Primrec.id) hask)) fun c => by
         simp only [seq_eq_bind_map, Part.bind_eq_bind, Part.map_eq_map, Part.map_some,
-          Part.bind_some, Nat.unpair_pair, id]
+          Part.bind_some, Nat.unpair_pair, id, st']
   have hG : Nat.RecursiveIn Or fun p =>
       Part.some (oracleRecState o init query step (Nat.unpair p).1 (Nat.unpair p).2) := by
     refine Nat.RecursiveIn.of_eq (Nat.RecursiveIn.prec (prim hinit) hh) fun p => ?_
     rcases hp : Nat.unpair p with ⟨a, n⟩
-    simp only [hp]
+    dsimp only
+    clear hp
     induction n with
     | zero => rfl
     | succ y ih =>
-      simp only [Nat.rec_add_one, ih, Part.bind_eq_bind, Part.bind_some, Nat.unpair_pair, q',
-        oracleRecState_succ]
+      rw [Nat.rec_add_one, ih, Part.bind_eq_bind, Part.bind_some, oracleRecState_succ]
+      simp only [Nat.unpair_pair, q']
   have hlen' : Nat.RecursiveIn Or fun n => Part.some
       (oracleRecState o init query step n (len n)) :=
     Nat.RecursiveIn.of_eq (Nat.RecursiveIn.comp hG

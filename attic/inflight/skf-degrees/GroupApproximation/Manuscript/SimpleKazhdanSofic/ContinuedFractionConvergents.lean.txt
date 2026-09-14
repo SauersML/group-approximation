@@ -73,20 +73,23 @@ theorem tail_zero_eq (ha : ∀ k, a k = 1 ∨ a k = 2) :
 theorem digit_eq_two_iff (ha : ∀ k, a k = 1 ∨ a k = 2) (k : ℕ) : a k = 2 ↔ tail a ha k < 1 / 2 := by
   have ht1 := (tail_mem ha (k + 1)).1
   have ht2 := (tail_mem ha (k + 1)).2
-  rw [tail_eq ha k, ← one_div]
+  have hak : (0 : ℝ) ≤ a k := Nat.cast_nonneg _
+  have hpos : (0 : ℝ) < a k + tail a ha (k + 1) := by linarith
+  rw [tail_eq ha k, ← one_div, div_lt_iff₀ hpos]
   rcases ha k with h | h
   · rw [h]
-    have hpos : (0 : ℝ) < ((1 : ℕ) : ℝ) + tail a ha (k + 1) := by push_cast; linarith
-    rw [div_lt_iff₀ hpos]
-    push_cast
     constructor
-    · intro h'; omega
-    · intro h'; linarith
+    · intro h'
+      exact absurd h' (by decide)
+    · intro h'
+      exact absurd h' (not_lt.2 (by push_cast; linarith))
   · rw [h]
-    have hpos : (0 : ℝ) < ((2 : ℕ) : ℝ) + tail a ha (k + 1) := by push_cast; linarith
-    rw [div_lt_iff₀ hpos]
-    push_cast
-    exact ⟨fun _ => by linarith, fun _ => rfl⟩
+    constructor
+    · intro _
+      push_cast
+      linarith
+    · intro _
+      rfl
 
 theorem tail_ne_half (ha : ∀ k, a k = 1 ∨ a k = 2) (k : ℕ) : tail a ha k ≠ 1 / 2 := by
   intro h
@@ -139,31 +142,27 @@ theorem digit_eq_of_answer (ha : ∀ k, a k = 1 ∨ a k = 2) (k : ℕ) :
         ((2 * (conv a k).2.2.2 + (conv a k).2.2.1 : ℕ) : ℝ) * tail a ha 0 then 1 else 0)
       then 2 else 1 := by
   have hcmp := lt_mul_tail_zero_iff ha k
-  have hdig := digit_eq_two_iff ha k
   have hne := tail_ne_half ha k
-  have hmod : k % 2 = 0 ∨ k % 2 = 1 := Nat.mod_two_eq_zero_or_one k
-  by_cases hq : ((2 * (conv a k).2.1 + (conv a k).1 : ℕ) : ℝ) <
-      ((2 * (conv a k).2.2.2 + (conv a k).2.2.1 : ℕ) : ℝ) * tail a ha 0
-  · rw [if_pos hq]
-    have h1 := hcmp.1 hq
-    rcases hmod with h0 | h0
-    · rw [if_neg (by omega)]
-      rcases ha k with h | h
-      · exact h
-      · exact absurd ((h1.1 h0).trans (hdig.1 h)) (lt_asymm (hdig.1 h))
-    · rw [if_pos h0]
-      have hlt : ¬ 1 / 2 < tail a ha k := fun h' => by omega_nat_contra h0 h1 h'
-      exact hdig.2 (lt_of_le_of_ne (not_lt.1 hlt) hne)
-  · rw [if_neg hq]
-    rcases hmod with h0 | h0
-    · rw [if_pos h0]
-      have hlt : ¬ 1 / 2 < tail a ha k := fun h' => hq (hcmp.2 ⟨fun _ => h', fun _ => h0⟩)
-      exact hdig.2 (lt_of_le_of_ne (not_lt.1 hlt) hne)
-    · rw [if_neg (by omega)]
-      rcases ha k with h | h
-      · exact h
-      · have h2 := hdig.1 h
-        exact absurd (hcmp.2 ⟨fun h0' => by omega, fun h' => absurd h2 (not_lt.2 h'.le)⟩) hq
+  have hone : 1 / 2 < tail a ha k → a k = 1 := fun h => by
+    rcases ha k with h' | h'
+    · exact h'
+    · exact absurd ((digit_eq_two_iff ha k).1 h') (not_lt.2 h.le)
+  have htwo : ¬ 1 / 2 < tail a ha k → a k = 2 := fun h =>
+    (digit_eq_two_iff ha k).2 (lt_of_le_of_ne (not_lt.1 h) hne)
+  rcases Nat.mod_two_eq_zero_or_one k with h0 | h0
+  · by_cases hq : ((2 * (conv a k).2.1 + (conv a k).1 : ℕ) : ℝ) <
+        ((2 * (conv a k).2.2.2 + (conv a k).2.2.1 : ℕ) : ℝ) * tail a ha 0
+    · rw [if_pos hq, if_neg (by omega)]
+      exact hone ((hcmp.1 hq).1 h0)
+    · rw [if_neg hq, if_pos h0]
+      exact htwo fun h => hq (hcmp.2 ⟨fun _ => h, fun _ => h0⟩)
+  · by_cases hq : ((2 * (conv a k).2.1 + (conv a k).1 : ℕ) : ℝ) <
+        ((2 * (conv a k).2.2.2 + (conv a k).2.2.1 : ℕ) : ℝ) * tail a ha 0
+    · rw [if_pos hq, if_pos h0]
+      exact htwo fun h => absurd ((hcmp.1 hq).2 h) (by omega)
+    · rw [if_neg hq, if_neg (by omega)]
+      exact hone (Classical.byContradiction fun h =>
+        hq (hcmp.2 ⟨fun h0' => absurd h0' (by omega), fun h' => absurd h' h⟩))
 
 #audit_axioms tail_zero_eq
 #audit_axioms digit_eq_of_answer

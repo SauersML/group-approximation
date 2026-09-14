@@ -109,7 +109,6 @@ theorem foldl_wordOk (a b : ℕ) :
   have h := foldl_answers (wordOk a b) (languageValue α ∘ encode) (allWords b) true []
   rw [List.append_nil] at h
   rw [List.map_map, h]
-  dsimp only
   rw [Bool.true_and, List.all_eq_true]
   exact forall₂_congr fun w _ => wordOk_iff α a b w
 
@@ -215,7 +214,6 @@ theorem foldl_pairOk (v : List Bool) :
   have h := foldl_answers pairOk (slopeValue α ∘ queryCode v) (pairsUpTo v.length) true []
   rw [List.append_nil] at h
   rw [List.map_map, h]
-  dsimp only
   rw [Bool.true_and, List.all_eq_true]
   exact Iff.rfl
 
