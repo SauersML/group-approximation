@@ -1,40 +1,48 @@
-# skf-degrees: ledger for the word-problem degree section of simple_kazhdan_sofic_group.tex
+# skf-degrees: ledger for the section "Word problems and factors" of simple_kazhdan_sofic_group.tex
 
-Lane `skf-degrees` (formalization of the note, lead = session nonsofic-existence-49/ff). This file is written by
-skf-degrees only.
+Lane `skf-degrees`, formalization of the note (lead = session nonsofic-existence-49/ff). Written by skf-degrees only.
 
 ## Target
-- The briefed version was b965d63ba (970 lines, sec:degrees l.744–835: prop:degree, lem:sturmian, the proof of
-  thm:degrees, remark).
-- origin/main replaced the note at bf961c128 (09-13 18:54, 340 lines, md5 7b3dc4ec92b4581553bc0dc2b0edcb99). The range
-  is now the section "Every word-problem degree", tex l.229–263: one unlabeled corollary and its proof. All keys below
-  are `LINE:<n>@bf961c128`.
-- Main theorem at bf961c128 (l.44): G_X = EL_3(LC(X,F₂)⋊_T Z) is infinite, finitely generated, simple, Kazhdan and LEF,
-  for every infinite minimal subshift X over a finite alphabet. The word problem in the section is WP(G_X) in "the finite
-  generators above".
+- Tip 696c4b602 (09-13 23:51), 841 lines, md5 0648e5f876e467e21ebf475e08b8ee92. Section "Word problems and factors"
+  (`sec:wp`) is l.496–554; corollary `cor:wp` is l.498.
+- The census is still at 37551fd93 (649cb1f80). Rows are held until skf-census regenerates at the tip.
+- Split:
+  - skf-degrees: substitution reductions, L(X) ≤_T WP, the α ↔ L(X_α) truth tables (absorbed from skf-approximants), and
+    the cor:wp assembly;
+  - ms-traces-3: WP ≤_T L(X), then the antichain of size continuum;
+  - sk-stepanov: (e), the two oracles cut(α) ↔ χ_B and the assembly of the continued-fraction representative, over my
+    expansion;
+  - ct-involution: the kernel paragraph (bdd19b7d1e1f);
+  - oa-mcduff: the OzawaUniversal Theorem 2 step;
+  - skf-cite: the Grigorchuk–Medynets and NPS attributions.
 
-## Sentences (bf961c128 l.229–263)
-| key | sentence | status | carrier | note |
-|---|---|---|---|---|
-| LINE:229 | section heading "Every word-problem degree" | structural | — | |
-| LINE:231–235 | Corollary: every Turing degree is the word-problem degree of an infinite simple Kazhdan LEF group; continuum many isomorphism classes | open | none on main | endpoint over thm:main for Sturmian X_α |
-| LINE:238–239 | WP(G_X) in the finite generators has the Turing degree of L(X) | open | none | printed route: normal forms with window tables, and cylinder roots |
-| LINE:240–241 | an L(X) oracle decides whether a matrix word equals I_3, by checking coefficient tables on allowed windows | open | none | WP ≤_T L(X) |
-| LINE:242–246 | cylinder indicator e_[v] = ∏ u^{-t} e_{v_t} u^t, converted effectively via eq:elementary to a word for e_12(e_[v]) | open | none | L(X) ≤_T WP; commutator identities on main (Pestov91 SimpleModCentre `elGen`) |
-| LINE:247–248 | that word equals 1 exactly when v ∉ L(X) | open | none | via e_12(f) = 1 ⇔ f = 0 (no centre quotient at bf961c128) |
-| LINE:250–251 | the Sturmian subshift of irrational slope α ∈ (0,1) is infinite and minimal [MorseHedlund] | open | none | Morse–Hedlund must be PROVED if used as a step |
-| LINE:251–253 | its language is computable from α, via the cyclic order of the endpoints −jα mod 1 | open | none | |
-| LINE:254–255 | the minimum number of 1's in a word of length n is ⌊nα⌋, so the language computes α | open | none | needs the Sturmian balance property |
-| LINE:256–258 | every degree has an irrational representative (√2−1; interleaving a noncomputable set with 1's) | open | none | |
-| LINE:259–261 | continuum many degrees; the word-problem degree of a f.g. group is an isomorphism invariant | open | none | independence of the generating set |
+## Sentences at 696c4b602
+| sentence | owner | carrier | state |
+|---|---|---|---|
+| WP(G_X) has the Turing degree of L(X) | skf-degrees | `PrintedWordProblemDegreeEqLanguage`; (b) `printedLanguageReducesToWordProblem` LANDED 99dc0e949; (c) ms-traces-3 | partial |
+| solvable WP ⇔ L(X) recursive, as for the Fibonacci subshift X_{(3−√5)/2} | skf-degrees | `PrintedSolvableWordProblemIffRecursiveLanguage`, `PrintedFibonacciSolvableWordProblem` | partial, waits on (c) |
+| every Turing degree occurs; continuum many G_X, none isomorphic to a subgroup of another | skf-degrees | `PrintedWordProblemsCorollary` | partial, waits on (c), (e), antichain |
+| multiplying out a word …; L(X) computes the word problem | ms-traces-3 | `PrintedWordProblemReducesToLanguage` | open piece |
+| a word for e_12(∏_{t<m} u^{-t} e_{v_t} u^t) is computable from v, trivial iff v ∉ L(X) | skf-degrees | `printedLanguageReducesToWordProblem` (LanguageReducesToWordProblem) | formalized, LANDED 99dc0e949 |
+| X_α infinite minimal Sturmian; arcs; closure adds no words | skf-approximants (landed) | SturmianSubshift, SturmianSubshiftMinimal, SturmianLanguage | formalized |
+| α computes L(X_α); L(X_α) computes α | skf-degrees | `printedSlopeComputesSturmianLanguage`, `printedSturmianLanguageComputesSlope` (SturmianComputability) | probing |
+| every S ⊆ ℕ has the degree of [0; 1+χ_S(0), …] | sk-stepanov | `PrintedContinuedFractionRepresentative`; expansion LANDED 99dc0e949; OracleRecursion, ContinuedFractionConvergents probing | partial |
+| if H embeds in G, WP(H) reduces to WP(G) | skf-degrees | `printedWordProblemReducesUnderEmbedding` (WordProblemDegreeInvariant) | formalized, LANDED 8be083fcd |
+| the Turing degrees contain an antichain of size continuum [Odifreddi Ch. V] | ms-traces-3 | `PrintedTuringAntichainContinuum` | open piece |
 
-## Available infrastructure (origin/main, pin 81a5d257)
-- Mathlib: `Mathlib/Computability/TuringDegree.lean` (`TuringReducible`, `TuringEquivalent` for ℕ →. ℕ, `TuringDegree`), `Reduce.lean`.
-- Repo: `GroupApproximation/Computability/*` (word problems of presentation codes, Adian–Rabin, Boone), `Dynamics/SubshiftWordGraph.language`.
-- Pestov91 (root-imported): `X` is one concrete Toeplitz carrier, not a general subshift; `Centre.elementaryUnit_mem_center_iff`; `SimpleModCentre` commutator calculus.
-- Cairn proof source, not a carrier: `research/subshift-elementary-group-word-problem-degree{,-proof}.md`.
-
-## Status
-- CLAIM: statements module `GroupApproximation/Manuscript/SimpleKazhdanSofic/WordProblemDegreeStatements.lean` (named Props
-  for the corollary and its steps, over Mathlib's `TuringEquivalent`). Development size is reported to main before large
-  infrastructure is built.
+## Modules (Manuscript/SimpleKazhdanSofic)
+- LANDED 8be083fcd:
+  - `WordProblemDegreeStatements`: the oracles and generators, and every named Prop of `cor:wp`;
+  - `WordOracle`: word algebra, `wordProblemOracle_comp_injective`, `turingReducible_of_query`;
+  - `WordProblemDegreeInvariant`: `turingReducible_wordProblemOracle_of_generates`,
+    `printedWordProblemReducesUnderEmbedding`.
+- LANDED 99dc0e949:
+  - `LanguageReducesToWordProblem`: the cylinder words and `printedLanguageReducesToWordProblem`;
+  - `ContinuedFractionExpansion`: `tail`, `tail_eq`, `tail_mem`, `isContinuedFractionOf_tail`, `irrational_tail`.
+- Probing:
+  - `SturmianQueries`: list forms of skf-approximants' criteria, and primrec queries;
+  - `SturmianComputability`: both α ↔ L(X_α) truth tables;
+  - `OracleRecursion`: `turingReducible_of_oracleRec`;
+  - `ContinuedFractionConvergents`: `conv`, `det_conv`, `tail_zero_eq`, `digit_eq_of_answer`.
+- Not landed, no printed carrier since 37551fd93: `ContinuumManyDegrees` (counting countable Turing classes). The printed
+  sentence it carried was replaced by the antichain claim, which counting does not give.
