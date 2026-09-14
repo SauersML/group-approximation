@@ -181,6 +181,23 @@ region pinched at `x` (with the faces behind the gap, gaps at most `⌈(c + 2) /
 thresholds. Hazard: `OsinCCondition` does not visibly forbid a backtrack in a relator word, so a gap can be a hair inside
 the cell; untested on a model.
 
+## Item 8: two thresholds (main ruling R2), in flight
+
+Interface agreed with ct-return-tower (one message each way). ct-return-tower owns the corner move
+`OsinLemma94ClassPolygons.exists_cornerPair_of_twoThreshold (Q) (hlambda) (k) (C : WordConnectorPair … (eps − ⌈(c+2)/λ⌉₊))
+(hlongS) (hlongT) (hback)` in `Estimating/OsinLemma94ClassCornerMove` (unlanded at 00:00).
+
+| module | content | state |
+|---|---|---|
+| Estimating/OsinLemma94AntiparallelMetricTwoThreshold | `UnboundEstimate.OrientedWordSidePairTwo`, `…exists_connectors`, `OsinUnboundScale.orientedWordSidePairTwo_of_parameters`, `…_of_orientedClassPair`, `unboundOrientedWordPolygonMonotoneTwo`, `OsinLemma94DensePolygonsAntiparallelTwo`, `osinLemma94AntiparallelMetricTwo` | attic 0a0b61900; probe 0913-234721-12791 lost (MSI hop died, auth breaker set) |
+| Estimating/OsinLemma94ClassSectionTwoThreshold | `OsinLemma94DensePolygonsAntiparallelTwo.exists_of_budget_on`, `OsinLemma94ClassPolygons.unbound_lt_of_classesTwo`, `OsinLemma94ClassCasesTwoThresholdInput`, `osinLemma94Section_of_classCountTwoThreshold` | local and lane backup only (github DNS down) |
+| Estimating/OsinLemma94ClassCasesTwoThreshold | `osinLemma94ClassCasesTwoThreshold_of_residuals (hone) (htwo) (hspan)` | local and lane backup only; imports the corner move |
+
+The two thresholds come from reading `nearby_endpoints_keep_shortening_margin` twice on the same endpoints: at `epsC`
+through the gate `c₁ + 2κ < epsC`, and at `epsL` through a scale at `epsL`. Finding reported to main: corner moves do
+not reduce `OsinLemma94ClassCaseGapSpanStatement` to single-side pairs (a class can be many short sides between hair
+gaps), so GapSpan stays a residual and only GapEndpoint drops out.
+
 ## Residual statements
 
 In this lane's own modules, none. The W1 waist residuals are listed above (V2: six; V3: seven), with
