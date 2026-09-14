@@ -111,7 +111,22 @@ When ms-cite-1 lands either change, this lane adds a V4 variant over the new spe
 
 Plan (coordinator ~20:35): ms-cite-1 lands additive `…_of_pinchOrderEuler` taking `CellPocketWalkEulerStatement` (eb8811c3c).
 The V4 variant over it applies the closed `cellPocketWalkOuterOffSideSomeOrder`, so residual 6 drops and residual 7 becomes the
-Euler statement.  The 14 W1 rows are then re-pointed to that variant.  Waiting on ms-cite-1's names (not on origin at 20:35).
+Euler statement.  The 14 W1 rows are then re-pointed to that variant.
+
+## Item 4: the V4 Euler variant (coordinator ~20:35, resumed 21:22)
+
+ms-cite-1's `Estimating/OsinPocketMultipleEdgeCopyOrderEuler` landed at 7a45179c4 (probe 0913-203827-69476, same bytes).
+
+Module `GGT/VanKampen/Estimating/OsinGreendlingerWaistV4Euler`:
+- `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4Euler`, 9 residuals: `OsinLemma94ClassEndLoopsInput`,
+  `OsinLemma94SameCellPocketInput`, `OsinLemma94ClassCasesInput`, `OsinTwoGonHoldsSectionStatement`,
+  `CellPocketCopyCleanBothOrdersStatement`, `CellPocketWalkEulerStatement`, `CellPocketPinchPosStatement`,
+  `OsinSectionPocketFaceSetProperSectionStatement`, `PocketPinchLabelledSectionStatement`.  Binder 5 comes from
+  `osinMultipleEdgePocketRegionCopySection_of_pinchOrderEuler` with `hout := cellPocketWalkOuterOffSideSomeOrder`.
+- `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4EulerSplit`, 11 residuals (class-word cases split).
+
+Module `Manuscript/NonMF/TorsionFreeResidualsV4Euler`: the 22 endpoints `_of_residualsV4Euler` over the 9 residuals.
+LANDED 236898aed (probe 0913-213402-40086 GREEN, both BUILT and COMPILED; queued for wiring).  The 14 W1 rows are re-pointed to the V4 Euler carriers and residual list, still `partial`.
 A later waist exists: `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV3` (2b2af4479, class route, seven binders).  Its
 binder 5 is `OsinMultipleEdgePocketRegionSectionStatement` on the optimal diagram, the form the V2Copy docstring calls
 circular, so this module stays on V2Copy.
