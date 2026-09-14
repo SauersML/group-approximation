@@ -42,3 +42,12 @@ generated simple amenable group coming from the same subshift.
 - (B) uses `GL_d(F_2) = SL_d(F_2)`. Over `F_q` with `q` odd, the tower step fails for odd permutations.
 - (A) holds over every field.
 - On `[[T]]`, the note's finite models restrict to periodic permutation models (artifact part 1 §3).
+
+**Review (sk-verify-13, 2026-09-13, `research/artifacts/sk-verify-13-2026-09-13-part2.md`):** PASS for (A) and (B); every step re-derived.
+- Lemma 1: `u^n e_A u^m e_B = u^{n+m} e_{T^{-m}A∩B}`, the partition of `{n_{gh} = k}`, and the `u^0` coefficient.
+- Both Whitehead identities, entrywise.
+- Multiplicativity: (A) is `diag(w_g,1,1)`, and (B)'s second slot is the abelian cocycle `u^{-I(g)}`, never `w_g^{-1}`. So both maps are slotwise homomorphisms, and membership in `EL_3` comes from generators (commutators for (A); `T` and tower permutations for (B)).
+- Lemma 3: `Φ` is unital and multiplicative, and `[e_pq(E_ab), e_qp(E_bb)] = I + E_ab E_pp` in characteristic 2 (computed).
+- Index: additivity of `ind`, `I(T) = 1`, and `|A| = |B|` from `I(g_1) = 0`.
+- Lemma 4: step 1, including `|n'| > 4M` from the pairwise disjointness of the levels for `|j| ≤ 2M`; all three level cases of step 2.
+- K_1 consistency: the class of `w_g` equals `I(g)` times the class of `u`.
