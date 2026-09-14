@@ -1,0 +1,191 @@
+valid diagonal automorphisms h: [(1, 1, -1), (1, -1, 1), (1, -1, -1), (-1, 1, 1), (-1, 1, -1), (-1, -1, 1), (-1, -1, -1)]
+  h=(1, 1, -1): sigma(a) in P, sigma(b) in P; sigma(a^2)=((1, 0, 0), 'e') sigma(b^2)=((0, 1, 0), 'e')
+  h=(1, -1, 1): sigma(a) in P, sigma(b) in P; sigma(a^2)=((1, 0, 0), 'e') sigma(b^2)=((0, -1, 0), 'e')
+  h=(1, -1, -1): sigma(a) in P, sigma(b) in P; sigma(a^2)=((1, 0, 0), 'e') sigma(b^2)=((0, -1, 0), 'e')
+  h=(-1, 1, 1): sigma(a) in P, sigma(b) in P; sigma(a^2)=((-1, 0, 0), 'e') sigma(b^2)=((0, 1, 0), 'e')
+  h=(-1, 1, -1): sigma(a) in P, sigma(b) in P; sigma(a^2)=((-1, 0, 0), 'e') sigma(b^2)=((0, 1, 0), 'e')
+  h=(-1, -1, 1): sigma(a) in P, sigma(b) in P; sigma(a^2)=((-1, 0, 0), 'e') sigma(b^2)=((0, -1, 0), 'e')
+  h=(-1, -1, -1): sigma(a) in P, sigma(b) in P; sigma(a^2)=((-1, 0, 0), 'e') sigma(b^2)=((0, -1, 0), 'e')
+Gardam F_2: |supp|=21, alpha*beta==1: True
+  gardam h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, True] | nontrivial: True | explicit v: |supp|=109, v*sigma(u)==u: True, monomial shadows C,A,B=[True, True, True]
+  gardam h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True | explicit v: |supp|=81, v*sigma(u)==u: True, monomial shadows C,A,B=[True, True, False]
+  gardam h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True | explicit v: |supp|=161, v*sigma(u)==u: True, monomial shadows C,A,B=[True, True, False]
+  gardam h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, True] | nontrivial: True | explicit v: |supp|=61, v*sigma(u)==u: True, monomial shadows C,A,B=[True, True, True]
+  gardam h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, True] | nontrivial: True | explicit v: |supp|=73, v*sigma(u)==u: True, monomial shadows C,A,B=[True, True, True]
+  gardam h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True | explicit v: |supp|=61, v*sigma(u)==u: True, monomial shadows C,A,B=[True, True, False]
+  gardam h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True | explicit v: |supp|=165, v*sigma(u)==u: True, monomial shadows C,A,B=[True, True, False]
+  murray(d=3,t=-1,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=3,t=-1,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=-1,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=-1,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=-1,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=-1,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=-1,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=-1,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=3,t=-1,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=-1,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=-1,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=-1,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=-1,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=-1,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=0,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=3,t=0,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=0,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=0,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=0,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=0,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=0,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=0,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=3,t=0,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=0,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=0,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=0,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=0,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=0,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=1,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=3,t=1,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=1,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=1,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=1,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=1,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=1,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=1,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=3,t=1,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=1,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=1,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=1,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=1,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=1,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=2,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=3,t=2,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=2,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=2,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=2,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=2,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=2,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=2,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=3,t=2,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=2,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=2,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=3,t=2,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=2,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=3,t=2,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=-1,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=5,t=-1,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=-1,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=-1,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=-1,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=-1,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=-1,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=-1,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=5,t=-1,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=-1,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=-1,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=-1,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=-1,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=-1,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=0,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=5,t=0,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=0,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=0,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=0,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=0,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=0,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=0,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=5,t=0,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=0,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=0,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=0,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=0,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=0,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=1,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=5,t=1,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=1,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=1,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=1,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=1,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=1,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=1,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=5,t=1,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=1,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=1,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=1,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=1,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=1,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=2,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=5,t=2,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=2,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=2,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=2,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=2,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=2,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=2,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=5,t=2,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=2,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=2,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=5,t=2,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=2,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=5,t=2,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=-1,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=7,t=-1,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=-1,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=-1,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=-1,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=-1,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=-1,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=-1,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=7,t=-1,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=-1,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=-1,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=-1,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=-1,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=-1,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=0,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=7,t=0,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=0,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=0,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=0,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=0,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=0,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=0,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=7,t=0,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=0,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=0,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=0,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=0,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=0,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=1,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=7,t=1,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=1,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=1,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=1,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=1,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=1,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=1,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=7,t=1,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=1,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=1,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=1,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=1,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=1,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=2,w=0) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=7,t=2,w=0) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=2,w=0) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=2,w=0) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=2,w=0) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=2,w=0) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=2,w=0) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=2,w=1) h=(1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, True] | nontrivial: True
+  murray(d=7,t=2,w=1) h=(1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=2,w=1) h=(1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=2,w=1) h=(-1, 1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+  murray(d=7,t=2,w=1) h=(-1, 1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=2,w=1) h=(-1, -1, 1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, True, False] | nontrivial: True
+  murray(d=7,t=2,w=1) h=(-1, -1, -1): monomial shadows of u sigma(u)^-1 on C,A,B = [True, False, False] | nontrivial: True
+SUMMARY: nontrivial twisted units with all three shadows monomial:
+  HIT ('gardam', 2, (1, 1, -1), True, True)
+  HIT ('gardam', 2, (-1, 1, 1), True, True)
+  HIT ('gardam', 2, (-1, 1, -1), True, True)
+  hits: 3 of 175 twists
+DONE
+EXIT=0
