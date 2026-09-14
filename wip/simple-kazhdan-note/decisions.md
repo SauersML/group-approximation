@@ -594,6 +594,10 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Corrected open claim: recognition up to the normalizer N_Y. Theorem R′ (standardness with k ∈ N_Y) still gives SOE. One-group reformulation (H1)–(H3).
     - The program open-problems conjunction is repaired.
     - No note change: the rigidity Question is unaffected.
+125. **sk-cornulier-q7** (9e7ae7ca12, 7253c0ffbf; unreviewed → sk-verify-17, launched as a dedicated adversarial reviewer).
+    - Theorem Q: for a primitive constant-length-2 substitution with a non-periodic fixed point (Thue–Morse, period doubling), [[T]]′ has non-uniform exponential growth. This is Sauer–Schesler's V argument transferred through the dyadic tower model plus Cornulier's good-3-cycle generation.
+    - Corollary Q1: an infinite f.g. simple AMENABLE group of non-uniform exponential growth, answering Cornulier's Bourbaki 1064 Question 7 negatively for these subshifts. Kourovka 21.117(a) had only V (not amenable).
+    - No note change (off-theme). If it PASSes, it is a candidate for a separate short note; that is the user's call.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
