@@ -26,8 +26,9 @@ and K(Γ) is the presentation 2-complex.
   complement in a contractible 2-complex. So a non-aspherical LOT complex would refute
   `contractible-2-complex-minus-a-cell-is-aspherical`.
 - LOT complexes are the spines of ribbon disc complements (Rosebrock's 2007 survey).
-- On seven vertices, 13 of the 279943 classes of reduced LOTs survive every implemented test
-  (primary pipeline, artifact §3). Seven is not settled here.
+- Seven vertices need more tests. On seven vertices, 13 of the 279943 classes of reduced LOTs
+  survive every presentation-level and relative test (artifact §3), and only a longer Tietze
+  elimination settles them. That is `lot-complexes-with-at-most-seven-vertices-are-aspherical`.
 
 **Novelty.** Not verified. A small-vertex census of LOTs may already be in print; Rosebrock's 2018
 LMS Lecture Notes 446 chapter was not read.

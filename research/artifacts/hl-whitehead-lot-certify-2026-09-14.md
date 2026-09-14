@@ -175,18 +175,50 @@ Source: Harlander--Rosebrock, arXiv:1912.12512v2 (Canad. Math. Bull. 64 (2021) 2
 - 86 pass Theorem 2.5 on a label presentation.
 - 15 remain. All have I(Γ) and T(Γ) with cyclomatic number exactly 2, and 4 or 5 distinct
   labels.
-- Every sampled survivor contains a twin sub-LOT pair: {x→y labelled z, x→z labelled y}, or
-  its terminal version.
+- 12 of the 15 contain a twin pair: edges x→y labelled z and x→z labelled y, or the terminal
+  version.
+  - A full check corrected an earlier "every sampled survivor" remark.
 - The full list is in `out57/survivors2_n7.txt`.
+
+### Relative and Tietze steps (jobs 781706, 784058)
+
+- **Relative test on the 15.** Harlander--Rosebrock Theorems 3.4 and 2.4, with vertex-disjoint
+  full sub-LOTs certified recursively (`survivors3.py`, `lot3.py`). It certifies 10; 5 remain.
+- **Tietze closure on the 5.** Breadth-first elimination (`lot4.py`): whenever a generator occurs
+  once in a relator, substitute and delete. Each move is a 3-deformation. All 5 reach a
+  presentation satisfying Barreto--Minian Theorem 2.5 (`survivors4_n7.txt`).
+
+### Primary-only pipeline (`census_primary.py`, `lot_primary.py`; jobs 781699, 784526)
+
+- **Tests used.** Primary-pinned tests only, with no diameter or complexity shortcut.
+- **Presentation-level and relative results.** For n = 3 to 6, (inj) or (IT) certifies every
+  class.
+  - n = 3, 4, 5, 6 give 2, 8, 206 and 6234 classes.
+  - For n = 7, the first passing test is:
+    - inj 48142, IT 231212;
+    - itest 51, weight 159;
+    - L-bm25 354, relative 12;
+    - none 13.
+- **Tietze closure.** `survivorsp4.py` certifies all 13 remaining classes (`outp57/survivorsp4_n7.txt`).
+  - Only 2 of these 13 contain a twin pair.
 
 ## 4. Status and gap
 
-- **Certified, first tier.** Every LOT complex on at most 6 vertices is aspherical. This uses
-  the survey-pinned diameter test for 496 classes. A primary-only re-run (`lot_primary.py`,
-  job lotp57) is in progress.
-- **Seven vertices.** 15 hard classes remain after two tiers. The relative test (Theorem 3.4
-  with twin sub-LOTs) is being run on them.
-- **Eight vertices.** First-tier census job 780531, over the 19 shapes of diameter ≥ 4, is in
-  progress.
-- **Open.** The general LOT asphericity question (`contractible-2-complex-minus-a-cell-is-aspherical`
-  contains it) is untouched by a finite census.
+- **ESTABLISHED (unreviewed) at most six vertices.** `lot-complexes-with-at-most-six-vertices-are-aspherical`
+  (ead4a8919). This is the primary-only pipeline: the injectivity and one-cycle criteria certify
+  all 8450 classes on 3 to 6 vertices.
+- **ESTABLISHED (unreviewed) at most seven vertices.** `lot-complexes-with-at-most-seven-vertices-are-aspherical`.
+  The primary pipeline (job 781699) certifies 279930 of 279943 classes. The Tietze closure (job
+  784526) certifies the last 13.
+- **Not done: eight vertices.** The first-tier arrays 780531 and 783971 ran out of memory on
+  most shapes (a class dedupe set in the first, a certificate map in the second) and were
+  cancelled. `census8p.py` (constant memory, cheap tests only) was written but never run.
+- **Open.** The general LOT asphericity question is untouched by a finite census;
+  `contractible-2-complex-minus-a-cell-is-aspherical` contains it.
+- **Exact structural gap.** No infinite class was proved.
+  - The 13 hard seven-vertex classes share no structural feature identified so far (only 2 have a
+    twin pair).
+  - What is known: every one of them has a Tietze presentation whose minima are concatenable.
+  - Candidate theorem, not attempted: every reduced LOT has a Tietze presentation satisfying
+    Barreto--Minian Theorem 2.5 or 2.18. It would give local indicability of all LOT groups, which
+    is open according to their introduction.

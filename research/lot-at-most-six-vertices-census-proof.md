@@ -4,6 +4,7 @@ id: lot-at-most-six-vertices-census-proof
 kind: route
 title: Reduce to reduced trees with at most six vertices, enumerate them all, and certify each by injectivity or by the one-cycle local indicability criterion
 target: lot-complexes-with-at-most-six-vertices-are-aspherical
+requires: []
 artifacts:
   - research/artifacts/hl-whitehead-lot-certify-2026-09-14.md
 ---
