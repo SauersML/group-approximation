@@ -88,13 +88,9 @@ theorem toeplitzSubshift_infinite : Infinite toeplitzSubshift.carrier := by
     have h := congrArg (fun y : Pestov91.X => y.1 (-j + k)) hij
     simp only [Pestov91.shiftBy_apply] at h
     rw [Pestov91.shiftBy_apply]
-    calc Pestov91.toeplitzPoint.1 (i - j + k) = Pestov91.toeplitzPoint.1 (i + (-j + k)) := by
-          congr 1
-          ring
-      _ = Pestov91.toeplitzPoint.1 (j + (-j + k)) := h
-      _ = Pestov91.toeplitzPoint.1 k := by
-          congr 1
-          ring
+    have e1 : i - j + k = i + (-j + k) := by ring
+    have e2 : j + (-j + k) = k := by ring
+    rw [e1, h, e2]
   exact Infinite.of_injective _ hinj
 
 /-! ## The answer -/
