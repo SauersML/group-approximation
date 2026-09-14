@@ -8,16 +8,16 @@ Rows: 187 (183 prose sentences, 4 displays).  Assignments do not attest to a suc
 
 | status | rows |
 | --- | --- |
-| `formalized` | 116 |
-| `partial` | 20 |
+| `formalized` | 120 |
 | `definition` | 18 |
+| `partial` | 16 |
 | `attribution` | 15 |
 | `structural` | 14 |
 | `unassigned` | 3 |
 | `open` | 1 |
 | **total** | **187** |
 
-Completely formalized or definitional: **134/187** (71.7%).
+Completely formalized or definitional: **138/187** (73.8%).
 
 ## Superseded rows (sentence reworded or removed)
 
@@ -71,7 +71,7 @@ Completely formalized or definitional: **134/187** (71.7%).
 | `1453f65cbfa2` | 30–33 | formalized | For every infinite minimal subshift $X$, the group $G_X=\EL_3(\LC(X,\F_2)\rtimes\Z)$ is an infinite, finitely… |
 | `6866200f2d46` | 33–36 | formalized | So $G_X$ is locally embeddable into finite groups, sofic and hyperlinear, which answers the question of Brown… |
 | `199438e96aee` | 37–41 | partial | A finitely generated group is locally embeddable into finite groups if and only if it is a subgroup of an inf… |
-| `f8766b1da9e1` | 42–43 | partial | One such group contains every recursively presented finitely generated group with this property. |
+| `f8766b1da9e1` | 42–43 | formalized | One such group contains every recursively presented finitely generated group with this property. |
 | `562e5e07a357` | 47–47 | structural | Can an infinite simple group with property~\textup{(T)} be hyperlinear? |
 | `5c1db38e8d0c` | 48–50 | attribution | Brown asked this in 2001 as a question about embeddings into unitary groups of McDuff factors that embed in a… |
 | `7f3b239e5f2a` | 51–54 | formalized | Ozawa stated the hyperlinear form in 2003, noting that the full $C^*$-algebra of such a group cannot have the… |
@@ -207,10 +207,10 @@ Completely formalized or definitional: **134/187** (71.7%).
 | `83394521b2d5` | 288–289 | attribution | Kionke and Schesler asked which groups embed in finitely generated simple amenable groups~\cite{KionkeSchesle… |
 | `3670fa959e0e` | 289–290 | structural | For LEF groups the next corollary answers the analogous question, with a Kazhdan host. |
 | `fd312b860bb5` | 291–295 | attribution | Its second statement is the analogue for LEF groups of the theorem of Boone and Higman that a finitely genera… |
-| `022271399cfb` | 298–302 | partial | A finitely generated group is LEF if and only if it is a subgroup of an infinite, finitely generated, simple … |
+| `022271399cfb` | 298–302 | formalized | A finitely generated group is LEF if and only if it is a subgroup of an infinite, finitely generated, simple … |
 | `01a45cdd9370` | 303–304 | partial | It is LEF with solvable word problem if and only if it is a subgroup of such a group with solvable word probl… |
-| `cc439ae277d4` | 308–308 | partial | Every countable LEF group is a subgroup of such a group. |
-| `9cdf19db0ef4` | 309–310 | partial | A set of finitely generated groups lies in one such group if and only if its members are LEF and represent co… |
+| `cc439ae277d4` | 308–308 | formalized | Every countable LEF group is a subgroup of such a group. |
+| `9cdf19db0ef4` | 309–310 | formalized | A set of finitely generated groups lies in one such group if and only if its members are LEF and represent co… |
 | `9b1a6e7489a1` | 310–313 | partial | So one such group contains every recursively presented finitely generated LEF group, for instance every finit… |
 | `2745cd64eada` | 316–316 | attribution | Simple hosts with only one of property~\textup{(T)} and LEF were known. |
 | `8212b1470040` | 316–321 | attribution | Without property~\textup{(T)}, Kionke and Schesler proved that every finitely generated residually finite gro… |
