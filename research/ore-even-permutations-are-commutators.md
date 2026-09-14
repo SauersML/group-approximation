@@ -14,3 +14,5 @@ strengthens this, for `n ≥ 5`, to commutators of elements of `A_n`. Later lite
 G. A. Miller; that attribution was not checked.
 
 Used by `rf-groups-lie-in-derived-subgroups-of-rf-groups`.
+
+**Review (sk-verify-3, 2026-09-13): PASS as import.** The quoted Theorem 1 is the classical statement; this reviewer did not re-read the scan. See `research/artifacts/sk-review-3-2026-09-13-part3.md` §A0.

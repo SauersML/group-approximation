@@ -27,3 +27,5 @@ The upper bound in 5 uses only that `g ∈ GL_3(R)` normalizes `D`. The lower bo
 for the units `a_γ = Σ e_(γV_i) u^(n_i)`, `γ ∈ [[T]]'`.
 
 Status: proved in `subshift-el3-rigid-supports-proof`, unreviewed.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** C1–C5 re-derived, including the corner centre, maximal commutativity of `LC(U)`, and `[[T]]' ≤ Γ_X ≤ [[T]]`. See `research/artifacts/sk-review-3-2026-09-13-part3.md` §B.

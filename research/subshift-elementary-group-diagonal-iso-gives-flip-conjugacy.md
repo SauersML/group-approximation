@@ -28,3 +28,5 @@ Scope:
 - Any proof there must also show that a ring isomorphism `R_X ≅ R_Y` forces flip conjugacy (artifact §5).
 
 Status: proved in `subshift-el3-diagonal-iso-flip-conjugacy-proof`, unreviewed.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** Lemma B on the diagonal, compatibility of the normalizer actions, the 3-cycle piecewise closure `P(Γ_X) = [[[T]]]`, the GPS/Bezuglyi–Medynets import (verbatim from arXiv HTML) and the converse re-derived. Diagonal-preserving only. See `research/artifacts/sk-review-3-2026-09-13-part3.md` §B.

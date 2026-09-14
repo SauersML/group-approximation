@@ -15,3 +15,5 @@ inside each hole).
 - So `y ↦ (D_m(y))_m` is an equivariant factor map onto the odometer `lim Γ/Γ_m`, and the action on `X_Γ` is free.
 
 Route: `rf-toeplitz-subshifts-act-freely-proof`.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** The unique non-constant coset at every level for every limit point, nesting, equivariance and freeness re-derived. See `research/artifacts/sk-review-3-2026-09-13-part3.md` §A3.

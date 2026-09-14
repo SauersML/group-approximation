@@ -21,3 +21,5 @@ Use: the space `X` is recovered from the diagonal subgroup `GL_3(LC(X,F_2)) = LC
 group of a subshift crossed product (`subshift-elementary-group-diagonal-iso-gives-flip-conjugacy`).
 
 Credit: folklore level. No source was located; the check was only a grep of main.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** Commutators with bump functions, normality of `⟨[x,Q]⟩`, the open-set correspondence, points and the hull–kernel topology re-derived. Credit lead (recalled, not read): Boolean powers of groups. See `research/artifacts/sk-review-3-2026-09-13-part3.md` §B.

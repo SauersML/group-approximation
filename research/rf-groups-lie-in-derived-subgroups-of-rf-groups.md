@@ -18,3 +18,5 @@ must consist of commutators to reach the elementary group, since the shift unit 
 (`shift-unit-of-subshift-crossed-product-is-not-elementary`).
 
 Route: `rf-groups-lie-in-derived-subgroups-of-rf-groups-proof`.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** Evenness of doubled regular permutations, coordinatewise Ore commutators, residual finiteness of Δ, and the LEF variant through ultraproducts re-derived. See `research/artifacts/sk-review-3-2026-09-13-part3.md` §A2.
