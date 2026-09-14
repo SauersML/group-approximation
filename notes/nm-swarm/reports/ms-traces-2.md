@@ -321,6 +321,17 @@ State at 23:2x:
 - Next: the named closed endpoint `Estimating/OsinLemma94SameCellClosed` (`osinLemma94CaseOneSameCell :
   OsinLemma94CaseOneSameCellStatement`), probed after this lands. Its consumers on origin: `hsameOne` in
   `OsinGreendlingerOpenResiduals` and `hsame` in `OsinUnboundCaseOneRun`.
+- 6cb57fa99 LANDED (queued): `ClosedWalkEnclosedBridgeDoublingSideArc`.
+- 11:33 probe 0914-113359-75371 GREEN (BUILT): `Estimating/OsinLemma94SameCellClosed`, landing with this report.
+  - **BINDER 3 CLOSED**: `osinLemma94CaseOneSameCell : OsinLemma94CaseOneSameCellStatement`, axioms
+    [propext, Classical.choice, Quot.sound].
+- Waist note, for main; these waists belong to other lanes.
+  - `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8` uses `hloop` and `hsub` only for binder 3 (the
+    no-spur X/Y pockets and the spur branch under `osinLemma94CaseOneSameCell_of_rCell`).
+  - V8Closures and V9 pass `hloop` through to V8, and `TorsionFreeResidualsV6..V9` carry it.
+  - A respelled waist can take `osinLemma94CaseOneSameCell` instead and drop both hypotheses.
+  - The unrestricted `EnclosedSubdiagramLoopCutSuccStatement` (relator words of length one) stays open, and no waist
+    needs it.
 
 ## Progress log
 
