@@ -144,8 +144,7 @@ theorem turingReducible_slope_language (hα : Irrational α) (hα0 : 0 < α) (h�
       (Primrec.cond (Primrec.fst.comp (Primrec.list_foldl (primrec_allWords.comp hb)
         (Primrec.pair (Primrec.const true) Primrec.snd) hstep)) (Primrec.const 1)
         (Primrec.const 0))
-  · dsimp only
-    unfold slopeOracle
+  · unfold slopeOracle
     congr 1
     generalize (Nat.unpair n).1 = a
     generalize (Nat.unpair n).2 = b
@@ -273,8 +272,7 @@ theorem turingReducible_language_slope (hα : Irrational α) (hα0 : 0 < α) (h�
         (primrec_pairsUpTo.comp (Primrec.list_length.comp (hv.comp Primrec.fst)))
         (Primrec.pair (Primrec.const true) Primrec.snd) hstep)) (Primrec.const 1)
         (Primrec.const 0)) (Primrec.const 0)
-  · dsimp only
-    cases hd : (decode n : Option (List Bool)) with
+  · cases hd : (decode n : Option (List Bool)) with
     | none =>
       simp only [Option.isSome_none, cond_false]
       show Part.some _ = Part.some 0
