@@ -113,6 +113,34 @@ V3 residuals: `OsinLemma94ClassEndLoopsInput`, `OsinLemma94SameCellPocketInput` 
 Also: the duplicate top-level `ClopenCrossedProduct.coeff_injective` in `Dynamics/BilateralThreeCellClopen` was
 removed in favour of chain-core's `Dynamics/ClopenCrossedProductComap` (131abe1b5, co-probe with every importer).
 
+## Item 5: class→side connector-pair transfer (BLOCKED, nothing landed)
+
+Goal: derive `OsinLemma94ClassCasesInput` from side-level Case 1 (`osinLemma94CaseOneInput_of_walk` with
+`osinLemma94CaseOneSameCell_of_rCell`) and the closed side-level Case 2, by transferring a class-word
+`WordConnectorPair` to a side-level one.
+
+Model test result: the transfer fails in general.  A pair's segments must lie in one word, and
+`wordDist_vertex_le'` bounds `wordDist(vertex v w a, vertex v w a')` by `a' − a`, so a side-level pair needs one
+side word with a source segment longer than `ε` (same for the target).  On class words
+`Q.word k i = flatMap (side word ++ gap word)`, with value-one gaps:
+
+1. **Source spans a gap.**  Class `cell j` with sides `[s₁, s₂]` and a bubble gap `g` (`gap_value`), both side
+   words of length `≤ ε`; `a` in the tail of `s₁`, `a'` in the head of `s₂`.  The class segment has value
+   `listVal(tail s₁)·listVal(head s₂)` and distance up to `~2ε > ε`, so the class pair is legal; no side pair with
+   source `s₁` or `s₂` satisfies `source_long`.
+2. **Endpoint strictly inside a gap.**  Those vertices lie on the cell boundary inside the bubble, not on the
+   polygon face walk: no side position, and the side same-cell geometry (face walk `X q⁻¹ Y p⁻¹`) has no
+   counterpart.
+3. **Target split across sides.**  `b' < b` with `b'` in side `t₁` and `b` in side `t₂ > t₁` of the target class.
+
+What does transfer: pairs whose source and target segments each lie inside one side word, with no gap-interior
+endpoint (corners shift by the class-base rotation, and the word metric is left invariant).  Singleton classes
+(`ofSides`) are the special case, but there the class budget is the over-strong side budget.
+
+Consequence: `OsinLemma94ClassCasesInput` needs its own class-word Case 1/2, a quadrilateral-region argument over
+cell and section arcs that include bubble gaps.  Reported to main with the options (a) land the partial transfer
+and narrow the residual to gap-spanning and gap-endpoint pairs, or (b) another item.
+
 ## Residual statements
 
 In this lane's own modules, none. The W1 waist residuals are listed above (V2: six; V3: seven).
