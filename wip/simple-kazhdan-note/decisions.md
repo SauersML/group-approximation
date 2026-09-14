@@ -276,6 +276,67 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Precision option from intro-writer: Pestov–Kwiatkowska printed "finitely generated simple Kazhdan groups".
     - Still open for sk-lit-locators: Rădulescu volume/series, Lothaire series number, Milnor locator, Kionke–Schesler volume/pages.
 
+67. **sk-verify-7 part2** (5e3c6359ef).
+    - rev3 §2 LEF iff: PASS. Apply at landing:
+      - W6: generating R as a ring needs the units u_s^{±1};
+      - W7: add the substitution "B_w for {|a| ≤ w}, so d = 3|B_w|" to the "applies word for word" rule.
+    - sk-simpler-onepage §1: PASS, with notes to apply if adopted in rev4:
+      - N1: end the proof after the level ideal, and make Brown's formulation a remark;
+      - N2: seam position m, not p;
+      - N3: yy′ = y′y = eI₃;
+      - N5: merge the 20:00 credit additions.
+    - Universal host: concurring PASS.
+    - sk-strong-5: no shorter family. Its second witness G_CAR = EL_3((⊗_Z M_2(F_2))⋊Z) is a marked limit of SL_{3·2^N}(F_2). Firewall: SL_3(Z) is a (T) marked limit of finite simple groups and is not simple. No note change.
+
+68. **sk-strong-6** (9d6965a225) independently reached item 64's theorem, `lef-iff-subgroup-of-simple-kazhdan-limit-of-finite-simple`, via configuration-space models on 2^{Q_n}. That makes two independent derivations; still unreviewed and queued with sk-verify-7.
+    - Table of approximation classes:
+      - RF, amenable, residually amenable and residually solvable classes contain no infinite simple Kazhdan group, so their envelope theorems fail.
+      - Sofic, hyperlinear, weakly sofic, linear sofic, initially subamenable and operator-MF envelope theorems would each force a non-LEF simple Kazhdan host (the Abels–Prüfer witness).
+    - For rev4: take the shorter of the sk-strong-8 and sk-strong-6 texts. Optional one sentence: "LEF is the only standard approximation class with this characterization known; residually finite and amenable classes admit none."
+
+69. **sk-intro-writer** (f93513e516): a one-page introduction replacing rev2 l.40–79. It consolidates:
+    - Brown's printed question plus Ozawa's LLP remark;
+    - Rădulescu, Gromov and Weiss;
+    - the earlier simple Kazhdan groups (Gromov 1987, Caprace–Rémy "first finitely presented");
+    - Thom;
+    - Pestov–Kwiatkowska's open-status sentence;
+    - the results in words, with the Kionke–Schesler credit;
+    - the method with the amenable-contrast sentence (Matui, Juschenko–Monod).
+
+    Cost: +27 text lines, +45 bibliography lines; compiles clean; 0.87 page. The universal-host clause is gated on review, and Variant II exists if there is no §2.
+    - DECISION: adopt in rev4, merged with BG1/BG2 and with item 64's unified headline if it passes.
+
+70. **sk-verify-4 final** (parts 1–5; 3ab1bef47b): 26 items, one FAIL (double swap, demoted and wired), the rest PASS.
+    - REV4 NOW UNBLOCKED:
+      - EL_2 PASS: EL_2(LC(X,F_2)⋊Z) is simple Kazhdan LEF, so the theorem holds for every n ≥ 2 (item 53: +33 lines, EJZK bibitem; the expander clause stays n ≥ 3);
+      - the RF and LEF embeddings, the universal host, the density patch, not-uniformly-simple.
+    - Repairs merged: the index ≥ 4 Toeplitz array; the finite-Γ envelope case; the WP-degree justification (commutation with generators); f.g. only when R is.
+    - Keep one canonical Wilson import pair (sk-cairn-steward).
+
+71. **REV4 ARCHITECTURE (main's plan, after rev3 lands):**
+    - (a) **Theorem 2**, the general engine (sk-simpler-unify, b64ae5d7fb, unreviewed). A f.g. group L acting minimally and topologically freely on a Cantor set, with R = LC⋊L f.g. and matricial, has EL_n(R) infinite, f.g., simple, LEF and Kazhdan.
+      - One complete proof replaces rev3's "applies word for word" substitution list, which a referee would attack.
+      - Cost: +14 lines, or about +9 with the statement at the head of §1.
+      - Z-subshifts become §2; the lamplighter host follows immediately.
+    - (b) §1 text from sk-simpler-onepage (PASS; notes N1–N5), adapted to Theorem 2's word-length notation.
+    - (c) The corollary as the unified headline: LEF iff subgroup of an infinite simple Kazhdan marked limit of finite simple expanders (items 64 and 68, after a PASS).
+    - (d) Universal host: sk-universal-lef-host-b Theorem C, plus sk-universal-lef-host-a's A1 iff sentence ("a set of f.g. groups lies in one host iff LEF and countably many types"). A2 drops the quotient-doubling overgroup via commutator words (−6 lines). Add the no-decidable-host clause (item 62).
+    - (e) n ≥ 2 (EL_2, PASS).
+    - (f) Intro from sk-intro-writer with BG1/BG2 and the credit batch.
+    - (g) Questions Q1 and Q3.
+    - (h) The typesetting patch.
+    - Optional: rank-3 converse sentence (sk-rank3-lef-converse, 95cd5d55a7): for countable simple rings with 2×2 matrix units, one LEF EL_n (n ≥ 2) forces exact matriciality.
+    - Budget: at most 7 pages.
+
+72. **REV3 assembled** (sk-editor-3; 614 lines, 7 pp, md5 2a0264d7…). Main read it fully and verified it: the density-patch h-step, the e_ij(1) fix, and §2 (doubled regular actions + Ore, minimality and topological freeness, affine models, injectivity from simplicity, the Whitehead identities).
+    - Main's edits: W6 (u_s^{±1}), W7 (B_w, d = 3|B_w|).
+    - Then: typesetting patch, compile, land after the two rev3 referee reports.
+73. **Character rigidity** (sk-characters-rigidity-b, d78467369d, unreviewed; queued with sk-verify-7). Every character of EL_n(LC(X,F_2)⋊Z), n ≥ 3, is c·1 + (1−c)δ_e.
+    - Proof: tower groups; two points generate; Larsen–Tiep bounds; a Bessel step.
+    - Consequences: L(G_X) is the only II_1 factor representation; the invariant random subgroups are trivial.
+    - REV4 candidate after a PASS: a "Characters" subsection (+45 lines, Larsen–Tiep bibitem). High impact for operator algebraists; weigh it against the 7-page budget.
+74. **sk-el2-fq** (fa92d5adcb, unreviewed): EL_2(LC(X,F_q)⋊Z)/Z is infinite, f.g., simple, Kazhdan and LEF for every q. REV4 option R3: an "Other finite fields" paragraph (+12 lines) naming the changes (roots e_ij(e_V u), tower margin, SL_d quasisimple, Peirce level step), per item 23.
+
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
 - The exact centre formula over F_q (it stays in Cairn).
