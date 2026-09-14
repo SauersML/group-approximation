@@ -1,0 +1,246 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94LongTransitions
+import GroupApproximation.GGT.VanKampen.SurgeryPinchSplitAbsorption
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4: an unpinched bubble between two relator cells
+
+`OsinLemma94ContactTransitionInput` (`OsinLemma94LongTransitions.lean`) counts the contacts of
+distinct objects around the polygons.  Euler's count bounds them once no two-gon of the object
+graph is empty, and the smallest empty two-gon is a bubble: a polygon whose walk reads one arc of
+a relator cell `i` and one arc of a different relator cell `j`, and nothing else.
+
+On a globally distinguished family such a polygon does not exist.  Its face has value one, no
+dart with the face on both sides (both sides run along cells), and its walk reads the reversed
+arc of `i` followed by the reversed arc of `j`.  So it is a singleton `ε`-contiguity region from
+`i` to `j` with empty sides (`ContiguityGeometry.ofSingletonFace`).  No selected region contains
+the polygon's face, so adjoining the region gives a heavier legal family, against
+`weight_maximal` (`GloballyDistinguishedSectionFamily.false_of_avoided_singleton`).
+
+* `OsinLemma94RealizedPolygons.face_value`: the face of a polygon reads a word of value one.
+* `OsinLemma94RealizedPolygons.flatMap_range_two`.
+* `OsinLemma94RealizedPolygons.false_of_twoCellSides`: no polygon has exactly two sides, along two
+  different relator cells.
+* `OsinLemma94RealizedPolygons.false_of_cellBoundarySides`: no polygon has exactly two sides, an arc
+  of a relator cell followed by an arc of `∂Δ` inside one section.  The singleton region targets
+  that section, and the arc bounds of `boundary_arc` are the bounds `TargetsSectionIndex` asks for.
+* `OsinLemma94RealizedPolygons.false_of_boundaryCellSides`: the same bubble with the section side
+  first, re-based at the start of the cell side.
+* Not covered: pinched bubbles, which `PinchSplit.pinchSplitAbsorption` handles after the split,
+  and bubbles whose two sides run along the same object.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (through Osin's Lemma 9.4, arXiv:math/0411039v3, §9); certifies no
+printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open scoped Classical
+
+namespace OsinLemma94RealizedPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+/-- **The face of a polygon reads a word of value one**: it is an inner face and no relator
+cell. -/
+theorem face_value (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) :
+    RelLetter.listVal (S.diagram.faceWord (P.face k)) = 1 := by
+  rcases S.diagram.inner_face (P.face k) (P.face_ne_outer k) with ⟨C, hC, hface⟩ | h
+  · obtain ⟨i, hi⟩ := List.get_of_mem hC
+    exfalso
+    refine P.face_not_cell k i ?_
+    change (S.diagram.relatorCells.get i).face = P.face k
+    rw [hi]
+    exact hface
+  · exact h
+
+theorem flatMap_range_two {α : Type*} (f : ℕ → List α) :
+    (List.range 2).flatMap f = f 0 ++ f 1 := by
+  rw [show List.range 2 = [0, 1] from rfl]
+  simp
+
+/-- **No unpinched bubble between two relator cells.**  A polygon with exactly two sides, along
+two different relator cells, is a singleton contiguity region that no selected region contains,
+against the maximality of the family. -/
+theorem false_of_twoCellSides (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (h2 : P.sideCount k = 2) {i j : Fin S.diagram.rCellCount} (hij : i ≠ j)
+    (h0 : P.kind k 0 = .cell i) (h1 : P.kind k 1 = .cell j) : False := by
+  obtain ⟨arc0, harc0⟩ := P.cell_arc k 0 i (by omega) h0
+  obtain ⟨arc1, harc1⟩ := P.cell_arc k 1 j (by omega) h1
+  have hsides : (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) =
+      arc0.reverseDarts ++ arc1.reverseDarts := by
+    rw [P.walk k, h2, flatMap_range_two, harc0, harc1]
+  have hwalk : (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) =
+      arc0.reverseDarts ++ [] ++ targetBoundaryDarts S.diagram (some j) arc1 ++ [] := by
+    rw [hsides]
+    simp only [List.append_nil]
+    rfl
+  -- no dart of the polygon has the polygon's face on both sides
+  have hno : Surgery.MapCollapse.NoInternalFaceDart S.diagram.toCombMap (P.face k) := by
+    intro d hd
+    have hmem : d ∈ (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) :=
+      List.mem_rotate.mpr (((S.diagram.faceBoundary (P.face k)).mem_iff d).mpr hd)
+    rw [hsides] at hmem
+    simp only [List.mem_append, CyclicArc.reverseDarts, List.mem_map, List.mem_reverse] at hmem
+    rcases hmem with ⟨e, he, rfl⟩ | ⟨e, he, rfl⟩
+    · rw [S.diagram.toCombMap.alpha_involutive e,
+        ((S.diagram.faceBoundary (cell S.diagram i).face).mem_iff e).mp
+          (arc0.mem_cycle_of_mem_darts he)]
+      exact P.face_not_cell k i
+    · rw [S.diagram.toCombMap.alpha_involutive e,
+        ((S.diagram.faceBoundary (cell S.diagram j).face).mem_iff e).mp
+          (arc1.mem_cycle_of_mem_darts he)]
+      exact P.face_not_cell k j
+  -- both arcs are nonempty, since the sides are
+  have hlen : ∀ (s : ℕ) (hs : s < P.sideCount k) (l : Fin S.diagram.rCellCount)
+      (arc : CyclicArc (cellDarts S.diagram l)), P.sideDarts k s = arc.reverseDarts →
+      0 < arc.length := by
+    intro s hs l arc harc
+    have hne := P.side_ne_nil k s hs
+    rw [harc, CyclicArc.reverseDarts] at hne
+    have hne' : arc.darts ≠ [] := by simpa using hne
+    rw [← arc.darts_length]
+    exact List.length_pos_of_ne_nil hne'
+  let H : ContiguityGeometry D eps S.diagram ({P.face k} : Finset S.diagram.toCombMap.Face) :=
+    ContiguityGeometry.ofSingletonFace (P.face k) (P.face_ne_outer k) (P.face_value k) hno
+      (P.base k) i (some j) arc0 arc1 [] [] hwalk (by simp) (by simp)
+      (by simp [dartWord, RelLetter.listVal, WordMetric.wordNorm_one])
+      (by simp [dartWord, RelLetter.listVal, WordMetric.wordNorm_one])
+  have hresp : RegionCandidate.RespectsSections cuts
+      (⟨{P.face k}, H⟩ : RegionCandidate D eps S.diagram) := by
+    refine ⟨fun h => hij ?_, fun h => absurd h (Option.some_ne_none j)⟩
+    exact (Option.some_injective _ h).symm
+  exact S.false_of_avoided_singleton S.toRealizedSectionFamily S.label_admissible le_rfl
+    (f := P.face k) H (fun a ha => P.face_unselected k a ha) hresp
+    (hlen 0 (by omega) i arc0 harc0) (hlen 1 (by omega) j arc1 harc1)
+
+/-- **No unpinched bubble between a relator cell and a section of `∂Δ`.**  A polygon with exactly
+two sides, an arc of relator cell `i` followed by an arc of `∂Δ` inside section `j`, is a singleton
+contiguity region from `i` to section `j`, against the maximality of the family. -/
+theorem false_of_cellBoundarySides (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (h2 : P.sideCount k = 2) {i : Fin S.diagram.rCellCount} {j : ℕ}
+    (h0 : P.kind k 0 = .cell i) (h1 : P.kind k 1 = .boundary j) : False := by
+  obtain ⟨arc0, harc0⟩ := P.cell_arc k 0 i (by omega) h0
+  obtain ⟨hj, arc1, harc1, hcut0, hcut1⟩ := P.boundary_arc k 1 j (by omega) h1
+  have hsides : (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) =
+      arc0.reverseDarts ++ arc1.darts := by
+    rw [P.walk k, h2, flatMap_range_two, harc0, harc1]
+  have hwalk : (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) =
+      arc0.reverseDarts ++ [] ++ targetBoundaryDarts S.diagram none arc1 ++ [] := by
+    rw [hsides]
+    simp [targetBoundaryDarts]
+  have hno : Surgery.MapCollapse.NoInternalFaceDart S.diagram.toCombMap (P.face k) := by
+    intro d hd
+    have hmem : d ∈ (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) :=
+      List.mem_rotate.mpr (((S.diagram.faceBoundary (P.face k)).mem_iff d).mpr hd)
+    rw [hsides, List.mem_append] at hmem
+    rcases hmem with hd0 | hd1
+    · simp only [CyclicArc.reverseDarts, List.mem_map, List.mem_reverse] at hd0
+      obtain ⟨e, he, rfl⟩ := hd0
+      rw [S.diagram.toCombMap.alpha_involutive e,
+        ((S.diagram.faceBoundary (cell S.diagram i).face).mem_iff e).mp
+          (arc0.mem_cycle_of_mem_darts he)]
+      exact P.face_not_cell k i
+    · have hout : d ∈ outerDarts S.diagram := arc1.mem_cycle_of_mem_darts hd1
+      simp only [outerDarts, List.mem_map, List.mem_reverse] at hout
+      obtain ⟨e, he, rfl⟩ := hout
+      rw [S.diagram.toCombMap.alpha_involutive e,
+        ((S.diagram.faceBoundary S.diagram.outerFace).mem_iff e).mp he]
+      exact fun h => P.face_ne_outer k h.symm
+  have hlen0 : 0 < arc0.length := by
+    have hne := P.side_ne_nil k 0 (by omega)
+    rw [harc0, CyclicArc.reverseDarts] at hne
+    have hne' : arc0.darts ≠ [] := by simpa using hne
+    rw [← arc0.darts_length]
+    exact List.length_pos_of_ne_nil hne'
+  have hlen1 : 0 < arc1.length := by
+    have hne := P.side_ne_nil k 1 (by omega)
+    rw [harc1] at hne
+    rw [← arc1.darts_length]
+    exact List.length_pos_of_ne_nil hne
+  let H : ContiguityGeometry D eps S.diagram ({P.face k} : Finset S.diagram.toCombMap.Face) :=
+    ContiguityGeometry.ofSingletonFace (P.face k) (P.face_ne_outer k) (P.face_value k) hno
+      (P.base k) i none arc0 arc1 [] [] hwalk (by simp) (by simp)
+      (by simp [dartWord, RelLetter.listVal, WordMetric.wordNorm_one])
+      (by simp [dartWord, RelLetter.listVal, WordMetric.wordNorm_one])
+  have hresp : RegionCandidate.RespectsSections cuts
+      (⟨{P.face k}, H⟩ : RegionCandidate D eps S.diagram) :=
+    ⟨fun h => Option.some_ne_none i h.symm, fun _ => ⟨⟨j, hj⟩, rfl, hcut0, hcut1⟩⟩
+  exact S.false_of_avoided_singleton S.toRealizedSectionFamily S.label_admissible le_rfl
+    (f := P.face k) H (fun a ha => P.face_unselected k a ha) hresp hlen0 hlen1
+
+/-- **No unpinched bubble with the section side first.**  A polygon with exactly two sides, an arc
+of `∂Δ` inside section `j` followed by an arc of relator cell `i`, read from the start of the cell
+side, is the bubble of `false_of_cellBoundarySides`. -/
+theorem false_of_boundaryCellSides (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (h2 : P.sideCount k = 2) {i : Fin S.diagram.rCellCount} {j : ℕ}
+    (h0 : P.kind k 0 = .boundary j) (h1 : P.kind k 1 = .cell i) : False := by
+  obtain ⟨arc1, harc1⟩ := P.cell_arc k 1 i (by omega) h1
+  obtain ⟨hj, arc0, harc0, hcut0, hcut1⟩ := P.boundary_arc k 0 j (by omega) h0
+  have hsides0 : (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) =
+      arc0.darts ++ arc1.reverseDarts := by
+    rw [P.walk k, h2, flatMap_range_two, harc0, harc1]
+  have hsides : (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k + arc0.darts.length) =
+      arc1.reverseDarts ++ arc0.darts := by
+    rw [← List.rotate_rotate, hsides0, List.rotate_append_length_eq]
+  have hwalk : (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k + arc0.darts.length) =
+      arc1.reverseDarts ++ [] ++ targetBoundaryDarts S.diagram none arc0 ++ [] := by
+    rw [hsides]
+    simp only [List.append_nil]
+    rfl
+  have hno : Surgery.MapCollapse.NoInternalFaceDart S.diagram.toCombMap (P.face k) := by
+    intro d hd
+    have hmem : d ∈ (S.diagram.faceBoundary (P.face k)).darts.rotate (P.base k) :=
+      List.mem_rotate.mpr (((S.diagram.faceBoundary (P.face k)).mem_iff d).mpr hd)
+    rw [hsides0, List.mem_append] at hmem
+    rcases hmem with hd0 | hd1
+    · have hout : d ∈ outerDarts S.diagram := arc0.mem_cycle_of_mem_darts hd0
+      simp only [outerDarts, List.mem_map, List.mem_reverse] at hout
+      obtain ⟨e, he, rfl⟩ := hout
+      rw [S.diagram.toCombMap.alpha_involutive e,
+        ((S.diagram.faceBoundary S.diagram.outerFace).mem_iff e).mp he]
+      exact fun h => P.face_ne_outer k h.symm
+    · simp only [CyclicArc.reverseDarts, List.mem_map, List.mem_reverse] at hd1
+      obtain ⟨e, he, rfl⟩ := hd1
+      rw [S.diagram.toCombMap.alpha_involutive e,
+        ((S.diagram.faceBoundary (cell S.diagram i).face).mem_iff e).mp
+          (arc1.mem_cycle_of_mem_darts he)]
+      exact P.face_not_cell k i
+  have hlen1 : 0 < arc1.length := by
+    have hne := P.side_ne_nil k 1 (by omega)
+    rw [harc1, CyclicArc.reverseDarts] at hne
+    have hne' : arc1.darts ≠ [] := by simpa using hne
+    rw [← arc1.darts_length]
+    exact List.length_pos_of_ne_nil hne'
+  have hlen0 : 0 < arc0.length := by
+    have hne := P.side_ne_nil k 0 (by omega)
+    rw [harc0] at hne
+    rw [← arc0.darts_length]
+    exact List.length_pos_of_ne_nil hne
+  let H : ContiguityGeometry D eps S.diagram ({P.face k} : Finset S.diagram.toCombMap.Face) :=
+    ContiguityGeometry.ofSingletonFace (P.face k) (P.face_ne_outer k) (P.face_value k) hno
+      (P.base k + arc0.darts.length) i none arc1 arc0 [] [] hwalk (by simp) (by simp)
+      (by simp [dartWord, RelLetter.listVal, WordMetric.wordNorm_one])
+      (by simp [dartWord, RelLetter.listVal, WordMetric.wordNorm_one])
+  have hresp : RegionCandidate.RespectsSections cuts
+      (⟨{P.face k}, H⟩ : RegionCandidate D eps S.diagram) :=
+    ⟨fun h => Option.some_ne_none i h.symm, fun _ => ⟨⟨j, hj⟩, rfl, hcut0, hcut1⟩⟩
+  exact S.false_of_avoided_singleton S.toRealizedSectionFamily S.label_admissible le_rfl
+    (f := P.face k) H (fun a ha => P.face_unselected k a ha) hresp hlen1 hlen0
+
+end OsinLemma94RealizedPolygons
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.face_value
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.false_of_twoCellSides
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.false_of_cellBoundarySides
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.false_of_boundaryCellSides
