@@ -147,8 +147,30 @@ Agreements with w1-binder-5 (18:3x):
 - `faceOf_dartImage`, `alpha_dartImage_of_ne`, `holdingFaceSet` (images of the faces, without the digon), boundary darts
   `↔` images, internal moves and boundary steps lift, and `holdingBoundary : FaceSetBoundary` with cycle `B.cycle.map
   dartImage`, under `faceOf (α w_j) ∉ s`.
-- Next (part 2): shelling transport, contiguity geometry, the one-step section family, count decrease, invariant
-  induction, closed statement.
+
+**LANDED 420311fe2** `SurgeryFaceEdgeDoublingHoldingGeometry` (probe 0913-193150-69541, BUILT/COMPILED; wire-queued):
+- `shelling_dartImage`, the shelling transport.
+- `holdingGeometry`: arcs go through the dart embedding and sides through `dartImage`.
+- `holdingCandidate`, with the same weight and target profile.
+
+**LANDED f3a009b81** `SurgeryRegionPairThickeningStep` (probe 0913-194251-26880 GREEN; wire-queued):
+- `StepData`: the holder, `w_j` on its side, and the arcs of the other regions avoiding `w_j`.
+- `stepFamily`: the holding region inserted into `regionFamilyOfArcs` of the rest, with card, weight, pairwise,
+  profile and noLoop.
+- `stepEquiv`, with profile, source and `target.map Fin.val`, and `sectionFamily`.
+
+**LANDED 9e31aea90** `SurgeryRegionPairThickeningCount` (probe 0913-195857-98618 GREEN; wire-queued):
+- `one_lt_length_or_of_regions` discharges `hmono`. Two monogons across the edge would make the vertex rotation
+  swap its darts, so the connected map would have two darts and the exterior would be a region face.
+- `side_of_pair`, `familyArcAvoid_of_pair` and `stepDataOfPair`, assuming no relator word has value one.
+- `exists_of_isRegionPairDart_step` and `regionPairCount_lt`.
+
+In flight: `SurgeryRegionPairThickeningRegions` (attic 38f6fb848):
+- `noOuterSideDart_step`, `noCellSideDart_step`, `noCellHair_step`, `noCellEdgeDart_step`.
+- `exists_regionPairFree_of_invariant (P) (hP) (S) (hvalue) (hS)`. `hP` also receives the relator-value hypothesis, and
+  the output adds the target clause and the relator values.
+- `RegionsClean` and `sectionPocketRegionsCopy : SectionPocketRegionsCopyStatement`.
+- The first probe (20:2x) failed on infra (MSI connection down), not on Lean.
 
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.
