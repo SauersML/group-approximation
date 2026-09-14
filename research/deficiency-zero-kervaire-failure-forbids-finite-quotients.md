@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: deficiency-zero-kervaire-failure-needs-acyclic-complex-and-no-finite-quotient
+id: deficiency-zero-kervaire-failure-forbids-finite-quotients
 kind: claim
 title: A Kervaire killing failure over a deficiency-zero presentation needs an acyclic presentation complex, a superperfect coefficient group, and no nontrivial finite quotient
 distinct_from:

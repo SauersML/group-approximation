@@ -3,7 +3,7 @@ rg: 2
 id: deficiency-zero-kervaire-failure-filter-proof
 kind: route
 title: Push the killing failure onto finite quotients and read the homology off the balanced complex
-target: deficiency-zero-kervaire-failure-needs-acyclic-complex-and-no-finite-quotient
+target: deficiency-zero-kervaire-failure-forbids-finite-quotients
 requires:
   - kervaire-laudenbach-holds-for-hyperlinear
   - deficiency-zero-kervaire-failure-yields-whitehead-counterexample
