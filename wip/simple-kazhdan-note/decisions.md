@@ -718,6 +718,16 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Fixes, applied as rev4.5: U1 (abstract names the host explicitly, since "such a group" could be misread as some G_X); U2 ("keeps the word problem solvable"); U3 ("Simple hosts with only one of property (T) and LEF were known"); U4 (the fuller Stepanov sentence).
     - rev4.5: 775 lines, 8 pp, md5 29d63f79…, MSI 0/0/0; the diff is exactly the four fixes.
     - The audit reports that could not land themselves (sk-perfect-a, sk-perfect-b, sk-perfect-c, sk-rev44-referee) are landed by main as artifacts.
+153. **REV4.5 LANDED 8b36733d78** (775 lines, 8 pp, md5 29d63f79…). Audit reports landed as artifacts (f669c69ba7). The GHA PDF rebuild is run 34854637628.
+154. **Last research finals of wave 12 (unreviewed, queued; Cairn only).**
+    - sk-rauzy-intermediate (bb1ac88326, 7f816d6398): the semi-free clause of Cornulier Q7 is negative in the dyadic class (a uniform N would force uniform exponential growth).
+      - Correction: the right Nekrashevych host is Matte Bon's edge-label subshift 𝒲, not a dihedral double.
+      - Sturmian stays OPEN; the generation step fails at coherent transport.
+    - sk-exact-banded (b6a40f47f3, 5deb2d7bc1, 045a64c92e, 352aa767aa, 927bcb96eb): banded matrices over F_q on Z×m = GL_m(LC(βZ,F_q)⋊Z), and their f.g. subgroups are transitive-subshift groups.
+      - Exactness in every rank is Kakutani invariant.
+      - Reduction to the limit subsystem via locally finite congruence kernels plus Kirchberg–Wassermann extensions. What remains is exactly the minimal aperiodic case; G_X exactness stays OPEN.
+    - Fleet: every research lane of wave 12 has reported. Live: sk-cairn-steward-5 (final pass plus MSI confirm), sk-verify-18, sk-verify-20 (33 queued claims, Theorem P first).
+    - RAM: swap at 52% (over half), so no new launches until it drops.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
