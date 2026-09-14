@@ -30,3 +30,18 @@ finite set.
 - **The action is primitive.** Point stabilizers in `(0,1)` are maximal subgroups (Aiello–Nagnibeda,
   arXiv:2103.07885, abstract). So there is no nontrivial `F`-quotient of `D` along which to apply the extension
   principle.
+
+## Attempts
+
+- **Inverted-orbit target (2026-09-14, hl-f-extensive-amenability-dyadic).** By JMBMdlS Proposition (§"The
+  inverted orbit"), this claim is equivalent to a `μ`-independent confinement of the inverted orbit `O_n` of
+  a random walk on `F`: for every `ε > 0`, `P(|O_n| < ε n) > e^{−ε n}` infinitely often, equivalently
+  subexponential decay of `E(2^{−|O_n|})`, equivalently subexponential return probability of the
+  switch-walk-switch walk on `(Z/2)^{(D)} ⋊ F`. This is the ESTABLISHED equivalence
+  `f-dyadic-ea-iff-inverted-orbit-confinement`; the concrete OPEN target is
+  `f-dyadic-inverted-orbit-is-subballistic-on-rare-events`, with route
+  `f-dyadic-ea-from-inverted-orbit-confinement`.
+- **The recurrence route provably fails (2026-09-14).** `f-dyadic-action-is-not-recurrent`: the mean
+  inverted orbit is ballistic, `(1/n) E|O_n| → P(T = ∞) > 0`, from Mishchenko's transience. So the
+  sufficient condition `(1/n) E|O_n| → 0` fails, and any proof must use the strictly weaker rare-event
+  confinement. A genuine exponential upper bound on `E(2^{−|O_n|})` would instead prove `F` nonamenable.
