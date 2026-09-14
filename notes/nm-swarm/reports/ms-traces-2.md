@@ -278,6 +278,24 @@ State at 23:2x:
   - `one_lt_length_of_two_le_rho`.
   - Claimed next: `Estimating/OsinEnclosedLoopPocketUnpinch.lean` (B) and `ClosedWalkEnclosedBridgeDoublingSideArc.lean`
     (A).
+- ~09:36 API/DNS outage. Reconciled on resume:
+  - da17060f7 and 372f6a714 are on origin with matching bytes and are in `landed.log`.
+  - The in-flight unpinch probe 0914-093234-44793 died on the MSI hop (rc=255) and compiled nothing.
+  - The MSI master is back.
+- (B) closed. 10:07 probe 0914-100759-40690 GREEN (BUILT), landing with this report:
+  `enclosedLoopPocketUnpinchSucc : EnclosedLoopPocketUnpinchSuccStatement`, `PocketFaceSet.ReadsSide` and its two step
+  lemmas, `exists_goodCorners_readsSide`, `exists_simple_of_firstTurns_readsSide`, `EnclosedLoopPocket.pocketFaceSet` and
+  `pocketFaceSet_firstTurns`, and `enclosedSubdiagramLoopCutSuccLong_of_doubling`.
+- Interface note (not a false printed claim): the Long form needs relator words longer than one letter.
+  - Binder 3's consumers choose their own ρ threshold (`max 1 rho1` in the X-pocket and in
+    `osinLemma94CaseOneRCellSpur_of_enclosure`), so a `max 2 rho1` copy loses nothing.
+  - Additive module `Estimating/OsinLemma94SameCellEnclosedSuccLong`: the X/Y pockets, the spur branch and binder 3
+    over `EnclosedSubdiagramLoopCutSuccLongStatement`, and binder 3 from the side-and-arc doubling. Probe after the
+    unpinch lands.
+- Remaining leaf: (A) `EnclosedBridgeDoublingSideArcSuccStatement`, by the bridge-count induction over Step.
+  - The walk splits as `A.darts ++ invDarts s`, and the image side is `invDarts X' ((invDarts X s).map image)`.
+  - Its word comes from `dartWord_invDarts_diagram` / `_spurDiagram` at `invDarts s`.
+  - The arc comes from ms-compress-2's `darts_map_image_cellArc` / `_spur` (A2, not yet on origin).
 
 ## Progress log
 
