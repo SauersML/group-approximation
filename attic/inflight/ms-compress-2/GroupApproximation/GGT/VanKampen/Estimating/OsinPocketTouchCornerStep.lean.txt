@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTouchCornerSides
 import GroupApproximation.GGT.VanKampen.SurgeryFaceEdgeDoublingHoldingRegion
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketEdgeDoublingFirstTurns
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
