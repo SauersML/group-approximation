@@ -32,8 +32,7 @@ def PrintedElementaryGroupNotMFRankTwo : Prop :=
     (∃ (m : ℕ) (a b : Fin m → R), ∑ k, a k * (1 - s * t) * b k = 1) →
       ∀ (n : ℕ), 2 ≤ n →
         Countable (elementaryGroup (Fin n) R) ∧ Nontrivial (elementaryGroup (Fin n) R) ∧
-          (letI : Countable (elementaryGroup (Fin n) R) := countable_elementaryGroup
-            ¬ IsCDEOperatorMF (elementaryGroup (Fin n) R))
+          ¬ @IsCDEOperatorMF (elementaryGroup (Fin n) R) _ countable_elementaryGroup
 
 theorem printedElementaryGroupNotMFRankTwo : PrintedElementaryGroupNotMFRankTwo := by
   intro R _ _ _ s t hts hfull n hn

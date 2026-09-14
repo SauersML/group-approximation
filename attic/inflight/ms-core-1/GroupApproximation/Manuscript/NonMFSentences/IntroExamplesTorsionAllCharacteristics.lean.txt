@@ -71,13 +71,20 @@ theorem exists_elementary_torsion_of_nontrivial (R : Type*) [Ring R] [Nontrivial
   have hne : (⟨0, h0⟩ : Fin n) ≠ ⟨1, h1⟩ := by
     intro hcon
     exact absurd (congrArg Fin.val hcon) (by norm_num)
-  refine ⟨weylUnit ⟨0, h0⟩ ⟨1, h1⟩ hne, (weyl (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne).2, ?_, ?_⟩
+  have hmem : weylUnit (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne ∈ elementaryGroup (Fin n) R := by
+    rw [← weyl_val]
+    exact (weyl (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne).2
+  refine ⟨weylUnit (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne, hmem, ?_, ?_⟩
   · intro hw
-    have he := congrArg
-      (fun z : (Matrix (Fin n) (Fin n) R)ˣ => (z : Matrix (Fin n) (Fin n) R) ⟨0, h0⟩ ⟨0, h0⟩) hw
-    simp only [weylUnit_val, Units.val_one] at he
-    exact zero_ne_one (by simpa [Matrix.single_apply, hne, hne.symm, Matrix.one_apply] using he)
-  · exact isOfFinOrder_iff_pow_eq_one.2 ⟨4, by norm_num, weylUnit_pow_four _ _ hne⟩
+    have hm := weylUnit_val_mul_single_fst (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne ⟨0, h0⟩ (1 : R)
+    rw [hw, Units.val_one, one_mul] at hm
+    have he : (Matrix.single (⟨0, h0⟩ : Fin n) ⟨0, h0⟩ (1 : R)) ⟨0, h0⟩ ⟨0, h0⟩ =
+        (-Matrix.single (⟨1, h1⟩ : Fin n) ⟨0, h0⟩ (1 : R)) ⟨0, h0⟩ ⟨0, h0⟩ :=
+      congrArg (fun M : Matrix (Fin n) (Fin n) R => M ⟨0, h0⟩ ⟨0, h0⟩) hm
+    rw [Matrix.single_apply_same, Matrix.neg_apply,
+      Matrix.single_apply_of_row_ne hne.symm ⟨0, h0⟩ ⟨0, h0⟩ (1 : R), neg_zero] at he
+    exact one_ne_zero he
+  · exact isOfFinOrder_iff_pow_eq_one.2 ⟨4, by norm_num, weylUnit_pow_four (S := R) ⟨0, h0⟩ ⟨1, h1⟩ hne⟩
 
 /-- **"Every example above has torsion, and in the lamp construction the obstruction is itself a torsion
 element"** (tex 292–293), with the elementary examples in every characteristic. -/
