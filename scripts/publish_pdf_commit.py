@@ -32,6 +32,7 @@ ALLOWED_PDFS = frozenset(
         "mf_recognition_complexity.pdf",
         "non_mf_group_notes.pdf",
         "non_mf_groups_exist.pdf",
+        "simple_kazhdan_sofic_group.pdf",
     }
 )
 ALLOWED_DRAFT_SOURCES = frozenset(
@@ -39,6 +40,7 @@ ALLOWED_DRAFT_SOURCES = frozenset(
         "mf_recognition_complexity.tex",
         "non_mf_group_notes.tex",
         "non_mf_groups_exist.tex",
+        "simple_kazhdan_sofic_group.tex",
     }
 )
 CLASSIFIER = Path(__file__).with_name("advance_verified_tag.py")
