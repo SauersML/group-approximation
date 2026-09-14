@@ -71,3 +71,17 @@ Kazhdan LEF group. It separates these groups from the non-C*-simple simple group
      confined `H`.
    - Missing: the combinatorial displacement conditions (i)–(iii) for idempotents, and a replacement for "every nontrivial
      conjugacy class of `R_G(Ω_σ)` has more than `r` elements".
+7. **Other sufficient criteria, tested (sk-cstar-simple-2, 2026-09-13).** Artifact
+   `research/artifacts/sk-cstar-simple-2-2026-09-13-part1.md`.
+   - **No amenable normalish subgroup** (`no-amenable-normalish-subgroup-implies-cstar-simple`). DEAD for `G_X`: the cut stabilizer
+     `S_y` is locally finite and normalish (`cut-stabilizers-of-el-n-are-locally-finite-normalish`).
+     - The same subgroup kills the BKKO routes through non-vanishing ℓ²-Betti numbers or bounded cohomology, and through
+       property (CS) (`subshift-el-groups-vanishing-l2-betti-and-bounded-cohomology`).
+     - This is no evidence against C*-simplicity: `BS(m,n)` is C*-simple with an amenable normalish subgroup.
+   - **Per-element Powers averaging** (Haagerup, arXiv:1509.05880, Theorem B(iv)). It is equivalent to unique trace, which is
+     already known. Simplicity needs simultaneous averaging over finite sets (Theorem C(v)).
+   - **Still open, with the plan in the artifact §6:**
+     - a Powers partition for finite sets on `G/S_y`, which has amenable stabilizers;
+     - a topologically free boundary action;
+     - ping-pong for conjugates. For each finite `P ⊆ G ∖ {1}`, find `g_1, g_2, g_3` such that every choice `p_i ∈ P` makes
+       `⟨g_i^{-1}p_ig_i⟩` non-amenable. Then no amenable subgroup is confined.
