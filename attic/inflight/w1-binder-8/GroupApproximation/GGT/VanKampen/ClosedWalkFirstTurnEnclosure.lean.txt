@@ -206,10 +206,10 @@ theorem eq_of_firstTurn {x y : M.Dart} (h : FirstTurn M c x y) (hy : y ∈ c) {m
 
 /-- **A walk chained by first turns turns to its successor**, at list positions. -/
 theorem firstTurn_getElem_succ (hne : c ≠ []) (hchain : c.IsChain (FirstTurn M c))
-    (hclose : FirstTurn M c (c.getLast hne) (c.head hne)) {i : ℕ} (hi : i < c.length) :
-    FirstTurn M c c[i] (c[(i + 1) % c.length]'(Nat.mod_lt _ (by omega))) := by
+    (hclose : FirstTurn M c (c.getLast hne) (c.head hne)) {i : ℕ} (hi : i < c.length)
+    (hj : (i + 1) % c.length < c.length) : FirstTurn M c c[i] c[(i + 1) % c.length] := by
   by_cases h1 : i + 1 < c.length
-  · have e : c[(i + 1) % c.length]'(Nat.mod_lt _ (by omega)) = c[i + 1] := by
+  · have e : c[(i + 1) % c.length] = c[i + 1] := by
       simp only [Nat.mod_eq_of_lt h1]
     rw [e]
     exact List.isChain_iff_getElem.mp hchain i h1
@@ -219,7 +219,7 @@ theorem firstTurn_getElem_succ (hne : c ≠ []) (hchain : c.IsChain (FirstTurn M
       omega
     have hmod : (i + 1) % c.length = 0 := by
       rw [show i + 1 = c.length by omega, Nat.mod_self]
-    have hhead : c[(i + 1) % c.length]'(Nat.mod_lt _ (by omega)) = c.head hne := by
+    have hhead : c[(i + 1) % c.length] = c.head hne := by
       simp only [hmod, List.head_eq_getElem]
     rw [hgl, hhead]
     exact hclose
