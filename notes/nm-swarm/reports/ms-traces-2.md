@@ -92,6 +92,74 @@ The bridge-free enclosed set is a pocket region, via `PocketRegion.ofNoncrossing
   `EnclosedBridgeDoublingStatement`, by induction on bridge darts.
 - Proposed to ms-inverses-1 (~20:35, one message): `EnclosedPocketRegionStatement` (suggested path
   `ClosedWalkEnclosedPocketRegion.lean`): noncrossing pocket walk, outer cycle follows, `sideFaces = faces`.
+- **FALSE PRINTED-STYLE STATEMENT (found by ms-inverses-1, ~20:50):** `EnclosedFaceSet.turn_mem` is membership-only.
+  - Model: three loops at one vertex (Π₁ = [0], Π₂ = [2], Π₃ = [4], exterior [1,3,5]). The walk [1,5,3] lists them out
+    of rotation order, passes every field, and has no bridges.
+  - With labels over S₃×S₃, the inverse walk has a one-relator filling while Δ is least area with 3 cells. So the
+    landed `EnclosedLeastAreaFilterStatement` is false, and so is the unlanded `EnclosedPocketRegionStatement`.
+  - ms-inverses-1 builds the refutation (`ClosedWalkEnclosedOutOfOrderModel`).
+  - Also from ms-inverses-1: island model C's Δ is not least area (its boundary value is 1), so the calibration clause
+    `diagram.LeastArea → Xi.LeastArea := id` is vacuous. The model still shows the walk is not simple, that the faces
+    meet only along t, and `EnclosedFaceSet`.
+- Ruling (main 21:22): additive successor-form variants; the landed `EnclosedFaceSet` is not edited (ms-intro-1's
+  modules import it); send the names to ms-intro-1, ms-inverses-1, w1-binder-6 and w1-binder-8 in one message.
+- 21:3x written, attic-landed and probing:
+  - `ClosedWalkEnclosedSucc`:
+    - `EnclosedFaceSetSucc` (extends `EnclosedFaceSet` with `turn_next`: the first kept dart after
+      `α outerWalk[i]` is `outerWalk[(i + 1) % outerWalk.length]`);
+    - `ClosedWalkEnclosedSubdiagramSuccStatement`, `EnclosedLeastAreaFilterSuccStatement`,
+      `leastArea_of_enclosedLeastAreaFilterSucc`;
+    - weakenings `closedWalkEnclosedSubdiagramSucc_of_statement`, `enclosedLeastAreaFilterSucc_of_statement`.
+  - `Estimating/OsinEnclosedSubdiagramLoopCutSucc`: `EnclosedSubdiagramLoopCutSuccStatement` (the same binders with
+    only the face-set hypothesis changed) and `enclosedSubdiagramLoopCutSucc_of_loopCut`.
+  - The pieces module, now over the Succ carrier: `EnclosedBridgeDoublingSuccStatement` (mine),
+    `EnclosedPocketRegionSuccStatement` (ms-inverses-1), `enclosedLeastAreaFilterSucc_of_pieces`.
+
+## Item 4 (main 23:12, after the coordinator restart): the successor-form route end to end
+
+ms-intro-1 and ms-inverses-1 are not resumed; this lane owns:
+1. the refutation `¬ EnclosedLeastAreaFilterStatement`;
+2. the successor-form producer for noncrossing walks and the Succ X/Y pockets;
+3. the Succ least-area filter and the enclosed pocket region;
+and the names go to w1-binder-6 and w1-binder-8.
+
+State at 23:2x:
+- `ClosedWalkEnclosedSucc` and `Estimating/OsinEnclosedSubdiagramLoopCutSucc` LANDED d4f72d7e8 (22:01, from probe
+  0913-213147-24617), queued for wiring.
+- The pieces module was red at that probe (`OEquivalentDiscDiagram.leastArea` is not imported); fixed inline.
+- ms-inverses-1's claimed `ClosedWalkEnclosedOutOfOrderModel` and `ClosedWalkEnclosedPocketRegion` were never written
+  (not on disk, not in its `.files`, no attic copy). Both are rebuilt here from its report.
+- TAKEOVER of ms-intro-1's drafts, now in this lane's `.files`:
+  - `ClosedWalkEnclosedNoncrossingSucc.lean`: GREEN at 0913-213523-46026, same bytes; the producer
+    `enclosedFaceSetSuccOfNoncrossing` is still to be added.
+  - `Estimating/OsinLemma94SameCellPocketNoSpurSucc.lean`: the X/Y pockets over the Succ loop cut, unprobed.
+- CLAIM `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedOutOfOrderModel.lean`: the out-of-order refutation.
+- CLAIM `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedPocketRegion.lean`: `EnclosedPocketRegionSuccStatement`.
+- 23:36 pieces probe 0913-233612-84931 GREEN → **LANDED 947100710** (queued). `enclosedLeastAreaFilterSucc_of_pieces`
+  is on origin.
+- 23:45 co-probe 0913-234554-9146 RED, and the fixes are written.
+  - `ClosedWalkEnclosedNoncrossingSucc`: linter error on unused binder names in `turn_next`.
+  - `ClosedWalkEnclosedOutOfOrderModel`: an unused simp argument and three failed rewrites:
+    - `pow_add` in the relator-product induction;
+    - `Even.neg_one_pow` on `ℤˣ`, now replaced by `interval_cases m` over 0, 1, 2;
+    - `rw [filter_length]`: the filter statement instantiates the classical decidability instance while the concrete
+      lemma found another. It now goes through the instance-generic `length_filter_of_all`.
+  - `OsinLemma94SameCellPocketNoSpurSucc` was not reached.
+- 23:5x written: `ClosedWalkEnclosedPocketRegion`.
+  - `enclosedPocketRegionSucc : EnclosedPocketRegionSuccStatement`: `turn_next` plus `Nat.find` give a `FirstTurn`
+    chain; then `FirstTurnWalk.isNoncrossingClosedWalk_reverse`, `outerCycle_followsBoundary`, `reclosed_euler` and
+    `ofNoncrossingClosedWalk`.
+  - `sideFaces = faces`: `sideFaces_subset` by EqvGen invariance, `subset_sideFaces` by the good-dart invariant over
+    `Adjacent` and connectivity.
+  - `length_filter_le_of_bridgeFree`: the Succ filter without bridges, with no doubling needed.
+  - `enclosedLeastAreaFilterSucc_of_doubling`.
+- ~00:0x BLOCKER, fleet-level: MSI master absent and the auth breaker set (`/tmp/msi_breaker`), so no probe runs. The
+  breaker is left in place for the coordinator.
+- ms-compress-2 routed `SameCellPocketLoopCutStatement`: the far component of a same-face bridge dart of a cell, with
+  another cell on the far side, gives an `OsinLoopCut`. Replied that no respell is needed.
+  - Route: the pocket walk is `EnclosedFaceSetSucc`; Ξ is the far component via `ofPlanar`; least area from the
+    bridge-free filter or the doubling; sections from `ofTwoPartBoundary` at `g = []`.
+  - Open: `EnclosedBridgeDoublingSuccStatement` and an enclosed cell transport.
 
 ## Progress log
 
