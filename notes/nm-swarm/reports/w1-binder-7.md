@@ -355,6 +355,14 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     - `outerSpurThickening` (28caa3d7f) for exterior corners.
     This waits for w1-binder-3's list-level `…Corners` core: the successor lemma, and the transport of the isolated-turn data
     across one insertion.
+- **Selection route changed (w1-binder-3, ~09:1x).** An isolated non-first turn need not exist even when no passages cross.
+  - Example rotation: `o₁ i₁ o₂ i₂ o₃ i₃ o₄ i₄`, where `i = α d` and `o = e`, with turns `i₁→o₁`, `i₃→o₃`, `i₂→o₄` and `i₄→o₂`.
+  - The corners core will split instead at a non-first turn crossed by no other passage: `x` after `e₀`, `y` before `α d₀`.
+    This needs a third kept case, both ends running into `x` without passing `y`. It will be a new predicate in w1-binder-3's
+    claimed `Estimating/OsinPocketOuterPinchChord`.
+  - This lane's landed isolated-turn packaging (64df6e8c8) stays valid but covers only isolated turns. The cell selection will
+    instantiate the chord version once its list-level names land.
+  - Residual after that: vertices where every non-first turn is crossed (the rose).
 - **Noted (ct-return-tower, 2a4d58ae6 `Estimating/OsinPocketTwoArcSection`):** the two-arc producer consumed by this lane's
   `osinSectionPocketCutSection_of_residualsTwoArc` (f81311dc9) is reduced to two statements. The theorem is
   `osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection hproper hwhole`.
