@@ -49,5 +49,12 @@ matrix `A in M_n(F_q[H])` acting through its local rule.
 **Checks.**
 * The order of multiplication in the matrix correspondence does not matter: direct finiteness of `M_n(k[H])` is
   symmetric in the two factors.
-* Item 3 uses only compactness, linearity and finite-dimensional linear algebra.
+* Item 3 uses only compactness, linearity and finite-dimensional linear algebra. The same equivalence (stable
+  finiteness of `K[G]` iff every injective linear cellular automaton on `V^G`, `V` finite-dimensional, is
+  surjective) is published as Ceccherini-Silberstein--Coornaert, *Cellular Automata and Groups*, Corollary 8.15.6.
+  It is quoted as Theorem 2.1 in Ceccherini-Silberstein--Coornaert--Phung, Groups Geom. Dyn. 19 (2025), 495--503,
+  which was read on 2026-09-14.
+* **Novelty.** The source's Proposition 3.14 (arXiv:2303.08165v4) is characteristic zero only, and a web search on
+  2026-09-14 found no positive-characteristic division embedding or stable finiteness result for Higman's group.
+  That is not a literature proof of novelty.
 * Not independently re-derived by a second lane.
