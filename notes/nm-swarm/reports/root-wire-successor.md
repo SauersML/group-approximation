@@ -220,6 +220,33 @@ Result: **ROOT GREEN, landed lead-wire daa821b00** at 23:41.
 - Build: acl42, 15576 jobs, 2 GroupApproximation modules rebuilt.
 - Waves 17–21 have wired 155 modules.
 
+## Wave 22, attempted 09-13 23:50 – 09-14 00:05
+
+- Draft from the listing at b3556e93e, the tip after wave 21: 52 tops, 17 OK, 34 NOEVID, 1 HOLD. The draft is all 17
+  OK tops, including the 7 drafted at 23:30.
+- The launcher stopped at its first step: `git fetch` failed with "Could not resolve host: github.com".
+  - Nothing was recorded (`rw-wave22.mods` absent) and nothing was dispatched.
+- A relaunch retried the fetch every 30 s, starting 23:59.
+- Diagnosis at ~00:01: a local network or DNS outage on the lead machine.
+  - The resolver at 127.0.2.2 / 127.0.2.3 returns nothing for `github.com` or `login.msi.umn.edu`, while cached names
+    (`api.github.com`, `google.com`) still resolve.
+  - `curl https://github.com` fails at once, and the MSI SSH master socket is gone.
+  - Reported to main as a blocker. This lane changes no DNS, VPN or system setting and starts no MSI auth.
+- This section was written during the outage and lands once pushes work again.
+- 00:02:51: the fetch recovered.
+  - Launcher gate at b55f73c7a: 15 of 17 kept (`OsinLemma94SameCellRCellEnclosed` and
+    `OsinEnclosedSubdiagramLoopCutSucc` are no longer unwired tops), 21 newly reachable files (closure 6921 → 6942),
+    0 blocking lines.
+- 00:03: `nmwire.sh` exited rc=255 right after "submitting to SLURM" (tag 0914-000329-49958); the MSI hop dropped.
+  - The submitted job 749262 was PENDING, and `widen-by-tag.sh` widened it at 00:03:46.
+  - The SSH master socket then disappeared (~00:07). One successful query at 00:14 no longer listed the job.
+  - No root commit landed. `rw-wave22.mods` from this attempt is kept as `rw-wave22.mods.infra-rc255-0003`.
+- ~00:19: DNS resolves again (`github.com` HTTPS 200), but the MSI master stays down.
+  - A background task polls `ssh -O check` for up to 90 minutes without starting auth.
+  - Once the master is up, it checks job 749262, waits if it is live, and relaunches wave 22 behind the full gate.
+
+Result: pending MSI master.
+
 ## Evidence and holds, 18:45–19:10
 
 - `coeff_injective` collision fixed by ct-bilateral-cell at 131abe1b5.
