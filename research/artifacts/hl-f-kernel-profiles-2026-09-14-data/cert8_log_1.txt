@@ -1,0 +1,8 @@
+65070f09cffdb770f7b191f282c78c3a  ore_linalg.py
+bfa7a0289ff8b2fd9abaab3000f0ad73  ore_certify.py
+0774d779b2d4e5d6977037aec1c7fed2  ore_verify.py
+76bb1638e65722f467bbe18aa3e72e13  cert8_pairs.json
+certify rc=0 secs=6
+{"certificates_checked": 1, "ALL_OK": true}
+verify rc=0 secs=7
+TERMS 280 296 44 36

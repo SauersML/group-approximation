@@ -1,0 +1,10 @@
+{'equal|equal': 166, 'equal|settled': 26376, 'settled|equal': 292, 'settled|settled': 67495} stubborn 24 solved 24
+== cross-check S35 k<=5 (C vs Python), pairs: 2 solved + 2 stubborn + (1,2)
+== cross-check S24 k<=5
+== free control S35 k<=4 (C and Python)
+c_s35.jsonl py_s35.jsonl MATCH 30 30
+c_s24.jsonl py_s24.jsonl MATCH 30 30
+c_free.jsonl py_free.jsonl MATCH 20 20
+free kernels [0]
+CALIB_OK
+DONE
