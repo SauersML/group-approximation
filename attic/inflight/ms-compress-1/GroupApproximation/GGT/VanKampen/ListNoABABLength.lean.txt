@@ -37,6 +37,8 @@ arXiv:math/0411039v3, §9); certifies no printed sentence on its own.
 
 namespace GroupApproximation.GGT.VanKampen.ListNoABAB
 
+open List
+
 variable {α : Type*} [DecidableEq α]
 
 /-- **No `a b a b`**: no subsequence `a, b, a, b` with `a ≠ b`. -/
