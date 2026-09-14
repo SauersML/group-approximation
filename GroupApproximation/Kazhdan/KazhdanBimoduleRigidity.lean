@@ -31,6 +31,8 @@ every `g ∈ Γ`.  The route is Ozawa's:
 3. Hence `L₁(Γ)` fixes `ζ`, and `‖L₁(g)Ω − Ω‖ ≤ 2‖Ω − ζ‖ < 2δ`.
 -/
 
+set_option linter.unusedSectionVars false
+
 namespace GroupApproximation
 namespace KazhdanBimoduleRigidity
 
