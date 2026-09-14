@@ -155,11 +155,129 @@ State at 23:2x:
   - `enclosedLeastAreaFilterSucc_of_doubling`.
 - ~00:0x BLOCKER, fleet-level: MSI master absent and the auth breaker set (`/tmp/msi_breaker`), so no probe runs. The
   breaker is left in place for the coordinator.
+- ~00:2x MSI master back. Doubling run module written (`ClosedWalkEnclosedBridgeDoublingRun`, attic d47ea5766):
+  - `sigma_eq_none_iff`, `sigma_eq_embed_iff_some_none`;
+  - `firstKept_lift`, a first run to a kept dart lifts across the insertion;
+  - `first_kept_unique`, `exists_first_kept_of_alpha_mem`, `walkKeep_image_iff`;
+  - `turn_next_image`, the successor form of the image walk.
+- ~00:3x both probes failed on infrastructure, not on Lean: 0913 probe10 at the remote `git fetch`, probe11 with the
+  MSI connection down. A five-module co-probe is relaunched when the master is up.
+- w1-binder-6 (Lean-verified, bda10ebe8 `OsinPocketFullArcLakeModel.not_enclosedFaceSetSucc`): at binder 6's full-t₁
+  lake no outer walk is `EnclosedFaceSetSucc`. Binder 6 pivots to `PocketRegion.ofNoncrossingClosedWalkEuler`; no
+  change to this route. The island model does satisfy the successor form (every turn is m = 1), so doubling stays
+  needed for binder 3 and for nested same-cell pairs.
+- 01:38 co-probe 0914-013843-94866:
+  - `ClosedWalkEnclosedNoncrossingSucc` and `OsinLemma94SameCellPocketNoSpurSucc` BUILT → **LANDED 07911e74b** (queued):
+    `enclosedFaceSetSuccOfNoncrossing`, `EnclosedFaceSetSuccOfNoncrossingStatement`,
+    `osinLemma94CaseOne{X,Y}Pocket_of_enclosedLoopCutSucc` and the no-spur twins.
+  - Red, fixed: `OutOfOrderModel` (`push_neg` deprecation, missing classical instance, instance-path mismatch in the final
+    step); `PocketRegion` (unused `hE`); `BridgeDoublingRun` (the `by` block inside `⟨…⟩` parsed as a two-target
+    `cases`, `simp` not reducing nested option constructors, `Perm.apply_symm_apply` spelled for `Equiv`).
+- Step module written (`ClosedWalkEnclosedBridgeDoublingStep`, attic 832396b7d):
+  - `newFaces = insert digon (faces.map faceImage)`;
+  - `mem_iff_image`, `chain_image`, `closes_image`, `bridgeCount_image_lt`;
+  - `enclosedFaceSetSucc_diagram`/`_spurDiagram` with their word and cell-count equalities.
+- Split with ms-compress-2, assigned by main to help on `EnclosedBridgeDoublingSuccStatement`: it takes the island
+  exterior-doubling model and the induction (`ClosedWalkEnclosedBridgeDoublingProof`); this lane keeps Run and Step and
+  released the unwritten `ClosedWalkEnclosedBridgeDoubling.lean` claim.
+- 08:2x resume (main): this lane owns the Succ enclosed route, w1-binder-8's residual 5 (d3281c3b9, which consumes
+  `ClosedWalkEnclosedSubdiagramSuccStatement` and `EnclosedSubdiagramLoopCutSuccStatement`), and
+  `SameCellPocketLoopCutStatement` with the doubling, since ms-compress-2 is paused. ms-compress-2 left
+  `ClosedWalkEnclosedBridgeDoublingModel.lean` on disk, never probed.
+- ~08:3x OUTAGE: the laptop reboot wiped `/private/tmp`, including all nm infra (probe, land and wire scripts, lane
+  records, `landed.log`, the wire queue) and this lane's backup copies. Main ruled: author offline only; no probe, land or
+  infra recreation.
+  - Drafts kept in the working tree, all unprobed: `ClosedWalkEnclosedOutOfOrderModel`, `ClosedWalkEnclosedPocketRegion`,
+    `ClosedWalkEnclosedBridgeDoublingRun`, `ClosedWalkEnclosedBridgeDoublingStep`, and the new
+    `ClosedWalkEnclosedBridgeDoublingProof`.
+  - The last attic copies on origin are older than the fixes: d47ea5766 (Run), 832396b7d (Step), b662b0b9f (earlier
+    fixes).
+- ~08:4x written offline: `ClosedWalkEnclosedBridgeDoublingProof`.
+  - Side selection `exists_bridge_side`: when both a bridge dart and its reverse bound monogons, connectivity makes the
+    map those two darts, so no face is enclosed.
+  - `exists_index_eq_dart`; `cellCorrespondence_map`, the cells in order with their words and enclosure.
+  - `DoublingOutput` / `doublingOutput`, strong induction on `bridgeCount` over Step's two thickenings with
+    `OEquivalentDiscDiagram.trans`.
+  - `enclosedBridgeDoublingSucc`, and closed `enclosedLeastAreaFilterSucc` (via `enclosedLeastAreaFilterSucc_of_doubling`).
+- ~08:5x INFRA READY at `$NM=/private/tmp/claude-501/-Users-user-nonsofic-existence/f907d0cb-17e5-443b-a723-7114e9553db6/scratchpad/nm`;
+  all green records were lost. `.files` is re-registered with the unlanded modules; co-probe 15 (the out-of-order model,
+  the pocket region, Run, Step) is running.
+- main returned `EnclosedBridgeDoublingSuccStatement` to ms-compress-2 (resumed). It overwrote the Proof draft with its
+  own induction (`one_lt_faceBoundary_length_of_bridge` from `turn_next`, no `faces.Nonempty`;
+  `exists_bridgeFree_of_bridgeCount_le`), without the cell correspondence. That module is ms-compress-2's.
+- Written: `ClosedWalkEnclosedSubdiagramSuccProof` (attic copy).
+  - `PocketRegion.diagram_cell_face_mem`, through the choice in `exists_relatorCells_of_planar`.
+  - `PocketRegion.exists_cell_of_diagram_cell`, `PocketRegion.exists_cellEmbedding`.
+  - The named `EnclosedBridgeDoublingCellsSuccStatement`: the doubling with cell correspondence, no `faces.Nonempty`.
+  - `closedWalkEnclosedSubdiagramSucc_of_doublingCells : ... → ClosedWalkEnclosedSubdiagramSuccStatement`.
+- 08:32 co-probe 0914-083214-37350 (a real rebuild, with BUILT lines): the out-of-order model, the pocket region and Run
+  BUILT → **LANDED bdc97c0ae** (queued).
+  - `ClosedWalkEnclosedOutOfOrderModel.not_enclosedLeastAreaFilterStatement`: the membership-form filter is refuted
+    on origin, with `not_enclosedFaceSetSucc`.
+  - `EnclosedPocketRegion.enclosedPocketRegionSucc : EnclosedPocketRegionSuccStatement`,
+    `length_filter_le_of_bridgeFree`, `enclosedLeastAreaFilterSucc_of_doubling`.
+  - `EnclosedBridgeDoubling.image`, `firstKept_lift`, `walkKeep_image_iff`, `turn_next_image`.
+- Step red, because the image walk's dart type `EdgeInsertion.Dart M` equals the doubled map's `Dart` only up to
+  unfolding, so `rw` and `simp` cannot match across the two.
+  - Rewritten with term-mode equalities (`congrArg … .mpr`, `lt_of_eq_of_lt`); the word lemma by induction with
+    definitional cons steps; `Equiv.symm_apply_apply`; `faceOf (some none)`.
+  - Co-probe 0914-084224-29304 RED on the last spellings:
+    - `List.isChain_map` takes the map explicitly.
+    - `bridgeCount_image_lt` restated its filter predicate. The restatement picked `Option.instBEq`, but the goal
+      carries `instBEqOfDecidableEq`. It now goes through the instance-generic `length_filter_lt_of_imp`.
+    - In SuccProof: a `rw … at` on a `toFinset` membership, two bound proofs, and the least-area clause.
+- 08:55 co-probe 0914-085500-37802 GREEN (both BUILT) → **LANDED da17060f7** (queued):
+  - `ClosedWalkEnclosedBridgeDoublingStep`.
+  - `ClosedWalkEnclosedSubdiagramSuccProof`: `EnclosedBridgeDoublingCellsSuccStatement` and
+    `closedWalkEnclosedSubdiagramSucc_of_doublingCells`.
+  - Names sent under the ruled splits: Step to ms-compress-2 (its induction); the cells statement to w1-binder-8 (its
+    producer and endpoint).
+- ms-compress-2 had overwritten the Proof draft by mistake; it restored this lane's backup bytes and adopted the draft
+  unchanged (keeping `DoublingOutput`). It probes and lands the draft once Step is on origin.
+- Earlier plan (superseded): the Ξ producer.
+  - Ξ = `PocketRegion.diagram` on the doubled copy. The embedding clause needs the cells of `ofPlanar` through
+    `exists_relatorCells_of_planar`'s choice, composed with the doubling correspondence.
+  - The empty face set needs a cell-free disc.
+- Then the Succ loop cut, over named collar and transport pieces.
 - ms-compress-2 routed `SameCellPocketLoopCutStatement`: the far component of a same-face bridge dart of a cell, with
   another cell on the far side, gives an `OsinLoopCut`. Replied that no respell is needed.
   - Route: the pocket walk is `EnclosedFaceSetSucc`; Ξ is the far component via `ofPlanar`; least area from the
     bridge-free filter or the doubling; sections from `ofTwoPartBoundary` at `g = []`.
   - Open: `EnclosedBridgeDoublingSuccStatement` and an enclosed cell transport.
+- ~09:0x ms-compress-2 landed `enclosedBridgeDoublingSucc`, `enclosedLeastAreaFilterSucc` and `doublingOutputSucc`
+  (c2fa6eed0). w1-binder-8 closes `EnclosedBridgeDoublingCellsSuccStatement` and the Ξ endpoint over them. Main moved
+  `SameCellPocketLoopCutStatement` to ms-compress-2 (label-free route over `OsinLoopCut.ofPocketRegion` with an empty
+  side). This lane keeps `EnclosedSubdiagramLoopCutSuccStatement`.
+- The Succ loop cut, re-read on origin:
+  - `GeodesicCollar.StripStep.geodesicCollarStatement_holds` is `#audit_closed_axioms`, and `pocketCellTransport`
+    is proved. So `nonempty_osinLoopCut_of_pocketRegion` needs only a pocket region with both cycles following their
+    boundaries. Together those force a simple complement cycle (`PocketRegion.isSimpleClosedWalk_invDarts_outer`).
+  - `enclosedPocketRegionSucc` gives only the outer one. A doubled walk can still be pinched.
+  - `_twoArcs` gives `OsinMultipleEdgeCut`, not `OsinLoopCut`. The only `OsinLoopCut` producers are
+    `ofTwoPartBoundary`, `ofPocketRegion` and `nonempty_osinLoopCut_of_pocketRegion`.
+  - The landed pinches (`CellPocketFaceSet`, `PocketFaceSet`) forget positions in their existential wrappers, but
+    their steps are concrete: `faceEdgeDoublingInside` and `pinchSplitInside` map the sides through the embedding (or
+    keep them) and the arcs by `mapTo`. `CellPocketFaceSet` also needs positive arcs; `PocketFaceSet` does not.
+  - Relator words longer than one letter are the landed pinch's hypothesis. Osin's condition gives it at `2 ≤ ρ`
+    (`long`). At `ρ ≤ 1` a monogon relator corner has no edge to double. Hence the additive `…Long` statement.
+- Route for (B), the unpinch:
+  - Encode the pocket as a `PocketFaceSet` at `eps' = max ‖s‖ |s|`: `firstSide = s`, `sourceArc = A`, empty second
+    side, and an empty target arc at `lo = hi = 0`.
+  - Rerun `exists_goodCorners` and `exists_simple_of_firstTurns`, carrying `secondSide = []` and the word of
+    `firstSide`.
+  - Finish with `ofSimpleClosedWalk`.
+- Route for (A): the bridge-count induction over Step, carrying a side and an arc. ms-compress-2's A2 makes public
+  `EnclosedBridgeDoubling.darts_map_image_cellArc` and `darts_map_image_cellArc_spur`, to be imported here, not
+  re-derived.
+- 09:21 probe 0914-092142-71842 GREEN (BUILT): `Estimating/OsinEnclosedSubdiagramLoopCutSuccProof`, landing with this
+  report:
+  - `EnclosedBridgeDoublingSideArcSuccStatement`, `EnclosedLoopPocketUnpinchSuccStatement`;
+  - `EnclosedLoopPocketRegionSuccStatement`, `enclosedLoopPocketRegionSucc_of_pieces`;
+  - `EnclosedSubdiagramLoopCutSuccLongStatement`, `enclosedSubdiagramLoopCutSuccLong_of_pocketRegion`,
+    `enclosedSubdiagramLoopCutSuccLong_of_loopCutSucc`;
+  - `one_lt_length_of_two_le_rho`.
+  - Claimed next: `Estimating/OsinEnclosedLoopPocketUnpinch.lean` (B) and `ClosedWalkEnclosedBridgeDoublingSideArc.lean`
+    (A).
 
 ## Progress log
 
