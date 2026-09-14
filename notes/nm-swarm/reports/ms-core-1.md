@@ -211,3 +211,30 @@ before landing, and each endpoint has `#audit_closed_axioms`.
     membership. Build membership from `elementaryUnit_mem` and `mul_mem`.
   - After the NM rebuild, the clobber guard no longer recognises pre-reboot landings. Pass `NM_BASE` only after checking
     that the origin blob equals the local copy.
+
+## Osin Lemma 9.4: `OsinLemma94BoundaryJunctionBudgetInput` (assigned by main 09-14)
+
+- Residual of ms-inverses-3's bad-junction reduction (`Estimating/OsinLemma94BadJunctionExclusion`, ad307e323): summed over the
+  relator polygons with at least two class non-joins, `#boundaryBadJunctions ≤ K · n`.
+- Split sent to ms-inverses-3 in one message. ms-core-1 produces the budget, with K = 3. ms-inverses-3 keeps
+  `OsinLemma94CellJunctionValueInput`, the respell over ms-binary's `nonJoinPolygons`, and `osinLemma94BadJunctionInput_of_pieces`.
+- CLAIM: `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BoundaryJunctionBudget.lean` (new).
+  - `JunctionBackward`, `backwardJunctions`, `valueFailureJunctions`, and the closed `boundaryBadJunctions_subset_union`.
+  - Pieces `OsinLemma94BackwardJunctionCountInput` (≤ n + 1) and `OsinLemma94BoundaryValueFailureCountInput` (≤ n).
+  - `osinLemma94BoundaryJunctionBudgetInput_of_pieces`.
+
+### Model test of the lobe count (by hand)
+
+- Boundary bad junctions split into two disjoint kinds, because `boundaryGapOf` subtracts in ℕ, so a backward gap is `[]` and has
+  value 1:
+  - backward junctions, where the forward stretch wraps index 0 of `outerDarts`;
+  - value failures, which are forward lobes of ∂Δ at a pinch vertex with value ≠ 1.
+- **"At most one backward junction" is false.** Nested lobes L₁ ⊃ L₂ of ∂Δ, both containing index 0, with relator polygons k₁ outside
+  L₁ and k₂ in L₁ \ L₂, give two backward junctions.
+  - Per polygon there is at most one: two wrap stretches of one face would be disjoint lobes that both contain index 0.
+  - Across levels, the owner of L_{i+1} has its cell side in L_i \ L_{i+1}, so each level carries a distinct relator cell: ≤ n + 1.
+- **Value failures, ≤ n.** Forward junction stretches form a laminar family, and each stretch is seen by exactly one face.
+  - A failure lobe with no failure sub-lobe carries a relator cell, since its value is ≠ 1.
+  - Otherwise the owner of a maximal sub-lobe has its cell side in L minus all maximal sub-lobes.
+  - Either way each failure lobe gets a private relator cell.
+- Total ≤ 2n + 1 ≤ 3n, since 0 < n.
