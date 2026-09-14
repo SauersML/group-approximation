@@ -204,6 +204,20 @@ CLAIM `OsinLemma94CuttingTransitionInput` (cutting transitions ≤ K n), in new 
   - general: `CombMapEulerHittingSet` and `CombMapFirstReturnCounts`;
   - `Estimating/OsinLemma94CuttingTransitions*`: starts, hitting set and assembly, plus a decide model. Calibration: a
     pendant edge breaks step 2.
+- 00:3x–08:2x: MSI master down, then the laptop reboot wiped /private/tmp. All green records were lost. Infra was rebuilt
+  at 08:4x and the overlay files were re-added.
+- Drafts (attic e79f01b79), probing:
+  - `CombMapEulerHittingSet`: `eulerCharacteristic_le_two_mul_card_of_hitting`.
+  - `CombMapFirstReturnCounts`: `PredicateRestriction.vertexCount_le`, `dartCount_add`, `faceCount_le`,
+    `two_mul_eulerCharacteristic_le`, and `CombMap.card_starts_add_two_mul_le`.
+  - `CombMapFirstReturnCountsModel`: the calibration on one edge fixed by the rotation (4 > 2).
+  - `Estimating/OsinLemma94CuttingTransitions`: `card_cuttingTransitions_le_sameFaceStarts`, `forestDarts`,
+    `sigma_ne_of_mem_forestDarts`, `exists_keep_faceOf_eq`, `forestDeleted`, `card_forestStarts_add_four_le`.
+  - `Estimating/OsinLemma94CuttingTransitionsInput`: `Joined`, `exists_joined_cell_of_region` (boundary cycle to the
+    source arc, or a closure contradiction), `exists_joined_cellOrOuter`, `hittingSet` (card ≤ n + 1),
+    `sum_card_sameFaceStarts_le`, and `osinLemma94CuttingTransitionInput` (K = 4).
+- Probe 0914-083104: a stale base (BadJunctionExclusion landed at 08:40), two `rw` pattern misses, one unknown name and a
+  `push_neg` lint. All fixed; re-probe 0914-08:4x is running.
 
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.
