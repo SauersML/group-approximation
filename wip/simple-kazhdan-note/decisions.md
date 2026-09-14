@@ -389,6 +389,28 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - P3 (the trace simplex [trivial, τ_λ]): only together with a PASS for character rigidity.
     - Not in the note, recorded: C*(G_X) is not QWEP; L(G_X) is QWEP; G_X fails AP (recalled, not re-read).
     - Sharpest open target: vN rigidity L(G_X) ≅ L(G_Y) ⇒ flip conjugate or SOE. Famous-hard, and it does not gate the note.
+84. **sk-verify-7 parts 3–5** (ef28dd4d20, 6ab268edd3, f2f6824182). Every item PASSes, with no FAIL or GAP.
+    - Rev4 gates now open:
+      - (c) the unified headline (sk-strong-6/8);
+      - (d) the universal host (sk-universal-lef-host-b) + no decidable host (sk-wp-host);
+      - the SL_3(Z)/H_3(Z)/BS(1,2) obstruction (sk-sl3z-bandwidth);
+      - the separable-factor result (sk-strong-7 P1).
+    - Cairn-only PASSes, with their named imports as conditions: sk-lef-growth-all (W8: forward-orbit density sentence), sk-trace-template, sk-k2-recurrent, sk-cartan-counterexample, sk-labbe-2d (W9), sk-measured-subshift, sk-matricial-stability.
+    - Second independent reviews continue on the rev4 items: sk-verify-9 (headline + Theorem 2), sk-verify-11 (host, wp-host), sk-verify-12 (sl3z), sk-verify-10 (strong-7 novelty wording and P2).
+85. **Character rigidity PASS** (sk-characters-rigidity-a, 591d1248dc): every lemma re-derived. Lemma 1′ fails over q > 2, consistent with the firewall.
+    - DECIDED: rev4 carries Theorem "every character of G_X is c·1+(1−c)δ_e". The proof is compressed to ≤ 1 page. Corollaries: L(G_X) is the only II_1 factor representation, trivial IRS, the trace simplex (strong-7 P3).
+    - Reader merit: the strongest operator-algebraic statement about G_X, in the line of Bekka's character rigidity for SL_n(Z) and Peterson's conjecture.
+    - Budget: 8 pp including this.
+86. **sk-cstar-simple** (5b5d267149, 8c01032729, 0da354bcb9; unreviewed, rerouted to sk-verify-13).
+    - Root subgroups, GL_n(LC(X,F_2)), the images of [[T]]′ and [[T]], and the cut stabilizers S_y are not confined. Necessary for C*-simplicity, not sufficient.
+    - C*-simplicity stays OPEN. Next step: an idempotent Le Boudec–Matte Bon commutator lemma. No note change.
+87. **Wave 10 launched (~21:50, ROSTER-H.md).** The user asked "do u want more agents? u have barely any" and "what about free mathematics agents given lots of freedom of what to do". 23 forks:
+    - verifiers: sk-verify-11/12/13;
+    - literature and referee lanes: sk-answered-questions, sk-prior-art-2, sk-referee-significance;
+    - research: sk-iso-rigidity, sk-fp-sofic-host, sk-sofic-host-hamming, sk-decidable-host, sk-lef-proof-compress, sk-two-generators, sk-cstar-simple-2;
+    - text: sk-general-statement, sk-questions-section;
+    - 8 free lanes, sk-free-1..8.
+    - The rev4 referees a/b/c launch when rev4 is ready.
 
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
