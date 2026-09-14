@@ -204,22 +204,24 @@ theorem eq_of_firstTurn {x y : M.Dart} (h : FirstTurn M c x y) (hy : y ∈ c) {m
   · exact hky
   · exact absurd (by rw [hky]; exact Or.inl hy) (hfirst k hk hgt)
 
-/-- **A walk chained by first turns turns to its successor**, at list positions. -/
-theorem firstTurn_getElem_succ (hne : c ≠ []) (hchain : c.IsChain (FirstTurn M c))
-    (hclose : FirstTurn M c (c.getLast hne) (c.head hne)) {i : ℕ} (hi : i < c.length)
-    (hj : (i + 1) % c.length < c.length) : FirstTurn M c c[i] c[(i + 1) % c.length] := by
-  by_cases h1 : i + 1 < c.length
-  · have e : c[(i + 1) % c.length] = c[i + 1] := by
+/-- **A walk chained by first turns turns to its successor**, at list positions.  The walk is named
+`l` here, since `c[…]` is Mathlib's literal notation for `Cycle`. -/
+theorem firstTurn_getElem_succ {l : List M.Dart} (hne : l ≠ [])
+    (hchain : l.IsChain (FirstTurn M l)) (hclose : FirstTurn M l (l.getLast hne) (l.head hne))
+    {i : ℕ} (hi : i < l.length) (hj : (i + 1) % l.length < l.length) :
+    FirstTurn M l l[i] l[(i + 1) % l.length] := by
+  by_cases h1 : i + 1 < l.length
+  · have e : l[(i + 1) % l.length] = l[i + 1] := by
       simp only [Nat.mod_eq_of_lt h1]
     rw [e]
     exact List.isChain_iff_getElem.mp hchain i h1
-  · have hgl : c[i] = c.getLast hne := by
+  · have hgl : l[i] = l.getLast hne := by
       rw [List.getLast_eq_getElem]
       congr 1
       omega
-    have hmod : (i + 1) % c.length = 0 := by
-      rw [show i + 1 = c.length by omega, Nat.mod_self]
-    have hhead : c[(i + 1) % c.length] = c.head hne := by
+    have hmod : (i + 1) % l.length = 0 := by
+      rw [show i + 1 = l.length by omega, Nat.mod_self]
+    have hhead : l[(i + 1) % l.length] = l.head hne := by
       simp only [hmod, List.head_eq_getElem]
     rw [hgl, hhead]
     exact hclose

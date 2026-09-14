@@ -22,6 +22,9 @@ enclose the faces reached from their non-bridge reversals (`enclosedFaces`,
   other walk to a dart of it (against `FirstTurnEnclosure.alpha_mem_of_faceClass`).
 * `osinLemma94CaseOneSpurEnclosure : OsinLemma94CaseOneSpurEnclosureStatement`, closed: the exterior
   face is off one of the two enclosures.  The spur hypothesis and `f ≠ Δ.outerFace` are not used.
+* `osinLemma94CaseOneRCellSpur_of_enclosedSucc`: the spur branch
+  (`OsinLemma94CaseOneRCellSpurStatement`) over `EnclosedSubdiagramLoopCutSuccStatement` and
+  `ClosedWalkEnclosedSubdiagramSuccStatement` alone.
 
 ## Manuscript status
 
