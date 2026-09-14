@@ -78,3 +78,14 @@ kernel iff v ∉ L(X), so different subshifts give different kernels"), taken ov
 The ℤ ↔ Λ bridge was cancelled by main: ct-two-ended's `MainFromGeneral` already has `ringEquiv`; nothing was drafted here.
 
 LANDED 5fd9ba19b (probe 0914-085641-48806 GREEN, BUILT): `PrintedWordProblemKernels`, `printedWordProblemKernels_of_simplicity`, over MainAssembly's open `PrintedSimplicityStatement`. Row bdd19b7d1e1f `partial`. Spelling choice: the kernel criterion is proved over `CylinderTables.listLanguage` with a coordinate-indicator product; skf-degrees' landed `LanguageReduction.cylinderIndicator_eq_zero_iff` (99dc0e949) is over the WordGraph `language S` with a recursive indicator, so it was not consumed.
+
+## Item 5 (main, 09-14 ~09:1x): cor:host "for instance" clauses; discharge of the kernel paragraph
+
+CLAIM the tail of cor:host's last statement (tip f34e9c0b1, verbatim: "for instance every finitely presented residually finite group and every
+$G_Y$ with $L(Y)$ recursive (Corollary~\ref{cor:wp})"), taken over from sk-lef-assembly by one agreement message, in
+`GroupApproximation/Manuscript/SimpleKazhdanSofic/HostForInstance.lean`: finitely presented ⇒ `Higman.RecursivePresentation`, residually finite ⇒ LEF,
+G_Y f.g., LEF and recursively presented when L(Y) is recursive, and the same host over sk-lef-assembly's `PrintedRecursivelyPresentedLEFHost`.
+The census row of the sentence stays sk-lef-assembly's (carrier names added on landing).
+
+Kernel paragraph: f34e9c0b1 removed the sentence (bdd19b7d1e1f superseded). The closure `printedWordProblemKernels` over
+sk-stepanov's `printedSimplicityStatement_stepanov` (`WordProblemKernelsClosed.lean`) is probing.
