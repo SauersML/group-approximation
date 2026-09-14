@@ -30,8 +30,17 @@ New in this run, in `research/artifacts/balanced-kervaire-census-16-2026-09-14/`
 - `join16.py` `9786cefeb2dfe1e43ec47e92963d64ed`: joins the two enumerators by class id.
 - `joinlines.py` `ac4c3b73a89c33307e3f3ffd2f638d9b`: undoes GAP's `\` line continuations in
   the certificate file.
+- `open16_targets.g` `6205eddb1300a32cfab5a284a88891da` and `open16.sbatch`
+  `024052c4f6f714f5282b7a060cc3e8b0`: the follow-up for classes the first pass leaves `OPEN`. It
+  uses 20000000 cosets, index at most 12, 16 more simple targets (PSL(2,q) for q from 27 to 49,
+  PSL(3,4), PSU(3,4), PSp(4,3), Sz(8), A9, PSL(3,5), M12), the second enumerator with 5000000
+  cosets, and certificate export plus verification. It runs only if `OPEN` classes occur.
+- Target check (MSI job 779885, `tgtcheck.g`, `tgtcheck.779885.log`): all 31 targets build in
+  GAP 4.13.1 and are simple, with the expected orders. For example PSL(2,49) 58800, PSU(3,4)
+  62400, PSp(4,3) 25920, Sz(8) 29120, A9 181440, PSL(3,5) 372000, M12 95040.
 - Batch scripts: `census17.sbatch`, `rc15cal.sbatch`, `prep16.sbatch`, `classify16.sbatch`,
-  `tc16.sbatch`, `cert16.sbatch`. Logs: `rc15cal.777175.log`, `cal_join15.txt`.
+  `tc16.sbatch`, `cert16.sbatch`, `open16.sbatch`. Logs: `rc15cal.777175.log`, `cal_join15.txt`,
+  `tgtcheck.779885.log`.
 
 ## 2. Recount by orbit counting (`rc_orbit.py`)
 
