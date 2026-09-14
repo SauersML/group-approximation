@@ -7,6 +7,7 @@ distinct_from:
   some-simple-kazhdan-lef-groups-are-not-exact: that shows some lamplighter hosts are not exact, through Osajda's groups; this asks whether the Z-subshift groups G_X themselves are exact.
 artifacts:
   - research/artifacts/sk-free-1-exactness-2026-09-13-part1.md
+  - research/artifacts/sk-exact-banded-2026-09-14-part1.md
 ---
 
 **OPEN.** Let X ⊆ A^Z be an infinite minimal subshift and G_X = EL_3(LC(X,F_2) ⋊ Z).
@@ -48,5 +49,10 @@ Search bounds: web searches for exactness or property A of topological full grou
   - Artifact `research/artifacts/sk-exact-gx-2026-09-13-part1.md` §2.
 - **Cut space G_X/S_y, reformulation only.** S_y is locally finite (PASS), but an amenable action on β(G_X/S_y) is as hard as exactness itself: for F_2[u^{±1}] the cut space is the group modulo a finite subgroup.
 - **Linear wobbling reformulation, open.** G_X ≤ GL^{band}(Z×3;F_2), the units of the algebraic uniform Roe algebra of Z over F_2. Exactness of finitely generated subgroups of GL^{band}(Z×k;F_q) would settle G_X. Strang's block-diagonal factorization gives the same "two locally finite groups at bounded depth" structure as W(Z), so it decides nothing. Unlike W(Z), this unit group contains infinite simple Kazhdan groups.
+  - **Made exact (sk-exact-banded, 2026-09-14):** `banded-matrix-groups-are-subshift-crossed-product-groups`. GL^{band}(Z×m;F_q) = GL_m(LC(βZ,F_q) ⋊ Z), and its finitely generated subgroups are exactly the faithful orbit-representation images of finitely generated subgroups of GL_m(LC(Y,F_q) ⋊ Z) over transitive subshifts Y.
+- **Transfer across ranks and induced systems (sk-exact-banded, 2026-09-14).** `subshift-el-n-exactness-is-kakutani-invariant`:
+  - EL_n(M_k(S)) = EL_{nk}(S); the k-tower system gives G_{X^{(k)}} ≅ EL_{3k}(R_X); and EL_n(R_{X_V}) ≤ EL_n(R_X) ≤ EL_{nk}(R_{X_V}) for induced systems.
+  - So exactness in every rank is a Kakutani-equivalence invariant, and "every G_X is exact" is equivalent to "every EL_n(R_X) is exact". A proof may pass to induced systems with long towers; a counterexample may be sought in any rank over any minimal X.
+  - Literature bound (two web searches, one fetch): no exactness or property A theorem found for finitely generated subgroups of W(Z), or for unit groups of algebraic uniform Roe algebras over finite fields.
 - **Weakly embedded expanders through tower copies, dies.** The matrix units of tower copies GL_{3h}(F_2) involve level indicators of return time ≥ h, which depend on ≳ h/2 coordinates for Sturmian X. So every non-constant generator has G_X-length ≳ h/2, and homomorphic tower copies are not uniformly Lipschitz.
 - **Sup-metric copies through full-group cocycles, dies.** Commuting first-return maps on k disjoint pieces need 2^k masks, and balls grow at most exponentially, so some masks cost ≳ k/C. The induced metric is not uniformly ℓ^∞ on Z^k.
