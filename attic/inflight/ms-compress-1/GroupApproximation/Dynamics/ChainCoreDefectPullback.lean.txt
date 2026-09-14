@@ -95,7 +95,8 @@ theorem zpow_succ_mem_pulledBackDefect_diff (S : DiscreteQuotient X) {r : ℕ} {
   have hT : (T ^ (i + 1)) x = T ((T ^ i) x) := by
     rw [add_comm, ← zpow_apply_zpow_apply_pullback, zpow_one]
   refine ⟨?_, ?_⟩
-  · show itinerary T S ((T ^ (i + 1)) x) ∈ _
+  · show itinerary T S ((T ^ (i + 1)) x) ∈
+      reachableCylinderUnion (itinerarySubshift T S) r (Fin.tail (word (itinerary T S x) i (r + 1)))
     rw [hT, itinerary_apply_self]
     exact hmem.1
   · rintro ⟨z, hz, hzx⟩
