@@ -56,59 +56,65 @@ theorem faceWord_value (i : Fin 6) (hi : i = 1 ∨ i = 3) :
   rw [boundary_face_darts]
   rcases hi with rfl | rfl <;> decide
 
-/-! ## The two regions -/
+/-! ## Arcs -/
 
-/-- An arc of `Π` of one dart, at position `k`. -/
+/-- An arc of `Π` at position `k`. -/
 def piArc (k : ℕ) (hk : k < 4) (n : ℕ) (hn : n ≤ 4) : CyclicArc (cellDarts diagram iP) where
   start := ⟨k, by rw [cellDarts_iP]; simp only [List.length_cons, List.length_nil]; omega⟩
   length := n
   length_le := by rw [cellDarts_iP]; simpa using hn
 
-/-- An arc of the exterior boundary, at position `k`. -/
+/-- An arc of the exterior boundary at position `k`. -/
 def outerArc (k : ℕ) (hk : k < 3) (n : ℕ) (hn : n ≤ 3) : CyclicArc (targetDarts diagram none) where
-  start := ⟨k, by show k < (outerDarts diagram).length + 1; rw [outerDarts_eq]; simp only
-    [List.length_cons, List.length_nil]; omega⟩
+  start := ⟨k, by
+    show k < (outerDarts diagram).length + 1
+    rw [outerDarts_eq]
+    simp only [List.length_cons, List.length_nil]
+    omega⟩
   length := n
-  length_le := by show n ≤ (outerDarts diagram).length; rw [outerDarts_eq]; simpa using hn
+  length_le := by
+    show n ≤ (outerDarts diagram).length
+    rw [outerDarts_eq]
+    simpa using hn
 
-theorem piArc_darts_zero : (piArc 0 (by decide) 1 (by decide)).darts = [0] := by
-  change ((cellDarts diagram iP).drop 0 ++ (cellDarts diagram iP).take 0).take 1 = _
+theorem piArc_darts (k : ℕ) (hk : k < 4) (n : ℕ) (hn : n ≤ 4) :
+    (piArc k hk n hn).darts = (([0, 2, 4, 6] : List diagram.toCombMap.Dart).drop k ++
+      ([0, 2, 4, 6] : List diagram.toCombMap.Dart).take k).take n := by
+  change ((cellDarts diagram iP).drop k ++ (cellDarts diagram iP).take k).take n = _
   rw [cellDarts_iP]
-  rfl
 
-theorem piArc_darts_two : (piArc 2 (by decide) 1 (by decide)).darts = [4] := by
-  change ((cellDarts diagram iP).drop 2 ++ (cellDarts diagram iP).take 2).take 1 = _
-  rw [cellDarts_iP]
-  rfl
-
-theorem outerArc_darts_zero : (outerArc 0 (by decide) 1 (by decide)).darts = [8] := by
-  change ((outerDarts diagram).drop 0 ++ (outerDarts diagram).take 0).take 1 = _
+theorem outerArc_darts (k : ℕ) (hk : k < 3) (n : ℕ) (hn : n ≤ 3) :
+    (outerArc k hk n hn).darts = (([8, 10, 12] : List diagram.toCombMap.Dart).drop k ++
+      ([8, 10, 12] : List diagram.toCombMap.Dart).take k).take n := by
+  change ((outerDarts diagram).drop k ++ (outerDarts diagram).take k).take n = _
   rw [outerDarts_eq]
-  rfl
 
-theorem outerArc_darts_two : (outerArc 2 (by decide) 1 (by decide)).darts = [12] := by
-  change ((outerDarts diagram).drop 2 ++ (outerDarts diagram).take 2).take 1 = _
-  rw [outerDarts_eq]
-  rfl
+/-! ## The two regions -/
 
 theorem x_decomposition :
     (diagram.faceBoundary (face 1)).darts.rotate 0 =
-      (piArc 0 (by decide) 1 (by decide)).reverseDarts ++ [] ++
-        targetBoundaryDarts diagram none (outerArc 0 (by decide) 1 (by decide)) ++ [] := by
+      CyclicArc.reverseDarts (M := diagram.toCombMap) (piArc 0 (by decide) 1 (by decide)) ++
+        ([] : List diagram.toCombMap.Dart) ++
+        targetBoundaryDarts diagram none (outerArc 0 (by decide) 1 (by decide)) ++
+        ([] : List diagram.toCombMap.Dart) := by
   change (boundary (face 1)).darts.rotate 0 =
-    (piArc 0 (by decide) 1 (by decide)).darts.reverse.map M.alpha ++ [] ++
-      (outerArc 0 (by decide) 1 (by decide)).darts ++ []
-  rw [boundary_face_darts, piArc_darts_zero, outerArc_darts_zero]
+    (piArc 0 (by decide) 1 (by decide)).darts.reverse.map diagram.toCombMap.alpha ++
+      ([] : List diagram.toCombMap.Dart) ++ (outerArc 0 (by decide) 1 (by decide)).darts ++
+      ([] : List diagram.toCombMap.Dart)
+  rw [boundary_face_darts, piArc_darts, outerArc_darts]
   decide
 
 theorem y_decomposition :
     (diagram.faceBoundary (face 3)).darts.rotate 0 =
-      (piArc 2 (by decide) 1 (by decide)).reverseDarts ++ [] ++
-        targetBoundaryDarts diagram none (outerArc 2 (by decide) 1 (by decide)) ++ [] := by
+      CyclicArc.reverseDarts (M := diagram.toCombMap) (piArc 2 (by decide) 1 (by decide)) ++
+        ([] : List diagram.toCombMap.Dart) ++
+        targetBoundaryDarts diagram none (outerArc 2 (by decide) 1 (by decide)) ++
+        ([] : List diagram.toCombMap.Dart) := by
   change (boundary (face 3)).darts.rotate 0 =
-    (piArc 2 (by decide) 1 (by decide)).darts.reverse.map M.alpha ++ [] ++
-      (outerArc 2 (by decide) 1 (by decide)).darts ++ []
-  rw [boundary_face_darts, piArc_darts_two, outerArc_darts_two]
+    (piArc 2 (by decide) 1 (by decide)).darts.reverse.map diagram.toCombMap.alpha ++
+      ([] : List diagram.toCombMap.Dart) ++ (outerArc 2 (by decide) 1 (by decide)).darts ++
+      ([] : List diagram.toCombMap.Dart)
+  rw [boundary_face_darts, piArc_darts, outerArc_darts]
   decide
 
 /-- **The region `R_x`**: its source arc `[0]` of `Π`, its target arc `[8]` at position `0`. -/
@@ -127,13 +133,27 @@ noncomputable def y (eps : ℕ) : RegionCandidate D eps diagram :=
 
 /-! ## The outer pocket `{R_x, K, R_y}` -/
 
-def outerFaces : Finset diagram.toCombMap.Face := {face 1, face 2, face 3}
+def outerFaces : Finset diagram.toCombMap.Face :=
+  Finset.cons (face 1)
+    (Finset.cons (face 2) {face 3} fun h =>
+      absurd ((face_eq_iff 2 3).mp (Finset.mem_singleton.mp h)) (by decide))
+    fun h => by
+      rcases Finset.mem_cons.mp h with h | h
+      · exact absurd ((face_eq_iff 1 2).mp h) (by decide)
+      · exact absurd ((face_eq_iff 1 3).mp (Finset.mem_singleton.mp h)) (by decide)
+
+theorem face_mem_outerFaces_iff (i : Fin 6) : face i ∈ outerFaces ↔ i = 1 ∨ i = 2 ∨ i = 3 :=
+  Finset.mem_cons.trans (or_congr (face_eq_iff i 1)
+    (Finset.mem_cons.trans (or_congr (face_eq_iff i 2) (Finset.mem_singleton.trans (face_eq_iff i 3)))))
+
+theorem faceOf_mem_outerFaces_iff (d : Fin 14) :
+    M.faceOf d ∈ outerFaces ↔ faceClass d = 1 ∨ faceClass d = 2 ∨ faceClass d = 3 := by
+  rw [(faceOf_eq_face d (faceClass d)).mpr rfl, face_mem_outerFaces_iff]
 
 theorem outerBoundaryDart_iff (d : Fin 14) :
     IsBoundaryDart diagram.toCombMap outerFaces d ↔ d ∈ ([5, 3, 1, 8, 10, 12] : List (Fin 14)) := by
-  change (M.faceOf d ∈ ({face 1, face 2, face 3} : Finset M.Face) ∧
-    M.faceOf (M.alpha d) ∉ ({face 1, face 2, face 3} : Finset M.Face)) ↔ _
-  simp only [Finset.mem_insert, Finset.mem_singleton, faceOf_eq_face]
+  change (M.faceOf d ∈ outerFaces ∧ M.faceOf (M.alpha d) ∉ outerFaces) ↔ _
+  rw [faceOf_mem_outerFaces_iff, faceOf_mem_outerFaces_iff]
   fin_cases d <;> decide
 
 def outerCycle : BoundaryCycle diagram.toCombMap outerFaces where
@@ -146,29 +166,19 @@ theorem outer_decomposition :
     (outerCycle : BoundaryCycle diagram.toCombMap outerFaces).cycle =
       [] ++ invDarts diagram (piArc 0 (by decide) 3 (by decide)).darts ++ [] ++
         (outerArc 0 (by decide) 3 (by decide)).darts := by
-  change ([5, 3, 1, 8, 10, 12] : List (Fin 14)) =
-    [] ++ ((cellDarts diagram iP).drop 0 ++ (cellDarts diagram iP).take 0).take 3 |>.reverse.map M.alpha
-      ++ [] ++ ((outerDarts diagram).drop 0 ++ (outerDarts diagram).take 0).take 3
-  rw [cellDarts_iP, outerDarts_eq]
+  rw [piArc_darts, outerArc_darts]
   decide
 
 /-- **The outer pocket**, the pocket of the landed walk: a full target arc. -/
 noncomputable def outerK (eps : ℕ) : PocketFaceSet D eps diagram 0 3 where
   faces := outerFaces
-  outerFace_not_mem := by
-    change face 5 ∉ ({face 1, face 2, face 3} : Finset M.Face)
-    simp only [Finset.mem_insert, Finset.mem_singleton, face_eq_iff]
-    decide
+  outerFace_not_mem := fun h => by
+    rcases (face_mem_outerFaces_iff 5).mp h with h | h | h <;> exact absurd h (by decide)
   source := iP
-  source_not_mem := by
-    change face 0 ∉ ({face 1, face 2, face 3} : Finset M.Face)
-    simp only [Finset.mem_insert, Finset.mem_singleton, face_eq_iff]
-    decide
+  source_not_mem := fun h => by
+    rcases (face_mem_outerFaces_iff 0).mp h with h | h | h <;> exact absurd h (by decide)
   kept := iK
-  kept_mem := by
-    change face 2 ∈ ({face 1, face 2, face 3} : Finset M.Face)
-    simp only [Finset.mem_insert, Finset.mem_singleton, face_eq_iff]
-    decide
+  kept_mem := (face_mem_outerFaces_iff 2).mpr (Or.inr (Or.inl rfl))
   sourceArc := piArc 0 (by decide) 3 (by decide)
   targetArc := outerArc 0 (by decide) 3 (by decide)
   firstSide := []
@@ -183,15 +193,14 @@ noncomputable def outerK (eps : ℕ) : PocketFaceSet D eps diagram 0 3 where
   le_hi := by decide
 
 theorem outerK_closedWalk (eps : ℕ) : (outerK eps).ClosedWalk := by
-  refine ⟨?_, ?_⟩
-  · change ([5, 3, 1, 8, 10, 12] : List M.Dart).IsChain
-      (fun d e => M.vertexOf (M.alpha d) = M.vertexOf e)
-    refine List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff _ _).mpr (by decide),
-      List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff _ _).mpr (by decide),
-        List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff _ _).mpr (by decide),
-          List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff _ _).mpr (by decide),
-            List.isChain_pair.mpr ((vertexOf_eq_iff _ _).mpr (by decide))⟩⟩⟩⟩
-  · exact (vertexOf_eq_iff (M.alpha 12) 5).mpr (by decide)
+  refine ⟨?_, (vertexOf_eq_iff (M.alpha 12) 5).mpr (by decide)⟩
+  change ([5, 3, 1, 8, 10, 12] : List M.Dart).IsChain
+    (fun d e => M.vertexOf (M.alpha d) = M.vertexOf e)
+  exact List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff (M.alpha 5) 3).mpr (by decide),
+    List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff (M.alpha 3) 1).mpr (by decide),
+      List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff (M.alpha 1) 8).mpr (by decide),
+        List.isChain_cons_cons.mpr ⟨(vertexOf_eq_iff (M.alpha 8) 10).mpr (by decide),
+          List.isChain_pair.mpr ((vertexOf_eq_iff (M.alpha 10) 12).mpr (by decide))⟩⟩⟩⟩
 
 /-! ## The inner pocket `{K}` -/
 
@@ -214,18 +223,17 @@ theorem inner_decomposition :
     (innerCycle : BoundaryCycle diagram.toCombMap innerFaces).cycle =
       [] ++ invDarts diagram (piArc 1 (by decide) 1 (by decide)).darts ++ [] ++
         (outerArc 1 (by decide) 1 (by decide)).darts := by
-  change ([3, 10] : List (Fin 14)) =
-    [] ++ ((cellDarts diagram iP).drop 1 ++ (cellDarts diagram iP).take 1).take 1 |>.reverse.map M.alpha
-      ++ [] ++ ((outerDarts diagram).drop 1 ++ (outerDarts diagram).take 1).take 1
-  rw [cellDarts_iP, outerDarts_eq]
+  rw [piArc_darts, outerArc_darts]
   decide
 
 /-- **The inner pocket** between the two regions: reversed sides and proper arcs. -/
 noncomputable def innerK (eps : ℕ) : PocketFaceSet D eps diagram 0 3 where
   faces := innerFaces
-  outerFace_not_mem := fun h => absurd ((face_eq_iff 5 2).mp (Finset.mem_singleton.mp h)) (by decide)
+  outerFace_not_mem := fun h =>
+    absurd ((face_eq_iff 5 2).mp (Finset.mem_singleton.mp h)) (by decide)
   source := iP
-  source_not_mem := fun h => absurd ((face_eq_iff 0 2).mp (Finset.mem_singleton.mp h)) (by decide)
+  source_not_mem := fun h =>
+    absurd ((face_eq_iff 0 2).mp (Finset.mem_singleton.mp h)) (by decide)
   kept := iK
   kept_mem := Finset.mem_singleton.mpr rfl
   sourceArc := piArc 1 (by decide) 1 (by decide)
