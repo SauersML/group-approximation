@@ -48,3 +48,20 @@ strongly orbit equivalent. The converse direction holds for flip conjugacy, sinc
   - Missing: additivity of `x ↦ θ(1+x) − 1` on the Peirce spaces `ε_i M_3(R_X) ε_j`, i.e. a characteristic-2 analogue
     of Zel'manov's Jordan specialization theorem.
   - Artifact `research/artifacts/sk-rigidity-ring-2026-09-13-part1.md` §3.
+- **The second half is done, so only root preservation is left (sk-rigidity-f2).**
+  `root-preserving-el3-isomorphisms-give-ring-isomorphisms` coordinatizes from the relations
+  `[e_ik(r), e_kj(s)] = e_ij(rs)` alone, with no `1/2`: the only input is that the target ring is directly finite,
+  which the note's own finite models give. Composing with a permutation matrix and, when the target has a ring
+  anti-automorphism, with the graph automorphism, matches the labels of the six root subgroups, since the commuting
+  graph on them is a hexagon and all 12 of its automorphisms are realized. So
+  `root-preserving-subshift-el3-isos-force-orbit-equivalence` holds, and what remains is exactly that an
+  isomorphism carries root subgroups to root subgroups.
+- **Firewall FW-MAXAB and the one-group reformulation (sk-rigidity-f2).**
+  `el3-root-subgroups-are-bicommutant-closed` shows `C_G(C_G(A_ij)) = A_ij`, but also that the six row and column
+  subgroups `Row_i`, `Col_j` are abelian and self-centralizing with `A_ij = Row_i ∩ Col_j`. So root subgroups are
+  not maximal abelian, and "maximal abelian and bicommutant closed" does not pick them out. What would suffice:
+  every maximal abelian bicommutant-closed subgroup of `EL_3(R_X)` is a `Row_i` or a `Col_j`. That statement
+  mentions one group and no second subshift, so it is a better target than standardness itself.
+- **Literature, second reading (sk-rigidity-f2, bounded to the same secondary source).** The Bunina–Vladykina
+  introduction dates the arbitrary-ring `n, m ≥ 4` result to "In 1997 I.Z Golubchik [24]", where the Attempts entry
+  above says 1992, Contemp. Math. 131. Neither primary was read, so the year is unsettled here.
