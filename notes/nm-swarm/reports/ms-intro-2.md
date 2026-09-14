@@ -297,6 +297,23 @@ CLAIM `OsinLemma94ContactMapSmallFacesInput` (under the binders of `OsinLemma94L
     - two of different components in one class would make one hold the other's objects.
 - **LANDED 621c628bf** `CombMapRestrictionComponentFaceClasses` (probe 0914-104136-18898 GREEN; audit clean;
   wire-queued).
+- **LANDED 9e45690bc** `Estimating/OsinLemma94ContactMapHolds` (probe 0914-105924-73812 GREEN; audit clean;
+  wire-queued).
+  - It holds `HoldsObject`, `NondegenerateSmallFace`, part 1 `OsinLemma94ContactMapHoldingSmallFacesInput`, part 2
+    `OsinLemma94ContactMapEmptyTwoGonInput` (a count), and `osinLemma94ContactMapNondegenerateSmallFacesInput_of_pieces`
+    (K₁ + K₂).
+  - Both pieces are open.
+  - ms-traces-1 agreed (11:0x). `SectionCuts.count_le` gives count ≤ 4, so charging to regions is O(n). Their part 2
+    carries an unowned touch-component count as a hypothesis until main rules.
+- **Part 1 route (11:1x), without outer faces.** The face classes of `contactMap` in the dual are the regions. When k
+  components meet in one region, the combinatorial faces there exceed the region by k − 1. So Σ over classes (faces in
+  the class − 1) ≤ c − 1, where c counts components (c ≤ n + 1).
+  - Holding small faces in a shared class: at most c − 1.
+  - Holding small faces alone in their class: they hold a free object or a nested component. Charge each nested component
+    to its class, at most c − 1. A free object lies in one class, so there are at most n + 1.
+  - Total ≤ 3n + O(1).
+  - Crux: the class-count lemma for a restriction of a connected planar map, proved by growth
+    (`CombMapRestrictionGrowth`, as for `faceOf_eq_of_faceClass`).
 - Part 1, first brick: `CombMapRestrictionComponentFaceClasses` (attic, probing), with
   `PredicateRestriction.faceOf_eq_of_faceClass_of_componentOf`. Face classes of a planar map separate the faces of a
   first-return restriction inside one component.
