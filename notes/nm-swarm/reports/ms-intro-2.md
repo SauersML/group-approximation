@@ -165,7 +165,8 @@ Agreements with w1-binder-5 (18:3x):
 - `side_of_pair`, `familyArcAvoid_of_pair` and `stepDataOfPair`, assuming no relator word has value one.
 - `exists_of_isRegionPairDart_step` and `regionPairCount_lt`.
 
-In flight: `SurgeryRegionPairThickeningRegions` (attic 38f6fb848):
+**LANDED 235ce464b** `SurgeryRegionPairThickeningRegions` (probe 0913-203604-50879 GREEN; audit propext, Classical.choice,
+Quot.sound, no sorryAx; wire-queued). **`SectionPocketRegionsCopyStatement` is proved**, which closes item 3:
 - `noOuterSideDart_step`, `noCellSideDart_step`, `noCellHair_step`, `noCellEdgeDart_step`.
 - `exists_regionPairFree_of_invariant (P) (hP) (S) (hvalue) (hS)`. `hP` also receives the relator-value hypothesis, and
   the output adds the target clause and the relator values.
