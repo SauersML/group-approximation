@@ -154,6 +154,39 @@ Result: **ROOT GREEN, landed lead-wire a1f1820bd** at 21:17.
 - This lane's turn ended at the session limit before this report and main's message were written; both were written at
   21:25.
 
+## Wave 20, launched 09-13 ~21:30
+
+- Drafted from the unwired-top listing at 4c84d3cef, the tip after wave 19: 97 tops, 59 OK, 35 NOEVID, 2 HOLD, 1 LEX.
+  The draft is the first 36 OK tops.
+- The two holds are `OsinLemma94ClassCovers` and `OsinLemma94ClassTransitions`; the second is now in the tool's hold
+  list, until ms-compress-1's `cuttingSides` fix.
+- The LEX top `OsinLemma94ClassGapHairModel` is a false positive: its hits are docstring prose ("always admit one",
+  "Class words admit hairs"). It went past the cap and goes to wave 21.
+- New evidence counted in the listing:
+  - ms-traces-1 GREEN 0913-203701-58136 (`RingLaurent`, `MinimalSubshiftPeriodicWord`, `TowerMatrixUnits`,
+    `BridgeComponentMap`, all restored from the artifact cache);
+  - ms-cite-1 GREEN 0913-202623-71495, whose md5 line covers `OsinPocketPinchPosModelsAlgebra`.
+- Launcher gate at d20441972: 36 modules kept, 89 newly reachable files (closure 6773 → 6862), 0 blocking lines,
+  0 lexical hits.
+
+Result: **ROOT GREEN, landed lead-wire 7d71bbbd1** at 21:53.
+- 36 import lines after line 5251, matching `rw-wave20.mods` exactly.
+- Root build tag 0913-213249-30665, base 5cf716b0a, job 736338, 15517 jobs.
+- The coordinator restart at ~22:04 killed this lane before the report and main's message; both were written at 23:13.
+
+Holds and tool, 21:35–23:13:
+- `OsinLemma94ClassTransitions` is released.
+  - ms-compress-1 landed 013a2dc59 at 21:38: the file imports `OsinLemma94CuttingSides` and no longer declares
+    `cuttingSides`.
+  - GREEN 0913-213117-20108 (base ff0f63e83) lists the file with md5 6595bd27…, equal to origin 8f6ff8d76.
+- ms-traces-1 GREEN 0913-212948-96923 covers `SimpleKazhdanSofic.FiniteModelsRing` and
+  `VanKampen.BridgeComponentPlanar` (restored from the artifact cache).
+- `rwprep.py` duplicate scan now skips lines inside `/- … -/` block comments and `--` line comments, for declarations
+  and for `namespace`/`end`.
+  - A joint pre-flight of waves 20 and 21 had one false blocking line, `GroupApproximation.GGT.VanKampen.of`. It was
+    docstring prose ("class of `y`. -/") in `OsinAppendixEulerTwoGonEulerAssembly` and `OsinLemma94CuttingSides`.
+  - The launcher's name exception for top-level `of`/`by` covered only non-namespaced prose.
+
 ## Evidence and holds, 18:45–19:10
 
 - `coeff_injective` collision fixed by ct-bilateral-cell at 131abe1b5.
