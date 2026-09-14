@@ -75,27 +75,27 @@ theorem qSmul_single (q p : M.Q n) :
 
 /-- The configuration `∑_h f(h) 1_{σ_n(h)}` on `Q'_n`. -/
 noncomputable def lampImage (f : Δ →₀ ZMod 2) : ModelSpace M n :=
-  f.sum fun h c => c • Pi.single (M.σ n h) (1 : ZMod 2)
+  f.sum fun h c => (Pi.single (M.σ n h) c : ModelSpace M n)
 
 /-- **Over `F_2` it is `∑_{h ∈ supp f} 1_{σ_n(h)}`** (tex 402). -/
 theorem lampImage_eq_sum_support (f : Δ →₀ ZMod 2) :
     lampImage M n f = ∑ h ∈ f.support, Pi.single (M.σ n h) (1 : ZMod 2) := by
-  show ∑ h ∈ f.support, f h • Pi.single (M.σ n h) (1 : ZMod 2) = _
+  show ∑ h ∈ f.support, (Pi.single (M.σ n h) (f h) : ModelSpace M n) = _
   refine Finset.sum_congr rfl fun h hh => ?_
   rcases zmod_two_eq_zero_or_one (f h) with h0 | h1
   · exact absurd h0 (Finsupp.mem_support_iff.1 hh)
-  · rw [h1, one_smul]
+  · rw [h1]
 
 theorem lampImage_zero : lampImage M n 0 = 0 :=
   Finsupp.sum_zero_index
 
 theorem lampImage_add (f g : Δ →₀ ZMod 2) :
     lampImage M n (f + g) = lampImage M n f + lampImage M n g :=
-  Finsupp.sum_add_index' (fun _ => zero_smul _ _) fun _ _ _ => add_smul _ _ _
+  Finsupp.sum_add_index' (fun _ => Pi.single_zero _) fun _ _ _ => Pi.single_add _ _ _
 
 theorem lampImage_single (a : Δ) (c : ZMod 2) :
-    lampImage M n (Finsupp.single a c) = c • Pi.single (M.σ n a) (1 : ZMod 2) :=
-  Finsupp.sum_single_index (zero_smul _ _)
+    lampImage M n (Finsupp.single a c) = (Pi.single (M.σ n a) c : ModelSpace M n) :=
+  Finsupp.sum_single_index (Pi.single_zero _)
 
 /-- Translating the configuration by `δ` moves its image by `σ_n(δ)`, once `σ_n` is multiplicative
 on `δ` and the support. -/
@@ -103,7 +103,8 @@ theorem lampImage_translate {δ : Δ} {F : Δ →₀ ZMod 2}
     (h : ∀ a ∈ F.support, M.σ n (δ * a) = M.σ n δ * M.σ n a) :
     lampImage M n (translate Δ δ F) = qSmul M n (M.σ n δ) (lampImage M n F) := by
   rw [lampImage_eq_sum_support, lampImage_eq_sum_support]
-  show ∑ x ∈ F.support.map (leftMulEquiv Δ δ).toEmbedding, Pi.single (M.σ n x) (1 : ZMod 2) = _
+  show ∑ x ∈ F.support.map (leftMulEquiv Δ δ).toEmbedding,
+      (Pi.single (M.σ n x) (1 : ZMod 2) : ModelSpace M n) = _
   rw [Finset.sum_map, qSmul_sum]
   refine Finset.sum_congr rfl fun a ha => ?_
   rw [qSmul_single, ← h a ha]
@@ -135,7 +136,7 @@ theorem modelAct_inr (δ : Δ) (y : ModelSpace M n) :
 theorem modelAct_lampAdd (y : ModelSpace M n) :
     modelAct M n (lampAdd Δ) y = y + Pi.single (1 : M.Q n) (1 : ZMod 2) := by
   show qSmul M n (M.σ n 1) y + lampImage M n (Finsupp.single 1 1) = _
-  rw [(M.isBallModel n).map_one, qSmul_one, lampImage_single, one_smul, (M.isBallModel n).map_one]
+  rw [(M.isBallModel n).map_one, qSmul_one, lampImage_single, (M.isBallModel n).map_one]
 
 /-- **These permutations multiply as in `Λ`** (tex 404–405), for fixed elements and large `n`. -/
 theorem eventually_modelAct_mul (hT : Subgroup.closure T = ⊤) (ξ η : LampAffine Δ) :
@@ -166,6 +167,7 @@ theorem eventually_attach_modelAct (hT : Subgroup.closure T = ⊤) (ξ : LampAff
     (J : Finset Δ) :
     ∀ᶠ n in atTop, ∀ y : ModelSpace M n, ∀ h ∈ J,
       attach M n (modelAct M n ξ y) h = (ξ • attach M n y) h := by
+  classical
   have h1 : ∀ᶠ n in atTop, ∀ h ∈ J,
       M.σ n (ξ.right⁻¹ * h) = (M.σ n ξ.right)⁻¹ * M.σ n h :=
     (eventually_all_finset J).2 fun h _ =>
@@ -215,9 +217,9 @@ def PrintedLamplighterModelAction : Prop :=
     (∀ (n : ℕ) (ξ : LampAffine Δ) (y : ModelSpace M n),
       modelAct M n ξ y = qSmul M n (M.σ n ξ.right) y +
         ∑ h ∈ (Multiplicative.toAdd ξ.left).support, Pi.single (M.σ n h) (1 : ZMod 2)) ∧
-    (∀ ξ η : LampAffine Δ, ∀ᶠ n in atTop,
+    (∀ ξ η : LampAffine Δ, ∀ᶠ n in Filter.atTop,
       modelAct M n (ξ * η) = modelAct M n ξ * modelAct M n η) ∧
-    (∀ (ξ : LampAffine Δ) (J : Finset Δ), ∀ᶠ n in atTop, ∀ y : ModelSpace M n, ∀ h ∈ J,
+    (∀ (ξ : LampAffine Δ) (J : Finset Δ), ∀ᶠ n in Filter.atTop, ∀ y : ModelSpace M n, ∀ h ∈ J,
       attach M n (modelAct M n ξ y) h = (ξ • attach M n y) h)
 
 theorem printedLamplighterModelAction : PrintedLamplighterModelAction := fun _ _ _ hT M =>
