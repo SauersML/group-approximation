@@ -139,3 +139,43 @@ give every diagonal matrix unit, and with P every matrix unit". Ring generation 
 `RingGeneration.subring_closure_eq_top`.
 
 - MSI master down at ~00:00: `/tmp/msi-login.sock` is missing. Authoring continues; probes wait.
+
+## 08:2x resume: infrastructure wiped (laptop reboot); offline authoring per main's broadcast
+
+Origin/main is intact (tip f607305eb). The note tip is 696c4b602, unchanged in l.211–271 since 37551fd93. The census is still
+at 37551fd93. nm/ infrastructure is gone, so no probes and no landings until main rebuilds it.
+
+Target spellings (ct-two-ended, attic b44b743cc and 81bcaa7e4; names final):
+- `IsMatricialVia S N φ`, now with `(∀ k, 0 < N k)`: my N_k = 0 counterexample is adopted;
+- `PrintedMatricialMarkedLimitStatement`;
+- `PrintedPeriodicMatricialStatement` over `printedGenerators S := insert 1 (ringGenerators_finite S).toFinset`, in `MainFromGeneral`;
+- `PrintedBlockElementarySimple` is closed by ct-two-ended and the expanders by oa-expanders, so both are off my list.
+
+CLAIM (added) GroupApproximation/Manuscript/SimpleKazhdanSofic/MatricialMarkedLimitWords.lean: char 2 from simplicity, π and ρ_k on
+the letters, `isMarkedLimit_of_matricial` for every n ≥ 3. This is the producer of `PrintedMatricialMarkedLimitStatement` once
+GeneralTheorem lands.
+CLAIM (added) GroupApproximation/Manuscript/SimpleKazhdanSofic/SubshiftMatricial.lean: the printed cutoff φ_ℓ, φ_ℓ(1) = I,
+φ_ℓ(u^j) = P^j, φ_ℓ(e_a) = diag(1_{y_ℓ(t)=a}), distinct translates from the least period, generation, eventual additivity and
+multiplicativity, reindexing to `Fin`. `exists_periodicMatricial` is the body of `PrintedPeriodicMatricialStatement`.
+
+Offline drafts, none probed yet (md5, with backups in the session scratchpad):
+| module | md5 | contents |
+|---|---|---|
+| MatricialMarkedLimit | f3c8f8e2 | root-marking generation, φ∘π = ρ eventually, trivial ⇒ eventually trivial, ultraproduct RingCon and ring hom, trivial kernel |
+| MatricialMarkedLimitWords | 18d6f2b0 | char 2, π/ρ letters, `isMarkedLimit_of_matricial` |
+| PeriodicMatrixUnits | a4886c21 | P^i in the closure, conjugation, diagonal units, all matrix units, closure = ⊤, transport through a ring equiv |
+| SubshiftMatricial | 4cb6548e | cutoff model, letters, distinct translates, `exists_periodicMatricial` |
+| FiniteModelsAsymptotic (absorbed) | c2f943d5 | ms-units' `AsymptoticModels`; both earlier probes red, errors unread |
+
+Probe order once infrastructure returns: MatricialMarkedLimit + MatricialMarkedLimitWords, then FiniteModelsAsymptotic +
+PeriodicMatrixUnits + SubshiftMatricial.
+
+CLAIM (added) GroupApproximation/Manuscript/SimpleKazhdanSofic/MatricialEndpoints.lean (path free on disk and origin; no other
+producer). It holds the closed `printedMatricialMarkedLimitStatement` and `printedPeriodicMatricialStatement` over ct-two-ended's
+`GeneralTheorem` and `MainFromGeneral` (unlanded), from `isMarkedLimit_of_matricial` and `exists_periodicMatricial`. Draft md5
+4ebf330e, backed up; not probed. Land after ct-two-ended's two modules, and co-probe with them.
+
+## 08:37 INFRA READY (NM in this session's scratchpad; clone cs-limit). Census regenerated at the tip 696c4b602 (aa6f988f4).
+- Rows re-keyed: `e4fd510a51c5` formalized (printedBlockElementarySpecialLinear). Dropped `13bf024677ad` and `414df07890f1`, which are
+  gone from the census.
+- Step 1: co-probe MatricialMarkedLimit + MatricialMarkedLimitWords, running.
