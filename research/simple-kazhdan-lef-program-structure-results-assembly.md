@@ -30,6 +30,8 @@ requires:
   - subshift-el-groups-have-bounded-conjugation-invariant-norms
   - simple-amenable-group-of-non-uniform-exponential-growth
   - subshift-el3-two-ended-lattice-stabilizers-locally-finite
+  - unit-group-confined-subgroups-idempotent-commutator-lemma
+  - idempotent-displacement-fails-for-polynomially-small-units
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
