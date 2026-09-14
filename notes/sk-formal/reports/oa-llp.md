@@ -63,6 +63,15 @@ Formal route:
 
 - the printed endpoint `Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting`. It contraposes the theorem above with oa-kirchberg's ¬(F) and oa-mcduff's producer `HyperlinearTracePreservingModelStatement` (statement on origin at bf8ea9f9e).
 
+## Re-scope 09:2x (note at 8b36733d7, md5 29d63f79)
+
+- f34e9c0b1 (09:05) removed the Brown's formulation clause "and C*(G) does not have the local lifting property [p. 527]", so row `a63ff00e499b` is superseded.
+- The LLP claim that remains is in the introduction, l.51–54 at 8b36733d7 (row `7f3b239e5f2a`, verbatim): "Ozawa stated the hyperlinear form in 2003, noting that the full C*-algebra of such a group cannot have the local lifting property [p. 527]". Such a group is an infinite simple Kazhdan hyperlinear group.
+- Carrier `Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting`, in probe:
+  - `PrintedOzawaNoLocalLiftingGeneral` states it at printed generality; countability comes from (T) ⇒ f.g.
+  - `printedOzawaNoLocalLiftingGeneral` is the closed endpoint. It goes through oa-kirchberg's inhabitant `KirchbergTheorem.kirchbergKazhdanFactorizationInput` (9df1daac4) and oa-mcduff's producer `hyperlinearTracePreservingModelStatement_holds` (24a27e527).
+- Census rows wait for a census regenerated at the tip; the census on origin is at 696c4b602.
+
 ## Status
 
 - 21:3x: claim landed at the current tip. `LocalLiftingProperty.lean` is in progress: definitions, the Arveson statement, and the calibration that ℂ has the LLP.
