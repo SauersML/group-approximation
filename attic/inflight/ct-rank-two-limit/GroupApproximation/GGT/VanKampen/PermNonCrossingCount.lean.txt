@@ -21,7 +21,11 @@ of `π * τ`.
 
 * `walsh π τ`: the Walsh map; `walshSigma_zpow_apply`, `sameCycle_walshSigma_iff`;
 * `card_vertex_walsh`: `Nat.card (walsh π τ).Vertex = Nat.card (Orbit π) + Nat.card (Orbit τ)`;
-* `card_edge_walsh`: `Nat.card (walsh π τ).Edge = k`.
+* `card_edge_walsh`: `Nat.card (walsh π τ).Edge = k`;
+* `card_face_walsh`: `Nat.card (walsh π τ).Face = Nat.card (Orbit (π * τ))`, since two steps of the face
+  permutation act as `π * τ` on the `false` copy (`walshFacePerm_sq`);
+* `walsh_connected`: the Walsh map is connected when `π * τ` has a single cycle, as `finRotate k` does
+  (`finRotate_sameCycle`).
 -/
 
 namespace GroupApproximation.GGT.VanKampen.PermNonCrossing
@@ -83,13 +87,17 @@ theorem walshSigma_pow_apply (π τ : Perm (Fin k)) (n : ℕ) (i : Fin k) (b : B
     rw [pow_succ', Perm.mul_apply, ih, pow_succ', Perm.mul_apply, walshSigma_apply]
     cases b <;> rfl
 
+theorem walshSigma_inv (π τ : Perm (Fin k)) : (walshSigma π τ)⁻¹ = walshSigma π⁻¹ τ⁻¹ := by
+  refine Equiv.ext fun d => ?_
+  rcases d with ⟨i, _ | _⟩ <;> rfl
+
 theorem walshSigma_zpow_apply (π τ : Perm (Fin k)) (n : ℤ) (i : Fin k) (b : Bool) :
     (walshSigma π τ ^ n) (i, b) = ((cond b τ π ^ n) i, b) := by
   rcases Int.eq_nat_or_neg n with ⟨m, rfl | rfl⟩
   · simpa only [zpow_natCast] using walshSigma_pow_apply π τ m i b
-  · rw [zpow_neg, zpow_natCast, zpow_neg, zpow_natCast]
-    apply (walshSigma π τ ^ m).injective
-    rw [Perm.apply_inv_self, walshSigma_pow_apply, Perm.apply_inv_self]
+  · rw [zpow_neg, zpow_natCast, ← inv_pow, walshSigma_inv, walshSigma_pow_apply, zpow_neg,
+      zpow_natCast, ← inv_pow]
+    cases b <;> rfl
 
 theorem sameCycle_walshSigma_iff (π τ : Perm (Fin k)) (i j : Fin k) (b c : Bool) :
     (walshSigma π τ).SameCycle (i, b) (j, c) ↔ b = c ∧ (cond b τ π).SameCycle i j := by
@@ -111,10 +119,10 @@ def vertexEquiv (π τ : Perm (Fin k)) :
         (Sum.inl (Quotient.mk (Perm.SameCycle.setoid π) d.1)))
     (by
       rintro ⟨i, b⟩ ⟨j, c⟩ h
-      obtain ⟨rfl, h⟩ := (sameCycle_walshSigma_iff π τ i j b c).mp h
+      obtain ⟨rfl, hs⟩ := (sameCycle_walshSigma_iff π τ i j b c).mp h
       cases b
-      · exact congrArg Sum.inl (Quotient.sound h)
-      · exact congrArg Sum.inr (Quotient.sound h))
+      · exact congrArg Sum.inl (Quotient.sound (show π.SameCycle i j from hs))
+      · exact congrArg Sum.inr (Quotient.sound (show τ.SameCycle i j from hs)))
   invFun := Sum.elim
     (Quotient.lift (fun i => Quotient.mk (Perm.SameCycle.setoid (walshSigma π τ)) (i, false))
       (fun i j h => Quotient.sound ((sameCycle_walshSigma_iff π τ i j false false).mpr ⟨rfl, h⟩)))
@@ -143,7 +151,8 @@ def edgeEquiv (k : ℕ) (π τ : Perm (Fin k)) : (walsh π τ).Edge ≃ Fin k wh
       rintro ⟨i, b⟩ ⟨j, c⟩ h
       rcases h with h | h
       · exact congrArg Prod.fst h
-      · exact congrArg Prod.fst h)
+      · have hfst : ((walsh π τ).alpha (i, b)).1 = (j, c).1 := congrArg Prod.fst h
+        exact hfst)
   invFun i := Quotient.mk (walsh π τ).edgeSetoid (i, false)
   left_inv x := by
     induction x using Quotient.inductionOn with
@@ -156,8 +165,148 @@ def edgeEquiv (k : ℕ) (π τ : Perm (Fin k)) : (walsh π τ).Edge ≃ Fin k wh
 theorem card_edge_walsh (π τ : Perm (Fin k)) : Nat.card (walsh π τ).Edge = k := by
   rw [Nat.card_congr (edgeEquiv k π τ), Nat.card_eq_fintype_card, Fintype.card_fin]
 
+/-! ## Faces -/
+
+theorem walshFacePerm_false (π τ : Perm (Fin k)) (i : Fin k) :
+    (walsh π τ).facePerm (i, false) = (τ i, true) :=
+  rfl
+
+theorem walshFacePerm_true (π τ : Perm (Fin k)) (i : Fin k) :
+    (walsh π τ).facePerm (i, true) = (π i, false) :=
+  rfl
+
+/-- Two steps of the face permutation act as `π * τ` on the `false` copy and `τ * π` on the `true`
+copy. -/
+theorem walshFacePerm_sq (π τ : Perm (Fin k)) :
+    (walsh π τ).facePerm ^ 2 = walshSigma (π * τ) (τ * π) := by
+  refine Equiv.ext fun d => ?_
+  rcases d with ⟨i, _ | _⟩
+  · rw [pow_two, Perm.mul_apply, walshFacePerm_false, walshFacePerm_true, walshSigma_apply]
+    rfl
+  · rw [pow_two, Perm.mul_apply, walshFacePerm_true, walshFacePerm_false, walshSigma_apply]
+    rfl
+
+theorem walshFacePerm_zpow_two_mul (π τ : Perm (Fin k)) (m : ℤ) (i : Fin k) :
+    ((walsh π τ).facePerm ^ (2 * m)) (i, false) = (((π * τ) ^ m) i, false) := by
+  rw [zpow_mul, zpow_ofNat, walshFacePerm_sq, walshSigma_zpow_apply]
+  rfl
+
+theorem sameCycle_walshFacePerm_false_iff (π τ : Perm (Fin k)) (i j : Fin k) :
+    (walsh π τ).facePerm.SameCycle (i, false) (j, false) ↔ (π * τ).SameCycle i j := by
+  constructor
+  · rintro ⟨n, hn⟩
+    rcases Int.even_or_odd' n with ⟨m, rfl | rfl⟩
+    · rw [walshFacePerm_zpow_two_mul, Prod.mk.injEq] at hn
+      exact ⟨m, hn.1⟩
+    · rw [zpow_add_one, Perm.mul_apply, walshFacePerm_zpow_two_mul, walshFacePerm_false] at hn
+      exact absurd (congrArg Prod.snd hn) Bool.true_eq_false
+  · rintro ⟨m, hm⟩
+    exact ⟨2 * m, by rw [walshFacePerm_zpow_two_mul, hm]⟩
+
+/-- The point of `Fin k` whose `false` dart shares the face orbit of a dart. -/
+def faceBase (π : Perm (Fin k)) (d : Fin k × Bool) : Fin k :=
+  cond d.2 (π d.1) d.1
+
+theorem sameCycle_faceBase (π τ : Perm (Fin k)) (d : Fin k × Bool) :
+    (walsh π τ).facePerm.SameCycle d (faceBase π d, false) := by
+  rcases d with ⟨i, _ | _⟩
+  · exact Perm.SameCycle.refl _ _
+  · exact ⟨1, by rw [zpow_one, walshFacePerm_true]; rfl⟩
+
+theorem sameCycle_walshFacePerm_iff (π τ : Perm (Fin k)) (d e : Fin k × Bool) :
+    (walsh π τ).facePerm.SameCycle d e ↔ (π * τ).SameCycle (faceBase π d) (faceBase π e) := by
+  rw [← sameCycle_walshFacePerm_false_iff]
+  constructor
+  · intro h
+    exact ((sameCycle_faceBase π τ d).symm.trans h).trans (sameCycle_faceBase π τ e)
+  · intro h
+    exact ((sameCycle_faceBase π τ d).trans h).trans (sameCycle_faceBase π τ e).symm
+
+/-- The faces of the Walsh map are the cycles of `π * τ`. -/
+def faceEquiv (π τ : Perm (Fin k)) : (walsh π τ).Face ≃ CombMap.Orbit (π * τ) where
+  toFun := Quotient.lift (fun d => Quotient.mk (Perm.SameCycle.setoid (π * τ)) (faceBase π d))
+    (fun d e h => Quotient.sound ((sameCycle_walshFacePerm_iff π τ d e).mp h))
+  invFun := Quotient.lift (fun i => Quotient.mk (Perm.SameCycle.setoid (walsh π τ).facePerm) (i, false))
+    (fun i j h => Quotient.sound ((sameCycle_walshFacePerm_false_iff π τ i j).mpr h))
+  left_inv x := by
+    induction x using Quotient.inductionOn with
+    | h d => exact Quotient.sound (sameCycle_faceBase π τ d).symm
+  right_inv x := by
+    induction x using Quotient.inductionOn with
+    | h i => rfl
+
+theorem card_face_walsh (π τ : Perm (Fin k)) :
+    Nat.card (walsh π τ).Face = Nat.card (CombMap.Orbit (π * τ)) :=
+  Nat.card_congr (faceEquiv π τ)
+
+/-! ## Connectedness -/
+
+theorem eqvGen_false_step (π τ : Perm (Fin k)) (i : Fin k) :
+    Relation.EqvGen (walsh π τ).Adjacent (i, false) ((π * τ) i, false) := by
+  have h1 : (walsh π τ).Adjacent (i, false) (i, true) := Or.inl rfl
+  have h2 : (walsh π τ).Adjacent (i, true) (τ i, true) := Or.inr rfl
+  have h3 : (walsh π τ).Adjacent (τ i, true) (τ i, false) := Or.inl rfl
+  have h4 : (walsh π τ).Adjacent (τ i, false) ((π * τ) i, false) := Or.inr rfl
+  exact (Relation.EqvGen.rel _ _ h1).trans _ _ _ ((Relation.EqvGen.rel _ _ h2).trans _ _ _
+    ((Relation.EqvGen.rel _ _ h3).trans _ _ _ (Relation.EqvGen.rel _ _ h4)))
+
+theorem eqvGen_false_pow (π τ : Perm (Fin k)) (n : ℕ) (i : Fin k) :
+    Relation.EqvGen (walsh π τ).Adjacent (i, false) (((π * τ) ^ n) i, false) := by
+  induction n with
+  | zero => exact Relation.EqvGen.refl _
+  | succ n ih =>
+    rw [pow_succ', Perm.mul_apply]
+    exact ih.trans _ _ _ (eqvGen_false_step π τ _)
+
+/-- The Walsh map is connected when `π * τ` has a single cycle. -/
+theorem walsh_connected (π τ : Perm (Fin k)) (h : ∀ i j : Fin k, (π * τ).SameCycle i j) :
+    (walsh π τ).IsConnected := by
+  have hbase : ∀ d : Fin k × Bool, Relation.EqvGen (walsh π τ).Adjacent d (d.1, false) := by
+    rintro ⟨i, _ | _⟩
+    · exact Relation.EqvGen.refl _
+    · exact Relation.EqvGen.rel _ _ (Or.inl rfl)
+  intro d e
+  obtain ⟨n, -, hn⟩ := (h d.1 e.1).exists_pow_eq'
+  refine (hbase d).trans _ _ _ ((eqvGen_false_pow π τ n d.1).trans _ _ _ ?_)
+  rw [hn]
+  exact (hbase e).symm _ _
+
+theorem finRotate_sameCycle (i j : Fin k) : (finRotate k).SameCycle i j := by
+  rcases k with _ | _ | n
+  · exact i.elim0
+  · rw [Subsingleton.elim i j]
+    exact Perm.SameCycle.refl _ _
+  · have hsupp := support_finRotate (n := n)
+    exact isCycle_finRotate.sameCycle (Perm.mem_support.mp (by rw [hsupp]; exact Finset.mem_univ i))
+      (Perm.mem_support.mp (by rw [hsupp]; exact Finset.mem_univ j))
+
+/-! ## The non-crossing criterion -/
+
+/-- **The non-crossing criterion.** -/
+theorem card_orbit_add_card_orbit_le {k : ℕ} (π : Perm (Fin k)) :
+    Nat.card (CombMap.Orbit π) + Nat.card (CombMap.Orbit (π⁻¹ * finRotate k)) ≤ k + 1 := by
+  rcases Nat.eq_zero_or_pos k with rfl | hk
+  · have h0 : ∀ p : Perm (Fin 0), IsEmpty (CombMap.Orbit p) :=
+      fun p => ⟨fun x => Quotient.inductionOn x fun i => i.elim0⟩
+    rw [@Nat.card_of_isEmpty _ (h0 π), @Nat.card_of_isEmpty _ (h0 _)]
+    omega
+  · have hconn : (walsh π (π⁻¹ * finRotate k)).IsConnected :=
+      walsh_connected π _ (by rw [mul_inv_cancel_left]; exact finRotate_sameCycle)
+    have h := CombMap.eulerCharacteristic_le_two (walsh π (π⁻¹ * finRotate k)) hconn
+    simp only [CombMap.eulerCharacteristic, CombMap.vertexCount, CombMap.edgeCount,
+      CombMap.faceCount] at h
+    rw [card_vertex_walsh, card_edge_walsh, card_face_walsh, mul_inv_cancel_left] at h
+    have hγ : 1 ≤ Nat.card (CombMap.Orbit (finRotate k)) := by
+      haveI : Nonempty (CombMap.Orbit (finRotate k)) := ⟨Quotient.mk _ ⟨0, hk⟩⟩
+      exact Nat.card_pos
+    push_cast at h
+    omega
+
 end GroupApproximation.GGT.VanKampen.PermNonCrossing
 
 #audit_axioms GroupApproximation.GGT.VanKampen.PermNonCrossing.sameCycle_walshSigma_iff
 #audit_axioms GroupApproximation.GGT.VanKampen.PermNonCrossing.card_vertex_walsh
 #audit_axioms GroupApproximation.GGT.VanKampen.PermNonCrossing.card_edge_walsh
+#audit_axioms GroupApproximation.GGT.VanKampen.PermNonCrossing.card_face_walsh
+#audit_axioms GroupApproximation.GGT.VanKampen.PermNonCrossing.walsh_connected
+#audit_axioms GroupApproximation.GGT.VanKampen.PermNonCrossing.card_orbit_add_card_orbit_le
