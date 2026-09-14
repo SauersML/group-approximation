@@ -109,6 +109,7 @@ theorem coeff_mul_charFn_apply
       SkewMonoidAlgebra.coeff c ξ y * LocallyConstant.charFn (ZMod 2) hV (ξ⁻¹ • y) := by
   rw [SkewMonoidAlgebra.coeff_mul_single_one, LocallyConstant.mul_apply, hact]
 
+omit [MulAction Λ Z] in
 /-- **tex l.164, `e_V c`**: the coefficient at `u_ξ` is `e_V c_ξ`. -/
 theorem coeff_charFn_mul_apply (c : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ) {V : Set Z}
     (hV : IsClopen V) (ξ : Λ) (y : Z) :
