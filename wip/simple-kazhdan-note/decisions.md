@@ -1074,6 +1074,8 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - the orientation switch needs ψ_X = ρ_{t_X} exactly (Schur plus F4), then ρ_{3*}∘γ = ρ_3; written out;
     - the graph automorphism must be the adjoint-inverse g ↦ (ι(g)^t)^{-1}, since plain transpose-inverse is not a homomorphism over a noncommutative ring; defined so.
     - Bibliography entries marked TO VERIFY at source: ABC, Ara–Claramunt journal data, Bass, Effros, HPS, Matui 2005 journal data, Modular Atlas, Thompson 1961.
+    - Crossref (2026-09-14) then confirmed HPS, Thompson 1961, Matui PRIMS 41 (2005) 695–722 (doi 10.2977/prims/1145475227), Ara–Claramunt ETDS 40 (2020) 2913–2946 (doi 10.1017/etds.2019.37) and Effros CBMS 46; the DOIs were added (5f9e7c2416). Still to verify at the primary source: Bass, the Effros and HPS theorem locators, the Modular Atlas page, Thompson's statement.
+195. **Cairn reachability CONFIRMED at 31caea6c6f (14:13), which includes the rigidity merge and every verifier landing.** EXIT=0 in 778 s, 12317 claims and 12471 routes, 0 ERROR lines. Of 715 sk ids the unreachable ones are exactly the known dead space: the 4 refuted firewalls, the 3 invalidated routes and the 4 stale ids without a file. A last check at the tip after the rev5.1 wiring (00e7d77999) is running (steward8).
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
