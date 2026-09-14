@@ -17,3 +17,14 @@ artifacts:
 - Every decomposition `M_3(R_X) ≅ End(P^N ⊕ Q)` with `P` repeated `N = 2^n·m` times leaves a nonzero remainder summand `Q` whenever `[χ_X]` is not `2^n`-divisible.
 
 Route: `matrix-decompositions-need-divisible-unit-proof`.
+
+## Review
+- **sk-verify-21 PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-21-2026-09-14.md` §2):** steps 1–6 re-derived by hand:
+  - Murray–von Neumann equivalence through `φ(E_ij)`;
+  - Morita, `[1_(M_k)] ↦ k[1]`;
+  - integration against `μ`;
+  - the Bézout step;
+  - Sturmian clopen measures in `Z + αZ`.
+  Both model tests hold, and there is no duplicate on main. Fixes:
+  - (F1) Route step 6 proves only `N = 3·2^n`, but the title ("forces `N | k`") and Consequence 1 ("`N` not dividing 3") need the general case. Append to step 6: "In general, step 4 gives `k/N = a + bα` with `a, b ∈ Z`. Since `k/N` is rational and `α` is irrational, `b = 0`, so `N | k`."
+  - (F2) Consequence 2 (the remainder summand `Q`) has no route step. Add: "7. **Remainder summand.** If `Q = 0`, then `M_3(R_X) ≅ End(P^N) ≅ M_N(End(P))`, so steps 1–3 give `3[χ_X] = N·c = 2^n·(mc)`. With `3a + 2^n b = 1`, `[χ_X] = 2^n(a·mc + b[χ_X])` is `2^n`-divisible. Torsion-freeness is not used."

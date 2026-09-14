@@ -23,3 +23,12 @@ artifacts:
 - Firewall: no example certified here of a zero-entropy minimal subshift with piecewise dyadic level models but no dyadic continuous eigenvalue. For primitive substitutions with even return lengths, Host's criterion seems to produce dyadic eigenvalues anyway (artifact part 1 §4).
 
 Route: `piecewise-dyadic-level-models-give-non-uniform-growth-proof`.
+
+## Review
+- **sk-verify-21 PASS, conditional on `krieger-subshift-embedding-theorem` as stated (2026-09-14, `research/artifacts/sk-verify-21-2026-09-14.md` §1):** re-derived by hand:
+  - the matrix units `ε_ij = s_i s′_j`: disjointness of the `T^nA^(i)_n` kills the cross terms, and `s′_j = s′_j e_(W_j)`, `s_i = e_(W_i)s_i`;
+  - the corner isomorphism `LC(W,F_2) ⋊_(T_W) Z ≅ e_WRe_W`: covariance `v f v′ = f∘T_W^(−1)`, `v^m = Σ_j e_(D_(m,j))u^j` with the `D_(m,j)` disjoint in `m`, then surjectivity and injectivity;
+  - return-word coding, `h_top(T_W) = 0` by Kakutani, full support and Abramov, then Krieger and generation by `v, v^(−1), e_U`;
+  - Lemma 4, Lemma 0, and (T) ⇒ non-amenable ⇒ `ω > 1`.
+  - Theorem B is applied to rings `A_k` that change with `k`. This needs `C`, `β` and the threshold on `n` to be independent of `A`, as recorded in sk-verify-14 part 4 l.63.
+  - The necessity bullet holds directly: `[χ_X] = 2^k[χ_(W_1)]`.

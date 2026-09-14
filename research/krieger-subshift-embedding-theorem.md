@@ -16,3 +16,13 @@ artifacts:
 **Consumers.** `piecewise-dyadic-level-models-give-non-uniform-growth-proof`. It also closes the verification gate recorded for sk-free-8's Corollary A2 (odometer factor, zero entropy) in the Attempts of `every-subshift-elementary-group-non-uniform-growth`, at secondary-source level.
 
 Route: `krieger-subshift-embedding-theorem-citation`.
+
+## Review
+- **sk-verify-21 PASS-WITH-FIXES at secondary-source level (2026-09-14, `research/artifacts/sk-verify-21-2026-09-14.md` §3):** read the arXiv:2606.25475 e-print source on MSI:
+  - the theorem `\label{Krieger}` at l.112;
+  - `q_n` = number of points of least period `n` (l.110);
+  - embedding = injective sliding block code (l.220).
+  - Crossref confirms W. Krieger, ETDS 2(2) (1982) 195–202. The primary paper was not opened.
+  - The consequence is re-derived: `q_n(Z) = 0`, `h(Z) = 0 < log 2`, and the full 2-shift is a mixing SFT. Fixes:
+  - (K1) In the verbatim quote, the source reads "if and only if", not "iff".
+  - (K2) In `krieger-subshift-embedding-theorem-citation`, credit the restatement: after "arXiv:2606.25475," insert "B. Marcus and T. Meyerovitch,".
