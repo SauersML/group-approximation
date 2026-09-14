@@ -27,6 +27,20 @@ CLAIM instances of the last statement of cor:host (tex l.324–327) GroupApproxi
 
 CLAIM lamplighter host combination GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFLamplighterCombination.lean
 
+CLAIM closed cor:lef and cor:host endpoints GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFCharacterizationClosed.lean
+
+- 09:2x–10:0x:
+  - LANDED 0da57c90d `LEFLamplighterCombination` (probe 0914-092422-61787 GREEN, 4 audits classical).
+  - sk-lef-action landed the closed `printedLamplighterHost` (7c8024160). Its Prop `PrintedLamplighterHost` is word for word this lane's
+    `LamplighterHostStatement`.
+  - New module `LEFCharacterizationClosed` closes cor:lef's first statement and cor:host's three statements (main clauses), and states cor:lef's
+    second statement over its two residual pieces.
+  - The census regenerated at tip 8b36733d7 (9cb80166d, md5 29d63f79…). Rows are keyed there.
+  - Key split with ms-traces-1 at l.288–338: this lane holds 3670fa959e0e, 022271399cfb, 01a45cdd9370, cc439ae277d4, 9cdf19db0ef4, 9b1a6e7489a1
+    and 61dddc00d418. ms-traces-1 holds 83394521b2d5, fd312b860bb5, 2745cd64eada, 8212b1470040, fc84c012b409 and d00f0309aff7.
+  - Reconciliation after the ~09:36 outage: nothing was half-landed. The last landing is 0da57c90d. ct-involution adopted `LEFHostInstances`
+    (217926394) and `HostInstancePieces`.
+
 - 09:3x: skf-consequences landed its statement Props at 04544e6d6: `Lamplighter.PrintedLamplighterAffineSolvableWordProblem` and
   `Lamplighter.PrintedLamplighterHostSolvableWordProblem` (G_Δ = `elementaryGroup (Fin 3) (LampRing Δ)` has solvable WP whenever Δ does).
   `LEFLamplighterCombination` names the concrete host piece `LamplighterHostStatement`. Its spelling was sent to sk-lef-action, whose
