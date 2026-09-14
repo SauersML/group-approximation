@@ -214,7 +214,37 @@ relator face and for a relator–relator edge.
   - Not yet landed: `exists_regionPairFree_of_invariant`.
 - This lane (probing): `CellPocketCopyProducer.hasCellPair_regionPairStep`, the `HasCellPair` instance for the
   region-pair step. It is additive in `OsinPocketCellCopyProducer`, which has no importers.
-- Remaining for `cellPocketCopyClean : CellPocketCopyCleanStatement`:
+- Probe 0913-203126-12980 of `hasCellPair_regionPairStep` was lost when the MSI hop dropped (rc=255). The remote job
+  stopped after its delta sync without a verdict, so it was re-probed after the control master came back.
+- **Target retargeted to both orders.** ms-cite-1's `CellPocketCopyCleanBothOrdersStatement` (bdd0000bb,
+  `OsinPocketMultipleEdgeCopy:264`) names this lane as owner. It is the same producer with `CopyClean b' a' i' j'`
+  added: `copyClean_of_noDarts` is applied to both orders, each with its `regions` clause from
+  `regions_of_noRegionPairDart` and `one_lt_length_or_of_regions`. The one-order `CellPocketCopyCleanStatement` is a
+  projection. ms-torsionfree offered to build it and was told this lane holds it.
+- **21:2x resume.**
+  - Probe 0913-203639-55686 is GREEN (replayed on the same bytes), and `hasCellPair_regionPairStep` LANDED b349eca48.
+  - ms-intro-2's `RegionPairThickening.exists_regionPairFree_of_invariant` landed at 235ce464b in
+    `SurgeryRegionPairThickeningRegions`, together with `noCellEdgeDart_step` and `noCellSideDart_step`.
+  - **Final producer LANDED bd7e16201.**
+    - Probe 0913-213621-51846 GREEN: BUILT `OsinPocketCellCopyClean`, empty error index, no `sorryAx`.
+      `cellPocketCopyClean` depends on [propext, Classical.choice, Quot.sound]. Wire-queued.
+    - New module `Estimating/OsinPocketCellCopyClean.lean`, with the closed endpoints
+      `cellPocketCopyCleanBothOrders : CellPocketCopyCleanBothOrdersStatement` and
+      `cellPocketCopyClean : CellPocketCopyCleanStatement`.
+    - Its dependencies were unchanged on origin between the probe base 6d5464e9c and the landing (checked after the
+      23:12 restart).
+  - Consumers whose `hcopy` binder these endpoints close (origin, 21:39):
+    - both orders: `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4` (OsinGreendlingerWaistV4), `…V4Split`,
+      `multipleEdgePocketRegionCopyInput_of_pinchOrder`, `osinMultipleEdgePocketRegionCopySection_of_pinchOrder`,
+      `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopyOrder`, the three `…OrderEuler` twins, and
+      `TorsionFreeResidualsV4`;
+    - one order: `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2Copy`, `…V2CopyProper`
+      (OsinPocketPinchSection), `multipleEdgePocketRegionCopyInput_of_pinch`,
+      `osinMultipleEdgePocketRegionCopySection_of_pinch`, `CellPocketWalk.exists_clean_of_copy`, and
+      `TorsionFreeResidualsV2Copy`.
+  - The other named residuals of binder 5 belong to other lanes: `CellPocketWalkOuterOffSideStatement` (w1-binder-3),
+    `CellPocketWalkSideRelatorCellStatement` (ms-inverses-2), `CellPocketPinchPosStatement` (ms-intro-4).
+- Previously remaining for `cellPocketCopyCleanBothOrders` and `cellPocketCopyClean`:
   1. ms-intro-2's invariant induction;
   2. then this lane's assembly: `exists_cellEdgeSideFree_pair`, the region-pair induction with invariant
      "no cell-edge dart ∧ no cell-side dart ∧ no relator word of value one ∧ `HasCellPair`",
