@@ -4,7 +4,7 @@
 \usepackage[margin=1.15in]{geometry}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \input{coderepo.tex}
-\hypersetup{pdftitle={Infinite simple Kazhdan groups that are limits of finite simple groups},pdfauthor={\paperauthorname},pdfkeywords={property (T), sofic groups, hyperlinear groups, LEF groups, simple groups, subshifts, expanders}}
+\hypersetup{pdftitle={Infinite simple Kazhdan groups that are limits of finite simple groups},pdfauthor={\paperauthorname},pdfkeywords={Property (T), sofic groups, hyperlinear groups, locally embeddable into finite groups, simple groups, minimal subshifts, word problem, expanders}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}[theorem]{Corollary}
 \newcommand{\F}{\mathbb F}
@@ -23,22 +23,22 @@
 \title{Infinite simple Kazhdan groups that are limits of finite simple groups}
 \author{\paperauthorname}
 \date{}
-\subjclass[2020]{Primary 20E32; Secondary 05C48, 16S35, 20E26, 20F10, 22D55, 37B10, 46L10}
-\keywords{Property (T), sofic groups, hyperlinear groups, locally embeddable into finite groups, simple groups, minimal subshifts, expanders}
+\subjclass[2020]{Primary 20E32; Secondary 03D40, 05C48, 16S35, 20E26, 20F10, 22D55, 37B10, 46L10}
+\keywords{Property (T), sofic groups, hyperlinear groups, locally embeddable into finite groups, simple groups, minimal subshifts, word problem, expanders}
 
 \begin{abstract}
 For every infinite minimal subshift $X$, the group
 $G_X=\EL_3(\LC(X,\F_2)\rtimes\Z)$ is an infinite, finitely generated,
-simple group with property~\textup{(T)}. It is a limit of finite simple
-groups $\SL_{3N}(\F_2)$ in the space of marked groups, and their Cayley
-graphs form a family of expanders. So $G_X$ is locally embeddable into
-finite groups, sofic and hyperlinear. This answers the question of Brown
-and Ozawa whether an infinite simple Kazhdan group can be hyperlinear,
-and Pestov's sofic version of it. A finitely generated group is locally
-embeddable into finite groups if and only if it is a subgroup of an
-infinite finitely generated simple Kazhdan group that is a limit of
-finite simple groups, and one such group contains every recursively
-presented finitely generated group with this property.
+simple group with property~\textup{(T)} and a limit of finite simple groups
+$\SL_{3N}(\F_2)$ whose Cayley graphs form expanders. So $G_X$ is locally
+embeddable into finite groups, sofic and hyperlinear, which answers the
+question of Brown and Ozawa whether an infinite simple Kazhdan group can
+be hyperlinear, and Pestov's sofic version of it.
+A finitely generated group is locally embeddable into finite groups if and
+only if it is a subgroup of such a group, and it also has solvable word
+problem if and only if the host can be chosen with solvable word problem.
+One such group contains every recursively presented finitely generated
+group with this property.
 \end{abstract}
 \maketitle
 
@@ -68,52 +68,48 @@ hyperlinear. The same holds for $\EL_n\bigl(\LC(X,\F_2)\rtimes_T\Z\bigr)$
 for every $n\ge3$, with $\SL_{nN}(\F_2)$ in place of $\SL_{3N}(\F_2)$.
 \end{theorem}
 
-The ring $\LC(X,\F_2)\rtimes_T\Z$ is finitely generated, so $G_X$ has
-property~\textup{(T)}, introduced by Kazhdan~\cite{Kazhdan}, by the theorem
-of Ershov and Jaikin-Zapirain~\cite{EJZ}. Periodic sequences approximating
-$X$ give the ring finite models in the matrix algebras $M_N(\F_2)$,
-as in the proof by Grigorchuk and Medynets that topological full groups
-of minimal Cantor systems are LEF~\cite[Theorem~2.6]{GM}. So $G_X$ is a
-limit of the groups $\SL_{3N}(\F_2)$, which form expanders as in
-Kassabov's construction~\cite{Kassabov}. The derived subgroup of the
-topological full group of $X$ is infinite, finitely generated and
-simple~\cite{Matui}, and it is amenable~\cite{JuschenkoMonod}. It is also a
-subgroup of $G_X$ (Section~\ref{sec:lef}). Simplicity of $G_X$ also follows from Stepanov's
-theorem on the normal structure of $\GL_n$~\cite[Theorem~4.4]{Stepanov},
-since the ring is simple~\cite[Corollary~4.6]{ClarkEdie} and any two of
-its elements $p,q$ satisfy $pr+qs=0$ with $(r,s)\ne0$, by a dimension
-count on a tower over one small cylinder. Our proof is direct: a
-nontrivial normal subgroup contains a nontrivial commutator lying in a
-copy of the finite simple group $\GL_d(\F_2)$ over a clopen tower, so it
-contains this group and with it an elementary matrix. For derived
-topological full groups, Matui showed by a similar argument that a nontrivial
-normal subgroup meets a simple union of alternating groups on
+A group is LEF~\cite{VershikGordon} if every finite subset embeds
+injectively into a finite group, preserving the products that stay in
+that subset. The ring $\LC(X,\F_2)\rtimes_T\Z$ is finitely generated, so by
+the theorem of Ershov and Jaikin-Zapirain~\cite{EJZ} the group $G_X$ has
+Kazhdan's property~\textup{(T)}~\cite{Kazhdan}. Periodic sequences
+approximating $X$ give the ring finite models in the matrix algebras
+$M_N(\F_2)$, as in the proof by Grigorchuk and Medynets that topological
+full groups of minimal Cantor systems are LEF~\cite[Theorem~2.6]{GM}. So
+$G_X$ is a limit of the groups $\SL_{3N}(\F_2)$, which form expanders as
+in Kassabov's construction~\cite{Kassabov}. In the proof of simplicity, a nontrivial
+normal subgroup contains a nontrivial commutator lying in a copy of the
+finite simple group $\GL_d(\F_2)$ over a clopen tower, so it contains this
+group and with it an elementary matrix. For derived topological full
+groups, Matui showed by a similar argument that a nontrivial normal
+subgroup meets a simple union of alternating groups on
 towers~\cite[Lemma~3.4 and Theorem~4.9]{Matui}.
+Simplicity also follows from Stepanov's theorem~\cite[Theorem~4.4]{Stepanov}:
+the ring is simple~\cite[Corollary~4.6]{ClarkEdie}, and any $p,q$ in it
+satisfy $pr+qs=0$ with $(r,s)\ne0$ by a dimension count.
 
 Hyperlinear groups were named by R\u{a}dulescu~\cite{Radulescu}, and sofic
 groups were introduced by Gromov~\cite{Gromov99} and named by
-Weiss~\cite{Weiss}. Infinite simple Kazhdan groups arise as quotients of
-hyperbolic Kazhdan groups~\cite{Gromov87},~\cite[Theorem~1.5]{CoulonFournierFacio} and as Kac--Moody lattices, some
-of which are finitely presented~\cite{CapraceRemy}. Thom constructed a
-finitely generated Kazhdan LEF group that is not residually finite and so
-lacks the factorization property~\cite{Thom}, but his example is not
-simple. Pestov and Kwiatkowska then wrote that a hope of constructing
-groups that are not hyperlinear from property~\textup{(T)} remained, as it
-was unknown whether finitely generated simple Kazhdan groups can be
-hyperlinear~\cite{PestovKwiatkowska}.
+Weiss~\cite{Weiss}.
+Thom constructed a finitely generated Kazhdan LEF group that is not
+residually finite and so lacks the factorization property~\cite{Thom}, but
+his example is not simple. Pestov and Kwiatkowska then wrote that a hope
+of constructing groups that are not hyperlinear from property~\textup{(T)}
+remained, as it was unknown whether finitely generated simple Kazhdan
+groups can be hyperlinear~\cite{PestovKwiatkowska}.
 
 The proof works for other actions. An action on a Cantor set is
-topologically free if no nontrivial element fixes a nonempty open set,
-and $e_{ij}(r)=I_n+rE_{ij}$ is an elementary matrix.
+topologically free if no nontrivial element fixes a nonempty open set. We
+write $e_{ij}(r)=I_n+rE_{ij}$, with $E_{ij}$ the matrix unit, for the
+elementary matrices.
 
 \begin{theorem}\label{thm:general}
 Let a finitely generated group $\Lambda$ act minimally and topologically
 freely on a Cantor set $Z$, and let $R=\LC(Z,\F_2)\rtimes\Lambda$ be
-generated by a finite set $S\ni1$. Suppose that $R$ is matricial, that
-is, there are maps $\varphi_k\colon R\to M_{N_k}(\F_2)$ with
-$\varphi_k(1)=I$ such that $\varphi_k(S)$ generates the ring
-$M_{N_k}(\F_2)$, and for all $r,s\in R$ we have
-$\varphi_k(r+s)=\varphi_k(r)+\varphi_k(s)$ and
+generated by a finite set $S\ni1$. Suppose that there are maps
+$\varphi_k\colon R\to M_{N_k}(\F_2)$ with $\varphi_k(1)=I$ such that
+$\varphi_k(S)$ generates the ring $M_{N_k}(\F_2)$, and for all $r,s\in R$
+we have $\varphi_k(r+s)=\varphi_k(r)+\varphi_k(s)$ and
 $\varphi_k(rs)=\varphi_k(r)\varphi_k(s)$ for large $k$. Then for every
 $n\ge3$, $\EL_n(R)$ is an infinite, finitely generated, simple Kazhdan
 group. Marked by the $e_{ij}(s)$ with $s\in S$, it is the limit of the
@@ -121,7 +117,7 @@ finite simple groups $\SL_{nN_k}(\F_2)$ marked by the
 $e_{ij}(\varphi_k(s))$, whose Cayley graphs form a family of expanders.
 \end{theorem}
 
-Periodic approximations make $\LC(X,\F_2)\rtimes_T\Z$ matricial, which
+Periodic approximations give such maps for $\LC(X,\F_2)\rtimes_T\Z$, which
 gives Theorem~\ref{thm:main}, and lamplighter actions show that the
 countable subgroups of the groups in Theorem~\ref{thm:general} are exactly
 the countable LEF groups (Corollary~\ref{cor:host}).
@@ -179,13 +175,13 @@ $\epsilon_{ab}\epsilon_{a'b'}=e_{a(V\cap b^{-1}a'V)}\,u_{ab^{-1}a'b'^{-1}}$
 and $b^{-1}a'\in B_{2w}$, we get
 $\epsilon_{ab}\epsilon_{a'b'}=\delta_{ba'}\epsilon_{ab'}$. As $h\ne I_3$,
 $V$ is nonempty, so the $\epsilon_{ab}$ span a ring
-$A_V\cong M_{|B_w|}(\F_2)$ with unit $e=\sum_a\epsilon_{aa}$, and
-$y\mapsto(1-e)I_3+y$ embeds $\GL_3(A_V)\cong\GL_d(\F_2)$ in $\GL_3(R)$. Its
+$A_V\cong M_{|B_w|}(\F_2)$ with unit $1_V=\sum_a\epsilon_{aa}$, and
+$y\mapsto(1-1_V)I_3+y$ embeds $\GL_3(A_V)\cong\GL_d(\F_2)$ in $\GL_3(R)$. Its
 image $H_V$ lies in $G$, since the transvections $e_{pq}(\epsilon_{ab})$
 with $p\ne q$ generate it: the other transvections of $\GL_d(\F_2)$ are
 commutators of these.
 
-Put $k=[g,h]\in K\setminus\{1\}$. If $a,b\in B_w$ and $f,f'$ are
+Put $x=[g,h]\in K\setminus\{1\}$. If $a,b\in B_w$ and $f,f'$ are
 coefficients as above, then
 \[
   fu_a\,e_V\,f'u_b=f\,e_{aV}\,(f'\circ a^{-1})\,u_{ab}
@@ -193,10 +189,10 @@ coefficients as above, then
 \]
 since $f\circ a$ and $f'$ are constant on $V$. The entries of
 $ghg^{-1}-I_3=g\,e_VE_{ij}\,g^{-1}$ are sums of such products, and
-$h^{-1}=h=I_3+\epsilon_{ee}E_{ij}$, so $k-I_3=(ghg^{-1}-h)h$ and
-$k^{-1}-I_3=h(ghg^{-1}-h)$ lie in $M_3(A_V)$. Then $y=eI_3+(k-I_3)$ and
-$y'=eI_3+(k^{-1}-I_3)$ satisfy $yy'=y'y=eI_3$, so $k=(1-e)I_3+y\in H_V$.
-As $K\cap H_V$ is a nontrivial normal subgroup of
+$h^{-1}=h=I_3+\epsilon_{ee}E_{ij}$, so $x-I_3=(ghg^{-1}-h)h$ and
+$x^{-1}-I_3=h(ghg^{-1}-h)$ lie in $M_3(A_V)$. Then $y=1_VI_3+(x-I_3)$ and
+$y'=1_VI_3+(x^{-1}-I_3)$ satisfy $yy'=y'y=1_VI_3$, so
+$x=(1-1_V)I_3+y\in H_V$. As $K\cap H_V$ is a nontrivial normal subgroup of
 $H_V\cong\GL_d(\F_2)=\PSL_d(\F_2)$, which is simple as $d\ge3$, we get
 $H_V\subseteq K$, and $e_{pq}(e_V)\in K$ for all $p\ne q$.
 
@@ -209,9 +205,7 @@ of these sets cover $Z$, so $1=1-\prod_i(1-e_{\xi_iV})\in J$. So $J=R$ and
 $K=G$.
 
 \subsection*{Finite simple models}
-A group is LEF~\cite{VershikGordon} if every finite subset embeds
-injectively into a finite group, preserving all products that stay in
-that subset. Let $F$ be the free algebra over $\F_2$ on letters $\tau_s$,
+Let $F$ be the free algebra over $\F_2$ on letters $\tau_s$,
 $s\in S$, and let $\pi\colon F\to R$ and $\rho_k\colon F\to M_{N_k}(\F_2)$
 be the ring homomorphisms with $\pi(\tau_s)=s$ and
 $\rho_k(\tau_s)=\varphi_k(s)$. Both are onto, so $G$ and
@@ -221,7 +215,8 @@ $\SL_{3N_k}(\F_2)$ and those inside one block are commutators of those
 between blocks. The group $\EL_3(F)$ is generated by the $e_{ij}(1)$ and
 $e_{ij}(\tau_s)$, and in both quotients $e_{ij}(1)$ and $e_{ij}(\tau_1)$
 have the same image. A word of length $\lambda$ or less in
-the $e_{ij}(\tau_s)$ has entries of degree at most $\lambda$ in $F$, and $\varphi_k\circ\pi=\rho_k$ on the finitely many such entries for
+the $e_{ij}(\tau_s)$ has entries of degree at most $\lambda$ in $F$, and
+$\varphi_k\circ\pi=\rho_k$ on the finitely many such entries for
 large $k$. So a word that is trivial in $G$ is trivial in
 $\SL_{3N_k}(\F_2)$ for large $k$. Conversely, for a nonprincipal
 ultrafilter $\omega$ on $\mathbb N$ the $\varphi_k$ define a unital ring
@@ -232,14 +227,16 @@ $e_{12}(1)$, so it is trivial. As this holds for every $\omega$, each
 nontrivial word is nontrivial in $\SL_{3N_k}(\F_2)$ for all but finitely
 many $k$. So these finite simple groups converge to $G$ in the space of
 marked groups~\cite{Grigorchuk,Champetier}, $G$ is LEF, and
-$N_k\to\infty$ as $G$ is infinite. Since $\EL_3(F)$ has property~\textup{(T)}~\cite[Theorem~1.1]{EJZ},
-its finite quotients form a family of expanders~\cite{Margulis,Kassabov}.\qed
+$N_k\to\infty$ as $G$ is infinite. Since $\EL_3(F)$ has
+property~\textup{(T)}~\cite[Theorem~1.1]{EJZ}, its finite quotients form a
+family of expanders~\cite{Margulis,Kassabov}.\qed
 
 \section{Proof of Theorem~\ref{thm:main}}\label{sec:main}
 
 Let $\Z$ act on $X$ by powers of $T$, where $(Tx)_t=x_{t+1}$, and write
 $u=u_1$, so $ufu^{-1}=f\circ T^{-1}$. Minimality and infiniteness imply
-that $T$ has no periodic points, so the action is topologically free. The
+that $X$ has no isolated points and $T$ has no periodic points, so $X$ is
+a Cantor set and the action is topologically free. The
 ring $R=\LC(X,\F_2)\rtimes_T\Z$ is generated by
 $S=\{1,u,u^{-1}\}\cup\{e_a:a\in A\}$, where $e_a=e_{\{x:x_0=a\}}$, since
 products of the translates $u^je_au^{-j}$ are the cylinder indicators,
@@ -270,6 +267,7 @@ so products of the $P^iD_\ell(e_a)P^{-i}$ give every diagonal matrix unit,
 and with $P$ every matrix unit. So $\varphi_\ell(S)$ generates
 $M_{N_\ell}(\F_2)$, and Theorem~\ref{thm:general} applies.\qed
 
+
 \subsection*{Brown's formulation}
 Let $G$ be a group as in Theorem~\ref{thm:general}. LEF groups are
 sofic~\cite[Example~4.5]{Pestov}, and sofic groups are
@@ -280,52 +278,48 @@ nontrivial conjugacy classes are infinite and $G$ is not residually
 finite. So $L(G)$ is a $\mathrm{II}_1$ factor, and
 $L(G)\mathbin{\bar\otimes}\mathcal R$ is a McDuff factor~\cite{McDuff}
 that embeds in $\mathcal R^\omega$ and whose unitary group contains $G$,
-as in Brown's question. Kirchberg proved that a Kazhdan group with the
-factorization property is residually
-finite~\cite[Theorem~1.1]{Kirchberg}, and that every subgroup of the
-unitary group of $\mathcal R$ has the factorization
-property~\cite[Corollary~1.2]{Kirchberg}. So $G$ does not have the
-factorization property, it is not a subgroup of the unitary group of
-$\mathcal R$, and $C^*(G)$ does not have the local lifting
-property~\cite[p.~527]{Ozawa}.
+as in Brown's question.
 
 \section{LEF groups}\label{sec:lef}
 
-Every countable group embeds in a finitely generated simple
-group~\cite{Gorjuskin,Schupp}, and even in a simple quotient of a
-torsion-free hyperbolic Kazhdan group~\cite[Theorem~1.5]{CoulonFournierFacio},
-so one simple Kazhdan group contains Higman's universal finitely presented
-group~\cite{Higman}. Kionke and Schesler proved that every finitely
-generated residually finite group embeds in a finitely generated simple
-LEF group~\cite[Theorem~1.2]{KionkeSchesler}, so with Wilson's
-theorem~\cite{Wilson} one simple LEF group contains every finitely
-presented residually finite group. They raised the question which
-groups embed in finitely generated simple amenable groups. For LEF groups
-the next corollary answers the analogous question, with a Kazhdan host.
+Kionke and Schesler asked which groups embed in finitely generated simple
+amenable groups~\cite{KionkeSchesler}. For LEF groups the next corollary
+answers the analogous question, with a Kazhdan host.
 Its second statement is the analogue for LEF groups of the theorem of
-Boone and Higman that a finitely generated group has solvable word
-problem if and only if it embeds in a simple subgroup of a finitely
-presented group~\cite{BooneHigman}, in the form of Thompson's
-strengthening, where the simple group is finitely generated and has
-solvable word problem~\cite{Thompson80}.
+Boone and Higman that a finitely generated group has solvable word problem
+if and only if it embeds in a simple subgroup of a finitely presented
+group~\cite{BooneHigman}, in Thompson's form, where the simple group is
+finitely generated and has solvable word problem~\cite{Thompson80}.
 
 \begin{corollary}\label{cor:lef}
 A finitely generated group is LEF if and only if it is a subgroup of an
 infinite, finitely generated, simple group with property~\textup{(T)}
 that is a limit of finite simple groups $\SL_N(\F_2)$ in the space of
-marked groups, whose Cayley graphs form a family of expanders. It is LEF
-with solvable word problem if and only if it is a subgroup of such a group
-with solvable word problem.
+marked groups, whose Cayley graphs with respect to the images of a fixed
+generating set form a family of expanders.
+It is LEF with solvable word problem if and only if it is a subgroup of
+such a group with solvable word problem.
 \end{corollary}
 
 \begin{corollary}\label{cor:host}
-Every countable LEF group is a subgroup of such a group. A set of
-finitely generated groups lies in one such group if and only if its
-members are LEF and represent countably many isomorphism classes. So one
-such group contains every recursively presented finitely generated LEF
-group, for instance every finitely presented residually finite group and
-every $G_Y$ whose language is recursive.
+Every countable LEF group is a subgroup of such a group.
+A set of finitely generated groups lies in one such group if and only if
+its members are LEF and represent countably many isomorphism classes. So
+one such group contains every recursively presented finitely generated
+LEF group, for instance every finitely presented residually finite group
+and every $G_Y$ with $L(Y)$ recursive (Corollary~\ref{cor:wp}).
 \end{corollary}
+
+Each property alone was known. Without property~\textup{(T)}, Kionke and
+Schesler proved that every finitely generated residually finite group
+embeds in a finitely generated simple LEF
+group~\cite[Theorem~1.2]{KionkeSchesler}, so with Wilson's
+theorem~\cite{Wilson} one simple LEF group contains every finitely
+presented residually finite group. Without LEF, every countable group
+embeds in a finitely generated simple group~\cite{Gorjuskin,Schupp}, and
+even in a simple quotient of a torsion-free hyperbolic Kazhdan
+group~\cite[Theorem~1.5]{CoulonFournierFacio}, so one simple Kazhdan group
+contains Higman's universal finitely presented group~\cite{Higman}.
 
 \begin{proof}
 Limits of finite groups in the space of marked groups are LEF, and so are
@@ -337,7 +331,8 @@ that stay in this set. On $Q_k\times\Z/m_k$, with $m_k=|Q_k|$, let $t_k$
 add $1$ to the second coordinate, and let $f_{jk}$ multiply the first
 coordinate of $(x,i)$ from the left by $\mu_k(\gamma_j)^i$, which is well
 defined as $|Q_k|$ divides $m_k$. Then $[f_{jk},t_k]$ multiplies the first
-coordinate by $\mu_k(\gamma_j)$. On $Q_k\times\Z/m_k\times\Z/4^{k+1}$ let
+coordinate by $\mu_k(\gamma_j)$, as in the embedding of B.~H.~Neumann and
+H.~Neumann~\cite{NeumannNeumann}. On $Q_k\times\Z/m_k\times\Z/4^{k+1}$ let
 $b_k$ add $1$ to the last coordinate, and let $a_k$ act on the level $i$
 by $f_{jk}$ if $i=2^{2j-1}$ and by $t_k$ if $i=4^j$, for $j\le k$, and
 trivially on the other levels. Then $b_k^{-n}a_kb_k^n$ acts on the level
@@ -355,41 +350,16 @@ $\Gamma\le[\Delta,\Delta]$ for the group $\Delta$ generated by $a$ and $b$.
 Finitely many products and inequalities in the ultraproduct hold in some
 coordinate, so $\Delta$ is infinite, finitely generated and LEF.
 
-If $\Gamma$ is generated by a finite set $E$, another choice of $\Delta$
-keeps a solvable word problem. On $\Gamma\times\Z$, whose second
-coordinate is the level, let $\beta$ raise the level by $1$, and let $h_\gamma$
-multiply the first coordinate by $\gamma$ on the levels $m\ge0$. Then
-$[\beta,h_\gamma]$ multiplies the level $0$ by $\gamma^{-1}$, so
-$\Delta=\langle\beta,h_\gamma:\gamma\in E\rangle$ is infinite and
-$\Gamma\le[\Delta,\Delta]$. An element of $\Delta$ of length at most $r$
-is $f\beta^\ell$ with $|\ell|\le r$, where $f$ multiplies the level $m$ by
-an element $f(m)$ of length at most $r$, with $f(m)=1$ for $m<-r$ and
-$f(m)=f(r)$ for $m>r$. Let $\psi$ map the ball of radius $2r$ of $\Gamma$
-injectively into a finite group $Q$, preserving the products that stay in
-it, and let $\theta$, with $\theta(v)_{-3r}=1$ and $\theta(v)_m=v_{m-1}$
-otherwise, be the isomorphism from $\{v\in Q^{[-3r,3r]}:v_{3r-1}=v_{3r}\}$
-onto $\{v\in Q^{[-3r,3r]}:v_{-3r}=1\}$. Transversals give a bijection
-$\kappa$ of $Q^{[-3r,3r]}$ with $\kappa(vx)=\theta(v)\kappa(x)$ for $v$ in the
-domain of $\theta$. Let each
-$v\in Q^{[-3r,3r]}$ act on $Q^{[-3r,3r]}\times\Z/5r$ by left
-multiplication on the first coordinate, and put
-$\zeta(x,i)=(\kappa(x),i+1)$, so that $\zeta v\zeta^{-1}=\theta(v)$ on the
-domain of $\theta$. As $f$ is trivial below $-r$ and constant from $r$ on,
-$\zeta^\ell(\psi(f(m)))_m\zeta^{-\ell}=(\psi(f(m-\ell)))_m$ for
-$|\ell|\le r$. So $f\beta^\ell\mapsto(\psi(f(m)))_{|m|\le3r}\,\zeta^\ell$
-preserves the products that stay in the ball of radius $r$, and it is
-injective there, as $5r>2r$ and $f$ is determined by its values for
-$|m|\le3r$. So $\Delta$ is LEF, and the rest of the proof applies to it.
-
-Let $\Delta$ act on $\Omega=\F_2^{\Delta}$ by $(\delta x)(h)=x(\delta^{-1}h)$,
-and let $\Lambda$ be the group of maps $x\mapsto\delta x+f$ with
-$\delta\in\Delta$ and $f$ finitely supported. It is generated by $\Delta$
-and the map $z$ adding $1$ at $e$, and its orbits contain the dense sets
-$x+\bigoplus_\Delta\F_2$. If $(\delta,f)\ne(e,0)$, the fixed points of
-$x\mapsto\delta x+f$ satisfy $x(h)=x(\delta^{-1}h)+f(h)$ for all $h$. In
-every cylinder over a finite set $W$ this fails at some point, for
-$h\in\operatorname{supp}f$ if $\delta=e$ and for
-$h\notin W\cup\delta W\cup\operatorname{supp}f$ if $\delta\ne e$. So the
+Let $\Delta$ act on $\Omega=\F_2^{\Delta}$ by
+$(\delta x)(\eta)=x(\delta^{-1}\eta)$, and let $\Lambda$ be the group of
+maps $x\mapsto\delta x+c$ with $\delta\in\Delta$ and $c$ finitely
+supported. It is generated by $\Delta$ and the map $z$ adding $1$ at $e$,
+and its orbits contain the dense sets $x+\bigoplus_\Delta\F_2$. If
+$(\delta,c)\ne(e,0)$, the fixed points of $x\mapsto\delta x+c$ satisfy
+$x(\eta)=x(\delta^{-1}\eta)+c(\eta)$ for all $\eta$. In every cylinder over
+a finite set $W$ this fails at some point, for
+$\eta\in\operatorname{supp}c$ if $\delta=e$ and for
+$\eta\notin W\cup\delta W\cup\operatorname{supp}c$ if $\delta\ne e$. So the
 action is minimal and topologically free. The ring
 $R_\Delta=\LC(\Omega,\F_2)\rtimes\Lambda$ is generated by $1$, the units
 $u_s^{\pm1}$ for the generators $s$ of $\Lambda$, and the indicator $e_U$
@@ -398,15 +368,15 @@ of $U=\{x:x(e)=1\}$.
 Let $\sigma_n\colon\Delta\to Q'_n$ be finite models of $\Delta$ that are
 injective on the ball of radius $n$ and preserve the products that stay
 in it, with $\sigma_n(e)=e$ and $Q'_n$ generated by the images of the
-generators. Let $x\mapsto\delta x+f$ act on $Y_n=\F_2^{Q'_n}$ by
-$y\mapsto\sigma_n(\delta)y+\sum_{h\in\operatorname{supp}f}1_{\sigma_n(h)}$,
+generators. Let $x\mapsto\delta x+c$ act on $Y_n=\F_2^{Q'_n}$ by
+$y\mapsto\sigma_n(\delta)y+\sum_{\eta\in\operatorname{supp}c}1_{\sigma_n(\eta)}$,
 where $(qy)(q')=y(q^{-1}q')$, and attach to $y$ the point $y\circ\sigma_n$
 of $\Omega$. For fixed elements of $\Lambda$ and large $n$, these
 permutations multiply as in $\Lambda$ and, uniformly in $y$, move the
 attached points near $e$ as $\Lambda$ moves the points of $\Omega$. Let
-$D_n(f)$ be the diagonal
-matrix on $\F_2^{Y_n}$ with entry $f(y\circ\sigma_n)$ at $y$, let $P_\xi$ be
-the permutation matrix of $\xi\in\Lambda$, and put
+$D_n(f)$ be the diagonal matrix on $\F_2^{Y_n}$ with entry
+$f(y\circ\sigma_n)$ at $y$, let $P_\xi$ be the permutation matrix of
+$\xi\in\Lambda$, and put
 $\varphi_n(\sum_\xi f_\xi u_\xi)=\sum_\xi D_n(f_\xi)P_\xi$. For fixed $f$ and
 $\xi$ and large $n$,
 \[
@@ -425,82 +395,76 @@ Finally, $\xi\mapsto\operatorname{diag}(u_\xi,1,1)$ is an injective
 homomorphism $\Lambda\to\GL_3(R_\Delta)$. It maps $[\Lambda,\Lambda]$ into
 $G_\Delta$, since over $\F_2$ every unit $v$ satisfies
 $\operatorname{diag}(v,v^{-1},1)=e_{12}(v)e_{21}(v^{-1})e_{12}(v)\,e_{12}(1)e_{21}(1)e_{12}(1)$,
-and the product of these matrices for $v=c$, $c'$ and $(c'c)^{-1}$ is
-$\operatorname{diag}(cc'c^{-1}c'^{-1},1,1)$. So $G_\Delta$ contains
-$\Gamma\le[\Delta,\Delta]\le[\Lambda,\Lambda]$. This proves the first
-statements of Corollaries~\ref{cor:lef} and~\ref{cor:host}. For the second
-statement of Corollary~\ref{cor:host}, apply the first to the
-restricted direct sum of representatives of countably many isomorphism
-classes of finitely generated LEF groups, which is a countable LEF group,
-as finite subsets lie in finite products. Conversely, a countable group
-has countably many finitely generated subgroups. There are countably many
-recursive presentations.
+and the product of these matrices for $v=v_1$, $v_2$ and $(v_2v_1)^{-1}$ is
+$\operatorname{diag}(v_1v_2v_1^{-1}v_2^{-1},1,1)$. So $G_\Delta$ contains
+$\Gamma\le[\Delta,\Delta]\le[\Lambda,\Lambda]$.
+This proves the first statements of Corollaries~\ref{cor:lef}
+and~\ref{cor:host}. For the second statement of Corollary~\ref{cor:host},
+apply the first to the restricted direct sum of representatives of
+countably many isomorphism classes of finitely generated LEF groups, which
+is a countable LEF group, as finite subsets lie in finite products.
+Conversely, a countable group has countably many finitely generated
+subgroups, and there are countably many recursive presentations.
 
-Now let $\Gamma$ be finitely generated, LEF and with solvable word
-problem, and let $\Delta$ be the second choice. A word in the
-$\beta^{\pm1}$ and $h_\gamma^{\pm1}$ gives $\ell$, the levels where $f$
-changes, which are the exponent sums of $\beta$ before the letters
-$h_\gamma^{\pm1}$, and the values of $f$ there as words in $E$. It is trivial
-if and only if $\ell=0$ and these values are trivial, so $\Delta$ has
-solvable word problem. An element $x\mapsto\delta x+c$ of $\Lambda$ is
-given by a word for $\delta$ and words for the lamps of $c$, so the word
-problem of $\Delta$ decides equality in $\Lambda$ and computes the values
-of $c$. A word in the generators of $G_\Delta$ multiplies out to a matrix
-with entries $\sum_\xi p_\xi u_\xi$, where each $p_\xi$ is a polynomial
-over $\F_2$ in finitely many coordinates $x(\delta)$, as
-$u_\xi e_Uu_\xi^{-1}$ is the indicator of $\{x:x(\delta)=1+c(\delta)\}$ for
-$\xi\colon x\mapsto\delta x+c$. After collecting equal $\xi$ and equal
-coordinates, the word is trivial if and only if every coefficient of its
-difference from $I_3$ vanishes at every assignment of its finitely many
-variables, as $\Omega$ is the full shift. So $G_\Delta$ has solvable word
-problem. Conversely, finitely generated subgroups of groups with solvable
-word problem have solvable word problem, and LEF passes to subgroups.
-This proves the second statement of Corollary~\ref{cor:lef}.
+Now let $\Gamma$ be generated by a finite set $E$, LEF and with solvable
+word problem. A half-line form of the Neumann--Neumann construction, used
+by Darbinyan to preserve solvable word problems~\cite{Darbinyan15}, keeps
+it. On $\Gamma\times\Z$, whose second coordinate is the level, let $\beta$
+raise the level by $1$, and let $h_\gamma$ multiply the first coordinate
+from the left by $\gamma$ on the levels $m\ge0$. Then $[\beta,h_\gamma]$
+multiplies the level $0$ by $\gamma^{-1}$, so
+$\Delta=\langle\beta,h_\gamma:\gamma\in E\rangle$ is infinite and
+$\Gamma\le[\Delta,\Delta]$. An element of $\Delta$ of length at most $r$ is
+$f\beta^\ell$ with $|\ell|\le r$, where $f$ multiplies the level $m$ from
+the left by an element $f(m)$ of length at most $r$, with $f(m)=1$ for
+$m<-r$ and $f(m)=f(r)$ for $m>r$. Let $\psi$ map the ball of radius $2r$
+of $\Gamma$ injectively into a finite group $Q$, preserving the products
+that stay in it, and let $\theta$, with $\theta(v)_{-3r}=1$ and
+$\theta(v)_m=v_{m-1}$ otherwise, be the isomorphism from
+$\{v\in Q^{[-3r,3r]}:v_{3r-1}=v_{3r}\}$ onto
+$\{v\in Q^{[-3r,3r]}:v_{-3r}=1\}$. Transversals give a bijection $\kappa$ of
+$Q^{[-3r,3r]}$ with $\kappa(vx)=\theta(v)\kappa(x)$ for $v$ in the domain of
+$\theta$. Let each $v\in Q^{[-3r,3r]}$ act on $Q^{[-3r,3r]}\times\Z/5r$ by
+left multiplication on the first coordinate, and put
+$\zeta(x,i)=(\kappa(x),i+1)$, so that $\zeta v\zeta^{-1}=\theta(v)$ on the
+domain of $\theta$. As $f$ is trivial below $-r$ and constant from $r$ on,
+$\zeta^\ell(\psi(f(m)))_m\zeta^{-\ell}=(\psi(f(m-\ell)))_m$ for
+$|\ell|\le r$. So $f\beta^\ell\mapsto(\psi(f(m)))_{|m|\le3r}\,\zeta^\ell$
+preserves the products that stay in the ball of radius $r$, and it is
+injective there, as $5r>2r$ and $f$ is determined by its values for
+$|m|\le3r$. So $\Delta$ is LEF, and the argument above applies to it.
+
+From a word in the $\beta^{\pm1}$ and $h_\gamma^{\pm1}$ one computes the
+exponent sum $\ell$ of $\beta$, the levels where $f$ changes, namely the
+exponent sums of $\beta$ before the letters $h_\gamma^{\pm1}$, and the values
+of $f$ there as words in $E$. It is trivial if and only if $\ell=0$ and
+these values are trivial, so $\Delta$ has solvable word problem. An element
+$x\mapsto\delta x+c$ of $\Lambda$ is given by a word for $\delta$ and words
+for the lamps of $c$, so the word problem of $\Delta$ decides equality in
+$\Lambda$ and computes the values of $c$. A word in the generators of
+$G_\Delta$ multiplies out to a matrix with entries $\sum_\xi p_\xi u_\xi$,
+where each $p_\xi$ is a polynomial over $\F_2$ in finitely many coordinates
+$x(\delta)$, as $u_\xi e_Uu_\xi^{-1}$ is the indicator of
+$\{x:x(\delta)=1+c(\delta)\}$ for $\xi\colon x\mapsto\delta x+c$. After
+collecting equal $\xi$ and equal coordinates, the word is trivial if and
+only if every coefficient of its difference from $I_3$ vanishes at every
+assignment of its finitely many variables, as $\Omega$ is the full shift.
+So $G_\Delta$ has solvable word problem. Conversely, finitely generated
+subgroups of groups with solvable word problem have solvable word problem,
+and LEF passes to subgroups. This proves the second statement of
+Corollary~\ref{cor:lef}.
 \end{proof}
 
-Applied to the finitely generated residually finite non-exact groups of
-Osajda~\cite{OsajdaRF}, which are LEF, Corollary~\ref{cor:lef} gives infinite simple
-Kazhdan LEF groups that are not exact, since exactness, that is,
-property~A, passes to subgroups.
 
-For $g$ in the topological full group of $X$ put
-$w_g=\sum_nu^ne_{\{x:\,gx=T^nx\}}$. Then $g\mapsto w_g$ is an injective
-homomorphism into $\GL_1(\LC(X,\F_2)\rtimes_T\Z)$, so
-$g\mapsto\operatorname{diag}(w_g,1,1)$ is an injective homomorphism, and by
-the same identities it embeds the derived subgroup, which is generated by
-commutators, in $G_X$.
-
-Every group as in the last statement of Corollary~\ref{cor:host} has
-unsolvable word problem: a
-recursive bound on the running time of an algorithm for it would bound,
-up to a linear change of word length, the time complexity of the word
-problems of all finitely presented residually finite groups, and these
-can be as hard as the membership problem of any recursive
-set~\cite[Theorem~4.21]{KMS}; compare~\cite[Proposition~26 and the proof of
-Lemma~27]{Rauzy}.
-
-The groups $G_X$ do not suffice here: $\SL_3(\Z)$ lies in no $G_X$. The
-ring $M_m(\LC(X,\F_2)\rtimes\Z)$ acts faithfully on
-$\bigoplus_{x\in X,\,t\in\Z}\F_2^m$ by $f\delta_{x,t}=f(T^tx)\delta_{x,t}$
-and $u\delta_{x,t}=\delta_{x,t+1}$. If the generators of a subgroup of
-$\GL_m$ involve only $u^j$ with $|j|\le w$, where $w\ge1$, and
-$|g^n|/n\to0$, then for $v$ supported at one $(x,t)$ the $g^nv$, $n<N$,
-span fewer than $N$ dimensions for large $N$, uniformly in $v$. So each
-such $v$ is killed by a polynomial over $\F_2$ of degree below $N$; there
-are finitely many of these, their product kills $g$, and $g$ has finite
-order. In the
-Heisenberg subgroup of $\SL_3(\Z)$, $[a,b]$ has infinite order and
-$[a,b]^{n^2}=[a^n,b^n]$. Cyr, Franks, Kra and Petite use distortion
-similarly for automorphism groups of shifts~\cite{CFKP}.
-
-\section{Word problems and factors}\label{sec:wp}
+\section{Word problems}\label{sec:wp}
 
 \begin{corollary}\label{cor:wp}
 The word problem of $G_X$ has the Turing degree of the language $L(X)$
 of $X$. In particular $G_X$ has solvable word problem if and only if
 $L(X)$ is recursive, as for the Fibonacci subshift $X_{(3-\sqrt5)/2}$
-below. Every Turing degree occurs, and there are continuum many groups
-$G_X$, none of which is isomorphic to a subgroup of another.
+below.
+Every Turing degree occurs, and there are continuum many groups $G_X$,
+none of which is isomorphic to a subgroup of another.
 \end{corollary}
 
 \begin{proof}
@@ -524,49 +488,38 @@ $X_\alpha$ are the constant values of $c(\theta)_{[0,m)}$ on the arcs
 between the distinct points $-j\alpha\bmod1$, $0\le j\le m$, and $\alpha$
 computes $L(X_\alpha)$. Such a word has $\lfloor\theta+m\alpha\rfloor$
 ones, within $1$ of $m\alpha$, so $L(X_\alpha)$ computes $\alpha$. Every
-$S\subseteq\mathbb N$ has the degree of
-$[0;1+\chi_S(0),1+\chi_S(1),\dots]$, since each digit is decided by one
-strict comparison with a rational computed from earlier digits. If a
-finitely generated group $H$ embeds in a finitely generated group $G$, a
-word for $H$ becomes a word for $G$ by substituting for its generators,
-so the word problem of $H$ reduces to that of $G$. The Turing degrees
-contain an antichain of size continuum~\cite[Chapter~V]{Odifreddi}, and
-the groups $G_{X_\alpha}$ with $\alpha$ of these degrees are as claimed.
+$D\subseteq\mathbb N$ has the degree of
+$[0;1+\chi_D(0),1+\chi_D(1),\dots]$, since each digit is decided by one
+strict comparison with a rational computed from earlier digits.
+If a finitely generated group $H$ embeds in a finitely generated group
+$G$, a word for $H$ becomes a word for $G$ by substituting for its
+generators, so the word problem of $H$ reduces to that of $G$. By a
+construction of Sacks, the Turing degrees contain an antichain of size
+continuum~\cite[Chapter~V]{Odifreddi}, and the groups $G_{X_\alpha}$ with
+$\alpha$ of these degrees are as claimed.
 \end{proof}
 
 For derived topological full groups, Grigorchuk and Medynets proved that
 the word problem is decidable if and only if $L(X)$ is
 recursive~\cite[Theorem~1.1(3)]{GMpres}.
 
-For a fixed alphabet, every $G_X$ is a simple quotient of the Kazhdan group
-$\EL_3(F)$, and $e_{12}(\prod_{t<m}\tau_-^t\tau_{v_t}\tau_+^t)$ lies in
-the kernel if and only if $v\notin L(X)$, so different subshifts give
-different kernels. The proof of~\cite[Theorem~2]{OzawaUniversal} then
-shows that the unitary group of a separable $\mathrm{II}_1$ factor
-contains $G_X$ for only countably many $X$. So the $\mathrm{II}_1$
-factors $L(G_X)$ with $X\subseteq\{0,1\}^{\Z}$, which embed in
-$\mathcal R^\omega$, fall into continuum many isomorphism classes, each
-containing $L(G_X)$ for only countably many $X$. Nicoara, Popa and Sasyk
-proved the same kind of statement for twisted group factors of
-$\Z^2\rtimes\Gamma$ with $\Gamma\le\SL_2(\Z)$ nonamenable, which also
-embed in $\mathcal R^\omega$~\cite[Theorem~0.1]{NPS}.
 
 \section{Questions}
 
-A finitely presented LEF group is residually
-finite~\cite{Stepin,VershikGordon}, and the infinite simple group $G_X$ is
-not, so $G_X$ is not finitely presented. Finitely presented infinite
-simple groups with property~\textup{(T)} exist~\cite{CapraceRemy}. Is
-there one that is sofic, or at least hyperlinear? A sofic example would
-not be LEF, and it would also answer Open problem~6.1 of Alekseev and
-Thom~\cite{AlekseevThom}, which asks for finitely presented sofic groups
-with property~\textup{(T)} that are not residually finite. Is every
-sofic infinite simple Kazhdan group LEF?
+Is there an infinite finitely presented simple group with
+property~\textup{(T)} that is sofic, or at least hyperlinear? Infinite
+finitely presented simple Kazhdan groups exist~\cite{CapraceRemy}, while
+$G_X$ is not finitely presented: a finitely presented LEF group is
+residually finite~\cite{Stepin,VershikGordon}, and $G_X$ is not. A sofic
+example would not be LEF, and it would also answer Open problem~6.1 of
+Alekseev and Thom~\cite{AlekseevThom}, which asks for finitely presented
+sofic groups with property~\textup{(T)} that are not residually finite. Is
+every sofic infinite simple Kazhdan group LEF?
 
 Is every finitely generated sofic group a subgroup of an infinite finitely
 generated simple Kazhdan sofic group, as in Corollary~\ref{cor:lef}?
 
-If $(X,T)$ is topologically conjugate to $(Y,S)$ or to $(Y,S^{-1})$, then
+If $(X,T)$ is topologically conjugate to $(Y,T')$ or to $(Y,T'^{-1})$, then
 $G_X\cong G_Y$. For topological full groups the converse
 holds~\cite{GPS99,BezuglyiMedynets}. Does $G_X\cong G_Y$ imply that $X$
 and $Y$ are flip conjugate, or at least strongly orbit
@@ -619,10 +572,11 @@ algebras}, Algebr. Represent. Theory \textbf{18} (2015), 907--916.
 R.~Coulon and F.~Fournier-Facio, \emph{Infinite simple characteristic
 quotients}, preprint (2023). \arxiv{2312.11684}.
 
-\bibitem{CFKP}
-V.~Cyr, J.~Franks, B.~Kra, and S.~Petite,
-\emph{Distortion and the automorphism group of a shift},
-J. Mod. Dyn. \textbf{13} (2018), 147--161. \doi{10.3934/jmd.2018015}.
+
+\bibitem{Darbinyan15}
+A.~Darbinyan, \emph{Group embeddings with algorithmic properties}, Comm.
+Algebra \textbf{43} (2015), 4923--4935.
+\doi{10.1080/00927872.2014.955579}.
 
 \bibitem{ElekSzabo}
 G.~Elek and E.~Szab\'o, \emph{Hyperlinearity, essentially free actions and
@@ -669,10 +623,6 @@ R.~Grigorchuk and K.~Medynets,
 relations}, J. Algebra \textbf{500} (2018), 46--68.
 \doi{10.1016/j.jalgebra.2016.10.027}.
 
-\bibitem{Gromov87}
-M.~Gromov, \emph{Hyperbolic groups}, in: Essays in group theory, Math.
-Sci. Res. Inst. Publ. \textbf{8}, Springer, New York (1987), 75--263.
-\doi{10.1007/978-1-4613-9586-7_3}.
 
 \bibitem{Gromov99}
 M.~Gromov, \emph{Endomorphisms of symbolic algebraic varieties},
@@ -689,11 +639,6 @@ G.~Higman, \emph{Subgroups of finitely presented groups},
 Proc. Roy. Soc. London Ser. A \textbf{262} (1961), 455--475.
 \doi{10.1098/rspa.1961.0132}.
 
-\bibitem{JuschenkoMonod}
-K.~Juschenko and N.~Monod,
-\emph{Cantor systems, piecewise translations and simple amenable groups},
-Ann. of Math. (2) \textbf{178} (2013), 775--787.
-\doi{10.4007/annals.2013.178.2.7}.
 
 \bibitem{Kassabov}
 M.~Kassabov, \emph{Universal lattices and unbounded rank expanders},
@@ -705,11 +650,6 @@ D.~A. Kazhdan, \emph{Connection of the dual space of a group with the
 structure of its closed subgroups}, Funct. Anal. Appl. \textbf{1} (1967),
 63--65. \doi{10.1007/BF01075866}.
 
-\bibitem{KMS}
-O.~Kharlampovich, A.~Myasnikov, and M.~Sapir,
-\emph{Algorithmically complex residually finite groups},
-Bull. Math. Sci. \textbf{7} (2017), 309--352.
-\doi{10.1007/s13373-017-0103-z}.
 
 \bibitem{KionkeSchesler}
 S.~Kionke and E.~Schesler,
@@ -729,9 +669,9 @@ Appl. \textbf{90}, Cambridge Univ. Press, Cambridge, 2002.
 \doi{10.1017/CBO9781107326019}.
 
 \bibitem{Margulis}
-G.~A. Margulis, \emph{Explicit construction of a concentrator}
-(Russian), Problemy Peredachi Informatsii \textbf{9} (1973), no.~4,
-71--80.
+G.~A. Margulis, \emph{Explicit constructions of concentrators},
+Problemy Peredachi Informatsii \textbf{9} (1973), no.~4, 71--80;
+English transl., Problems Inform. Transmission \textbf{9} (1973), 325--332.
 
 \bibitem{Matui}
 H.~Matui, \emph{Some remarks on topological full groups of Cantor
@@ -749,28 +689,22 @@ M.~Morse and G.~A. Hedlund,
 Amer. J. Math. \textbf{62} (1940), 1--42.
 \doi{10.2307/2371431}.
 
-\bibitem{NPS}
-R.~Nicoara, S.~Popa and R.~Sasyk, \emph{On $\mathrm{II}_1$ factors
-arising from 2-cocycles of $w$-rigid groups}, J. Funct. Anal.
-\textbf{242} (2007), 230--246. \doi{10.1016/j.jfa.2006.05.015}.
+\bibitem{NeumannNeumann}
+B.~H. Neumann and H.~Neumann, \emph{Embedding theorems for groups},
+J. London Math. Soc. \textbf{34} (1959), 465--479.
+\doi{10.1112/jlms/s1-34.4.465}.
+
 
 \bibitem{Odifreddi}
 P.~Odifreddi, \emph{Classical recursion theory}, Vol.~I, Stud. Logic
 Found. Math. \textbf{125}, North-Holland, Amsterdam, 1989.
 
-\bibitem{OsajdaRF}
-D.~Osajda, \emph{Residually finite non-exact groups}, Geom. Funct. Anal.
-\textbf{28} (2018), 509--517. \doi{10.1007/s00039-018-0432-4}.
 
 \bibitem{Ozawa}
 N.~Ozawa, \emph{About the QWEP conjecture},
-Internat. J. Math. \textbf{15} (2004), 501--530; preprint \arxiv{math/0306067} (2003).
-\doi{10.1142/S0129167X04002417}.
+Internat. J. Math. \textbf{15} (2004), 501--530.
+\doi{10.1142/S0129167X04002417}. \arxiv{math/0306067}.
 
-\bibitem{OzawaUniversal}
-N.~Ozawa, \emph{There is no separable universal $\mathrm{II}_1$-factor},
-Proc. Amer. Math. Soc. \textbf{132} (2004), 487--490.
-\doi{10.1090/S0002-9939-03-07127-2}.
 
 \bibitem{Pestov}
 V.~G. Pestov, \emph{Hyperlinear and sofic groups: a brief guide},
@@ -787,13 +721,10 @@ Ser. \textbf{406}, Cambridge Univ. Press, Cambridge (2012), 145--186.
 \bibitem{Radulescu}
 F.~R\u{a}dulescu, \emph{The von Neumann algebra of the non-residually
 finite Baumslag group $\langle a,b\mid ab^3a^{-1}=b^2\rangle$ embeds into
-$R^\omega$}, Theta Ser. Adv. Math. \textbf{9}, Theta, Bucharest (2008),
-173--185; preprint \arxiv{math/0004172} (2000).
+$R^\omega$}, in: Hot topics in operator theory, Theta Ser. Adv. Math.
+\textbf{9}, Theta, Bucharest (2008), 173--185; preprint
+\arxiv{math/0004172} (2000).
 
-\bibitem{Rauzy}
-E.~Rauzy, \emph{Remarks and problems about algorithmic descriptions of
-groups}, Internat. J. Algebra Comput. \textbf{35} (2025), 1019--1053.
-\doi{10.1142/S0218196725500328}.
 
 \bibitem{Schupp}
 P.~E. Schupp, \emph{Embeddings into simple groups},
@@ -819,7 +750,7 @@ property}, Groups Geom. Dyn. \textbf{4} (2010), 195--208.
 \bibitem{Thompson80}
 R.~J. Thompson, \emph{Embeddings into finitely generated simple groups
 which preserve the word problem}, in: Word problems II, Stud. Logic Found.
-Math. \textbf{95} (1980), 401--441.
+Math. \textbf{95}, North-Holland, Amsterdam (1980), 401--441.
 \doi{10.1016/S0049-237X(08)71348-X}.
 
 \bibitem{VershikGordon}
