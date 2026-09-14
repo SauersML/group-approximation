@@ -164,3 +164,20 @@ construction was proposed in one combined message to ms-traces-2 and ms-intro-1:
 - this lane builds the component map (edge deletion restricted to the far side, planar, with the pocket walk as a face
   cycle) and the cell-free value over `isRelatorProduct_of_planar`;
 - ms-traces-2 builds the enclosed DiscDiagram, its loop cut and the transport on top of it.
+
+## Bridge-component surgery, cell-free half (2026-09-13 ~20:30)
+
+- `BridgeComponentMap` LANDED 40c5158e3 (COMPILED in probe 0913-194758-60662). It records vertex rotation after deleting a
+  same-face bridge, read through `EdgeDeletion.value`; paths of the deleted map as moves avoiding the edge; and the
+  successors of both bridge darts.
+- `BridgeComponentPlanar` LANDED dc949da1e (BUILT in probe 0913-195932-2136; MSI build log: `[propext,
+  Classical.choice, Quot.sound]` on all seven audited declarations). It proves `reach_or` (every dart of the deleted map
+  is joined to σ(α a) or σ a), `euler_four`, `near1_not_side`, and `component_planar` (the far side is a planar map).
+- `BridgeComponentValue` (`listVal_pocket_eq_one`, the cell-free pocket reads one, over the closed
+  `isRelatorProduct_of_planar`) is not landed yet.
+  - Probe 0913-195932-2136 failed on this module: simp rewrote `map Subtype.val` into `unattach`, and `component` did not
+    unify through implicit restrict arguments. Repaired bytes are preserved as attic copy c785f676d.
+  - The re-probe hit an MSI outage (infra, rc=4).
+- Claim released: `Estimating/OsinUnboundSameCellPocketProof.lean` (never written) goes to ms-compress-2, which main
+  assigned `OsinLemma94SameCellPocketInput`. It assembles the input over `listVal_pocket_eq_one` (cell-free branch) and
+  ms-traces-2's `EnclosedSubdiagramLoopCutStatement` on the far side (relator branch). The interface went to it directly.
