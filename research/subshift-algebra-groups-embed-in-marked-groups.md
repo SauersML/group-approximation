@@ -40,3 +40,5 @@ marked approximation by groups over other subshifts, and every finite pattern mo
 quantum tiling.
 
 Route: `subshift-algebra-groups-embed-in-marked-groups-proof`. Artifact §§2–3.
+
+**Review (sk-verify-3, 2026-09-13): PASS (items 1–5).** Cylinder words and the length bound, the window bound, the homeomorphism onto a closed image, the containment criterion, isolation of minimal SFTs and marked limits by finite subshifts re-derived. See `research/artifacts/sk-review-3-2026-09-13-part4.md` §1.
