@@ -170,6 +170,24 @@ Over "`R_Y` is LEF":
 - `coreMFRadicalKillGL_of_coreModels`, `coreMFRadicalKillStatement_of_coreModels`;
 - `printedCoreMFRadical_of_coreModels : CoreModelsLEFStatement → PrintedCoreMFRadical`, the printed theorem.
 
+## Next item (lead ruling 09-13 ~20:15): conditional-baseline sweep, tex 1541 on, non-Osin-waist carriers
+
+Split with ms-core-1, which takes rows before tex 1541.
+- Source: `metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt` at census f78d19014. It has 254 findings, 189 of them at tex ≥ 1541.
+- Every finding at tex ≥ 2122 carries a least-area or Greendlinger (Osin-waist) binder, so none of those is taken here.
+- The closures that make the sweep possible: ChainCoreClosures b09de1dcf, TransientMatricesClosed 6867e7460,
+  ChainCoreModelsStatement a28419dba, CoreModelsLEF b7e521e57.
+
+CLAIM conditional-baseline-sweep GroupApproximation/Manuscript/NonMFSentences/ChainCoreSweepClosed.lean
+- Findings:
+  - `inlined-statement BilateralThree.relativeElementary_killed_of_rootThree_killed` (row 7f55f9a11e5a, tex 1594);
+  - `inlined-statement BilateralThree.not_isOperatorMF_of_root_killed` (row 2016c672dd6a, tex 1598);
+  - `inlined-statement TorsionFreeLimitSetNotion.manuscriptSentence_hullGeneratingSetLimitSet` (row a9dd4b90e479, tex 2114),
+    whose inlined premise is proved (`isAcylindricallyHyperbolicOsin_of_limitSet`).
+- Rows: partial rows at tex ≥ 1541, outside the Osin-waist block, whose `_of_*` carriers now have all binders proved.
+- Each gets a closed named endpoint with `#audit_closed_axioms` along the printed route. Row notes say "retires <kind> <decl>",
+  and the census lane removes the baseline line.
+
 Exact residual list: `DynamicRankBudget.CoreModelsLEFStatement` (lem:chain-core-models, "R_Y is LEF"; chain-itinerary). It enters
 twice: through prop:bilateral-three (`printedBilateralThree_of_coreModels`) for the GL kill, and as the MF/LEF target for the upper
 bounds and the LEF quotients.
