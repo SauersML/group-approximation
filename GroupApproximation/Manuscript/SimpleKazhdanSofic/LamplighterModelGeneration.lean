@@ -290,17 +290,18 @@ theorem closure_modelMap_lampGenerators_eq_top :
         Matrix.diagonal (Pi.single i (1 : ZMod 2)) *
           Matrix.permMatrixHom (R := ZMod 2) (addPermHom M n (Multiplicative.ofAdd (i - j))) := by
       ext a b
-      rw [Matrix.diagonal_mul, permMatrixHom_apply_eq, Pi.single_apply]
-      show Matrix.single i j (1 : ZMod 2) a b =
-        (if a = i then 1 else 0) * (if a = b + (i - j) then 1 else 0)
+      have hact : (addPermHom M n (Multiplicative.ofAdd (i - j))) b = b + (i - j) := rfl
+      rw [Matrix.diagonal_mul, permMatrixHom_apply_eq, hact, Pi.single_apply]
       by_cases ha : a = i
       · by_cases hb : b = j
         · rw [ha, hb, Matrix.single_apply_same, if_pos rfl, if_pos (by abel), one_mul]
-        · rw [Matrix.single_apply_of_ne (fun h => hb h.2), if_pos ha,
-            if_neg (fun h => hb (by
-              rw [ha] at h
-              rw [eq_sub_of_add_eq h.symm, sub_sub_cancel])), mul_zero]
-      · rw [Matrix.single_apply_of_ne (fun h => ha h.1), if_neg ha, zero_mul]
+        · have hne : ¬(a = b + (i - j)) := fun h' => hb (by
+            rw [ha] at h'
+            rw [eq_sub_of_add_eq h'.symm, sub_sub_cancel])
+          rw [Matrix.single_apply_of_ne (fun h' : i = a ∧ j = b => hb h'.2.symm), if_pos ha,
+            if_neg hne, mul_zero]
+      · rw [Matrix.single_apply_of_ne (fun h' : i = a ∧ j = b => ha h'.1.symm), if_neg ha,
+          zero_mul]
     rw [h]
     exact A.mul_mem (hdiag i) (htrans _)
   refine (Subring.eq_top_iff' A).2 fun x => ?_
@@ -344,9 +345,10 @@ theorem closure_modelMapFin_lampGenerators_eq_top :
         (modelMap M n '' lampGenerators T) := by
     rw [Set.image_image]
     rfl
-  rw [himg, ← Subring.map_closure, closure_modelMap_lampGenerators_eq_top, Subring.map_top,
-    RingHom.range_eq_top]
-  exact (Matrix.reindexRingEquiv (ZMod 2) (Fintype.equivFin (ModelSpace M n))).surjective
+  rw [himg, ← RingHom.map_closure, closure_modelMap_lampGenerators_eq_top]
+  refine eq_top_iff.2 fun x _ =>
+    ⟨(Matrix.reindexRingEquiv (ZMod 2) (Fintype.equivFin (ModelSpace M n))).symm x,
+      Subring.mem_top _, by simp⟩
 
 theorem eventually_modelMapFin_mul (hT : Subgroup.closure T = ⊤) (r s : LampRing Δ) :
     ∀ᶠ n in atTop, modelMapFin M n (r * s) = modelMapFin M n r * modelMapFin M n s :=
