@@ -1,0 +1,22 @@
+# Sentence assignments for simple_kazhdan_sofic_group.tex.
+# key<TAB>status<TAB>decls<TAB>note
+# Merged from metadata/sk-census-rows/*.tsv by scripts/sk_sentence_census.py --merge.
+d2f961fe036f	attribution		Ozawa's hyperlinear form (p. 527); credit only [rows/skf-cite]
+656503f976d7	attribution		Pestov Open question 9.1, sofic form; credit only [rows/skf-cite]
+f8dbc8cda747	attribution		Nekrashevych: subshift algebra classical; credit only [rows/skf-cite]
+195f25f12eac	attribution		EJZ credited in introduction; the step is LINE:97 [rows/skf-cite]
+7e5579c5c327	attribution		Grigorchuk-Medynets credited for the periodic-approximation mechanism; finite models proved directly at tex 118-149 [rows/skf-cite]
+42464605efc3	attribution		Stepanov: normal-structure tradition; credit only [rows/skf-cite]
+9f9adfc63585	attribution		Thom Theorem 1.4: context, his example not simple [rows/skf-cite]
+07e65b441b44	formalized	GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.ejz GroupApproximation.PropertyT.IntegralColumnPlaneClosure.finitelyGeneratedRingGeneralRankElementaryPropertyT	EJZ Theorem 1.1 proved; #audit_closed_axioms ejz; root-direct; statement-level only, the application to R belongs to the range lane for tex 69-116 [rows/skf-cite]
+03d3c45c04d7	attribution		BCFS, Clark-Edie-Michell, Steinberg credited; the direct argument at tex 104-116 belongs to the range lane [rows/skf-cite]
+e69218a1d468	partial	GroupApproximation.isSofic_of_isLEF GroupApproximation.isHyperlinear_of_isSofic GroupApproximation.Pestov91.isHyperlinear_of_isLEF	LEF => sofic => hyperlinear (Pestov guide) carried by root-direct lemmas; no #audit line in Sofic/LEFSofic, Sofic/Hyperlinear or Pestov91/LEFHyperlinear, so the axiom audit and the printed-route check are owed [rows/skf-cite]
+dad212560d5f	open		Corollary (every Turing degree is a word-problem degree of an infinite simple Kazhdan LEF group; continuum many classes); no carrier on main [rows/skf-degrees]
+6c63773b7ad9	open		WP(G_X) in the finite generators has the Turing degree of L(X); no carrier on main [rows/skf-degrees]
+21392932a88b	open		an L(X) oracle decides whether a matrix word equals I_3 (WP <=_T L(X)); no carrier on main [rows/skf-degrees]
+7dfd42d69482	open		cylinder indicator effectively converted to a word for e_12(e_[v]) (L(X) <=_T WP); no carrier on main [rows/skf-degrees]
+c2d6e076570f	open		that word equals 1 exactly when v notin L(X); no carrier on main [rows/skf-degrees]
+3e705e230cab	open		Morse-Hedlund Sturmian subshift properties used as a step; no Sturmian carrier on origin; owner: range lane for tex 229-262 [rows/skf-cite]
+ef16fe7c6040	open		every Turing degree has an irrational representative; no carrier on main [rows/skf-degrees]
+c332e3ea0d21	open		continuum many degrees; word-problem degree is an isomorphism invariant of f.g. groups; no carrier on main [rows/skf-degrees]
+2146d75451f4	attribution		Codex shortened and edited this version [rows/skf-cite]
