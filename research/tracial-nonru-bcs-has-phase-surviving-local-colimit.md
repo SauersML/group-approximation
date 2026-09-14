@@ -69,3 +69,27 @@ many finite subgroups, with `J^(n/p)` in its finite residual for some prime
    groups are the natural import; none is pinned at source on main, and
    hyperlinearity of the resulting CAT(0) colimits is not known, so no
    firewall follows either.
+3. **Curvature certificates, tested (2026-09-13, hl-nh-local-colimit).**
+   - **Local cap.** Commuting nonscalar readouts through subgroups meeting in
+     `J` have coset graphs with 4-cycles, and functionally dependent readouts
+     force larger intersections (`commuting-nonscalar-readouts-force-coset-four-cycles`).
+     So a context group can supply at most a right-angle corner at a pair of
+     nonscalar variables.
+   - **Necessary.** Any barycentric curvature certificate needs at least four
+     contexts per incidence cycle of nonscalar variables, and equality or
+     negation subdivision cannot supply them
+     (`barycentric-curvature-certificates-need-incidence-girth-eight`).
+   - **Sufficient.** Local data of incidence girth at least 12, with variable
+     subgroups meeting pairwise in `J` and proper inclusions, keeps `J` at full
+     order for arbitrary finite nonabelian local groups
+     (`central-local-data-of-incidence-girth-twelve-keeps-the-phase`). The proof
+     is Prytula's cone metric plus Bridson--Haefliger II.12.28, imported. It
+     recovers the `(3,6)` Slofstra--Zhang case for `p = 2`.
+   - **What survives of the question.** For such local data survival is
+     automatic, so what remains is a design and girth question:
+     `some-nonru-bcs-has-central-local-data-of-girth-twelve` (OPEN), which feeds
+     `non-hyperlinear-group` directly.
+   - **For `B_*` itself.** Cycles with fewer than four nonscalar contexts rule
+     out barycentric certificates. Any positive answer through curvature needs a
+     source, or a `B_*`-simulating system, whose incidence graph has no such
+     short cycles.
