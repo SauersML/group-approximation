@@ -89,3 +89,43 @@ PASS.
 - Caprace–Rémy (Invent. Math. 176, 2009) prove simplicity.
 - Finite presentation and (T) for these lattices usually carry other attributions (e.g. Abramenko–Mühlherr for 2-spherical presentations, Dymara–Januszkiewicz for (T); recalled, not read).
 - sk-citations should confirm the page of Caprace–Rémy that states the combination before this sentence is used.
+
+## 5. Queue item 2: `tower-subshift-elementary-group-is-el-3k-of-base` (sk-open-5)
+
+Main read at tip `f09fc92674`. Route `-proof`, `requires: []`. Verdict: **PASS** for items 1–3. Every step re-derived.
+
+**Item 1: the tower is a minimal subshift.**
+- S^k acts on X×{0} as T. For 0 ≤ i < k, S^i maps level 0 onto level i without wrap-around. So every S-orbit is dense in every level, and S is minimal.
+- Coding S^n(x,i) = (T^⌊(i+n)/k⌋ x, (i+n) mod k) by the letter (x_⌊(i+n)/k⌋, (i+n) mod k) is continuous and equivariant.
+- It is injective: i is read at time 0, and x_j is read at any n with ⌊(i+n)/k⌋ = j.
+- PASS.
+
+**Item 2: R_(X^(k)) ≅ M_k(R_X).**
+- Matrix units: for 0 ≤ i,j ≤ k−1, S^(i−j) carries level j onto level i with no wrap. So u^(i−j) p_j u^(j−i) = p_i, and v_ij = p_i u^(i−j) = u^(i−j) p_j.
+  - v_ij v_jl = v_il;
+  - v_ij v_j′l = u^(i−j) p_j p_j′ u^(j′−l) = 0 for j ≠ j′;
+  - Σ v_ii = 1.
+- Corner:
+  - p_0 f u^n p_0 = f p_0 e_(S^n(level 0)) u^n vanishes unless k | n.
+  - w = u^k p_0 has inverse u^(−k) p_0 in the corner, and w (f p_0) w^(−1) = (f∘S^(−k)) p_0 = (f∘T^(−1)) p_0, because S^k(x,0) = (Tx,0).
+  - The algebraic crossed product is the universal unital ring on LC(X) and a unit u with u f u^(−1) = f∘T^(−1). So f ↦ f p_0, u ↦ w defines a unital homomorphism.
+  - It is onto, since w^m = u^(km) p_0.
+  - It is injective, since powers of u are independent over LC(X^(k)).
+- PASS.
+
+**Item 3: EL_n(M_k(R)) = EL_(nk)(R) for n ≥ 2.**
+- (⊆) The factors I + A_ab E_((i,a),(j,b)) have pairwise products of off-diagonal parts equal to 0, since (j,b) ≠ (i,a′) when j ≠ i.
+- (⊇) Take ρ = rE_ab and σ = E_bb, with a ≠ b and q′ ≠ p.
+  - ρσ = rE_ab, σρ = 0 and ρσρ = 0.
+  - So XY = (I + ρσE_pp)YX, where the extra terms σσE_pp E_q′p and ρσρE_pp E_pq′ vanish.
+  - Hence [X,Y] = I + rE_ab E_pp.
+- PASS.
+
+**Assembly.** M_3(M_k(R_X)) = M_(3k)(R_X), and ring isomorphisms carry elementary matrices to elementary matrices. Group isomorphisms carry centres onto centres. PASS.
+
+**Outside the review.** The period-doubling consequence (X^(2) ≅ X, so EL_3(R_X) ≅ EL_6(R_X)) rests on `period-doubling-subshift-algebra-is-its-own-matrix-ring`, which is not a `requires` of this route. I did not review it here.
+
+**Credit note (recalled, not read at source).** Both identities are standard in spirit.
+- The crossed product of a height-k Kakutani tower is M_k of the base crossed product (the C*-analogue is folklore through induced systems).
+- EL_n(M_k(R)) = EL_(nk)(R) for n ≥ 2 is a textbook K-theory identity.
+The node claims no novelty. What it adds for the note: any rigidity statement for G_X ≅ G_Y must allow G_(X^(k)) ≅ EL_(3k)(R_X).

@@ -27,3 +27,5 @@ So `EL_3(R_(X^(k))) ≅ EL_(3k)(R_X)`, and the same holds after dividing by cent
   `EL_3(R_X) ≅ EL_6(R_X)`.
 
 Proof: route `tower-subshift-elementary-group-is-el-3k-of-base-proof`.
+
+**Review (sk-verify-3, 2026-09-13): PASS (items 1–3).** Tower coding, matrix units p_i u^(i−j) with base corner via the universal property, and EL_n(M_k(R)) = EL_(nk)(R) re-derived. The period-doubling consequence rests on a node this route does not require and is not reviewed here. See `research/artifacts/sk-review-3-2026-09-13-part2.md` §5.
