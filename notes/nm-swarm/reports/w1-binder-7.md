@@ -290,7 +290,22 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     - binder 7 in first-turn form: closed (4a52b36f1);
     - walk-order binders 7 and 5: depend only on w1-binder-3's two outer steps (`PocketOuterPinchStepSectionStatement`,
       `CellPocketOuterPinchStepSectionStatement`) and the proper-arc producers.
-  - No current item; waiting for main.
+  - New item (main, ~08:4x): prove the cell outer step `CellPocketOuterPinchStepSectionStatement`. w1-binder-3 keeps the section
+    one.
+- **CLAIM: `Estimating/OsinPocketCellOuterPinchStep.lean`**, the cell outer step.
+  - Route: the split outside `K` at an isolated turn, reusing w1-binder-3's `PinchSplit.Input.TurnKept` and
+    `OuterPinchIsolated.*` from its unlanded `OsinPocketOuterPinchSplit` / `…Isolated`. A list-level form of the isolated-turn
+    lemmas was requested from w1-binder-3 in one message.
+  - Cell transports: `CellPocketFaceSet.pinchSplit` with `pinchSplit_repeatedVisits_lt_of_stretch`, and a new
+    `pinchSplit_closedWalk_of_isolated`. Both arcs stay proper, since the split carries relator words.
+  - Corner fixes at cell corners:
+    - a relator corner: `CellPocketFaceSet.faceEdgeDoubling` on a dart off both arcs, which properness gives, or
+      `exists_trimDoubleFirst/Second` when a side has room;
+    - an exterior corner: a cell transport of `outerSpurThickening`. None exists; a cell pocket has no target arc.
+  - Model test (next): the full-boundary wrap on the cell side. At an endpoint of a whole-boundary arc the outer corner is the
+    cell face. The proper-arc premises exclude that case; to be checked on a cell rose, where monogon cells are excluded by
+    `ρ ≥ 2`.
+  - No current item otherwise.
 - **Noted:** ms-cite-1's `cellPocketPinchRoseRefutation` (e0a0776bb) refutes `CellPocketPinchPosStatement`, so V4 endpoints over
   it are vacuous. The replacement is `CellPocketPinchSectionStatement`.
 - **Landed above (was in flight): `Estimating/OsinPocketGoodCornersSection`** (attic 12585faa5), the section mirror.
