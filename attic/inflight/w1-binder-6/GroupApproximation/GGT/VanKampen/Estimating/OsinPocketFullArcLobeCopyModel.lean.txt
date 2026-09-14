@@ -1,0 +1,435 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFullArcLobeModel
+import GroupApproximation.GGT.VanKampen.SurgeryPocketGluePlanar
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# A pinched copy of the lobe pocket: the glued map splits off relator cells
+
+The second half of a model test for the component route of the transports at a full source arc
+(Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b)).  `OsinPocketFullArcLobeModel` builds a
+lake `Δ` that is not of least area, whose pocket holds the cells `A = [x, z]` and `B = [y, z⁻¹]`,
+with the source cell `Π = [x⁻¹]` alone in the lake and the exterior `O = [y⁻¹]`.
+
+The copy `X` has the boundary word `[x, y]` of the pocket and the relator words of `A` and `B`, but
+its exterior passes one vertex twice: it is two lobes.  Lobe `x` is a loop reading `x` holding the
+cell `A'` and a G-face `x h⁻¹… ` encoding `h (x z) h⁻¹ = x`; lobe `y` holds `B'` in the same way.
+
+* `copy`: the pinched copy, a planar disc diagram over `Perm (Fin 3)` with five vertices.
+* `copy_boundaryWord`, `copy_words`: the boundary word of the pocket and the relator words of `A`, `B`.
+* `lobeSeam`: the seam of `{Π, O}` along the reversed walk `[3,1]`, glued to the exterior of `copy`.
+* `side`: the lobe of a glued dart; it is constant along edges and faces (`side_alpha`,
+  `side_glueFacePerm`), so along the glued vertex rotation.
+* `lobeCopySplits`: the copy has the data of the pocket, the glued map is not connected, and the
+  component of the exterior dart `3` misses the source cell `Π` and the cell `A'`.
+
+So a bad copy of a pocket exists when the diagram is not of least area, and gluing it back splits
+off a component carrying relator cells.  Removing that component fills the boundary with fewer
+relators, which is the contradiction the component route uses at least area.
+
+## Manuscript status
+
+Model test for infrastructure of `thm:hull` (tex 2121, "Hull's small cancellation theorem",
+through Osin's Lemma 9.7(b)); certifies no printed sentence on its own.
+-/
+
+noncomputable section
+
+namespace GroupApproximation.GGT.VanKampen.OsinPocketFullArcLobeCopyModel
+
+open Equiv GroupApproximation.HullSC GroupApproximation.GGT.VanKampen.SimpleClosedWalkSides
+open Surgery.MapCollapse Surgery.PocketGlue
+open OsinPocketFullArcLobeModel (G gx gy gz W lobeWalk M planar isNoncrossingClosedWalk_lobeWalk
+  side_iff internal_four internal_five)
+
+/-! ## The pinched copy -/
+
+def copyAlpha : Perm (Fin 16) where
+  toFun := ![1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12, 15, 14]
+  invFun := ![1, 0, 3, 2, 5, 4, 7, 6, 9, 8, 11, 10, 13, 12, 15, 14]
+  left_inv := by decide
+  right_inv := by decide
+
+def copySigma : Perm (Fin 16) where
+  toFun := ![2, 8, 1, 7, 3, 6, 5, 4, 10, 0, 9, 15, 11, 14, 13, 12]
+  invFun := ![9, 2, 0, 4, 7, 6, 5, 3, 1, 10, 8, 12, 15, 14, 13, 11]
+  left_inv := by decide
+  right_inv := by decide
+
+def N : CombMap where
+  Dart := Fin 16
+  dartFintype := inferInstance
+  alpha := copyAlpha
+  sigma := copySigma
+  alpha_involutive := by intro d; fin_cases d <;> rfl
+  alpha_fixedPointFree := by decide
+
+instance : DecidableEq N.Dart := inferInstanceAs (DecidableEq (Fin 16))
+instance (n : ℕ) : OfNat N.Dart n := inferInstanceAs (OfNat (Fin 16) n)
+
+def faceClass : Fin 16 → Fin 5 := ![0, 3, 3, 3, 1, 3, 1, 3, 0, 4, 4, 4, 2, 4, 2, 4]
+def faceRep : Fin 5 → Fin 16 := ![8, 4, 12, 1, 9]
+
+def faceEquiv : N.Face ≃ Fin 5 :=
+  OrbitClassifier.orbitEquiv N.facePerm faceClass faceRep (by decide) (by decide) (by decide)
+
+def vertexEquiv : N.Vertex ≃ Fin 5 :=
+  OrbitClassifier.orbitEquiv N.sigma
+    (![0, 0, 0, 1, 1, 2, 2, 1, 0, 0, 0, 3, 3, 4, 4, 3] : Fin 16 → Fin 5)
+    (![0, 3, 5, 11, 13] : Fin 5 → Fin 16) (by decide) (by decide) (by decide)
+
+theorem copyPlanar : N.IsPlanar := by
+  constructor
+  · have hstep : ∀ d : Fin 16, Relation.EqvGen N.Adjacent 0 d := by
+      have s {a b : N.Dart} (h : N.sigma a = b) : Relation.EqvGen N.Adjacent a b := .rel _ _ (Or.inr h)
+      have t {a b : N.Dart} (h : N.alpha a = b) : Relation.EqvGen N.Adjacent a b := .rel _ _ (Or.inl h)
+      have tr {a b c : N.Dart} (h1 : Relation.EqvGen N.Adjacent a b)
+          (h2 : Relation.EqvGen N.Adjacent b c) : Relation.EqvGen N.Adjacent a c := .trans _ _ _ h1 h2
+      have h2 : Relation.EqvGen N.Adjacent 0 2 := s rfl
+      have h3 := tr h2 (t (b := 3) rfl)
+      have h7 := tr h3 (s (b := 7) rfl)
+      have h4 := tr h7 (s (b := 4) rfl)
+      have h5 := tr h4 (t (b := 5) rfl)
+      have h6 := tr h5 (s (b := 6) rfl)
+      have h1 := tr h2 (s (b := 1) rfl)
+      have h8 := tr h1 (s (b := 8) rfl)
+      have h10 := tr h8 (s (b := 10) rfl)
+      have h9 := tr h10 (s (b := 9) rfl)
+      have h11 := tr h10 (t (b := 11) rfl)
+      have h15 := tr h11 (s (b := 15) rfl)
+      have h12 := tr h15 (s (b := 12) rfl)
+      have h13 := tr h12 (t (b := 13) rfl)
+      have h14 := tr h13 (s (b := 14) rfl)
+      intro d
+      fin_cases d
+      · exact .refl _
+      · exact h1
+      · exact h2
+      · exact h3
+      · exact h4
+      · exact h5
+      · exact h6
+      · exact h7
+      · exact h8
+      · exact h9
+      · exact h10
+      · exact h11
+      · exact h12
+      · exact h13
+      · exact h14
+      · exact h15
+    intro d e
+    exact .trans _ _ _ (.symm _ _ (hstep d)) (hstep e)
+  · have hv : N.vertexCount = 5 := (Nat.card_congr vertexEquiv).trans (by simp)
+    have hf : N.faceCount = 5 := (Nat.card_congr faceEquiv).trans (by simp)
+    have hd : N.dartCount = 16 := by simp [CombMap.dartCount, N]
+    have he := N.dartCount_eq_two_mul_edgeCount
+    unfold CombMap.eulerCharacteristic
+    rw [hv, hf]
+    have heq : N.edgeCount = 8 := by omega
+    rw [heq]
+    norm_num
+
+def face (i : Fin 5) : N.Face := N.faceOf (faceRep i)
+
+@[simp] theorem faceEquiv_face (i : Fin 5) : faceEquiv (face i) = i := by
+  change faceClass (faceRep i) = i
+  fin_cases i <;> rfl
+
+theorem faceOf_eq_face (d : Fin 16) (i : Fin 5) : N.faceOf d = face i ↔ faceClass d = i := by
+  rw [← faceEquiv.injective.eq_iff, faceEquiv_face]
+  rfl
+
+theorem face_eq_iff (i j : Fin 5) : face i = face j ↔ i = j := by
+  rw [← faceEquiv.injective.eq_iff, faceEquiv_face, faceEquiv_face]
+
+def faceDarts : Fin 5 → List (Fin 16) :=
+  ![[8, 0], [4, 6], [12, 14], [1, 2, 7, 5, 3], [9, 10, 15, 13, 11]]
+
+def indexedBoundary (i : Fin 5) : FaceBoundary N (face i) where
+  darts := faceDarts i
+  nonempty := by change faceDarts i ≠ ([] : List (Fin 16)); fin_cases i <;> decide
+  nodup := by fin_cases i <;> decide
+  mem_iff := by
+    intro d
+    rw [faceOf_eq_face]
+    fin_cases i <;> fin_cases d <;> decide
+  chain := by fin_cases i <;> decide
+  closes := by fin_cases i <;> decide
+  length_eq_degree := by
+    have h := closedOrbitList.length_eq_orbitDegree N.facePerm (faceRep i)
+    have hd : closedOrbitList N.facePerm (faceRep i) = faceDarts i := by
+      fin_cases i <;> decide
+    rw [hd] at h
+    exact h
+
+def boundary (f : N.Face) : FaceBoundary N f :=
+  (faceEquiv.left_inv f) ▸ indexedBoundary (faceEquiv f)
+
+@[simp] theorem boundary_face_darts (i : Fin 5) : (boundary (face i)).darts = faceDarts i := by
+  have htransport {f g : N.Face} (h : f = g) (B : FaceBoundary N f) :
+      (h ▸ B).darts = B.darts := by cases h; rfl
+  unfold boundary
+  rw [htransport]
+  exact congrArg faceDarts (faceEquiv_face i)
+
+def copyLabel (d : Fin 16) : RelLetter G Empty :=
+  .base ((![gx⁻¹, gx, gz⁻¹, gz, gx, gx⁻¹, gz, gz⁻¹, gy⁻¹, gy, gz, gz⁻¹, gy, gy⁻¹, gz⁻¹, gz] :
+    Fin 16 → G) d)
+
+def cellA : RelatorCell N (face 0) W where
+  face := face 1
+  face_ne_outer := (face_eq_iff 1 0).not.mpr (by decide)
+  word := [.base gx, .base gz]
+  word_mem := Or.inr (Or.inl rfl)
+  conjugator := gz⁻¹
+  reversed := false
+
+def cellB : RelatorCell N (face 0) W where
+  face := face 2
+  face_ne_outer := (face_eq_iff 2 0).not.mpr (by decide)
+  word := [.base gy, .base gz⁻¹]
+  word_mem := Or.inr (Or.inr rfl)
+  conjugator := gz
+  reversed := false
+
+/-- **The pinched copy of the lobe pocket.** -/
+def copy : DiscDiagram W where
+  toCombMap := N
+  planar := copyPlanar
+  label := copyLabel
+  label_alpha := by
+    intro d
+    fin_cases d <;> exact congrArg RelLetter.base (by decide)
+  outerFace := face 0
+  faceBoundary := boundary
+  relatorCells := [cellA, cellB]
+  relatorCell_faces_nodup := by
+    change [face 1, face 2].Nodup
+    refine List.nodup_cons.mpr ⟨?_, List.nodup_singleton _⟩
+    rw [List.mem_singleton]
+    exact (face_eq_iff 1 2).not.mpr (by decide)
+  relatorCell_word := by
+    intro C hC
+    rcases List.mem_cons.mp hC with rfl | hC
+    · change [RelLetter.base gx, RelLetter.base gz] = (boundary (face 1)).darts.map copyLabel
+      rw [boundary_face_darts]
+      rfl
+    · obtain rfl := List.mem_singleton.mp hC
+      change [RelLetter.base gy, RelLetter.base gz⁻¹] = (boundary (face 2)).darts.map copyLabel
+      rw [boundary_face_darts]
+      rfl
+  inner_face := by
+    intro f hf
+    obtain ⟨i, rfl⟩ : ∃ i, face i = f := ⟨faceEquiv f, faceEquiv.left_inv f⟩
+    fin_cases i
+    · exact (hf rfl).elim
+    · exact Or.inl ⟨cellA, by simp, rfl⟩
+    · exact Or.inl ⟨cellB, by simp, rfl⟩
+    · right
+      change RelLetter.listVal ((boundary (face 3)).darts.map copyLabel) = 1
+      rw [boundary_face_darts]
+      decide
+    · right
+      change RelLetter.listVal ((boundary (face 4)).darts.map copyLabel) = 1
+      rw [boundary_face_darts]
+      decide
+  boundary_product := by
+    rw [boundary_face_darts]
+    decide
+
+/-- The copy reads the boundary word of the pocket, `[x, y]`. -/
+theorem copy_boundaryWord :
+    copy.boundaryWord = Embedded.dartWord OsinPocketFullArcLobeModel.diagram lobeWalk := by
+  change RelWord.revInv ((boundary (face 0)).darts.map copyLabel) =
+    [OsinPocketFullArcLobeModel.label 0, OsinPocketFullArcLobeModel.label 2]
+  rw [boundary_face_darts]
+  show [RelWord.inv (copyLabel 0), RelWord.inv (copyLabel 8)] =
+    [OsinPocketFullArcLobeModel.label 0, OsinPocketFullArcLobeModel.label 2]
+  exact congrArg₂ (fun a b => [a, b]) (congrArg RelLetter.base (by decide))
+    (congrArg RelLetter.base (by decide))
+
+/-- The relator words of the copy are those of `A` and `B`. -/
+theorem copy_words :
+    copy.relatorCells.map RelatorCell.word =
+      [OsinPocketFullArcLobeModel.cellA.word, OsinPocketFullArcLobeModel.cellB.word] :=
+  rfl
+
+/-! ## The seam -/
+
+theorem outside_iff_not_side (d : M.Dart) :
+    M.faceOf d ∈ sideOutside M lobeWalk ↔ M.faceOf d ∉ sideFaces M lobeWalk :=
+  mem_sideOutside_iff M lobeWalk _
+
+/-- **The seam**: the faces `{Π, O}` off the side of `[0,2]`, glued to the exterior of the copy. -/
+def lobeSeam : Seam M N where
+  faces := sideOutside M lobeWalk
+  boundary := isNoncrossingClosedWalk_lobeWalk.outerCycle planar
+  outer := face 0
+  outerBoundary := OsinPocketFullArcLobeCopyModel.boundary (face 0)
+  length_eq := by
+    change (lobeWalk.reverse.map M.alpha).length =
+      (OsinPocketFullArcLobeCopyModel.boundary (face 0)).darts.length
+    rw [boundary_face_darts]
+    rfl
+
+theorem one_mem_faces : M.faceOf 1 ∈ lobeSeam.faces := by
+  have h := (side_iff 0 (by decide)).2
+  rw [show M.alpha 0 = 1 by decide] at h
+  exact (outside_iff_not_side 1).mpr h
+
+theorem three_mem_faces : M.faceOf 3 ∈ lobeSeam.faces := by
+  have h := (side_iff 2 (by decide)).2
+  rw [show M.alpha 2 = 3 by decide] at h
+  exact (outside_iff_not_side 3).mpr h
+
+theorem inl_cases (d : M.Dart) (hd : M.faceOf d ∈ lobeSeam.faces) : d = 1 ∨ d = 3 := by
+  have hout := (outside_iff_not_side d).mp hd
+  rcases d with ⟨_ | _ | _ | _ | _ | _ | n, hn⟩
+  · exact absurd (side_iff 0 (by decide)).1 hout
+  · exact Or.inl rfl
+  · exact absurd (side_iff 2 (by decide)).1 hout
+  · exact Or.inr rfl
+  · exact absurd internal_four.1 hout
+  · exact absurd internal_five.1 hout
+  · exact absurd hn (by omega)
+
+theorem outer_get (i : Fin lobeSeam.outerBoundary.darts.length) :
+    lobeSeam.outerBoundary.darts.get i =
+      (faceDarts 0).get (Fin.cast (congrArg List.length (boundary_face_darts 0)) i) :=
+  List.get_of_eq (boundary_face_darts 0) i
+
+/-- The exterior dart `8` of the copy is glued to the dart `3` of `O`. -/
+theorem glueEmbedding_eight :
+    (lobeSeam.glueEmbedding 8 : lobeSeam.GlueDart) = Sum.inl ⟨3, three_mem_faces⟩ := by
+  have h := lobeSeam.glueEmbedding_seam (lobeSeam.boundary.positionEquiv ⟨0, by decide⟩)
+  rw [lobeSeam.seamEquiv_positionEquiv, lobeSeam.outerPosition_val, outer_get] at h
+  exact h
+
+/-- The exterior dart `0` of the copy is glued to the dart `1` of `Π`. -/
+theorem glueEmbedding_zero :
+    (lobeSeam.glueEmbedding 0 : lobeSeam.GlueDart) = Sum.inl ⟨1, one_mem_faces⟩ := by
+  have h := lobeSeam.glueEmbedding_seam (lobeSeam.boundary.positionEquiv ⟨1, by decide⟩)
+  rw [lobeSeam.seamEquiv_positionEquiv, lobeSeam.outerPosition_val, outer_get] at h
+  exact h
+
+theorem glueAlpha_inr (x : N.Dart) (hx : N.faceOf x ≠ lobeSeam.outer) :
+    lobeSeam.glueAlpha (Sum.inr ⟨x, hx⟩) = lobeSeam.glueEmbedding (N.alpha x) := by
+  rw [← lobeSeam.glueEmbedding_of_ne x hx, lobeSeam.glueAlpha_glueEmbedding]
+
+theorem nine_ne_outer : N.faceOf 9 ≠ lobeSeam.outer := (faceOf_eq_face 9 0).not.mpr (by decide)
+
+theorem one_ne_outer : N.faceOf 1 ≠ lobeSeam.outer := (faceOf_eq_face 1 0).not.mpr (by decide)
+
+theorem glueAlpha_m3 : lobeSeam.glueAlpha (Sum.inl ⟨3, three_mem_faces⟩) = Sum.inr ⟨9, nine_ne_outer⟩ := by
+  rw [← glueEmbedding_eight, lobeSeam.glueAlpha_glueEmbedding, show N.alpha 8 = 9 by decide,
+    lobeSeam.glueEmbedding_of_ne 9 nine_ne_outer]
+
+theorem glueAlpha_m1 : lobeSeam.glueAlpha (Sum.inl ⟨1, one_mem_faces⟩) = Sum.inr ⟨1, one_ne_outer⟩ := by
+  rw [← glueEmbedding_zero, lobeSeam.glueAlpha_glueEmbedding, show N.alpha 0 = 1 by decide,
+    lobeSeam.glueEmbedding_of_ne 1 one_ne_outer]
+
+theorem alpha_ne_outer_of (x : N.Dart) (h1 : x ≠ 1) (h9 : x ≠ 9) :
+    N.faceOf (N.alpha x) ≠ lobeSeam.outer := by
+  refine (faceOf_eq_face (N.alpha x) 0).not.mpr ?_
+  revert h1 h9
+  revert x
+  decide
+
+/-! ## The two lobes -/
+
+/-- The lobe of a glued dart: `true` on the dart `1` of `Π` and on lobe `x` of the copy. -/
+def side : lobeSeam.GlueDart → Bool
+  | Sum.inl d => decide (d.1 = 1)
+  | Sum.inr x => decide (x.1.val ≤ 7)
+
+theorem copy_alpha_lobe : ∀ x : N.Dart, decide ((N.alpha x).val ≤ 7) = decide (x.val ≤ 7) := by
+  decide
+
+theorem copy_facePerm_lobe :
+    ∀ x : N.Dart, decide ((N.facePerm x).val ≤ 7) = decide (x.val ≤ 7) := by
+  decide
+
+theorem lake_facePerm_one : ∀ d : M.Dart, decide (M.facePerm d = 1) = decide (d = 1) := by
+  decide
+
+theorem side_glueFacePerm (g : lobeSeam.GlueDart) : side (lobeSeam.glueFacePerm g) = side g := by
+  rcases g with ⟨d, hd⟩ | ⟨x, hx⟩
+  · exact lake_facePerm_one d
+  · exact copy_facePerm_lobe x
+
+theorem side_alpha (g : lobeSeam.GlueDart) : side (lobeSeam.glueAlpha g) = side g := by
+  rcases g with ⟨d, hd⟩ | ⟨x, hx⟩
+  · obtain rfl | rfl := inl_cases d hd
+    · rw [glueAlpha_m1]
+      rfl
+    · rw [glueAlpha_m3]
+      rfl
+  · rw [glueAlpha_inr x hx]
+    by_cases h1 : x = 1
+    · subst h1
+      rw [show N.alpha 1 = 0 by decide, glueEmbedding_zero]
+      rfl
+    by_cases h9 : x = 9
+    · subst h9
+      rw [show N.alpha 9 = 8 by decide, glueEmbedding_eight]
+      rfl
+    · rw [lobeSeam.glueEmbedding_of_ne (N.alpha x) (alpha_ne_outer_of x h1 h9)]
+      exact copy_alpha_lobe x
+
+theorem side_sigma (g : lobeSeam.GlueDart) : side (lobeSeam.glueMap.sigma g) = side g := by
+  change side (lobeSeam.glueFacePerm (lobeSeam.glueAlpha g)) = side g
+  rw [side_glueFacePerm, side_alpha]
+
+theorem side_eq_of_eqvGen {g h : lobeSeam.glueMap.Dart}
+    (hgh : Relation.EqvGen lobeSeam.glueMap.Adjacent g h) : side g = side h := by
+  induction hgh with
+  | rel x y hxy =>
+      rcases hxy with rfl | rfl
+      · exact (side_alpha x).symm
+      · exact (side_sigma x).symm
+  | refl x => rfl
+  | symm x y _ ih => exact ih.symm
+  | trans x y z _ _ ih1 ih2 => exact ih1.trans ih2
+
+/-- The dart `3` of the exterior `O`. -/
+def m3 : lobeSeam.GlueDart := Sum.inl ⟨3, three_mem_faces⟩
+
+/-- The dart `1` of the source cell `Π`. -/
+def m1 : lobeSeam.GlueDart := Sum.inl ⟨1, one_mem_faces⟩
+
+theorem four_ne_outer : N.faceOf 4 ≠ lobeSeam.outer := (faceOf_eq_face 4 0).not.mpr (by decide)
+
+/-- The dart `4` of the cell `A'` of the copy. -/
+def x4 : lobeSeam.GlueDart := Sum.inr ⟨4, four_ne_outer⟩
+
+theorem glueMap_not_connected : ¬ lobeSeam.glueMap.IsConnected := by
+  intro h
+  exact absurd (side_eq_of_eqvGen (h m1 m3)) (by decide)
+
+/-! ## The endpoint -/
+
+/-- **A pinched copy of the lobe pocket splits the glued map** (model test, second half).  The copy
+reads the boundary word of the pocket and carries the relator words of `A` and `B`; the glued map
+of `{Π, O}` with the copy is not connected; and every dart in the component of the exterior dart
+`3` lies in lobe `y`, while the dart of the source cell `Π` and the dart `4` of the cell `A'` lie in
+lobe `x`. -/
+def LobeCopySplitsStatement : Prop :=
+  ¬ OsinPocketFullArcLobeModel.diagram.LeastArea ∧
+    copy.boundaryWord = Embedded.dartWord OsinPocketFullArcLobeModel.diagram lobeWalk ∧
+    copy.relatorCells.map RelatorCell.word =
+      [OsinPocketFullArcLobeModel.cellA.word, OsinPocketFullArcLobeModel.cellB.word] ∧
+    ¬ lobeSeam.glueMap.IsConnected ∧
+    (∀ g : lobeSeam.glueMap.Dart, Relation.EqvGen lobeSeam.glueMap.Adjacent m3 g → side g = false) ∧
+    side m1 = true ∧ side x4 = true
+
+theorem lobeCopySplits : LobeCopySplitsStatement :=
+  ⟨OsinPocketFullArcLobeModel.not_leastArea, copy_boundaryWord, copy_words, glueMap_not_connected,
+    fun g hg => (side_eq_of_eqvGen hg).symm.trans (by decide), rfl, rfl⟩
+
+end GroupApproximation.GGT.VanKampen.OsinPocketFullArcLobeCopyModel
+
+end
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLobeCopyModel.copy
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLobeCopyModel.glueMap_not_connected
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.OsinPocketFullArcLobeCopyModel.lobeCopySplits
