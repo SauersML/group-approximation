@@ -132,7 +132,7 @@ theorem IsClosedDartWalk.listVal_eq_one_of_alpha_mem {walk : List Delta.toCombMa
       split_ifs at hj_next hi_next <;> omega
     rcases hij with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
     · exact hji
-    · rw [← hinv, Delta.toCombMap.alpha_involutive]
+    · exact hinv.symm
   have hsplit : walk = walk.take 1 ++ walk.drop 1 := (List.take_append_drop 1 walk).symm
   have htake : walk.take 1 = [walk[0]] := by
     apply List.ext_getElem
