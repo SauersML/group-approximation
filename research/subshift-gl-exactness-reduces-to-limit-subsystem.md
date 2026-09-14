@@ -24,3 +24,14 @@ artifacts:
 - **(c)** So exactness of finitely generated groups of banded matrices over `F_2` is in question only through subsystems carrying recurrence. Along any such chain the obstruction is concentrated in the bottom subsystem, and when that subsystem is an infinite minimal subshift `X` it is a subgroup of `GL_m(R_X)`, whose exactness is the open node `subshift-elementary-groups-are-exact` in rank `m`.
 
 **Proof:** `subshift-gl-exactness-reduces-to-limit-subsystem-proof`.
+
+## Review
+- **sk-verify-22 PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-22-2026-09-14.md` §2):** re-derived:
+  - Step 1: traces of clopen sets, and the kernel `I_Z`;
+  - Step 2 from the two sk-verify-5 PASS nodes: if every finite subset of `I` lies in a finite subring `B ⊆ I`, the `g_i = 1 + x_i` generate a subgroup of `1 + M_n(B)`, for every `n ≥ 1`;
+  - Step 3: `N = ker ρ|_Γ` is locally finite, then Kirchberg–Wassermann;
+  - Step 4: `e u^d e = 0` for `0 < |d| < p` gives the matrix units `u^i e u^(−j)` and `eRe = F_2[e u^p]`; padding into `GL_(mP)(∏ F_2[t^(±1)])`; Guentner–Tessera–Yu;
+  - Steps 5–6 and the model tests. Corollary (b)'s banded sentence rests on `banded-matrix-groups-are-subshift-crossed-product-groups` (unreviewed).
+  - **Fix X1.** Over `F_2`, `1 + e_{[1]} = e_{[0]}` is an idempotent, not a unit. The lamplighter test should use `⟨diag(u,u), e_12(e_{[1]})⟩ ≤ GL_2(R_Y)`, which is `F_2 ≀ Z`.
+  - **Fix X2.** In Corollary (c) and Step 6 the image lies in `EL_{max(2m,3)}(R_X)` by Whitehead's lemma (`g ↦ diag(g, g^(−1))`). It reaches the rank-3 open node only through `subshift-el-n-exactness-is-kakutani-invariant` (d). Verbatim replacements are in the artifact.
+  - **Strengthening S1.** The limit-set hypothesis can be weakened to "`Z` contains every minimal subset of `Y`", through `minimal-set-complement-ideal-is-ultramatricial` (sk-verify-7 PASS); Steps 1 and 3 are unchanged. Corollary (a) then holds whenever `Y` has finitely many minimal subsets, all periodic orbits. So the "Not covered" paragraph of sk-exact-banded part 2 §3 on recurrent non-minimal sets is false.
