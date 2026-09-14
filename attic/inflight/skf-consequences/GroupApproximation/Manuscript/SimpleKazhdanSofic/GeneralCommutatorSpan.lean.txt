@@ -30,7 +30,7 @@ namespace GroupApproximation
 namespace SimpleKazhdanSofic
 namespace General
 
-open scoped Pointwise
+open scoped Pointwise commutatorElement
 
 variable {Λ Z : Type*} [Group Λ] [TopologicalSpace Z] [MulAction Λ Z] [ContinuousConstSMul Λ Z]
 
