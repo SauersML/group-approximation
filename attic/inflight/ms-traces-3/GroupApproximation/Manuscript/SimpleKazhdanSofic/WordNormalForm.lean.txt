@@ -56,6 +56,7 @@ theorem cylInd_nil : cylInd X ([] : Cyl A) = 1 :=
   LocallyConstant.ext fun x =>
     (LocallyConstant.charFn_eq_one (Y := ZMod 2) x (isClopen_cyl X [])).2 fun _ hp => nomatch hp
 
+omit [DiscreteTopology A] in
 theorem single_one_one (T : ↥X ≃ₜ ↥X) :
     (SkewMonoidAlgebra.single 1 1 : ClopenCrossedProduct T (ZMod 2)) = 1 :=
   SkewMonoidAlgebra.ext fun a => by
@@ -93,15 +94,17 @@ theorem matEval_elemMat (T : ↥X ≃ₜ ↥X) {i j : Fin 3} (h : i ≠ j) (s : 
       ((elementaryUnit i j h (eval T s) : (Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2)))ˣ) :
         Matrix (Fin 3) (Fin 3) (ClopenCrossedProduct T (ZMod 2))) := by
   rw [val_elementaryUnit]
-  ext p q
+  refine Matrix.ext fun p q => ?_
   rw [matEval_apply, Matrix.add_apply, Matrix.one_apply, elemMat]
   by_cases hpq : p = q
   · rw [if_pos hpq, if_pos hpq, eval_unitTable,
-      Matrix.single_apply_of_ne fun e => h (e.1.trans (hpq.trans e.2.symm)), add_zero]
+      Matrix.single_apply_of_ne fun e : i = p ∧ j = q => h (e.1.trans (hpq.trans e.2.symm)),
+      add_zero]
   · rw [if_neg hpq, if_neg hpq, zero_add]
     by_cases hij : p = i ∧ q = j
     · rw [if_pos hij, hij.1, hij.2, Matrix.single_apply_same]
-    · rw [if_neg hij, eval_nil, Matrix.single_apply_of_ne fun e => hij ⟨e.1.symm, e.2.symm⟩]
+    · rw [if_neg hij, eval_nil,
+        Matrix.single_apply_of_ne fun e : i = p ∧ j = q => hij ⟨e.1.symm, e.2.symm⟩]
 
 /-- Multiplying out a word of letters `(i, j, s)`. -/
 def wordMat : List ((Fin 3 × Fin 3) × Table A) → Mat A
