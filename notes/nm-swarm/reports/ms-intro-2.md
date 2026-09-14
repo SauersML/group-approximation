@@ -227,6 +227,18 @@ CLAIM `OsinLemma94CuttingTransitionInput` (cutting transitions ≤ K n), in new 
   **`OsinLemma94CuttingTransitionInput` is proved** (`osinLemma94CuttingTransitionInput`, K = 4, ε₀ = 0, ρ₀ = 1), which closes
   item 5. The contact piece stays with ms-compress-1.
 
+## Item 6 (main, 09:2x 09-14): help ms-compress-1 close `OsinLemma94ContactTransitionInput`
+
+CLAIM building H `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94ContactObjectMap.lean`. The split was proposed
+to ms-compress-1 in one message (09:2x). They keep the region-merge exclusion for empty two-gons and the assembly.
+- H = `PredicateRestriction.toCombMap (S.diagram.toCombMap.dual)`, keeping one dart pair per (polygon f with d_f ≥ 2,
+  object o), where o is a relator cell or the exterior.
+- Outputs:
+  - `IsRestriction` of the planar dual;
+  - the colour, simplicity and degree hypotheses of `four_le_faceDegree_of_bipartite`;
+  - the counts E(H) = Σ d_f and V(H) ≤ #polygons + n + 1;
+  - degree-4 faces as (f, a, f′, b) two-gon data.
+
 ## Progress log
 - 16:55 ledger landed (2185fb750); module claimed.
 - 17:06 probe 0913-170556-76424 GREEN, BUILT IntroCompressorSentences.
