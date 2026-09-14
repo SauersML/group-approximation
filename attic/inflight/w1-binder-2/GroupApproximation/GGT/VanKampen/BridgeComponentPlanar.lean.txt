@@ -113,8 +113,7 @@ theorem reach_or (hM : M.IsConnected) (x : EdgeDeletion.Dart M a) :
     · by_cases hz : z = a
       · exact absurd (show y = M.alpha a by rw [← hz, ← h, M.alpha_involutive]) hy'
       by_cases hz' : z = M.alpha a
-      · exact absurd (M.alpha.injective (show M.alpha y = M.alpha (M.alpha a) by
-          rw [h, hz', M.alpha_involutive])) hy
+      · exact absurd (M.alpha.injective (show M.alpha y = M.alpha a by rw [h, hz'])) hy
       exact (reached_iff_of_adjacent M a hface hstart htail
         (halpha y z hy hy' hz hz' h)).mpr (hPz hz hz')
     · by_cases hz : z = a
