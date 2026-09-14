@@ -750,6 +750,22 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
       - mark `weakly-dense-popa-combs-exist-in-property-t-factors` and `property-t-factors-contain-weakly-dense-popa-algebras` resolved through Theorem P;
       - replace the false reason in the fidelity bullet of `separable-ii1-factors-have-weakly-dense-full-free-group-cstar`. An amenable trace on a weakly dense subalgebra does not force M≅R (Brown–Dykema's A_s in L(F_s)); the conclusion stands.
     - RAM at resume: free 36%, swap 45%.
+158. **sk-verify-20 final; the queue divided among the last verifiers.**
+    - Queue census on main b842b3ed5d:
+      - lines 1, 3–24, 27 and 31 carry review lines;
+      - line 2 (free-9 P1 text, no node) was reviewed in sk-verify-19 part1 §2.
+    - Remaining lines and owners:
+      - sk-verify-18: 25 and 26 (banded, Kakutani invariance);
+      - sk-verify-21: 28–30 (growth, divisible unit, Krieger citation);
+      - sk-verify-22: 32 and 33 (limit-subsystem reduction, semi-free diameter).
+    - Lamplighter Theorem L (lines 21–22): sk-verify-20 re-derived L1–L5 independently before the skip order. It found nothing contradicting sk-verify-18 part9 and did not land a duplicate. Confirmed:
+      - ww̄ = w̄w = 1, with the cross terms killed by e_{aV_k} ≤ e_U;
+      - A''' = e_23((1−e)LC(Ω)) ⊆ L ∩ wLw⁻¹ gives c_M = c;
+      - the Larsen–Tiep input supp(h⊗I_s) = s·supp(h) ≥ N_n/N_m.
+    - Cosmetic notes for the Theorem L node:
+      - the claim is for n ≥ 3 but the proof is written for n = 3;
+      - §3(e) uses "e" both for e_U and for the identity of Λ_0.
+    - Ops: git reports many unreachable loose objects. `git prune --expire=3.hours.ago` is deferred while swap is above half; disk has 20 GiB free.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
