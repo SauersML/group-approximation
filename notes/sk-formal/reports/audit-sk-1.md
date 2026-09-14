@@ -273,3 +273,37 @@ wire-queue lines in `$NM/wire-queue.txt`, rebuilt 09-14:
 - `Manuscript.SimpleKazhdanSofic.MatricialMarkedLimitWords`: queue 2
 - `Manuscript.SimpleKazhdanSofic.PeriodicMatrixUnits`: queue 2
 - `Manuscript.SimpleKazhdanSofic.SubshiftMatricial`: queue 2
+
+## Follow-up: 17 rows newly graded at census d91e3fbac (note 8b36733d7, md5 29d63f79…)
+
+These are the rows census d91e3fbac graded formalized or definition in this lane's ranges (tex 179–242 and 336–403). The method is the one above:
+- 56 census decls resolved (0 unresolved); each sentence read against the displayed statements, including the `Printed…` bodies.
+- One probe-only module (not landed) imported the 15 carrier modules and ran `#audit_axioms` on all 48 distinct decls: probe 0914-103158-59106, PROBE GREEN.
+
+| key | tex | status | owner | verdict | root |
+|---|---|---|---|---|---|
+| 18ac299bc474 | 179-182 | formalized | skf-consequences | PASS | unwired |
+| e503326bf5e2 | 187-187 | formalized | skf-consequences | PASS | unwired |
+| 5b3ad392ecb5 | 193-196 | formalized | skf-consequences | PASS | unwired |
+| 2b5ba855ed5c | 196-198 | formalized | skf-consequences | PASS | unwired |
+| 4d2e3277d31f | 240-242 | formalized | ms-core-3 | PASS | unwired |
+| d00f0309aff7 | 336-338 | formalized | sk-lef-ultra | PASS | unwired |
+| fb6f6f03c19a | 356-359 | formalized | sk-lef-action | PASS | unwired |
+| ac91c158ed24 | 360-362 | formalized | sk-lef-action | PASS | unwired |
+| a8760ee6d3af | 362-365 | formalized | sk-lef-action | PASS | unwired |
+| e1aa5c966b58 | 374-377 | formalized | sk-lef-action | PASS | unwired |
+| 096f124abe31 | 377-379 | formalized | sk-lef-action | PASS | unwired |
+| c78a4854489a | 379-383 | formalized | sk-lef-action | PASS | unwired |
+| cdb7675d1521 | 383-384 | formalized | sk-lef-action | PASS | unwired |
+| ba51377f43f6 | 385-387 | formalized | sk-lef-action | PASS | unwired |
+| 472c3d5ac00b | 388-389 | formalized | sk-lef-action | PASS | unwired |
+| 66cb283340f3 | 397-398 | formalized | ms-intro-2 | PASS | reachable |
+| cbce9a479de2 | 402-403 | formalized | ms-intro-2 | PASS | reachable |
+
+**Totals:** 17 rows, 17 PASS, 0 FAIL.
+
+Notes:
+- **e503326bf5e2, cdb7675d1521:** setup and lead-in clauses, carried by the statements that contain them (`generalCommutatorWitness`, and the eventual conjugation identity of `printedLamplighterModelMatrices`).
+- **ba51377f43f6:** P_ξ⁻¹ is spelled `permMatrixHom (modelAct ξ)⁻¹`, the matrix of the inverse permutation.
+- **4d2e3277d31f:** "X is a Cantor set" is carried by the compact, metrizable, totally disconnected and perfect instances that `PrintedGeneralSimplicityStatement` requires, together with `perfectSpace_carrier`.
+- **Wiring:** LamplighterModelAction and LamplighterModelMatrices are not root-reachable, and neither are the General* simplicity modules listed above.
