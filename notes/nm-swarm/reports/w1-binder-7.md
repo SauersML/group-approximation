@@ -221,7 +221,30 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
     1bd896ef4. They are re-probing under this lane.
   - The cell endpoint `cellPocketPinchFirstTurns : CellPocketPinchFirstTurnsStatement` needs only first-turn order, letter labels
     and relator words longer than one letter.
-- **Next: `Estimating/OsinPocketGoodCornersSection`**, the section mirror of the cell module.
+- **LANDED 6029467d9**, the two adopted modules (probe 0913-232249-13380 GREEN under this lane; md5s e0fcb186 and a06a9eae
+  equal ms-intro-4's green record 0913-214617-61792). Both are unwired and queued for wiring.
+  - `GGT/VanKampen/SurgeryFaceEdgeDoublingFaces`:
+    - `FaceEdgeDoubling.faceOf_diagram_embed_dart` and `faceOf_diagram_embed_of_ne`;
+    - `exists_relatorCell_of_mem_diagram`;
+    - `CornerCount.one_lt_length_of_relatorCell`, `one_lt_length_of_mem_ne` and `countP_lt_countP_of_imp`.
+  - `Estimating/OsinPocketCellGoodCorners`:
+    - `CellPocketFaceSet.BadCorner`, `badCorners`, the three count lemmas across `faceEdgeDoublingInside`, and
+      `exists_goodCorners`;
+    - `exists_simple_of_firstTurns`, `copyRegion_of_firstTurns`, and `cellPocketPinchFirstTurns :
+      CellPocketPinchFirstTurnsStatement` (closed).
+- **In flight: `Estimating/OsinPocketGoodCornersSection`** (attic 12585faa5, probing), the section mirror.
+  - `PocketFaceSet.BadCorner`, `badCorners`, the count lemmas, `exists_goodCorners` and `exists_simple_of_firstTurns`.
+  - `pocketPinchFirstTurns : PocketPinchFirstTurnsStatement`: over relator words longer than one letter, a pocket in first-turn
+    order with letter labels has a copy with a simple pocket face set. It needs neither least area nor a proper source arc.
+  - `pocketPinchLabelledFirstTurnSection : PocketPinchLabelledFirstTurnSectionStatement` at `ε₀ = 0`, `ρ₀ = 2`, through
+    `OsinCCondition.long`. If it lands green, binder 7 is closed in its first-turn form.
+- **w1-binder-3's heads-up** (23:3x): walk order does not give `K.FirstTurns` at map level. Evidence: w1-binder-4's
+  `OsinPocketCellFirstTurnsLakeModel`, where the source cell lies in a lake attached at one vertex and the first-turn predecessor
+  has two orbits. So any FirstTurns producer must change the diagram or the face set. w1-binder-3 targets
+  `SectionPocketFaceSetFirstTurnInput` as landed and reports the producer as blocked on that choice.
+- **Next after GoodCornersSection:** `PocketFaceSet.sourceArc_lt_of_firstTurns` (FirstTurns forces a proper source arc), so the
+  producer's properness clause comes for free.
+- **Earlier plan, now in flight above: `Estimating/OsinPocketGoodCornersSection`**, the section mirror of the cell module.
   - `BadCorner`, `badCorners` and the count lemmas across `faceEdgeDoublingInside`, which also keeps a proper source arc.
   - `exists_goodCorners`.
   - `pocketPinchStepFirstTurnSection`, which should prove `PocketPinchStepFirstTurnSectionStatement` at `ρ₀ = 2`.
