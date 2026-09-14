@@ -76,7 +76,9 @@ theorem wordProblemOracle_comp_injective [Primcodable ι] {K : Type*} [Group K] 
     rw [← map_one φ]
     exact hφ.eq_iff
   funext n
-  simp only [wordProblemOracle, wordValue_map, key]
+  simp only [wordProblemOracle]
+  congr 1
+  exact if_congr (by simp only [wordValue_map, key]) rfl rfl
 
 end Words
 
@@ -109,9 +111,9 @@ theorem turingReducible_of_query {F O : ℕ →. ℕ} (o : ℕ → ℕ) (hO : �
 
 end Oracle
 
-#audit_closed_axioms wordValue_wordComm
-#audit_closed_axioms wordProblemOracle_comp_injective
-#audit_closed_axioms turingReducible_of_query
+#audit_axioms wordValue_wordComm
+#audit_axioms wordProblemOracle_comp_injective
+#audit_axioms turingReducible_of_query
 
 end SimpleKazhdanSofic
 end GroupApproximation

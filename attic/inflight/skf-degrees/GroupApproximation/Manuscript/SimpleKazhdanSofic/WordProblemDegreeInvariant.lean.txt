@@ -80,7 +80,10 @@ theorem turingReducible_wordProblemOracle_of_generates [Primcodable ι] [Primcod
     fun n => ?_
   cases hd : (decode n : Option (List (κ × Bool))) with
   | none => simp [wordProblemOracle, hd]
-  | some w => simp [wordProblemOracle, hd, wordValue_translate s t table htable]
+  | some w =>
+    by_cases hw : wordValue t w = 1
+    · simp [wordProblemOracle, hd, wordValue_translate s t table htable, hw]
+    · simp [wordProblemOracle, hd, wordValue_translate s t table htable, hw]
 
 /-- **Proof, last sentence.**  The word-problem degree of a finitely generated group does not
 depend on the finite generating family, and is an isomorphism invariant. -/

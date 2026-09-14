@@ -4,17 +4,19 @@ import Mathlib.NumberTheory.Real.Irrational
 import Mathlib.Algebra.ContinuedFractions.Computation.Basic
 import GroupApproximation.Dynamics.SubshiftWordGraph
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Setting
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.SturmianSubshift
 
 /-!
 # Statements for the section "Word problems" of `simple_kazhdan_sofic_group.tex`
 
-The note at the origin tip e80dcf20a, section "Word problems":
+The note at the origin tip 9047d0d3c, section "Word problems":
 
-> The word problem of `G_X` has the Turing degree of the language `L(X)` of `X`. Every Turing
-> degree occurs, so there are continuum many pairwise nonisomorphic groups `G_X`.
+> The word problem of `G_X` has the Turing degree of the language `L(X)` of `X`. In particular
+> `G_X` has solvable word problem if and only if `L(X)` is recursive, as for the Fibonacci subshift.
+> Every Turing degree occurs, so there are continuum many pairwise nonisomorphic groups `G_X`.
 
 The objects `subshiftHomeo`, `IsMinimal`, `letterIndicator`, `R` and `G` come from the shared
-`Setting` module. This module adds:
+`Setting` module, and `sturmianSubshift` from `SturmianSubshift`. This module adds:
 
 * `language S`: the language `L(X)` as finite lists, through `WordGraph.language`;
 * `genValue S`: the generators `e_ij(s)` for `s ∈ {u, u⁻¹} ∪ {e_a : a ∈ A}` (section "The ring and
@@ -115,9 +117,11 @@ noncomputable def languageOracle {A : Type} [TopologicalSpace A] [Primcodable A]
   fun n => Part.some
     (if ∃ v : List A, Encodable.decode n = some v ∧ v ∈ language S then 1 else 0)
 
-/-- The binary digits of a real `α`, the oracle through which `α` computes and is computed. -/
+open Classical in
+/-- The strict cut `a < b α` of `α` on codes `n = Nat.pair a b`: the oracle through which a real
+`α > 0` computes and is computed. -/
 noncomputable def slopeOracle (α : ℝ) : ℕ →. ℕ :=
-  fun n => Part.some (Nat.floor (2 ^ n * α) % 2)
+  fun n => Part.some (if ((Nat.unpair n).1 : ℝ) < ((Nat.unpair n).2 : ℝ) * α then 1 else 0)
 
 /-- `α = [0; a_0, a_1, …]`: the continued fraction expansion of `α` has integer part `0` and
 partial denominators `a`. -/
@@ -134,7 +138,7 @@ def PrintedWordProblemReducesToLanguage : Prop :=
     [Primcodable A] (S : Subshift A ℤ),
       TuringReducible (wordProblemOracle (genValue S)) (languageOracle S)
 
-/-- **(b), proof, first paragraph.**  A word for `e_12(∏_{t<n} u^{-t} e_{v_t} u^t)` is computable
+/-- **(b), proof, first paragraph.**  A word for `e_12(∏_{t<m} u^{-t} e_{v_t} u^t)` is computable
 from `v`, and it is trivial if and only if `v ∉ L(X)`; so the word problem computes `L(X)`. -/
 def PrintedLanguageReducesToWordProblem : Prop :=
   ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Fintype A] [DecidableEq A]
@@ -147,6 +151,18 @@ def PrintedWordProblemDegreeEqLanguage : Prop :=
   ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Fintype A] [DecidableEq A]
     [Primcodable A] (S : Subshift A ℤ), Infinite S.carrier → IsMinimal S →
       TuringEquivalent (wordProblemOracle (genValue S)) (languageOracle S)
+
+/-- **The corollary, second sentence.**  `G_X` has solvable word problem if and only if `L(X)` is
+recursive. -/
+def PrintedSolvableWordProblemIffRecursiveLanguage : Prop :=
+  ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Fintype A] [DecidableEq A]
+    [Primcodable A] (S : Subshift A ℤ), Infinite S.carrier → IsMinimal S →
+      (Partrec (wordProblemOracle (genValue S)) ↔ Partrec (languageOracle S))
+
+/-- **The corollary, second sentence, "as for the Fibonacci subshift".**  The Fibonacci subshift
+is the Sturmian subshift of slope `(3 - √5)/2 = φ⁻²`; its group has solvable word problem. -/
+def PrintedFibonacciSolvableWordProblem : Prop :=
+  Partrec (wordProblemOracle (genValue (sturmianSubshift ((3 - Real.sqrt 5) / 2))))
 
 /-- **(a), proof, last sentence.**  The word-problem degree of a finitely generated group does not
 depend on the finite generating family, and is an isomorphism invariant. -/
@@ -168,10 +184,12 @@ def PrintedContinuumManyDegrees : Prop :=
   ∃ F : Set (Set ℕ), Cardinal.mk F = Cardinal.continuum ∧
     ∀ B ∈ F, ∀ C ∈ F, TuringEquivalent (charOracle B) (charOracle C) → B = C
 
-/-- **The corollary.**  The word problem of `G_X` has the Turing degree of `L(X)`; every Turing
-degree occurs; so there are continuum many pairwise nonisomorphic groups `G_X`. -/
+/-- **The corollary.**  The word problem of `G_X` has the Turing degree of `L(X)`; `G_X` has
+solvable word problem if and only if `L(X)` is recursive, as for the Fibonacci subshift; every
+Turing degree occurs; so there are continuum many pairwise nonisomorphic groups `G_X`. -/
 def PrintedWordProblemsCorollary : Prop :=
-  PrintedWordProblemDegreeEqLanguage ∧
+  PrintedWordProblemDegreeEqLanguage ∧ PrintedSolvableWordProblemIffRecursiveLanguage ∧
+    PrintedFibonacciSolvableWordProblem ∧
     (∀ B : Set ℕ, ∃ S : Subshift Bool ℤ, Infinite S.carrier ∧ IsMinimal S ∧
       TuringEquivalent (wordProblemOracle (genValue S)) (charOracle B)) ∧
     ∃ F : Set (Subshift Bool ℤ), Cardinal.mk F = Cardinal.continuum ∧
