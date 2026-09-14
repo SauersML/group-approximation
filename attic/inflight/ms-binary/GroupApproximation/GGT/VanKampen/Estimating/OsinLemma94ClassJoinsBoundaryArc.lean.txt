@@ -50,7 +50,7 @@ theorem darts_eq_window {O : List α} (arc : CyclicArc O)
 theorem window_append (O : List α) {a b c : ℕ} (hab : a ≤ b) (hbc : b ≤ c) :
     (O.drop a).take (b - a) ++ (O.drop b).take (c - b) = (O.drop a).take (c - a) := by
   rw [show c - a = (b - a) + (c - b) by omega, List.take_add]
-  simp only [List.drop_drop, Nat.add_sub_cancel' hab, Nat.sub_add_cancel hab]
+  simp only [List.drop_drop, Nat.add_sub_cancel' hab]
 
 /-- The first entry of a nonempty window of a duplicate-free list is at the start of the window. -/
 theorem idxOf_head_window [BEq α] [LawfulBEq α] {O : List α} (hnodup : O.Nodup) {p q : ℕ}
@@ -87,12 +87,12 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
   {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
 
 /-- The oriented outer darts have no repeated dart. -/
-theorem outerDarts_nodup' (P : OsinLemma94RealizedPolygons S) : (outerDarts S.diagram).Nodup :=
+theorem outerDarts_nodup' (_P : OsinLemma94RealizedPolygons S) : (outerDarts S.diagram).Nodup :=
   List.Nodup.map S.diagram.toCombMap.alpha_involutive.injective
     (List.nodup_reverse.mpr (S.diagram.faceBoundary S.diagram.outerFace).nodup)
 
 /-- Every cut position is at most the number of outer darts. -/
-theorem cut_le_length_outer (P : OsinLemma94RealizedPolygons S) (i : Fin (cuts.count + 1)) :
+theorem cut_le_length_outer (_P : OsinLemma94RealizedPolygons S) (i : Fin (cuts.count + 1)) :
     cuts.cut i ≤ (outerDarts S.diagram).length := by
   rw [GloballyDistinguishedSectionFamily.length_outerDarts (S := S), ← cuts.cut_last]
   exact cuts.cut_mono (Fin.le_last i)
@@ -127,13 +127,13 @@ theorem runDarts_window_facts (P : OsinLemma94RealizedPolygons S) {k : Fin P.cou
   | [], hne, _, _, _ => absurd rfl hne
   | [s], _, hl, _, hlast => by
     have hs := hl s (List.mem_singleton_self s)
-    obtain ⟨-, p, q, hlo, hpq, hhi, hside⟩ := P.sideDarts_window hs.1 hs.2
+    obtain ⟨_hj, p, q, hlo, hpq, hhi, hside⟩ := P.sideDarts_window hs.1 hs.2
     exact ⟨p, q, hlo, hpq, hhi, by rw [runDarts_singleton_of_nil P k g s (hlast s rfl), hside]⟩
   | s :: s' :: rest, _, hl, hchain, hlast => by
     obtain ⟨⟨hs', hjoin, hgs⟩, hchain'⟩ := List.isChain_cons_cons.mp hchain
     have hs := hl s (List.mem_cons_self ..)
     have hsR := hl s' (List.mem_cons_of_mem _ (List.mem_cons_self ..))
-    obtain ⟨-, p₁, q₁, hlo₁, hpq₁, hhi₁, hside⟩ := P.sideDarts_window hs.1 hs.2
+    obtain ⟨_hj₁, p₁, q₁, hlo₁, hpq₁, hhi₁, hside⟩ := P.sideDarts_window hs.1 hs.2
     obtain ⟨p₂, q₂, hlo₂, hpq₂, hhi₂, hrest⟩ := runDarts_window_facts P hj (s' :: rest)
       (List.cons_ne_nil _ _) (fun t ht => hl t (List.mem_cons_of_mem _ ht)) hchain'
       (by simpa only [List.getLast?_cons_cons] using hlast)
