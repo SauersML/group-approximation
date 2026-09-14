@@ -83,7 +83,7 @@ theorem turingReducible_of_oracleRec {F O : ℕ →. ℕ} (o : ℕ → ℕ) (hO 
       induction n with
       | zero => rfl
       | succ y ih =>
-        simp only [Nat.rec_add_one]
+        dsimp only
         rw [ih]
         simp only [Part.bind_eq_bind, Part.bind_some, Nat.unpair_pair, q', oracleRecState_succ]
     refine Nat.RecursiveIn.of_eq (Nat.RecursiveIn.prec (prim hinit) hh) fun p => ?_
