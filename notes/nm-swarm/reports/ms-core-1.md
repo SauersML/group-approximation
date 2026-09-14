@@ -178,3 +178,14 @@ Partial census rows before tex 1541:
   - About 25 keys are partial only through a root downgrade and restore once their carriers are wired: `ChainCoreClosures`,
     `CoreRingReflection`, `ChainCoreGeneralRecurrent`, `CoreSubshiftCycle`, `RetainedSubshiftPeriodic`, and ms-traces-3's
     modules.
+
+## audit-nm-1 non-PASS rows (assigned by main 09-14, after the sweep)
+
+- CLAIM: the five non-PASS rows of audit-nm-1 (report a0c769367). Their owners are down, so the fixes are additive: new modules
+  only, no edits to other lanes' files. The rows go to ms-cite-2.
+  1. `d4c878a7ac22`, thm:amenable-trace: add `Countable W` to `PrintedAmenableNonquasidiagonalTrace`, as a new named Prop and
+     closed endpoint.
+  2. `2a97fb901bad`, tex 284–286: a carrier along the printed route, via direct-limit permanence of MF.
+  3. `c890294ad9b0`, tex 253–255: cite `ChainCoreClosures.printedCoreRingReflection_closed` for the first clause.
+  4. `80279f06992b`, tex 292: the EL_n torsion clause over ℤ, via e₁₂(1)e₂₁(−1)e₁₂(1), of order 4.
+  5. `2ff745dd7064`, tex 1060–1062: not MF for n ≥ 2, with nontriviality.
