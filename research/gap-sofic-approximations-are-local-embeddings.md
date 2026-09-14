@@ -9,7 +9,7 @@ distinct_from:
   sofic-fp-simple-kazhdan-group-from-fp-simple-ring: that is the ring-route existence question; this proves that its soficity gate (c) cannot be met through linear, affine or projective linear models over finite fields.
 ---
 
-**ESTABLISHED (unreviewed).**
+**ESTABLISHED (reviewed: sk-verify-3 PASS, sk-verify-26 PASS).**
 
 **Definitions.**
 - For a finite set `Ω` and `a, b ∈ Sym(Ω)`, `d(a, b) = |{ω : aω ≠ bω}| / |Ω|`. The fixed-point
@@ -63,3 +63,11 @@ fixed-point-ratio and exact-model statements on 2026-09-13, and no literature se
 Route: `gap-sofic-approximations-are-local-embeddings-proof`.
 
 **Review (sk-verify-3, 2026-09-13): PASS.** Both directions, the affine and projective gap bounds, and Corollaries 1–4 re-derived; model tests consistent. No change needed. Credit note (recalled): an instance of the folklore fact that approximation through uniformly discrete bi-invariant metrics is LEF. See `research/artifacts/sk-review-3-2026-09-13-part2.md`.
+
+**Review (sk-verify-26, 2026-09-14): PASS, second independent review.** All re-derived by hand:
+- both directions, including injectivity from `d(σ(g),σ(h)) ≥ d(σ(h⁻¹g),1) − o(1)`, which needs only a distance bounded away from 0;
+- gap (A): the fixed set is a coset of `A^α`, and the maps are the faithful holomorph;
+- gap (P): the eigenspace count is an equality, merging leaves the smallest part `t`, and `f(m−t)+f(t)` is convex;
+- Corollaries 1–2 by prefix induction on `B(r)` and `B(L)`.
+
+Brute force on MSI: holomorph max fpr ≤ 1/2 for `Z/2, Z/3, Z/4, Z/5, Z/2×Z/2, Z/2×Z/4, S_3`, and `PGL_m(F_p)` max fpr equals the route's bound (1/3, 1/2, 1/3, 3/7, 5/13 for (m,p) = (2,2),(2,3),(2,5),(3,2),(3,3)). No literature import; the credit to Vershik–Gordon was not re-read at source. Status line fixed (it said unreviewed despite sk-verify-3). See `research/artifacts/sk-verify-26-2026-09-14.md`.

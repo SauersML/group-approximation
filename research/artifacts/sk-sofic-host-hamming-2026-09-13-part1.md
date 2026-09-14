@@ -145,8 +145,12 @@ operation.
    sofic input (for example `BS(2,3)`), every simple Kazhdan sofic host is non-LEF, so it lies outside 𝒫. A positive
    answer needs a **seed of soficity that is not a permanence operation**. The finitely presented case does not give
    this: an infinite simple LEF group is never finitely presented.
-3. **The lamplighter hosts.** `G_Δ = EL_3(LC(2^Δ,F_2) ⋊ (Z/2 ≀ Δ))` is simple and Kazhdan, and it is LEF iff `Δ` is LEF.
-   So for non-LEF `Δ` no permanence argument makes it sofic.
+3. **The lamplighter hosts.** For infinite finitely generated `Δ`, `G_Δ = EL_3(LC(2^Δ,F_2) ⋊ (Z/2 ≀ Δ))` is simple and
+   Kazhdan, and it is LEF when `Δ` is LEF. Conversely, `G_Δ` LEF forces `[Δ,Δ]` LEF, since `[Δ,Δ] ≤ [Λ,Λ] ≤ G_Δ` with
+   `Λ = Z/2 ≀ Δ` (`perfect-groups-embed-in-crossed-product-elementary-groups`). Whether it forces `Δ` LEF is not
+   established. So for `Δ` with `[Δ,Δ]` not LEF, for instance `Δ = C(Γ)` with `Γ` sofic and not LEF
+   (`groups-embed-in-derived-subgroup-of-half-line-overgroup`), no permanence argument makes `G_Δ` sofic.
+   (Corrected by sk-verify-26, 2026-09-14: this item said "LEF iff `Δ` is LEF", which has no proof on main.)
 4. **Scope.** 𝒫 omits orbit full groups of sofic equivalence relations (Elek, arXiv:1211.0621), groups made sofic by new
    approximations, and amenable-by-sofic extensions. §4 and §5 treat these.
 

@@ -74,3 +74,4 @@ not checked here.
   - the e118ba468d fix.
 - **Fix F1, merged into this node and the route.** "`G_Δ` is LEF iff `Δ` is" had no proof on main: main has only `[Δ,Δ] ≤ [Λ,Λ] ≤ G_Δ`. The host bullet now assumes `[Δ,Δ]` not LEF, for instance `Δ = C(Γ)`.
 - The required `gap-sofic-approximations-are-local-embeddings` is still unreviewed as a node. The two parts Theorem O uses (its step 3 and the regular-action gap) were re-derived here.
+- **Correction (sk-verify-26, 2026-09-14, `research/artifacts/sk-verify-26-2026-09-14.md`).** The required node was not unreviewed. It already carried sk-verify-3 PASS (2026-09-13), and only its status line was stale. It now also carries sk-verify-26 PASS, so this route's `requires` rests on a reviewed node.
