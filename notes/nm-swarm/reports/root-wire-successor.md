@@ -215,7 +215,10 @@ Holds and tool, 21:35–23:13:
   - At ~23:40 the job was widened directly with `scontrol update … partition=msismall,amdsmall,agsmall,sioux`.
   - From wave 22 on, `widen-by-tag.sh` polls `squeue` for the job by tag and widens it while pending.
 
-Result: pending.
+Result: **ROOT GREEN, landed lead-wire daa821b00** at 23:41.
+- 32 import lines after line 5287, matching `rw-wave21.mods` exactly.
+- Build: acl42, 15576 jobs, 2 GroupApproximation modules rebuilt.
+- Waves 17–21 have wired 155 modules.
 
 ## Evidence and holds, 18:45–19:10
 
