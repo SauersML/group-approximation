@@ -46,3 +46,13 @@ error.
     (`thompson-f-interval-stabilizer-cosets-separate-only-if-amenable`).
   - **Gap.** A following witness needs a non-amenable co-amenable subgroup outside these families, or infinitely many
     orbit types. Models following no `F`-set are untouched (`research/artifacts/thompson-f-nonspatial-f-sets-2026-09-13.md`).
+- **Following witnesses are exactly mean-free amenable actions (2026-09-13).**
+  - **Dichotomy.** For every invariant mean on every `F`-set, the stabilizer IRS is `t·δ_{e} + (1-t)μ_0`,
+    where `t = m(Moved(c))` and `μ_0` lives on subgroups containing `F'`. On `Moved(c)` every nontrivial
+    element of `F` fixes a null set (`thompson-f-mean-stabilizer-irs-is-trivial-or-contains-derived`).
+  - **Consequence.** A witness by permutation models that follow an `F`-set exists exactly when `F`
+    admits a mean-free amenable action: an `F`-set with an invariant mean and `m(Fix(g)) = 0` for all
+    `g ≠ e`. Truncations of non-amenable Schreier graphs keep the error at least `h/4`.
+  - **Gap.** Is there a mean-free amenable action of `F`? Residually finite groups have one through
+    finite quotients, and `F` has only abelian ones. Orbits must have stabilizers shrinking to `{e}`,
+    e.g. configuration spaces with unboundedly many points.
