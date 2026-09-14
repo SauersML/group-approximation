@@ -240,3 +240,12 @@ T has no periodic points, so X is a Cantor set and the action is topologically f
 landed carriers `perfectSpace_carrier`, `isTopologicallyFree_shift` (ct-two-ended), `compactSpace_carrier`, and `zpow_apply_ne_self`
 (ct-involution). `isTopologicallyFree_shift`'s body is `IsTopologicallyFreeAction` by definition.
 - Absorbed row `6a7ff96154b3` (the LEF definition sentence) is dropped: it is gone from the census at the tip.
+- 10:1x LANDED PeriodicWordCentered c9c59ce5c (probe 0914-100430-29409 BUILT; all four `#audit_closed_axioms` clean), queued for wiring.
+  Rows flipped partial → formalized at 190eb60a9 (`metadata/sk-census-rows/ms-units.tsv`), each over its closed printed endpoint:
+  - `2ffe206d32dd` over `printedCenteredRecurrence`;
+  - `63b955601626` over `printedCenteredOccurrences`;
+  - `e0aae9c0b4eb` over `printedPeriodicAgreesCentered`;
+  - `72e70d46a29f` over `printedCenteredWindowsSameWords`.
+- MatricialMarkedLimitDegree: probe 0914-100430-29409 red on four errors (unused section instances, `List.ofFn` composition, and a
+  missing `DecidableEq` on the marking index for `FreeGroup.toWord`). All are fixed and in re-probe; `PrintedWordEntriesDegreeAgreement`
+  now carries `[DecidableEq R]`. Rows `2e17cbfab2b6`, `cbc0b3980a99` and `d228d6575111` flip after it lands.
