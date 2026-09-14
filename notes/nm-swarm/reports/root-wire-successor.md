@@ -352,6 +352,37 @@ Result: **never landed**. No root commit landed after daa821b00.
   0914-085734-83152).
   - ms-traces-1 landed the fix at bf1aeff09. GREEN 0914-090918-32879 (BUILT, md5 = origin) covers it.
   - No nm report names it either, so it joins the open question: 25 tops.
+- Relaunch through the patched `nmwire.sh`:
+  - gate at 98858d528: 3 of 4 kept; `BridgeComponentValue` is no longer an unwired top, because a newer landed module
+    imports it;
+  - 16 newly reachable files, 0 blocking lines;
+  - root build tag 0914-090403-31245 (base 2d653dd59, acl42, 15592 jobs); job 780826 widened 09:04, running 09:05.
+
+Result: **ROOT GREEN, landed lead-wire 73b555f38** at 09:16.
+- 3 import lines after line 5319, matching `rw-wave22.mods` exactly; the first root commit since daa821b00.
+- The patched landing loop landed on attempt 3, after 2 non-fast-forward races. The commit carries the current session
+  attribution once.
+
+## Ownership ruling and wave 24 draft, 09-14 ~09:15
+
+Main's ruling on the 24 ambiguous green tops:
+- ours, from today's lane commits: `Algebra.OrthogonalRepresentationResiduallyFinite`, `Analysis.KirchbergTraceModels`,
+  `Kazhdan.KazhdanNearInvariantVector` (oa-kirchberg), `Analysis.VonNeumannTwistedAmplification`,
+  `Analysis.HyperlinearTraceVanishingModels` (oa-mcduff), `Analysis.PauliHyperfiniteFactor` (oa-hyperfinite),
+  `Manuscript.NonMF.FFFSectionTwoConfiguration`, `GroupTheory.HydeLodha.QTwoFinitePresentationPerfect`;
+- wire the 09-12 restore-tree tops, untouched since the restore and so not in flight: the Algebra O1 tops,
+  `PurelyInfinite*`, `CStarMaxTensorExact`, `ReducedGroupCStarCongr`, `KOne.*`,
+  `GGT.KazhdanHypGQEightFastTraversal`. All 15 were checked: last origin commit 3f71a3a50;
+- hold `Analysis.TraciallyCompleteCStarModelTest` (STW XXII campaign, 31da2ecfd), now in `rwprep.py`'s hold list.
+
+Wave 24 draft, 24 modules: the 8 confirmed tops, the 15 restore-tree tops, and `FaceSetBoundaryGlue`. That file was a
+restore-tree file with no owner, so ms-traces-1's successor fix at bf1aeff09 makes it ours. It launches after wave 23
+lands.
+
+## Wave 23, launched 09-14 ~09:17
+
+- 37 ours tops, the draft recorded above in the wave 22 section.
+- Gate at the tip through the launcher; previous root 73b555f38.
 
 Result: pending.
 
