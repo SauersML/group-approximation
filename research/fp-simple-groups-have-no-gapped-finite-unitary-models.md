@@ -48,3 +48,5 @@ gapped finite groups, even when the maps into the groups are arbitrary.
   certificate built from representations or actions of a gapped family of finite groups.
 - For the ring route `sofic-fp-simple-kazhdan-group-from-fp-simple-ring`: combined with the classical-group corollary, rank
   models into `M_N(F_q)` cannot be upgraded through the representation theory of quasisimple classical groups.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Re-derived: the isotypic weight bound, the gap estimate ‖ρ(q)−I‖_2² ≥ 2(1−θ)(1−w^0), central relator images, the projective homomorphism made trivial by simplicity, and the commutator contradiction.** See `research/artifacts/sk-review-5-2026-09-13-part3.md` §3.

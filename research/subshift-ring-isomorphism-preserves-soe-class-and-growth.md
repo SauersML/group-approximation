@@ -28,3 +28,5 @@ the complexity function.
 
 Proof in `subshift-ring-isomorphism-soe-and-growth-proof`. It is a routine combination of Theorem R and Nekrashevych's
 growth estimate. Neither gives flip conjugacy: see `subshift-crossed-product-algebraic-cartans-are-conjugate`.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Re-derived: Theorem R with m = 1, Φ(V_Y^n) ⊆ V_X^{Cn} with Nekrashevych's two-sided estimate, the entropy bound h(Y) ≤ 4C h(X), and GK dimension through monotone complexity.** See `research/artifacts/sk-review-5-2026-09-13-part3.md` §2.

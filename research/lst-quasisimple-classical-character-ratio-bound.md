@@ -25,3 +25,5 @@ So every family of finite quasi-simple classical groups, of any ranks, over any 
   - Then `[g,h] ∈ ker ρ` for every `h`, and `ker ρ` is central, so `gZ(Γ)` is central in `Γ/Z(Γ)`.
   - `Γ` is quasi-simple, so `Γ/Z(Γ)` is simple nonabelian, and therefore `g ∈ Z(Γ)`.
 - Take `N = 1`.
+
+**Review (sk-verify-5, 2026-09-13): PASS as import (quotes as recorded, primary not re-read). The support-≥-1 lemma for noncentral elements was re-derived.** See `research/artifacts/sk-review-5-2026-09-13-part3.md` §3.

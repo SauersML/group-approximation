@@ -18,3 +18,5 @@ So `τ(λ_s) = 0` for every `s ≠ e`.
 This is weaker than C*-simplicity, which is open: `subshift-elementary-groups-are-cstar-simple`.
 
 Route: `subshift-elementary-group-reduced-cstar-has-unique-trace-proof`.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Simple, infinite and Kazhdan imply nonamenable with trivial amenable radical, and BKKO Theorem 4.1 (verbatim import on main) gives the canonical trace.** See `research/artifacts/sk-review-5-2026-09-13-part3.md` §4.

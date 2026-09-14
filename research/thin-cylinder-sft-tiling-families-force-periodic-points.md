@@ -25,3 +25,5 @@ artifacts:
 - The mechanism is one-dimensional and says nothing about tori that are long in both directions.
 
 Route: `thin-cylinder-sft-tiling-families-force-periodic-points-proof`.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Re-derived: column commutation for L ≤ 4D+1, orthogonality from (Q1), collapse of repeated residues, König for W_0, and the ordered-product expansion; Corollaries 1–4 checked.** See `research/artifacts/sk-review-5-2026-09-13-part3.md` §5.

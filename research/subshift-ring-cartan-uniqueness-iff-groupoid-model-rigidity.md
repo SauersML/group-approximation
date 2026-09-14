@@ -28,3 +28,5 @@ hypothesis of 5 is step (i) of Firewall F2 in `research/artifacts/sk-rigidity-in
 
 Proof in `subshift-ring-cartan-uniqueness-reduction-proof`; details in
 `research/artifacts/sk-rigidity-cartan-2026-09-13-part1.md` §1–§2.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Re-derived: trivial F_2-twists, compact metrizable unit space, minimality via the ideal I_U, no isolated points via a minimal idempotent and the socle, transport of the pair axioms along an F_2-linear isomorphism, full bisections giving [[T]], and item 5 via Theorem A.** See `research/artifacts/sk-review-5-2026-09-13-part3.md` §1.

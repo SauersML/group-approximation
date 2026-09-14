@@ -38,3 +38,5 @@ such that `x ↦ (ρ_k(φ_k(x)))_ω` extends to an injective homomorphism `S →
 - Unbounded direct products of gapped groups.
 - Finite groups with long chief series outside these families.
 - Unitary models that do not factor through finite groups at all.
+
+**Review (sk-verify-5, 2026-09-13): PASS. Re-derived: perfectness gives commutator generators X′, the approximation factors through [Q_k,Q_k] with the same limit homomorphism, and Theorem U applies with the LST gap.** See `research/artifacts/sk-review-5-2026-09-13-part3.md` §3.
