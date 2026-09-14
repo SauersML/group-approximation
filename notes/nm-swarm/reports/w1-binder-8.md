@@ -119,3 +119,14 @@ CLAIM `osinLemma94CaseOneSpurEnclosure : OsinLemma94CaseOneSpurEnclosureStatemen
 
 - Route: the walk-map separation of `IsNoncrossingClosedWalk` (`walkMap_facePerm_mem`, `walkMap_connected`, `not_faceClass_alpha`) uses only the chain and `turn_mem`. So a closed walk chained by first turns, bridges allowed, encloses `enclosedFaces` (the class of its non-bridge reversals off its edges) with the field `mem_iff` of `EnclosedFaceSet`. For Case 1: `turn_next` from the first-turn chain of 0484be5e5; f and Π off the enclosure, since one holds a walk dart and the first dart of p joins them off the walk; the two enclosures disjoint, since a chain in one never meets f or Π; so the exterior is off one of them.
 - Both modules are written and wait for a probe. The MSI master has been absent since about 00:05 and the auth breaker is set.
+
+## Residual 5 and binder 3 over the successor form: LANDED (2026-09-14 ~08:40)
+
+- LANDED c23f6e753 after probe 0914-083350-47748 GREEN, which BUILT all three modules (3 rebuilt, no error lines):
+  - `ClosedWalkFirstTurnEnclosure`: `enclosedFaces`, `FirstTurnEnclosure.mem_iff_enclosedFaces`, `alpha_mem_of_faceClass` (separation), `turnMem_of_firstTurn`, `eq_of_firstTurn`, `firstTurn_getElem_succ`.
+  - `Estimating/OsinLemma94SameCellSpurEnclosureProof`: `osinLemma94CaseOneSpurEnclosure : OsinLemma94CaseOneSpurEnclosureStatement`, closed, with `#audit_closed_axioms` = [propext, Classical.choice, Quot.sound]. Also `osinLemma94CaseOneRCellSpur_of_enclosedSucc (hloop) (hsub) : OsinLemma94CaseOneRCellSpurStatement`.
+  - `Estimating/OsinLemma94SameCellEnclosedSucc`: `osinLemma94CaseOneSameCell_of_enclosedSucc (hloop : EnclosedSubdiagramLoopCutSuccStatement) (hsub : ClosedWalkEnclosedSubdiagramSuccStatement) : OsinLemma94CaseOneSameCellStatement`.
+- All three are queued for wiring.
+- Binder 3 now rests on exactly two statements, both ms-traces-2's: `EnclosedSubdiagramLoopCutSuccStatement` and `ClosedWalkEnclosedSubdiagramSuccStatement`. Origin has no producer for either at 08:34.
+- Probe note: the 08:30 probe (0914-083041-24220) said GREEN but printed no BUILT line. Lake restored both modules silently from the shared artifact cache (`LAKE_RESTORE_ARTIFACTS`), so these lane rules do not count it as evidence. Touching the sources cannot force a rebuild under the cache, so the bytes were changed (two docstring edits) and the modules built at 08:33.
+- Residual statements owned by this lane: none.
