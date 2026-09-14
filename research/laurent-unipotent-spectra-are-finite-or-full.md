@@ -26,3 +26,6 @@ artifacts:
 No novelty is claimed. The ingredients are elementary, plus Bass–Milnor–Serre Corollary 4.3.
 
 Proof: `laurent-unipotent-spectra-finite-or-full-proof`.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part7.md`):** re-derived (F1)–(F4) (Pontryagin annihilator, exponent span ≥ deg h, poor-character count, fibre counts); the three-move density argument; and Corollary A′ via the Gelfand transform, commutators with e_{d,k}(1), signed permutations and BMS b). Conditional only on the reviewed BMS import.

@@ -18,3 +18,6 @@ For `a, z ∈ R` the following are equivalent:
 3. for every `ξ ∈ X`, `zδ_0 ∈ a·F^{(Z)}` has a preimage of finite support in `V_ξ`.
 
 **Why it matters.** An idempotent `e ∈ R` witnesses suitability of `a` iff every column of `e` has a local `a`-preimage and every column of `1−e` has a local `(1−a)`-preimage, within one radius. This generalizes the Laurent case, where Laurent division supplies the radius.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part7.md`):** re-derived: covariance V_ξ ≅ V_{T^tξ} and faithfulness; (3⇒2) G_ρ clopen, increasing and covering, then compactness; (2⇒1) one preimage per window type assembled into r = Σ(η_n∘T^{−n})u^n; both one-point model tests.

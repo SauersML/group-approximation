@@ -28,3 +28,6 @@ unital C*-algebra. Suppose the joint spectrum of `σ(I + v_1 e_14 + v_2 e_24 + v
 - The trivial representation has spectrum `{1}` and norm 4.
 
 Proof: `laurent-sl4-block-sl2-norm-four-off-full-spectrum-proof`.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part7.md`):** re-derived: congruence factoring by Corollary A′; isometry on a surviving simple summand; the chain-ring node covers every finite commutative principal ideal ring and the same upper-left block SL_2, so ρ(z) has eigenvalue 4. Freeness of S, T is used only in the Kesten model test.
