@@ -30,6 +30,8 @@ printed sentence on its own.
 
 namespace GroupApproximation.GGT.VanKampen.ListNoABAB
 
+open List
+
 variable {α : Type*} [DecidableEq α]
 
 /-- **Appending the first letter keeps `NoABAB`.** -/
