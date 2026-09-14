@@ -27,3 +27,5 @@ Contrast: every extreme character of `G` is `1` or `δ_e`, but its rank lengths 
 - non-uniform simplicity, with the extrema attained at ergodic measures.
 
 See `research/artifacts/sk-verify-14-2026-09-13-part7.md` §4.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived from the Ara–Claramunt import (a faithful Sylvester matrix rank function for full ergodic μ). Wording: faithfulness on M_3(R) follows from rk(a) ≥ rk(E_ii a E_jj). For the extreme-point step, use that μ ↦ μ(U) − Mμ(V) is affine and ≤ 0, and its zero set is a closed face. See `research/artifacts/sk-verify-16-2026-09-13.md` §3.

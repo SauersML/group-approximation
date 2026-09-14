@@ -7,7 +7,7 @@ title: Pavlov–Schmieding Theorem 1.3 — a generic subshift in the closure of 
 
 **ESTABLISHED by citation** (`generic-transitive-subshift-is-regular-toeplitz-citation`).
 
-Source: R. Pavlov and S. Schmieding, *On the structure of generic subshifts*, arXiv:2203.15159v1 (29 Mar 2022). Read on 2026-09-13 from the arXiv PDF, pp. 1–4. The abstract page lists publication in Nonlinearity 36 (2023); journal numbering was not checked.
+Source: R. Pavlov and S. Schmieding, *On the structure of generic subshifts*, arXiv:2203.15159v1 (29 Mar 2022). Read on 2026-09-13 from the arXiv PDF, pp. 1–4. Published as Nonlinearity 36(9) (2023) 4904–4953, doi 10.1088/1361-6544/acea25 (Crossref, checked by sk-verify-16); the journal numbering of the theorems was not checked.
 
 - **Space.** `S` is the union over finite alphabets `A ⊂ Z` of the spaces `S[A]` of subshifts, with the Hausdorff metric (two subshifts are close when their sets of n-letter words coincide for large n). `S′` is the set of non-isolated points. `T′` is the set of infinite transitive subshifts in `S′`, and `T̄′` is its closure.
 - **Theorem 1.3 (verbatim, p. 4).** "A generic subshift X in the closure T̄′ of the infinite transitive subshifts has the following properties:
@@ -17,3 +17,5 @@ Source: R. Pavlov and S. Schmieding, *On the structure of generic subshifts*, ar
 - **Clopen restriction (p. 3).** "For any nonempty shift of finite type X, the subshifts contained in X form a clopen subset of S (see Lemma 2.3)". So for a fixed finite alphabet `A`, `T̄′ ∩ S[A]` is open in `T̄′`, and a generic property in `T̄′` is generic in `T̄′ ∩ S[A]`.
 
 **Review (sk-verify-15, 2026-09-13): PASS.** Theorem 1.3 (source label maintrans, e-print l.234–240), the clopen restriction (l.197) and perfectness of the infinite transitive subshifts (l.154) checked verbatim in arXiv:2203.15159v1. See `research/artifacts/sk-verify-15-2026-09-13-part3.md` §5.
+
+**Review (sk-verify-16, 2026-09-13): PASS-WITH-FIXES.** Theorem 1.3(1)–(3), the perfectness sentence and the Lemma 2.3 sentence checked verbatim against the arXiv:2203.15159v1 PDF (extracted on MSI). Journal data from Crossref applied. See `research/artifacts/sk-verify-16-2026-09-13.md` §8.

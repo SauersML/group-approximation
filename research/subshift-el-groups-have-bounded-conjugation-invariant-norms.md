@@ -22,3 +22,5 @@ Kept for the record; the question was open until part 3.
 - **Via stable rank one (part 2 §2.3).** Not needed; `sr(R_X) = 1` stays open.
 
 **Review (sk-verify-15, 2026-09-13): PASS.** Boundedness (‖h‖ ≤ 156‖e_12(1)‖), bounded normal generation and the width bound 312(⌊1/inf_μ μ(V)⌋+1) re-derived from bounded elementary generation, Corollary C and Theorem B; the lower bound is Theorem A. See `research/artifacts/sk-verify-15-2026-09-13-part3.md` §2.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived: ‖h‖ ≤ 156‖e_12(1)‖, cw(e_12(χ_V)) ≤ 312(⌊1/inf μ(V)⌋+1) using ⌈ρ_min⌉ ≥ 1 for U = X, the lower bound from rank lengths, and 78 involutions. See `research/artifacts/sk-verify-16-2026-09-13.md` §2.

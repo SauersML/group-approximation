@@ -15,3 +15,5 @@ artifacts:
 **Status: established** by `subshift-el-root-elements-boundedly-normally-generated-proof`. UNREVIEWED; queued with sk-verify-13.
 
 **Review (sk-verify-15, 2026-09-13): PASS.** Commutator in the tower copy of GL_d(F_2), finite simplicity, Theorem B with U = X and ρ_min ≥ 1, and the permutation-conjugate step re-derived. See `research/artifacts/sk-verify-15-2026-09-13-part2.md` §3.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived: k = [g,h] ∈ H_V ≅ GL_d(F_2) contains e_12(χ_{V_g}) = e_12(ε_ee) in its normal closure, the bound on M_g, and the bi-Lipschitz comparison of norms. See `research/artifacts/sk-verify-16-2026-09-13.md` §5.

@@ -20,3 +20,5 @@ For `x, y ∈ X` the following are equivalent:
 So these conjugacy classes of maximal subgroups are parametrized exactly by the orbit space `X/Z`.
 
 **Review (sk-verify-15, 2026-09-13): PASS.** Additivity via Fix(G_{v,w}) = {v,w,v+w}, diagonality via root-subgroup fixed sets, R-linearity, and the eigencharacter argument (3)⇒(4) re-derived. See `research/artifacts/sk-verify-15-2026-09-13-part3.md` §3.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived: linearity from the fixed sets of pointwise stabilizers (independent-triple transitivity), diagonality from the root-subgroup fixed sets, R-linearity from e_12 equivariance, and the orbit from LC(X)-eigencharacters. See `research/artifacts/sk-verify-16-2026-09-13.md` §6.

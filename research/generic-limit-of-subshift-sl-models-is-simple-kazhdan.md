@@ -20,3 +20,5 @@ Fix a finite alphabet `A` with `|A| ≥ 2`. The note's finite models are the mar
 So the generic infinite limit of this expander family of finite simple groups is an infinite simple Kazhdan LEF group.
 
 **Review (sk-verify-15, 2026-09-13): PASS.** Boundary of the models (no aliasing for N > 2λ, Euler walks, isolation), Lemma 1 (admissible = closure of infinite transitive), Lemma 2 (Cantor, minimal G_δ dense with dense complement, not F_σ) and the three conclusions re-derived; Pavlov–Schmieding checked at source. See `research/artifacts/sk-verify-15-2026-09-13-part3.md` §4.
+
+**Review (sk-verify-16, 2026-09-13): PASS.** Re-derived: window dependence and the homeomorphism onto a closed set, admissible = T̄′[A], minimality G_δ and dense (Pavlov–Schmieding Thm 1.3(1) on the open T̄′ ∩ S[A], by their Lemma 2.3), non-minimal SFT approximants, Baire, and meagerness of recursive languages. See `research/artifacts/sk-verify-16-2026-09-13.md` §7.
