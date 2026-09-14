@@ -243,3 +243,24 @@ Hand model tests (23:3x):
   - residual Props `OsinLemma94CellJunctionValueInput` and `OsinLemma94BoundaryJunctionBudgetInput`.
 - Unprobed: it imports ms-binary's adopted `ClassProducerGaps`, not on origin at 02:02 (last attic 3f4fe3617). The
   overlay rule bars peer files, so the probe waits for that landing.
+
+### Bad-junction exclusion, part 1 landed (ad307e323, probe 0914-083853-35124 GREEN, verdict and BUILT lines checked)
+
+`GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionExclusion.lean`, over ms-binary's landed
+`OsinLemma94ClassProducerGaps` (0011fcb93, definitions unchanged from ms-core-2's draft).
+- `facePerm_getLast_eq_head_mod`: consecutive sides read cyclically, including the wrap from the last side to side 0
+  (`facePerm_getLast_last_eq_head_zero`, through `Embedded.isChain_rotate_closing`).
+- `alpha_mem_cellDarts_of_mem_sideDarts`: the reverse of a dart on a `cell j` side is a dart of cell j.
+- `junctionGap_faceOf_ne_face`: at every kind-level same-cell join, no gap dart lies on the polygon face. Proved at the
+  polygon corner through hull-component's `JunctionPocket.gap_alpha_faceOf_ne`, on the planar optimal diagram. Closed
+  endpoint `osinLemma94JunctionFaceClause : OsinLemma94JunctionFaceClauseStatement`.
+- `listVal_junctionGap_ne_one_of_mem_badJunctions`: a bad same-cell junction is exactly a gap word of value ≠ 1.
+- `card_badJunctions_le_boundaryBad`, `sum_card_badJunctions_le_sum_boundaryBad`: once same-cell gaps have value one,
+  the bad junctions are the boundary bad junctions (`boundaryBadJunctions`).
+- Residuals, stated with the binders of `OsinLemma94LongTransitionInput` over the agreed index set (spelled inline;
+  respelled over ms-binary's `P.nonJoinPolygons` once `OsinLemma94ClassJoins` lands):
+  - `OsinLemma94CellJunctionValueInput`: the gap of a kind-level same-cell join has value one;
+  - `OsinLemma94BoundaryJunctionBudgetInput`: the boundary bad junctions number at most `K n`.
+- Next: `osinLemma94BadJunctionInput_of_pieces`, i.e. `OsinLemma94BadJunctionInput` from the two residuals, once
+  ms-binary's `OsinLemma94ClassJoins` lands. The module certifies no printed sentence, so no census rows.
+- Queued for wiring at ad307e323.
