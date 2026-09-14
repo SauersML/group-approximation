@@ -49,7 +49,9 @@ All three declarations depend only on the axioms [propext, Classical.choice, Quo
   noncrossing residual alone.
 - All three declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
 
-## In flight: `Estimating/OsinAppendixEulerTwoGonInnerAssembly` (probing; attic b0a58dbb9)
+## Landed: `Estimating/OsinAppendixEulerTwoGonInnerAssembly` (35e17a915, probe 0913-191350-55331 GREEN, unwired)
+
+Both declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
 
 - `TwoGonInnerFollowsWalkInput`, the residual:
   - a noncrossing walk equal to the decomposition, whose inner cycle follows its boundary;
