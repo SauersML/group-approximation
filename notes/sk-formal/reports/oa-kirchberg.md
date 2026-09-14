@@ -43,6 +43,23 @@ Grading plan for 660dd9b4b09f:
 - The sentence asserts the inference "not residually finite and Kazhdan, so it lacks the factorization property". That is carried by a closed endpoint over every group.
 - Thom's construction itself stays the typed input `ThomSoficKazhdanNonResiduallyFiniteInput`; it is not proved here.
 
+## Item 3 (main, 09-14 ~09:40): SK census rows l.30–88 at census 9cb80166d (tip 8b36733d7, md5 29d63f79)
+
+Checked before writing: no other lane has these keys. 0efbce019168 belongs to sk-stepanov, and 7f3b239e5f2a plus l.89–107 belong to oa-llp.
+
+| key | tex | grade | carriers / residual |
+|---|---|---|---|
+| 1453f65cbfa2 | abstract l.30–33 | formalized | `printedSimpleKazhdanSoficMain` at n = 3 |
+| 6866200f2d46 | abstract l.33–36 | formalized | main's LEF, sofic and hyperlinear clauses; `printedBrownOzawaPestovAnswer`; `printedGXAnswersBrownOzawaPestov_of_main` |
+| 199438e96aee | abstract l.37–41 (cor:lef) | partial | converse directions carried; forward directions open on `LamplighterHostStatement`, and for the word-problem form also on `LEFSolvableWordProblemEmbeddingStatement` and `Lamplighter.PrintedLamplighterHostSolvableWordProblem` |
+| f8766b1da9e1 | abstract l.42–43 (cor:host) | partial | `printedRecursivelyPresentedLEFHost_of_lamplighter`; open on `LamplighterHostStatement` |
+| 43c53c1a6033 | l.73–75 | definition | `IsTextbookLEF` (verbatim), `IsLEF`, `isLEF_iff_textbook` |
+| b32e72d0cc49 | l.75–77 | formalized | `printedSubshiftRingFGStatement`, `printedEJZTheorem`, main's (T) clause |
+| 48be259e6698 | l.77–80 | formalized | `printedPeriodicMatricialStatement`, `printedFiniteModelsRing` |
+| f5bd94aeffeb | l.80–82 | formalized | main's marked-limit clause, `printedMatricialMarkedLimitStatement`, `printedMatricialQuotientsExpanders` |
+| 9c6c8ee991ac | l.82–85 | formalized | `printedGeneralSimplicityStatement` via `General.isSimpleGroup_clopenGroupCrossedProduct` (commutator in the H_V ≅ GL_d(F₂) tower copy, then K ⊇ H_V) |
+| eadacb5ce412 | l.85–88 | attribution | Matui, credit only |
+
 ## CLOSED (09-14 09:2x): claim 2
 
 - LANDED 18e9583b4 (probe 0914-091945-38960, BUILT, 0 errors), wire-queued:
