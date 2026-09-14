@@ -85,8 +85,21 @@ None in this range.
     - `image_chainRecurrentSet_firstReturn_of_pieces`: `CR(S_C) = C ∩ CR(T)`.
     - Both take only `CoreRingReflectionStatement` and `CoreModelsLEFStatement` as premises.
     - Process slip: the first landing used `NM_UNVERIFIED` for a Lean file, and main was told.
-  - Remaining: (a) a direct unconditional proof of `C ∩ CR(T) ⊆ CR(S_C)`; (b) the printed saturation route for
-    `CR(S_C) ⊆ C ∩ Y` (tex 1745–1749).
+  - LANDED `Dynamics/ReturnSaturation` and `Manuscript/NonMFSentences/DynamicRankBudgetInducedCoreSaturation` afa5cd02d
+    (probe 0913-192008-75631 GREEN).
+    - `mem_of_zpow_mem`: orbit visits to `C` are successive returns.
+    - `returnSaturation`, `image_returnSaturation`, `mem_returnSaturation_iff`, `returnSaturation_eq_biUnion`,
+      `isClosed_returnSaturation`.
+    - `coe_mem_chainRecurrentSet_of_firstReturn_of_pieces`: `CR(S_C) ⊆ C ∩ CR(T)`, printed saturation route (tex 1745–1749).
+    - `image_chainRecurrentSet_firstReturn_printed`: `CR(S_C) = C ∩ CR(T)`, both inclusions on the printed route.
+    - Both take only `CoreRingReflectionStatement` and `CoreModelsLEFStatement` as premises.
+  - Claim complete. The optional item (a direct unconditional proof of `C ∩ CR(T) ⊆ CR(S_C)`) is not started: it is off the
+    printed route and changes no census grade.
+  - Lean traps from this item:
+    - a subtype term `⟨f x, h⟩` carries a proof whose type mentions `f x`. `rw` inside `Subtype.ext` fails with "motive is
+      not type correct", so `show` the plain equation first.
+    - `Dynamics.mapsTo_chainRecurrentSet` applied straight to a membership mis-infers the map. State the `MapsTo` with
+      its type written out.
 
 ## ReturnRing modules (ms-core-1)
 
