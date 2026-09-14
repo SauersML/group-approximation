@@ -254,6 +254,15 @@ CLAIM `OsinLemma94ContactMapSmallFacesInput` (under the binders of `OsinLemma94L
   and one region between them, f ∪ region ∪ f′ is a heavier contiguity region, since its sides are the neighbouring
   regions' short sides. For d_f ≥ 3, or a block with several short sides in a row, the merge needs a sector surgery or a
   different argument; nothing on main does that yet. Part 3 gets its own named Prop and a model test before it is built.
+- 10:0x resume after the API/DNS outage. Reconciled: every landing through b3c563424 is on origin and in landed.log;
+  nothing was half-landed. Probe 0914-093234-44610 died on the MSI hop (infra), with no evidence.
+- Drafts (probe 0914-10:0x running):
+  - `CombMapBipartiteSmallFaces` (attic 03ecc8ad5): `vertexOf_facePerm_ne_pow_three`, `sigma_alpha_eq_of_vertexOf_eq`,
+    `card_filter_degenerate_le`.
+  - `Estimating/OsinLemma94ContactMapSmallFaces` (attic 329812ba2): `exists_faceOf_eq_objectFace`,
+    `vertexOf_eq_of_faceOf_eq`, `card_fixed_colour_false_le` (≤ n + 1), `card_degenerateFaces_le`, the residual
+    `OsinLemma94ContactMapNondegenerateSmallFacesInput`, and `osinLemma94ContactMapSmallFacesInput_of_nondegenerate`
+    (K + 2). This is a reduction, and the nondegenerate count stays open.
 - The earlier H outline, kept for reference:
 - H = `PredicateRestriction.toCombMap (S.diagram.toCombMap.dual)`, keeping one dart pair per (polygon f with d_f ≥ 2,
   object o), where o is a relator cell or the exterior.
