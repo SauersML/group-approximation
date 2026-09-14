@@ -79,3 +79,16 @@ strongly orbit equivalent. The converse direction holds for flip conjugacy, sinc
   - The locally mixed orientation is excluded because `R_Y` is simple. That orientation is the identity on one clopen
     piece and the graph automorphism on the other, which is Petechuk's non-standard pattern over product rings.
   - Left open: `subshift-el3-isomorphisms-recognize-diagonal-subgroups`.
+- **A conditional yes through Frobenius bicommutants (sk-orthogonality-o, 2026-09-14, unreviewed; artifacts
+  `research/artifacts/sk-orthogonality-o-2026-09-14-part1.md` and `-part2.md`).**
+  - `frobenius-bicommutants-make-subshift-el3-isos-standard`. Assume `subshift-gl3-index-kernel-is-elementary-group`
+    (unreviewed) for `X` and `Y`, which puts every torsion element of `GL_3(R)` in `EL_3(R)`. Then every isomorphism
+    `G_X → G_Y`, possibly composed with the graph automorphism, is standard. So `G_X ≅ G_Y` implies strong orbit
+    equivalence.
+  - Route:
+    - the bicommutant of the constant Frobenius group `F21_V` in `G_X` is `GL_3(2)_V`;
+    - on the Y-side its image has one isotypic block (order count 168);
+    - `3⊗3` is not semisimple, which gives orthogonality of the support idempotents;
+    - the trivial centralizer of the diagonal gives no fixed vectors;
+    - `singer-identities-make-subshift-el3-isos-standard` finishes with bicommutants and generation.
+  - If the index kernel theorem passes review, this question becomes a theorem.

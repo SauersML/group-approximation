@@ -73,3 +73,12 @@ it fails the `G_Y`-conjugacy form.
     - proper `V` with `Fix(α(F21_V)) = 0`;
     - the orientation mixture of `3` and `3*` pieces.
   - Artifact `research/artifacts/sk-orthogonality-o-2026-09-14-part1.md`.
+- **Frobenius bicommutants (sk-orthogonality-o part 2, 2026-09-14): a conditional yes.**
+  - `C_{G_X}C_{G_X}(F21_V) = Q_V`. On the Y-side, torsion lies in `G_Y`, so the bicommutant of `α(F21_V)` contains a
+    full `GL_3(2)` per isotypic block. Order 168 leaves one block of type `3` or `3*` and no type `2`.
+  - Non-semisimplicity of `3⊗3` gives (O). The trivial centralizer of `α(L_X)` gives (O′). The orientation is
+    constant.
+  - After the graph automorphism, the Singer identities hold, and every isomorphism is standard with `k ∈ GL_3(R_Y)`.
+  - Conditional on the unreviewed index kernel theorem (`frobenius-bicommutants-make-subshift-el3-isos-standard`,
+    unreviewed).
+  - Artifact `research/artifacts/sk-orthogonality-o-2026-09-14-part2.md`.
