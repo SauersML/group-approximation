@@ -32,3 +32,12 @@ Status: proved in `singer-identities-make-subshift-el3-isos-standard-proof`, unr
 Model tests: the identity and `inn(diag(u,1,1))` satisfy (Sing) and (O′). The graph automorphism has type `3*` and
 fails (Sing), so the theorem applies after composing with it. The natural ⊕ trivial fake fails (O′). The Steinberg
 fake fails (Sing).
+
+## Review
+- **sk-verify-25b PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-25b-2026-09-14.md` §2):** adversarial re-derivation of Lemma 0, Lemma I and Steps 1–7.
+  - Computed on MSI: Ext¹_{F_2GL_3(2)}(3,3) = 0 (dim Z¹ = dim B¹ = 8); sl_3 ≅ 8 is irreducible; 8|_{F21} = 2⊕3⊕3*; 3⊗3|_{F21} = 3⊕3*⊕3*; span_{F_2}F21 = M_3(F_2).
+  - (Div) read at source: Matui, arXiv:math/0404224 e-print l.272–283, Lemma 2.5, verbatim as quoted.
+  - All imports reviewed: index kernel theorem (sk-verify-18 PASS), Proposition F (sk-verify-19), bicommutant closedness (sk-verify-5), Peirce roots (sk-verify-15), matrix ring ⇒ SOE (sk-verify-3), DP (sk-verify-16), K_0 (sk-verify-3, group level).
+  - A1: the status line should call the index kernel theorem reviewed.
+  - A2: Step 5 needs no Proposition F item 2, and so no corner isomorphism. With (O) and (O′), `S_{X∖V} = I − S_V`. `α(Q_V)` commutes with `K_{X∖V}`, and the kernel of its action on `Fix(K_V)` is normal in the simple `α(Q_V) ≅ GL_3(2)` and contains `K_V`. So `α(q_V) − I = S_V(α(q_V) − I)S_V`.
+  - A3: Step 2 should note that restriction to `F21_X` is semisimple (21 odd), so forbidden constituents are summands of `M`.
