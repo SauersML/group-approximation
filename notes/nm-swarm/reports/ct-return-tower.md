@@ -101,6 +101,35 @@ probe 0913-185808-72846 GREEN, BUILT line checked, 0 errors, queued for wiring),
 - Census rows (keys from ms-core-4's ledger adbf70b62): `42c043ef7ab5`, `8981cd70915a`, `43afa4ee3f10`, `cfbacaa0fffa`,
   `400dde0dbd9d` partial over CoreModelsLEFStatement; `9dae685e37b9`, `b23e0f5197b5` formalized.
 
+## V3 residual 3: `OsinLemma94ClassCaseGapEndpointStatement` (claimed from ct-bilateral-cell; statement at 55d5916c7)
+
+Module `GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassPairShapes` (ct-bilateral-cell) states the three
+shapes; the assembly `osinLemma94ClassCases_of_residuals` (`OsinLemma94ClassPairTransfer`) takes this Prop as `hendpoint`.
+
+- LANDED 1de75b6a0 `Estimating/OsinLemma94ClassGapEndpointModel` (probe 0913-195149-70727 GREEN): `SideAt.word_split`,
+  `gap_length_le` / `inGap_gap_length_le` (a gap of an N1 ∪ N2 class has ≤ B = ⌈(c+2)/λ⌉₊ letters),
+  `ofSides_not_inGap`, `ofSides_not_gapEndpoint` (the shape is empty on singleton classes).
+- LANDED 2fc90db55 `Estimating/OsinLemma94ClassGapHairModel` (probe 0913-203755-64088 GREEN): `isLambdaCQuasiGeodesicWord_hair`,
+  `isLambdaCQuasiGeodesicWord_hair_add_two`, `Surgery.InnerGRegion.not_mem_cycle_of_relatorCell`,
+  `not_mem_cycle_of_outer`, `hair_not_mem_cycle`.
+
+Finding (an obstruction to the route, not a refutation).  The producer route merges the polygon face with the faces
+inside the gap loops (`Surgery.InnerGRegion`), so gap vertices become corners of one merged G-face, and runs the Case 1
+surgery (`exists_quadrilateral_region_rotate`) there.  A HAIR gap defeats it: a cell reading `p, h, α h, q` with both
+darts of `h` on the cell gives the class `[α q] ++ [h, α h] ++ [α p]` (Maximal holds, the gap has value one, the tip is
+`InGap`), and hair words pass the quasi-geodesic clauses (always for class words, for relator words and sections once
+c ≥ 2λ).  Darts on a relator cell or on the exterior lie on no merged boundary, so no merged face has a hair tip as a
+corner.  Moving the endpoint to the hair base costs up to B/2 on a connector, and pairs carry one threshold.
+
+Pieces of the bubble route (gap darts on G-faces): (i) the gap loop bounds a disc face set; (ii) it holds no relator
+cell (short boundary against 9.7(b) below; pocket diagram for simple loops, ms-traces-2's
+`ClosedWalkEnclosedSubdiagramStatement` (a5dc9e6b0) otherwise); (iii) it meets no selected region; (iv) the merged walk
+reads the class words; (v) cutting targets, claimed by ms-compress-3 as `OsinLemma94ClassCaseGapEndpointCuttingStatement`
+in its own module.  Bubble-route statements are held pending main's ruling on the hair case: (R1) restrict the class
+cases to classes whose gap darts lie on G-faces, with the count piece producing such classes, or (R2) two thresholds
+on the metric half's pairs (segments above ε + B, connectors below ε − B), which moves gap endpoints to corners and
+makes this residual unnecessary.
+
 ## Census rows
 
 `metadata/nm-census-rows/ct-return-tower.tsv` LANDED 988ae81b2: tex 1710, 1716, 1717, 1719, 1721, 1722, 1727, 1731, 1732,
