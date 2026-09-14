@@ -18,7 +18,10 @@ fields.
 In fact more holds: LEF of one `EL_N(R)` with `N >= 4` already gives a unital embedding over FINITE fields
 (`lef-elementary-groups-force-lef-rings` then `simple-lef-rings-are-exactly-matricial`). So for simple rings, rung (L)
 of `kazhdan-elementary-approximation-type-mirrors-ring-type` is an equivalence: LEF `EL_N` for one `N >= 4` ⟺ LEF
-ring ⟺ exactly matricial ⟺ LEF `GL_M` and `EL_M` for all `M`. Rank 3 alone is not covered.
+ring ⟺ exactly matricial ⟺ LEF `GL_M` and `EL_M` for all `M`. Rank 3 alone is not covered by this route.
+For simple rings containing nonzero 2x2 matrix units, one LEF `EL_N` with `N >= 2` already suffices
+(`simple-ring-with-matrix-units-el-lef-iff-matricial`). The remaining rank-three case is
+`simple-ring-el3-lef-forces-lef-ring`.
 
 **Consequences.** With `exactly-matricial-rings-are-lef-rings` and `lef-simple-rings-are-not-finitely-presented`:
 - no finitely presented infinite simple ring has a LEF elementary group of rank at least four;
@@ -47,6 +50,12 @@ ring ⟺ exactly matricial ⟺ LEF `GL_M` and `EL_M` for all `M`. Rank 3 alone i
   finite coincide (`subshift-ring-lef-iff-word-edges-lie-on-cycles`). Test the claim there first: it holds if
   a non-directly-finite subshift ring has a non-LEF elementary group. That is the `cohn-elementary-group-is-not-lef`
   pattern, using the return corner of `clopen-return-towers-transfer-direct-finiteness-and-matrix-rank`.
+- **Ranks 2 and 3 through matrix units (sk-rank3-lef-converse, 2026-09-13; unreviewed).**
+  - With full 2x2 matrix units `ε_ij`, the corner `eRe ≅ M_2(S)`, `S = ε_11 R ε_11`, puts `EL_(2N)(S)` inside `EL_N(R)`.
+  - For `N >= 2` that is rank at least four, so `S` is a LEF ring and, through fullness, so is `R`
+    (`el-lef-with-full-matrix-units-forces-lef-ring`).
+  - This covers every simple Steinberg algebra of a minimal effective ample groupoid with infinite unit space.
+  - Simple domains have no nonzero matrix units, so they stay open: `simple-ring-el3-lef-forces-lef-ring`.
 
 **Review (un-verify-3, 2026-09-13): PASS.** The route `lef-el-groups-matricial-via-lef-ring` is re-derived (rank four gives a LEF ring; simple LEF rings are exactly matricial over finite fields). The UN root stays open, since (Σ⇒) and (M⇐) are open. Display note: the title is still phrased as a question; restate it as the theorem. `research/artifacts/un-review3-2026-09-13-part3.md` §2.
 
