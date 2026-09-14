@@ -338,6 +338,20 @@ Result: **never landed**. No root commit landed after daa821b00.
   - S2's 6 ours-sk tops (0914-085505-41638).
   - Joint pre-flight with wave 22 at f3893f5b7: 47 newly reachable files, 0 blocking lines; the landing `dupcheck.py`
     predicts 0 collisions.
+- ~09:10: wave 23 grows to 37 modules with ms-traces-1's later records:
+  - N2b 0914-085827-26227: 6 ours-nm tops;
+  - S1b 0914-085925-78566: 5 ours-sk tops;
+  - L1 0914-090402-30789: `LEFLevelEmbedding`;
+  - on their owners' GREEN records: `OsinPocketPinchPosModelsDiagram` (ms-cite-1) and `LamplighterRing` (sk-lef-action).
+  - Joint pre-flight with wave 22 at 3647dc289: 69 newly reachable files (closure 6921 → 6990), 0 blocking lines,
+    0 predicted landing collisions.
+- Open question to main: 24 green tops that no nm report names (O1 0914-085549-6149, O2 0914-085633-39343,
+  O3b 0914-090518-95417; Algebra, Analysis, Kazhdan, KOne, `NonMF.FFFSectionTwoConfiguration`,
+  `HydeLodha.QTwoFinitePresentationPerfect`). Not wired unless main confirms they are ours.
+- `GGT.VanKampen.FaceSetBoundaryGlue` was red on a linter error (unused simp argument at 276:48, O3 FAILED
+  0914-085734-83152).
+  - ms-traces-1 landed the fix at bf1aeff09. GREEN 0914-090918-32879 (BUILT, md5 = origin) covers it.
+  - No nm report names it either, so it joins the open question: 25 tops.
 
 Result: pending.
 
