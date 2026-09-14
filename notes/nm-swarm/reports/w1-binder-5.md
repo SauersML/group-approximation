@@ -391,6 +391,27 @@ CLAIM seam glue component planarity:
   `seamGlueComponentPlanar : SeamGlueComponentPlanarStatement` and `pocketGlueComponentPlanar`.
 - Calibration on e7ba8abf8 (lake glue) and e1f0ebfee (lobe copy).
 
+- w1-binder-6 landed the statement module at 53a33bef9 (probe 0914-092026-9618 GREEN): `SeamGlueComponentPlanarStatement`,
+  `PocketGlueComponentPlanarStatement`, `pocketGlueComponentPlanar_of_seam`.
+- **Lake calibration LANDED 740e83426** `Estimating/OsinPocketGlueComponentPlanarModel`, wire-queued. Probe 0914-092423-63136
+  GREEN: BUILT, no `sorryAx`.
+  - Every hypothesis of the seam form holds on `lakeSeam`: `rest := sideFaces M lakeWalk` with its inner cycle, the
+    reversed seam cycle, and the reclosing planar from `lakeEulerBranch.1`.
+  - The glued map is not connected, and every component is planar through `planar_of_dartCount_two` (a connected
+    two-dart map whose face rotation fixes both darts). Endpoint `lakeSeamComponentsPlanar`.
+  - The lobe copy (e1f0ebfee) is not calibrated. Its pieces have eight darts, and the glued permutations are
+    noncomputable, so orbit counting there needs hand-built equivalences.
+- **Reduction of the general proof** (design, not yet built):
+  - `CombMap.IsRestriction.planar` (on origin) makes the N-edge map `R_N` of `R := reclosedMap M rest B` and the
+    outer-edge map `X_O` of `X` planar: `v_N − k + F_N = 2`, and `v_O − e_O + F_O = 2`, with `e_O < k` exactly when the
+    outer face of `X` runs a bridge twice.
+  - The glued map is the glue `Z` of `R_N` and `X_O` along N/O, with disc fillings in the other faces of each. A disc
+    filling of a face keeps χ and connectivity, so the leaf reduces to the core: every component of `Z` is planar.
+  - The core is Biane-style non-crossing permutation combinatorics on the k seam positions: the non-crossing
+    criterion `cyc(π) + cyc(π⁻¹γ) = k + 1`, and the count `Σ_components χ = 2·#components` for the superposition of two
+    non-crossing structures on opposite sides of the seam circle. Neither the repo nor the pinned Mathlib has it.
+  - Scale estimate: 1000+ lines over several modules.
+
 Counting facts on origin that the proof builds on: `Seam.glue_edgeCount` and `glue_faceCount` hold unconditionally, while
 `glue_vertexCount` needs `FollowsBoundary`, which a full t₁ breaks. So the glued vertices along the seam must be counted
 directly, as the cycles of σ_X σ_C.
