@@ -40,19 +40,32 @@ namespace GroupApproximation.ChainCore.DynamicRankBudget
 
 open GroupApproximation.Manuscript.ChainCore
 
+/-- **The return embeddings of `cor:dynamic-rank-budget`, closed** (tex 1707–1757): the section and
+tower, the four embeddings over every finite field, and over `F₂` the conjugation of every core
+kernel element into the image of the return core kernel. -/
+theorem returnEmbeddingStatement_holds : ReturnEmbeddingStatement :=
+  returnEmbeddingStatement_of_pieces returnRingCrossedProductStatement_holds
+    (And.right ClopenCrossedProduct.printedInvolutionLocalization_closed)
+    ClopenCrossedProduct.coreKernelElementaryStatement_holds
+    returnTransientIdealStatement_holds
+
+/-- **The elementary transfer of `cor:dynamic-rank-budget`, closed** (tex 1765): over a finite field,
+if `R_X` is not directly finite then `EL_n(R_X)`, `n ≥ 4`, has a nontrivial element in its MF
+radical. -/
+theorem torsionDefectTransferStatement_holds : TorsionDefectTransferStatement :=
+  torsionDefectTransferStatement_of_countable GroupApproximation.countableCrossedProductStatement
+
 /-- **`cor:dynamic-rank-budget` over its open inputs** (tex 1696–1767). -/
 theorem printedDynamicRankBudget_of_openPieces (hRefl : CoreRingReflectionStatement)
     (hModels : CoreModelsLEFStatement) (hRad : CoreMFRadicalKillStatement) :
     PrintedDynamicRankBudget :=
-  printedDynamicRankBudget_of_residuals hRefl hModels GroupApproximation.countableCrossedProductStatement
+  printedDynamicRankBudget_of_pieces hRefl hModels GroupApproximation.countableCrossedProductStatement
     hRad
     (BilateralThree.bilateralThreeTransferStatement_of_nonzeroDefect
       (BilateralThree.clopenCrossedProductNonzeroDefectStatement_of_coreModels hModels))
+    torsionDefectTransferStatement_holds
     ClopenCrossedProduct.unitKernelLocallyFiniteStatement_holds
-    (returnEmbeddingStatement_of_pieces returnRingCrossedProductStatement_holds
-      (And.right ClopenCrossedProduct.printedInvolutionLocalization_closed)
-      ClopenCrossedProduct.coreKernelElementaryStatement_holds
-      returnTransientIdealStatement_holds)
+    returnEmbeddingStatement_holds
 
 /-- **The Introduction's aperiodic sentence over the same open inputs** (tex 257–259). -/
 theorem printedIntroductionAperiodicSentence_of_openPieces (hRefl : CoreRingReflectionStatement)
@@ -65,5 +78,7 @@ end GroupApproximation.ChainCore.DynamicRankBudget
 
 /-! ### Audit -/
 
+#audit_closed_axioms GroupApproximation.ChainCore.DynamicRankBudget.returnEmbeddingStatement_holds
+#audit_closed_axioms GroupApproximation.ChainCore.DynamicRankBudget.torsionDefectTransferStatement_holds
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.printedDynamicRankBudget_of_openPieces
 #audit_axioms GroupApproximation.ChainCore.DynamicRankBudget.printedIntroductionAperiodicSentence_of_openPieces
