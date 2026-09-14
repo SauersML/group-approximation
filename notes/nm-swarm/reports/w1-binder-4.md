@@ -49,6 +49,20 @@ All three declarations depend only on the axioms [propext, Classical.choice, Quo
   noncrossing residual alone.
 - All three declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
 
+## In flight: `Estimating/OsinAppendixEulerTwoGonInnerAssembly` (probing; attic b0a58dbb9)
+
+- `TwoGonInnerFollowsWalkInput`, the residual:
+  - a noncrossing walk equal to the decomposition, whose inner cycle follows its boundary;
+  - the four span inclusions, in `hsrc`/`htgt` spelling. Producers are w1-binder-1's inclusion lemmas, from the gap
+    equation and the target start and end equalities.
+  - the printed arc bounds.
+- `twoGonHoldsInput_of_innerFollowsWalk : TwoGonHoldsInput`. The proof combines:
+  - `twoGonClassHyp_of_linkedComponent`;
+  - `twoGonWalkHyp_of_innerFollows` with `twoGonWalk_left_side`, `twoGonWalk_right_side` and `twoGonWalk_base`;
+  - debt-conditional's `cell_face_not_mem_sideFaces_of_twoGon` and `disjoint_sideFaces_of_twoGon`. Its end-cell
+    hypothesis comes from `¬HoldsCellO`.
+  - It concludes through `false_of_mergeDisc` on `InnerDiscRegion.ofNoncrossingClosedWalkInner`, with rotation 0.
+
 ## Landed: `Estimating/OsinAppendixEulerTwoGonWalkHypInner` (L5b, 20767e008, probe 0913-183536-76676 GREEN, unwired)
 
 Both declarations depend only on the axioms [propext, Classical.choice, Quot.sound].
