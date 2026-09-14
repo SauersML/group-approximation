@@ -254,3 +254,17 @@ before landing, and each endpoint has `#audit_closed_axioms`.
     `exists_kept_of_noncrossing_of_value`, which uses a noncrossing walk that follows its boundary. This avoids the unproved
     `RegionFaceAssemblyStatement`.
   - Backward junctions by nesting levels.
+
+### Landed: the lobe charging lemma (2d63a10ca, probe 0914-092047-41505 GREEN, BUILT)
+
+- `Estimating/OsinLemma94BoundaryLobeCell`, `exists_relatorCell_of_firstTurnWalk_listVal_ne_one`: a first-turn walk `c` with the
+  exterior face on its side, whose reversed walk reads a value other than 1, has a relator cell on the reversed walk's side.
+  - Route: `PocketRegion.ofFirstTurnWalk` plus `PocketRegion.listVal_inner_eq_one`, the pocket as a van Kampen diagram. No
+    `RegionFaceAssemblyStatement` is needed.
+- Next: the junction instance `exists_relatorCell_of_mem_valueFailureJunctions`, taking hair-freeness of the gap as a
+  hypothesis.
+  - `c` is `gap.reverse.map α`. Its chain comes from `outerDarts_isChain`, and its closing first turn has length 3,
+    through `α e` and `e'` (facePerm e = e′).
+- Then the planar residuals of the count:
+  - hair excision;
+  - non-interleaving of the gap intervals of `outerDarts`, since a disc boundary walk cannot visit v₁, v₂, v₁, v₂.
