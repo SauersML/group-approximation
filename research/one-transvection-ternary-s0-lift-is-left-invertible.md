@@ -6,12 +6,18 @@ title: The four-term lift of s0 built from the transvection 1 + s00 t01 and a Th
 distinct_from:
   left-invertible-lift-of-s0-in-leavitt-group-algebra: that asks for any left-invertible lift of s0 over F_2; this is one explicit four-term lift over F_3 with z acting as -1, reduced to one equation in a sign-Hecke corner
   ternary-twisted-algebra-has-swap-separated-one-sided-pair: that seeks a pair separated by the swap idempotent in the twisted algebra; this fixes the involution d1 = 1 + s1t1 and one explicit element, and needs no fullness of a swap corner
+refuted_by:
+  - one-transvection-s0-lift-has-no-left-inverse
 artifacts:
   - research/artifacts/ternary-one-transvection-two-piece-lift-2026-09-12.md
   - research/artifacts/one-transvection-lift-support-reduction-2026-09-12.md
 ---
 
-**OPEN.** Let `G = L_(F_3)(1,2)^x`, `z = -1`, `S_- = eps_- F_3[G]`, `d1 = 1 + s1 t1` and `P_(d1) = 2(1 - [d1])`. Put
+**REFUTED** by `one-transvection-s0-lift-has-no-left-inverse`, whose proof was independently re-derived by
+`gk3-transvections` on 2026-09-14. A two-piece lift over the involution partition of `d1` is left invertible only if it
+is invertible, and `pi(a) = s0` is not a unit. The statement below is kept as written.
+
+**Statement (refuted).** Let `G = L_(F_3)(1,2)^x`, `z = -1`, `S_- = eps_- F_3[G]`, `d1 = 1 + s1 t1` and `P_(d1) = 2(1 - [d1])`. Put
 
 ```text
 u0 = (1 - s00 t01)(s00 t0 + s01 t10 + s1 t11),   h = s0 t1 - s1 t0 + s10 t1 = [[0,1],[-1,s0]],   u1 = u0 h.
