@@ -8,16 +8,16 @@ Rows: 188 (184 prose sentences, 4 displays).  Assignments do not attest to a suc
 
 | status | rows |
 | --- | --- |
-| `formalized` | 90 |
-| `unassigned` | 34 |
-| `partial` | 25 |
+| `formalized` | 101 |
+| `partial` | 24 |
+| `unassigned` | 21 |
+| `definition` | 17 |
 | `attribution` | 15 |
-| `definition` | 15 |
-| `structural` | 8 |
+| `structural` | 9 |
 | `open` | 1 |
 | **total** | **188** |
 
-Completely formalized or definitional: **105/188** (55.9%).
+Completely formalized or definitional: **118/188** (62.8%).
 
 ## Superseded rows (sentence reworded or removed)
 
@@ -48,15 +48,6 @@ Completely formalized or definitional: **105/188** (55.9%).
 * rows/ms-intro-3.tsv:25 `4700f8930d01` (open, old lines 90-93 @9047d0d3c); closest now `60be9d39afa5` (0.63) --- It shows that a finitely generated group is LEF if and only if it is a subgroup of an infinite finitely generated simple Kazhdan LEF group (Corollary~\ref{cor:lef}), and one such group contains every…
 * rows/oa-kirchberg.tsv:1 `88ecdc10f78b` (partial, old lines 283-287 @696c4b602) --- Kirchberg proved that a Kazhdan group with the factorization property is residually finite~\cite[Theorem~1.1]{Kirchberg}, and that every subgroup of the unitary group of $\mathcal R$ has the factoriz…
 * rows/oa-kirchberg.tsv:2 `a63ff00e499b` (partial, old lines 287-290 @696c4b602) --- So $G$ does not have the factorization property, it is not a subgroup of the unitary group of $\mathcal R$, and $C^*(G)$ does not have the local lifting property~\cite[p.~527]{Ozawa}.
-* rows/sk-lef-assembly.tsv:1 `197333c03a92` (attribution, old lines 294-298 @696c4b602); closest now `fc84c012b409` (0.98) --- Every countable group embeds in a finitely generated simple group~\cite{Gorjuskin,Schupp}, and even in a simple quotient of a torsion-free hyperbolic Kazhdan group~\cite[Theorem~1.5]{CoulonFournierFa…
-* rows/sk-lef-assembly.tsv:2 `8b4f6b0857f1` (attribution, old lines 298-302 @696c4b602); closest now `8212b1470040` (0.95) --- Kionke and Schesler proved that every finitely generated residually finite group embeds in a finitely generated simple LEF group~\cite[Theorem~1.2]{KionkeSchesler}, so with Wilson's theorem~\cite{Wil…
-* rows/sk-lef-assembly.tsv:3 `42f4246af4ac` (attribution, old lines 302-303 @696c4b602); closest now `83394521b2d5` (0.68) --- They raised the question which groups embed in finitely generated simple amenable groups.
-* rows/sk-lef-assembly.tsv:5 `4cc7b9e7d709` (attribution, old lines 305-310 @696c4b602); closest now `fd312b860bb5` (0.96) --- Its second statement is the analogue for LEF groups of the theorem of Boone and Higman that a finitely generated group has solvable word problem if and only if it embeds in a simple subgroup of a fin…
-* rows/sk-lef-assembly.tsv:6 `19d10ddcbec2` (partial, old lines 313-316 @696c4b602); closest now `022271399cfb` (0.85) --- A finitely generated group is LEF if and only if it is a subgroup of an infinite, finitely generated, simple group with property~\textup{(T)} that is a limit of finite simple groups $\SL_N(\F_2)$ in …
-* rows/sk-lef-assembly.tsv:10 `31ffcc3c38e6` (partial, old lines 324-327 @696c4b602); closest now `9b1a6e7489a1` (0.83) --- So one such group contains every recursively presented finitely generated LEF group, for instance every finitely presented residually finite group and every $G_Y$ whose language is recursive.
-* rows/sk-lef-assembly.tsv:14 `4d817ab1caf8` (formalized, old lines 435-436 @696c4b602); closest now `5bd4618a3044` (0.74) --- Conversely, a countable group has countably many finitely generated subgroups.
-* rows/sk-lef-assembly.tsv:15 `b88e89d11935` (formalized, old lines 436-437 @696c4b602) --- There are countably many recursive presentations.
-* rows/sk-lef-assembly.tsv:18 `fdf7d6e33044` (partial, old lines 461-464 @696c4b602) --- Applied to the finitely generated residually finite non-exact groups of Osajda~\cite{OsajdaRF}, which are LEF, Corollary~\ref{cor:lef} gives infinite simple Kazhdan LEF groups that are not exact, sin…
 * rows/sk-stepanov.tsv:1 `9424f59fd820` (formalized, old lines 81-85 @696c4b602); closest now `0efbce019168` (0.90) --- Simplicity of $G_X$ also follows from Stepanov's theorem on the normal structure of $\GL_n$~\cite[Theorem~4.4]{Stepanov}, since the ring is simple~\cite[Corollary~4.6]{ClarkEdie} and any two of its e…
 * rows/skf-approximants.tsv:1 `0ef60d94b97a` (formalized, old lines 382-386 @9047d0d3c); closest now `5959e4fd6209` (0.71) --- For irrational $\alpha\in(0,1)$ let $X_\alpha$ be the infinite minimal Sturmian subshift, the closure of the set of codings $c(\theta)$, $\theta\in[0,1)$, with $c(\theta)_t=1$ if and only if $\theta+…
 * rows/skf-approximants.tsv:2 `f3c0a7f07e87` (formalized, old lines 386-387 @9047d0d3c) --- So $c(\theta)_t=1$ if and only if $\theta$ lies in the arc $[-(t+1)\alpha,-t\alpha)$ modulo $1$.
@@ -70,7 +61,7 @@ Completely formalized or definitional: **105/188** (55.9%).
 
 ## Rows dropped by override (metadata/SK_SENTENCE_OVERRIDES.tsv)
 
-* rows/skf-cite.tsv:7 `3606856b9a07` (partial) --- placeholder `partial` row with no decls whose note names ct-involution as the owner; it conflicts with ct-involution's own row for the same sentence (landed b3b8de919). Dropped at ct-involution's request 09-14; skf-cite was unreachable after the restart.
+* rows/skf-cite.tsv:7 `3606856b9a07` (partial) --- resolved: keeps ct-involution's graded row and drops skf-cite's placeholder `partial` row (no decls; its note names ct-involution as the owner). Requested by ct-involution and confirmed by main 09-14; skf-cite is not running.
 
 ## Rows not merged
 
@@ -110,17 +101,17 @@ Completely formalized or definitional: **105/188** (55.9%).
 | `c0c91102c8a7` | 104–104 | formalized | The proof works for other actions. |
 | `f27d6a0083cf` | 104–105 | definition | An action on a Cantor set is topologically free if no nontrivial element fixes a nonempty open set. |
 | `e3e973d598a3` | 105–107 | definition | We write $e_{ij}(r)=I_n+rE_{ij}$, with $E_{ij}$ the matrix unit, for the elementary matrices. |
-| `a9d39de3a9f7` | 110–112 | unassigned | Let a finitely generated group $\Lambda$ act minimally and topologically freely on a Cantor set $Z$, and let … |
-| `770348ecbf71` | 112–116 | unassigned | Suppose that there are maps $\varphi_k\colon R\to M_{N_k}(\F_2)$ with $\varphi_k(1)=I$ such that $\varphi_k(S… |
-| `b4a4e3abdeda` | 116–118 | unassigned | Then for every $n\ge3$, $\EL_n(R)$ is an infinite, finitely generated, simple Kazhdan group. |
+| `a9d39de3a9f7` | 110–112 | definition | Let a finitely generated group $\Lambda$ act minimally and topologically freely on a Cantor set $Z$, and let … |
+| `770348ecbf71` | 112–116 | definition | Suppose that there are maps $\varphi_k\colon R\to M_{N_k}(\F_2)$ with $\varphi_k(1)=I$ such that $\varphi_k(S… |
+| `b4a4e3abdeda` | 116–118 | formalized | Then for every $n\ge3$, $\EL_n(R)$ is an infinite, finitely generated, simple Kazhdan group. |
 | `8bd3ab27271c` | 118–120 | partial | Marked by the $e_{ij}(s)$ with $s\in S$, it is the limit of the finite simple groups $\SL_{nN_k}(\F_2)$ marke… |
-| `ce4df433abd6` | 123–126 | unassigned | Periodic approximations give such maps for $\LC(X,\F_2)\rtimes_T\Z$, which gives Theorem~\ref{thm:main}, and … |
+| `ce4df433abd6` | 123–126 | partial | Periodic approximations give such maps for $\LC(X,\F_2)\rtimes_T\Z$, which gives Theorem~\ref{thm:main}, and … |
 
 ### Proof of Theorem~\ref{thm:general}
 
 | key | lines | status | sentence |
 | --- | --- | --- | --- |
-| `386f01325a6d` | 130–130 | unassigned | We write the proof for $n=3$; for $n\ge3$ replace $3$ by $n$ throughout. |
+| `386f01325a6d` | 130–130 | structural | We write the proof for $n=3$; for $n\ge3$ replace $3$ by $n$ throughout. |
 
 ### The ring and property (T)
 
@@ -193,10 +184,10 @@ Completely formalized or definitional: **105/188** (55.9%).
 | `1dd960096ceb` | 242–246 | formalized | The ring $R=\LC(X,\F_2)\rtimes_T\Z$ is generated by $S=\{1,u,u^{-1}\}\cup\{e_a:a\in A\}$, where $e_a=e_{\{x:x… |
 | `46b4acb4ea4f` | 246–247 | definition | We write $\tau_\pm$ and $\tau_a$ for the letters of $u^{\pm1}$ and $e_a$. |
 | `a6fad3df8db8` | 249–249 | structural | Fix $x\in X$ and $\ell\ge0$. |
-| `2ffe206d32dd` | 249–251 | partial | By minimality the forward orbit of $x$ is dense, so every word of $X$ occurs in $x_{[0,\infty)}$, and $x_{[-\… |
-| `63b955601626` | 251–253 | partial | So there is $m$ with $x_{[m-\ell,m+\ell]}=x_{[-\ell,\ell]}$ such that every word of length $2\ell+1$ of $X$ o… |
-| `e0aae9c0b4eb` | 253–254 | partial | The $m$-periodic sequence $y_\ell$ that agrees with $x$ on $[0,m)$ then agrees with $x$ on $[-\ell,m+\ell]$. |
-| `72e70d46a29f` | 255–257 | partial | Every window of length $2\ell+1$ of $y_\ell$ is a translate of one centered in $[0,m)$, so $y_\ell$ has the s… |
+| `2ffe206d32dd` | 249–251 | formalized | By minimality the forward orbit of $x$ is dense, so every word of $X$ occurs in $x_{[0,\infty)}$, and $x_{[-\… |
+| `63b955601626` | 251–253 | formalized | So there is $m$ with $x_{[m-\ell,m+\ell]}=x_{[-\ell,\ell]}$ such that every word of length $2\ell+1$ of $X$ o… |
+| `e0aae9c0b4eb` | 253–254 | formalized | The $m$-periodic sequence $y_\ell$ that agrees with $x$ on $[0,m)$ then agrees with $x$ on $[-\ell,m+\ell]$. |
+| `72e70d46a29f` | 255–257 | formalized | Every window of length $2\ell+1$ of $y_\ell$ is a translate of one centered in $[0,m)$, so $y_\ell$ has the s… |
 | `c1b8b83f890d` | 257–258 | definition | Let $N_\ell$ be its least period, and on $\F_2^{\Z/N_\ell\Z}$ let $P\delta_t=\delta_{t+1}$. |
 | `a62656a98556` | 258–261 | formalized | For $f$ depending only on coordinates in $[-\ell,\ell]$ let $D_\ell(f)\delta_t=f(T^ty_\ell)\delta_t$, where $… |
 | `fca8bece2919` | 261–263 | definition | Put $\varphi_\ell(\sum_jf_ju^j)=\sum_jD_\ell(f_j)P^j$ when every $f_j$ is of this kind, and $\varphi_\ell=0$ … |
@@ -221,11 +212,11 @@ Completely formalized or definitional: **105/188** (55.9%).
 | `83394521b2d5` | 288–289 | attribution | Kionke and Schesler asked which groups embed in finitely generated simple amenable groups~\cite{KionkeSchesle… |
 | `3670fa959e0e` | 289–290 | structural | For LEF groups the next corollary answers the analogous question, with a Kazhdan host. |
 | `fd312b860bb5` | 291–295 | attribution | Its second statement is the analogue for LEF groups of the theorem of Boone and Higman that a finitely genera… |
-| `022271399cfb` | 298–302 | unassigned | A finitely generated group is LEF if and only if it is a subgroup of an infinite, finitely generated, simple … |
+| `022271399cfb` | 298–302 | partial | A finitely generated group is LEF if and only if it is a subgroup of an infinite, finitely generated, simple … |
 | `01a45cdd9370` | 303–304 | partial | It is LEF with solvable word problem if and only if it is a subgroup of such a group with solvable word probl… |
 | `cc439ae277d4` | 308–308 | partial | Every countable LEF group is a subgroup of such a group. |
 | `9cdf19db0ef4` | 309–310 | partial | A set of finitely generated groups lies in one such group if and only if its members are LEF and represent co… |
-| `9b1a6e7489a1` | 310–313 | unassigned | So one such group contains every recursively presented finitely generated LEF group, for instance every finit… |
+| `9b1a6e7489a1` | 310–313 | partial | So one such group contains every recursively presented finitely generated LEF group, for instance every finit… |
 | `2745cd64eada` | 316–316 | attribution | Simple hosts with only one of property~\textup{(T)} and LEF were known. |
 | `8212b1470040` | 316–321 | attribution | Without property~\textup{(T)}, Kionke and Schesler proved that every finitely generated residually finite gro… |
 | `fc84c012b409` | 321–325 | attribution | Without LEF, every countable group embeds in a finitely generated simple group~\cite{Gorjuskin,Schupp}, and e… |
@@ -253,14 +244,14 @@ Completely formalized or definitional: **105/188** (55.9%).
 | `cdb7675d1521` | 383–384 | formalized | For fixed $f$ and $\xi$ and large $n$, |
 | `ba51377f43f6` | 385–387 | formalized | [display] P_\xi D_n(f)P_\xi^{-1}=D_n(f\circ\xi^{-1}), |
 | `472c3d5ac00b` | 388–389 | formalized | so for fixed $r,s\in R_\Delta$ and large $n$, $\varphi_n$ is additive and multiplicative on $r,s$, and $\varp… |
-| `814c69fe374e` | 389–392 | unassigned | The conjugates of $D_n(e_U)$ by products of the $P_s$ are the coordinate functions of $Y_n$, and the conjugat… |
+| `814c69fe374e` | 389–392 | formalized | The conjugates of $D_n(e_U)$ by products of the $P_s$ are the coordinate functions of $Y_n$, and the conjugat… |
 | `358e51e6a815` | 392–395 | partial | By Theorem~\ref{thm:general}, $G_\Delta=\EL_3(R_\Delta)$ is an infinite finitely generated simple Kazhdan gro… |
 | `66cb283340f3` | 397–398 | formalized | Finally, $\xi\mapsto\operatorname{diag}(u_\xi,1,1)$ is an injective homomorphism $\Lambda\to\GL_3(R_\Delta)$. |
-| `69f426d03d8f` | 398–402 | unassigned | It maps $[\Lambda,\Lambda]$ into $G_\Delta$, since over $\F_2$ every unit $v$ satisfies $\operatorname{diag}(… |
+| `69f426d03d8f` | 398–402 | formalized | It maps $[\Lambda,\Lambda]$ into $G_\Delta$, since over $\F_2$ every unit $v$ satisfies $\operatorname{diag}(… |
 | `cbce9a479de2` | 402–403 | formalized | So $G_\Delta$ contains $\Gamma\le[\Delta,\Delta]\le[\Lambda,\Lambda]$. |
 | `31715e15544b` | 404–405 | structural | This proves the first statements of Corollaries~\ref{cor:lef} and~\ref{cor:host}. |
 | `e6ac216a5107` | 405–408 | formalized | For the second statement of Corollary~\ref{cor:host}, apply the first to the restricted direct sum of represe… |
-| `5bd4618a3044` | 409–410 | unassigned | Conversely, a countable group has countably many finitely generated subgroups, and there are countably many r… |
+| `5bd4618a3044` | 409–410 | formalized | Conversely, a countable group has countably many finitely generated subgroups, and there are countably many r… |
 | `4f76927e5215` | 412–413 | unassigned | Now let $\Gamma$ be generated by a finite set $E$, LEF and with solvable word problem. |
 | `759568036721` | 413–415 | unassigned | A half-line form of the Neumann--Neumann construction, used by Darbinyan to preserve solvable word problems~\… |
 | `f4530e72badf` | 415–417 | unassigned | On $\Gamma\times\Z$, whose second coordinate is the level, let $\beta$ raise the level by $1$, and let $h_\ga… |
@@ -304,11 +295,11 @@ Completely formalized or definitional: **105/188** (55.9%).
 | key | lines | status | sentence |
 | --- | --- | --- | --- |
 | `25f820cbd165` | 512–513 | unassigned | Is there an infinite finitely presented simple group with property~\textup{(T)} that is sofic, or at least hy… |
-| `1c40d21401f6` | 513–516 | unassigned | Infinite finitely presented simple Kazhdan groups exist~\cite{CapraceRemy}, while $G_X$ is not finitely prese… |
-| `dc73886fdc13` | 516–519 | unassigned | A sofic example would not be LEF, and it would also answer Open problem~6.1 of Alekseev and Thom~\cite{Alekse… |
+| `1c40d21401f6` | 513–516 | formalized | Infinite finitely presented simple Kazhdan groups exist~\cite{CapraceRemy}, while $G_X$ is not finitely prese… |
+| `dc73886fdc13` | 516–519 | formalized | A sofic example would not be LEF, and it would also answer Open problem~6.1 of Alekseev and Thom~\cite{Alekse… |
 | `85fe62a789f3` | 519–520 | unassigned | Is every sofic infinite simple Kazhdan group LEF? |
 | `60be9d39afa5` | 522–523 | unassigned | Is every finitely generated sofic group a subgroup of an infinite finitely generated simple Kazhdan sofic gro… |
-| `7d13cf4208bc` | 525–526 | unassigned | If $(X,T)$ is topologically conjugate to $(Y,T')$ or to $(Y,T'^{-1})$, then $G_X\cong G_Y$. |
+| `7d13cf4208bc` | 525–526 | formalized | If $(X,T)$ is topologically conjugate to $(Y,T')$ or to $(Y,T'^{-1})$, then $G_X\cong G_Y$. |
 | `a5b818e4b8c5` | 526–527 | attribution | For topological full groups the converse holds~\cite{GPS99,BezuglyiMedynets}. |
 | `34f8479b8e45` | 527–529 | open | Does $G_X\cong G_Y$ imply that $X$ and $Y$ are flip conjugate, or at least strongly orbit equivalent~\cite{GP… |
 | `7f61e23f0bee` | 529–529 | unassigned | Does $L(G_X)\cong L(G_Y)$ imply $G_X\cong G_Y$? |
@@ -325,14 +316,14 @@ Completely formalized or definitional: **105/188** (55.9%).
 
 | section | rows | unassigned |
 | --- | --- | --- |
-| (abstract and introduction) | 33 | 4 |
-| Proof of Theorem~\ref{thm:general} | 1 | 1 |
+| (abstract and introduction) | 33 | 0 |
+| Proof of Theorem~\ref{thm:general} | 1 | 0 |
 | The ring and property (T) | 9 | 0 |
 | Simplicity | 27 | 0 |
 | Finite simple models | 11 | 0 |
 | Proof of Theorem~\ref{thm:main} | 15 | 0 |
 | Brown's formulation | 5 | 0 |
-| LEF groups | 62 | 22 |
+| LEF groups | 62 | 17 |
 | Word problems | 13 | 0 |
-| Questions | 9 | 7 |
+| Questions | 9 | 4 |
 | Origin and authorship | 3 | 0 |
