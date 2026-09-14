@@ -112,7 +112,7 @@ theorem dartWord_dartImage (l : List Delta.toCombMap.Dart) :
 /-- Off `w_j` the dart map is the dart embedding. -/
 theorem map_dartImage_of_not_mem {l : List Delta.toCombMap.Dart} (h : dart Delta f j ∉ l) :
     l.map (dartImage Delta f j hlen) = l.map (embedding Delta f j hlen hf).darts :=
-  List.map_congr_left (fun d hd => dartImage_of_ne Delta f j hlen (fun heq => h (heq ▸ hd)))
+  List.map_congr_left (fun _ hd => dartImage_of_ne Delta f j hlen (fun heq => h (heq ▸ hd)))
 
 /-! ## Shelling -/
 
@@ -195,11 +195,11 @@ theorem shelling_dartImage {s : Finset Delta.toCombMap.Face}
         have hface : Delta.toCombMap.faceOf d = g := ((Delta.faceBoundary g).mem_iff d).mp hd
         rw [heq, dart_face] at hface
         exact hgf hface.symm
-    apply FaceShelling.step (faceImage Delta f j hlen g)
-      ((mem_holdingFaceSet_faceImage Delta f j hlen hf s g).mpr hg) k
-    · rw [boundary_faceImage_darts Delta f j hlen hf g, List.map_congr_left hgimg,
-        ← List.map_rotate, hrot, List.map_append, invDarts_map_dartImage Delta f j hlen hf harc]
-    · exact ih
+    refine FaceShelling.step (Delta := diagram Delta f j hlen hf)
+      (faces := holdingFaceSet Delta f j hlen hf s) (faceImage Delta f j hlen g)
+      ((mem_holdingFaceSet_faceImage Delta f j hlen hf s g).mpr hg) k ?_ ih
+    rw [boundary_faceImage_darts Delta f j hlen hf g, List.map_congr_left hgimg,
+      ← List.map_rotate, hrot, List.map_append, invDarts_map_dartImage Delta f j hlen hf harc]
 
 /-! ## The contiguity geometry -/
 
@@ -236,6 +236,7 @@ noncomputable def holdingGeometry (H : ContiguityGeometry D eps Delta s)
       map_dartImage_of_not_mem Delta f j hlen hf (dart_not_mem_reverseDarts_of_side Delta f j H hside),
       map_dartImage_of_not_mem Delta f j hlen hf
         (dart_not_mem_targetBoundaryDarts_of_side Delta f j H hside)]
+    rfl
   rightSide_length_le := by simpa only [List.length_map] using H.rightSide_length_le
   leftSide_length_le := by simpa only [List.length_map] using H.leftSide_length_le
   rightSide_norm_le := by
@@ -275,7 +276,7 @@ end Geometry
 noncomputable def holdingCandidate {D : RelGenSet G Lambda} {eps : ℕ}
     (a : RegionCandidate D eps Delta) (hside : dart Delta f j ∈ a.2.rightSide ++ a.2.leftSide) :
     RegionCandidate D eps (diagram Delta f j hlen hf) :=
-  ⟨holdingFaceSet Delta f j hlen a.1, holdingGeometry Delta f j hlen hf a.2 hside⟩
+  ⟨holdingFaceSet Delta f j hlen hf a.1, holdingGeometry Delta f j hlen hf a.2 hside⟩
 
 theorem holdingCandidate_weight {D : RelGenSet G Lambda} {eps : ℕ}
     (a : RegionCandidate D eps Delta) (hside : dart Delta f j ∈ a.2.rightSide ++ a.2.leftSide) :
