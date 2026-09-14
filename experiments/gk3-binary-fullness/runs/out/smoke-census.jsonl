@@ -1,0 +1,3 @@
+{"args": {"mode": "census", "budget": 600, "samples": 1, "seed": 5, "leaves": 4, "rs": "3", "dense": 3000, "out": "out/smoke-census.jsonl"}}
+{"name": "census-k2-r3-sample-0", "r": 3, "rank_bound": 9, "ball": 600, "variables": 1201, "equations": 9606, "core_variables": 0, "feasible_peel": false, "feasible_dense": false, "seconds": 0.58, "conjugators": [[["0", "11"], ["10", "00"], ["110", "01"], ["111", "10"]], [["00", "1"], ["01", "01"], ["1", "00"]]]}
+{"done": true}

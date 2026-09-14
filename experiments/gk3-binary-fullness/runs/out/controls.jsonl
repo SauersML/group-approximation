@@ -1,0 +1,15 @@
+{"args": {"mode": "controls", "budget": 3000, "samples": 8, "seed": 11, "leaves": 5, "rs": "2,3,4,8", "dense": 6000, "out": "out/controls.jsonl"}}
+{"self_tests": "PASS", "tower_sizes": [3, 9, 27]}
+{"name": "positive-four-order-three-subgroups-of-C3sq", "r": 4, "rank_bound": 3, "ball": 9, "variables": 12, "equations": 9, "core_variables": 12, "feasible_peel": true, "feasible_dense": true, "seconds": 0.0, "expected": true}
+{"name": "lemma-k1-r2-sample-0", "r": 2, "rank_bound": 3, "ball": 3000, "variables": 3001, "equations": 6003, "core_variables": 0, "feasible_peel": false, "feasible_dense": false, "seconds": 4.45, "expected": false}
+{"name": "lemma-k1-r2-sample-1", "r": 2, "rank_bound": 3, "ball": 3000, "variables": 3001, "equations": 6003, "core_variables": 0, "feasible_peel": false, "feasible_dense": false, "seconds": 3.7, "expected": false}
+{"name": "lemma-k1-r2-sample-2", "r": 2, "rank_bound": 3, "ball": 3000, "variables": 3001, "equations": 6003, "core_variables": 0, "feasible_peel": false, "feasible_dense": false, "seconds": 3.87, "expected": false}
+{"name": "lemma-k1-r2-sample-3", "r": 2, "rank_bound": 3, "ball": 3000, "variables": 2977, "equations": 5931, "core_variables": 0, "feasible_peel": false, "feasible_dense": false, "seconds": 0.29, "expected": false}
+{"name": "lemma-k1-r2-sample-4", "r": 2, "rank_bound": 3, "ball": 12, "variables": 8, "equations": 12, "core_variables": 8, "feasible_peel": false, "feasible_dense": false, "seconds": 0.0, "expected": false}
+{"name": "lemma-k1-r2-sample-5", "r": 2, "rank_bound": 3, "ball": 3000, "variables": 2977, "equations": 5930, "core_variables": 0, "feasible_peel": false, "feasible_dense": false, "seconds": 0.29, "expected": false}
+{"name": "lemma-k1-r2-sample-6", "r": 2, "rank_bound": 3, "ball": 3000, "variables": 3001, "equations": 6003, "core_variables": 0, "feasible_peel": false, "feasible_dense": false, "seconds": 3.6, "expected": false}
+{"name": "finite-k2-r8-cylinder-sample-0", "r": 8, "rank_bound": 9, "ball": 3000, "variables": 19305, "equations": 102513, "core_variables": 0, "feasible_peel": false, "seconds": 2.88, "expected": false}
+{"name": "finite-k2-r8-cylinder-sample-1", "r": 8, "rank_bound": 9, "ball": 3000, "variables": 19220, "equations": 101917, "core_variables": 0, "feasible_peel": false, "seconds": 2.9, "expected": false}
+{"name": "finite-k2-r8-cylinder-sample-2", "r": 8, "rank_bound": 9, "ball": 3000, "variables": 19120, "equations": 101116, "core_variables": 0, "feasible_peel": false, "seconds": 2.9, "expected": false}
+{"name": "finite-k2-r8-cylinder-sample-3", "r": 8, "rank_bound": 9, "ball": 3000, "variables": 19377, "equations": 104077, "core_variables": 0, "feasible_peel": false, "seconds": 2.96, "expected": false}
+{"controls_failed": 0}

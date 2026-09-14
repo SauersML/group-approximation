@@ -173,10 +173,29 @@ peeling and dense solvers agreeing on every instance.
 | Finite control: eight cylinder-permutation conjugates of `C_3²` (`r = 8 < 9`) | infeasible |
 | One census instance at `k = 2`, `r = 3`, ball 600 | infeasible |
 
-**Full census (MSI job `790624`, `run_census.sbatch`).**
-- Levels `k = 2` and `r` in 2–8, with random conjugators of 2–6 leaves.
-- Balls up to 20,000 elements, and a dense cross-check at budget 3,000.
-- Results land here when the job finishes.
+**Full census (MSI job `790624`, `run_census.sbatch`; COMPLETED in 16 min, 8.2 GB peak).**
+Outputs: `experiments/gk3-binary-fullness/runs/out/`.
+
+| Run | Instances | `r` | Largest ball | Largest instance | Largest core after peeling | Feasible |
+|---|---|---|---|---|---|---|
+| `controls` | 12 | 2, 4, 8 | 3,000 | 19,377 variables | 12 | only the positive control |
+| `census-r23` | 12 | 2, 3 | 20,000 | 40,001 variables | 0 | none |
+| `census-r45` | 12 | 4, 5 | 20,000 | 80,001 variables | 0 | none |
+| `census-r67` | 12 | 6, 7 | 20,000 | 118,926 variables | 61,874 | none |
+| `census-r8` | 8 | 8 | 20,000 | 140,001 variables | 50,956 | none |
+| `census-crosscheck` | 30 | 2, 4, 8 | 3,000 | 20,561 variables | 14,315 | none |
+
+- **Every census instance is infeasible.** No sampled family of `r < 9` conjugates of `C_3²` in `V` carries a coset
+  certificate supported on the cosets meeting a ball of up to 20,000 elements of `⟨K_1, ..., K_r⟩`.
+- **Solver agreement.** The dense solver ran on the 10 census instances with at most 6,000 variables, and on the
+  small controls. It agreed with peeling every time (`dense_disagree` empty). The controls file reports
+  `controls_failed: 0`. All 74 census instances are infeasible. The MSI and local md5 sums of the eight output
+  files match.
+- **Peeling.** At `r <= 5` peeling alone refutes every instance (core 0), consistent with families that look free.
+  At `r >= 6` a nontrivial core survives, and the XOR basis refutes it. So these conjugate families satisfy relations,
+  yet still carry no certificate.
+- **Scope.** This is a sampled census: random conjugators with at most 6 leaves, bounded balls. It proves only the
+  absence of certificates for those families and supports. It does not exclude a certificate over `V`.
 
 ### 5.3 Exact gap
 1. **Existence over any group.** No group is known to carry a coset certificate, that is `r < 3^k` subgroups of order
