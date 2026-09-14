@@ -114,7 +114,6 @@ theorem normTrace_oneSum {Y : FiniteModel} (hY : 0 < Fintype.card Y) (A : Matrix
   rw [trace_oneSum, card_oneSumModel]
   push_cast
   field_simp
-  ring
 
 /-! ## The amplified models -/
 
