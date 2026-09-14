@@ -249,3 +249,9 @@ landed carriers `perfectSpace_carrier`, `isTopologicallyFree_shift` (ct-two-ende
 - MatricialMarkedLimitDegree: probe 0914-100430-29409 red on four errors (unused section instances, `List.ofFn` composition, and a
   missing `DecidableEq` on the marking index for `FreeGroup.toWord`). All are fixed and in re-probe; `PrintedWordEntriesDegreeAgreement`
   now carries `[DecidableEq R]`. Rows `2e17cbfab2b6`, `cbc0b3980a99` and `d228d6575111` flip after it lands.
+- 10:4x LANDED MatricialMarkedLimitDegree b10d07776 (probe 0914-104040-16720 BUILT; three `#audit_closed_axioms` clean), queued for wiring.
+  Rows flipped partial → formalized, each over its closed printed endpoint:
+  - `2e17cbfab2b6` over `printedLettersOntoQuotients`;
+  - `cbc0b3980a99` over `printedFreeMarkingGeneration`;
+  - `d228d6575111` over `printedWordEntriesDegreeAgreement`.
+  **All seven route-difference partial rows are now formalized along the printed route.**
