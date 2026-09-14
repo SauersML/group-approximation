@@ -99,6 +99,13 @@ CLAIM L4 + L5a two-gon class and walk hypotheses GroupApproximation/GGT/VanKampe
   - ms-inverses-2 has L1a. ms-torsionfree's inner builder is landed at 2d0b61555.
 - Ownership check: debt-conditional has no unlanded drafts, no producer of either structure exists on origin or in the tree, and w1-binder-4's `ClassWalkHyp` file is absent.
 - The non-cutting item (other-class count) was cancelled by main: ct-bilateral-cell holds it.
+- w1-binder-4 agreed (~18:36). It landed L5b at 20767e008 (`twoGonWalkHyp_of_innerFollows`), which takes `hleft`, `hright` and `hbase` verbatim.
+- 18:41 probe RED on two rewrites: the embedding's coercion type under `instances` transparency, and the `cross` ite at side `false`. Both fixed with `congrArg` and type ascriptions.
+- 18:57 probe 0913-185733-69734 GREEN, BUILT; all six declarations are [propext, Classical.choice, Quot.sound], and the log has no sorryAx. `Estimating/OsinAppendixEulerTwoGonClassHyp` LANDED at 47f5dcb22 and is on the wire queue:
+  - `RegionCandidate.faceClassO_facePerm y : FaceClassO family E y.1 ((phiMapO family E).facePerm y).1`;
+  - `RegionCandidate.twoGonClassHyp_of_outer P hlinked hclosed hnondeg hcell hy hyf hnone h4 hb : TwoGonClassHyp family E y.1 (phiRegionO y) (phiRegionO (facePerm² y)) (phiRegionO y).2.source`;
+  - `RegionCandidate.twoGonClassHyp_of_linkedComponent S P hcell hy hyf hnone h4 hb`, at `E = linkedComponentO S.family a₀`, with the hypotheses on `y` given by `exists_twoGonLabels`;
+  - `RegionCandidate.twoGonWalk_left_side source target ht hsrc htgt`, `twoGonWalk_right_side …` and `twoGonWalk_base source target ht hnondeg htgt`, on `source.reverseDarts ++ a.rightSide ++ target.darts ++ b.leftSide`, with `hsrc : ∀ d ∈ a.sourceArc.darts, d ∈ source.darts` and `htgt : ∀ d ∈ a.targetArc.darts, d ∈ target.darts` (and the same for `b`).
 
 ## State
 
