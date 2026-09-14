@@ -4,7 +4,9 @@ Problem XXII theorems and their definition checks.
 The group-approximation authors retain their source copyright notices.
 The reused HamSandwich and Tau Ceti sources retain their respective copyright
 and adaptation notices. Their pinned origins, licenses, and contributor credits
-appear in formalization.yaml. The repository license is Apache License 2.0.
+appear in formalization.yaml. The repository license is Apache License 2.0. Exact upstream license texts
+are retained in GroupApproximation/ThirdParty/HamSandwich/LICENSE and
+GroupApproximation/External/TauCeti/LICENSE.
 
 Codex (OpenAI) wrote the submission prose and edited source comments during
 submission preparation. Claude (Anthropic) wrote the earlier exposition and

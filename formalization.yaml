@@ -247,7 +247,7 @@ related_formalizations:
     engineering, and ChatGPT for prompts, audit strategy, and publication checks. These
     are upstream production credits, distinct from the local automation account below.
     The present development supplies the operator-algebraic counterexample and submission
-    bridge.
+    bridge. The exact upstream license text is retained in GroupApproximation/ThirdParty/HamSandwich/LICENSE.
 - title: Tau Ceti
   id: https://github.com/TauCetiProject/TauCeti/tree/2bd433b4598b84db4b8662305d2dd4927cf1c173
   relationship: builds-on
@@ -259,7 +259,7 @@ related_formalizations:
     pin under GroupApproximation.External.TauCeti. Tau Ceti describes its source as implemented
     and maintained by AI contributors under human-written mathematical roadmaps. These
     Apache-2.0 components are existing representation-theoretic and algebraic infrastructure,
-    not the present counterexample.
+    not the present counterexample. The exact upstream license text is retained in GroupApproximation/External/TauCeti/LICENSE.
 automation:
   methods:
   - method: agent
@@ -285,11 +285,14 @@ review:
     Preparation rechecked the Challenge against the cited definitions and completion characterization,
     distinguished the formal antipodal proof from the earlier complex-projective account,
     corrected the factoriality framing, and audited historical and reused-source credits.
-    The selected statements and all transitive source declarations are unchanged from the
-    candidate previously accepted by Comparator with both Lean and NanoDa. The verification
-    workflow on this submission revision repeats the build, definition model checks, statement
-    comparison, axiom audit, and Comparator with NanoDa. Repository checks do not constitute
-    Palomar editorial acceptance.
+    Full build, definition model checks, elaborated statement comparison, axiom audit,
+    and Comparator with Lean and NanoDa are recorded in GitHub Actions run https://github.com/SauersML/group-approximation/actions/runs/34806058250
+    for source revision 2a0aa5c952325f633690c0d0531cbc81f3b5456b. The final package workflow
+    requires that run to have succeeded and verifies byte-for-byte identity of every Lean
+    file, build configuration, dependency pin, Comparator configuration, and full verification
+    workflow with that revision. The final changes preserve exact upstream license texts
+    and update explanatory and verification material. Repository checks do not constitute
+    Palomar editorial acceptance; Palomar verifies the exact submitted revision independently.
 repository:
   role: substantive-development
 status:
