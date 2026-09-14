@@ -38,7 +38,8 @@ variable {N : CombMap.{u}} (S : N.Dart → Prop) (hα : ∀ x, S (N.alpha x) ↔
 /-- **A face cycle of a restricted map is a face cycle of the map.** -/
 theorem isFaceCycle_val {l : List (N.restrict S hα hσ).Dart}
     (hl : (N.restrict S hα hσ).IsFaceCycle l) : N.IsFaceCycle (l.map Subtype.val) := by
-  refine ⟨by simpa using hl.ne_nil, hl.nodup.map Subtype.val_injective, ?_, ?_⟩
+  refine ⟨fun h => hl.ne_nil (List.map_eq_nil_iff.mp h), hl.nodup.map Subtype.val_injective,
+    ?_, ?_⟩
   · rw [List.isChain_map]
     exact hl.chain.imp fun x y h => by rw [← h]; rfl
   · rw [List.getLast_map, List.head_map, ← hl.closes]
@@ -47,7 +48,7 @@ theorem isFaceCycle_val {l : List (N.restrict S hα hσ).Dart}
 /-- **A list of the restricted map whose values form a face cycle is a face cycle.** -/
 theorem isFaceCycle_of_val {l : List (N.restrict S hα hσ).Dart}
     (hl : N.IsFaceCycle (l.map Subtype.val)) : (N.restrict S hα hσ).IsFaceCycle l := by
-  refine ⟨by simpa using hl.ne_nil, hl.nodup.of_map _, ?_, ?_⟩
+  refine ⟨fun h => hl.ne_nil (List.map_eq_nil_iff.mpr h), hl.nodup.of_map _, ?_, ?_⟩
   · have h := hl.chain
     rw [List.isChain_map] at h
     exact h.imp fun x y hxy => Subtype.ext hxy
@@ -151,8 +152,9 @@ theorem listVal_pocket_eq_one (X : DiscDiagram.{u, w, v} W) [DecidableEq X.toCom
   have hlOval : (lO.map Subtype.val).map (EdgeDeletion.value X.toCombMap a) =
       (List.range m).map fun t => (X.toCombMap.facePerm ^ (t + 1)) a := by
     rw [hlO]
-    refine List.ext_getElem (by simp) fun j h1 h2 => ?_
-    simp [List.getElem_ofFn, EdgeDeletion.value, EdgeDeletion.ofValue]
+    refine List.ext_getElem
+      (by simp only [List.length_map, List.length_ofFn, List.length_range]) fun j h1 h2 => ?_
+    (simp only [List.getElem_map, List.getElem_ofFn, List.getElem_range]) <;> rfl
   have hLne : ((List.range m).map fun t => (X.toCombMap.facePerm ^ (t + 1)) a) ≠ [] := by
     rw [ne_eq, List.map_eq_nil_iff, List.range_eq_nil]
     omega
@@ -192,8 +194,8 @@ theorem listVal_pocket_eq_one (X : DiscDiagram.{u, w, v} W) [DecidableEq X.toCom
     rw [show m - 1 + 1 = m by omega]
     exact hlast
   have hO : (component X.toCombMap a hface hstart).IsFaceCycle lO :=
-    isFaceCycle_of_val (Side X.toCombMap a hface hstart) (side_alpha X.toCombMap a hface hstart)
-      (side_sigma X.toCombMap a hface hstart)
+    @isFaceCycle_of_val (EdgeDeletion.toCombMap X.toCombMap a) (Side X.toCombMap a hface hstart)
+      (side_alpha X.toCombMap a hface hstart) (side_sigma X.toCombMap a hface hstart) lO
       (EdgeDeletion.isFaceCycle_of_map_value X.toCombMap a hlOval hLne hLnd hLch hLcl)
   -- Labels of the component.
   obtain ⟨label, hlabel_def⟩ : ∃ label : (component X.toCombMap a hface hstart).Dart →
@@ -214,8 +216,9 @@ theorem listVal_pocket_eq_one (X : DiscDiagram.{u, w, v} W) [DecidableEq X.toCom
         (∅ : Finset (component X.toCombMap a hface hstart).Face) →
       RelLetter.listVal (l.map label) = 1 := by
     intro l hl hne _
-    have hlN := isFaceCycle_val (Side X.toCombMap a hface hstart)
-      (side_alpha X.toCombMap a hface hstart) (side_sigma X.toCombMap a hface hstart) hl
+    have hlN : (EdgeDeletion.toCombMap X.toCombMap a).IsFaceCycle (l.map Subtype.val) :=
+      @isFaceCycle_val (EdgeDeletion.toCombMap X.toCombMap a) (Side X.toCombMap a hface hstart)
+        (side_alpha X.toCombMap a hface hstart) (side_sigma X.toCombMap a hface hstart) l hl
     have hgood : ∀ y ∈ l.map Subtype.val,
         X.toCombMap.facePerm (EdgeDeletion.value X.toCombMap a y) ≠ a ∧
           X.toCombMap.facePerm (EdgeDeletion.value X.toCombMap a y) ≠ X.toCombMap.alpha a := by
@@ -249,7 +252,7 @@ theorem listVal_pocket_eq_one (X : DiscDiagram.{u, w, v} W) [DecidableEq X.toCom
     have hlM := EdgeDeletion.isFaceCycle_map_value X.toCombMap a hlN hgood
     have hhead : ((l.map Subtype.val).map (EdgeDeletion.value X.toCombMap a)).head hlM.ne_nil =
         EdgeDeletion.value X.toCombMap a (l.head hl.ne_nil).1 := by
-      simp only [List.head_map]
+      rw [List.head_map, List.head_map]
     have hpathHead : Relation.EqvGen (AvoidEdgeStep X.toCombMap a) (X.toCombMap.alpha a)
         (EdgeDeletion.value X.toCombMap a (l.head hl.ne_nil).1) :=
       Relation.EqvGen.trans _ _ _ (Relation.EqvGen.rel _ _ (Or.inl rfl))
@@ -281,7 +284,8 @@ theorem listVal_pocket_eq_one (X : DiscDiagram.{u, w, v} W) [DecidableEq X.toCom
         hlM (by rw [FaceBoundary.faceOf_head, hhead])
       have hmap : l.map label =
           ((l.map Subtype.val).map (EdgeDeletion.value X.toCombMap a)).map X.label := by
-        simp only [List.map_map, Function.comp_def, hlabel_def]
+        rw [List.map_map, List.map_map]
+        exact List.map_congr_left fun x _ => hlabel_def x
       rw [hmap, ← hrot, List.map_rotate, HullSC.RelWord.listVal_rotate _ (by simpa using hk), hval]
       simp
   have hK := component_planar X.toCombMap a hface hstart htail X.planar
@@ -291,8 +295,8 @@ theorem listVal_pocket_eq_one (X : DiscDiagram.{u, w, v} W) [DecidableEq X.toCom
   have h1 := RelatorDefectBudget.IsRelatorProduct.eq_one_of_index_zero hprod
   have hword : lO.map label =
       dartWord X ((List.range m).map fun t => (X.toCombMap.facePerm ^ (t + 1)) a) := by
-    rw [dartWord, ← hlOval]
-    simp only [List.map_map, Function.comp_def, hlabel_def]
+    rw [dartWord, ← hlOval, List.map_map, List.map_map]
+    exact List.map_congr_left fun x _ => hlabel_def x
   rwa [hword] at h1
 
 end BridgeComponent
