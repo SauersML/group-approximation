@@ -78,6 +78,24 @@ Hygiene only: `CentralCoronaCornerPrintedRoute.lean`'s module docstring quotes a
     Nothing produces it yet, and nobody's .files holds a file for it.
 - No census rows: the remark's rows belong to ct-rank-two-limit, and "locally matricial" (`eda117e756e6`) to chain-matricial.
 
+## Item 3 (main, 20:2x): chain-matricial module 5, tex 1794–1807
+
+- Nothing to build: already closed and reachable from the root on origin (checked 20:30).
+  - Module 5 is `ClopenCrossedProduct.transientIdealLocallyMatricialStatement_holds` in `Dynamics/TransientCellsClosed`,
+    built from ct-involution's cells and ms-units' `TransientTowerFamily`, `TransientTowerExpansion` and
+    `TransientIdealLocallyMatricial`. Its audit is closed.
+  - ms-inverses-3's `printedTransientMatrices_closed` closes the whole lemma. Its module
+    `Manuscript/NonMFSentences/TransientMatricesClosed` isn't reachable from the root yet.
+- The remark is closed by `Dynamics/RankTwoKazhdanLimitClosed` (ct-rank-two-limit, 3bbabdc89, root-reachable).
+  - `coreRestrictionLocallyFiniteKernel` goes through this lane's
+    `coreRestrictionLocallyFiniteKernel_of_transientLocallyMatricial`.
+  - The three printed endpoints `printedFixedCoreGLTwoKazhdanFinite`, `printedPeriodTwoCoreUnitsKazhdanFinite` and
+    `printedRankTwoCompressionDefectsTrivial` each have a closed audit.
+- Census: ct-rank-two-limit's row file grades f31fa0413ffd, 2d5721555dfe, dd5ef3eafd48 and 5e4354e1556b `formalized`.
+  Merge f78d19014 still shows three of them `partial` because it predates the 20:27 regrade.
+- The 12 unassigned rows went to ct-rank-budget (main, 20:28). All 12 were in other lanes' ranges: the Introduction
+  chain-core paragraph, ms-core-1's opening, ct-bilateral-cell, ct-rank-budget and ct-two-ended.
+
 ## Range status
 Every sentence of tex 583–657 is carried by a closed, root-reachable declaration or is honestly structural (hypothesis,
 notation, commentary). The new module still needs wiring into the root (queued). Remaining note: the word "only" in
