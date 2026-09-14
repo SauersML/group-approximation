@@ -1,0 +1,261 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketInnerWalk
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoArcSection
+import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionPocketBelow
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The whole-section two-arc face set producer over the inner pocket
+
+Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  The two-arc face set producer at a section spanning
+the whole boundary (`SectionPocketFaceSetWholeSectionTwoArcInput`, `Estimating/OsinPocketTwoArcSection.lean`)
+through the inner pocket between the two regions (`Estimating/OsinPocketInnerWalk.lean`), with clause (b)
+of Lemma 9.7 below the number of relator cells of `Δ` in scope, as in ms-cite-1's below chain
+(`Estimating/OsinAppendixSectionPocketBelow.lean`).
+
+* Below spelling: `SectionPocketFaceSetWholeSectionTwoArcBelowInput`, `SectionPocketFaceSetTwoArcBelowInput`,
+  their `toBelow`, and `sectionPocketFaceSetTwoArcBelowInput_of_proper_of_wholeSection`.
+* `sectionPocketCutBelowInput_of_residualsTwoArcBelow`: ms-cite-1's `SectionPocketCutBelowInput` from the
+  below two-arc producer, the two-arc pinch and the collar insertion.
+* Inner residuals, on the diagram of a distinguished family, for two exterior regions `x`, `y` of one cell to
+  one section ordered by their target arcs, with the inner data of `PocketWalk.exists_inner_of_le` and the
+  edge conditions in both orders:
+  - `SectionPocketInnerKeptCellStatement`: a relator cell lies on the side of the inner pocket walk;
+  - `SectionPocketInnerWalkNoncrossingStatement`: the inner pocket walk is noncrossing;
+  - `SectionPocketInnerWalkEulerStatement`: the Euler equalities of its two reclosings;
+  - `SectionPocketInnerEmptyArcsBelowStatement`: when an inner arc is empty, under clause (b) below the
+    number of relator cells, the two-arc conclusion.
+* `sectionPocketFaceSetWholeSectionTwoArcBelowInput_of_inner`: the whole-section below producer from the
+  regions copy, the inner kept cell, the inner noncrossing statement and the empty-arcs residual.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (Hull's small cancellation theorem, through Osin's Lemma 9.7(b));
+certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open Embedded SimpleClosedWalkSides
+
+section Inputs
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+
+/-- **The two-arc producer at a whole section, below the inductive bound.** -/
+def SectionPocketFaceSetWholeSectionTwoArcBelowInput (D : RelGenSet G Lambda) (lambda c mu : ℝ)
+    (eps : ℕ) (W : Set (List (RelLetter G Lambda))) : Prop :=
+  ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
+    Delta.LeastArea → OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount →
+      ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+        ∀ (i : Fin S.diagram.rCellCount) (j : Fin cuts.count),
+          ∀ a ∈ RegionCandidate.exteriorAt S.family i,
+            ∀ b ∈ RegionCandidate.exteriorAt S.family i, a ≠ b →
+              RegionCandidate.TargetsSectionIndex cuts j a →
+                RegionCandidate.TargetsSectionIndex cuts j b →
+                  cuts.SpansWhole j →
+                    ∃ X' : DiscDiagram.{u, w, v} W,
+                      Nonempty (OEquivalentDiscDiagram S.diagram X') ∧
+                        (∀ d, (symmetricLabelAlphabet D).IsLetter (X'.label d)) ∧
+                        ∃ K : PocketFaceSet D eps X' (cuts.cut j.castSucc) (cuts.cut j.succ),
+                          K.ClosedWalk ∧ K.sourceArc.length < (cellDarts X' K.source).length ∧
+                            K.targetArc.length < (outerDarts X').length
+
+theorem SectionPocketFaceSetWholeSectionTwoArcInput.toBelow {D : RelGenSet G Lambda} {lambda c : ℝ}
+    {eps : ℕ} {W : Set (List (RelLetter G Lambda))}
+    (h : SectionPocketFaceSetWholeSectionTwoArcInput.{u, w, v} D lambda c eps W) (mu : ℝ) :
+    SectionPocketFaceSetWholeSectionTwoArcBelowInput.{u, w, v} D lambda c mu eps W :=
+  fun Delta cuts hlea _ S i j a ha b hb hab hja hjb hwhole =>
+    h Delta cuts hlea S i j a ha b hb hab hja hjb hwhole
+
+/-- **The two-arc producer below the inductive bound.** -/
+def SectionPocketFaceSetTwoArcBelowInput (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) : Prop :=
+  ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
+    Delta.LeastArea → OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount →
+      ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+        ∀ (i : Fin S.diagram.rCellCount) (j : Fin cuts.count),
+          ∀ a ∈ RegionCandidate.exteriorAt S.family i,
+            ∀ b ∈ RegionCandidate.exteriorAt S.family i, a ≠ b →
+              RegionCandidate.TargetsSectionIndex cuts j a →
+                RegionCandidate.TargetsSectionIndex cuts j b →
+                  ∃ X' : DiscDiagram.{u, w, v} W,
+                    Nonempty (OEquivalentDiscDiagram S.diagram X') ∧
+                      (∀ d, (symmetricLabelAlphabet D).IsLetter (X'.label d)) ∧
+                      ∃ K : PocketFaceSet D eps X' (cuts.cut j.castSucc) (cuts.cut j.succ),
+                        K.ClosedWalk ∧ K.sourceArc.length < (cellDarts X' K.source).length ∧
+                          K.targetArc.length < (outerDarts X').length
+
+/-- **The below two-arc producer from the proper producer and the below whole-section residual.** -/
+theorem sectionPocketFaceSetTwoArcBelowInput_of_proper_of_wholeSection {D : RelGenSet G Lambda}
+    {lambda c mu : ℝ} {eps : ℕ} {W : Set (List (RelLetter G Lambda))}
+    (hproper : SectionPocketFaceSetProperInput.{u, w, v} D lambda c eps W)
+    (hwhole : SectionPocketFaceSetWholeSectionTwoArcBelowInput.{u, w, v} D lambda c mu eps W) :
+    SectionPocketFaceSetTwoArcBelowInput.{u, w, v} D lambda c mu eps W := by
+  intro Delta cuts hlea hbelow S i j a ha b hb hne hja hjb
+  by_cases hwholej : cuts.SpansWhole j
+  · exact hwhole Delta cuts hlea hbelow S i j a ha b hb hne hja hjb hwholej
+  · obtain ⟨X', ⟨E⟩, hlabel, K, hK, hprop⟩ := hproper Delta cuts hlea S i j a ha b hb hne hja hjb
+    refine ⟨X', ⟨E⟩, hlabel, K, hK, hprop, ?_⟩
+    have h1 : (outerDarts X').length = X'.boundaryWord.length := by
+      rw [← dartWord_outerDarts X', dartWord, List.length_map]
+    have hlen : (outerDarts X').length = Delta.boundaryWord.length := by
+      rw [h1, (S.equiv.trans E).boundaryWord_eq]
+    have hlo := K.lo_le
+    have hhi := K.le_hi
+    have hsub := cuts.cut_sub_lt_of_not_spansWhole j hwholej
+    omega
+
+/-- **ms-cite-1's `SectionPocketCutBelowInput` from the below two-arc producer and the two-arc pinch**,
+with the collar insertion. -/
+theorem sectionPocketCutBelowInput_of_residualsTwoArcBelow
+    {D : RelGenSet G Lambda} {W : Set (List (RelLetter G Lambda))} {eps rho : ℕ} {mu lambda c : ℝ}
+    (hpinch : ∀ (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+      (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+      ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk →
+        K.sourceArc.length < (cellDarts X K.source).length →
+        K.targetArc.length < (outerDarts X).length →
+          ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
+            Nonempty (OEquivalentDiscDiagram X X') ∧ K'.Simple)
+    (hgeodesic : GeodesicCollarStatement.{u, w, v})
+    (hcondition : OsinCCondition D W eps mu lambda c rho) (hlambda : lambda ≤ 1) (hc : 0 ≤ c)
+    (hfaces : SectionPocketFaceSetTwoArcBelowInput.{u, w, v} D lambda c mu eps W) :
+    SectionPocketCutBelowInput.{u, w, v} D lambda c mu eps W := by
+  intro Delta cuts hlea hbelow S i j a ha b hb hne hja hjb
+  obtain ⟨X₀, ⟨E₀⟩, hlabel, K, hwalk, hprop, htgt⟩ :=
+    hfaces Delta cuts hlea hbelow S i j a ha b hb hne hja hjb
+  have hlea₀ : X₀.LeastArea := (S.equiv.trans E₀).leastArea hlea
+  obtain ⟨X₁, K₁, ⟨E₁⟩, hsimple⟩ := hpinch X₀ _ _ hlea₀ hlabel K hwalk hprop htgt
+  obtain ⟨C⟩ := pocketRegionOfSimple D eps W X₁ _ _ K₁ hsimple
+  have E : OEquivalentDiscDiagram Delta X₁ := (S.equiv.trans E₀).trans E₁
+  obtain ⟨X₂, C₂, ⟨E₂⟩, hC₂⟩ :=
+    pocketCollarStatement_of_geodesicCollar hgeodesic D eps W X₁ _ _ C
+      (C.nondegenerate_of_leastArea (E.leastArea hlea))
+  exact PocketCarrier.nonempty_osinSectionPocketCut pocketCellTransport pocketOuterTransport
+    hcondition hlambda hc hlea (E.trans E₂) cuts j C₂ hC₂
+
+end Inputs
+
+/-! ## Inner residuals -/
+
+section Residuals
+
+open scoped Classical in
+/-- The premises common to the inner residuals: two ordered exterior regions of one cell to one section of a
+least-area family, the inner data with both arcs nonempty, and the edge conditions in both orders. -/
+def SectionPocketInnerKeptCellStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) (Delta : DiscDiagram.{u, w, v} W)
+    (cuts : SectionCuts D lambda c Delta.boundaryWord)
+    (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts),
+    S.diagram.LeastArea →
+      ∀ (i : Fin S.diagram.rCellCount) (j : Fin cuts.count) (x y : RegionCandidate D eps S.diagram),
+        x ∈ RegionCandidate.exteriorAt S.family i → y ∈ RegionCandidate.exteriorAt S.family i →
+          x ≠ y → RegionCandidate.TargetsSectionIndex cuts j x →
+            RegionCandidate.TargetsSectionIndex cuts j y →
+              ∀ (Gap T : CyclicArc (cellDarts S.diagram i)) (t₂ : CyclicArc (outerDarts S.diagram)),
+                T.darts = x.2.sourceArc.darts ++ Gap.darts ++ y.2.sourceArc.darts →
+                  t₂.start.1 = x.2.targetArc.start.1 + x.2.targetArc.length →
+                    t₂.start.1 + t₂.length = y.2.targetArc.start.1 →
+                      ∀ (hGap : 0 < Gap.length) (ht₂ : 0 < t₂.length)
+                        (hlo : cuts.cut j.castSucc ≤ t₂.start.1)
+                        (hhi : t₂.start.1 + t₂.length ≤ cuts.cut j.succ),
+                        (∀ (lo hi : ℕ) (K : PocketWalk D eps S.diagram lo hi), K.source = i →
+                          K.CopyClean x y ∧ K.CopyClean y x) →
+                          ∃ kept : Fin S.diagram.rCellCount,
+                            (cell S.diagram kept).face ∈ sideFaces S.diagram.toCombMap
+                              (PocketWalk.ofInner i x y Gap t₂ hGap ht₂ hlo hhi).walk
+
+/-- **The inner pocket walk is noncrossing (residual)**, under the premises of
+`SectionPocketInnerKeptCellStatement`. -/
+def SectionPocketInnerWalkNoncrossingStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) (Delta : DiscDiagram.{u, w, v} W)
+    (cuts : SectionCuts D lambda c Delta.boundaryWord)
+    (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts),
+    S.diagram.LeastArea →
+      ∀ (i : Fin S.diagram.rCellCount) (j : Fin cuts.count) (x y : RegionCandidate D eps S.diagram),
+        x ∈ RegionCandidate.exteriorAt S.family i → y ∈ RegionCandidate.exteriorAt S.family i →
+          x ≠ y → RegionCandidate.TargetsSectionIndex cuts j x →
+            RegionCandidate.TargetsSectionIndex cuts j y →
+              ∀ (Gap T : CyclicArc (cellDarts S.diagram i)) (t₂ : CyclicArc (outerDarts S.diagram)),
+                T.darts = x.2.sourceArc.darts ++ Gap.darts ++ y.2.sourceArc.darts →
+                  t₂.start.1 = x.2.targetArc.start.1 + x.2.targetArc.length →
+                    t₂.start.1 + t₂.length = y.2.targetArc.start.1 →
+                      ∀ (hGap : 0 < Gap.length) (ht₂ : 0 < t₂.length)
+                        (hlo : cuts.cut j.castSucc ≤ t₂.start.1)
+                        (hhi : t₂.start.1 + t₂.length ≤ cuts.cut j.succ),
+                        (∀ (lo hi : ℕ) (K : PocketWalk D eps S.diagram lo hi), K.source = i →
+                          K.CopyClean x y ∧ K.CopyClean y x) →
+                          IsNoncrossingClosedWalk S.diagram.toCombMap
+                            (PocketWalk.ofInner i x y Gap t₂ hGap ht₂ hlo hhi).walk
+
+/-- **The Euler equalities of the inner pocket walk (residual)**, the inner analogue of
+`SectionPocketWalkEulerStatement`, under the premises of `SectionPocketInnerKeptCellStatement`. -/
+def SectionPocketInnerWalkEulerStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) (Delta : DiscDiagram.{u, w, v} W)
+    (cuts : SectionCuts D lambda c Delta.boundaryWord)
+    (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts),
+    S.diagram.LeastArea →
+      ∀ (i : Fin S.diagram.rCellCount) (j : Fin cuts.count) (x y : RegionCandidate D eps S.diagram),
+        x ∈ RegionCandidate.exteriorAt S.family i → y ∈ RegionCandidate.exteriorAt S.family i →
+          x ≠ y → RegionCandidate.TargetsSectionIndex cuts j x →
+            RegionCandidate.TargetsSectionIndex cuts j y →
+              ∀ (Gap T : CyclicArc (cellDarts S.diagram i)) (t₂ : CyclicArc (outerDarts S.diagram)),
+                T.darts = x.2.sourceArc.darts ++ Gap.darts ++ y.2.sourceArc.darts →
+                  t₂.start.1 = x.2.targetArc.start.1 + x.2.targetArc.length →
+                    t₂.start.1 + t₂.length = y.2.targetArc.start.1 →
+                      ∀ (hGap : 0 < Gap.length) (ht₂ : 0 < t₂.length)
+                        (hlo : cuts.cut j.castSucc ≤ t₂.start.1)
+                        (hhi : t₂.start.1 + t₂.length ≤ cuts.cut j.succ),
+                        (∀ (lo hi : ℕ) (K : PocketWalk D eps S.diagram lo hi), K.source = i →
+                          K.CopyClean x y ∧ K.CopyClean y x) →
+                          ∀ hw : IsNoncrossingClosedWalk S.diagram.toCombMap
+                              (PocketWalk.ofInner i x y Gap t₂ hGap ht₂ hlo hhi).walk,
+                            (reclosedMap S.diagram.toCombMap
+                                (sideFaces S.diagram.toCombMap
+                                  (PocketWalk.ofInner i x y Gap t₂ hGap ht₂ hlo hhi).walk)
+                                (hw.innerCycle S.diagram.planar)).eulerCharacteristic =
+                                S.diagram.toCombMap.eulerCharacteristic ∧
+                              (reclosedMap S.diagram.toCombMap
+                                  (sideOutside S.diagram.toCombMap
+                                    (PocketWalk.ofInner i x y Gap t₂ hGap ht₂ hlo hhi).walk)
+                                  (hw.outerCycle S.diagram.planar)).eulerCharacteristic =
+                                S.diagram.toCombMap.eulerCharacteristic
+
+/-- **An empty inner arc, below the inductive bound (residual).**  For two ordered exterior regions of a
+least-area family whose inner data has an empty gap or an empty target arc, with clause (b) of Lemma 9.7
+below the number of relator cells of `Δ` and the edge conditions in both orders, the two-arc conclusion. -/
+def SectionPocketInnerEmptyArcsBelowStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) (Delta : DiscDiagram.{u, w, v} W)
+    (cuts : SectionCuts D lambda c Delta.boundaryWord),
+    Delta.LeastArea → OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount →
+      ∀ (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+        (i : Fin S.diagram.rCellCount) (j : Fin cuts.count) (x y : RegionCandidate D eps S.diagram),
+        x ∈ RegionCandidate.exteriorAt S.family i → y ∈ RegionCandidate.exteriorAt S.family i →
+          x ≠ y → RegionCandidate.TargetsSectionIndex cuts j x →
+            RegionCandidate.TargetsSectionIndex cuts j y →
+              ∀ (Gap T : CyclicArc (cellDarts S.diagram i)) (t₂ : CyclicArc (outerDarts S.diagram)),
+                T.darts = x.2.sourceArc.darts ++ Gap.darts ++ y.2.sourceArc.darts →
+                  t₂.start.1 = x.2.targetArc.start.1 + x.2.targetArc.length →
+                    t₂.start.1 + t₂.length = y.2.targetArc.start.1 →
+                      (Gap.length = 0 ∨ t₂.length = 0) →
+                        (∀ (lo hi : ℕ) (K : PocketWalk D eps S.diagram lo hi), K.source = i →
+                          K.CopyClean x y ∧ K.CopyClean y x) →
+                          ∃ X' : DiscDiagram.{u, w, v} W,
+                            Nonempty (OEquivalentDiscDiagram S.diagram X') ∧
+                              (∀ d, (symmetricLabelAlphabet D).IsLetter (X'.label d)) ∧
+                              ∃ K : PocketFaceSet D eps X' (cuts.cut j.castSucc) (cuts.cut j.succ),
+                                K.ClosedWalk ∧ K.sourceArc.length < (cellDarts X' K.source).length ∧
+                                  K.targetArc.length < (outerDarts X').length
+
+end Residuals
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.SectionPocketFaceSetWholeSectionTwoArcInput.toBelow
+#audit_axioms GroupApproximation.GGT.VanKampen.sectionPocketFaceSetTwoArcBelowInput_of_proper_of_wholeSection
+#audit_axioms GroupApproximation.GGT.VanKampen.sectionPocketCutBelowInput_of_residualsTwoArcBelow
