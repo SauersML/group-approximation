@@ -1,0 +1,10 @@
+c1 x y ORDER 1
+c2 xyXYY yxYXX ORDER 1
+c3 xxxYYYY xyxYXY ORDER 1
+c4 xxYYY xxYXYXYXYXYX ORDER 2280
+c5 xxxxx y ORDER 5
+c6 xx yyy OVERFLOW
+c7 xx yy OVERFLOW
+c8 xyXY x OVERFLOW
+c9 xxx xyxY OVERFLOW
+c10 xx xyxyxyY ORDER 4

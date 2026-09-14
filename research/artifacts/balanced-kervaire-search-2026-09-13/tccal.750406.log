@@ -1,0 +1,24 @@
+86266fbc645ab4ebcfdc58cb94cbacc3  tc_verify.py
+501bead71ca34b903e0de3ae1c8753c3  tc_calib.txt
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+c1 x y ORDER 1
+c2 xyXYY yxYXX ORDER 1
+c3 xxxYYYY xyxYXY ORDER 1
+c4 xxYYY xxYXYXYXYXYX ORDER 2280
+c5 xxxxx y ORDER 5
+c6 xx yyy OVERFLOW
+c7 xx yy OVERFLOW
+c8 xyXY x OVERFLOW
+c9 xxx xyxY OVERFLOW
+c10 xx xyxyxyY ORDER 4
+c1 2 x y TRIVIAL n=1 ms=0
+c2 10 xyXYY yxYXX TRIVIAL n=1 ms=0
+c3 13 xxxYYYY xyxYXY TRIVIAL n=1 ms=1
+c4 17 xxYYY xxYXYXYXYXYX FINITE n=2280 ms=1
+c5 6 xxxxx y FINITE n=5 ms=0
+c6 5 xx yyy QUOTIENT idx=3 ms=212
+c7 4 xx yy QUOTIENT idx=2 ms=144
+c8 5 xyXY x QUOTIENT idx=2 ms=223
+c9 7 xxx xyxY QUOTIENT idx=2 ms=244
+c10 9 xx xyxyxyY FINITE n=4 ms=1
+DONE

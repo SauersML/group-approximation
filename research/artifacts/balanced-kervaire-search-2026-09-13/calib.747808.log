@@ -1,0 +1,8 @@
+aacdc2535c7c4de96013e26f0d2a53dd  bal.g
+7fcee490ef98c679ad7ba08d12ca05b5  calib.g
+x y expect TRIVIAL -> TRIVIAL n=1
+xyXYY yxYXX expect TRIVIAL -> TRIVIAL n=1
+xxxYYYY xyxYXY expect TRIVIAL -> TRIVIAL n=1
+xxYYY xxYXYXYXYXYX expect FINITE -> FINITE n=2280
+xxYYY yyyYXYXYXYXYX expect ANY -> FINITE n=2280
+DONE

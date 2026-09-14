@@ -1,0 +1,10 @@
+c1 2 x y TRIVIAL n=1 ms=0
+c2 10 xyXYY yxYXX TRIVIAL n=1 ms=0
+c3 13 xxxYYYY xyxYXY TRIVIAL n=1 ms=1
+c4 17 xxYYY xxYXYXYXYXYX FINITE n=2280 ms=1
+c5 6 xxxxx y FINITE n=5 ms=0
+c6 5 xx yyy QUOTIENT idx=3 ms=212
+c7 4 xx yy QUOTIENT idx=2 ms=144
+c8 5 xyXY x QUOTIENT idx=2 ms=223
+c9 7 xxx xyxY QUOTIENT idx=2 ms=244
+c10 9 xx xyxyxyY FINITE n=4 ms=1

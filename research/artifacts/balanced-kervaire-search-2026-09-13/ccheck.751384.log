@@ -1,0 +1,15 @@
+77bd07e081172b20b4fcac3495005341  census_check.py
+a573de752d5f7afb0bce2d9f9eb23fb1  census13.txt
+L=9
+recount per L: [(2, 1), (3, 1), (4, 1), (5, 2), (6, 3), (7, 11), (8, 17), (9, 54)] total 90
+census classes 90 duplicates 0 missing 0 extra 0
+MATCH
+L=11
+recount per L: [(2, 1), (3, 1), (4, 1), (5, 2), (6, 3), (7, 11), (8, 17), (9, 54), (10, 91), (11, 349)] total 530
+census classes 530 duplicates 0 missing 0 extra 0
+MATCH
+L=12
+recount per L: [(2, 1), (3, 1), (4, 1), (5, 2), (6, 3), (7, 11), (8, 17), (9, 54), (10, 91), (11, 349), (12, 591)] total 1121
+census classes 1121 duplicates 0 missing 0 extra 0
+MATCH
+DONE
