@@ -464,6 +464,12 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Cairn: new open claim `sofic-non-lef-infinite-simple-kazhdan-group-exists`, wired into the note's open-questions root.
 99. **Every finite field** (sk-general-statement, d7ef2a68fd; +20 lines, compiles). Include the n ≥ 3 variant only if the finished rev4 stays ≤ 8 pp and sk-verify-13 PASSes the LaTeX (queue line 7). Otherwise it becomes rev4.1 or stays out.
 100. **E2 HOLDS** (sk-verify-6 part5): Alekseev–Thom §5 lists Thom's group as the sofic Kazhdan non-RF example; de Cornulier's groups are only hyperlinear-related; Kar–Nikolov's lack (T). ADOPT E2 with \cite[\S5]{AlekseevThom}. Never "only known example".
+101. **sk-answered-questions** (fb104eec26, 35074a1b16).
+    - Printed questions answered: Brown Q7, Ozawa 2003, Pestov 9.1, Pestov–Kwiatkowska, and Elek–Szabó (answered first by Thom).
+    - ADOPT P1: the intro framing with Kionke–Schesler's "natural to ask which groups embed into f.g. simple amenable groups" (the LEF version answered completely, with a Kazhdan host; their amenable question stays open) and the Boone–Higman shape (bibitem Crossref-checked).
+    - ADOPT P2: Rauzy IJAC 35 (2025) Prop 26 credit for the no-decidable-host argument.
+    - CAUTION: continuum many nonisomorphic (T) group factors are known (Chifan–Ioana–Osin–Sun Cor 2.7). The new part of P1 is R^ω-embeddability; cite CIOS only after a source check.
+    - Not answered: Alekseev–Thom 6.1, CFKP Questions 5.1–5.3, Bishop–Schesler 1.1.
 
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
