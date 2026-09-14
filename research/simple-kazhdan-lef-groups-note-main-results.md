@@ -30,14 +30,19 @@ Embedding theorems built on the same tower argument:
 5. every finitely generated residually finite group, and every finitely generated LEF group, is
    a subgroup of an infinite finitely generated simple Kazhdan LEF group
    (`rf-groups-embed-in-simple-kazhdan-lef-groups`, `lef-groups-embed-in-simple-kazhdan-lef-groups`),
-   and the host can be chosen with solvable word problem exactly when the input has one
-   (`lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts`);
+   and the host can be chosen so that its word problem has the Turing degree of the input's
+   (`lef-groups-have-simple-kazhdan-hosts-of-same-wp-degree`), in particular with solvable word
+   problem exactly when the input has one (`lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts`);
 6. one such group contains every group of a countable family of f.g. residually finite groups,
    for example every f.g. linear group (`simple-kazhdan-lef-host-for-countably-many-rf-groups`,
    `universal-simple-kazhdan-lef-groups-exist`);
 7. the tower proof of simplicity needs only a minimal topologically free action
    (`tower-simplicity-holds-for-topologically-free-actions`,
-   `binary-el-simple-iff-minimal-topologically-free`).
+   `binary-el-simple-iff-minimal-topologically-free`);
+8. over `Z` the subshift hypothesis is sharp: for a homeomorphism `T` of a Cantor set `X`,
+   `EL_3(LC(X,F_2) ⋊_T Z)` is simple and Kazhdan iff `(X,T)` is conjugate to a minimal subshift
+   (`crossed-product-el-kazhdan-iff-finite-field-and-subshift`, the "Sharpness over Z" subsection
+   of revision 5).
 
 The status of this root is the conjunction of these claims; see the assembly route
 `simple-kazhdan-lef-note-main-results-assembly`. Review state of each item lives on its own node
@@ -48,4 +53,8 @@ and in `research/artifacts/sk-review-*-2026-09-13-part*.md`.
 root and stay established under the program themes: the separable factor count, the failure of the
 factorization property and of the LLP, `SL_3(Z)` lying in no `G_X`, no host with solvable word
 problem containing every finitely presented residually finite group, and the embedding of the
-derived topological full group in `G_X`.
+derived topological full group in `G_X`. Revision 5 (main 911b7b3f4a, 11 pages) added the
+sharpness statement (item 8) and revision 5.1 (main 37ebf96798) the Turing-degree form of the
+host theorem (item 5), both now members of the assembly. The rigidity theorem
+`subshift-el3-f2-isomorphism-forces-strong-orbit-equivalence` is established but is not printed in
+the note; it is reserved for a sequel, and the note's question 4 says so.

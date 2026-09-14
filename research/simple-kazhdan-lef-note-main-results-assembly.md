@@ -21,6 +21,8 @@ requires:
   - simple-kazhdan-lef-host-iff-lef-and-countably-many-types
   - simple-kazhdan-lef-host-for-recursive-lef-groups
   - lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts
+  - lef-groups-have-simple-kazhdan-hosts-of-same-wp-degree
+  - crossed-product-el-kazhdan-iff-finite-field-and-subshift
   - continuum-many-subshift-el-groups-pairwise-non-embeddable
 ---
 
@@ -35,8 +37,11 @@ members listed above:
   general engine for minimal topologically free actions with matrix models;
 - Brown's formulation through the McDuff factor;
 - Corollary 3, the characterization of LEF groups as subgroups of simple Kazhdan limits of finite
-  simple expanders, together with its solvable word problem analogue
-  (`lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts`);
+  simple expanders, together with its word-problem analogue: from revision 5.1 the host keeps the
+  Turing degree of the word problem (`lef-groups-have-simple-kazhdan-hosts-of-same-wp-degree`),
+  which contains the solvable case (`lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts`);
+- the "Sharpness over Z" subsection of revision 5
+  (`crossed-product-el-kazhdan-iff-finite-field-and-subshift`, in the `F_2`, `n = 3` form);
 - Corollary 4, one host per countable set of LEF groups and the host for all recursively presented
   ones;
 - Corollary 5, every Turing degree as a word problem degree and continuum many `G_X` none of which

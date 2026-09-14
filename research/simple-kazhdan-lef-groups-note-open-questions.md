@@ -16,10 +16,12 @@ distinct_from:
    least hyperlinear (`hyperlinear-fp-infinite-simple-kazhdan-group`)? No `G_X` is finitely
    presented, since finitely presented LEF groups are residually finite. A sofic answer would
    also answer Alekseev--Thom, arXiv:2608.05362, Open problem 6.1.
-2. Does `G_X ≅ G_Y` force `X` and `Y` to be strongly orbit equivalent, or even flip conjugate
-   (`subshift-el3-f2-isomorphism-forces-strong-orbit-equivalence`, the binary case of
-   `subshift-elementary-group-isomorphism-forces-orbit-equivalence`)? Conjugacy or flip
-   conjugacy gives an isomorphism.
+2. Does `G_X ≅ G_Y` force `X` and `Y` to be flip conjugate
+   (`subshift-el3-group-isomorphism-forces-flip-conjugacy`)? Flip conjugacy gives an isomorphism.
+   The weaker alternative the note asked until revision 5, strong orbit equivalence, is now a
+   theorem (`subshift-el3-f2-isomorphism-forces-strong-orbit-equivalence`, established
+   2026-09-14 through the standardness of every isomorphism); revision 5.1 says it is shown in a
+   sequel.
 3. Is every finitely generated sofic group a subgroup of an infinite finitely generated simple
    Kazhdan sofic group (`sofic-groups-embed-in-simple-kazhdan-sofic-groups`)? This is the sofic
    analogue of the note's LEF characterization. The revision 4 draft (sk-editor-4) poses it.
@@ -35,9 +37,10 @@ question sits on a live path to a root and shows up as a frontier hole.
 - Finite presentation: `sk-fp-sofic-a`–`d` landed firewalls (gap-sofic approximations are local
   embeddings; isolation of SFT points; no gapped finite unitary models) and no candidate; see the
   Attempts on `hyperlinear-fp-infinite-simple-kazhdan-group`.
-- Rigidity: diagonal-preserving isomorphisms force flip conjugacy, matrix-ring isomorphisms force
-  strong orbit equivalence, and root-preserving isomorphisms give ring isomorphisms; the missing
-  step over `F_2` is standardness, recorded on `subshift-el3-isomorphisms-are-standard-over-f2`.
+- Rigidity: standardness of every isomorphism is now established
+  (`subshift-el3-isomorphisms-are-standard-over-f2`), so `G_X ≅ G_Y` gives `R_X ≅ R_Y` and strong
+  orbit equivalence. What remains is flip conjugacy; the attempt dies at Cartan uniqueness, see the
+  Attempts on `subshift-el3-group-isomorphism-forces-flip-conjugacy`.
 - Sofic hosts: rank-metric (linear sofic) hosts exist for every finitely generated sofic group
   (`sofic-groups-embed-in-simple-kazhdan-linear-sofic-groups`, unreviewed). The rank-to-Hamming gap
   is the whole remaining content; see the Attempts on `sofic-groups-embed-in-simple-kazhdan-sofic-groups`.
