@@ -65,3 +65,9 @@ Rows 88ecdc10f78b and a63ff00e499b (Kirchberg) belong to oa-kirchberg and oa-llp
 - CLAIM GroupApproximation/Analysis/HyperlinearOneSumModels.lean: `oneSum`, `ampMatrix`, `normTrace_ampMatrix`, `hsDistSq_ampMatrix_le`.
 - CLAIM GroupApproximation/Analysis/McDuffFactor.lean: `McDuff.tensorHyperfinite M` (M ⊗̄ R over oa-hyperfinite's `Hyperfinite.pauliCocycle`), `IsMcDuffFactor`, `groupUnitaryHom`, and the closed endpoint `printedTensorHyperfiniteUnitaryContainsGroup` for "whose unitary group contains G".
 - Probe 0914-084740-9954: HyperlinearOneSumModels had one error, a redundant `ring` after `field_simp`, now fixed; HyperlinearTraceVanishingProof was not built because of it.
+
+## 09:0x: producer closed, McDuff module green
+- CLOSED hyperlinearTracePreservingModelStatement_holds (probe 0914-085504-40251: BUILT HyperlinearOneSumModels ee792753d, HyperlinearTraceVanishingProof 24a27e527). oa-llp has the name.
+- CLOSED McDuff.printedTensorHyperfiniteUnitaryContainsGroup (probe 0914-090458-35874: BUILT McDuffFactor ee792753d, GroupVonNeumannUnitaryGroup cadf4bef4; the local instance is renamed to avoid an auto-name collision with GroupStandardFormInstance).
+- Rows: fc6e6384121b → partial; 97438886a277 carriers extended.
+- CLAIM GroupApproximation/Analysis/TwistedGroupVonNeumannProduct.lean: the sum cocycle, twisted ICC of products, L(G) = L_0(G), and the unitary ℓ²(Γ; ℓ²(A)) ≃ ℓ²(Γ × A). Next: Ad U carries M ⊗̄ L_σ(Γ) onto L_{σ⊕ρ}(Γ × A), which makes L(G) ⊗̄ R a II₁ factor through oa-hyperfinite's criterion.
