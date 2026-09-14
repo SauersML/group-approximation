@@ -1,0 +1,239 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassFourWindows
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassPairShapes
+import GroupApproximation.GGT.HullSCLemma51QuotientStokes
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4 on class words: positions on the side runs
+
+Osin (math/0411039v3, §9), proof of Lemma 9.4, on class words.  A class word reads its side words with
+the gap words between them; the face walk reads only the side words, the side run.  This module moves a
+position of a class word to a position of its side run.
+
+* `OsinLemma94ClassPolygons.runPos`: the number of side letters before a class position, a position
+  inside a gap counted at the corner before the gap.
+* `InGapRec`, `inGap_of_inGapRec`: the positions strictly inside a gap, by recursion on the sides, are
+  positions `InGap`.
+* `listVal_take_blocks`: off the gaps, a prefix of a class word reads like the prefix of the side run at
+  `runPos`, since the gaps read one.
+* `runPos_le`, `runPos_mono`.
+* `vertex_eq_classWalk_take`: a vertex of a class word, off the gaps, is the value of the prefix of
+  `classWalk` ending at the side-run position.  So the corner values of
+  `OsinLemma94ClassPolygons.class_four_windows` are the vertices of class-word pairs.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 1636, "Hull's small cancellation theorem", through Osin's
+Lemma 9.4 inside the proof of Lemma 4.4); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open CaseOneWalk
+
+namespace OsinLemma94ClassPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w}
+  {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ}
+  {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+  {P : OsinLemma94RealizedPolygons S}
+
+/-- **The side-run position of a class position**, over the sides `L` of a class. -/
+def runPos (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) : List ℕ → ℕ → ℕ
+  | [], _ => 0
+  | s :: L, x =>
+    if x ≤ (P.word k s).length then x
+    else if x ≤ (P.word k s).length + (dartWord S.diagram (Q.gap k s)).length then
+      (P.word k s).length
+    else
+      (P.word k s).length +
+        Q.runPos k L (x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length)
+
+/-- **Strictly inside a gap**, by recursion over the sides `L` of a class. -/
+def InGapRec (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) : List ℕ → ℕ → Prop
+  | [], _ => False
+  | s :: L, x =>
+    ((P.word k s).length < x ∧
+        x < (P.word k s).length + (dartWord S.diagram (Q.gap k s)).length) ∨
+      ((P.word k s).length + (dartWord S.diagram (Q.gap k s)).length ≤ x ∧
+        Q.InGapRec k L (x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length))
+
+/-- A position strictly inside a gap by recursion is a position `InGap`. -/
+theorem inGap_of_inGapRec (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) {i : ℕ} :
+    ∀ (L pre : List ℕ) (x : ℕ), Q.classSides k i = pre ++ L → Q.InGapRec k L x →
+      Q.InGap k i
+        ((pre.flatMap fun t => P.word k t ++ dartWord S.diagram (Q.gap k t)).length + x)
+  | [], _, _, _, h => h.elim
+  | s :: L, pre, x, hL, h => by
+    rcases h with ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact ⟨s, (pre.flatMap fun t => P.word k t ++ dartWord S.diagram (Q.gap k t)).length,
+        ⟨pre, L, hL, rfl⟩, by omega, by omega⟩
+    · have hL' : Q.classSides k i = (pre ++ [s]) ++ L := by
+        rw [hL, List.append_assoc, List.singleton_append]
+      have h' := inGap_of_inGapRec Q k L (pre ++ [s])
+        (x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length) hL' h2
+      have e : ((pre ++ [s]).flatMap fun t => P.word k t ++ dartWord S.diagram (Q.gap k t)).length +
+          (x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length) =
+          (pre.flatMap fun t => P.word k t ++ dartWord S.diagram (Q.gap k t)).length + x := by
+        rw [List.flatMap_append, List.length_append, List.flatMap_singleton, List.length_append]
+        omega
+      rwa [e] at h'
+
+/-- **Off the gaps, a class prefix reads like a side-run prefix.** -/
+theorem listVal_take_blocks (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) :
+    ∀ (L : List ℕ) (x : ℕ), (∀ s ∈ L, RelLetter.listVal (dartWord S.diagram (Q.gap k s)) = 1) →
+      ¬ Q.InGapRec k L x →
+      RelLetter.listVal
+          ((L.flatMap fun s => P.word k s ++ dartWord S.diagram (Q.gap k s)).take x) =
+        RelLetter.listVal ((L.flatMap (P.word k)).take (Q.runPos k L x))
+  | [], x, _, _ => by simp [runPos]
+  | s :: L, x, hg, hng => by
+    have hgs := hg s List.mem_cons_self
+    have hgL : ∀ t ∈ L, RelLetter.listVal (dartWord S.diagram (Q.gap k t)) = 1 :=
+      fun t ht => hg t (List.mem_cons_of_mem s ht)
+    simp only [List.flatMap_cons]
+    by_cases h1 : x ≤ (P.word k s).length
+    · have hle : x ≤ (P.word k s ++ dartWord S.diagram (Q.gap k s)).length := by
+        rw [List.length_append]
+        omega
+      rw [runPos, if_pos h1, List.take_append_of_le_length hle, List.take_append_of_le_length h1,
+        List.take_append_of_le_length h1]
+    · by_cases h2 : x ≤ (P.word k s).length + (dartWord S.diagram (Q.gap k s)).length
+      · have hx : x = (P.word k s).length + (dartWord S.diagram (Q.gap k s)).length := by
+          by_contra hne
+          exact hng (Or.inl ⟨by omega, by omega⟩)
+        have hlen : (P.word k s ++ dartWord S.diagram (Q.gap k s)).length = x := by
+          rw [List.length_append, hx]
+        rw [runPos, if_neg h1, if_pos h2, List.take_left' hlen, List.take_left' rfl,
+          HullSC.RelWord.listVal_append, hgs, mul_one]
+      · have hng' : ¬ Q.InGapRec k L
+            (x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length) :=
+          fun h => hng (Or.inr ⟨by omega, h⟩)
+        have ih := listVal_take_blocks Q k L
+          (x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length) hgL hng'
+        have hle1 : (P.word k s ++ dartWord S.diagram (Q.gap k s)).length ≤ x := by
+          rw [List.length_append]
+          omega
+        have hle2 : (P.word k s).length ≤ (P.word k s).length +
+            Q.runPos k L (x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length) :=
+          Nat.le_add_right _ _
+        have eL : ((P.word k s ++ dartWord S.diagram (Q.gap k s)) ++
+              L.flatMap fun t => P.word k t ++ dartWord S.diagram (Q.gap k t)).take x =
+            (P.word k s ++ dartWord S.diagram (Q.gap k s)) ++
+              (L.flatMap fun t => P.word k t ++ dartWord S.diagram (Q.gap k t)).take
+                (x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length) := by
+          rw [List.take_append, List.take_of_length_le hle1, List.length_append, Nat.sub_sub]
+        have eR : (P.word k s ++ L.flatMap (P.word k)).take ((P.word k s).length +
+              Q.runPos k L (x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length)) =
+            P.word k s ++ (L.flatMap (P.word k)).take
+              (Q.runPos k L (x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length)) := by
+          rw [List.take_append, List.take_of_length_le hle2, Nat.add_sub_cancel_left]
+        rw [runPos, if_neg h1, if_neg h2, eL, eR, HullSC.RelWord.listVal_append,
+          HullSC.RelWord.listVal_append, HullSC.RelWord.listVal_append, hgs, mul_one, ih]
+
+/-- The side-run position lies in the side run. -/
+theorem runPos_le (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) :
+    ∀ (L : List ℕ) (x : ℕ), Q.runPos k L x ≤ (L.flatMap (P.word k)).length
+  | [], _ => by simp [runPos]
+  | s :: L, x => by
+    have ih := runPos_le Q k L
+      (x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length)
+    simp only [List.flatMap_cons, List.length_append]
+    rw [runPos]
+    split_ifs <;> omega
+
+/-- The side-run position is monotone. -/
+theorem runPos_mono (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) :
+    ∀ (L : List ℕ) {x y : ℕ}, x ≤ y → Q.runPos k L x ≤ Q.runPos k L y
+  | [], _, _, _ => by simp [runPos]
+  | s :: L, x, y, hxy => by
+    have ih := runPos_mono Q k L
+      (x := x - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length)
+      (y := y - (P.word k s).length - (dartWord S.diagram (Q.gap k s)).length) (by omega)
+    rw [runPos, runPos]
+    split_ifs <;> omega
+
+/-- On a single side, the side-run position of a side position is the position. -/
+theorem runPos_singleton (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) {t x : ℕ}
+    (hx : x ≤ (P.word k t).length) : Q.runPos k [t] x = x := by
+  rw [runPos, if_pos hx]
+
+/-- The side-run position of class `i` lies in its side run. -/
+theorem runPos_le_sideRun (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) (i x : ℕ) :
+    Q.runPos k (Q.classSides k i) x ≤ (Q.sideRun k i).length := by
+  have h := runPos_le Q k (Q.classSides k i) x
+  have e : (Q.sideRun k i).length = ((Q.classSides k i).flatMap (P.word k)).length := by
+    simp only [sideRun, List.length_flatMap, OsinLemma94RealizedPolygons.word, Embedded.dartWord,
+      List.length_map]
+  omega
+
+theorem listVal_flatMap_congr (l : List ℕ) (f g : ℕ → List (RelLetter G Lambda))
+    (h : ∀ x ∈ l, RelLetter.listVal (f x) = RelLetter.listVal (g x)) :
+    RelLetter.listVal (l.flatMap f) = RelLetter.listVal (l.flatMap g) := by
+  induction l with
+  | nil => rfl
+  | cons x l ih =>
+    simp only [List.flatMap_cons, HullSC.RelWord.listVal_append]
+    rw [h x List.mem_cons_self, ih fun y hy => h y (List.mem_cons_of_mem x hy)]
+
+/-- **A class vertex off the gaps is a prefix value of `classWalk`**, at the side-run position. -/
+theorem vertex_eq_classWalk_take (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) {i x : ℕ}
+    (hi : i < Q.classCount k) (hng : ¬ Q.InGap k i x) :
+    OsinComponents.vertex (Q.corner k i) (Q.word k i) x =
+      RelLetter.listVal (dartWord S.diagram ((Q.classWalk k).take
+        (((List.range i).flatMap (fun y => Q.sideRun k y)).length +
+          Q.runPos k (Q.classSides k i) x))) := by
+  have hg : ∀ s ∈ Q.classSides k i, RelLetter.listVal (dartWord S.diagram (Q.gap k s)) = 1 :=
+    fun s hs => Q.gap_value k i hi s hs
+  have hngRec : ¬ Q.InGapRec k (Q.classSides k i) x := by
+    intro h
+    have h' := inGap_of_inGapRec Q k (Q.classSides k i) [] x (List.nil_append _).symm h
+    simp only [List.flatMap_nil, List.length_nil, Nat.zero_add] at h'
+    exact hng h'
+  have hp : Q.runPos k (Q.classSides k i) x ≤ (Q.sideRun k i).length := by
+    have h := runPos_le Q k (Q.classSides k i) x
+    have e : (Q.sideRun k i).length = ((Q.classSides k i).flatMap (P.word k)).length := by
+      simp only [sideRun, List.length_flatMap, OsinLemma94RealizedPolygons.word, Embedded.dartWord,
+        List.length_map]
+    omega
+  have hR : RelLetter.listVal (dartWord S.diagram
+        ((Q.sideRun k i).take (Q.runPos k (Q.classSides k i) x))) =
+      RelLetter.listVal ((Q.word k i).take x) := by
+    have e1 : dartWord S.diagram ((Q.sideRun k i).take (Q.runPos k (Q.classSides k i) x)) =
+        ((Q.classSides k i).flatMap (P.word k)).take (Q.runPos k (Q.classSides k i) x) := by
+      simp only [Embedded.dartWord, List.map_take, sideRun, List.map_flatMap]
+      rfl
+    rw [e1, Q.word_eq]
+    exact (listVal_take_blocks Q k _ x hg hngRec).symm
+  have hA : RelLetter.listVal (dartWord S.diagram
+        ((List.range i).flatMap fun y => Q.sideRun k y)) = Q.corner k i := by
+    rw [dartWord_flatMap_eq]
+    show _ = RelLetter.listVal ((List.range i).flatMap (Q.word k))
+    refine listVal_flatMap_congr _ _ _ fun y hy => ?_
+    have hy' : y < Q.classCount k := lt_trans (List.mem_range.mp hy) hi
+    rw [Q.word_eq, listVal_flatMap_append (Q.classSides k y) (P.word k)
+      (fun s => Embedded.dartWord S.diagram (Q.gap k s)) (fun s hs => Q.gap_value k y hy' s hs)]
+    simp only [Embedded.dartWord, sideRun, List.map_flatMap]
+    rfl
+  obtain ⟨rest, hrest⟩ := rangeFlatMap_split (fun y => Q.sideRun k y) hi
+  have hle : ((List.range i).flatMap (fun y => Q.sideRun k y)).length ≤
+      ((List.range i).flatMap (fun y => Q.sideRun k y)).length +
+        Q.runPos k (Q.classSides k i) x :=
+    Nat.le_add_right _ _
+  rw [HullSC.vertex_eq_mul_listVal_take, ← Q.flatMap_sideRun k, hrest, List.take_append,
+    List.take_of_length_le hle, Nat.add_sub_cancel_left, List.take_append_of_le_length hp,
+    walkValue_append, hA, hR]
+
+end OsinLemma94ClassPolygons
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.listVal_take_blocks
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.runPos_mono
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94ClassPolygons.vertex_eq_classWalk_take
