@@ -61,13 +61,15 @@ theorem nodup_of_head_not_mem_tail {r : α → α → Prop} {O : List α} (hne :
     obtain ⟨s, hs, hxs⟩ := List.getElem_of_mem hx
     have hpos := PolygonList.getElem_of_isChain_closed hne hchain hclose hfun ht hs
       (by rw [List.head?_cons, hxs])
-    have hn : 0 < O.length := List.length_pos_of_ne_nil hne
+    have hn : 0 < O.length := List.length_pos_iff.mpr hne
     -- The chain takes at most one turn.
     have hlen : (x :: t').length ≤ O.length := by
       by_contra hlt
-      push_neg at hlt
+      rw [Nat.not_le] at hlt
       have h1 := hpos O.length hlt
-      rw [Nat.add_mod_right, Nat.mod_eq_of_lt hs, hxs] at h1
+      have hmod : (s + O.length) % O.length = s := by
+        rw [Nat.add_mod_right, Nat.mod_eq_of_lt hs]
+      simp only [hmod, hxs] at h1
       apply hfirst x (by simp)
       have hmem : (x :: t')[O.length] ∈ (x :: t').tail := by
         rw [List.tail_cons]
@@ -101,8 +103,8 @@ theorem isChain_backward_reverseDarts {O : List M.Dart} (hne : O ≠ [])
   have hinv : ∀ x, M.alpha (M.alpha x) = x := M.alpha_involutive
   have hdarts : arc.darts.IsChain fun d e => M.facePerm d = e := by
     refine CyclicArc.isChain_darts arc hchain fun a ha b hb => ?_
-    rw [List.getLast?_eq_getLast hne, Option.mem_def, Option.some_inj] at ha
-    rw [List.head?_eq_head hne, Option.mem_def, Option.some_inj] at hb
+    rw [List.getLast?_eq_some_getLast hne, Option.mem_def, Option.some_inj] at ha
+    rw [List.head?_eq_some_head hne, Option.mem_def, Option.some_inj] at hb
     rw [← ha, ← hb]
     exact hclose
   show (arc.darts.reverse.map M.alpha).IsChain (Backward M)
@@ -138,7 +140,7 @@ theorem exists_arc_of_backward {O : List M.Dart} (hne : O ≠ []) (hnodup : O.No
     intro y hy hmem
     rw [ht, List.head?_reverse, List.getLast?_map, Option.mem_def, Option.map_eq_some_iff] at hy
     obtain ⟨z, hz, rfl⟩ := hy
-    rw [ht, List.tail_reverse, List.mem_reverse, List.map_dropLast, List.mem_map] at hmem
+    rw [ht, List.tail_reverse, List.mem_reverse, ← List.map_dropLast, List.mem_map] at hmem
     obtain ⟨d, hd, hdz⟩ := hmem
     have hdz' : d = z := M.alpha_involutive.injective hdz
     exact hlast z hz (hdz' ▸ hd)
@@ -259,7 +261,7 @@ theorem getLast_not_mem_dropLast {α : Type*} {l : List α} (hl : l.Nodup) {x : 
   have hne : l ≠ [] := by
     rintro rfl
     exact absurd hx (by simp)
-  have hx' : l.getLast hne = x := Option.some_inj.mp ((List.getLast?_eq_getLast hne).symm.trans hx)
+  have hx' : l.getLast hne = x := Option.some_inj.mp ((List.getLast?_eq_some_getLast hne).symm.trans hx)
   rw [← List.dropLast_append_getLast hne, List.nodup_append] at hl
   exact hl.2.2 x hmem (l.getLast hne) (List.mem_singleton_self _) hx'.symm
 
@@ -291,9 +293,9 @@ theorem runDarts_backward_facts (P : OsinLemma94RealizedPolygons S) {k : Fin P.c
       (fun t ht => hl t (List.mem_cons_of_mem _ ht)) (List.nodup_cons.mp hnodup).2 hchain'
       (by simpa only [List.getLast?_cons_cons] using hlast)
     obtain ⟨e, he⟩ : ∃ e, (P.sideDarts k s).getLast? = some e :=
-      ⟨_, List.getLast?_eq_getLast (P.side_ne_nil k s hs.1)⟩
+      ⟨_, List.getLast?_eq_some_getLast (P.side_ne_nil k s hs.1)⟩
     obtain ⟨e', he'⟩ : ∃ e', (P.sideDarts k s').head? = some e' :=
-      ⟨_, List.head?_eq_head (P.side_ne_nil k s' hsR.1)⟩
+      ⟨_, List.head?_eq_some_head (P.side_ne_nil k s' hsR.1)⟩
     have he'' : (P.sideDarts k ((s + 1) % P.sideCount k)).head? = some e' := by
       rw [← hs']
       exact he'
@@ -324,7 +326,7 @@ theorem runDarts_backward_facts (P : OsinLemma94RealizedPolygons S) {k : Fin P.c
       obtain ⟨hnotR, t, ht, hxt⟩ := hlastR x hx
       have htmem : t ∈ s' :: rest := List.mem_of_getLast? ht
       refine ⟨?_, t, by simpa only [List.getLast?_cons_cons] using ht, hxt⟩
-      rw [List.dropLast_append_of_ne_nil _ hneR]
+      rw [List.dropLast_append_of_ne_nil hneR]
       intro hmem
       rcases List.mem_append.mp hmem with hmem | hmem
       · rcases List.mem_append.mp hmem with hmem | hmem

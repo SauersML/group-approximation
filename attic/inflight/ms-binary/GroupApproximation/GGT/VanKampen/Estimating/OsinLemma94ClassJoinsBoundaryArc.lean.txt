@@ -1,0 +1,196 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassJoinsCellArc
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonKinds
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4: a joined run of sides along one section is one arc
+
+Osin (math/0411039v3, §9), proof of Lemma 9.4: "The boundary of `Δ̃_i` decomposes into `k_i`
+subpaths, each of which is either `t_j^{±1}` for some `j = 1, …, l`, or an arc".  A side of kind
+`boundary j` of a realized polygon is an arc of `∂Δ` inside section `j` (`boundary_arc`), so it
+does not wrap around and reads a window of the oriented outer darts.  A class join of two such
+sides moves forward along `∂Δ`, and the gap between them is the stretch strictly between
+(`ClassProducer.boundaryGapOf`).  Abutting windows make one window, so a joined run of sides
+along one section is one arc inside the section.
+
+* `ClassProducer.darts_eq_window`, `ClassProducer.window_append`, `idxOf_head_window`,
+  `idxOf_getLast_window`: windows of a duplicate-free list.
+* `OsinLemma94RealizedPolygons.sideDarts_window`: a boundary side is a window inside its section.
+* `OsinLemma94RealizedPolygons.runDarts_window_facts`: a joined run of boundary sides is a window.
+* `OsinLemma94RealizedPolygons.exists_boundaryArc_of_run`: the arc, in the shape of the field
+  `boundary_arc` of `OsinLemma94ClassPolygons`.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (tex 2121, "Hull's small cancellation theorem", through Osin's
+Lemma 9.4); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open scoped Classical
+
+namespace ClassProducer
+
+variable {α : Type*}
+
+/-- An arc that does not wrap around reads a window of its carrier. -/
+theorem darts_eq_window {O : List α} (arc : CyclicArc O)
+    (h : arc.start.1 + arc.length ≤ O.length) :
+    arc.darts = (O.drop arc.start.1).take arc.length := by
+  have hl : arc.length ≤ (O.drop arc.start.1).length := by
+    rw [List.length_drop]
+    omega
+  exact List.take_append_of_le_length hl
+
+/-- Two abutting windows of a list make one window. -/
+theorem window_append (O : List α) {a b c : ℕ} (hab : a ≤ b) (hbc : b ≤ c) :
+    (O.drop a).take (b - a) ++ (O.drop b).take (c - b) = (O.drop a).take (c - a) := by
+  rw [show c - a = (b - a) + (c - b) by omega, List.take_add]
+  simp only [List.drop_drop, Nat.add_sub_cancel' hab, Nat.sub_add_cancel hab]
+
+/-- The first entry of a nonempty window of a duplicate-free list is at the start of the window. -/
+theorem idxOf_head_window [BEq α] [LawfulBEq α] {O : List α} (hnodup : O.Nodup) {p q : ℕ}
+    (hpq : p < q) (hq : q ≤ O.length) {x : α} (hx : ((O.drop p).take (q - p)).head? = some x) :
+    O.idxOf x = p := by
+  have h0 : ((O.drop p).take (q - p))[0]? = some O[p] := by
+    rw [List.getElem?_take_of_lt (by omega), List.getElem?_drop, Nat.add_zero,
+      List.getElem?_eq_getElem (by omega)]
+  rw [List.head?_eq_getElem?, h0, Option.some_inj] at hx
+  rw [← hx]
+  exact PolygonList.idxOf_getElem_of_nodup hnodup p (by omega)
+
+/-- The last entry of a nonempty window of a duplicate-free list is just before its end. -/
+theorem idxOf_getLast_window [BEq α] [LawfulBEq α] {O : List α} (hnodup : O.Nodup) {p q : ℕ}
+    (hpq : p < q) (hq : q ≤ O.length) {x : α}
+    (hx : ((O.drop p).take (q - p)).getLast? = some x) : O.idxOf x = q - 1 := by
+  have hlen : ((O.drop p).take (q - p)).length = q - p := by
+    rw [List.length_take, List.length_drop]
+    omega
+  have h0 : ((O.drop p).take (q - p))[q - p - 1]? = some O[q - 1] := by
+    rw [List.getElem?_take_of_lt (by omega), List.getElem?_drop,
+      show p + (q - p - 1) = q - 1 by omega, List.getElem?_eq_getElem (by omega)]
+  rw [List.getLast?_eq_getElem?, hlen, h0, Option.some_inj] at hx
+  rw [← hx]
+  exact PolygonList.idxOf_getElem_of_nodup hnodup (q - 1) (by omega)
+
+end ClassProducer
+
+namespace OsinLemma94RealizedPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+/-- The oriented outer darts have no repeated dart. -/
+theorem outerDarts_nodup' (P : OsinLemma94RealizedPolygons S) : (outerDarts S.diagram).Nodup :=
+  List.Nodup.map S.diagram.toCombMap.alpha_involutive.injective
+    (List.nodup_reverse.mpr (S.diagram.faceBoundary S.diagram.outerFace).nodup)
+
+/-- Every cut position is at most the number of outer darts. -/
+theorem cut_le_length_outer (P : OsinLemma94RealizedPolygons S) (i : Fin (cuts.count + 1)) :
+    cuts.cut i ≤ (outerDarts S.diagram).length := by
+  rw [GloballyDistinguishedSectionFamily.length_outerDarts (S := S), ← cuts.cut_last]
+  exact cuts.cut_mono (Fin.le_last i)
+
+/-- **A side along a section is a window of the outer darts inside the section.** -/
+theorem sideDarts_window (P : OsinLemma94RealizedPolygons S) {k : Fin P.count} {s jc : ℕ}
+    (hs : s < P.sideCount k) (hkind : P.kind k s = .boundary jc) :
+    ∃ hj : jc < cuts.count, ∃ p q : ℕ, cuts.cut ⟨jc, by omega⟩ ≤ p ∧ p < q ∧
+      q ≤ cuts.cut ⟨jc + 1, by omega⟩ ∧
+        P.sideDarts k s = ((outerDarts S.diagram).drop p).take (q - p) := by
+  obtain ⟨hj, arc, harc, hlo, hhi⟩ := P.boundary_arc k s jc hs hkind
+  have hend : arc.start.1 + arc.length ≤ (outerDarts S.diagram).length :=
+    le_trans hhi (P.cut_le_length_outer _)
+  refine ⟨hj, arc.start.1, arc.start.1 + arc.length, hlo, ?_, hhi, ?_⟩
+  · have hne := P.side_ne_nil k s hs
+    rw [harc] at hne
+    have hpos := List.length_pos_iff.mpr hne
+    rw [CyclicArc.darts_length] at hpos
+    omega
+  · rw [harc, Nat.add_sub_cancel_left]
+    exact ClassProducer.darts_eq_window (O := outerDarts S.diagram) arc hend
+
+/-- **A joined run of sides along one section is a window of the outer darts inside it.** -/
+theorem runDarts_window_facts (P : OsinLemma94RealizedPolygons S) {k : Fin P.count} {jc : ℕ}
+    (hj : jc < cuts.count) {g : ℕ → List S.diagram.toCombMap.Dart} :
+    ∀ (l : List ℕ), l ≠ [] → (∀ s ∈ l, s < P.sideCount k ∧ P.kind k s = .boundary jc) →
+      l.IsChain (fun s s' => s' = (s + 1) % P.sideCount k ∧ P.ClassJoins k s ∧
+        g s = P.junctionGap k s) →
+      (∀ s ∈ l.getLast?, g s = []) →
+      ∃ p q : ℕ, cuts.cut ⟨jc, by omega⟩ ≤ p ∧ p < q ∧ q ≤ cuts.cut ⟨jc + 1, by omega⟩ ∧
+        P.runDarts k g l = ((outerDarts S.diagram).drop p).take (q - p)
+  | [], hne, _, _, _ => absurd rfl hne
+  | [s], _, hl, _, hlast => by
+    have hs := hl s (List.mem_singleton_self s)
+    obtain ⟨-, p, q, hlo, hpq, hhi, hside⟩ := P.sideDarts_window hs.1 hs.2
+    exact ⟨p, q, hlo, hpq, hhi, by rw [runDarts_singleton_of_nil P k g s (hlast s rfl), hside]⟩
+  | s :: s' :: rest, _, hl, hchain, hlast => by
+    obtain ⟨⟨hs', hjoin, hgs⟩, hchain'⟩ := List.isChain_cons_cons.mp hchain
+    have hs := hl s (List.mem_cons_self ..)
+    have hsR := hl s' (List.mem_cons_of_mem _ (List.mem_cons_self ..))
+    obtain ⟨-, p₁, q₁, hlo₁, hpq₁, hhi₁, hside⟩ := P.sideDarts_window hs.1 hs.2
+    obtain ⟨p₂, q₂, hlo₂, hpq₂, hhi₂, hrest⟩ := runDarts_window_facts P hj (s' :: rest)
+      (List.cons_ne_nil _ _) (fun t ht => hl t (List.mem_cons_of_mem _ ht)) hchain'
+      (by simpa only [List.getLast?_cons_cons] using hlast)
+    obtain ⟨e, he⟩ : ∃ e, (P.sideDarts k s).getLast? = some e :=
+      ⟨_, List.getLast?_eq_some_getLast (P.side_ne_nil k s hs.1)⟩
+    obtain ⟨e', he'⟩ : ∃ e', (P.sideDarts k s').head? = some e' :=
+      ⟨_, List.head?_eq_some_head (P.side_ne_nil k s' hsR.1)⟩
+    have he'' : (P.sideDarts k ((s + 1) % P.sideCount k)).head? = some e' := by
+      rw [← hs']
+      exact he'
+    have hO := P.outerDarts_nodup'
+    have hq₁ : q₁ ≤ (outerDarts S.diagram).length := le_trans hhi₁ (P.cut_le_length_outer _)
+    have hq₂ : q₂ ≤ (outerDarts S.diagram).length := le_trans hhi₂ (P.cut_le_length_outer _)
+    have hidx_e : (outerDarts S.diagram).idxOf e = q₁ - 1 :=
+      ClassProducer.idxOf_getLast_window hO hpq₁ hq₁ (hside ▸ he)
+    have hidx_e' : (outerDarts S.diagram).idxOf e' = p₂ := by
+      refine ClassProducer.idxOf_head_window hO hpq₂ hq₂ ?_
+      rw [← hrest, P.head?_runDarts_cons g hsR.1 rest]
+      exact he'
+    have horder := hjoin.2.2.2 jc hs.2 e he e' he''
+    have hgapw : g s = ((outerDarts S.diagram).drop q₁).take (p₂ - q₁) := by
+      rw [hgs, P.junctionGap_boundary he he'' hs.2, ClassProducer.boundaryGapOf, hidx_e, hidx_e',
+        Nat.sub_add_cancel (by omega : 1 ≤ q₁)]
+    refine ⟨p₁, q₂, hlo₁, by omega, hhi₂, ?_⟩
+    rw [runDarts_cons, hside, hgapw, hrest,
+      ClassProducer.window_append _ (le_of_lt hpq₁) (by omega : q₁ ≤ p₂),
+      ClassProducer.window_append _ (by omega : p₁ ≤ p₂) (le_of_lt hpq₂)]
+
+/-- **A joined run of sides along one section reads one arc of `∂Δ` inside the section.** -/
+theorem exists_boundaryArc_of_run (P : OsinLemma94RealizedPolygons S) {k : Fin P.count} {jc : ℕ}
+    {g : ℕ → List S.diagram.toCombMap.Dart} {l : List ℕ} (hne : l ≠ [])
+    (hl : ∀ s ∈ l, s < P.sideCount k ∧ P.kind k s = .boundary jc)
+    (hchain : l.IsChain fun s s' => s' = (s + 1) % P.sideCount k ∧ P.ClassJoins k s ∧
+      g s = P.junctionGap k s)
+    (hlast : ∀ s ∈ l.getLast?, g s = []) :
+    ∃ hj : jc < cuts.count, ∃ arc : CyclicArc (targetDarts S.diagram none),
+      P.runDarts k g l = arc.darts ∧ cuts.cut ⟨jc, by omega⟩ ≤ arc.start.1 ∧
+        arc.start.1 + arc.length ≤ cuts.cut ⟨jc + 1, by omega⟩ := by
+  obtain ⟨s, rest, rfl⟩ := List.exists_cons_of_ne_nil hne
+  have hs := hl s (List.mem_cons_self ..)
+  obtain ⟨hj, -⟩ := P.sideDarts_window hs.1 hs.2
+  obtain ⟨p, q, hlo, hpq, hhi, hrun⟩ :=
+    P.runDarts_window_facts hj (s :: rest) (List.cons_ne_nil _ _) hl hchain hlast
+  have hlen : q ≤ (outerDarts S.diagram).length := le_trans hhi (P.cut_le_length_outer _)
+  refine ⟨hj, ⟨⟨p, show p < (outerDarts S.diagram).length + 1 by omega⟩, q - p,
+    show q - p ≤ (outerDarts S.diagram).length by omega⟩, ?_, hlo, show p + (q - p) ≤ _ by omega⟩
+  rw [hrun]
+  exact (ClassProducer.darts_eq_window (O := outerDarts S.diagram)
+    ⟨⟨p, show p < (outerDarts S.diagram).length + 1 by omega⟩, q - p,
+      show q - p ≤ (outerDarts S.diagram).length by omega⟩
+    (show p + (q - p) ≤ (outerDarts S.diagram).length by omega)).symm
+
+end OsinLemma94RealizedPolygons
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.ClassProducer.window_append
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sideDarts_window
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.runDarts_window_facts
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.exists_boundaryArc_of_run
