@@ -30,6 +30,7 @@ namespace SimpleKazhdanSofic
 
 open ClopenCrossedProduct
 open Multiplicative (ofAdd toAdd)
+open SymbolicDynamics.FullShift
 
 section Ext
 
@@ -60,8 +61,8 @@ theorem symm_conj (φ : X ≃ₜ Y) (hφ : ∀ x, φ (T x) = S (φ x)) (y : Y) :
 `u ↦ u`. -/
 noncomputable def conjRingEquiv (φ : X ≃ₜ Y) (hφ : ∀ x, φ (T x) = S (φ x)) :
     ClopenCrossedProduct T k ≃+* ClopenCrossedProduct S k :=
-  RingEquiv.ofRingHom (comap k φ.symm.toContinuousMap fun y => symm_conj φ hφ y)
-    (comap k φ.toContinuousMap fun x => hφ x)
+  RingEquiv.ofRingHom (comap k ⟨⇑φ.symm, φ.symm.continuous⟩ fun y => symm_conj φ hφ y)
+    (comap k ⟨⇑φ, φ.continuous⟩ fun x => hφ x)
     (ringHom_ext_coeff_unit
       (fun a => by
         rw [RingHom.comp_apply, comap_coeff, comap_coeff, RingHom.id_apply]
@@ -81,7 +82,7 @@ noncomputable def conjRingEquiv (φ : X ≃ₜ Y) (hφ : ∀ x, φ (T x) = S (φ
 
 theorem conjRingEquiv_coeff (φ : X ≃ₜ Y) (hφ : ∀ x, φ (T x) = S (φ x)) (f : LocallyConstant X k) :
     conjRingEquiv k φ hφ (coeff T k f) =
-      coeff S k (LocallyConstant.comap φ.symm.toContinuousMap f) :=
+      coeff S k (LocallyConstant.comap ⟨⇑φ.symm, φ.symm.continuous⟩ f) :=
   comap_coeff k _ _ f
 
 theorem conjRingEquiv_unit_zpow (φ : X ≃ₜ Y) (hφ : ∀ x, φ (T x) = S (φ x)) (j : ℤ) :
