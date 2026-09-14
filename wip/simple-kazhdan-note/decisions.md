@@ -802,6 +802,25 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - All fixes go to the Cairn steward, with the false remarks first.
     - RAM: swap 4.0/5.1 GB (the total grew 3→4→5 GB this session), level 2, free 32%. This session is ~490 MB; the heaviest users are peer sessions.
     - Live: sk-cairn-steward-5, sk-sofic-almost-action, sk-orthogonality-o.
+163. **USER ~10:35: "u have barely any agents" / "how can we make it an astonishly good paper that is beautiful to read, impactful, useful, etc.?" This starts rev5.**
+    - Main's diagnosis of rev4.5:
+      - page 1 packs three proofs and ten citations into l.73–92 before the reader sees why the theorem holds;
+      - there is no example and no figure;
+      - §3 is one 130-line proof carrying three results;
+      - the expander-limit phrase is repeated in four statements;
+      - the questions are buried in paragraphs.
+    - Wave 14, 9 forks:
+      - sk-design-page-one: introduction order and abstract;
+      - sk-design-example-figure: the Fibonacci worked example and TikZ;
+      - sk-design-structure: simplicity steps and §3 lemmas A/B/C;
+      - sk-design-statements: one definition, a table of properties, numbered questions;
+      - sk-reader-grad: a cold read;
+      - sk-referee-top: a top-journal referee;
+      - sk-impact-questions: printed questions, verbatim at source;
+      - sk-prose-polish: a sentence-level pass;
+      - sk-usefulness: natural generality of Theorem 2, with proofs queued for review.
+    - Constraints: every result kept, ≤ 9 pp, no unreviewed mathematics, credits factual. Main assembles rev5 from the proposals and compiles on MSI.
+    - 12 lanes live, which is the cap.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
