@@ -1,0 +1,163 @@
+import GroupApproximation.GGT.VanKampen.CombMapEulerUpperBound
+import Mathlib.Logic.Equiv.Bool
+import Mathlib.Logic.Equiv.Fin.Rotate
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Cycle counts of non-crossing permutations
+
+The pure permutation core under the seam-glue planarity reduction
+(`SeamGlueComponentPlanarStatement`, `Estimating/OsinPocketGlueComponents`): permutations of `Fin k`
+and the `k`-cycle `γ = finRotate k`, with cycle counts `Nat.card (CombMap.Orbit p)` (fixed points
+included).
+
+* `card_orbit_add_card_orbit_le`: the non-crossing criterion, cyc(π) + cyc(π⁻¹γ) ≤ k + 1.
+
+The criterion is the genus bound of the one-face hypermap `(π, π⁻¹γ)`.  It is derived from
+`CombMap.eulerCharacteristic_le_two` through the Walsh map of a pair of permutations `(π, τ)`: darts
+`Fin k × Bool`, edge reversal flipping the copy, rotation `π` on the `false` copy and `τ` on the `true`
+copy.  Its vertices are the cycles of `π` and of `τ`, its edges the `k` points, and its faces the cycles
+of `π * τ`.
+
+* `walsh π τ`: the Walsh map; `walshSigma_zpow_apply`, `sameCycle_walshSigma_iff`;
+* `card_vertex_walsh`: `Nat.card (walsh π τ).Vertex = Nat.card (Orbit π) + Nat.card (Orbit τ)`;
+* `card_edge_walsh`: `Nat.card (walsh π τ).Edge = k`.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.PermNonCrossing
+
+open Equiv
+
+variable {k : ℕ}
+
+/-! ## The Walsh map -/
+
+/-- The rotation of the Walsh map: `π` on the `false` copy and `τ` on the `true` copy. -/
+def walshSigma (π τ : Perm (Fin k)) : Perm (Fin k × Bool) where
+  toFun d := (cond d.2 (τ d.1) (π d.1), d.2)
+  invFun d := (cond d.2 (τ.symm d.1) (π.symm d.1), d.2)
+  left_inv d := by
+    rcases d with ⟨i, _ | _⟩ <;> simp
+  right_inv d := by
+    rcases d with ⟨i, _ | _⟩ <;> simp
+
+theorem walshSigma_apply (π τ : Perm (Fin k)) (i : Fin k) (b : Bool) :
+    walshSigma π τ (i, b) = (cond b (τ i) (π i), b) :=
+  rfl
+
+/-- Edge reversal of the Walsh map: flip the copy. -/
+def walshAlpha (k : ℕ) : Perm (Fin k × Bool) :=
+  Equiv.prodCongr (Equiv.refl _) Equiv.boolNot
+
+theorem walshAlpha_apply (i : Fin k) (b : Bool) : walshAlpha k (i, b) = (i, !b) :=
+  rfl
+
+theorem walshAlpha_involutive : Function.Involutive (walshAlpha k) := by
+  rintro ⟨i, b⟩
+  simp [walshAlpha_apply]
+
+theorem walshAlpha_fixedPointFree (d : Fin k × Bool) : walshAlpha k d ≠ d := by
+  rcases d with ⟨i, b⟩
+  simp [walshAlpha_apply]
+
+/-- **The Walsh map** of a pair of permutations of `Fin k`. -/
+def walsh (π τ : Perm (Fin k)) : CombMap.{0} where
+  Dart := Fin k × Bool
+  dartFintype := inferInstance
+  alpha := walshAlpha k
+  sigma := walshSigma π τ
+  alpha_involutive := walshAlpha_involutive
+  alpha_fixedPointFree := walshAlpha_fixedPointFree
+
+/-! ## Powers and orbits of the rotation -/
+
+theorem walshSigma_inv_apply (π τ : Perm (Fin k)) (i : Fin k) (b : Bool) :
+    (walshSigma π τ)⁻¹ (i, b) = (cond b (τ⁻¹ i) (π⁻¹ i), b) :=
+  rfl
+
+theorem walshSigma_pow_apply (π τ : Perm (Fin k)) (n : ℕ) (i : Fin k) (b : Bool) :
+    (walshSigma π τ ^ n) (i, b) = ((cond b τ π ^ n) i, b) := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    rw [pow_succ', Perm.mul_apply, ih, pow_succ', Perm.mul_apply, walshSigma_apply]
+    cases b <;> rfl
+
+theorem walshSigma_zpow_apply (π τ : Perm (Fin k)) (n : ℤ) (i : Fin k) (b : Bool) :
+    (walshSigma π τ ^ n) (i, b) = ((cond b τ π ^ n) i, b) := by
+  rcases Int.eq_nat_or_neg n with ⟨m, rfl | rfl⟩
+  · simpa only [zpow_natCast] using walshSigma_pow_apply π τ m i b
+  · rw [zpow_neg, zpow_natCast, zpow_neg, zpow_natCast]
+    apply (walshSigma π τ ^ m).injective
+    rw [Perm.apply_inv_self, walshSigma_pow_apply, Perm.apply_inv_self]
+
+theorem sameCycle_walshSigma_iff (π τ : Perm (Fin k)) (i j : Fin k) (b c : Bool) :
+    (walshSigma π τ).SameCycle (i, b) (j, c) ↔ b = c ∧ (cond b τ π).SameCycle i j := by
+  constructor
+  · rintro ⟨n, hn⟩
+    rw [walshSigma_zpow_apply, Prod.mk.injEq] at hn
+    exact ⟨hn.2, n, hn.1⟩
+  · rintro ⟨rfl, n, hn⟩
+    exact ⟨n, by rw [walshSigma_zpow_apply, hn]⟩
+
+/-! ## Vertices and edges -/
+
+/-- The vertices of the Walsh map are the cycles of `π` and the cycles of `τ`. -/
+def vertexEquiv (π τ : Perm (Fin k)) :
+    CombMap.Orbit (walshSigma π τ) ≃ CombMap.Orbit π ⊕ CombMap.Orbit τ where
+  toFun := Quotient.lift
+    (fun d : Fin k × Bool =>
+      cond d.2 (Sum.inr (Quotient.mk (Perm.SameCycle.setoid τ) d.1))
+        (Sum.inl (Quotient.mk (Perm.SameCycle.setoid π) d.1)))
+    (by
+      rintro ⟨i, b⟩ ⟨j, c⟩ h
+      obtain ⟨rfl, h⟩ := (sameCycle_walshSigma_iff π τ i j b c).mp h
+      cases b
+      · exact congrArg Sum.inl (Quotient.sound h)
+      · exact congrArg Sum.inr (Quotient.sound h))
+  invFun := Sum.elim
+    (Quotient.lift (fun i => Quotient.mk (Perm.SameCycle.setoid (walshSigma π τ)) (i, false))
+      (fun i j h => Quotient.sound ((sameCycle_walshSigma_iff π τ i j false false).mpr ⟨rfl, h⟩)))
+    (Quotient.lift (fun i => Quotient.mk (Perm.SameCycle.setoid (walshSigma π τ)) (i, true))
+      (fun i j h => Quotient.sound ((sameCycle_walshSigma_iff π τ i j true true).mpr ⟨rfl, h⟩)))
+  left_inv x := by
+    induction x using Quotient.inductionOn with
+    | h d =>
+      rcases d with ⟨i, _ | _⟩ <;> rfl
+  right_inv x := by
+    rcases x with x | x
+    · induction x using Quotient.inductionOn with
+      | h i => rfl
+    · induction x using Quotient.inductionOn with
+      | h i => rfl
+
+theorem card_vertex_walsh (π τ : Perm (Fin k)) :
+    Nat.card (walsh π τ).Vertex = Nat.card (CombMap.Orbit π) + Nat.card (CombMap.Orbit τ) := by
+  rw [← Nat.card_sum]
+  exact Nat.card_congr (vertexEquiv π τ)
+
+/-- The edges of the Walsh map are the points of `Fin k`. -/
+def edgeEquiv (k : ℕ) (π τ : Perm (Fin k)) : (walsh π τ).Edge ≃ Fin k where
+  toFun := Quotient.lift (fun d : Fin k × Bool => d.1)
+    (by
+      rintro ⟨i, b⟩ ⟨j, c⟩ h
+      rcases h with h | h
+      · exact congrArg Prod.fst h
+      · exact congrArg Prod.fst h)
+  invFun i := Quotient.mk (walsh π τ).edgeSetoid (i, false)
+  left_inv x := by
+    induction x using Quotient.inductionOn with
+    | h d =>
+      rcases d with ⟨i, _ | _⟩
+      · rfl
+      · exact Quotient.sound (Or.inr rfl)
+  right_inv i := rfl
+
+theorem card_edge_walsh (π τ : Perm (Fin k)) : Nat.card (walsh π τ).Edge = k := by
+  rw [Nat.card_congr (edgeEquiv k π τ), Nat.card_eq_fintype_card, Fintype.card_fin]
+
+end GroupApproximation.GGT.VanKampen.PermNonCrossing
+
+#audit_axioms GroupApproximation.GGT.VanKampen.PermNonCrossing.sameCycle_walshSigma_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.PermNonCrossing.card_vertex_walsh
+#audit_axioms GroupApproximation.GGT.VanKampen.PermNonCrossing.card_edge_walsh
