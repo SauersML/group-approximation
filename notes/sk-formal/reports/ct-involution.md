@@ -6,8 +6,8 @@ Lead: main (ROSTER-sk; RESUME 23:15; items after 00:50). Target: the current ori
 (649cb1f80, built at 37551fd93; the sentences below were verified verbatim at the tip), in
 `metadata/sk-census-rows/ct-involution.tsv`.
 
-BLOCKER (infra): the MSI master is down (`/tmp/msi-login.sock` absent; checked with `ssh -O check`). Nothing can be probed.
-Following main's instruction this lane authors offline and does not call `msi`.
+RESOLVED 09-14 08:3x: MSI back; probe 0914-083103-27611 GREEN with BUILT lines for both in-flight modules; LANDED 04ba48c58.
+Rows landed with the modules.
 
 ## Item 3: "The ring and property (T)" at Λ generality (tip l.133–149, proof of thm:general)
 
@@ -66,3 +66,4 @@ are superseded after c8b6021ca. Released: `TowerUnits.lean` (attic 3ff509880), `
 - 09-13 23:15 resume: CrossedProductConjugacy LANDED 730da5240; row 3606856b9a07 landed; QuestionsNotFinitelyPresented absorbed.
 - 09-14 00:3x: not-fp probe replayed without BUILT; not landed. MSI master down since.
 - 09-14 ~01:00: item 3 split agreed with sk-lef-action; module B adopted and reviewed offline (EJZ import added).
+- 09-14 08:4x: resumed after the laptop reboot (infra rebuilt, green records lost); re-probed both modules (real build), LANDED 04ba48c58; rows 44b4aa4489ab (partial) and the nine Lambda keys landed.
