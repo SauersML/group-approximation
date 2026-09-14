@@ -191,6 +191,22 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
       unchanged or shrink, so the number of bad darts strictly drops.
     - Configuration A `lobeDiagram` (the calibration case): cycle `[5,3,4,6]`, with darts 3 and 4 on the relator cell `a`.
       Doubling 3 and then 4 gives good corners.
+  - **Monogon faces carrying a cycle dart** (paper model test, main's item 4). No counterexample found.
+    - Relator monogon: its word has length 1, while `OsinCCondition.long` forces words of length `ρ`. With `ρ₀ ≥ 2` in the
+      prefix of the reduction, this case cannot occur. Without `long` it does occur: `OsinPocketWrapRose`'s `R = [5]` has a
+      one-letter word.
+    - G-face monogon: it holds exactly one dart, so it shares no face with another cycle dart and is not a relator face. That
+      corner is already good, and no doubling is needed.
+    - So the reduction needs long relator words, which the Section prefix supplies, and never has to double a monogon.
+      Monogon doubling (ghw-assembly's `MonogonDoubling` next step) is not on this route.
+  - A fact for the step: a split can merge the faces of two cycle darts, so good corners do not survive a step. The reduction
+    runs again before every step. `PocketPinchStepFirstTurnSectionStatement` takes first-turn order and a proper source arc,
+    not good corners.
+- **Resume 21:22 (after the session limit).**
+  - The FirstTurnSection probe 0913-203127-13291 lost its msi hop (rc 255), so no record was written. Its SLURM job built
+    successfully (log: `Build completed successfully (10285 jobs)`).
+  - The tree md5 e1cea1ea equals attic 76331da9e, and no import had changed since its base. It is re-probing together with
+    `Estimating/OsinPocketPinchFirstTurnAssembly` (w1-binder-3's producer target) so that a record is written.
 - ms-intro-4 (binder 5, `CellPocketPinchPosStatement`) imports ArcTrim and FullArc; their helper names stay fixed. There is
   no generic boundary-cycle layer, and `exists_trimDouble` is at `PocketFaceSet` level.
 - Where the step route sticks: a full arc with a nonempty remainder and both sides at length exactly `ε`. No trim has
