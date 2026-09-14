@@ -9,7 +9,7 @@ distinct_from:
 
 **Hypothesis (T).**
 - x ∈ A^Z is non-periodic.
-- 1 = p_0 | p_1 | ⋯, and for each k ≥ 1 the positions not in Per_{p_k}(x) = {t : x_{t+jp_k} = x_t for all j} form a single residue class mod p_k.
+- 1 = p_0 | p_1 | ⋯, and for each k ≥ 1 the positions not in Per_{p_k}(x) = {t : x_{t+jp_k} = x_t for all j} are contained in a single residue class mod p_k. Equivalently for the proof: for every y ∈ X, the mismatch set {c : y_c ≠ y_{c+p_k}} lies in one residue class mod p_k.
 - X is the orbit closure of x, and it is minimal.
 
 Examples: period doubling and regular paperfolding (p_k = 2^k).

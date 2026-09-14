@@ -8,8 +8,10 @@ Let x ∈ A^Z be non-periodic, and for p ≥ 1 put Per_p(x) = {t : x_{t+jp} = x_
 
 **Hypothesis (T).**
 - 1 = p_0 | p_1 | p_2 | ⋯ with p_{k+1}/p_k ≤ ρ;
-- for every k ≥ 1, the complement of Per_{p_k}(x) is a single residue class h_k + p_kZ;
+- for every k ≥ 1, the complement of Per_{p_k}(x) is contained in a single residue class h_k + p_kZ;
 - X is the orbit closure of x, and it is minimal (automatic for Toeplitz sequences).
+
+For a one-sided Toeplitz fixed point, such as period doubling, the hypothesis passes to every two-sided point x ∈ X. Each window of x is a window of the fixed point, so within any window the mismatch positions {c : x_c ≠ x_{c+p_k}} lie in one residue class, and nested windows keep the class. The proof below uses only this property of the mismatch sets of points of X.
 
 Examples: the period-doubling sequence (p_k = 2^k) and the regular paperfolding sequence (p_k = 2^k).
 
@@ -20,11 +22,10 @@ Examples: the period-doubling sequence (p_k = 2^k) and the regular paperfolding 
 
 *Proof.*
 1. *Clopen, and cost.* W_k is the disjoint union over letters a of W(a,p_k) = {y_0 = a, y_{p_k} ≠ a}. So e_ij(e_{W_k}) is the product of the e_ij(e_{W(a,p_k)}). Apply part 1, Lemma 5.
-2. *Nonempty.* If W_k = ∅, then T^s x ∉ W_k for all s, i.e. x_s = x_{s+p_k} for every s. So x is periodic, a contradiction.
-3. *No short returns.* Suppose W_k ∩ T^tW_k ≠ ∅.
-   - It is open and the orbit of x is dense, so it contains some T^s x. Then T^s x ∈ W_k and T^{s−t}x ∈ W_k.
-   - That means x_s ≠ x_{s+p_k} and x_{s−t} ≠ x_{s−t+p_k}.
-   - A position in Per_{p_k}(x) satisfies x_c = x_{c+p_k}. So s and s − t both lie outside Per_{p_k}(x), i.e. both are ≡ h_k mod p_k.
+2. *Nonempty.* If W_k = ∅, then y_0 = y_{p_k} for every y ∈ X. Applied to all shifts of y, every point of X is p_k-periodic, so X is finite, a contradiction.
+3. *No short returns.* Let y ∈ W_k ∩ T^tW_k.
+   - Then y_0 ≠ y_{p_k} and (T^{-t}y)_0 ≠ (T^{-t}y)_{p_k}, i.e. y_{−t} ≠ y_{−t+p_k}.
+   - So 0 and −t are both mismatch positions of y, which lie in one residue class mod p_k.
    - So t ≡ 0 mod p_k, and t = 0 or |t| ≥ p_k. ∎
 
 **Theorem T2 (lower bound).** Assume (T). For every m ≥ 1 let k be least with p_k > 2m, so p_k ≤ 2ρm.
