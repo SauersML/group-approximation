@@ -1,0 +1,362 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactBubble
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BipartiteFaceDegree
+import GroupApproximation.GGT.VanKampen.CombMapEulerComponents
+import GroupApproximation.GGT.VanKampen.CombMapDual
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4: the bipartite map of polygons and objects
+
+The contact count of `OsinLemma94ContactTransitionInput` charges the contacts of a polygon to the
+distinct objects it runs along, where an object is a relator cell or the exterior.  This module
+builds the map whose Euler count bounds those neighbours.
+
+* `sideObject`, `neighbours P k`: the objects across the cell and boundary sides of polygon `k`.
+* `objectFace`: the face of an object; it is injective and never the face of a polygon.
+* `rep P k o h`: the first dart of the first side of polygon `k` along object `o`.
+* `contactMap P`: the restriction of the dual of `S.diagram` to the edges of the representatives
+  of the polygons with at least two neighbours.  One dart joins each such polygon to each of its
+  neighbours.
+* `four_le_faceDegree_contactMap`: every face of `contactMap P` has degree at least four, by
+  `CombMap.four_le_faceDegree_of_bipartite` with the colour "based at a polygon face".
+* `contactMap_isRestriction`, `dual_planar`: it is a restriction of a planar map, so the budget
+  `CombMap.two_mul_edgeCount_add_six_le_of_isRestriction` applies.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (through the contact count of Osin's Lemma 9.4,
+arXiv:math/0411039v3, §9); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open scoped Classical
+
+namespace OsinLemma94RealizedPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+/-- The object across a side: relator cell `j` for a cell side, the exterior for a boundary side,
+nothing for a cutting or short side. -/
+def sideObject {n : ℕ} : OsinLemma94SideClass n → Option (Option (Fin n))
+  | .cell j => some (some j)
+  | .boundary _ => some none
+  | .cutting => none
+  | .short => none
+
+/-- **The neighbours of polygon `k`**: the objects across its cell and boundary sides. -/
+noncomputable def neighbours (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) :
+    Finset (Option (Fin S.diagram.rCellCount)) :=
+  (Finset.range (P.sideCount k)).biUnion fun s => (sideObject (P.kind k s)).toFinset
+
+theorem mem_neighbours (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (o : Option (Fin S.diagram.rCellCount)) :
+    o ∈ P.neighbours k ↔ ∃ s, s < P.sideCount k ∧ sideObject (P.kind k s) = some o := by
+  simp only [neighbours, Finset.mem_biUnion, Finset.mem_range, Option.mem_toFinset,
+    Option.mem_def]
+
+/-- The face of an object. -/
+def objectFace (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) :
+    Option (Fin S.diagram.rCellCount) → S.diagram.toCombMap.Face
+  | some j => (cell S.diagram j).face
+  | none => S.diagram.outerFace
+
+theorem objectFace_injective (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) :
+    Function.Injective (objectFace S) := by
+  intro o o' h
+  cases o with
+  | some j =>
+    cases o' with
+    | some j' => exact congrArg some (cell_face_injective S.diagram h)
+    | none => exact absurd h (cell S.diagram j).face_ne_outer
+  | none =>
+    cases o' with
+    | some j' => exact absurd h.symm (cell S.diagram j').face_ne_outer
+    | none => rfl
+
+theorem objectFace_ne_face (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (o : Option (Fin S.diagram.rCellCount)) : objectFace S o ≠ P.face k := by
+  cases o with
+  | some j => exact P.face_not_cell k j
+  | none => exact fun h => P.face_ne_outer k h.symm
+
+/-- A side along object `o`. -/
+theorem exists_side_of_mem_neighbours (P : OsinLemma94RealizedPolygons S) {k : Fin P.count}
+    {o : Option (Fin S.diagram.rCellCount)} (h : o ∈ P.neighbours k) :
+    ∃ s, s < P.sideCount k ∧ sideObject (P.kind k s) = some o :=
+  (P.mem_neighbours k o).mp h
+
+/-- **The representative dart** of polygon `k` along object `o`: the first dart of a side along
+`o`. -/
+noncomputable def rep (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (o : Option (Fin S.diagram.rCellCount)) (h : o ∈ P.neighbours k) : S.diagram.toCombMap.Dart :=
+  (P.sideDarts k (Classical.choose (P.exists_side_of_mem_neighbours h))).head
+    (P.side_ne_nil k _ (Classical.choose_spec (P.exists_side_of_mem_neighbours h)).1)
+
+theorem faceOf_rep (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (o : Option (Fin S.diagram.rCellCount)) (h : o ∈ P.neighbours k) :
+    S.diagram.toCombMap.faceOf (P.rep k o h) = P.face k :=
+  P.faceOf_of_mem_sideDarts (Classical.choose_spec (P.exists_side_of_mem_neighbours h)).1
+    (List.head_mem _)
+
+theorem faceOf_alpha_rep (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (o : Option (Fin S.diagram.rCellCount)) (h : o ∈ P.neighbours k) :
+    S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha (P.rep k o h)) = objectFace S o := by
+  obtain ⟨hs, hobj⟩ := Classical.choose_spec (P.exists_side_of_mem_neighbours h)
+  set s := Classical.choose (P.exists_side_of_mem_neighbours h) with hsdef
+  have hmem : P.rep k o h ∈ P.sideDarts k s := List.head_mem _
+  cases hkind : P.kind k s with
+  | cell j =>
+    rw [hkind] at hobj
+    have ho : o = some j := (Option.some_injective _ hobj).symm
+    subst ho
+    obtain ⟨arc, harc⟩ := P.cell_arc k s j hs hkind
+    rw [harc] at hmem
+    simp only [CyclicArc.reverseDarts, List.mem_map, List.mem_reverse] at hmem
+    obtain ⟨e, he, hre⟩ := hmem
+    rw [← hre, S.diagram.toCombMap.alpha_involutive e]
+    exact ((S.diagram.faceBoundary (cell S.diagram j).face).mem_iff e).mp
+      (arc.mem_cycle_of_mem_darts he)
+  | boundary j =>
+    rw [hkind] at hobj
+    have ho : o = none := (Option.some_injective _ hobj).symm
+    subst ho
+    obtain ⟨_, arc, harc, -, -⟩ := P.boundary_arc k s j hs hkind
+    rw [harc] at hmem
+    have hout : P.rep k none h ∈ outerDarts S.diagram := arc.mem_cycle_of_mem_darts hmem
+    simp only [outerDarts, List.mem_map, List.mem_reverse] at hout
+    obtain ⟨e, he, hre⟩ := hout
+    rw [← hre, S.diagram.toCombMap.alpha_involutive e]
+    exact ((S.diagram.faceBoundary S.diagram.outerFace).mem_iff e).mp he
+  | cutting => rw [hkind] at hobj; exact absurd hobj (by simp [sideObject])
+  | short => rw [hkind] at hobj; exact absurd hobj (by simp [sideObject])
+
+/-- A polygon with at least two neighbours. -/
+def Rich (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) : Prop :=
+  2 ≤ (P.neighbours k).card
+
+/-- The representatives of the rich polygons. -/
+def IsRep (P : OsinLemma94RealizedPolygons S) (x : S.diagram.toCombMap.Dart) : Prop :=
+  ∃ k o, ∃ h : o ∈ P.neighbours k, P.Rich k ∧ x = P.rep k o h
+
+/-- The retained darts of the contact map: the representatives and their reverses. -/
+def ContactKeep (P : OsinLemma94RealizedPolygons S) (x : S.diagram.toCombMap.Dart) : Prop :=
+  P.IsRep x ∨ P.IsRep (S.diagram.toCombMap.alpha x)
+
+theorem contactKeep_alpha (P : OsinLemma94RealizedPolygons S) (x : S.diagram.toCombMap.dual.Dart) :
+    P.ContactKeep (S.diagram.toCombMap.dual.alpha x) ↔ P.ContactKeep x := by
+  show P.ContactKeep (S.diagram.toCombMap.alpha x) ↔ P.ContactKeep x
+  unfold ContactKeep
+  rw [S.diagram.toCombMap.alpha_involutive x, Or.comm]
+
+/-- **The contact map**: one edge of the dual joining each rich polygon to each neighbour. -/
+noncomputable def contactMap (P : OsinLemma94RealizedPolygons S) : CombMap.{v} :=
+  CombMap.PredicateRestriction.toCombMap S.diagram.toCombMap.dual P.ContactKeep P.contactKeep_alpha
+
+theorem contactMap_isRestriction (P : OsinLemma94RealizedPolygons S) :
+    S.diagram.toCombMap.dual.IsRestriction P.contactMap
+      (Function.Embedding.subtype P.ContactKeep) :=
+  CombMap.PredicateRestriction.isRestriction _ _ P.contactKeep_alpha
+
+/-- The colour of a dart of the contact map: based at a rich polygon. -/
+noncomputable def contactColour (P : OsinLemma94RealizedPolygons S) (x : P.contactMap.Dart) :
+    Bool :=
+  decide (∃ k, P.Rich k ∧ S.diagram.toCombMap.faceOf x.1 = P.face k)
+
+theorem isRep_or (P : OsinLemma94RealizedPolygons S) (x : P.contactMap.Dart) :
+    P.IsRep x.1 ∨ P.IsRep (S.diagram.toCombMap.alpha x.1) := x.2
+
+/-- A representative is based at a rich polygon; its reverse at an object. -/
+theorem contactColour_eq_true_iff (P : OsinLemma94RealizedPolygons S) (x : P.contactMap.Dart) :
+    P.contactColour x = true ↔ P.IsRep x.1 := by
+  unfold contactColour
+  rw [decide_eq_true_iff]
+  constructor
+  · rintro ⟨k, _, hk⟩
+    rcases P.isRep_or x with h | ⟨k', o, h, _, hx⟩
+    · exact h
+    · exfalso
+      have hf : S.diagram.toCombMap.faceOf x.1 = objectFace S o := by
+        have e := P.faceOf_alpha_rep k' o h
+        rw [← hx, S.diagram.toCombMap.alpha_involutive] at e
+        exact e
+      exact P.objectFace_ne_face k o (hf.symm.trans hk)
+  · rintro ⟨k, o, h, hrich, hx⟩
+    exact ⟨k, hrich, by rw [hx, P.faceOf_rep]⟩
+
+theorem contactMap_alpha_val (P : OsinLemma94RealizedPolygons S) (x : P.contactMap.Dart) :
+    (P.contactMap.alpha x).1 = S.diagram.toCombMap.alpha x.1 := rfl
+
+/-- The reverse of a representative is no representative. -/
+theorem not_isRep_alpha_of_isRep (P : OsinLemma94RealizedPolygons S) {d : S.diagram.toCombMap.Dart}
+    (hd : P.IsRep d) : ¬ P.IsRep (S.diagram.toCombMap.alpha d) := by
+  rintro ⟨k', o', h', _, hx'⟩
+  obtain ⟨k, o, h, _, hx⟩ := hd
+  have e1 : S.diagram.toCombMap.faceOf d = P.face k := by rw [hx, P.faceOf_rep]
+  have e2 : S.diagram.toCombMap.faceOf d = objectFace S o' := by
+    have e := P.faceOf_alpha_rep k' o' h'
+    rw [← hx', S.diagram.toCombMap.alpha_involutive] at e
+    exact e
+  exact P.objectFace_ne_face k o' (e2.symm.trans e1)
+
+theorem contactColour_alpha (P : OsinLemma94RealizedPolygons S) (x : P.contactMap.Dart) :
+    P.contactColour (P.contactMap.alpha x) = !P.contactColour x := by
+  cases hx : P.contactColour x
+  · rw [Bool.not_false, P.contactColour_eq_true_iff, P.contactMap_alpha_val]
+    rcases P.isRep_or x with h | h
+    · exact absurd ((P.contactColour_eq_true_iff x).mpr h) (by simp [hx])
+    · exact h
+  · have h := (P.contactColour_eq_true_iff x).mp hx
+    rw [Bool.not_true]
+    cases hy : P.contactColour (P.contactMap.alpha x)
+    · rfl
+    · have h' := (P.contactColour_eq_true_iff _).mp hy
+      rw [P.contactMap_alpha_val] at h'
+      exact absurd h' (P.not_isRep_alpha_of_isRep h)
+
+/-- Two darts at one vertex of the contact map are based at one face of the diagram. -/
+theorem faceOf_eq_of_vertexOf_eq (P : OsinLemma94RealizedPolygons S) {x y : P.contactMap.Dart}
+    (h : P.contactMap.vertexOf x = P.contactMap.vertexOf y) :
+    S.diagram.toCombMap.faceOf x.1 = S.diagram.toCombMap.faceOf y.1 := by
+  have h' := (P.contactMap_isRestriction.vertexOf_eq_iff x y).mp h
+  rw [CombMap.vertexOf_eq_iff] at h'
+  exact (S.diagram.toCombMap.faceOf_eq_iff _ _).mpr h'
+
+theorem contactColour_sigma (P : OsinLemma94RealizedPolygons S) (x : P.contactMap.Dart) :
+    P.contactColour (P.contactMap.sigma x) = P.contactColour x := by
+  have hf := P.faceOf_eq_of_vertexOf_eq (P.contactMap.vertexOf_sigma x)
+  unfold contactColour
+  rw [hf]
+
+/-- One dart per ordered pair of vertices. -/
+theorem contactMap_simple (P : OsinLemma94RealizedPolygons S) (x y : P.contactMap.Dart)
+    (hv : P.contactMap.vertexOf x = P.contactMap.vertexOf y)
+    (hva : P.contactMap.vertexOf (P.contactMap.alpha x) =
+      P.contactMap.vertexOf (P.contactMap.alpha y)) : x = y := by
+  have hf := P.faceOf_eq_of_vertexOf_eq hv
+  have hfa := P.faceOf_eq_of_vertexOf_eq hva
+  rw [P.contactMap_alpha_val, P.contactMap_alpha_val] at hfa
+  -- the representative case, for darts based at polygons or at objects
+  have key : ∀ {d e : S.diagram.toCombMap.Dart}, P.IsRep d → P.IsRep e →
+      S.diagram.toCombMap.faceOf d = S.diagram.toCombMap.faceOf e →
+      S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) =
+        S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha e) → d = e := by
+    rintro d e ⟨k, o, h, _, rfl⟩ ⟨k', o', h', _, rfl⟩ hde hade
+    rw [P.faceOf_rep, P.faceOf_rep] at hde
+    rw [P.faceOf_alpha_rep, P.faceOf_alpha_rep] at hade
+    obtain rfl := P.face_injective hde
+    obtain rfl := objectFace_injective S hade
+    rfl
+  rcases P.isRep_or x with hx | hx <;> rcases P.isRep_or y with hy | hy
+  · exact Subtype.ext (key hx hy hf hfa)
+  · exfalso
+    obtain ⟨k, o, h, _, hxk⟩ := hx
+    obtain ⟨k', o', h', _, hyk⟩ := hy
+    have e1 : S.diagram.toCombMap.faceOf x.1 = P.face k := by rw [hxk, P.faceOf_rep]
+    have e2 : S.diagram.toCombMap.faceOf y.1 = objectFace S o' := by
+      have e := P.faceOf_alpha_rep k' o' h'
+      rw [← hyk, S.diagram.toCombMap.alpha_involutive] at e
+      exact e
+    exact P.objectFace_ne_face k o' (e2.symm.trans (hf.symm.trans e1))
+  · exfalso
+    obtain ⟨k, o, h, _, hxk⟩ := hx
+    obtain ⟨k', o', h', _, hyk⟩ := hy
+    have e1 : S.diagram.toCombMap.faceOf y.1 = P.face k' := by rw [hyk, P.faceOf_rep]
+    have e2 : S.diagram.toCombMap.faceOf x.1 = objectFace S o := by
+      have e := P.faceOf_alpha_rep k o h
+      rw [← hxk, S.diagram.toCombMap.alpha_involutive] at e
+      exact e
+    exact P.objectFace_ne_face k' o (e2.symm.trans (hf.trans e1))
+  · have e := key hx hy hfa (by rw [S.diagram.toCombMap.alpha_involutive,
+      S.diagram.toCombMap.alpha_involutive]; exact hf)
+    exact Subtype.ext (by
+      have := congrArg S.diagram.toCombMap.alpha e
+      rwa [S.diagram.toCombMap.alpha_involutive, S.diagram.toCombMap.alpha_involutive] at this)
+
+/-- A rich polygon has two retained darts, so vertex rotation moves each of them. -/
+theorem contactMap_sigma_ne (P : OsinLemma94RealizedPolygons S) (x : P.contactMap.Dart)
+    (hx : P.contactColour x = true) : P.contactMap.sigma x ≠ x := by
+  obtain ⟨k, o, h, hrich, hxk⟩ := (P.contactColour_eq_true_iff x).mp hx
+  have hcard : 1 < (P.neighbours k).card := by
+    unfold Rich at hrich
+    omega
+  obtain ⟨o', ho', hne⟩ := Finset.exists_mem_ne hcard o
+  let y : P.contactMap.Dart := ⟨P.rep k o' ho', Or.inl ⟨k, o', ho', hrich, rfl⟩⟩
+  have hyx : y ≠ x := by
+    intro hyx
+    have e := congrArg (fun z : P.contactMap.Dart =>
+      S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha z.1)) hyx
+    simp only [y] at e
+    rw [P.faceOf_alpha_rep, hxk, P.faceOf_alpha_rep] at e
+    exact hne (objectFace_injective S e)
+  have hsame : S.diagram.toCombMap.dual.sigma.SameCycle x.1 y.1 := by
+    have e : S.diagram.toCombMap.faceOf x.1 = S.diagram.toCombMap.faceOf y.1 := by
+      simp only [y]
+      rw [hxk, P.faceOf_rep, P.faceOf_rep]
+    exact (S.diagram.toCombMap.faceOf_eq_iff _ _).mp e
+  have hq : P.contactMap.sigma.SameCycle x y :=
+    (PermFirstReturn.sameCycle_iff _ _ _ P.contactMap_isRestriction.sigma_firstReturn x y).mpr hsame
+  intro hfix
+  obtain ⟨i, hi⟩ := hq
+  exact hyx (by rw [← hi, Equiv.Perm.zpow_apply_eq_self_of_apply_eq_self hfix])
+
+/-- **Every face of the contact map has degree at least four.** -/
+theorem four_le_faceDegree_contactMap (P : OsinLemma94RealizedPolygons S)
+    (f : P.contactMap.Face) : 4 ≤ P.contactMap.faceDegree f :=
+  CombMap.four_le_faceDegree_of_bipartite P.contactMap P.contactColour P.contactColour_alpha
+    P.contactColour_sigma P.contactMap_simple P.contactMap_sigma_ne f
+
+/-- The dual of the diagram is planar. -/
+theorem dual_planar_diagram (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) :
+    S.diagram.toCombMap.dual.IsPlanar :=
+  CombMap.dual_planar _ S.diagram.planar
+
+end OsinLemma94RealizedPolygons
+
+/-- **The small faces of the contact map.**  Under the binders of `OsinLemma94LongTransitionInput`,
+the faces of degree less than six of `contactMap P` number at most `K n`.  Every face has degree
+at least four (`four_le_faceDegree_contactMap`), so these are the faces of degree four: two rich
+polygons and two objects around one face.
+
+Model tests (hand).
+* No rich polygon: the contact map has no darts and no faces, so the count is zero.
+* Two polygons both running along cells `a` and `b`, with a third relator cell between them: one
+  face of degree four holds that cell, so at most `n` such faces.
+* The same two polygons with nothing between them but `G`-faces and selected regions: an empty
+  two-gon.  Merging the faces between the arcs of `a` and `b` into one region gives a heavier
+  family (`false_of_avoided_singleton`, `PinchSplit.pinchSplitAbsorption` at a pinch), so it does
+  not occur on a globally distinguished family. -/
+def OsinLemma94ContactMapSmallFacesInput : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ K : ℕ, ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
+                    (Finset.univ.filter fun f : P.contactMap.Face =>
+                      P.contactMap.faceDegree f < 6).card ≤ K * Delta.rCellCount
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.faceOf_alpha_rep
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.contactMap_simple
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.contactMap_sigma_ne
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.four_le_faceDegree_contactMap
