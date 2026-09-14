@@ -1,0 +1,143 @@
+import GroupApproximation.Manuscript.NinetyNineProblems.FactorizationProperty
+import GroupApproximation.Analysis.KirchbergTraceModels
+import GroupApproximation.Analysis.KirchbergRealDilation
+import GroupApproximation.Analysis.KirchbergTensorSquare
+import GroupApproximation.Kazhdan.KazhdanNearInvariantVector
+import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
+import GroupApproximation.Algebra.OrthogonalRepresentationResiduallyFinite
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Kirchberg's Theorem 1.1, proved
+
+> Kirchberg, *Discrete groups with Kazhdan's property T and factorization
+> property are residually finite*, Math. Ann. **299** (1994), Theorem 1.1.
+
+This module inhabits `NinetyNineProblems.KirchbergKazhdanFactorizationInput`
+at the trace side of the factorization property, which is the repository's
+definition (`HasFactorizationProperty`).  No input is assumed.
+
+Let `h ≠ 1`, let `(Q, ε)` be a Kazhdan pair, and let `Xₙ(g) = φₙ(u_g)` be the
+matrix models of the amenable canonical trace.
+
+1. At one index, `Re tr (Xₙ(q)ᴴ Xₙ(q)) / k ≈ 1` for `q ∈ Q` and
+   `Re tr Xₙ(h) / k ≈ 0` (`KirchbergTraceModels.exists_index`).
+2. `Xₙ` is a positive definite matrix function.  Its real dilation `K` carries
+   an orthogonal representation `σ` and an orthonormal frame
+   `e_a = V β_a` with `⟪e_a, σ(g) e_b⟫ = Re ⟪β_a, Xₙ(g) β_b⟫`
+   (`KirchbergRealDilation`).
+3. `η = (2k)^{-1/2} ∑ₐ e_a ⊗ e_a` is a unit vector of `K ⊗̂ K` with
+   `⟪(σ ⊗ σ)(q) η, η⟫ = Re tr (Xₙ(q)ᴴ Xₙ(q)) / k`, so it is almost invariant.
+   The Kazhdan pair gives an invariant `ζ` within `1/4` of `η`
+   (`KazhdanNearInvariantVector`).
+4. If `h` fixed every finite-dimensional subrepresentation of `σ`, compact
+   extraction would give `⟪ζ, (σ(h) ⊗ 1) η⟫ = ⟪ζ, η⟫`
+   (`KirchbergTensorSquare.inner_tmulC_of_forall_fixed`).  The left side is
+   within `1/4` of `⟪η, (σ(h) ⊗ 1) η⟫ = Re tr Xₙ(h) / k ≈ 0`, and the right side
+   within `1/4` of `1`.
+5. So `h` acts nontrivially in a finite-dimensional orthogonal representation.
+   `G` is finitely generated, and Mal'cev's theorem makes it residually finite
+   (`OrthogonalRepresentationResiduallyFinite`).
+-/
+
+namespace GroupApproximation
+namespace NinetyNineProblems
+namespace KirchbergTheorem
+
+open Matrix KirchbergRealForms KirchbergRealDilation KirchbergTensorSquare
+  KirchbergCompactExtraction AmenableTraceHyperlinear
+
+universe u
+
+local notation "⟪" x ", " y "⟫" => inner ℝ x y
+
+/-! ## The frame and the almost invariant vector -/
+
+section Frame
+
+variable {G : Type u} [Group G] {Y : Type} [Fintype Y] [DecidableEq Y]
+variable (X : G → Matrix Y Y ℂ) (hX : IsPositiveDefinite X)
+
+/-- The frame `e_a = V β_a` of the dilation. -/
+noncomputable def frame (a : Y ⊕ Y) : Space X hX := vec X hX (realBasis a)
+
+theorem inner_frame (hone : X 1 = 1) (a b : Y ⊕ Y) :
+    ⟪frame X hX a, frame X hX b⟫ = if a = b then 1 else 0 := by
+  rw [frame, frame, inner_vec_vec, hone, re_pairing_one]
+
+theorem inner_frame_mul_self (hone : X 1 = 1) (a b : Y ⊕ Y) :
+    ⟪frame X hX a, frame X hX b⟫ * ⟪frame X hX a, frame X hX b⟫ = if a = b then 1 else 0 := by
+  rw [inner_frame X hX hone]
+  split_ifs <;> norm_num
+
+theorem inner_frame_rep (g : G) (a b : Y ⊕ Y) :
+    ⟪frame X hX a, rep X hX g (frame X hX b)⟫
+      = (pairing (X g) (realBasis a) (realBasis b)).re :=
+  inner_vec_rep_vec X hX _ _ g
+
+/-- The almost invariant vector `η = (2k)^{-1/2} ∑ₐ e_a ⊗ e_a`. -/
+noncomputable def eta : TensorSquare (Space X hX) :=
+  (Real.sqrt (2 * (Fintype.card Y : ℝ)))⁻¹ • ∑ a, tmulC (frame X hX a) (frame X hX a)
+
+/-- The moved vector `(A ⊗ 1) η`. -/
+noncomputable def etaMoved (A : Space X hX ≃ₗᵢ[ℝ] Space X hX) : TensorSquare (Space X hX) :=
+  (Real.sqrt (2 * (Fintype.card Y : ℝ)))⁻¹ • ∑ a, tmulC (A (frame X hX a)) (frame X hX a)
+
+theorem inv_sqrt_mul_self {r : ℝ} (hr : 0 ≤ r) : (Real.sqrt r)⁻¹ * (Real.sqrt r)⁻¹ = r⁻¹ := by
+  rw [← mul_inv, Real.mul_self_sqrt hr]
+
+theorem sum_sum_ite_one : ∑ a : Y ⊕ Y, ∑ b : Y ⊕ Y, (if a = b then (1 : ℝ) else 0)
+    = 2 * (Fintype.card Y : ℝ) := by
+  simp only [Finset.sum_ite_eq, Finset.mem_univ, if_true, Finset.sum_const, Finset.card_univ,
+    Fintype.card_sum, nsmul_eq_mul, mul_one, Nat.cast_add]
+  ring
+
+theorem inner_eta_eta (hone : X 1 = 1) (hcard : 0 < Fintype.card Y) :
+    ⟪eta X hX, eta X hX⟫ = 1 := by
+  have hk : (0 : ℝ) < Fintype.card Y := Nat.cast_pos.mpr hcard
+  rw [eta, real_inner_smul_left, real_inner_smul_right, inner_sum_tmulC]
+  simp only [inner_frame_mul_self X hX hone]
+  rw [sum_sum_ite_one, ← mul_assoc, inv_sqrt_mul_self (by positivity)]
+  field_simp
+
+theorem inner_etaMoved_self (hone : X 1 = 1) (hcard : 0 < Fintype.card Y)
+    (A : Space X hX ≃ₗᵢ[ℝ] Space X hX) : ⟪etaMoved X hX A, etaMoved X hX A⟫ = 1 := by
+  have hk : (0 : ℝ) < Fintype.card Y := Nat.cast_pos.mpr hcard
+  rw [etaMoved, real_inner_smul_left, real_inner_smul_right, inner_sum_tmulC]
+  simp only [LinearIsometryEquiv.inner_map_map, inner_frame_mul_self X hX hone]
+  rw [sum_sum_ite_one, ← mul_assoc, inv_sqrt_mul_self (by positivity)]
+  field_simp
+
+theorem inner_diag_eta_eta (hcard : 0 < Fintype.card Y) (g : G) :
+    ⟪diag (rep X hX) g (eta X hX), eta X hX⟫
+      = (∑ x : Y, ∑ y : Y, ‖X g x y‖ ^ 2) / (Fintype.card Y : ℝ) := by
+  have hk : (0 : ℝ) < Fintype.card Y := Nat.cast_pos.mpr hcard
+  rw [eta, map_smul, map_sum, real_inner_smul_left, real_inner_smul_right]
+  simp only [diag_tmulC]
+  rw [inner_sum_tmulC]
+  have h1 : ∀ a b : Y ⊕ Y, ⟪rep X hX g (frame X hX a), frame X hX b⟫
+      * ⟪rep X hX g (frame X hX a), frame X hX b⟫
+      = ((pairing (X g) (realBasis b) (realBasis a)).re) ^ 2 := by
+    intro a b
+    rw [real_inner_comm, inner_frame_rep, sq]
+  simp only [h1]
+  rw [Finset.sum_comm, sum_sq_re_pairing, ← mul_assoc, inv_sqrt_mul_self (by positivity)]
+  field_simp
+
+theorem inner_eta_etaMoved (hone : X 1 = 1) (hcard : 0 < Fintype.card Y)
+    (A : Space X hX ≃ₗᵢ[ℝ] Space X hX) :
+    ⟪eta X hX, etaMoved X hX A⟫
+      = (∑ a, ⟪frame X hX a, A (frame X hX a)⟫) / (2 * (Fintype.card Y : ℝ)) := by
+  have hk : (0 : ℝ) < Fintype.card Y := Nat.cast_pos.mpr hcard
+  rw [eta, etaMoved, real_inner_smul_left, real_inner_smul_right, inner_sum_tmulC]
+  simp only [inner_frame X hX hone, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq,
+    Finset.mem_univ, if_true]
+  rw [← mul_assoc, inv_sqrt_mul_self (by positivity)]
+  field_simp
+
+end Frame
+
+theorem re_normTrace (Y : FiniteModel) (A : Matrix Y Y ℂ) :
+    (normTrace Y A).re = (Matrix.trace A).re / (Fintype.card Y : ℝ) := by
+  rw [normTrace, div_eq_mul_inv, ← Complex.ofReal_natCast, ← Complex.ofReal_inv,
+    Complex.re_mul_ofReal, div_eq_mul_inv]
