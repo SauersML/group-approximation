@@ -10,7 +10,7 @@ artifacts:
   - research/artifacts/sk-popa-lgx-plan-2026-09-13.md
 ---
 
-**ESTABLISHED (unreviewed, lane sk-popa-lgx, 2026-09-13)** by route `finite-dimensional-combs-generate-popa-algebras-proof`.
+**ESTABLISHED (sk-verify-16 PASS, sk-verify-24 PASS; lane sk-popa-lgx, 2026-09-13)** by route `finite-dimensional-combs-generate-popa-algebras-proof`.
 
 **Definition (comb).** Let `A` be a unital C*-algebra, the norm closure of an increasing union `A_1 ⊆ A_2 ⊆ ⋯` of unital C*-subalgebras. A *comb* for `A` is a sequence of projections `e_i ∈ A_{i+1}` with:
 - **(C1) commutation:** `e_i` commutes with `A_i`, and `e_iA_ie_i` is a simple finite-dimensional algebra (a full matrix algebra with unit `e_i`);
@@ -31,3 +31,12 @@ Two constraints apply in a property (T) group factor `L(Γ)` with Kazhdan pair `
 - **`A = C ⊕ C`,** with `A_i = A` and `e_i = (1,0)`: (C1) holds, but (C2) fails for `x = (0,1)` (`e_jxe_j = 0`) and (C3) fails too. `A` is not simple. Step 3 of the proof uses both hypotheses.
 
 **Review (sk-verify-16, 2026-09-13): PASS.** Re-derived: e_jxe_j is a unital *-homomorphism on A_i (RFD, hence QD, passing to the limit); local quantization with B = e_iA_ie_i; simplicity via J ∩ A_i ≠ 0, the simple tooth algebra and fullness. The model tests are correct. See `research/artifacts/sk-verify-16-2026-09-13-part3.md` §8.
+
+**Review (sk-verify-24, 2026-09-14): PASS**, an independent second node-level review (`research/artifacts/sk-verify-24-2026-09-14.md` §2).
+- **Definition at source.** The Popa algebra definition was read verbatim in the Brown–Dykema e-print (arXiv:math/0207005 `pa.tex` l.219–226, introduction), and the statement matches.
+- **Re-derived.**
+  - Multiplicativity of `ρ_j`, RFD stages, and QD of the limit.
+  - One index serving all of `𝔉`, with `‖[x,e_i]‖ ≤ 2‖x−x′‖` and `‖e_ixe_i − e_ix′e_i‖ ≤ ‖x−x′‖`.
+  - Some `J ∩ A_i ≠ 0` by isometry of injective *-homomorphisms; then `K = J ∩ e_jA_je_j` is a nonzero ideal of a full matrix algebra, so `e_j ∈ J` and, by fullness, `1 ∈ J`.
+  - The model tests.
+- The status line no longer says "unreviewed".

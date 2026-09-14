@@ -35,7 +35,9 @@ permutations.
 - For an IRS-rigid infinite simple `G`, it suffices that `σ_N` satisfies (AF1) and `|Fix_N| ≤ (1−c)|Y_N|`.
 
 **For the hosts.** Take `H = EL_n(F_2⟨A⟩)` (Kazhdan, Ershov–Jaikin) and `G = G_Δ`, marked by the `e_ij(1)` and the
-`e_ij` of the letters. `G_Δ` is LEF iff `Δ` is. So for sofic non-LEF `Δ`:
+`e_ij` of the letters. `G_Δ` is LEF when `Δ` is infinite, finitely generated and LEF. Conversely, `G_Δ` LEF forces
+`[Δ,Δ]` LEF, since `[Δ,Δ] ≤ [Λ,Λ] ≤ G_Δ` (`perfect-groups-embed-in-crossed-product-elementary-groups`). Whether it
+forces `Δ` LEF is not established. So for `Δ` with `[Δ,Δ]` not LEF, for instance `Δ = C(Γ)` with `Γ` sofic and not LEF:
 - no almost-invariant set of vectors, in any sequence of semisimple `F_2`-linear models, carries an almost action
   certifying soficity of `G_Δ`;
 - the same holds for `EL_3(F_2[Δ])` whenever `[Δ,Δ]` is not LEF, since `[Δ,Δ] ≤ EL_3(F_2[Δ])`
@@ -62,3 +64,13 @@ not checked here.
 - Family (E) is Wedderburn–Artin plus transitivity of `SL` on nonzero vectors.
 - No novelty is claimed for the parts. What is new here is the combination closing Hamming-thin cut-downs.
 - Bounded search: a grep of main for "orbitwise" and "almost invariant", with no matching claim.
+
+## Review
+- **sk-verify-24 PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-24-2026-09-14.md` §3).** Re-derived:
+  - Theorem O both ways: defect orbits cover `≤ η_N|Ω_N|/δ` points, restriction to the invariant complement is a homomorphism killing the defects, and the regular actions give gap 1;
+  - Family (E): `EL_n(M_d(F)) = SL_(nd)(F)`, product orbits, and `fpr < 1/q ≤ 1/2` from transitivity on nonzero vectors;
+  - the cutting lemma: Kazhdan sets generate, `‖f‖² = |S||O∖S|/|O|`, majority orbits;
+  - Corollary C steps 1–5, including `|Fix_N Δ (Y_N ∩ Fix ρ_N(H))| ≤ |A|ε_N|Y_N|` and Consequence 1 of `almost-actions-of-irs-rigid-simple-groups-are-free-or-trivial`, matched verbatim;
+  - the e118ba468d fix.
+- **Fix F1, merged into this node and the route.** "`G_Δ` is LEF iff `Δ` is" had no proof on main: main has only `[Δ,Δ] ≤ [Λ,Λ] ≤ G_Δ`. The host bullet now assumes `[Δ,Δ]` not LEF, for instance `Δ = C(Γ)`.
+- The required `gap-sofic-approximations-are-local-embeddings` is still unreviewed as a node. The two parts Theorem O uses (its step 3 and the regular-action gap) were re-derived here.

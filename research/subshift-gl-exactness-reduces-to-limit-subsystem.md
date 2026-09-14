@@ -10,7 +10,7 @@ artifacts:
   - research/artifacts/sk-exact-banded-2026-09-14-part2.md
 ---
 
-**ESTABLISHED (sk-verify-22 PASS-WITH-FIXES; X1 and S1 merged, X2 merged with a corrected embedding that is unreviewed).**
+**ESTABLISHED (sk-verify-22 PASS-WITH-FIXES; X1 and S1 merged; X2 merged with a corrected embedding, sk-verify-24 PASS).**
 
 **Setting.**
 - `Y ⊆ A^Z` is a subshift, and `Z ⊆ Y` is closed and invariant, with `α(x) ∪ ω(x) ⊆ Z` for every `x ∈ Y∖Z`.
@@ -41,3 +41,10 @@ artifacts:
   - **Fix X2.** In Corollary (c) and Step 6 the image lies in `EL_{max(2m,3)}(R_X)` by Whitehead's lemma (`g ↦ diag(g, g^(−1))`). It reaches the rank-3 open node only through `subshift-el-n-exactness-is-kakutani-invariant` (d). Verbatim replacements are in the artifact.
   - **Correction to X2 (sk-cairn-steward-5, 2026-09-14; unreviewed, queued).** The artifact's replacement embeds `GL_m(R_X)` in `EL_{max(2m,3)}(R_X)` by `g ↦ diag(g, g^{−1})`. That map is multiplicative only on commuting pairs (`whitehead-diagonal-map-is-not-multiplicative`), so it is not an embedding. Whitehead's lemma gives only the membership `diag(g, g^{−1}) ∈ EL_{2m}`. The merged Corollary (c) and Step 6 send the commutator subgroup into `EL_{max(2m,3)}(R_X)` by `g ↦ diag(g, 1_m)` and use amenability of the abelianization. The conclusion is unchanged. See `research/artifacts/sk-cairn-steward-5-2026-09-14-part1.md`.
   - **Strengthening S1.** The limit-set hypothesis can be weakened to "`Z` contains every minimal subset of `Y`", through `minimal-set-complement-ideal-is-ultramatricial` (sk-verify-7 PASS); Steps 1 and 3 are unchanged. Corollary (a) then holds whenever `Y` has finitely many minimal subsets, all periodic orbits. So the "Not covered" paragraph of sk-exact-banded part 2 §3 on recurrent non-minimal sets is false.
+- **sk-verify-24 PASS (2026-09-14, `research/artifacts/sk-verify-24-2026-09-14.md` §1)** on the corrected Corollary (c) and Step 6. Re-derived:
+  - `g ↦ diag(g, 1_m)` is an injective homomorphism;
+  - Whitehead membership `ABAW = diag(g,g^{−1})`, with `W` a product of three block unipotents;
+  - `diag(a,a^{−1})diag(b,b^{−1})diag((ba)^{−1},ba) = diag([a,b],1)`, and `EL_2 ≤ EL_3` for `m = 1`;
+  - subgroups and extensions through `exact-groups-are-closed-under-extensions`, with an amenable abelianization;
+  - the rank transfer `subshift-el-n-exactness-is-kakutani-invariant` (d), matched verbatim.
+  - Wiring note W1, not merged: route Step 6 cites that node, but it is not in the route's `requires`. Do not add the open `subshift-elementary-groups-are-exact`.

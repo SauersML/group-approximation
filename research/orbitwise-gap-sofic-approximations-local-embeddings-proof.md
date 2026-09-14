@@ -82,4 +82,6 @@ Notation: `d(a,b) = |{ω : aω ≠ bω}|/|Ω|` and `fpr(x) = 1 − d(x,1)`.
   (`elementary-groups-over-fg-rings-have-property-t`).
 - A ring homomorphism `F_2⟨A⟩ → 𝒜_N` onto the image algebra gives `ρ_N(H) = EL_n(𝒜_N)`: the `e_ij(x)`, `x ∈ 𝒜_N`, are
   images of `e_ij` of polynomials, which lie in `H`.
-- `G_Δ` LEF ⇔ `Δ` LEF is recorded in `research/artifacts/sk-sofic-host-hamming-2026-09-13-part1.md` §3.4(3). ∎
+- `G_Δ` LEF forces `[Δ,Δ]` LEF, since `[Δ,Δ] ≤ [Λ,Λ] ≤ G_Δ` (`perfect-groups-embed-in-crossed-product-elementary-groups`).
+  The stronger equivalence `G_Δ` LEF ⇔ `Δ` LEF stated in `research/artifacts/sk-sofic-host-hamming-2026-09-13-part1.md`
+  §3.4(3) has no proof on main and is not used (sk-verify-24 F1). ∎
