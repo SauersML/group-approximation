@@ -2,6 +2,7 @@
 rg: 2
 id: kazhdan-elementary-approximation-type-mirrors-ring-type
 kind: claim
+root: true
 title: UN root — over a simple ring, the approximation type of the Kazhdan elementary groups mirrors the matricial type of the ring (LEF iff exactly matricial, linear sofic iff rank model, MF iff stably finite)
 ---
 
