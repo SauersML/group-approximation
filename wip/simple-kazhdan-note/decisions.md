@@ -630,6 +630,10 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Theorem A: the Le Boudec–Matte Bon commutator lemma holds for unit groups with orthogonal idempotents, so confined subgroups with a configuration contain rigid EL_3 corners (nonamenable).
     - Lemma B: no idempotent configuration can start at σ with 1 ∈ span(σ^{±1}, σ^{±2}). That covers all involutions (transvections included) and order-3 and order-7 elements, a strictly larger excluded class than LBMB's.
     - Missing: the genericity lemma (L4), and exclusion of confined bounded-exponent subgroups (L3). No note change.
+134. **sk-verify-16 part5** (16196c7a0d): both sk-cstar-idempotent claims PASS.
+    - The commutator-lemma transfer was re-derived: every support list is equal-or-orthogonal. Fixes: v4 numbering (Theorem 3.19 with n=1); the FC-center clause.
+    - Lemma B passes, with all instances in EL_3(F_2) checked.
+    - The verifier queue is exhausted (no lines beyond 75). Every queued sk claim from waves 8–11 now has at least one review verdict.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
