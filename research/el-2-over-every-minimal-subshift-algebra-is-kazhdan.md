@@ -7,11 +7,16 @@ distinct_from:
   cyclic-factor-subshift-el-2-is-simple-kazhdan-lef: that proves the case in which X has a finite cyclic factor, by a Morita reduction to EL_2m; this asks about every X, where no Morita reduction exists.
 ---
 
-**OPEN.** Let `X` be an infinite minimal subshift and `R_X = LC(X,F_2) ⋊ Z`. Does `EL_2(R_X)` have property (T)? Is it simple?
+**ANSWERED: YES (unreviewed)**, by the route `el-2-minimal-subshift-kazhdan-via-idempotent-grading`, landed by lane sk-el2 on 2026-09-13.
 
-**Known.**
+Let `X` be an infinite minimal subshift and `R_X = LC(X,F_2) ⋊ Z`. Does `EL_2(R_X)` have property (T)? Is it simple?
+- Both hold, and `EL_2(R_X)` is also LEF (`subshift-el-2-is-simple-kazhdan-lef`).
+- The (T) part holds over every finite field, and more generally for every finitely generated ring with complementary full idempotents
+  (`complementary-full-idempotents-make-el-2-kazhdan`).
+
+**Known before.**
 - Yes when `X` has a finite cyclic factor of order `m ≥ 2`, since then `EL_2(R_X) = EL_(2m)(R_Y)` (`cyclic-factor-subshift-el-2-is-simple-kazhdan-lef`).
-- So the note's `n = 3` is not known to be necessary. A remark claiming that `n = 2` loses (T) must not be made.
+- So the note's `n = 3` is not necessary. A remark claiming that `n = 2` loses (T) must not be made.
 
 ## Attempts
 
@@ -27,9 +32,17 @@ distinct_from:
    - Same-row root subgroups also lie in `EL_2(R_X)`: `[e_pq(r), e_qp(s)] = I + rs E_pp` for `r ∈ e_i R e_k` and `s ∈ e_k R e_j` with `i, j, k` distinct, since `sr = 0` (compare note l.210–214). Also `e_i R e_k R e_j = e_i R e_j` because `e_k` is full.
    - So `EL_2(R_X)` is graded by `A_5` with root subgroups `e_i R e_j`.
    - The theory of groups graded by root systems (Ershov–Jaikin-Zapirain–Kassabov, Mem. AMS 2017) may give (T). Its hypotheses were not checked: strong grading, and relative (T) for rank-two pieces whose corner rings `e_i R e_i` are not isomorphic.
-   - Status: OPEN.
+   - Status: superseded by Attempt 4.
 3. **Obstruction search.**
    - Approach: a fixed-point-free action of `EL_2(R_X)` on a tree would refute (T).
    - The `u`-degree is not a valuation on `R_X`, which has zero divisors, so it gives no tree. No amalgam decomposition was found.
    - `EL_2(R_X) ⊇ SL_2(F_2[t,t^(-1)])`, which lacks (T), says nothing, because (T) does not pass to subgroups.
-   - Status: nothing found.
+   - Status: nothing found. None can exist, by Attempt 4.
+4. **A_2 grading with the same idempotent in both coordinates** (sk-el2, 2026-09-13).
+   - Approach: take one clopen `W` with `∅ ≠ W ≠ X`, and blocks `E_1 = e_W E_11`, `E_2 = e_W E_22`, `E_3 = (1−e_W)I_2`.
+   - Blocks 1 and 2 are isomorphic, so `⟨Y_12, Y_21⟩ ≅ EL_2(e_W R e_W)`. Kassabov's relative (T) applies to the column root subgroups
+     through a finitely generated corner module.
+   - The row root subgroups go through `R^op`, and `Y_12`, `Y_21` are bounded products.
+   - Strong `A_2`-grading plus relative (T) gives (T). Simplicity over `F_2` comes from the note's tower commutator plus level propagation
+     through the three blocks.
+   - Status: proved. See `research/artifacts/sk-el2-idempotent-grading-2026-09-13-part1.md` and `-part2.md`.
