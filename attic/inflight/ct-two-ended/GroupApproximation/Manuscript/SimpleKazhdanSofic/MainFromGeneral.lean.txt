@@ -33,7 +33,7 @@ import Mathlib.Topology.Perfect
 namespace GroupApproximation
 namespace SimpleKazhdanSofic
 
-open Filter
+open SymbolicDynamics.FullShift Filter
 open Multiplicative (ofAdd toAdd)
 
 section Ring
