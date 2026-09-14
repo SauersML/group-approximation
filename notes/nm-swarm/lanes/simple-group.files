@@ -28,3 +28,4 @@ GroupApproximation/GroupTheory/HydeLodha/QTwoBrownCover.lean
 GroupApproximation/GroupTheory/HydeLodha/QTwoBrown.lean
 GroupApproximation/GroupTheory/HydeLodha/QTwoFinitelyPresented.lean
 GroupApproximation/GroupTheory/HydeLodha/QTwoLemmaFourSixCaseOne.lean
+GroupApproximation/GroupTheory/HydeLodha/QTwoLemmaFourSixGenerators.lean

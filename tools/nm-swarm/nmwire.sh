@@ -23,6 +23,12 @@ for m in $MODS; do
   p="${m//.//}.lean"
   git cat-file -e "$SHA:$p" 2>/dev/null || { echo "REFUSED: $m is not on origin/main"; exit 2; }
 done
+# Predict root import collisions at the SAME base the build uses (wave 4 was checked at an older SHA and reddened).
+if [ -n "$MODS" ]; then
+  PRE=$(printf '%s\n' $MODS | xargs python3 "$NM/dupcheck.py" "$SHA" 2>&1) || { printf '%s\n' "$PRE"; echo "REFUSED: dupcheck failed"; exit 2; }
+  printf '%s\n' "$PRE" | tail -n 1
+  printf '%s\n' "$PRE" | grep -E '^(DUP|MISSING)' && { echo "REFUSED: predicted root collisions at ${SHA:0:9}"; exit 2; }
+fi
 sed -e "s|__CLONE__|$CLONE|" -e "s|__TAG__|$TAG|" -e "s|__SHA__|$SHA|" -e "s|__MODS__|$MODS|" -e "s|__TARGETS__|$TARGETS|" "$NM/remote/wirejob.template.sh" > "$NM/msgs/wirejob-$TAG.sh"
 RSH="ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR"
 "$MSI" true >/dev/null 2>&1 || "$MSI" up >/dev/null 2>&1 || exit 4
@@ -68,6 +74,9 @@ IDX=$(mktemp "$NM/msgs/idx.XXXXXX"); rm -f "$IDX"
 for attempt in 1 2 3 4 5 6; do
   git fetch -q origin main; BASE=$(git rev-parse origin/main)
   git show "$BASE:GroupApproximation.lean" > "$NM/msgs/root-$TAG.cur2"
+  # origin may have moved since the build (peer waves): re-predict collisions against the base we land on
+  PRE2=$(printf '%s\n' $MODS | xargs python3 "$NM/dupcheck.py" "$BASE" 2>&1) || { printf '%s\n' "$PRE2"; echo "REFUSED: landing dupcheck failed"; exit 2; }
+  printf '%s\n' "$PRE2" | grep -E '^(DUP|MISSING)' && { echo "REFUSED: collisions against current origin ${BASE:0:9}; rebuild"; exit 2; }
   python3 - "$NM/msgs/root-$TAG.cur2" "$NM/msgs/root-$TAG.add" "$TMPD/GroupApproximation.lean" <<'PY'
 import sys
 cur=open(sys.argv[1]).read().split('\n'); add=[l.strip() for l in open(sys.argv[2]) if l.strip()]

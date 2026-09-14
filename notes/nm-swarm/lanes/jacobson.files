@@ -31,3 +31,5 @@ GroupApproximation/Kazhdan/GHWPlaces.lean
 GroupApproximation/Algebra/TotalDegreeValuation.lean
 GroupApproximation/Algebra/ValuationExtensionPlaces.lean
 GroupApproximation/Algebra/BoundedIntegralFinite.lean
+GroupApproximation/Kazhdan/GHWFiniteReduction.lean
+GroupApproximation/Kazhdan/GHWCharP.lean

@@ -45,6 +45,9 @@ else
   rsync -rlc --exclude __pycache__ "$EXP/scripts/" "$CLONE/scripts/"
 fi
 echo "$SHA" > "$CLONE/.nm/base"
+# A failed wave leaves wire_orphans.py's import lines in the clone root, and the delta sync above only
+# touches paths that changed in git, so reset the root to origin@SHA explicitly (wave 4 rebuilt wave 2's lines).
+git -C "$NMR/mirror.git" show "$SHA:GroupApproximation.lean" > "$CLONE/GroupApproximation.lean" || summary_fail "ROOT FAILED: root reset"
 cd "$CLONE" || summary_fail "ROOT FAILED: no clone"
 cp GroupApproximation.lean ".nm/root-before-$TAG.lean"
 if [ -n "$MODS" ]; then

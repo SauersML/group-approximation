@@ -319,3 +319,28 @@ GroupApproximation.GGT.SystolicDiscMovesChord
 # 10:10 sec5-sentences GREEN 0912-100330-38574 (base e04551169, bytes 8f7a8f1e1)
 GroupApproximation.GGT.VanKampen.SurgeryGFaceMergeMerged
 GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundMerged
+# 10:10 wave 4 (0912-095809-60717, base 83ed9ba1c) ROOT FAILED on the same duplicate: EdgeInsertionFaceCycles is imported transitively by a wave module,
+#   CORRECTION 10:30: dupcheck was right (0). The remote wirejob never reset the clone root after wave 2's failure, so wave 2's
+#   EdgeInsertionFaceCycles import was still in the root it built. remote/wirejob.template.sh now resets the root from the mirror at SHA.
+#   kh-torsion's rename embed_injective_faceCycles is on beb9479fa.
+# 10:12 dgo-analytic GREEN 0912-100628-69222 (base 08381ed21)
+GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixDescentCut
+GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixDescentInduction
+# 10:15 kh-torsion GREEN 0912-100344-41881 (rename landed 6a5f25704): EdgeInsertionFaceCycles SystolicDiscMovesChord rejoin
+# 10:16 wave 5 = wave 4's 40 + EdgeInsertionFaceCycles SystolicDiscMovesChord SurgeryGFaceMergeMerged OsinUnboundMerged OsinAppendixDescentCut OsinAppendixDescentInduction
+#   (46; $NM/msgs/wirecand-093759/wave5.txt), gated on dupcheck = 0 at the launch tip
+# 10:34 wave 5 LAUNCHED with ghw-charp2's 75-module list (wave 4 + md5-matching unwired greens, LIX prefixes excluded), minus Analysis.LIXPowersEquatorChart
+#   (LIX, never wire), plus OsinAppendixLemma97Pocket (0912-101449-41267), OsinUnboundReduced (0912-102241-17531), GHBSharpExistenceSystolic and
+#   SystolicDismantlable (0912-102253-20691): 77 modules. nmwire.sh now gates on dupcheck at SHA and again at the landing base.
+# ---- wave 6 candidates (green, not in wave 5)
+# sec2 GREEN 0912-102206-8083 (3a0808fa5)
+GroupApproximation.Kazhdan.GHWCountablePlaces
+# kh-ejz GREEN 0912-103148-88562 (ba54a571f)
+GroupApproximation.GroupTheory.HydeLodha.QTwoFinitePresentationProduct
+GroupApproximation.GroupTheory.HydeLodha.QTwoFinitePresentationNormal
+# leavitt-units GREEN 0912-102543-53051 (4f629158e)
+GroupApproximation.Manuscript.NonMFSentences.LeavittMFQuotientUnitsGL
+# hull-euler GREEN 0912-102329-28786 (51ced56ac): Phi, PhiCount, PhiBound (Subdivided/RegionFaces are in wave 5); check exact module names before wiring
+# pending probes: SoficCitationSentences (cite-sofic), OsinCitedSentencesClosed (cite-osin efd80066b), SystolicBallDismantlable (leavitt-ge),
+#   QTwoLemmaFourSixGenerators (simple-group 7db72cfc1), QTwoFinitePresentationStabK (fff-quotient ec1a3f2ae), OsinLemma94RunInput/Counting (hull-count94 82ba54dfb),
+#   FaceSetBoundaryGlue + OsinAppendixCutMerge (hull-respell), OsinAppendixEulerHereditary/Count (hull-euler), GHWFiniteReduction (jacobson)

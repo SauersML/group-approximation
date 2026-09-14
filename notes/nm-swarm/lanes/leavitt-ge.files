@@ -38,3 +38,4 @@ GroupApproximation/Kazhdan/CCKWTitsMoves.lean
 GroupApproximation/Kazhdan/CCKWTitsTypedWords.lean
 GroupApproximation/Kazhdan/CCKWTitsPresentation.lean
 GroupApproximation/Kazhdan/CCKWTitsGHB.lean
+GroupApproximation/GGT/SystolicBallDismantlable.lean
