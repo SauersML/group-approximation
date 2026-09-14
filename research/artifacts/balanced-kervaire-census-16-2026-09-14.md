@@ -96,11 +96,29 @@ md5 `a8feedc246ca6cc067d978d3db065803`, against `census_L1415.txt` md5
 Negative control, with the first `ORDER 1` changed to `ORDER 2`: one contradiction
 (`PROBLEM 3480 orders 1 2`), `JOIN NOT CLEAN`.
 
-## 4. Jobs in flight (MSI, `/scratch.global/sauer354/hl-balanced-census-16/`)
+## 4. Census to total length 17 (MSI job 775702; `census17.775702.log`, `census17.stats`)
+
+`census_balanced.py 17` (md5 unchanged) ran in 24 min 49 s with 4.3 GB. It lists 181842 classes
+with `det = +-1` at total length at most 17:
+
+| total length L | classes with det = +-1 | cumulative |
+|---|---|---|
+| 16 | 29929 | 54500 |
+| 17 | 127342 | 181842 |
+
+- The census orders rows by (total length, pair) and numbers them consecutively. The first 24571
+  lines of `census17.txt` have md5 `88ce6d6c5600bd7df101de9b9966ea6a`, identical to the certified
+  `census15.txt`, so ids and rows up to L = 15 agree with the earlier run.
+- Files on MSI, not landed (about 6 MB) and reproducible with `census_balanced.py 17`:
+  - `census17.txt` `4f1e1b00eeedc9cd119b3e4c96d47bb8`;
+  - `census_L16.txt` (29929 lines) `6325dfc89685703c6ca6e8848d86e9a2`;
+  - `census_L17.txt` (127342 lines) `81dfe75cc13bbf5a3725b87df89cec03`.
+- The recount of section 2 on the whole L <= 17 census runs in job 778223.
+
+## 5. Jobs in flight (MSI, `/scratch.global/sauer354/hl-balanced-census-16/`)
 
 A dependency chain, one modest job or a 4-task-throttled array at a time:
-1. 775702 `census17.sbatch`: `census_balanced.py 17`. Also checks that its first 24571 lines
-   reproduce `census15.txt`, and splits out `census_L16.txt` and `census_L17.txt`.
+1. 775702 `census17.sbatch`: done (section 4).
 2. 778223 `prep16.sbatch` (after 775702): 40 round-robin chunks, then `rc_orbit.py` on the whole
    L <= 17 census.
 3. 778224 `classify16.sbatch` (array, after 778223): GAP `bal.g` on every L = 16, 17 class.

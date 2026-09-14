@@ -1,0 +1,13 @@
+9c06c60f275922de4f6f03c5b0c34c7c  census_balanced.py
+88ce6d6c5600bd7df101de9b9966ea6a  census15.txt
+classes per total length: [(2, 1), (3, 1), (4, 1), (5, 2), (6, 3), (7, 11), (8, 17), (9, 54), (10, 91), (11, 349), (12, 591), (13, 2359), (14, 4070), (15, 17021), (16, 29929), (17, 127342)]
+total 181842
+181842
+prefix15 md5: 88ce6d6c5600bd7df101de9b9966ea6a  -
+  29929 census_L16.txt
+ 127342 census_L17.txt
+ 157271 total
+4f1e1b00eeedc9cd119b3e4c96d47bb8  census17.txt
+6325dfc89685703c6ca6e8848d86e9a2  census_L16.txt
+81dfe75cc13bbf5a3725b87df89cec03  census_L17.txt
+DONE
