@@ -96,7 +96,7 @@ theorem exists_doubling (D : RelGenSet G Lambda) (X : DiscDiagram.{u, w, v} W)
 `in₂`. -/
 theorem osinPocketTouchCorner : OsinPocketTouchCornerStatement.{u, w, v} := by
   intro G _ Lambda W D X hlabel walk _hwalk in₁ h₁ in₂ h₂ hne _hv hloop₁ hloop₂ hout i hi
-  obtain ⟨X₁, e₁, i₁, ⟨eq₁⟩, hlabel₁, halpha₁, hlab₁, hvert₁, hsig₁, ψ₁, _hψ₁, _hface₁, hout₁',
+  obtain ⟨X₁, e₁, i₁, ⟨eq₁⟩, hlabel₁, halpha₁, hlab₁, hvert₁, hsig₁, _ψ₁, _hψ₁, _hface₁, hout₁',
     hcell₁', _hψne₁, _houter₁, _hcells₁, hout₁, hi₁, hcd₁⟩ :=
     exists_doubling D X hlabel walk in₁ h₁ hloop₁ hout i hi
   have h₂' : e₁ in₂ ∈ walk.map e₁ := List.mem_map_of_mem h₂

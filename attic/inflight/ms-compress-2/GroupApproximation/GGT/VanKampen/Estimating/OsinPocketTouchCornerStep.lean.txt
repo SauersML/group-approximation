@@ -79,12 +79,17 @@ theorem sigma_embedding_of_ne
       (secondCorner Delta.toCombMap (FaceEdgeDoubling.rebased Delta f j)
         (FaceEdgeDoubling.second Delta f j hlen))).sigma (embed Delta.toCombMap z) =
     embed Delta.toCombMap (Delta.toCombMap.sigma z)
-  rw [EdgeInsertion.sigma_embed_apply hab z, if_neg hz, if_neg]
-  rw [hsecond]
-  intro h
-  unfold CombMap.facePerm at h
-  rw [Equiv.Perm.mul_apply] at h
-  exact hz' (Delta.toCombMap.sigma.injective h)
+  have hz₁ : Delta.toCombMap.sigma z ≠
+      firstCorner Delta.toCombMap (FaceEdgeDoubling.rebased Delta f j) := hz
+  have hz₂ : Delta.toCombMap.sigma z ≠
+      secondCorner Delta.toCombMap (FaceEdgeDoubling.rebased Delta f j)
+        (FaceEdgeDoubling.second Delta f j hlen) := by
+    rw [hsecond]
+    intro h
+    unfold CombMap.facePerm at h
+    rw [Equiv.Perm.mul_apply] at h
+    exact hz' (Delta.toCombMap.sigma.injective h)
+  rw [EdgeInsertion.sigma_embed_apply hab z, if_neg hz₁, if_neg hz₂]
 
 /-- The exterior of the doubled map is the image of the old exterior. -/
 theorem outerFace_eq_faceImage :
