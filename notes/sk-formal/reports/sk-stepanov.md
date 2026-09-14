@@ -61,3 +61,16 @@ Route note: "small" in the section "Simplicity" also asks for disjoint translate
     - `printedSimplicityStatement_stepanov`: MainAssembly's simplicity piece, discharged by this route.
 - Sentence verified verbatim at origin 151ed1151, sha256 `9424f59fd820`.
 - The modules are queued for wiring.
+
+## ITEM 2 (main, 09-14 ~08:45): cor:wp's degree representative, split off skf-degrees' item (e)
+- Row `7badee43dd9d` (tex l.526–529 at 696c4b602): "Every $S\subseteq\mathbb N$ has the degree of $[0;1+\chi_S(0),1+\chi_S(1),\dots]$, since each digit is decided by one strict comparison with a rational computed from earlier digits."
+- Target: `PrintedContinuedFractionRepresentative` in skf-degrees' `WordProblemDegreeStatements`.
+- Split proposed to skf-degrees:
+  - skf-degrees keeps `ContinuedFractionExpansion` (construction, `IsContinuedFractionOf`, `Irrational`).
+  - This lane takes the Turing equivalence and the assembly.
+
+CLAIM alpha computes B (digit k decided by one strict comparison with F_k(1/2), adaptive) GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuedFractionDigitOracle.lean
+CLAIM B computes alpha (rfind over the nested intervals F_n([1/3,3/4])) GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuedFractionCutOracle.lean
+CLAIM assembly of PrintedContinuedFractionRepresentative GroupApproximation/Manuscript/SimpleKazhdanSofic/ContinuedFractionRepresentative.lean
+
+Ownership check 09-14 08:4x: no reduction draft on origin, in the shared tree or in any `.files` (skf-degrees holds only `ContinuedFractionExpansion`, `SturmianComputability`, `SturmianQueries` and `LanguageReducesToWordProblem`).
