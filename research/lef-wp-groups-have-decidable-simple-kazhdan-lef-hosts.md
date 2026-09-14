@@ -9,6 +9,7 @@ distinct_from:
   no-decidable-group-contains-every-fp-rf-group: that rules out one decidable host for all finitely presented residually finite groups; this gives one decidable host for each group.
 artifacts:
   - research/artifacts/sk-decidable-host-2026-09-13.md
+  - research/artifacts/sk-verify-14-2026-09-13-part3.md
 ---
 
 **ESTABLISHED (unreviewed).** Let `Γ` be a finitely generated group. Then `Γ` is LEF with solvable word problem if and
@@ -30,3 +31,5 @@ solvable word problem.
 finitely generated simple group with solvable word problem. This is the analogue inside LEF groups, with (T).
 
 Route: `lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts-proof`.
+
+**Review (sk-verify-14, 2026-09-13): PASS.** Re-derived: both directions; the subshift model `F_x(ℓ) = (ℓ^(-1)x)(e)` of the lamplighter action; `WP(L) ≤_T WP(Δ)` by lamp parities; and `L(X) ≤_T WP(Δ)` by consistency of the constraints `x(δ_w) = p(w) + c_w(δ_w)`. The inputs carry PASS reviews: the lamplighter host (three) and the word-problem formula (sk-verify-4). Thompson's 1980 locator is not checked. See `research/artifacts/sk-verify-14-2026-09-13-part3.md` §4.
