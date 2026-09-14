@@ -41,3 +41,8 @@ A negative answer for some `φ` would give a finitely generated simple AMENABLE 
     - (R2) Grigorchuk levels on a dyadic block inside each tower, with remainder levels absorbed by the base structure;
     - (R3) a uniform-growth proof when partial quotients grow fast.
   - Not yet attempted beyond the obstruction.
+- **K-theoretic obstruction and the death of remainder linking** (sk-sturmian-growth, `research/artifacts/sk-sturmian-growth-2026-09-14-part2.md`).
+  - Any uniform level model `X = ⊔_(y∈Y) φ_y(V)`, with pieces from the local pseudogroup and `|Y| = N`, forces `[1_X] = N[1_V]` in `K^0(X,T)`, i.e. `μ(V) = 1/N` for every invariant `μ`.
+  - For Sturmian `X_α`, `K^0 ≅ Z + αZ` with unit 1, so `N = 1`, and even rearranged level models are excluded. Remainders of positive measure are unavoidable.
+  - Linking remainder levels to a dyadic block by one bounded long-cycle level permutation restores generation (Jordan), but kills the count: `⟨c,t⟩` already has exponential balls up to radius about `q_(n−1)`.
+  - What is missing: a bounded family of level permutations of intermediate growth, with separation and connectivity, on the Rauzy level sets of heights `q_n, q_(n−1)`.
