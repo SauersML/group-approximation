@@ -1,0 +1,4 @@
+matrix models satisfy the U3 and U4 relators over Z: True
+HBC2_2 T 24 surface 67 orientable True chi -2 labels [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6] label primes [2, 3, 5] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+HBC2_2 T 24 surface 71 orientable False chi -2 labels [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6] label primes [2, 3, 5] {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I over Z': True} PASS
+certificates checked: 2 | ALL PASS

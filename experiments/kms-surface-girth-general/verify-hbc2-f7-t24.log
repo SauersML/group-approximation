@@ -1,0 +1,8 @@
+HBC2_2 p 7 T 24 surface 65 orientable True chi -2 {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I mod p': True} PASS
+HBC2_2 p 7 T 24 surface 65 orientable True chi -2 {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I mod p': True} PASS
+HBC2_2 p 7 T 24 surface 67 orientable True chi -2 {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I mod p': True} PASS
+HBC2_2 p 7 T 24 surface 67 orientable True chi -2 {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I mod p': True} PASS
+HBC2_2 p 7 T 24 surface 71 orientable False chi -2 {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I mod p': True} PASS
+HBC2_2 p 7 T 24 surface 71 orientable False chi -2 {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I mod p': True} PASS
+HB2_2 p 7 T 24 surface 67 orientable True chi -2 {'involutions': True, 'transitive': True, 'orbits 2*m_i': True, 'labels': True, 'all vertex words = I mod p': True} PASS
+certificates checked: 7 | ALL PASS
