@@ -71,7 +71,9 @@ https://github.com/SauersML/group-approximation/actions/runs/34785945798
 The renamed modules passed the build, definition checks, statement comparison
 and axiom audit at acfbb7877804a60efc08f3c26f79919dfcb32f1e:
 https://github.com/SauersML/group-approximation/actions/runs/34790950434
-Final Comparator and NanoDa replay is pending for the submission candidate. These recorded verification runs do not constitute
+The selected candidate must also pass Comparator with NanoDa; its verification
+is recorded in the GitHub Actions runs for that exact revision.
+These recorded verification runs do not constitute
 Palomar acceptance or human expert review.
 
 Astra developed the original argument using a custom proof tool under
