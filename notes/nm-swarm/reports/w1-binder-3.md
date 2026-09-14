@@ -223,3 +223,39 @@ Proof plan, and the case analysis used as the model test:
   - No CopyClean field and no least area are used.
 - The closed-walk facts of the `(b, a, i, j)` walk on the clean copy come from ms-cite-1's
   `CellPocketCopyCleanBothOrdersStatement` (owner w1-binder-5), not from this lane.
+
+## Item 5: first-turn order of the section and cell pockets (main's 20:4x item; resumed 21:22 and 23:12, with w1-binder-4's cell mirror)
+
+Origin at 23:18 (096d9219c):
+- w1-binder-7 landed `SectionPocketFaceSetFirstTurnInput` and `OsinSectionPocketFaceSetFirstTurnSectionStatement`
+  (`OsinPocketPinchFirstTurnAssembly`). The Input asks for `K.FirstTurns ∧ K.sourceArc.length < |∂Π|`. This lane
+  targets it as spelled.
+- The cell pinch Input `CellPocketPinchSectionInput` (ms-intro-4) still takes walk order.
+
+Model test: w1-binder-4's `OsinPocketCellFirstTurnsLakeModel` (attic 8dea85688). Main's 23:12 order passes that item to
+this lane.
+- First-turn order is complement-side following.
+  - A first turn onto an edge of the cycle is unique, so the boundary cycle must be one orbit of the first-turn
+    predecessor.
+  - A lake splits the predecessor into several orbits. Then no ordering of the boundary cycle is in first-turn order.
+- Calibration: the multiple-edge lake and the double touch, both with monogon cells and full arcs, are not in first-turn
+  order.
+- A lake with proper arcs and no monogon:
+  - fourteen darts, the pocket `[0,2,4,8,10]`, and the lake `{Πᵢ, H}`, which meets the rest of the complement only at `v`;
+  - the walk is noncrossing and has proper arcs of both cells;
+  - its predecessors split `{0,2,4}` from `{8,10}`, so no ordering is in first-turn order.
+- So route (a) fails at map level even with proper arcs. Route (a) is first-turn order for the walk-order pocket of the
+  orientation producer.
+  - The source cell can lie in the lake, where `PocketFaceSet.absorb` does not apply.
+  - A producer has to change the diagram or the face set, or rule the lake out from least area and the optimal family.
+  - The models carry no labels or regions, so no producer statement is refuted.
+- The section side behaves the same way. The lake walk `[0,2]` and w1-binder-6's least-area full-arc lake fail first-turn
+  order.
+
+CLAIM the lake model, landed as is under this lane after a green probe: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellFirstTurnsLakeModel.lean
+CLAIM the bridge from outer following: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFirstTurnsOfOuterFollows.lean
+- `FirstTurnWalk.firstTurn_prev_of_outerFollows` and `firstTurnChain_of_outerFollows`: on a noncrossing closed walk
+  whose outer cycle follows its boundary, the first-turn chain of `FirstTurns`.
+- `PocketFaceSet.firstTurns_of_outerFollows` and `CellPocketFaceSet.firstTurns_of_outerFollows`.
+- Any producer that changes the face set until the outer cycle follows consumes it, for example lake absorption or a
+  vertex split outside.
