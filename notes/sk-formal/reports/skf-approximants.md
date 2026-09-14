@@ -28,3 +28,23 @@ prop:marked, rem:fibonacci).
 
 The roster's label table (thm:degrees, lem:subshift, prop:simple-ring, lem:windows, prop:ultraproduct, lem:level, thm:root,
 cor:consequences, prop:degree, ...) refers to b965d63ba and is obsolete at the tip.
+
+## Item 2 (main, ~19:05): help skf-degrees on tex 229–263 at bf961c128
+
+Split proposed to skf-degrees in one message:
+- mine: the Morse–Hedlund input and the Sturmian combinatorics, rows l.250–256;
+- skf-degrees': WP(G_X) ≡_T L(X), computability wrappers, Turing representatives, continuum many, isomorphism invariance.
+
+Sentences (keys `LINE:<l>@bf961c128`):
+| key | sentence | owner |
+|---|---|---|
+| LINE:250–251 | "the infinite minimal Sturmian subshift of an irrational slope α ∈ (0,1)" [MorseHedlund] | skf-approximants |
+| LINE:251–253 | "words of length n are determined by the cyclic order of the distinct rotation endpoints −jα mod 1, 0 ≤ j ≤ n" (combinatorics; "computable from α" is skf-degrees') | skf-approximants |
+| LINE:254–255 | "the minimum number of 1's in a word of length n is ⌊nα⌋" ("so the language computes α" is skf-degrees') | skf-approximants |
+
+CLAIM SturmianSubshift `GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshift.lean` (definitions of the codings
+and X_α, named statement Props M1–M3)
+CLAIM SturmianSubshiftMinimal `GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianSubshiftMinimal.lean` (M1: X_α
+closed, shift-invariant, infinite, minimal; proved by bounded-gap density of irrational rotation, no literature input)
+CLAIM SturmianLanguage `GroupApproximation/Manuscript/SimpleKazhdanSofic/SturmianLanguage.lean` (M2: words are constant
+between consecutive endpoints, and the endpoints are distinct; M3: the minimum number of 1's is ⌊nα⌋)
