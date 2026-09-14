@@ -278,3 +278,7 @@ Hand model tests (23:3x):
   L₂ ⊂ L₁ of ∂Δ, both containing index 0, with a relator polygon at each pinch, which gives two backward junctions.
   - What holds: at most one per polygon, and each nesting level carries a distinct relator cell, so at most n + 1.
   - The residual Prop has `∃ K`, so its statement is unaffected. Only the count in these notes changes.
+
+CLAIM bridge from the two residuals to ms-binary's `OsinLemma94BadJunctionInput` (`osinLemma94BadJunctionInput_of_pieces`) `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94BadJunctionPieces.lean`
+- Imports ms-binary's `OsinLemma94ClassJoins` (`nonJoinPolygons`, definitionally the inline index set of the landed
+  residuals) and ad307e323. The landed residual statements are not respelled, so ms-core-1's import target is unchanged.
