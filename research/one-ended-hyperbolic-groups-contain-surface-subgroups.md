@@ -8,6 +8,7 @@ distinct_from:
   closed-hyperbolic-3-manifold-groups-contain-surface-subgroups: that is the Kahn--Markovic case of closed hyperbolic 3-manifold groups; this is Gromov's question for all one-ended hyperbolic groups.
   random-groups-below-density-half-contain-surface-subgroups: that holds with overwhelming probability in the density model; this asks for every one-ended hyperbolic group.
   cyclic-graphs-of-free-groups-contain-surface-subgroups: that covers graphs of free groups with cyclic edge groups; this asks for all one-ended hyperbolic groups.
+  kms-hb2-groups-contain-genus-two-surface-subgroups: that covers the KMS groups G_HB2(p) for every odd prime p, including infinitely many hyperbolic Kazhdan groups; this asks for all one-ended hyperbolic groups.
 ---
 
 **OPEN.** Gromov's surface subgroup question: does every one-ended hyperbolic group
@@ -40,6 +41,10 @@ contain the fundamental group of a closed surface with `chi < 0`?
    Most such groups are not hyperbolic, so this is evidence rather than coverage.
 6. Second-hand only, not read at source: Coxeter groups (Gordon--Long--Reid);
    Hamenstädt for rank-one groups except `SO(2n,1)`.
+7. The Kac--Moody--Steinberg groups `G_HB2(p)` of Caprace--Conder--Kaluba--Witzel, for
+   every odd prime `p`. For `p >= 7` these are hyperbolic with property (T), so rigid.
+   Proved here, computer-certified: `kms-hb2-groups-contain-genus-two-surface-subgroups`
+   (and `ghb7-contains-a-genus-two-surface-subgroup` for `p = 7`).
 
 ## First uncovered natural classes
 

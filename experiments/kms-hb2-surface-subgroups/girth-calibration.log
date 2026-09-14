@@ -1,0 +1,4 @@
+p 3 ['type0: |X|=27 cosets 9+9 girth 6', 'type1: |X|=81 cosets 27+27 girth 8', 'type2: |X|=81 cosets 27+27 girth 8']
+p 5 ['type0: |X|=125 cosets 25+25 girth 6', 'type1: |X|=625 cosets 125+125 girth 8', 'type2: |X|=625 cosets 125+125 girth 8']
+p 7 ['type0: |X|=343 cosets 49+49 girth 6', 'type1: |X|=2401 cosets 343+343 girth 8', 'type2: |X|=2401 cosets 343+343 girth 8']
+p 11 ['type0: |X|=1331 cosets 121+121 girth 6', 'type1: |X|=14641 cosets 1331+1331 girth 8', 'type2: |X|=14641 cosets 1331+1331 girth 8']

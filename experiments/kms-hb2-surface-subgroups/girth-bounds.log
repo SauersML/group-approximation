@@ -1,0 +1,7 @@
+(A) U_3 n=2 normal form: ({(0, 1, 0, 0, 0, 0): Fraction(1, 1), (0, 0, 0, 1, 0, 0): Fraction(1, 1)}, {(1, 0, 0, 0, 0, 0): Fraction(1, 1), (0, 0, 1, 0, 0, 0): Fraction(1, 1)}, {(1, 1, 0, 0, 0, 0): Fraction(1, 1), (1, 0, 0, 1, 0, 0): Fraction(1, 1), (0, 0, 1, 1, 0, 0): Fraction(1, 1)})
+(B) U_4 n=2: mu = {(1, 1, 0, 0, 0, 0): Fraction(1, 1), (1, 0, 0, 1, 0, 0): Fraction(1, 1), (0, 0, 1, 1, 0, 0): Fraction(1, 1)}
+(C) U_4 n=3 after E=F=0: mu = {(1, 1, 0, 0, 0, 0): Fraction(1, 1), (1, 0, 0, 1, 0, 0): Fraction(1, 1), (0, 0, 1, 1, 0, 0): Fraction(1, 1)}
+    2*nu + e3*f2*f3 = (quotient)*mu with remainder {} | quotient {(0, 1, 0, 0, 0, 0): Fraction(-1, 1), (0, 0, 0, 0, 0, 0): Fraction(-1, 1)}
+(D) length-6 relation in U_3 over Z: x^-2 y^-1 x^1 y^2 x^1 y^-1
+    length-8 relation in U_4 over Z: x^-2 y^-2 x^-2 y^2 x^2 y^-2 x^2 y^2
+PASS

@@ -1,0 +1,34 @@
+normal-form laws are associative, and satisfy the relators with u=[x,y], v=[u,y]: True
+psi(a),psi(b),psi(c) satisfy the eight commutator relators over Z: True | (psi(g)-I)^2 = 0: True
+labels used: [-1, 1, 2] | primes dividing some label: [2]
+  fixed-point-free involutions : True
+  transitive : True
+  alternating walks close after exactly 6, 8, 8 distinct chambers : True
+  orientable (bipartite chamber graph) : True
+  V - E + F = -2 : True
+  one nonzero integer label per side : True
+  all vertex words trivial in N3/N4 over Z : True
+  all vertex words trivial through psi over Z : True
+vertices 10 edges 36 faces 24 chi -2 | words checked 72
+symbolic psi-image of X_0=<a,b>: b^s a^t u^w, u=[a,b]
+   entry (0,3) = 1*t
+   entry (1,0) = 1*s
+   entry (1,2) = 1*t
+   entry (1,3) = -2*u + 1*s*t
+   entry (2,3) = -1*s
+symbolic psi-image of X_1=<c,b>: b^s c^t u^w v^w', u=[c,b], v=[u,b]  (w' printed as 4th symbol)
+   entry (1,0) = 1*s
+   entry (2,0) = 2*w + 1*u + -1*s*u
+   entry (2,1) = 1*u + -1*s*t
+   entry (2,3) = -1*s
+   entry (3,0) = 1*u
+   entry (3,1) = 1*t
+symbolic psi-image of X_2=<c,a>: a^s c^t u^w v^w', u=[c,a], v=[u,a]
+   entry (0,1) = -1*u + 1*s*t
+   entry (0,2) = -2*w + -1*u + 1*s*u
+   entry (0,3) = 1*s
+   entry (1,2) = 1*s
+   entry (3,1) = 1*t
+   entry (3,2) = 1*u
+commutator images square to zero: True
+ALL PASS
