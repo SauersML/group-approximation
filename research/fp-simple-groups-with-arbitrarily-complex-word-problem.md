@@ -64,3 +64,23 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
    `complexity-bounded-host-classes-are-not-universal`: any family sharing
    one recursive bound, such as all rational homeomorphism groups, cannot
    supply the needed examples.
+4. **Finite germ extensions of `V` certified by the Belk--Hyde--Matucci germ
+   corollary.** *Dies as a family, under orbit-preserving transports* (2026-09-13,
+   `orbit-preserving-germ-corollary-extensions-of-v-are-rational`).
+   - *The theorem.* Let `G` be a finitely generated finite germ extension of `V`
+     satisfying, at each singular point, hypothesis (2) of Corollary 2.10 for
+     singletons and the either-or of hypothesis (3). If every element maps each
+     singular point into its own `V`-orbit (for instance when `sing(G)` is one
+     `V`-orbit), every element of `G` is rational, so `G` and all its subgroups
+     have word problem in `F(2^n)`.
+   - *Where hardness can still enter this branch.* Theorem 2.1 with germ groups
+     that normalize no finite-index subgroup of their `V`-germs, as for shell
+     envelopes of non-virtually-cyclic inputs; or a singular transport between
+     different `V`-orbits, where a germ may apply unboundedly many iterates of a
+     fixed annulus map. No finitely presented example of either kind is known.
+   - *Provenance.* Birget, arXiv:math/0310335 §1, states this root as a
+     consequence of a conjecture he attributes to Higman, reports every analyzed
+     finitely presented simple group in `P`, and says neither side "ha[s] much
+     evidence". Zaremsky (arXiv:2305.15176) gives the first finitely presented
+     simple groups with at least exponential Dehn function; that bounds nothing
+     here from below. Pins in `research/artifacts/hl-bh-hard-simple-2026-09-13.md`.
