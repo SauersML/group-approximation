@@ -202,6 +202,39 @@ Binder: `OsinLemma97Below … n := ∀ Xi cutsXi, Xi.LeastArea → 0 < Xi.rCellC
    - Options put to main: (a) a singular `DiscDiagram` carrier for the section pocket cut; (b) a separate full-`t_1`
      piece of `SectionPocketCutInput`.
 
+## CLAIM (20:2x, main's ruling (a)): the singular Γ₁ carrier for a full `t_1`
+
+- Recorded: **a full `t_1` is a genuine case of Osin's proof.** Γ₁ is a singular disc with four sections through the
+  touch vertex, and it has fewer cells. `SectionPocketFullArcExcludedStatement` is dropped for good.
+- `CLAIM lake model GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeModel.lean` and
+  `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFullArcLakeEnclosed.lean` (Ξ realized), to be landed first.
+- `CLAIM singular carrier GroupApproximation/GGT/VanKampen/Estimating/OsinPocketEnclosedCarrier.lean`.
+
+Design:
+- Γ₁ is the enclosed subdiagram Ξ of the pocket walk. Its faces are `sideFaces X K.walk`, with outside walk
+  `invDarts X K.walk`, through ms-traces-2's `ClosedWalkEnclosedSubdiagramStatement` (named) and
+  `enclosedSubdiagram_leastAreaCut`.
+  - Ξ reads `s_1 t_1⁻¹ s_2 t_2`. The source cell is off the side and the kept cell on it, so
+    `0 < Ξ.rCellCount < X.rCellCount` and Ξ is least area.
+  - Four sections by `SectionCuts.ofParts`.
+- The enclosed face set needs no following cycle. Chain, closes and `mem_iff` go as in ms-intro-1's draft
+  `ClosedWalkEnclosedNoncrossing`. `turn_mem` is the turning field of `IsNoncrossingClosedWalk.reverseMapAlpha`.
+  - `EnclosedFaceSetOfNoncrossingStatement` assumes the complement cycle follows. That fails on the lake
+    (`OsinPocketLakeModel.lakeCycle_outerCycle_not_followsBoundary`), which is exactly the full-`t_1` configuration.
+- Lake model (Configuration B, Π alone in the lake):
+  - Δ is the rose with `K = [0,2]`, `Π = [1]` and `O = [3]` over `Perm (Fin 3)`, with `W = {[a], [a⁻¹, c]}` (`a` a
+    transposition, `c` a 3-cycle). It is least area by sign parity.
+  - The pocket walk is `[0,2]`, with `t_1 = ∂Π` full, `t_2 = [2]` and empty sides. Π and O are off the side, and the
+    enclosed face set holds while the outer cycle does not follow.
+  - Ξ is realized as the one-cell bigon reading `[a⁻¹, c]`: least area, 1 < 2 cells.
+
+| piece | owner |
+|---|---|
+| `ClosedWalkEnclosedSubdiagramStatement` | ms-traces-2's Prop; producer unowned; consumed by name |
+| `EnclosedLeastAreaFilterStatement` | ms-traces-2, with ms-inverses-1 |
+| unconditional enclosed face set of a noncrossing walk | proposed to ms-intro-1 |
+| carrier and lake model | this lane |
+
 ## Plan for `side_outer`
 
 - Mirror ms-cite-2's cell-side statement for the exterior: `IsOuterSideDart Delta family x` holds when `faceOf x` is
