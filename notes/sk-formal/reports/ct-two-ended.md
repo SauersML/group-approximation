@@ -1,52 +1,42 @@
-# Lane ct-two-ended: thm:main assembly of `simple_kazhdan_sofic_group.tex`
+# Lane ct-two-ended: thm:general and thm:main of `simple_kazhdan_sofic_group.tex`
 
-Target: origin/main tip e80dcf20a (386 lines, md5 4ad4921253626a4f858866c716a13385), Theorem `thm:main` (tex 48–62),
-assembled from the range lanes' carriers. Settled with ms-intro-3 (~20:05) and confirmed by main (~20:30): the statement
-`PrintedSimpleKazhdanSoficMain` and its closed theorem are this lane's, in `Manuscript/SimpleKazhdanSofic/MainAssembly.lean`.
-ms-intro-3 keeps `Setting`, `MinimalDenseOrbits` and the census rows of the abstract, introduction and thm:main, which cite
-these declarations. This lane keys no census rows of its own.
+Target: origin/main tip 37551fd93 (restructured at c8b6021ca).
+- `thm:general` (tex 109–127): a finitely generated Λ acting minimally and topologically freely on a Cantor set Z, with
+  R = LC(Z,F₂) ⋊ Λ matricial via φ_k. Then EL_n(R) is infinite, finitely generated, simple and Kazhdan, and a marked limit
+  of SL_{nN_k}(F₂) with expander Cayley graphs.
+- `thm:main` (tex 55–69) follows through periodic approximations (tex 238–271).
+
+This lane owns both statements and their assemblies. Everything is additive. Per main's ruling, the crossed product is
+sk-lef-action's `ClopenGroupCrossedProduct Λ Z k`; freeness is stated as printed, definitionally sk-lef-action's
+`IsTopologicallyFreeAction`.
 
 This file is written by ct-two-ended only.
 
-## Landed
+## Landed (probe-built, #audit clean, wire queued)
 
-- `GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly` (bf15b32cf; probe 0913-195931-2051 GREEN; wire queued).
-  Namespace `GroupApproximation.SimpleKazhdanSofic`:
-  - `IsMarkedLimit s σ`: convergence in the space of marked groups (every word is eventually trivial in `H ℓ` iff trivial in `G`);
-  - `IsExpanderFamily σ`: finite generating family, orders → ∞, uniform edge expansion `ε|S| ≤ #{(x,i) : x ∈ S, σ_i x ∉ S}`
-    for `2|S| ≤ |H ℓ|`;
-  - `PrintedMarkedLimitExpanders S n`: a marked limit of simple `SL (Fin n × Fin N_ℓ) F₂` with expanding Cayley graphs;
-  - `PrintedSimpleKazhdanSoficMain` (tex 48–62, every n ≥ 3): infinite, `Group.FG`, `IsSimpleGroup`, `HasKazhdanPropertyT`,
-    `PrintedMarkedLimitExpanders`, `IsLEF`, `IsSofic`, `IsHyperlinear` of `↥(elementaryGroup (Fin n) (R S))`;
-  - `printedSimpleKazhdanSoficMain_of_pieces` over the four pieces below.
+Namespace `GroupApproximation.SimpleKazhdanSofic`, modules under `Manuscript/SimpleKazhdanSofic/`.
 
-## In flight
+| module (SHA) | declarations |
+|---|---|
+| `MainAssembly` (bf15b32cf, 52da29fb3) | `IsMarkedLimit`, `IsExpanderFamily`, `PrintedMarkedLimitExpanders S n`, `PrintedSimpleKazhdanSoficMain` (every n ≥ 3), `infinite_elementaryGroup`, `printedSimpleKazhdanSoficMain_of_pieces` |
+| `MarkedLimitLEF` (52da29fb3) | `isLEF_of_isMarkedLimit`, closed `printedMarkedLimitLEFStatement` |
+| `MainAssemblyPieces` (52da29fb3) | closed `printedSubshiftRingFGStatement` |
+| `MarkedLimitTransport` (14ee44a37) | `IsMarkedLimit.map_source`/`map_target`, `IsExpanderFamily.map_target`, `elementaryBlockEquivUnits`, `elementaryBlockEquivSL`, `isSimpleGroup_elementaryBlock`, `elementaryGroupEquivOfRingEquiv` |
+| `GeneralTheorem` (40cf3ae5b) | `IsMatricialVia` (N_k ≥ 1), `MarkingIndex`, `elementaryMarking`, `matricialMarking`, `PrintedSimpleKazhdanGeneral`, pieces, closed `printedMatricialExpandersStatement`, `infinite_of_perfectSpace`, `tendsto_card_of_isMarkedLimit`, `printedSimpleKazhdanGeneral_of_pieces` |
+| `MainFromGeneral` (8811c88c5) | `shiftMulAction`, `ringEquiv`, `isMinimal_shift`, `isTopologicallyFree_shift`, `perfectSpace_carrier`, `printedGenerators`, `PrintedPeriodicMatricialStatement`, `printedSimpleKazhdanSoficMain_of_general`, closed `printedBlockElementarySimple`, `printedSimpleKazhdanGeneral_of_open_pieces`, `printedSimpleKazhdanSoficMain_of_open_pieces` |
 
-- `MainAssembly` revision: the infinite clause along the printed route ("infinite because e₁₂(LC(X,F₂)) is infinite", tex
-  113–114), through ms-compress-4's `infinite_locallyConstant_zmodTwo` and `ClopenCrossedProduct.coeff_injective`.
-- `GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitLEF` (tex 162–163, "…and G is LEF"):
-  `isTextbookLEF_of_isMarkedLimit`, `isLEF_of_isMarkedLimit`, closed `printedMarkedLimitLEFStatement`. ms-core-3's row
-  `60605fdb5e61` can cite it.
+## In probe
 
-## Pieces and owners
+- `GeneralTheoremClosure`: closed `printedGeneralSimplicityStatement` (skf-consequences' `General.isSimpleGroup_clopenGroupCrossedProduct_of_isOpen`, 81ae4081d); `printedSimpleKazhdanGeneral_of_marked_limit`; `printedSimpleKazhdanSoficMain_of_matricial_pieces`.
 
-| piece | tex | owner | producer status |
-|---|---|---|---|
-| `PrintedSubshiftRingFGStatement` | 97–99 | ct-involution | `printedRingGeneration` (RingGeneration, unlanded) plus finiteness of `ringGenerators S` |
-| `PrintedSimplicityStatement` (every n ≥ 3) | 179–237 | skf-consequences, ct-bilateral-mf | `printedSimplicityThroughFiniteSimpleSubgroup` (unlanded) is Fin 3 only |
-| `PrintedMarkedLimitExpandersStatement` | 147–164 | ms-core-3 (marked convergence, L1 at Fin n); oa-expanders (Kassabov) | L1 `printedBlockElementarySpecialLinear`, L2 `printedFreeAlgebraElementaryKazhdan` in flight at Fin 3 |
-| `PrintedMarkedLimitLEFStatement` | 162–163 | ct-two-ended | `printedMarkedLimitLEFStatement`, in probe |
+## Residual (ms-core-3, drafted in `MatricialEndpoints`)
 
-## Clauses proved in the assembly
+- `PrintedMatricialMarkedLimitStatement : ∀ (R : Type) [Ring R] (S : Finset R), 1 ∈ S → Subring.closure ↑S = ⊤ → ∀ N φ, IsMatricialVia S N φ → ∀ n, 3 ≤ n → IsSimpleGroup ↥(elementaryGroup (Fin n) R) → IsMarkedLimit (elementaryMarking n S) (matricialMarking n S N φ)` (tex 211–233)
+- `PrintedPeriodicMatricialStatement : ∀ A … (S : Subshift A ℤ), Infinite S.carrier → IsMinimal S → ∃ N φ, IsMatricialVia (printedGenerators S) N φ` (tex 244–271)
 
-| clause | carrier | route |
-|---|---|---|
-| (T), tex 110–113 | `Pestov91.elementary_hasKazhdanPropertyT` (EJZ, proved) over `PrintedSubshiftRingFGStatement` | printed |
-| finitely generated | `KazhdanFiniteGeneration.fg_of_hasKazhdanPropertyT` | the note reads it off the generators (tex 109–110, ms-compress-4); both are proved |
-| infinite, tex 113–114 | `infinite_elementaryGroup` over `infinite_locallyConstant_zmodTwo` | printed (revision in flight) |
-| LEF ⇒ sofic ⇒ hyperlinear, tex 164–166 | `isSofic_of_isLEF`, `Pestov91.isHyperlinear_of_isLEF` | printed |
+When both land, `printedSimpleKazhdanGeneral` and `printedSimpleKazhdanSoficMain` are one-line applications.
 
-## Closure
+## Printed-claim note
 
-Once the three open producers land, `theorem printedSimpleKazhdanSoficMain : PrintedSimpleKazhdanSoficMain` follows in one
-line from `printedSimpleKazhdanSoficMain_of_pieces`. skf-degrees consumes it for the word-problem corollary.
+thm:general literally allows N_k = 0. The zero ring satisfies every matricial axiom, so interleaving size-zero models
+breaks the marked convergence. ms-core-3 found this and reported it to main. `IsMatricialVia` requires N_k ≥ 1.
