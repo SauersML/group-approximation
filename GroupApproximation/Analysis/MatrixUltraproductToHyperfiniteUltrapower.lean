@@ -61,6 +61,7 @@ def stageLevel (n : ℕ) : ℕ :=
 def stageMult (n : ℕ) : ℕ :=
   2 ^ stageLevel X n / Fintype.card (X n)
 
+omit [∀ n, Nonempty (X n)] in
 theorem card_mul_stageMult_le (n : ℕ) :
     Fintype.card (X n) * stageMult X n ≤ 2 ^ stageLevel X n := by
   rw [mul_comm]
@@ -78,6 +79,7 @@ def stageEmbedding (n : ℕ) : X n × Fin (stageMult X n) ↪ StageIdx (stageLev
 def stageFactor (n : ℕ) : ℝ :=
   ((Fintype.card (X n) * stageMult X n : ℕ) : ℝ) / 2 ^ stageLevel X n
 
+omit [∀ n, Nonempty (X n)] in
 theorem stageFactor_complex (n : ℕ) :
     ((2 : ℂ) ^ stageLevel X n)⁻¹ * ((stageMult X n : ℂ) * Fintype.card (X n)) =
       ((stageFactor X n : ℝ) : ℂ) := by
@@ -85,6 +87,7 @@ theorem stageFactor_complex (n : ℕ) :
   push_cast
   ring
 
+omit [∀ n, Nonempty (X n)] in
 theorem stageFactor_nonneg (n : ℕ) : 0 ≤ stageFactor X n := by
   unfold stageFactor
   positivity
@@ -148,7 +151,7 @@ theorem norm_one_sub_stageCorner_one_deltaOne_sq' (n : ℕ) :
 
 /-- The coordinatewise stage-corner maps on bounded matrix sequences. -/
 def seqMap (a : TracialUltraproduct.ModelBoundedSequence X) : boundedSeq hyperfiniteFactor :=
-  ⟨fun n ↦ stageCorner (stageEmbedding X n) (a n), fun n ↦ stageCorner_mem _ _, ‖a‖,
+  ⟨fun n ↦ stageCorner (stageEmbedding X n) (a n), fun _ ↦ stageCorner_mem _ _, ‖a‖,
     fun n ↦ (norm_stageCorner_le _ _).trans (boundedMatrixSequence_coord_norm_le (fun n ↦ X n) a n)⟩
 
 theorem seqMap_apply (a : TracialUltraproduct.ModelBoundedSequence X) (n : ℕ) :
