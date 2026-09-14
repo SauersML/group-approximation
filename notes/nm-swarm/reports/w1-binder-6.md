@@ -216,6 +216,17 @@ Binder: `OsinLemma97Below … n := ∀ Xi cutsXi, Xi.LeastArea → 0 < Xi.rCellC
   Ξ instead.
 - Open, ruling asked of main (00:0x): transports over a non-following outer cycle. `PocketCellTransportStatement` and
   `PocketOuterTransportStatement` assume `P.outer.FollowsBoundary` for `PocketRegion.glueDiagram`.
+  - Scope of option (i): `glueDiagram` uses following only for `Seam.glueMap_planar` (`SurgeryPocketGluePlanar`). That
+    lemma needs it in three places:
+    - the reclosed piece is planar (`reclosedMap_planar`). The complement's Euler equality replaces this, since
+      `toDiscRegion_of_euler` gives connected plus χ.
+    - `glueMap_connected`, through `eqvGen_glueEmbedding` / `glue_sigma_firstReturn`.
+    - `glue_vertexCount` (`SurgeryPocketGlueVertices`).
+  - So option (i) means generalizing the glued map's vertex rotation, connectivity and vertex count from a following
+    cycle to a disc complement given by Euler. Model-test first: glue `lakePocket.diagram` back into the lake along
+    `[3,1]`.
+  - ms-traces-2's `enclosedFaceSetSuccOfNoncrossing` assumes `hfollows` too, so it does not reach a full `t_1`
+    (bda10ebe8 `not_enclosedFaceSetSucc`).
 
 Design:
 - Γ₁ is the enclosed subdiagram Ξ of the pocket walk. Its faces are `sideFaces X K.walk`, with outside walk
