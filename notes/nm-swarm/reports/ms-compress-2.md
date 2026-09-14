@@ -258,6 +258,33 @@ literal step missing.
 - CLAIM A2: `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean`
 - CLAIM A3: `GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCut.lean`
 - All four paths are free on origin, in the shared tree and in every `lanes/*.files` (checked ~09:15).
+- ms-traces-2 confirmed it has no draft. It asked for A2's per-step arc lemma as a public theorem, for its side-and-arc
+  doubling. The names are fixed and were sent: `EnclosedBridgeDoubling.darts_map_image_cellArc` (inner face) and
+  `darts_map_image_cellArc_spur` (exterior).
+- LANDED fa7c379f3 `OsinUnboundSameCellPocketLoopCutModel` (probe 0914-092805-96325 GREEN, BUILT), queued for wiring:
+  - `island_far`: the island cell has a far-side dart, so every hypothesis of `SameCellPocketLoopCutStatement` holds at
+    `d = 2`.
+  - `enclosedFaceSetSucc`: the pocket walk `[5]` encloses `{island}`; its closing turn takes two rotations.
+  - `ringArc_darts`: the walk is the arc of the ring at position 2, length 1.
+  - `island_mem`, `ring_not_mem`.
+  - First probe fix: a `rw` after `subst` found no occurrence, repaired with a `show`.
+- A2 `ClosedWalkEnclosedBridgeDoublingArc` (md5 258a616b):
+  - The first probe failed. A `rw` of the image walk into the arc walk found no occurrence, since the motive is
+    dependent. Replaced by `convert … using 1`.
+  - The re-probe then hit the ~09:36 MSI outage. It is re-probing again now that the control master is back.
+- A2 probe 0914-100316-23885 FAILED, fixed:
+  - `convert … using 2` generated the definitional map equality instead of the walk equality, so it is now
+    `rw [← hw]; exact`.
+  - `rw` of `faceImage_mem_newFaces_iff` under `∉` found no occurrence, so the negation is now applied through `.mp`.
+- A1 split in two, because of its length:
+  - CLAIM map-level far side along the face (`Far`, `farFaces`, `far_iff_mem_farFaces`, `far_alpha_iff`,
+    `far_pow_iff`, `pocketWalk`): `GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosedSides.lean`
+    (path free everywhere, checked ~10:10).
+  - The claimed `OsinUnboundSameCellPocketEnclosed.lean` holds the `EnclosedFaceSetSucc` producer, the arc and
+    `exists_enclosedPocket`.
+  - On origin: separation is `AvoidEdgeStep.not_eqvGen_alpha_of_sameFace`, and the sigma-fixed side is
+    `AvoidEdgeStep.eq_iff_of_sigma_fixed`.
+- Not written yet: A1b and A3 (the assembly).
 
 ## Progress log
 
