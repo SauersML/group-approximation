@@ -126,6 +126,69 @@ theorem printedElementaryGeneration : PrintedElementaryGeneration := by
     rintro _ ⟨i, j, h, s, -, rfl⟩
     exact elementaryUnit_mem i j h s
 
+/-- **The coefficient additive subgroup.**  The coefficients `a` with `e_ij(a) ∈ H` for all `i ≠ j`
+form an additive subgroup, by the first identity of eq:elementary. -/
+def coefficientAddSubgroup {R : Type*} [Ring R] (H : Subgroup (Matrix (Fin 3) (Fin 3) R)ˣ) :
+    AddSubgroup R where
+  carrier := {a | ∀ (i j : Fin 3) (h : i ≠ j), elementaryUnit i j h a ∈ H}
+  add_mem' := by
+    intro a b ha hb
+    show ∀ (i j : Fin 3) (h : i ≠ j), elementaryUnit i j h (a + b) ∈ H
+    intro i j h
+    rw [← elementaryUnit_mul]
+    exact H.mul_mem (ha i j h) (hb i j h)
+  zero_mem' := by
+    show ∀ (i j : Fin 3) (h : i ≠ j), elementaryUnit i j h (0 : R) ∈ H
+    intro i j h
+    rw [elementaryUnit_zero]
+    exact H.one_mem
+  neg_mem' := by
+    intro a ha
+    show ∀ (i j : Fin 3) (h : i ≠ j), elementaryUnit i j h (-a) ∈ H
+    intro i j h
+    have hinv : elementaryUnit i j h (-a) = (elementaryUnit i j h a)⁻¹ := by
+      rw [eq_inv_iff_mul_eq_one, elementaryUnit_mul, neg_add_cancel, elementaryUnit_zero]
+    rw [hinv]
+    exact H.inv_mem (ha i j h)
+
+/-- **Generation, with `1` as a sum of generators** (at origin e80dcf20a, "The ring and property (T)"):
+"So the matrices `e_ij(s)` with `s ∈ {u, u⁻¹} ∪ {e_a : a ∈ A}` generate `G`, as `1 = ∑_a e_a`."  If
+`gens` generates `R` as a ring and `1` is a finite sum of elements of `gens`, the matrices `e_ij(s)` with
+`s ∈ gens` generate `EL_3(R)`: their coefficients form an additive subgroup containing `gens`, hence `1`,
+hence a subring. -/
+def PrintedElementaryGenerationSumOne : Prop :=
+  ∀ (R : Type) [Ring R] (gens : Set R), Subring.closure gens = ⊤ →
+    (1 : R) ∈ AddSubmonoid.closure gens →
+      elementaryGroup (Fin 3) R =
+        Subgroup.closure {z | ∃ (i j : Fin 3) (h : i ≠ j) (s : R), s ∈ gens ∧
+          elementaryUnit i j h s = z}
+
+theorem printedElementaryGenerationSumOne : PrintedElementaryGenerationSumOne := by
+  intro R _ gens hgens hone
+  set H : Subgroup (Matrix (Fin 3) (Fin 3) R)ˣ :=
+    Subgroup.closure {z | ∃ (i j : Fin 3) (h : i ≠ j) (s : R), s ∈ gens ∧
+      elementaryUnit i j h s = z} with hH
+  have hgen : ∀ (i j : Fin 3) (h : i ≠ j) (s : R), s ∈ gens → elementaryUnit i j h s ∈ H :=
+    fun i j h s hs => Subgroup.subset_closure ⟨i, j, h, s, hs, rfl⟩
+  have hadd : AddSubmonoid.closure gens ≤ (coefficientAddSubgroup H).toAddSubmonoid :=
+    AddSubmonoid.closure_le.mpr fun s hs i j h => hgen i j h s hs
+  have h1 : ∀ (i j : Fin 3) (h : i ≠ j), elementaryUnit i j h (1 : R) ∈ H := hadd hone
+  have hC : Subring.closure gens ≤ coefficientSubring H h1 :=
+    Subring.closure_le.mpr fun s hs i j h => hgen i j h s hs
+  refine le_antisymm ?_ ?_
+  · show Subgroup.closure {z | ∃ (i j : Fin 3) (h : i ≠ j) (a : R), elementaryUnit i j h a = z} ≤ H
+    refine (Subgroup.closure_le H).mpr ?_
+    rintro _ ⟨i, j, h, a, rfl⟩
+    have ha : a ∈ Subring.closure gens := by
+      rw [hgens]
+      exact Subring.mem_top a
+    exact hC ha i j h
+  · refine (Subgroup.closure_le _).mpr ?_
+    rintro _ ⟨i, j, h, s, -, rfl⟩
+    exact elementaryUnit_mem i j h s
+
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedElementaryGenerationSumOne
+
 /-! ## Property (T) -/
 
 /-- **Property (T)** (tex 97–99): a finite ring generating set makes `R` finitely generated, so
