@@ -161,6 +161,7 @@ omit [Group Γ] in
 omit [Group Γ] in
 @[simp] theorem levelShift_inv_apply (p : Γ × ℤ) : (levelShift Γ)⁻¹ p = (p.1, p.2 - 1) := rfl
 
+omit [Group Γ] in
 theorem levelShift_zpow_apply (n : ℤ) (p : Γ × ℤ) : (levelShift Γ ^ n) p = (p.1, p.2 + n) := by
   induction n using Int.induction_on generalizing p with
   | zero => simp
