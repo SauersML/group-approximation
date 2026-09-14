@@ -54,3 +54,11 @@ Released to ct-bilateral-mf (not in this lane's scope at e80dcf20a): `TowerUnits
 - 09-13 20:2x: RingLaurent landed (374408a7c); row 6fdf439f1009 landed (15cab13e4); RingGeneration fixed and re-probing, with
   `PrintedSubshiftRingFinitelyGenerated` added.
 - 09-13 20:3x: RingGeneration landed (22b15ce5e); row 16a4a7086323 landed; PrintedSubshiftRingFinitelyGenerated closed. The ring sentences of this section are all graded.
+
+## Item 2 (main, 20:3x): conjugacy and flip conjugacy give isomorphic groups ("Questions")
+
+CLAIM 26e9baa90d07 ("If (X,T) is conjugate to (Y,S) or to (Y,S⁻¹), then G_X ≅ G_Y"), moved from ms-compress-4 by main, in
+`GroupApproximation/Manuscript/SimpleKazhdanSofic/CrossedProductConjugacy.lean`:
+- a conjugacy φ gives `R_T ≃+* R_S` from chain-core `comap` along φ and φ⁻¹ (C(f) ↦ C(f ∘ φ⁻¹), u ↦ u);
+- a flip conjugacy gives `R_T ≃+* R_S` through `R_S ≃+* R_{S⁻¹}` (C(f) ↦ C(f), u ↦ u⁻¹);
+- `elementaryCoefficientEquiv` gives `EL_n(R_T) ≃* EL_n(R_S)` for every n, so `G_X ≃* G_Y`.
