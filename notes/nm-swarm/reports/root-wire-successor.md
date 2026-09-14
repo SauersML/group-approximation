@@ -258,7 +258,21 @@ Result: **ROOT GREEN, landed lead-wire daa821b00** at 23:41.
   - after an infra failure (unresolved host, or rc=255 once its orphan job clears) it retries, up to 3 attempts;
   - it never retries a gate stop or a real red.
 
-Result: pending relaunch.
+- 01:04–01:24: the retrying relaunch needed about 12 fetch attempts before `github.com` resolved.
+  - The gate passed at b856912f2: 15 modules, 21 newly reachable files, 0 blocking lines.
+  - `nmwire.sh` then exited rc=4 at its pre-check `msi true || msi up || exit 4`; the master was down again.
+  - The retry rule did not treat rc=4 as infra, so it stopped. The attempt's `rw-wave22.mods` is kept as
+    `rw-wave22.mods.nmwire-rc4-0124`.
+- 01:36: `github.com` resolves and fetch works, but `login.msi.umn.edu` does not resolve and the master socket is missing.
+  - Two `msi doctor` processes, started outside this lane, are running.
+  - Reported to main as a continuing blocker.
+- From 01:37 wave 22 waits behind a stability gate:
+  - it requires 5 continuous minutes with both hosts resolving, the master up and no `msi up` / `msi doctor` running,
+    so `nmwire.sh` never reaches its `msi up` auth path while MSI is under repair;
+  - it treats rc 1, 4 and 255 as infra, with at most two retries after a fresh window and a 3-hour cap;
+  - it never retries a gate stop or a real red, and stops if a root commit lands since daa821b00.
+
+Result: pending a stable network window.
 
 ## Evidence and holds, 18:45–19:10
 
