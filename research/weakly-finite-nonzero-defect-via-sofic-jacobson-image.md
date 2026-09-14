@@ -15,8 +15,10 @@ requires:
 1. **Stable finiteness.** A sofic group is `F_3`-linear sofic: a permutation `σ` of `n` points moving `δn` of them has
    `rank(P_σ - I) >= δn/2`, and it differs from a product in at most as many rows as the permutations do. So
    `linear-sofic-group-algebra-is-stably-finite` makes `F_3[Γ_V]` stably finite.
-2. **The summand.** `ε_- = (1 - [-I])/2` is a central idempotent, and `W = ε_- F_3[Γ_V]` is weakly finite. If `ab = ε_-`
-   in `W`, then `(a + ε_+)(b + ε_+) = 1` with `ε_+ = 1 - ε_-`. So `(b + ε_+)(a + ε_+) = 1`, and `ba = ε_-`.
+2. **The summand.** `ε_- = (1 - [-I])/2` is a central idempotent, and `W = ε_- F_3[Γ_V]` is weakly finite. For every
+   `n`, `M_n(W) = ε_- M_n(F_3[Γ_V])`. If `ab = ε_- I_n` there, then `(a + ε_+ I_n)(b + ε_+ I_n) = I_n` with
+   `ε_+ = 1 - ε_-`, because `ε_+ a = ε_+ b = 0`. Stable finiteness gives `(b + ε_+ I_n)(a + ε_+ I_n) = I_n`, so
+   `ba = ε_- I_n`.
 3. **The model.** `ρ(g) = ε_- [ρ_V(g)]` is a homomorphism `Γ_5 -> W^x`, with `ρ_V` from
    `five-transvection-group-acts-on-jacobson-half-line`. Then `ρ(z) = ε_- [-I] = -ε_- = -1_W`.
 4. **Nonzero defect.** Over `F_3`, `1/2 = -1`, so `ε_- = [z̄] - 1` with `z̄ = -I`. Writing bars for images in `Γ_V`,
