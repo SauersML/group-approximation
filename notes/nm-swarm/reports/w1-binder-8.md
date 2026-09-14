@@ -130,3 +130,10 @@ CLAIM `osinLemma94CaseOneSpurEnclosure : OsinLemma94CaseOneSpurEnclosureStatemen
 - Binder 3 now rests on exactly two statements, both ms-traces-2's: `EnclosedSubdiagramLoopCutSuccStatement` and `ClosedWalkEnclosedSubdiagramSuccStatement`. Origin has no producer for either at 08:34.
 - Probe note: the 08:30 probe (0914-083041-24220) said GREEN but printed no BUILT line. Lake restored both modules silently from the shared artifact cache (`LAKE_RESTORE_ARTIFACTS`), so these lane rules do not count it as evidence. Touching the sources cannot force a rebuild under the cache, so the bytes were changed (two docstring edits) and the modules built at 08:33.
 - Residual statements owned by this lane: none.
+
+## Next item (main ~08:40): `ClosedWalkEnclosedSubdiagramSuccStatement`
+
+CLAIM the doubling with cells and the enclosed subdiagram endpoint, GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedSubdiagramSuccAssembly.lean
+
+- In flight elsewhere, so not rebuilt here: ms-traces-2's `ClosedWalkEnclosedSubdiagramSuccProof` (`closedWalkEnclosedSubdiagramSucc_of_doublingCells`), and ms-compress-2's `ClosedWalkEnclosedBridgeDoublingProof` (`doublingOutput`, with hypothesis `faces.Nonempty`). ms-compress-2's island Succ model landed at 347496ab5.
+- This lane: `enclosedBridgeDoublingCellsSucc : EnclosedBridgeDoublingCellsSuccStatement` from `doublingOutput`, plus the empty-faces case (every walk dart is a bridge; one doubling step, or both darts on monogons, against `turn_next`). Also the endpoint `closedWalkEnclosedSubdiagramSucc`, and a successor-form calibration on the island model. Split message sent to ms-traces-2.
