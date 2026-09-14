@@ -106,6 +106,7 @@ noncomputable def graphValues [CompactSpace X] (x : ClopenCrossedProduct T k)
 
 theorem mem_graphValues [CompactSpace X] {x : ClopenCrossedProduct T k} {g : Multiplicative ℤ}
     {c : k} : c ∈ graphValues T k x g ↔ c ≠ 0 ∧ c ∈ Set.range (coeffFn T k x g) := by
+  classical
   unfold graphValues
   rw [Finset.mem_erase, Set.Finite.mem_toFinset]
 
@@ -122,7 +123,7 @@ theorem sum_smul_charFn_graphDomain [CompactSpace X] (x : ClopenCrossedProduct T
   · rw [Set.indicator_of_mem (show z ∈ graphDomain T k x g (coeffFn T k x g z) from rfl),
       Pi.one_apply, mul_one]
   · intro b _ hb
-    rw [Set.indicator_of_notMem (fun h : coeffFn T k x g z = b => hb h.symm), mul_zero]
+    rw [Set.indicator_of_notMem (show z ∉ graphDomain T k x g b from fun h => hb h.symm), mul_zero]
   · intro h
     have h0 : coeffFn T k x g z = 0 := by
       by_contra hne
@@ -162,8 +163,7 @@ end Graphs
 
 section SourceRange
 
-variable {X : Type} [MetricSpace X] [CompactSpace X] [TotallyDisconnectedSpace X] (T : X ≃ₜ X)
-  (k : Type) [Ring k]
+variable {X : Type} [MetricSpace X] [CompactSpace X] (T : X ≃ₜ X) (k : Type) [Ring k]
 
 theorem disjoint_zpow_image_chainRecurrentSet (a : ℤ) {W : Set X}
     (hW : Disjoint W (Dynamics.chainRecurrentSet ⇑T)) :
@@ -209,7 +209,7 @@ theorem disjoint_sourceRangeUnion (F : Finset (ClopenCrossedProduct T k))
   intro z hz hzY
   simp only [sourceRangeUnion, Set.mem_iUnion, Set.mem_union] at hz
   obtain ⟨x, hx, g, -, c, hc, hz⟩ := hz
-  have hD := graphDomain_disjoint T k (hF x hx) (g := g) (Finset.ne_of_mem_erase hc)
+  have hD := graphDomain_disjoint T k (hF x hx) (g := g) ((mem_graphValues T k).1 hc).1
   have hI := disjoint_zpow_image_chainRecurrentSet T (-toAdd g) hD
   have hII := disjoint_zpow_image_chainRecurrentSet T (-toAdd g⁻¹) hI
   rcases hz with (hz | hz) | (hz | hz)
@@ -233,7 +233,8 @@ theorem mem_sourceRangeUnion {F : Finset (ClopenCrossedProduct T k)} {x : Clopen
 
 /-- **The cells of `lem:transient-matrices` over the union of sources and ranges** (tex 1489–1511):
 as `exists_transientCells`, with `C = sourceRangeUnion T k F`. -/
-theorem exists_transientCells_sourceRangeUnion (F : Finset (ClopenCrossedProduct T k))
+theorem exists_transientCells_sourceRangeUnion [TotallyDisconnectedSpace X]
+    (F : Finset (ClopenCrossedProduct T k))
     (hF : ∀ x ∈ F, x ∈ transientIdeal T k (Dynamics.image_chainRecurrentSet T)) :
     ∃ (E : Finset ℤ) (m M : ℕ) (cell : Fin M → Set X) (S : Fin M → Finset ℤ)
       (_ : ∀ a, IsClopen (cell a)) (rep : Fin M → X),
@@ -301,7 +302,7 @@ theorem printedPartialShiftGraphExpansion : PrintedPartialShiftGraphExpansion :=
   intro X _ _ _ T k _ x hx
   exact ⟨SkewMonoidAlgebra.support x, graphValues T k x, graphDomain T k x,
     isClopen_graphDomain T k x, fun g _ c hc => ⟨(isClopen_graphDomain T k x g c).isClosed.isCompact,
-      graphDomain_disjoint T k hx (Finset.ne_of_mem_erase hc)⟩, eq_sum_partialShiftGraphs T k x⟩
+      graphDomain_disjoint T k hx ((mem_graphValues T k).1 hc).1⟩, eq_sum_partialShiftGraphs T k x⟩
 
 /-- **Printed (tex 1489–1490).**  "Include inverse partial shifts, and let $C$ be the union of their
 sources and ranges": for a finite `F ⊆ I` the union of the sources and ranges of the graphs of `F`
