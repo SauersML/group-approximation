@@ -74,7 +74,20 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
 - 09-13 19:10: assembly edit LANDED 16937ecac (GREEN 0913-190738-27144), adding the closed endpoints `returnEmbeddingStatement_holds : ReturnEmbeddingStatement` and
   `torsionDefectTransferStatement_holds : TorsionDefectTransferStatement`.
 
-## Remaining open inputs of cor:dynamic-rank-budget (exact names, in `DynamicRankBudget.lean`)
+- 09-13 19:50: ChainCoreClosures LANDED b09de1dcf (GREEN 0913-194250-26824), after ms-core-2 closed
+  `coreModelsLEFStatement` (b7e521e57). Closed endpoints, each with `#audit_closed_axioms`, namespace
+  `GroupApproximation.ChainCore.ChainCoreClosures`: `printedBilateralThree_closed`,
+  `printedIntroDirectlyFiniteIffGLThreeMF_closed`, `bilateralThreeTransferStatement_holds`,
+  `coreRingReflectionStatement_holds`, `printedCoreRingReflection_closed`, `coreMFRadicalKillStatement_holds`,
+  `printedCoreMFRadical_closed`, **`printedDynamicRankBudget_closed`**, **`printedIntroductionAperiodicSentence_closed`**,
+  `printedTwoEndedUnitsLEFGLThreeNotMF_closed`.
+- 09-13 19:52: census regrade on the lead's order (LANDED 2fb94570a): 15 rows of ct-bilateral-mf, ms-core-4, ct-return-tower and ct-two-ended
+  (partial over CoreModelsLEFStatement / PrintedBilateralThree only) now name these endpoints; my own rows regraded after.
+
+**cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
+`coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
+
+## Formerly open inputs of cor:dynamic-rank-budget (exact names, in `DynamicRankBudget.lean`)
 
 | Prop | content | owner |
 |---|---|---|
