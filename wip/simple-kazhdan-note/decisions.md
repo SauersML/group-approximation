@@ -1017,6 +1017,27 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Launched:
       - sk-rigidity-merge: merge A1–A3, C1–C4 and W1–W5; mark `subshift-el3-isomorphisms-are-standard-over-f2` ESTABLISHED; keep flip conjugacy and L(G_X) as open nodes;
       - sk-rigidity-section: Option N, a complete condensed proof section in the note, compiled with measured cost; Option P, a separate short paper outline; with a recommendation.
+184. **sk-rev5-referee (b0aa254923) on rev5b: ACCEPT WITH MINOR REVISION; no mathematical error or gap.**
+    - Re-derived:
+      - the expander-limit quantifiers against §1;
+      - Theorem 2(a)/(b) with V1–V3, all of P2, and every Table 1 row;
+      - Steps 1–3, the example (L_3, least period, E_44, E_{t′t}) and the figure orientation;
+      - Lemmas A/B/C against their proofs, the corollary proof, and Brown's formulation.
+    - DECISIONS:
+      - APPLY:
+        - R1: cut the P3 remark (a third meaning of "finite models"; the generation step needs one finite orbit);
+        - R2: "in the sense defined below" in Theorem 1;
+        - S-A: P2 moves to §2 as "Sharpness over Z" in iff form (simple and Kazhdan ⇔ conjugate to a minimal subshift);
+        - S-C: compress Brown's formulation;
+        - ports P-1 to P-8 from rev5a: Lemma C radius λ, the Darbinyan sentence, Lemma B generators u_ξ, the `Solvable word problem` subsection, "listed the sofic form" (fixing "all three forms"), the shorter Brown sentence and caption, and a self-contained Lemma B if precise.
+      - REJECT S-B, keeping the sofic/hyperlinear definition sentence for non-specialists, and S-D, keeping the f.g. and infinite table rows.
+    - 11 pp accepted, with a references-only last page.
+    - Launched sk-editor-8 → $SK2/drafts/rev5c.tex, applying the locators if sk-rev5-locators has landed by then. Main reviews the diff, then lands.
+185. **sk-rev5-locators (35dec11886): all three locators settled at published sources.**
+    - BHV: VERIFIED at Cambridge Core through UMN. p.36 §1.3 has "Theorem 1.3.1 … a discrete group Γ with Property (T) is finitely generated"; the series is New Math. Monogr. 11. No change.
+    - Arzhantseva: VERIFIED in the Springer chapter PDF. The question is on p.11 §3; Def. 9 and Thm 11 are on pp.12–13. Bibitem fix → "Trends Math. \textbf{1}", cited as `\cite[\S3]{Arzhantseva}`.
+    - Ozawa p.527: UNVERIFIABLE at the journal (World Scientific PDF blocked by Cloudflare from MSI). The remark is in e-print §7 after Theorem 7.4, so `\cite[p.~527]{Ozawa}` → `\cite[\S7]{Ozawa}`. Proposition 7.1 is kept.
+    - All three went to sk-editor-8 for rev5c.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
