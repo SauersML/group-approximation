@@ -341,3 +341,47 @@ The module will state and prove:
 
 The interface and both caveats (an unselected corner that does not read as a region; a selected neighbour) went to
 ms-compress-1 in one message (20:2x).
+
+### LANDED 68ea7fe96: `GGT/VanKampen/SurgeryPinchSplitAbsorption.lean`
+
+Probe 0913-203347-30324 was GREEN with BUILT (5012 jobs) on the first try. The claim landed at d22daa111 and the attic
+copy at b1cfc0537. The module is unwired and queued for wiring. It imports `SurgeryPinchSplitExtremal` and
+`Estimating/SingletonFaceRegion`.
+
+| declaration | content |
+|---|---|
+| `GloballyDistinguishedSectionFamily.false_of_avoided_singleton S T hlegal hweight H havoid hrespects hsource htarget` | a legal realized family `T` with `S.weight ≤ T.weight`, carrying a singleton region `⟨{f}, H⟩` at a face no region of `T` contains, with nonempty arcs and respecting the sections: `False` |
+| `PinchSplit.Input.merged_noInternalFaceDart I hno` | `NoInternalFaceDart I.diagram.toCombMap I.merged`, when no dart of `leftFace ∪ rightFace` has its reverse there |
+| `PinchSplit.false_of_mergedRegion S I havoid H hrespects hsource htarget` | the absorption, for `I : PinchSplit.Input S.diagram` with every selected region avoiding both faces and `H : ContiguityGeometry D eps I.diagram {I.merged}` |
+| `PinchSplit.PinchSplitAbsorptionStatement`, `PinchSplit.pinchSplitAbsorption` (closed) | the same, uniformly |
+
+- No false Prop was found.
+- Limits, stated in the module docstring:
+  - a pinch face inside a selected region fails `Input.Avoids`;
+  - a merged face that is not a contiguity region is only merged, with the same weight.
+
+## Clauses (c) and (d) of `OsinLemma94ClassEndLoopsBudgetInput` (main's item 21:22): scope finding
+
+Hand model tests (21:3x):
+- **Where one-class polygons sit.** A one-class (A1) polygon is a G-face whose whole walk reads a reversed arc of one cell
+  `Π`: a lobe hanging at a pinch vertex `v`. At `v` the corners read `Π`, the lobe, `Π`, and a neighbour face `X` across
+  the two cell darts before and after the lobe.
+- **`X` is never the exterior or a relator cell on `S`.** An unbound cell dart across either contradicts maximality
+  (`alpha_faceOf_not_cell_of_unbound`). A bound one would put that face on a region's boundary cycle as an arc reverse,
+  inside the region.
+- **Nested lobes.** `cell_arc` lets the gap of a class be any dart list completing it to a reversed arc. So the gap across
+  an outer lobe holds the darts of every lobe nested in it, and the first option of (d) covers them when `X` is a polygon
+  whose class joins across the outer lobe and that has at least two classes.
+- **`X` a polygon whose class does not join there.** The lobe complex sits at a class end, which `classEnd` covers.
+- **`X` a selected region.** An arc cannot pass the lobe, so the complex sits at a corner or along a side of the region
+  (length at most `ε`), which `regionEnd` covers.
+- **(c).** A lobe complex reads a value-one subword of a relator, so it has at most `⌈(c + 2)/λ⌉₊` letters, and
+  `B = (ε + 1)⌈(c + 2)/λ⌉₊` suffices.
+
+Verdict:
+- (c) and (d) look true, but only for a `Q` whose runs join the value-one lobe gaps or end at them. With `Q = ofSides`,
+  (d) holds through class ends while (a) fails on a polygon carrying many lobes along one cell.
+- So (d) is a property of the producer of `Q`: `OsinLemma94ClassJoins`, hull-count94's planned module, unwritten, owner
+  down. It is not a consequence of the absorption.
+- `pinchSplitAbsorption` enters (a), through `OsinLemma94LongTransitionInput` (ms-compress-1), not (c) or (d).
+- No false Prop found. Sent to main as a blocker, with options.
