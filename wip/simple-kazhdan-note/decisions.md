@@ -598,6 +598,19 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Theorem Q: for a primitive constant-length-2 substitution with a non-periodic fixed point (Thue–Morse, period doubling), [[T]]′ has non-uniform exponential growth. This is Sauer–Schesler's V argument transferred through the dyadic tower model plus Cornulier's good-3-cycle generation.
     - Corollary Q1: an infinite f.g. simple AMENABLE group of non-uniform exponential growth, answering Cornulier's Bourbaki 1064 Question 7 negatively for these subshifts. Kourovka 21.117(a) had only V (not amenable).
     - No note change (off-theme). If it PASSes, it is a candidate for a separate short note; that is the user's call.
+126. **REV4.2 DECIDED: rev42.tex** (C3 + C1 + S; 840 lines, md5 45539a94…, 9 pp, MSI 0/0/0).
+    - Main read the full word diff and checked the new proof text by hand:
+      - half-line overgroup [β,h_s] = level-0 multiplication by s^{-1};
+      - the transversal bijection κ(vx) = θ(v)κ(x); ζvζ^{-1} = θ(v); the domain of θ preserved for |ℓ| ≤ r;
+      - multiplicativity on the ball and injectivity (5r > 2r);
+      - the WP transfer: u_ξe_Uu_ξ^{-1} = 1_{x(δ)=1+c(δ)}, full-shift finite check, converse;
+      - the antichain argument.
+    - REJECTED rev42-fq (10 pp; page 10 holds 10 lines). F_q stays in Cairn with its reviewed proposal.
+    - Budget raised to 9 pp for C3 (the Boone–Higman–Thompson analogue), C1 and S, on reader merit.
+127. **Wave-11 finals, open questions narrowed; no note change.**
+    - sk-exact-gx (4730b5efe7, 402538b48a): subgroups of GL_m over LC(X,F_q)⋊Z with bounded u-band are locally finite; stabilizers of two-ended lattice pairs are locally finite. The missing step for exactness is an amenable action on a compactification of 𝓛₊×𝓛₋. The G_X-exactness claim stays OPEN.
+    - sk-popa-lgx (f096ec1658, 9f1da3e36f, 2e8c1a8352): Kazhdan generators admit no norm Popa corners; orthogonal corners carry small total trace; weakly dense combs give Popa algebras. Brown's basic construction cannot reach (T) (it forces Gamma). The Popa clause stays OPEN; next input: RFD of full amalgamated free products over C².
+    - All claims unreviewed → verifier queue. sk-cairn-steward-3 landed Unit A (note-root membership for rev4.1, eaf038cb32) and wires wave 11 in a second pass.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
