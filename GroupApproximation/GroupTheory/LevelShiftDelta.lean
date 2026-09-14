@@ -3,6 +3,10 @@ import Mathlib.GroupTheory.Commutator.Basic
 import Mathlib.GroupTheory.Finiteness
 import Mathlib.GroupTheory.Perm.Basic
 import Mathlib.Data.Finite.Prod
+import Mathlib.Algebra.Order.Group.Abs
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.NormNum
 
 /-!
 # The second choice of `Δ`: level permutations of `Γ × ℤ`
@@ -34,6 +38,7 @@ namespace GroupApproximation
 namespace LevelShiftDelta
 
 open Equiv
+open scoped commutatorElement
 
 universe u
 
@@ -150,17 +155,19 @@ def levelShift : Perm (Γ × ℤ) where
 
 variable {Γ}
 
+omit [Group Γ] in
 @[simp] theorem levelShift_apply (p : Γ × ℤ) : levelShift Γ p = (p.1, p.2 + 1) := rfl
 
+omit [Group Γ] in
 @[simp] theorem levelShift_inv_apply (p : Γ × ℤ) : (levelShift Γ)⁻¹ p = (p.1, p.2 - 1) := rfl
 
 theorem levelShift_zpow_apply (n : ℤ) (p : Γ × ℤ) : (levelShift Γ ^ n) p = (p.1, p.2 + n) := by
   induction n using Int.induction_on generalizing p with
-  | hz => simp
-  | hp k ih =>
+  | zero => simp
+  | succ k ih =>
       rw [zpow_add_one, Perm.mul_apply, ih]
       exact Prod.ext rfl (by simp only [levelShift_apply]; ring)
-  | hn k ih =>
+  | pred k ih =>
       rw [zpow_sub_one, Perm.mul_apply, ih]
       exact Prod.ext rfl (by simp only [levelShift_inv_apply]; ring)
 
@@ -187,11 +194,21 @@ def levelZeroMul : Γ →* Perm (Γ × ℤ) where
   toFun γ :=
     { toFun := fun p ↦ if p.2 = 0 then (γ * p.1, p.2) else p
       invFun := fun p ↦ if p.2 = 0 then (γ⁻¹ * p.1, p.2) else p
-      left_inv := fun p ↦ by by_cases h : p.2 = 0 <;> simp [h]
-      right_inv := fun p ↦ by by_cases h : p.2 = 0 <;> simp [h] }
+      left_inv := fun p ↦ by
+        obtain ⟨x, m⟩ := p
+        by_cases h : m = 0
+        · subst h
+          simp
+        · simp [h]
+      right_inv := fun p ↦ by
+        obtain ⟨x, m⟩ := p
+        by_cases h : m = 0
+        · subst h
+          simp
+        · simp [h] }
   map_one' := by
     refine Equiv.ext fun p ↦ ?_
-    by_cases h : p.2 = 0 <;> simp [h]
+    simp
   map_mul' γ δ := by
     refine Equiv.ext fun p ↦ ?_
     by_cases h : p.2 = 0 <;> simp [h, mul_assoc]
