@@ -200,6 +200,7 @@ theorem shelling_dartImage {s : Finset Delta.toCombMap.Face}
       ((mem_holdingFaceSet_faceImage Delta f j hlen hf s g).mpr hg) k ?_ ih
     rw [boundary_faceImage_darts Delta f j hlen hf g, List.map_congr_left hgimg,
       ← List.map_rotate, hrot, List.map_append, invDarts_map_dartImage Delta f j hlen hf harc]
+    rfl
 
 /-! ## The contiguity geometry -/
 
