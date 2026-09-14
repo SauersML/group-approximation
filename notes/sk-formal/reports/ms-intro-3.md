@@ -31,6 +31,19 @@ on origin (09e580c38) is still at e80dcf20a, so the row update citing MainAssemb
 | 85–87 | Thom's f.g. Kazhdan LEF not residually finite group is not simple. | attribution | — | prior work |
 | 89–93 | The same proof applies to the lamplighter action of Δ on F₂^Δ; it shows the LEF characterization (cor:lef), and one such group contains every f.g. linear group. | open | cor:lef carriers; owner to be ruled | NEW at 9047d0d3c |
 
+## LEF sentences of the abstract and introduction (LEF LANES 21:22)
+
+- (a) abstract l.37–40, "A f.g. group is LEF iff it is a subgroup of an infinite f.g. simple Kazhdan group with this property,
+  and one such group contains every f.g. linear group": the conjunction of cor:lef (l.276–279, sk-lef-assembly) and the
+  "every f.g. linear group" clause of the second corollary (l.348–352, sk-universal). Row: partial until both close.
+- (b) intro l.89–90, "The same proof applies to the lamplighter action of a group Δ on F₂^Δ": structural, a roadmap to
+  Part (ii) of the proof of cor:lef (l.294–317, sk-lef-action and sk-lef-simplicity).
+- (c) intro l.90–93, "It shows that ... (Corollary cor:lef), and one such group contains every f.g. linear group": same carriers
+  as (a).
+- Split proposed to sk-lef-assembly ~21:30, in one message: it owns the statement Props and closure
+  (`PrintedLEFSubgroupCharacterization`, unless it names another), and this lane owns the three census rows. At 21:25 none
+  of the LEF lanes had files or reports on origin.
+
 ## thm:main (settled ~20:25)
 
 - ct-two-ended landed the statement and the assembly in one module, `Manuscript/SimpleKazhdanSofic/MainAssembly.lean`
@@ -53,7 +66,8 @@ on origin (09e580c38) is still at e80dcf20a, so the row update citing MainAssemb
 - LANDED 4da904291: `Manuscript/SimpleKazhdanSofic/MinimalDenseOrbits.lean` (`subshiftHomeo_zpow_apply`,
   `minimalSubshift_dense_orbits`).
 - LANDED 08a723d3d: census rows at e80dcf20a. They must be re-keyed at the next census regeneration.
-- In flight: `Manuscript/SimpleKazhdanSofic/ToeplitzAnswer.lean`.
+- LANDED 3a92eb17b (probe 0913-212746-60404 GREEN, BUILT; queued for wiring): `Manuscript/SimpleKazhdanSofic/ToeplitzAnswer.lean`.
+  The first probe (0913-203646-56275) failed on two no-op `congr 1` lints, now fixed.
   - `toeplitzSubshift : Subshift Bool ℤ` (carrier `Pestov91.subshiftCarrier`), `toeplitzSubshift_isMinimal`,
     `toeplitzSubshift_infinite`;
   - `printedBrownOzawaPestovAnswer : PrintedBrownOzawaPestovAnswer` (closed: some infinite simple Kazhdan group is sofic and
