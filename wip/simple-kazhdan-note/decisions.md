@@ -954,6 +954,17 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - If verified, the rigidity question in the note (l.527) becomes a theorem, a candidate for rev5.1.
     - Launched independent verifiers: sk-verify-25a (line by line) and sk-verify-25b (adversarial, with MSI representation-theory computations).
     - RAM: swap 83%, level 2. Launched anyway on value; this session is ~0.6 GB and peer sessions carry the load.
+177. **sk-verify-24 (8b65e2a3c1): two PASS, one PASS-WITH-FIXES.**
+    - `subshift-gl-exactness-reduces-to-limit-subsystem`, the steward's corrected Corollary (c): PASS.
+      - diag(g,1_m) is a homomorphism, and membership follows from Whitehead.
+      - W1, not merged: route Step 6 should list the Kakutani node in `requires`, but never the open exactness node.
+    - `finite-dimensional-combs-generate-popa-algebras`: PASS, a second node-level review. The Popa definition was read at source (Brown–Dykema math/0207005). The node's status line was stale (it already had an sk-verify-16 PASS) and is now fixed.
+    - `orbitwise-gap-sofic-approximations-are-local-embeddings` (Theorem O): PASS-WITH-FIXES.
+      - F1, merged: "G_Δ is LEF iff Δ is" has no proof on main; the host bullet now assumes [Δ,Δ] is not LEF.
+      - The same unproved "iff" is in sk-sofic-host-hamming part1 §3.4(3).
+    - Launched sk-verify-26: review `gap-sofic-approximations-are-local-embeddings` (Theorem O's unreviewed input) and fix the hamming §3.4(3) "iff" wherever it appears.
+178. **USER: "Should I remove it as well?" yes.** Main removes "The human author is responsible for the work." from `Palomar/SurjunctiveNonsoficOverview.txt` l.84–85, pinned onto main's blob at 9e45690bc8.
+    - One more archival copy remains, in `wip/sync-2026-09-13/disk/simple_kazhdan_sofic_group.tex:268`, a disk-sync snapshot; it stays as history.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
