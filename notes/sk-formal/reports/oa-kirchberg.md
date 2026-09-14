@@ -43,6 +43,13 @@ Grading plan for 660dd9b4b09f:
 - The sentence asserts the inference "not residually finite and Kazhdan, so it lacks the factorization property". That is carried by a closed endpoint over every group.
 - Thom's construction itself stays the typed input `ThomSoficKazhdanNonResiduallyFiniteInput`; it is not proved here.
 
+## Fix (09-14 ~10:20, oa-expanders' fidelity audit)
+
+CLAIM closed `printedGXAnswersBrownOzawaPestov`, the G_X answer to Brown–Ozawa–Pestov GroupApproximation/Manuscript/SimpleKazhdanSofic/GXAnswersBrownOzawaPestovClosed.lean
+
+- **Defect:** row 6866200f2d46 named only the conditional `printedGXAnswersBrownOzawaPestov_of_main` for "G_X answers the question". The closed `printedBrownOzawaPestovAnswer` is about the Pestov91 group, which is a different route.
+- **Fix:** close the G_X form from the closed `printedSimpleKazhdanSoficMain`, then re-cite the row.
+
 ## Item 3 (main, 09-14 ~09:40): SK census rows l.30–88 at census 9cb80166d (tip 8b36733d7, md5 29d63f79)
 
 Checked before writing: no other lane has these keys. 0efbce019168 belongs to sk-stepanov, and 7f3b239e5f2a plus l.89–107 belong to oa-llp.
