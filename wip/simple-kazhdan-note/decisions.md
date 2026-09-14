@@ -670,6 +670,41 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - OUT: free-9 P2 (Shalom expanders for any marking).
     - sk-rfd-amalgam settled input 1 of the Popa comb plan (Li–Shen); unreviewed, queued.
 
+142. **Research finals, 09-14, all unreviewed and queued; Cairn only.**
+    - sk-sturmian-growth (39b48f42ea, f07f084827): Theorem Q′, an abstract dyadic-tower criterion for non-uniform growth of [[φ]]′. Obstruction: constant level models force μ(V)=1/N, impossible for Sturmian subshifts.
+    - sk-deligne-sofic (c4e55e517d): vanishing finite-action class norm ⇒ the central extension is sofic; iff under stability in finite actions. It reduces soficity of Deligne's triple cover (Alekseev–Thom 6.1) to vanishing along congruence covers.
+    - sk-rank3-shadows (11d2f4427f): Theorem R, EL_n(R_X) ≅ EL_n(R_Y) (n ≥ 3, including G_X) ⇒ the same finite cyclic factors (rational eigenvalues). Corollary S: ring-type shadows when X has a cyclic factor. Partial evidence for the paper's rigidity question; stays out of the paper (the proof is about half a page).
+    - sk-rfd-amalgam (8ae79a74a1): input 1 of the Popa comb plan settled via Li–Shen.
+    - sk-free-9 P1 (converse: the simple limits of the finite models are exactly the G_X): mathematics reviewed; OUT of rev4.4 for length.
+143. **Locator fix on main** (813c033175): Bowen–Burton "Flexible stability and nonsoficity" is arXiv:1906.02172, not 1906.02034 (a physics paper). Checked at arxiv.org; the peer artifact is un-stability-nonsofic part1 l.54.
+144. **REV4.4 SCOPE (user: "how can we simplify? make it shorter?").** sk-shorten (b5dead51e8) measured tiers: all fixes 10 pp; remarks dropped 9 pp; tier 2b 8 pp; tier 3 7 pp (drops the main results).
+    - DECIDED: tier 2b plus two restored credits (Stepanov alternative; Grigorchuk–Medynets decidability), for about 8 pp.
+    - Every main result stays: Theorems 1–2, Cor 3 with the solvable-WP analogue, Cor 4 universal host, word problems with the continuum of mutually non-embeddable G_X.
+    - Dropped to Cairn: separable-factor count, SL_3(Z) ∉ G_X, no decidable host, [[T]]′ ≤ G_X, Osajda non-exact, the hyperbolic/Kac–Moody background sentence, Kirchberg/LLP.
+    - All audit fixes applied (perfect-a/b/c/d, prior-art-3 F1 Neumann–Neumann, F2 Darbinyan, F4 Sacks, pdf-visual).
+    - sk-editor-6's independent pass-1 draft serves as a cross-check of fix application.
+145. **More research finals (unreviewed, queued; Cairn only).**
+    - sk-normalizer-recognition (2dc7f7c0ca, adba93671b): Frobenius support idempotents S_V = I + Σ_{k∈α(F21_V)} k give a Boolean realization of LC(X,F_2) inside M_3(R_Y), conditional on orthogonality (O) and (O′). Recognition up to the normalizer stays OPEN; the sharpest point is (O).
+    - sk-cstar-genericity (bcd21d60ea, 1b1f83a4cb):
+      - a pigeonhole commutator lemma for confined subgroups;
+      - polynomially small units have order dividing 420;
+      - Laurent-linear confining sets force infinite-order elements, so no nontrivial torsion subgroup of G_X is confined by constant elements.
+      - C*-simplicity stays OPEN (non-constant confining sets).
+    - RAM: swap reached 1.7/2 GB, over half used. Main stopped launching new lanes (standing RAM order) and lets the fleet shrink as lanes finish.
+146. **REV4.4 LANDED f34e9c0b1c** (772 lines, 8 pp, md5 c909343e…; MSI 0/0/0, 2 underfull: the Champetier and Ozawa DOIs). Local copy updated.
+    - Built from sk-shorten final.tex (tier 2b plus the Stepanov and GM credits restored). sk-editor-6's independent all-fixes draft (864 lines, 10 pp) matched sk-shorten's tier 1 line for line as a cross-check.
+    - Main read the full word diff and added the missed fixes: pdf-visual META-A/MSC 03D40/keywords/BIB-B/BIB-E; perfect-c U1 (the fixed generating set in Cor 3); (Y,T′) in Questions; "For simplicity," → "In the proof of simplicity,".
+    - sk-rev44-referee launched on the changed text.
+147. **More research finals (unreviewed unless noted).**
+    - sk-lamplighter-characters (897ccdae19): EVERY character of G_Δ = EL_n(LC(F_2^Δ,F_2)⋊(F_2≀Δ)), n ≥ 3, is c·1+(1−c)δ_e, for every infinite countable Δ (UHF unit group instead of towers; no amenability). Trivial IRS. G_Δ is sofic iff one almost action has fixed-point proportion bounded away from 1, which settles target T3 of the sofic-host question.
+    - sk-free-10 (6c26a36efa): GL_3(R_X) = G_X ⋊ Z (the index kernel is EL_3); normal subgroups of GL_3(R_X) are index preimages; Out(G_X) ⊇ (Z×Aut(X,T))/⟨(−3,T)⟩.
+    - sk-vn-rigidity (d4c878ecb2): Out(L(G_X)) ⊇ Z via CIOS injectivity; unitary embeddings of G_X are corner subfactors. The factor rigidity question stays open (Zhou's counterexample is noted).
+    - sk-mf-laurent (a9fc8e1a83): E_m(F_q[t^{±1}])-invariant character sets are finite or full; off full spectrum, block-SL_2 norm 4. MF of C*_r(G_X) reduces to the full-spectrum corona crux.
+    - sk-exchange (f4e45bfe10): right-ideal membership in R is local (Lemma L); a square-zero correction across cuts; the block lemma fails for scalar compressions. The exchange property stays open.
+    - sk-verify-19: lines 2–11 PASS, some with fixes (Theorem Q′, Deligne criteria, rank-3 rational spectrum, Frobenius idempotents, the C*-lemmas, LEF-growth bounds). free-9 P1 text fixes are recorded (P1 not in rev4.4).
+    - sk-verify-20 launched for queue lines ≥ 12. sk-cairn-steward-5 launched for post-08:52 wiring and the note-root update for rev4.4.
+148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
+
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
 - The exact centre formula over F_q (it stays in Cairn).
