@@ -146,3 +146,16 @@ The `HalfLineModels` and `HalfLineWordProblem` claims are renamed as above.
   f0f7ef8941cf, 902f025b4bf7, bb65ababe757 and the SWP rows follow once they are green.
 - The route at 8b36733d7 is unchanged from 696c4b602 apart from "from the left" and the new Neumann–Neumann/Darbinyan
   attribution sentence.
+
+## CLOSED 10:5x: `LEFSolvableWordProblemEmbeddingStatement` (tex l.412–444 at 8b36733d7)
+
+- Probe 0914-104653-35189 GREEN: `LevelShiftDeltaModels`, `LevelShiftDeltaWordProblem` and `LEFSecondDelta` BUILT, 10 overlay
+  files COMPILED, build succeeded; origin bytes match the green record (models b9c5d52f1, word problem b9c5d52f1, endpoint 74152ac1c).
+- Closed endpoints (`#audit_closed_axioms`: propext, Classical.choice, Quot.sound):
+  `printedSecondDeltaCommutator` (l.417–420), `printedSecondDeltaLEF` (l.438), `printedSecondDeltaSolvableWordProblem`
+  (l.440–444), and `lefSolvableWordProblemEmbeddingStatement : LEFSolvableWordProblemEmbeddingStatement`.
+- Route: β = `levelShift`, h_γ = `levelMul`, Δ = `levelDelta Γ E` with E the finite range of the generating family; ψ from
+  textbook LEF on the ball of radius 2r, the window θ/κ/ζ with L = 5r, and the models fβ^ℓ ↦ window(f) ζ^ℓ; the word
+  problem is decided from the exponent sum of β and the oracle answers of Γ on the value words at the tags.
+- Rows: 6b767019eab2, f0f7ef8941cf, 902f025b4bf7 and bb65ababe757 (Δ LEF), 86b1b005fc2a and e18417562d36 (word problem).
+- All seven second-choice modules are wire-queued. None is root-wired yet.
