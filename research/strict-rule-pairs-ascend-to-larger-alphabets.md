@@ -66,3 +66,8 @@ Owned by lane gk-fz-alphabets, at gk-n-boolean's request.
   *fixed point* of involutions; an *absorbing* `∗` breaks the decoder identity as the erasure symbol
   does, which is why a general strict pair, lacking a canonical fixed-point extension, is not covered.
   Artifact `research/artifacts/alphabet-ascent-and-binary-descent-2026-09-12.md`, Sections 1-2.
+- **Walls cannot be repaired** (gk3-alphabet-descent, 2026-09-14). The group-level walls design leaves stars
+  in place and outputs original symbols at original sites. By `passive-fixing-injective-automata-are-surjective`
+  it is surjective once injective, for every radius and every rule near the stars. So a group-level ascent to
+  `A ⊔ D` must write at `D`-sites, or write `D`-symbols at `A`-sites. Artifact
+  `research/artifacts/gk3-alphabet-descent-2026-09-14.md`, Section 2.

@@ -48,3 +48,16 @@ two symbols (`gottschalk-via-binary-alphabet-descent`).
   Any descent proof for the target hosts must give a markerless equivariant binary coding; none is known.
   This marker argument is a structural sketch, not a formalized theorem. Artifact
   `research/artifacts/alphabet-ascent-and-binary-descent-2026-09-12.md`, Section 3.
+- **Reserved-site extensions are dead** (gk3-alphabet-descent, 2026-09-14).
+  `passive-fixing-injective-automata-are-surjective` proves, over every group, that an injective automaton
+  which leaves a reserved set of symbols in place and writes no reserved symbol at an unreserved site is
+  surjective. So a coding that keeps its invalid symbols fixed can never carry strictness. Any descent must
+  write on reserved sites, or write reserved symbols at unreserved ones.
+- **Weaker universal form** (gk3-alphabet-descent, 2026-09-14). `some-nonsurjunctive-group-gives-a-binary-one`
+  lets the binary witness live on any group.
+  - This claim implies it (`universal-binary-descent-from-groupwise-descent`).
+  - With `every-group-is-binary-surjunctive` it already gives the goal (`gottschalk-via-universal-binary-descent`).
+  - By `ec-groups-share-the-nonsurjunctive-alphabet-sizes` it is exactly this claim for existentially closed
+    groups.
+
+  Artifact `research/artifacts/gk3-alphabet-descent-2026-09-14.md`.
