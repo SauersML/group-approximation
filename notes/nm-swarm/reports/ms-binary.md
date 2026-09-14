@@ -304,3 +304,40 @@ for wiring. It imports only `OsinLemma94ClassSection`.
   - (c) and (d) need the end-loop assignment for one-class bubbles.
   - The model tests above show that (a) and (d) are true only through `weight_maximal` together with the bubble un-pinch
     surgery (roster l.850).
+
+## Bubble un-pinch surgery (main's item ~19:5x, resumed 20:15 after the API outage)
+
+Roster l.850 and l.1273–1276 give the item to leavitt-units, which is down. Consumers: this lane's (a), (c) and (d), and
+sec5-sentences' `OsinLemma94LongTransitionInput`, which ms-compress-1 takes.
+
+Ownership check (20:2x):
+- Nothing named un-pinch or absorption exists on origin, in the shared tree, in any `lanes/*.files`, or in `landed.log`.
+- Every leavitt-units file equals origin.
+- hull-respell's vertex explosion is on main as `PinchSplit`:
+  - `SurgeryPinchSplit{Map,Diagram,Regions,Sections,Extremal}`;
+  - `Input` is two darts at one vertex whose corners are distinct G-faces off the exterior;
+  - `transportDistinguished` gives a family with the same weight, card, darts and unbound darts when every region avoids
+    both faces.
+- Nothing on main adjoins a region after a split.
+
+Calibration on the lobe model:
+- Take a cell `Π` with a lobe `h h' (hh')⁻¹` at `v`, enclosing a G-triangle `g`. The corners at `v` read `Π`, `g`, `Π`,
+  and the outer face `f` between the two visits.
+- Splitting `v` between the corners of `g` and `f` splices the walk of `g` into `f`. Where `f` read `α e_out, α e_in`, it
+  now reads `α e_out, α(hh')⁻¹, α h', α h, α e_in`: the reversed arc of `Π` through the lobe.
+- If `f` is unselected and reads an arc of `Π`, a short side, a target arc and a short side, the merged face is a
+  region whose source arc absorbs the lobe. The family then weighs more, against `weight_maximal`.
+- If the merged face is not a contiguity region, the split only merges, with the same weight (`transportDistinguished`).
+- If `f` lies in a selected region, `Input.Avoids` fails, and absorbing needs a transport of that region through the
+  merge, which is not on main.
+
+CLAIM bubble un-pinch absorption GroupApproximation/GGT/VanKampen/SurgeryPinchSplitAbsorption.lean
+
+The module will state and prove:
+- `GloballyDistinguishedSectionFamily.false_of_avoided_singleton`: a legal realized family at least as heavy as `S`, with a
+  singleton region at a face it avoids, with nonempty arcs and respecting the sections, contradicts maximality.
+- `PinchSplit.Input.merged_noInternalFaceDart`.
+- `PinchSplit.false_of_mergedRegion`, and the closed Prop `PinchSplitAbsorptionStatement` / `pinchSplitAbsorption`.
+
+The interface and both caveats (an unselected corner that does not read as a region; a selected neighbour) went to
+ms-compress-1 in one message (20:2x).
