@@ -477,6 +477,34 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
 103. **sk-lef-proof-compress** (9b7ce20215, unreviewed; sk-verify-13 lines 8–9). Variant A is a 49-line Corollary 2 proof (rev3: 66 lines).
     - Ore-free overgroup: q = [f,t] in Q_n^{Z/m_n}⋊Z/m_n. Exact covariant models on F_2^{Λ_n}. Whitehead identities inline. The Ore bibitem goes. Net −22 lines.
     - ADOPT after a PASS; if rev4 is already done, it becomes rev4.1.
+104. **Free-lane choices (~22:10) and verification throughput.**
+    - sk-free-3: the conjugacy problem of G_X. Lemma K: conjugacy of e_13(1_A), e_13(1_B) ⇔ 1_A − 1_B is a coboundary. Target: CP degree = jump.
+    - sk-free-4: finite simple shadows.
+      - `simple-lef-groups-are-limits-of-finite-simple-groups`;
+      - `kazhdan-marked-limits-eventually-uniform-expanders`;
+      - Corollary B2 `lef-iff-subgroup-of-simple-kazhdan-all-approximants-expand`;
+      - model sizes see the rational spectrum.
+      - If B-claims PASS, the finite-simple-expander headline follows from the LEF characterization plus general facts, so the configuration-space models could leave the note (rev4.1 candidate).
+    - sk-free-7: an algebraic Putnam theorem, R_X an exchange ring of stable rank one.
+    - sk-free-2 had chosen the same target 20 s later. Main told it to pivot (keep conditional consequences C1/C2 only) to commutator width / maximal subgroups / marked-space structure.
+    - sk-free-8: a simple Kazhdan LEF group of non-uniform exponential growth. It would strengthen Sauer–Schesler (not simple) and V (not Kazhdan) on de la Harpe §7 / Kourovka 21.117.
+    - sk-fp-sofic-host: planned.
+    - sk-verify-14 launched for queue lines ≥ 12 (the free lanes, sk-free-4 first); sk-verify-13 keeps lines 1–11.
+105. **REV4 LANDED c8b6021ca9** (~22:45): 771 lines, 8 pp, md5 9144d853…; MSI texlive 2025, 3 passes, 0 errors / 0 overfull / 0 undefined, 1 underfull (Champetier bibitem). The local copy is updated (it was rev3, with no user edits).
+    - Main read the whole draft by hand, including the Variant A port into the isolation step ([f_jk,t_k] on Q_k×Z/m_k) and the fixed-point minimality argument. Main's one edit: "exact finite models" → "finite models".
+    - Content: page-1 idea; Theorem 2 as the engine; Theorem 1; Cor 3 (LEF iff subgroup of a simple Kazhdan limit of finite simple SL_N(F_2) expanders); Cor 4 (universal host, iff countably many types); [[T]]′ ≤ G_X; no decidable host; SL_3(Z) ∉ G_X; word problems; separable factors; Questions.
+    - Out: characters, EL_2, all F_q (slot), rank-3 converse, "every f.g. linear group" (editor cut; Mal'cev bibitem gone).
+    - Rev4 referees a/b/c launched on the landed md5 (roster I).
+106. **sk-verify-13/14 done** (parts 3–5; 34eaa3ea9b).
+    - PASS: sk-lef-proof-compress (Variant A, now in rev4); sk-general-statement LaTeX with G1–G3 (rev4.1, needs a port to S1 form); sk-cstar-simple-2 normalish and ℓ²/bounded-cohomology claims; sk-free-4 (Kazhdan limits eventually uniform expanders; simple LEF ⇒ limits of finite simple; model sizes see the rational spectrum, with F1); sk-free-3 conjugacy (transvection conjugacy ⇔ K^0 class; CP degree jump).
+    - Backlog lines 18–51 → sk-verify-14 (18–34) and new sk-verify-15 (35+).
+107. **Rev4.1 candidates** (after review, weighed by sk-rev4-referee-c):
+    - sk-free-7: continuum many G_X, none a subgroup of another (Sacks antichain + WP degree monotone).
+    - sk-free-8: Thue–Morse G_X of non-uniform exponential growth (simple + Kazhdan + LEF; Hull caution).
+    - sk-decidable-host: LEF with solvable WP iff subgroup of a simple Kazhdan LEF host with solvable WP.
+    - Every finite field (port needed).
+    - Cairn only: sk-free-5 (Brown Q3 QD clause via weakly dense C*(F_∞); C*(G_X) not QD), sk-fp-sofic-host (LEA permanence firewall for 6.1), sk-sofic-host-hamming (Theorem K, Lemma E), sk-two-generators (open), sk-free-4 rank ≥ 4 rational spectrum.
+108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
