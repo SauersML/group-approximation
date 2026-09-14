@@ -75,3 +75,19 @@ ambiguity, but not which `X`.
     continuous eigenfunctions of a minimal system are unique up to scalars. So the height-3 towers over `X` and `Y` are
     flip conjugate iff `X` and `Y` are. The unit-scaling issue of step 3 affects only the strong-orbit-equivalence
     target.
+- **Steps 2–3 closed at ring level; the unit caveat is void (lane sk-rigidity-ring, 2026-09-13, unreviewed).**
+  - `cantor-crossed-product-matrix-ring-iso-forces-soe`: for minimal Cantor systems and any fields, a ring isomorphism
+    or anti-isomorphism `M_m(R_X) ≅ M_m(R_Y)`, not necessarily diagonal-preserving, gives strong orbit equivalence of
+    `X` and `Y` themselves.
+  - The cone uses Ara–Claramunt's faithful `rk_μ` and `minimal-cantor-k0-positive-iff-positive-on-all-measures`.
+  - `K^0(X,T)` is torsion-free by minimality, so `φ(3[1]) = 3[1]` forces `φ[1] = [1]`: the height-3 unit issue does
+    not arise even for the strong-orbit-equivalence target.
+  - Anti-isomorphisms reduce to isomorphisms through `Σ f_n u^n ↦ Σ u^(−n) f_n`.
+  - With the intrinsic bullet above the picture is: an arbitrary ring (anti-)isomorphism gives strong orbit
+    equivalence, and a diagonal-preserving group isomorphism gives flip conjugacy. The gap between them is Cartan
+    uniqueness.
+  - Consequence for q odd: `subshift-gl3-iso-forces-strong-orbit-equivalence-odd-q`. For `q = 2` (`S_X = G_X`) the
+    strong-orbit-equivalence target reduces to `subshift-el3-isomorphisms-are-standard-over-f2`. That claim is OPEN,
+    with firewalls: Petechuk's non-standard `n = 3` automorphisms in characteristic 2, `E_3 ≠ GL_3` (`K_1(R_X) ≅ Z`),
+    no minimal idempotents, and exotic elementary abelian 2-subgroups. Artifacts
+    `research/artifacts/sk-rigidity-ring-2026-09-13-part{1,2}.md`.
