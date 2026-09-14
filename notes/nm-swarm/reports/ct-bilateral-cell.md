@@ -201,6 +201,23 @@ through the gate `c₁ + 2κ < epsC`, and at `epsL` through a scale at `epsL`. F
 not reduce `OsinLemma94ClassCaseGapSpanStatement` to single-side pairs (a class can be many short sides between hair
 gaps), so GapSpan stays a residual and only GapEndpoint drops out.
 
+## Item 9: GapSpan producer, collapse model test
+
+Module `Estimating/OsinLemma94ClassGapCollapseModel`, LANDED 92159e0b3 (probe 0914-082913-19364 GREEN, BUILT; axioms
+[propext, Classical.choice, Quot.sound], no sorryAx): `Embedded.NoEdgeBetween`,
+`internalBoundaryMove_mem_part_iff`, `reflTransGen_internalBoundaryMove_mem_part_iff`, `boundaryStep_mem_part_iff`,
+`FaceSetBoundary.false_of_noEdgeBetween`, `Surgery.InnerGRegion.false_of_noEdgeBetween`.
+
+Verdict: the route `SurgeryCellHairThickening` then `InnerGRegion` collapse of the polygon face with the faces behind a gap does
+not exist for any gap. `BoundaryStep` advances around the current face and crosses internal edges only, so a face set whose parts
+share no edge has no single boundary cycle. After thickening, the digon `{h, new}` lies inside the cell and meets the polygon face
+only at the hair base; the faces inside a bubble loop also meet the polygon face only at the pinch vertex.
+
+Routes reported to main: (B1) split spanning pairs at gap vertices with a larger connector margin from the two-threshold metric half,
+refuted by a short side-level Case 1; (B2) regions with several boundary circuits; (B3) exclude hair and bubble gaps through the count
+piece. Long-segment dependencies for B1: `osinLemma94CaseOne_false_of_walk` (different kinds) uses no `source_long`/`target_long`;
+the same-cell value-one kills use the Morse hairpin bound on long ends; Case 2 uses `C.target_long` against `DartMinimal`.
+
 ## Residual statements
 
 In this lane's own modules, none. The W1 waist residuals are listed above (V2: six; V3: seven), with
