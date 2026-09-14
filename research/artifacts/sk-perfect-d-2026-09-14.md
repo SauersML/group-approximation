@@ -1,0 +1,196 @@
+# sk-perfect-d: elegance and readability referee of rev4.3 (2026-09-14)
+
+This is the final elegance and readability referee for `simple_kazhdan_sofic_group.tex`, rev4.3 on main (696c4b602e, md5 0648e5f876e467e21ebf475e08b8ee92, 841 lines, 9 pp); main tip 1907a02eee carries the same file. Line numbers refer to it. I read it twice: once as an expert in approximation of groups, once as a strong group theorist outside the area. No new mathematics is proposed. Every item keeps every proof step.
+
+## 0. Verdict
+- The mathematics reads cleanly, and the intro puts the question, the answer and the mechanism on page 1.
+- Readability is held back by four things:
+  - §3 grew by accretion: two overgroups back to back before the host, and the solvable-word-problem proof split into two distant paragraphs;
+  - three letters overloaded inside single sections (f and c in §3, e in §1, k in §1);
+  - LEF is used in Theorem 1 but only defined in §1;
+  - two sentences whose syntax makes the reader stop (§2 below).
+- All fixes are moves or rewordings: about −7 source lines net, no proof step dropped.
+
+## 1. The five rewordings with the largest clarity gain (verbatim)
+
+R1, §3 WP transfer (l.440–444). The appositive makes "ℓ" read as "the levels".
+Before:
+```latex
+problem, and let $\Delta$ be the second choice. A word in the
+$\beta^{\pm1}$ and $h_\gamma^{\pm1}$ gives $\ell$, the levels where $f$
+changes, which are the exponent sums of $\beta$ before the letters
+$h_\gamma^{\pm1}$, and the values of $f$ there as words in $E$. It is trivial
+```
+After:
+```latex
+problem, and let $\Delta$ be the second choice. From a word in the
+$\beta^{\pm1}$ and $h_\gamma^{\pm1}$ one computes the exponent sum $\ell$ of
+$\beta$, the levels where $f$ changes, namely the exponent sums of $\beta$
+before the letters $h_\gamma^{\pm1}$, and the values of $f$ there as words in
+$E$. It is trivial
+```
+
+R2, intro (l.105–107). A definition is joined by "and" to an unrelated definition.
+Before:
+```latex
+The proof works for other actions. An action on a Cantor set is
+topologically free if no nontrivial element fixes a nonempty open set,
+and $e_{ij}(r)=I_n+rE_{ij}$ is an elementary matrix.
+```
+After:
+```latex
+The proof works for other actions. An action on a Cantor set is
+topologically free if no nontrivial element fixes a nonempty open set.
+We write $e_{ij}(r)=I_n+rE_{ij}$ for the elementary matrices.
+```
+
+R3, intro idea paragraph (l.81–91). The alternative proof comes before our mechanism and is then answered with "Our proof is direct:", which reads as defensive. Mechanism first, credit second; 0 net lines.
+Before:
+```latex
+subgroup of $G_X$ (Section~\ref{sec:lef}). Simplicity of $G_X$ also follows from Stepanov's
+theorem on the normal structure of $\GL_n$~\cite[Theorem~4.4]{Stepanov},
+since the ring is simple~\cite[Corollary~4.6]{ClarkEdie} and any two of
+its elements $p,q$ satisfy $pr+qs=0$ with $(r,s)\ne0$, by a dimension
+count on a tower over one small cylinder. Our proof is direct: a
+nontrivial normal subgroup contains a nontrivial commutator lying in a
+copy of the finite simple group $\GL_d(\F_2)$ over a clopen tower, so it
+contains this group and with it an elementary matrix. For derived
+```
+After:
+```latex
+subgroup of $G_X$ (Section~\ref{sec:main}). For simplicity, a nontrivial
+normal subgroup contains a nontrivial commutator lying in a copy of the
+finite simple group $\GL_d(\F_2)$ over a clopen tower, so it contains this
+group and with it an elementary matrix. Simplicity also follows from
+Stepanov's theorem on the normal structure of
+$\GL_n$~\cite[Theorem~4.4]{Stepanov}, since the ring is
+simple~\cite[Corollary~4.6]{ClarkEdie} and any two of its elements $p,q$
+satisfy $pr+qs=0$ with $(r,s)\ne0$, by a dimension count on a tower over
+one small cylinder. For derived
+```
+(The pointer changes to Section 2 only if M2 below is adopted; otherwise keep `sec:lef`.)
+
+R4, Questions (l.556–560). Key point first: the question, then its context.
+Before:
+```latex
+A finitely presented LEF group is residually
+finite~\cite{Stepin,VershikGordon}, and the infinite simple group $G_X$ is
+not, so $G_X$ is not finitely presented. Finitely presented infinite
+simple groups with property~\textup{(T)} exist~\cite{CapraceRemy}. Is
+there one that is sofic, or at least hyperlinear? A sofic example would
+```
+After:
+```latex
+Is there an infinite finitely presented simple group with
+property~\textup{(T)} that is sofic, or at least hyperlinear? Such groups
+exist~\cite{CapraceRemy}, while $G_X$ is not finitely presented: a
+finitely presented LEF group is residually
+finite~\cite{Stepin,VershikGordon}, and $G_X$ is not. A sofic example would
+```
+
+R5, Theorem 2 (l.112–117). "Matricial", for experts, means an embedding in an ultraproduct of matrix algebras; the statement's version adds that φ_k(S) generates M_{N_k}(F_2), so "that is" equates it with a stronger condition. State the hypothesis without the term; 0 net lines.
+Before:
+```latex
+generated by a finite set $S\ni1$. Suppose that $R$ is matricial, that
+is, there are maps $\varphi_k\colon R\to M_{N_k}(\F_2)$ with
+$\varphi_k(1)=I$ such that $\varphi_k(S)$ generates the ring
+$M_{N_k}(\F_2)$, and for all $r,s\in R$ we have
+```
+After:
+```latex
+generated by a finite set $S\ni1$. Suppose that there are maps
+$\varphi_k\colon R\to M_{N_k}(\F_2)$ with $\varphi_k(1)=I$ such that
+$\varphi_k(S)$ generates the ring $M_{N_k}(\F_2)$, and for all $r,s\in R$
+we have
+```
+and l.124: `Periodic approximations make $\LC(X,\F_2)\rtimes_T\Z$ matricial, which` → `Periodic approximations give such maps for $\LC(X,\F_2)\rtimes_T\Z$, which`.
+
+## 2. Structural moves (0 net lines each)
+
+M1, the LEF definition. LEF appears in Theorem 1 (l.66) and the intro, but is defined only at l.212–214, inside "Finite simple models". Move the sentence "A group is LEF~\cite{VershikGordon} if every finite subset embeds injectively into a finite group, preserving all products that stay in that subset." to just after Theorem 1, at the start of l.71's paragraph. The subsection then opens with its point.
+
+M2, [[T]]′ ≤ G_X (l.466–471). This is a fact about G_X, and in §3 it sits between the Osajda remark and the no-host argument, where nothing uses it. Move it to §2 after its \qed (l.271), before "Brown's formulation"; with R3, the intro pointer becomes `Section~\ref{sec:main}`.
+
+M3, §3 order: see §5.
+
+## 3. Ranked cut list (every proof step kept)
+
+| rank | where | cut | source lines |
+|---|---|---|---|
+| 1 | l.358–359, 439–440 | Merge the half-line overgroup into the solvable-WP block (§5). This drops "If $\Gamma$ is generated by a finite set $E$, another choice of $\Delta$ keeps a solvable word problem." and "and let $\Delta$ be the second choice". | −2 |
+| 2 | l.78–81 | "The derived subgroup … It is also a subgroup of $G_X$ (Section~…)." → "It contains the derived topological full group of $X$, an infinite finitely generated simple amenable group~\cite{Matui,JuschenkoMonod} (Section~\ref{sec:main})." | −2 |
+| 3 | l.67–68 | "The same holds for EL_n … in place of SL_{3N}(F_2)." Theorem 2 already states every n ≥ 3, and l.124 derives Theorem 1 from it. Low priority: some readers like the headline to carry n. | −2 |
+| 4 | l.436–437 | Join the two short sentences: "Conversely, a countable group has countably many finitely generated subgroups, and there are countably many recursive presentations." | −1 |
+
+Not recommended for cutting, on reader merit:
+- the Stepanov and Matui credits;
+- the Pestov–Kwiatkowska sentence (it is the printed motivation);
+- the Grigorchuk–Medynets decidability remark (it tells the reader what is classical);
+- the Nicoara–Popa–Sasyk sentence (credit);
+- the SL_3(Z) paragraph (the sharpness of Cor 4).
+
+## 4. Does each section open with its point?
+- **Introduction:** yes, the question, then Theorem 1.
+- **§1:** yes for "Simplicity"; "Finite simple models" opens with the LEF definition (M1 fixes this).
+- **§2:** yes.
+- **Brown's formulation:** yes, though "as in Brown's question" arrives late. Acceptable.
+- **§3: no.** It opens with 17 lines of credit before the corollaries (§5).
+- **§4:** yes, it opens with Corollary 5.
+- **Questions:** it opens with context; R4 fixes this.
+
+## 5. §3: the most readable paragraph order
+Current order:
+- credit (17 lines);
+- Cor 3; Cor 4;
+- proof:
+  - ultraproduct overgroup;
+  - half-line overgroup;
+  - lamplighter action;
+  - configuration models;
+  - Whitehead embedding, then the first statements and Cor 4's second statement;
+  - WP transfer;
+- Osajda;
+- [[T]]′;
+- no decidable host;
+- SL_3(Z).
+
+Proposed order:
+1. Framing, at most 6 lines: the Kionke–Schesler question; that the next corollary answers its LEF analogue with a Kazhdan host; and that its second statement is the Boone–Higman–Thompson analogue (the current l.302–310).
+2. Corollary 3, Corollary 4.
+3. Comparison, what each property alone gives: Gorjuškin/Schupp; CFF + Higman; Kionke–Schesler + Wilson (the current l.294–302, reworded "Without (T) … ; without LEF …"). The reader sees the new combination against the known ones after reading it.
+4. Proof, main line, uninterrupted:
+   - ultraproduct overgroup;
+   - lamplighter action;
+   - configuration models;
+   - Whitehead embedding, then "This proves Corollary 4 and the first statement of Corollary 3".
+5. Proof, solvable word problem, one block: "Now let Γ be generated by a finite set E, LEF, with solvable word problem." Then:
+   - the half-line overgroup and its models;
+   - "the argument above applies to it";
+   - the WP transfer.
+6. Sharpness of Corollary 4: no decidable host; then SL_3(Z) lies in no G_X.
+7. Consequence: the Osajda non-exact hosts.
+8. M2 moves [[T]]′ ≤ G_X out of §3.
+
+Effect: the reader meets the host once, and the solvable-WP clause has a single, self-contained proof.
+
+## 6. Notation heavier than needed (0-line renames)
+- **§3, f and c:**
+  - lamps are $f$ in l.385–402 but $c$ in l.445–452;
+  - $f$ is also the level function of the half-line overgroup (l.365–382, 441–443) and the permutations $f_{jk}$ (l.337–347);
+  - $c,c'$ are the units in the Whitehead display (l.428–429).
+  - Proposal: lamps $c$ throughout (l.385, 388, 391–392, 402); units $v,v'$ in l.428–429 (the display already uses $v$).
+- **§1, e:** the identity $e$ of Λ, the indicators $e_U$, $e_V$, and the idempotent $e=\sum_a\epsilon_{aa}$ (l.182–198). Rename the idempotent $\epsilon$, so that $\epsilon=\sum_a\epsilon_{aa}$, $(1-\epsilon)I_3+y$ and $yy'=y'y=\epsilon I_3$.
+- **§1, k:** $k=[g,h]$ (l.188–198) against the approximant index $k$ (l.214 on). Rename the commutator $x=[g,h]$; $x$ is unused in §1.
+- **§4, S:** "Every $S\subseteq\mathbb N$" (l.527) against the generating set $S$ of Theorem 2. Use $C\subseteq\mathbb N$ and $\chi_C$.
+- **ℓ:** the window radius in §2 against the exponent in §3. These are separate sections, so leave it.
+
+## 7. Title
+Keep "Infinite simple Kazhdan groups that are limits of finite simple groups". It is exact for Theorems 1–2 and Corollary 3; "infinite" is essential, since a finite simple group is its own limit; and it names the one new phenomenon. Alternatives tested and rejected:
+- "Simple Kazhdan groups from subshifts" hides the approximation theorem;
+- "Locally embeddable simple Kazhdan groups" is jargon in the title.
+
+## 8. Prose doctrine scan
+- No hence, therefore, rather than or metacommentary. American English.
+- "first" occurs only mathematically.
+- The one defensive phrase is "Our proof is direct:" (R3).
+- Long source lines exceed 80 columns at l.81, 96, 224, 235, 427 (source hygiene only; no printed effect).
