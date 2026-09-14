@@ -908,6 +908,23 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - Launched:
       - sk-cairn-steward-6: one MSI check at the current tip, fixing wiring only;
       - sk-verify-24: the X2 replacement, the comb criterion, and Theorem O.
+172. **sk-impact-questions (2a0e601e01): the note answers one more printed question.**
+    - Arzhantseva, "Asymptotic approximations of finitely generated groups" (Springer 2014, doi:10.1007/978-3-319-05488-9_2), §3: "Does there exist an infinite simple sofic group with Kazhdan's property (T)?" G_X answers it as printed.
+    - Her Theorem 11 gives only an asymptotically residually finite example. No earlier answer was found (bounded search).
+    - ADOPTED as must-have for rev5: a credit sentence and bibitem; both editors were told.
+    - Existing locators re-verified at source: Brown §11 Q7, Ozawa e-print l.2190–2192, Pestov 9.1, Pestov–Kwiatkowska, Kionke–Schesler, Alekseev–Thom 6.1.
+    - The Ozawa journal "p. 527" is still unverified; the rev5 referee checks it.
+    - Cairn locator only: BdlHV (7.9) p.301 is the primary source for the uniform-growth question.
+173. **sk-verify-23 (b9b3a8c7b1): sk-usefulness P1–P3 all PASS-WITH-FIXES.**
+    - P1: the Theorem 2 split matches the proof.
+      - REQUIRED: V1 binds n in (b); V2 fixes l.124–126 to the groups with maps φ_k; V3 fixes l.275, adding ", with maps φ_k".
+      - statements' "Theorem 2(b)" realizes V2 and V3.
+    - P2 (sharpness over Z): PASS-WITH-FIXES.
+      - W1: "the subshift hypothesis cannot be dropped".
+      - Locator: BHV Theorem 1.3.1, read in the authors' Feb 2007 draft, §1.3 p.41; printed numbering unverified.
+      - Decided: IN for 7b, and in 7a only if it fits.
+    - P3 (finite models give φ_k over any f.g. Λ): PASS-WITH-FIXES with X1 (a gap in step 4, fixed), X2, X3. Decided: optional remark in 7b, out of 7a.
+    - Both editors were told.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
