@@ -1,0 +1,186 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.LamplighterAffineWordProblemReduction
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordProblemDecision
+
+/-!
+# `Λ` has solvable word problem when `Δ` has
+
+`simple_kazhdan_sofic_group.tex` at 8b36733d7, section "LEF groups", l.444–446:
+
+> … so the word problem of $\Delta$ decides equality in $\Lambda$ and computes the values of $c$.
+
+The queries `affineQueries` and the decision `affineDecide` of
+`LamplighterAffineWordProblemReduction` are primitive recursive. So the truth-table reduction
+(`OracleTruthTable.turingReducible_of_truthTable`) makes the word problem of `Λ`, in the generators
+`lampGen t`, Turing reducible to that of `Δ` in `t`.
+
+* `primrec_affineQueries`, `primrec_affineDecide`;
+* `hasSolvableWordProblem_lampAffine`, and the closed endpoint
+  `printedLamplighterAffineSolvableWordProblem`.
+-/
+
+namespace GroupApproximation
+namespace SimpleKazhdanSofic
+namespace Lamplighter
+
+open Encodable
+
+section Primrec
+
+variable {ι : Type} [Primcodable ι] [Finite ι]
+
+theorem primrec_lettersOf : Primrec (lettersOf : Option ι × Bool → List (ι × Bool)) :=
+  Primrec.dom_finite _
+
+theorem primrec_deltaWord : Primrec (deltaWord : List (Option ι × Bool) → List (ι × Bool)) :=
+  (Primrec.list_flatMap Primrec.id (primrec_lettersOf.comp Primrec.snd).to₂).of_eq fun w =>
+    (deltaWord_eq_flatMap w).symm
+
+omit [Primcodable ι] [Finite ι] in
+theorem lampPrefixes_eq_foldr_cond (w : List (Option ι × Bool)) :
+    lampPrefixes w = w.foldr (fun x rest =>
+      bif x.1.isSome then rest.map (fun p => lettersOf x ++ p) else [] :: rest) [] := by
+  induction w with
+  | nil => rfl
+  | cons x w ih =>
+    obtain ⟨o, b⟩ := x
+    cases o <;> simp [lampPrefixes, lettersOf, ih]
+
+theorem primrec_lampPrefixes :
+    Primrec (lampPrefixes : List (Option ι × Bool) → List (List (ι × Bool))) := by
+  have hh : Primrec₂ fun (_ : List (Option ι × Bool))
+      (p : (Option ι × Bool) × List (List (ι × Bool))) =>
+      bif p.1.1.isSome then p.2.map (fun q => lettersOf p.1 ++ q) else [] :: p.2 :=
+    (Primrec.cond (Primrec.option_isSome.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.snd)))
+      (Primrec.list_map (Primrec.snd.comp Primrec.snd)
+        (Primrec.list_append.comp
+          (primrec_lettersOf.comp (Primrec.fst.comp (Primrec.snd.comp Primrec.fst)))
+          Primrec.snd).to₂)
+      (Primrec.list_cons.comp (Primrec.const []) (Primrec.snd.comp Primrec.snd))).to₂
+  refine (Primrec.list_foldr Primrec.id (Primrec.const []) hh).of_eq fun w => ?_
+  rw [lampPrefixes_eq_foldr_cond]
+  rfl
+
+theorem primrec_pairsIdx : Primrec pairsIdx :=
+  (Primrec.list_flatMap Primrec.list_range
+    (Primrec.list_map (Primrec.list_range.comp Primrec.fst)
+      (Primrec.pair (Primrec.snd.comp Primrec.fst) Primrec.snd).to₂).to₂).of_eq fun _ => rfl
+
+omit [Finite ι] in
+theorem primrec_wordInv : Primrec (wordInv : List (ι × Bool) → List (ι × Bool)) :=
+  (Primrec.list_reverse.comp (Primrec.list_map Primrec.id
+    (Primrec.pair (Primrec.fst.comp Primrec.snd)
+      (Primrec.not.comp (Primrec.snd.comp Primrec.snd))).to₂)).of_eq fun _ => rfl
+
+theorem primrec_affineQueryWords :
+    Primrec (affineQueryWords : List (Option ι × Bool) → List (List (ι × Bool))) := by
+  have hL : Primrec fun q : List (Option ι × Bool) × (ℕ × ℕ) => lampPrefixes q.1 :=
+    primrec_lampPrefixes.comp Primrec.fst
+  have hpair : Primrec₂ fun (w : List (Option ι × Bool)) (jk : ℕ × ℕ) =>
+      wordInv ((lampPrefixes w).getD jk.1 []) ++ (lampPrefixes w).getD jk.2 [] :=
+    (Primrec.list_append.comp
+      (primrec_wordInv.comp ((Primrec.list_getD []).comp hL (Primrec.fst.comp Primrec.snd)))
+      ((Primrec.list_getD []).comp hL (Primrec.snd.comp Primrec.snd))).to₂
+  exact (Primrec.list_cons.comp primrec_deltaWord
+    (Primrec.list_map (primrec_pairsIdx.comp (Primrec.list_length.comp primrec_lampPrefixes))
+      hpair)).of_eq fun _ => rfl
+
+theorem primrec_affineQueries : Primrec (affineQueries (ι := ι)) :=
+  (Primrec.list_map (primrec_affineQueryWords.comp
+      (Primrec.option_getD.comp (Primrec.decode (α := List (Option ι × Bool))) (Primrec.const [])))
+    (Primrec.encode.comp Primrec.snd).to₂).of_eq fun _ => rfl
+
+theorem length_filter_eq_foldr {α : Type*} (p : α → Bool) (l : List α) :
+    (l.filter p).length = l.foldr (fun a s => bif p a then s + 1 else s) 0 := by
+  induction l with
+  | nil => rfl
+  | cons a l ih => cases h : p a <;> simp [h, ih]
+
+theorem primrec_pairCount : Primrec fun q : (ℕ × ℕ) × List ℕ => pairCount q.1.1 q.1.2 q.2 := by
+  have hcond : Primrec fun r : ((ℕ × ℕ) × List ℕ) × (ℕ × ℕ) =>
+      decide (r.1.2.getD (1 + (r.2.1 * r.1.1.1 + r.1.1.2)) 0 = 1) :=
+    (Primrec.eq (α := ℕ)).decide.comp
+      ((Primrec.list_getD 0).comp (Primrec.snd.comp Primrec.fst)
+        (Primrec.nat_add.comp (Primrec.const 1)
+          (Primrec.nat_add.comp
+            (Primrec.nat_mul.comp (Primrec.fst.comp Primrec.snd)
+              (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+            (Primrec.snd.comp (Primrec.fst.comp Primrec.fst)))))
+      (Primrec.const 1)
+  refine (Primrec.list_foldr (Primrec.list_range.comp (Primrec.fst.comp Primrec.fst))
+    (Primrec.const 0)
+    (Primrec.cond hcond (Primrec.succ.comp (Primrec.snd.comp Primrec.snd))
+      (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun q => ?_
+  simp only [pairCount, length_filter_eq_foldr]
+
+theorem primrec_affineDecide : Primrec₂ (affineDecide (ι := ι)) := by
+  show Primrec fun a : ℕ × List ℕ => affineDecide (ι := ι) a.1 a.2
+  have hw : Primrec fun a : ℕ × List ℕ => (decode (α := List (Option ι × Bool)) a.1).getD [] :=
+    Primrec.option_getD.comp ((Primrec.decode (α := List (Option ι × Bool))).comp Primrec.fst) (Primrec.const [])
+  have hm : Primrec fun a : ℕ × List ℕ =>
+      (lampPrefixes ((decode (α := List (Option ι × Bool)) a.1).getD [])).length :=
+    Primrec.list_length.comp (primrec_lampPrefixes.comp hw)
+  have hall : Primrec fun a : ℕ × List ℕ =>
+      (List.range (lampPrefixes ((decode (α := List (Option ι × Bool)) a.1).getD [])).length).foldr
+        (fun k s => decide (pairCount
+          (lampPrefixes ((decode (α := List (Option ι × Bool)) a.1).getD [])).length k a.2 % 2 = 0)
+            && s) true :=
+    Primrec.list_foldr (Primrec.list_range.comp hm) (Primrec.const true)
+      (Primrec.and.comp ((Primrec.eq (α := ℕ)).decide.comp
+          (Primrec.nat_mod.comp (primrec_pairCount.comp (Primrec.pair
+              (Primrec.pair (hm.comp Primrec.fst) (Primrec.fst.comp Primrec.snd))
+              (Primrec.snd.comp Primrec.fst)))
+            (Primrec.const 2))
+          (Primrec.const 0))
+        (Primrec.snd.comp Primrec.snd)).to₂
+  have hc : Primrec fun a : ℕ × List ℕ =>
+      ((decode (α := List (Option ι × Bool)) a.1).isSome && decide (a.2.getD 0 0 = 1) &&
+        (List.range (lampPrefixes ((decode (α := List (Option ι × Bool)) a.1).getD [])).length).all
+          fun k => decide (pairCount
+            (lampPrefixes ((decode (α := List (Option ι × Bool)) a.1).getD [])).length k a.2 % 2 = 0)) := by
+    refine (Primrec.and.comp (Primrec.and.comp
+        (Primrec.option_isSome.comp ((Primrec.decode (α := List (Option ι × Bool))).comp Primrec.fst))
+        ((Primrec.eq (α := ℕ)).decide.comp ((Primrec.list_getD 0).comp Primrec.snd (Primrec.const 0))
+          (Primrec.const 1)))
+      hall).of_eq fun a => ?_
+    simp only [CylinderTables.all_eq_foldr]
+  refine (Primrec.cond hc (Primrec.const 1) (Primrec.const 0)).of_eq fun a => ?_
+  rw [Bool.cond_eq_ite]
+  rfl
+
+end Primrec
+
+/-- **`Λ` has solvable word problem when `Δ` has** (l.444–446). -/
+theorem hasSolvableWordProblem_lampAffine {Δ : Type} [Group Δ] (hΔ : HasSolvableWordProblem Δ) :
+    HasSolvableWordProblem (LampAffine Δ) := by
+  classical
+  obtain ⟨ι, hι, hfin, t, ht, hpart⟩ := hΔ
+  refine ⟨Option ι, inferInstance, inferInstance, lampGen t, ?_, ?_⟩
+  · have hrange : Set.range (lampGen t) =
+        insert (lampAdd Δ) ((SemidirectProduct.inr : Δ →* LampAffine Δ) '' Set.range t) := by
+      ext ξ
+      constructor
+      · rintro ⟨(_ | i), rfl⟩
+        · exact Set.mem_insert _ _
+        · exact Set.mem_insert_of_mem _ ⟨t i, ⟨i, rfl⟩, rfl⟩
+      · rintro (rfl | ⟨_, ⟨i, rfl⟩, rfl⟩)
+        · exact ⟨none, rfl⟩
+        · exact ⟨some i, rfl⟩
+    rw [hrange]
+    exact closure_insert_lampAdd_image_inr Δ ht
+  · have hred : TuringReducible (wordProblemOracle (lampGen t)) (wordProblemOracle t) :=
+      OracleTruthTable.turingReducible_of_truthTable (gt := deltaAnswer t) (fun _ => rfl)
+        primrec_affineQueries primrec_affineDecide (affineOracle_eq t)
+    exact partrec_iff_forall_turingReducible.mpr fun o =>
+      TuringReducible.trans hred (partrec_iff_forall_turingReducible.mp hpart o)
+
+theorem printedLamplighterAffineSolvableWordProblem :
+    PrintedLamplighterAffineSolvableWordProblem :=
+  fun _ _ hΔ => hasSolvableWordProblem_lampAffine hΔ
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.Lamplighter.primrec_affineQueries
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.Lamplighter.primrec_affineDecide
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.Lamplighter.printedLamplighterAffineSolvableWordProblem
+
+end Lamplighter
+end SimpleKazhdanSofic
+end GroupApproximation
