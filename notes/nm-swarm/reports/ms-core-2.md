@@ -175,3 +175,8 @@ No false claim found. Each item gives the check.
     `ChainCore.cycleCondition_coreSubshift` (CoreSubshiftCycle). Both signatures match the inputs.
   - Census rows: `metadata/nm-census-rows/ms-core-2.tsv` (keys c825bc73828a, 2df08eeac3cb, e6626f95fede, 2583cbd0c0f2,
     3b218f92cd81, fb195144e5c2, 8921296d639a, d8e1a694d87c).
+- 09-13 ~19:15: CLOSED ENDPOINT LANDED b7e521e57 (probe 0913-191003-38463 GREEN, BUILT, 0 sorryAx/error lines), queued for wiring.
+  `Manuscript/NonMFSentences/CoreModelsLEFClosed`: `subshiftCycleConditionLEFInput`, `subshiftCoreCycleConditionInput`
+  (discharged by ms-traces-3's 178808d0a) and `coreModelsLEFStatement : DynamicRankBudget.CoreModelsLEFStatement`, audited
+  closed to propext, Classical.choice and Quot.sound. The first landing attempt hit push contention; the retry landed.
+  Census: c825bc73828a is now formalized. d8e1a694d87c stays partial because its nonempty clause has no carrier here.
