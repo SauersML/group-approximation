@@ -143,3 +143,11 @@ Route note on `ed348643e2ad`: ρ_lm(Y_l) ⊆ Y_m is proved from the cyclic-edge 
     - `printedChainCoreCoveringPrintedRoute : PrintedChainCoreCoveringPrintedRoute` (tex 1373–1374, in the format of hull-euler's `PrintedChainCoreCovering`, for compact totally disconnected metric X).
   - Census rows: `042966c81c7e` formalized. `0ae6fc9e199c` is formalized with the printed-route carrier added; hull-euler's direct covering stays as a second carrier.
   - First probe 0913-192858-57085 was red: a membership goal was written with `∈ _`, and the stuck instance cascaded to sorryAx. Fixed by naming the set.
+
+## CLAIM (main's item 09-13 ~19:55): `OsinLemma94LongTransitionInput` (W1 leaf; owner sec5-sentences, down)
+
+- CLAIM proof of OsinLemma94LongTransitionInput GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94LongTransitions.lean
+  - Route (sec5-sentences.md l.330–340, roster l.1273–1276): unpinched bubbles are contiguities (|M| ≤ 3(n + r − 1)); pinched bubbles through ms-binary's bubble un-pinch Prop (consumed by name); hairs by kh-cckw's `SurgeryHairOpening`; cutting sides and the other long transitions by hull-euler's Euler lemma.
+  - Feeds clause (a) of `OsinLemma94ClassEndLoopsInput` through ms-binary's `OsinLemma94ClassEndLoopsBudgetInput` (68b6b0e96). The class count from end loops is ct-bilateral-cell's and is not duplicated here.
+  - Every new Prop is model-tested before it is consumed.
+  - Ownership check at origin bbe90003a: the only user is `osinLemma94KindTransitionInput_of_longTransitions`; no shared-tree draft; sec5-sentences' .files equal origin.
