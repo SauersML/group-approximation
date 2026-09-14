@@ -43,9 +43,29 @@ contains a free subsemigroup on two generators or is virtually nilpotent."
    truncated presentation `P_n(Q)` (all relators of length `<= n`) of subexponential growth.
    Equivalently, a witness is a marked group with a neighbourhood of quotients, all of
    subexponential growth.
+4. **Deficiency and mod-p homology** (2026-09-14).
+   - `fp-subexponential-growth-forces-sqrt-mod-p-betti-bound`: a finite presentation `⟨X | R⟩` of a
+     group of subexponential growth has `|X| − |R| ≤ 1`, by the Golod–Shafarevich test on covering
+     presentations.
+   - The same count bounds every finite-index `U` with `d_p(U) ≥ 2`:
+     `(d_p(U) − 2)² ≤ 4[G:U](|R| − |X| + 1)`.
+   - `intermediate-growth-groups-have-deficiency-at-most-zero`: deficiency one is impossible for
+     intermediate growth. The presentation complex is aspherical by ℓ²-vanishing, and Kochloukova's
+     Theorem 3 makes the finitely generated kernel of a map onto `Z` free.
+   - A witness therefore has deficiency at most 0.
+   - If an intermediate growth group has a finite 2-dimensional `K(G,1)` with `χ = 0`, then all its
+     finite-index subgroups have finite abelianization.
 
 ## Exact gap
 
 Exhibit a finitely generated group `Q` of intermediate growth and `n` such that the finitely
 presented cover `P_n(Q)` contains no free subsemigroup-type growth, i.e. has subexponential
 growth. For the first Grigorchuk group every finitely presented cover contains `F_2`.
+
+Presentation side (2026-09-14): any witness `⟨X | R⟩` has `|R| ≥ |X|` and the square-root mod-`p`
+Betti bound above. Deficiency 0 is where these tools stop.
+- A balanced presentation complex has `χ = 1`, so it is never aspherical for an infinite amenable
+  group.
+- Kochloukova's Theorem 3 needs a finite `K(G,1)` with `χ = 0`.
+- The Golod–Shafarevich bound `d_p(U) ≤ 2 + 2√[G:U]` does not bite on branch-type groups, where
+  `d_p` of finite-index subgroups grows logarithmically in the index.
