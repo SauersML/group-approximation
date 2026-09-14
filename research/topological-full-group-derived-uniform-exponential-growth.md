@@ -20,7 +20,12 @@ A negative answer for some `φ` would give a finitely generated simple AMENABLE 
     - (H1) `X = ⊔_(i<2^m) T^iV_m` with `T^(2^m)V_m = V_m`;
     - (H2) a clopen partition of `V_m` of bounded size generating its clopen algebra under `T^(2^m)`.
   - The dyadic substitution theorem is the instance `V_m = ζ^m(X)`.
-- **Still OPEN:** the question for general infinite minimal subshifts (e.g. Sturmian), and the clauses on "diamètre semi-libre / sans torsion uniforme".
+- **Semi-free clause NEGATIVE in the same class** (sk-rauzy-intermediate, 2026-09-14, unreviewed): `dyadic-derived-full-groups-no-uniform-semifree-diameter`.
+  - A free-semigroup pair in the `N`-ball of `S` forces `ω_S ≥ 2^(1/N)`, so `ω([[T]]′) = 1` excludes a uniform semi-free diameter.
+  - In any finitely generated group, a uniform semi-free diameter implies uniform exponential growth.
+- **Still OPEN:**
+  - the question for general infinite minimal subshifts (e.g. Sturmian), including its semi-free clause;
+  - the clause "diamètre sans torsion uniforme" for every subshift, dyadic ones included.
 
 ## Attempts
 - **Transfer of the elementary-group engine** (sk-free-8). For a constant-length-2 substitution subshift, `[[φ]]` contains the level permutations of the towers of height `2^n`, and the induced shift `T_(V_n)` at one fibre.
@@ -46,3 +51,14 @@ A negative answer for some `φ` would give a finitely generated simple AMENABLE 
   - For Sturmian `X_α`, `K^0 ≅ Z + αZ` with unit 1, so `N = 1`, and even rearranged level models are excluded. Remainders of positive measure are unavoidable.
   - Linking remainder levels to a dyadic block by one bounded long-cycle level permutation restores generation (Jordan), but kills the count: `⟨c,t⟩` already has exponential balls up to radius about `q_(n−1)`.
   - What is missing: a bounded family of level permutations of intermediate growth, with separation and connectivity, on the Rauzy level sets of heights `q_n, q_(n−1)`.
+- **Points-based engine with an intermediate-growth fragmentation** (sk-rauzy-intermediate, `research/artifacts/sk-rauzy-intermediate-2026-09-14-part1.md` §§2–3).
+  - **Replacing the Grigorchuk levels.** Replace the Grigorchuk level group by `H = [F,F]`, where `F` is Nekrashevych's golden-mean fragmentation (arXiv:1601.01033 `th:F`).
+    - `H` is periodic and simple, of intermediate growth.
+    - Inverted orbits satisfy `ν(n) ≤ C_1 n e^(−C_2√log n)` (`pr:uppernu`).
+    - `F` lies in `[[σ_𝒲]]` for Matte Bon's edge-label subshift `𝒲` (`prop:embeddingfull`), not in a naive dihedral double: the parity lift is discontinuous at purely non-Hausdorff singularities.
+  - **What transfers (sketch).** Words act as one power of `σ` on small cylinders, and the counting factors of the dyadic proof stay `exp(o(ℓ))` under Nekrashevych's bound.
+  - **Dies at coherent transport.**
+    - An `h ∈ H` moving a good 3-cycle's support `σ^(−1)W ∪ W ∪ σW` into the fibre may act by different powers of `σ` on the three pieces, so the conjugate is not a local generator.
+    - Rigid-stabilizer transport needs floors as large as the displacement of `h`.
+    - Coherent transport is what uniform level models give, and Lemma K forbids them on Sturmian `X_α`.
+  - **Missing.** Generation of `[[σ]]′` from bounded local elements plus `H`-conjugation, without coherent transport.
