@@ -49,3 +49,9 @@ Rows 88ecdc10f78b and a63ff00e499b (Kirchberg) belong to oa-kirchberg and oa-llp
 
 ## Landings
 - dabb25c0b claim; 7b57e5e7a drafts; 850c25be5 and 6367ad27d report; 5c59783bc linter fix.
+
+## 00:xx: DNS and MSI outage, plus two additions from main
+- Local github DNS failed from ~00:18 (git fetch: could not resolve host) and the MSI socket dropped, so probes and landings were blocked. Drafts are kept under `$NM/backup/oa-mcduff/`.
+- CLAIM `GroupApproximation/Analysis/HyperlinearTraceVanishingModels.lean` (statement module, absorbed from oa-ozawa71): `TracePreservingMatrixModel G` extends `AsymptoticUnitaryRepresentation G` with `normTrace (map n 1) → 1` and `normTrace (map n g) → 0` for g ≠ 1; `HasTracePreservingMatrixModel G`; `HyperlinearTracePreservingModelStatement` (every countable hyperlinear group has one). oa-llp consumes these names.
+- CLAIM `GroupApproximation/Analysis/VonNeumannTwistedAmplification.lean` (draft written; landing waits for DNS).
+- QUEUED after Brown's formulation, not yet claimed: cor:wp, tex l.484–486 at 37551fd93, census `5c3fdfb60aaf`: "The proof of [OzawaUniversal, Theorem 2] then shows that the unitary group of a separable II₁ factor contains G_X for only countably many X." Route: rigidity of (T) for unitary representations into U(M) with 2-norm separable M. Close representations of a Kazhdan pair are unitarily conjugate, and the kernels differ across X. No literature input. Claim first when this lane reaches it.
