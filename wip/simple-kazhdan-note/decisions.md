@@ -564,6 +564,25 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - The only unreachable claim is the refuted Z-family universality, dead space on purpose.
     - cairn check still exits 4 on 7 PEER errors (a2-kernel-removal missing; bowen-chapman Lean artifacts absent); no sk node is named.
     - Landings after 22:58, including wave 11, need a steward pass. Main launches sk-cairn-steward-3 when wave 11 reports.
+118. **sk-rev4-referee-b** (f1dae192d0): NO ERROR, NO GAP.
+    - Locators verified at source: Clark–Edie-Michell Cor 4.6 (journal PDF); CFF Thm 1.5 (v1 and v3, preprint, no journal); Brown §11 Q7 (verbatim); Kionke–Schesler Thm 1.2 (arXiv numbering; journal PDF unreachable, low risk).
+    - Fixes applied by main: C1 (Gromov87 + CFF Thm 1.5 for simple quotients of hyperbolic Kazhdan groups; CFF credits Ol'shanskii 1979); C2 ((Section 3) pointer for [[T]]′ ≤ G_X); C3 ("as G is infinite"); C4 ("by a similar argument" for Matui).
+119. **REV4.1 LANDED 37551fd939** (~23:25): 767 lines, 8 pp, md5 b55c0d23…; MSI 0/0/0, 1 underfull.
+    - Contents: rev4 + referee (c) K1–K5, K8; referee (a) U1–U5; referee (b) C1–C4; editor E1 ("Let G be a group as in Theorem 2" opening Brown's formulation). Main read the full word diff. Local copy updated (was rev4, no user edits).
+120. **C3 gate open** (sk-verify-14 part3, 91db46d85d): the half-line overgroup C(Γ) is LEF with WP ≡ WP(Γ); LEF + solvable WP ⇔ subgroup of a simple Kazhdan LEF host with solvable WP. sk-editor-5 is building rev4.2 with the clause, one C(Γ) paragraph, and a Thompson 1980 credit checked at source.
+121. **sk-fq-port** (0a77fefe9a; unreviewed → sk-verify-15 line 57): the every-finite-field subsection ported to Theorem 2's S1 form.
+    - Content: n ≥ 3, F_q-linear φ_k, roots e_ij(e_V u_s), margins w+1, the new change 3 through ultraproduct kernels ⊆ Z; +14 lines, 9 pp on rev4.
+    - PRIORITY for the rev4.2 page budget: C3 (solvable WP) > C1 (non-embeddable continuum) > S (Osajda non-exact hosts) > F_q.
+    - F_q goes in only if the others leave room at ≤ 8 pp, or if main accepts 9 pp for generality after C3/C1/S are counted. Decide at rev4.2 compile.
+122. **sk-verify-14 final** (91db46d85d, 74892fc350, c3c73963ab, 867c1f2db6, fb68489eb2): queue lines 18–34 all PASS, re-derived.
+    - sk-decidable-host (C3).
+    - sk-free-8: small-ball engine checked against Sauer–Schesler; self-similar ring; tower partition, conditional on Mossé; Thue–Morse G_X of non-uniform exponential growth; Leavitt EL_4.
+    - sk-free-5: T1 weakly dense C*(F_∞) (caution: elementary, keep "not found in a bounded search"); Lemma S.
+    - sk-fp-sofic-host: LEA permanence firewall with Deligne sharpness.
+    - sk-sofic-host-hamming: Theorem K and Lemma E.
+    - sk-free-4: rank-four shadows and the rational-spectrum invariant; Voronetsky.
+    - sk-free-6 A (rank lengths ⇒ not uniformly simple).
+    - Note status unchanged: C2 (growth) stays OUT (the proof is long and not citable); everything else is Cairn-only.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
