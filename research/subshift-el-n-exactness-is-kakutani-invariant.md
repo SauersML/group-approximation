@@ -28,3 +28,6 @@ artifacts:
   - `G_X` is exact for every infinite minimal subshift `X` iff `EL_n(R_X)` is exact for every `n ≥ 3` and every such `X`.
 
 **Proof:** `subshift-el-n-exactness-kakutani-invariance-proof`.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part11.md`):** re-derived (a) block and commutator transvections; (b) matrix units u′^i e u′^{−j} and eRe ≅ R_X; (c) the corner e_VR_Xe_V ≅ R_{X_V} via w = Σu^n e_{V_n} with w*w = ww* = e_V, R_X ≅ fM_k(eRe)f via dc = 1; (d) initial segment, Kakutani invariance, EL_n(R_X) ≤ G_{X^{(n)}}.
