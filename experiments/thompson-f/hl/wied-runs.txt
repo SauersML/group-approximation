@@ -1,0 +1,32 @@
+# genwied2 (md5 ffddcb555ec921f29065353117532871) seed 1, S_(3,5), E=1..5
+{"D":1,"L":4,"nS":9,"U":5,"rows":28,"minpoly_deg":10,"const_term_zero":false,"seconds":0.0}
+{"D":2,"L":5,"nS":9,"U":21,"rows":99,"minpoly_deg":42,"const_term_zero":false,"seconds":0.0}
+{"D":3,"L":6,"nS":9,"U":84,"rows":361,"minpoly_deg":168,"const_term_zero":false,"seconds":0.0}
+{"D":4,"L":7,"nS":9,"U":330,"rows":1338,"minpoly_deg":660,"const_term_zero":false,"seconds":0.1}
+{"D":5,"L":8,"nS":9,"U":1287,"rows":5013,"minpoly_deg":2574,"const_term_zero":false,"seconds":0.8}
+alpha 1879332192264247163 713376164582626380 16889165297986115 1424372661569722877 1809193355447410310 75245988799813482 343606203294106168 319599478854802929 1019030692220978450
+beta 741092729165237384 480484019229034295 480784405906419460 2005441565472458781 1839560932147697539 2127126162642565001 2040254807131644771 428606865701911994 1311528060322210779
+# genwied (md5 5c5da9131183527b9627a0ae3794d11c) job 732629 logs, task: line
+task 4: {"D":5,"L":8,"nS":9,"U":1287,"rows":5013,"minpoly_deg":2574,"const_term_zero":false,"seconds":0.9}
+task 4: {"D":6,"L":9,"nS":9,"U":5005,"rows":18931,"minpoly_deg":10010,"const_term_zero":false,"seconds":13.4}
+task 5: {"D":7,"L":10,"nS":9,"U":19448,"rows":71929,"minpoly_deg":38896,"const_term_zero":false,"seconds":187.9}
+task 6: {"D":8,"L":11,"nS":9,"U":75582,"rows":274638,"minpoly_deg":151164,"const_term_zero":false,"seconds":3124.0}
+task 8: {"D":2,"L":5,"nS":4,"U":21,"rows":52,"minpoly_deg":42,"const_term_zero":false,"seconds":0.0}
+task 8: {"D":3,"L":6,"nS":4,"U":84,"rows":195,"minpoly_deg":168,"const_term_zero":true,"seconds":0.0,"kernel_vector_found":true,"in_ker_A":true,"supp_u":40,"supp_v":40}
+task 8: {"D":4,"L":7,"nS":4,"U":330,"rows":736,"minpoly_deg":651,"const_term_zero":true,"seconds":0.0,"kernel_vector_found":true,"in_ker_A":true,"supp_u":187,"supp_v":187}
+task 8: {"D":5,"L":8,"nS":4,"U":1287,"rows":2793,"minpoly_deg":2510,"const_term_zero":true,"seconds":0.6,"kernel_vector_found":true,"in_ker_A":true,"supp_u":791,"supp_v":791}
+task 8: {"D":6,"L":9,"nS":4,"U":5005,"rows":10648,"minpoly_deg":9612,"const_term_zero":true,"seconds":8.1,"kernel_vector_found":true,"in_ker_A":false,"supp_u":3285,"supp_v":3285}
+task 9: {"D":2,"L":6,"nS":5,"U":28,"rows":80,"minpoly_deg":56,"const_term_zero":false,"seconds":0.0}
+task 9: {"D":3,"L":7,"nS":5,"U":120,"rows":315,"minpoly_deg":240,"const_term_zero":false,"seconds":0.0}
+task 9: {"D":4,"L":8,"nS":5,"U":495,"rows":1231,"minpoly_deg":990,"const_term_zero":true,"seconds":0.1,"kernel_vector_found":true,"in_ker_A":true,"supp_u":221,"supp_v":221}
+task 9: {"D":5,"L":9,"nS":5,"U":2002,"rows":4795,"minpoly_deg":3992,"const_term_zero":true,"seconds":1.7,"kernel_vector_found":true,"in_ker_A":true,"supp_u":1092,"supp_v":1092}
+task 9: {"D":6,"L":10,"nS":5,"U":8008,"rows":18656,"minpoly_deg":15913,"const_term_zero":true,"seconds":30.0,"kernel_vector_found":true,"in_ker_A":true,"supp_u":4813,"supp_v":4813}
+task 9: {"D":7,"L":11,"nS":5,"U":31824,"rows":72579,"minpoly_deg":62986,"const_term_zero":true,"seconds":482.8,"kernel_vector_found":true,"in_ker_A":true,"supp_u":20280,"supp_v":20280}
+task 10: {"D":2,"L":7,"nS":6,"U":36,"rows":116,"minpoly_deg":72,"const_term_zero":false,"seconds":0.0}
+task 10: {"D":3,"L":8,"nS":6,"U":165,"rows":480,"minpoly_deg":330,"const_term_zero":false,"seconds":0.0}
+task 10: {"D":4,"L":9,"nS":6,"U":715,"rows":1946,"minpoly_deg":1430,"const_term_zero":false,"seconds":0.3}
+task 10: {"D":5,"L":10,"nS":6,"U":3003,"rows":7798,"minpoly_deg":6006,"const_term_zero":true,"seconds":4.5,"kernel_vector_found":true,"in_ker_A":true,"supp_u":1288,"supp_v":1288}
+task 10: {"D":6,"L":11,"nS":6,"U":12376,"rows":31032,"minpoly_deg":24737,"const_term_zero":true,"seconds":77.9,"kernel_vector_found":true,"in_ker_A":true,"supp_u":6596,"supp_v":6596}
+task 10: {"D":7,"L":12,"nS":6,"U":50388,"rows":122967,"minpoly_deg":100625,"const_term_zero":true,"seconds":1441.0,"kernel_vector_found":true,"in_ker_A":true,"supp_u":29916,"supp_v":29916}
+task 1: {"D":7,"L":9,"nS":5,"U":11440,"rows":31174,"minpoly_deg":22880,"const_term_zero":true,"seconds":50.5,"kernel_vector_found":true,"in_ker_A":false,"supp_u":1,"supp_v":1}
+task 2: {"D":8,"L":10,"nS":5,"U":43758,"rows":118118,"minpoly_deg":87335,"const_term_zero":true,"seconds":895.7,"kernel_vector_found":true,"in_ker_A":false,"supp_u":6457,"supp_v":6457}
