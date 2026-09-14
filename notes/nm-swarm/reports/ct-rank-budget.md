@@ -112,6 +112,11 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   Census rows appended (formalized, queued for wiring).  Of the merge-3 unassigned keys: ct-sentences' seven resolved at
   merge 4 (0e622f840); `d59fc0887768` (tex 1341) re-sent to ms-core-1 after the restart.
 
+- 09-14: CLAIM, on the coordinator's reassignment: census key `d59fc0887768` (tex 1341, sec:chain-core preamble, "The
+  torsion-defect argument can identify the whole MF radical even when the defect ideal is proper"), previously handed to
+  ms-core-1.  Plan: a named closed Prop over `printedCoreMFRadical_closed`, adding that the defect ideal is proper, and
+  a hex-keyed row.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
