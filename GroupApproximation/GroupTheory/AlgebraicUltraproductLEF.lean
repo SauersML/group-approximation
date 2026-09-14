@@ -100,7 +100,8 @@ theorem isTextbookLEF_ultraproduct : IsTextbookLEF (Ultraproduct ω G) := by
       ∀ᶠ i in (ω : Filter ι), out ω G (x * y) i = out ω G x i * out ω G y i := by
     intro x y
     refine (mk_eq_mk_iff ω G).1 ?_
-    rw [mk_out, QuotientGroup.mk_mul, mk_out, mk_out]
+    rw [mk_out]
+    exact (congrArg₂ (· * ·) (mk_out ω G x) (mk_out ω G y)).symm
   have hne : ∀ x y : Ultraproduct ω G, x ≠ y →
       ∀ᶠ i in (ω : Filter ι), ¬ out ω G x i = out ω G y i := by
     intro x y hxy

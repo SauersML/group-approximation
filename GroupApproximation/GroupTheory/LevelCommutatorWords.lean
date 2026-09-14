@@ -39,6 +39,7 @@ namespace GroupApproximation
 namespace LevelCommutatorWords
 
 open Equiv
+open scoped commutatorElement
 
 section Levels
 
