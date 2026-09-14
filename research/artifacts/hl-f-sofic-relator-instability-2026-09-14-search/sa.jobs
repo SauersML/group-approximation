@@ -1,0 +1,64 @@
+./anneal_ratio 16 0.1 30000000 1 cert.x12.txt > sa.16.x12.1.txt
+./anneal_ratio 16 0.1 30000000 1 cert.16.txt > sa.16.c16.1.txt
+./anneal_ratio 16 0.1 30000000 2 cert.x12.txt > sa.16.x12.2.txt
+./anneal_ratio 16 0.1 30000000 2 cert.16.txt > sa.16.c16.2.txt
+./anneal_ratio 16 0.1 30000000 3 cert.x12.txt > sa.16.x12.3.txt
+./anneal_ratio 16 0.1 30000000 3 cert.16.txt > sa.16.c16.3.txt
+./anneal_ratio 16 0.1 30000000 4 cert.x12.txt > sa.16.x12.4.txt
+./anneal_ratio 16 0.1 30000000 4 cert.16.txt > sa.16.c16.4.txt
+./anneal_ratio 20 0.1 30000000 1 cert.x12.txt > sa.20.x12.1.txt
+./anneal_ratio 20 0.1 30000000 1 cert.16.txt > sa.20.c16.1.txt
+./anneal_ratio 20 0.1 30000000 2 cert.x12.txt > sa.20.x12.2.txt
+./anneal_ratio 20 0.1 30000000 2 cert.16.txt > sa.20.c16.2.txt
+./anneal_ratio 20 0.1 30000000 3 cert.x12.txt > sa.20.x12.3.txt
+./anneal_ratio 20 0.1 30000000 3 cert.16.txt > sa.20.c16.3.txt
+./anneal_ratio 20 0.1 30000000 4 cert.x12.txt > sa.20.x12.4.txt
+./anneal_ratio 20 0.1 30000000 4 cert.16.txt > sa.20.c16.4.txt
+./anneal_ratio 24 0.1 30000000 1 cert.x12.txt > sa.24.x12.1.txt
+./anneal_ratio 24 0.1 30000000 1 cert.16.txt > sa.24.c16.1.txt
+./anneal_ratio 24 0.1 30000000 2 cert.x12.txt > sa.24.x12.2.txt
+./anneal_ratio 24 0.1 30000000 2 cert.16.txt > sa.24.c16.2.txt
+./anneal_ratio 24 0.1 30000000 3 cert.x12.txt > sa.24.x12.3.txt
+./anneal_ratio 24 0.1 30000000 3 cert.16.txt > sa.24.c16.3.txt
+./anneal_ratio 24 0.1 30000000 4 cert.x12.txt > sa.24.x12.4.txt
+./anneal_ratio 24 0.1 30000000 4 cert.16.txt > sa.24.c16.4.txt
+./anneal_ratio 32 0.1 30000000 1 cert.x12.txt > sa.32.x12.1.txt
+./anneal_ratio 32 0.1 30000000 1 cert.16.txt > sa.32.c16.1.txt
+./anneal_ratio 32 0.1 30000000 2 cert.x12.txt > sa.32.x12.2.txt
+./anneal_ratio 32 0.1 30000000 2 cert.16.txt > sa.32.c16.2.txt
+./anneal_ratio 32 0.1 30000000 3 cert.x12.txt > sa.32.x12.3.txt
+./anneal_ratio 32 0.1 30000000 3 cert.16.txt > sa.32.c16.3.txt
+./anneal_ratio 32 0.1 30000000 4 cert.x12.txt > sa.32.x12.4.txt
+./anneal_ratio 32 0.1 30000000 4 cert.16.txt > sa.32.c16.4.txt
+./anneal_ratio 48 0.1 30000000 1 cert.x12.txt > sa.48.x12.1.txt
+./anneal_ratio 48 0.1 30000000 1 cert.16.txt > sa.48.c16.1.txt
+./anneal_ratio 48 0.1 30000000 2 cert.x12.txt > sa.48.x12.2.txt
+./anneal_ratio 48 0.1 30000000 2 cert.16.txt > sa.48.c16.2.txt
+./anneal_ratio 48 0.1 30000000 3 cert.x12.txt > sa.48.x12.3.txt
+./anneal_ratio 48 0.1 30000000 3 cert.16.txt > sa.48.c16.3.txt
+./anneal_ratio 48 0.1 30000000 4 cert.x12.txt > sa.48.x12.4.txt
+./anneal_ratio 48 0.1 30000000 4 cert.16.txt > sa.48.c16.4.txt
+./anneal_ratio 64 0.1 30000000 1 cert.x12.txt > sa.64.x12.1.txt
+./anneal_ratio 64 0.1 30000000 1 cert.16.txt > sa.64.c16.1.txt
+./anneal_ratio 64 0.1 30000000 2 cert.x12.txt > sa.64.x12.2.txt
+./anneal_ratio 64 0.1 30000000 2 cert.16.txt > sa.64.c16.2.txt
+./anneal_ratio 64 0.1 30000000 3 cert.x12.txt > sa.64.x12.3.txt
+./anneal_ratio 64 0.1 30000000 3 cert.16.txt > sa.64.c16.3.txt
+./anneal_ratio 64 0.1 30000000 4 cert.x12.txt > sa.64.x12.4.txt
+./anneal_ratio 64 0.1 30000000 4 cert.16.txt > sa.64.c16.4.txt
+./anneal_ratio 16 0.5 30000000 5 > sa.16.rnd.5.txt
+./anneal_ratio 16 0.5 30000000 6 > sa.16.rnd.6.txt
+./anneal_ratio 16 0.5 30000000 7 > sa.16.rnd.7.txt
+./anneal_ratio 16 0.5 30000000 8 > sa.16.rnd.8.txt
+./anneal_ratio 20 0.5 30000000 5 > sa.20.rnd.5.txt
+./anneal_ratio 20 0.5 30000000 6 > sa.20.rnd.6.txt
+./anneal_ratio 20 0.5 30000000 7 > sa.20.rnd.7.txt
+./anneal_ratio 20 0.5 30000000 8 > sa.20.rnd.8.txt
+./anneal_ratio 24 0.5 30000000 5 > sa.24.rnd.5.txt
+./anneal_ratio 24 0.5 30000000 6 > sa.24.rnd.6.txt
+./anneal_ratio 24 0.5 30000000 7 > sa.24.rnd.7.txt
+./anneal_ratio 24 0.5 30000000 8 > sa.24.rnd.8.txt
+./anneal_ratio 32 0.5 30000000 5 > sa.32.rnd.5.txt
+./anneal_ratio 32 0.5 30000000 6 > sa.32.rnd.6.txt
+./anneal_ratio 32 0.5 30000000 7 > sa.32.rnd.7.txt
+./anneal_ratio 32 0.5 30000000 8 > sa.32.rnd.8.txt

@@ -44,3 +44,14 @@ not sofic. It then makes `V` nonsofic too.
   - **Perturbations.** Perturbing a commuting pair costs about twice its separation in defect.
   - **Reading.** Every spatial almost-solution is near-commuting. This agrees with the claim but says nothing
     beyond that class.
+- **Rate form (2026-09-14): the claim is automatically linear.**
+  - **Criterion.** Coordinatewise powers multiply fixed-point proportions. So this claim holds exactly
+    when one constant `C` gives `d(AB,BA) ≤ C max_j d(R_j(A,B),1)` for all pairs. It fails exactly when
+    the ratio of relator defect to separation has infimum 0
+    (`thompson-f-sofic-iff-defect-to-separation-ratio-vanishes`). Disjoint unions and coordinatewise
+    products never lower that ratio below `min(r,1)`.
+  - **Constant.** Exact enumeration over `Sym(n)` for `n ≤ 12` gives a pair with
+    `max(m_1,m_2)/m_c = 1/3`, so any such `C` is at least 3
+    (`research/artifacts/hl-f-sofic-relator-instability-2026-09-14.md`).
+  - **Proved classes.** On pairs where a fixed nontrivial element of `F` is almost trivial, the inequality
+    holds with linear constants (`thompson-f-almost-kernels-force-linear-commutator-bounds`).

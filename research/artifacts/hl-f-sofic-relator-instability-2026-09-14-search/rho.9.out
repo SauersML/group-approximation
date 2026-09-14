@@ -1,0 +1,14 @@
+n=9 partitions=30 pairs=10886400 separating_pairs=10508040
+weighted_over_all_pairs: separating=131671008000 sum<mc=21047040 sum==mc=105235200 max<mc=23913066240
+min_rho_sum=4/7  pairs_with_sum<mc=2296  pairs_with_sum==mc=27021
+min_rho_max=3/7  pairs_with_max<mc=1356853
+argmin_sum A=1,2,3,4,5,0,7,8,6 B=2,0,1,6,3,8,4,5,7
+argmin_max A=1,2,3,4,5,6,0,8,7 B=0,2,4,3,1,6,5,7,8
+envelope mc: min(m1+m2) min(max(m1,m2))
+  mc=3: 3 3
+  mc=4: 4 3
+  mc=5: 4 3
+  mc=6: 4 3
+  mc=7: 4 3
+  mc=8: 7 4
+  mc=9: 7 4

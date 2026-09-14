@@ -1,0 +1,16 @@
+n=11 partitions=56 pairs=2235340800 separating_pairs=2194487280
+weighted_over_all_pairs: separating=1593348686899200 sum<mc=21076070400 sum==mc=68497228800 max<mc=300851324928000
+min_rho_sum=4/8  pairs_with_sum<mc=76199  pairs_with_sum==mc=1021168
+min_rho_max=4/10  pairs_with_max<mc=309371104
+argmin_sum A=1,2,3,4,0,6,7,8,9,5,10 B=3,4,5,1,7,8,9,0,6,2,10
+argmin_max A=1,2,3,4,0,6,7,5,8,9,10 B=2,4,8,1,3,5,7,9,0,6,10
+envelope mc: min(m1+m2) min(max(m1,m2))
+  mc=3: 3 3
+  mc=4: 4 3
+  mc=5: 4 3
+  mc=6: 4 3
+  mc=7: 4 3
+  mc=8: 4 4
+  mc=9: 7 4
+  mc=10: 7 4
+  mc=11: 8 5
