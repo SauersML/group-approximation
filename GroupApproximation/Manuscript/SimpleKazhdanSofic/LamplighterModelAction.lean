@@ -188,7 +188,8 @@ theorem eventually_attach_modelAct (hT : Subgroup.closure T = ⊤) (ξ : LampAff
   rw [modelAct_apply, Pi.add_apply, qSmul_apply, hn1 h hJ, lampImage_eq_sum_support,
     Finset.sum_apply]
   congr 1
-  calc ∑ c ∈ (Multiplicative.toAdd ξ.left).support, Pi.single (M.σ n c) (1 : ZMod 2) (M.σ n h)
+  calc ∑ c ∈ (Multiplicative.toAdd ξ.left).support,
+        (Pi.single (M.σ n c) (1 : ZMod 2) : ModelSpace M n) (M.σ n h)
       = ∑ c ∈ (Multiplicative.toAdd ξ.left).support, (if h = c then (1 : ZMod 2) else 0) :=
         Finset.sum_congr rfl fun c hc => by
           by_cases hhc : h = c
