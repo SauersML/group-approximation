@@ -17,6 +17,15 @@ CLAIM printed sentences d4c75e0d3c7f and the first clause of 1fe81fb1330c GroupA
 CLAIM completion of a linear isometry representation GroupApproximation/Analysis/KirchbergCompletionRepresentation.lean
 CLAIM realified Frobenius and trace identities for complex matrix models GroupApproximation/Analysis/KirchbergRealForms.lean
 
+CLAIM Kirchberg Corollary 1.2, every subgroup of the unitary group of R has the factorization property GroupApproximation/Analysis/KirchbergHyperfiniteSubgroups.lean
+CLAIM printed rows 88ecdc10f78b (Theorem 1.1 and Corollary 1.2) and a63ff00e499b (G lacks the factorization property; G is not a subgroup of U(R)) GroupApproximation/Manuscript/SimpleKazhdanSofic/KirchbergFactorizationSentences.lean
+
+00:0x: main widened the scope to Corollary 1.2 and "G is not a subgroup of U(R)". The tensor-form equivalence is not needed.
+
+01:30 status:
+- All eight infrastructure modules plus the assembly are drafted (attic copies on main), with a co-probe running.
+- Endpoints planned in `Manuscript/NinetyNineProblems/KirchbergTheorem`: `kirchbergKazhdanFactorizationInput`, `printedKirchbergTheorem`, `not_hasFactorizationProperty_of_simple_infinite_kazhdan`.
+
 23:35 re-scope: the note is at 37551fd93 (census 649cb1f80, md5 b55c0d23…), section "Brown's formulation" l.283–290.
 - Rows: `88ecdc10f78b` (Theorem 1.1, plus a new clause: Corollary 1.2, every subgroup of U(R) has the factorization property) and `a63ff00e499b` (G lacks the factorization property; G is not a subgroup of U(R); the LLP clause belongs to oa-llp).
 - G is "a group as in Theorem thm:general": infinite, finitely generated, simple and Kazhdan.
