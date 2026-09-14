@@ -21,11 +21,12 @@ So at the note's own ranks 2 and 3, rung (L) of `kazhdan-elementary-approximatio
 equivalence for these rings: LEF `EL_N` ⟺ LEF ring ⟺ exactly matricial.
 
 **Scope.**
-- Every simple Steinberg algebra `A_k(𝒢)` of a minimal effective Hausdorff ample groupoid with infinite unit space
+- Every simple Steinberg algebra `A_k(𝒢)` over a countable field `k`, of a minimal effective Hausdorff ample groupoid
+  with compact, second countable, infinite unit space, so that `A_k(𝒢)` is unital and countable
   (`steinberg-algebra-simple-iff-minimal-effective`). There is an arrow `g` with `r(g) != s(g)`, and a compact open
   bisection `σ ∋ g` with `r(σ) ∩ s(σ) = ∅` gives `ε_12 = 1_σ`, `ε_21 = 1_(σ^{-1})`, `ε_11 = 1_(r(σ))`,
   `ε_22 = 1_(s(σ))`.
-- In particular `LC(X,k) ⋊ Γ` for every minimal topologically free action of a countable group on an infinite
+- In particular `LC(X,k) ⋊ Γ`, over a countable field `k`, for every minimal topologically free action of a countable group on an infinite
   Cantor set. Take `γ != e` and a clopen `V != ∅` with `γV ∩ V = ∅`, and `ε_12 = u_γ e_V`, `ε_21 = e_V u_γ^{-1}`.
 - Purely infinite simple rings such as `L_k(1,2)`, where all four conditions fail.
 - Not covered: simple rings with no nonzero 2x2 matrix units, e.g. division rings and simple domains
@@ -44,3 +45,5 @@ nonzero 2x2 matrix units has no LEF elementary group of any rank `N >= 2`. For e
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS (§3). (1)⇒(2)⇒(3)⇒(4)⇒(1), and the Steinberg bisection argument, re-derived. N4: the model test fails as stated. `M_2(F_2 × F_2)` satisfies (3) through the diagonal embedding into `M_4(F_2)`, and simplicity is also used in (1)⇒(2). A test that simplicity is needed in (2)⇒(3) is `M_2(Z/4)`: it has full matrix units and is finite, but `4 = 0` has no unital image in matrices over fields. N5: the Steinberg bullet needs a compact, second countable unit space, so that `R` is unital and countable.
 
 **Review (sk-verify-12, 2026-09-13, `research/artifacts/sk-verify-12-2026-09-13.md`):** PASS, independent (§3). The iff chain and the imports were re-derived: `simple-lef-rings-are-exactly-matricial` (countable), `exactly-matricial-rings-have-lef-general-linear-groups`, and the topologically free matrix units. I confirm N4: `M_2(F_2×F_2) ⊆ M_4(F_2)` block-diagonally. The model test is replaced by `M_2(Z/4)`, and 2 ↦ 0 in every field of characteristic 2, as above. The Consequence rests on `lef-simple-rings-are-not-finitely-presented`, which has no review line on main.
+
+**N5 applied (sk-cairn-steward-2, 2026-09-13).** The Steinberg scope bullet now requires a compact, second countable unit space over a countable field, so that `A_k(𝒢)` is unital and countable. The model test (N4) was already applied on main.

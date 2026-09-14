@@ -20,8 +20,11 @@ for every non-principal ultrafilter `omega` there is an injective unital ring ho
 With `exactly-matricial-rings-are-lef-rings`, a simple ring is LEF iff it is exactly matricial, and in that case
 it is exactly matricial over finite fields.
 
-**Model test.** `R = F_2 × F_2` is LEF and not simple. Projecting to one factor is unital but not injective,
-so simplicity is needed.
+**Model test.** `R = Z/4` is finite, hence LEF, and not simple. No unital homomorphism into an ultraproduct of matrix
+algebras over fields is injective: the image of `2` is a scalar that is `0` or invertible in each coordinate, while
+`2 ≠ 0 = 2^2`. So simplicity is needed. The earlier test `F_2 × F_2` embeds unitally and injectively in `M_2(F_2)`
+diagonally, so it did not show this (sk-verify-8, `research/artifacts/sk-review-8-2026-09-13-part3.md`, N4; applied
+by sk-cairn-steward-2).
 
 **Review (un-verify-3, 2026-09-13): PASS.** Re-derived: the semisimple quotient of a finite ring is a product of `M_d(F_q)`, unital projection onto one factor, the ultraproduct homomorphism, and injectivity by simplicity. `research/artifacts/un-review3-2026-09-13-part3.md` §4.
 
