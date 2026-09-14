@@ -33,6 +33,8 @@ requires:
   - subshift-el3-two-ended-lattice-stabilizers-locally-finite
   - unit-group-confined-subgroups-idempotent-commutator-lemma
   - idempotent-displacement-fails-for-polynomially-small-units
+  - polynomially-small-units-have-order-dividing-420
+  - laurent-linear-confining-sets-force-infinite-order-elements
 ---
 
 Assembly only: the theme claim is the conjunction of the listed results. Each is proved or imported on its own route.
@@ -46,3 +48,5 @@ Members added by sk-cairn-steward-2 (2026-09-13, third pass, sk landings to 22:4
 Members added by sk-cairn-steward-2 (2026-09-13, fourth pass, sk landings to 22:56): `subshift-el3-orbit-stabilizers-conjugate-iff-same-orbit` `subshift-el-groups-have-bounded-conjugation-invariant-norms`.
 
 Members added by sk-cairn-steward-4 (2026-09-14, wave-12 sk landings): `dyadic-tower-subshift-full-group-non-uniform-growth`.
+
+Members added by sk-cairn-steward-4 (2026-09-14, third pass): `polynomially-small-units-have-order-dividing-420` `laurent-linear-confining-sets-force-infinite-order-elements`.
