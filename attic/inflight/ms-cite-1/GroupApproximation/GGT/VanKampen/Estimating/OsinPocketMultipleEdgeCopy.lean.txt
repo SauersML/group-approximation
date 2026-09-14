@@ -214,34 +214,66 @@ def SideRelatorCellForOrder (S : GloballyDistinguishedSectionFamily D lambda c e
           ∃ kept : Fin S.diagram.rCellCount,
             (cell S.diagram kept).face ∈ SimpleClosedWalkSides.sideFaces S.diagram.toCombMap K.walk
 
-/-- **The exterior is off the side of the cell pocket walk in SOME order** (respelled residual of
-binder 5, owner `w1-binder-3`).  For a pair of distinct selected regions joining two distinct cells
-of an optimal least-area family, the exterior face lies in at most one of the two complementary
-pockets, so it is off the side of the walk of the order `(a, b, i, j)` or of the order `(b, a, j, i)`.
-The fixed-order `CellPocketWalkOuterOffSideStatement` is over-strong; this is its correct form. -/
+/-- **The exterior is off the side of one of the two complementary cell pocket walks** (respelled
+residual of binder 5, owner `w1-binder-3`).  For distinct selected regions `a`, `b` joining the
+distinct cells `i` and `j`, let `K₁` carry the walk data of `CellPocketWalk.exists_of_joinsCells`
+for the order `(a, b)` and `K₂` for the order `(b, a)`, between the same cells, each a nonempty
+closed walk with no repeated dart and no dart with its reverse.  The two walks bound the two
+complementary pockets, and the exterior face lies in at most one of them.  The order `(b, a, j, i)`
+spells the same walk as `(a, b, i, j)` up to rotation, so the complementary order is `(b, a, i, j)`.
+No edge condition and no least area are needed. -/
 def CellPocketWalkOuterOffSideSomeOrderStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     {D : RelGenSet G Lambda} {eps : ℕ} {lambda c : ℝ} {Delta : DiscDiagram.{u, w, v} W}
-    {cuts : SectionCuts D lambda c Delta.boundaryWord},
-    Delta.LeastArea →
-      ∀ (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
-        {i j : Fin S.diagram.rCellCount} {a b : RegionCandidate D eps S.diagram},
-        a ∈ S.family → b ∈ S.family → a ≠ b → i ≠ j → a.JoinsCells i j → b.JoinsCells i j →
-          OuterOffSideForOrder S a b i j ∨ OuterOffSideForOrder S b a j i
+    {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    (S : RealizedSectionFamily D lambda c eps Delta cuts)
+    {i j : Fin S.diagram.rCellCount} {a b : RegionCandidate D eps S.diagram},
+    a ∈ S.family → b ∈ S.family → a ≠ b → i ≠ j → a.JoinsCells i j → b.JoinsCells i j →
+    ∀ K₁ K₂ : CellPocketWalk D eps S.diagram i j,
+      K₁.firstSide = b.sideFrom j → K₁.secondSide = a.sideFrom i →
+      (∃ G₁ : CyclicArc (cellDarts S.diagram i),
+        K₁.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i) →
+      (∃ G₂ : CyclicArc (cellDarts S.diagram j),
+        K₁.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j) →
+      ∀ hne₁ : K₁.walk ≠ [],
+      (K₁.walk.IsChain fun d e => S.diagram.toCombMap.vertexOf
+        (S.diagram.toCombMap.alpha d) = S.diagram.toCombMap.vertexOf e) →
+      S.diagram.toCombMap.vertexOf (S.diagram.toCombMap.alpha (K₁.walk.getLast hne₁)) =
+        S.diagram.toCombMap.vertexOf (K₁.walk.head hne₁) →
+      K₁.walk.Nodup → (∀ d ∈ K₁.walk, S.diagram.toCombMap.alpha d ∉ K₁.walk) →
+      K₂.firstSide = a.sideFrom j → K₂.secondSide = b.sideFrom i →
+      (∃ G₁ : CyclicArc (cellDarts S.diagram i),
+        K₂.firstArc.darts = b.cellArcList i ++ G₁.darts ++ a.cellArcList i) →
+      (∃ G₂ : CyclicArc (cellDarts S.diagram j),
+        K₂.secondArc.darts = a.cellArcList j ++ G₂.darts ++ b.cellArcList j) →
+      ∀ hne₂ : K₂.walk ≠ [],
+      (K₂.walk.IsChain fun d e => S.diagram.toCombMap.vertexOf
+        (S.diagram.toCombMap.alpha d) = S.diagram.toCombMap.vertexOf e) →
+      S.diagram.toCombMap.vertexOf (S.diagram.toCombMap.alpha (K₂.walk.getLast hne₂)) =
+        S.diagram.toCombMap.vertexOf (K₂.walk.head hne₂) →
+      K₂.walk.Nodup → (∀ d ∈ K₂.walk, S.diagram.toCombMap.alpha d ∉ K₂.walk) →
+        S.diagram.outerFace ∉ SimpleClosedWalkSides.sideFaces S.diagram.toCombMap K₁.walk ∨
+          S.diagram.outerFace ∉ SimpleClosedWalkSides.sideFaces S.diagram.toCombMap K₂.walk
 
-/-- **A relator cell is on the side of the cell pocket walk in BOTH orders** (respelled residual of
-binder 5, owner `ms-inverses-2`).  The pocket between two cells always keeps a relator cell, in
-either order, so this is not order-sensitive; stating it for both orders lets the assembly consume it
-whichever order `CellPocketWalkOuterOffSideSomeOrderStatement` selects. -/
-def CellPocketWalkSideRelatorCellBothOrdersStatement : Prop :=
-  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
-    {D : RelGenSet G Lambda} {eps : ℕ} {lambda c : ℝ} {Delta : DiscDiagram.{u, w, v} W}
-    {cuts : SectionCuts D lambda c Delta.boundaryWord},
+/-- **A clean pair of regions joining two cells, on a copy, clean in both orders** (named residual of
+binder 5, owner `w1-binder-5`).  As `CellPocketCopyCleanStatement`, with the edge conditions for the
+order `(a', b')` and for the complementary order `(b', a')` between the same cells.  The side fields of
+`CellPocketWalk.CopyClean` differ between the two orders, so neither follows from the other.  The side
+relator cell of the chosen walk is proved (`cellPocketKeptCellNoncrossing`) from the exterior off its
+side and one following cycle, so no side relator cell residual is stated here. -/
+def CellPocketCopyCleanBothOrdersStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (lambda c : ℝ) (eps : ℕ)
+    (W : Set (List (RelLetter G Lambda))) (Delta : DiscDiagram.{u, w, v} W)
+    (cuts : SectionCuts D lambda c Delta.boundaryWord),
     Delta.LeastArea →
-      ∀ (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
-        {i j : Fin S.diagram.rCellCount} {a b : RegionCandidate D eps S.diagram},
-        a ∈ S.family → b ∈ S.family → a ≠ b → i ≠ j → a.JoinsCells i j → b.JoinsCells i j →
-          SideRelatorCellForOrder S a b i j ∧ SideRelatorCellForOrder S b a j i
+      ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+        ∀ a ∈ S.family, ∀ b ∈ S.family, a ≠ b → ∀ i j : Fin S.diagram.rCellCount, i ≠ j →
+          a.JoinsCells i j → b.JoinsCells i j →
+            ∃ (S' : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+              (a' b' : RegionCandidate D eps S'.diagram) (i' j' : Fin S'.diagram.rCellCount),
+              a' ∈ S'.family ∧ b' ∈ S'.family ∧ a' ≠ b' ∧ i' ≠ j' ∧
+                a'.JoinsCells i' j' ∧ b'.JoinsCells i' j' ∧
+                  CellPocketWalk.CopyClean a' b' i' j' ∧ CellPocketWalk.CopyClean b' a' i' j'
 
 end SomeOrder
 
@@ -341,7 +373,7 @@ end GroupApproximation.GGT.VanKampen
 #audit_axioms GroupApproximation.GGT.VanKampen.OuterOffSideForOrder
 #audit_axioms GroupApproximation.GGT.VanKampen.SideRelatorCellForOrder
 #audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkOuterOffSideSomeOrderStatement
-#audit_axioms GroupApproximation.GGT.VanKampen.CellPocketWalkSideRelatorCellBothOrdersStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.CellPocketCopyCleanBothOrdersStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.multipleEdgePocketRegionCopyInput_of_pinch
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinMultipleEdgePocketRegionCopySectionStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.OsinMultipleEdgePocketRegionSectionStatement.copySection
