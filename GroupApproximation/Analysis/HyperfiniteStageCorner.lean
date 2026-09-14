@@ -84,7 +84,7 @@ theorem norm_stageCorner_deltaOne_sq [Nonempty Y] (φ : Y × Fin r ↪ StageIdx 
       (((2 : ℂ) ^ j)⁻¹ * ((r : ℂ) * Fintype.card Y)) * ((hsNormSq Y A : ℝ) : ℂ) := by
   have h1 := GroupVonNeumann.coefficient_star_mul_self PauliGroup (stageCorner φ A)
   rw [← map_star, ← map_mul, Matrix.star_eq_conjTranspose] at h1
-  have h2 := coefficient_stageCorner_eq_normTrace φ (Aᴴ * A)
+  have h2 := coefficient_stageCorner_eq_normTrace φ (A.conjTranspose * A)
   rw [ambientCoefficientAtOne_apply] at h2
   rw [Complex.ofReal_pow, ← h1, h2, ofReal_hsNormSq_conjTranspose_mul]
 
