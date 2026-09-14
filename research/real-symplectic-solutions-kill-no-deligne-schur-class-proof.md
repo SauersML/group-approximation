@@ -44,7 +44,13 @@ when `alpha_H(K_2(Q, w)) = 0`, for every lift. That criterion needs
   along the inclusion `rho` is `E_3`, compatibly with `<z> = Z/3`.
 - Apply (RS1). ∎
 
-**Remark (not used).** The same argument works with `Sp_(2g)(R)`, `g >= 2`,
-in place of `Sp_4(R)`. The inclusion `U(2) -> U(g)` induces an isomorphism on
-`pi_1` through the determinant, so the connected three-fold cover of
-`Sp_(2g)(R)` restricts to that of `Sp_4(R)`.
+**(RS3).** Embed `Sp_4(R) -> Sp_(2g)(R)` block-diagonally, `g >= 2`.
+- Maximal compact subgroups are `U(2)` and `U(g)`, and the inclusion is
+  `A -> diag(A, I_(g-2))`. Both groups deformation retract onto them, and
+  `det : U(n) -> U(1)` induces `pi_1(U(n)) = Z`. The determinant of
+  `diag(A, I)` is `det A`, so the embedding induces an isomorphism on `pi_1`.
+- Hence the pullback of the connected three-fold cover of `Sp_(2g)(R)`
+  (the covering for `3Z <= Z`) along the embedding is connected, so it is the
+  connected three-fold cover of `Sp_4(R)`. Its pullback along
+  `Sp_4(Z) -> Sp_4(R)` is `E_3`, compatibly with `Z/3`.
+- Apply (RS1) with `H = Sp_(2g)(R)`. ∎

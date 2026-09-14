@@ -26,6 +26,10 @@ three-fold cover and `E = E_3`, the inverse image of `Sp_4(Z)`
 `sp4-schur-kernel-meets-the-deligne-triple-class` is an equation with no
 real symplectic solution.
 
+(RS3) **Every genus.** The same holds when `w(T) = 1` has a solution
+`T in Sp_(2g)(R)` for some `g >= 2`, with `Sp_4(Z)` embedded block-diagonally.
+So a witness is an equation with no solution in any `Sp_(2g)(R)`.
+
 **Why it matters.** Finite quotients, finite-dimensional projective
 representations and amenable packets are all blind to Deligne's class
 (Attempt 4 of the target: "no invariant can prune it"). The real group
