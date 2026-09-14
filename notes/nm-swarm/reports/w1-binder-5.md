@@ -324,6 +324,24 @@ Design:
     evidence. A docstring edit that names the discharged binder forced a real build.
   - The endpoint discharges the `hvalue` binder of ms-compress-2's `osinLemma94SameCellPocketInput_of_loopCut`, so
     `OsinLemma94SameCellPocketInput` rests only on `SameCellPocketLoopCutStatement`.
+## Item (09-14 ~08:5x): the component API of w1-binder-6's full-t₁ route
+
+Main's order: agree exact statements with w1-binder-6 in one message (sent 08:5x), claim, then calibrate on its glue
+model `OsinPocketFullArcLakeGlueModel` (e7ba8abf8, on main).
+
+Already on origin, reused and not rebuilt:
+- `DiscDiagram.ofPlanar` (`PlanarVanKampenDiagram`, 3f71a3a50);
+- `CombMap.restrict` with its binary add lemmas (`CombMapInvariantRestrict`), `restrict_connected`,
+  `restrict_planar_of_euler_four`.
+
+CLAIM component API:
+- `GroupApproximation/GGT/VanKampen/CombMapComponents.lean`: `componentOf`, `componentOf_alpha`, `componentOf_sigma`,
+  `component`, `component_connected`, `restrict_isRestriction`, the `*_component_add` specializations,
+  `component_planar_of_euler_four`.
+- `GroupApproximation/GGT/VanKampen/DiscDiagramOfPlanarRestrict.lean`: `restrictFace`, `restrictFaceBoundary`,
+  `DiscDiagram.ofPlanarRestrict`, `ofPlanarRestrict_rCellCount`, `ofPlanarRestrict_boundaryWord`.
+- Calibration on the glue model's split map, in a model module of this lane.
+
 - **Reboot recovery (08:3x).** `/private/tmp` was wiped and the infra rebuilt; this lane's clone is now `lix-j`.
   - All lane paths were re-registered in `.files`.
   - `BridgeComponentValue` was already on origin (48c0972d3, landed on green evidence before the reboot), so it was not
