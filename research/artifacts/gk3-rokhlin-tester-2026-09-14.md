@@ -1,12 +1,16 @@
 # Gottschalk through Rokhlin entropy: what the landed toolkit can reach, and the exact gap
 
-Lane `gk3-rokhlin-tester`, 2026-09-14. Handwritten proofs, nothing computed. Unreviewed.
+Lane `gk3-rokhlin-tester`, 2026-09-14. Handwritten proofs, nothing computed. Unreviewed. Part 2
+(`research/artifacts/gk3-rokhlin-tester-2026-09-14-part2.md`) proves Theorem T, the soficity transfer for (O6).
 
-**Verdict.** Not decided. No new Rokhlin entropy lower bound over a nonsofic group was found. The lane lands one
-barrier theorem, `rokhlin-permanence-toolkit-certifies-only-sofic-groups` (Section 2): started from the sofic groups,
-the six landed permanence operations for Rokhlin maximality produce exactly the sofic groups. The Gottschalk tester
-host lies outside that class, so the Rokhlin route to Gottschalk needs a lower-bound mechanism that is not a
-permanence theorem. Section 5 names the three open statements that would supply one.
+**Verdict.** Not decided. No new Rokhlin entropy lower bound over a nonsofic group was found. The lane lands two
+theorems:
+- **Barrier.** `rokhlin-permanence-toolkit-certifies-only-sofic-groups` (Section 2): started from the sofic groups, the
+  six landed permanence operations for Rokhlin maximality produce exactly the sofic groups. The Gottschalk tester host
+  lies outside that class, so the Rokhlin route to Gottschalk needs a lower-bound mechanism that is not a permanence
+  theorem. Section 5 names the three open statements that would supply one.
+- **Transfer.** `weakly-bernoulli-liftable-finite-extensions-are-sofic` (part 2): a finite extension of a sofic group with
+  a weakly Bernoulli liftable action is sofic, for every finite normal kernel.
 
 ## 0. State read on main
 
@@ -49,9 +53,13 @@ These match `seward-per-group-rokhlin-entropy-of-bernoulli-shifts`.
   whenever `a, b, ab ∈ S`, then `H ∈ R`. This contains directed colimits with arbitrary structure maps;
 - **(O4) co-amenable overgroups:** if `H <= G` is infinite and co-amenable in the Følner sense and `H ∈ R`, then `G ∈ R`;
 - **(O5) finite normal quotients:** if `W ∈ R` and `N ◁ W` is finite, then `W/N ∈ R`;
-- **(O6) weakly Bernoulli finite central ascent:** if `Q ∈ R` is finitely presented, `1 -> A -> W -> Q -> 1` is central with
-  `A` finite, and some free p.m.p. `Q`-action that is the `A`-quotient of a free `W`-action is weakly contained in
-  `[0,1]^Q`, then `W ∈ R`.
+- **(O6) weakly Bernoulli finite ascent:** let `N ◁ W` be finite with `Q = W/N ∈ R` finitely generated. Then `W ∈ R` if
+  - (i) some finite-entropy free ergodic `Q`-action lifting to a free `W`-action is weakly contained in all free
+    `Q`-actions, or
+  - (ii) some finite-entropy Bernoulli shift of `Q` lifts to a free `W`-action.
+
+  These are cases (i) and (ii) of `finite-kernel-rokhlin-ascent-from-weakly-minimal-lift`. Its case (iii) is
+  `seward-direct-product-relative-rokhlin-entropy-conjecture`, which is open and is not an operation here.
 
 By the nodes listed in Section 0, every group in `R` is Rokhlin-maximal, since sofic groups are maximal by item 4 of
 `seward-per-group-rokhlin-entropy-of-bernoulli-shifts`.
@@ -88,8 +96,11 @@ sofic when for every finite `F ∋ 1` and `ε > 0` there is a map `σ : F -> Sym
     `σ_g σ_h v = σ_(k n_0) v = σ_(k n_0 k^-1) σ_k v ∈ O(σ_k v)`, so `O(σ_g σ_h v) = O(σ_k v)`.
   - Freeness: `τ_ḡ` fixes `O(v)` only if `σ_g v = σ_n v`, that is `σ_(n^-1 g) v = v`. Then `n^-1 g = 1` and `ḡ = 1`.
   - Complete each `τ_ḡ` to a permutation of the orbit set together with `V \ V_0`. The bad proportion is `O(δ)`.
-- **(O6).** This is `weakly-bernoulli-liftable-action-makes-extension-sofic`: a finite central extension of a finitely
-  presented sofic group with such a lift is sofic.
+- **(O6).** Theorem T of part 2 (`weakly-bernoulli-liftable-finite-extensions-are-sofic`), through Corollary T3.
+  - In case (i) the lifted action is weakly contained in the Bernoulli shift `[0,1]^Q`, which is free.
+  - In case (ii) the lifted Bernoulli shift is a factor of `[0,1]^Q`.
+
+  So `W` is sofic. The central case over a finitely presented base is `weakly-bernoulli-liftable-action-makes-extension-sofic`.
 
 So the sofic class contains the sofic groups and is closed under (O1)–(O6), hence contains `R`. The reverse inclusion
 is by definition. QED
@@ -104,10 +115,11 @@ barrier, and it says nothing about whether a nonsofic group is maximal.
 1. **Tester host.** `U` contains every recursively presented group, including the finitely presented nonsofic group of
    `fp-surjunctive-nonsofic-group-exists`. So `U` is nonsofic and `U ∉ R`. No iteration of (O1)–(O6) from sofic groups
    proves `bernoulli-rokhlin-entropy-maximal-on-fixed-tester`.
-2. **Deligne's triple cover.** `E_3 ∈ R` iff `deligne-triple-cover-is-sofic`. So `rokhlin-maximality-ascends-finite-normal-extensions`
-   can decide `deligne-triple-cover-surjunctive` beyond soficity only through case (iii) of
-   `finite-kernel-rokhlin-ascent-from-weakly-minimal-lift`, Seward's direct-product conjecture. Case (i) gives soficity
-   by (O6), and case (ii) is excluded by Popa.
+2. **Deligne's triple cover.** `E_3 ∈ R` iff `deligne-triple-cover-is-sofic`.
+   - Case (i) of `finite-kernel-rokhlin-ascent-from-weakly-minimal-lift` gives soficity by Theorem T.
+   - Case (ii) is excluded by Popa.
+   - So `rokhlin-maximality-ascends-finite-normal-extensions` can decide `deligne-triple-cover-surjunctive` beyond
+     soficity only through case (iii), Seward's direct-product conjecture.
 3. **Kun–Thom wreath and Gohla–Thom extensions.** Being nonsofic, they lie outside `R`. So
    `kun-thom-wreath-bernoulli-rokhlin-maximal` stays exactly as open as recorded.
 4. **A Rokhlin deficit on any group kills the route for all groups.** `U` contains every countably generated recursively
@@ -151,8 +163,8 @@ Each would give a Rokhlin lower bound that Theorem K does not already cover.
   - **Obstacle.** Every known relative lower bound over a base with no finite models is (I6), which needs weak
     containment.
   - **Sketch, not proved here.** A sofic-model lower bound needs microstates of `Ω/N`. Microstates of a liftable action
-    lift to permutation models of the extension on `V_n × A`, by the torsor argument of
-    `weakly-bernoulli-liftable-action-makes-extension-sofic`. So finite models reproduce soficity again.
+    carry the extension cocycle and give permutation models of the extension on `N × V_n`, by the argument of Theorem T.
+    So finite models reproduce soficity again.
 - **(M2) `rokhlin-window-transport-is-dominated` on a nonsofic canonical host.** This is a finitary information
   inequality that must use associativity (`cancellative-incidence-patterns-do-not-force-domination`).
 - **(M3) `rokhlin-maximality-ascends-amenable-normal-extensions`.** It reaches the Kun–Thom wreath. One ascent step from
@@ -164,10 +176,10 @@ Rokhlin lower bound over `U` by a mechanism that is neither sofic counting nor w
 
 ## 6. Model tests for Theorem K
 
-- **Hypothesis side.** Each operation is used with its landed maximality node. Dropping finite presentation from (O6)
-  loses the soficity transfer, which uses the presentation, so (O6) keeps it.
+- **Hypothesis side.** Each operation is used with its landed maximality node. Weak containment in (O6) is consumed by
+  Theorem T. Case (iii) of the finite-kernel ascent drops it and is not an operation.
 - **Conclusion side.**
-  - `R` contains the Gohla–Thom lattice `Γ` but not `Γ~` whenever `Γ~` is nonsofic, consistent with
+  - `R` contains the Gohla–Thom lattice `Γ` but not `Γ~` whenever `Γ~` is nonsofic. This is consistent with
     `gohla-thom-lattices-no-weakly-bernoulli-liftable-action`, which excludes (O6) there.
   - It contains `E_3` exactly when `E_3` is sofic.
 - **Trivial model.** If every group were sofic, Theorem K would say nothing, and neither would the route. The existence
