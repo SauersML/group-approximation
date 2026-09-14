@@ -152,6 +152,19 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   - already in hand: `cd7908a482b5`, `3550126258fb`, `e94a87793eb1` (supersede requested).
   Plan: a closed printed-route carrier wherever the inputs are closed, otherwise a stale-row override via ms-cite-2.
 
+- 09-14 08:55: merge-6 triage results.  All seven claimed rows are stale rows next to formalized carriers at the printed
+  generality, so no build was needed:
+  - `d4c878a7ac22`, `2a97fb901bad`, `80279f06992b`, `2ff745dd7064` (audit-nm-1): RELEASED.  ms-core-1 (live, assigned
+    by main) holds closed endpoints for each (AmenableTraceCountableClosed, IntroExamplesTorsionAllCharacteristics,
+    ElementaryGroupNotMFRankTwoClosed, pending wiring), and ms-cite-2's overrides.tsv lines 60–63 already DROP the
+    audit-nm-1 declarations.
+  - `60708f733247`, `9e22ceae062f`, `f1769ba5e51c` (ct-bilateral-mf `LINE:1732`/`1739`/`1740`): the rows say "over the
+    identification theta", now closed (`returnRingCrossedProductStatement_holds`).  ct-return-tower's formalized rows at
+    the same keys name root-reachable carriers (`cornerEquiv`, `returnTowerUnits`, `flatUnitizeGL_injective`,
+    `map_flat_elementaryGroup_le`).  DROP overrides requested from ms-cite-2.
+  - `cd7908a482b5`, `3550126258fb`, `e94a87793eb1`: ms-cite-2 DROPped ct-bilateral-mf `LINE:1583`/`LINE:1587`
+    declarations (effective merge 7).
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
