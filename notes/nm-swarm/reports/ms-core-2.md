@@ -158,3 +158,20 @@ No false claim found. Each item gives the check.
   taken: w1-binder-8 already holds the whole step, pinch merge, doubling half and endpoints `stripStepStatement_holds` /
   `geodesicCollarStatement_holds`, in `GGT/VanKampen/SurgeryGeodesicCollarStripStep.lean`. This lane created no module there.
   Leaf for binder 8: none.
+- 09-13 ~18:55: general-X route LANDED 0bdeb7074 (probe 0913-184756-35974 GREEN: 4 BUILT, 0 sorryAx/error lines), queued for
+  wiring. Modules:
+  - `Dynamics/ChainCoreGeneralFactor`: `image_generalCore`, `coreFactor`, `coreFactorShift`, `coreFactorMap`
+    (continuous, surjective, `coreFactorMap_semiconj`), `comap_injective`, `range_comap_coreFactorMap_mono`,
+    `itinerary_apply_zero`.
+  - `Dynamics/ChainCoreGeneralLEF`: `SubshiftCycleConditionLEFInput`, `exists_forall_proj_eq_imp_of_locallyConstant_subtype`,
+    `exists_comap_coreFactorMap_eq`, `exists_mem_range_comap_coreFactorMap`, `isLEFRing_clopenCrossedProduct_generalCore`.
+  - `Dynamics/ChainCoreGeneralRecurrent`: `discreteQuotientUniformSpace` (a local instance through `replaceTopology`),
+    `chainRecurrentSet_subset_generalCore`, `generalCore_subset_chainRecurrentSet`, `generalCore_eq_chainRecurrentSet`.
+  - `Manuscript/NonMFSentences/CoreModelsLEF`: `SubshiftCoreCycleConditionInput`, `isLEFRing_restrictHomeo_of_eq`,
+    `coreModelsLEFStatement_of_inputs : SubshiftCycleConditionLEFInput → SubshiftCoreCycleConditionInput →
+    DynamicRankBudget.CoreModelsLEFStatement`.
+  - Residual for the closed endpoint: the two symbolic inputs (ms-traces-3). Drafts on disk:
+    `WordGraph.isLEFRing_clopenCrossedProduct_of_cycleCondition` (SubshiftCycleLEF) and
+    `ChainCore.cycleCondition_coreSubshift` (CoreSubshiftCycle). Both signatures match the inputs.
+  - Census rows: `metadata/nm-census-rows/ms-core-2.tsv` (keys c825bc73828a, 2df08eeac3cb, e6626f95fede, 2583cbd0c0f2,
+    3b218f92cd81, fb195144e5c2, 8921296d639a, d8e1a694d87c).
