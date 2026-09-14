@@ -22,4 +22,8 @@ The lower bound `cw(e_12(χ_V)) ≥ 1/inf_μ μ(V)` (`subshift-el-rank-lengths-f
   - Iterating the cut lemma does not terminate.
 - **Via stable rank one.** If `sr(R) = 1`, `GL_3(R) = (≤ 10 root elements)·diag(1,1,GL_1(R))`, and the question reduces to bounded root length of `diag(1,1,v)` for units `v` of index 0.
   - `sr(R) = 1` is open (`minimal-cantor-crossed-product-has-stable-rank-at-most-two`). For the exchange ring `R` it is equivalent to internal cancellation (Yu 1995, recalled), which would follow from `V(R) ≅ K^0(X,T)^+`.
+- **Odometer test case (part 2, §2.1).** Over the 2-adic odometer the ring is `⋃_n M_{2^n}(F_2[t^{±1}])`. Boundedness is equivalent to writing every element of `SL_{3·2^n}(F_2[t^{±1}])` as a product of boundedly many 3×3 *block* elementary matrices, uniformly in `n`. Block Gauss reduction stops at 2×2 blocks, because `sr(M_k(F_2[t^{±1}])) = 2` for every `k`.
+- **Long-block Strang factorization (part 2, §2.2).** Strang's theorem factors banded matrices with banded inverses into alternating block-diagonal factors, with the number of factors depending on the bandwidth. Open D needs a long-block version with O(1) factors at index 0.
+  - The worked example `diag(u,u^{-1},1) = H_1·diag(1,w,1)·diag(c,c^{-1},1)·diag(1,w^{-1},1)` shows how a Whitehead element absorbs the wrap-around.
+- **Idempotent crux for sr 1 (part 2, §2.3).** `sr(R_X) = 1` follows from internal cancellation. That needs every idempotent of `M_n(R_X)` to be equivalent to a diagonal one, the idempotent analogue of the wrap-around issue.
 - **Bounded cohomology** (`subshift-el-groups-vanishing-l2-betti-and-bounded-cohomology`) covers mixing coefficients only. Boundedness would force all homogeneous quasimorphisms to vanish, which property (T) alone does not give.
