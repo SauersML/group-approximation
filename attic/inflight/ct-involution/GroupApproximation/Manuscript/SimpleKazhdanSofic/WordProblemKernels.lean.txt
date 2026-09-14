@@ -60,29 +60,31 @@ noncomputable def tauLetter {A : Type} (a : A) : KernelFreeAlgebra A :=
 
 /-- The word `∏_{t<m} τ_-^t τ_{v_t} τ_+^t` of `F` (tex l.542). -/
 noncomputable def kernelWord {A : Type} (v : List A) : KernelFreeAlgebra A :=
-  ((List.finRange v.length).map fun t =>
+  ((List.finRange v.length).map fun t : Fin v.length =>
     tauMinus A ^ (t : ℕ) * tauLetter (v.get t) * tauPlus A ^ (t : ℕ)).prod
 
-/-- `e₁₂(r)` as an element of `EL₃(R)`. -/
+theorem fin3_zero_ne_one : (0 : Fin 3) ≠ 1 := by decide
+
+/-- `e₁₂(r)` as an element of `EL₃(R)`. -/ 
 noncomputable def e12 {R : Type*} [Ring R] (r : R) : elementaryGroup (Fin 3) R :=
-  ⟨elementaryUnit 0 1 (by decide) r, elementaryUnit_mem _ _ _ r⟩
+  ⟨elementaryUnit 0 1 fin3_zero_ne_one r, elementaryUnit_mem _ _ _ r⟩
 
 theorem elementaryGroupMap_e12 {R R' : Type*} [Ring R] [Ring R'] (f : R →+* R') (r : R) :
     elementaryGroupMap f (e12 r) = e12 (f r) := by
   apply Subtype.ext
   rw [elementaryGroupMap_apply]
-  exact elementaryMatrixUnitMap_elementaryUnit f 0 1 (by decide) r
+  exact elementaryMatrixUnitMap_elementaryUnit f 0 1 fin3_zero_ne_one r
 
 theorem e12_eq_one_iff {R : Type*} [Ring R] (r : R) : e12 r = 1 ↔ r = 0 := by
   constructor
   · intro h
-    have h' : elementaryUnit (0 : Fin 3) 1 (by decide) r =
-        elementaryUnit (0 : Fin 3) 1 (by decide) (0 : R) := by
+    have h' : elementaryUnit (0 : Fin 3) 1 fin3_zero_ne_one r =
+        elementaryUnit (0 : Fin 3) 1 fin3_zero_ne_one (0 : R) := by
       rw [elementaryUnit_zero]
       exact congrArg Subtype.val h
-    exact elementaryUnit_injective _ _ _ h'
+    exact elementaryUnit_injective _ _ fin3_zero_ne_one h'
   · rintro rfl
-    exact Subtype.ext (elementaryUnit_zero _ _ _)
+    exact Subtype.ext (elementaryUnit_zero _ _ fin3_zero_ne_one)
 
 variable {A : Type} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A]
 
@@ -100,7 +102,7 @@ theorem freeAlgebraProj_ι (S : Subshift A ℤ) (s : Option (Coeff A)) :
     freeAlgebraProj S (FreeAlgebra.ι (ZMod 2) s) = letterValue S s := by
   letI := zmodTwoAlgebra (subshiftHomeo S)
   show FreeAlgebra.lift (ZMod 2) (letterValue S) (FreeAlgebra.ι (ZMod 2) s) = letterValue S s
-  exact FreeAlgebra.lift_ι_apply (ZMod 2) (letterValue S) s
+  exact FreeAlgebra.lift_ι_apply (letterValue S) s
 
 /-- **`π` is onto** ("Both are onto"): its range contains `u^{±1}` and the `e_a`, which generate `R`. -/
 theorem freeAlgebraProj_surjective [Finite A] (S : Subshift A ℤ) :
@@ -126,7 +128,7 @@ theorem elementaryGroupMap_freeAlgebraProj_surjective [Finite A] (S : Subshift A
 theorem freeAlgebraProj_kernelWord (S : Subshift A ℤ) (v : List A) :
     freeAlgebraProj S (kernelWord v) =
       coeff (subshiftHomeo S) (ZMod 2)
-        ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod := by
+        ((List.finRange v.length).map fun t : Fin v.length => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod := by
   have hm : freeAlgebraProj S (tauMinus A) =
       (((unit (subshiftHomeo S) (ZMod 2))⁻¹ : (R S)ˣ) : R S) :=
     freeAlgebraProj_ι S (some .uInv)
@@ -150,26 +152,26 @@ theorem freeAlgebraProj_kernelWord (S : Subshift A ℤ) (v : List A) :
 /-- The cylinder indicator `e_{[v]}` vanishes exactly when `v` is not a word of `X`. -/
 theorem coeff_prod_coordIndicator_eq_zero_iff (S : Subshift A ℤ) (v : List A) :
     coeff (subshiftHomeo S) (ZMod 2)
-        ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod = 0 ↔
+        ((List.finRange v.length).map fun t : Fin v.length => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod = 0 ↔
       v ∉ CylinderTables.listLanguage S.carrier := by
   have heval : ∀ x : S.carrier,
-      ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod x =
-        ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t) x).prod := by
+      ((List.finRange v.length).map fun t : Fin v.length => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod x =
+        ((List.finRange v.length).map fun t : Fin v.length => coordIndicator S ((t : ℕ) : ℤ) (v.get t) x).prod := by
     intro x
     change LocallyConstant.evalRingHom x
-        ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod = _
+        ((List.finRange v.length).map fun t : Fin v.length => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod = _
     rw [map_list_prod, List.map_map]
     rfl
   constructor
   · intro h0 hv
     obtain ⟨x, hx, hxv⟩ := hv
     have hz : coeff (subshiftHomeo S) (ZMod 2)
-        ((List.finRange v.length).map fun t => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod =
+        ((List.finRange v.length).map fun t : Fin v.length => coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod =
         coeff (subshiftHomeo S) (ZMod 2) 0 := by
       rw [h0, map_zero]
     have hf := coeff_injective (subshiftHomeo S) (ZMod 2) hz
     have hval := LocallyConstant.congr_fun hf ⟨x, hx⟩
-    have h1 : ((List.finRange v.length).map fun t =>
+    have h1 : ((List.finRange v.length).map fun t : Fin v.length =>
         coordIndicator S ((t : ℕ) : ℤ) (v.get t) ⟨x, hx⟩).prod = 1 := by
       refine List.prod_eq_one fun c hc => ?_
       obtain ⟨t, -, rfl⟩ := List.mem_map.1 hc
@@ -177,7 +179,7 @@ theorem coeff_prod_coordIndicator_eq_zero_iff (S : Subshift A ℤ) (v : List A) 
     rw [heval, h1, LocallyConstant.zero_apply] at hval
     exact absurd hval (by decide)
   · intro hv
-    have hprod : ((List.finRange v.length).map fun t =>
+    have hprod : ((List.finRange v.length).map fun t : Fin v.length =>
         coordIndicator S ((t : ℕ) : ℤ) (v.get t)).prod = 0 := by
       ext x
       rw [heval, LocallyConstant.zero_apply]
@@ -199,6 +201,7 @@ theorem e12_kernelWord_mem_ker_iff (S : Subshift A ℤ) (v : List A) :
 
 /-- **A subshift is determined by its language**: if every word of `X` is a word of `X'`, then
 `X ⊆ X'`, since `X'` is closed and a point is approximated by the points of `X'` with its windows. -/
+omit [DiscreteTopology A] [DecidableEq A] in
 theorem carrier_subset_of_listLanguage_subset {S S' : Subshift A ℤ}
     (h : CylinderTables.listLanguage S.carrier ⊆ CylinderTables.listLanguage S'.carrier) :
     S.carrier ⊆ S'.carrier := by
@@ -220,6 +223,7 @@ theorem carrier_subset_of_listLanguage_subset {S S' : Subshift A ℤ}
   rw [hxy]
   exact (hU i hi).2
 
+omit [DiscreteTopology A] [DecidableEq A] in
 theorem subshift_eq_of_carrier_eq {S S' : Subshift A ℤ} (h : S.carrier = S'.carrier) : S = S' := by
   cases S
   cases S'
